@@ -49,12 +49,18 @@ namespace RiemannSiegel
 
 /-! ### The reflection identity for the two coefficients -/
 
+/--
+@isnad1 id=eq.0h1v.s5.720fdd6c19ae from=translated src=- shape=a8a6cb97 vocab=8b46ceaf
+-/
 theorem rsOmega_cpow (w : ℂ) : ω ^ w = cexp (π * I / 4 * w) := by
   unfold Complex.rsOmega
   rw [exp_cpow_of_im]
   · simp; linarith [Real.pi_pos]
   · simp; linarith [Real.pi_pos]
 
+/--
+@isnad1 id=eq.0h1v.s6.4bd85d7b43c0 from=translated src=- shape=808f42d9 vocab=76d3d0e3
+-/
 theorem Gammaℝ_conj (s : ℂ) : Gammaℝ ((starRingEnd ℂ) s) = (starRingEnd ℂ) (Gammaℝ s) := by
   rw [Gammaℝ_def, Gammaℝ_def, map_mul, ← Complex.Gamma_conj, map_div₀, map_ofNat,
     show -(starRingEnd ℂ) s / 2 = (starRingEnd ℂ) (-s / 2) by
@@ -62,6 +68,9 @@ theorem Gammaℝ_conj (s : ℂ) : Gammaℝ ((starRingEnd ℂ) s) = (starRingEnd 
     Complex.cpow_conj _ _ (by rw [Complex.arg_ofReal_of_nonneg Real.pi_pos.le]; exact Real.pi_ne_zero.symm),
     Complex.conj_ofReal]
 
+/--
+@isnad1 id=ne.1h1v.s5.3def1b23264e from=translated src=- shape=cf697115 vocab=c8d180ef
+-/
 theorem Gammaℝ_one_sub_ne_zero {s : ℂ} (hs : ∀ n : ℤ, s ≠ n) : Gammaℝ (1 - s) ≠ 0 := by
   rw [Ne, Gammaℝ_eq_zero_iff, not_exists]
   intro n h
@@ -69,7 +78,9 @@ theorem Gammaℝ_one_sub_ne_zero {s : ℂ} (hs : ∀ n : ℤ, s ≠ n) : Gamma�
   push_cast
   linear_combination -h
 
-/-- `Γ_ℝ(1 - s) e^{-iπs/4} (1 + e^{iπs}) = Γ_ℝ(s) ω^s (2π)^s / Γ(s)` for `s ∉ ℤ`, `Re s > 0`.-/
+/-- `Γ_ℝ(1 - s) e^{-iπs/4} (1 + e^{iπs}) = Γ_ℝ(s) ω^s (2π)^s / Γ(s)` for `s ∉ ℤ`, `Re s > 0`.
+@isnad1 id=eq.2h1v.s7.08733adea9c4 from=translated src=- shape=cc0add8c vocab=062a5952
+-/
 theorem Gammaℝ_one_sub_mul_eq {s : ℂ} (hs : ∀ n : ℤ, s ≠ n) (hre : 0 < s.re) :
     Gammaℝ (1 - s) * (cexp (-(π * I * s / 4)) * (1 + cexp (π * I * s))) =
       Gammaℝ s * (ω ^ s * (2 * π) ^ s / Complex.Gamma s) := by
@@ -99,11 +110,17 @@ theorem Gammaℝ_one_sub_mul_eq {s : ℂ} (hs : ∀ n : ℤ, s ≠ n) (hre : 0 <
 
 /-! ### The formula for `Re s > 2` -/
 
+/--
+@isnad1 id=eq.1h1v.s4.a55a4d4e219e from=translated src=- shape=fbf673ae vocab=cf409e8f
+-/
 theorem completedRiemannZeta_eq_mul {s : ℂ} (hs : 0 < s.re) :
     completedRiemannZeta s = Gammaℝ s * riemannZeta s := by
   have hs0 : s ≠ 0 := fun h => by rw [h] at hs; simp at hs
   rw [riemannZeta_def_of_ne_zero hs0, mul_div_cancel₀ _ (Gammaℝ_ne_zero_of_re_pos hs)]
 
+/--
+@isnad1 id=eq.0h1v.s8.12f79992540f from=translated src=- shape=18a40200 vocab=2caa4dbc
+-/
 theorem conj_one_sub_conj_mul (s : ℂ) :
     (starRingEnd ℂ) ((1 - (starRingEnd ℂ) s) * (1 - (starRingEnd ℂ) s - 1) / 16 *
       Gammaℝ (1 - (starRingEnd ℂ) s)) = s * (s - 1) / 16 * Gammaℝ (1 - s) := by
@@ -112,7 +129,9 @@ theorem conj_one_sub_conj_mul (s : ℂ) :
   simp only [map_mul, map_div₀, map_sub, map_one, map_ofNat, Complex.conj_conj]
   ring
 
-/-- The Riemann–Siegel formula for `Re s > 2`, `s ∉ ℤ`, with the line through `c ∈ (0, 1)`.-/
+/-- The Riemann–Siegel formula for `Re s > 2`, `s ∉ ℤ`, with the line through `c ∈ (0, 1)`.
+@isnad1 id=eq.4h2v.s8.0608bd9cd1ae from=translated src=- shape=3960ab95 vocab=e771dd15
+-/
 theorem formula_of_two_lt_re {s : ℂ} (hs : 2 < s.re) (hsZ : ∀ n : ℤ, s ≠ n) {c : ℝ}
     (hc0 : 0 < c) (hc1 : c < 1) :
     s * (s - 1) / 16 * completedRiemannZeta s =
@@ -126,6 +145,9 @@ theorem formula_of_two_lt_re {s : ℂ} (hs : 2 < s.re) (hsZ : ∀ n : ℤ, s ≠
 
 /-! ### Analytic continuation -/
 
+/--
+@isnad1 id=differen.1h1v.s6.53f1b6a8ac7e from=translated src=- shape=6e3d7eb9 vocab=c6be1576
+-/
 theorem differentiableAt_Gammaℝ {s : ℂ} (hs : ∀ n : ℤ, s ≠ n) : DifferentiableAt ℂ Gammaℝ s := by
   have : Gammaℝ = fun s : ℂ => (π : ℂ) ^ (-s / 2) * Complex.Gamma (s / 2) := funext Gammaℝ_def
   rw [this]
@@ -138,6 +160,9 @@ theorem differentiableAt_Gammaℝ {s : ℂ} (hs : ∀ n : ℤ, s ≠ n) : Differ
     push_cast
     linear_combination 2 * h
 
+/--
+@isnad1 id=differen.1h2v.s6.71c0972c72b4 from=translated src=- shape=d5ca23bd vocab=c69b860e
+-/
 theorem differentiableAt_remainder {s : ℂ} (hs : ∀ n : ℤ, s ≠ n) (N : ℕ) :
     DifferentiableAt ℂ (remainder N) s := by
   unfold remainder
@@ -151,6 +176,9 @@ theorem differentiableAt_remainder {s : ℂ} (hs : ∀ n : ℤ, s ≠ n) (N : �
   exact ((differentiableAt_id.mul (differentiableAt_id.sub_const 1)).div_const 16).mul
     (differentiableAt_Gammaℝ hs) |>.mul (differentiable_rsIntegral hc0 hcZ s)
 
+/--
+@isnad1 id=ne.1h2v.s6.ab9d0d7c62f1 from=translated src=- shape=4070d6d1 vocab=934118ea
+-/
 theorem conj_ne_int {s : ℂ} (hs : ∀ n : ℤ, s ≠ n) : ∀ n : ℤ, 1 - (starRingEnd ℂ) s ≠ n := by
   intro n h
   apply hs (1 - n)
@@ -159,6 +187,9 @@ theorem conj_ne_int {s : ℂ} (hs : ∀ n : ℤ, s ≠ n) : ∀ n : ℤ, 1 - (st
   push_cast
   linear_combination -this
 
+/--
+@isnad1 id=differen.1h2v.s7.5eb62217a6f6 from=translated src=- shape=f556615e vocab=c6cdd7fd
+-/
 theorem differentiableAt_conj_remainder {s : ℂ} (hs : ∀ n : ℤ, s ≠ n) (N : ℕ) :
     DifferentiableAt ℂ (fun s => (starRingEnd ℂ) (remainder N (1 - (starRingEnd ℂ) s))) s := by
   have h := (differentiableAt_remainder (conj_ne_int hs) N).comp ((starRingEnd ℂ) s)
@@ -168,7 +199,9 @@ theorem differentiableAt_conj_remainder {s : ℂ} (hs : ∀ n : ℤ, s ≠ n) (N
   exact h2
 
 /-- **The Riemann–Siegel formula**: for `s ∉ ℤ`,
-`ξ(s)/8 = R_{0,0}(s) + conj (R_{0,0}(1 - conj s))`.-/
+`ξ(s)/8 = R_{0,0}(s) + conj (R_{0,0}(1 - conj s))`.
+@isnad1 id=eq.1h1v.s7.33f9af196e76 from=translated src=- shape=28229876 vocab=17d91c89
+-/
 theorem formula {s : ℂ} (hs : ∀ n : ℤ, s ≠ n) :
     s * (s - 1) / 16 * completedRiemannZeta s =
       remainder 0 s + (starRingEnd ℂ) (remainder 0 (1 - (starRingEnd ℂ) s)) := by
@@ -213,6 +246,9 @@ theorem formula {s : ℂ} (hs : ∀ n : ℤ, s ≠ n) :
 
 /-! ### The residue expansion -/
 
+/--
+@isnad1 id=eq.0h2v.s5.55a42ac2a3a7 from=translated src=- shape=ee365795 vocab=eb4114fb
+-/
 theorem remainder_zero_eq (s : ℂ) (N : ℕ) :
     remainder 0 s = ∑ n ∈ Finset.range N, mainTerm (n + 1) s + remainder N s := by
   unfold remainder mainTerm
@@ -223,7 +259,9 @@ theorem remainder_zero_eq (s : ℂ) (N : ℕ) :
 
 /-- The Riemann–Siegel formula with `N` main terms on each side: for `s ∉ ℤ`,
 `ξ(s)/8 = ∑_{n=1}^N r_{0,n}(s) + ∑_{n=1}^N conj (r_{0,n}(1 - conj s)) + R_{0,N}(s)
-+ conj (R_{0,N}(1 - conj s))`.-/
++ conj (R_{0,N}(1 - conj s))`.
+@isnad1 id=eq.1h2v.s8.acb49cb8847d from=translated src=- shape=d43df13a vocab=501d42a3
+-/
 theorem formula_expand {s : ℂ} (hs : ∀ n : ℤ, s ≠ n) (N : ℕ) :
     s * (s - 1) / 16 * completedRiemannZeta s =
       ∑ n ∈ Finset.range N, mainTerm (n + 1) s +

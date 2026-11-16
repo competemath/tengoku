@@ -119,6 +119,9 @@ namespace DeBruijnNewman
       1.24 * ((3 : ℝ) ^ y + (3 : ℝ) ^ (-y)) / ((cutoff t x : ℝ) - 0.125) +
       (3 * Real.sqrt (Real.log (x / (4 * π)) ^ 2 + (π / 2) ^ 2) + 10.44) / (x - 12))
 
+/--
+@isnad1 id=le.1h3v.s4.02c81746a46e from=translated src=- shape=665d5371 vocab=ed295194
+-/
 theorem errC0_nonneg {t x y : ℝ} (hx : 0 ≤ x) : 0 ≤ errC0 t x y := by
   unfold errC0
   have := Real.rpow_nonneg (show (0 : ℝ) ≤ x / (4 * π) by positivity) (-(1 + y) / 4)
@@ -144,6 +147,9 @@ replaced by the explicit upper bounds (1.14) and (1.15).-/
 /-- Polymath Theorem 1.3 as stated, with the tail constant `1`.-/
 @[expose] def EffectiveApproximation : Prop := EffectiveApproximationWith 1
 
+/--
+@isnad1 id=effectiv.2h2v.s3.3b580d71a374 from=translated src=- shape=8567d0ba vocab=288dde32
+-/
 theorem EffectiveApproximationWith.mono {K K' : ℝ} (hK : K ≤ K') (h : EffectiveApproximationWith K) :
     EffectiveApproximationWith K' := fun t x y hr =>
   (h t x y hr).trans (mul_le_mul_of_nonneg_left
@@ -152,11 +158,17 @@ theorem EffectiveApproximationWith.mono {K K' : ℝ} (hK : K ≤ K') (h : Effect
 
 /-! ### `B t` never vanishes -/
 
+/--
+@isnad1 id=eq.0h3v.s5.5556403661a2 from=translated src=- shape=2e6418f1 vocab=ece5603c
+-/
 theorem B_apply (t x y : ℝ) : B t (x + y * I) = M t (sPlus x y) := by
   unfold B sPlus
   congr 1
   apply Complex.ext <;> simp
 
+/--
+@isnad1 id=ne.2h1v.s5.d4d4ffed5bff from=translated src=- shape=000e742c vocab=72f2197a
+-/
 theorem M₀_ne_zero {s : ℂ} (h0 : s ≠ 0) (h1 : s ≠ 1) : M₀ s ≠ 0 := by
   unfold M₀
   have hpi : (π : ℂ) ≠ 0 := by exact_mod_cast Real.pi_ne_zero
@@ -166,10 +178,15 @@ theorem M₀_ne_zero {s : ℂ} (h0 : s ≠ 0) (h1 : s ≠ 1) : M₀ s ≠ 0 := b
   exact mul_ne_zero (mul_ne_zero (mul_ne_zero (by simp [h0, hs1])
     (fun h => hpi ((cpow_eq_zero_iff _ _).mp h).1)) hsq) (Complex.exp_ne_zero _)
 
+/--
+@isnad1 id=ne.2h2v.s5.e1b3e861eab9 from=translated src=- shape=de8dbe4d vocab=124d7831
+-/
 theorem M_ne_zero (t : ℝ) {s : ℂ} (h0 : s ≠ 0) (h1 : s ≠ 1) : M t s ≠ 0 :=
   mul_ne_zero (Complex.exp_ne_zero _) (M₀_ne_zero h0 h1)
 
-/-- `B_t(z) ≠ 0` whenever `Re z ≠ 0`; in particular on the whole region.-/
+/-- `B_t(z) ≠ 0` whenever `Re z ≠ 0`; in particular on the whole region.
+@isnad1 id=ne.1h2v.s4.9a24c5ccbd3f from=translated src=- shape=4273d554 vocab=d78cf4c5
+-/
 theorem B_ne_zero (t : ℝ) {z : ℂ} (hz : z.re ≠ 0) : B t z ≠ 0 := by
   refine M_ne_zero t ?_ ?_
   · intro h
@@ -184,7 +201,9 @@ theorem B_ne_zero (t : ℝ) {z : ℂ} (hz : z.re ≠ 0) : B t z ≠ 0 := by
 /-! ### The nonvanishing test -/
 
 /-- Polymath Corollary 1.4: if `|f_t(x+iy)| > e_A + e_B + K e_{C,0}` then `H_t(x+iy) ≠ 0`. This
-is the only consequence of Theorem 1.3 the certificate uses.-/
+is the only consequence of Theorem 1.3 the certificate uses.
+@isnad1 id=ne.3h4v.s6.3eda067194d1 from=translated src=- shape=5ed8c045 vocab=72b60e51
+-/
 theorem H_ne_zero_of_lt_norm_f {K : ℝ} (happrox : EffectiveApproximationWith K) {t x y : ℝ}
     (hr : InRegion t x y) (hf : errAB t x y + K * errC0 t x y < ‖f t x y‖) :
     H t (x + y * I) ≠ 0 := by
@@ -198,9 +217,15 @@ theorem H_ne_zero_of_lt_norm_f {K : ℝ} (happrox : EffectiveApproximationWith K
 
 /-! ### Derivatives of `alpha` and of the logarithm of `M` -/
 
+/--
+@isnad1 id=eq.0h1v.s5.7221d8fbb34e from=translated src=- shape=9f4f1977 vocab=9907f09c
+-/
 theorem div_two_pi_im (s : ℂ) : (s / (2 * π)).im = s.im / (2 * π) := by
   rw [show (2 * (π : ℂ)) = ((2 * π : ℝ) : ℂ) by push_cast; rfl, Complex.div_ofReal_im]
 
+/--
+@isnad1 id=hasderiv.1h1v.s5.e2625a3d4e92 from=translated src=- shape=a65eae87 vocab=4b896d50
+-/
 theorem hasDerivAt_alpha {s : ℂ} (hs : s.im ≠ 0) : HasDerivAt alpha (alpha' s) s := by
   have h0 : s ≠ 0 := fun h => hs (by simp [h])
   have h1 : s - 1 ≠ 0 := fun h => hs (by simpa using congrArg Complex.im h)
@@ -229,7 +254,9 @@ theorem hasDerivAt_alpha {s : ℂ} (hs : s.im ≠ 0) : HasDerivAt alpha (alpha' 
     field_simp
   exact (hA.add hB).add hC
 
-/-- Polymath (6.2): `|α'(s)| ≤ 1 / (2 Im s - 6)` when `Im s > 3`.-/
+/-- Polymath (6.2): `|α'(s)| ≤ 1 / (2 Im s - 6)` when `Im s > 3`.
+@isnad1 id=le.1h1v.s6.7cb93203f9b5 from=translated src=- shape=f31695a0 vocab=324cc1bc
+-/
 theorem norm_alpha'_le {s : ℂ} (hs : 3 < s.im) : ‖alpha' s‖ ≤ 1 / (2 * s.im - 6) := by
   have hT : 0 < s.im := by linarith
   have hsn : s.im ≤ ‖s‖ := by
@@ -261,6 +288,9 @@ theorem norm_alpha'_le {s : ℂ} (hs : 3 < s.im) : ‖alpha' s‖ ≤ 1 / (2 * s
           div_le_div_iff₀ (by positivity) (by linarith)]
         nlinarith [hT]
 
+/--
+@isnad1 id=eq.1h1v.s6.cd40768222b4 from=translated src=- shape=a0063f88 vocab=a6d26422
+-/
 theorem log_div_two_pi {s : ℂ} (hs : s ≠ 0) :
     Complex.log (s / (2 * π)) = Complex.log (s / 2) - Real.log π := by
   have hpi : (0 : ℝ) < π := Real.pi_pos
@@ -274,6 +304,9 @@ theorem log_div_two_pi {s : ℂ} (hs : s ≠ 0) :
   · rw [Complex.sub_im, Complex.log_im, Complex.log_im, e, Complex.arg_real_mul _ (inv_pos.mpr hpi),
       Complex.ofReal_im, sub_zero]
 
+/--
+@isnad1 id=hasderiv.1h1v.s5.4cf98264d23e from=translated src=- shape=a65eae87 vocab=f8f2b3bc
+-/
 theorem hasDerivAt_logM₀ {s : ℂ} (hs : s.im ≠ 0) : HasDerivAt logM₀ (alpha s) s := by
   have h0 : s ≠ 0 := fun h => hs (by simp [h])
   have hslit : s ∈ slitPlane := mem_slitPlane_iff.mpr (Or.inr hs)
@@ -305,6 +338,9 @@ theorem hasDerivAt_logM₀ {s : ℂ} (hs : s.im ≠ 0) : HasDerivAt logM₀ (alp
   field_simp
   ring
 
+/--
+@isnad1 id=eq.2h1v.s4.cdbd24c64ccf from=translated src=- shape=b4cc98a8 vocab=f7b8f5ef
+-/
 theorem M₀_eq_exp_logM₀ {s : ℂ} (h0 : s ≠ 0) (h1 : s ≠ 1) : M₀ s = Complex.exp (logM₀ s) := by
   have hs1 : s - 1 ≠ 0 := sub_ne_zero.mpr h1
   have hpi : (π : ℂ) ≠ 0 := by exact_mod_cast Real.pi_ne_zero
@@ -319,16 +355,25 @@ theorem M₀_eq_exp_logM₀ {s : ℂ} (h0 : s ≠ 0) (h1 : s ≠ 1) : M₀ s = C
   ring_nf
   exact mul_inv_cancel₀ (Complex.exp_ne_zero _)
 
+/--
+@isnad1 id=eq.2h1v.s5.942737fd201b from=translated src=- shape=e7832960 vocab=23aae7cb
+-/
 theorem norm_M₀ {s : ℂ} (h0 : s ≠ 0) (h1 : s ≠ 1) : ‖M₀ s‖ = Real.exp (logM₀ s).re := by
   rw [M₀_eq_exp_logM₀ h0 h1, Complex.norm_exp]
 
 /-- The holomorphic logarithm of `M t`: `log M_t(s) = (t/4) α(s)² + log M₀(s)`.-/
 @[expose] noncomputable def logM (t : ℝ) (s : ℂ) : ℂ := t / 4 * alpha s ^ 2 + logM₀ s
 
+/--
+@isnad1 id=eq.2h2v.s5.cdc002eda0e5 from=translated src=- shape=e2a68b42 vocab=0315ce1b
+-/
 theorem norm_M {t : ℝ} {s : ℂ} (h0 : s ≠ 0) (h1 : s ≠ 1) : ‖M t s‖ = Real.exp (logM t s).re := by
   unfold M logM
   rw [norm_mul, Complex.norm_exp, norm_M₀ h0 h1, ← Real.exp_add, Complex.add_re]
 
+/--
+@isnad1 id=hasderiv.1h2v.s6.924479782fd6 from=translated src=- shape=d18c7323 vocab=58c1296b
+-/
 theorem hasDerivAt_logM {t : ℝ} {s : ℂ} (hs : s.im ≠ 0) :
     HasDerivAt (logM t) (t / 2 * alpha s * alpha' s + alpha s) s := by
   have h1 := ((hasDerivAt_alpha hs).pow 2).const_mul (t / 4 : ℂ)
@@ -337,9 +382,15 @@ theorem hasDerivAt_logM {t : ℝ} {s : ℂ} (hs : s.im ≠ 0) :
   refine this.congr_deriv ?_
   push_cast; ring
 
+/--
+@isnad1 id=ne.1h1v.s4.df0c46af1e14 from=translated src=- shape=54bbe5ae vocab=bb95ac4a
+-/
 theorem arg_ne_pi_of_im_ne_zero {s : ℂ} (hs : s.im ≠ 0) : s.arg ≠ π := fun h =>
   hs (Complex.arg_eq_pi_iff.mp h).2
 
+/--
+@isnad1 id=eq.1h1v.s6.fa609eb708ac from=translated src=- shape=d97c7a03 vocab=3379ab55
+-/
 theorem alpha_conj {s : ℂ} (hs : s.im ≠ 0) :
     alpha ((starRingEnd ℂ) s) = (starRingEnd ℂ) (alpha s) := by
   have h : (s / (2 * π)).im ≠ 0 := by
@@ -350,6 +401,9 @@ theorem alpha_conj {s : ℂ} (hs : s.im ≠ 0) :
   rw [← Complex.log_conj _ (arg_ne_pi_of_im_ne_zero h)]
   simp only [map_div₀, Complex.conj_ofReal, map_mul, map_ofNat]
 
+/--
+@isnad1 id=eq.1h1v.s6.03f8d99793d0 from=translated src=- shape=d97c7a03 vocab=4504ebb9
+-/
 theorem logM₀_conj {s : ℂ} (hs : s.im ≠ 0) :
     logM₀ ((starRingEnd ℂ) s) = (starRingEnd ℂ) (logM₀ s) := by
   have h1 : (s - 1).im ≠ 0 := by simpa using hs
@@ -360,7 +414,9 @@ theorem logM₀_conj {s : ℂ} (hs : s.im ≠ 0) :
     ← Complex.log_conj _ (arg_ne_pi_of_im_ne_zero h1), ← Complex.log_conj _ (arg_ne_pi_of_im_ne_zero h2)]
   simp only [map_div₀, map_sub, map_one, map_ofNat]
 
-/-- `|M_t(conj s)| = |M_t(s)|`, in logarithmic form.-/
+/-- `|M_t(conj s)| = |M_t(s)|`, in logarithmic form.
+@isnad1 id=eq.1h2v.s5.f94f4514841f from=translated src=- shape=f01eadc6 vocab=d5051733
+-/
 theorem logM_conj_re {t : ℝ} {s : ℂ} (hs : s.im ≠ 0) :
     (logM t ((starRingEnd ℂ) s)).re = (logM t s).re := by
   unfold logM
@@ -370,23 +426,37 @@ theorem logM_conj_re {t : ℝ} {s : ℂ} (hs : s.im ≠ 0) :
 
 /-! ### Points on a horizontal line -/
 
+/--
+@isnad1 id=eq.0h2v.s6.2442891df6df from=translated src=- shape=7442fb0b vocab=a86d9ffd
+-/
 theorem norm_horizontal (σ c : ℝ) : ‖(σ : ℂ) + c * I‖ = Real.sqrt (σ ^ 2 + c ^ 2) := by
   rw [Complex.norm_def, Complex.normSq_apply]; simp; ring_nf
 
+/--
+@isnad1 id=eq.0h2v.s6.e75ca1bb11d6 from=translated src=- shape=585ffe2d vocab=346612ef
+-/
 theorem conj_horizontal (a c : ℝ) :
     (starRingEnd ℂ) ((a : ℂ) + (c : ℂ) * I) = (a : ℂ) - (c : ℂ) * I := by
   rw [map_add, map_mul, Complex.conj_ofReal, Complex.conj_ofReal, Complex.conj_I]; ring
 
+/--
+@isnad1 id=eq.0h2v.s6.6261b89cbd24 from=translated src=- shape=e94f90f9 vocab=cc4ca991
+-/
 theorem sMinus_eq (x y : ℝ) :
     ((1 - y + x * I) / 2 : ℂ) = (((1 - y) / 2 : ℝ) : ℂ) + ((x / 2 : ℝ) : ℂ) * I := by
   apply Complex.ext <;> simp
 
+/--
+@isnad1 id=eq.0h2v.s7.90ed5fc5e706 from=translated src=- shape=5b09a850 vocab=7ceb262b
+-/
 theorem sPlus_eq_conj (x y : ℝ) :
     ((1 + y - x * I) / 2 : ℂ) = (starRingEnd ℂ) ((((1 + y) / 2 : ℝ) : ℂ) + ((x / 2 : ℝ) : ℂ) * I) := by
   rw [conj_horizontal]
   apply Complex.ext <;> simp; ring
 
-/-- `Re α(σ + ic)` in real terms.-/
+/-- `Re α(σ + ic)` in real terms.
+@isnad1 id=eq.1h2v.s8.3de4eaa7babf from=translated src=- shape=faeec825 vocab=961b9365
+-/
 theorem re_alpha (σ c : ℝ) (hc : c ≠ 0) :
     (alpha (σ + c * I)).re = σ / (2 * (σ ^ 2 + c ^ 2)) + (σ - 1) / ((σ - 1) ^ 2 + c ^ 2)
       + 1 / 4 * Real.log (σ ^ 2 + c ^ 2) - 1 / 2 * Real.log (2 * π) := by
@@ -410,6 +480,9 @@ theorem re_alpha (σ c : ℝ) (hc : c ≠ 0) :
   rw [Complex.add_re, Complex.add_re, h1, h2, h3]
   ring
 
+/--
+@isnad1 id=hasderiv.1h2v.s6.38cdc67f050e from=translated src=- shape=b605eed3 vocab=2f98d828
+-/
 theorem hasDerivAt_alpha_horizontal {c : ℝ} (hc : c ≠ 0) (σ : ℝ) :
     HasDerivAt (fun σ : ℝ => alpha (σ + c * I)) (alpha' (σ + c * I)) σ := by
   have h : HasDerivAt (fun z : ℂ => alpha (z + c * I)) (alpha' (σ + c * I)) σ := by
@@ -420,6 +493,9 @@ theorem hasDerivAt_alpha_horizontal {c : ℝ} (hc : c ≠ 0) (σ : ℝ) :
     exact h3
   exact h.comp_ofReal
 
+/--
+@isnad1 id=hasderiv.1h3v.s7.87c7461e8248 from=translated src=- shape=626deb47 vocab=d61882d5
+-/
 theorem hasDerivAt_logM_re_horizontal {t c : ℝ} (hc : c ≠ 0) (σ : ℝ) :
     HasDerivAt (fun σ : ℝ => (logM t (σ + c * I)).re)
       (t / 2 * alpha (σ + c * I) * alpha' (σ + c * I) + alpha (σ + c * I)).re σ := by
@@ -434,6 +510,9 @@ theorem hasDerivAt_logM_re_horizontal {t c : ℝ} (hc : c ≠ 0) (σ : ℝ) :
 
 /-! ### The bound on `κ` -/
 
+/--
+@isnad1 id=le.2h3v.s7.ba0ec4831738 from=translated src=- shape=92c326ef vocab=d1da9994
+-/
 theorem norm_alpha_sub_alpha_le {c a b : ℝ} (hc : 3 < c) (hab : a ≤ b) :
     ‖alpha (b + c * I) - alpha (a + c * I)‖ ≤ 1 / (2 * c - 6) * (b - a) := by
   have hc0 : c ≠ 0 := by linarith
@@ -443,7 +522,9 @@ theorem norm_alpha_sub_alpha_le {c a b : ℝ} (hc : 3 < c) (hab : a ≤ b) :
   have := norm_alpha'_le (s := (σ : ℂ) + c * I) (by simpa using hc)
   simpa using this
 
-/-- Polymath (1.13): `|κ| ≤ t y / (2 (x - 6))`.-/
+/-- Polymath (1.13): `|κ| ≤ t y / (2 (x - 6))`.
+@isnad1 id=le.3h3v.s6.e05fbf8f4548 from=translated src=- shape=de90e62a vocab=9a66bd53
+-/
 theorem norm_kappa_le {t x y : ℝ} (ht : 0 ≤ t) (hy : 0 ≤ y) (hx : 6 < x) :
     ‖kappa t x y‖ ≤ t * y / (2 * (x - 6)) := by
   have hc : 3 < x / 2 := by linarith
@@ -464,16 +545,25 @@ theorem norm_kappa_le {t x y : ℝ} (ht : 0 ≤ t) (hy : 0 ≤ y) (hx : 6 < x) :
 
 /-! ### The bound on `Re s_*` -/
 
+/--
+@isnad1 id=eq.0h2v.s6.9918fb1a0637 from=translated src=- shape=9d5e91d3 vocab=226b1cdc
+-/
 theorem normSq_sPlus (x y : ℝ) : Complex.normSq (sPlus x y) = ((1 + y) ^ 2 + x ^ 2) / 4 := by
   unfold sPlus
   rw [Complex.normSq_apply]
   simp
   ring
 
+/--
+@isnad1 id=eq.0h2v.s6.8539d7ff6a65 from=translated src=- shape=673b5a99 vocab=d407a605
+-/
 theorem norm_sPlus (x y : ℝ) : ‖sPlus x y‖ = Real.sqrt ((1 + y) ^ 2 + x ^ 2) / 2 := by
   rw [Complex.norm_def, normSq_sPlus, Real.sqrt_div (by positivity), show (4 : ℝ) = 2 ^ 2 by norm_num,
     Real.sqrt_sq (by norm_num)]
 
+/--
+@isnad1 id=eq.1h2v.s8.d16a08cd939b from=translated src=- shape=471d95b9 vocab=159f8435
+-/
 theorem re_alpha_sPlus (x y : ℝ) (hx : 0 < x) :
     (alpha (sPlus x y)).re = (1 + y) / ((1 + y) ^ 2 + x ^ 2) - 2 * (1 - y) / ((1 - y) ^ 2 + x ^ 2)
       + 1 / 4 * Real.log (((1 + y) ^ 2 + x ^ 2) / 4) - 1 / 2 * Real.log (2 * π) := by
@@ -505,7 +595,9 @@ theorem re_alpha_sPlus (x y : ℝ) (hx : 0 < x) :
   ring
 
 /-- The rational part of `Re α(s₊)` together with a quarter of `log (|2s₊|²/x²)` is at least
-`-(1-3y)₊/x²`; this absorbs the `8y(1-y)/x²` correction of Polymath Proposition 6.6(ii).-/
+`-(1-3y)₊/x²`; this absorbs the `8y(1-y)/x²` correction of Polymath Proposition 6.6(ii).
+@isnad1 id=le.2h2v.s8.34f957b9945b from=translated src=- shape=e9721029 vocab=7f03e756
+-/
 theorem re_alpha_sPlus_rational_ge {x y : ℝ} (hx : 3 ≤ x) (hy0 : 0 ≤ y) :
     -(max (1 - 3 * y) 0 / x ^ 2) ≤ (1 + y) / ((1 + y) ^ 2 + x ^ 2) - 2 * (1 - y) / ((1 - y) ^ 2 + x ^ 2)
       + 1 / (4 * ((1 + y) ^ 2 + x ^ 2)) := by
@@ -546,6 +638,9 @@ theorem re_alpha_sPlus_rational_ge {x y : ℝ} (hx : 3 ≤ x) (hy0 : 0 ≤ y) :
     have h2 : 0 ≤ 1 - 3 * y := h.le
     positivity
 
+/--
+@isnad1 id=le.2h2v.s7.30d85cb7aabb from=translated src=- shape=747791e8 vocab=c25360ff
+-/
 theorem re_alpha_sPlus_ge {x y : ℝ} (hx : 3 ≤ x) (hy0 : 0 ≤ y) :
     1 / 2 * Real.log (x / (4 * π)) - max (1 - 3 * y) 0 / x ^ 2 ≤ (alpha (sPlus x y)).re := by
   have hx0 : 0 < x := by linarith
@@ -576,12 +671,17 @@ theorem re_alpha_sPlus_ge {x y : ℝ} (hx : 3 ≤ x) (hy0 : 0 ≤ y) :
   have := re_alpha_sPlus_rational_ge hx hy0
   linarith
 
+/--
+@isnad1 id=eq.0h3v.s6.5b4a84812195 from=translated src=- shape=e913afe2 vocab=d6330dc8
+-/
 theorem re_sStar (t x y : ℝ) : (sStar t x y).re = (1 + y) / 2 + t / 2 * (alpha (sPlus x y)).re := by
   unfold sStar sPlus
   simp [Complex.add_re, Complex.mul_re]
 
 /-- The lower bound on `Re s_*`. This is sharper than Polymath (1.12): the correction inside the
-positive part is `1 - 3y` alone.-/
+positive part is `1 - 3y` alone.
+@isnad1 id=le.3h3v.s7.5f7a4c876d08 from=translated src=- shape=f96c17b9 vocab=d80ece7f
+-/
 theorem re_sStar_ge {t x y : ℝ} (ht : 0 ≤ t) (hx : 3 ≤ x) (hy0 : 0 ≤ y) :
     (1 + y) / 2 + t / 4 * Real.log (x / (4 * π)) - t / 2 * (max (1 - 3 * y) 0 / x ^ 2)
       ≤ (sStar t x y).re := by
@@ -590,7 +690,9 @@ theorem re_sStar_ge {t x y : ℝ} (ht : 0 ≤ t) (hx : 3 ≤ x) (hy0 : 0 ≤ y) 
   have := mul_le_mul_of_nonneg_left h (by linarith : 0 ≤ t / 2)
   linarith
 
-/-- Polymath (1.12) as printed: `Re s_* ≥ (1+y)/2 + (t/4) log (x/4π) - (t/(2x²)) (1 - 3y + 4y(1+y)/x²)₊`.-/
+/-- Polymath (1.12) as printed: `Re s_* ≥ (1+y)/2 + (t/4) log (x/4π) - (t/(2x²)) (1 - 3y + 4y(1+y)/x²)₊`.
+@isnad1 id=le.3h3v.s8.6ad2eabaadc5 from=translated src=- shape=1f979e3e vocab=d80ece7f
+-/
 theorem re_sStar_ge' {t x y : ℝ} (ht : 0 ≤ t) (hx : 3 ≤ x) (hy0 : 0 ≤ y) :
     (1 + y) / 2 + t / 4 * Real.log (x / (4 * π))
       - t / (2 * x ^ 2) * max (1 - 3 * y + 4 * y * (1 + y) / x ^ 2) 0 ≤ (sStar t x y).re := by
@@ -607,6 +709,9 @@ theorem re_sStar_ge' {t x y : ℝ} (ht : 0 ≤ t) (hx : 3 ≤ x) (hy0 : 0 ≤ y)
 
 /-! ### The bound on `γ` -/
 
+/--
+@isnad1 id=le.2h2v.s7.7ebb900a035b from=translated src=- shape=58b26733 vocab=378c278e
+-/
 theorem re_alpha_horizontal_ge {σ x : ℝ} (hσ0 : 0 ≤ σ) (hx : 0 < x) :
     1 / 2 * Real.log (x / (4 * π)) - 4 / x ^ 2 ≤ (alpha (σ + (x / 2 : ℝ) * I)).re := by
   have hc : (x / 2) ≠ 0 := by positivity
@@ -632,6 +737,9 @@ theorem re_alpha_horizontal_ge {σ x : ℝ} (hσ0 : 0 ≤ σ) (hx : 0 < x) :
   rw [h4]
   linarith
 
+/--
+@isnad1 id=le.3h2v.s7.a5051b456bcd from=translated src=- shape=a401a092 vocab=b3e3478a
+-/
 theorem norm_alpha_horizontal_le {σ x : ℝ} (hσ0 : 0 ≤ σ) (hσ1 : σ ≤ 1) (hx : 200 ≤ x) :
     ‖alpha (σ + (x / 2 : ℝ) * I)‖ ≤ 3 / x + 1 / 2 * Real.log (x / (4 * π)) + 1 / x ^ 2 + π / 4 := by
   set w : ℂ := σ + (x / 2 : ℝ) * I with hw
@@ -703,6 +811,9 @@ theorem norm_alpha_horizontal_le {σ x : ℝ} (hσ0 : 0 ≤ σ) (hσ1 : σ ≤ 1
     _ ≤ 1 / x + 2 / x + (1 / 2 * Real.log (x / (4 * π)) + 1 / x ^ 2 + π / 4) := by gcongr
     _ = _ := by ring
 
+/--
+@isnad1 id=le.1h1v.s5.53595b122568 from=translated src=- shape=b0de35de vocab=138ffc9b
+-/
 theorem log_div_four_pi_le {x : ℝ} (hx : 200 ≤ x) : Real.log (x / (4 * π)) ≤ x / 34 := by
   have hu : 0 < x / (4 * π) := by positivity
   have h1 : Real.log (x / (4 * π)) ≤ x / (4 * π) / Real.exp 1 := by
@@ -727,6 +838,9 @@ theorem log_div_four_pi_le {x : ℝ} (hx : 200 ≤ x) : Real.log (x / (4 * π)) 
     _ = x / (4 * π * Real.exp 1) := by rw [div_div]
     _ ≤ x / 34 := by gcongr
 
+/--
+@isnad1 id=le.1h1v.s8.bce3653af978 from=translated src=- shape=17d5985d vocab=cd6b3149
+-/
 theorem gamma_numeric_bound {x : ℝ} (hx : 200 ≤ x) :
     4 / x ^ 2 + 1 / 4 * ((3 / x + 1 / 2 * (x / 34) + 1 / x ^ 2 + π / 4) / (x - 6)) ≤ 0.02 := by
   have hx0 : 0 < x := by linarith
@@ -744,7 +858,9 @@ theorem gamma_numeric_bound {x : ℝ} (hx : 200 ≤ x) :
   have hx2 : 0 ≤ x ^ 2 := sq_nonneg x
   nlinarith [mul_le_mul_of_nonneg_left key hx2]
 
-/-- The derivative of `σ ↦ log |M_t(σ + ix/2)|` is at least `½ log (x/4π) - 0.02` on `0 ≤ σ ≤ 1`.-/
+/-- The derivative of `σ ↦ log |M_t(σ + ix/2)|` is at least `½ log (x/4π) - 0.02` on `0 ≤ σ ≤ 1`.
+@isnad1 id=le.5h3v.s8.6e3c623e8ad5 from=translated src=- shape=88be652a vocab=f936fb6c
+-/
 theorem re_deriv_logM_ge {t x σ : ℝ} (ht0 : 0 ≤ t) (ht : t ≤ 1 / 2) (hσ0 : 0 ≤ σ) (hσ1 : σ ≤ 1)
     (hx : 200 ≤ x) :
     1 / 2 * Real.log (x / (4 * π)) - 0.02 ≤
@@ -783,7 +899,9 @@ theorem re_deriv_logM_ge {t x σ : ℝ} (ht0 : 0 ≤ t) (ht : t ≤ 1 / 2) (hσ0
     rw [hP]; gcongr
   linarith
 
-/-- Polymath (1.11): `|γ| ≤ e^{0.02 y} (x/4π)^{-y/2}` on the region.-/
+/-- Polymath (1.11): `|γ| ≤ e^{0.02 y} (x/4π)^{-y/2}` on the region.
+@isnad1 id=le.5h3v.s7.a67d76a38c77 from=translated src=- shape=fa30a2cd vocab=d791f1e9
+-/
 theorem norm_gamma_le {t x y : ℝ} (ht0 : 0 ≤ t) (ht : t ≤ 1 / 2) (hy0 : 0 ≤ y) (hy1 : y ≤ 1)
     (hx : 200 ≤ x) :
     ‖gamma t x y‖ ≤ Real.exp (0.02 * y) * (x / (4 * π)) ^ (-y / 2) := by
@@ -844,6 +962,9 @@ quantity a certificate evaluates.-/
       b t n / (n : ℝ) ^ reSStarLower t x y *
       (Real.exp ((t ^ 2 / 16 * Real.log (x / (4 * π * (n : ℝ) ^ 2)) ^ 2 + 0.626) / (x - 6.66)) - 1)
 
+/--
+@isnad1 id=le.2h2v.s5.bf29b8997a5d from=translated src=- shape=e8b7e832 vocab=da76d8cf
+-/
 theorem one_le_cutoff {t x : ℝ} (ht : 0 ≤ t) (hx : 200 ≤ x) : 1 ≤ cutoff t x := by
   unfold cutoff
   rw [Nat.one_le_floor_iff, Real.le_sqrt (by norm_num) (by positivity), one_pow]
@@ -854,6 +975,9 @@ theorem one_le_cutoff {t x : ℝ} (ht : 0 ≤ t) (hx : 200 ≤ x) : 1 ≤ cutoff
   have h2 : 0 ≤ t / 16 := by positivity
   linarith
 
+/--
+@isnad1 id=le.1h3v.s4.a5c229237aba from=translated src=- shape=e1c3e5e6 vocab=1a52a1d2
+-/
 theorem errAB_le_errABExplicit {t x y : ℝ} (hr : InRegion t x y) :
     errAB t x y ≤ errABExplicit t x y := by
   obtain ⟨ht0, ht, hy0, hy1, hx⟩ := hr

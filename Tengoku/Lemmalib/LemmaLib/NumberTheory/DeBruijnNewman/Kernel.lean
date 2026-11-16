@@ -60,13 +60,22 @@ noncomputable def Wterm'' (n : ℕ) (u : ℝ) : ℝ :=
 /-- Second derivative of `W`.-/
 noncomputable def W'' (u : ℝ) : ℝ := ∑' n, Wterm'' n u
 
+/--
+@isnad1 id=lt.0h2v.s4.2e5fc255ca74 from=translated src=- shape=787c1379 vocab=e2d3219c
+-/
 lemma Wterm_pos (n : ℕ) (u : ℝ) : 0 < Wterm n u := Real.exp_pos _
 
+/--
+@isnad1 id=hasderiv.0h2v.s5.098203879417 from=translated src=- shape=ff496d8b vocab=da9d0ba9
+-/
 lemma hasDerivAt_exp_const_mul (c u : ℝ) :
     HasDerivAt (fun u : ℝ => Real.exp (c * u)) (c * Real.exp (c * u)) u := by
   have := ((hasDerivAt_id u).const_mul c).exp
   simpa [mul_comm] using this
 
+/--
+@isnad1 id=hasderiv.0h2v.s5.447e87ab9ceb from=translated src=- shape=f4cbe5c8 vocab=e5a58f39
+-/
 lemma hasDerivAt_Wterm (n : ℕ) (u : ℝ) : HasDerivAt (Wterm n) (Wterm' n u) u := by
   have h1 : HasDerivAt (fun u : ℝ => u - π * ((n : ℝ) + 1) ^ 2 * Real.exp (4 * u))
       (1 - π * ((n : ℝ) + 1) ^ 2 * (4 * Real.exp (4 * u))) u :=
@@ -78,6 +87,9 @@ lemma hasDerivAt_Wterm (n : ℕ) (u : ℝ) : HasDerivAt (Wterm n) (Wterm' n u) u
   simp only [Wterm', Wterm]
   ring
 
+/--
+@isnad1 id=hasderiv.0h2v.s5.e99bd63b662a from=translated src=- shape=f4cbe5c8 vocab=92d862da
+-/
 lemma hasDerivAt_Wterm' (n : ℕ) (u : ℝ) : HasDerivAt (Wterm' n) (Wterm'' n u) u := by
   have h1 : HasDerivAt (fun u : ℝ => 1 - 4 * π * ((n : ℝ) + 1) ^ 2 * Real.exp (4 * u))
       (0 - 4 * π * ((n : ℝ) + 1) ^ 2 * (4 * Real.exp (4 * u))) u :=
@@ -89,7 +101,9 @@ lemma hasDerivAt_Wterm' (n : ℕ) (u : ℝ) : HasDerivAt (Wterm' n) (Wterm'' n u
   rw [this]
   ring
 
-/-- Summability of `(n+1)^k exp (-c (n+1)^2)`.-/
+/-- Summability of `(n+1)^k exp (-c (n+1)^2)`.
+@isnad1 id=summable.1h2v.s6.7d416ed96f90 from=translated src=- shape=3d0de80f vocab=49011c7f
+-/
 lemma summable_pow_mul_exp_neg_sq (k : ℕ) {c : ℝ} (hc : 0 < c) :
     Summable fun n : ℕ => ((n : ℝ) + 1) ^ k * Real.exp (-c * ((n : ℝ) + 1) ^ 2) := by
   have h := (summable_nat_add_iff 1).mpr (Real.summable_pow_mul_exp_neg_nat_mul k hc)
@@ -102,8 +116,14 @@ lemma summable_pow_mul_exp_neg_sq (k : ℕ) {c : ℝ} (hc : 0 < c) :
 /-- The decay rate used in uniform bounds on `|u| < R`.-/
 noncomputable def rate (R : ℝ) : ℝ := π * Real.exp (-(4 * R))
 
+/--
+@isnad1 id=lt.0h1v.s3.6b78f07cc28a from=translated src=- shape=8a62b088 vocab=0f0d8bb2
+-/
 lemma rate_pos (R : ℝ) : 0 < rate R := by unfold rate; positivity
 
+/--
+@isnad1 id=le.1h3v.s6.25fb09aba6a6 from=translated src=- shape=15d8e956 vocab=5ad39f9c
+-/
 lemma Wterm_le {R u : ℝ} (hu : u ∈ Ioo (-R) R) (n : ℕ) :
     Wterm n u ≤ Real.exp R * Real.exp (-rate R * ((n : ℝ) + 1) ^ 2) := by
   unfold Wterm rate
@@ -113,11 +133,17 @@ lemma Wterm_le {R u : ℝ} (hu : u ∈ Ioo (-R) R) (n : ℕ) :
   have h2 : 0 ≤ π * ((n : ℝ) + 1) ^ 2 := by positivity
   nlinarith [hu.2, mul_le_mul_of_nonneg_left h1 h2]
 
+/--
+@isnad1 id=le.1h3v.s6.3bcd6bfd4917 from=translated src=- shape=5170fcee vocab=e6c11bc2
+-/
 lemma norm_Wterm_le {R u : ℝ} (hu : u ∈ Ioo (-R) R) (n : ℕ) :
     ‖Wterm n u‖ ≤ Real.exp R * Real.exp (-rate R * ((n : ℝ) + 1) ^ 2) := by
   rw [Real.norm_eq_abs, abs_of_pos (Wterm_pos n u)]
   exact Wterm_le hu n
 
+/--
+@isnad1 id=le.1h3v.s7.3e12a9f029aa from=translated src=- shape=e46c82b9 vocab=f63c636b
+-/
 lemma norm_Wterm'_le {R u : ℝ} (hu : u ∈ Ioo (-R) R) (n : ℕ) :
     ‖Wterm' n u‖ ≤ (1 + 4 * π * ((n : ℝ) + 1) ^ 2 * Real.exp (4 * R)) *
       (Real.exp R * Real.exp (-rate R * ((n : ℝ) + 1) ^ 2)) := by
@@ -130,6 +156,9 @@ lemma norm_Wterm'_le {R u : ℝ} (hu : u ∈ Ioo (-R) R) (n : ℕ) :
   rw [abs_le]
   constructor <;> nlinarith
 
+/--
+@isnad1 id=le.1h3v.s8.7edbdfad41cd from=translated src=- shape=656ea527 vocab=f6d5db32
+-/
 lemma norm_Wterm''_le {R u : ℝ} (hu : u ∈ Ioo (-R) R) (n : ℕ) :
     ‖Wterm'' n u‖ ≤ (1 + 24 * π * ((n : ℝ) + 1) ^ 2 * Real.exp (4 * R)
         + 16 * π ^ 2 * ((n : ℝ) + 1) ^ 4 * Real.exp (8 * R)) *
@@ -147,11 +176,17 @@ lemma norm_Wterm''_le {R u : ℝ} (hu : u ∈ Ioo (-R) R) (n : ℕ) :
   rw [abs_le]
   constructor <;> nlinarith
 
+/--
+@isnad1 id=summable.0h1v.s6.a9cbdf3420b4 from=translated src=- shape=2d036883 vocab=f3d35730
+-/
 lemma summable_bound₀ (R : ℝ) :
     Summable fun n : ℕ => Real.exp R * Real.exp (-rate R * ((n : ℝ) + 1) ^ 2) := by
   have := (summable_pow_mul_exp_neg_sq 0 (rate_pos R)).mul_left (Real.exp R)
   simpa using this
 
+/--
+@isnad1 id=summable.0h1v.s7.94b1c9052d16 from=translated src=- shape=49d66fc4 vocab=af6d51a5
+-/
 lemma summable_bound₁ (R : ℝ) :
     Summable fun n : ℕ => (1 + 4 * π * ((n : ℝ) + 1) ^ 2 * Real.exp (4 * R)) *
       (Real.exp R * Real.exp (-rate R * ((n : ℝ) + 1) ^ 2)) := by
@@ -161,6 +196,9 @@ lemma summable_bound₁ (R : ℝ) :
   ext n
   ring
 
+/--
+@isnad1 id=summable.0h1v.s8.d1045efa00a6 from=translated src=- shape=b8bc1d60 vocab=af6d51a5
+-/
 lemma summable_bound₂ (R : ℝ) :
     Summable fun n : ℕ => (1 + 24 * π * ((n : ℝ) + 1) ^ 2 * Real.exp (4 * R)
         + 16 * π ^ 2 * ((n : ℝ) + 1) ^ 4 * Real.exp (8 * R)) *
@@ -173,19 +211,34 @@ lemma summable_bound₂ (R : ℝ) :
   ext n
   ring
 
+/--
+@isnad1 id=mem.0h1v.s5.03302865f60e from=translated src=- shape=1c891019 vocab=5a5e2175
+-/
 lemma mem_Ioo_abs_add_one (u : ℝ) : u ∈ Ioo (-(|u| + 1)) (|u| + 1) := by
   constructor <;> linarith [le_abs_self u, neg_abs_le u]
 
+/--
+@isnad1 id=summable.0h1v.s4.bf00c8c5164f from=translated src=- shape=0b46e227 vocab=c2258135
+-/
 lemma summable_Wterm (u : ℝ) : Summable fun n => Wterm n u :=
   (summable_bound₀ (|u| + 1)).of_norm_bounded (fun n => norm_Wterm_le (mem_Ioo_abs_add_one u) n)
 
+/--
+@isnad1 id=summable.0h1v.s4.31f88621cd7f from=translated src=- shape=0b46e227 vocab=62890dde
+-/
 lemma summable_Wterm' (u : ℝ) : Summable fun n => Wterm' n u :=
   (summable_bound₁ (|u| + 1)).of_norm_bounded (fun n => norm_Wterm'_le (mem_Ioo_abs_add_one u) n)
 
+/--
+@isnad1 id=summable.0h1v.s4.e96db1719cc6 from=translated src=- shape=0b46e227 vocab=534b5ab2
+-/
 lemma summable_Wterm'' (u : ℝ) : Summable fun n => Wterm'' n u :=
   (summable_bound₂ (|u| + 1)).of_norm_bounded
     (fun n => norm_Wterm''_le (mem_Ioo_abs_add_one u) n)
 
+/--
+@isnad1 id=hasderiv.0h1v.s5.e6dff5098e9c from=translated src=- shape=475e04ea vocab=bb63eff0
+-/
 lemma hasDerivAt_W (u : ℝ) : HasDerivAt W (W' u) u := by
   have := hasDerivAt_tsum_of_isPreconnected (summable_bound₁ (|u| + 1)) isOpen_Ioo
     isPreconnected_Ioo (fun n y _ => hasDerivAt_Wterm n y)
@@ -193,6 +246,9 @@ lemma hasDerivAt_W (u : ℝ) : HasDerivAt W (W' u) u := by
     (mem_Ioo_abs_add_one u)
   exact this
 
+/--
+@isnad1 id=hasderiv.0h1v.s5.b64d645b8eab from=translated src=- shape=475e04ea vocab=dd17023f
+-/
 lemma hasDerivAt_W' (u : ℝ) : HasDerivAt W' (W'' u) u := by
   have := hasDerivAt_tsum_of_isPreconnected (summable_bound₂ (|u| + 1)) isOpen_Ioo
     isPreconnected_Ioo (fun n y _ => hasDerivAt_Wterm' n y)
@@ -200,17 +256,29 @@ lemma hasDerivAt_W' (u : ℝ) : HasDerivAt W' (W'' u) u := by
     (mem_Ioo_abs_add_one u)
   exact this
 
+/--
+@isnad1 id=continuo.0h0v.s3.547eec08cf9f from=translated src=- shape=e3d48bcb vocab=ff0ae651
+-/
 @[fun_prop]
 lemma continuous_W : Continuous W :=
   continuous_iff_continuousAt.mpr fun u => (hasDerivAt_W u).continuousAt
 
+/--
+@isnad1 id=continuo.0h0v.s3.17eeb21a4091 from=translated src=- shape=e3d48bcb vocab=82348c7a
+-/
 @[fun_prop]
 lemma continuous_W' : Continuous W' :=
   continuous_iff_continuousAt.mpr fun u => (hasDerivAt_W' u).continuousAt
 
+/--
+@isnad1 id=continuo.0h1v.s4.53ccd306886d from=translated src=- shape=8735051e vocab=97080704
+-/
 lemma continuous_Wterm'' (n : ℕ) : Continuous (Wterm'' n) := by
   unfold Wterm'' Wterm; fun_prop
 
+/--
+@isnad1 id=continuo.0h0v.s3.6608c2f78985 from=translated src=- shape=e3d48bcb vocab=4bb45711
+-/
 @[fun_prop]
 lemma continuous_W'' : Continuous W'' := by
   refine continuous_iff_continuousAt.mpr fun u => ?_
@@ -219,6 +287,9 @@ lemma continuous_W'' : Continuous W'' := by
       (fun n y hy => norm_Wterm''_le hy n)
   exact this.continuousAt (Ioo_mem_nhds (mem_Ioo_abs_add_one u).1 (mem_Ioo_abs_add_one u).2)
 
+/--
+@isnad1 id=eq.0h1v.s5.28c0884e26e4 from=translated src=- shape=afcfd847 vocab=289c08a2
+-/
 lemma phi_eq (u : ℝ) : phi u = (W'' u - W u) / 8 := by
   unfold phi W'' W
   rw [← (summable_Wterm'' u).tsum_sub (summable_Wterm u), ← tsum_div_const]
@@ -244,6 +315,9 @@ noncomputable def g (u : ℝ) : ℝ := Real.exp (9 * u) * Real.exp (-(π / 2) * 
 noncomputable def P (n : ℕ) : ℝ :=
   1 + 24 * π * ((n : ℝ) + 1) ^ 2 + 16 * π ^ 2 * ((n : ℝ) + 1) ^ 4
 
+/--
+@isnad1 id=le.0h1v.s3.00f3afa840b7 from=translated src=- shape=b9369acb vocab=c0fa3d68
+-/
 lemma one_le_P (n : ℕ) : 1 ≤ P n := by
   unfold P
   linarith [(by positivity : (0:ℝ) ≤ 24 * π * ((n : ℝ) + 1) ^ 2),
@@ -252,9 +326,15 @@ lemma one_le_P (n : ℕ) : 1 ≤ P n := by
 /-- The weight `P n * exp (-(π/2) (n+1)^2)`.-/
 noncomputable def wt (n : ℕ) : ℝ := P n * Real.exp (-(π / 2) * ((n : ℝ) + 1) ^ 2)
 
+/--
+@isnad1 id=lt.0h1v.s3.4cf096fae053 from=translated src=- shape=b9369acb vocab=a12d1d7f
+-/
 lemma wt_pos (n : ℕ) : 0 < wt n :=
   mul_pos (lt_of_lt_of_le one_pos (one_le_P n)) (Real.exp_pos _)
 
+/--
+@isnad1 id=summable.0h0v.s3.a58b6d693690 from=translated src=- shape=ef4b497d vocab=4de4f230
+-/
 lemma summable_wt : Summable wt := by
   have h0 := summable_pow_mul_exp_neg_sq 0 (by positivity : (0:ℝ) < π / 2)
   have h2 := (summable_pow_mul_exp_neg_sq 2 (by positivity : (0:ℝ) < π / 2)).mul_left (24 * π)
@@ -268,6 +348,9 @@ lemma summable_wt : Summable wt := by
 /-- The constant `C = ∑ wt n`.-/
 noncomputable def C : ℝ := ∑' n, wt n
 
+/--
+@isnad1 id=le.1h2v.s7.398e34074fae from=translated src=- shape=8c0db854 vocab=0b525d7f
+-/
 lemma Wterm_le_of_nonneg {u : ℝ} (hu : 0 ≤ u) (n : ℕ) :
     Wterm n u ≤ Real.exp (-(π / 2) * ((n : ℝ) + 1) ^ 2) * (Real.exp u *
       Real.exp (-(π / 2) * Real.exp (4 * u))) := by
@@ -281,6 +364,9 @@ lemma Wterm_le_of_nonneg {u : ℝ} (hu : 0 ≤ u) (n : ℕ) :
   have h4 : 1 ≤ ((n : ℝ) + 1) ^ 2 * Real.exp (4 * u) := by nlinarith
   nlinarith [mul_nonneg pi_pos.le h3, mul_le_mul_of_nonneg_left h4 pi_pos.le]
 
+/--
+@isnad1 id=le.1h2v.s8.593ab44a0291 from=translated src=- shape=fc87a0c6 vocab=0401f42e
+-/
 lemma exp_mul_le_g {u : ℝ} (hu : 0 ≤ u) (n : ℕ) :
     (1 + 24 * π * ((n : ℝ) + 1) ^ 2 * Real.exp (4 * u)
         + 16 * π ^ 2 * ((n : ℝ) + 1) ^ 4 * Real.exp (8 * u)) *
@@ -301,6 +387,9 @@ lemma exp_mul_le_g {u : ℝ} (hu : 0 ≤ u) (n : ℕ) :
         mul_le_mul_of_nonneg_right this hpos.le
     _ = _ := by ring
 
+/--
+@isnad1 id=le.1h2v.s5.0c23a924af8e from=translated src=- shape=e78e9390 vocab=a0242dac
+-/
 lemma norm_Wterm_le_wt_mul_g {u : ℝ} (hu : 0 ≤ u) (n : ℕ) : ‖Wterm n u‖ ≤ wt n * g u := by
   rw [Real.norm_eq_abs, abs_of_pos (Wterm_pos n u)]
   have h1 := Wterm_le_of_nonneg hu n
@@ -322,6 +411,9 @@ lemma norm_Wterm_le_wt_mul_g {u : ℝ} (hu : 0 ≤ u) (n : ℕ) : ‖Wterm n u�
     _ ≤ Real.exp (-(π / 2) * ((n : ℝ) + 1) ^ 2) * (P n * g u) := mul_le_mul_of_nonneg_left h2 hw.le
     _ = _ := by ring
 
+/--
+@isnad1 id=le.1h2v.s5.943297e5fbc9 from=translated src=- shape=e78e9390 vocab=27f7207f
+-/
 lemma norm_Wterm'_le_wt_mul_g {u : ℝ} (hu : 0 ≤ u) (n : ℕ) : ‖Wterm' n u‖ ≤ wt n * g u := by
   unfold Wterm'
   rw [Real.norm_eq_abs, abs_mul, abs_of_pos (Wterm_pos n u)]
@@ -346,6 +438,9 @@ lemma norm_Wterm'_le_wt_mul_g {u : ℝ} (hu : 0 ≤ u) (n : ℕ) : ‖Wterm' n u
     _ ≤ Real.exp (-(π / 2) * ((n : ℝ) + 1) ^ 2) * (P n * g u) := mul_le_mul_of_nonneg_left h2 hw.le
     _ = _ := by ring
 
+/--
+@isnad1 id=le.1h2v.s5.84a0ff1bd196 from=translated src=- shape=e78e9390 vocab=bcc5414a
+-/
 lemma norm_Wterm''_le_wt_mul_g {u : ℝ} (hu : 0 ≤ u) (n : ℕ) : ‖Wterm'' n u‖ ≤ wt n * g u := by
   unfold Wterm''
   rw [Real.norm_eq_abs, abs_mul, abs_of_pos (Wterm_pos n u)]
@@ -371,6 +466,9 @@ lemma norm_Wterm''_le_wt_mul_g {u : ℝ} (hu : 0 ≤ u) (n : ℕ) : ‖Wterm'' n
     _ ≤ Real.exp (-(π / 2) * ((n : ℝ) + 1) ^ 2) * (P n * g u) := mul_le_mul_of_nonneg_left h2 hw.le
     _ = _ := by ring
 
+/--
+@isnad1 id=le.3h2v.s6.e4db47e75295 from=translated src=- shape=21fa5861 vocab=1f64cd10
+-/
 lemma norm_tsum_le_C_mul_g {F : ℕ → ℝ → ℝ} (hF : ∀ u, Summable fun n => F n u)
     (hb : ∀ n, ∀ u, 0 ≤ u → ‖F n u‖ ≤ wt n * g u) {u : ℝ} (hu : 0 ≤ u) :
     ‖∑' n, F n u‖ ≤ C * g u := by
@@ -379,16 +477,27 @@ lemma norm_tsum_le_C_mul_g {F : ℕ → ℝ → ℝ} (hF : ∀ u, Summable fun n
         (hF u).norm.tsum_le_tsum (fun n => hb n u hu) (summable_wt.mul_right _)
     _ = C * g u := by rw [tsum_mul_right]; rfl
 
+/--
+@isnad1 id=le.1h1v.s4.4e94c441254a from=translated src=- shape=459e7589 vocab=25575c9b
+-/
 lemma norm_W_le {u : ℝ} (hu : 0 ≤ u) : ‖W u‖ ≤ C * g u :=
   norm_tsum_le_C_mul_g summable_Wterm (fun n _ hu => norm_Wterm_le_wt_mul_g hu n) hu
 
+/--
+@isnad1 id=le.1h1v.s4.640791cc4d2d from=translated src=- shape=459e7589 vocab=5fd87664
+-/
 lemma norm_W'_le {u : ℝ} (hu : 0 ≤ u) : ‖W' u‖ ≤ C * g u :=
   norm_tsum_le_C_mul_g summable_Wterm' (fun n _ hu => norm_Wterm'_le_wt_mul_g hu n) hu
 
+/--
+@isnad1 id=le.1h1v.s4.0140ff1b3e01 from=translated src=- shape=459e7589 vocab=67d6d224
+-/
 lemma norm_W''_le {u : ℝ} (hu : 0 ≤ u) : ‖W'' u‖ ≤ C * g u :=
   norm_tsum_le_C_mul_g summable_Wterm'' (fun n _ hu => norm_Wterm''_le_wt_mul_g hu n) hu
 
-/-- The key decay estimate: `e^{t u² + b u} g u ≤ e^{K} e^{-u}` for `u ≥ 0`.-/
+/-- The key decay estimate: `e^{t u² + b u} g u ≤ e^{K} e^{-u}` for `u ≥ 0`.
+@isnad1 id=le.3h3v.s7.6b22e5acbbbf from=translated src=- shape=61ba793b vocab=1d6127fc
+-/
 lemma exp_mul_g_le {t b : ℝ} (ht : 0 ≤ t) (hb : 0 ≤ b) {u : ℝ} (hu : 0 ≤ u) :
     Real.exp (t * u ^ 2 + b * u) * g u ≤
       Real.exp ((t + b + 10) ^ 2 / (2 * π)) * Real.exp (-u) := by

@@ -57,37 +57,73 @@ local notation "ω" => Complex.rsOmega
 
 namespace Complex
 
+/--
+@isnad1 id=eq.0h0v.s6.8ee21eb921c7 from=translated src=- shape=f0c3a48c vocab=d5f21ff2
+-/
 theorem rsOmega_eq : ω = ((Real.sqrt 2 / 2 : ℝ) : ℂ) + ((Real.sqrt 2 / 2 : ℝ) : ℂ) * I := by
   rw [rsOmega, show (π : ℂ) * I / 4 = ((π / 4 : ℝ) : ℂ) * I by push_cast; ring, exp_mul_I,
     ← ofReal_cos, ← ofReal_sin, Real.cos_pi_div_four, Real.sin_pi_div_four]
 
+/--
+@isnad1 id=eq.0h0v.s4.4e750891eb57 from=translated src=- shape=36b490a0 vocab=44a44592
+-/
 theorem rsOmega_re : (ω : ℂ).re = Real.sqrt 2 / 2 := by rw [rsOmega_eq]; simp
+/--
+@isnad1 id=eq.0h0v.s4.232b65b6aee5 from=translated src=- shape=36b490a0 vocab=bbfa0390
+-/
 theorem rsOmega_im : (ω : ℂ).im = Real.sqrt 2 / 2 := by rw [rsOmega_eq]; simp
+/--
+@isnad1 id=eq.0h0v.s6.e6ba3d9af7db from=translated src=- shape=18c44985 vocab=1619d5e5
+-/
 theorem conj_rsOmega_re : ((starRingEnd ℂ) ω).re = Real.sqrt 2 / 2 := by
   rw [conj_re, rsOmega_re]
+/--
+@isnad1 id=eq.0h0v.s6.ab211d517b35 from=translated src=- shape=d0dbdfe1 vocab=a7952f09
+-/
 theorem conj_rsOmega_im : ((starRingEnd ℂ) ω).im = -(Real.sqrt 2 / 2) := by
   rw [conj_im, rsOmega_im]
 
+/--
+@isnad1 id=eq.0h0v.s6.2e87fca89276 from=translated src=- shape=1f61e7f3 vocab=71b5db76
+-/
 theorem sqrt_two_div_two_sq : (Real.sqrt 2 / 2) ^ 2 = 1 / 2 := by
   rw [div_pow, Real.sq_sqrt (by norm_num)]; norm_num
 
+/--
+@isnad1 id=eq.0h0v.s4.76f93f659edd from=translated src=- shape=f23f23a3 vocab=1d88f7b5
+-/
 theorem rsOmega_sq : ω ^ 2 = I := by
   apply Complex.ext
   · simp [sq, rsOmega_re, rsOmega_im]
   · simp [sq, rsOmega_re, rsOmega_im]; nlinarith [sqrt_two_div_two_sq]
 
+/--
+@isnad1 id=eq.0h0v.s3.888528999155 from=translated src=- shape=b3c4969c vocab=b35efbd8
+-/
 theorem norm_rsOmega : ‖ω‖ = 1 := by
   rw [rsOmega, show (π : ℂ) * I / 4 = ((π / 4 : ℝ) : ℂ) * I by push_cast; ring,
     norm_exp_ofReal_mul_I]
 
+/--
+@isnad1 id=ne.0h0v.s3.ea42be008685 from=translated src=- shape=ffdda526 vocab=ba97aba3
+-/
 theorem rsOmega_ne_zero : ω ≠ 0 := by
   intro h; have := norm_rsOmega; rw [h, norm_zero] at this; exact zero_ne_one this
 
+/--
+@isnad1 id=eq.0h0v.s5.7845f75ef856 from=translated src=- shape=e900a0ed vocab=1a83c4c0
+-/
 theorem conj_rsOmega_mul : (starRingEnd ℂ) ω * ω = 1 := by
   rw [mul_comm, Complex.mul_conj, normSq_eq_norm_sq, norm_rsOmega]; simp
 
+/--
+@isnad1 id=eq.0h0v.s5.71bb2485886f from=translated src=- shape=99a62469 vocab=b5c0b373
+-/
 theorem norm_conj_rsOmega : ‖(starRingEnd ℂ) ω‖ = 1 := by rw [Complex.norm_conj, norm_rsOmega]
 
+/--
+@isnad1 id=le.0h2v.s6.09f5e1aa9ab6 from=translated src=- shape=9d2331e9 vocab=3316db30
+-/
 theorem norm_sub_ge_abs_im_mul_conj_rsOmega (u : ℂ) (n : ℝ) :
     |(u * (starRingEnd ℂ) ω).im + n * (Real.sqrt 2 / 2)| ≤ ‖u - n‖ := by
   have e : (u * (starRingEnd ℂ) ω).im + n * (Real.sqrt 2 / 2) = ((u - n) * (starRingEnd ℂ) ω).im := by
@@ -98,6 +134,9 @@ theorem norm_sub_ge_abs_im_mul_conj_rsOmega (u : ℂ) (n : ℝ) :
 
 /-! ### The complex sine near the integers -/
 
+/--
+@isnad1 id=eq.0h1v.s6.4f16b4fa039a from=translated src=- shape=5352f22d vocab=316a095f
+-/
 theorem norm_sin_pi_mul_sq (u : ℂ) :
     ‖Complex.sin (π * u)‖ ^ 2 = Real.sin (π * u.re) ^ 2 + Real.sinh (π * u.im) ^ 2 := by
   have e : (π : ℂ) * u = ((π * u.re : ℝ) : ℂ) + ((π * u.im : ℝ) : ℂ) * I := by
@@ -112,7 +151,9 @@ theorem norm_sin_pi_mul_sq (u : ℂ) :
   ring_nf
   nlinarith [h1, h2]
 
-/-- `|sin (π d)| ≥ 2 |d|` for `|d| ≤ 1/2`.-/
+/-- `|sin (π d)| ≥ 2 |d|` for `|d| ≤ 1/2`.
+@isnad1 id=le.1h1v.s6.79618c092abc from=translated src=- shape=b5b5a8c1 vocab=21d3c126
+-/
 theorem two_mul_abs_le_abs_sin_pi_mul {d : ℝ} (hd : |d| ≤ 1 / 2) : 2 * |d| ≤ |Real.sin (π * d)| := by
   have h1 : Real.sin (π * |d|) = |Real.sin (π * d)| := by
     rcases le_or_gt 0 d with h | h
@@ -129,11 +170,15 @@ theorem two_mul_abs_le_abs_sin_pi_mul {d : ℝ} (hd : |d| ≤ 1 / 2) : 2 * |d| �
   calc 2 * |d| = 2 / π * (π * |d|) := by field_simp
     _ ≤ Real.sin (π * |d|) := this
 
-/-- `|sinh t| ≥ |t|`.-/
+/-- `|sinh t| ≥ |t|`.
+@isnad1 id=le.0h1v.s4.fb4f5796948f from=translated src=- shape=f2b1e5dc vocab=1c39a0c5
+-/
 theorem abs_le_abs_sinh (t : ℝ) : |t| ≤ |Real.sinh t| := by
   rw [Real.abs_sinh]; exact Real.self_le_sinh_iff.2 (abs_nonneg t)
 
-/-- Near an integer `m` with `|Re u - m| ≤ 1/2`, `|sin (π u)| ≥ 2 |u - m|`.-/
+/-- Near an integer `m` with `|Re u - m| ≤ 1/2`, `|sin (π u)| ≥ 2 |u - m|`.
+@isnad1 id=le.1h2v.s6.797eebf48dec from=translated src=- shape=238ee7a0 vocab=1645c546
+-/
 theorem two_mul_norm_sub_le_norm_sin_pi_mul (u : ℂ) (m : ℤ) (hm : |u.re - m| ≤ 1 / 2) :
     2 * ‖u - m‖ ≤ ‖Complex.sin (π * u)‖ := by
   have hsq := norm_sin_pi_mul_sq u
@@ -164,9 +209,15 @@ theorem two_mul_norm_sub_le_norm_sin_pi_mul (u : ℂ) (m : ℤ) (hm : |u.re - m|
 /-- `sincPi u = sin (π u) / u`, with the removable singularity at `0` filled in by `π`.-/
 @[expose] noncomputable def sincPi : ℂ → ℂ := dslope (fun u => Complex.sin (π * u)) 0
 
+/--
+@isnad1 id=eq.1h1v.s5.4cf9210ff0fd from=translated src=- shape=996d19b1 vocab=da120374
+-/
 theorem sincPi_of_ne {u : ℂ} (hu : u ≠ 0) : sincPi u = Complex.sin (π * u) / u := by
   rw [sincPi, dslope_of_ne _ hu, slope_def_field]; simp
 
+/--
+@isnad1 id=eq.0h0v.s3.aaa39e03f22e from=translated src=- shape=f161d8a2 vocab=bf73eb54
+-/
 theorem sincPi_zero : sincPi 0 = π := by
   rw [sincPi, dslope_same]
   have : HasDerivAt (fun u : ℂ => Complex.sin (π * u)) (Complex.cos (π * 0) * π) 0 := by
@@ -174,10 +225,16 @@ theorem sincPi_zero : sincPi 0 = π := by
     exact h.congr_deriv (by simp)
   rw [this.deriv]; simp
 
+/--
+@isnad1 id=differen.0h0v.s6.4251995f8b96 from=translated src=- shape=aa9fb30a vocab=a91585fc
+-/
 theorem differentiable_sincPi : Differentiable ℂ sincPi := by
   rw [← differentiableOn_univ, sincPi, differentiableOn_dslope Filter.univ_mem]
   exact Differentiable.differentiableOn (by fun_prop)
 
+/--
+@isnad1 id=le.1h1v.s5.3cc78d406a34 from=translated src=- shape=69bde682 vocab=2e59edbd
+-/
 theorem two_le_norm_sincPi {u : ℂ} (hu : |u.re| ≤ 1 / 2) : 2 ≤ ‖sincPi u‖ := by
   rcases eq_or_ne u 0 with rfl | hu0
   · rw [sincPi_zero, Complex.norm_real, Real.norm_eq_abs, abs_of_pos Real.pi_pos]
@@ -186,6 +243,9 @@ theorem two_le_norm_sincPi {u : ℂ} (hu : |u.re| ≤ 1 / 2) : 2 ≤ ‖sincPi u
     have := two_mul_norm_sub_le_norm_sin_pi_mul u 0 (by simpa using hu)
     simpa using this
 
+/--
+@isnad1 id=ne.1h1v.s4.6bc9869dfba2 from=translated src=- shape=6daba12a vocab=d9f60112
+-/
 theorem sincPi_ne_zero_of_ne_int {u : ℂ} (hu : ∀ n : ℤ, n ≠ 0 → u ≠ n) : sincPi u ≠ 0 := by
   rcases eq_or_ne u 0 with rfl | hu0
   · rw [sincPi_zero]; exact_mod_cast Real.pi_ne_zero
@@ -203,6 +263,9 @@ theorem sincPi_ne_zero_of_ne_int {u : ℂ} (hu : ∀ n : ℤ, n ≠ 0 → u ≠ 
 
 /-! ### The Mordell integrand -/
 
+/--
+@isnad1 id=eq.0h1v.s6.074812f57301 from=translated src=- shape=13a3d717 vocab=863bc7a6
+-/
 theorem exp_sub_exp_neg_eq_two_I_sin (u : ℂ) :
     cexp (π * I * u) - cexp (-(π * I * u)) = 2 * I * Complex.sin (π * u) := by
   unfold Complex.sin
@@ -223,6 +286,9 @@ through points of norm at most `R`.-/
 @[expose] noncomputable def mordellBoundConst (τ z : ℂ) (R : ℝ) : ℝ :=
   (2 * π * ‖τ‖ * R + 2 * π * ‖z‖) ^ 2 / (2 * π * τ.re) + π * ‖τ‖ * R ^ 2 + 2 * π * R * ‖z‖
 
+/--
+@isnad1 id=le.2h5v.s6.7e650312e703 from=translated src=- shape=265276f3 vocab=f8dad2dd
+-/
 theorem re_mordellExponent_le {τ z w : ℂ} (hτ : 0 < τ.re) {R : ℝ} (hw : ‖w‖ ≤ R) (x : ℝ) :
     (mordellExponent τ z (w - ω * x)).re ≤
       -(π * τ.re / 2) * x ^ 2 + mordellBoundConst τ z R := by
@@ -273,9 +339,15 @@ theorem re_mordellExponent_le {τ z w : ℂ} (hτ : 0 < τ.re) {R : ℝ} (hw : �
 filled in.-/
 @[expose] noncomputable def mordellS (u : ℂ) : ℂ := 1 / (2 * I * sincPi u)
 
+/--
+@isnad1 id=eq.0h0v.s5.401b93d7458d from=translated src=- shape=99b0fe06 vocab=decc7dd3
+-/
 theorem mordellS_zero : mordellS 0 = 1 / (2 * π * I) := by
   rw [mordellS, sincPi_zero]; ring
 
+/--
+@isnad1 id=le.2h2v.s6.909981e19dec from=translated src=- shape=909fdb92 vocab=75b28af3
+-/
 theorem norm_mordellS_le {u : ℂ} {ρ : ℝ} (hρ : 0 < ρ)
     (hu : ∀ n : ℤ, n ≠ 0 → ρ ≤ ‖u - n‖) : ‖mordellS u‖ ≤ 1 / 4 + ‖u‖ / (4 * ρ) := by
   rw [mordellS, norm_div, norm_one, norm_mul, norm_mul, Complex.norm_I, Complex.norm_ofNat, mul_one]
@@ -301,16 +373,24 @@ theorem norm_mordellS_le {u : ℂ} {ρ : ℝ} (hρ : 0 < ρ)
       _ = ‖u‖ / (4 * ρ) := by ring
       _ ≤ 1 / 4 + ‖u‖ / (4 * ρ) := by linarith
 
+/--
+@isnad1 id=differen.1h1v.s6.b285ce5a2f2c from=translated src=- shape=eec650aa vocab=9f3615e1
+-/
 theorem differentiableAt_mordellS {u : ℂ} (hu : sincPi u ≠ 0) : DifferentiableAt ℂ mordellS u := by
   unfold mordellS
   exact (differentiableAt_const _).div ((differentiableAt_const _).mul differentiable_sincPi.differentiableAt) (mul_ne_zero (by simp) hu)
 
+/--
+@isnad1 id=eq.1h3v.s5.72745a2a3f44 from=translated src=- shape=69b4344d vocab=b6d53408
+-/
 theorem mordellIntegrand_eq_mordellS {τ z u : ℂ} (hu : u ≠ 0) :
     mordellIntegrand τ z u = cexp (mordellExponent τ z u) * mordellS u / u := by
   rw [mordellIntegrand, exp_sub_exp_neg_eq_two_I_sin, mordellS, sincPi_of_ne hu]
   field_simp
 
-/-- `(A + B |x|) exp (-a x²) ≤ (A + B + B / a) exp (-(a/2) x²)`.-/
+/-- `(A + B |x|) exp (-a x²) ≤ (A + B + B / a) exp (-(a/2) x²)`.
+@isnad1 id=le.3h4v.s7.c7eaff25f29c from=translated src=- shape=a274c58e vocab=e10bd698
+-/
 theorem affine_mul_exp_neg_sq_le {a A B : ℝ} (ha : 0 < a) (hA : 0 ≤ A) (hB : 0 ≤ B) (x : ℝ) :
     (A + B * |x|) * Real.exp (-a * x ^ 2) ≤ (A + B + B / a) * Real.exp (-(a / 2) * x ^ 2) := by
   have h1 : A + B * |x| ≤ (A + B + B / a) * Real.exp (a / 2 * x ^ 2) := by
@@ -330,7 +410,9 @@ theorem affine_mul_exp_neg_sq_le {a A B : ℝ} (ha : 0 < a) (hA : 0 ≤ A) (hB :
 
 /-! ### Lines `c - ω x` -/
 
-/-- On the line `u = c - ω x` through a real `c`, `‖u - n‖ ≥ |c - n| √2/2` for every real `n`.-/
+/-- On the line `u = c - ω x` through a real `c`, `‖u - n‖ ≥ |c - n| √2/2` for every real `n`.
+@isnad1 id=le.0h3v.s6.cd362a6a8af0 from=translated src=- shape=cd6f8241 vocab=f9600001
+-/
 theorem norm_line_sub_ge (c x n : ℝ) :
     |c - n| * (Real.sqrt 2 / 2) ≤ ‖((c : ℂ) - ω * x) - n‖ := by
   refine le_trans ?_ (norm_sub_ge_abs_im_mul_conj_rsOmega _ _)
@@ -341,13 +423,18 @@ theorem norm_line_sub_ge (c x n : ℝ) :
   rw [this, show -(c * (Real.sqrt 2 / 2)) + n * (Real.sqrt 2 / 2) = (n - c) * (Real.sqrt 2 / 2) by
     ring, abs_mul, abs_of_pos (by positivity : (0 : ℝ) < Real.sqrt 2 / 2), abs_sub_comm]
 
+/--
+@isnad1 id=eq.0h3v.s5.796be4e047da from=translated src=- shape=c95383f3 vocab=1f7f0fd2
+-/
 theorem norm_mordellIntegrand_eq (τ z u : ℂ) :
     ‖mordellIntegrand τ z u‖ = Real.exp (mordellExponent τ z u).re / (2 * ‖Complex.sin (π * u)‖) := by
   rw [mordellIntegrand, exp_sub_exp_neg_eq_two_I_sin, norm_div, Complex.norm_exp, norm_mul,
     norm_mul, Complex.norm_I, Complex.norm_ofNat, mul_one]
 
 /-- The Gaussian bound for the Mordell integrand on the line through a real `c` at distance at
-least `δ` from the integers.-/
+least `δ` from the integers.
+@isnad1 id=le.3h5v.s7.741228fbe526 from=translated src=- shape=63d4bc28 vocab=5248ae58
+-/
 theorem norm_mordellIntegrand_line_le {τ z : ℂ} (hτ : 0 < τ.re) {c δ : ℝ} (hδ : 0 < δ)
     (hc : ∀ n : ℤ, δ ≤ |c - n|) (x : ℝ) :
     ‖mordellIntegrand τ z (c - ω * x)‖ ≤
@@ -369,11 +456,16 @@ theorem norm_mordellIntegrand_line_le {τ z : ℂ} (hτ : 0 < τ.re) {c δ : ℝ
     _ ≤ Real.exp (mordellBoundConst τ z |c| + -(π * τ.re / 2) * x ^ 2) / (2 * Real.sqrt 2 * δ) := by
         rw [mul_assoc]; gcongr; rw [add_comm]; exact hexp
 
+/--
+@isnad1 id=lt.1h1v.s5.a3678a72e8cb from=translated src=- shape=59bbe23e vocab=41cf3093
+-/
 theorem dist_round_pos {c : ℝ} (hc : ∀ n : ℤ, c ≠ n) : 0 < |c - round c| := by
   rw [abs_pos, sub_ne_zero]; exact hc _
 
 /-- The denominator of the Mordell integrand does not vanish on a line through a non-integer
-real point.-/
+real point.
+@isnad1 id=ne.1h2v.s6.cda3b305eb3b from=translated src=- shape=dc8ca64f vocab=5e98e185
+-/
 theorem mordell_denom_line_ne_zero {c : ℝ} (hc : ∀ n : ℤ, c ≠ n) (x : ℝ) :
     cexp (π * I * ((c : ℂ) - ω * x)) - cexp (-(π * I * ((c : ℂ) - ω * x))) ≠ 0 := by
     rw [exp_sub_exp_neg_eq_two_I_sin]
@@ -390,11 +482,17 @@ theorem mordell_denom_line_ne_zero {c : ℝ} (hc : ∀ n : ℤ, c ≠ n) (x : �
     have h7 := mul_pos h3 h5
     linarith
 
+/--
+@isnad1 id=continuo.1h3v.s5.d7e7edeeafe6 from=translated src=- shape=aa5c791f vocab=38b4901d
+-/
 theorem continuous_mordellIntegrand_line {τ z : ℂ} {c : ℝ} (hc : ∀ n : ℤ, c ≠ n) :
     Continuous fun x : ℝ => mordellIntegrand τ z (c - ω * x) := by
   unfold mordellIntegrand mordellExponent
   exact Continuous.div (by fun_prop) (by fun_prop) (mordell_denom_line_ne_zero hc)
 
+/--
+@isnad1 id=integrab.2h3v.s6.4a4ff48dcf0d from=translated src=- shape=ea20e097 vocab=81826e89
+-/
 theorem integrable_mordellIntegrand_line {τ z : ℂ} (hτ : 0 < τ.re) {c : ℝ} (hc : ∀ n : ℤ, c ≠ n) :
     Integrable fun x : ℝ => mordellIntegrand τ z (c - ω * x) :=
   integrable_of_norm_le_gaussian (by positivity) (continuous_mordellIntegrand_line hc)
@@ -405,6 +503,9 @@ the line through the real point `c` in the direction `-ω = exp (5 π i / 4)`.-/
 @[expose] noncomputable def mordell (τ z : ℂ) (c : ℝ) : ℂ :=
   ∫ x : ℝ, -ω * mordellIntegrand τ z (c - ω * x)
 
+/--
+@isnad1 id=eq.1h3v.s7.777f3ed55578 from=translated src=- shape=3c4e29e3 vocab=ae18d7c1
+-/
 theorem mordellIntegrand_add_one_sub {τ z u : ℂ}
     (hu : cexp (π * I * u) - cexp (-(π * I * u)) ≠ 0) :
     mordellIntegrand τ (z + 1) u - mordellIntegrand τ z u =
@@ -423,7 +524,9 @@ theorem mordellIntegrand_add_one_sub {τ z u : ℂ}
   rw [e3]
   linear_combination (cexp (mordellExponent τ z u)) * e4
 
-/-- The Gaussian integral `∫ exp (π i τ u² + 2 π i u w) du` along a Riemann–Siegel line.-/
+/-- The Gaussian integral `∫ exp (π i τ u² + 2 π i u w) du` along a Riemann–Siegel line.
+@isnad1 id=eq.1h3v.s7.d4266cf3be45 from=translated src=- shape=c78f614a vocab=410d46ec
+-/
 theorem integral_exp_mordellExponent_line {τ : ℂ} (hτ : 0 < τ.re) (w : ℂ) (c : ℝ) :
     ∫ x : ℝ, -ω * cexp (mordellExponent τ w (c - ω * x)) =
       -ω * (1 / τ) ^ (1 / 2 : ℂ) * cexp (-(π * I * w ^ 2 / τ)) := by
@@ -445,7 +548,9 @@ theorem integral_exp_mordellExponent_line {τ : ℂ} (hτ : 0 < τ.re) (w : ℂ)
   rw [hb, hd]; ring
 
 /-- The first functional equation of the Mordell integral: shifting `z` by `1` adds a Gaussian
-integral.-/
+integral.
+@isnad1 id=eq.2h3v.s7.cad49e5627de from=translated src=- shape=4e9928e4 vocab=536a9e73
+-/
 theorem mordell_add_one {τ z : ℂ} (hτ : 0 < τ.re) {c : ℝ} (hc : ∀ n : ℤ, c ≠ n) :
     mordell τ (z + 1) c =
       mordell τ z c + -ω * (1 / τ) ^ (1 / 2 : ℂ) * cexp (-(π * I * (z + 1 / 2) ^ 2 / τ)) := by
@@ -458,7 +563,9 @@ theorem mordell_add_one {τ z : ℂ} (hτ : 0 < τ.re) {c : ℝ} (hc : ∀ n : �
 /-! ### The second functional equation -/
 
 /-- On the strip between the lines through `c` and `c - 1`, the point `u = c - ω ξ` stays at
-distance at least `min c (1 - c) √2/2` from every nonzero integer.-/
+distance at least `min c (1 - c) √2/2` from every nonzero integer.
+@isnad1 id=le.4h3v.s7.bc5bb9f2c837 from=translated src=- shape=647607f7 vocab=7464f06d
+-/
 theorem norm_strip_sub_int_ge {c : ℝ} (hc0 : 0 < c) (hc1 : c < 1) {ξ : ℂ}
     (hξ : ξ.im ∈ Icc (-(Real.sqrt 2 / 2)) 0) {n : ℤ} (hn : n ≠ 0) :
     min c (1 - c) * (Real.sqrt 2 / 2) ≤ ‖((c : ℂ) - ω * ξ) - n‖ := by
@@ -478,6 +585,9 @@ theorem norm_strip_sub_int_ge {c : ℝ} (hc0 : 0 < c) (hc1 : c < 1) {ξ : ℂ}
     refine le_trans ((mul_le_mul_of_nonneg_right (min_le_right _ _) hs.le).trans ?_) (le_abs_self _)
     nlinarith
 
+/--
+@isnad1 id=eq.1h4v.s7.47e6c0c600e6 from=translated src=- shape=c88b0f84 vocab=3743b506
+-/
 theorem neg_rsOmega_mul_mordellIntegrand_eq {τ z : ℂ} {c : ℝ} {ξ : ℂ}
     (hξ : ξ ≠ c * (starRingEnd ℂ) ω) :
     -ω * mordellIntegrand τ z (c - ω * ξ) =
@@ -500,7 +610,9 @@ theorem neg_rsOmega_mul_mordellIntegrand_eq {τ z : ℂ} {c : ℝ} {ξ : ℂ}
         rw [← hu, div_self hu0, mul_one]
 
 /-- The second functional equation of the Mordell integral: moving the line of integration from
-`c` to `c - 1` (for `0 < c < 1`) crosses the pole at `u = 0` and changes the value by `-1`.-/
+`c` to `c - 1` (for `0 < c < 1`) crosses the pole at `u = 0` and changes the value by `-1`.
+@isnad1 id=eq.3h3v.s6.7c0de88e7cb9 from=translated src=- shape=749813ef vocab=1c573671
+-/
 theorem mordell_eq_mordell_sub_one_sub_one {τ z : ℂ} (hτ : 0 < τ.re) {c : ℝ}
     (hc0 : 0 < c) (hc1 : c < 1) : mordell τ z c = mordell τ z (c - 1) - 1 := by
   set β : ℝ := -(Real.sqrt 2 / 2) with hβ
@@ -623,6 +735,9 @@ theorem mordell_eq_mordell_sub_one_sub_one {τ z : ℂ} (hτ : 0 < τ.re) {c : �
   rw [this] at key
   linear_combination -key
 
+/--
+@isnad1 id=eq.0h3v.s6.1039e1892878 from=translated src=- shape=5a52901c vocab=1c88cf56
+-/
 theorem mordellIntegrand_add_one (τ z u : ℂ) :
     mordellIntegrand τ z (u + 1) =
       -cexp (2 * π * I * z + π * I * τ) * mordellIntegrand τ (z + τ) u := by
@@ -641,7 +756,9 @@ theorem mordellIntegrand_add_one (τ z u : ℂ) :
   ring
 
 /-- Shifting the line one unit to the right:
-`mordell τ z (c + 1) = -e^{2πiz + πiτ} mordell τ (z + τ) c`.-/
+`mordell τ z (c + 1) = -e^{2πiz + πiτ} mordell τ (z + τ) c`.
+@isnad1 id=eq.0h3v.s6.42cb7c2b9db5 from=translated src=- shape=b88817e8 vocab=ba3716d8
+-/
 theorem mordell_add_one_right (τ z : ℂ) (c : ℝ) :
     mordell τ z (c + 1) = -cexp (2 * π * I * z + π * I * τ) * mordell τ (z + τ) c := by
   unfold mordell
@@ -652,7 +769,9 @@ theorem mordell_add_one_right (τ z : ℂ) (c : ℝ) :
   ring
 
 /-- Crossing the pole at `u = 1`: for `0 < c < 1`,
-`mordell τ z (c + 1) = mordell τ z c + e^{2πiz + πiτ}`.-/
+`mordell τ z (c + 1) = mordell τ z c + e^{2πiz + πiτ}`.
+@isnad1 id=eq.3h3v.s7.40ec9e54132b from=translated src=- shape=6b6b5369 vocab=e756723c
+-/
 theorem mordell_add_one_right_eq_add {τ z : ℂ} (hτ : 0 < τ.re) {c : ℝ} (hc0 : 0 < c)
     (hc1 : c < 1) :
     mordell τ z (c + 1) = mordell τ z c + cexp (2 * π * I * z + π * I * τ) := by
@@ -662,6 +781,9 @@ theorem mordell_add_one_right_eq_add {τ z : ℂ} (hτ : 0 < τ.re) {c : ℝ} (h
   rw [sub_add_cancel] at h3
   linear_combination h1 - cexp (2 * π * I * z + π * I * τ) * h2 - h3
 
+/--
+@isnad1 id=ne.2h2v.s5.77c3e751d352 from=translated src=- shape=781e4ff5 vocab=71598b28
+-/
 theorem ne_int_of_mem_Ioo {c : ℝ} (hc0 : 0 < c) (hc1 : c < 1) : ∀ n : ℤ, c ≠ n := by
   intro n h
   have h1 : (0 : ℝ) < n := h ▸ hc0
@@ -670,7 +792,9 @@ theorem ne_int_of_mem_Ioo {c : ℝ} (hc0 : 0 < c) (hc1 : c < 1) : ∀ n : ℤ, c
   have h2' : n < (1 : ℤ) := by exact_mod_cast h2
   omega
 
-/-- The closed form of the Mordell integral at `τ = 1`.-/
+/-- The closed form of the Mordell integral at `τ = 1`.
+@isnad1 id=eq.3h2v.s7.06ebef3d85a5 from=translated src=- shape=2cd6c66a vocab=0f222814
+-/
 theorem mordell_one {z : ℂ} {c : ℝ} (hc0 : 0 < c) (hc1 : c < 1) (hz : cexp (2 * π * I * z) ≠ 1) :
     mordell 1 z c = (cexp (2 * π * I * z) - cexp (-(π * I * z ^ 2) + π * I * z)) /
       (1 - cexp (2 * π * I * z)) := by

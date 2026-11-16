@@ -35,6 +35,9 @@ namespace DeBruijnNewman
 
 /-! ### `α` on the imaginary axis and near it -/
 
+/--
+@isnad1 id=eq.1h1v.s6.0ce0570432b0 from=translated src=- shape=977764de vocab=82a47744
+-/
 theorem log_axis {T : ℝ} (hT : 0 < T) :
     Complex.log (((T : ℂ) * I) / (2 * π)) = (Real.log (T / (2 * π)) : ℂ) + (π / 2 : ℝ) * I := by
   have e : ((T : ℂ) * I) / (2 * π) = ((T / (2 * π) : ℝ) : ℂ) * I := by push_cast; ring
@@ -46,6 +49,9 @@ theorem log_axis {T : ℝ} (hT : 0 < T) :
   · rw [Complex.log_im, e, Complex.arg_real_mul _ hpos, Complex.arg_I]
     simp
 
+/--
+@isnad1 id=eq.1h1v.s7.5c3ab49af03c from=translated src=- shape=67c486f0 vocab=56a02b58
+-/
 theorem alpha_axis {T : ℝ} (hT : 0 < T) :
     alpha ((T : ℂ) * I) = 1 / (2 * ((T : ℂ) * I)) + 1 / ((T : ℂ) * I - 1) +
       (1 / 2 * Real.log (T / (2 * π)) : ℝ) + (π / 4 : ℝ) * I := by
@@ -54,6 +60,9 @@ theorem alpha_axis {T : ℝ} (hT : 0 < T) :
   push_cast
   ring
 
+/--
+@isnad1 id=eq.1h1v.s7.473473b954b4 from=translated src=- shape=fe4071a4 vocab=18e38f71
+-/
 theorem im_alpha_axis {T : ℝ} (hT : 0 < T) :
     (alpha ((T : ℂ) * I)).im = -(1 / (2 * T)) - T / (1 + T ^ 2) + π / 4 := by
   rw [alpha_axis hT]
@@ -68,6 +77,9 @@ theorem im_alpha_axis {T : ℝ} (hT : 0 < T) :
     Complex.I_re, Complex.I_im, mul_zero, mul_one, add_zero]
   ring
 
+/--
+@isnad1 id=eq.1h1v.s7.54640b96aa4e from=translated src=- shape=658fd54c vocab=5a53b6ee
+-/
 theorem re_alpha_axis {T : ℝ} (hT : 0 < T) :
     (alpha ((T : ℂ) * I)).re = -(1 / (1 + T ^ 2)) + 1 / 2 * Real.log (T / (2 * π)) := by
   rw [alpha_axis hT]
@@ -81,7 +93,9 @@ theorem re_alpha_axis {T : ℝ} (hT : 0 < T) :
   simp only [Complex.add_re, h1, h2, Complex.ofReal_re, Complex.mul_re, Complex.ofReal_im,
     Complex.I_re, Complex.I_im, mul_zero, mul_one, zero_add, add_zero, sub_zero]
 
-/-- `α(iT) = ½ log (T/2π) + iπ/4 + O_≤(3/(2T))`.-/
+/-- `α(iT) = ½ log (T/2π) + iπ/4 + O_≤(3/(2T))`.
+@isnad1 id=le.1h1v.s7.ede26ef45060 from=translated src=- shape=f9d8479b vocab=404b5300
+-/
 theorem norm_alpha_axis_sub_le {T : ℝ} (hT : 1 ≤ T) :
     ‖alpha ((T : ℂ) * I) - ((1 / 2 * Real.log (T / (2 * π)) : ℝ) + (π / 4 : ℝ) * I)‖ ≤
       3 / (2 * T) := by
@@ -106,7 +120,9 @@ theorem norm_alpha_axis_sub_le {T : ℝ} (hT : 1 ≤ T) :
     _ ≤ 1 / (2 * T) + 1 / T := by rw [h1]; gcongr
     _ = 3 / (2 * T) := by field_simp; ring
 
-/-- `|Re α(σ + iT) - ½ log (T/2π)| ≤ 1/T²` for `0 ≤ σ ≤ 1`, `T ≥ 1`.-/
+/-- `|Re α(σ + iT) - ½ log (T/2π)| ≤ 1/T²` for `0 ≤ σ ≤ 1`, `T ≥ 1`.
+@isnad1 id=le.3h2v.s7.c4c2f050d54b from=translated src=- shape=653eb3f7 vocab=5f0ef59f
+-/
 theorem abs_re_alpha_sub_le {σ T : ℝ} (hσ0 : 0 ≤ σ) (hσ1 : σ ≤ 1) (hT : 1 ≤ T) :
     |(alpha (σ + T * I)).re - 1 / 2 * Real.log (T / (2 * π))| ≤ 1 / T ^ 2 := by
   have hT0 : 0 < T := by linarith
@@ -151,7 +167,9 @@ theorem abs_re_alpha_sub_le {σ T : ℝ} (hσ0 : 0 ≤ σ) (hσ1 : σ ≤ 1) (hT
       nlinarith [sq_nonneg T]
     nlinarith
 
-/-- `0 ≤ Im α(σ + iT) ≤ π/4` for `0 ≤ σ ≤ 1` and `T ≥ 100`.-/
+/-- `0 ≤ Im α(σ + iT) ≤ π/4` for `0 ≤ σ ≤ 1` and `T ≥ 100`.
+@isnad1 id=and.3h2v.s6.822171eb0589 from=translated src=- shape=0d444f67 vocab=421f5262
+-/
 theorem im_alpha_mem {σ T : ℝ} (hσ0 : 0 ≤ σ) (hσ1 : σ ≤ 1) (hT : 100 ≤ T) :
     0 ≤ (alpha (σ + T * I)).im ∧ (alpha (σ + T * I)).im ≤ π / 4 := by
   have hT0 : 0 < T := by linarith
@@ -186,7 +204,9 @@ theorem im_alpha_mem {σ T : ℝ} (hσ0 : 0 ≤ σ) (hσ1 : σ ≤ 1) (hT : 100 
   · nlinarith
   · nlinarith
 
-/-- `|log (x/(4πn²))| ≤ x/34` for `x ≥ 200` and `1 ≤ n ≤ √(x/4π + 1/32)`.-/
+/-- `|log (x/(4πn²))| ≤ x/34` for `x ≥ 200` and `1 ≤ n ≤ √(x/4π + 1/32)`.
+@isnad1 id=le.3h2v.s7.f166f3b040a6 from=translated src=- shape=7daab1df vocab=c049ff17
+-/
 theorem abs_log_div_four_pi_sq_le {x : ℝ} {n : ℕ} (hx : 200 ≤ x) (hn : 1 ≤ n)
     (hnx : (n : ℝ) ^ 2 ≤ x / (4 * π) + 1 / 32) :
     |Real.log (x / (4 * π * (n : ℝ) ^ 2))| ≤ x / 34 := by
@@ -215,7 +235,9 @@ theorem abs_log_div_four_pi_sq_le {x : ℝ} {n : ℕ} (hx : 200 ≤ x) (hn : 1 �
   rw [abs_le]
   constructor <;> linarith
 
-/-- The elementary inequality behind (6.13).-/
+/-- The elementary inequality behind (6.13).
+@isnad1 id=le.3h3v.s7.deff91bc1788 from=translated src=- shape=931efff0 vocab=ca5c4559
+-/
 theorem sq_half_add_le {x L ρ : ℝ} (hx : 200 ≤ x) (hLabs : |L| ≤ x / 34) (hρ : |ρ| ≤ 4 / x ^ 2) :
     (1 / 2 * L + ρ) ^ 2 ≤ 1 / 4 * L ^ 2 + 2 / 1000 := by
   have hx0 : 0 < x := by linarith
@@ -238,7 +260,9 @@ theorem sq_half_add_le {x L ρ : ℝ} (hx : 200 ≤ x) (hLabs : |L| ≤ x / 34) 
   linarith
 
 /-- Polymath (6.13): `|α(σ + ix/2) - log n|² ≤ ¼ log² (x/(4πn²)) + 0.667` for `0 ≤ σ ≤ 1`,
-`x ≥ 200` and `1 ≤ n ≤ √(x/4π + 1/32)`.-/
+`x ≥ 200` and `1 ≤ n ≤ √(x/4π + 1/32)`.
+@isnad1 id=le.5h3v.s8.3959e96aa228 from=translated src=- shape=0f6c56a5 vocab=77bbc19e
+-/
 theorem norm_alpha_sub_log_sq_le {σ x : ℝ} {n : ℕ} (hσ0 : 0 ≤ σ) (hσ1 : σ ≤ 1) (hx : 200 ≤ x)
     (hn : 1 ≤ n) (hnx : (n : ℝ) ^ 2 ≤ x / (4 * π) + 1 / 32) :
     ‖alpha (σ + (x / 2 : ℝ) * I) - Real.log n‖ ^ 2 ≤
@@ -286,7 +310,9 @@ theorem norm_alpha_sub_log_sq_le {σ x : ℝ} {n : ℕ} (hσ0 : 0 ≤ σ) (hσ1 
 
 /-! ### Mean value bounds along complex segments -/
 
-/-- First-order bound along the segment `z + τ h`, `τ ∈ [0, 1]`.-/
+/-- First-order bound along the segment `z + τ h`, `τ ∈ [0, 1]`.
+@isnad1 id=le.3h6v.s7.648de73c56d7 from=translated src=- shape=a404047f vocab=83b99f03
+-/
 theorem norm_sub_le_of_hasDerivAt_segment {g g' : ℂ → ℂ} {z h : ℂ} {K : ℝ}
     (hg : ∀ τ ∈ Icc (0 : ℝ) 1, HasDerivAt g (g' (z + τ * h)) (z + τ * h))
     (hb : ∀ τ ∈ Icc (0 : ℝ) 1, ‖g' (z + τ * h)‖ ≤ K) :
@@ -306,7 +332,9 @@ theorem norm_sub_le_of_hasDerivAt_segment {g g' : ℂ → ℂ} {z h : ℂ} {K : 
 
 /-- Second-order Taylor bound along the segment `z + τ h`: if `g' ` is the derivative of `g`
 along the segment and `‖g' (z + τ h) - g' z‖ ≤ K τ ‖h‖`, then
-`‖g (z + h) - g z - h g' z‖ ≤ K ‖h‖² / 2`.-/
+`‖g (z + h) - g z - h g' z‖ ≤ K ‖h‖² / 2`.
+@isnad1 id=le.2h5v.s8.002182d78ca5 from=translated src=- shape=72edc433 vocab=589aca1a
+-/
 theorem norm_taylor_two_le {g g' : ℂ → ℂ} {z h : ℂ} {K : ℝ}
     (hg : ∀ τ ∈ Icc (0 : ℝ) 1, HasDerivAt g (g' (z + τ * h)) (z + τ * h))
     (hg' : ∀ τ ∈ Icc (0 : ℝ) 1, ‖g' (z + τ * h) - g' z‖ ≤ K * (τ * ‖h‖)) :
@@ -345,7 +373,9 @@ theorem norm_taylor_two_le {g g' : ℂ → ℂ} {z h : ℂ} {K : ℝ}
 
 /-! ### The prefactor of `e_{C,0}` -/
 
-/-- The imaginary part along the segment from `iT'` to `conj s₊` stays `≥ x/2`.-/
+/-- The imaginary part along the segment from `iT'` to `conj s₊` stays `≥ x/2`.
+@isnad1 id=le.4h6v.s7.7e77dc56fe89 from=translated src=- shape=6363e0ba vocab=43201f9a
+-/
 theorem seg_im_ge {t x y : ℝ} {z h : ℂ} (ht0 : 0 ≤ t)
     (hz : z = ((x / 2 + π * t / 8 : ℝ) : ℂ) * I)
     (hh : h = (((1 + y) / 2 : ℝ) : ℂ) + ((-(π * t / 8) : ℝ) : ℂ) * I) :
@@ -358,7 +388,9 @@ theorem seg_im_ge {t x y : ℝ} {z h : ℂ} (ht0 : 0 ≤ t)
   nlinarith [mul_nonneg (sub_nonneg.2 hτ.2) (mul_nonneg Real.pi_pos.le ht0)]
 
 /-- Second-order Taylor expansion of `log M₀` along the segment from `iT'` to `conj s₊`
-(Polymath (6.16)).-/
+(Polymath (6.16)).
+@isnad1 id=le.4h5v.s8.6e6e299b6761 from=translated src=- shape=38b8bbb1 vocab=7f0ceef2
+-/
 theorem prefactor_taylor {t x y : ℝ} {z h : ℂ} (ht0 : 0 ≤ t) (hx : 200 ≤ x)
     (hz : z = ((x / 2 + π * t / 8 : ℝ) : ℂ) * I)
     (hh : h = (((1 + y) / 2 : ℝ) : ℂ) + ((-(π * t / 8) : ℝ) : ℂ) * I) :
@@ -385,7 +417,9 @@ theorem prefactor_taylor {t x y : ℝ} {z h : ℂ} (ht0 : 0 ≤ t) (hx : 200 ≤
   linarith
 
 /-- The linear term of the Taylor expansion: `Re (h α(iT')) ≥ (1+y)/4 log (T'/2π) + π²t/32
-- 3‖h‖/(2T')`.-/
+- 3‖h‖/(2T')`.
+@isnad1 id=le.4h5v.s8.1793356e3660 from=translated src=- shape=5a2b1132 vocab=acdef013
+-/
 theorem prefactor_linear {t x y : ℝ} {z h : ℂ} (hx : 200 ≤ x) (ht0 : 0 ≤ t)
     (hz : z = ((x / 2 + π * t / 8 : ℝ) : ℂ) * I)
     (hh : h = (((1 + y) / 2 : ℝ) : ℂ) + ((-(π * t / 8) : ℝ) : ℂ) * I) :
@@ -413,7 +447,9 @@ theorem prefactor_linear {t x y : ℝ} {z h : ℂ} (hx : 200 ≤ x) (ht0 : 0 ≤
   have := (abs_le.1 E3).1
   linarith
 
-/-- `‖h‖ ≤ 1.02` and `‖h‖² ≤ 1.04` for the Taylor increment `h = (1+y)/2 - iπt/8`.-/
+/-- `‖h‖ ≤ 1.02` and `‖h‖² ≤ 1.04` for the Taylor increment `h = (1+y)/2 - iπt/8`.
+@isnad1 id=and.5h3v.s7.d30662c87ce8 from=translated src=- shape=684636d7 vocab=7d655866
+-/
 theorem prefactor_norm_h {t y : ℝ} {h : ℂ} (ht0 : 0 ≤ t) (ht : t ≤ 1 / 2) (hy0 : 0 ≤ y)
     (hy1 : y ≤ 1) (hh : h = (((1 + y) / 2 : ℝ) : ℂ) + ((-(π * t / 8) : ℝ) : ℂ) * I) :
     ‖h‖ ≤ 1.02 ∧ ‖h‖ ^ 2 ≤ 1.04 := by
@@ -430,7 +466,9 @@ theorem prefactor_norm_h {t y : ℝ} {h : ℂ} (ht0 : 0 ≤ t) (ht : t ≤ 1 / 2
   have : ‖h‖ ^ 2 ≤ (1.02 : ℝ) ^ 2 := by norm_num; linarith
   exact (pow_le_pow_iff_left₀ (norm_nonneg _) (by norm_num) two_ne_zero).1 this
 
-/-- `Re (α(conj s₊)²) ≥ ¼ log² (x/4π) - 4 log(x/4π)/x² - π²/16`.-/
+/-- `Re (α(conj s₊)²) ≥ ¼ log² (x/4π) - 4 log(x/4π)/x² - π²/16`.
+@isnad1 id=le.4h3v.s8.bcddfce8a0da from=translated src=- shape=562b219f vocab=40069608
+-/
 theorem re_alpha_sq_ge {x y : ℝ} {w : ℂ} (hy0 : 0 ≤ y) (hy1 : y ≤ 1) (hx : 200 ≤ x)
     (hw : w = (((1 + y) / 2 : ℝ) : ℂ) + ((x / 2 : ℝ) : ℂ) * I) :
     Real.log (x / (4 * π)) ^ 2 / 4 - 4 * Real.log (x / (4 * π)) / x ^ 2 - π ^ 2 / 16 ≤
@@ -464,7 +502,9 @@ theorem re_alpha_sq_ge {x y : ℝ} {w : ℂ} (hy0 : 0 ≤ y) (hy1 : y ≤ 1) (hx
 
 /-- Polymath (6.15)–(6.17) in logarithmic form: with `T' = x/2 + πt/8`,
 `tπ²/64 + Re log M₀(iT') - Re log M_t(s₊) ≤ -(1+y)/4 log(x/4π) - t/16 log²(x/4π)
-+ 3.58/(x-6) + log(x/4π)/(2x²)`.-/
++ 3.58/(x-6) + log(x/4π)/(2x²)`.
+@isnad1 id=le.5h3v.s8.396c6554dae7 from=translated src=- shape=14394ab9 vocab=424162f3
+-/
 theorem prefactor_log_le {t x y : ℝ} (ht0 : 0 ≤ t) (ht : t ≤ 1 / 2) (hy0 : 0 ≤ y) (hy1 : y ≤ 1)
     (hx : 200 ≤ x) :
     t * π ^ 2 / 64 + (logM₀ (((x / 2 + π * t / 8 : ℝ) : ℂ) * I)).re - (logM t (sPlus x y)).re ≤

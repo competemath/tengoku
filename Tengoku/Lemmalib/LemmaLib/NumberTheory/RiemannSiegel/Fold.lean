@@ -38,6 +38,9 @@ namespace RiemannSiegel
 
 /-! ### Conjugating the Riemann–Siegel integral -/
 
+/--
+@isnad1 id=eq.1h2v.s7.595622be1696 from=translated src=- shape=08e2f4ab vocab=1dac18d3
+-/
 theorem conj_integrand_conj {s u : ℂ} (hu : arg u ≠ π) :
     (starRingEnd ℂ) (integrand (1 - (starRingEnd ℂ) s) ((starRingEnd ℂ) u)) =
       -foldIntegrand s u := by
@@ -54,6 +57,9 @@ theorem conj_integrand_conj {s u : ℂ} (hu : arg u ≠ π) :
     div_neg, ← neg_sub]
   ring
 
+/--
+@isnad1 id=ne.1h2v.s6.426770eb5fbc from=translated src=- shape=3f272dc3 vocab=67d0ac8f
+-/
 theorem arg_line_conj_ne_pi {c : ℝ} (hc0 : 0 < c) (x : ℝ) :
     arg ((c : ℂ) - (starRingEnd ℂ) ω * x) ≠ π := by
   rw [Ne, Complex.arg_eq_pi_iff, not_and]
@@ -69,11 +75,16 @@ theorem arg_line_conj_ne_pi {c : ℝ} (hc0 : 0 < c) (x : ℝ) :
   simp at hre
   linarith
 
+/--
+@isnad1 id=eq.0h2v.s6.c2839755008f from=translated src=- shape=452212dc vocab=10a56ce8
+-/
 theorem conj_line_eq (c x : ℝ) :
     (c : ℂ) - ω * x = (starRingEnd ℂ) ((c : ℂ) - (starRingEnd ℂ) ω * x) := by
   simp [map_sub, map_mul, Complex.conj_ofReal]
 
-/-- `conj (R(1 - conj s, c)) = ∫ conj ω foldIntegrand s (c - conj ω x) dx`.-/
+/-- `conj (R(1 - conj s, c)) = ∫ conj ω foldIntegrand s (c - conj ω x) dx`.
+@isnad1 id=eq.1h2v.s7.e0a75cc6ce54 from=translated src=- shape=2981b435 vocab=aafc6261
+-/
 theorem conj_rsIntegral_one_sub_eq_integral (s : ℂ) {c : ℝ} (hc0 : 0 < c) :
     (starRingEnd ℂ) (rsIntegral (1 - (starRingEnd ℂ) s) c) =
       ∫ x : ℝ, (starRingEnd ℂ) ω * foldIntegrand s ((c : ℂ) - (starRingEnd ℂ) ω * x) := by
@@ -84,7 +95,9 @@ theorem conj_rsIntegral_one_sub_eq_integral (s : ℂ) {c : ℝ} (hc0 : 0 < c) :
   rw [map_mul, map_neg, conj_line_eq, conj_integrand_conj (arg_line_conj_ne_pi hc0 x)]
   ring
 
-/-- The line `c - conj ω x` is `conj ω ((β - x) + β i)` with `β = c √2 / 2`.-/
+/-- The line `c - conj ω x` is `conj ω ((β - x) + β i)` with `β = c √2 / 2`.
+@isnad1 id=eq.0h2v.s7.478ef40eedc8 from=translated src=- shape=3f0c85d9 vocab=f674d8dd
+-/
 theorem line_conj_eq_conj_rsOmega_mul (c x : ℝ) :
     (c : ℂ) - (starRingEnd ℂ) ω * x =
       (starRingEnd ℂ) ω * (((c * (Real.sqrt 2 / 2) - x : ℝ) : ℂ) + (c * (Real.sqrt 2 / 2) : ℝ) * I) := by
@@ -95,7 +108,9 @@ theorem line_conj_eq_conj_rsOmega_mul (c x : ℝ) :
   · simp [rsOmega_re, rsOmega_im]
     nlinarith
 
-/-- `conj (R(1 - conj s, c)) = conj ω ∫ F (x + β i) dx` with `F v = foldIntegrand s (conj ω v)`, `β = c √2 / 2`.-/
+/-- `conj (R(1 - conj s, c)) = conj ω ∫ F (x + β i) dx` with `F v = foldIntegrand s (conj ω v)`, `β = c √2 / 2`.
+@isnad1 id=eq.1h2v.s8.22cb6e1b8dcc from=translated src=- shape=d3d32a98 vocab=ca82a269
+-/
 theorem conj_rsIntegral_one_sub_eq_integral_line (s : ℂ) {c : ℝ} (hc0 : 0 < c) :
     (starRingEnd ℂ) (rsIntegral (1 - (starRingEnd ℂ) s) c) =
       (starRingEnd ℂ) ω * ∫ x : ℝ,
@@ -111,11 +126,16 @@ theorem conj_rsIntegral_one_sub_eq_integral_line (s : ℂ) {c : ℝ} (hc0 : 0 < 
 
 /-! ### Bounds on the reflected integrand -/
 
+/--
+@isnad1 id=le.0h1v.s5.9387cd3862f3 from=translated src=- shape=ddf6c398 vocab=0e2132b1
+-/
 theorem abs_re_add_im_le_sqrt_two_mul_norm (u : ℂ) : |u.re + u.im| ≤ Real.sqrt 2 * ‖u‖ := by
   have := abs_re_sub_im_le_sqrt_two_mul_norm ((starRingEnd ℂ) u)
   rwa [Complex.conj_re, Complex.conj_im, sub_neg_eq_add, Complex.norm_conj] at this
 
-/-- `‖(e^{iπu} - e^{-iπu})⁻¹‖ ≤ 1 / (4 ‖u‖)` for `‖u‖ ≤ 1/2`.-/
+/-- `‖(e^{iπu} - e^{-iπu})⁻¹‖ ≤ 1 / (4 ‖u‖)` for `‖u‖ ≤ 1/2`.
+@isnad1 id=le.1h1v.s6.c1f0b09f4398 from=translated src=- shape=00fd72b5 vocab=87ad79eb
+-/
 theorem norm_inv_exp_sub_exp_neg_le_of_norm_le {u : ℂ} (hu : ‖u‖ ≤ 1 / 2) :
     ‖(cexp (π * I * u) - cexp (-(π * I * u)))⁻¹‖ ≤ 1 / (4 * ‖u‖) := by
   rw [exp_sub_exp_neg_eq_two_I_sin, norm_inv, norm_mul, norm_mul, Complex.norm_two,
@@ -130,7 +150,9 @@ theorem norm_inv_exp_sub_exp_neg_le_of_norm_le {u : ℂ} (hu : ‖u‖ ≤ 1 / 2
     exact inv_anti₀ (by positivity) (by linarith)
 
 /-- `‖(e^{iπu} - e^{-iπu})⁻¹‖ ≤ 1 / (4 ‖u‖) + √2 / (4 (1 - c))` on the strip
-`0 ≤ Re u + Im u ≤ c`.-/
+`0 ≤ Re u + Im u ≤ c`.
+@isnad1 id=le.2h2v.s7.4c86b3a669b2 from=translated src=- shape=ab91608d vocab=c1a0abf1
+-/
 theorem norm_inv_exp_sub_exp_neg_le_of_fold_strip {u : ℂ} {c : ℝ} (hc1 : c < 1)
     (hu : u.re + u.im ∈ Icc 0 c) :
     ‖(cexp (π * I * u) - cexp (-(π * I * u)))⁻¹‖ ≤
@@ -170,12 +192,18 @@ theorem norm_inv_exp_sub_exp_neg_le_of_fold_strip {u : ℂ} {c : ℝ} (hc1 : c <
     rw [inv_eq_one_div, div_le_div_iff₀ (by positivity) (by positivity)]
     nlinarith
 
+/--
+@isnad1 id=le.0h2v.s6.a4a08e15a57f from=translated src=- shape=8e8a1217 vocab=059a0ad5
+-/
 theorem norm_cpow_sub_one_le (u s : ℂ) :
     ‖u ^ (s - 1)‖ ≤ ‖u‖ ^ (s.re - 1) * Real.exp (π * |s.im|) := by
   have h := norm_cpow_le_exp_pi u (s - 1)
   rw [sub_re, one_re, sub_im, one_im, sub_zero] at h
   exact h
 
+/--
+@isnad1 id=eq.0h1v.s6.c6c6c22d242e from=translated src=- shape=c54c2ce3 vocab=69cd1cfb
+-/
 theorem norm_exp_neg_pi_I_mul_sq (u : ℂ) :
     ‖cexp (-(π * I * u ^ 2))‖ = Real.exp (2 * π * u.re * u.im) := by
   rw [Complex.norm_exp]
@@ -183,17 +211,26 @@ theorem norm_exp_neg_pi_I_mul_sq (u : ℂ) :
   simp [sq, Complex.mul_re, Complex.mul_im]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s6.2330a6c910a8 from=translated src=- shape=155292a8 vocab=bcceb472
+-/
 theorem re_add_im_conj_rsOmega_mul (v : ℂ) :
     ((starRingEnd ℂ) ω * v).re + ((starRingEnd ℂ) ω * v).im = Real.sqrt 2 * v.im := by
   simp [Complex.mul_re, Complex.mul_im, rsOmega_re, rsOmega_im]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s7.0c4e125d076c from=translated src=- shape=ad66c689 vocab=386a69d9
+-/
 theorem two_mul_re_mul_im_conj_rsOmega_mul (v : ℂ) :
     2 * ((starRingEnd ℂ) ω * v).re * ((starRingEnd ℂ) ω * v).im = v.im ^ 2 - v.re ^ 2 := by
   have h2 : Real.sqrt 2 * Real.sqrt 2 = 2 := Real.mul_self_sqrt (by norm_num)
   simp [Complex.mul_re, Complex.mul_im, rsOmega_re, rsOmega_im]
   linear_combination ((v.im ^ 2 - v.re ^ 2) / 2) * h2
 
+/--
+@isnad1 id=mem.1h2v.s7.0dbac367e59c from=translated src=- shape=24627c90 vocab=545cd096
+-/
 theorem re_add_im_conj_rsOmega_mul_mem {c : ℝ} {v : ℂ}
     (hv : v.im ∈ Icc 0 (c * (Real.sqrt 2 / 2))) :
     ((starRingEnd ℂ) ω * v).re + ((starRingEnd ℂ) ω * v).im ∈ Icc 0 c := by
@@ -206,11 +243,16 @@ theorem re_add_im_conj_rsOmega_mul_mem {c : ℝ} {v : ℂ}
           mul_le_mul_of_nonneg_left hv.2 hs2.le
       _ = c := by linear_combination (c / 2) * h2
 
+/--
+@isnad1 id=eq.1h1v.s4.24df27c81c75 from=translated src=- shape=1a2c69ac vocab=7bdccc56
+-/
 theorem foldIntegrand_zero {s : ℂ} (hs : s ≠ 1) : foldIntegrand s 0 = 0 := by
   unfold foldIntegrand
   rw [Complex.zero_cpow (sub_ne_zero.2 hs), zero_mul]
 
-/-- The bound on `foldIntegrand s (conj ω * v)` on the strip `0 ≤ Im v ≤ c √2 / 2`.-/
+/-- The bound on `foldIntegrand s (conj ω * v)` on the strip `0 ≤ Im v ≤ c √2 / 2`.
+@isnad1 id=le.3h3v.s8.0dbe316c90af from=translated src=- shape=ce147ccc vocab=965963b1
+-/
 theorem norm_foldIntegrand_conj_rsOmega_mul_le {s : ℂ} (hs : 2 ≤ s.re) {c : ℝ} (hc1 : c < 1)
     {v : ℂ} (hv : v.im ∈ Icc 0 (c * (Real.sqrt 2 / 2))) :
     ‖foldIntegrand s ((starRingEnd ℂ) ω * v)‖ ≤
@@ -241,13 +283,18 @@ theorem norm_foldIntegrand_conj_rsOmega_mul_le {s : ℂ} (hs : 2 ≤ s.re) {c : 
         rw [Real.rpow_sub hn s.re 2, Real.rpow_sub hn s.re 1, Real.rpow_one, Real.rpow_two]
         field_simp
 
+/--
+@isnad1 id=le.2h2v.s5.e07d332cdcc6 from=translated src=- shape=65177100 vocab=ef6d5963
+-/
 theorem rpow_le_exp_mul {t K : ℝ} (ht : 0 ≤ t) (hK : 0 ≤ K) : t ^ K ≤ Real.exp (K * t) := by
   calc t ^ K ≤ Real.exp t ^ K := by
         gcongr
         linarith [Real.add_one_le_exp t]
     _ = Real.exp (K * t) := by rw [mul_comm, Real.exp_mul]
 
-/-- The Gaussian bound on the strip `0 ≤ Im v ≤ c √2 / 2` for the contour shift.-/
+/-- The Gaussian bound on the strip `0 ≤ Im v ≤ c √2 / 2` for the contour shift.
+@isnad1 id=ex.3h2v.s7.705fb85c46cc from=translated src=- shape=d3087e73 vocab=21f128b5
+-/
 theorem exists_norm_foldIntegrand_le_gaussian {s : ℂ} (hs : 2 ≤ s.re) {c : ℝ} (hc0 : 0 < c)
     (hc1 : c < 1) :
     ∃ C : ℝ, ∀ v : ℂ, v.im ∈ uIcc 0 (c * (Real.sqrt 2 / 2)) →
@@ -320,7 +367,9 @@ theorem exists_norm_foldIntegrand_le_gaussian {s : ℂ} (hs : 2 ≤ s.re) {c : �
 
 /-! ### Continuity at the origin and differentiability off it -/
 
-/-- For `Re s > 2` the reflected integrand is continuous at `0` (with value `0`).-/
+/-- For `Re s > 2` the reflected integrand is continuous at `0` (with value `0`).
+@isnad1 id=continuo.1h1v.s6.44f7cea15242 from=translated src=- shape=c47e08ce vocab=ac07516a
+-/
 theorem continuousAt_foldIntegrand_conj_rsOmega_mul_zero {s : ℂ} (hs : 2 < s.re) :
     ContinuousAt (fun v : ℂ => foldIntegrand s ((starRingEnd ℂ) ω * v)) 0 := by
   have hs1 : s ≠ 1 := fun h => by rw [h] at hs; norm_num at hs
@@ -366,6 +415,9 @@ theorem continuousAt_foldIntegrand_conj_rsOmega_mul_zero {s : ℂ} (hs : 2 < s.r
         rw [hC, Real.rpow_sub hn s.re 2, Real.rpow_sub hn s.re 1, Real.rpow_one, Real.rpow_two]
         field_simp
 
+/--
+@isnad1 id=ne.3h2v.s6.8ffe809b2186 from=translated src=- shape=460daa57 vocab=8f02aee5
+-/
 theorem sin_pi_mul_ne_zero_of_fold_strip {u : ℂ} {c : ℝ} (hc1 : c < 1)
     (hu : u.re + u.im ∈ Icc 0 c) (hu0 : u ≠ 0) : Complex.sin (π * u) ≠ 0 := by
   rw [Ne, Complex.sin_eq_zero_iff, not_exists]
@@ -385,6 +437,9 @@ theorem sin_pi_mul_ne_zero_of_fold_strip {u : ℂ} {c : ℝ} (hc1 : c < 1)
     exact_mod_cast this
   linarith [hu.2]
 
+/--
+@isnad1 id=mem.2h1v.s5.18faba99acdc from=translated src=- shape=08b85548 vocab=64dd5be8
+-/
 theorem mem_slitPlane_of_fold_strip {u : ℂ} (hu : 0 ≤ u.re + u.im) (hu0 : u ≠ 0) :
     u ∈ slitPlane := by
   rw [Complex.mem_slitPlane_iff]
@@ -400,6 +455,9 @@ theorem mem_slitPlane_of_fold_strip {u : ℂ} (hu : 0 ≤ u.re + u.im) (hu0 : u 
       · simp [h]
   · right; exact h
 
+/--
+@isnad1 id=differen.2h2v.s6.3350970582aa from=translated src=- shape=4d18f84b vocab=b1e24c98
+-/
 theorem differentiableAt_foldIntegrand {s u : ℂ} (hu : u ∈ slitPlane)
     (hsin : Complex.sin (π * u) ≠ 0) : DifferentiableAt ℂ (foldIntegrand s) u := by
   unfold foldIntegrand
@@ -408,6 +466,9 @@ theorem differentiableAt_foldIntegrand {s u : ℂ} (hu : u ∈ slitPlane)
   rw [exp_sub_exp_neg_eq_two_I_sin]
   exact mul_ne_zero (mul_ne_zero two_ne_zero I_ne_zero) hsin
 
+/--
+@isnad1 id=differen.3h3v.s7.1c1c2cd529ac from=translated src=- shape=99d05d27 vocab=650941c4
+-/
 theorem differentiableAt_foldIntegrand_conj_rsOmega_mul {s : ℂ} {c : ℝ} (hc1 : c < 1) {v : ℂ}
     (hv : v.im ∈ Icc 0 (c * (Real.sqrt 2 / 2))) (hv0 : v ≠ 0) :
     DifferentiableAt ℂ (fun v : ℂ => foldIntegrand s ((starRingEnd ℂ) ω * v)) v := by
@@ -421,6 +482,9 @@ theorem differentiableAt_foldIntegrand_conj_rsOmega_mul {s : ℂ} {c : ℝ} (hc1
 
 /-! ### Moving the contour to the line through the origin -/
 
+/--
+@isnad1 id=eq.3h2v.s7.7efc42f9745d from=translated src=- shape=25909593 vocab=d67581c1
+-/
 theorem integral_foldIntegrand_line_eq_integral {s : ℂ} (hs : 2 < s.re) {c : ℝ} (hc0 : 0 < c)
     (hc1 : c < 1) :
     ∫ x : ℝ, foldIntegrand s ((starRingEnd ℂ) ω * (x + (c * (Real.sqrt 2 / 2) : ℝ) * I)) =
@@ -442,6 +506,9 @@ theorem integral_foldIntegrand_line_eq_integral {s : ℂ} (hs : 2 < s.re) {c : �
 
 /-! ### The two rays -/
 
+/--
+@isnad1 id=eq.0h0v.s6.234dd698fd5c from=translated src=- shape=3b57bf63 vocab=52f5446f
+-/
 theorem conj_rsOmega_eq_exp : (starRingEnd ℂ) ω = cexp (-(π * I / 4)) := by
   unfold Complex.rsOmega
   rw [← Complex.exp_conj]
@@ -449,45 +516,74 @@ theorem conj_rsOmega_eq_exp : (starRingEnd ℂ) ω = cexp (-(π * I / 4)) := by
   simp [map_div₀, Complex.conj_ofReal, Complex.conj_I, map_ofNat]
   ring
 
+/--
+@isnad1 id=eq.0h0v.s6.e38df4383e3e from=translated src=- shape=adc7742f vocab=52f5446f
+-/
 theorem neg_conj_rsOmega_eq_exp : -(starRingEnd ℂ) ω = cexp (3 * π * I / 4) := by
   rw [conj_rsOmega_eq_exp, show 3 * (π : ℂ) * I / 4 = π * I + -(π * I / 4) by ring,
     Complex.exp_add, Complex.exp_pi_mul_I]
   ring
 
+/--
+@isnad1 id=eq.2h2v.s5.1b215f713a8a from=translated src=- shape=a78ba66d vocab=182bd62f
+-/
 theorem exp_cpow_of_im {z : ℂ} (h1 : -π < z.im) (h2 : z.im ≤ π) (w : ℂ) :
     cexp z ^ w = cexp (z * w) := by
   rw [Complex.cpow_def_of_ne_zero (Complex.exp_ne_zero z), Complex.log_exp h1 h2]
 
+/--
+@isnad1 id=eq.0h1v.s6.b865c725decb from=translated src=- shape=12fe26f0 vocab=155efc96
+-/
 theorem conj_rsOmega_cpow (w : ℂ) : (starRingEnd ℂ) ω ^ w = cexp (-(π * I / 4) * w) := by
   rw [conj_rsOmega_eq_exp, exp_cpow_of_im]
   · simp; linarith [Real.pi_pos]
   · simp; linarith [Real.pi_pos]
 
+/--
+@isnad1 id=eq.0h1v.s6.0507cc6f6426 from=translated src=- shape=5bbb4a0e vocab=155efc96
+-/
 theorem neg_conj_rsOmega_cpow (w : ℂ) : (-(starRingEnd ℂ) ω) ^ w = cexp (3 * π * I / 4 * w) := by
   rw [neg_conj_rsOmega_eq_exp, exp_cpow_of_im]
   · simp; linarith [Real.pi_pos]
   · simp; linarith [Real.pi_pos]
 
+/--
+@isnad1 id=eq.0h0v.s6.20c18242fed2 from=translated src=- shape=4b1170f8 vocab=1652b679
+-/
 theorem arg_neg_conj_rsOmega : arg (-(starRingEnd ℂ) ω) = 3 * π / 4 := by
   rw [neg_conj_rsOmega_eq_exp, Complex.arg_exp]
   have e : (3 * (π : ℂ) * I / 4).im = 3 * π / 4 := by simp
   rw [e, toIocMod_eq_self]
   constructor <;> linarith [Real.pi_pos]
 
+/--
+@isnad1 id=eq.0h0v.s5.979f5534ae2d from=translated src=- shape=a2d9ddda vocab=c3995078
+-/
 theorem conj_rsOmega_sq : (starRingEnd ℂ) ω ^ 2 = -I := by
   rw [← map_pow, rsOmega_sq, Complex.conj_I]
 
+/--
+@isnad1 id=eq.0h0v.s5.7d59736727cd from=translated src=- shape=08d4e724 vocab=d9ec74a6
+-/
 theorem I_mul_conj_rsOmega : I * (starRingEnd ℂ) ω = ω := by
   rw [← rsOmega_sq, sq, mul_assoc, mul_comm ω ((starRingEnd ℂ) ω), conj_rsOmega_mul, mul_one]
 
+/--
+@isnad1 id=ne.0h0v.s5.e683c579ec3f from=translated src=- shape=8196abdd vocab=df4c23e2
+-/
 theorem neg_conj_rsOmega_ne_zero : -(starRingEnd ℂ) ω ≠ 0 := by
   rw [neg_ne_zero, map_ne_zero]; exact rsOmega_ne_zero
 
+/--
+@isnad1 id=ne.0h0v.s5.4eb297b5dca6 from=translated src=- shape=78796809 vocab=4082d9c0
+-/
 theorem conj_rsOmega_ne_zero : (starRingEnd ℂ) ω ≠ 0 := by
   rw [map_ne_zero]; exact rsOmega_ne_zero
 
 /-- On the ray `conj ω x`, `x > 0`, the reflected integrand is `conj ω^{s-1}` times the Gaussian
-integrand.-/
+integrand.
+@isnad1 id=eq.1h2v.s7.f29bfd255b5a from=translated src=- shape=857ed112 vocab=eae842b2
+-/
 theorem foldIntegrand_conj_rsOmega_mul_ofReal (s : ℂ) {x : ℝ} (hx : 0 < x) :
     foldIntegrand s ((starRingEnd ℂ) ω * x) =
       (starRingEnd ℂ) ω ^ (s - 1) *
@@ -507,7 +603,9 @@ theorem foldIntegrand_conj_rsOmega_mul_ofReal (s : ℂ) {x : ℝ} (hx : 0 < x) :
   rw [e1, e2]
 
 /-- On the ray `-conj ω x`, `x > 0`, the reflected integrand is `-(-conj ω)^{s-1}` times the Gaussian
-integrand.-/
+integrand.
+@isnad1 id=eq.1h2v.s8.fb85639b6fb4 from=translated src=- shape=afeec5af vocab=eae842b2
+-/
 theorem foldIntegrand_conj_rsOmega_mul_neg_ofReal (s : ℂ) {x : ℝ} (hx : 0 < x) :
     foldIntegrand s ((starRingEnd ℂ) ω * (-x : ℝ)) =
       -((-(starRingEnd ℂ) ω) ^ (s - 1) *
@@ -530,6 +628,9 @@ theorem foldIntegrand_conj_rsOmega_mul_neg_ofReal (s : ℂ) {x : ℝ} (hx : 0 < 
 
 /-! ### Folding the line integral into the Gaussian integral -/
 
+/--
+@isnad1 id=integrab.1h1v.s6.be6fab3c8101 from=translated src=- shape=3d36cb57 vocab=8f38724d
+-/
 theorem integrable_foldIntegrand_conj_rsOmega_mul_ofReal {s : ℂ} (hs : 2 < s.re) :
     Integrable fun x : ℝ => foldIntegrand s ((starRingEnd ℂ) ω * x) := by
   obtain ⟨C, hC⟩ := exists_norm_foldIntegrand_le_gaussian hs.le (c := 1 / 2) (by norm_num)
@@ -548,6 +649,9 @@ theorem integrable_foldIntegrand_conj_rsOmega_mul_ofReal {s : ℂ} (hs : 2 < s.r
   · have := hC x (by rw [uIcc_of_le hβ, ofReal_im]; exact ⟨le_rfl, hβ⟩)
     rwa [ofReal_re] at this
 
+/--
+@isnad1 id=eq.0h1v.s7.113a3c222b98 from=translated src=- shape=09af497e vocab=84ac3f85
+-/
 theorem integral_foldIntegrand_ray (s : ℂ) :
     ∫ x in Ioi (0 : ℝ), foldIntegrand s ((starRingEnd ℂ) ω * x) =
       (starRingEnd ℂ) ω ^ (s - 1) * gaussIntegral s := by
@@ -556,6 +660,9 @@ theorem integral_foldIntegrand_ray (s : ℂ) :
   exact setIntegral_congr_fun measurableSet_Ioi fun x hx =>
     foldIntegrand_conj_rsOmega_mul_ofReal s hx
 
+/--
+@isnad1 id=eq.0h1v.s7.97fd410a4c88 from=translated src=- shape=89355341 vocab=fb249c30
+-/
 theorem integral_foldIntegrand_neg_ray (s : ℂ) :
     ∫ x in Iic (0 : ℝ), foldIntegrand s ((starRingEnd ℂ) ω * x) =
       -((-(starRingEnd ℂ) ω) ^ (s - 1) * gaussIntegral s) := by
@@ -567,6 +674,9 @@ theorem integral_foldIntegrand_neg_ray (s : ℂ) :
   exact setIntegral_congr_fun measurableSet_Ioi fun x hx =>
     foldIntegrand_conj_rsOmega_mul_neg_ofReal s hx
 
+/--
+@isnad1 id=eq.1h1v.s7.339dc109d6a9 from=translated src=- shape=2cf978da vocab=f4e259b4
+-/
 theorem integral_foldIntegrand_conj_rsOmega_mul {s : ℂ} (hs : 2 < s.re) :
     ∫ x : ℝ, foldIntegrand s ((starRingEnd ℂ) ω * x) =
       ((starRingEnd ℂ) ω ^ (s - 1) - (-(starRingEnd ℂ) ω) ^ (s - 1)) * gaussIntegral s := by
@@ -577,7 +687,9 @@ theorem integral_foldIntegrand_conj_rsOmega_mul {s : ℂ} (hs : 2 < s.re) :
   ring
 
 /-- **The reflected Riemann–Siegel integral is a Gaussian integral.** For `Re s > 2` and
-`0 < c < 1`, `conj (R(1 - conj s, c)) = e^{-iπs/4} (1 + e^{iπs}) I₀(s)`.-/
+`0 < c < 1`, `conj (R(1 - conj s, c)) = e^{-iπs/4} (1 + e^{iπs}) I₀(s)`.
+@isnad1 id=eq.3h2v.s7.c6abfcd6a62f from=translated src=- shape=a1dba6f5 vocab=9b11d835
+-/
 theorem conj_rsIntegral_one_sub {s : ℂ} (hs : 2 < s.re) {c : ℝ} (hc0 : 0 < c) (hc1 : c < 1) :
     (starRingEnd ℂ) (rsIntegral (1 - (starRingEnd ℂ) s) c) =
       cexp (-(π * I * s / 4)) * (1 + cexp (π * I * s)) * gaussIntegral s := by

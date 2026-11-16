@@ -45,14 +45,18 @@ def twoClosure (G : Subgroup (Equiv.Perm α)) : Subgroup (Equiv.Perm α) where
     · apply g.injective
       simpa using hgy.symm
 
-/-- Taking two-closures is monotone.-/
+/-- Taking two-closures is monotone.
+@isnad1 id=monotone.0h1v.s5.84c1abb93a80 from=translated src=- shape=60d77812 vocab=26c26834
+-/
 theorem twoClosure_mono : Monotone (twoClosure : Subgroup (Equiv.Perm α) →
     Subgroup (Equiv.Perm α)) := by
   intro G H hGH q hq x y
   obtain ⟨g, hg, hgx, hgy⟩ := hq x y
   exact ⟨g, hGH hg, hgx, hgy⟩
 
-/-- Taking the two-closure twice has no further effect.-/
+/-- Taking the two-closure twice has no further effect.
+@isnad1 id=eq.0h2v.s4.7c4a7ec2c703 from=translated src=- shape=df64f16e vocab=2674de09
+-/
 @[simp]
 theorem twoClosure_twoClosure (G : Subgroup (Equiv.Perm α)) :
     G.twoClosure.twoClosure = G.twoClosure := by
@@ -65,7 +69,9 @@ theorem twoClosure_twoClosure (G : Subgroup (Equiv.Perm α)) :
     exact ⟨q, hq, rfl, rfl⟩
 
 /-- Membership in the two-closure is equivalent to preserving every binary relation that is
-invariant under the original permutation group.-/
+invariant under the original permutation group.
+@isnad1 id=iff.0h3v.s7.991e136f6103 from=translated src=- shape=979ce9f0 vocab=4691c1e5
+-/
 theorem mem_twoClosure_iff_preserves_invariant_binary_relations
     (G : Subgroup (Equiv.Perm α)) (q : Equiv.Perm α) :
     q ∈ G.twoClosure ↔

@@ -37,8 +37,14 @@ open Real Set Filter Topology MeasureTheory
 
 namespace DeBruijnNewman
 
+/--
+@isnad1 id=le.0h0v.s3.c92817ce5e9b from=translated src=- shape=ff3a10fc vocab=e28a4368
+-/
 lemma C_nonneg : 0 ≤ C := tsum_nonneg fun n => (wt_pos n).le
 
+/--
+@isnad1 id=le.0h1v.s4.b1ce95caf43d from=translated src=- shape=2f36b9fd vocab=b81bbac8
+-/
 lemma norm_cos_le (w : ℂ) : ‖Complex.cos w‖ ≤ Real.exp |w.im| := by
   have h := Complex.two_cos w
   have h1 : ‖Complex.exp (w * Complex.I)‖ = Real.exp (-w.im) := by
@@ -52,19 +58,31 @@ lemma norm_cos_le (w : ℂ) : ‖Complex.cos w‖ ≤ Real.exp |w.im| := by
   have e2 : Real.exp w.im ≤ Real.exp |w.im| := Real.exp_le_exp.mpr (le_abs_self _)
   linarith
 
+/--
+@isnad1 id=le.0h1v.s4.fcc6ee675b8c from=translated src=- shape=2f36b9fd vocab=ef16af95
+-/
 lemma norm_sin_le (w : ℂ) : ‖Complex.sin w‖ ≤ Real.exp |w.im| := by
   rw [← Complex.cos_sub_pi_div_two]
   simpa using norm_cos_le (w - π / 2)
 
+/--
+@isnad1 id=le.0h2v.s5.26f0b061fdc8 from=translated src=- shape=0ebba122 vocab=6371de1a
+-/
 lemma norm_cos_mul_le' (z : ℂ) (u : ℝ) : ‖Complex.cos (z * u)‖ ≤ Real.exp (|z.im| * |u|) := by
   refine (norm_cos_le _).trans (le_of_eq ?_)
   congr 1
   simp [abs_mul]
 
+/--
+@isnad1 id=le.1h2v.s5.27c83e240207 from=translated src=- shape=4145cd27 vocab=6371de1a
+-/
 lemma norm_cos_mul_le (z : ℂ) {u : ℝ} (hu : 0 ≤ u) :
     ‖Complex.cos (z * u)‖ ≤ Real.exp (|z.im| * u) := by
   simpa [abs_of_nonneg hu] using norm_cos_mul_le' z u
 
+/--
+@isnad1 id=le.1h2v.s5.2324764ed536 from=translated src=- shape=4145cd27 vocab=10ddfc70
+-/
 lemma norm_sin_mul_le (z : ℂ) {u : ℝ} (hu : 0 ≤ u) :
     ‖Complex.sin (z * u)‖ ≤ Real.exp (|z.im| * u) := by
   refine (norm_sin_le _).trans (le_of_eq ?_)
@@ -74,6 +92,9 @@ lemma norm_sin_mul_le (z : ℂ) {u : ℝ} (hu : 0 ≤ u) :
 /-- The decay constant `exp ((t + b + 10)^2 / (2π))`.-/
 noncomputable def K (t b : ℝ) : ℝ := Real.exp ((t + b + 10) ^ 2 / (2 * π))
 
+/--
+@isnad1 id=le.5h5v.s7.b37b43084a07 from=translated src=- shape=8232e25d vocab=d8d3a961
+-/
 lemma norm_mul_le_exp_neg {t b u : ℝ} (ht : 0 ≤ t) (hb : 0 ≤ b) (hu : 0 ≤ u) {F : ℝ}
     (hF : ‖F‖ ≤ C * g u) {T : ℂ} (hT : ‖T‖ ≤ Real.exp (t * u ^ 2 + b * u)) :
     ‖T * (F : ℂ)‖ ≤ C * K t b * Real.exp (-u) := by
@@ -85,7 +106,9 @@ lemma norm_mul_le_exp_neg {t b u : ℝ} (ht : 0 ≤ t) (hb : 0 ≤ b) (hu : 0 �
     _ ≤ C * (K t b * Real.exp (-u)) := mul_le_mul_of_nonneg_left h C_nonneg
     _ = _ := by ring
 
-/-- Continuous functions dominated by `A e^{-u}` on `u ≥ 0` are integrable on `Ioi 0`.-/
+/-- Continuous functions dominated by `A e^{-u}` on `u ≥ 0` are integrable on `Ioi 0`.
+@isnad1 id=integrab.2h3v.s6.2d4d88246463 from=translated src=- shape=74a0db8a vocab=03ba1ffa
+-/
 lemma integrableOn_Ioi_of_le_exp_neg {E : Type*} [NormedAddCommGroup E] {F : ℝ → E}
     (hF : Continuous F) {A : ℝ}
     (h : ∀ u, 0 ≤ u → ‖F u‖ ≤ A * Real.exp (-u)) : IntegrableOn F (Ioi 0) := by
@@ -94,12 +117,18 @@ lemma integrableOn_Ioi_of_le_exp_neg {E : Type*} [NormedAddCommGroup E] {F : ℝ
   filter_upwards [ae_restrict_mem measurableSet_Ioi] with u hu
   exact h u (le_of_lt hu)
 
+/--
+@isnad1 id=tendsto.1h2v.s6.8bf27f785655 from=translated src=- shape=b7c9ba69 vocab=a4978f90
+-/
 lemma tendsto_atTop_of_le_exp_neg {F : ℝ → ℂ} {A : ℝ}
     (h : ∀ u, 0 ≤ u → ‖F u‖ ≤ A * Real.exp (-u)) : Tendsto F atTop (𝓝 0) := by
   refine squeeze_zero_norm' (a := fun u => A * Real.exp (-u)) ?_ ?_
   · filter_upwards [eventually_ge_atTop 0] with u hu using h u hu
   · simpa using Real.tendsto_exp_neg_atTop_nhds_zero.const_mul A
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.cfacbd1ba01f from=translated src=- shape=5901eaac vocab=293aaf11
+-/
 lemma hasDerivAt_cos_mul (z : ℂ) (x : ℝ) :
     HasDerivAt (fun x : ℝ => Complex.cos (z * x)) (-Complex.sin (z * x) * z) x := by
   have h : HasDerivAt (fun w : ℂ => Complex.cos (z * w)) (-Complex.sin (z * x) * z) x := by
@@ -107,6 +136,9 @@ lemma hasDerivAt_cos_mul (z : ℂ) (x : ℝ) :
     exact this.congr_deriv (by simp)
   exact h.comp_ofReal
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.645d6b032373 from=translated src=- shape=73ddf36b vocab=40619a64
+-/
 lemma hasDerivAt_sin_mul (z : ℂ) (x : ℝ) :
     HasDerivAt (fun x : ℝ => Complex.sin (z * x)) (Complex.cos (z * x) * z) x := by
   have h : HasDerivAt (fun w : ℂ => Complex.sin (z * w)) (Complex.cos (z * x) * z) x := by
@@ -116,30 +148,45 @@ lemma hasDerivAt_sin_mul (z : ℂ) (x : ℝ) :
 
 /-! ### Integrability of the integrands -/
 
+/--
+@isnad1 id=integrab.0h1v.s6.0096848e025f from=translated src=- shape=647ac3fd vocab=7404950b
+-/
 lemma integrableOn_W_mul_cos (z : ℂ) :
     IntegrableOn (fun u : ℝ => Complex.cos (z * u) * (W u : ℂ)) (Ioi 0) := by
   refine integrableOn_Ioi_of_le_exp_neg (by fun_prop) (A := C * K 0 |z.im|) fun u hu => ?_
   refine norm_mul_le_exp_neg le_rfl (abs_nonneg _) hu (norm_W_le hu) ?_
   simpa using norm_cos_mul_le z hu
 
+/--
+@isnad1 id=integrab.0h1v.s6.be3db9fb1da4 from=translated src=- shape=647ac3fd vocab=5df4574b
+-/
 lemma integrableOn_W'_mul_sin (z : ℂ) :
     IntegrableOn (fun u : ℝ => Complex.sin (z * u) * (W' u : ℂ)) (Ioi 0) := by
   refine integrableOn_Ioi_of_le_exp_neg (by fun_prop) (A := C * K 0 |z.im|) fun u hu => ?_
   refine norm_mul_le_exp_neg le_rfl (abs_nonneg _) hu (norm_W'_le hu) ?_
   simpa using norm_sin_mul_le z hu
 
+/--
+@isnad1 id=integrab.0h1v.s6.d7acf9760a49 from=translated src=- shape=647ac3fd vocab=345e7529
+-/
 lemma integrableOn_W''_mul_cos (z : ℂ) :
     IntegrableOn (fun u : ℝ => Complex.cos (z * u) * (W'' u : ℂ)) (Ioi 0) := by
   refine integrableOn_Ioi_of_le_exp_neg (by fun_prop) (A := C * K 0 |z.im|) fun u hu => ?_
   refine norm_mul_le_exp_neg le_rfl (abs_nonneg _) hu (norm_W''_le hu) ?_
   simpa using norm_cos_mul_le z hu
 
+/--
+@isnad1 id=tendsto.0h1v.s5.2095f1f19a92 from=translated src=- shape=eda51912 vocab=899bdfa9
+-/
 lemma tendsto_cos_mul_W' (z : ℂ) :
     Tendsto (fun u : ℝ => Complex.cos (z * u) * (W' u : ℂ)) atTop (𝓝 0) := by
   refine tendsto_atTop_of_le_exp_neg (A := C * K 0 |z.im|) fun u hu => ?_
   refine norm_mul_le_exp_neg le_rfl (abs_nonneg _) hu (norm_W'_le hu) ?_
   simpa using norm_cos_mul_le z hu
 
+/--
+@isnad1 id=tendsto.0h1v.s5.b2252eafbe17 from=translated src=- shape=eda51912 vocab=c225374e
+-/
 lemma tendsto_sin_mul_W (z : ℂ) :
     Tendsto (fun u : ℝ => Complex.sin (z * u) * (W u : ℂ)) atTop (𝓝 0) := by
   refine tendsto_atTop_of_le_exp_neg (A := C * K 0 |z.im|) fun u hu => ?_
@@ -149,7 +196,9 @@ lemma tendsto_sin_mul_W (z : ℂ) :
 /-! ### Integration by parts -/
 
 /-- First integration by parts:
-`∫₀^∞ cos(zu) W''(u) du = -W'(0) + z ∫₀^∞ sin(zu) W'(u) du`.-/
+`∫₀^∞ cos(zu) W''(u) du = -W'(0) + z ∫₀^∞ sin(zu) W'(u) du`.
+@isnad1 id=eq.0h1v.s7.285d2f120573 from=translated src=- shape=0d76f78d vocab=063be778
+-/
 lemma integral_cos_mul_W'' (z : ℂ) :
     ∫ u : ℝ in Ioi 0, Complex.cos (z * u) * (W'' u : ℂ) =
       -(W' 0 : ℂ) + z * ∫ u : ℝ in Ioi 0, Complex.sin (z * u) * (W' u : ℂ) := by
@@ -179,7 +228,9 @@ lemma integral_cos_mul_W'' (z : ℂ) :
     exact h0
 
 /-- Second integration by parts:
-`∫₀^∞ sin(zu) W'(u) du = -z ∫₀^∞ cos(zu) W(u) du`.-/
+`∫₀^∞ sin(zu) W'(u) du = -z ∫₀^∞ cos(zu) W(u) du`.
+@isnad1 id=eq.0h1v.s6.6b48c8853a48 from=translated src=- shape=137a77cf vocab=746d02e4
+-/
 lemma integral_sin_mul_W' (z : ℂ) :
     ∫ u : ℝ in Ioi 0, Complex.sin (z * u) * (W' u : ℂ) =
       -z * ∫ u : ℝ in Ioi 0, Complex.cos (z * u) * (W u : ℂ) := by
@@ -203,7 +254,9 @@ lemma integral_sin_mul_W' (z : ℂ) :
       simpa using this
     exact h0
 
-/-- `∫₀^∞ cos(zu) W''(u) du = -W'(0) - z² ∫₀^∞ cos(zu) W(u) du`.-/
+/-- `∫₀^∞ cos(zu) W''(u) du = -W'(0) - z² ∫₀^∞ cos(zu) W(u) du`.
+@isnad1 id=eq.0h1v.s7.eba60f0a5d82 from=translated src=- shape=a737833e vocab=1b577987
+-/
 lemma integral_cos_mul_W''_eq (z : ℂ) :
     ∫ u : ℝ in Ioi 0, Complex.cos (z * u) * (W'' u : ℂ) =
       -(W' 0 : ℂ) - z ^ 2 * ∫ u : ℝ in Ioi 0, Complex.cos (z * u) * (W u : ℂ) := by
@@ -215,7 +268,9 @@ lemma integral_cos_mul_W''_eq (z : ℂ) :
 /-- Riemann's integral representation in de Bruijn's normalisation:
 `H 0 z = 1/16 - (1 + z²)/64 · Λ₀((1 + i z)/2)`, where `Λ₀ = completedRiemannZeta₀` is the entire
 function `Λ(s) + 1/s + 1/(1 - s)`. This form is valid for every complex `z`, including
-`z = ± i` where `Λ` itself has poles.-/
+`z = ± i` where `Λ` itself has poles.
+@isnad1 id=eq.0h1v.s7.e10934d48385 from=translated src=- shape=294dedd8 vocab=e11b3b82
+-/
 theorem H_zero_eq (z : ℂ) :
     H 0 z = 1 / 16 - (1 + z ^ 2) / 64 * completedRiemannZeta₀ ((1 + Complex.I * z) / 2) := by
   have h1 : H 0 z = ∫ u : ℝ in Ioi 0, ((phi u : ℝ) : ℂ) * Complex.cos (z * u) := by
@@ -231,7 +286,9 @@ theorem H_zero_eq (z : ℂ) :
   ring
 
 /-- `H 0 z = ξ((1 + i z)/2) / 8` with `ξ(s) = s (s - 1) / 2 · Λ(s)`, for `z ≠ ± i` (the two points
-where `Λ` has its poles).-/
+where `Λ` has its poles).
+@isnad1 id=eq.2h1v.s7.2f1c6e9e19e4 from=translated src=- shape=5c3b9460 vocab=927850c7
+-/
 theorem H_zero_eq_xi {z : ℂ} (hz : z ≠ Complex.I) (hz' : z ≠ -Complex.I) :
     H 0 z = ((1 + Complex.I * z) / 2 * ((1 + Complex.I * z) / 2 - 1) / 2 *
       completedRiemannZeta ((1 + Complex.I * z) / 2)) / 8 := by

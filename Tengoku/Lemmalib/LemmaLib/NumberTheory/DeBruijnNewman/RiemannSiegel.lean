@@ -87,16 +87,28 @@ Proposition 6.3 and the bound `|C₀(p)| ≤ 1/2` on the Riemann–Siegel kernel
 
 /-! ### Conjugation symmetries -/
 
+/--
+@isnad1 id=ne.1h1v.s4.6a50cfd61fa0 from=translated src=- shape=790175b1 vocab=d59ed19f
+-/
 theorem ne_zero_of_im_ne_zero {s : ℂ} (hs : s.im ≠ 0) : s ≠ 0 := fun h => hs (by simp [h])
 
+/--
+@isnad1 id=ne.1h1v.s4.6a9154219b0d from=translated src=- shape=790175b1 vocab=d59ed19f
+-/
 theorem ne_one_of_im_ne_zero {s : ℂ} (hs : s.im ≠ 0) : s ≠ 1 := fun h => hs (by simp [h])
 
+/--
+@isnad1 id=eq.1h1v.s6.bd84c7000cfd from=translated src=- shape=d97c7a03 vocab=e0b545f2
+-/
 theorem M₀_conj {s : ℂ} (hs : s.im ≠ 0) : M₀ ((starRingEnd ℂ) s) = (starRingEnd ℂ) (M₀ s) := by
   have hs' : ((starRingEnd ℂ) s).im ≠ 0 := by simpa using hs
   rw [M₀_eq_exp_logM₀ (ne_zero_of_im_ne_zero hs) (ne_one_of_im_ne_zero hs),
     M₀_eq_exp_logM₀ (ne_zero_of_im_ne_zero hs') (ne_one_of_im_ne_zero hs'), logM₀_conj hs,
     ← Complex.exp_conj]
 
+/--
+@isnad1 id=eq.1h2v.s6.830b49c6c78b from=translated src=- shape=b3a6c385 vocab=022f3da7
+-/
 theorem M_conj (t : ℝ) {s : ℂ} (hs : s.im ≠ 0) :
     M t ((starRingEnd ℂ) s) = (starRingEnd ℂ) (M t s) := by
   unfold M
@@ -104,6 +116,9 @@ theorem M_conj (t : ℝ) {s : ℂ} (hs : s.im ≠ 0) :
   congr 2
   simp only [map_mul, map_pow, map_div₀, Complex.conj_ofReal, map_ofNat]
 
+/--
+@isnad1 id=eq.0h2v.s6.6f05d11da4c3 from=translated src=- shape=3f506b4f vocab=751c4a39
+-/
 theorem natCast_cpow_conj (n : ℕ) (w : ℂ) :
     (n : ℂ) ^ ((starRingEnd ℂ) w) = (starRingEnd ℂ) ((n : ℂ) ^ w) := by
   rcases Nat.eq_zero_or_pos n with hn | hn
@@ -116,6 +131,9 @@ theorem natCast_cpow_conj (n : ℕ) (w : ℂ) :
       rw [Complex.natCast_arg]; exact Real.pi_ne_zero.symm
     rw [Complex.cpow_conj _ _ harg, Complex.conj_natCast]
 
+/--
+@isnad1 id=eq.1h3v.s6.05acd2cc46fb from=translated src=- shape=eae82ea4 vocab=2a7f4cfe
+-/
 theorem mainTerm_conj (t : ℝ) (n : ℕ) {s : ℂ} (hs : s.im ≠ 0) :
     mainTerm t n ((starRingEnd ℂ) s) = (starRingEnd ℂ) (mainTerm t n s) := by
   unfold mainTerm
@@ -123,8 +141,14 @@ theorem mainTerm_conj (t : ℝ) (n : ℕ) {s : ℂ} (hs : s.im ≠ 0) :
   congr 2
   simp only [map_add, map_mul, map_div₀, Complex.conj_ofReal, map_ofNat]
 
+/--
+@isnad1 id=lt.0h2v.s4.b9d8bf1024d4 from=translated src=- shape=25b8bdde vocab=b1c45e59
+-/
 theorem b_pos (t : ℝ) (n : ℕ) : 0 < b t n := Real.exp_pos _
 
+/--
+@isnad1 id=eq.1h3v.s6.0249ef7cb94c from=translated src=- shape=497ee382 vocab=4ec72883
+-/
 theorem norm_mainTerm (t : ℝ) {n : ℕ} (hn : 0 < n) (s : ℂ) :
     ‖mainTerm t n s‖ = ‖M t s‖ * b t n / (n : ℝ) ^ (s + t / 2 * alpha s).re := by
   unfold mainTerm
@@ -133,36 +157,62 @@ theorem norm_mainTerm (t : ℝ) {n : ℕ} (hn : 0 < n) (s : ℂ) :
 
 /-! ### `B_t f_t` as the sum of the main terms -/
 
+/--
+@isnad1 id=eq.0h2v.s6.fe43b9e965b7 from=translated src=- shape=e1f22eae vocab=6d3b410f
+-/
 theorem conj_sPlus (x y : ℝ) :
     (starRingEnd ℂ) (sPlus x y) = (((1 + y) / 2 : ℝ) : ℂ) + ((x / 2 : ℝ) : ℂ) * I := by
   unfold sPlus
   rw [sPlus_eq_conj, Complex.conj_conj]
 
+/--
+@isnad1 id=eq.0h2v.s6.2e6f950f0953 from=translated src=- shape=0790fc8c vocab=92ab90cf
+-/
 theorem sMinus_eq' (x y : ℝ) : sMinus x y = (((1 - y) / 2 : ℝ) : ℂ) + ((x / 2 : ℝ) : ℂ) * I := by
   unfold sMinus; exact sMinus_eq x y
 
+/--
+@isnad1 id=eq.0h2v.s4.9554cf621571 from=translated src=- shape=b5e0a659 vocab=41bc22b2
+-/
 theorem im_sMinus (x y : ℝ) : (sMinus x y).im = x / 2 := by rw [sMinus_eq']; simp
 
+/--
+@isnad1 id=eq.0h2v.s5.ad3a75c4969e from=translated src=- shape=071adf45 vocab=218712c4
+-/
 theorem re_sMinus (x y : ℝ) : (sMinus x y).re = (1 - y) / 2 := by rw [sMinus_eq']; simp
 
+/--
+@isnad1 id=eq.0h2v.s5.8a5a137ffbce from=translated src=- shape=f2a1eca1 vocab=341fc51a
+-/
 theorem im_conj_sPlus (x y : ℝ) : ((starRingEnd ℂ) (sPlus x y)).im = x / 2 := by
   rw [conj_sPlus]; simp
 
+/--
+@isnad1 id=eq.0h2v.s6.fb1a6159a172 from=translated src=- shape=b8ed4e76 vocab=2e616607
+-/
 theorem re_conj_sPlus (x y : ℝ) : ((starRingEnd ℂ) (sPlus x y)).re = (1 + y) / 2 := by
   rw [conj_sPlus]; simp
 
+/--
+@isnad1 id=eq.0h2v.s4.d7ade1bc1ef5 from=translated src=- shape=30a88de7 vocab=da0c2fdc
+-/
 theorem im_sPlus (x y : ℝ) : (sPlus x y).im = -(x / 2) := by
   have := im_conj_sPlus x y
   rw [Complex.conj_im] at this
   linarith
 
+/--
+@isnad1 id=eq.0h2v.s5.b752d0d2d7a8 from=translated src=- shape=d830ae04 vocab=f6d7b6d5
+-/
 theorem conj_sPlus_eq_sMinus_add (x y : ℝ) : (starRingEnd ℂ) (sPlus x y) = sMinus x y + y := by
   rw [conj_sPlus, sMinus_eq']
   apply Complex.ext
   · simp; ring
   · simp
 
-/-- `conj s_* + κ = s₋ + (t/2) α(s₋) + y`.-/
+/-- `conj s_* + κ = s₋ + (t/2) α(s₋) + y`.
+@isnad1 id=eq.1h3v.s6.a69e3dcde3a1 from=translated src=- shape=5b7401e2 vocab=727fb877
+-/
 theorem conj_sStar_add_kappa (t x y : ℝ) (hx : x ≠ 0) :
     (starRingEnd ℂ) (sStar t x y) + kappa t x y = sMinus x y + t / 2 * alpha (sMinus x y) + y := by
   have him : (sPlus x y).im ≠ 0 := by rw [im_sPlus]; exact neg_ne_zero.mpr (by positivity)
@@ -174,6 +224,9 @@ theorem conj_sStar_add_kappa (t x y : ℝ) (hx : x ≠ 0) :
     conj_sPlus_eq_sMinus_add]
   ring
 
+/--
+@isnad1 id=eq.1h3v.s6.3219dd2a9474 from=translated src=- shape=9e7ae761 vocab=aab8f8f4
+-/
 theorem B_mul_f (t x y : ℝ) (hx : x ≠ 0) :
     B t (x + y * I) * f t x y =
       ∑ n ∈ Icc 1 (cutoff t x), mainTerm t n (sPlus x y) +
@@ -207,6 +260,9 @@ theorem B_mul_f (t x y : ℝ) (hx : x ≠ 0) :
 
 /-! ### Monotonicity in the tail constant -/
 
+/--
+@isnad1 id=le.2h2v.s5.b4d2301d41f5 from=translated src=- shape=b271c6d4 vocab=2bf6f2a0
+-/
 theorem epsTilde_nonneg {t : ℝ} {s : ℂ} (ht : 0 ≤ t) (hs : 100 ≤ s.im) : 0 ≤ epsTilde t s := by
   unfold epsTilde
   have hpi := Real.pi_lt_d2
@@ -219,6 +275,9 @@ theorem epsTilde_nonneg {t : ℝ} {s : ℂ} (ht : 0 ≤ t) (hs : 100 ≤ s.im) :
   have h3 : 0 ≤ 5 / (3 * (s.im - 6)) := by apply div_nonneg (by norm_num); linarith
   positivity
 
+/--
+@isnad1 id=tailesti.2h2v.s3.0c3e1a7ffa35 from=translated src=- shape=8567d0ba vocab=42a34970
+-/
 theorem TailEstimateWith.mono {K K' : ℝ} (hK : K ≤ K') (h : TailEstimateWith K) :
     TailEstimateWith K' := fun t x y hr => by
   refine (h t x y hr).trans (mul_le_mul_of_nonneg_right hK ?_)

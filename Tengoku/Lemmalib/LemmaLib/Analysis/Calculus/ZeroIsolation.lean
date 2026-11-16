@@ -21,7 +21,9 @@ namespace Tengoku.Lemmalib end Tengoku.Lemmalib open Tengoku.Lemmalib
 open Set
 
 /-- A continuous real function whose values at the endpoints have opposite signs has a zero in the
-open interval.-/
+open interval.
+@isnad1 id=ex.3h3v.s6.f9ec63817a09 from=translated src=- shape=7898f824 vocab=4dfb8c32
+-/
 theorem _root_.Tengoku.Lemmalib.exists_eq_zero_mem_Ioo_of_mul_neg {f : ℝ → ℝ} {a b : ℝ} (hab : a < b)
     (hf : ContinuousOn f (Icc a b)) (hneg : f a * f b < 0) :
     ∃ x ∈ Ioo a b, f x = 0 := by
@@ -60,7 +62,9 @@ theorem _root_.Tengoku.Lemmalib.eq_of_mem_Icc_of_eq_zero_of_deriv_ne_zero {f : �
       rw [hz', hfy, hfx, sub_self, zero_div]
 
 /-- A continuous real function with opposite signs at the endpoints and nonvanishing derivative in
-between has a unique zero in the open interval.-/
+between has a unique zero in the open interval.
+@isnad1 id=existsun.5h3v.s7.d2b2a408aac1 from=translated src=- shape=8567f147 vocab=9d6d744b
+-/
 theorem _root_.Tengoku.Lemmalib.existsUnique_eq_zero_mem_Ioo_of_deriv_ne_zero {f : ℝ → ℝ} {a b : ℝ} (hab : a < b)
     (hf : ContinuousOn f (Icc a b)) (hf' : DifferentiableOn ℝ f (Ioo a b))
     (hneg : f a * f b < 0) (hderiv : ∀ x ∈ Ioo a b, deriv f x ≠ 0) :

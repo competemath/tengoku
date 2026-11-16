@@ -37,23 +37,34 @@ namespace RiemannSiegel
 
 /-! ### Powers of products -/
 
+/--
+@isnad1 id=eq.0h0v.s4.39e2a66a1526 from=translated src=- shape=3c781761 vocab=5fc9f191
+-/
 theorem arg_rsOmega : arg ω = π / 4 := by
   unfold Complex.rsOmega
   rw [show (π : ℂ) * I / 4 = ((π / 4 : ℝ) : ℂ) * I by push_cast; ring, Complex.exp_mul_I]
   exact Complex.arg_cos_add_sin_mul_I (θ := π / 4)
     ⟨by linarith [Real.pi_pos], by linarith [Real.pi_pos]⟩
 
+/--
+@isnad1 id=eq.0h0v.s5.519c8c1f1a89 from=translated src=- shape=a3190956 vocab=e6a0cfcf
+-/
 theorem arg_conj_rsOmega : arg ((starRingEnd ℂ) ω) = -(π / 4) := by
   rw [Complex.arg_conj, arg_rsOmega, ite_eq_right]
   linarith [Real.pi_pos]
 
+/--
+@isnad1 id=eq.3h3v.s6.98b074011d9e from=translated src=- shape=4c91d44e vocab=40a5aad0
+-/
 theorem mul_cpow_of_arg_add_mem {x y : ℂ} (hx : x ≠ 0) (hy : y ≠ 0)
     (h : arg x + arg y ∈ Ioc (-π) π) (r : ℂ) : (x * y) ^ r = x ^ r * y ^ r := by
   rw [Complex.cpow_def_of_ne_zero (mul_ne_zero hx hy), Complex.cpow_def_of_ne_zero hx,
     Complex.cpow_def_of_ne_zero hy, (Complex.log_mul_eq_add_log_iff hx hy).2 h, add_mul,
     Complex.exp_add]
 
-/-- `w^{-s} = ω^s (ω w)^{-s}` when `Re (ω w) > 0`.-/
+/-- `w^{-s} = ω^s (ω w)^{-s}` when `Re (ω w) > 0`.
+@isnad1 id=eq.1h2v.s6.995a01812ec1 from=translated src=- shape=974de559 vocab=2d7705e0
+-/
 theorem cpow_neg_eq_rsOmega_cpow_mul {w s : ℂ} (hw : 0 < (ω * w).re) :
     w ^ (-s) = ω ^ s * (ω * w) ^ (-s) := by
   have hb : ω * w ≠ 0 := by
@@ -74,11 +85,16 @@ theorem cpow_neg_eq_rsOmega_cpow_mul {w s : ℂ} (hw : 0 < (ω * w).re) :
   rw [hinv, Complex.inv_cpow _ _ (by rw [arg_rsOmega]; linarith [Real.pi_pos]), Complex.cpow_neg,
     inv_inv]
 
+/--
+@isnad1 id=eq.0h2v.s6.a25f82b890ed from=translated src=- shape=ba1dc0e7 vocab=665e4f5a
+-/
 theorem re_rsOmega_mul_line (c x : ℝ) : (ω * ((c : ℂ) - ω * x)).re = c * (Real.sqrt 2 / 2) := by
   rw [mul_sub, ← mul_assoc, ← sq, rsOmega_sq, rsOmega_eq]
   simp [mul_comm]
 
-/-- The Gamma-integral representation of `w^{-s}` on the Riemann–Siegel line.-/
+/-- The Gamma-integral representation of `w^{-s}` on the Riemann–Siegel line.
+@isnad1 id=eq.2h3v.s7.68224c98f967 from=translated src=- shape=edf00672 vocab=2cd667c9
+-/
 theorem cpow_neg_line_eq_integral {s : ℂ} (hs : 0 < s.re) {c : ℝ} (hc : 0 < c) (x : ℝ) :
     ((c : ℂ) - ω * x) ^ (-s) = ω ^ s / Complex.Gamma s *
       ∫ r : ℝ in Ioi 0, (r : ℂ) ^ (s - 1) * cexp (-(ω * ((c : ℂ) - ω * x) * r)) := by
@@ -93,6 +109,9 @@ theorem cpow_neg_line_eq_integral {s : ℂ} (hs : 0 < s.re) {c : ℝ} (hc : 0 < 
 /-- The Mordell parameter `z_r = i ω r / (2π)`, for which `e^{-ω w r} = e^{2π i w z_r}`.-/
 @[expose] noncomputable def mordellParam (r : ℝ) : ℂ := I * ω * r / (2 * π)
 
+/--
+@isnad1 id=eq.0h2v.s6.7c36b839abaa from=translated src=- shape=7091d79b vocab=6ab3e1a6
+-/
 theorem exp_neg_rsOmega_mul_eq (w : ℂ) (r : ℝ) :
     cexp (-(ω * w * r)) = cexp (2 * π * I * w * mordellParam r) := by
   congr 1
@@ -102,6 +121,9 @@ theorem exp_neg_rsOmega_mul_eq (w : ℂ) (r : ℝ) :
   rw [I_sq]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s5.6abc202fc341 from=translated src=- shape=cfc91ab0 vocab=5427b6de
+-/
 theorem exp_mul_kernel_eq_mordellIntegrand (r : ℝ) (u : ℂ) :
     cexp (-(ω * u * r)) * kernel u = mordellIntegrand 1 (mordellParam r) u := by
   rw [exp_neg_rsOmega_mul_eq]
@@ -110,17 +132,25 @@ theorem exp_mul_kernel_eq_mordellIntegrand (r : ℝ) (u : ℂ) :
   congr 2
   ring
 
+/--
+@isnad1 id=continuo.1h1v.s5.ca646ffd3c14 from=translated src=- shape=190c5bb6 vocab=f741b052
+-/
 theorem continuous_kernel_line {c : ℝ} (hc : ∀ n : ℤ, c ≠ n) :
     Continuous fun x : ℝ => kernel (c - ω * x) := by
   simp_rw [kernel_eq_mordellIntegrand]
   exact continuous_mordellIntegrand_line hc
 
+/--
+@isnad1 id=integrab.1h1v.s6.943e96a5d44f from=translated src=- shape=a7b53c57 vocab=b326a350
+-/
 theorem integrable_kernel_line {c : ℝ} (hc : ∀ n : ℤ, c ≠ n) :
     Integrable fun x : ℝ => kernel (c - ω * x) := by
   simp_rw [kernel_eq_mordellIntegrand]
   exact integrable_mordellIntegrand_line (by simp) hc
 
-/-- The double integrand of Siegel's exchange is integrable on `ℝ × (0, ∞)`.-/
+/-- The double integrand of Siegel's exchange is integrable on `ℝ × (0, ∞)`.
+@isnad1 id=integrab.3h2v.s7.9b0986d23124 from=translated src=- shape=a604e5bb vocab=db2818fd
+-/
 theorem integrable_uncurry_mellin {s : ℂ} (hs : 0 < s.re) {c : ℝ} (hc0 : 0 < c)
     (hc : ∀ n : ℤ, c ≠ n) :
     Integrable (Function.uncurry fun (x r : ℝ) =>
@@ -158,7 +188,9 @@ theorem integrable_uncurry_mellin {s : ℂ} (hs : 0 < s.re) {c : ℝ} (hc0 : 0 <
     rw [e]
     exact le_of_eq (by ring)
 
-/-- The inner integral of Siegel's exchange is `r^{s-1} mordell 1 (z_r) c`.-/
+/-- The inner integral of Siegel's exchange is `r^{s-1} mordell 1 (z_r) c`.
+@isnad1 id=eq.0h3v.s7.cf77c387f9b8 from=translated src=- shape=15a1d6f9 vocab=f1a93737
+-/
 theorem integral_mellin_inner (s : ℂ) (c r : ℝ) :
     ∫ x : ℝ, (r : ℂ) ^ (s - 1) *
         (-ω * (cexp (-(ω * ((c : ℂ) - ω * x) * r)) * kernel (c - ω * x))) =
@@ -170,7 +202,9 @@ theorem integral_mellin_inner (s : ℂ) (c r : ℝ) :
   ext x
   rw [exp_mul_kernel_eq_mordellIntegrand]
 
-/-- The outer integrand of Siegel's exchange is integrable on `(0, ∞)`.-/
+/-- The outer integrand of Siegel's exchange is integrable on `(0, ∞)`.
+@isnad1 id=integrab.3h2v.s6.9623b6589954 from=translated src=- shape=fca1b667 vocab=be08b120
+-/
 theorem integrableOn_cpow_mul_mordell {s : ℂ} (hs : 0 < s.re) {c : ℝ} (hc0 : 0 < c)
     (hc : ∀ n : ℤ, c ≠ n) :
     IntegrableOn (fun r : ℝ => (r : ℂ) ^ (s - 1) * mordell 1 (mordellParam r) c) (Ioi 0) := by
@@ -178,7 +212,9 @@ theorem integrableOn_cpow_mul_mordell {s : ℂ} (hs : 0 < s.re) {c : ℝ} (hc0 :
   refine this.congr (Eventually.of_forall fun r => ?_)
   exact integral_mellin_inner s c r
 
-/-- Siegel's exchange: `R(s, c) = (ω^s / Γ(s)) ∫₀^∞ r^{s-1} mordell 1 (z_r) c dr`.-/
+/-- Siegel's exchange: `R(s, c) = (ω^s / Γ(s)) ∫₀^∞ r^{s-1} mordell 1 (z_r) c dr`.
+@isnad1 id=eq.3h2v.s7.55143c3150c2 from=translated src=- shape=c52c9434 vocab=b974aee5
+-/
 theorem rsIntegral_eq_integral_mordell {s : ℂ} (hs : 0 < s.re) {c : ℝ} (hc0 : 0 < c)
     (hc : ∀ n : ℤ, c ≠ n) :
     rsIntegral s c = ω ^ s / Complex.Gamma s *
@@ -210,20 +246,32 @@ theorem rsIntegral_eq_integral_mordell {s : ℂ} (hs : 0 < s.re) {c : ℝ} (hc0 
 @[expose] noncomputable def gaussTerm (r : ℝ) : ℂ :=
   cexp (-(r ^ 2 / (4 * π))) / (cexp (ω * r / 2) - cexp (-(ω * r / 2)))
 
+/--
+@isnad1 id=eq.0h1v.s5.c8b99eaf6a6c from=translated src=- shape=300f51ce vocab=b9acde6e
+-/
 theorem re_rsOmega_mul_ofReal (r : ℝ) : (ω * r).re = Real.sqrt 2 / 2 * r := by
   rw [Complex.re_mul_ofReal, rsOmega_eq]; simp
 
+/--
+@isnad1 id=lt.1h1v.s5.5e24730b56cc from=translated src=- shape=d8cb7dc5 vocab=c6f8eb4b
+-/
 theorem norm_exp_neg_rsOmega_mul_lt_one {r : ℝ} (hr : 0 < r) : ‖cexp (-(ω * r))‖ < 1 := by
   rw [Complex.norm_exp, neg_re, re_rsOmega_mul_ofReal, Real.exp_lt_one_iff]
   have : 0 < Real.sqrt 2 := by positivity
   nlinarith
 
+/--
+@isnad1 id=ne.1h1v.s5.d3664c7023e3 from=translated src=- shape=4038db59 vocab=1fd6b65a
+-/
 theorem exp_neg_rsOmega_mul_ne_one {r : ℝ} (hr : 0 < r) : cexp (-(ω * r)) ≠ 1 := by
   intro h
   have := norm_exp_neg_rsOmega_mul_lt_one hr
   rw [h, norm_one] at this
   exact lt_irrefl _ this
 
+/--
+@isnad1 id=eq.0h1v.s5.c805c0935cfc from=translated src=- shape=76366e86 vocab=478ae125
+-/
 theorem two_pi_I_mul_mordellParam (r : ℝ) : 2 * π * I * mordellParam r = -(ω * r) := by
   unfold mordellParam
   have : (π : ℂ) ≠ 0 := by exact_mod_cast Real.pi_ne_zero
@@ -231,6 +279,9 @@ theorem two_pi_I_mul_mordellParam (r : ℝ) : 2 * π * I * mordellParam r = -(ω
   rw [I_sq]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s7.52268d04f03e from=translated src=- shape=7e7e3494 vocab=f5783f98
+-/
 theorem mordellParam_exponent (r : ℝ) :
     -(π * I * mordellParam r ^ 2) + π * I * mordellParam r = -(r ^ 2 / (4 * π)) + -(ω * r / 2) := by
   unfold mordellParam
@@ -239,6 +290,9 @@ theorem mordellParam_exponent (r : ℝ) :
   linear_combination (-4 * I * ω ^ 2 * r ^ 2 + 4 * r ^ 2 + 8 * π * ω * r) * I_sq +
     (4 * I * r ^ 2) * rsOmega_sq
 
+/--
+@isnad1 id=eq.3h2v.s5.7bcdbcc7179a from=translated src=- shape=5be384c7 vocab=833e6208
+-/
 theorem mordell_mordellParam {r : ℝ} (hr : 0 < r) {c : ℝ} (hc0 : 0 < c) (hc1 : c < 1) :
     mordell 1 (mordellParam r) c = geomTerm r - gaussTerm r := by
   have hz : cexp (2 * π * I * mordellParam r) ≠ 1 := by
@@ -271,6 +325,9 @@ theorem mordell_mordellParam {r : ℝ} (hr : 0 < r) {c : ℝ} (hc0 : 0 < c) (hc1
 
 /-! ### The geometric series and `ζ(s)` -/
 
+/--
+@isnad1 id=eq.1h1v.s6.64129ce6fd1d from=translated src=- shape=ef6563e3 vocab=c437cba8
+-/
 theorem geomTerm_eq_tsum {r : ℝ} (hr : 0 < r) :
     geomTerm r = ∑' k : ℕ, cexp (-(((k : ℂ) + 1) * ω * r)) := by
   unfold geomTerm
@@ -283,11 +340,17 @@ theorem geomTerm_eq_tsum {r : ℝ} (hr : 0 < r) :
   push_cast
   ring
 
+/--
+@isnad1 id=lt.0h1v.s5.9f7a3c8b98e4 from=translated src=- shape=a15bc95d vocab=bcba1f27
+-/
 theorem re_nat_add_one_mul_rsOmega (k : ℕ) : 0 < (((k : ℂ) + 1) * ω).re := by
   rw [show ((k : ℂ) + 1) * ω = ω * (((k : ℝ) + 1 : ℝ) : ℂ) by push_cast; ring,
     re_rsOmega_mul_ofReal]
   positivity
 
+/--
+@isnad1 id=eq.1h2v.s7.053a01d448b2 from=translated src=- shape=64dac0c5 vocab=be643e06
+-/
 theorem integral_norm_cpow_mul_geomSummand {s : ℂ} (hs : 0 < s.re) (k : ℕ) :
     ∫ r in Ioi (0 : ℝ), ‖(r : ℂ) ^ (s - 1) * cexp (-(((k : ℂ) + 1) * ω * r))‖ =
       (1 / (Real.sqrt 2 / 2)) ^ s.re * ((((k : ℝ) + 1) ^ s.re)⁻¹ * Real.Gamma s.re) := by
@@ -306,6 +369,9 @@ theorem integral_norm_cpow_mul_geomSummand {s : ℂ} (hs : 0 < s.re) (k : ℕ) :
     Real.mul_rpow (by positivity) (by positivity), Real.inv_rpow (by positivity)]
   ring
 
+/--
+@isnad1 id=summable.1h1v.s7.5c5fb7704734 from=translated src=- shape=b4eddea9 vocab=ab40e11d
+-/
 theorem summable_integral_norm_cpow_mul_geomSummand {s : ℂ} (hs : 1 < s.re) :
     Summable fun k : ℕ =>
       ∫ r in Ioi (0 : ℝ), ‖(r : ℂ) ^ (s - 1) * cexp (-(((k : ℂ) + 1) * ω * r))‖ := by
@@ -314,6 +380,9 @@ theorem summable_integral_norm_cpow_mul_geomSummand {s : ℂ} (hs : 1 < s.re) :
   have := (summable_nat_add_iff 1).2 (Real.summable_nat_rpow_inv.2 hs)
   simpa using this
 
+/--
+@isnad1 id=eq.1h2v.s7.78fe72f49b71 from=translated src=- shape=1666e329 vocab=4da54b65
+-/
 theorem integral_cpow_mul_geomSummand {s : ℂ} (hs : 0 < s.re) (k : ℕ) :
     ∫ r in Ioi (0 : ℝ), (r : ℂ) ^ (s - 1) * cexp (-(((k : ℂ) + 1) * ω * r)) =
       ω ^ (-s) * Complex.Gamma s * (1 / ((k : ℂ) + 1) ^ s) := by
@@ -326,7 +395,9 @@ theorem integral_cpow_mul_geomSummand {s : ℂ} (hs : 0 < s.re) (k : ℕ) :
     Complex.cpow_neg ((k : ℂ) + 1), one_div]
   ring
 
-/-- `∫₀^∞ r^{s-1} e^{-ωr} / (1 - e^{-ωr}) dr = ω^{-s} Γ(s) ζ(s)` for `Re s > 1`.-/
+/-- `∫₀^∞ r^{s-1} e^{-ωr} / (1 - e^{-ωr}) dr = ω^{-s} Γ(s) ζ(s)` for `Re s > 1`.
+@isnad1 id=eq.1h1v.s6.dc37c0bedd9a from=translated src=- shape=5085451a vocab=52c833fa
+-/
 theorem integral_cpow_mul_geomTerm {s : ℂ} (hs : 1 < s.re) :
     ∫ r in Ioi (0 : ℝ), (r : ℂ) ^ (s - 1) * geomTerm r =
       ω ^ (-s) * Complex.Gamma s * riemannZeta s := by
@@ -343,6 +414,9 @@ theorem integral_cpow_mul_geomTerm {s : ℂ} (hs : 1 < s.re) :
 
 /-! ### Integrability of the Gaussian part -/
 
+/--
+@isnad1 id=le.1h1v.s6.a37e4d949a11 from=translated src=- shape=8cb175cb vocab=14800ebe
+-/
 theorem norm_exp_sub_exp_neg_rsOmega_half_ge {r : ℝ} (hr : 0 < r) :
     Real.sqrt 2 / 2 * r ≤ ‖cexp (ω * r / 2) - cexp (-(ω * r / 2))‖ := by
   have h1 : ‖cexp (ω * r / 2)‖ = Real.exp (Real.sqrt 2 / 2 * r / 2) := by
@@ -360,6 +434,9 @@ theorem norm_exp_sub_exp_neg_rsOmega_half_ge {r : ℝ} (hr : 0 < r) :
   rw [abs_of_pos hpos, abs_of_pos (Real.sinh_pos_iff.2 hpos), Real.sinh_eq] at this
   linarith
 
+/--
+@isnad1 id=le.1h1v.s6.8c49f1bcdfaf from=translated src=- shape=6468ca36 vocab=b878d620
+-/
 theorem norm_gaussTerm_le {r : ℝ} (hr : 0 < r) :
     ‖gaussTerm r‖ ≤ Real.sqrt 2 * r⁻¹ * Real.exp (-(1 / (4 * π)) * r ^ 2) := by
   unfold gaussTerm
@@ -379,6 +456,9 @@ theorem norm_gaussTerm_le {r : ℝ} (hr : 0 < r) :
         linear_combination (-1 : ℝ) * h2
     _ ≤ _ := by gcongr
 
+/--
+@isnad1 id=integrab.1h1v.s6.1e440ccbe0ae from=translated src=- shape=a0d51cea vocab=e82da288
+-/
 theorem integrableOn_cpow_mul_gaussTerm {s : ℂ} (hs : 1 < s.re) :
     IntegrableOn (fun r : ℝ => (r : ℂ) ^ (s - 1) * gaussTerm r) (Ioi 0) := by
   have hb : 0 < 1 / (4 * π) := by positivity
@@ -404,6 +484,9 @@ theorem integrableOn_cpow_mul_gaussTerm {s : ℂ} (hs : 1 < s.re) :
           rw [Real.rpow_sub hr, Real.rpow_sub hr, Real.rpow_one, Real.rpow_two]
           field_simp
 
+/--
+@isnad1 id=integrab.3h2v.s6.93a70359325d from=translated src=- shape=c81fbead vocab=63f78b94
+-/
 theorem integrableOn_cpow_mul_geomTerm {s : ℂ} (hs : 1 < s.re) {c : ℝ} (hc0 : 0 < c)
     (hc1 : c < 1) :
     IntegrableOn (fun r : ℝ => (r : ℂ) ^ (s - 1) * geomTerm r) (Ioi 0) := by
@@ -421,6 +504,9 @@ theorem integrableOn_cpow_mul_geomTerm {s : ℂ} (hs : 1 < s.re) {c : ℝ} (hc0 
   ∫ y : ℝ in Ioi 0, (y : ℂ) ^ (s - 1) *
     (cexp (-(π * y ^ 2)) / (cexp (π * ω * y) - cexp (-(π * ω * y))))
 
+/--
+@isnad1 id=eq.0h1v.s6.e0ce4507e903 from=translated src=- shape=4345bee0 vocab=20428cca
+-/
 theorem gaussTerm_two_pi_mul (y : ℝ) :
     gaussTerm (2 * π * y) = cexp (-(π * y ^ 2)) / (cexp (π * ω * y) - cexp (-(π * ω * y))) := by
   unfold gaussTerm
@@ -432,6 +518,9 @@ theorem gaussTerm_two_pi_mul (y : ℝ) :
   · congr 1; ring
   · congr 2; ring
 
+/--
+@isnad1 id=eq.0h1v.s6.602f9473836f from=translated src=- shape=7e2b9514 vocab=f75a0bfb
+-/
 theorem integral_cpow_mul_gaussTerm (s : ℂ) :
     ∫ r : ℝ in Ioi 0, (r : ℂ) ^ (s - 1) * gaussTerm r = (2 * π) ^ s * gaussIntegral s := by
   have h2π : (0 : ℝ) < 2 * π := by positivity
@@ -462,7 +551,9 @@ theorem integral_cpow_mul_gaussTerm (s : ℂ) :
 /-! ### The Mellin form of the Riemann–Siegel integral -/
 
 /-- For `Re s > 1` and `0 < c < 1`,
-`R(s, c) = ζ(s) - ω^s (2π)^s / Γ(s) * I₀(s)` with `I₀` the Gaussian integral `gaussIntegral`.-/
+`R(s, c) = ζ(s) - ω^s (2π)^s / Γ(s) * I₀(s)` with `I₀` the Gaussian integral `gaussIntegral`.
+@isnad1 id=eq.3h2v.s6.61dfae41b429 from=translated src=- shape=18c0ebce vocab=760dd384
+-/
 theorem rsIntegral_eq_zeta_sub {s : ℂ} (hs : 1 < s.re) {c : ℝ} (hc0 : 0 < c) (hc1 : c < 1) :
     rsIntegral s c = riemannZeta s -
       ω ^ s * (2 * π) ^ s / Complex.Gamma s * gaussIntegral s := by

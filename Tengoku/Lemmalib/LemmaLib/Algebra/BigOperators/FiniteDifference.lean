@@ -36,7 +36,9 @@ private lemma sum_secondDifference {A : Type*} [AddCommGroup A] (f : ℕ → A) 
     rw [← harg]
     abel_nf
 
-/-- An exact finite Taylor formula of order two for an additive-group-valued sequence.-/
+/-- An exact finite Taylor formula of order two for an additive-group-valued sequence.
+@isnad1 id=eq.0h4v.s8.7ff95fd6869d from=translated src=- shape=d69f14c4 vocab=c471cab0
+-/
 theorem _root_.Tengoku.Lemmalib.sub_sub_nsmul_eq_sum_secondDifference {A : Type*} [AddCommGroup A]
     (f : ℕ → A) (n k : ℕ) :
     f (n + k) - f n - k • (f (n + 1) - f n) =

@@ -44,6 +44,9 @@ namespace RiemannSiegel
 @[expose] noncomputable def kernel (u : ℂ) : ℂ :=
   cexp (π * I * u ^ 2) / (cexp (π * I * u) - cexp (-(π * I * u)))
 
+/--
+@isnad1 id=eq.0h1v.s4.89b3b527abcb from=translated src=- shape=c1db08e2 vocab=89d28a00
+-/
 theorem kernel_eq_mordellIntegrand (u : ℂ) : kernel u = mordellIntegrand 1 0 u := by
   unfold kernel mordellIntegrand mordellExponent; simp
 
@@ -55,6 +58,9 @@ line `u = c - ω x` through the real point `c`.-/
 @[expose] noncomputable def rsIntegral (s : ℂ) (c : ℝ) : ℂ :=
   ∫ x : ℝ, -ω * integrand s (c - ω * x)
 
+/--
+@isnad1 id=eq.0h2v.s6.ed15e03f7a20 from=translated src=- shape=61ffac5f vocab=2dc372cd
+-/
 theorem integrand_eq_gauss_mul (s u : ℂ) :
     integrand s u = u ^ (-s) * cexp (π * I * u ^ 2) *
       (cexp (π * I * u) - cexp (-(π * I * u)))⁻¹ := by
@@ -62,17 +68,26 @@ theorem integrand_eq_gauss_mul (s u : ℂ) :
 
 /-! ### Elementary bounds -/
 
+/--
+@isnad1 id=le.0h1v.s5.49a4caa2da53 from=translated src=- shape=ddf6c398 vocab=64f3ef88
+-/
 theorem abs_re_sub_im_le_sqrt_two_mul_norm (u : ℂ) : |u.re - u.im| ≤ Real.sqrt 2 * ‖u‖ := by
   rw [← Real.sqrt_sq (norm_nonneg u), ← Real.sqrt_mul (by norm_num)]
   apply Real.abs_le_sqrt
   rw [Complex.sq_norm, Complex.normSq_apply]
   nlinarith [sq_nonneg (u.re + u.im)]
 
+/--
+@isnad1 id=le.0h1v.s5.db3383a92b21 from=translated src=- shape=7b80b41c vocab=e43871ac
+-/
 theorem norm_le_abs_re_sub_im_add (u : ℂ) : ‖u‖ ≤ |u.re - u.im| + 2 * |u.im| := by
   refine (Complex.norm_le_abs_re_add_abs_im u).trans ?_
   have := abs_sub_abs_le_abs_sub u.re u.im
   linarith [abs_sub (u.re) (u.im)]
 
+/--
+@isnad1 id=le.0h2v.s5.bb6fd9719a93 from=translated src=- shape=f1b6e1e5 vocab=1c4837c4
+-/
 theorem norm_cpow_le_exp_pi (u w : ℂ) :
     ‖u ^ w‖ ≤ ‖u‖ ^ w.re * Real.exp (π * |w.im|) := by
   refine (Complex.norm_cpow_le u w).trans ?_
@@ -82,6 +97,9 @@ theorem norm_cpow_le_exp_pi (u w : ℂ) :
     _ = |arg u| * |w.im| := abs_mul _ _
     _ ≤ π * |w.im| := by gcongr; exact Complex.abs_arg_le_pi u
 
+/--
+@isnad1 id=le.1h1v.s5.875aa4db77aa from=translated src=- shape=a62bbdcb vocab=349ddac6
+-/
 theorem abs_log_le_add_inv {y : ℝ} (hy : 0 < y) : |Real.log y| ≤ y + 1 / y := by
   have h1 : 0 < 1 / y := by positivity
   rcases le_or_gt 1 y with h | h
@@ -90,6 +108,9 @@ theorem abs_log_le_add_inv {y : ℝ} (hy : 0 < y) : |Real.log y| ≤ y + 1 / y :
   · rw [abs_of_neg (Real.log_neg hy h), ← Real.log_inv, ← one_div]
     linarith [Real.log_le_sub_one_of_pos h1]
 
+/--
+@isnad1 id=le.1h2v.s6.8945951f38a0 from=translated src=- shape=187293bc vocab=c3f88876
+-/
 theorem rpow_neg_le_exp {y σ : ℝ} (hy : 0 < y) : y ^ (-σ) ≤ Real.exp (|σ| * (y + 1 / y)) := by
   rw [Real.rpow_def_of_pos hy]
   apply Real.exp_le_exp.2
@@ -98,6 +119,9 @@ theorem rpow_neg_le_exp {y σ : ℝ} (hy : 0 < y) : y ^ (-σ) ≤ Real.exp (|σ|
     _ ≤ (y + 1 / y) * |σ| := by gcongr; exact abs_log_le_add_inv hy
     _ = |σ| * (y + 1 / y) := by ring
 
+/--
+@isnad1 id=eq.0h1v.s6.f5e7fe59ff7a from=translated src=- shape=5ef1fbf9 vocab=69cd1cfb
+-/
 theorem norm_exp_pi_I_mul_sq (u : ℂ) :
     ‖cexp (π * I * u ^ 2)‖ = Real.exp (-(2 * π) * u.re * u.im) := by
   rw [Complex.norm_exp]
@@ -106,7 +130,9 @@ theorem norm_exp_pi_I_mul_sq (u : ℂ) :
     mul_one, sub_self, add_zero, zero_sub]
   ring
 
-/-- A linear-times-Gaussian bound: `M |y| - 2 π y² ≤ M² / (4π) - π y²`.-/
+/-- A linear-times-Gaussian bound: `M |y| - 2 π y² ≤ M² / (4π) - π y²`.
+@isnad1 id=le.0h2v.s7.52e1de0e4dcc from=translated src=- shape=46d892b6 vocab=7245c44e
+-/
 theorem mul_abs_sub_le (M y : ℝ) : M * |y| - 2 * π * y ^ 2 ≤ M ^ 2 / (4 * π) - π * y ^ 2 := by
   have hπ := Real.pi_pos
   have h := sq_nonneg (2 * π * |y| - M)
@@ -128,20 +154,30 @@ for `|Re s| ≤ σ₀`, `|Im s| ≤ θ₀` and lines at distance `≥ ρ` from t
 @[expose] noncomputable def boundConst (σ₀ θ₀ c c' ρ : ℝ) : ℝ :=
   Real.sqrt 2 / (4 * ρ) * gaussConst σ₀ θ₀ c c'
 
+/--
+@isnad1 id=le.1h5v.s5.33f54c49b9f3 from=translated src=- shape=9c937c55 vocab=06c5617b
+-/
 theorem boundConst_nonneg {σ₀ θ₀ c c' ρ : ℝ} (hρ : 0 < ρ) : 0 ≤ boundConst σ₀ θ₀ c c' ρ := by
   unfold boundConst gaussConst; positivity
 
-/-- The point `u` lies in `slitPlane` when `0 < Re u - Im u`.-/
+/-- The point `u` lies in `slitPlane` when `0 < Re u - Im u`.
+@isnad1 id=mem.1h1v.s4.5f4ec34ee42a from=translated src=- shape=7b3920e3 vocab=63103e78
+-/
 theorem mem_slitPlane_of_re_sub_im_pos {u : ℂ} (hu : 0 < u.re - u.im) : u ∈ slitPlane := by
   rw [Complex.mem_slitPlane_iff]
   by_cases h : u.im = 0
   · left; rw [h, sub_zero] at hu; exact hu
   · right; exact h
 
+/--
+@isnad1 id=ne.1h1v.s5.d29d99004931 from=translated src=- shape=3a21c75a vocab=41912c96
+-/
 theorem ne_zero_of_re_sub_im_pos {u : ℂ} (hu : 0 < u.re - u.im) : u ≠ 0 := by
   intro h; rw [h] at hu; simp at hu
 
-/-- Bounds on `‖u‖` on the strip `c ≤ Re u - Im u ≤ c'`.-/
+/-- Bounds on `‖u‖` on the strip `c ≤ Re u - Im u ≤ c'`.
+@isnad1 id=and.2h3v.s6.3dd5ca11bc5f from=translated src=- shape=571249d1 vocab=cabe2fb4
+-/
 theorem norm_bounds_of_strip {u : ℂ} {c c' : ℝ} (hc : 0 < c) (hu : u.re - u.im ∈ Icc c c') :
     1 / ‖u‖ ≤ Real.sqrt 2 / c ∧ ‖u‖ ≤ c' + 2 * |u.im| := by
   have hκ0 : 0 < u.re - u.im := hc.trans_le hu.1
@@ -156,7 +192,9 @@ theorem norm_bounds_of_strip {u : ℂ} {c c' : ℝ} (hc : 0 < c) (hu : u.re - u.
     rw [abs_of_pos hκ0] at this
     linarith [hu.2]
 
-/-- `‖e^{iπu²}‖ ≤ exp (2 π c' |Im u| - 2 π (Im u)²)` on the strip `c ≤ Re u - Im u ≤ c'`.-/
+/-- `‖e^{iπu²}‖ ≤ exp (2 π c' |Im u| - 2 π (Im u)²)` on the strip `c ≤ Re u - Im u ≤ c'`.
+@isnad1 id=le.2h3v.s7.08291181cb1c from=translated src=- shape=b31806b0 vocab=64721523
+-/
 theorem norm_exp_pi_I_mul_sq_le {u : ℂ} {c c' : ℝ} (hc : 0 < c) (hu : u.re - u.im ∈ Icc c c') :
     ‖cexp (π * I * u ^ 2)‖ ≤ Real.exp (2 * π * c' * |u.im| - 2 * π * u.im ^ 2) := by
   rw [norm_exp_pi_I_mul_sq]
@@ -174,7 +212,9 @@ theorem norm_exp_pi_I_mul_sq_le {u : ℂ} {c c' : ℝ} (hc : 0 < c) (hu : u.re -
     exact hu.2
   nlinarith
 
-/-- The Gaussian bound for `u^{-s} e^{iπu²}` on the strip `c ≤ Re u - Im u ≤ c'`.-/
+/-- The Gaussian bound for `u^{-s} e^{iπu²}` on the strip `c ≤ Re u - Im u ≤ c'`.
+@isnad1 id=le.4h6v.s7.5c335b6a258c from=translated src=- shape=019fc020 vocab=3569fbbc
+-/
 theorem norm_cpow_mul_exp_le {s u : ℂ} {σ₀ θ₀ c c' : ℝ} (hσ₀ : |s.re| ≤ σ₀) (hθ₀ : |s.im| ≤ θ₀)
     (hc : 0 < c) (hu : u.re - u.im ∈ Icc c c') :
     ‖u ^ (-s) * cexp (π * I * u ^ 2)‖ ≤ gaussConst σ₀ θ₀ c c' * Real.exp (-π * u.im ^ 2) := by
@@ -220,7 +260,9 @@ theorem norm_cpow_mul_exp_le {s u : ℂ} {σ₀ θ₀ c c' : ℝ} (hσ₀ : |s.r
         congr 1; ring
 
 /-- `‖1 / (e^{iπu} - e^{-iπu})‖ ≤ √2 / (4 ρ)` when `Re u - Im u` is at distance `≥ ρ` from the
-integers.-/
+integers.
+@isnad1 id=le.2h2v.s7.e660e26674c6 from=translated src=- shape=4d386fda vocab=a3d496a7
+-/
 theorem norm_inv_exp_sub_exp_neg_le {u : ℂ} {ρ : ℝ} (hρ : 0 < ρ)
     (hu : ∀ m : ℤ, ρ ≤ |u.re - u.im - m|) :
     ‖(cexp (π * I * u) - cexp (-(π * I * u)))⁻¹‖ ≤ Real.sqrt 2 / (4 * ρ) := by
@@ -243,7 +285,9 @@ theorem norm_inv_exp_sub_exp_neg_le {u : ℂ} {ρ : ℝ} (hρ : 0 < ρ)
 
 /-- The Gaussian bound on the strip `c ≤ Re u - Im u ≤ c'`:
 `‖integrand s u‖ ≤ boundConst σ₀ θ₀ c c' ρ * exp (-π (Im u)²)` when `|Re s| ≤ σ₀`, `|Im s| ≤ θ₀`,
-`0 < c` and every `κ ∈ [c, c']` is at distance `≥ ρ` from the integers.-/
+`0 < c` and every `κ ∈ [c, c']` is at distance `≥ ρ` from the integers.
+@isnad1 id=le.6h7v.s7.d4a7ed5ad0b9 from=translated src=- shape=8e5be094 vocab=1d9ab516
+-/
 theorem norm_integrand_le {s u : ℂ} {σ₀ θ₀ c c' ρ : ℝ} (hσ₀ : |s.re| ≤ σ₀) (hθ₀ : |s.im| ≤ θ₀)
     (hc : 0 < c) (hρ : 0 < ρ) (hstrip : ∀ κ ∈ Icc c c', ∀ m : ℤ, ρ ≤ |κ - m|)
     (hu : u.re - u.im ∈ Icc c c') :
@@ -258,15 +302,27 @@ theorem norm_integrand_le {s u : ℂ} {σ₀ θ₀ c c' ρ : ℝ} (hσ₀ : |s.r
 
 /-! ### The lines `u = c - ω x` -/
 
+/--
+@isnad1 id=eq.0h2v.s5.72a1e6881264 from=translated src=- shape=31535dfc vocab=3f20781b
+-/
 theorem re_sub_im_line (c x : ℝ) : ((c : ℂ) - ω * x).re - ((c : ℂ) - ω * x).im = c := by
   rw [re_sub_im_sub_rsOmega_mul]; simp
 
+/--
+@isnad1 id=eq.0h2v.s5.83ffb6dd2d42 from=translated src=- shape=7c75dd70 vocab=a5e7c96a
+-/
 theorem im_line (c x : ℝ) : ((c : ℂ) - ω * x).im = -(Real.sqrt 2 / 2) * x := by
   rw [im_sub_rsOmega_mul]; simp
 
+/--
+@isnad1 id=eq.0h2v.s6.abb65f5cc8de from=translated src=- shape=c8ef9dda vocab=85b86961
+-/
 theorem im_line_sq (c x : ℝ) : ((c : ℂ) - ω * x).im ^ 2 = x ^ 2 / 2 := by
   rw [im_line, mul_pow, neg_sq, sqrt_two_div_two_sq]; ring
 
+/--
+@isnad1 id=le.0h2v.s5.58635797480a from=translated src=- shape=b681d3ab vocab=f4675402
+-/
 theorem abs_im_line_le (c x : ℝ) : |((c : ℂ) - ω * x).im| ≤ |x| := by
   rw [im_line, abs_mul, abs_neg, abs_of_pos (by positivity : (0 : ℝ) < Real.sqrt 2 / 2)]
   have h1 : Real.sqrt 2 / 2 ≤ 1 := by
@@ -276,12 +332,21 @@ theorem abs_im_line_le (c x : ℝ) : |((c : ℂ) - ω * x).im| ≤ |x| := by
   have := abs_nonneg x
   nlinarith
 
+/--
+@isnad1 id=mem.1h2v.s5.46cc71fbe5f1 from=translated src=- shape=fe5f6e11 vocab=9ec96993
+-/
 theorem line_mem_slitPlane {c : ℝ} (hc0 : 0 < c) (x : ℝ) : (c : ℂ) - ω * x ∈ slitPlane :=
   mem_slitPlane_of_re_sub_im_pos (by rw [re_sub_im_line]; exact hc0)
 
+/--
+@isnad1 id=ne.1h2v.s5.0e0afb48efd6 from=translated src=- shape=5d3f9ad3 vocab=2a4d29d5
+-/
 theorem line_ne_zero {c : ℝ} (hc0 : 0 < c) (x : ℝ) : (c : ℂ) - ω * x ≠ 0 :=
   ne_zero_of_re_sub_im_pos (by rw [re_sub_im_line]; exact hc0)
 
+/--
+@isnad1 id=continuo.2h2v.s6.6e82f830e01a from=translated src=- shape=6d9f89f6 vocab=14d2bc14
+-/
 theorem continuous_integrand_line (s : ℂ) {c : ℝ} (hc0 : 0 < c) (hc : ∀ n : ℤ, c ≠ n) :
     Continuous fun x : ℝ => integrand s (c - ω * x) := by
   unfold integrand kernel
@@ -292,17 +357,26 @@ theorem continuous_integrand_line (s : ℂ) {c : ℝ} (hc0 : 0 < c) (hc : ∀ n 
   exact ContinuousAt.comp (g := fun u : ℂ => u ^ (-s))
     (continuousAt_cpow_const (line_mem_slitPlane hc0 x)) hf
 
+/--
+@isnad1 id=continuo.1h1v.s5.0725a12c6c22 from=translated src=- shape=ea74a74f vocab=9aa62485
+-/
 theorem continuous_log_line {c : ℝ} (hc0 : 0 < c) :
     Continuous fun x : ℝ => Complex.log (c - ω * x) := by
   refine continuous_iff_continuousAt.2 fun x => ?_
   have hf : ContinuousAt (fun x : ℝ => (c : ℂ) - ω * x) x := by fun_prop
   exact ContinuousAt.comp (g := Complex.log) (continuousAt_clog (line_mem_slitPlane hc0 x)) hf
 
+/--
+@isnad1 id=le.1h3v.s5.afcb2c9bac98 from=translated src=- shape=5acaeaee vocab=1ec01bc7
+-/
 theorem strip_dist_line (c : ℝ) : ∀ κ ∈ Icc c c, ∀ m : ℤ, |c - round c| ≤ |κ - m| := by
   intro κ hκ m
   rw [Icc_self, mem_singleton_iff] at hκ
   rw [hκ]; exact round_le c m
 
+/--
+@isnad1 id=le.4h5v.s7.c2a4cfd56676 from=translated src=- shape=3ce0e459 vocab=e202c9bb
+-/
 theorem norm_integrand_line_le {s : ℂ} {σ₀ θ₀ : ℝ} (hσ₀ : |s.re| ≤ σ₀) (hθ₀ : |s.im| ≤ θ₀)
     {c : ℝ} (hc0 : 0 < c) (hc : ∀ n : ℤ, c ≠ n) (x : ℝ) :
     ‖integrand s (c - ω * x)‖ ≤
@@ -311,6 +385,9 @@ theorem norm_integrand_line_le {s : ℂ} {σ₀ θ₀ : ℝ} (hσ₀ : |s.re| �
     (u := c - ω * x) (by rw [re_sub_im_line]; exact ⟨le_rfl, le_rfl⟩)
   rwa [im_line_sq, show -π * (x ^ 2 / 2) = -(π / 2) * x ^ 2 by ring] at this
 
+/--
+@isnad1 id=integrab.2h2v.s6.7711f4020743 from=translated src=- shape=4e5b248f vocab=a4fd3b63
+-/
 theorem integrable_integrand_line (s : ℂ) {c : ℝ} (hc0 : 0 < c) (hc : ∀ n : ℤ, c ≠ n) :
     Integrable fun x : ℝ => integrand s (c - ω * x) :=
   integrable_of_norm_le_gaussian (by positivity) (continuous_integrand_line s hc0 hc)
@@ -318,6 +395,9 @@ theorem integrable_integrand_line (s : ℂ) {c : ℝ} (hc0 : 0 < c) (hc : ∀ n 
 
 /-! ### Differentiability in `s` -/
 
+/--
+@isnad1 id=le.2h3v.s6.cd3452b7db56 from=translated src=- shape=ae7631af vocab=a028cb82
+-/
 theorem norm_log_le_of_strip {u : ℂ} {c c' : ℝ} (hc : 0 < c) (hu : u.re - u.im ∈ Icc c c') :
     ‖Complex.log u‖ ≤ c' + Real.sqrt 2 / c + π + 2 * |u.im| := by
   have hκ0 : 0 < u.re - u.im := hc.trans_le hu.1
@@ -339,12 +419,18 @@ theorem norm_log_le_of_strip {u : ℂ} {c c' : ℝ} (hc : 0 < c) (hu : u.re - u.
     linarith [hu.2]
   linarith
 
+/--
+@isnad1 id=hasderiv.1h2v.s6.37449fba2913 from=translated src=- shape=c9266d0e vocab=6e483f84
+-/
 theorem hasDerivAt_integrand {u : ℂ} (hu : u ≠ 0) (s : ℂ) :
     HasDerivAt (fun s => integrand s u) (-(Complex.log u * integrand s u)) s := by
   unfold integrand
   exact (((hasDerivAt_neg s).const_cpow (c := u) (Or.inl hu)).mul_const (kernel u)).congr_deriv
     (by ring)
 
+/--
+@isnad1 id=le.4h5v.s8.efbab2dc6788 from=translated src=- shape=f3b1375e vocab=484a42f2
+-/
 theorem norm_log_mul_integrand_line_le {s : ℂ} {σ₀ θ₀ : ℝ} (hσ₀ : |s.re| ≤ σ₀)
     (hθ₀ : |s.im| ≤ θ₀) {c : ℝ} (hc0 : 0 < c) (hc : ∀ n : ℤ, c ≠ n) (x : ℝ) :
     ‖Complex.log (c - ω * x) * integrand s (c - ω * x)‖ ≤
@@ -372,6 +458,9 @@ theorem norm_log_mul_integrand_line_le {s : ℂ} {σ₀ θ₀ : ℝ} (hσ₀ : |
         rw [show π / 2 / 2 = π / 4 by ring, show 2 / (π / 2) = 4 / π by rw [div_div_eq_mul_div]; norm_num]
         ring
 
+/--
+@isnad1 id=and.1h2v.s6.2ca126e35573 from=translated src=- shape=fce7cfb7 vocab=55510a73
+-/
 theorem abs_re_le_of_mem_ball {s s₀ : ℂ} (hs : s ∈ Metric.ball s₀ 1) :
     |s.re| ≤ |s₀.re| + 1 ∧ |s.im| ≤ |s₀.im| + 1 := by
   rw [Metric.mem_ball, dist_eq_norm] at hs
@@ -388,7 +477,9 @@ theorem abs_re_le_of_mem_ball {s s₀ : ℂ} (hs : s ∈ Metric.ball s₀ 1) :
       _ ≤ |s₀.im| + 1 := by linarith
 
 /-- The Riemann–Siegel integral is differentiable in `s`, with derivative obtained by
-differentiating under the integral sign.-/
+differentiating under the integral sign.
+@isnad1 id=hasderiv.2h2v.s7.427cde875b6c from=translated src=- shape=5e62b80e vocab=68367e55
+-/
 theorem hasDerivAt_rsIntegral (s₀ : ℂ) {c : ℝ} (hc0 : 0 < c) (hc : ∀ n : ℤ, c ≠ n) :
     HasDerivAt (fun s => rsIntegral s c)
       (∫ x : ℝ, -ω * -(Complex.log (c - ω * x) * integrand s₀ (c - ω * x))) s₀ := by
@@ -414,7 +505,9 @@ theorem hasDerivAt_rsIntegral (s₀ : ℂ) {c : ℝ} (hc0 : 0 < c) (hc : ∀ n :
   · refine Eventually.of_forall fun x s _ => ?_
     exact (hasDerivAt_integrand (line_ne_zero hc0 x) s).const_mul (-ω)
 
-/-- The Riemann–Siegel integral is an entire function of `s`.-/
+/-- The Riemann–Siegel integral is an entire function of `s`.
+@isnad1 id=differen.2h1v.s6.3433802292d3 from=translated src=- shape=de82ff39 vocab=bdca3dee
+-/
 theorem differentiable_rsIntegral {c : ℝ} (hc0 : 0 < c) (hc : ∀ n : ℤ, c ≠ n) :
     Differentiable ℂ fun s => rsIntegral s c :=
   fun s => (hasDerivAt_rsIntegral s hc0 hc).differentiableAt
@@ -426,6 +519,9 @@ theorem differentiable_rsIntegral {c : ℝ} (hc0 : 0 < c) (hc : ∀ n : ℤ, c �
 @[expose] noncomputable def poleNumerator (s : ℂ) (n : ℕ) (u : ℂ) : ℂ :=
   u ^ (-s) * cexp (π * I * u ^ 2) * ((-1) ^ n * mordellS (u - n))
 
+/--
+@isnad1 id=eq.2h3v.s6.26e4e927c592 from=translated src=- shape=0da2ebbe vocab=08601ada
+-/
 theorem integrand_eq_poleNumerator_div {s u : ℂ} (n : ℕ) (hu : Complex.sin (π * u) ≠ 0)
     (hun : u ≠ n) : integrand s u = poleNumerator s n u / (u - n) := by
   have hsin : Complex.sin (π * (u - n)) = (-1) ^ n * Complex.sin (π * u) := by
@@ -438,6 +534,9 @@ theorem integrand_eq_poleNumerator_div {s u : ℂ} (n : ℕ) (hu : Complex.sin (
   have h3 : (I : ℂ) ≠ 0 := I_ne_zero
   field_simp
 
+/--
+@isnad1 id=eq.0h2v.s5.04a5cd3ba309 from=translated src=- shape=7c15fa10 vocab=c5201b8d
+-/
 theorem poleNumerator_apply_self (s : ℂ) (n : ℕ) :
     poleNumerator s n n = (n : ℂ) ^ (-s) / (2 * π * I) := by
   unfold poleNumerator
@@ -455,6 +554,9 @@ theorem poleNumerator_apply_self (s : ℂ) (n : ℕ) :
       = (n : ℂ) ^ (-s) * ((-1) ^ (n ^ 2) * (-1) ^ n) * (1 / (2 * π * I)) := by ring
     _ = (n : ℂ) ^ (-s) / (2 * π * I) := by rw [h2]; ring
 
+/--
+@isnad1 id=differen.2h3v.s6.463c8b751743 from=translated src=- shape=82453a65 vocab=e6e9638e
+-/
 theorem differentiableAt_poleNumerator {s u : ℂ} {n : ℕ} (hu : 0 < u.re - u.im)
     (hun : ∀ m : ℤ, m ≠ 0 → u ≠ n + m) :
     DifferentiableAt ℂ (poleNumerator s n) u := by
@@ -468,7 +570,9 @@ theorem differentiableAt_poleNumerator {s u : ℂ} {n : ℕ} (hu : 0 < u.re - u.
   exact (h1.mul (by fun_prop)).mul ((differentiableAt_const _).mul h2)
 
 /-- On the strip `c ≤ κ ≤ c'`, the integers other than `n` are at distance at least
-`min (c - (n - 1)) (n + 1 - c')` from `κ`.-/
+`min (c - (n - 1)) (n + 1 - c')` from `κ`.
+@isnad1 id=le.2h5v.s6.52544a195b04 from=translated src=- shape=dbed1b2d vocab=736c36d7
+-/
 theorem min_le_abs_sub_nat_add_int {c c' : ℝ} (n : ℕ) {κ : ℝ} (hκ : κ ∈ Icc c c') (m : ℤ)
     (hm : m ≠ 0) :
     min (c - (n - 1)) (n + 1 - c') ≤ |κ - (n + m)| := by
@@ -492,7 +596,9 @@ theorem eq_nat_of_mem_strip {c c' : ℝ} {n : ℕ} (hcn : (n : ℝ) - 1 < c) (hc
   omega
 
 /-- The pole numerator satisfies a Gaussian bound on the strip `c ≤ Re u - Im u ≤ c'` when
-`n` is the only integer in `[c, c']`.-/
+`n` is the only integer in `[c, c']`.
+@isnad1 id=ex.3h4v.s7.b2ed1c4081cc from=translated src=- shape=4395d8de vocab=65e15cbf
+-/
 theorem exists_norm_poleNumerator_le (s : ℂ) {c c' : ℝ} {n : ℕ} (hc : 0 < c)
     (hcn : (n : ℝ) - 1 < c) (hc'n : c' < n + 1) :
     ∃ C : ℝ, ∀ u : ℂ, u.re - u.im ∈ Icc c c' →
@@ -553,12 +659,18 @@ theorem exists_norm_poleNumerator_le (s : ℂ) {c c' : ℝ} {n : ℕ} (hc : 0 < 
         exact mul_le_mul_of_nonneg_left (affine_mul_exp_neg_sq_le Real.pi_pos hA0 hB0 u.im) hG0.le
     _ = G * (A + B + B / π) * Real.exp (-(π / 2) * u.im ^ 2) := by ring
 
+/--
+@isnad1 id=ne.1h2v.s5.88804978c75e from=translated src=- shape=d254f803 vocab=727f4afa
+-/
 theorem sin_line_ne_zero {c : ℝ} (hc : ∀ n : ℤ, c ≠ n) (x : ℝ) :
     Complex.sin (π * ((c : ℂ) - ω * x)) ≠ 0 := by
   have := mordell_denom_line_ne_zero hc x
   rw [exp_sub_exp_neg_eq_two_I_sin] at this
   exact right_ne_zero_of_mul this
 
+/--
+@isnad1 id=ne.1h3v.s5.273b3a357d01 from=translated src=- shape=169a07c3 vocab=dbfa5850
+-/
 theorem line_ne_nat {c : ℝ} (hc : ∀ n : ℤ, c ≠ n) (x : ℝ) (n : ℕ) : (c : ℂ) - ω * x ≠ n := by
   intro h
   have := re_sub_im_line c x
@@ -567,7 +679,9 @@ theorem line_ne_nat {c : ℝ} (hc : ∀ n : ℤ, c ≠ n) (x : ℝ) (n : ℕ) : 
   exact hc n (by rw [← this]; simp)
 
 /-- Moving the Riemann–Siegel line from `c` to `c'` across the single integer `n ∈ (c, c')`
-subtracts the residue term `n^{-s}`.-/
+subtracts the residue term `n^{-s}`.
+@isnad1 id=eq.5h4v.s6.3c15877c803b from=translated src=- shape=60ad2905 vocab=2a039f1c
+-/
 theorem rsIntegral_eq_sub_of_lt (s : ℂ) {c c' : ℝ} {n : ℕ} (hc : 0 < c) (hcn : (n : ℝ) - 1 < c)
     (hcn' : c < n) (hnc' : (n : ℝ) < c') (hc'n : c' < n + 1) :
     rsIntegral s c' = rsIntegral s c - (n : ℂ) ^ (-s) := by
@@ -606,7 +720,9 @@ theorem rsIntegral_eq_sub_of_lt (s : ℂ) {c c' : ℝ} {n : ℕ} (hc : 0 < c) (h
   unfold rsIntegral
   linear_combination key
 
-/-- `R(s, N + 1/2) = R(s, 1/2) - ∑_{n=1}^{N} n^{-s}`.-/
+/-- `R(s, N + 1/2) = R(s, 1/2) - ∑_{n=1}^{N} n^{-s}`.
+@isnad1 id=eq.0h2v.s6.f7ef51812547 from=translated src=- shape=af3fe199 vocab=aae9b752
+-/
 theorem rsIntegral_add_half (s : ℂ) (N : ℕ) :
     rsIntegral s (N + 1 / 2) = rsIntegral s (1 / 2) - ∑ n ∈ Finset.range N, ((n : ℂ) + 1) ^ (-s) := by
   induction N with

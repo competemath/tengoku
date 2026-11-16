@@ -27,7 +27,9 @@ open scoped Topology
 namespace Asymptotics
 
 /-- A real sequence converging to zero remains negligible compared with `n ^ 2` after triangular
-Cesàro weighting.-/
+Cesàro weighting.
+@isnad1 id=islittle.1h1v.s6.45b2a736eec7 from=translated src=- shape=e36ce2a0 vocab=1539c2dd
+-/
 theorem isLittleO_weighted_sum_range_of_tendsto_zero (ε : ℕ → ℝ)
     (hε : Tendsto ε atTop (𝓝 0)) :
     (fun n : ℕ ↦ ∑ j ∈ range n, ((n : ℝ) - (j + 1 : ℕ)) * ε (j + 1))

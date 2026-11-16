@@ -21,7 +21,9 @@ public section
 namespace Matrix
 
 /-- The quadratic form associated with a skew-symmetric matrix over a ring of characteristic zero
-vanishes identically.-/
+vanishes identically.
+@isnad1 id=eq.1h4v.s7.23a1fd55d3cf from=translated src=- shape=ced40002 vocab=78f83cb1
+-/
 theorem dotProduct_mulVec_eq_zero_of_transpose_eq_neg {n R : Type*} [Fintype n] [CommRing R]
     [NoZeroDivisors R] [CharZero R] (A : Matrix n n R) (hA : A.transpose = -A) (x : n → R) :
     dotProduct x (A.mulVec x) = 0 := by

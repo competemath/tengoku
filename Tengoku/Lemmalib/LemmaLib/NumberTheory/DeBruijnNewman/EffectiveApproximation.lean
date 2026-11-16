@@ -40,19 +40,30 @@ namespace DeBruijnNewman
 
 /-! ### The cutoff `N` -/
 
-/-- `√((x/2 + πt/8)/(2π)) = √(x/(4π) + t/16)`, the quantity whose floor is `N`.-/
+/-- `√((x/2 + πt/8)/(2π)) = √(x/(4π) + t/16)`, the quantity whose floor is `N`.
+@isnad1 id=eq.0h2v.s7.b67a1303cd0a from=translated src=- shape=43cea3c6 vocab=583b3533
+-/
 theorem sqrt_arg_eq (t x : ℝ) : (x / 2 + π * t / 8) / (2 * π) = x / (4 * π) + t / 16 := by
   field_simp
   ring
 
+/--
+@isnad1 id=le.0h2v.s6.2e86871b5254 from=translated src=- shape=1e80a5c0 vocab=76a4e00f
+-/
 theorem cutoff_le_sqrt (t x : ℝ) :
     (cutoff t x : ℝ) ≤ Real.sqrt (x / (4 * π) + t / 16) :=
   Nat.floor_le (Real.sqrt_nonneg _)
 
+/--
+@isnad1 id=lt.0h2v.s6.c6aa5fe59c7c from=translated src=- shape=7efd04f3 vocab=7257f9bc
+-/
 theorem sqrt_lt_cutoff_add_one (t x : ℝ) :
     Real.sqrt (x / (4 * π) + t / 16) < (cutoff t x : ℝ) + 1 :=
   Nat.lt_floor_add_one _
 
+/--
+@isnad1 id=le.2h2v.s5.e9c7cedf6508 from=translated src=- shape=e8b7e832 vocab=da76d8cf
+-/
 theorem three_le_cutoff {t x : ℝ} (ht : 0 ≤ t) (hx : 200 ≤ x) : 3 ≤ cutoff t x := by
   unfold cutoff
   apply Nat.le_floor
@@ -65,7 +76,9 @@ theorem three_le_cutoff {t x : ℝ} (ht : 0 ≤ t) (hx : 200 ≤ x) : 3 ≤ cuto
   push_cast
   linarith
 
-/-- For `1 ≤ n ≤ N`, `n² ≤ x/(4π) + 1/32`.-/
+/-- For `1 ≤ n ≤ N`, `n² ≤ x/(4π) + 1/32`.
+@isnad1 id=le.4h3v.s7.f1a925b931e0 from=translated src=- shape=a5c3e000 vocab=ccc66906
+-/
 theorem sq_le_of_le_cutoff {t x : ℝ} {n : ℕ} (ht0 : 0 ≤ t) (ht : t ≤ 1 / 2) (hx : 200 ≤ x)
     (hn : n ≤ cutoff t x) : (n : ℝ) ^ 2 ≤ x / (4 * π) + 1 / 32 := by
   have h1 : (n : ℝ) ≤ Real.sqrt (x / (4 * π) + t / 16) :=
@@ -76,7 +89,9 @@ theorem sq_le_of_le_cutoff {t x : ℝ} {n : ℕ} (ht0 : 0 ≤ t) (ht : t ≤ 1 /
       _ = x / (4 * π) + t / 16 := Real.sq_sqrt (by positivity)
   linarith
 
-/-- `x ≥ 4πN² - 0.4`.-/
+/-- `x ≥ 4πN² - 0.4`.
+@isnad1 id=le.3h2v.s6.6b9e7d135836 from=translated src=- shape=9518a194 vocab=dbd82504
+-/
 theorem four_pi_cutoff_sq_le {t x : ℝ} (ht0 : 0 ≤ t) (ht : t ≤ 1 / 2) (hx : 200 ≤ x) :
     4 * π * (cutoff t x : ℝ) ^ 2 ≤ x + 0.4 := by
   have hpi := Real.pi_lt_d2
@@ -94,7 +109,9 @@ theorem four_pi_cutoff_sq_le {t x : ℝ} (ht0 : 0 ≤ t) (ht : t ≤ 1 / 2) (hx 
 /-! ### The error `ε_{t,n}` on the horizontal line `Im s = x/2` -/
 
 /-- `ε_{t,n}(σ + ix/2) ≤ exp ((t²/16 log² (x/(4πn²)) + 0.626) / (x - 6.66)) - 1` (Polymath
-(6.12)–(6.13)).-/
+(6.12)–(6.13)).
+@isnad1 id=le.7h4v.s8.2e4c543617b8 from=translated src=- shape=9870b9b9 vocab=a31b3da1
+-/
 theorem epsR_le {t x σ : ℝ} {n : ℕ} (ht0 : 0 ≤ t) (ht : t ≤ 1 / 2) (hσ0 : 0 ≤ σ) (hσ1 : σ ≤ 1)
     (hx : 200 ≤ x) (hn : 1 ≤ n) (hnx : (n : ℝ) ^ 2 ≤ x / (4 * π) + 1 / 32) :
     epsR t n (σ + (x / 2 : ℝ) * I) ≤
@@ -120,6 +137,9 @@ theorem epsR_le {t x σ : ℝ} {n : ℕ} (ht0 : 0 ≤ t) (ht : t ≤ 1 / 2) (hσ
 
 /-! ### The sum `ε~(s₋) + ε~(conj s₊)` -/
 
+/--
+@isnad1 id=le.1h1v.s7.ee3e28c92ebe from=translated src=- shape=92056e8e vocab=19596f36
+-/
 theorem cutoff_poly_ineq {N : ℝ} (hN : 3 ≤ N) :
     0.9605 / (N - 0.865) * ((12.56 * N ^ 2 - 1.14) / (12.56 * N ^ 2 - 8.4)) ≤
       (N + 1.115) / (N - 0.125) ^ 2 := by
@@ -132,11 +152,17 @@ theorem cutoff_poly_ineq {N : ℝ} (hN : 3 ≤ N) :
   rw [div_mul_div_comm, div_le_div_iff₀ (by positivity) h3]
   nlinarith [pow_nonneg hm 2, pow_nonneg hm 3, pow_nonneg hm 4, mul_nonneg hm (pow_nonneg hm 2)]
 
+/--
+@isnad1 id=le.2h1v.s5.619064c33683 from=translated src=- shape=4666cf86 vocab=7531b680
+-/
 theorem exp_le_of_le_small {u : ℝ} (hu0 : 0 ≤ u) (hu : u ≤ 0.04) : Real.exp u ≤ 1 + 1.04 * u := by
   have := Real.exp_bound' hu0 (by linarith) (n := 2) (by norm_num)
   norm_num [Finset.sum_range_succ] at this
   nlinarith
 
+/--
+@isnad1 id=le.0h1v.s5.76487f2be952 from=translated src=- shape=eadf4847 vocab=f264fe90
+-/
 theorem two_le_rpow_add_rpow_neg (y : ℝ) : 2 ≤ (3 : ℝ) ^ y + (3 : ℝ) ^ (-y) := by
   have hu : 0 < (3 : ℝ) ^ y := by positivity
   rw [Real.rpow_neg (by norm_num)]
@@ -145,10 +171,16 @@ theorem two_le_rpow_add_rpow_neg (y : ℝ) : 2 ≤ (3 : ℝ) ^ y + (3 : ℝ) ^ (
   have : 0 ≤ (3 : ℝ) ^ y + ((3 : ℝ) ^ y)⁻¹ - 2 := by rw [this]; positivity
   linarith
 
+/--
+@isnad1 id=eq.0h1v.s5.e4918b1ead2b from=translated src=- shape=07ab91c0 vocab=a597ff9e
+-/
 theorem nine_rpow (u : ℝ) : (9 : ℝ) ^ (u / 2) = (3 : ℝ) ^ u := by
   rw [show (9 : ℝ) = 3 ^ (2 : ℝ) by rw [Real.rpow_two]; norm_num, ← Real.rpow_mul (by norm_num)]
   congr 1; ring
 
+/--
+@isnad1 id=eq.0h3v.s8.a9294d9c7a8f from=translated src=- shape=542475e3 vocab=8f9c653e
+-/
 theorem epsTilde_sMinus (t x y : ℝ) :
     epsTilde t (sMinus x y) =
       (0.397 * (3 * (3 : ℝ) ^ (-y)) / (Real.sqrt (x / (4 * π) + t / 16) - 0.865) +
@@ -158,6 +190,9 @@ theorem epsTilde_sMinus (t x y : ℝ) :
     Real.rpow_neg (by norm_num)]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s8.91f88cf68d78 from=translated src=- shape=d76f8989 vocab=34968196
+-/
 theorem epsTilde_conj_sPlus (t x y : ℝ) :
     epsTilde t ((starRingEnd ℂ) (sPlus x y)) =
       (0.397 * (3 * (3 : ℝ) ^ y) / (Real.sqrt (x / (4 * π) + t / 16) - 0.865) +
@@ -167,7 +202,9 @@ theorem epsTilde_conj_sPlus (t x y : ℝ) :
     Real.rpow_one]
 
 /-- `1 + 1.04 u ≤ (12.56 N² - 1.14)/(12.56 N² - 8.4)` for `u = 3.49/(x/2 - 4)` and
-`x ≥ 4πN² - 0.4`.-/
+`x ≥ 4πN² - 0.4`.
+@isnad1 id=le.3h2v.s8.1aec584cfbad from=translated src=- shape=c58147c2 vocab=cd6b3149
+-/
 theorem one_add_u_le {N x : ℝ} (hN : 3 ≤ N) (hx : 200 ≤ x) (hxN : 4 * π * N ^ 2 ≤ x + 0.4) :
     1 + 1.04 * (3.49 / (x / 2 - 4)) ≤ (12.56 * N ^ 2 - 1.14) / (12.56 * N ^ 2 - 8.4) := by
   have hpi := Real.pi_gt_d2
@@ -183,7 +220,9 @@ theorem one_add_u_le {N x : ℝ} (hN : 3 ≤ N) (hx : 200 ≤ x) (hxN : 4 * π *
     field_simp; ring]
   linarith
 
-/-- The `N`-dependent part of (6.19).-/
+/-- The `N`-dependent part of (6.19).
+@isnad1 id=le.4h3v.s8.e734eab1da84 from=translated src=- shape=829c10ca vocab=19596f36
+-/
 theorem S_part_le {N c' v : ℝ} (hN : 3 ≤ N) (hc' : 2 ≤ c') (hv0 : 0 ≤ v)
     (hv : v ≤ (12.56 * N ^ 2 - 1.14) / (12.56 * N ^ 2 - 8.4)) :
     1.191 * c' / (N - 0.865) * v ≤
@@ -218,7 +257,9 @@ theorem S_part_le {N c' v : ℝ} (hN : 3 ≤ N) (hc' : 2 ≤ c') (hv0 : 0 ≤ v)
   linarith
 
 /-- The numerical core of Polymath (6.17)–(6.19), with `p = 3^y`, `q = 3^{-y}`,
-`N ≤ a = √(x/4π + t/16)` and `x ≥ 4πN² - 0.4`.-/
+`N ≤ a = √(x/4π + t/16)` and `x ≥ 4πN² - 0.4`.
+@isnad1 id=le.5h5v.s9.c0bb22b07d3a from=translated src=- shape=d9454611 vocab=5c26e68c
+-/
 theorem epsTilde_core {N a x p q : ℝ} (hN : 3 ≤ N) (hNa : N ≤ a) (hx : 200 ≤ x)
     (hxN : 4 * π * N ^ 2 ≤ x + 0.4) (hpq : 2 ≤ p + q) :
     (0.397 * (3 * q) / (a - 0.865) + 5 / (3 * (x / 2 - 6))) * Real.exp (3.49 / (x / 2 - 4)) +
@@ -281,7 +322,9 @@ theorem epsTilde_core {N a x p q : ℝ} (hN : 3 ≤ N) (hNa : N ≤ a) (hx : 200
   nlinarith [step1, hS2, hR2, hw2, h7]
 
 /-- Polymath (6.17)–(6.19): the sum `ε~(s₋) + ε~(conj s₊)` is at most `w + w²/2` where
-`w = 1.24 (3^y + 3^{-y}) / (N - 0.125) + 7/(x - 12)`.-/
+`w = 1.24 (3^y + 3^{-y}) / (N - 0.125) + 7/(x - 12)`.
+@isnad1 id=le.1h3v.s8.a3920f038809 from=translated src=- shape=7bbf4d5b vocab=eb41bb76
+-/
 theorem epsTilde_sum_le {t x y : ℝ} (hr : InRegion t x y) :
     epsTilde t (sMinus x y) + epsTilde t ((starRingEnd ℂ) (sPlus x y)) ≤
       (1.24 * ((3 : ℝ) ^ y + (3 : ℝ) ^ (-y)) / ((cutoff t x : ℝ) - 0.125) + 7 / (x - 12)) +
@@ -295,7 +338,9 @@ theorem epsTilde_sum_le {t x y : ℝ} (hr : InRegion t x y) :
 /-! ### The bound `e_{C,0} ≤ |B_t| · errC0` -/
 
 /-- Polymath (6.15)–(6.19): the tail `exp(tπ²/64) |M₀(iT')| (1 + ε~(s₋) + ε~(conj s₊))` is at most
-`|M_t(s₊)| · errC0`.-/
+`|M_t(s₊)| · errC0`.
+@isnad1 id=le.1h3v.s7.eec2824c7981 from=translated src=- shape=0d2eb6f4 vocab=52d6afc2
+-/
 theorem tail_le {t x y : ℝ} (hr : InRegion t x y) :
     Real.exp (t * π ^ 2 / 64) * ‖M₀ (((x / 2 + π * t / 8 : ℝ) : ℂ) * I)‖ *
       (1 + epsTilde t (sMinus x y) + epsTilde t ((starRingEnd ℂ) (sPlus x y))) ≤
@@ -369,6 +414,9 @@ theorem tail_le {t x y : ℝ} (hr : InRegion t x y) :
 
 /-! ### The main terms at `s₋` and `conj s₊` -/
 
+/--
+@isnad1 id=eq.1h3v.s5.511416687f80 from=translated src=- shape=4c3bc0e9 vocab=5fe26508
+-/
 theorem M_sMinus_eq (t x y : ℝ) (hx : x ≠ 0) :
     M t (sMinus x y) = M t (sPlus x y) * gamma t x y := by
   have hB : M t (sPlus x y) ≠ 0 := by
@@ -379,6 +427,9 @@ theorem M_sMinus_eq (t x y : ℝ) (hx : x ≠ 0) :
     show ((1 + y - x * I) / 2 : ℂ) = sPlus x y from rfl]
   exact (mul_div_cancel₀ _ hB).symm
 
+/--
+@isnad1 id=eq.2h4v.s6.ea87f4323bba from=translated src=- shape=aaa7a161 vocab=fa59c74f
+-/
 theorem norm_mainTerm_sMinus (t x y : ℝ) {n : ℕ} (hn : 0 < n) (hx : x ≠ 0) :
     ‖mainTerm t n (sMinus x y)‖ = ‖gamma t x y‖ * ‖M t (sPlus x y)‖ * b t n /
       (n : ℝ) ^ ((sStar t x y).re + (kappa t x y).re - y) := by
@@ -392,14 +443,18 @@ theorem norm_mainTerm_sMinus (t x y : ℝ) {n : ℕ} (hn : 0 < n) (hx : x ≠ 0)
   rw [e]
   ring
 
-/-- `mainTerm t n s₊ = conj (mainTerm t n (conj s₊))`.-/
+/-- `mainTerm t n s₊ = conj (mainTerm t n (conj s₊))`.
+@isnad1 id=eq.1h4v.s6.f349d24b28de from=translated src=- shape=30294685 vocab=ea71de7d
+-/
 theorem mainTerm_sPlus_eq_conj (t x y : ℝ) (n : ℕ) (hx : 0 < x) :
     mainTerm t n (sPlus x y) = (starRingEnd ℂ) (mainTerm t n ((starRingEnd ℂ) (sPlus x y))) := by
   have him : ((starRingEnd ℂ) (sPlus x y)).im ≠ 0 := by
     rw [im_conj_sPlus]; positivity
   rw [← mainTerm_conj t n him, Complex.conj_conj]
 
-/-- `ε_{t,n}(s) ≥ 0` when `Im s > 3.33`.-/
+/-- `ε_{t,n}(s) ≥ 0` when `Im s > 3.33`.
+@isnad1 id=le.2h3v.s5.b748a3517b0a from=translated src=- shape=3524ecad vocab=767ae540
+-/
 theorem epsR_nonneg {t : ℝ} (ht0 : 0 ≤ t) (n : ℕ) {s : ℂ} (hs : 3.33 < s.im) :
     0 ≤ epsR t n s := by
   unfold epsR
@@ -407,7 +462,9 @@ theorem epsR_nonneg {t : ℝ} (ht0 : 0 ≤ t) (n : ℕ) {s : ℂ} (hs : 3.33 < s
   apply div_nonneg _ (by linarith)
   positivity
 
-/-- The `n`-th term of `e_B`, Polymath (6.12).-/
+/-- The `n`-th term of `e_B`, Polymath (6.12).
+@isnad1 id=le.3h4v.s8.ed2aa9729136 from=translated src=- shape=d4571b2d vocab=c15181cb
+-/
 theorem termB_le (hR : RtnEstimate) {t x y : ℝ} (hr : InRegion t x y) {n : ℕ}
     (hn : n ∈ Finset.Icc 1 (cutoff t x)) :
     ‖(starRingEnd ℂ) (r t n ((starRingEnd ℂ) (sPlus x y))) - mainTerm t n (sPlus x y)‖ ≤
@@ -443,7 +500,9 @@ theorem termB_le (hR : RtnEstimate) {t x y : ℝ} (hr : InRegion t x y) {n : ℕ
         positivity
     _ = _ := by ring
 
-/-- The `n`-th term of `e_A`, Polymath (6.11).-/
+/-- The `n`-th term of `e_A`, Polymath (6.11).
+@isnad1 id=le.3h4v.s8.c9b4ce206f1f from=translated src=- shape=ac3a2e5a vocab=3d3cd0d3
+-/
 theorem termA_le (hR : RtnEstimate) {t x y : ℝ} (hr : InRegion t x y) {n : ℕ}
     (hn : n ∈ Finset.Icc 1 (cutoff t x)) :
     ‖r t n (sMinus x y) - mainTerm t n (sMinus x y)‖ ≤
@@ -510,7 +569,9 @@ theorem termA_le (hR : RtnEstimate) {t x y : ℝ} (hr : InRegion t x y) {n : ℕ
 
 /-- Polymath Theorem 1.3 (in the form `EffectiveApproximationWith K`), assuming the
 Riemann–Siegel inputs `RtnEstimate` (Proposition 6.1) and `TailEstimateWith K` (the expansion
-(5.4) with the remainder bound of Proposition 6.3, weakened by the factor `K ≥ 0`).-/
+(5.4) with the remainder bound of Proposition 6.3, weakened by the factor `K ≥ 0`).
+@isnad1 id=effectiv.3h1v.s4.dba3f2dd7c46 from=translated src=- shape=91468ce0 vocab=a31feca9
+-/
 theorem effectiveApproximation_of {K : ℝ} (hK : 0 ≤ K) (hR : RtnEstimate)
     (hT : TailEstimateWith K) : EffectiveApproximationWith K := by
   intro t x y hr
@@ -569,7 +630,9 @@ theorem effectiveApproximation_of {K : ℝ} (hK : 0 ≤ K) (hR : RtnEstimate)
         ring
 
 /-- Polymath Theorem 1.3 with the tail constant `K`, assuming only the Riemann–Siegel expansion
-`TailEstimateWith K`.-/
+`TailEstimateWith K`.
+@isnad1 id=effectiv.2h1v.s4.661d8564dff3 from=translated src=- shape=4963a319 vocab=56f2e3e9
+-/
 theorem effectiveApproximation_of_tail {K : ℝ} (hK : 0 ≤ K) (hT : TailEstimateWith K) :
     EffectiveApproximationWith K :=
   effectiveApproximation_of hK rtnEstimate hT

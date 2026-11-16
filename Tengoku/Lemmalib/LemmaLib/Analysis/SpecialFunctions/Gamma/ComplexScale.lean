@@ -31,22 +31,34 @@ open Complex Real Set Filter Topology MeasureTheory
 
 namespace Complex
 
+/--
+@isnad1 id=integrab.2h2v.s6.ada6b865650b from=translated src=- shape=34066bb3 vocab=b56e25ae
+-/
 theorem integrableOn_rpow_mul_exp_neg_mul_Ioi {α β : ℝ} (hα : -1 < α) (hβ : 0 < β) :
     IntegrableOn (fun t : ℝ => t ^ α * Real.exp (-β * t)) (Ioi 0) := by
   have := integrableOn_rpow_mul_exp_neg_mul_rpow hα one_pos hβ
   simpa only [Real.rpow_one] using this
 
+/--
+@isnad1 id=eq.1h3v.s6.926d247aecff from=translated src=- shape=f7d558d6 vocab=6958c248
+-/
 theorem norm_cpow_mul_exp_neg_mul {t : ℝ} (ht : 0 < t) (a b : ℂ) :
     ‖(t : ℂ) ^ (a - 1) * cexp (-(b * t))‖ = t ^ (a.re - 1) * Real.exp (-b.re * t) := by
   rw [norm_mul, norm_cpow_eq_rpow_re_of_pos ht, Complex.norm_exp, sub_re, one_re]
   congr 2
   simp [mul_comm]
 
+/--
+@isnad1 id=continuo.0h2v.s6.862ec319f380 from=translated src=- shape=9bc69cc8 vocab=f938a45b
+-/
 theorem continuousOn_cpow_mul_exp_neg_mul (a b : ℂ) :
     ContinuousOn (fun t : ℝ => (t : ℂ) ^ (a - 1) * cexp (-(b * t))) (Ioi 0) := by
   refine continuousOn_of_forall_continuousAt fun t ht => ?_
   exact (continuousAt_ofReal_cpow_const t (a - 1) (Or.inr (ne_of_gt ht))).mul (by fun_prop)
 
+/--
+@isnad1 id=integrab.2h2v.s6.96506279be7f from=translated src=- shape=c902078e vocab=bf7f67f6
+-/
 theorem integrableOn_cpow_mul_exp_neg_mul {a b : ℂ} (ha : 0 < a.re) (hb : 0 < b.re) :
     IntegrableOn (fun t : ℝ => (t : ℂ) ^ (a - 1) * cexp (-(b * t))) (Ioi 0) := by
   refine ((integrableOn_rpow_mul_exp_neg_mul_Ioi (by linarith : (-1 : ℝ) < a.re - 1) hb).mono'
@@ -54,7 +66,9 @@ theorem integrableOn_cpow_mul_exp_neg_mul {a b : ℂ} (ha : 0 < a.re) (hb : 0 < 
   filter_upwards [ae_restrict_mem measurableSet_Ioi] with t ht
   rw [norm_cpow_mul_exp_neg_mul ht]
 
-/-- The Gamma-type integral is differentiable in the scaling parameter `b`.-/
+/-- The Gamma-type integral is differentiable in the scaling parameter `b`.
+@isnad1 id=hasderiv.2h2v.s7.06d8cee62b3b from=translated src=- shape=7c20d70b vocab=10e9e41e
+-/
 theorem hasDerivAt_integral_cpow_mul_exp_neg_mul {a b₀ : ℂ} (ha : 0 < a.re) (hb₀ : 0 < b₀.re) :
     HasDerivAt (fun b : ℂ => ∫ t : ℝ in Ioi 0, (t : ℂ) ^ (a - 1) * cexp (-(b * t)))
       (∫ t : ℝ in Ioi 0, (t : ℂ) ^ (a - 1) * (-t * cexp (-(b₀ * t)))) b₀ := by
@@ -96,7 +110,9 @@ theorem hasDerivAt_integral_cpow_mul_exp_neg_mul {a b₀ : ℂ} (ha : 0 < a.re) 
     have h1 : HasDerivAt (fun b : ℂ => -(b * t)) (-t) b := (hasDerivAt_mul_const (t : ℂ)).neg
     exact ((h1.cexp).const_mul ((t : ℂ) ^ (a - 1))).congr_deriv (by ring)
 
-/-- `∫₀^∞ t^{a-1} e^{-bt} dt = b^{-a} Γ(a)` for `Re a > 0` and `Re b > 0`.-/
+/-- `∫₀^∞ t^{a-1} e^{-bt} dt = b^{-a} Γ(a)` for `Re a > 0` and `Re b > 0`.
+@isnad1 id=eq.2h2v.s7.90fdda6f2606 from=translated src=- shape=413c5716 vocab=608e3cb7
+-/
 theorem integral_cpow_mul_exp_neg_mul_Ioi_of_re_pos {a b : ℂ} (ha : 0 < a.re) (hb : 0 < b.re) :
     ∫ t : ℝ in Ioi 0, (t : ℂ) ^ (a - 1) * cexp (-(b * t)) = b ^ (-a) * Complex.Gamma a := by
   set U : Set ℂ := {b | 0 < b.re} with hU

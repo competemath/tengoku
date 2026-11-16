@@ -35,7 +35,9 @@ namespace DeBruijnNewman
 /-! ### Numerical helpers -/
 
 /-- `exp x ≤ P₇(b)` for `x ≤ b ≤ 1`, with `P₇` the degree-`7` Taylor polynomial plus its
-remainder term.-/
+remainder term.
+@isnad1 id=le.4h3v.s7.36c286620690 from=translated src=- shape=cecb6a92 vocab=2391fd43
+-/
 theorem exp_le_of_le {x b q : ℝ} (hx : x ≤ b) (hb0 : 0 ≤ b) (hb1 : b ≤ 1)
     (hq : ∑ m ∈ Finset.range 7, b ^ m / m.factorial + b ^ 7 * 8 / (Nat.factorial 7 * 7) ≤ q) :
     Real.exp x ≤ q := by
@@ -44,7 +46,9 @@ theorem exp_le_of_le {x b q : ℝ} (hx : x ≤ b) (hb0 : 0 ≤ b) (hb1 : b ≤ 1
 
 /-! ### `M₀` along the imaginary axis -/
 
-/-- Moving up the imaginary axis by `δ ≥ 0` decreases `‖M₀‖` by at most `exp (δπ/4 + δ²/(4T-12))`.-/
+/-- Moving up the imaginary axis by `δ ≥ 0` decreases `‖M₀‖` by at most `exp (δπ/4 + δ²/(4T-12))`.
+@isnad1 id=le.2h2v.s7.22222d946110 from=translated src=- shape=d8cc296b vocab=99801640
+-/
 theorem norm_M₀_axis_le {T δ : ℝ} (hT : 3 < T) (hδ : 0 ≤ δ) :
     ‖M₀ ((T : ℂ) * I)‖ ≤
       ‖M₀ (((T + δ : ℝ) : ℂ) * I)‖ * Real.exp (δ * π / 4 + δ ^ 2 / (4 * T - 12)) := by
@@ -89,7 +93,9 @@ theorem norm_M₀_axis_le {T δ : ℝ} (hT : 3 < T) (hδ : 0 ≤ δ) :
   nlinarith [mul_le_mul_of_nonneg_left hIm hδ]
 
 /-- `‖M₀(iT)‖ ≤ exp (tπ²/64) ‖M₀(i(T + πt/8))‖ · 1.081` for `T ≥ 100`,
-`0 ≤ t ≤ 1/2`.-/
+`0 ≤ t ≤ 1/2`.
+@isnad1 id=le.3h2v.s7.cc40923fd0bc from=translated src=- shape=aa5984b5 vocab=95f9439b
+-/
 theorem norm_M₀_axis_le_shift {t T : ℝ} (ht0 : 0 ≤ t) (ht : t ≤ 1 / 2) (hT : 100 ≤ T) :
     ‖M₀ ((T : ℂ) * I)‖ ≤
       Real.exp (t * π ^ 2 / 64) * ‖M₀ (((T + π * t / 8 : ℝ) : ℂ) * I)‖ * 1.081 := by
@@ -121,7 +127,9 @@ theorem norm_M₀_axis_le_shift {t T : ℝ} (ht0 : 0 ≤ t) (ht : t ≤ 1 / 2) (
 /-! ### The Gaussian integrals `gaussJ` -/
 
 /-- A uniform bound on `gaussJ t σ α β` for `t ≤ 1/2`, `0 ≤ σ ≤ 1`, `|α| ≤ αmax` and
-`0 ≤ β ≤ βmax < 2`.-/
+`0 ≤ β ≤ βmax < 2`.
+@isnad1 id=le.7h6v.s8.db23291878fe from=translated src=- shape=221e79f2 vocab=241281c9
+-/
 theorem gaussJ_le {t σ α β αmax βmax : ℝ} (ht : t ≤ 1 / 2) (hσ0 : 0 ≤ σ)
     (hσ1 : σ ≤ 1) (hβ0 : 0 ≤ β) (hβ : β ≤ βmax) (hα : |α| ≤ αmax) (hβmax : βmax < 2) :
     gaussJ t σ α β ≤
@@ -168,7 +176,9 @@ theorem gaussJ_le {t σ α β αmax βmax : ℝ} (ht : t ≤ 1 / 2) (hσ0 : 0 �
 /-! ### The tail integral, numerically -/
 
 /-- `tailIntegral t T c σ ≤ 8.25` on the region, given the geometric inputs on the line through
-`c`: `lineA c T ≥ 2.572`, `lineB c T² ≤ 5.45`, `c ≥ 3.739` and `|Re α(iT) - log c| ≤ 0.067`.-/
+`c`: `lineA c T ≥ 2.572`, `lineB c T² ≤ 5.45`, `c ≥ 3.739` and `|Re α(iT) - log c| ≤ 0.067`.
+@isnad1 id=le.8h4v.s7.198130db5064 from=translated src=- shape=5981d9a0 vocab=dcff064b
+-/
 theorem tailIntegral_le {t T c σ : ℝ} (ht : t ≤ 1 / 2) (hT : 100 ≤ T)
     (hσ0 : 0 ≤ σ) (hσ1 : σ ≤ 1) (hA : 2.572 ≤ lineA c T) (hB : lineB c T ^ 2 ≤ 5.45)
     (hc : 3.739 ≤ c) (hα : |(alpha ((T : ℂ) * I)).re - Real.log c| ≤ 0.067) :
@@ -269,7 +279,9 @@ theorem tailIntegral_le {t T c σ : ℝ} (ht : t ≤ 1 / 2) (hT : 100 ≤ T)
 @[expose] noncomputable def clampC (N : ℕ) (a : ℝ) : ℝ := max (N + 1 / 4) (min (N + 3 / 4) a)
 
 /-- The geometric inputs of `tailIntegral_le` on the region: with `a = √(x/(4π))`,
-`N = cutoff t x`, `c = clampC N a` and `T = x/2`.-/
+`N = cutoff t x`, `c = clampC N a` and `T = x/2`.
+@isnad1 id=other.3h2v.s8.a9a3959f2238 from=translated src=- shape=dee148a4 vocab=9cb44489
+-/
 theorem line_params {t x : ℝ} (ht0 : 0 ≤ t) (ht : t ≤ 1 / 2) (hx : 200 ≤ x) :
     let a := Real.sqrt (x / (4 * π))
     let c := clampC (cutoff t x) a
@@ -343,6 +355,9 @@ theorem line_params {t x : ℝ} (ht0 : 0 ≤ t) (ht : t ≤ 1 / 2) (hx : 200 ≤
     have hinv' : 0 ≤ 1 / (1 + (x / 2) ^ 2) := by positivity
     rw [abs_le]; constructor <;> linarith
 
+/--
+@isnad1 id=le.0h4v.s4.5ee8dbfbd8c2 from=translated src=- shape=a76df7ca vocab=20fc9fa7
+-/
 theorem tailIntegral_nonneg (t T c σ : ℝ) : 0 ≤ tailIntegral t T c σ := by
   unfold tailIntegral gaussJ
   have := Real.sqrt_nonneg (π / lineA c T)
@@ -351,7 +366,9 @@ theorem tailIntegral_nonneg (t T c σ : ℝ) : 0 ≤ tailIntegral t T c σ := by
 /-! ### The tail estimate -/
 
 /-- The tail of the Riemann–Siegel expansion of `H t (x + iy)` on the region is at most
-`20 exp (tπ²/64) ‖M₀(i(x/2 + πt/8))‖ (1 + ε~(s₋) + ε~(conj s₊))`.-/
+`20 exp (tπ²/64) ‖M₀(i(x/2 + πt/8))‖ (1 + ε~(s₋) + ε~(conj s₊))`.
+@isnad1 id=tailesti.0h0v.s3.d2af43653280 from=translated src=- shape=e590c3e1 vocab=38176695
+-/
 theorem tailEstimateWith : TailEstimateWith 20 := by
   intro t x y hr
   obtain ⟨ht0, ht, hy0, hy1, hx⟩ := hr
@@ -396,7 +413,9 @@ theorem tailEstimateWith : TailEstimateWith 20 := by
     _ ≤ _ := by gcongr; linarith
 
 /-- Polymath Theorem 1.3 with the tail constant `20`: on the region `0 ≤ t ≤ 1/2`, `0 ≤ y ≤ 1`,
-`x ≥ 200`, `‖H_t(x+iy) - B_t(x+iy) f_t(x+iy)‖ ≤ ‖B_t(x+iy)‖ (errAB + 20 errC0)`.-/
+`x ≥ 200`, `‖H_t(x+iy) - B_t(x+iy) f_t(x+iy)‖ ≤ ‖B_t(x+iy)‖ (errAB + 20 errC0)`.
+@isnad1 id=effectiv.0h0v.s3.b065b5cfe93b from=translated src=- shape=e590c3e1 vocab=159f072f
+-/
 theorem effectiveApproximationWith : EffectiveApproximationWith 20 :=
   effectiveApproximation_of_tail (by norm_num) tailEstimateWith
 

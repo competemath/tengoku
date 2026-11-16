@@ -40,7 +40,9 @@ namespace DeBruijnNewman
 /-- `ϑ x = ∑_{n ∈ ℤ} e^{-π n² x}` for `x > 0` (Mathlib's `evenKernel 0`).-/
 noncomputable abbrev theta (x : ℝ) : ℝ := HurwitzZeta.evenKernel 0 x
 
-/-- The half-sum `∑_{m ≥ 1} e^{-π m² x} = (ϑ x - 1) / 2`.-/
+/-- The half-sum `∑_{m ≥ 1} e^{-π m² x} = (ϑ x - 1) / 2`.
+@isnad1 id=hassum.1h1v.s6.2ef5825c01ea from=translated src=- shape=f1029982 vocab=1fa0f791
+-/
 lemma hasSum_theta_nat {x : ℝ} (hx : 0 < x) :
     HasSum (fun n : ℕ => Real.exp (-(π * ((n : ℝ) + 1) ^ 2 * x))) ((theta x - 1) / 2) := by
   have h := (show HasSum (fun n : ℤ => Real.exp (-π * (n : ℝ) ^ 2 * x)) (theta x) by
@@ -59,6 +61,9 @@ lemma hasSum_theta_nat {x : ℝ} (hx : 0 < x) :
   rw [h5, show (theta x - 1) / 2 = (theta x + 1 - 2) / 2 by ring]
   exact h4
 
+/--
+@isnad1 id=eq.0h1v.s5.d9585f2a2031 from=translated src=- shape=d79cb806 vocab=813c281c
+-/
 lemma W_eq_theta (u : ℝ) : W u = Real.exp u * ((theta (Real.exp (4 * u)) - 1) / 2) := by
   unfold W
   rw [← (hasSum_theta_nat (Real.exp_pos _)).tsum_eq, ← tsum_mul_left]
@@ -68,6 +73,9 @@ lemma W_eq_theta (u : ℝ) : W u = Real.exp u * ((theta (Real.exp (4 * u)) - 1) 
   rw [← Real.exp_add]
   ring_nf
 
+/--
+@isnad1 id=eq.1h1v.s6.a3c91a5abde8 from=translated src=- shape=806f572e vocab=31c792f1
+-/
 lemma theta_eq_W {x : ℝ} (hx : 0 < x) :
     theta x = 1 + 2 * Real.exp (-(Real.log x / 4)) * W (Real.log x / 4) := by
   have := W_eq_theta (Real.log x / 4)
@@ -76,7 +84,9 @@ lemma theta_eq_W {x : ℝ} (hx : 0 < x) :
   field_simp
   ring
 
-/-- Functional equation `ϑ (1/x) = √x ϑ x` for `x > 0`.-/
+/-- Functional equation `ϑ (1/x) = √x ϑ x` for `x > 0`.
+@isnad1 id=eq.1h1v.s5.a9285c9cab8e from=translated src=- shape=dc5fa100 vocab=3412d146
+-/
 lemma theta_inv {x : ℝ} (hx : 0 < x) : theta x⁻¹ = x ^ (1 / 2 : ℝ) * theta x := by
   have := HurwitzZeta.evenKernel_functional_equation 0 x
   rw [← HurwitzZeta.evenKernel_eq_cosKernel_of_zero, one_div] at this
@@ -85,7 +95,9 @@ lemma theta_inv {x : ℝ} (hx : 0 < x) : theta x⁻¹ = x ^ (1 / 2 : ℝ) * thet
   have hx' : x ^ (1 / 2 : ℝ) ≠ 0 := (Real.rpow_pos_of_pos hx _).ne'
   field_simp
 
-/-- Derivative of `ϑ` at `1`, in terms of `W`.-/
+/-- Derivative of `ϑ` at `1`, in terms of `W`.
+@isnad1 id=hasderiv.0h0v.s6.735f98694baf from=translated src=- shape=3e082e78 vocab=ee798128
+-/
 lemma hasDerivAt_theta_one : HasDerivAt theta ((W' 0 - W 0) / 2) 1 := by
   have h1 : HasDerivAt (fun x : ℝ => Real.log x / 4) (1 / 4) 1 := by
     have := (Real.hasDerivAt_log one_ne_zero).div_const 4
@@ -100,6 +112,9 @@ lemma hasDerivAt_theta_one : HasDerivAt theta ((W' 0 - W 0) / 2) 1 := by
     exact theta_eq_W hx
   · simp; ring
 
+/--
+@isnad1 id=eq.0h0v.s6.776260ce125b from=translated src=- shape=18436b8b vocab=4fc5a97f
+-/
 lemma theta_deriv_one : (W' 0 - W 0) / 2 = -(1 / 4) * theta 1 := by
   -- differentiate ϑ (1/x) = √x ϑ x at x = 1
   have hL : HasDerivAt (fun x : ℝ => theta x⁻¹) (-((W' 0 - W 0) / 2)) 1 := by
@@ -121,7 +136,9 @@ lemma theta_deriv_one : (W' 0 - W 0) / 2 = -(1 / 4) * theta 1 := by
   linarith
 
 /-- The boundary value `W' 0 = -1/2`. It follows from the derivative of the theta functional
-equation at `1` (`theta_deriv_one`) and the value `theta 1 = 1 + 2 W 0`.-/
+equation at `1` (`theta_deriv_one`) and the value `theta 1 = 1 + 2 W 0`.
+@isnad1 id=eq.0h0v.s5.4470a9fcdce6 from=translated src=- shape=5f11d830 vocab=b313bad4
+-/
 theorem W'_zero : W' 0 = -(1 / 2) := by
   have h1 := theta_deriv_one
   have h2 : theta 1 = 1 + 2 * W 0 := by
@@ -130,16 +147,25 @@ theorem W'_zero : W' 0 = -(1 / 2) := by
   rw [h2] at h1
   linarith
 
+/--
+@isnad1 id=eq.1h1v.s6.7f27aafa6a30 from=translated src=- shape=13e82f1c vocab=a2c27540
+-/
 lemma f_modif_of_one_lt {x : ℝ} (hx : 1 < x) :
     (hurwitzEvenFEPair 0).f_modif x = ((theta x - 1 : ℝ) : ℂ) := by
   simp [WeakFEPair.f_modif, hurwitzEvenFEPair, indicator_of_mem (mem_Ioi.mpr hx),
     indicator_of_notMem (show x ∉ Ioo 0 1 from fun h => absurd h.2 (not_lt.mpr hx.le))]
 
+/--
+@isnad1 id=eq.2h1v.s6.c5bf56be262a from=translated src=- shape=5733d2ee vocab=a37ee0aa
+-/
 lemma f_modif_of_lt_one {x : ℝ} (hx0 : 0 < x) (hx : x < 1) :
     (hurwitzEvenFEPair 0).f_modif x = ((theta x - x ^ (-(1 / 2 : ℝ)) : ℝ) : ℂ) := by
   simp [WeakFEPair.f_modif, hurwitzEvenFEPair, indicator_of_mem (mem_Ioo.mpr ⟨hx0, hx⟩),
     indicator_of_notMem (show x ∉ Ioi 1 from not_lt.mpr hx.le)]
 
+/--
+@isnad1 id=eq.0h2v.s4.2c1954077db7 from=translated src=- shape=3d961295 vocab=af5a6e51
+-/
 lemma ofReal_exp_cpow (v : ℝ) (w : ℂ) : ((Real.exp v : ℝ) : ℂ) ^ w = Complex.exp (w * v) := by
   rw [Complex.ofReal_exp, Complex.cpow_def_of_ne_zero (Complex.exp_ne_zero _),
     Complex.log_exp (by simp; linarith [Real.pi_pos]) (by simp; linarith [Real.pi_pos]), mul_comm]
@@ -148,6 +174,9 @@ lemma ofReal_exp_cpow (v : ℝ) (w : ℂ) : ((Real.exp v : ℝ) : ℂ) ^ w = Com
 noncomputable def G (w : ℂ) (v : ℝ) : ℂ :=
   |Real.exp v| • (((Real.exp v : ℝ) : ℂ) ^ (w - 1) • (hurwitzEvenFEPair 0).f_modif (Real.exp v))
 
+/--
+@isnad1 id=eq.0h1v.s6.e9a84a9583b2 from=translated src=- shape=08ecbdcc vocab=e2180d26
+-/
 lemma Λ₀_eq_integral_G (w : ℂ) : (hurwitzEvenFEPair 0).Λ₀ w = ∫ v, G w v := by
   have := integral_image_eq_integral_abs_deriv_smul (s := univ) MeasurableSet.univ
     (fun x _ => (Real.hasDerivAt_exp x).hasDerivWithinAt) Real.exp_injective.injOn
@@ -155,6 +184,9 @@ lemma Λ₀_eq_integral_G (w : ℂ) : (hurwitzEvenFEPair 0).Λ₀ w = ∫ v, G w
   rw [image_univ, Real.range_exp, Measure.restrict_univ] at this
   exact this
 
+/--
+@isnad1 id=integrab.0h1v.s5.759907498668 from=translated src=- shape=2790faf7 vocab=4bebb676
+-/
 lemma integrable_G (w : ℂ) : Integrable (G w) := by
   have hm : MellinConvergent (hurwitzEvenFEPair 0).f_modif w :=
     ((hurwitzEvenFEPair 0).isStrongFEPair_toStrongFEPair.hasMellin w).1
@@ -165,6 +197,9 @@ lemma integrable_G (w : ℂ) : Integrable (G w) := by
   have h := this hm
   rwa [IntegrableOn, Measure.restrict_univ] at h
 
+/--
+@isnad1 id=eq.1h2v.s5.4b7796ed63ae from=translated src=- shape=050d2762 vocab=dc4484c0
+-/
 lemma G_of_pos (w : ℂ) {v : ℝ} (hv : 0 < v) :
     G w v = ((theta (Real.exp v) - 1 : ℝ) : ℂ) * Complex.exp (w * v) := by
   unfold G
@@ -177,6 +212,9 @@ lemma G_of_pos (w : ℂ) {v : ℝ} (hv : 0 < v) :
   congr 2
   ring
 
+/--
+@isnad1 id=eq.1h2v.s6.8e2e26bcf091 from=translated src=- shape=1ef6fc9d vocab=36ee7ab9
+-/
 lemma G_of_neg (w : ℂ) {v : ℝ} (hv : 0 < v) :
     G w (-v) = ((theta (Real.exp v) - 1 : ℝ) : ℂ) * Complex.exp ((1 / 2 - w) * v) := by
   unfold G
@@ -206,7 +244,9 @@ lemma G_of_neg (w : ℂ) {v : ℝ} (hv : 0 < v) :
   push_cast
   ring
 
-/-- `Λ₀ w = ∫₀^∞ (ϑ(e^v) - 1) (e^{wv} + e^{(1/2 - w) v}) dv`.-/
+/-- `Λ₀ w = ∫₀^∞ (ϑ(e^v) - 1) (e^{wv} + e^{(1/2 - w) v}) dv`.
+@isnad1 id=eq.0h1v.s7.d29f31fe8645 from=translated src=- shape=80f16a18 vocab=7a4d8527
+-/
 lemma Λ₀_eq (w : ℂ) :
     (hurwitzEvenFEPair 0).Λ₀ w =
       ∫ v in Ioi 0, ((theta (Real.exp v) - 1 : ℝ) : ℂ) *
@@ -225,7 +265,9 @@ lemma Λ₀_eq (w : ℂ) :
   rw [G_of_neg w hv, G_of_pos w hv]
   ring
 
-/-- Riemann's representation: `Λ₀((1 + iz)/2) = 8 ∫₀^∞ cos(zu) W(u) du`.-/
+/-- Riemann's representation: `Λ₀((1 + iz)/2) = 8 ∫₀^∞ cos(zu) W(u) du`.
+@isnad1 id=eq.0h1v.s6.7ad04bcf4642 from=translated src=- shape=a77058fb vocab=9afd51a9
+-/
 theorem completedRiemannZeta₀_eq_integral (z : ℂ) :
     completedRiemannZeta₀ ((1 + Complex.I * z) / 2) =
       8 * ∫ u : ℝ in Ioi 0, Complex.cos (z * u) * (W u : ℂ) := by

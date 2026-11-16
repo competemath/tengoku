@@ -28,7 +28,9 @@ variable {X : ι → Type*} [∀ i, MeasurableSpace (X i)]
 variable (f : (i j : ι) → X j → 𝕜) (μ : (i : ι) → Measure (X i))
 
 /-- Integrating each column of a matrix separately is the same as integrating its determinant over
-the product measure.-/
+the product measure.
+@isnad1 id=eq.1h5v.s8.230f03212ded from=translated src=- shape=3fa74522 vocab=28bfdf2c
+-/
 theorem integral_det_columnwise [∀ i, SigmaFinite (μ i)]
     (hf : ∀ i j, Integrable (f i j) (μ j)) :
     Matrix.det (fun i j ↦ ∫ y, f i j y ∂(μ j)) =
@@ -61,7 +63,9 @@ theorem integral_det_columnwise [∀ i, SigmaFinite (μ i)]
       exact (Matrix.det_apply' fun i j : ι ↦ f i j (x j)).symm
 
 /-- Integrating each row of a matrix separately is the same as integrating its determinant over the
-product measure.-/
+product measure.
+@isnad1 id=eq.1h5v.s8.be9f983302b7 from=translated src=- shape=3cf2a929 vocab=28bfdf2c
+-/
 theorem integral_det_rowwise [∀ i, SigmaFinite (μ i)]
     (f : (i : ι) → ι → X i → 𝕜) (hf : ∀ i j, Integrable (f i j) (μ i)) :
     Matrix.det (fun i j ↦ ∫ y, f i j y ∂(μ i)) =

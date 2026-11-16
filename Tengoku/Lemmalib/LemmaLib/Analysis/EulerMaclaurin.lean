@@ -42,24 +42,39 @@ noncomputable def P2 (u : ℝ) : ℂ := ((u : ℂ) ^ 2 - u) / 2 + 1 / 12
 /-- `P3 u = (2u³ - 3u² + u)/12`; `P3' = P2` and `P3 0 = P3 1 = 0`.-/
 noncomputable def P3 (u : ℝ) : ℂ := (2 * (u : ℂ) ^ 3 - 3 * (u : ℂ) ^ 2 + u) / 12
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.806625de8cc5 from=translated src=- shape=17400531 vocab=4402d5d1
+-/
 theorem hasDerivAt_ofReal_sub (k u : ℝ) :
     HasDerivAt (fun x : ℝ => ((x - k : ℝ) : ℂ)) 1 u :=
   ((hasDerivAt_id u).sub_const k).ofReal_comp
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.ddb06be0d398 from=translated src=- shape=17400531 vocab=620d6d78
+-/
 theorem hasDerivAt_P1 (k u : ℝ) : HasDerivAt (fun x : ℝ => P1 (x - k)) 1 u :=
   (hasDerivAt_ofReal_sub k u).sub_const _
 
+/--
+@isnad1 id=hasderiv.0h3v.s7.788da95a45bc from=translated src=- shape=e723f76a vocab=6c61663e
+-/
 theorem hasDerivAt_ofReal_sub_pow (k u : ℝ) (n : ℕ) :
     HasDerivAt (fun x : ℝ => ((x - k : ℝ) : ℂ) ^ n) (n * ((u - k : ℝ) : ℂ) ^ (n - 1)) u := by
   have := (hasDerivAt_pow n (((u - k : ℝ) : ℂ))).comp u (hasDerivAt_ofReal_sub k u)
   simpa [Function.comp_def] using this
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.a3b6b49d554c from=translated src=- shape=750b82a5 vocab=8e73262b
+-/
 theorem hasDerivAt_P2 (k u : ℝ) : HasDerivAt (fun x : ℝ => P2 (x - k)) (P1 (u - k)) u := by
   have h := hasDerivAt_ofReal_sub k u
   have h2 := hasDerivAt_ofReal_sub_pow k u 2
   have := ((h2.sub h).div_const 2).add_const (1 / 12 : ℂ)
   exact this.congr_deriv (by unfold P1; norm_num; ring)
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.8334172e829b from=translated src=- shape=750b82a5 vocab=c26eb9a8
+-/
 theorem hasDerivAt_P3 (k u : ℝ) : HasDerivAt (fun x : ℝ => P3 (x - k)) (P2 (u - k)) u := by
   have h := hasDerivAt_ofReal_sub k u
   have h2 := hasDerivAt_ofReal_sub_pow k u 2
@@ -67,7 +82,9 @@ theorem hasDerivAt_P3 (k u : ℝ) : HasDerivAt (fun x : ℝ => P3 (x - k)) (P2 (
   have := (((h3.const_mul 2).sub (h2.const_mul 3)).add h).div_const 12
   exact this.congr_deriv (by unfold P2; norm_num; ring)
 
-/-- `|P3 u| ≤ 1/120` for `0 ≤ u ≤ 1`.-/
+/-- `|P3 u| ≤ 1/120` for `0 ≤ u ≤ 1`.
+@isnad1 id=le.2h1v.s5.f8bca1254fd2 from=translated src=- shape=55a573bf vocab=471d283a
+-/
 theorem norm_P3_le {u : ℝ} (hu0 : 0 ≤ u) (hu1 : u ≤ 1) : ‖P3 u‖ ≤ 1 / 120 := by
   have : P3 u = ((2 * u ^ 3 - 3 * u ^ 2 + u) / 12 : ℝ) := by simp [P3]
   rw [this, Complex.norm_real, Real.norm_eq_abs, abs_le]
@@ -84,7 +101,9 @@ theorem norm_P3_le {u : ℝ} (hu0 : 0 ≤ u) (hu1 : u ≤ 1) : ‖P3 u‖ ≤ 1 
   constructor <;> linarith [this.1, this.2]
 
 /-- Euler–Maclaurin on a unit interval, with the third-order remainder:
-`∫_k^{k+1} f = (f k + f (k+1))/2 - (f' (k+1) - f' k)/12 - ∫_k^{k+1} f''' x * P3 (x - k)`.-/
+`∫_k^{k+1} f = (f k + f (k+1))/2 - (f' (k+1) - f' k)/12 - ∫_k^{k+1} f''' x * P3 (x - k)`.
+@isnad1 id=eq.4h5v.s8.ce4e5b201dee from=translated src=- shape=f958626f vocab=57d9f2f4
+-/
 theorem integral_unit_interval {f f' f'' f''' : ℝ → ℂ} (k : ℝ)
     (hf : ∀ x ∈ Icc k (k + 1), HasDerivAt f (f' x) x)
     (hf' : ∀ x ∈ Icc k (k + 1), HasDerivAt f' (f'' x) x)
@@ -129,7 +148,9 @@ theorem integral_unit_interval {f f' f'' f''' : ℝ → ℂ} (k : ℝ)
   ring
 
 /-- Euler–Maclaurin on `[0, n]`:
-`∑_{k ≤ n} f k = ∫_0^n f + (f 0 + f n)/2 + (f' n - f' 0)/12 + ∑_{k<n} ∫_k^{k+1} f''' x P3 (x-k)`.-/
+`∑_{k ≤ n} f k = ∫_0^n f + (f 0 + f n)/2 + (f' n - f' 0)/12 + ∑_{k<n} ∫_k^{k+1} f''' x P3 (x-k)`.
+@isnad1 id=eq.4h5v.s8.af4c0f5a71a4 from=translated src=- shape=afdb0198 vocab=d94c4c92
+-/
 theorem sum_eq_integral_add {f f' f'' f''' : ℝ → ℂ} (n : ℕ)
     (hf : ∀ x, HasDerivAt f (f' x) x) (hf' : ∀ x, HasDerivAt f' (f'' x) x)
     (hf'' : ∀ x, HasDerivAt f'' (f''' x) x) (hcont : Continuous f''') :

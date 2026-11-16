@@ -40,9 +40,15 @@ namespace DeBruijnNewman
 /-- The Gaussian weight `e^{-v²}/√π`.-/
 @[expose] noncomputable def gauss (v : ℝ) : ℝ := Real.exp (-v ^ 2) / Real.sqrt π
 
+/--
+@isnad1 id=continuo.0h0v.s3.711e05c3d185 from=translated src=- shape=e3d48bcb vocab=379d600f
+-/
 @[fun_prop]
 lemma continuous_gauss : Continuous gauss := by unfold gauss; fun_prop
 
+/--
+@isnad1 id=eq.0h1v.s6.0a1c1e839e5c from=translated src=- shape=28206b56 vocab=1acdf8be
+-/
 lemma integral_cexp_neg_sq_add_mul (c : ℂ) :
     ∫ v : ℝ, Complex.exp (-(v : ℂ) ^ 2 + c * v) = (Real.sqrt π : ℂ) * Complex.exp (c ^ 2 / 4) := by
   have := integral_cexp_quadratic (b := -1) (by simp) c 0
@@ -53,6 +59,9 @@ lemma integral_cexp_neg_sq_add_mul (c : ℂ) :
   ext v
   ring_nf
 
+/--
+@isnad1 id=integrab.0h1v.s6.95b1636e003e from=translated src=- shape=4b6d8692 vocab=3f72e1b8
+-/
 lemma integrable_cexp_neg_sq_add_mul (c : ℂ) :
     Integrable fun v : ℝ => Complex.exp (-(v : ℂ) ^ 2 + c * v) := by
   have := integrable_cexp_quadratic' (b := -1) (by simp) c 0
@@ -60,7 +69,9 @@ lemma integrable_cexp_neg_sq_add_mul (c : ℂ) :
   simp only
   ring_nf
 
-/-- `e^{t u²} cos(z u) = ∫ cos((z - 2i√t v) u) e^{-v²}/√π dv`.-/
+/-- `e^{t u²} cos(z u) = ∫ cos((z - 2i√t v) u) e^{-v²}/√π dv`.
+@isnad1 id=eq.1h3v.s7.929c3fffc8ba from=translated src=- shape=2dfbc199 vocab=fbcde1c0
+-/
 lemma exp_mul_cos_eq_integral {t : ℝ} (ht : 0 ≤ t) (z : ℂ) (u : ℝ) :
     (Real.exp (t * u ^ 2) : ℂ) * Complex.cos (z * u) =
       ∫ v : ℝ, Complex.cos ((z - 2 * Complex.I * Real.sqrt t * v) * u) * (gauss v : ℂ) := by
@@ -102,17 +113,25 @@ lemma exp_mul_cos_eq_integral {t : ℝ} (ht : 0 ≤ t) (z : ℂ) (u : ℝ) :
   push_cast
   field_simp
 
+/--
+@isnad1 id=continuo.0h0v.s3.e01b2bd6f575 from=translated src=- shape=e3d48bcb vocab=ea4d1f55
+-/
 @[fun_prop]
 lemma continuous_phi : Continuous phi := by
   have : phi = fun u => (W'' u - W u) / 8 := funext phi_eq
   rw [this]; fun_prop
 
+/--
+@isnad1 id=le.1h1v.s5.26c7918a0754 from=translated src=- shape=3fb2c592 vocab=00cfa224
+-/
 lemma norm_phi_le {u : ℝ} (hu : 0 ≤ u) : ‖phi u‖ ≤ C / 4 * g u := by
   rw [phi_eq, norm_div, Real.norm_ofNat]
   have := (norm_sub_le (W'' u) (W u)).trans (add_le_add (norm_W''_le hu) (norm_W_le hu))
   linarith
 
-/-- The `u`-factor of the dominating function in the Fubini argument.-/
+/-- The `u`-factor of the dominating function in the Fubini argument.
+@isnad1 id=integrab.2h2v.s6.bdc6b51b34e5 from=translated src=- shape=f1bdfd2c vocab=f3444267
+-/
 lemma integrableOn_norm_phi_mul_exp {t : ℝ} (ht : 0 ≤ t) (b : ℝ) (hb : 0 ≤ b) :
     IntegrableOn (fun u : ℝ => ‖phi u‖ * Real.exp (t * u ^ 2 + b * |u|)) (Ioi 0) := by
   refine integrableOn_Ioi_of_le_exp_neg (by fun_prop) (A := C / 4 * K t b) fun u hu => ?_
@@ -124,7 +143,9 @@ lemma integrableOn_norm_phi_mul_exp {t : ℝ} (ht : 0 ≤ t) (b : ℝ) (hb : 0 �
         mul_le_mul_of_nonneg_left (exp_mul_g_le ht hb hu) (by linarith [C_nonneg])
     _ = _ := by ring
 
-/-- Pointwise domination of the Fubini integrand.-/
+/-- Pointwise domination of the Fubini integrand.
+@isnad1 id=le.1h4v.s7.9db110e619d6 from=translated src=- shape=a728741a vocab=69139ade
+-/
 lemma norm_integrand_le {t : ℝ} (ht : 0 ≤ t) (z : ℂ) (u v : ℝ) :
     ‖(phi u : ℂ) * (Complex.cos ((z - 2 * Complex.I * Real.sqrt t * v) * u) * (gauss v : ℂ))‖ ≤
       (‖phi u‖ * Real.exp (2 * t * u ^ 2 + |z.im| * |u|)) *
@@ -163,7 +184,9 @@ lemma norm_integrand_le {t : ℝ} (ht : 0 ≤ t) (z : ℂ) (u v : ℝ) :
     _ = _ := by ring
 
 /-- **Heat-kernel representation.** For `t ≥ 0`,
-`H t z = ∫ H 0 (z - 2 i √t v) e^{-v²}/√π dv`.-/
+`H t z = ∫ H 0 (z - 2 i √t v) e^{-v²}/√π dv`.
+@isnad1 id=eq.1h2v.s6.6cae709d0b84 from=translated src=- shape=cec78e5e vocab=e972654a
+-/
 theorem H_eq_integral_H_zero {t : ℝ} (ht : 0 ≤ t) (z : ℂ) :
     H t z = ∫ v : ℝ, H 0 (z - 2 * Complex.I * Real.sqrt t * v) * (gauss v : ℂ) := by
   set F : ℝ → ℝ → ℂ := fun u v =>
@@ -199,7 +222,9 @@ theorem H_eq_integral_H_zero {t : ℝ} (ht : 0 ≤ t) (z : ℂ) :
         ring
 
 /-- The heat flow of `ξ`: for `t ≥ 0`,
-`H t z = ∫ (1/16 - (1 + (z - 2i√t v)²)/64 · Λ₀((1 + i z)/2 + √t v)) e^{-v²}/√π dv`.-/
+`H t z = ∫ (1/16 - (1 + (z - 2i√t v)²)/64 · Λ₀((1 + i z)/2 + √t v)) e^{-v²}/√π dv`.
+@isnad1 id=eq.1h2v.s7.b4ecbbbd851b from=translated src=- shape=d7cb6acb vocab=2201e3e2
+-/
 theorem H_eq_integral_completedRiemannZeta₀ {t : ℝ} (ht : 0 ≤ t) (z : ℂ) :
     H t z = ∫ v : ℝ, (1 / 16 - (1 + (z - 2 * Complex.I * Real.sqrt t * v) ^ 2) / 64 *
       completedRiemannZeta₀ ((1 + Complex.I * z) / 2 + Real.sqrt t * v)) * (gauss v : ℂ) := by

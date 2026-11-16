@@ -21,7 +21,9 @@ namespace Tengoku.Lemmalib end Tengoku.Lemmalib open Tengoku.Lemmalib
 open Filter
 
 /-- If every fixed term of a sequence is eventually at distance at least `r` from its tail, then the
-sequence has a strictly increasing `r`-separated subsequence.-/
+sequence has a strictly increasing `r`-separated subsequence.
+@isnad1 id=ex.1h3v.s6.58acad8410de from=translated src=- shape=54c0392d vocab=79320556
+-/
 theorem _root_.Tengoku.Lemmalib.exists_strictMono_dist_ge {X : Type*} [PseudoMetricSpace X] (x : ℕ → X) (r : ℝ)
     (h : ∀ i, ∀ᶠ j in atTop, r ≤ dist (x j) (x i)) :
     ∃ s : ℕ → ℕ, StrictMono s ∧ ∀ k l, k < l → r ≤ dist (x (s l)) (x (s k)) := by

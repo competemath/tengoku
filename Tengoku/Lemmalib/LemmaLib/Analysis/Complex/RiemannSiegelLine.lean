@@ -35,12 +35,18 @@ local notation "ω" => Complex.rsOmega
 
 namespace Complex
 
+/--
+@isnad1 id=eq.0h2v.s6.6f4f005e3afd from=translated src=- shape=3a304937 vocab=3582ad35
+-/
 theorem re_sub_im_sub_rsOmega_mul (c : ℝ) (v : ℂ) :
     ((c : ℂ) - ω * v).re - ((c : ℂ) - ω * v).im = c + Real.sqrt 2 * v.im := by
   rw [rsOmega_eq]
   simp only [sub_re, sub_im, ofReal_re, ofReal_im, mul_re, mul_im, add_re, add_im, I_re, I_im]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s6.d7f724e70f19 from=translated src=- shape=25765494 vocab=0665ea90
+-/
 theorem im_sub_rsOmega_mul (c : ℝ) (v : ℂ) :
     ((c : ℂ) - ω * v).im = -(Real.sqrt 2 / 2) * (v.re + v.im) := by
   rw [rsOmega_eq]
@@ -48,7 +54,9 @@ theorem im_sub_rsOmega_mul (c : ℝ) (v : ℂ) :
   ring
 
 /-- The Gaussian bound `exp (-a (Im u)²)` on the strip, in the coordinate `ξ` with
-`u = c - ω ξ`, is dominated by a Gaussian in `Re ξ`.-/
+`u = c - ω ξ`, is dominated by a Gaussian in `Re ξ`.
+@isnad1 id=le.2h4v.s7.da5e3c9d655c from=translated src=- shape=d8948553 vocab=56530c9b
+-/
 theorem exp_neg_mul_im_sq_le {a : ℝ} (ha : 0 < a) {β : ℝ} (c : ℝ) {v : ℂ} (hv : |v.im| ≤ β) :
     Real.exp (-a * ((c : ℂ) - ω * v).im ^ 2) ≤
       Real.exp (a * β ^ 2 / 2) * Real.exp (-(a / 4) * v.re ^ 2) := by
@@ -69,12 +77,17 @@ theorem exp_neg_mul_im_sq_le {a : ℝ} (ha : 0 < a) {β : ℝ} (c : ℝ) {v : �
     _ ≤ a * β ^ 2 / 2 + -(a / 4) * v.re ^ 2 := by nlinarith
 
 /-- The change of variables between two Riemann–Siegel lines: `c' - ω x = c - ω (x + d)` with
-`d = (c - c') conj ω`.-/
+`d = (c - c') conj ω`.
+@isnad1 id=eq.0h3v.s6.584a4605f7e9 from=translated src=- shape=a12c872e vocab=237e6eb4
+-/
 theorem rsLine_shift_eq (c c' : ℝ) (x : ℂ) :
     (c' : ℂ) - ω * x = c - ω * (x + (c - c') * (starRingEnd ℂ) ω) := by
   have := conj_rsOmega_mul
   linear_combination ((c : ℂ) - c') * this
 
+/--
+@isnad1 id=eq.0h2v.s6.2529cf835d9b from=translated src=- shape=6aa002cd vocab=7eb991a2
+-/
 theorem im_sub_mul_conj_rsOmega (c c' : ℝ) :
     (((c : ℂ) - c') * (starRingEnd ℂ) ω).im = (c' - c) * (Real.sqrt 2 / 2) := by
   rw [show ((c : ℂ) - c') = ((c - c' : ℝ) : ℂ) by push_cast; rfl, Complex.im_ofReal_mul,
@@ -82,7 +95,9 @@ theorem im_sub_mul_conj_rsOmega (c c' : ℝ) :
   ring
 
 /-- Shifting a Riemann–Siegel line across a region where the integrand is holomorphic with
-Gaussian decay: `∫ -ω F (c' - ω x) dx = ∫ -ω F (c - ω x) dx`.-/
+Gaussian decay: `∫ -ω F (c' - ω x) dx = ∫ -ω F (c - ω x) dx`.
+@isnad1 id=eq.4h5v.s8.74babf29ac39 from=translated src=- shape=2a205cf5 vocab=fd105402
+-/
 theorem integral_rsLine_eq {F : ℂ → ℂ} {c c' a C : ℝ} (hcc' : c ≤ c') (ha : 0 < a)
     (hF : ∀ u : ℂ, u.re - u.im ∈ Icc c c' → DifferentiableAt ℂ F u)
     (hbound : ∀ u : ℂ, u.re - u.im ∈ Icc c c' → ‖F u‖ ≤ C * Real.exp (-a * u.im ^ 2)) :
@@ -131,7 +146,9 @@ theorem integral_rsLine_eq {F : ℂ → ℂ} {c c' a C : ℝ} (hcc' : c ≤ c') 
 
 /-- Crossing a simple pole with a Riemann–Siegel line. If `N` is holomorphic with Gaussian decay
 on the closed strip `c ≤ Re u - Im u ≤ c'` and `c < Re p - Im p < c'`, then
-`∫ -ω N (c' - ω x) / (c' - ω x - p) dx - ∫ -ω N (c - ω x) / (c - ω x - p) dx = -2 π i N p`.-/
+`∫ -ω N (c' - ω x) / (c' - ω x - p) dx - ∫ -ω N (c - ω x) / (c - ω x - p) dx = -2 π i N p`.
+@isnad1 id=eq.5h6v.s8.3ef3dd181df2 from=translated src=- shape=c1a891a8 vocab=cbafa98a
+-/
 theorem integral_rsLine_sub_eq_of_pole {N : ℂ → ℂ} {p : ℂ} {c c' a C : ℝ} (ha : 0 < a)
     (hcp : c < p.re - p.im) (hpc' : p.re - p.im < c')
     (hN : ∀ u : ℂ, u.re - u.im ∈ Icc c c' → DifferentiableAt ℂ N u)

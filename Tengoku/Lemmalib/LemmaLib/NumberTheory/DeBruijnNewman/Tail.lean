@@ -43,7 +43,9 @@ namespace DeBruijnNewman
 
 /-! ### `M₀` along a horizontal line -/
 
-/-- Second-order Taylor bound for `log M₀` along the horizontal line `Im s = T`.-/
+/-- Second-order Taylor bound for `log M₀` along the horizontal line `Im s = T`.
+@isnad1 id=le.1h2v.s7.f60dceb05063 from=translated src=- shape=dafa7348 vocab=18387d71
+-/
 theorem re_logM₀_horizontal_le {T : ℝ} (hT : 3 < T) (σ : ℝ) :
     (logM₀ ((σ : ℂ) + T * I)).re ≤
       (logM₀ ((T : ℂ) * I)).re + σ * (alpha ((T : ℂ) * I)).re + σ ^ 2 / (4 * T - 12) := by
@@ -70,7 +72,9 @@ theorem re_logM₀_horizontal_le {T : ℝ} (hT : 3 < T) (σ : ℝ) :
     field_simp
   linarith
 
-/-- `‖M₀(σ + iT)‖ ≤ ‖M₀(iT)‖ exp (σ Re α(iT) + σ²/(4T - 12))` for `T > 3`.-/
+/-- `‖M₀(σ + iT)‖ ≤ ‖M₀(iT)‖ exp (σ Re α(iT) + σ²/(4T - 12))` for `T > 3`.
+@isnad1 id=le.1h2v.s7.1875252fad0d from=translated src=- shape=fa7e472c vocab=6efb5d14
+-/
 theorem norm_M₀_horizontal_le {T : ℝ} (hT : 3 < T) (σ : ℝ) :
     ‖M₀ ((σ : ℂ) + T * I)‖ ≤
       ‖M₀ ((T : ℂ) * I)‖ * Real.exp (σ * (alpha ((T : ℂ) * I)).re + σ ^ 2 / (4 * T - 12)) := by
@@ -82,7 +86,9 @@ theorem norm_M₀_horizontal_le {T : ℝ} (hT : 3 < T) (σ : ℝ) :
 
 /-! ### The prefactor `s(s-1)/16 Γ_ℝ(s)` -/
 
-/-- Stirling: `‖s(s-1)/16 Γ_ℝ(s)‖ ≤ ‖M₀ s‖ exp (1/(6 (Im s - 0.8)))` for `Im s > 0.8`.-/
+/-- Stirling: `‖s(s-1)/16 Γ_ℝ(s)‖ ≤ ‖M₀ s‖ exp (1/(6 (Im s - 0.8)))` for `Im s > 0.8`.
+@isnad1 id=le.1h1v.s7.c8521aca4c66 from=translated src=- shape=3c0d8f99 vocab=1235846e
+-/
 theorem norm_prefactor_le {s : ℂ} (hs : 0.8 < s.im) :
     ‖s * (s - 1) / 16 * Gammaℝ s‖ ≤ ‖M₀ s‖ * Real.exp (1 / (6 * (s.im - 0.8))) := by
   obtain ⟨E, hE, hr⟩ := exists_r₀_eq 1 hs
@@ -105,6 +111,9 @@ theorem norm_prefactor_le {s : ℂ} (hs : 0.8 < s.im) :
       2 / Real.sqrt 3 * Real.exp (lineB c T ^ 2 / (3 * lineA c T)) *
         Real.exp (σ ^ 2 / (lineA c T * c ^ 2)))
 
+/--
+@isnad1 id=le.2h3v.s7.1d8edd2554c5 from=translated src=- shape=bc120013 vocab=29071a50
+-/
 theorem dist_int_of_mem_Icc {c : ℝ} {N : ℕ} (hc : (N : ℝ) + 1 / 4 ≤ c) (hc' : c ≤ N + 3 / 4) :
     ∀ m : ℤ, 1 / 4 ≤ |c - m| := by
   intro m
@@ -115,7 +124,9 @@ theorem dist_int_of_mem_Icc {c : ℝ} {N : ℕ} (hc : (N : ℝ) + 1 / 4 ≤ c) (
     exact le_trans (by linarith) (neg_le_abs _)
 
 /-- The bound on the Riemann–Siegel integral along the line through `c ∈ [N+1/4, N+3/4]`,
-valid for every real `σ`.-/
+valid for every real `σ`.
+@isnad1 id=le.4h4v.s8.c81d6278330b from=translated src=- shape=8cb636e0 vocab=e59c908f
+-/
 theorem norm_rsIntegral_le_tail {T c σ : ℝ} {N : ℕ} (hT : 0 ≤ T) (hc : (N : ℝ) + 1 / 4 ≤ c)
     (hc' : c ≤ N + 3 / 4) (hA : 0 < lineA c T) :
     ‖rsIntegral ((σ : ℂ) + T * I) (N + 1 / 2)‖ ≤
@@ -163,7 +174,9 @@ theorem norm_rsIntegral_le_tail {T c σ : ℝ} {N : ℕ} (hT : 0 ≤ T) (hc : (N
     nlinarith
 
 /-- The remainder of the Riemann–Siegel formula on the horizontal line `Im s = T`:
-`‖remainder N (σ + iT)‖ ≤ ‖M₀(iT)‖ tailK T c σ`.-/
+`‖remainder N (σ + iT)‖ ≤ ‖M₀(iT)‖ tailK T c σ`.
+@isnad1 id=le.4h4v.s7.99dca8081375 from=translated src=- shape=f449c812 vocab=065cc72f
+-/
 theorem norm_remainder_le {T c σ : ℝ} {N : ℕ} (hT : 3 < T) (hc : (N : ℝ) + 1 / 4 ≤ c)
     (hc' : c ≤ N + 3 / 4) (hA : 0 < lineA c T) :
     ‖remainder N ((σ : ℂ) + T * I)‖ ≤ ‖M₀ ((T : ℂ) * I)‖ * tailK T c σ := by
@@ -194,6 +207,9 @@ theorem norm_remainder_le {T c σ : ℝ} {N : ℕ} (hT : 3 < T) (hc : (N : ℝ) 
 
 /-! ### Gaussian integrals of `exp (quadratic)` -/
 
+/--
+@isnad1 id=eq.0h4v.s7.2a18a33df23d from=translated src=- shape=8879ca5e vocab=d0a3ab02
+-/
 theorem exp_quadratic_mul_gauss (κ L A v : ℝ) :
     Real.exp (κ * v ^ 2 + L * v + A) * gauss v =
       Real.exp A / Real.sqrt π * Real.exp (L * v - (1 - κ) * v ^ 2) := by
@@ -202,6 +218,9 @@ theorem exp_quadratic_mul_gauss (κ L A v : ℝ) :
   congr 2
   ring
 
+/--
+@isnad1 id=eq.1h3v.s7.78e551212c91 from=translated src=- shape=be4fbfcd vocab=31d0dc9b
+-/
 theorem integral_exp_quadratic_mul_gauss {κ : ℝ} (hκ : κ < 1) (L A : ℝ) :
     ∫ v : ℝ, Real.exp (κ * v ^ 2 + L * v + A) * gauss v =
       Real.exp (A + L ^ 2 / (4 * (1 - κ))) / Real.sqrt (1 - κ) := by
@@ -216,6 +235,9 @@ theorem integral_exp_quadratic_mul_gauss {κ : ℝ} (hκ : κ < 1) (L A : ℝ) :
   Real.exp (α * σ + β * σ ^ 2 + t * (α + 2 * β * σ) ^ 2 / (4 * (1 - β * t))) /
     Real.sqrt (1 - β * t)
 
+/--
+@isnad1 id=eq.1h5v.s7.1f35e775b297 from=translated src=- shape=2c5fbc48 vocab=a123a563
+-/
 theorem exp_shift_eq (t σ α β v : ℝ) (ht : 0 ≤ t) :
     Real.exp (α * (σ + Real.sqrt t * v) + β * (σ + Real.sqrt t * v) ^ 2) =
       Real.exp (β * t * v ^ 2 + Real.sqrt t * (α + 2 * β * σ) * v + (α * σ + β * σ ^ 2)) := by
@@ -225,12 +247,18 @@ theorem exp_shift_eq (t σ α β v : ℝ) (ht : 0 ≤ t) :
   rw [this]
   ring
 
+/--
+@isnad1 id=integrab.2h4v.s7.2b8328502d2e from=translated src=- shape=1f061f7d vocab=c107f9ec
+-/
 theorem integrable_exp_shift_mul_gauss {t β : ℝ} (ht : 0 ≤ t) (hβ : β * t < 1) (σ α : ℝ) :
     Integrable fun v : ℝ =>
       Real.exp (α * (σ + Real.sqrt t * v) + β * (σ + Real.sqrt t * v) ^ 2) * gauss v := by
   simp_rw [exp_shift_eq t σ α β _ ht, exp_quadratic_mul_gauss]
   exact (integrable_exp_quadratic (by linarith) _).const_mul _
 
+/--
+@isnad1 id=eq.2h4v.s7.a633775a0464 from=translated src=- shape=b0c22680 vocab=eb32cd27
+-/
 theorem integral_exp_shift_mul_gauss {t β : ℝ} (ht : 0 ≤ t) (hβ : β * t < 1) (σ α : ℝ) :
     ∫ v : ℝ, Real.exp (α * (σ + Real.sqrt t * v) + β * (σ + Real.sqrt t * v) ^ 2) * gauss v =
       gaussJ t σ α β := by
@@ -243,7 +271,9 @@ theorem integral_exp_shift_mul_gauss {t β : ℝ} (ht : 0 ≤ t) (hβ : β * t <
 
 /-! ### The heat flow of the majorant -/
 
-/-- `tailK` as a sum of two exponentials of quadratics in `σ`.-/
+/-- `tailK` as a sum of two exponentials of quadratics in `σ`.
+@isnad1 id=eq.0h3v.s9.6c1ec68710d8 from=translated src=- shape=68e5ee4f vocab=b7bad313
+-/
 theorem tailK_eq (T c σ : ℝ) :
     tailK T c σ =
       Real.exp (1 / (6 * (T - 0.8))) * (Real.sqrt 2 * Real.sqrt (π / lineA c T)) *
@@ -278,6 +308,9 @@ theorem tailK_eq (T c σ : ℝ) :
       gaussJ t σ ((alpha ((T : ℂ) * I)).re - Real.log c)
         (1 / (4 * T - 12) + 1 / (lineA c T * c ^ 2)))
 
+/--
+@isnad1 id=integrab.4h4v.s7.21b1b883d134 from=translated src=- shape=92426ec7 vocab=009844b1
+-/
 theorem integrable_tailK_mul_gauss {t T c : ℝ} (ht : 0 ≤ t) (hc : 0 < c) (hA : 0 < lineA c T) (hβ : (1 / (4 * T - 12) + 1 / (lineA c T * c ^ 2)) * t < 1) (σ : ℝ) :
     Integrable fun v : ℝ => tailK T c (σ + Real.sqrt t * v) * gauss v := by
   simp_rw [tailK_eq T c]
@@ -296,6 +329,9 @@ theorem integrable_tailK_mul_gauss {t T c : ℝ} (ht : 0 ≤ t) (hc : 0 < c) (hA
   simp only [Pi.add_apply]
   ring
 
+/--
+@isnad1 id=eq.4h4v.s7.6023849c45fc from=translated src=- shape=f99fff32 vocab=dfbcd04a
+-/
 theorem integral_tailK_mul_gauss {t T c : ℝ} (ht : 0 ≤ t) (hc : 0 < c) (hA : 0 < lineA c T) (hβ : (1 / (4 * T - 12) + 1 / (lineA c T * c ^ 2)) * t < 1) (σ : ℝ) :
     ∫ v : ℝ, tailK T c (σ + Real.sqrt t * v) * gauss v = tailIntegral t T c σ := by
   simp_rw [tailK_eq T c]
@@ -327,17 +363,31 @@ theorem integral_tailK_mul_gauss {t T c : ℝ} (ht : 0 ≤ t) (hc : 0 < c) (hA :
 
 /-! ### Integrability of the shifted terms -/
 
+/--
+@isnad1 id=le.0h1v.s3.9cbc229d299a from=translated src=- shape=8a62b088 vocab=d4c738c2
+-/
 theorem gauss_nonneg (v : ℝ) : 0 ≤ gauss v := by unfold gauss; positivity
 
+/--
+@isnad1 id=eq.0h1v.s3.e6b4eeb5b58e from=translated src=- shape=cd419dad vocab=61848f37
+-/
 theorem gauss_neg (v : ℝ) : gauss (-v) = gauss v := by unfold gauss; rw [neg_sq]
 
+/--
+@isnad1 id=eq.0h2v.s5.1a183967ed9f from=translated src=- shape=b5830e45 vocab=153ac757
+-/
 theorem shift_eq (s : ℂ) (u : ℝ) : s + (u : ℂ) = ((s.re + u : ℝ) : ℂ) + (s.im : ℂ) * I := by
   apply Complex.ext <;> simp
 
+/--
+@isnad1 id=eq.0h2v.s5.92341c85aa8e from=translated src=- shape=2c08e7a0 vocab=317d7575
+-/
 theorem norm_mul_gauss (w : ℂ) (v : ℝ) : ‖w * (gauss v : ℂ)‖ = ‖w‖ * gauss v := by
   rw [norm_mul, Complex.norm_real, Real.norm_of_nonneg (gauss_nonneg v)]
 
-/-- `‖r₀ n (σ + iT)‖ ≤ ‖M₀(iT)‖ e^{1/(6(T-0.8))} exp ((Re α(iT) - log n) σ + σ²/(4T-12))`.-/
+/-- `‖r₀ n (σ + iT)‖ ≤ ‖M₀(iT)‖ e^{1/(6(T-0.8))} exp ((Re α(iT) - log n) σ + σ²/(4T-12))`.
+@isnad1 id=le.2h3v.s7.d39569d2cca5 from=translated src=- shape=6fd6db2c vocab=9996389f
+-/
 theorem norm_r₀_horizontal_le {T : ℝ} (hT : 3 < T) {n : ℕ} (hn : 1 ≤ n) (σ : ℝ) :
     ‖r₀ n ((σ : ℂ) + T * I)‖ ≤ ‖M₀ ((T : ℂ) * I)‖ * Real.exp (1 / (6 * (T - 0.8))) *
       Real.exp (((alpha ((T : ℂ) * I)).re - Real.log n) * σ + 1 / (4 * T - 12) * σ ^ 2) := by
@@ -360,6 +410,9 @@ theorem norm_r₀_horizontal_le {T : ℝ} (hT : 3 < T) {n : ℕ} (hn : 1 ≤ n) 
         simp only [Real.exp_add]
         ring
 
+/--
+@isnad1 id=continuo.2h3v.s6.a286e1616015 from=translated src=- shape=56a10c84 vocab=a55ee792
+-/
 theorem continuous_r₀_shift {n : ℕ} (hn : 1 ≤ n) {s : ℂ} (hs : s.im ≠ 0) (t : ℝ) :
     Continuous fun v : ℝ => r₀ n (s + Real.sqrt t * v) * (gauss v : ℂ) := by
   refine Continuous.mul ?_ (Complex.continuous_ofReal.comp continuous_gauss)
@@ -367,6 +420,9 @@ theorem continuous_r₀_shift {n : ℕ} (hn : 1 ≤ n) {s : ℂ} (hs : s.im ≠ 
   exact (differentiableAt_r₀ hn (w := s + Real.sqrt t * v) (by simpa)).continuousAt.comp
     (f := fun v : ℝ => s + Real.sqrt t * v) (by fun_prop)
 
+/--
+@isnad1 id=integrab.5h4v.s7.bee5e4769437 from=translated src=- shape=59248867 vocab=6e20fea7
+-/
 theorem integrable_r₀_shift {t T : ℝ} (ht : 0 ≤ t) (hT : 3 < T) (hβ : 1 / (4 * T - 12) * t < 1)
     {n : ℕ} (hn : 1 ≤ n) {s : ℂ} (hs : s.im = T) :
     Integrable fun v : ℝ => r₀ n (s + Real.sqrt t * v) * (gauss v : ℂ) := by
@@ -384,6 +440,9 @@ theorem integrable_r₀_shift {t T : ℝ} (ht : 0 ≤ t) (hT : 3 < T) (hβ : 1 /
           1 / (4 * T - 12) * (s.re + Real.sqrt t * v) ^ 2) * gauss v := by gcongr
     _ = _ := by ring
 
+/--
+@isnad1 id=continuo.1h2v.s5.17c506baec17 from=translated src=- shape=d1fca971 vocab=ce7819ed
+-/
 theorem continuousAt_remainder {N : ℕ} {w : ℂ} (hw : w.im ≠ 0) :
     ContinuousAt (remainder N) w := by
   have hc0 : (0 : ℝ) < N + 1 / 2 := by positivity
@@ -397,6 +456,9 @@ theorem continuousAt_remainder {N : ℕ} {w : ℂ} (hw : w.im ≠ 0) :
   exact (((differentiableAt_id.mul (differentiableAt_id.sub_const 1)).div_const 16).mul
     (differentiableAt_Gammaℝ hwZ)).mul (differentiable_rsIntegral hc0 hcZ w)
 
+/--
+@isnad1 id=continuo.1h3v.s6.6e5ba0ee7390 from=translated src=- shape=22b32f71 vocab=d65ccde2
+-/
 theorem continuous_remainder_shift {N : ℕ} {s : ℂ} (hs : s.im ≠ 0) (t : ℝ) :
     Continuous fun v : ℝ => remainder N (s + Real.sqrt t * v) * (gauss v : ℂ) := by
   refine Continuous.mul ?_ (Complex.continuous_ofReal.comp continuous_gauss)
@@ -404,6 +466,9 @@ theorem continuous_remainder_shift {N : ℕ} {s : ℂ} (hs : s.im ≠ 0) (t : �
   exact (continuousAt_remainder (N := N) (w := s + Real.sqrt t * v) (by simpa)).comp
     (f := fun v : ℝ => s + Real.sqrt t * v) (by fun_prop)
 
+/--
+@isnad1 id=le.5h6v.s7.cec60cc45696 from=translated src=- shape=a7592a6e vocab=ea1d2bd3
+-/
 theorem norm_remainder_shift_le {t T c : ℝ} {N : ℕ} (hT : 3 < T) (hc : (N : ℝ) + 1 / 4 ≤ c)
     (hc' : c ≤ N + 3 / 4) (hA : 0 < lineA c T) {s : ℂ} (hs : s.im = T) (v : ℝ) :
     ‖remainder N (s + Real.sqrt t * v) * (gauss v : ℂ)‖ ≤
@@ -411,6 +476,9 @@ theorem norm_remainder_shift_le {t T c : ℝ} {N : ℕ} (hT : 3 < T) (hc : (N : 
   rw [norm_mul_gauss, ← Complex.ofReal_mul, shift_eq, hs, ← mul_assoc]
   exact mul_le_mul_of_nonneg_right (norm_remainder_le hT hc hc' hA) (gauss_nonneg v)
 
+/--
+@isnad1 id=integrab.7h5v.s8.bf04fef23d58 from=translated src=- shape=13b78a77 vocab=dff638ee
+-/
 theorem integrable_remainder_shift {t T c : ℝ} {N : ℕ} (ht : 0 ≤ t) (hT : 3 < T)
     (hc : (N : ℝ) + 1 / 4 ≤ c) (hc' : c ≤ N + 3 / 4) (hA : 0 < lineA c T)
     (hβ : (1 / (4 * T - 12) + 1 / (lineA c T * c ^ 2)) * t < 1) {s : ℂ} (hs : s.im = T) :
@@ -420,7 +488,9 @@ theorem integrable_remainder_shift {t T c : ℝ} {N : ℕ} (ht : 0 ≤ t) (hT : 
   exact hmaj.mono' (continuous_remainder_shift (by rw [hs]; linarith) t).aestronglyMeasurable
     (Filter.Eventually.of_forall fun v => norm_remainder_shift_le hT hc hc' hA hs v)
 
-/-- The heat flow of the remainder along `Im s = T` is bounded by `‖M₀(iT)‖ tailIntegral`.-/
+/-- The heat flow of the remainder along `Im s = T` is bounded by `‖M₀(iT)‖ tailIntegral`.
+@isnad1 id=le.7h5v.s8.b18a1ad623c5 from=translated src=- shape=a1be9cf2 vocab=dd8721dd
+-/
 theorem norm_integral_remainder_shift_le {t T c : ℝ} {N : ℕ} (ht : 0 ≤ t) (hT : 3 < T)
     (hc : (N : ℝ) + 1 / 4 ≤ c) (hc' : c ≤ N + 3 / 4) (hA : 0 < lineA c T)
     (hβ : (1 / (4 * T - 12) + 1 / (lineA c T * c ^ 2)) * t < 1) {s : ℂ} (hs : s.im = T) :
@@ -434,17 +504,26 @@ theorem norm_integral_remainder_shift_le {t T c : ℝ} {N : ℕ} (ht : 0 ≤ t) 
 
 /-! ### The expansion of `H t` -/
 
+/--
+@isnad1 id=eq.0h2v.s5.1144bdcf967d from=translated src=- shape=bf556f6d vocab=1b5dc570
+-/
 theorem sum_Icc_one_eq_sum_range (f : ℕ → ℂ) (N : ℕ) :
     ∑ n ∈ Finset.Icc 1 N, f n = ∑ n ∈ Finset.range N, f (n + 1) := by
   induction N with
   | zero => simp
   | succ N ih => rw [Finset.sum_range_succ, ← ih, Finset.sum_Icc_succ_top (by omega)]
 
+/--
+@isnad1 id=integrab.1h1v.s6.091929c8d544 from=translated src=- shape=34dda850 vocab=7671ca6a
+-/
 theorem integrable_conj' {f : ℝ → ℂ} (hf : Integrable f) :
     Integrable fun v => (starRingEnd ℂ) (f v) :=
   hf.norm.mono' (Complex.continuous_conj.comp_aestronglyMeasurable hf.1)
     (ae_of_all _ fun v => by simp)
 
+/--
+@isnad1 id=eq.0h1v.s7.dc65fdccedd7 from=translated src=- shape=5cc5db07 vocab=23db1350
+-/
 theorem integral_conj_neg_mul_gauss (g : ℝ → ℂ) :
     ∫ v : ℝ, (starRingEnd ℂ) (g (-v)) * (gauss v : ℂ) =
       (starRingEnd ℂ) (∫ v : ℝ, g v * (gauss v : ℂ)) := by
@@ -455,23 +534,34 @@ theorem integral_conj_neg_mul_gauss (g : ℝ → ℂ) :
   simp_rw [this]
   exact integral_neg_eq_self (fun w : ℝ => (starRingEnd ℂ) (g w * (gauss w : ℂ))) volume
 
+/--
+@isnad1 id=eq.0h2v.s3.791c90513f8c from=translated src=- shape=d802f31c vocab=f3270724
+-/
 theorem mainTerm_eq_r₀ (n : ℕ) (s : ℂ) : RiemannSiegel.mainTerm n s = r₀ n s := by
   unfold RiemannSiegel.mainTerm r₀
   rw [Gammaℝ_def]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s7.498d3ebec6f9 from=translated src=- shape=d5167d0e vocab=e7509bda
+-/
 theorem one_sub_conj_sMinus_add (x y t v : ℝ) :
     1 - (starRingEnd ℂ) (sMinus x y + Real.sqrt t * v) =
       (starRingEnd ℂ) (sPlus x y) + Real.sqrt t * ((-v : ℝ) : ℂ) := by
   unfold sMinus sPlus
   apply Complex.ext <;> simp [map_ofNat] <;> ring
 
+/--
+@isnad1 id=eq.0h4v.s7.b73a84d6f122 from=translated src=- shape=fddd3051 vocab=11aa97f4
+-/
 theorem sMinus_add_eq (x y t v : ℝ) :
     (1 + I * ((x : ℂ) + y * I - 2 * I * Real.sqrt t * v)) / 2 = sMinus x y + Real.sqrt t * v := by
   unfold sMinus
   apply Complex.ext <;> simp; ring
 
-/-- The pointwise Riemann–Siegel expansion of the shifted `H 0`.-/
+/-- The pointwise Riemann–Siegel expansion of the shifted `H 0`.
+@isnad1 id=eq.1h5v.s8.e6b8f5f5c1f4 from=translated src=- shape=1322e423 vocab=82f34e67
+-/
 theorem H_zero_shift_eq {x : ℝ} (hx : x ≠ 0) (y t : ℝ) (N : ℕ) (v : ℝ) :
     H 0 ((x : ℂ) + y * I - 2 * I * Real.sqrt t * v) =
       ∑ n ∈ Finset.range N, r₀ (n + 1) (sMinus x y + Real.sqrt t * v) +
@@ -496,7 +586,9 @@ theorem H_zero_shift_eq {x : ℝ} (hx : x ≠ 0) (y t : ℝ) (N : ℕ) (v : ℝ)
   simp_rw [mainTerm_eq_r₀]
 
 /-- The Riemann–Siegel expansion of `H t (x + iy)` with `N` terms: the two sums of `r t n` at
-`s₋` and `conj s₊`, plus the heat flows of the two remainders.-/
+`s₋` and `conj s₊`, plus the heat flows of the two remainders.
+@isnad1 id=eq.6h5v.s9.f2f1e6cb20c6 from=translated src=- shape=50d3fa0f vocab=22f67fa6
+-/
 theorem H_eq_sums_add_tails {t x c : ℝ} {N : ℕ} (ht : 0 ≤ t) (hT : 3 < x / 2)
     (hc : (N : ℝ) + 1 / 4 ≤ c) (hc' : c ≤ N + 3 / 4) (hA : 0 < lineA c (x / 2))
     (hβ : (1 / (4 * (x / 2) - 12) + 1 / (lineA c (x / 2) * c ^ 2)) * t < 1) (y : ℝ) :
@@ -569,7 +661,9 @@ theorem H_eq_sums_add_tails {t x c : ℝ} {N : ℕ} (ht : 0 ≤ t) (hT : 3 < x /
   rfl
 
 /-- The tail of the Riemann–Siegel expansion of `H t (x + iy)`, bounded by `‖M₀(i x/2)‖` times
-the two heat-flowed majorants.-/
+the two heat-flowed majorants.
+@isnad1 id=le.6h5v.s9.aa97d0f408e4 from=translated src=- shape=841f670c vocab=2ec72695
+-/
 theorem norm_tail_le {t x c : ℝ} {N : ℕ} (ht : 0 ≤ t) (hT : 3 < x / 2)
     (hc : (N : ℝ) + 1 / 4 ≤ c) (hc' : c ≤ N + 3 / 4) (hA : 0 < lineA c (x / 2))
     (hβ : (1 / (4 * (x / 2) - 12) + 1 / (lineA c (x / 2) * c ^ 2)) * t < 1) (y : ℝ) :

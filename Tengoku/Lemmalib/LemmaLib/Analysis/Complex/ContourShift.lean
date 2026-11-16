@@ -51,7 +51,9 @@ namespace Complex
 
 /-- Shifting the contour of an integral over `ℝ` to the horizontal line `Im = β`, for a function
 continuous on the closed strip between the two lines, holomorphic there off a countable set, and
-with Gaussian decay on the strip.-/
+with Gaussian decay on the strip.
+@isnad1 id=eq.5h5v.s8.e108edfc87b8 from=translated src=- shape=050d5b17 vocab=bbd61743
+-/
 theorem integral_add_ofReal_mul_I_eq_integral_off_countable {F : ℂ → ℂ} {β a C : ℝ} {S : Set ℂ}
     (ha : 0 < a) (hS : S.Countable)
     (hFc : ∀ v : ℂ, v.im ∈ uIcc 0 β → ContinuousAt F v)
@@ -135,7 +137,9 @@ theorem integral_add_ofReal_mul_I_eq_integral_off_countable {F : ℂ → ℂ} {�
   exact (hC T).symm
 
 /-- Shifting the contour of an integral over `ℝ` to the horizontal line `Im = β`, for a function
-holomorphic on the closed strip between the two lines with Gaussian decay there.-/
+holomorphic on the closed strip between the two lines with Gaussian decay there.
+@isnad1 id=eq.3h4v.s7.859a59196f3e from=translated src=- shape=0df56839 vocab=7d6395be
+-/
 theorem integral_add_ofReal_mul_I_eq_integral {F : ℂ → ℂ} {β a C : ℝ} (ha : 0 < a)
     (hF : ∀ v : ℂ, v.im ∈ uIcc 0 β → DifferentiableAt ℂ F v)
     (hbound : ∀ v : ℂ, v.im ∈ uIcc 0 β → ‖F v‖ ≤ C * Real.exp (-a * v.re ^ 2)) :
@@ -143,7 +147,9 @@ theorem integral_add_ofReal_mul_I_eq_integral {F : ℂ → ℂ} {β a C : ℝ} (
   integral_add_ofReal_mul_I_eq_integral_off_countable (S := ∅) ha countable_empty
     (fun v hv => (hF v hv).continuousAt) (fun v hv _ => hF v hv) hbound
 
-/-- Shifting the contour of an integral over `ℝ` by a complex constant `c`.-/
+/-- Shifting the contour of an integral over `ℝ` by a complex constant `c`.
+@isnad1 id=eq.3h4v.s7.4df611825fe0 from=translated src=- shape=9e034d83 vocab=088e0c95
+-/
 theorem integral_add_eq_integral {F : ℂ → ℂ} {c : ℂ} {a C : ℝ} (ha : 0 < a)
     (hF : ∀ v : ℂ, v.im ∈ uIcc 0 c.im → DifferentiableAt ℂ F v)
     (hbound : ∀ v : ℂ, v.im ∈ uIcc 0 c.im → ‖F v‖ ≤ C * Real.exp (-a * v.re ^ 2)) :
@@ -155,7 +161,9 @@ theorem integral_add_eq_integral {F : ℂ → ℂ} {c : ℂ} {a C : ℝ} (ha : 0
   rw [h1, h2]
   exact integral_add_ofReal_mul_I_eq_integral ha hF hbound
 
-/-- `1 / w = -I ∫_0^∞ exp (I w t) dt` for `Im w > 0`.-/
+/-- `1 / w = -I ∫_0^∞ exp (I w t) dt` for `Im w > 0`.
+@isnad1 id=eq.1h1v.s6.b50365617322 from=translated src=- shape=8db56a0a vocab=731ddd2b
+-/
 theorem inv_eq_neg_I_mul_integral_exp {w : ℂ} (hw : 0 < w.im) :
     w⁻¹ = -I * ∫ t in Ioi (0 : ℝ), cexp (I * w * t) := by
   have hw0 : w ≠ 0 := fun h => by simp [h] at hw
@@ -188,11 +196,16 @@ theorem inv_eq_neg_I_mul_integral_exp {w : ℂ} (hw : 0 < w.im) :
   simp only [mul_zero, Complex.exp_zero, zero_sub]
   field_simp
 
+/--
+@isnad1 id=eq.0h3v.s7.f9747fb5a21f from=translated src=- shape=a0a58480 vocab=89abadca
+-/
 theorem re_neg_sq_add_I_mul_mul {β : ℂ} (x t : ℝ) :
     (-(x + β) ^ 2 + I * (x + β) * t).re = -(x + β.re) ^ 2 + β.im ^ 2 - β.im * t := by
   simp [sq]; ring
 
-/-- `∫ x, exp (-(x + β)²) / (x + β) = -π I` for `Im β > 0`.-/
+/-- `∫ x, exp (-(x + β)²) / (x + β) = -π I` for `Im β > 0`.
+@isnad1 id=eq.1h1v.s6.0238d6da4e21 from=translated src=- shape=b3d33d31 vocab=056cb024
+-/
 theorem integral_exp_neg_sq_div_eq_neg_pi_I {β : ℂ} (hβ : 0 < β.im) :
     ∫ x : ℝ, cexp (-(x + β) ^ 2) / (x + β) = -π * I := by
   set f : ℝ → ℝ → ℂ := fun x t => cexp (-(x + β) ^ 2 + I * (x + β) * t) with hf
@@ -244,20 +257,31 @@ theorem integral_exp_neg_sq_div_eq_neg_pi_I {β : ℂ} (hβ : 0 < β.im) :
     rw [← Complex.ofReal_mul, Real.mul_self_sqrt Real.pi_pos.le]
   linear_combination (-I) * e3
 
+/--
+@isnad1 id=integrab.3h3v.s7.3be94a2e3ae2 from=translated src=- shape=5820cf84 vocab=91bb7081
+-/
 theorem integrable_of_norm_le_gaussian {f : ℝ → ℂ} {a C : ℝ} (ha : 0 < a) (hf : Continuous f)
     (h : ∀ x, ‖f x‖ ≤ C * Real.exp (-a * x ^ 2)) : Integrable f :=
   ((integrable_exp_neg_mul_sq ha).const_mul C).mono' hf.aestronglyMeasurable
     (Eventually.of_forall h)
 
+/--
+@isnad1 id=le.0h2v.s6.6f5ae48e3b49 from=translated src=- shape=4f933ed7 vocab=4684e443
+-/
 theorem exp_neg_sub_sq_le (x c : ℝ) :
     Real.exp (-(x - c) ^ 2) ≤ Real.exp (c ^ 2) * Real.exp (-(1 / 2) * x ^ 2) := by
   rw [← Real.exp_add]; apply Real.exp_le_exp.2; nlinarith [sq_nonneg (x - 2 * c)]
 
+/--
+@isnad1 id=eq.0h2v.s6.a9c87dc75875 from=translated src=- shape=1c29caa1 vocab=f667a06c
+-/
 theorem norm_exp_neg_sub_sq (v p : ℂ) :
     ‖cexp (-(v - p) ^ 2)‖ = Real.exp ((v.im - p.im) ^ 2) * Real.exp (-(v.re - p.re) ^ 2) := by
   rw [Complex.norm_exp, ← Real.exp_add]; congr 1; simp [sq]; ring
 
-/-- `∫ x, exp (-(x + β)²) / (x + β) = π I` for `Im β < 0`.-/
+/-- `∫ x, exp (-(x + β)²) / (x + β) = π I` for `Im β < 0`.
+@isnad1 id=eq.1h1v.s6.f21d4807bc6d from=translated src=- shape=7318a951 vocab=056cb024
+-/
 theorem integral_exp_neg_sq_div_eq_pi_I {β : ℂ} (hβ : β.im < 0) :
     ∫ x : ℝ, cexp (-(x + β) ^ 2) / (x + β) = π * I := by
   have h := integral_exp_neg_sq_div_eq_neg_pi_I (β := (starRingEnd ℂ) β) (by simpa using hβ)
@@ -272,7 +296,9 @@ theorem integral_exp_neg_sq_div_eq_pi_I {β : ℂ} (hβ : β.im < 0) :
 
 /-- Crossing a simple pole. If `N` is holomorphic on the closed strip `0 ≤ Im v ≤ β` with Gaussian
 decay there, and `0 < Im p < β`, then
-`∫ N (x + β I) / (x + β I - p) - ∫ N x / (x - p) = -2 π I N p`.-/
+`∫ N (x + β I) / (x + β I - p) - ∫ N x / (x - p) = -2 π I N p`.
+@isnad1 id=eq.5h5v.s8.f1396acb30da from=translated src=- shape=56c51630 vocab=04c495be
+-/
 theorem integral_div_sub_add_ofReal_mul_I_sub_integral_div_sub {N : ℂ → ℂ} {p : ℂ} {β a C : ℝ}
     (ha : 0 < a) (hp0 : 0 < p.im) (hpβ : p.im < β)
     (hN : ∀ v : ℂ, v.im ∈ Icc 0 β → DifferentiableAt ℂ N v)
@@ -473,7 +499,9 @@ theorem integral_div_sub_add_ofReal_mul_I_sub_integral_div_sub {N : ℂ → ℂ}
   linear_combination hshift
 
 /-- The residue theorem for the strip `β ≤ Im v ≤ 0` with `β < 0`: crossing the pole from below
-reverses the sign.-/
+reverses the sign.
+@isnad1 id=eq.5h5v.s8.ec2d01453224 from=translated src=- shape=29911d1d vocab=04c495be
+-/
 theorem integral_div_sub_add_ofReal_mul_I_sub_integral_div_sub_of_neg {N : ℂ → ℂ} {p : ℂ}
     {β a C : ℝ} (ha : 0 < a) (hβp : β < p.im) (hp0 : p.im < 0)
     (hN : ∀ v : ℂ, v.im ∈ Icc β 0 → DifferentiableAt ℂ N v)

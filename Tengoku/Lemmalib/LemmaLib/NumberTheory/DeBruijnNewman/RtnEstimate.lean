@@ -41,7 +41,9 @@ open Complex Real Set Filter Topology MeasureTheory intervalIntegral
 
 namespace DeBruijnNewman
 
-/-- `n^{-w} = exp (-(w log n))` for `n ≥ 1`.-/
+/-- `n^{-w} = exp (-(w log n))` for `n ≥ 1`.
+@isnad1 id=eq.1h2v.s5.d41f5cbbb41e from=translated src=- shape=8037babf vocab=ee927b61
+-/
 theorem natCast_cpow_neg_eq_exp {n : ℕ} (hn : 1 ≤ n) (w : ℂ) :
     (n : ℂ) ^ (-w) = Complex.exp (-(w * Real.log n)) := by
   have hn0 : (n : ℂ) ≠ 0 := by exact_mod_cast (by omega : n ≠ 0)
@@ -49,7 +51,9 @@ theorem natCast_cpow_neg_eq_exp {n : ℕ} (hn : 1 ≤ n) (w : ℂ) :
   ring_nf
 
 /-- Stirling's formula for `r₀`: for `Im w > 0.8`, `r₀ n w = M₀ w n^{-w} exp E` with
-`‖E‖ ≤ 1 / (6 (Im w - 0.8))`.-/
+`‖E‖ ≤ 1 / (6 (Im w - 0.8))`.
+@isnad1 id=ex.1h2v.s6.d765a461e046 from=translated src=- shape=0a787109 vocab=e3953bdf
+-/
 theorem exists_r₀_eq (n : ℕ) {w : ℂ} (hw : 0.8 < w.im) :
     ∃ E : ℂ, ‖E‖ ≤ 1 / (6 * (w.im - 0.8)) ∧
       r₀ n w = M₀ w * (n : ℂ) ^ (-w) * Complex.exp E := by
@@ -80,7 +84,9 @@ theorem exists_r₀_eq (n : ℕ) {w : ℂ} (hw : 0.8 < w.im) :
     rw [this, Complex.exp_add]
     ring
 
-/-- `‖α(ζ)‖ ≤ 5 + ‖ζ‖ / 2` for `Im ζ ≥ 1`.-/
+/-- `‖α(ζ)‖ ≤ 5 + ‖ζ‖ / 2` for `Im ζ ≥ 1`.
+@isnad1 id=le.1h1v.s5.fd59ed6e8b04 from=translated src=- shape=4dec0372 vocab=f5bbdf77
+-/
 theorem norm_alpha_le_of_one_le_im {ζ : ℂ} (hζ : 1 ≤ ζ.im) : ‖alpha ζ‖ ≤ 5 + ‖ζ‖ / 2 := by
   have hζ0 : ζ ≠ 0 := fun h => by rw [h] at hζ; norm_num at hζ
   have hζ1 : ζ - 1 ≠ 0 := fun h => by
@@ -126,7 +132,9 @@ theorem norm_alpha_le_of_one_le_im {ζ : ℂ} (hζ : 1 ≤ ζ.im) : ‖alpha ζ�
       _ = 2 := Real.log_exp 2
   linarith [Real.pi_lt_four]
 
-/-- `Im α(s) ≥ -3/(2 Im s)` for `Im s > 0`.-/
+/-- `Im α(s) ≥ -3/(2 Im s)` for `Im s > 0`.
+@isnad1 id=le.1h1v.s5.78dc0277b532 from=translated src=- shape=a20f9983 vocab=e64cec81
+-/
 theorem im_alpha_ge {s : ℂ} (hs : 0 < s.im) : -(3 / (2 * s.im)) ≤ (alpha s).im := by
   have hs0 : s ≠ 0 := fun h => by rw [h] at hs; simp at hs
   have hs1 : s - 1 ≠ 0 := fun h => by
@@ -167,7 +175,9 @@ theorem im_alpha_ge {s : ℂ} (hs : 0 < s.im) : -(3 / (2 * s.im)) ≤ (alpha s).
   rw [this]
   exact add_le_add (add_le_add h1 h2) h3
 
-/-- `mainTerm t n s = exp (log M₀(s) - s log n + (t/4) (α(s) - log n)²)`.-/
+/-- `mainTerm t n s = exp (log M₀(s) - s log n + (t/4) (α(s) - log n)²)`.
+@isnad1 id=eq.2h3v.s6.d2b8a51a03c4 from=translated src=- shape=88b20690 vocab=bfb6b938
+-/
 theorem mainTerm_eq_exp (t : ℝ) {n : ℕ} (hn : 1 ≤ n) {s : ℂ} (hs : s.im ≠ 0) :
     mainTerm t n s =
       Complex.exp (logM₀ s - s * Real.log n + t / 4 * (alpha s - Real.log n) ^ 2) := by
@@ -181,7 +191,9 @@ theorem mainTerm_eq_exp (t : ℝ) {n : ℕ} (hn : 1 ≤ n) {s : ℂ} (hs : s.im 
 
 /-- The shifted integrand of `r t n s`: with `h = √t u + (t/2)(α(s) - log n)`,
 `r₀ n (s + h) exp (-√t u (α(s) - log n) - (t/4)(α(s) - log n)²) = mainTerm t n s exp (ρ + E)`
-where `ρ` is the second-order Taylor remainder of `log M₀` and `E` the Stirling error.-/
+where `ρ` is the second-order Taylor remainder of `log M₀` and `E` the Stirling error.
+@isnad1 id=ex.4h4v.s8.9ac8998b27c5 from=translated src=- shape=eabdab55 vocab=8eda2ce5
+-/
 theorem shifted_integrand {t : ℝ} {n : ℕ} {s : ℂ} (ht0 : 0 ≤ t) (ht : t ≤ 1 / 2) (hn : 1 ≤ n)
     (hs : 10 < s.im) (u : ℝ) :
     ∃ ρ E : ℂ,
@@ -249,7 +261,9 @@ theorem shifted_integrand {t : ℝ} {n : ℕ} {s : ℂ} (ht0 : 0 ≤ t) (ht : t 
 
 /-! ### Growth of the integrand on a horizontal strip -/
 
-/-- `r₀ n` is differentiable away from the real axis.-/
+/-- `r₀ n` is differentiable away from the real axis.
+@isnad1 id=differen.2h2v.s6.0ed405946c49 from=translated src=- shape=b06f4b52 vocab=c51f53b8
+-/
 theorem differentiableAt_r₀ {n : ℕ} (hn : 1 ≤ n) {w : ℂ} (hw : w.im ≠ 0) :
     DifferentiableAt ℂ (r₀ n) w := by
   have hn0 : (n : ℂ) ≠ 0 := by exact_mod_cast (by omega : n ≠ 0)
@@ -263,7 +277,9 @@ theorem differentiableAt_r₀ {n : ℕ} (hn : 1 ≤ n) {w : ℂ} (hw : w.im ≠ 
     (DifferentiableAt.const_cpow (by fun_prop) (Or.inl hπ))).mul hΓ).mul
     (DifferentiableAt.const_cpow (by fun_prop) (Or.inl hn0))
 
-/-- `‖r₀ n w‖ ≤ exp (‖log M₀ w‖ + |Re w| log n + 1)` for `Im w ≥ 9`.-/
+/-- `‖r₀ n w‖ ≤ exp (‖log M₀ w‖ + |Re w| log n + 1)` for `Im w ≥ 9`.
+@isnad1 id=le.2h2v.s6.2a13446a722b from=translated src=- shape=1957e306 vocab=6be92852
+-/
 theorem norm_r₀_le {n : ℕ} (hn : 1 ≤ n) {w : ℂ} (hw : 9 ≤ w.im) :
     ‖r₀ n w‖ ≤ Real.exp (‖logM₀ w‖ + |w.re| * Real.log n + 1) := by
   obtain ⟨E, hE, hr⟩ := exists_r₀_eq n (by linarith : 0.8 < w.im)
@@ -285,7 +301,9 @@ theorem norm_r₀_le {n : ℕ} (hn : 1 ≤ n) {w : ℂ} (hw : 9 ≤ w.im) :
   linarith
 
 /-- Growth of `log M₀` along a horizontal segment: for `Im z₀ ≥ 1`, `0 ≤ σ ≤ 1` and real `x`,
-`‖log M₀ (z₀ + σ x)‖ ≤ ‖log M₀ z₀‖ + (5 + (‖z₀‖ + |x|) / 2) |x|`.-/
+`‖log M₀ (z₀ + σ x)‖ ≤ ‖log M₀ z₀‖ + (5 + (‖z₀‖ + |x|) / 2) |x|`.
+@isnad1 id=le.3h3v.s7.42e9797543cd from=translated src=- shape=5578a3dc vocab=cab840aa
+-/
 theorem norm_logM₀_add_le {z₀ : ℂ} (hz₀ : 1 ≤ z₀.im) {σ : ℝ} (hσ0 : 0 ≤ σ) (hσ1 : σ ≤ 1) (x : ℝ) :
     ‖logM₀ (z₀ + σ * x)‖ ≤ ‖logM₀ z₀‖ + (5 + (‖z₀‖ + |x|) / 2) * |x| := by
   have him : ∀ τ ∈ Icc (0 : ℝ) 1, (z₀ + τ * ((σ * x : ℝ) : ℂ)).im = z₀.im := by
@@ -321,7 +339,9 @@ theorem norm_logM₀_add_le {z₀ : ℂ} (hz₀ : 1 ≤ z₀.im) {σ : ℝ} (hσ
   linarith
 
 /-- Gaussian decay of the integrand `v ↦ r₀ n (s + √t v) e^{-v²}/√π` on a horizontal strip
-`Im v ∈ [0, β]` (or `[β, 0]`) of width at most `1`.-/
+`Im v ∈ [0, β]` (or `[β, 0]`) of width at most `1`.
+@isnad1 id=ex.4h4v.s7.e8c1950a6094 from=translated src=- shape=5cfd2a08 vocab=d10d9b83
+-/
 theorem exists_strip_bound {t : ℝ} {n : ℕ} {s : ℂ} (ht : t ≤ 1 / 2) (hn : 1 ≤ n)
     (hs : 10 < s.im) {β : ℝ} (hβ : |β| ≤ 1) :
     ∃ C : ℝ, ∀ v : ℂ, v.im ∈ uIcc 0 β →
@@ -409,7 +429,9 @@ theorem exists_strip_bound {t : ℝ} {n : ℕ} {s : ℂ} (ht : t ≤ 1 / 2) (hn 
 
 /-! ### Gaussian integrals -/
 
-/-- `∫ gauss = 1`.-/
+/-- `∫ gauss = 1`.
+@isnad1 id=eq.0h0v.s5.0b00fb60ca58 from=translated src=- shape=f0e61117 vocab=9e3b5ae3
+-/
 theorem integral_gauss : ∫ v : ℝ, gauss v = 1 := by
   unfold gauss
   rw [MeasureTheory.integral_div]
@@ -417,6 +439,9 @@ theorem integral_gauss : ∫ v : ℝ, gauss v = 1 := by
   simp only [one_mul, neg_mul, div_one] at this
   rw [this, div_self (Real.sqrt_pos.2 Real.pi_pos).ne']
 
+/--
+@isnad1 id=eq.0h3v.s6.17d3b0664190 from=translated src=- shape=0e4d6d8d vocab=f53a973c
+-/
 theorem exp_mul_gauss_eq (κ A v : ℝ) :
     Real.exp (κ * v ^ 2 + A) * gauss v =
       Real.exp A / Real.sqrt π * Real.exp (-(1 - κ) * v ^ 2) := by
@@ -425,24 +450,34 @@ theorem exp_mul_gauss_eq (κ A v : ℝ) :
   rw [this, Real.exp_add, Real.exp_add]
   field_simp
 
+/--
+@isnad1 id=integrab.0h0v.s4.bed71afbd339 from=translated src=- shape=e14394ff vocab=785bf415
+-/
 theorem integrable_gauss : Integrable gauss := by
   unfold gauss
   have := (integrable_exp_neg_mul_sq (by norm_num : (0 : ℝ) < 1)).div_const (Real.sqrt π)
   simpa using this
 
+/--
+@isnad1 id=integrab.1h2v.s6.fc255b42116f from=translated src=- shape=fcafc24a vocab=b15233a3
+-/
 theorem integrable_exp_mul_gauss {κ : ℝ} (A : ℝ) (hκ : κ < 1) :
     Integrable fun v : ℝ => Real.exp (κ * v ^ 2 + A) * gauss v := by
   simp_rw [exp_mul_gauss_eq]
   exact (integrable_exp_neg_mul_sq (by linarith)).const_mul _
 
-/-- `∫ exp (κ v² + A) gauss v = exp A / √(1 - κ)` for `κ < 1`.-/
+/-- `∫ exp (κ v² + A) gauss v = exp A / √(1 - κ)` for `κ < 1`.
+@isnad1 id=eq.1h2v.s6.6af0a792a5ee from=translated src=- shape=2cd23eca vocab=31d0dc9b
+-/
 theorem integral_exp_mul_gauss {κ A : ℝ} (hκ : κ < 1) :
     ∫ v : ℝ, Real.exp (κ * v ^ 2 + A) * gauss v = Real.exp A / Real.sqrt (1 - κ) := by
   simp_rw [exp_mul_gauss_eq]
   rw [MeasureTheory.integral_const_mul, integral_gaussian, Real.sqrt_div' _ (by linarith)]
   field_simp
 
-/-- `1 / √(1 - t/(2(T - 3.08))) ≤ exp (t / (4 (T - 3.33)))` for `0 ≤ t ≤ 1/2`, `T > 10`.-/
+/-- `1 / √(1 - t/(2(T - 3.08))) ≤ exp (t / (4 (T - 3.33)))` for `0 ≤ t ≤ 1/2`, `T > 10`.
+@isnad1 id=le.3h2v.s7.2b3a50206985 from=translated src=- shape=d026e644 vocab=28d1bafe
+-/
 theorem inv_sqrt_le_exp {t T : ℝ} (ht0 : 0 ≤ t) (ht : t ≤ 1 / 2) (hT : 10 < T) :
     1 / Real.sqrt (1 - t / (2 * (T - 3.08))) ≤ Real.exp (t / (4 * (T - 3.33))) := by
   set x := t / (2 * (T - 3.33)) with hx
@@ -467,7 +502,9 @@ theorem inv_sqrt_le_exp {t T : ℝ} (ht0 : 0 ≤ t) (ht : t ≤ 1 / 2) (hT : 10 
   rw [inv_le_comm₀ (by linarith [Real.exp_pos (-x)]) (Real.exp_pos _), ← Real.exp_neg]
   exact hexp
 
-/-- `Im α(s) ≤ π/2` for `Im s > 0`.-/
+/-- `Im α(s) ≤ π/2` for `Im s > 0`.
+@isnad1 id=le.1h1v.s5.3c48371a91e9 from=translated src=- shape=28f350b4 vocab=e432bc93
+-/
 theorem im_alpha_le {s : ℂ} (hs : 0 < s.im) : (alpha s).im ≤ π / 2 := by
   have hs0 : s ≠ 0 := fun h => by rw [h] at hs; simp at hs
   have hs1 : s - 1 ≠ 0 := fun h => by
@@ -494,7 +531,9 @@ theorem im_alpha_le {s : ℂ} (hs : 0 < s.im) : (alpha s).im ≤ π / 2 := by
 
 /-- The pointwise form of the shifted integrand: `Fc (u + c) = mainTerm t n s * exp δ * gauss u`
 with `‖δ‖ ≤ κ u² + A`, where `c = (√t/2) (α(s) - log n)`, `κ = t / (2 (Im s - 3.08))` and
-`A = t² ‖α(s) - log n‖² / (8 (Im s - 3.33)) + 1 / (6 (Im s - 3.33))`.-/
+`A = t² ‖α(s) - log n‖² / (8 (Im s - 3.33)) + 1 / (6 (Im s - 3.33))`.
+@isnad1 id=ex.4h4v.s8.8408f2354268 from=translated src=- shape=1a3878a3 vocab=ec958c7d
+-/
 theorem exists_shifted_eq {t : ℝ} {n : ℕ} {s : ℂ} (ht0 : 0 ≤ t) (ht : t ≤ 1 / 2) (hn : 1 ≤ n)
     (hs : 10 < s.im) (u : ℝ) :
     ∃ δ : ℂ, ‖δ‖ ≤ t / (2 * (s.im - 3.08)) * u ^ 2 +
@@ -552,7 +591,9 @@ theorem exists_shifted_eq {t : ℝ} {n : ℕ} {s : ℂ} (ht0 : 0 ≤ t) (ht : t 
       _ = _ := by rw [heq]
 
 /-- **Polymath Proposition 6.1.** For `0 ≤ t ≤ 1/2`, `n ≥ 1` and `Im s > 10`,
-`‖r t n s - mainTerm t n s‖ ≤ ‖mainTerm t n s‖ * epsR t n s`.-/
+`‖r t n s - mainTerm t n s‖ ≤ ‖mainTerm t n s‖ * epsR t n s`.
+@isnad1 id=rtnestim.0h0v.s0.1fa4bf353d8f from=translated src=- shape=45709ebd vocab=1fa4bf35
+-/
 theorem rtnEstimate : RtnEstimate := by
   intro t n s ht0 ht hn hs
   have hT1 : 0 < s.im - 3.33 := by linarith

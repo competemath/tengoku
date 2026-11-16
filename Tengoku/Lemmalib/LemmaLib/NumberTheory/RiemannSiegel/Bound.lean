@@ -31,6 +31,9 @@ namespace RiemannSiegel
 
 /-! ### Gaussian integrals with a linear term -/
 
+/--
+@isnad1 id=eq.1h3v.s7.63c6b4adf542 from=translated src=- shape=e3761edc vocab=9b329716
+-/
 theorem exp_quadratic_eq {A : ℝ} (hA : 0 < A) (B x : ℝ) :
     Real.exp (B * x - A * x ^ 2) =
       Real.exp (-A * (x - B / (2 * A)) ^ 2) * Real.exp (B ^ 2 / (4 * A)) := by
@@ -39,11 +42,17 @@ theorem exp_quadratic_eq {A : ℝ} (hA : 0 < A) (B x : ℝ) :
   field_simp
   ring
 
+/--
+@isnad1 id=integrab.1h2v.s6.697ecba68891 from=translated src=- shape=de546b71 vocab=576dd545
+-/
 theorem integrable_exp_quadratic {A : ℝ} (hA : 0 < A) (B : ℝ) :
     Integrable (fun x : ℝ => Real.exp (B * x - A * x ^ 2)) := by
   simp_rw [exp_quadratic_eq hA B]
   exact ((integrable_exp_neg_mul_sq hA).comp_sub_right (B / (2 * A))).mul_const _
 
+/--
+@isnad1 id=eq.1h2v.s7.3b41015214b1 from=translated src=- shape=91717b07 vocab=0cce0884
+-/
 theorem integral_exp_quadratic {A : ℝ} (hA : 0 < A) (B : ℝ) :
     ∫ x : ℝ, Real.exp (B * x - A * x ^ 2) = Real.sqrt (π / A) * Real.exp (B ^ 2 / (4 * A)) := by
   simp_rw [exp_quadratic_eq hA B]
@@ -52,7 +61,9 @@ theorem integral_exp_quadratic {A : ℝ} (hA : 0 < A) (B : ℝ) :
 
 /-! ### The argument along the line -/
 
-/-- `arg ((1 - y) - i y) ≤ -y + y² / (2π)` for every real `y`.-/
+/-- `arg ((1 - y) - i y) ≤ -y + y² / (2π)` for every real `y`.
+@isnad1 id=le.2h2v.s6.a5bf7492f104 from=translated src=- shape=52ae840a vocab=284fbb8d
+-/
 theorem arg_le_of_re_im {z : ℂ} {y : ℝ} (hre : z.re = 1 - y) (him : z.im = -y) :
     arg z ≤ -y + y ^ 2 / (2 * π) := by
   have hsq : 0 ≤ y ^ 2 / (2 * π) := by positivity
@@ -106,11 +117,17 @@ theorem arg_le_of_re_im {z : ℂ} {y : ℝ} (hre : z.re = 1 - y) (him : z.im = -
       linarith [div_nonneg (sq_nonneg (y - π)) (by positivity : (0 : ℝ) ≤ 2 * π)]
     linarith
 
+/--
+@isnad1 id=eq.0h2v.s6.d6a09c4045ba from=translated src=- shape=9744de20 vocab=665e4f5a
+-/
 theorem re_line (c x : ℝ) : ((c : ℂ) - ω * x).re = c - Real.sqrt 2 / 2 * x := by
   have h1 := re_sub_im_line c x
   have h2 := im_line c x
   linarith
 
+/--
+@isnad1 id=le.1h2v.s7.cef1adb285a2 from=translated src=- shape=7f941c8b vocab=9074965c
+-/
 theorem arg_line_le {c : ℝ} (hc : 0 < c) (x : ℝ) :
     arg ((c : ℂ) - ω * x) ≤
       -(Real.sqrt 2 / 2 * x / c) + (Real.sqrt 2 / 2 * x / c) ^ 2 / (2 * π) := by
@@ -133,12 +150,18 @@ theorem arg_line_le {c : ℝ} (hc : 0 < c) (x : ℝ) :
 /-- `B(c, T) = √2 π c - (√2/2) T / c`, the linear coefficient along the line.-/
 @[expose] noncomputable def lineB (c T : ℝ) : ℝ := Real.sqrt 2 * π * c - Real.sqrt 2 / 2 * T / c
 
+/--
+@isnad1 id=eq.0h2v.s6.f7de7566a2c1 from=translated src=- shape=6d02441b vocab=27853f57
+-/
 theorem norm_sq_line (c x : ℝ) :
     ‖(c : ℂ) - ω * x‖ ^ 2 = c ^ 2 - Real.sqrt 2 * c * x + x ^ 2 := by
   rw [Complex.sq_norm, Complex.normSq_apply, re_line, im_line]
   have h2 : Real.sqrt 2 * Real.sqrt 2 = 2 := Real.mul_self_sqrt (by norm_num)
   nlinarith
 
+/--
+@isnad1 id=le.1h2v.s5.547b77df79ce from=translated src=- shape=0b573eb1 vocab=207a72cc
+-/
 theorem norm_line_ge {c : ℝ} (hc : 0 < c) (x : ℝ) :
     c / Real.sqrt 2 ≤ ‖(c : ℂ) - ω * x‖ := by
   have h2 : Real.sqrt 2 * Real.sqrt 2 = 2 := Real.mul_self_sqrt (by norm_num)
@@ -148,7 +171,9 @@ theorem norm_line_ge {c : ℝ} (hc : 0 < c) (x : ℝ) :
   nlinarith [sq_nonneg (Real.sqrt 2 * x - c)]
 
 /-- `|u^{-s}| ≤ c^{-σ} 2^{σ/2} exp (T (-y + y²/(2π)))` on the line `u = c - ω x`,
-where `y = (√2/2) x / c`, for `σ ≥ 0` and `T ≥ 0`.-/
+where `y = (√2/2) x / c`, for `σ ≥ 0` and `T ≥ 0`.
+@isnad1 id=le.3h3v.s8.f6fe1e1cd4c5 from=translated src=- shape=314a1c7e vocab=c262fb80
+-/
 theorem norm_cpow_neg_line_le {s : ℂ} {c : ℝ} (hσ : 0 ≤ s.re) (hT : 0 ≤ s.im) (hc : 0 < c)
     (x : ℝ) :
     ‖((c : ℂ) - ω * x) ^ (-s)‖ ≤ c ^ (-s.re) * 2 ^ (s.re / 2) *
@@ -169,6 +194,9 @@ theorem norm_cpow_neg_line_le {s : ℂ} {c : ℝ} (hσ : 0 ≤ s.re) (hT : 0 ≤
     exact Real.exp_le_exp.2 (mul_le_mul_of_nonneg_left (arg_line_le hc x) hT)
   exact mul_le_mul h1 h2 (Real.exp_pos _).le (by positivity)
 
+/--
+@isnad1 id=eq.0h2v.s7.ade6e90e47d0 from=translated src=- shape=8e10cd8d vocab=79cd6de1
+-/
 theorem norm_exp_pi_I_mul_sq_line (c x : ℝ) :
     ‖cexp (π * I * ((c : ℂ) - ω * x) ^ 2)‖ =
       Real.exp (Real.sqrt 2 * π * c * x - π * x ^ 2) := by
@@ -177,7 +205,9 @@ theorem norm_exp_pi_I_mul_sq_line (c x : ℝ) :
   have h2 : Real.sqrt 2 * Real.sqrt 2 = 2 := Real.mul_self_sqrt (by norm_num)
   linear_combination (-(π * x ^ 2 / 2)) * h2
 
-/-- The exponential factors of the line integrand combine into one Gaussian.-/
+/-- The exponential factors of the line integrand combine into one Gaussian.
+@isnad1 id=eq.1h3v.s8.4354c05305ee from=translated src=- shape=4f9ace2f vocab=d7c231dc
+-/
 theorem exp_line_mul_eq {c : ℝ} (hc : 0 < c) (T x : ℝ) :
     Real.exp (T * (-(Real.sqrt 2 / 2 * x / c) + (Real.sqrt 2 / 2 * x / c) ^ 2 / (2 * π))) *
       Real.exp (Real.sqrt 2 * π * c * x - π * x ^ 2) =
@@ -192,7 +222,9 @@ theorem exp_line_mul_eq {c : ℝ} (hc : 0 < c) (T x : ℝ) :
   ring
 
 /-- The pointwise bound along the line: for `σ ≥ 0`, `T ≥ 0`, `c > 0` at distance `≥ ρ₀` from
-the integers, `‖integrand s (c - ω x)‖ ≤ (√2/(4ρ₀)) c^{-σ} 2^{σ/2} exp (B x - A x²)`.-/
+the integers, `‖integrand s (c - ω x)‖ ≤ (√2/(4ρ₀)) c^{-σ} 2^{σ/2} exp (B x - A x²)`.
+@isnad1 id=le.5h4v.s8.7137494416ec from=translated src=- shape=957a06e1 vocab=a5ab16a9
+-/
 theorem norm_integrand_line_le' {s : ℂ} {c ρ₀ : ℝ} (hσ : 0 ≤ s.re) (hT : 0 ≤ s.im) (hc : 0 < c)
     (hρ₀ : 0 < ρ₀) (hcZ : ∀ m : ℤ, ρ₀ ≤ |c - m|) (x : ℝ) :
     ‖integrand s ((c : ℂ) - ω * x)‖ ≤ Real.sqrt 2 / (4 * ρ₀) * (c ^ (-s.re) * 2 ^ (s.re / 2)) *
@@ -213,7 +245,9 @@ theorem norm_integrand_line_le' {s : ℂ} {c ρ₀ : ℝ} (hσ : 0 ≤ s.re) (hT
         rw [← hexp]; ring
 
 /-- Integrating a pointwise bound `K exp (B x - A x²)` along the line `c - ω x` gives
-`‖R(s, c)‖ ≤ K √(π/A) exp (B²/(4A))`, for `A > 0`.-/
+`‖R(s, c)‖ ≤ K √(π/A) exp (B²/(4A))`, for `A > 0`.
+@isnad1 id=le.2h5v.s7.075dc644d85a from=translated src=- shape=7f0a5da1 vocab=687d33c0
+-/
 theorem norm_rsIntegral_le_of_bound {s : ℂ} {c K A B : ℝ} (hA : 0 < A)
     (h : ∀ x : ℝ, ‖integrand s ((c : ℂ) - ω * x)‖ ≤ K * Real.exp (B * x - A * x ^ 2)) :
     ‖rsIntegral s c‖ ≤ K * (Real.sqrt (π / A) * Real.exp (B ^ 2 / (4 * A))) := by
@@ -228,7 +262,9 @@ theorem norm_rsIntegral_le_of_bound {s : ℂ} {c K A B : ℝ} (hA : 0 < A)
 
 /-- The explicit bound on the Riemann–Siegel integral along the line through `c`:
 `‖R(s, c)‖ ≤ (√2/(4ρ₀)) c^{-σ} 2^{σ/2} √(π/A) exp (B²/(4A))` for `σ ≥ 0`, `T ≥ 0`, `c > 0`,
-the line at distance `≥ ρ₀` from the integers, and `A > 0`.-/
+the line at distance `≥ ρ₀` from the integers, and `A > 0`.
+@isnad1 id=le.6h3v.s8.0cc2eb6ac389 from=translated src=- shape=e2962708 vocab=49244beb
+-/
 theorem norm_rsIntegral_le {s : ℂ} {c ρ₀ : ℝ} (hσ : 0 ≤ s.re) (hT : 0 ≤ s.im) (hc : 0 < c)
     (hρ₀ : 0 < ρ₀) (hcZ : ∀ m : ℤ, ρ₀ ≤ |c - m|) (hA : 0 < lineA c s.im) :
     ‖rsIntegral s c‖ ≤ Real.sqrt 2 / (4 * ρ₀) * (c ^ (-s.re) * 2 ^ (s.re / 2)) *
@@ -237,13 +273,18 @@ theorem norm_rsIntegral_le {s : ℂ} {c ρ₀ : ℝ} (hσ : 0 ≤ s.re) (hT : 0 
 
 /-! ### The bound for `Re s ≤ 0` -/
 
+/--
+@isnad1 id=le.0h2v.s5.5990344bdd76 from=translated src=- shape=c3ebfedb vocab=b0514963
+-/
 theorem norm_line_le (c x : ℝ) : ‖(c : ℂ) - ω * x‖ ≤ |c| + |x| := by
   refine (norm_sub_le _ _).trans ?_
   rw [norm_mul, norm_rsOmega, one_mul, Complex.norm_real, Complex.norm_real, Real.norm_eq_abs,
     Real.norm_eq_abs]
 
 /-- `|u^{-s}| ≤ c^{-σ} exp (-σ |x| / c) exp (T (-y + y²/(2π)))` on the line `u = c - ω x` for
-`σ ≤ 0` and `T ≥ 0`.-/
+`σ ≤ 0` and `T ≥ 0`.
+@isnad1 id=le.3h3v.s8.aba7279fb4c8 from=translated src=- shape=1ce08965 vocab=d5bb192e
+-/
 theorem norm_cpow_neg_line_le_of_nonpos {s : ℂ} {c : ℝ} (hσ : s.re ≤ 0) (hT : 0 ≤ s.im)
     (hc : 0 < c) (x : ℝ) :
     ‖((c : ℂ) - ω * x) ^ (-s)‖ ≤ c ^ (-s.re) * Real.exp (-s.re * |x| / c) *
@@ -267,7 +308,9 @@ theorem norm_cpow_neg_line_le_of_nonpos {s : ℂ} {c : ℝ} (hσ : s.re ≤ 0) (
     exact Real.exp_le_exp.2 (mul_le_mul_of_nonneg_left (arg_line_le hc x) hT)
   exact mul_le_mul h1 h2 (Real.exp_pos _).le (by positivity)
 
-/-- `λ |x| ≤ λ² / A + (A/4) x²` for `A > 0`.-/
+/-- `λ |x| ≤ λ² / A + (A/4) x²` for `A > 0`.
+@isnad1 id=le.1h3v.s6.0b0d8cb71cc6 from=translated src=- shape=b62f290a vocab=b09e3a18
+-/
 theorem mul_abs_le_div_add_sq {A : ℝ} (hA : 0 < A) (l x : ℝ) :
     l * |x| ≤ l ^ 2 / A + A / 4 * x ^ 2 := by
   have h : 0 ≤ (Real.sqrt A / 2 * |x| - l / Real.sqrt A) ^ 2 := sq_nonneg _
@@ -285,7 +328,9 @@ theorem mul_abs_le_div_add_sq {A : ℝ} (hA : 0 < A) (l x : ℝ) :
   linarith
 
 /-- The pointwise bound along the line for `σ ≤ 0`:
-`‖integrand s (c - ω x)‖ ≤ (√2/(4ρ₀)) c^{-σ} exp (σ²/(A c²)) exp (B x - (3A/4) x²)`.-/
+`‖integrand s (c - ω x)‖ ≤ (√2/(4ρ₀)) c^{-σ} exp (σ²/(A c²)) exp (B x - (3A/4) x²)`.
+@isnad1 id=le.6h4v.s8.fc70406c3fd6 from=translated src=- shape=aaf9e589 vocab=a5ab16a9
+-/
 theorem norm_integrand_line_le_of_nonpos {s : ℂ} {c ρ₀ : ℝ} (hσ : s.re ≤ 0) (hT : 0 ≤ s.im)
     (hc : 0 < c) (hρ₀ : 0 < ρ₀) (hcZ : ∀ m : ℤ, ρ₀ ≤ |c - m|) (hA : 0 < lineA c s.im) (x : ℝ) :
     ‖integrand s ((c : ℂ) - ω * x)‖ ≤
@@ -322,7 +367,9 @@ theorem norm_integrand_line_le_of_nonpos {s : ℂ} {c ρ₀ : ℝ} (hσ : s.re �
     _ = _ := by ring
 
 /-- The explicit bound on the Riemann–Siegel integral for `σ ≤ 0`:
-`‖R(s, c)‖ ≤ (√2/(4ρ₀)) c^{-σ} exp (σ²/(A c²)) √(π/(3A/4)) exp (B²/(3A))`.-/
+`‖R(s, c)‖ ≤ (√2/(4ρ₀)) c^{-σ} exp (σ²/(A c²)) √(π/(3A/4)) exp (B²/(3A))`.
+@isnad1 id=le.6h3v.s8.8eadba9c50da from=translated src=- shape=42004c11 vocab=49244beb
+-/
 theorem norm_rsIntegral_le_of_re_nonpos {s : ℂ} {c ρ₀ : ℝ} (hσ : s.re ≤ 0) (hT : 0 ≤ s.im)
     (hc : 0 < c) (hρ₀ : 0 < ρ₀) (hcZ : ∀ m : ℤ, ρ₀ ≤ |c - m|) (hA : 0 < lineA c s.im) :
     ‖rsIntegral s c‖ ≤
@@ -334,6 +381,9 @@ theorem norm_rsIntegral_le_of_re_nonpos {s : ℂ} {c ρ₀ : ℝ} (hσ : s.re �
 
 /-! ### Independence of the line within `(n, n + 1)` -/
 
+/--
+@isnad1 id=le.1h5v.s6.f12cbba7c22f from=translated src=- shape=e02d278a vocab=736c36d7
+-/
 theorem strip_dist_of_mem_Ioo (c c' : ℝ) (n : ℕ) :
     ∀ κ ∈ Icc c c', ∀ m : ℤ, min (c - n) (n + 1 - c') ≤ |κ - m| := by
   intro κ hκ m
@@ -343,6 +393,9 @@ theorem strip_dist_of_mem_Ioo (c c' : ℝ) (n : ℕ) :
   · have : (n : ℝ) + 1 ≤ m := by exact_mod_cast h
     refine (min_le_right _ _).trans (le_trans ?_ (neg_le_abs _)); linarith [hκ.2]
 
+/--
+@isnad1 id=ne.2h2v.s6.c3ddace0c5da from=translated src=- shape=9a2340cf vocab=90b028d3
+-/
 theorem sin_pi_mul_ne_zero_of_dist {u : ℂ} {ρ : ℝ} (hρ : 0 < ρ)
     (hu : ∀ m : ℤ, ρ ≤ |u.re - u.im - m|) : Complex.sin (π * u) ≠ 0 := by
   intro h
@@ -356,6 +409,9 @@ theorem sin_pi_mul_ne_zero_of_dist {u : ℂ} {ρ : ℝ} (hρ : 0 < ρ)
   simp at this
   linarith
 
+/--
+@isnad1 id=differen.3h3v.s7.686daf6d2424 from=translated src=- shape=5e882c75 vocab=611e051a
+-/
 theorem differentiableAt_integrand_of_dist {s u : ℂ} {ρ : ℝ} (hρ : 0 < ρ) (hu0 : 0 < u.re - u.im)
     (hu : ∀ m : ℤ, ρ ≤ |u.re - u.im - m|) : DifferentiableAt ℂ (integrand s) u := by
   unfold integrand kernel
@@ -370,7 +426,9 @@ theorem differentiableAt_integrand_of_dist {s u : ℂ} {ρ : ℝ} (hρ : 0 < ρ)
   exact h1.mul (h3.div h4 h2)
 
 /-- The Riemann–Siegel integral does not depend on the line as long as it stays within
-`(n, n + 1)`.-/
+`(n, n + 1)`.
+@isnad1 id=eq.4h4v.s6.b6174196ac00 from=translated src=- shape=1028a50c vocab=120a4c83
+-/
 theorem rsIntegral_eq_of_mem_Ioo (s : ℂ) {c c' : ℝ} {n : ℕ} (hcn : (n : ℝ) < c)
     (hcn' : c < n + 1) (hnc' : (n : ℝ) < c') (hc'n : c' < n + 1) :
     rsIntegral s c = rsIntegral s c' := by
