@@ -493,6 +493,17 @@ def fixture_facts(d: Path, exe: str | None) -> tuple[list[Record], list[str]]:
     return run_exe(args, exe, extra_path=d), run_exe_lines(["--ranges", *args], exe, extra_path=d)
 
 
+# what `tengoku-isnad --deps` must say for the fixture's theorems that have a `where` lemma (a theorem depends on exactly its own lemma)
+FIXTURE_DEPS = {"Fx.with_where": ["Fx.with_where.aux"], "Fx.with_where_nodoc": ["Fx.with_where_nodoc.aux2"]}
+
+
+def fixture_deps(d: Path, exe: str | None) -> dict[str, list[str]]:
+    """The `where`-lemma theorems of the compiled fixture, with their direct dependencies."""
+    lines = run_exe_lines(["--deps", "--import", FIXTURE_MODULE, "--module", FIXTURE_MODULE], exe, extra_path=d)
+    got = {n: ds for n, _, ds in map(parse_deps_line, lines)}
+    return {n: got.get(n, []) for n in FIXTURE_DEPS}
+
+
 def identities(recs: list[Record]) -> dict[str, tuple[str, str, str]]:
     return {r.name: (r.id, r.shape, r.vocab) for r in recs}
 
@@ -545,14 +556,10 @@ def tagtest(exe: str | None = None) -> int:
             problems.append("the tagged file is not the original plus tags")
         compile_fixture(d)
         recs2, ranges2 = fixture_facts(d, exe)
-        got_deps = {
-            n: ds
-            for n, _, ds in map(
-                parse_deps_line, run_exe_lines(["--deps", "--import", FIXTURE_MODULE, "--module", FIXTURE_MODULE], exe, extra_path=d)
+        if fixture_deps(d, exe) != FIXTURE_DEPS:
+            problems.append(
+                f"the direct dependencies of the fixture's `where` theorems are not exactly their lemmas: {fixture_deps(d, exe)}"
             )
-        }
-        if got_deps.get("Fx.with_where") != ["Fx.with_where.aux"] or got_deps.get("Fx.with_where_nodoc") != ["Fx.with_where_nodoc.aux2"]:
-            problems.append(f"the direct dependencies of the `where` theorems are not their lemmas: {got_deps.get('Fx.with_where')}")
         if identities(recs2) != before:
             problems.append("tagging changed the identity of a theorem")
         tag_of = {r.name: format_tag(r, "seed") for r in recs2}

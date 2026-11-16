@@ -233,7 +233,7 @@ def records (env : Environment) (mods : List Name) (names : List Name) : Array S
 /-- The theorems a theorem's proof uses directly, by the names the records use: every theorem constant of the proof term that the records list, nothing else. A theorem the
 records leave out (generated and internal: `eq_*`, `proof_*`, a private one) is looked through, to the theorems its own proof uses, because it has no identity to name.
 Definitions are not followed (a definition is not a statement), and the theorem itself is never its own dependency. Sorted, no duplicates. -/
-def directDeps (env : Environment) (self : Name) (value : Expr) : Array Name := Id.run do
+def directDeps (env : Environment) (self : Name) (value : Expr) : Array String := Id.run do
   let mut found : NameSet := {}
   let mut seen : NameSet := {}
   let mut stack : Array Name := value.getUsedConstants
@@ -250,7 +250,7 @@ def directDeps (env : Environment) (self : Name) (value : Expr) : Array Name := 
 /-- `isnad1-deps <name> <module> <dependency>…` (tab separated), one line per theorem of `selected`, in the same order as `records`: the direct dependencies of its proof. -/
 def depLines (env : Environment) (mods : List Name) (names : List Name) : Array String :=
   (selected env mods names).map fun (m, n, ci) =>
-    let deps := match ci with
+    let deps : Array String := match ci with
       | .thmInfo t => directDeps env n t.value
       | _ => #[]
     "\t".intercalate ("isnad1-deps" :: toString (cleanName n) :: m :: deps.toList)

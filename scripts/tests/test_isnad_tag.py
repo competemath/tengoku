@@ -730,6 +730,7 @@ class RangeDifferences(unittest.TestCase):
         with (
             mock.patch.object(isnad, "compile_fixture", lambda d: None),
             mock.patch.object(isnad, "fixture_facts", lambda d, exe: ([], lines)),
+            mock.patch.object(isnad, "fixture_deps", lambda d, exe: isnad.FIXTURE_DEPS),
             contextlib.redirect_stdout(out),
         ):
             self.assertEqual(isnad.tagtest(), 1)
@@ -756,6 +757,7 @@ class RangeDifferences(unittest.TestCase):
         with (
             mock.patch.object(isnad, "compile_fixture", lambda d: None),
             mock.patch.object(isnad, "fixture_facts", lambda d, exe: ([], lines)),
+            mock.patch.object(isnad, "fixture_deps", lambda d, exe: isnad.FIXTURE_DEPS),
             contextlib.redirect_stdout(out),
         ):
             isnad.tagtest()
