@@ -198,7 +198,22 @@
     "https://github.com/mbaker386/tutte-homotopy-lean",
     "https://github.com/aravpaladiya/factorization-theory-formalization",
     "https://github.com/petekos-math/singularity_complete_lean",
-    "https://github.com/ritsumei-aoi/osp-triviality"
+    "https://github.com/ritsumei-aoi/osp-triviality",
+    "https://github.com/apellis/string-diagrams-lean",
+    "https://github.com/pingram3/pcf-cyclotomic-lean",
+    "https://github.com/tigerisaac/zanello-lc",
+    "https://github.com/GrgAakash/tunnell-two-to-one-map",
+    "https://github.com/long-mathematics/rank-two-poisson-counterexample",
+    "https://github.com/UnknownSequence/exact-semiprimes-lean",
+    "https://github.com/abhisaha-git/fourier-jacobi-core-evaluation",
+    "https://github.com/FormalFrontier/quadratic-algebras",
+    "https://github.com/hara-seihun/LemmaLib",
+    "https://github.com/BrandonMYates/xilab",
+    "https://github.com/vlad-galkin38/RoundedRootSums",
+    "https://github.com/Solarys431/lean-eval-platonic-classification",
+    "https://github.com/jingxiangma/AxiomaticGW",
+    "https://github.com/alok/jacobian-two",
+    "https://github.com/timharv4755-crypto/Semigroup"
   ],
   "licences": {
     "https://github.com/leanprover-community/mathlib4": "Apache-2.0",
@@ -409,7 +424,22 @@
     "https://github.com/mbaker386/tutte-homotopy-lean": "Apache-2.0",
     "https://github.com/aravpaladiya/factorization-theory-formalization": "Apache-2.0",
     "https://github.com/petekos-math/singularity_complete_lean": "Apache-2.0",
-    "https://github.com/ritsumei-aoi/osp-triviality": "MIT"
+    "https://github.com/ritsumei-aoi/osp-triviality": "MIT",
+    "https://github.com/apellis/string-diagrams-lean": "Apache-2.0",
+    "https://github.com/pingram3/pcf-cyclotomic-lean": "Apache-2.0",
+    "https://github.com/tigerisaac/zanello-lc": "MIT",
+    "https://github.com/GrgAakash/tunnell-two-to-one-map": "Apache-2.0",
+    "https://github.com/long-mathematics/rank-two-poisson-counterexample": "MIT",
+    "https://github.com/UnknownSequence/exact-semiprimes-lean": "Apache-2.0",
+    "https://github.com/abhisaha-git/fourier-jacobi-core-evaluation": "Apache-2.0",
+    "https://github.com/FormalFrontier/quadratic-algebras": "Apache-2.0",
+    "https://github.com/hara-seihun/LemmaLib": "Apache-2.0",
+    "https://github.com/BrandonMYates/xilab": "Apache-2.0",
+    "https://github.com/vlad-galkin38/RoundedRootSums": "Apache-2.0",
+    "https://github.com/Solarys431/lean-eval-platonic-classification": "Apache-2.0",
+    "https://github.com/jingxiangma/AxiomaticGW": "Apache-2.0",
+    "https://github.com/alok/jacobian-two": "Apache-2.0",
+    "https://github.com/timharv4755-crypto/Semigroup": "Apache-2.0"
   },
   "corpora": {
     "equational-theories": {
@@ -1769,6 +1799,131 @@
       "commit": "5d8c67a8d3775163ea62f975139343beb4190d87",
       "roots": [
         "InhomogeneousDeformations"
+      ]
+    },
+    "string-diagrams-lean": {
+      "repo": "https://github.com/apellis/string-diagrams-lean",
+      "commit": "8ae261b120e748db9f79fa3179028fa5617c996f",
+      "roots": [
+        "StringDiagrams"
+      ]
+    },
+    "pcf-cyclotomic-lean": {
+      "repo": "https://github.com/pingram3/pcf-cyclotomic-lean",
+      "commit": "b7b6186ef67bc7bb9a1d08d94bd78b4b0d872084",
+      "roots": [
+        "IngramMello"
+      ]
+    },
+    "zanello-lc": {
+      "repo": "https://github.com/tigerisaac/zanello-lc",
+      "commit": "17b73a42d30fd5e1c39d2646b8598b1ffeca83ce",
+      "roots": [
+        "BettiThree",
+        "FormalDeps",
+        "GradedResolution",
+        "InverseSystem",
+        "Koszul",
+        "KoszulHomology",
+        "LogConcavity",
+        "ModuloStanley",
+        "Statement",
+        "Witness"
+      ]
+    },
+    "tunnell-two-to-one-map": {
+      "repo": "https://github.com/GrgAakash/tunnell-two-to-one-map",
+      "commit": "965584090a7b5f63b3872e94bc1ad07e23646d3d",
+      "roots": [
+        "PalomarEntries",
+        "RequestProject",
+        "TunnellMap"
+      ]
+    },
+    "rank-two-poisson-counterexample": {
+      "repo": "https://github.com/long-mathematics/rank-two-poisson-counterexample",
+      "commit": "6ef94a5c64e0a74b6698eefeea7e8938cdc783fd",
+      "roots": [
+        "RankTwoPoisson"
+      ]
+    },
+    "exact-semiprimes-lean": {
+      "repo": "https://github.com/UnknownSequence/exact-semiprimes-lean",
+      "commit": "34529d5b160887149d0dfdce57da1c005075ea0c",
+      "roots": [
+        "ExactSemiprimes"
+      ]
+    },
+    "fourier-jacobi-core-evaluation": {
+      "repo": "https://github.com/abhisaha-git/fourier-jacobi-core-evaluation",
+      "commit": "fb2b788d6271dd6228044b2c4e9e47c891a16762",
+      "roots": [
+        "Challenge",
+        "FourierJacobi",
+        "Solution",
+        "StatementAudit_v1"
+      ]
+    },
+    "quadratic-algebras": {
+      "repo": "https://github.com/FormalFrontier/quadratic-algebras",
+      "commit": "16a5b4c54c4586483cf53597a96eb91ecd5a3bca",
+      "roots": [
+        "QuadraticAlgebras",
+        "QuadraticAlgebrasTest"
+      ]
+    },
+    "lemmalib": {
+      "repo": "https://github.com/hara-seihun/LemmaLib",
+      "commit": "086d764fa1659ef261aa442bb12ff3c90ae8aa2a",
+      "roots": [
+        "LemmaLib",
+        "LemmaLibTest"
+      ]
+    },
+    "xilab": {
+      "repo": "https://github.com/BrandonMYates/xilab",
+      "commit": "4d24c74c3834b3f47a84110d8b864e3e50eacd7f",
+      "roots": [
+        "XiLab"
+      ]
+    },
+    "roundedrootsums": {
+      "repo": "https://github.com/vlad-galkin38/RoundedRootSums",
+      "commit": "9e8ea9c36ce5d59e64ae6032fe1c5b74bd4dee2c",
+      "roots": [
+        "RoundedRootSums"
+      ]
+    },
+    "lean-eval-platonic-classification": {
+      "repo": "https://github.com/Solarys431/lean-eval-platonic-classification",
+      "commit": "3cd00dfd965e5b9639cbf1011beea553001a290a",
+      "roots": [
+        "Challenge",
+        "ChallengeDeps",
+        "Solution",
+        "Submission"
+      ]
+    },
+    "axiomaticgw": {
+      "repo": "https://github.com/jingxiangma/AxiomaticGW",
+      "commit": "c6289b432a462612f834721c7be3f306c7211ac0",
+      "roots": [
+        "AxiomaticGW",
+        "AxiomaticGWTest"
+      ]
+    },
+    "jacobian-two": {
+      "repo": "https://github.com/alok/jacobian-two",
+      "commit": "ded8e67fb47c155f83ec9bd68af6014499fc2d61",
+      "roots": [
+        "JacobianTwo"
+      ]
+    },
+    "semigroup": {
+      "repo": "https://github.com/timharv4755-crypto/Semigroup",
+      "commit": "cb852a8398e40dc8ec721a53afc67b0f470a3a90",
+      "roots": [
+        "Semigroup"
       ]
     }
   },
