@@ -11,6 +11,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=surjecti.1h9v.s11.d3f7912b31fa from=translated src=- shape=571fc9c3 vocab=f933226a
+-/
 theorem solution
     {P X T S : Scheme.{u}} {fst : P ⟶ X} {snd : P ⟶ T} {f : X ⟶ S} {g : T ⟶ S}
     (H : IsPullback fst snd f g) (t : ↥P) [IsIso (f.residueFieldMap (fst.base t))] :

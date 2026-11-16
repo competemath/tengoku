@@ -18,6 +18,9 @@ open _root_.AlgebraicGeometry
 
 variable {X Y₁ Y₂ : Scheme.{u}} (i₁ : Y₁ ⟶ X) (i₂ : Y₂ ⟶ X) [IsClosedImmersion i₁] [IsClosedImmersion i₂]
 
+/--
+@isnad1 id=eq.0h5v.s6.906b3c36be74 from=translated src=- shape=c7b32432 vocab=8f53ee21
+-/
 theorem ker_pullback_fst_comp :
     (pullback.fst i₁ i₂ ≫ i₁).ker = i₁.ker ⊔ i₂.ker := by
   apply le_antisymm
@@ -36,6 +39,9 @@ theorem ker_pullback_fst_comp :
     rw [pullback.condition]
     exact Scheme.Hom.le_ker_comp _ _
 
+/--
+@isnad1 id=eq.1h5v.s8.5132744caad4 from=translated src=- shape=9362afa6 vocab=bf385a33
+-/
 theorem ker_mul_ker_eq_bot [IsReduced X] (hcover : Set.range i₁.base ∪ Set.range i₂.base = Set.univ) :
     i₁.ker * i₂.ker = ⊥ := by
   rw [← Scheme.IdealSheafData.support_eq_top_iff, Scheme.IdealSheafData.support_mul, eq_top_iff]
@@ -47,6 +53,9 @@ theorem ker_mul_ker_eq_bot [IsReduced X] (hcover : Set.range i₁.base ∪ Set.r
 end AlgebraicGeometry.TwoClosedAux
 
 open AlgebraicGeometry.TwoClosedAux in
+/--
+@isnad1 id=and.2h6v.s14.51e333af1f65 from=translated src=- shape=9830865f vocab=ad72f1e4
+-/
 theorem solution
     {X Y₁ Y₂ : Scheme.{u}} [IsReduced X] (i₁ : Y₁ ⟶ X) (i₂ : Y₂ ⟶ X)
     [IsClosedImmersion i₁] [IsClosedImmersion i₂]

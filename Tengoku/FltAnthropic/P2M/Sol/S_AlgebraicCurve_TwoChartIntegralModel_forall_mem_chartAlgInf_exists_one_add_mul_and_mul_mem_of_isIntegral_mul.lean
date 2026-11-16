@@ -13,6 +13,9 @@ universe u
 
 open AlgebraicCurve AlgebraicCurve.TwoChartIntegralModel
 
+/--
+@isnad1 id=ex.2h5v.s9.ea0ef89621ec from=translated src=- shape=c0f0b4a8 vocab=dc95e7c7
+-/
 theorem solution
     (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F] (j j' : F) [Fact (j ≠ 0)] [Fact (j' ≠ 0)]
     (hb : ∃ a ∈ Algebra.adjoin R ({j⁻¹} : Set F), IsIntegral (Algebra.adjoin R ({j⁻¹} : Set F)) ((1 + j⁻¹ * a) * j'⁻¹)) :

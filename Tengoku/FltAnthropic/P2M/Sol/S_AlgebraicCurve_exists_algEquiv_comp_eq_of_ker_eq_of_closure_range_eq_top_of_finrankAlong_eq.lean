@@ -12,6 +12,9 @@ open AlgebraicCurve
 
 namespace IsoKerGC5
 
+/--
+@isnad1 id=ex.2h6v.s9.0e483cbb05cd from=translated src=- shape=22a4368e vocab=a4dd2d88
+-/
 theorem exists_ringHom_apply_eq
     {K R F F' : Type*} [Field K] [CommRing R] [Field F] [Field F']
     [Algebra K R] [Algebra K F] [Algebra K F']
@@ -53,6 +56,9 @@ theorem exists_ringHom_apply_eq
 
 end IsoKerGC5
 
+/--
+@isnad1 id=ex.5h8v.s9.6257832dc920 from=translated src=- shape=03ca3345 vocab=20fbae4b
+-/
 theorem solution
     {K E R F F' : Type*} [Field K] [Field E] [CommRing R] [Field F] [Field F']
     [Algebra K E] [Algebra K R] [Algebra K F] [Algebra K F']

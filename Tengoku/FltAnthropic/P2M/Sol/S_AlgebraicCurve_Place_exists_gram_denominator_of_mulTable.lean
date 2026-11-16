@@ -629,6 +629,9 @@ end gstar
 
 end mwGSolM
 
+/--
+@isnad1 id=ex.5h8v.s11.3ae1de0fe99d from=translated src=- shape=c671caa8 vocab=f9532896
+-/
 theorem solution
     {K₀ k F : Type*} [Field K₀] [Field k] [Field F] [Algebra K₀ k] [Algebra k F]
     {j : F} (hj : Transcendental k j)

@@ -18,6 +18,9 @@ private theorem AlgebraicCurve.Place.solution_impl
   haveI := AlgebraicCurve.isIntegral_along φ hφ
   exact w.ramificationIndex_pos (F := F)
 
+/--
+@isnad1 id=le.1h5v.s7.81b23a0ccf8a from=translated src=- shape=8fa0a0d5 vocab=8cfafb74
+-/
 theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral) (w : AlgebraicCurve.Place K F') :
     1 ≤ AlgebraicCurve.Place.ramificationIndexAlong φ w :=
   AlgebraicCurve.Place.solution_impl φ hφ w

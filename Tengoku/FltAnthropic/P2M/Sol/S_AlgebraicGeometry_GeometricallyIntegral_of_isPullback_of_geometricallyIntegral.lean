@@ -55,6 +55,9 @@ open scoped _root_.P2MW.S_AlgebraicGeometry_GeometricallyIntegral_of_isPullback_
 
 open _root_.AlgebraicGeometry _root_.P2MW.S_AlgebraicGeometry_GeometricallyIntegral_of_isPullback_of_geometricallyIntegral.AlgebraicGeometry in
 
+/--
+@isnad1 id=geometri.1h7v.s7.014f03b321f9 from=translated src=- shape=9dc75386 vocab=44de54d8
+-/
 theorem solution
     {κ k : Type u} [Field κ] [Field k] [Algebra κ k]
     {C C' : Scheme.{u}} (c : C ⟶ Spec (CommRingCat.of κ)) (c' : C' ⟶ Spec (CommRingCat.of k)) (g : C' ⟶ C)

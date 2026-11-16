@@ -15,6 +15,9 @@ noncomputable abbrev secMap {S : Type} [CommRing S] {A : Scheme.{0}}
     (f : A ⟶ Spec (CommRingCat.of S)) (U : A.Opens) : S →+* Γ(A, U) :=
   ((Scheme.ΓSpecIso (CommRingCat.of S)).inv ≫ f.appLE ⊤ U le_top).hom
 
+/--
+@isnad1 id=eq.2h4v.s12.318519d2f208 from=translated src=- shape=a81478a4 vocab=69a10216
+-/
 theorem appLE_SpecMap_comp_fromSpec {A : Scheme.{0}} {U : A.Opens} (hU : IsAffineOpen U)
     {C : Type} [CommRing C] (q : Γ(A, U) →+* C)
     (e : (⊤ : (Spec (CommRingCat.of C)).Opens) ≤
@@ -40,6 +43,9 @@ theorem appLE_SpecMap_comp_fromSpec {A : Scheme.{0}} {U : A.Opens} (hU : IsAffin
     erw [Category.comp_id]
   rw [h1, h2, ← Scheme.ΓSpecIso_inv_naturality]
 
+/--
+@isnad1 id=le.1h10v.s13.37f2db0e3fe1 from=translated src=- shape=58ab72eb vocab=4a569e40
+-/
 theorem map_ker_le_of_localTest {S : Type} [CommRing S] {A : Scheme.{0}}
     (f : A ⟶ Spec (CommRingCat.of S))
     {Z₁ Z₂ : Scheme.{0}} (ι₁ : Z₁ ⟶ A) (ι₂ : Z₂ ⟶ A) [IsClosedImmersion ι₁] [IsClosedImmersion ι₂]
@@ -131,6 +137,9 @@ theorem map_ker_le_of_localTest {S : Type} [CommRing S] {A : Scheme.{0}}
   exact (map_eq_zero_iff _ (ConcreteCategory.bijective_of_isIso
     (Scheme.ΓSpecIso (CommRingCat.of C)).inv).1).mp h4
 
+/--
+@isnad1 id=eq.1h10v.s13.dca98f46d6a8 from=translated src=- shape=3f16c10c vocab=7688fb87
+-/
 theorem map_ker_eq_of_localTest {S : Type} [CommRing S] {A : Scheme.{0}}
     (f : A ⟶ Spec (CommRingCat.of S))
     {Z₁ Z₂ : Scheme.{0}} (ι₁ : Z₁ ⟶ A) (ι₂ : Z₂ ⟶ A) [IsClosedImmersion ι₁] [IsClosedImmersion ι₂]
@@ -149,6 +158,9 @@ theorem map_ker_eq_of_localTest {S : Type} [CommRing S] {A : Scheme.{0}}
 
 end ClosedSpread
 
+/--
+@isnad1 id=eq.1h10v.s13.0770e919924c from=translated src=- shape=e183e0c9 vocab=1012888d
+-/
 theorem solution
     {S : Type} [CommRing S] {A : Scheme.{0}} (f : A ⟶ Spec (CommRingCat.of S))
     {Z₁ Z₂ : Scheme.{0}} (ι₁ : Z₁ ⟶ A) (ι₂ : Z₂ ⟶ A) [IsClosedImmersion ι₁] [IsClosedImmersion ι₂]

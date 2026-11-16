@@ -13,12 +13,18 @@ open _root_.AlgebraicCurve
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
+/--
+@isnad1 id=eq.0h4v.s5.80d4eead0dd2 from=translated src=- shape=aab471c0 vocab=e4327e64
+-/
 theorem ord_natCast (v : Place K F) (n : ℕ) : v.ord (n : F) = 0 := by
   rw [show (n : F) = algebraMap K F n by simp]
   exact v.ord_algebraMap n
 
 end AlgebraicCurve.FF2S
 
+/--
+@isnad1 id=eq.0h4v.s5.80d4eead0dd2 from=translated src=- shape=aab471c0 vocab=e4327e64
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : AlgebraicCurve.Place K F) (n : ℕ) :
     v.ord (n : F) = 0 :=
   AlgebraicCurve.FF2S.ord_natCast v n

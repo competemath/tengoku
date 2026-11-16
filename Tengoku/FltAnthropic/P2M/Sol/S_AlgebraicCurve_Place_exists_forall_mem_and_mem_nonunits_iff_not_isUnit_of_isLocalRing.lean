@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open AlgebraicCurve
 
+/--
+@isnad1 id=ex.2h4v.s10.92a6b9693015 from=translated src=- shape=77c8b457 vocab=4cdbc820
+-/
 theorem solution
     {K F : Type*} [Field K] [Field F] [Algebra K F] (x : F)
     [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F]

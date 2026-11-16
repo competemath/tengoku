@@ -34,9 +34,15 @@ noncomputable def ratio (i j : Fin (n + 1)) : Away 𝒜 (X j : S) :=
       den := ⟨X j ^ 1, (MvPolynomial.mem_homogeneousSubmodule 1 _).mpr (MvPolynomial.isHomogeneous_X_pow j 1)⟩
       den_mem := ⟨1, rfl⟩ }
 
+/--
+@isnad1 id=eq.1h7v.s11.560ac4be4c4b from=translated src=- shape=bf372215 vocab=0b9a06e7
+-/
 theorem val_elt (i j : Fin (n + 1)) (a : ℕ) (H : S) (hH : H.IsHomogeneous a) (N : ℕ) :
     (elt i j a H hH N).val = Localization.mk (X i ^ N * H) (⟨X j ^ (N + a), ⟨N + a, rfl⟩⟩ : ↥(Submonoid.powers (X j : S))) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.7f23d038efe9 from=translated src=- shape=a0018001 vocab=d8f19ed0
+-/
 theorem val_ratio_pow (i j : Fin (n + 1)) (L : ℕ) :
     (ratio (A := A) i j ^ L).val = Localization.mk (X i ^ L) (⟨X j ^ L, ⟨L, rfl⟩⟩ : ↥(Submonoid.powers (X j : S))) := by
   rw [HomogeneousLocalization.val_pow]
@@ -45,6 +51,9 @@ theorem val_ratio_pow (i j : Fin (n + 1)) (L : ℕ) :
   congr 1
   exact Subtype.ext (by simp [← pow_mul])
 
+/--
+@isnad1 id=eq.1h8v.s11.cdb422a6c7d8 from=translated src=- shape=29271ee1 vocab=8e708da8
+-/
 theorem ratio_pow_mul_elt (i j : Fin (n + 1)) (a : ℕ) (H : S) (hH : H.IsHomogeneous a) (N L : ℕ) :
     ratio i j ^ L * elt i j a H hH N = elt i j a H hH (L + N) := by
   apply HomogeneousLocalization.val_injective
@@ -54,6 +63,9 @@ theorem ratio_pow_mul_elt (i j : Fin (n + 1)) (a : ℕ) (H : S) (hH : H.IsHomoge
   simp only [OneMemClass.coe_one, one_mul, Submonoid.coe_mul]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s9.ae1159abffc3 from=translated src=- shape=331d8c2c vocab=8e94f89d
+-/
 theorem isLocalizationElem_eq_ratio (i j : Fin (n + 1)) :
     Away.isLocalizationElem (ProjSpace.X_mem_one A n j) (ProjSpace.X_mem_one A n i) = ratio i j := by
   apply HomogeneousLocalization.val_injective
@@ -63,6 +75,9 @@ theorem isLocalizationElem_eq_ratio (i j : Fin (n + 1)) :
 
 set_option maxHeartbeats 1600000 in
 
+/--
+@isnad1 id=ex.2h7v.s18.4f65be1bca87 from=translated src=- shape=80847d72 vocab=917bc8ea
+-/
 theorem claim (𝓘 : (Proj 𝒜).IdealSheafData) (i j : Fin (n + 1)) (a : ℕ) (H : S) (hH : H.IsHomogeneous a)
     (hmem : (Proj.awayToSection 𝒜 (X i : S))
       (HomogeneousLocalization.mk
@@ -177,6 +192,9 @@ theorem claim (𝓘 : (Proj 𝒜).IdealSheafData) (i j : Fin (n + 1)) (a : ℕ) 
 end SatVanishAux
 
 open SatVanishAux in
+/--
+@isnad1 id=ex.2h7v.s18.d658b52fea8b from=translated src=- shape=eb1cc37b vocab=6b47a90d
+-/
 theorem solution
     (n : ℕ) (A : Type) [CommRing A] (𝓘 : (Proj (MvPolynomial.homogeneousSubmodule (Fin (n + 1)) A)).IdealSheafData)
     (i : Fin (n + 1)) (a : ℕ) (H : MvPolynomial (Fin (n + 1)) A) (hH : H.IsHomogeneous a)

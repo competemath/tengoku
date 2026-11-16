@@ -14,6 +14,9 @@ open AlgebraicGeometry AlgebraicCurve.TwoChartIntegralModel
 set_option synthInstance.maxHeartbeats 400000
 set_option maxHeartbeats 800000
 
+/--
+@isnad1 id=and.3h4v.s10.8d00c73e4db0 from=translated src=- shape=0ef6d554 vocab=497910ba
+-/
 theorem AlgebraicCurve.TwoChartIntegralModel.finite_polynomial_chartAlgFin_and_chartAlgInf
     (R : Type u) [CommRing R] [IsDomain R] [IsNoetherianRing R] [UniqueFactorizationMonoid R]
     (K₀ : Type u) [Field K₀] [Algebra R K₀] [IsFractionRing R K₀]

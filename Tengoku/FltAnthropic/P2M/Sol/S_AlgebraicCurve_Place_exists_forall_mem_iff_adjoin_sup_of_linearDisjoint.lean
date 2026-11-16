@@ -12,6 +12,9 @@ open AlgebraicCurve IsLocalRing
 
 set_option maxHeartbeats 3200000 in
 
+/--
+@isnad1 id=ex.5h6v.s12.d7076a9c4423 from=translated src=- shape=4edd2077 vocab=6eed147f
+-/
 theorem solution
     {k₀ L F : Type} [Field k₀] [Field L] [Field F] [Algebra k₀ L] [Algebra k₀ F] [Algebra L F] [IsScalarTower k₀ L F]
     (F₀ : IntermediateField k₀ F) (K₁ : IntermediateField k₀ L)

@@ -25,6 +25,9 @@ section Rings
 variable {R : Type u} [CommRing R] {F : Type u} [Field F] [Algebra R F]
 variable {Γ : Type v} [Group Γ] [MulSemiringAction Γ R] [MulSemiringAction Γ F]
 
+/--
+@isnad1 id=mem.3h6v.s9.592a68c4e267 from=translated src=- shape=d6b7f403 vocab=15168b2a
+-/
 theorem smul_mem_adjoin (hΓF : ∀ (s : Γ) (r : R), s • algebraMap R F r = algebraMap R F (s • r))
     (s : Γ) (S : Set F) (hS : ∀ x ∈ S, s • x ∈ S) {x : F} (hx : x ∈ Algebra.adjoin R S) :
     s • x ∈ Algebra.adjoin R S := by
@@ -34,6 +37,9 @@ theorem smul_mem_adjoin (hΓF : ∀ (s : Γ) (r : R), s • algebraMap R F r = a
   | add y z _ _ hy hz => rw [smul_add]; exact add_mem hy hz
   | mul y z _ _ hy hz => rw [smul_mul']; exact mul_mem hy hz
 
+/--
+@isnad1 id=mem.3h6v.s9.aa53f83546dd from=translated src=- shape=d6b7f403 vocab=f6adb794
+-/
 theorem smul_mem_chartAlg (hΓF : ∀ (s : Γ) (r : R), s • algebraMap R F r = algebraMap R F (s • r))
     (s : Γ) (S : Set F) (hS : ∀ x ∈ S, s • x ∈ S) {x : F} (hx : x ∈ chartAlg R F S) :
     s • x ∈ chartAlg R F S := by
@@ -65,20 +71,32 @@ def restr (hΓF : ∀ (s : Γ) (r : R), s • algebraMap R F r = algebraMap R F 
   map_mul' x y := Subtype.ext (smul_mul' s (x : F) (y : F))
   map_add' x y := Subtype.ext (smul_add s (x : F) (y : F))
 
+/--
+@isnad1 id=eq.2h6v.s11.d8f039c474aa from=translated src=- shape=b1dfad25 vocab=e21f0357
+-/
 @[scoped simp] theorem coe_restr (hΓF : ∀ (s : Γ) (r : R), s • algebraMap R F r = algebraMap R F (s • r))
     (S : Set F) (hS : ∀ (s : Γ), ∀ x ∈ S, s • x ∈ S) (s : Γ) (x : ↥(chartAlg R F S)) :
     ((restr hΓF S hS s x : ↥(chartAlg R F S)) : F) = s • (x : F) := rfl
 
+/--
+@isnad1 id=eq.2h4v.s10.5d0ee0616fe1 from=translated src=- shape=e5c67803 vocab=10005c16
+-/
 theorem restr_one (hΓF : ∀ (s : Γ) (r : R), s • algebraMap R F r = algebraMap R F (s • r))
     (S : Set F) (hS : ∀ (s : Γ), ∀ x ∈ S, s • x ∈ S) :
     (restr hΓF S hS 1).toRingHom = RingHom.id _ :=
   RingHom.ext fun x => Subtype.ext (one_smul Γ (x : F))
 
+/--
+@isnad1 id=eq.2h6v.s10.ec5e8f34f454 from=translated src=- shape=115b6cbc vocab=99bc9bb6
+-/
 theorem restr_mul (hΓF : ∀ (s : Γ) (r : R), s • algebraMap R F r = algebraMap R F (s • r))
     (S : Set F) (hS : ∀ (s : Γ), ∀ x ∈ S, s • x ∈ S) (s s' : Γ) :
     (restr hΓF S hS (s * s')).toRingHom = (restr hΓF S hS s).toRingHom.comp (restr hΓF S hS s').toRingHom :=
   RingHom.ext fun x => Subtype.ext (mul_smul s s' (x : F))
 
+/--
+@isnad1 id=eq.2h6v.s11.5f1bcda3ea73 from=translated src=- shape=b9d4bfa9 vocab=fa32c8e0
+-/
 theorem restr_algebraMap (hΓF : ∀ (s : Γ) (r : R), s • algebraMap R F r = algebraMap R F (s • r))
     (S : Set F) (hS : ∀ (s : Γ), ∀ x ∈ S, s • x ∈ S) (s : Γ) (r : R) :
     restr hΓF S hS s (algebraMap R _ r) = algebraMap R _ (s • r) :=
@@ -90,6 +108,9 @@ section Model
 
 variable (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F] (j : F) [Fact (j ≠ 0)]
 
+/--
+@isnad1 id=ex.2h6v.s12.fca878ca808c from=translated src=- shape=49b36978 vocab=a088ccfd
+-/
 theorem exists_hom_of_chartRingHom₃
     (aF : ↥(chartAlgFin R F j) →+* ↥(chartAlgFin R F j)) (aI : ↥(chartAlgInf R F j) →+* ↥(chartAlgInf R F j))
     (aM : ↥(chartAlgMid R F j) →+* ↥(chartAlgMid R F j))
@@ -118,6 +139,9 @@ theorem exists_hom_of_chartRingHom₃
 
 variable (Γ : Type v) [Group Γ] [MulSemiringAction Γ R] [MulSemiringAction Γ F]
 
+/--
+@isnad1 id=ex.2h4v.s13.3f72d0c1550e from=translated src=- shape=ab5ea17e vocab=0a527956
+-/
 theorem main
     (hΓF : ∀ (s : Γ) (r : R), s • algebraMap R F r = algebraMap R F (s • r))
     (hΓj : ∀ s : Γ, s • j = j) :
@@ -227,6 +251,9 @@ open scoped _root_.P2MW.S_AlgebraicCurve_TwoChartIntegralModel_exists_hom_comp_t
 open scoped _root_.P2MW.S_AlgebraicCurve_TwoChartIntegralModel_exists_hom_comp_toBase_eq_and_iotaFin_comp_eq_of_mulSemiringAction_of_smul_eq.AlgebraicCurve
 
 open _root_.AlgebraicCurve.TwoChartIntegralModel _root_.P2MW.S_AlgebraicCurve_TwoChartIntegralModel_exists_hom_comp_toBase_eq_and_iotaFin_comp_eq_of_mulSemiringAction_of_smul_eq.AlgebraicCurve.TwoChartIntegralModel in
+/--
+@isnad1 id=ex.2h4v.s13.3f72d0c1550e from=translated src=- shape=ab5ea17e vocab=0a527956
+-/
 theorem solution
     (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F] (j : F) [Fact (j ≠ 0)]
     (Γ : Type v) [Group Γ] [MulSemiringAction Γ R] [MulSemiringAction Γ F]

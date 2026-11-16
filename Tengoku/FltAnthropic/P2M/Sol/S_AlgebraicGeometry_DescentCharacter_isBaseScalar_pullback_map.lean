@@ -23,6 +23,9 @@ noncomputable abbrev resTop (r : Γ(X, ⊤)) (U : X.Opens) : Γ(X, U) :=
 noncomputable def smulLin (r : Γ(X, ⊤)) (P : X.Modules) (U : X.Opens) : Γ(P, U) →ₗ[Γ(X, U)] Γ(P, U) :=
   DistribSMul.toLinearMap Γ(X, U) Γ(P, U) (resTop r U)
 
+/--
+@isnad1 id=eq.0h5v.s15.b97811085307 from=translated src=- shape=4f65f926 vocab=264764a0
+-/
 theorem smul_eq (P : X.Modules) (U : (Opens X)ᵒᵖ) (a : X.ringCatSheaf.obj.obj U) (x : P.val.obj U) :
     (show Γ(P, U.unop) from (a • x : P.val.obj U)) =
       (show Γ(X, U.unop) from a) • (show Γ(P, U.unop) from x) := rfl
@@ -45,13 +48,22 @@ noncomputable def scalarEnd (r : Γ(X, ⊤)) (P : X.Modules) : P ⟶ P :=
           P.val.obj U))
       rw [smul_eq, smul_eq, smul_smul, smul_smul, mul_comm])⟩
 
+/--
+@isnad1 id=eq.0h5v.s12.4492214fd04e from=translated src=- shape=78161ad1 vocab=bfa9020b
+-/
 theorem scalarEnd_app (r : Γ(X, ⊤)) (P : X.Modules) (U : X.Opens) (s : Γ(P, U)) :
     (scalarEnd r P).app U s = resTop r U • s := rfl
 
+/--
+@isnad1 id=isbasesc.0h5v.s12.31ced85c0b38 from=translated src=- shape=79454a61 vocab=685b0aa2
+-/
 theorem isBaseScalar_scalarEnd {R : Type u} [CommRing R] (f : X ⟶ Spec (CommRingCat.of R)) (c : R) (P : X.Modules) :
     IsBaseScalar f (scalarEnd (f.appTop ((Scheme.ΓSpecIso (CommRingCat.of R)).inv c)) P) c :=
   fun _ _ => rfl
 
+/--
+@isnad1 id=eq.1h10v.s11.6abacf55c103 from=translated src=- shape=b30c714b vocab=58da911c
+-/
 theorem app_baseSection {X' : Scheme.{u}} (g : X' ⟶ X) {R R' : Type u} [CommRing R] [CommRing R']
     (f : X ⟶ Spec (CommRingCat.of R)) (f' : X' ⟶ Spec (CommRingCat.of R')) (φ : R →+* R')
     (hg : g ≫ f = f' ≫ Spec.map (CommRingCat.ofHom φ)) (c : R) (U : X.Opens) :
@@ -75,6 +87,9 @@ theorem app_baseSection {X' : Scheme.{u}} (g : X' ⟶ X) {R R' : Type u} [CommRi
   rw [h2]
   rfl
 
+/--
+@isnad1 id=isbasesc.2h11v.s7.2ef41440884d from=translated src=- shape=f30c4eb0 vocab=0e7e4d27
+-/
 theorem isBaseScalar_pullback_map {X' : Scheme.{u}} (g : X' ⟶ X) {R R' : Type u} [CommRing R] [CommRing R']
     (f : X ⟶ Spec (CommRingCat.of R)) (f' : X' ⟶ Spec (CommRingCat.of R')) (φ : R →+* R')
     (hg : g ≫ f = f' ≫ Spec.map (CommRingCat.ofHom φ))
@@ -93,6 +108,9 @@ theorem isBaseScalar_pullback_map {X' : Scheme.{u}} (g : X' ⟶ X) {R R' : Type 
 end KcDescCharConst
 open scoped _root_.P2MW.S_AlgebraicGeometry_DescentCharacter_isBaseScalar_pullback_map.KcDescCharConst
 
+/--
+@isnad1 id=isbasesc.2h11v.s7.2ef41440884d from=translated src=- shape=f30c4eb0 vocab=0e7e4d27
+-/
 theorem solution
     {X X' : Scheme.{u}} (g : X' ⟶ X) {R R' : Type u} [CommRing R] [CommRing R']
     (f : X ⟶ Spec (CommRingCat.of R)) (f' : X' ⟶ Spec (CommRingCat.of R')) (φ : R →+* R')

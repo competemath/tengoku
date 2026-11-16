@@ -12,6 +12,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=and.4h9v.s15.97b265c0dae8 from=translated src=- shape=2536e43a vocab=bc4a6591
+-/
 theorem AlgebraicGeometry.IsPullback.exists_iso_Spec_quotient_comp_morphismRestrict_eq
     {T' T : Type u} [CommRing T'] [CommRing T] (π : T' →+* T) (hπ : Function.Surjective π)
     (hker : IsNilpotent (RingHom.ker π))

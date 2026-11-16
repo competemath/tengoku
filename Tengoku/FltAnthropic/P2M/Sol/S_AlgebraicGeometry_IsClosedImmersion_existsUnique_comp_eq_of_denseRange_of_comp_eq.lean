@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=existsun.2h8v.s8.c4c687febcc1 from=translated src=- shape=353d688f vocab=6b61854e
+-/
 theorem solution
     {W X Y Z : Scheme.{u}} [IsReduced X] (g : W ⟶ X) (hg : DenseRange g.base)
     (ι : Z ⟶ Y) [IsClosedImmersion ι] (φ : X ⟶ Y)

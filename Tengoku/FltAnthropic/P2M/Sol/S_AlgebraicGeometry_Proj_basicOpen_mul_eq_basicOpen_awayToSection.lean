@@ -11,6 +11,9 @@ universe u v
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=eq.4h7v.s10.c74def203157 from=translated src=- shape=948d3f99 vocab=8ccb1a4f
+-/
 theorem solution
     {A : Type u} {σ : Type v} [CommRing A] [SetLike σ A] [AddSubgroupClass σ A] (𝒜 : ℕ → σ) [GradedRing 𝒜]
     {f g : A} {m m' : ℕ} (f_deg : f ∈ 𝒜 m) (hm : 0 < m) (g_deg : g ∈ 𝒜 m') (hm' : 0 < m') :

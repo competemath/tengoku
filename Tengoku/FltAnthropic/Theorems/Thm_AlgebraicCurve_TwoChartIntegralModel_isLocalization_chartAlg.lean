@@ -14,6 +14,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=islocali.0h5v.s10.4b45c052e707 from=translated src=- shape=23e2a461 vocab=7b25b416
+-/
 theorem AlgebraicCurve.TwoChartIntegralModel.isLocalization_chartAlg
     (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F]
     (R' : Type u) [CommRing R'] [Algebra R R'] [Algebra R' F] [IsScalarTower R R' F]

@@ -13,6 +13,9 @@ open CategoryTheory AlgebraicGeometry
 
 namespace RankSumAux
 
+/--
+@isnad1 id=eq.1h4v.s8.912d878961a8 from=translated src=- shape=d1605347 vocab=cd8f19de
+-/
 theorem finrank_eq_length_aux {k : Type u} [Field k] [IsAlgClosed k] (L : Type v) [CommRing L] [Algebra k L] [IsLocalRing L]
     [Module.Finite k L] (n : ℕ) :
     ∀ (M : Type w) [AddCommGroup M] [Module L M] [Module k M] [IsScalarTower k L M] [Module.Finite k M],
@@ -54,10 +57,16 @@ theorem finrank_eq_length_aux {k : Type u} [Field k] [IsAlgClosed k] (L : Type v
     have : (Module.finrank k M : ℕ∞) = ((1 + (Module.finrank k M - 1) : ℕ) : ℕ∞) := by congr 1; omega
     rw [this, Nat.cast_add, Nat.cast_one]
 
+/--
+@isnad1 id=eq.0h2v.s6.693d083825c8 from=translated src=- shape=44d60d83 vocab=ae7b2c36
+-/
 theorem finrank_eq_length {k : Type u} [Field k] [IsAlgClosed k] (L : Type v) [CommRing L] [Algebra k L] [IsLocalRing L]
     [Module.Finite k L] : (Module.finrank k L : ℕ∞) = Module.length L L :=
   finrank_eq_length_aux L (Module.finrank k L) L rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.acca19d08f20 from=translated src=- shape=5d57eaa3 vocab=0c2614fd
+-/
 theorem finrank_eq_sum_length_localization {k : Type u} [Field k] [IsAlgClosed k] (S : Type v) [CommRing S] [Algebra k S]
     [Module.Finite k S] [Fintype (PrimeSpectrum S)] :
     (Module.finrank k S : ℕ∞) =
@@ -70,6 +79,9 @@ theorem finrank_eq_sum_length_localization {k : Type u} [Field k] [IsAlgClosed k
       (IsArtinianRing.localization_surjective p.asIdeal.primeCompl (Localization.AtPrime p.asIdeal))
   exact finrank_eq_length (Localization.AtPrime p.asIdeal)
 
+/--
+@isnad1 id=eq.0h3v.s6.215ab99dca83 from=translated src=- shape=4934895b vocab=48fd2a6b
+-/
 theorem length_self_eq_of_ringEquiv {A : Type v} {B : Type w} [CommRing A] [CommRing B] (e : A ≃+* B) :
     Module.length A A = Module.length B B := by
   letI : Algebra A B := e.toRingHom.toAlgebra
@@ -91,6 +103,9 @@ namespace RankSumBridge
 
 variable {k : Type u} [Field k]
 
+/--
+@isnad1 id=and.1h4v.s12.f72fc4b821ec from=translated src=- shape=92d56b48 vocab=9cdb6d18
+-/
 theorem finrank_sections_eq {C : Scheme.{u}} (z : C ⟶ Spec (CommRingCat.of k)) [IsFinite z] [Flat z] [IsAffine C]
     (n : ℕ) (hrank : ∀ s : ↥(Spec (CommRingCat.of k)), z.finrank s = n) :
     letI : Algebra k Γ(C, ⊤) := ((Scheme.ΓSpecIso (CommRingCat.of k)).inv ≫ z.appTop).hom.toAlgebra
@@ -121,6 +136,9 @@ theorem finrank_sections_eq {C : Scheme.{u}} (z : C ⟶ Spec (CommRingCat.of k))
     rfl
   rw [← h2, h1]
 
+/--
+@isnad1 id=flat.0h3v.s5.e9ca4e8feaf0 from=translated src=- shape=d1db3a08 vocab=b6408cc6
+-/
 theorem flat_of_field {C : Scheme.{u}} (z : C ⟶ Spec (CommRingCat.of k)) [IsFinite z] : Flat z := by
   haveI : IsAffine C := isAffine_of_isAffineHom z
   set φ : CommRingCat.of k ⟶ Γ(C, ⊤) := (Scheme.ΓSpecIso (CommRingCat.of k)).inv ≫ z.appTop with hφ
@@ -137,6 +155,9 @@ theorem flat_of_field {C : Scheme.{u}} (z : C ⟶ Spec (CommRingCat.of k)) [IsFi
 end RankSumBridge
 
 open RankSumAux RankSumBridge in
+/--
+@isnad1 id=eq.0h4v.s11.ce6afdf0c8cc from=translated src=- shape=101f4c95 vocab=1c46691e
+-/
 theorem solution
     {k : Type u} [Field k] [IsAlgClosed k] {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of k)) [IsFinite f]
     (s : ↥(Spec (CommRingCat.of k))) :

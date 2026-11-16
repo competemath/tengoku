@@ -13,6 +13,9 @@ open CategoryTheory AlgebraicGeometry
 
 namespace Ws23C4
 
+/--
+@isnad1 id=ispushou.3h5v.s11.334467bde3d2 from=translated src=- shape=9d72ebbb vocab=70ff853c
+-/
 theorem main
     {V W : Scheme.{u}} (γ : W ⟶ V) [IsAffineHom γ] {U U' : V.Opens}
     (hU : IsAffineOpen U) (hU' : IsAffineOpen U') (h : U ≤ U') :
@@ -41,6 +44,9 @@ theorem main
 
 end Ws23C4
 
+/--
+@isnad1 id=ispushou.3h5v.s11.334467bde3d2 from=translated src=- shape=9d72ebbb vocab=70ff853c
+-/
 theorem solution
     {V W : Scheme.{u}} (γ : W ⟶ V) [IsAffineHom γ] {U U' : V.Opens}
     (hU : IsAffineOpen U) (hU' : IsAffineOpen U') (h : U ≤ U') :

@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=iff.0h4v.s8.08f9cc32ce63 from=translated src=- shape=19ac552f vocab=4ccbb891
+-/
 theorem solution
     {U X : Scheme.{u}} (i : U ⟶ X) [IsOpenImmersion i] (u : U) :
     IsRegularLocalRing (X.presheaf.stalk (i.base u)) ↔ IsRegularLocalRing (U.presheaf.stalk u) := by

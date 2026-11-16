@@ -11,6 +11,9 @@ universe u v w
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=free.1h4v.s11.7510fb1dfe0d from=translated src=- shape=71b764dd vocab=0700dcc9
+-/
 theorem Module.free_quotient_range_of_ker_baseChange_residueField_le
     {R : Type u} [CommRing R] [IsLocalRing R]
     {M : Type v} {N : Type w} [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N]

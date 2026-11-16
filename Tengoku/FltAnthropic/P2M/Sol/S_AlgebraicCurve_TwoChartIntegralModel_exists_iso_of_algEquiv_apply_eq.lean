@@ -21,6 +21,9 @@ open _root_.AlgebraicCurve.TwoChartIntegralModel open _root_.AlgebraicCurve
 
 variable {R : Type u} [CommRing R] {F F' : Type u} [Field F] [Field F'] [Algebra R F] [Algebra R F']
 
+/--
+@isnad1 id=mem.1h6v.s8.7ecd992157cc from=translated src=- shape=08c89c1c vocab=5c359e5a
+-/
 theorem mem_chartAlg_map (e : F ≃ₐ[R] F') (S : Set F) {x : F} (hx : x ∈ chartAlg R F S) :
     e x ∈ chartAlg R F' (e '' S) := by
   rw [mem_chartAlg_iff] at hx ⊢
@@ -45,12 +48,18 @@ theorem mem_chartAlg_map (e : F ≃ₐ[R] F') (S : Set F) {x : F} (hx : x ∈ ch
       (e : F →+* F') (eval₂ (algebraMap A F) x p) := (Polynomial.hom_eval₂ p (algebraMap A F) (e : F →+* F') x).symm
   exact h2.trans (by rw [hpx, map_zero])
 
+/--
+@isnad1 id=ex.1h6v.s10.a7e5bb7545eb from=translated src=- shape=e19ee69c vocab=d32101d9
+-/
 theorem exists_restr (e : F ≃ₐ[R] F') (S : Set F) (S' : Set F') (hS : e '' S = S') :
     ∃ τ : chartAlg R F S →ₐ[R] chartAlg R F' S', ∀ x, (τ x : F') = e x := by
   subst hS
   exact ⟨((e : F →ₐ[R] F').comp (chartAlg R F S).val).codRestrict (chartAlg R F' (e '' S))
     (fun x => mem_chartAlg_map e S x.2), fun _ => rfl⟩
 
+/--
+@isnad1 id=eq.1h4v.s7.e64f712dd0dd from=translated src=- shape=cf2f4dbb vocab=f0e7152e
+-/
 theorem spec_map_comp_eq_id {A B : Type u} [CommRing A] [CommRing B] (a : A →+* B) (b : B →+* A)
     (hab : ∀ x, a (b x) = x) :
     Spec.map (CommRingCat.ofHom a) ≫ Spec.map (CommRingCat.ofHom b) = 𝟙 _ := by
@@ -72,6 +81,9 @@ open AlgebraicCurve.TwoChartIntegralModel.Transport
 variable (R : Type u) [CommRing R] (F F' : Type u) [Field F] [Field F'] [Algebra R F] [Algebra R F']
   (j : F) (j' : F') [Fact (j ≠ 0)] [Fact (j' ≠ 0)]
 
+/--
+@isnad1 id=ex.2h8v.s12.d8d1f6ec4cbd from=translated src=- shape=93163d70 vocab=03506278
+-/
 theorem exists_hom_of_chartAlgHom₂
     (aF : chartAlgFin R F j →ₐ[R] chartAlgFin R F' j') (aI : chartAlgInf R F j →ₐ[R] chartAlgInf R F' j')
     (aM : chartAlgMid R F j →ₐ[R] chartAlgMid R F' j')
@@ -100,6 +112,9 @@ theorem exists_hom_of_chartAlgHom₂
 
 variable {F F' j j'} in
 
+/--
+@isnad1 id=eq.6h11v.s12.c36630361e35 from=translated src=- shape=7d826a9d vocab=a97d9585
+-/
 theorem comp_eq_id_of_charts
     (α : AlgebraicCurve.TwoChartIntegralModel R F j ⟶ AlgebraicCurve.TwoChartIntegralModel R F' j')
     (β : AlgebraicCurve.TwoChartIntegralModel R F' j' ⟶ AlgebraicCurve.TwoChartIntegralModel R F j)
@@ -118,6 +133,9 @@ theorem comp_eq_id_of_charts
     rw [← Category.assoc, hαI, Category.assoc, hβI, ← Category.assoc,
       spec_map_comp_eq_id aI bI habI, Category.id_comp, Category.comp_id]
 
+/--
+@isnad1 id=ex.1h6v.s12.a2f8e93288c6 from=translated src=- shape=1fc72cc1 vocab=73c91b5d
+-/
 theorem exists_iso_of_algEquiv_apply_eq (e : F ≃ₐ[R] F') (he : e j = j') :
     ∃ (w : AlgebraicCurve.TwoChartIntegralModel R F j ≅ AlgebraicCurve.TwoChartIntegralModel R F' j')
       (eFin : chartAlgFin R F j →ₐ[R] chartAlgFin R F' j') (eInf : chartAlgInf R F j →ₐ[R] chartAlgInf R F' j'),
@@ -174,6 +192,9 @@ theorem exists_iso_of_algEquiv_apply_eq (e : F ≃ₐ[R] F') (he : e j = j') :
 end AlgebraicCurve.TwoChartIntegralModel.TransportMain
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_TwoChartIntegralModel_exists_iso_of_algEquiv_apply_eq.AlgebraicCurve _root_.AlgebraicCurve.TwoChartIntegralModel _root_.P2MW.S_AlgebraicCurve_TwoChartIntegralModel_exists_iso_of_algEquiv_apply_eq.AlgebraicCurve.TwoChartIntegralModel in
+/--
+@isnad1 id=ex.1h6v.s12.a2f8e93288c6 from=translated src=- shape=1fc72cc1 vocab=73c91b5d
+-/
 theorem solution
     (R : Type u) [CommRing R] (F F' : Type u) [Field F] [Field F'] [Algebra R F] [Algebra R F']
     (j : F) (j' : F') [Fact (j ≠ 0)] [Fact (j' ≠ 0)] (e : F ≃ₐ[R] F') (he : e j = j') :

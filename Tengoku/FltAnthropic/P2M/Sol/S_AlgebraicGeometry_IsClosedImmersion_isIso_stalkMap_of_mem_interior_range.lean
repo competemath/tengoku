@@ -13,6 +13,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Opposite
 
+/--
+@isnad1 id=isiso.1h4v.s9.de3953a87e3d from=translated src=- shape=fcdd4ce3 vocab=757b5c22
+-/
 theorem solution
     {C X : Scheme.{u}} (i : C ⟶ X) [IsClosedImmersion i] [IsReduced X]
     (c : C) (hc : i c ∈ interior (Set.range i)) : IsIso (i.stalkMap c) := by

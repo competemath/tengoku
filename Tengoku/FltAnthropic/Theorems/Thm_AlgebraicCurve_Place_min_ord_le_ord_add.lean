@@ -5,5 +5,8 @@ import Tengoku.FltAnthropic.P2M.Sol.S_AlgebraicCurve_Place_min_ord_le_ord_add
 
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_AlgebraicCurve_Place_min_ord_le_ord_add.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
+/--
+@isnad1 id=le.3h5v.s7.691621096795 from=translated src=- shape=2d917a74 vocab=470e609b
+-/
 theorem AlgebraicCurve.Place.min_ord_le_ord_add {K F : Type*} [Field K] [Field F] [Algebra K F] (v : AlgebraicCurve.Place K F) {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) (hfg : f + g ≠ 0) :
     min (v.ord f) (v.ord g) ≤ v.ord (f + g) := by exact @_root_.P2MW.S_AlgebraicCurve_Place_min_ord_le_ord_add.solution K F _ _ _ v f g hf hg hfg

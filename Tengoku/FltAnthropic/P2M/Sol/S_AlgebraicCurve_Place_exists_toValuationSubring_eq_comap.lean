@@ -285,6 +285,9 @@ private def _root_.AlgebraicCurve.Place.restrict' : Place K F where
 
 export _root_.AlgebraicCurve.Place (restrict')
 
+/--
+@isnad1 id=ex.0h4v.s7.e7cd84b0a7e7 from=translated src=- shape=97024819 vocab=732edaf8
+-/
 theorem rowMain :
     ∃ v : Place K F, v.toValuationSubring = w.toValuationSubring.comap (algebraMap F F') :=
   ⟨w.restrict' F, rfl⟩
@@ -300,6 +303,9 @@ end AlgebraicCurve
 end
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_exists_toValuationSubring_eq_comap.AlgebraicCurve in
+/--
+@isnad1 id=ex.0h4v.s7.5377733c975b from=translated src=- shape=463c5533 vocab=732edaf8
+-/
 theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] (w : Place K F') :
     ∃ v : Place K F, v.toValuationSubring = w.toValuationSubring.comap (algebraMap F F') :=
   AlgebraicCurve.Place.rowMain w

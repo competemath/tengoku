@@ -20,15 +20,24 @@ open _root_.AlgebraicCurve
 section Transport
 variable {K K' : Type*} [Field K] [Field K']
 
+/--
+@isnad1 id=iff.0h5v.s7.a3fb00a7f70d from=translated src=- shape=4c39380b vocab=dc9359c5
+-/
 theorem mem_nonunits_comap_iff (A : ValuationSubring K') (φ : K →+* K') (x : K) :
     x ∈ (A.comap φ).nonunits ↔ φ x ∈ A.nonunits := by
   rw [ValuationSubring.mem_nonunits_iff_or, ValuationSubring.mem_nonunits_iff_or, map_eq_zero_iff φ φ.injective,
     ← map_inv₀, ValuationSubring.mem_comap]
 
+/--
+@isnad1 id=mem.1h3v.s6.16c6e12f60d5 from=translated src=- shape=508bb4d8 vocab=4a90bfc4
+-/
 theorem inv_mem_of_not_mem_nonunits (A : ValuationSubring K) {x : K} (h : x ∉ A.nonunits) : x⁻¹ ∈ A := by
   rw [ValuationSubring.mem_nonunits_iff_or, not_or, not_not] at h
   exact h.2
 
+/--
+@isnad1 id=ne.2h3v.s6.d26811db7245 from=translated src=- shape=3f2c4c13 vocab=f91256b5
+-/
 theorem ne_top_of_mem_nonunits (A : ValuationSubring K) {x : K} (hx : x ∈ A.nonunits) (hx0 : x ≠ 0) : A ≠ ⊤ := by
   intro h
   rw [ValuationSubring.mem_nonunits_iff_or] at hx
@@ -36,16 +45,25 @@ theorem ne_top_of_mem_nonunits (A : ValuationSubring K) {x : K} (hx : x ∈ A.no
   · exact hx0 hx
   · apply hx; rw [h]; trivial
 
+/--
+@isnad1 id=mem.2h4v.s7.0ac9bfa5e5f5 from=translated src=- shape=9639b463 vocab=f70636bf
+-/
 theorem nonunits_mul_mem (A : ValuationSubring K) {x y : K} (hx : x ∈ A.nonunits) (hy : y ∈ A) : x * y ∈ A.nonunits := by
   have hxA : x ∈ A := A.nonunits_le hx
   have h1 : (⟨x, hxA⟩ : A) ∈ IsLocalRing.maximalIdeal A := ValuationSubring.coe_mem_nonunits_iff.mp hx
   have h2 := Ideal.mul_mem_right (⟨y, hy⟩ : A) _ h1
   exact ValuationSubring.coe_mem_nonunits_iff.mpr h2
 
+/--
+@isnad1 id=not.2h3v.s6.2e4a5284db1b from=translated src=- shape=4409e208 vocab=4a90bfc4
+-/
 theorem not_mem_nonunits_of_inv_mem (A : ValuationSubring K) {x : K} (hx0 : x ≠ 0) (hxi : x⁻¹ ∈ A) : x ∉ A.nonunits := by
   rw [ValuationSubring.mem_nonunits_iff_or, not_or, not_not]
   exact ⟨hx0, hxi⟩
 
+/--
+@isnad1 id=eq.2h3v.s7.bbb19411d76a from=translated src=- shape=c0562965 vocab=f00a6abb
+-/
 theorem valuation_eq_one_of_mem_of_not_mem_nonunits (A : ValuationSubring K) {x : K} (hx : x ∈ A) (hxn : x ∉ A.nonunits) :
     A.valuation x = 1 :=
   le_antisymm ((A.valuation_le_one_iff x).mpr hx) (not_lt.mp (fun h => hxn (A.mem_nonunits_iff.mpr h)))
@@ -56,6 +74,9 @@ end AlgebraicCurve.KummerUnram
 
 open AlgebraicCurve.KummerUnram in
 
+/--
+@isnad1 id=eq.6h8v.s8.02b215397613 from=translated src=- shape=ee4bb08f vocab=9676cca1
+-/
 theorem solution
     {k F F' : Type*} [Field k] [IsAlgClosed k] [Field F] [Field F'] [Algebra k F] [Algebra k F']
     (φ : F →ₐ[k] F') (hφ : φ.toRingHom.IsIntegral)

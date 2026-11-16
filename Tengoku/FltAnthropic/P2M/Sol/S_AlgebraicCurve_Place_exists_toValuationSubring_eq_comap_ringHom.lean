@@ -206,6 +206,9 @@ private theorem AlgebraicCurve.Place.exists_toValuationSubring_eq_comap_ringHom 
 
 end Roots
 
+/--
+@isnad1 id=ex.2h6v.s8.c35953dc1399 from=translated src=- shape=593d40fa vocab=740b621e
+-/
 theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [CharZero K] (x : F) [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (φ : F →+* F') (w : ValuationSubring F') (hwK : ∀ a : K, φ (algebraMap K F a) ∈ w) (hwx : ∃ y : F, φ y ∉ w) : ∃ v : AlgebraicCurve.Place K F, v.toValuationSubring = w.comap φ :=
   AlgebraicCurve.Place.exists_toValuationSubring_eq_comap_ringHom x φ w hwK hwx
 

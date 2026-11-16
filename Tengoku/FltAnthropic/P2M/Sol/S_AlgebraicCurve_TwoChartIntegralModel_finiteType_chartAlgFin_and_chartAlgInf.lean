@@ -22,6 +22,9 @@ open _root_.AlgebraicCurve.TwoChartIntegralModel open _root_.AlgebraicCurve
 set_option maxHeartbeats 32000000 in
 set_option synthInstance.maxHeartbeats 1600000 in
 
+/--
+@isnad1 id=and.3h4v.s9.64eb20e20bf1 from=translated src=- shape=a3373d86 vocab=6bec8e1a
+-/
 theorem finiteType_chartAlgFin_and_chartAlgInf_impl
     (R : Type u) [CommRing R] [IsDomain R] [IsNoetherianRing R] [UniqueFactorizationMonoid R]
     (K₀ : Type u) [Field K₀] [Algebra R K₀] [IsFractionRing R K₀]
@@ -184,6 +187,9 @@ theorem finiteType_chartAlgFin_and_chartAlgInf_impl
 end AlgebraicCurve.TwoChartIntegralModel
 
 set_option synthInstance.maxHeartbeats 1600000 in
+/--
+@isnad1 id=and.3h4v.s9.64eb20e20bf1 from=translated src=- shape=a3373d86 vocab=6bec8e1a
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsDomain R] [IsNoetherianRing R] [UniqueFactorizationMonoid R]
     (K₀ : Type u) [Field K₀] [Algebra R K₀] [IsFractionRing R K₀]

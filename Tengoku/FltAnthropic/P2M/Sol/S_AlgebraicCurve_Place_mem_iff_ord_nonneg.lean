@@ -55,6 +55,9 @@ end AlgebraicCurve
 end
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_mem_iff_ord_nonneg.AlgebraicCurve in
+/--
+@isnad1 id=iff.1h4v.s6.203c863c0fb8 from=translated src=- shape=0381474b vocab=d89c618f
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) {f : F} (hf : f ≠ 0) :
     f ∈ v.toValuationSubring ↔ 0 ≤ v.ord f :=
   AlgebraicCurve.Place.rowMain v hf

@@ -8,6 +8,9 @@ namespace P2MW.S_AlgebraicCurve_isIntegral_adjoin_of_isScalarTower
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=isintegr.1h5v.s8.a542a954df75 from=translated src=- shape=2bb934fc vocab=5fcc2557
+-/
 theorem solution {K L F : Type*} [CommRing K] [CommRing L] [CommRing F] [Algebra K L] [Algebra K F] [Algebra L F] [IsScalarTower K L F] {j x : F} (hx : IsIntegral (Algebra.adjoin K {j}) x) : IsIntegral (Algebra.adjoin L {j}) x := by
   have hsub : Algebra.adjoin K {j} ≤ Subalgebra.restrictScalars K (Algebra.adjoin L {j}) :=
     Algebra.adjoin_le (Set.singleton_subset_iff.mpr

@@ -10,6 +10,9 @@ set_option maxHeartbeats 8000000
 
 open Polynomial
 
+/--
+@isnad1 id=isintegr.1h3v.s7.e3e35ae545b7 from=translated src=- shape=7f3e1434 vocab=d178ac6d
+-/
 theorem solution
     {L : Type*} [Field L] {F : Type*} [CommRing F] [IsDomain F] [Algebra L F]
     (x : F) (hxL : Transcendental L x) :

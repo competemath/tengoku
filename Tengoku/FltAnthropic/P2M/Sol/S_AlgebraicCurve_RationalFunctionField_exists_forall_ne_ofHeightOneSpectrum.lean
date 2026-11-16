@@ -120,6 +120,9 @@ end PlaceInfty
 
 variable {K}
 
+/--
+@isnad1 id=ex.0h1v.s8.e0fcdf996c1c from=translated src=- shape=6f3e60b5 vocab=55c07c5d
+-/
 theorem rowMain :
     ∃ v : Place K (RatFunc K), ∀ w : HeightOneSpectrum K[X], v ≠ Place.ofHeightOneSpectrum w := by
   classical
@@ -132,6 +135,9 @@ end AlgebraicCurve
 end
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_exists_forall_ne_ofHeightOneSpectrum.AlgebraicCurve in
+/--
+@isnad1 id=ex.0h1v.s8.e0fcdf996c1c from=translated src=- shape=6f3e60b5 vocab=55c07c5d
+-/
 theorem solution {K : Type*} [Field K] :
     ∃ v : Place K (RatFunc K), ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠ Place.ofHeightOneSpectrum w :=
   AlgebraicCurve.RationalFunctionField.rowMain

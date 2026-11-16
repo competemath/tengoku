@@ -52,6 +52,9 @@ theorem eq_of_comp_eq_of_surjective {X Y T T₀ : Scheme.{0}} (q : Y ⟶ X)
       _ = _ := by simp only [Category.assoc, pullback.diagonal_snd, Category.comp_id]
   rw [h1, ← h2]
 
+/--
+@isnad1 id=surjecti.1h3v.s5.6055c1f6f10c from=translated src=- shape=d02241ca vocab=95a4c1ab
+-/
 theorem surjective_of_isNilpotent_ker {T T₀ : Scheme.{0}} (k : T₀ ⟶ T) [IsClosedImmersion k]
     (hk : IsNilpotent k.ker) : Surjective k := by
   have : IsDominant k := by
@@ -61,6 +64,9 @@ theorem surjective_of_isNilpotent_ker {T T₀ : Scheme.{0}} (k : T₀ ⟶ T) [Is
     simp
   exact ⟨by rw [← Set.range_eq_univ, ← k.isClosedEmbedding.isClosed_range.closure_eq, k.denseRange.closure_range]⟩
 
+/--
+@isnad1 id=ex.2h8v.s10.c729b71bdb72 from=translated src=- shape=96884a7c vocab=f96a11b4
+-/
 theorem exists_of_forall_exists_nhd {X Y T T₀ : Scheme.{0}} (q : Y ⟶ X)
     [FormallyUnramified q] [LocallyOfFiniteType q]
     (k : T₀ ⟶ T) [Surjective k] (t : T ⟶ X) (s₀ : T₀ ⟶ Y) (hs₀ : s₀ ≫ q = k ≫ t)
@@ -105,10 +111,16 @@ theorem exists_of_forall_exists_nhd {X Y T T₀ : Scheme.{0}} (q : Y ⟶ X)
     show (k ⁻¹ᵁ U i).ι ≫ k ≫ 𝒰.glueMorphisms sU hcompat = (k ⁻¹ᵁ U i).ι ≫ s₀
     rw [← morphismRestrict_ι_assoc, show (U i).ι = 𝒰.f i from rfl, Scheme.Cover.ι_glueMorphisms, hsUk]
 
+/--
+@isnad1 id=eq.3h6v.s9.2383deb890bf from=translated src=- shape=ac8e7e1d vocab=b969f7d3
+-/
 theorem appLE_congr_hom {X Y : Scheme.{0}} {f g : X ⟶ Y} (h : f = g) (U : Y.Opens) (V : X.Opens)
     (e : V ≤ f ⁻¹ᵁ U) (e' : V ≤ g ⁻¹ᵁ U) : f.appLE U V e = g.appLE U V e' := by
   subst h; rfl
 
+/--
+@isnad1 id=ex.2h9v.s10.b23e628b9ae7 from=translated src=- shape=f9c44c3e vocab=06d951dd
+-/
 theorem exists_nhd_lift {X Y T T₀ : Scheme.{0}} (q : Y ⟶ X) [Etale q]
     (k : T₀ ⟶ T) [IsClosedImmersion k] (hk : IsNilpotent k.ker)
     (t : T ⟶ X) (s₀ : T₀ ⟶ Y) (hs₀ : s₀ ≫ q = k ≫ t) (p : T) :
@@ -193,6 +205,9 @@ theorem exists_nhd_lift {X Y T T₀ : Scheme.{0}} (q : Y ⟶ X) [Etale q]
     rw [← cancel_epi hkU.isoSpec.inv, ← Category.assoc, ← h3, Category.assoc, Iso.inv_hom_id_assoc,
       ← Spec.map_comp_assoc, h2, IsAffineOpen.SpecMap_appLE_fromSpec s₀ hW hkU hkUW, ← Category.assoc, hkU.isoSpec_inv_ι]
 
+/--
+@isnad1 id=existsun.2h8v.s7.ed1b054f8461 from=translated src=- shape=7575482c vocab=e23bcbbc
+-/
 theorem existsUnique_comp_eq_of_isNilpotent_ker {X Y T T₀ : Scheme.{0}} (q : Y ⟶ X) [Etale q]
     (k : T₀ ⟶ T) [IsClosedImmersion k] (hk : IsNilpotent k.ker)
     (t : T ⟶ X) (s₀ : T₀ ⟶ Y) (hs₀ : s₀ ≫ q = k ≫ t) :
@@ -204,6 +219,9 @@ theorem existsUnique_comp_eq_of_isNilpotent_ker {X Y T T₀ : Scheme.{0}} (q : Y
 
 end S2SECT
 
+/--
+@isnad1 id=existsun.2h8v.s7.ed1b054f8461 from=translated src=- shape=7575482c vocab=e23bcbbc
+-/
 theorem solution
     {X Y T T₀ : Scheme.{0}} (q : Y ⟶ X) [Etale q]
     (k : T₀ ⟶ T) [IsClosedImmersion k] (hk : IsNilpotent k.ker)

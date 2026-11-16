@@ -23,6 +23,9 @@ section Finite
 
 variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
 
+/--
+@isnad1 id=ex.1h2v.s8.4cf7e16d86e6 from=translated src=- shape=d3b3ce77 vocab=ac90a72a
+-/
 theorem exists_finset_adjoin_eq_top
     (hfg : ∃ x : F', Transcendental K x ∧
       FiniteDimensional (IntermediateField.adjoin K ({x} : Set F')) F') :
@@ -50,6 +53,9 @@ theorem exists_finset_adjoin_eq_top
   rw [htop]
   rfl
 
+/--
+@isnad1 id=finiteal.2h5v.s8.a719a5bbf739 from=translated src=- shape=01224b3e vocab=92c57196
+-/
 theorem finiteAlong_of_isIntegral_of_adjoin_eq_top (φ : F →ₐ[K] F')
     (hφ : φ.toRingHom.IsIntegral) (T : Finset F')
     (hT : IntermediateField.adjoin K (T : Set F') = ⊤) : FiniteAlong K φ := by
@@ -69,6 +75,9 @@ theorem finiteAlong_of_isIntegral_of_adjoin_eq_top (φ : F →ₐ[K] F')
     ((IntermediateField.equivOfEq hT').trans IntermediateField.topEquiv).toLinearEquiv
   exact Module.Finite.equiv e
 
+/--
+@isnad1 id=finiteal.2h4v.s8.a93d6a537154 from=translated src=- shape=2bbf7b3f vocab=f7d94746
+-/
 theorem finiteAlong_of_hfg (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral)
     (hfg : ∃ x : F', Transcendental K x ∧
       FiniteDimensional (IntermediateField.adjoin K ({x} : Set F')) F') : FiniteAlong K φ := by
@@ -87,6 +96,9 @@ variable (E F FE) in
 
 def spanEF : Submodule E FE := Submodule.span E (Set.range (algebraMap F FE))
 
+/--
+@isnad1 id=mem.2h5v.s8.f33ab8d814e7 from=translated src=- shape=90298b44 vocab=5995727a
+-/
 theorem mul_mem_spanEF {a b : FE} (ha : a ∈ spanEF F E FE) (hb : b ∈ spanEF F E FE) :
     a * b ∈ spanEF F E FE := by
   unfold spanEF at *
@@ -105,13 +117,22 @@ theorem mul_mem_spanEF {a b : FE} (ha : a ∈ spanEF F E FE) (hb : b ∈ spanEF 
   | add x y _ _ hx hy => rw [add_mul]; exact Submodule.add_mem _ (hx hb) (hy hb)
   | smul e x _ hx => rw [smul_mul_assoc]; exact Submodule.smul_mem _ e (hx hb)
 
+/--
+@isnad1 id=mem.0h3v.s7.8aa43c638d66 from=translated src=- shape=9af481f2 vocab=e8a67a77
+-/
 theorem one_mem_spanEF : (1 : FE) ∈ spanEF F E FE :=
   Submodule.subset_span ⟨1, map_one _⟩
 
+/--
+@isnad1 id=mem.0h4v.s7.01fcc667c508 from=translated src=- shape=276794c1 vocab=2b300f7d
+-/
 theorem algebraMap_E_mem_spanEF (e : E) : algebraMap E FE e ∈ spanEF F E FE := by
   rw [Algebra.algebraMap_eq_smul_one]
   exact Submodule.smul_mem _ e one_mem_spanEF
 
+/--
+@isnad1 id=mem.1h6v.s8.659e0a662173 from=translated src=- shape=6eceb70f vocab=8d3d042c
+-/
 theorem prod_mem_spanEF {ι : Type*} (s : Finset ι) (q : ι → FE) (hq : ∀ i ∈ s, q i ∈ spanEF F E FE) :
     ∏ i ∈ s, q i ∈ spanEF F E FE := by
   classical
@@ -130,6 +151,9 @@ def spanEFRing : Subring FE where
   zero_mem' := Submodule.zero_mem _
   neg_mem' ha := Submodule.neg_mem _ ha
 
+/--
+@isnad1 id=ex.1h4v.s9.e4014f0cdd74 from=translated src=- shape=acbe7c7a vocab=74b3148d
+-/
 theorem exists_div_of_adjoin_eq_top
     (hgen : IntermediateField.adjoin E (Set.range (algebraMap F FE)) = ⊤) (z : FE) :
     ∃ p q : FE, p ∈ spanEF F E FE ∧ q ∈ spanEF F E FE ∧ q ≠ 0 ∧ z = p / q := by
@@ -150,6 +174,9 @@ theorem exists_div_of_adjoin_eq_top
     rw [← hyw, hw0, div_zero, zero_div]
   · exact ⟨y, w, hy', hw', hw0, hyw.symm⟩
 
+/--
+@isnad1 id=ex.1h6v.s9.1b194156c70f from=translated src=- shape=274090d3 vocab=47ec9f24
+-/
 theorem exists_linearIndependent_repr {d : ℕ} (c : Fin d → FE) (hc : ∀ j, c j ∈ spanEF F E FE) :
     ∃ (r : ℕ) (u : Fin r → F), LinearIndependent K u ∧
       ∀ j, ∃ e : Fin r → E, c j = ∑ m, e m • algebraMap F FE (u m) := by
@@ -204,6 +231,9 @@ variable {K F F' E FE F'E : Type*} [Field K] [Field F] [Field F'] [Field E] [Fie
   [Algebra E FE] [Algebra F FE] [Algebra K FE] [IsScalarTower K E FE] [IsScalarTower K F FE]
   [Algebra E F'E] [Algebra F' F'E] [Algebra K F'E] [IsScalarTower K E F'E] [IsScalarTower K F' F'E]
 
+/--
+@isnad1 id=linearin.4h10v.s10.7ae9b7feca62 from=translated src=- shape=1c582e25 vocab=b355d921
+-/
 theorem linearIndependent_along_baseChange
     (φ : F →ₐ[K] F') (φE : FE →ₐ[E] F'E)
     (hφcomm : ∀ f : F, φE (algebraMap F FE f) = algebraMap F' F'E (φ f))
@@ -288,6 +318,9 @@ end Independence
 end AlgebraicCurve.TraceBaseChangeProof
 
 open AlgebraicCurve.TraceBaseChangeProof in
+/--
+@isnad1 id=and.9h8v.s11.5df76d3ace37 from=translated src=- shape=c4f3dc60 vocab=e2bf9443
+-/
 theorem solution
     (K F : Type*) [Field K] [Field F] [Algebra K F] [IsAlgClosed K] [CharZero K] [IsCurveOver K F]
     (hfg : ∃ x : F, Transcendental K x ∧

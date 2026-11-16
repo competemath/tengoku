@@ -160,6 +160,9 @@ private theorem subsingleton_setOf_forall_ne_ofHeightOneSpectrum' :
   · exact absurd h' (hv' w)
   rw [h, h']
 
+/--
+@isnad1 id=finite.1h2v.s7.bfce2eccff54 from=translated src=- shape=343bbe07 vocab=9a7ea26b
+-/
 theorem rowMain {f : RatFunc K} (hf : f ≠ 0) :
     {v : Place K (RatFunc K) | v.ord f ≠ 0}.Finite := by
   refine Set.Finite.subset
@@ -185,6 +188,9 @@ end AlgebraicCurve
 end
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_finite_setOf_ord_ne_zero.AlgebraicCurve in
+/--
+@isnad1 id=finite.1h2v.s7.bfce2eccff54 from=translated src=- shape=343bbe07 vocab=9a7ea26b
+-/
 theorem solution {K : Type*} [Field K] {f : RatFunc K} (hf : f ≠ 0) :
     {v : Place K (RatFunc K) | v.ord f ≠ 0}.Finite :=
   AlgebraicCurve.RationalFunctionField.rowMain hf

@@ -13,6 +13,9 @@ namespace P2mFunctionFieldPlacesDiscrete
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
+/--
+@isnad1 id=eq.1h3v.s7.9ffa96e31c96 from=translated src=- shape=45b61058 vocab=13db76ab
+-/
 theorem valuationSubring_eq_top_of_isAlgebraic (E : Type*) [Field E] [Algebra E F]
     [Algebra.IsAlgebraic E F] (O : ValuationSubring F)
     (hE : ∀ a : E, algebraMap E F a ∈ O) : O = ⊤ := by
@@ -25,6 +28,9 @@ theorem valuationSubring_eq_top_of_isAlgebraic (E : Type*) [Field E] [Algebra E 
   obtain ⟨z, hz⟩ := (isIntegrallyClosed_iff F).mp inferInstance hyO
   exact hz ▸ z.2
 
+/--
+@isnad1 id=isprinci.4h4v.s8.5808b8c4c6bc from=translated src=- shape=307b55c1 vocab=4c90ee1a
+-/
 theorem core (y : F) [FiniteDimensional (IntermediateField.adjoin K ({y} : Set F)) F]
     (O : ValuationSubring F) (hK : ∀ a : K, algebraMap K F a ∈ O) (hO : O ≠ ⊤)
     (hy : y ∈ O) (hyt : Transcendental K y) : IsPrincipalIdealRing O := by
@@ -218,6 +224,9 @@ theorem core (y : F) [FiniteDimensional (IntermediateField.adjoin K ({y} : Set F
   have key := Valuation.valuationSubring_isPrincipalIdealRing v
   rwa [hvdef, ValuationSubring.valuationSubring_valuation] at key
 
+/--
+@isnad1 id=isprinci.2h4v.s8.1f8082a0ddff from=translated src=- shape=879b8bc1 vocab=70340834
+-/
 theorem isPrincipalIdealRing_of_finiteDimensional_adjoin {K F : Type*} [Field K] [Field F] [Algebra K F] (x : F)
     [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F]
     (O : ValuationSubring F) (hK : ∀ a : K, algebraMap K F a ∈ O) (hO : O ≠ ⊤) :
@@ -254,6 +263,9 @@ theorem isPrincipalIdealRing_of_finiteDimensional_adjoin {K F : Type*} [Field K]
 
 end P2mFunctionFieldPlacesDiscrete
 
+/--
+@isnad1 id=isprinci.2h4v.s8.1f8082a0ddff from=translated src=- shape=879b8bc1 vocab=70340834
+-/
 theorem solution
     {K F : Type*} [Field K] [Field F] [Algebra K F] (x : F)
     [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F]

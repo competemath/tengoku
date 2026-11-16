@@ -15,6 +15,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=ispullba.0h5v.s10.f1a645ff1000 from=translated src=- shape=a8002db2 vocab=ffc4f58f
+-/
 theorem solution
     (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F] (j : F) [Fact (j ≠ 0)]
     (R' : Type u) [CommRing R'] [Algebra R R'] [Algebra R' F] [IsScalarTower R R' F]

@@ -13,6 +13,9 @@ namespace P1Aux
 
 variable {σ : Type} {R S : Type} [CommRing R] [CommRing S]
 
+/--
+@isnad1 id=eq.0h6v.s9.b4a44f2eea21 from=translated src=- shape=abd74f63 vocab=d56df6b5
+-/
 theorem homogeneousComponent_map (f : R →+* S) (p : MvPolynomial σ R) (d : ℕ) :
     homogeneousComponent d (MvPolynomial.map f p) = MvPolynomial.map f (homogeneousComponent d p) := by
   ext μ
@@ -21,6 +24,9 @@ theorem homogeneousComponent_map (f : R →+* S) (p : MvPolynomial σ R) (d : �
   · rfl
   · exact (map_zero f).symm
 
+/--
+@isnad1 id=eq.1h6v.s9.c58a6d05cd89 from=translated src=- shape=76d063ee vocab=d893296d
+-/
 theorem homogeneousComponent_mul_left [DecidableEq σ] {p : MvPolynomial σ R} {k : ℕ} (hp : p.IsHomogeneous k)
     (q : MvPolynomial σ R) (m : ℕ) :
     homogeneousComponent m (p * q) = if k ≤ m then p * homogeneousComponent (m - k) q else 0 := by
@@ -71,6 +77,9 @@ theorem homogeneousComponent_mul_left [DecidableEq σ] {p : MvPolynomial σ R} {
 
 end P1Aux
 
+/--
+@isnad1 id=iff.2h9v.s14.272ed0396049 from=translated src=- shape=7050b024 vocab=ca87b89c
+-/
 theorem solution
     (n : ℕ) (h : ℕ → ℕ) (B A : Type) [CommRing B] [CommRing A] (φ : B →+* A)
     (P : Point B n h) (Q : Point A n h) (hQ : Q.I = Ideal.map (MvPolynomial.map φ) P.I)

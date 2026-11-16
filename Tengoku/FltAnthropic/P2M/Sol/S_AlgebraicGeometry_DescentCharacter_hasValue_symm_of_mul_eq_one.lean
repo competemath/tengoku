@@ -16,12 +16,18 @@ namespace KcDescCharInv
 
 variable {X Y : Scheme.{u}} {R : Type u} [CommRing R]
 
+/--
+@isnad1 id=eq.1h7v.s7.2ef8ae4b644d from=translated src=- shape=f933ca24 vocab=4fe2bfdd
+-/
 theorem translateIso_eq {T : X ⟶ X} {q : X ⟶ Y} (h : T ≫ q = q) {N M : Y.Modules}
     (β : (Scheme.Modules.pullback q).obj N ≅ (Scheme.Modules.pullback q).obj M) :
     translateIso h β = β ≪≫ discrepancy h β := by
   ext : 1
   simp [discrepancy]
 
+/--
+@isnad1 id=isbasesc.1h8v.s6.a4723f8a281a from=translated src=- shape=d1e044ca vocab=72bbf91d
+-/
 theorem isBaseScalar_conj (f : X ⟶ Spec (CommRingCat.of R)) {M M' : X.Modules} (e : M ≅ M') {σ : M ⟶ M} {c : R}
     (hσ : IsBaseScalar f σ c) : IsBaseScalar f (e.inv ≫ σ ≫ e.hom) c := by
   intro U s
@@ -29,6 +35,9 @@ theorem isBaseScalar_conj (f : X ⟶ Spec (CommRingCat.of R)) {M M' : X.Modules}
     CategoryTheory.comp_apply, hσ U, Scheme.Modules.Hom.app_smul, ← CategoryTheory.comp_apply,
     ← Scheme.Modules.Hom.comp_app, e.inv_hom_id, Scheme.Modules.Hom.id_app, CategoryTheory.id_apply]
 
+/--
+@isnad1 id=hasvalue.3h11v.s7.e9b199f10af9 from=translated src=- shape=1eb4b2bd vocab=ac664444
+-/
 theorem hasValue_symm (f : X ⟶ Spec (CommRingCat.of R))
     {T : X ⟶ X} {q : X ⟶ Y} (h : T ≫ q = q) {N M : Y.Modules}
     (β : (Scheme.Modules.pullback q).obj N ≅ (Scheme.Modules.pullback q).obj M)
@@ -61,6 +70,9 @@ theorem hasValue_symm (f : X ⟶ Spec (CommRingCat.of R))
 
 end KcDescCharInv
 
+/--
+@isnad1 id=hasvalue.3h11v.s7.e9b199f10af9 from=translated src=- shape=1eb4b2bd vocab=ac664444
+-/
 theorem solution
     {X Y : Scheme.{u}} {R : Type u} [CommRing R] (f : X ⟶ Spec (CommRingCat.of R))
     {T : X ⟶ X} {q : X ⟶ Y} (h : T ≫ q = q) {N M : Y.Modules}

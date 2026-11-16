@@ -12,6 +12,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=existsun.1h7v.s9.3eac7483212e from=translated src=- shape=c294838a vocab=3ebdbb37
+-/
 theorem solution
     {Ω : Type u} [Field Ω] (O : Subring Ω)
     {Y Z : Scheme.{u}} (ι : Z ⟶ Y) [IsClosedImmersion ι] (z : Spec (CommRingCat.of ↥O) ⟶ Y)

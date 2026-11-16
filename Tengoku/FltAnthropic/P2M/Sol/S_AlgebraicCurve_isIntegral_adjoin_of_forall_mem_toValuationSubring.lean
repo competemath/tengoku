@@ -15,6 +15,9 @@ set_option synthInstance.maxHeartbeats 80000
 
 namespace INTGlue
 
+/--
+@isnad1 id=isintegr.2h3v.s7.8a91e10fdb55 from=translated src=- shape=57eca124 vocab=f59937ca
+-/
 theorem isIntegral_of_mem_adjoin_inv {A F : Type*} [CommRing A] [Field F] [Algebra A F]
     {z : F} (hz0 : z ≠ 0) (hmem : z ∈ Algebra.adjoin A ({z⁻¹} : Set F)) : IsIntegral A z := by
   classical
@@ -46,6 +49,9 @@ theorem isIntegral_of_mem_adjoin_inv {A F : Type*} [CommRing A] [Field F] [Algeb
   refine Finset.sum_congr rfl fun i hi => ?_
   rw [mul_left_comm, hzpow i hi]
 
+/--
+@isnad1 id=isintegr.1h3v.s7.bc539a052baf from=translated src=- shape=5bf90580 vocab=fc381d16
+-/
 theorem isIntegral_of_forall_valuationSubring {F : Type*} [Field F] (A : Subring F) (z : F)
     (h : ∀ V : ValuationSubring F, A ≤ V.toSubring → z ∈ V) : IsIntegral A z := by
   classical
@@ -104,6 +110,9 @@ theorem isIntegral_of_forall_valuationSubring {F : Type*} [Field F] (A : Subring
 
 end INTGlue
 
+/--
+@isnad1 id=isintegr.1h5v.s9.6acfec76a970 from=translated src=- shape=953e7a8f vocab=12283a83
+-/
 theorem solution
     {K F : Type*} [Field K] [Field F] [Algebra K F] (x : F)
     [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F]

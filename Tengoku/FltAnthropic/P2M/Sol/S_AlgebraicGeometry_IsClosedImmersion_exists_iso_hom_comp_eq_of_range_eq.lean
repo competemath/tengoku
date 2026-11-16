@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=ex.1h5v.s8.26dc14e885fa from=translated src=- shape=3d988fc5 vocab=66d708ab
+-/
 theorem solution
     {A B X : Scheme.{u}} (f : A ⟶ X) (g : B ⟶ X) [IsClosedImmersion f] [IsClosedImmersion g]
     [IsReduced A] [IsReduced B] (h : Set.range f.base = Set.range g.base) :

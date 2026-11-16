@@ -18,18 +18,27 @@ namespace HVBC
 
 variable {X Y Z W : Scheme.{u}}
 
+/--
+@isnad1 id=eq.1h5v.s7.21feeb80e6a8 from=translated src=- shape=f40cce6d vocab=a08a0a3c
+-/
 theorem congr_hom_app {g g' : X ⟶ Y} (e : g = g') (M : Y.Modules) :
     (Scheme.Modules.pullbackCongr e).hom.app M =
       eqToHom (show (Scheme.Modules.pullback g).obj M = (Scheme.Modules.pullback g').obj M by rw [e]) := by
   subst e
   simp [Scheme.Modules.pullbackCongr]
 
+/--
+@isnad1 id=eq.1h5v.s7.79a349bf9942 from=translated src=- shape=75d03736 vocab=62e07d46
+-/
 theorem congr_inv_app {g g' : X ⟶ Y} (e : g = g') (M : Y.Modules) :
     (Scheme.Modules.pullbackCongr e).inv.app M =
       eqToHom (show (Scheme.Modules.pullback g').obj M = (Scheme.Modules.pullback g).obj M by rw [e]) := by
   subst e
   simp [Scheme.Modules.pullbackCongr]
 
+/--
+@isnad1 id=eq.0h8v.s10.63087e6ce412 from=translated src=- shape=6737d789 vocab=79e4b074
+-/
 @[reassoc]
 theorem comp_assoc_app (a : X ⟶ Y) (b : Y ⟶ Z) (r : Z ⟶ W) (M : W.Modules) :
     (Scheme.Modules.pullbackComp a b).hom.app ((Scheme.Modules.pullback r).obj M) ≫
@@ -45,6 +54,9 @@ theorem comp_assoc_app (a : X ⟶ Y) (b : Y ⟶ Z) (r : Z ⟶ W) (M : W.Modules)
   refine assoc.trans ?_
   simp only [Functor.mapIso_hom, Iso.app_hom]
 
+/--
+@isnad1 id=eq.0h8v.s10.d5a5efeb1096 from=translated src=- shape=fb4a562c vocab=79e4b074
+-/
 @[reassoc]
 theorem comp_assoc_app' (a : X ⟶ Y) (b : Y ⟶ Z) (r : Z ⟶ W) (M : W.Modules) :
     (Scheme.Modules.pullback a).map ((Scheme.Modules.pullbackComp b r).hom.app M) ≫
@@ -57,6 +69,9 @@ theorem comp_assoc_app' (a : X ⟶ Y) (b : Y ⟶ Z) (r : Z ⟶ W) (M : W.Modules
   try dsimp only [Functor.comp_obj] at *
   rw [e, eqToHom_trans, eqToHom_refl, Category.comp_id]
 
+/--
+@isnad1 id=eq.1h7v.s9.3210d537b0d6 from=translated src=- shape=c98a1847 vocab=601de1ef
+-/
 @[reassoc]
 theorem map_congr_comp {a : X ⟶ Y} {g g' : Y ⟶ Z} (e : g = g') (M : Z.Modules) :
     (Scheme.Modules.pullback a).map ((Scheme.Modules.pullbackCongr e).hom.app M) ≫
@@ -66,6 +81,9 @@ theorem map_congr_comp {a : X ⟶ Y} {g g' : Y ⟶ Z} (e : g = g') (M : Z.Module
   subst e
   simp [Scheme.Modules.pullbackCongr]
 
+/--
+@isnad1 id=eq.1h7v.s9.5d4ca4cedce1 from=translated src=- shape=1e0eaee0 vocab=5abf646c
+-/
 @[reassoc]
 theorem congr_comp {a a' : X ⟶ Y} (e : a = a') (g : Y ⟶ Z) (M : Z.Modules) :
     (Scheme.Modules.pullbackCongr e).hom.app ((Scheme.Modules.pullback g).obj M) ≫
@@ -89,17 +107,29 @@ noncomputable def Psi (hT : T' ≫ gX = gX ≫ T) :
     Scheme.Modules.pullback gX ⋙ Scheme.Modules.pullback T' ≅ Scheme.Modules.pullback T ⋙ Scheme.Modules.pullback gX :=
   Scheme.Modules.pullbackComp T' gX ≪≫ Scheme.Modules.pullbackCongr hT ≪≫ (Scheme.Modules.pullbackComp gX T).symm
 
+/--
+@isnad1 id=eq.1h9v.s9.be222b5765ab from=translated src=- shape=62332553 vocab=e9744c6f
+-/
 theorem Phi_hom (hq : gX ≫ q = q' ≫ gY) (P : Y.Modules) :
     (Phi hq P).hom = (Scheme.Modules.pullbackComp q' gY).hom.app P ≫ (Scheme.Modules.pullbackCongr hq.symm).hom.app P ≫
       (Scheme.Modules.pullbackComp gX q).inv.app P := rfl
 
+/--
+@isnad1 id=eq.1h6v.s9.1d6f83a55fb2 from=translated src=- shape=15c7e71b vocab=759d2e75
+-/
 theorem Psi_hom_app (hT : T' ≫ gX = gX ≫ T) (P : X.Modules) :
     (Psi hT).hom.app P = (Scheme.Modules.pullbackComp T' gX).hom.app P ≫ (Scheme.Modules.pullbackCongr hT).hom.app P ≫
       (Scheme.Modules.pullbackComp gX T).inv.app P := rfl
 
+/--
+@isnad1 id=eq.1h5v.s8.34b03455d97f from=translated src=- shape=2934ad0c vocab=5b884813
+-/
 theorem transportIso_hom' {T : X ⟶ X} {q : X ⟶ Y} (h : T ≫ q = q) (P : Y.Modules) :
     (transportIso h P).hom = (Scheme.Modules.pullbackComp T q).hom.app P ≫ (Scheme.Modules.pullbackCongr h).hom.app P := rfl
 
+/--
+@isnad1 id=eq.4h11v.s11.97719c06204e from=translated src=- shape=d85d72f0 vocab=34e84c72
+-/
 theorem EL (h : T ≫ q = q) (h' : T' ≫ q' = q') (hq : gX ≫ q = q' ≫ gY) (hT : T' ≫ gX = gX ≫ T) (N : Y.Modules) :
     ((Scheme.Modules.pullback T').map
         ((Scheme.Modules.pullbackComp q' gY).hom.app N ≫ (Scheme.Modules.pullbackCongr hq.symm).hom.app N ≫
@@ -128,6 +158,9 @@ theorem EL (h : T ≫ q = q) (h' : T' ≫ q' = q') (hq : gX ≫ q = q' ≫ gY) (
   rw [e1, e2, e3, e4, e5, e6, e7, e8]
   simp only [congr_hom_app, eqToHom_trans, eqToHom_trans_assoc]
 
+/--
+@isnad1 id=eq.2h10v.s10.a7d1c2b992a8 from=translated src=- shape=a453a4d9 vocab=13dd4a39
+-/
 theorem ER (h' : T' ≫ q' = q') (hq : gX ≫ q = q' ≫ gY) (N : Y.Modules) :
     (((Scheme.Modules.pullbackComp T' q').hom.app ((Scheme.Modules.pullback gY).obj N) ≫
       (Scheme.Modules.pullbackCongr h').hom.app ((Scheme.Modules.pullback gY).obj N)) ≫
@@ -144,6 +177,9 @@ theorem ER (h' : T' ≫ q' = q') (hq : gX ≫ q = q' ≫ gY) (N : Y.Modules) :
   try dsimp only [Functor.comp_obj]
   simp only [congr_hom_app, eqToHom_trans, eqToHom_trans_assoc]
 
+/--
+@isnad1 id=eq.4h11v.s10.0f18593732af from=translated src=- shape=0bbb0e28 vocab=f17856c9
+-/
 theorem coh (h : T ≫ q = q) (h' : T' ≫ q' = q') (hq : gX ≫ q = q' ≫ gY) (hT : T' ≫ gX = gX ≫ T) (N : Y.Modules) :
     (Scheme.Modules.pullback T').map (Phi hq N).hom ≫ (Psi hT).hom.app ((Scheme.Modules.pullback q).obj N) ≫
         (Scheme.Modules.pullback gX).map (transportIso h N).hom =
@@ -152,6 +188,9 @@ theorem coh (h : T ≫ q = q) (h' : T' ≫ q' = q') (hq : gX ≫ q = q' ≫ gY) 
   refine (cancel_mono ((Scheme.Modules.pullbackComp gX q).hom.app N)).1 ?_
   exact (EL h h' hq hT N).trans (ER h' hq N).symm
 
+/--
+@isnad1 id=eq.4h11v.s10.960d7aefdfbd from=translated src=- shape=94b997e4 vocab=eae2639c
+-/
 @[reassoc]
 theorem C1 (h : T ≫ q = q) (h' : T' ≫ q' = q') (hq : gX ≫ q = q' ≫ gY) (hT : T' ≫ gX = gX ≫ T) (N : Y.Modules) :
     (Phi hq N).inv ≫ (transportIso h' ((Scheme.Modules.pullback gY).obj N)).inv ≫
@@ -163,6 +202,9 @@ theorem C1 (h : T ≫ q = q) (h' : T' ≫ q' = q') (hq : gX ≫ q = q' ≫ gY) (
   rw [hE, ← Category.assoc, Iso.eq_comp_inv]
   exact coh h h' hq hT N
 
+/--
+@isnad1 id=eq.4h11v.s10.8c3982206f64 from=translated src=- shape=fadb2450 vocab=eae2639c
+-/
 theorem C2 (h : T ≫ q = q) (h' : T' ≫ q' = q') (hq : gX ≫ q = q' ≫ gY) (hT : T' ≫ gX = gX ≫ T) (M : Y.Modules) :
     (Scheme.Modules.pullback T').map (Phi hq M).inv ≫ (transportIso h' ((Scheme.Modules.pullback gY).obj M)).hom =
       (Psi hT).hom.app ((Scheme.Modules.pullback q).obj M) ≫
@@ -172,6 +214,9 @@ theorem C2 (h : T ≫ q = q) (h' : T' ≫ q' = q') (hq : gX ≫ q = q' ≫ gY) (
   try dsimp only [Functor.comp_obj] at *
   rw [e, Iso.hom_inv_id, Category.comp_id]
 
+/--
+@isnad1 id=eq.1h8v.s9.ad17444ff605 from=translated src=- shape=892f6bf8 vocab=f60e2bcf
+-/
 @[reassoc]
 theorem Psi_nat (hT : T' ≫ gX = gX ≫ T) {A B : X.Modules} (γ : A ⟶ B) :
     (Psi hT).inv.app A ≫ (Scheme.Modules.pullback T').map ((Scheme.Modules.pullback gX).map γ) ≫ (Psi hT).hom.app B =
@@ -180,6 +225,9 @@ theorem Psi_nat (hT : T' ≫ gX = gX ≫ T) {A B : X.Modules} (γ : A ⟶ B) :
   erw [nat, Iso.inv_hom_id_app_assoc]
   rfl
 
+/--
+@isnad1 id=eq.4h13v.s10.5dc29c5d02c3 from=translated src=- shape=ee3c5e55 vocab=1a96860c
+-/
 theorem key (h : T ≫ q = q) (h' : T' ≫ q' = q')
     (hq : gX ≫ q = q' ≫ gY) (hT : T' ≫ gX = gX ≫ T) {N M : Y.Modules}
     (β : (Scheme.Modules.pullback q).obj N ≅ (Scheme.Modules.pullback q).obj M) :
@@ -193,6 +241,9 @@ theorem key (h : T ≫ q = q) (h' : T' ≫ q' = q')
   try dsimp only [Functor.comp_obj] at *
   rw [e1, e2, e3]
 
+/--
+@isnad1 id=hasvalue.6h19v.s9.ebf3dd271f26 from=translated src=- shape=b9f10879 vocab=138d5f6c
+-/
 theorem hasValue {R R' : Type u} [CommRing R] [CommRing R']
     (f : X ⟶ Spec (CommRingCat.of R)) (f' : X' ⟶ Spec (CommRingCat.of R')) (φ : R →+* R')
     (h : T ≫ q = q) (h' : T' ≫ q' = q') (hq : gX ≫ q = q' ≫ gY) (hT : T' ≫ gX = gX ≫ T)
@@ -212,6 +263,9 @@ end
 
 end HVBC
 
+/--
+@isnad1 id=hasvalue.6h19v.s10.4a3ef4b561c2 from=translated src=- shape=8a97a02b vocab=a59b047c
+-/
 theorem solution
     {X Y X' Y' : Scheme.{u}} {R R' : Type u} [CommRing R] [CommRing R']
     (f : X ⟶ Spec (CommRingCat.of R)) (f' : X' ⟶ Spec (CommRingCat.of R')) (φ : R →+* R')

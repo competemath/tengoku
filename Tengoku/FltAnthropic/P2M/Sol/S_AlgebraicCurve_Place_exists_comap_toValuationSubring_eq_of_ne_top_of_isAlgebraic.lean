@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open AlgebraicCurve
 
+/--
+@isnad1 id=ex.2h5v.s8.bf81a8a88f5f from=translated src=- shape=713ff769 vocab=9e454d51
+-/
 theorem solution
     {κ : Type*} [Field κ] {k : Type*} [Field k] {E : Type*} [Field E]
     [Algebra κ k] [Algebra k E] [Algebra κ E] [IsScalarTower κ k E] [Algebra.IsAlgebraic k E]

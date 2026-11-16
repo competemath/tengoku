@@ -14,6 +14,9 @@ namespace P2mWs30PointPackaging
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=finite.0h3v.s9.fa6e6e3b2ab1 from=translated src=- shape=d42354e4 vocab=4d3a1b61
+-/
 theorem finite_homogeneousSubmodule (A : Type) [CommRing A] (d : ℕ) :
     Module.Finite A ↥(homogeneousSubmodule (Fin (n + 1)) A d) := by
   rw [MvPolynomial.homogeneousSubmodule_eq_finsupp_supported]
@@ -21,6 +24,9 @@ theorem finite_homogeneousSubmodule (A : Type) [CommRing A] (d : ℕ) :
     ((Finsupp.finite_of_degree_le d).subset fun x (hx : x.degree = d) => le_of_eq hx).to_subtype
   exact Module.Finite.of_basis (MvPolynomial.basisRestrictSupport A {x : Fin (n + 1) →₀ ℕ | x.degree = d})
 
+/--
+@isnad1 id=eq.0h2v.s8.00c5cfde2c49 from=translated src=- shape=c62a9e5d vocab=3d7df0a9
+-/
 theorem natCard_degree_eq (d : ℕ) : Nat.card {s : Fin (n + 1) →₀ ℕ // s.degree = d} = (n + d).choose n := by
   classical
   let e : {s : Fin (n + 1) →₀ ℕ // s.degree = d} ≃ Sym (Fin (n + 1)) d :=
@@ -44,17 +50,26 @@ theorem natCard_degree_eq (d : ℕ) : Nat.card {s : Fin (n + 1) →₀ ℕ // s.
   rw [Nat.card_congr e, Nat.card_eq_fintype_card, Sym.card_sym_eq_choose, Fintype.card_fin,
     show n + 1 + d - 1 = n + d by omega, Nat.choose_symm_add]
 
+/--
+@isnad1 id=eq.0h3v.s9.a806eec7b0c5 from=translated src=- shape=a0daeb2d vocab=bace8c8f
+-/
 theorem finrank_homogeneousSubmodule (A : Type) [CommRing A] [Nontrivial A] (d : ℕ) :
     Module.finrank A ↥(homogeneousSubmodule (Fin (n + 1)) A d) = (n + d).choose n := by
   rw [MvPolynomial.homogeneousSubmodule_eq_finsupp_supported]
   exact (Module.finrank_eq_nat_card_basis
     (MvPolynomial.basisRestrictSupport A {x : Fin (n + 1) →₀ ℕ | x.degree = d})).trans (natCard_degree_eq d)
 
+/--
+@isnad1 id=eq.0h4v.s13.48dc96dddda0 from=translated src=- shape=c932c982 vocab=5ce196e3
+-/
 theorem decompose_eq {A : Type} [CommRing A] (q : MvPolynomial (Fin (n + 1)) A) (d : ℕ) :
     (DirectSum.decompose (homogeneousSubmodule (Fin (n + 1)) A) q d : MvPolynomial (Fin (n + 1)) A) =
       homogeneousComponent d q :=
   MvPolynomial.decomposition.decompose'_apply q d
 
+/--
+@isnad1 id=eq.2h6v.s9.61635090a7bd from=translated src=- shape=6b7a5139 vocab=d323e391
+-/
 theorem homogeneousComponent_mul_of_lt {A : Type} [CommRing A] {G : MvPolynomial (Fin (n + 1)) A} {m : ℕ}
     (hG : G.IsHomogeneous m) (a : MvPolynomial (Fin (n + 1)) A) {e : ℕ} (he : e < m) :
     homogeneousComponent e (a * G) = 0 := by
@@ -67,6 +82,9 @@ theorem homogeneousComponent_mul_of_lt {A : Type} [CommRing A] {G : MvPolynomial
 end P2mWs30PointPackaging
 
 open P2mWs30PointPackaging in
+/--
+@isnad1 id=ex.2h5v.s12.e4dec49b23c2 from=translated src=- shape=02824fa4 vocab=a18ec520
+-/
 theorem solution
     (n : ℕ) (k : Type) [Field k] (P : Polynomial ℚ) (m : ℕ)
     (I : Ideal (MvPolynomial (Fin (n + 1)) k))

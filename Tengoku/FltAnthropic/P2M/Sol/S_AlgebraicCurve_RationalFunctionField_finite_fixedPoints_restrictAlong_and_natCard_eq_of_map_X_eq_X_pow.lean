@@ -23,21 +23,33 @@ open _root_.AlgebraicCurve.RationalFunctionField
 
 variable {K : Type*} [Field K]
 
+/--
+@isnad1 id=iff.0h3v.s8.a86f3637f0c3 from=translated src=- shape=101cee09 vocab=f32c505d
+-/
 theorem mem_placeOfPoint_iff (a : K) (f : RatFunc K) :
     f ∈ (placeOfPoint K a).toValuationSubring ↔
       (heightOneSpectrumOfIrreducible K (irreducible_X_sub_C a)).valuation (RatFunc K) f ≤ 1 := by
   rw [placeOfPoint_eq_ofHeightOneSpectrum, Place.ofHeightOneSpectrum_toValuationSubring,
     Valuation.mem_valuationSubring_iff]
 
+/--
+@isnad1 id=mem.0h3v.s8.bf013ef94728 from=translated src=- shape=1c40f162 vocab=da6b1581
+-/
 theorem algebraMap_mem_placeOfPoint (a : K) (P : K[X]) :
     algebraMap K[X] (RatFunc K) P ∈ (placeOfPoint K a).toValuationSubring := by
   rw [mem_placeOfPoint_iff]
   exact HeightOneSpectrum.valuation_le_one _ _
 
+/--
+@isnad1 id=mem.0h2v.s6.c4258c240e7c from=translated src=- shape=534767d9 vocab=ce34c83f
+-/
 theorem X_mem_placeOfPoint (a : K) : (RatFunc.X : RatFunc K) ∈ (placeOfPoint K a).toValuationSubring := by
   rw [← RatFunc.algebraMap_X]
   exact algebraMap_mem_placeOfPoint a _
 
+/--
+@isnad1 id=iff.1h3v.s8.a0d3c1502e65 from=translated src=- shape=da6572d3 vocab=fcd7edb9
+-/
 theorem inv_algebraMap_mem_placeOfPoint_iff (a : K) {P : K[X]} (hP : P ≠ 0) :
     (algebraMap K[X] (RatFunc K) P)⁻¹ ∈ (placeOfPoint K a).toValuationSubring ↔ ¬ P.IsRoot a := by
   rw [mem_placeOfPoint_iff, map_inv₀]
@@ -50,6 +62,9 @@ theorem inv_algebraMap_mem_placeOfPoint_iff (a : K) {P : K[X]} (hP : P ≠ 0) :
   rw [inv_le_one₀ hpos, ← not_lt, HeightOneSpectrum.valuation_lt_one_iff_mem,
     heightOneSpectrumOfIrreducible_asIdeal, Ideal.mem_span_singleton, dvd_iff_isRoot]
 
+/--
+@isnad1 id=iff.1h4v.s8.7cd1a0ea63aa from=translated src=- shape=42922e65 vocab=d4fadd8b
+-/
 theorem inv_X_pow_sub_C_mem_placeOfPoint_iff (a c : K) {n : ℕ} (hn : 0 < n) :
     ((RatFunc.X : RatFunc K) ^ n - RatFunc.C c)⁻¹ ∈ (placeOfPoint K a).toValuationSubring ↔
       c ≠ a ^ n := by
@@ -62,6 +77,9 @@ theorem inv_X_pow_sub_C_mem_placeOfPoint_iff (a c : K) {n : ℕ} (hn : 0 < n) :
   rw [this, inv_algebraMap_mem_placeOfPoint_iff a hP]
   simp [sub_eq_zero, eq_comm]
 
+/--
+@isnad1 id=not.1h2v.s7.737ef196103a from=translated src=- shape=4ae866d0 vocab=1f68b4fb
+-/
 theorem X_pow_not_mem_placeInfty [DecidableEq (RatFunc K)] {n : ℕ} (hn : 0 < n) :
     (RatFunc.X : RatFunc K) ^ n ∉ (placeInfty K).toValuationSubring := by
   rw [placeInfty_toValuationSubring, Valuation.mem_valuationSubring_iff, map_pow,
@@ -69,6 +87,9 @@ theorem X_pow_not_mem_placeInfty [DecidableEq (RatFunc K)] {n : ℕ} (hn : 0 < n
   rw [← WithZero.exp_zero, WithZero.exp_lt_exp]
   exact_mod_cast hn
 
+/--
+@isnad1 id=not.0h1v.s6.a55a8409a1ee from=translated src=- shape=b281342f vocab=25b68ab7
+-/
 theorem X_not_mem_placeInfty [DecidableEq (RatFunc K)] :
     (RatFunc.X : RatFunc K) ∉ (placeInfty K).toValuationSubring := by
   simpa using X_pow_not_mem_placeInfty (K := K) (n := 1) one_pos
@@ -79,10 +100,16 @@ variable (q : ℕ) (φ : RatFunc K →ₐ[K] RatFunc K) (hφi : φ.toRingHom.IsI
   (hφ : φ RatFunc.X = RatFunc.X ^ q)
 
 include hφ in
+/--
+@isnad1 id=eq.1h4v.s10.47ede91f69fb from=translated src=- shape=9965f228 vocab=9e1ddc7a
+-/
 theorem map_inv_X_sub_C (c : K) :
     φ ((RatFunc.X : RatFunc K) - RatFunc.C c)⁻¹ = ((RatFunc.X : RatFunc K) ^ q - RatFunc.C c)⁻¹ := by
   rw [map_inv₀, map_sub, hφ, ← RatFunc.algebraMap_eq_C, AlgHom.commutes]
 
+/--
+@isnad1 id=iff.1h4v.s9.b9581c325017 from=translated src=- shape=c1bfc777 vocab=28775fe1
+-/
 theorem mem_restrictAlong_iff (w : Place K (RatFunc K)) (f : RatFunc K) :
     f ∈ (w.restrictAlong φ hφi).toValuationSubring ↔ φ f ∈ w.toValuationSubring :=
   Iff.rfl
@@ -91,6 +118,9 @@ variable [IsAlgClosed K]
 
 include hφ
 
+/--
+@isnad1 id=eq.3h4v.s9.e0a5bbc5f069 from=translated src=- shape=dbd01fc5 vocab=8aee0f56
+-/
 theorem restrictAlong_placeOfPoint (hq : 0 < q) (a : K) :
     (placeOfPoint K a).restrictAlong φ hφi = placeOfPoint K (a ^ q) := by
   classical
@@ -118,6 +148,9 @@ theorem restrictAlong_placeOfPoint (hq : 0 < q) (a : K) :
     rw [hinf] at hX
     exact X_not_mem_placeInfty hX
 
+/--
+@isnad1 id=eq.3h3v.s9.be2a809bb52c from=translated src=- shape=d12f09a1 vocab=7242f694
+-/
 theorem restrictAlong_placeInfty [DecidableEq (RatFunc K)] (hq : 0 < q) :
     (placeInfty K).restrictAlong φ hφi = placeInfty K := by
   rcases eq_placeOfPoint_or_eq_placeInfty K ((placeInfty K).restrictAlong φ hφi) with ⟨b, hb⟩ | hinf
@@ -129,6 +162,9 @@ theorem restrictAlong_placeInfty [DecidableEq (RatFunc K)] (hq : 0 < q) :
     exact X_pow_not_mem_placeInfty hq hX
   · exact hinf
 
+/--
+@isnad1 id=eq.3h3v.s10.93aeede13903 from=translated src=- shape=c59c3f27 vocab=f5b5d53f
+-/
 theorem fixedPoints_eq [DecidableEq (RatFunc K)] (hq : 0 < q) :
     Function.fixedPoints (Place.restrictAlong φ hφi) =
       placeOfPoint K '' {a : K | a ^ q = a} ∪ {placeInfty K} := by
@@ -149,6 +185,9 @@ theorem fixedPoints_eq [DecidableEq (RatFunc K)] (hq : 0 < q) :
 
 end Frob
 
+/--
+@isnad1 id=eq.1h2v.s7.847248183568 from=translated src=- shape=f0aa1ee2 vocab=fe56c5c0
+-/
 theorem setOf_pow_eq_eq_rootSet [IsAlgClosed K] {q : ℕ} (hq : 1 < q) :
     {a : K | a ^ q = a} = ((X ^ q - X : K[X]).rootSet K : Set K) := by
   ext a
@@ -156,6 +195,9 @@ theorem setOf_pow_eq_eq_rootSet [IsAlgClosed K] {q : ℕ} (hq : 1 < q) :
   rw [Set.mem_ofPred_eq, mem_rootSet_of_ne hne]
   simp [sub_eq_zero]
 
+/--
+@isnad1 id=eq.2h2v.s6.0407527f5964 from=translated src=- shape=ac307e03 vocab=ff6dc4bd
+-/
 theorem ncard_setOf_pow_eq [IsAlgClosed K] {q : ℕ} (hq : 1 < q) (hqK : (q : K) = 0) :
     {a : K | a ^ q = a}.ncard = q := by
   classical
@@ -170,6 +212,9 @@ theorem ncard_setOf_pow_eq [IsAlgClosed K] {q : ℕ} (hq : 1 < q) (hqK : (q : K)
   rw [hid, ← (IsAlgClosed.splits (X ^ q - X : K[X])).natDegree_eq_card_roots]
   exact FiniteField.X_pow_card_sub_X_natDegree_eq K hq
 
+/--
+@isnad1 id=finite.1h2v.s5.f4cad24149bc from=translated src=- shape=7b8440c5 vocab=3d53c34d
+-/
 theorem finite_setOf_pow_eq [IsAlgClosed K] {q : ℕ} (hq : 1 < q) : {a : K | a ^ q = a}.Finite := by
   rw [setOf_pow_eq_eq_rootSet hq]
   exact (rootSet_finite _ _)
@@ -179,6 +224,9 @@ end RatFuncFrobFix
 end AlgebraicCurve
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_finite_fixedPoints_restrictAlong_and_natCard_eq_of_map_X_eq_X_pow.AlgebraicCurve AlgebraicCurve.RationalFunctionField AlgebraicCurve.RatFuncFrobFix in
+/--
+@isnad1 id=and.4h3v.s10.5c58c5c50da8 from=translated src=- shape=93440b91 vocab=744d0457
+-/
 theorem solution
     (K : Type*) [Field K] [IsAlgClosed K] (q : ℕ) (hq : 1 < q) (hqK : (q : K) = 0)
     (φ : RatFunc K →ₐ[K] RatFunc K) (hφi : φ.toRingHom.IsIntegral)

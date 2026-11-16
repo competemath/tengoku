@@ -7,6 +7,9 @@ namespace P2MW.S_AlgebraicGeometry_LocallyQuasiFinite_of_formallyUnramified_of_l
 
 open AlgebraicGeometry CategoryTheory
 
+/--
+@isnad1 id=locallyq.0h3v.s4.72e132172530 from=translated src=- shape=d492d1ea vocab=9f05c5f8
+-/
 theorem solution
     {X Y : AlgebraicGeometry.Scheme} (f : X ⟶ Y)
     [AlgebraicGeometry.FormallyUnramified f] [AlgebraicGeometry.LocallyOfFiniteType f] :

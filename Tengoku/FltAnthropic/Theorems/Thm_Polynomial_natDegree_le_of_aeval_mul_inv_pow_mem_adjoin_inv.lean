@@ -5,6 +5,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Polynomial_natDegree_le_of_aeval_mul_inv_p
 
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_Polynomial_natDegree_le_of_aeval_mul_inv_pow_mem_adjoin_inv.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
+/--
+@isnad1 id=le.3h5v.s8.6236e559082a from=translated src=- shape=ecfb9793 vocab=6142cb46
+-/
 theorem Polynomial.natDegree_le_of_aeval_mul_inv_pow_mem_adjoin_inv
     {L : Type*} [Field L] {F : Type*} [Field F] [Algebra L F]
     (x : F) (hxL : Transcendental L x) (hx0 : x ≠ 0)

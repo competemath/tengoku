@@ -18,6 +18,9 @@ open AlgebraicCurve.TwoChartIntegralModel
 
 universe u
 
+/--
+@isnad1 id=smooth.3h4v.s9.b3865a4fe923 from=translated src=- shape=1e66bf88 vocab=76c0161d
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsDomain R] [IsNoetherianRing R] [UniqueFactorizationMonoid R]
     (K₀ : Type u) [Field K₀] [CharZero K₀] [Algebra R K₀] [IsFractionRing R K₀]

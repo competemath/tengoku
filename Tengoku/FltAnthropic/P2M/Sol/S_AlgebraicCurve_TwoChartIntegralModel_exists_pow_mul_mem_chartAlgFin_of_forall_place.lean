@@ -20,10 +20,16 @@ section
 
 variable {R : Type u} [CommRing R] {A : Type u} [CommRing A] [Algebra R A]
 
+/--
+@isnad1 id=isintegr.2h5v.s8.c830d6d092ce from=translated src=- shape=3f89897b vocab=11b54a09
+-/
 theorem isIntegral_of_adjoin_le {S₁ S₂ : Subalgebra R A} (h : S₁ ≤ S₂) {x : A}
     (hx : IsIntegral ↥S₁ x) : IsIntegral ↥S₂ x :=
   hx.map_of_comp_eq (Subalgebra.inclusion h).toRingHom (RingHom.id A) (by ext; rfl)
 
+/--
+@isnad1 id=isintegr.3h5v.s8.0aa65773b162 from=translated src=- shape=278d27e6 vocab=11b54a09
+-/
 theorem isIntegral_of_le_of_forall_isIntegral {S₁ S₂ : Subalgebra R A} (h : S₁ ≤ S₂)
     (hint : ∀ y : A, y ∈ S₂ → IsIntegral ↥S₁ y) {x : A} (hx : IsIntegral ↥S₂ x) : IsIntegral ↥S₁ x := by
   letI alg : Algebra ↥S₁ ↥S₂ := (Subalgebra.inclusion h).toRingHom.toAlgebra
@@ -41,6 +47,9 @@ variable (R : Type u) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
   (K₀ : Type u) [Field K₀] [Algebra R K₀] [IsFractionRing R K₀]
   (F : Type u) [Field F] [Algebra R F] [Algebra K₀ F] [IsScalarTower R K₀ F] (j : F)
 
+/--
+@isnad1 id=isintegr.0h3v.s7.5f72b60d0b4b from=translated src=- shape=ee77030c vocab=5e1351c9
+-/
 theorem isIntegrallyClosedIn_chartAlg (S : Set F) : IsIntegrallyClosedIn ↥(chartAlg R F S).toSubring F := by
   refine (Subring.isIntegrallyClosedIn_iff).2 ?_
   intro x hx'
@@ -53,6 +62,9 @@ theorem isIntegrallyClosedIn_chartAlg (S : Set F) : IsIntegrallyClosedIn ↥(cha
 
 include hϖ in
 
+/--
+@isnad1 id=ex.2h6v.s9.4a8352eb1d7a from=translated src=- shape=c1215b3f vocab=443bd0d7
+-/
 theorem exists_pow_mul_mem_chartAlgFin [Fact (j ≠ 0)]
     [FiniteDimensional ↥(IntermediateField.adjoin K₀ ({j} : Set F)) F]
     (x : F) (hx : ∀ v : AlgebraicCurve.Place K₀ F, j ∈ v.toValuationSubring → x ∈ v.toValuationSubring) :
@@ -108,6 +120,9 @@ theorem exists_pow_mul_mem_chartAlgFin [Fact (j ≠ 0)]
 
 end H3eKey
 
+/--
+@isnad1 id=ex.3h6v.s9.4a8352eb1d7a from=translated src=- shape=c1215b3f vocab=443bd0d7
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     (ϖ : R) (hϖ : maximalIdeal R = Ideal.span {ϖ})

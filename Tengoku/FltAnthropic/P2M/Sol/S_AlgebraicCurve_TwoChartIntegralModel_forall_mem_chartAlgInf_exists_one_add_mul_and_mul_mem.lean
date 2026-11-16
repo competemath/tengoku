@@ -16,12 +16,18 @@ namespace InfLocGen
 
 variable (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F]
 
+/--
+@isnad1 id=le.1h4v.s7.2a274d3e9dc9 from=translated src=- shape=d02886e6 vocab=43f52b0d
+-/
 theorem chartAlg_mono_of_adjoin_le {S S' : Set F} (h : Algebra.adjoin R S ≤ Algebra.adjoin R S') :
     chartAlg R F S ≤ chartAlg R F S' := by
   intro x hx
   rw [mem_chartAlg_iff] at hx ⊢
   exact hx.map_of_comp_eq (Subalgebra.inclusion h).toRingHom (RingHom.id F) (by ext; rfl)
 
+/--
+@isnad1 id=mem.1h4v.s7.f4a2d5d00288 from=translated src=- shape=2bf87289 vocab=0939fb3a
+-/
 theorem mem_chartAlg_of_isIntegral (S : Set F) {y : F} (hy : IsIntegral (chartAlg R F S) y) : y ∈ chartAlg R F S := by
   letI : Algebra (Algebra.adjoin R S) (chartAlg R F S) := (Subalgebra.inclusion (adjoin_le_chartAlg R F S)).toAlgebra
   haveI : IsScalarTower (Algebra.adjoin R S) (chartAlg R F S) F := IsScalarTower.of_algebraMap_eq (fun _ => rfl)
@@ -33,6 +39,9 @@ theorem mem_chartAlg_of_isIntegral (S : Set F) {y : F} (hy : IsIntegral (chartAl
   rw [mem_chartAlg_iff]
   exact isIntegral_trans y hy
 
+/--
+@isnad1 id=isintegr.2h5v.s8.f2f07576de5f from=translated src=- shape=00a7988c vocab=5cfdf570
+-/
 theorem isIntegral_chartAlg_of_isIntegral_of_le (S : Set F) (T : Subalgebra R F) (hT : T ≤ chartAlg R F S) {y : F}
     (hy : IsIntegral T y) : IsIntegral (chartAlg R F S) y :=
   hy.map_of_comp_eq (Subalgebra.inclusion hT).toRingHom (RingHom.id F) (by ext; rfl)
@@ -40,6 +49,9 @@ theorem isIntegral_chartAlg_of_isIntegral_of_le (S : Set F) (T : Subalgebra R F)
 end InfLocGen
 
 open InfLocGen in
+/--
+@isnad1 id=ex.2h5v.s9.c8e99dbf9d6a from=translated src=- shape=ad406ab7 vocab=304e8a02
+-/
 theorem solution
     (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F] (j j' : F) [Fact (j ≠ 0)] [Fact (j' ≠ 0)]
     (hloc : ∃ b ∈ Algebra.adjoin R ({j⁻¹} : Set F), ∃ c : F,

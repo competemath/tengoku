@@ -13,6 +13,9 @@ universe u
 set_option synthInstance.maxHeartbeats 400000
 set_option maxHeartbeats 800000
 
+/--
+@isnad1 id=and.3h4v.s9.64eb20e20bf1 from=translated src=- shape=a3373d86 vocab=6bec8e1a
+-/
 theorem AlgebraicCurve.TwoChartIntegralModel.finiteType_chartAlgFin_and_chartAlgInf
     (R : Type u) [CommRing R] [IsDomain R] [IsNoetherianRing R] [UniqueFactorizationMonoid R]
     (K₀ : Type u) [Field K₀] [Algebra R K₀] [IsFractionRing R K₀]

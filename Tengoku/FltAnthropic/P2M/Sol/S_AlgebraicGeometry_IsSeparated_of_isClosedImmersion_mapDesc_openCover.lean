@@ -17,6 +17,9 @@ universe u
 
 open scoped _root_.AlgebraicGeometry.IsSeparated in
 
+/--
+@isnad1 id=issepara.1h4v.s7.343a90413982 from=translated src=- shape=b5d71c52 vocab=9b3dcb38
+-/
 theorem IsSeparated.of_isClosedImmersion_mapDesc_openCover_proof
     {N S : Scheme.{u}} (g : N ⟶ S) (𝒰 : Scheme.OpenCover.{u} N)
     (h : ∀ i j : 𝒰.I₀, IsClosedImmersion (pullback.mapDesc (𝒰.f i) (𝒰.f j) g)) :
@@ -42,6 +45,9 @@ open _root_.AlgebraicGeometry open _root_.P2MW.S_AlgebraicGeometry_IsSeparated_o
 
 universe u
 
+/--
+@isnad1 id=issepara.1h4v.s7.343a90413982 from=translated src=- shape=b5d71c52 vocab=9b3dcb38
+-/
 theorem solution
     {N S : Scheme.{u}} (g : N ⟶ S) (𝒰 : Scheme.OpenCover.{u} N)
     (h : ∀ i j : 𝒰.I₀, IsClosedImmersion (pullback.mapDesc (𝒰.f i) (𝒰.f j) g)) :

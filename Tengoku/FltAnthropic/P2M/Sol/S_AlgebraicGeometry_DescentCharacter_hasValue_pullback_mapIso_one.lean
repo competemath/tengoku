@@ -16,10 +16,16 @@ namespace KcDescCharOne
 
 variable {X Y : Scheme.{u}} {R : Type u} [CommRing R]
 
+/--
+@isnad1 id=isbasesc.0h4v.s5.90dbd27eec10 from=translated src=- shape=953a4131 vocab=e42e04c8
+-/
 theorem isBaseScalar_id (f : X ⟶ Spec (CommRingCat.of R)) (M : X.Modules) : IsBaseScalar f (𝟙 M) 1 := by
   intro U s
   rw [Scheme.Modules.Hom.id_app, CategoryTheory.id_apply, baseSection_one, one_smul]
 
+/--
+@isnad1 id=eq.1h7v.s7.6da9c60d9867 from=translated src=- shape=5870e9ec vocab=274fe1b4
+-/
 theorem translateIso_mapIso {T : X ⟶ X} {q : X ⟶ Y} (h : T ≫ q = q) {N M : Y.Modules} (ι : N ≅ M) :
     translateIso h ((Scheme.Modules.pullback q).mapIso ι) = (Scheme.Modules.pullback q).mapIso ι := by
   ext : 1
@@ -31,6 +37,9 @@ theorem translateIso_mapIso {T : X ⟶ X} {q : X ⟶ Y} (h : T ≫ q = q) {N M :
   rw [Iso.inv_comp_eq, Iso.app_hom, Iso.app_hom]
   exact nat'
 
+/--
+@isnad1 id=hasvalue.1h9v.s6.b010d9960528 from=translated src=- shape=f112cdaf vocab=e286f644
+-/
 theorem hasValue_pullback_mapIso_one (f : X ⟶ Spec (CommRingCat.of R))
     {T : X ⟶ X} {q : X ⟶ Y} (h : T ≫ q = q) {N M : Y.Modules} (ι : N ≅ M) :
     HasValue f h ((Scheme.Modules.pullback q).mapIso ι) 1 := by
@@ -40,6 +49,9 @@ theorem hasValue_pullback_mapIso_one (f : X ⟶ Spec (CommRingCat.of R))
 
 end KcDescCharOne
 
+/--
+@isnad1 id=hasvalue.1h9v.s6.b010d9960528 from=translated src=- shape=f112cdaf vocab=e286f644
+-/
 theorem solution
     {X Y : Scheme.{u}} {R : Type u} [CommRing R] (f : X ⟶ Spec (CommRingCat.of R))
     {T : X ⟶ X} {q : X ⟶ Y} (h : T ≫ q = q) {N M : Y.Modules} (ι : N ≅ M) :

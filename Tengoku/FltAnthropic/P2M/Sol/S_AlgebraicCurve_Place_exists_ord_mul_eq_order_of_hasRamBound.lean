@@ -23,13 +23,22 @@ open _root_.AlgebraicCurve.Place open _root_.AlgebraicCurve
 variable {K L F : Type*} [Field K] [Field L] [Algebra K L] [Field F] [Algebra K F]
   (φ : F →ₐ[K] HahnSeries ℚ L)
 
+/--
+@isnad1 id=ne.1h5v.s8.984cb1f5a4cb from=translated src=- shape=23befa02 vocab=e7ac6204
+-/
 theorem map_ne_zero {x : F} (hx : x ≠ 0) : φ x ≠ 0 :=
   (map_ne_zero_iff φ φ.toRingHom.injective).mpr hx
 
+/--
+@isnad1 id=eq.2h6v.s9.9f85bd900278 from=translated src=- shape=cadddbd6 vocab=6155db28
+-/
 theorem order_map_mul {x y : F} (hx : x ≠ 0) (hy : y ≠ 0) :
     (φ (x * y)).order = (φ x).order + (φ y).order := by
   rw [map_mul, HahnSeries.order_mul (map_ne_zero φ hx) (map_ne_zero φ hy)]
 
+/--
+@isnad1 id=eq.0h5v.s9.87fed8de5562 from=translated src=- shape=208b051b vocab=d4d5a88f
+-/
 theorem order_map_inv (x : F) : (φ x⁻¹).order = -(φ x).order := by
   rcases eq_or_ne x 0 with rfl | hx
   · simp
@@ -37,15 +46,24 @@ theorem order_map_inv (x : F) : (φ x⁻¹).order = -(φ x).order := by
   rw [mul_inv_cancel₀ hx, map_one, HahnSeries.order_one] at h
   linarith
 
+/--
+@isnad1 id=eq.0h6v.s9.c171bd14aa43 from=translated src=- shape=bc6a3d2d vocab=78994cef
+-/
 theorem order_map_pow (x : F) (n : ℕ) : (φ (x ^ n)).order = n * (φ x).order := by
   rw [map_pow, HahnSeries.order_pow, nsmul_eq_mul]
 
+/--
+@isnad1 id=eq.0h6v.s9.53c628fc1f93 from=translated src=- shape=bc6a3d2d vocab=294b2cb6
+-/
 theorem order_map_zpow (x : F) (n : ℤ) : (φ (x ^ n)).order = n * (φ x).order := by
   rcases Int.eq_nat_or_neg n with ⟨m, rfl | rfl⟩
   · rw [zpow_natCast, order_map_pow, Int.cast_natCast]
   · rw [zpow_neg, zpow_natCast, order_map_inv, order_map_pow, Int.cast_neg, Int.cast_natCast,
       neg_mul]
 
+/--
+@isnad1 id=eq.0h5v.s8.47ab80f2d53f from=translated src=- shape=35fe24b2 vocab=6ba60ac7
+-/
 theorem order_map_algebraMap (c : K) : (φ (algebraMap K F c)).order = 0 := by
 
   have h : (algebraMap K (HahnSeries ℚ L)) c = HahnSeries.C (algebraMap K L c) := by
@@ -92,14 +110,26 @@ def valuationSubring : ValuationSubring F where
       rw [order_map_inv]
       linarith
 
+/--
+@isnad1 id=iff.0h5v.s8.80c59a44d9f2 from=translated src=- shape=d7e32aff vocab=f4c5d5cb
+-/
 theorem mem_valuationSubring_iff (x : F) : x ∈ valuationSubring φ ↔ 0 ≤ (φ x).order := Iff.rfl
 
+/--
+@isnad1 id=ne.1h5v.s8.a80ad4c5cb2a from=translated src=- shape=738e8290 vocab=4ffbe3f3
+-/
 theorem coe_ne_zero {x : valuationSubring φ} (hx : x ≠ 0) : (x : F) ≠ 0 := by
   simpa [ne_eq, ZeroMemClass.coe_eq_zero] using hx
 
+/--
+@isnad1 id=ne.1h5v.s8.1477be664453 from=translated src=- shape=d7cd91f0 vocab=4ffbe3f3
+-/
 theorem ne_zero_of_coe_ne_zero {x : valuationSubring φ} (hx : (x : F) ≠ 0) : x ≠ 0 :=
   fun h => hx (by rw [h]; rfl)
 
+/--
+@isnad1 id=iff.1h5v.s9.308ff50afd40 from=translated src=- shape=391ed9d8 vocab=d4c1bbb7
+-/
 theorem isUnit_iff_order_eq_zero {x : valuationSubring φ} (hx : x ≠ 0) :
     IsUnit x ↔ (φ x).order = 0 := by
   have hxF : (x : F) ≠ 0 := coe_ne_zero φ hx
@@ -129,6 +159,9 @@ section Discrete
 variable {d : ℕ} (hd : 0 < d) (hφ : ∀ x : F, HahnSeries.HasRamBound d (φ x))
 include hd hφ
 
+/--
+@isnad1 id=ex.2h6v.s9.29ade98548d2 from=translated src=- shape=c582926f vocab=3a7a641e
+-/
 theorem exists_int_order_mul (x : F) : ∃ k : ℤ, (φ x).order * d = k := by
   rcases eq_or_ne (φ x) 0 with h0 | h0
   · exact ⟨0, by rw [h0, HahnSeries.order_zero, zero_mul, Int.cast_zero]⟩
@@ -145,6 +178,9 @@ def posOrders (d : ℕ) : Set ℕ := {n : ℕ | 0 < n ∧ ∃ x : F, (φ x).orde
 variable (hnt : ∃ x : F, (φ x).order ≠ 0)
 include hnt
 
+/--
+@isnad1 id=nonempty.3h5v.s9.27aab7263d1f from=translated src=- shape=0c54cd3e vocab=0454d308
+-/
 theorem posOrders_nonempty : (posOrders φ d).Nonempty := by
   obtain ⟨x, hx⟩ := hnt
   have hd' : (0 : ℚ) < d := Nat.cast_pos.mpr hd
@@ -161,6 +197,9 @@ theorem posOrders_nonempty : (posOrders φ d).Nonempty := by
     have : ((k.toNat : ℤ) : ℚ) = (k : ℚ) := by rw [Int.toNat_of_nonneg hkpos'.le]
     exact_mod_cast this.symm
 
+/--
+@isnad1 id=ex.3h5v.s10.8acc5eaacfab from=translated src=- shape=ae915522 vocab=60d7c080
+-/
 theorem exists_generator :
     ∃ π : F, 0 < (φ π).order ∧ ∀ x : F, x ≠ 0 → ∃ n : ℤ, (φ x).order = n * (φ π).order := by
   classical
@@ -218,14 +257,23 @@ variable {π : F} (hπpos : 0 < (φ π).order)
   (hgen : ∀ x : F, x ≠ 0 → ∃ n : ℤ, (φ x).order = n * (φ π).order)
 include hπpos hgen
 
+/--
+@isnad1 id=ne.2h5v.s9.d28c854fdd27 from=translated src=- shape=a316f830 vocab=43430a37
+-/
 theorem gen_ne_zero : π ≠ 0 := by
   rintro rfl
   rw [map_zero, HahnSeries.order_zero] at hπpos
   exact lt_irrefl _ hπpos
 
 omit hgen in
+/--
+@isnad1 id=mem.1h5v.s8.8ddd7ae97e68 from=translated src=- shape=db7e7390 vocab=aa22f070
+-/
 theorem gen_mem : π ∈ valuationSubring φ := hπpos.le
 
+/--
+@isnad1 id=ex.4h6v.s10.2e9d86556bba from=translated src=- shape=e669477a vocab=18f08e29
+-/
 theorem exists_nat_of_mem {x : F} (hx0 : x ≠ 0) (hx : x ∈ valuationSubring φ) :
     ∃ n : ℕ, (φ x).order = n * (φ π).order := by
   obtain ⟨n, hn⟩ := hgen x hx0
@@ -242,6 +290,9 @@ theorem exists_nat_of_mem {x : F} (hx0 : x ≠ 0) (hx : x ∈ valuationSubring �
   have : ((n.toNat : ℤ) : ℚ) = (n : ℚ) := by rw [Int.toNat_of_nonneg hn0]
   exact_mod_cast this.symm
 
+/--
+@isnad1 id=irreduci.2h5v.s9.8d0bbab6f330 from=translated src=- shape=65a43bb1 vocab=3f354f93
+-/
 theorem irreducible_gen : Irreducible (⟨π, gen_mem φ hπpos⟩ : valuationSubring φ) := by
   have hπ0 := gen_ne_zero φ hπpos hgen
   refine ⟨fun hu => ?_, fun a b hab => ?_⟩
@@ -271,6 +322,9 @@ theorem irreducible_gen : Irreducible (⟨π, gen_mem φ hπpos⟩ : valuationSu
       rw [isUnit_iff_order_eq_zero φ (ne_zero_of_coe_ne_zero φ hb0), hnb, hnb0]
       simp
 
+/--
+@isnad1 id=hasunitm.2h5v.s9.3c0d01572773 from=translated src=- shape=298ac6ee vocab=549cf157
+-/
 theorem hasUnitMulPowIrreducibleFactorization :
     IsDiscreteValuationRing.HasUnitMulPowIrreducibleFactorization (valuationSubring φ) := by
   have hπ0 := gen_ne_zero φ hπpos hgen
@@ -308,6 +362,9 @@ def place : Place K F where
         (hasUnitMulPowIrreducibleFactorization φ hπpos hgen)
     infer_instance
 
+/--
+@isnad1 id=eq.2h6v.s10.c16e76c64aba from=translated src=- shape=4caae3ca vocab=03e9c10e
+-/
 theorem ord_mul_order_gen (x : F) :
     ((place φ hπpos hgen).ord x : ℚ) * (φ π).order = (φ x).order := by
   rcases eq_or_ne x 0 with rfl | hx
@@ -330,6 +387,9 @@ end AlgebraicCurve.Place.HahnEmbedding
 
 open AlgebraicCurve.Place.HahnEmbedding in
 
+/--
+@isnad1 id=ex.3h5v.s9.62bb0f63b0c8 from=translated src=- shape=22b39d92 vocab=e29f37ec
+-/
 theorem solution
     {K L F : Type*} [Field K] [Field L] [Algebra K L] [Field F] [Algebra K F]
     (φ : F →ₐ[K] HahnSeries ℚ L) {d : ℕ} (hd : 0 < d)

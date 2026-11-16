@@ -519,6 +519,9 @@ end
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_exists_algHom_laurentSeries_of_deg_eq_one.AlgebraicCurve ModularCurve in
 
+/--
+@isnad1 id=ex.2h4v.s9.915a6cb03e4b from=translated src=- shape=53805064 vocab=630a1471
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (w : Place K F) (hw : w.deg = 1)
     (t : F) (ht : w.ord t = 1) :
     ∃ φ : F →ₐ[K] LaurentSeries K,

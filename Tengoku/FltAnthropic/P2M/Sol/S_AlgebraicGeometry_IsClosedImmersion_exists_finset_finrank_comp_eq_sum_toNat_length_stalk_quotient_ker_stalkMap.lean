@@ -14,6 +14,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 namespace F6Bridge
 
+/--
+@isnad1 id=eq.0h3v.s6.215ab99dca83 from=translated src=- shape=4934895b vocab=48fd2a6b
+-/
 theorem length_self_eq_of_ringEquiv {A : Type v} {B : Type w} [CommRing A] [CommRing B] (e : A ≃+* B) :
     Module.length A A = Module.length B B := by
   letI : Algebra A B := e.toRingHom.toAlgebra
@@ -28,6 +31,9 @@ theorem length_self_eq_of_ringEquiv {A : Type v} {B : Type w} [CommRing A] [Comm
       left_inv := fun x => by simp, right_inv := fun x => by simp }
   exact (LinearEquiv.length_eq l).symm
 
+/--
+@isnad1 id=eq.1h3v.s8.c957c4404bbb from=translated src=- shape=c1bcc83c vocab=d229804c
+-/
 theorem length_quotient_ker_eq {S R : Type u} [CommRing S] [CommRing R] (φ : S →+* R)
     (hφ : Function.Surjective φ) :
     Module.length S (S ⧸ RingHom.ker φ) = Module.length R R := by
@@ -38,6 +44,9 @@ theorem length_quotient_ker_eq {S R : Type u} [CommRing S] [CommRing R] (φ : S 
 end F6Bridge
 
 open F6Bridge in
+/--
+@isnad1 id=ex.0h5v.s14.24d5db8da032 from=translated src=- shape=28f6f4f9 vocab=0030b958
+-/
 theorem solution
     (k : Type) [Field k] [IsAlgClosed k] {A K : Scheme.{0}} (f : A ⟶ Spec (CommRingCat.of k))
     (κ : K ⟶ A) [IsClosedImmersion κ] [IsFinite (κ ≫ f)] :

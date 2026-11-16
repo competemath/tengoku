@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 namespace KummerLevelComb
 
+/--
+@isnad1 id=eq.0h5v.s8.8cce1cee22e8 from=translated src=- shape=81731254 vocab=96f00922
+-/
 theorem potential_apply {V E : Type*} [Fintype V] [DecidableEq V] [Fintype E]
     (ends : E → V × V) (φ : V → ℤ) (v : V) :
     (∑ u, φ u • ((fun u => ∑ ε, ((if (ends ε).1 = u then (Pi.single u 1 : V → ℤ) - (Pi.single (ends ε).2 1 : V → ℤ) else 0) +
@@ -43,6 +46,9 @@ theorem potential_apply {V E : Type*} [Fintype V] [DecidableEq V] [Fintype E]
 end KummerLevelComb
 
 open KummerLevelComb in
+/--
+@isnad1 id=ex.2h8v.s12.923da1aea973 from=translated src=- shape=d33defd0 vocab=adb57b2d
+-/
 theorem solution
     (n m : ℕ) (src tgt : Fin m → Fin n) (w : Fin m → ℕ) (hw : ∀ e, w e ≠ 0)
     (ℓ : ℕ) [Fact ℓ.Prime] (k : ℕ) (hk : 0 < k) (n₀ : Fin m → ℤ) :

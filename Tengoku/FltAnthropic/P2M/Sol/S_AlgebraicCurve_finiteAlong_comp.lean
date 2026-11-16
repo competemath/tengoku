@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open AlgebraicCurve
 
+/--
+@isnad1 id=finiteal.2h6v.s7.d0a81251ddf3 from=translated src=- shape=53eee17a vocab=0e2e3031
+-/
 theorem solution {K F F' F'' : Type*} [Field K] [Field F] [Field F'] [Field F''] [Algebra K F] [Algebra K F'] [Algebra K F''] (φ : F →ₐ[K] F') (χ : F' →ₐ[K] F'') (hφ : FiniteAlong K φ) (hχ : FiniteAlong K χ) : FiniteAlong K (χ.comp φ) := by
   letI := algebraAlong φ
   letI := algebraAlong χ

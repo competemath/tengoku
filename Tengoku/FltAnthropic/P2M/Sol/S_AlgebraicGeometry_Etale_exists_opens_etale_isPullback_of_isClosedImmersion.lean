@@ -13,6 +13,9 @@ open Polynomial
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry TopologicalSpace
 
+/--
+@isnad1 id=ex.0h6v.s7.b973a5425c91 from=translated src=- shape=c17845d9 vocab=0aa6a06b
+-/
 theorem solution
     {X X₀ Y₀ : Scheme.{0}} (i : X₀ ⟶ X) [IsClosedImmersion i] (q₀ : Y₀ ⟶ X₀) [Etale q₀] (y : Y₀) :
     ∃ (V₀ : Y₀.Opens) (_ : y ∈ V₀) (V : Scheme.{0}) (qV : V ⟶ X) (_ : Etale qV) (jV : (V₀ : Scheme.{0}) ⟶ V),

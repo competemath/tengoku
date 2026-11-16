@@ -12,6 +12,9 @@ open AlgebraicCurve IsLocalRing
 
 namespace ALGAux
 
+/--
+@isnad1 id=dimensio.1h1v.s5.aa6bbe009673 from=translated src=- shape=34fc5251 vocab=a7950cce
+-/
 theorem dimensionLEOne_of_height_maximalIdeal_le_one (S : Type*) [CommRing S] [IsDomain S]
     [IsLocalRing S] (h : (maximalIdeal S).height ≤ 1) : Ring.DimensionLEOne S := by
   refine ⟨fun {p} hp hpp => ?_⟩
@@ -27,6 +30,9 @@ theorem dimensionLEOne_of_height_maximalIdeal_le_one (S : Type*) [CommRing S] [I
     exact hp hmin
   · exact heq ▸ IsLocalRing.maximalIdeal.isMaximal S
 
+/--
+@isnad1 id=ex.2h3v.s8.724f1266139f from=translated src=- shape=79c6e1ff vocab=25b502df
+-/
 theorem exists_place_of_isDedekindDomain (L F : Type*) [Field L] [Field F] [Algebra L F]
     (R : Subring F) [IsLocalRing R] [IsDedekindDomain R] [IsFractionRing R F]
     (hL : ∀ a : L, algebraMap L F a ∈ R) (hR : R ≠ ⊤) :
@@ -48,6 +54,9 @@ theorem exists_place_of_isDedekindDomain (L F : Type*) [Field L] [Field F] [Alge
 end ALGAux
 
 open ALGAux in
+/--
+@isnad1 id=ex.3h3v.s9.2be849994a8b from=translated src=- shape=214a3238 vocab=274ec18a
+-/
 theorem solution
     {L F : Type*} [Field L] [IsAlgClosed L] [Field F] [Algebra L F] [IsCurveOver L F]
     (R : Subring F) [IsLocalRing ↥R] [IsNoetherianRing ↥R] [IsFractionRing ↥R F]

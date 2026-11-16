@@ -10,9 +10,15 @@ universe u
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace
 
+/--
+@isnad1 id=isintegr.0h1v.s3.d16845e184bf from=translated src=- shape=c612a321 vocab=03ab8509
+-/
 theorem isIntegrallyClosed_of_subsingleton (R : Type u) [CommRing R] [Subsingleton R] : IsIntegrallyClosed R :=
   (isIntegrallyClosed_iff (FractionRing R)).mpr fun {_} _ => ⟨0, Subsingleton.elim _ _⟩
 
+/--
+@isnad1 id=isintegr.2h2v.s8.cfcc0e4a2928 from=translated src=- shape=c633aeb4 vocab=11058480
+-/
 theorem solution {X : Scheme.{u}} [IsIntegral X]
     (h : ∀ x : X, IsIntegrallyClosed (X.presheaf.stalk x)) (U : X.Opens) (hU : IsAffineOpen U) :
     IsIntegrallyClosed Γ(X, U) := by

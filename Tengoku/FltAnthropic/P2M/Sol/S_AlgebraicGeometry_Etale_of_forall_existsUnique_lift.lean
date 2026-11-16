@@ -23,6 +23,9 @@ def LiftProp : Prop :=
 
 variable {f}
 
+/--
+@isnad1 id=formally.1h3v.s4.f038c1e0a920 from=translated src=- shape=892cb9de vocab=edddb07c
+-/
 theorem formallyUnramified (hlift : LiftProp f) : FormallyUnramified f := by
   refine FormallyUnramified.of_hom_ext f fun R S φ hφ hker g₁ g₂ h₁ h₂ => ?_
   obtain ⟨l, -, huniq⟩ := hlift R S φ.hom hφ hker (Spec.map φ ≫ g₁) (g₁ ≫ f)

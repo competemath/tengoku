@@ -19,6 +19,9 @@ variable {F : Type*} [Field F] [Algebra ℂ F]
 variable [TopologicalSpace (Place ℂ F)] [ChartedSpace ℂ (Place ℂ F)]
 variable [IsManifold 𝓘(ℂ, ℂ) ω (Place ℂ F)]
 
+/--
+@isnad1 id=analytic.2h4v.s8.069f23f9e2a5 from=translated src=- shape=fbda6723 vocab=1f4e65fa
+-/
 theorem analyticAt_coordChange (w P Q : Place ℂ F)
     (hw : Q ∈ (extChartAt 𝓘(ℂ, ℂ) w).source) (hP : Q ∈ (extChartAt 𝓘(ℂ, ℂ) P).source) :
     AnalyticAt ℂ (extChartAt 𝓘(ℂ, ℂ) P ∘ (extChartAt 𝓘(ℂ, ℂ) w).symm)
@@ -44,6 +47,9 @@ private theorem eventually_symm_mem {s : Set (Place ℂ F)} (hs : IsOpen s)
     exact hs.mem_nhds hP
   exact hcont.eventually_mem hmem
 
+/--
+@isnad1 id=and.4h4v.s10.987a126683c9 from=translated src=- shape=0ee8e67d vocab=b590cda3
+-/
 theorem analyticCoord_fields_of_center {v : Place ℂ F}
     (ζ : OpenPartialHomeomorph (Place ℂ F) ℂ)
     (hsub : ζ.source ⊆ (extChartAt 𝓘(ℂ, ℂ) v).source)
@@ -105,6 +111,9 @@ theorem analyticCoord_fields_of_center {v : Place ℂ F}
 
 end AnalyticCoordCenter
 
+/--
+@isnad1 id=and.4h4v.s10.987a126683c9 from=translated src=- shape=0ee8e67d vocab=b590cda3
+-/
 theorem solution {F : Type*} [Field F] [Algebra ℂ F]
     [TopologicalSpace (Place ℂ F)] [ChartedSpace ℂ (Place ℂ F)]
     [IsManifold 𝓘(ℂ, ℂ) ω (Place ℂ F)] {v : Place ℂ F}

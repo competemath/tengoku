@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=isfinite.0h5v.s5.fd45502557bb from=translated src=- shape=2b6d9c58 vocab=02d3d0c0
+-/
 theorem solution {X Y Z : Scheme.{u}} (f : X ⟶ Y) (g : Y ⟶ Z)
     [Surjective f] [IsFinite (f ≫ g)] [LocallyOfFiniteType g] [IsSeparated g] : IsFinite g := by
   haveI : UniversallyClosed g := UniversallyClosed.of_comp_surjective f g

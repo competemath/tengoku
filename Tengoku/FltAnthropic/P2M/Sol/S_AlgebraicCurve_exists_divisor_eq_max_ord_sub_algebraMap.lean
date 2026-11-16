@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open AlgebraicCurve
 
+/--
+@isnad1 id=ex.1h4v.s7.413933d9bf8e from=translated src=- shape=83daa238 vocab=864c11be
+-/
 theorem solution
     {K F : Type*} [Field K] [Field F] [Algebra K F] [HasPrincipalDivisors K F]
     (x : F) (hx : Transcendental K x) (a : K) :

@@ -14,6 +14,9 @@ namespace RigidityGPH
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
+/--
+@isnad1 id=hasvalue.2h7v.s6.d163f1090ebf from=translated src=- shape=ef0bb476 vocab=7b5dba2f
+-/
 theorem hasValue_sub {g g' : F} {a a' : K} (h : v.HasValue g a) (h' : v.HasValue g' a') :
     v.HasValue (g - g') (a - a') := by
   obtain ⟨hg, hr⟩ := h
@@ -22,6 +25,9 @@ theorem hasValue_sub {g g' : F} {a a' : K} (h : v.HasValue g a) (h' : v.HasValue
   have hx : (⟨g - g', sub_mem hg hg'⟩ : v.toValuationSubring) = ⟨g, hg⟩ - ⟨g', hg'⟩ := rfl
   rw [hx, map_sub, hr, hr', map_sub]
 
+/--
+@isnad1 id=le.1h4v.s6.8b7be70d1b92 from=translated src=- shape=c89bac7e vocab=d89c618f
+-/
 theorem ord_nonneg_of_mem' {f : F} (hf : f ∈ v.toValuationSubring) : 0 ≤ v.ord f := by
   rcases eq_or_ne f 0 with rfl | hf0
   · simp
@@ -37,6 +43,9 @@ theorem ord_nonneg_of_mem' {f : F} (hf : f ∈ v.toValuationSubring) : 0 ≤ v.o
   rw [hcoe, v.ord_unit_smul_zpow u hπ (n : ℤ)]
   exact Int.natCast_nonneg n
 
+/--
+@isnad1 id=mem.2h4v.s6.8d59929a2b9d from=translated src=- shape=bd53d706 vocab=d89c618f
+-/
 theorem mem_of_ord_nonneg' {f : F} (hf : f ≠ 0) (h : 0 ≤ v.ord f) :
     f ∈ v.toValuationSubring := by
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
@@ -45,6 +54,9 @@ theorem mem_of_ord_nonneg' {f : F} (hf : f ≠ 0) (h : 0 ≤ v.ord f) :
     zpow_natCast]
   exact mul_mem (u : v.toValuationSubring).2 (pow_mem (π : v.toValuationSubring).2 _)
 
+/--
+@isnad1 id=le.2h5v.s6.91b9b828c001 from=translated src=- shape=e5c3c404 vocab=62232d83
+-/
 theorem ord_sub_nonneg_of_mem {f g : F} (hf : 0 ≤ v.ord f) (hg : g ∈ v.toValuationSubring) :
     0 ≤ v.ord (f - g) := by
   rcases eq_or_ne f 0 with rfl | hf0
@@ -54,6 +66,9 @@ theorem ord_sub_nonneg_of_mem {f g : F} (hf : 0 ≤ v.ord f) (hg : g ∈ v.toVal
     · exact ord_nonneg_of_mem' v (neg_mem hg)
   · exact ord_nonneg_of_mem' v (sub_mem (mem_of_ord_nonneg' v hf0 hf) hg)
 
+/--
+@isnad1 id=le.2h5v.s6.bd2153f3f6fe from=translated src=- shape=393521ef vocab=0934ad7b
+-/
 theorem neg_one_le_ord_sub_of_mem {f g : F} (hf : -1 ≤ v.ord f) (hg : g ∈ v.toValuationSubring) :
     -1 ≤ v.ord (f - g) := by
   classical
@@ -75,6 +90,9 @@ theorem neg_one_le_ord_sub_of_mem {f g : F} (hf : -1 ≤ v.ord f) (hg : g ∈ v.
 
 end RigidityGPH
 
+/--
+@isnad1 id=ex.7h7v.s10.bce808e522c1 from=translated src=- shape=5901b91e vocab=d0260ff2
+-/
 theorem solution
     {k F : Type*} [Field k] [Field F] [Algebra k F]
     (S : Finset (Place k F × Place k F)) (E₁ E₂ : Finset (Place k F))

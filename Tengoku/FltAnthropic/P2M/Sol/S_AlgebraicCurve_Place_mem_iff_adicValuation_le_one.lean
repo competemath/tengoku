@@ -43,6 +43,9 @@ end AlgebraicCurve
 end
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_mem_iff_adicValuation_le_one.AlgebraicCurve in
+/--
+@isnad1 id=iff.0h4v.s7.c4f7e21b47f0 from=translated src=- shape=c3d0343d vocab=48e929d1
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) {f : F} :
     f ∈ v.toValuationSubring ↔ v.adicValuation f ≤ 1 :=
   AlgebraicCurve.Place.rowMain v

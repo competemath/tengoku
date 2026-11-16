@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=isfinite.0h5v.s5.37875898305c from=translated src=- shape=bbf54670 vocab=16112a3f
+-/
 theorem solution
     {X₀ X Y : Scheme.{u}} (i : X₀ ⟶ X) [Surjective i] (g : X ⟶ Y) [IsProper g] [IsFinite (i ≫ g)] :
     IsFinite g := by

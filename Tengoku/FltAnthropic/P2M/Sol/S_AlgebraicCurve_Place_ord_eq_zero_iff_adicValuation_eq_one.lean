@@ -37,6 +37,9 @@ end AlgebraicCurve
 end
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_ord_eq_zero_iff_adicValuation_eq_one.AlgebraicCurve in
+/--
+@isnad1 id=iff.1h4v.s7.1dd615751220 from=translated src=- shape=8604ba8d vocab=38f1c540
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) {f : F} (hf : f ≠ 0) :
     v.ord f = 0 ↔ v.adicValuation f = 1 :=
   AlgebraicCurve.Place.rowMain v hf

@@ -13,6 +13,9 @@ namespace AlgebraicGeometry
 export _root_.AlgebraicGeometry (GeometricallyReduced GeometricallyIntegral GeometricallyIntegral.isIntegral_of_isLocallyNoetherian GeometricallyIrreducible IsIntegral GeometricallyIrreducible.irreducibleSpace Scheme UniversallyOpen isIntegral_iff_irreducibleSpace_and_isReduced Flat GeometricallyReduced.isReduced_of_flat_of_finite_irreducibleComponents)
 open _root_.AlgebraicGeometry
 
+/--
+@isnad1 id=finite.0h1v.s3.15b17a6f90da from=translated src=- shape=da9a72aa vocab=a13b7d0f
+-/
 theorem finite_irreducibleComponents_of_irreducibleSpace (S : Type*) [TopologicalSpace S]
     [IrreducibleSpace S] : (irreducibleComponents S).Finite := by
   refine (Set.finite_singleton (Set.univ : Set S)).subset ?_
@@ -22,6 +25,9 @@ theorem finite_irreducibleComponents_of_irreducibleSpace (S : Type*) [Topologica
 
 end AlgebraicGeometry
 
+/--
+@isnad1 id=isintegr.0h3v.s5.78c8ee3f72d5 from=translated src=- shape=f55d492b vocab=a373b2b7
+-/
 theorem solution
     {X S : Scheme.{u}} (f : X ⟶ S) [GeometricallyIntegral f] [Flat f] [UniversallyOpen f]
     [IsIntegral S] : IsIntegral X := by

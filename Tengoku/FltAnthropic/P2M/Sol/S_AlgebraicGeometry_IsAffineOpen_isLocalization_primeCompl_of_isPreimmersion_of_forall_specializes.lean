@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=islocali.5h5v.s11.29067855b37c from=translated src=- shape=af0f161f vocab=b81668f1
+-/
 theorem solution
     {X : Scheme.{u}} [IsReduced X] {V : X.Opens} (hV : IsAffineOpen V)
     (x : X) (hxV : x ∈ V) (hmax : ∀ y : X, y ⤳ x → y = x)

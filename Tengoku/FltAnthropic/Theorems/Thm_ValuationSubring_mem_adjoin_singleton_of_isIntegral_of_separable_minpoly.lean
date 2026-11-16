@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_ValuationSubring_mem_adjoin_singleton_of_i
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=mem.5h6v.s9.cb46afd629c9 from=translated src=- shape=1709e801 vocab=ac7d8d9d
+-/
 theorem ValuationSubring.mem_adjoin_singleton_of_isIntegral_of_separable_minpoly
     {κ F L : Type*} [Field κ] [Field F] [Field L] [Algebra κ F] [Algebra F L] [Algebra κ L] [IsScalarTower κ F L]
     (𝒪 : ValuationSubring F) [Algebra 𝒪 L] [IsScalarTower 𝒪 F L]

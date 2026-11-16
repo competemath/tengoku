@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=eq.2h7v.s8.308dc62a5688 from=translated src=- shape=ec5e7394 vocab=d06d75a7
+-/
 theorem solution
     {X Y : Scheme.{0}} (f : X ⟶ Y) [IsSeparated f]
     {Ω : Type} [Field Ω] (A : ValuationSubring Ω)

@@ -196,6 +196,9 @@ private theorem AlgebraicCurve.Place.exists_of_valuationSubring' {K F : Type*} [
 
 end Roots
 
+/--
+@isnad1 id=ex.2h4v.s8.1df3cbe41b92 from=translated src=- shape=1e332b03 vocab=c6de8de8
+-/
 theorem solution
     {K F : Type*} [Field K] [Field F] [Algebra K F] (x : F)
     [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F]

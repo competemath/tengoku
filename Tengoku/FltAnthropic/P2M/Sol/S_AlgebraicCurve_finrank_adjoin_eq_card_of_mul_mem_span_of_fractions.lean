@@ -17,12 +17,18 @@ namespace FinrankOrder
 variable {k : Type u} {E : Type v} [Field k] [Field E] [Algebra k E] {n : ℕ}
   (y : E) (s : Fin n → E)
 
+/--
+@isnad1 id=mem.0h4v.s7.4e63daed865a from=translated src=- shape=a6ffaab8 vocab=55de7d7f
+-/
 theorem aeval_mem_adjoin (c : k[X]) :
     Polynomial.aeval y c ∈ IntermediateField.adjoin k ({y} : Set E) := by
   refine IntermediateField.algebra_adjoin_le_adjoin k _ ?_
   rw [Algebra.adjoin_singleton_eq_range_aeval]
   exact ⟨c, rfl⟩
 
+/--
+@isnad1 id=linearin.1h5v.s9.3069af9b02e1 from=translated src=- shape=014de521 vocab=1b98e003
+-/
 theorem linearIndependent_algebraAdjoin
     (hind : ∀ c : Fin n → k[X], ∑ i, Polynomial.aeval y (c i) * s i = 0 → c = 0) :
     LinearIndependent (Algebra.adjoin k ({y} : Set E)) s := by
@@ -44,12 +50,18 @@ theorem linearIndependent_algebraAdjoin
 
 open scoped IntermediateField.algebraAdjoinAdjoin in
 
+/--
+@isnad1 id=linearin.1h5v.s9.37ea45e78102 from=translated src=- shape=014de521 vocab=7b920cae
+-/
 theorem linearIndependent_adjoin
     (hind : ∀ c : Fin n → k[X], ∑ i, Polynomial.aeval y (c i) * s i = 0 → c = 0) :
     LinearIndependent (IntermediateField.adjoin k ({y} : Set E)) s :=
   (LinearIndependent.iff_fractionRing (Algebra.adjoin k ({y} : Set E))
     (IntermediateField.adjoin k ({y} : Set E))).mp (linearIndependent_algebraAdjoin y s hind)
 
+/--
+@isnad1 id=mem.3h7v.s11.5944286403c7 from=translated src=- shape=5d2482cb vocab=641136eb
+-/
 theorem mul_mem_span
     (hmul : ∀ i j, ∃ c : Fin n → k[X], s i * s j = ∑ l, Polynomial.aeval y (c l) * s l)
     {a b : E}
@@ -76,6 +88,9 @@ theorem mul_mem_span
   rw [this]
   exact Submodule.smul_mem _ _ (Submodule.subset_span ⟨l, rfl⟩)
 
+/--
+@isnad1 id=eq.2h5v.s10.d20115e7610a from=translated src=- shape=4c7cb1d7 vocab=a403c66b
+-/
 theorem span_eq_top
     (hmul : ∀ i j, ∃ c : Fin n → k[X], s i * s j = ∑ l, Polynomial.aeval y (c l) * s l)
     (hfrac : ∀ z : E, ∃ cu cv : Fin n → k[X],
@@ -139,6 +154,9 @@ theorem span_eq_top
 end AlgebraicCurve.FinrankOrder
 
 open AlgebraicCurve.FinrankOrder in
+/--
+@isnad1 id=and.3h5v.s10.3abeb9d86d16 from=translated src=- shape=341303a5 vocab=8e786417
+-/
 theorem solution
     {k : Type u} {E : Type v} [Field k] [Field E] [Algebra k E] {n : ℕ}
     (y : E) (s : Fin n → E)

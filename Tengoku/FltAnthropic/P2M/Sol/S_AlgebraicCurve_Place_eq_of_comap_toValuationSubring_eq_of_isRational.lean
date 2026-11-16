@@ -338,6 +338,9 @@ end Descent
 end RationalPlaceDescent
 
 open RationalPlaceDescent in
+/--
+@isnad1 id=eq.4h7v.s9.715513566195 from=translated src=- shape=2eab0dd1 vocab=92a71b16
+-/
 theorem solution
     {K K' F F' : Type*} [Field K] [Field K'] [Field F] [Field F'] [Algebra K F] [Algebra K' F'] [Algebra K K']
     [Algebra F F'] [Algebra K F'] [IsScalarTower K K' F'] [IsScalarTower K F F']

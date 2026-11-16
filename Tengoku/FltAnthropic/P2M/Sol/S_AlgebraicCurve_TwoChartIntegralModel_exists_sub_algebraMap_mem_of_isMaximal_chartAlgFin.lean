@@ -16,6 +16,9 @@ namespace H34RF
 
 variable {R F : Type} [CommRing R] [IsLocalRing R] [Field F] [Algebra R F]
 
+/--
+@isnad1 id=ex.3h5v.s11.74888a39cbce from=translated src=- shape=66649569 vocab=a025a1a3
+-/
 theorem exists_sub_algebraMap_mem (hres : IsAlgClosed (ResidueField R)) (j : F)
     (y : Ideal ↥(chartAlgFin R F j)) (hy : y.IsMaximal)
     (hmy : ∀ r ∈ maximalIdeal R, algebraMap R ↥(chartAlgFin R F j) r ∈ y)
@@ -80,6 +83,9 @@ theorem exists_sub_algebraMap_mem (hres : IsAlgClosed (ResidueField R)) (j : F)
 
 end H34RF
 
+/--
+@isnad1 id=ex.3h5v.s11.74888a39cbce from=translated src=- shape=66649569 vocab=a025a1a3
+-/
 theorem solution
     {R F : Type} [CommRing R] [IsLocalRing R] [Field F] [Algebra R F]
     (hres : IsAlgClosed (ResidueField R)) (j : F)

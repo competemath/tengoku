@@ -14,6 +14,9 @@ universe u
 
 open AlgebraicCurve AlgebraicCurve.TwoChartIntegralModel
 
+/--
+@isnad1 id=ex.0h4v.s13.9c1a529ec54e from=translated src=- shape=bb430d39 vocab=0f0976fc
+-/
 theorem solution
     (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F] (j : F) [Fact (j ≠ 0)]
     (O : Type u) [CommRing O] [Algebra R O] :

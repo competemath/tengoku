@@ -12,6 +12,9 @@ set_option autoImplicit false
 open MvPolynomial CategoryTheory CategoryTheory.Limits AlgebraicGeometry AlgebraicGeometry.HilbertFunctor
 attribute [local instance] MvPolynomial.gradedAlgebra
 
+/--
+@isnad1 id=mem.3h7v.s16.3f891cf7c735 from=translated src=- shape=94707ae0 vocab=2dfc10dc
+-/
 theorem solution
     (n : ℕ) (k : Type) [Field k]
     (Zk : Scheme.{0}) (ιk : Zk ⟶ Proj (MvPolynomial.homogeneousSubmodule (Fin (n + 1)) k))

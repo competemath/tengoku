@@ -14,6 +14,9 @@ open AlgebraicCurve IsLocalRing
 
 namespace RegularProlongationPosAscentSol
 
+/--
+@isnad1 id=le.3h5v.s7.691621096795 from=translated src=- shape=2d917a74 vocab=470e609b
+-/
 theorem min_ord_le_ord_add {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
     {a b : F} (ha : a ≠ 0) (hb : b ≠ 0) (hab : a + b ≠ 0) :
     min (v.ord a) (v.ord b) ≤ v.ord (a + b) := by
@@ -38,6 +41,9 @@ section Pos
 variable {L : Type*} [Field L] (A : ValuationSubring L) {F : Type*} [Field F] [Algebra L F]
   {Fbar : Type*} [Field Fbar] [Algebra (ResidueField A) Fbar]
 
+/--
+@isnad1 id=and.8h10v.s12.b7f6a8328ed4 from=translated src=- shape=9c6f4d42 vocab=983efcd4
+-/
 theorem reg_pos (R : RegularProlongation A F Fbar) (xp : Place (ResidueField A) Fbar)
     (N0 N1 : Subring F) [IsLocalRing ↥N0] [IsLocalRing ↥N1] (h01 : N0 ≤ N1)
     (hN1 : ∀ f : F, f ∈ N1 → f ∈ R.integers)
@@ -135,6 +141,9 @@ end Pos
 
 end RegularProlongationPosAscentSol
 
+/--
+@isnad1 id=and.8h10v.s12.b7f6a8328ed4 from=translated src=- shape=9c6f4d42 vocab=983efcd4
+-/
 theorem solution
     {L : Type*} [Field L] (A : ValuationSubring L) {F : Type*} [Field F] [Algebra L F]
     {Fbar : Type*} [Field Fbar] [Algebra (ResidueField A) Fbar]

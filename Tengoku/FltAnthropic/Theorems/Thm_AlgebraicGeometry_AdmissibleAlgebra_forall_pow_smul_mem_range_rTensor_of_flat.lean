@@ -11,6 +11,9 @@ open TensorProduct
 
 universe u v w
 
+/--
+@isnad1 id=mem.4h10v.s10.2e0eb06ff534 from=translated src=- shape=7f6d8426 vocab=f27036fe
+-/
 theorem AlgebraicGeometry.AdmissibleAlgebra.forall_pow_smul_mem_range_rTensor_of_flat
     {B : Type u} [CommRing B] {M N P : Type v} [AddCommGroup M] [Module B M] [AddCommGroup N] [Module B N]
     [AddCommGroup P] [Module B P] (f : M →ₗ[B] N) (g : N →ₗ[B] P) (hfg : g.comp f = 0) (t : B) (e : ℕ)

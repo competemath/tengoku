@@ -11,6 +11,9 @@ set_option autoImplicit false
 open AlgebraicCurve
 open scoped Pointwise
 
+/--
+@isnad1 id=ex.1h4v.s7.d27d31a79439 from=translated src=- shape=b0e8dc4b vocab=9690b66b
+-/
 theorem solution
     {κ' : Type*} [Field κ'] [IsAlgClosed κ'] {F' : Type*} [Field F'] [Algebra κ' F']
     (P' : Place κ' F') [P'.FiniteResidue]

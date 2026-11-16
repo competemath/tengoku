@@ -13,6 +13,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=homislfp.0h3v.s5.856a9b8915e8 from=translated src=- shape=68e2c991 vocab=3b0288f9
+-/
 theorem solution
     (R : Type u) [CommRing R] {X : Scheme.{u}} (ξ : X ⟶ Spec (CommRingCat.of R))
     [LocallyOfFinitePresentation ξ] : AffineLimit.HomIsLFP ξ := by

@@ -25,6 +25,9 @@ def lapRow (v : V) : V → ℤ := ∑ ε,
   ((if (ends ε).1 = v then (Pi.single v 1 : V → ℤ) - (Pi.single (ends ε).2 1 : V → ℤ) else 0) +
    (if (ends ε).2 = v then (Pi.single v 1 : V → ℤ) - (Pi.single (ends ε).1 1 : V → ℤ) else 0))
 
+/--
+@isnad1 id=eq.0h4v.s7.dd1285eed77c from=translated src=- shape=399c3e1a vocab=7eec416f
+-/
 theorem lapRow_eq (v : V) : lapRow ends v = bd ends (cobd ends (Pi.single v 1)) := by
   classical
   unfold lapRow bd cobd
@@ -37,6 +40,9 @@ theorem lapRow_eq (v : V) : lapRow ends v = bd ends (cobd ends (Pi.single v 1)) 
   · subst h2; simp [h1]
   · simp [h1, h2]
 
+/--
+@isnad1 id=eq.0h3v.s7.6c6b8bc76695 from=translated src=- shape=aa00ede3 vocab=f593f795
+-/
 theorem closure_range_lapRow :
     AddSubgroup.closure (Set.range (lapRow ends)) = ((bd ends).comp (cobd ends)).range := by
   classical
@@ -78,16 +84,28 @@ def degQ : (V → ℚ) →ₗ[ℚ] ℚ where
   map_add' x y := by simp [Finset.sum_add_distrib]
   map_smul' c x := by simp [Finset.mul_sum]
 
+/--
+@isnad1 id=eq.0h5v.s7.c63dbf333957 from=translated src=- shape=d2d6c9ea vocab=a9712247
+-/
 theorem cobdQ_apply (x : V → ℚ) (ε : Seg) : cobdQ ends x ε = x (ends ε).1 - x (ends ε).2 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.eb3da2cb81aa from=translated src=- shape=9478bcfd vocab=97677e4f
+-/
 theorem bdQ_apply (y : Seg → ℚ) (v : V) :
     bdQ ends y v = ∑ ε, y ε * ((if v = (ends ε).1 then 1 else 0) - (if v = (ends ε).2 then 1 else 0)) := by
   unfold bdQ
   simp only [LinearMap.coe_mk, AddHom.coe_mk, Finset.sum_apply, Pi.smul_apply, Pi.sub_apply, Pi.single_apply,
     smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h2v.s6.3fe84fa10a46 from=translated src=- shape=7571dfb9 vocab=9388d88e
+-/
 theorem degQ_apply (x : V → ℚ) : degQ (V := V) x = ∑ v, x v := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.8375fb98a783 from=translated src=- shape=9d91a63d vocab=de2d7ba6
+-/
 theorem sum_mul_bdQ (x : V → ℚ) (y : Seg → ℚ) :
     ∑ v, x v * bdQ ends y v = ∑ ε, cobdQ ends x ε * y ε := by
   simp only [bdQ_apply, cobdQ_apply, Finset.mul_sum]
@@ -98,17 +116,26 @@ theorem sum_mul_bdQ (x : V → ℚ) (y : Seg → ℚ) :
   rw [Finset.sum_ite_eq', Finset.sum_ite_eq']
   simp
 
+/--
+@isnad1 id=eq.0h4v.s7.275da4ed8df0 from=translated src=- shape=d4bacdd4 vocab=37bef385
+-/
 theorem degQ_bdQ (y : Seg → ℚ) : degQ (bdQ ends y) = 0 := by
   have := sum_mul_bdQ ends (fun _ => (1 : ℚ)) y
   simp only [one_mul, cobdQ_apply, sub_self, zero_mul, Finset.sum_const_zero] at this
   rw [degQ_apply]
   exact this
 
+/--
+@isnad1 id=eq.0h4v.s7.2fe388f8afd3 from=translated src=- shape=d6fbe0e1 vocab=85979b41
+-/
 theorem cast_cobd (z : V → ℤ) : (fun ε => ((cobd ends z ε : ℤ) : ℚ)) = cobdQ ends (fun v => (z v : ℚ)) := by
   ext ε
   unfold cobd
   simp only [cobdQ_apply, AddMonoidHom.coe_mk, ZeroHom.coe_mk, Int.cast_sub]
 
+/--
+@isnad1 id=eq.0h4v.s7.216f02db5505 from=translated src=- shape=af13e15b vocab=d124082d
+-/
 theorem cast_bd (y : Seg → ℤ) : (fun v => ((bd ends y v : ℤ) : ℚ)) = bdQ ends (fun ε => (y ε : ℚ)) := by
   ext v
   unfold bd
@@ -118,6 +145,9 @@ theorem cast_bd (y : Seg → ℤ) : (fun v => ((bd ends y v : ℤ) : ℚ)) = bdQ
   push_cast
   rfl
 
+/--
+@isnad1 id=le.1h4v.s8.06399225aed3 from=translated src=- shape=676b73f1 vocab=a6a03ff7
+-/
 theorem ker_lapQ_le (hconn : ∀ u v : V, (Pi.single u 1 : V → ℤ) - Pi.single v 1 ∈ (bd ends).range)
     (v₀ : V) : LinearMap.ker ((bdQ ends).comp (cobdQ ends)) ≤ Submodule.span ℚ {fun _ : V => (1 : ℚ)} := by
   intro x hx
@@ -144,6 +174,9 @@ theorem ker_lapQ_le (hconn : ∀ u v : V, (Pi.single u 1 : V → ℤ) - Pi.singl
   rw [Submodule.mem_span_singleton]
   exact ⟨x v₀, funext fun v => by simp [hconst v v₀]⟩
 
+/--
+@isnad1 id=eq.1h4v.s8.c97516fd095a from=translated src=- shape=7d51ebc3 vocab=f278fc94
+-/
 theorem range_lapQ_eq (hconn : ∀ u v : V, (Pi.single u 1 : V → ℤ) - Pi.single v 1 ∈ (bd ends).range)
     (v₀ : V) : LinearMap.range ((bdQ ends).comp (cobdQ ends)) = LinearMap.ker (degQ (V := V)) := by
   classical
@@ -178,6 +211,9 @@ theorem range_lapQ_eq (hconn : ∀ u v : V, (Pi.single u 1 : V → ℤ) - Pi.sin
     omega
   exact Submodule.eq_of_le_of_finrank_le hle (by omega)
 
+/--
+@isnad1 id=ex.2h4v.s8.bd1a21d337b5 from=translated src=- shape=712e7bb6 vocab=10ea0756
+-/
 theorem exists_nsmul_mem_range_lap_of_deg_eq_zero
     (hconn : ∀ u v : V, (Pi.single u 1 : V → ℤ) - Pi.single v 1 ∈ (bd ends).range)
     (h : V → ℤ) (hh : deg (V := V) h = 0) :
@@ -227,6 +263,9 @@ namespace TropCnt
 
 variable {V Seg : Type} [Fintype V] [DecidableEq V] [Fintype Seg] (ends : Seg → V × V)
 
+/--
+@isnad1 id=mem.0h4v.s7.857df3a6ebfb from=translated src=- shape=a74e252f vocab=ce8c81dc
+-/
 theorem single_sub_single_ends_mem (ε : Seg) :
     (Pi.single (ends ε).1 1 : V → ℤ) - Pi.single (ends ε).2 1 ∈ (bd ends).range := by
   classical
@@ -236,6 +275,9 @@ theorem single_sub_single_ends_mem (ε : Seg) :
     (fun ε' _ h => by rw [Pi.single_eq_of_ne h, zero_smul])]
   rw [Pi.single_eq_same, one_smul]
 
+/--
+@isnad1 id=mem.3h9v.s9.8c4861f45ec7 from=translated src=- shape=c2e1144e vocab=6676663f
+-/
 theorem single_sub_single_mem_of_cut {n m : ℕ} (src tgt : Fin m → Fin n) {I : Type} [Fintype I] [DecidableEq I]
     (en : Seg → (Fin n ⊕ I) × (Fin n ⊕ I))
     (hcut : ∀ S : Finset (Fin n), S.Nonempty → Sᶜ.Nonempty → ∃ e : Fin m, (src e ∈ S ↔ tgt e ∉ S))
@@ -298,26 +340,41 @@ def subdivEnds : SSeg m W → SV n m W × SV n m W := fun ε =>
    if h1 : ε.2.1 + 1 = W ε.1 then Sum.inl (tgt ε.1)
     else Sum.inr ⟨ε.1, ⟨ε.2.1, by have := ε.2.2; omega⟩⟩)
 
+/--
+@isnad1 id=eq.1h6v.s6.4bd00cc6f0a5 from=translated src=- shape=58755e07 vocab=f3b05c80
+-/
 theorem subdivEnds_fst_zero (e : Fin m) (h : 0 < W e) :
     (subdivEnds src tgt W ⟨e, ⟨0, h⟩⟩).1 = Sum.inl (src e) := by
   simp [subdivEnds]
 
+/--
+@isnad1 id=eq.1h7v.s6.1559fa7e5bb1 from=translated src=- shape=522b1b62 vocab=6e706954
+-/
 theorem subdivEnds_fst_succ (e : Fin m) (j : ℕ) (h : j + 1 < W e) :
     (subdivEnds src tgt W ⟨e, ⟨j + 1, h⟩⟩).1 =
       (subdivEnds src tgt W ⟨e, ⟨j, (Nat.lt_succ_self j).trans h⟩⟩).2 := by
   have h' : ¬ (j + 1 = W e) := h.ne
   simp [subdivEnds, h']
 
+/--
+@isnad1 id=eq.1h6v.s6.328410b2bffe from=translated src=- shape=72edef11 vocab=256858e8
+-/
 theorem subdivEnds_snd_last (e : Fin m) (h : 0 < W e) :
     (subdivEnds src tgt W ⟨e, ⟨W e - 1, Nat.sub_lt h one_pos⟩⟩).2 = Sum.inl (tgt e) := by
   have h' : W e - 1 + 1 = W e := Nat.sub_add_cancel h
   simp [subdivEnds, h']
 
+/--
+@isnad1 id=eq.0h7v.s7.73a312006b43 from=translated src=- shape=49dcdfa0 vocab=dca19048
+-/
 theorem subdivEnds_snd_int (e : Fin m) (i : Fin (W e - 1)) :
     (subdivEnds src tgt W ⟨e, ⟨i.1, by have := i.2; omega⟩⟩).2 = Sum.inr ⟨e, i⟩ := by
   have h' : ¬ (i.1 + 1 = W e) := by have := i.2; omega
   simp [subdivEnds, h']
 
+/--
+@isnad1 id=mem.1h7v.s9.e78e30978d3b from=translated src=- shape=b2b1d384 vocab=2f55c477
+-/
 theorem single_src_sub_single_snd_mem (e : Fin m) : ∀ (j : ℕ) (h : j < W e),
     (Pi.single (Sum.inl (src e)) 1 : SV n m W → ℤ) - Pi.single ((subdivEnds src tgt W ⟨e, ⟨j, h⟩⟩).2) 1 ∈
       (bd (subdivEnds src tgt W)).range := by
@@ -335,6 +392,9 @@ theorem single_src_sub_single_snd_mem (e : Fin m) : ∀ (j : ℕ) (h : j < W e),
     have := AddSubgroup.add_mem _ h1 h2
     rwa [sub_add_sub_cancel] at this
 
+/--
+@isnad1 id=mem.2h7v.s9.db744532b163 from=translated src=- shape=f6804233 vocab=0e5a5bad
+-/
 theorem subdiv_conn (hW : ∀ e, 0 < W e)
     (hcut : ∀ S : Finset (Fin n), S.Nonempty → Sᶜ.Nonempty → ∃ e : Fin m, (src e ∈ S ↔ tgt e ∉ S)) :
     ∀ u v : SV n m W, (Pi.single u 1 : SV n m W → ℤ) - Pi.single v 1 ∈ (bd (subdivEnds src tgt W)).range := by
@@ -350,6 +410,9 @@ theorem subdiv_conn (hW : ∀ e, 0 < W e)
 
 end Subdiv
 
+/--
+@isnad1 id=isoffina.3h6v.s10.6f7711020ee6 from=translated src=- shape=3b328f12 vocab=7c7662c2
+-/
 theorem isOfFinAddOrder_mk_of_sum_eq_zero (n m : ℕ) (src tgt : Fin m → Fin n) (W : Fin m → ℕ) (hW : ∀ e, 0 < W e)
     (hconn : ∀ S : Finset (Fin n), S.Nonempty → Sᶜ.Nonempty → ∃ e : Fin m, (src e ∈ S ↔ tgt e ∉ S)) :
     ∀ x : SV n m W → ℤ, (∑ v, x v) = 0 →
@@ -367,6 +430,9 @@ theorem isOfFinAddOrder_mk_of_sum_eq_zero (n m : ℕ) (src tgt : Fin m → Fin n
 
 end TropCnt
 
+/--
+@isnad1 id=other.2h5v.s11.9895d0d14491 from=translated src=- shape=86e72539 vocab=6f2cfe2e
+-/
 theorem solution
     (n m : ℕ) (src tgt : Fin m → Fin n) (W : Fin m → ℕ) (hW : ∀ e, 0 < W e)
     (hconn : ∀ S : Finset (Fin n), S.Nonempty → Sᶜ.Nonempty → ∃ e : Fin m, (src e ∈ S ↔ tgt e ∉ S)) :

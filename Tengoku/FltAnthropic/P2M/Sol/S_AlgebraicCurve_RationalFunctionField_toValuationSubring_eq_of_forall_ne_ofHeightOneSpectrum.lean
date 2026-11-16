@@ -17,6 +17,9 @@ open AlgebraicCurve
 open IsDedekindDomain WithZero IsLocalRing
 open scoped Polynomial
 
+/--
+@isnad1 id=eq.1h2v.s8.41284a327311 from=translated src=- shape=15ff9556 vocab=da86304e
+-/
 theorem solution {K : Type*} [Field K] [DecidableEq (RatFunc K)] (v : Place K (RatFunc K)) (hv : ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠ Place.ofHeightOneSpectrum w) : v.toValuationSubring = (RatFunc.inftyValuation K).valuationSubring := by
   haveI := v.adicValuation_isRankOneDiscrete
   haveI := v.adicValuation_isTrivialOn

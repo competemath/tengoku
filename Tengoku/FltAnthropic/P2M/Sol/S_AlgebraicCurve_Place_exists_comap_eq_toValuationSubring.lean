@@ -21,6 +21,9 @@ variable {K F F' : Type*} [Field K] [Field F] [Field F']
   [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F']
   [FiniteDimensional F F'] [Algebra.IsSeparable F F']
 
+/--
+@isnad1 id=ex.0h4v.s7.3cc542c6b1b7 from=translated src=- shape=bcc34801 vocab=ade04c99
+-/
 theorem rowMain (v : Place K F) :
     ∃ w : Place K F', w.toValuationSubring.comap (algebraMap F F') = v.toValuationSubring := by
   classical
@@ -91,6 +94,9 @@ theorem rowMain (v : Place K F) :
 end AlgebraicCurve.Place
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_exists_comap_eq_toValuationSubring.AlgebraicCurve in
+/--
+@isnad1 id=ex.0h4v.s7.3cc542c6b1b7 from=translated src=- shape=bcc34801 vocab=ade04c99
+-/
 theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F'] (v : Place K F) :
     ∃ w : Place K F', w.toValuationSubring.comap (algebraMap F F') = v.toValuationSubring :=
   AlgebraicCurve.Place.rowMain v

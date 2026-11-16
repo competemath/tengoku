@@ -11,6 +11,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=nonempty.0h2v.s6.97f6d210b7e4 from=translated src=- shape=44e94ced vocab=56dabcd3
+-/
 theorem solution
     (R : Type u) [CommRing R] (A : Type u) [CommRing A] [Algebra R A] :
     Nonempty (IsColimit (FGSubalgebra.cocone R A)) := by

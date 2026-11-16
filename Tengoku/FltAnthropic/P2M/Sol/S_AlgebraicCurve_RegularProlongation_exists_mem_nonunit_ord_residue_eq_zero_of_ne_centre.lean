@@ -13,6 +13,9 @@ namespace R4Sep1k
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
+/--
+@isnad1 id=le.1h4v.s6.8b7be70d1b92 from=translated src=- shape=c89bac7e vocab=d89c618f
+-/
 theorem ord_nonneg_of_mem {f : F} (hf : f ∈ v.toValuationSubring) : 0 ≤ v.ord f := by
   rcases eq_or_ne f 0 with rfl | hf0
   · simp
@@ -28,6 +31,9 @@ theorem ord_nonneg_of_mem {f : F} (hf : f ∈ v.toValuationSubring) : 0 ≤ v.or
   rw [hcoe, v.ord_unit_smul_zpow u hπ (n : ℤ)]
   exact Int.natCast_nonneg n
 
+/--
+@isnad1 id=iff.1h4v.s7.1dd615751220 from=translated src=- shape=8604ba8d vocab=38f1c540
+-/
 theorem ord_eq_zero_iff_adicValuation_eq_one {f : F} (hf : f ≠ 0) :
     v.ord f = 0 ↔ v.adicValuation f = 1 := by
   simp only [Place.ord, neg_eq_zero]
@@ -39,6 +45,9 @@ theorem ord_eq_zero_iff_adicValuation_eq_one {f : F} (hf : f ≠ 0) :
   · intro h
     rw [h, WithZero.log_one]
 
+/--
+@isnad1 id=iff.2h4v.s9.67016b32ea7b from=translated src=- shape=bd807425 vocab=395f7d1f
+-/
 theorem mem_maximalIdeal_iff_ord_pos {x : F} (hx : x ≠ 0) (hmem : x ∈ v.toValuationSubring) :
     (⟨x, hmem⟩ : v.toValuationSubring) ∈ IsLocalRing.maximalIdeal v.toValuationSubring ↔
       0 < v.ord x := by
@@ -50,6 +59,9 @@ theorem mem_maximalIdeal_iff_ord_pos {x : F} (hx : x ≠ 0) (hmem : x ∈ v.toVa
 
 end R4Sep1k
 
+/--
+@isnad1 id=ex.6h9v.s12.aefea30aba70 from=translated src=- shape=4cc06704 vocab=21222840
+-/
 theorem solution
     {L : Type} [Field L] (A : ValuationSubring L) {F : Type} [Field F] [Algebra L F]
     {FSS : Type} [Field FSS] [Algebra (ResidueField ↥A) FSS]

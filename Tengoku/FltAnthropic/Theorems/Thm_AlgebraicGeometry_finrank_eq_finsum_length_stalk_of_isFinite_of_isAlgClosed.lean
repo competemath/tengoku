@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=eq.0h4v.s11.ce6afdf0c8cc from=translated src=- shape=101f4c95 vocab=1c46691e
+-/
 theorem AlgebraicGeometry.finrank_eq_finsum_length_stalk_of_isFinite_of_isAlgClosed
     {k : Type u} [Field k] [IsAlgClosed k] {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of k)) [IsFinite f]
     (s : ↥(Spec (CommRingCat.of k))) :

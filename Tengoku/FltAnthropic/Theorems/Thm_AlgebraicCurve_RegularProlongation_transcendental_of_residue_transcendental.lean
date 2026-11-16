@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_AlgebraicCurve_RegularProlongation_transce
 
 open AlgebraicCurve
 
+/--
+@isnad1 id=transcen.1h6v.s9.33c04f145bec from=translated src=- shape=8f9b1229 vocab=50a94aa5
+-/
 theorem AlgebraicCurve.RegularProlongation.transcendental_of_residue_transcendental
     {L : Type*} [Field L] (A : ValuationSubring L)
     {F : Type*} [Field F] [Algebra L F]

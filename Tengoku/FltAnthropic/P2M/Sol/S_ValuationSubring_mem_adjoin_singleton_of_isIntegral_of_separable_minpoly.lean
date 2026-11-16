@@ -15,11 +15,17 @@ section RootDiff
 
 variable {κ E : Type*} [Field κ] [Field E] [Algebra κ E] (B : ValuationSubring E)
 
+/--
+@isnad1 id=integers.0h2v.s5.ed8c2cd07b8e from=translated src=- shape=73bd8bfe vocab=38255eb2
+-/
 theorem integers : B.valuation.Integers B where
   hom_inj := Subtype.val_injective
   map_le_one := B.valuation_le_one
   exists_of_le_one := fun x hx => ⟨⟨x, (B.valuation_le_one_iff x).mp hx⟩, rfl⟩
 
+/--
+@isnad1 id=mem.2h4v.s7.334b5c014fd5 from=translated src=- shape=7b89d516 vocab=6fd3d10e
+-/
 theorem mem_of_isIntegral (hκ : ∀ a : κ, algebraMap κ E a ∈ B) {s : E} (hs : IsIntegral κ s) : s ∈ B := by
   let φ : κ →+* B := (algebraMap κ E).codRestrict B hκ
   have hφ : (algebraMap B E).comp φ = algebraMap κ E := RingHom.ext fun _ => rfl
@@ -31,6 +37,9 @@ theorem mem_of_isIntegral (hκ : ∀ a : κ, algebraMap κ E a ∈ B) {s : E} (h
   rw [Valuation.mem_integer_iff] at h
   exact (B.valuation_le_one_iff s).mp h
 
+/--
+@isnad1 id=mem.2h5v.s8.e02cbc85a39e from=translated src=- shape=55512594 vocab=ac843471
+-/
 theorem aeval_mem (hκ : ∀ a : κ, algebraMap κ E a ∈ B) (q : κ[X]) {s : E} (hs : s ∈ B) : aeval s q ∈ B := by
   let S : Subalgebra κ E :=
     { B.toSubring.toSubsemiring with
@@ -54,6 +63,9 @@ theorem eq_one_of_prod_map_eq_one {ι M : Type*} [CommMonoid M] [PartialOrder M]
     _ ≤ f a * 1 := mul_le_mul_right hP _
     _ = f a := mul_one _
 
+/--
+@isnad1 id=eq.7h6v.s8.1dc20bda5e81 from=translated src=- shape=54d7e68c vocab=fe81e97d
+-/
 theorem valuation_sub_eq_one (hκ : ∀ a : κ, algebraMap κ E a ∈ B)
     {g : κ[X]} (hg : g.Monic) (hsep : g.Separable) (hsplit : (g.map (algebraMap κ E)).Splits)
     {r r' : E} (hr : r ∈ (g.map (algebraMap κ E)).roots) (hr' : r' ∈ (g.map (algebraMap κ E)).roots)
@@ -100,6 +112,9 @@ section Main
 variable {κ F L : Type*} [Field κ] [Field F] [Field L] [Algebra κ F] [Algebra F L] [Algebra κ L]
   [IsScalarTower κ F L] (𝒪 : ValuationSubring F) [Algebra 𝒪 L] [IsScalarTower 𝒪 F L]
 
+/--
+@isnad1 id=ex.4h6v.s10.fb73da7230f2 from=translated src=- shape=76d647c4 vocab=1eaa58b5
+-/
 theorem exists_unit_eq_discr (hκ : ∀ a : κ, algebraMap κ F a ∈ 𝒪)
     (c : L) (hc : IsIntegral κ c) (hsep : (minpoly κ c).Separable)
     (pb : PowerBasis F L) (hpb : pb.gen = c) [FiniteDimensional F L] [Algebra.IsSeparable F L] :
@@ -182,6 +197,9 @@ end Ws50V1
 
 open Ws50V1 in
 
+/--
+@isnad1 id=mem.5h6v.s9.cb46afd629c9 from=translated src=- shape=1709e801 vocab=ac7d8d9d
+-/
 theorem solution
     {κ F L : Type*} [Field κ] [Field F] [Field L] [Algebra κ F] [Algebra F L] [Algebra κ L] [IsScalarTower κ F L]
     (𝒪 : ValuationSubring F) [Algebra 𝒪 L] [IsScalarTower 𝒪 F L]

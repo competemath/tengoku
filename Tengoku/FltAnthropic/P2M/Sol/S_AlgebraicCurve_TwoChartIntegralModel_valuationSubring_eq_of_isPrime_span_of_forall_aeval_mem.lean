@@ -28,6 +28,9 @@ open _root_.AlgebraicCurve.TwoChartIntegralModel open _root_.AlgebraicCurve
 
 variable {R : Type u} [CommRing R] [IsDomain R]
 
+/--
+@isnad1 id=eq.1h4v.s8.9cb73c6d96b8 from=translated src=- shape=3a8b746b vocab=d9e500ce
+-/
 theorem ofPrime_congr {K : Type u} [Field K] (A : ValuationSubring K) {P Q : Ideal ↥A}
     [P.IsPrime] [Q.IsPrime] (h : P = Q) : A.ofPrime P = A.ofPrime Q := by
   subst h; rfl

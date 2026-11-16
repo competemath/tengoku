@@ -20,6 +20,9 @@ section Composite
 
 variable {F : Type u} [Field F] (O : ValuationSubring F) (W : ValuationSubring (ResidueField ↥O))
 
+/--
+@isnad1 id=iff.1h3v.s7.7ad8aa24427b from=translated src=- shape=7571f175 vocab=5a0f0c0a
+-/
 theorem isUnit_iff_inv_mem (x : F) (hx : x ∈ O) : IsUnit (⟨x, hx⟩ : ↥O) ↔ x ≠ 0 ∧ x⁻¹ ∈ O := by
   constructor
   · intro hu
@@ -82,8 +85,14 @@ def composite : ValuationSubring F where
       rw [(residue_eq_zero_iff _).mpr ((mem_maximalIdeal _).mpr hnu)]
       exact W.zero_mem
 
+/--
+@isnad1 id=mem.1h4v.s6.7a1c949ad4c1 from=translated src=- shape=cb7e294e vocab=dcf23ab9
+-/
 theorem mem_of_mem_composite {x : F} (h : x ∈ composite O W) : x ∈ O := h.1
 
+/--
+@isnad1 id=mem.1h4v.s7.7fb3be2148b7 from=translated src=- shape=946b850c vocab=5cea3116
+-/
 theorem mem_nonunits_composite {x : F} (hx : x ∈ O.nonunits) : x ∈ (composite O W).nonunits := by
   rw [ValuationSubring.mem_nonunits_iff_exists_mem_maximalIdeal] at hx ⊢
   obtain ⟨hxO, hxm⟩ := hx
@@ -99,6 +108,9 @@ section Chart
 
 variable (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F]
 
+/--
+@isnad1 id=mem.3h5v.s7.6e8ef3749802 from=translated src=- shape=ca4cb1ec vocab=5f4a7aa3
+-/
 theorem chartAlg_le (s : F) (V : ValuationSubring F) (hR : ∀ r : R, algebraMap R F r ∈ V) (hs : s ∈ V) :
     ∀ x : F, x ∈ chartAlg R F {s} → x ∈ V := by
   intro x hx
@@ -127,6 +139,9 @@ end Chart
 end CSL6
 
 open CSL6 in
+/--
+@isnad1 id=not.5h8v.s12.7f815ec37441 from=translated src=- shape=9f8e2cae vocab=88b0d268
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     (ϖ : R) (hϖ : maximalIdeal R = Ideal.span {ϖ})

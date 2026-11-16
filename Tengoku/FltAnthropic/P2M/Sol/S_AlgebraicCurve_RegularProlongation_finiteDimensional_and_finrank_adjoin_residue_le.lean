@@ -28,13 +28,22 @@ def constHom (R : RegularProlongation A F Fbar) : A →+* R.integers where
   map_zero' := Subtype.ext (by simp)
   map_add' a b := Subtype.ext (by simp)
 
+/--
+@isnad1 id=eq.0h6v.s9.2a5eaed4daa0 from=translated src=- shape=cd801897 vocab=7ec6fc3a
+-/
 @[scoped simp] theorem coe_constHom (R : RegularProlongation A F Fbar) (a : A) :
     ((constHom R a : R.integers) : F) = algebraMap L F a := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.c6a7c56ad787 from=translated src=- shape=bab91eb3 vocab=c07a5c52
+-/
 theorem residue_constHom (R : RegularProlongation A F Fbar) (a : A) :
     R.residue (constHom R a) = algebraMap (ResidueField A) Fbar (IsLocalRing.residue A a) :=
   R.residue_algebraMap a
 
+/--
+@isnad1 id=ex.2h6v.s8.1f955a229b0b from=translated src=- shape=a40a19db vocab=eff87759
+-/
 theorem exists_normalizer {ι : Type*} (t : Finset ι) (g : ι → L) {i₀ : ι} (hi₀ : i₀ ∈ t)
     (hg : g i₀ ≠ 0) :
     ∃ i₁ ∈ t, g i₁ ≠ 0 ∧ (∀ i ∈ t, (g i₁)⁻¹ * g i ∈ A) ∧
@@ -56,12 +65,18 @@ section resIndep
 
 variable (R : RegularProlongation A F Fbar) {ι : Type*} (E : ι → R.integers)
 
+/--
+@isnad1 id=eq.0h9v.s10.42e4169d2b02 from=translated src=- shape=6c1f2780 vocab=9880c6f6
+-/
 theorem coe_sum_constHom_mul (t : Finset ι) (a : ι → A) :
     ((∑ i ∈ t, constHom R (a i) * E i : R.integers) : F) = ∑ i ∈ t, (a i : L) • (E i : F) := by
   push_cast
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [coe_constHom, Algebra.smul_def]
 
+/--
+@isnad1 id=eq.0h9v.s11.607e6ec93c38 from=translated src=- shape=a563a8c0 vocab=c2d2c520
+-/
 theorem residue_sum_constHom_mul (t : Finset ι) (a : ι → A) :
     R.residue (∑ i ∈ t, constHom R (a i) * E i) =
       ∑ i ∈ t, IsLocalRing.residue A (a i) • R.residue (E i) := by
@@ -72,12 +87,18 @@ theorem residue_sum_constHom_mul (t : Finset ι) (a : ι → A) :
 variable (hE : LinearIndependent (ResidueField A) (fun i => R.residue (E i)))
 include hE
 
+/--
+@isnad1 id=eq.3h10v.s11.6a2c481d9319 from=translated src=- shape=6bb19fa1 vocab=e5186c69
+-/
 theorem residue_coeff_eq_zero (t : Finset ι) (a : ι → A)
     (h : R.residue (∑ i ∈ t, constHom R (a i) * E i) = 0) :
     ∀ i ∈ t, IsLocalRing.residue A (a i) = 0 := by
   rw [residue_sum_constHom_mul] at h
   exact linearIndependent_iff'.mp hE t (fun i => IsLocalRing.residue A (a i)) h
 
+/--
+@isnad1 id=mem.3h10v.s9.07e3dbdd3cc0 from=translated src=- shape=a08e7acf vocab=6235485c
+-/
 theorem mem_of_sum_smul_mem (t : Finset ι) (g : ι → L)
     (h : ∑ i ∈ t, g i • (E i : F) ∈ R.integers) : ∀ i ∈ t, g i ∈ A := by
   classical
@@ -117,6 +138,9 @@ theorem mem_of_sum_smul_mem (t : Finset ι) (g : ι → L)
   rw [ha1, map_one] at hall
   exact one_ne_zero hall
 
+/--
+@isnad1 id=lt.4h10v.s10.7a69f460f891 from=translated src=- shape=70ee528f vocab=9e5f708d
+-/
 theorem valuation_lt_one_of_sum_smul_mem (t : Finset ι) (g : ι → L)
     (h : ∑ i ∈ t, g i • (E i : F) ∈ R.integers) (h0 : R.residue ⟨_, h⟩ = 0) :
     ∀ i ∈ t, A.valuation (g i) < 1 := by
@@ -135,6 +159,9 @@ theorem valuation_lt_one_of_sum_smul_mem (t : Finset ι) (g : ι → L)
   rw [IsLocalRing.residue_eq_zero_iff, ValuationSubring.valuation_lt_one_iff] at hz
   rwa [ha i hi] at hz
 
+/--
+@isnad1 id=linearin.1h7v.s9.aabc12f78944 from=translated src=- shape=85f2e7c6 vocab=926e57fc
+-/
 theorem linearIndependent_coe : LinearIndependent L (fun i => (E i : F)) := by
   rw [linearIndependent_iff']
   intro t g hsum i hi
@@ -156,6 +183,9 @@ theorem linearIndependent_coe : LinearIndependent L (fun i => (E i : F)) := by
 
 end resIndep
 
+/--
+@isnad1 id=eq.0h4v.s8.dfeddfdb67c9 from=translated src=- shape=a9a04e0e vocab=7ca384c9
+-/
 theorem aeval_eq_linearCombination {K B : Type*} [CommRing K] [Ring B] [Algebra K B]
     (x : B) (p : Polynomial K) :
     Polynomial.aeval x p = Finsupp.linearCombination K (fun j : ℕ => x ^ j) p.toFinsupp.coeff := by
@@ -164,6 +194,9 @@ theorem aeval_eq_linearCombination {K B : Type*} [CommRing K] [Ring B] [Algebra 
     Polynomial.support_ofFinsupp, Polynomial.coeff_ofFinsupp, Finsupp.linearCombination_apply,
     Finsupp.sum, Algebra.smul_def]
 
+/--
+@isnad1 id=iff.0h3v.s6.685ea4a15f4c from=translated src=- shape=c1965ffc vocab=c7f13679
+-/
 theorem linearIndependent_pow_iff_transcendental {K B : Type*} [Field K] [Ring B] [Algebra K B]
     (x : B) : LinearIndependent K (fun j : ℕ => x ^ j) ↔ Transcendental K x := by
   rw [linearIndependent_iff, transcendental_iff]
@@ -185,12 +218,18 @@ variable (R : RegularProlongation A F Fbar) (x : R.integers)
 
 def frame (p : ℕ × Fin n) : R.integers := x ^ p.1 * y p.2
 
+/--
+@isnad1 id=eq.0h9v.s8.684af1fa9878 from=translated src=- shape=411be5b3 vocab=4a4280bc
+-/
 @[scoped simp] theorem coe_frame (p : ℕ × Fin n) :
     ((frame R x y p : R.integers) : F) = (x : F) ^ p.1 * (y p.2 : F) := by
   simp [frame]
 
 include hx hy in
 
+/--
+@isnad1 id=linearin.2h8v.s12.17b4f4893528 from=translated src=- shape=3b652bdc vocab=a4ca2782
+-/
 theorem linearIndependent_residue_frame :
     LinearIndependent (ResidueField A) (fun p : ℕ × Fin n => R.residue (frame R x y p)) := by
   set k := ResidueField A
@@ -216,6 +255,9 @@ theorem linearIndependent_residue_frame :
 
 include hx hy in
 
+/--
+@isnad1 id=linearin.2h8v.s12.6ae3b2478352 from=translated src=- shape=f7f75c11 vocab=f19ed1d0
+-/
 theorem linearIndependent_coe_frame :
     LinearIndependent L (fun p : ℕ × Fin n => (x : F) ^ p.1 * (y p.2 : F)) := by
   have h := linearIndependent_coe R (frame R x y) (linearIndependent_residue_frame R x hx y hy)
@@ -226,6 +268,9 @@ theorem linearIndependent_coe_frame :
 
 include hx hy in
 
+/--
+@isnad1 id=linearin.2h8v.s12.c22f2e797a37 from=translated src=- shape=d39b22be vocab=0a436c1d
+-/
 theorem linearIndependent_adjoin :
     LinearIndependent (Algebra.adjoin L ({(x : F)} : Set F)) (fun i : Fin n => (y i : F)) := by
   have h2 := linearIndependent_coe_frame R x hx y hy
@@ -263,6 +308,9 @@ theorem linearIndependent_adjoin :
 include hx hy in
 open scoped IntermediateField.algebraAdjoinAdjoin in
 
+/--
+@isnad1 id=linearin.2h8v.s12.16395443f264 from=translated src=- shape=d704071f vocab=14b8d23a
+-/
 theorem linearIndependent_adjoinField :
     LinearIndependent (IntermediateField.adjoin L ({(x : F)} : Set F))
       (fun i : Fin n => (y i : F)) :=
@@ -277,6 +325,9 @@ open scoped _root_.P2MW.S_AlgebraicCurve_RegularProlongation_finiteDimensional_a
 open scoped _root_.P2MW.S_AlgebraicCurve_RegularProlongation_finiteDimensional_and_finrank_adjoin_residue_le.AlgebraicCurve
 
 open AlgebraicCurve.RegularProlongation.FIneq in
+/--
+@isnad1 id=and.1h6v.s12.120cd5803721 from=translated src=- shape=4692a646 vocab=8a5058c1
+-/
 theorem solution
     {L : Type*} [Field L] {A : ValuationSubring L} {F : Type*} [Field F] [Algebra L F]
     {Fbar : Type*} [Field Fbar] [Algebra (IsLocalRing.ResidueField A) Fbar]

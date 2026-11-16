@@ -125,6 +125,9 @@ private theorem eq_ofHeightOneSpectrum_or_eq_placeInfty' [DecidableEq (RatFunc K
     exact Or.inl ⟨w, Place.ext (v.adicValuation_valuationSubring'.symm.trans
       ((Valuation.isEquiv_iff_valuationSubring _ _).mp hw))⟩
 
+/--
+@isnad1 id=subsingl.0h1v.s8.cee52824dcb2 from=translated src=- shape=72e6a1f2 vocab=e0f2aee2
+-/
 theorem rowMain :
     {v : Place K (RatFunc K) |
       ∀ w : HeightOneSpectrum K[X], v ≠ Place.ofHeightOneSpectrum w}.Subsingleton := by
@@ -143,6 +146,9 @@ end AlgebraicCurve
 end
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_subsingleton_setOf_forall_ne_ofHeightOneSpectrum.AlgebraicCurve in
+/--
+@isnad1 id=subsingl.0h1v.s8.cee52824dcb2 from=translated src=- shape=72e6a1f2 vocab=e0f2aee2
+-/
 theorem solution {K : Type*} [Field K] :
     {v : Place K (RatFunc K) | ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠ Place.ofHeightOneSpectrum w}.Subsingleton :=
   AlgebraicCurve.RationalFunctionField.rowMain

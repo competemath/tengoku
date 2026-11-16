@@ -13,6 +13,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=isdomain.0h4v.s9.8485878e323a from=translated src=- shape=d65ca138 vocab=35fb9420
+-/
 theorem solution
     {Y Z : Scheme.{u}} (h : Y ⟶ Z) [Flat h] (y : Y) [IsDomain (Y.presheaf.stalk y)] :
     IsDomain (Z.presheaf.stalk (h y)) := by

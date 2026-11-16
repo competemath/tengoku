@@ -13,6 +13,9 @@ open IntermediateField
 
 variable {K F : Type} [Field K] [Field F] [Algebra K F]
 
+/--
+@isnad1 id=finitedi.3h4v.s8.aaf022d7375b from=translated src=- shape=a9140455 vocab=64ffeb68
+-/
 theorem finiteDimensional_adjoin_of_transcendental {x₀ : F} (hx₀ : Transcendental K x₀)
     (hfd : FiniteDimensional K⟮x₀⟯ F) {t : F} (ht : Transcendental K t) : FiniteDimensional K⟮t⟯ F := by
 
@@ -54,6 +57,9 @@ theorem finiteDimensional_adjoin_of_transcendental {x₀ : F} (hx₀ : Transcend
 end S2Finite
 
 open IntermediateField in
+/--
+@isnad1 id=finite.3h4v.s8.0a7ea67c5e46 from=translated src=- shape=448dd8ca vocab=c614162a
+-/
 theorem solution
     (K L : Type) [Field K] [Field L] [Algebra K L]
     (E : IntermediateField K L) (t : L) (htE : t ∈ E) (ht : Transcendental K t)

@@ -12,6 +12,9 @@ set_option autoImplicit false
 open AlgebraicCurve IsLocalRing
 
 set_option maxHeartbeats 3200000 in
+/--
+@isnad1 id=ex.7h7v.s12.062e884d04e5 from=translated src=- shape=c0a46d02 vocab=87ef5955
+-/
 theorem solution
     {L F : Type} [Field L] [Field F] [Algebra L F] (A : ValuationSubring L)
     {Fbar : Type} [Field Fbar] [Algebra (ResidueField ↥A) Fbar]

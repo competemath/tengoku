@@ -12,6 +12,9 @@ universe u
 
 open AlgebraicCurve.TwoChartIntegralModel
 
+/--
+@isnad1 id=eq.0h3v.s7.9d7bb59b5a30 from=translated src=- shape=4b8657a4 vocab=c35d35ec
+-/
 theorem solution
     (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F] (j : F) [Fact (j ≠ 0)] :
     (chartAlgFin R F j) ⊓ (chartAlgInf R F j) = integralClosure R F := by

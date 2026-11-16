@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open AlgebraicCurve
 
+/--
+@isnad1 id=ex.2h4v.s8.0bba926c5ec5 from=translated src=- shape=919ab726 vocab=8c7caaba
+-/
 theorem AlgebraicCurve.Place.exists_of_valuationSubring_of_finiteDimensional
     {K F : Type*} [Field K] [Field F] [Algebra K F] (x : F)
     [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F]

@@ -32,17 +32,26 @@ def frac (i : Fin (n + 1)) (d : ℕ) (F : ↥(homogeneousSubmodule (Fin (n + 1))
       den := xpow (A := A) i d
       den_mem := ⟨d, rfl⟩ }
 
+/--
+@isnad1 id=eq.0h4v.s11.ccb89f4cc3e6 from=translated src=- shape=cf128750 vocab=874baf2c
+-/
 theorem frac_zero (i : Fin (n + 1)) (d : ℕ) : frac (A := A) i d 0 = 0 := by
   apply HomogeneousLocalization.val_injective
   simp only [frac, HomogeneousLocalization.val_mk, HomogeneousLocalization.val_zero, Submodule.coe_zero]
   exact Localization.mk_zero _
 
+/--
+@isnad1 id=eq.0h6v.s12.37e675717933 from=translated src=- shape=95b497da vocab=874baf2c
+-/
 theorem frac_add (i : Fin (n + 1)) (d : ℕ) (F G : ↥(homogeneousSubmodule (Fin (n + 1)) A d)) :
     frac i d (F + G) = frac i d F + frac i d G := by
   apply HomogeneousLocalization.val_injective
   simp only [frac, HomogeneousLocalization.val_mk, HomogeneousLocalization.val_add, Submodule.coe_add]
   rw [Localization.add_mk_self]
 
+/--
+@isnad1 id=eq.0h7v.s11.923c6f69c2b0 from=translated src=- shape=0d975948 vocab=683f0dca
+-/
 theorem frac_mul (i : Fin (n + 1)) (e d : ℕ) (G : ↥(homogeneousSubmodule (Fin (n + 1)) A e))
     (F : ↥(homogeneousSubmodule (Fin (n + 1)) A d)) :
     frac i (e + d) ⟨(G : MvPolynomial (Fin (n + 1)) A) * (F : MvPolynomial (Fin (n + 1)) A),
@@ -57,8 +66,14 @@ theorem frac_mul (i : Fin (n + 1)) (e d : ℕ) (G : ↥(homogeneousSubmodule (Fi
 def comp (d : ℕ) (p : MvPolynomial (Fin (n + 1)) A) : ↥(homogeneousSubmodule (Fin (n + 1)) A d) :=
   ⟨homogeneousComponent d p, homogeneousComponent_mem d p⟩
 
+/--
+@isnad1 id=eq.0h3v.s10.b3dac5e6c48d from=translated src=- shape=dd93fb67 vocab=2e8f926b
+-/
 theorem comp_zero (d : ℕ) : comp (A := A) (n := n) d 0 = 0 := Subtype.ext (by simp [comp])
 
+/--
+@isnad1 id=eq.0h5v.s11.f4271cfd69e7 from=translated src=- shape=53995525 vocab=2e8f926b
+-/
 theorem comp_add (d : ℕ) (p q : MvPolynomial (Fin (n + 1)) A) : comp d (p + q) = comp d p + comp d q :=
   Subtype.ext (by simp [comp])
 
@@ -76,12 +91,18 @@ variable {A : Type} [CommRing A] {n : ℕ}
 
 local notation "𝒜" => MvPolynomial.homogeneousSubmodule (Fin (n + 1)) A
 
+/--
+@isnad1 id=eq.0h4v.s10.e49623695095 from=translated src=- shape=4d258572 vocab=5c550801
+-/
 theorem frac_xpow (i : Fin (n + 1)) (N : ℕ) : frac i N (xpow (A := A) i N) = 1 := by
   apply HomogeneousLocalization.val_injective
   simp only [frac, HomogeneousLocalization.val_mk, HomogeneousLocalization.val_one]
   exact Localization.mk_self (⟨(xpow (A := A) i N : MvPolynomial (Fin (n + 1)) A), N, rfl⟩ :
     Submonoid.powers (MvPolynomial.X i : MvPolynomial (Fin (n + 1)) A))
 
+/--
+@isnad1 id=eq.0h6v.s10.c3a1e72b2f86 from=translated src=- shape=92a6cb40 vocab=27c74064
+-/
 theorem frac_xpow_mul (i : Fin (n + 1)) (N d : ℕ) (F : ↥(𝒜 d)) :
     frac i (N + d) ⟨MvPolynomial.X i ^ N * (F : MvPolynomial (Fin (n + 1)) A),
       SetLike.mul_mem_graded (xpow (A := A) i N).2 F.2⟩ = frac i d F := by
@@ -89,6 +110,9 @@ theorem frac_xpow_mul (i : Fin (n + 1)) (N d : ℕ) (F : ↥(𝒜 d)) :
   rw [frac_xpow, one_mul] at this
   exact this
 
+/--
+@isnad1 id=eq.0h6v.s10.0b91527e8395 from=translated src=- shape=8a129335 vocab=27c74064
+-/
 theorem frac_mul_xpow (i : Fin (n + 1)) (d N : ℕ) (F : ↥(𝒜 d)) :
     frac i (d + N) ⟨(F : MvPolynomial (Fin (n + 1)) A) * MvPolynomial.X i ^ N,
       SetLike.mul_mem_graded F.2 (xpow (A := A) i N).2⟩ = frac i d F := by
@@ -96,6 +120,9 @@ theorem frac_mul_xpow (i : Fin (n + 1)) (d N : ℕ) (F : ↥(𝒜 d)) :
   rw [frac_xpow, mul_one] at this
   exact this
 
+/--
+@isnad1 id=eq.2h5v.s10.c3991804884a from=translated src=- shape=d5ca227f vocab=2fd65293
+-/
 theorem awayMk_eq_frac (i : Fin (n + 1)) (m : ℕ) (H : MvPolynomial (Fin (n + 1)) A)
     (hH : H ∈ 𝒜 (m • 1)) (hH' : H ∈ 𝒜 m) :
     HomogeneousLocalization.Away.mk 𝒜 (ProjSpace.X_mem_one A n i) m H hH = frac i m ⟨H, hH'⟩ := by
@@ -131,9 +158,15 @@ def satAway (I : Ideal (MvPolynomial (Fin (n + 1)) A)) (i : Fin (n + 1)) :
     refine ⟨m + D, H * P, hHh.mul hP, I.mul_mem_left _ hPI, ?_⟩
     rw [smul_eq_mul, awayMk_eq_frac i m H hH hH', ← frac_mul]
 
+/--
+@isnad1 id=iff.0h5v.s12.0dcc37fdc873 from=translated src=- shape=943ab4d4 vocab=f1b406e5
+-/
 theorem mem_satAway_iff (I : Ideal (MvPolynomial (Fin (n + 1)) A)) (i : Fin (n + 1))
     (x : HomogeneousLocalization.Away 𝒜 (MvPolynomial.X i)) : x ∈ satAway I i ↔ InSat I i x := Iff.rfl
 
+/--
+@isnad1 id=ex.2h6v.s10.c00102dae048 from=translated src=- shape=d5b46c25 vocab=5002d71c
+-/
 theorem exists_X_pow_mul_mem_of_inSat (I : Ideal (MvPolynomial (Fin (n + 1)) A)) (i : Fin (n + 1))
     (d : ℕ) (F : MvPolynomial (Fin (n + 1)) A) (hF : F.IsHomogeneous d)
     (h : InSat I i (frac i d ⟨F, (MvPolynomial.mem_homogeneousSubmodule d F).mpr hF⟩)) :
@@ -156,6 +189,9 @@ end K6SOL
 
 open K6SOL in
 
+/--
+@isnad1 id=iff.1h6v.s17.ce9e92cd1ae9 from=translated src=- shape=64ecda23 vocab=6b5c720c
+-/
 theorem solution
     (n : ℕ) (A : Type) [CommRing A] (I : Ideal (MvPolynomial (Fin (n + 1)) A))
     (i : Fin (n + 1)) (d : ℕ) (F : MvPolynomial (Fin (n + 1)) A) (hF : F.IsHomogeneous d) :

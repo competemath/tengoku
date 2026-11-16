@@ -13,6 +13,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry AlgebraicGeometry.De
 
 universe u
 
+/--
+@isnad1 id=isbasesc.2h11v.s7.2ef41440884d from=translated src=- shape=f30c4eb0 vocab=0e7e4d27
+-/
 theorem AlgebraicGeometry.DescentCharacter.isBaseScalar_pullback_map
     {X X' : Scheme.{u}} (g : X' ⟶ X) {R R' : Type u} [CommRing R] [CommRing R']
     (f : X ⟶ Spec (CommRingCat.of R)) (f' : X' ⟶ Spec (CommRingCat.of R')) (φ : R →+* R')

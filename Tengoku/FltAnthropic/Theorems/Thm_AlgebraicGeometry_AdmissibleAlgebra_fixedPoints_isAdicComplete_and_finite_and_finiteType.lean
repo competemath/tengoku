@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_AlgebraicGeometry_AdmissibleAlgebra_fixedP
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.6h4v.s12.0d5e6fc9ad1e from=translated src=- shape=a6870bb9 vocab=7b4e7146
+-/
 theorem AlgebraicGeometry.AdmissibleAlgebra.fixedPoints_isAdicComplete_and_finite_and_finiteType
     (𝒪 : Type) [CommRing 𝒪] [IsDomain 𝒪] (hdvr : IsDiscreteValuationRing 𝒪)
     (π : 𝒪) (hπ : Irreducible π) (hcomplete : IsAdicComplete (Ideal.span {π}) 𝒪)

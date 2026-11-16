@@ -26,6 +26,9 @@ private theorem AlgebraicCurve.Place.deg_eq_one_iff_surjective_algebraMap_residu
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_deg_eq_one_iff_surjective_algebraMap_residueField.AlgebraicCurve ModularCurve in
 
+/--
+@isnad1 id=iff.0h3v.s9.361e1ea12d19 from=translated src=- shape=dba853dc vocab=767350e7
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) :
     v.deg = 1 ↔ Function.Surjective (algebraMap K v.ResidueField) :=
   AlgebraicCurve.Place.deg_eq_one_iff_surjective_algebraMap_residueField v

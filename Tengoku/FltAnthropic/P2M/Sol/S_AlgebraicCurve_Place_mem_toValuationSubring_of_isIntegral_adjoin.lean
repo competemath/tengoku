@@ -50,5 +50,8 @@ end QexpN
 
 end ModularCurve
 
+/--
+@isnad1 id=mem.2h5v.s7.2d56e2cb0639 from=translated src=- shape=e47b1c79 vocab=66c2b5bf
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) {j x : F} (hj : j ∈ v.toValuationSubring) (hx : IsIntegral (Algebra.adjoin K {j}) x) : x ∈ v.toValuationSubring :=
   ModularCurve.QexpN.mem_of_isIntegral_adjoin v hj hx

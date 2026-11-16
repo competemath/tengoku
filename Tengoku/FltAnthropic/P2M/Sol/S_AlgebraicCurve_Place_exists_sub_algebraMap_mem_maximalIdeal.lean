@@ -10,6 +10,9 @@ namespace P2MW.S_AlgebraicCurve_Place_exists_sub_algebraMap_mem_maximalIdeal
 
 open AlgebraicCurve
 
+/--
+@isnad1 id=ex.1h4v.s10.e047076fbff4 from=translated src=- shape=8a710353 vocab=087e2302
+-/
 theorem solution {K F : Type*} [Field K] [Field F]
     [Algebra K F] (u : AlgebraicCurve.Place K F) (hdeg : u.deg = 1) (b : u.toValuationSubring) :
     ∃ c : K, b - algebraMap K u.toValuationSubring c

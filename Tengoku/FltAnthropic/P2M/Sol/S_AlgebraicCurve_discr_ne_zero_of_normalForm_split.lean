@@ -17,6 +17,9 @@ noncomputable section
 
 namespace DiscSplitSol
 
+/--
+@isnad1 id=and.1h5v.s7.5f7607aa32b9 from=translated src=- shape=312d2c9c vocab=e16044a4
+-/
 theorem coeff_prod_of_natDegree_le {R : Type*} [CommRing R] {ι : Type*} (s : Finset ι)
     (f : ι → R[X]) (N : ι → ℕ) (h : ∀ i ∈ s, (f i).natDegree ≤ N i) :
     (∏ i ∈ s, f i).natDegree ≤ ∑ i ∈ s, N i ∧
@@ -36,6 +39,9 @@ section Main
 
 variable {K : Type u} [Field K] {n : ℕ} {B : Type v} [CommRing B] [Algebra K[X] B]
 
+/--
+@isnad1 id=ne.7h6v.s12.c4d8586f486f from=translated src=- shape=a2a8999c vocab=e0bc4fdf
+-/
 theorem main (b : Module.Basis (Fin (n + 1)) K[X] B) (d : Fin (n + 1) → ℕ)
     (hb0 : b 0 = 1) (hd0 : d 0 = 0) (hd : ∀ i, i ≠ 0 → d i = 1 ∨ d i = 2)
     (hdeg : ∀ i j k, i ≠ 0 → j ≠ 0 → ((b.repr (b i * b j)) k).natDegree ≤ d i + d j - d k)
@@ -206,6 +212,9 @@ end DiscSplitSol
 
 end
 
+/--
+@isnad1 id=ne.5h5v.s12.2c787122528a from=translated src=- shape=7d2ea2a5 vocab=e0bc4fdf
+-/
 theorem solution
     (K : Type u) [Field K] (n : ℕ) (B : Type v) [CommRing B] [Algebra K[X] B]
     (b : Module.Basis (Fin (n + 1)) K[X] B) (d : Fin (n + 1) → ℕ)

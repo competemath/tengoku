@@ -13,6 +13,9 @@ open CategoryTheory AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=ex.0h3v.s14.7206b4a48ad1 from=translated src=- shape=a732c300 vocab=b68feb63
+-/
 theorem solution
     {C Y : Scheme.{u}} [IsIntegral C] (i : C ⟶ Y) [IsClosedImmersion i] :
     ∃ θ : Y.residueField (i.base (genericPoint C)) ≃+* C.functionField,

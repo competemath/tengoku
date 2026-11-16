@@ -24,6 +24,9 @@ universe u
 variable (R : Type u) [CommRing R] (K : Type u) [CommRing K] [Algebra R K]
   (F : Type u) [Field F] [Algebra R F] [Algebra K F] [IsScalarTower R K F]
 
+/--
+@isnad1 id=ex.1h6v.s8.51dccabf4449 from=translated src=- shape=fbc34f8f vocab=5c21a21f
+-/
 theorem exists_mem_mul_mem_adjoin (M : Submonoid R) [IsLocalization M K] (S : Set F) {c : F} (hc : c ∈ Algebra.adjoin K S) :
     ∃ m : M, algebraMap R F m * c ∈ Algebra.adjoin R S := by
   induction hc using Algebra.adjoin_induction with
@@ -56,6 +59,9 @@ theorem exists_mem_mul_mem_adjoin (M : Submonoid R) [IsLocalization M K] (S : Se
     rw [this]
     exact Subalgebra.mul_mem _ hm hn
 
+/--
+@isnad1 id=ex.1h6v.s8.571263df4f03 from=translated src=- shape=fbc34f8f vocab=f210c728
+-/
 theorem exists_mem_mul_mem_chartAlg (M : Submonoid R) [IsLocalization M K] (S : Set F) {x : F} (hx : x ∈ chartAlg K F S) :
     ∃ m : M, algebraMap R F m * x ∈ chartAlg R F S := by
   classical
@@ -97,6 +103,9 @@ theorem exists_mem_mul_mem_chartAlg (M : Submonoid R) [IsLocalization M K] (S : 
   refine ⟨Mp, (mem_chartAlg_iff R F).mpr ⟨q', hq'monic, ?_⟩⟩
   rw [Polynomial.eval₂_eq_eval_map, hq'q, ← hc, hqroot]
 
+/--
+@isnad1 id=ex.0h6v.s9.c3a974c615d8 from=translated src=- shape=c5c467a6 vocab=6b94087f
+-/
 theorem exists_eq_mk'_one_tmul (M : Submonoid R) [IsLocalization M K] (S : Set F) (z : K ⊗[R] ↥(chartAlg R F S)) :
     ∃ (m : M) (a : chartAlg R F S), z = (IsLocalization.mk' K (1 : R) m) ⊗ₜ a := by
   have key : ∀ (m n : M) (a : chartAlg R F S),
@@ -122,10 +131,16 @@ theorem exists_eq_mk'_one_tmul (M : Submonoid R) [IsLocalization M K] (S : Set F
 noncomputable def tensorToField (S : Set F) : K ⊗[R] ↥(chartAlg R F S) →ₐ[K] F :=
   Algebra.TensorProduct.lift (Algebra.ofId K F) ((chartAlg R F S).val) (fun _ _ => Commute.all _ _)
 
+/--
+@isnad1 id=eq.0h6v.s10.61b02a35fbc6 from=translated src=- shape=eb1e36d2 vocab=b3f25f67
+-/
 theorem tensorToField_tmul (S : Set F) (q : K) (a : chartAlg R F S) :
     tensorToField R K F S (q ⊗ₜ a) = q • (a : F) := by
   simp [tensorToField, Algebra.smul_def]
 
+/--
+@isnad1 id=injectiv.0h5v.s10.5ab5a3995ba6 from=translated src=- shape=b48cf42c vocab=e9fe3321
+-/
 theorem tensorToField_injective (M : Submonoid R) [IsLocalization M K] (S : Set F) : Function.Injective (tensorToField R K F S) := by
   rw [injective_iff_map_eq_zero]
   intro z hz
@@ -139,6 +154,9 @@ theorem tensorToField_injective (M : Submonoid R) [IsLocalization M K] (S : Set 
     exact zero_ne_one h1
   · rw [show a = 0 from Subtype.ext h, TensorProduct.tmul_zero]
 
+/--
+@isnad1 id=eq.0h5v.s9.323cac414002 from=translated src=- shape=6e8be752 vocab=d95a3f55
+-/
 theorem range_tensorToField (M : Submonoid R) [IsLocalization M K] (S : Set F) : (tensorToField R K F S).range = chartAlg K F S := by
   apply le_antisymm
   · rintro x ⟨z, rfl⟩
@@ -155,6 +173,9 @@ theorem range_tensorToField (M : Submonoid R) [IsLocalization M K] (S : Set F) :
     rw [Algebra.smul_def, IsScalarTower.algebraMap_apply R K F (m : R), ← mul_assoc, ← map_mul,
       IsLocalization.mk'_spec, map_one, map_one, one_mul]
 
+/--
+@isnad1 id=ex.0h5v.s11.d0417c654181 from=translated src=- shape=201a2c42 vocab=2919e3dc
+-/
 theorem exists_algEquiv_tensor_chartAlg_impl (M : Submonoid R) [IsLocalization M K] (S : Set F) :
     ∃ e : K ⊗[R] ↥(chartAlg R F S) ≃ₐ[K] ↥(chartAlg K F S),
       ∀ (q : K) (b : ↥(chartAlg R F S)), ((e (q ⊗ₜ b) : ↥(chartAlg K F S)) : F) = q • (b : F) := by
@@ -168,6 +189,9 @@ end
 
 open scoped TensorProduct in
 open _root_.AlgebraicCurve.TwoChartIntegralModel _root_.P2MW.S_AlgebraicCurve_TwoChartIntegralModel_exists_algEquiv_tensor_chartAlg.AlgebraicCurve.TwoChartIntegralModel in
+/--
+@isnad1 id=ex.0h5v.s11.d0417c654181 from=translated src=- shape=201a2c42 vocab=2919e3dc
+-/
 theorem solution.{u} (R : Type u) [CommRing R] (K : Type u) [CommRing K] [Algebra R K]
     (F : Type u) [Field F] [Algebra R F] [Algebra K F] [IsScalarTower R K F]
     (M : Submonoid R) [IsLocalization M K] (S : Set F) :

@@ -9,6 +9,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=nonempty.0h2v.s6.9f724ac7fa43 from=translated src=- shape=8ead7a68 vocab=d649f449
+-/
 theorem AlgebraicGeometry.FGSubalgebra.nonempty_isLimit_specCone
     (R : Type u) [CommRing R] (A : Type u) [CommRing A] [Algebra R A] :
     Nonempty (IsLimit (FGSubalgebra.specCone R A)) := by exact @_root_.P2MW.S_AlgebraicGeometry_FGSubalgebra_nonempty_isLimit_specCone.solution R _ A _ _

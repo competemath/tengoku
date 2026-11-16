@@ -42,6 +42,9 @@ end AlgebraicCurve
 end
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_ord_algebraMap.AlgebraicCurve in
+/--
+@isnad1 id=eq.0h4v.s6.43343a8c93da from=translated src=- shape=c418b82e vocab=a2ca542d
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) (c : K) :
     v.ord (algebraMap K F c) = 0 :=
   AlgebraicCurve.Place.rowMain v c

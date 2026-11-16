@@ -42,6 +42,9 @@ private theorem _root_.AlgebraicCurve.Place.c3a_adicValuation_algebraMap_le_one 
 export _root_.AlgebraicCurve.Place (c3a_adicValuation_algebraMap_le_one)
 end AlgebraicCurve.Place
 
+/--
+@isnad1 id=ex.2h7v.s7.3393965ad722 from=translated src=- shape=4e9fa945 vocab=df04798c
+-/
 theorem solution
     {K F : Type*} [Field K] [Field F] [Algebra K F]
     (v : Place K F) {ι : Type*} (s : Finset ι) (c : ι → K) (f : ι → F)

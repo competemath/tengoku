@@ -13,6 +13,9 @@ universe u v w
 
 namespace W2A
 
+/--
+@isnad1 id=eq.2h6v.s9.b699d1fcb1fa from=translated src=- shape=fe1eec2a vocab=c66ac4da
+-/
 theorem pow_smul_eq_zero_of_flat_of_forall
     {B : Type u} [CommRing B] {Q : Type v} [AddCommGroup Q] [Module B Q] (t : B) (e : ℕ)
     (h : ∀ q : Q, (∃ k : ℕ, t ^ k • q = 0) → t ^ e • q = 0)
@@ -70,6 +73,9 @@ theorem pow_smul_eq_zero_of_flat_of_forall
 
 end W2A
 
+/--
+@isnad1 id=mem.4h10v.s10.2e0eb06ff534 from=translated src=- shape=7f6d8426 vocab=f27036fe
+-/
 theorem solution
     {B : Type u} [CommRing B] {M N P : Type v} [AddCommGroup M] [Module B M] [AddCommGroup N] [Module B N]
     [AddCommGroup P] [Module B P] (f : M →ₗ[B] N) (g : N →ₗ[B] P) (hfg : g.comp f = 0) (t : B) (e : ℕ)

@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open AlgebraicCurve IsLocalRing
 
+/--
+@isnad1 id=iff.0h6v.s7.ba6a6502c793 from=translated src=- shape=052757e6 vocab=873ae7dd
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F]
     (σ : F ≃ₐ[K] F) (v : Place K F) (g : F) (a : K) :
     (σ • v).HasValue (σ g) a ↔ v.HasValue g a := by

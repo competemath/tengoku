@@ -28,6 +28,9 @@ open _root_.AlgebraicCurve
 namespace WFf
 variable (K : Type*) [Field K]
 
+/--
+@isnad1 id=mem.0h3v.s9.830c23851c7d from=translated src=- shape=9467f24f vocab=b619ea0a
+-/
 theorem algebraMap_mem_ofHeightOneSpectrum (w : HeightOneSpectrum K[X]) (q : K[X]) :
     algebraMap K[X] (RatFunc K) q ∈
       (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).toValuationSubring :=
@@ -42,10 +45,16 @@ def residueOfHeightOneSpectrum (w : HeightOneSpectrum K[X]) :
       (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).toValuationSubring.toSubring
       (algebraMap_mem_ofHeightOneSpectrum K w))
 
+/--
+@isnad1 id=eq.0h3v.s13.7c72853371d4 from=translated src=- shape=a609d966 vocab=4b55fa5f
+-/
 theorem residueOfHeightOneSpectrum_apply (w : HeightOneSpectrum K[X]) (q : K[X]) :
     residueOfHeightOneSpectrum K w q = IsLocalRing.residue _
       ⟨algebraMap K[X] (RatFunc K) q, algebraMap_mem_ofHeightOneSpectrum K w q⟩ := rfl
 
+/--
+@isnad1 id=eq.0h2v.s12.f3a6cd5dd00f from=translated src=- shape=0a342d9e vocab=20743e0f
+-/
 theorem ker_residueOfHeightOneSpectrum (w : HeightOneSpectrum K[X]) :
     RingHom.ker (residueOfHeightOneSpectrum K w) = w.asIdeal := by
   ext q
@@ -55,6 +64,9 @@ theorem ker_residueOfHeightOneSpectrum (w : HeightOneSpectrum K[X]) :
       (F := RatFunc K) w).lt_one_iff_lt_one]
   exact HeightOneSpectrum.valuation_lt_one_iff_mem w q
 
+/--
+@isnad1 id=surjecti.0h2v.s11.469ac41976a8 from=translated src=- shape=a748d5d9 vocab=39dfae95
+-/
 theorem surjective_residueOfHeightOneSpectrum (w : HeightOneSpectrum K[X]) :
     Function.Surjective (residueOfHeightOneSpectrum K w) := by
   intro y

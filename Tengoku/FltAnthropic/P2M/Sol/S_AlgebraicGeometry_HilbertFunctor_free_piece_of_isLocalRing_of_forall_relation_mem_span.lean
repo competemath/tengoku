@@ -22,6 +22,9 @@ section Pieces
 
 variable {A : Type} [CommRing A]
 
+/--
+@isnad1 id=finite.0h3v.s9.fa6e6e3b2ab1 from=translated src=- shape=d42354e4 vocab=4d3a1b61
+-/
 theorem finite_homogeneousSubmodule (A : Type) [CommRing A] (d : ℕ) :
     Module.Finite A ↥(homogeneousSubmodule (Fin (n + 1)) A d) := by
   rw [MvPolynomial.homogeneousSubmodule_eq_finsupp_supported]
@@ -29,11 +32,17 @@ theorem finite_homogeneousSubmodule (A : Type) [CommRing A] (d : ℕ) :
     ((Finsupp.finite_of_degree_le d).subset fun x (hx : x.degree = d) => le_of_eq hx).to_subtype
   exact Module.Finite.of_basis (MvPolynomial.basisRestrictSupport A {x : Fin (n + 1) →₀ ℕ | x.degree = d})
 
+/--
+@isnad1 id=free.0h3v.s9.0a1eb4da1816 from=translated src=- shape=d42354e4 vocab=80e80f2d
+-/
 theorem free_homogeneousSubmodule (A : Type) [CommRing A] (d : ℕ) :
     Module.Free A ↥(homogeneousSubmodule (Fin (n + 1)) A d) := by
   rw [MvPolynomial.homogeneousSubmodule_eq_finsupp_supported]
   exact Module.Free.of_basis (MvPolynomial.basisRestrictSupport A {x : Fin (n + 1) →₀ ℕ | x.degree = d})
 
+/--
+@isnad1 id=eq.0h4v.s13.48dc96dddda0 from=translated src=- shape=c932c982 vocab=5ce196e3
+-/
 theorem decompose_eq (q : MvPolynomial (Fin (n + 1)) A) (d : ℕ) :
     (DirectSum.decompose (homogeneousSubmodule (Fin (n + 1)) A) q d : MvPolynomial (Fin (n + 1)) A) =
       homogeneousComponent d q :=
@@ -46,14 +55,23 @@ private noncomputable def _root_.GotzLocalLift.proj (A : Type) [CommRing A] (d :
     (fun p => homogeneousComponent_mem d p)
 
 export _root_.GotzLocalLift (proj)
+/--
+@isnad1 id=eq.0h4v.s11.c8b4aa4196f3 from=translated src=- shape=6569454e vocab=10a48046
+-/
 @[scoped simp] theorem proj_apply_coe (d : ℕ) (p : MvPolynomial (Fin (n + 1)) A) :
     (proj A d p : MvPolynomial (Fin (n + 1)) A) = homogeneousComponent d p := rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.33f3951d8343 from=translated src=- shape=ec6cd862 vocab=c86e5b93
+-/
 theorem proj_of_mem (d : ℕ) (p : ↥(homogeneousSubmodule (Fin (n + 1)) A d)) :
     proj A d (p : MvPolynomial (Fin (n + 1)) A) = p := by
   apply Subtype.ext
   rw [proj_apply_coe, homogeneousComponent_of_mem p.2, ite_eq_left rfl]
 
+/--
+@isnad1 id=eq.1h6v.s10.6cc297e5f231 from=translated src=- shape=f7687a1b vocab=2d3b33a6
+-/
 theorem homogeneousComponent_mul_add {F : MvPolynomial (Fin (n + 1)) A} {m : ℕ} (hF : F.IsHomogeneous m)
     (a : MvPolynomial (Fin (n + 1)) A) (d : ℕ) :
     homogeneousComponent (m + d) (a * F) = homogeneousComponent d a * F := by
@@ -62,6 +80,9 @@ theorem homogeneousComponent_mul_add {F : MvPolynomial (Fin (n + 1)) A} {m : ℕ
   rw [decompose_eq, decompose_eq, Nat.add_sub_cancel_left] at this
   exact this
 
+/--
+@isnad1 id=eq.2h6v.s9.61635090a7bd from=translated src=- shape=6b7a5139 vocab=d323e391
+-/
 theorem homogeneousComponent_mul_of_lt {F : MvPolynomial (Fin (n + 1)) A} {m : ℕ} (hF : F.IsHomogeneous m)
     (a : MvPolynomial (Fin (n + 1)) A) {e : ℕ} (he : e < m) :
     homogeneousComponent e (a * F) = 0 := by
@@ -71,6 +92,9 @@ theorem homogeneousComponent_mul_of_lt {F : MvPolynomial (Fin (n + 1)) A} {m : �
   rw [decompose_eq, ite_eq_right (not_le.mpr he)] at this
   exact this
 
+/--
+@isnad1 id=eq.0h6v.s10.599204ef7a90 from=translated src=- shape=c59f2eef vocab=d400ec10
+-/
 theorem map_homogeneousComponent {B : Type} [CommRing B] (f : A →+* B) (d : ℕ)
     (p : MvPolynomial (Fin (n + 1)) A) :
     MvPolynomial.map f (homogeneousComponent d p) = homogeneousComponent d (MvPolynomial.map f p) := by
@@ -85,31 +109,49 @@ section SpanF
 variable {A : Type} [CommRing A] {g m : ℕ}
   (F : Fin g → MvPolynomial (Fin (n + 1)) A) (hF : ∀ i, (F i).IsHomogeneous m)
 
+/--
+@isnad1 id=iff.0h5v.s9.9b878f751fad from=translated src=- shape=d2ed233d vocab=10acdf6a
+-/
 theorem mem_span_iff (u : MvPolynomial (Fin (n + 1)) A) :
     u ∈ Ideal.span (Set.range F) ↔ ∃ a : Fin g → MvPolynomial (Fin (n + 1)) A, ∑ i, a i * F i = u :=
   Ideal.mem_span_range_iff_exists_fun
 
+/--
+@isnad1 id=mem.0h5v.s9.73374f7fe601 from=translated src=- shape=69bc70ed vocab=10acdf6a
+-/
 theorem sum_mul_mem (a : Fin g → MvPolynomial (Fin (n + 1)) A) :
     ∑ i, a i * F i ∈ Ideal.span (Set.range F) :=
   (mem_span_iff F _).mpr ⟨a, rfl⟩
 
 include hF
 
+/--
+@isnad1 id=eq.1h7v.s10.cd8480251b78 from=translated src=- shape=01c3088f vocab=3ee3de6e
+-/
 theorem homogeneousComponent_sum_mul_add (a : Fin g → MvPolynomial (Fin (n + 1)) A) (d : ℕ) :
     homogeneousComponent (m + d) (∑ i, a i * F i) = ∑ i, homogeneousComponent d (a i) * F i := by
   rw [map_sum]
   exact Finset.sum_congr rfl fun i _ => homogeneousComponent_mul_add (hF i) (a i) d
 
+/--
+@isnad1 id=eq.2h7v.s9.ec01deb0e900 from=translated src=- shape=07019eef vocab=04b8fcb8
+-/
 theorem homogeneousComponent_sum_mul_of_lt (a : Fin g → MvPolynomial (Fin (n + 1)) A) {e : ℕ} (he : e < m) :
     homogeneousComponent e (∑ i, a i * F i) = 0 := by
   rw [map_sum]
   exact Finset.sum_eq_zero fun i _ => homogeneousComponent_mul_of_lt (hF i) (a i) he
 
+/--
+@isnad1 id=ishomoge.2h7v.s8.c9401e2b9280 from=translated src=- shape=33c5c764 vocab=900fd67b
+-/
 theorem isHomogeneous_sum_mul (a : Fin g → MvPolynomial (Fin (n + 1)) A) (d : ℕ)
     (ha : ∀ i, (a i).IsHomogeneous d) : (∑ i, a i * F i).IsHomogeneous (m + d) := by
   rw [Nat.add_comm m d]
   exact IsHomogeneous.sum _ _ _ fun i _ => (ha i).mul (hF i)
 
+/--
+@isnad1 id=ex.3h7v.s9.02f3a864599c from=translated src=- shape=b0ed39e1 vocab=7fa3d697
+-/
 theorem exists_eq_sum_of_mem (u : MvPolynomial (Fin (n + 1)) A) (hu : u ∈ Ideal.span (Set.range F)) (d : ℕ)
     (hud : u.IsHomogeneous (m + d)) :
     ∃ a : Fin g → MvPolynomial (Fin (n + 1)) A, (∀ i, (a i).IsHomogeneous d) ∧ ∑ i, a i * F i = u := by
@@ -134,24 +176,39 @@ variable {A : Type} [CommRing A] [IsLocalRing A]
 
 def InM (p : MvPolynomial (Fin (n + 1)) A) : Prop := ∀ s, coeff s p ∈ IsLocalRing.maximalIdeal A
 
+/--
+@isnad1 id=iff.0h3v.s9.65fb19c4afe3 from=translated src=- shape=d06f4774 vocab=9ff45c1b
+-/
 theorem inM_iff_map_eq_zero (p : MvPolynomial (Fin (n + 1)) A) :
     InM p ↔ MvPolynomial.map (IsLocalRing.residue A) p = 0 := by
   simp only [InM, MvPolynomial.ext_iff, coeff_map, coeff_zero, IsLocalRing.residue_eq_zero_iff]
 
+/--
+@isnad1 id=iff.0h3v.s9.5108d5847322 from=translated src=- shape=e7077280 vocab=32548d45
+-/
 theorem inM_iff_mem_smul_top (p : MvPolynomial (Fin (n + 1)) A) :
     InM p ↔ p ∈ IsLocalRing.maximalIdeal A • (⊤ : Submodule A (MvPolynomial (Fin (n + 1)) A)) := by
   rw [Ideal.smul_top_eq_map, Submodule.restrictScalars_mem, MvPolynomial.algebraMap_eq, MvPolynomial.mem_map_C_iff]
   rfl
 
+/--
+@isnad1 id=inm.2h4v.s7.3c520a9be202 from=translated src=- shape=1a6ab4bc vocab=3c222033
+-/
 theorem InM.add {p q : MvPolynomial (Fin (n + 1)) A} (hp : InM p) (hq : InM q) : InM (p + q) := by
   rw [inM_iff_map_eq_zero] at *
   simp [hp, hq]
 
+/--
+@isnad1 id=inm.1h4v.s8.ac9b6bff0de0 from=translated src=- shape=5c495442 vocab=5db5efcd
+-/
 theorem inM_smul_of_mem {a : A} (ha : a ∈ IsLocalRing.maximalIdeal A) (p : MvPolynomial (Fin (n + 1)) A) :
     InM (a • p) := fun s => by
   rw [coeff_smul, smul_eq_mul]
   exact Ideal.mul_mem_right _ _ ha
 
+/--
+@isnad1 id=inm.1h4v.s8.8525fd67c999 from=translated src=- shape=d26ca457 vocab=f897d294
+-/
 theorem InM.homogeneousComponent {p : MvPolynomial (Fin (n + 1)) A} (hp : InM p) (d : ℕ) :
     InM (homogeneousComponent d p) := fun s => by
   rw [coeff_homogeneousComponent]
@@ -159,10 +216,16 @@ theorem InM.homogeneousComponent {p : MvPolynomial (Fin (n + 1)) A} (hp : InM p)
   · exact hp s
   · exact Submodule.zero_mem _
 
+/--
+@isnad1 id=inm.1h4v.s9.4946ba8facde from=translated src=- shape=c0b53b5a vocab=e594eabe
+-/
 theorem inM_of_mem_smul (N : Submodule A (MvPolynomial (Fin (n + 1)) A)) {p : MvPolynomial (Fin (n + 1)) A}
     (hp : p ∈ IsLocalRing.maximalIdeal A • N) : InM p :=
   Submodule.smul_induction_on hp (fun _ ha q _ => inM_smul_of_mem ha q) (fun _ _ => InM.add)
 
+/--
+@isnad1 id=mem.1h4v.s12.c518442eb1ef from=translated src=- shape=8b3ae83b vocab=cbc973e2
+-/
 theorem mem_smul_top_of_inM {e : ℕ} (p : ↥(homogeneousSubmodule (Fin (n + 1)) A e))
     (hp : InM (p : MvPolynomial (Fin (n + 1)) A)) :
     p ∈ IsLocalRing.maximalIdeal A • (⊤ : Submodule A ↥(homogeneousSubmodule (Fin (n + 1)) A e)) := by
@@ -173,6 +236,9 @@ theorem mem_smul_top_of_inM {e : ℕ} (p : ↥(homogeneousSubmodule (Fin (n + 1)
   rw [Submodule.map_smul'', proj_of_mem] at h2
   exact Submodule.smul_mono le_rfl le_top h2
 
+/--
+@isnad1 id=inm.1h4v.s12.f9c1574685e7 from=translated src=- shape=e43f8152 vocab=cbc973e2
+-/
 theorem inM_of_mem_smul_top {e : ℕ} (p : ↥(homogeneousSubmodule (Fin (n + 1)) A e))
     (hp : p ∈ IsLocalRing.maximalIdeal A • (⊤ : Submodule A ↥(homogeneousSubmodule (Fin (n + 1)) A e))) :
     InM (p : MvPolynomial (Fin (n + 1)) A) := by
@@ -180,6 +246,9 @@ theorem inM_of_mem_smul_top {e : ℕ} (p : ↥(homogeneousSubmodule (Fin (n + 1)
   rw [Submodule.map_smul''] at h2
   exact inM_of_mem_smul _ h2
 
+/--
+@isnad1 id=iff.0h3v.s8.a26311a06ad6 from=translated src=- shape=e76a44a2 vocab=ef23e04d
+-/
 theorem one_tmul_eq_zero_iff {V : Type} [AddCommGroup V] [Module A V] (v : V) :
     (1 : IsLocalRing.ResidueField A) ⊗ₜ[A] v = 0 ↔ v ∈ IsLocalRing.maximalIdeal A • (⊤ : Submodule A V) := by
   rw [← Submodule.Quotient.mk_eq_zero (IsLocalRing.maximalIdeal A • (⊤ : Submodule A V)),
@@ -193,6 +262,9 @@ def Lifts (d : ℕ) : Prop :=
   ∀ a : Fin g → MvPolynomial (Fin (n + 1)) A, (∀ i, (a i).IsHomogeneous d) → InM (∑ i, a i * F i) →
     ∃ μ : Fin g → MvPolynomial (Fin (n + 1)) A, (∀ i, InM (μ i)) ∧ ∑ i, a i * F i = ∑ i, μ i * F i
 
+/--
+@isnad1 id=ex.1h5v.s10.95aee6d8c163 from=translated src=- shape=af4a350f vocab=e1b0ed06
+-/
 theorem exists_eq_sum_of_mem_smul {y : MvPolynomial (Fin (n + 1)) A}
     (hy : y ∈ IsLocalRing.maximalIdeal A • (Ideal.span (Set.range F)).restrictScalars A) :
     ∃ μ : Fin g → MvPolynomial (Fin (n + 1)) A, (∀ i, InM (μ i)) ∧ y = ∑ i, μ i * F i := by
@@ -210,6 +282,9 @@ theorem exists_eq_sum_of_mem_smul {y : MvPolynomial (Fin (n + 1)) A}
 variable (hF : ∀ i, (F i).IsHomogeneous m)
 include hF
 
+/--
+@isnad1 id=lifts.2h6v.s11.7f95880d4393 from=translated src=- shape=4d0ea98f vocab=47d16fc4
+-/
 theorem lifts_of_projective (d : ℕ) (hproj : Module.Projective A (piece (Ideal.span (Set.range F)) (m + d))) :
     Lifts F d := by
   intro a ha hInM
@@ -262,6 +337,9 @@ theorem lifts_of_projective (d : ℕ) (hproj : Module.Projective A (piece (Ideal
 
 omit hF in
 
+/--
+@isnad1 id=lifts.3h5v.s12.928ee90688f7 from=translated src=- shape=a86e83cc vocab=964fde07
+-/
 theorem lifts_of_forall_relation (h0 : Lifts F 0) (h1 : Lifts F 1)
     (hrel : ∀ (d : ℕ) (c : Fin g → MvPolynomial (Fin (n + 1)) (IsLocalRing.ResidueField A)),
       (∀ i, (c i).IsHomogeneous d) →
@@ -346,11 +424,17 @@ noncomputable def presMap (d : ℕ) :
       exact isHomogeneous_sum_mul F hF (fun i => (a i : MvPolynomial (Fin (n + 1)) A)) d (fun i => (a i).2))
 
 omit [IsLocalRing A] in
+/--
+@isnad1 id=eq.1h7v.s12.2cb25a605c2f from=translated src=- shape=808399d9 vocab=e58d84ca
+-/
 theorem presMap_apply_coe (d : ℕ) (a : Fin g → ↥(homogeneousSubmodule (Fin (n + 1)) A d)) :
     (presMap F hF d a : MvPolynomial (Fin (n + 1)) A) = ∑ i, (a i : MvPolynomial (Fin (n + 1)) A) * F i := by
   simp [presMap, LinearMap.sum_apply]
 
 omit [IsLocalRing A] in
+/--
+@isnad1 id=eq.1h6v.s12.5be19615b083 from=translated src=- shape=882c350f vocab=ebe6f46c
+-/
 theorem range_presMap (d : ℕ) :
     LinearMap.range (presMap F hF d) =
       Submodule.comap (homogeneousSubmodule (Fin (n + 1)) A (m + d)).subtype
@@ -368,6 +452,9 @@ theorem range_presMap (d : ℕ) :
     rw [presMap_apply_coe]
     exact hax
 
+/--
+@isnad1 id=free.2h6v.s11.26d7bb9a6157 from=translated src=- shape=a194a84b vocab=b3e2aa2d
+-/
 theorem free_piece_add (d : ℕ) (hL : Lifts F d) : Module.Free A (piece (Ideal.span (Set.range F)) (m + d)) := by
   classical
   haveI := finite_homogeneousSubmodule (n := n) A d
@@ -416,6 +503,9 @@ theorem free_piece_add (d : ℕ) (hL : Lifts F d) : Module.Free A (piece (Ideal.
 
 omit [IsLocalRing A] hF in
 
+/--
+@isnad1 id=free.2h6v.s11.29f4109d5b29 from=translated src=- shape=c9857d44 vocab=7882e2ca
+-/
 theorem free_piece_of_lt (hF : ∀ i, (F i).IsHomogeneous m) {e : ℕ} (he : e < m) :
     Module.Free A (piece (Ideal.span (Set.range F)) e) := by
   haveI := free_homogeneousSubmodule (n := n) A e
@@ -436,6 +526,9 @@ end GotzLocalLift
 open scoped _root_.P2MW.S_AlgebraicGeometry_HilbertFunctor_free_piece_of_isLocalRing_of_forall_relation_mem_span.GotzLocalLift
 
 open GotzLocalLift in
+/--
+@isnad1 id=free.4h6v.s13.bf3a008b30da from=translated src=- shape=f80fa23b vocab=2757c8af
+-/
 theorem solution
     (n m g : ℕ) (A : Type) [CommRing A] [IsLocalRing A]
     (F : Fin g → MvPolynomial (Fin (n + 1)) A) (hF : ∀ i, (F i).IsHomogeneous m)

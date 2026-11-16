@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=isregula.3h3v.s8.bb67b81929fe from=translated src=- shape=16e731d8 vocab=13f0f401
+-/
 theorem solution
     {X : Scheme.{u}} {U : X.Opens} (hU : IsAffineOpen U) (hreg : IsRegularRing Γ(X, U))
     (x : X) (hx : x ∈ U) :

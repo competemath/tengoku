@@ -16,6 +16,9 @@ export _root_.AlgebraicGeometry (SmoothOfRelativeDimension LocallyQuasiFinite Is
 namespace EtaleOverField
 open _root_.AlgebraicGeometry
 
+/--
+@isnad1 id=locallyq.0h3v.s4.72e132172530 from=translated src=- shape=d492d1ea vocab=9f05c5f8
+-/
 theorem locallyQuasiFinite_of_formallyUnramified {X Y : Scheme.{u}} (f : X ⟶ Y)
     [FormallyUnramified f] [LocallyOfFiniteType f] : LocallyQuasiFinite f := by
   rw [HasRingHomProperty.iff_appLE (P := @LocallyQuasiFinite)]
@@ -30,6 +33,9 @@ theorem locallyQuasiFinite_of_formallyUnramified {X Y : Scheme.{u}} (f : X ⟶ Y
     Algebra.EssFiniteType.of_finiteType _ _
   infer_instance
 
+/--
+@isnad1 id=isfinite.0h3v.s5.f811c4536b4c from=translated src=- shape=ad73cc21 vocab=9f994b02
+-/
 theorem isFinite_of_etale {k : Type u} [Field k] {X : Scheme.{u}}
     (f : X ⟶ Spec (CommRingCat.of k)) [Etale f] [QuasiCompact f] : IsFinite f := by
   have hlqf : LocallyQuasiFinite f := locallyQuasiFinite_of_formallyUnramified f
@@ -40,6 +46,9 @@ theorem isFinite_of_etale {k : Type u} [Field k] {X : Scheme.{u}}
 end AlgebraicGeometry.EtaleOverField
 
 open AlgebraicGeometry.EtaleOverField in
+/--
+@isnad1 id=isfinite.0h3v.s5.2f50ec4b309b from=translated src=- shape=4d3b7be7 vocab=a626936b
+-/
 theorem solution
     {k : Type u} [Field k] {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of k))
     [SmoothOfRelativeDimension 0 f] [QuasiCompact f] : IsFinite f := by

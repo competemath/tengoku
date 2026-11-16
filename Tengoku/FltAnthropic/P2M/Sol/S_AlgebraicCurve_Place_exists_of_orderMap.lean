@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open WithZero
 
+/--
+@isnad1 id=ex.5h3v.s8.5dba61243f15 from=translated src=- shape=f4c0a42f vocab=a8d586ab
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F]
     (μ : F → WithTop ℤ) (h_top : ∀ x, μ x = ⊤ ↔ x = 0)
     (h_mul : ∀ x y, μ (x * y) = μ x + μ y) (h_add : ∀ x y, min (μ x) (μ y) ≤ μ (x + y))

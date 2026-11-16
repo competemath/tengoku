@@ -13,6 +13,9 @@ set_option autoImplicit false
 
 open AlgebraicCurve
 
+/--
+@isnad1 id=and.4h7v.s10.51b75d495ff8 from=translated src=- shape=776da4e3 vocab=6ef2c779
+-/
 theorem solution
     {K E F F' : Type*} [Field K] [Field E] [Field F] [Field F'] [Algebra K E] [Algebra K F] [Algebra K F']
     (φ : E →ₐ[K] F) (hφ : φ.toRingHom.IsIntegral) (φ' : E →ₐ[K] F') (hφ' : φ'.toRingHom.IsIntegral)

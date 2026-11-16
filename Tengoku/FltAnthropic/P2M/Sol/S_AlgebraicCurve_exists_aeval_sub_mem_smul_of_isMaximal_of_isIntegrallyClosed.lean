@@ -34,6 +34,9 @@ theorem eq_span_sup_sq (Q : Ideal B) [Q.IsPrime] (hQ0 : Q ≠ ⊥) (t : B) (ht :
   have := Ideal.eq_prime_pow_of_succ_lt_of_le hQ0 hlt hle
   rw [this, pow_one]
 
+/--
+@isnad1 id=le.3h4v.s8.4d9a37a1f0fd from=translated src=- shape=5f64c81c vocab=f99acaca
+-/
 theorem pow_le_span_pow_sup (Q : Ideal B) [Q.IsPrime] (hQ0 : Q ≠ ⊥) (t : B) (ht : t ∈ Q)
     (ht2 : t ∉ Q ^ 2) (k : ℕ) : Q ^ k ≤ Ideal.span {t ^ k} ⊔ Q ^ (k + 1) := by
   induction k with
@@ -53,6 +56,9 @@ theorem pow_le_span_pow_sup (Q : Ideal B) [Q.IsPrime] (hQ0 : Q ≠ ⊥) (t : B) 
             (Ideal.pow_mem_pow ht k))
         · rw [← pow_succ]; exact le_sup_right
 
+/--
+@isnad1 id=ex.4h7v.s9.7fe2097e40f5 from=translated src=- shape=c14638b7 vocab=e1bc6f51
+-/
 theorem exists_expansion (Q : Ideal B) [Q.IsPrime] (hQ0 : Q ≠ ⊥) (t : B) (ht : t ∈ Q)
     (ht2 : t ∉ Q ^ 2) {K : Type u} [Field K] (φ : K →+* B)
     (hres : ∀ b : B, ∃ a : K, b - φ a ∈ Q) (b : B) (k : ℕ) :
@@ -89,6 +95,9 @@ section Main
 variable {K : Type u} [Field K] [IsAlgClosed K] {B : Type v} [CommRing B] [IsDomain B]
   [IsIntegrallyClosed B] [Algebra K[X] B] [Module.Finite K[X] B] [FaithfulSMul K[X] B]
 
+/--
+@isnad1 id=ex.1h3v.s10.0d15dd7becce from=translated src=- shape=a19c4ad1 vocab=785a4e6c
+-/
 theorem main (P : Ideal K[X]) (hP : P.IsMaximal) :
     ∃ y : B, ∀ z : B, ∃ q : Polynomial K[X], z - aeval y q ∈ P • (⊤ : Submodule K[X] B) := by
   classical
@@ -287,6 +296,9 @@ end FibreMonogenicSol
 
 end
 
+/--
+@isnad1 id=ex.1h3v.s10.0d15dd7becce from=translated src=- shape=a19c4ad1 vocab=785a4e6c
+-/
 theorem solution
     (K : Type u) [Field K] [IsAlgClosed K] (B : Type v) [CommRing B] [IsDomain B]
     [IsIntegrallyClosed B] [Algebra K[X] B] [Module.Finite K[X] B] [FaithfulSMul K[X] B]

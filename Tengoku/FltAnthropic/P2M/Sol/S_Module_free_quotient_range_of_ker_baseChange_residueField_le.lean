@@ -16,16 +16,25 @@ namespace P2mKcTorCrit
 variable {R : Type u} [CommRing R]
 variable {M : Type v} {N : Type w} [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N]
 
+/--
+@isnad1 id=eq.0h4v.s10.0a0536559eee from=translated src=- shape=89c3f5ee vocab=df3a9f15
+-/
 theorem rangeRestrict_comp_ker_subtype (f : M →ₗ[R] N) :
     f.rangeRestrict.comp (LinearMap.ker f).subtype = 0 := by
   refine LinearMap.ext fun x => Subtype.ext ?_
   change f x = 0
   exact x.2
 
+/--
+@isnad1 id=eq.0h4v.s8.23f784871284 from=translated src=- shape=b7f39f7e vocab=eb4de2e2
+-/
 theorem subtype_comp_rangeRestrict (f : M →ₗ[R] N) :
     (LinearMap.range f).subtype.comp f.rangeRestrict = f :=
   LinearMap.ext fun _ => rfl
 
+/--
+@isnad1 id=injectiv.1h5v.s11.b81566e94f1b from=translated src=- shape=8dfcd8ba vocab=52a94cb7
+-/
 theorem lTensor_subtype_range_injective (A : Type*) [CommRing A] [Algebra R A] (f : M →ₗ[R] N)
     (h : LinearMap.ker (f.baseChange A) ≤
       LinearMap.range ((LinearMap.ker f).subtype.baseChange A)) :
@@ -45,6 +54,9 @@ theorem lTensor_subtype_range_injective (A : Type*) [CommRing A] [Algebra R A] (
   rw [← LinearMap.comp_apply, ← LinearMap.lTensor_comp, rangeRestrict_comp_ker_subtype,
     LinearMap.lTensor_zero, LinearMap.zero_apply]
 
+/--
+@isnad1 id=free.1h4v.s11.75383746645a from=translated src=- shape=1d7a1dba vocab=0700dcc9
+-/
 theorem free_quotient_range [IsLocalRing R] [Module.Finite R M] [Module.Finite R N]
     [Module.Free R N] (f : M →ₗ[R] N)
     (h : LinearMap.ker (f.baseChange (IsLocalRing.ResidueField R)) ≤
@@ -56,6 +68,9 @@ theorem free_quotient_range [IsLocalRing R] [Module.Finite R M] [Module.Finite R
 
 end P2mKcTorCrit
 
+/--
+@isnad1 id=free.1h4v.s11.7510fb1dfe0d from=translated src=- shape=71b764dd vocab=0700dcc9
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsLocalRing R]
     {M : Type v} {N : Type w} [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N]

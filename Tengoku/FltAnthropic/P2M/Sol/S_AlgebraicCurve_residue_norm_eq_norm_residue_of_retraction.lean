@@ -21,6 +21,9 @@ variable {K E : Type*} [Field K] [Field E] [Algebra K E]
   (hArat : ∀ a : E, a ∈ A → ∃ k : K, A.valuation (a - algebraMap K E k) < 1)
 
 include hKA in
+/--
+@isnad1 id=eq.2h4v.s8.06791460ac7d from=translated src=- shape=303e4c86 vocab=43183645
+-/
 theorem valuation_algebraMap_eq_one {k : K} (hk : k ≠ 0) :
     A.valuation (algebraMap K E k) = 1 := by
   apply le_antisymm ((A.valuation_le_one_iff _).mpr (hKA k))
@@ -32,11 +35,17 @@ theorem valuation_algebraMap_eq_one {k : K} (hk : k ≠ 0) :
     _ = _ := mul_one _
 
 include hKA in
+/--
+@isnad1 id=le.1h4v.s8.f99b983e32c6 from=translated src=- shape=766f2c34 vocab=fc675488
+-/
 theorem valuation_algebraMap_le_one (k : K) : A.valuation (algebraMap K E k) ≤ 1 :=
   (A.valuation_le_one_iff _).mpr (hKA k)
 
 include hKA in
 
+/--
+@isnad1 id=eq.3h6v.s9.3204733c2bee from=translated src=- shape=ecd3da6c vocab=dc0f8963
+-/
 theorem const_unique {a : E} {k k' : K}
     (hk : A.valuation (a - algebraMap K E k) < 1) (hk' : A.valuation (a - algebraMap K E k') < 1) :
     k = k' := by
@@ -53,11 +62,17 @@ theorem const_unique {a : E} {k k' : K}
 
 noncomputable def sigmaFun (a : A) : K := (hArat a a.2).choose
 
+/--
+@isnad1 id=lt.1h4v.s9.c28ff3f7fbdc from=translated src=- shape=f21c64e3 vocab=154004b8
+-/
 theorem sigmaFun_spec (a : A) :
     A.valuation ((a : E) - algebraMap K E (sigmaFun A hArat a)) < 1 :=
   (hArat a a.2).choose_spec
 
 include hKA in
+/--
+@isnad1 id=iff.2h5v.s9.d84c9377dd63 from=translated src=- shape=a001cc38 vocab=154004b8
+-/
 theorem sigmaFun_eq_iff (a : A) (k : K) :
     sigmaFun A hArat a = k ↔ A.valuation ((a : E) - algebraMap K E k) < 1 :=
   ⟨fun h => h ▸ sigmaFun_spec A hArat a, fun h => const_unique A hKA (sigmaFun_spec A hArat a) h⟩
@@ -98,6 +113,9 @@ noncomputable def sigma : A →+* K where
     rw [hid]
     exact lt_of_le_of_lt (Valuation.map_add _ _ _) (max_lt ha hb)
 
+/--
+@isnad1 id=lt.2h4v.s9.0b2315e6f24c from=translated src=- shape=9172c87f vocab=5eb99c84
+-/
 theorem sigma_spec (a : A) :
     A.valuation ((a : E) - algebraMap K E (sigma A hKA hArat a)) < 1 :=
   sigmaFun_spec A hArat a
@@ -106,6 +124,9 @@ end RationalPlace
 
 open Polynomial in
 
+/--
+@isnad1 id=linearin.1h3v.s6.a4f2917ee071 from=translated src=- shape=7eacda1d vocab=15c57473
+-/
 theorem linearIndependent_pow_of_transcendental' {R S : Type*} [CommRing R] [Ring S] [Algebra R S]
     {x : S} (hx : Transcendental R x) : LinearIndependent R fun k : ℕ => x ^ k := by
   rw [linearIndependent_iff]
@@ -126,6 +147,9 @@ theorem linearIndependent_pow_of_transcendental' {R S : Type*} [CommRing R] [Rin
   ext n
   rw [← hcoeff, h2, Polynomial.coeff_zero, Finsupp.zero_apply]
 
+/--
+@isnad1 id=transcen.0h1v.s6.ae6daf4360f3 from=translated src=- shape=a638af76 vocab=faef3064
+-/
 theorem transcendental_ratFunc_X (K : Type*) [Field K] :
     Transcendental K (RatFunc.X : RatFunc K) := by
   rw [transcendental_iff_injective]
@@ -133,6 +157,9 @@ theorem transcendental_ratFunc_X (K : Type*) [Field K] :
   simp only [RatFunc.aeval_X_left_eq_algebraMap] at hpq
   exact IsFractionRing.injective K[X] (RatFunc K) hpq
 
+/--
+@isnad1 id=iff.1h3v.s7.c9b9ab2cea3a from=translated src=- shape=642eff85 vocab=fea54516
+-/
 theorem isUnit_iff_inv_mem {L : Type*} [Field L] (O : ValuationSubring L) (z : O) (hz : (z : L) ≠ 0) :
     IsUnit z ↔ (z : L)⁻¹ ∈ O := by
   constructor
@@ -145,12 +172,18 @@ theorem isUnit_iff_inv_mem {L : Type*} [Field L] (O : ValuationSubring L) (z : O
   · intro h
     exact ⟨⟨z, ⟨(z : L)⁻¹, h⟩, Subtype.ext (mul_inv_cancel₀ hz), Subtype.ext (inv_mul_cancel₀ hz)⟩, rfl⟩
 
+/--
+@isnad1 id=eq.2h5v.s9.d18700690a15 from=translated src=- shape=f512aaa7 vocab=1c12fd14
+-/
 theorem map_eq_zero_of_not_isUnit {L R : Type*} [Field L] [Semiring R] (O : ValuationSubring L)
     (ρ : O →+* R) (hker : RingHom.ker ρ = IsLocalRing.maximalIdeal O) {z : O} (hz : ¬ IsUnit z) :
     ρ z = 0 := by
   rw [← RingHom.mem_ker, hker]
   exact (IsLocalRing.mem_maximalIdeal _).mpr (mem_nonunits_iff.mpr hz)
 
+/--
+@isnad1 id=isunit.2h5v.s9.834005134fde from=translated src=- shape=3dc6361f vocab=1c12fd14
+-/
 theorem isUnit_of_map_ne_zero {L R : Type*} [Field L] [Semiring R] (O : ValuationSubring L)
     (ρ : O →+* R) (hker : RingHom.ker ρ = IsLocalRing.maximalIdeal O) {z : O} (hz : ρ z ≠ 0) :
     IsUnit z := by
@@ -164,6 +197,9 @@ variable {K F E FE : Type*} [Field K] [Field F] [Field E] [Field FE] [Algebra K 
     [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F]
     [Algebra (RatFunc E) FE] [IsScalarTower E (RatFunc E) FE]
 
+/--
+@isnad1 id=eq.1h5v.s11.d3496683776f from=translated src=- shape=8ebffe2f vocab=50c4aef8
+-/
 theorem algebraMap_polynomial_map
     (hX : algebraMap (RatFunc E) FE RatFunc.X = algebraMap F FE (algebraMap (RatFunc K) F RatFunc.X))
     (p : K[X]) :
@@ -186,6 +222,9 @@ theorem algebraMap_polynomial_map
   have := DFunLike.congr_fun hLR p
   simpa [hfL, hfR] using this
 
+/--
+@isnad1 id=ex.1h5v.s10.c28e972b755c from=translated src=- shape=1706991f vocab=1bf90bd3
+-/
 theorem exists_algebraMap_eq
     (hX : algebraMap (RatFunc E) FE RatFunc.X = algebraMap F FE (algebraMap (RatFunc K) F RatFunc.X))
     (l : RatFunc K) :
@@ -195,6 +234,9 @@ theorem exists_algebraMap_eq
   conv_rhs => rw [← RatFunc.num_div_denom l]
   rw [map_div₀, map_div₀, map_div₀, algebraMap_polynomial_map hX, algebraMap_polynomial_map hX]
 
+/--
+@isnad1 id=eq.0h3v.s10.db1665b54349 from=translated src=- shape=1b3383aa vocab=f98fb66d
+-/
 theorem algebraMap_ratFunc_polynomial (p : E[X]) :
     algebraMap (RatFunc E) FE (algebraMap E[X] (RatFunc E) p) =
       Polynomial.aeval (algebraMap (RatFunc E) FE RatFunc.X) p := by
@@ -202,6 +244,9 @@ theorem algebraMap_ratFunc_polynomial (p : E[X]) :
 
 variable [IsAlgClosed K] [CharZero K]
 
+/--
+@isnad1 id=ex.4h6v.s11.aab6f2ab72cb from=translated src=- shape=bb0ba3bf vocab=5b65a639
+-/
 theorem exists_basis_algebraMap
     (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F)
     (hfgE : ∃ x : FE, Transcendental E x ∧
@@ -308,11 +353,17 @@ variable {K F E FE : Type*} [Field K] [Field F] [Field E] [Field FE] [Algebra K 
     (hρ : ∀ f : F, ∃ h : algebraMap F FE f ∈ O, ρ ⟨algebraMap F FE f, h⟩ = f)
 
 include hρ in
+/--
+@isnad1 id=mem.1h5v.s9.1f4805422448 from=translated src=- shape=e49f71f9 vocab=b5e191c2
+-/
 theorem algebraMap_mem (f : F) : algebraMap F FE f ∈ O := by
   obtain ⟨h, -⟩ := hρ f
   exact h
 
 include hρ in
+/--
+@isnad1 id=eq.2h5v.s9.0feaea5f87cf from=translated src=- shape=8cd43800 vocab=b5e191c2
+-/
 theorem rho_algebraMap (f : F) (h : algebraMap F FE f ∈ O) : ρ ⟨algebraMap F FE f, h⟩ = f := by
   obtain ⟨h', hh⟩ := hρ f
   exact hh
@@ -324,10 +375,16 @@ def constEmb : A →+* O where
   map_zero' := Subtype.ext (by simp)
   map_add' a b := Subtype.ext (by simp)
 
+/--
+@isnad1 id=eq.1h5v.s9.8333d9ae4440 from=translated src=- shape=a2fe99e5 vocab=5a2a1939
+-/
 @[scoped simp] theorem coe_constEmb (a : A) : ((constEmb A O hO a : O) : FE) = algebraMap E FE a := rfl
 
 include hKA hker hρ in
 
+/--
+@isnad1 id=eq.5h8v.s11.b543ecb8c503 from=translated src=- shape=5ba3e2f1 vocab=21286cb4
+-/
 theorem rho_constEmb (a : A) :
     ρ (constEmb A O hO a) = algebraMap K F (sigma A hKA hArat a) := by
   set k := sigma A hKA hArat a with hk_def
@@ -369,6 +426,9 @@ variable [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F]
 omit [Algebra K F] [Algebra E FE] [Algebra K E] [Algebra K FE] [IsScalarTower K E FE]
   [IsScalarTower K F FE] [IsScalarTower K (RatFunc K) F] [IsScalarTower E (RatFunc E) FE] in
 include hX hρ in
+/--
+@isnad1 id=mem.2h6v.s10.492ccf4e4168 from=translated src=- shape=ba59daf5 vocab=7a1c784a
+-/
 theorem X_mem : algebraMap (RatFunc E) FE RatFunc.X ∈ O := by
   rw [hX]; exact algebraMap_mem O ρ hρ _
 
@@ -377,6 +437,9 @@ noncomputable def polyEmb : A[X] →+* O :=
 
 omit [Algebra K F] [Algebra K E] [Algebra K FE] [IsScalarTower K E FE] [IsScalarTower K F FE]
   [IsScalarTower K (RatFunc K) F] in
+/--
+@isnad1 id=eq.3h8v.s11.4c0dd94f1d76 from=translated src=- shape=fa3ac19a vocab=c5a7070f
+-/
 theorem coe_polyEmb (p₀ : A[X]) :
     ((polyEmb A O ρ hO hρ hX p₀ : O) : FE) =
       algebraMap (RatFunc E) FE (algebraMap E[X] (RatFunc E) (p₀.map (algebraMap A E))) := by
@@ -396,6 +459,9 @@ theorem coe_polyEmb (p₀ : A[X]) :
 
 omit [IsScalarTower E (RatFunc E) FE] in
 include hKA hArat hker in
+/--
+@isnad1 id=eq.6h8v.s11.7c5396705039 from=translated src=- shape=c247045f vocab=3cc4f079
+-/
 theorem rho_polyEmb (p₀ : A[X]) :
     ρ (polyEmb A O ρ hO hρ hX p₀) =
       algebraMap (RatFunc K) F (algebraMap K[X] (RatFunc K) (p₀.map (sigma A hKA hArat))) := by
@@ -416,6 +482,9 @@ theorem rho_polyEmb (p₀ : A[X]) :
   have := DFunLike.congr_fun hLR p₀
   simpa using this
 
+/--
+@isnad1 id=mem.1h5v.s8.0d0f681011f6 from=translated src=- shape=0723a1dc vocab=24b225c9
+-/
 theorem coeff_C_inv_mul_mem (f : E[X]) (c₀ : E)
     (hmax : ∀ c ∈ f.coeffs, A.valuation c ≤ A.valuation c₀) (n : ℕ) :
     (Polynomial.C c₀⁻¹ * f).coeff n ∈ A := by
@@ -427,6 +496,9 @@ theorem coeff_C_inv_mul_mem (f : E[X]) (c₀ : E)
 
 include hKA hArat hO hker hρ hX in
 
+/--
+@isnad1 id=ex.7h8v.s11.5b01fc521d04 from=translated src=- shape=4ef25eff vocab=665aff28
+-/
 theorem exists_rho_eq_algebraMap (m : RatFunc E) (hm : algebraMap (RatFunc E) FE m ∈ O) :
     ∃ l : RatFunc K, ρ ⟨algebraMap (RatFunc E) FE m, hm⟩ = algebraMap (RatFunc K) F l := by
   classical
@@ -534,6 +606,9 @@ theorem exists_rho_eq_algebraMap (m : RatFunc E) (hm : algebraMap (RatFunc E) FE
 
 include hKA hArat hO hker hρ hX in
 
+/--
+@isnad1 id=mem.8h11v.s11.e7edaf46abd9 from=translated src=- shape=1fb4aad8 vocab=2999e307
+-/
 theorem algebraMap_coord_mem {ι : Type*} [Fintype ι] (b : ι → F)
     (hb : LinearIndependent (RatFunc K) b) (c : ι → RatFunc E)
     (hc : (∑ i, c i • algebraMap F FE (b i)) ∈ O) (i : ι) :
@@ -595,6 +670,9 @@ theorem algebraMap_coord_mem {ι : Type*} [Fintype ι] (b : ι → F)
 
 include hKA hArat hO hker hρ hX in
 
+/--
+@isnad1 id=ex.9h8v.s12.693be405523f from=translated src=- shape=63c41600 vocab=c2f759c3
+-/
 theorem residue_norm_eq_norm_residue [IsAlgClosed K] [CharZero K]
     (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F)
     (hfgE : ∃ x : FE, Transcendental E x ∧
@@ -672,6 +750,9 @@ open scoped _root_.P2MW.S_AlgebraicCurve_residue_norm_eq_norm_residue_of_retract
 
 open DeuringNormResidue in
 
+/--
+@isnad1 id=ex.10h8v.s12.cdcce4d799a1 from=translated src=- shape=51d448d4 vocab=c2f759c3
+-/
 theorem solution
     (K F E FE : Type*) [Field K] [Field F] [Field E] [Field FE] [Algebra K F] [Algebra E FE]
     [Algebra K E] [Algebra F FE] [Algebra K FE] [IsScalarTower K E FE] [IsScalarTower K F FE]

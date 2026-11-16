@@ -28,14 +28,23 @@ noncomputable def tau (π : T' →+* T) (hπ : Function.Surjective π) (φ : T' 
         exact Ideal.mem_map_of_mem φ ha)).comp
     (RingHom.quotientKerEquivOfSurjective hπ).symm.toRingHom
 
+/--
+@isnad1 id=eq.1h6v.s11.bcefc9588f10 from=translated src=- shape=e2e4456f vocab=3f4929c6
+-/
 theorem tau_apply (π : T' →+* T) (hπ : Function.Surjective π) (φ : T' →+* C) (k : T') :
     tau π hπ φ (π k) = Ideal.Quotient.mk _ (φ k) := by
   simp [tau]
 
+/--
+@isnad1 id=eq.1h5v.s10.32b0f99cbeab from=translated src=- shape=88cc6083 vocab=542151f0
+-/
 theorem tau_comp (π : T' →+* T) (hπ : Function.Surjective π) (φ : T' →+* C) :
     (tau π hπ φ).comp π = (Ideal.Quotient.mk ((RingHom.ker π).map φ)).comp φ :=
   RingHom.ext fun k => tau_apply π hπ φ k
 
+/--
+@isnad1 id=ispushou.1h5v.s9.65a601692116 from=translated src=- shape=94ac83f8 vocab=d0458024
+-/
 theorem isPushout_quotient (π : T' →+* T) (hπ : Function.Surjective π) (φ : T' →+* C) :
     IsPushout (CommRingCat.ofHom φ) (CommRingCat.ofHom π)
       (CommRingCat.ofHom (Ideal.Quotient.mk ((RingHom.ker π).map φ))) (CommRingCat.ofHom (tau π hπ φ)) := by
@@ -73,6 +82,9 @@ theorem isPushout_quotient (π : T' →+* T) (hπ : Function.Surjective π) (φ 
 
 end Pushout
 
+/--
+@isnad1 id=isnilpot.1h4v.s7.688c348c6b4a from=translated src=- shape=43e75246 vocab=005c8f5f
+-/
 theorem isNilpotent_map {T' C : Type u} [CommRing T'] [CommRing C] (φ : T' →+* C) {K : Ideal T'}
     (hK : IsNilpotent K) : IsNilpotent (K.map φ) := by
   obtain ⟨n, hn⟩ := hK
@@ -82,6 +94,9 @@ theorem isNilpotent_map {T' C : Type u} [CommRing T'] [CommRing C] (φ : T' →+
 
 end E163TC
 
+/--
+@isnad1 id=and.4h9v.s15.97b265c0dae8 from=translated src=- shape=2536e43a vocab=bc4a6591
+-/
 theorem solution
     {T' T : Type u} [CommRing T'] [CommRing T] (π : T' →+* T) (hπ : Function.Surjective π)
     (hker : IsNilpotent (RingHom.ker π))

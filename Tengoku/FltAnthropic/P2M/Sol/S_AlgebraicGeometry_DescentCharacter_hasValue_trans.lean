@@ -16,6 +16,9 @@ namespace KcDescCharTrans
 
 variable {X Y : Scheme.{u}} {R : Type u} [CommRing R]
 
+/--
+@isnad1 id=eq.1h9v.s8.157739fded1d from=translated src=- shape=10f6534e vocab=8a023606
+-/
 theorem translateIso_trans {T : X ⟶ X} {q : X ⟶ Y} (h : T ≫ q = q) {N M P : Y.Modules}
     (β : (Scheme.Modules.pullback q).obj N ≅ (Scheme.Modules.pullback q).obj M)
     (β' : (Scheme.Modules.pullback q).obj M ≅ (Scheme.Modules.pullback q).obj P) :
@@ -23,12 +26,18 @@ theorem translateIso_trans {T : X ⟶ X} {q : X ⟶ Y} (h : T ≫ q = q) {N M P 
   ext : 1
   simp [translateIso, Functor.mapIso_trans]
 
+/--
+@isnad1 id=eq.1h7v.s7.2ef8ae4b644d from=translated src=- shape=f933ca24 vocab=4fe2bfdd
+-/
 theorem translateIso_eq {T : X ⟶ X} {q : X ⟶ Y} (h : T ≫ q = q) {N M : Y.Modules}
     (β : (Scheme.Modules.pullback q).obj N ≅ (Scheme.Modules.pullback q).obj M) :
     translateIso h β = β ≪≫ discrepancy h β := by
   ext : 1
   simp [discrepancy]
 
+/--
+@isnad1 id=eq.1h9v.s9.7df62e98a147 from=translated src=- shape=d5f8a74f vocab=5edb57ec
+-/
 theorem discrepancy_trans_hom {T : X ⟶ X} {q : X ⟶ Y} (h : T ≫ q = q) {N M P : Y.Modules}
     (β : (Scheme.Modules.pullback q).obj N ≅ (Scheme.Modules.pullback q).obj M)
     (β' : (Scheme.Modules.pullback q).obj M ≅ (Scheme.Modules.pullback q).obj P) :
@@ -38,12 +47,18 @@ theorem discrepancy_trans_hom {T : X ⟶ X} {q : X ⟶ Y} (h : T ≫ q = q) {N M
   rw [e1, translateIso_trans, Iso.trans_hom, translateIso_eq h β, translateIso_eq h β']
   simp
 
+/--
+@isnad1 id=isbasesc.2h8v.s6.af3748b73f68 from=translated src=- shape=3c59c54c vocab=68c3b71a
+-/
 theorem isBaseScalar_comp (f : X ⟶ Spec (CommRingCat.of R)) {M : X.Modules} {σ σ' : M ⟶ M} {c c' : R}
     (hσ : IsBaseScalar f σ c) (hσ' : IsBaseScalar f σ' c') : IsBaseScalar f (σ ≫ σ') (c * c') := by
   intro U s
   rw [Scheme.Modules.Hom.comp_app, CategoryTheory.comp_apply, hσ U s, Scheme.Modules.Hom.app_smul, hσ' U,
     smul_smul, baseSection_mul, mul_comm]
 
+/--
+@isnad1 id=isbasesc.1h8v.s6.a4723f8a281a from=translated src=- shape=d1e044ca vocab=72bbf91d
+-/
 theorem isBaseScalar_conj (f : X ⟶ Spec (CommRingCat.of R)) {M M' : X.Modules} (e : M ≅ M') {σ : M ⟶ M} {c : R}
     (hσ : IsBaseScalar f σ c) : IsBaseScalar f (e.inv ≫ σ ≫ e.hom) c := by
   intro U s
@@ -51,6 +66,9 @@ theorem isBaseScalar_conj (f : X ⟶ Spec (CommRingCat.of R)) {M M' : X.Modules}
     CategoryTheory.comp_apply, hσ U, Scheme.Modules.Hom.app_smul, ← CategoryTheory.comp_apply,
     ← Scheme.Modules.Hom.comp_app, e.inv_hom_id, Scheme.Modules.Hom.id_app, CategoryTheory.id_apply]
 
+/--
+@isnad1 id=hasvalue.3h13v.s7.fc53025d78b5 from=translated src=- shape=da8f9c11 vocab=e1bbaef3
+-/
 theorem hasValue_trans (f : X ⟶ Spec (CommRingCat.of R))
     {T : X ⟶ X} {q : X ⟶ Y} (h : T ≫ q = q) {N M P : Y.Modules}
     (β : (Scheme.Modules.pullback q).obj N ≅ (Scheme.Modules.pullback q).obj M)
@@ -65,6 +83,9 @@ theorem hasValue_trans (f : X ⟶ Spec (CommRingCat.of R))
 
 end KcDescCharTrans
 
+/--
+@isnad1 id=hasvalue.3h13v.s7.fc53025d78b5 from=translated src=- shape=da8f9c11 vocab=e1bbaef3
+-/
 theorem solution
     {X Y : Scheme.{u}} {R : Type u} [CommRing R] (f : X ⟶ Spec (CommRingCat.of R))
     {T : X ⟶ X} {q : X ⟶ Y} (h : T ≫ q = q) {N M P : Y.Modules}

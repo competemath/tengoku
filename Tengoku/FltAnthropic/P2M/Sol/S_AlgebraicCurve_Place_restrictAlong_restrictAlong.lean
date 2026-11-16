@@ -9,5 +9,8 @@ set_option autoImplicit false
 
 open IsDedekindDomain AlgebraicCurve
 
+/--
+@isnad1 id=eq.3h7v.s8.b14ee5ea815e from=translated src=- shape=ae9f5e75 vocab=761fa427
+-/
 theorem solution {K F F' F'' : Type*} [Field K] [Field F] [Field F'] [Field F''] [Algebra K F] [Algebra K F'] [Algebra K F''] (φ : F →ₐ[K] F') (χ : F' →ₐ[K] F'') (hφ : φ.toRingHom.IsIntegral) (hχ : χ.toRingHom.IsIntegral) (hχφ : (χ.comp φ).toRingHom.IsIntegral) (W : Place K F'') : (W.restrictAlong χ hχ).restrictAlong φ hφ = W.restrictAlong (χ.comp φ) hχφ :=
   Place.ext (SetLike.ext fun _ => Iff.rfl)

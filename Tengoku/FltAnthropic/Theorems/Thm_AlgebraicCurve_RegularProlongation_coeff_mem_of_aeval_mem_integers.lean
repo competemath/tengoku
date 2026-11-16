@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_AlgebraicCurve_RegularProlongation_coeff_m
 
 open AlgebraicCurve
 
+/--
+@isnad1 id=mem.2h8v.s9.c6611222bfd0 from=translated src=- shape=f50fb800 vocab=7b017bf6
+-/
 theorem AlgebraicCurve.RegularProlongation.coeff_mem_of_aeval_mem_integers
     {L : Type*} [Field L] (A : ValuationSubring L)
     {F : Type*} [Field F] [Algebra L F]

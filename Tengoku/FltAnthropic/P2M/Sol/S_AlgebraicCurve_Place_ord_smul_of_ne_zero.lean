@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open AlgebraicCurve
 
+/--
+@isnad1 id=eq.1h5v.s6.2085bbee9864 from=translated src=- shape=9b611a9b vocab=12ea738c
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) {c : K} (hc : c ≠ 0) (x : F) : v.ord (c • x) = v.ord x := by
   rcases eq_or_ne x 0 with rfl | hx0
   · rw [smul_zero]

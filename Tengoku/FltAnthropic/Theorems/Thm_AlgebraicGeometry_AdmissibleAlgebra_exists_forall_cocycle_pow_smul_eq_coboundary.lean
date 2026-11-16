@@ -11,6 +11,9 @@ open TensorProduct
 
 universe u v w
 
+/--
+@isnad1 id=ex.0h4v.s9.ccc3ad66e41b from=translated src=- shape=7a747279 vocab=0d080a61
+-/
 theorem AlgebraicGeometry.AdmissibleAlgebra.exists_forall_cocycle_pow_smul_eq_coboundary
     {B : Type u} [CommRing B] [IsNoetherianRing B] {R : Type v} [CommRing R] [Algebra B R] [Module.Finite B R]
     {G : Type w} [Group G] [Finite G] [MulSemiringAction G R] [SMulCommClass G B R] (t : B) :

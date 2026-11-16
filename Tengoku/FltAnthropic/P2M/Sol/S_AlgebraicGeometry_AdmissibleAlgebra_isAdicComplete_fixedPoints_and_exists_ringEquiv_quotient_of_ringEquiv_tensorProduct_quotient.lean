@@ -14,14 +14,23 @@ open TensorProduct
 
 namespace C3Alg
 
+/--
+@isnad1 id=iff.0h4v.s7.18e22d15c4d6 from=translated src=- shape=11cabe00 vocab=5123f095
+-/
 theorem mem_fixedPoints_subalgebra_iff {A B : Type} [CommSemiring A] [Semiring B] [Algebra A B]
     {G : Type} [Monoid G] [MulSemiringAction G B] [SMulCommClass G A B] (x : B) :
     x ∈ FixedPoints.subalgebra A B G ↔ ∀ g : G, g • x = x := Iff.rfl
 
+/--
+@isnad1 id=iff.0h5v.s8.eaed7244e9c4 from=translated src=- shape=249cce25 vocab=8270e387
+-/
 theorem smodEq_span_pow_top_iff {R : Type} [CommRing R] (a : R) (n : ℕ) (x y : R) :
     x ≡ y [SMOD ((Ideal.span {a}) ^ n • ⊤ : Submodule R R)] ↔ x - y ∈ Ideal.span {a ^ n} := by
   rw [SModEq.sub_mem, smul_eq_mul, Ideal.mul_top, Ideal.span_singleton_pow]
 
+/--
+@isnad1 id=eq.2h4v.s7.ee9414563b87 from=translated src=- shape=faa1e1ab vocab=99545b96
+-/
 theorem pow_mul_eq_zero_imp {R : Type} [CommRing R] (t : R) (htf : ∀ x : R, t * x = 0 → x = 0) :
     ∀ (n : ℕ) (x : R), t ^ n * x = 0 → x = 0 := by
   intro n
@@ -32,6 +41,9 @@ theorem pow_mul_eq_zero_imp {R : Type} [CommRing R] (t : R) (htf : ∀ x : R, t 
     rw [pow_succ, mul_assoc] at hx
     exact htf x (ih _ hx)
 
+/--
+@isnad1 id=mem.1h7v.s8.e2d612047aaa from=translated src=- shape=5f22ed12 vocab=5f0b5aee
+-/
 theorem smul_mem_span_pow {S R : Type} [CommRing S] [CommRing R] [Algebra S R]
     {G : Type} [Group G] [MulSemiringAction G R] [SMulCommClass G S R] (t : S) (k : ℕ) (g : G)
     {y : R} (hy : y ∈ Ideal.span {(algebraMap S R t) ^ k}) : g • y ∈ Ideal.span {(algebraMap S R t) ^ k} := by
@@ -39,6 +51,9 @@ theorem smul_mem_span_pow {S R : Type} [CommRing S] [CommRing R] [Algebra S R]
   rw [smul_mul', smul_pow', smul_algebraMap]
   exact Ideal.mem_span_singleton'.mpr ⟨g • c, rfl⟩
 
+/--
+@isnad1 id=iff.1h6v.s11.7f51694f264b from=translated src=- shape=b3175d75 vocab=e69ff44a
+-/
 theorem coe_mem_span_pow_iff {S R : Type} [CommRing S] [CommRing R] [Algebra S R]
     (G : Type) [Group G] [MulSemiringAction G R] [SMulCommClass G S R] (t : S)
     (htf : ∀ x : R, algebraMap S R t * x = 0 → x = 0) (n : ℕ) (x : ↥(FixedPoints.subalgebra S R G)) :
@@ -67,6 +82,9 @@ theorem coe_mem_span_pow_iff {S R : Type} [CommRing S] [CommRing R] [Algebra S R
     show (r : R) * (algebraMap S R t) ^ n = ((r * (algebraMap S ↥(FixedPoints.subalgebra S R G) t) ^ n :  ↥(FixedPoints.subalgebra S R G)) : R)
     rw [Subalgebra.coe_mul, Subalgebra.coe_pow, Subalgebra.coe_algebraMap]
 
+/--
+@isnad1 id=isadicco.2h4v.s10.b6d106d49801 from=translated src=- shape=5cecba10 vocab=bc10c9c6
+-/
 theorem fixedPoints_isAdicComplete {S R : Type} [CommRing S] [CommRing R] [Algebra S R]
     (G : Type) [Group G] [MulSemiringAction G R] [SMulCommClass G S R] (t : S)
     (hc : IsAdicComplete (Ideal.span {algebraMap S R t}) R)
@@ -125,11 +143,17 @@ noncomputable def ρ (g : G) :
     R ⊗[↥(FixedPoints.subalgebra 𝒪 R G)] A' →+ R ⊗[↥(FixedPoints.subalgebra 𝒪 R G)] A' :=
   ((smulLinear (𝒪 := 𝒪) g).rTensor A').toAddMonoidHom
 
+/--
+@isnad1 id=eq.0h7v.s12.c73ff4eafc10 from=translated src=- shape=b441c569 vocab=b3d0a421
+-/
 theorem ρ_tmul (g : G) (r : R) (s : A') :
     (ρ (𝒪 := 𝒪) (R := R) (G := G) A' g) (r ⊗ₜ s) = (g • r) ⊗ₜ s := rfl
 
 end Action
 
+/--
+@isnad1 id=mem.2h7v.s13.5610bb27c0a6 from=translated src=- shape=12f085e6 vocab=39844ae4
+-/
 theorem mem_span_pow_of_tmul_mem {𝒪 : Type} [CommRing 𝒪] (π : 𝒪) {R : Type} [CommRing R] [Algebra 𝒪 R]
     {G : Type} [Group G] [MulSemiringAction G R] [SMulCommClass G 𝒪 R]
     (hinv : ∀ k : ℕ, ∀ x : ↥(FixedPoints.subalgebra 𝒪 R G),
@@ -202,18 +226,30 @@ variable {𝒪 : Type} [CommRing 𝒪] (π : 𝒪) {R : Type} [CommRing R] [Alge
   {R' : Type} [CommRing R'] [Algebra S R'] [MulSemiringAction G R'] [SMulCommClass G S R']
   (τ : ∀ n : ℕ, ((R ⊗[↥(FixedPoints.subalgebra 𝒪 R G)] A') ⧸ Ideal.span {(algebraMap 𝒪 R π ^ (n + 1)) ⊗ₜ[↥(FixedPoints.subalgebra 𝒪 R G)] (1 : A')}) ≃+* (R' ⧸ Ideal.span {algebraMap S R' (algebraMap 𝒪 S π) ^ (n + 1)}))
 
+/--
+@isnad1 id=eq.0h5v.s8.41ef3cf15661 from=translated src=- shape=cea0a421 vocab=a4b5effb
+-/
 theorem hIpow (n : ℕ) : (Ideal.span {algebraMap S R' (algebraMap 𝒪 S π)}) ^ (n + 1) = Ideal.span {algebraMap S R' (algebraMap 𝒪 S π) ^ (n + 1)} := Ideal.span_singleton_pow _ _
 
 noncomputable def lvlMap (n : ℕ) : (R ⊗[↥(FixedPoints.subalgebra 𝒪 R G)] A') →+* R' ⧸ (Ideal.span {algebraMap S R' (algebraMap 𝒪 S π)}) ^ (n + 1) :=
   (Ideal.quotEquivOfEq (hIpow (S := S) (R' := R') π n).symm).toRingHom.comp ((τ n).toRingHom.comp (Ideal.Quotient.mk _))
 
+/--
+@isnad1 id=eq.1h11v.s16.3e1f3d9d405c from=translated src=- shape=3fbe927f vocab=b92bfecd
+-/
 theorem lvlMap_apply (n : ℕ) (z : (R ⊗[↥(FixedPoints.subalgebra 𝒪 R G)] A')) (y : R') (h : τ n (Ideal.Quotient.mk _ z) = Ideal.Quotient.mk _ y) :
     lvlMap π τ n z = Ideal.Quotient.mk _ y := by
   show Ideal.quotEquivOfEq (hIpow (S := S) (R' := R') π n).symm (τ n (Ideal.Quotient.mk _ z)) = _
   rw [h, Ideal.quotEquivOfEq_mk]
 
+/--
+@isnad1 id=strictmo.0h0v.s4.9d1b4ed3a876 from=translated src=- shape=a257ebec vocab=c431414c
+-/
 theorem strictMono_succ : StrictMono (fun n : ℕ => n + 1) := fun _ _ h => Nat.add_lt_add_right h 1
 
+/--
+@isnad1 id=eq.1h9v.s17.2ce931a11dae from=translated src=- shape=fdf5fe45 vocab=b5a20584
+-/
 theorem lvlMap_compat
     (hτ_succ : ∀ (n : ℕ) (z : (R ⊗[↥(FixedPoints.subalgebra 𝒪 R G)] A')) (y : R'),
       τ (n + 1) (Ideal.Quotient.mk _ z) = Ideal.Quotient.mk _ y → τ n (Ideal.Quotient.mk _ z) = Ideal.Quotient.mk _ y)
@@ -234,6 +270,9 @@ noncomputable def ι : (R ⊗[↥(FixedPoints.subalgebra 𝒪 R G)] A') →+* R'
   IsAdicComplete.StrictMono.liftRingHom (Ideal.span {algebraMap S R' (algebraMap 𝒪 S π)}) strictMono_succ (lvlMap π τ) (lvlMap_compat π τ hτ_succ)
 
 include hR'c hτ_succ in
+/--
+@isnad1 id=mem.3h11v.s18.23dd4f814bdf from=translated src=- shape=6726bd52 vocab=239123a2
+-/
 theorem ι_sub_mem (n : ℕ) (z : (R ⊗[↥(FixedPoints.subalgebra 𝒪 R G)] A')) (y : R') (h : τ n (Ideal.Quotient.mk _ z) = Ideal.Quotient.mk _ y) :
     ι π τ hR'c hτ_succ z - y ∈ Ideal.span {algebraMap S R' (algebraMap 𝒪 S π) ^ (n + 1)} := by
   haveI := hR'c
@@ -244,12 +283,18 @@ theorem ι_sub_mem (n : ℕ) (z : (R ⊗[↥(FixedPoints.subalgebra 𝒪 R G)] A
   exact this
 
 include hR'c hτ_succ in
+/--
+@isnad1 id=eq.2h10v.s18.5832f16d2ba7 from=translated src=- shape=84752913 vocab=2dfd8f37
+-/
 theorem τ_mk (n : ℕ) (z : (R ⊗[↥(FixedPoints.subalgebra 𝒪 R G)] A')) : τ n (Ideal.Quotient.mk _ z) = Ideal.Quotient.mk _ (ι π τ hR'c hτ_succ z) := by
   obtain ⟨y, hy⟩ := Ideal.Quotient.mk_surjective (τ n (Ideal.Quotient.mk _ z))
   rw [← hy]
   exact (Ideal.Quotient.eq.mpr (ι_sub_mem π τ hR'c hτ_succ n z y hy.symm)).symm
 
 include hR'c hτ_succ in
+/--
+@isnad1 id=mem.3h10v.s17.ce09d0011ffe from=translated src=- shape=84b3dc5a vocab=2dfd8f37
+-/
 theorem ι_mem (n : ℕ) (u : (R ⊗[↥(FixedPoints.subalgebra 𝒪 R G)] A')) (hu : u ∈ Ideal.span {(algebraMap 𝒪 R π ^ (n + 1)) ⊗ₜ[↥(FixedPoints.subalgebra 𝒪 R G)] (1 : A')}) : ι π τ hR'c hτ_succ u ∈ Ideal.span {algebraMap S R' (algebraMap 𝒪 S π) ^ (n + 1)} := by
   obtain ⟨c, rfl⟩ := Ideal.mem_span_singleton'.mp hu
   rw [map_mul]
@@ -271,6 +316,9 @@ theorem eq_zero_of_forall_mem (hR'c : IsAdicComplete (Ideal.span {algebraMap S R
 
 set_option maxHeartbeats 1600000 in
 
+/--
+@isnad1 id=eq.2h12v.s18.330f77fdbb86 from=translated src=- shape=9a6bcbe1 vocab=32af7141
+-/
 theorem τ_ρ
     (hτ_smul : ∀ (n : ℕ) (g : G) (x : R) (w : A') (y : R'),
       τ n (Ideal.Quotient.mk _ (x ⊗ₜ[↥(FixedPoints.subalgebra 𝒪 R G)] w)) = Ideal.Quotient.mk _ y →
@@ -306,6 +354,9 @@ variable (hτ_smul : ∀ (n : ℕ) (g : G) (x : R) (w : A') (y : R'),
       τ n (Ideal.Quotient.mk _ ((g • x) ⊗ₜ[↥(FixedPoints.subalgebra 𝒪 R G)] w)) = Ideal.Quotient.mk _ (g • y))
 
 include hR'c hτ_succ hτ_smul in
+/--
+@isnad1 id=eq.3h10v.s18.4a91a0a9ff5e from=translated src=- shape=5a3156e3 vocab=f243f025
+-/
 theorem smul_ι_one_tmul (w : A') (g : G) :
     g • ι π τ hR'c hτ_succ ((1 : R) ⊗ₜ[↥(FixedPoints.subalgebra 𝒪 R G)] w) = ι π τ hR'c hτ_succ ((1 : R) ⊗ₜ[↥(FixedPoints.subalgebra 𝒪 R G)] w) := by
   rw [← sub_eq_zero]
@@ -335,9 +386,15 @@ noncomputable def j : A' →+* ↥(FixedPoints.subalgebra S R' G) where
       ι π τ hR'c hτ_succ ((1 : R) ⊗ₜ[↥(FixedPoints.subalgebra 𝒪 R G)] w₁) + ι π τ hR'c hτ_succ ((1 : R) ⊗ₜ[↥(FixedPoints.subalgebra 𝒪 R G)] w₂)
     rw [TensorProduct.tmul_add, map_add])
 
+/--
+@isnad1 id=eq.3h9v.s18.f192e0ddaed0 from=translated src=- shape=4e410551 vocab=2fcf8565
+-/
 theorem coe_j (w : A') : ((j π τ hR'c hτ_succ hτ_smul w : ↥(FixedPoints.subalgebra S R' G)) : R') = ι π τ hR'c hτ_succ ((1 : R) ⊗ₜ[↥(FixedPoints.subalgebra 𝒪 R G)] w) := rfl
 
 include hR'c hτ_succ hτ_smul in
+/--
+@isnad1 id=eq.4h10v.s18.c1aa53e4c076 from=translated src=- shape=29567eb7 vocab=e6f3d263
+-/
 theorem j_σ (σ : S →+* A')
     (hτ_σ : ∀ (n : ℕ) (s : S),
       τ n (Ideal.Quotient.mk _ ((1 : R) ⊗ₜ[↥(FixedPoints.subalgebra 𝒪 R G)] σ s)) = Ideal.Quotient.mk _ (algebraMap S R' s)) (s : S) :
@@ -353,6 +410,9 @@ end C3Alg
 open scoped _root_.P2MW.S_AlgebraicGeometry_AdmissibleAlgebra_isAdicComplete_fixedPoints_and_exists_ringEquiv_quotient_of_ringEquiv_tensorProduct_quotient.C3Alg
 
 set_option maxHeartbeats 1600000 in
+/--
+@isnad1 id=and.12h9v.s19.a39908925c69 from=translated src=- shape=d0a092ba vocab=57152d94
+-/
 theorem solution
     (𝒪 : Type) [CommRing 𝒪] [IsDomain 𝒪] (hdvr : IsDiscreteValuationRing 𝒪)
     (π : 𝒪) (hπ : Irreducible π) (hcomplete : IsAdicComplete (Ideal.span {π}) 𝒪)

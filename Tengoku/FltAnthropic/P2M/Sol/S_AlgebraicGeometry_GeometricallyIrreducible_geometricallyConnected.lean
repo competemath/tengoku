@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=geometri.0h3v.s4.dcee85564c34 from=translated src=- shape=892cb9de vocab=482d32ba
+-/
 theorem solution {X Y : Scheme.{u}} (f : X ⟶ Y)
     [GeometricallyIrreducible f] : GeometricallyConnected f := by
   refine ⟨?_⟩

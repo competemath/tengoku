@@ -9,6 +9,9 @@ namespace P2MW.S_AlgebraicCurve_Place_exists_irreducible_dCoord_eq_D_and_hasPole
 set_option autoImplicit false
 open KaehlerDifferential
 
+/--
+@isnad1 id=ex.0h3v.s9.06ffb6a98ea9 from=translated src=- shape=f94bd64b vocab=828a9bdb
+-/
 theorem solution
     {K F : Type*} [Field K] [Field F] [Algebra K F] (v : AlgebraicCurve.Place K F) :
     ∃ π : v.toValuationSubring, Irreducible π ∧

@@ -22,6 +22,9 @@ open _root_.AlgebraicCurve.TwoChartIntegralModel open _root_.AlgebraicCurve
 
 variable {R : Type u} [CommRing R] {A : Type u} [CommRing A] [Algebra R A]
 
+/--
+@isnad1 id=mem.1h5v.s8.f81cc7d5e487 from=translated src=- shape=faaebba6 vocab=efbe69b3
+-/
 theorem aeval_mem_map_of_forall_coeff_mem (𝔪 : Ideal R) (x : A) (P : R[X]) (hP : ∀ i, P.coeff i ∈ 𝔪) :
     aeval x P ∈ 𝔪.map (algebraMap R A) := by
   rw [aeval_eq_sum_range]
@@ -29,6 +32,9 @@ theorem aeval_mem_map_of_forall_coeff_mem (𝔪 : Ideal R) (x : A) (P : R[X]) (h
   rw [Algebra.smul_def]
   exact Ideal.mul_mem_right _ _ (Ideal.mem_map_of_mem _ (hP i))
 
+/--
+@isnad1 id=isintegr.3h6v.s9.98809eca4ecf from=translated src=- shape=0335b274 vocab=6635fca1
+-/
 theorem isIntegral_mk_of_aeval_mem (𝔪 : Ideal R) [𝔪.IsMaximal] (I : Ideal A)
     (hI : 𝔪.map (algebraMap R A) ≤ I) (x : A) (P : R[X]) (hP0 : P.map (Ideal.Quotient.mk 𝔪) ≠ 0)
     (hPx : aeval x P ∈ I) : IsIntegral R (Ideal.Quotient.mk I x) := by
@@ -66,6 +72,9 @@ theorem isIntegral_mk_of_aeval_mem (𝔪 : Ideal R) [𝔪.IsMaximal] (I : Ideal 
 end AlgebraicCurve.TwoChartIntegralModel.SSClosedProof
 
 open AlgebraicCurve.TwoChartIntegralModel.SSClosedProof in
+/--
+@isnad1 id=and.2h5v.s12.140d1d0a8373 from=translated src=- shape=18c4cc63 vocab=51394c9d
+-/
 theorem solution
     (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F] (j : F) [Fact (j ≠ 0)]
     (𝔪 : Ideal R) [𝔪.IsMaximal]

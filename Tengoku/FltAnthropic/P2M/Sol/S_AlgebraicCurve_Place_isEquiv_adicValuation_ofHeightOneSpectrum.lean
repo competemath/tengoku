@@ -56,6 +56,9 @@ end AlgebraicCurve
 end
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_isEquiv_adicValuation_ofHeightOneSpectrum.AlgebraicCurve in
+/--
+@isnad1 id=isequiv.0h4v.s7.2bf6d3c98a04 from=translated src=- shape=3991dd85 vocab=c22d9f09
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] {R : Type*} [CommRing R] [IsDedekindDomain R] [Algebra R F] [IsFractionRing R F]
     [Algebra K R] [IsScalarTower K R F] (w : IsDedekindDomain.HeightOneSpectrum R) :
     (w.valuation F).IsEquiv (Place.ofHeightOneSpectrum (K := K) w).adicValuation :=

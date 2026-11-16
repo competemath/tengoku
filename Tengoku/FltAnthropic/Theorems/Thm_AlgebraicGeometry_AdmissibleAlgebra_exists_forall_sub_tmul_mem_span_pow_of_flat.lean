@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open TensorProduct
 
+/--
+@isnad1 id=ex.6h4v.s14.f3fbe1754371 from=translated src=- shape=ae15f711 vocab=159fef2e
+-/
 theorem AlgebraicGeometry.AdmissibleAlgebra.exists_forall_sub_tmul_mem_span_pow_of_flat
     (𝒪 : Type) [CommRing 𝒪] [IsDomain 𝒪] (hdvr : IsDiscreteValuationRing 𝒪)
     (π : 𝒪) (hπ : Irreducible π) (hcomplete : IsAdicComplete (Ideal.span {π}) 𝒪)

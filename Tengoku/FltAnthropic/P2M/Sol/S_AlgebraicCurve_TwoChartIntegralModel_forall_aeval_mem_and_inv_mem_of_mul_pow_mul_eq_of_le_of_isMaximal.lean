@@ -14,10 +14,16 @@ open IsLocalRing AlgebraicCurve AlgebraicCurve.TwoChartIntegralModel
 
 namespace BDescCS5
 
+/--
+@isnad1 id=isunit.3h3v.s8.3f3476d71776 from=translated src=- shape=92655117 vocab=23f51e5d
+-/
 theorem isUnit_of_inv_mem {L : Type u} [Field L] (B : Subring L) (x : L) (hx : x ∈ B) (hxi : x⁻¹ ∈ B) (hx0 : x ≠ 0) :
     IsUnit (⟨x, hx⟩ : ↥B) :=
   ⟨⟨⟨x, hx⟩, ⟨x⁻¹, hxi⟩, Subtype.ext (mul_inv_cancel₀ hx0), Subtype.ext (inv_mul_cancel₀ hx0)⟩, rfl⟩
 
+/--
+@isnad1 id=mem.1h3v.s8.aedd1abdb330 from=translated src=- shape=2a641780 vocab=b845dc51
+-/
 theorem inv_mem_of_isUnit {L : Type u} [Field L] (B : Subring L) (x : ↥B) (hx : IsUnit x) : ((x : L))⁻¹ ∈ B := by
   obtain ⟨u, rfl⟩ := hx
   have h : ((u : ↥B) : L) * (((u⁻¹ : (↥B)ˣ) : ↥B) : L) = 1 := by
@@ -28,6 +34,9 @@ theorem inv_mem_of_isUnit {L : Type u} [Field L] (B : Subring L) (x : ↥B) (hx 
 end BDescCS5
 
 open BDescCS5 in
+/--
+@isnad1 id=and.11h12v.s12.c38fc72ccf25 from=translated src=- shape=362d5239 vocab=9e72e95c
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     (ϖ : R) (hϖ : maximalIdeal R = Ideal.span {ϖ})

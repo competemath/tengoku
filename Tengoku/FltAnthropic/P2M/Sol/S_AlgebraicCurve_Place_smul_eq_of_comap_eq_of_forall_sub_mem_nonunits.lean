@@ -34,18 +34,30 @@ def constantBaseIdeal (P : Place κ F) : AddSubgroup F' :=
   AddSubgroup.closure {y | ∃ m ∈ P.toValuationSubring.nonunits, ∃ r ∈ constantBaseRing κ' (F' := F') P,
     y = algebraMap F F' m * r}
 
+/--
+@isnad1 id=mem.1h6v.s8.96b0dfa76483 from=translated src=- shape=4024ad8d vocab=e2cf6e0e
+-/
 theorem algebraMap_mem_constantBaseRing (P : Place κ F) {f : F} (hf : f ∈ P.toValuationSubring) :
     algebraMap F F' f ∈ constantBaseRing κ' P :=
   Subring.subset_closure (Or.inl ⟨f, hf, rfl⟩)
 
+/--
+@isnad1 id=mem.0h6v.s8.f2fc2fe0919b from=translated src=- shape=4c08b387 vocab=3cc30dc6
+-/
 theorem algebraMap_const_mem_constantBaseRing (P : Place κ F) (c : κ') :
     algebraMap κ' F' c ∈ constantBaseRing κ' (F := F) P :=
   Subring.subset_closure (Or.inr ⟨c, rfl⟩)
 
+/--
+@isnad1 id=mem.2h7v.s8.a62c0e6060f8 from=translated src=- shape=298ae43c vocab=25d771d0
+-/
 theorem mul_mem_constantBaseIdeal (P : Place κ F) {m : F} (hm : m ∈ P.toValuationSubring.nonunits) {r : F'}
     (hr : r ∈ constantBaseRing κ' P) : algebraMap F F' m * r ∈ constantBaseIdeal κ' P :=
   AddSubgroup.subset_closure ⟨m, hm, r, hr, rfl⟩
 
+/--
+@isnad1 id=mem.2h7v.s8.8673034df456 from=translated src=- shape=9d83a1f9 vocab=9e23b134
+-/
 theorem constantBaseIdeal_mul_mem (P : Place κ F) {y : F'} (hy : y ∈ constantBaseIdeal κ' P) {r : F'}
     (hr : r ∈ constantBaseRing κ' P) : y * r ∈ constantBaseIdeal κ' P := by
   induction hy using AddSubgroup.closure_induction with
@@ -57,6 +69,9 @@ theorem constantBaseIdeal_mul_mem (P : Place κ F) {y : F'} (hy : y ∈ constant
   | add a b _ _ ha hb => rw [add_mul]; exact AddSubgroup.add_mem _ ha hb
   | neg a _ ha => rw [neg_mul]; exact AddSubgroup.neg_mem _ ha
 
+/--
+@isnad1 id=mem.2h7v.s8.270f94323eb7 from=translated src=- shape=11a2aa8c vocab=9e23b134
+-/
 theorem mul_constantBaseIdeal_mem (P : Place κ F) {y : F'} (hy : y ∈ constantBaseIdeal κ' P) {r : F'}
     (hr : r ∈ constantBaseRing κ' P) : r * y ∈ constantBaseIdeal κ' P := by
   induction hy using AddSubgroup.closure_induction with
@@ -68,12 +83,18 @@ theorem mul_constantBaseIdeal_mem (P : Place κ F) {y : F'} (hy : y ∈ constant
   | add a b _ _ ha hb => rw [mul_add]; exact AddSubgroup.add_mem _ ha hb
   | neg a _ ha => rw [mul_neg]; exact AddSubgroup.neg_mem _ ha
 
+/--
+@isnad1 id=mem.2h5v.s7.296786b1a1d8 from=translated src=- shape=b97658a5 vocab=524b999d
+-/
 theorem smul_mem_of_smul_eq {σ : F ≃ₐ[κ] F} {P : Place κ F} (hP : σ • P = P) {f : F} (hf : f ∈ P.toValuationSubring) :
     σ f ∈ P.toValuationSubring := by
   have h : σ • f ∈ σ • P.toValuationSubring := ValuationSubring.smul_mem_pointwise_smul σ f _ hf
   rw [← smul_toValuationSubring, hP] at h
   exact h
 
+/--
+@isnad1 id=and.4h8v.s9.b523c37122aa from=translated src=- shape=d05c751f vocab=e1417869
+-/
 theorem smul_mem_constantBaseRing_and_sub_mem_of_forall_sub_mem_nonunits
     (σ : F ≃ₐ[κ] F) (σ' : F' ≃ₐ[κ'] F')
     (hσ : ∀ f : F, σ' (algebraMap F F' f) = algebraMap F F' (σ f))
@@ -107,11 +128,17 @@ theorem smul_mem_constantBaseRing_and_sub_mem_of_forall_sub_mem_nonunits
       rw [this]
       exact AddSubgroup.add_mem _ (mul_constantBaseIdeal_mem P ihb.2 iha.1) (constantBaseIdeal_mul_mem P iha.2 hb)
 
+/--
+@isnad1 id=iff.1h7v.s8.46f8b0141331 from=translated src=- shape=b813cf10 vocab=fd3a47b0
+-/
 theorem mem_of_comap_eq {P : Place κ F} {P' : Place κ' F'}
     (hP' : P'.toValuationSubring.comap (algebraMap F F') = P.toValuationSubring) (f : F) :
     f ∈ P.toValuationSubring ↔ algebraMap F F' f ∈ P'.toValuationSubring := by
   rw [← hP']; rfl
 
+/--
+@isnad1 id=le.1h6v.s8.5f01b59f275c from=translated src=- shape=44f363e8 vocab=8b26e189
+-/
 theorem constantBaseRing_le {P : Place κ F} {P' : Place κ' F'}
     (hP' : P'.toValuationSubring.comap (algebraMap F F') = P.toValuationSubring) :
     constantBaseRing κ' P ≤ P'.toValuationSubring.toSubring := by
@@ -120,6 +147,9 @@ theorem constantBaseRing_le {P : Place κ F} {P' : Place κ' F'}
   · exact (mem_of_comap_eq hP' f).mp hf
   · exact P'.algebraMap_mem' c
 
+/--
+@isnad1 id=mem.2h7v.s8.53f89de78226 from=translated src=- shape=3efcc6fd vocab=7fd0f809
+-/
 theorem algebraMap_mem_nonunits {P : Place κ F} {P' : Place κ' F'}
     (hP' : P'.toValuationSubring.comap (algebraMap F F') = P.toValuationSubring) {m : F}
     (hm : m ∈ P.toValuationSubring.nonunits) : algebraMap F F' m ∈ P'.toValuationSubring.nonunits := by
@@ -130,6 +160,9 @@ theorem algebraMap_mem_nonunits {P : Place κ F} {P' : Place κ' F'}
     rw [← map_inv₀, ← mem_of_comap_eq hP']
     exact hm
 
+/--
+@isnad1 id=mem.2h7v.s8.f7210c485ad6 from=translated src=- shape=e8202d3b vocab=b42da35e
+-/
 theorem constantBaseIdeal_le_nonunits {P : Place κ F} {P' : Place κ' F'}
     (hP' : P'.toValuationSubring.comap (algebraMap F F') = P.toValuationSubring) {y : F'}
     (hy : y ∈ constantBaseIdeal κ' P) : y ∈ P'.toValuationSubring.nonunits := by
@@ -148,6 +181,9 @@ theorem constantBaseIdeal_le_nonunits {P : Place κ F} {P' : Place κ' F'}
   | add a b _ _ ha hb => exact (P'.toValuationSubring.nonunits).add_mem ha hb
   | neg a _ ha => exact (P'.toValuationSubring.nonunits).neg_mem ha
 
+/--
+@isnad1 id=iff.5h9v.s9.e8a18600d1a2 from=translated src=- shape=6fc615c3 vocab=5aabfcb1
+-/
 theorem mem_nonunits_iff_smul_mem (σ : F ≃ₐ[κ] F) (σ' : F' ≃ₐ[κ'] F')
     (hσ : ∀ f : F, σ' (algebraMap F F' f) = algebraMap F F' (σ f))
     (P : Place κ F) (hP : σ • P = P)
@@ -165,6 +201,9 @@ theorem mem_nonunits_iff_smul_mem (σ : F ≃ₐ[κ] F) (σ' : F' ≃ₐ[κ'] F'
     have : x = σ' x - (σ' x - x) := by ring
     rw [this]; exact (P'.toValuationSubring.nonunits).sub_mem hx' hd
 
+/--
+@isnad1 id=iff.0h5v.s8.523304d83ae7 from=translated src=- shape=759c5907 vocab=8008f3d5
+-/
 theorem mem_nonunits_smul_iff (σ' : F' ≃ₐ[κ'] F') (P' : Place κ' F') (x : F') :
     x ∈ (σ' • P').toValuationSubring.nonunits ↔ σ'.symm x ∈ P'.toValuationSubring.nonunits := by
   rw [ValuationSubring.mem_nonunits_iff_or, ValuationSubring.mem_nonunits_iff_or, smul_toValuationSubring,
@@ -175,6 +214,9 @@ end AlgebraicCurve.Place
 
 open _root_.AlgebraicCurve.Place _root_.P2MW.S_AlgebraicCurve_Place_smul_eq_of_comap_eq_of_forall_sub_mem_nonunits.AlgebraicCurve.Place in
 
+/--
+@isnad1 id=eq.5h8v.s10.b054f83f3ce7 from=translated src=- shape=095e8a22 vocab=c77b9868
+-/
 theorem solution
     {κ : Type*} [Field κ] {F : Type*} [Field F] [Algebra κ F]
     {κ' : Type*} [Field κ'] [Algebra κ κ'] [Algebra.IsAlgebraic κ κ'] [Algebra.IsSeparable κ κ']

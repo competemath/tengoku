@@ -11,6 +11,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 universe u v
 
+/--
+@isnad1 id=and.3h7v.s9.f1c677b1c50f from=translated src=- shape=e8a730fb vocab=51796e11
+-/
 theorem solution
     {B E P : Scheme.{u}} (m : E ⟶ P) (hm : IsClosedImmersion m) (πP : P ⟶ B)
     {ι : Type v} [Finite ι] (W : ι → P.Opens)

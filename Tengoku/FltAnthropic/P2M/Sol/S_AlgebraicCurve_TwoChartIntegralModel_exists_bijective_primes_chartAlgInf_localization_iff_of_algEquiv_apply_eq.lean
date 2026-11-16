@@ -22,15 +22,30 @@ section Basic
 
 variable (B : Subalgebra A T) (y : Ideal ↥B) [hy : y.IsPrime]
 
+/--
+@isnad1 id=not.0h4v.s9.68fe6579e527 from=translated src=- shape=9bf690c2 vocab=38c64cd7
+-/
 theorem one_notMem : (1 : ↥B) ∉ y := (Ideal.ne_top_iff_one y).mp hy.ne_top
 
+/--
+@isnad1 id=mem.0h5v.s8.e3bdd2a495b2 from=translated src=- shape=fe2b3049 vocab=54fe1238
+-/
 theorem coe_mem_L (b : ↥B) : (b : T) ∈ L B y := ⟨b, 1, one_notMem B y, by simp⟩
 
+/--
+@isnad1 id=mem.1h5v.s7.e4061a70ff90 from=translated src=- shape=055ae2c1 vocab=0ea91a83
+-/
 theorem M_subset_L {f : T} (hf : f ∈ M B y) : f ∈ L B y := by
   obtain ⟨g, h, hh, -, e⟩ := hf; exact ⟨g, h, hh, e⟩
 
+/--
+@isnad1 id=mem.0h4v.s7.1cebc7c350a3 from=translated src=- shape=e6904837 vocab=a1498147
+-/
 theorem zero_mem_M : (0 : T) ∈ M B y := ⟨0, 1, one_notMem B y, y.zero_mem, by simp⟩
 
+/--
+@isnad1 id=iff.0h5v.s9.25563f24786c from=translated src=- shape=19d870cb vocab=8821cbb2
+-/
 theorem coe_mem_M_iff (b : ↥B) : (b : T) ∈ M B y ↔ b ∈ y := by
   constructor
   · rintro ⟨g, h, hh, hg, e⟩
@@ -39,9 +54,15 @@ theorem coe_mem_M_iff (b : ↥B) : (b : T) ∈ M B y ↔ b ∈ y := by
     exact (hy.mem_or_mem hbh).resolve_right hh
   · intro hb; exact ⟨b, 1, one_notMem B y, hb, by simp⟩
 
+/--
+@isnad1 id=ne.1h5v.s9.475f9ef6a1ca from=translated src=- shape=84185f72 vocab=153f7cc5
+-/
 theorem ne_zero_of_notMem {h : ↥B} (hh : h ∉ y) : (h : T) ≠ 0 := by
   intro h0; apply hh; rw [show h = 0 from Subtype.ext h0]; exact y.zero_mem
 
+/--
+@isnad1 id=mem.2h6v.s7.df9eb312c2bd from=translated src=- shape=e4cc477e vocab=5d6e696d
+-/
 theorem mul_mem_L {f₁ f₂ : T} (h₁ : f₁ ∈ L B y) (h₂ : f₂ ∈ L B y) : f₁ * f₂ ∈ L B y := by
   obtain ⟨g₁, k₁, hk₁, e₁⟩ := h₁
   obtain ⟨g₂, k₂, hk₂, e₂⟩ := h₂
@@ -50,6 +71,9 @@ theorem mul_mem_L {f₁ f₂ : T} (h₁ : f₁ ∈ L B y) (h₂ : f₂ ∈ L B y
   calc f₁ * f₂ * ((k₁ : T) * k₂) = (f₁ * k₁) * (f₂ * k₂) := by ring
     _ = g₁ * g₂ := by rw [e₁, e₂]
 
+/--
+@isnad1 id=mem.2h6v.s7.2f68fcb0f5e4 from=translated src=- shape=e4cc477e vocab=e35e3e0c
+-/
 theorem add_mem_L {f₁ f₂ : T} (h₁ : f₁ ∈ L B y) (h₂ : f₂ ∈ L B y) : f₁ + f₂ ∈ L B y := by
   obtain ⟨g₁, k₁, hk₁, e₁⟩ := h₁
   obtain ⟨g₂, k₂, hk₂, e₂⟩ := h₂
@@ -58,6 +82,9 @@ theorem add_mem_L {f₁ f₂ : T} (h₁ : f₁ ∈ L B y) (h₂ : f₂ ∈ L B y
   calc (f₁ + f₂) * ((k₁ : T) * k₂) = (f₁ * k₁) * k₂ + (f₂ * k₂) * k₁ := by ring
     _ = g₁ * k₂ + g₂ * k₁ := by rw [e₁, e₂]
 
+/--
+@isnad1 id=mem.2h6v.s7.88106dcfcbc7 from=translated src=- shape=aeba4d12 vocab=be7e8b1f
+-/
 theorem mul_mem_M {f₁ f₂ : T} (h₁ : f₁ ∈ L B y) (h₂ : f₂ ∈ M B y) : f₁ * f₂ ∈ M B y := by
   obtain ⟨g₁, k₁, hk₁, e₁⟩ := h₁
   obtain ⟨g₂, k₂, hk₂, hg₂, e₂⟩ := h₂
@@ -66,6 +93,9 @@ theorem mul_mem_M {f₁ f₂ : T} (h₁ : f₁ ∈ L B y) (h₂ : f₂ ∈ M B y
   calc f₁ * f₂ * ((k₁ : T) * k₂) = (f₁ * k₁) * (f₂ * k₂) := by ring
     _ = g₁ * g₂ := by rw [e₁, e₂]
 
+/--
+@isnad1 id=mem.2h6v.s7.b85b78a6a509 from=translated src=- shape=e4cc477e vocab=67a18dd3
+-/
 theorem add_mem_M {f₁ f₂ : T} (h₁ : f₁ ∈ M B y) (h₂ : f₂ ∈ M B y) : f₁ + f₂ ∈ M B y := by
   obtain ⟨g₁, k₁, hk₁, hg₁, e₁⟩ := h₁
   obtain ⟨g₂, k₂, hk₂, hg₂, e₂⟩ := h₂
@@ -75,10 +105,16 @@ theorem add_mem_M {f₁ f₂ : T} (h₁ : f₁ ∈ M B y) (h₂ : f₂ ∈ M B y
   calc (f₁ + f₂) * ((k₁ : T) * k₂) = (f₁ * k₁) * k₂ + (f₂ * k₂) * k₁ := by ring
     _ = g₁ * k₂ + g₂ * k₁ := by rw [e₁, e₂]
 
+/--
+@isnad1 id=mem.1h5v.s7.316c795e3fa7 from=translated src=- shape=a7995aa1 vocab=7ec3f4f3
+-/
 theorem neg_mem_M {f : T} (h : f ∈ M B y) : -f ∈ M B y := by
   obtain ⟨g, k, hk, hg, e⟩ := h
   exact ⟨-g, k, hk, y.neg_mem_iff.mpr hg, by simp [← e]⟩
 
+/--
+@isnad1 id=mem.1h7v.s7.79011fc4f434 from=translated src=- shape=1b019f3b vocab=d98d405c
+-/
 theorem sum_mem_M {ι : Type} (s : Finset ι) (f : ι → T) (hf : ∀ i ∈ s, f i ∈ M B y) :
     ∑ i ∈ s, f i ∈ M B y := by
   classical
@@ -88,6 +124,9 @@ theorem sum_mem_M {ι : Type} (s : Finset ι) (f : ι → T) (hf : ∀ i ∈ s, 
       rw [Finset.sum_insert ha]
       exact add_mem_M B y (hf a (Finset.mem_insert_self a s)) (ih fun i hi => hf i (Finset.mem_insert_of_mem hi))
 
+/--
+@isnad1 id=mem.2h6v.s7.0c052b0aa0e5 from=translated src=- shape=34b127b4 vocab=e3fef4e2
+-/
 theorem pow_mem_M {f : T} (hf : f ∈ M B y) {n : ℕ} (hn : n ≠ 0) : f ^ n ∈ M B y := by
   have key : ∀ m : ℕ, f ^ (m + 1) ∈ M B y := by
     intro m
@@ -97,6 +136,9 @@ theorem pow_mem_M {f : T} (hf : f ∈ M B y) {n : ℕ} (hn : n ≠ 0) : f ^ n �
   obtain ⟨m, rfl⟩ := Nat.exists_eq_succ_of_ne_zero hn
   exact key m
 
+/--
+@isnad1 id=not.2h5v.s7.5696b13c4ab3 from=translated src=- shape=f7d8e015 vocab=3b30f24f
+-/
 theorem inv_notMem_L_of_mem_M {f : T} (hf : f ∈ M B y) (hf0 : f ≠ 0) : f⁻¹ ∉ L B y := by
   rintro ⟨g₂, k₂, hk₂, e₂⟩
   obtain ⟨g₁, k₁, hk₁, hg₁, e₁⟩ := hf
@@ -107,6 +149,9 @@ theorem inv_notMem_L_of_mem_M {f : T} (hf : f ∈ M B y) (hf0 : f ≠ 0) : f⁻�
   have : k₁ * k₂ ∈ y := hB ▸ y.mul_mem_right _ hg₁
   exact (hy.mem_or_mem this).elim hk₁ hk₂
 
+/--
+@isnad1 id=mem.2h5v.s7.fb614495e228 from=translated src=- shape=4ac6c1ef vocab=3b30f24f
+-/
 theorem inv_mem_L_of_notMem_M {f : T} (hf : f ∈ L B y) (hfM : f ∉ M B y) : f⁻¹ ∈ L B y := by
   obtain ⟨g, k, hk, e⟩ := hf
   have hg : g ∉ y := fun hg => hfM ⟨g, k, hk, hg, e⟩
@@ -116,6 +161,9 @@ theorem inv_mem_L_of_notMem_M {f : T} (hf : f ∈ L B y) (hfM : f ∉ M B y) : f
     rw [show g = 0 from Subtype.ext (by simpa using e.symm)]; exact y.zero_mem
   rw [← e]; field_simp
 
+/--
+@isnad1 id=iff.0h5v.s8.0a857bd9240a from=translated src=- shape=770df55a vocab=3b30f24f
+-/
 theorem mem_M_iff {f : T} : f ∈ M B y ↔ f ∈ L B y ∧ (f = 0 ∨ f⁻¹ ∉ L B y) := by
   constructor
   · intro hf
@@ -129,6 +177,9 @@ theorem mem_M_iff {f : T} : f ∈ M B y ↔ f ∈ L B y ∧ (f = 0 ∨ f⁻¹ �
     · by_contra hM
       exact hinv (inv_mem_L_of_notMem_M B y hL hM)
 
+/--
+@isnad1 id=not.0h4v.s7.8172757b59df from=translated src=- shape=def70373 vocab=a1498147
+-/
 theorem one_notMem_M : (1 : T) ∉ M B y := by
   intro h
   have := (coe_mem_M_iff B y 1).mp (by simpa using h)
@@ -140,15 +191,24 @@ section Order
 
 variable (B : Subalgebra A T)
 
+/--
+@isnad1 id=le.1h5v.s9.c63fd63c8c90 from=translated src=- shape=215e2877 vocab=c0498e17
+-/
 theorem L_subset_L_of_le {y₁ y₂ : Ideal ↥B} (h : y₁ ≤ y₂) : L B y₂ ⊆ L B y₁ := by
   rintro f ⟨g, k, hk, e⟩; exact ⟨g, k, fun hk' => hk (h hk'), e⟩
 
+/--
+@isnad1 id=le.1h5v.s9.c2bdf56da7c7 from=translated src=- shape=7fdd98f3 vocab=0213651c
+-/
 theorem le_of_L_subset_L {y₁ y₂ : Ideal ↥B} [y₁.IsPrime] [y₂.IsPrime] (h : L B y₂ ⊆ L B y₁) : y₁ ≤ y₂ := by
   intro b hb
   by_contra hb₂
   have hinv : (b : T)⁻¹ ∈ L B y₂ := ⟨1, b, hb₂, by simp [ne_zero_of_notMem B y₂ hb₂]⟩
   exact inv_notMem_L_of_mem_M B y₁ ((coe_mem_M_iff B y₁ b).mpr hb) (ne_zero_of_notMem B y₂ hb₂) (h hinv)
 
+/--
+@isnad1 id=iff.0h5v.s9.f5c125298311 from=translated src=- shape=b6e1cc68 vocab=0213651c
+-/
 theorem le_iff_L_subset_L {y₁ y₂ : Ideal ↥B} [y₁.IsPrime] [y₂.IsPrime] : y₁ ≤ y₂ ↔ L B y₂ ⊆ L B y₁ :=
   ⟨L_subset_L_of_le B, le_of_L_subset_L B⟩
 
@@ -175,8 +235,14 @@ def contract : Ideal ↥B' where
     simp only [smul_eq_mul, Set.mem_ofPred_eq, Subalgebra.coe_mul] at hx ⊢
     exact mul_mem_M B y (hB' c) hx
 
+/--
+@isnad1 id=iff.1h6v.s9.dcbab9e6cbc8 from=translated src=- shape=d59fd195 vocab=22f78857
+-/
 theorem mem_contract_iff (b' : ↥B') : b' ∈ contract B B' y hB' ↔ (b' : T) ∈ M B y := Iff.rfl
 
+/--
+@isnad1 id=isprime.1h5v.s8.7948924411ec from=translated src=- shape=0122df4c vocab=4b382152
+-/
 scoped instance contract_isPrime : (contract B B' y hB').IsPrime := by
   refine ⟨?_, ?_⟩
   · rw [Ideal.ne_top_iff_one, mem_contract_iff]
@@ -192,6 +258,9 @@ scoped instance contract_isPrime : (contract B B' y hB').IsPrime := by
       show (b : T) ∈ M B y
       rw [this]; exact mul_mem_M B y hainv hab
 
+/--
+@isnad1 id=le.1h5v.s8.89fce480499b from=translated src=- shape=31f0ae89 vocab=89adfa81
+-/
 theorem L_contract_subset : L B' (contract B B' y hB') ⊆ L B y := by
   rintro f ⟨g, k, hk, e⟩
   rw [mem_contract_iff] at hk
@@ -200,6 +269,9 @@ theorem L_contract_subset : L B' (contract B B' y hB') ⊆ L B y := by
   rw [this]
   exact mul_mem_L B y (hB' g) (inv_mem_L_of_notMem_M B y (hB' k) hk)
 
+/--
+@isnad1 id=le.1h5v.s8.17bdba8cf605 from=translated src=- shape=fad4611a vocab=997d4660
+-/
 theorem M_contract_subset : M B' (contract B B' y hB') ⊆ M B y := by
   rintro f ⟨g, k, hk, hg, e⟩
   rw [mem_contract_iff] at hk hg
@@ -208,6 +280,9 @@ theorem M_contract_subset : M B' (contract B B' y hB') ⊆ M B y := by
   rw [this]
   exact mul_mem_M B y (inv_mem_L_of_notMem_M B y (hB' k) hk) hg
 
+/--
+@isnad1 id=eq.2h5v.s8.f260c7fb30b0 from=translated src=- shape=5376b843 vocab=4b382152
+-/
 theorem L_eq_L_contract (hB : ∀ b : ↥B, (b : T) ∈ L B' (contract B B' y hB')) :
     L B y = L B' (contract B B' y hB') := by
   refine Set.Subset.antisymm ?_ (L_contract_subset B B' y hB')
@@ -240,12 +315,21 @@ def resInv : ↥B →+* ↥B where
 
 def transport (𝔶 : Ideal ↥B) : Ideal ↥B := 𝔶.comap (resInv B σ hσ')
 
+/--
+@isnad1 id=iff.1h6v.s10.445afa4dad2c from=translated src=- shape=78872145 vocab=a26066a6
+-/
 theorem mem_transport_iff (𝔶 : Ideal ↥B) (b : ↥B) :
     b ∈ transport B σ hσ' 𝔶 ↔ (⟨σ.symm b, hσ' b⟩ : ↥B) ∈ 𝔶 := Iff.rfl
 
+/--
+@isnad1 id=isprime.1h5v.s8.2699a14e77b9 from=translated src=- shape=78a0a3d7 vocab=4a074029
+-/
 scoped instance transport_isPrime (𝔶 : Ideal ↥B) [𝔶.IsPrime] : (transport B σ hσ' 𝔶).IsPrime :=
   Ideal.comap_isPrime _ _
 
+/--
+@isnad1 id=iff.2h6v.s9.33966489a0cc from=translated src=- shape=13fa5f61 vocab=66d39d3d
+-/
 theorem mem_L_transport_iff (hσ : ∀ b : ↥B, σ b ∈ B) (𝔶 : Ideal ↥B) (f : T) :
     f ∈ L B (transport B σ hσ' 𝔶) ↔ σ.symm f ∈ L B 𝔶 := by
   constructor
@@ -274,6 +358,9 @@ section Charts
 
 open AlgebraicCurve.TwoChartIntegralModel
 
+/--
+@isnad1 id=mem.2h6v.s10.00c3ba03696d from=translated src=- shape=8ebd0d66 vocab=78c3a424
+-/
 theorem coe_mem_L_of_swap (j j' : T) [Fact (j ≠ 0)] [Fact (j' ≠ 0)]
     (h3 : ∀ c, c ∈ chartAlgInf A T j' → ∃ s, s ∈ chartAlgInf A T j ∧
         (∃ a, a ∈ chartAlgInf A T j ∧ s = 1 + j⁻¹ * a) ∧ s * c ∈ chartAlgInf A T j)
@@ -289,6 +376,9 @@ theorem coe_mem_L_of_swap (j j' : T) [Fact (j ≠ 0)] [Fact (j' ≠ 0)]
   rw [← h1]
   exact y.sub_mem hsy (y.mul_mem_right _ hjy)
 
+/--
+@isnad1 id=mem.3h5v.s10.8948da4e9ebe from=translated src=- shape=9fced300 vocab=a740639a
+-/
 theorem inv_mem_M_of_isIntegral (j j' : T) [Fact (j ≠ 0)] [Fact (j' ≠ 0)]
     (hint' : IsIntegral ↥(Algebra.adjoin A ({j'} : Set T)) j)
     (y : Ideal ↥(chartAlgInf A T j)) [hy : y.IsPrime] (hjy : jInvChartInf A T j ∈ y)
@@ -338,6 +428,9 @@ theorem inv_mem_M_of_isIntegral (j j' : T) [Fact (j ≠ 0)] [Fact (j' ≠ 0)]
   have := Finset.mem_range.mp hi
   omega
 
+/--
+@isnad1 id=isintegr.1h6v.s9.efa5657a1ebe from=translated src=- shape=c96a8399 vocab=db9ec06c
+-/
 theorem isIntegral_adjoin_map {K K' : Type} [Field K] [Field K'] [Algebra A K] [Algebra A K']
     (τ : K →ₐ[A] K') (t b : K) (hb : IsIntegral (Algebra.adjoin A ({t} : Set K)) b) :
     IsIntegral (Algebra.adjoin A ({τ t} : Set K')) (τ b) := by
@@ -351,6 +444,9 @@ theorem isIntegral_adjoin_map {K K' : Type} [Field K] [Field K'] [Algebra A K] [
       map_add' := fun a b => by ext; simp }
   exact hb.map_of_comp_eq φ τ.toRingHom (by ext s; rfl)
 
+/--
+@isnad1 id=mem.1h5v.s8.bbfdb9e091f5 from=translated src=- shape=8fc0e046 vocab=f7fd5c9c
+-/
 theorem map_mem_chartAlgInf (j' : T) [Fact (j' ≠ 0)] (τ : T ≃ₐ[A] T) (hτ : τ j' = j')
     (b : ↥(chartAlgInf A T j')) : τ (b : T) ∈ chartAlgInf A T j' := by
   have h := isIntegral_adjoin_map (τ : T →ₐ[A] T) j'⁻¹ b b.2
@@ -365,6 +461,9 @@ open scoped _root_.P2MW.S_AlgebraicCurve_TwoChartIntegralModel_exists_bijective_
 
 open CuspTransportAux AlgebraicCurve.TwoChartIntegralModel in
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=ex.5h5v.s14.57e8d1ad9e8e from=translated src=- shape=8b8b5836 vocab=295d704e
+-/
 theorem solution
     {A : Type} [CommRing A] {T : Type} [Field T] [Algebra A T]
     (j j' : T) [Fact (j ≠ 0)] [Fact (j' ≠ 0)]

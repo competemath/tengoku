@@ -24,6 +24,9 @@ open _root_.AlgebraicCurve.TwoChartIntegralModel open _root_.AlgebraicCurve
 
 variable (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F] (j : F) [Fact (j ≠ 0)]
 
+/--
+@isnad1 id=iff.0h5v.s10.48d937aa63bc from=translated src=- shape=947d44f4 vocab=fdf73688
+-/
 theorem ιFin_eq_ιInf_iff (x₀ : XFin R F j) (xi : XInf R F j) :
     (ιFin R F j).base x₀ = (ιInf R F j).base xi ↔
       ∃ w : XMid R F j, (fFin R F j).base w = x₀ ∧ (fInf R F j).base w = xi := by
@@ -42,6 +45,9 @@ theorem ιFin_eq_ιInf_iff (x₀ : XFin R F j) (xi : XInf R F j) :
     change (fFin R F j ≫ ιFin R F j).base w = (fInf R F j ≫ ιInf R F j).base w
     rw [glue_condition]
 
+/--
+@isnad1 id=eq.0h3v.s7.eec5588f8d32 from=translated src=- shape=334a2c34 vocab=8866f4eb
+-/
 theorem chartFinOpen_inf_chartInfOpen :
     chartFinOpen R F j ⊓ chartInfOpen R F j = (fFin R F j ≫ ιFin R F j).opensRange := by
   apply TopologicalSpace.Opens.ext
@@ -63,6 +69,9 @@ theorem chartFinOpen_inf_chartInfOpen :
 
 end AlgebraicCurve.TwoChartIntegralModel.CoverAux
 
+/--
+@isnad1 id=ex.0h3v.s6.8c1adb5fc535 from=translated src=- shape=25ad4efb vocab=6b479a65
+-/
 theorem solution
     (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F] (j : F) [Fact (j ≠ 0)] :
     ∃ 𝒱 : (AlgebraicCurve.TwoChartIntegralModel R F j).TwoAffineOpenCover,

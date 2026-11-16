@@ -15,6 +15,9 @@ namespace UnramifiedLiftUnique
 
 variable {X Y : Scheme.{u}} {f : X ⟶ Y}
 
+/--
+@isnad1 id=eq.2h8v.s7.35b987f75289 from=translated src=- shape=b8f4c0f7 vocab=5daf7fff
+-/
 theorem comp_lift_eq_comp_diagonal {T T₀ : Scheme.{u}} (u u' : T ⟶ X) (hf : u ≫ f = u' ≫ f)
     (j : T₀ ⟶ T) (hj : j ≫ u = j ≫ u') :
     j ≫ pullback.lift u u' hf = (j ≫ u) ≫ pullback.diagonal f := by
@@ -48,6 +51,9 @@ theorem eq_of_comp_eq {T T₀ : Scheme.{u}} [FormallyUnramified f] [LocallyOfFin
 
 end UnramifiedLiftUnique
 
+/--
+@isnad1 id=eq.2h8v.s7.3deac813c930 from=translated src=- shape=f5e079ce vocab=11bad857
+-/
 theorem solution
     {X Y T T₀ : Scheme.{u}} (f : X ⟶ Y) [FormallyUnramified f] [LocallyOfFiniteType f]
     (j : T₀ ⟶ T) [Surjective j] (u u' : T ⟶ X) (hf : u ≫ f = u' ≫ f) (hj : j ≫ u = j ≫ u') :

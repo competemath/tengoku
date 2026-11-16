@@ -13,6 +13,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=and.4h9v.s13.c0f20bcc9d32 from=translated src=- shape=d313e6b6 vocab=0b113609
+-/
 theorem solution
     {T' T : Type u} [CommRing T'] [CommRing T] (π : T' →+* T) (hπ : Function.Surjective π)
     (hker : IsNilpotent (RingHom.ker π))

@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_AlgebraicCurve_Place_exists_of_valuationSu
 set_option autoImplicit false
 
 open AlgebraicCurve
+/--
+@isnad1 id=ex.2h4v.s8.1df3cbe41b92 from=translated src=- shape=1e332b03 vocab=c6de8de8
+-/
 theorem AlgebraicCurve.Place.exists_of_valuationSubring_of_isSeparable
     {K F : Type*} [Field K] [Field F] [Algebra K F] (x : F)
     [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F]

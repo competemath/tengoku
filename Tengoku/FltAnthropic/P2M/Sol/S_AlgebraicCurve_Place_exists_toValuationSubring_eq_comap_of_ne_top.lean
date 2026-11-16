@@ -186,6 +186,9 @@ private theorem _root_.AlgebraicCurve.Place.comapRamIdx_dvd_ord {f : F} (hf : f 
 
 export _root_.AlgebraicCurve.Place (comapRamIdx_dvd_ord)
 
+/--
+@isnad1 id=irreduci.4h5v.s8.4e63e38d76e7 from=translated src=- shape=32442221 vocab=e41f5bd0
+-/
 theorem irreducible_mk_comap' {g : F} (hg0 : g ≠ 0)
     (hmem : g ∈ w.toValuationSubring.comap (algebraMap F F'))
     (hge : w.ord (algebraMap F F' g) = comapRamIdx (F := F) w) :
@@ -221,6 +224,9 @@ theorem irreducible_mk_comap' {g : F} (hg0 : g ≠ 0)
     have h2 := w.comapRamIdx_le_ord (F := F) hb0 hbpos
     omega
 
+/--
+@isnad1 id=isprinci.1h4v.s7.a661cf57c99a from=translated src=- shape=b95acfeb vocab=e50ea9d9
+-/
 theorem isPrincipalIdealRing_comap' :
     IsPrincipalIdealRing (w.toValuationSubring.comap (algebraMap F F')) := by
   obtain ⟨g, hg0, hge⟩ := w.exists_ord_eq_comapRamIdx (F := F) hne
@@ -275,6 +281,9 @@ end AlgebraicCurve
 end
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_exists_toValuationSubring_eq_comap_of_ne_top.AlgebraicCurve in
+/--
+@isnad1 id=ex.2h6v.s8.183b2f4adcee from=translated src=- shape=8ed078cd vocab=4aaa2b56
+-/
 theorem solution
     {K F K' F' : Type*} [Field K] [Field F] [Field K'] [Field F'] [Algebra K F] [Algebra K' F']
     (ι : F →+* F') (w : Place K' F')

@@ -15,6 +15,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry AlgebraicCurve
 
+/--
+@isnad1 id=not.1h3v.s6.666ed4b1ffa3 from=translated src=- shape=deb90576 vocab=99b09de7
+-/
 theorem solution
     (k : Type u) [Field k] [IsAlgClosed k] {C : Scheme.{u}} (c : C ⟶ Spec (CommRingCat.of k))
     [IsIntegral C] [IsProper c]

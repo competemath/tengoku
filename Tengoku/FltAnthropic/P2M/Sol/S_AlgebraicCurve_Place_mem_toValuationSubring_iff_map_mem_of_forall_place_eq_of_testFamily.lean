@@ -13,6 +13,9 @@ open AlgebraicCurve
 
 namespace GReadAux
 
+/--
+@isnad1 id=iff.0h3v.s6.f55dfce2d7c7 from=translated src=- shape=d5532793 vocab=4a90bfc4
+-/
 theorem mem_nonunits_iff_mem_and {L : Type*} [Field L] (B : ValuationSubring L) (y : L) :
     y ∈ B.nonunits ↔ y ∈ B ∧ (y = 0 ∨ y⁻¹ ∉ B) := by
   constructor
@@ -48,6 +51,9 @@ theorem mem_nonunits_iff_mem_and {L : Type*} [Field L] (B : ValuationSubring L) 
 
 end GReadAux
 
+/--
+@isnad1 id=iff.4h9v.s10.814b76984c95 from=translated src=- shape=9e1ea3d3 vocab=a4e44653
+-/
 theorem solution
     {K F E : Type*} [Field K] [Field F] [Field E] [Algebra K F] [Algebra K E]
     (x : F) [FiniteDimensional ↥(IntermediateField.adjoin K ({x} : Set F)) F]

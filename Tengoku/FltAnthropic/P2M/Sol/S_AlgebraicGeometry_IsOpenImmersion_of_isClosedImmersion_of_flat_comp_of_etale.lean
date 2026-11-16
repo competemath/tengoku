@@ -11,6 +11,9 @@ open CategoryTheory AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=and.0h5v.s6.6c1a10681fb4 from=translated src=- shape=921ae4d7 vocab=a848906b
+-/
 theorem solution
     {Z X Y : Scheme.{u}} (i : Z ⟶ X) (g : X ⟶ Y) [IsClosedImmersion i] [Etale g]
     [Flat (i ≫ g)] [LocallyOfFinitePresentation (i ≫ g)] :

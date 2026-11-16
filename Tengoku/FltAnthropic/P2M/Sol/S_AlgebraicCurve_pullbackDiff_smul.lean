@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open AlgebraicCurve in
 
+/--
+@isnad1 id=eq.0h6v.s9.753cf1e170ab from=translated src=- shape=7a8cb416 vocab=2fccf99c
+-/
 theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] (φ : F →ₐ[K] F') (g : F) (ω : Ω[F⁄K]) :
     pullbackDiff φ (g • ω) = φ g • pullbackDiff φ ω := by
   letI : Algebra F F' := φ.toRingHom.toAlgebra

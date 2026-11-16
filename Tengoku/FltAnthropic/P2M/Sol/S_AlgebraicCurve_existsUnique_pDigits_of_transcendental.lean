@@ -392,6 +392,9 @@ private theorem pDigits_existsUnique_of_transcendental {K M : Type*} [Field K] [
 
 end AlgebraicCurve.PthPowerIndex
 
+/--
+@isnad1 id=existsun.2h5v.s8.f58016b57013 from=translated src=- shape=3dcfe51b vocab=faad602b
+-/
 theorem solution {K M : Type*} [Field K] [Field M] [Algebra K M]
     [PerfectField K] (p : ℕ) [hp : Fact p.Prime] [CharP K p] (t : M) (htr : Transcendental K t)
     [FiniteDimensional (IntermediateField.adjoin K ({t} : Set M)) M] (htp : ∀ a : M, a ^ p ≠ t)

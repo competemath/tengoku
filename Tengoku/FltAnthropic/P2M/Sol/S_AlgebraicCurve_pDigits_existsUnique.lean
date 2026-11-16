@@ -60,6 +60,9 @@ private theorem pDigits_existsUnique_impl [AlgebraicCurve.IsCurveOver K F] (p : 
 
 end AlgebraicCurve
 
+/--
+@isnad1 id=existsun.1h6v.s9.8f3396550b16 from=translated src=- shape=9a906cbe vocab=c4792185
+-/
 theorem solution {K : Type u} {F : Type v} [Field K] [Field F]
     [Algebra K F] [AlgebraicCurve.IsCurveOver K F] (p : ℕ) [Fact p.Prime] [CharP K p]
     [PerfectField K] (x : F) [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F]

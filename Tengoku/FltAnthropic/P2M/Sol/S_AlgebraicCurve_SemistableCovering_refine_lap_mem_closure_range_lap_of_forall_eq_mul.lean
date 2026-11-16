@@ -18,6 +18,9 @@ def lapOf {V E : Type*} [Fintype E] [DecidableEq V] (ends : E → V × V) : V �
 def seg {V E : Type*} [DecidableEq V] (ends : E → V × V) (ε : E) : V → ℤ :=
   (Pi.single (ends ε).1 1 : V → ℤ) - (Pi.single (ends ε).2 1 : V → ℤ)
 
+/--
+@isnad1 id=eq.0h4v.s7.ef797e0a8717 from=translated src=- shape=9aa139f8 vocab=62f86492
+-/
 theorem lapOf_apply_eq_sum_seg {V E : Type*} [Fintype E] [DecidableEq V] (ends : E → V × V) (u : V) :
     lapOf ends u = ∑ ε, ((if (ends ε).1 = u then (1 : ℤ) else 0) - (if (ends ε).2 = u then (1 : ℤ) else 0)) •
       seg ends ε := by
@@ -29,6 +32,9 @@ theorem lapOf_apply_eq_sum_seg {V E : Type*} [Fintype E] [DecidableEq V] (ends :
   · rw [ite_eq_right hp, ite_eq_left hq, ite_eq_right hp, ite_eq_left hq, ← hq]; simp [neg_sub]
   · rw [ite_eq_right hp, ite_eq_right hq, ite_eq_right hp, ite_eq_right hq]; simp
 
+/--
+@isnad1 id=eq.0h4v.s7.dd066ca25bc4 from=translated src=- shape=ad7418d9 vocab=86f66d94
+-/
 theorem sum_smul_lapOf {V E : Type*} [Fintype V] [Fintype E] [DecidableEq V] (ends : E → V × V) (τ : V → ℤ) :
     ∑ u, τ u • lapOf ends u = ∑ ε, (τ (ends ε).1 - τ (ends ε).2) • seg ends ε := by
   unfold lapOf
@@ -41,10 +47,16 @@ theorem sum_smul_lapOf {V E : Type*} [Fintype V] [Fintype E] [DecidableEq V] (en
   unfold seg
   rw [← neg_sub (Pi.single (ends ε).1 1 : V → ℤ) (Pi.single (ends ε).2 1), smul_neg, ← sub_eq_add_neg, ← sub_smul]
 
+/--
+@isnad1 id=mem.0h4v.s7.1de3aa957739 from=translated src=- shape=2a54aad8 vocab=9954ae40
+-/
 theorem sum_smul_lapOf_mem {V E : Type*} [Fintype V] [Fintype E] [DecidableEq V] (ends : E → V × V) (τ : V → ℤ) :
     ∑ u, τ u • lapOf ends u ∈ AddSubgroup.closure (Set.range (lapOf ends)) :=
   AddSubgroup.sum_mem _ fun u _ => AddSubgroup.zsmul_mem _ (AddSubgroup.subset_closure (Set.mem_range_self u)) _
 
+/--
+@isnad1 id=eq.0h4v.s7.148283969647 from=translated src=- shape=97f199d5 vocab=2ee8d4d9
+-/
 theorem sum_range_single_sub_single {V : Type*} [DecidableEq V] (f : ℕ → V) (a M : ℕ) :
     ∑ j ∈ Finset.range M, ((Pi.single (f (a + j)) 1 : V → ℤ) - Pi.single (f (a + j + 1)) 1) =
       (Pi.single (f a) 1 : V → ℤ) - Pi.single (f (a + M)) 1 := by
@@ -54,6 +66,9 @@ theorem sum_range_single_sub_single {V : Type*} [DecidableEq V] (f : ℕ → V) 
 end RefineLap
 
 open RefineLap in
+/--
+@isnad1 id=other.3h7v.s12.9e11102f4fa2 from=translated src=- shape=704defd2 vocab=456dc0b5
+-/
 theorem solution
     (n m : ℕ) (src tgt : Fin m → Fin n) (W : Fin m → ℕ) (hW : ∀ e, 0 < W e) (M : ℕ) (hM : 0 < M)
     (W' : Fin m → ℕ) (hW' : ∀ e, W' e = M * W e) :

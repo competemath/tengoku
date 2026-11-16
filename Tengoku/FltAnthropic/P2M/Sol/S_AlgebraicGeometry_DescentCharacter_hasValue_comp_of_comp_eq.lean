@@ -18,12 +18,18 @@ namespace KcDescCharHom
 
 variable {X Y : Scheme.{u}} {R : Type u} [CommRing R]
 
+/--
+@isnad1 id=eq.1h5v.s7.21feeb80e6a8 from=translated src=- shape=f40cce6d vocab=a08a0a3c
+-/
 theorem pullbackCongr_hom_app {g g' : X ⟶ Y} (e : g = g') (M : Y.Modules) :
     (Scheme.Modules.pullbackCongr e).hom.app M =
       eqToHom (show (Scheme.Modules.pullback g).obj M = (Scheme.Modules.pullback g').obj M by rw [e]) := by
   subst e
   simp [Scheme.Modules.pullbackCongr]
 
+/--
+@isnad1 id=eq.0h6v.s10.4f30f32bfd47 from=translated src=- shape=8fe611fb vocab=d86dcb95
+-/
 theorem pullbackComp_comp_hom_app (T₁ T₂ : X ⟶ X) (q : X ⟶ Y) (M : Y.Modules) :
     (Scheme.Modules.pullbackComp (T₁ ≫ T₂) q).hom.app M =
       (Scheme.Modules.pullbackComp T₁ T₂).inv.app ((Scheme.Modules.pullback q).obj M) ≫
@@ -41,6 +47,9 @@ theorem pullbackComp_comp_hom_app (T₁ T₂ : X ⟶ X) (q : X ⟶ Y) (M : Y.Mod
   dsimp only [Functor.comp_obj]
   simp only [Category.assoc]
 
+/--
+@isnad1 id=eq.1h7v.s9.edcfa50b5f0b from=translated src=- shape=8a083b7a vocab=601de1ef
+-/
 @[reassoc]
 theorem pullbackComp_congr {X' : Scheme.{u}} (f : X ⟶ X') {g g' : X' ⟶ Y} (e : g = g') (M : Y.Modules) :
     (Scheme.Modules.pullback f).map ((Scheme.Modules.pullbackCongr e).hom.app M) ≫
@@ -50,6 +59,9 @@ theorem pullbackComp_congr {X' : Scheme.{u}} (f : X ⟶ X') {g g' : X' ⟶ Y} (e
   subst e
   simp [Scheme.Modules.pullbackCongr]
 
+/--
+@isnad1 id=eq.3h6v.s9.7c6f14c8bdf1 from=translated src=- shape=b52be3ee vocab=b6cf6a24
+-/
 theorem transportIso_comp_hom {T₁ T₂ : X ⟶ X} {q : X ⟶ Y} (h₁ : T₁ ≫ q = q) (h₂ : T₂ ≫ q = q)
     (h₁₂ : (T₁ ≫ T₂) ≫ q = q) (M : Y.Modules) :
     (transportIso h₁₂ M).hom =
@@ -82,6 +94,9 @@ theorem transportIso_comp_hom {T₁ T₂ : X ⟶ X} {q : X ⟶ Y} (h₁ : T₁ �
   try dsimp only [Functor.comp_obj] at key
   rw [key]
 
+/--
+@isnad1 id=eq.3h6v.s9.02e88b41c571 from=translated src=- shape=bc3db761 vocab=b6cf6a24
+-/
 theorem transportIso_comp_inv {T₁ T₂ : X ⟶ X} {q : X ⟶ Y} (h₁ : T₁ ≫ q = q) (h₂ : T₂ ≫ q = q)
     (h₁₂ : (T₁ ≫ T₂) ≫ q = q) (M : Y.Modules) :
     (transportIso h₁₂ M).inv =
@@ -93,6 +108,9 @@ theorem transportIso_comp_inv {T₁ T₂ : X ⟶ X} {q : X ⟶ Y} (h₁ : T₁ �
   erw [Iso.hom_inv_id_app_assoc]
   rw [← Functor.map_comp_assoc, Iso.inv_hom_id, CategoryTheory.Functor.map_id, Category.id_comp, Iso.inv_hom_id]
 
+/--
+@isnad1 id=eq.3h8v.s7.710fe754b237 from=translated src=- shape=7283cda1 vocab=a0950c5a
+-/
 theorem translateIso_comp {T₁ T₂ : X ⟶ X} {q : X ⟶ Y} (h₁ : T₁ ≫ q = q) (h₂ : T₂ ≫ q = q)
     (h₁₂ : (T₁ ≫ T₂) ≫ q = q) {N M : Y.Modules}
     (β : (Scheme.Modules.pullback q).obj N ≅ (Scheme.Modules.pullback q).obj M) :
@@ -109,6 +127,9 @@ theorem translateIso_comp {T₁ T₂ : X ⟶ X} {q : X ⟶ Y} (h₁ : T₁ ≫ q
   try dsimp only [Functor.comp_obj] at nat
   erw [← Category.assoc, ← nat, Category.assoc, Iso.hom_inv_id_app_assoc]
 
+/--
+@isnad1 id=eq.1h9v.s8.157739fded1d from=translated src=- shape=10f6534e vocab=8a023606
+-/
 theorem translateIso_trans {T : X ⟶ X} {q : X ⟶ Y} (h : T ≫ q = q) {N M P : Y.Modules}
     (β : (Scheme.Modules.pullback q).obj N ≅ (Scheme.Modules.pullback q).obj M)
     (β' : (Scheme.Modules.pullback q).obj M ≅ (Scheme.Modules.pullback q).obj P) :
@@ -116,18 +137,27 @@ theorem translateIso_trans {T : X ⟶ X} {q : X ⟶ Y} (h : T ≫ q = q) {N M P 
   ext : 1
   simp [translateIso, Functor.mapIso_trans]
 
+/--
+@isnad1 id=eq.1h7v.s7.2ef8ae4b644d from=translated src=- shape=f933ca24 vocab=4fe2bfdd
+-/
 theorem translateIso_eq {T : X ⟶ X} {q : X ⟶ Y} (h : T ≫ q = q) {N M : Y.Modules}
     (β : (Scheme.Modules.pullback q).obj N ≅ (Scheme.Modules.pullback q).obj M) :
     translateIso h β = β ≪≫ discrepancy h β := by
   ext : 1
   simp [discrepancy]
 
+/--
+@isnad1 id=isbasesc.2h8v.s6.af3748b73f68 from=translated src=- shape=3c59c54c vocab=68c3b71a
+-/
 theorem isBaseScalar_comp (f : X ⟶ Spec (CommRingCat.of R)) {M : X.Modules} {σ σ' : M ⟶ M} {c c' : R}
     (hσ : IsBaseScalar f σ c) (hσ' : IsBaseScalar f σ' c') : IsBaseScalar f (σ ≫ σ') (c * c') := by
   intro U s
   rw [Scheme.Modules.Hom.comp_app, CategoryTheory.comp_apply, hσ U s, Scheme.Modules.Hom.app_smul, hσ' U,
     smul_smul, baseSection_mul, mul_comm]
 
+/--
+@isnad1 id=isbasesc.1h8v.s6.a4723f8a281a from=translated src=- shape=d1e044ca vocab=72bbf91d
+-/
 theorem isBaseScalar_conj (f : X ⟶ Spec (CommRingCat.of R)) {M M' : X.Modules} (e : M ≅ M') {σ : M ⟶ M} {c : R}
     (hσ : IsBaseScalar f σ c) : IsBaseScalar f (e.inv ≫ σ ≫ e.hom) c := by
   intro U s
@@ -135,6 +165,9 @@ theorem isBaseScalar_conj (f : X ⟶ Spec (CommRingCat.of R)) {M M' : X.Modules}
     CategoryTheory.comp_apply, hσ U, Scheme.Modules.Hom.app_smul, ← CategoryTheory.comp_apply,
     ← Scheme.Modules.Hom.comp_app, e.inv_hom_id, Scheme.Modules.Hom.id_app, CategoryTheory.id_apply]
 
+/--
+@isnad1 id=isbasesc.2h7v.s6.b02b24e0fb8f from=translated src=- shape=e4f06ad1 vocab=a17259ac
+-/
 theorem isBaseScalar_pullback_map_self (f : X ⟶ Spec (CommRingCat.of R)) {T : X ⟶ X} (hT : T ≫ f = f)
     {M : X.Modules} {σ : M ⟶ M} {c : R} (hσ : IsBaseScalar f σ c) :
     IsBaseScalar f ((Scheme.Modules.pullback T).map σ) c := by
@@ -142,6 +175,9 @@ theorem isBaseScalar_pullback_map_self (f : X ⟶ Spec (CommRingCat.of R)) {T : 
     rw [hT, CommRingCat.ofHom_id, Spec.map_id, Category.comp_id]
   exact AlgebraicGeometry.DescentCharacter.isBaseScalar_pullback_map T f f (RingHom.id R) hg hσ
 
+/--
+@isnad1 id=hasvalue.6h12v.s8.f018d11ab8fb from=translated src=- shape=880c2ad6 vocab=48694d1b
+-/
 theorem hasValue_comp_of_comp_eq (f : X ⟶ Spec (CommRingCat.of R))
     {T₁ T₂ : X ⟶ X} {q : X ⟶ Y} (h₁ : T₁ ≫ q = q) (h₂ : T₂ ≫ q = q) (hT₁ : T₁ ≫ f = f)
     (h₁₂ : (T₁ ≫ T₂) ≫ q = q) {N M : Y.Modules}
@@ -165,6 +201,9 @@ theorem hasValue_comp_of_comp_eq (f : X ⟶ Spec (CommRingCat.of R))
 
 end KcDescCharHom
 
+/--
+@isnad1 id=hasvalue.6h12v.s8.f018d11ab8fb from=translated src=- shape=880c2ad6 vocab=48694d1b
+-/
 theorem solution
     {X Y : Scheme.{u}} {R : Type u} [CommRing R] (f : X ⟶ Spec (CommRingCat.of R))
     {T₁ T₂ : X ⟶ X} {q : X ⟶ Y} (h₁ : T₁ ≫ q = q) (h₂ : T₂ ≫ q = q) (hT₁ : T₁ ≫ f = f)

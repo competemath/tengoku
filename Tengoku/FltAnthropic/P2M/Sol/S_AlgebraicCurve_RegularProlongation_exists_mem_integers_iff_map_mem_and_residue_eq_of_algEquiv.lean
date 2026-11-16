@@ -19,6 +19,9 @@ variable {Fbar : Type*} [Field Fbar] [Algebra (ResidueField A) Fbar]
 def comapIntegers (R : RegularProlongation A F Fbar) (θ : F ≃ₐ[L] F) : ValuationSubring F :=
   R.integers.comap (θ : F →+* F)
 
+/--
+@isnad1 id=iff.0h7v.s8.fd38d7b11ff9 from=translated src=- shape=050e26d8 vocab=d0ba5e74
+-/
 theorem mem_comapIntegers (R : RegularProlongation A F Fbar) (θ : F ≃ₐ[L] F) (f : F) :
     f ∈ comapIntegers R θ ↔ θ f ∈ R.integers :=
   Iff.rfl
@@ -69,6 +72,9 @@ end RegProlongTransport
 open scoped _root_.P2MW.S_AlgebraicCurve_RegularProlongation_exists_mem_integers_iff_map_mem_and_residue_eq_of_algEquiv.RegProlongTransport
 
 open RegProlongTransport in
+/--
+@isnad1 id=ex.0h6v.s10.1ad97abb3cfe from=translated src=- shape=c25e0e02 vocab=20cfbb19
+-/
 theorem solution
     {L : Type*} [Field L] (A : ValuationSubring L)
     {F : Type*} [Field F] [Algebra L F]

@@ -22,6 +22,9 @@ section clone
 variable {A : Type u} [CommRing A] {K : Type u} [Field K] {L : Type u} [Field L]
   [Algebra A K] [Algebra K L] [Algebra A L] [IsScalarTower A K L]
 
+/--
+@isnad1 id=mem.3h6v.s10.b7602830d1c9 from=translated src=- shape=a0ea3d6a vocab=71f9f199
+-/
 theorem discr_smul_coord_mem_bot [FiniteDimensional K L] [Algebra.IsSeparable K L]
     (hcl : ∀ x : K, IsIntegral A x → x ∈ (⊥ : Subalgebra A K))
     {B : PowerBasis K L} (hint : IsIntegral A B.gen) {z : L} (hz : IsIntegral A z) (i : Fin B.dim) :
@@ -48,6 +51,9 @@ theorem discr_smul_coord_mem_bot [FiniteDimensional K L] [Algebra.IsSeparable K 
 
 end clone
 
+/--
+@isnad1 id=mem.1h4v.s10.3752aa306018 from=translated src=- shape=bc9549b3 vocab=6a46581c
+-/
 theorem mem_bot_of_isIntegral_chartAlg (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F] (S : Set F)
     (x : F) (hx : IsIntegral (chartAlg R F S) x) : x ∈ (⊥ : Subalgebra (chartAlg R F S) F) := by
   letI : Algebra (Algebra.adjoin R S) (chartAlg R F S) := (Subalgebra.inclusion (adjoin_le_chartAlg R F S)).toRingHom.toAlgebra
@@ -61,6 +67,9 @@ end W4R
 
 open AlgebraicCurve.TwoChartIntegralModel in
 
+/--
+@isnad1 id=and.2h5v.s10.f331552f12f6 from=translated src=- shape=31b88047 vocab=3789b6e5
+-/
 theorem solution
     (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F]
     (F' : Type u) [Field F'] [Algebra F F'] [Algebra R F'] [IsScalarTower R F F']

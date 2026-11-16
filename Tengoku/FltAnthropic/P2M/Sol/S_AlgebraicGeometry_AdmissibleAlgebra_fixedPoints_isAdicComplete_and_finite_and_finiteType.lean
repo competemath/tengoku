@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 namespace ADMINV
 
+/--
+@isnad1 id=ex.1h7v.s12.6ca68cf1eda6 from=translated src=- shape=0cb36251 vocab=0264e5ab
+-/
 theorem exists_mvPolynomial_sub_mem_pow
     (𝒪 : Type) [CommRing 𝒪] (R : Type) [CommRing R] [Algebra 𝒪 R] (ϖ : 𝒪) {m : ℕ} (x : Fin m → R)
     (hgen : Algebra.adjoin 𝒪 (Set.range fun i => Ideal.Quotient.mk (Ideal.span {algebraMap 𝒪 R ϖ}) (x i)) = ⊤)
@@ -40,6 +43,9 @@ theorem exists_mvPolynomial_sub_mem_pow
     rw [this, pow_succ, Ideal.span_singleton_pow, mul_comm (s - MvPolynomial.aeval x Q)]
     exact Ideal.mul_mem_mul (Ideal.mem_span_singleton_self _) hQ
 
+/--
+@isnad1 id=ex.4h6v.s9.7edec3afebdc from=translated src=- shape=73d8ed18 vocab=7957d403
+-/
 theorem exists_repr_of_forall_exists_repr_add_mul
     (R : Type) [CommRing R] (ϖ : R) (hc : IsAdicComplete (Ideal.span {ϖ}) R) (A : Subring R)
     (hAclosed : ∀ (f : ℕ → R) (L : R), (∀ n, f n ∈ A) →
@@ -106,6 +112,9 @@ theorem exists_repr_of_forall_exists_repr_add_mul
 
 end ADMINV
 
+/--
+@isnad1 id=and.6h4v.s12.0d5e6fc9ad1e from=translated src=- shape=a6870bb9 vocab=7b4e7146
+-/
 theorem solution
     (𝒪 : Type) [CommRing 𝒪] [IsDomain 𝒪] (hdvr : IsDiscreteValuationRing 𝒪)
     (π : 𝒪) (hπ : Irreducible π) (hcomplete : IsAdicComplete (Ideal.span {π}) 𝒪)

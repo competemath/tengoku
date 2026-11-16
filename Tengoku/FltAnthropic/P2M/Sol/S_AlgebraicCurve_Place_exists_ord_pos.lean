@@ -33,6 +33,9 @@ end AlgebraicCurve
 end
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_exists_ord_pos.AlgebraicCurve in
+/--
+@isnad1 id=ex.0h3v.s6.47e22629e298 from=translated src=- shape=7925cc4f vocab=3e8c36e2
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) :
     ∃ f : F, f ≠ 0 ∧ 0 < v.ord f :=
   AlgebraicCurve.Place.rowMain v

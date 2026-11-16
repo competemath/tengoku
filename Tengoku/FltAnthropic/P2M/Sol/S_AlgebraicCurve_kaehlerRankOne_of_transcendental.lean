@@ -20,6 +20,9 @@ variable (K : Type*) [Field K]
 def kaehlerPolynomialBasis : Basis Unit K[X] Ω[K[X]⁄K] :=
   (Basis.singleton Unit K[X]).map (KaehlerDifferential.polynomialEquiv K).symm
 
+/--
+@isnad1 id=formally.0h1v.s6.32fc56199da4 from=translated src=- shape=aa7e0af4 vocab=3baca019
+-/
 scoped instance instFormallyEtalePolynomialRatFunc : Algebra.FormallyEtale K[X] (RatFunc K) :=
   Algebra.FormallyEtale.of_isLocalization (nonZeroDivisors K[X])
 
@@ -35,6 +38,9 @@ def kaehlerOfRatFuncTowerBasis [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc
   ((kaehlerRatFuncBasis K).baseChange F).map
     (KaehlerDifferential.tensorKaehlerEquivOfFormallyEtale K (RatFunc K) F)
 
+/--
+@isnad1 id=and.0h2v.s9.09f107e977ee from=translated src=- shape=05583604 vocab=9c8ff557
+-/
 theorem kaehlerRankOne_of_ratFuncTower [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F]
     [Algebra.IsSeparable (RatFunc K) F] : Module.Free F Ω[F⁄K] ∧ Module.finrank F Ω[F⁄K] = 1 :=
   ⟨Module.Free.of_basis (kaehlerOfRatFuncTowerBasis K),
@@ -42,6 +48,9 @@ theorem kaehlerRankOne_of_ratFuncTower [Algebra (RatFunc K) F] [IsScalarTower K 
 
 variable {K}
 
+/--
+@isnad1 id=and.2h3v.s8.8bbfc132a90a from=translated src=- shape=99ab1683 vocab=605f92d7
+-/
 theorem kaehlerRankOne_of_transcendental {x : F} (htr : Transcendental K x)
     (hsep : Algebra.IsSeparable K⟮x⟯ F) : Module.Free F Ω[F⁄K] ∧ Module.finrank F Ω[F⁄K] = 1 := by
   haveI := hsep
@@ -68,6 +77,9 @@ open scoped _root_.P2MW.S_AlgebraicCurve_kaehlerRankOne_of_transcendental.S12Kae
 end
 open scoped _root_.P2MW.S_AlgebraicCurve_kaehlerRankOne_of_transcendental.S12Kaehler
 
+/--
+@isnad1 id=and.2h3v.s8.5a4f19d3132c from=translated src=- shape=a46d7d63 vocab=605f92d7
+-/
 theorem solution
     {K F : Type*} [Field K] [Field F] [Algebra K F]
     {x : F} (htr : Transcendental K x)

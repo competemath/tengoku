@@ -47,9 +47,15 @@ private abbrev _root_.AlgebraicCurve.Place.restrictSubringHom : (w.restrict F).t
   restrictInclusion F w
 
 export _root_.AlgebraicCurve.Place (restrictSubringHom)
+/--
+@isnad1 id=eq.0h5v.s9.5d180e069cf4 from=translated src=- shape=b2035977 vocab=acd94b43
+-/
 theorem coe_restrictSubringHom (x : (w.restrict F).toValuationSubring) :
     (w.restrictSubringHom x : F') = algebraMap F F' (x : F) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.3dba513e621a from=translated src=- shape=5cb10a00 vocab=e2b715a0
+-/
 theorem algebraMap_residueField_residue (x : (w.restrict F).toValuationSubring) :
     algebraMap (w.restrict F).ResidueField w.ResidueField
         (IsLocalRing.residue _ x)
@@ -141,6 +147,9 @@ end
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_module_finite_residueField_restrict.AlgebraicCurve in
 
+/--
+@isnad1 id=finite.0h4v.s9.c052130b6870 from=translated src=- shape=7238d819 vocab=582d082c
+-/
 theorem solution (K F F' : Type*)
     [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F']
     [FiniteDimensional F F'] (w : Place K F') :

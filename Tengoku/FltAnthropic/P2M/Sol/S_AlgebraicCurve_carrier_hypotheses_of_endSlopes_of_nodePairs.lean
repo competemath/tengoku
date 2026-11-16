@@ -16,6 +16,9 @@ namespace PinCoreH
 open IsLocalRing
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
+/--
+@isnad1 id=mem.2h4v.s6.8d59929a2b9d from=translated src=- shape=bd53d706 vocab=d89c618f
+-/
 theorem mem_of_ord_nonneg' (v : Place K F) {f : F} (hf : f ≠ 0) (h : 0 ≤ v.ord f) :
     f ∈ v.toValuationSubring := by
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
@@ -24,6 +27,9 @@ theorem mem_of_ord_nonneg' (v : Place K F) {f : F} (hf : f ≠ 0) (h : 0 ≤ v.o
     zpow_natCast]
   exact mul_mem (u : v.toValuationSubring).2 (pow_mem (π : v.toValuationSubring).2 _)
 
+/--
+@isnad1 id=hasvalue.2h4v.s6.4790297e2eb9 from=translated src=- shape=725c8c42 vocab=ccd7753a
+-/
 theorem hasValue_zero_of_ord_pos (v : Place K F) {g : F} (hg : g ≠ 0) (h : 0 < v.ord g) : v.HasValue g 0 := by
   have hmem : g ∈ v.toValuationSubring := mem_of_ord_nonneg' v hg h.le
   refine ⟨hmem, ?_⟩
@@ -44,6 +50,9 @@ end PinCoreH
 
 open Classical in
 
+/--
+@isnad1 id=and.22h14v.s11.6b1f442cb8a4 from=translated src=- shape=07a9c1a5 vocab=965f05e9
+-/
 theorem solution
     {k F : Type*} [Field k] [Field F] [Algebra k F]
     (S : Finset (Place k F × Place k F)) (hSne : S.Nonempty)

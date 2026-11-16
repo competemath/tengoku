@@ -22,10 +22,19 @@ section Basic
 
 variable (B : Subalgebra A T) (y : Ideal ↥B) [hy : y.IsPrime]
 
+/--
+@isnad1 id=not.0h4v.s9.68fe6579e527 from=translated src=- shape=9bf690c2 vocab=38c64cd7
+-/
 theorem one_notMem : (1 : ↥B) ∉ y := (Ideal.ne_top_iff_one y).mp hy.ne_top
 
+/--
+@isnad1 id=mem.0h4v.s7.1550e9c3310b from=translated src=- shape=e6904837 vocab=d2e1cf97
+-/
 theorem zero_mem_M : (0 : T) ∈ M B y := ⟨0, 1, one_notMem B y, y.zero_mem, by simp⟩
 
+/--
+@isnad1 id=iff.0h5v.s9.721755a3ddd1 from=translated src=- shape=19d870cb vocab=9a92a4ce
+-/
 theorem coe_mem_M_iff (b : ↥B) : (b : T) ∈ M B y ↔ b ∈ y := by
   constructor
   · rintro ⟨g, h, hh, hg, e⟩
@@ -34,6 +43,9 @@ theorem coe_mem_M_iff (b : ↥B) : (b : T) ∈ M B y ↔ b ∈ y := by
     exact (hy.mem_or_mem hbh).resolve_right hh
   · intro hb; exact ⟨b, 1, one_notMem B y, hb, by simp⟩
 
+/--
+@isnad1 id=mem.2h6v.s7.02b938831a94 from=translated src=- shape=aeba4d12 vocab=c76df33b
+-/
 theorem mul_mem_M {f₁ f₂ : T} (h₁ : f₁ ∈ L B y) (h₂ : f₂ ∈ M B y) : f₁ * f₂ ∈ M B y := by
   obtain ⟨g₁, k₁, hk₁, e₁⟩ := h₁
   obtain ⟨g₂, k₂, hk₂, hg₂, e₂⟩ := h₂
@@ -42,6 +54,9 @@ theorem mul_mem_M {f₁ f₂ : T} (h₁ : f₁ ∈ L B y) (h₂ : f₂ ∈ M B y
   calc f₁ * f₂ * ((k₁ : T) * k₂) = (f₁ * k₁) * (f₂ * k₂) := by ring
     _ = g₁ * g₂ := by rw [e₁, e₂]
 
+/--
+@isnad1 id=mem.2h6v.s7.0fe766ddaad9 from=translated src=- shape=e4cc477e vocab=3b0d575e
+-/
 theorem add_mem_M {f₁ f₂ : T} (h₁ : f₁ ∈ M B y) (h₂ : f₂ ∈ M B y) : f₁ + f₂ ∈ M B y := by
   obtain ⟨g₁, k₁, hk₁, hg₁, e₁⟩ := h₁
   obtain ⟨g₂, k₂, hk₂, hg₂, e₂⟩ := h₂
@@ -51,6 +66,9 @@ theorem add_mem_M {f₁ f₂ : T} (h₁ : f₁ ∈ M B y) (h₂ : f₂ ∈ M B y
   calc (f₁ + f₂) * ((k₁ : T) * k₂) = (f₁ * k₁) * k₂ + (f₂ * k₂) * k₁ := by ring
     _ = g₁ * k₂ + g₂ * k₁ := by rw [e₁, e₂]
 
+/--
+@isnad1 id=mem.2h5v.s7.6365b9ffc8ea from=translated src=- shape=4ac6c1ef vocab=cb6b491a
+-/
 theorem inv_mem_L_of_notMem_M {f : T} (hf : f ∈ L B y) (hfM : f ∉ M B y) : f⁻¹ ∈ L B y := by
   obtain ⟨g, k, hk, e⟩ := hf
   have hg : g ∉ y := fun hg => hfM ⟨g, k, hk, hg, e⟩
@@ -60,6 +78,9 @@ theorem inv_mem_L_of_notMem_M {f : T} (hf : f ∈ L B y) (hfM : f ∉ M B y) : f
     rw [show g = 0 from Subtype.ext (by simpa using e.symm)]; exact y.zero_mem
   rw [← e]; field_simp
 
+/--
+@isnad1 id=not.0h4v.s7.65eed550ddd5 from=translated src=- shape=def70373 vocab=d2e1cf97
+-/
 theorem one_notMem_M : (1 : T) ∉ M B y := by
   intro h
   have := (coe_mem_M_iff B y 1).mp (by simpa using h)
@@ -91,8 +112,14 @@ def contract : Ideal ↥B' where
     simp only [smul_eq_mul, Set.mem_ofPred_eq, Subalgebra.coe_mul] at hx ⊢
     exact mul_mem_M B y (hB' c) hx
 
+/--
+@isnad1 id=iff.1h6v.s9.05daa54c0f50 from=translated src=- shape=d59fd195 vocab=07b64004
+-/
 theorem mem_contract_iff (b' : ↥B') : b' ∈ contract B B' y hB' ↔ (b' : T) ∈ M B y := Iff.rfl
 
+/--
+@isnad1 id=isprime.1h5v.s8.1d19fe46cb5f from=translated src=- shape=0122df4c vocab=6887976e
+-/
 scoped instance contract_isPrime : (contract B B' y hB').IsPrime := by
   refine ⟨?_, ?_⟩
   · rw [Ideal.ne_top_iff_one, mem_contract_iff]
@@ -129,12 +156,21 @@ def resInv : ↥B →+* ↥B where
 
 def transport (𝔶 : Ideal ↥B) : Ideal ↥B := 𝔶.comap (resInv B σ hσ')
 
+/--
+@isnad1 id=iff.1h6v.s10.d8845b97b671 from=translated src=- shape=78872145 vocab=73398777
+-/
 theorem mem_transport_iff (𝔶 : Ideal ↥B) (b : ↥B) :
     b ∈ transport B σ hσ' 𝔶 ↔ (⟨σ.symm b, hσ' b⟩ : ↥B) ∈ 𝔶 := Iff.rfl
 
+/--
+@isnad1 id=isprime.1h5v.s8.108dcbe53a65 from=translated src=- shape=78a0a3d7 vocab=9a828b4a
+-/
 scoped instance transport_isPrime (𝔶 : Ideal ↥B) [𝔶.IsPrime] : (transport B σ hσ' 𝔶).IsPrime :=
   Ideal.comap_isPrime _ _
 
+/--
+@isnad1 id=iff.2h6v.s9.7283b3f19d2c from=translated src=- shape=13fa5f61 vocab=9b027339
+-/
 theorem mem_L_transport_iff (hσ : ∀ b : ↥B, σ b ∈ B) (𝔶 : Ideal ↥B) (f : T) :
     f ∈ L B (transport B σ hσ' 𝔶) ↔ σ.symm f ∈ L B 𝔶 := by
   constructor
@@ -150,6 +186,9 @@ theorem mem_L_transport_iff (hσ : ∀ b : ↥B, σ b ∈ B) (𝔶 : Ideal ↥B)
     · show f * σ (k : T) = σ (g : T)
       rw [← e, map_mul, AlgEquiv.apply_symm_apply]
 
+/--
+@isnad1 id=iff.2h6v.s9.173f0742a590 from=translated src=- shape=13fa5f61 vocab=97ed720b
+-/
 theorem mem_M_transport_iff (hσ : ∀ b : ↥B, σ b ∈ B) (𝔶 : Ideal ↥B) (f : T) :
     f ∈ M B (transport B σ hσ' 𝔶) ↔ σ.symm f ∈ M B 𝔶 := by
   constructor
@@ -175,6 +214,9 @@ open scoped _root_.P2MW.S_AlgebraicCurve_TwoChartIntegralModel_exists_bijective_
 
 open CuspTransportAux AlgebraicCurve.TwoChartIntegralModel in
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=ex.1h4v.s13.3c41fc962ff5 from=translated src=- shape=78da0269 vocab=cdd3de7d
+-/
 theorem solution
     {A : Type} [CommRing A] {T : Type} [Field T] [Algebra A T] (j : T)
     (σ : T ≃ₐ[A] T)

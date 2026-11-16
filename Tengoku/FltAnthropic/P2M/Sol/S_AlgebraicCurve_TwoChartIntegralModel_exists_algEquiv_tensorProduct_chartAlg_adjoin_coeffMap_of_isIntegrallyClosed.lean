@@ -16,6 +16,9 @@ set_option synthInstance.maxHeartbeats 1600000
 open scoped TensorProduct
 open AlgebraicCurve.TwoChartIntegralModel
 
+/--
+@isnad1 id=ex.3h9v.s18.717131b701a3 from=translated src=- shape=034f9487 vocab=e4a1e947
+-/
 theorem solution
     (R : Type) [CommRing R] [IsDomain R]
     (K₀ : Type) [Field K₀] [Algebra R K₀] [IsFractionRing R K₀]

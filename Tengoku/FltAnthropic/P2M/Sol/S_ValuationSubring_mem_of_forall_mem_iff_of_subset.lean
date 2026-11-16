@@ -10,6 +10,9 @@ set_option maxHeartbeats 8000000
 
 open IsLocalRing
 
+/--
+@isnad1 id=mem.2h5v.s7.aa53d220a817 from=translated src=- shape=7fc53470 vocab=2fe6e4a1
+-/
 theorem solution
     {F : Type*} [Field F] (K : Subfield F) (O V : ValuationSubring F)
     (hKV : ∀ e ∈ K, e ∈ O → e ∈ V) (g : F)

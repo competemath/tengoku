@@ -18,6 +18,9 @@ noncomputable section
 
 namespace GenRed8d5d971b
 
+/--
+@isnad1 id=isreduce.0h3v.s8.da091f2ce9b1 from=translated src=- shape=cfd2c647 vocab=7218d1e4
+-/
 theorem isReduced_tensorProduct_of_isSeparable (K Ω L : Type*) [Field K] [Field Ω] [Field L]
     [Algebra K Ω] [Algebra K L] [Algebra.IsSeparable K L] : _root_.IsReduced (Ω ⊗[K] L) := by
   refine IsReduced.tensorProduct_of_flat_of_forall_fg fun B hB => ?_
@@ -50,6 +53,9 @@ theorem isReduced_tensorProduct_of_isSeparable (K Ω L : Type*) [Field K] [Field
   exact isReduced_of_injective (Algebra.TensorProduct.map (AlgHom.id K Ω) f)
     (Module.Flat.lTensor_preserves_injective_linearMap (M := Ω) f.toLinearMap hf)
 
+/--
+@isnad1 id=isdomain.0h5v.s7.71f9afdeee06 from=translated src=- shape=cd2527f0 vocab=03f8dc26
+-/
 theorem isDomain_tensorProduct_of_algEquiv_mvPolynomial (K E P : Type*) [Field K] [Field E]
     [Algebra K E] [CommRing P] [Algebra K P] {ι : Type*} (e : P ≃ₐ[K] MvPolynomial ι K) :
     IsDomain (P ⊗[K] E) := by
@@ -59,6 +65,9 @@ theorem isDomain_tensorProduct_of_algEquiv_mvPolynomial (K E P : Type*) [Field K
       (MvPolynomial.algebraTensorAlgEquiv K E).toRingEquiv
   exact Function.Injective.isDomain e₁ e₁.injective
 
+/--
+@isnad1 id=isdomain.0h4v.s8.906a21370126 from=translated src=- shape=178ce762 vocab=a778600d
+-/
 theorem isDomain_tensorProduct_of_isFractionRing (K E P K₁ : Type*) [Field K] [Field E]
     [Algebra K E] [CommRing P] [IsDomain P] [Algebra K P] [Field K₁] [Algebra K K₁] [Algebra P K₁]
     [IsScalarTower K P K₁] [IsFractionRing P K₁] [IsDomain (P ⊗[K] E)] :
@@ -85,6 +94,9 @@ theorem isDomain_tensorProduct_of_isFractionRing (K E P K₁ : Type*) [Field K] 
 
 open scoped IntermediateField.algebraAdjoinAdjoin in
 
+/--
+@isnad1 id=isdomain.1h5v.s9.aa900f2dc014 from=translated src=- shape=d14c5c8b vocab=98fc1093
+-/
 theorem isDomain_adjoin_tensorProduct (K E L : Type*) [Field K] [Field E] [Field L] [Algebra K E]
     [Algebra K L] {ι : Type*} {v : ι → L} (hv : AlgebraicIndependent K v) :
     IsDomain ((IntermediateField.adjoin K (Set.range v)) ⊗[K] E) := by
@@ -92,6 +104,9 @@ theorem isDomain_adjoin_tensorProduct (K E L : Type*) [Field K] [Field E] [Field
     isDomain_tensorProduct_of_algEquiv_mvPolynomial K E _ hv.aevalEquiv.symm
   exact isDomain_tensorProduct_of_isFractionRing K E (Algebra.adjoin K (Set.range v)) _
 
+/--
+@isnad1 id=isreduce.1h6v.s10.6c6ee63055be from=translated src=- shape=da7ef913 vocab=b2eb1b47
+-/
 theorem isReduced_tensorProduct_of_tower (K K₁ E L Ω : Type*) [Field K] [Field K₁] [Field E]
     [Field L] [Field Ω] [Algebra K K₁] [Algebra K E] [Algebra K L] [Algebra K₁ L]
     [IsScalarTower K K₁ L] [Algebra.IsSeparable K₁ L] [Algebra K₁ Ω]
@@ -106,6 +121,9 @@ theorem isReduced_tensorProduct_of_tower (K K₁ E L Ω : Type*) [Field K] [Fiel
         (Algebra.TensorProduct.comm K₁ L (K₁ ⊗[K] E)).toRingEquiv)
   exact isReduced_of_injective e e.injective
 
+/--
+@isnad1 id=isreduce.0h3v.s8.64624d4d46c5 from=translated src=- shape=ce8a5978 vocab=99cd8790
+-/
 theorem isReduced_tensorProduct_of_charZero (K E L : Type*) [Field K] [CharZero K] [Field E]
     [Field L] [Algebra K E] [Algebra K L] : _root_.IsReduced (E ⊗[K] L) := by
   obtain ⟨s, hs⟩ := exists_isTranscendenceBasis K L
@@ -117,6 +135,9 @@ theorem isReduced_tensorProduct_of_charZero (K E L : Type*) [Field K] [CharZero 
     (IsScalarTower.toAlgHom K₁ (K₁ ⊗[K] E) (FractionRing (K₁ ⊗[K] E)))
     (fun a b h => IsFractionRing.injective (K₁ ⊗[K] E) (FractionRing (K₁ ⊗[K] E)) h)
 
+/--
+@isnad1 id=isreduce.0h5v.s10.9143d8e5e368 from=translated src=- shape=d0142e7d vocab=75a0c187
+-/
 theorem isReduced_subalgebra_tensorProduct (R : Type*) [CommRing R] [IsDomain R] (K₀ : Type*)
     [Field K₀] [Algebra R K₀] [IsFractionRing R K₀] [CharZero K₀]
     (F : Type*) [Field F] [Algebra R F] [Algebra K₀ F] [IsScalarTower R K₀ F]
@@ -140,6 +161,9 @@ end
 open scoped TensorProduct in
 open AlgebraicCurve.TwoChartIntegralModel in
 
+/--
+@isnad1 id=isreduce.0h5v.s8.a94cc3f93d2d from=translated src=- shape=2d7086c3 vocab=8beaf396
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsDomain R] (K₀ : Type u) [Field K₀] [Algebra R K₀] [IsFractionRing R K₀] [CharZero K₀]
     (F : Type u) [Field F] [Algebra R F] [Algebra K₀ F] [IsScalarTower R K₀ F] (j : F) [Fact (j ≠ 0)]

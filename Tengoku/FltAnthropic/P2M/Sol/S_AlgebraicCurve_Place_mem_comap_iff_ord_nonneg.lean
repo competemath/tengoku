@@ -84,6 +84,9 @@ end AlgebraicCurve
 end
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_mem_comap_iff_ord_nonneg.AlgebraicCurve in
+/--
+@isnad1 id=iff.1h5v.s7.9e4b4b4e9c01 from=translated src=- shape=5ae69c44 vocab=da15e271
+-/
 theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F'] [Algebra F F'] {w : Place K F'} {f : F} (hf : f ≠ 0) :
     f ∈ w.toValuationSubring.comap (algebraMap F F') ↔
       0 ≤ w.ord (algebraMap F F' f) :=

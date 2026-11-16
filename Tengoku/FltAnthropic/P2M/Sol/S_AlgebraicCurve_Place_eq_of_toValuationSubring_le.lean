@@ -18,6 +18,9 @@ open AlgebraicCurve
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
+/--
+@isnad1 id=eq.0h3v.s8.d594b10d8864 from=translated src=- shape=4366f223 vocab=d6f013e9
+-/
 theorem coe_unit_inv_eq_inv (O : ValuationSubring F) (u : (↥O)ˣ) :
     (((u⁻¹ : (↥O)ˣ) : O) : F) = (((u : O) : F))⁻¹ := by
   have h1 : ((u : O) : F) * (((u⁻¹ : (↥O)ˣ) : O) : F) = 1 := by
@@ -95,6 +98,9 @@ theorem eq_of_le {v w : Place K F} (h : v.toValuationSubring ≤ w.toValuationSu
 
 end R1M3B.PlaceAux
 
+/--
+@isnad1 id=eq.1h4v.s6.499878297cdd from=translated src=- shape=91c0c73f vocab=78ce54e1
+-/
 theorem solution
     {K F : Type*} [Field K] [Field F] [Algebra K F] {v w : AlgebraicCurve.Place K F}
     (h : v.toValuationSubring ≤ w.toValuationSubring) : v = w :=

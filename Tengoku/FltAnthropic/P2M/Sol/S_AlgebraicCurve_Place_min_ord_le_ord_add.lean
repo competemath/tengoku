@@ -12,6 +12,9 @@ open _root_.AlgebraicCurve
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
+/--
+@isnad1 id=le.3h5v.s7.691621096795 from=translated src=- shape=2d917a74 vocab=470e609b
+-/
 theorem le_ord_add (v : Place K F) {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) (hfg : f + g ≠ 0) :
     min (v.ord f) (v.ord g) ≤ v.ord (f + g) := by
   have hf' := v.adicValuation_ne_zero hf
@@ -28,6 +31,9 @@ theorem le_ord_add (v : Place K F) {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) (hfg 
 
 end AlgebraicCurve.FF2S
 
+/--
+@isnad1 id=le.3h5v.s7.691621096795 from=translated src=- shape=2d917a74 vocab=470e609b
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : AlgebraicCurve.Place K F) {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) (hfg : f + g ≠ 0) :
     min (v.ord f) (v.ord g) ≤ v.ord (f + g) :=
   AlgebraicCurve.FF2S.le_ord_add v hf hg hfg

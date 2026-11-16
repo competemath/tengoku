@@ -12,6 +12,9 @@ open scoped TensorProduct
 universe u
 open AlgebraicCurve AlgebraicCurve.TwoChartIntegralModel
 
+/--
+@isnad1 id=ex.0h4v.s13.f02d4333f492 from=translated src=- shape=bb430d39 vocab=3974b736
+-/
 theorem solution
     (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F] (j : F) [Fact (j ≠ 0)]
     (O : Type u) [CommRing O] [Algebra R O] :

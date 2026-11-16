@@ -13,6 +13,9 @@ universe u v w
 
 namespace W2A
 
+/--
+@isnad1 id=ex.0h3v.s8.303cb84ef225 from=translated src=- shape=91a092bc vocab=b886068b
+-/
 theorem exists_forall_pow_smul_eq_zero_of_isNoetherian
     {B : Type u} [CommRing B] [IsNoetherianRing B] {M : Type v} [AddCommGroup M] [Module B M] [Module.Finite B M] (t : B) :
     ∃ e : ℕ, ∀ x : M, (∃ k : ℕ, t ^ k • x = 0) → t ^ e • x = 0 := by
@@ -31,6 +34,9 @@ theorem exists_forall_pow_smul_eq_zero_of_isNoetherian
 
 end W2A
 
+/--
+@isnad1 id=ex.0h4v.s9.ccc3ad66e41b from=translated src=- shape=7a747279 vocab=0d080a61
+-/
 theorem solution
     {B : Type u} [CommRing B] [IsNoetherianRing B] {R : Type v} [CommRing R] [Algebra B R] [Module.Finite B R]
     {G : Type w} [Group G] [Finite G] [MulSemiringAction G R] [SMulCommClass G B R] (t : B) :

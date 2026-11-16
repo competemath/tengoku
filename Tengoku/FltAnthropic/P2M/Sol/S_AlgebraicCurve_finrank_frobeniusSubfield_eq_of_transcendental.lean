@@ -328,6 +328,9 @@ end PDigitsExists
 
 end AlgebraicCurve.PthPowerIndex
 
+/--
+@isnad1 id=eq.1h4v.s8.d50839345a54 from=translated src=- shape=8ebe08bb vocab=05725189
+-/
 theorem solution {K M : Type*} [Field K] [Field M] [Algebra K M]
     [PerfectField K] (p : ℕ) [hp : Fact p.Prime] [CharP K p] (t : M) (htr : Transcendental K t)
     [FiniteDimensional (IntermediateField.adjoin K ({t} : Set M)) M] :

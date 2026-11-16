@@ -14,6 +14,9 @@ universe u v
 
 open IntermediateField
 
+/--
+@isnad1 id=ex.1h2v.s8.206ec3bb9a1a from=translated src=- shape=6b182411 vocab=f201a304
+-/
 theorem solution
     {K : Type u} {F : Type v} [Field K] [Field F] [Algebra K F] [Algebra.EssFiniteType K F]
     [Algebra.Transcendental K F] (hΩ : Module.finrank F Ω[F⁄K] = 1) :

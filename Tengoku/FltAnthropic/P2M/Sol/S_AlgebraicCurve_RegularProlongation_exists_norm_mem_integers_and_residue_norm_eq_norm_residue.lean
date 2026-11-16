@@ -17,6 +17,9 @@ namespace NormReduce
 variable {L F F' k k' : Type*} [Field L] [Field F] [Field F'] [Field k] [Field k']
   [Algebra L F] [Algebra L F']
 
+/--
+@isnad1 id=iff.0h6v.s9.642bf0b730f3 from=translated src=- shape=6fa8b72d vocab=20babbfb
+-/
 theorem residue_eq_zero_iff {A : ValuationSubring L} [Algebra (IsLocalRing.ResidueField ↥A) k']
     (R' : RegularProlongation A F' k') (x : R'.integers) :
     R'.residue x = 0 ↔ R'.integers.valuation (x : F') < 1 := by
@@ -25,6 +28,9 @@ theorem residue_eq_zero_iff {A : ValuationSubring L} [Algebra (IsLocalRing.Resid
 end Ws49.NormReduce
 
 open Ws49.NormReduce in
+/--
+@isnad1 id=ex.7h13v.s11.133431edb8a7 from=translated src=- shape=98f39086 vocab=a2118f88
+-/
 theorem solution
     {L F F' k k' : Type*} [Field L] [Field F] [Field F'] [Field k] [Field k']
     [Algebra L F] [Algebra L F']

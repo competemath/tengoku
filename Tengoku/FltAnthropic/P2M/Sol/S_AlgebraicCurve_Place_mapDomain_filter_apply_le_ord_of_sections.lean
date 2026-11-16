@@ -16,6 +16,9 @@ section GenericInduction
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] {k E : Type*} [Field k] [Field E] [Algebra k E]
 open Classical in
 
+/--
+@isnad1 id=eq.0h8v.s8.766870f9329c from=translated src=- shape=4f1eb8e7 vocab=e8255f10
+-/
 theorem penA_mapDomain_filter_apply (r : Place K F → Place k E)
     (S : Place K F → Prop) (D : Divisor K F) (v : Place k E) :
     Finsupp.mapDomain r (D.filter S) v = ∑ W ∈ D.support with (S W ∧ r W = v), D W := by
@@ -27,6 +30,9 @@ theorem penA_mapDomain_filter_apply (r : Place K F → Place k E)
 
 open Classical in
 
+/--
+@isnad1 id=le.7h11v.s10.019b7fc08746 from=translated src=- shape=4fe601f0 vocab=2f62cbed
+-/
 theorem penA_lsc_sum_le_of_slots (𝒪 : ValuationSubring F) (ρ : 𝒪 →+* E)
     (hker : ∀ x : 𝒪, ρ x ≠ 0 → IsUnit x)
     (r : Place K F → Place k E) (S : Place K F → Prop) (v : Place k E)
@@ -117,6 +123,9 @@ end Ws49.LscEngine
 
 open Classical in
 
+/--
+@isnad1 id=le.7h11v.s10.019b7fc08746 from=translated src=- shape=4fe601f0 vocab=2f62cbed
+-/
 theorem solution
     {K F : Type*} [Field K] [Field F] [Algebra K F] {k E : Type*} [Field k] [Field E] [Algebra k E]
     (𝒪 : ValuationSubring F) (ρ : 𝒪 →+* E)

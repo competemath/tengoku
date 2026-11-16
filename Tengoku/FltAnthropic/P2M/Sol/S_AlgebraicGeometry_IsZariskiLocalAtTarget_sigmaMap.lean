@@ -16,12 +16,18 @@ open _root_.AlgebraicGeometry
 
 variable {σ : Type u} {X Y : σ → Scheme.{u}} (f : ∀ i, X i ⟶ Y i)
 
+/--
+@isnad1 id=eq.0h6v.s9.85969ca9d4bc from=translated src=- shape=db90f652 vocab=8a48aad6
+-/
 theorem sigmaMap_sigmaι_apply (i : σ) (x : X i) :
     (Limits.Sigma.map f) ((Limits.Sigma.ι X i) x) = (Limits.Sigma.ι Y i) (f i x) := by
   rw [← Scheme.Hom.comp_apply, ← Scheme.Hom.comp_apply, Limits.Sigma.ι_map]
 
 set_option backward.isDefEq.respectTransparency false in
 
+/--
+@isnad1 id=ispullba.0h5v.s6.f591087f1816 from=translated src=- shape=cdebda18 vocab=14302c44
+-/
 theorem isPullback_sigmaι_sigmaMap (j : σ) :
     IsPullback (f j) (Limits.Sigma.ι X j) (Limits.Sigma.ι Y j) (Limits.Sigma.map f) := by
   refine IsOpenImmersion.isPullback _ _ _ _ (by simp) ?_
@@ -40,6 +46,9 @@ end AlgebraicGeometry.SigmaMapU4
 
 open AlgebraicGeometry.SigmaMapU4 in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=var.0h6v.s6.125a9b89319d from=translated src=- shape=823e859b vocab=88a72294
+-/
 theorem solution
     (P : MorphismProperty Scheme.{u}) [IsZariskiLocalAtTarget P]
     {σ : Type u} {X Y : σ → Scheme.{u}} (f : ∀ i, X i ⟶ Y i) (hf : ∀ i, P (f i)) :

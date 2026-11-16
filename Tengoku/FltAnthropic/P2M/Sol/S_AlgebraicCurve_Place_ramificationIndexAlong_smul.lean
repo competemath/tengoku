@@ -19,10 +19,16 @@ variable (α β : F →ₐ[K] F') (hα : α.toRingHom.IsIntegral) (hβ : β.toRi
   (σ : F' ≃ₐ[K] F') (τ : F ≃ₐ[K] F) (h : ∀ x, α (τ x) = σ (β x))
 include h
 
+/--
+@isnad1 id=eq.1h8v.s9.533537fdcaf9 from=translated src=- shape=93528f49 vocab=8f07d014
+-/
 theorem sq_symm (x : F) : σ.symm (α x) = β (τ.symm x) := by
   apply σ.injective
   rw [AlgEquiv.apply_symm_apply, ← h, AlgEquiv.apply_symm_apply]
 
+/--
+@isnad1 id=eq.1h8v.s8.2eb8e80a5840 from=translated src=- shape=04416ede vocab=4e90a7bb
+-/
 theorem ramificationIndexAlong_smul (W : Place K F') :
     (σ • W).ramificationIndexAlong α = W.ramificationIndexAlong β := by
   show sInf {n : ℕ | 0 < n ∧ ∃ f : F, f ≠ 0 ∧ (σ • W).ord (α f) = n}
@@ -44,5 +50,8 @@ end FibreSolG
 end
 
 open AlgebraicCurve in
+/--
+@isnad1 id=eq.1h8v.s8.2eb8e80a5840 from=translated src=- shape=04416ede vocab=4e90a7bb
+-/
 theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] (α β : F →ₐ[K] F') (σ : F' ≃ₐ[K] F') (τ : F ≃ₐ[K] F) (h : ∀ x, α (τ x) = σ (β x)) (W : Place K F') : (σ • W).ramificationIndexAlong α = W.ramificationIndexAlong β :=
   FibreSolG.ramificationIndexAlong_smul α β σ τ h W

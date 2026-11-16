@@ -14,6 +14,9 @@ universe u
 
 namespace E137
 
+/--
+@isnad1 id=mem.2h6v.s9.a9739f3f5b41 from=translated src=- shape=f57ecf06 vocab=6908aa62
+-/
 theorem mem_chartAlg_of_ringEquiv
     {R : Type u} [CommRing R] {F F' : Type u} [Field F] [Field F'] [Algebra R F] [Algebra R F']
     (e : F ≃+* F') (he : ∀ r : R, e (algebraMap R F r) = algebraMap R F' r) (S : Set F) (x : F)
@@ -37,6 +40,9 @@ theorem mem_chartAlg_of_ringEquiv
 
 end E137
 
+/--
+@isnad1 id=and.1h4v.s15.3c951733e42a from=translated src=- shape=f697e8b0 vocab=f33af74b
+-/
 theorem solution
     {R : Type u} [CommRing R] {F F' : Type u} [Field F] [Field F'] [Algebra R F] [Algebra R F']
     (e : F ≃+* F') (he : ∀ r : R, e (algebraMap R F r) = algebraMap R F' r) :

@@ -21,15 +21,24 @@ section Transport
 
 variable {K K' : Type*} [Field K] [Field K']
 
+/--
+@isnad1 id=iff.0h5v.s7.a3fb00a7f70d from=translated src=- shape=4c39380b vocab=dc9359c5
+-/
 theorem mem_nonunits_comap_iff (A : ValuationSubring K') (φ : K →+* K') (x : K) :
     x ∈ (A.comap φ).nonunits ↔ φ x ∈ A.nonunits := by
   rw [ValuationSubring.mem_nonunits_iff_or, ValuationSubring.mem_nonunits_iff_or, map_eq_zero_iff φ φ.injective,
     ← map_inv₀, ValuationSubring.mem_comap]
 
+/--
+@isnad1 id=mem.1h3v.s6.16c6e12f60d5 from=translated src=- shape=508bb4d8 vocab=4a90bfc4
+-/
 theorem inv_mem_of_not_mem_nonunits (A : ValuationSubring K) {x : K} (h : x ∉ A.nonunits) : x⁻¹ ∈ A := by
   rw [ValuationSubring.mem_nonunits_iff_or, not_or, not_not] at h
   exact h.2
 
+/--
+@isnad1 id=ne.2h3v.s6.d26811db7245 from=translated src=- shape=3f2c4c13 vocab=f91256b5
+-/
 theorem ne_top_of_mem_nonunits (A : ValuationSubring K) {x : K} (hx : x ∈ A.nonunits) (hx0 : x ≠ 0) : A ≠ ⊤ := by
   intro h
   rw [ValuationSubring.mem_nonunits_iff_or] at hx
@@ -46,6 +55,9 @@ variable {κ : Type*} [Field κ] {F : Type*} [Field F] [Algebra κ F]
   {F' : Type*} [Field F'] [Algebra κ' F'] [Algebra F F'] [Algebra κ F']
   [IsScalarTower κ F F'] [IsScalarTower κ κ' F']
 
+/--
+@isnad1 id=ex.1h4v.s9.fbf2f87dad35 from=translated src=- shape=44718fac vocab=c91516f8
+-/
 theorem exists_finset_mem_adjoin (hgen : Algebra.adjoin F (Set.range (algebraMap κ' F')) = ⊤) (x : F') :
     ∃ T : Finset κ', x ∈ Algebra.adjoin F ((algebraMap κ' F') '' (T : Set κ')) := by
   classical
@@ -70,6 +82,9 @@ theorem exists_finset_mem_adjoin (hgen : Algebra.adjoin F (Set.range (algebraMap
 
 variable [Algebra.IsAlgebraic κ κ'] [Algebra.IsSeparable κ κ']
 
+/--
+@isnad1 id=ex.1h5v.s9.8d0d69a97127 from=translated src=- shape=f6b11380 vocab=f3ead20e
+-/
 theorem exists_mem_adjoin_simple (hgen : Algebra.adjoin F (Set.range (algebraMap κ' F')) = ⊤) (x : F') :
     ∃ c : F', c ∈ Set.range (algebraMap κ' F') ∧ IsIntegral κ c ∧ (minpoly κ c).Separable ∧
       x ∈ IntermediateField.adjoin F ({c} : Set F') := by
@@ -115,6 +130,9 @@ variable {κ : Type*} [Field κ] {F : Type*} [Field F] [Algebra κ F]
   {F' : Type*} [Field F'] [Algebra κ' F'] [Algebra F F'] [Algebra κ F']
   [IsScalarTower κ F F'] [IsScalarTower κ κ' F']
 
+/--
+@isnad1 id=isintegr.2h8v.s10.4b64e42d2c7e from=translated src=- shape=0c29cdfc vocab=29e12a75
+-/
 theorem isIntegral_map_of_comap_eq {P : Place κ F} {W : Place κ' F'}
     (hW : W.toValuationSubring.comap (algebraMap F F') = P.toValuationSubring)
     {L : IntermediateField F F'} {z : L}
@@ -135,6 +153,9 @@ theorem isIntegral_map_of_comap_eq {P : Place κ F} {W : Place κ' F'}
   convert h1 using 1
   rfl
 
+/--
+@isnad1 id=iff.7h9v.s9.39781b836c56 from=translated src=- shape=088ad11c vocab=ca19f00e
+-/
 theorem mem_iff_mem_of_mem_adjoin_simple [Algebra.IsAlgebraic κ κ'] [Algebra.IsSeparable κ κ']
     (P : Place κ F) (W₁ W₂ : Place κ' F')
     (h₁ : W₁.toValuationSubring.comap (algebraMap F F') = P.toValuationSubring)
@@ -257,6 +278,9 @@ end AlgebraicCurve.ValLoc
 
 open AlgebraicCurve.ValLoc in
 
+/--
+@isnad1 id=eq.4h7v.s10.80f485c5f67f from=translated src=- shape=bb9f9ac8 vocab=171b31e7
+-/
 theorem solution
     {κ : Type*} [Field κ] {F : Type*} [Field F] [Algebra κ F]
     {κ' : Type*} [Field κ'] [Algebra κ κ'] [Algebra.IsAlgebraic κ κ'] [Algebra.IsSeparable κ κ']

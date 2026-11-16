@@ -13,6 +13,9 @@ universe u
 set_option synthInstance.maxHeartbeats 400000
 set_option maxHeartbeats 800000
 
+/--
+@isnad1 id=isintegr.0h3v.s6.9cf4944fd83e from=translated src=- shape=8d8afdbf vocab=0603856e
+-/
 theorem AlgebraicCurve.TwoChartIntegralModel.isIntegrallyClosed_chartAlg
     (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F] (S : Set F) :
     IsIntegrallyClosed ↥(chartAlg R F S) := by exact @_root_.P2MW.S_AlgebraicCurve_TwoChartIntegralModel_isIntegrallyClosed_chartAlg.solution R _ F _ _ S

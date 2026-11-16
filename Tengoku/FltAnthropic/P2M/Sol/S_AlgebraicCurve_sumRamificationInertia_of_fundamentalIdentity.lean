@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open AlgebraicCurve
 
+/--
+@isnad1 id=sumramif.1h3v.s7.47e6f65be399 from=translated src=- shape=330d7f01 vocab=bfc09f09
+-/
 theorem solution
     {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F']
     [IsScalarTower K F F'] [Algebra.IsIntegral F F'] [HasPrincipalDivisors K F']

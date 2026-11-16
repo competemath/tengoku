@@ -17,6 +17,9 @@ namespace W2ALG
 
 namespace NoethWs7
 
+/--
+@isnad1 id=isnoethe.2h2v.s6.7ac5fc9a4f01 from=translated src=- shape=49b585f1 vocab=e3dfe9ef
+-/
 theorem isNoetherianRing_of_isAdicComplete_of_quotient
     (R : Type) [CommRing R] (ϖ : R) (hc : IsAdicComplete (Ideal.span {ϖ}) R)
     (hN : IsNoetherianRing (R ⧸ Ideal.span {ϖ})) : IsNoetherianRing R := by
@@ -140,6 +143,9 @@ theorem isNoetherianRing_of_isAdicComplete_of_quotient
 
 end NoethWs7
 
+/--
+@isnad1 id=and.6h4v.s9.faa4ff781835 from=translated src=- shape=64229e9f vocab=50c53d5d
+-/
 theorem isNoetherianRing_and_finite_fixedPoints
     (𝒪 : Type) [CommRing 𝒪] [IsDomain 𝒪] (hdvr : IsDiscreteValuationRing 𝒪)
     (π : 𝒪) (hπ : Irreducible π) (hcomplete : IsAdicComplete (Ideal.span {π}) 𝒪)
@@ -185,15 +191,27 @@ def d1 : (G → R) →ₗ[A] (G × G → R) where
     show gh.1 • (a • y gh.2) - a • y (gh.1 * gh.2) + a • y gh.1 = a • (gh.1 • y gh.2 - y (gh.1 * gh.2) + y gh.1)
     rw [smul_add, smul_sub, smul_comm]
 
+/--
+@isnad1 id=eq.0h5v.s8.7fb803317a1c from=translated src=- shape=08cea958 vocab=e86079d0
+-/
 theorem d0_apply (z : R) (g : G) : d0 A R G z g = g • z - z := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.043fd2e954e1 from=translated src=- shape=065fa16a vocab=aff13782
+-/
 theorem d1_apply (y : G → R) (gh : G × G) : d1 A R G y gh = gh.1 • y gh.2 - y (gh.1 * gh.2) + y gh.1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.30d4e221ac69 from=translated src=- shape=a3b0380f vocab=ab60296c
+-/
 theorem d1_comp_d0 : (d1 A R G).comp (d0 A R G) = 0 := by
   ext z gh
   rw [LinearMap.comp_apply, d1_apply, d0_apply, d0_apply, d0_apply, LinearMap.zero_apply, Pi.zero_apply, smul_sub, mul_smul]
   abel
 
+/--
+@isnad1 id=exact.2h3v.s9.a500e8a2047a from=translated src=- shape=9a4eb9c7 vocab=e0846a46
+-/
 theorem exact_linearMap_d0 (hA : ∀ z : R, (∀ g : G, g • z = z) → z ∈ Set.range (algebraMap A R))
     (hA' : ∀ (a : A) (g : G), g • algebraMap A R a = algebraMap A R a) :
     Function.Exact (Algebra.linearMap A R) (d0 A R G) := by
@@ -216,15 +234,24 @@ variable (A : Type) [CommRing A] (R : Type) [CommRing R] [Algebra A R] (G : Type
 noncomputable def σ (g : G) : R ⊗[A] A' →ₐ[A] R ⊗[A] A' :=
   Algebra.TensorProduct.map (MulSemiringAction.toAlgHom A R g) (AlgHom.id A A')
 
+/--
+@isnad1 id=eq.0h7v.s9.38a177318009 from=translated src=- shape=75af74d2 vocab=d7f4b958
+-/
 theorem σ_tmul (g : G) (r : R) (s : A') : σ A R G A' g (r ⊗ₜ[A] s) = (g • r) ⊗ₜ[A] s := by
   simp [σ, Algebra.TensorProduct.map_tmul]
 
+/--
+@isnad1 id=eq.0h5v.s9.5b49ea315d5b from=translated src=- shape=31516c63 vocab=00567462
+-/
 theorem σ_one (z : R ⊗[A] A') : σ A R G A' 1 z = z := by
   induction z using TensorProduct.induction_on with
   | zero => exact map_zero _
   | tmul r s => rw [σ_tmul, one_smul]
   | add x y hx hy => rw [map_add, hx, hy]
 
+/--
+@isnad1 id=eq.0h7v.s10.e4ef20e70612 from=translated src=- shape=db065fc1 vocab=f23239be
+-/
 theorem σ_mul (g h : G) (z : R ⊗[A] A') : σ A R G A' (g * h) z = σ A R G A' g (σ A R G A' h z) := by
   induction z using TensorProduct.induction_on with
   | zero => simp only [map_zero]
@@ -242,10 +269,16 @@ theorem σ_mul (g h : G) (z : R ⊗[A] A') : σ A R G A' (g * h) z = σ A R G A'
 
 variable [Fintype G] [DecidableEq G]
 
+/--
+@isnad1 id=eq.0h7v.s11.3f3aae2908c2 from=translated src=- shape=faae559f vocab=2d1cc598
+-/
 theorem piLeft_tmul {ι : Type} [Fintype ι] [DecidableEq ι] (f : ι → R) (s : A') (i : ι) :
     TensorProduct.piLeft A A' (fun _ : ι => R) (f ⊗ₜ[A] s) i = f i ⊗ₜ[A] s := by
   simp [TensorProduct.piLeft]
 
+/--
+@isnad1 id=eq.0h6v.s12.f053c5bb6a37 from=translated src=- shape=80907ead vocab=0521e04c
+-/
 theorem piLeft_rTensor_d0 (z : R ⊗[A] A') (g : G) :
     TensorProduct.piLeft A A' (fun _ : G => R) (LinearMap.rTensor A' (d0 A R G) z) g = σ A R G A' g z - z := by
   induction z using TensorProduct.induction_on with
@@ -253,6 +286,9 @@ theorem piLeft_rTensor_d0 (z : R ⊗[A] A') (g : G) :
   | tmul r s => rw [LinearMap.rTensor_tmul, piLeft_tmul, d0_apply, σ_tmul, TensorProduct.sub_tmul]
   | add x y hx hy => simp only [map_add, Pi.add_apply, hx, hy]; abel
 
+/--
+@isnad1 id=eq.0h6v.s13.879610a5bcd6 from=translated src=- shape=d97de038 vocab=70326b9d
+-/
 theorem piLeft_rTensor_d1 (n : (G → R) ⊗[A] A') (gh : G × G) :
     TensorProduct.piLeft A A' (fun _ : G × G => R) (LinearMap.rTensor A' (d1 A R G) n) gh =
       σ A R G A' gh.1 (TensorProduct.piLeft A A' (fun _ : G => R) n gh.2) -
@@ -263,6 +299,9 @@ theorem piLeft_rTensor_d1 (n : (G → R) ⊗[A] A') (gh : G × G) :
       TensorProduct.add_tmul, TensorProduct.sub_tmul]
   | add x y hx hy => simp only [map_add, Pi.add_apply, hx, hy]; abel
 
+/--
+@isnad1 id=eq.0h4v.s10.0299d125e32a from=translated src=- shape=f33b612c vocab=33119389
+-/
 theorem rTensor_linearMap_eq (α : A ⊗[A] A') :
     LinearMap.rTensor A' (Algebra.linearMap A R) α = (1 : R) ⊗ₜ[A] (TensorProduct.lid A A' α) := by
   induction α using TensorProduct.induction_on with
@@ -273,6 +312,9 @@ theorem rTensor_linearMap_eq (α : A ⊗[A] A') :
 
 end BC
 
+/--
+@isnad1 id=ex.3h4v.s12.0f7a1257f6e8 from=translated src=- shape=4d490115 vocab=75b7fd2e
+-/
 theorem main_generic (A : Type) [CommRing A] (R : Type) [CommRing R] [Algebra A R] (G : Type) [Group G] [Finite G]
     [MulSemiringAction G R] [SMulCommClass G A R] [IsNoetherianRing A] [Module.Finite A R]
     (hA : ∀ z : R, (∀ g : G, g • z = z) → z ∈ Set.range (algebraMap A R))
@@ -389,6 +431,9 @@ theorem main_generic (A : Type) [CommRing A] (R : Type) [CommRing R] [Algebra A 
 end W2ALG
 
 open W2ALG in
+/--
+@isnad1 id=ex.6h4v.s14.f3fbe1754371 from=translated src=- shape=ae15f711 vocab=159fef2e
+-/
 theorem solution
     (𝒪 : Type) [CommRing 𝒪] [IsDomain 𝒪] (hdvr : IsDiscreteValuationRing 𝒪)
     (π : 𝒪) (hπ : Irreducible π) (hcomplete : IsAdicComplete (Ideal.span {π}) 𝒪)

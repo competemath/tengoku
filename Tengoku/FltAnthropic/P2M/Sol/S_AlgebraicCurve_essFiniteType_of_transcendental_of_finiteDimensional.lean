@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IntermediateField Polynomial
 
+/--
+@isnad1 id=essfinit.2h3v.s7.0d847670600e from=translated src=- shape=36eee9c8 vocab=a32fd549
+-/
 theorem solution
     {K F : Type*} [Field K] [Field F] [Algebra K F]
     {x : F} (htr : Transcendental K x)

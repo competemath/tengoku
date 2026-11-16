@@ -13,6 +13,9 @@ open _root_.AlgebraicCurve
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
+/--
+@isnad1 id=eq.0h4v.s6.21d7205b7a88 from=translated src=- shape=eeee9b99 vocab=18566957
+-/
 theorem ord_neg (v : Place K F) (f : F) : v.ord (-f) = v.ord f := by
   rcases eq_or_ne f 0 with rfl | hf
   · simp
@@ -21,6 +24,9 @@ theorem ord_neg (v : Place K F) (f : F) : v.ord (-f) = v.ord f := by
 
 end AlgebraicCurve.FF2S
 
+/--
+@isnad1 id=eq.0h4v.s6.21d7205b7a88 from=translated src=- shape=eeee9b99 vocab=18566957
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : AlgebraicCurve.Place K F) (f : F) :
     v.ord (-f) = v.ord f :=
   AlgebraicCurve.FF2S.ord_neg v f

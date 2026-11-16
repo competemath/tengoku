@@ -19,6 +19,9 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F] (A : Subalgebra K F)
 set_option synthInstance.maxHeartbeats 800000 in
 set_option maxHeartbeats 1600000 in
 
+/--
+@isnad1 id=iff.1h5v.s9.c91b283e9b46 from=translated src=- shape=a231d042 vocab=65b3980b
+-/
 theorem mem_iff_exists (v : AlgebraicCurve.Place K F) (hv : ∀ a : ↥A, (a : F) ∈ v.toValuationSubring) (x : F) :
     x ∈ v.toValuationSubring ↔
       ∃ a s : ↥A, (s : F) ∉ v.toValuationSubring.nonunits ∧ x * (s : F) = (a : F) := by
@@ -122,6 +125,9 @@ theorem mem_iff_exists (v : AlgebraicCurve.Place K F) (hv : ∀ a : ↥A, (a : F
 
 end Ws47.U1
 
+/--
+@isnad1 id=eq.3h5v.s9.5bbc3102b4d9 from=translated src=- shape=793a0514 vocab=6454a8e8
+-/
 theorem solution
     {K F : Type*} [Field K] [Field F] [Algebra K F] (A : Subalgebra K F)
     [IsDedekindDomain ↥A] [IsFractionRing ↥A F]

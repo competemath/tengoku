@@ -9,6 +9,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=nonempty.0h2v.s6.97f6d210b7e4 from=translated src=- shape=44e94ced vocab=56dabcd3
+-/
 theorem AlgebraicGeometry.FGSubalgebra.nonempty_isColimit_cocone
     (R : Type u) [CommRing R] (A : Type u) [CommRing A] [Algebra R A] :
     Nonempty (IsColimit (FGSubalgebra.cocone R A)) := by exact @_root_.P2MW.S_AlgebraicGeometry_FGSubalgebra_nonempty_isColimit_cocone.solution R _ A _ _

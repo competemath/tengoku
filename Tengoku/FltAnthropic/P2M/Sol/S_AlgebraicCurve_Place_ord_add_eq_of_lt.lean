@@ -12,6 +12,9 @@ open _root_.AlgebraicCurve
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
+/--
+@isnad1 id=eq.3h5v.s7.4b6c5adad326 from=translated src=- shape=f646aa41 vocab=efb101e0
+-/
 theorem ord_add_eq_of_lt (v : Place K F) {f g : F} (hf : f ≠ 0) (hg : g ≠ 0)
     (h : v.ord f < v.ord g) : v.ord (f + g) = v.ord f := by
   have hval : v.adicValuation g < v.adicValuation f := by
@@ -25,6 +28,9 @@ theorem ord_add_eq_of_lt (v : Place K F) {f g : F} (hf : f ≠ 0) (hg : g ≠ 0)
 
 end AlgebraicCurve.FF2S
 
+/--
+@isnad1 id=eq.3h5v.s7.4b6c5adad326 from=translated src=- shape=f646aa41 vocab=efb101e0
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : AlgebraicCurve.Place K F) {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) (h : v.ord f < v.ord g) :
     v.ord (f + g) = v.ord f :=
   AlgebraicCurve.FF2S.ord_add_eq_of_lt v hf hg h

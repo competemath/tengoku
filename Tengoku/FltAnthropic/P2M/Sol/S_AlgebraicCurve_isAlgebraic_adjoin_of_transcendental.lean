@@ -16,6 +16,9 @@ namespace FF2KE3
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
+/--
+@isnad1 id=isalgebr.1h4v.s8.d165f77346cd from=translated src=- shape=a3aa05a1 vocab=626aaf7d
+-/
 theorem isAlgebraic_adjoin_of_transcendental' (x : F)
     [halg : Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F]
     {t : F} (ht : Transcendental K t) :
@@ -51,6 +54,9 @@ theorem isAlgebraic_adjoin_of_transcendental' (x : F)
 
 end AlgebraicCurve.FF2KE3
 
+/--
+@isnad1 id=isalgebr.1h4v.s8.d165f77346cd from=translated src=- shape=a3aa05a1 vocab=626aaf7d
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (x : F)
     [Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F] {t : F} (ht : Transcendental K t) :
     Algebra.IsAlgebraic (IntermediateField.adjoin K ({t} : Set F)) F :=

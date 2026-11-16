@@ -17,14 +17,23 @@ variable {R S : Type*} [CommRing R] [CommRing S]
 noncomputable def genericPoly (d N : ℕ) (v : Fin d → Fin N → R) : R[X][X] :=
   X ^ d + ∑ j : Fin d, C (∑ n : Fin N, C (v j n) * X ^ (n : ℕ)) * X ^ (j : ℕ)
 
+/--
+@isnad1 id=eq.0h6v.s7.88253c8220c5 from=translated src=- shape=dea11fe9 vocab=1531c969
+-/
 theorem genericPoly_map (d N : ℕ) (v : Fin d → Fin N → R) (φ : R →+* S) :
     (genericPoly d N v).map (mapRingHom φ) = genericPoly d N (fun j n => φ (v j n)) := by
   simp [genericPoly, Polynomial.map_sum, Polynomial.map_mul, Polynomial.map_pow]
 
+/--
+@isnad1 id=monic.0h4v.s5.17eed155e6b1 from=translated src=- shape=8ecc89ab vocab=b246a09e
+-/
 theorem genericPoly_monic [Nontrivial R] (d N : ℕ) (v : Fin d → Fin N → R) :
     (genericPoly d N v).Monic :=
   monic_X_pow_add (degree_sum_fin_lt _)
 
+/--
+@isnad1 id=eq.0h4v.s5.6918e4ce73ba from=translated src=- shape=f11f2356 vocab=30819ce5
+-/
 theorem genericPoly_natDegree [Nontrivial R] (d N : ℕ) (v : Fin d → Fin N → R) :
     (genericPoly d N v).natDegree = d := by
   unfold genericPoly
@@ -32,6 +41,9 @@ theorem genericPoly_natDegree [Nontrivial R] (d N : ℕ) (v : Fin d → Fin N �
   rw [degree_X_pow]
   exact degree_sum_fin_lt _
 
+/--
+@isnad1 id=eq.2h3v.s7.2d2f45659413 from=translated src=- shape=fbe30f40 vocab=ef7151fb
+-/
 theorem genericPoly_coeff_eq (g : R[X][X]) (hg : g.Monic) (N : ℕ)
     (hN : ∀ j : ℕ, j < g.natDegree → (g.coeff j).natDegree < N) :
     genericPoly g.natDegree N (fun j n => (g.coeff j).coeff n) = g := by
@@ -51,6 +63,9 @@ section Spec
 
 variable {K K' : Type*} [Field K] [Field K'] [Algebra K K'] [IsAlgClosed K]
 
+/--
+@isnad1 id=ex.3h5v.s9.197953ff08fe from=translated src=- shape=5379b28f vocab=480614ce
+-/
 theorem exists_factorisation_of_factorisation_map (m : K[X][X])
     (g h : K'[X][X]) (hg : g.Monic) (hh : h.Monic)
     (hfac : m.map (mapRingHom (algebraMap K K')) = g * h) :
@@ -134,6 +149,9 @@ theorem exists_factorisation_of_factorisation_map (m : K[X][X])
     simp only [D, Polynomial.map_sub, Polynomial.map_mul, h1] at h2
     exact sub_eq_zero.mp h2
 
+/--
+@isnad1 id=irreduci.2h3v.s8.a5bc6d76ab1a from=translated src=- shape=451a0ed8 vocab=af53a92b
+-/
 theorem irreducible_map_of_isAlgClosed (m : K[X][X]) (hm : m.Monic) (hirr : Irreducible m) :
     Irreducible (m.map (mapRingHom (algebraMap K K'))) := by
   classical
@@ -191,11 +209,17 @@ open IntermediateField
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
+/--
+@isnad1 id=eq.0h3v.s9.178d437c3cf5 from=translated src=- shape=987f6078 vocab=eb160503
+-/
 theorem algebraMap_comp_aeval_gen (x : F) :
     (algebraMap K⟮x⟯ F).comp (aeval (AdjoinSimple.gen K x) : K[X] →ₐ[K] K⟮x⟯).toRingHom =
       (aeval x : K[X] →ₐ[K] F).toRingHom :=
   RingHom.ext fun p => AdjoinSimple.coe_aeval_gen_apply (F := K) x p
 
+/--
+@isnad1 id=injectiv.1h3v.s9.f47f942a6300 from=translated src=- shape=fe7aa474 vocab=c5243e46
+-/
 theorem aeval_gen_injective {x : F} (hx : Transcendental K x) :
     Function.Injective (aeval (AdjoinSimple.gen K x) : K[X] →ₐ[K] K⟮x⟯) := by
   intro p q hpq
@@ -204,6 +228,9 @@ theorem aeval_gen_injective {x : F} (hx : Transcendental K x) :
   rw [← AdjoinSimple.coe_aeval_gen_apply (F := K) x p,
     ← AdjoinSimple.coe_aeval_gen_apply (F := K) x q, hpq]
 
+/--
+@isnad1 id=ex.1h5v.s11.d2616ee2dd54 from=translated src=- shape=0f2fb96e vocab=03617da7
+-/
 theorem exists_common_denom {x : F} (hx : Transcendental K x) {T : Type*} [Fintype T]
     (r : T → K⟮x⟯) : ∃ q : K[X], q ≠ 0 ∧ ∀ t, ∃ p : K[X],
       aeval (AdjoinSimple.gen K x) q * r t = aeval (AdjoinSimple.gen K x) p := by
@@ -234,6 +261,9 @@ theorem exists_common_denom {x : F} (hx : Transcendental K x) {T : Type*} [Finty
           algebraMap K[X] (RatFunc K) (∏ s ∈ Finset.univ.erase t, (u s).denom) := by
           rw [mul_div_cancel₀ _ hden]; ring
 
+/--
+@isnad1 id=ex.1h3v.s10.aff937cda47b from=translated src=- shape=36f6d274 vocab=03a5c016
+-/
 theorem exists_primitive_integral [CharZero K] {x : F} (hx : Transcendental K x)
     [FiniteDimensional K⟮x⟯ F] :
     ∃ (y : F) (m : K[X][X]) (d : ℕ), m.Monic ∧ Irreducible m ∧ m.natDegree = d ∧
@@ -330,6 +360,9 @@ variable {K F K' F' : Type*} [Field K] [Field F] [Field K'] [Field F'] [Algebra 
   [Algebra K' F'] [Algebra K K'] [Algebra F F'] [Algebra K F'] [IsScalarTower K K' F']
   [IsScalarTower K F F']
 
+/--
+@isnad1 id=mem.0h6v.s8.68c0bdbbf0a5 from=translated src=- shape=d44d5af2 vocab=fb4df7d3
+-/
 theorem algebraMap_mem_adjoin (x : F) (z : K⟮x⟯) :
     algebraMap F F' (z : F) ∈ K'⟮algebraMap F F' x⟯ := by
   let ιFa : F →ₐ[K] F' := IsScalarTower.toAlgHom K F F'
@@ -339,11 +372,17 @@ theorem algebraMap_mem_adjoin (x : F) (z : K⟮x⟯) :
     adjoin_simple_le_iff.mpr (mem_adjoin_simple_self K' _)
   exact h2 h1
 
+/--
+@isnad1 id=ex.0h5v.s12.45c3c5afcf57 from=translated src=- shape=ca05691a vocab=c9e65b0c
+-/
 theorem exists_ringHom_adjoin (x : F) : ∃ ρ : K⟮x⟯ →+* K'⟮algebraMap F F' x⟯,
     ∀ z, algebraMap K'⟮algebraMap F F' x⟯ F' (ρ z) = algebraMap F F' (algebraMap K⟮x⟯ F z) :=
   ⟨((algebraMap F F').comp (algebraMap K⟮x⟯ F)).codRestrict (K'⟮algebraMap F F' x⟯)
       (fun z => algebraMap_mem_adjoin x z), fun _ => rfl⟩
 
+/--
+@isnad1 id=isintegr.0h6v.s9.9aeec7ad1978 from=translated src=- shape=a75958e1 vocab=6d536e58
+-/
 theorem isIntegral_algebraMap (x : F) [FiniteDimensional K⟮x⟯ F] (f : F) :
     IsIntegral K'⟮algebraMap F F' x⟯ (algebraMap F F' f) := by
   obtain ⟨ρ, hρ⟩ := exists_ringHom_adjoin (K := K) (K' := K') (F' := F') x
@@ -353,6 +392,9 @@ theorem isIntegral_algebraMap (x : F) [FiniteDimensional K⟮x⟯ F] (f : F) :
       (algebraMap F F').comp (algebraMap K⟮x⟯ F) := RingHom.ext hρ
   rw [eval₂_map, hcomp, ← hom_eval₂, ← aeval_def, minpoly.aeval, map_zero]
 
+/--
+@isnad1 id=transcen.2h5v.s9.d325fa240d3a from=translated src=- shape=04448d48 vocab=b1cd1dcb
+-/
 theorem transcendental_algebraMap {x : F} [FiniteDimensional K⟮x⟯ F]
     (hfg' : ∃ x' : F', Transcendental K' x' ∧ FiniteDimensional K'⟮x'⟯ F')
     (hgen : IntermediateField.adjoin K' (Set.range (algebraMap F F')) = ⊤) :
@@ -371,6 +413,9 @@ theorem transcendental_algebraMap {x : F} [FiniteDimensional K⟮x⟯ F]
     (Algebra.IsAlgebraic.isAlgebraic
       (⟨x', hmem⟩ : IntermediateField.adjoin K' (Set.range (algebraMap F F'))))
 
+/--
+@isnad1 id=linearin.4h7v.s10.875ab677ffa9 from=translated src=- shape=1c112573 vocab=47db2c2d
+-/
 theorem linearIndependent_pow_algebraMap [IsAlgClosed K] {x : F}
     (hx₁ : Transcendental K' (algebraMap F F' x))
     {y : F} {m : K[X][X]} (hm : m.Monic) (hirr : Irreducible m)
@@ -513,6 +558,9 @@ theorem eq_zero_of_sum_mul_algebraMap [IsAlgClosed K] [CharZero K] {x : F}
   rw [hr k]
   simp [hr0]
 
+/--
+@isnad1 id=linearin.3h7v.s9.537d862848bc from=translated src=- shape=92553aaf vocab=3b08c19d
+-/
 theorem linearIndependent_algebraMap_of_fintype [IsAlgClosed K] [CharZero K] {x : F}
     (hx : Transcendental K x) [FiniteDimensional K⟮x⟯ F]
     (hx₁ : Transcendental K' (algebraMap F F' x))
@@ -563,6 +611,9 @@ end AlgebraicCurve.LinDisjSol
 
 open AlgebraicCurve.LinDisjSol in
 
+/--
+@isnad1 id=linearin.4h6v.s9.6692d30c272f from=translated src=- shape=af0a19b8 vocab=02ddcba6
+-/
 theorem solution (K F K' F' : Type*)
     [Field K] [Field F] [Field K'] [Field F'] [Algebra K F] [Algebra K' F']
     [Algebra K K'] [Algebra F F'] [Algebra K F'] [IsScalarTower K K' F'] [IsScalarTower K F F']

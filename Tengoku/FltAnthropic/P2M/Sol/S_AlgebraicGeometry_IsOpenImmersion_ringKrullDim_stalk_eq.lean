@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=eq.0h4v.s9.f304629ac103 from=translated src=- shape=e0ce8125 vocab=878abab1
+-/
 theorem solution
     {U X : Scheme.{u}} (i : U ⟶ X) [IsOpenImmersion i] (u : U) :
     ringKrullDim (U.presheaf.stalk u) = ringKrullDim (X.presheaf.stalk (i.base u)) :=

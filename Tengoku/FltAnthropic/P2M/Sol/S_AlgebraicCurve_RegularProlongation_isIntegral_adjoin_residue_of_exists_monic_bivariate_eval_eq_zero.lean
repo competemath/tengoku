@@ -26,13 +26,22 @@ def constHom (R : RegularProlongation A F Fbar) : A →+* R.integers where
   map_zero' := Subtype.ext (by simp)
   map_add' a b := Subtype.ext (by simp)
 
+/--
+@isnad1 id=eq.0h6v.s9.5ad5ec8f38a1 from=translated src=- shape=cd801897 vocab=0d72164f
+-/
 @[scoped simp] theorem coe_constHom (R : RegularProlongation A F Fbar) (a : A) :
     ((constHom R a : R.integers) : F) = algebraMap L F a := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.114e8813b6b1 from=translated src=- shape=bab91eb3 vocab=b3b308f7
+-/
 theorem residue_constHom (R : RegularProlongation A F Fbar) (a : A) :
     R.residue (constHom R a) = algebraMap (ResidueField A) Fbar (IsLocalRing.residue A a) :=
   R.residue_algebraMap a
 
+/--
+@isnad1 id=eq.0h6v.s11.8c4c6f06bbce from=translated src=- shape=9c0549db vocab=d51f47ca
+-/
 theorem residue_comp_eval₂_constHom (R : RegularProlongation A F Fbar) (f : R.integers) :
     (R.residue : R.integers →+* Fbar).comp (eval₂RingHom (constHom R) f) =
       (eval₂RingHom (algebraMap (ResidueField A) Fbar) (R.residue f)).comp
@@ -43,6 +52,9 @@ theorem residue_comp_eval₂_constHom (R : RegularProlongation A F Fbar) (f : R.
   · simp only [RingHom.comp_apply, coe_eval₂RingHom, eval₂_X, coe_mapRingHom,
       Polynomial.map_X]
 
+/--
+@isnad1 id=eq.0h6v.s9.8794e03033b9 from=translated src=- shape=866b4856 vocab=315334e8
+-/
 theorem subtype_comp_eval₂_constHom (R : RegularProlongation A F Fbar) (f : R.integers) :
     (R.integers.subtype : R.integers →+* F).comp (eval₂RingHom (constHom R) f) =
       eval₂RingHom ((algebraMap L F).comp A.subtype) (f : F) := by
@@ -56,6 +68,9 @@ open scoped _root_.P2MW.S_AlgebraicCurve_RegularProlongation_isIntegral_adjoin_r
 
 open W10XK3Eb
 
+/--
+@isnad1 id=isintegr.1h7v.s11.421b780db8c5 from=translated src=- shape=5d325460 vocab=b34c0caf
+-/
 theorem solution
     {L : Type*} [Field L] (A : ValuationSubring L)
     {F : Type*} [Field F] [Algebra L F]

@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open AlgebraicCurve
 
+/--
+@isnad1 id=finiteal.1h4v.s7.802764fa3af4 from=translated src=- shape=77e19c5d vocab=0a2468af
+-/
 theorem solution
     {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
     [Algebra.EssFiniteType K F']

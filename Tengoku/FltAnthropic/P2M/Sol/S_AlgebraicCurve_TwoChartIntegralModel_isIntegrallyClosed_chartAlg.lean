@@ -29,6 +29,9 @@ variable (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F] (j : F) 
 
 omit [Fact (j ≠ 0)] in
 
+/--
+@isnad1 id=isintegr.0h3v.s6.9cf4944fd83e from=translated src=- shape=8d8afdbf vocab=0603856e
+-/
 theorem isIntegrallyClosed_chartAlg_impl (S : Set F) : IsIntegrallyClosed (chartAlg R F S) := by
   let R₀ : Subalgebra R F := Algebra.adjoin R S
   let A : Subalgebra R F := chartAlg R F S
@@ -53,6 +56,9 @@ end AlgebraicCurve.TwoChartIntegralModel
 end
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry _root_.AlgebraicCurve.TwoChartIntegralModel _root_.P2MW.S_AlgebraicCurve_TwoChartIntegralModel_isIntegrallyClosed_chartAlg.AlgebraicCurve.TwoChartIntegralModel in
+/--
+@isnad1 id=isintegr.0h3v.s6.9cf4944fd83e from=translated src=- shape=8d8afdbf vocab=0603856e
+-/
 theorem solution.{u} (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F] (S : Set F) :
     IsIntegrallyClosed ↥(chartAlg R F S) :=
   AlgebraicCurve.TwoChartIntegralModel.isIntegrallyClosed_chartAlg_impl R F S

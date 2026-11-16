@@ -13,6 +13,9 @@ set_option maxHeartbeats 8000000
 open Polynomial
 open scoped IntermediateField.algebraAdjoinAdjoin
 
+/--
+@isnad1 id=le.5h7v.s10.f9cef8ecb2c0 from=translated src=- shape=8f038efc vocab=3f6987f5
+-/
 theorem solution
     {L : Type*} [Field L] {F : Type*} [Field F] [Algebra L F]
     (x : F) (hxL : Transcendental L x) (hx0 : x ≠ 0)

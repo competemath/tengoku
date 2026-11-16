@@ -16,6 +16,9 @@ namespace A3W_node14
 
 open Polynomial
 
+/--
+@isnad1 id=ex.2h3v.s8.ead79866cf36 from=translated src=- shape=01f77b26 vocab=1129f492
+-/
 theorem exists_eq_C_mul_of_map_residue_eq_zero {R : Type u} [CommRing R] [IsLocalRing R]
     (ϖ : R) (hϖ : IsLocalRing.maximalIdeal R = Ideal.span {ϖ})
     (P : R[X]) (hP : P.map (IsLocalRing.residue R) = 0) : ∃ P₁ : R[X], P = C ϖ * P₁ := by
@@ -30,6 +33,9 @@ theorem exists_eq_C_mul_of_map_residue_eq_zero {R : Type u} [CommRing R] [IsLoca
 end A3W_node14
 
 open Polynomial in
+/--
+@isnad1 id=ex.4h5v.s11.2456177a50e5 from=translated src=- shape=88a473da vocab=b736812e
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     (ϖ : R) (hϖ : IsLocalRing.maximalIdeal R = Ideal.span {ϖ})

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=ex.2h7v.s7.05a098ad5c2f from=translated src=- shape=f4b63e91 vocab=2ad80825
+-/
 theorem solution
     {T T' A Z : Scheme.{0}} (π : T' ⟶ T) (hπ : π.ker = ⊥) (y : T ⟶ A) (ι : Z ⟶ A) [IsClosedImmersion ι]
     (h : ∃ z' : T' ⟶ Z, z' ≫ ι = π ≫ y) :

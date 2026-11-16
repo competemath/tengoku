@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open AlgebraicCurve.TwoChartIntegralModel
 
+/--
+@isnad1 id=eq.3h4v.s8.a661d8f99c2a from=translated src=- shape=4f59c77c vocab=1e924eab
+-/
 theorem solution
     (R : Type) [CommRing R] (F : Type) [Field F] [Algebra R F] (j : F) [Fact (j ≠ 0)]
     (B : Subalgebra R F) (hj : j ∈ B)

@@ -102,6 +102,9 @@ private theorem mwALGN_mem_of_forall_sum_pow_smul_mem (W : Submodule k F) {m : �
 end AlgebraicCurve.Place
 
 open _root_.AlgebraicCurve.Place _root_.P2MW.S_AlgebraicCurve_Place_exists_uniformizing_separating_form.AlgebraicCurve.Place in
+/--
+@isnad1 id=ex.6h14v.s10.5a886c3d1d70 from=translated src=- shape=a3b2a8b4 vocab=30c28c9f
+-/
 theorem solution
     {k F : Type*} [Field k] [Field F] [Algebra k F]
     (v : Place k F) {j : F} {n : ℕ} (β : Fin n → F)

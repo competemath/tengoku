@@ -5,6 +5,9 @@ import Tengoku
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_IsIntegrallyClosed_of_isIntegrallyClosedIn_of_faithfulSMul.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 namespace P2MW.S_IsIntegrallyClosed_of_isIntegrallyClosedIn_of_faithfulSMul
 
+/--
+@isnad1 id=isintegr.0h2v.s5.e05adb1c0b10 from=translated src=- shape=ef068099 vocab=4dbce9f8
+-/
 theorem solution
     (A F : Type*) [CommRing A] [IsDomain A] [Field F] [Algebra A F] [FaithfulSMul A F]
     [IsIntegrallyClosedIn A F] : IsIntegrallyClosed A := by

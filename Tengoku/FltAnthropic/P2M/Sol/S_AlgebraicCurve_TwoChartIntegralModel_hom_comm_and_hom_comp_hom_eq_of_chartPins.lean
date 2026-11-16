@@ -17,11 +17,17 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry AlgebraicCurve Algeb
 
 namespace PinsBody
 
+/--
+@isnad1 id=isdomina.0h3v.s6.fb67f3b1e5aa from=translated src=- shape=80f8fe29 vocab=880d228c
+-/
 theorem isDominant_ιFin (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F] (j : F) [Fact (j ≠ 0)] :
     IsDominant (ιFin R F j) := by
   haveI := TwoChartIntegralModel.isIntegral R F j
   exact ⟨(ιFin R F j).isOpenEmbedding.isOpen_range.dense (Set.range_nonempty _)⟩
 
+/--
+@isnad1 id=eq.2h8v.s7.a17db12b3d5d from=translated src=- shape=cc6993d0 vocab=d7526d0b
+-/
 theorem hom_ext (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F] (j : F) [Fact (j ≠ 0)]
     {Y Z : Scheme.{u}} (f g : AlgebraicCurve.TwoChartIntegralModel R F j ⟶ Y) (q : Y ⟶ Z) [IsSeparated q]
     (h : f ≫ q = g ≫ q) (hFin : ιFin R F j ≫ f = ιFin R F j ≫ g) : f = g := by
@@ -31,6 +37,9 @@ theorem hom_ext (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F] (
 
 end PinsBody
 
+/--
+@isnad1 id=and.4h7v.s12.7b7fbafbb502 from=translated src=- shape=c5b1b2ed vocab=542b62b4
+-/
 theorem solution
     (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F] (j : F) [Fact (j ≠ 0)]
     [IsSeparated (toBase R F j)]

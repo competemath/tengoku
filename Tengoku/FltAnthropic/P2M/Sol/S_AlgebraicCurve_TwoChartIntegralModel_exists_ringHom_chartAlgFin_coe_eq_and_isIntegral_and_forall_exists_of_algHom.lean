@@ -13,6 +13,9 @@ universe u
 open AlgebraicCurve AlgebraicCurve.TwoChartIntegralModel
 
 open Polynomial in
+/--
+@isnad1 id=ex.1h6v.s11.2b9c39bbf7f7 from=translated src=- shape=b5f7775d vocab=76a41b97
+-/
 theorem solution
     (R : Type u) [CommRing R]
     (F'' : Type u) [Field F''] [Algebra R F''] (F : Type u) [Field F] [Algebra R F]

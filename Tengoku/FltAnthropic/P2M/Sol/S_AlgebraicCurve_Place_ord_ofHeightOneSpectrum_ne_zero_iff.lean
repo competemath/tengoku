@@ -76,6 +76,9 @@ end AlgebraicCurve
 end
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_ord_ofHeightOneSpectrum_ne_zero_iff.AlgebraicCurve in
+/--
+@isnad1 id=iff.1h5v.s8.a2d624a778dc from=translated src=- shape=3846d9fe vocab=69ec9d96
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] {R : Type*} [CommRing R] [IsDedekindDomain R] [Algebra R F] [IsFractionRing R F]
     [Algebra K R] [IsScalarTower K R F] (w : IsDedekindDomain.HeightOneSpectrum R) {q : R} (hq : q ≠ 0) :
     (Place.ofHeightOneSpectrum (K := K) (F := F) w).ord (algebraMap R F q) ≠ 0 ↔ q ∈ w.asIdeal :=

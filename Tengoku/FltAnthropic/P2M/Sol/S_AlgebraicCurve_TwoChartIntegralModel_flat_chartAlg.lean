@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=flat.1h3v.s8.7ffc6a6ba351 from=translated src=- shape=27f57e3d vocab=512c42b7
+-/
 theorem solution
     {R F : Type u} [CommRing R] [IsDomain R] [IsBezout R] [Field F] [Algebra R F]
     (hRF : Function.Injective (algebraMap R F)) (S : Set F) :

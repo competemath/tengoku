@@ -8,6 +8,9 @@ namespace P2MW.S_AlgebraicCurve_Place_deg_eq_one_of_isAlgClosed
 
 open AlgebraicCurve
 
+/--
+@isnad1 id=eq.1h3v.s6.f696068e8668 from=translated src=- shape=58dfcecf vocab=fcb3d844
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] [IsAlgClosed K] (v : Place K F) (hv : v.deg ≠ 0) : v.deg = 1 := by
   haveI : Module.Finite K v.ResidueField := Module.finite_of_finrank_pos (Nat.pos_of_ne_zero hv)
   have e : K ≃ₗ[K] v.ResidueField :=

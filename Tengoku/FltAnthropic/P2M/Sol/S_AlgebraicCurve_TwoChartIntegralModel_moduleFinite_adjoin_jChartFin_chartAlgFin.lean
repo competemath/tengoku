@@ -12,6 +12,9 @@ open AlgebraicCurve AlgebraicCurve.TwoChartIntegralModel Polynomial
 
 set_option maxHeartbeats 6400000 in
 set_option synthInstance.maxHeartbeats 800000 in
+/--
+@isnad1 id=finite.1h4v.s11.4e7fb5ffc4b8 from=translated src=- shape=17161f32 vocab=88f139dd
+-/
 theorem solution
     (R : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     (K₀ : Type) [Field K₀] [Algebra R K₀] [IsFractionRing R K₀]

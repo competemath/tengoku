@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open Polynomial
 
+/--
+@isnad1 id=mem.4h5v.s10.089267041aac from=translated src=- shape=2692fa91 vocab=238a0b38
+-/
 theorem solution
     {F L : Type*} [Field F] [Field L] [Algebra F L]
     (𝒪 : ValuationSubring F) [Algebra 𝒪 L] [IsScalarTower 𝒪 F L]

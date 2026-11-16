@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=le.2h3v.s9.6f64ac0d4b40 from=translated src=- shape=919c8513 vocab=4ce24e54
+-/
 theorem solution
     {X : Scheme.{u}} {U : X.Opens} (hU : IsAffineOpen U) (x : X) (hx : x ∈ U) :
     ringKrullDim (X.presheaf.stalk x) ≤ ringKrullDim Γ(X, U) := by

@@ -12,6 +12,9 @@ open AlgebraicCurve.TwoChartIntegralModel
 set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 3200000
 
+/--
+@isnad1 id=isfracti.0h4v.s8.4c5246e4b70b from=translated src=- shape=3283a65b vocab=eb6ca758
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsDomain R]
     (K₀ : Type u) [Field K₀] [Algebra R K₀] [IsFractionRing R K₀]

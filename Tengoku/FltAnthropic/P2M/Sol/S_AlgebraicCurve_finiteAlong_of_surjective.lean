@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open AlgebraicCurve
 
+/--
+@isnad1 id=finiteal.1h4v.s7.42a6bbdcc722 from=translated src=- shape=b6b8d6cc vocab=e0393984
+-/
 theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] (φ : F →ₐ[K] F') (hφ : Function.Surjective φ) : FiniteAlong K φ := by
   letI := algebraAlong φ
   exact Module.Finite.of_surjective (Algebra.linearMap F F') hφ

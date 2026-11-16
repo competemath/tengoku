@@ -26,6 +26,9 @@ variable (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F]
 variable (R' : Type u) [CommRing R'] [Algebra R R'] [Algebra R' F] [IsScalarTower R R' F]
 variable (M : Submonoid R) [IsLocalization M R']
 
+/--
+@isnad1 id=ex.1h6v.s8.d812ec75f02a from=translated src=- shape=87cec4c9 vocab=5c21a21f
+-/
 theorem exists_algebraMap_mul_mem_adjoin_of_isLocalization (S : Set F) {x : F}
     (hx : x ∈ Algebra.adjoin R' S) :
     ∃ m : M, algebraMap R F m * x ∈ Algebra.adjoin R S := by
@@ -59,6 +62,9 @@ theorem exists_algebraMap_mul_mem_adjoin_of_isLocalization (S : Set F) {x : F}
     rw [this]
     exact mul_mem hm hn
 
+/--
+@isnad1 id=ex.1h6v.s8.05f4ebafceec from=translated src=- shape=87cec4c9 vocab=f210c728
+-/
 theorem exists_algebraMap_mul_mem_chartAlg_of_isLocalization (S : Set F) {x : F}
     (hx : x ∈ chartAlg R' F S) :
     ∃ m : M, algebraMap R F m * x ∈ chartAlg R F S := by
@@ -102,6 +108,9 @@ theorem exists_algebraMap_mul_mem_chartAlg_of_isLocalization (S : Set F) {x : F}
   rw [Polynomial.eval₂_eq_eval_map, hq'q, hqroot]
 
 omit [IsLocalization M R'] in
+/--
+@isnad1 id=injectiv.0h4v.s9.c284a80ad36f from=translated src=- shape=9f28f346 vocab=5ec4939a
+-/
 theorem chartBaseChange_injective (S : Set F) : Function.Injective (chartBaseChange R F R' S) :=
   fun x y h => Subtype.ext (by simpa only [coe_chartBaseChange] using congrArg Subtype.val h)
 
@@ -111,6 +120,9 @@ end AlgebraicCurve.TwoChartIntegralModel
 
 open _root_.AlgebraicCurve.TwoChartIntegralModel _root_.P2MW.S_AlgebraicCurve_TwoChartIntegralModel_isLocalization_chartAlg.AlgebraicCurve.TwoChartIntegralModel in
 
+/--
+@isnad1 id=islocali.0h5v.s10.4b45c052e707 from=translated src=- shape=23e2a461 vocab=7b25b416
+-/
 theorem solution
     (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F]
     (R' : Type u) [CommRing R'] [Algebra R R'] [Algebra R' F] [IsScalarTower R R' F]

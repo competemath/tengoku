@@ -8,6 +8,9 @@ namespace P2MW.S_AlgebraicCurve_isIntegral_adjoin_map_algHom
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=isintegr.1h6v.s8.e5c118c637a2 from=translated src=- shape=655aa362 vocab=102bbc5e
+-/
 theorem solution {K F F' : Type*} [CommRing K] [CommRing F] [CommRing F'] [Algebra K F] [Algebra K F'] (φ : F →ₐ[K] F') {j x : F} (hx : IsIntegral (Algebra.adjoin K {j}) x) : IsIntegral (Algebra.adjoin K {φ j}) (φ x) := by
   have hle : (Algebra.adjoin K {j}).map φ ≤ Algebra.adjoin K {φ j} := by
     rw [Subalgebra.map_le]

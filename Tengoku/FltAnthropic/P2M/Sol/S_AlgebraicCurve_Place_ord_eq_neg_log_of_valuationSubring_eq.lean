@@ -19,6 +19,9 @@ export _root_.AlgebraicCurve (Place)
 namespace WFa
 open _root_.AlgebraicCurve
 
+/--
+@isnad1 id=le.1h1v.s6.8711fed2fe84 from=translated src=- shape=445cfd7b vocab=6b2015c6
+-/
 theorem le_exp_neg_one_of_lt_one {x : ℤᵐ⁰} (hx : x < 1) : x ≤ exp (-1 : ℤ) := by
   rcases eq_or_ne x 0 with rfl | hx0
   · exact zero_le
@@ -30,6 +33,9 @@ theorem le_exp_neg_one_of_lt_one {x : ℤᵐ⁰} (hx : x < 1) : x ≤ exp (-1 : 
 end AlgebraicCurve.WFa
 
 open AlgebraicCurve.WFa in
+/--
+@isnad1 id=eq.3h6v.s7.5e25e87cf2d1 from=translated src=- shape=5f2f130f vocab=ea3264fb
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) (w : Valuation F (WithZero (Multiplicative ℤ))) (hw : w.valuationSubring = v.toValuationSubring) {π : F} (hπ : w π = WithZero.exp (-1 : ℤ)) {f : F} (hf : f ≠ 0) : v.ord f = -WithZero.log (w f) := by
   have hequiv : w.IsEquiv v.adicValuation :=
     v.isEquiv_adicValuation_of_valuationSubring_eq hw

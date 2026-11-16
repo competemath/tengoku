@@ -11,6 +11,9 @@ open TensorProduct
 
 universe u v w
 
+/--
+@isnad1 id=ex.5h6v.s9.4e644ef5f48f from=translated src=- shape=78b55670 vocab=7176b3e5
+-/
 theorem AlgebraicGeometry.AdmissibleAlgebra.exists_smul_eq_sub_of_forall_smul_sub_mem_span_pow
     {R : Type u} [CommRing R] {G : Type v} [Group G] [Finite G] [MulSemiringAction G R]
     (t : R) (ht : ∀ g : G, g • t = t) (ht0 : ∀ x : R, t * x = 0 → x = 0) (e : ℕ)

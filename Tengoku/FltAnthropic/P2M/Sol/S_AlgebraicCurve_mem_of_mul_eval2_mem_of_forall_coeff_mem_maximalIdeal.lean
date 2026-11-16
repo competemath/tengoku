@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsLocalRing
 
+/--
+@isnad1 id=mem.6h7v.s10.0103a6251e50 from=translated src=- shape=fe5b1ab9 vocab=4b84be78
+-/
 theorem solution
     {L : Type*} [Field L] [IsAlgClosed L] (A : ValuationSubring L)
     {F : Type*} [Field F] [Algebra L F] (S : Subring F)

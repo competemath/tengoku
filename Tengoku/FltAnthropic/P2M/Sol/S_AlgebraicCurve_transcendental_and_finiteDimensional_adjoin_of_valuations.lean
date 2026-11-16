@@ -25,11 +25,17 @@ def lSpace (V : Set (Valuation F ℤᵐ⁰))
     · simp [hc]
     · rw [hK v hv c hc, one_mul]; exact hg v hv
 
+/--
+@isnad1 id=iff.1h5v.s9.5f45f4292f09 from=translated src=- shape=a7553793 vocab=05400c45
+-/
 theorem mem_lSpace_iff (V : Set (Valuation F ℤᵐ⁰))
     (hK : ∀ v ∈ V, ∀ c : K, c ≠ 0 → v (algebraMap K F c) = 1)
     (m : Multiset (Valuation F ℤᵐ⁰)) (g : F) :
     g ∈ lSpace V hK m ↔ ∀ v ∈ V, v g ≤ WithZero.exp ((m.count v : ℕ) : ℤ) := Iff.rfl
 
+/--
+@isnad1 id=le.2h3v.s9.8ba6885f9f4f from=translated src=- shape=f2a2d27f vocab=1aa64335
+-/
 theorem lSpace_zero_le (V : Set (Valuation F ℤᵐ⁰))
     (hK : ∀ v ∈ V, ∀ c : K, c ≠ 0 → v (algebraMap K F c) = 1)
     (hconst : ∀ f : F, (∀ v ∈ V, v f ≤ 1) → f ∈ Set.range (algebraMap K F)) :
@@ -39,6 +45,9 @@ theorem lSpace_zero_le (V : Set (Valuation F ℤᵐ⁰))
   rw [Algebra.algebraMap_eq_smul_one]
   exact Submodule.smul_mem _ c (Submodule.subset_span rfl)
 
+/--
+@isnad1 id=or.2h5v.s10.dd011129e263 from=translated src=- shape=3423df23 vocab=10e57932
+-/
 theorem lSpace_cons_le (V : Set (Valuation F ℤᵐ⁰))
     (hK : ∀ v ∈ V, ∀ c : K, c ≠ 0 → v (algebraMap K F c) = 1)
     (hres : ∀ v ∈ V, ∀ f : F, v f = 1 → ∃ c : K, v (f - algebraMap K F c) < 1)
@@ -142,6 +151,9 @@ theorem lSpace_cons_le (V : Set (Valuation F ℤᵐ⁰))
       exact Submodule.add_mem _ (Submodule.mem_sup_left hdiff)
         (Submodule.mem_sup_right (Submodule.smul_mem _ c (Submodule.subset_span rfl)))
 
+/--
+@isnad1 id=and.3h4v.s10.94cc985566f0 from=translated src=- shape=e13c936d vocab=796cf465
+-/
 theorem finite_and_finrank_lSpace_le (V : Set (Valuation F ℤᵐ⁰))
     (hK : ∀ v ∈ V, ∀ c : K, c ≠ 0 → v (algebraMap K F c) = 1)
     (hres : ∀ v ∈ V, ∀ f : F, v f = 1 → ∃ c : K, v (f - algebraMap K F c) < 1)
@@ -170,6 +182,9 @@ theorem finite_and_finrank_lSpace_le (V : Set (Valuation F ℤᵐ⁰))
         _ ≤ (Multiset.card m + 1) + 1 := add_le_add hrank
             ((finrank_span_le_card ({g₀} : Set F)).trans (by simp))
 
+/--
+@isnad1 id=le.2h5v.s9.e6e34e0aef8b from=translated src=- shape=6ded43f5 vocab=f7ed95bf
+-/
 theorem lSpace_mono (V : Set (Valuation F ℤᵐ⁰))
     (hK : ∀ v ∈ V, ∀ c : K, c ≠ 0 → v (algebraMap K F c) = 1)
     {m m' : Multiset (Valuation F ℤᵐ⁰)} (h : m ≤ m') : lSpace V hK m ≤ lSpace V hK m' := fun g hg v hv =>
@@ -177,6 +192,9 @@ theorem lSpace_mono (V : Set (Valuation F ℤᵐ⁰))
     rw [WithZero.exp_le_exp]
     exact_mod_cast Multiset.count_le_of_le v h)
 
+/--
+@isnad1 id=mem.3h7v.s9.d6564b1f6d45 from=translated src=- shape=66b7f956 vocab=da490aa1
+-/
 theorem mul_mem_lSpace (V : Set (Valuation F ℤᵐ⁰))
     (hK : ∀ v ∈ V, ∀ c : K, c ≠ 0 → v (algebraMap K F c) = 1)
     {m m' : Multiset (Valuation F ℤᵐ⁰)} {g g' : F} (hg : g ∈ lSpace V hK m) (hg' : g' ∈ lSpace V hK m') :
@@ -184,6 +202,9 @@ theorem mul_mem_lSpace (V : Set (Valuation F ℤᵐ⁰))
   rw [map_mul, Multiset.count_add, Nat.cast_add, WithZero.exp_add]
   exact mul_le_mul' (hg v hv) (hg' v hv)
 
+/--
+@isnad1 id=mem.2h6v.s9.9b5dfdda4656 from=translated src=- shape=21e41e4b vocab=2bff6924
+-/
 theorem pow_mem_lSpace (V : Set (Valuation F ℤᵐ⁰))
     (hK : ∀ v ∈ V, ∀ c : K, c ≠ 0 → v (algebraMap K F c) = 1)
     {m : Multiset (Valuation F ℤᵐ⁰)} {g : F} (hg : g ∈ lSpace V hK m) (i : ℕ) :
@@ -194,6 +215,9 @@ theorem pow_mem_lSpace (V : Set (Valuation F ℤᵐ⁰))
     rw [pow_succ, succ_nsmul]
     exact mul_mem_lSpace V hK ih hg
 
+/--
+@isnad1 id=ex.2h4v.s9.57ae35435931 from=translated src=- shape=35fb7d10 vocab=e1dae001
+-/
 theorem exists_mem_lSpace (V : Set (Valuation F ℤᵐ⁰))
     (hK : ∀ v ∈ V, ∀ c : K, c ≠ 0 → v (algebraMap K F c) = 1)
     (hfin : ∀ f : F, f ≠ 0 → {v ∈ V | 1 < v f}.Finite) (g : F) :
@@ -224,6 +248,9 @@ theorem exists_mem_lSpace (V : Set (Valuation F ℤᵐ⁰))
     rw [h1, WithZero.exp_le_exp]
     positivity
 
+/--
+@isnad1 id=linearin.1h4v.s6.cfd66fe614ef from=translated src=- shape=3f1f507d vocab=ceed4961
+-/
 theorem linearIndependent_pow_of_transcendental {f : F} (htr : Transcendental K f) (k : ℕ) :
     LinearIndependent K (fun i : Fin k => f ^ (i : ℕ)) := by
   rw [Fintype.linearIndependent_iff]
@@ -238,6 +265,9 @@ theorem linearIndependent_pow_of_transcendental {f : F} (htr : Transcendental K 
     ite_eq_left rfl] at hcoeff
   exact hcoeff
 
+/--
+@isnad1 id=le.3h5v.s8.190ab61314be from=translated src=- shape=b512e25e vocab=8bff6673
+-/
 theorem v_le_one_of_isIntegral (V : Set (Valuation F ℤᵐ⁰))
     (hK : ∀ v ∈ V, ∀ c : K, c ≠ 0 → v (algebraMap K F c) = 1)
     {v : Valuation F ℤᵐ⁰} (hv : v ∈ V) {f : F} (hf : IsIntegral K f) : v f ≤ 1 := by
@@ -257,6 +287,9 @@ theorem v_le_one_of_isIntegral (V : Set (Valuation F ℤᵐ⁰))
     exact hpf
   exact (Valuation.integer.integers v).mem_of_integral hint
 
+/--
+@isnad1 id=and.5h4v.s10.7c3375ee2ba8 from=translated src=- shape=ea5fee6e vocab=3cefb185
+-/
 theorem transcendental_and_finiteDimensional (V : Set (Valuation F ℤᵐ⁰))
     (hK : ∀ v ∈ V, ∀ c : K, c ≠ 0 → v (algebraMap K F c) = 1)
     (hres : ∀ v ∈ V, ∀ f : F, v f = 1 → ∃ c : K, v (f - algebraMap K F c) < 1)
@@ -314,6 +347,9 @@ theorem transcendental_and_finiteDimensional (V : Set (Valuation F ℤᵐ⁰))
 end P2mKcRecognition
 
 open P2mKcRecognition in
+/--
+@isnad1 id=and.5h4v.s10.7c3375ee2ba8 from=translated src=- shape=ea5fee6e vocab=3cefb185
+-/
 theorem solution
     {K F : Type*} [Field K] [Field F] [Algebra K F]
     (V : Set (Valuation F ℤᵐ⁰))

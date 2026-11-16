@@ -26,9 +26,15 @@ universe u
 
 variable (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F] (j : F) [Fact (j ≠ 0)]
 
+/--
+@isnad1 id=isdomain.0h3v.s6.9a224a47d8a9 from=translated src=- shape=553fed7c vocab=2cb094d1
+-/
 scoped instance isDomain_chartAlg' (S : Set F) : IsDomain (CommRingCat.of (chartAlg R F S)) :=
   inferInstanceAs (IsDomain (chartAlg R F S))
 
+/--
+@isnad1 id=nonempty.0h3v.s9.d9fa10d0cad0 from=translated src=- shape=5df62743 vocab=50ceb593
+-/
 theorem range_ιFin_inter_range_ιInf_nonempty :
     (Set.range (ιFin R F j).base ∩ Set.range (ιInf R F j).base).Nonempty := by
   obtain ⟨z⟩ : Nonempty (XMid R F j) := inferInstance
@@ -36,12 +42,18 @@ theorem range_ιFin_inter_range_ιInf_nonempty :
   · rw [Scheme.Hom.comp_base, TopCat.comp_app]
   · rw [glue_condition, Scheme.Hom.comp_base, TopCat.comp_app]
 
+/--
+@isnad1 id=ispreirr.0h5v.s8.59806ec49fa5 from=translated src=- shape=d30636c0 vocab=6b66975b
+-/
 theorem isPreirreducible_range_of_irreducibleSpace {Y : Scheme.{u}} [IrreducibleSpace Y]
     (f : Y ⟶ AlgebraicCurve.TwoChartIntegralModel R F j) : IsPreirreducible (Set.range f.base) := by
   rw [← Set.image_univ]
   exact ((IrreducibleSpace.isIrreducible_univ Y).image f.base
     f.continuous.continuousOn).isPreirreducible
 
+/--
+@isnad1 id=irreduci.0h3v.s6.fda7eb6c9319 from=translated src=- shape=731acf8a vocab=7a10ef64
+-/
 theorem irreducibleSpace : IrreducibleSpace (AlgebraicCurve.TwoChartIntegralModel R F j) := by
   have hU₁o : IsOpen (Set.range (ιFin R F j).base) := (ιFin R F j).isOpenEmbedding.isOpen_range
   have hU₂o : IsOpen (Set.range (ιInf R F j).base) := (ιInf R F j).isOpenEmbedding.isOpen_range
@@ -68,6 +80,9 @@ theorem irreducibleSpace : IrreducibleSpace (AlgebraicCurve.TwoChartIntegralMode
   obtain ⟨x, -⟩ := hmeet
   exact { isPreirreducible_univ := hpre, toNonempty := ⟨x⟩ }
 
+/--
+@isnad1 id=isreduce.0h3v.s5.73b7610b1170 from=translated src=- shape=216d8d42 vocab=f48b784e
+-/
 theorem isReduced : IsReduced (AlgebraicCurve.TwoChartIntegralModel R F j) := by
   have (x : AlgebraicCurve.TwoChartIntegralModel R F j) :
       _root_.IsReduced ((AlgebraicCurve.TwoChartIntegralModel R F j).presheaf.stalk x) := by
@@ -78,6 +93,9 @@ theorem isReduced : IsReduced (AlgebraicCurve.TwoChartIntegralModel R F j) := by
         (asIso <| (ιInf R F j).stalkMap y).commRingCatIsoToRingEquiv.injective
   exact isReduced_of_isReduced_stalk _
 
+/--
+@isnad1 id=isintegr.0h3v.s5.398f4612a91e from=translated src=- shape=216d8d42 vocab=6bc1229b
+-/
 theorem isIntegral_impl : IsIntegral (AlgebraicCurve.TwoChartIntegralModel R F j) :=
   haveI := isReduced R F j
   haveI := irreducibleSpace R F j
@@ -91,6 +109,9 @@ end
 open scoped _root_.P2MW.S_AlgebraicCurve_TwoChartIntegralModel_isIntegral.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_TwoChartIntegralModel_isIntegral.AlgebraicCurve.TwoChartIntegralModel
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry _root_.AlgebraicCurve.TwoChartIntegralModel _root_.P2MW.S_AlgebraicCurve_TwoChartIntegralModel_isIntegral.AlgebraicCurve.TwoChartIntegralModel in
+/--
+@isnad1 id=isintegr.0h3v.s5.398f4612a91e from=translated src=- shape=216d8d42 vocab=6bc1229b
+-/
 theorem solution.{u} (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F] (j : F) [Fact (j ≠ 0)] :
     IsIntegral (AlgebraicCurve.TwoChartIntegralModel R F j) :=
   AlgebraicCurve.TwoChartIntegralModel.isIntegral_impl R F j

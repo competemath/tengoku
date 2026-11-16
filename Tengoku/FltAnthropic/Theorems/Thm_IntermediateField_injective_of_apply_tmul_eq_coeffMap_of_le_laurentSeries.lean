@@ -12,6 +12,9 @@ open scoped TensorProduct
 
 universe u v
 
+/--
+@isnad1 id=injectiv.1h4v.s15.df6007ddd29f from=translated src=- shape=6b572346 vocab=3e5df7de
+-/
 theorem IntermediateField.injective_of_apply_tmul_eq_coeffMap_of_le_laurentSeries
     (κ : Type u) [Field κ] (k : Type v) [Field k] [Algebra κ k]
     (R : IntermediateField κ (LaurentSeries κ))

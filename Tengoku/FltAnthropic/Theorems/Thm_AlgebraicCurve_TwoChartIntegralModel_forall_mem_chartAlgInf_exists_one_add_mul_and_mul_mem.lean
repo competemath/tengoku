@@ -12,6 +12,9 @@ universe u
 
 open AlgebraicCurve AlgebraicCurve.TwoChartIntegralModel
 
+/--
+@isnad1 id=ex.2h5v.s9.c8e99dbf9d6a from=translated src=- shape=ad406ab7 vocab=304e8a02
+-/
 theorem AlgebraicCurve.TwoChartIntegralModel.forall_mem_chartAlgInf_exists_one_add_mul_and_mul_mem
     (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F] (j j' : F) [Fact (j ≠ 0)] [Fact (j' ≠ 0)]
     (hloc : ∃ b ∈ Algebra.adjoin R ({j⁻¹} : Set F), ∃ c : F,

@@ -55,6 +55,9 @@ section Fiber
 
 variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F']
 
+/--
+@isnad1 id=ex.1h5v.s7.eef462069640 from=translated src=- shape=00ac928b vocab=0da61a20
+-/
 theorem rowMain (w : Place K F') (v : Place K F)
     (hv : v.toValuationSubring = w.toValuationSubring.comap (algebraMap F F')) :
     ∃ e : ℕ, 0 < e ∧ ∀ f : F, w.ord (algebraMap F F' f) = e * v.ord f := by
@@ -125,6 +128,9 @@ end AlgebraicCurve
 end
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_exists_ord_algebraMap_eq_mul_ord.AlgebraicCurve in
+/--
+@isnad1 id=ex.1h5v.s7.eef462069640 from=translated src=- shape=00ac928b vocab=0da61a20
+-/
 theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] (w : Place K F') (v : Place K F) (hv : v.toValuationSubring = w.toValuationSubring.comap (algebraMap F F')) :
     ∃ e : ℕ, 0 < e ∧ ∀ f : F, w.ord (algebraMap F F' f) = e * v.ord f :=
   AlgebraicCurve.Place.rowMain w v hv
