@@ -61,11 +61,15 @@ namespace Tengoku.Semigroup.InverseSemigroup
 variable {S : Type*} [InverseSemigroup S] (a : S)
 
 /-- In an inverse semigroup, `a⁻¹` is an inverse of `a`:
-`a * a⁻¹ * a = a` and `a⁻¹ * a * a⁻¹ = a⁻¹`.-/
+`a * a⁻¹ * a = a` and `a⁻¹ * a * a⁻¹ = a⁻¹`.
+@isnad1 id=isinvers.0h2v.s4.8eb894ea1cdf from=translated src=- shape=8d0018bb vocab=ac02ed2c
+-/
 theorem isInverseOf_inv : IsInverseOf a⁻¹ a :=
   ⟨mul_inv_mul a, inv_mul_inv a⟩
 
-/-- Every element of an inverse semigroup is (von Neumann) regular.-/
+/-- Every element of an inverse semigroup is (von Neumann) regular.
+@isnad1 id=isregula.0h2v.s3.e5226be052e5 from=translated src=- shape=368b3242 vocab=3556b035
+-/
 theorem isRegularElem : IsRegularElem a :=
   ⟨a⁻¹, mul_inv_mul a⟩
 

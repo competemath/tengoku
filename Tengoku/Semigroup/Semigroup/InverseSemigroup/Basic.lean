@@ -46,21 +46,29 @@ namespace Tengoku.Semigroup.InverseSemigroup
 
 variable {S : Type*} [InverseSemigroup S]
 
-/-- The inverse is involutive.-/
+/-- The inverse is involutive.
+@isnad1 id=eq.0h2v.s4.49dedc93cd55 from=translated src=- shape=1c9622f3 vocab=47257bf7
+-/
 @[simp] theorem inv_inv (a : S) : a⁻¹⁻¹ = a :=
   (inv_unique (inv_mul_inv a) (mul_inv_mul a)).symm
 
-/-- `a * a⁻¹` is idempotent.-/
+/-- `a * a⁻¹` is idempotent.
+@isnad1 id=isidempo.0h2v.s5.19e91650ab1c from=translated src=- shape=c8c83241 vocab=fbdef089
+-/
 theorem isIdempotentElem_mul_inv (a : S) : IsIdempotentElem (a * a⁻¹) :=
   show a * a⁻¹ * (a * a⁻¹) = a * a⁻¹ by
     rw [← mul_assoc, mul_inv_mul]
 
-/-- `a⁻¹ * a` is idempotent.-/
+/-- `a⁻¹ * a` is idempotent.
+@isnad1 id=isidempo.0h2v.s5.776aa350884b from=translated src=- shape=eccf4f93 vocab=fbdef089
+-/
 theorem isIdempotentElem_inv_mul (a : S) : IsIdempotentElem (a⁻¹ * a) :=
   show a⁻¹ * a * (a⁻¹ * a) = a⁻¹ * a by
     rw [← mul_assoc, inv_mul_inv]
 
-/-- An idempotent is its own inverse.-/
+/-- An idempotent is its own inverse.
+@isnad1 id=eq.1h2v.s4.317635964ca3 from=translated src=- shape=c1222a62 vocab=c0f305ed
+-/
 theorem inv_idem {e : S} (he : IsIdempotentElem e) : e⁻¹ = e := by
   have h : e * e * e = e := by rw [he.eq, he.eq]
   exact (inv_unique h h).symm
@@ -68,7 +76,9 @@ theorem inv_idem {e : S} (he : IsIdempotentElem e) : e⁻¹ = e := by
 /-- The product of two idempotents is idempotent (Howie, Thm 5.1.1, first
 half): with `x := (e * f)⁻¹`, the element `f * x * e` is an idempotent
 inverse of `e * f`, so `x = f * x * e` by uniqueness, `x` is idempotent, and
-`e * f = x⁻¹ = x`.-/
+`e * f = x⁻¹ = x`.
+@isnad1 id=isidempo.2h3v.s5.320546d94dfb from=translated src=- shape=b6c631e1 vocab=1eb1c49d
+-/
 theorem isIdempotentElem_mul {e f : S} (he : IsIdempotentElem e)
     (hf : IsIdempotentElem f) : IsIdempotentElem (e * f) := by
   obtain ⟨x, hx⟩ : ∃ x : S, x = (e * f)⁻¹ := ⟨_, rfl⟩
@@ -110,7 +120,9 @@ a regular semigroup has unique inverses iff its idempotents commute.
 
 Proof (Howie, Thm 5.1.1): both `e * f` and `f * e` are idempotent by
 `isIdempotentElem_mul`, and each is then an inverse of the other, so
-uniqueness gives `f * e = (e * f)⁻¹ = e * f`.-/
+uniqueness gives `f * e = (e * f)⁻¹ = e * f`.
+@isnad1 id=eq.2h3v.s5.e9e33b176326 from=translated src=- shape=df8f618f vocab=1eb1c49d
+-/
 theorem idempotent_mul_comm {e f : S} (he : IsIdempotentElem e)
     (hf : IsIdempotentElem f) : e * f = f * e := by
   have hef := isIdempotentElem_mul he hf
@@ -131,7 +143,9 @@ theorem idempotent_mul_comm {e f : S} (he : IsIdempotentElem e)
 
 /-- The inverse of a product: `b⁻¹ * a⁻¹` is an inverse of `a * b` (sliding
 the idempotents `b * b⁻¹` and `a⁻¹ * a` past each other with
-`idempotent_mul_comm`), so it is *the* inverse by `inv_unique`.-/
+`idempotent_mul_comm`), so it is *the* inverse by `inv_unique`.
+@isnad1 id=eq.0h3v.s5.ef70dc0a1b41 from=translated src=- shape=0ef92c39 vocab=922bbf44
+-/
 theorem mul_inv_rev (a b : S) : (a * b)⁻¹ = b⁻¹ * a⁻¹ := by
   have hcomm := idempotent_mul_comm (isIdempotentElem_mul_inv b) (isIdempotentElem_inv_mul a)
   have h1 : (a * b) * (b⁻¹ * a⁻¹) * (a * b) = a * b :=
@@ -150,7 +164,9 @@ theorem mul_inv_rev (a b : S) : (a * b)⁻¹ = b⁻¹ * a⁻¹ := by
 
 /-- Conjugating an idempotent: `a⁻¹ * e * a` is idempotent whenever `e` is
 (expand the square and slide `e` past `a * a⁻¹` with
-`idempotent_mul_comm`).-/
+`idempotent_mul_comm`).
+@isnad1 id=isidempo.1h3v.s5.337756d713af from=translated src=- shape=13a6b730 vocab=fbdef089
+-/
 theorem isIdempotentElem_conj {e : S} (he : IsIdempotentElem e) (a : S) :
     IsIdempotentElem (a⁻¹ * (e * a)) := by
   have hcomm := idempotent_mul_comm (isIdempotentElem_mul_inv a) he

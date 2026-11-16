@@ -55,15 +55,21 @@ protected def mul : ReesMatrix G I Λ P → ReesMatrix G I Λ P → ReesMatrix G
     | none => zero
     | some p => elem i (a * p * b) m
 
-/-- `zero` is right-absorbing for `ReesMatrix.mul`.-/
+/-- `zero` is right-absorbing for `ReesMatrix.mul`.
+@isnad1 id=eq.0h5v.s5.65ae741a6410 from=translated src=- shape=a6fb6008 vocab=006bd4aa
+-/
 protected lemma mul_zero' (x : ReesMatrix G I Λ P) : ReesMatrix.mul x zero = zero := by
   cases x <;> rfl
 
-/-- `zero` is left-absorbing for `ReesMatrix.mul`.-/
+/-- `zero` is left-absorbing for `ReesMatrix.mul`.
+@isnad1 id=eq.0h5v.s5.976b16f778cf from=translated src=- shape=6bb5e916 vocab=006bd4aa
+-/
 protected lemma zero_mul' (x : ReesMatrix G I Λ P) : ReesMatrix.mul zero x = zero := by
   cases x <;> rfl
 
-/-- The product of two triples is `zero` when the sandwich entry `P l j` is `none`.-/
+/-- The product of two triples is `zero` when the sandwich entry `P l j` is `none`.
+@isnad1 id=eq.1h10v.s6.3c425915cce6 from=translated src=- shape=0ad1170c vocab=31ee15c2
+-/
 protected lemma mul_elem_of_none {l : Λ} {j : I} (h : P l j = none)
     (i : I) (a b : G) (m : Λ) :
     ReesMatrix.mul (elem i a l) (elem j b m) = (zero : ReesMatrix G I Λ P) := by
@@ -73,7 +79,9 @@ protected lemma mul_elem_of_none {l : Λ} {j : I} (h : P l j = none)
   rw [h]
 
 /-- The product of two triples is `elem i (a * p * b) m` when the sandwich entry
-`P l j` is `some p`.-/
+`P l j` is `some p`.
+@isnad1 id=eq.1h11v.s6.2b69da42bcb6 from=translated src=- shape=3c1f6469 vocab=3cae17f3
+-/
 protected lemma mul_elem_of_some {l : Λ} {j : I} {p : G} (h : P l j = some p)
     (i : I) (a b : G) (m : Λ) :
     ReesMatrix.mul (elem i a l) (elem j b m) = (elem i (a * p * b) m : ReesMatrix G I Λ P) := by
@@ -82,7 +90,9 @@ protected lemma mul_elem_of_some {l : Λ} {j : I} {p : G} (h : P l j = some p)
     | some q => elem i (a * q * b) m) = (elem i (a * p * b) m : ReesMatrix G I Λ P)
   rw [h]
 
-/-- Multiplication in the Rees matrix semigroup is associative.-/
+/-- Multiplication in the Rees matrix semigroup is associative.
+@isnad1 id=eq.0h7v.s6.57097f8d04b4 from=translated src=- shape=fbf64ab9 vocab=d4f23671
+-/
 protected theorem mul_assoc' (x y z : ReesMatrix G I Λ P) :
     ReesMatrix.mul (ReesMatrix.mul x y) z = ReesMatrix.mul x (ReesMatrix.mul y z) := by
   rcases x with _ | ⟨i, a, l⟩
@@ -114,29 +124,39 @@ instance : SemigroupWithZero (ReesMatrix G I Λ P) where
   mul_zero := ReesMatrix.mul_zero'
 
 /-- The product `elem i a l * elem j b m` is `0` when the sandwich entry `P l j`
-is `none`.-/
+is `none`.
+@isnad1 id=eq.1h10v.s7.615667b5d0e1 from=translated src=- shape=bb2bfb85 vocab=a4eabb76
+-/
 @[simp] lemma elem_mul_of_none {l : Λ} {j : I} (h : P l j = none)
     (i : I) (a b : G) (m : Λ) :
     (elem i a l : ReesMatrix G I Λ P) * elem j b m = 0 :=
   ReesMatrix.mul_elem_of_none h i a b m
 
 /-- The product `elem i a l * elem j b m` is `elem i (a * p * b) m` when the
-sandwich entry `P l j` is `some p`.-/
+sandwich entry `P l j` is `some p`.
+@isnad1 id=eq.1h11v.s7.e255a0474d25 from=translated src=- shape=ac0418c5 vocab=8b6ac438
+-/
 @[simp] lemma elem_mul_of_some {l : Λ} {j : I} {p : G} (h : P l j = some p)
     (i : I) (a b : G) (m : Λ) :
     (elem i a l : ReesMatrix G I Λ P) * elem j b m = elem i (a * p * b) m :=
   ReesMatrix.mul_elem_of_some h i a b m
 
-/-- The zero of the `SemigroupWithZero` structure is the constructor `zero`.-/
+/-- The zero of the `SemigroupWithZero` structure is the constructor `zero`.
+@isnad1 id=eq.0h4v.s5.b7c5c0bc9575 from=translated src=- shape=8d8f6c13 vocab=41fecba7
+-/
 lemma zero_def : (0 : ReesMatrix G I Λ P) = zero := rfl
 
-/-- The zero of the Rees matrix semigroup is distinct from every triple.-/
+/-- The zero of the Rees matrix semigroup is distinct from every triple.
+@isnad1 id=ne.0h7v.s6.ae26632ce4b3 from=translated src=- shape=a5ba4e65 vocab=d4e891a5
+-/
 @[simp] lemma zero_ne_elem {i : I} {g : G} {l : Λ} :
     (0 : ReesMatrix G I Λ P) ≠ elem i g l := fun h => by
   rw [zero_def] at h
   cases h
 
-/-- Every triple of the Rees matrix semigroup is nonzero.-/
+/-- Every triple of the Rees matrix semigroup is nonzero.
+@isnad1 id=ne.0h7v.s6.371e1ae47f50 from=translated src=- shape=8af1aa52 vocab=d4e891a5
+-/
 @[simp] lemma elem_ne_zero {i : I} {g : G} {l : Λ} :
     (elem i g l : ReesMatrix G I Λ P) ≠ 0 := fun h => by
   rw [zero_def] at h

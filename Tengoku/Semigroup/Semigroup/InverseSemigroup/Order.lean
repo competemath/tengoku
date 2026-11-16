@@ -117,10 +117,14 @@ instance : PartialOrder S where
   le_trans _ _ _ := le_trans_aux
   le_antisymm _ _ := le_antisymm_aux
 
-/-- Unfolding lemma for the natural partial order: `a ≤ b ↔ a = a * a⁻¹ * b`.-/
+/-- Unfolding lemma for the natural partial order: `a ≤ b ↔ a = a * a⁻¹ * b`.
+@isnad1 id=iff.0h3v.s5.192a983bae78 from=translated src=- shape=81826700 vocab=7d87b604
+-/
 theorem le_def {a b : S} : a ≤ b ↔ a = a * a⁻¹ * b := Iff.rfl
 
-/-- `a ≤ b` iff `a` is an idempotent *left* multiple of `b`.-/
+/-- `a ≤ b` iff `a` is an idempotent *left* multiple of `b`.
+@isnad1 id=iff.0h3v.s5.14eb91d423fd from=translated src=- shape=a8550db2 vocab=4e70d85b
+-/
 theorem le_iff_exists_idem_mul {a b : S} :
     a ≤ b ↔ ∃ e : S, IsIdempotentElem e ∧ a = e * b :=
   ⟨fun h => ⟨a * a⁻¹, isIdempotentElem_mul_inv a, le_def.mp h⟩,
@@ -133,7 +137,9 @@ theorem eq_mul_inv_mul_of_le {a b : S} (h : a ≤ b) : a = b * (a⁻¹ * a) :=
 
 /-- An idempotent *right* multiple lies below: if `a = b * f` with `f`
 idempotent then `a ≤ b` (conjugate the idempotent to the other side,
-`a = (b * f * b⁻¹) * b`).-/
+`a = (b * f * b⁻¹) * b`).
+@isnad1 id=le.2h4v.s5.02b0875012fe from=translated src=- shape=58d57b01 vocab=4e70d85b
+-/
 theorem le_of_eq_mul_idem {a b f : S} (hf : IsIdempotentElem f) (hab : a = b * f) :
     a ≤ b := by
   rw [le_iff_exists_idem_mul]
@@ -146,11 +152,15 @@ theorem le_of_eq_mul_idem {a b f : S} (hf : IsIdempotentElem f) (hab : a = b * f
     _ = b * (f * b⁻¹) * b := by simp only [mul_assoc]
 
 /-- The mirror characterization of the natural partial order:
-`a ≤ b ↔ a = b * (a⁻¹ * a)`.-/
+`a ≤ b ↔ a = b * (a⁻¹ * a)`.
+@isnad1 id=iff.0h3v.s5.4dcb41d9ff8e from=translated src=- shape=b47535e4 vocab=7d87b604
+-/
 theorem le_iff_eq_mul_inv_mul {a b : S} : a ≤ b ↔ a = b * (a⁻¹ * a) :=
   ⟨eq_mul_inv_mul_of_le, le_of_eq_mul_idem (isIdempotentElem_inv_mul a)⟩
 
-/-- `a ≤ b` iff `a` is an idempotent *right* multiple of `b`.-/
+/-- `a ≤ b` iff `a` is an idempotent *right* multiple of `b`.
+@isnad1 id=iff.0h3v.s5.2b3836377f8a from=translated src=- shape=83183418 vocab=4e70d85b
+-/
 theorem le_iff_exists_mul_idem {a b : S} :
     a ≤ b ↔ ∃ f : S, IsIdempotentElem f ∧ a = b * f :=
   ⟨fun h => ⟨a⁻¹ * a, isIdempotentElem_inv_mul a, eq_mul_inv_mul_of_le h⟩,
@@ -158,17 +168,23 @@ theorem le_iff_exists_mul_idem {a b : S} :
 
 /-! ### Compatibility with the operations -/
 
-/-- The natural partial order is compatible with inversion.-/
+/-- The natural partial order is compatible with inversion.
+@isnad1 id=le.1h3v.s5.1c375cdf9bcd from=translated src=- shape=508d89c6 vocab=9624b6d8
+-/
 protected theorem inv_le_inv {a b : S} (h : a ≤ b) : a⁻¹ ≤ b⁻¹ := by
   obtain ⟨e, he, hae⟩ := le_iff_exists_idem_mul.mp h
   exact le_of_eq_mul_idem he (by rw [hae, mul_inv_rev, inv_idem he])
 
-/-- Inversion is an order embedding of the natural partial order into itself.-/
+/-- Inversion is an order embedding of the natural partial order into itself.
+@isnad1 id=iff.0h3v.s5.6669a67593b5 from=translated src=- shape=f432663e vocab=9624b6d8
+-/
 @[simp] protected theorem inv_le_inv_iff {a b : S} : a⁻¹ ≤ b⁻¹ ↔ a ≤ b :=
   ⟨fun h => by simpa only [inv_inv] using InverseSemigroup.inv_le_inv h,
    InverseSemigroup.inv_le_inv⟩
 
-/-- The natural partial order is compatible with multiplication.-/
+/-- The natural partial order is compatible with multiplication.
+@isnad1 id=le.2h5v.s6.9b9f73b52d35 from=translated src=- shape=64d2154e vocab=b8ef965a
+-/
 protected theorem mul_le_mul {a b c d : S} (hab : a ≤ b) (hcd : c ≤ d) :
     a * c ≤ b * d := by
   obtain ⟨e, he, hae⟩ := le_iff_exists_idem_mul.mp hab
@@ -187,15 +203,21 @@ protected theorem mul_le_mul {a b c d : S} (hab : a ≤ b) (hcd : c ≤ d) :
 /-! ### Idempotents -/
 
 /-- On an idempotent `e`, the natural partial order reduces to absorption:
-`e ≤ b ↔ e = e * b`.-/
+`e ≤ b ↔ e = e * b`.
+@isnad1 id=iff.1h3v.s5.c6ea2ad26122 from=translated src=- shape=ffaedafd vocab=4e70d85b
+-/
 theorem le_iff_eq_mul {e b : S} (he : IsIdempotentElem e) : e ≤ b ↔ e = e * b := by
   rw [le_def, inv_idem he, he.eq]
 
-/-- Multiplying by an idempotent on the right moves down: `a * f ≤ a`.-/
+/-- Multiplying by an idempotent on the right moves down: `a * f ≤ a`.
+@isnad1 id=le.1h3v.s5.f7f502a58ea1 from=translated src=- shape=d789f8bf vocab=4e70d85b
+-/
 theorem mul_le_left {a f : S} (hf : IsIdempotentElem f) : a * f ≤ a :=
   le_of_eq_mul_idem hf rfl
 
-/-- Multiplying by an idempotent on the left moves down: `e * b ≤ b`.-/
+/-- Multiplying by an idempotent on the left moves down: `e * b ≤ b`.
+@isnad1 id=le.1h3v.s5.2901131bb47a from=translated src=- shape=691cd105 vocab=4e70d85b
+-/
 theorem mul_le_right {e b : S} (he : IsIdempotentElem e) : e * b ≤ b :=
   le_iff_exists_idem_mul.mpr ⟨e, he, rfl⟩
 

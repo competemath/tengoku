@@ -40,7 +40,9 @@ variable {M : Type*} [Monoid M]
 
 /-- Auxiliary lemma: if the powers of `x` satisfy the recurrence
 `x ^ (a + (e + 1)) = x ^ a` (eventual periodicity with period `e + 1`), then some
-positive power of `x` is idempotent; the witness is `x ^ ((a + 1) * (e + 1))`.-/
+positive power of `x` is idempotent; the witness is `x ^ ((a + 1) * (e + 1))`.
+@isnad1 id=ex.1h4v.s6.6f2653fb1c88 from=translated src=- shape=7df35ed6 vocab=61496d89
+-/
 lemma exists_idem_pow_aux (x : M) (a e : ℕ)
     (h : x ^ (a + (e + 1)) = x ^ a) :
     ∃ k : ℕ+, x ^ (k : ℕ) * x ^ (k : ℕ) = x ^ (k : ℕ) := by
@@ -61,7 +63,9 @@ lemma exists_idem_pow_aux (x : M) (a e : ℕ)
   exact key
 
 /-- Every monoid element `x` either has pairwise distinct positive powers, or some
-positive power of `x` is idempotent.-/
+positive power of `x` is idempotent.
+@isnad1 id=or.0h2v.s6.1134cf86136e from=translated src=- shape=d5142c85 vocab=9943236e
+-/
 theorem distinct_powers_or_idempotent_pow (x : M) :
     (∀ i j : ℕ+, i ≠ j → x ^ (i : ℕ) ≠ x ^ (j : ℕ)) ∨
     (∃ k : ℕ+, x ^ (k : ℕ) * x ^ (k : ℕ) = x ^ (k : ℕ)) := by
@@ -80,7 +84,9 @@ theorem distinct_powers_or_idempotent_pow (x : M) :
     exact exists_idem_pow_aux x (j : ℕ) e (by rw [← he]; exact heq)
 
 /-- In a finite monoid, every element is a unit (so the monoid is a group), or some
-element has an idempotent positive power different from `1`.-/
+element has an idempotent positive power different from `1`.
+@isnad1 id=or.0h1v.s6.bfb976cbb427 from=translated src=- shape=7e22780e vocab=e7e0347e
+-/
 theorem forall_isUnit_or_exists_idempotent_pow_ne_one [Finite M] :
     (∀ x : M, IsUnit x) ∨
       ∃ (x : M) (k : ℕ+), x ^ (k : ℕ) * x ^ (k : ℕ) = x ^ (k : ℕ) ∧ x ^ (k : ℕ) ≠ 1 := by

@@ -50,7 +50,9 @@ variable {G : Type*} [Semigroup G] {I Λ : Type*} {P : Λ → I → G}
 instance : Mul (ReesMatrixSimple G I Λ P) :=
   ⟨fun x y => ⟨x.row, x.mid * P x.col y.row * y.mid, y.col⟩⟩
 
-/-- Unfolding lemma for multiplication in `ReesMatrixSimple`.-/
+/-- Unfolding lemma for multiplication in `ReesMatrixSimple`.
+@isnad1 id=eq.0h6v.s6.693f23861451 from=translated src=- shape=9f37b222 vocab=003fe9f6
+-/
 @[simp] lemma mul_def (x y : ReesMatrixSimple G I Λ P) :
     x * y = ⟨x.row, x.mid * P x.col y.row * y.mid, y.col⟩ := rfl
 

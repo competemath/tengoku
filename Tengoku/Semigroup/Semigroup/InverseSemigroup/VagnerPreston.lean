@@ -68,21 +68,29 @@ def vagnerMap (a : S) : PartialEquiv S S where
     rw [mul_assoc]
     exact hy
 
-/-- `vagnerMap a` acts by right translation: `vagnerMap a x = x * a`.-/
+/-- `vagnerMap a` acts by right translation: `vagnerMap a x = x * a`.
+@isnad1 id=eq.0h3v.s5.9a4f9e04d0e1 from=translated src=- shape=57fdc8d2 vocab=e706c308
+-/
 @[simp] theorem vagnerMap_apply (a x : S) : vagnerMap a x = x * a := rfl
 
 /-- The source of `vagnerMap a` is the set of fixed points of right
-multiplication by the idempotent `a * a⁻¹`.-/
+multiplication by the idempotent `a * a⁻¹`.
+@isnad1 id=eq.0h2v.s5.05d3bd1ee3ab from=translated src=- shape=dc162b76 vocab=7f391a3a
+-/
 @[simp] theorem vagnerMap_source (a : S) :
     (vagnerMap a).source = {x | x * (a * a⁻¹) = x} := rfl
 
 /-- The target of `vagnerMap a` is the set of fixed points of right
-multiplication by the idempotent `a⁻¹ * a`.-/
+multiplication by the idempotent `a⁻¹ * a`.
+@isnad1 id=eq.0h2v.s5.291f802b056f from=translated src=- shape=8dd06700 vocab=819a50f3
+-/
 @[simp] theorem vagnerMap_target (a : S) :
     (vagnerMap a).target = {y | y * (a⁻¹ * a) = y} := rfl
 
 /-- The source of `vagnerMap a` is the principal left ideal `S¹ * a * a⁻¹`:
-membership is equivalent to being a left multiple of `a * a⁻¹`.-/
+membership is equivalent to being a left multiple of `a * a⁻¹`.
+@isnad1 id=iff.0h3v.s5.4f114d808840 from=translated src=- shape=89d2761f vocab=ccfb99c5
+-/
 theorem mem_vagnerMap_source_iff (a x : S) :
     x ∈ (vagnerMap a).source ↔ ∃ s : S, x = s * (a * a⁻¹) :=
   ⟨fun hx => ⟨x, hx.symm⟩, fun ⟨s, hs⟩ => by
@@ -99,7 +107,9 @@ functions), so by `PartialEquiv.ext` it suffices to identify the sources.
 `(ρ_a.trans ρ_b).source = {x | x(aa⁻¹) = x} ∩ (·*a) ⁻¹' {y | y(bb⁻¹) = y}`,
 while `ρ_(ab)` has source `{x | x(ab)(b⁻¹a⁻¹) = x}`; using
 `idempotent_mul_comm` to slide the idempotents `bb⁻¹` and `a⁻¹a` past each
-other, each membership implies the other (Howie, Lemma 5.1.6).-/
+other, each membership implies the other (Howie, Lemma 5.1.6).
+@isnad1 id=eq.0h3v.s5.daf59f37af84 from=translated src=- shape=9a1f9128 vocab=8d54798e
+-/
 theorem vagnerMap_trans (a b : S) :
     vagnerMap (a * b) = (vagnerMap a).trans (vagnerMap b) := by
   have hcomm : b * (b⁻¹ * (a⁻¹ * a)) = a⁻¹ * (a * (b * b⁻¹)) := by
@@ -142,7 +152,9 @@ theorem vagnerMap_trans (a b : S) :
 sources give that `a * a⁻¹` and `b * b⁻¹` are each fixed by right
 multiplication by the other, so by commuting idempotents
 `a * a⁻¹ = b * b⁻¹`; equal functions give `x * a = x * b` for every `x`,
-whence `a = (a * a⁻¹) * a = (b * b⁻¹) * a = b * (b⁻¹ * b) = b`.-/
+whence `a = (a * a⁻¹) * a = (b * b⁻¹) * a = b * (b⁻¹ * b) = b`.
+@isnad1 id=injectiv.0h1v.s3.bc23f791fc41 from=translated src=- shape=f3cf4556 vocab=1da58ed5
+-/
 theorem vagnerMap_injective :
     Function.Injective (vagnerMap : S → PartialEquiv S S) := by
   intro a b h
@@ -172,7 +184,9 @@ theorem vagnerMap_injective :
 
 /-- **The Vagner–Preston representation theorem**: every inverse semigroup
 embeds in the symmetric inverse semigroup of partial bijections of its own
-carrier.-/
+carrier.
+@isnad1 id=ex.0h1v.s5.b30ac31af77f from=translated src=- shape=38b7e083 vocab=883d9aa0
+-/
 theorem vagner_preston :
     ∃ θ : S → PartialEquiv S S,
       Function.Injective θ ∧ ∀ a b : S, θ (a * b) = (θ a).trans (θ b) :=
