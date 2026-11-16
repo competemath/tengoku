@@ -76,6 +76,7 @@ import Tengoku.LanaOrbicurveCores
 import Tengoku.AsymptoticTrianglePacking
 import Tengoku.Primenumbertheoremand
 import Tengoku.FormalMathfin
+import Tengoku.Semigroup
 import Tengoku.SphereEversion
 import Tengoku.FrontiermathHypergraphs
 import Tengoku.Aperiodicmonotiles
