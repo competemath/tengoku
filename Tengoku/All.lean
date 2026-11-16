@@ -60,6 +60,7 @@ import Tengoku.AisafetyAtlas
 import Tengoku.MiscYd
 import Tengoku.Arklib
 import Tengoku.Vcvio
+import Tengoku.PcfCyclotomicLean
 import Tengoku.LanaPi1
 import Tengoku.Tnlean
 import Tengoku.LanaHeights
