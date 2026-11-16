@@ -57,6 +57,9 @@ the supremum of projective dimension over all modules.-/
 noncomputable def _root_.Tengoku.ZanelloLc.globalDimension : WithBot ℕ∞ :=
   ⨆ (M : ModuleCat.{v} R), projectiveDimension.{v} M
 
+/--
+@isnad1 id=iff.0h1v.s4.588f70accbe1 from=translated src=- shape=59bed2a6 vocab=be6166d5
+-/
 lemma _root_.Tengoku.ZanelloLc.globalDimension_eq_bot_iff [Small.{v} R] : globalDimension.{v} R = ⊥ ↔ Subsingleton R := by
   simp only [globalDimension, iSup_eq_bot, projectiveDimension_eq_bot_iff,
     ModuleCat.isZero_iff_subsingleton]
@@ -64,10 +67,16 @@ lemma _root_.Tengoku.ZanelloLc.globalDimension_eq_bot_iff [Small.{v} R] : global
   let _ := h (ModuleCat.of R (Shrink.{v} R))
   exact (equivShrink.{v} R).subsingleton
 
+/--
+@isnad1 id=iff.0h2v.s5.829cbe695df0 from=translated src=- shape=28bf3f20 vocab=5d125766
+-/
 lemma _root_.Tengoku.ZanelloLc.globalDimension_le_iff (n : ℕ) : globalDimension.{v} R ≤ n ↔
     ∀ M : ModuleCat.{v} R, HasProjectiveDimensionLE M n := by
   simp [globalDimension, projectiveDimension_le_iff]
 
+/--
+@isnad1 id=tfae.0h2v.s7.ab7c7c51055d from=translated src=- shape=b0d6a1d4 vocab=9f5fc561
+-/
 lemma _root_.Tengoku.ZanelloLc.globalDimension_le_tfae [Small.{v} R] (n : ℕ) :
     [globalDimension.{v} R ≤ n,
     ∀ M : ModuleCat.{v} R, [Module.Finite R M] → HasProjectiveDimensionLE M n,

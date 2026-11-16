@@ -33,6 +33,9 @@ open Module
 variable {R M N : Type*} [CommRing R] [AddCommGroup M] [AddCommGroup N] [Module R M] [Module R N]
   (I : Ideal R)
 
+/--
+@isnad1 id=mem.1h5v.s9.d65cc4186d49 from=translated src=- shape=b7242d79 vocab=9320c6aa
+-/
 theorem _root_.Tengoku.ZanelloLc.smul_prod_of_smul {ι : Type*} [Finite ι] (x : ι → M)
     (h : ∀ i, x i ∈ I • (⊤ : Submodule R M)) : x ∈ I • (⊤ : Submodule R (ι → M)) := by
   classical
@@ -43,6 +46,9 @@ theorem _root_.Tengoku.ZanelloLc.smul_prod_of_smul {ι : Type*} [Finite ι] (x :
 
 variable [Module.Finite R M] [Free R M] (f : M →ₗ[R] N)
 
+/--
+@isnad1 id=mem.1h5v.s10.f4b1fdad111a from=translated src=- shape=c7b1350f vocab=c831070e
+-/
 theorem _root_.Tengoku.ZanelloLc.mem_smul_top_of_range_le_smul_top (hf : LinearMap.range f ≤ I • ⊤) :
     f ∈ I • (⊤ : Submodule R (M →ₗ[R] N)) := by
   let e : Basis _ R M := Free.chooseBasis R M
@@ -61,11 +67,17 @@ open IsLocalRing RingTheory.Sequence Ideal CategoryTheory Abelian Limits
 
 variable {R : Type u} [CommRing R] [Small.{v} R]
 
+/--
+@isnad1 id=free.0h2v.s6.a888acd25adf from=translated src=- shape=92d1fcf5 vocab=6ec025d5
+-/
 lemma ModuleCat.free_of_projective_of_isLocalRing [IsLocalRing R] (M : ModuleCat.{v} R)
     [Module.Finite R M] [Projective M] : Module.Free R M :=
   Module.free_of_flat_of_isLocalRing
 
 omit [Small.{v} R] in
+/--
+@isnad1 id=nontrivi.0h2v.s4.251797dcc2f9 from=translated src=- shape=69d55726 vocab=6a7f97d7
+-/
 lemma _root_.Tengoku.ZanelloLc.nontrivial_ring_of_nontrivial_module (M : Type*) [AddCommGroup M] [Module R M]
     [ntr : Nontrivial M] : Nontrivial R := by
   apply not_subsingleton_iff_nontrivial.mp
@@ -77,12 +89,18 @@ lemma _root_.Tengoku.ZanelloLc.nontrivial_ring_of_nontrivial_module (M : Type*) 
 
 open Module
 
+/--
+@isnad1 id=subsingl.1h2v.s3.5d5c9e30d2a1 from=translated src=- shape=0ae2a3a6 vocab=8bd9be79
+-/
 lemma _root_.Tengoku.ZanelloLc.subsingleton_of_pi {α β : Type*} [Nonempty α] (h : Subsingleton (α → β)) :
     Subsingleton β := by
   contrapose h
   have : Nontrivial β := not_subsingleton_iff_nontrivial.mp h
   exact not_subsingleton_iff_nontrivial.mpr Function.nontrivial
 
+/--
+@isnad1 id=iff.0h4v.s7.c43f163f38dc from=translated src=- shape=a6d140e4 vocab=6a008f7a
+-/
 lemma _root_.Tengoku.ZanelloLc.finte_free_ext_vanish_iff (M N : ModuleCat.{v} R) [Module.Finite R M] [Module.Free R M]
     [Nontrivial M] (i : ℕ) :
     Subsingleton (Ext N M i) ↔ Subsingleton (Ext N (ModuleCat.of R (Shrink.{v} R)) i) := by
@@ -100,12 +118,18 @@ lemma _root_.Tengoku.ZanelloLc.finte_free_ext_vanish_iff (M N : ModuleCat.{v} R)
   rw [((extFunctorObj.{v} N i).mapIso e).addCommGroupIsoToAddEquiv.subsingleton_congr]
   exact h.subsingleton_congr.trans ⟨subsingleton_of_pi, fun _ ↦ Pi.instSubsingleton⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.7838c20fe587 from=translated src=- shape=88ea00b3 vocab=071ff483
+-/
 lemma _root_.Tengoku.ZanelloLc.free_depth_eq_ring_depth (M N : ModuleCat.{v} R) [Module.Finite R M] [Module.Free R M]
     [Nontrivial M] : moduleDepth N M = moduleDepth N (ModuleCat.of R (Shrink.{v} R)) := by
   simp only [moduleDepth]
   congr! 5
   apply finte_free_ext_vanish_iff
 
+/--
+@isnad1 id=surjecti.0h4v.s12.c4250dfb313b from=translated src=- shape=970db4d4 vocab=7b30c5fc
+-/
 lemma _root_.Tengoku.ZanelloLc.basis_lift [IsLocalRing R] (M : Type*) [AddCommGroup M] [Module R M] [Module.Finite R M]
     (ι : Type*) (b : Basis ι (R ⧸ maximalIdeal R) (M ⧸ maximalIdeal R • (⊤ : Submodule R M))) :
     Function.Surjective (Classical.choose (Module.projective_lifting_property
@@ -140,6 +164,9 @@ instance (I : Ideal R) (M : Type*) [AddCommGroup M] [Module R M]
     map_smul' _ _ := rfl }
   Module.Finite.of_surjective f (Submodule.mkQ_surjective _)
 
+/--
+@isnad1 id=eq.1h6v.s10.05500d111e6e from=translated src=- shape=46ed32ef vocab=b7ff00e7
+-/
 lemma _root_.Tengoku.ZanelloLc.ext_hom_zero_of_mem_ideal_smul (L M N : ModuleCat.{v} R) (n : ℕ) (f : M ⟶ N)
     (mem : f ∈ (Module.annihilator R L) • (⊤ : Submodule R (M ⟶ N))) :
     (AddCommGrpCat.ofHom <| ((Ext.mk₀ f)).postcomp L (add_zero n)) = 0 := by
@@ -157,6 +184,9 @@ lemma _root_.Tengoku.ZanelloLc.ext_hom_zero_of_mem_ideal_smul (L M N : ModuleCat
       AddCommGrpCat.ofHom ((Ext.mk₀ g2).postcomp L (add_zero n)) x = 0 := by simp [hg1, hg2]
     simpa [Ext.mk₀_add] using this
 
+/--
+@isnad1 id=eq.2h2v.s7.04953305b2a6 from=translated src=- shape=9e72bcc9 vocab=3ca2e3f7
+-/
 lemma _root_.Tengoku.ZanelloLc.AuslanderBuchsbaum_one [IsNoetherianRing R] [IsLocalRing R]
     (M : ModuleCat.{v} R) [Nontrivial M] [Module.Finite R M]
     (le1 : HasProjectiveDimensionLE M 1) (nle0 : ¬ HasProjectiveDimensionLE M 0) :
@@ -284,6 +314,9 @@ lemma _root_.Tengoku.ZanelloLc.AuslanderBuchsbaum_one [IsNoetherianRing R] [IsLo
       have lt1 : i < n := lt_of_le_of_lt (self_le_add_right _ _) lt2
       exact (iff i).mpr ⟨hn i lt1, hn (i + 1) lt2⟩
 
+/--
+@isnad1 id=eq.1h2v.s7.198c2c6932a5 from=translated src=- shape=e1b40aca vocab=9d6ff9d3
+-/
 theorem _root_.Tengoku.ZanelloLc.AuslanderBuchsbaum [IsNoetherianRing R] [IsLocalRing R] (M : ModuleCat.{v} R) [Nontrivial M]
     [Module.Finite R M] (netop : projectiveDimension M ≠ ⊤) :
     projectiveDimension M + IsLocalRing.depth M =

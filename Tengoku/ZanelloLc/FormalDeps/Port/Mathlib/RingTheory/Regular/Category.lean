@@ -25,6 +25,9 @@ universe u v w
 
 open CategoryTheory Abelian Ideal Pointwise
 
+/--
+@isnad1 id=eq.1h5v.s8.4038d949cdbf from=translated src=- shape=57713bea vocab=70e340f4
+-/
 lemma Submodule.smul_top_eq_comap_smul_top_of_surjective {R M M₂ : Type*} [CommSemiring R]
     [AddCommGroup M] [AddCommGroup M₂] [Module R M] [Module R M₂] (I : Ideal R) (f : M →ₗ[R] M₂)
     (h : Function.Surjective f) :
@@ -44,6 +47,9 @@ variable {R : Type u} [CommRing R] [Small.{v} R] {M N : ModuleCat.{v} R} {n : �
 local instance : CategoryTheory.HasExt.{w} (ModuleCat.{v} R) :=
   CategoryTheory.hasExt_of_enoughProjectives.{w} (ModuleCat.{v} R)
 
+/--
+@isnad1 id=eq.1h5v.s10.51784abd16c7 from=translated src=- shape=6334082f vocab=f4dd01ea
+-/
 lemma _root_.Tengoku.ZanelloLc.ext_hom_eq_zero_of_mem_ann {r : R} (mem_ann : r ∈ Module.annihilator R N) (n : ℕ) :
     AddCommGrpCat.ofHom (((Ext.mk₀ (r • (𝟙 M)))).postcomp N (add_zero n)) = 0 := by
   ext h

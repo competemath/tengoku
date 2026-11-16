@@ -38,6 +38,9 @@ class ModuleCat.IsMaximalCohenMacaulay [IsLocalRing R] [Small.{v} R]
     (M : ModuleCat.{v} R) : Prop where
   depth_eq_dim : IsLocalRing.depth M = ringKrullDim R
 
+/--
+@isnad1 id=iff.0h2v.s5.ffed5793a757 from=translated src=- shape=c094c3c1 vocab=fd19352e
+-/
 lemma _root_.Tengoku.ZanelloLc.isMaximalCohenMacaulay_def [IsLocalRing R] [Small.{v} R]
     (M : ModuleCat.{v} R) : M.IsMaximalCohenMacaulay ↔ IsLocalRing.depth M = ringKrullDim R :=
   ⟨fun ⟨h⟩ ↦ h, fun h ↦ ⟨h⟩⟩
@@ -48,6 +51,9 @@ instance [IsNoetherianRing R] [IsLocalRing R] [Small.{v} R]
     (M : ModuleCat.{v} R) [M.IsMaximalCohenMacaulay] : Nontrivial M := sorry
 -/
 
+/--
+@isnad1 id=isfield.1h1v.s5.8d7787828f16 from=translated src=- shape=50208249 vocab=50c089dd
+-/
 lemma _root_.Tengoku.ZanelloLc.isField_of_isRegularLocalRing_of_dimension_zero [IsRegularLocalRing R]
     (h : ringKrullDim R = 0) : IsField R := by
   rw [IsLocalRing.isField_iff_maximalIdeal_eq, ← Submodule.spanRank_eq_zero_iff_eq_bot]
@@ -64,6 +70,9 @@ local instance (M : Type*) [AddCommGroup M] [Module R M] [Module.Finite R M] (x 
   exact Module.Finite.of_surjective f (Submodule.mkQ_surjective _)
 
 open Pointwise in
+/--
+@isnad1 id=free.3h3v.s9.531b98ce83de from=translated src=- shape=9fbb41de vocab=9c26f410
+-/
 lemma _root_.Tengoku.ZanelloLc.free_of_quotSMulTop_free [IsLocalRing R] [IsNoetherianRing R] (M : Type*) [AddCommGroup M]
     [Module R M] [Module.Finite R M] {x : R} (mem : x ∈ maximalIdeal R) (reg : IsSMulRegular M x)
     (free : Module.Free (R ⧸ Ideal.span {x}) (QuotSMulTop x M)) : Module.Free R M := by

@@ -70,6 +70,9 @@ variable {R : Type u} [CommRing R] [Small.{v} R]
 
 open Pointwise ModuleCat IsSMulRegular
 
+/--
+@isnad1 id=ex.4h4v.s9.9e2ead1fcbca from=translated src=- shape=c0bf8700 vocab=179638bb
+-/
 lemma _root_.Tengoku.ZanelloLc.exist_isRegular_tfae_3_to_4 [IsNoetherianRing R] (I : Ideal R) (n : ℕ) :
     ∀ M : ModuleCat.{v} R, Nontrivial M → Module.Finite R M →
     I • (⊤ : Submodule R M) < ⊤ → (∃ N : ModuleCat.{v} R, Nontrivial N ∧ Module.Finite R N ∧
@@ -126,6 +129,9 @@ lemma _root_.Tengoku.ZanelloLc.exist_isRegular_tfae_3_to_4 [IsNoetherianRing R] 
 
 section
 
+/--
+@isnad1 id=mono.1h5v.s8.e5b0b4feece1 from=translated src=- shape=397b5c88 vocab=b7e3795a
+-/
 lemma CategoryTheory.Abelian.extFunctorObj_zero_preserve_momoMorphism (L M N : ModuleCat.{v} R)
     (f : M ⟶ N) (mono : Mono f) :
     Mono (AddCommGrpCat.ofHom <| ((Ext.mk₀ f)).postcomp L (add_zero 0)) := by
@@ -138,6 +144,9 @@ lemma CategoryTheory.Abelian.extFunctorObj_zero_preserve_momoMorphism (L M N : M
   have : (Ext.addEquiv₀ x ≫ f) = 0 := (AddEquiv.map_eq_zero_iff Ext.addEquiv₀.symm).mp hx
   exact (AddEquiv.map_eq_zero_iff Ext.addEquiv₀).mp (zero_of_comp_mono f this)
 
+/--
+@isnad1 id=mono.1h5v.s8.654e926bf9dd from=translated src=- shape=f771bd27 vocab=962cebad
+-/
 lemma CategoryTheory.Abelian.extFunctor_post_apply_zero_preserve_momoMorphism
     (L M N : ModuleCat.{v} R) (g : M ⟶ N) (mono : Epi g) :
     Mono (AddCommGrpCat.ofHom <| ((Ext.mk₀ g)).precomp L (zero_add 0)) := by
@@ -204,6 +213,9 @@ noncomputable def IsLocalRing.depth [IsLocalRing R] (M : ModuleCat.{v} R) : ℕ�
   (IsLocalRing.maximalIdeal R).depth M
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s7.3cc1cd9eaef6 from=translated src=- shape=2afae61a vocab=f8f165c6
+-/
 lemma _root_.Tengoku.ZanelloLc.moduleDepth_eq_find (N M : ModuleCat.{v} R) (h : ∃ n, Nontrivial (Ext N M n)) :
     moduleDepth N M = Nat.find h := by
   apply le_antisymm
@@ -218,6 +230,9 @@ lemma _root_.Tengoku.ZanelloLc.moduleDepth_eq_find (N M : ModuleCat.{v} R) (h : 
     intro i hi
     exact not_nontrivial_iff_subsingleton.mp (hi i (le_refl i))
 
+/--
+@isnad1 id=iff.0h3v.s6.1e159b81f615 from=translated src=- shape=f69a57f7 vocab=1f17aa6e
+-/
 lemma _root_.Tengoku.ZanelloLc.moduleDepth_eq_top_iff (N M : ModuleCat.{v} R) :
     moduleDepth N M = ⊤ ↔ ∀ i, Subsingleton (Ext N M i) := by
   refine ⟨fun h ↦ ?_, fun h ↦ ?_⟩
@@ -227,6 +242,9 @@ lemma _root_.Tengoku.ZanelloLc.moduleDepth_eq_top_iff (N M : ModuleCat.{v} R) :
   · simp [moduleDepth]
     exact csSup_eq_top_of_top_mem (fun i _ ↦ h i)
 
+/--
+@isnad1 id=iff.0h3v.s6.59709637b275 from=translated src=- shape=dd82c1d9 vocab=d5027154
+-/
 lemma _root_.Tengoku.ZanelloLc.moduleDepth_lt_top_iff (N M : ModuleCat.{v} R) :
     moduleDepth N M < ⊤ ↔ ∃ n, Nontrivial (Ext N M n) := by
   convert (moduleDepth_eq_top_iff N M).not
@@ -234,6 +252,9 @@ lemma _root_.Tengoku.ZanelloLc.moduleDepth_lt_top_iff (N M : ModuleCat.{v} R) :
   · push_neg
     rfl
 
+/--
+@isnad1 id=iff.0h4v.s6.17eed47d266c from=translated src=- shape=4ed69d7b vocab=6efb5ed6
+-/
 lemma _root_.Tengoku.ZanelloLc.moduleDepth_eq_iff (N M : ModuleCat.{v} R) (n : ℕ) : moduleDepth N M = n ↔
     Nontrivial (Ext N M n) ∧ ∀ i < n, Subsingleton (Ext N M i) := by
   classical
@@ -247,6 +268,9 @@ lemma _root_.Tengoku.ZanelloLc.moduleDepth_eq_iff (N M : ModuleCat.{v} R) (n : �
     intro i hi
     exact not_nontrivial_iff_subsingleton.mpr (h i hi)
 
+/--
+@isnad1 id=subsingl.1h4v.s6.bacb78463fbb from=translated src=- shape=9e8aa6ab vocab=0634a5ea
+-/
 lemma _root_.Tengoku.ZanelloLc.ext_subsingleton_of_lt_moduleDepth {N M : ModuleCat.{v} R} {i : ℕ}
     (lt : i < moduleDepth N M) : Subsingleton (Ext N M i) := by
   by_cases lttop : moduleDepth N M < ⊤
@@ -256,6 +280,9 @@ lemma _root_.Tengoku.ZanelloLc.ext_subsingleton_of_lt_moduleDepth {N M : ModuleC
   · simp only [not_lt, top_le_iff, moduleDepth_eq_top_iff] at lttop
     exact lttop i
 
+/--
+@isnad1 id=eq.0h3v.s6.7dcb7fbaa202 from=translated src=- shape=7b1445db vocab=adb0fe07
+-/
 lemma _root_.Tengoku.ZanelloLc.moduleDepth_eq_sup_nat (N M : ModuleCat.{v} R) : moduleDepth N M =
     sSup {n : ℕ∞ | n < ⊤ ∧ ∀ i : ℕ, i < n → Subsingleton (Ext N M i)} := by
   simp only [moduleDepth]
@@ -270,6 +297,9 @@ lemma _root_.Tengoku.ZanelloLc.moduleDepth_eq_sup_nat (N M : ModuleCat.{v} R) : 
     exact ⟨fun mem ↦ ⟨top_notMem_iff.mp h n mem, mem⟩, fun mem ↦ mem.2⟩
 
 open Opposite in
+/--
+@isnad1 id=eq.0h5v.s5.450f812ef08b from=translated src=- shape=a1d1da48 vocab=891477be
+-/
 lemma _root_.Tengoku.ZanelloLc.moduleDepth_eq_of_iso_fst (M : ModuleCat.{v} R) {N N' : ModuleCat.{v} R} (e : N ≅ N') :
     moduleDepth N M = moduleDepth N' M := by
   simp only [moduleDepth]
@@ -278,6 +308,9 @@ lemma _root_.Tengoku.ZanelloLc.moduleDepth_eq_of_iso_fst (M : ModuleCat.{v} R) {
   exact forall₂_congr fun i _ ↦
     (((extFunctor.{v} i).mapIso e.symm.op).app M).addCommGroupIsoToAddEquiv.subsingleton_congr
 
+/--
+@isnad1 id=eq.0h5v.s5.ec27801f0286 from=translated src=- shape=aba774e3 vocab=891477be
+-/
 lemma _root_.Tengoku.ZanelloLc.moduleDepth_eq_of_iso_snd (N : ModuleCat.{v} R) {M M' : ModuleCat.{v} R} (e : M ≅ M') :
     moduleDepth N M = moduleDepth N M' := by
   simp only [moduleDepth]
@@ -286,14 +319,23 @@ lemma _root_.Tengoku.ZanelloLc.moduleDepth_eq_of_iso_snd (N : ModuleCat.{v} R) {
   exact forall₂_congr fun i _ ↦
     ((extFunctorObj N i).mapIso e).addCommGroupIsoToAddEquiv.subsingleton_congr
 
+/--
+@isnad1 id=eq.0h5v.s5.98c674443720 from=translated src=- shape=5aa4a0de vocab=300839e8
+-/
 lemma Ideal.depth_eq_of_iso (I : Ideal R) {M M' : ModuleCat.{v} R} (e : M ≅ M') :
     I.depth M = I.depth M' :=
   moduleDepth_eq_of_iso_snd (ModuleCat.of R (Shrink.{v, u} (R ⧸ I))) e
 
+/--
+@isnad1 id=eq.0h4v.s5.f9ce937666e7 from=translated src=- shape=5e732bba vocab=5470f13f
+-/
 lemma IsLocalRing.depth_eq_of_iso [IsLocalRing R] {M M' : ModuleCat.{v} R} (e : M ≅ M') :
     IsLocalRing.depth M = IsLocalRing.depth M' :=
   (maximalIdeal R).depth_eq_of_iso e
 
+/--
+@isnad1 id=iff.0h3v.s6.ee851dd53be0 from=translated src=- shape=92c56d19 vocab=bf18f72b
+-/
 lemma _root_.Tengoku.ZanelloLc.moduleDepth_eq_zero_of_hom_nontrivial (N M : ModuleCat.{v} R) :
     moduleDepth N M = 0 ↔ Nontrivial (N →ₗ[R] M) := by
   refine ⟨fun h ↦ ?_, fun h ↦ ?_⟩
@@ -311,6 +353,9 @@ lemma _root_.Tengoku.ZanelloLc.moduleDepth_eq_zero_of_hom_nontrivial (N M : Modu
     simpa [not_subsingleton_iff_nontrivial, Ext.addEquiv₀.nontrivial_congr]
       using (ModuleCat.homLinearEquiv (S := R)).nontrivial_congr.mpr h
 
+/--
+@isnad1 id=le.1h3v.s7.6473c785ae5b from=translated src=- shape=77313a55 vocab=198c3be5
+-/
 lemma _root_.Tengoku.ZanelloLc.moduleDepth_ge_min_of_shortExact_snd_fst
     (S : ShortComplex (ModuleCat.{v} R)) (hS : S.ShortExact)
     (N : ModuleCat.{v} R) : moduleDepth S.X₂ N ≥ moduleDepth S.X₁ N ⊓ moduleDepth S.X₃ N := by
@@ -325,6 +370,9 @@ lemma _root_.Tengoku.ZanelloLc.moduleDepth_ge_min_of_shortExact_snd_fst
     (Ext.contravariant_sequence_exact₂' hS N i)
     (zero3.eq_zero_of_src _) (zero1.eq_zero_of_tgt _)
 
+/--
+@isnad1 id=le.1h3v.s7.e613f7426d3f from=translated src=- shape=187b4778 vocab=abd1d42e
+-/
 lemma _root_.Tengoku.ZanelloLc.moduleDepth_ge_min_of_shortExact_fst_fst
     (S : ShortComplex (ModuleCat.{v} R)) (hS : S.ShortExact)
     (N : ModuleCat.{v} R) : moduleDepth S.X₁ N ≥ moduleDepth S.X₂ N ⊓ (moduleDepth S.X₃ N - 1) := by
@@ -341,6 +389,9 @@ lemma _root_.Tengoku.ZanelloLc.moduleDepth_ge_min_of_shortExact_fst_fst
     (Ext.contravariant_sequence_exact₁' hS N i (i + 1) (add_comm _ _))
     (zero2.eq_zero_of_src _) (zero3.eq_zero_of_tgt _)
 
+/--
+@isnad1 id=le.1h3v.s7.3594dc866c7c from=translated src=- shape=187b4778 vocab=4944552c
+-/
 lemma _root_.Tengoku.ZanelloLc.moduleDepth_ge_min_of_shortExact_trd_fst
     (S : ShortComplex (ModuleCat.{v} R)) (hS : S.ShortExact)
     (N : ModuleCat.{v} R) : moduleDepth S.X₃ N ≥ moduleDepth S.X₂ N ⊓ (moduleDepth S.X₁ N + 1) := by
@@ -363,6 +414,9 @@ lemma _root_.Tengoku.ZanelloLc.moduleDepth_ge_min_of_shortExact_trd_fst
       (Ext.contravariant_sequence_exact₃' hS N (i - 1) i (by omega))
       (zero1.eq_zero_of_src _) (zero2.eq_zero_of_tgt _)
 
+/--
+@isnad1 id=le.1h3v.s7.86995d6be04c from=translated src=- shape=1bdff2c5 vocab=198c3be5
+-/
 lemma _root_.Tengoku.ZanelloLc.moduleDepth_ge_min_of_shortExact_snd_snd
     (N : ModuleCat.{v} R) (S : ShortComplex (ModuleCat.{v} R))
     (hS : S.ShortExact) : moduleDepth N S.X₂ ≥ moduleDepth N S.X₁ ⊓ moduleDepth N S.X₃ := by
@@ -377,6 +431,9 @@ lemma _root_.Tengoku.ZanelloLc.moduleDepth_ge_min_of_shortExact_snd_snd
     (Ext.covariant_sequence_exact₂' N hS i)
     (zero1.eq_zero_of_src _) (zero3.eq_zero_of_tgt _)
 
+/--
+@isnad1 id=le.1h3v.s7.a70f7b486620 from=translated src=- shape=b3a3cd04 vocab=4944552c
+-/
 lemma _root_.Tengoku.ZanelloLc.moduleDepth_ge_min_of_shortExact_fst_snd
     (N : ModuleCat.{v} R) (S : ShortComplex (ModuleCat.{v} R))
     (hS : S.ShortExact) : moduleDepth N S.X₁ ≥ moduleDepth N S.X₂ ⊓ (moduleDepth N S.X₃ + 1) := by
@@ -399,6 +456,9 @@ lemma _root_.Tengoku.ZanelloLc.moduleDepth_ge_min_of_shortExact_fst_snd
       (Ext.covariant_sequence_exact₁' N hS (i - 1) i (by omega))
       (zero3.eq_zero_of_src _) (zero2.eq_zero_of_tgt _)
 
+/--
+@isnad1 id=le.1h3v.s7.d5c1ed5b7647 from=translated src=- shape=b3a3cd04 vocab=abd1d42e
+-/
 lemma _root_.Tengoku.ZanelloLc.moduleDepth_ge_min_of_shortExact_trd_snd
     (N : ModuleCat.{v} R) (S : ShortComplex (ModuleCat.{v} R))
     (hS : S.ShortExact) : moduleDepth N S.X₃ ≥ moduleDepth N S.X₂ ⊓ (moduleDepth N S.X₁ - 1) := by
@@ -416,6 +476,9 @@ lemma _root_.Tengoku.ZanelloLc.moduleDepth_ge_min_of_shortExact_trd_snd
     (zero2.eq_zero_of_src _) (zero1.eq_zero_of_tgt _)
 
 omit [Small.{v, u} R] in
+/--
+@isnad1 id=lt.1h5v.s8.0ac35c8130c5 from=translated src=- shape=3a1aa011 vocab=28f9c6d8
+-/
 lemma Submodule.comap_lt_top_of_lt_range {M N : Type*} [AddCommGroup M] [Module R M]
     [AddCommGroup N] [Module R N] (f : M →ₗ[R] N) (p : Submodule R N)
     (lt : p < LinearMap.range f) : Submodule.comap f p < ⊤ := by
@@ -423,6 +486,9 @@ lemma Submodule.comap_lt_top_of_lt_range {M N : Type*} [AddCommGroup M] [Module 
   have : y ∉ Submodule.comap f p := by simpa [hy] using nmem
   exact lt_of_le_not_ge (fun _ a ↦ trivial) fun a ↦ this (a trivial)
 
+/--
+@isnad1 id=eq.2h4v.s10.ac92b2ad172b from=translated src=- shape=223d93a0 vocab=737e52e6
+-/
 lemma _root_.Tengoku.ZanelloLc.moduleDepth_quotSMulTop_succ_eq_moduleDepth (N M : ModuleCat.{v} R) (x : R)
     (reg : IsSMulRegular M x) (mem : x ∈ Module.annihilator R N) :
     moduleDepth N (ModuleCat.of R (QuotSMulTop x M)) + 1 = moduleDepth N M := by
@@ -473,17 +539,26 @@ lemma _root_.Tengoku.ZanelloLc.moduleDepth_quotSMulTop_succ_eq_moduleDepth (N M 
       have lt1 : i < n := lt_of_le_of_lt (self_le_add_right _ _) lt2
       exact (iff i).mpr ⟨hn i lt1, hn (i + 1) lt2⟩
 
+/--
+@isnad1 id=eq.2h4v.s10.bd2d8351f25f from=translated src=- shape=cf528726 vocab=97d7b58f
+-/
 lemma Ideal.depth_quotSMulTop_succ_eq_moduleDepth (I : Ideal R) (M : ModuleCat.{v} R) (x : R)
     (reg : IsSMulRegular M x) (mem : x ∈ I) :
     I.depth (ModuleCat.of R (QuotSMulTop x M)) + 1 = I.depth M := by
   apply moduleDepth_quotSMulTop_succ_eq_moduleDepth _ M x reg
   simpa [LinearEquiv.annihilator_eq (Shrink.linearEquiv R (R ⧸ I)), Ideal.annihilator_quotient]
 
+/--
+@isnad1 id=eq.2h3v.s10.5d92265a3731 from=translated src=- shape=17f19d5f vocab=e6a0ef79
+-/
 lemma IsLocalRing.depth_quotSMulTop_succ_eq_moduleDepth [IsLocalRing R] (M : ModuleCat.{v} R)
     (x : R) (reg : IsSMulRegular M x) (mem : x ∈ maximalIdeal R) :
     IsLocalRing.depth (ModuleCat.of R (QuotSMulTop x M)) + 1 = IsLocalRing.depth M :=
   (maximalIdeal R).depth_quotSMulTop_succ_eq_moduleDepth M x reg mem
 
+/--
+@isnad1 id=eq.2h4v.s9.e204d6a50f25 from=translated src=- shape=d26b7470 vocab=59f60d3d
+-/
 lemma _root_.Tengoku.ZanelloLc.moduleDepth_quotient_regular_sequence_add_length_eq_moduleDepth (N M : ModuleCat.{v} R)
     (rs : List R) (reg : IsWeaklyRegular M rs) (h : ∀ r ∈ rs, r ∈ Module.annihilator R N) :
     moduleDepth N (ModuleCat.of R (M ⧸ (Ideal.ofList rs) • (⊤ : Submodule R M))) + rs.length =
@@ -505,6 +580,9 @@ lemma _root_.Tengoku.ZanelloLc.moduleDepth_quotient_regular_sequence_add_length_
         ← hn (ModuleCat.of R (QuotSMulTop x M)) rs' ((isWeaklyRegular_cons_iff M _ _).mp reg).2
         (fun r hr ↦ h r (List.mem_cons_of_mem x hr)) len, add_assoc]
 
+/--
+@isnad1 id=eq.2h4v.s9.cc878033200c from=translated src=- shape=107f6224 vocab=66585d1d
+-/
 lemma _root_.Tengoku.ZanelloLc.ideal_depth_quotient_regular_sequence_add_length_eq_ideal_depth (I : Ideal R)
     (M : ModuleCat.{v} R) (rs : List R) (reg : IsWeaklyRegular M rs)
     (h : ∀ r ∈ rs, r ∈ I) :
@@ -514,6 +592,9 @@ lemma _root_.Tengoku.ZanelloLc.ideal_depth_quotient_regular_sequence_add_length_
   convert h
   rw [LinearEquiv.annihilator_eq (Shrink.linearEquiv R (R ⧸ I)), Ideal.annihilator_quotient]
 
+/--
+@isnad1 id=eq.1h3v.s9.21c33a109b0a from=translated src=- shape=a1bcc34b vocab=68f5c241
+-/
 lemma _root_.Tengoku.ZanelloLc.depth_quotient_regular_sequence_add_length_eq_depth [IsLocalRing R]
     (M : ModuleCat.{v} R) (rs : List R)
     (reg : IsRegular M rs) :
