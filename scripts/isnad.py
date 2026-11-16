@@ -7,6 +7,7 @@ except `id`, `verify` and `selftest`, which run the Lean program.
 
   isnad.py explain <id | tag line>              decode an id or a tag into words (offline)
   isnad.py id --module M [--name N ...]         the id lines of a module's theorems (needs a built tree: lake build tengoku-isnad)
+  isnad.py waypoints --module M                 the waypoints of each theorem: the ids of the statements of the `have`s of its proof (unused ones dropped first)
   isnad.py deps --module M [--ids-stdin]         the direct dependencies of each theorem's proof, and the hash of their statement ids (docs/isnad.md, "Dependencies")
   isnad.py verify '<tag line>' --module M --name N      recompute and compare id, shape and vocab of one theorem
   isnad.py tag --module M [--write]             write each theorem's tag into its source file (a dry run without --write; docs/isnad.md, "The tagger")
@@ -504,6 +505,29 @@ def fixture_deps(d: Path, exe: str | None) -> dict[str, list[str]]:
     return {n: got.get(n, []) for n in FIXTURE_DEPS}
 
 
+WAYPOINTS_MODULE = "IsnadWaypoints"
+
+
+def waypoints_ok(d: Path, exe: str | None) -> bool:
+    """tools/isnad/tagger/Waypoints.lean on a real compile: padding a proof with an unused `have`, or reordering its `have`s, changes no waypoint; a proof without `have`s has none; a `have` inside an
+    induction is closed over its variables (one waypoint)."""
+    shutil.copyfile(TAGGER_DIR / "Waypoints.lean", d / f"{WAYPOINTS_MODULE}.lean")
+    r = subprocess.run(
+        ["lake", "env", "lean", f"--root={d}", "-o", str(d / f"{WAYPOINTS_MODULE}.olean"), str(d / f"{WAYPOINTS_MODULE}.lean")],
+        cwd=ROOT, capture_output=True, text=True, check=False,
+    )  # fmt: skip
+    if r.returncode != 0:
+        sys.exit(f"the waypoints fixture does not compile:\n{(r.stdout + r.stderr)[-800:]}")
+    got = waypoint_sets(run_exe_lines(["--haves", "--import", WAYPOINTS_MODULE, "--module", WAYPOINTS_MODULE], exe, extra_path=d))
+    w = {n.split(".")[-1]: ids for n, ids in got.items()}
+    return (
+        len(w.get("two_haves", [])) == 2
+        and w.get("padded") == w.get("two_haves") == w.get("reordered")
+        and "none_here" not in w
+        and len(w.get("with_local", [])) == 1
+    )
+
+
 def core_deps_ok(exe: str | None) -> bool:
     """A structural-recursion proof of Lean's core, whose lemma uses sit behind the elaborator's auxiliary `_f` definition: `Nat.add_comm` must depend on `Nat.succ_add` and `Nat.zero_add`."""
     lines = run_exe_lines(["--deps", "--import", "Init.Data.Nat.Basic", "--module", "Init.Data.Nat.Basic", "--name", "Nat.add_comm"], exe)
@@ -567,6 +591,8 @@ def tagtest(exe: str | None = None) -> int:
             problems.append(
                 f"the direct dependencies of the fixture's `where` theorems are not exactly their lemmas: {fixture_deps(d, exe)}"
             )
+        if not waypoints_ok(d, exe):
+            problems.append("the waypoints of the fixture proofs are not what the padding, reordering and closing rules say")
         if not core_deps_ok(exe):
             problems.append(
                 "the dependencies of Nat.add_comm (structural recursion) do not name the lemmas behind its auxiliary definition"
@@ -749,6 +775,33 @@ def cmd_deps(a: argparse.Namespace) -> int:
     return 0
 
 
+HAVE_TAG = f"isnad{VERSION}-have"
+
+
+def parse_have_line(line: str) -> tuple[str, Record]:
+    """`isnad1-have <theorem> ...` (`tengoku-isnad --haves`) as (theorem, the record of the `have`'s statement: its id is the waypoint)."""
+    if not line.startswith(HAVE_TAG + "\t"):
+        raise ValueError(f"not an {HAVE_TAG} line: {line[:80]!r}")
+    rec = Record(f"isnad{VERSION}" + line[len(HAVE_TAG) :])
+    return rec.name, rec
+
+
+def waypoint_sets(lines: list[str]) -> dict[str, list[str]]:
+    """theorem -> sorted distinct ids of the statements of its `have`s (a theorem without `have`s is not listed by the Lean side; callers treat it as empty)"""
+    out: dict[str, set[str]] = {}
+    for ln in lines:
+        name, rec = parse_have_line(ln)
+        out.setdefault(name, set()).add(rec.id)
+    return {n: sorted(ids) for n, ids in out.items()}
+
+
+def cmd_waypoints(a: argparse.Namespace) -> int:
+    args = [x for m in a.module for x in ("--module", lean_name(m))]
+    for name, ids in sorted(waypoint_sets(run_exe_lines(["--haves", *args], a.exe)).items()):
+        print(f"{name}\t{len(ids)}\t{','.join(ids)}")
+    return 0
+
+
 def cmd_verify(tag_line: str, recs: list[Record]) -> int:
     tag = parse_tag(tag_line)
     if len(recs) != 1:
@@ -771,6 +824,9 @@ def build_parser() -> argparse.ArgumentParser:
         s.add_argument("--module", action="append", required=True)
         s.add_argument("--name", action="append", default=[])
         s.add_argument("--exe")
+    s = sub.add_parser("waypoints")
+    s.add_argument("--module", action="append", required=True)
+    s.add_argument("--exe")
     s = sub.add_parser("deps")
     s.add_argument("--module", action="append", required=True)
     s.add_argument(
@@ -809,6 +865,8 @@ def main(argv: list[str]) -> int:
     if a.cmd == "explain":
         print(explain_tag(a.what) if a.what.lstrip().startswith(TAG_PREFIX) else explain_id(a.what))
         return 0
+    if a.cmd == "waypoints":
+        return cmd_waypoints(a)
     if a.cmd == "deps":
         return cmd_deps(a)
     if a.cmd == "tag":

@@ -107,6 +107,17 @@ it for a lemma that states something else does. Rules: only theorem constants of
 difference the table cannot show. The hash is **not part of any id or tag** and changes no recipe version; the Lean side is `tengoku-isnad --deps`, and CI's `tagtest` checks it on the fixture
 (a theorem with a `where` lemma depends on exactly that lemma).
 
+### Waypoints
+
+```bash
+python3 scripts/isnad.py waypoints --module Tengoku.Seed.Logic.Basic      # name, number, ids
+```
+
+The **waypoints** of a proof are the ids of the statements of its `have`s: what the proof establishes on the way. Each `have` statement is made a closed proposition (generalised over the local
+variables and hypotheses it depends on, `let`s replaced by their values) and given an id as if it were a theorem, so two `have`s that say the same thing get one id wherever they stand. A `have` that
+nothing uses is removed first, again and again (the same reduction as Tenro's closure extractor), so padding a proof with lemmas it never applies, or reordering its `have`s, changes no waypoint.
+Like `deps`, it is read from the compiled proof and is **not part of any id or tag**: it is one axis of Tenro's tawatur divergence (the other is the dependency footprint). Lean side: `tengoku-isnad --haves`; `tagtest` checks it on `tools/isnad/tagger/Waypoints.lean`.
+
 ### The tagger
 
 `isnad.py tag` writes each theorem's tag into the file the theorem is written in, as the last line of its docstring (a theorem that has no docstring gets a

@@ -659,6 +659,39 @@ class BatchesInParallel(unittest.TestCase):
         self.assertEqual(self.facts_with(8, batch=100)[2:], (1, 2))
 
 
+class Waypoints(unittest.TestCase):
+    def have_line(self, theorem, canon='(Π "Nat" (Π "Nat" ("LE.le"{0} "Nat" "instLENat" v1 v0)))'):
+        return "\t".join(["isnad1-have", theorem, "Mod.X", "le", "0", "2", "9", canon, ADD_COMM_SHAPE, ADD_COMM_VOCAB])
+
+    def test_a_have_line_is_a_record_and_its_id_is_the_waypoint(self):
+        name, rec = isnad.parse_have_line(self.have_line("A.t"))
+        self.assertEqual(name, "A.t")
+        self.assertTrue(rec.id.startswith("le.0h2v.s3."))
+        with self.assertRaises(ValueError):
+            isnad.parse_have_line(ADD_COMM_LINE)
+
+    def test_sets_are_sorted_distinct_and_per_theorem(self):
+        other = '(Π "Nat" ("LT.lt"{0} "Nat" "instLTNat" v0 v0))'
+        lines = [self.have_line("A.t"), self.have_line("A.t", other), self.have_line("A.t"), self.have_line("B.u")]
+        got = isnad.waypoint_sets(lines)
+        self.assertEqual(sorted(got), ["A.t", "B.u"])
+        self.assertEqual(len(got["A.t"]), 2)
+        self.assertEqual(got["A.t"], sorted(got["A.t"]))
+        self.assertEqual(len(got["B.u"]), 1)
+
+    def test_the_command_prints_one_row_per_theorem(self):
+        out = io.StringIO()
+        args = mock.Mock(module=["M"], exe=None)
+        with (
+            mock.patch.object(isnad, "run_exe_lines", lambda a, exe=None: [self.have_line("A.t")]),
+            contextlib.redirect_stdout(out),
+        ):
+            self.assertEqual(isnad.cmd_waypoints(args), 0)
+        name, n, ids = out.getvalue().strip().split("\t")
+        self.assertEqual((name, n), ("A.t", "1"))
+        self.assertTrue(ids.startswith("le.0h2v.s3."))
+
+
 class Dependencies(unittest.TestCase):
     ID_A = "eq.0h2v.s4.0123456789ab"
     ID_B = "le.1h1v.s5.ba9876543210"
