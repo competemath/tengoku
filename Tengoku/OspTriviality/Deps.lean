@@ -1,0 +1,1 @@
+-- OspTriviality: a factory bundle (data/intake/osp-triviality). This file only marks the library for Tengoku/All.lean.
