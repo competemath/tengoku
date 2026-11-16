@@ -107,6 +107,7 @@ import Tengoku.LeanCommutator
 import Tengoku.Leancert
 import Tengoku.QuadraticAlgebras
 import Tengoku.QuotientSubmoduleEquidistribution
+import Tengoku.Roundedrootsums
 import Tengoku.ChandraFurstLipton
 import Tengoku.LanaIut
 import Tengoku.LerayHopf
