@@ -1,0 +1,1 @@
+-- Semigroup: a factory bundle (data/intake/semigroup). This file only marks the library for Tengoku/All.lean.
