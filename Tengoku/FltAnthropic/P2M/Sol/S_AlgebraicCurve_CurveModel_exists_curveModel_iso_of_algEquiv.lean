@@ -1,0 +1,62 @@
+import Tengoku
+import Tengoku.FltAnthropic.Definitions.Def_AlgebraicCurve_CurveModel
+import Tengoku.FltAnthropic.Definitions.Def_AlgebraicCurve_RatFuncPlaces
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku repair: removed `#print axioms solution` (it only prints; the queue checks the axioms of every declaration). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AlgebraicCurve_CurveModel_exists_curveModel_iso_of_algEquiv.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AlgebraicCurve_CurveModel_exists_curveModel_iso_of_algEquiv
+
+set_option autoImplicit false
+
+open CategoryTheory AlgebraicGeometry AlgebraicCurve
+
+universe u v
+
+/--
+@isnad1 id=ex.0h5v.s7.1152c6dbb48e from=translated src=- shape=8b3d0cc8 vocab=129ba0de
+-/
+theorem solution
+    {K : Type u} [Field K] {L L' : Type v} [Field L] [Field L'] [Algebra K L] [Algebra K L']
+    (e : L ≃ₐ[K] L') (M : AlgebraicCurve.CurveModel K L) :
+    ∃ (M' : AlgebraicCurve.CurveModel K L') (f : M'.C ≅ M.C), f.hom ≫ M.toBase = M'.toBase := by
+  have he : ∀ a : K, e.toRingEquiv (algebraMap K L a) = algebraMap K L' a := fun a => e.commutes a
+  refine ⟨{ C := M.C
+            toBase := M.toBase
+            ffEquiv := e.symm.toRingEquiv.trans M.ffEquiv
+            ffEquiv_algebraMap := fun a => ?_
+            placeOfPoint := fun x => Place.congrRingEquiv e.toRingEquiv he (M.placeOfPoint x)
+            placeOfPoint_bijective := (Place.congrEquiv e.toRingEquiv he).bijective.comp M.placeOfPoint_bijective
+            range_stalk_eq := fun x => ?_
+            finset_subset_affineOpen := M.finset_subset_affineOpen }, Iso.refl _, Category.id_comp _⟩
+  ·
+    show M.ffEquiv (e.symm.toRingEquiv (algebraMap K L' a)) = _
+    rw [show e.symm.toRingEquiv (algebraMap K L' a) = algebraMap K L a from e.symm.commutes a]
+    exact M.ffEquiv_algebraMap a
+  ·
+    have h := M.range_stalk_eq x
+    ext y
+    constructor
+    · rintro ⟨s, rfl⟩
+      change e.toRingEquiv.symm ((e.symm.toRingEquiv.trans M.ffEquiv).symm (algebraMap _ _ s)) ∈ (M.placeOfPoint x).toValuationSubring
+      have hs : M.ffEquiv.symm (algebraMap _ _ s) ∈ (M.placeOfPoint x).toValuationSubring.toSubring := by
+        rw [← h]; exact ⟨s, rfl⟩
+      rw [RingEquiv.symm_trans_apply]
+      change e.symm (e.symm.symm (M.ffEquiv.symm (algebraMap _ _ s))) ∈ _
+      rw [AlgEquiv.symm_symm, AlgEquiv.symm_apply_apply]
+      exact hs
+    · intro hy
+      change e.toRingEquiv.symm y ∈ (M.placeOfPoint x).toValuationSubring at hy
+      have hy' : e.toRingEquiv.symm y ∈ ((M.ffEquiv.symm : M.C.functionField ≃+* L).toRingHom.comp
+          (algebraMap (M.C.presheaf.stalk x.1) M.C.functionField)).range := by
+        rw [h]; exact hy
+      obtain ⟨s, hs⟩ := hy'
+      refine ⟨s, ?_⟩
+      change (e.symm.toRingEquiv.trans M.ffEquiv).symm (algebraMap _ _ s) = y
+      rw [RingEquiv.symm_trans_apply]
+      change e.symm.symm (M.ffEquiv.symm (algebraMap _ _ s)) = y
+      rw [show M.ffEquiv.symm (algebraMap _ _ s) = e.toRingEquiv.symm y from hs, AlgEquiv.symm_symm]
+      exact e.apply_symm_apply y
+

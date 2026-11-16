@@ -1,0 +1,60 @@
+import Tengoku
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_Algebra_det_dual_mul_mul_eq_norm_mul_det.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_Algebra_det_dual_mul_mul_eq_norm_mul_det
+
+set_option autoImplicit false
+
+open scoped TensorProduct
+
+namespace Ws23
+namespace DLB
+
+open Module
+
+section DLB3
+
+variable (R : Type*) [CommRing R] (A : Type*) [CommRing A] [Algebra R A]
+variable {ι : Type*} [Fintype ι] [DecidableEq ι]
+
+/--
+@isnad1 id=eq.0h6v.s8.de0a1d2dba2b from=translated src=- shape=620323f1 vocab=ab14d063
+-/
+theorem mul_basis_eq_sum (b : Basis ι R A) (c : A) (j : ι) :
+    c * b j = ∑ k, Algebra.leftMulMatrix b c k j • b k := by
+  conv_lhs => rw [← b.sum_repr (c * b j)]
+  simp only [Algebra.leftMulMatrix_eq_repr_mul]
+
+/--
+@isnad1 id=eq.0h6v.s9.9fa0eacb9400 from=translated src=- shape=7e4692f8 vocab=ee58dd1d
+-/
+theorem of_dual_mul_mul_eq (b : Basis ι R A) (τ : Dual R A) (c : A) :
+    (Matrix.of fun i j => τ (c * b i * b j)) =
+      (Algebra.leftMulMatrix b c).transpose * Matrix.of fun i j => τ (b i * b j) := by
+  ext i j
+  simp only [Matrix.of_apply, Matrix.mul_apply, Matrix.transpose_apply]
+  rw [mul_basis_eq_sum R A b c i, Finset.sum_mul, map_sum]
+  refine Finset.sum_congr rfl fun k _ => ?_
+  rw [smul_mul_assoc, map_smul, smul_eq_mul]
+
+/--
+@isnad1 id=eq.0h6v.s9.e0727174d78f from=translated src=- shape=62680c39 vocab=8b22f139
+-/
+theorem main3 (b : Basis ι R A) (τ : Dual R A) (c : A) :
+    (Matrix.of fun i j => τ (c * b i * b j)).det = Algebra.norm R c * (Matrix.of fun i j => τ (b i * b j)).det := by
+  rw [of_dual_mul_mul_eq R A b τ c, Matrix.det_mul, Matrix.det_transpose, Algebra.norm_eq_matrix_det b]
+
+end DLB3
+
+end Ws23.DLB
+
+/--
+@isnad1 id=eq.0h6v.s9.e0727174d78f from=translated src=- shape=62680c39 vocab=8b22f139
+-/
+theorem solution
+    (R : Type*) [CommRing R] (A : Type*) [CommRing A] [Algebra R A]
+    {ι : Type*} [Fintype ι] [DecidableEq ι] (b : Module.Basis ι R A) (τ : Module.Dual R A) (c : A) :
+    (Matrix.of fun i j => τ (c * b i * b j)).det = Algebra.norm R c * (Matrix.of fun i j => τ (b i * b j)).det :=
+  Ws23.DLB.main3 R A b τ c

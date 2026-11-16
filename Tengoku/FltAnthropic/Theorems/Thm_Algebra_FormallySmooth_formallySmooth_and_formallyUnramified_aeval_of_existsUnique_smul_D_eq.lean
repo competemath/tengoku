@@ -1,0 +1,21 @@
+import Tengoku
+import Tengoku.FltAnthropic.P2M.Sol.S_Algebra_FormallySmooth_formallySmooth_and_formallyUnramified_aeval_of_existsUnique_smul_D_eq
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_Algebra_FormallySmooth_formallySmooth_and_formallyUnramified_aeval_of_existsUnique_smul_D_eq.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+
+set_option autoImplicit false
+
+open Polynomial
+
+universe u v
+
+/--
+@isnad1 id=and.1h3v.s8.e9e20050b3fc from=translated src=- shape=6b1988e3 vocab=1e983ec3
+-/
+theorem Algebra.FormallySmooth.formallySmooth_and_formallyUnramified_aeval_of_existsUnique_smul_D_eq
+    {A : Type u} {S : Type v} [CommRing A] [CommRing S] [Algebra A S] [Algebra.FormallySmooth A S]
+    (t : S) (ht : ∀ ω : Ω[S⁄A], ∃! s : S, ω = s • KaehlerDifferential.D A S t) :
+    (Polynomial.aeval t : A[X] →ₐ[A] S).toRingHom.FormallySmooth ∧
+      (Polynomial.aeval t : A[X] →ₐ[A] S).toRingHom.FormallyUnramified := by exact @_root_.P2MW.S_Algebra_FormallySmooth_formallySmooth_and_formallyUnramified_aeval_of_existsUnique_smul_D_eq.solution A S _ _ _ _ t ht

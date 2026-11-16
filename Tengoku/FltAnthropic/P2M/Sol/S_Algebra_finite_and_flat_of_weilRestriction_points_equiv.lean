@@ -1,0 +1,42 @@
+import Tengoku
+import Tengoku.FltAnthropic.Theorems.Thm_Algebra_Etale_exists_finite_etale_faithfullyFlat_tensorProduct_algEquiv_pi_of_rankAtStalk_eq
+import Tengoku.FltAnthropic.Theorems.Thm_Algebra_finite_and_free_baseChange_of_weilRestriction_points_equiv_of_algEquiv_pi
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_Algebra_finite_and_flat_of_weilRestriction_points_equiv.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_Algebra_finite_and_flat_of_weilRestriction_points_equiv
+
+set_option autoImplicit false
+
+open scoped TensorProduct
+
+universe u
+
+/--
+@isnad1 id=and.1h5v.s11.e3fc0e49533c from=translated src=- shape=604a3797 vocab=94b0f3d3
+-/
+theorem solution
+    (A : Type u) [CommRing A] (B : Type u) [CommRing B] [Algebra A B] [Module.Finite A B] [Module.Free A B]
+    [Algebra.Etale A B]
+    (H : Type u) [CommRing H] [Algebra B H] [Module.Finite B H] [Module.Free B H]
+    (W : Type u) [CommRing W] [Algebra A W]
+    (e : ∀ (T : Type u) [CommRing T] [Algebra A T], (W →ₐ[A] T) ≃ (H →ₐ[B] (B ⊗[A] T)))
+    (he_nat : ∀ (T T' : Type u) [CommRing T] [Algebra A T] [CommRing T'] [Algebra A T'] (u : T →ₐ[A] T')
+      (f : W →ₐ[A] T), e T' (u.comp f) = (Algebra.TensorProduct.map (AlgHom.id B B) u).comp (e T f)) :
+    Module.Finite A W ∧ Module.Flat A W := by
+
+  have hrk : ∀ p : PrimeSpectrum A, Module.rankAtStalk (R := A) B p = Module.finrank A B := by
+    intro p
+    simp [Module.rankAtStalk_eq_finrank_of_free]
+  obtain ⟨A', _, _, hfin', het', hff', ⟨φ⟩⟩ :=
+    Algebra.Etale.exists_finite_etale_faithfullyFlat_tensorProduct_algEquiv_pi_of_rankAtStalk_eq A B
+      (Module.finrank A B) hrk
+
+  obtain ⟨hfinW, hfreeW⟩ :=
+    Algebra.finite_and_free_baseChange_of_weilRestriction_points_equiv_of_algEquiv_pi A B H W e he_nat A'
+      (Module.finrank A B) φ
+  haveI := hfinW; haveI := hfreeW
+  haveI : Module.Flat A' (A' ⊗[A] W) := inferInstance
+
+  exact ⟨Module.Finite.of_finite_tensorProduct_of_faithfullyFlat A', Module.Flat.of_flat_tensorProduct A W A'⟩

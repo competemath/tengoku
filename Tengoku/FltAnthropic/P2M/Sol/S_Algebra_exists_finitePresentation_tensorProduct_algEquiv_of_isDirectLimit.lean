@@ -1,0 +1,77 @@
+import Tengoku
+import Tengoku.FltAnthropic.Definitions.Def_Mathlib_Algebra_IsDirectLimit
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_Algebra_exists_finitePresentation_tensorProduct_algEquiv_of_isDirectLimit.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_Algebra_exists_finitePresentation_tensorProduct_algEquiv_of_isDirectLimit
+
+set_option autoImplicit false
+
+open scoped TensorProduct
+
+universe u v w w'
+
+namespace AlgSpreadDirected
+
+/--
+@isnad1 id=le.2h6v.s9.c2e6a04533f5 from=translated src=- shape=c7701f03 vocab=81cffb63
+-/
+theorem range_mono {ι : Type u} [Preorder ι]
+    {G : ι → Type v} [∀ i, CommRing (G i)] (f : ∀ i j : ι, i ≤ j → G i →+* G j)
+    [DirectedSystem G fun i j h => ⇑(f i j h)]
+    {R : Type w} [CommRing R] [∀ i, Algebra (G i) R]
+    (hR : IsDirectLimit (fun i j h => ⇑(f i j h)) fun i => ⇑(algebraMap (G i) R))
+    {i j : ι} (hij : i ≤ j) :
+    Set.range (algebraMap (G i) R) ⊆ Set.range (algebraMap (G j) R) := by
+  rintro _ ⟨x, rfl⟩
+  exact ⟨f i j hij x, hR.compatibility i j hij x⟩
+
+/--
+@isnad1 id=ex.2h5v.s8.7af637b69a77 from=translated src=- shape=f0eb2870 vocab=409c259f
+-/
+theorem exists_subset_range_of_finite {ι : Type u} [Preorder ι] [Nonempty ι] [IsDirectedOrder ι]
+    {G : ι → Type v} [∀ i, CommRing (G i)] (f : ∀ i j : ι, i ≤ j → G i →+* G j)
+    [DirectedSystem G fun i j h => ⇑(f i j h)]
+    {R : Type w} [CommRing R] [∀ i, Algebra (G i) R]
+    (hR : IsDirectLimit (fun i j h => ⇑(f i j h)) fun i => ⇑(algebraMap (G i) R))
+    {s : Set R} (hs : s.Finite) :
+    ∃ i : ι, s ⊆ Set.range (algebraMap (G i) R) := by
+  classical
+
+  let idx : R → ι := fun r => (hR.surj r).choose
+  have hidx : ∀ r : R, r ∈ Set.range (algebraMap (G (idx r)) R) := fun r =>
+    let ⟨x, hx⟩ := (hR.surj r).choose_spec
+    ⟨x, hx⟩
+  obtain ⟨M, hM⟩ := Finset.exists_le (hs.toFinset.image idx)
+  refine ⟨M, fun r hr => ?_⟩
+  have hle : idx r ≤ M := hM _ (Finset.mem_image_of_mem idx (hs.mem_toFinset.mpr hr))
+  exact range_mono f hR hle (hidx r)
+
+end AlgSpreadDirected
+
+open AlgSpreadDirected in
+/--
+@isnad1 id=ex.1h5v.s9.0fe3b94adc24 from=translated src=- shape=0129ccba vocab=fcbbf89f
+-/
+theorem solution
+    {ι : Type u} [Preorder ι] [Nonempty ι] [IsDirectedOrder ι]
+    (G : ι → Type v) [∀ i, CommRing (G i)] (f : ∀ i j : ι, i ≤ j → G i →+* G j)
+    [DirectedSystem G fun i j h => ⇑(f i j h)]
+    (R : Type w) [CommRing R] [∀ i, Algebra (G i) R]
+    (hR : IsDirectLimit (fun i j h => ⇑(f i j h)) fun i => ⇑(algebraMap (G i) R))
+    (A : Type w') [CommRing A] [Algebra R A] [Algebra.FinitePresentation R A] :
+    ∃ (i : ι) (A₀ : Type v) (_ : CommRing A₀) (_ : Algebra (G i) A₀)
+      (_ : Algebra.FinitePresentation (G i) A₀), Nonempty ((R ⊗[G i] A₀) ≃ₐ[R] A) := by
+  classical
+
+  let P := Algebra.Presentation.ofFinitePresentation R A
+
+  obtain ⟨i, hi⟩ := exists_subset_range_of_finite f hR (s := P.coeffs) Algebra.Presentation.finite_coeffs
+
+  letI : Algebra (G i) A := ((algebraMap R A).comp (algebraMap (G i) R)).toAlgebra
+  haveI : IsScalarTower (G i) R A := IsScalarTower.of_algebraMap_eq (fun _ => rfl)
+  haveI : P.HasCoeffs (G i) := ⟨hi⟩
+  exact ⟨i, P.ModelOfHasCoeffs (G i), inferInstance, inferInstance, inferInstance,
+    ⟨P.tensorModelOfHasCoeffsEquiv (G i)⟩⟩
+-- Tengoku: root names of this library moved to Tengoku.FltAnthropic so they do not collide with other libraries (generated)
