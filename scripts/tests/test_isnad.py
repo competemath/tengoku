@@ -1,8 +1,10 @@
 """scripts/isnad.py: the pure half of the identity (hashing, ids, tags, explanations, the golden file) and the commands around the Lean program
 (with a stand-in for it). The Lean half is tested by `isnad.py laws` and `isnad.py selftest`, which need a Lean toolchain (CI: pr-tests, job isnad)."""
 
+import contextlib
 import hashlib
 import importlib.util
+import io
 import os
 import re
 import stat
@@ -655,6 +657,71 @@ class BatchesInParallel(unittest.TestCase):
 
     def test_one_batch_is_one_process_pair_whatever_jobs_says(self):
         self.assertEqual(self.facts_with(8, batch=100)[2:], (1, 2))
+
+
+class Dependencies(unittest.TestCase):
+    ID_A = "eq.0h2v.s4.0123456789ab"
+    ID_B = "le.1h1v.s5.ba9876543210"
+
+    def test_the_hash_is_of_the_set_of_ids(self):
+        h = isnad.deps_hash([self.ID_A, self.ID_B])
+        self.assertEqual(h, isnad.sha(f"{self.ID_A},{self.ID_B}", 12))
+        self.assertEqual(h, isnad.deps_hash([self.ID_B, self.ID_A, self.ID_A]))  # order and repeats change nothing
+        self.assertNotEqual(h, isnad.deps_hash([self.ID_A]))
+
+    def test_parse_deps_line(self):
+        self.assertEqual(isnad.parse_deps_line("isnad1-deps\tA.t\tMod.X\tB.u\tC.v"), ("A.t", "Mod.X", ["B.u", "C.v"]))
+        self.assertEqual(isnad.parse_deps_line("isnad1-deps\tA.t\tMod.X"), ("A.t", "Mod.X", []))
+        with self.assertRaises(ValueError):
+            isnad.parse_deps_line("isnad1\tA.t\tMod.X")
+
+    def test_rows_hash_by_statement_and_leave_unknown_ids_visible(self):
+        ids = {"B.u": self.ID_A, "C.v": self.ID_B}
+        lines = ["isnad1-deps\tA.t\tM\tB.u\tC.v", "isnad1-deps\tA.s\tM\tC.v\tZ.z", "isnad1-deps\tA.r\tM"]
+        rows = isnad.deps_rows(lines, ids)
+        self.assertEqual(rows[0], ("A.t", isnad.deps_hash([self.ID_A, self.ID_B]), 2, []))
+        self.assertEqual(rows[1], ("A.s", "-", 2, ["Z.z"]))
+        self.assertEqual(rows[2], ("A.r", isnad.deps_hash([]), 0, []))
+
+    def test_a_renamed_lemma_with_the_same_statement_gives_the_same_hash(self):
+        a = isnad.deps_rows(["isnad1-deps\tA.t\tM\tOld.name"], {"Old.name": self.ID_A})[0][1]
+        b = isnad.deps_rows(["isnad1-deps\tA.t\tM\tNew.name"], {"New.name": self.ID_A})[0][1]
+        self.assertEqual(a, b)
+
+    def test_the_deps_command_hashes_by_statement_and_reads_the_table_from_stdin(self):
+        rec = isnad.Record(ADD_COMM_LINE)
+        lines = [
+            "isnad1-deps\tFx.t\tM\tNat.add_comm\tOther.lemma",
+            "isnad1-deps\tFx.u\tM\tNat.add_comm",
+        ]
+        args = mock.Mock(module=["M"], ids_stdin=True, exe=None)
+        out = io.StringIO()
+        with (
+            mock.patch.object(isnad, "run_exe", lambda a, exe=None: [rec]),
+            mock.patch.object(isnad, "run_exe_lines", lambda a, exe=None: lines),
+            mock.patch.object(sys, "stdin", io.StringIO(f"Other.lemma\t{self.ID_B}\tshape=1\tvocab=2\n")),
+            contextlib.redirect_stdout(out),
+        ):
+            self.assertEqual(isnad.cmd_deps(args), 0)
+        want_t = isnad.deps_hash([rec.id, self.ID_B])
+        want_u = isnad.deps_hash([rec.id])
+        self.assertEqual(out.getvalue().splitlines(), [f"Fx.t\t{want_t}\t2\t", f"Fx.u\t{want_u}\t1\t"])
+
+    def test_the_deps_command_without_a_table_leaves_unknown_ids_visible(self):
+        args = mock.Mock(module=["M"], ids_stdin=False, exe=None)
+        out = io.StringIO()
+        with (
+            mock.patch.object(isnad, "run_exe", lambda a, exe=None: []),
+            mock.patch.object(isnad, "run_exe_lines", lambda a, exe=None: ["isnad1-deps\tFx.t\tM\tZ.z"]),
+            contextlib.redirect_stdout(out),
+        ):
+            isnad.cmd_deps(args)
+        self.assertEqual(out.getvalue().strip(), "Fx.t\t-\t1\tZ.z")
+
+    def test_read_ids_keeps_only_id_rows(self):
+        lines = [f"B.u\t{self.ID_A}\tshape=1\tvocab=2\n", "not an id row\n", "C.v\tnope\n"]
+        self.assertEqual(isnad.read_ids(lines), {"B.u": self.ID_A})
+        self.assertEqual(isnad.read_ids([]), {})
 
 
 if __name__ == "__main__":

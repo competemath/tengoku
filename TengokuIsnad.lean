@@ -12,6 +12,7 @@ independent of Lean's `String.hash`. Records are sorted by (module, name): two r
   lake env .lake/build/bin/tengoku-isnad --module Tengoku.Seed.Logic.Basic
   lake env .lake/build/bin/tengoku-isnad --import Init.Data.Nat.Basic --module Init.Data.Nat.Basic --name Nat.add_comm
   lake env .lake/build/bin/tengoku-isnad --ranges --module Tengoku.Seed.Logic.Basic       # where each theorem is written (for the tagger)
+  lake env .lake/build/bin/tengoku-isnad --deps --module Tengoku.Seed.Logic.Basic         # `isnad1-deps <name> <module> <dependency>...`: the theorems each proof uses directly
 
 The canonical form (version 1) is an S-expression and a pure function of the elaborated statement: bound variables are de Bruijn indices, universe
 parameters are numbered by first appearance, constants are quoted strings of their cleaned name (macro scopes and `private` prefixes removed), proof
@@ -229,6 +230,31 @@ def selected (env : Environment) (mods : List Name) (names : List Name) : Array 
 def records (env : Environment) (mods : List Name) (names : List Name) : Array String :=
   (selected env mods names).map fun (m, n, ci) => line env n m ci.type
 
+/-- The theorems a theorem's proof uses directly, by the names the records use: every theorem constant of the proof term that the records list, nothing else. A theorem the
+records leave out (generated and internal: `eq_*`, `proof_*`, a private one) is looked through, to the theorems its own proof uses, because it has no identity to name.
+Definitions are not followed (a definition is not a statement), and the theorem itself is never its own dependency. Sorted, no duplicates. -/
+def directDeps (env : Environment) (self : Name) (value : Expr) : Array String := Id.run do
+  let mut found : NameSet := {}
+  let mut seen : NameSet := {}
+  let mut stack : Array Name := value.getUsedConstants
+  while !stack.isEmpty do
+    let c := stack.back!
+    stack := stack.pop
+    if seen.contains c || c == self then continue
+    seen := seen.insert c
+    let some (.thmInfo t) := env.find? c | continue
+    if !c.isNum && okName c then found := found.insert c
+    else stack := stack ++ t.value.getUsedConstants
+  return (found.toList.map (fun c => toString (cleanName c))).toArray.qsort (· < ·)
+
+/-- `isnad1-deps <name> <module> <dependency>…` (tab separated), one line per theorem of `selected`, in the same order as `records`: the direct dependencies of its proof. -/
+def depLines (env : Environment) (mods : List Name) (names : List Name) : Array String :=
+  (selected env mods names).map fun (m, n, ci) =>
+    let deps : Array String := match ci with
+      | .thmInfo t => directDeps env n t.value
+      | _ => #[]
+    "\t".intercalate ("isnad1-deps" :: toString (cleanName n) :: m :: deps.toList)
+
 /-- Where each theorem is written, as Lean recorded it: `isnad1-range <name> <module> <line:col> <line:col> <line:col> <line:col>`, the whole command (its docstring and
 attributes included) and then the declared name (lines from 1, columns from 0, in code points). A theorem a macro generated (`to_additive`'s twin) has a range that
 points at the attribute that made it, not at a name: the reader of this line checks the text at the name's position. -/
@@ -257,6 +283,7 @@ unsafe def main (argv : List String) : IO UInt32 := do
   let rs ← if argv.contains "--ranges" then
       let ctx : Core.Context := { fileName := "<tengoku-isnad>", fileMap := default, maxHeartbeats := 0 }
       pure ((← (Isnad.rangeLines mods names).toIO ctx { env }).1)
+    else if argv.contains "--deps" then pure (Isnad.depLines env mods names)
     else pure (Isnad.records env mods names)
   for l in rs do IO.println l
   IO.eprintln s!"isnad: {rs.size} theorems"
