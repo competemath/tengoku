@@ -1,0 +1,45 @@
+import Tengoku
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AddMonoidAlgebra_exists_bialgEquiv_baseChange_tmul_single.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AddMonoidAlgebra_exists_bialgEquiv_baseChange_tmul_single
+
+set_option autoImplicit false
+
+open scoped TensorProduct
+
+open AddMonoidAlgebra in
+set_option maxHeartbeats 4000000 in
+
+/--
+@isnad1 id=ex.0h3v.s11.fbf738e85e39 from=translated src=- shape=fad59ac7 vocab=fc6b5d39
+-/
+theorem solution
+    (R S : Type*) [CommRing R] [CommRing S] [Algebra R S] (G : Type*) [AddCommMonoid G] :
+    ∃ e : S ⊗[R] AddMonoidAlgebra R G ≃ₐc[S] AddMonoidAlgebra S G,
+      ∀ (s : S) (g : G) (r : R), e (s ⊗ₜ AddMonoidAlgebra.single g r) = AddMonoidAlgebra.single g (r • s) := by
+  classical
+  let e₀ : S ⊗[R] AddMonoidAlgebra R G ≃ₐ[S] AddMonoidAlgebra S G := AddMonoidAlgebra.scalarTensorEquiv R S
+  have he₀ : ∀ (s : S) (g : G) (r : R), e₀ (s ⊗ₜ AddMonoidAlgebra.single g r) = AddMonoidAlgebra.single g (r • s) := by
+    intro s g r
+    simp only [e₀, AddMonoidAlgebra.scalarTensorEquiv_tmul, AddMonoidAlgebra.mapAlgHom_single, Algebra.ofId_apply,
+      Algebra.smul_def, AddMonoidAlgebra.coe_algebraMap, Function.comp_apply, AddMonoidAlgebra.single_mul_single,
+      zero_add, Algebra.algebraMap_self, RingHom.id_apply, mul_comm s]
+  have he₁ : ∀ g : G, e₀ (1 ⊗ₜ AddMonoidAlgebra.single g 1) = AddMonoidAlgebra.single g 1 := fun g => by
+    simpa using he₀ 1 g 1
+  refine ⟨BialgEquiv.ofAlgEquiv e₀ ?_ ?_, he₀⟩
+  · apply Algebra.TensorProduct.ext
+    · ext
+    · refine AddMonoidAlgebra.algHom_ext (fun g => ?_) (Subsingleton.elim _ _)
+      simp only [AlgHom.coe_comp, AlgHom.coe_restrictScalars', Function.comp_apply,
+        Algebra.TensorProduct.includeRight_apply, AlgEquiv.coe_toAlgHom, Bialgebra.counitAlgHom_apply]
+      rw [he₁]
+      simp [AddMonoidAlgebra.counit_single]
+  · apply Algebra.TensorProduct.ext
+    · ext
+    · refine AddMonoidAlgebra.algHom_ext (fun g => ?_) (Subsingleton.elim _ _)
+      simp only [AlgHom.coe_comp, AlgHom.coe_restrictScalars', Function.comp_apply,
+        Algebra.TensorProduct.includeRight_apply, AlgEquiv.coe_toAlgHom, Bialgebra.comulAlgHom_apply]
+      rw [he₁]
+      simp [AddMonoidAlgebra.comul_single, CommSemiring.comul_apply, he₁]

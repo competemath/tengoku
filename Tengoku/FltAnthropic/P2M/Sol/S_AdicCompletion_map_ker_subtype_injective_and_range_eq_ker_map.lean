@@ -1,0 +1,39 @@
+import Tengoku
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AdicCompletion_map_ker_subtype_injective_and_range_eq_ker_map.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AdicCompletion_map_ker_subtype_injective_and_range_eq_ker_map
+
+set_option autoImplicit false
+
+universe u
+
+/--
+@isnad1 id=and.0h5v.s14.ba976ff21957 from=translated src=- shape=1c098671 vocab=13597d9e
+-/
+theorem solution
+    {R : Type u} [CommRing R] [IsNoetherianRing R] (I : Ideal R)
+    {M N : Type u} [AddCommGroup M] [Module R M] [Module.Finite R M]
+    [AddCommGroup N] [Module R N] [Module.Finite R N] (ρ : M →ₗ[R] N) :
+    Function.Injective (AdicCompletion.map I (LinearMap.ker ρ).subtype) ∧
+      LinearMap.range (AdicCompletion.map I (LinearMap.ker ρ).subtype) =
+        LinearMap.ker (AdicCompletion.map I ρ) := by
+  refine ⟨AdicCompletion.map_injective I (LinearMap.ker ρ).injective_subtype, ?_⟩
+  have hsurj : Function.Surjective ρ.rangeRestrict := ρ.surjective_rangeRestrict
+  have hex : Function.Exact (LinearMap.ker ρ).subtype ρ.rangeRestrict := by
+    rw [LinearMap.exact_iff, LinearMap.ker_rangeRestrict, Submodule.range_subtype]
+  have h1 : Function.Exact (AdicCompletion.map I (LinearMap.ker ρ).subtype)
+      (AdicCompletion.map I ρ.rangeRestrict) :=
+    AdicCompletion.map_exact (LinearMap.ker ρ).injective_subtype hex hsurj
+  have h2 : Function.Injective (AdicCompletion.map I (LinearMap.range ρ).subtype) :=
+    AdicCompletion.map_injective I (LinearMap.range ρ).injective_subtype
+  have hfac : (LinearMap.range ρ).subtype ∘ₗ ρ.rangeRestrict = ρ := by
+    ext x; rfl
+  have h3 : AdicCompletion.map I ρ =
+      AdicCompletion.map I (LinearMap.range ρ).subtype ∘ₗ AdicCompletion.map I ρ.rangeRestrict := by
+    first
+      | (rw [AdicCompletion.map_comp, hfac])
+      | (rw [← AdicCompletion.map_comp, hfac])
+  rw [h3, LinearMap.ker_comp_of_ker_eq_bot _ (LinearMap.ker_eq_bot.mpr h2)]
+  exact (h1.linearMap_ker_eq).symm

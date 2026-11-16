@@ -1,0 +1,29 @@
+import Tengoku
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_Ideal_finite_quotient_of_isMaximal_of_finiteType_of_finite_quotient.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_Ideal_finite_quotient_of_isMaximal_of_finiteType_of_finite_quotient
+
+set_option autoImplicit false
+
+/--
+@isnad1 id=finite.1h4v.s7.3ae83732e0aa from=translated src=- shape=56bacac2 vocab=5188a0cc
+-/
+theorem solution
+    (A : Type) [CommRing A] (𝔪 : Ideal A) [𝔪.IsMaximal] [Finite (A ⧸ 𝔪)]
+    (B : Type) [CommRing B] [Algebra A B] [Algebra.FiniteType A B]
+    (𝔭 : Ideal B) [𝔭.IsMaximal] (h𝔪 : Ideal.map (algebraMap A B) 𝔪 ≤ 𝔭) :
+    Finite (B ⧸ 𝔭) := by
+  classical
+  letI : Field (A ⧸ 𝔪) := Ideal.Quotient.field 𝔪
+  letI : Field (B ⧸ 𝔭) := Ideal.Quotient.field 𝔭
+  have hle : 𝔪 ≤ 𝔭.comap (algebraMap A B) := Ideal.map_le_iff_le_comap.mp h𝔪
+  let f : A ⧸ 𝔪 →+* B ⧸ 𝔭 := Ideal.quotientMap 𝔭 (algebraMap A B) hle
+  letI : Algebra (A ⧸ 𝔪) (B ⧸ 𝔭) := f.toAlgebra
+  haveI : IsScalarTower A (A ⧸ 𝔪) (B ⧸ 𝔭) :=
+    IsScalarTower.of_algebraMap_eq (fun a => rfl)
+  haveI : Algebra.FiniteType A (B ⧸ 𝔭) := inferInstance
+  haveI : Algebra.FiniteType (A ⧸ 𝔪) (B ⧸ 𝔭) := Algebra.FiniteType.of_restrictScalars_finiteType A _ _
+  haveI : Module.Finite (A ⧸ 𝔪) (B ⧸ 𝔭) := finite_of_finite_type_of_isJacobsonRing _ _
+  exact Module.finite_of_finite (A ⧸ 𝔪)

@@ -1,0 +1,43 @@
+import Tengoku
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AddMonoidHom_exists_pos_forall_nsmul_eq_zero_of_add_eq_zero_of_finite_fixedPoints_comp_self.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AddMonoidHom_exists_pos_forall_nsmul_eq_zero_of_add_eq_zero_of_finite_fixedPoints_comp_self
+
+set_option autoImplicit false
+
+universe u
+
+open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
+
+/--
+@isnad1 id=ex.1h2v.s8.2858576a1933 from=translated src=- shape=4d7185d1 vocab=1a1a5bd3
+-/
+theorem solution
+    {M : Type u} [AddCommGroup M] (F : M →+ M)
+    (hfin : (Function.fixedPoints (F ∘ F)).Finite) :
+    ∃ c : ℕ, 0 < c ∧ ∀ a₀ a₁ : M, a₀ + F a₁ = 0 → F a₀ + a₁ = 0 → c • a₀ = 0 ∧ c • a₁ = 0 := by
+
+  let H : AddSubgroup M :=
+    { carrier := Function.fixedPoints (F ∘ F)
+      add_mem' := fun {a b} ha hb => by
+        simp only [Function.mem_fixedPoints_iff, Function.comp_apply, map_add] at ha hb ⊢
+        rw [ha, hb]
+      zero_mem' := by
+        change F (F 0) = 0
+        rw [map_zero, map_zero]
+      neg_mem' := fun {a} ha => by
+        simp only [Function.mem_fixedPoints_iff, Function.comp_apply, map_neg] at ha ⊢
+        rw [ha] }
+  haveI : Finite H := hfin.to_subtype
+  refine ⟨Nat.card H, Nat.card_pos, fun a₀ a₁ h₀ h₁ => ?_⟩
+  have ha₀ : a₀ = -F a₁ := eq_neg_of_add_eq_zero_left h₀
+  have ha₁ : a₁ ∈ H := by
+    change F (F a₁) = a₁
+    rw [ha₀, map_neg, neg_add_eq_zero] at h₁
+    exact h₁
+  have hc₁ : Nat.card H • a₁ = 0 := by
+    have h := card_nsmul_eq_zero' (G := H) (x := ⟨a₁, ha₁⟩)
+    exact congrArg Subtype.val h
+  exact ⟨by rw [ha₀, smul_neg, ← map_nsmul, hc₁, map_zero, neg_zero], hc₁⟩
