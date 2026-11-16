@@ -28,7 +28,9 @@ open scoped BigOperators
 namespace RoundedRootSums
 
 /--
-The interval from `1` through `Nat.sqrt k` has cardinality `Nat.sqrt k`.-/
+The interval from `1` through `Nat.sqrt k` has cardinality `Nat.sqrt k`.
+@isnad1 id=eq.0h1v.s4.468e600f912e from=translated src=- shape=4c2cbb7a vocab=45e1147b
+-/
 theorem card_Icc_one_sqrt (k : Nat) :
     (Finset.Icc 1 (Nat.sqrt k)).card = Nat.sqrt k := by
   rw [Nat.card_Icc]
@@ -36,7 +38,9 @@ theorem card_Icc_one_sqrt (k : Nat) :
 
 /--
 If `k ≤ n` and `m ^ 2 ≤ k`, then `m` does not exceed
-the integer square root of `n`.-/
+the integer square root of `n`.
+@isnad1 id=le.2h3v.s5.29e5215fcd6b from=translated src=- shape=1581b911 vocab=0ff5527a
+-/
 theorem sq_le_implies_le_rootIndex
     (m k n : Nat)
     (hk : k ≤ n)
@@ -49,7 +53,9 @@ theorem sq_le_implies_le_rootIndex
 /--
 For `k ≤ n`, the positive integers `m ≤ rootIndex n`
 satisfying `m ^ 2 ≤ k` are precisely the integers
-from `1` through `Nat.sqrt k`.-/
+from `1` through `Nat.sqrt k`.
+@isnad1 id=eq.1h2v.s6.c675507d57d0 from=translated src=- shape=765b00e6 vocab=09056deb
+-/
 theorem sqrt_as_filtered_card
     (k n : Nat)
     (hk : k ≤ n) :
@@ -76,7 +82,9 @@ theorem sqrt_as_filtered_card
 
 /--
 Each term in `rootSum n` can be replaced by the number of admissible
-reciprocal indices `m`.-/
+reciprocal indices `m`.
+@isnad1 id=eq.0h1v.s6.7fdb98559e0e from=translated src=- shape=44748bc2 vocab=b4be7c47
+-/
 theorem rootSum_as_filtered_cards (n : Nat) :
     rootSum n =
       Finset.sum (Finset.range n) (fun k =>
@@ -94,7 +102,9 @@ Reciprocal counting identity for integer square roots.
 
 The sum of `⌊√k⌋` for `1 ≤ k ≤ n` equals the sum, over
 `1 ≤ m ≤ ⌊√n⌋`, of the number of integers `k ≤ n`
-satisfying `m ^ 2 ≤ k`.-/
+satisfying `m ^ 2 ≤ k`.
+@isnad1 id=eq.0h1v.s4.b95351813f1d from=translated src=- shape=bb52be18 vocab=cdc1e7c6
+-/
 theorem reciprocal_root_identity (n : Nat) :
     rootSum n =
       Finset.sum (Finset.Icc 1 (rootIndex n))

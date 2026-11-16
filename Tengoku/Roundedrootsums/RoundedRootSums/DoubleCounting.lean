@@ -36,7 +36,9 @@ def admissiblePairs (n : Nat) : Finset (Nat × Nat) :=
     (fun p => p.2 ^ 2 ≤ p.1 + 1)
 
 /--
-Counting admissible pairs by the first coordinate.-/
+Counting admissible pairs by the first coordinate.
+@isnad1 id=eq.0h1v.s6.faf36b9437df from=translated src=- shape=c3ae403b vocab=5e16a969
+-/
 theorem admissiblePairs_card_by_k (n : Nat) :
     (admissiblePairs n).card =
       Finset.sum (Finset.range n)
@@ -51,7 +53,9 @@ theorem admissiblePairs_card_by_k (n : Nat) :
       (fun k m => m ^ 2 ≤ k + 1)
 
 /--
-Counting admissible pairs by the second coordinate.-/
+Counting admissible pairs by the second coordinate.
+@isnad1 id=eq.0h1v.s6.fe97d6daa04c from=translated src=- shape=bf7f36fb vocab=5e16a969
+-/
 theorem admissiblePairs_card_by_m (n : Nat) :
     (admissiblePairs n).card =
       Finset.sum (Finset.Icc 1 (rootIndex n))
@@ -67,7 +71,9 @@ theorem admissiblePairs_card_by_m (n : Nat) :
 
 /--
 For a positive admissible `m`, the number of indices `k < n`
-satisfying `m ^ 2 ≤ k + 1` equals `reciprocalCount n m`.-/
+satisfying `m ^ 2 ≤ k + 1` equals `reciprocalCount n m`.
+@isnad1 id=eq.2h2v.s6.d7f87c834367 from=translated src=- shape=47a3157f vocab=a64b42e2
+-/
 theorem filtered_range_card_eq_reciprocalCount
     (n m : Nat)
     (hm_pos : 1 ≤ m)
@@ -97,7 +103,9 @@ theorem filtered_range_card_eq_reciprocalCount
 
 /--
 Counting admissible pairs by the second coordinate
-and evaluating every fiber explicitly.-/
+and evaluating every fiber explicitly.
+@isnad1 id=eq.0h1v.s4.20cbcce6a56a from=translated src=- shape=f5a60935 vocab=11107500
+-/
 theorem admissiblePairs_card_by_reciprocalCount (n : Nat) :
     (admissiblePairs n).card =
       Finset.sum (Finset.Icc 1 (rootIndex n))

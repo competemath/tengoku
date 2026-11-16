@@ -85,7 +85,9 @@ noncomputable def realShiftInversionSum
 
 /--
 A finite incidence relation can be counted by first summing
-over either coordinate.-/
+over either coordinate.
+@isnad1 id=eq.0h5v.s6.1a3acecc53e3 from=translated src=- shape=2fac9e72 vocab=6c502ea3
+-/
 theorem finiteIncidenceSum_comm
     {ι κ : Type*}
     (s : Finset ι)
@@ -150,7 +152,9 @@ noncomputable def realShiftLevelCount
 
 /--
 Summing the incidence matrix first by levels or first by
-indices gives the same total.-/
+indices gives the same total.
+@isnad1 id=eq.0h3v.s5.5ae72315c2e7 from=translated src=- shape=22a2b65c vocab=63c6c3a4
+-/
 theorem realShiftRowSum_eq_levelSum
     (α θ : ℝ)
     (n : Nat) :
@@ -171,7 +175,9 @@ theorem realShiftRowSum_eq_levelSum
 
 /--
 If `a ≤ B`, then exactly the integers `1, ..., a` in
-`Icc 1 B` satisfy `m ≤ a`.-/
+`Icc 1 B` satisfy `m ≤ a`.
+@isnad1 id=eq.1h2v.s5.9b721a8d1c76 from=translated src=- shape=1c1e0fd0 vocab=b4ee8147
+-/
 theorem sum_Icc_indicator_le
     (a B : Nat)
     (hAB : a ≤ B) :
@@ -203,7 +209,9 @@ theorem sum_Icc_indicator_le
 /--
 Provided that the rounded value at `k` does not exceed the
 maximal level at `n`, the row count equals that rounded
-value.-/
+value.
+@isnad1 id=eq.1h4v.s4.d868017bdcd1 from=translated src=- shape=dfc595ad vocab=e5e6550e
+-/
 theorem realShiftRowCount_eq_roundedValue
     (α θ : ℝ)
     (n k : Nat)
@@ -224,7 +232,9 @@ theorem realShiftRowCount_eq_roundedValue
 /--
 If every index in `1, ..., n` has rounded value at most the
 rounded value at `n`, then the rounded sum equals the sum of
-the level counts.-/
+the level counts.
+@isnad1 id=eq.1h3v.s6.706c53a3b7be from=translated src=- shape=1bf90526 vocab=fcbc85ea
+-/
 theorem realShiftRoundedSum_eq_levelSum_of_rowBound
     (α θ : ℝ)
     (n : Nat)
@@ -250,7 +260,9 @@ theorem realShiftRoundedSum_eq_levelSum_of_rowBound
 
 /--
 For a positive exponent, the real power is monotone on
-natural-number arguments.-/
+natural-number arguments.
+@isnad1 id=le.2h3v.s5.296aad8e7f7d from=translated src=- shape=a650fe7d vocab=77a6d4b4
+-/
 theorem realShiftPower_le_of_le
     (α : ℝ)
     (hα : 0 < α)
@@ -267,7 +279,9 @@ theorem realShiftPower_le_of_le
 
 /--
 For a positive exponent, the shifted rounded value is
-monotone in its natural-number argument.-/
+monotone in its natural-number argument.
+@isnad1 id=le.2h4v.s5.fa91996094ce from=translated src=- shape=b5d29ff8 vocab=fac86cf2
+-/
 theorem realShiftRoundedValue_le_of_le
     (α θ : ℝ)
     (hα : 0 < α)
@@ -284,7 +298,9 @@ theorem realShiftRoundedValue_le_of_le
 
 /--
 For every positive real exponent, the shifted rounded sum
-equals the sum of its finite level counts.-/
+equals the sum of its finite level counts.
+@isnad1 id=eq.1h3v.s5.2c5322add514 from=translated src=- shape=f4c2e26b vocab=7e3b898e
+-/
 theorem realShiftRoundedSum_eq_levelSum
     (α θ : ℝ)
     (n : Nat)
@@ -309,7 +325,9 @@ theorem realShiftRoundedSum_eq_levelSum
 /--
 For a positive natural level `m`, membership below the
 rounded value is equivalent to the corresponding real
-inequality.-/
+inequality.
+@isnad1 id=iff.1h4v.s5.dfec91d986b4 from=translated src=- shape=b3387d69 vocab=a8e6c070
+-/
 theorem le_realShiftRoundedValue_iff
     (α θ : ℝ)
     (k m : Nat)
@@ -323,7 +341,9 @@ theorem le_realShiftRoundedValue_iff
 
 /--
 For `α > 0`, the shifted level inequality is equivalent to
-the corresponding inequality for the inverse power.-/
+the corresponding inequality for the inverse power.
+@isnad1 id=iff.3h4v.s6.21008b472071 from=translated src=- shape=57bedc46 vocab=d19f2362
+-/
 theorem realShiftLevelReal_iff_dualPower_le
     (α θ : ℝ)
     (k m : Nat)
@@ -374,7 +394,9 @@ theorem realShiftLevelReal_iff_dualPower_le
 /--
 For `α > 0`, `θ < 1`, and a positive level `m`, reaching
 the rounded level `m` is equivalent to the dual ceiling
-threshold being at most `k`.-/
+threshold being at most `k`.
+@isnad1 id=iff.3h4v.s5.def042c7a782 from=translated src=- shape=f1f12887 vocab=03eaa029
+-/
 theorem le_realShiftRoundedValue_iff_dualCeil_le
     (α θ : ℝ)
     (k m : Nat)
@@ -404,7 +426,9 @@ theorem le_realShiftRoundedValue_iff_dualCeil_le
 
 /--
 For every positive level `m` and every shift `θ < 1`, the
-dual ceiling threshold is positive.-/
+dual ceiling threshold is positive.
+@isnad1 id=lt.2h3v.s5.0018ded865cd from=translated src=- shape=7a042c02 vocab=2331ffca
+-/
 theorem realShiftDualCeil_pos
     (α θ : ℝ)
     (m : Nat)
@@ -433,7 +457,9 @@ theorem realShiftDualCeil_pos
 
 /--
 For a positive threshold `c`, the number of integers
-`k ∈ Icc 1 n` satisfying `c ≤ k` is `n + 1 - c`.-/
+`k ∈ Icc 1 n` satisfying `c ≤ k` is `n + 1 - c`.
+@isnad1 id=eq.1h2v.s6.3d2855f13337 from=translated src=- shape=cded151c vocab=1f28108f
+-/
 theorem sum_Icc_indicator_ge
     (c n : Nat)
     (hc : 0 < c) :
@@ -486,7 +512,9 @@ theorem sum_Icc_indicator_ge
 
 /--
 For every positive level `m`, the level count is the length
-of the interval beginning at the dual ceiling threshold.-/
+of the interval beginning at the dual ceiling threshold.
+@isnad1 id=eq.3h4v.s6.dc0be2a2bc68 from=translated src=- shape=fcb1d08d vocab=16440f33
+-/
 theorem realShiftLevelCount_eq
     (α θ : ℝ)
     (n m : Nat)
@@ -547,7 +575,9 @@ theorem realShiftLevelCount_eq
 /--
 For a positive exponent and a shift below one, replacing
 every level count by its explicit interval length gives the
-inversion sum.-/
+inversion sum.
+@isnad1 id=eq.2h3v.s5.b3cce33842a8 from=translated src=- shape=511a7094 vocab=b2543e61
+-/
 theorem realShiftLevelSum_eq_inversionSum
     (α θ : ℝ)
     (n : Nat)
@@ -572,7 +602,9 @@ theorem realShiftLevelSum_eq_inversionSum
 
 /--
 The shifted rounded sum equals its exact dual inversion sum
-for every positive real exponent and every shift below one.-/
+for every positive real exponent and every shift below one.
+@isnad1 id=eq.2h3v.s5.ab31326e3812 from=translated src=- shape=b4bdf2b5 vocab=24c316f8
+-/
 theorem realShiftRoundedSum_eq_inversionSum
     (α θ : ℝ)
     (n : Nat)
@@ -602,7 +634,9 @@ For `α > 0` and `0 ≤ θ < 1`,
 
 `∑_{k=1}^n ⌊k^α + θ⌋ =
   ∑_{m=1}^{⌊n^α + θ⌋}
-    (n + 1 - ⌈(m - θ)^(1/α)⌉)`.-/
+    (n + 1 - ⌈(m - θ)^(1/α)⌉)`.
+@isnad1 id=eq.2h3v.s7.0f0be9d71b8b from=translated src=- shape=e3e28506 vocab=a9ca0ffe
+-/
 theorem realShiftExactInversion
     (α θ : ℝ)
     (n : Nat)
@@ -670,7 +704,9 @@ The zero-shift specialization of exact inversion:
 
 `F_α(n) =
   ∑_{m=1}^{⌊n^α⌋}
-    (n + 1 - ⌈m^(1/α)⌉)`.-/
+    (n + 1 - ⌈m^(1/α)⌉)`.
+@isnad1 id=eq.1h2v.s6.ab98e1b78fea from=translated src=- shape=9fbcfe1d vocab=17c1298c
+-/
 theorem realFloorPowerSum_eq_dualSum
     (α : ℝ)
     (n : Nat)
@@ -697,7 +733,9 @@ theorem realFloorPowerSum_eq_dualSum
 
 /--
 Every dual ceiling threshold occurring in the reciprocal
-sum lies at most at `n`.-/
+sum lies at most at `n`.
+@isnad1 id=le.2h3v.s5.8123d5bd7b51 from=translated src=- shape=07ee0240 vocab=8c4ac3ae
+-/
 theorem realDualCeil_le_of_mem_cutoff
     (α : ℝ)
     (n m : Nat)
@@ -733,7 +771,9 @@ theorem realDualCeil_le_of_mem_cutoff
 
 /--
 Each summand in the inversion formula, together with the
-corresponding dual ceiling term, equals `n + 1`.-/
+corresponding dual ceiling term, equals `n + 1`.
+@isnad1 id=eq.2h3v.s6.9153f0be0606 from=translated src=- shape=0de4b95b vocab=786a2550
+-/
 theorem realInversionTerm_add_dualCeil
     (α : ℝ)
     (n m : Nat)
@@ -761,7 +801,9 @@ theorem realInversionTerm_add_dualCeil
 
 /--
 The inversion sum plus the reciprocal ceiling sum equals
-`(n + 1)` times the reciprocal cutoff.-/
+`(n + 1)` times the reciprocal cutoff.
+@isnad1 id=eq.1h2v.s6.87c844302457 from=translated src=- shape=4cef5997 vocab=b1f8b8d0
+-/
 theorem realDualInversionSum_add_ceilSum
     (α : ℝ)
     (n : Nat)
@@ -815,7 +857,9 @@ Exact reciprocity for arbitrary positive real exponents.
 
 If `r = ⌊n^α⌋`, then
 
-`F_α(n) + C_(1/α)(r) = (n + 1) r`.-/
+`F_α(n) + C_(1/α)(r) = (n + 1) r`.
+@isnad1 id=eq.1h2v.s5.3f3fcd075701 from=translated src=- shape=dc165788 vocab=b5879b98
+-/
 theorem realPowerReciprocity
     (α : ℝ)
     (n : Nat)
@@ -841,7 +885,9 @@ For every `α > 0`,
 
 `∑_{k=1}^n ⌊k^α⌋ +
  ∑_{m=1}^{⌊n^α⌋} ⌈m^(1/α)⌉ =
- (n + 1) ⌊n^α⌋`.-/
+ (n + 1) ⌊n^α⌋`.
+@isnad1 id=eq.1h2v.s7.1b6d238d1d39 from=translated src=- shape=9307d358 vocab=f0c55bf8
+-/
 theorem realPowerReciprocity_explicit
     (α : ℝ)
     (n : Nat)
@@ -874,7 +920,9 @@ The complete arbitrary-real-exponent inversion result.
 It packages together:
 
 * exact shifted inversion for `0 ≤ θ < 1`;
-* the zero-shift floor/ceiling reciprocity law.-/
+* the zero-shift floor/ceiling reciprocity law.
+@isnad1 id=and.2h3v.s8.733f0ba8efb3 from=translated src=- shape=f243f9d2 vocab=9a52fd9c
+-/
 theorem realShiftRealInversionMainTheorem
     (α θ : ℝ)
     (n : Nat)

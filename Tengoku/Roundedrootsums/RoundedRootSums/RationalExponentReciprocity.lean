@@ -49,7 +49,9 @@ def IsPerfectNatPower
 
 /--
 A rational exponent `p / q` is positive whenever both
-numerator and denominator are positive.-/
+numerator and denominator are positive.
+@isnad1 id=lt.2h2v.s5.35a367cc752f from=translated src=- shape=e8b7e832 vocab=3b793685
+-/
 theorem rationalExponent_pos
     (p q : Nat)
     (hp : 0 < p)
@@ -66,7 +68,9 @@ theorem rationalExponent_pos
 
 /--
 For positive natural `p` and `q`, the reciprocal of the
-real exponent `p / q` is `q / p`.-/
+real exponent `p / q` is `q / p`.
+@isnad1 id=eq.2h2v.s5.ca110fb7ac2d from=translated src=- shape=bba64e3e vocab=22943793
+-/
 theorem rationalExponent_inv
     (p q : Nat)
     (hp : 0 < p)
@@ -88,7 +92,9 @@ rational exponent `p / q`.
 
 Writing `r = ⌊n^(p/q)⌋`, this gives
 
-`F_(p/q)(n) + C_(q/p)(r) = (n + 1) r`.-/
+`F_(p/q)(n) + C_(q/p)(r) = (n + 1) r`.
+@isnad1 id=eq.2h3v.s6.4cfc6e1badb4 from=translated src=- shape=55ac8b55 vocab=1eba3494
+-/
 theorem rationalPowerReciprocity
     (p q n : Nat)
     (hp : 0 < p)
@@ -123,7 +129,9 @@ theorem rationalPowerReciprocity
 /--
 For a positive exponent `q`, a natural number is a perfect
 `q`-th power exactly when raising its factorization floor
-root back to the `q`-th power recovers the number.-/
+root back to the `q`-th power recovers the number.
+@isnad1 id=iff.1h2v.s5.481d1360ecc8 from=translated src=- shape=041f5f80 vocab=0706b8c8
+-/
 theorem isPerfectNatPower_iff_floorRoot_pow_eq
     (q k : Nat)
     (hq : 0 < q) :
@@ -141,7 +149,9 @@ theorem isPerfectNatPower_iff_floorRoot_pow_eq
 
 /--
 If `k` is a perfect `q`-th power, then the exponent of
-every prime in the factorization of `k` is divisible by `q`.-/
+every prime in the factorization of `k` is divisible by `q`.
+@isnad1 id=dvd.1h3v.s5.54100cf8461d from=translated src=- shape=713907bb vocab=72d6bf3d
+-/
 theorem factorization_dvd_of_isPerfectNatPower
     (q k ℓ : Nat)
     (hperfect : IsPerfectNatPower q k) :
@@ -153,7 +163,9 @@ theorem factorization_dvd_of_isPerfectNatPower
 If `x^q = k^p`, then at every prime coordinate the
 corresponding factorization exponents satisfy
 
-`q * v(x) = p * v(k)`.-/
+`q * v(x) = p * v(k)`.
+@isnad1 id=eq.1h5v.s6.5aea221590fa from=translated src=- shape=f8d1f237 vocab=d5c6b2c9
+-/
 theorem factorization_mul_eq_of_pow_eq_pow
     (p q x k ℓ : Nat)
     (hpow :
@@ -175,7 +187,9 @@ If `p` and `q` are coprime and
 
 `q * a = p * b`,
 
-then `q ∣ b`.-/
+then `q ∣ b`.
+@isnad1 id=dvd.2h4v.s5.8204a355ec9e from=translated src=- shape=7c7bc808 vocab=77beb901
+-/
 theorem dvd_right_of_coprime_mul_eq
     (p q a b : Nat)
     (hpq : Nat.Coprime p q)
@@ -191,7 +205,9 @@ theorem dvd_right_of_coprime_mul_eq
 
 /--
 If `p` and `q` are coprime and `x^q = k^p`, then every
-factorization exponent of `k` is divisible by `q`.-/
+factorization exponent of `k` is divisible by `q`.
+@isnad1 id=dvd.2h5v.s6.293accbe1524 from=translated src=- shape=3c7e0663 vocab=12e70805
+-/
 theorem factorization_dvd_of_coprime_pow_eq_pow
     (p q x k ℓ : Nat)
     (hpq : Nat.Coprime p q)
@@ -210,7 +226,9 @@ theorem factorization_dvd_of_coprime_pow_eq_pow
 
 /--
 If every factorization exponent of `k` is divisible by the
-positive integer `q`, then `k` is a perfect `q`-th power.-/
+positive integer `q`, then `k` is a perfect `q`-th power.
+@isnad1 id=isperfec.2h2v.s5.95d104df64f9 from=translated src=- shape=505d19b4 vocab=af0ea7c1
+-/
 theorem isPerfectNatPower_of_factorization_dvd
     (q k : Nat)
     (hq : 0 < q)
@@ -251,7 +269,9 @@ theorem isPerfectNatPower_of_factorization_dvd
 /--
 For positive `q`, a natural number is a perfect `q`-th
 power exactly when every exponent in its prime
-factorization is divisible by `q`.-/
+factorization is divisible by `q`.
+@isnad1 id=iff.1h2v.s5.56014b847b2a from=translated src=- shape=7c8610ff vocab=af0ea7c1
+-/
 theorem isPerfectNatPower_iff_factorization_dvd
     (q k : Nat)
     (hq : 0 < q) :
@@ -273,7 +293,9 @@ If `p` and `q` are coprime, `q > 0`, and
 
 `x^q = k^p`,
 
-then `k` is a perfect `q`-th power.-/
+then `k` is a perfect `q`-th power.
+@isnad1 id=isperfec.3h4v.s5.4a3df4b9314c from=translated src=- shape=33b227f8 vocab=d0675560
+-/
 theorem isPerfectNatPower_of_coprime_pow_eq_pow
     (p q x k : Nat)
     (hq : 0 < q)
@@ -291,7 +313,9 @@ theorem isPerfectNatPower_of_coprime_pow_eq_pow
 
 /--
 Multiplying the rational exponent `p / q` by its positive
-denominator recovers `p`.-/
+denominator recovers `p`.
+@isnad1 id=eq.1h2v.s5.9fb068e247e0 from=translated src=- shape=7260d9b4 vocab=c48006b9
+-/
 theorem rationalExponent_mul_denominator
     (p q : Nat)
     (hq : 0 < q) :
@@ -306,7 +330,9 @@ theorem rationalExponent_mul_denominator
 If the rational power of the natural number `k` is the
 natural number `x`, then clearing the denominator gives
 
-`k^p = x^q`.-/
+`k^p = x^q`.
+@isnad1 id=eq.2h4v.s5.9dfebcc39314 from=translated src=- shape=c0e8490a vocab=fb493a8c
+-/
 theorem pow_eq_pow_of_rpow_rational_eq_natCast
     (p q k x : Nat)
     (hq : 0 < q)
@@ -374,7 +400,9 @@ theorem pow_eq_pow_of_rpow_rational_eq_natCast
 /--
 For coprime positive numerator and denominator, if the
 rational power `k^(p/q)` is a natural number, then `k`
-must be a perfect `q`-th power.-/
+must be a perfect `q`-th power.
+@isnad1 id=isperfec.3h4v.s5.8a0cd91eecf6 from=translated src=- shape=40210ecc vocab=99d524e1
+-/
 theorem isPerfectNatPower_of_rpow_rational_eq_natCast
     (p q k x : Nat)
     (hq : 0 < q)
@@ -396,7 +424,9 @@ theorem isPerfectNatPower_of_rpow_rational_eq_natCast
 /--
 For positive `q`,
 
-`(a^q)^(p/q) = a^p`.-/
+`(a^q)^(p/q) = a^p`.
+@isnad1 id=eq.1h3v.s5.f8f9f462aaa8 from=translated src=- shape=18dfe633 vocab=fb493a8c
+-/
 theorem rpow_rational_of_nat_pow
     (p q a : Nat)
     (hq : 0 < q) :
@@ -469,7 +499,9 @@ Integer-value criterion for reduced rational exponents.
 
 If `p` and `q` are coprime and `q > 0`, then `k^(p/q)` is
 a natural number exactly when `k` is a perfect `q`-th
-power.-/
+power.
+@isnad1 id=iff.2h3v.s5.0f7a7913bcb2 from=translated src=- shape=518e1ab6 vocab=99d524e1
+-/
 theorem rpow_rational_isNat_iff_isPerfectNatPower
     (p q k : Nat)
     (hq : 0 < q)
@@ -495,7 +527,9 @@ theorem rpow_rational_isNat_iff_isPerfectNatPower
 
 /--
 For positive `q`, `k` is a perfect `q`-th power exactly
-when its numerical `q`-th root raises back to `k`.-/
+when its numerical `q`-th root raises back to `k`.
+@isnad1 id=iff.1h2v.s5.697c268dfc93 from=translated src=- shape=041f5f80 vocab=0639b33b
+-/
 theorem isPerfectNatPower_iff_nthRoot_pow_eq
     (q k : Nat)
     (hq : 0 < q) :
@@ -517,7 +551,9 @@ def perfectNatPowersUpTo
 
 /--
 Membership in `perfectNatPowersUpTo q n` is equivalent to
-being a positive perfect `q`-th power not exceeding `n`.-/
+being a positive perfect `q`-th power not exceeding `n`.
+@isnad1 id=iff.1h3v.s5.d536ea2910ef from=translated src=- shape=a64d8af6 vocab=b0901b57
+-/
 theorem mem_perfectNatPowersUpTo_iff
     (q n k : Nat)
     (hq : 0 < q) :
@@ -565,7 +601,9 @@ theorem mem_perfectNatPowersUpTo_iff
 
 /--
 There are exactly `nthRoot q n` positive perfect
-`q`-th powers not exceeding `n`.-/
+`q`-th powers not exceeding `n`.
+@isnad1 id=eq.1h2v.s4.6ccf2dbccc96 from=translated src=- shape=b08b3c33 vocab=e6b30096
+-/
 theorem perfectNatPowersUpTo_card
     (q n : Nat)
     (hq : 0 < q) :
@@ -583,7 +621,9 @@ theorem perfectNatPowersUpTo_card
 /--
 For a nonnegative real number, the natural ceiling equals
 the natural floor exactly when the number is a natural
-number.-/
+number.
+@isnad1 id=iff.1h1v.s5.26c6f52516a9 from=translated src=- shape=d20b4f95 vocab=fd0b1efd
+-/
 theorem natCeil_eq_natFloor_iff_exists_natCast
     (y : ℝ)
     (hy : 0 ≤ y) :
@@ -605,7 +645,9 @@ theorem natCeil_eq_natFloor_iff_exists_natCast
 /--
 For a reduced rational exponent `p / q`, the ceiling and
 floor of `k^(p/q)` coincide exactly at perfect `q`-th
-powers.-/
+powers.
+@isnad1 id=iff.2h3v.s5.c9971acb4976 from=translated src=- shape=151a5421 vocab=466f3041
+-/
 theorem rationalRpow_ceil_eq_floor_iff
     (p q k : Nat)
     (hq : 0 < q)
@@ -640,7 +682,9 @@ For a reduced rational exponent, the ceiling differs from
 the floor by one exactly away from perfect `q`-th powers.
 
 The perfect-power condition is expressed computationally
-through `Nat.nthRoot`.-/
+through `Nat.nthRoot`.
+@isnad1 id=eq.2h3v.s6.31e5daf681aa from=translated src=- shape=a9f49e9c vocab=3e398a90
+-/
 theorem rationalRpow_ceil_eq_floor_add_indicator
     (p q k : Nat)
     (hq : 0 < q)
@@ -717,7 +761,9 @@ theorem rationalRpow_ceil_eq_floor_add_indicator
 
 /--
 The indicator of perfect `q`-th powers over `1, ..., n`
-sums to `Nat.nthRoot q n`.-/
+sums to `Nat.nthRoot q n`.
+@isnad1 id=eq.1h2v.s6.24a98924132c from=translated src=- shape=12d9e76a vocab=5963d399
+-/
 theorem perfectNatPowerIndicatorSum
     (q n : Nat)
     (hq : 0 < q) :
@@ -759,7 +805,9 @@ Among `1, ..., n`, exactly
 
 `n - Nat.nthRoot q n`
 
-indices are not perfect `q`-th powers.-/
+indices are not perfect `q`-th powers.
+@isnad1 id=eq.1h2v.s6.774171a0d200 from=translated src=- shape=30c2fde3 vocab=92de6617
+-/
 theorem nonPerfectNatPowerIndicatorSum
     (q n : Nat)
     (hq : 0 < q) :
@@ -835,7 +883,9 @@ theorem nonPerfectNatPowerIndicatorSum
 /--
 For a reduced rational exponent `p / q`, the ceiling sum
 differs from the floor sum by the number of non-perfect
-`q`-th powers in `1, ..., n`.-/
+`q`-th powers in `1, ..., n`.
+@isnad1 id=eq.2h3v.s5.1a8fafb942b7 from=translated src=- shape=f8f93e45 vocab=162bb45d
+-/
 theorem rationalCeilPowerSum_eq_floorPowerSum_add_correction
     (p q n : Nat)
     (hq : 0 < q)
@@ -901,7 +951,9 @@ The rational reciprocity law written entirely in terms of
 floor sums, with the perfect-power correction still shown
 explicitly.
 
-Here the cutoff is `floor(n^(p/q))`.-/
+Here the cutoff is `floor(n^(p/q))`.
+@isnad1 id=eq.3h3v.s6.1c1cdf636120 from=translated src=- shape=71124caa vocab=d9e5e244
+-/
 theorem rationalFloorPowerReciprocity_with_correction
     (p q n : Nat)
     (hp : 0 < p)
@@ -947,7 +999,9 @@ theorem rationalFloorPowerReciprocity_with_correction
 
 /--
 The cutoff `floor(n^(p/q))` lies between the `p`-th powers
-of `nthRoot q n` and its successor.-/
+of `nthRoot q n` and its successor.
+@isnad1 id=and.2h3v.s6.f9704affc8ea from=translated src=- shape=2a683016 vocab=20b62e79
+-/
 theorem rationalFloorPowerCutoff_root_bounds
     (p q n : Nat)
     (hp : 0 < p)
@@ -1071,7 +1125,9 @@ theorem rationalFloorPowerCutoff_root_bounds
 
 /--
 Taking the numerical `p`-th root of `floor(n^(p/q))`
-recovers the numerical `q`-th root of `n`.-/
+recovers the numerical `q`-th root of `n`.
+@isnad1 id=eq.2h3v.s5.f39de1b294c0 from=translated src=- shape=e8de8457 vocab=3aba319e
+-/
 theorem nthRoot_rationalFloorPowerCutoff
     (p q n : Nat)
     (hp : 0 < p)
@@ -1101,7 +1157,9 @@ If
 then
 
 `F_(p/q)(n) + F_(q/p)(r)
-   = n * r + nthRoot q n`.-/
+   = n * r + nthRoot q n`.
+@isnad1 id=eq.3h3v.s6.f00e4b2ad325 from=translated src=- shape=9ec8a8f4 vocab=ec6d8404
+-/
 theorem rationalFloorPowerReciprocity
     (p q n : Nat)
     (hp : 0 < p)
@@ -1205,7 +1263,9 @@ For
 we have
 
 `F_(p/q)(n) + F_(q/p)(r)
-   = n * r + nthRoot q n`.-/
+   = n * r + nthRoot q n`.
+@isnad1 id=eq.3h3v.s6.dd8d9fb2223d from=translated src=- shape=a96d3d54 vocab=3feca048
+-/
 theorem rationalExponentReciprocityMainTheorem
     (p q n : Nat)
     (hp : 0 < p)
@@ -1239,7 +1299,9 @@ Writing
 `r = floor(n^(p/q))`,
 
 the correction term is written as the `p`-th root of `r`,
-exactly as in the article.-/
+exactly as in the article.
+@isnad1 id=eq.3h3v.s6.a50978c31d2d from=translated src=- shape=b2b3d264 vocab=ec6d8404
+-/
 theorem rationalFloorPowerReciprocity_articleForm
     (p q n : Nat)
     (hp : 0 < p)
@@ -1287,7 +1349,9 @@ theorem rationalFloorPowerReciprocity_articleForm
 
 /--
 The article-form reciprocity theorem expanded to the
-underlying real floor-power sums.-/
+underlying real floor-power sums.
+@isnad1 id=eq.3h3v.s6.87e9348cc026 from=translated src=- shape=b8b7d26a vocab=3feca048
+-/
 theorem rationalExponentReciprocityArticleTheorem
     (p q n : Nat)
     (hp : 0 < p)

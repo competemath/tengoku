@@ -33,7 +33,9 @@ def shiftedRoundedSumUpTo
     shiftedRoundedValueUpTo q a b k t)
 
 /--
-The truncated shifted rounded sum is exactly the level-count sum.-/
+The truncated shifted rounded sum is exactly the level-count sum.
+@isnad1 id=eq.0h5v.s4.c6325ac2d79e from=translated src=- shape=37b02ddb vocab=1ee9462c
+-/
 theorem shiftedRoundedSumUpTo_eq_levelCountSum
     (q a b n t : Nat) :
     shiftedRoundedSumUpTo q a b n t =
@@ -41,7 +43,9 @@ theorem shiftedRoundedSumUpTo_eq_levelCountSum
   rfl
 
 /--
-Exact inversion for the truncated rationally shifted sum.-/
+Exact inversion for the truncated rationally shifted sum.
+@isnad1 id=eq.2h5v.s5.da386a8bec41 from=translated src=- shape=a88f716c vocab=76756fd3
+-/
 theorem shiftedRoundedSumUpTo_eq_inversionSum
     (q a b n t : Nat)
     (hb : 0 < b)
@@ -71,7 +75,9 @@ def shiftedRoundedSumBounded
 
 /--
 The canonical bounded shifted sum is the truncated sum
-with common level bound `n + 1`.-/
+with common level bound `n + 1`.
+@isnad1 id=eq.0h4v.s5.e49a0fd51499 from=translated src=- shape=27653418 vocab=3ac9bf1e
+-/
 theorem shiftedRoundedSumBounded_eq_upTo
     (q a b n : Nat) :
     shiftedRoundedSumBounded q a b n =
@@ -79,7 +85,9 @@ theorem shiftedRoundedSumBounded_eq_upTo
   rfl
 
 /--
-Exact inversion for the canonical bounded shifted sum.-/
+Exact inversion for the canonical bounded shifted sum.
+@isnad1 id=eq.2h4v.s5.2774848bc90d from=translated src=- shape=657e16c0 vocab=405bee74
+-/
 theorem shiftedRoundedSumBounded_eq_inversionSum
     (q a b n : Nat)
     (hb : 0 < b)
@@ -96,7 +104,9 @@ theorem shiftedRoundedSumBounded_eq_inversionSum
 
 /--
 The shifted level count can be written directly using the
-underlying rational-power inequality.-/
+underlying rational-power inequality.
+@isnad1 id=eq.2h5v.s7.32bf3a86792a from=translated src=- shape=3ef28c06 vocab=9fa65dae
+-/
 theorem shiftedLevelCount_eq_powerCount
     (q a b k t : Nat)
     (hb : 0 < b)
@@ -130,7 +140,9 @@ theorem shiftedLevelCount_eq_powerCount
 
 /--
 The truncated shifted rounded value counts exactly the levels
-whose shifted rational powers do not exceed `k`.-/
+whose shifted rational powers do not exceed `k`.
+@isnad1 id=eq.2h5v.s7.b3e1d599e63e from=translated src=- shape=3ef28c06 vocab=fc215dc7
+-/
 theorem shiftedRoundedValueUpTo_eq_powerCount
     (q a b k t : Nat)
     (hb : 0 < b)
@@ -154,7 +166,9 @@ def shiftedPowerCount
 
 /--
 The truncated shifted rounded value agrees with the direct
-rational-power count.-/
+rational-power count.
+@isnad1 id=eq.2h5v.s5.938a946a4c78 from=translated src=- shape=a88f716c vocab=2b7011e7
+-/
 theorem shiftedRoundedValueUpTo_eq_shiftedPowerCount
     (q a b k t : Nat)
     (hb : 0 < b)
@@ -174,7 +188,9 @@ def shiftedPowerCountSum
 
 /--
 The truncated shifted rounded sum agrees with the sum
-of the direct rational-power counts.-/
+of the direct rational-power counts.
+@isnad1 id=eq.2h5v.s5.3e5a760fc0f1 from=translated src=- shape=a88f716c vocab=4f181d17
+-/
 theorem shiftedRoundedSumUpTo_eq_shiftedPowerCountSum
     (q a b n t : Nat)
     (hb : 0 < b)
@@ -189,7 +205,9 @@ theorem shiftedRoundedSumUpTo_eq_shiftedPowerCountSum
 
 /--
 The direct rational-power count sum satisfies the same
-exact inversion formula.-/
+exact inversion formula.
+@isnad1 id=eq.2h5v.s5.fd74a9178b13 from=translated src=- shape=a88f716c vocab=818b1055
+-/
 theorem shiftedPowerCountSum_eq_inversionSum
     (q a b n t : Nat)
     (hb : 0 < b)
@@ -213,7 +231,9 @@ def shiftedPowerRoundedSum
   shiftedPowerCountSum q a b n (n + 1)
 
 /--
-Exact inversion for the canonical direct rational-power sum.-/
+Exact inversion for the canonical direct rational-power sum.
+@isnad1 id=eq.2h4v.s5.424b84632168 from=translated src=- shape=657e16c0 vocab=453082d9
+-/
 theorem shiftedPowerRoundedSum_eq_inversionSum
     (q a b n : Nat)
     (hb : 0 < b)
@@ -232,7 +252,9 @@ def shiftedMaxLevel
   shiftedPowerCount q a b n (n + 1)
 
 /--
-The shifted power count is monotone in its upper value `k`.-/
+The shifted power count is monotone in its upper value `k`.
+@isnad1 id=le.1h6v.s5.f5ce1bc3a2b4 from=translated src=- shape=791091f2 vocab=a7d36cdd
+-/
 theorem shiftedPowerCount_mono
     (q a b k₁ k₂ t : Nat)
     (hk : k₁ ≤ k₂) :
@@ -247,7 +269,9 @@ theorem shiftedPowerCount_mono
   exact ⟨hm.1, le_trans hm.2 hkRat⟩
 
 /--
-Every `k ≤ n` reaches at most `shiftedMaxLevel q a b n` levels.-/
+Every `k ≤ n` reaches at most `shiftedMaxLevel q a b n` levels.
+@isnad1 id=le.1h5v.s5.90aba705a168 from=translated src=- shape=5769c1d0 vocab=31a612c4
+-/
 theorem shiftedPowerCount_le_maxLevel
     (q a b n k : Nat)
     (hk : k ≤ n) :
@@ -259,7 +283,9 @@ theorem shiftedPowerCount_le_maxLevel
 
 /--
 The shifted rational base is nonnegative under the standard
-assumptions `0 ≤ a < b`.-/
+assumptions `0 ≤ a < b`.
+@isnad1 id=le.2h3v.s6.f1795de8f29e from=translated src=- shape=babd756b vocab=1697c5be
+-/
 theorem shiftedBase_nonneg
     (a b m : Nat)
     (hb : 0 < b)
@@ -280,7 +306,9 @@ theorem shiftedBase_nonneg
   linarith
 
 /--
-The shifted q-th power is monotone in the level index.-/
+The shifted q-th power is monotone in the level index.
+@isnad1 id=le.3h5v.s7.cd8c544094c9 from=translated src=- shape=38034a76 vocab=f3c7c7a5
+-/
 theorem shiftedPower_mono_level
     (q a b m₁ m₂ : Nat)
     (hb : 0 < b)
@@ -305,7 +333,9 @@ theorem shiftedPower_mono_level
     hbase q
 
 /--
-If a level is reached, then every smaller level is reached as well.-/
+If a level is reached, then every smaller level is reached as well.
+@isnad1 id=le.4h6v.s7.3619e3d357c1 from=translated src=- shape=54261954 vocab=f3c7c7a5
+-/
 theorem shiftedPower_reached_downward
     (q a b k m₁ m₂ : Nat)
     (hb : 0 < b)
@@ -337,7 +367,9 @@ def IsShiftedCutoff
 
 /--
 If `t` is an exact cutoff at `n`, then for every `k ≤ n`
-all reached levels already lie below `t`.-/
+all reached levels already lie below `t`.
+@isnad1 id=eq.2h6v.s5.b3f4ab5b3db3 from=translated src=- shape=54199124 vocab=15033160
+-/
 theorem shiftedPowerCount_eq_of_cutoff
     (q a b n k t : Nat)
     (hk : k ≤ n)
@@ -367,7 +399,9 @@ theorem shiftedPowerCount_eq_of_cutoff
 Exact inversion with an arbitrary exact cutoff `t`.
 
 Once `t` is known to be the precise largest reached level,
-the artificial common bound `n + 1` can be replaced by `t`.-/
+the artificial common bound `n + 1` can be replaced by `t`.
+@isnad1 id=eq.3h5v.s5.7f4fdd5de599 from=translated src=- shape=63827978 vocab=4a65ce36
+-/
 theorem shiftedPowerRoundedSum_eq_inversionSum_of_cutoff
     (q a b n t : Nat)
     (hb : 0 < b)
@@ -391,7 +425,9 @@ theorem shiftedPowerRoundedSum_eq_inversionSum_of_cutoff
 
 /--
 Among the candidate levels `0, ..., n`, a level `m` is reached
-at `n` exactly when it lies below `shiftedMaxLevel`.-/
+at `n` exactly when it lies below `shiftedMaxLevel`.
+@isnad1 id=iff.3h5v.s6.c4e40619fb15 from=translated src=- shape=d0af131a vocab=3293bc36
+-/
 theorem shiftedPower_reached_iff_lt_maxLevel
     (q a b n m : Nat)
     (hb : 0 < b)
@@ -450,7 +486,9 @@ theorem shiftedPower_reached_iff_lt_maxLevel
 
 /--
 `shiftedMaxLevel q a b n` is the exact cutoff for the shifted
-rational-power levels reached at `n`.-/
+rational-power levels reached at `n`.
+@isnad1 id=isshifte.2h4v.s5.52c8325cabaf from=translated src=- shape=f4cfb39c vocab=8c35d7ac
+-/
 theorem shiftedMaxLevel_isCutoff
     (q a b n : Nat)
     (hb : 0 < b)
@@ -472,7 +510,9 @@ theorem shiftedMaxLevel_isCutoff
       q a b n m hb ha hm
 
 /--
-Exact inversion with the natural cutoff `shiftedMaxLevel`.-/
+Exact inversion with the natural cutoff `shiftedMaxLevel`.
+@isnad1 id=eq.2h4v.s5.1bf8890ad372 from=translated src=- shape=89f3ae4b vocab=a9b06873
+-/
 theorem shiftedPowerRoundedSum_eq_inversionSum_maxLevel
     (q a b n : Nat)
     (hb : 0 < b)
@@ -486,7 +526,9 @@ theorem shiftedPowerRoundedSum_eq_inversionSum_maxLevel
 
 /--
 The bounded level-count model agrees with the direct
-rational-power model.-/
+rational-power model.
+@isnad1 id=eq.2h4v.s5.48e538a86f58 from=translated src=- shape=11bff3f4 vocab=a53dd911
+-/
 theorem shiftedRoundedSumBounded_eq_powerRoundedSum
     (q a b n : Nat)
     (hb : 0 < b)
@@ -505,7 +547,9 @@ theorem shiftedRoundedSumBounded_eq_powerRoundedSum
 
 /--
 Exact inversion for the bounded shifted rounded sum,
-with its natural maximal level.-/
+with its natural maximal level.
+@isnad1 id=eq.2h4v.s5.e43ae6d7be55 from=translated src=- shape=89f3ae4b vocab=43eb0fa7
+-/
 theorem shiftedRoundedSumBounded_eq_inversionSum_maxLevel
     (q a b n : Nat)
     (hb : 0 < b)
@@ -531,7 +575,9 @@ def shiftedThresholdSum
     shiftedThresholdNat q a b (m + 1))
 
 /--
-Every level below an exact cutoff has threshold at most `n`.-/
+Every level below an exact cutoff has threshold at most `n`.
+@isnad1 id=le.4h6v.s5.84e6fa2e2a79 from=translated src=- shape=47de92ed vocab=bf45a7f6
+-/
 theorem shiftedThresholdNat_le_n_of_lt_cutoff
     (q a b n t m : Nat)
     (hb : 0 < b)
@@ -558,7 +604,9 @@ theorem shiftedThresholdNat_le_n_of_lt_cutoff
       q a b (m + 1) n hb ham).mpr hpow
 
 /--
-The inversion sum and the threshold sum add up to `t * (n + 1)`.-/
+The inversion sum and the threshold sum add up to `t * (n + 1)`.
+@isnad1 id=eq.3h5v.s6.66e1ce41d569 from=translated src=- shape=9d6ae557 vocab=c0395185
+-/
 theorem shiftedInversionSum_add_thresholdSum_of_cutoff
     (q a b n t : Nat)
     (hb : 0 < b)
@@ -592,7 +640,9 @@ theorem shiftedInversionSum_add_thresholdSum_of_cutoff
       simp
 
 /--
-The inversion sum has the explicit form used in the article.-/
+The inversion sum has the explicit form used in the article.
+@isnad1 id=eq.3h5v.s6.ae0de8a9947f from=translated src=- shape=8eb224b4 vocab=c79c7971
+-/
 theorem shiftedInversionSum_eq_mul_sub_thresholdSum_of_cutoff
     (q a b n t : Nat)
     (hb : 0 < b)
@@ -607,7 +657,9 @@ theorem shiftedInversionSum_eq_mul_sub_thresholdSum_of_cutoff
 
 /--
 The inversion sum at its natural cutoff has the explicit
-product-minus-threshold-sum form used in the article.-/
+product-minus-threshold-sum form used in the article.
+@isnad1 id=eq.2h4v.s6.a8964b1877e8 from=translated src=- shape=5a172747 vocab=996d9ab7
+-/
 theorem shiftedInversionSum_eq_mul_sub_thresholdSum_maxLevel
     (q a b n : Nat)
     (hb : 0 < b)
@@ -623,7 +675,9 @@ theorem shiftedInversionSum_eq_mul_sub_thresholdSum_maxLevel
 
 /--
 Exact inversion for the rationally shifted power-count sum,
-in the explicit form used in the article.-/
+in the explicit form used in the article.
+@isnad1 id=eq.2h4v.s6.81587ea2a8c1 from=translated src=- shape=0c403d47 vocab=e807234b
+-/
 theorem shiftedPowerRoundedSum_explicit_formula
     (q a b n : Nat)
     (hb : 0 < b)

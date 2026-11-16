@@ -30,7 +30,9 @@ noncomputable def nearestQFourierRoot
       (nearestQExactPeriod q : ℂ))
 
 /--
-The Fourier root is nonzero.-/
+The Fourier root is nonzero.
+@isnad1 id=ne.0h1v.s3.be42eacfb0e0 from=translated src=- shape=a311c14d vocab=b76d9a96
+-/
 theorem nearestQFourierRoot_ne_zero
     (q : Nat) :
     nearestQFourierRoot q ≠ 0 := by
@@ -56,7 +58,9 @@ noncomputable def nearestQCenteredOmegaFourierCoeff
 
 /--
 The zeroth Fourier coefficient of the centered correction
-sequence vanishes.-/
+sequence vanishes.
+@isnad1 id=eq.1h1v.s4.703f1be80983 from=translated src=- shape=ac13838a vocab=f97f5e6b
+-/
 theorem nearestQCenteredOmegaFourierCoeff_zero
     (q : Nat)
     (hq : 0 < q) :
@@ -89,7 +93,9 @@ theorem nearestQCenteredOmegaFourierCoeff_zero
 
 /--
 For every positive `q`, the Fourier root is a primitive
-`nearestQExactPeriod q`-th root of unity.-/
+`nearestQExactPeriod q`-th root of unity.
+@isnad1 id=isprimit.1h1v.s4.b74f362caabf from=translated src=- shape=e8ad9c19 vocab=d82c7268
+-/
 theorem nearestQFourierRoot_isPrimitiveRoot
     (q : Nat)
     (hq : 0 < q) :
@@ -104,7 +110,9 @@ theorem nearestQFourierRoot_isPrimitiveRoot
         (nearestQExactPeriod_pos q hq))
 
 /--
-The Fourier root raised to the exact period is one.-/
+The Fourier root raised to the exact period is one.
+@isnad1 id=eq.1h1v.s5.3f8df76956b3 from=translated src=- shape=7d59a2bf vocab=88928ca0
+-/
 theorem nearestQFourierRoot_pow_exactPeriod
     (q : Nat)
     (hq : 0 < q) :
@@ -118,7 +126,9 @@ theorem nearestQFourierRoot_pow_exactPeriod
 /--
 For every frequency `ell`, the Fourier phase
 `ζ_q^(ell * t)` is periodic with period
-`nearestQExactPeriod q`.-/
+`nearestQExactPeriod q`.
+@isnad1 id=periodic.1h2v.s5.a6d2f5fd02c0 from=translated src=- shape=a102083b vocab=368ca86d
+-/
 theorem nearestQFourierPower_periodic
     (q ell : Nat)
     (hq : 0 < q) :
@@ -154,7 +164,9 @@ theorem nearestQFourierPower_periodic
 
 /--
 For every positive `q`, the inverse Fourier root is also a
-primitive `nearestQExactPeriod q`-th root of unity.-/
+primitive `nearestQExactPeriod q`-th root of unity.
+@isnad1 id=isprimit.1h1v.s4.c06ca9eae660 from=translated src=- shape=2801aa92 vocab=f0f72675
+-/
 theorem nearestQFourierRoot_inv_isPrimitiveRoot
     (q : Nat)
     (hq : 0 < q) :
@@ -166,7 +178,9 @@ theorem nearestQFourierRoot_inv_isPrimitiveRoot
       q hq).inv
 
 /--
-The inverse Fourier root raised to the exact period is one.-/
+The inverse Fourier root raised to the exact period is one.
+@isnad1 id=eq.1h1v.s5.5b60c02765f0 from=translated src=- shape=237986f5 vocab=f1184d0d
+-/
 theorem nearestQFourierRoot_inv_pow_exactPeriod
     (q : Nat)
     (hq : 0 < q) :
@@ -180,7 +194,9 @@ theorem nearestQFourierRoot_inv_pow_exactPeriod
 /--
 For every frequency strictly between zero and the exact
 period, the corresponding full-period Fourier phase sum
-vanishes.-/
+vanishes.
+@isnad1 id=eq.3h2v.s6.30d6b58dff84 from=translated src=- shape=7e6f06ae vocab=ccc22c8e
+-/
 theorem nearestQFourierInversePower_sum_zero
     (q ell : Nat)
     (hq : 0 < q)
@@ -247,7 +263,9 @@ theorem nearestQFourierInversePower_sum_zero
 
 /--
 A strictly positive frequency below the exact period gives
-a nontrivial power of the Fourier root.-/
+a nontrivial power of the Fourier root.
+@isnad1 id=ne.3h2v.s5.f1648290bf41 from=translated src=- shape=b805e524 vocab=88928ca0
+-/
 theorem nearestQFourierRoot_pow_ne_one
     (q ell : Nat)
     (hq : 0 < q)
@@ -264,7 +282,9 @@ theorem nearestQFourierRoot_pow_ne_one
 /--
 For every nonzero frequency below the exact period, the
 full-period sum of the shifted inverse Fourier phases
-`ζ_q^(-ell * (r + 1))` vanishes.-/
+`ζ_q^(-ell * (r + 1))` vanishes.
+@isnad1 id=eq.3h2v.s6.db30fffe48d4 from=translated src=- shape=59c8755d vocab=be221268
+-/
 theorem nearestQFourierInverseShiftedPower_sum_zero
     (q ell : Nat)
     (hq : 0 < q)
@@ -340,7 +360,9 @@ noncomputable def nearestQCenteredOmegaFourierSeries
 
 /--
 A Fourier phase multiplied by the corresponding inverse
-phase is equal to one.-/
+phase is equal to one.
+@isnad1 id=eq.0h3v.s6.c38f4cd03460 from=translated src=- shape=1c4384e3 vocab=80c675c9
+-/
 theorem nearestQFourierPhase_mul_inverse_same
     (q ell a : Nat) :
     ((nearestQFourierRoot q)⁻¹) ^ (ell * a) *
@@ -350,7 +372,9 @@ theorem nearestQFourierPhase_mul_inverse_same
 
 /--
 When the two phase indices coincide, the complete Fourier
-phase sum equals the exact period.-/
+phase sum equals the exact period.
+@isnad1 id=eq.0h2v.s6.868b04dca81e from=translated src=- shape=61f2d0b5 vocab=3f570e42
+-/
 theorem nearestQFourierPhase_same_sum
     (q a : Nat) :
     Finset.sum
@@ -381,7 +405,9 @@ theorem nearestQFourierPhase_same_sum
 
 /--
 The ratio between any two Fourier phases, raised to the
-exact period, is equal to one.-/
+exact period, is equal to one.
+@isnad1 id=eq.1h3v.s6.096586b23305 from=translated src=- shape=6db5065a vocab=905af9e8
+-/
 theorem nearestQFourierPhaseRatio_pow_exactPeriod
     (q a b : Nat)
     (hq : 0 < q) :
@@ -426,7 +452,9 @@ theorem nearestQFourierPhaseRatio_pow_exactPeriod
 
 /--
 For two distinct indices below the exact period, the ratio
-of the corresponding Fourier phases is not equal to one.-/
+of the corresponding Fourier phases is not equal to one.
+@isnad1 id=ne.4h3v.s6.a53947c4b850 from=translated src=- shape=58bd9ff1 vocab=905af9e8
+-/
 theorem nearestQFourierPhaseRatio_ne_one
     (q a b : Nat)
     (hq : 0 < q)
@@ -484,7 +512,9 @@ theorem nearestQFourierPhaseRatio_ne_one
 
 /--
 When two indices below the exact period are distinct, their
-complete Fourier phase pairing sums to zero.-/
+complete Fourier phase pairing sums to zero.
+@isnad1 id=eq.4h3v.s6.938e5cbc60e6 from=translated src=- shape=3a9d4a7d vocab=ccc22c8e
+-/
 theorem nearestQFourierPhase_different_sum
     (q a b : Nat)
     (hq : 0 < q)
@@ -571,7 +601,9 @@ theorem nearestQFourierPhase_different_sum
 
 /--
 The complete orthogonality relation for Fourier phases over
-one exact period.-/
+one exact period.
+@isnad1 id=eq.3h3v.s6.e8483002e2ba from=translated src=- shape=56159682 vocab=fe23f431
+-/
 theorem nearestQFourierPhase_orthogonality
     (q a b : Nat)
     (hq : 0 < q)
@@ -600,7 +632,9 @@ theorem nearestQFourierPhase_orthogonality
 
 /--
 The common shift by one in the analysis and synthesis
-Fourier phases cancels.-/
+Fourier phases cancels.
+@isnad1 id=eq.0h4v.s7.34790a43f8ac from=translated src=- shape=40d27d64 vocab=ae157b57
+-/
 theorem nearestQFourierShiftedPhase_mul_eq
     (q ell r t : Nat) :
     ((nearestQFourierRoot q)⁻¹) ^
@@ -641,7 +675,9 @@ theorem nearestQFourierShiftedPhase_mul_eq
 
 /--
 The shifted Fourier phases satisfy the same orthogonality
-relation as the unshifted phases.-/
+relation as the unshifted phases.
+@isnad1 id=eq.3h3v.s7.5ee2a05deee4 from=translated src=- shape=3aa5d099 vocab=b63ac1d5
+-/
 theorem nearestQFourierShiftedPhase_orthogonality
     (q r t : Nat)
     (hq : 0 < q)
@@ -693,7 +729,9 @@ theorem nearestQFourierShiftedPhase_orthogonality
 
 /--
 After multiplication by the centered correction at `r`,
-the shifted phase sum selects precisely the term `r = t`.-/
+the shifted phase sum selects precisely the term `r = t`.
+@isnad1 id=eq.3h3v.s7.f5551c522249 from=translated src=- shape=ab697980 vocab=34e8474b
+-/
 theorem nearestQCenteredOmega_mul_shiftedPhase_sum
     (q r t : Nat)
     (hq : 0 < q)
@@ -772,7 +810,9 @@ noncomputable def nearestQCenteredOmegaFullFourierSeries
 /--
 After expanding the Fourier coefficients and interchanging
 the two finite sums, the full Fourier synthesis becomes a
-scaled sum of the shifted phase pairings.-/
+scaled sum of the shifted phase pairings.
+@isnad1 id=eq.0h2v.s7.1c8ab4d5d3d3 from=translated src=- shape=1ddfb371 vocab=5e811314
+-/
 theorem nearestQCenteredOmegaFullFourierSeries_eq_scaledDoubleSum
     (q t : Nat) :
     nearestQCenteredOmegaFullFourierSeries q t =
@@ -884,7 +924,9 @@ theorem nearestQCenteredOmegaFullFourierSeries_eq_scaledDoubleSum
 /--
 Inside the first exact period, the full finite Fourier
 synthesis reconstructs the centered correction sequence
-exactly.-/
+exactly.
+@isnad1 id=eq.2h2v.s5.3b44d72ed85b from=translated src=- shape=184672a0 vocab=1654fe95
+-/
 theorem nearestQCenteredOmegaFullFourierSeries_eq
     (q t : Nat)
     (hq : 0 < q)
@@ -956,7 +998,9 @@ theorem nearestQCenteredOmegaFullFourierSeries_eq
 /--
 For every positive `q`, the zeroth Fourier mode contributes
 nothing, so the full Fourier synthesis equals the synthesis
-over the nonzero frequencies.-/
+over the nonzero frequencies.
+@isnad1 id=eq.1h2v.s4.960f6eb17c5d from=translated src=- shape=678da05f vocab=094fa2b0
+-/
 theorem nearestQCenteredOmegaFullFourierSeries_eq_fourierSeries
     (q t : Nat)
     (hq : 0 < q) :
@@ -1000,7 +1044,9 @@ theorem nearestQCenteredOmegaFullFourierSeries_eq_fourierSeries
 
 /--
 The nonzero-frequency Fourier synthesis is periodic with
-period `nearestQExactPeriod q`.-/
+period `nearestQExactPeriod q`.
+@isnad1 id=periodic.1h1v.s4.58c44ba28ff3 from=translated src=- shape=26fcee47 vocab=310dbf50
+-/
 theorem nearestQCenteredOmegaFourierSeries_periodic
     (q : Nat)
     (hq : 0 < q) :
@@ -1032,7 +1078,9 @@ theorem nearestQCenteredOmegaFourierSeries_periodic
 /--
 For every positive `q` and every index `t`, the finite
 Fourier synthesis over the nonzero frequencies reconstructs
-the centered nearest-root correction exactly.-/
+the centered nearest-root correction exactly.
+@isnad1 id=eq.1h2v.s4.cbf51d0f6de0 from=translated src=- shape=961fb5c8 vocab=c31473c3
+-/
 theorem nearestQCenteredOmegaFourierSeries_eq
     (q t : Nat)
     (hq : 0 < q) :
@@ -1080,7 +1128,9 @@ theorem nearestQCenteredOmegaFourierSeries_eq
 
 /--
 For every nonzero Fourier frequency below the exact period,
-the denominator `ζ_q^ell - 1` is nonzero.-/
+the denominator `ζ_q^ell - 1` is nonzero.
+@isnad1 id=ne.3h2v.s6.9434f87600d8 from=translated src=- shape=e17619d5 vocab=75d44e44
+-/
 theorem nearestQFourierRoot_pow_sub_one_ne_zero
     (q ell : Nat)
     (hq : 0 < q)
@@ -1106,7 +1156,9 @@ noncomputable def nearestQOmegaTildeFourierCoeff
 /--
 Multiplying an antiderivative Fourier coefficient by
 `ζ_q^ell - 1` recovers the corresponding centered-correction
-coefficient.-/
+coefficient.
+@isnad1 id=eq.3h2v.s6.c2212a39a698 from=translated src=- shape=9250321b vocab=baf00a8f
+-/
 theorem nearestQOmegaTildeFourierCoeff_mul_sub
     (q ell : Nat)
     (hq : 0 < q)
@@ -1142,7 +1194,9 @@ noncomputable def nearestQOmegaTildeFourierSeries
 
 /--
 The normalized Fourier synthesis of the periodic
-antiderivative vanishes at zero.-/
+antiderivative vanishes at zero.
+@isnad1 id=eq.0h1v.s4.26c71f0b5397 from=translated src=- shape=8fc7241c vocab=b0dcb074
+-/
 @[simp]
 theorem nearestQOmegaTildeFourierSeries_zero
     (q : Nat) :
@@ -1155,7 +1209,9 @@ theorem nearestQOmegaTildeFourierSeries_zero
 /--
 For every nonzero Fourier frequency, the first difference
 of the corresponding antiderivative term is the associated
-centered-correction Fourier term.-/
+centered-correction Fourier term.
+@isnad1 id=eq.3h3v.s7.46755f50c91f from=translated src=- shape=365a9afe vocab=622b8ba6
+-/
 theorem nearestQOmegaTildeFourierTerm_succ_sub
     (q ell t : Nat)
     (hq : 0 < q)
@@ -1215,7 +1271,9 @@ theorem nearestQOmegaTildeFourierTerm_succ_sub
 /--
 The first difference of the Fourier synthesis of the
 periodic antiderivative is the Fourier synthesis of the
-centered correction sequence.-/
+centered correction sequence.
+@isnad1 id=eq.1h2v.s5.84ce0a22fd15 from=translated src=- shape=9e409aca vocab=9f7966ee
+-/
 theorem nearestQOmegaTildeFourierSeries_succ_sub_eq_centeredSeries
     (q t : Nat)
     (hq : 0 < q) :
@@ -1240,7 +1298,9 @@ theorem nearestQOmegaTildeFourierSeries_succ_sub_eq_centeredSeries
 
 /--
 The first difference of the Fourier antiderivative is
-exactly the centered nearest-root correction sequence.-/
+exactly the centered nearest-root correction sequence.
+@isnad1 id=eq.1h2v.s5.75a1da7d78b5 from=translated src=- shape=bc5fe241 vocab=0c94f694
+-/
 theorem nearestQOmegaTildeFourierSeries_succ_sub_eq_centeredOmega
     (q t : Nat)
     (hq : 0 < q) :
@@ -1256,7 +1316,9 @@ theorem nearestQOmegaTildeFourierSeries_succ_sub_eq_centeredOmega
 
 /--
 For every positive `q`, the normalized Fourier synthesis
-coincides with the periodic antiderivative.-/
+coincides with the periodic antiderivative.
+@isnad1 id=eq.1h2v.s4.3d5b76003c5c from=translated src=- shape=961fb5c8 vocab=caa865ab
+-/
 theorem nearestQOmegaTildeFourierSeries_eq_omegaTilde
     (q t : Nat)
     (hq : 0 < q) :
@@ -1305,7 +1367,9 @@ antiderivative:
 `Ω̃_q(t) =
   ∑_{1 ≤ ell < P_q}
     ω̂_q(ell) / (ζ_q^ell - 1) *
-      (ζ_q^(ell * (t + 1)) - ζ_q^ell)`.-/
+      (ζ_q^(ell * (t + 1)) - ζ_q^ell)`.
+@isnad1 id=eq.1h2v.s6.a909be335781 from=translated src=- shape=6979548f vocab=c01be8c2
+-/
 theorem nearestQOmegaTildeAt_eq_fourierFormula
     (q t : Nat)
     (hq : 0 < q) :
@@ -1332,7 +1396,9 @@ exponent `q`:
 * the periodic antiderivative has the corresponding
   normalized Fourier expansion;
 * multiplication by `ζ_q^ell - 1` recovers the Fourier
-  coefficient of the centered correction.-/
+  coefficient of the centered correction.
+@isnad1 id=and.1h1v.s7.cb36f5fa0106 from=translated src=- shape=f1001bdc vocab=6e6c55c8
+-/
 theorem nearestQFourierMainTheorem
     (q : Nat)
     (hq : 0 < q) :

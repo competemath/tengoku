@@ -22,7 +22,9 @@ namespace RoundedRootSums
 
 /--
 A natural number `m` does not exceed the integer square root of `k`
-exactly when its square does not exceed `k`.-/
+exactly when its square does not exceed `k`.
+@isnad1 id=iff.0h2v.s5.5deccbf5c612 from=translated src=- shape=8b387b0b vocab=893cb839
+-/
 theorem le_sqrt_iff_sq_le (m k : Nat) :
     m ≤ Nat.sqrt k ↔ m ^ 2 ≤ k := by
   simpa [pow_two] using
@@ -36,7 +38,9 @@ def reciprocalCount (n m : Nat) : Nat :=
 
 /--
 If `m ^ 2 ≤ n`, then the reciprocal count is the length of the interval
-from `m ^ 2` through `n`.-/
+from `m ^ 2` through `n`.
+@isnad1 id=eq.1h2v.s6.8e3531a88748 from=translated src=- shape=ecfded54 vocab=65d62a47
+-/
 theorem reciprocalCount_formula
     (n m : Nat)
     (h : m ^ 2 ≤ n) :

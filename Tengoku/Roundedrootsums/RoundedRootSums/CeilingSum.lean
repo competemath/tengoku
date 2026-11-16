@@ -42,13 +42,18 @@ def ceilRootSum (n : Nat) : Nat :=
   Finset.sum (Finset.range n) ceilSqrtSucc
 
 /--
-Unfolding the definition of the ceiling-root sum.-/
+Unfolding the definition of the ceiling-root sum.
+@isnad1 id=eq.0h1v.s4.b0c6097dfcfb from=translated src=- shape=e4a55431 vocab=b2aa239b
+-/
 theorem ceilRootSum_unfold (n : Nat) :
     ceilRootSum n =
       Finset.sum (Finset.range n)
         (fun k => Nat.sqrt k + 1) := by
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.01503853de79 from=translated src=- shape=941c26d4 vocab=b2aa239b
+-/
 theorem ceilRootSum_eq (n : Nat) :
     ceilRootSum n =
       Finset.sum (Finset.range n) (fun k => Nat.sqrt k) + n := by
@@ -57,7 +62,9 @@ theorem ceilRootSum_eq (n : Nat) :
   simp
 
 /--
-Adding the last term to the ordinary root sum.-/
+Adding the last term to the ordinary root sum.
+@isnad1 id=eq.0h1v.s4.eeedacb3ba0b from=translated src=- shape=cb24058d vocab=42edcc74
+-/
 theorem rootSum_step (n : Nat) :
     rootSum n =
       rootSum (n - 1) + Nat.sqrt n := by
@@ -71,7 +78,9 @@ theorem rootSum_step (n : Nat) :
 
 /--
 The ceiling-root sum is the ordinary root sum up to `n - 1`,
-plus one for each of the `n` summands.-/
+plus one for each of the `n` summands.
+@isnad1 id=eq.0h1v.s4.fabc1f54db25 from=translated src=- shape=ec147368 vocab=c9d9f999
+-/
 theorem ceilRootSum_eq_rootSum (n : Nat) :
     ceilRootSum n = rootSum (n - 1) + n := by
   induction n with
@@ -90,7 +99,9 @@ theorem ceilRootSum_eq_rootSum (n : Nat) :
 
 /--
 Fully explicit closed formula for the sum of square roots
-rounded upward.-/
+rounded upward.
+@isnad1 id=eq.0h1v.s7.6491540c0f62 from=translated src=- shape=a14e7a0f vocab=98e84ba8
+-/
 theorem ceilRootSum_explicit_formula (n : Nat) :
     ceilRootSum n =
       rootIndex (n - 1) * n -

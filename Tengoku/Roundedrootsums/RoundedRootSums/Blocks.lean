@@ -18,6 +18,9 @@ is constant.
 
 namespace RoundedRootSums
 
+/--
+@isnad1 id=iff.0h2v.s6.0bcd91fbfc62 from=translated src=- shape=63919687 vocab=3e42c1ff
+-/
 theorem sqrt_block (m k : Nat) :
     Nat.sqrt k = m ↔ m ^ 2 ≤ k ∧ k < (m + 1) ^ 2 := by
   constructor
@@ -34,12 +37,18 @@ theorem sqrt_block (m k : Nat) :
       omega
     · exact (Nat.le_sqrt).2 (by simpa [pow_two] using h.1)
 
+/--
+@isnad1 id=eq.2h2v.s6.81e08d140499 from=translated src=- shape=e280eced vocab=3e42c1ff
+-/
 theorem sqrt_eq_of_mem_block (m k : Nat)
     (h₁ : m ^ 2 ≤ k)
     (h₂ : k < (m + 1) ^ 2) :
     Nat.sqrt k = m := by
   exact (sqrt_block m k).2 ⟨h₁, h₂⟩
 
+/--
+@isnad1 id=eq.1h2v.s6.6820b4c85e11 from=translated src=- shape=00f4b682 vocab=41fa939d
+-/
 theorem sqrt_const_on_block (m t : Nat)
     (h : t < 2 * m + 1) :
     Nat.sqrt (m ^ 2 + t) = m := by

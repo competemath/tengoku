@@ -44,7 +44,9 @@ def lastBlock (m n : Nat) : Nat :=
 
 /--
 The sum of the complete square-root blocks can be written as the sum of their
-explicit block formulas.-/
+explicit block formulas.
+@isnad1 id=eq.0h1v.s5.1183e2fe7862 from=translated src=- shape=3f79ea81 vocab=bbe1026f
+-/
 theorem fullBlocks_formula (m : Nat) :
     fullBlocks m =
       Finset.sum (Finset.range m)
@@ -56,7 +58,9 @@ theorem fullBlocks_formula (m : Nat) :
 
 /--
 The contribution of the final partial block is its length multiplied by its
-constant square-root value.-/
+constant square-root value.
+@isnad1 id=eq.0h2v.s5.e310f3da7f37 from=translated src=- shape=acea35f4 vocab=bc800e46
+-/
 theorem lastBlock_formula (m n : Nat) :
     lastBlock m n = (n - m ^ 2 + 1) * m := by
   rfl
@@ -64,7 +68,9 @@ theorem lastBlock_formula (m n : Nat) :
 /--
 Closed formula for the sum of integer square roots.
 
-The sum is expressed using `rootIndex n = ⌊√n⌋` and a finite sum of squares.-/
+The sum is expressed using `rootIndex n = ⌊√n⌋` and a finite sum of squares.
+@isnad1 id=eq.0h1v.s6.117c6d4e6987 from=translated src=- shape=318e9241 vocab=1eb9daab
+-/
 theorem rootSum_closed_formula (n : Nat) :
     rootSum n =
       rootIndex n * (n + 1) -
@@ -102,7 +108,9 @@ theorem rootSum_closed_formula (n : Nat) :
   omega
 
 /--
-Fully explicit closed formula for the sum of integer square roots.-/
+Fully explicit closed formula for the sum of integer square roots.
+@isnad1 id=eq.0h1v.s6.25b5f6af6505 from=translated src=- shape=f5dc910e vocab=2be83674
+-/
 theorem rootSum_explicit_formula (n : Nat) :
     rootSum n =
       rootIndex n * (n + 1) -

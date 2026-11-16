@@ -24,6 +24,9 @@ def blockSum (m : Nat) : Nat :=
     (Finset.Icc (m ^ 2) ((m + 1) ^ 2 - 1))
     (fun k => Nat.sqrt k)
 
+/--
+@isnad1 id=eq.0h1v.s5.9cef68410ea0 from=translated src=- shape=4c03d943 vocab=9a9b58af
+-/
 theorem blockSum_formula (m : Nat) :
     blockSum m = m * (2 * m + 1) := by
   unfold blockSum

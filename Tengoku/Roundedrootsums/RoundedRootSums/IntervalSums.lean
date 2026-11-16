@@ -21,7 +21,9 @@ namespace RoundedRootSums
 
 /--
 Split a sum over `Finset.Icc a (b + 1)` into the sum over
-`Finset.Icc a b` together with the last term.-/
+`Finset.Icc a b` together with the last term.
+@isnad1 id=eq.1h4v.s6.0ea7ae4eb1f7 from=translated src=- shape=8a7996e1 vocab=6e366bd1
+-/
 theorem sum_Icc_split_succ
     {α : Type*}
     [AddCommMonoid α]

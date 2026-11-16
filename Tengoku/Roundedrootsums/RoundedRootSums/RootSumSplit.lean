@@ -21,7 +21,9 @@ namespace RoundedRootSums
 
 /--
 Splits `rootSum n` into the first `m` terms and the remaining tail,
-provided `m ≤ n`.-/
+provided `m ≤ n`.
+@isnad1 id=eq.1h2v.s6.39919af9a7d3 from=translated src=- shape=b7f42b45 vocab=333a60ed
+-/
 theorem rootSum_split_at
     (m n : Nat)
     (h : m ≤ n) :

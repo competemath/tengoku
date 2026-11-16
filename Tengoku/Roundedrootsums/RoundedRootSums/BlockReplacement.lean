@@ -20,6 +20,9 @@ Decomposition of the square-root sum into complete square blocks.
 
 namespace RoundedRootSums
 
+/--
+@isnad1 id=eq.0h1v.s6.dc74c11a2bbb from=translated src=- shape=60555fd0 vocab=743dc0c7
+-/
 theorem sum_square_block_eq_blockSum (m : Nat) :
     Finset.sum (Finset.range (2 * m + 1))
         (fun k => Nat.sqrt (m ^ 2 + k)) =
@@ -43,6 +46,9 @@ theorem sum_square_block_eq_blockSum (m : Nat) :
     _ = m * (2 * m + 1) := by
           exact Nat.mul_comm (2 * m + 1) m
 
+/--
+@isnad1 id=eq.0h1v.s5.57511a8220dd from=translated src=- shape=3df37661 vocab=e6d23e8a
+-/
 theorem sum_before_square_eq_fullBlocks (m : Nat) :
     Finset.sum (Finset.range (m ^ 2 - 1))
         (fun k => Nat.sqrt (k + 1)) =

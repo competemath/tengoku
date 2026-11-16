@@ -20,7 +20,9 @@ namespace RoundedRootSums
 
 /--
 `rootSum n` is the sum of the integer square roots of the integers
-from `1` through `n`.-/
+from `1` through `n`.
+@isnad1 id=eq.0h1v.s4.45dafe998f27 from=translated src=- shape=68f1ff9f vocab=d110ab20
+-/
 theorem rootSum_unfold (n : Nat) :
     rootSum n =
       Finset.sum (Finset.range n)

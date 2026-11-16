@@ -23,7 +23,9 @@ variable {α β : Type*}
 
 /--
 The cardinality of a filtered Cartesian product, computed by summing
-the cardinalities of the fibers over the first coordinate.-/
+the cardinalities of the fibers over the first coordinate.
+@isnad1 id=eq.0h5v.s6.9faf712911d3 from=translated src=- shape=436e7284 vocab=9e0cc559
+-/
 theorem card_filter_product_eq_sum
     (A : Finset α)
     (B : Finset β)
@@ -42,7 +44,9 @@ theorem card_filter_product_eq_sum
 
 /--
 The cardinality of a filtered Cartesian product, computed by summing
-the cardinalities of the fibers over the second coordinate.-/
+the cardinalities of the fibers over the second coordinate.
+@isnad1 id=eq.0h5v.s6.0779f1e2520e from=translated src=- shape=aa60be59 vocab=9e0cc559
+-/
 theorem card_filter_product_eq_sum_right
     (A : Finset α)
     (B : Finset β)

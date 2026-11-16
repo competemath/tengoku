@@ -30,7 +30,9 @@ and one final partial block.
 
 If `m ^ 2 ≤ n < (m + 1) ^ 2`, then the terms up to `m ^ 2 - 1`
 form the complete blocks indexed below `m`, while the remaining terms
-all have integer square root equal to `m`.-/
+all have integer square root equal to `m`.
+@isnad1 id=eq.2h2v.s6.c6c959814216 from=translated src=- shape=f20383f5 vocab=eea02368
+-/
 theorem rootSum_main_formula
     (m n : Nat)
     (h₁ : m ^ 2 ≤ n)

@@ -27,7 +27,9 @@ def shiftedResidueCorrectionPeriodicForm
     shiftedResiduePeriodicRemainder q a b t
 
 /--
-The residue-correction sum equals its canonical periodic form.-/
+The residue-correction sum equals its canonical periodic form.
+@isnad1 id=eq.2h4v.s5.dce863447a62 from=translated src=- shape=f85cd440 vocab=bda0de2f
+-/
 theorem shiftedResidueCorrectionSum_eq_periodicForm
     (q a b t : Nat)
     (hq : 0 < q)
@@ -53,7 +55,9 @@ noncomputable def shiftedRealRoundedSumBernoulliPeriodic
 
 /--
 The rationally shifted real q-th root sum equals its complete
-Bernoulli-periodic expression.-/
+Bernoulli-periodic expression.
+@isnad1 id=eq.3h4v.s5.77baadb2ff24 from=translated src=- shape=11946fbf vocab=fbcc1c93
+-/
 theorem shiftedRealRoundedSum_cast_rat_eq_periodicBernoulli
     (q a b n : Nat)
     (hq : 0 < q)

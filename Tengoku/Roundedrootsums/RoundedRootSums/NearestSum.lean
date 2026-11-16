@@ -40,7 +40,9 @@ def nearestRootSum (n : Nat) : Nat :=
   Finset.sum (Finset.range n) (fun k => nearestSqrt (k + 1))
 
 /--
-Unfolding the definition of the nearest-root sum.-/
+Unfolding the definition of the nearest-root sum.
+@isnad1 id=eq.0h1v.s4.9973f1e3711e from=translated src=- shape=68f1ff9f vocab=e199f27b
+-/
 theorem nearestRootSum_unfold (n : Nat) :
     nearestRootSum n =
       Finset.sum (Finset.range n)
@@ -48,7 +50,9 @@ theorem nearestRootSum_unfold (n : Nat) :
   rfl
 
 /--
-If the midpoint test fails, the nearest square root equals the floor.-/
+If the midpoint test fails, the nearest square root equals the floor.
+@isnad1 id=eq.1h1v.s6.7245fba68833 from=translated src=- shape=a65f29bd vocab=ca222969
+-/
 theorem nearestSqrt_eq_floor
     (k : Nat)
     (h : 2 * k < 2 * Nat.sqrt k ^ 2 + 2 * Nat.sqrt k + 1) :
@@ -57,7 +61,9 @@ theorem nearestSqrt_eq_floor
 
 /--
 If the midpoint test succeeds, the nearest square root is one larger
-than the floor.-/
+than the floor.
+@isnad1 id=eq.1h1v.s6.85448db45f91 from=translated src=- shape=b191ccfe vocab=ca222969
+-/
 theorem nearestSqrt_eq_succ
     (k : Nat)
     (h : ¬ 2 * k < 2 * Nat.sqrt k ^ 2 + 2 * Nat.sqrt k + 1) :
@@ -65,7 +71,9 @@ theorem nearestSqrt_eq_succ
   simp [nearestSqrt, h]
 
 /--
-The nearest integer square root is either the floor or its successor.-/
+The nearest integer square root is either the floor or its successor.
+@isnad1 id=or.0h1v.s4.40e5f201cb7f from=translated src=- shape=8e44ea98 vocab=419f81d1
+-/
 theorem nearestSqrt_eq_floor_or_succ (k : Nat) :
     nearestSqrt k = Nat.sqrt k ∨
       nearestSqrt k = Nat.sqrt k + 1 := by
@@ -77,7 +85,9 @@ theorem nearestSqrt_eq_floor_or_succ (k : Nat) :
     exact nearestSqrt_eq_succ k h
 
 /--
-The nearest integer square root is never smaller than the floor.-/
+The nearest integer square root is never smaller than the floor.
+@isnad1 id=le.0h1v.s3.22a678b80e42 from=translated src=- shape=0fc427d2 vocab=d3b585ed
+-/
 theorem sqrt_le_nearestSqrt (k : Nat) :
     Nat.sqrt k ≤ nearestSqrt k := by
   rcases nearestSqrt_eq_floor_or_succ k with h | h
@@ -86,7 +96,9 @@ theorem sqrt_le_nearestSqrt (k : Nat) :
     omega
 
 /--
-The nearest integer square root never exceeds the successor of the floor.-/
+The nearest integer square root never exceeds the successor of the floor.
+@isnad1 id=le.0h1v.s4.c071bd87ab55 from=translated src=- shape=90d3826a vocab=cba04548
+-/
 theorem nearestSqrt_le_sqrt_add_one (k : Nat) :
     nearestSqrt k ≤ Nat.sqrt k + 1 := by
   rcases nearestSqrt_eq_floor_or_succ k with h | h
@@ -107,6 +119,9 @@ Predicate expressing that the square root is rounded upward.-/
 def roundsUp (k : Nat) : Prop :=
   ¬ 2 * k < 2 * Nat.sqrt k ^ 2 + 2 * Nat.sqrt k + 1
 
+/--
+@isnad1 id=iff.0h1v.s6.e94d98e363fb from=translated src=- shape=53a80d3d vocab=1cfdd71d
+-/
 theorem roundsUp_iff (k : Nat) :
     roundsUp k ↔
       ¬ (2 * k < 2 * Nat.sqrt k ^ 2 + 2 * Nat.sqrt k + 1) := by
@@ -118,7 +133,9 @@ instance roundsUpDecidable (k : Nat) : Decidable (roundsUp k) := by
   infer_instance
 
 /--
-The nearest square root equals the floor plus the rounding bonus.-/
+The nearest square root equals the floor plus the rounding bonus.
+@isnad1 id=eq.0h1v.s4.94d86197b6dd from=translated src=- shape=f108d266 vocab=e476dbfa
+-/
 theorem nearestSqrt_eq_sqrt_add_bonus (k : Nat) :
     nearestSqrt k = Nat.sqrt k + nearestBonus k := by
   by_cases h :
@@ -131,7 +148,9 @@ theorem nearestSqrt_eq_sqrt_add_bonus (k : Nat) :
     simp [h]
 
 /--
-The rounding bonus is the indicator of the upward-rounding predicate.-/
+The rounding bonus is the indicator of the upward-rounding predicate.
+@isnad1 id=eq.0h1v.s4.cbbabfa716ab from=translated src=- shape=553dafa7 vocab=a636a321
+-/
 theorem nearestBonus_eq_indicator (k : Nat) :
     nearestBonus k =
       if roundsUp k then 1 else 0 := by
@@ -148,6 +167,9 @@ def nearestBonusSum (n : Nat) : Nat :=
   Finset.sum (Finset.range n)
     (fun k => nearestBonus (k + 1))
 
+/--
+@isnad1 id=eq.0h1v.s4.92586edb84cb from=translated src=- shape=68f1ff9f vocab=56247eff
+-/
 theorem nearestBonusSum_unfold (n : Nat) :
     nearestBonusSum n =
       Finset.sum (Finset.range n) (fun k => nearestBonus (k + 1)) := by
@@ -160,17 +182,26 @@ def roundedUpIndices (n : Nat) : Finset Nat :=
   (Finset.range n).filter
     (fun k => roundsUp (k + 1))
 
+/--
+@isnad1 id=iff.0h2v.s5.235b39e84bbf from=translated src=- shape=356a05ac vocab=7b1b2236
+-/
 theorem mem_roundedUpIndices_iff (n k : Nat) :
     k ∈ roundedUpIndices n ↔
       k < n ∧ roundsUp (k + 1) := by
   simp [roundedUpIndices]
 
+/--
+@isnad1 id=iff.0h1v.s6.6e44a9607c61 from=translated src=- shape=552d214e vocab=1cfdd71d
+-/
 theorem roundsUp_not (k : Nat) :
     ¬ roundsUp k ↔
       2 * k < 2 * Nat.sqrt k ^ 2 + 2 * Nat.sqrt k + 1 := by
   unfold roundsUp
   tauto
 
+/--
+@isnad1 id=iff.1h2v.s6.f9c6433d2c02 from=translated src=- shape=7fd953cb vocab=638c1731
+-/
 theorem roundsUp_square_add_iff
     (m t : Nat)
     (ht : t ≤ 2 * m) :
@@ -182,6 +213,9 @@ theorem roundsUp_square_add_iff
   rw [hsqrt]
   omega
 
+/--
+@isnad1 id=eq.1h2v.s6.ef51380bc259 from=translated src=- shape=6c7dbca4 vocab=638c1731
+-/
 theorem roundsUp_square_add_iff'
     (m t : Nat)
     (ht : t ≤ 2 * m) :
@@ -194,6 +228,9 @@ def roundedUpOffsets (m : Nat) : Finset Nat :=
   (Finset.range (2 * m + 1)).filter
     (fun t => roundsUp (m ^ 2 + t))
 
+/--
+@isnad1 id=iff.0h2v.s6.e45413a1de90 from=translated src=- shape=a7c8a834 vocab=7c75e7af
+-/
 theorem mem_roundedUpOffsets_iff (m t : Nat) :
     t ∈ roundedUpOffsets m ↔
       t < 2 * m + 1 ∧ m + 1 ≤ t := by
@@ -215,6 +252,9 @@ theorem mem_roundedUpOffsets_iff (m t : Nat) :
     · exact Finset.mem_range.mpr ht
     · exact (roundsUp_square_add_iff m t ht').mpr hup
 
+/--
+@isnad1 id=eq.0h1v.s5.ab2df8cdd933 from=translated src=- shape=db6b77fe vocab=ef3b9235
+-/
 theorem roundedUpOffsets_eq_Icc (m : Nat) :
     roundedUpOffsets m = Finset.Icc (m + 1) (2 * m) := by
   ext t
@@ -222,17 +262,26 @@ theorem roundedUpOffsets_eq_Icc (m : Nat) :
   simp only [Finset.mem_Icc]
   omega
 
+/--
+@isnad1 id=eq.0h1v.s3.21cbb5e88381 from=translated src=- shape=9baae94e vocab=60b4cb31
+-/
 theorem roundedUpOffsets_card (m : Nat) :
     (roundedUpOffsets m).card = m := by
   rw [roundedUpOffsets_eq_Icc]
   simp
   omega
 
+/--
+@isnad1 id=not.0h1v.s4.20b302576f8e from=translated src=- shape=da3f6e35 vocab=4ba65c9d
+-/
 theorem not_roundsUp_square (m : Nat) :
     ¬ roundsUp (m ^ 2) := by
   unfold roundsUp
   simp [Nat.sqrt_eq']
 
+/--
+@isnad1 id=eq.0h1v.s6.ba79ace8498a from=translated src=- shape=c642ef8f vocab=559dfece
+-/
 theorem roundedUpIndices_square_succ_split
     (m : Nat) :
     roundedUpIndices ((m + 1) ^ 2) =
@@ -340,6 +389,9 @@ theorem roundedUpIndices_square_succ_split
         rw [harg]
         exact hup_t
 
+/--
+@isnad1 id=eq.0h1v.s6.dd18e21e8c80 from=translated src=- shape=99bee234 vocab=370967ae
+-/
 theorem roundedUpIndices_square_succ_card
     (m : Nat) :
     (roundedUpIndices ((m + 1) ^ 2)).card =
@@ -392,6 +444,9 @@ theorem roundedUpIndices_square_succ_card
   rw [himage]
   rw [roundedUpOffsets_card]
 
+/--
+@isnad1 id=eq.0h1v.s5.0d51fd6781d3 from=translated src=- shape=dbc386ec vocab=bc15041c
+-/
 theorem roundedUpIndices_square_card_eq_sum_range (m : Nat) :
     (roundedUpIndices (m ^ 2)).card =
       Finset.sum (Finset.range m) (fun k => k) := by
@@ -403,6 +458,9 @@ theorem roundedUpIndices_square_card_eq_sum_range (m : Nat) :
       rw [ih]
       rw [Finset.sum_range_succ]
 
+/--
+@isnad1 id=eq.0h1v.s5.d686e2233171 from=translated src=- shape=820cff58 vocab=9e028da4
+-/
 theorem roundedUpIndices_square_card (m : Nat) :
     (roundedUpIndices (m ^ 2)).card =
       m * (m - 1) / 2 := by
@@ -416,6 +474,9 @@ def roundedUpOffsetsUpTo (m r : Nat) : Finset Nat :=
   (Finset.range (r + 1)).filter
     (fun t => roundsUp (m ^ 2 + t))
 
+/--
+@isnad1 id=iff.1h3v.s5.c1d895a4fb5c from=translated src=- shape=812f86e2 vocab=b36d4023
+-/
 theorem mem_roundedUpOffsetsUpTo_iff
     (m r t : Nat)
     (hr : r ≤ 2 * m) :
@@ -446,6 +507,9 @@ theorem mem_roundedUpOffsetsUpTo_iff
     · exact
         (roundsUp_square_add_iff m t htLe).mpr htLower
 
+/--
+@isnad1 id=eq.1h2v.s5.6b53f58d1fab from=translated src=- shape=96fd0907 vocab=68e2f4a1
+-/
 theorem roundedUpOffsetsUpTo_card
     (m r : Nat)
     (hr : r ≤ 2 * m) :
@@ -464,6 +528,9 @@ theorem roundedUpOffsetsUpTo_card
   rw [hset]
   simp
 
+/--
+@isnad1 id=eq.1h2v.s6.74a486b8c7d4 from=translated src=- shape=462fba29 vocab=24701bb0
+-/
 theorem roundedUpIndices_square_add_split
     (m r : Nat)
     (hr : r ≤ 2 * m) :
@@ -548,7 +615,9 @@ theorem roundedUpIndices_square_add_split
 
 /--
 The nearest-root sum is the floor-root sum plus the number
-of terms rounded upward.-/
+of terms rounded upward.
+@isnad1 id=eq.0h1v.s5.9260426b41c3 from=translated src=- shape=769a06dc vocab=103887ec
+-/
 theorem nearestRootSum_eq_rootSum_add_bonus (n : Nat) :
     nearestRootSum n =
       rootSum n +
@@ -558,11 +627,17 @@ theorem nearestRootSum_eq_rootSum_add_bonus (n : Nat) :
   simp_rw [nearestSqrt_eq_sqrt_add_bonus]
   rw [Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h1v.s4.0db690dede66 from=translated src=- shape=f108d266 vocab=07f5ea99
+-/
 theorem nearestRootSum_eq_rootSum_add_bonusSum (n : Nat) :
     nearestRootSum n = rootSum n + nearestBonusSum n := by
   rw [nearestRootSum_eq_rootSum_add_bonus]
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.4fb60c2cbd53 from=translated src=- shape=76945425 vocab=9d8281ab
+-/
 theorem nearestBonusSum_eq_card_roundedUpIndices (n : Nat) :
     nearestBonusSum n = (roundedUpIndices n).card := by
   unfold nearestBonusSum roundedUpIndices
@@ -572,12 +647,18 @@ theorem nearestBonusSum_eq_card_roundedUpIndices (n : Nat) :
       (fun k : Nat => roundsUp (k + 1))
       (Finset.range n)).symm
 
+/--
+@isnad1 id=eq.0h1v.s4.ac4862c79a82 from=translated src=- shape=a6aa4b9d vocab=49dcbe19
+-/
 theorem nearestRootSum_eq_rootSum_add_card (n : Nat) :
     nearestRootSum n =
       rootSum n + (roundedUpIndices n).card := by
   rw [nearestRootSum_eq_rootSum_add_bonusSum]
   rw [nearestBonusSum_eq_card_roundedUpIndices]
 
+/--
+@isnad1 id=eq.1h2v.s6.b9b493926cc5 from=translated src=- shape=a0fab4ba vocab=69d57b9f
+-/
 theorem roundedUpIndices_square_add_card
     (m r : Nat)
     (hr : r ≤ 2 * m) :
@@ -631,6 +712,9 @@ theorem roundedUpIndices_square_add_card
   rw [himage]
   rw [roundedUpOffsetsUpTo_card m r hr]
 
+/--
+@isnad1 id=eq.1h2v.s6.0fe9c3b0b2bd from=translated src=- shape=5451f9b7 vocab=533e2f1f
+-/
 theorem roundedUpIndices_square_add_card_explicit
     (m r : Nat)
     (hr : r ≤ 2 * m) :
@@ -639,6 +723,9 @@ theorem roundedUpIndices_square_add_card_explicit
   rw [roundedUpIndices_square_add_card m r hr]
   rw [roundedUpIndices_square_card]
 
+/--
+@isnad1 id=eq.0h1v.s6.d27dfc61ac24 from=translated src=- shape=86c51fdd vocab=708b5974
+-/
 theorem nearestBonusSum_formula (n : Nat) :
     nearestBonusSum n =
       Nat.sqrt n * (Nat.sqrt n - 1) / 2 +
@@ -676,6 +763,9 @@ theorem nearestBonusSum_formula (n : Nat) :
           (n - Nat.sqrt n ^ 2 - Nat.sqrt n) := by
       rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.ac7f37096afb from=translated src=- shape=148d0d60 vocab=cf0bdd8a
+-/
 theorem nearestRootSum_formula (n : Nat) :
     nearestRootSum n =
       rootSum n +
@@ -685,6 +775,9 @@ theorem nearestRootSum_formula (n : Nat) :
   rw [nearestBonusSum_formula]
   simp [Nat.add_assoc]
 
+/--
+@isnad1 id=eq.0h1v.s7.cebe3a036788 from=translated src=- shape=570b4400 vocab=531e044a
+-/
 theorem nearestRootSum_explicit_formula (n : Nat) :
     nearestRootSum n =
       Nat.sqrt n * (n + 1) -

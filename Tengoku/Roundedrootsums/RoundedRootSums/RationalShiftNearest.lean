@@ -46,7 +46,9 @@ noncomputable def nearestQRootSum
 
 /--
 The general Bernoulli-periodic theorem specialized to
-nearest-integer q-th root sums.-/
+nearest-integer q-th root sums.
+@isnad1 id=eq.1h2v.s5.dca3baa0d269 from=translated src=- shape=0805075f vocab=e04867e6
+-/
 theorem nearestQRootSum_cast_rat_eq_periodicBernoulli
     (q n : Nat)
     (hq : 0 < q) :
@@ -65,14 +67,18 @@ def nearestQResiduePeriod
 
 /--
 For the half shift, the general residue period candidate is
-`2^(q - 1)`.-/
+`2^(q - 1)`.
+@isnad1 id=eq.0h1v.s5.d7d8001d5cdf from=translated src=- shape=c66b077f vocab=7b424e39
+-/
 theorem nearestQResiduePeriod_eq
     (q : Nat) :
     nearestQResiduePeriod q = 2 ^ (q - 1) := by
   rfl
 
 /--
-The general nearest-root residue period candidate is positive.-/
+The general nearest-root residue period candidate is positive.
+@isnad1 id=lt.0h1v.s3.cebd5224e9c3 from=translated src=- shape=8a62b088 vocab=615b1c36
+-/
 theorem nearestQResiduePeriod_pos
     (q : Nat) :
     0 < nearestQResiduePeriod q := by
@@ -92,7 +98,9 @@ def nearestQPowerResidueAt
 
 /--
 The half-shift power-residue sequence is periodic with
-the general candidate period `2^(q - 1)`.-/
+the general candidate period `2^(q - 1)`.
+@isnad1 id=eq.1h2v.s4.ca5caed5c507 from=translated src=- shape=de493d70 vocab=098e87f1
+-/
 theorem nearestQPowerResidueAt_add_period
     (q r : Nat)
     (hq : 0 < q) :
@@ -120,7 +128,9 @@ def nearestQOmegaAt
 
 /--
 The half-shift correction sequence `ω_q` has the guaranteed
-period `2^(q - 1)`.-/
+period `2^(q - 1)`.
+@isnad1 id=eq.1h2v.s4.5fe162128a72 from=translated src=- shape=ef90cc8b vocab=0b781839
+-/
 theorem nearestQOmegaAt_add_period
     (q r : Nat)
     (hq : 0 < q) :
@@ -145,7 +155,9 @@ def IsLeastPositiveNatPeriod
 
 /--
 The residue sequence `ρ_q` is periodic with the general
-candidate period `2^(q - 1)`.-/
+candidate period `2^(q - 1)`.
+@isnad1 id=periodic.1h1v.s4.cb1467d1ef75 from=translated src=- shape=fc6cdde2 vocab=97128418
+-/
 theorem nearestQPowerResidueAt_periodic
     (q : Nat)
     (hq : 0 < q) :
@@ -157,7 +169,9 @@ theorem nearestQPowerResidueAt_periodic
 
 /--
 The rational correction sequence `ω_q` is periodic with the
-same general candidate period.-/
+same general candidate period.
+@isnad1 id=periodic.1h1v.s4.a32752a641c5 from=translated src=- shape=26fcee47 vocab=86c57ba7
+-/
 theorem nearestQOmegaAt_periodic
     (q : Nat)
     (hq : 0 < q) :
@@ -170,7 +184,9 @@ theorem nearestQOmegaAt_periodic
 /--
 A natural number `d` is a period of the residue sequence `ρ_q`
 if of the residue sequence `ρ_q`
-if and only if it is a period of the correction sequence `ω_q`.-/
+if and only if it is a period of the correction sequence `ω_q`.
+@isnad1 id=iff.0h2v.s4.93a5ddc3f1bf from=translated src=- shape=c09a0554 vocab=680e7887
+-/
 theorem nearestQPowerResidueAt_periodic_iff_omega
     (q d : Nat) :
     Function.Periodic
@@ -197,7 +213,9 @@ theorem nearestQPowerResidueAt_periodic_iff_omega
 
 /--
 The residue sequence `ρ_q` and the correction sequence `ω_q`
-have the same least positive periods.-/
+have the same least positive periods.
+@isnad1 id=iff.0h2v.s3.c60e600b4a7e from=translated src=- shape=27c9db62 vocab=7899911d
+-/
 theorem nearestQPowerResidueAt_isLeastPeriod_iff_omega
     (q P : Nat) :
     IsLeastPositiveNatPeriod
@@ -232,7 +250,9 @@ theorem nearestQPowerResidueAt_isLeastPeriod_iff_omega
 /--
 The nearest-root residue sequence has the explicit form
 
-`ρ_q(r) = (2 * r + 1)^q mod 2^q`.-/
+`ρ_q(r) = (2 * r + 1)^q mod 2^q`.
+@isnad1 id=eq.0h2v.s6.75eab1cd925f from=translated src=- shape=39f72b12 vocab=08c09392
+-/
 theorem nearestQPowerResidueAt_eq_oddPowerMod
     (q r : Nat) :
     nearestQPowerResidueAt q r =
@@ -247,7 +267,9 @@ theorem nearestQPowerResidueAt_eq_oddPowerMod
   rw [hbase]
 
 /--
-For every positive exponent, the initial residue is one.-/
+For every positive exponent, the initial residue is one.
+@isnad1 id=eq.1h1v.s4.9fa3f6a74f10 from=translated src=- shape=cb752352 vocab=6c7f30b0
+-/
 theorem nearestQPowerResidueAt_zero
     (q : Nat)
     (hq : 0 < q) :
@@ -262,7 +284,9 @@ theorem nearestQPowerResidueAt_zero
 /--
 Every period `d` of `ρ_q` satisfies
 
-`(2 * d + 1)^q ≡ 1 mod 2^q`.-/
+`(2 * d + 1)^q ≡ 1 mod 2^q`.
+@isnad1 id=modeq.2h2v.s6.0b74f3dbc392 from=translated src=- shape=0103c105 vocab=e3bf1c7f
+-/
 theorem nearestQPowerResidueAt_period_implies_modEq_one
     (q d : Nat)
     (hq : 0 < q)
@@ -298,7 +322,9 @@ theorem nearestQPowerResidueAt_period_implies_modEq_one
 /--
 Every period `d` of `ρ_q` satisfies
 
-`2^q ∣ (2 * d + 1)^q - 1`.-/
+`2^q ∣ (2 * d + 1)^q - 1`.
+@isnad1 id=dvd.2h2v.s6.240a6477d63c from=translated src=- shape=45aa81a5 vocab=bb0a2ebd
+-/
 theorem nearestQPowerResidueAt_period_implies_pow_dvd_sub_one
     (q d : Nat)
     (hq : 0 < q)
@@ -317,7 +343,9 @@ theorem nearestQPowerResidueAt_period_implies_pow_dvd_sub_one
 
 /--
 The odd base appearing in the period condition is greater than one
-whenever the candidate period is positive.-/
+whenever the candidate period is positive.
+@isnad1 id=lt.1h1v.s5.386ec81c7048 from=translated src=- shape=0539bd03 vocab=304a85f3
+-/
 theorem nearestQOddBase_gt_one
     (d : Nat)
     (hd : 0 < d) :
@@ -325,14 +353,18 @@ theorem nearestQOddBase_gt_one
   omega
 
 /--
-The odd base differs from one by exactly `2 * d`.-/
+The odd base differs from one by exactly `2 * d`.
+@isnad1 id=eq.0h1v.s5.88eb5ce79f04 from=translated src=- shape=7cc96f5c vocab=5a86663e
+-/
 theorem nearestQOddBase_sub_one
     (d : Nat) :
     (2 * d + 1) - 1 = 2 * d := by
   omega
 
 /--
-The base `2 * d + 1` is odd.-/
+The base `2 * d + 1` is odd.
+@isnad1 id=not.0h1v.s5.48b30c5d10f2 from=translated src=- shape=2ec9f39c vocab=e4d01d9c
+-/
 theorem nearestQOddBase_not_two_dvd
     (d : Nat) :
     ¬2 ∣ 2 * d + 1 := by
@@ -349,7 +381,9 @@ def nearestQGeomSum
     (2 * d + 1) ^ i)
 
 /--
-The geometric factorization of `(2 * d + 1)^q - 1`.-/
+The geometric factorization of `(2 * d + 1)^q - 1`.
+@isnad1 id=eq.0h2v.s6.cad4708b6cdc from=translated src=- shape=169d7463 vocab=1cdaf6a5
+-/
 theorem nearestQGeomSum_mul_two_mul
     (q d : Nat) :
     nearestQGeomSum q d * (2 * d) =
@@ -364,7 +398,9 @@ theorem nearestQGeomSum_mul_two_mul
 
 /--
 Modulo two, the geometric sum has the same residue as
-the number `q` of its terms.-/
+the number `q` of its terms.
+@isnad1 id=eq.0h2v.s5.119a6c3370c0 from=translated src=- shape=bf52afae vocab=27a6b185
+-/
 theorem nearestQGeomSum_mod_two
     (q d : Nat) :
     nearestQGeomSum q d % 2 = q % 2 := by
@@ -376,7 +412,9 @@ theorem nearestQGeomSum_mod_two
   simp [Nat.pow_mod, hbase]
 
 /--
-For odd `q`, the geometric factor is odd.-/
+For odd `q`, the geometric factor is odd.
+@isnad1 id=not.1h2v.s4.51932d98b75a from=translated src=- shape=4999ec08 vocab=d72d2de9
+-/
 theorem nearestQGeomSum_not_two_dvd
     (q d : Nat)
     (hqOdd : Odd q) :
@@ -386,7 +424,9 @@ theorem nearestQGeomSum_not_two_dvd
   exact Nat.odd_iff.mp hqOdd
 
 /--
-For odd `q`, every period `d` forces `2^q` to divide `2 * d`.-/
+For odd `q`, every period `d` forces `2^q` to divide `2 * d`.
+@isnad1 id=dvd.3h2v.s5.8bcb23f631b1 from=translated src=- shape=01ed1fa2 vocab=19b8343c
+-/
 theorem nearestQPowerResidueAt_odd_period_implies_pow_dvd_two_mul
     (q d : Nat)
     (hq : 0 < q)
@@ -415,7 +455,9 @@ theorem nearestQPowerResidueAt_odd_period_implies_pow_dvd_two_mul
 
 /--
 For odd `q`, every positive period of `ρ_q` is divisible by
-the candidate period `2^(q - 1)`.-/
+the candidate period `2^(q - 1)`.
+@isnad1 id=dvd.3h2v.s5.1b488bbf553c from=translated src=- shape=bb984aca vocab=fe8eb826
+-/
 theorem nearestQResiduePeriod_dvd_of_odd_period
     (q d : Nat)
     (hq : 0 < q)
@@ -451,7 +493,9 @@ theorem nearestQResiduePeriod_dvd_of_odd_period
 
 /--
 For odd positive `q`, the least positive period of `ρ_q`
-is exactly `2^(q - 1)`.-/
+is exactly `2^(q - 1)`.
+@isnad1 id=isleastp.2h1v.s4.c4ca9548f1cf from=translated src=- shape=1b3b1243 vocab=264ff6ac
+-/
 theorem nearestQPowerResidueAt_isLeastPeriod_of_odd
     (q : Nat)
     (hq : 0 < q)
@@ -471,7 +515,9 @@ theorem nearestQPowerResidueAt_isLeastPeriod_of_odd
 
 /--
 For odd positive `q`, the least positive period of `ω_q`
-is also exactly `2^(q - 1)`.-/
+is also exactly `2^(q - 1)`.
+@isnad1 id=isleastp.2h1v.s4.426fa52f37e4 from=translated src=- shape=02490f5b vocab=97429162
+-/
 theorem nearestQOmegaAt_isLeastPeriod_of_odd
     (q : Nat)
     (hq : 0 < q)
@@ -488,7 +534,9 @@ theorem nearestQOmegaAt_isLeastPeriod_of_odd
 /--
 Every odd square is congruent to one modulo four.
 Consequently, the nearest-root residue sequence for `q = 2`
-is constantly equal to one.-/
+is constantly equal to one.
+@isnad1 id=eq.0h1v.s4.1cd5c59cf520 from=translated src=- shape=fe2c2146 vocab=ad4e306f
+-/
 theorem nearestQPowerResidueAt_two
     (r : Nat) :
     nearestQPowerResidueAt 2 r = 1 := by
@@ -503,7 +551,9 @@ theorem nearestQPowerResidueAt_two
 /--
 Every odd fourth power is congruent to one modulo sixteen.
 Consequently, the nearest-root residue sequence for `q = 4`
-is constantly equal to one.-/
+is constantly equal to one.
+@isnad1 id=eq.0h1v.s4.7674f2101474 from=translated src=- shape=fe2c2146 vocab=ad4e306f
+-/
 theorem nearestQPowerResidueAt_four
     (r : Nat) :
     nearestQPowerResidueAt 4 r = 1 := by
@@ -537,7 +587,9 @@ theorem nearestQPowerResidueAt_four
     norm_num [Nat.add_mod, Nat.mul_mod]
 
 /--
-For `q = 2`, the residue sequence has period one.-/
+For `q = 2`, the residue sequence has period one.
+@isnad1 id=periodic.0h0v.s3.cc5a9639b1b2 from=translated src=- shape=be477f6c vocab=41fe0b01
+-/
 theorem nearestQPowerResidueAt_two_periodic_one :
     Function.Periodic
       (nearestQPowerResidueAt 2)
@@ -549,7 +601,9 @@ theorem nearestQPowerResidueAt_two_periodic_one :
   ]
 
 /--
-For `q = 4`, the residue sequence has period one.-/
+For `q = 4`, the residue sequence has period one.
+@isnad1 id=periodic.0h0v.s3.05c7b387b179 from=translated src=- shape=be477f6c vocab=41fe0b01
+-/
 theorem nearestQPowerResidueAt_four_periodic_one :
     Function.Periodic
       (nearestQPowerResidueAt 4)
@@ -561,7 +615,9 @@ theorem nearestQPowerResidueAt_four_periodic_one :
   ]
 
 /--
-The least positive period of `ρ₂` is one.-/
+The least positive period of `ρ₂` is one.
+@isnad1 id=isleastp.0h0v.s3.9651391064b1 from=translated src=- shape=3c26ae4f vocab=130dc6e0
+-/
 theorem nearestQPowerResidueAt_isLeastPeriod_two :
     IsLeastPositiveNatPeriod
       (nearestQPowerResidueAt 2)
@@ -575,7 +631,9 @@ theorem nearestQPowerResidueAt_isLeastPeriod_two :
   omega
 
 /--
-The least positive period of `ρ₄` is one.-/
+The least positive period of `ρ₄` is one.
+@isnad1 id=isleastp.0h0v.s3.58a5240c656a from=translated src=- shape=3c26ae4f vocab=130dc6e0
+-/
 theorem nearestQPowerResidueAt_isLeastPeriod_four :
     IsLeastPositiveNatPeriod
       (nearestQPowerResidueAt 4)
@@ -589,7 +647,9 @@ theorem nearestQPowerResidueAt_isLeastPeriod_four :
   omega
 
 /--
-The least positive period of `ω₂` is one.-/
+The least positive period of `ω₂` is one.
+@isnad1 id=isleastp.0h0v.s3.ad586f828b01 from=translated src=- shape=424ed084 vocab=42545c74
+-/
 theorem nearestQOmegaAt_isLeastPeriod_two :
     IsLeastPositiveNatPeriod
       (nearestQOmegaAt 2)
@@ -600,7 +660,9 @@ theorem nearestQOmegaAt_isLeastPeriod_two :
       nearestQPowerResidueAt_isLeastPeriod_two
 
 /--
-The least positive period of `ω₄` is one.-/
+The least positive period of `ω₄` is one.
+@isnad1 id=isleastp.0h0v.s3.024a07e91e73 from=translated src=- shape=424ed084 vocab=42545c74
+-/
 theorem nearestQOmegaAt_isLeastPeriod_four :
     IsLeastPositiveNatPeriod
       (nearestQOmegaAt 4)
@@ -626,7 +688,9 @@ def nearestQEvenResiduePeriod
 
 /--
 The even-case period candidate written directly using
-the two-adic valuation.-/
+the two-adic valuation.
+@isnad1 id=eq.0h1v.s5.686c88f772f6 from=translated src=- shape=962c9202 vocab=fb4f515a
+-/
 theorem nearestQEvenResiduePeriod_eq
     (q : Nat) :
     nearestQEvenResiduePeriod q =
@@ -634,7 +698,9 @@ theorem nearestQEvenResiduePeriod_eq
   rfl
 
 /--
-The maximal power `2^ν₂(q)` divides `q`.-/
+The maximal power `2^ν₂(q)` divides `q`.
+@isnad1 id=dvd.0h1v.s4.e5925f305d66 from=translated src=- shape=3a6b3ed6 vocab=52784dfd
+-/
 theorem nearestQTwoAdicOrder_pow_dvd
     (q : Nat) :
     2 ^ nearestQTwoAdicOrder q ∣ q := by
@@ -643,7 +709,9 @@ theorem nearestQTwoAdicOrder_pow_dvd
 
 /--
 For positive `q`, the next power
-`2^(ν₂(q) + 1)` does not divide `q`.-/
+`2^(ν₂(q) + 1)` does not divide `q`.
+@isnad1 id=not.1h1v.s5.0abb2ff262a0 from=translated src=- shape=ab41d489 vocab=4ea5e32e
+-/
 theorem nearestQTwoAdicOrder_next_pow_not_dvd
     (q : Nat)
     (hq : 0 < q) :
@@ -664,7 +732,9 @@ def nearestQOddPart
 /--
 The exponent `q` decomposes as
 
-`q = 2^ν₂(q) * nearestQOddPart q`.-/
+`q = 2^ν₂(q) * nearestQOddPart q`.
+@isnad1 id=eq.0h1v.s5.9b4869312a1b from=translated src=- shape=8ff0dd88 vocab=2eeeec06
+-/
 theorem nearestQTwoAdicOrder_mul_oddPart
     (q : Nat) :
     2 ^ nearestQTwoAdicOrder q *
@@ -675,7 +745,9 @@ theorem nearestQTwoAdicOrder_mul_oddPart
     (nearestQTwoAdicOrder_pow_dvd q)
 
 /--
-For positive `q`, the odd part of `q` is not divisible by two.-/
+For positive `q`, the odd part of `q` is not divisible by two.
+@isnad1 id=not.1h1v.s4.4fabb571f83e from=translated src=- shape=ff955309 vocab=e509df9b
+-/
 theorem nearestQOddPart_not_two_dvd
     (q : Nat)
     (hq : 0 < q) :
@@ -706,7 +778,9 @@ theorem nearestQOddPart_not_two_dvd
       rw [pow_succ]
 
 /--
-For positive `q`, its odd part is positive.-/
+For positive `q`, its odd part is positive.
+@isnad1 id=lt.1h1v.s4.e90b652a5808 from=translated src=- shape=35bd48ee vocab=94b474c1
+-/
 theorem nearestQOddPart_pos
     (q : Nat)
     (hq : 0 < q) :
@@ -722,7 +796,9 @@ theorem nearestQOddPart_pos
 
 /--
 For positive `q`, the remaining factor after removing
-the maximal power of two is odd.-/
+the maximal power of two is odd.
+@isnad1 id=odd.1h1v.s4.8b61c7571f36 from=translated src=- shape=f10a4ec0 vocab=fdf81e06
+-/
 theorem nearestQOddPart_odd
     (q : Nat)
     (hq : 0 < q) :
@@ -736,7 +812,9 @@ theorem nearestQOddPart_odd
   · exact ⟨k, by omega⟩
 
 /--
-For positive `q`, its two-adic order is strictly smaller than `q`.-/
+For positive `q`, its two-adic order is strictly smaller than `q`.
+@isnad1 id=lt.1h1v.s4.e7c055c5659b from=translated src=- shape=71fa8a4a vocab=d9aeb666
+-/
 theorem nearestQTwoAdicOrder_lt_self
     (q : Nat)
     (hq : 0 < q) :
@@ -762,7 +840,9 @@ theorem nearestQTwoAdicOrder_lt_self
 
 /--
 For positive even `q`, at least one factor of two divides `q`.
-Therefore its two-adic order is positive.-/
+Therefore its two-adic order is positive.
+@isnad1 id=lt.2h1v.s4.ff71f5b5fa42 from=translated src=- shape=1ab87d3a vocab=4c32895e
+-/
 theorem nearestQTwoAdicOrder_pos_of_even
     (q : Nat)
     (hq : 0 < q)
@@ -783,7 +863,9 @@ theorem nearestQTwoAdicOrder_pos_of_even
 
 /--
 For even `q ≥ 6`, the two-adic order is at least
-two below `q`.-/
+two below `q`.
+@isnad1 id=le.2h1v.s5.b54cba5d3606 from=translated src=- shape=339911a3 vocab=2bc2fbc5
+-/
 theorem nearestQTwoAdicOrder_add_two_le_of_even_ge_six
     (q : Nat)
     (hq : 6 ≤ q)
@@ -832,7 +914,9 @@ theorem nearestQTwoAdicOrder_add_two_le_of_even_ge_six
 
 /--
 For even `q ≥ 6`, the exponent in the expected
-period `2^(q - 1 - ν₂(q))` is positive.-/
+period `2^(q - 1 - ν₂(q))` is positive.
+@isnad1 id=lt.2h1v.s5.72ca934d267f from=translated src=- shape=6cce5c26 vocab=1920a35d
+-/
 theorem nearestQEvenResidueExponent_pos
     (q : Nat)
     (hq : 6 ≤ q)
@@ -845,7 +929,9 @@ theorem nearestQEvenResidueExponent_pos
   omega
 
 /--
-For even `q ≥ 6`, the expected residue period is at least two.-/
+For even `q ≥ 6`, the expected residue period is at least two.
+@isnad1 id=le.2h1v.s4.3521d485b205 from=translated src=- shape=1ab87d3a vocab=453e498a
+-/
 theorem nearestQEvenResiduePeriod_two_le
     (q : Nat)
     (hq : 6 ≤ q)
@@ -873,7 +959,9 @@ theorem nearestQEvenResiduePeriod_two_le
 /--
 For even `q ≥ 6`, twice the expected period is
 
-`2^(q - ν₂(q))`.-/
+`2^(q - ν₂(q))`.
+@isnad1 id=eq.2h1v.s5.d876b0db6645 from=translated src=- shape=9708dee1 vocab=d2a17a81
+-/
 theorem two_mul_nearestQEvenResiduePeriod
     (q : Nat)
     (hq : 6 ≤ q)
@@ -903,7 +991,9 @@ theorem two_mul_nearestQEvenResiduePeriod
 
 /--
 Shifting the index by the expected period adds twice
-that period to the corresponding odd base.-/
+that period to the corresponding odd base.
+@isnad1 id=eq.0h2v.s6.64116cb989ff from=translated src=- shape=d2dbfc23 vocab=7cf19911
+-/
 theorem nearestQOddBase_add_evenPeriod
     (q r : Nat) :
     2 * (r + nearestQEvenResiduePeriod q) + 1 =
@@ -913,7 +1003,9 @@ theorem nearestQOddBase_add_evenPeriod
 
 /--
 For even `q ≥ 6`, shifting the index by the expected
-period adds exactly `2^(q - ν₂(q))` to the odd base.-/
+period adds exactly `2^(q - ν₂(q))` to the odd base.
+@isnad1 id=eq.2h2v.s6.bc75b071f88d from=translated src=- shape=3af59c1e vocab=bcdc5f9a
+-/
 theorem nearestQOddBase_add_evenPeriod_eq
     (q r : Nat)
     (hq : 6 ≤ q)
@@ -943,7 +1035,9 @@ def nearestQEvenShift
 
 /--
 For even `q ≥ 6`, the additive base shift is twice
-the expected residue period.-/
+the expected residue period.
+@isnad1 id=eq.2h1v.s5.e34ab179e02a from=translated src=- shape=313f7a45 vocab=81ecab1a
+-/
 theorem nearestQEvenShift_eq_two_mul_period
     (q : Nat)
     (hq : 6 ≤ q)
@@ -961,7 +1055,9 @@ The first nonconstant term in the binomial expansion
 
 `(x + 2^(q - ν₂(q)))^q`
 
-is divisible by `2^q`.-/
+is divisible by `2^q`.
+@isnad1 id=dvd.1h2v.s6.9065223771cd from=translated src=- shape=de41c0af vocab=0ce255c6
+-/
 theorem nearestQFirstBinomialTerm_dvd
     (q r : Nat)
     (hq : 0 < q) :
@@ -1012,7 +1108,9 @@ theorem nearestQFirstBinomialTerm_dvd
 
 /--
 For even `q ≥ 6`, twice the two-adic order of `q`
-does not exceed `q`.-/
+does not exceed `q`.
+@isnad1 id=le.2h1v.s5.00a90e92c931 from=translated src=- shape=97ee2391 vocab=ab9b9317
+-/
 theorem nearestQTwoAdicOrder_double_le_of_even_ge_six
     (q : Nat)
     (hq : 6 ≤ q)
@@ -1061,7 +1159,9 @@ theorem nearestQTwoAdicOrder_double_le_of_even_ge_six
 
 /--
 For even `q ≥ 6`, the square of the additive base shift
-is divisible by `2^q`.-/
+is divisible by `2^q`.
+@isnad1 id=dvd.2h1v.s5.1d70bea37d83 from=translated src=- shape=b8642955 vocab=3f9029fa
+-/
 theorem nearestQEvenShift_sq_dvd
     (q : Nat)
     (hq : 6 ≤ q)
@@ -1084,7 +1184,9 @@ theorem nearestQEvenShift_sq_dvd
 
 /--
 For even `q ≥ 6`, every power of the additive shift
-with exponent at least two is divisible by `2^q`.-/
+with exponent at least two is divisible by `2^q`.
+@isnad1 id=dvd.3h2v.s6.2a16ce931a3d from=translated src=- shape=52133765 vocab=3f9029fa
+-/
 theorem nearestQEvenShift_pow_dvd
     (q j : Nat)
     (hq : 6 ≤ q)
@@ -1103,7 +1205,9 @@ theorem nearestQEvenShift_pow_dvd
 
 /--
 Every binomial term containing at least the square
-of the additive shift is divisible by `2^q`.-/
+of the additive shift is divisible by `2^q`.
+@isnad1 id=dvd.3h3v.s7.ffd74d6d95f8 from=translated src=- shape=37d2125a vocab=ddf60c8d
+-/
 theorem nearestQHigherBinomialTerm_dvd
     (q r j : Nat)
     (hq : 6 ≤ q)
@@ -1126,7 +1230,9 @@ theorem nearestQHigherBinomialTerm_dvd
 
 /--
 Every positive-index term in the binomial expansion
-is divisible by `2^q`.-/
+is divisible by `2^q`.
+@isnad1 id=dvd.3h3v.s7.01a7de03ec83 from=translated src=- shape=3e28cb1f vocab=a81b1619
+-/
 theorem nearestQPositiveBinomialTerm_dvd
     (q r j : Nat)
     (hq : 6 ≤ q)
@@ -1163,7 +1269,9 @@ def nearestQBinomialTail
 
 /--
 For even `q ≥ 6`, the complete positive-index
-binomial tail is divisible by `2^q`.-/
+binomial tail is divisible by `2^q`.
+@isnad1 id=dvd.2h2v.s5.db99fdf729e1 from=translated src=- shape=a6b2f86d vocab=008b72ce
+-/
 theorem nearestQBinomialTail_dvd
     (q r : Nat)
     (hq : 6 ≤ q)
@@ -1184,7 +1292,9 @@ theorem nearestQBinomialTail_dvd
 
 /--
 The binomial expansion splits into its zero-index term
-and the positive-index tail.-/
+and the positive-index tail.
+@isnad1 id=eq.0h2v.s6.1336afba9081 from=translated src=- shape=ae13ce27 vocab=89e49af8
+-/
 theorem nearestQAddPow_eq_base_add_tail
     (q r : Nat) :
     ((2 * r + 1) + nearestQEvenShift q) ^ q =
@@ -1246,7 +1356,9 @@ theorem nearestQAddPow_eq_base_add_tail
 
 /--
 For even `q ≥ 6`, adding the even-case base shift
-does not change the q-th power modulo `2^q`.-/
+does not change the q-th power modulo `2^q`.
+@isnad1 id=modeq.2h2v.s6.9be5196b537a from=translated src=- shape=b0150b2c vocab=e5c74b0b
+-/
 theorem nearestQAddShift_pow_modEq
     (q r : Nat)
     (hq : 6 ≤ q)
@@ -1271,7 +1383,9 @@ theorem nearestQAddShift_pow_modEq
 /--
 For even `q ≥ 6`, shifting the index by the expected
 period does not change the corresponding odd q-th power
-modulo `2^q`.-/
+modulo `2^q`.
+@isnad1 id=modeq.2h2v.s6.699621161aea from=translated src=- shape=344c8c5a vocab=18ccb0aa
+-/
 theorem nearestQOddPower_add_evenPeriod_modEq
     (q r : Nat)
     (hq : 6 ≤ q)
@@ -1293,7 +1407,9 @@ For even `q ≥ 6`, the expected period
 
 `2^(q - 1 - ν₂(q))`
 
-is a period of the nearest-root power-residue sequence.-/
+is a period of the nearest-root power-residue sequence.
+@isnad1 id=periodic.2h1v.s4.6781dd128726 from=translated src=- shape=94db5565 vocab=4ef714f4
+-/
 theorem nearestQPowerResidueAt_even_periodic
     (q : Nat)
     (hq : 6 ≤ q)
@@ -1320,7 +1436,9 @@ def nearestQEvenResidueHalfPeriod
 
 /--
 For even `q ≥ 6`, twice the half-period is exactly
-the expected period.-/
+the expected period.
+@isnad1 id=eq.2h1v.s5.b526a3b7d475 from=translated src=- shape=d6adb4b5 vocab=48263cae
+-/
 theorem two_mul_nearestQEvenResidueHalfPeriod
     (q : Nat)
     (hq : 6 ≤ q)
@@ -1351,7 +1469,9 @@ theorem two_mul_nearestQEvenResidueHalfPeriod
 
 /--
 At the half-period index, the corresponding odd base
-is one plus the expected full period.-/
+is one plus the expected full period.
+@isnad1 id=eq.2h1v.s5.5ca236c4e652 from=translated src=- shape=e271c73d vocab=c0533a65
+-/
 theorem nearestQOddBase_at_evenHalfPeriod
     (q : Nat)
     (hq : 6 ≤ q)
@@ -1367,7 +1487,9 @@ theorem nearestQOddBase_at_evenHalfPeriod
 /--
 For even `q ≥ 6`, the linear binomial term `q * P_q`
 contains exactly the factor `2^(q - 1)`, multiplied by
-the odd part of `q`.-/
+the odd part of `q`.
+@isnad1 id=eq.2h1v.s6.03525e3801ee from=translated src=- shape=5899def4 vocab=72c63c9f
+-/
 theorem nearestQEvenLinearTerm_eq
     (q : Nat)
     (hq : 6 ≤ q)
@@ -1413,7 +1535,9 @@ theorem nearestQEvenLinearTerm_eq
 
 /--
 For even `q ≥ 6`, the linear term `q * P_q`
-is not divisible by `2^q`.-/
+is not divisible by `2^q`.
+@isnad1 id=not.2h1v.s5.02b5f28449d6 from=translated src=- shape=699d29e8 vocab=ffa5e0b0
+-/
 theorem nearestQEvenLinearTerm_not_dvd
     (q : Nat)
     (hq : 6 ≤ q)
@@ -1463,7 +1587,9 @@ theorem nearestQEvenLinearTerm_not_dvd
 
 /--
 For `q ≥ 6`, twice the two-adic order of `q`,
-plus two, does not exceed `q`.-/
+plus two, does not exceed `q`.
+@isnad1 id=le.2h1v.s5.a7608c40ee3d from=translated src=- shape=4f7d6111 vocab=76447268
+-/
 theorem nearestQTwoAdicOrder_double_add_two_le_of_even_ge_six
     (q : Nat)
     (hq : 6 ≤ q)
@@ -1511,7 +1637,9 @@ theorem nearestQTwoAdicOrder_double_add_two_le_of_even_ge_six
 
 /--
 For even `q ≥ 6`, the square of the expected period
-is divisible by `2^q`.-/
+is divisible by `2^q`.
+@isnad1 id=dvd.2h1v.s5.679da8a77ea1 from=translated src=- shape=b8642955 vocab=0789e225
+-/
 theorem nearestQEvenResiduePeriod_sq_dvd
     (q : Nat)
     (hq : 6 ≤ q)
@@ -1534,7 +1662,9 @@ theorem nearestQEvenResiduePeriod_sq_dvd
 
 /--
 For even `q ≥ 6`, every power of the expected period
-with exponent at least two is divisible by `2^q`.-/
+with exponent at least two is divisible by `2^q`.
+@isnad1 id=dvd.3h2v.s6.050d589703b0 from=translated src=- shape=52133765 vocab=0789e225
+-/
 theorem nearestQEvenResiduePeriod_pow_dvd
     (q j : Nat)
     (hq : 6 ≤ q)
@@ -1553,7 +1683,9 @@ theorem nearestQEvenResiduePeriod_pow_dvd
 
 /--
 Every binomial term of degree at least two in
-the expected period is divisible by `2^q`.-/
+the expected period is divisible by `2^q`.
+@isnad1 id=dvd.3h2v.s6.5f2732d09a06 from=translated src=- shape=f7cb9da9 vocab=6df8e2fa
+-/
 theorem nearestQEvenHigherBinomialTerm_dvd
     (q j : Nat)
     (hq : 6 ≤ q)
@@ -1587,7 +1719,9 @@ def nearestQEvenNonlinearTail
 
 /--
 For even `q ≥ 6`, the complete nonlinear part of the
-binomial expansion of `(1 + P_q)^q` is divisible by `2^q`.-/
+binomial expansion of `(1 + P_q)^q` is divisible by `2^q`.
+@isnad1 id=dvd.2h1v.s5.bd3da7bf22c5 from=translated src=- shape=3187fb21 vocab=f1013fe6
+-/
 theorem nearestQEvenNonlinearTail_dvd
     (q : Nat)
     (hq : 6 ≤ q)
@@ -1615,7 +1749,9 @@ theorem nearestQEvenNonlinearTail_dvd
 
 /--
 The binomial expansion of `(1 + P_q)^q` consists of
-the constant term, the linear term, and the nonlinear tail.-/
+the constant term, the linear term, and the nonlinear tail.
+@isnad1 id=eq.1h1v.s6.6ed73ab98657 from=translated src=- shape=42c7be46 vocab=22c9f36f
+-/
 theorem nearestQOneAddEvenPeriod_pow_eq
     (q : Nat)
     (hq : 1 ≤ q) :
@@ -1739,7 +1875,9 @@ theorem nearestQOneAddEvenPeriod_pow_eq
 
 /--
 For even `q ≥ 6`, the value `(1 + P_q)^q - 1`
-is not divisible by `2^q`.-/
+is not divisible by `2^q`.
+@isnad1 id=not.2h1v.s6.9884b023c421 from=translated src=- shape=c84c51e6 vocab=7b5e5835
+-/
 theorem nearestQOneAddEvenPeriod_pow_sub_one_not_dvd
     (q : Nat)
     (hq : 6 ≤ q)
@@ -1799,7 +1937,9 @@ theorem nearestQOneAddEvenPeriod_pow_sub_one_not_dvd
 
 /--
 For even `q ≥ 6`, the residue at the half-period index
-differs from the initial residue.-/
+differs from the initial residue.
+@isnad1 id=ne.2h1v.s4.9758a24c7475 from=translated src=- shape=0214c189 vocab=5f625534
+-/
 theorem nearestQPowerResidueAt_evenHalfPeriod_ne_initial
     (q : Nat)
     (hq : 6 ≤ q)
@@ -1863,7 +2003,9 @@ theorem nearestQPowerResidueAt_evenHalfPeriod_ne_initial
 
 /--
 For even `q ≥ 6`, half of the expected period
-is not itself a period of the residue sequence.-/
+is not itself a period of the residue sequence.
+@isnad1 id=not.2h1v.s4.c8910605e19c from=translated src=- shape=53f92811 vocab=07ed7da5
+-/
 theorem nearestQPowerResidueAt_evenHalfPeriod_not_periodic
     (q : Nat)
     (hq : 6 ≤ q)
@@ -1879,7 +2021,9 @@ theorem nearestQPowerResidueAt_evenHalfPeriod_not_periodic
     hperiod 0
 
 /--
-Every natural multiple of a period is again a period.-/
+Every natural multiple of a period is again a period.
+@isnad1 id=periodic.1h4v.s4.2350ddfbb899 from=translated src=- shape=f0b3f40c vocab=a63bfc85
+-/
 theorem natPeriodic_mul
     {α : Type*}
     (f : Nat → α)
@@ -1890,7 +2034,9 @@ theorem natPeriodic_mul
 
 /--
 If `P` and `d` are periods of a sequence on the naturals,
-then `P % d` is also a period.-/
+then `P % d` is also a period.
+@isnad1 id=periodic.2h4v.s5.8d2c23aeca6c from=translated src=- shape=d2abe59f vocab=a23a0970
+-/
 theorem natPeriodic_mod
     {α : Type*}
     (f : Nat → α)
@@ -1920,7 +2066,9 @@ theorem natPeriodic_mod
 
 /--
 The greatest common divisor of two natural periods
-is again a period.-/
+is again a period.
+@isnad1 id=periodic.2h4v.s5.cf874ca9d42e from=translated src=- shape=89b11ab1 vocab=4c051c1c
+-/
 theorem natPeriodic_gcd
     {α : Type*}
     (f : Nat → α)
@@ -1944,7 +2092,9 @@ theorem natPeriodic_gcd
 /--
 For even `q ≥ 6`, the gcd of the expected period
 and any other period is itself a period of the
-nearest-root residue sequence.-/
+nearest-root residue sequence.
+@isnad1 id=periodic.3h2v.s5.d5201fe23ff2 from=translated src=- shape=31a8ade4 vocab=1e62ae1d
+-/
 theorem nearestQPowerResidueAt_even_gcd_periodic
     (q d : Nat)
     (hq : 6 ≤ q)
@@ -1969,7 +2119,9 @@ theorem nearestQPowerResidueAt_even_gcd_periodic
 
 /--
 Every proper natural divisor of `2^e`
-already divides `2^(e - 1)`.-/
+already divides `2^(e - 1)`.
+@isnad1 id=dvd.2h2v.s6.530dd3e00185 from=translated src=- shape=47f1cac4 vocab=2adff775
+-/
 theorem natProperDivisor_twoPow_dvd_predPow
     (a e : Nat)
     (ha : a ∣ 2 ^ e)
@@ -1995,7 +2147,9 @@ theorem natProperDivisor_twoPow_dvd_predPow
 /--
 If `d` is positive and strictly smaller than the expected
 even-case period, then its gcd with that period divides
-the expected half-period.-/
+the expected half-period.
+@isnad1 id=dvd.4h2v.s5.f66577459465 from=translated src=- shape=7c7630a4 vocab=48edb3f6
+-/
 theorem nearestQEvenGcd_dvd_halfPeriod
     (q d : Nat)
     (hq : 6 ≤ q)
@@ -2067,7 +2221,9 @@ theorem nearestQEvenGcd_dvd_halfPeriod
 
 /--
 For even `q ≥ 6`, every positive period of the
-nearest-root residue sequence is at least the expected period.-/
+nearest-root residue sequence is at least the expected period.
+@isnad1 id=le.4h2v.s5.60a02d43b63c from=translated src=- shape=b30670f1 vocab=64895257
+-/
 theorem nearestQPowerResidueAt_even_period_le
     (q d : Nat)
     (hq : 6 ≤ q)
@@ -2114,7 +2270,9 @@ theorem nearestQPowerResidueAt_even_period_le
 For even `q ≥ 6`, the exact least positive period of the
 nearest-root residue sequence is
 
-`2^(q - 1 - ν₂(q))`.-/
+`2^(q - 1 - ν₂(q))`.
+@isnad1 id=isleastp.2h1v.s4.4c3765d566cf from=translated src=- shape=1b3b1243 vocab=7d7aad8f
+-/
 theorem nearestQPowerResidueAt_even_isLeastPositivePeriod
     (q : Nat)
     (hq : 6 ≤ q)
@@ -2139,7 +2297,9 @@ theorem nearestQPowerResidueAt_even_isLeastPositivePeriod
 /--
 For even `q ≥ 6`, the exact least positive period of
 the nearest-root correction sequence is the same as
-that of the residue sequence.-/
+that of the residue sequence.
+@isnad1 id=isleastp.2h1v.s4.72b34f7ec6cb from=translated src=- shape=02490f5b vocab=e52d03df
+-/
 theorem nearestQOmegaAt_even_isLeastPositivePeriod
     (q : Nat)
     (hq : 6 ≤ q)
@@ -2158,7 +2318,9 @@ theorem nearestQOmegaAt_even_isLeastPositivePeriod
 For even `q ≥ 6`, the exact least positive period of
 the correction sequence is explicitly
 
-`2^(q - 1 - ν₂(q))`.-/
+`2^(q - 1 - ν₂(q))`.
+@isnad1 id=isleastp.2h1v.s5.3931cd4301f6 from=translated src=- shape=dad7ae83 vocab=9a8a2fc1
+-/
 theorem nearestQOmegaAt_even_exactPeriod_formula
     (q : Nat)
     (hq : 6 ≤ q)
@@ -2190,7 +2352,9 @@ def nearestQExactPeriod
 
 /--
 For every positive exponent, `nearestQExactPeriod q`
-is the exact least positive period of the residue sequence.-/
+is the exact least positive period of the residue sequence.
+@isnad1 id=isleastp.1h1v.s4.c48027727789 from=translated src=- shape=9c8b14d8 vocab=90452f01
+-/
 theorem nearestQPowerResidueAt_isLeastPeriod
     (q : Nat)
     (hq : 0 < q) :
@@ -2249,7 +2413,9 @@ theorem nearestQPowerResidueAt_isLeastPeriod
 /--
 For every positive exponent, `nearestQExactPeriod q`
 is also the exact least positive period of the
-nearest-root correction sequence.-/
+nearest-root correction sequence.
+@isnad1 id=isleastp.1h1v.s4.a307d4a71bd0 from=translated src=- shape=e8ad9c19 vocab=cdf37c50
+-/
 theorem nearestQOmegaAt_isLeastPeriod
     (q : Nat)
     (hq : 0 < q) :

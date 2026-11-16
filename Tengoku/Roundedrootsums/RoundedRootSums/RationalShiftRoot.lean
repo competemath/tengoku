@@ -52,7 +52,9 @@ noncomputable def shiftedRealRoundedSum
     shiftedRealRoundedValue q a b k)
 
 /--
-The real q-th root of a natural number is nonnegative.-/
+The real q-th root of a natural number is nonnegative.
+@isnad1 id=le.0h2v.s4.9477fffd1099 from=translated src=- shape=5ffe46ab vocab=87eaaaa7
+-/
 theorem shiftedRealRoot_nonneg
     (q k : Nat) :
     0 ≤ shiftedRealRoot q k := by
@@ -60,7 +62,9 @@ theorem shiftedRealRoot_nonneg
   exact Real.rpow_nonneg (by positivity) _
 
 /--
-The shifted real-root argument is nonnegative when `b > 0`.-/
+The shifted real-root argument is nonnegative when `b > 0`.
+@isnad1 id=le.1h4v.s5.e57f84f63f5f from=translated src=- shape=da597156 vocab=96639196
+-/
 theorem shiftedRealRoundedArgument_nonneg
     (q a b k : Nat)
     (hb : 0 < b) :
@@ -77,7 +81,9 @@ theorem shiftedRealRoundedArgument_nonneg
 
 /--
 The shifted real base corresponding to level `m + 1`
-is nonnegative under the standard assumptions `a < b`.-/
+is nonnegative under the standard assumptions `a < b`.
+@isnad1 id=le.2h3v.s6.e76d9fb3c29e from=translated src=- shape=babd756b vocab=24884ef7
+-/
 theorem shiftedRealBase_nonneg
     (a b m : Nat)
     (hb : 0 < b)
@@ -99,7 +105,9 @@ theorem shiftedRealBase_nonneg
 
 /--
 For a positive exponent `q`, lying below the real q-th root
-is equivalent to the corresponding q-th power inequality.-/
+is equivalent to the corresponding q-th power inequality.
+@isnad1 id=iff.3h5v.s7.433b44e7d4ff from=translated src=- shape=ed28b5be vocab=10e838af
+-/
 theorem shiftedRealBase_le_root_iff
     (q a b k m : Nat)
     (hq : 0 < q)
@@ -128,7 +136,9 @@ theorem shiftedRealBase_le_root_iff
 /--
 A positive integer level `m + 1` lies below the natural floor
 of the shifted real q-th root exactly when its shifted q-th
-power does not exceed `k`.-/
+power does not exceed `k`.
+@isnad1 id=iff.3h5v.s6.3a4c78346bff from=translated src=- shape=e07be097 vocab=ee79e3d3
+-/
 theorem shiftedLevel_le_realRoundedValue_iff
     (q a b k m : Nat)
     (hq : 0 < q)
@@ -164,7 +174,9 @@ theorem shiftedLevel_le_realRoundedValue_iff
 
 /--
 The shifted power inequality over the reals is equivalent to
-the corresponding inequality over the rationals.-/
+the corresponding inequality over the rationals.
+@isnad1 id=iff.0h5v.s6.36dba2e6a1b0 from=translated src=- shape=55d06fe3 vocab=a55041b4
+-/
 theorem shiftedRealPower_le_iff_ratPower
     (q a b k m : Nat) :
     ((((m + 1 : Nat) : Real) -
@@ -189,7 +201,9 @@ theorem shiftedRealPower_le_iff_ratPower
 /--
 A positive integer level lies below the natural floor of the
 shifted real q-th root exactly when the corresponding rational
-shifted power does not exceed `k`.-/
+shifted power does not exceed `k`.
+@isnad1 id=iff.3h5v.s6.d1a570391a0d from=translated src=- shape=e07be097 vocab=cd275479
+-/
 theorem shiftedLevel_le_realRoundedValue_iff_ratPower
     (q a b k m : Nat)
     (hq : 0 < q)
@@ -215,7 +229,9 @@ theorem shiftedLevel_le_realRoundedValue_iff_ratPower
 
 /--
 Once the level bound `t` is at least the shifted real rounded value,
-the direct rational-power count equals that rounded value.-/
+the direct rational-power count equals that rounded value.
+@isnad1 id=eq.4h5v.s5.4ae00564fd82 from=translated src=- shape=0f11ea7b vocab=4f5ad95a
+-/
 theorem shiftedPowerCount_eq_realRoundedValue_of_le
     (q a b k t : Nat)
     (hq : 0 < q)
@@ -258,7 +274,9 @@ theorem shiftedPowerCount_eq_realRoundedValue_of_le
 
 /--
 Using the shifted real rounded value itself as the level bound,
-the rational-power count returns exactly that value.-/
+the rational-power count returns exactly that value.
+@isnad1 id=eq.3h4v.s5.b269557c93cc from=translated src=- shape=d4890b97 vocab=f6093008
+-/
 theorem shiftedPowerCount_at_realRoundedValue
     (q a b k : Nat)
     (hq : 0 < q)
@@ -275,7 +293,9 @@ theorem shiftedPowerCount_at_realRoundedValue
 
 /--
 For a positive exponent `q`, the real q-th root of `k`
-is at most `k`.-/
+is at most `k`.
+@isnad1 id=le.1h2v.s4.729912df2c91 from=translated src=- shape=419b4324 vocab=4871d3f0
+-/
 theorem shiftedRealRoot_le_nat
     (q k : Nat)
     (hq : 0 < q) :
@@ -297,7 +317,9 @@ theorem shiftedRealRoot_le_nat
 
 /--
 Under the standard assumptions, the shifted rounded value at `k`
-is at most `k + 1`.-/
+is at most `k + 1`.
+@isnad1 id=le.3h4v.s5.855ea373c9eb from=translated src=- shape=139d84d6 vocab=fbdae3cf
+-/
 theorem shiftedRealRoundedValue_le_succ
     (q a b k : Nat)
     (hq : 0 < q)
@@ -326,7 +348,9 @@ theorem shiftedRealRoundedValue_le_succ
 
 /--
 For `k ≤ n`, the common level bound `n + 1` is large enough
-to recover the full shifted real rounded value.-/
+to recover the full shifted real rounded value.
+@isnad1 id=eq.4h5v.s6.9931b9c602a7 from=translated src=- shape=a8fc4095 vocab=fd39d441
+-/
 theorem shiftedPowerCount_eq_realRoundedValue_commonBound
     (q a b n k : Nat)
     (hq : 0 < q)
@@ -344,7 +368,9 @@ theorem shiftedPowerCount_eq_realRoundedValue_commonBound
 
 /--
 The sum written with real q-th roots and natural floors agrees
-with the rational-power counting model.-/
+with the rational-power counting model.
+@isnad1 id=eq.3h4v.s5.63245944436a from=translated src=- shape=02d96a70 vocab=3dd39342
+-/
 theorem shiftedRealRoundedSum_eq_powerRoundedSum
     (q a b n : Nat)
     (hq : 0 < q)
@@ -364,7 +390,9 @@ theorem shiftedRealRoundedSum_eq_powerRoundedSum
 
 /--
 The natural maximal level is exactly the shifted real rounded
-value evaluated at `n`.-/
+value evaluated at `n`.
+@isnad1 id=eq.3h4v.s5.fe01fb439966 from=translated src=- shape=02d96a70 vocab=4126b4ca
+-/
 theorem shiftedMaxLevel_eq_realRoundedValue
     (q a b n : Nat)
     (hq : 0 < q)
@@ -385,7 +413,9 @@ This is the explicit formula
 
 where
 
-`t = ⌊n^(1/q) + a / b⌋`.-/
+`t = ⌊n^(1/q) + a / b⌋`.
+@isnad1 id=eq.3h4v.s6.9b209864ce17 from=translated src=- shape=5fa67eb9 vocab=43d84ab5
+-/
 theorem shiftedRealRoundedSum_explicit_formula
     (q a b n : Nat)
     (hq : 0 < q)

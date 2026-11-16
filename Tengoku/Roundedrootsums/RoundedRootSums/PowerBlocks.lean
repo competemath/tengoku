@@ -27,14 +27,18 @@ def squareBlock (m : Nat) : Finset Nat :=
   Finset.Icc (m ^ 2) ((m + 1) ^ 2 - 1)
 
 /--
-Membership in a square-root block.-/
+Membership in a square-root block.
+@isnad1 id=iff.0h2v.s6.1d3000c213e2 from=translated src=- shape=e7b77f9f vocab=29a3fb2f
+-/
 theorem mem_squareBlock_iff (m k : Nat) :
     k ∈ squareBlock m ↔
       m ^ 2 ≤ k ∧ k ≤ (m + 1) ^ 2 - 1 := by
   simp [squareBlock]
 
 /--
-Every element of the square-root block has integer square root equal to `m`.-/
+Every element of the square-root block has integer square root equal to `m`.
+@isnad1 id=eq.1h2v.s6.6820b4c85e11 from=translated src=- shape=00f4b682 vocab=41fa939d
+-/
 theorem sqrt_const_on_squareBlock
     (m t : Nat)
     (ht : t < 2 * m + 1) :

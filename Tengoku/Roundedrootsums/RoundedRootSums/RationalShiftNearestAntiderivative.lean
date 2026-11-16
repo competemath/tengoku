@@ -31,7 +31,9 @@ def nearestQCenteredOmegaAt
 
 /--
 For every positive `q`, the centered correction sequence has
-period `nearestQExactPeriod q`.-/
+period `nearestQExactPeriod q`.
+@isnad1 id=periodic.1h1v.s4.a9e45593da58 from=translated src=- shape=26fcee47 vocab=afb61fa7
+-/
 theorem nearestQCenteredOmegaAt_periodic
     (q : Nat)
     (hq : 0 < q) :
@@ -50,7 +52,9 @@ theorem nearestQCenteredOmegaAt_periodic
 
 /--
 For every positive `q`, the sum of the centered correction
-sequence over one exact period is zero.-/
+sequence over one exact period is zero.
+@isnad1 id=eq.1h1v.s4.84c2a2cb8753 from=translated src=- shape=360b44f8 vocab=0c40578b
+-/
 theorem nearestQCenteredOmegaAt_exactPeriod_sum_zero
     (q : Nat)
     (hq : 0 < q) :
@@ -91,7 +95,9 @@ def nearestQOmegaTildeAt
       nearestQCenteredOmegaAt q r)
 
 /--
-The periodic antiderivative is normalized to vanish at zero.-/
+The periodic antiderivative is normalized to vanish at zero.
+@isnad1 id=eq.0h1v.s4.4ee963a9a8eb from=translated src=- shape=8fc7241c vocab=fc9d762b
+-/
 @[simp]
 theorem nearestQOmegaTildeAt_zero
     (q : Nat) :
@@ -100,7 +106,9 @@ theorem nearestQOmegaTildeAt_zero
 
 /--
 The centered prefix-sum construction is periodic with
-period `nearestQExactPeriod q`.-/
+period `nearestQExactPeriod q`.
+@isnad1 id=periodic.0h1v.s3.edfbcb8c74c6 from=translated src=- shape=5c4c3a1a vocab=9bd677af
+-/
 theorem nearestQOmegaTildeAt_periodic
     (q : Nat) :
     Function.Periodic
@@ -113,7 +121,9 @@ theorem nearestQOmegaTildeAt_periodic
 /--
 The centered nearest-root correction at an arbitrary index
 equals its value at the corresponding residue modulo the
-exact period.-/
+exact period.
+@isnad1 id=eq.1h2v.s4.4e9b86b6e692 from=translated src=- shape=ef90cc8b vocab=7b87f13e
+-/
 theorem nearestQCenteredOmegaAt_mod_eq
     (q t : Nat)
     (hq : 0 < q) :
@@ -127,7 +137,9 @@ theorem nearestQCenteredOmegaAt_mod_eq
 /--
 Away from the end of the exact period, increasing the index
 by one adds the corresponding centered correction term to
-the periodic antiderivative.-/
+the periodic antiderivative.
+@isnad1 id=eq.2h2v.s6.42c8833ae2fe from=translated src=- shape=960156c6 vocab=e5514d29
+-/
 theorem nearestQOmegaTildeAt_succ_of_mod_succ_lt
     (q t : Nat)
     (hq : 0 < q)
@@ -157,7 +169,9 @@ theorem nearestQOmegaTildeAt_succ_of_mod_succ_lt
 /--
 At the end of the exact period, increasing the index by one
 resets the periodic antiderivative to zero. The zero-sum
-identity over the full period gives the same increment formula.-/
+identity over the full period gives the same increment formula.
+@isnad1 id=eq.2h2v.s6.7ce10526e1a8 from=translated src=- shape=7f797197 vocab=e5514d29
+-/
 theorem nearestQOmegaTildeAt_succ_of_mod_succ_eq
     (q t : Nat)
     (hq : 0 < q)
@@ -237,7 +251,9 @@ theorem nearestQOmegaTildeAt_succ_of_mod_succ_eq
 /--
 For every index, increasing the argument by one adds exactly
 the corresponding centered correction term to the periodic
-antiderivative.-/
+antiderivative.
+@isnad1 id=eq.1h2v.s5.0a51342b08c8 from=translated src=- shape=17cf03f6 vocab=58f8031c
+-/
 theorem nearestQOmegaTildeAt_succ
     (q t : Nat)
     (hq : 0 < q) :
@@ -266,7 +282,9 @@ theorem nearestQOmegaTildeAt_succ
 
 /--
 The first difference of the periodic antiderivative is the
-centered nearest-root correction sequence.-/
+centered nearest-root correction sequence.
+@isnad1 id=eq.1h2v.s5.6391404fe78a from=translated src=- shape=9e409aca vocab=b90da21e
+-/
 theorem nearestQOmegaTildeAt_succ_sub
     (q t : Nat)
     (hq : 0 < q) :
@@ -283,7 +301,9 @@ theorem nearestQOmegaTildeAt_succ_sub
 Equivalently, the first difference of the periodic
 antiderivative is
 
-`ω_q(t) - μ_q`.-/
+`ω_q(t) - μ_q`.
+@isnad1 id=eq.1h2v.s5.dd893a2058bc from=translated src=- shape=f2b07145 vocab=bb3116ac
+-/
 theorem nearestQOmegaTildeAt_succ_sub_eq_omega_sub_mean
     (q t : Nat)
     (hq : 0 < q) :
@@ -299,7 +319,9 @@ theorem nearestQOmegaTildeAt_succ_sub_eq_omega_sub_mean
 
 /--
 Inside the first exact period, the periodic antiderivative
-is the ordinary centered prefix sum.-/
+is the ordinary centered prefix sum.
+@isnad1 id=eq.1h2v.s4.52ba19355831 from=translated src=- shape=6aecc6ca vocab=eafdd147
+-/
 theorem nearestQOmegaTildeAt_eq_prefixSum_of_lt_period
     (q r : Nat)
     (hr :
@@ -314,7 +336,9 @@ theorem nearestQOmegaTildeAt_eq_prefixSum_of_lt_period
 
 /--
 Every period of the periodic antiderivative is also a period
-of the centered nearest-root correction sequence.-/
+of the centered nearest-root correction sequence.
+@isnad1 id=periodic.2h2v.s4.01955bfffa85 from=translated src=- shape=094c3536 vocab=80c5ea69
+-/
 theorem nearestQCenteredOmegaAt_periodic_of_omegaTilde_periodic
     (q d : Nat)
     (hq : 0 < q)
@@ -357,7 +381,9 @@ theorem nearestQCenteredOmegaAt_periodic_of_omegaTilde_periodic
 
 /--
 Every positive period of the periodic antiderivative is at
-least `nearestQExactPeriod q`.-/
+least `nearestQExactPeriod q`.
+@isnad1 id=le.3h2v.s5.b5e41f5563d6 from=translated src=- shape=c40d59d3 vocab=3c0ae579
+-/
 theorem nearestQExactPeriod_le_of_omegaTilde_periodic
     (q d : Nat)
     (hq : 0 < q)
@@ -388,7 +414,9 @@ theorem nearestQExactPeriod_le_of_omegaTilde_periodic
 
 /--
 For every positive exponent `q`, the periodic antiderivative
-has exact least positive period `nearestQExactPeriod q`.-/
+has exact least positive period `nearestQExactPeriod q`.
+@isnad1 id=isleastp.1h1v.s4.417e737f6f01 from=translated src=- shape=e8ad9c19 vocab=ef62d6fc
+-/
 theorem nearestQOmegaTildeAt_isLeastPeriod
     (q : Nat)
     (hq : 0 < q) :
@@ -422,7 +450,9 @@ def nearestQNormalizedResidueAt
 For every positive `q`, the power residue is reconstructed
 from its normalized parameter by
 
-`ρ_q(r) = 1 + 2^d_q * σ_q(r)`.-/
+`ρ_q(r) = 1 + 2^d_q * σ_q(r)`.
+@isnad1 id=eq.1h2v.s5.1a725da45b96 from=translated src=- shape=4bf73a65 vocab=3d206d0d
+-/
 theorem nearestQPowerResidueAt_eq_one_add_step_mul_normalized
     (q r : Nat)
     (hq : 0 < q) :
@@ -466,7 +496,9 @@ theorem nearestQPowerResidueAt_eq_one_add_step_mul_normalized
 For every positive `q`, the normalized residue parameter
 lies strictly below the predicted image size
 
-`M_q = 2^(q - d_q)`.-/
+`M_q = 2^(q - d_q)`.
+@isnad1 id=lt.1h2v.s4.e6081672825c from=translated src=- shape=d8a819b4 vocab=bc2eb307
+-/
 theorem nearestQNormalizedResidueAt_lt_imageSize
     (q r : Nat)
     (hq : 0 < q) :
@@ -504,7 +536,9 @@ theorem nearestQNormalizedResidueAt_lt_imageSize
 
 /--
 For every positive `q`, the normalized residue sequence has
-period `nearestQExactPeriod q`.-/
+period `nearestQExactPeriod q`.
+@isnad1 id=periodic.1h1v.s4.0d6ab727b958 from=translated src=- shape=fc6cdde2 vocab=b6662025
+-/
 theorem nearestQNormalizedResidueAt_periodic
     (q : Nat)
     (hq : 0 < q) :
@@ -524,7 +558,9 @@ theorem nearestQNormalizedResidueAt_periodic
 /--
 For every positive exponent `q`, the normalized residue
 sequence has exact least positive period
-`nearestQExactPeriod q`.-/
+`nearestQExactPeriod q`.
+@isnad1 id=isleastp.1h1v.s4.cc5b7781b521 from=translated src=- shape=9c8b14d8 vocab=b73c7adf
+-/
 theorem nearestQNormalizedResidueAt_isLeastPeriod
     (q : Nat)
     (hq : 0 < q) :
@@ -569,7 +605,9 @@ theorem nearestQNormalizedResidueAt_isLeastPeriod
 The centered nearest-root correction has the normalized
 residue form
 
-`(M_q - 1 - 2 * σ_q(r)) / (2 * M_q)`.-/
+`(M_q - 1 - 2 * σ_q(r)) / (2 * M_q)`.
+@isnad1 id=eq.1h2v.s6.01425f1c41a2 from=translated src=- shape=1bc1ecb4 vocab=329a49dc
+-/
 theorem nearestQCenteredOmegaAt_eq_normalizedFormula
     (q r : Nat)
     (hq : 0 < q) :
@@ -623,7 +661,9 @@ theorem nearestQCenteredOmegaAt_eq_normalizedFormula
 
 /--
 The periodic antiderivative is the prefix sum of the
-normalized centered-residue formula.-/
+normalized centered-residue formula.
+@isnad1 id=eq.1h2v.s6.a971b0d3c1d8 from=translated src=- shape=8b186024 vocab=bec07fc7
+-/
 theorem nearestQOmegaTildeAt_eq_normalizedSum
     (q t : Nat)
     (hq : 0 < q) :
@@ -647,7 +687,9 @@ theorem nearestQOmegaTildeAt_eq_normalizedSum
 
 /--
 A finite sum of normalized centered-residue terms can be
-written using the prefix sum of the normalized residues.-/
+written using the prefix sum of the normalized residues.
+@isnad1 id=eq.0h2v.s7.ee1bc7615e85 from=translated src=- shape=f838e499 vocab=d937c31c
+-/
 theorem nearestQNormalizedFormula_sum_eq
     (q n : Nat) :
     Finset.sum
@@ -692,7 +734,9 @@ antiderivative.
 
 Writing `r = t mod P_q`, it is
 
-`(r * (M_q - 1) - 2 * ∑_{j < r} σ_q(j)) / (2 * M_q)`.-/
+`(r * (M_q - 1) - 2 * ∑_{j < r} σ_q(j)) / (2 * M_q)`.
+@isnad1 id=eq.1h2v.s6.3173fe7bcd65 from=translated src=- shape=5e6d050a vocab=bec07fc7
+-/
 theorem nearestQOmegaTildeAt_eq_normalizedPrefixFormula
     (q t : Nat)
     (hq : 0 < q) :
@@ -717,7 +761,9 @@ theorem nearestQOmegaTildeAt_eq_normalizedPrefixFormula
 
 /--
 For `q = 2`, the correction sequence is constant, so its
-centered version vanishes identically.-/
+centered version vanishes identically.
+@isnad1 id=eq.0h1v.s4.d1bb7d14a3c2 from=translated src=- shape=d7485c18 vocab=e3f2b426
+-/
 @[simp]
 theorem nearestQCenteredOmegaAt_two
     (r : Nat) :
@@ -733,7 +779,9 @@ theorem nearestQCenteredOmegaAt_two
 
 /--
 For `q = 4`, the correction sequence is constant, so its
-centered version vanishes identically.-/
+centered version vanishes identically.
+@isnad1 id=eq.0h1v.s4.54b4fb07c688 from=translated src=- shape=d7485c18 vocab=e3f2b426
+-/
 @[simp]
 theorem nearestQCenteredOmegaAt_four
     (r : Nat) :
@@ -749,7 +797,9 @@ theorem nearestQCenteredOmegaAt_four
 
 /--
 For the exceptional exponents `q = 2` and `q = 4`, the
-periodic antiderivative vanishes identically.-/
+periodic antiderivative vanishes identically.
+@isnad1 id=eq.1h2v.s5.01254dc234b4 from=translated src=- shape=0e53ca3a vocab=fc9d762b
+-/
 theorem nearestQOmegaTildeAt_eq_zero_of_exceptional
     (q t : Nat)
     (hExceptional :
@@ -764,7 +814,9 @@ theorem nearestQOmegaTildeAt_eq_zero_of_exceptional
 /--
 If the periodic antiderivative vanishes identically, then
 the centered nearest-root correction sequence also vanishes
-identically.-/
+identically.
+@isnad1 id=eq.2h2v.s5.9b7b84302455 from=translated src=- shape=84af46ba vocab=88e3fd51
+-/
 theorem nearestQCenteredOmegaAt_eq_zero_of_omegaTilde_eq_zero
     (q : Nat)
     (hq : 0 < q)
@@ -786,7 +838,9 @@ theorem nearestQCenteredOmegaAt_eq_zero_of_omegaTilde_eq_zero
 /--
 If the centered correction sequence vanishes identically,
 then the original correction sequence is constant and hence
-has period one.-/
+has period one.
+@isnad1 id=periodic.1h1v.s4.6b535fc3cc88 from=translated src=- shape=79ecb749 vocab=54bdea3b
+-/
 theorem nearestQOmegaAt_periodic_one_of_centered_eq_zero
     (q : Nat)
     (hzero :
@@ -815,7 +869,9 @@ theorem nearestQOmegaAt_periodic_one_of_centered_eq_zero
 /--
 If the periodic antiderivative vanishes identically, then
 the exact least positive period of the correction sequence
-is one.-/
+is one.
+@isnad1 id=eq.2h1v.s5.edda823a64c5 from=translated src=- shape=99cdd659 vocab=64afb4ce
+-/
 theorem nearestQExactPeriod_eq_one_of_omegaTilde_eq_zero
     (q : Nat)
     (hq : 0 < q)
@@ -848,7 +904,9 @@ theorem nearestQExactPeriod_eq_one_of_omegaTilde_eq_zero
 
 /--
 For every exponent `q ≥ 2`, the exact period is one
-if and only if `q = 2` or `q = 4`.-/
+if and only if `q = 2` or `q = 4`.
+@isnad1 id=iff.1h1v.s5.55abfb537bdc from=translated src=- shape=340557f5 vocab=eb3feae1
+-/
 theorem nearestQExactPeriod_eq_one_iff_exceptional
     (q : Nat)
     (hq : 2 ≤ q) :
@@ -910,7 +968,9 @@ theorem nearestQExactPeriod_eq_one_iff_exceptional
 
 /--
 For every `q ≥ 2`, the periodic antiderivative vanishes
-identically if and only if `q = 2` or `q = 4`.-/
+identically if and only if `q = 2` or `q = 4`.
+@isnad1 id=iff.1h1v.s5.1d1c89c8ef3c from=translated src=- shape=84306d76 vocab=a4fd573d
+-/
 theorem nearestQOmegaTildeAt_eq_zero_iff_exceptional
     (q : Nat)
     (hq : 2 ≤ q) :
@@ -934,7 +994,9 @@ theorem nearestQOmegaTildeAt_eq_zero_iff_exceptional
 
 /--
 For every `q ≥ 2`, the centered correction sequence
-vanishes identically if and only if `q = 2` or `q = 4`.-/
+vanishes identically if and only if `q = 2` or `q = 4`.
+@isnad1 id=iff.1h1v.s5.df424450f028 from=translated src=- shape=84306d76 vocab=71e082f9
+-/
 theorem nearestQCenteredOmegaAt_eq_zero_iff_exceptional
     (q : Nat)
     (hq : 2 ≤ q) :
@@ -964,7 +1026,9 @@ theorem nearestQCenteredOmegaAt_eq_zero_iff_exceptional
 The normalized residue sequence has the exact period
 `nearestQExactPeriod q`, takes values below `M_q`, reconstructs
 the original power residue, and gives the centered correction
-through the normalized-residue formula.-/
+through the normalized-residue formula.
+@isnad1 id=and.1h1v.s7.c27f12513e91 from=translated src=- shape=cb22e00b vocab=58e83783
+-/
 theorem nearestQNormalizedResidueMainTheorem
     (q : Nat)
     (hq : 0 < q) :
@@ -1007,7 +1071,9 @@ theorem nearestQNormalizedResidueMainTheorem
 /--
 For every `q ≥ 2`, the periodic antiderivative vanishes
 identically if and only if the centered correction sequence
-vanishes identically.-/
+vanishes identically.
+@isnad1 id=iff.1h1v.s5.f35811ef9398 from=translated src=- shape=ccec76ad vocab=bccf2615
+-/
 theorem nearestQOmegaTildeAt_eq_zero_iff_centeredOmega_eq_zero
     (q : Nat)
     (hq : 2 ≤ q) :
@@ -1035,7 +1101,9 @@ exponent `q ≥ 2`:
   `nearestQExactPeriod q`;
 * its first difference is `ω_q(t) - μ_q`;
 * it has the explicit normalized-residue prefix formula;
-* it vanishes identically precisely for `q = 2` and `q = 4`.-/
+* it vanishes identically precisely for `q = 2` and `q = 4`.
+@isnad1 id=and.1h1v.s7.dea6b8a45870 from=translated src=- shape=2c1f425c vocab=cd0d8d12
+-/
 theorem nearestQPeriodicAntiderivativeMainTheorem
     (q : Nat)
     (hq : 2 ≤ q) :
