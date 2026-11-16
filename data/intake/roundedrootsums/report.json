@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "e8e3d3919a0d5c33aec2800236c4b7dfd37eabe788388e09aa5edb575ec97cdb",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "roundedrootsums",
+ "lint_mode": "proposed",
+ "modules": 32,
+ "part": 1,
+ "theorems": 550
+}
