@@ -271,7 +271,9 @@ private lemma bf_limit_map_surjective
   exact congrArg Subtype.val ha
 
 /-- Back-and-forth assembly: abstract `hforth`/`hback` hypotheses for `BFIsoStep`
-imply the two groups are isomorphic.  Proved in full; no open obligation within.-/
+imply the two groups are isomorphic.  Proved in full; no open obligation within.
+@isnad1 id=nonempty.2h3v.s11.b1aa2a94d5db from=translated src=- shape=744dc513 vocab=bb31c13b
+-/
 lemma _root_.Tengoku.Ulmstheorem.iso_of_ulmInvariant_eq_of_backAndForth
     [Countable G] [Countable H]
     (hforth : ∀ s : BFIsoStep p (G := G) (H := H), ∀ g : G,

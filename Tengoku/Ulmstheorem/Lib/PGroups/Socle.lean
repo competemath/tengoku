@@ -32,12 +32,18 @@ section SocleLemmas
 
 variable {G : Type*} [AddCommGroup G]
 
+/--
+@isnad1 id=iff.0h3v.s6.405c84f5be74 from=translated src=- shape=8a33e6ec vocab=a13b6561
+-/
 @[simp] lemma _root_.Tengoku.Ulmstheorem.mem_pSocle (x : G) : x ∈ pSocle p (G := G) ↔ p • x = 0 := Iff.rfl
 
 /-- The filtered socle `P_α = P ∩ G_α`.-/
 noncomputable def _root_.Tengoku.Ulmstheorem.pSocleAt (α : Ordinal) : AddSubgroup G :=
   pSocle p ⊓ ulmSubgroup p α
 
+/--
+@isnad1 id=iff.0h4v.s6.9a220600e81b from=translated src=- shape=4aa66a38 vocab=c70414a0
+-/
 @[simp] lemma _root_.Tengoku.Ulmstheorem.mem_pSocleAt (α : Ordinal) (x : G) :
     x ∈ pSocleAt p α (G := G) ↔ p • x = 0 ∧ x ∈ ulmSubgroup p α := Iff.rfl
 

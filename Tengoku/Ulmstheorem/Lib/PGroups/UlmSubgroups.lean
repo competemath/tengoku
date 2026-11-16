@@ -30,9 +30,15 @@ section UlmSubgroupLemmas
 
 variable {G : Type*} [AddCommGroup G]
 
+/--
+@isnad1 id=eq.0h2v.s5.9e393a2f1d8c from=translated src=- shape=d29acb2d vocab=de3ba102
+-/
 @[simp] lemma _root_.Tengoku.Ulmstheorem.ulmSubgroup_zero : ulmSubgroup p (0 : Ordinal) (G := G) = ⊤ := by
   rw [ulmSubgroup, Ordinal.limitRecOn_zero]
 
+/--
+@isnad1 id=eq.1h3v.s6.e7a363f64d35 from=translated src=- shape=a2625540 vocab=c9d8365f
+-/
 lemma _root_.Tengoku.Ulmstheorem.ulmSubgroup_limit (o : Ordinal) (ho : Order.IsSuccLimit o) :
     ulmSubgroup p o (G := G) = ⨅ (β : Ordinal) (_ : β < o), ulmSubgroup p β := by
   unfold ulmSubgroup
@@ -43,6 +49,9 @@ lemma _root_.Tengoku.Ulmstheorem.ulmSubgroup_limit (o : Ordinal) (ho : Order.IsS
       (fun o _ho IH ↦ ⨅ (β : Ordinal) (_ : β < o), IH β ‹_›)
       ho)
 
+/--
+@isnad1 id=iff.1h4v.s6.591aec9b407b from=translated src=- shape=6e37fc27 vocab=7ff16589
+-/
 lemma _root_.Tengoku.Ulmstheorem.mem_ulmSubgroup_limit_iff {o : Ordinal} (ho : Order.IsSuccLimit o) (x : G) :
     x ∈ ulmSubgroup p o (G := G) ↔ ∀ β < o, x ∈ ulmSubgroup p β := by
   rw [ulmSubgroup_limit (p := p) (G := G) o ho]

@@ -174,6 +174,9 @@ noncomputable def _root_.Tengoku.Ulmstheorem.kaplanskyStarEquiv
       (s.e.map_add ⟨(x : G), x.property.1⟩ ⟨(y : G), y.property.1⟩)
 
 omit hp in
+/--
+@isnad1 id=eq.0h5v.s9.6dcde14093b1 from=translated src=- shape=e3bacf42 vocab=c4ae4a97
+-/
 lemma _root_.Tengoku.Ulmstheorem.kaplanskyStarEquiv_map_stageAtSucc
     {α : Ordinal.{0}} (s : UlmStageAt p (G := G) (H := H) α) :
     (stageAtSuccInStar p s.A α).map
@@ -221,7 +224,9 @@ noncomputable def _root_.Tengoku.Ulmstheorem.kaplanskyDomainEquiv
     (kaplanskyStarEquiv_map_stageAtSucc p s)
 
 omit hp in
- /-- Trivial extension when the prescribed generator is already in the domain subgroup.-/
+ /-- Trivial extension when the prescribed generator is already in the domain subgroup.
+ @isnad1 id=ex.3h7v.s11.ea098836ac66 from=translated src=- shape=4fba5f14 vocab=85f4bcdd
+ -/
 lemma _root_.Tengoku.Ulmstheorem.extend_by_one_of_mem
     {A : AddSubgroup G}
     {B : AddSubgroup H} (hB : IsPure p B)
@@ -238,7 +243,9 @@ lemma _root_.Tengoku.Ulmstheorem.extend_by_one_of_mem
 
 omit hp in
 /-- Trivial finite-stage extension when the prescribed generator is already in
-the domain subgroup.-/
+the domain subgroup.
+@isnad1 id=ex.6h7v.s11.6ceb31d2a28c from=translated src=- shape=b2898e1a vocab=cc4d3b9b
+-/
 lemma _root_.Tengoku.Ulmstheorem.extend_by_one_fg_of_mem
     {A : AddSubgroup G} (hA : IsPure p A) (hAfg : A.FG)
     {B : AddSubgroup H} (hB : IsPure p B) (hBfg : B.FG)
@@ -257,15 +264,24 @@ lemma _root_.Tengoku.Ulmstheorem.extend_by_one_fg_of_mem
 def _root_.Tengoku.Ulmstheorem.adjoinElem (A : AddSubgroup G) (g : G) : AddSubgroup G :=
   A ⊔ AddSubgroup.closure ({g} : Set G)
 
+/--
+@isnad1 id=le.0h3v.s5.e7702faf35af from=translated src=- shape=90bbb28c vocab=7a6c21bc
+-/
 lemma _root_.Tengoku.Ulmstheorem.le_adjoinElem (A : AddSubgroup G) (g : G) : A ≤ adjoinElem A g := by
   exact le_sup_left
 
+/--
+@isnad1 id=mem.0h3v.s5.7cab925b47f4 from=translated src=- shape=e08c4667 vocab=f32ba179
+-/
 lemma _root_.Tengoku.Ulmstheorem.mem_adjoinElem_right (A : AddSubgroup G) (g : G) :
     g ∈ adjoinElem A g := by
   exact
     (show AddSubgroup.closure ({g} : Set G) ≤ adjoinElem A g from le_sup_right)
       (AddSubgroup.subset_closure (by simp))
 
+/--
+@isnad1 id=fg.1h3v.s4.9af88bd94bf1 from=translated src=- shape=9911b5a5 vocab=f7355421
+-/
 lemma _root_.Tengoku.Ulmstheorem.adjoinElem_fg {A : AddSubgroup G} (hAfg : A.FG) (g : G) :
     (adjoinElem A g).FG := by
   classical
@@ -273,6 +289,9 @@ lemma _root_.Tengoku.Ulmstheorem.adjoinElem_fg {A : AddSubgroup G} (hAfg : A.FG)
   refine hAfg.sup ?_
   exact (AddSubgroup.fg_iff _).2 ⟨{g}, rfl, Set.finite_singleton g⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.12973f44fd84 from=translated src=- shape=13373563 vocab=bf6e84b9
+-/
 lemma _root_.Tengoku.Ulmstheorem.adjoinElem_eq_sup_zmultiples (A : AddSubgroup G) (g : G) :
     adjoinElem A g = A ⊔ AddSubgroup.zmultiples g := by
   unfold adjoinElem

@@ -64,6 +64,9 @@ section HeightLemmas
 
 variable {G : Type*} [AddCommGroup G]
 
+/--
+@isnad1 id=eq.0h2v.s5.f6f2abbd79ae from=translated src=- shape=e318902a vocab=90cbd421
+-/
 @[simp] lemma _root_.Tengoku.Ulmstheorem.pHeight_zero : pHeight p (0 : G) = ⊤ := by
   simp only [pHeight, ite_true]
 

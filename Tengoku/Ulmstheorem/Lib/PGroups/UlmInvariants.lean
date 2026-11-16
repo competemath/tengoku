@@ -126,7 +126,9 @@ abbrev _root_.Tengoku.Ulmstheorem.relativeUlmQuotient (S : AddSubgroup G) (α : 
 noncomputable abbrev _root_.Tengoku.Ulmstheorem.relativeUlmInvariant (S : AddSubgroup G) (α : Ordinal) :=
   hillInvariant p S α
 
-/-- The marked-graded denominator is contained in the Hill denominator.-/
+/-- The marked-graded denominator is contained in the Hill denominator.
+@isnad1 id=le.0h4v.s8.d9bd87a820fd from=translated src=- shape=6655074b vocab=b554fb99
+-/
 lemma _root_.Tengoku.Ulmstheorem.markedGradedSubmodule_le_hillSubmodule (S : AddSubgroup G) (α : Ordinal) :
     markedGradedSubmodule p S α ≤ hillSubmodule p S α := by
   intro x hx
@@ -144,7 +146,9 @@ lemma _root_.Tengoku.Ulmstheorem.markedGradedSubmodule_le_hillSubmodule (S : Add
       exact AddSubgroup.mem_sup_left hy.1
   exact hle hx
 
-/-- The ordinary Ulm denominator `P_(α+1)` is contained in the Hill denominator.-/
+/-- The ordinary Ulm denominator `P_(α+1)` is contained in the Hill denominator.
+@isnad1 id=le.0h4v.s8.b8f8e64d6c31 from=translated src=- shape=bc165838 vocab=fce8cecb
+-/
 lemma _root_.Tengoku.Ulmstheorem.ulmDenSubmodule_le_hillSubmodule (S : AddSubgroup G) (α : Ordinal) :
     ulmDenSubmodule p α ≤ hillSubmodule p S α := by
   intro x hx
@@ -196,7 +200,9 @@ namespace Tengoku.Ulmstheorem.ulmLength
 variable {G : Type*} [AddCommGroup G] (hred : IsReducedPGroup p G)
 
 omit hp in
-/-- The set `{α | p^α·G = 0}` is nonempty for a reduced p-group.-/
+/-- The set `{α | p^α·G = 0}` is nonempty for a reduced p-group.
+@isnad1 id=ex.1h2v.s5.02c8c08ee8de from=translated src=- shape=b0eb717f vocab=6165ddc0
+-/
 lemma exists_zero (hred' : IsReducedPGroup p G) :
     ∃ α : Ordinal.{0}, ulmSubgroup p α (G := G) = ⊥ := by
   exact hred'.reduced

@@ -32,6 +32,9 @@ section PowLemmas
 
 variable {G : Type*} [AddCommGroup G]
 
+/--
+@isnad1 id=iff.0h4v.s6.689b664eac07 from=translated src=- shape=7d04244f vocab=51669942
+-/
 @[simp] lemma _root_.Tengoku.Ulmstheorem.pPow_mem_iff (x : G) (n : ℕ) :
     x ∈ pPow p n ↔ ∃ y : G, p ^ n • y = x := Iff.rfl
 
@@ -55,6 +58,9 @@ section PImageLemmas
 
 variable {G : Type*} [AddCommGroup G]
 
+/--
+@isnad1 id=iff.0h4v.s6.276de0d2ed48 from=translated src=- shape=5009d6f8 vocab=f02eaadd
+-/
 @[simp] lemma _root_.Tengoku.Ulmstheorem.mem_pImage (H : AddSubgroup G) (x : G) :
     x ∈ pImage p H ↔ ∃ y ∈ H, p • y = x := Iff.rfl
 
