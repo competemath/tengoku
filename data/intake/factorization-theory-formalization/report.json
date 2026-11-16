@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "48a90bd196947495f84be2590a0b409f816aa3065621dbaa41b192043c8abd4f",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "factorization-theory-formalization",
+ "lint_mode": "proposed",
+ "modules": 29,
+ "part": 1,
+ "theorems": 234
+}
