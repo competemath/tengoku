@@ -101,8 +101,8 @@ python3 scripts/isnad.py deps --module Tengoku.Seed.Logic.Basic [--ids-stdin < i
 
 For each theorem, the theorems its proof uses **directly**, and the hash of their statement ids: `sha256` of the sorted, distinct ids joined by commas, 12 hex digits (the
 output is `name`, hash, number of dependencies, dependencies without a known id). It is what a proof leans on by *statement*, so renaming a lemma changes nothing and swapping
-it for a lemma that states something else does. Rules: only theorem constants of the proof term count (a definition is not a statement); a theorem the records leave out
-(generated, internal, private) is looked through to the theorems its own proof uses; a theorem is never its own dependency. A dependency whose id is not in the table
+it for a lemma that states something else does. Rules: only theorem constants of the proof term count (a definition the author wrote is not a statement); a theorem the records leave out
+(generated, internal, private) is looked through to the theorems its own proof uses, and so are the auxiliary definitions the elaborator makes for a proof (`foo._f` of a structural recursion, `match_1`, a private helper: without them a proof by structural recursion would have no dependencies); a theorem is never its own dependency. A dependency whose id is not in the table
 (the theorems of the listed modules, plus a table on stdin with `--ids-stdin`, the output of `id` for the other modules) leaves the hash `-`: a hash of part of the set would claim agreement or
 difference the table cannot show. The hash is **not part of any id or tag** and changes no recipe version; the Lean side is `tengoku-isnad --deps`, and CI's `tagtest` checks it on the fixture
 (a theorem with a `where` lemma depends on exactly that lemma).

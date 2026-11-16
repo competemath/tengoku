@@ -232,7 +232,7 @@ def records (env : Environment) (mods : List Name) (names : List Name) : Array S
 
 /-- The theorems a theorem's proof uses directly, by the names the records use: every theorem constant of the proof term that the records list, nothing else. A theorem the
 records leave out (generated and internal: `eq_*`, `proof_*`, a private one) is looked through, to the theorems its own proof uses, because it has no identity to name.
-Definitions are not followed (a definition is not a statement), and the theorem itself is never its own dependency. Sorted, no duplicates. -/
+A definition the author wrote is not followed (a definition is not a statement), but the auxiliary definitions the elaborator makes for a proof are looked through (`Nat.add_comm._f`, `match_1`, a private helper): without that a proof by structural recursion would have no dependencies. The theorem itself is never its own dependency. Sorted, no duplicates. -/
 def directDeps (env : Environment) (self : Name) (value : Expr) : Array String := Id.run do
   let mut found : NameSet := {}
   let mut seen : NameSet := {}
@@ -242,9 +242,15 @@ def directDeps (env : Environment) (self : Name) (value : Expr) : Array String :
     stack := stack.pop
     if seen.contains c || c == self then continue
     seen := seen.insert c
-    let some (.thmInfo t) := env.find? c | continue
-    if !c.isNum && okName c then found := found.insert c
-    else stack := stack ++ t.value.getUsedConstants
+    let named := !c.isNum && okName c
+    match env.find? c with
+    | some (.thmInfo t) =>
+      if named then found := found.insert c
+      else stack := stack ++ t.value.getUsedConstants
+    | some (.defnInfo d) =>
+      -- the auxiliary definitions the elaborator makes for a proof (`foo._f` of a structural recursion, `match_1`, `_unary`, a private helper) hold what the proof leans on: look through them
+      if !named then stack := stack ++ d.value.getUsedConstants
+    | _ => pure ()
   return (found.toList.map (fun c => toString (cleanName c))).toArray.qsort (· < ·)
 
 /-- `isnad1-deps <name> <module> <dependency>…` (tab separated), one line per theorem of `selected`, in the same order as `records`: the direct dependencies of its proof. -/
