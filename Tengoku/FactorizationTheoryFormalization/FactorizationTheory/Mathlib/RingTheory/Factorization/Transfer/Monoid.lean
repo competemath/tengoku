@@ -47,14 +47,18 @@ variable {θ : F}
 
 namespace Tengoku.FactorizationTheoryFormalization.IsTransferHom
 
-/-- If the target of a transfer homomorphism is atomic, so is its source.-/
+/-- If the target of a transfer homomorphism is atomic, so is its source.
+@isnad1 id=atomicmo.1h4v.s5.6cc4461fe624 from=translated src=- shape=a313892c vocab=b4755ba9
+-/
 theorem atomicMonoid (hθ : IsTransferHom θ) [AtomicMonoid β] : AtomicMonoid α := by
   refine ⟨fun a ha ↦ ?_⟩
   obtain ⟨q, hq⟩ := AtomicMonoid.nonempty_factorizations (hθ.map_ne_zero ha)
   obtain ⟨p, hp, -⟩ := hθ.exists_factorizationMap_eq hq
   exact ⟨p, hp⟩
 
-/-- If the source of a transfer homomorphism is atomic, so is its target.-/
+/-- If the source of a transfer homomorphism is atomic, so is its target.
+@isnad1 id=atomicmo.1h4v.s5.df0563ecd8fb from=translated src=- shape=83b3b90f vocab=b4755ba9
+-/
 theorem atomicMonoid_of_source (hθ : IsTransferHom θ) [AtomicMonoid α] : AtomicMonoid β := by
   refine ⟨fun b hb ↦ ?_⟩
   obtain ⟨a, hab⟩ := hθ.exists_associated_map b
@@ -64,7 +68,9 @@ theorem atomicMonoid_of_source (hθ : IsTransferHom θ) [AtomicMonoid α] : Atom
   rw [← hab.factorizations_eq]
   exact hθ.factorizationMap_mem hp
 
-/-- Atomicity is equivalent in the source and target of a transfer homomorphism.-/
+/-- Atomicity is equivalent in the source and target of a transfer homomorphism.
+@isnad1 id=iff.1h4v.s5.418ed4f3f7a4 from=translated src=- shape=b71eb561 vocab=b4755ba9
+-/
 theorem atomicMonoid_iff (hθ : IsTransferHom θ) : AtomicMonoid α ↔ AtomicMonoid β := by
   constructor
   · intro h
@@ -75,7 +81,9 @@ theorem atomicMonoid_iff (hθ : IsTransferHom θ) : AtomicMonoid α ↔ AtomicMo
     exact hθ.atomicMonoid
 
 /-- If the target of a transfer homomorphism is a bounded factorization monoid, so is its
-source.-/
+source.
+@isnad1 id=boundedf.1h4v.s5.376afa8f0641 from=translated src=- shape=a313892c vocab=c50bb7e9
+-/
 theorem boundedFactorizationMonoid (hθ : IsTransferHom θ) [BoundedFactorizationMonoid β] :
     BoundedFactorizationMonoid α where
   toAtomicMonoid := hθ.atomicMonoid
@@ -84,7 +92,9 @@ theorem boundedFactorizationMonoid (hθ : IsTransferHom θ) [BoundedFactorizatio
     exact BoundedFactorizationMonoid.bddAbove_factorizationLengths (hθ.map_ne_zero ha)
 
 /-- If the source of a transfer homomorphism is a bounded factorization monoid, so is its
-target.-/
+target.
+@isnad1 id=boundedf.1h4v.s5.c37e72484de8 from=translated src=- shape=83b3b90f vocab=c50bb7e9
+-/
 theorem boundedFactorizationMonoid_of_source (hθ : IsTransferHom θ)
     [BoundedFactorizationMonoid α] : BoundedFactorizationMonoid β := by
   refine
@@ -96,7 +106,9 @@ theorem boundedFactorizationMonoid_of_source (hθ : IsTransferHom θ)
   exact BoundedFactorizationMonoid.bddAbove_factorizationLengths ha
 
 /-- The bounded factorization property is equivalent in the source and target of a transfer
-homomorphism.-/
+homomorphism.
+@isnad1 id=iff.1h4v.s5.9d270b693168 from=translated src=- shape=b71eb561 vocab=c50bb7e9
+-/
 theorem boundedFactorizationMonoid_iff (hθ : IsTransferHom θ) :
     BoundedFactorizationMonoid α ↔ BoundedFactorizationMonoid β := by
   constructor
@@ -108,7 +120,9 @@ theorem boundedFactorizationMonoid_iff (hθ : IsTransferHom θ) :
     exact hθ.boundedFactorizationMonoid
 
 /-- If the target of a transfer homomorphism is half-factorial, so is its source. This is
-the usual direction for transferring half-factoriality from a simpler target.-/
+the usual direction for transferring half-factoriality from a simpler target.
+@isnad1 id=halffact.1h4v.s5.2a69e87b8b37 from=translated src=- shape=a313892c vocab=00a2a821
+-/
 theorem halfFactorialMonoid (hθ : IsTransferHom θ) [HalfFactorialMonoid β] :
     HalfFactorialMonoid α where
   toAtomicMonoid := hθ.atomicMonoid
@@ -116,7 +130,9 @@ theorem halfFactorialMonoid (hθ : IsTransferHom θ) [HalfFactorialMonoid β] :
     rw [← hθ.factorizationLengths_eq]
     exact HalfFactorialMonoid.subsingleton_factorizationLengths (hθ.map_ne_zero ha)
 
-/-- If the source of a transfer homomorphism is half-factorial, so is its target.-/
+/-- If the source of a transfer homomorphism is half-factorial, so is its target.
+@isnad1 id=halffact.1h4v.s5.cbb11ea282f9 from=translated src=- shape=83b3b90f vocab=00a2a821
+-/
 theorem halfFactorialMonoid_of_source (hθ : IsTransferHom θ) [HalfFactorialMonoid α] :
     HalfFactorialMonoid β := by
   refine
@@ -127,7 +143,9 @@ theorem halfFactorialMonoid_of_source (hθ : IsTransferHom θ) [HalfFactorialMon
   rw [← hab.factorizationLengths_eq, hθ.factorizationLengths_eq]
   exact HalfFactorialMonoid.subsingleton_factorizationLengths ha
 
-/-- Half-factoriality is equivalent in the source and target of a transfer homomorphism.-/
+/-- Half-factoriality is equivalent in the source and target of a transfer homomorphism.
+@isnad1 id=iff.1h4v.s5.0a2752c43de2 from=translated src=- shape=b71eb561 vocab=00a2a821
+-/
 theorem halfFactorialMonoid_iff (hθ : IsTransferHom θ) :
     HalfFactorialMonoid α ↔ HalfFactorialMonoid β := by
   constructor
@@ -139,7 +157,9 @@ theorem halfFactorialMonoid_iff (hθ : IsTransferHom θ) :
     exact hθ.halfFactorialMonoid
 
 /-- Finite factorization transfers from the source of a transfer homomorphism to its target.
-The converse fails in general because distinct source factorizations may have the same image.-/
+The converse fails in general because distinct source factorizations may have the same image.
+@isnad1 id=finitefa.1h4v.s5.e3da4f57c12e from=translated src=- shape=83b3b90f vocab=dd08e427
+-/
 theorem finiteFactorizationMonoid_of_source (hθ : IsTransferHom θ)
     [FiniteFactorizationMonoid α] : FiniteFactorizationMonoid β := by
   refine
@@ -158,7 +178,9 @@ theorem finiteFactorizationMonoid_of_source (hθ : IsTransferHom θ)
 /-- Unique factorization transfers from the source of a transfer homomorphism to a target
 which is already cancellative. The converse is false in general because the transfer map may
 identify distinct source factorizations; cancellativity also cannot be inferred from the
-transfer axioms.-/
+transfer axioms.
+@isnad1 id=uniquefa.1h4v.s6.ccda6c70965f from=translated src=- shape=89bf493c vocab=53e1105f
+-/
 theorem uniqueFactorizationMonoid_of_source (hθ : IsTransferHom θ)
     [UniqueFactorizationMonoid α] [IsCancelMulZero β] : UniqueFactorizationMonoid β := by
   rw [uniqueFactorizationMonoid_iff]

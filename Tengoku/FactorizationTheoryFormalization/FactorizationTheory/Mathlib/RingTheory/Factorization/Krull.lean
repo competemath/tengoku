@@ -85,7 +85,9 @@ variable [CommMonoidWithZero α]
 
 -- see Note [lower instance priority]
 
-/-- A Krull monoid with trivial chosen class group is a unique factorization monoid.-/
+/-- A Krull monoid with trivial chosen class group is a unique factorization monoid.
+@isnad1 id=uniquefa.1h1v.s4.85fca46baefd from=translated src=- shape=74e6ef00 vocab=d34e0979
+-/
 theorem Tengoku.FactorizationTheoryFormalization.KrullMonoid.uniqueFactorizationMonoid_of_classGroup_subsingleton [KrullMonoid α]
     (h : Subsingleton (KrullMonoid.ClassGroup α)) : UniqueFactorizationMonoid α :=
   (KrullMonoid.chooseDivisorTheory α).uniqueFactorizationMonoid_of_classGroup_subsingleton h
@@ -94,7 +96,9 @@ theorem Tengoku.FactorizationTheoryFormalization.KrullMonoid.uniqueFactorization
 into primes; the class group of this canonical divisor theory is trivial by
 `UniqueFactorizationMonoid.divisorTheory_classGroup_subsingleton`. The `Nontrivial`
 hypothesis is necessary because the trivial monoid admits no zero-preserving homomorphism to
-the nontrivial zero-adjoined free divisor monoid.-/
+the nontrivial zero-adjoined free divisor monoid.
+@isnad1 id=krullmon.0h1v.s3.309aa23e8a08 from=translated src=- shape=affebb5f vocab=c1a8515f
+-/
 theorem UniqueFactorizationMonoid.krullMonoid [Nontrivial α]
     [UniqueFactorizationMonoid α] : KrullMonoid α := by
   refine

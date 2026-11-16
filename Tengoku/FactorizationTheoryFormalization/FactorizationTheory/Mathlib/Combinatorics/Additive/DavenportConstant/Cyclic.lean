@@ -41,7 +41,9 @@ assert_not_exists Field Ideal
 
 variable {G : Type*}
 
-/-- A finite cyclic additive group has Davenport constant equal to its cardinality.-/
+/-- A finite cyclic additive group has Davenport constant equal to its cardinality.
+@isnad1 id=eq.0h1v.s5.809f373a7525 from=translated src=- shape=b8786dde vocab=c64045e5
+-/
 theorem IsAddCyclic.davenportConstant_eq_natCard
     [AddCommGroup G] [Finite G] [IsAddCyclic G] :
     AddMonoid.davenportConstant G = Nat.card G := by
@@ -73,7 +75,9 @@ theorem IsAddCyclic.davenportConstant_eq_natCard
       exact hTne (by simp [S, hk])
   simpa [S] using hS.card_le_davenportConstant
 
-/-- A cyclic additive group has Davenport constant equal to its extended cardinality.-/
+/-- A cyclic additive group has Davenport constant equal to its extended cardinality.
+@isnad1 id=eq.0h1v.s4.157ad84d8f4b from=translated src=- shape=910fa9d2 vocab=9a7e44ed
+-/
 theorem IsAddCyclic.davenportConstant_eq_enatCard [AddCommGroup G] [IsAddCyclic G] :
     AddMonoid.davenportConstant G = ENat.card G := by
   apply le_antisymm AddMonoid.davenportConstant_le_enatCard
@@ -101,7 +105,9 @@ theorem IsAddCyclic.davenportConstant_eq_enatCard [AddCommGroup G] [IsAddCyclic 
     exact le_trans (ENat.natCast_le_natCast.mpr (Nat.le_succ n))
       (by simpa [S] using hbound)
 
-/-- The Davenport constant of `ZMod n` is `n` when `n` is nonzero.-/
+/-- The Davenport constant of `ZMod n` is `n` when `n` is nonzero.
+@isnad1 id=eq.1h1v.s4.5686c1e3c345 from=translated src=- shape=b84d43ff vocab=c44def33
+-/
 @[simp]
 protected theorem ZMod.davenportConstant {n : ℕ} (hn : n ≠ 0) :
     AddMonoid.davenportConstant (ZMod n) = n := by
@@ -112,7 +118,9 @@ protected theorem ZMod.davenportConstant {n : ℕ} (hn : n ≠ 0) :
     isAddCyclic_of_surjective (Int.castRingHom _) ZMod.intCast_surjective
   simpa using IsAddCyclic.davenportConstant_eq_natCard (G := ZMod n)
 
-/-- The infinite cyclic group `ZMod 0` has infinite Davenport constant.-/
+/-- The infinite cyclic group `ZMod 0` has infinite Davenport constant.
+@isnad1 id=eq.0h0v.s5.97c14ae05def from=translated src=- shape=4d120df5 vocab=31259155
+-/
 @[simp]
 theorem ZMod.davenportConstant_zero : AddMonoid.davenportConstant (ZMod 0) = ⊤ := by
   let _ : IsAddCyclic ℤ :=
@@ -122,7 +130,9 @@ theorem ZMod.davenportConstant_zero : AddMonoid.davenportConstant (ZMod 0) = ⊤
   rw [IsAddCyclic.davenportConstant_eq_enatCard,
     ENat.card_eq_top_of_infinite]
 
-/-- For nonzero `m` and `n`, `m + n - 1 ≤ D(ZMod m × ZMod n)`.-/
+/-- For nonzero `m` and `n`, `m + n - 1 ≤ D(ZMod m × ZMod n)`.
+@isnad1 id=le.2h2v.s6.d26177da0be7 from=translated src=- shape=ef6c320f vocab=bdc0350d
+-/
 theorem ZMod.add_sub_one_le_davenportConstant_prod {m n : ℕ} (hm : m ≠ 0)
     (hn : n ≠ 0) :
     (m : ℕ∞) + n - 1 ≤ AddMonoid.davenportConstant (ZMod m × ZMod n) := by

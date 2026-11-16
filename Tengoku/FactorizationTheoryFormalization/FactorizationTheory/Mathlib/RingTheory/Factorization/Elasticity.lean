@@ -62,19 +62,31 @@ def _root_.Tengoku.FactorizationTheoryFormalization.elasticity (a : α) : ℝ≥
     (maxFactorizationLength a : ℝ≥0∞) / (minFactorizationLength a : ℝ≥0∞)
 
 open scoped Classical in
+/--
+@isnad1 id=eq.0h2v.s6.150c5b45fa78 from=translated src=- shape=8cd268e5 vocab=e9ab22a5
+-/
 theorem _root_.Tengoku.FactorizationTheoryFormalization.elasticity_def :
     elasticity a = if IsUnit a then 1 else
       (maxFactorizationLength a : ℝ≥0∞) / (minFactorizationLength a : ℝ≥0∞) := by
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s4.97e5f59fe97e from=translated src=- shape=10a88c7d vocab=91b88eda
+-/
 @[simp]
 theorem _root_.Tengoku.FactorizationTheoryFormalization.elasticity_of_isUnit (h : IsUnit a) : elasticity a = 1 := by
   simp [elasticity, h]
 
+/--
+@isnad1 id=eq.1h2v.s4.17db700f1294 from=translated src=- shape=10a88c7d vocab=0835bb3b
+-/
 @[simp]
 theorem _root_.Tengoku.FactorizationTheoryFormalization.elasticity_of_irreducible (h : Irreducible a) : elasticity a = 1 := by
   simp [elasticity, h, h.not_isUnit]
 
+/--
+@isnad1 id=eq.1h3v.s4.66d96c3e04f8 from=translated src=- shape=397ee572 vocab=1018b511
+-/
 theorem Associated.elasticity_eq (h : Associated a b) : elasticity a = elasticity b := by
   by_cases ha : IsUnit a
   · rw [elasticity_of_isUnit ha, elasticity_of_isUnit (h.isUnit ha)]
@@ -95,11 +107,17 @@ monoid with zero equal to `1`.-/
 def Monoid.elasticity : ℝ≥0∞ :=
   1 ⊔ ⨆ (a : α) (_ : a ≠ 0) (_ : ¬IsUnit a), _root_.Tengoku.FactorizationTheoryFormalization.elasticity a
 
+/--
+@isnad1 id=eq.0h1v.s6.bb5d1810b8cd from=translated src=- shape=b924f12b vocab=bef0b81e
+-/
 theorem Monoid.elasticity_def :
     Monoid.elasticity α =
       1 ⊔ ⨆ (a : α) (_ : a ≠ 0) (_ : ¬IsUnit a), _root_.Tengoku.FactorizationTheoryFormalization.elasticity a := by
   rfl
 
+/--
+@isnad1 id=le.1h2v.s5.a906231bf648 from=translated src=- shape=37f51843 vocab=05b4859a
+-/
 theorem _root_.Tengoku.FactorizationTheoryFormalization.one_le_elasticity [AtomicMonoid α] (ha : a ≠ 0) :
     1 ≤ elasticity a := by
   by_cases hu : IsUnit a
@@ -113,6 +131,9 @@ theorem _root_.Tengoku.FactorizationTheoryFormalization.one_le_elasticity [Atomi
   exact ENat.toENNReal_le.mpr
     (minFactorizationLength_le_maxFactorizationLength (nonempty_factorizationLengths ha))
 
+/--
+@isnad1 id=iff.1h2v.s5.846d2d46b4d3 from=translated src=- shape=a1a4e30f vocab=a2fb025b
+-/
 theorem _root_.Tengoku.FactorizationTheoryFormalization.elasticity_eq_one_iff [AtomicMonoid α] (ha : a ≠ 0) :
     elasticity a = 1 ↔ maxFactorizationLength a = minFactorizationLength a := by
   by_cases hu : IsUnit a
@@ -123,6 +144,9 @@ theorem _root_.Tengoku.FactorizationTheoryFormalization.elasticity_eq_one_iff [A
   · simpa [Order.one_le_iff_ne_zero] using one_le_minFactorizationLength_iff.mpr hu
   · simp [← hn]
 
+/--
+@isnad1 id=le.1h2v.s5.6b61b26dbf37 from=translated src=- shape=fcd6f74a vocab=4e0f8641
+-/
 theorem Monoid.le_elasticity (ha : a ≠ 0) :
     _root_.Tengoku.FactorizationTheoryFormalization.elasticity a ≤ Monoid.elasticity α := by
   rw [Monoid.elasticity]
@@ -132,11 +156,16 @@ theorem Monoid.le_elasticity (ha : a ≠ 0) :
   · exact le_sup_of_le_right <|
       le_iSup_of_le a <| le_iSup_of_le ha <| le_iSup_of_le hu le_rfl
 
+/--
+@isnad1 id=le.0h1v.s4.6799aee6dd4b from=translated src=- shape=533eefa4 vocab=fe8bcb48
+-/
 theorem Monoid.one_le_elasticity : 1 ≤ Monoid.elasticity α := by
   rw [Monoid.elasticity]
   exact le_sup_left
 
-/-- Every nonzero element of a half-factorial monoid has elasticity `1`.-/
+/-- Every nonzero element of a half-factorial monoid has elasticity `1`.
+@isnad1 id=eq.1h2v.s5.90cdc2790168 from=translated src=- shape=fb940ec8 vocab=14818cea
+-/
 theorem Tengoku.FactorizationTheoryFormalization.HalfFactorialMonoid.elasticity_eq_one [HalfFactorialMonoid α] (ha : a ≠ 0) :
     elasticity a = 1 := by
   rw [elasticity_eq_one_iff ha,
@@ -144,7 +173,9 @@ theorem Tengoku.FactorizationTheoryFormalization.HalfFactorialMonoid.elasticity_
   exact HalfFactorialMonoid.subsingleton_factorizationLengths ha
 
 /-- A monoid is half-factorial if and only if it is atomic and every nonzero element has
-elasticity `1`.-/
+elasticity `1`.
+@isnad1 id=iff.0h1v.s5.792c42e093c4 from=translated src=- shape=49055366 vocab=6746bef0
+-/
 theorem _root_.Tengoku.FactorizationTheoryFormalization.halfFactorialMonoid_iff_forall_elasticity_eq_one :
     HalfFactorialMonoid α ↔
       AtomicMonoid α ∧ ∀ ⦃a : α⦄, a ≠ 0 → elasticity a = 1 := by
@@ -162,7 +193,9 @@ theorem _root_.Tengoku.FactorizationTheoryFormalization.halfFactorialMonoid_iff_
               (hElasticity ha)) }
 
 /-- A commutative monoid with zero is half-factorial if and only if it is atomic and its monoid
-elasticity is `1`.-/
+elasticity is `1`.
+@isnad1 id=iff.0h1v.s4.68b7bf7887b0 from=translated src=- shape=cba7a1a5 vocab=128c1ae8
+-/
 theorem _root_.Tengoku.FactorizationTheoryFormalization.halfFactorialMonoid_iff_monoidElasticity_eq_one :
     HalfFactorialMonoid α ↔ AtomicMonoid α ∧ Monoid.elasticity α = 1 := by
   constructor
@@ -178,6 +211,9 @@ theorem _root_.Tengoku.FactorizationTheoryFormalization.halfFactorialMonoid_iff_
     refine ⟨hAtomic, fun _ ha ↦ le_antisymm ?_ (one_le_elasticity ha)⟩
     exact hElasticity ▸ Monoid.le_elasticity ha
 
+/--
+@isnad1 id=eq.1h2v.s5.65ddd0943759 from=translated src=- shape=fb940ec8 vocab=939f0ad0
+-/
 theorem UniqueFactorizationMonoid.elasticity_eq_one [UniqueFactorizationMonoid α]
     (ha : a ≠ 0) : elasticity a = 1 :=
   HalfFactorialMonoid.elasticity_eq_one ha
@@ -188,6 +224,9 @@ section CommGroupWithZero
 
 variable [CommGroupWithZero α]
 
+/--
+@isnad1 id=eq.0h1v.s4.c982d6160ffb from=translated src=- shape=6c315cdf vocab=922f2119
+-/
 @[simp]
 theorem Monoid.elasticity_eq_one_of_commGroupWithZero : Monoid.elasticity α = 1 := by
   refine le_antisymm ?_ Monoid.one_le_elasticity

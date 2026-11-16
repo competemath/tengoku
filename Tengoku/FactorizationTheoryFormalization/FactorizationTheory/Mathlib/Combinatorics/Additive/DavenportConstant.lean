@@ -62,13 +62,18 @@ The supremum is `⊤` when these lengths are unbounded. The indexing subtype is 
 noncomputable def davenportConstant (G : Type*) [AddCommMonoid G] : ℕ∞ :=
   ⨆ S : {S : Multiset G // S.IsMinimalZeroSum}, (S.1.card : ℕ∞)
 
+/--
+@isnad1 id=eq.0h1v.s5.5b7dbdbc36c5 from=translated src=- shape=b16d52cf vocab=51cc81ee
+-/
 theorem davenportConstant_def :
     davenportConstant G =
       ⨆ S : {S : Multiset G // S.IsMinimalZeroSum}, (S.1.card : ℕ∞) := by
   rfl
 
 /-- An extended natural bounds the Davenport constant exactly when it bounds the length of every
-minimal zero-sum sequence.-/
+minimal zero-sum sequence.
+@isnad1 id=iff.0h2v.s5.fb4653351582 from=translated src=- shape=0af0cddc vocab=6e7a3f0f
+-/
 theorem davenportConstant_le_iff {n : ℕ∞} :
     davenportConstant G ≤ n ↔
       ∀ {S : Multiset G}, S.IsMinimalZeroSum → (S.card : ℕ∞) ≤ n := by
@@ -80,6 +85,9 @@ theorem davenportConstant_le_iff {n : ℕ∞} :
     rw [davenportConstant_def]
     exact iSup_le fun S ↦ h S.2
 
+/--
+@isnad1 id=le.1h2v.s5.b457d34244d7 from=translated src=- shape=04e377f1 vocab=6e7a3f0f
+-/
 theorem davenportConstant_le {n : ℕ∞}
     (h : ∀ {S : Multiset G}, S.IsMinimalZeroSum → (S.card : ℕ∞) ≤ n) :
     davenportConstant G ≤ n :=
@@ -89,6 +97,9 @@ end AddCommMonoid
 
 end AddMonoid
 
+/--
+@isnad1 id=le.1h2v.s4.55ca493e54d4 from=translated src=- shape=efdd88ff vocab=6e7a3f0f
+-/
 theorem Multiset.IsMinimalZeroSum.card_le_davenportConstant [AddCommMonoid G]
     (hS : S.IsMinimalZeroSum) :
     (S.card : ℕ∞) ≤ AddMonoid.davenportConstant G := by
@@ -101,7 +112,9 @@ section AddCommMonoid
 
 variable [AddCommMonoid G]
 
-/-- An injective additive homomorphism does not decrease the Davenport constant.-/
+/-- An injective additive homomorphism does not decrease the Davenport constant.
+@isnad1 id=le.1h4v.s5.fb4c323226dd from=translated src=- shape=3cfc8494 vocab=239d6ae1
+-/
 theorem davenportConstant_le_of_injective {H F : Type*} [AddCommMonoid H]
     [FunLike F G H] [AddMonoidHomClass F G H] (f : F) (hf : Function.Injective f) :
     davenportConstant G ≤ davenportConstant H := by
@@ -109,20 +122,30 @@ theorem davenportConstant_le_of_injective {H F : Type*} [AddCommMonoid H]
   intro S hS
   simpa using (hS.map f hf).card_le_davenportConstant
 
-/-- The Davenport constant is invariant under additive equivalence.-/
+/-- The Davenport constant is invariant under additive equivalence.
+@isnad1 id=eq.0h3v.s5.a617cee66552 from=translated src=- shape=6a17f754 vocab=a4c1cef7
+-/
 theorem davenportConstant_congr {H : Type*} [AddCommMonoid H] (e : G ≃+ H) :
     davenportConstant G = davenportConstant H := by
   exact le_antisymm (davenportConstant_le_of_injective e e.injective)
     (davenportConstant_le_of_injective e.symm e.symm.injective)
 
+/--
+@isnad1 id=le.0h1v.s4.b88755fced08 from=translated src=- shape=533eefa4 vocab=7d639b23
+-/
 theorem one_le_davenportConstant : 1 ≤ davenportConstant G := by
   simpa using
     (Multiset.isMinimalZeroSum_singleton (g := (0 : G))).mpr rfl |>.card_le_davenportConstant
 
+/--
+@isnad1 id=ne.0h1v.s4.30f65f67bf83 from=translated src=- shape=6c315cdf vocab=fc74c67f
+-/
 theorem davenportConstant_ne_zero : davenportConstant G ≠ 0 := fun h ↦ by
   simpa [h] using one_le_davenportConstant (G := G)
 
-/-- If the Davenport constant is finite, some minimal zero-sum sequence attains it.-/
+/-- If the Davenport constant is finite, some minimal zero-sum sequence attains it.
+@isnad1 id=ex.1h1v.s5.a201f361b32b from=translated src=- shape=4a9615c3 vocab=66544035
+-/
 theorem exists_isMinimalZeroSum_card_eq_davenportConstant_of_ne_top
     (hG : davenportConstant G ≠ ⊤) :
     ∃ S : Multiset G, S.IsMinimalZeroSum ∧ (S.card : ℕ∞) = davenportConstant G := by
@@ -141,6 +164,9 @@ section AddCommGroup
 
 variable [AddCommGroup G]
 
+/--
+@isnad1 id=le.0h1v.s4.82217d82542a from=translated src=- shape=31b077a1 vocab=b0d5ceaf
+-/
 theorem two_le_davenportConstant [Nontrivial G] : 2 ≤ davenportConstant G := by
   obtain ⟨g, hg⟩ := exists_ne (0 : G)
   have hfree : Multiset.IsZeroSumFree ({g} : Multiset G) :=
@@ -148,7 +174,9 @@ theorem two_le_davenportConstant [Nontrivial G] : 2 ≤ davenportConstant G := b
   simpa using hfree.isMinimalZeroSum_cons_neg_sum.card_le_davenportConstant
 
 /-- The Davenport constant of an additive commutative group is `1` if and only if the group is
-trivial.-/
+trivial.
+@isnad1 id=iff.0h1v.s4.10421c640219 from=translated src=- shape=90e682b1 vocab=40242238
+-/
 theorem davenportConstant_eq_one_iff : davenportConstant G = 1 ↔ Subsingleton G := by
   constructor
   · intro hD
@@ -177,7 +205,9 @@ section AddCancelCommMonoid
 variable [AddCancelCommMonoid G]
 
 /-- For a finite cancellative additive commutative monoid `G`, the Davenport constant is at
-most `|G|`.-/
+most `|G|`.
+@isnad1 id=le.0h1v.s4.292987116922 from=translated src=- shape=92b46b85 vocab=3369fc94
+-/
 theorem davenportConstant_le_natCard [Finite G] : davenportConstant G ≤ Nat.card G := by
   rw [davenportConstant_le_iff]
   intro S hS
@@ -229,14 +259,18 @@ theorem davenportConstant_le_natCard [Finite G] : davenportConstant G ≤ Nat.ca
       simpa [f] using Nat.card_le_card_of_injective f hf
 
 /-- The Davenport constant of a cancellative additive commutative monoid is at most its extended
-cardinality.-/
+cardinality.
+@isnad1 id=le.0h1v.s3.8988f5aca7a0 from=translated src=- shape=3b28e260 vocab=526878f9
+-/
 theorem davenportConstant_le_enatCard : davenportConstant G ≤ ENat.card G := by
   cases finite_or_infinite G
   · let _ := Fintype.ofFinite G
     simpa [Nat.card_eq_fintype_card] using davenportConstant_le_natCard (G := G)
   · simp
 
-/-- The Davenport constant of a finite cancellative additive commutative monoid is finite.-/
+/-- The Davenport constant of a finite cancellative additive commutative monoid is finite.
+@isnad1 id=lt.0h1v.s4.4813d1b57f82 from=translated src=- shape=a8f8e408 vocab=32a95fa0
+-/
 theorem davenportConstant_lt_top [Finite G] : davenportConstant G < ⊤ := by
   exact davenportConstant_le_natCard.trans_lt (ENat.natCast_lt_top _)
 
@@ -246,6 +280,9 @@ end AddMonoid
 
 /-! ### The Davenport constant as a zero-sum threshold -/
 
+/--
+@isnad1 id=le.1h2v.s5.fde3ba2c4881 from=translated src=- shape=f512e500 vocab=5b7e54ce
+-/
 theorem Multiset.IsZeroSumFree.card_add_one_le_davenportConstant [AddCommGroup G]
     (hS : S.IsZeroSumFree) :
     (S.card : ℕ∞) + 1 ≤ AddMonoid.davenportConstant G := by
@@ -258,7 +295,9 @@ section AddCommGroup
 variable [AddCommGroup G]
 
 /-- Every sequence of length at least `D(G)` has a nonempty zero-sum subsequence. When
-`davenportConstant G = ⊤`, the hypothesis is impossible because `S.card` is finite.-/
+`davenportConstant G = ⊤`, the hypothesis is impossible because `S.card` is finite.
+@isnad1 id=ex.1h2v.s5.ea35bcce307f from=translated src=- shape=39878d92 vocab=3589c3a5
+-/
 theorem exists_isZeroSum_of_davenportConstant_le_card
     (h : davenportConstant G ≤ S.card) : ∃ T ≤ S, T ≠ 0 ∧ T.IsZeroSum := by
   by_contra hnone
@@ -277,7 +316,9 @@ variable [AddCommMonoid G]
 
 /-- Any natural length forcing a nonempty zero-sum subsequence is an upper bound for `D(G)`.
 This direction requires only an additive commutative monoid; the converse threshold theorem
-`exists_isZeroSum_of_davenportConstant_le_card` uses additive inverses.-/
+`exists_isZeroSum_of_davenportConstant_le_card` uses additive inverses.
+@isnad1 id=le.1h2v.s6.d0d29f182e6f from=translated src=- shape=a0186ad8 vocab=b1be54bb
+-/
 theorem davenportConstant_le_of_forall_exists_isZeroSum {n : ℕ}
     (h : ∀ S : Multiset G, n ≤ S.card → ∃ T ≤ S, T ≠ 0 ∧ T.IsZeroSum) :
     davenportConstant G ≤ n := by
@@ -299,7 +340,9 @@ section AddCommGroup
 variable [AddCommGroup G]
 
 /-- The Davenport constant is the least natural length forcing every sequence of that length or
-greater to contain a nonempty zero-sum subsequence.-/
+greater to contain a nonempty zero-sum subsequence.
+@isnad1 id=iff.0h2v.s6.432446a8c7e5 from=translated src=- shape=4898e23b vocab=9d7f64b1
+-/
 theorem davenportConstant_le_iff_forall_exists_isZeroSum {n : ℕ} :
     davenportConstant G ≤ n ↔
       ∀ S : Multiset G, n ≤ S.card → ∃ T ≤ S, T ≠ 0 ∧ T.IsZeroSum := by

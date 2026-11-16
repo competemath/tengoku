@@ -241,7 +241,9 @@ private theorem two_atom_product (S : blockMonoid G) :
   exact congrArg BlockMonoidOver.of (Subtype.ext rfl)
 
 /-- The elasticity of the full block monoid is half the Davenport constant. The lower-cardinality
-hypothesis excludes the trivial group, whose block monoid has elasticity `1`.-/
+hypothesis excludes the trivial group, whose block monoid has elasticity `1`.
+@isnad1 id=eq.1h1v.s5.00132f79656a from=translated src=- shape=29ba7985 vocab=9e767f05
+-/
 theorem monoid_elasticity_eq_davenportConstant_div_two [Finite G]
     (hG : 2 ≤ Nat.card G) :
     Monoid.elasticity (BlockMonoid G) = (davenportConstant G : ℝ≥0∞) / 2 := by

@@ -59,7 +59,9 @@ private lemma isZeroSum_map_snd_of_le_map_inl [AddCommMonoid G] [AddCommMonoid H
   rfl
 
 /-- Mapping zero-sum-free sequences into the two coordinate axes of a product and concatenating
-them gives a zero-sum-free sequence.-/
+them gives a zero-sum-free sequence.
+@isnad1 id=iszerosu.2h4v.s7.95283d35908e from=translated src=- shape=c15c3cd2 vocab=9f10b8ea
+-/
 theorem IsZeroSumFree.map_inl_add_map_inr [AddCommMonoid G] [AddCommMonoid H]
     (hS : S.IsZeroSumFree) (hT : T.IsZeroSumFree) :
     (S.map (AddMonoidHom.inl G H) + T.map (AddMonoidHom.inr G H)).IsZeroSumFree := by
@@ -96,7 +98,9 @@ theorem IsZeroSumFree.map_inl_add_map_inr [AddCommMonoid G] [AddCommMonoid H]
     simpa [A, Function.comp_def] using Multiset.map_le_map (f := Prod.fst) hXA
 
 /-- Two headed minimal zero-sum sequences determine a minimal zero-sum sequence over the direct
-product by combining their heads and mapping their tails to the coordinate axes.-/
+product by combining their heads and mapping their tails to the coordinate axes.
+@isnad1 id=isminima.2h6v.s7.da261005cb1b from=translated src=- shape=8ed145a6 vocab=0083de68
+-/
 theorem IsMinimalZeroSum.prod [AddCommMonoid G] [AddCommMonoid H]
     (hS : (g ::ₘ S).IsMinimalZeroSum) (hT : (h ::ₘ T).IsMinimalZeroSum) :
     ((g, h) ::ₘ (S.map (AddMonoidHom.inl G H) +

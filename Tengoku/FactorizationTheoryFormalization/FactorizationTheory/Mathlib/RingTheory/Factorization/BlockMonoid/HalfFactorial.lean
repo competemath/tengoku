@@ -49,7 +49,9 @@ variable [AddCommMonoid G]
 abbrev _root_.Tengoku.FactorizationTheoryFormalization.IsHalfFactorialSet (G₀ : Set G) : Prop :=
   HalfFactorialMonoid (BlockMonoidOver G₀)
 
-/-- Half-factoriality passes to subsets.-/
+/-- Half-factoriality passes to subsets.
+@isnad1 id=ishalffa.2h3v.s4.fab18e7694f4 from=translated src=- shape=fe2488fe vocab=0dd992c7
+-/
 theorem Tengoku.FactorizationTheoryFormalization.IsHalfFactorialSet.mono {G₀ G₁ : Set G} (h : G₀ ⊆ G₁)
     (h₁ : IsHalfFactorialSet G₁) : IsHalfFactorialSet G₀ := by
   let _ : HalfFactorialMonoid (BlockMonoidOver G₁) := h₁
@@ -206,7 +208,9 @@ private theorem halfFactorial_pair (g : G) (hg : g + g = 0) :
 
 /-- A set contained in `{0, g}` is half-factorial when `g + g = 0`. If `g ≠ 0`, the atoms on
 the full two-element support are `{0}` and `{g, g}`; if `g = 0`, the support is `{0}` and its only
-atom is `{0}`.-/
+atom is `{0}`.
+@isnad1 id=ishalffa.2h3v.s6.88bd81eabc8e from=translated src=- shape=b896da26 vocab=0e457014
+-/
 theorem _root_.Tengoku.FactorizationTheoryFormalization.isHalfFactorialSet_of_subset_pair {G₀ : Set G} {g : G} (hg : g + g = 0)
     (h : G₀ ⊆ {0, g}) : IsHalfFactorialSet G₀ := by
   apply IsHalfFactorialSet.mono h
@@ -271,7 +275,9 @@ private theorem three_le_davenportConstant_of_three_le_card [Finite G]
     simpa using hfree.isMinimalZeroSum_cons_neg_sum.card_le_davenportConstant
 
 /-- A finite abelian group is half-factorial over its full support exactly when it has order at
-most two.-/
+most two.
+@isnad1 id=iff.0h1v.s4.0cb98511998b from=translated src=- shape=16ccba5a vocab=00b946de
+-/
 theorem _root_.Tengoku.FactorizationTheoryFormalization.isHalfFactorialSet_univ_iff [Finite G] :
     IsHalfFactorialSet (Set.univ : Set G) ↔ Nat.card G ≤ 2 := by
   constructor

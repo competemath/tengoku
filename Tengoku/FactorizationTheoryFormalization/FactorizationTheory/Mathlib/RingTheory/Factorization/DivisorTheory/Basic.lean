@@ -66,11 +66,16 @@ namespace Tengoku.FactorizationTheoryFormalization.FreeDivisorMonoid
 def of (p : P) : FreeDivisorMonoid P :=
   Multiplicative.ofAdd {p}
 
-/-- The underlying multiset of a prime basis divisor is the corresponding singleton.-/
+/-- The underlying multiset of a prime basis divisor is the corresponding singleton.
+@isnad1 id=eq.0h2v.s5.19add07414bd from=translated src=- shape=fe1a0e4a vocab=348183f6
+-/
 @[simp]
 theorem toAdd_of (p : P) : (of p).toAdd = ({p} : Multiset P) := by
   simp [of]
 
+/--
+@isnad1 id=eq.0h3v.s6.c13263abc05f from=translated src=- shape=640f9ffa vocab=1393d5bb
+-/
 @[simp]
 theorem of_mul (p : P) (s : Multiset P) :
     of p * Multiplicative.ofAdd s = Multiplicative.ofAdd (p ::ₘ s) := by
@@ -88,12 +93,17 @@ def mapEquiv {P₁ P₂ : Type*} (e : P₁ ≃ P₂) :
       map_add' := Multiset.map_add e }
   exact AddEquiv.toMultiplicative E
 
-/-- Relabelling a free divisor monoid maps each entry of its underlying multiset.-/
+/-- Relabelling a free divisor monoid maps each entry of its underlying multiset.
+@isnad1 id=eq.0h4v.s7.68785c31e89e from=translated src=- shape=0f581f78 vocab=7ca8f2ae
+-/
 @[simp]
 theorem mapEquiv_apply {P₁ P₂ : Type*} (e : P₁ ≃ P₂) (d : FreeDivisorMonoid P₁) :
     (mapEquiv e d).toAdd = d.toAdd.map e := by
   simp [mapEquiv]
 
+/--
+@isnad1 id=eq.0h4v.s6.25c76a928f99 from=translated src=- shape=ef7011a1 vocab=a5c97e57
+-/
 @[simp]
 theorem mapEquiv_of {P₁ P₂ : Type*} (e : P₁ ≃ P₂) (p : P₁) :
     mapEquiv e (of p) = of (e p) := by
@@ -123,7 +133,9 @@ structure _root_.Tengoku.FactorizationTheoryFormalization.IsDivisorTheory (φ : 
         y ∣ (FreeDivisorMonoid.of p : DivisorMonoid P)
 
 /-- Construct a divisor theory from the stronger condition that every nonzero divisor is a
-greatest common divisor of finitely many elements of the image.-/
+greatest common divisor of finitely many elements of the image.
+@isnad1 id=isdiviso.2h3v.s8.ead6a7b0beaa from=translated src=- shape=fd9d8792 vocab=72b64cc3
+-/
 theorem Tengoku.FactorizationTheoryFormalization.IsDivisorTheory.of_exists_isGCD (hφ : IsDivisorHom φ)
     (h : ∀ ⦃x : DivisorMonoid P⦄, x ≠ 0 → ∃ s : Finset α, s.Nonempty ∧
       (∀ a ∈ s, x ∣ φ a) ∧
@@ -133,7 +145,9 @@ theorem Tengoku.FactorizationTheoryFormalization.IsDivisorTheory.of_exists_isGCD
   exists_isGCD_of_prime p := h (by simp [FreeDivisorMonoid.of])
 
 /-- The image of a divisor theory is cofinal for divisibility: every divisor divides an
-element of the image.-/
+element of the image.
+@isnad1 id=ex.1h4v.s7.ecad2a0f4ecb from=translated src=- shape=1ad3a191 vocab=6d767f82
+-/
 theorem Tengoku.FactorizationTheoryFormalization.IsDivisorTheory.exists_dvd (hφ : IsDivisorTheory φ) (x : DivisorMonoid P) :
     ∃ a : α, x ∣ φ a := by
   induction x using WithZero.recZeroCoe with
@@ -332,7 +346,9 @@ private theorem exists_nonzero_isGCD_of_multiset
         simpa [← Multiset.singleton_add, Multiset.count_add, haq, hbq] using hcount
 
 /-- Every nonzero divisor is a greatest common divisor of finitely many elements of the image
-of a divisor theory.-/
+of a divisor theory.
+@isnad1 id=ex.2h4v.s8.75705ebe6982 from=translated src=- shape=b2b70fbd vocab=a26c880e
+-/
 theorem Tengoku.FactorizationTheoryFormalization.IsDivisorTheory.exists_isGCD_of_ne_zero (hφ : IsDivisorTheory φ)
     {x : DivisorMonoid P} (hx : x ≠ 0) :
     ∃ s : Finset α, s.Nonempty ∧ (∀ a ∈ s, x ∣ φ a) ∧
@@ -357,6 +373,9 @@ namespace Tengoku.FactorizationTheoryFormalization.DivisorTheory
 
 variable (D : DivisorTheory α P)
 
+/--
+@isnad1 id=injectiv.0h2v.s5.d2e93c6a873b from=translated src=- shape=cfa90727 vocab=99da1390
+-/
 theorem toMonoidWithZeroHom_injective :
     Function.Injective
       (toMonoidWithZeroHom : DivisorTheory α P → α →*₀ DivisorMonoid P) := by
@@ -374,13 +393,22 @@ instance : MonoidWithZeroHomClass (DivisorTheory α P) α (DivisorMonoid P) wher
   map_mul D := D.toMonoidWithZeroHom.map_mul
   map_zero D := D.toMonoidWithZeroHom.map_zero
 
+/--
+@isnad1 id=eq.0h4v.s6.4f12a335b9fb from=translated src=- shape=bd116a18 vocab=95af2ff8
+-/
 @[simp]
 theorem toMonoidWithZeroHom_apply (a : α) : D.toMonoidWithZeroHom a = D a := rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.81844132c1b9 from=translated src=- shape=3587d948 vocab=8af9bfa6
+-/
 @[ext]
 theorem ext {D₁ D₂ : DivisorTheory α P} (h : ∀ a, D₁ a = D₂ a) : D₁ = D₂ :=
   DFunLike.ext _ _ h
 
+/--
+@isnad1 id=isdiviso.0h3v.s5.8c9b85cacc9e from=translated src=- shape=2c3e494f vocab=c7216f67
+-/
 theorem isDivisorHom : IsDivisorHom D :=
   isDivisorHom_iff.mpr fun ⦃_ _⦄ h ↦
     D.isDivisorTheory.isDivisorHom.dvd_of_map_dvd h
@@ -390,17 +418,23 @@ at `a = 0`.-/
 def divisorMultiset (a : α) : Multiset P :=
   WithZero.log (D a)
 
-/-- The divisor multiset of zero is empty.-/
+/-- The divisor multiset of zero is empty.
+@isnad1 id=eq.0h3v.s5.b8964d32995d from=translated src=- shape=94b7f793 vocab=d3268d4a
+-/
 @[simp]
 theorem divisorMultiset_zero : D.divisorMultiset 0 = 0 := by
   rw [divisorMultiset, map_zero, WithZero.log_zero]
 
-/-- The divisor multiset of one is empty.-/
+/-- The divisor multiset of one is empty.
+@isnad1 id=eq.0h3v.s5.683f90254dda from=translated src=- shape=94b7f793 vocab=d3268d4a
+-/
 @[simp]
 theorem divisorMultiset_one : D.divisorMultiset 1 = 0 := by
   rw [divisorMultiset, map_one, WithZero.log_one]
 
-/-- Re-embedding the divisor multiset of a nonzero element recovers its divisor.-/
+/-- Re-embedding the divisor multiset of a nonzero element recovers its divisor.
+@isnad1 id=eq.1h4v.s6.a325aa80b6af from=translated src=- shape=b9e6dec7 vocab=e87a6796
+-/
 @[simp]
 theorem coe_divisorMultiset (a : α) (ha : a ≠ 0) :
     ((Multiplicative.ofAdd (D.divisorMultiset a) : FreeDivisorMonoid P) :
@@ -408,7 +442,9 @@ theorem coe_divisorMultiset (a : α) (ha : a ≠ 0) :
   change WithZero.exp (WithZero.log (D a)) = D a
   exact WithZero.exp_log (D.isDivisorHom.map_ne_zero ha)
 
-/-- The divisor multiset is additive on products of nonzero elements.-/
+/-- The divisor multiset is additive on products of nonzero elements.
+@isnad1 id=eq.2h5v.s6.f11fced40d6a from=translated src=- shape=01141bc8 vocab=05dfbc19
+-/
 @[simp]
 theorem divisorMultiset_mul {a b : α} (ha : a ≠ 0) (hb : b ≠ 0) :
     D.divisorMultiset (a * b) = D.divisorMultiset a + D.divisorMultiset b := by
@@ -416,7 +452,9 @@ theorem divisorMultiset_mul {a b : α} (ha : a ≠ 0) (hb : b ≠ 0) :
   exact WithZero.log_mul (D.isDivisorHom.map_ne_zero ha)
     (D.isDivisorHom.map_ne_zero hb)
 
-/-- A divisor of a nonzero element has a submultiset of its divisor multiset.-/
+/-- A divisor of a nonzero element has a submultiset of its divisor multiset.
+@isnad1 id=le.2h5v.s6.300d0083885d from=translated src=- shape=ca9cc847 vocab=cc5ccacb
+-/
 theorem divisorMultiset_le_of_dvd {a b : α} (hb : b ≠ 0) (hab : a ∣ b) :
     D.divisorMultiset a ≤ D.divisorMultiset b := by
   have ha := ne_zero_of_dvd_ne_zero hb hab

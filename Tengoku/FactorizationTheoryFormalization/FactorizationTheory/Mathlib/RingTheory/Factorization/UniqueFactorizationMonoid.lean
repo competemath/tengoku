@@ -53,7 +53,9 @@ instance (priority := 100) [UniqueFactorizationMonoid α] : HalfFactorialMonoid 
     exact Set.subsingleton_singleton
 
 /-- A cancellative monoid with zero is a unique factorization monoid if and only if it is atomic
-and every nonzero element has at most one factorization.-/
+and every nonzero element has at most one factorization.
+@isnad1 id=iff.0h1v.s6.ad36ac1b0aa1 from=translated src=- shape=e13a44e7 vocab=d37cca87
+-/
 theorem _root_.Tengoku.FactorizationTheoryFormalization.uniqueFactorizationMonoid_iff [IsCancelMulZero α] :
     UniqueFactorizationMonoid α ↔
       AtomicMonoid α ∧ ∀ ⦃a : α⦄, a ≠ 0 → (factorizations a).Subsingleton := by

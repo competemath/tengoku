@@ -114,7 +114,9 @@ private theorem atomSequence_le_of_mem_factorization (S : blockMonoidOver G₀)
 
 /-! ### Finiteness of factorizations -/
 
-/-- Every relative block monoid is atomic.-/
+/-- Every relative block monoid is atomic.
+@isnad1 id=atomicmo.0h2v.s4.e3b0b9186b4d from=translated src=- shape=1fcfa16f vocab=f76a637f
+-/
 instance instAtomicMonoid : AtomicMonoid (BlockMonoidOver G₀) := by
   apply AtomicMonoid.of_exists_factors
   intro a ha
@@ -181,7 +183,9 @@ instance instAtomicMonoid : AtomicMonoid (BlockMonoidOver G₀) := by
           exact (hfprod.mul_mul hgprod).trans (Associated.of_eq hfac.symm)
   exact H _ S rfl
 
-/-- Every relative block monoid is a finite factorization monoid.-/
+/-- Every relative block monoid is a finite factorization monoid.
+@isnad1 id=finitefa.0h2v.s4.6d19916706a2 from=translated src=- shape=1fcfa16f vocab=1563ae61
+-/
 instance instFiniteFactorizationMonoid : FiniteFactorizationMonoid (BlockMonoidOver G₀) where
   finite_factorizations a ha := by
     classical
@@ -216,7 +220,9 @@ instance instFiniteFactorizationMonoid : FiniteFactorizationMonoid (BlockMonoidO
 
 /-! ### Inclusions of supports -/
 
-/-- Inclusion of supporting subsets preserves sets of factorization lengths.-/
+/-- Inclusion of supporting subsets preserves sets of factorization lengths.
+@isnad1 id=eq.1h4v.s7.6e944940777d from=translated src=- shape=77f3e2ae vocab=d7ebf954
+-/
 @[simp]
 theorem factorizationLengths_inclusion {G₀ G₁ : Set G} (h : G₀ ⊆ G₁)
     (a : BlockMonoidOver G₀) :

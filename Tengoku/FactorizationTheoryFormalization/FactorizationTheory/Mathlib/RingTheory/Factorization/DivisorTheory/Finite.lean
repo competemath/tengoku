@@ -164,7 +164,9 @@ private theorem atomDivisor_le_of_mem_factorization (D : DivisorTheory α P)
 /-- A monoid admitting an explicit divisor theory is a finite factorization monoid: every
 factor in a factorization of `a` contributes a nonempty divisor of `D.divisorMultiset a`,
 so both the possible factors and their multiplicities are bounded. This is the
-with-zero form of Theorem 2.4.2 in Geroldinger and Halter-Koch.-/
+with-zero form of Theorem 2.4.2 in Geroldinger and Halter-Koch.
+@isnad1 id=finitefa.0h3v.s3.988701c828d8 from=translated src=- shape=6d79c951 vocab=a08b4203
+-/
 theorem finiteFactorizationMonoid (D : DivisorTheory α P) :
     FiniteFactorizationMonoid α := by
   classical

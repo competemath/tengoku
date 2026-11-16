@@ -57,7 +57,9 @@ factorization into irreducibles.-/
   /-- Every nonzero element has a factorization into irreducibles.-/
   nonempty_factorizations : ∀ ⦃a : α⦄, a ≠ 0 → (factorizations a).Nonempty
 
-/-- Every nonzero element of an atomic monoid is associated to a product of irreducibles.-/
+/-- Every nonzero element of an atomic monoid is associated to a product of irreducibles.
+@isnad1 id=ex.1h2v.s6.f461801f496d from=translated src=- shape=6e37e5e7 vocab=06dbb2fb
+-/
 theorem Tengoku.FactorizationTheoryFormalization.AtomicMonoid.exists_factors [AtomicMonoid α] (a : α) (ha : a ≠ 0) :
     ∃ f : Multiset α, (∀ b ∈ f, Irreducible b) ∧ f.prod ~ᵤ a := by
   obtain ⟨f, hf⟩ := AtomicMonoid.nonempty_factorizations ha
@@ -65,7 +67,9 @@ theorem Tengoku.FactorizationTheoryFormalization.AtomicMonoid.exists_factors [At
   exact ⟨g, hg, hprod⟩
 
 /-- A monoid in which every nonzero element is associated to a product of irreducibles is
-atomic.-/
+atomic.
+@isnad1 id=atomicmo.1h1v.s6.c0bf3d0321cb from=translated src=- shape=b68f0e2e vocab=06dbb2fb
+-/
 theorem Tengoku.FactorizationTheoryFormalization.AtomicMonoid.of_exists_factors
     (h : ∀ a : α, a ≠ 0 →
       ∃ f : Multiset α, (∀ b ∈ f, Irreducible b) ∧ f.prod ~ᵤ a) :
@@ -74,7 +78,9 @@ theorem Tengoku.FactorizationTheoryFormalization.AtomicMonoid.of_exists_factors
     obtain ⟨f, hf, hprod⟩ := h a ha
     exact ⟨Associates.Factorization.ofMultiset f hf, ofMultiset_mem_factorizations hf hprod⟩⟩
 
-/-- A nonzero element of an atomic monoid has at least one factorization length.-/
+/-- A nonzero element of an atomic monoid has at least one factorization length.
+@isnad1 id=nonempty.1h2v.s5.fe05485d8834 from=translated src=- shape=94d9467d vocab=f0491a7b
+-/
 theorem _root_.Tengoku.FactorizationTheoryFormalization.nonempty_factorizationLengths [AtomicMonoid α] (ha : a ≠ 0) :
     (factorizationLengths a).Nonempty := by
   rw [factorizationLengths_def]
@@ -102,7 +108,9 @@ have the same length.-/
   subsingleton_factorizationLengths :
     ∀ ⦃a : α⦄, a ≠ 0 → (factorizationLengths a).Subsingleton
 
-/-- The factorization lengths of a nonzero element of a half-factorial monoid form a singleton.-/
+/-- The factorization lengths of a nonzero element of a half-factorial monoid form a singleton.
+@isnad1 id=ex.1h2v.s5.9c77dc244390 from=translated src=- shape=60b90575 vocab=1d159b2c
+-/
 theorem Tengoku.FactorizationTheoryFormalization.HalfFactorialMonoid.exists_factorizationLengths_eq_singleton [HalfFactorialMonoid α]
     (ha : a ≠ 0) : ∃ n, factorizationLengths a = {n} := by
   obtain ⟨n, hn⟩ := nonempty_factorizationLengths ha

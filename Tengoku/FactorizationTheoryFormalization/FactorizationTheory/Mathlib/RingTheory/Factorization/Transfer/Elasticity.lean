@@ -38,22 +38,32 @@ variable {θ : F}
 
 namespace Tengoku.FactorizationTheoryFormalization.IsTransferHom
 
+/--
+@isnad1 id=eq.1h5v.s6.789f7495ac88 from=translated src=- shape=8127e87a vocab=194c97cd
+-/
 theorem maxFactorizationLength_eq (hθ : IsTransferHom θ) (a : α) :
     maxFactorizationLength (θ a) = maxFactorizationLength a := by
   rw [maxFactorizationLength_def, maxFactorizationLength_def, hθ.factorizationLengths_eq]
 
+/--
+@isnad1 id=eq.1h5v.s6.1f2e78fac14a from=translated src=- shape=8127e87a vocab=71378ae5
+-/
 theorem minFactorizationLength_eq (hθ : IsTransferHom θ) (a : α) :
     minFactorizationLength (θ a) = minFactorizationLength a := by
   rw [minFactorizationLength_def, minFactorizationLength_def, hθ.factorizationLengths_eq]
 
-/-- A transfer homomorphism preserves the elasticity of every element.-/
+/-- A transfer homomorphism preserves the elasticity of every element.
+@isnad1 id=eq.1h5v.s6.f48b5d3789dc from=translated src=- shape=8127e87a vocab=e458cb26
+-/
 theorem elasticity_eq (hθ : IsTransferHom θ) (a : α) : elasticity (θ a) = elasticity a := by
   by_cases ha : IsUnit a
   · simp [ha, hθ.isUnit_map_iff.mpr ha]
   · simp [elasticity_def, ha, hθ.isUnit_map_iff.not.mpr ha,
       hθ.maxFactorizationLength_eq, hθ.minFactorizationLength_eq]
 
-/-- A transfer homomorphism preserves the elasticity of the whole monoid.-/
+/-- A transfer homomorphism preserves the elasticity of the whole monoid.
+@isnad1 id=eq.1h4v.s5.cacab7da7d36 from=translated src=- shape=225f943b vocab=534bbff5
+-/
 theorem monoid_elasticity_eq (hθ : IsTransferHom θ) :
     Monoid.elasticity α = Monoid.elasticity β := by
   apply le_antisymm

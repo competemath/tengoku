@@ -35,7 +35,9 @@ variable {G H : Type*}
 namespace AddMonoid
 
 /-- The Davenport constants of two additive commutative monoids satisfy
-`D(G) + D(H) - 1 ≤ D(G × H)`.-/
+`D(G) + D(H) - 1 ≤ D(G × H)`.
+@isnad1 id=le.0h2v.s5.9f201840fad1 from=translated src=- shape=2062c85c vocab=c90f39b0
+-/
 theorem add_sub_one_le_davenportConstant_prod [AddCommMonoid G] [AddCommMonoid H] :
     davenportConstant G + davenportConstant H - 1 ≤ davenportConstant (G × H) := by
   have hshifted :

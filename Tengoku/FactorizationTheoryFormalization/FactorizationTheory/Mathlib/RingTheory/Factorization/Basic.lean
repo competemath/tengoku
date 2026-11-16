@@ -80,34 +80,54 @@ namespace Factorization
 def prod (f : Associates.Factorization α) : Associates α :=
   (f.map ((↑) : {p : Associates α // Irreducible p} → Associates α)).prod
 
+/--
+@isnad1 id=eq.0h2v.s6.cceff06fc6bc from=translated src=- shape=88279f1d vocab=ec9c6c8e
+-/
 theorem prod_def (f : Associates.Factorization α) :
     prod f = (f.map ((↑) : {p : Associates α // Irreducible p} → Associates α)).prod := by
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.7adf8ea03132 from=translated src=- shape=7b5bff60 vocab=d339c9c5
+-/
 @[simp]
 theorem prod_zero : prod (0 : Associates.Factorization α) = 1 := by
   simp [prod]
 
+/--
+@isnad1 id=eq.0h2v.s7.4ef2249aea63 from=translated src=- shape=699bbf98 vocab=c3bb16fe
+-/
 @[simp]
 theorem prod_singleton (p : {p : Associates α // Irreducible p}) :
     prod ({p} : Associates.Factorization α) = p := by
   simp [prod]
 
+/--
+@isnad1 id=eq.0h3v.s7.50d3129414c2 from=translated src=- shape=d1397c84 vocab=97ac39ae
+-/
 @[simp]
 theorem prod_cons (p : {p : Associates α // Irreducible p})
     (f : Associates.Factorization α) : prod (p ::ₘ f) = p * prod f := by
   simp [prod]
 
+/--
+@isnad1 id=eq.0h3v.s6.c3ac686fd59a from=translated src=- shape=e69ef69b vocab=18bf4bd0
+-/
 @[simp]
 theorem prod_add (f g : Associates.Factorization α) : prod (f + g) = prod f * prod g := by
   simp [prod]
 
-/-- Every factor in a formal factorization divides its product.-/
+/-- Every factor in a formal factorization divides its product.
+@isnad1 id=dvd.1h3v.s7.cd5df964bce0 from=translated src=- shape=9a81dcda vocab=c557b256
+-/
 theorem dvd_prod {p : {p : Associates α // Irreducible p}}
     {f : Associates.Factorization α} (hp : p ∈ f) : (p : Associates α) ∣ f.prod := by
   rw [prod_def]
   exact Multiset.dvd_prod (Multiset.mem_map_of_mem _ hp)
 
+/--
+@isnad1 id=iff.0h2v.s6.b3da68a7243f from=translated src=- shape=fcd2a77c vocab=d339c9c5
+-/
 @[simp]
 theorem prod_eq_one_iff {f : Associates.Factorization α} : prod f = 1 ↔ f = 0 := by
   constructor
@@ -122,17 +142,26 @@ def ofMultiset (f : Multiset α) (hf : ∀ p ∈ f, Irreducible p) : Associates.
   f.pmap (p := Irreducible)
     (fun p hp ↦ ⟨Associates.mk p, irreducible_mk_iff.mpr hp⟩) hf
 
+/--
+@isnad1 id=eq.1h2v.s6.960b7f5133f6 from=translated src=- shape=b64489e2 vocab=d932331e
+-/
 @[simp]
 theorem map_coe_ofMultiset (f : Multiset α) (hf : ∀ p ∈ f, Irreducible p) :
     (ofMultiset f hf).map ((↑) : {p : Associates α // Irreducible p} → Associates α) =
       f.map Associates.mk := by
   simp [ofMultiset, Multiset.map_pmap, Multiset.pmap_eq_map]
 
+/--
+@isnad1 id=eq.1h2v.s5.fcf1cefa4af3 from=translated src=- shape=d9800e10 vocab=40bb254f
+-/
 @[simp]
 theorem prod_ofMultiset (f : Multiset α) (hf : ∀ p ∈ f, Irreducible p) :
     prod (ofMultiset f hf) = Associates.mk f.prod := by
   rw [prod, map_coe_ofMultiset, Associates.prod_mk]
 
+/--
+@isnad1 id=eq.1h2v.s6.3244539787a6 from=translated src=- shape=3dc13f38 vocab=03421de2
+-/
 @[simp]
 theorem card_ofMultiset (f : Multiset α) (hf : ∀ p ∈ f, Irreducible p) :
     (ofMultiset f hf).card = f.card := by
@@ -154,32 +183,52 @@ def _root_.Tengoku.FactorizationTheoryFormalization.factorizations (a : α) : Se
 def _root_.Tengoku.FactorizationTheoryFormalization.factorizationLengths (a : α) : Set ℕ :=
   Multiset.card '' factorizations a
 
+/--
+@isnad1 id=eq.0h2v.s6.f50cd325ceca from=translated src=- shape=5e90b2cb vocab=9276e7ec
+-/
 theorem _root_.Tengoku.FactorizationTheoryFormalization.factorizationLengths_def :
     factorizationLengths a = Multiset.card '' factorizations a := by
   rfl
 
+/--
+@isnad1 id=iff.0h3v.s5.0dce3ebb535a from=translated src=- shape=6efb2cb4 vocab=c9029318
+-/
 @[simp]
 theorem _root_.Tengoku.FactorizationTheoryFormalization.mem_factorizations {f : Associates.Factorization α} :
     f ∈ factorizations a ↔ f.prod = Associates.mk a := by
   rfl
 
+/--
+@isnad1 id=iff.0h3v.s6.d8f3e1f38bba from=translated src=- shape=6de4af21 vocab=08ce70f4
+-/
 theorem _root_.Tengoku.FactorizationTheoryFormalization.mem_factorizationLengths {n : ℕ} :
     n ∈ factorizationLengths a ↔ ∃ f ∈ factorizations a, f.card = n := by
   exact Set.mem_image _ _ _
 
+/--
+@isnad1 id=mem.1h3v.s6.2cda875addea from=translated src=- shape=95f0967c vocab=08ce70f4
+-/
 theorem _root_.Tengoku.FactorizationTheoryFormalization.card_mem_factorizationLengths {f : Associates.Factorization α}
     (hf : f ∈ factorizations a) : f.card ∈ factorizationLengths a := by
   exact Set.mem_image_of_mem _ hf
 
+/--
+@isnad1 id=eq.1h3v.s4.489fa4ece73e from=translated src=- shape=1a1ab218 vocab=fdfc05dc
+-/
 theorem Associated.factorizations_eq (h : a ~ᵤ b) : factorizations a = factorizations b := by
   simp only [factorizations, Associates.mk_eq_mk_iff_associated.mpr h]
 
+/--
+@isnad1 id=eq.1h3v.s4.27f4dabe5914 from=translated src=- shape=aeafbdc7 vocab=c74f2409
+-/
 theorem Associated.factorizationLengths_eq (h : a ~ᵤ b) :
     factorizationLengths a = factorizationLengths b := by
   rw [factorizationLengths, factorizationLengths, h.factorizations_eq]
 
 /-- A multiset of irreducible elements whose product is associated to `a` determines a
-factorization of `a`.-/
+factorization of `a`.
+@isnad1 id=mem.2h3v.s5.f4e9b91fe6d3 from=translated src=- shape=0a7d2137 vocab=da8edd5f
+-/
 theorem _root_.Tengoku.FactorizationTheoryFormalization.ofMultiset_mem_factorizations {f : Multiset α} (hf : ∀ b ∈ f, Irreducible b)
     (hprod : f.prod ~ᵤ a) :
     Associates.Factorization.ofMultiset f hf ∈ factorizations a := by
@@ -187,7 +236,9 @@ theorem _root_.Tengoku.FactorizationTheoryFormalization.ofMultiset_mem_factoriza
   exact Associates.mk_eq_mk_iff_associated.mpr hprod
 
 /-- Every factorization of `a` can be represented by a multiset of irreducible elements of `α`.
-Passing that multiset back to associate classes recovers the original factorization.-/
+Passing that multiset back to associate classes recovers the original factorization.
+@isnad1 id=ex.1h3v.s6.3df3a8780b55 from=translated src=- shape=58830cf9 vocab=da8edd5f
+-/
 theorem _root_.Tengoku.FactorizationTheoryFormalization.exists_multiset_of_mem_factorizations {f : Associates.Factorization α}
     (hf : f ∈ factorizations a) :
     ∃ g : Multiset α, ∃ hg : ∀ b ∈ g, Irreducible b,
@@ -208,27 +259,44 @@ theorem _root_.Tengoku.FactorizationTheoryFormalization.exists_multiset_of_mem_f
   · rw [← Multiset.map_eq_map Subtype.coe_injective,
       Associates.Factorization.map_coe_ofMultiset, hmap]
 
+/--
+@isnad1 id=eq.1h2v.s6.dfcc3233e9d3 from=translated src=- shape=14bd4197 vocab=6f13db29
+-/
 @[simp]
 theorem _root_.Tengoku.FactorizationTheoryFormalization.factorizations_of_isUnit (ha : IsUnit a) : factorizations a = {0} := by
   ext f
   simp [Associates.mk_eq_one.mpr ha]
 
+/--
+@isnad1 id=eq.0h1v.s6.100ddb7280f0 from=translated src=- shape=c20742fa vocab=255d422e
+-/
 theorem _root_.Tengoku.FactorizationTheoryFormalization.factorizations_one : factorizations (1 : α) = {0} :=
   factorizations_of_isUnit isUnit_one
 
+/--
+@isnad1 id=eq.1h2v.s5.3c15b3d3a47a from=translated src=- shape=01951cc6 vocab=4d5bdcc6
+-/
 @[simp]
 theorem _root_.Tengoku.FactorizationTheoryFormalization.factorizationLengths_of_isUnit (ha : IsUnit a) : factorizationLengths a = {0} := by
   rw [factorizationLengths, factorizations_of_isUnit ha, Set.image_singleton,
     Multiset.card_zero]
 
+/--
+@isnad1 id=eq.0h1v.s5.513817eb2e29 from=translated src=- shape=7effcef8 vocab=d05b1634
+-/
 theorem _root_.Tengoku.FactorizationTheoryFormalization.factorizationLengths_one : factorizationLengths (1 : α) = {0} :=
   factorizationLengths_of_isUnit isUnit_one
 
-/-- Zero is a factorization length of an element exactly when that element is a unit.-/
+/-- Zero is a factorization length of an element exactly when that element is a unit.
+@isnad1 id=iff.0h2v.s4.61b1f4d9ada8 from=translated src=- shape=4b5a9c29 vocab=669c7505
+-/
 @[simp]
 theorem _root_.Tengoku.FactorizationTheoryFormalization.zero_mem_factorizationLengths_iff : 0 ∈ factorizationLengths a ↔ IsUnit a := by
   simp [mem_factorizationLengths, Multiset.card_eq_zero, ← Associates.mk_eq_one, eq_comm]
 
+/--
+@isnad1 id=eq.1h2v.s5.5463f156b956 from=translated src=- shape=865500de vocab=dbccec0c
+-/
 @[simp]
 theorem _root_.Tengoku.FactorizationTheoryFormalization.factorizations_of_irreducible (ha : Irreducible a) :
     factorizations a =
@@ -253,12 +321,18 @@ theorem _root_.Tengoku.FactorizationTheoryFormalization.factorizations_of_irredu
   rw [h]
   congr 2
 
+/--
+@isnad1 id=eq.1h2v.s5.e3ea8a2b7ac9 from=translated src=- shape=01951cc6 vocab=9b53a93b
+-/
 @[simp]
 theorem _root_.Tengoku.FactorizationTheoryFormalization.factorizationLengths_of_irreducible (ha : Irreducible a) :
     factorizationLengths a = {1} := by
   rw [factorizationLengths, factorizations_of_irreducible ha, Set.image_singleton,
     Associates.Factorization.card_ofMultiset, Multiset.card_singleton]
 
+/--
+@isnad1 id=mem.2h5v.s7.59cf094c0da5 from=translated src=- shape=4135ad2b vocab=4fd82a72
+-/
 theorem _root_.Tengoku.FactorizationTheoryFormalization.add_mem_factorizations_mul {f g : Associates.Factorization α}
     (hf : f ∈ factorizations a) (hg : g ∈ factorizations b) :
     f + g ∈ factorizations (a * b) := by
@@ -266,7 +340,9 @@ theorem _root_.Tengoku.FactorizationTheoryFormalization.add_mem_factorizations_m
 
 open scoped Pointwise in
 /-- Concatenating a factorization of `a` and a factorization of `b` gives a factorization of
-`a * b`, so the pointwise sum of their length sets is contained in the length set of `a * b`.-/
+`a * b`, so the pointwise sum of their length sets is contained in the length set of `a * b`.
+@isnad1 id=le.0h3v.s5.2d5c5ed58915 from=translated src=- shape=7a56e17d vocab=17d97255
+-/
 theorem _root_.Tengoku.FactorizationTheoryFormalization.add_subset_factorizationLengths_mul :
     factorizationLengths a + factorizationLengths b ⊆ factorizationLengths (a * b) := by
   rw [Set.add_subset_iff]
@@ -279,7 +355,9 @@ section CommMonoidWithZero
 
 variable [CommMonoidWithZero α]
 
-/-- In a nontrivial monoid without zero divisors, zero has no factorization into irreducibles.-/
+/-- In a nontrivial monoid without zero divisors, zero has no factorization into irreducibles.
+@isnad1 id=eq.0h1v.s6.b1d0f81e7bd8 from=translated src=- shape=486f446d vocab=b529f11a
+-/
 @[simp]
 theorem _root_.Tengoku.FactorizationTheoryFormalization.factorizations_zero [NoZeroDivisors α] [Nontrivial α] :
     factorizations (0 : α) = ∅ := by
@@ -289,7 +367,9 @@ theorem _root_.Tengoku.FactorizationTheoryFormalization.factorizations_zero [NoZ
   exact Multiset.prod_ne_zero (fun hmem ↦ not_irreducible_zero (hg 0 hmem))
     (associated_zero_iff_eq_zero _ |>.mp hprod)
 
-/-- In a nontrivial monoid without zero divisors, zero has no factorization lengths.-/
+/-- In a nontrivial monoid without zero divisors, zero has no factorization lengths.
+@isnad1 id=eq.0h1v.s5.c62eb9409930 from=translated src=- shape=ec72b0dd vocab=fde64767
+-/
 @[simp]
 theorem _root_.Tengoku.FactorizationTheoryFormalization.factorizationLengths_zero [NoZeroDivisors α] [Nontrivial α] :
     factorizationLengths (0 : α) = ∅ := by

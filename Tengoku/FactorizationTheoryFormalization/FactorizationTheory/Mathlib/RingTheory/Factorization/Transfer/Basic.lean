@@ -79,31 +79,45 @@ namespace Tengoku.FactorizationTheoryFormalization.IsTransferHom
 
 /-! ### Elementary consequences of the axioms -/
 
+/--
+@isnad1 id=iff.1h5v.s6.1ca41fc218eb from=translated src=- shape=5b6ce704 vocab=f2a46330
+-/
 theorem map_eq_zero_iff (hθ : IsTransferHom θ) : θ a = 0 ↔ a = 0 :=
   ⟨fun h ↦ hθ.eq_zero_of_map_eq_zero h, fun h ↦ h ▸ map_zero θ⟩
 
+/--
+@isnad1 id=ne.2h5v.s6.e0d6bba5246c from=translated src=- shape=c2478547 vocab=f2a46330
+-/
 theorem map_ne_zero (hθ : IsTransferHom θ) (ha : a ≠ 0) : θ a ≠ 0 :=
   hθ.map_eq_zero_iff.not.mpr ha
 
 /-- A transfer homomorphism reflects units; the forward implication is the
-`IsLocalHom` field and the reverse implication holds for every monoid homomorphism.-/
+`IsLocalHom` field and the reverse implication holds for every monoid homomorphism.
+@isnad1 id=iff.1h5v.s6.153240cf3744 from=translated src=- shape=2b3c2ad0 vocab=54e9db03
+-/
 theorem isUnit_map_iff (hθ : IsTransferHom θ) : IsUnit (θ a) ↔ IsUnit a := by
   let _ := hθ.isLocalHom
   exact _root_.isUnit_map_iff θ a
 
 /-- A transfer homomorphism preserves nonunits, so the elements to which the arithmetic
-applies correspond on the two sides.-/
+applies correspond on the two sides.
+@isnad1 id=not.2h5v.s6.9a55464c0dde from=translated src=- shape=520e378d vocab=54e9db03
+-/
 theorem not_isUnit_map (hθ : IsTransferHom θ) (ha : ¬IsUnit a) : ¬IsUnit (θ a) :=
   hθ.isUnit_map_iff.not.mpr ha
 
-/-- The identity homomorphism is a transfer homomorphism.-/
+/-- The identity homomorphism is a transfer homomorphism.
+@isnad1 id=istransf.0h1v.s5.aa5d2b33c631 from=translated src=- shape=bfb48f67 vocab=02a30c7d
+-/
 protected theorem id : IsTransferHom (MonoidWithZeroHom.id α) where
   exists_associated_map b := ⟨b, .rfl⟩
   isLocalHom := ⟨fun _ h ↦ h⟩
   eq_zero_of_map_eq_zero _ h := h
   exists_mul_eq_of_map_eq_mul _ _ _ h := ⟨_, _, h, .rfl, .rfl⟩
 
-/-- Transfer homomorphisms are closed under composition.-/
+/-- Transfer homomorphisms are closed under composition.
+@isnad1 id=istransf.2h7v.s7.0e21b36d4df7 from=translated src=- shape=367b161e vocab=9519d535
+-/
 protected theorem comp {F' : Type*} [FunLike F' β γ] [MonoidWithZeroHomClass F' β γ]
     {φ : F'} (hφ : IsTransferHom φ) (hθ : IsTransferHom θ) :
     IsTransferHom
@@ -135,14 +149,18 @@ protected theorem comp {F' : Type*} [FunLike F' β γ] [MonoidWithZeroHomClass F
 /-! ### Atoms -/
 
 /-- A transfer homomorphism reflects atoms: if `θ a` is associated to an atom of `β` then
-`a` is an atom of `α`.-/
+`a` is an atom of `α`.
+@isnad1 id=irreduci.3h6v.s6.a89172166dab from=translated src=- shape=e43ff5f2 vocab=e711ffbf
+-/
 theorem irreducible_of_associated_map (hθ : IsTransferHom θ) (hab : Associated (θ a) b)
     (hb : Irreducible b) : Irreducible a := by
   let _ := hθ.isLocalHom
   exact (hab.symm.irreducible hb).of_map
 
 /-- A transfer homomorphism maps atoms to atoms and reflects them: this is the reason sets of
-lengths are preserved.-/
+lengths are preserved.
+@isnad1 id=iff.1h5v.s6.4a62bb49cef5 from=translated src=- shape=2b3c2ad0 vocab=7b28635d
+-/
 theorem irreducible_iff (hθ : IsTransferHom θ) : Irreducible (θ a) ↔ Irreducible a := by
   refine ⟨fun h ↦ hθ.irreducible_of_associated_map .rfl h, fun ha ↦ ?_⟩
   refine ⟨hθ.not_isUnit_map ha.not_isUnit, fun b₁ b₂ hmul ↦ ?_⟩
@@ -153,6 +171,9 @@ theorem irreducible_iff (hθ : IsTransferHom θ) : Irreducible (θ a) ↔ Irredu
 
 /-! ### The induced map on formal factorizations -/
 
+/--
+@isnad1 id=iff.1h5v.s8.01cd4b2ffa6a from=translated src=- shape=799902fa vocab=00e9b70b
+-/
 theorem irreducible_associates_map_iff (hθ : IsTransferHom θ) {p : Associates α} :
     Irreducible (Associates.map θ p) ↔ Irreducible p := by
   refine Quotient.inductionOn p ?_
@@ -164,6 +185,9 @@ def atomMap (hθ : IsTransferHom θ) :
     {p : Associates α // Irreducible p} → {p : Associates β // Irreducible p} :=
   fun p ↦ ⟨Associates.map θ p, hθ.irreducible_associates_map_iff.mpr p.property⟩
 
+/--
+@isnad1 id=eq.1h5v.s8.cec5cf7cfb15 from=translated src=- shape=2cb532d7 vocab=35943d35
+-/
 @[simp]
 theorem coe_atomMap (hθ : IsTransferHom θ)
     (p : {p : Associates α // Irreducible p}) :
@@ -175,22 +199,33 @@ def factorizationMap (hθ : IsTransferHom θ) :
     Associates.Factorization α →+ Associates.Factorization β :=
   Multiset.mapAddMonoidHom hθ.atomMap
 
+/--
+@isnad1 id=eq.1h5v.s8.e92eb8f5cd36 from=translated src=- shape=9f088fa5 vocab=ca8ffa91
+-/
 @[simp]
 theorem factorizationMap_apply (hθ : IsTransferHom θ) (f : Associates.Factorization α) :
     hθ.factorizationMap f = f.map hθ.atomMap := by
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s8.9888ee4ec082 from=translated src=- shape=98caab32 vocab=bc6a08a5
+-/
 theorem card_factorizationMap (hθ : IsTransferHom θ) (f : Associates.Factorization α) :
     (hθ.factorizationMap f).card = f.card := by
   simp
 
+/--
+@isnad1 id=eq.1h5v.s9.5d664b619caa from=translated src=- shape=f794b9ed vocab=8374c4a3
+-/
 theorem prod_factorizationMap (hθ : IsTransferHom θ) (f : Associates.Factorization α) :
     (hθ.factorizationMap f).prod = Associates.map θ f.prod := by
   simp only [Associates.Factorization.prod_def, hθ.factorizationMap_apply,
     Multiset.map_map, Function.comp_apply, hθ.coe_atomMap, map_multiset_prod]
 
 /-- The induced additive homomorphism sends a factorization of `a` to a factorization of
-`θ a`.-/
+`θ a`.
+@isnad1 id=mem.2h6v.s8.9e9749db3522 from=translated src=- shape=0adfa3cb vocab=3c2e948f
+-/
 theorem factorizationMap_mem (hθ : IsTransferHom θ) {f : Associates.Factorization α}
     (hf : f ∈ factorizations a) : hθ.factorizationMap f ∈ factorizations (θ a) := by
   rw [mem_factorizations, prod_factorizationMap, mem_factorizations.mp hf, Associates.map_mk]
@@ -200,7 +235,9 @@ theorem factorizationMap_mem (hθ : IsTransferHom θ) {f : Associates.Factorizat
 /-- The iterated form of the lifting condition (T2): a factorization of `θ a` in `β` lifts
 to a factorization of `a` in `α` of the same length, termwise associated to the given one.
 The conclusion uses `Associated` on both the product and the terms because the lifted
-factors are only determined up to units.-/
+factors are only determined up to units.
+@isnad1 id=ex.2h6v.s6.53b14ef7f6f1 from=translated src=- shape=aa93d0a3 vocab=d42cc577
+-/
 theorem exists_multiset_rel (hθ : IsTransferHom θ) {g : Multiset β}
     (h : Associated (θ a) g.prod) :
     ∃ f : Multiset α, Associated a f.prod ∧
@@ -229,7 +266,9 @@ theorem exists_multiset_rel (hθ : IsTransferHom θ) {g : Multiset β}
       · exact h₁.trans <| associated_mul_unit_left b (↑(u⁻¹) : β) (Units.isUnit u⁻¹)
 
 /-- Every formal factorization in the target fiber has a preimage in the source fiber under
-the termwise additive homomorphism on atom classes.-/
+the termwise additive homomorphism on atom classes.
+@isnad1 id=ex.2h6v.s8.f8c4ae46c5d7 from=translated src=- shape=64448ce5 vocab=3c2e948f
+-/
 theorem exists_factorizationMap_eq (hθ : IsTransferHom θ)
     {q : Associates.Factorization β} (hq : q ∈ factorizations (θ a)) :
     ∃ p ∈ factorizations a, hθ.factorizationMap p = q := by
@@ -270,14 +309,18 @@ theorem exists_factorizationMap_eq (hθ : IsTransferHom θ)
   exact hleft.trans hmapped
 
 /-- The forward direction: a factorization of `a` pushes forward to a factorization of
-`θ a` of the same length, since `θ` maps atoms to atoms.-/
+`θ a` of the same length, since `θ` maps atoms to atoms.
+@isnad1 id=le.1h5v.s6.e10262f72fb4 from=translated src=- shape=597b1ea8 vocab=925d2b6f
+-/
 theorem factorizationLengths_subset (hθ : IsTransferHom θ) (a : α) :
     factorizationLengths a ⊆ factorizationLengths (θ a) := by
   intro n hn
   obtain ⟨f, hf, rfl⟩ := mem_factorizationLengths.mp hn
   simpa using card_mem_factorizationLengths (hθ.factorizationMap_mem hf)
 
-/-- A transfer homomorphism preserves the set of factorization lengths of every element.-/
+/-- A transfer homomorphism preserves the set of factorization lengths of every element.
+@isnad1 id=eq.1h5v.s6.b4fba8d29d02 from=translated src=- shape=cbc55f16 vocab=84d02abc
+-/
 theorem factorizationLengths_eq (hθ : IsTransferHom θ) (a : α) :
     factorizationLengths (θ a) = factorizationLengths a := by
   apply Set.Subset.antisymm

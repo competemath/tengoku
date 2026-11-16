@@ -120,7 +120,9 @@ noncomputable def UniqueFactorizationMonoid.divisorTheory [Nontrivial α]
       exact hy a (Finset.mem_singleton_self a)
 
 /-- On a nonzero element, the canonical divisor theory records its multiset of irreducible
-associate factors.-/
+associate factors.
+@isnad1 id=eq.1h2v.s9.55d639cf73e6 from=translated src=- shape=04c2f0c5 vocab=3ef38352
+-/
 theorem UniqueFactorizationMonoid.divisorTheory_apply_of_ne_zero [Nontrivial α]
     [UniqueFactorizationMonoid α] (a : α) (ha : a ≠ 0) :
     UniqueFactorizationMonoid.divisorTheory (α := α) a =
@@ -137,7 +139,9 @@ theorem UniqueFactorizationMonoid.divisorTheory_apply_of_ne_zero [Nontrivial α]
   rw [Associates.factors_mk a ha]
 
 /-- The canonical divisor theory of a unique factorization monoid is onto the free divisor
-monoid with zero.-/
+monoid with zero.
+@isnad1 id=surjecti.0h1v.s7.b908ea3d4698 from=translated src=- shape=aec17492 vocab=50c79c9e
+-/
 theorem UniqueFactorizationMonoid.divisorTheory_surjective [Nontrivial α]
     [UniqueFactorizationMonoid α] :
     Function.Surjective
@@ -174,7 +178,9 @@ private theorem divisorClassGroup_subsingleton_of_surjective
   exact hx.trans hy.symm
 
 /-- The class group of the canonical divisor theory of a unique factorization monoid is
-trivial.-/
+trivial.
+@isnad1 id=subsingl.0h1v.s6.bd1fe8528a71 from=translated src=- shape=791e2953 vocab=642d5dd2
+-/
 theorem UniqueFactorizationMonoid.divisorTheory_classGroup_subsingleton [Nontrivial α]
     [UniqueFactorizationMonoid α] :
     Subsingleton
@@ -201,7 +207,9 @@ private theorem divisorMultiset_eq_zero_of_isUnit [Nontrivial α]
   exact Multiset.le_zero.mp hle
 
 /-- If the class group of an explicit divisor theory is trivial, its source is a unique
-factorization monoid.-/
+factorization monoid.
+@isnad1 id=uniquefa.1h3v.s5.932b2928993e from=translated src=- shape=e83423d2 vocab=f67fbab5
+-/
 theorem Tengoku.FactorizationTheoryFormalization.DivisorTheory.uniqueFactorizationMonoid_of_classGroup_subsingleton
     [IsCancelMulZero α] [Nontrivial α] (D : DivisorTheory α P)
     (hC : Subsingleton D.ClassGroup) : UniqueFactorizationMonoid α := by

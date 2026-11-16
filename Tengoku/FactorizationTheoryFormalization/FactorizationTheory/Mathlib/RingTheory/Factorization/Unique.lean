@@ -36,7 +36,9 @@ section UniqueFactorizationMonoid
 
 variable [CommMonoidWithZero α] [UniqueFactorizationMonoid α] {a : α}
 
-/-- In a unique factorization monoid, a nonzero element has only its canonical factorization.-/
+/-- In a unique factorization monoid, a nonzero element has only its canonical factorization.
+@isnad1 id=eq.1h2v.s6.18e3d38d3afc from=translated src=- shape=a08f0943 vocab=50fbed37
+-/
 theorem UniqueFactorizationMonoid.factorizations_eq_singleton (ha : a ≠ 0) :
     factorizations a =
       {Associates.Factorization.ofMultiset (UniqueFactorizationMonoid.factors a)
@@ -56,7 +58,9 @@ theorem UniqueFactorizationMonoid.factorizations_eq_singleton (ha : a ≠ 0) :
           (mem_factorizations.mp hf).trans (mem_factorizations.mp hmem).symm⟩
 
 /-- In a unique factorization monoid, the length set of a nonzero element is the singleton
-containing the number of its canonical factors.-/
+containing the number of its canonical factors.
+@isnad1 id=eq.1h2v.s5.2b1b6a4822c0 from=translated src=- shape=68a537e8 vocab=fd2b1602
+-/
 @[simp]
 theorem UniqueFactorizationMonoid.factorizationLengths_eq_singleton (ha : a ≠ 0) :
     factorizationLengths a = {(UniqueFactorizationMonoid.factors a).card} := by
