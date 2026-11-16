@@ -1,8 +1,10 @@
 """scripts/isnad.py: the pure half of the identity (hashing, ids, tags, explanations, the golden file) and the commands around the Lean program
 (with a stand-in for it). The Lean half is tested by `isnad.py laws` and `isnad.py selftest`, which need a Lean toolchain (CI: pr-tests, job isnad)."""
 
+import contextlib
 import hashlib
 import importlib.util
+import io
 import os
 import re
 import stat
@@ -685,6 +687,36 @@ class Dependencies(unittest.TestCase):
         a = isnad.deps_rows(["isnad1-deps\tA.t\tM\tOld.name"], {"Old.name": self.ID_A})[0][1]
         b = isnad.deps_rows(["isnad1-deps\tA.t\tM\tNew.name"], {"New.name": self.ID_A})[0][1]
         self.assertEqual(a, b)
+
+    def test_the_deps_command_hashes_by_statement_and_reads_the_table_from_stdin(self):
+        rec = isnad.Record(ADD_COMM_LINE)
+        lines = [
+            "isnad1-deps\tFx.t\tM\tNat.add_comm\tOther.lemma",
+            "isnad1-deps\tFx.u\tM\tNat.add_comm",
+        ]
+        args = mock.Mock(module=["M"], ids_stdin=True, exe=None)
+        out = io.StringIO()
+        with (
+            mock.patch.object(isnad, "run_exe", lambda a, exe=None: [rec]),
+            mock.patch.object(isnad, "run_exe_lines", lambda a, exe=None: lines),
+            mock.patch.object(sys, "stdin", io.StringIO(f"Other.lemma\t{self.ID_B}\tshape=1\tvocab=2\n")),
+            contextlib.redirect_stdout(out),
+        ):
+            self.assertEqual(isnad.cmd_deps(args), 0)
+        want_t = isnad.deps_hash([rec.id, self.ID_B])
+        want_u = isnad.deps_hash([rec.id])
+        self.assertEqual(out.getvalue().splitlines(), [f"Fx.t\t{want_t}\t2\t", f"Fx.u\t{want_u}\t1\t"])
+
+    def test_the_deps_command_without_a_table_leaves_unknown_ids_visible(self):
+        args = mock.Mock(module=["M"], ids_stdin=False, exe=None)
+        out = io.StringIO()
+        with (
+            mock.patch.object(isnad, "run_exe", lambda a, exe=None: []),
+            mock.patch.object(isnad, "run_exe_lines", lambda a, exe=None: ["isnad1-deps\tFx.t\tM\tZ.z"]),
+            contextlib.redirect_stdout(out),
+        ):
+            isnad.cmd_deps(args)
+        self.assertEqual(out.getvalue().strip(), "Fx.t\t-\t1\tZ.z")
 
     def test_read_ids_keeps_only_id_rows(self):
         lines = [f"B.u\t{self.ID_A}\tshape=1\tvocab=2\n", "not an id row\n", "C.v\tnope\n"]
