@@ -65,7 +65,9 @@ from `FieldTheory.IsRealClosed.Basic`, `Real.isSquare_iff` from
 `Analysis.Real.Sqrt`, and
 `Polynomial.zero_lt_eval_of_roots_lt_of_leadingCoeff_nonneg` and
 `Polynomial.zero_lt_negOnePow_mul_eval_of_lt_roots_of_leadingCoeff_nonneg`
-from `Analysis.Polynomial.Order` for the odd-degree-root clause.-/
+from `Analysis.Polynomial.Order` for the odd-degree-root clause.
+@isnad1 id=isrealcl.0h0v.s1.46ab8920515e from=translated src=- shape=49959d42 vocab=b9d4b176
+-/
 theorem realIsRealClosed : IsRealClosed ℝ := by
   apply IsRealClosed.of_linearOrderedField
   · intro x hx
@@ -75,7 +77,9 @@ theorem realIsRealClosed : IsRealClosed ℝ := by
 
 /-- The irreducible polynomial `X² + 1` has the maximal allowed degree over
 the real-closed model. Its root-free property follows from square nonnegativity,
-not from algebraic closedness of a quadratic extension.-/
+not from algebraic closedness of a quadratic extension.
+@isnad1 id=and.0h0v.s7.96a0f165937e from=translated src=- shape=024ac048 vocab=bde7e7b7
+-/
 theorem sharpGaussian :
     (X ^ 2 + 1 : ℝ[X]).natDegree = 2 ∧ Irreducible (X ^ 2 + 1 : ℝ[X]) := by
   have hdegree : (X ^ 2 + 1 : ℝ[X]).natDegree = 2 := by
@@ -104,7 +108,9 @@ private theorem powSubOne_reducible (degree : ℕ) (hdegree : degree ≠ 1) :
   exact (hirr.not_isRoot_of_natDegree_ne_one (by simpa [hpdegree] using hdegree)) hroot
 
 /-- Degree two alone does not imply irreducibility, nor can the degree bound
-hold for arbitrary reducible polynomials: `X⁴ - 1` has degree four.-/
+hold for arbitrary reducible polynomials: `X⁴ - 1` has degree four.
+@isnad1 id=and.0h0v.s7.3bca5f297878 from=translated src=- shape=96f381c4 vocab=37608607
+-/
 theorem reducibleBoundaries :
     (¬ Irreducible (X ^ 2 - 1 : ℝ[X])) ∧
       (X ^ 4 - 1 : ℝ[X]).natDegree = 4 ∧
