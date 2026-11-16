@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "4d8a99f7eb6bc4492a958c97673eee4f68b80a34843d537682a1bc5f558881a3",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "osp-triviality",
+ "lint_mode": "proposed",
+ "modules": 14,
+ "part": 1,
+ "theorems": 89
+}
