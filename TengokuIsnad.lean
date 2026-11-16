@@ -232,7 +232,7 @@ def records (env : Environment) (mods : List Name) (names : List Name) : Array S
 
 /-- The theorems a theorem's proof uses directly, by the names the records use: every theorem constant of the proof term that the records list, nothing else. A theorem the
 records leave out (generated and internal: `eq_*`, `proof_*`, a private one) is looked through, to the theorems its own proof uses, because it has no identity to name.
-A definition the author wrote is not followed (a definition is not a statement), but the auxiliary definitions the elaborator makes for a proof are looked through (`Nat.add_comm._f`, `match_1`, a private helper): without that a proof by structural recursion would have no dependencies. The theorem itself is never its own dependency. Sorted, no duplicates. -/
+A definition the author wrote is not followed (a definition is not a statement), but the auxiliary definitions the elaborator makes for this very proof, whose names extend the theorem's own, are looked through (`Nat.add_comm._f`, `Nat.add_comm.match_1`): without that a proof by structural recursion would have no dependencies. A private helper or another function's auxiliary is not followed. The theorem itself is never its own dependency. Sorted, no duplicates. -/
 def directDeps (env : Environment) (self : Name) (value : Expr) : Array String := Id.run do
   let mut found : NameSet := {}
   let mut seen : NameSet := {}
@@ -248,8 +248,9 @@ def directDeps (env : Environment) (self : Name) (value : Expr) : Array String :
       if named then found := found.insert c
       else stack := stack ++ t.value.getUsedConstants
     | some (.defnInfo d) =>
-      -- the auxiliary definitions the elaborator makes for a proof (`foo._f` of a structural recursion, `match_1`, `_unary`, a private helper) hold what the proof leans on: look through them
-      if !named then stack := stack ++ d.value.getUsedConstants
+      -- only the auxiliary definitions the elaborator made for THIS proof (`self._f` of a structural recursion, `self.match_1`, `self._unary`): their names extend the theorem's own. A private
+      -- helper the author wrote, or another function's auxiliary, is not followed (it is reached through its own statement or not at all)
+      if !named && self.isPrefixOf c then stack := stack ++ d.value.getUsedConstants
     | _ => pure ()
   return (found.toList.map (fun c => toString (cleanName c))).toArray.qsort (· < ·)
 
