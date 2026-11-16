@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=and.2h4v.s8.8e987805ddef from=translated src=- shape=ef25435a vocab=e79c0196
+-/
 theorem solution
     {T' : Type u} [CommRing T'] (I : Ideal T') (hI2 : I * I = ⊥)
     (C : Type u) [CommRing C] [Algebra T' C]

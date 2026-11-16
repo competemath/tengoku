@@ -19,6 +19,9 @@ section jacobson
 
 variable {R : Type*} [CommRing R] [IsLocalRing R] {A : Type*} [CommRing A] [Algebra R A] [Module.Finite R A]
 
+/--
+@isnad1 id=le.0h3v.s7.3d70eadfc612 from=translated src=- shape=389d3c7d vocab=b1d504a4
+-/
 theorem map_maximalIdeal_le_of_isMaximal (𝔫 : Ideal A) [𝔫.IsMaximal] :
     (IsLocalRing.maximalIdeal R).map (algebraMap R A) ≤ 𝔫 := by
   haveI : Algebra.IsIntegral R A := Algebra.IsIntegral.of_finite R A
@@ -26,6 +29,9 @@ theorem map_maximalIdeal_le_of_isMaximal (𝔫 : Ideal A) [𝔫.IsMaximal] :
   haveI : (𝔫.comap (algebraMap R A)).IsMaximal := Ideal.isMaximal_comap_of_isIntegral_of_isMaximal 𝔫
   exact (IsLocalRing.eq_maximalIdeal inferInstance).ge
 
+/--
+@isnad1 id=isunit.1h3v.s7.313cb5380975 from=translated src=- shape=66652169 vocab=22519477
+-/
 theorem isUnit_one_add_of_mem_map_maximalIdeal {x : A}
     (hx : x ∈ (IsLocalRing.maximalIdeal R).map (algebraMap R A)) : IsUnit (1 + x) := by
   have hj : x ∈ (⊥ : Ideal A).jacobson := by
@@ -42,6 +48,9 @@ section standardEtale
 
 variable {R : Type u} [CommRing R] [IsLocalRing R]
 
+/--
+@isnad1 id=ex.2h2v.s8.6ff5ed1bb0bb from=translated src=- shape=eeb90739 vocab=814e784f
+-/
 theorem exists_derivative_mul_add_mul_eq_one (p : R[X]) (hp : p.Monic)
     (hsep : (p.map (IsLocalRing.residue R)).Separable) :
     ∃ p₁ p₂ : R[X], derivative p * p₁ + p * p₂ = 1 := by
@@ -76,6 +85,9 @@ theorem exists_derivative_mul_add_mul_eq_one (p : R[X]) (hp : p.Monic)
   obtain ⟨d, hd⟩ := (AdjoinRoot.mk_eq_zero).mp h1
   exact ⟨c, -d, by linear_combination hd⟩
 
+/--
+@isnad1 id=etale.2h2v.s6.4eeceb3c40b2 from=translated src=- shape=64e1a17a vocab=8db5b0d8
+-/
 theorem etale_adjoinRoot (p : R[X]) (hp : p.Monic)
     (hsep : (p.map (IsLocalRing.residue R)).Separable) : Algebra.Etale R (AdjoinRoot p) := by
   obtain ⟨p₁, p₂, h⟩ := exists_derivative_mul_add_mul_eq_one p hp hsep
@@ -113,10 +125,16 @@ noncomputable def bcInv : AdjoinRoot (p.map (algebraMap R S)) →ₐ[S] S ⊗[R]
       show (1 : S) ⊗ₜ[R] AdjoinRoot.root p = Algebra.TensorProduct.includeRight (AdjoinRoot.root p) from rfl,
       ← Polynomial.aeval_def, Polynomial.aeval_algHom_apply, AdjoinRoot.aeval_eq, AdjoinRoot.mk_self, map_zero])
 
+/--
+@isnad1 id=eq.0h3v.s10.1bc7cf814123 from=translated src=- shape=bea46301 vocab=1f297373
+-/
 theorem bcHom_tmul_one_root :
     bcHom S p ((1 : S) ⊗ₜ[R] AdjoinRoot.root p) = AdjoinRoot.root (p.map (algebraMap R S)) := by
   simp [bcHom, Algebra.TensorProduct.lift_tmul]
 
+/--
+@isnad1 id=eq.0h3v.s10.d96a990f2797 from=translated src=- shape=1f2b1cae vocab=a51ab682
+-/
 theorem bcInv_root :
     bcInv S p (AdjoinRoot.root (p.map (algebraMap R S))) = (1 : S) ⊗ₜ[R] AdjoinRoot.root p := by
   simp [bcInv]
@@ -135,6 +153,9 @@ end H2Aux
 
 open Polynomial in
 
+/--
+@isnad1 id=ex.0h2v.s8.3196f5bebad7 from=translated src=- shape=ac32f0cf vocab=7ee4bc82
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsLocalRing R]
     (Ebar : Type v) [CommRing Ebar] [Algebra (IsLocalRing.ResidueField R) Ebar]

@@ -37,6 +37,9 @@ def IsAttachedUpToTwist (ρ : Γℚ →* Matrix.GeneralLinearGroup (Fin 2) (ZMod
     (π₀ : HeckeEigensystem ℚ (ℤ√(-2))) (T : Finset ℕ) : Prop :=
   IsAttachedExact ρ π₀ T ∨ IsAttachedTwisted ρ π₀ T
 
+/--
+@isnad1 id=isattach.0h0v.s10.23ef780197c2 from=translated src=- shape=32e40cef vocab=926b50ee
+-/
 theorem isAttachedUpToTwist_one :
     IsAttachedUpToTwist 1 ⟨⊤, by simp, fun _ => 2, fun _ => 0⟩ ∅ :=
   Or.inl fun _ _ _ _ _ _ => by

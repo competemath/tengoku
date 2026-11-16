@@ -11,6 +11,9 @@ set_option autoImplicit false
 set_option maxHeartbeats 800000
 set_option synthInstance.maxHeartbeats 80000
 
+/--
+@isnad1 id=and.0h2v.s8.b2ff7167ad0e from=translated src=- shape=d24e6d3b vocab=8d5eaf80
+-/
 theorem solution
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ) :
     (∀ x : K, ‖(x : v.Completion)‖ = v x) ∧ (v.IsNontrivial → ∃ x : v.Completion, 1 < ‖x‖) := by

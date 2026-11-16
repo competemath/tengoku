@@ -33,6 +33,9 @@ noncomputable def ev : MvPolynomial A R →ₐ[R] A := aeval (R := R) id
 
 def incl {s s' : Finset A} (h : s ⊆ s') : ↥s → ↥s' := fun x => ⟨x.1, h x.2⟩
 
+/--
+@isnad1 id=eq.1h5v.s10.3e13a72664cd from=translated src=- shape=a079dedf vocab=459cd611
+-/
 theorem res_ext_of_subset {s s' : Finset A} (h : s ⊆ s') (g : MvPolynomial ↥s R) :
     res (R := R) s' (ext s g) = rename (incl h) g := by
   have : (res (R := R) s').comp (ext s) = rename (incl h) := by
@@ -42,11 +45,17 @@ theorem res_ext_of_subset {s s' : Finset A} (h : s ⊆ s') (g : MvPolynomial ↥
     rfl
   exact congrArg (fun f : MvPolynomial ↥s R →ₐ[R] MvPolynomial ↥s' R => f g) this
 
+/--
+@isnad1 id=eq.1h5v.s10.c1a9af5f07ea from=translated src=- shape=170faa31 vocab=c46a56ab
+-/
 theorem ext_rename_incl {s s' : Finset A} (h : s ⊆ s') (g : MvPolynomial ↥s R) :
     ext (R := R) s' (rename (incl h) g) = ext s g := by
   simp only [ext, rename_rename]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.14f6a6e6e8a2 from=translated src=- shape=6ce57c66 vocab=023ba57d
+-/
 theorem ev_ext (s : Finset A) (g : MvPolynomial ↥s R) :
     ev (R := R) (ext s g) = aeval (fun x : ↥s => (x : A)) g := by
   simp only [ev, ext, aeval_rename]
@@ -54,6 +63,9 @@ theorem ev_ext (s : Finset A) (g : MvPolynomial ↥s R) :
 
 def Supp (s : Finset A) (f : MvPolynomial A R) : Prop := ext s (res s f) = f
 
+/--
+@isnad1 id=supp.2h5v.s5.855828841e9f from=translated src=- shape=33b0f970 vocab=6c68d180
+-/
 theorem supp_mono {s s' : Finset A} (h : s ⊆ s') {f : MvPolynomial A R} (hf : Supp s f) : Supp s' f := by
   unfold Supp at hf ⊢
   conv_lhs => rw [← hf]
@@ -69,6 +81,9 @@ scoped instance : Preorder (Idx R A) where
 
 scoped instance : Nonempty (Idx R A) := ⟨⟨(∅, ∅), by simp⟩⟩
 
+/--
+@isnad1 id=isdirect.0h2v.s6.ebeb599d0783 from=translated src=- shape=3ec30b03 vocab=2b7524e8
+-/
 theorem idx_directed : IsDirected (Idx R A) (· ≤ ·) := by
   constructor
   intro i j
@@ -84,12 +99,18 @@ def rel (i : Idx R A) : Ideal (MvPolynomial ↥i.1.1 R) := Ideal.span ((res (R :
 
 abbrev Stage (i : Idx R A) : Type u := MvPolynomial ↥i.1.1 R ⧸ rel i
 
+/--
+@isnad1 id=finitepr.0h3v.s11.ca76140927f4 from=translated src=- shape=e27e189f vocab=6cad7914
+-/
 theorem stage_fp (i : Idx R A) : Algebra.FinitePresentation R (Stage i) := by
   classical
   haveI : Algebra.FinitePresentation R (MvPolynomial ↥i.1.1 R) := Algebra.FinitePresentation.mvPolynomial R R _
   have hfg : (rel i).FG := ⟨i.1.2.image (res (R := R) i.1.1), by rw [Finset.coe_image]; rfl⟩
   exact Algebra.FinitePresentation.quotient hfg
 
+/--
+@isnad1 id=le.1h4v.s13.b033120b5ab9 from=translated src=- shape=4c4af070 vocab=d8e305f3
+-/
 theorem rel_le_comap {i j : Idx R A} (h : i ≤ j) :
     rel i ≤ (rel j).comap (rename (R := R) (incl h.1)) := by
   rw [rel, Ideal.span_le]
@@ -101,6 +122,9 @@ private noncomputable def _root_.C1Aux.trans (i j : Idx R A) (h : i ≤ j) : Sta
   Ideal.quotientMapₐ (rel j) (rename (incl h.1)) (rel_le_comap h)
 
 export _root_.C1Aux (trans)
+/--
+@isnad1 id=eq.1h5v.s15.6239e47731fe from=translated src=- shape=849c15ae vocab=a8064a87
+-/
 theorem trans_mk {i j : Idx R A} (h : i ≤ j) (g : MvPolynomial ↥i.1.1 R) :
     trans i j h (Ideal.Quotient.mk (rel i) g) = Ideal.Quotient.mk (rel j) (rename (incl h.1) g) := rfl
 
@@ -118,6 +142,9 @@ noncomputable def coc (i : Idx R A) : Stage i →ₐ[R] A :=
     · intro r a _ ha
       rw [smul_eq_mul, map_mul, ha, mul_zero])
 
+/--
+@isnad1 id=eq.0h4v.s14.4c945c685f13 from=translated src=- shape=f7c1624b vocab=36118d35
+-/
 theorem coc_mk (i : Idx R A) (g : MvPolynomial ↥i.1.1 R) :
     coc i (Ideal.Quotient.mk (rel i) g) = aeval (fun x : ↥i.1.1 => (x : A)) g := rfl
 
@@ -135,6 +162,9 @@ scoped instance : DirectedSystem (fun i : Idx R A => Stage i) fun i j h => ⇑(t
     rw [trans_mk, trans_mk, trans_mk, rename_rename]
     rfl
 
+/--
+@isnad1 id=isdirect.0h2v.s13.3439c7a91400 from=translated src=- shape=9b3d25f2 vocab=4f5f05f7
+-/
 theorem isDirectLimit :
     IsDirectLimit (fun (i j : Idx R A) h => ⇑(trans i j h)) fun i => ⇑(coc i) where
   surj := by
@@ -185,6 +215,9 @@ end
 open scoped _root_.P2MW.S_Algebra_exists_isDirectLimit_of_finitePresentation.C1Aux
 
 open C1Aux in
+/--
+@isnad1 id=ex.0h2v.s9.fa8730eae61e from=translated src=- shape=97f8d3a7 vocab=dd2895d8
+-/
 theorem solution
     (R : Type u) [CommRing R] (A : Type u) [CommRing A] [Algebra R A] :
     ∃ (ι : Type u) (_ : Preorder ι) (_ : Nonempty ι) (_ : IsDirected ι (· ≤ ·))

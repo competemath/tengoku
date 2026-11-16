@@ -35,6 +35,9 @@ structure ResidualGaloisRep (k : Type) [Field k] : Type 1 where
 
 attribute [instance] ResidualGaloisRep.instAddCommGroup ResidualGaloisRep.instModule
 
+/--
+@isnad1 id=finite.0h2v.s5.f0cbd1dafc11 from=translated src=- shape=b79de8fe vocab=13d949f2
+-/
 instance ResidualGaloisRep.instModuleFinite {k : Type} [Field k] (ρ : ResidualGaloisRep k) :
     Module.Finite k ρ.V :=
   Module.finite_of_finrank_eq_succ ρ.finrank_eq

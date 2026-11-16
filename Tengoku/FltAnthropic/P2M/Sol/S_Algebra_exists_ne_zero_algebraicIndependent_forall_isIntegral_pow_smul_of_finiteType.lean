@@ -19,6 +19,9 @@ variable {R : Type u} {C : Type v} [CommRing R] [IsDomain R] [CommRing C] [Algeb
   {L : Type*} [Field L] [Algebra C L] [Algebra R L] [IsScalarTower R C L]
   [Algebra (FractionRing R) L] [IsScalarTower R (FractionRing R) L]
 
+/--
+@isnad1 id=ex.1h5v.s9.893d272eb54d from=translated src=- shape=d20b7db1 vocab=1e421bca
+-/
 lemma exists_mul_eq_of_mem_adjoin (S : Set C) {w : L}
     (hw : w ∈ Algebra.adjoin (FractionRing R) ((algebraMap C L) '' S)) :
     ∃ r : R, r ≠ 0 ∧ ∃ c ∈ Algebra.adjoin R S, algebraMap R L r * w = algebraMap C L c := by
@@ -60,6 +63,9 @@ variable {K : Type*} [Field K] {d : ℕ}
 noncomputable def scale (u : Fin d → K) : MvPolynomial (Fin d) K →ₐ[K] MvPolynomial (Fin d) K :=
   MvPolynomial.aeval fun i => MvPolynomial.C (u i) * MvPolynomial.X i
 
+/--
+@isnad1 id=eq.1h3v.s8.eb2c9ca6ae3d from=translated src=- shape=074f4a19 vocab=c778eb63
+-/
 lemma scale_comp_scale_inv (u : Fin d → K) (hu : ∀ i, u i ≠ 0) :
     (scale u).comp (scale fun i => (u i)⁻¹) = AlgHom.id K _ := by
   apply MvPolynomial.algHom_ext
@@ -68,6 +74,9 @@ lemma scale_comp_scale_inv (u : Fin d → K) (hu : ∀ i, u i ≠ 0) :
     MvPolynomial.aeval_C, AlgHom.coe_id, id_eq, MvPolynomial.algebraMap_eq]
   rw [← mul_assoc, ← map_mul, inv_mul_cancel₀ (hu i), map_one, one_mul]
 
+/--
+@isnad1 id=injectiv.1h3v.s8.a6b52ee97399 from=translated src=- shape=42e200bc vocab=316fdefd
+-/
 lemma scale_injective (u : Fin d → K) (hu : ∀ i, u i ≠ 0) : Function.Injective (scale u) := by
   have hu' : ∀ i, (u i)⁻¹ ≠ 0 := fun i => inv_ne_zero (hu i)
   have h := scale_comp_scale_inv (fun i => (u i)⁻¹) hu'
@@ -87,6 +96,9 @@ variable {R : Type u} {C : Type v} [CommRing R] [IsDomain R] [CommRing C] [IsDom
 set_option backward.isDefEq.respectTransparency false in
 set_option maxHeartbeats 3200000 in
 
+/--
+@isnad1 id=ex.0h2v.s8.13b9ba199d5e from=translated src=- shape=53cc3645 vocab=a62b4a47
+-/
 theorem main :
     ∃ r : R, r ≠ 0 ∧ ∃ (d : ℕ) (z : Fin d → C), AlgebraicIndependent R z ∧
       ∀ c : C, ∃ n : ℕ, IsIntegral (Algebra.adjoin R (Set.range z)) (r ^ n • c) := by
@@ -292,6 +304,9 @@ end P2mGenericNoether
 
 universe u v
 
+/--
+@isnad1 id=ex.0h2v.s8.13b9ba199d5e from=translated src=- shape=53cc3645 vocab=a62b4a47
+-/
 theorem solution
     {R : Type u} {C : Type v} [CommRing R] [IsDomain R] [CommRing C] [IsDomain C]
     [Algebra R C] [FaithfulSMul R C] [Algebra.FiniteType R C] :

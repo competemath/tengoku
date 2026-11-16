@@ -17,6 +17,9 @@ universe u v
 
 open IsLocalRing
 
+/--
+@isnad1 id=ne.0h3v.s8.5a3540e04a2c from=translated src=- shape=18823b74 vocab=ad63fa9e
+-/
 theorem solution
     {𝒪 : Type u} {T : Type v} [CommRing 𝒪] [IsDomain 𝒪]
     [CommRing T] [Algebra 𝒪 T] [Module.Finite 𝒪 T] [IsNoetherianRing T] [IsReduced T]

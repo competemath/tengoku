@@ -7,6 +7,9 @@ namespace P2MW.S_AddMonoidHom_exists_isAddCyclic_natCard_eq_forall_apply_mem_of_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.3h6v.s9.a57fbdaa06ed from=translated src=- shape=66905826 vocab=b12c0c60
+-/
 theorem solution
     {G : Type*} [AddCommGroup G] {M : ℕ} (hM : M ≠ 0)
     (e : ZMod M × ZMod M ≃+ Submodule.torsionBy ℤ G (M : ℤ))

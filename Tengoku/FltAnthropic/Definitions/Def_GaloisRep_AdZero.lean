@@ -21,14 +21,23 @@ noncomputable def adRep (ρbar : ResidualGaloisRep k) : Representation k Γℚ (
     simp only [LinearMap.coe_comp, Function.comp_apply, LinearMap.mulRight_apply, LinearMap.mulLeft_apply,
       Module.End.mul_apply, mul_inv_rev, map_mul, mul_assoc]
 
+/--
+@isnad1 id=eq.0h4v.s12.a08af67c8f84 from=translated src=- shape=dfdca13a vocab=8fe01f31
+-/
 @[simp]
 theorem adRep_apply (ρbar : ResidualGaloisRep k) (σ : Γℚ) (f : Module.End k ρbar.V) :
     ρbar.adRep σ f = ρbar.ρ σ * f * ρbar.ρ σ⁻¹ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s12.72d051c21552 from=translated src=- shape=f34550ae vocab=774b7cf9
+-/
 theorem trace_adRep_apply (ρbar : ResidualGaloisRep k) (σ : Γℚ) (f : Module.End k ρbar.V) :
     LinearMap.trace k ρbar.V (ρbar.adRep σ f) = LinearMap.trace k ρbar.V f := by
   rw [adRep_apply, LinearMap.trace_mul_comm, ← mul_assoc, ← map_mul, inv_mul_cancel, map_one, one_mul]
 
+/--
+@isnad1 id=le.0h3v.s12.f99945651167 from=translated src=- shape=224f1068 vocab=57b29b44
+-/
 theorem ker_trace_le_comap_adRep (ρbar : ResidualGaloisRep k) (σ : Γℚ) :
     LinearMap.ker (LinearMap.trace k ρbar.V) ≤ (LinearMap.ker (LinearMap.trace k ρbar.V)).comap (ρbar.adRep σ) := by
   intro f hf
@@ -42,6 +51,9 @@ noncomputable def adZeroRep (ρbar : ResidualGaloisRep k) :
 noncomputable abbrev adZero (ρbar : ResidualGaloisRep k) : Rep k Γℚ :=
   Rep.of ρbar.adZeroRep
 
+/--
+@isnad1 id=eq.0h4v.s15.a84b58d7b0d1 from=translated src=- shape=7af7da25 vocab=bc6dd78c
+-/
 @[simp]
 theorem adZeroRep_apply_coe (ρbar : ResidualGaloisRep k) (σ : Γℚ) (f : LinearMap.ker (LinearMap.trace k ρbar.V)) :
     ((ρbar.adZeroRep σ f : LinearMap.ker (LinearMap.trace k ρbar.V)) : Module.End k ρbar.V)
@@ -63,6 +75,9 @@ def adZeroFil (ρbar : ResidualGaloisRep k) (L : Submodule k ρbar.V) :
     · simpa using L.smul_mem c (hf1 v)
     · simp [hf2 v hv]
 
+/--
+@isnad1 id=iff.0h4v.s13.b644d3384403 from=translated src=- shape=9d732982 vocab=c9331459
+-/
 theorem mem_adZeroFil_iff (ρbar : ResidualGaloisRep k) (L : Submodule k ρbar.V) (f : LinearMap.ker (LinearMap.trace k ρbar.V)) :
     f ∈ ρbar.adZeroFil L ↔ (∀ v, (f : Module.End k ρbar.V) v ∈ L) ∧ ∀ v ∈ L, (f : Module.End k ρbar.V) v = 0 :=
   Iff.rfl

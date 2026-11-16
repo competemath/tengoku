@@ -12,6 +12,9 @@ set_option maxHeartbeats 6400000
 
 open ModularCurve
 
+/--
+@isnad1 id=eq.3h6v.s9.93301a02eb22 from=translated src=- shape=f51df822 vocab=4968d203
+-/
 theorem l3x_transport {A : Type*} [AddCommGroup A] (n : ℕ) [NeZero n]
     {M : Type*} [AddCommGroup M]
     (ι : M →+ A) (hι : Function.Injective ι) (hιr : ∀ a : A, n • a = 0 → ∃ m, ι m = a)
@@ -59,6 +62,9 @@ theorem l3x_transport {A : Type*} [AddCommGroup A] (n : ℕ) [NeZero n]
     obtain ⟨hmc, hrest⟩ := hΨ H.1 H.2
     exact ⟨⟨H.1.comap ι, hrest⟩, Subtype.ext hmc⟩
 
+/--
+@isnad1 id=eq.2h4v.s9.818fff86605b from=translated src=- shape=5d85c199 vocab=8903b18a
+-/
 theorem solution
     {A : Type*} [AddCommGroup A] (n : ℕ) [NeZero n]
     (e : ZMod n × ZMod n ≃+ Submodule.torsionBy ℤ A n)

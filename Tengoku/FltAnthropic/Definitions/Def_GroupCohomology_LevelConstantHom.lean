@@ -21,6 +21,9 @@ def levelConstantHom : Submodule k (G → V) where
     ⟨fun g h => by simp only [Pi.smul_apply, hφ.1 g h, smul_add], hφ.2.comp (c • ·)⟩
 
 variable {r S k V} in
+/--
+@isnad1 id=iff.0h6v.s9.f197aee99a6e from=translated src=- shape=bdd1749b vocab=89928554
+-/
 theorem mem_levelConstantHom_iff (φ : G → V) :
     φ ∈ levelConstantHom r S k V ↔ (∀ g h : G, φ (g * h) = φ g + φ h) ∧ IsLevelConstantSr₁ r S φ := Iff.rfl
 
@@ -36,6 +39,9 @@ def eqLevelConstantHom (Sg : Subgroup G) (M : Rep k G) : Submodule k (↥Sg → 
     ⟨Submodule.smul_mem _ c hφ.1, fun g s t hst => by simp only [Pi.smul_apply, map_smul, hφ.2 g s t hst]⟩
 
 variable {r S} in
+/--
+@isnad1 id=iff.0h7v.s11.72e37a90c8a8 from=translated src=- shape=107bf7fa vocab=b3ede55d
+-/
 theorem mem_eqLevelConstantHom_iff (Sg : Subgroup G) (M : Rep k G) (φ : ↥Sg → M) :
     φ ∈ eqLevelConstantHom r S Sg M ↔ φ ∈ levelConstantHom (r.comp Sg.subtype) S k M ∧
       ∀ g : G, ∀ s t : ↥Sg, (g⁻¹ * s * g : G) = t → M.ρ g (φ t) = φ s := Iff.rfl

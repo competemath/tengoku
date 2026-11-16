@@ -8,6 +8,9 @@ namespace GaloisRep
 
 noncomputable section
 
+/--
+@isnad1 id=isprime.0h1v.s4.a55d79ccb0a6 from=translated src=- shape=1a4968a7 vocab=6fb39c7a
+-/
 instance ratLocalizedAt.span_isPrime (q : ℕ) [Fact q.Prime] : (Ideal.span {(q : ℤ)}).IsPrime := by
   have hq : Prime (q : ℤ) := by
     rw [Int.prime_iff_natAbs_prime]

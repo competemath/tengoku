@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_AddCommGroup_exists_basis_smul_eq_of_card_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.5h9v.s10.85ac9f795423 from=translated src=- shape=a53bdd16 vocab=772732eb
+-/
 theorem AddCommGroup.exists_basis_smul_eq_of_card_torsionBy (ℓ : ℕ) [Fact ℓ.Prime]
     {M : Type*} [AddCommGroup M] (r m : ℕ)
     (hcard : ∀ j ≤ m + 1, Nat.card (Submodule.torsionBy ℤ M ((ℓ ^ j : ℕ) : ℤ)) = (ℓ ^ j) ^ r)

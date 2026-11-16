@@ -22,6 +22,9 @@ def StepOK (X Y : AddSubgroup M) : Prop :=
     ((∀ g : Γ, ∀ x ∈ Y, φ g x - x ∈ X) ∨
      (∀ g : Γ, ∀ x ∈ Y, φ g x - (χ g : ZMod q).val • x ∈ X))
 
+/--
+@isnad1 id=ex.7h7v.s11.5a547709d4ee from=translated src=- shape=05c69e9f vocab=d5e38f4e
+-/
 theorem one_step (A B : AddSubgroup M) (hAB : A ≤ B) (hne : A ≠ B)
     (hfin : Finite (↥B ⧸ A.addSubgroupOf B))
     (hA : ∀ g : Γ, ∀ x ∈ A, φ g x ∈ A) (hB : ∀ g : Γ, ∀ x ∈ B, φ g x ∈ B)
@@ -213,6 +216,9 @@ theorem one_step (A B : AddSubgroup M) (hAB : A ≤ B) (hne : A ≠ B)
       simpa only [AddSubgroup.coe_sub, AddSubgroup.coe_nsmul, hφB] using this
   exact ⟨L, hLstab, hLB, hAneL, hAL, hcard, hstep⟩
 
+/--
+@isnad1 id=ex.7h8v.s11.1c76afdbbdb2 from=translated src=- shape=8a294ae4 vocab=74dcb078
+-/
 theorem main_aux (B : AddSubgroup M) (hB : ∀ g : Γ, ∀ x ∈ B, φ g x ∈ B) :
     ∀ (d : ℕ) (A : AddSubgroup M), A ≤ B → Nat.card (↥B ⧸ A.addSubgroupOf B) = d →
       Finite (↥B ⧸ A.addSubgroupOf B) →
@@ -260,6 +266,9 @@ theorem main_aux (B : AddSubgroup M) (hB : ∀ g : Γ, ∀ x ∈ B, φ g x ∈ B
 
 end P2mWs11Chain
 
+/--
+@isnad1 id=ex.7h7v.s11.3d798ae1ec17 from=translated src=- shape=6479b9fc vocab=190aea0c
+-/
 theorem solution
     {Γ M : Type*} [Group Γ] [AddCommGroup M] (φ : Γ →* AddAut M) {q : ℕ} (hq : q.Prime)
     (χ : Γ →* (ZMod q)ˣ) (A B : AddSubgroup M) (hAB : A ≤ B)

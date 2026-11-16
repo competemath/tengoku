@@ -19,6 +19,9 @@ namespace J5aAux
 
 open TensorProduct
 
+/--
+@isnad1 id=ex.0h5v.s9.c695b8b92656 from=translated src=- shape=9ea50527 vocab=ac71730b
+-/
 theorem exists_algebra_formallyEtale
     {P P' C C' : Type u} [CommRing P] [CommRing P'] [CommRing C] [CommRing C']
     [Algebra P P'] [Algebra P C] [Algebra C C'] [Algebra P C'] [IsScalarTower P C C'] [Algebra.FormallyEtale P C]
@@ -43,6 +46,9 @@ theorem exists_algebra_formallyEtale
   haveI : Algebra.FormallyEtale P' C' := Algebra.FormallyEtale.of_equiv θ'
   exact ⟨alg, hT, inferInstance, fun p' => by rw [hψ, hθ]⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.a62822c5fec6 from=translated src=- shape=6345004c vocab=d97f332a
+-/
 theorem smul_D_eq {R A : Type u} [CommRing R] [CommRing A] [Algebra R A] (r : R) (t : A) :
     algebraMap R A r • D R A t = D R A (algebraMap R A r * t) := by
   rw [Derivation.leibniz, Derivation.map_algebraMap, smul_zero, add_zero]
@@ -53,6 +59,9 @@ universe v
 
 namespace J5aAux
 
+/--
+@isnad1 id=ex.1h6v.s9.1d665790b6f0 from=translated src=- shape=de7383b0 vocab=677eb08d
+-/
 theorem exists_basis_of_formallyEtale
     {R S T : Type u} [CommRing R] [CommRing S] [CommRing T] [Algebra R S] [Algebra R T] [Algebra S T]
     [IsScalarTower R S T] [Algebra.FormallyEtale S T]
@@ -64,6 +73,9 @@ theorem exists_basis_of_formallyEtale
     ← KaehlerDifferential.tensorKaehlerEquivOfFormallyEtale_symm_D_algebraMap R S T (s k),
     LinearEquiv.apply_symm_apply]
 
+/--
+@isnad1 id=ex.1h7v.s9.f222c902bcba from=translated src=- shape=91f52909 vocab=0f61d848
+-/
 theorem exists_basis_of_algEquiv
     {R A Q : Type u} [CommRing R] [CommRing A] [CommRing Q] [Algebra R A] [Algebra R Q]
     (e : A ≃ₐ[R] Q) {ι : Type v} (q : ι → Q) (b : Module.Basis ι Q Ω[Q⁄R]) (hb : ∀ k, b k = D R Q (q k)) :
@@ -83,6 +95,9 @@ namespace J5aAux
 
 open TensorProduct
 
+/--
+@isnad1 id=ex.1h11v.s10.197440980497 from=translated src=- shape=041d3180 vocab=7b9a0cf6
+-/
 theorem exists_basis_assemble
     {R P P' C C' Q : Type u} [CommRing R] [CommRing P] [CommRing P'] [CommRing C] [CommRing C'] [CommRing Q]
     [Algebra R P] [Algebra R C] [Algebra P C] [IsScalarTower R P C]
@@ -110,6 +125,9 @@ theorem exists_basis_assemble
 
 end J5aAux
 
+/--
+@isnad1 id=ex.3h8v.s16.2c5a07ca93ca from=translated src=- shape=9bb322e4 vocab=678655e2
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     (π : R) (hπ : IsLocalRing.maximalIdeal R = Ideal.span {π})

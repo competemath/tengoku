@@ -15,6 +15,9 @@ namespace GenLift
 
 open Polynomial
 
+/--
+@isnad1 id=ex.3h7v.s7.ad19277f1b9d from=translated src=- shape=ba90b146 vocab=6c45bc74
+-/
 theorem exists_apply_eq_of_monic_of_eval₂_eq_zero
     (A : Type*) [CommRing A] [IsDomain A] [IsIntegrallyClosed A]
     (K : Type*) [Field K] [Algebra A K] [IsFractionRing A K] [IsAlgClosed K]
@@ -56,6 +59,9 @@ theorem exists_apply_eq_of_monic_of_eval₂_eq_zero
         exact h0.symm
       · exact ih g hgm hgn c h0
 
+/--
+@isnad1 id=surjecti.1h4v.s7.8a31116b8527 from=translated src=- shape=b2db1173 vocab=2f36094f
+-/
 theorem surjective_of_isIntegral
     (A : Type*) [CommRing A] [IsDomain A] [IsIntegrallyClosed A]
     (K : Type*) [Field K] [Algebra A K] [IsFractionRing A K] [IsAlgClosed K]
@@ -64,6 +70,9 @@ theorem surjective_of_isIntegral
   obtain ⟨f, hf, hfc⟩ := hi c
   exact exists_apply_eq_of_monic_of_eval₂_eq_zero A K i f.natDegree f hf rfl c hfc
 
+/--
+@isnad1 id=injectiv.2h4v.s8.8b87f2cfca3e from=translated src=- shape=d022d3ed vocab=fe02f482
+-/
 theorem mk_comp_injective_of_mem_minimalPrimes
     {A : Type*} [CommRing A] {S' : Type*} [CommRing S'] (i : A →+* S')
     (hnzd : ∀ b : A, b ≠ 0 → i b ∈ nonZeroDivisors S')
@@ -77,6 +86,9 @@ theorem mk_comp_injective_of_mem_minimalPrimes
   exact Set.disjoint_left.mp (Ideal.disjoint_nonZeroDivisors_of_mem_minimalPrimes h𝔮) hmem
     (hnzd _ (sub_ne_zero.mpr hne))
 
+/--
+@isnad1 id=bijectiv.3h5v.s8.791f34fcd40d from=translated src=- shape=58a8ce5c vocab=a41cda30
+-/
 theorem mk_comp_bijective_of_mem_minimalPrimes
     (A : Type*) [CommRing A] [IsDomain A] [IsIntegrallyClosed A]
     (K : Type*) [Field K] [Algebra A K] [IsFractionRing A K] [IsAlgClosed K]
@@ -90,6 +102,9 @@ theorem mk_comp_bijective_of_mem_minimalPrimes
       (RingHom.IsIntegral.trans _ _ hint
         (RingHom.isIntegral_of_surjective _ Ideal.Quotient.mk_surjective))⟩
 
+/--
+@isnad1 id=ex.2h5v.s8.35a42236ae8b from=translated src=- shape=cf2f1bfd vocab=f026b4b2
+-/
 theorem exists_ringHom_forall_sub_mem
     (A : Type*) [CommRing A] [IsDomain A] [IsIntegrallyClosed A]
     (K : Type*) [Field K] [Algebra A K] [IsFractionRing A K] [IsAlgClosed K]
@@ -112,6 +127,9 @@ end GenLift
 
 end
 
+/--
+@isnad1 id=ex.0h4v.s8.f99af0231f1a from=translated src=- shape=5808eb1d vocab=e51511b3
+-/
 theorem solution
     (A : Type*) [CommRing A] [IsDomain A] [IsLocalRing A] [IsIntegrallyClosed A]
     (K : Type*) [Field K] [Algebra A K] [IsFractionRing A K] [IsAlgClosed K]

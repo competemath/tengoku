@@ -23,6 +23,9 @@ local notation "q" => algebraMap C A
 local notation "LC" => Localization.Away (algebraMap R C π)
 local notation "LA" => Localization.Away (algebraMap R A π)
 
+/--
+@isnad1 id=eq.0h4v.s7.e352fd9197ec from=translated src=- shape=baa1f36f vocab=432e1d00
+-/
 theorem q_a : q a = a' := (IsScalarTower.algebraMap_apply R C A π).symm
 
 noncomputable def Φ : LC →ₐ[C] LA :=
@@ -32,9 +35,15 @@ noncomputable def Φ : LC →ₐ[C] LA :=
     rw [← hn, map_pow, IsScalarTower.algebraMap_apply C A LA, q_a π A]
     exact IsUnit.pow n (IsLocalization.Away.algebraMap_isUnit (S := LA) (algebraMap R A π)))
 
+/--
+@isnad1 id=eq.0h5v.s11.31a7ddc808a5 from=translated src=- shape=6d0ebcea vocab=5dbe84c3
+-/
 theorem Φ_algebraMap (c : C) : Φ π A (algebraMap C LC c) = algebraMap A LA (q c) := by
   rw [AlgHom.commutes, IsScalarTower.algebraMap_apply C A LA]
 
+/--
+@isnad1 id=eq.0h6v.s11.6e9e415d4814 from=translated src=- shape=0439caab vocab=401bddd0
+-/
 theorem Φ_mk' (c : C) (n : ℕ) :
     Φ π A (IsLocalization.mk' LC c (⟨a ^ n, pow_mem (Submonoid.mem_powers _) n⟩ : Submonoid.powers a)) =
       IsLocalization.mk' LA (q c) (⟨a' ^ n, pow_mem (Submonoid.mem_powers _) n⟩ : Submonoid.powers a') := by
@@ -45,6 +54,9 @@ theorem Φ_mk' (c : C) (n : ℕ) :
   rw [map_mul, Φ_algebraMap, Φ_algebraMap, map_pow, q_a π A] at h2
   rw [← h2]
 
+/--
+@isnad1 id=mem.1h6v.s11.8d4d0ffdc182 from=translated src=- shape=d268382d vocab=992d76fc
+-/
 theorem Φ_mem_subalgebra (J : Ideal C) (x : LC) (hx : x ∈ subalgebra J a) :
     Φ π A x ∈ subalgebra (J.map q) a' := by
   have hle : (subalgebra J a).map (Φ π A) ≤ (subalgebra (J.map q) a').restrictScalars C := by
@@ -72,8 +84,14 @@ noncomputable def θ (J : Ideal C) :
     change Φ π A (algebraMap C LC c) = algebraMap C LA c
     exact AlgHom.commutes _ _)
 
+/--
+@isnad1 id=eq.0h6v.s13.cdb89ad1e3ef from=translated src=- shape=447a41bb vocab=ce979018
+-/
 theorem coe_θ (J : Ideal C) (x : AffineDilatation.Ring J a) : ((θ π A J x : AffineDilatation.Ring (J.map q) a') : LA) = Φ π A x.1 := rfl
 
+/--
+@isnad1 id=surjecti.1h5v.s12.210217bd64bc from=translated src=- shape=53bc3703 vocab=b35a00d8
+-/
 theorem θ_surjective (J : Ideal C) (hsurj : Function.Surjective q) : Function.Surjective (θ π A J) := by
   intro y
 
@@ -100,6 +118,9 @@ theorem θ_surjective (J : Ideal C) (hsurj : Function.Surjective q) : Function.S
     obtain ⟨x', hx'⟩ := hx; obtain ⟨y', hy'⟩ := hy
     exact ⟨x' * y', by rw [← hx', ← hy']; exact map_mul _ _ _⟩
 
+/--
+@isnad1 id=iff.0h6v.s13.b46985707fef from=translated src=- shape=7cb33133 vocab=1d4273c4
+-/
 theorem θ_eq_zero_iff (J : Ideal C) (x : AffineDilatation.Ring J a) :
     θ π A J x = 0 ↔ ∃ ν : ℕ, (algebraMap R _ π) ^ ν * x ∈
       (RingHom.ker q).map (algebraMap C (AffineDilatation.Ring J a)) := by
@@ -161,6 +182,9 @@ theorem θ_eq_zero_iff (J : Ideal C) (x : AffineDilatation.Ring J a) :
     change (((θ π A J) (algebraMap R _ π)).1) ^ ν * (θ π A J x).1 = 0 at h'
     exact (hunit.pow ν).mul_right_eq_zero.mp h'
 
+/--
+@isnad1 id=ex.1h5v.s14.673f79834934 from=translated src=- shape=cb21aa07 vocab=f8b6ccbc
+-/
 theorem main (hsurj : Function.Surjective q) (J : Ideal C) :
     ∃ θ' : AffineDilatation.Ring J a →ₐ[C] AffineDilatation.Ring (J.map q) a',
       Function.Surjective θ' ∧
@@ -171,6 +195,9 @@ theorem main (hsurj : Function.Surjective q) (J : Ideal C) :
 
 end DilatationQuotient
 
+/--
+@isnad1 id=ex.1h5v.s14.673f79834934 from=translated src=- shape=cb21aa07 vocab=f8b6ccbc
+-/
 theorem solution
     {R : Type u} [CommRing R] (π : R)
     {C A : Type u} [CommRing C] [CommRing A] [Algebra R C] [Algebra R A] [Algebra C A] [IsScalarTower R C A]

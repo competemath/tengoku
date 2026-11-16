@@ -14,6 +14,9 @@ open Module Submodule Function
 
 variable {M : Type*} [AddCommGroup M]
 
+/--
+@isnad1 id=eq.0h3v.s7.37e9f72338a0 from=translated src=- shape=9f234cc9 vocab=d00c39ce
+-/
 theorem nsmul_coe_torsionBy (k : ℕ) (x : torsionBy ℤ M ((k : ℕ) : ℤ)) : k • (x : M) = 0 := by
   have := (mem_torsionBy_iff _ _).1 x.2
   rwa [natCast_zsmul] at this
@@ -25,6 +28,9 @@ theorem nsmul_coe_torsionBy (k : ℕ) (x : torsionBy ℤ M ((k : ℕ) : ℤ)) : 
 
 attribute [local instance] modInst
 
+/--
+@isnad1 id=iff.0h3v.s8.cb5b874b52ee from=translated src=- shape=d5bc083d vocab=3cbc392f
+-/
 theorem mem_range_subtype_iff (k : ℕ) (x : M) :
     x ∈ ((torsionBy ℤ M ((k : ℕ) : ℤ)).subtype.toAddMonoidHom).range ↔ ((k : ℕ) : ℤ) • x = 0 := by
   constructor
@@ -33,10 +39,16 @@ theorem mem_range_subtype_iff (k : ℕ) (x : M) :
   · intro hx
     exact ⟨⟨x, (mem_torsionBy_iff _ _).2 hx⟩, rfl⟩
 
+/--
+@isnad1 id=nonempty.0h3v.s5.4c37507b9cfd from=translated src=- shape=e98abf64 vocab=90569d65
+-/
 theorem nonempty_basis_of_subsingleton {R : Type*} [Semiring R] [Subsingleton R] {W : Type*}
     [AddCommMonoid W] [Module R W] [Subsingleton W] (r : ℕ) : Nonempty (Basis (Fin r) R W) :=
   ⟨Basis.ofEquivFun (LinearEquiv.ofSubsingleton W (Fin r → R))⟩
 
+/--
+@isnad1 id=nonempty.0h3v.s7.b14d7ba79f63 from=translated src=- shape=275a2939 vocab=656e323e
+-/
 theorem levelZero (ℓ r : ℕ) :
     Nonempty (Basis (Fin r) (ZMod (ℓ ^ 0)) (torsionBy ℤ M ((ℓ ^ 0 : ℕ) : ℤ))) := by
   haveI : Subsingleton (ZMod (ℓ ^ 0)) := ZMod.subsingleton_iff.2 (pow_zero ℓ)
@@ -47,6 +59,9 @@ theorem levelZero (ℓ r : ℕ) :
     rw [hx, hy])⟩
   exact nonempty_basis_of_subsingleton r
 
+/--
+@isnad1 id=nonempty.2h5v.s8.4439e7a41865 from=translated src=- shape=5399c313 vocab=ad1d997d
+-/
 theorem nonempty_basis_torsionBy (ℓ : ℕ) [Fact ℓ.Prime] (r m : ℕ)
     (hcard : ∀ j ≤ m, Nat.card (torsionBy ℤ M ((ℓ ^ j : ℕ) : ℤ)) = (ℓ ^ j) ^ r) :
     ∀ j ≤ m, Nonempty (Basis (Fin r) (ZMod (ℓ ^ j)) (torsionBy ℤ M ((ℓ ^ j : ℕ) : ℤ))) := by
@@ -64,6 +79,9 @@ theorem nonempty_basis_torsionBy (ℓ : ℕ) [Fact ℓ.Prime] (r m : ℕ)
       (mem_range_subtype_iff (ℓ ^ (j + 1))) c
     exact ⟨c'⟩
 
+/--
+@isnad1 id=nonempty.2h6v.s8.b78d2b8720c7 from=translated src=- shape=dbb3fd56 vocab=4f8d3aa7
+-/
 theorem nonempty_basis_of_carrier (n : ℕ) {ι' : Type*} (b : Basis ι' (ZMod n) (torsionBy ℤ M ((n : ℕ) : ℤ)))
     {V : Type*} [AddCommGroup V] [Module (ZMod n) V]
     (ι : V →+ M) (hι : Function.Injective ι)
@@ -82,6 +100,9 @@ theorem nonempty_basis_of_carrier (n : ℕ) {ι' : Type*} (b : Basis ι' (ZMod n
 
 end P2mLwFree
 
+/--
+@isnad1 id=nonempty.3h6v.s8.f3f9eaa19481 from=translated src=- shape=a2b2afb1 vocab=dc2f7e85
+-/
 theorem solution (ℓ : ℕ) [Fact ℓ.Prime]
     {M : Type*} [AddCommGroup M] (r m : ℕ)
     (hcard : ∀ j ≤ m, Nat.card (Submodule.torsionBy ℤ M ((ℓ ^ j : ℕ) : ℤ)) = (ℓ ^ j) ^ r)

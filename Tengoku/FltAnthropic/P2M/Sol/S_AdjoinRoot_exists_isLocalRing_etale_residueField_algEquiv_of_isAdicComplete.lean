@@ -12,6 +12,9 @@ universe u
 
 open IsLocalRing Polynomial
 
+/--
+@isnad1 id=ex.1h2v.s10.5a0fc0a93e4d from=translated src=- shape=b39e1355 vocab=3bc7870f
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsLocalRing R] [IsAdicComplete (maximalIdeal R) R]
     (f : R[X]) (hfm : f.Monic) [Fact (Irreducible (f.map (residue R)))]

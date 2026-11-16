@@ -8,6 +8,9 @@ namespace P2MW.S_AlgHom_existsUnique_lift_trivSqZeroExt_of_cotangent_linearMap
 
 universe u v x
 
+/--
+@isnad1 id=existsun.0h5v.s11.ca12b0e91207 from=translated src=- shape=a039f8e5 vocab=cc358b4a
+-/
 theorem solution
     {𝒪 : Type u} [CommRing 𝒪] {R : Type v} [CommRing R] [Algebra 𝒪 R] (πR : R →ₐ[𝒪] 𝒪)
     {N : Type x} [AddCommGroup N] [Module 𝒪 N] [Module 𝒪ᵐᵒᵖ N] [IsCentralScalar 𝒪 N]

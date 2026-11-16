@@ -7,6 +7,9 @@ namespace P2MW.S_AddMonoidHom_mem_range_of_smul_eq_zero_of_natCard_ker_mul_le_of
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=mem.6h7v.s8.cde09756d53c from=translated src=- shape=d229d7ec vocab=c24e2be7
+-/
 theorem solution
     {T J : Type*} [AddCommGroup T] [AddCommGroup J] (f : T →+ J) (q : ℤ) (hT : ∀ t : T, q • t = 0)
     [Finite T] (hfinJ : Finite {x : J // q • x = 0}) (X Y : ℕ) (hY : 0 < Y)

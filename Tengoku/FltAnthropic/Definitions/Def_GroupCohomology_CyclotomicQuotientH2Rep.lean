@@ -27,6 +27,9 @@ abbrev cyclotomicQuotientRT (c : ↥K.fixingSubgroup) : cyclotomicQuotientRep K 
   Rep.quotientRightTranslationTwist (L.fixingSubgroup.subgroupOf K.fixingSubgroup) ((cycloChar p).comp K.fixingSubgroup.subtype)
     (c : ↥K.fixingSubgroup ⧸ L.fixingSubgroup.subgroupOf K.fixingSubgroup)
 
+/--
+@isnad1 id=eq.0h3v.s13.1779db30f443 from=translated src=- shape=32159add vocab=35308e92
+-/
 theorem cyclotomicQuotientRT_one : cyclotomicQuotientRT K L p 1 = 𝟙 _ := by
   apply Rep.hom_ext
   refine DFunLike.ext _ _ fun x => ?_
@@ -35,6 +38,9 @@ theorem cyclotomicQuotientRT_one : cyclotomicQuotientRT K L p 1 = 𝟙 _ := by
   simp only [mul_one]
   exact Finsupp.mapDomain_id
 
+/--
+@isnad1 id=eq.1h4v.s14.ce7f27e2578f from=translated src=- shape=6265653f vocab=80965403
+-/
 theorem cyclotomicQuotientRT_of_mem (c : ↥K.fixingSubgroup) (hc : (c : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ)) ∈ L.fixingSubgroup) :
     cyclotomicQuotientRT K L p c = 𝟙 _ := by
   have h1 : (c : ↥K.fixingSubgroup ⧸ L.fixingSubgroup.subgroupOf K.fixingSubgroup) = 1 :=
@@ -45,6 +51,9 @@ theorem cyclotomicQuotientRT_of_mem (c : ↥K.fixingSubgroup) (hc : (c : (Algebr
   rw [h2]
   exact cyclotomicQuotientRT_one K L p
 
+/--
+@isnad1 id=eq.0h5v.s14.c54be9bca445 from=translated src=- shape=3a173862 vocab=7997149d
+-/
 theorem cyclotomicQuotientRT_mul (c c' : ↥K.fixingSubgroup) :
     cyclotomicQuotientRT K L p (c * c') = cyclotomicQuotientRT K L p c' ≫ cyclotomicQuotientRT K L p c := by
   apply Rep.hom_ext

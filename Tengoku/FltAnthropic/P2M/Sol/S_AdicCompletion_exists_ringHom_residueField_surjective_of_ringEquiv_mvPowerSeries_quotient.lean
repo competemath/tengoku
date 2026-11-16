@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsLocalRing MvPowerSeries
 
+/--
+@isnad1 id=ex.1h5v.s13.d9551465cceb from=translated src=- shape=57e0d642 vocab=39153692
+-/
 theorem solution
     (B₀ : Type) [CommRing B₀] (𝔪₀ : Ideal B₀) [𝔪₀.IsMaximal]
     (W₀ : Type) [CommRing W₀] [IsLocalRing W₀]

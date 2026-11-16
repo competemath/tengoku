@@ -15,9 +15,15 @@ namespace CycStrong29
 
 abbrev S0 (m : ℕ) : Type := AdjoinRoot (cyclotomic m ℤ)
 
+/--
+@isnad1 id=isdomain.1h1v.s4.cdfbb623cf6b from=translated src=- shape=c1538fc1 vocab=0025855c
+-/
 theorem isDomain_S0 (m : ℕ) (hm : 0 < m) : IsDomain (S0 m) :=
   AdjoinRoot.isDomain_of_prime (cyclotomic.irreducible hm).prime
 
+/--
+@isnad1 id=ne.2h2v.s6.fd3c7c2783ed from=translated src=- shape=adb0c915 vocab=db02f520
+-/
 theorem natCast_ne_zero_S0 (m : ℕ) (hm : 0 < m) (n : ℕ) (hn : n ≠ 0) : ((n : ℕ) : S0 m) ≠ 0 := by
   intro h
   have h' : AdjoinRoot.mk (cyclotomic m ℤ) (C (n : ℤ)) = 0 := by
@@ -28,6 +34,9 @@ theorem natCast_ne_zero_S0 (m : ℕ) (hm : 0 < m) (n : ℕ) (hn : n ≠ 0) : ((n
   rw [natDegree_C, natDegree_cyclotomic] at hdeg
   exact absurd hdeg (not_le.mpr (Nat.totient_pos.mpr hm))
 
+/--
+@isnad1 id=dvd.3h3v.s6.26a3c8a30db8 from=translated src=- shape=51533694 vocab=252335a9
+-/
 theorem one_sub_dvd_of_isPrimitiveRoot {R : Type} [CommRing R] [IsDomain R] {ω : R} {d : ℕ} (hd : 0 < d)
     (hω : IsPrimitiveRoot ω d) (hω1 : ω ≠ 1) : (1 - ω) ∣ (d : R) := by
   classical
@@ -50,6 +59,9 @@ theorem one_sub_dvd_of_isPrimitiveRoot {R : Type} [CommRing R] [IsDomain R] {ω 
   rw [← hev']
   exact Finset.dvd_prod_of_mem (fun μ => (1 : R) - μ) hωmem
 
+/--
+@isnad1 id=dvd.2h2v.s8.428d80b1b467 from=translated src=- shape=32d57419 vocab=f1a8962e
+-/
 theorem one_sub_pow_dvd_S0 (m : ℕ) (hm : 0 < m) (j : ℕ) (hj : ¬ m ∣ j) :
     (1 - AdjoinRoot.root (cyclotomic m ℤ) ^ j) ∣ ((m : ℕ) : S0 m) := by
   haveI := isDomain_S0 m hm
@@ -69,6 +81,9 @@ theorem one_sub_pow_dvd_S0 (m : ℕ) (hm : 0 < m) (j : ℕ) (hj : ¬ m ∣ j) :
 end CycStrong29
 
 open CycStrong29 in
+/--
+@isnad1 id=isunit.2h3v.s8.2fbbe40e8e2f from=translated src=- shape=b6b4141f vocab=301af526
+-/
 theorem solution
     (𝒪 : Type u) [CommRing 𝒪] (m : ℕ) (hm : IsUnit ((m : ℕ) : 𝒪)) (j : ℕ) (hj : ¬ m ∣ j) :
     IsUnit (1 - AdjoinRoot.root (cyclotomic m 𝒪) ^ j) := by

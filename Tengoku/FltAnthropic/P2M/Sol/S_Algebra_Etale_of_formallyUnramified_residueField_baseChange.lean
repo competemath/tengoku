@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.Theorems.Thm_Algebra_FormallyUnramified_of_residueFi
 namespace P2MW.S_Algebra_Etale_of_formallyUnramified_residueField_baseChange
 open scoped TensorProduct
 
+/--
+@isnad1 id=etale.1h2v.s8.7a2f7c5c4449 from=translated src=- shape=ebab5dda vocab=7634a95e
+-/
 theorem solution (R S : Type*) [CommRing R] [IsLocalRing R] [CommRing S] [Algebra R S]
     [Module.Finite R S] [Module.Flat R S]
     (h : Algebra.FormallyUnramified (IsLocalRing.ResidueField R)

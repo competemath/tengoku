@@ -11,6 +11,9 @@ open scoped MatrixGroups
 
 namespace TwoResChars12
 
+/--
+@isnad1 id=isjacobs.0h0v.s1.58bf0a8b6eaf from=translated src=- shape=49959d42 vocab=b4fcb4c4
+-/
 theorem int_isJacobsonRing : IsJacobsonRing ℤ := by
   rw [isJacobsonRing_iff_prime_eq]
   intro P hP
@@ -37,6 +40,9 @@ theorem int_isJacobsonRing : IsJacobsonRing ℤ := by
   · haveI : P.IsMaximal := IsPrime.to_maximal_ideal hbot
     exact Ideal.jacobson_eq_self_of_isMaximal
 
+/--
+@isnad1 id=ex.0h1v.s5.014df428ef18 from=translated src=- shape=4c1b380d vocab=6dcfdcb7
+-/
 theorem exists_prime_natCast_eq_zero (K : Type) [Field K] [Algebra.FiniteType ℤ K] :
     ∃ p : ℕ, p.Prime ∧ (p : K) = 0 := by
   haveI := int_isJacobsonRing
@@ -51,6 +57,9 @@ theorem exists_prime_natCast_eq_zero (K : Type) [Field K] [Algebra.FiniteType �
   have hpp : p.Prime := (CharP.char_is_prime_or_zero K p).resolve_right hp0
   exact ⟨p, hpp, CharP.cast_eq_zero K p⟩
 
+/--
+@isnad1 id=ex.1h2v.s6.5d32b584c137 from=translated src=- shape=54632ac8 vocab=65e6f832
+-/
 theorem exists_prime_natCast_mem (B : Type) [CommRing B] [Algebra.FiniteType ℤ B] (𝔪 : Ideal B) (h𝔪 : 𝔪.IsMaximal) :
     ∃ p : ℕ, p.Prime ∧ (p : B) ∈ 𝔪 := by
   letI : Field (B ⧸ 𝔪) := Ideal.Quotient.field 𝔪
@@ -63,6 +72,9 @@ theorem exists_prime_natCast_mem (B : Type) [CommRing B] [Algebra.FiniteType ℤ
 end TwoResChars12
 
 open TwoResChars12 in
+/--
+@isnad1 id=ex.0h1v.s7.33762226c380 from=translated src=- shape=9d10b9a6 vocab=c6b0b483
+-/
 theorem solution
     (A : Type) [CommRing A] [IsDomain A] [CharZero A] [Algebra.FiniteType ℤ A] :
     ∃ (p₁ p₂ : ℕ) (𝔪₁ 𝔪₂ : Ideal A), p₁.Prime ∧ p₂.Prime ∧ p₁ ≠ p₂ ∧ 𝔪₁.IsMaximal ∧ 𝔪₂.IsMaximal ∧

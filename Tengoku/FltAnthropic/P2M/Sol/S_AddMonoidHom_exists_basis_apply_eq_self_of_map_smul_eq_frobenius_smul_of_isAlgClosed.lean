@@ -35,9 +35,15 @@ def frobMulVec (B : Matrix (Fin n) (Fin n) k) : (Fin n → k) →+ (Fin n → k)
     rw [h, Matrix.mulVec_add]
 
 omit [IsAlgClosed k] in
+/--
+@isnad1 id=eq.0h5v.s7.c8b774bdc6bd from=translated src=- shape=acfb1e85 vocab=d931e91d
+-/
 @[scoped simp] theorem frobMulVec_apply (B : Matrix (Fin n) (Fin n) k) (x : Fin n → k) :
     frobMulVec (p := p) B x = B.mulVec fun i => x i ^ p := rfl
 
+/--
+@isnad1 id=ex.1h4v.s7.ba7fa3150314 from=translated src=- shape=b8233606 vocab=1aad6356
+-/
 theorem exists_matrix_mul_frob_eq (B : Matrix (Fin n) (Fin n) k) (hB : IsUnit B) :
     ∃ Q : Matrix (Fin n) (Fin n) k, IsUnit Q ∧ B * Q.map (frobenius k p) = Q := by
   classical
@@ -75,6 +81,9 @@ theorem exists_matrix_mul_frob_eq (B : Matrix (Fin n) (Fin n) k) (hB : IsUnit B)
     rw [Matrix.mulVec, dotProduct] at hfix
     simpa [Matrix.map_apply, frobenius_def] using hfix
 
+/--
+@isnad1 id=ex.1h5v.s8.d9faa0b36916 from=translated src=- shape=16872694 vocab=0834a628
+-/
 theorem exists_matrix_sub_mul_frob_eq (B : Matrix (Fin n) (Fin n) k) (hB : IsUnit B)
     (E : Matrix (Fin n) (Fin n) k) :
     ∃ X : Matrix (Fin n) (Fin n) k, X - B * X.map (frobenius k p) = E := by
@@ -146,6 +155,9 @@ abbrev resM (P : Matrix (Fin n) (Fin n) (WittVector p k)) : Matrix (Fin n) (Fin 
   P.map WittVector.constantCoeff
 
 omit [CharP k p] in
+/--
+@isnad1 id=iff.0h5v.s8.6e7fc4c1e50b from=translated src=- shape=3424bc3e vocab=a7d8e27e
+-/
 theorem truncate_eq_iff {m : ℕ} (x y : WittVector p k) :
     WittVector.truncate m x = WittVector.truncate m y ↔ ∀ i < m, x.coeff i = y.coeff i := by
   constructor
@@ -158,11 +170,17 @@ theorem truncate_eq_iff {m : ℕ} (x y : WittVector p k) :
     exact h i i.2
 
 omit [CharP k p] in
+/--
+@isnad1 id=iff.0h4v.s7.d84c51489de5 from=translated src=- shape=dc9cc6f1 vocab=a7d8e27e
+-/
 theorem truncate_eq_zero_iff {m : ℕ} (x : WittVector p k) :
     WittVector.truncate m x = 0 ↔ ∀ i < m, x.coeff i = 0 := by
   rw [← map_zero (WittVector.truncate m), truncate_eq_iff]
   simp only [WittVector.zero_coeff]
 
+/--
+@isnad1 id=eq.1h5v.s9.9eec8ad4783e from=translated src=- shape=ce0bdbbe vocab=16362501
+-/
 theorem truncate_frobenius_congr {m : ℕ} {x y : WittVector p k}
     (h : WittVector.truncate m x = WittVector.truncate m y) :
     WittVector.truncate m (WittVector.frobenius x) = WittVector.truncate m (WittVector.frobenius y) := by
@@ -170,6 +188,9 @@ theorem truncate_frobenius_congr {m : ℕ} {x y : WittVector p k}
   intro i hi
   rw [WittVector.coeff_frobenius_charP, WittVector.coeff_frobenius_charP, h i hi]
 
+/--
+@isnad1 id=eq.1h6v.s6.c6f1e7e09c57 from=translated src=- shape=24ba2d02 vocab=9ae4b106
+-/
 theorem truncM_frobM_congr {m : ℕ} {P P' : Matrix (Fin n) (Fin n) (WittVector p k)}
     (h : truncM m P = truncM m P') : truncM m (frobM P) = truncM m (frobM P') := by
   ext i j : 1
@@ -186,6 +207,9 @@ def vIter (m : ℕ) : WittVector p k →+ WittVector p k where
     | succ m ih => rw [iterate_succ_apply', iterate_succ_apply', iterate_succ_apply', ih, map_add]
 
 omit [CharP k p] in
+/--
+@isnad1 id=eq.0h4v.s8.c96c70f6a7b5 from=translated src=- shape=4b0bd389 vocab=20c82f5e
+-/
 @[scoped simp] theorem vIter_apply (m : ℕ) (x : WittVector p k) : vIter m x = WittVector.verschiebung^[m] x := rfl
 
 omit [CharP k p] in
@@ -196,6 +220,9 @@ theorem eq_vIter_of_truncate_eq_zero {m : ℕ} {x : WittVector p k} (h : WittVec
 
 omit [CharP k p] in
 
+/--
+@isnad1 id=eq.0h4v.s8.a514b711e6dd from=translated src=- shape=82e33d0d vocab=85bebf9e
+-/
 theorem truncate_vIter (m : ℕ) (z : WittVector p k) : WittVector.truncate m (vIter m z) = 0 := by
   rw [truncate_eq_zero_iff]
   intro i hi
@@ -203,6 +230,9 @@ theorem truncate_vIter (m : ℕ) (z : WittVector p k) : WittVector.truncate m (v
 
 omit [CharP k p] in
 
+/--
+@isnad1 id=eq.1h4v.s9.c5146212c3d7 from=translated src=- shape=b35fdb5a vocab=d6c454ec
+-/
 theorem truncate_succ_vIter {m : ℕ} {z : WittVector p k} (hz : z.coeff 0 = 0) :
     WittVector.truncate (m + 1) (vIter m z) = 0 := by
   rw [truncate_eq_zero_iff]
@@ -216,30 +246,48 @@ theorem truncate_succ_vIter {m : ℕ} {z : WittVector p k} (hz : z.coeff 0 = 0) 
 
 omit [CharP k p] in
 
+/--
+@isnad1 id=eq.0h5v.s8.e2726e395f37 from=translated src=- shape=e2a249c0 vocab=b3b1028e
+-/
 theorem mul_vIter (m : ℕ) (a z : WittVector p k) :
     a * vIter m z = vIter m (WittVector.frobenius^[m] a * z) := by
   rw [vIter_apply, vIter_apply, mul_comm, WittVector.iterate_verschiebung_mul_left, mul_comm]
 
+/--
+@isnad1 id=eq.0h4v.s9.8ddea0394f9b from=translated src=- shape=4f74ee68 vocab=a81d16b0
+-/
 theorem frobenius_vIter (m : ℕ) (z : WittVector p k) :
     WittVector.frobenius (vIter m z) = vIter m (WittVector.frobenius z) := by
   rw [vIter_apply, vIter_apply]
   exact ((WittVector.verschiebung_frobenius_comm (p := p) (R := k)).iterate_left m z).symm
 
+/--
+@isnad1 id=eq.0h4v.s8.403e48573cc8 from=translated src=- shape=eb20fde7 vocab=b4158976
+-/
 theorem constantCoeff_iterate_frobenius (m : ℕ) (a : WittVector p k) :
     WittVector.constantCoeff (WittVector.frobenius^[m] a) = a.coeff 0 ^ p ^ m := by
   rw [WittVector.constantCoeff_apply, WittVector.iterate_frobenius_coeff]
 
 omit [CharP k p] in
+/--
+@isnad1 id=eq.0h3v.s7.136b81fea2ca from=translated src=- shape=017da444 vocab=c00e142f
+-/
 theorem constantCoeff_teichmuller (d : k) :
     WittVector.constantCoeff (WittVector.teichmuller p d) = d := by
   rw [WittVector.constantCoeff_apply, WittVector.teichmuller_coeff_zero]
 
+/--
+@isnad1 id=eq.0h3v.s8.9de6021c8eac from=translated src=- shape=0fae22ab vocab=9a320459
+-/
 theorem constantCoeff_frobenius_teichmuller (d : k) :
     WittVector.constantCoeff (WittVector.frobenius (WittVector.teichmuller p d)) = d ^ p := by
   rw [WittVector.constantCoeff_apply, WittVector.coeff_frobenius_charP, WittVector.teichmuller_coeff_zero]
 
 variable [IsAlgClosed k]
 
+/--
+@isnad1 id=ex.2h6v.s9.7759968d1343 from=translated src=- shape=0cd72023 vocab=8c69b01d
+-/
 theorem step (A : Matrix (Fin n) (Fin n) (WittVector p k)) (hA : IsUnit (resM A)) (m : ℕ)
     (P : Matrix (Fin n) (Fin n) (WittVector p k))
     (hP : truncM (m + 1) (A * frobM P) = truncM (m + 1) P) :
@@ -309,6 +357,9 @@ theorem step (A : Matrix (Fin n) (Fin n) (WittVector p k)) (hA : IsUnit (resM A)
     simp only [hB, frobenius_def]
     ring
 
+/--
+@isnad1 id=ex.1h4v.s7.42042d1fa4d7 from=translated src=- shape=6feb4156 vocab=f34fd37e
+-/
 theorem base (A : Matrix (Fin n) (Fin n) (WittVector p k)) (hA : IsUnit (resM A)) :
     ∃ P : Matrix (Fin n) (Fin n) (WittVector p k), IsUnit (resM P) ∧
       truncM 1 (A * frobM P) = truncM 1 P := by
@@ -332,6 +383,9 @@ theorem base (A : Matrix (Fin n) (Fin n) (WittVector p k)) (hA : IsUnit (resM A)
     simp only [map_mul, Matrix.map_apply, constantCoeff_frobenius_teichmuller, constantCoeff_teichmuller]
     simpa [frobenius_def, WittVector.constantCoeff_apply] using h
 
+/--
+@isnad1 id=ex.1h4v.s7.1a4f68bd7530 from=translated src=- shape=3cb167a0 vocab=6c5e13d5
+-/
 theorem exists_matrix_mul_frobM_eq (A : Matrix (Fin n) (Fin n) (WittVector p k)) (hA : IsUnit (resM A)) :
     ∃ P : Matrix (Fin n) (Fin n) (WittVector p k), IsUnit P.det ∧ A * frobM P = P := by
   classical
@@ -417,6 +471,9 @@ variable {M : Type v} [AddCommGroup M] [Module (WittVector p k) M]
 
 omit [IsAlgClosed k] [CharP k p] in
 
+/--
+@isnad1 id=eq.1h8v.s9.591b0c5d98c6 from=translated src=- shape=f746aefc vocab=5658d008
+-/
 theorem apply_sum_smul {ι : Type*} (s : Finset ι) (U : M →+ M)
     (hU : ∀ (w : WittVector p k) (x : M), U (w • x) = WittVector.frobenius w • U x)
     (c : ι → WittVector p k) (v : ι → M) :
@@ -431,6 +488,9 @@ open scoped _root_.P2MW.S_AddMonoidHom_exists_basis_apply_eq_self_of_map_smul_eq
 
 open P2mKcWittLang in
 
+/--
+@isnad1 id=ex.2h4v.s10.e91802920e53 from=translated src=- shape=b71a232d vocab=94212fc1
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] (k : Type u) [Field k] [IsAlgClosed k] [CharP k p]
     (M : Type v) [AddCommGroup M] [Module (WittVector p k) M]

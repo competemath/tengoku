@@ -21,17 +21,29 @@ namespace Pres
 
 variable {M : Type*} [AddCommGroup M] {n : ℕ} {V : Type*} [AddCommGroup V]
 
+/--
+@isnad1 id=eq.0h5v.s6.65bb72bf1c23 from=translated src=- shape=34bf7a18 vocab=c734f4d3
+-/
 theorem nsmul_ι (P : Pres M n V) (v : V) : n • P.ι v = 0 := by
   have := (P.hιr (P.ι v)).1 ⟨v, rfl⟩
   rwa [natCast_zsmul] at this
 
+/--
+@isnad1 id=eq.0h5v.s5.c7322331eba1 from=translated src=- shape=bd188597 vocab=0c5afa29
+-/
 theorem nsmul_self (P : Pres M n V) (v : V) : n • v = 0 :=
   P.hι (by rw [map_nsmul, P.nsmul_ι, map_zero])
 
+/--
+@isnad1 id=ex.1h5v.s7.a67e52a35d5d from=translated src=- shape=af5e6dc6 vocab=c734f4d3
+-/
 theorem exists_eq (P : Pres M n V) {x : M} (hx : n • x = 0) : ∃ v, P.ι v = x := by
   obtain ⟨v, hv⟩ := (P.hιr x).2 (by rwa [natCast_zsmul])
   exact ⟨v, hv⟩
 
+/--
+@isnad1 id=mem.0h5v.s7.8d473ab2dcfa from=translated src=- shape=99a6ab30 vocab=07a3ae42
+-/
 theorem mem_torsionBy (P : Pres M n V) (v : V) : P.ι v ∈ torsionBy ℤ M ((n : ℕ) : ℤ) :=
   (mem_torsionBy_iff _ _).2 ((P.hιr _).1 ⟨v, rfl⟩)
 
@@ -41,9 +53,15 @@ noncomputable def equiv (P : Pres M n V) : V ≃ torsionBy ℤ M ((n : ℕ) : �
       obtain ⟨v, hv⟩ := (P.hιr x.1).2 ((mem_torsionBy_iff _ _).1 x.2)
       exact ⟨v, Subtype.ext hv⟩⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.8baad94e1358 from=translated src=- shape=467d26c9 vocab=86dd1ece
+-/
 theorem natCard_eq (P : Pres M n V) : Nat.card V = Nat.card (torsionBy ℤ M ((n : ℕ) : ℤ)) :=
   Nat.card_congr P.equiv
 
+/--
+@isnad1 id=eq.0h4v.s7.170e8b8e8353 from=translated src=- shape=2016ae9d vocab=c2597871
+-/
 theorem zmod_smul_eq_cast_zsmul {W : Type*} [AddCommGroup W] [Module (ZMod n) W] (a : ZMod n)
     (w : W) : a • w = (ZMod.cast a : ℤ) • w := by
   conv_lhs => rw [← ZMod.intCast_zmod_cast a]
@@ -51,6 +69,9 @@ theorem zmod_smul_eq_cast_zsmul {W : Type*} [AddCommGroup W] [Module (ZMod n) W]
 
 end Pres
 
+/--
+@isnad1 id=nonempty.2h5v.s7.39e63f5ecd5e from=translated src=- shape=c91ec117 vocab=192d960e
+-/
 theorem nonempty_basis_of_prime {M : Type*} [AddCommGroup M] {N : ℕ} (hN : N.Prime) {r : ℕ}
     {W : Type*} [AddCommGroup W] [Module (ZMod N) W] (P : Pres M N W)
     (hcard : Nat.card (torsionBy ℤ M ((N : ℕ) : ℤ)) = N ^ r) :
@@ -85,11 +106,20 @@ structure LiftData (M : Type*) [AddCommGroup M] (ℓ r m : ℕ)
 
 namespace LiftData
 
+/--
+@isnad1 id=eq.0h7v.s8.7ced7a0bbf5e from=translated src=- shape=aa3c7dc7 vocab=1be1babe
+-/
 theorem natCard_V' (D : LiftData M ℓ r m V V') : Nat.card V' = (ℓ ^ (m + 1)) ^ r := D.P'.natCard_eq.trans D.hm1
 
+/--
+@isnad1 id=finite.0h7v.s7.99e7a1426d64 from=translated src=- shape=28f6e669 vocab=b3f35be5
+-/
 theorem finite_V' (D : LiftData M ℓ r m V V') : Finite V' :=
   Nat.finite_of_card_ne_zero (by rw [D.natCard_V']; exact pow_ne_zero _ (pow_ne_zero _ D.hℓ.ne'))
 
+/--
+@isnad1 id=ex.0h8v.s8.11b829db01bd from=translated src=- shape=6f1e4356 vocab=a6925949
+-/
 theorem exists_lift (D : LiftData M ℓ r m V V') (v : V) : ∃ v' : V', D.P.ι v = ℓ • D.P'.ι v' := by
   obtain ⟨y, hy, hyv⟩ := D.hS (D.P.ι v) (D.P.mem_torsionBy v)
   obtain ⟨v', hv'⟩ := D.P'.exists_eq (x := y) (by
@@ -98,13 +128,22 @@ theorem exists_lift (D : LiftData M ℓ r m V V') (v : V) : ∃ v' : V', D.P.ι 
 
 noncomputable def v' (D : LiftData M ℓ r m V V') (i : Fin r) : V' := (D.exists_lift (D.c i)).choose
 
+/--
+@isnad1 id=eq.0h8v.s9.295a4a6a4431 from=translated src=- shape=139a4ddb vocab=b3addb5b
+-/
 theorem ι_v' (D : LiftData M ℓ r m V V') (i : Fin r) : ℓ • D.P'.ι (D.v' i) = D.P.ι (D.c i) :=
   (D.exists_lift (D.c i)).choose_spec.symm
 
 def mulBy (k : ℕ) : V' →ₗ[ℤ] V' := DistribSMul.toLinearMap ℤ V' k
 
+/--
+@isnad1 id=eq.0h3v.s6.35a05f0c9665 from=translated src=- shape=629c6ef4 vocab=d5f74b79
+-/
 @[scoped simp] theorem mulBy_apply (k : ℕ) (w : V') : mulBy (V' := V') k w = k • w := rfl
 
+/--
+@isnad1 id=eq.1h8v.s8.d75ad11365d3 from=translated src=- shape=c217e19b vocab=0af4c6b2
+-/
 theorem natCard_ker_mulBy (D : LiftData M ℓ r m V V') {j : ℕ} (hj : j ≤ m + 1) :
     Nat.card (LinearMap.ker (mulBy (V' := V') (ℓ ^ j))) =
       Nat.card (torsionBy ℤ M ((ℓ ^ j : ℕ) : ℤ)) := by
@@ -125,6 +164,9 @@ theorem natCard_ker_mulBy (D : LiftData M ℓ r m V V') {j : ℕ} (hj : j ≤ m 
     apply D.P'.hι
     rw [map_nsmul, hw, hy, map_zero]
 
+/--
+@isnad1 id=ex.1h8v.s8.2796520a7202 from=translated src=- shape=f2298dbb vocab=73ddb5aa
+-/
 theorem exists_eq_pow_smul_of_smul_eq_zero (D : LiftData M ℓ r m V V') (w : V') (hw : ℓ • w = 0) : ∃ z : V', w = ℓ ^ m • z := by
   haveI := D.finite_V'
   set g := mulBy (V' := V') (ℓ ^ m) with hg
@@ -154,8 +196,14 @@ theorem exists_eq_pow_smul_of_smul_eq_zero (D : LiftData M ℓ r m V V') (w : V'
 noncomputable def N (D : LiftData M ℓ r m V V') : Submodule (ZMod (ℓ ^ (m + 1))) V' :=
   span (ZMod (ℓ ^ (m + 1))) (Set.range D.v')
 
+/--
+@isnad1 id=mem.0h8v.s9.27ae2f2199a6 from=translated src=- shape=b47dddaa vocab=a6faba02
+-/
 theorem v'_mem_N (D : LiftData M ℓ r m V V') (i : Fin r) : D.v' i ∈ D.N := subset_span ⟨i, rfl⟩
 
+/--
+@isnad1 id=ex.1h8v.s9.2ed2a9f78474 from=translated src=- shape=e957bcff vocab=3c625668
+-/
 theorem exists_mem_N_add_smul (D : LiftData M ℓ r m V V') (hm0 : 0 < m) (z : V') : ∃ u ∈ D.N, ∃ z' : V', z = u + ℓ • z' := by
 
   have hz : ℓ ^ m • (ℓ • D.P'.ι z) = 0 := by
@@ -180,6 +228,9 @@ theorem exists_mem_N_add_smul (D : LiftData M ℓ r m V V') (hm0 : 0 < m) (z : V
   refine ⟨u, huN, ℓ ^ m' • z'', ?_⟩
   rw [← mul_smul, ← pow_succ', ← hz'', add_sub_cancel]
 
+/--
+@isnad1 id=ex.1h9v.s9.b789b658ef3c from=translated src=- shape=7719ac3d vocab=3c625668
+-/
 theorem exists_mem_N_add_pow_smul (D : LiftData M ℓ r m V V') (hm0 : 0 < m) (k : ℕ) (z : V') :
     ∃ u ∈ D.N, ∃ z' : V', z = u + ℓ ^ k • z' := by
   induction k generalizing z with
@@ -190,12 +241,18 @@ theorem exists_mem_N_add_pow_smul (D : LiftData M ℓ r m V V') (hm0 : 0 < m) (k
     refine ⟨u + ℓ ^ k • u₁, Submodule.add_mem _ hu (nsmul_mem hu₁ _), z'', ?_⟩
     rw [smul_add, ← mul_smul, ← pow_succ, add_assoc]
 
+/--
+@isnad1 id=eq.1h7v.s9.45ec883dc826 from=translated src=- shape=68caa348 vocab=cb555012
+-/
 theorem N_eq_top (D : LiftData M ℓ r m V V') (hm0 : 0 < m) : D.N = ⊤ := by
   refine eq_top_iff.2 fun z _ => ?_
   obtain ⟨u, hu, z', rfl⟩ := D.exists_mem_N_add_pow_smul hm0 (m + 1) z
   rw [D.P'.nsmul_self, add_zero]
   exact hu
 
+/--
+@isnad1 id=linearin.1h7v.s8.336e0170b9ed from=translated src=- shape=06311ba5 vocab=8370fac6
+-/
 theorem linearIndependent_v' (D : LiftData M ℓ r m V V') (hm0 : 0 < m) : LinearIndependent (ZMod (ℓ ^ (m + 1))) D.v' := by
   haveI := D.finite_V'
   haveI : NeZero (ℓ ^ (m + 1)) := ⟨pow_ne_zero _ D.hℓ.ne'⟩
@@ -212,9 +269,15 @@ theorem linearIndependent_v' (D : LiftData M ℓ r m V V') (hm0 : 0 < m) : Linea
 noncomputable def liftedBasis (D : LiftData M ℓ r m V V') (hm0 : 0 < m) : Basis (Fin r) (ZMod (ℓ ^ (m + 1))) V' :=
   Basis.mk (D.linearIndependent_v' hm0) (by rw [← N, D.N_eq_top hm0])
 
+/--
+@isnad1 id=eq.1h8v.s8.ca1992a25e1d from=translated src=- shape=a23bfe72 vocab=f29a5a20
+-/
 theorem liftedBasis_apply (D : LiftData M ℓ r m V V') (hm0 : 0 < m) (i : Fin r) : D.liftedBasis hm0 i = D.v' i := by
   rw [liftedBasis, Basis.coe_mk]
 
+/--
+@isnad1 id=ex.1h7v.s10.807e238ece06 from=translated src=- shape=c0a8a289 vocab=5aa4853c
+-/
 theorem exists_basis_smul_eq (D : LiftData M ℓ r m V V') (hprime : ℓ.Prime) :
     ∃ c' : Basis (Fin r) (ZMod (ℓ ^ (m + 1))) V', ∀ i, D.P.ι (D.c i) = ℓ • D.P'.ι (c' i) := by
   rcases Nat.eq_zero_or_pos m with hm0 | hm0
@@ -239,6 +302,9 @@ open scoped _root_.P2MW.S_AddCommGroup_exists_basis_smul_eq_of_card_torsionBy.P2
 end P2mLwLift
 open scoped _root_.P2MW.S_AddCommGroup_exists_basis_smul_eq_of_card_torsionBy.P2mLwLift.LiftData _root_.P2MW.S_AddCommGroup_exists_basis_smul_eq_of_card_torsionBy.P2mLwLift
 
+/--
+@isnad1 id=ex.5h9v.s10.85ac9f795423 from=translated src=- shape=a53bdd16 vocab=772732eb
+-/
 theorem solution (ℓ : ℕ) [Fact ℓ.Prime]
     {M : Type*} [AddCommGroup M] (r m : ℕ)
     (hcard : ∀ j ≤ m + 1, Nat.card (Submodule.torsionBy ℤ M ((ℓ ^ j : ℕ) : ℤ)) = (ℓ ^ j) ^ r)

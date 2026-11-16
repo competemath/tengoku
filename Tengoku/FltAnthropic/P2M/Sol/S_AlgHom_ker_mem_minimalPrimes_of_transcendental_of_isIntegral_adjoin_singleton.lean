@@ -7,6 +7,9 @@ namespace P2MW.S_AlgHom_ker_mem_minimalPrimes_of_transcendental_of_isIntegral_ad
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=mem.2h5v.s8.7993b1e31066 from=translated src=- shape=7aa6ddd5 vocab=6c079d9d
+-/
 theorem solution
     (A₀ R K : Type) [CommRing A₀] [CommRing R] [Field K] [Algebra A₀ R] [Algebra A₀ K]
     (j₀ : R) (ι : R →ₐ[A₀] K) (htr : Transcendental A₀ (ι j₀))

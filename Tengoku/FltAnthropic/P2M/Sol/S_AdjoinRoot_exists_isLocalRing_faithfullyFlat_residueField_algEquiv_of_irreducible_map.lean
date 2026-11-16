@@ -18,13 +18,22 @@ variable {R : Type u} [CommRing R] [IsLocalRing R] (f : R[X])
 noncomputable abbrev J : Ideal (AdjoinRoot f) := (maximalIdeal R).map (AdjoinRoot.of f)
 
 omit [IsLocalRing R] in
+/--
+@isnad1 id=eq.0h2v.s6.39468a5a7ad6 from=translated src=- shape=89c12dd8 vocab=5dc9aad7
+-/
 theorem algebraMap_eq_of : algebraMap R (AdjoinRoot f) = AdjoinRoot.of f := rfl
 
+/--
+@isnad1 id=isfield.0h2v.s7.050ecfea81dc from=translated src=- shape=8ba74849 vocab=8e5d1a27
+-/
 theorem isField_quotient_J [Fact (Irreducible (f.map (residue R)))] : IsField (AdjoinRoot f ⧸ J f) := by
   have hK : IsField ((R ⧸ maximalIdeal R)[X] ⧸ Ideal.span {f.map (Ideal.Quotient.mk (maximalIdeal R))}) :=
     Field.toIsField (AdjoinRoot (f.map (residue R)))
   exact MulEquiv.isField hK (AdjoinRoot.quotEquivQuotMap f (maximalIdeal R)).toMulEquiv
 
+/--
+@isnad1 id=ismaxima.0h2v.s7.9e1fd9ddbc6b from=translated src=- shape=3bb4626a vocab=30f4bf9e
+-/
 theorem isMaximal_J [Fact (Irreducible (f.map (residue R)))] : (J f).IsMaximal :=
   Ideal.Quotient.maximal_of_isField _ (isField_quotient_J f)
 
@@ -41,14 +50,23 @@ theorem eq_J_of_isMaximal (hfm : f.Monic) [Fact (Irreducible (f.map (residue R))
     rw [J, ← algebraMap_eq_of, Ideal.map_le_iff_le_comap, hcomap']
   exact ((isMaximal_J f).eq_of_le hN.ne_top hle).symm
 
+/--
+@isnad1 id=islocalr.1h2v.s7.32faa22d6bb7 from=translated src=- shape=b991efc4 vocab=70bbddd0
+-/
 theorem isLocalRing (hfm : f.Monic) [Fact (Irreducible (f.map (residue R)))] : IsLocalRing (AdjoinRoot f) :=
   IsLocalRing.of_unique_max_ideal ⟨J f, isMaximal_J f, fun N hN => eq_J_of_isMaximal hfm N hN⟩
 
+/--
+@isnad1 id=eq.1h2v.s7.edafac1dc68a from=translated src=- shape=096ba935 vocab=312caf74
+-/
 theorem maximalIdeal_eq (hfm : f.Monic) [Fact (Irreducible (f.map (residue R)))] :
     @maximalIdeal (AdjoinRoot f) _ (isLocalRing hfm) = J f :=
   letI := isLocalRing hfm
   eq_J_of_isMaximal hfm _ (IsLocalRing.maximalIdeal.isMaximal _)
 
+/--
+@isnad1 id=islocalh.1h2v.s8.c1c3b90eb38d from=translated src=- shape=eb815e11 vocab=1d650e27
+-/
 theorem isLocalHom (hfm : f.Monic) [Fact (Irreducible (f.map (residue R)))] :
     IsLocalHom (algebraMap R (AdjoinRoot f)) := by
   letI := isLocalRing hfm
@@ -60,6 +78,9 @@ theorem isLocalHom (hfm : f.Monic) [Fact (Irreducible (f.map (residue R)))] :
     exact Ideal.mem_map_of_mem _ hmem
   exact (IsLocalRing.mem_maximalIdeal _).1 hJmem ha
 
+/--
+@isnad1 id=nonempty.1h2v.s9.8cc41aaa1cbf from=translated src=- shape=3e603501 vocab=7ccc34e5
+-/
 theorem nonempty_residueField_algEquiv (hfm : f.Monic) [Fact (Irreducible (f.map (residue R)))] :
     letI := isLocalRing hfm
     letI := isLocalHom hfm
@@ -88,6 +109,9 @@ end P2mAdjoinRootLocalStep
 
 open P2mAdjoinRootLocalStep in
 
+/--
+@isnad1 id=ex.1h2v.s10.5c95491867cc from=translated src=- shape=4b9e66e7 vocab=a527b13a
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsLocalRing R]
     (f : R[X]) (hfm : f.Monic) [Fact (Irreducible (f.map (residue R)))] :

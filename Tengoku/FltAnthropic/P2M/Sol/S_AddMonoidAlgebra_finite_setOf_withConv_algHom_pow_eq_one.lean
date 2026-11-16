@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=finite.1h3v.s9.41f9b2913abc from=translated src=- shape=5a65157e vocab=35e3c1ac
+-/
 theorem solution
     (κ : Type u) [CommRing κ] [IsDomain κ] (t n : ℕ) (hn : 0 < n) :
     {χ : WithConv (AddMonoidAlgebra κ (Fin t → ℤ) →ₐ[κ] κ) | χ ^ n = 1}.Finite := by

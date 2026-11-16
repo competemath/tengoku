@@ -7,6 +7,9 @@ namespace P2MW.S_AddMonoidHom_sub_mul_add_one_smul_eq_zero_of_comp_self_sub_smul
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.2h5v.s8.c881b2cf99c0 from=translated src=- shape=751bf2c3 vocab=9667cbc8
+-/
 theorem solution
     {V : Type*} [AddCommGroup V] (m : V →+ V) (t : ℤ) (hm : ∀ T, m (m T) - t • m T + T = 0)
     (P : V) (c : ℤ) (hP : m P = c • P) :

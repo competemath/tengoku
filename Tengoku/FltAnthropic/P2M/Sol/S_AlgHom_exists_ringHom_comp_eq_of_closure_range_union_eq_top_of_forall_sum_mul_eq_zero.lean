@@ -11,6 +11,9 @@ open scoped TensorProduct
 
 namespace PoleComp
 
+/--
+@isnad1 id=ex.0h4v.s6.74d9e16e705e from=translated src=- shape=ce69d506 vocab=9c786420
+-/
 theorem exists_fin_sum {R M N : Type*} [CommSemiring R] [AddCommMonoid M] [AddCommMonoid N]
     [Module R M] [Module R N] (z : M ⊗[R] N) :
     ∃ (n : ℕ) (x : Fin n → M) (y : Fin n → N), z = ∑ i, x i ⊗ₜ[R] y i := by
@@ -22,6 +25,9 @@ theorem exists_fin_sum {R M N : Type*} [CommSemiring R] [AddCommMonoid M] [AddCo
 
 end PoleComp
 
+/--
+@isnad1 id=ex.3h8v.s10.c52e81003a96 from=translated src=- shape=384e3d89 vocab=c9dfc8dc
+-/
 theorem solution
     {k L F E : Type*} [Field k] [Field L] [Field F] [Field E] [Algebra k L] [Algebra k F]
     (α₀ α₁ : L →ₐ[k] F)

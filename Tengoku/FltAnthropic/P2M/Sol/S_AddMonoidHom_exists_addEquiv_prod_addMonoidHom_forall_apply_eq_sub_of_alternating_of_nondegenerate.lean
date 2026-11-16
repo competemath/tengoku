@@ -15,18 +15,33 @@ section General
 
 variable {K : Type} [AddCommGroup K] {M : Type} [AddCommGroup M] (B : K →+ K →+ M)
 
+/--
+@isnad1 id=eq.0h6v.s10.b08aaf3e7b2e from=translated src=- shape=54db87c3 vocab=7e7485a4
+-/
 theorem zsmul_left (n : ℤ) (a b : K) : B (n • a) b = n • B a b := by
   rw [← AddMonoidHom.flip_apply B, map_zsmul, AddMonoidHom.flip_apply]
 
+/--
+@isnad1 id=eq.0h6v.s10.91ce0a928017 from=translated src=- shape=54db87c3 vocab=2189bbdb
+-/
 theorem nsmul_left (n : ℕ) (a b : K) : B (n • a) b = n • B a b := by
   rw [← AddMonoidHom.flip_apply B, map_nsmul, AddMonoidHom.flip_apply]
 
+/--
+@isnad1 id=eq.0h6v.s10.5d2d7149e54b from=translated src=- shape=b0c3cf54 vocab=84cdebf6
+-/
 theorem add_left (a a' b : K) : B (a + a') b = B a b + B a' b := by
   rw [map_add, AddMonoidHom.add_apply]
 
+/--
+@isnad1 id=eq.0h5v.s10.176e1169e89e from=translated src=- shape=531dffc2 vocab=6c6123e1
+-/
 theorem neg_left (a b : K) : B (-a) b = - B a b := by
   rw [map_neg, AddMonoidHom.neg_apply]
 
+/--
+@isnad1 id=eq.1h5v.s10.d483a7576543 from=translated src=- shape=96841c97 vocab=6c6123e1
+-/
 theorem skew (halt : ∀ a, B a a = 0) (x y : K) : B x y = - B y x := by
   have h := halt (x + y)
   rw [add_left, map_add, map_add, halt, halt, zero_add, add_zero] at h
@@ -38,6 +53,9 @@ section Partner
 
 variable {K : Type} [AddCommGroup K] [Finite K] {d : ℕ} (B : K →+ K →+ ZMod d)
 
+/--
+@isnad1 id=ex.1h4v.s11.3b0340334948 from=translated src=- shape=6514a812 vocab=d76208d7
+-/
 theorem exists_partner (hnd : ∀ a, (∀ b, B a b = 0) → a = 0) (a : K) :
     ∃ b : K, (∀ x, B a x ∈ zmultiples (B a b)) ∧ addOrderOf (B a b) = addOrderOf a := by
   classical
@@ -62,6 +80,9 @@ theorem exists_partner (hnd : ∀ a, (∀ b, B a b = 0) → a = 0) (a : K) :
 
 omit [Finite K] in
 
+/--
+@isnad1 id=mem.1h3v.s7.84eb5cc81070 from=translated src=- shape=f9518377 vocab=78548451
+-/
 theorem mem_zmultiples_of_nsmul_eq_zero [NeZero d] (u y : ZMod d) (hy : addOrderOf u • y = 0) : y ∈ zmultiples u := by
   classical
   let T : AddSubgroup (ZMod d) := (DistribSMul.toAddMonoidHom (ZMod d) (addOrderOf u)).ker
@@ -85,6 +106,9 @@ section Main
 
 variable {d : ℕ} [NeZero d]
 
+/--
+@isnad1 id=ex.3h4v.s11.f3d740263c18 from=translated src=- shape=35d00e52 vocab=1cf4c995
+-/
 theorem exists_lagrangian :
     ∀ (n : ℕ) (K : Type) [AddCommGroup K] [Finite K], Nat.card K = n →
     ∀ (B : K →+ K →+ ZMod d), (∀ a, B a a = 0) → (∀ a, (∀ b, B a b = 0) → a = 0) →
@@ -399,6 +423,9 @@ end Main
 
 end SympStd
 
+/--
+@isnad1 id=ex.2h3v.s11.979d4744d08f from=translated src=- shape=18f8c537 vocab=9051e5b4
+-/
 theorem solution
     {d : ℕ} [NeZero d] (K : Type) [AddCommGroup K] [Finite K]
     (B : K →+ K →+ ZMod d) (halt : ∀ a : K, B a a = 0) (hnd : ∀ a : K, (∀ b : K, B a b = 0) → a = 0) :

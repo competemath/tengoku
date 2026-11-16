@@ -18,6 +18,9 @@ universe u v w
 
 namespace EtqLiftE96
 
+/--
+@isnad1 id=mem.3h4v.s9.57e23ed47258 from=translated src=- shape=07ff28cb vocab=accc2a31
+-/
 theorem mem_span_of_one_tmul_eq_zero {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [Algebra 𝓞 (ZMod p)]
     (hk : Function.Surjective (algebraMap 𝓞 (ZMod p)))
     (hker : RingHom.ker (algebraMap 𝓞 (ZMod p)) = Ideal.span {(p : 𝓞)})
@@ -43,6 +46,9 @@ theorem mem_span_of_one_tmul_eq_zero {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [
 
 end EtqLiftE96
 
+/--
+@isnad1 id=existsun.2h5v.s10.2816cea6fa09 from=translated src=- shape=cfe1239f vocab=6eac63e1
+-/
 theorem solution
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [Fact p.Prime] (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞)
     [Algebra 𝓞 (ZMod p)] (hker : RingHom.ker (algebraMap 𝓞 (ZMod p)) = Ideal.span {(p : 𝓞)})

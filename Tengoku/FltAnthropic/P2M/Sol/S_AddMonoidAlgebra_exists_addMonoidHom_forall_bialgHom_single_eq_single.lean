@@ -7,6 +7,9 @@ namespace P2MW.S_AddMonoidAlgebra_exists_addMonoidHom_forall_bialgHom_single_eq_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.0h3v.s10.c0e55d632fc7 from=translated src=- shape=47eecc03 vocab=1d07b99e
+-/
 theorem solution
     {S : Type} [CommRing S] [IsDomain S] (G : Type) [AddCommGroup G]
     (f : AddMonoidAlgebra S G →ₐc[S] AddMonoidAlgebra S G) :

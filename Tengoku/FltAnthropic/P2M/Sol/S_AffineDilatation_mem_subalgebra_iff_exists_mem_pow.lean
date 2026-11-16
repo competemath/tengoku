@@ -19,36 +19,63 @@ variable {A : Type u} [CommRing A]
 
 def den (a : A) (n : ℕ) : Submonoid.powers a := ⟨a ^ n, n, rfl⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.a6e0afe6fabd from=translated src=- shape=d80479ac vocab=913cce07
+-/
 theorem den_add (a : A) (m n : ℕ) : den a (m + n) = den a m * den a n :=
   Subtype.ext (pow_add a m n)
 
+/--
+@isnad1 id=eq.0h2v.s7.45f9b4b982e9 from=translated src=- shape=d1428eb3 vocab=8d2ac9f0
+-/
 theorem den_zero (a : A) : den a 0 = 1 := Subtype.ext (pow_zero a)
 
+/--
+@isnad1 id=eq.0h2v.s6.95494d0147db from=translated src=- shape=3b2d5994 vocab=fa4215c0
+-/
 theorem den_one (a : A) : den a 1 = ⟨a, Submonoid.mem_powers a⟩ := Subtype.ext (pow_one a)
 
 noncomputable def frac (a : A) (n : ℕ) (g : A) : Localization.Away a :=
   IsLocalization.mk' (Localization.Away a) g (den a n)
 
+/--
+@isnad1 id=eq.0h3v.s7.fcb08c4319c1 from=translated src=- shape=d8ad7fe1 vocab=d56c4cb2
+-/
 theorem frac_zero_right (a : A) (g : A) : frac a 0 g = algebraMap A (Localization.Away a) g := by
   rw [frac, den_zero, IsLocalization.mk'_one]
 
+/--
+@isnad1 id=eq.0h4v.s8.8a68dfe1f58b from=translated src=- shape=6221bfaa vocab=0e20486d
+-/
 theorem frac_eq_mul (a : A) (n : ℕ) (g : A) :
     frac a n g = algebraMap A (Localization.Away a) g * frac a n 1 :=
   IsLocalization.mk'_eq_mul_mk'_one g (den a n)
 
+/--
+@isnad1 id=eq.0h5v.s7.4549971c8080 from=translated src=- shape=68d9eb8a vocab=48cd0ec2
+-/
 theorem frac_add_num (a : A) (n : ℕ) (g h : A) :
     frac a n (g + h) = frac a n g + frac a n h := by
   rw [frac_eq_mul, map_add, add_mul, ← frac_eq_mul, ← frac_eq_mul]
 
+/--
+@isnad1 id=eq.0h6v.s7.18d4b958f71b from=translated src=- shape=6e504401 vocab=6627d927
+-/
 theorem frac_add (a : A) (m n : ℕ) (g h : A) :
     frac a m g + frac a n h = frac a (m + n) (g * a ^ n + h * a ^ m) := by
   rw [frac, frac, frac, ← IsLocalization.mk'_add, den_add]
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.8225305efc07 from=translated src=- shape=b765ce46 vocab=e3552619
+-/
 theorem frac_mul (a : A) (m n : ℕ) (g h : A) :
     frac a m g * frac a n h = frac a (m + n) (g * h) := by
   rw [frac, frac, frac, ← IsLocalization.mk'_mul, den_add]
 
+/--
+@isnad1 id=mem.1h5v.s8.6ea697c7ca0f from=translated src=- shape=4b344109 vocab=0968f3bc
+-/
 theorem frac_mem_of_mem_pow (I : Ideal A) (a : A) :
     ∀ (n : ℕ) (g : A), g ∈ I ^ n → frac a n g ∈ subalgebra I a := by
   intro n
@@ -70,6 +97,9 @@ theorem frac_mem_of_mem_pow (I : Ideal A) (a : A) :
         rw [frac_add_num]
         exact Subalgebra.add_mem _ hx hy
 
+/--
+@isnad1 id=ex.2h4v.s8.3c166e6d5735 from=translated src=- shape=78d4c4b1 vocab=0968f3bc
+-/
 theorem exists_pow_of_mem (I : Ideal A) (a : A) (ha : a ∈ I) (x : Localization.Away a)
     (hx : x ∈ subalgebra I a) : ∃ n : ℕ, ∃ g ∈ I ^ n, frac a n g = x := by
   induction hx using Algebra.adjoin_induction with
@@ -96,6 +126,9 @@ end AffineDilatation.PowDescription
 open scoped _root_.P2MW.S_AffineDilatation_mem_subalgebra_iff_exists_mem_pow.AffineDilatation _root_.P2MW.S_AffineDilatation_mem_subalgebra_iff_exists_mem_pow.AffineDilatation.PowDescription
 open scoped _root_.P2MW.S_AffineDilatation_mem_subalgebra_iff_exists_mem_pow.AffineDilatation
 
+/--
+@isnad1 id=iff.1h4v.s9.28a22e28e859 from=translated src=- shape=44ba15a0 vocab=d03a974b
+-/
 theorem solution
     {A : Type u} [CommRing A] (I : Ideal A) (a : A) (ha : a ∈ I) (x : Localization.Away a) :
     x ∈ AffineDilatation.subalgebra I a ↔

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u v w
 
+/--
+@isnad1 id=ex.0h4v.s8.652a7a7e315d from=translated src=- shape=f9ad9968 vocab=90ae4e3d
+-/
 theorem solution
     (K : Type u) [Field K] [IsAlgClosed K]
     (R : Type v) [CommRing R] [Algebra K R]

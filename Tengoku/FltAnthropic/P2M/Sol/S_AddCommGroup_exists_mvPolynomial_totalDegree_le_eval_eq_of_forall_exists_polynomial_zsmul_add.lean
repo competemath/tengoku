@@ -13,6 +13,9 @@ namespace P2mPolyLines
 
 variable {R : Type*}
 
+/--
+@isnad1 id=eq.1h4v.s8.0571f99937ca from=translated src=- shape=ac879641 vocab=e109a846
+-/
 theorem mvPolynomial_eq_of_forall_eval_intCast_eq [CommRing R] [IsDomain R] [CharZero R]
     {ι : Type*} {p q : MvPolynomial ι R}
     (h : ∀ c : ι → ℤ, eval (fun i => (c i : R)) p = eval (fun i => (c i : R)) q) : p = q := by
@@ -24,6 +27,9 @@ theorem mvPolynomial_eq_of_forall_eval_intCast_eq [CommRing R] [IsDomain R] [Cha
   subst hx'
   exact h c
 
+/--
+@isnad1 id=eq.1h6v.s8.ad41422c21de from=translated src=- shape=c5898972 vocab=9130cbbf
+-/
 theorem eval_mul_of_isHomogeneous [CommRing R] {ι : Type*} {φ : MvPolynomial ι R} {n : ℕ}
     (hφ : φ.IsHomogeneous n) (t : R) (x : ι → R) :
     eval (fun i => t * x i) φ = t ^ n * eval x φ := by
@@ -49,6 +55,9 @@ variable {M : Type*} [AddCommGroup M]
 def LinePoly (f : M → R) (d : ℕ) : Prop :=
   ∀ x y : M, ∃ p : Polynomial R, p.natDegree ≤ d ∧ ∀ n : ℤ, f (n • x + y) = p.eval (n : R)
 
+/--
+@isnad1 id=linepoly.1h5v.s5.bc6e38dbfdfd from=translated src=- shape=42592fd9 vocab=7cd7bfd7
+-/
 theorem LinePoly.shift {f : M → R} {d : ℕ} (hf : LinePoly f d) (a : M) :
     LinePoly (fun y => f (a + y)) d := by
   intro x y
@@ -58,6 +67,9 @@ theorem LinePoly.shift {f : M → R} {d : ℕ} (hf : LinePoly f d) (a : M) :
 
 variable [CharZero R]
 
+/--
+@isnad1 id=ex.1h6v.s7.a7f3e15cd238 from=translated src=- shape=e93261ca vocab=685c79ce
+-/
 theorem exists_mvPolynomial_fin (d : ℕ) :
     ∀ (m : ℕ) (f : M → R), LinePoly f d → ∀ e : Fin m → M,
       ∃ P : MvPolynomial (Fin m) R, ∀ c : Fin m → ℤ,
@@ -108,6 +120,9 @@ theorem exists_mvPolynomial_fin (d : ℕ) :
     rw [h1, ← hQ j (fun i => c i.succ)]
     rfl
 
+/--
+@isnad1 id=ex.2h7v.s8.a5fa7775a35a from=translated src=- shape=99155683 vocab=1e2215f7
+-/
 theorem exists_mvPolynomial_totalDegree_le {ι : Type*} [Fintype ι] (f : M → R) (d : ℕ)
     (hf : LinePoly f d) (e : ι → M) (P : MvPolynomial ι R)
     (hP : ∀ c : ι → ℤ, eval (fun i => (c i : R)) P = f (∑ i, c i • e i)) :
@@ -184,6 +199,9 @@ theorem exists_mvPolynomial_totalDegree_le {ι : Type*} [Fintype ι] (f : M → 
       omega
     rw [hL, hR]
 
+/--
+@isnad1 id=ex.1h6v.s7.d8bc3cfc206d from=translated src=- shape=2493c5d4 vocab=1e2215f7
+-/
 theorem exists_mvPolynomial_totalDegree_le_of_linePoly {ι : Type*} [Fintype ι] (f : M → R) (d : ℕ)
     (hf : LinePoly f d) (e : ι → M) :
     ∃ P : MvPolynomial ι R, P.totalDegree ≤ d ∧
@@ -205,6 +223,9 @@ end Lines
 
 end P2mPolyLines
 
+/--
+@isnad1 id=ex.1h6v.s8.82b6721ba02b from=translated src=- shape=1c7230e5 vocab=39418454
+-/
 theorem solution
     {M : Type*} [AddCommGroup M] {R : Type*} [Field R] [CharZero R] (f : M → R) (d : ℕ)
     (hf : ∀ x y : M, ∃ p : Polynomial R, p.natDegree ≤ d ∧

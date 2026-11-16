@@ -10,6 +10,9 @@ namespace P2MW.S_AlgHom_injective_of_surjective_of_ker_le_map_maximalIdeal
 
 open IsLocalRing
 
+/--
+@isnad1 id=injectiv.2h4v.s8.d47a74c60964 from=translated src=- shape=cb4d85e0 vocab=a949455a
+-/
 theorem solution
     {𝒪 : Type*} {A : Type*} {B : Type*} [CommRing 𝒪] [IsLocalRing 𝒪]
     [CommRing A] [Algebra 𝒪 A] [IsLocalRing A] [IsNoetherianRing A] [IsLocalHom (algebraMap 𝒪 A)]

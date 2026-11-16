@@ -8,6 +8,9 @@ namespace P2MW.S_AddSubgroup_natCard_eq_pow_finrank_span_of_forall_apply_eq_self
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.2h6v.s9.144bf9bb0cb7 from=translated src=- shape=05de6c90 vocab=0f823443
+-/
 theorem solution
     {K F M : Type*} [Field K] [Field F] [Algebra K F] [AddCommGroup M] [Module F M]
     [Module K M] [IsScalarTower K F M] (p : ℕ) [Fact p.Prime] [CharP K p] [PerfectField K]

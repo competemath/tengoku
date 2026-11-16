@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 universe u v
 
+/--
+@isnad1 id=ex.1h4v.s15.60550e49c18c from=translated src=- shape=57e72107 vocab=b9e70354
+-/
 theorem AffineDilatation.nonempty_algEquiv_mvPolynomial_sum
     {R : Type u} [CommRing R] (π : R) (hπ : IsSMulRegular R π) (σ : Type v) (τ : Type v) :
     ∃ e : AffineDilatation.Ring

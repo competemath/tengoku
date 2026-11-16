@@ -19,6 +19,9 @@ variable {κ : Type u₁} [Field κ] {F : Type u₂} [Field F] [Algebra κ F]
   {F' : Type u₄} [Field F'] [Algebra κ' F'] [Algebra F F'] [Algebra κ F']
   [IsScalarTower κ F F'] [IsScalarTower κ κ' F']
 
+/--
+@isnad1 id=eq.2h4v.s8.ddef48ef6669 from=translated src=- shape=6178b06b vocab=722e860c
+-/
 theorem natDegree_minpoly_eq {K : Type*} [Field K] [Algebra κ K] {E : Type*} [Field E] [Algebra K E] [Algebra κ E]
     [IsScalarTower κ K E]
     (halgK : ∀ x : K, IsAlgebraic κ x → x ∈ Set.range (algebraMap κ K))
@@ -54,6 +57,9 @@ theorem natDegree_minpoly_eq {K : Type*} [Field K] [Algebra κ K] {E : Type*} [F
   have : m.natDegree = q₀.natDegree + r.natDegree := by rw [hr, Polynomial.natDegree_mul hq₀0 hr0]
   rw [← hq₀deg, this, hrdeg, add_zero]
 
+/--
+@isnad1 id=mem.2h4v.s10.6003f8f20e12 from=translated src=- shape=b924ce83 vocab=5c667306
+-/
 theorem halg_fieldRange
     (halg : ∀ x : F, IsAlgebraic κ x → x ∈ Set.range (algebraMap κ F))
     (x : ↥(IsScalarTower.toAlgHom κ F F').fieldRange) (hx : IsAlgebraic κ x) :
@@ -67,6 +73,9 @@ theorem halg_fieldRange
 
 variable [Algebra.IsAlgebraic κ κ'] [Algebra.IsSeparable κ κ']
 
+/--
+@isnad1 id=lineardi.1h4v.s8.d317e3ac817f from=translated src=- shape=05091c95 vocab=12f88089
+-/
 theorem linearDisjoint (halg : ∀ x : F, IsAlgebraic κ x → x ∈ Set.range (algebraMap κ F)) :
     (IsScalarTower.toAlgHom κ F F').fieldRange.toSubalgebra.LinearDisjoint
       (IsScalarTower.toAlgHom κ κ' F').range := by
@@ -141,6 +150,9 @@ theorem linearDisjoint (halg : ∀ x : F, IsAlgebraic κ x → x ∈ Set.range (
   rw [hfun]
   exact key
 
+/--
+@isnad1 id=ex.2h5v.s10.1535a27faf50 from=translated src=- shape=4ebcc350 vocab=24db399b
+-/
 theorem main
     (halg : ∀ x : F, IsAlgebraic κ x → x ∈ Set.range (algebraMap κ F))
     (hgen : Algebra.adjoin F (Set.range (algebraMap κ' F')) = ⊤)
@@ -205,6 +217,9 @@ theorem main
 
 end BCAut
 
+/--
+@isnad1 id=ex.2h5v.s10.edc52207455b from=translated src=- shape=e021f728 vocab=24db399b
+-/
 theorem solution
     {κ : Type*} [Field κ] {F : Type*} [Field F] [Algebra κ F]
     {κ' : Type*} [Field κ'] [Algebra κ κ'] [Algebra.IsAlgebraic κ κ'] [Algebra.IsSeparable κ κ']

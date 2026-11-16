@@ -12,23 +12,38 @@ namespace EigenCartierCount
 
 variable {K : Type*} [Field K] (p : ℕ) [Fact p.Prime] [CharP K p] [PerfectField K]
 
+/--
+@isnad1 id=perfectr.0h2v.s5.81e0d2d82325 from=translated src=- shape=b9a51756 vocab=b3542602
+-/
 scoped instance instPerfectRing : PerfectRing K p := PerfectField.toPerfectRing p
 
 noncomputable abbrev ρ : K ≃+* K := (frobeniusEquiv K p).symm
 
+/--
+@isnad1 id=eq.0h3v.s7.464c0d67ffa6 from=translated src=- shape=738b702e vocab=6b414376
+-/
 lemma ρ_pow (c : K) : (ρ (K := K) p c) ^ p = c := by
   show frobenius K p ((frobeniusEquiv K p).symm c) = c
   exact frobenius_apply_frobeniusEquiv_symm K p c
 
+/--
+@isnad1 id=eq.1h3v.s7.69186182473c from=translated src=- shape=98660335 vocab=6b414376
+-/
 lemma ρ_eq_of_pow_eq (c : K) (hc : c ^ p = c) : ρ (K := K) p c = c := by
   apply (frobeniusEquiv K p).injective
   show frobeniusEquiv K p ((frobeniusEquiv K p).symm c) = frobeniusEquiv K p c
   rw [RingEquiv.apply_symm_apply, frobeniusEquiv_apply, frobenius_def, hc]
 
+/--
+@isnad1 id=eq.0h3v.s8.ab339ce032c2 from=translated src=- shape=425fc813 vocab=84db72ce
+-/
 lemma ρ_castHom (k : ZMod p) : ρ (K := K) p (ZMod.castHom (dvd_refl p) K k) = ZMod.castHom (dvd_refl p) K k := by
   apply ρ_eq_of_pow_eq
   rw [← map_pow, ZMod.pow_card]
 
+/--
+@isnad1 id=eq.1h7v.s9.8d91a2a9266a from=translated src=- shape=25c1b5cc vocab=5c64f2c1
+-/
 lemma semi_K {F M : Type*} [Field F] [Algebra K F] [AddCommGroup M] [Module F M] [Module K M]
     [IsScalarTower K F M] (C : M →+ M) (hsemi : ∀ (f : F) (m : M), C (f ^ p • m) = f • C m)
     (c : K) (m : M) : C (c • m) = ρ (K := K) p c • C m := by
@@ -36,6 +51,9 @@ lemma semi_K {F M : Type*} [Field F] [Algebra K F] [AddCommGroup M] [Module F M]
     rw [← map_pow, ρ_pow, algebraMap_smul]
   rw [h1, hsemi, algebraMap_smul]
 
+/--
+@isnad1 id=ex.1h3v.s8.b7f895dc03ce from=translated src=- shape=713929c3 vocab=84db72ce
+-/
 lemma exists_castHom_eq_of_ρ_eq (c : K) (hc : ρ (K := K) p c = c) :
     ∃ k : ZMod p, ZMod.castHom (dvd_refl p) K k = c := by
   classical
@@ -82,6 +100,9 @@ end EigenCartierCount
 open scoped _root_.P2MW.S_AddMonoidHom_natCard_le_pow_finrank_of_apply_eq_self_of_map_pow_smul.EigenCartierCount
 
 open EigenCartierCount in
+/--
+@isnad1 id=and.4h8v.s10.4cd2c40fba3e from=translated src=- shape=f673d670 vocab=a88a22a3
+-/
 theorem solution
     {K F M : Type*} [Field K] [Field F] [Algebra K F] [AddCommGroup M] [Module F M]
     [Module K M] [IsScalarTower K F M]

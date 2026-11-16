@@ -8,6 +8,9 @@ namespace P2MW.S_AddSubgroup_forall_mem_of_forall_pairing_eq_one_of_natCard_mul_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.8h6v.s9.dd3dc4992fb2 from=translated src=- shape=76a8bc3c vocab=90f2d70d
+-/
 theorem solution
     {G : Type} [AddCommGroup G] [Finite G] {L : Type} [Field L] [CharZero L] (n : ℕ) (hn : n ≠ 0)
     (B : G → G → L)

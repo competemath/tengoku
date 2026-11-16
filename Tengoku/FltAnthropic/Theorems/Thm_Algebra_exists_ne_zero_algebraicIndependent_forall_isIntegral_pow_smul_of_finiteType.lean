@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u v
 
+/--
+@isnad1 id=ex.0h2v.s8.13b9ba199d5e from=translated src=- shape=53cc3645 vocab=a62b4a47
+-/
 theorem Algebra.exists_ne_zero_algebraicIndependent_forall_isIntegral_pow_smul_of_finiteType
     {R : Type u} {C : Type v} [CommRing R] [IsDomain R] [CommRing C] [IsDomain C]
     [Algebra R C] [FaithfulSMul R C] [Algebra.FiniteType R C] :

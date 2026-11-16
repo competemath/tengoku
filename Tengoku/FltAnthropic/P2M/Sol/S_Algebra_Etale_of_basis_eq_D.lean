@@ -13,6 +13,9 @@ open KaehlerDifferential
 
 universe u v
 
+/--
+@isnad1 id=etale.2h5v.s9.0454e89e271b from=translated src=- shape=23159edc vocab=fb71928e
+-/
 theorem solution
     {R : Type u} [CommRing R] {S : Type u} [CommRing S] [Algebra R S] [Algebra.Smooth R S]
     {ι : Type v} [Finite ι] (x : ι → S) (b : Module.Basis ι S Ω[S⁄R]) (hb : ∀ i, b i = D R S (x i))

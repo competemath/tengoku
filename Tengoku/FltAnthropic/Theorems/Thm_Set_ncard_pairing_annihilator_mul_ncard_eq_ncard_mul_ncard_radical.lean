@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Set_ncard_pairing_annihilator_mul_ncard_eq
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.10h6v.s9.7da80159e68e from=translated src=- shape=8e172208 vocab=baadd0c6
+-/
 theorem Set.ncard_pairing_annihilator_mul_ncard_eq_ncard_mul_ncard_radical
     {J J' : Type} [AddCommGroup J] [AddCommGroup J'] {L : Type} [Field L] [CharZero L]
     (A : Set J) (X' : Set J') (hA : A.Finite) (hX' : X'.Finite)

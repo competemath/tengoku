@@ -13,6 +13,9 @@ open Module
 
 namespace DiscreteSubgroupCoordinates
 
+/--
+@isnad1 id=ex.0h2v.s10.d8e8a40396f5 from=translated src=- shape=78490431 vocab=0eee8819
+-/
 theorem main
     {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimensional ℝ V]
     (L : AddSubgroup V) [hL : DiscreteTopology L] :
@@ -89,6 +92,9 @@ theorem main
 
 end DiscreteSubgroupCoordinates
 
+/--
+@isnad1 id=ex.0h2v.s10.d8e8a40396f5 from=translated src=- shape=78490431 vocab=0eee8819
+-/
 theorem solution
     {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimensional ℝ V]
     (L : AddSubgroup V) [DiscreteTopology L] :

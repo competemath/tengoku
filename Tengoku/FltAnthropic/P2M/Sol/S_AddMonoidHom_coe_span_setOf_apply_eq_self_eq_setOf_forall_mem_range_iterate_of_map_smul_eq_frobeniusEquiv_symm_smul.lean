@@ -19,6 +19,9 @@ section Basic
 variable (C : V →+ V) (hC : ∀ (a : K) (v : V), C (a • v) = (frobeniusEquiv K p).symm a • C v)
 include hC
 
+/--
+@isnad1 id=eq.1h7v.s10.bcde12bfa50e from=translated src=- shape=a2e0bbb4 vocab=79a0898d
+-/
 theorem iterate_smul (n : ℕ) (a : K) (v : V) :
     (⇑C)^[n] (a • v) = ((⇑(frobeniusEquiv K p).symm)^[n] a) • (⇑C)^[n] v := by
   induction n generalizing a v with
@@ -27,18 +30,27 @@ theorem iterate_smul (n : ℕ) (a : K) (v : V) :
     rw [Function.iterate_succ_apply, Function.iterate_succ_apply, Function.iterate_succ_apply, hC, ih]
 
 omit hC in
+/--
+@isnad1 id=eq.0h5v.s7.e0774c2ca467 from=translated src=- shape=2bca1e0e vocab=79237e83
+-/
 theorem iterate_add' (n : ℕ) (v w : V) : (⇑C)^[n] (v + w) = (⇑C)^[n] v + (⇑C)^[n] w := by
   induction n generalizing v w with
   | zero => rfl
   | succ n ih => rw [Function.iterate_succ_apply, Function.iterate_succ_apply, Function.iterate_succ_apply, map_add, ih]
 
 omit hC in
+/--
+@isnad1 id=eq.0h3v.s6.aaaf5282ecec from=translated src=- shape=5268e07b vocab=5edc7704
+-/
 theorem iterate_zero' (n : ℕ) : (⇑C)^[n] (0 : V) = 0 := by
   induction n with
   | zero => rfl
   | succ n ih => rw [Function.iterate_succ_apply, map_zero, ih]
 
 omit hC in
+/--
+@isnad1 id=eq.0h4v.s8.50c739e6ed15 from=translated src=- shape=09d1993b vocab=a2ef7379
+-/
 theorem frob_iterate_symm_iterate (n : ℕ) (a : K) :
     ((⇑(frobeniusEquiv K p).symm)^[n] (((⇑(frobeniusEquiv K p))^[n]) a)) = a := by
   induction n generalizing a with
@@ -46,6 +58,9 @@ theorem frob_iterate_symm_iterate (n : ℕ) (a : K) :
   | succ n ih =>
     rw [Function.iterate_succ_apply', Function.iterate_succ_apply, ih, (frobeniusEquiv K p).symm_apply_apply]
 
+/--
+@isnad1 id=eq.1h7v.s9.428e444c23c3 from=translated src=- shape=a9ee6770 vocab=79a0898d
+-/
 theorem smul_iterate (n : ℕ) (a : K) (v : V) :
     a • (⇑C)^[n] v = (⇑C)^[n] ((((⇑(frobeniusEquiv K p))^[n]) a) • v) := by
   rw [iterate_smul C hC, frob_iterate_symm_iterate]
@@ -60,15 +75,27 @@ def rangeIter (n : ℕ) : Submodule K V where
     rintro a _ ⟨v, rfl⟩
     exact ⟨_, (smul_iterate C hC n a v).symm⟩
 
+/--
+@isnad1 id=iff.1h6v.s9.a51fa3b3f4fe from=translated src=- shape=b2b2c5ad vocab=58af07d0
+-/
 theorem mem_rangeIter (n : ℕ) (v : V) : v ∈ rangeIter C hC n ↔ v ∈ Set.range ((⇑C)^[n]) := Iff.rfl
 
+/--
+@isnad1 id=le.1h5v.s9.394868c3b555 from=translated src=- shape=bbbaf501 vocab=3af430d2
+-/
 theorem rangeIter_succ_le (n : ℕ) : rangeIter C hC (n + 1) ≤ rangeIter C hC n := by
   rintro _ ⟨v, rfl⟩
   exact ⟨C v, (Function.iterate_succ_apply _ _ _).symm⟩
 
+/--
+@isnad1 id=antitone.1h4v.s9.93b5f0e7a2bc from=translated src=- shape=2c78c296 vocab=54f0acd4
+-/
 theorem rangeIter_antitone : Antitone (rangeIter C hC) :=
   antitone_nat_of_succ_le (rangeIter_succ_le C hC)
 
+/--
+@isnad1 id=eq.1h5v.s9.5570e32287b8 from=translated src=- shape=4232fe66 vocab=f2303d19
+-/
 theorem map_rangeIter (n : ℕ) : (⇑C) '' (rangeIter C hC n : Set V) = rangeIter C hC (n + 1) := by
   ext w
   constructor
@@ -77,6 +104,9 @@ theorem map_rangeIter (n : ℕ) : (⇑C) '' (rangeIter C hC n : Set V) = rangeIt
   · rintro ⟨v, rfl⟩
     exact ⟨_, ⟨v, rfl⟩, (Function.iterate_succ_apply' _ _ _).symm⟩
 
+/--
+@isnad1 id=eq.2h5v.s9.613332a85f7a from=translated src=- shape=51231aea vocab=5a7ba8bf
+-/
 theorem rangeIter_succ_eq_of_eq {n : ℕ} (h : rangeIter C hC (n + 1) = rangeIter C hC n) :
     rangeIter C hC (n + 2) = rangeIter C hC (n + 1) := by
   apply SetLike.coe_injective
@@ -85,6 +115,9 @@ theorem rangeIter_succ_eq_of_eq {n : ℕ} (h : rangeIter C hC (n + 1) = rangeIte
     _ = (⇑C) '' (rangeIter C hC n : Set V) := by rw [h]
     _ = rangeIter C hC (n + 1) := map_rangeIter C hC n
 
+/--
+@isnad1 id=eq.3h6v.s9.9a75feb02933 from=translated src=- shape=6a1721e9 vocab=3af430d2
+-/
 theorem rangeIter_eq_of_eq {n : ℕ} (h : rangeIter C hC (n + 1) = rangeIter C hC n) :
     ∀ m, n ≤ m → rangeIter C hC m = rangeIter C hC n := by
   intro m hm
@@ -103,6 +136,9 @@ theorem rangeIter_eq_of_eq {n : ℕ} (h : rangeIter C hC (n + 1) = rangeIter C h
 
 variable [FiniteDimensional K V]
 
+/--
+@isnad1 id=eq.2h5v.s9.af548519560e from=translated src=- shape=36815c34 vocab=9a27b7e0
+-/
 theorem rangeIter_eq_of_finrank_le (n : ℕ) (hn : finrank K V ≤ n) :
     rangeIter C hC n = rangeIter C hC (finrank K V) := by
 
@@ -130,6 +166,9 @@ theorem rangeIter_eq_of_finrank_le (n : ℕ) (hn : finrank K V ≤ n) :
     have := key (finrank K V + 1) (fun i hi => hex i (Nat.lt_succ_iff.mp hi))
     omega
 
+/--
+@isnad1 id=eq.1h4v.s9.c3d39db02d9a from=translated src=- shape=526ed458 vocab=76a07fe2
+-/
 theorem rangeIter_finrank_eq_iInf : (rangeIter C hC (finrank K V) : Set V) = {v : V | ∀ m : ℕ, v ∈ Set.range ((⇑C)^[m])} := by
   ext v
   simp only [SetLike.mem_coe, Set.mem_ofPred_eq]
@@ -153,6 +192,9 @@ variable {K : Type*} [Field K] {p : ℕ} [Fact p.Prime] [CharP K p] [PerfectRing
 noncomputable abbrev rootHom (K : Type*) [Field K] (p : ℕ) [Fact p.Prime] [CharP K p] [PerfectRing K p] : K →+* K :=
   ((frobeniusEquiv K p).symm : K ≃+* K).toRingHom
 
+/--
+@isnad1 id=ringhoms.0h2v.s6.ba7019e1a8d5 from=translated src=- shape=e6a15e32 vocab=ddcae1c3
+-/
 scoped instance rootHom_surjective : RingHomSurjective (rootHom K p) := ⟨(frobeniusEquiv K p).symm.surjective⟩
 
 section Semilinear
@@ -164,6 +206,9 @@ def toSL (D : W →+ W) (hD : ∀ (a : K) (w : W), D (a • w) = (frobeniusEquiv
   map_add' := map_add D
   map_smul' := hD
 
+/--
+@isnad1 id=eq.1h5v.s9.e47569283e8e from=translated src=- shape=29c731b6 vocab=9bb283c6
+-/
 @[scoped simp] theorem toSL_apply (D : W →+ W) (hD : ∀ (a : K) (w : W), D (a • w) = (frobeniusEquiv K p).symm a • D w) (w : W) :
     toSL D hD w = D w := rfl
 
@@ -174,6 +219,9 @@ section Step1
 variable [IsAlgClosed K]
 variable {W : Type*} [AddCommGroup W] [Module K W] [FiniteDimensional K W]
 
+/--
+@isnad1 id=eq.0h3v.s6.dc4806013c97 from=translated src=- shape=f77547a9 vocab=32d06111
+-/
 theorem fin_succ_eq_snoc {α : Type*} (s : ℕ → α) (n : ℕ) :
     (fun i : Fin (n + 1) => s i) = Fin.snoc (fun i : Fin n => s i) (s n) := by
   funext i
@@ -181,6 +229,9 @@ theorem fin_succ_eq_snoc {α : Type*} (s : ℕ → α) (n : ℕ) :
   · simp [Fin.snoc_last]
   · simp [Fin.snoc_castSucc]
 
+/--
+@isnad1 id=ex.2h4v.s9.6acf8f0b8038 from=translated src=- shape=9d8ea52c vocab=db79558a
+-/
 theorem exists_ne_zero_apply_eq_self [Nontrivial W] (D : W →+ W) (hD : ∀ (a : K) (w : W), D (a • w) = (frobeniusEquiv K p).symm a • D w)
     (hinj : Function.Injective D) : ∃ w : W, w ≠ 0 ∧ D w = w := by
   classical
@@ -338,6 +389,9 @@ section Step2
 
 variable [IsAlgClosed K]
 
+/--
+@isnad1 id=ex.0h3v.s8.347096271079 from=translated src=- shape=b080142b vocab=27524479
+-/
 theorem exists_sub_root_eq (a : K) : ∃ x : K, x - (frobeniusEquiv K p).symm x = a := by
 
   have hp : 1 < p := (Fact.out : p.Prime).one_lt
@@ -358,6 +412,9 @@ theorem exists_sub_root_eq (a : K) : ∃ x : K, x - (frobeniusEquiv K p).symm x 
 
 universe u in
 
+/--
+@isnad1 id=eq.3h5v.s9.ce89bf9eb4c1 from=translated src=- shape=b56847df vocab=1784d768
+-/
 theorem span_fixed_eq_top_aux : ∀ (n : ℕ) (W : Type u) [AddCommGroup W] [Module K W] [FiniteDimensional K W],
     finrank K W = n → ∀ (D : W →+ W), (∀ (a : K) (w : W), D (a • w) = (frobeniusEquiv K p).symm a • D w) →
       Function.Injective D → Submodule.span K {w : W | D w = w} = ⊤ := by
@@ -426,6 +483,9 @@ theorem span_fixed_eq_top_aux : ∀ (n : ℕ) (W : Type u) [AddCommGroup W] [Mod
   rw [hmap, Submodule.comap_top, Submodule.ker_mkQ, sup_eq_left.mpr hF1] at this
   exact this.le
 
+/--
+@isnad1 id=eq.2h4v.s9.2d8241b6cbc3 from=translated src=- shape=1d95d900 vocab=2a32d147
+-/
 theorem span_setOf_apply_eq_self_eq_top_of_bijective' (K : Type*) [Field K] [IsAlgClosed K] (p : ℕ) [Fact p.Prime] [CharP K p]
     (V : Type*) [AddCommGroup V] [Module K V] [FiniteDimensional K V]
     (C : V →+ V) (hC : ∀ (a : K) (v : V), C (a • v) = (frobeniusEquiv K p).symm a • C v)
@@ -446,6 +506,9 @@ variable {V : Type*} [AddCommGroup V] [Module K V]
 
 section InjOfSurj
 
+/--
+@isnad1 id=injectiv.2h4v.s9.80f72e90210a from=translated src=- shape=0460b36e vocab=4aa44f1a
+-/
 theorem injective_of_surjective {W : Type*} [AddCommGroup W] [Module K W] [FiniteDimensional K W]
     (D : W →+ W) (hD : ∀ (a : K) (w : W), D (a • w) = (frobeniusEquiv K p).symm a • D w)
     (hsurj : Function.Surjective D) : Function.Injective D := by
@@ -489,14 +552,23 @@ variable [FiniteDimensional K V]
 
 noncomputable def stable : Submodule K V := rangeIter C hC (finrank K V)
 
+/--
+@isnad1 id=eq.1h4v.s9.08357f1b1f0c from=translated src=- shape=bff24a41 vocab=4d824e28
+-/
 theorem stable_def : stable C hC = rangeIter C hC (finrank K V) := rfl
 
+/--
+@isnad1 id=mem.2h5v.s9.184532d333b8 from=translated src=- shape=f094b190 vocab=96254ec7
+-/
 theorem apply_mem_stable {v : V} (hv : v ∈ stable C hC) : C v ∈ stable C hC := by
   have h : C v ∈ rangeIter C hC (finrank K V + 1) := by
     rw [← SetLike.mem_coe, ← map_rangeIter C hC]
     exact ⟨v, hv, rfl⟩
   exact rangeIter_succ_le C hC _ h
 
+/--
+@isnad1 id=ex.2h5v.s9.3844a492c7a4 from=translated src=- shape=07a08d5e vocab=96254ec7
+-/
 theorem exists_apply_eq_of_mem_stable {w : V} (hw : w ∈ stable C hC) : ∃ v ∈ stable C hC, C v = w := by
   have h : w ∈ rangeIter C hC (finrank K V + 1) := by
     rw [rangeIter_eq_of_finrank_le C hC _ (Nat.le_succ _)]; exact hw
@@ -509,14 +581,23 @@ noncomputable def restrict : ↥(stable C hC) →+ ↥(stable C hC) where
   map_zero' := Subtype.ext (map_zero C)
   map_add' v w := Subtype.ext (map_add C (v : V) (w : V))
 
+/--
+@isnad1 id=eq.1h6v.s12.504f450186bd from=translated src=- shape=4b81dc30 vocab=bac434cd
+-/
 theorem restrict_smul (a : K) (v : ↥(stable C hC)) : restrict C hC (a • v) = (frobeniusEquiv K p).symm a • restrict C hC v :=
   Subtype.ext (hC a (v : V))
 
+/--
+@isnad1 id=surjecti.1h4v.s11.b84a982ed2d0 from=translated src=- shape=ac000ae1 vocab=2c71dd05
+-/
 theorem restrict_surjective : Function.Surjective (restrict C hC) := by
   intro w
   obtain ⟨v, hv, hvw⟩ := exists_apply_eq_of_mem_stable C hC w.2
   exact ⟨⟨v, hv⟩, Subtype.ext hvw⟩
 
+/--
+@isnad1 id=bijectiv.1h4v.s11.0453eb88f139 from=translated src=- shape=ac000ae1 vocab=6ff0ccf3
+-/
 theorem restrict_bijective : Function.Bijective (restrict C hC) :=
   ⟨injective_of_surjective (restrict C hC) (restrict_smul C hC) (restrict_surjective C hC), restrict_surjective C hC⟩
 
@@ -525,6 +606,9 @@ open scoped _root_.P2MW.S_AddMonoidHom_coe_span_setOf_apply_eq_self_eq_setOf_for
 
 section LangSteinberg
 
+/--
+@isnad1 id=eq.2h4v.s9.2d8241b6cbc3 from=translated src=- shape=1d95d900 vocab=2a32d147
+-/
 theorem span_setOf_apply_eq_self_eq_top_of_bijective (K : Type*) [Field K] [IsAlgClosed K] (p : ℕ) [Fact p.Prime] [CharP K p]
     (V : Type*) [AddCommGroup V] [Module K V] [FiniteDimensional K V]
     (C : V →+ V) (hC : ∀ (a : K) (v : V), C (a • v) = (frobeniusEquiv K p).symm a • C v)
@@ -541,6 +625,9 @@ variable (K : Type*) [Field K] [IsAlgClosed K] (p : ℕ) [Fact p.Prime] [CharP K
     (C : V →+ V) (hC : ∀ (a : K) (v : V), C (a • v) = (frobeniusEquiv K p).symm a • C v)
 include hC
 
+/--
+@isnad1 id=eq.1h4v.s9.55c69ad8b2e1 from=translated src=- shape=5c32d3ad vocab=4dd34953
+-/
 theorem span_fixed_eq_stable : Submodule.span K {v : V | C v = v} = stable C hC := by
   apply le_antisymm
   · rw [Submodule.span_le]
@@ -566,6 +653,9 @@ theorem span_fixed_eq_stable : Submodule.span K {v : V | C v = v} = stable C hC 
       exact Submodule.subset_span (show C (w : V) = w from congrArg Subtype.val hw)
     exact hmap ⟨⟨v, hv⟩, hmem, rfl⟩
 
+/--
+@isnad1 id=and.1h4v.s9.812c88bcab14 from=translated src=- shape=b5d99068 vocab=f762680a
+-/
 theorem main :
     ((Submodule.span K {v : V | C v = v} : Submodule K V) : Set V) = {v : V | ∀ n : ℕ, v ∈ Set.range ((⇑C)^[n])} ∧
     ∀ n : ℕ, Module.finrank K V ≤ n → Set.range ((⇑C)^[n]) = {v : V | ∀ m : ℕ, v ∈ Set.range ((⇑C)^[m])} := by
@@ -580,6 +670,9 @@ open scoped _root_.P2MW.S_AddMonoidHom_coe_span_setOf_apply_eq_self_eq_setOf_for
 end FittingLS
 open scoped _root_.P2MW.S_AddMonoidHom_coe_span_setOf_apply_eq_self_eq_setOf_forall_mem_range_iterate_of_map_smul_eq_frobeniusEquiv_symm_smul.FittingLS
 
+/--
+@isnad1 id=and.1h4v.s9.812c88bcab14 from=translated src=- shape=b5d99068 vocab=f762680a
+-/
 theorem solution
     (K : Type*) [Field K] [IsAlgClosed K] (p : ℕ) [Fact p.Prime] [CharP K p]
     (V : Type*) [AddCommGroup V] [Module K V] [FiniteDimensional K V]

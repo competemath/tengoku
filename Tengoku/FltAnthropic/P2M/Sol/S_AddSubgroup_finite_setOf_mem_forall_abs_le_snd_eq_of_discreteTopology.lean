@@ -7,6 +7,9 @@ namespace P2MW.S_AddSubgroup_finite_setOf_mem_forall_abs_le_snd_eq_of_discreteTo
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=finite.0h5v.s9.9e2452d89855 from=translated src=- shape=8f40ab8b vocab=15f76a73
+-/
 theorem solution
     {r c : ℕ} (Λ : AddSubgroup ((Fin r → ℝ) × (Fin c → ℤ))) [DiscreteTopology Λ] (R : ℝ) (k₀ : Fin c → ℤ) :
     {γ : (Fin r → ℝ) × (Fin c → ℤ) | γ ∈ Λ ∧ (∀ i, |γ.1 i| ≤ R) ∧ γ.2 = k₀}.Finite := by

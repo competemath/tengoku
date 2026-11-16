@@ -13,13 +13,22 @@ namespace ReducedQuadratic
 
 variable {R : Type*} [CommRing R]
 
+/--
+@isnad1 id=monic.0h3v.s8.2621bb14876a from=translated src=- shape=a166b8cb vocab=e89b0ce8
+-/
 theorem monic_quad (t n : R) : (X ^ 2 - C t * X + C n : R[X]).Monic := by
   nontriviality R
   monicity!
 
+/--
+@isnad1 id=eq.0h3v.s8.29929ce9bf8c from=translated src=- shape=e04f5172 vocab=bd268b31
+-/
 theorem degree_quad [Nontrivial R] (t n : R) : (X ^ 2 - C t * X + C n : R[X]).degree = 2 := by
   compute_degree!
 
+/--
+@isnad1 id=ex.0h4v.s12.48488ea23f55 from=translated src=- shape=4fcc117b vocab=12d04f51
+-/
 theorem exists_eq_mk (t n : R) (z : AdjoinRoot (X ^ 2 - C t * X + C n : R[X])) :
     ∃ a b : R, z = AdjoinRoot.mk _ (C b * X + C a) := by
   rcases subsingleton_or_nontrivial R with hR | hR
@@ -46,6 +55,9 @@ namespace ReducedQuadratic
 
 variable {R : Type*} [CommRing R]
 
+/--
+@isnad1 id=iscoprim.1h3v.s10.87ba2011deeb from=translated src=- shape=e9a82535 vocab=558cad97
+-/
 theorem isCoprime_quad_of_isUnit (t n : R) (h : IsUnit (t ^ 2 - 4 * n)) :
     IsCoprime (X ^ 2 - C t * X + C n : R[X]) (derivative (X ^ 2 - C t * X + C n : R[X])) := by
   obtain ⟨d, hd⟩ := h
@@ -65,12 +77,18 @@ theorem isCoprime_quad_of_isUnit (t n : R) (h : IsUnit (t ^ 2 - 4 * n)) :
     _ = C ((↑d⁻¹ : R) * (t ^ 2 - 4 * n)) := by rw [key, ← map_mul]
     _ = 1 := by rw [hdinv, map_one]
 
+/--
+@isnad1 id=isreduce.1h3v.s12.a160a6f7c1ab from=translated src=- shape=ecde0459 vocab=8fd940c9
+-/
 theorem isReduced_field {F : Type*} [Field F] (t n : F) (h : IsUnit (t ^ 2 - 4 * n)) :
     IsReduced (AdjoinRoot (X ^ 2 - C t * X + C n : F[X])) := by
   have hsep : (X ^ 2 - C t * X + C n : F[X]).Separable := isCoprime_quad_of_isUnit t n h
   exact (Ideal.isRadical_iff_quotient_reduced _).1
     (isRadical_iff_span_singleton.1 hsep.squarefree.isRadical)
 
+/--
+@isnad1 id=isreduce.1h3v.s12.dab3a8f48940 from=translated src=- shape=dfd8cc28 vocab=a31e722d
+-/
 theorem isReduced_of_isReduced [IsReduced R] (t n : R) (h : IsUnit (t ^ 2 - 4 * n)) :
     IsReduced (AdjoinRoot (X ^ 2 - C t * X + C n : R[X])) := by
   refine ⟨fun z hz => ?_⟩
@@ -124,6 +142,9 @@ theorem isReduced_of_isReduced [IsReduced R] (t n : R) (h : IsUnit (t ^ 2 - 4 * 
 
 end ReducedQuadratic
 
+/--
+@isnad1 id=isreduce.1h3v.s12.dab3a8f48940 from=translated src=- shape=dfd8cc28 vocab=a31e722d
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsReduced R] (t n : R) (h : IsUnit (t ^ 2 - 4 * n)) :
     IsReduced (AdjoinRoot (X ^ 2 - C t * X + C n : R[X])) :=

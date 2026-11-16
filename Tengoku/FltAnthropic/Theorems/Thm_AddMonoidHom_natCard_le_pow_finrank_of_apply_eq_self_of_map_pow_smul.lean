@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_AddMonoidHom_natCard_le_pow_finrank_of_app
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.4h8v.s10.4cd2c40fba3e from=translated src=- shape=f673d670 vocab=a88a22a3
+-/
 theorem AddMonoidHom.natCard_le_pow_finrank_of_apply_eq_self_of_map_pow_smul
     {K F M : Type*} [Field K] [Field F] [Algebra K F] [AddCommGroup M] [Module F M]
     [Module K M] [IsScalarTower K F M]

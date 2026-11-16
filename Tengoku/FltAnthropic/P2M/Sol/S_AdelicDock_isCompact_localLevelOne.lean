@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsDedekindDomain NumberField
 
+/--
+@isnad1 id=iscompac.0h4v.s9.16155a85b986 from=translated src=- shape=2b7fe851 vocab=55903dcd
+-/
 theorem solution
     (R K : Type*) [CommRing R] [IsDedekindDomain R] [Field K] [Algebra R K] [IsFractionRing R K]
     [Module.Free ℤ R] [Module.Finite ℤ R]

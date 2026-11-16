@@ -133,11 +133,29 @@ def snd (𝒥 : TwoPlaceTorsionDatum p D₁ H₁ D₂ H₂ A₁ A₂) : JPrimeTo
   toricEquiv := 𝒥.toricEquiv₂
   sp := 𝒥.sp₂
 
+/--
+@isnad1 id=eq.0h12v.s6.ed77f45ce3f4 from=translated src=- shape=f774959a vocab=f9688e27
+-/
 @[simp] theorem fst_D (𝒥 : TwoPlaceTorsionDatum p D₁ H₁ D₂ H₂ A₁ A₂) : 𝒥.fst.D = D₁ := rfl
+/--
+@isnad1 id=eq.0h12v.s6.5753b7dd0f90 from=translated src=- shape=e8ec3cfc vocab=83823081
+-/
 @[simp] theorem snd_D (𝒥 : TwoPlaceTorsionDatum p D₁ H₁ D₂ H₂ A₁ A₂) : 𝒥.snd.D = D₂ := rfl
+/--
+@isnad1 id=eq.0h12v.s7.17008923fb51 from=translated src=- shape=8e65c549 vocab=8c1432b1
+-/
 @[simp] theorem fst_T (𝒥 : TwoPlaceTorsionDatum p D₁ H₁ D₂ H₂ A₁ A₂) : 𝒥.fst.T = 𝒥.T := rfl
+/--
+@isnad1 id=eq.0h12v.s7.eba6802223b8 from=translated src=- shape=5c86016e vocab=cfccea6c
+-/
 @[simp] theorem snd_T (𝒥 : TwoPlaceTorsionDatum p D₁ H₁ D₂ H₂ A₁ A₂) : 𝒥.snd.T = 𝒥.T := rfl
+/--
+@isnad1 id=eq.0h12v.s7.f44e9374993a from=translated src=- shape=22f06278 vocab=5eef9fd7
+-/
 @[simp] theorem fst_toric (𝒥 : TwoPlaceTorsionDatum p D₁ H₁ D₂ H₂ A₁ A₂) : 𝒥.fst.toric = 𝒥.toric₁ := rfl
+/--
+@isnad1 id=eq.0h12v.s7.8f33ef9a7b68 from=translated src=- shape=3e46a628 vocab=3512d6d5
+-/
 @[simp] theorem snd_toric (𝒥 : TwoPlaceTorsionDatum p D₁ H₁ D₂ H₂ A₁ A₂) : 𝒥.snd.toric = 𝒥.toric₂ := rfl
 
 structure Laws (𝒥 : TwoPlaceTorsionDatum p D₁ H₁ D₂ H₂ A₁ A₂) (M r₁ r₂ : ℕ)

@@ -19,6 +19,9 @@ open scoped nonZeroDivisors
 
 variable {A : Type u} [CommRing A]
 
+/--
+@isnad1 id=issmulre.0h3v.s7.611ea401fe90 from=translated src=- shape=016e4879 vocab=37127f94
+-/
 theorem isSMulRegular (I : Ideal A) (a : A) : IsSMulRegular (Ring I a) a := by
   intro x y hxy
   apply Subtype.ext
@@ -28,6 +31,9 @@ theorem isSMulRegular (I : Ideal A) (a : A) : IsSMulRegular (Ring I a) a := by
     simpa [Algebra.smul_def] using this
   exact (IsLocalization.Away.algebraMap_isUnit a).mul_left_cancel h
 
+/--
+@isnad1 id=eq.1h3v.s10.150ae69e12df from=translated src=- shape=07793106 vocab=de309b07
+-/
 theorem map_eq_span (I : Ideal A) (a : A) (ha : a ∈ I) :
     I.map (algebraMap A (Ring I a)) = Ideal.span {algebraMap A (Ring I a) a} := by
   apply le_antisymm
@@ -40,6 +46,9 @@ theorem map_eq_span (I : Ideal A) (a : A) (ha : a ∈ I) :
 
 end AffineDilatation.BasicProps
 
+/--
+@isnad1 id=and.1h3v.s10.b21067291ff4 from=translated src=- shape=e861c93c vocab=59c9080c
+-/
 theorem solution
     {A : Type u} [CommRing A] (I : Ideal A) (a : A) (ha : a ∈ I) :
     IsSMulRegular (AffineDilatation.Ring I a) a ∧

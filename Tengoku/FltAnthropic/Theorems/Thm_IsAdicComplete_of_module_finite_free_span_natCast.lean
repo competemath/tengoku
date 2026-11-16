@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u v
 
+/--
+@isnad1 id=isadicco.0h3v.s7.7aacd6c4ed7b from=translated src=- shape=0bd3c195 vocab=21237705
+-/
 theorem IsAdicComplete.of_module_finite_free_span_natCast
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [IsAdicComplete (Ideal.span {(p : 𝓞)}) 𝓞]
     (R : Type v) [CommRing R] [Algebra 𝓞 R] [Module.Finite 𝓞 R] [Module.Free 𝓞 R] :

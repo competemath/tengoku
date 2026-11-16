@@ -17,11 +17,17 @@ abbrev HeckeAlg : Type := MvPolynomial Nat.Primes ℤ
 
 def heckeGen (ℓ : Nat.Primes) : HeckeAlg := MvPolynomial.X ℓ
 
+/--
+@isnad1 id=eq.0h3v.s7.34e959bbee14 from=translated src=- shape=4722ca33 vocab=5c5564a1
+-/
 @[simp] lemma aeval_heckeGen {A : Type*} [CommSemiring A] [Algebra ℤ A]
     (a : Nat.Primes → A) (ℓ : Nat.Primes) :
     MvPolynomial.aeval a (heckeGen ℓ) = a ℓ :=
   MvPolynomial.aeval_X a ℓ
 
+/--
+@isnad1 id=eq.0h0v.s9.d8f71c7a632a from=translated src=- shape=c5b5cb88 vocab=3758ce89
+-/
 lemma adjoin_range_heckeGen : Algebra.adjoin ℤ (Set.range heckeGen) = ⊤ :=
   MvPolynomial.adjoin_range_X
 
@@ -32,10 +38,16 @@ variable {k : Type*} [CommRing k]
 def eigenIdeal (a : Nat.Primes → k) : Ideal HeckeAlg :=
   RingHom.ker (MvPolynomial.aeval (R := ℤ) a)
 
+/--
+@isnad1 id=iff.0h3v.s7.d5d9196d1847 from=translated src=- shape=dc7d5a0f vocab=78d3a690
+-/
 lemma mem_eigenIdeal_iff (a : Nat.Primes → k) (t : HeckeAlg) :
     t ∈ eigenIdeal a ↔ MvPolynomial.aeval a t = 0 :=
   RingHom.mem_ker
 
+/--
+@isnad1 id=mem.1h4v.s8.783ad580f8b6 from=translated src=- shape=598d2d5f vocab=681dd238
+-/
 lemma heckeGen_sub_mem_eigenIdeal (a : Nat.Primes → k) (ℓ : Nat.Primes) (b : ℤ)
     (hb : algebraMap ℤ k b = a ℓ) :
     heckeGen ℓ - MvPolynomial.C b ∈ eigenIdeal a := by
@@ -51,11 +63,17 @@ variable {G : Type*} [Group G] (J : Type*) [AddCommGroup J] [Module HeckeAlg J]
 abbrev heckeTorsion (𝔪 : Ideal HeckeAlg) : Submodule HeckeAlg J :=
   Submodule.torsionBySet HeckeAlg J (𝔪 : Set HeckeAlg)
 
+/--
+@isnad1 id=iff.0h3v.s8.e75297d38250 from=translated src=- shape=5c60f193 vocab=3a72b427
+-/
 lemma mem_heckeTorsion_iff (𝔪 : Ideal HeckeAlg) (x : J) :
     x ∈ heckeTorsion J 𝔪 ↔ ∀ t ∈ 𝔪, t • x = 0 := by
   rw [Submodule.mem_torsionBySet_iff]
   exact ⟨fun h t ht => h ⟨t, ht⟩, fun h t => h t.1 t.2⟩
 
+/--
+@isnad1 id=mem.1h5v.s8.795ba3ca4d2f from=translated src=- shape=e32a9919 vocab=c570046d
+-/
 theorem smul_mem_heckeTorsion {𝔪 : Ideal HeckeAlg} (g : G) {x : J}
     (hx : x ∈ heckeTorsion J 𝔪) : g • x ∈ heckeTorsion J 𝔪 := by
   rw [Submodule.mem_torsionBySet_iff] at hx ⊢
@@ -81,6 +99,9 @@ def mTorsionGaloisRep (𝔪 : Ideal HeckeAlg) :
     ext x
     simp [mul_smul]
 
+/--
+@isnad1 id=eq.0h5v.s11.237a8dd88b47 from=translated src=- shape=3f7f9831 vocab=2c670427
+-/
 @[simp] theorem coe_mTorsionGaloisRep_apply (𝔪 : Ideal HeckeAlg) (g : G)
     (x : heckeTorsion J 𝔪) :
     ((mTorsionGaloisRep J 𝔪 g x : heckeTorsion J 𝔪) : J) = g • (x : J) := rfl
@@ -158,9 +179,15 @@ end MultiplicityOne
 def eisensteinSystem (N : ℕ) : Nat.Primes → ℤ :=
   fun ℓ => if (ℓ : ℕ) ∣ N then 1 else 1 + (ℓ : ℕ)
 
+/--
+@isnad1 id=eq.1h2v.s5.dd69654883cc from=translated src=- shape=872f90f8 vocab=eeada718
+-/
 @[simp] lemma eisensteinSystem_of_not_dvd {N : ℕ} {ℓ : Nat.Primes} (h : ¬ (ℓ : ℕ) ∣ N) :
     eisensteinSystem N ℓ = 1 + (ℓ : ℕ) := ite_eq_right h
 
+/--
+@isnad1 id=eq.1h2v.s4.a65e48516a53 from=translated src=- shape=b5e1e37b vocab=f5b8ee75
+-/
 @[simp] lemma eisensteinSystem_of_dvd {N : ℕ} {ℓ : Nat.Primes} (h : (ℓ : ℕ) ∣ N) :
     eisensteinSystem N ℓ = 1 := ite_eq_left h
 

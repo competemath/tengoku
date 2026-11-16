@@ -26,6 +26,9 @@ def isoHom : Submodule K (W →ₗ[K] K ⊗[O'] D.V) where
   zero_mem' h := by rw [LinearMap.zero_comp, LinearMap.comp_zero]
   smul_mem' c f hf h := by rw [LinearMap.smul_comp, LinearMap.comp_smul, hf h]
 
+/--
+@isnad1 id=iff.0h9v.s13.7535eb26b1b9 from=translated src=- shape=7ad122ed vocab=a4e828e2
+-/
 theorem mem_isoHom_iff (f : W →ₗ[K] K ⊗[O'] D.V) :
     f ∈ D.isoHom K χ ↔ ∀ h : H, f ∘ₗ χ h = ((D.gl2 (h : CuspidalType.GL2 q)).baseChange K) ∘ₗ f :=
   Iff.rfl
@@ -48,6 +51,9 @@ def isoHomGal : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) →* Mod
       ((D.gal σ).baseChange K) ∘ₗ (((D.gal τ).baseChange K) ∘ₗ (f : W →ₗ[K] K ⊗[O'] D.V))
     rw [map_mul, LinearMap.baseChange_mul, Module.End.mul_eq_comp, LinearMap.comp_assoc])
 
+/--
+@isnad1 id=eq.0h10v.s16.5ae486490142 from=translated src=- shape=4bd6d01c vocab=318e4d5e
+-/
 theorem coe_isoHomGal_apply (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) (f : D.isoHom K χ) :
     ((D.isoHomGal K χ σ f : D.isoHom K χ) : W →ₗ[K] K ⊗[O'] D.V) =
       ((D.gal σ).baseChange K) ∘ₗ (f : W →ₗ[K] K ⊗[O'] D.V) :=
@@ -79,11 +85,17 @@ def isoHomHecke : ModularCurve.HeckeAlg →+* Module.End K (D.isoHom K χ) where
         ((D.hecke t).baseChange K) ∘ₗ (f : W →ₗ[K] K ⊗[O'] D.V)
     rw [map_add, LinearMap.baseChange_add, LinearMap.add_comp])
 
+/--
+@isnad1 id=eq.0h10v.s16.308dda8217a9 from=translated src=- shape=5facf8e0 vocab=14ee5264
+-/
 theorem coe_isoHomHecke_apply (t : ModularCurve.HeckeAlg) (f : D.isoHom K χ) :
     ((D.isoHomHecke K χ t f : D.isoHom K χ) : W →ₗ[K] K ⊗[O'] D.V) =
       ((D.hecke t).baseChange K) ∘ₗ (f : W →ₗ[K] K ⊗[O'] D.V) :=
   rfl
 
+/--
+@isnad1 id=eq.0h10v.s17.6708dc4ac55f from=translated src=- shape=4185d1c2 vocab=fa33245f
+-/
 theorem isoHomGal_comm_isoHomHecke (t : ModularCurve.HeckeAlg)
     (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) :
     D.isoHomHecke K χ t * D.isoHomGal K χ σ = D.isoHomGal K χ σ * D.isoHomHecke K χ t :=
@@ -99,6 +111,9 @@ def eigenIsoHom (φ : ModularCurve.HeckeAlg →+* K) : Submodule K (D.isoHom K �
   zero_mem' t := by rw [map_zero, smul_zero]
   smul_mem' c f hf t := by rw [map_smul, hf t, smul_comm]
 
+/--
+@isnad1 id=iff.0h10v.s16.47747dec8d07 from=translated src=- shape=e332e88f vocab=88d78678
+-/
 theorem mem_eigenIsoHom_iff (φ : ModularCurve.HeckeAlg →+* K) (f : D.isoHom K χ) :
     f ∈ D.eigenIsoHom K χ φ ↔ ∀ t : ModularCurve.HeckeAlg, D.isoHomHecke K χ t f = φ t • f :=
   Iff.rfl
@@ -119,6 +134,9 @@ def eigenIsoHomGal (φ : ModularCurve.HeckeAlg →+* K) :
     change D.isoHomGal K χ (σ * τ) (f : D.isoHom K χ) = D.isoHomGal K χ σ (D.isoHomGal K χ τ (f : D.isoHom K χ))
     rw [map_mul, Module.End.mul_apply])
 
+/--
+@isnad1 id=eq.0h11v.s19.6b0c412344b7 from=translated src=- shape=8f1f9630 vocab=f35c3336
+-/
 theorem coe_eigenIsoHomGal_apply (φ : ModularCurve.HeckeAlg →+* K)
     (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) (f : D.eigenIsoHom K χ φ) :
     ((D.eigenIsoHomGal K χ φ σ f : D.eigenIsoHom K χ φ) : D.isoHom K χ) = D.isoHomGal K χ σ f :=
@@ -144,6 +162,9 @@ def borel (q : ℕ) [Fact q.Prime] : Subgroup (CuspidalType.GL2 q) where
     rw [Matrix.GeneralLinearGroup.coe_inv, Matrix.inv_def]
     simp [Matrix.adjugate_fin_two, hx']
 
+/--
+@isnad1 id=iff.0h2v.s8.3fc8ac1c690d from=translated src=- shape=d4e10ead vocab=9089b8cb
+-/
 theorem mem_borel_iff {q : ℕ} [Fact q.Prime] (g : CuspidalType.GL2 q) :
     g ∈ borel q ↔ (g : Matrix (Fin 2) (Fin 2) (ZMod q)) 1 0 = 0 :=
   Iff.rfl
@@ -187,6 +208,9 @@ def borelChar {q : ℕ} [Fact q.Prime] {K : Type} [CommRing K] (μ₁ μ₂ : (Z
       (μ₁ (Units.mk0 _ _) * μ₂ (Units.mk0 _ _)) * (μ₁ (Units.mk0 _ _) * μ₂ (Units.mk0 _ _))
     rw [e0, e1, map_mul, map_mul, mul_mul_mul_comm]
 
+/--
+@isnad1 id=eq.2h7v.s12.6af77d9632f8 from=translated src=- shape=f285e3e6 vocab=280b1d3d
+-/
 theorem borelChar_apply {q : ℕ} [Fact q.Prime] {K : Type} [CommRing K] (μ₁ μ₂ : (ZMod q)ˣ →* Kˣ)
     (g : borel q) (a d : (ZMod q)ˣ)
     (ha : (a : ZMod q) = ((g : CuspidalType.GL2 q) : Matrix (Fin 2) (Fin 2) (ZMod q)) 0 0)

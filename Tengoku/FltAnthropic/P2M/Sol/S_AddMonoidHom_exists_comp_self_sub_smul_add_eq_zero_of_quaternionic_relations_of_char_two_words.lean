@@ -10,6 +10,9 @@ namespace P2MW.S_AddMonoidHom_exists_comp_self_sub_smul_add_eq_zero_of_quaternio
 set_option autoImplicit false
 
 
+/--
+@isnad1 id=ex.8h5v.s11.7f2c917742fe from=translated src=- shape=33b81eea vocab=1f6bbced
+-/
 theorem solution
     {V : Type*} [AddCommGroup V] (σ i j : V →+ V)
     (hσ3 : ∀ T, σ (σ (σ T)) = T) (hi : ∀ T, i (i T) = -T) (hj : ∀ T, j (j T) = -T)

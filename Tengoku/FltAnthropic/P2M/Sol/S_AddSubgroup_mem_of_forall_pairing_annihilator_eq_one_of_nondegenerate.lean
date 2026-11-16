@@ -12,10 +12,16 @@ export _root_.AddSubgroup (coe_mk neg_mem' mk ext eq_of_le_of_card_ge)
 namespace BiannihilatorSol
 open _root_.AddSubgroup
 
+/--
+@isnad1 id=finite.0h2v.s5.ecb8f900f91b from=translated src=- shape=96774f9a vocab=902139a8
+-/
 theorem finite_monoidHom (K : Type*) [CommGroup K] [Finite K] (L : Type*) [Field L] : Finite (K →* L) := by
   haveI := Fintype.ofFinite K
   exact (linearIndependent_monoidHom K L).finite
 
+/--
+@isnad1 id=le.0h2v.s5.e7f733a03acf from=translated src=- shape=9619f0d9 vocab=3076c847
+-/
 theorem card_monoidHom_le (K : Type*) [CommGroup K] [Finite K] (L : Type*) [Field L] :
     Nat.card (K →* L) ≤ Nat.card K := by
   classical
@@ -31,6 +37,9 @@ theorem card_monoidHom_le (K : Type*) [CommGroup K] [Finite K] (L : Type*) [Fiel
 end AddSubgroup.BiannihilatorSol
 
 open AddSubgroup.BiannihilatorSol in
+/--
+@isnad1 id=mem.7h6v.s8.4ce56eec0638 from=translated src=- shape=28b090d7 vocab=ebc35b80
+-/
 theorem solution
     {G : Type} [AddCommGroup G] [Finite G] {L : Type} [Field L] (n : ℕ) (hn : n ≠ 0)
     (B : G → G → L)

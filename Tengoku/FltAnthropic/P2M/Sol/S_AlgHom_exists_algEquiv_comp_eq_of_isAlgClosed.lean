@@ -16,6 +16,9 @@ section Factorisation
 variable {K : Type*} [Field K] {Ω : Type*} [CommRing Ω] [Algebra K Ω]
 variable {J : Type*} {A : J → Type*} [∀ j, CommRing (A j)] [∀ j, Algebra K (A j)]
 
+/--
+@isnad1 id=eq.1h5v.s7.cd81fc4af451 from=translated src=- shape=6bced34f vocab=632e0116
+-/
 theorem single_mul_single_one [DecidableEq J] {j j' : J} (h : j ≠ j') (a : A j) :
     (Pi.single j a : Π j, A j) * Pi.single j' 1 = 0 := by
   funext k
@@ -35,6 +38,9 @@ def factorComponent [DecidableEq J] (φ : (Π j, A j) →ₐ[K] Ω) (j : J)
     rw [Algebra.algebraMap_eq_smul_one, Pi.single_smul, map_smul, h1]
     exact (Algebra.algebraMap_eq_smul_one r).symm
 
+/--
+@isnad1 id=ex.0h5v.s8.c6bf8352c59b from=translated src=- shape=4d1d7227 vocab=9580ddef
+-/
 theorem exists_factor_algHom [Finite J] [IsDomain Ω] (φ : (Π j, A j) →ₐ[K] Ω) :
     ∃ (j : J) (φ₀ : A j →ₐ[K] Ω), φ = φ₀.comp (Pi.evalAlgHom K A j) := by
   cases nonempty_fintype J
@@ -85,9 +91,15 @@ variable {ι : Type*}
 def piPoint (i : ι) : (ι → K) →ₐ[K] Ω :=
   (Algebra.ofId K Ω).comp (Pi.evalAlgHom K (fun _ => K) i)
 
+/--
+@isnad1 id=eq.0h5v.s7.e817ce314702 from=translated src=- shape=9cbf20c6 vocab=89cb64c3
+-/
 @[scoped simp] theorem piPoint_apply (i : ι) (g : ι → K) :
     piPoint K Ω i g = algebraMap K Ω (g i) := rfl
 
+/--
+@isnad1 id=injectiv.0h3v.s6.f9d37600d3d7 from=translated src=- shape=0a3bfc6f vocab=773acc5a
+-/
 theorem piPoint_injective [Nontrivial Ω] :
     Function.Injective (piPoint K Ω (ι := ι)) := by
   intro i i' h
@@ -98,6 +110,9 @@ theorem piPoint_injective [Nontrivial Ω] :
     Pi.single_eq_of_ne (Ne.symm hne), map_one, map_zero] at happ
   exact one_ne_zero happ
 
+/--
+@isnad1 id=ex.0h4v.s7.8935c05810f3 from=translated src=- shape=e5a8a51e vocab=f48352f5
+-/
 theorem algHom_pi_eq_piPoint [Finite ι] [IsDomain Ω] (φ : (ι → K) →ₐ[K] Ω) :
     ∃ i, φ = piPoint K Ω i := by
   obtain ⟨i, φ₀, hφ⟩ := exists_factor_algHom (A := fun _ : ι => K) φ
@@ -155,6 +170,9 @@ section Conjugacy
 variable {K : Type*} [Field K] {Ω : Type*} [Field Ω] [Algebra K Ω]
   [IsAlgClosed Ω] [Algebra.IsAlgebraic K Ω]
 
+/--
+@isnad1 id=ex.0h5v.s8.fbb0f842e184 from=translated src=- shape=0d2b96ad vocab=0e635d29
+-/
 theorem exists_algEquiv_comp_eq {M : Type*} [Field M] [Algebra K M]
     (σ τ : M →ₐ[K] Ω) : ∃ γ : Ω ≃ₐ[K] Ω, γ.toAlgHom.comp σ = τ := by
   letI : Algebra M Ω := σ.toRingHom.toAlgebra
@@ -197,6 +215,9 @@ end AbsoluteGalois
 end W2G9
 open scoped _root_.P2MW.S_AlgHom_exists_algEquiv_comp_eq_of_isAlgClosed.W2G9
 
+/--
+@isnad1 id=ex.0h5v.s8.fbb0f842e184 from=translated src=- shape=0d2b96ad vocab=0e635d29
+-/
 theorem solution
     {K : Type*} [Field K] {Ω : Type*} [Field Ω] [Algebra K Ω]
     [IsAlgClosed Ω] [Algebra.IsAlgebraic K Ω]

@@ -12,6 +12,9 @@ namespace P2mWs11Core
 
 variable {G : Type*} [Group G]
 
+/--
+@isnad1 id=or.1h7v.s7.caa165906862 from=translated src=- shape=170e1242 vocab=9f72dee7
+-/
 theorem forall_or_forall_of_forall_or {P Q : G → Prop}
     (hPm : ∀ a b, P a → P b → P (a * b)) (hPi : ∀ a, P a → P a⁻¹)
     (hQm : ∀ a b, Q a → Q b → Q (a * b)) (hQi : ∀ a, Q a → Q a⁻¹)
@@ -27,6 +30,9 @@ theorem forall_or_forall_of_forall_or {P Q : G → Prop}
 
 variable {k V : Type*} [Field k] [AddCommGroup V] [Module k V]
 
+/--
+@isnad1 id=ex.1h5v.s11.3e51455caa82 from=translated src=- shape=2e84c7dd vocab=5546d8d4
+-/
 theorem main [Finite V] [Nontrivial V]
     (ρ : Representation k G V) (χ : G →* kˣ)
     (h : ∀ (g : G) (v : V), ρ g (ρ g v - (χ g : k) • v) = ρ g v - (χ g : k) • v) :
@@ -170,6 +176,9 @@ theorem main [Finite V] [Nontrivial V]
 
 end P2mWs11Core
 
+/--
+@isnad1 id=ex.1h5v.s11.2254760d68f5 from=translated src=- shape=908545a8 vocab=5546d8d4
+-/
 theorem solution
     {k G V : Type*} [Field k] [Group G] [AddCommGroup V] [Module k V] [Finite V] [Nontrivial V]
     (ρ : Representation k G V) (χ : G →* kˣ)

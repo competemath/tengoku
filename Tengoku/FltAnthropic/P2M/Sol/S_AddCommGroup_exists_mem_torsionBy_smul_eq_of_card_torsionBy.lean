@@ -20,13 +20,22 @@ namespace Pres
 
 variable {M : Type*} [AddCommGroup M] {n : ℕ} {V : Type*} [AddCommGroup V]
 
+/--
+@isnad1 id=eq.0h5v.s6.3f809f096b6b from=translated src=- shape=34bf7a18 vocab=0776dcbb
+-/
 theorem nsmul_ι (P : Pres M n V) (v : V) : n • P.ι v = 0 := by
   have := (P.hιr (P.ι v)).1 ⟨v, rfl⟩
   rwa [natCast_zsmul] at this
 
+/--
+@isnad1 id=eq.0h5v.s5.cd24d285bec4 from=translated src=- shape=bd188597 vocab=4a56cf5a
+-/
 theorem nsmul_self (P : Pres M n V) (v : V) : n • v = 0 :=
   P.hι (by rw [map_nsmul, P.nsmul_ι, map_zero])
 
+/--
+@isnad1 id=mem.0h5v.s7.445161197299 from=translated src=- shape=99a6ab30 vocab=241d4001
+-/
 theorem mem_torsionBy (P : Pres M n V) (v : V) : P.ι v ∈ torsionBy ℤ M ((n : ℕ) : ℤ) :=
   (mem_torsionBy_iff _ _).2 ((P.hιr _).1 ⟨v, rfl⟩)
 
@@ -54,6 +63,9 @@ section S
 
 variable {M : Type*} [AddCommGroup M] (ℓ m : ℕ)
 
+/--
+@isnad1 id=mem.1h4v.s7.09dc2bc47338 from=translated src=- shape=a64f7519 vocab=617498f5
+-/
 theorem nsmul_mem_torsionBy_pow {x : M} (hx : x ∈ torsionBy ℤ M ((ℓ ^ (m + 1) : ℕ) : ℤ)) :
     ℓ • x ∈ torsionBy ℤ M ((ℓ ^ m : ℕ) : ℤ) := by
   rw [mem_torsionBy_iff, natCast_zsmul] at hx ⊢
@@ -70,9 +82,15 @@ def mulL : torsionBy ℤ M ((ℓ ^ (m + 1) : ℕ) : ℤ) →ₗ[ℤ] torsionBy �
     change ℓ • (c • (x : M)) = c • (ℓ • (x : M))
     exact smul_comm ℓ c (x : M)
 
+/--
+@isnad1 id=eq.0h4v.s10.97d0f991ba22 from=translated src=- shape=dd991640 vocab=faf32fc3
+-/
 @[scoped simp] theorem coe_mulL (x : torsionBy ℤ M ((ℓ ^ (m + 1) : ℕ) : ℤ)) :
     ((mulL ℓ m x : torsionBy ℤ M ((ℓ ^ m : ℕ) : ℤ)) : M) = ℓ • (x : M) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.6c0b49277c75 from=translated src=- shape=b7162628 vocab=869c1430
+-/
 theorem natCard_ker_mulL :
     Nat.card (LinearMap.ker (mulL (M := M) ℓ m)) =
       Nat.card (torsionBy ℤ M ((ℓ ^ 1 : ℕ) : ℤ)) := by
@@ -93,6 +111,9 @@ theorem natCard_ker_mulL :
 
 variable (r : ℕ)
 
+/--
+@isnad1 id=surjecti.4h4v.s10.299feed154ef from=translated src=- shape=78cc558f vocab=d847300b
+-/
 theorem mulL_surjective (hℓ : 0 < ℓ)
     (h1 : Nat.card (torsionBy ℤ M ((ℓ ^ 1 : ℕ) : ℤ)) = (ℓ ^ 1) ^ r)
     (hm : Nat.card (torsionBy ℤ M ((ℓ ^ m : ℕ) : ℤ)) = (ℓ ^ m) ^ r)
@@ -124,6 +145,9 @@ end S
 end P2mLwS
 open scoped _root_.P2MW.S_AddCommGroup_exists_mem_torsionBy_smul_eq_of_card_torsionBy.P2mLwS
 
+/--
+@isnad1 id=ex.2h5v.s8.08d6fd69f111 from=translated src=- shape=71cd743a vocab=400e5980
+-/
 theorem solution (ℓ : ℕ) [Fact ℓ.Prime] {M : Type*} [AddCommGroup M] (r m : ℕ)
     (hcard : ∀ j ≤ m + 1, Nat.card (Submodule.torsionBy ℤ M ((ℓ ^ j : ℕ) : ℤ)) = (ℓ ^ j) ^ r)
     (x : M) (hx : x ∈ Submodule.torsionBy ℤ M ((ℓ ^ m : ℕ) : ℤ)) :

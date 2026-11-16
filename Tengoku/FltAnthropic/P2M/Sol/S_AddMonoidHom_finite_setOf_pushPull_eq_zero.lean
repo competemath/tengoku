@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 namespace KerFin
 
+/--
+@isnad1 id=finite.2h3v.s8.1a25edc6f2cc from=translated src=- shape=340442cb vocab=b730a940
+-/
 theorem finite_ker_comp {M : Type*} [AddCommGroup M] (A B : M →+ M) (hA : {x | A x = 0}.Finite) (hB : {x | B x = 0}.Finite) :
     {x | A (B x) = 0}.Finite := by
   classical
@@ -28,6 +31,9 @@ theorem finite_ker_comp {M : Type*} [AddCommGroup M] (A B : M →+ M) (hA : {x |
   · have : {x | B x = y} = ∅ := Set.eq_empty_of_forall_notMem fun x hx => h ⟨x, hx⟩
     rw [this]; exact Set.finite_empty
 
+/--
+@isnad1 id=eq.8h8v.s11.792c0334f795 from=translated src=- shape=8629f0b1 vocab=bfd1ba9f
+-/
 theorem det_apply_eq_zero {M : Type*} [AddCommGroup M] (p : ℕ) (F V δ δ' : M →+ M)
     (hFV : ∀ x, F (V x) = p • x) (hVF : ∀ x, V (F x) = p • x) (hδδ' : ∀ x, δ (δ' x) = x)
     (hFδ : ∀ x, F (δ x) = δ (F x)) (hFδ' : ∀ x, F (δ' x) = δ' (F x)) (hVδ' : ∀ x, V (δ' x) = δ' (V x))
@@ -43,6 +49,9 @@ theorem det_apply_eq_zero {M : Type*} [AddCommGroup M] (p : ℕ) (F V δ δ' : M
   rw [e1, ← e2]
   module
 
+/--
+@isnad1 id=finite.10h6v.s10.b304de0afa1f from=translated src=- shape=ba1fff5e vocab=8fef602f
+-/
 theorem _root_.P2MW.S_AddMonoidHom_finite_setOf_pushPull_eq_zero.solution {M : Type*} [AddCommGroup M] (p : ℕ) (F V δ δ' : M →+ M)
     (hFV : F.comp V = p • AddMonoidHom.id M) (hVF : V.comp F = p • AddMonoidHom.id M)
     (hδδ' : δ.comp δ' = AddMonoidHom.id M) (hδ'δ : δ'.comp δ = AddMonoidHom.id M)

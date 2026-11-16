@@ -12,6 +12,9 @@ open scoped TensorProduct
 open AddMonoidAlgebra in
 set_option maxHeartbeats 4000000 in
 
+/--
+@isnad1 id=ex.0h3v.s11.fbf738e85e39 from=translated src=- shape=fad59ac7 vocab=fc6b5d39
+-/
 theorem solution
     (R S : Type*) [CommRing R] [CommRing S] [Algebra R S] (G : Type*) [AddCommMonoid G] :
     ∃ e : S ⊗[R] AddMonoidAlgebra R G ≃ₐc[S] AddMonoidAlgebra S G,

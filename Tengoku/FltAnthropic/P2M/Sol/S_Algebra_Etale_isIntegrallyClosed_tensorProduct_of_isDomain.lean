@@ -15,6 +15,9 @@ open IsLocalRing
 
 namespace EtaleBCNormalAux
 
+/--
+@isnad1 id=etale.1h4v.s8.82aef312dcc5 from=translated src=- shape=eac289f1 vocab=f7f126a8
+-/
 theorem etale_of_ringEquiv_base {R S T : Type*} [CommRing R] [CommRing S] [CommRing T]
     [Algebra R S] [Algebra S T] [Algebra R T] [IsScalarTower R S T]
     (e : R ≃+* S) (he : ∀ r, e r = algebraMap R S r) [Algebra.Etale R T] : Algebra.Etale S T := by
@@ -26,6 +29,9 @@ theorem etale_of_ringEquiv_base {R S T : Type*} [CommRing R] [CommRing S] [CommR
     Algebra.FinitePresentation.of_restrict_scalars_finitePresentation R S T
   exact Algebra.Etale.mk
 
+/--
+@isnad1 id=and.0h4v.s6.897039d46f1c from=translated src=- shape=dffca62e vocab=fe9fc4b7
+-/
 theorem isDomain_and_isIntegrallyClosed_of_isLocalization_atPrime'
     (P : Type v) [CommRing P] [IsDomain P] [IsIntegrallyClosed P]
     (A : Type (max v w)) [CommRing A] [Algebra P A] [Algebra.Etale P A]
@@ -43,6 +49,9 @@ theorem isDomain_and_isIntegrallyClosed_of_isLocalization_atPrime'
 end EtaleBCNormalAux
 
 open EtaleBCNormalAux in
+/--
+@isnad1 id=isintegr.0h3v.s7.abb19fa1c626 from=translated src=- shape=863c7f9a vocab=ab5173d2
+-/
 theorem solution
     {W : Type*} [CommRing W] (B W' : Type*) [CommRing B] [CommRing W'] [Algebra W B] [Algebra W W']
     [Algebra.Etale W W'] [IsDomain B] [IsIntegrallyClosed B] [IsDomain (B ⊗[W] W')] :

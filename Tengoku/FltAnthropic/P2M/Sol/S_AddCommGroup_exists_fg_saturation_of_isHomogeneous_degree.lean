@@ -11,6 +11,9 @@ namespace P2mEndDisc
 
 open MvPolynomial Module
 
+/--
+@isnad1 id=eq.1h5v.s7.e255eb286c3e from=translated src=- shape=0b50fe00 vocab=1f1c977f
+-/
 theorem eval_smul_of_isHomogeneous {σ : Type*} [Fintype σ] {P : MvPolynomial σ ℚ} {D : ℕ}
     (hP : P.IsHomogeneous D) (k : ℚ) (v : σ → ℚ) :
     eval (k • v) P = k ^ D * eval v P := by
@@ -32,6 +35,9 @@ variable {R : Type*} [AddCommGroup R] (deg : R → ℤ) (D : ℕ)
 
 include hpoly in
 
+/--
+@isnad1 id=eq.1h5v.s7.8c6eb3134f0f from=translated src=- shape=d39e1106 vocab=f2c21f5a
+-/
 theorem deg_smul (x : R) (k : ℤ) : (deg (k • x) : ℚ) = (k : ℚ) ^ D * deg x := by
   obtain ⟨P, hP, hev⟩ := hpoly 1 (fun _ => x)
   have h1 := hev (fun _ => k)
@@ -43,6 +49,9 @@ theorem deg_smul (x : R) (k : ℤ) : (deg (k • x) : ℚ) = (k : ℚ) ^ D * deg
   rw [this, eval_smul_of_isHomogeneous hP]
 
 include hpoly in
+/--
+@isnad1 id=eq.2h3v.s7.8c01127a5c75 from=translated src=- shape=2484e3d4 vocab=5d518e56
+-/
 theorem deg_zero (hD : D ≠ 0) : deg 0 = 0 := by
   have h := deg_smul deg D hpoly (0 : R) 0
   rw [zero_smul, Int.cast_zero, zero_pow hD, zero_mul] at h
@@ -50,6 +59,9 @@ theorem deg_zero (hD : D ≠ 0) : deg 0 = 0 := by
 
 include hpoly in
 
+/--
+@isnad1 id=isaddtor.3h3v.s7.fb8e4fb02ce5 from=translated src=- shape=6566701e vocab=8ddb9714
+-/
 theorem isAddTorsionFree (hD : D ≠ 0) (hsep : ∀ x : R, x ≠ 0 → deg x ≠ 0) :
     IsAddTorsionFree R := by
   refine ⟨fun n hn x y hxy => ?_⟩
@@ -85,6 +97,9 @@ def sat (M : AddSubgroup R) : AddSubgroup R where
     rintro x ⟨k, hk, hkx⟩
     exact ⟨k, hk, by rw [smul_neg]; exact M.neg_mem hkx⟩
 
+/--
+@isnad1 id=iff.0h3v.s6.7b4655976ae8 from=translated src=- shape=d644200a vocab=bf7f0a56
+-/
 theorem mem_sat {M : AddSubgroup R} {x : R} : x ∈ sat M ↔ ∃ k : ℤ, k ≠ 0 ∧ k • x ∈ M :=
   Iff.rfl
 
@@ -97,12 +112,21 @@ variable {M : AddSubgroup R} {r : ℕ} (b : Basis (Fin r) ℤ M)
 
 noncomputable def icoord (y : M) : Fin r → ℚ := fun i => ((b.repr y) i : ℚ)
 
+/--
+@isnad1 id=eq.0h6v.s8.4080302ac2d8 from=translated src=- shape=0b6b4491 vocab=9c6c9014
+-/
 theorem icoord_add (y z : M) : icoord b (y + z) = icoord b y + icoord b z := by
   funext i; simp [icoord]
 
+/--
+@isnad1 id=eq.0h6v.s8.636c77cb06a8 from=translated src=- shape=5ae3d327 vocab=e7581c1a
+-/
 theorem icoord_zsmul (k : ℤ) (y : M) : icoord b (k • y) = (k : ℚ) • icoord b y := by
   funext i; simp [icoord]
 
+/--
+@isnad1 id=iff.0h5v.s7.aa335f217478 from=translated src=- shape=f47bcc62 vocab=7d902b40
+-/
 theorem icoord_eq_zero_iff (y : M) : icoord b y = 0 ↔ y = 0 := by
   constructor
   · intro h
@@ -123,6 +147,9 @@ private theorem smul_mk_eq (k k' : ℤ) (x : R) (hk : k • x ∈ M) (hk' : k' �
   change k' • (k • x) = k • (k' • x)
   rw [smul_comm]
 
+/--
+@isnad1 id=eq.2h6v.s8.5685d58a7baf from=translated src=- shape=74f1c16d vocab=303698ac
+-/
 theorem coord_eq (x : sat M) (k : ℤ) (hk : k ≠ 0) (hkx : k • (x : R) ∈ M) :
     coord b x = ((k : ℤ) : ℚ)⁻¹ • icoord b ⟨k • (x : R), hkx⟩ := by
   set k₀ : ℤ := x.2.choose with hk₀def
@@ -135,10 +162,16 @@ theorem coord_eq (x : sat M) (k : ℤ) (hk : k ≠ 0) (hkx : k • (x : R) ∈ M
   have hk₀q : (k₀ : ℚ) ≠ 0 := by exact_mod_cast hk₀
   rw [inv_smul_eq_iff₀ hk₀q, smul_comm, ← key, smul_smul, inv_mul_cancel₀ hkq, one_smul]
 
+/--
+@isnad1 id=eq.1h5v.s8.0ef125efc1a0 from=translated src=- shape=8a2fb05e vocab=8aafaa22
+-/
 theorem coord_of_mem (x : sat M) (hx : (x : R) ∈ M) : coord b x = icoord b ⟨x, hx⟩ := by
   rw [coord_eq b x 1 one_ne_zero (by simpa using hx)]
   simp
 
+/--
+@isnad1 id=eq.2h6v.s8.e9554884c3d1 from=translated src=- shape=7e5946d9 vocab=c9b58e5f
+-/
 theorem coord_smul_eq (x : sat M) (k : ℤ) (hk : k ≠ 0) (hkx : k • (x : R) ∈ M) :
     (k : ℚ) • coord b x = icoord b ⟨k • (x : R), hkx⟩ := by
   rw [coord_eq b x k hk hkx, smul_smul, mul_inv_cancel₀ (by exact_mod_cast hk), one_smul]
@@ -165,8 +198,14 @@ noncomputable def coordHom : sat M →+ (Fin r → ℚ) where
     apply Subtype.ext
     simp [smul_add]
 
+/--
+@isnad1 id=eq.0h5v.s9.ae0af5262e2c from=translated src=- shape=316bc4ee vocab=9899bff6
+-/
 theorem coordHom_apply (x : sat M) : coordHom b x = coord b x := rfl
 
+/--
+@isnad1 id=injectiv.0h4v.s9.2909477de4c7 from=translated src=- shape=c3b6f713 vocab=5459e888
+-/
 theorem coordHom_injective [IsAddTorsionFree R] : Function.Injective (coordHom b) := by
   intro x y hxy
   have h : coordHom b (x - y) = 0 := by rw [map_sub, hxy, sub_self]
@@ -189,6 +228,9 @@ variable {R : Type*} [AddCommGroup R] (deg : R → ℤ) (D : ℕ)
     ∀ n : Fin m → ℤ, (deg (∑ i, n i • α i) : ℚ) = MvPolynomial.eval (fun i => (n i : ℚ)) P)
 variable {M : AddSubgroup R} {r : ℕ} (b : Basis (Fin r) ℤ M)
 
+/--
+@isnad1 id=eq.0h5v.s10.5e09076897f7 from=translated src=- shape=84e0820c vocab=cead5b1f
+-/
 theorem coe_eq_sum (y : M) : (y : R) = ∑ i, (b.repr y) i • ((b i : M) : R) := by
   conv_lhs => rw [← b.sum_repr y]
   rw [AddSubgroup.val_finsetSum]
@@ -196,6 +238,9 @@ theorem coe_eq_sum (y : M) : (y : R) = ∑ i, (b.repr y) i • ((b i : M) : R) :
 
 include hpoly in
 
+/--
+@isnad1 id=eq.3h8v.s9.7e4902cf7f94 from=translated src=- shape=f111b0e7 vocab=aae51bae
+-/
 theorem deg_eq_eval (P : MvPolynomial (Fin r) ℚ) (hP : P.IsHomogeneous D)
     (hev : ∀ n : Fin r → ℤ,
       (deg (∑ i, n i • ((b i : M) : R)) : ℚ) = MvPolynomial.eval (fun i => (n i : ℚ)) P)
@@ -216,6 +261,9 @@ end DegreeFormula
 
 section Discrete
 
+/--
+@isnad1 id=discrete.3h3v.s7.a68d35fc82d6 from=translated src=- shape=430a0070 vocab=8014bc21
+-/
 theorem discreteTopology_of_separator {E : Type*} [AddCommGroup E] [TopologicalSpace E]
     [IsTopologicalAddGroup E] (L : AddSubgroup E) (P : E → ℝ)
     (hP : Continuous P) (hP0 : P 0 = 0) (hsep : ∀ s ∈ L, s ≠ 0 → 1 ≤ |P s|) :
@@ -244,14 +292,23 @@ def castVec : (Fin r → ℚ) →+ (Fin r → ℝ) where
   map_zero' := by funext i; simp
   map_add' a c := by funext i; simp
 
+/--
+@isnad1 id=eq.0h3v.s6.7645214af7ae from=translated src=- shape=51d67cca vocab=1bf312be
+-/
 theorem castVec_apply (v : Fin r → ℚ) (i : Fin r) : castVec v i = (v i : ℝ) := rfl
 
+/--
+@isnad1 id=injectiv.0h1v.s6.2f1dd2fb1b42 from=translated src=- shape=a7e6d0a5 vocab=e7e0f9a2
+-/
 theorem castVec_injective : Function.Injective (castVec (r := r)) := by
   intro a c h; funext i
   have := congrFun h i
   simp only [castVec_apply, Rat.cast_inj] at this
   exact this
 
+/--
+@isnad1 id=eq.0h3v.s8.07c53de5d1f7 from=translated src=- shape=41cdb6c1 vocab=b1167503
+-/
 theorem eval_castVec (P : MvPolynomial (Fin r) ℚ) (v : Fin r → ℚ) :
     MvPolynomial.eval (castVec v) (MvPolynomial.map (Rat.castHom ℝ) P) =
       ((MvPolynomial.eval v P : ℚ) : ℝ) := by
@@ -264,6 +321,9 @@ section Main
 
 variable {R : Type*} [AddCommGroup R]
 
+/--
+@isnad1 id=ex.4h4v.s8.d000fc29a4f8 from=translated src=- shape=232aa5af vocab=e8e4b36d
+-/
 theorem main (deg : R → ℤ) (D : ℕ) (hD : D ≠ 0)
     (hpoly : ∀ (m : ℕ) (α : Fin m → R), ∃ P : MvPolynomial (Fin m) ℚ, P.IsHomogeneous D ∧
       ∀ n : Fin m → ℤ, (deg (∑ i, n i • α i) : ℚ) = MvPolynomial.eval (fun i => (n i : ℚ)) P)
@@ -325,6 +385,9 @@ end Main
 
 end P2mEndDisc
 
+/--
+@isnad1 id=ex.4h4v.s8.d000fc29a4f8 from=translated src=- shape=232aa5af vocab=e8e4b36d
+-/
 theorem solution
     {R : Type*} [AddCommGroup R] (deg : R → ℤ) (D : ℕ) (hD : D ≠ 0)
     (hpoly : ∀ (m : ℕ) (α : Fin m → R), ∃ P : MvPolynomial (Fin m) ℚ, P.IsHomogeneous D ∧

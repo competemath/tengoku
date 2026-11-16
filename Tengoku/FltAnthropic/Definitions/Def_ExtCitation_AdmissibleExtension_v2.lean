@@ -31,6 +31,9 @@ def ExtVanishingCtsAll : Prop :=
 
 variable {p V} in
 
+/--
+@isnad1 id=extvanis.1h1v.s3.ad364f415812 from=translated src=- shape=37c76ab3 vocab=6ea08af8
+-/
 theorem extVanishingCts_of_extVanishing (h : ExtVanishing p) : ExtVanishingCts p :=
   fun V _ _ _ _ C hadm => h V C hadm.toIsAdmissibleExtension
 

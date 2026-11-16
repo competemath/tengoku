@@ -17,14 +17,23 @@ variable {F K : Type*} [Field F] [Field K] [Algebra F K] [IsAlgClosed K] [CharZe
   (c : K ≃ₐ[F] K)
 
 omit [IsAlgClosed K] [CharZero K] in
+/--
+@isnad1 id=eq.1h4v.s9.356df712fbf7 from=translated src=- shape=0803db38 vocab=213cbbb6
+-/
 theorem apply_apply_of_mul_self (hc : c * c = 1) (x : K) : c (c x) = x := by
   rw [← AlgEquiv.mul_apply, hc, AlgEquiv.one_apply]
 
 omit [CharZero K] in
+/--
+@isnad1 id=ex.0h2v.s5.eb1e86c04f35 from=translated src=- shape=d58d51eb vocab=7003f611
+-/
 theorem exists_sq_eq (x : K) : ∃ w : K, w ^ 2 = x :=
   IsAlgClosed.exists_pow_nat_eq x two_pos
 
 omit [IsAlgClosed K] in
+/--
+@isnad1 id=ne.1h2v.s6.1f0cc50f7c8e from=translated src=- shape=ab1fceb2 vocab=d387ebbc
+-/
 theorem ne_neg_self_of_sq_eq_neg_one {i : K} (hi : i ^ 2 = -1) : i ≠ -i := by
   intro h
   have h0 : i = 0 := by
@@ -33,6 +42,9 @@ theorem ne_neg_self_of_sq_eq_neg_one {i : K} (hi : i ^ 2 = -1) : i ≠ -i := by
   rw [h0] at hi
   norm_num at hi
 
+/--
+@isnad1 id=eq.3h4v.s9.218d3d813fa2 from=translated src=- shape=d920015e vocab=e2a0b381
+-/
 theorem apply_eq_neg_of_sq_eq_neg_one (hc : c * c = 1) (hc1 : c ≠ 1) {i : K} (hi : i ^ 2 = -1) :
     c i = -i := by
   have hcc := apply_apply_of_mul_self c hc
@@ -58,6 +70,9 @@ theorem apply_eq_neg_of_sq_eq_neg_one (hc : c * c = 1) (hc1 : c ≠ 1) {i : K} (
     have h2 : (2 : K) * β = 0 := by rw [two_mul]; nth_rw 2 [key]; exact add_neg_cancel β
     exact (mul_eq_zero.mp h2).resolve_left two_ne_zero)
 
+/--
+@isnad1 id=ex.4h5v.s9.f1119a7aac1f from=translated src=- shape=e5b82fd9 vocab=b3c8890a
+-/
 theorem exists_sq_add_sq_eq_sq (hc : c * c = 1) (hc1 : c ≠ 1) {x y : K} (hx : c x = x)
     (hy : c y = y) : ∃ z : K, c z = z ∧ x ^ 2 + y ^ 2 = z ^ 2 := by
   have hcc := apply_apply_of_mul_self c hc
@@ -85,6 +100,9 @@ theorem eq_zero_of_sq_add_sq_eq_zero (hc : c * c = 1) (hc1 : c ≠ 1) {x y : K} 
   · rw [hq, hci] at hcq; exact hii hcq.symm
   · rw [hq, map_neg, hci, neg_neg] at hcq; exact hii hcq
 
+/--
+@isnad1 id=and.3h5v.s10.a29129ff47ca from=translated src=- shape=7c898198 vocab=cfcb6ef0
+-/
 theorem sum_sq_eq_zero_iff (hc : c * c = 1) (hc1 : c ≠ 1) (x : ℕ → K) (m : ℕ)
     (hx : ∀ j < m, c (x j) = x j) :
     (∃ z : K, c z = z ∧ ∑ j ∈ Finset.range m, x j ^ 2 = z ^ 2) ∧
@@ -145,6 +163,9 @@ end InvolutionAux
 
 open InvolutionAux in
 
+/--
+@isnad1 id=eq.4h5v.s9.aeef8582b916 from=translated src=- shape=5575945a vocab=8cad4bd4
+-/
 theorem apply_eq_inv_of_pow_eq_one' {F K : Type*} [Field F] [Field K] [Algebra F K]
     [IsAlgClosed K] [CharZero K] (c : K ≃ₐ[F] K) (hc : c * c = 1) (hc1 : c ≠ 1) {ζ : K} {n : ℕ}
     (hn : n ≠ 0) (hζ : ζ ^ n = 1) : c ζ = ζ⁻¹ := by
@@ -163,5 +184,8 @@ theorem apply_eq_inv_of_pow_eq_one' {F K : Type*} [Field F] [Field K] [Algebra F
 
 end AlgEquiv
 
+/--
+@isnad1 id=eq.4h5v.s9.aeef8582b916 from=translated src=- shape=5575945a vocab=8cad4bd4
+-/
 theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [IsAlgClosed K] [CharZero K] (c : K ≃ₐ[F] K) (hc : c * c = 1) (hc1 : c ≠ 1) {ζ : K} {n : ℕ} (hn : n ≠ 0) (hζ : ζ ^ n = 1) : c ζ = ζ⁻¹ :=
   AlgEquiv.apply_eq_inv_of_pow_eq_one' c hc hc1 hn hζ

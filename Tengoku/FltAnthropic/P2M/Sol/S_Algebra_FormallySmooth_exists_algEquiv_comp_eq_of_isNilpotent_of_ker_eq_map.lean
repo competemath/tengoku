@@ -16,18 +16,33 @@ variable {A : Type v} [CommRing A] [Algebra R A]
 
 def K (k : ℕ) : Submodule R A := (I ^ k) • ⊤
 
+/--
+@isnad1 id=eq.0h3v.s6.3eff43e216da from=translated src=- shape=17c97e9a vocab=4ec4f386
+-/
 theorem K_zero : K I (A := A) 0 = ⊤ := by
   rw [K, pow_zero, Ideal.one_eq_top, Submodule.top_smul]
 
+/--
+@isnad1 id=eq.0h3v.s7.3143a6e20707 from=translated src=- shape=6d67c024 vocab=5ae66f0d
+-/
 theorem K_one : K I (A := A) 1 = (I.map (algebraMap R A)).restrictScalars R := by
   rw [K, pow_one, Ideal.smul_top_eq_map]
 
+/--
+@isnad1 id=iff.0h4v.s7.267d40109c8b from=translated src=- shape=ef3221d0 vocab=fdc2b98f
+-/
 theorem mem_K_one_iff (a : A) : a ∈ K I (A := A) 1 ↔ a ∈ I.map (algebraMap R A) := by
   rw [K_one]; rfl
 
+/--
+@isnad1 id=eq.1h4v.s7.6fab04425ce6 from=translated src=- shape=533eaa81 vocab=67c8334a
+-/
 theorem K_eq_bot_of_pow_eq_bot {n : ℕ} (hn : I ^ n = ⊥) : K I (A := A) n = ⊥ := by
   rw [K, hn, Submodule.bot_smul]
 
+/--
+@isnad1 id=mem.2h6v.s8.09c0ba3e95ca from=translated src=- shape=b2334e0f vocab=4235894d
+-/
 theorem sub_mem_K_succ (θ : A →ₐ[R] A) (hθ : ∀ a, θ a - a ∈ I.map (algebraMap R A))
     {k : ℕ} {a : A} (ha : a ∈ K I k) : θ a - a ∈ K I (k + 1) := by
   rw [K] at ha
@@ -42,6 +57,9 @@ theorem sub_mem_K_succ (θ : A →ₐ[R] A) (hθ : ∀ a, θ a - a ∈ I.map (al
     rw [this]
     exact Submodule.add_mem _ hx hy
 
+/--
+@isnad1 id=bijectiv.2h4v.s8.e41f3f1db8eb from=translated src=- shape=7fb2cb49 vocab=3fb22779
+-/
 theorem bijective_of_forall_sub_mem (hI : IsNilpotent I) (θ : A →ₐ[R] A)
     (hθ : ∀ a, θ a - a ∈ I.map (algebraMap R A)) : Function.Bijective θ := by
   obtain ⟨n, hn⟩ := hI
@@ -82,6 +100,9 @@ end SmoothLiftUnique
 
 open SmoothLiftUnique in
 
+/--
+@isnad1 id=ex.5h7v.s9.9c74cd692b55 from=translated src=- shape=4fa6ac0b vocab=9241d619
+-/
 theorem solution
     {R : Type u} [CommRing R] (I : Ideal R) (hI : IsNilpotent I)
     {A : Type v} {A' : Type w} {A₀ : Type x} [CommRing A] [CommRing A'] [CommRing A₀]

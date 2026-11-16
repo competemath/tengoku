@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=isadicco.1h2v.s8.c6b1350c3371 from=translated src=- shape=e8ad8ef9 vocab=8232daf3
+-/
 theorem solution
     {B : Type u} [CommRing B] (I : Ideal B) (hI : I.FG) :
     IsAdicComplete (I.map (algebraMap B (AdicCompletion I B))) (AdicCompletion I B) := by

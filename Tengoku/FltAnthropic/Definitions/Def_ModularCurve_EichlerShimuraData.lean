@@ -31,10 +31,16 @@ namespace TateModule
 
 variable {p} {J}
 
+/--
+@isnad1 id=iff.0h3v.s8.eed3e12d151c from=translated src=- shape=137eddf4 vocab=163dd5ba
+-/
 lemma mem_iff {x : ℕ → J} :
     x ∈ TateModule p J ↔ x 0 = 0 ∧ ∀ n, p • x (n + 1) = x n :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.1h4v.s8.9c97ed113572 from=translated src=- shape=8d12c131 vocab=4b08273d
+-/
 lemma pow_smul_apply {x : ℕ → J} (hx : x ∈ TateModule p J) (n : ℕ) :
     p ^ n • x n = 0 := by
   induction n with
@@ -68,6 +74,9 @@ lemma eq_zero_of_pow_smul_eq_zero {x : ℕ → J} (hx : x ∈ TateModule p J) {k
 
 omit [SMulCommClass G HeckeAlg J] in
 
+/--
+@isnad1 id=mem.1h5v.s8.c54e1f00db4c from=translated src=- shape=a835d995 vocab=75e474b5
+-/
 lemma smul_mem (g : G) {x : ℕ → J} (hx : x ∈ TateModule p J) :
     g • x ∈ TateModule p J := by
   refine ⟨by simp [Pi.smul_apply, hx.1], fun n => ?_⟩
@@ -119,8 +128,14 @@ def IsPPowTorsion (x : J) : Prop := ∃ n : ℕ, p ^ n • x = 0
 
 variable {p}
 
+/--
+@isnad1 id=isppowto.0h2v.s4.b8eb7dde993b from=translated src=- shape=2cef0bb0 vocab=24975732
+-/
 lemma IsPPowTorsion.zero : IsPPowTorsion p (0 : J) := ⟨0, smul_zero _⟩
 
+/--
+@isnad1 id=isppowto.2h4v.s5.e87d78e13577 from=translated src=- shape=1f678c8d vocab=05e01e8b
+-/
 lemma IsPPowTorsion.add {x y : J} (hx : IsPPowTorsion p x) (hy : IsPPowTorsion p y) :
     IsPPowTorsion p (x + y) := by
   obtain ⟨m, hm⟩ := hx
@@ -130,11 +145,17 @@ lemma IsPPowTorsion.add {x y : J} (hx : IsPPowTorsion p x) (hy : IsPPowTorsion p
   have hy' : p ^ (m + n) • y = 0 := by rw [pow_add, mul_smul, hn, smul_zero]
   rw [smul_add, hx', hy', add_zero]
 
+/--
+@isnad1 id=isppowto.1h3v.s5.72a608a78cd4 from=translated src=- shape=10f3a74b vocab=06bc6747
+-/
 lemma IsPPowTorsion.neg {x : J} (hx : IsPPowTorsion p x) : IsPPowTorsion p (-x) := by
   obtain ⟨n, hn⟩ := hx
   refine ⟨n, ?_⟩
   rw [smul_neg, hn, neg_zero]
 
+/--
+@isnad1 id=isppowto.2h4v.s5.7fa81b58d525 from=translated src=- shape=1f678c8d vocab=dc114bbe
+-/
 lemma IsPPowTorsion.sub {x y : J} (hx : IsPPowTorsion p x) (hy : IsPPowTorsion p y) :
     IsPPowTorsion p (x - y) := by
   rw [sub_eq_add_neg]
@@ -146,12 +167,18 @@ private lemma nsmul_galois_smul {G : Type*} [Monoid G] [DistribMulAction G J] (�
   | zero => simp
   | succ m ih => rw [succ_nsmul, succ_nsmul, smul_add, ih]
 
+/--
+@isnad1 id=isppowto.1h5v.s6.84bdabf70e57 from=translated src=- shape=01318b0d vocab=7f8920d3
+-/
 lemma IsPPowTorsion.galois_smul {G : Type*} [Group G] [DistribMulAction G J] (σ : G)
     {x : J} (hx : IsPPowTorsion p x) : IsPPowTorsion p (σ • x) := by
   obtain ⟨n, hn⟩ := hx
   refine ⟨n, ?_⟩
   rw [nsmul_galois_smul σ (p ^ n) x, hn, smul_zero]
 
+/--
+@isnad1 id=isppowto.1h4v.s7.80f2eb4139ac from=translated src=- shape=79a41201 vocab=061c4aa7
+-/
 lemma IsPPowTorsion.hecke_smul [Module HeckeAlg J] (t : HeckeAlg)
     {x : J} (hx : IsPPowTorsion p x) : IsPPowTorsion p (t • x) := by
   obtain ⟨n, hn⟩ := hx
@@ -159,6 +186,9 @@ lemma IsPPowTorsion.hecke_smul [Module HeckeAlg J] (t : HeckeAlg)
   rw [← Nat.cast_smul_eq_nsmul HeckeAlg (p ^ n) (t • x), ← mul_smul, mul_comm, mul_smul,
     Nat.cast_smul_eq_nsmul HeckeAlg (p ^ n) x, hn, smul_zero]
 
+/--
+@isnad1 id=isppowto.1h4v.s5.bd19c9f9b1f7 from=translated src=- shape=16513b1f vocab=061c4aa7
+-/
 lemma IsPPowTorsion.nsmul [Module HeckeAlg J] (m : ℕ)
     {x : J} (hx : IsPPowTorsion p x) : IsPPowTorsion p (m • x) := by
   rw [← Nat.cast_smul_eq_nsmul HeckeAlg m x]
@@ -197,24 +227,39 @@ variable {p J k φ V π ρ}
 variable (h : IsLambdaAdicRealization p J k φ V π ρ)
 include h
 
+/--
+@isnad1 id=eq.2h10v.s9.2420e8293176 from=translated src=- shape=91773e28 vocab=138a6dde
+-/
 lemma map_neg (x : J) (hx : IsPPowTorsion p x) : π (-x) = -π x := by
   have h0 : π (x + -x) = π x + π (-x) := h.map_add x (-x) hx hx.neg
   rw [add_neg_cancel, h.map_zero] at h0
   exact (neg_eq_of_add_eq_zero_right h0.symm).symm
 
+/--
+@isnad1 id=eq.3h11v.s9.4dc57023632f from=translated src=- shape=d9d512b7 vocab=9d7e76dc
+-/
 lemma map_sub (x y : J) (hx : IsPPowTorsion p x) (hy : IsPPowTorsion p y) :
     π (x - y) = π x - π y := by
   rw [sub_eq_add_neg, h.map_add x (-y) hx hy.neg, h.map_neg y hy, ← sub_eq_add_neg]
 
+/--
+@isnad1 id=eq.2h11v.s9.d621b9259a4a from=translated src=- shape=9da416f0 vocab=f472fdb0
+-/
 lemma map_nsmul (m : ℕ) (x : J) (hx : IsPPowTorsion p x) : π (m • x) = (m : k) • π x := by
   rw [← Nat.cast_smul_eq_nsmul HeckeAlg m x, h.map_hecke _ x hx, map_natCast]
 
+/--
+@isnad1 id=eq.2h10v.s9.2837cbc90919 from=translated src=- shape=7b18b8b6 vocab=c5d8cd63
+-/
 lemma linearMap_eq_zero (T : V →ₗ[k] V)
     (hT : ∀ x : J, IsPPowTorsion p x → T (π x) = 0) : T = 0 := by
   rw [← LinearMap.ker_eq_top, ← top_le_iff, ← h.spanning, Submodule.span_le]
   rintro v ⟨x, hx, rfl⟩
   exact hT x hx
 
+/--
+@isnad1 id=eq.2h11v.s9.046da241ba10 from=translated src=- shape=83a69943 vocab=c5d8cd63
+-/
 lemma linearMap_ext {T₁ T₂ : V →ₗ[k] V}
     (hT : ∀ x : J, IsPPowTorsion p x → T₁ (π x) = T₂ (π x)) : T₁ = T₂ := by
   have key := h.linearMap_eq_zero (T₁ - T₂) fun x hx => by
@@ -234,6 +279,9 @@ def attachmentTraceData (φ : HeckeAlg →+* k) : ℕ → k := fun ℓ =>
 
 def attachmentDetData (k : Type*) [Field k] : ℕ → k := fun ℓ => (ℓ : k)
 
+/--
+@isnad1 id=eq.1h3v.s6.4b2b11295bc9 from=translated src=- shape=26ac052b vocab=bee79197
+-/
 @[simp] lemma attachmentTraceData_apply_prime (φ : HeckeAlg →+* k) {ℓ : ℕ} (hℓ : ℓ.Prime) :
     attachmentTraceData φ ℓ = φ (heckeGen ⟨ℓ, hℓ⟩) := dite_eq_left hℓ
 

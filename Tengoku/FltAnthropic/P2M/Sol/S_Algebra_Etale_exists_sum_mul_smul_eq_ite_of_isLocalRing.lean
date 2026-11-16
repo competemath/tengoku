@@ -11,6 +11,9 @@ open scoped TensorProduct
 
 namespace GalCHR
 
+/--
+@isnad1 id=ex.0h4v.s6.74d9e16e705e from=translated src=- shape=ce69d506 vocab=9c786420
+-/
 theorem exists_fin_sum_tmul {R M N : Type*} [CommSemiring R] [AddCommMonoid M] [AddCommMonoid N]
     [Module R M] [Module R N] (z : M ⊗[R] N) :
     ∃ (n : ℕ) (x : Fin n → M) (y : Fin n → N), z = ∑ i, x i ⊗ₜ[R] y i := by
@@ -26,8 +29,14 @@ variable {R S : Type*} [CommRing R] [CommRing S] [Algebra R S]
 noncomputable def phi (σ : S →ₐ[R] S) : S ⊗[R] S →ₐ[R] S :=
   Algebra.TensorProduct.productMap (AlgHom.id R S) σ
 
+/--
+@isnad1 id=eq.0h5v.s8.050aef542100 from=translated src=- shape=56258851 vocab=fa89ecdb
+-/
 theorem phi_tmul (σ : S →ₐ[R] S) (a b : S) : phi σ (a ⊗ₜ[R] b) = a * σ b := rfl
 
+/--
+@isnad1 id=eq.1h4v.s9.c0117fd50bc4 from=translated src=- shape=03686611 vocab=40eb583e
+-/
 theorem phi_apply_of_forall_eq (σ : S →ₐ[R] S) (h : ∀ a, σ a = a) (z : S ⊗[R] S) :
     phi σ z = Algebra.TensorProduct.lmul' R (S := S) z := by
   induction z using TensorProduct.induction_on with
@@ -39,6 +48,9 @@ variable [Algebra.FormallyUnramified R S] [Algebra.EssFiniteType R S]
 
 open Algebra.FormallyUnramified in
 
+/--
+@isnad1 id=eq.0h3v.s9.8077799240f2 from=translated src=- shape=5fbebe46 vocab=26ae9e30
+-/
 theorem mul_elem_eq (x : S ⊗[R] S) :
     x * elem R S = (Algebra.TensorProduct.lmul' R (S := S) x ⊗ₜ[R] (1 : S)) * elem R S := by
   induction x using TensorProduct.induction_on with
@@ -52,11 +64,17 @@ theorem mul_elem_eq (x : S ⊗[R] S) :
   | add u v hu hv => rw [add_mul, hu, hv, map_add, TensorProduct.add_tmul, add_mul]
 
 open Algebra.FormallyUnramified in
+/--
+@isnad1 id=isidempo.0h2v.s7.6409069b2494 from=translated src=- shape=135c2e3b vocab=310d5619
+-/
 theorem isIdempotentElem_elem : IsIdempotentElem (elem R S) := by
   show elem R S * elem R S = elem R S
   rw [mul_elem_eq, lmul_elem, ← Algebra.TensorProduct.one_def, one_mul]
 
 open Algebra.FormallyUnramified in
+/--
+@isnad1 id=eq.0h4v.s8.09dddb1fecfd from=translated src=- shape=7337ecd1 vocab=f9c6f7c4
+-/
 theorem sub_mul_phi_elem (σ : S →ₐ[R] S) (a : S) : (σ a - a) * phi σ (elem R S) = 0 := by
   have h := congrArg (phi σ) (one_tmul_sub_tmul_one_mul_elem (R := R) (S := S) a)
   rw [map_mul, map_zero, map_sub, phi_tmul, phi_tmul] at h
@@ -64,6 +82,9 @@ theorem sub_mul_phi_elem (σ : S →ₐ[R] S) (a : S) : (σ a - a) * phi σ (ele
 
 open Algebra.FormallyUnramified in
 
+/--
+@isnad1 id=or.0h3v.s8.28a7de9459dd from=translated src=- shape=d487aa52 vocab=e4425b8f
+-/
 theorem phi_elem_eq_zero_or_forall_eq [IsLocalRing S] (σ : S →ₐ[R] S) :
     phi σ (elem R S) = 0 ∨ ∀ a, σ a = a := by
   have hidem : IsIdempotentElem (phi σ (elem R S)) := isIdempotentElem_elem.map (phi σ)
@@ -80,6 +101,9 @@ theorem phi_elem_eq_zero_or_forall_eq [IsLocalRing S] (σ : S →ₐ[R] S) :
     exact hu.mul_left_eq_zero.mp h
 
 open Algebra.FormallyUnramified in
+/--
+@isnad1 id=eq.1h3v.s8.85e20e45c8b6 from=translated src=- shape=e3e2ef1f vocab=642008d0
+-/
 theorem phi_elem_eq_one_of_forall_eq (σ : S →ₐ[R] S) (h : ∀ a, σ a = a) :
     phi σ (elem R S) = 1 := by
   rw [phi_apply_of_forall_eq σ h, lmul_elem]
@@ -92,6 +116,9 @@ variable {W W' : Type*} [CommRing W] [Nontrivial W] [CommRing W'] [Algebra W W']
   [Module.Free W W'] [Module.Finite W W']
   {G : Type*} [Group G] [Fintype G] [DecidableEq G]
 
+/--
+@isnad1 id=le.2h7v.s10.2f7b037dab71 from=translated src=- shape=d1a1cdfe vocab=fe06c4ca
+-/
 theorem finrank_mul_finrank_le (ρ : G →* (W' ≃ₐ[W] W'))
     (hinv : ∀ w : W', (∀ g : G, ρ g w = w) → w ∈ Set.range (algebraMap W W'))
     {n : ℕ} (x y : Fin n → W')
@@ -161,6 +188,9 @@ end Rank
 end GalCHR
 
 open GalCHR Algebra.FormallyUnramified in
+/--
+@isnad1 id=ex.2h3v.s9.d9a7109f71f3 from=translated src=- shape=341ca2f9 vocab=0b39e9da
+-/
 theorem solution
     {W W' : Type*} [CommRing W] [IsLocalRing W] [CommRing W'] [IsLocalRing W']
     [Algebra W W'] [Module.Finite W W'] [Module.Flat W W'] [FaithfulSMul W W'] [Algebra.Etale W W']

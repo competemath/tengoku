@@ -16,6 +16,9 @@ section Factorisation
 variable {K : Type*} [Field K] {Ω : Type*} [CommRing Ω] [Algebra K Ω]
 variable {J : Type*} {A : J → Type*} [∀ j, CommRing (A j)] [∀ j, Algebra K (A j)]
 
+/--
+@isnad1 id=eq.1h5v.s7.cd81fc4af451 from=translated src=- shape=6bced34f vocab=632e0116
+-/
 theorem single_mul_single_one [DecidableEq J] {j j' : J} (h : j ≠ j') (a : A j) :
     (Pi.single j a : Π j, A j) * Pi.single j' 1 = 0 := by
   funext k
@@ -35,6 +38,9 @@ def factorComponent [DecidableEq J] (φ : (Π j, A j) →ₐ[K] Ω) (j : J)
     rw [Algebra.algebraMap_eq_smul_one, Pi.single_smul, map_smul, h1]
     exact (Algebra.algebraMap_eq_smul_one r).symm
 
+/--
+@isnad1 id=ex.0h5v.s8.c6bf8352c59b from=translated src=- shape=4d1d7227 vocab=9580ddef
+-/
 theorem exists_factor_algHom [Finite J] [IsDomain Ω] (φ : (Π j, A j) →ₐ[K] Ω) :
     ∃ (j : J) (φ₀ : A j →ₐ[K] Ω), φ = φ₀.comp (Pi.evalAlgHom K A j) := by
   cases nonempty_fintype J
@@ -85,9 +91,15 @@ variable {ι : Type*}
 def piPoint (i : ι) : (ι → K) →ₐ[K] Ω :=
   (Algebra.ofId K Ω).comp (Pi.evalAlgHom K (fun _ => K) i)
 
+/--
+@isnad1 id=eq.0h5v.s7.dbcdf4bc69e3 from=translated src=- shape=9cbf20c6 vocab=3571814d
+-/
 @[scoped simp] theorem piPoint_apply (i : ι) (g : ι → K) :
     piPoint K Ω i g = algebraMap K Ω (g i) := rfl
 
+/--
+@isnad1 id=injectiv.0h3v.s6.b4fe14678805 from=translated src=- shape=0a3bfc6f vocab=abe09367
+-/
 theorem piPoint_injective [Nontrivial Ω] :
     Function.Injective (piPoint K Ω (ι := ι)) := by
   intro i i' h
@@ -98,6 +110,9 @@ theorem piPoint_injective [Nontrivial Ω] :
     Pi.single_eq_of_ne (Ne.symm hne), map_one, map_zero] at happ
   exact one_ne_zero happ
 
+/--
+@isnad1 id=ex.0h4v.s7.142e6b3bca40 from=translated src=- shape=e5a8a51e vocab=c13842e4
+-/
 theorem algHom_pi_eq_piPoint [Finite ι] [IsDomain Ω] (φ : (ι → K) →ₐ[K] Ω) :
     ∃ i, φ = piPoint K Ω i := by
   obtain ⟨i, φ₀, hφ⟩ := exists_factor_algHom (A := fun _ : ι => K) φ
@@ -117,6 +132,9 @@ section Faithfulness
 
 variable {K : Type*} [Field K] {Ω : Type*} [Field Ω] [Algebra K Ω] [IsAlgClosed Ω]
 
+/--
+@isnad1 id=eq.1h5v.s7.7d0f69860865 from=translated src=- shape=090d352e vocab=7f7183b7
+-/
 theorem points_separate_of_etale {B : Type u} [CommRing B] [Algebra K B] [Algebra.Etale K B]
     {x y : B} (h : ∀ χ : B →ₐ[K] Ω, χ x = χ y) : x = y := by
   obtain ⟨I, hfin, L, hfield, halg, e, hL⟩ :=
@@ -197,6 +215,9 @@ end AbsoluteGalois
 end W2G9
 open scoped _root_.P2MW.S_Algebra_Etale_eq_of_forall_algHom_apply_eq.W2G9
 
+/--
+@isnad1 id=eq.1h5v.s7.bdae2c36112b from=translated src=- shape=090d352e vocab=7f7183b7
+-/
 theorem solution
     {K : Type*} [Field K] {Ω : Type*} [Field Ω] [Algebra K Ω] [IsAlgClosed Ω]
     {B : Type*} [CommRing B] [Algebra K B] [Algebra.Etale K B]

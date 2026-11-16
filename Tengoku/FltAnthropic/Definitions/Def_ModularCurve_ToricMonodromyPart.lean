@@ -16,6 +16,9 @@ def toricMonodromyPart (q : ℕ) (I : Subgroup G) : Submodule HeckeAlg J :=
   Submodule.span HeckeAlg
     {y : J | ∃ σ ∈ I, ∃ x : J, (∃ m : ℕ, 0 < m ∧ m.Coprime q ∧ m • x = 0) ∧ y = σ • x - x}
 
+/--
+@isnad1 id=mem.4h7v.s8.d7cd4c8f2540 from=translated src=- shape=4f7f76ac vocab=00b4be43
+-/
 theorem smul_sub_self_mem_toricMonodromyPart {q : ℕ} {I : Subgroup G} {σ : G} (hσ : σ ∈ I) {x : J}
     {m : ℕ} (hm : 0 < m) (hmq : m.Coprime q) (hx : m • x = 0) :
     σ • x - x ∈ toricMonodromyPart (J := J) q I :=

@@ -15,6 +15,9 @@ variable {R : Type*} [AddCommGroup R]
 
 def Saturated (S : AddSubgroup R) : Prop := ∀ (k : ℤ) (x : R), k ≠ 0 → k • x ∈ S → x ∈ S
 
+/--
+@isnad1 id=and.1h3v.s6.e28c9b4a5538 from=translated src=- shape=247a925f vocab=d9570e54
+-/
 theorem saturated_of_iff {M M' : AddSubgroup R}
     (h : ∀ x : R, x ∈ M' ↔ ∃ k : ℤ, k ≠ 0 ∧ k • x ∈ M) : M ≤ M' ∧ Saturated M' := by
   refine ⟨fun x hx => (h x).2 ⟨1, one_ne_zero, by simpa using hx⟩, ?_⟩
@@ -30,6 +33,9 @@ variable {G : Type*} [AddCommGroup G] [Finite G] (ρ : R →+ G) (n : ℕ)
 
 include hρ in
 
+/--
+@isnad1 id=le.4h5v.s8.d403f579ba51 from=translated src=- shape=a6407bf1 vocab=5feebd9f
+-/
 theorem pow_finrank_le_card (S : AddSubgroup R) (hS : Saturated S) (hfg : S.FG) (hn : n ≠ 0) :
     n ^ finrank ℤ S ≤ Nat.card G := by
   haveI : Module.Finite ℤ S :=
@@ -65,12 +71,18 @@ theorem pow_finrank_le_card (S : AddSubgroup R) (hS : Saturated S) (hfg : S.FG) 
 
 end Bound
 
+/--
+@isnad1 id=linearin.2h4v.s7.f9354a3ca76c from=translated src=- shape=a8948857 vocab=763f25de
+-/
 theorem linearIndependent_cod {ι : Type*} (S : AddSubgroup R) (v : ι → R)
     (hv : LinearIndependent ℤ v) (hmem : ∀ i, v i ∈ S) :
     LinearIndependent ℤ (fun i => (⟨v i, hmem i⟩ : S)) := by
   refine LinearIndependent.of_comp S.subtype.toIntLinearMap ?_
   exact hv
 
+/--
+@isnad1 id=and.3h4v.s8.314adf3a99aa from=translated src=- shape=d06225b8 vocab=cd1976a8
+-/
 theorem main [IsAddTorsionFree R]
     (hsat : ∀ M : AddSubgroup R, M.FG →
       ∃ M' : AddSubgroup R, M'.FG ∧ ∀ x : R, x ∈ M' ↔ ∃ k : ℤ, k ≠ 0 ∧ k • x ∈ M)
@@ -130,6 +142,9 @@ theorem main [IsAddTorsionFree R]
 
 end P2mEndFG
 
+/--
+@isnad1 id=and.3h4v.s8.314adf3a99aa from=translated src=- shape=d06225b8 vocab=cd1976a8
+-/
 theorem solution
     {R : Type*} [AddCommGroup R] [IsAddTorsionFree R]
     (hsat : ∀ M : AddSubgroup R, M.FG →

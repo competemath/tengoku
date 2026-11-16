@@ -25,6 +25,9 @@ variable (S D : Type u) [CommRing S] [CommRing D] [Algebra S D]
 noncomputable def mulHom : D ⊗[S] D →ₐ[D] D :=
   Algebra.TensorProduct.lift (AlgHom.id D D) (IsScalarTower.toAlgHom S D D) (fun x y => Commute.all x y)
 
+/--
+@isnad1 id=eq.0h4v.s8.624901ab4350 from=translated src=- shape=a9c3690f vocab=c5ad6f76
+-/
 @[scoped simp] theorem mulHom_tmul (x y : D) : mulHom S D (x ⊗ₜ y) = x * y := by
   simp [mulHom, Algebra.TensorProduct.lift_tmul]
   first
@@ -38,6 +41,9 @@ noncomputable def mulHom : D ⊗[S] D →ₐ[D] D :=
     | (all_goals decide; done)
     | (all_goals tauto; done)
 
+/--
+@isnad1 id=eq.0h2v.s8.793b3871de27 from=translated src=- shape=5e4f5b33 vocab=1c579bc3
+-/
 theorem ker_mulHom_eq : RingHom.ker (mulHom S D) = KaehlerDifferential.ideal S D := by
   ext x
   rw [RingHom.mem_ker, KaehlerDifferential.ideal, RingHom.mem_ker]
@@ -50,6 +56,9 @@ noncomputable def splitHom (e : D ⊗[S] D) :
   (mulHom S D).prod (Ideal.Quotient.mkₐ D (Ideal.span {1 - e}))
 
 variable {S D} in
+/--
+@isnad1 id=bijectiv.2h3v.s13.d1a708c67e06 from=translated src=- shape=06491328 vocab=e64fe24c
+-/
 theorem splitHom_bijective {e : D ⊗[S] D} (he : IsIdempotentElem e)
     (hker : RingHom.ker (mulHom S D) = Ideal.span {e}) : Function.Bijective (splitHom e) := by
   have hme : mulHom S D e = 0 := by
@@ -84,6 +93,9 @@ section
 
 variable [Algebra.FormallyUnramified S D] [Algebra.FiniteType S D]
 
+/--
+@isnad1 id=ex.0h2v.s9.57a705172471 from=translated src=- shape=048907f8 vocab=53536f05
+-/
 theorem exists_idempotent_ker :
     ∃ e : D ⊗[S] D, IsIdempotentElem e ∧ RingHom.ker (mulHom S D) = Ideal.span {e} := by
   have hI : IsIdempotentElem (RingHom.ker (mulHom S D).toRingHom) := by
@@ -98,11 +110,17 @@ theorem exists_idempotent_ker :
 
 end
 
+/--
+@isnad1 id=eq.0h1v.s6.c8c2e4fb9dd5 from=translated src=- shape=84b60461 vocab=9abf9211
+-/
 theorem rankAtStalk_self' (R : Type u) [CommRing R] : Module.rankAtStalk (R := R) R = 1 := by
   cases subsingleton_or_nontrivial R
   · funext p; exact ((inferInstance : IsEmpty (PrimeSpectrum R)).false p).elim
   · exact Module.rankAtStalk_self
 
+/--
+@isnad1 id=ex.0h2v.s7.68b4e582b2df from=translated src=- shape=c95d04fe vocab=a6d0a988
+-/
 theorem diag_alg [Algebra.Etale S D] :
     ∃ (C : Type u) (_ : CommRing C) (_ : Algebra D C), Algebra.Etale D C ∧
       Nonempty ((D ⊗[S] D) ≃ₐ[D] D × C) := by
@@ -116,6 +134,9 @@ theorem diag_alg [Algebra.Etale S D] :
     Algebra.Etale.comp D (D ⊗[S] D) _,
     ⟨AlgEquiv.ofBijective (splitHom e) (splitHom_bijective he hker)⟩⟩
 
+/--
+@isnad1 id=ex.1h3v.s8.0d2d3293ff35 from=translated src=- shape=4b1ff691 vocab=99142e66
+-/
 theorem diag [Module.Finite S D] [Algebra.Etale S D]
     (m : ℕ) (hrank : ∀ p, Module.rankAtStalk (R := S) D p = m + 1) :
     ∃ (C : Type u) (_ : CommRing C) (_ : Algebra D C), Module.Finite D C ∧ Algebra.Etale D C ∧
@@ -164,6 +185,9 @@ def prodPiFinSuccAlgEquiv (T A : Type*) [CommSemiring T] [Semiring A] [Algebra T
   commutes' t := by
     funext i; refine Fin.cases ?_ (fun j => ?_) i <;> simp
 
+/--
+@isnad1 id=ex.1h3v.s8.610103c0960a from=translated src=- shape=78b0b30d vocab=0e0bb01d
+-/
 theorem split_induct (m : ℕ) : ∀ (S D : Type u) [CommRing S] [CommRing D] [Algebra S D]
     [Module.Finite S D] [Algebra.Etale S D], (∀ p, Module.rankAtStalk (R := S) D p = m) →
     ∃ (S' : Type u) (_ : CommRing S') (_ : Algebra S S') (_ : Module.Finite S S')
@@ -199,6 +223,9 @@ open scoped _root_.P2MW.S_Algebra_Etale_exists_finite_etale_faithfullyFlat_tenso
 open scoped _root_.P2MW.S_Algebra_Etale_exists_finite_etale_faithfullyFlat_tensorProduct_algEquiv_pi_of_rankAtStalk_eq.Algebra _root_.P2MW.S_Algebra_Etale_exists_finite_etale_faithfullyFlat_tensorProduct_algEquiv_pi_of_rankAtStalk_eq.Algebra.Etale
 open scoped _root_.P2MW.S_Algebra_Etale_exists_finite_etale_faithfullyFlat_tensorProduct_algEquiv_pi_of_rankAtStalk_eq.Algebra
 
+/--
+@isnad1 id=ex.1h3v.s8.220db8176b01 from=translated src=- shape=edf90707 vocab=0e0bb01d
+-/
 theorem solution
     (R : Type u) [CommRing R] (B : Type u) [CommRing B] [Algebra R B]
     [Module.Finite R B] [Algebra.Etale R B]

@@ -18,6 +18,9 @@ section algebra
 variable {R S T : Type*} [CommRing R] [CommRing S] [CommRing T]
   [Algebra R S] [Algebra R T] [Algebra S T] [IsScalarTower R S T]
 
+/--
+@isnad1 id=subsingl.1h3v.s9.193f3a4ed92e from=translated src=- shape=f87ad115 vocab=09252a7c
+-/
 theorem subsingleton_kaehler_of_surjective
     (h : Function.Surjective (KaehlerDifferential.mapBaseChange R S T)) :
     Subsingleton Ω[T⁄S] := by
@@ -34,6 +37,9 @@ theorem subsingleton_kaehler_of_surjective
     exact hex.apply_apply_eq_zero x
   rw [ha, hb]
 
+/--
+@isnad1 id=formally.1h3v.s9.46e143375364 from=translated src=- shape=c1e35f2c vocab=075dd1bf
+-/
 theorem formallyEtale_of_formallySmooth_of_bijective [Algebra.FormallySmooth R T]
     (h : Function.Bijective (KaehlerDifferential.mapBaseChange R S T)) :
     Algebra.FormallyEtale S T := by
@@ -65,6 +71,9 @@ end algebra
 
 end R1NeronObjE1
 
+/--
+@isnad1 id=formally.1h3v.s9.46e143375364 from=translated src=- shape=c1e35f2c vocab=075dd1bf
+-/
 theorem solution
     {R S T : Type*} [CommRing R] [CommRing S] [CommRing T]
     [Algebra R S] [Algebra R T] [Algebra S T] [IsScalarTower R S T]

@@ -8,6 +8,9 @@ namespace P2MW.S_AlgHom_exists_cotangent_linearMap_of_fst_eq
 
 universe u v x
 
+/--
+@isnad1 id=ex.1h5v.s11.29afa1e5dffb from=translated src=- shape=1bd9c6ae vocab=93e0bf82
+-/
 theorem solution
     {𝒪 : Type u} [CommRing 𝒪] {R : Type v} [CommRing R] [Algebra 𝒪 R] (πR : R →ₐ[𝒪] 𝒪)
     {N : Type x} [AddCommGroup N] [Module 𝒪 N] [Module 𝒪ᵐᵒᵖ N] [IsCentralScalar 𝒪 N]

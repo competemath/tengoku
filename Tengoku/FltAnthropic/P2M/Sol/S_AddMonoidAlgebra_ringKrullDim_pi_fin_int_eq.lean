@@ -11,12 +11,18 @@ open Polynomial
 
 namespace DIM22
 
+/--
+@isnad1 id=le.0h3v.s6.a11c17956336 from=translated src=- shape=021739a2 vocab=41475a79
+-/
 theorem ringKrullDim_le_of_isLocalization {R : Type*} [CommRing R] (M : Submonoid R) (S : Type*) [CommRing S] [Algebra R S]
     [IsLocalization M S] : ringKrullDim S ≤ ringKrullDim R := by
   apply Order.krullDim_le_of_strictMono (fun p : PrimeSpectrum S => PrimeSpectrum.comap (algebraMap R S) p)
   refine Monotone.strictMono_of_injective (fun p q h => ?_) (PrimeSpectrum.localization_comap_injective S M)
   exact Ideal.comap_mono h
 
+/--
+@isnad1 id=eq.0h1v.s6.7e6aacc7876d from=translated src=- shape=326f50f7 vocab=907a86f8
+-/
 theorem ringKrullDim_laurentPolynomial (R : Type*) [CommRing R] [IsDomain R] [IsNoetherianRing R] :
     ringKrullDim (LaurentPolynomial R) = ringKrullDim R + 1 := by
   apply le_antisymm
@@ -44,6 +50,9 @@ end DIM22
 
 namespace DIM22
 
+/--
+@isnad1 id=and.0h2v.s6.dd3f7d384911 from=translated src=- shape=16a37d87 vocab=8be9d969
+-/
 theorem noeth_and_dim (κ : Type*) [Field κ] :
     ∀ t : ℕ, IsNoetherianRing (AddMonoidAlgebra κ (Fin t → ℤ)) ∧ ringKrullDim (AddMonoidAlgebra κ (Fin t → ℤ)) = t
   | 0 => by
@@ -67,5 +76,8 @@ theorem noeth_and_dim (κ : Type*) [Field κ] :
 
 end DIM22
 
+/--
+@isnad1 id=eq.0h2v.s5.ae5d754e28f9 from=translated src=- shape=07417e1c vocab=5968cacf
+-/
 theorem solution (κ : Type*) [Field κ] (t : ℕ) :
     ringKrullDim (AddMonoidAlgebra κ (Fin t → ℤ)) = t := (DIM22.noeth_and_dim κ t).2

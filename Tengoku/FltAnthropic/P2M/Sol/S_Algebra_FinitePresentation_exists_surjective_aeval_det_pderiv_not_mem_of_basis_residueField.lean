@@ -18,6 +18,9 @@ section Descent
 variable {R : Type*} [CommRing R] {P S : Type*} [CommRing P] [CommRing S] [Algebra R P] [Algebra R S]
   {M : Type*} [AddCommGroup M] [Module R M] [Module S M] [IsScalarTower R S M]
 
+/--
+@isnad1 id=ex.3h6v.s10.f8a9201b345b from=translated src=- shape=3f024a28 vocab=cad12094
+-/
 theorem exists_derivation_of_surjective (f : P →ₐ[R] S) (hf : Function.Surjective f)
     (d : P →ₗ[R] M) (hleib : ∀ p q, d (p * q) = f p • d q + f q • d p)
     (hker : ∀ p, f p = 0 → d p = 0) :
@@ -59,6 +62,9 @@ section Main
 
 variable {R : Type u} [CommRing R] {S : Type u} [CommRing S] [Algebra R S]
 
+/--
+@isnad1 id=ex.1h6v.s12.cbd05b817826 from=translated src=- shape=909889e6 vocab=145a6bf2
+-/
 theorem main [Algebra.FinitePresentation R S]
     (u : Ideal S) [u.IsPrime]
     {ι : Type} [Finite ι] (w : ι → S)
@@ -191,6 +197,9 @@ end Main
 
 end JacobiSelect
 
+/--
+@isnad1 id=ex.1h6v.s12.cbd05b817826 from=translated src=- shape=909889e6 vocab=145a6bf2
+-/
 theorem solution
     {R : Type u} [CommRing R] {S : Type u} [CommRing S] [Algebra R S] [Algebra.FinitePresentation R S]
     (u : Ideal S) [u.IsPrime]

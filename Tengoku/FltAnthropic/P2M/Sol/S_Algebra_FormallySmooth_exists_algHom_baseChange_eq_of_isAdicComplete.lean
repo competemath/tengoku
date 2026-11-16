@@ -20,6 +20,9 @@ open AdicCompletion
 
 variable {R : Type u} [CommRing R] (I : Ideal R)
 
+/--
+@isnad1 id=isadicco.0h3v.s6.22fc21b95f35 from=translated src=- shape=9be1db1f vocab=e1d60cae
+-/
 theorem isAdicComplete_pi_of_fintype [IsAdicComplete I R] (ι : Type) [Fintype ι] [DecidableEq ι] :
     IsAdicComplete I (ι → R) := by
   rw [← AdicCompletion.of_bijective_iff]
@@ -44,6 +47,9 @@ theorem isAdicComplete_pi_of_fintype [IsAdicComplete I R] (ι : Type) [Fintype �
 
 variable {I} in
 
+/--
+@isnad1 id=isadicco.0h5v.s6.c6f26bafe361 from=translated src=- shape=15d81d40 vocab=0b014639
+-/
 theorem isAdicComplete_of_linearEquiv {M N : Type*} [AddCommGroup M] [Module R M]
     [AddCommGroup N] [Module R N] (e : M ≃ₗ[R] N) [IsAdicComplete I M] : IsAdicComplete I N := by
   rw [← AdicCompletion.of_bijective_iff]
@@ -54,6 +60,9 @@ theorem isAdicComplete_of_linearEquiv {M N : Type*} [AddCommGroup M] [Module R M
   exact (AdicCompletion.congr I e).bijective.comp
     ((AdicCompletion.of_bijective I M).comp e.symm.bijective)
 
+/--
+@isnad1 id=isadicco.0h3v.s6.91211a2e20b4 from=translated src=- shape=4de2322e vocab=a931a000
+-/
 theorem isAdicComplete_of_finite_of_free [IsAdicComplete I R] (M : Type*) [AddCommGroup M]
     [Module R M] [Module.Finite R M] [Module.Free R M] : IsAdicComplete I M := by
   classical
@@ -78,8 +87,14 @@ variable (𝓞 k Y) in
 noncomputable abbrev red : Y →ₐ[𝓞] k ⊗[𝓞] Y :=
   (Algebra.TensorProduct.includeRight : Y →ₐ[𝓞] k ⊗[𝓞] Y)
 
+/--
+@isnad1 id=eq.0h4v.s8.71f80b2f36b1 from=translated src=- shape=a60f4f44 vocab=f2bcf9e5
+-/
 theorem red_apply (y : Y) : red 𝓞 k Y y = (1 : k) ⊗ₜ[𝓞] y := rfl
 
+/--
+@isnad1 id=surjecti.1h3v.s8.de8f8d2d6a07 from=translated src=- shape=7b860719 vocab=f1ce194c
+-/
 theorem red_surjective (hk : Surjective (algebraMap 𝓞 k)) : Surjective (red 𝓞 k Y) := by
   intro z
   induction z using TensorProduct.induction_on with
@@ -93,6 +108,9 @@ theorem red_surjective (hk : Surjective (algebraMap 𝓞 k)) : Surjective (red �
     obtain ⟨s, rfl⟩ := hy
     exact ⟨r + s, map_add _ _ _⟩
 
+/--
+@isnad1 id=eq.1h3v.s8.0d93f3b18b79 from=translated src=- shape=c9dc1bd4 vocab=711a1c20
+-/
 theorem ker_red (hk : Surjective (algebraMap 𝓞 k)) :
     RingHom.ker (red 𝓞 k Y) = (RingHom.ker (algebraMap 𝓞 k)).map (algebraMap 𝓞 Y) := by
   set I := RingHom.ker (algebraMap 𝓞 k) with hI
@@ -124,6 +142,9 @@ theorem ker_red (hk : Surjective (algebraMap 𝓞 k)) :
       TensorProduct.tmul_smul, TensorProduct.smul_tmul', ← Algebra.algebraMap_eq_smul_one, ho,
       TensorProduct.zero_tmul]
 
+/--
+@isnad1 id=eq.1h6v.s10.3c4125a1498b from=translated src=- shape=bda494ea vocab=230bf51d
+-/
 theorem algHom_ext_one_tmul {X : Type w} [CommRing X] [Algebra 𝓞 X]
     {f g : k ⊗[𝓞] X →ₐ[k] k ⊗[𝓞] Y}
     (h : ∀ r : X, f ((1 : k) ⊗ₜ[𝓞] r) = g ((1 : k) ⊗ₜ[𝓞] r)) : f = g := by
@@ -138,6 +159,9 @@ end SmoothLift
 
 open SmoothLift in
 
+/--
+@isnad1 id=ex.2h6v.s9.a8b6ae3a61e5 from=translated src=- shape=047f8525 vocab=e897cdaf
+-/
 theorem solution
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ)
     {k : Type v} [CommRing k] [Algebra 𝓞 k]

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u v
 
+/--
+@isnad1 id=isadicco.0h3v.s7.e314dd1b84ae from=translated src=- shape=ab021ea6 vocab=fa5915a7
+-/
 theorem IsAdicComplete.of_module_finite_free_map
     {𝓞 : Type u} [CommRing 𝓞] (I : Ideal 𝓞) [IsAdicComplete I 𝓞]
     (R : Type v) [CommRing R] [Algebra 𝓞 R] [Module.Finite 𝓞 R] [Module.Free 𝓞 R] :

@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=and.1h3v.s10.b21067291ff4 from=translated src=- shape=e861c93c vocab=59c9080c
+-/
 theorem AffineDilatation.isSMulRegular_and_map_eq_span_singleton
     {A : Type u} [CommRing A] (I : Ideal A) (a : A) (ha : a ∈ I) :
     IsSMulRegular (AffineDilatation.Ring I a) a ∧

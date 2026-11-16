@@ -84,6 +84,9 @@ private lemma nsmul_torsion_card_le {G : Type*} [AddCommGroup G] [Finite G] {p :
     _ ≤ p ^ j := tower j
     _ ≤ n := Nat.le_of_dvd hn hpj_dvd_n
 
+/--
+@isnad1 id=and.3h3v.s7.24552dac8284 from=translated src=- shape=507ddfaf vocab=7b46e272
+-/
 theorem solution
     {G : Type*} [AddCommGroup G] [Finite G] {p : ℕ} (hp : p.Prime) (m : ℕ)
     (hexp : ∀ x : G, p ^ m • x = 0)

@@ -8,6 +8,9 @@ namespace P2MW.S_AutomorphicForm_satakePow_add_pow
 
 open IsDedekindDomain NumberField AutomorphicForm
 
+/--
+@isnad1 id=eq.0h4v.s6.1331cf859814 from=translated src=- shape=e6e529e8 vocab=39e41ec2
+-/
 theorem solution {R : Type*} [CommRing R] (α β : R) :
     ∀ n : ℕ, AutomorphicForm.satakePow n (α + β) (α * β) = α ^ n + β ^ n := by
   have key : ∀ n : ℕ,

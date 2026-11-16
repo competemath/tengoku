@@ -56,6 +56,9 @@ def ExtSelmerRealizationAdm (p : ℕ) [Fact p.Prime]
             extClassFun (cycloChar p) v₀ σ
               = ((((cycloChar p σ)⁻¹ : (ZMod p)ˣ) : ZMod p)) • b - b)
 
+/--
+@isnad1 id=iff.0h8v.s9.127501836e58 from=translated src=- shape=5942115a vocab=1c247b0d
+-/
 theorem extSelmerRealizationAdm_top_iff (p : ℕ) [Fact p.Prime]
     {Γ' : Type} [Group Γ'] {ι' : Type} [Fintype ι'] {Γv' : ι' → Type} [∀ v, Group (Γv' v)]
     (loc' : ∀ v, Γv' v →* Γ') (ψ : Γ' →* (ZMod p)ˣ) (P : Set ι')

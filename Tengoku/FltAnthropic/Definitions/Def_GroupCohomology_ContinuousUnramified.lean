@@ -19,6 +19,9 @@ def IsUnramifiedOutside (F : IntermediateField ℚ (AlgebraicClosure ℚ)) (S : 
   FiniteDimensional ℚ F ∧ ∀ q : Nat.Primes, q ∉ S → ∀ A : ValuationSubring (AlgebraicClosure ℚ),
     A.LiesOverPrime (q : ℕ) → A.inertiaSubgroupIn ℚ ≤ F.fixingSubgroup
 
+/--
+@isnad1 id=isunrami.0h1v.s7.10cf492c6124 from=translated src=- shape=3825a01c vocab=5aaeb4b9
+-/
 lemma isUnramifiedOutside_bot (S : Finset Nat.Primes) :
     (⊥ : IntermediateField ℚ (AlgebraicClosure ℚ)).IsUnramifiedOutside S := by
   refine ⟨inferInstance, fun q _ A _ σ _ => ?_⟩
@@ -27,6 +30,9 @@ lemma isUnramifiedOutside_bot (S : Finset Nat.Primes) :
   obtain ⟨r, rfl⟩ := IntermediateField.mem_bot.1 hx
   exact σ.commutes r
 
+/--
+@isnad1 id=isunrami.2h3v.s7.7238f349d360 from=translated src=- shape=9c606af4 vocab=c29abe7a
+-/
 lemma IsUnramifiedOutside.sup {S : Finset Nat.Primes} {F F' : IntermediateField ℚ (AlgebraicClosure ℚ)}
     (hF : F.IsUnramifiedOutside S) (hF' : F'.IsUnramifiedOutside S) : (F ⊔ F').IsUnramifiedOutside S := by
   haveI := hF.1; haveI := hF'.1
@@ -34,10 +40,16 @@ lemma IsUnramifiedOutside.sup {S : Finset Nat.Primes} {F F' : IntermediateField 
   rw [IntermediateField.fixingSubgroup_sup]
   exact ⟨hF.2 q hq A hA hσ, hF'.2 q hq A hA hσ⟩
 
+/--
+@isnad1 id=isunrami.2h3v.s5.3204355a107d from=translated src=- shape=caf1dd88 vocab=f2b744eb
+-/
 lemma IsUnramifiedOutside.mono {S S' : Finset Nat.Primes} (h : S ⊆ S') {F : IntermediateField ℚ (AlgebraicClosure ℚ)}
     (hF : F.IsUnramifiedOutside S) : F.IsUnramifiedOutside S' :=
   ⟨hF.1, fun q hq A hA => hF.2 q (fun hqS => hq (h hqS)) A hA⟩
 
+/--
+@isnad1 id=isunrami.2h3v.s7.d4297d4ff8a2 from=translated src=- shape=c1d1e9af vocab=f2b744eb
+-/
 lemma IsUnramifiedOutside.of_le {S : Finset Nat.Primes} {F F' : IntermediateField ℚ (AlgebraicClosure ℚ)} (hle : F' ≤ F)
     (hF : F.IsUnramifiedOutside S) : F'.IsUnramifiedOutside S := by
   haveI := hF.1
@@ -61,12 +73,18 @@ def IsLevelConstantS₂ {X : Type*}
     ∀ g g' s s', s ∈ F.fixingSubgroup → s' ∈ F.fixingSubgroup → f (g * s, g' * s') = f (g, g')
 
 variable {S} in
+/--
+@isnad1 id=islevelc.1h3v.s9.3eabc2adbb33 from=translated src=- shape=212e0d67 vocab=ecac002c
+-/
 lemma IsLevelConstantS₁.isLevelConstant₁ {X : Type*} {f : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) → X}
     (hf : IsLevelConstantS₁ S f) : IsLevelConstant₁ (MonoidHom.id _) f := by
   obtain ⟨F, hF, h⟩ := hf
   exact ⟨F, hF.1, fun g s hs => h g s hs⟩
 
 variable {S} in
+/--
+@isnad1 id=islevelc.1h3v.s9.54e86ef6155c from=translated src=- shape=91c3f2de vocab=9725edbc
+-/
 lemma IsLevelConstantS₂.isLevelConstant₂ {X : Type*}
     {f : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) × (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) → X}
     (hf : IsLevelConstantS₂ S f) : IsLevelConstant₂ (MonoidHom.id _) f := by
@@ -74,6 +92,9 @@ lemma IsLevelConstantS₂.isLevelConstant₂ {X : Type*}
   exact ⟨F, hF.1, fun g g' s s' hs hs' => h g g' s s' hs hs'⟩
 
 variable {S} in
+/--
+@isnad1 id=islevelc.2h4v.s9.6e8a2aa0a44c from=translated src=- shape=174b78c5 vocab=daca62fe
+-/
 lemma IsLevelConstantS₁.add {X : Type*} [Add X] {f f' : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) → X}
     (hf : IsLevelConstantS₁ S f) (hf' : IsLevelConstantS₁ S f') : IsLevelConstantS₁ S (f + f') := by
   obtain ⟨F, hF, h⟩ := hf
@@ -84,6 +105,9 @@ lemma IsLevelConstantS₁.add {X : Type*} [Add X] {f f' : (AlgebraicClosure ℚ 
     h' g s (IntermediateField.fixingSubgroup_antitone le_sup_right hs)]
 
 variable {S} in
+/--
+@isnad1 id=islevelc.2h4v.s10.982cde711560 from=translated src=- shape=7ac7c3c5 vocab=d7e5fcfa
+-/
 lemma IsLevelConstantS₂.add {X : Type*} [Add X]
     {f f' : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) × (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) → X}
     (hf : IsLevelConstantS₂ S f) (hf' : IsLevelConstantS₂ S f') : IsLevelConstantS₂ S (f + f') := by
@@ -96,22 +120,34 @@ lemma IsLevelConstantS₂.add {X : Type*} [Add X]
     h' g g' s s' (IntermediateField.fixingSubgroup_antitone le_sup_right hs)
       (IntermediateField.fixingSubgroup_antitone le_sup_right hs')]
 
+/--
+@isnad1 id=islevelc.0h3v.s6.54620e12b6c0 from=translated src=- shape=52f3dc15 vocab=5bb2322f
+-/
 lemma isLevelConstantS₁_const {X : Type*} (x : X) :
     IsLevelConstantS₁ S (fun _ : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) => x) :=
   ⟨⊥, IntermediateField.isUnramifiedOutside_bot S, fun _ _ _ => rfl⟩
 
+/--
+@isnad1 id=islevelc.0h3v.s7.de95d757abda from=translated src=- shape=ad9ff2b6 vocab=94d52657
+-/
 lemma isLevelConstantS₂_const {X : Type*} (x : X) :
     IsLevelConstantS₂ S
       (fun _ : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) × (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) => x) :=
   ⟨⊥, IntermediateField.isUnramifiedOutside_bot S, fun _ _ _ _ _ _ => rfl⟩
 
 variable {S} in
+/--
+@isnad1 id=islevelc.1h5v.s7.7c6e4045a7b6 from=translated src=- shape=58b47c66 vocab=524c2015
+-/
 lemma IsLevelConstantS₁.comp {X Y : Type*} {f : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) → X}
     (hf : IsLevelConstantS₁ S f) (φ : X → Y) : IsLevelConstantS₁ S (φ ∘ f) := by
   obtain ⟨F, hF, h⟩ := hf
   exact ⟨F, hF, fun g s hs => by simp only [Function.comp_apply, h g s hs]⟩
 
 variable {S} in
+/--
+@isnad1 id=islevelc.1h5v.s8.3de1d436e1b2 from=translated src=- shape=3400a60a vocab=8ff023ed
+-/
 lemma IsLevelConstantS₂.comp {X Y : Type*}
     {f : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) × (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) → X}
     (hf : IsLevelConstantS₂ S f) (φ : X → Y) : IsLevelConstantS₂ S (φ ∘ f) := by
@@ -119,6 +155,9 @@ lemma IsLevelConstantS₂.comp {X Y : Type*}
   exact ⟨F, hF, fun g g' s s' hs hs' => by simp only [Function.comp_apply, h g g' s s' hs hs']⟩
 
 variable {S} in
+/--
+@isnad1 id=islevelc.2h4v.s6.8785d1ead64d from=translated src=- shape=ab7184ae vocab=60ec07c0
+-/
 lemma IsLevelConstantS₁.mono {S' : Finset Nat.Primes} (h : S ⊆ S') {X : Type*}
     {f : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) → X} (hf : IsLevelConstantS₁ S f) : IsLevelConstantS₁ S' f := by
   obtain ⟨F, hF, hc⟩ := hf
@@ -139,6 +178,9 @@ def levelCochainsS₂ :
   zero_mem' := isLevelConstantS₂_const S (0 : M)
   smul_mem' c _ hf := hf.comp (c • ·)
 
+/--
+@isnad1 id=iff.0h4v.s12.a9f35d314b9e from=translated src=- shape=0b25eed2 vocab=a3f0670a
+-/
 lemma mem_levelCochainsS₁_iff (f : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) → M) :
     f ∈ levelCochainsS₁ S M ↔ IsLevelConstantS₁ S f := Iff.rfl
 
@@ -148,10 +190,16 @@ def levelCocyclesS₁ : Submodule k (cocycles₁ M) :=
 def continuousH1S : Submodule k (H1 M) :=
   (levelCocyclesS₁ S M).map (H1π M).hom
 
+/--
+@isnad1 id=iff.0h4v.s17.b46f71da14cb from=translated src=- shape=b73b282b vocab=f728d87e
+-/
 lemma mem_continuousH1S_iff (x : H1 M) :
     x ∈ continuousH1S S M ↔ ∃ c : cocycles₁ M, IsLevelConstantS₁ S c ∧ (H1π M).hom c = x := by
   simp only [continuousH1S, Submodule.mem_map, levelCocyclesS₁, Submodule.mem_comap]; rfl
 
+/--
+@isnad1 id=le.0h3v.s11.8061d170d35b from=translated src=- shape=f64a8ce2 vocab=b3b215eb
+-/
 lemma continuousH1S_le_continuousH1 : continuousH1S S M ≤ continuousH1 (MonoidHom.id _) M := by
   rintro x hx
   obtain ⟨c, hc, rfl⟩ := (mem_continuousH1S_iff S M x).1 hx
@@ -159,6 +207,9 @@ lemma continuousH1S_le_continuousH1 : continuousH1S S M ≤ continuousH1 (Monoid
 
 variable {S} in
 
+/--
+@isnad1 id=le.1h4v.s10.3d0855afce94 from=translated src=- shape=3a5bb3ca vocab=367aff87
+-/
 lemma continuousH1S_mono {S' : Finset Nat.Primes} (h : S ⊆ S') : continuousH1S S M ≤ continuousH1S S' M := by
   rintro x hx
   obtain ⟨c, hc, rfl⟩ := (mem_continuousH1S_iff S M x).1 hx
@@ -172,15 +223,24 @@ def levelCoboundariesS₂ :
     Submodule k ((AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) × (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) → M) :=
   (levelCochainsS₁ S M).map (d₁₂ M).hom
 
+/--
+@isnad1 id=iff.0h4v.s15.c3424e3d5600 from=translated src=- shape=b0d5e53a vocab=8ac52513
+-/
 lemma mem_levelCoboundariesS₂_iff
     (f : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) × (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) → M) :
     f ∈ levelCoboundariesS₂ S M ↔
       ∃ x : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) → M, IsLevelConstantS₁ S x ∧ (d₁₂ M).hom x = f := by
   simp only [levelCoboundariesS₂, Submodule.mem_map, mem_levelCochainsS₁_iff]
 
+/--
+@isnad1 id=le.0h3v.s13.e7bf60cd9b4c from=translated src=- shape=def0e29e vocab=9bbfaa0a
+-/
 lemma levelCocyclesS₂_le_levelCocycles₂ : levelCocyclesS₂ S M ≤ levelCocycles₂ (MonoidHom.id _) M :=
   fun _ h => ⟨h.1, h.2.isLevelConstant₂⟩
 
+/--
+@isnad1 id=le.0h3v.s13.a0bebad6e242 from=translated src=- shape=def0e29e vocab=2508701d
+-/
 lemma levelCoboundariesS₂_le_levelCoboundaries₂ :
     levelCoboundariesS₂ S M ≤ levelCoboundaries₂ (MonoidHom.id _) M := by
   rintro f hf
@@ -193,6 +253,9 @@ abbrev continuousH2S : Type :=
 abbrev continuousH2Sπ : ↥(levelCocyclesS₂ S M) →ₗ[k] continuousH2S S M :=
   Submodule.mkQ _
 
+/--
+@isnad1 id=iff.0h4v.s17.0b20e04d2619 from=translated src=- shape=3ed6d287 vocab=8ced525a
+-/
 lemma continuousH2Sπ_eq_zero_iff (f : ↥(levelCocyclesS₂ S M)) :
     continuousH2Sπ S M f = 0 ↔
       (f : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) × (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) → M)
@@ -217,6 +280,9 @@ noncomputable def locTotal₂S :
     continuousH2S S M →ₗ[k] ∀ v : extArithIndex S, continuousH2 (extArithLoc S v) (Rep.res (extArithLoc S v) M) :=
   LinearMap.pi fun v => locRes₂S S M (extArithLoc S v)
 
+/--
+@isnad1 id=eq.0h5v.s19.7cc0c0512e7b from=translated src=- shape=de6b50c1 vocab=3fbecc94
+-/
 @[simp]
 lemma locTotal₂S_apply (x : continuousH2S S M) (v : extArithIndex S) :
     locTotal₂S S M x v = locRes₂S S M (extArithLoc S v) x := rfl

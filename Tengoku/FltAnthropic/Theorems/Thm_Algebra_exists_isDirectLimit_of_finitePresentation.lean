@@ -12,6 +12,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=ex.0h2v.s9.fa8730eae61e from=translated src=- shape=97f8d3a7 vocab=dd2895d8
+-/
 theorem Algebra.exists_isDirectLimit_of_finitePresentation
     (R : Type u) [CommRing R] (A : Type u) [CommRing A] [Algebra R A] :
     ∃ (ι : Type u) (_ : Preorder ι) (_ : Nonempty ι) (_ : IsDirected ι (· ≤ ·))

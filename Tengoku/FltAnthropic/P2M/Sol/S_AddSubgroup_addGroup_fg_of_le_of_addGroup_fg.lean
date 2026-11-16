@@ -7,6 +7,9 @@ namespace P2MW.S_AddSubgroup_addGroup_fg_of_le_of_addGroup_fg
 
 namespace MWRedA
 
+/--
+@isnad1 id=ex.1h1v.s6.a535b024239d from=translated src=- shape=159c11cf vocab=3b3f7a0b
+-/
 theorem exists_pos_generator (E : AddSubgroup ℤ) (hE : E ≠ ⊥) :
     ∃ g : ℤ, 0 < g ∧ g ∈ E ∧ ∀ e ∈ E, ∃ k : ℤ, e = k * g := by
   classical
@@ -49,10 +52,16 @@ theorem exists_pos_generator (E : AddSubgroup ℤ) (hE : E ≠ ⊥) :
   have he : e = (Nat.find hP : ℤ) * (e / (Nat.find hP : ℤ)) := sub_eq_zero.mp hdef.symm
   exact he.trans (mul_comm _ _)
 
+/--
+@isnad1 id=eq.0h7v.s7.a64a0a07b5ac from=translated src=- shape=3d8b2adf vocab=9c0ffe55
+-/
 theorem decomp {A : Type} [AddCommGroup A] (a r rg : A) (n k g : ℤ) :
     (n • a + r) - k • (g • a + rg) = (n - k * g) • a + (r - k • rg) := by
   rw [zsmul_add, ← mul_zsmul, add_sub_add_comm, sub_zsmul, ← sub_eq_add_neg]
 
+/--
+@isnad1 id=fg.1h3v.s5.df66776fbf31 from=translated src=- shape=850bb5f0 vocab=15491a3a
+-/
 theorem fg_of_le_closure {A : Type} [AddCommGroup A] (S : Finset A) :
     ∀ H : AddSubgroup A, H ≤ AddSubgroup.closure (S : Set A) → H.FG := by
   classical
@@ -146,6 +155,9 @@ theorem fg_of_le_closure {A : Type} [AddCommGroup A] (S : Finset A) :
 
 end MWRedA
 
+/--
+@isnad1 id=fg.2h3v.s6.8cb2b89cad4f from=translated src=- shape=c3b8e355 vocab=8e57320b
+-/
 theorem solution {A : Type} [AddCommGroup A] {H₁ H₂ : AddSubgroup A}
     (hle : H₁ ≤ H₂) (hfg : AddGroup.FG ↥H₂) : AddGroup.FG ↥H₁ := by
   classical

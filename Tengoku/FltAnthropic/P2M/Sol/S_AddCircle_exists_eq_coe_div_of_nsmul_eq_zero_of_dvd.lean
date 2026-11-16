@@ -7,6 +7,9 @@ namespace P2MW.S_AddCircle_exists_eq_coe_div_of_nsmul_eq_zero_of_dvd
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.3h3v.s7.6f25814f8588 from=translated src=- shape=a242bd57 vocab=94626a38
+-/
 theorem solution
     (t : AddCircle (1 : ℚ)) (n N : ℕ) (hN : 0 < N) (hnN : n ∣ N) (ht : n • t = 0) :
     ∃ a : ℤ, t = (((a : ℚ) / (N : ℚ) : ℚ) : AddCircle (1 : ℚ)) := by

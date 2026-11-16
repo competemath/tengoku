@@ -17,8 +17,14 @@ noncomputable def kerPt (φ : B →ₐ[k] k) : PrimeSpectrum B :=
   ⟨RingHom.ker φ.toRingHom,
     (RingHom.ker_isMaximal_of_surjective φ.toRingHom (fun c => ⟨algebraMap k B c, by simp⟩)).isPrime⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.7a90a8b7b739 from=translated src=- shape=e20229c7 vocab=4fccf660
+-/
 theorem kerPt_asIdeal (φ : B →ₐ[k] k) : (kerPt φ).asIdeal = RingHom.ker φ.toRingHom := rfl
 
+/--
+@isnad1 id=injectiv.0h2v.s6.282d1a1c76d3 from=translated src=- shape=15f12244 vocab=8eb2944d
+-/
 theorem kerPt_injective : Function.Injective (kerPt (k := k) (B := B)) := by
   intro φ ψ h
   have hker : RingHom.ker φ.toRingHom = RingHom.ker ψ.toRingHom := congrArg PrimeSpectrum.asIdeal h
@@ -29,6 +35,9 @@ theorem kerPt_injective : Function.Injective (kerPt (k := k) (B := B)) := by
   simp only [RingHom.mem_ker, AlgHom.toRingHom_eq_coe, RingHom.coe_coe, map_sub, AlgHom.commutes] at h1
   exact (sub_eq_zero.1 h1).symm
 
+/--
+@isnad1 id=surjecti.0h2v.s6.51f40a973fba from=translated src=- shape=99400283 vocab=d8e00e80
+-/
 theorem kerPt_surjective [IsAlgClosed k] [Module.Finite k B] :
     Function.Surjective (kerPt (k := k) (B := B)) := by
   intro p
@@ -51,6 +60,9 @@ theorem kerPt_surjective [IsAlgClosed k] [Module.Finite k B] :
     change ψ₀ (Ideal.Quotient.mkₐ k p.asIdeal x) = 0
     rw [Ideal.Quotient.mkₐ_eq_mk, Ideal.Quotient.eq_zero_iff_mem.2 hx, map_zero]
 
+/--
+@isnad1 id=eq.1h5v.s9.57f1c4182a27 from=translated src=- shape=f20142a7 vocab=a7c1e788
+-/
 theorem finrank_localization_eq_of_comap (σ : B ≃ₐ[k] B) (P Q : Ideal B) [P.IsPrime] [Q.IsPrime]
     (h : Q = P.comap (σ : B →+* B)) :
     Module.finrank k (Localization.AtPrime Q) = Module.finrank k (Localization.AtPrime P) := by
@@ -78,6 +90,9 @@ theorem finrank_localization_eq_of_comap (σ : B ≃ₐ[k] B) (P Q : Ideal B) [P
 end AlgHomog
 
 open AlgHomog in
+/--
+@isnad1 id=dvd.1h2v.s8.63e3ecbc79f6 from=translated src=- shape=5e4fa862 vocab=18b9ccb9
+-/
 theorem solution
     (k : Type u) (B : Type v) [Field k] [IsAlgClosed k] [CommRing B] [Algebra k B] [Module.Finite k B]
     (htrans : ∀ φ ψ : B →ₐ[k] k, ∃ σ : B ≃ₐ[k] B, φ.comp (σ : B →ₐ[k] B) = ψ) :
