@@ -15,6 +15,9 @@ open CategoryTheory AlgebraicGeometry AlgebraicCurve
 
 universe u v
 
+/--
+@isnad1 id=ex.0h5v.s7.1152c6dbb48e from=translated src=- shape=8b3d0cc8 vocab=129ba0de
+-/
 theorem solution
     {K : Type u} [Field K] {L L' : Type v} [Field L] [Field L'] [Algebra K L] [Algebra K L']
     (e : L ≃ₐ[K] L') (M : AlgebraicCurve.CurveModel K L) :

@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Algebra_exists_algEquiv_comp_eq_of_surject
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.4h6v.s15.d4788568254d from=translated src=- shape=a7f3a5b6 vocab=cb9d0295
+-/
 theorem Algebra.exists_algEquiv_comp_eq_of_surjective_of_ker_le_sq_truncated
     (k : Type*) [Field k] (C : Type*) [CommRing C] [Algebra k C] [IsLocalRing C] [Module.Finite k C]
     (e M : ℕ)

@@ -13,6 +13,9 @@ open TensorProduct
 
 namespace Alpha1rSol
 
+/--
+@isnad1 id=subsingl.1h4v.s9.5d6643517392 from=translated src=- shape=f9cd3a67 vocab=c0e1faac
+-/
 theorem subsingleton_baseChange_kaehler
     {S : Type u} [CommRing S] {A B : Type u} [CommRing A] [CommRing B]
     [Algebra S A] [Algebra S B] [Algebra A B] [IsScalarTower S A B]
@@ -40,6 +43,9 @@ theorem subsingleton_baseChange_kaehler
   haveI : Subsingleton Ω[(B ⊗[S] k)⁄(A ⊗[S] k)] := Algebra.FormallyUnramified.subsingleton_kaehlerDifferential
   exact (KaehlerDifferential.tensorKaehlerEquiv A (A ⊗[S] k) B (B ⊗[S] k)).toEquiv.subsingleton
 
+/--
+@isnad1 id=subsingl.0h4v.s8.7aabc6f5de68 from=translated src=- shape=02753452 vocab=44309fef
+-/
 theorem subsingleton_tensor_of_subsingleton_baseChange
     {S : Type u} [CommRing S] {B : Type u} [CommRing B] [Algebra S B]
     (k : Type u) [Field k] [Algebra S k] [Algebra B k] [IsScalarTower S B k]
@@ -56,6 +62,9 @@ theorem subsingleton_tensor_of_subsingleton_baseChange
     rfl)
   exact (TensorProduct.AlgebraTensorModule.cancelBaseChange B (B ⊗[S] k) k k M).symm.toEquiv.subsingleton
 
+/--
+@isnad1 id=subsingl.0h4v.s7.e6379f48f1a3 from=translated src=- shape=ea042562 vocab=44309fef
+-/
 theorem subsingleton_tensor_of_field_ext
     {B : Type u} [CommRing B] (κ : Type u) [Field κ] [Algebra B κ] (k : Type u) [Field k] [Algebra κ k] [Algebra B k]
     [IsScalarTower B κ k] (M : Type*) [AddCommGroup M] [Module B M] [h : Subsingleton (k ⊗[B] M)] :
@@ -64,6 +73,9 @@ theorem subsingleton_tensor_of_field_ext
     (TensorProduct.AlgebraTensorModule.cancelBaseChange B κ k k M).toEquiv.subsingleton
   exact (Module.FaithfullyFlat.subsingleton_tensorProduct_iff_right κ k).mp this
 
+/--
+@isnad1 id=not.0h3v.s7.bd52b9e152c5 from=translated src=- shape=904ace09 vocab=ecd7f077
+-/
 theorem not_mem_support_of_subsingleton_quotient_tensor
     {B : Type u} [CommRing B] (M : Type*) [AddCommGroup M] [Module B M] [Module.Finite B M]
     (m : Ideal B) [hm : m.IsMaximal] [h : Subsingleton ((B ⧸ m) ⊗[B] M)] :
@@ -90,6 +102,9 @@ theorem not_mem_support_of_subsingleton_quotient_tensor
 end Alpha1rSol
 
 open Alpha1rSol in
+/--
+@isnad1 id=formally.1h3v.s9.8bd987661f89 from=translated src=- shape=9efc522a vocab=5cf83c33
+-/
 theorem solution
     {S : Type u} [CommRing S] {A B : Type u} [CommRing A] [CommRing B]
     [Algebra S A] [Algebra S B] [Algebra A B] [IsScalarTower S A B] [Algebra.FiniteType S B]

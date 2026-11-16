@@ -9,6 +9,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_IsDedekindDomain_selmerGroup_finite_of_fin
 open IsDedekindDomain
 
 universe u v
+/--
+@isnad1 id=finite.0h4v.s10.b36360d3229b from=translated src=- shape=8605e03d vocab=ad8faa5e
+-/
 theorem IsDedekindDomain.selmerGroup.finite_of_finite_classGroup_of_fg_units
     {R : Type u} [CommRing R] [IsDedekindDomain R] {K : Type v} [Field K] [Algebra R K]
     [IsFractionRing R K] {S : Set (HeightOneSpectrum R)} {n : ℕ} [hn : Fact (0 < n)]

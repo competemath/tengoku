@@ -20,11 +20,17 @@ namespace DlogRecipeWD
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
+/--
+@isnad1 id=eq.0h4v.s8.b27ad9e396d3 from=translated src=- shape=ce9c9281 vocab=417d1350
+-/
 theorem D_pow_char (p : ℕ) [CharP K p] (h : F) : D K F (h ^ p) = 0 := by
   haveI : CharP F p := (algebraMap K F).charP_iff_charP p |>.mp inferInstance
   rw [Derivation.leibniz_pow, smul_comm, ← Nat.cast_smul_eq_nsmul F, CharP.cast_eq_zero, zero_smul,
     smul_zero]
 
+/--
+@isnad1 id=eq.2h4v.s9.60c271324362 from=translated src=- shape=0ffce9ea vocab=8ee43949
+-/
 theorem dlog_mul {a b : F} (ha : a ≠ 0) (hb : b ≠ 0) :
     (a * b)⁻¹ • D K F (a * b) = a⁻¹ • D K F a + b⁻¹ • D K F b := by
   rw [Derivation.leibniz, smul_add, smul_smul, smul_smul, mul_inv, add_comm]
@@ -32,9 +38,15 @@ theorem dlog_mul {a b : F} (ha : a ≠ 0) (hb : b ≠ 0) :
   · rw [show a⁻¹ * b⁻¹ * b = a⁻¹ from inv_mul_cancel_right₀ hb _]
   · rw [show a⁻¹ * b⁻¹ * a = b⁻¹ by rw [mul_comm a⁻¹, inv_mul_cancel_right₀ ha]]
 
+/--
+@isnad1 id=eq.0h3v.s9.1ac27b9146ae from=translated src=- shape=bc8bd74b vocab=cb795220
+-/
 theorem dlog_algebraMap (c : K) : (algebraMap K F c)⁻¹ • D K F (algebraMap K F c) = 0 := by
   rw [Derivation.map_algebraMap, smul_zero]
 
+/--
+@isnad1 id=eq.6h7v.s9.44058451771f from=translated src=- shape=ef1c5ed0 vocab=35673b1b
+-/
 theorem dlog_eq_of_isPrincipal_sub (p : ℕ) [CharP K p]
     (hconst : ∀ u : F, u ≠ 0 → (∀ v : Place K F, v.ord u = 0) → u ∈ (algebraMap K F).range)
     {D₁ D₂ : Divisor K F} (h : Divisor.IsPrincipal (D₁ - D₂))
@@ -68,6 +80,9 @@ end AlgebraicCurve
 
 end
 
+/--
+@isnad1 id=eq.6h7v.s9.44058451771f from=translated src=- shape=ef1c5ed0 vocab=35673b1b
+-/
 theorem solution
     (K F : Type*) [Field K] [Field F] [Algebra K F] (p : ℕ) [CharP K p]
     (hconst : ∀ u : F, u ≠ 0 → (∀ v : AlgebraicCurve.Place K F, v.ord u = 0) →

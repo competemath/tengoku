@@ -7,6 +7,9 @@ namespace P2MW.S_Algebra_isReduced_and_finrank_eq_natCard_algHom_of_forall_isMax
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.1h2v.s7.49d73be94f75 from=translated src=- shape=df11e930 vocab=5f34f2d1
+-/
 theorem solution
     (Ω : Type*) [Field Ω] [IsAlgClosed Ω] (S : Type*) [CommRing S] [Algebra Ω S] [Module.Finite Ω S]
     (h : ∀ 𝔪 : Ideal S, 𝔪.IsMaximal → 𝔪 ^ 2 = 𝔪) :

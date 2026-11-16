@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_RingHom_formallySmooth_and_formallyUnramif
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.2h4v.s8.f94f62a58d1a from=translated src=- shape=0e0af0d3 vocab=2621ece7
+-/
 theorem RingHom.formallySmooth_and_formallyUnramified_eval2RingHom_of_existsUnique_eq_smul_D
     {A S : Type} [CommRing A] [CommRing S] (i : A →+* S) (hi : i.FormallySmooth) (t : S)
     (hdt : letI : Algebra A S := i.toAlgebra;

@@ -24,9 +24,15 @@ local notation "T" => MvPolynomial (Fin e) k ⧸ (𝔫) ^ (M + 1)
 
 local notation "𝔱" => Ideal.map (Ideal.Quotient.mk ((𝔫) ^ (M + 1))) (𝔫)
 
+/--
+@isnad1 id=mem.0h3v.s8.20fa50a38e65 from=translated src=- shape=7a30939d vocab=c3a634c0
+-/
 theorem X_mem_ker_constantCoeff (j : Fin e) : (MvPolynomial.X j : MvPolynomial (Fin e) k) ∈ (𝔫) := by
   rw [RingHom.mem_ker, MvPolynomial.constantCoeff_X]
 
+/--
+@isnad1 id=eq.0h2v.s7.8c7060739045 from=translated src=- shape=33847f37 vocab=ace31251
+-/
 theorem ker_constantCoeff_eq_span : (𝔫) = Ideal.span (Set.range (MvPolynomial.X : Fin e → MvPolynomial (Fin e) k)) := by
   apply le_antisymm
   · intro f hf
@@ -61,9 +67,15 @@ noncomputable def substAlgHom (P : Fin e → T) (hP : ∀ j, P j ∈ (𝔱)) : T
     have h2 := Ideal.pow_right_mono hmap (M + 1) this
     rwa [← Ideal.map_pow, Ideal.map_quotient_self, Ideal.mem_bot] at h2)
 
+/--
+@isnad1 id=eq.1h5v.s14.cd0f750daff3 from=translated src=- shape=d291c972 vocab=0596f5a3
+-/
 @[scoped simp] theorem substAlgHom_mk (P : Fin e → T) (hP : ∀ j, P j ∈ (𝔱)) (f : MvPolynomial (Fin e) k) :
     substAlgHom P hP (Ideal.Quotient.mk _ f) = MvPolynomial.aeval P f := rfl
 
+/--
+@isnad1 id=eq.1h5v.s14.d6fb936a69e6 from=translated src=- shape=226bf55d vocab=3d3b0e5a
+-/
 theorem substAlgHom_X (P : Fin e → T) (hP : ∀ j, P j ∈ (𝔱)) (j : Fin e) :
     substAlgHom P hP (Ideal.Quotient.mk _ (MvPolynomial.X j)) = P j := by
   rw [substAlgHom_mk, MvPolynomial.aeval_X]
@@ -85,20 +97,35 @@ noncomputable def killFirst : P₁ →ₐ[k] P₀ := MvPolynomial.aeval (Fin.cas
 
 variable {k N M}
 
+/--
+@isnad1 id=eq.0h2v.s9.f78f79753332 from=translated src=- shape=cd100f63 vocab=f8d4ec73
+-/
 @[scoped simp] theorem killFirst_X_zero : killFirst k N (MvPolynomial.X 0) = 0 := by
   simp [killFirst]
 
+/--
+@isnad1 id=eq.0h3v.s8.789f59330a34 from=translated src=- shape=3bb5049a vocab=639e1dc2
+-/
 @[scoped simp] theorem killFirst_X_succ (i : Fin N) : killFirst k N (MvPolynomial.X i.succ) = MvPolynomial.X i := by
   simp [killFirst]
 
+/--
+@isnad1 id=eq.0h3v.s9.bce4d60d752a from=translated src=- shape=32440295 vocab=5dc75a1b
+-/
 theorem killFirst_rename_succ (p : P₀) : killFirst k N (MvPolynomial.rename Fin.succ p) = p := by
   rw [killFirst, MvPolynomial.aeval_rename]
   have : (Fin.cases (0 : P₀) MvPolynomial.X ∘ Fin.succ : Fin N → P₀) = MvPolynomial.X := funext fun i => by simp
   rw [this, MvPolynomial.aeval_X_left_apply]
 
+/--
+@isnad1 id=surjecti.0h2v.s8.81844c7a8c9d from=translated src=- shape=34cc8aca vocab=5dcd7e96
+-/
 theorem killFirst_surjective : Function.Surjective (killFirst k N) :=
   fun p => ⟨MvPolynomial.rename Fin.succ p, killFirst_rename_succ p⟩
 
+/--
+@isnad1 id=eq.0h3v.s10.2200876b6428 from=translated src=- shape=8979241d vocab=77192c98
+-/
 theorem killFirst_eq_eval_finSuccEquiv (q : P₁) :
     killFirst k N q = Polynomial.eval 0 (MvPolynomial.finSuccEquiv k N q) := by
   induction q using MvPolynomial.induction_on with
@@ -113,6 +140,9 @@ theorem killFirst_eq_eval_finSuccEquiv (q : P₁) :
     · simp [killFirst_X_zero, MvPolynomial.finSuccEquiv_X_zero]
     · simp [killFirst_X_succ, MvPolynomial.finSuccEquiv_X_succ]
 
+/--
+@isnad1 id=eq.0h2v.s9.e7a774cff9dd from=translated src=- shape=96dc6b32 vocab=984507df
+-/
 theorem ker_killFirst : RingHom.ker (killFirst k N) = Ideal.span {MvPolynomial.X 0} := by
   apply le_antisymm
   · intro p hp
@@ -129,6 +159,9 @@ theorem ker_killFirst : RingHom.ker (killFirst k N) = Ideal.span {MvPolynomial.X
   · rw [Ideal.span_le, Set.singleton_subset_iff, SetLike.mem_coe, RingHom.mem_ker]
     exact killFirst_X_zero
 
+/--
+@isnad1 id=eq.0h2v.s9.aac46ccc8b8c from=translated src=- shape=7877100a vocab=eb680864
+-/
 theorem map_killFirst_ker : (𝔫₁).map (killFirst k N) = (𝔫₀) := by
   rw [ker_constantCoeff_eq_span k (N + 1), ker_constantCoeff_eq_span k N, Ideal.map_span]
   apply le_antisymm
@@ -146,9 +179,15 @@ variable (k N M) in
 noncomputable def killFirstT : P₁ →ₐ[k] T₀ :=
   (Ideal.Quotient.mkₐ k ((𝔫₀) ^ (M + 1))).comp (killFirst k N)
 
+/--
+@isnad1 id=surjecti.0h3v.s11.ce8da8abdd98 from=translated src=- shape=4448d91f vocab=896db9a7
+-/
 theorem killFirstT_surjective : Function.Surjective (killFirstT k N M) :=
   (Ideal.Quotient.mkₐ_surjective k _).comp killFirst_surjective
 
+/--
+@isnad1 id=eq.0h3v.s12.633885f153e9 from=translated src=- shape=4169ecb2 vocab=31d91ab2
+-/
 theorem ker_killFirstT : RingHom.ker (killFirstT k N M) = (𝔫₁) ^ (M + 1) ⊔ Ideal.span {MvPolynomial.X 0} := by
   ext x
   rw [RingHom.mem_ker, killFirstT, AlgHom.comp_apply, Ideal.Quotient.mkₐ_eq_mk, Ideal.Quotient.eq_zero_iff_mem,
@@ -185,12 +224,21 @@ local notation "mk₁" => Ideal.Quotient.mk ((𝔫₁) ^ (M + 1))
 
 variable {k N M}
 
+/--
+@isnad1 id=mem.0h4v.s14.17678aecd9a3 from=translated src=- shape=306c4a60 vocab=4473dbd7
+-/
 theorem mk_X_mem (j : Fin (N + 1)) : (mk₁ (MvPolynomial.X j) : T₁) ∈ (𝔱₁) :=
   Ideal.mem_map_of_mem _ (X_mem_ker_constantCoeff k (N + 1) j)
 
+/--
+@isnad1 id=eq.0h3v.s14.c9a4a524b561 from=translated src=- shape=2c203cb9 vocab=b2268725
+-/
 theorem tI_eq_span : (𝔱₁) = Ideal.span (Set.range fun j : Fin (N + 1) => (mk₁ (MvPolynomial.X j) : T₁)) := by
   rw [ker_constantCoeff_eq_span k (N + 1), Ideal.map_span, ← Set.range_comp]; rfl
 
+/--
+@isnad1 id=ex.0h4v.s15.b7df70902909 from=translated src=- shape=bac519e9 vocab=7520bf46
+-/
 theorem exists_sub_algebraMap_mem (t : T₁) : ∃ a : k, t - algebraMap k T₁ a ∈ (𝔱₁) := by
   obtain ⟨p, rfl⟩ := Ideal.Quotient.mk_surjective t
   refine ⟨MvPolynomial.constantCoeff p, ?_⟩
@@ -198,6 +246,9 @@ theorem exists_sub_algebraMap_mem (t : T₁) : ∃ a : k, t - algebraMap k T₁ 
     ← map_sub]
   exact Ideal.mem_map_of_mem _ (by rw [RingHom.mem_ker, map_sub, MvPolynomial.constantCoeff_C, sub_self])
 
+/--
+@isnad1 id=ex.1h4v.s16.447b9858f4e2 from=translated src=- shape=5d028d1d vocab=40f5098c
+-/
 theorem exists_sub_sum_smul_mem_sq (x : T₁) (hx : x ∈ (𝔱₁)) :
     ∃ c : Fin (N + 1) → k, x - ∑ j, c j • (mk₁ (MvPolynomial.X j) : T₁) ∈ (𝔱₁) ^ 2 := by
   classical
@@ -212,6 +263,9 @@ theorem exists_sub_sum_smul_mem_sq (x : T₁) (hx : x ∈ (𝔱₁)) :
 
 variable (k N M) in
 
+/--
+@isnad1 id=nonempty.2h4v.s16.1670f7d7729e from=translated src=- shape=39408c41 vocab=78ea8e8d
+-/
 theorem main (x : T₁) (hx₁ : x ∈ (𝔱₁)) (hx₂ : x ∉ (𝔱₁) ^ 2) :
     Nonempty ((T₁ ⧸ Ideal.span ({x} : Set T₁)) ≃ₐ[k] T₀) := by
   classical
@@ -283,6 +337,9 @@ open scoped _root_.P2MW.S_MvPolynomial_nonempty_truncated_quotient_span_singleto
 
 open TruncElim in
 
+/--
+@isnad1 id=nonempty.2h4v.s16.1670f7d7729e from=translated src=- shape=39408c41 vocab=78ea8e8d
+-/
 theorem solution
     (k : Type*) [Field k] (N M : ℕ)
     (x : (MvPolynomial (Fin (N + 1)) k ⧸ (RingHom.ker (MvPolynomial.constantCoeff : MvPolynomial (Fin (N + 1)) k →+* k)) ^ (M + 1)))

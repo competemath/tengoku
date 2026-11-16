@@ -16,6 +16,9 @@ namespace FF2KE3
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
+/--
+@isnad1 id=isalgebr.1h4v.s8.d165f77346cd from=translated src=- shape=a3aa05a1 vocab=626aaf7d
+-/
 theorem isAlgebraic_adjoin_of_transcendental' (x : F)
     [halg : Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F]
     {t : F} (ht : Transcendental K t) :
@@ -49,6 +52,9 @@ theorem isAlgebraic_adjoin_of_transcendental' (x : F)
   have h := hS.isAlgebraic_field
   rwa [Subtype.range_coe] at h
 
+/--
+@isnad1 id=finitedi.1h4v.s8.0941a67396c8 from=translated src=- shape=a3aa05a1 vocab=64ffeb68
+-/
 theorem finiteDimensional_adjoin_of_transcendental' (x : F)
     [hfin : FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F]
     {t : F} (ht : Transcendental K t) :
@@ -88,6 +94,9 @@ theorem finiteDimensional_adjoin_of_transcendental' (x : F)
 
 end AlgebraicCurve.FF2KE3
 
+/--
+@isnad1 id=finitedi.1h4v.s8.0941a67396c8 from=translated src=- shape=a3aa05a1 vocab=64ffeb68
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (x : F)
     [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] {t : F} (ht : Transcendental K t) :
     FiniteDimensional (IntermediateField.adjoin K ({t} : Set F)) F :=

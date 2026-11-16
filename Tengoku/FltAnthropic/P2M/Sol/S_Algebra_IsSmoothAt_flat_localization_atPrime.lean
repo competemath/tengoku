@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open Algebra
 
+/--
+@isnad1 id=flat.0h3v.s7.99f827031c4b from=translated src=- shape=249c3e15 vocab=1f2f51af
+-/
 theorem solution (R A : Type) [CommRing R] [CommRing A] [Algebra R A]
     [Algebra.FinitePresentation R A] (p : Ideal A) [p.IsPrime] [Algebra.IsSmoothAt R p] :
     Module.Flat R (Localization.AtPrime p) := by

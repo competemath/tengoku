@@ -7,6 +7,9 @@ namespace P2MW.S_Algebra_FormallyUnramified_of_isReduced_of_perfectField
 
 namespace B7
 
+/--
+@isnad1 id=formally.0h2v.s6.e004f77110f2 from=translated src=- shape=fa9ae7f2 vocab=86b44ac9
+-/
 theorem formallyUnramified_of_isReduced (K B : Type*) [Field K]
     [PerfectField K] [CommRing B] [Algebra K B] [Module.Finite K B] [IsReduced B] :
     Algebra.FormallyUnramified K B := by
@@ -33,5 +36,8 @@ theorem formallyUnramified_of_isReduced (K B : Type*) [Field K]
   exact Algebra.FormallyUnramified.of_equiv e.symm
 end B7
 
+/--
+@isnad1 id=formally.0h2v.s6.e004f77110f2 from=translated src=- shape=fa9ae7f2 vocab=86b44ac9
+-/
 theorem solution (K B : Type*) [Field K] [PerfectField K] [CommRing B] [Algebra K B] [Module.Finite K B] [IsReduced B] : Algebra.FormallyUnramified K B :=
   B7.formallyUnramified_of_isReduced K B

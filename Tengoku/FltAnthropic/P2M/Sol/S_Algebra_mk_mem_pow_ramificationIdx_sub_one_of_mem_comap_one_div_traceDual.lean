@@ -14,6 +14,9 @@ attribute [local instance] FractionRing.liftAlgebra FractionRing.isScalarTower_l
 
 namespace KCAux
 
+/--
+@isnad1 id=issepara.2h6v.s10.227a287771e2 from=translated src=- shape=2a3ac43d vocab=1b5c8710
+-/
 theorem isSeparable_of_isUnramifiedAt
     (R : Type u) (S : Type u) [CommRing R] [CommRing S] [Algebra R S] [Algebra.EssFiniteType R S]
     (I : Ideal R) [I.IsPrime] (J : Ideal S) [J.IsPrime] [J.LiesOver I]
@@ -46,6 +49,9 @@ theorem isSeparable_of_isUnramifiedAt
   rw [AlgEquiv.commutes, AlgEquiv.commutes, ← IsScalarTower.algebraMap_apply,
     IsScalarTower.algebraMap_apply (R ⧸ I) (S ⧸ J) L', halg]
 
+/--
+@isnad1 id=mem.1h3v.s9.73f92c48b07f from=translated src=- shape=d919ae47 vocab=4d73fda2
+-/
 theorem mem_differentIdeal_of_forall_dual
     (A : Type u) [CommRing A] [IsDedekindDomain A]
     (B : Type u) [CommRing B] [IsDedekindDomain B] [Algebra A B] [Module.Finite A B] [Module.Free A B]
@@ -123,6 +129,9 @@ open KCAux in
 set_option synthInstance.maxHeartbeats 1600000 in
 set_option maxHeartbeats 6400000 in
 
+/--
+@isnad1 id=mem.6h8v.s12.7e8831e3d0ff from=translated src=- shape=fb0d1d8e vocab=b58ab3da
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsDomain R] [IsNoetherianRing R] [IsIntegrallyClosed R] [IsLocalRing R]
     (K : Type u) [Field K] [Algebra R K] [IsFractionRing R K]

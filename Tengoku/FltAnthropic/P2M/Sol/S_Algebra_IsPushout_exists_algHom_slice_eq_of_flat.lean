@@ -12,6 +12,9 @@ open TensorProduct
 
 universe u
 
+/--
+@isnad1 id=ex.7h8v.s11.ee5f9bb1f518 from=translated src=- shape=dc21f4a9 vocab=4684e78a
+-/
 theorem solution
     {B B₁ B' M N : Type u} [CommRing B] [CommRing B₁] [CommRing B'] [CommRing M] [CommRing N]
     [Algebra B B₁] [Algebra B' B₁] [Algebra B B'] [Algebra B M] [Algebra B' N] [Algebra M N] [Algebra B N]

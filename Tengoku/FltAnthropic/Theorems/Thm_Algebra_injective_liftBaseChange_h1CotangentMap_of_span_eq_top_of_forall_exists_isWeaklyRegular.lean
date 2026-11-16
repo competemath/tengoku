@@ -11,6 +11,9 @@ universe u v w w'
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=injectiv.2h4v.s12.412a5d302ae6 from=translated src=- shape=98c38695 vocab=a5fbbea3
+-/
 theorem Algebra.injective_liftBaseChange_h1CotangentMap_of_span_eq_top_of_forall_exists_isWeaklyRegular
     {R : Type u} [CommRing R] {S : Type v} [CommRing S] [Algebra R S]
     {T : Type w} [CommRing T] [Algebra R T] [Algebra S T] [IsScalarTower R S T]

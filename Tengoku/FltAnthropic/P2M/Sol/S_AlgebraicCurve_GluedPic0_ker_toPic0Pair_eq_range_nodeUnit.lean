@@ -80,6 +80,9 @@ end AlgebraicCurve
 
 end
 
+/--
+@isnad1 id=eq.1h3v.s14.12a33f3145d5 from=translated src=- shape=0f421509 vocab=309ff463
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F]
     (S : Finset (AlgebraicCurve.Place K F × AlgebraicCurve.Place K F))
     (hrat : ∀ s : ↥S,

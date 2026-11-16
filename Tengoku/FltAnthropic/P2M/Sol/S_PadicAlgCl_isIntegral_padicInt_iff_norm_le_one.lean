@@ -17,6 +17,9 @@ variable (p : ℕ) [Fact p.Prime]
 
 local notation "Ω" => PadicAlgCl p
 
+/--
+@isnad1 id=le.1h2v.s6.eafcbf67ae9b from=translated src=- shape=b9b9153e vocab=dc025562
+-/
 theorem norm_le_one_of_isIntegral {x : Ω} (hx : IsIntegral ℤ_[p] x) : ‖x‖ ≤ 1 := by
   have h1 : minpoly ℚ_[p] x = (minpoly ℤ_[p] x).map (algebraMap ℤ_[p] ℚ_[p]) :=
     minpoly.isIntegrallyClosed_eq_field_fractions' ℚ_[p] hx
@@ -26,6 +29,9 @@ theorem norm_le_one_of_isIntegral {x : Ω} (hx : IsIntegral ℤ_[p] x) : ‖x‖
   rw [h1, coeff_map]
   exact PadicInt.norm_le_one _
 
+/--
+@isnad1 id=isintegr.1h2v.s6.c05ee46230e0 from=translated src=- shape=082e132e vocab=dc025562
+-/
 theorem isIntegral_of_norm_le_one {x : Ω} (hx : ‖x‖ ≤ 1) : IsIntegral ℤ_[p] x := by
   have hint : IsIntegral ℚ_[p] x := Algebra.IsIntegral.isIntegral x
   have hmonic : (minpoly ℚ_[p] x).Monic := minpoly.monic hint
@@ -43,6 +49,9 @@ theorem isIntegral_of_norm_le_one {x : Ω} (hx : ‖x‖ ≤ 1) : IsIntegral ℤ
   rw [← aeval_def, ← minpoly.aeval ℚ_[p] x, aeval_def, aeval_def,
     IsScalarTower.algebraMap_eq ℤ_[p] ℚ_[p] Ω, ← eval₂_map, hgmap]
 
+/--
+@isnad1 id=iff.0h2v.s6.2b1fcc7ba260 from=translated src=- shape=073b9a6c vocab=dc025562
+-/
 theorem main (x : Ω) : IsIntegral ℤ_[p] x ↔ ‖x‖ ≤ 1 :=
   ⟨norm_le_one_of_isIntegral p, isIntegral_of_norm_le_one p⟩
 
@@ -50,5 +59,8 @@ end TP9P1
 
 end
 
+/--
+@isnad1 id=iff.0h2v.s6.2b1fcc7ba260 from=translated src=- shape=073b9a6c vocab=dc025562
+-/
 theorem solution (p : ℕ) [Fact p.Prime] (x : PadicAlgCl p) : IsIntegral ℤ_[p] x ↔ ‖x‖ ≤ 1 :=
   TP9P1.main p x

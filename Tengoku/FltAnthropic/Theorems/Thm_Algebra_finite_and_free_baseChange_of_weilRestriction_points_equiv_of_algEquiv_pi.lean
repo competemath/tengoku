@@ -11,6 +11,9 @@ open scoped TensorProduct
 
 universe u
 
+/--
+@isnad1 id=and.1h8v.s11.e6b53987cb19 from=translated src=- shape=7a8d39ff vocab=427fa74e
+-/
 theorem Algebra.finite_and_free_baseChange_of_weilRestriction_points_equiv_of_algEquiv_pi
     (A : Type u) [CommRing A] (B : Type u) [CommRing B] [Algebra A B]
     (H : Type u) [CommRing H] [Algebra B H] [Module.Finite B H] [Module.Free B H]

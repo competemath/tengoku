@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=linearin.5h6v.s10.76fdc73a1c9d from=translated src=- shape=7f31ff42 vocab=3598d825
+-/
 theorem Algebra.linearIndepOn_pow_localization_atPrime_of_mem_minimalPrimes_of_dense
     {k : Type u} [Field k] {B : Type u} [CommRing B] [Algebra k B] [Algebra.FiniteType k B] [IsReduced B]
     (p : ℕ) (hp : p.Prime) [ExpChar k p]

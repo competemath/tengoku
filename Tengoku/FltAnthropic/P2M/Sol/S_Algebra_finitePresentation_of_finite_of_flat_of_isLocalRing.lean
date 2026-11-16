@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u v
 
+/--
+@isnad1 id=finitepr.0h2v.s6.bdff0b6790ad from=translated src=- shape=3c006ed4 vocab=aac53082
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsLocalRing R] (C : Type v) [CommRing C] [Algebra R C]
     [Module.Finite R C] [Module.Flat R C] :

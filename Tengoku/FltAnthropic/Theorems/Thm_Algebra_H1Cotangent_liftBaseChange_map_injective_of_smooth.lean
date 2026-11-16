@@ -11,6 +11,9 @@ universe u
 
 open TensorProduct
 
+/--
+@isnad1 id=injectiv.0h3v.s10.718dd928661c from=translated src=- shape=383e4394 vocab=2a75fbf7
+-/
 theorem Algebra.H1Cotangent.liftBaseChange_map_injective_of_smooth (R S T : Type u)
     [CommRing R] [CommRing S] [CommRing T] [Algebra R S] [Algebra S T] [Algebra R T] [IsScalarTower R S T]
     [Algebra.Smooth S T] :

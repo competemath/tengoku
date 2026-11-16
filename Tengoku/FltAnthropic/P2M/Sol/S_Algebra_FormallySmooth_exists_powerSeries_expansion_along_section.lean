@@ -18,15 +18,27 @@ variable (R) in
 
 noncomputable abbrev JX : Ideal R⟦X⟧ := Ideal.span {X}
 
+/--
+@isnad1 id=eq.0h2v.s7.9a1b2a71491c from=translated src=- shape=d52bbb56 vocab=dbe051f5
+-/
 theorem JX_pow (n : ℕ) : JX R ^ n = Ideal.span {(X : R⟦X⟧) ^ n} :=
   Ideal.span_singleton_pow X n
 
+/--
+@isnad1 id=iff.0h3v.s8.61ead183d4c2 from=translated src=- shape=157e6ea7 vocab=bff409b6
+-/
 theorem mem_JX_pow {n : ℕ} {p : R⟦X⟧} : p ∈ JX R ^ n ↔ ∀ k, k < n → coeff k p = 0 := by
   rw [JX_pow, Ideal.mem_span_singleton, X_pow_dvd_iff]
 
+/--
+@isnad1 id=iff.0h2v.s7.283959ac219f from=translated src=- shape=1b2893e7 vocab=df09952a
+-/
 theorem mem_JX {p : R⟦X⟧} : p ∈ JX R ↔ constantCoeff p = 0 := by
   rw [Ideal.mem_span_singleton, X_dvd_iff]
 
+/--
+@isnad1 id=eq.2h5v.s11.73392909bc5f from=translated src=- shape=9d4b4ad8 vocab=7a6bddc2
+-/
 theorem coeff_eq_of_mk_eq {n k : ℕ} (hk : k < n) {p q : R⟦X⟧}
     (h : Ideal.Quotient.mk (JX R ^ n) p = Ideal.Quotient.mk (JX R ^ n) q) :
     coeff k p = coeff k q := by
@@ -34,6 +46,9 @@ theorem coeff_eq_of_mk_eq {n k : ℕ} (hk : k < n) {p q : R⟦X⟧}
   have := h k hk
   rwa [map_sub, sub_eq_zero] at this
 
+/--
+@isnad1 id=iff.0h3v.s7.e6d32b36ff14 from=translated src=- shape=23304175 vocab=3972b829
+-/
 theorem X_pow_succ_dvd_X_pow_mul_iff {n : ℕ} {y : R⟦X⟧} :
     (X : R⟦X⟧) ^ (n + 1) ∣ X ^ n * y ↔ constantCoeff y = 0 := by
   constructor
@@ -44,9 +59,15 @@ theorem X_pow_succ_dvd_X_pow_mul_iff {n : ℕ} {y : R⟦X⟧} :
     obtain ⟨z, rfl⟩ := X_dvd_iff.mpr h
     exact ⟨z, by ring⟩
 
+/--
+@isnad1 id=le.0h2v.s7.370fc68600b4 from=translated src=- shape=f9cc2012 vocab=b37b5151
+-/
 theorem JX_pow_le (n : ℕ) : JX R ^ (n + 2) ≤ JX R ^ (n + 1) :=
   Ideal.pow_le_pow_right (Nat.le_succ _)
 
+/--
+@isnad1 id=isnilpot.0h2v.s11.c421ec340037 from=translated src=- shape=43d61b9b vocab=0af83ac6
+-/
 theorem isNilpotent_ker_factor (n : ℕ) :
     IsNilpotent (RingHom.ker (Ideal.Quotient.factor (JX_pow_le (R := R) n))) := by
   refine ⟨2, ?_⟩
@@ -54,6 +75,9 @@ theorem isNilpotent_ker_factor (n : ℕ) :
     Ideal.map_eq_bot_iff_le_ker, Ideal.mk_ker]
   exact Ideal.pow_le_pow_right (by omega)
 
+/--
+@isnad1 id=strictmo.0h0v.s4.22cd382cff94 from=translated src=- shape=a257ebec vocab=c431414c
+-/
 theorem strictMono_add_two : StrictMono fun k : ℕ => k + 2 :=
   fun _ _ h => Nat.add_lt_add_right h 2
 
@@ -61,10 +85,19 @@ variable (e : A →ₐ[R] R)
 
 abbrev kerI : Ideal A := RingHom.ker e.toRingHom
 
+/--
+@isnad1 id=iff.0h4v.s7.d447f618dba2 from=translated src=- shape=37fc89ed vocab=abe05e38
+-/
 theorem mem_kerI {a : A} : a ∈ kerI e ↔ e a = 0 := RingHom.mem_ker
 
+/--
+@isnad1 id=eq.0h4v.s7.affac92af83d from=translated src=- shape=1d3488ab vocab=bf4cedfe
+-/
 theorem e_algebraMap (r : R) : e (algebraMap R A r) = r := e.commutes r
 
+/--
+@isnad1 id=mem.0h4v.s7.2a1015d5cbe9 from=translated src=- shape=13749656 vocab=4e14c6a4
+-/
 theorem sub_algebraMap_mem (a : A) : a - algebraMap R A (e a) ∈ kerI e := by
   rw [mem_kerI, map_sub, e_algebraMap, sub_self]
 
@@ -72,6 +105,9 @@ noncomputable def projI : A →ₗ[R] kerI e :=
   LinearMap.codRestrict ((kerI e).restrictScalars R)
     (LinearMap.id - (Algebra.linearMap R A) ∘ₗ e.toLinearMap) (sub_algebraMap_mem e)
 
+/--
+@isnad1 id=eq.0h4v.s9.d3298c310af7 from=translated src=- shape=bfc7103c vocab=46e811da
+-/
 @[scoped simp]
 theorem projI_coe (a : A) : (projI e a : A) = a - algebraMap R A (e a) := rfl
 
@@ -82,11 +118,17 @@ namespace IsPointDerivation
 
 variable {e} {D : A →ₗ[R] R}
 
+/--
+@isnad1 id=eq.1h4v.s8.01b43fcfd777 from=translated src=- shape=42079d59 vocab=e719fcc9
+-/
 theorem map_one (hD : IsPointDerivation e D) : D 1 = 0 := by
   have h := hD 1 1
   rw [mul_one, _root_.map_one e, one_mul] at h
   linear_combination -h
 
+/--
+@isnad1 id=eq.1h5v.s8.f998700e8b50 from=translated src=- shape=e07cd264 vocab=71f03719
+-/
 theorem map_algebraMap (hD : IsPointDerivation e D) (r : R) : D (algebraMap R A r) = 0 := by
   rw [Algebra.algebraMap_eq_smul_one, map_smul, hD.map_one, smul_zero]
 
@@ -133,6 +175,9 @@ noncomputable def liftStep (n : ℕ) (σ : A →ₐ[R] (R⟦X⟧ ⧸ JX R ^ (n +
   Algebra.FormallySmooth.liftOfSurjective σ (Ideal.Quotient.factorₐ R (JX_pow_le n))
     (Ideal.Quotient.factor_surjective (JX_pow_le n)) (isNilpotent_ker_factor n)
 
+/--
+@isnad1 id=eq.0h4v.s10.ec50abf0f885 from=translated src=- shape=3717ae6c vocab=74c2bb8a
+-/
 theorem factor_comp_liftStep (n : ℕ) (σ : A →ₐ[R] (R⟦X⟧ ⧸ JX R ^ (n + 1))) :
     (Ideal.Quotient.factorₐ R (JX_pow_le n)).comp (liftStep n σ) = σ :=
   Algebra.FormallySmooth.comp_liftOfSurjective _ _ _ _
@@ -142,6 +187,9 @@ noncomputable def tower {D : A →ₗ[R] R} (hD : IsPointDerivation e D) :
   | 0 => sigma2 e hD
   | k + 1 => liftStep (k + 1) (tower hD k)
 
+/--
+@isnad1 id=eq.1h5v.s11.2784bd284a19 from=translated src=- shape=89cb4b02 vocab=00e0a9db
+-/
 theorem tower_compat {D : A →ₗ[R] R} (hD : IsPointDerivation e D) (m : ℕ) :
     (Ideal.Quotient.factorPow (JX R) (strictMono_add_two.monotone m.le_succ)).comp
       (tower e hD (m + 1)).toRingHom = (tower e hD m).toRingHom :=
@@ -151,27 +199,42 @@ noncomputable def theta {D : A →ₗ[R] R} (hD : IsPointDerivation e D) : A →
   IsAdicComplete.StrictMono.liftRingHom (JX R) strictMono_add_two
     (fun k => (tower e hD k).toRingHom) (fun {m} => tower_compat e hD m)
 
+/--
+@isnad1 id=eq.1h6v.s11.b2135546ea32 from=translated src=- shape=cee73a12 vocab=3886a97e
+-/
 theorem mk_theta {D : A →ₗ[R] R} (hD : IsPointDerivation e D) (k : ℕ) (a : A) :
     Ideal.Quotient.mk (JX R ^ (k + 2)) (theta e hD a) = tower e hD k a :=
   IsAdicComplete.StrictMono.mk_liftRingHom (JX R) strictMono_add_two
     (fun k => (tower e hD k).toRingHom) (fun {m} => tower_compat e hD m) (n := k) a
 
+/--
+@isnad1 id=eq.1h5v.s8.bbcd46e7dd8a from=translated src=- shape=53df699a vocab=1d4fc7f1
+-/
 theorem theta_algebraMap {D : A →ₗ[R] R} (hD : IsPointDerivation e D) (r : R) :
     theta e hD (algebraMap R A r) = C r := by
   ext k
   refine coeff_eq_of_mk_eq (n := k + 2) (by omega) ?_
   rw [mk_theta, AlgHom.commutes, ← Ideal.Quotient.mk_algebraMap, ← C_eq_algebraMap]
 
+/--
+@isnad1 id=eq.1h5v.s11.082ea120ae5e from=translated src=- shape=a0a18823 vocab=68217a6f
+-/
 theorem mk_two_theta {D : A →ₗ[R] R} (hD : IsPointDerivation e D) (a : A) :
     Ideal.Quotient.mk (JX R ^ 2) (theta e hD a) =
       Ideal.Quotient.mk (JX R ^ 2) (C (e a) + C (D a) * X) :=
   mk_theta e hD 0 a
 
+/--
+@isnad1 id=eq.1h5v.s8.2d7d7b55e95b from=translated src=- shape=ee43a6ac vocab=f10818b1
+-/
 theorem constantCoeff_theta {D : A →ₗ[R] R} (hD : IsPointDerivation e D) (a : A) :
     constantCoeff (theta e hD a) = e a := by
   have h0 := coeff_eq_of_mk_eq (show 0 < 2 by norm_num) (mk_two_theta e hD a)
   rwa [map_add, coeff_zero_C, coeff_zero_mul_X, add_zero, coeff_zero_eq_constantCoeff_apply] at h0
 
+/--
+@isnad1 id=eq.1h5v.s8.8d24a0e0274c from=translated src=- shape=825704df vocab=eb73415e
+-/
 theorem coeff_one_theta {D : A →ₗ[R] R} (hD : IsPointDerivation e D) (a : A) :
     coeff 1 (theta e hD a) = D a := by
   have h1 := coeff_eq_of_mk_eq (show 1 < 2 by norm_num) (mk_two_theta e hD a)
@@ -183,16 +246,25 @@ section Triangular
 
 variable {e}
 
+/--
+@isnad1 id=mem.2h5v.s8.507f6900cb65 from=translated src=- shape=47466181 vocab=8599a182
+-/
 theorem theta_mem_JX {θ : A →+* R⟦X⟧} (hθ0 : ∀ a, constantCoeff (θ a) = e a) {a : A}
     (ha : a ∈ kerI e) : θ a ∈ JX R := by
   rw [mem_JX, hθ0]
   exact (mem_kerI e).mp ha
 
+/--
+@isnad1 id=mem.2h6v.s9.98f14ee59940 from=translated src=- shape=2eb28881 vocab=8f9a0d75
+-/
 theorem theta_mem_JX_pow {θ : A →+* R⟦X⟧} (hθ0 : ∀ a, constantCoeff (θ a) = e a) {n : ℕ}
     {a : A} (ha : a ∈ kerI e ^ n) : θ a ∈ JX R ^ n := by
   have h1 : kerI e ≤ (JX R).comap θ := fun x hx => theta_mem_JX hθ0 hx
   exact ((Ideal.pow_right_mono h1 n).trans (Ideal.le_comap_pow θ n)) ha
 
+/--
+@isnad1 id=ex.3h6v.s9.b5d4528494c5 from=translated src=- shape=10a21952 vocab=f0bd9b1e
+-/
 theorem gen_pow {t₀ : A} (ht₀ : t₀ ∈ kerI e)
     (hgen : ∀ x ∈ kerI e, ∃ r : R, x - algebraMap R A r * t₀ ∈ kerI e ^ 2) (n : ℕ) :
     ∀ b ∈ kerI e ^ n, ∃ r : R, b - algebraMap R A r * t₀ ^ n ∈ kerI e ^ (n + 1) := by
@@ -231,6 +303,9 @@ theorem gen_pow {t₀ : A} (ht₀ : t₀ ∈ kerI e)
       rw [hxy]
       exact add_mem hr hs
 
+/--
+@isnad1 id=ex.3h5v.s9.76bde1de87c5 from=translated src=- shape=d7738622 vocab=f00572f8
+-/
 theorem exists_theta_t0_eq {θ : A →+* R⟦X⟧} (hθ0 : ∀ a, constantCoeff (θ a) = e a) {t₀ : A}
     (ht₀ : t₀ ∈ kerI e) (hθ1 : coeff 1 (θ t₀) = 1) :
     ∃ v : R⟦X⟧, θ t₀ = X * v ∧ constantCoeff v = 1 := by
@@ -240,6 +315,9 @@ theorem exists_theta_t0_eq {θ : A →+* R⟦X⟧} (hθ0 : ∀ a, constantCoeff 
   rw [zero_add, ← hv, hθ1, coeff_zero_eq_constantCoeff_apply] at h
   exact h.symm
 
+/--
+@isnad1 id=mem.6h7v.s10.18af0495edc2 from=translated src=- shape=feebf8ce vocab=bb2016c5
+-/
 theorem mem_pow_of_theta_mem {θ : A →+* R⟦X⟧} (hθC : ∀ r, θ (algebraMap R A r) = C r)
     (hθ0 : ∀ a, constantCoeff (θ a) = e a) {t₀ : A} (ht₀ : t₀ ∈ kerI e)
     (hθ1 : coeff 1 (θ t₀) = 1)
@@ -266,6 +344,9 @@ theorem mem_pow_of_theta_mem {θ : A →+* R⟦X⟧} (hθC : ∀ r, θ (algebraM
     rw [h2, map_zero, zero_mul, sub_zero] at hr
     exact hr
 
+/--
+@isnad1 id=ex.4h7v.s9.38fc999e38c3 from=translated src=- shape=1d46e4b8 vocab=3db81166
+-/
 theorem exists_sub_theta_mem {θ : A →+* R⟦X⟧} (hθC : ∀ r, θ (algebraMap R A r) = C r)
     (hθ0 : ∀ a, constantCoeff (θ a) = e a) {t₀ : A} (ht₀ : t₀ ∈ kerI e)
     (hθ1 : coeff 1 (θ t₀) = 1) :
@@ -293,6 +374,9 @@ theorem exists_sub_theta_mem {θ : A →+* R⟦X⟧} (hθC : ∀ r, θ (algebraM
 
 end Triangular
 
+/--
+@isnad1 id=ex.4h5v.s10.4299f55be870 from=translated src=- shape=ec119501 vocab=99d8f4db
+-/
 theorem main [Algebra.FormallySmooth R A] {D : A →ₗ[R] R} (hD : IsPointDerivation e D)
     {t₀ : A} (ht₀ : t₀ ∈ kerI e) (hDt : D t₀ = 1)
     (hgen : ∀ x ∈ kerI e, ∃ r : R, x - algebraMap R A r * t₀ ∈ kerI e ^ 2) :
@@ -316,6 +400,9 @@ theorem main [Algebra.FormallySmooth R A] {D : A →ₗ[R] R} (hD : IsPointDeriv
     rw [map_sub, sub_eq_zero] at this
     exact this.symm
 
+/--
+@isnad1 id=ex.1h3v.s9.50b78b19cb96 from=translated src=- shape=dbb92315 vocab=0bfadcf7
+-/
 theorem exists_data [Module.Free R (kerI e).Cotangent]
     (he : Module.finrank R (kerI e).Cotangent = 1) :
     ∃ (D : A →ₗ[R] R) (t₀ : A), IsPointDerivation e D ∧ t₀ ∈ kerI e ∧ D t₀ = 1 ∧
@@ -364,6 +451,9 @@ end P2M.TadicPS
 open scoped _root_.P2MW.S_Algebra_FormallySmooth_exists_powerSeries_expansion_along_section.P2M _root_.P2MW.S_Algebra_FormallySmooth_exists_powerSeries_expansion_along_section.P2M.TadicPS
 open scoped _root_.P2MW.S_Algebra_FormallySmooth_exists_powerSeries_expansion_along_section.P2M
 
+/--
+@isnad1 id=ex.1h3v.s10.4c4233812105 from=translated src=- shape=1bff5a8f vocab=edc4c7e9
+-/
 theorem solution
     {R : Type u} {A : Type v} [CommRing R] [CommRing A] [Algebra R A] [Algebra.FormallySmooth R A]
     (e : A →ₐ[R] R) [Module.Free R (RingHom.ker e.toRingHom).Cotangent]

@@ -14,6 +14,9 @@ open IsLocalRing
 
 namespace DvrExtFinite
 
+/--
+@isnad1 id=dimensio.1h1v.s5.640caddac493 from=translated src=- shape=50208249 vocab=4c899cc1
+-/
 theorem dimensionLEOne_of_ringKrullDim_le_one (C : Type v) [CommRing C] [IsDomain C]
     (h : ringKrullDim C ≤ 1) : Ring.DimensionLEOne C := by
   refine Ring.DimensionLEOne.mk (fun {p} hp0 hp => ?_)
@@ -34,6 +37,9 @@ theorem dimensionLEOne_of_ringKrullDim_le_one (C : Type v) [CommRing C] [IsDomai
   have h6 : ((2 : ℕ∞) : WithBot ℕ∞) ≤ 1 := le_trans h5 h
   exact absurd h6 (by decide)
 
+/--
+@isnad1 id=ex.1h3v.s9.e1cb8f982216 from=translated src=- shape=6abc09ad vocab=8e6f8f4b
+-/
 theorem main
     {F : Type u} {E : Type v} [Field F] [Field E] [Algebra F E] [FiniteDimensional F E]
     (W : ValuationSubring F) (hW : IsDiscreteValuationRing ↥W) :
@@ -103,6 +109,9 @@ theorem main
 
 end DvrExtFinite
 
+/--
+@isnad1 id=ex.1h3v.s9.e1cb8f982216 from=translated src=- shape=6abc09ad vocab=8e6f8f4b
+-/
 theorem solution
     {F : Type u} {E : Type v} [Field F] [Field E] [Algebra F E] [FiniteDimensional F E]
     (W : ValuationSubring F) (hW : IsDiscreteValuationRing ↥W) :

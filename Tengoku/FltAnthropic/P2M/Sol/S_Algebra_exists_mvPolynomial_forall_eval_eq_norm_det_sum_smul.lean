@@ -24,6 +24,9 @@ noncomputable def genDet : MvPolynomial (Fin n) E := (genMat E m n e).det
 noncomputable def evE (c : Fin n → ℝ) : MvPolynomial (Fin n) E →+* E :=
   MvPolynomial.eval fun a => algebraMap ℝ E (c a)
 
+/--
+@isnad1 id=eq.0h5v.s8.f75929227f01 from=translated src=- shape=b47b56e9 vocab=aed0f139
+-/
 theorem evE_genMat (c : Fin n → ℝ) :
     (evE E n c).mapMatrix (genMat E m n e) = ∑ a, c a • e a := by
   ext p q
@@ -33,9 +36,15 @@ theorem evE_genMat (c : Fin n → ℝ) :
   refine Finset.sum_congr rfl fun a _ => ?_
   rw [map_mul, evE, MvPolynomial.eval_X, MvPolynomial.eval_C, Algebra.smul_def]
 
+/--
+@isnad1 id=eq.0h5v.s8.d3dbab7e5410 from=translated src=- shape=fcc0165c vocab=2c345a66
+-/
 theorem evE_genDet (c : Fin n → ℝ) : evE E n c (genDet E m n e) = (∑ a, c a • e a).det := by
   rw [genDet, RingHom.map_det, evE_genMat]
 
+/--
+@isnad1 id=eq.0h4v.s8.40f68cfe7003 from=translated src=- shape=809704aa vocab=91074b71
+-/
 theorem evE_eq_sum (c : Fin n → ℝ) (D : MvPolynomial (Fin n) E) :
     evE E n c D = ∑ s ∈ D.support, (s.prod fun a k => c a ^ k) • MvPolynomial.coeff s D := by
   conv_lhs => rw [MvPolynomial.as_sum D]
@@ -52,6 +61,9 @@ noncomputable def lmPoly : Matrix κ κ (MvPolynomial (Fin n) ℝ) :=
   ∑ s ∈ (genDet E m n e).support,
     (Algebra.leftMulMatrix b (MvPolynomial.coeff s (genDet E m n e))).map fun r => MvPolynomial.monomial s r
 
+/--
+@isnad1 id=eq.0h7v.s8.66c6a6dc1105 from=translated src=- shape=bd2d3096 vocab=e2529598
+-/
 theorem eval_lmPoly (c : Fin n → ℝ) :
     (MvPolynomial.eval c).mapMatrix (lmPoly E m n e b) =
       Algebra.leftMulMatrix b (evE E n c (genDet E m n e)) := by
@@ -65,6 +77,9 @@ theorem eval_lmPoly (c : Fin n → ℝ) :
 end P2mPoly
 
 open P2mPoly in
+/--
+@isnad1 id=ex.0h4v.s8.ba3054614c50 from=translated src=- shape=fb815832 vocab=d9a8106d
+-/
 theorem solution
     (E : Type) [CommRing E] [Algebra ℝ E] [Module.Free ℝ E] [Module.Finite ℝ E]
     (m : Type) [Fintype m] [DecidableEq m]

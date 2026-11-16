@@ -12,6 +12,9 @@ open IsLocalRing Polynomial TensorProduct
 
 universe u v
 
+/--
+@isnad1 id=ex.2h2v.s9.3ed6eaa62935 from=translated src=- shape=7a6ac5bf vocab=ca719685
+-/
 theorem solution
     {A : Type u} {S : Type v} [CommRing A] [IsLocalRing A] [CommRing S] [IsLocalRing S]
     [Algebra A S] [IsLocalHom (algebraMap A S)] [Algebra.FormallySmooth A S] [Algebra.EssFiniteType A S]

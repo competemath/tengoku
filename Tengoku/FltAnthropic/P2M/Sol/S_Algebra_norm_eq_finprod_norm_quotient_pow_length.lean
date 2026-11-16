@@ -12,6 +12,9 @@ universe u v w
 
 namespace NormDecomp
 
+/--
+@isnad1 id=finite.0h3v.s7.4f9504612b6e from=translated src=- shape=397bb938 vocab=33d2a3ed
+-/
 theorem moduleFinite_localization_atPrime_of_moduleFinite
     (K : Type u) (A : Type v) [Field K] [CommRing A] [Algebra K A] [Module.Finite K A] (m : MaximalSpectrum A) :
     Module.Finite K (Localization.AtPrime m.asIdeal) := by
@@ -20,6 +23,9 @@ theorem moduleFinite_localization_atPrime_of_moduleFinite
     (IsScalarTower.toAlgHom K A (Localization.AtPrime m.asIdeal)).toLinearMap
     (IsArtinianRing.localization_surjective m.asIdeal.primeCompl _)
 
+/--
+@isnad1 id=eq.0h2v.s8.95a60bfdbb8d from=translated src=- shape=2ccabf5a vocab=533fae79
+-/
 theorem finrank_eq_sum_finrank_localization_atPrime
     (K : Type u) (A : Type v) [Field K] [CommRing A] [Algebra K A] [Module.Finite K A] [Fintype (MaximalSpectrum A)] :
     Module.finrank K A = ∑ m : MaximalSpectrum A, Module.finrank K (Localization.AtPrime m.asIdeal) := by
@@ -37,6 +43,9 @@ namespace NormDecomp
 
 open IsLocalRing
 
+/--
+@isnad1 id=eq.0h3v.s8.428369603ac4 from=translated src=- shape=fd190431 vocab=6241dba9
+-/
 theorem finrank_eq_finrank_residueField_mul_length
     (K : Type u) (L : Type v) (M : Type w) [Field K] [CommRing L] [IsLocalRing L] [Algebra K L]
     [AddCommGroup M] [Module L M] [Module K M] [IsScalarTower K L M] [Module.Finite K M] :
@@ -113,6 +122,9 @@ open Polynomial
 
 namespace NormDecomp
 
+/--
+@isnad1 id=eq.0h8v.s12.d22588f2a121 from=translated src=- shape=563e5fec vocab=bd59052f
+-/
 theorem toMatrix_prod_eq_fromBlocks {K : Type u} [CommRing K] {N P : Type v} [AddCommGroup N] [Module K N]
     [AddCommGroup P] [Module K P] {ιN ιP : Type*} [Fintype ιN] [Fintype ιP] [DecidableEq ιN] [DecidableEq ιP]
     (bN : Module.Basis ιN K N) (bP : Module.Basis ιP K P) (f : (N × P) →ₗ[K] (N × P)) :
@@ -127,6 +139,9 @@ theorem toMatrix_prod_eq_fromBlocks {K : Type u} [CommRing K] {N P : Type v} [Ad
     simp [LinearMap.toMatrix_apply, Matrix.fromBlocks, Module.Basis.prod_apply, Module.Basis.prod_repr_inl,
       Module.Basis.prod_repr_inr]
 
+/--
+@isnad1 id=eq.1h4v.s9.4d675d4846de from=translated src=- shape=afb42b48 vocab=389b4b68
+-/
 theorem charpoly_eq_charpoly_restrict_mul_charpoly_quotient
     {K : Type u} [Field K] {V : Type v} [AddCommGroup V] [Module K V] [FiniteDimensional K V]
     (T : V →ₗ[K] V) (N : Submodule K V) (hN : N ≤ N.comap T) :
@@ -198,6 +213,9 @@ open Polynomial
 
 namespace NormDecomp
 
+/--
+@isnad1 id=eq.0h3v.s6.f078a5137470 from=translated src=- shape=9582ecb0 vocab=6f85131d
+-/
 theorem charpoly_eq_one_of_subsingleton' {K : Type v} [CommRing K] {V : Type w} [AddCommGroup V] [Module K V]
     [Module.Free K V] [Module.Finite K V] [Subsingleton V] (f : V →ₗ[K] V) : f.charpoly = 1 := by
   rcases subsingleton_or_nontrivial K with hK | hK
@@ -205,6 +223,9 @@ theorem charpoly_eq_one_of_subsingleton' {K : Type v} [CommRing K] {V : Type w} 
   · exact Polynomial.eq_one_of_monic_natDegree_zero f.charpoly_monic
       (by rw [LinearMap.charpoly_natDegree, Module.finrank_zero_of_subsingleton])
 
+/--
+@isnad1 id=eq.0h4v.s8.b6cf7b150190 from=translated src=- shape=62ea0465 vocab=d9355300
+-/
 theorem charpoly_pi {K : Type v} [CommRing K] (ι : Type u) [Fintype ι] :
     ∀ (M : ι → Type w) [∀ i, AddCommGroup (M i)] [∀ i, Module K (M i)]
       [∀ i, Module.Free K (M i)] [∀ i, Module.Finite K (M i)] (f : ∀ i, M i →ₗ[K] M i),
@@ -246,6 +267,9 @@ theorem charpoly_pi {K : Type v} [CommRing K] (ι : Type u) [Fintype ι] :
     rw [← LinearEquiv.charpoly_conj L, hconj, LinearMap.charpoly_prodMap, hα (fun a => M (some a)) (fun a => f (some a)),
       Fintype.prod_option]
 
+/--
+@isnad1 id=finite.0h3v.s7.4f9504612b6e from=translated src=- shape=397bb938 vocab=33d2a3ed
+-/
 scoped instance moduleFinite_localization_atPrime_inst
     {K : Type u} {A : Type v} [Field K] [CommRing A] [Algebra K A] [Module.Finite K A] (m : MaximalSpectrum A) :
     Module.Finite K (Localization.AtPrime m.asIdeal) := by
@@ -254,6 +278,9 @@ scoped instance moduleFinite_localization_atPrime_inst
     (IsScalarTower.toAlgHom K A (Localization.AtPrime m.asIdeal)).toLinearMap
     (IsArtinianRing.localization_surjective m.asIdeal.primeCompl _)
 
+/--
+@isnad1 id=eq.0h3v.s9.ed0a6928669a from=translated src=- shape=a126788e vocab=f54c633c
+-/
 theorem charpoly_mulLeft_eq_prod_localization
     (K : Type u) (A : Type v) [Field K] [CommRing A] [Algebra K A] [Module.Finite K A] [Fintype (MaximalSpectrum A)]
     (a : A) :
@@ -286,11 +313,17 @@ open Polynomial IsLocalRing
 
 namespace NormDecomp
 
+/--
+@isnad1 id=eq.0h3v.s7.21b911b4f19f from=translated src=- shape=8a4f0d96 vocab=12cb50e9
+-/
 theorem charpoly_eq_one_of_subsingleton {K : Type u} [Field K] {V : Type v} [AddCommGroup V] [Module K V]
     [Module.Finite K V] [Subsingleton V] (f : V →ₗ[K] V) : f.charpoly = 1 :=
   Polynomial.eq_one_of_monic_natDegree_zero f.charpoly_monic
     (by rw [LinearMap.charpoly_natDegree, Module.finrank_zero_of_subsingleton])
 
+/--
+@isnad1 id=eq.0h4v.s9.acfc875dc34e from=translated src=- shape=125bcf10 vocab=64e2867c
+-/
 theorem charpoly_smul_eq_pow_length
     (K : Type u) (L : Type v) [Field K] [CommRing L] [IsLocalRing L] [Algebra K L]
     [Module.Finite K (ResidueField L)] (a : L)
@@ -451,6 +484,9 @@ noncomputable def quotMaxAlgEquivResidueField
     rw [← map_mul (residue _), IsLocalization.mk'_spec, ← hψmk a, ← hψmk (s : A), ← map_mul ψ₀, mul_assoc,
       hts, mul_one]
 
+/--
+@isnad1 id=eq.0h4v.s10.6bfefaa2acc9 from=translated src=- shape=a1323218 vocab=8ef8cea3
+-/
 theorem quotMaxAlgEquivResidueField_mk
     (K : Type u) [Field K] (A : Type v) [CommRing A] [Algebra K A] (𝔪 : Ideal A) [𝔪.IsMaximal] (a : A) :
     quotMaxAlgEquivResidueField K A 𝔪 (Ideal.Quotient.mk 𝔪 a) =
@@ -460,6 +496,9 @@ end ResidueAlgEquiv
 open scoped _root_.P2MW.S_Algebra_norm_eq_finprod_norm_quotient_pow_length.NormDecomp
 section ConjLemmas
 
+/--
+@isnad1 id=eq.0h5v.s8.9c55eedfcbe1 from=translated src=- shape=474c4215 vocab=2fe581bf
+-/
 theorem charpoly_mulLeft_algEquiv {K : Type u} [CommRing K] {B : Type v} {C : Type w} [Ring B] [Ring C]
     [Algebra K B] [Algebra K C] [Module.Free K B] [Module.Finite K B] [Module.Free K C] [Module.Finite K C]
     (Φ : B ≃ₐ[K] C) (b : B) :
@@ -473,10 +512,16 @@ theorem charpoly_mulLeft_algEquiv {K : Type u} [CommRing K] {B : Type v} {C : Ty
   congr 1
   exact Φ.toLinearEquiv.apply_symm_apply z
 
+/--
+@isnad1 id=eq.0h3v.s7.a4ba6692c213 from=translated src=- shape=cb7daad5 vocab=e787ad03
+-/
 theorem mulLeft_eq_toLinearMap {K : Type u} [CommRing K] {L : Type v} [CommRing L] [Algebra K L] (a : L) :
     (LinearMap.mulLeft K a : L →ₗ[K] L) = DistribSMul.toLinearMap K L a := by
   apply LinearMap.ext; intro z; rfl
 
+/--
+@isnad1 id=finite.0h2v.s6.c8d343e1439d from=translated src=- shape=a4860921 vocab=61ff4eb4
+-/
 theorem moduleFinite_residueField (K : Type u) [Field K] (L : Type v) [CommRing L] [IsLocalRing L] [Algebra K L]
     [Module.Finite K L] : Module.Finite K (ResidueField L) :=
   Module.Finite.of_surjective (IsScalarTower.toAlgHom K L (ResidueField L)).toLinearMap Ideal.Quotient.mk_surjective
@@ -487,6 +532,9 @@ end NormDecomp
 open scoped _root_.P2MW.S_Algebra_norm_eq_finprod_norm_quotient_pow_length.NormDecomp
 
 open IsLocalRing Polynomial in
+/--
+@isnad1 id=eq.0h3v.s9.3a9b39f7ca5b from=translated src=- shape=9ee99b95 vocab=17909865
+-/
 theorem solution
     (K : Type u) [Field K] (A : Type v) [CommRing A] [Algebra K A] [Module.Finite K A] (a : A) :
     Algebra.norm K a =

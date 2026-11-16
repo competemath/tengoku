@@ -16,6 +16,9 @@ namespace Algebra export _root_.Algebra (ofId commutes mk algebraMap IsIntegral.
 open scoped _root_.Algebra in
 open TensorProduct in
 
+/--
+@isnad1 id=eq.0h2v.s7.f8d2342ddf04 from=translated src=- shape=47adc5ed vocab=06626b49
+-/
 theorem Algebra.natCard_algHom_eq_finrank_of_isReduced_of_isAlgClosed
     (K : Type u) [Field K] [IsAlgClosed K] (L : Type u) [CommRing L] [Algebra K L]
     [Module.Finite K L] [IsReduced L] :
@@ -85,6 +88,9 @@ theorem Algebra.natCard_algHom_eq_finrank_of_isReduced_of_isAlgClosed
 
 open TensorProduct in
 
+/--
+@isnad1 id=eq.0h3v.s9.1e45620b8c44 from=translated src=- shape=1ee50cb7 vocab=5e3a5990
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsDomain R] [ValuationRing R]
     (K : Type u) [Field K] [Algebra R K] [IsFractionRing R K] [IsAlgClosed K]

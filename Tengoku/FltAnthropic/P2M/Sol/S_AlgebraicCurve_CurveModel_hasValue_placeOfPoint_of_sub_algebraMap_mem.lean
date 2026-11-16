@@ -25,6 +25,9 @@ export _root_.AlgebraicCurve.CurveModel (placeOfPoint toBase C range_stalk_eq ff
 namespace PlaceRead
 open _root_.AlgebraicCurve.CurveModel open _root_.AlgebraicCurve
 
+/--
+@isnad1 id=injectiv.0h2v.s8.1b2b1ca2aad5 from=translated src=- shape=319cb11e vocab=58f82534
+-/
 theorem algebraMap_stalk_injective {X : Scheme.{u}} [IsIntegral X] (x : X) :
     Function.Injective (algebraMap (X.presheaf.stalk x) X.functionField) := by
   rw [injective_iff_map_eq_zero]
@@ -39,6 +42,9 @@ theorem algebraMap_stalk_injective {X : Scheme.{u}} [IsIntegral X] (x : X) :
   have : s' = 0 := germ_injective_of_isIntegral _ (genericPoint X) hξU (by rw [hs, map_zero])
   rw [this, map_zero]
 
+/--
+@isnad1 id=not.1h5v.s13.069c79583f28 from=translated src=- shape=7020e7ca vocab=03058236
+-/
 theorem not_isUnit_germ_appIso_inv_of_mem {X : Scheme.{u}} {B : CommRingCat.{u}} (G : Spec B ⟶ X) [IsOpenImmersion G]
     (z : ↥(Spec B)) (f : B) (hf : f ∈ z.asIdeal) :
     ¬ IsUnit (X.presheaf.germ (G ''ᵁ ⊤) (G.base z) ⟨z, trivial, rfl⟩ ((G.appIso ⊤).inv ((Scheme.ΓSpecIso B).inv f))) := by
@@ -51,6 +57,9 @@ theorem not_isUnit_germ_appIso_inv_of_mem {X : Scheme.{u}} {B : CommRingCat.{u}}
   subst this
   exact (PrimeSpectrum.mem_basicOpen f z').mp hz' hf
 
+/--
+@isnad1 id=eq.1h7v.s12.45d6a8124c3a from=translated src=- shape=6a887928 vocab=fab9df55
+-/
 theorem germToFunctionField_appIso_inv_base {Y : Scheme.{u}} [IsIntegral Y] {B : CommRingCat.{u}} (G : Spec B ⟶ Y)
     [IsOpenImmersion G] {K : Type u} [Field K] (y : Y ⟶ Spec (CommRingCat.of K)) (c : CommRingCat.of K ⟶ B)
     (hc : G ≫ y = Spec.map c) [Nonempty ((G ''ᵁ ⊤ : Y.Opens) : Scheme.{u})] (k : K) :
@@ -67,6 +76,9 @@ theorem germToFunctionField_appIso_inv_base {Y : Scheme.{u}} [IsIntegral Y] {B :
 
 variable {K : Type u} [Field K] {L : Type v} [Field L] [Algebra K L]
 
+/--
+@isnad1 id=hasvalue.3h8v.s13.b1cdbb90a69f from=translated src=- shape=74da556c vocab=72e17ffe
+-/
 theorem hasValue_placeOfPoint_of_sub_algebraMap_mem (M : CurveModel K L)
     {B : Type u} [CommRing B] [Algebra K B] (G : Spec (CommRingCat.of B) ⟶ M.C) [IsOpenImmersion G]
     (hG : G ≫ M.toBase = Spec.map (CommRingCat.ofHom (algebraMap K B)))
@@ -130,6 +142,9 @@ theorem hasValue_placeOfPoint_of_sub_algebraMap_mem (M : CurveModel K L)
 end AlgebraicCurve.CurveModel.PlaceRead
 
 open AlgebraicCurve.CurveModel.PlaceRead in
+/--
+@isnad1 id=hasvalue.3h8v.s13.b1cdbb90a69f from=translated src=- shape=74da556c vocab=72e17ffe
+-/
 theorem solution
     {K : Type u} [Field K] {L : Type v} [Field L] [Algebra K L] (M : CurveModel K L)
     {B : Type u} [CommRing B] [Algebra K B] (G : Spec (CommRingCat.of B) ⟶ M.C) [IsOpenImmersion G]

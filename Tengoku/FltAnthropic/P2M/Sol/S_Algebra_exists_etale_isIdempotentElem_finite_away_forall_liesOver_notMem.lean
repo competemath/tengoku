@@ -22,12 +22,24 @@ def compl (e : T) : T := 1 - e
 
 def join (e f : T) : T := e + f - e * f
 
+/--
+@isnad1 id=eq.0h2v.s5.6445adb26bba from=translated src=- shape=b1d1c252 vocab=cc1980c2
+-/
 theorem compl_def (e : T) : compl e = 1 - e := rfl
+/--
+@isnad1 id=eq.0h3v.s6.3caa4c7adf1e from=translated src=- shape=cfb28359 vocab=436ba433
+-/
 theorem join_def (e f : T) : join e f = e + f - e * f := rfl
 
+/--
+@isnad1 id=isidempo.2h3v.s5.b389aaaa480c from=translated src=- shape=614253cd vocab=ef8b94e3
+-/
 theorem IsIdempotentElem.join' {e f : T} (he : IsIdempotentElem e) (hf : IsIdempotentElem f) :
     IsIdempotentElem (join e f) := he.add_sub_mul hf
 
+/--
+@isnad1 id=away.0h2v.s6.a9d2dcabf8a5 from=translated src=- shape=df7ec997 vocab=f3895033
+-/
 scoped instance isLocalizationAway_quot (e : T) [Fact (IsIdempotentElem e)] :
     IsLocalization.Away e (T ⧸ Ideal.span {compl e}) :=
   IsLocalization.away_of_isIdempotentElem (Fact.out) Ideal.mk_ker Ideal.Quotient.mk_surjective
@@ -37,11 +49,17 @@ noncomputable def awayEquivQuot (e : T) (he : IsIdempotentElem e) :
   haveI : Fact (IsIdempotentElem e) := ⟨he⟩
   IsLocalization.algEquiv (Submonoid.powers e) (Localization.Away e) (T ⧸ Ideal.span {compl e})
 
+/--
+@isnad1 id=iff.1h3v.s8.95fed4c1d599 from=translated src=- shape=93828506 vocab=e1c14a6f
+-/
 theorem finite_away_iff (A : Type*) [CommRing A] [Algebra A T] (e : T) (he : IsIdempotentElem e) :
     Module.Finite A (Localization.Away e) ↔ Module.Finite A (T ⧸ Ideal.span {compl e}) := by
   let f := (awayEquivQuot e he).restrictScalars A
   exact ⟨fun _ => Module.Finite.equiv f.toLinearEquiv, fun _ => Module.Finite.equiv f.symm.toLinearEquiv⟩
 
+/--
+@isnad1 id=iff.2h3v.s7.13561fc26ca0 from=translated src=- shape=caa99369 vocab=c21b42a7
+-/
 theorem mem_iff_one_sub_not_mem {e : T} (he : IsIdempotentElem e) {Q : Ideal T} (hQ : Q.IsPrime) :
     e ∈ Q ↔ 1 - e ∉ Q := by
   constructor
@@ -56,6 +74,9 @@ theorem mem_iff_one_sub_not_mem {e : T} (he : IsIdempotentElem e) {Q : Ideal T} 
       exact Q.zero_mem
     exact (hQ.mem_or_mem h0).resolve_right h
 
+/--
+@isnad1 id=iff.3h4v.s7.008d722d4c37 from=translated src=- shape=02f7001e vocab=08067db0
+-/
 theorem join_mem_iff {e f : T} (he : IsIdempotentElem e) (hf : IsIdempotentElem f) {Q : Ideal T}
     (hQ : Q.IsPrime) : join e f ∈ Q ↔ e ∈ Q ∧ f ∈ Q := by
   have hj : IsIdempotentElem (join e f) := IsIdempotentElem.join' he hf
@@ -69,6 +90,9 @@ theorem join_mem_iff {e f : T} (he : IsIdempotentElem e) (hf : IsIdempotentElem 
     rcases hQ.mem_or_mem h with h' | h'
     exacts [h1 h', h2 h']
 
+/--
+@isnad1 id=finite.4h4v.s8.1f58415cd700 from=translated src=- shape=eaeba942 vocab=38954367
+-/
 theorem finite_quot_join (A : Type*) [CommRing A] [Algebra A T] {e f : T}
     (he : IsIdempotentElem e) (hf : IsIdempotentElem f)
     (h1 : Module.Finite A (T ⧸ Ideal.span {compl e})) (h2 : Module.Finite A (T ⧸ Ideal.span {compl f})) :
@@ -123,6 +147,9 @@ section BaseChange
 variable (A A' : Type*) [CommRing A] [CommRing A'] [Algebra A A']
 variable {T : Type*} [CommRing T] [Algebra A T]
 
+/--
+@isnad1 id=finite.1h4v.s10.45a265d35092 from=translated src=- shape=49805770 vocab=333049e7
+-/
 theorem finite_quot_baseChange (e : T)
     (h : Module.Finite A (T ⧸ Ideal.span {compl e})) :
     Module.Finite A' ((A' ⊗[A] T) ⧸ Ideal.span {compl ((1 : A') ⊗ₜ[A] e)}) := by
@@ -170,11 +197,17 @@ open scoped _root_.P2MW.S_Algebra_exists_etale_isIdempotentElem_finite_away_fora
 section Transport
 variable {A : Type*} [CommRing A] {T₁ T₂ : Type*} [CommRing T₁] [CommRing T₂] [Algebra A T₁] [Algebra A T₂]
 
+/--
+@isnad1 id=eq.0h5v.s7.a1e57edd0c98 from=translated src=- shape=8763dc16 vocab=6d63e621
+-/
 theorem map_span_one_sub (ε : T₁ ≃ₐ[A] T₂) (e : T₁) :
     Ideal.span {compl (ε e)} = (Ideal.span {compl e}).map (ε : T₁ →+* T₂) := by
   rw [Ideal.map_span, Set.image_singleton]
   simp [compl_def]
 
+/--
+@isnad1 id=finite.1h5v.s8.b624d95166bc from=translated src=- shape=6028c0f6 vocab=f6b6cca9
+-/
 theorem finite_quot_transport (ε : T₁ ≃ₐ[A] T₂) (e : T₁)
     (h : Module.Finite A (T₁ ⧸ Ideal.span {compl e})) : Module.Finite A (T₂ ⧸ Ideal.span {compl (ε e)}) :=
   Module.Finite.equiv (Ideal.quotientEquivAlg (Ideal.span {compl e}) (Ideal.span {compl (ε e)}) ε
@@ -187,6 +220,9 @@ section Kappa
 variable {R R' R'' : Type*} [CommRing R] [CommRing R'] [CommRing R''] [Algebra R R'] [Algebra R' R''] [Algebra R R'']
   [IsScalarTower R R' R'']
 
+/--
+@isnad1 id=bijectiv.0h2v.s9.f5a799312989 from=translated src=- shape=a7d4097f vocab=71b622b4
+-/
 theorem bijective_mapₐ_self (p : Ideal R) [p.IsPrime] [p.LiesOver p] :
     Function.Bijective (Ideal.ResidueField.mapₐ p p (Algebra.ofId R R) (p.over_def p)) := by
   have : Ideal.ResidueField.mapₐ p p (Algebra.ofId R R) (p.over_def p) = AlgHom.id R _ :=
@@ -194,6 +230,9 @@ theorem bijective_mapₐ_self (p : Ideal R) [p.IsPrime] [p.LiesOver p] :
   rw [this]
   exact Function.bijective_id
 
+/--
+@isnad1 id=bijectiv.2h6v.s11.58038c7dbc97 from=translated src=- shape=cde32784 vocab=6916c86d
+-/
 theorem bijective_mapₐ_trans (p : Ideal R) [p.IsPrime] (P' : Ideal R') [P'.IsPrime] [P'.LiesOver p]
     (P'' : Ideal R'') [P''.IsPrime] [P''.LiesOver P'] [P''.LiesOver p]
     (h₁ : Function.Bijective (Ideal.ResidueField.mapₐ p P' (Algebra.ofId R R') (P'.over_def p)))
@@ -223,12 +262,18 @@ def bad (R' : Type u) [CommRing R'] [Algebra R R'] (P : Ideal R') (e : R' ⊗[R]
   {Q | Q.IsPrime ∧ Q.LiesOver P ∧ e ∈ Q}
 
 omit [Algebra.FiniteType R S] [p.IsPrime] in
+/--
+@isnad1 id=finite.0h5v.s7.411c7a1e1c2c from=translated src=- shape=2e6852b8 vocab=6f05bbf3
+-/
 theorem bad_finite (R' : Type u) [CommRing R'] [Algebra R R'] (P : Ideal R') [P.IsPrime] (e : R' ⊗[R] S) :
     (bad (S := S) R' P e).Finite :=
   (Algebra.QuasiFinite.finite_primesOver (R := R') (S := R' ⊗[R] S) P).subset
     (fun Q hQ => ⟨hQ.1, hQ.2.1⟩)
 
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=ex.4h7v.s12.9506c074f4dd from=translated src=- shape=5a4ac9de vocab=4f5e8358
+-/
 theorem claim (n : ℕ) :
     ∀ (R' : Type u) [CommRing R'] [Algebra R R'] [Algebra.Etale R R'] (P : Ideal R') [P.IsPrime]
       [P.LiesOver p],
@@ -360,6 +405,9 @@ theorem claim (n : ℕ) :
         · rw [Ideal.comap_comap, RingEquiv.symm_toRingHom_comp_toRingHom, Ideal.comap_id]
     exact ih R'' P'' hκ'' g hg hfin_g' hcount
 
+/--
+@isnad1 id=ex.0h3v.s11.80a63fb36b88 from=translated src=- shape=f15dd1ec vocab=dcd8206e
+-/
 theorem main :
     ∃ (R' : Type u) (_ : CommRing R') (_ : Algebra R R') (_ : Algebra.Etale R R') (P : Ideal R')
       (_ : P.IsPrime) (_ : P.LiesOver p) (e : R' ⊗[R] S) (_ : IsIdempotentElem e),
@@ -383,6 +431,9 @@ open scoped _root_.P2MW.S_Algebra_exists_etale_isIdempotentElem_finite_away_fora
 end EtaleSplitting
 open scoped _root_.P2MW.S_Algebra_exists_etale_isIdempotentElem_finite_away_forall_liesOver_notMem.EtaleSplitting
 
+/--
+@isnad1 id=ex.0h3v.s11.80a63fb36b88 from=translated src=- shape=f15dd1ec vocab=dcd8206e
+-/
 theorem solution
     {R : Type u} {S : Type v} [CommRing R] [CommRing S] [Algebra R S]
     [Algebra.FiniteType R S] [Algebra.QuasiFinite R S]

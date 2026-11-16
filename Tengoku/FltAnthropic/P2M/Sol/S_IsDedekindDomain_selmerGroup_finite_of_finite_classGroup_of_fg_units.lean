@@ -31,6 +31,9 @@ theorem eq_of_count_eq {I J : FractionalIdeal R⁰ K} (hI : I ≠ 0) (hJ : J ≠
     ← finprod_heightOneSpectrum_factorization' K hJ]
   exact finprod_congr fun v => by rw [h v]
 
+/--
+@isnad1 id=eq.2h5v.s10.1c1cc92cd2fe from=translated src=- shape=4a65d4de vocab=b7e25d27
+-/
 theorem pow_injective {n : ℕ} (hn : n ≠ 0) {I J : (FractionalIdeal R⁰ K)ˣ}
     (h : I ^ n = J ^ n) : I = J := by
   refine Units.ext (eq_of_count_eq I.ne_zero J.ne_zero fun v => ?_)
@@ -38,6 +41,9 @@ theorem pow_injective {n : ℕ} (hn : n ≠ 0) {I J : (FractionalIdeal R⁰ K)ˣ
   simp only [Units.val_pow_eq_pow_val, count_pow] at hc
   exact mul_left_cancel₀ (Int.natCast_ne_zero.mpr hn) hc
 
+/--
+@isnad1 id=ex.2h4v.s8.869e0b76bb59 from=translated src=- shape=c4dd4fa7 vocab=6c2c02c7
+-/
 theorem exists_pow_eq {n : ℕ} {I : FractionalIdeal R⁰ K} (hI : I ≠ 0)
     (h : ∀ v : HeightOneSpectrum R, (n : ℤ) ∣ count K v I) :
     ∃ J : FractionalIdeal R⁰ K, J ≠ 0 ∧ J ^ n = I := by
@@ -58,6 +64,9 @@ theorem exists_pow_eq {n : ℕ} {I : FractionalIdeal R⁰ K} (hI : I ≠ 0)
   show (n : ℤ) * (count K v I / (n : ℤ)) = count K v I
   exact Int.mul_ediv_cancel' (h v)
 
+/--
+@isnad1 id=eq.0h4v.s7.4afbf4ac20f8 from=translated src=- shape=86ed0936 vocab=5318463d
+-/
 theorem toAdd_valuationOfNeZero (v : HeightOneSpectrum R) (x : Kˣ) :
     Multiplicative.toAdd (v.valuationOfNeZero x) =
       -count K v (spanSingleton R⁰ (x : K)) := by
@@ -81,6 +90,9 @@ theorem toAdd_valuationOfNeZero (v : HeightOneSpectrum R) (x : Kˣ) :
   rw [toAdd_ofAdd]
   ring
 
+/--
+@isnad1 id=iff.0h5v.s11.34ada3d08eb8 from=translated src=- shape=ce52bf12 vocab=9609b1b4
+-/
 theorem valuationOfNeZeroMod_eq_one_iff {n : ℕ} (v : HeightOneSpectrum R) (x : Kˣ) :
     v.valuationOfNeZeroMod n (QuotientGroup.mk x) = 1 ↔
       (n : ℤ) ∣ count K v (spanSingleton R⁰ (x : K)) := by
@@ -93,6 +105,9 @@ theorem valuationOfNeZeroMod_eq_one_iff {n : ℕ} (v : HeightOneSpectrum R) (x :
 def Dvble (n : ℕ) (x : Kˣ) : Prop :=
   ∀ v : HeightOneSpectrum R, (n : ℤ) ∣ count K v (spanSingleton R⁰ (x : K))
 
+/--
+@isnad1 id=dvble.2h5v.s7.6615ee28f4d5 from=translated src=- shape=35ce19d4 vocab=9f91640c
+-/
 theorem Dvble.mul {n : ℕ} {x y : Kˣ} (hx : Dvble (R := R) n x) (hy : Dvble (R := R) n y) :
     Dvble (R := R) n (x * y) := fun v => by
   have hs : spanSingleton R⁰ ((x * y : Kˣ) : K) =
@@ -102,12 +117,18 @@ theorem Dvble.mul {n : ℕ} {x y : Kˣ} (hx : Dvble (R := R) n x) (hy : Dvble (R
     (spanSingleton_ne_zero_iff.mpr y.ne_zero)]
   exact dvd_add (hx v) (hy v)
 
+/--
+@isnad1 id=dvble.0h4v.s7.877ae799bfc2 from=translated src=- shape=6ac5fa5b vocab=2ee8ed23
+-/
 theorem Dvble.pow {n : ℕ} (y : Kˣ) : Dvble (R := R) n (y ^ n) := fun v => by
   have hs : spanSingleton R⁰ ((y ^ n : Kˣ) : K) = spanSingleton R⁰ (y : K) ^ n := by
     rw [Units.val_pow_eq_pow_val, spanSingleton_pow]
   rw [hs, count_pow]
   exact dvd_mul_right _ _
 
+/--
+@isnad1 id=dvble.1h5v.s7.2b30175b3f43 from=translated src=- shape=0ac9cb33 vocab=5ff734c9
+-/
 theorem Dvble.of_mul_pow {n : ℕ} {x y : Kˣ} (h : Dvble (R := R) n (x * y ^ n)) :
     Dvble (R := R) n x := by
   have h2 := h.mul (Dvble.pow (R := R) (n := n) y⁻¹)
@@ -120,6 +141,9 @@ noncomputable def rootUnit {n : ℕ} (x : Kˣ) (h : Dvble (R := R) n x) :
   Units.mk0 (exists_pow_eq (spanSingleton_ne_zero_iff.mpr x.ne_zero) h).choose
     (exists_pow_eq (spanSingleton_ne_zero_iff.mpr x.ne_zero) h).choose_spec.1
 
+/--
+@isnad1 id=eq.1h4v.s10.1b132de578d8 from=translated src=- shape=dcbb2183 vocab=afe66b07
+-/
 theorem rootUnit_pow {n : ℕ} (x : Kˣ) (h : Dvble (R := R) n x) :
     rootUnit x h ^ n = toPrincipalIdeal R K x := by
   refine Units.ext ?_
@@ -127,6 +151,9 @@ theorem rootUnit_pow {n : ℕ} (x : Kˣ) (h : Dvble (R := R) n x) :
   show (exists_pow_eq (spanSingleton_ne_zero_iff.mpr x.ne_zero) h).choose ^ n = _
   exact (exists_pow_eq (spanSingleton_ne_zero_iff.mpr x.ne_zero) h).choose_spec.2
 
+/--
+@isnad1 id=eq.4h5v.s9.8a62c56aab0c from=translated src=- shape=6d4ecab2 vocab=ce0df847
+-/
 theorem rootUnit_mul {n : ℕ} (hn : n ≠ 0) (x y : Kˣ) (hx : Dvble (R := R) n x)
     (hy : Dvble (R := R) n y) (hxy : Dvble (R := R) n (x * y)) :
     rootUnit (x * y) hxy = rootUnit x hx * rootUnit y hy := by
@@ -138,16 +165,25 @@ open Classical in
 noncomputable def classOf (n : ℕ) (x : Kˣ) : ClassGroup R :=
   if h : Dvble (R := R) n x then ClassGroup.mk K (rootUnit x h) else 1
 
+/--
+@isnad1 id=eq.1h4v.s9.afdb05737ce3 from=translated src=- shape=d328e7d7 vocab=056250a4
+-/
 theorem classOf_of_dvble {n : ℕ} (x : Kˣ) (h : Dvble (R := R) n x) :
     classOf (R := R) (K := K) n x = ClassGroup.mk K (rootUnit x h) :=
   dite_eq_left h
 
+/--
+@isnad1 id=eq.3h5v.s7.c0e9594c8171 from=translated src=- shape=800033e3 vocab=41df77fd
+-/
 theorem classOf_mul {n : ℕ} (hn : n ≠ 0) {x y : Kˣ} (hx : Dvble (R := R) n x)
     (hy : Dvble (R := R) n y) :
     classOf (R := R) (K := K) n (x * y) = classOf n x * classOf n y := by
   rw [classOf_of_dvble x hx, classOf_of_dvble y hy,
     classOf_of_dvble (x * y) (hx.mul hy), rootUnit_mul hn x y hx hy (hx.mul hy), map_mul]
 
+/--
+@isnad1 id=eq.1h4v.s7.639d5d865d5d from=translated src=- shape=7054b660 vocab=0c531272
+-/
 theorem classOf_pow_eq_one {n : ℕ} (hn : n ≠ 0) (y : Kˣ) :
     classOf (R := R) (K := K) n (y ^ n) = 1 := by
   rw [classOf_of_dvble _ (Dvble.pow y)]
@@ -157,6 +193,9 @@ theorem classOf_pow_eq_one {n : ℕ} (hn : n ≠ 0) (y : Kˣ) :
   rw [hroot, ClassGroup.mk_eq_one_iff]
   exact ⟨⟨(y : K), by rw [coe_toPrincipalIdeal, coe_spanSingleton]⟩⟩
 
+/--
+@isnad1 id=eq.1h5v.s7.a8226038b21c from=translated src=- shape=067f2e17 vocab=ec8a2970
+-/
 theorem classOf_mul_pow {n : ℕ} (hn : n ≠ 0) (x y : Kˣ) :
     classOf (R := R) (K := K) n (x * y ^ n) = classOf n x := by
   by_cases hx : Dvble (R := R) n x
@@ -174,10 +213,16 @@ noncomputable def classOfMod {n : ℕ} (hn : n ≠ 0) :
     rw [hb]
     exact (classOf_mul_pow hn a c).symm
 
+/--
+@isnad1 id=eq.1h4v.s7.08bb5bde927b from=translated src=- shape=d36d7ce7 vocab=ac75aa7a
+-/
 theorem classOfMod_mk {n : ℕ} (hn : n ≠ 0) (x : Kˣ) :
     classOfMod (R := R) (K := K) hn (QuotientGroup.mk x) = classOf n x :=
   rfl
 
+/--
+@isnad1 id=dvble.1h4v.s10.0a277549c506 from=translated src=- shape=a091df63 vocab=d24e75e7
+-/
 theorem dvble_of_mem {n : ℕ} {x : Kˣ}
     (hx : (QuotientGroup.mk x : Kˣ ⧸ (powMonoidHom n : Kˣ →* Kˣ).range) ∈
       selmerGroup (R := R) (K := K) (S := (∅ : Set (HeightOneSpectrum R))) (n := n)) :
@@ -197,6 +242,9 @@ noncomputable def selmerToClass {n : ℕ} (hn : n ≠ 0) :
 
 omit [IsDedekindDomain R] in
 
+/--
+@isnad1 id=ex.1h4v.s7.9a1e84cb9d6a from=translated src=- shape=a62908be vocab=11445df8
+-/
 theorem exists_unit_of_spanSingleton_eq {a b : K}
     (h : spanSingleton R⁰ a = spanSingleton R⁰ b) :
     ∃ u : Rˣ, b = algebraMap R K ((u : Rˣ) : R) * a := by
@@ -219,6 +267,9 @@ theorem exists_unit_of_spanSingleton_eq {a b : K}
     rw [← Algebra.smul_def]
     exact hr.symm
 
+/--
+@isnad1 id=le.1h3v.s13.a79c9b1e4cc1 from=translated src=- shape=02a9e9e6 vocab=caf5dd68
+-/
 theorem selmerToClass_ker_le {n : ℕ} (hn : n ≠ 0) :
     (selmerToClass (R := R) (K := K) hn).ker ≤
       (selmerGroup.fromUnit (R := R) (K := K) (n := n)).range := by
@@ -266,6 +317,9 @@ theorem selmerToClass_ker_le {n : ℕ} (hn : n ≠ 0) :
   exact (mul_one (QuotientGroup.mk (Units.map (algebraMap R K).toMonoidHom u) :
     Kˣ ⧸ (powMonoidHom n : Kˣ →* Kˣ).range)).symm
 
+/--
+@isnad1 id=finite.1h3v.s6.e0e7f3d605f1 from=translated src=- shape=f6381f7f vocab=a18b7418
+-/
 theorem finite_of_finite_ker_codom {G H : Type*} [Group G] [Group H] (f : G →* H)
     [Finite H] (hker : Finite f.ker) : Finite G := by
   haveI := hker
@@ -275,6 +329,9 @@ theorem finite_of_finite_ker_codom {G H : Type*} [Group G] [Group H] (f : G →*
 
 omit [IsDedekindDomain R] in
 
+/--
+@isnad1 id=finite.1h2v.s7.9c673695c8d6 from=translated src=- shape=a3295fe4 vocab=8c220d23
+-/
 theorem finite_unitsModPow (n : ℕ) (hn : n ≠ 0) [Monoid.FG Rˣ] :
     Finite (Rˣ ⧸ (powMonoidHom n : Rˣ →* Rˣ).range) := by
   haveI : Group.FG Rˣ := Group.fg_iff_monoid_fg.mpr ‹_›
@@ -283,6 +340,9 @@ theorem finite_unitsModPow (n : ℕ) (hn : n ≠ 0) [Monoid.FG Rˣ] :
   exact CommGroup.finite_of_fg_isMulTorsion _
     (CommGroup.isMulTorsion_quotient_range_powMonoidHom Rˣ hn)
 
+/--
+@isnad1 id=finite.1h3v.s10.a7dadf08cf13 from=translated src=- shape=6246c9b8 vocab=1f67e19a
+-/
 theorem finite_selmerEmpty (n : ℕ) (hn : n ≠ 0) [Finite (ClassGroup R)] [Monoid.FG Rˣ] :
     Finite (selmerGroup (R := R) (K := K) (S := (∅ : Set (HeightOneSpectrum R))) (n := n)) := by
   refine finite_of_finite_ker_codom (selmerToClass (R := R) (K := K) hn) ?_
@@ -296,6 +356,9 @@ theorem finite_selmerEmpty (n : ℕ) (hn : n ≠ 0) [Finite (ClassGroup R)] [Mon
 
 end WtTF.SelmerFin
 
+/--
+@isnad1 id=finite.0h4v.s10.b36360d3229b from=translated src=- shape=8605e03d vocab=ad8faa5e
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsDedekindDomain R] {K : Type v} [Field K] [Algebra R K]
     [IsFractionRing R K] {S : Set (HeightOneSpectrum R)} {n : ℕ} [hn : Fact (0 < n)]

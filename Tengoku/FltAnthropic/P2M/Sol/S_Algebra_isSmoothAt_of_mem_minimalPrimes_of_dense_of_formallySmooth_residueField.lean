@@ -13,6 +13,9 @@ universe u
 
 namespace B14CGS
 
+/--
+@isnad1 id=issmooth.2h4v.s9.fc7ad6dbde9f from=translated src=- shape=dbb21147 vocab=561d54f4
+-/
 theorem isSmoothAt_of_forall_linearIndepOn_pow
     {k : Type u} [Field k] {B : Type u} [CommRing B] [Algebra k B] [Algebra.FiniteType k B] [IsReduced B]
     (p : ℕ) [ExpChar k p]
@@ -47,6 +50,9 @@ theorem isSmoothAt_of_forall_linearIndepOn_pow
 
 end B14CGS
 
+/--
+@isnad1 id=issmooth.3h4v.s9.4d9a8ae53103 from=translated src=- shape=9e33e2cb vocab=da29cf8b
+-/
 theorem solution
     {k : Type u} [Field k] {B : Type u} [CommRing B] [Algebra k B] [Algebra.FiniteType k B] [IsReduced B]
     (S : Set (PrimeSpectrum B))

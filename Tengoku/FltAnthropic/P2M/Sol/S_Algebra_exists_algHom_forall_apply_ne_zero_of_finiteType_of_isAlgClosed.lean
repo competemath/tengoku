@@ -9,6 +9,9 @@ namespace P2MW.S_Algebra_exists_algHom_forall_apply_ne_zero_of_finiteType_of_isA
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.1h4v.s7.4c0acce6c82f from=translated src=- shape=ab12d5c0 vocab=7d20e718
+-/
 theorem solution
     {k : Type*} [Field k] [IsAlgClosed k]
     {B : Type*} [CommRing B] [IsDomain B] [Algebra k B] [Algebra.FiniteType k B]

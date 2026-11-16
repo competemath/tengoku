@@ -8,6 +8,9 @@ namespace P2MW.S_Algebra_Smooth_isDomain_and_isIntegrallyClosed_of_isIntegrallyC
 set_option autoImplicit false
 universe u
 
+/--
+@isnad1 id=isintegr.0h2v.s5.9d4840fe8e8e from=translated src=- shape=5b2baff6 vocab=f4b7af8d
+-/
 theorem isIntegrallyClosed_mvPolynomial_fin (R : Type u) [CommRing R] [IsDomain R] [IsIntegrallyClosed R] :
     ∀ n : ℕ, IsIntegrallyClosed (MvPolynomial (Fin n) R)
   | 0 => IsIntegrallyClosed.of_equiv (MvPolynomial.isEmptyAlgEquiv R (Fin 0)).symm.toRingEquiv
@@ -15,6 +18,9 @@ theorem isIntegrallyClosed_mvPolynomial_fin (R : Type u) [CommRing R] [IsDomain 
       haveI := isIntegrallyClosed_mvPolynomial_fin R n
       exact IsIntegrallyClosed.of_equiv (MvPolynomial.finSuccEquiv R n).symm.toRingEquiv
 
+/--
+@isnad1 id=and.0h4v.s6.abea73bbdf3b from=translated src=- shape=30482ce7 vocab=8be464f3
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsDomain R] [IsIntegrallyClosed R]
     (S : Type u) [CommRing S] [Algebra R S] [Algebra.Smooth R S]

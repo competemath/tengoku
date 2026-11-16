@@ -5,6 +5,9 @@ import Tengoku
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_Algebra_FormallyUnramified_ext_of_isHausdorff.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 namespace P2MW.S_Algebra_FormallyUnramified_ext_of_isHausdorff
 
+/--
+@isnad1 id=eq.1h6v.s8.6213d8a9b2d3 from=translated src=- shape=f3c37e87 vocab=f7769e1b
+-/
 theorem solution (R A B : Type*) [CommRing R] [CommRing A] [Algebra R A]
     [CommRing B] [Algebra R B]
     [Algebra.FormallyUnramified R A] (I : Ideal B) [IsHausdorff I B] (f g : A →ₐ[R] B)

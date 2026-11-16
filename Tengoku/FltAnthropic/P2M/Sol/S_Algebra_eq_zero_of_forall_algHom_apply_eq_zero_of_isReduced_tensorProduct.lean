@@ -11,6 +11,9 @@ open scoped TensorProduct
 
 universe u
 
+/--
+@isnad1 id=eq.1h5v.s9.f1fe7d4e8875 from=translated src=- shape=28df997d vocab=de02d5c9
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsDomain R] (K : Type u) [Field K] [Algebra R K] [IsFractionRing R K]
     {B : Type u} [CommRing B] [Algebra R B] [NoZeroSMulDivisors R B]

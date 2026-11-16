@@ -23,11 +23,17 @@ noncomputable def galComp (σ : G) : B ⊗[𝒪] B →ₗ[B] B :=
 noncomputable def galLin : B ⊗[𝒪] B →ₗ[B] (G → B) :=
   LinearMap.pi fun σ => galComp τ σ
 
+/--
+@isnad1 id=eq.0h7v.s10.c3d7199be3a1 from=translated src=- shape=6e0db11d vocab=a2610dca
+-/
 theorem galLin_tmul (a b : B) (σ : G) : galLin τ (a ⊗ₜ b) σ = a * τ σ b := by
   simp only [galLin, galComp, LinearMap.pi_apply, LinearMap.coe_comp, Function.comp_apply, AlgHom.toLinearMap_apply,
     Algebra.TensorProduct.map_tmul, AlgHom.coe_id, id_eq]
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.89f9e2abc690 from=translated src=- shape=d5d6db7d vocab=11d21670
+-/
 theorem galLin_eq (x : B ⊗[𝒪] B) (σ : G) :
     galLin τ x σ = Algebra.TensorProduct.lmul' (S := B) 𝒪
         (Algebra.TensorProduct.map (AlgHom.id 𝒪 B) ((τ σ : B ≃ₐ[𝒪] B) : B →ₐ[𝒪] B) x) := by
@@ -39,6 +45,9 @@ theorem galLin_eq (x : B ⊗[𝒪] B) (σ : G) :
 end GaloisDescentAux
 
 open GaloisDescentAux in
+/--
+@isnad1 id=bijectiv.6h8v.s11.fc384cc00133 from=translated src=- shape=8fe5b3e5 vocab=1729d735
+-/
 theorem solution
     (𝒪 : Type u) [CommRing 𝒪] (𝒪' : Type u) [CommRing 𝒪'] [Algebra 𝒪 𝒪'] [Module.Flat 𝒪 𝒪']
     (G : Type v) [Group G] [Finite G] (τ : G →* (𝒪' ≃ₐ[𝒪] 𝒪'))

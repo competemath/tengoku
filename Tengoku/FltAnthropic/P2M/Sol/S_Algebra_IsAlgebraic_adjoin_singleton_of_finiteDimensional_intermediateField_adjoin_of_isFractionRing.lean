@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=isalgebr.1h4v.s8.a96b88bd19b2 from=translated src=- shape=5e727ccf vocab=e1baff2e
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsDomain R]
     (K : Type u) [Field K] [Algebra R K] [IsFractionRing R K]

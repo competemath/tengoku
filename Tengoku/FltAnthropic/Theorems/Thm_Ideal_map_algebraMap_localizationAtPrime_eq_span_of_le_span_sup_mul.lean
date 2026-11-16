@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u v
 
+/--
+@isnad1 id=eq.2h5v.s9.922eb8da40fa from=translated src=- shape=53c0cf23 vocab=8f4e35af
+-/
 theorem Ideal.map_algebraMap_localizationAtPrime_eq_span_of_le_span_sup_mul
     {P : Type u} [CommRing P] [IsNoetherianRing P] (J : Ideal P) (𝔫 : Ideal P) [𝔫.IsPrime]
     {ι : Type v} (h : ι → P) (hh : ∀ i, h i ∈ J)

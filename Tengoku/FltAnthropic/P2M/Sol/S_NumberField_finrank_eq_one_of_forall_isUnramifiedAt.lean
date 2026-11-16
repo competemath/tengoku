@@ -20,6 +20,9 @@ variable (K : Type*) [Field K] [NumberField K]
 
 open scoped _root_.NumberField _root_.P2MW.S_NumberField_finrank_eq_one_of_forall_isUnramifiedAt.NumberField
 
+/--
+@isnad1 id=eq.1h1v.s8.1241e38f3d45 from=translated src=- shape=d8b98f9b vocab=5d1d531d
+-/
 theorem differentIdeal_eq_top_of_forall_not_dvd'
     (h : ∀ P : Ideal (𝓞 K), P.IsMaximal → ¬ P ∣ differentIdeal ℤ (𝓞 K)) :
     differentIdeal ℤ (𝓞 K) = ⊤ := by
@@ -27,6 +30,9 @@ theorem differentIdeal_eq_top_of_forall_not_dvd'
   obtain ⟨P, hPmax, hle⟩ := Ideal.exists_le_maximal _ hne
   exact h P hPmax (Ideal.dvd_iff_le.mpr hle)
 
+/--
+@isnad1 id=eq.1h1v.s7.ca68d7990d92 from=translated src=- shape=76f26584 vocab=ba84a5b9
+-/
 theorem natAbs_discr_eq_one_of_forall_not_dvd'
     (h : ∀ P : Ideal (𝓞 K), P.IsMaximal → ¬ P ∣ differentIdeal ℤ (𝓞 K)) :
     (discr K).natAbs = 1 := by
@@ -34,6 +40,9 @@ theorem natAbs_discr_eq_one_of_forall_not_dvd'
     absNorm_differentIdeal (K := K) (𝒪 := 𝓞 K)
   rw [← h1, differentIdeal_eq_top_of_forall_not_dvd' K h, Ideal.absNorm_top]
 
+/--
+@isnad1 id=eq.1h1v.s7.ff7237999227 from=translated src=- shape=0eb44c4a vocab=156993b9
+-/
 theorem finrank_eq_one_of_forall_not_dvd'
     (h : ∀ P : Ideal (𝓞 K), P.IsMaximal → ¬ P ∣ differentIdeal ℤ (𝓞 K)) :
     finrank ℚ K = 1 := by
@@ -44,6 +53,9 @@ theorem finrank_eq_one_of_forall_not_dvd'
   rw [← Int.natCast_natAbs, natAbs_discr_eq_one_of_forall_not_dvd' K h] at h2
   norm_num at h2
 
+/--
+@isnad1 id=not.2h2v.s7.a05dbb8b5a96 from=translated src=- shape=a8d22161 vocab=bbc0238c
+-/
 theorem forall_not_dvd_differentIdeal_of_forall_isUnramifiedAt'
     (H : ∀ (P : Ideal (𝓞 K)) [P.IsMaximal], Algebra.IsUnramifiedAt ℤ P) :
     ∀ P : Ideal (𝓞 K), P.IsMaximal → ¬ P ∣ differentIdeal ℤ (𝓞 K) := by
@@ -59,6 +71,9 @@ end NumberField
 
 open scoped _root_.NumberField _root_.P2MW.S_NumberField_finrank_eq_one_of_forall_isUnramifiedAt.NumberField in
 
+/--
+@isnad1 id=eq.1h1v.s6.8e2fb4a2c1f5 from=translated src=- shape=f718b45f vocab=828f25e9
+-/
 theorem solution
     (K : Type*) [Field K] [NumberField K]
     (H : ∀ (P : Ideal (𝓞 K)) [P.IsMaximal], Algebra.IsUnramifiedAt ℤ P) :

@@ -12,6 +12,9 @@ universe u v
 
 open IsLocalRing
 
+/--
+@isnad1 id=smooth.0h2v.s6.d070f287e4db from=translated src=- shape=8b2b4704 vocab=3cbb85c8
+-/
 theorem solution
     (k : Type u) [Field k] [PerfectField k] (B : Type v) [CommRing B] [IsDomain B] [Algebra k B]
     [Algebra.FiniteType k B] [IsIntegrallyClosed B] [Ring.KrullDimLE 1 B] :

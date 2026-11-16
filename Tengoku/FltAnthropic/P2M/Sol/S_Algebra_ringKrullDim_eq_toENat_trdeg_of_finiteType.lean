@@ -16,6 +16,9 @@ open _root_.Algebra
 
 open Cardinal
 
+/--
+@isnad1 id=ex.1h3v.s9.66e511b40980 from=translated src=- shape=c7cc2f26 vocab=c5db7f39
+-/
 theorem exists_ltSeries_comap_eq_last {R S : Type*} [CommRing R] [CommRing S]
     [Algebra R S] [Algebra.IsIntegral R S] (hinj : Function.Injective (algebraMap R S))
     (l : LTSeries (PrimeSpectrum R)) :
@@ -45,6 +48,9 @@ theorem exists_ltSeries_comap_eq_last {R S : Type*} [CommRing R] [CommRing S]
     simp only [RelSeries.last_snoc]
     exact PrimeSpectrum.ext hQcomap
 
+/--
+@isnad1 id=eq.1h2v.s6.6786ba6d8b5c from=translated src=- shape=e3a90ee3 vocab=414f0686
+-/
 theorem ringKrullDim_eq_of_isIntegral_of_injective {R S : Type*} [CommRing R] [CommRing S]
     [Algebra R S] [Algebra.IsIntegral R S] (hinj : Function.Injective (algebraMap R S)) :
     ringKrullDim R = ringKrullDim S := by
@@ -63,11 +69,17 @@ theorem ringKrullDim_eq_of_isIntegral_of_injective {R S : Type*} [CommRing R] [C
       ((PrimeSpectrum.asIdeal_le_asIdeal _ _).mpr hlt.le) ⟨hy2, hy1⟩
       (Algebra.IsIntegral.isIntegral y)
 
+/--
+@isnad1 id=eq.0h2v.s5.865c771555e6 from=translated src=- shape=2769d237 vocab=51594afe
+-/
 theorem ringKrullDim_mvPolynomial_fin (k : Type u) [Field k] (s : ℕ) :
     ringKrullDim (MvPolynomial (Fin s) k) = s := by
   rw [MvPolynomial.ringKrullDim_of_isNoetherianRing, ringKrullDim_eq_zero_of_field, zero_add,
     Nat.card_eq_fintype_card, Fintype.card_fin]
 
+/--
+@isnad1 id=istransc.2h4v.s9.eacc3a549a6e from=translated src=- shape=526a6dd7 vocab=3b90b7b2
+-/
 theorem isTranscendenceBasis_of_injective_of_isIntegral (k : Type u) (A : Type v) [Field k]
     [CommRing A] [IsDomain A] [Algebra k A] (s : ℕ) (g : MvPolynomial (Fin s) k →ₐ[k] A)
     (hinj : Function.Injective g) (hint : g.IsIntegral) :
@@ -102,6 +114,9 @@ theorem isTranscendenceBasis_of_injective_of_isIntegral (k : Type u) (A : Type v
     exact hpa
   exact Algebra.IsIntegral.isAlgebraic
 
+/--
+@isnad1 id=eq.0h2v.s6.df3f38741346 from=translated src=- shape=36e2e795 vocab=eabd9f88
+-/
 theorem main (k : Type u) (A : Type v) [Field k] [CommRing A] [IsDomain A] [Algebra k A]
     [Algebra.FiniteType k A] :
     ringKrullDim A = (Cardinal.toENat (Algebra.trdeg k A) : WithBot ℕ∞) := by
@@ -127,6 +142,9 @@ theorem main (k : Type u) (A : Type v) [Field k] [CommRing A] [IsDomain A] [Alge
 
 end Algebra.RingKrullDimEqTrdeg
 
+/--
+@isnad1 id=eq.0h2v.s6.df3f38741346 from=translated src=- shape=36e2e795 vocab=eabd9f88
+-/
 theorem solution
     (k : Type u) (A : Type v) [Field k] [CommRing A] [IsDomain A] [Algebra k A]
     [Algebra.FiniteType k A] :

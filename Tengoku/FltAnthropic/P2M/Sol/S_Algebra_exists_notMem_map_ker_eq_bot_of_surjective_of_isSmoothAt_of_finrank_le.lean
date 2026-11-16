@@ -12,6 +12,9 @@ open TensorProduct KaehlerDifferential
 
 universe u
 
+/--
+@isnad1 id=ex.4h6v.s11.e8bcd8f9a14f from=translated src=- shape=c6dbf0d0 vocab=b2dd7d7a
+-/
 theorem solution
     {k : Type u} [Field k] {B : Type u} [CommRing B] [Algebra k B] [Algebra.FiniteType k B] [Algebra.Smooth k B]
     {B' : Type u} [CommRing B'] [Algebra k B'] (ψ : B →ₐ[k] B') (hψ : Function.Surjective ψ)

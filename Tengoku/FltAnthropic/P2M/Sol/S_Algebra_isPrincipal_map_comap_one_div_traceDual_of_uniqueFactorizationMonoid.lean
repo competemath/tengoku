@@ -16,6 +16,9 @@ namespace KA2
 set_option synthInstance.maxHeartbeats 1600000 in
 set_option maxHeartbeats 6400000 in
 
+/--
+@isnad1 id=isprinci.0h5v.s10.ec4425178706 from=translated src=- shape=76047f7f vocab=963e5380
+-/
 theorem main
     (A : Type u) [CommRing A] [IsDomain A] [IsNoetherianRing A] [IsIntegrallyClosed A]
     (K : Type u) [Field K] [Algebra A K] [IsFractionRing A K]
@@ -202,6 +205,9 @@ theorem main
 
 end KA2
 
+/--
+@isnad1 id=isprinci.0h5v.s10.ec4425178706 from=translated src=- shape=76047f7f vocab=963e5380
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsDomain R] [IsNoetherianRing R] [IsIntegrallyClosed R]
     (K : Type u) [Field K] [Algebra R K] [IsFractionRing R K]

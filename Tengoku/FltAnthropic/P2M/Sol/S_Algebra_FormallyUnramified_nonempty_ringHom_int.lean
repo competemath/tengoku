@@ -44,6 +44,9 @@ private theorem Algebra.FormallyUnramified.nonempty_ringEquiv_int_of_isDomain
   exact ⟨e.symm.trans
     ((NumberField.RingOfIntegers.mapRingEquiv gK.toRingEquiv).trans Rat.ringOfIntegersEquiv)⟩
 
+/--
+@isnad1 id=nonempty.0h1v.s6.666987985e4f from=translated src=- shape=7cc4a2b9 vocab=555277ab
+-/
 theorem solution
     (B : Type*) [CommRing B] [Nontrivial B] [Module.Finite ℤ B] [Module.Flat ℤ B]
     [Algebra.FormallyUnramified ℤ B] : Nonempty (B →+* ℤ) := by

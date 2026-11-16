@@ -9,6 +9,9 @@ open Polynomial
 
 namespace DedekindCritAux
 
+/--
+@isnad1 id=mem.3h5v.s8.29de0ae7d0d8 from=translated src=- shape=3438cfb5 vocab=bdba959e
+-/
 theorem pow_natDegree_mem_of_aeval_scaleRoots_eq_zero {B : Type*} [CommRing B]
     {p : B[X]} (hp : p.Monic) {s b : B} (I : Ideal B) (hs : s ∈ I)
     (h : aeval b (p.scaleRoots s) = 0) : b ^ p.natDegree ∈ I := by
@@ -30,6 +33,9 @@ theorem pow_natDegree_mem_of_aeval_scaleRoots_eq_zero {B : Type*} [CommRing B]
   rw [hb]
   exact I.neg_mem_iff.mpr hrest
 
+/--
+@isnad1 id=mem.2h5v.s8.addebf9fc5e4 from=translated src=- shape=84bc8726 vocab=992acb97
+-/
 theorem mem_span_of_isIntegral_mk' {B : Type*} [CommRing B] (ϖ : B)
     [IsReduced (B ⧸ Ideal.span {ϖ})]
     (L : Type*) [CommRing L] [Algebra B L] [IsLocalization.Away ϖ L]
@@ -52,6 +58,9 @@ theorem mem_span_of_isIntegral_mk' {B : Type*} [CommRing B] (ϖ : B)
 end DedekindCritAux
 
 open DedekindCritAux in
+/--
+@isnad1 id=isintegr.1h3v.s7.2c72a2da4761 from=translated src=- shape=04304930 vocab=1952d63d
+-/
 theorem solution
     {B : Type*} [CommRing B] (ϖ : B) (hϖ : ϖ ∈ nonZeroDivisors B)
     [IsReduced (B ⧸ Ideal.span {ϖ})]

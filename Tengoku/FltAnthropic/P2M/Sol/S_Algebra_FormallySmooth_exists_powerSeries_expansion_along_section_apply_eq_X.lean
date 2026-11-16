@@ -21,6 +21,9 @@ open PowerSeries
 
 variable {R : Type u} [CommRing R]
 
+/--
+@isnad1 id=dvd.1h3v.s7.d22ed9cce789 from=translated src=- shape=4673f064 vocab=c72d5550
+-/
 theorem X_dvd_of_X_pow_succ_dvd_X_pow_mul {n : ℕ} {r : PowerSeries R}
     (h : (X : PowerSeries R) ^ (n + 1) ∣ X ^ n * r) : (X : PowerSeries R) ∣ r := by
   rw [X_dvd_iff]
@@ -35,20 +38,35 @@ variable {f : PowerSeries R} (h0 : constantCoeff f = 0)
 noncomputable def φ (h0 : constantCoeff f = 0) : PowerSeries R →ₐ[R] PowerSeries R :=
   PowerSeries.substAlgHom (HasSubst.of_constantCoeff_zero' h0)
 
+/--
+@isnad1 id=eq.1h2v.s7.38d70d5c95ef from=translated src=- shape=2059d619 vocab=12857c80
+-/
 theorem φ_X : φ h0 X = f := PowerSeries.substAlgHom_X _
 
+/--
+@isnad1 id=eq.1h3v.s8.53ea10171169 from=translated src=- shape=cd384b82 vocab=e60c8d67
+-/
 theorem φ_C (r : R) : φ h0 (C r) = C r := by
   rw [C_eq_algebraMap, AlgHom.commutes]
 
 include h0 in
+/--
+@isnad1 id=dvd.1h2v.s6.dac191467557 from=translated src=- shape=b157071a vocab=b94421ac
+-/
 theorem X_dvd_f : (X : PowerSeries R) ∣ f := X_dvd_iff.mpr h0
 
+/--
+@isnad1 id=dvd.2h4v.s8.7f6fb3bd5dc3 from=translated src=- shape=e95c0f91 vocab=76682ff2
+-/
 theorem X_pow_dvd_φ {n : ℕ} {p : PowerSeries R} (hp : (X : PowerSeries R) ^ n ∣ p) :
     (X : PowerSeries R) ^ n ∣ φ h0 p := by
   obtain ⟨q, rfl⟩ := hp
   rw [map_mul, map_pow, φ_X]
   exact dvd_mul_of_dvd_left (pow_dvd_pow_of_dvd (X_dvd_f h0) n) _
 
+/--
+@isnad1 id=eq.1h3v.s8.f4d2d1f99397 from=translated src=- shape=fff15198 vocab=3e98587d
+-/
 theorem constantCoeff_φ (p : PowerSeries R) : constantCoeff (φ h0 p) = constantCoeff p := by
   have hp : (X : PowerSeries R) ∣ p - C (constantCoeff p) := by
     rw [X_dvd_iff, map_sub, constantCoeff_C, sub_self]
@@ -61,6 +79,9 @@ variable (h1 : IsUnit (coeff 1 f))
 
 include h1 in
 
+/--
+@isnad1 id=dvd.3h4v.s9.d4a110b47add from=translated src=- shape=32ab4520 vocab=046181cf
+-/
 theorem X_pow_dvd_of_X_pow_dvd_φ (n : ℕ) :
     ∀ p : PowerSeries R, (X : PowerSeries R) ^ n ∣ φ h0 p → (X : PowerSeries R) ^ n ∣ p := by
   obtain ⟨g, hg⟩ := X_dvd_f h0
@@ -86,6 +107,9 @@ theorem X_pow_dvd_of_X_pow_dvd_φ (n : ℕ) :
     exact mul_dvd_mul_left _ (dvd_mul_right _ _)
 
 include h1 in
+/--
+@isnad1 id=injectiv.2h2v.s8.919bc56beb33 from=translated src=- shape=51df9f81 vocab=418c6b83
+-/
 theorem φ_injective : Function.Injective (φ h0) := by
   rw [injective_iff_map_eq_zero]
   intro p hp
@@ -98,10 +122,16 @@ noncomputable def approx (c' : R) (q : PowerSeries R) : ℕ → PowerSeries R
   | 0 => 0
   | n + 1 => approx c' q n + C (coeff n (q - φ h0 (approx c' q n)) * c' ^ n) * X ^ n
 
+/--
+@isnad1 id=eq.1h5v.s9.3149f357f250 from=translated src=- shape=7193d529 vocab=fca625ca
+-/
 theorem approx_succ (c' : R) (q : PowerSeries R) (n : ℕ) :
     approx h0 c' q (n + 1) = approx h0 c' q n + C (coeff n (q - φ h0 (approx h0 c' q n)) * c' ^ n) * X ^ n :=
   rfl
 
+/--
+@isnad1 id=dvd.2h6v.s7.65bc1c4d38bb from=translated src=- shape=885b962c vocab=997efa10
+-/
 theorem X_pow_dvd_approx_sub (c' : R) (q : PowerSeries R) (n : ℕ) :
     ∀ m : ℕ, n ≤ m → (X : PowerSeries R) ^ n ∣ approx h0 c' q m - approx h0 c' q n := by
   intro m hm
@@ -111,6 +141,9 @@ theorem X_pow_dvd_approx_sub (c' : R) (q : PowerSeries R) (n : ℕ) :
     rw [approx_succ, add_sub_right_comm]
     exact dvd_add ih (dvd_mul_of_dvd_right (pow_dvd_pow X hm) _)
 
+/--
+@isnad1 id=dvd.2h5v.s9.8642420743d7 from=translated src=- shape=a508c4b6 vocab=b771fb35
+-/
 theorem X_pow_dvd_sub_φ_approx {c' : R} (hc' : coeff 1 f * c' = 1) (q : PowerSeries R) (n : ℕ) :
     (X : PowerSeries R) ^ n ∣ q - φ h0 (approx h0 c' q n) := by
   obtain ⟨g, hg⟩ := X_dvd_f h0
@@ -131,6 +164,9 @@ theorem X_pow_dvd_sub_φ_approx {c' : R} (hc' : coeff 1 f * c' = 1) (q : PowerSe
       mul_one, sub_self]
 
 include h1 in
+/--
+@isnad1 id=surjecti.2h2v.s8.652ef7ac2a8f from=translated src=- shape=51df9f81 vocab=6a6bc2ab
+-/
 theorem φ_surjective : Function.Surjective (φ h0) := by
   obtain ⟨c', hc'⟩ := h1.exists_right_inv
   intro q
@@ -167,6 +203,9 @@ end Algebra.FormallySmooth.ExpansionEqXAux
 
 open Algebra.FormallySmooth.ExpansionEqXAux PowerSeries in
 
+/--
+@isnad1 id=ex.3h4v.s11.53ab3eb9cf83 from=translated src=- shape=9231ba3d vocab=2d7ec580
+-/
 theorem solution
     {R : Type u} {A : Type v} [CommRing R] [CommRing A] [Algebra R A] [Algebra.FormallySmooth R A]
     (e : A →ₐ[R] R) [Module.Free R (RingHom.ker e.toRingHom).Cotangent]

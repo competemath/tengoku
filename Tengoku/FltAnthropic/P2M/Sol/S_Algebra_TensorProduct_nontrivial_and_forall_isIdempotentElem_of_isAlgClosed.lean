@@ -25,6 +25,9 @@ theorem eq_zero_or_eq_one_of_isIdempotentElem_of_isLocalRing {S : Type*} [CommRi
   · left
     exact (hu.mul_left_eq_zero).mp h0
 
+/--
+@isnad1 id=islocalr.2h3v.s7.5759634ea5fc from=translated src=- shape=bdd6e587 vocab=183cdcb9
+-/
 theorem isLocalRing_of_surjective_of_isNilpotent {S T : Type*} [CommRing S] [CommRing T]
     [IsLocalRing T] (θ : S →+* T) (hθ : Function.Surjective θ)
     (hker : ∀ x, θ x = 0 → IsNilpotent x) : IsLocalRing S := by
@@ -43,6 +46,9 @@ theorem isLocalRing_of_surjective_of_isNilpotent {S T : Type*} [CommRing S] [Com
   · refine Or.inr (key _ ?_)
     rwa [map_sub, map_one]
 
+/--
+@isnad1 id=islocalr.1h1v.s6.f75dc28db626 from=translated src=- shape=54cf34fb vocab=0dd03e75
+-/
 theorem isLocalRing_of_isArtinianRing_of_forall_isIdempotentElem {R : Type*} [CommRing R]
     [IsArtinianRing R] [Nontrivial R] (hR : ∀ e : R, IsIdempotentElem e → e = 0 ∨ e = 1) :
     IsLocalRing R := by
@@ -58,6 +64,9 @@ theorem isLocalRing_of_isArtinianRing_of_forall_isIdempotentElem {R : Type*} [Co
   have h1 : (1 : R) ∈ q := hr1 ▸ hrq q hq.isPrime hne
   exact hq.ne_top ((Ideal.eq_top_iff_one q).mpr h1)
 
+/--
+@isnad1 id=islocalr.1h3v.s7.70014f83026f from=translated src=- shape=5bb9c05b vocab=10dd0caa
+-/
 theorem isLocalRing_tensorProduct_of_isAlgClosed
     (k : Type u) [Field k] [IsAlgClosed k] (R : Type u) [CommRing R] [Algebra k R]
     [Module.Finite k R] [Nontrivial R] (hR : ∀ e : R, IsIdempotentElem e → e = 0 ∨ e = 1)
@@ -135,6 +144,9 @@ theorem isLocalRing_tensorProduct_of_isAlgClosed
 
 end E160GC
 
+/--
+@isnad1 id=and.1h3v.s9.e7cabb8d1578 from=translated src=- shape=dffc889d vocab=967f77f1
+-/
 theorem solution
     (k : Type u) [Field k] [IsAlgClosed k] (R : Type u) [CommRing R] [Algebra k R]
     [Module.Finite k R] [Nontrivial R] (hR : ∀ e : R, IsIdempotentElem e → e = 0 ∨ e = 1)

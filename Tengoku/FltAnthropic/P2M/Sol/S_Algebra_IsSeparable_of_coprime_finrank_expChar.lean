@@ -8,6 +8,9 @@ namespace P2MW.S_Algebra_IsSeparable_of_coprime_finrank_expChar
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=issepara.1h3v.s6.ef352511aefb from=translated src=- shape=3c4f3d6f vocab=b8bfdb3c
+-/
 theorem solution (F E : Type*) [Field F] [Field E] [Algebra F E]
     [FiniteDimensional F E] (q : ℕ) [ExpChar F q] (h : Nat.Coprime (Module.finrank F E) q) :
     Algebra.IsSeparable F E := by

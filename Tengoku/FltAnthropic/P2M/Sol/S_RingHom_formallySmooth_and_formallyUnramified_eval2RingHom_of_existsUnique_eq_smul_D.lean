@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open Polynomial
 
+/--
+@isnad1 id=and.2h4v.s8.f94f62a58d1a from=translated src=- shape=0e0af0d3 vocab=2621ece7
+-/
 theorem solution
     {A S : Type} [CommRing A] [CommRing S] (i : A →+* S) (hi : i.FormallySmooth) (t : S)
     (hdt : letI : Algebra A S := i.toAlgebra;

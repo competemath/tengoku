@@ -11,6 +11,9 @@ universe u v
 
 open IsLocalRing
 
+/--
+@isnad1 id=ex.1h2v.s8.f355f785112c from=translated src=- shape=da295947 vocab=d8c47f8f
+-/
 theorem IsLocalRing.exists_valuationSubring_isDiscreteValuationRing_dominates
     {R : Type u} [CommRing R] [IsDomain R] [IsNoetherianRing R] [IsLocalRing R] (hR : ¬ IsField R)
     (K : Type v) [Field K] [Algebra R K] [IsFractionRing R K] :

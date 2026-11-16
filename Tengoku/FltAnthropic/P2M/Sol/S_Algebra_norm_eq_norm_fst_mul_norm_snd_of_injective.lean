@@ -12,6 +12,9 @@ open TensorProduct
 namespace LinearMap export _root_.LinearMap (det_baseChange rank ext comp_assoc baseChange linearEquivOfInjective det_conj baseChange_comp det_prodMap id_comp conjugate) end LinearMap
 open scoped _root_.LinearMap in
 
+/--
+@isnad1 id=eq.3h6v.s10.70f76769874f from=translated src=- shape=e98af1ff vocab=500b800e
+-/
 theorem LinearMap.det_eq_det_of_injective_of_comp_eq
     {A M N : Type*} [CommRing A] [IsDomain A] [AddCommGroup M] [Module A M] [AddCommGroup N] [Module A N]
     [Module.Free A M] [Module.Finite A M] [Module.Free A N] [Module.Finite A N]
@@ -32,6 +35,9 @@ theorem LinearMap.det_eq_det_of_injective_of_comp_eq
     rw [LinearEquiv.symm_symm, ← h1, ← LinearMap.comp_assoc, LinearEquiv.symm_comp, LinearMap.id_comp]
   rw [h2, LinearMap.det_conj]
 
+/--
+@isnad1 id=eq.2h6v.s9.095b0c54d285 from=translated src=- shape=4a18c81a vocab=1bbe1080
+-/
 theorem solution
     {A B B₀ B₁ : Type*} [CommRing A] [IsDomain A] [CommRing B] [CommRing B₀] [CommRing B₁]
     [Algebra A B] [Algebra A B₀] [Algebra A B₁]

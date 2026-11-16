@@ -14,6 +14,9 @@ open IsLocalRing
 
 namespace DvrDomination
 
+/--
+@isnad1 id=dimensio.1h1v.s5.640caddac493 from=translated src=- shape=50208249 vocab=4c899cc1
+-/
 theorem dimensionLEOne_of_ringKrullDim_le_one (C : Type u) [CommRing C] [IsDomain C]
     (h : ringKrullDim C ≤ 1) : Ring.DimensionLEOne C := by
   refine Ring.DimensionLEOne.mk (fun {p} hp0 hp => ?_)
@@ -38,6 +41,9 @@ section StepB
 
 variable {K : Type v} [Field K]
 
+/--
+@isnad1 id=ex.2h3v.s10.378988a6517f from=translated src=- shape=9f861827 vocab=c236ba77
+-/
 theorem exists_dvr_of_height_le_one (S : Subring K) [IsNoetherianRing S] [IsFractionRing S K]
     (P : Ideal S) [hP : P.IsPrime] (hP0 : P ≠ ⊥) (hP1 : P.height ≤ 1) :
     ∃ V : ValuationSubring K, IsDiscreteValuationRing ↥V ∧ S ≤ V.toSubring ∧
@@ -127,6 +133,9 @@ section StepA
 variable {R : Type u} [CommRing R] [IsDomain R] [IsNoetherianRing R] [IsLocalRing R]
 variable {K : Type v} [Field K] [Algebra R K] [IsFractionRing R K]
 
+/--
+@isnad1 id=ex.1h2v.s10.84dd7bfe6aa7 from=translated src=- shape=16a05eaf vocab=51a56b72
+-/
 theorem exists_subalgebra_prime_height_le_one (hR : ¬ IsField R) :
     ∃ (S : Subalgebra R K) (P : Ideal ↥S) (_ : P.IsPrime), IsNoetherianRing ↥S ∧ P ≠ ⊥ ∧ P.height ≤ 1 ∧
       ∀ r : R, r ∈ maximalIdeal R ↔ algebraMap R ↥S r ∈ P := by
@@ -258,6 +267,9 @@ theorem exists_subalgebra_prime_height_le_one (hR : ¬ IsField R) :
 
 end StepA
 
+/--
+@isnad1 id=ex.1h2v.s8.f355f785112c from=translated src=- shape=da295947 vocab=d8c47f8f
+-/
 theorem main
     {R : Type u} [CommRing R] [IsDomain R] [IsNoetherianRing R] [IsLocalRing R] (hR : ¬ IsField R)
     (K : Type v) [Field K] [Algebra R K] [IsFractionRing R K] :
@@ -280,6 +292,9 @@ theorem main
 
 end DvrDomination
 
+/--
+@isnad1 id=ex.1h2v.s8.f355f785112c from=translated src=- shape=da295947 vocab=d8c47f8f
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsDomain R] [IsNoetherianRing R] [IsLocalRing R] (hR : ¬ IsField R)
     (K : Type v) [Field K] [Algebra R K] [IsFractionRing R K] :

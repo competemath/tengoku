@@ -24,6 +24,9 @@ noncomputable def algPoly : Algebra (MvPolynomial (Fin n) R) (MvPolynomial (Fin 
 
 attribute [local instance] algPoly
 
+/--
+@isnad1 id=isscalar.0h3v.s7.2738e1510228 from=translated src=- shape=debb4f00 vocab=142aca6b
+-/
 scoped instance isScalarTower_poly : IsScalarTower R (MvPolynomial (Fin n) R) (MvPolynomial (Fin n) S) :=
   IsScalarTower.of_algebraMap_eq fun r => by
     change algebraMap R (MvPolynomial (Fin n) S) r = MvPolynomial.map (algebraMap R S) (algebraMap R _ r)
@@ -40,6 +43,9 @@ noncomputable def polyEquiv :
       Algebra.TensorProduct.comm_tmul, MvPolynomial.algebraTensorAlgEquiv_tmul, one_smul]
     rfl)
 
+/--
+@isnad1 id=eq.0h5v.s10.941fd0fae477 from=translated src=- shape=598359af vocab=117885c8
+-/
 theorem polyEquiv_tmul (p : MvPolynomial (Fin n) R) (s : S) :
     polyEquiv R S n (p ⊗ₜ s) = s • MvPolynomial.map (algebraMap R S) p := by
   simp only [polyEquiv, AlgEquiv.ofRingEquiv_apply, RingEquiv.trans_apply, AlgEquiv.toRingEquiv_eq_coe,
@@ -49,6 +55,9 @@ attribute [local instance] Algebra.TensorProduct.rightAlgebra
 
 set_option maxHeartbeats 1600000 in
 
+/--
+@isnad1 id=injectiv.0h3v.s12.24ab1e9d46fe from=translated src=- shape=48da518c vocab=8c0b9611
+-/
 theorem poly_step :
     Function.Injective ((Algebra.H1Cotangent.map R R S (MvPolynomial (Fin n) S)).liftBaseChange
       (MvPolynomial (Fin n) S)) := by
@@ -160,6 +169,9 @@ theorem poly_step :
 
 set_option maxHeartbeats 1600000 in
 
+/--
+@isnad1 id=injectiv.0h4v.s10.e7f62e1dfcb2 from=translated src=- shape=b5a84592 vocab=eafd97b8
+-/
 theorem chart_step (R S T : Type u) [CommRing R] [CommRing S] [CommRing T] [Algebra R S] [Algebra S T]
     [Algebra R T] [IsScalarTower R S T] (m : ℕ) [Algebra.IsStandardSmoothOfRelativeDimension m S T] :
     Function.Injective ((Algebra.H1Cotangent.map R R S T).liftBaseChange T) := by
@@ -205,6 +217,9 @@ theorem chart_step (R S T : Type u) [CommRing R] [CommRing S] [CommRing T] [Alge
 
 set_option maxHeartbeats 3200000 in
 
+/--
+@isnad1 id=injectiv.0h3v.s10.718dd928661c from=translated src=- shape=383e4394 vocab=2a75fbf7
+-/
 theorem main (R S T : Type u) [CommRing R] [CommRing S] [CommRing T] [Algebra R S] [Algebra S T]
     [Algebra R T] [IsScalarTower R S T] [Algebra.Smooth S T] :
     Function.Injective ((Algebra.H1Cotangent.map R R S T).liftBaseChange T) := by
@@ -253,6 +268,9 @@ theorem main (R S T : Type u) [CommRing R] [CommRing S] [CommRing T] [Algebra R 
 end JZInj
 open scoped _root_.P2MW.S_Algebra_H1Cotangent_liftBaseChange_map_injective_of_smooth.JZInj
 
+/--
+@isnad1 id=injectiv.0h3v.s10.718dd928661c from=translated src=- shape=383e4394 vocab=2a75fbf7
+-/
 theorem solution (R S T : Type u)
     [CommRing R] [CommRing S] [CommRing T] [Algebra R S] [Algebra S T] [Algebra R T] [IsScalarTower R S T]
     [Algebra.Smooth S T] :

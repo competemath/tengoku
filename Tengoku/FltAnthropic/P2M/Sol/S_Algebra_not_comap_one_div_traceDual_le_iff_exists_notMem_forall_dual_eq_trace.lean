@@ -11,6 +11,9 @@ universe u
 
 open scoped nonZeroDivisors
 
+/--
+@isnad1 id=iff.0h5v.s10.28cea1f8e220 from=translated src=- shape=def1a5be vocab=e40cfc18
+-/
 theorem solution
     (A : Type u) [CommRing A] [IsDomain A] [IsNoetherianRing A] [IsIntegrallyClosed A]
     (K : Type u) [Field K] [Algebra A K] [IsFractionRing A K]

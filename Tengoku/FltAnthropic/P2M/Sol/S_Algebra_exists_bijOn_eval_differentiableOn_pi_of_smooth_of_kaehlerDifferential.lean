@@ -15,9 +15,15 @@ open Polynomial
 
 namespace K1Aux
 
+/--
+@isnad1 id=contdiff.0h2v.s7.af7be2d55515 from=translated src=- shape=be85ded5 vocab=3c70231c
+-/
 theorem contDiff_eval {n : ℕ} (a : MvPolynomial (Fin n) ℂ) : ContDiff ℂ ⊤ (fun z : Fin n → ℂ => MvPolynomial.eval z a) :=
   (AnalyticOnNhd.eval_mvPolynomial a).contDiff
 
+/--
+@isnad1 id=contdiff.0h2v.s7.02aa2a756ef8 from=translated src=- shape=282ac6ab vocab=15e73e93
+-/
 theorem contDiff_mapEval {n : ℕ} (q : Polynomial (MvPolynomial (Fin n) ℂ)) :
     ContDiff ℂ ⊤ (fun p : (Fin n → ℂ) × ℂ => (q.map (MvPolynomial.eval p.1)).eval p.2) := by
   induction q using Polynomial.induction_on' with
@@ -35,6 +41,9 @@ theorem contDiff_mapEval {n : ℕ} (q : Polynomial (MvPolynomial (Fin n) ℂ)) :
     rw [this]
     exact ((contDiff_eval a).comp contDiff_fst).mul (contDiff_snd.pow m)
 
+/--
+@isnad1 id=differen.1h4v.s8.fd7ec1776380 from=translated src=- shape=f1dc2b72 vocab=a80aed8b
+-/
 theorem differentiableOn_mapEval_comp {n : ℕ} (q : Polynomial (MvPolynomial (Fin n) ℂ)) {φ : (Fin n → ℂ) → ℂ}
     {U : Set (Fin n → ℂ)} (hφ : DifferentiableOn ℂ φ U) :
     DifferentiableOn ℂ (fun z => (q.map (MvPolynomial.eval z)).eval (φ z)) U := by
@@ -44,6 +53,9 @@ theorem differentiableOn_mapEval_comp {n : ℕ} (q : Polynomial (MvPolynomial (F
 
 end K1Aux
 
+/--
+@isnad1 id=ex.3h4v.s10.a642ff5cb658 from=translated src=- shape=c6bbe9a3 vocab=d05bb74f
+-/
 theorem solution
     (S : Type) [CommRing S] [IsDomain S] [Algebra ℂ S] [Algebra.FiniteType ℂ S] (hsm : Algebra.Smooth ℂ S)
     {n : ℕ} (hrank : Module.rank S (KaehlerDifferential ℂ S) = n)

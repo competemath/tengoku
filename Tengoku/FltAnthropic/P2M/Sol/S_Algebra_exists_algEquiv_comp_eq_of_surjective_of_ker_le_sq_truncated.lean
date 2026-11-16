@@ -25,9 +25,15 @@ local notation "T" => MvPolynomial (Fin e) k ⧸ (𝔫) ^ (M + 1)
 
 local notation "𝔱" => Ideal.map (Ideal.Quotient.mk ((𝔫) ^ (M + 1))) (𝔫)
 
+/--
+@isnad1 id=mem.0h3v.s8.20fa50a38e65 from=translated src=- shape=7a30939d vocab=c3a634c0
+-/
 theorem X_mem_ker_constantCoeff (j : Fin e) : (MvPolynomial.X j : MvPolynomial (Fin e) k) ∈ (𝔫) := by
   rw [RingHom.mem_ker, MvPolynomial.constantCoeff_X]
 
+/--
+@isnad1 id=eq.0h2v.s7.8c7060739045 from=translated src=- shape=33847f37 vocab=ace31251
+-/
 theorem ker_constantCoeff_eq_span : (𝔫) = Ideal.span (Set.range (MvPolynomial.X : Fin e → MvPolynomial (Fin e) k)) := by
   apply le_antisymm
   · intro f hf
@@ -45,10 +51,16 @@ theorem ker_constantCoeff_eq_span : (𝔫) = Ideal.span (Set.range (MvPolynomial
     rintro _ ⟨j, rfl⟩
     exact X_mem_ker_constantCoeff k e j
 
+/--
+@isnad1 id=eq.1h4v.s13.0eb93555fdff from=translated src=- shape=c1117c81 vocab=344c8913
+-/
 theorem pow_eq_zero_of_mem (x : T) (hx : x ∈ (𝔱)) : x ^ (M + 1) = 0 := by
   have : x ^ (M + 1) ∈ ((𝔱) ^ (M + 1) : Ideal T) := Ideal.pow_mem_pow hx _
   rwa [← Ideal.map_pow, Ideal.map_quotient_self, Ideal.mem_bot] at this
 
+/--
+@isnad1 id=mem.1h6v.s13.c697c208a7f6 from=translated src=- shape=3c2858e4 vocab=e5ae52e3
+-/
 theorem apply_mem_maximalIdeal {C : Type*} [CommRing C] [Algebra k C] [IsLocalRing C]
     (γ : T →ₐ[k] C) (x : T) (hx : x ∈ (𝔱)) : γ x ∈ IsLocalRing.maximalIdeal C := by
   have hnil : IsNilpotent (γ x) := ⟨M + 1, by rw [← map_pow, pow_eq_zero_of_mem k e M x hx, map_zero]⟩
@@ -76,9 +88,15 @@ noncomputable def substAlgHom (P : Fin e → T) (hP : ∀ j, P j ∈ (𝔱)) : T
     have h2 := Ideal.pow_right_mono hmap (M + 1) this
     rwa [← Ideal.map_pow, Ideal.map_quotient_self, Ideal.mem_bot] at h2)
 
+/--
+@isnad1 id=eq.1h5v.s14.2d12daf707f3 from=translated src=- shape=d291c972 vocab=0d5d2b13
+-/
 @[scoped simp] theorem substAlgHom_mk (P : Fin e → T) (hP : ∀ j, P j ∈ (𝔱)) (f : MvPolynomial (Fin e) k) :
     substAlgHom P hP (Ideal.Quotient.mk _ f) = MvPolynomial.aeval P f := rfl
 
+/--
+@isnad1 id=eq.1h5v.s14.b892817d7d53 from=translated src=- shape=226bf55d vocab=6bbfaac4
+-/
 theorem substAlgHom_X (P : Fin e → T) (hP : ∀ j, P j ∈ (𝔱)) (j : Fin e) :
     substAlgHom P hP (Ideal.Quotient.mk _ (MvPolynomial.X j)) = P j := by
   rw [substAlgHom_mk, MvPolynomial.aeval_X]
@@ -88,6 +106,9 @@ open scoped _root_.P2MW.S_Algebra_exists_algEquiv_comp_eq_of_surjective_of_ker_l
 open scoped _root_.P2MW.S_Algebra_exists_algEquiv_comp_eq_of_surjective_of_ker_le_sq_truncated.Algebra
 
 open Algebra.MinimalCompare in
+/--
+@isnad1 id=ex.4h6v.s15.d4788568254d from=translated src=- shape=a7f3a5b6 vocab=cb9d0295
+-/
 theorem solution
     (k : Type*) [Field k] (C : Type*) [CommRing C] [Algebra k C] [IsLocalRing C] [Module.Finite k C]
     (e M : ℕ)

@@ -16,6 +16,9 @@ open IsLocalRing
 
 variable {R : Type u} [CommRing R] [IsLocalRing R]
 
+/--
+@isnad1 id=le.0h2v.s7.bcba55247fa7 from=translated src=- shape=415a16ea vocab=a80c61bd
+-/
 theorem map_maximalIdeal_le (D : Type w) [CommRing D] [Algebra R D] [Module.Finite R D]
     [IsLocalRing D] : (maximalIdeal R).map (algebraMap R D) ≤ maximalIdeal D := by
   rw [Ideal.map_le_iff_le_comap]
@@ -23,6 +26,9 @@ theorem map_maximalIdeal_le (D : Type w) [CommRing D] [Algebra R D] [Module.Fini
     Ideal.isMaximal_comap_of_isIntegral_of_isMaximal (R := R) (maximalIdeal D)
   rw [IsLocalRing.eq_maximalIdeal this]
 
+/--
+@isnad1 id=ex.0h2v.s7.399aefdb228a from=translated src=- shape=50527f15 vocab=e0a79540
+-/
 theorem exists_maximalIdeal_pow_le (D : Type w) [CommRing D] [Algebra R D] [Module.Finite R D]
     [IsLocalRing D] : ∃ N : ℕ, (maximalIdeal D) ^ N ≤ (maximalIdeal R).map (algebraMap R D) := by
   set J : Ideal D := (maximalIdeal R).map (algebraMap R D) with hJ
@@ -53,6 +59,9 @@ theorem exists_maximalIdeal_pow_le (D : Type w) [CommRing D] [Algebra R D] [Modu
     exact le_bot_iff.mp ((Ideal.pow_right_mono hmap N).trans (le_of_eq hN))
   rwa [Ideal.map_eq_bot_iff_le_ker, Ideal.mk_ker] at h0
 
+/--
+@isnad1 id=le.0h4v.s10.2ada066ec7d0 from=translated src=- shape=38114624 vocab=99652ad0
+-/
 theorem main {C : Type v} [CommRing C] [Algebra R C] [Module.Finite R C]
     {D : Type w} [CommRing D] [Algebra R D] [Module.Finite R D] [IsLocalRing D]
     (ε : D →ₐ[R] R) :
@@ -102,6 +111,9 @@ theorem main {C : Type v} [CommRing C] [Algebra R C] [Module.Finite R C]
 
 end E89C2
 
+/--
+@isnad1 id=le.0h4v.s10.2ada066ec7d0 from=translated src=- shape=38114624 vocab=99652ad0
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsLocalRing R]
     {C : Type v} [CommRing C] [Algebra R C] [Module.Finite R C]

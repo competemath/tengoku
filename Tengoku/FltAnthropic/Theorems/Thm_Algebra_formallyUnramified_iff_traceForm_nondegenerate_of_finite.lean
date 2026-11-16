@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=iff.0h2v.s6.588107be8028 from=translated src=- shape=3bbe0ae6 vocab=cd99bd00
+-/
 theorem Algebra.formallyUnramified_iff_traceForm_nondegenerate_of_finite
     (K : Type u) [Field K] (B : Type u) [CommRing B] [Algebra K B] [Module.Finite K B] :
     Algebra.FormallyUnramified K B ↔ (Algebra.traceForm K B).Nondegenerate := by exact @_root_.P2MW.S_Algebra_formallyUnramified_iff_traceForm_nondegenerate_of_finite.solution K _ B _ _ _

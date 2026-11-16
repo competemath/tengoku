@@ -14,6 +14,9 @@ universe u
 
 namespace P2mJacobi
 
+/--
+@isnad1 id=eq.1h4v.s12.4ae27c174433 from=translated src=- shape=482350a2 vocab=8b1f2bf9
+-/
 theorem finrank_tensor_kaehler_eq_finrank_range_add
     {R P S : Type u} [CommRing R] [CommRing P] [CommRing S]
     [Algebra R P] [Algebra P S] [Algebra R S] [IsScalarTower R P S]
@@ -49,6 +52,9 @@ variable {B A : Type u} [CommRing B] [CommRing A] (g : B →+* A) (hg : Function
   (p : Ideal A) [p.IsPrime] (I : Ideal B) [I.IsPrime] (hI : I = Ideal.comap g p)
 
 include hg in
+/--
+@isnad1 id=eq.1h4v.s7.d60415302c27 from=translated src=- shape=a6fc122a vocab=d56787f7
+-/
 theorem map_primeCompl_comap_eq :
     Submonoid.map g (Ideal.comap g p).primeCompl = p.primeCompl := by
   ext a
@@ -59,6 +65,9 @@ theorem map_primeCompl_comap_eq :
 
 include hg in
 
+/--
+@isnad1 id=surjecti.2h5v.s8.794080b82f57 from=translated src=- shape=9f1fcaee vocab=8e787805
+-/
 theorem localRingHom_surjective : Function.Surjective (Localization.localRingHom I p g hI) := by
   subst hI
   haveI : IsLocalization (Submonoid.map g (Ideal.comap g p).primeCompl) (Localization.AtPrime p) := by
@@ -68,6 +77,9 @@ theorem localRingHom_surjective : Function.Surjective (Localization.localRingHom
 
 include hg in
 
+/--
+@isnad1 id=eq.2h5v.s9.ee6c07d27157 from=translated src=- shape=bb89bf33 vocab=93ab98ed
+-/
 theorem ker_localRingHom :
     RingHom.ker (Localization.localRingHom I p g hI) =
       (RingHom.ker g).map (algebraMap B (Localization.AtPrime I)) := by
@@ -82,6 +94,9 @@ variable {R B A : Type u} [CommRing R] [CommRing B] [CommRing A] [Algebra R B] [
   (g : B →ₐ[R] A) (p : Ideal A) [p.IsPrime] (I : Ideal B) [I.IsPrime]
   (hI : I = Ideal.comap g.toRingHom p)
 
+/--
+@isnad1 id=eq.1h7v.s9.8edb7372e874 from=translated src=- shape=e256db23 vocab=19817bab
+-/
 theorem localRingHom_algebraMap (r : R) :
     Localization.localRingHom I p g.toRingHom hI (algebraMap R _ r) =
       algebraMap R (Localization.AtPrime p) r := by
@@ -91,6 +106,9 @@ theorem localRingHom_algebraMap (r : R) :
 
 end Tower
 
+/--
+@isnad1 id=linearin.2h7v.s9.78533aa17abd from=translated src=- shape=12abb1d8 vocab=63390ba3
+-/
 theorem linearIndependent_one_tmul_of_map
     {P : Type u} [CommRing P] {k₁ k₂ : Type u} [Field k₁] [Field k₂] [Algebra P k₁] [Algebra P k₂]
     (σ : k₁ →+* k₂) (hσ : σ.comp (algebraMap P k₁) = algebraMap P k₂)
@@ -116,6 +134,9 @@ theorem linearIndependent_one_tmul_of_map
   have := h s (fun j => σ (c j)) this i hi
   exact (map_eq_zero σ).mp this
 
+/--
+@isnad1 id=injectiv.2h6v.s8.00a0333f7bd7 from=translated src=- shape=631442fc vocab=17809e1d
+-/
 theorem injective_of_linearIndependent_of_span
     {k V W : Type*} [Field k] [AddCommGroup V] [Module k V] [AddCommGroup W] [Module k W]
     (T : V →ₗ[k] W) {ι : Type*} [Fintype ι] (u : ι → V)
@@ -129,6 +150,9 @@ theorem injective_of_linearIndependent_of_span
   have hc := Fintype.linearIndependent_iff.mp hT c hv
   simp [hc]
 
+/--
+@isnad1 id=ex.1h6v.s10.8251fac95ec4 from=translated src=- shape=0eeb6ad2 vocab=e99b92bf
+-/
 theorem exists_sum_smul_one_tmul
     {P : Type u} [CommRing P] (k : Type u) [CommRing k] [Algebra P k]
     {ι : Type*} [Fintype ι] (w : ι → P) (K : Ideal P) (hK : K = Ideal.span (Set.range w))
@@ -167,6 +191,9 @@ theorem eq_bot_of_finrank_tensor_eq_zero
   exact Submodule.eq_bot_iff _ |>.mpr fun x hx =>
     congrArg Subtype.val (Subsingleton.elim (⟨x, hx⟩ : K) 0)
 
+/--
+@isnad1 id=eq.0h3v.s11.db12050e4ad3 from=translated src=- shape=bd7c7526 vocab=ed288056
+-/
 theorem finrank_residueField_tensor_kaehler_localization
     {R A : Type u} [CommRing R] [CommRing A] [Algebra R A] (p : Ideal A) [p.IsPrime] :
     Module.finrank p.ResidueField
@@ -179,6 +206,9 @@ theorem finrank_residueField_tensor_kaehler_localization
     (AlgebraTensorModule.cancelBaseChange A (Localization.AtPrime p) p.ResidueField p.ResidueField
       Ω[A⁄R])).finrank_eq
 
+/--
+@isnad1 id=isdomain.0h3v.s6.52fdfffd3a2c from=translated src=- shape=fba7389b vocab=677a6397
+-/
 theorem isDomain_localization_of_isSmoothAt
     {R : Type u} [CommRing R] [IsDomain R] [UniqueFactorizationMonoid R]
     {C : Type u} [CommRing C] [Algebra R C] [Algebra.FinitePresentation R C]
@@ -219,6 +249,9 @@ variable {R B A : Type u} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
 set_option maxHeartbeats 6400000 in
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=issmooth.5h8v.s14.e8c1a9561219 from=translated src=- shape=b99730af vocab=07105105
+-/
 theorem isSmoothAt_of_relations (g : B →ₐ[R] A) (hg : Function.Surjective g)
     (p q : Ideal A) [p.IsPrime] [q.IsPrime] (hqp : q ≤ p) [Algebra.IsSmoothAt R q]
     {ι : Type*} [Fintype ι] (z : ι → B) (hz : ∀ i, g (z i) = 0)
@@ -497,6 +530,9 @@ end P2mJacobi
 open P2mJacobi
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=issmooth.2h4v.s10.1c37bde2a000 from=translated src=- shape=97daf490 vocab=4c1fd6ae
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     {A : Type u} [CommRing A] [Algebra R A] [Algebra.FiniteType R A]

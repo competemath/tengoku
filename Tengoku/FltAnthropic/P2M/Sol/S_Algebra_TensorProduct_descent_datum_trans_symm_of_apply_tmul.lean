@@ -11,6 +11,9 @@ universe u
 
 open TensorProduct Algebra.TensorProduct
 
+/--
+@isnad1 id=other.6h10v.s13.54c14707748e from=translated src=- shape=e7cf09d5 vocab=27ef1a18
+-/
 theorem solution
     {S : Type u} [CommRing S] (S' : Type u) [CommRing S'] [Algebra S S']
     (A' : Type u) [CommRing A'] [Algebra S A'] [Algebra S' A'] [IsScalarTower S S' A']

@@ -57,5 +57,8 @@ private theorem pushforward_pullback_of_sumRam [SumRamificationInertia K F F'] (
 
 end AlgebraicCurve.Divisor
 
+/--
+@isnad1 id=eq.0h4v.s9.8794e3b1ddbe from=translated src=- shape=96d40a00 vocab=50b5c858
+-/
 theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] [HasPrincipalDivisors K F'] [Module.Finite F F'] [SumRamificationInertia K F F'] (D : Divisor K F) : Divisor.pushforward F (Divisor.pullback F' D) = (Module.finrank F F' : ℤ) • D :=
   AlgebraicCurve.Divisor.pushforward_pullback_of_sumRam D

@@ -22,6 +22,9 @@ variable {A : Type*} [CommRing A]
 def IsAlt {n : ℕ} {M : Type*} [AddCommGroup M] (d : Fin n → Fin n → M) : Prop :=
   (∀ j, d j j = 0) ∧ ∀ j l, d j l = - d l j
 
+/--
+@isnad1 id=eq.1h5v.s7.b82a223f6bd1 from=translated src=- shape=8d00f6b1 vocab=d140ac0c
+-/
 theorem sum_sum_smul_eq_zero_of_isAlt {n : ℕ} {M : Type*} [AddCommGroup M] [Module A M]
     (a : Fin n → A) (d : Fin n → Fin n → M) (hd : IsAlt d) :
     ∑ j, ∑ l, (a j * a l) • d j l = 0 := by
@@ -38,6 +41,9 @@ theorem sum_sum_smul_eq_zero_of_isAlt {n : ℕ} {M : Type*} [AddCommGroup M] [Mo
     obtain ⟨rfl, -⟩ := heq
     simp only [hd.1, smul_zero]
 
+/--
+@isnad1 id=ex.2h5v.s7.4b7f9555c53f from=translated src=- shape=bf92e06d vocab=16870284
+-/
 theorem exists_isAlt_lift {n : ℕ} {M N : Type*} [AddCommGroup M] [AddCommGroup N]
     (π : M →+ N) (hπ : Function.Surjective π) (d : Fin n → Fin n → N) (hd : IsAlt d) :
     ∃ D : Fin n → Fin n → M, IsAlt D ∧ ∀ j l, π (D j l) = d j l := by
@@ -56,11 +62,17 @@ theorem exists_isAlt_lift {n : ℕ} {M N : Type*} [AddCommGroup M] [AddCommGroup
     · simp [hd.1 j]
     · simp [h, not_lt.mpr h.le, hL, ← hd.2 j l]
 
+/--
+@isnad1 id=ex.1h4v.s8.f60f1f2366c6 from=translated src=- shape=61d8f1ee vocab=317a5c85
+-/
 theorem exists_eq_smul_of_mem_smul_top {M : Type*} [AddCommGroup M] [Module A M]
     (r : A) {x : M} (hx : x ∈ r • (⊤ : Submodule A M)) : ∃ u : M, x = r • u := by
   obtain ⟨u, -, hu⟩ := (Submodule.mem_smul_pointwise_iff_exists x r ⊤).mp hx
   exact ⟨u, hu.symm⟩
 
+/--
+@isnad1 id=ex.2h5v.s8.29ee8527fe95 from=translated src=- shape=15c4cdc0 vocab=6f6c9b4a
+-/
 theorem exists_isAlt_of_sum_smul_eq_zero (n : ℕ) :
     ∀ {M : Type*} [AddCommGroup M] [Module A M] (r : Fin n → A)
       (_ : IsWeaklyRegular M (List.ofFn r)) (m : Fin n → M)
@@ -156,6 +168,9 @@ def goodIdeal {n : ℕ} (r c : Fin n → B) : Ideal B where
     · simp only [smul_eq_mul, mul_assoc, hu, Finset.mul_sum]
       exact Finset.sum_congr rfl fun l _ => by ring
 
+/--
+@isnad1 id=mem.1h5v.s6.8e4331ede0ca from=translated src=- shape=2a30a9b9 vocab=0db122ff
+-/
 lemma self_mem_goodIdeal {n : ℕ} (r c : Fin n → B) (hc : ∑ j, r j * c j = 0) (l : Fin n) :
     r l ∈ goodIdeal r c := by
   classical
@@ -169,6 +184,9 @@ lemma self_mem_goodIdeal {n : ℕ} (r c : Fin n → B) (hc : ∑ j, r j * c j = 
     · rw [hc, sub_zero, mul_comm]
     · rw [Finset.sum_const_zero, sub_zero, mul_comm]
 
+/--
+@isnad1 id=ex.1h5v.s8.02cf2bd97341 from=translated src=- shape=b067763c vocab=38262550
+-/
 lemma exists_isAlt_integer {n : ℕ} (M : Submonoid B) (L : Type*) [CommRing L] [Algebra B L]
     [IsLocalization M L] (D : Fin n → Fin n → L) (hD : IsAlt D) :
     ∃ (b : M) (d : Fin n → Fin n → B), IsAlt d ∧
@@ -190,6 +208,9 @@ lemma exists_isAlt_integer {n : ℕ} (M : Submonoid B) (L : Type*) [CommRing L] 
     · simp only [h, not_lt.mpr h.le, ite_false, ite_true, map_neg, he]
       rw [hD.2 j l, smul_neg]
 
+/--
+@isnad1 id=haskoszu.1h3v.s8.f600be13e798 from=translated src=- shape=9d5c5295 vocab=f4bdb86f
+-/
 theorem hasKoszulSyzygies_of_forall_isWeaklyRegular {n : ℕ} (r : Fin n → B)
     (H : ∀ (m : Ideal B) [m.IsMaximal], Ideal.span (Set.range r) ≤ m →
       IsWeaklyRegular (Localization.AtPrime m)
@@ -247,6 +268,9 @@ theorem hasKoszulSyzygies_of_forall_isWeaklyRegular {n : ℕ} (r : Fin n → B)
     rintro _ ⟨l, rfl⟩
     exact hle (self_mem_goodIdeal r c hc l)
 
+/--
+@isnad1 id=haskoszu.1h2v.s8.b48190d8e5ab from=translated src=- shape=efa2f8fc vocab=9c32af69
+-/
 theorem hasKoszulSyzygies_get_of_forall_isWeaklyRegular (f : List B)
     (H : ∀ (m : Ideal B) [m.IsMaximal], Ideal.ofList f ≤ m →
       IsWeaklyRegular (Localization.AtPrime m)
@@ -276,6 +300,9 @@ variable {R : Type*} [CommRing R] {S : Type*} [CommRing S] [Algebra R S]
     {T' : Type*} [CommRing T'] [Algebra R T'] [Algebra S T'] [Algebra T T']
     [IsScalarTower R S T'] [IsScalarTower R T T'] [IsScalarTower S T T']
 
+/--
+@isnad1 id=eq.0h5v.s10.b4b621d2e99c from=translated src=- shape=d35a3a2e vocab=be05a23c
+-/
 lemma map_map (h : Algebra.H1Cotangent R S) :
     Algebra.H1Cotangent.map R R T T' (Algebra.H1Cotangent.map R R S T h) =
       Algebra.H1Cotangent.map R R S T' h := by
@@ -291,9 +318,15 @@ noncomputable def phi (M : Type*) [AddCommGroup M] [Module S M] :
     T ⊗[S] M →ₗ[T] T' ⊗[S] M :=
   AlgebraTensorModule.map (Algebra.linearMap T T') LinearMap.id
 
+/--
+@isnad1 id=eq.0h6v.s9.93a7a64d150a from=translated src=- shape=1ae62f0c vocab=9c23bbda
+-/
 lemma phi_tmul {M : Type*} [AddCommGroup M] [Module S M] (t : T) (m : M) :
     phi S T T' M (t ⊗ₜ m) = algebraMap T T' t ⊗ₜ m := rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.3355e1935e6b from=translated src=- shape=76462de6 vocab=0a64dd73
+-/
 lemma square (x : T ⊗[S] Algebra.H1Cotangent R S) :
     Algebra.H1Cotangent.map R R T T' ((Algebra.H1Cotangent.map R R S T).liftBaseChange T x) =
       (Algebra.H1Cotangent.map R R S T').liftBaseChange T'
@@ -305,6 +338,9 @@ lemma square (x : T ⊗[S] Algebra.H1Cotangent R S) :
       LinearMap.liftBaseChange_tmul, algebraMap_smul]
   | add x y hx hy => simp only [map_add, hx, hy]
 
+/--
+@isnad1 id=isbasech.0h4v.s8.b0c5c643ab84 from=translated src=- shape=a7295816 vocab=fb31b8fa
+-/
 lemma isBaseChange_phi (M : Type*) [AddCommGroup M] [Module S M] :
     IsBaseChange T' (phi S T T' M) := by
   refine IsBaseChange.of_comp (S := T) (f := (TensorProduct.mk S T M 1))
@@ -326,11 +362,17 @@ open _root_.Algebra open _root_.TensorProduct.Algebra open _root_.TensorProduct 
 variable {R : Type u} [CommRing R] {S : Type v} [CommRing S] [Algebra R S]
     {T : Type w} [CommRing T] [Algebra R T] [Algebra S T] [IsScalarTower R S T]
 
+/--
+@isnad1 id=islocali.0h4v.s9.55803b0b9d51 from=translated src=- shape=b2214102 vocab=274b7dee
+-/
 scoped instance isLocalizedModule_phi (g : T) (M : Type*) [AddCommGroup M] [Module S M] :
     IsLocalizedModule (Submonoid.powers g) (phi S T (Localization.Away g) M) :=
   (isLocalizedModule_iff_isBaseChange (Submonoid.powers g) (Localization.Away g) _).mpr
     (isBaseChange_phi M)
 
+/--
+@isnad1 id=injectiv.3h6v.s11.7982b76d8c08 from=translated src=- shape=02d1f9a3 vocab=67d9711c
+-/
 theorem chart {T' : Type w} [CommRing T'] [Algebra R T'] [Algebra S T'] [IsScalarTower R S T']
     [Module.Flat S T'] {ι : Type w'} (x : ι → T') (f : List (MvPolynomial ι S))
     (hx : Function.Surjective (MvPolynomial.aeval x : MvPolynomial ι S →ₐ[S] T'))
@@ -350,6 +392,9 @@ theorem chart {T' : Type w} [CommRing T'] [Algebra R T'] [Algebra S T'] [IsScala
   obtain ⟨d, hd, hcd⟩ := hsyz c (by simpa only [mul_comm] using hc)
   exact ⟨d, hd.1, hd.2, hcd⟩
 
+/--
+@isnad1 id=injectiv.2h4v.s12.412a5d302ae6 from=translated src=- shape=98c38695 vocab=a5fbbea3
+-/
 theorem main [Module.Flat S T]
     (s : Set T) (hs : Ideal.span s = ⊤)
     (H : ∀ g ∈ s, ∃ (ι : Type w') (x : ι → Localization.Away g) (f : List (MvPolynomial ι S)),
@@ -378,6 +423,9 @@ end Main
 end P2mKcK1Loc
 open scoped _root_.P2MW.S_Algebra_injective_liftBaseChange_h1CotangentMap_of_span_eq_top_of_forall_exists_isWeaklyRegular.P2mKcK1Loc
 
+/--
+@isnad1 id=injectiv.2h4v.s12.412a5d302ae6 from=translated src=- shape=98c38695 vocab=a5fbbea3
+-/
 theorem solution
     {R : Type u} [CommRing R] {S : Type v} [CommRing S] [Algebra R S]
     {T : Type w} [CommRing T] [Algebra R T] [Algebra S T] [IsScalarTower R S T]

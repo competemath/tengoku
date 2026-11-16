@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_MvPolynomial_nonempty_truncated_quotient_s
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=nonempty.2h4v.s16.1670f7d7729e from=translated src=- shape=39408c41 vocab=78ea8e8d
+-/
 theorem MvPolynomial.nonempty_truncated_quotient_span_singleton_algEquiv_truncated_of_not_mem_sq
     (k : Type*) [Field k] (N M : ℕ)
     (x : (MvPolynomial (Fin (N + 1)) k ⧸ (RingHom.ker (MvPolynomial.constantCoeff : MvPolynomial (Fin (N + 1)) k →+* k)) ^ (M + 1)))

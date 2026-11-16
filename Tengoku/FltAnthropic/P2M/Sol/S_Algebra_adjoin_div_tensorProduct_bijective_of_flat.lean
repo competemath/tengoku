@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=other.0h7v.s11.b28d84be12d7 from=translated src=- shape=b5fbc757 vocab=c811753f
+-/
 theorem solution
     {C : Type*} [CommRing C] (I : Ideal C) (a : C)
     (S : Type*) [CommRing S] [Algebra C S] [IsLocalization.Away a S]

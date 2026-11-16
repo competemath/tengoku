@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Subalgebra_isNoetherianRing_and_dimensionL
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.0h4v.s10.8bc6b172ee8b from=translated src=- shape=2d38aa49 vocab=80de6346
+-/
 theorem Subalgebra.isNoetherianRing_and_dimensionLEOne_of_isFractionRing_of_finite
     {A K L : Type*} [CommRing A] [IsDomain A] [IsNoetherianRing A] [Ring.KrullDimLE 1 A]
     [Field K] [Algebra A K] [IsFractionRing A K]

@@ -11,6 +11,9 @@ open Polynomial
 
 universe u v
 
+/--
+@isnad1 id=and.1h3v.s8.e9e20050b3fc from=translated src=- shape=6b1988e3 vocab=1e983ec3
+-/
 theorem Algebra.FormallySmooth.formallySmooth_and_formallyUnramified_aeval_of_existsUnique_smul_D_eq
     {A : Type u} {S : Type v} [CommRing A] [CommRing S] [Algebra A S] [Algebra.FormallySmooth A S]
     (t : S) (ht : ∀ ω : Ω[S⁄A], ∃! s : S, ω = s • KaehlerDifferential.D A S t) :

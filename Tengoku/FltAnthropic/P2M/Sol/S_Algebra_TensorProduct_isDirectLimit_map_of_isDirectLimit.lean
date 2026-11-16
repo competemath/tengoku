@@ -14,6 +14,9 @@ universe u v w
 
 namespace TensorDL17
 
+/--
+@isnad1 id=eq.0h6v.s10.8f0fde2b9c52 from=translated src=- shape=2f3d9901 vocab=d03b1b33
+-/
 theorem map_id_eq_rTensor {R₀ : Type v} [CommRing R₀] {A A' : Type w} [CommRing A] [CommRing A'] [Algebra R₀ A] [Algebra R₀ A']
     (B : Type w) [CommRing B] [Algebra R₀ B] (φ : A →ₐ[R₀] A') (x : A ⊗[R₀] B) :
     Algebra.TensorProduct.map φ (AlgHom.id R₀ B) x = LinearMap.rTensor B φ.toLinearMap x := by
@@ -25,6 +28,9 @@ theorem map_id_eq_rTensor {R₀ : Type v} [CommRing R₀] {A A' : Type w} [CommR
 end TensorDL17
 
 open TensorDL17 in
+/--
+@isnad1 id=ex.1h6v.s11.aba42ed86c95 from=translated src=- shape=67666f7d vocab=b8307c4e
+-/
 theorem solution
     {ι : Type u} [Preorder ι] [Nonempty ι] [IsDirected ι (· ≤ ·)]
     (R₀ : Type v) [CommRing R₀]

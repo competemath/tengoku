@@ -28,17 +28,26 @@ noncomputable def traceDot (R S : Type*) [CommRing R] [CommRing S] [Algebra R S]
     (fun r x y => by
       simp only [Pi.smul_apply, mul_smul_comm, ← Finset.smul_sum, map_smul])
 
+/--
+@isnad1 id=eq.0h5v.s9.bbf0973d6b3d from=translated src=- shape=ea6d4507 vocab=98ee266c
+-/
 @[scoped simp] theorem traceDot_apply (x y : κ → S) :
     traceDot R S κ x y = Algebra.trace R S (∑ i, x i * y i) := rfl
 
 noncomputable def β (b : Basis ι R S) : Basis (ι × κ) R (κ → S) :=
   b.smulTower (Pi.basisFun S κ)
 
+/--
+@isnad1 id=eq.0h6v.s8.a0cffc459006 from=translated src=- shape=ea7380f6 vocab=1cafc4bf
+-/
 theorem β_apply (b : Basis ι R S) (p : ι × κ) : β (κ := κ) b p = Pi.single p.2 (b p.1) := by
   ext k
   rw [β, Basis.smulTower_apply, Pi.basisFun_apply, Pi.smul_apply, Pi.single_apply, Pi.single_apply]
   split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h6v.s7.42c04b916a63 from=translated src=- shape=4987d6b7 vocab=8b1978a4
+-/
 theorem sum_single_mul_single (i j : κ) (s t : S) :
     (∑ k, (Pi.single i s : κ → S) k * (Pi.single j t : κ → S) k) = if i = j then s * t else 0 := by
   classical
@@ -54,6 +63,9 @@ theorem sum_single_mul_single (i j : κ) (s t : S) :
   rw [Finset.sum_congr rfl fun k _ => this k, Finset.sum_ite_eq' Finset.univ i]
   simp
 
+/--
+@isnad1 id=eq.0h5v.s11.e0a01ecb620f from=translated src=- shape=f48e9297 vocab=b332047d
+-/
 theorem toMatrix_traceDot (b : Basis ι R S) :
     LinearMap.BilinForm.toMatrix (β b) (traceDot R S κ) =
       Matrix.blockDiagonal fun _ : κ => Algebra.traceMatrix R b := by
@@ -64,6 +76,9 @@ theorem toMatrix_traceDot (b : Basis ι R S) :
   · simp [h]
   · simp [h]
 
+/--
+@isnad1 id=eq.0h5v.s11.cda414d13b02 from=translated src=- shape=a9a2c3c3 vocab=51a1883b
+-/
 theorem det_toMatrix_traceDot (b : Basis ι R S) :
     (LinearMap.BilinForm.toMatrix (β b) (traceDot R S κ)).det = Algebra.discr R b ^ Fintype.card κ := by
   rw [toMatrix_traceDot, Matrix.det_blockDiagonal, Finset.prod_const, Finset.card_univ, Algebra.discr_def]
@@ -71,14 +86,23 @@ theorem det_toMatrix_traceDot (b : Basis ι R S) :
 noncomputable def mulVecR (R : Type*) [CommRing R] [Algebra R S] (G : Matrix κ κ S) : (κ → S) →ₗ[R] (κ → S) :=
   (Matrix.toLin' G).restrictScalars R
 
+/--
+@isnad1 id=eq.0h5v.s8.0f58e49fdf62 from=translated src=- shape=88b39111 vocab=0d1c710e
+-/
 theorem mulVecR_apply (G : Matrix κ κ S) (y : κ → S) : mulVecR R G y = G *ᵥ y := by
   simp [mulVecR]
 
+/--
+@isnad1 id=eq.0h6v.s10.9fa2db61bc8b from=translated src=- shape=626d06d7 vocab=289226ba
+-/
 theorem det_mulVecR (b : Basis ι R S) (G : Matrix κ κ S) :
     LinearMap.det (mulVecR R G) = Algebra.norm R G.det := by
   haveI : Module.Free R S := Module.Free.of_basis b
   rw [mulVecR, LinearMap.det_restrictScalars, LinearMap.det_toLin']
 
+/--
+@isnad1 id=eq.0h8v.s11.0419ad627f3c from=translated src=- shape=3efcf159 vocab=b46ac52a
+-/
 theorem toMatrix_compRight_apply (b : Basis ι R S) (G : Matrix κ κ S) (p q : ι × κ) :
     LinearMap.BilinForm.toMatrix (β b) ((traceDot R S κ).compRight (mulVecR R G)) p q =
       Algebra.trace R S (b p.1 * b q.1 * G p.2 q.2) := by
@@ -98,6 +122,9 @@ theorem toMatrix_compRight_apply (b : Basis ι R S) (G : Matrix κ κ S) (p q : 
   rw [Finset.sum_congr rfl fun k _ => this k, Finset.sum_ite_eq' Finset.univ p.2]
   simp
 
+/--
+@isnad1 id=eq.0h6v.s9.6428bb63abc9 from=translated src=- shape=a5bcc68b vocab=a7742c9a
+-/
 theorem det_trace_mul_mul_eq (b : Basis ι R S) (G : Matrix κ κ S) :
     (Matrix.of fun p q : ι × κ => Algebra.trace R S (b p.1 * b q.1 * G p.2 q.2)).det =
       Algebra.discr R b ^ Fintype.card κ * Algebra.norm R G.det := by
@@ -111,6 +138,9 @@ theorem det_trace_mul_mul_eq (b : Basis ι R S) (G : Matrix κ κ S) :
 end DiscTower
 open scoped _root_.P2MW.S_Algebra_det_trace_basis_mul_basis_mul_eq_discr_pow_card_mul_norm_det.DiscTower
 
+/--
+@isnad1 id=eq.0h6v.s9.6428bb63abc9 from=translated src=- shape=a5bcc68b vocab=a7742c9a
+-/
 theorem solution
     {R S : Type*} [CommRing R] [CommRing S] [Algebra R S]
     {ι κ : Type*} [Fintype ι] [DecidableEq ι] [Fintype κ] [DecidableEq κ]

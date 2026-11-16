@@ -13,6 +13,9 @@ open Polynomial
 
 local notation "ℚb" => AlgebraicClosure ℚ
 
+/--
+@isnad1 id=ex.0h1v.s4.712ff696c087 from=translated src=- shape=fa363b41 vocab=ac71112a
+-/
 theorem exists_isPrimitiveRoot (q : ℕ) [NeZero q] : ∃ μ : ℚb, IsPrimitiveRoot μ q := by
   have hdeg : (cyclotomic q ℚb).degree ≠ 0 := by
     rw [degree_cyclotomic]
@@ -22,6 +25,9 @@ theorem exists_isPrimitiveRoot (q : ℕ) [NeZero q] : ∃ μ : ℚb, IsPrimitive
 
 noncomputable def zeta (q : ℕ) [NeZero q] : ℚb := (exists_isPrimitiveRoot q).choose
 
+/--
+@isnad1 id=isprimit.0h1v.s4.120a296bda06 from=translated src=- shape=a1a5f7d2 vocab=ed520575
+-/
 theorem zeta_spec (q : ℕ) [NeZero q] : IsPrimitiveRoot (zeta q) q := (exists_isPrimitiveRoot q).choose_spec
 
 noncomputable def cyc (q : ℕ) : (ℚb ≃ₐ[ℚ] ℚb) →* (ZMod q)ˣ :=
@@ -29,10 +35,16 @@ noncomputable def cyc (q : ℕ) : (ℚb ≃ₐ[ℚ] ℚb) →* (ZMod q)ˣ :=
     haveI : NeZero q := ⟨h⟩
     (zeta_spec q).autToPow ℚ
 
+/--
+@isnad1 id=eq.0h1v.s8.0d1a24987c5b from=translated src=- shape=18a65cb9 vocab=6d4e4b73
+-/
 theorem cyc_of_ne_zero (q : ℕ) [hq : NeZero q] : cyc q = (zeta_spec q).autToPow ℚ := by
   unfold cyc
   rw [dite_eq_right (NeZero.ne q)]
 
+/--
+@isnad1 id=ex.0h0v.s11.dca1308c0ac8 from=translated src=- shape=072e8c0f vocab=780b8f62
+-/
 theorem main :
     ∃ cyc : (q : ℕ) → ((AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) →* (ZMod q)ˣ),
       ∀ q : ℕ, q.Prime → ∀ (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) (μ : AlgebraicClosure ℚ),
@@ -47,6 +59,9 @@ theorem main :
 
 end CycQ
 
+/--
+@isnad1 id=ex.0h0v.s11.dca1308c0ac8 from=translated src=- shape=072e8c0f vocab=780b8f62
+-/
 theorem solution :
     ∃ cyc : (q : ℕ) → ((AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) →* (ZMod q)ˣ),
       ∀ q : ℕ, q.Prime → ∀ (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) (μ : AlgebraicClosure ℚ),

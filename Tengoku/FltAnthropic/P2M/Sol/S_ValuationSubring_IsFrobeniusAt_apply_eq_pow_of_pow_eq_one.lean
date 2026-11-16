@@ -6,6 +6,9 @@ import Tengoku.FltAnthropic.Definitions.Def_EllipticCurve_FrobeniusTrace
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_ValuationSubring_IsFrobeniusAt_apply_eq_pow_of_pow_eq_one.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 namespace P2MW.S_ValuationSubring_IsFrobeniusAt_apply_eq_pow_of_pow_eq_one
 
+/--
+@isnad1 id=eq.4h7v.s7.aa424568958d from=translated src=- shape=56fb5450 vocab=453ed419
+-/
 theorem solution
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     (A : ValuationSubring L) (σ : L ≃ₐ[K] L) (q m : ℕ)

@@ -17,6 +17,9 @@ def PR (k : Type u) [Field k] (p : ℕ) (C : Type u) [CommRing C] [Algebra k C] 
 
 variable {k : Type u} [Field k] {p : ℕ}
 
+/--
+@isnad1 id=pr.2h5v.s7.1196f13e5133 from=translated src=- shape=64420e35 vocab=e7080ca0
+-/
 theorem PR.of_injective {C D : Type u} [CommRing C] [Algebra k C] [CommRing D] [Algebra k D]
     (f : C →ₐ[k] D) (hf : Function.Injective f) (h : PR k p D) : PR k p C := by
   intro n a y hind hsum
@@ -31,6 +34,9 @@ theorem PR.of_injective {C D : Type u} [CommRing C] [Algebra k C] [CommRing D] [
   simp only [Pi.zero_apply] at hj
   rw [hj, Pi.zero_apply, map_zero]
 
+/--
+@isnad1 id=pr.2h4v.s8.6f02fb86f70a from=translated src=- shape=57f75910 vocab=1049a8f2
+-/
 theorem PR.of_dense {B : Type u} [CommRing B] [Algebra k B] (S : Set (PrimeSpectrum B))
     (hdense : ∀ g : B, (∀ 𝔰 ∈ S, g ∈ 𝔰.asIdeal) → g = 0)
     (hS : ∀ 𝔰 ∈ S, PR k p 𝔰.asIdeal.ResidueField) : PR k p B := by
@@ -46,6 +52,9 @@ theorem PR.of_dense {B : Type u} [CommRing B] [Algebra k B] (S : Set (PrimeSpect
   simp only [Pi.zero_apply] at hj
   exact Ideal.algebraMap_residueField_eq_zero.mp hj
 
+/--
+@isnad1 id=pr.2h5v.s7.81dff832d9a7 from=translated src=- shape=b59a9c71 vocab=e4786e60
+-/
 theorem PR.localization {B : Type u} [CommRing B] [Algebra k B] (hp : 0 < p) (M : Submonoid B)
     (L : Type u) [CommRing L] [Algebra B L] [Algebra k L] [IsScalarTower k B L] [IsLocalization M L]
     (h : PR k p B) : PR k p L := by
@@ -79,6 +88,9 @@ theorem PR.localization {B : Type u} [CommRing B] [Algebra k B] (hp : 0 < p) (M 
     (IsLocalization.map_units L u).mul_right_eq_zero] at this
   exact this
 
+/--
+@isnad1 id=pr.2h3v.s7.a45c6e90c181 from=translated src=- shape=f75c34d5 vocab=c8779d0e
+-/
 theorem PR.of_field (K : Type u) [Field K] [Algebra k K] (hp : p.Prime) [CharP K p]
     (HK : ∀ t : Finset K, LinearIndepOn k _root_.id (t : Set K) → LinearIndepOn k (· ^ p) (t : Set K)) :
     PR k p K := by
@@ -127,6 +139,9 @@ theorem PR.of_field (K : Type u) [Field K] [Algebra k K] (hp : p.Prime) [CharP K
   rw [Pi.zero_apply, hy j]
   simp only [hμ, zero_smul, Finset.sum_const_zero]
 
+/--
+@isnad1 id=linearin.3h4v.s7.dfc6b55fa3c0 from=translated src=- shape=8a86ef36 vocab=4908407a
+-/
 theorem linearIndepOn_pow_of_PR (L : Type u) [Field L] [Algebra k L] (hp : p.Prime) [ExpChar k p] [CharP L p]
     (h : PR k p L) (t : Finset L) (ht : LinearIndepOn k _root_.id (t : Set L)) :
     LinearIndepOn k (· ^ p) (t : Set L) := by
@@ -187,6 +202,9 @@ end B14TR
 
 open B14TR
 
+/--
+@isnad1 id=linearin.5h6v.s10.76fdc73a1c9d from=translated src=- shape=7f31ff42 vocab=3598d825
+-/
 theorem solution
     {k : Type u} [Field k] {B : Type u} [CommRing B] [Algebra k B] [Algebra.FiniteType k B] [IsReduced B]
     (p : ℕ) (hp : p.Prime) [ExpChar k p]

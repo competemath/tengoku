@@ -11,6 +11,9 @@ open IsLocalRing
 
 set_option maxHeartbeats 6400000 in
 set_option synthInstance.maxHeartbeats 1600000 in
+/--
+@isnad1 id=and.16h11v.s13.51103acf9de0 from=translated src=- shape=651cb68a vocab=edb8f7f2
+-/
 theorem solution
     {L : Type} [Field L] {F : Type} [Field F] [Algebra L F]
 

@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_MvPolynomial_bijective_algHom_truncated_of
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=bijectiv.1h4v.s15.8690a7339f38 from=translated src=- shape=e318c77a vocab=7727b657
+-/
 theorem MvPolynomial.bijective_algHom_truncated_of_forall_exists_sub_mem_sq
     (k : Type*) [Field k] (N M : ℕ)
     (θ : (MvPolynomial (Fin N) k ⧸ (RingHom.ker (MvPolynomial.constantCoeff : MvPolynomial (Fin N) k →+* k)) ^ (M + 1)) →ₐ[k]

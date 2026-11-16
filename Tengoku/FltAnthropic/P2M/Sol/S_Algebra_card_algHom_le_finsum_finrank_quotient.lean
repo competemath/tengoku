@@ -18,6 +18,9 @@ namespace DepthFreeEmbCount
 variable {Ô : Type u} [CommRing Ô] [IsDomain Ô] [IsDiscreteValuationRing Ô]
 variable {C : Type*} [Field C] [Algebra Ô C]
 
+/--
+@isnad1 id=le.0h4v.s7.7afd325b8d70 from=translated src=- shape=2185def9 vocab=afe1bfbf
+-/
 theorem card_algHom_le_finrank (T : Type*) [CommRing T] [Algebra Ô T] [Module.Free Ô T] [Module.Finite Ô T]
     (Φ : Finset (T →ₐ[Ô] C)) : Φ.card ≤ Module.finrank Ô T := by
   classical

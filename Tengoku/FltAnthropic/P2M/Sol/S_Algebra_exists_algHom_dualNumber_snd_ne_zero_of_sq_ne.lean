@@ -7,6 +7,9 @@ namespace P2MW.S_Algebra_exists_algHom_dualNumber_snd_ne_zero_of_sq_ne
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.2h3v.s9.ab054b1571ff from=translated src=- shape=5d0ceaad vocab=67f2b2ed
+-/
 theorem solution
     (Ω : Type*) [Field Ω] (S : Type*) [CommRing S] [Algebra Ω S]
     (𝔪 : Ideal S) [𝔪.IsMaximal] (hres : Function.Surjective (algebraMap Ω (S ⧸ 𝔪)))

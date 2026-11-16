@@ -34,6 +34,9 @@ theorem eq_of_mem_minimalPrimes_of_isDomain {T : Type*} [CommRing T] (N : Ideal 
     exact le_antisymm (hQ.2 ⟨hKprime, bot_le⟩ hle) hle
   rw [hQK Q hQ hQN, hQK Q' hQ' hQ'N]
 
+/--
+@isnad1 id=eq.4h5v.s8.2a7452403958 from=translated src=- shape=83ab7441 vocab=87af236d
+-/
 theorem main {A : Type u} {B : Type v} [CommRing A] [IsDomain A] [IsDiscreteValuationRing A]
     [CommRing B] [Algebra A B] [Algebra.FormallySmooth A B] [Algebra.FiniteType A B]
     (ϖ : A) (hϖ : Irreducible ϖ)
@@ -109,6 +112,9 @@ theorem main {A : Type u} {B : Type v} [CommRing A] [IsDomain A] [IsDiscreteValu
 
 end COMAXD
 
+/--
+@isnad1 id=eq.4h5v.s8.2a7452403958 from=translated src=- shape=83ab7441 vocab=87af236d
+-/
 theorem solution
     {A B : Type*} [CommRing A] [IsDomain A] [IsDiscreteValuationRing A] [CommRing B] [Algebra A B]
     [Algebra.FormallySmooth A B] [Algebra.FiniteType A B]

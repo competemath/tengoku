@@ -28,6 +28,9 @@ def gen : Set (GluedPic0 K F S) :=
         ξ = GluedPic0.mk S x}
 
 omit [Algebra K F] in
+/--
+@isnad1 id=eq.1h3v.s9.56fe40439d2b from=translated src=- shape=ce7311fd vocab=767350e7
+-/
 theorem deg_eq_one [Algebra K F] (v : Place K F) (hv : Function.Surjective (algebraMap K v.ResidueField)) :
     v.deg = 1 := by
   have e : K ≃ₗ[K] v.ResidueField :=
@@ -35,6 +38,9 @@ theorem deg_eq_one [Algebra K F] (v : Place K F) (hv : Function.Surjective (alge
       ⟨(algebraMap K v.ResidueField).injective, hv⟩
   rw [Place.deg, ← e.finrank_eq, Module.finrank_self]
 
+/--
+@isnad1 id=eq.1h3v.s7.11aaf3d6d20a from=translated src=- shape=e7101691 vocab=0e29c443
+-/
 theorem degree_eq_sum (hdeg : ∀ v : Place K F, v.deg = 1) (D : Divisor K F) :
     Divisor.degree D = ∑ P ∈ D.support, D P := by
   have : Divisor.degree D = D.sum (fun v n => n * (v.deg : ℤ)) := by
@@ -50,18 +56,30 @@ theorem eq_sum_smul_single_sub_single (hdeg : ∀ v : Place K F, v.deg = 1) (D :
   conv_lhs => rw [← Finsupp.sum_single D, Finsupp.sum]
   exact Finset.sum_congr rfl fun P _ => by rw [Finsupp.smul_single_one]
 
+/--
+@isnad1 id=mem.1h4v.s7.4519c8d078d7 from=translated src=- shape=1c69ff32 vocab=b14e06cb
+-/
 theorem single_sub_single_mem_degZero (hdeg : ∀ v : Place K F, v.deg = 1) (P Q : Place K F) :
     Finsupp.single P (1 : ℤ) - Finsupp.single Q 1 ∈ Divisor.degZero (K := K) (F := F) := by
   rw [Divisor.mem_degZero, map_sub, Divisor.degree_single, Divisor.degree_single, hdeg P, hdeg Q, sub_self]
 
+/--
+@isnad1 id=mem.2h4v.s11.2184ce7507ef from=translated src=- shape=d86f20ca vocab=ed204e4d
+-/
 theorem fst_mem_admissible {D : Divisor K F} (hD : D ∈ Divisor.degZero (K := K) (F := F))
     (hS : ∀ s ∈ S, D s.1 = 0) : ((D, 0, 0) : GluingData K F S) ∈ GluingData.admissible S :=
   ⟨hD, zero_mem _, fun s hs => ⟨hS s hs, rfl⟩⟩
 
+/--
+@isnad1 id=mem.2h4v.s11.364b541bd962 from=translated src=- shape=85c2b53c vocab=54a3c1c9
+-/
 theorem snd_mem_admissible {D : Divisor K F} (hD : D ∈ Divisor.degZero (K := K) (F := F))
     (hS : ∀ s ∈ S, D s.2 = 0) : ((0, D, 0) : GluingData K F S) ∈ GluingData.admissible S :=
   ⟨zero_mem _, hD, fun s hs => ⟨rfl, hS s hs⟩⟩
 
+/--
+@isnad1 id=mem.4h6v.s15.5a3c62a12156 from=translated src=- shape=dd08385d vocab=0561cc72
+-/
 theorem mk_fst_mem_closure (hdeg : ∀ v : Place K F, v.deg = 1) {D : Divisor K F}
     (hD : D ∈ Divisor.degZero (K := K) (F := F)) (hDS : ∀ s ∈ S, D s.1 = 0) (hDT : ∀ P ∈ D.support, P ∉ T₀) :
     GluedPic0.mk S ⟨(D, 0, 0), fst_mem_admissible S hD hDS⟩ ∈ AddSubgroup.closure (gen S T₀ T₁) := by
@@ -104,6 +122,9 @@ theorem mk_fst_mem_closure (hdeg : ∀ v : Place K F, v.deg = 1) {D : Divisor K 
   rw [map_zsmul]
   exact zsmul_mem (AddSubgroup.subset_closure (hygen P hP)) _
 
+/--
+@isnad1 id=mem.4h6v.s15.a65838211f4f from=translated src=- shape=6dfe8fd6 vocab=23b6916e
+-/
 theorem mk_snd_mem_closure (hdeg : ∀ v : Place K F, v.deg = 1) {D : Divisor K F}
     (hD : D ∈ Divisor.degZero (K := K) (F := F)) (hDS : ∀ s ∈ S, D s.2 = 0) (hDT : ∀ P ∈ D.support, P ∉ T₁) :
     GluedPic0.mk S ⟨(0, D, 0), snd_mem_admissible S hD hDS⟩ ∈ AddSubgroup.closure (gen S T₀ T₁) := by
@@ -146,6 +167,9 @@ theorem mk_snd_mem_closure (hdeg : ∀ v : Place K F, v.deg = 1) {D : Divisor K 
   rw [map_zsmul]
   exact zsmul_mem (AddSubgroup.subset_closure (hygen P hP)) _
 
+/--
+@isnad1 id=mem.3h6v.s15.322cd3f0609b from=translated src=- shape=385ad90f vocab=11be8571
+-/
 theorem mk_nodeUnit_mem_closure [HasPrincipalDivisors K F] (hdeg : ∀ v : Place K F, v.deg = 1)
     (hS : Set.InjOn Prod.snd (S : Set (Place K F × Place K F)))
     (hval : ∀ (E : Finset (Place K F)) (c : Place K F → Kˣ), ∃ g : F, ∀ e ∈ E, e.HasValue g (c e))
@@ -201,6 +225,9 @@ theorem mk_nodeUnit_mem_closure [HasPrincipalDivisors K F] (hdeg : ∀ v : Place
   rw [Finsupp.mem_support_iff, Finsupp.neg_apply, hord P (Finset.mem_union_left _ hPT), neg_zero] at hP
   exact hP rfl
 
+/--
+@isnad1 id=mem.6h6v.s15.2abba9e18a82 from=translated src=- shape=83eda351 vocab=a6827cb0
+-/
 theorem mk_fst_mem_closure_of_admissible [HasPrincipalDivisors K F] (hdeg : ∀ v : Place K F, v.deg = 1)
     (hrat : ∀ v : Place K F, Function.Surjective (algebraMap K v.ResidueField))
     (hS : Set.InjOn Prod.snd (S : Set (Place K F × Place K F)))
@@ -246,6 +273,9 @@ theorem mk_fst_mem_closure_of_admissible [HasPrincipalDivisors K F] (hdeg : ∀ 
   rw [Finsupp.mem_support_iff, Finsupp.sub_apply, hDf, hf P (Finset.mem_union_left _ hPT), sub_self] at hP
   exact hP rfl
 
+/--
+@isnad1 id=mem.6h6v.s15.9d858c8a02d4 from=translated src=- shape=f28f823e vocab=e4b24017
+-/
 theorem mk_snd_mem_closure_of_admissible [HasPrincipalDivisors K F] (hdeg : ∀ v : Place K F, v.deg = 1)
     (hrat : ∀ v : Place K F, Function.Surjective (algebraMap K v.ResidueField))
     (hS : Set.InjOn Prod.snd (S : Set (Place K F × Place K F)))
@@ -289,6 +319,9 @@ theorem mk_snd_mem_closure_of_admissible [HasPrincipalDivisors K F] (hdeg : ∀ 
 end GluedGenAux
 
 open GluedGenAux in
+/--
+@isnad1 id=eq.3h5v.s15.7c5599ada630 from=translated src=- shape=d8b93a1a vocab=792341f3
+-/
 theorem solution
     {K F : Type*} [Field K] [Field F] [Algebra K F] [AlgebraicCurve.HasPrincipalDivisors K F]
     (S : Finset (AlgebraicCurve.Place K F × AlgebraicCurve.Place K F))

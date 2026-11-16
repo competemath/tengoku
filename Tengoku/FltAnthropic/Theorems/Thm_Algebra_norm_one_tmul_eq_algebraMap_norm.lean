@@ -11,6 +11,9 @@ universe u v w
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=eq.0h4v.s9.2f3702e54c92 from=translated src=- shape=1b88840c vocab=c36cb0c2
+-/
 theorem Algebra.norm_one_tmul_eq_algebraMap_norm
     {K : Type u} [CommRing K] {L : Type v} [Ring L] [Algebra K L] [Module.Free K L] [Module.Finite K L]
     (K' : Type w) [CommRing K'] [Algebra K K'] (x : L) :

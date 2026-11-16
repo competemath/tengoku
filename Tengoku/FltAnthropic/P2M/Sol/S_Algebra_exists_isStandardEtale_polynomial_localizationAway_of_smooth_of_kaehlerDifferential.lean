@@ -13,6 +13,9 @@ namespace EtaleCoordC1a
 
 variable {S : Type} [CommRing S]
 
+/--
+@isnad1 id=eq.1h3v.s6.105f4a4bba77 from=translated src=- shape=4096884f vocab=30e0516f
+-/
 theorem rankAtStalk_eq_one [IsDomain S] {M : Type} [AddCommGroup M] [Module S M] [Module.FinitePresentation S M]
     [Module.Flat S M] (hrank : Module.rank S M = 1) (p : PrimeSpectrum S) : Module.rankAtStalk M p = 1 := by
   rw [(Module.isLocallyConstant_rankAtStalk (R := S) (M := M)).apply_eq_of_preconnectedSpace p ⟨⊥, Ideal.isPrime_bot⟩]
@@ -26,6 +29,9 @@ theorem rankAtStalk_eq_one [IsDomain S] {M : Type} [AddCommGroup M] [Module S M]
   show Module.finrank (Localization.AtPrime (⊥ : Ideal S)) (LocalizedModule (⊥ : Ideal S).primeCompl M) = 1
   exact Module.finrank_eq_of_rank_eq (by rw [hr, Nat.cast_one])
 
+/--
+@isnad1 id=mem.1h4v.s10.adff2c7ee946 from=translated src=- shape=5089a681 vocab=a15fa0c9
+-/
 theorem mem_smul_top_of_mk_mem {M : Type} [AddCommGroup M] [Module S M] (𝔪 : Ideal S) [𝔪.IsMaximal] (x : M)
     (h : LocalizedModule.mk x (1 : 𝔪.primeCompl) ∈
       (IsLocalRing.maximalIdeal (Localization.AtPrime 𝔪)) • (⊤ : Submodule (Localization.AtPrime 𝔪)
@@ -52,6 +58,9 @@ theorem mem_smul_top_of_mk_mem {M : Type} [AddCommGroup M] [Module S M] (𝔪 : 
     (Submodule.smul_mem_smul hi Submodule.mem_top)
 
 attribute [local instance] Module.free_of_flat_of_isLocalRing in
+/--
+@isnad1 id=bijectiv.2h4v.s9.bb4bad82d13d from=translated src=- shape=12c99444 vocab=b75d00f0
+-/
 theorem bijective_smul_mk {M : Type} [AddCommGroup M] [Module S M] [Module.Finite S M] [Module.Flat S M]
     (𝔪 : Ideal S) [𝔪.IsMaximal] (h1 : Module.rankAtStalk M ⟨𝔪, inferInstance⟩ = 1)
     (x : M) (hx : x ∉ 𝔪 • (⊤ : Submodule S M)) :
@@ -86,6 +95,9 @@ theorem bijective_smul_mk {M : Type} [AddCommGroup M] [Module S M] [Module.Finit
     rw [Fin.sum_univ_one] at this
     exact this
 
+/--
+@isnad1 id=ex.0h2v.s9.217edc465f62 from=translated src=- shape=72459e1c vocab=697dc8a7
+-/
 theorem exists_eq_tmul_D_X [Algebra ℂ[X] S] (z : S ⊗[ℂ[X]] Ω[ℂ[X]⁄ℂ]) :
     ∃ a : S, z = a ⊗ₜ[ℂ[X]] KaehlerDifferential.D ℂ ℂ[X] X := by
   induction z using TensorProduct.induction_on with
@@ -99,10 +111,16 @@ theorem exists_eq_tmul_D_X [Algebra ℂ[X] S] (z : S ⊗[ℂ[X]] Ω[ℂ[X]⁄ℂ
     obtain ⟨a₂, rfl⟩ := h₂
     exact ⟨a₁ + a₂, by rw [TensorProduct.add_tmul]⟩
 
+/--
+@isnad1 id=eq.0h3v.s8.72eb212e577f from=translated src=- shape=c52dcddb vocab=1d4b9972
+-/
 theorem D_algebraMap_eq_zero (R A : Type) [CommRing R] [CommRing A] [Algebra R A] (r : R) :
     KaehlerDifferential.D R A (algebraMap R A r) = 0 := by
   rw [Algebra.algebraMap_eq_smul_one, Derivation.map_smul, Derivation.map_one_eq_zero, smul_zero]
 
+/--
+@isnad1 id=not.2h3v.s9.a7b1935fc120 from=translated src=- shape=64ba6fc9 vocab=9ef11f77
+-/
 theorem notMem_support_kaehlerDifferential [Algebra ℂ S] [Algebra ℂ[X] S] [IsScalarTower ℂ ℂ[X] S]
     (t : S) (hX : algebraMap ℂ[X] S X = t) (𝔪 : Ideal S) [𝔪.IsMaximal]
     (hψ : Function.Surjective (fun s : Localization.AtPrime 𝔪 =>
@@ -126,6 +144,9 @@ theorem notMem_support_kaehlerDifferential [Algebra ℂ S] [Algebra ℂ[X] S] [I
   rw [← LinearMap.map_smul, hu', LinearMap.map_smul, KaehlerDifferential.map_D, Algebra.algebraMap_self_apply, ← hX,
     D_algebraMap_eq_zero, smul_zero]
 
+/--
+@isnad1 id=not.2h3v.s9.09d80174d27e from=translated src=- shape=7bfd7bb0 vocab=ebf96351
+-/
 theorem notMem_support_h1Cotangent [Algebra ℂ S] [Algebra.FormallySmooth ℂ S] [Algebra ℂ[X] S] [IsScalarTower ℂ ℂ[X] S]
     (t : S) (hX : algebraMap ℂ[X] S X = t) (𝔪 : Ideal S) [𝔪.IsMaximal]
     (hψ : Function.Injective (fun s : Localization.AtPrime 𝔪 =>
@@ -155,6 +176,9 @@ theorem notMem_support_h1Cotangent [Algebra ℂ S] [Algebra.FormallySmooth ℂ S
 end EtaleCoordC1a
 
 open EtaleCoordC1a in
+/--
+@isnad1 id=ex.3h3v.s9.fc108748dd63 from=translated src=- shape=0c4de60c vocab=fc062254
+-/
 theorem solution
     (S : Type) [CommRing S] [IsDomain S] [Algebra ℂ S] [Algebra.FiniteType ℂ S] (hsm : Algebra.Smooth ℂ S)
     (hrank : Module.rank S (KaehlerDifferential ℂ S) = 1)

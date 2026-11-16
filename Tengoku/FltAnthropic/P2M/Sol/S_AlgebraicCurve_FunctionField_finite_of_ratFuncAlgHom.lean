@@ -12,6 +12,9 @@ set_option synthInstance.maxHeartbeats 800000
 
 namespace G1
 
+/--
+@isnad1 id=istransc.0h1v.s6.ef26edff0ca0 from=translated src=- shape=20758dd8 vocab=8c3d40aa
+-/
 theorem isTranscendenceBasis_polynomial_X (K : Type*) [Field K] :
     IsTranscendenceBasis K ![(X : K[X])] := by
   rw [isTranscendenceBasis_iff_algebraicIndependent_isAlgebraic]
@@ -21,6 +24,9 @@ theorem isTranscendenceBasis_polynomial_X (K : Type*) [Field K] :
   rw [h]
   exact ⟨fun x => isAlgebraic_algebraMap (⟨x, Algebra.mem_top⟩ : (⊤ : Subalgebra K K[X]))⟩
 
+/--
+@isnad1 id=istransc.0h1v.s6.f3b4e57fbd3e from=translated src=- shape=20758dd8 vocab=89733c05
+-/
 theorem isTranscendenceBasis_ratFunc_X (K : Type*) [Field K] :
     IsTranscendenceBasis K ![(RatFunc.X : RatFunc K)] := by
   haveI : Algebra.IsAlgebraic K[X] (RatFunc K) :=
@@ -37,6 +43,9 @@ theorem isTranscendenceBasis_ratFunc_X (K : Type*) [Field K] :
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
   [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F] [FiniteDimensional (RatFunc K) F]
 
+/--
+@isnad1 id=istransc.0h2v.s9.4b7cd6a294f9 from=translated src=- shape=42f4aaa0 vocab=110d2e9e
+-/
 theorem isTranscendenceBasis_t0 :
     IsTranscendenceBasis K ![algebraMap (RatFunc K) F RatFunc.X] := by
   haveI : Algebra.IsAlgebraic (RatFunc K) F := Algebra.IsAlgebraic.of_finite _ _
@@ -46,6 +55,9 @@ theorem isTranscendenceBasis_t0 :
   fin_cases i
   simp
 
+/--
+@isnad1 id=transcen.0h3v.s9.150591cee36b from=translated src=- shape=284fec81 vocab=80ec4431
+-/
 theorem transcendental_apply_X (φ : RatFunc K →ₐ[K] F) : Transcendental K (φ RatFunc.X) := by
   rw [transcendental_iff_injective]
   have hX : Function.Injective (aeval (R := K) (RatFunc.X : RatFunc K)) :=
@@ -55,6 +67,9 @@ theorem transcendental_apply_X (φ : RatFunc K →ₐ[K] F) : Transcendental K (
   apply φ.toRingHom.injective
   simpa [aeval_algHom_apply] using hpq
 
+/--
+@isnad1 id=istransc.0h3v.s9.a1a738fb85a6 from=translated src=- shape=40bea17b vocab=6a480cca
+-/
 theorem isTranscendenceBasis_apply_X (φ : RatFunc K →ₐ[K] F) :
     IsTranscendenceBasis K (Subtype.val : ({φ RatFunc.X} : Set F) → F) := by
   classical
@@ -80,6 +95,9 @@ theorem isTranscendenceBasis_apply_X (φ : RatFunc K →ₐ[K] F) :
   rw [← AlgebraicIndependent.matroid_isBase_iff, hgb]
   exact hB
 
+/--
+@isnad1 id=mem.1h5v.s10.f9c1aa2411dd from=translated src=- shape=3da85d56 vocab=ee41a502
+-/
 theorem algebraMap_polynomial_mem {E : Type*} [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
     (T : IntermediateField E F) (ht : algebraMap (RatFunc K) F RatFunc.X ∈ T) (p : K[X]) :
     algebraMap (RatFunc K) F (algebraMap K[X] (RatFunc K) p) ∈ T := by
@@ -91,6 +109,9 @@ theorem algebraMap_polynomial_mem {E : Type*} [Field E] [Algebra K E] [Algebra E
     Algebra.adjoin_le (Set.singleton_subset_iff.mpr ht)
   exact h2 (aeval_mem_adjoin_singleton K _)
 
+/--
+@isnad1 id=finitedi.0h3v.s10.e48fd5a5ceb4 from=translated src=- shape=0522d62b vocab=9f815864
+-/
 theorem finite_over_adjoin (φ : RatFunc K →ₐ[K] F) :
     FiniteDimensional (IntermediateField.adjoin K ({φ RatFunc.X} : Set F)) F := by
   classical
@@ -131,6 +152,9 @@ theorem finite_over_adjoin (φ : RatFunc K →ₐ[K] F) :
 end G1
 
 open G1 in
+/--
+@isnad1 id=finite.0h3v.s9.e181f9c51e2a from=translated src=- shape=732666b1 vocab=e15d66e7
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F] [FiniteDimensional (RatFunc K) F] (φ : RatFunc K →ₐ[K] F) : @Module.Finite (RatFunc K) F _ _ (φ.toRingHom.toAlgebra).toModule := by
   classical
   set g := φ RatFunc.X with hg

@@ -13,6 +13,9 @@ open IsLocalRing
 
 namespace OrdRegL67
 
+/--
+@isnad1 id=eq.1h2v.s8.abd2a6f1f59e from=translated src=- shape=75a2a868 vocab=a64663cb
+-/
 theorem map_mk_maximalIdeal {R : Type u} [CommRing R] [IsLocalRing R] (I : Ideal R) (hI : I ≠ ⊤) :
     haveI : Nontrivial (R ⧸ I) := Ideal.Quotient.nontrivial_iff.mpr hI
     haveI := IsLocalRing.of_surjective' (Ideal.Quotient.mk I) Ideal.Quotient.mk_surjective
@@ -27,6 +30,9 @@ theorem map_mk_maximalIdeal {R : Type u} [CommRing R] [IsLocalRing R] (I : Ideal
 end OrdRegL67
 
 open OrdRegL67 IsLocalRing in
+/--
+@isnad1 id=isregula.3h3v.s9.2aa9dd7fbe59 from=translated src=- shape=f110bab3 vocab=1105fbcb
+-/
 theorem solution
     {R S : Type u} [CommRing R] [CommRing S] [IsLocalRing R] [IsLocalRing S] [IsNoetherianRing R] [IsNoetherianRing S]
     [Algebra R S] [IsLocalHom (algebraMap R S)] [Algebra.EssFiniteType R S] [Algebra.FormallyUnramified R S]

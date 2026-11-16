@@ -7,6 +7,9 @@ namespace P2MW.S_AlgebraicCurve_Pic0_mem_closure_mk_single_sub_single
 set_option autoImplicit false
 open AlgebraicCurve
 
+/--
+@isnad1 id=mem.1h4v.s10.0e3cbef1f8dc from=translated src=- shape=5382ee51 vocab=daba1ffa
+-/
 theorem solution
     {K F : Type*} [Field K] [Field F] [Algebra K F] (h1 : ∀ v : Place K F, v.deg = 1)
     (V₀ : Place K F) (x : Pic0 K F) :

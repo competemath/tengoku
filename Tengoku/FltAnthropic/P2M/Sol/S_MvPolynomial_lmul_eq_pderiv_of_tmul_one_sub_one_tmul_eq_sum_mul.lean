@@ -24,11 +24,17 @@ noncomputable def contract (j : Fin m) :
       ((pderiv j : Derivation R (MvPolynomial (Fin m) R) (MvPolynomial (Fin m) R)) :
         MvPolynomial (Fin m) R →ₗ[R] MvPolynomial (Fin m) R)
 
+/--
+@isnad1 id=eq.0h5v.s10.398400f95260 from=translated src=- shape=d21cde64 vocab=bf61e880
+-/
 theorem contract_tmul (j : Fin m) (u v : MvPolynomial (Fin m) R) :
     contract R j (u ⊗ₜ[R] v) = u * pderiv j v := by
   simp only [contract, LinearMap.comp_apply, TensorProduct.map_tmul, LinearMap.id_apply,
     LinearMap.mul'_apply, Derivation.coeFn_coe]
 
+/--
+@isnad1 id=eq.0h5v.s11.dcbbad302cf7 from=translated src=- shape=fcc64104 vocab=aa32df85
+-/
 theorem contract_mul_X_sub (j k : Fin m) (w : MvPolynomial (Fin m) R ⊗[R] MvPolynomial (Fin m) R) :
     contract R j (w * (X k ⊗ₜ[R] 1 - 1 ⊗ₜ[R] X k)) =
       -(if k = j then Algebra.TensorProduct.lmul' R w else 0) := by
@@ -50,6 +56,9 @@ theorem contract_mul_X_sub (j k : Fin m) (w : MvPolynomial (Fin m) R ⊗[R] MvPo
     rw [add_mul, map_add, hx, hy, map_add]
     split_ifs <;> ring
 
+/--
+@isnad1 id=eq.1h5v.s12.e00f2b3ed236 from=translated src=- shape=fd16db86 vocab=f21aa9f7
+-/
 theorem main (g : MvPolynomial (Fin m) R)
     (a : Fin m → MvPolynomial (Fin m) R ⊗[R] MvPolynomial (Fin m) R)
     (ha : g ⊗ₜ[R] (1 : MvPolynomial (Fin m) R) - (1 : MvPolynomial (Fin m) R) ⊗ₜ[R] g =
@@ -64,6 +73,9 @@ theorem main (g : MvPolynomial (Fin m) R)
 
 end Ws23.CoreA2
 
+/--
+@isnad1 id=eq.1h5v.s12.e00f2b3ed236 from=translated src=- shape=fd16db86 vocab=f21aa9f7
+-/
 theorem solution
     (R : Type*) [CommRing R] {m : ℕ} (g : MvPolynomial (Fin m) R)
     (a : Fin m → MvPolynomial (Fin m) R ⊗[R] MvPolynomial (Fin m) R)

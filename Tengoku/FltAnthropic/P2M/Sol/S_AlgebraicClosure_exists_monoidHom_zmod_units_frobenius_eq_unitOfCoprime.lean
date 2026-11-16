@@ -10,6 +10,9 @@ namespace P2MW.S_AlgebraicClosure_exists_monoidHom_zmod_units_frobenius_eq_unitO
 set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 1600000
 open IntermediateField in
+/--
+@isnad1 id=ex.0h1v.s11.c35f2825aa1d from=translated src=- shape=26209ec0 vocab=ed4089a7
+-/
 theorem solution
     (L : ℕ) [NeZero L] :
     ∃ (χ : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) →* (ZMod L)ˣ)

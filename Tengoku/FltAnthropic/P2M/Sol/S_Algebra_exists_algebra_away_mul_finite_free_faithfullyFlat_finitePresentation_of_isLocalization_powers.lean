@@ -11,6 +11,9 @@ open scoped TensorProduct
 
 namespace FL26
 
+/--
+@isnad1 id=and.0h5v.s8.0b7ed9ec1d35 from=translated src=- shape=6ab03abf vocab=e7a0bb4c
+-/
 theorem transport
     {Sg A C C' : Type} [CommRing Sg] [CommRing A] [CommRing C] [CommRing C']
     (r' : Sg) [Algebra Sg A] [IsLocalization.Away r' A]
@@ -28,6 +31,9 @@ theorem transport
 
 end FL26
 
+/--
+@isnad1 id=ex.4h5v.s10.47724c17d8ec from=translated src=- shape=1b5de4d6 vocab=2ca12a2b
+-/
 theorem solution
     {S : Type} [CommRing S] (g r : S)
     (C : Type) [CommRing C] [Algebra S C] [Algebra (Localization.Away g) C] [IsScalarTower S (Localization.Away g) C]

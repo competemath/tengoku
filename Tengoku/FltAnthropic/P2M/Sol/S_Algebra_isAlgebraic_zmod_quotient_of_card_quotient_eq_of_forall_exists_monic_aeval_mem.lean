@@ -7,6 +7,9 @@ namespace P2MW.S_Algebra_isAlgebraic_zmod_quotient_of_card_quotient_eq_of_forall
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=isalgebr.2h4v.s10.4941dee63066 from=translated src=- shape=b5c018ae vocab=95a193e6
+-/
 theorem solution
     {r : ℕ} [Fact r.Prime]
     (𝒪 : Type) [CommRing 𝒪] (π : 𝒪) (hres : Nat.card (𝒪 ⧸ Ideal.span {π}) = r)

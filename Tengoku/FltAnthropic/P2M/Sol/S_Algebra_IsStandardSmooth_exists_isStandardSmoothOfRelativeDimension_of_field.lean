@@ -7,6 +7,9 @@ namespace P2MW.S_Algebra_IsStandardSmooth_exists_isStandardSmoothOfRelativeDimen
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.0h2v.s5.6bcd03deae8e from=translated src=- shape=a5f58e2b vocab=d232a636
+-/
 theorem solution
     {k : Type*} [Field k] {B : Type*} [CommRing B] [Algebra k B]
     [Algebra.IsStandardSmooth k B] :

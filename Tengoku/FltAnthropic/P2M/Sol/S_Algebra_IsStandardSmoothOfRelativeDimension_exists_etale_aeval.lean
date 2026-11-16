@@ -15,6 +15,9 @@ namespace FrobRankC3
 
 attribute [local instance] Fintype.ofFinite
 
+/--
+@isnad1 id=ex.0h3v.s7.c8faefc0d7fd from=translated src=- shape=1ade9bf1 vocab=78272f79
+-/
 theorem main {R : Type*} {S : Type*} [CommRing R] [CommRing S] [Algebra R S] (n : ℕ)
     [Algebra.IsStandardSmoothOfRelativeDimension n R S] :
     ∃ x : Fin n → S, (MvPolynomial.aeval x : MvPolynomial (Fin n) R →ₐ[R] S).toRingHom.Etale := by
@@ -69,6 +72,9 @@ end FrobRankC3
 
 universe u v
 
+/--
+@isnad1 id=ex.0h3v.s7.c8faefc0d7fd from=translated src=- shape=1ade9bf1 vocab=78272f79
+-/
 theorem solution
     {R : Type u} {S : Type v} [CommRing R] [CommRing S] [Algebra R S] (n : ℕ)
     [Algebra.IsStandardSmoothOfRelativeDimension n R S] :

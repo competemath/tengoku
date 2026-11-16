@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u v w w'
 
+/--
+@isnad1 id=ex.0h4v.s9.6ca14c3a94fa from=translated src=- shape=17944359 vocab=8d3c652c
+-/
 theorem solution
     {A : Type u} {B : Type v} [CommRing A] [IsDomain A] [IsIntegrallyClosed A] [CommRing B] [Algebra A B]
     [Algebra.IsIntegral A B]

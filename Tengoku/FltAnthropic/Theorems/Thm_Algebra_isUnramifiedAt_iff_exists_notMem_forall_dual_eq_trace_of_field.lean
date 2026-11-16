@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=iff.0h3v.s8.1585a5be3e04 from=translated src=- shape=2fbdcfa9 vocab=526a06aa
+-/
 theorem Algebra.isUnramifiedAt_iff_exists_notMem_forall_dual_eq_trace_of_field
     (κ : Type u) [Field κ] (T : Type u) [CommRing T] [Algebra κ T] [Module.Finite κ T]
     (Q : Ideal T) [Q.IsPrime] :

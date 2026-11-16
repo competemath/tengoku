@@ -11,6 +11,9 @@ universe u
 
 open TensorProduct
 
+/--
+@isnad1 id=injectiv.0h3v.s10.517c6ba44171 from=translated src=- shape=383e4394 vocab=221c3633
+-/
 theorem Algebra.H1Cotangent.liftBaseChange_map_injective_of_etale (R D T : Type u)
     [CommRing R] [CommRing D] [CommRing T] [Algebra R D] [Algebra D T] [Algebra R T] [IsScalarTower R D T]
     [Algebra.Etale D T] :

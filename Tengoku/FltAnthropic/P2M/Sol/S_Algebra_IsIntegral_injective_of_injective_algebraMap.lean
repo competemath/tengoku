@@ -7,6 +7,9 @@ namespace P2MW.S_Algebra_IsIntegral_injective_of_injective_algebraMap
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=injectiv.1h4v.s7.e34a41567739 from=translated src=- shape=9078d83d vocab=05f54e58
+-/
 theorem solution
     {A B C : Type*} [CommRing A] [CommRing B] [CommRing C] [IsDomain B] [IsDomain C]
     [Algebra A B] [Algebra A C] [Algebra.IsIntegral A B]

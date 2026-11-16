@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open TensorProduct
 
+/--
+@isnad1 id=isunrami.3h4v.s8.8b545133167f from=translated src=- shape=4c980ea2 vocab=3b619629
+-/
 theorem solution
     {R R' S : Type*} [CommRing R] [CommRing R'] [CommRing S] [IsLocalRing R] [IsLocalRing R']
     [Algebra R R'] (hmax : Ideal.map (algebraMap R R') (IsLocalRing.maximalIdeal R) = IsLocalRing.maximalIdeal R')

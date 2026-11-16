@@ -45,6 +45,9 @@ variable (A B : Type*) [CommRing A] [CommRing B] [Algebra A B]
 
 attribute [local instance] dualModule
 
+/--
+@isnad1 id=eq.0h5v.s9.b75385d9f330 from=translated src=- shape=9193761c vocab=d051583b
+-/
 theorem smul_dual_apply (b : B) (φ : Module.Dual A B) (y : B) : (b • φ) y = φ (b * y) := rfl
 
 scoped instance : IsScalarTower A B (Module.Dual A B) where
@@ -62,6 +65,9 @@ noncomputable def theta : B →ₗ[B] Module.Dual A B where
     congr 1
     ring
 
+/--
+@isnad1 id=eq.0h4v.s9.cf838140dea1 from=translated src=- shape=0e03d3a4 vocab=91f4ded0
+-/
 theorem theta_apply (x y : B) : theta A B x y = Algebra.trace A B (x * y) := rfl
 
 abbrev Coker : Type _ := Module.Dual A B ⧸ LinearMap.range (theta A B)
@@ -69,6 +75,9 @@ abbrev Coker : Type _ := Module.Dual A B ⧸ LinearMap.range (theta A B)
 scoped instance [Module.Free A B] [Module.Finite A B] : Module.Finite B (Module.Dual A B) :=
   Module.Finite.of_restrictScalars_finite A B (Module.Dual A B)
 
+/--
+@isnad1 id=iff.0h3v.s9.f9d92e45250b from=translated src=- shape=992b8105 vocab=dca4defb
+-/
 theorem cond_iff_not_annihilator_le (P : Ideal B) :
     (∃ s ∉ P, ∀ φ : Module.Dual A B, ∃ x : B, ∀ y : B, φ (s * y) = Algebra.trace A B (x * y)) ↔
       ¬ Module.annihilator B (Coker A B) ≤ P := by
@@ -89,6 +98,9 @@ theorem cond_iff_not_annihilator_le (P : Ideal B) :
     obtain ⟨x, hx⟩ := this
     exact ⟨x, fun y => by rw [← theta_apply, hx, smul_dual_apply]⟩
 
+/--
+@isnad1 id=iff.0h3v.s10.074c4b2fc260 from=translated src=- shape=01b37dca vocab=76426a23
+-/
 theorem cond_iff_subsingleton [Module.Free A B] [Module.Finite A B] (P : Ideal B) [P.IsPrime] :
     (∃ s ∉ P, ∀ φ : Module.Dual A B, ∃ x : B, ∀ y : B, φ (s * y) = Algebra.trace A B (x * y)) ↔
       Subsingleton (P.ResidueField ⊗[B] Coker A B) := by
@@ -115,8 +127,14 @@ attribute [local instance] dualTModuleB
 
 scoped instance : IsScalarTower B T DT := IsScalarTower.of_algebraMap_smul fun _ _ => rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.b8a0c10a7519 from=translated src=- shape=016b644e vocab=03d984ff
+-/
 theorem smul_dualT_B (b : B) (ψ : DT) : b • ψ = (algebraMap B T b) • ψ := rfl
 
+/--
+@isnad1 id=isbasech.0h3v.s10.9c13fc829e69 from=translated src=- shape=4e35ea64 vocab=8847be35
+-/
 theorem ibcB : IsBaseChange κ (TensorProduct.mk A κ B 1) := TensorProduct.isBaseChange A B κ
 
 noncomputable def beta : DB →ₗ[B] DT where
@@ -130,11 +148,17 @@ noncomputable def beta : DB →ₗ[B] DT where
     rw [Algebra.TensorProduct.tmul_mul_tmul, one_mul]
     exact ((ibcB A B κ).toDual_comp_apply f (b * v)).symm
 
+/--
+@isnad1 id=eq.0h4v.s12.0aaa662edc5f from=translated src=- shape=9873c860 vocab=c817dfae
+-/
 theorem beta_apply (f : DB) : beta A B κ f = (ibcB A B κ).toDual f := rfl
 
 noncomputable def Phi : T ⊗[B] DB →ₗ[T] DT :=
   (TensorProduct.isBaseChange B DB T).lift (beta A B κ)
 
+/--
+@isnad1 id=eq.0h5v.s13.d7118ff3cb9f from=translated src=- shape=164546ef vocab=04c46768
+-/
 theorem Phi_tmul (t : T) (f : DB) : Phi A B κ (t ⊗ₜ[B] f) = t • beta A B κ f := by
   have h : Phi A B κ ((TensorProduct.mk B T DB 1) f) = beta A B κ f :=
     (TensorProduct.isBaseChange B DB T).lift_eq (beta A B κ) f
@@ -142,6 +166,9 @@ theorem Phi_tmul (t : T) (f : DB) : Phi A B κ (t ⊗ₜ[B] f) = t • beta A B 
   rw [show t ⊗ₜ[B] f = t • ((1 : T) ⊗ₜ[B] f) by rw [TensorProduct.smul_tmul', smul_eq_mul, mul_one],
     map_smul, h]
 
+/--
+@isnad1 id=bijectiv.0h3v.s12.973bb7cd37ea from=translated src=- shape=40105b8a vocab=eb819637
+-/
 theorem Phi_bijective : Function.Bijective (Phi A B κ) := by
   let G : T ⊗[B] DB ≃ₗ[κ] κ ⊗[A] DB := Algebra.IsPushout.cancelBaseChange A κ B T DB
   let E : κ ⊗[A] DB ≃ₗ[κ] DT := (ibcB A B κ).dual.equiv
@@ -176,6 +203,9 @@ local notation "T" => κ ⊗[A] B
 local notation "DB" => Module.Dual A B
 local notation "DT" => Module.Dual κ (κ ⊗[A] B)
 
+/--
+@isnad1 id=eq.0h4v.s10.e6299483e446 from=translated src=- shape=82620b74 vocab=6ba6f677
+-/
 theorem trace_one_tmul (z : B) :
     Algebra.trace κ T ((1 : κ) ⊗ₜ[A] z) = algebraMap A κ (Algebra.trace A B z) := by
   rw [Algebra.trace_apply, Algebra.trace_apply, ← LinearMap.trace_baseChange]
@@ -186,6 +216,9 @@ theorem trace_one_tmul (z : B) :
   rw [Algebra.TensorProduct.tmul_mul_tmul, one_mul]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s12.c3418f7e4c68 from=translated src=- shape=de42c367 vocab=e91287f0
+-/
 theorem beta_theta (x : B) : beta A B κ (theta A B x) = theta κ T ((1 : κ) ⊗ₜ[A] x) := by
   refine (ibcB A B κ).algHom_ext _ _ fun v => ?_
   rw [beta_apply, IsBaseChange.toDual_comp_apply, TensorProduct.mk_apply, theta_apply, theta_apply,
@@ -195,6 +228,9 @@ noncomputable abbrev Q1 : Submodule T (T ⊗[B] DB) :=
   LinearMap.range (TensorProduct.AlgebraTensorModule.lTensor T T
     ((LinearMap.range (theta A B)).subtype.restrictScalars B))
 
+/--
+@isnad1 id=eq.0h3v.s12.a886c5924881 from=translated src=- shape=434c5c31 vocab=8575fce8
+-/
 theorem map_Q1 : (Q1 A B κ).map (PhiEquiv A B κ).toLinearMap = LinearMap.range (theta κ T) := by
   refine le_antisymm ?_ ?_
   · rw [Submodule.map_le_iff_le_comap, LinearMap.range_le_iff_comap, Submodule.eq_top_iff']
@@ -240,6 +276,9 @@ open scoped _root_.P2MW.S_Algebra_exists_notMem_forall_dual_eq_trace_iff_fiber.L
 attribute [local instance] L2aDAux.dualModule Algebra.TensorProduct.rightAlgebra L2aDAux.dualTModuleB
 
 open L2aDAux in
+/--
+@isnad1 id=iff.1h5v.s13.f2d26f30d832 from=translated src=- shape=b2c7e083 vocab=362516b4
+-/
 theorem solution
     {A B : Type*} [CommRing A] [CommRing B] [Algebra A B] [Module.Finite A B] [Module.Free A B]
     (p : Ideal A) [p.IsPrime] (P : Ideal B) [P.IsPrime] [P.LiesOver p]

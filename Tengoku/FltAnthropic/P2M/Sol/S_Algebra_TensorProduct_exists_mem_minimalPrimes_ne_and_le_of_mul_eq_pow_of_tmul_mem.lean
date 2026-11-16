@@ -13,6 +13,9 @@ namespace CrossLiftAux
 
 universe u v w
 
+/--
+@isnad1 id=ex.1h3v.s8.af9ddb59ed41 from=translated src=- shape=9034895f vocab=381eb186
+-/
 theorem exists_minimalPrimes_le_not_mem {T : Type u} [CommRing T] [IsReduced T] (𝔮 : Ideal T) [𝔮.IsPrime] (c : T)
     (hAnn : ∀ u, u * c = 0 → u ∈ 𝔮) : ∃ P ∈ minimalPrimes T, P ≤ 𝔮 ∧ c ∉ P := by
   let S : Submonoid T := 𝔮.primeCompl ⊔ Submonoid.powers c
@@ -44,10 +47,16 @@ section B
 
 variable {R : Type u} [CommRing R] (π : R) {𝒪 : Type v} [CommRing 𝒪] [Algebra R 𝒪] {κ : Type w} [Field κ] [Algebra R κ]
 
+/--
+@isnad1 id=eq.1h5v.s8.6306029b24cf from=translated src=- shape=1c251322 vocab=81436ec3
+-/
 theorem one_tmul_algebraMap_mul (hπκ : algebraMap R κ π = 0) (y : 𝒪) :
     (1 : κ) ⊗ₜ[R] (algebraMap R 𝒪 π * y) = 0 := by
   rw [← Algebra.smul_def, ← TensorProduct.smul_tmul, Algebra.smul_def, mul_one, hπκ, TensorProduct.zero_tmul]
 
+/--
+@isnad1 id=eq.0h4v.s8.c62c51047d16 from=translated src=- shape=b4e5aed0 vocab=ca1b1cd6
+-/
 theorem one_tmul_algebraMap (r : R) :
     (1 : κ) ⊗ₜ[R] (algebraMap R 𝒪 r) = (algebraMap R κ r) ⊗ₜ[R] (1 : 𝒪) := by
   rw [Algebra.algebraMap_eq_smul_one, Algebra.algebraMap_eq_smul_one, TensorProduct.smul_tmul]
@@ -73,15 +82,24 @@ noncomputable def ρ (hπκ : algebraMap R κ π = 0) : 𝒪 ⧸ Ideal.span {alg
     rw [mul_comm]
     exact one_tmul_algebraMap_mul π hπκ t)
 
+/--
+@isnad1 id=eq.1h5v.s10.43ae26b7dba9 from=translated src=- shape=c2117003 vocab=96ed1435
+-/
 theorem ρ_mk (hπκ : algebraMap R κ π = 0) (s : 𝒪) :
     ρ π hπκ (Ideal.Quotient.mk _ s) = (1 : κ) ⊗ₜ[R] s := rfl
 
+/--
+@isnad1 id=eq.1h5v.s11.330a58838d51 from=translated src=- shape=a2b56580 vocab=733ec73a
+-/
 theorem ρ_φB (hπκ : algebraMap R κ π = 0) (c : R ⧸ Ideal.span {π}) :
     ρ π hπκ (φB π c) = (φκ π hπκ c) ⊗ₜ[R] (1 : 𝒪) := by
   obtain ⟨r, rfl⟩ := Ideal.Quotient.mk_surjective c
   show (1 : κ) ⊗ₜ[R] (algebraMap R 𝒪 r) = (algebraMap R κ r) ⊗ₜ[R] (1 : 𝒪)
   exact one_tmul_algebraMap r
 
+/--
+@isnad1 id=ex.3h7v.s10.8fd9571d0cd9 from=translated src=- shape=5ef4d348 vocab=2916c23c
+-/
 theorem exists_tmul_not_mem_and_mul_eq [(Ideal.span {π}).IsMaximal] (hπκ : algebraMap R κ π = 0)
     (𝔮 : Ideal (κ ⊗[R] 𝒪)) [𝔮.IsPrime] (x : κ ⊗[R] 𝒪) (hx : x ∉ 𝔮) (c : 𝒪)
     (hxc : x * ((1 : κ) ⊗ₜ[R] c) = 0) :
@@ -165,6 +183,9 @@ end B
 end CrossLiftAux
 
 open CrossLiftAux in
+/--
+@isnad1 id=ex.8h9v.s12.567d6aa008a3 from=translated src=- shape=524812ae vocab=d42dda75
+-/
 theorem solution
     (R : Type*) [CommRing R] (π : R) (hπ : (Ideal.span {π}).IsMaximal)
     (𝒪 : Type*) [CommRing 𝒪] [Algebra R 𝒪] (hπ𝒪 : algebraMap R 𝒪 π ∈ nonZeroDivisors 𝒪)

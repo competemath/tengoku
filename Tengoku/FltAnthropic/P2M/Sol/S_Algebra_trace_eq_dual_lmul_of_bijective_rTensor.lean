@@ -17,12 +17,18 @@ open scoped TensorProduct
 
 variable (R : Type*) [CommRing R] (A : Type*) [CommRing A] [Algebra R A]
 
+/--
+@isnad1 id=eq.0h4v.s10.77ad35c6dd95 from=translated src=- shape=8a94e591 vocab=0a44780c
+-/
 theorem lid_rTensor_sum (φ : Dual R A) (S : Finset (A × A)) :
     TensorProduct.lid R A (LinearMap.rTensor A φ (∑ p ∈ S, p.1 ⊗ₜ[R] p.2)) = ∑ p ∈ S, φ p.1 • p.2 := by
   rw [map_sum, map_sum]
   refine Finset.sum_congr rfl fun p _ => ?_
   rw [LinearMap.rTensor_tmul, TensorProduct.lid_tmul]
 
+/--
+@isnad1 id=eq.2h5v.s11.f98ba01b39dc from=translated src=- shape=5fb63693 vocab=1fb11bc3
+-/
 theorem main [Module.Finite R A] [Module.Free R A]
     (τ : Dual R A) (Δ : A ⊗[R] A)
     (hbal : ∀ s : A, (s ⊗ₜ[R] (1 : A)) * Δ = ((1 : A) ⊗ₜ[R] s) * Δ)
@@ -76,6 +82,9 @@ theorem main [Module.Finite R A] [Module.Free R A]
 
 end Ws23.CoreD
 
+/--
+@isnad1 id=eq.3h5v.s12.b404222d9c51 from=translated src=- shape=7b596c04 vocab=6d0ccfa9
+-/
 theorem solution
     (R : Type*) [CommRing R] (A : Type*) [CommRing A] [Algebra R A] [Module.Finite R A] [Module.Free R A]
     (τ : Module.Dual R A) (Δ : A ⊗[R] A)

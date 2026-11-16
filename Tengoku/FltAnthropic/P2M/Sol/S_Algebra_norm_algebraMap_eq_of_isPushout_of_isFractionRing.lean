@@ -19,6 +19,9 @@ export _root_.Algebra (IsPushout algebraMap norm_eq_of_algEquiv norm algebraMapS
 namespace NormBaseChange
 open _root_.Algebra
 
+/--
+@isnad1 id=islocali.1h3v.s7.feaab694e796 from=translated src=- shape=c2b0088a vocab=ff02e5b4
+-/
 theorem isLocalization_of_finite (A B L : Type*) [CommRing A] [IsDomain A] [CommRing B] [IsDomain B] [Algebra A B]
     [Module.Finite A B] [Field L] [Algebra B L] [IsFractionRing B L] (h : Function.Injective (algebraMap A B)) :
     IsLocalization (Algebra.algebraMapSubmonoid B (nonZeroDivisors A)) L := by
@@ -34,6 +37,9 @@ theorem isLocalization_of_finite (A B L : Type*) [CommRing A] [IsDomain A] [Comm
     obtain ⟨r, hr, hdvd⟩ := (Algebra.IsAlgebraic.isAlgebraic (R := A) n).exists_nonzero_dvd hn
     exact ⟨algebraMap _ _ r, ⟨r, mem_nonZeroDivisors_of_ne_zero hr, rfl⟩, hdvd⟩
 
+/--
+@isnad1 id=ispushou.1h4v.s8.a073f79337e1 from=translated src=- shape=6a7fef55 vocab=979e3dff
+-/
 theorem isPushout_of_finite (A B K L : Type*) [CommRing A] [IsDomain A] [CommRing B] [IsDomain B] [Algebra A B]
     [Module.Finite A B] [Field K] [Algebra A K] [IsFractionRing A K] [Field L] [Algebra B L] [IsFractionRing B L]
     [Algebra K L] [Algebra A L] [IsScalarTower A K L] [IsScalarTower A B L] (h : Function.Injective (algebraMap A B)) :
@@ -44,6 +50,9 @@ theorem isPushout_of_finite (A B K L : Type*) [CommRing A] [IsDomain A] [CommRin
 end Algebra.NormBaseChange
 
 open Algebra.NormBaseChange in
+/--
+@isnad1 id=eq.3h10v.s10.43303bca3eaf from=translated src=- shape=0fa39484 vocab=3184ab10
+-/
 theorem solution
     {A B A' B' : Type u} [CommRing A] [CommRing B] [CommRing A'] [CommRing B']
     [IsDomain A] [IsDomain B] [IsDomain A'] [IsDomain B']

@@ -15,6 +15,9 @@ namespace R1AF8KappaFinChild
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
+/--
+@isnad1 id=subsingl.1h3v.s9.8636ae767ea8 from=translated src=- shape=8cce96f8 vocab=3da1c508
+-/
 theorem subsingleton_kaehler_adjoin (x : F)
     (hspan : Submodule.span F {KaehlerDifferential.D K F x} = ⊤) :
     Subsingleton Ω[F⁄K⟮x⟯] := by
@@ -35,6 +38,9 @@ theorem subsingleton_kaehler_adjoin (x : F)
   obtain ⟨b', rfl⟩ := KaehlerDifferential.map_surjective K K⟮x⟯ F b
   rw [hmap0, LinearMap.zero_apply, LinearMap.zero_apply]
 
+/--
+@isnad1 id=ex.0h2v.s7.ffa26ae79058 from=translated src=- shape=df6dea6c vocab=6294e08f
+-/
 theorem exists_finiteDimensional_adjoin [IsCurveOver K F] [Algebra.EssFiniteType K F] :
     ∃ x : F, FiniteDimensional K⟮x⟯ F := by
   obtain ⟨hfree, hrank⟩ := (IsCurveOver.kaehler_free_rank_one (K := K) (F := F))
@@ -64,6 +70,9 @@ theorem exists_finiteDimensional_adjoin [IsCurveOver K F] [Algebra.EssFiniteType
 
 end R1AF8KappaFinChild
 
+/--
+@isnad1 id=finitedi.1h3v.s7.8cb617e9df18 from=translated src=- shape=b70ff266 vocab=a5475935
+-/
 theorem solution
     {K F : Type*} [Field K] [Field F] [Algebra K F] [IsCurveOver K F] [Algebra.EssFiniteType K F]
     {t : F} (ht : Transcendental K t) :

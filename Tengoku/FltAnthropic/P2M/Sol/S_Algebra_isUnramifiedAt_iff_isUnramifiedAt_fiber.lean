@@ -11,6 +11,9 @@ open scoped TensorProduct
 
 namespace L2aFAux
 
+/--
+@isnad1 id=iff.0h3v.s7.a7217a33cfce from=translated src=- shape=8c33e136 vocab=3beb21b5
+-/
 theorem isUnramifiedAt_iff_subsingleton {S B : Type*} [CommRing S] [CommRing B] [Algebra S B]
     [Algebra.EssFiniteType S B] (q : Ideal B) [q.IsPrime] :
     Algebra.IsUnramifiedAt S q ↔ Subsingleton (q.ResidueField ⊗[B] Ω[B⁄S]) := by
@@ -22,6 +25,9 @@ theorem isUnramifiedAt_iff_subsingleton {S B : Type*} [CommRing S] [CommRing B] 
 end L2aFAux
 
 open L2aFAux in
+/--
+@isnad1 id=iff.1h5v.s11.3554564504d7 from=translated src=- shape=bb1e47e2 vocab=ac036554
+-/
 theorem solution
     {R A : Type*} [CommRing R] [CommRing A] [Algebra R A] [Algebra.EssFiniteType R A]
     (P : Ideal R) [P.IsPrime] (Q : Ideal A) [Q.IsPrime] [Q.LiesOver P]

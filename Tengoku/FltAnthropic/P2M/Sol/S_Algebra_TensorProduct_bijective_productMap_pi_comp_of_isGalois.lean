@@ -19,6 +19,9 @@ open scoped TensorProduct.RightActions
 variable (K L F : Type*) [Field K] [Field L] [Algebra K L] [FiniteDimensional K L] [IsGalois K L]
   [Field F] [Algebra K F] (σ₀ : L →ₐ[K] F)
 
+/--
+@isnad1 id=injectiv.0h4v.s7.182f75da0a65 from=translated src=- shape=bcdc5115 vocab=9d60c2da
+-/
 theorem injective_comp : Function.Injective (fun τ : L ≃ₐ[K] L => σ₀.comp (τ : L →ₐ[K] L)) := by
   intro τ τ' h
   apply AlgEquiv.ext

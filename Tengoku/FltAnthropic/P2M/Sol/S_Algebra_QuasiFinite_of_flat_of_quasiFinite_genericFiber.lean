@@ -11,6 +11,9 @@ set_option maxHeartbeats 800000
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=quasifin.1h3v.s7.ed5f3e39f1dd from=translated src=- shape=36838f47 vocab=42dbc6b8
+-/
 theorem solution
     {R B K : Type*} [CommRing R] [IsDomain R] [IsNoetherianRing R] [Ring.DimensionLEOne R]
     [CommRing B] [Algebra R B] [Module.Flat R B] [Algebra.FiniteType R B]

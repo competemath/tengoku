@@ -34,20 +34,38 @@ section Local
 
 variable (n M : ℕ)
 
+/--
+@isnad1 id=mem.0h3v.s7.3937816c63b3 from=translated src=- shape=f9b497e4 vocab=45b472fe
+-/
 theorem X_mem_NN (j : Fin n) : (MvPolynomial.X j : MvPolynomial (Fin n) k) ∈ NN k n := by
   rw [RingHom.mem_ker, MvPolynomial.constantCoeff_X]
 
+/--
+@isnad1 id=ne.0h2v.s7.6d3465bbef6e from=translated src=- shape=046a7f9a vocab=e20bcb4b
+-/
 theorem NN_ne_top : NN k n ≠ ⊤ := RingHom.ker_ne_top _
 
+/--
+@isnad1 id=ismaxima.0h2v.s5.6e1446b8da64 from=translated src=- shape=183f0cf8 vocab=307e05f9
+-/
 theorem NN_isMaximal : (NN k n).IsMaximal :=
   RingHom.ker_isMaximal_of_surjective _ (fun c => ⟨MvPolynomial.C c, MvPolynomial.constantCoeff_C _ c⟩)
 
+/--
+@isnad1 id=eq.0h3v.s11.e6f46f629152 from=translated src=- shape=f0864700 vocab=92baba92
+-/
 theorem tt_pow_eq_bot : tt k n M ^ (M + 1) = ⊥ := by
   rw [← Ideal.map_pow, Ideal.map_quotient_self]
 
+/--
+@isnad1 id=isnilpot.1h4v.s10.8a455183c3ff from=translated src=- shape=b4b5dbb5 vocab=e006b880
+-/
 theorem isNilpotent_of_mem_tt {x : TT k n M} (hx : x ∈ tt k n M) : IsNilpotent x :=
   ⟨M + 1, by have := Ideal.pow_mem_pow hx (M + 1); rwa [tt_pow_eq_bot, Ideal.mem_bot] at this⟩
 
+/--
+@isnad1 id=ne.0h3v.s10.a293004551a9 from=translated src=- shape=879b9cfd vocab=891600a9
+-/
 theorem tt_ne_top : tt k n M ≠ ⊤ := by
   intro h
   have h1 : (1 : TT k n M) ∈ tt k n M := h ▸ Submodule.mem_top
@@ -57,10 +75,16 @@ theorem tt_ne_top : tt k n M ≠ ⊤ := by
   have h2 : f - 1 ∈ NN k n := Ideal.pow_le_self (Nat.succ_ne_zero M) this
   exact NN_ne_top k n ((Ideal.eq_top_iff_one _).mpr (by simpa using (NN k n).sub_mem hf h2))
 
+/--
+@isnad1 id=ismaxima.0h3v.s7.0cfc863a557e from=translated src=- shape=8cd74a70 vocab=3b5e746e
+-/
 theorem tt_isMaximal : (tt k n M).IsMaximal :=
   (Ideal.map_eq_top_or_isMaximal_of_surjective _ Ideal.Quotient.mk_surjective (NN_isMaximal k n)).resolve_left
     (tt_ne_top k n M)
 
+/--
+@isnad1 id=isunit.1h4v.s10.e43bc3eebe99 from=translated src=- shape=0f78d022 vocab=b8c2b9d7
+-/
 theorem isUnit_of_not_mem_tt (x : TT k n M) (hx : x ∉ tt k n M) : IsUnit x := by
   obtain ⟨y, t, ht, hyt⟩ := (tt_isMaximal k n M).exists_inv hx
   have hu : IsUnit (y * x) := by
@@ -68,15 +92,24 @@ theorem isUnit_of_not_mem_tt (x : TT k n M) (hx : x ∉ tt k n M) : IsUnit x := 
     exact (isNilpotent_of_mem_tt k n M ht).isUnit_one_sub
   exact isUnit_of_mul_isUnit_right hu
 
+/--
+@isnad1 id=islocalr.0h3v.s7.ae42f98966d8 from=translated src=- shape=4c5a322b vocab=421aa3a0
+-/
 scoped instance isLocalRing_TT : IsLocalRing (TT k n M) :=
   IsLocalRing.of_unique_max_ideal ⟨tt k n M, tt_isMaximal k n M, fun J hJ =>
     hJ.eq_of_le (tt_ne_top k n M) fun x hx => by
       by_contra h
       exact hJ.ne_top (Ideal.eq_top_of_isUnit_mem _ hx (isUnit_of_not_mem_tt k n M x h))⟩
 
+/--
+@isnad1 id=eq.0h3v.s8.3f4ba4386c33 from=translated src=- shape=d35dd851 vocab=f9e0078f
+-/
 theorem maximalIdeal_TT : IsLocalRing.maximalIdeal (TT k n M) = tt k n M :=
   (IsLocalRing.eq_maximalIdeal (tt_isMaximal k n M)).symm
 
+/--
+@isnad1 id=le.0h5v.s11.84f0197a4360 from=translated src=- shape=25c4c3ac vocab=4d08b0bf
+-/
 theorem ker_le_tt {C : Type*} [CommRing C] [Nontrivial C] [Algebra k C] (γ : TT k n M →ₐ[k] C) :
     RingHom.ker γ ≤ tt k n M := by
   intro x hx
@@ -93,6 +126,9 @@ section Step
 variable {k}
 variable {n M : ℕ} {C : Type*} [CommRing C] [Algebra k C] [IsLocalRing C]
 
+/--
+@isnad1 id=ex.3h6v.s17.1033aeabb2a8 from=translated src=- shape=c12bc9b1 vocab=a95f74fc
+-/
 theorem step (γ : TT k (n + 1) M →ₐ[k] C) (x : TT k (n + 1) M) (hxk : x ∈ RingHom.ker γ)
     (hx1 : x ∈ tt k (n + 1) M) (hx2 : x ∉ tt k (n + 1) M ^ 2) :
     ∃ (e : (TT k (n + 1) M ⧸ Ideal.span ({x} : Set (TT k (n + 1) M))) ≃ₐ[k] TT k n M) (γ' : TT k n M →ₐ[k] C),
@@ -134,6 +170,9 @@ theorem step (γ : TT k (n + 1) M →ₐ[k] C) (x : TT k (n + 1) M) (hxk : x ∈
       have : b - (b - a) ∈ RingHom.ker γ := (RingHom.ker γ).sub_mem hb (hle hba)
       simpa using this
 
+/--
+@isnad1 id=ex.4h7v.s14.c93f46cc36c6 from=translated src=- shape=816582fd vocab=b6be513d
+-/
 theorem drop (γ : TT k (n + 1) M →ₐ[k] C) (g : Fin (n + 1) → TT k (n + 1) M) (hg : RingHom.ker γ = Ideal.span (Set.range g))
     (x : TT k (n + 1) M) (hxk : x ∈ RingHom.ker γ) (hx1 : x ∈ tt k (n + 1) M) (hx2 : x ∉ tt k (n + 1) M ^ 2) :
     ∃ (γ' : TT k n M →ₐ[k] C), (Function.Surjective γ → Function.Surjective γ') ∧
@@ -151,6 +190,9 @@ theorem drop (γ : TT k (n + 1) M →ₐ[k] C) (g : Fin (n + 1) → TT k (n + 1)
   rw [hker, hg, hg₁, Ideal.map_span, ← Set.range_comp]
   rfl
 
+/--
+@isnad1 id=ex.3h6v.s14.8d9f1a940aa1 from=translated src=- shape=6981f26c vocab=b6be513d
+-/
 theorem lift (γ : TT k (n + 1) M →ₐ[k] C)
     (x : TT k (n + 1) M) (hxk : x ∈ RingHom.ker γ) (hx1 : x ∈ tt k (n + 1) M) (hx2 : x ∉ tt k (n + 1) M ^ 2) :
     ∃ (γ' : TT k n M →ₐ[k] C), (Function.Surjective γ → Function.Surjective γ') ∧
@@ -186,6 +228,9 @@ section CotangentCount
 variable {k}
 variable (n M : ℕ)
 
+/--
+@isnad1 id=eq.0h2v.s6.1c48132f6404 from=translated src=- shape=c5ad5d1e vocab=fc4fdb5c
+-/
 theorem NN_eq_span : NN k n = Ideal.span (Set.range (MvPolynomial.X : Fin n → MvPolynomial (Fin n) k)) := by
   apply le_antisymm
   · intro f hf
@@ -203,6 +248,9 @@ theorem NN_eq_span : NN k n = Ideal.span (Set.range (MvPolynomial.X : Fin n → 
     rintro _ ⟨j, rfl⟩
     exact X_mem_NN k n j
 
+/--
+@isnad1 id=le.2h4v.s9.d17b9f6534d3 from=translated src=- shape=ede08494 vocab=f289550e
+-/
 theorem two_le_degree_of_mem_sq {p : MvPolynomial (Fin n) k} (hp : p ∈ NN k n ^ 2) :
     ∀ d ∈ p.support, 2 ≤ d.degree := by
   classical
@@ -228,6 +276,9 @@ theorem two_le_degree_of_mem_sq {p : MvPolynomial (Fin n) k} (hp : p ∈ NN k n 
     rw [(map_add Finsupp.degree)]
     exact le_add_left (hg b hb)
 
+/--
+@isnad1 id=eq.1h4v.s9.1a65286e662c from=translated src=- shape=d581c003 vocab=1ed9ed58
+-/
 theorem coeff_single_eq_zero_of_mem_sq {p : MvPolynomial (Fin n) k} (hp : p ∈ NN k n ^ 2) (j : Fin n) :
     MvPolynomial.coeff (Finsupp.single j 1) p = 0 := by
   by_contra h
@@ -237,12 +288,21 @@ theorem coeff_single_eq_zero_of_mem_sq {p : MvPolynomial (Fin n) k} (hp : p ∈ 
 
 noncomputable def lin (c : Fin n → k) : MvPolynomial (Fin n) k := ∑ i, MvPolynomial.C (c i) * MvPolynomial.X i
 
+/--
+@isnad1 id=eq.0h4v.s7.f66358b3ff54 from=translated src=- shape=5c4aef15 vocab=63deb985
+-/
 theorem lin_add (c c' : Fin n → k) : lin n (c + c') = lin n c + lin n c' := by
   simp only [lin, Pi.add_apply, MvPolynomial.C_add, add_mul, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h4v.s7.00ee0e232bc7 from=translated src=- shape=b7c287b7 vocab=68b82d14
+-/
 theorem lin_smul (a : k) (c : Fin n → k) : lin n (a • c) = MvPolynomial.C a * lin n c := by
   simp only [lin, Pi.smul_apply, smul_eq_mul, MvPolynomial.C_mul, mul_assoc, Finset.mul_sum]
 
+/--
+@isnad1 id=eq.0h4v.s5.ce1a4e19901c from=translated src=- shape=b6c98f71 vocab=5da3d5b0
+-/
 theorem coeff_single_lin (c : Fin n → k) (j : Fin n) :
     MvPolynomial.coeff (Finsupp.single j 1) (lin n c) = c j := by
   classical
@@ -256,12 +316,18 @@ theorem coeff_single_lin (c : Fin n → k) (j : Fin n) :
     exact hij (Finsupp.single_left_injective one_ne_zero h)
   · intro h; exact absurd (Finset.mem_univ j) h
 
+/--
+@isnad1 id=mem.0h4v.s12.586ec1159582 from=translated src=- shape=3c4cf1c7 vocab=2568f706
+-/
 theorem mk_lin_mem_tt (c : Fin n → k) : (Ideal.Quotient.mk (NN k n ^ (M + 1)) (lin n c) : TT k n M) ∈ tt k n M := by
   rw [lin, map_sum]
   exact Ideal.sum_mem _ fun j _ => by rw [map_mul]; exact Ideal.mul_mem_left _ _ (Ideal.mem_map_of_mem _ (X_mem_NN k n j))
 
 variable {n M}
 
+/--
+@isnad1 id=mem.2h4v.s12.cf91b579df15 from=translated src=- shape=47509587 vocab=bac14f20
+-/
 theorem mem_sq_of_mk_mem_tt_sq (hM : 1 ≤ M) {y : MvPolynomial (Fin n) k}
     (hy : Ideal.Quotient.mk (NN k n ^ (M + 1)) y ∈ tt k n M ^ 2) : y ∈ NN k n ^ 2 := by
   rw [tt, ← Ideal.map_pow, Ideal.mem_map_iff_of_surjective _ Ideal.Quotient.mk_surjective] at hy
@@ -278,15 +344,24 @@ theorem eq_zero_of_mk_lin_mem_sq (hM : 1 ≤ M) (c : Fin n → k)
   have h := coeff_single_eq_zero_of_mem_sq n (mem_sq_of_mk_mem_tt_sq hM hc) j
   rwa [coeff_single_lin] at h
 
+/--
+@isnad1 id=mem.0h4v.s12.8f21559d85ed from=translated src=- shape=cdc8e4db vocab=2a62fb71
+-/
 theorem mk_X_mem_tt (j : Fin n) : (Ideal.Quotient.mk (NN k n ^ (M + 1)) (MvPolynomial.X j) : TT k n M) ∈ tt k n M :=
   Ideal.mem_map_of_mem _ (X_mem_NN k n j)
 
+/--
+@isnad1 id=eq.0h3v.s11.3c0ed7ea9977 from=translated src=- shape=0e7193ce vocab=35e37632
+-/
 theorem tt_eq_span : tt k n M = Ideal.span (Set.range fun j : Fin n => (Ideal.Quotient.mk (NN k n ^ (M + 1)) (MvPolynomial.X j) : TT k n M)) := by
   have h : Ideal.map (Ideal.Quotient.mk (NN k n ^ (M + 1))) (Ideal.span (Set.range (MvPolynomial.X : Fin n → MvPolynomial (Fin n) k))) =
       Ideal.span (Set.range fun j : Fin n => (Ideal.Quotient.mk (NN k n ^ (M + 1)) (MvPolynomial.X j) : TT k n M)) := by
     rw [Ideal.map_span, ← Set.range_comp]; rfl
   rw [← h, ← NN_eq_span]
 
+/--
+@isnad1 id=ex.0h4v.s11.01ad56fe7bb2 from=translated src=- shape=a0418d2c vocab=244f6466
+-/
 theorem exists_sub_algebraMap_mem_tt (t : TT k n M) : ∃ a : k, t - algebraMap k (TT k n M) a ∈ tt k n M := by
   obtain ⟨p, rfl⟩ := Ideal.Quotient.mk_surjective t
   refine ⟨MvPolynomial.constantCoeff p, ?_⟩
@@ -294,6 +369,9 @@ theorem exists_sub_algebraMap_mem_tt (t : TT k n M) : ∃ a : k, t - algebraMap 
       Ideal.Quotient.mk (NN k n ^ (M + 1)) (MvPolynomial.C (MvPolynomial.constantCoeff p)) from rfl, ← map_sub]
   exact Ideal.mem_map_of_mem _ (by rw [RingHom.mem_ker, map_sub, MvPolynomial.constantCoeff_C, sub_self])
 
+/--
+@isnad1 id=ex.1h4v.s13.5b3aa9741cb2 from=translated src=- shape=dabfe7f3 vocab=8c8d0ad3
+-/
 theorem exists_sub_mk_lin_mem_sq (x : TT k n M) (hx : x ∈ tt k n M) :
     ∃ c : Fin n → k, x - Ideal.Quotient.mk (NN k n ^ (M + 1)) (lin n c) ∈ tt k n M ^ 2 := by
   classical
@@ -322,8 +400,14 @@ noncomputable def linForm (n M : ℕ) : (Fin n → k) →ₗ[k] (tt k n M).Cotan
       rfl
     rw [RingHom.id_apply, this, LinearMap.map_smul, algebraMap_smul]
 
+/--
+@isnad1 id=eq.0h4v.s14.f26b9c01d598 from=translated src=- shape=4af3e792 vocab=f43b9c0d
+-/
 theorem linForm_apply (n M : ℕ) (c : Fin n → k) : linForm (k := k) n M c = (tt k n M).toCotangent (linElt n M c) := rfl
 
+/--
+@isnad1 id=surjecti.0h3v.s11.d5d62c709011 from=translated src=- shape=a1cf784c vocab=e597fad2
+-/
 theorem linForm_surjective (n M : ℕ) : Function.Surjective (linForm (k := k) n M) := by
   intro ξ
   obtain ⟨⟨x, hx⟩, rfl⟩ := (tt k n M).toCotangent_surjective ξ
@@ -333,6 +417,9 @@ theorem linForm_surjective (n M : ℕ) : Function.Surjective (linForm (k := k) n
   have : -(x - Ideal.Quotient.mk (NN k n ^ (M + 1)) (lin n c)) ∈ tt k n M ^ 2 := (Ideal.neg_mem_iff _).mpr hc
   simpa only [linElt, Submodule.coe_sub, neg_sub] using this
 
+/--
+@isnad1 id=injectiv.1h3v.s11.ab7b1c15fb81 from=translated src=- shape=3b6f418a vocab=abd6cbe1
+-/
 theorem linForm_injective (hM : 1 ≤ M) (n : ℕ) : Function.Injective (linForm (k := k) n M) := by
   intro c c' h
   rw [← sub_eq_zero]
@@ -341,6 +428,9 @@ theorem linForm_injective (hM : 1 ≤ M) (n : ℕ) : Function.Injective (linForm
   rw [linForm_apply, Ideal.toCotangent_eq_zero] at h0
   exact h0
 
+/--
+@isnad1 id=eq.1h3v.s10.0164013ffe8d from=translated src=- shape=452a3039 vocab=30ca304e
+-/
 theorem finrank_cotangent_tt (hM : 1 ≤ M) (n : ℕ) : Module.finrank k (tt k n M).Cotangent = n := by
   rw [← (LinearEquiv.ofBijective (linForm n M) ⟨linForm_injective hM n, linForm_surjective n M⟩).finrank_eq,
     Module.finrank_fin_fun]
@@ -352,6 +442,9 @@ section Compare
 variable {k}
 variable {C : Type*} [CommRing C] [Algebra k C] [IsLocalRing C] {M : ℕ}
 
+/--
+@isnad1 id=le.0h5v.s12.0be098505f3e from=translated src=- shape=a27f11b6 vocab=b6311656
+-/
 theorem tt_le_comap_algEquiv {n m : ℕ} (e : TT k n M ≃ₐ[k] TT k m M) :
     tt k n M ≤ (tt k m M).comap (e : TT k n M →ₐ[k] TT k m M) := by
   intro x hx
@@ -384,6 +477,9 @@ noncomputable def cotangentEquivOfAlgEquiv {n m : ℕ} (e : TT k n M ≃ₐ[k] T
     congr 1
     exact Subtype.ext (e.symm_apply_apply x)
 
+/--
+@isnad1 id=ex.1h7v.s12.16410597d960 from=translated src=- shape=d08f957e vocab=59ace00e
+-/
 theorem exists_algHom_comp_eq {n m : ℕ} (γ : TT k n M →ₐ[k] C) (δ : TT k m M →ₐ[k] C) (hδ : Function.Surjective δ) :
     ∃ θ : TT k n M →ₐ[k] TT k m M, δ.comp θ = γ := by
   classical
@@ -435,6 +531,9 @@ theorem exists_algHom_comp_eq {n m : ℕ} (γ : TT k n M →ₐ[k] C) (δ : TT k
   refine MvPolynomial.algHom_ext fun j => ?_
   rw [AlgHom.comp_apply, AlgHom.comp_apply, MvPolynomial.aeval_X, Ideal.Quotient.mkₐ_eq_mk, hPδ]
 
+/--
+@isnad1 id=bijectiv.2h6v.s13.b5c493ce4cbe from=translated src=- shape=d172ae7b vocab=7405da0d
+-/
 theorem bijective_of_comp_eq {n : ℕ} (γ : TT k n M →ₐ[k] C) (hγ2 : RingHom.ker γ ≤ tt k n M ^ 2)
     (φ : TT k n M →ₐ[k] TT k n M) (hφ : γ.comp φ = γ) : Function.Bijective φ := by
   refine MvPolynomial.bijective_algHom_truncated_of_forall_exists_sub_mem_sq k n M φ fun j =>
@@ -463,6 +562,9 @@ section Descent
 variable {k}
 variable {M : ℕ} {C : Type*} [CommRing C] [Algebra k C] [IsLocalRing C]
 
+/--
+@isnad1 id=eq.0h2v.s10.4302c045d082 from=translated src=- shape=241d1efa vocab=92baba92
+-/
 theorem tt_zero_eq_bot : tt k 0 M = ⊥ := by
   rw [Ideal.map_eq_bot_iff_le_ker, Ideal.mk_ker]
   intro f hf
@@ -472,6 +574,9 @@ theorem tt_zero_eq_bot : tt k 0 M = ⊥ := by
     rw [MvPolynomial.eq_C_of_isEmpty f, hf', map_zero]
   rw [this]; exact zero_mem _
 
+/--
+@isnad1 id=ex.1h5v.s13.b936de75091f from=translated src=- shape=74a40a29 vocab=ba959236
+-/
 theorem exists_not_mem_sq {n : ℕ} (γ : TT k n M →ₐ[k] C) (h : ¬ RingHom.ker γ ≤ tt k n M ^ 2) :
     ∃ (s : ℕ) (hs : n = s + 1) (x : TT k n M), x ∈ RingHom.ker γ ∧ x ∈ tt k n M ∧ x ∉ tt k n M ^ 2 := by
   obtain ⟨x, hxk, hx2⟩ := Set.not_subset.mp h
@@ -483,6 +588,9 @@ theorem exists_not_mem_sq {n : ℕ} (γ : TT k n M →ₐ[k] C) (h : ¬ RingHom.
     rw [hx1]; exact zero_mem _
   | succ s => exact ⟨s, rfl, x, hxk, hx1, hx2⟩
 
+/--
+@isnad1 id=ex.2h5v.s13.b281cfc293dd from=translated src=- shape=fe08dd36 vocab=da4ee15c
+-/
 theorem exists_minimal : ∀ (r : ℕ) (β : TT k r M →ₐ[k] C), Function.Surjective β →
     (∃ g : Fin r → TT k r M, RingHom.ker β = Ideal.span (Set.range g)) →
     ∃ (m : ℕ) (δ : TT k m M →ₐ[k] C), Function.Surjective δ ∧ RingHom.ker δ ≤ tt k m M ^ 2 ∧
@@ -506,6 +614,9 @@ theorem exists_minimal : ∀ (r : ℕ) (β : TT k r M →ₐ[k] C), Function.Sur
       obtain ⟨β', hβ', g', hg'⟩ := drop β g hg x hxk hx1 hx2
       exact ih β' (hβ' hβ) ⟨g', hg'⟩
 
+/--
+@isnad1 id=eq.2h8v.s13.077bb8d22330 from=translated src=- shape=5fd9b425 vocab=fa842601
+-/
 theorem ker_eq_span_of_comp_eq {n : ℕ} (α δ : TT k n M →ₐ[k] C) (θ : TT k n M ≃ₐ[k] TT k n M)
     (hθ : δ.comp (θ : TT k n M →ₐ[k] TT k n M) = α) (g : Fin n → TT k n M)
     (hg : RingHom.ker δ = Ideal.span (Set.range g)) :
@@ -520,6 +631,9 @@ theorem ker_eq_span_of_comp_eq {n : ℕ} (α δ : TT k n M →ₐ[k] C) (θ : TT
 
 variable [Module.Finite k C]
 
+/--
+@isnad1 id=ex.5h8v.s13.7183df50bc3d from=translated src=- shape=38b6a2cc vocab=7ca4ca54
+-/
 theorem exists_gen_of_minimal (hM : 1 ≤ M) {m : ℕ} (δ : TT k m M →ₐ[k] C) (hδ : Function.Surjective δ)
     (hδ2 : RingHom.ker δ ≤ tt k m M ^ 2) (gδ : Fin m → TT k m M) (hgδ : RingHom.ker δ = Ideal.span (Set.range gδ)) :
     ∀ (N : ℕ) (α : TT k N M →ₐ[k] C), Function.Surjective α →
@@ -557,6 +671,9 @@ open scoped _root_.P2MW.S_Algebra_exists_ker_eq_span_of_surjective_truncated_of_
 end
 open scoped _root_.P2MW.S_Algebra_exists_ker_eq_span_of_surjective_truncated_of_ker_eq_span.Algebra _root_.P2MW.S_Algebra_exists_ker_eq_span_of_surjective_truncated_of_ker_eq_span.Algebra.DevTrunc
 
+/--
+@isnad1 id=ex.3h8v.s14.c75bc5d71169 from=translated src=- shape=ffe2757d vocab=08865226
+-/
 theorem solution
     (k : Type*) [Field k] (C : Type*) [CommRing C] [Algebra k C] [IsLocalRing C] [Module.Finite k C]
     (M : ℕ)

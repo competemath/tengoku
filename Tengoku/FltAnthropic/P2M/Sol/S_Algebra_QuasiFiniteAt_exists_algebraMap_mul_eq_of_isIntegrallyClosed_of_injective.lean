@@ -7,6 +7,9 @@ namespace P2MW.S_Algebra_QuasiFiniteAt_exists_algebraMap_mul_eq_of_isIntegrallyC
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.1h5v.s8.0826e8daa6d9 from=translated src=- shape=a45088d3 vocab=57ec39d2
+-/
 theorem solution
     {R S K : Type} [CommRing R] [IsDomain R] [IsIntegrallyClosed R] [CommRing S] [Field K]
     [Algebra R S] [Algebra R K] [IsFractionRing R K] [Algebra S K] [IsScalarTower R S K]

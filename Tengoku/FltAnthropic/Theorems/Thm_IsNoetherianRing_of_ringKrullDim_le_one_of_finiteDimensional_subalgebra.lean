@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u v w
 
+/--
+@isnad1 id=and.1h4v.s8.bac61aee47ca from=translated src=- shape=56c6f84a vocab=3730262d
+-/
 theorem IsNoetherianRing.of_ringKrullDim_le_one_of_finiteDimensional_subalgebra
     {R : Type u} [CommRing R] [IsDomain R] [IsNoetherianRing R] (hR : ringKrullDim R ≤ 1)
     (K : Type v) [Field K] [Algebra R K] [IsFractionRing R K]

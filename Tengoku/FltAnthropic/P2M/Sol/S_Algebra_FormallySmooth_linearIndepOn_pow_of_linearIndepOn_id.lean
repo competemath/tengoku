@@ -14,6 +14,9 @@ open TensorProduct
 
 namespace Algebra export _root_.Algebra (FormallySmooth algebraMap smul_def id FormallySmooth.subsingleton_h1Cotangent H1Cotangent H1Cotangent.exact_δ_mapBaseChange) namespace FormallySmooth export _root_.Algebra.FormallySmooth (subsingleton_h1Cotangent) end Algebra.FormallySmooth
 open scoped _root_.Algebra _root_.Algebra.FormallySmooth in
+/--
+@isnad1 id=linearin.2h4v.s7.b4f104510245 from=translated src=- shape=baddcd99 vocab=543b1c29
+-/
 theorem Algebra.FormallySmooth.linearIndepOn_pow_aux29
     {k K : Type u} [Field k] [Field K] [Algebra k K] [Algebra.FormallySmooth k K]
     (p : ℕ) (hp : p.Prime) [ExpChar k p] :
@@ -115,6 +118,9 @@ theorem Algebra.FormallySmooth.linearIndepOn_pow_aux29
     rw [hc₀] at this
     exact one_ne_zero this
 
+/--
+@isnad1 id=linearin.2h4v.s7.b4f104510245 from=translated src=- shape=baddcd99 vocab=543b1c29
+-/
 theorem solution
     {k K : Type u} [Field k] [Field K] [Algebra k K] [Algebra.FormallySmooth k K]
     (p : ℕ) (hp : p.Prime) [ExpChar k p]

@@ -11,6 +11,9 @@ open Module
 
 variable {K A : Type*} [Field K] [CommRing A] [Algebra K A]
 
+/--
+@isnad1 id=ex.1h3v.s8.cd9558c0e1f0 from=translated src=- shape=8d634a17 vocab=824be664
+-/
 theorem exists_dual_apply_ne_zero {V : Type*} [AddCommGroup V] [Module K V] {v : V} (hv : v ≠ 0) :
     ∃ μ : V →ₗ[K] K, μ v ≠ 0 := by
   by_contra h
@@ -27,6 +30,9 @@ theorem eq_zero_of_forall_mem_maximal [IsArtinianRing A] [IsReduced A] {x : A}
   exact hnil.eq_zero
 
 variable (K A) in
+/--
+@isnad1 id=ex.0h2v.s8.d14af619304e from=translated src=- shape=40e75296 vocab=7e84e5f1
+-/
 theorem main [FiniteDimensional K A] [IsReduced A] :
     ∃ l : A →ₗ[K] K, ∀ x : A, (∀ y : A, l (x * y) = 0) → x = 0 := by
   classical
@@ -79,6 +85,9 @@ theorem main [FiniteDimensional K A] [IsReduced A] :
 
 end P2MFrobeniusOfReduced
 
+/--
+@isnad1 id=ex.0h2v.s8.d14af619304e from=translated src=- shape=40e75296 vocab=7e84e5f1
+-/
 theorem solution
     (K A : Type*) [Field K] [CommRing A] [Algebra K A] [FiniteDimensional K A] [IsReduced A] :
     ∃ l : A →ₗ[K] K, ∀ x : A, (∀ y : A, l (x * y) = 0) → x = 0 :=

@@ -7,6 +7,9 @@ namespace P2MW.S_AlgebraicCurve_FunctionField_exists_ratFuncAlgHom_apply_X_eq
 
 open Polynomial
 
+/--
+@isnad1 id=ex.1h3v.s8.e773c87d6693 from=translated src=- shape=f19c0280 vocab=b3c15cea
+-/
 theorem solution {K F : Type*} [Field K] [IsAlgClosed K] [Field F] [Algebra K F] {g : F} (hg : g ∉ Set.range (algebraMap K F)) : ∃ φ : RatFunc K →ₐ[K] F, φ RatFunc.X = g := by
 
   have htr : Transcendental K g := by

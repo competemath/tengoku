@@ -64,6 +64,9 @@ private theorem finrank_tensor_eq [Module.Finite A B] :
 end FinrankTensorFrac
 
 open FinrankTensorFrac in
+/--
+@isnad1 id=eq.1h6v.s9.0fa435d1d303 from=translated src=- shape=fbf9c16f vocab=055e8970
+-/
 theorem solution
     {A B : Type*} [CommRing A] [CommRing B] [Algebra A B] [Module.Finite A B]
     (K : Type*) [Field K] [Algebra A K] [IsFractionRing A K]

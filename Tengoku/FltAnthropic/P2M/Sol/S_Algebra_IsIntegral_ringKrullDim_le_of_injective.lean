@@ -7,6 +7,9 @@ namespace P2MW.S_Algebra_IsIntegral_ringKrullDim_le_of_injective
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=le.1h2v.s6.b44ee6c1ba20 from=translated src=- shape=e3a90ee3 vocab=1a19cc10
+-/
 theorem solution
     {R S : Type*} [CommRing R] [CommRing S] [Algebra R S] [Algebra.IsIntegral R S]
     (hinj : Function.Injective (algebraMap R S)) :

@@ -16,6 +16,9 @@ namespace SurjDescGC3
 variable {R A D C : Type u} [CommRing R] [CommRing A] [CommRing D] [CommRing C] [Algebra R A] [Algebra R D] [Algebra R C]
   (φ : D →ₐ[R] C)
 
+/--
+@isnad1 id=eq.0h7v.s13.2e7ce3b568b4 from=translated src=- shape=416834f5 vocab=ea2dc837
+-/
 theorem rTensor_comp_map (T : Subalgebra R A) (w : ↥T ⊗[R] D) :
     (LinearMap.rTensor C T.val.toLinearMap) (Algebra.TensorProduct.map (AlgHom.id ↥T ↥T) φ w) =
       Algebra.TensorProduct.map (AlgHom.id A A) φ (LinearMap.rTensor D T.val.toLinearMap w) := by
@@ -24,6 +27,9 @@ theorem rTensor_comp_map (T : Subalgebra R A) (w : ↥T ⊗[R] D) :
   | tmul t d => simp
   | add x y hx hy => simp [map_add, hx, hy]
 
+/--
+@isnad1 id=eq.1h8v.s13.bb9cfaea35fe from=translated src=- shape=dee9307b vocab=1bda0428
+-/
 theorem rTensor_incl_map {T T' : Subalgebra R A} (h : T ≤ T') (w : ↥T ⊗[R] D) :
     (LinearMap.rTensor C (Subalgebra.inclusion h).toLinearMap) (Algebra.TensorProduct.map (AlgHom.id ↥T ↥T) φ w) =
       Algebra.TensorProduct.map (AlgHom.id ↥T' ↥T') φ (LinearMap.rTensor D (Subalgebra.inclusion h).toLinearMap w) := by
@@ -32,6 +38,9 @@ theorem rTensor_incl_map {T T' : Subalgebra R A} (h : T ≤ T') (w : ↥T ⊗[R]
   | tmul t d => simp
   | add x y hx hy => simp [map_add, hx, hy]
 
+/--
+@isnad1 id=ex.2h7v.s12.df57dd72b46d from=translated src=- shape=41b12272 vocab=0e49fc07
+-/
 theorem step (hA : Function.Surjective (Algebra.TensorProduct.map (AlgHom.id A A) φ))
     (T₀ : Subalgebra R A) (hT₀ : T₀.FG) (c : C) :
     ∃ (T : Subalgebra R A) (_ : T₀ ≤ T), T.FG ∧
@@ -59,6 +68,9 @@ theorem step (hA : Function.Surjective (Algebra.TensorProduct.map (AlgHom.id A A
 
 end SurjDescGC3
 
+/--
+@isnad1 id=ex.2h6v.s12.c6a7dae8c715 from=translated src=- shape=53d26b02 vocab=28f3b14c
+-/
 theorem solution
     {R A D C : Type u} [CommRing R] [CommRing A] [CommRing D] [CommRing C] [Algebra R A] [Algebra R D] [Algebra R C]
     (φ : D →ₐ[R] C) (hφ : φ.toRingHom.FiniteType)

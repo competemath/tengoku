@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=eq.1h4v.s14.42d9e04841ef from=translated src=- shape=dd7d80a0 vocab=f025b0bc
+-/
 theorem solution
     (R : Type*) [CommRing R] {m : ℕ} (f : Fin m → MvPolynomial (Fin m) R)
     (a : Fin m → Fin m → MvPolynomial (Fin m) R ⊗[R] MvPolynomial (Fin m) R)

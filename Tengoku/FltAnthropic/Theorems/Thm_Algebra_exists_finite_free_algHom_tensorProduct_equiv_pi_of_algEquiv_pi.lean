@@ -10,6 +10,9 @@ set_option autoImplicit false
 open scoped TensorProduct
 
 universe u
+/--
+@isnad1 id=ex.0h6v.s11.62871c8ae84b from=translated src=- shape=42bbf4e8 vocab=c5c9c9ff
+-/
 theorem Algebra.exists_finite_free_algHom_tensorProduct_equiv_pi_of_algEquiv_pi
     (A : Type u) [CommRing A] (B : Type u) [CommRing B] [Algebra A B]
     (H : Type u) [CommRing H] [Algebra B H] [Module.Finite B H] [Module.Free B H]

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsDedekindDomain AlgebraicCurve
 
+/--
+@isnad1 id=eq.6h8v.s9.822ff52f7115 from=translated src=- shape=ab9c6fc5 vocab=56ef3f53
+-/
 theorem solution {K F F₁ : Type*} [Field K] [Field F] [Field F₁] [Algebra K F] [Algebra K F₁] [HasPrincipalDivisors K F₁] {φ ψ φ' ψ' : F →ₐ[K] F₁} (hφeq : φ = φ') (hψeq : ψ = ψ') (hφ : φ.toRingHom.IsIntegral) (hψ : ψ.toRingHom.IsIntegral) (hφ' : φ'.toRingHom.IsIntegral) (hψ' : ψ'.toRingHom.IsIntegral) (D : Divisor K F) : Divisor.correspondence φ ψ hφ hψ D = Divisor.correspondence φ' ψ' hφ' hψ' D := by
   subst hφeq
   subst hψeq

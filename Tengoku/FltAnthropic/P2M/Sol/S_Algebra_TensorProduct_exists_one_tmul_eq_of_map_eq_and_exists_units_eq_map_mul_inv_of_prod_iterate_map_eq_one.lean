@@ -19,25 +19,43 @@ noncomputable abbrev T (F : Type*) [Field F] [Algebra K F] (σ : L ≃ₐ[K] L) 
     L ⊗[K] F →ₐ[K] L ⊗[K] F :=
   Algebra.TensorProduct.map σ.toAlgHom (AlgHom.id K F)
 
+/--
+@isnad1 id=eq.0h6v.s9.cfe0a4586af2 from=translated src=- shape=46bd468f vocab=47fba9dc
+-/
 theorem T_tmul (σ : L ≃ₐ[K] L) (l : L) (f : F) : T F σ (l ⊗ₜ f) = σ l ⊗ₜ f := rfl
 
+/--
+@isnad1 id=eq.0h7v.s10.0da8a569a2dd from=translated src=- shape=33e09a43 vocab=6c5ec9f4
+-/
 theorem T_iterate_tmul (σ : L ≃ₐ[K] L) (i : ℕ) (l : L) (f : F) :
     (⇑(T F σ))^[i] (l ⊗ₜ f) = ((σ ^ i) l) ⊗ₜ f := by
   induction i with
   | zero => simp
   | succ i ih => rw [Function.iterate_succ_apply', ih, T_tmul, pow_succ', AlgEquiv.mul_apply]
 
+/--
+@isnad1 id=eq.0h6v.s11.3c92a5360db5 from=translated src=- shape=bf859031 vocab=24044eb1
+-/
 theorem T_pow_apply (σ : L ≃ₐ[K] L) (i : ℕ) (z : L ⊗[K] F) :
     ((T F σ) ^ i) z = (⇑(T F σ))^[i] z := by
   rw [AlgHom.coe_pow]
 
+/--
+@isnad1 id=injectiv.0h3v.s8.af38472a892b from=translated src=- shape=eff60d52 vocab=8366a5e0
+-/
 theorem includeRight_injective' :
     Function.Injective (Algebra.TensorProduct.includeRight : F →ₐ[K] L ⊗[K] F) :=
   Algebra.TensorProduct.includeRight_injective (algebraMap K L).injective
 
+/--
+@isnad1 id=nontrivi.0h3v.s6.63047a58f48f from=translated src=- shape=b420ef24 vocab=3416ee23
+-/
 scoped instance nontrivial_tensor : Nontrivial (L ⊗[K] F) :=
   (includeRight_injective' (K := K) (L := L) (F := F)).nontrivial
 
+/--
+@isnad1 id=eq.0h3v.s5.315deb492175 from=translated src=- shape=f0f7b9b1 vocab=9bb809d2
+-/
 theorem list_prod_range_map {M : Type*} [CommMonoid M] (f : ℕ → M) (n : ℕ) :
     ((List.range n).map f).prod = ∏ i ∈ Finset.range n, f i := by
   induction n with
@@ -56,12 +74,21 @@ variable {K L F : Type*} [Field K] [Field L] [Algebra K L] [FiniteDimensional K 
 
 include hgen
 
+/--
+@isnad1 id=eq.1h3v.s8.1378e6d71d8e from=translated src=- shape=65a42b8e vocab=e6758f20
+-/
 theorem orderOf_eq_finrank : orderOf σ = Module.finrank K L := by
   rw [orderOf_eq_card_of_forall_mem_zpowers hgen, IsGalois.card_aut_eq_finrank]
 
+/--
+@isnad1 id=eq.1h3v.s9.6fb517cf604e from=translated src=- shape=70727eae vocab=c76a44f4
+-/
 theorem pow_finrank_eq_one : σ ^ Module.finrank K L = 1 := by
   rw [← orderOf_eq_finrank σ hgen]; exact pow_orderOf_eq_one σ
 
+/--
+@isnad1 id=eq.1h5v.s10.10ad275bda68 from=translated src=- shape=8e14ab7d vocab=986a5332
+-/
 theorem T_iterate_finrank (z : L ⊗[K] F) : (⇑(T F σ))^[Module.finrank K L] z = z := by
   rw [← T_pow_apply]
   have h : (T F σ) ^ Module.finrank K L = AlgHom.id K (L ⊗[K] F) := by
@@ -71,6 +98,9 @@ theorem T_iterate_finrank (z : L ⊗[K] F) : (⇑(T F σ))^[Module.finrank K L] 
     rfl
   rw [h]; rfl
 
+/--
+@isnad1 id=mem.2h4v.s8.c50ad6e1fb01 from=translated src=- shape=22127a71 vocab=450c0ac7
+-/
 theorem mem_range_algebraMap_of_fixed (l : L) (hl : σ l = l) : l ∈ Set.range (algebraMap K L) := by
   rw [IsGalois.mem_range_algebraMap_iff_fixed]
   intro τ
@@ -81,11 +111,17 @@ theorem mem_range_algebraMap_of_fixed (l : L) (hl : σ l = l) : l ∈ Set.range 
     (Subgroup.zpowers_le).mpr hmem
   exact hle (Subgroup.mem_zpowers_iff.mpr ⟨k, rfl⟩)
 
+/--
+@isnad1 id=eq.4h5v.s9.308e393eb695 from=translated src=- shape=840994aa vocab=316ac7b0
+-/
 theorem pow_inj_of_lt {i j : ℕ} (hi : i < Module.finrank K L) (hj : j < Module.finrank K L)
     (h : σ ^ i = σ ^ j) : i = j := by
   rw [pow_inj_mod, orderOf_eq_finrank σ hgen, Nat.mod_eq_of_lt hi, Nat.mod_eq_of_lt hj] at h
   exact h
 
+/--
+@isnad1 id=ex.2h5v.s10.d6ed5dc75b18 from=translated src=- shape=eb84a046 vocab=4fe5988b
+-/
 theorem exists_one_tmul_eq_of_fixed (z : L ⊗[K] F) (hz : T F σ z = z) :
     ∃ f : F, (1 : L) ⊗ₜ[K] f = z := by
   classical
@@ -130,6 +166,9 @@ theorem exists_one_tmul_eq_of_fixed (z : L ⊗[K] F) (hz : T F σ z = z) :
   obtain ⟨f, hf⟩ := himg w
   exact ⟨f, hf.trans hw⟩
 
+/--
+@isnad1 id=ex.2h5v.s11.d989a21e5295 from=translated src=- shape=a1b0e1e7 vocab=95f1338a
+-/
 theorem exists_units_of_norm_eq_one (x : L ⊗[K] F)
     (hx : ∏ i ∈ Finset.range (Module.finrank K L), (⇑(T F σ))^[i] x = 1) :
     ∃ y : (L ⊗[K] F)ˣ, x = T F σ (y : L ⊗[K] F) * ↑y⁻¹ := by
@@ -292,6 +331,9 @@ end P2mKcH90Tensor
 open scoped _root_.P2MW.S_Algebra_TensorProduct_exists_one_tmul_eq_of_map_eq_and_exists_units_eq_map_mul_inv_of_prod_iterate_map_eq_one.P2mKcH90Tensor
 
 open P2mKcH90Tensor in
+/--
+@isnad1 id=and.1h4v.s12.d0e16f22a651 from=translated src=- shape=dc43ea49 vocab=eeb00a12
+-/
 theorem solution
     (K L F : Type) [Field K] [Field L] [Algebra K L] [FiniteDimensional K L] [IsGalois K L]
     [Field F] [Algebra K F]

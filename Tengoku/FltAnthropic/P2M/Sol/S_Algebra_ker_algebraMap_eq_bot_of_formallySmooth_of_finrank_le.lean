@@ -11,6 +11,9 @@ open TensorProduct
 
 universe u
 
+/--
+@isnad1 id=eq.2h3v.s10.dcd47c554b8e from=translated src=- shape=b1b80146 vocab=972ce573
+-/
 theorem solution
     {k P S : Type u} [Field k] [CommRing P] [CommRing S] [IsLocalRing P] [IsLocalRing S] [IsNoetherianRing P]
     [Algebra k P] [Algebra k S] [Algebra P S] [IsScalarTower k P S]

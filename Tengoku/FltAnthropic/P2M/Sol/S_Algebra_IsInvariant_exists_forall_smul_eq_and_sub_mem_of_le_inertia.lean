@@ -11,6 +11,9 @@ open scoped Pointwise
 
 attribute [local instance] Ideal.Quotient.field
 
+/--
+@isnad1 id=surjecti.1h5v.s9.c31dbbfcc4e0 from=translated src=- shape=a94d525e vocab=602a20ce
+-/
 theorem residueFixed_algebraMap_quotient_surjective_of_forall_smul_sub_mem
     {A B : Type*} [CommRing A] [CommRing B] [Algebra A B]
     {G : Type*} [Group G] [Finite G] [MulSemiringAction G B] [SMulCommClass G A B]
@@ -30,6 +33,9 @@ theorem residueFixed_algebraMap_quotient_surjective_of_forall_smul_sub_mem
     exact Ideal.Quotient.eq.mpr (hG g b)
   exact hx
 
+/--
+@isnad1 id=ex.1h7v.s8.bb9724f4e925 from=translated src=- shape=40fd101c vocab=64287d0a
+-/
 theorem solution
     {A B : Type*} [CommRing A] [CommRing B] [Algebra A B]
     {G : Type*} [Group G] [Finite G] [MulSemiringAction G B] [SMulCommClass G A B]

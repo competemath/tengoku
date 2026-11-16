@@ -15,6 +15,9 @@ set_option synthInstance.maxHeartbeats 400000
 namespace Algebra export _root_.Algebra (coe_lmul_eq_mul trace self_mem_adjoin_singleton TensorProduct.basis_apply trace_apply TensorProduct.includeRight TensorProduct.tmul_mul_tmul algebraMap discr_def FormallyUnramified.isSeparable FormallyUnramified traceMatrix_apply adjoin_le traceForm_apply discr_mul_isIntegral_mem_adjoin TensorProduct.comm IsIntegral.isIntegral TensorProduct.algebraMap_apply TensorProduct.tmul_pow algebraMap_self TensorProduct.basis FormallyUnramified.of_isSeparable discr_not_zero_of_basis smul_def adjoin discr id lmul restrictScalars TensorProduct.map TensorProduct.one_def commutes') end Algebra
 open scoped _root_.Algebra in
 
+/--
+@isnad1 id=eq.0h4v.s10.4e1e83e5d46a from=translated src=- shape=218d3bf9 vocab=6ba6f677
+-/
 theorem Algebra.trace_one_tmul_eq_algebraMap_trace {R A B : Type*} [CommRing R] [CommRing A] [Algebra R A]
     [CommRing B] [Algebra R B] [Module.Free R B] [Module.Finite R B] (x : B) :
     Algebra.trace A (A ⊗[R] B) ((1 : A) ⊗ₜ[R] x) = algebraMap R A (Algebra.trace R B x) := by
@@ -31,6 +34,9 @@ theorem Algebra.trace_one_tmul_eq_algebraMap_trace {R A B : Type*} [CommRing R] 
 namespace Algebra export _root_.Algebra (coe_lmul_eq_mul trace self_mem_adjoin_singleton TensorProduct.basis_apply trace_apply TensorProduct.includeRight TensorProduct.tmul_mul_tmul algebraMap discr_def FormallyUnramified.isSeparable FormallyUnramified traceMatrix_apply adjoin_le traceForm_apply discr_mul_isIntegral_mem_adjoin TensorProduct.comm IsIntegral.isIntegral TensorProduct.algebraMap_apply TensorProduct.tmul_pow algebraMap_self TensorProduct.basis FormallyUnramified.of_isSeparable discr_not_zero_of_basis smul_def adjoin discr id lmul restrictScalars TensorProduct.map TensorProduct.one_def commutes') namespace TensorProduct export _root_.Algebra.TensorProduct (basis_apply includeRight tmul_mul_tmul congr lift rTensor algebraMap_apply tmul_pow basis map ext one_def) end Algebra.TensorProduct
 open scoped _root_.Algebra _root_.Algebra.TensorProduct in
 
+/--
+@isnad1 id=and.1h4v.s8.872401178523 from=translated src=- shape=84afa526 vocab=612d2bb2
+-/
 theorem Algebra.TensorProduct.isDomain_and_isIntegrallyClosed_of_isField_of_isSeparable
     {k₀ S F L : Type u} [Field k₀] [CommRing S] [IsDomain S] [IsIntegrallyClosed S] [Algebra k₀ S]
     [Field F] [Algebra k₀ F] [Algebra S F] [IsScalarTower k₀ S F] [IsFractionRing S F]
@@ -196,6 +202,9 @@ theorem Algebra.TensorProduct.isDomain_and_isIntegrallyClosed_of_isField_of_isSe
   exact ⟨Function.Injective.isDomain (ψ : L ⊗[k₀] S →+* F ⊗[k₀] L) hψ,
     IsIntegrallyClosed.of_equiv e.symm⟩
 
+/--
+@isnad1 id=and.1h4v.s8.872401178523 from=translated src=- shape=84afa526 vocab=612d2bb2
+-/
 theorem solution
     {k₀ S F L : Type u} [Field k₀] [CommRing S] [IsDomain S] [IsIntegrallyClosed S] [Algebra k₀ S]
     [Field F] [Algebra k₀ F] [Algebra S F] [IsScalarTower k₀ S F] [IsFractionRing S F]

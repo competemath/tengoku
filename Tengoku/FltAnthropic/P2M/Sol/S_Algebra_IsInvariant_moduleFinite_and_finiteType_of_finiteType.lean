@@ -10,6 +10,9 @@ set_option autoImplicit false
 namespace P2M
 namespace NoetherFin
 
+/--
+@isnad1 id=and.0h4v.s7.a5e06cd02d8b from=translated src=- shape=1555dc3d vocab=c0f5249e
+-/
 theorem moduleFinite_and_finiteType
     (R : Type*) [CommRing R] [IsNoetherianRing R]
     (A : Type*) [CommRing A] [Algebra R A]
@@ -32,6 +35,9 @@ theorem moduleFinite_and_finiteType
 
 end P2M.NoetherFin
 
+/--
+@isnad1 id=and.0h4v.s7.a5e06cd02d8b from=translated src=- shape=1555dc3d vocab=c0f5249e
+-/
 theorem solution
     (R : Type*) [CommRing R] [IsNoetherianRing R]
     (A : Type*) [CommRing A] [Algebra R A]

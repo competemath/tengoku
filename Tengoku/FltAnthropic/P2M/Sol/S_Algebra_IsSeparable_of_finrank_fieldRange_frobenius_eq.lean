@@ -8,6 +8,9 @@ namespace P2MW.S_Algebra_IsSeparable_of_finrank_fieldRange_frobenius_eq
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=issepara.2h4v.s8.c1f479404184 from=translated src=- shape=d01b6659 vocab=c5f87df9
+-/
 theorem solution
     {E F : Type*} [Field E] [Field F] [Algebra E F] [FiniteDimensional E F]
     (p : ℕ) [Fact p.Prime] [CharP F p]

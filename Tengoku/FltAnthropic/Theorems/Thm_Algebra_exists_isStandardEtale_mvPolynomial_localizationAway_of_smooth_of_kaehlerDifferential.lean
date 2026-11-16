@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open Topology
 
+/--
+@isnad1 id=ex.3h4v.s10.57263aa03a5f from=translated src=- shape=5e061b86 vocab=4c0ebc4c
+-/
 theorem Algebra.exists_isStandardEtale_mvPolynomial_localizationAway_of_smooth_of_kaehlerDifferential
     (S : Type) [CommRing S] [IsDomain S] [Algebra ℂ S] [Algebra.FiniteType ℂ S] (hsm : Algebra.Smooth ℂ S)
     {n : ℕ} (hrank : Module.rank S (KaehlerDifferential ℂ S) = n)

@@ -16,6 +16,9 @@ open TensorProduct
 
 namespace SrcSmoothDescent
 
+/--
+@isnad1 id=projecti.0h3v.s7.060ccb471396 from=translated src=- shape=3b5497e7 vocab=cb119e82
+-/
 theorem projective_kaehlerDifferential_of_faithfullyFlat (R A B : Type u) [CommRing R] [CommRing A] [CommRing B]
     [Algebra R A] [Algebra A B] [Algebra R B] [IsScalarTower R A B]
     [Module.FinitePresentation A Ω[A⁄R]] [Module.FaithfullyFlat A B]
@@ -45,6 +48,9 @@ theorem projective_kaehlerDifferential_of_faithfullyFlat (R A B : Type u) [CommR
 
 end SrcSmoothDescent
 
+/--
+@isnad1 id=issmooth.2h5v.s7.30f5de55f880 from=translated src=- shape=31767781 vocab=114556e6
+-/
 theorem solution (R S T : Type u) [CommRing R] [CommRing S] [CommRing T]
     [Algebra R S] [Algebra S T] [Algebra R T] [IsScalarTower R S T]
     [Algebra.FinitePresentation R S] [Algebra.Smooth S T] (𝔓 : Ideal T) [𝔓.IsPrime]

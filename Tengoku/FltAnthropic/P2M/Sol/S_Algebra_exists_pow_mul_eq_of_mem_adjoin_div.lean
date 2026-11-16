@@ -7,6 +7,9 @@ namespace P2MW.S_Algebra_exists_pow_mul_eq_of_mem_adjoin_div
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.2h5v.s9.d5268ae922cb from=translated src=- shape=34e05ead vocab=377d6078
+-/
 theorem solution
     {R : Type*} [CommRing R] {S : Type*} [CommRing S] [Algebra R S]
     (I : Ideal R) (a : R) (ha : a ∈ I) (x : S)

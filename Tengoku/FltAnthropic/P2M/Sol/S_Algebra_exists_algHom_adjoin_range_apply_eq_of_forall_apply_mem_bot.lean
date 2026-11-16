@@ -16,6 +16,9 @@ namespace LinDisjAux
 
 variable {κ : Type*} [Field κ]
 
+/--
+@isnad1 id=ex.1h2v.s7.811e503cdf2b from=translated src=- shape=b8d7556d vocab=9b094686
+-/
 theorem exists_int_of_mem_bot {x : κ} (hx : x ∈ (⊥ : Subfield κ)) :
     ∃ m d : ℤ, (d : κ) ≠ 0 ∧ x * (d : κ) = (m : κ) := by
   rw [← Subfield.closure_empty, Subfield.mem_closure_iff] at hx
@@ -36,6 +39,9 @@ variable (F : Subfield κ) {σ : Type*} {ι : Type*} [DecidableEq σ]
 def Sol (s : Finset σ) (v : σ → ι → κ) : Set (σ → κ) :=
   {b | (∀ k, b k ∈ F) ∧ (∀ k, k ∉ s → b k = 0) ∧ ∀ n, ∑ k ∈ s, b k * v k n = 0}
 
+/--
+@isnad1 id=mem.3h7v.s8.1ddf27043327 from=translated src=- shape=91918240 vocab=cc7e2d07
+-/
 theorem mem_span_Sol (s : Finset σ) :
     ∀ (v : σ → ι → κ) (_ : ∀ k n, v k n ∈ F) (a : σ → κ) (_ : ∀ k, k ∉ s → a k = 0)
       (_ : ∀ n, ∑ k ∈ s, a k * v k n = 0), a ∈ Submodule.span κ (Sol F s v) := by
@@ -187,6 +193,9 @@ section Main
 variable {B : Type*} [Ring B] [Algebra κ B] {ι : Type*} (c : ι → (B →ₗ[κ] κ))
   {T : Type*} [CommRing T] (red : T →+* B) (ρ : T →+* κ)
 
+/--
+@isnad1 id=eq.4h9v.s9.ea4b293ad988 from=translated src=- shape=45f8c9f6 vocab=ee128882
+-/
 theorem sum_mul_apply_eq_zero (hc : ∀ b : B, (∀ i, c i b = 0) → b = 0)
     (hbot : ∀ (t : T) (i : ι), c i (red t) ∈ (⊥ : Subfield κ))
     (hker : ∀ t : T, red t = 0 → ρ t = 0)
@@ -271,6 +280,9 @@ end
 
 open LinDisjAux
 
+/--
+@isnad1 id=ex.3h7v.s10.765de16d611a from=translated src=- shape=4c028279 vocab=d4ae5806
+-/
 theorem solution
     {κ : Type*} [Field κ] {B : Type*} [Ring B] [Algebra κ B]
     {ι : Type*} (c : ι → (B →ₗ[κ] κ)) (hc : ∀ b : B, (∀ i, c i b = 0) → b = 0)

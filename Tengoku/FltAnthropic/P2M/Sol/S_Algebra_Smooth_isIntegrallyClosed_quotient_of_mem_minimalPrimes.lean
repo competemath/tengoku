@@ -14,6 +14,9 @@ namespace CompNormalAux
 
 variable {S : Type u} [CommRing S]
 
+/--
+@isnad1 id=mem.2h4v.s8.9a8d5d3b1ad1 from=translated src=- shape=65f044bd vocab=ec3e3ff0
+-/
 theorem map_mem_minimalPrimes (M : Submonoid S) (Sₘ : Type u) [CommRing Sₘ] [Algebra S Sₘ] [IsLocalization M Sₘ]
     (𝔭 : Ideal S) (h𝔭 : 𝔭 ∈ minimalPrimes S) (hdisj : Disjoint (M : Set S) (𝔭 : Set S)) :
     𝔭.map (algebraMap S Sₘ) ∈ minimalPrimes Sₘ := by
@@ -31,6 +34,9 @@ theorem map_mem_minimalPrimes (M : Submonoid S) (Sₘ : Type u) [CommRing Sₘ] 
 
 end CompNormalAux
 
+/--
+@isnad1 id=isintegr.1h3v.s6.827674e299eb from=translated src=- shape=122bc8b6 vocab=2b7421a9
+-/
 theorem solution
     (K : Type u) [Field K] (S : Type u) [CommRing S] [Algebra K S] [Algebra.Smooth K S]
     (𝔭 : Ideal S) (h𝔭 : 𝔭 ∈ minimalPrimes S) :

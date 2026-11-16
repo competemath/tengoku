@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=nonempty.0h5v.s11.0f4db960df7a from=translated src=- shape=3b7f8fbe vocab=588d2241
+-/
 theorem solution
     {A : Type*} [CommRing A] {B : Type*} [CommRing B] [Algebra A B] (a : B)
     (F : Type*) [CommRing F] [Algebra (Algebra.adjoin A ({a} : Set B)) F]

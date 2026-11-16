@@ -11,17 +11,29 @@ namespace P2mArtinDescent
 
 abbrev Γℚ : Type := AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ
 
+/--
+@isnad1 id=isalgebr.0h0v.s4.92f995461263 from=translated src=- shape=3905abf2 vocab=c7f7e443
+-/
 scoped instance isAlgebraicQbar : Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) :=
   AlgebraicClosure.isAlgebraic ℚ
 
+/--
+@isnad1 id=isalgclo.0h0v.s4.728a7497b292 from=translated src=- shape=3905abf2 vocab=6396405a
+-/
 scoped instance isAlgClosureQbar : IsAlgClosure ℚ (AlgebraicClosure ℚ) := ⟨inferInstance, inferInstance⟩
 
+/--
+@isnad1 id=isgalois.0h0v.s4.b04052bb8761 from=translated src=- shape=3905abf2 vocab=49029860
+-/
 scoped instance isGaloisQbar : IsGalois ℚ (AlgebraicClosure ℚ) := IsAlgClosure.isGalois ℚ (AlgebraicClosure ℚ)
 
 end P2mArtinDescent
 open scoped _root_.P2MW.S_AlgebraicClosure_linearIndependent_of_linearIndependent_rat_of_forall_apply_smul.P2mArtinDescent
 
 open P2mArtinDescent in
+/--
+@isnad1 id=linearin.2h3v.s10.b87079b8413a from=translated src=- shape=786feb7c vocab=b3ef6256
+-/
 theorem solution
     {X : Type} [MulAction (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) X]
     {ι : Type} (F : ι → X → AlgebraicClosure ℚ)

@@ -19,11 +19,17 @@ noncomputable def quotEquiv (p : Ideal R) [p.IsMaximal] : (R ⧸ p) ≃+* p.Resi
   RingEquiv.ofBijective (algebraMap (R ⧸ p) p.ResidueField)
     (Ideal.bijective_algebraMap_quotient_residueField p)
 
+/--
+@isnad1 id=eq.0h3v.s10.12c0c6270560 from=translated src=- shape=5da115e5 vocab=33bf1a33
+-/
 theorem quotEquiv_mk (p : Ideal R) [p.IsMaximal] (r : R) :
     quotEquiv p (Ideal.Quotient.mk p r) = algebraMap R p.ResidueField r := by
   change algebraMap (R ⧸ p) p.ResidueField (algebraMap R (R ⧸ p) r) = _
   rw [← IsScalarTower.algebraMap_apply]
 
+/--
+@isnad1 id=isunrami.2h4v.s7.75aeb7a06fa9 from=translated src=- shape=29052f91 vocab=e3266415
+-/
 theorem main [IsDedekindDomain S] [Algebra.EssFiniteType R S]
     (p : Ideal R) [p.IsMaximal] (P : Ideal S) [P.IsPrime] [P.LiesOver p] (hP : P ≠ ⊥)
     (he : p.ramificationIdx' P = 1)
@@ -51,6 +57,9 @@ theorem main [IsDedekindDomain S] [Algebra.EssFiniteType R S]
 
 end UnramifiedCriterion
 
+/--
+@isnad1 id=isunrami.2h4v.s7.75aeb7a06fa9 from=translated src=- shape=29052f91 vocab=e3266415
+-/
 theorem solution
     {R : Type u} {S : Type v} [CommRing R] [CommRing S] [Algebra R S]
     [IsDedekindDomain S] [Algebra.EssFiniteType R S]

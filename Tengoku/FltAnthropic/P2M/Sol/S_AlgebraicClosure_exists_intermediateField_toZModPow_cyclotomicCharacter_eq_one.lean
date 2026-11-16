@@ -9,6 +9,9 @@ set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 1600000
 open IntermediateField in
 
+/--
+@isnad1 id=ex.0h2v.s11.9c5b9411a5c3 from=translated src=- shape=697fbdba vocab=ab549e2e
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] (n : ℕ) :
     ∃ F : IntermediateField ℚ (AlgebraicClosure ℚ), FiniteDimensional ℚ F ∧

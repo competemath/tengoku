@@ -21,6 +21,9 @@ variable {A : Type*} [CommRing A]
 def IsAlt {n : ℕ} {M : Type*} [AddCommGroup M] (d : Fin n → Fin n → M) : Prop :=
   (∀ j, d j j = 0) ∧ ∀ j l, d j l = - d l j
 
+/--
+@isnad1 id=eq.1h5v.s7.f3f3c1ce96be from=translated src=- shape=8d00f6b1 vocab=d15aebc2
+-/
 theorem sum_sum_smul_eq_zero_of_isAlt {n : ℕ} {M : Type*} [AddCommGroup M] [Module A M]
     (a : Fin n → A) (d : Fin n → Fin n → M) (hd : IsAlt d) :
     ∑ j, ∑ l, (a j * a l) • d j l = 0 := by
@@ -37,6 +40,9 @@ theorem sum_sum_smul_eq_zero_of_isAlt {n : ℕ} {M : Type*} [AddCommGroup M] [Mo
     obtain ⟨rfl, -⟩ := heq
     simp only [hd.1, smul_zero]
 
+/--
+@isnad1 id=ex.2h5v.s7.5357271c3144 from=translated src=- shape=bf92e06d vocab=f2e50503
+-/
 theorem exists_isAlt_lift {n : ℕ} {M N : Type*} [AddCommGroup M] [AddCommGroup N]
     (π : M →+ N) (hπ : Function.Surjective π) (d : Fin n → Fin n → N) (hd : IsAlt d) :
     ∃ D : Fin n → Fin n → M, IsAlt D ∧ ∀ j l, π (D j l) = d j l := by
@@ -69,6 +75,9 @@ section KerSq
 
 variable {A B : Type*} [CommRing A] [CommRing B]
 
+/--
+@isnad1 id=ex.1h5v.s8.d1b684513f83 from=translated src=- shape=7f6ec1e3 vocab=7eaf1b29
+-/
 theorem exists_sum_eq_of_mem_span_range_mul {n : ℕ} (v : Fin n → A) (N : Ideal A) {x : A}
     (hx : x ∈ Ideal.span (Set.range v) * N) : ∃ m : Fin n → N, x = ∑ j, v j * m j := by
   classical
@@ -83,6 +92,9 @@ theorem exists_sum_eq_of_mem_span_range_mul {n : ℕ} (v : Fin n → A) (N : Ide
     refine ⟨fun j => m₁ j + m₂ j, ?_⟩
     simp only [Submodule.coe_add, mul_add, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=le.2h5v.s8.907c10c38e01 from=translated src=- shape=b2e9a353 vocab=3f79c14e
+-/
 theorem ker_inf_sq_le_ker_mul (φ : A →+* B) (hφ : Function.Surjective φ) {n : ℕ} (r : Fin n → B)
     (hsyz : HasKoszulSyzygies r) :
     RingHom.ker φ ⊓ (Ideal.comap φ (Ideal.span (Set.range r))) ^ 2 ≤
@@ -163,11 +175,17 @@ variable {R : Type u₁} {S : Type u₂} {T : Type u₃} [CommRing R] [CommRing 
 
 attribute [local instance] compAlgebra
 
+/--
+@isnad1 id=eq.0h8v.s9.2829acbfc0db from=translated src=- shape=4d471e8d vocab=c8fd4f7c
+-/
 lemma compAlgebra_algebraMap_apply (p : P.Ring) :
     algebraMap P.Ring (Q.comp P).Ring p = rename Sum.inr p := by
   change (Q.toComp P).toAlgHom p = _
   rw [Generators.toComp_toAlgHom]
 
+/--
+@isnad1 id=eq.0h9v.s9.6d4b57529792 from=translated src=- shape=450b973e vocab=69e71977
+-/
 lemma compAlgebra_smul_def (p : P.Ring) (q : (Q.comp P).Ring) :
     p • q = rename Sum.inr p * q := by
   rw [Algebra.smul_def, compAlgebra_algebraMap_apply]
@@ -190,27 +208,45 @@ noncomputable def compLinearEquiv : MvPolynomial ι P.Ring ≃ₗ[P.Ring] (Q.com
   left_inv p := (sumRingEquiv R ι σ).apply_symm_apply p
   right_inv p := (sumRingEquiv R ι σ).symm_apply_apply p
 
+/--
+@isnad1 id=free.0h7v.s8.b85d4e60d7c4 from=translated src=- shape=ab79f699 vocab=5f97b709
+-/
 scoped instance compAlgebra_free : Module.Free P.Ring (Q.comp P).Ring :=
   Module.Free.of_equiv (compLinearEquiv Q P)
 
+/--
+@isnad1 id=flat.0h7v.s8.7c08c6a47e03 from=translated src=- shape=ab79f699 vocab=da34517b
+-/
 scoped instance compAlgebra_flat : Module.Flat P.Ring (Q.comp P).Ring := inferInstance
 
 noncomputable def nu : (Q.comp P).Ring ⊗[P.Ring] P.ker →ₗ[P.Ring] (Q.comp P).Ring :=
   (TensorProduct.rid P.Ring (Q.comp P).Ring).toLinearMap ∘ₗ (P.ker.subtype.lTensor (Q.comp P).Ring)
 
+/--
+@isnad1 id=eq.0h9v.s12.433ff809094e from=translated src=- shape=3d928ac0 vocab=d8f7062c
+-/
 lemma nu_tmul (q : (Q.comp P).Ring) (a : P.ker) :
     nu Q P (q ⊗ₜ a) = rename Sum.inr (a : P.Ring) * q := by
   simp only [nu, LinearMap.coe_comp, LinearEquiv.coe_coe, Function.comp_apply,
     LinearMap.lTensor_tmul, Submodule.coe_subtype, TensorProduct.rid_tmul, compAlgebra_smul_def]
 
+/--
+@isnad1 id=injectiv.0h7v.s12.ef11d0f92775 from=translated src=- shape=fadc3eff vocab=96dc9d43
+-/
 lemma nu_injective : Function.Injective (nu Q P) := by
   refine (TensorProduct.rid P.Ring (Q.comp P).Ring).injective.comp ?_
   exact Module.Flat.lTensor_preserves_injective_linearMap _ P.ker.injective_subtype
 
+/--
+@isnad1 id=le.0h7v.s9.f5198850ddae from=translated src=- shape=1e807e51 vocab=7fc32afa
+-/
 lemma map_toComp_le_ker : P.ker.map (Q.toComp P).toAlgHom ≤ (Q.comp P).ker := by
   rw [Q.ker_comp_eq_sup P]
   exact le_sup_left
 
+/--
+@isnad1 id=mem.0h8v.s12.22a71f10bd2c from=translated src=- shape=43326d9c vocab=583cc073
+-/
 lemma nu_mem_map (y : (Q.comp P).Ring ⊗[P.Ring] P.ker) :
     nu Q P y ∈ P.ker.map (Q.toComp P).toAlgHom := by
   induction y using TensorProduct.induction_on with
@@ -221,9 +257,15 @@ lemma nu_mem_map (y : (Q.comp P).Ring ⊗[P.Ring] P.ker) :
     exact Ideal.mul_mem_right _ _ (Ideal.mem_map_of_mem (Q.toComp P).toAlgHom a.2)
   | add x y hx hy => rw [map_add]; exact Ideal.add_mem _ hx hy
 
+/--
+@isnad1 id=mem.0h8v.s12.8ba87e65924d from=translated src=- shape=6185f772 vocab=e34989ea
+-/
 lemma nu_mem_ker (y : (Q.comp P).Ring ⊗[P.Ring] P.ker) : nu Q P y ∈ (Q.comp P).ker :=
   map_toComp_le_ker Q P (nu_mem_map Q P y)
 
+/--
+@isnad1 id=eq.0h8v.s9.e173dd8d4b7b from=translated src=- shape=56e9abd1 vocab=2fbc5094
+-/
 lemma algebraMap_rename_inr (p : P.Ring) :
     algebraMap (Q.comp P).Ring T (rename Sum.inr p) = algebraMap S T (algebraMap P.Ring S p) := by
   rw [Generators.algebraMap_apply, Generators.algebraMap_apply, ← toComp_toAlgHom Q P,
@@ -235,6 +277,9 @@ noncomputable def thetaAux (q : (Q.comp P).Ring) :
       (algebraMap (Q.comp P).Ring T q)).toAddMonoidHom.comp
     (Extension.Cotangent.mk (P := P.toExtension)).toAddMonoidHom
 
+/--
+@isnad1 id=eq.0h9v.s13.9d62a5b173e6 from=translated src=- shape=e82111f4 vocab=1f54ccb4
+-/
 lemma thetaAux_apply (q : (Q.comp P).Ring) (a : P.toExtension.ker) :
     thetaAux Q P q a = algebraMap (Q.comp P).Ring T q ⊗ₜ[S] Extension.Cotangent.mk a := rfl
 
@@ -255,9 +300,15 @@ noncomputable def theta : (Q.comp P).Ring ⊗[P.Ring] P.ker →+ T ⊗[S] P.toEx
         ← algebraMap_smul S p (Extension.Cotangent.mk (P := P.toExtension) a),
         ← TensorProduct.smul_tmul, Algebra.smul_def])
 
+/--
+@isnad1 id=eq.0h9v.s13.a2e48b84318d from=translated src=- shape=76e57deb vocab=11045bd0
+-/
 lemma theta_tmul (q : (Q.comp P).Ring) (a : P.ker) :
     theta Q P (q ⊗ₜ a) = algebraMap (Q.comp P).Ring T q ⊗ₜ[S] Extension.Cotangent.mk a := rfl
 
+/--
+@isnad1 id=surjecti.0h7v.s12.abc6abd34f96 from=translated src=- shape=74aadcb1 vocab=9b96dc66
+-/
 lemma theta_surjective : Function.Surjective (theta Q P) := by
   intro x
   induction x using TensorProduct.induction_on with
@@ -275,6 +326,9 @@ noncomputable abbrev alpha :
     T ⊗[S] P.toExtension.Cotangent →ₗ[T] (Q.comp P).toExtension.Cotangent :=
   (Extension.Cotangent.map (Q.toComp P).toExtensionHom).liftBaseChange T
 
+/--
+@isnad1 id=eq.0h8v.s14.6542cde010d9 from=translated src=- shape=16e630c7 vocab=d6c54312
+-/
 lemma alpha_theta (y : (Q.comp P).Ring ⊗[P.Ring] P.ker) :
     alpha Q P (theta Q P y) = Extension.Cotangent.mk ⟨nu Q P y, nu_mem_ker Q P y⟩ := by
   induction y using TensorProduct.induction_on with
@@ -297,6 +351,9 @@ lemma alpha_theta (y : (Q.comp P).Ring ⊗[P.Ring] P.ker) :
     ext
     simp only [Submodule.coe_add, map_add]
 
+/--
+@isnad1 id=ex.1h8v.s13.e739b38f285f from=translated src=- shape=3e3695c2 vocab=5de57097
+-/
 lemma exists_nu_eq_and_theta_eq_zero {w : (Q.comp P).Ring}
     (hw : w ∈ P.ker.map (Q.toComp P).toAlgHom * (Q.comp P).ker) :
     ∃ z, nu Q P z = w ∧ theta Q P z = 0 := by
@@ -325,6 +382,9 @@ lemma exists_nu_eq_and_theta_eq_zero {w : (Q.comp P).Ring}
   · rintro x y ⟨z₁, h₁, h₁'⟩ ⟨z₂, h₂, h₂'⟩
     exact ⟨z₁ + z₂, by rw [map_add, h₁, h₂], by rw [map_add, h₁', h₂', add_zero]⟩
 
+/--
+@isnad1 id=le.2h9v.s11.ce1b04c8a988 from=translated src=- shape=affd4217 vocab=c980d173
+-/
 lemma map_ker_inf_sq_le {n : ℕ} (rs : Fin n → Q.Ring) (hrs : Q.ker = Ideal.span (Set.range rs))
     (hreg : HasKoszulSyzygies rs) :
     P.ker.map (Q.toComp P).toAlgHom ⊓ (Q.comp P).ker ^ 2 ≤
@@ -339,6 +399,9 @@ lemma map_ker_inf_sq_le {n : ℕ} (rs : Fin n → Q.Ring) (hrs : Q.ker = Ideal.s
   exact ker_inf_sq_le_ker_mul ((Q.ofComp P).toAlgHom : (Q.comp P).Ring →+* Q.Ring)
     (toAlgHom_ofComp_surjective Q P) rs hreg
 
+/--
+@isnad1 id=injectiv.2h9v.s10.5dc5644d9a26 from=translated src=- shape=0c5b7c69 vocab=8588ef1a
+-/
 theorem alpha_injective {n : ℕ} (rs : Fin n → Q.Ring)
     (hrs : Q.ker = Ideal.span (Set.range rs)) (hreg : HasKoszulSyzygies rs) :
     Function.Injective (alpha Q P) := by
@@ -353,6 +416,9 @@ theorem alpha_injective {n : ℕ} (rs : Fin n → Q.Ring)
   have hyz : y = z := nu_injective Q P (by rw [hz])
   rw [hyz, hz']
 
+/--
+@isnad1 id=injectiv.2h9v.s11.1f843f474b07 from=translated src=- shape=b8c32271 vocab=2ee4db4a
+-/
 theorem h1_liftBaseChange_injective [Module.Flat S T] {n : ℕ} (rs : Fin n → Q.Ring)
     (hrs : Q.ker = Ideal.span (Set.range rs)) (hreg : HasKoszulSyzygies rs) :
     Function.Injective
@@ -386,6 +452,9 @@ universe w₁ u₁ u₂ u₃
 
 attribute [local instance] compAlgebra
 
+/--
+@isnad1 id=injectiv.3h7v.s10.96b1fc2c4726 from=translated src=- shape=6b1d162d vocab=20b816db
+-/
 theorem main {R : Type u₁} {S : Type u₂} {T : Type u₃} [CommRing R] [CommRing S] [CommRing T]
     [Algebra R S] [Algebra R T] [Algebra S T] [IsScalarTower R S T] [Module.Flat S T]
     {ι : Type w₁} (val : ι → T)
@@ -433,6 +502,9 @@ end Main
 end P2mKcKoszulSyz
 open scoped _root_.P2MW.S_Algebra_injective_liftBaseChange_h1CotangentMap_of_ker_eq_span_range_of_forall_exists_alternating.P2mKcKoszulSyz
 
+/--
+@isnad1 id=injectiv.3h7v.s11.b415986bf721 from=translated src=- shape=9fdea496 vocab=d09c289d
+-/
 theorem solution
     {R : Type u} [CommRing R] {S : Type v} [CommRing S] [Algebra R S]
     {T : Type w} [CommRing T] [Algebra R T] [Algebra S T] [IsScalarTower R S T]

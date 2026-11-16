@@ -15,6 +15,9 @@ namespace EtaleCoordinate
 
 variable {A : Type u} {S : Type v} [CommRing A] [CommRing S] [Algebra A S]
 
+/--
+@isnad1 id=ex.0h3v.s10.5c9ca6787ea0 from=translated src=- shape=2b548d81 vocab=5fe5467d
+-/
 theorem exists_eq_tmul_D_X [Algebra A[X] S] [IsScalarTower A A[X] S]
     (z : TensorProduct A[X] S (Ω[A[X]⁄A])) :
     ∃ s : S, z = s ⊗ₜ[A[X]] KaehlerDifferential.D A A[X] X := by
@@ -32,6 +35,9 @@ theorem exists_eq_tmul_D_X [Algebra A[X] S] [IsScalarTower A A[X] S]
     obtain ⟨s₂, rfl⟩ := hy
     exact ⟨s₁ + s₂, by rw [TensorProduct.add_tmul]⟩
 
+/--
+@isnad1 id=eq.0h3v.s11.50edb4bc598b from=translated src=- shape=1b06b7ee vocab=0b291ba4
+-/
 theorem mapBaseChange_tmul_D_X [Algebra A[X] S] [IsScalarTower A A[X] S] (s : S) :
     KaehlerDifferential.mapBaseChange A A[X] S (s ⊗ₜ[A[X]] KaehlerDifferential.D A A[X] X) =
       s • KaehlerDifferential.D A S (algebraMap A[X] S X) := by
@@ -39,6 +45,9 @@ theorem mapBaseChange_tmul_D_X [Algebra A[X] S] [IsScalarTower A A[X] S] (s : S)
 
 end EtaleCoordinate
 
+/--
+@isnad1 id=and.1h3v.s8.e9e20050b3fc from=translated src=- shape=6b1988e3 vocab=1e983ec3
+-/
 theorem solution
     {A : Type u} {S : Type v} [CommRing A] [CommRing S] [Algebra A S] [Algebra.FormallySmooth A S]
     (t : S) (ht : ∀ ω : Ω[S⁄A], ∃! s : S, ω = s • KaehlerDifferential.D A S t) :

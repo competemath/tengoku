@@ -9,5 +9,8 @@ set_option autoImplicit false
 
 open AlgebraicCurve
 
+/--
+@isnad1 id=eq.0h4v.s9.a48b1bcef6c4 from=translated src=- shape=922a17f9 vocab=fcdacdc3
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (m : ℤ) (D : Divisor.degZero (K := K) (F := F)) : m • Pic0.mk D = Pic0.mk (m • D) :=
   (map_zsmul (QuotientAddGroup.mk' _) m D).symm

@@ -17,6 +17,9 @@ namespace TensorAlg
 
 variable (A : Type u) [CommRing A]
 
+/--
+@isnad1 id=bijectiv.0h4v.s9.4cf58fd4c873 from=translated src=- shape=b4bc3e44 vocab=457b0c3f
+-/
 theorem bijective_comp_includeLeft_includeRight
     (H₁ : Type u) [CommRing H₁] [Algebra A H₁] (H₂ : Type u) [CommRing H₂] [Algebra A H₂]
     (T : Type u) [CommRing T] [Algebra A T] :
@@ -34,6 +37,9 @@ theorem bijective_comp_includeLeft_includeRight
 
 end TensorAlg
 
+/--
+@isnad1 id=ex.0h3v.s10.65f5dbf26cdf from=translated src=- shape=c40b5a13 vocab=799406be
+-/
 theorem solution
     (A : Type u) [CommRing A] (ι : Type) [Finite ι]
     (H : ι → Type u) [∀ i, CommRing (H i)] [∀ i, Algebra A (H i)]

@@ -13,12 +13,18 @@ open scoped TensorProduct
 namespace Ws47
 namespace DLB
 
+/--
+@isnad1 id=eq.0h4v.s6.c4b4d11a9a52 from=translated src=- shape=6ef3862d vocab=12ba30d2
+-/
 theorem adjugate_mulVec_mulVec {n : Type*} [Fintype n] [DecidableEq n] {S : Type*} [CommRing S]
     (A : Matrix n n S) (v : n → S) : A.adjugate.mulVec (A.mulVec v) = A.det • v := by
   rw [Matrix.mulVec_mulVec, Matrix.adjugate_mul]
   ext i
   simp [Matrix.mulVec, dotProduct, Matrix.smul_apply, Matrix.one_apply, Finset.sum_ite_eq, ite_mul]
 
+/--
+@isnad1 id=eq.2h9v.s12.99067999ac6f from=translated src=- shape=1d96e9b0 vocab=9d81f279
+-/
 theorem map_det_mul_map_eq_zero {R P B : Type*} [CommRing R] [CommRing P] [Algebra R P] [Semiring B] [Algebra R B]
     (π : P ⊗[R] P →ₐ[R] B) {m : ℕ} (x f : Fin m → P) (a : Fin m → Fin m → P ⊗[R] P)
     (ha : ∀ i, f i ⊗ₜ[R] (1 : P) - (1 : P) ⊗ₜ[R] f i = ∑ j, a i j * (x j ⊗ₜ[R] 1 - 1 ⊗ₜ[R] x j))
@@ -39,6 +45,9 @@ theorem map_det_mul_map_eq_zero {R P B : Type*} [CommRing R] [CommRing P] [Algeb
   refine Finset.sum_eq_zero fun i _ => ?_
   rw [map_mul, hf, mul_zero]
 
+/--
+@isnad1 id=eq.2h5v.s10.68d0c746e9de from=translated src=- shape=7f3cadcc vocab=fa650f0b
+-/
 theorem balanced_of_adjoin {R A : Type*} [CommRing R] [CommRing A] [Algebra R A] (Δ : A ⊗[R] A) (S : Set A)
     (hS : Algebra.adjoin R S = ⊤) (hgen : ∀ x ∈ S, (x ⊗ₜ[R] (1 : A)) * Δ = ((1 : A) ⊗ₜ[R] x) * Δ) (s : A) :
     (s ⊗ₜ[R] (1 : A)) * Δ = ((1 : A) ⊗ₜ[R] s) * Δ := by
@@ -59,6 +68,9 @@ theorem balanced_of_adjoin {R A : Type*} [CommRing R] [CommRing A] [Algebra R A]
 
 end Ws47.DLB
 
+/--
+@isnad1 id=eq.1h5v.s15.d47956a2b859 from=translated src=- shape=ff7c35ab vocab=8f8a867c
+-/
 theorem solution
     (R : Type*) [CommRing R] {m : ℕ} (f : Fin m → MvPolynomial (Fin m) R)
     (a : Fin m → Fin m → MvPolynomial (Fin m) R ⊗[R] MvPolynomial (Fin m) R)

@@ -11,6 +11,9 @@ set_option maxHeartbeats 800000
 open TensorProduct
 
 open IsLocalRing in
+/--
+@isnad1 id=isregula.5h5v.s9.6e80aa99535d from=translated src=- shape=90c5b71e vocab=d881ea95
+-/
 theorem solution
     {R₀ : Type*} [CommRing R₀] [IsDomain R₀] [IsNoetherianRing R₀] [IsLocalRing R₀]
     (hR : ∀ (𝔯 : Ideal R₀) [𝔯.IsPrime], 𝔯 ≠ IsLocalRing.maximalIdeal R₀ →

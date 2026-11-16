@@ -14,6 +14,9 @@ open scoped PadicInt NNReal
 
 universe v
 
+/--
+@isnad1 id=eq.1h5v.s10.e33ca344a737 from=translated src=- shape=54e1efe6 vocab=1bc3fc28
+-/
 theorem solution (p : ℕ) [Fact p.Prime]
     (B : Type v) [CommRing B] [Algebra ℤ_[p] B] [Module.Finite ℤ_[p] B]
     [Algebra.FormallyUnramified ℤ_[p] B]

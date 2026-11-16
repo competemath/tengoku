@@ -23,10 +23,16 @@ noncomputable def alphaR : S ⊗[R] R' →ₐ[R] S' :=
   Algebra.TensorProduct.lift (IsScalarTower.toAlgHom R S S') (IsScalarTower.toAlgHom R R' S')
     (fun _ _ => Commute.all _ _)
 
+/--
+@isnad1 id=eq.0h6v.s9.1c4da71fcf44 from=translated src=- shape=965888eb vocab=69ec5e20
+-/
 lemma alphaR_tmul (s : S) (r : R') :
     (alphaR : S ⊗[R] R' →ₐ[R] S') (s ⊗ₜ r) = algebraMap S S' s * algebraMap R' S' r := by
   simp [alphaR, Algebra.TensorProduct.lift_tmul]
 
+/--
+@isnad1 id=eq.0h4v.s9.ffa25e0f59f8 from=translated src=- shape=207420a5 vocab=570f01a1
+-/
 lemma algebraMap_right_apply (r : R') :
     algebraMap R' (S ⊗[R] R') r = (1 : S) ⊗ₜ[R] r := rfl
 
@@ -37,13 +43,22 @@ noncomputable def alpha : S ⊗[R] R' →ₐ[R'] S' :=
       rw [AlgHom.toRingHom_eq_coe, RingHom.coe_coe, algebraMap_right_apply, alphaR_tmul, map_one,
         one_mul] }
 
+/--
+@isnad1 id=eq.0h5v.s9.6f8442b72448 from=translated src=- shape=89cbab8e vocab=09c67bf0
+-/
 lemma alpha_apply (x : S ⊗[R] R') :
     (alpha : S ⊗[R] R' →ₐ[R'] S') x = (alphaR : S ⊗[R] R' →ₐ[R] S') x := rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.9ceb4ec1928f from=translated src=- shape=a00d091e vocab=f4569d2d
+-/
 lemma alpha_tmul (s : S) (r : R') :
     (alpha : S ⊗[R] R' →ₐ[R'] S') (s ⊗ₜ r) = algebraMap S S' s * algebraMap R' S' r := by
   rw [alpha_apply, alphaR_tmul]
 
+/--
+@isnad1 id=eq.0h4v.s9.b24dc637ac0d from=translated src=- shape=732b0564 vocab=e2fe44f8
+-/
 lemma alpha_comp_algebraMap :
     (alpha : S ⊗[R] R' →ₐ[R'] S').toRingHom.comp (algebraMap S (S ⊗[R] R')) = algebraMap S S' := by
   ext s
@@ -51,6 +66,9 @@ lemma alpha_comp_algebraMap :
   rw [Algebra.TensorProduct.algebraMap_apply, Algebra.algebraMap_self, RingHom.id_apply,
     alpha_tmul, map_one, mul_one]
 
+/--
+@isnad1 id=eq.0h3v.s8.afdbe1c0caf0 from=translated src=- shape=23863b83 vocab=24321cee
+-/
 lemma includeLeft_compat :
     (Algebra.TensorProduct.includeLeftRingHom : S →+* S ⊗[R] R').comp (algebraMap R S) =
       (algebraMap R' (S ⊗[R] R')).comp (algebraMap R R') := by
@@ -59,6 +77,9 @@ lemma includeLeft_compat :
     Algebra.TensorProduct.includeLeftRingHom_apply, algebraMap_right_apply]
   rw [Algebra.algebraMap_eq_smul_one, Algebra.algebraMap_eq_smul_one, TensorProduct.smul_tmul]
 
+/--
+@isnad1 id=ispushou.1h4v.s8.207e67c64894 from=translated src=- shape=9cd7ea5d vocab=bcea7817
+-/
 theorem main
     (h : ∀ (T : Type u) [CommRing T] [Algebra R' T] (g : S →+* T),
       g.comp (algebraMap R S) = (algebraMap R' T).comp (algebraMap R R') →
@@ -101,6 +122,9 @@ theorem main
 
 end IsPushoutOfUnivBody
 
+/--
+@isnad1 id=ispushou.1h4v.s8.207e67c64894 from=translated src=- shape=9cd7ea5d vocab=bcea7817
+-/
 theorem solution
     {R S R' S' : Type u} [CommRing R] [CommRing S] [CommRing R'] [CommRing S']
     [Algebra R S] [Algebra R R'] [Algebra S S'] [Algebra R' S'] [Algebra R S']

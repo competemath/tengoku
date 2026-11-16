@@ -9,6 +9,9 @@ namespace P2MW.S_Algebra_TensorProduct_isDomain_and_isIntegrallyClosed_of_isRedu
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=isreduce.4h3v.s7.ea257ed41074 from=translated src=- shape=37251f35 vocab=3dba84e9
+-/
 theorem isReduced_of_injective_map'' {A B : Type*} [Semiring A] [Ring B]
     (g : A → B) (hg : Function.Injective g)
     (hadd : ∀ x y : A, g (x + y) = g x + g y) (hmul : ∀ x y : A, g (x * y) = g x * g y)
@@ -39,6 +42,9 @@ universe u
 namespace Algebra export _root_.Algebra (TensorProduct.tmul_mul_tmul TensorProduct.quotIdealMapEquivTensorQuot algebraMap TensorProduct.congr TensorProduct.map_tmul TensorProduct.comm TensorProduct.algebraMap_apply TensorProduct.tmul_pow algebraMap_self id restrictScalars TensorProduct.map TensorProduct.cancelBaseChange) namespace TensorProduct export _root_.Algebra.TensorProduct (tmul_mul_tmul quotIdealMapEquivTensorQuot congr map_tmul rTensor algebraMap_apply tmul_pow map cancelBaseChange) end Algebra.TensorProduct
 open scoped _root_.Algebra _root_.Algebra.TensorProduct in
 
+/--
+@isnad1 id=and.4h6v.s9.69a17445dc44 from=translated src=- shape=02e5e80e vocab=dd4218f5
+-/
 theorem Algebra.TensorProduct.isDomain_and_isIntegrallyClosed_of_isReduced_fibre
     {R B R' K' k' : Type u} [CommRing R] [CommRing B] [Algebra R B] [Module.Flat R B]
     [CommRing R'] [Algebra R R'] (ϖ : R') (hϖ : ϖ ∈ nonZeroDivisors R')
@@ -146,6 +152,9 @@ theorem Algebra.TensorProduct.isDomain_and_isIntegrallyClosed_of_isReduced_fibre
 end NormBaseChange
 
 universe u in
+/--
+@isnad1 id=and.4h6v.s9.69a17445dc44 from=translated src=- shape=02e5e80e vocab=dd4218f5
+-/
 theorem solution
     {R B R' K' k' : Type u} [CommRing R] [CommRing B] [Algebra R B] [Module.Flat R B]
     [CommRing R'] [Algebra R R'] (ϖ : R') (hϖ : ϖ ∈ nonZeroDivisors R')

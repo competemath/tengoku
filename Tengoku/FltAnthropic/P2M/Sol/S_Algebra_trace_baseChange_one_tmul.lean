@@ -12,6 +12,9 @@ namespace Ws10Flat
 section
 variable {A B : Type*} [CommRing A] [CommRing B] [Algebra A B] (S : Type*) [CommRing S] [Algebra A S]
 
+/--
+@isnad1 id=eq.0h4v.s10.3a1fb4f62359 from=translated src=- shape=38ff3392 vocab=6ba6f677
+-/
 theorem trace_baseChange_one_tmul [Module.Free A B] [Module.Finite A B] (x : B) :
     Algebra.trace S (S ⊗[A] B) (1 ⊗ₜ x) = algebraMap A S (Algebra.trace A B x) := by
   rw [Algebra.trace_apply, Algebra.trace_apply, ← LinearMap.trace_baseChange]
@@ -25,6 +28,9 @@ end
 
 end Ws10Flat
 
+/--
+@isnad1 id=eq.0h4v.s10.3a1fb4f62359 from=translated src=- shape=38ff3392 vocab=6ba6f677
+-/
 theorem solution {A B : Type*} [CommRing A] [CommRing B] [Algebra A B] (S : Type*) [CommRing S] [Algebra A S]
     [Module.Free A B] [Module.Finite A B] (x : B) :
     Algebra.trace S (TensorProduct A S B) (1 ⊗ₜ[A] x) = algebraMap A S (Algebra.trace A B x) :=

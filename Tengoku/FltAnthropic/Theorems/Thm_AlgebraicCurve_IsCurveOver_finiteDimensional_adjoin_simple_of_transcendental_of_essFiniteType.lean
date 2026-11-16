@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open _root_.AlgebraicCurve hiding finiteDimensional_adjoin_of_transcendental open _root_.IntermediateField
 
+/--
+@isnad1 id=finitedi.1h3v.s7.8cb617e9df18 from=translated src=- shape=b70ff266 vocab=a5475935
+-/
 theorem AlgebraicCurve.IsCurveOver.finiteDimensional_adjoin_simple_of_transcendental_of_essFiniteType
     {K F : Type*} [Field K] [Field F] [Algebra K F] [IsCurveOver K F] [Algebra.EssFiniteType K F]
     {t : F} (ht : Transcendental K t) :

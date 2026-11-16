@@ -8,6 +8,9 @@ namespace P2MW.S_Ideal_eq_of_le_of_mem_of_mem_minimalPrimes_iff_notMem
 set_option autoImplicit false
 set_option maxHeartbeats 800000
 
+/--
+@isnad1 id=eq.3h4v.s8.d318ea761609 from=translated src=- shape=bae203f5 vocab=31eec86a
+-/
 theorem solution
     {B : Type*} [CommRing B] [IsNoetherianRing B] {π : B} {Q Q' : Ideal B}
     [Q.IsPrime] [Q'.IsPrime] (hle : Q' ≤ Q) (hπ : π ∈ Q')

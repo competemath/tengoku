@@ -11,6 +11,9 @@ universe u v w w'
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=injectiv.3h7v.s11.b415986bf721 from=translated src=- shape=9fdea496 vocab=d09c289d
+-/
 theorem Algebra.injective_liftBaseChange_h1CotangentMap_of_ker_eq_span_range_of_forall_exists_alternating
     {R : Type u} [CommRing R] {S : Type v} [CommRing S] [Algebra R S]
     {T : Type w} [CommRing T] [Algebra R T] [Algebra S T] [IsScalarTower R S T]

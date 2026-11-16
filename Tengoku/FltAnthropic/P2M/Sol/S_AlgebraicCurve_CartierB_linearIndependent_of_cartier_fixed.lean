@@ -61,6 +61,9 @@ private theorem exists_natCast_eq_of_pow_char_eq {K : Type*} [Field K] (p : ℕ)
   rw [hcard] at hle
   exact absurd hle (by omega)
 
+/--
+@isnad1 id=linearin.3h6v.s10.90c5555a25d8 from=translated src=- shape=08ee24e0 vocab=7e56a64c
+-/
 theorem solution {K F : Type*} [Field K]
     [Field F] [Algebra K F] [AlgebraicCurve.IsCurveOver K F] (p : ℕ) [Fact p.Prime]
     [CharP K p] [PerfectField K] (C : Ω[F⁄K] →+ Ω[F⁄K])

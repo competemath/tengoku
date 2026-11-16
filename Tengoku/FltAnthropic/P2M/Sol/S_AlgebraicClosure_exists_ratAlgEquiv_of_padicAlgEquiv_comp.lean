@@ -5,6 +5,9 @@ import Tengoku
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AlgebraicClosure_exists_ratAlgEquiv_of_padicAlgEquiv_comp.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 namespace P2MW.S_AlgebraicClosure_exists_ratAlgEquiv_of_padicAlgEquiv_comp
 
+/--
+@isnad1 id=ex.0h3v.s10.685d46440364 from=translated src=- shape=ca5facdd vocab=70a94cf7
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime]
     (ι : AlgebraicClosure ℚ →ₐ[ℚ] AlgebraicClosure ℚ_[p])

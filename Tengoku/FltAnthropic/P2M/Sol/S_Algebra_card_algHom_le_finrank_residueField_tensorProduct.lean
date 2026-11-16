@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open TensorProduct
 
+/--
+@isnad1 id=and.0h3v.s8.53804c97b5f3 from=translated src=- shape=b6cc2de6 vocab=af0a3f1e
+-/
 theorem solution
     (R : Type*) [CommRing R] [IsLocalRing R]
     (B : Type*) [CommRing B] [Algebra R B] [Module.Finite R B]

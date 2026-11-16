@@ -7,5 +7,8 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Algebra_Smooth_isIntegrallyClosed_of_isDom
 
 universe u
 
+/--
+@isnad1 id=isintegr.0h2v.s5.463587152bc7 from=translated src=- shape=702f0b1d vocab=dceb34b8
+-/
 theorem Algebra.Smooth.isIntegrallyClosed_of_isDomain (R : Type u) [CommRing R] [IsDomain R] [IsIntegrallyClosed R]
     (S : Type u) [CommRing S] [IsDomain S] [Algebra R S] [Algebra.Smooth R S] : IsIntegrallyClosed S := by exact @_root_.P2MW.S_Algebra_Smooth_isIntegrallyClosed_of_isDomain.solution R _ _ _ S _ _ _ _

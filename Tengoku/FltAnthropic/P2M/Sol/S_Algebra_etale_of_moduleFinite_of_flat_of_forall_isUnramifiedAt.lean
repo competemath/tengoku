@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=etale.1h2v.s6.b461a4a2acd6 from=translated src=- shape=254130b5 vocab=028e33d3
+-/
 theorem solution
     (O : Type u) [CommRing O] [IsNoetherianRing O] (C : Type u) [CommRing C] [Algebra O C] [Module.Finite O C] [Module.Flat O C]
     (h : ∀ (Q : Ideal C) [Q.IsPrime], Algebra.IsUnramifiedAt O Q) :

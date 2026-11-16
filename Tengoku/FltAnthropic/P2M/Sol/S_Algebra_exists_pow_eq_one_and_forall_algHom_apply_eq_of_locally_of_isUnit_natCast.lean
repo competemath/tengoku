@@ -15,6 +15,9 @@ namespace PatchMu
 
 open Localization
 
+/--
+@isnad1 id=isnilpot.1h3v.s7.95a10bd4ae9c from=translated src=- shape=451f6459 vocab=b624ce36
+-/
 theorem isNilpotent_of_forall_algHom_eq_zero (A₀ : Type u) [CommRing A₀] {R : Type u} [CommRing R] [Algebra A₀ R] (x : R)
     (hx : ∀ (Ω : Type u) [Field Ω] [IsAlgClosed Ω] [DecidableEq Ω] [Algebra A₀ Ω] (ψ : R →ₐ[A₀] Ω), ψ x = 0) :
     IsNilpotent x := by
@@ -75,6 +78,9 @@ open scoped _root_.P2MW.S_Algebra_exists_pow_eq_one_and_forall_algHom_apply_eq_o
 open scoped _root_.P2MW.S_Algebra_exists_pow_eq_one_and_forall_algHom_apply_eq_of_locally_of_isUnit_natCast.P2M
 
 open P2M.PatchMu Localization in
+/--
+@isnad1 id=ex.2h4v.s9.e97e293c8b93 from=translated src=- shape=343cb23f vocab=17d03ce2
+-/
 theorem solution
     (A₀ : Type u) [CommRing A₀] (B : Type u) [CommRing B] [Algebra A₀ B] (n : ℕ) (hn : IsUnit ((n : ℕ) : B))
     (v : ∀ (Ω : Type u) [Field Ω] [IsAlgClosed Ω] [DecidableEq Ω] [Algebra A₀ Ω], (B →ₐ[A₀] Ω) → Ω)

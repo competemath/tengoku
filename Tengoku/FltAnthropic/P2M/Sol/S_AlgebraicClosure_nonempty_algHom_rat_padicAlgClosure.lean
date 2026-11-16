@@ -5,6 +5,9 @@ import Tengoku
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AlgebraicClosure_nonempty_algHom_rat_padicAlgClosure.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 namespace P2MW.S_AlgebraicClosure_nonempty_algHom_rat_padicAlgClosure
 
+/--
+@isnad1 id=nonempty.0h1v.s6.635c73abe295 from=translated src=- shape=b132485d vocab=dc8820b8
+-/
 theorem solution (p : ℕ) [Fact p.Prime] :
     Nonempty (AlgebraicClosure ℚ →ₐ[ℚ] AlgebraicClosure ℚ_[p]) := by
   haveI : Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) :=

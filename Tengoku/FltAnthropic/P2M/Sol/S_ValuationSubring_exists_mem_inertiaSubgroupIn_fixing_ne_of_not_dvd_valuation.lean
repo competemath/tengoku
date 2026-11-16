@@ -30,6 +30,9 @@ namespace RB
 
 local notation "ℚ̄" => AlgebraicClosure ℚ
 
+/--
+@isnad1 id=isalgebr.0h0v.s4.92f995461263 from=translated src=- shape=3905abf2 vocab=c7f7e443
+-/
 theorem isAlgebraic_rat_qbar : Algebra.IsAlgebraic ℚ ℚ̄ := by
   constructor
   intro x
@@ -42,11 +45,17 @@ theorem isAlgebraic_rat_qbar : Algebra.IsAlgebraic ℚ ℚ̄ := by
   rw [this]
   exact hp
 
+/--
+@isnad1 id=isalgebr.0h1v.s6.69da508e6e7a from=translated src=- shape=363095d8 vocab=b8da9b0c
+-/
 theorem isAlgebraic_over (F : Type*) [Field F] [Algebra ℚ F] [Algebra F ℚ̄]
     [IsScalarTower ℚ F ℚ̄] : Algebra.IsAlgebraic F ℚ̄ := by
   haveI := isAlgebraic_rat_qbar
   exact Algebra.IsAlgebraic.tower_top (K := ℚ) F (A := ℚ̄)
 
+/--
+@isnad1 id=isgalois.0h1v.s6.64569d20167c from=translated src=- shape=363095d8 vocab=b9223a2f
+-/
 theorem isGalois_over (F : Type*) [Field F] [Algebra ℚ F] [Algebra F ℚ̄]
     [IsScalarTower ℚ F ℚ̄] : IsGalois F ℚ̄ := by
   haveI ha := isAlgebraic_over F
@@ -57,9 +66,15 @@ theorem isGalois_over (F : Type*) [Field F] [Algebra ℚ F] [Algebra F ℚ̄]
   haveI : Algebra.IsSeparable F ℚ̄ := Algebra.IsSeparable.of_integral F ℚ̄
   constructor
 
+/--
+@isnad1 id=eq.0h3v.s10.476ec042fe93 from=translated src=- shape=ecaed359 vocab=4c6a950f
+-/
 theorem coe_galSmul {F : Type*} [Field F] [Algebra F ℚ̄] (g : ℚ̄ ≃ₐ[F] ℚ̄) (b : 𝓞 ℚ̄) :
     ((g • b : 𝓞 ℚ̄) : ℚ̄) = g (b : ℚ̄) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.e724bdfc4cdd from=translated src=- shape=014cf703 vocab=5b170a42
+-/
 theorem coe_ringOfIntegersMap {F₁ F₂ : Type*} [Field F₁] [Field F₂] [Algebra F₁ F₂] (c : 𝓞 F₁) :
     ((algebraMap (𝓞 F₁) (𝓞 F₂) c : 𝓞 F₂) : F₂) = algebraMap F₁ F₂ (c : F₁) := by
   rw [show ((algebraMap (𝓞 F₁) (𝓞 F₂) c : 𝓞 F₂) : F₂) =
@@ -67,6 +82,9 @@ theorem coe_ringOfIntegersMap {F₁ F₂ : Type*} [Field F₁] [Field F₂] [Alg
     ← IsScalarTower.algebraMap_apply (𝓞 F₁) (𝓞 F₂) F₂,
     IsScalarTower.algebraMap_apply (𝓞 F₁) F₁ F₂]
 
+/--
+@isnad1 id=smulcomm.0h1v.s9.853c85e51575 from=translated src=- shape=0938f49d vocab=c4bc71bc
+-/
 scoped instance smulCommClass_gal {F : Type*} [Field F] [Algebra F ℚ̄] :
     SMulCommClass (ℚ̄ ≃ₐ[F] ℚ̄) (𝓞 F) (𝓞 ℚ̄) := by
   constructor
@@ -85,6 +103,9 @@ scoped instance smulCommClass_gal {F : Type*} [Field F] [Algebra F ℚ̄] :
   congr 1
   exact g.commutes (a : F)
 
+/--
+@isnad1 id=isinvari.0h1v.s8.cca68f82935a from=translated src=- shape=49138091 vocab=ef0f3a68
+-/
 theorem isInvariant_gal (F : Type*) [Field F] [Algebra ℚ F] [Algebra F ℚ̄]
     [IsScalarTower ℚ F ℚ̄] :
     Algebra.IsInvariant (𝓞 F) (𝓞 ℚ̄) (ℚ̄ ≃ₐ[F] ℚ̄) := by
@@ -111,6 +132,9 @@ theorem isInvariant_gal (F : Type*) [Field F] [Algebra ℚ F] [Algebra F ℚ̄]
   rw [coe_ringOfIntegersMap (⟨c, hcint⟩ : 𝓞 F)]
   exact hc
 
+/--
+@isnad1 id=isfracti.0h0v.s5.51f19996570e from=translated src=- shape=5f8c0c92 vocab=db1c106a
+-/
 scoped instance isFractionRing_ringOfIntegers_qbar : IsFractionRing (𝓞 ℚ̄) ℚ̄ := by
   haveI : Algebra.IsAlgebraic (𝓞 ℚ) ℚ̄ :=
     (IsFractionRing.comap_isAlgebraic_iff (A := 𝓞 ℚ) (K := ℚ) (C := ℚ̄)).mpr

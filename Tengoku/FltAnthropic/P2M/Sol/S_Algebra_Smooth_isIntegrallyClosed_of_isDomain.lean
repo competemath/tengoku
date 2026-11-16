@@ -8,6 +8,9 @@ namespace P2MW.S_Algebra_Smooth_isIntegrallyClosed_of_isDomain
 
 universe u
 
+/--
+@isnad1 id=isintegr.0h2v.s5.463587152bc7 from=translated src=- shape=702f0b1d vocab=dceb34b8
+-/
 theorem solution (R : Type u) [CommRing R] [IsDomain R] [IsIntegrallyClosed R]
     (S : Type u) [CommRing S] [IsDomain S] [Algebra R S] [Algebra.Smooth R S] : IsIntegrallyClosed S := by
 

@@ -10,6 +10,9 @@ set_option autoImplicit false
 open scoped TensorProduct
 open Polynomial
 
+/--
+@isnad1 id=issepara.0h2v.s6.ac048e162192 from=translated src=- shape=56048a07 vocab=888b1b50
+-/
 theorem Ws44.SepBC.isSeparable_of_finite_of_isReduced_of_formallyUnramified
     (E A : Type*) [Field E] [CommRing A] [Algebra E A] [Module.Finite E A] [IsReduced A]
     [Algebra.FormallyUnramified E A] : Algebra.IsSeparable E A := by
@@ -65,6 +68,9 @@ theorem Ws44.SepBC.isSeparable_of_finite_of_isReduced_of_formallyUnramified
     simpa using this
   exact hPsep.of_dvd (minpoly.dvd E x hnil.eq_zero)
 
+/--
+@isnad1 id=and.0h3v.s9.e5abe943ac3d from=translated src=- shape=e448d66f vocab=63d57862
+-/
 theorem solution
     (K₁ K E : Type*) [Field K₁] [Field K] [Field E] [Algebra K₁ K] [Algebra K₁ E]
     [FiniteDimensional K₁ K] [Algebra.IsSeparable K₁ K] :

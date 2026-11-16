@@ -19,11 +19,17 @@ variable {L : Type*} [Field L] {A : ValuationSubring L}
 variable {F : Type*} [Field F] [Algebra L F]
 variable {Fbar : Type*} [Field Fbar] [Algebra (ResidueField A) Fbar]
 
+/--
+@isnad1 id=ex.0h3v.s5.0cb3986698d9 from=translated src=- shape=060aed3b vocab=732e7315
+-/
 theorem exists_not_mem_place {K E : Type*} [Field K] [Field E] [Algebra K E] (Q : Place K E) :
     ∃ u : E, u ∉ Q.toValuationSubring := by
   by_contra h
   exact Q.ne_top' (eq_top_iff.mpr fun x _ => by_contra fun hx => h ⟨x, hx⟩)
 
+/--
+@isnad1 id=ne.1h4v.s6.73c0138b5128 from=translated src=- shape=58a86244 vocab=705a0707
+-/
 theorem ord_ne_zero_of_not_mem {K E : Type*} [Field K] [Field E] [Algebra K E] (v : Place K E)
     {f : E} (hf : f ∉ v.toValuationSubring) : v.ord f ≠ 0 := by
   intro h0
@@ -33,6 +39,9 @@ theorem ord_ne_zero_of_not_mem {K E : Type*} [Field K] [Field E] [Algebra K E] (
   rw [h0, zpow_zero, mul_one] at hu
   exact hf (hu ▸ (u : v.toValuationSubring).2)
 
+/--
+@isnad1 id=surjecti.0h5v.s7.4a6612b99da7 from=translated src=- shape=6f9d7a67 vocab=9ade9097
+-/
 theorem placeMap_surjective' (R : ConstantReduction A F Fbar) [HasPrincipalDivisors L F] :
     Function.Surjective R.placeMap := by
   classical
@@ -56,6 +65,9 @@ theorem placeMap_surjective' (R : ConstantReduction A F Fbar) [HasPrincipalDivis
 end AlgebraicCurve.ConstantReduction.W7B2A
 
 open AlgebraicCurve.ConstantReduction.W7B2A in
+/--
+@isnad1 id=surjecti.0h5v.s7.4a6612b99da7 from=translated src=- shape=6f9d7a67 vocab=9ade9097
+-/
 theorem solution
     {L : Type*} [Field L] {A : ValuationSubring L} {F : Type*} [Field F] [Algebra L F]
     {Fbar : Type*} [Field Fbar] [Algebra (IsLocalRing.ResidueField A) Fbar]

@@ -29,6 +29,9 @@ end AlgebraicCurve
 end
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_adicValuation_isRankOneDiscrete.AlgebraicCurve in
+/--
+@isnad1 id=isrankon.0h3v.s5.a529a5c0f8c9 from=translated src=- shape=4a2062f4 vocab=77da76b6
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) :
     v.adicValuation.IsRankOneDiscrete :=
   AlgebraicCurve.Place.rowMain v

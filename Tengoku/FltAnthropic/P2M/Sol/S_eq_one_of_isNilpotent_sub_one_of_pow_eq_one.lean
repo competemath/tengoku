@@ -7,6 +7,9 @@ namespace P2MW.S_eq_one_of_isNilpotent_sub_one_of_pow_eq_one
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.3h3v.s6.a541e6547019 from=translated src=- shape=86b96d90 vocab=a91da55d
+-/
 theorem solution
     {A : Type*} [Ring A] {u : A} (hu : IsNilpotent (u - 1))
     {m : ℕ} (hm : IsUnit (m : A)) (h : u ^ m = 1) :

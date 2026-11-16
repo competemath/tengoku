@@ -12,6 +12,9 @@ universe u v w w'
 
 open Algebra
 
+/--
+@isnad1 id=and.3h6v.s12.23fa6fb9411a from=translated src=- shape=ecff83ea vocab=bb43bc58
+-/
 theorem solution
     {k : Type u} {A : Type v} [Field k] [CommRing A] [Algebra k A] (ev : A →+* k)
     (hev : ev.comp (algebraMap k A) = RingHom.id k)

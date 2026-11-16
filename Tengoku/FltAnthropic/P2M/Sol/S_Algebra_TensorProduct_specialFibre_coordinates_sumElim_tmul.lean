@@ -284,6 +284,9 @@ end Four
 end TCBody
 
 open TCBody in
+/--
+@isnad1 id=and.8h10v.s14.cbe4122dddba from=translated src=- shape=fb0099e3 vocab=b2289c8f
+-/
 theorem solution
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [Fact p.Prime] [Algebra 𝓞 (ZMod p)]
     (R : ℕ → Type v) [∀ v, CommRing (R v)] [∀ v, Algebra 𝓞 (R v)]

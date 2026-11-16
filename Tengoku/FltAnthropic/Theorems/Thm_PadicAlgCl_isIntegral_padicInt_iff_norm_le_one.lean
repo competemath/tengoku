@@ -7,5 +7,8 @@ import Tengoku.FltAnthropic.P2M.Sol.S_PadicAlgCl_isIntegral_padicInt_iff_norm_le
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=iff.0h2v.s6.2b1fcc7ba260 from=translated src=- shape=073b9a6c vocab=dc025562
+-/
 theorem PadicAlgCl.isIntegral_padicInt_iff_norm_le_one (p : ℕ) [Fact p.Prime]
     (x : PadicAlgCl p) : IsIntegral ℤ_[p] x ↔ ‖x‖ ≤ 1 := by exact @_root_.P2MW.S_PadicAlgCl_isIntegral_padicInt_iff_norm_le_one.solution p _ x

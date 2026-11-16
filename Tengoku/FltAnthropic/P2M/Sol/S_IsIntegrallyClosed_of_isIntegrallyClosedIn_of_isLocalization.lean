@@ -8,6 +8,9 @@ namespace P2MW.S_IsIntegrallyClosed_of_isIntegrallyClosedIn_of_isLocalization
 namespace IsIntegrallyClosed export _root_.IsIntegrallyClosed (algebraMap_eq_of_integral) end IsIntegrallyClosed
 open scoped _root_.IsIntegrallyClosed in
 
+/--
+@isnad1 id=isintegr.1h3v.s7.14ecb2fddcac from=translated src=- shape=4bd727db vocab=8cb37b80
+-/
 theorem IsIntegrallyClosed.of_isIntegrallyClosedIn_of_isLocalization
     {C : Type*} [CommRing C] [IsDomain C] (M : Submonoid C) (hM : M ≤ nonZeroDivisors C)
     (L : Type*) [CommRing L] [IsDomain L] [Algebra C L] [IsLocalization M L]
@@ -28,6 +31,9 @@ theorem IsIntegrallyClosed.of_isIntegrallyClosedIn_of_isLocalization
   obtain ⟨c, rfl⟩ := IsIntegrallyClosedIn.algebraMap_eq_of_integral hl
   exact ⟨c, IsScalarTower.algebraMap_apply C L K c⟩
 
+/--
+@isnad1 id=isintegr.1h3v.s7.14ecb2fddcac from=translated src=- shape=4bd727db vocab=8cb37b80
+-/
 theorem solution
     {C : Type*} [CommRing C] [IsDomain C] (M : Submonoid C) (hM : M ≤ nonZeroDivisors C)
     (L : Type*) [CommRing L] [IsDomain L] [Algebra C L] [IsLocalization M L]

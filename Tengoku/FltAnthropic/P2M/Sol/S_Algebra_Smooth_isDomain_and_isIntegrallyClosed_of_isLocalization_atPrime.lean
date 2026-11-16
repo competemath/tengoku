@@ -8,6 +8,9 @@ namespace P2MW.S_Algebra_Smooth_isDomain_and_isIntegrallyClosed_of_isLocalizatio
 set_option autoImplicit false
 universe u
 
+/--
+@isnad1 id=and.0h4v.s6.e94fb3cbc2a0 from=translated src=- shape=a3a108c3 vocab=0aca20aa
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsDomain R] [UniqueFactorizationMonoid R]
     (S : Type u) [CommRing S] [Algebra R S] [Algebra.Smooth R S]

@@ -8,6 +8,9 @@ namespace P2MW.S_Algebra_IsInvariant_flat_and_finiteType_of_isDedekindDomain
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.0h4v.s7.28d04280ca39 from=translated src=- shape=dd153807 vocab=7040db3a
+-/
 theorem solution
     {B S A : Type*} [CommRing B] [IsDedekindDomain B] [CommRing S] [CommRing A]
     [Algebra B S] [Algebra B A] [Algebra S A] [IsScalarTower B S A] [FaithfulSMul S A]

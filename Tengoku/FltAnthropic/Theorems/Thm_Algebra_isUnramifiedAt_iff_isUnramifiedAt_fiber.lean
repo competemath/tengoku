@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=iff.1h5v.s11.3554564504d7 from=translated src=- shape=bb1e47e2 vocab=ac036554
+-/
 theorem Algebra.isUnramifiedAt_iff_isUnramifiedAt_fiber
     {R A : Type*} [CommRing R] [CommRing A] [Algebra R A] [Algebra.EssFiniteType R A]
     (P : Ideal R) [P.IsPrime] (Q : Ideal A) [Q.IsPrime] [Q.LiesOver P]

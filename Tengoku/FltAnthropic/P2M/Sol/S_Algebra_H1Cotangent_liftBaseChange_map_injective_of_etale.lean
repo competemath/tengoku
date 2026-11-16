@@ -16,6 +16,9 @@ namespace EtaleH1GC7
 
 open Polynomial RingTheory.Sequence
 
+/--
+@isnad1 id=isweakly.1h3v.s8.1059918b1d30 from=translated src=- shape=a9b5f2c0 vocab=dda4c304
+-/
 theorem isWeaklyRegular_pair {B : Type*} [CommRing B] (f g : B) (hf : f ∈ nonZeroDivisors B) :
     IsWeaklyRegular B[X] [C g * X - 1, C f] := by
   classical
@@ -48,6 +51,9 @@ theorem isWeaklyRegular_pair {B : Type*} [CommRing B] (f g : B) (hf : f ∈ nonZ
     obtain ⟨z, rfl⟩ := AdjoinRoot.mk_eq_zero.mp hx0
     exact Submodule.smul_mem_pointwise_smul z (C g * X - 1) ⊤ trivial
 
+/--
+@isnad1 id=isweakly.1h3v.s10.2aaf38926378 from=translated src=- shape=c1a3bf02 vocab=4fe6c19f
+-/
 theorem isWeaklyRegular_pair_mv {D : Type*} [CommRing D] (f g : D[X]) (hf : f.Monic) :
     IsWeaklyRegular (MvPolynomial (Fin 2) D)
       [Bivariate.equivMvPolynomial D (C g * X - 1), Bivariate.equivMvPolynomial D (C f)] := by
@@ -62,6 +68,9 @@ theorem isWeaklyRegular_pair_mv {D : Type*} [CommRing D] (f g : D[X]) (hf : f.Mo
 end EtaleH1GC7
 
 open EtaleH1GC7 in
+/--
+@isnad1 id=injectiv.0h3v.s10.517c6ba44171 from=translated src=- shape=383e4394 vocab=221c3633
+-/
 theorem solution (R D T : Type u)
     [CommRing R] [CommRing D] [CommRing T] [Algebra R D] [Algebra D T] [Algebra R T] [IsScalarTower R D T]
     [Algebra.Etale D T] :

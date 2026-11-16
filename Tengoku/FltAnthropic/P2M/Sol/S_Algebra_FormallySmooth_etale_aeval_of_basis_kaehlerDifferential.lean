@@ -15,6 +15,9 @@ namespace EtaleCoordGC7
 
 open TensorProduct
 
+/--
+@isnad1 id=formally.1h3v.s9.46e143375364 from=translated src=- shape=c1e35f2c vocab=075dd1bf
+-/
 theorem formallyEtale_of_bijective_mapBaseChange
     {R S T : Type*} [CommRing R] [CommRing S] [CommRing T] [Algebra R S] [Algebra R T] [Algebra S T]
     [IsScalarTower R S T] [Algebra.FormallySmooth R T]
@@ -43,6 +46,9 @@ end EtaleCoordGC7
 
 open scoped TensorProduct in
 open EtaleCoordGC7 in
+/--
+@isnad1 id=etale.1h5v.s8.28960ad92597 from=translated src=- shape=9762f3bf vocab=f2f379a9
+-/
 theorem solution
     {R : Type u} [CommRing R] {A : Type u} [CommRing A] [Algebra R A]
     [Algebra.FinitePresentation R A] [Algebra.FormallySmooth R A]

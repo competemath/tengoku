@@ -11,6 +11,9 @@ universe u
 
 namespace TraceFormCrit
 
+/--
+@isnad1 id=iff.0h2v.s7.abdd7f7cb67f from=translated src=- shape=17fcead3 vocab=469276d3
+-/
 theorem nondeg_iff {R S : Type*} [CommRing R] [CommRing S] [Algebra R S] :
     (Algebra.traceForm R S).Nondegenerate ↔
       ∀ x : S, (∀ y, Algebra.trace R S (x * y) = 0) → x = 0 := by
@@ -24,6 +27,9 @@ theorem nondeg_iff {R S : Type*} [CommRing R] [CommRing S] [Algebra R S] :
     · have := hy x
       rwa [Algebra.traceForm_apply, mul_comm] at this
 
+/--
+@isnad1 id=nondegen.1h4v.s6.b189d10ed91c from=translated src=- shape=f1304d8a vocab=934abee4
+-/
 theorem nondeg_of_algEquiv {R B C : Type*} [CommRing R] [CommRing B] [CommRing C]
     [Algebra R B] [Algebra R C] (e : B ≃ₐ[R] C) (h : (Algebra.traceForm R C).Nondegenerate) :
     (Algebra.traceForm R B).Nondegenerate := by
@@ -35,11 +41,17 @@ theorem nondeg_of_algEquiv {R B C : Type*} [CommRing R] [CommRing B] [CommRing C
     exact hx y
   exact (map_eq_zero_iff e e.injective).mp hex
 
+/--
+@isnad1 id=iff.0h4v.s6.7908ab3a5fd3 from=translated src=- shape=415f61c0 vocab=934abee4
+-/
 theorem nondeg_iff_of_algEquiv {R B C : Type*} [CommRing R] [CommRing B] [CommRing C]
     [Algebra R B] [Algebra R C] (e : B ≃ₐ[R] C) :
     (Algebra.traceForm R B).Nondegenerate ↔ (Algebra.traceForm R C).Nondegenerate :=
   ⟨nondeg_of_algEquiv e.symm, nondeg_of_algEquiv e⟩
 
+/--
+@isnad1 id=eq.0h4v.s9.0f7ad71546c5 from=translated src=- shape=d00122ea vocab=a2e52b3b
+-/
 theorem trace_pi_apply {R : Type*} [CommRing R] {ι : Type*} [Fintype ι] [DecidableEq ι]
     {A : ι → Type*} [∀ i, CommRing (A i)] [∀ i, Algebra R (A i)]
     [∀ i, Module.Free R (A i)] [∀ i, Module.Finite R (A i)] (x : ∀ i, A i) :
@@ -56,6 +68,9 @@ theorem trace_pi_apply {R : Type*} [CommRing R] {ι : Type*} [Fintype ι] [Decid
   simp only [Matrix.diag_apply, Algebra.leftMulMatrix_eq_repr_mul]
   rw [Pi.single_eq_same]
 
+/--
+@isnad1 id=iff.0h3v.s8.571be56c46d1 from=translated src=- shape=b3853d16 vocab=dcb53424
+-/
 theorem nondeg_pi_iff {K : Type*} [Field K] {ι : Type*} [Fintype ι] [DecidableEq ι]
     {A : ι → Type*} [∀ i, CommRing (A i)] [∀ i, Algebra K (A i)] [∀ i, Module.Finite K (A i)] :
     (Algebra.traceForm K (∀ i, A i)).Nondegenerate ↔
@@ -84,6 +99,9 @@ theorem nondeg_pi_iff {K : Type*} [Field K] {ι : Type*} [Fintype ι] [Decidable
     · intro hi
       exact absurd (Finset.mem_univ i) hi
 
+/--
+@isnad1 id=iff.0h2v.s6.6acfb418c46e from=translated src=- shape=39c98fe1 vocab=54e0980e
+-/
 theorem nondeg_iff_isSeparable (K L : Type*) [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L] :
     (Algebra.traceForm K L).Nondegenerate ↔ Algebra.IsSeparable K L := by
@@ -96,6 +114,9 @@ theorem nondeg_iff_isSeparable (K L : Type*) [Field K] [Field L] [Algebra K L]
   · intro _
     exact traceForm_nondegenerate K L
 
+/--
+@isnad1 id=iff.0h2v.s6.c33e3f85ecbd from=translated src=- shape=09a52c8c vocab=6798eaf3
+-/
 theorem main_of_isReduced (K : Type u) [Field K] (B : Type u) [CommRing B] [Algebra K B]
     [Module.Finite K B] [IsReduced B] :
     Algebra.FormallyUnramified K B ↔ (Algebra.traceForm K B).Nondegenerate := by
@@ -116,6 +137,9 @@ theorem main_of_isReduced (K : Type u) [Field K] (B : Type u) [CommRing B] [Alge
   refine forall_congr' fun I => ?_
   rw [Algebra.FormallyUnramified.iff_isSeparable K (B ⧸ I.asIdeal), nondeg_iff_isSeparable]
 
+/--
+@isnad1 id=isreduce.1h2v.s6.8bac1ca13951 from=translated src=- shape=9868579c vocab=b98a6ff7
+-/
 theorem isReduced_of_nondeg (K B : Type*) [Field K] [CommRing B] [Algebra K B]
     (h : (Algebra.traceForm K B).Nondegenerate) : IsReduced B := by
   refine ⟨fun x hx => (nondeg_iff.mp h) x fun y => ?_⟩
@@ -125,6 +149,9 @@ theorem isReduced_of_nondeg (K B : Type*) [Field K] [CommRing B] [Algebra K B]
 end TraceFormCrit
 
 open TraceFormCrit in
+/--
+@isnad1 id=iff.0h2v.s6.588107be8028 from=translated src=- shape=3bbe0ae6 vocab=cd99bd00
+-/
 theorem solution
     (K : Type u) [Field K] (B : Type u) [CommRing B] [Algebra K B] [Module.Finite K B] :
     Algebra.FormallyUnramified K B ↔ (Algebra.traceForm K B).Nondegenerate := by

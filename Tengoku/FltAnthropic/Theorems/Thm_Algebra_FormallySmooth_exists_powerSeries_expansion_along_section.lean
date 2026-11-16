@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Algebra_FormallySmooth_exists_powerSeries_
 
 universe u v
 
+/--
+@isnad1 id=ex.1h3v.s10.4c4233812105 from=translated src=- shape=1bff5a8f vocab=edc4c7e9
+-/
 theorem Algebra.FormallySmooth.exists_powerSeries_expansion_along_section
     {R : Type u} {A : Type v} [CommRing R] [CommRing A] [Algebra R A] [Algebra.FormallySmooth R A]
     (e : A →ₐ[R] R) [Module.Free R (RingHom.ker e.toRingHom).Cotangent]

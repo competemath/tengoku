@@ -11,6 +11,9 @@ universe u v
 
 open IsLocalRing Polynomial
 
+/--
+@isnad1 id=formally.2h3v.s7.dce9aa1543c9 from=translated src=- shape=eb2d553e vocab=7783a6d6
+-/
 theorem Algebra.FormallySmooth.of_maximalIdeal_eq_span_of_isSeparable_residueField
     (K₀ : Type u) [Field K₀] (𝒪 : Type v) [CommRing 𝒪] [IsLocalRing 𝒪] [IsDomain 𝒪] [IsNoetherianRing 𝒪]
     [Algebra K₀ 𝒪] [Algebra.EssFiniteType K₀ 𝒪]

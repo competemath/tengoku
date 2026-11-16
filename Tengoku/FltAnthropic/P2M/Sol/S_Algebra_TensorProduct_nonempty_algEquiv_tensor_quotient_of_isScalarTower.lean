@@ -11,6 +11,9 @@ namespace Algebra export _root_.Algebra (commutes TensorProduct.quotIdealMapEqui
 open scoped _root_.Algebra _root_.Algebra.TensorProduct in
 open scoped TensorProduct in
 
+/--
+@isnad1 id=nonempty.0h4v.s9.8bc12904fc17 from=translated src=- shape=882dd6bd vocab=7ab59662
+-/
 theorem Algebra.TensorProduct.nonempty_algEquiv_tensor_quotient_of_isScalarTower
     (Λ : Type*) [CommRing Λ] (I : Ideal Λ) (k : Type*) [CommRing k] [Algebra Λ k]
     [Algebra (Λ ⧸ I) k] [IsScalarTower Λ (Λ ⧸ I) k]
@@ -28,6 +31,9 @@ theorem Algebra.TensorProduct.nonempty_algEquiv_tensor_quotient_of_isScalarTower
   exact ⟨(Algebra.TensorProduct.cancelBaseChange Λ (Λ ⧸ I) k k A).symm.trans
     (Algebra.TensorProduct.congr AlgEquiv.refl e2')⟩
 
+/--
+@isnad1 id=nonempty.0h4v.s9.8bc12904fc17 from=translated src=- shape=882dd6bd vocab=7ab59662
+-/
 theorem solution
     (Λ : Type*) [CommRing Λ] (I : Ideal Λ) (k : Type*) [CommRing k] [Algebra Λ k]
     [Algebra (Λ ⧸ I) k] [IsScalarTower Λ (Λ ⧸ I) k]

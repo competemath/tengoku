@@ -11,6 +11,9 @@ open scoped TensorProduct
 
 universe u
 
+/--
+@isnad1 id=ex.0h3v.s10.65f5dbf26cdf from=translated src=- shape=c40b5a13 vocab=799406be
+-/
 theorem Algebra.exists_algHom_equiv_pi
     (A : Type u) [CommRing A] (ι : Type) [Finite ι]
     (H : ι → Type u) [∀ i, CommRing (H i)] [∀ i, Algebra A (H i)]

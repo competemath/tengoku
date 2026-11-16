@@ -26,16 +26,25 @@ variable (C : Subring L) (N : Subring F)
 @[reducible] def algCK : Algebra C (KC C) :=
   RingHom.toAlgebra ((C.subtype).codRestrict (KC C) (fun c => Subfield.subset_closure c.2))
 
+/--
+@isnad1 id=isscalar.0h2v.s8.e5d8d2a6d416 from=translated src=- shape=5e382ef9 vocab=53d6673b
+-/
 theorem isScalarTower_CKL : letI := algCK C; IsScalarTower C (KC C) L :=
   letI := algCK C
   IsScalarTower.of_algebraMap_eq fun _ => rfl
 
+/--
+@isnad1 id=injectiv.0h2v.s9.d9d8d0779808 from=translated src=- shape=65a90f3d vocab=2b2a16f1
+-/
 theorem algebraMap_CK_injective : letI := algCK C; Function.Injective (algebraMap C (KC C)) := by
   letI := algCK C
   intro a b h
   have h' : ((algebraMap C (KC C) a : KC C) : L) = ((algebraMap C (KC C) b : KC C) : L) := by rw [h]
   exact Subtype.ext h'
 
+/--
+@isnad1 id=mem.1h5v.s8.2625cda72917 from=translated src=- shape=663089c8 vocab=5f3b7da8
+-/
 theorem algebraMap_mem_FN (hCmem : ∀ c : L, c ∈ C → algebraMap L F c ∈ N) (k : KC C) :
     algebraMap L F (k : L) ∈ FN N := by
   have hle : KC C ≤ (FN N).comap (algebraMap L F) := by
@@ -48,11 +57,17 @@ theorem algebraMap_mem_FN (hCmem : ∀ c : L, c ∈ C → algebraMap L F c ∈ N
   RingHom.toAlgebra (((algebraMap L F).comp (algebraMap (KC C) L)).codRestrict (FN N)
     (algebraMap_mem_FN C N hCmem))
 
+/--
+@isnad1 id=isscalar.1h4v.s8.650d6957ae0a from=translated src=- shape=fd3badc0 vocab=f098ad6b
+-/
 theorem isScalarTower_KFN (hCmem : ∀ c : L, c ∈ C → algebraMap L F c ∈ N) :
     letI := algKFN C N hCmem; IsScalarTower (KC C) (FN N) F :=
   letI := algKFN C N hCmem
   IsScalarTower.of_algebraMap_eq fun _ => rfl
 
+/--
+@isnad1 id=ex.1h3v.s8.33c226752e6e from=translated src=- shape=a57425ca vocab=fceef6ba
+-/
 theorem exists_fraction_of_mem_FN (x : F) (hx : x ∈ FN N) : ∃ r₀ s₀ : N, s₀ ≠ 0 ∧ x * s₀ = r₀ := by
   obtain ⟨y, hy, z, hz, rfl⟩ := Subfield.mem_closure_iff.mp hx
   rw [Subring.closure_eq] at hy hz
@@ -63,6 +78,9 @@ theorem exists_fraction_of_mem_FN (x : F) (hx : x ∈ FN N) : ∃ r₀ s₀ : N,
     show y / z * z = y
     rw [div_mul_cancel₀ y hz0]
 
+/--
+@isnad1 id=ex.1h3v.s8.570a83956b37 from=translated src=- shape=a57425ca vocab=0f174e37
+-/
 theorem exists_fraction_of_mem_KC (x : L) (hx : x ∈ KC C) : ∃ r₀ s₀ : C, s₀ ≠ 0 ∧ x * s₀ = r₀ := by
   obtain ⟨y, hy, z, hz, rfl⟩ := Subfield.mem_closure_iff.mp hx
   rw [Subring.closure_eq] at hy hz
@@ -73,6 +91,9 @@ theorem exists_fraction_of_mem_KC (x : L) (hx : x ∈ KC C) : ∃ r₀ s₀ : C,
     show y / z * z = y
     rw [div_mul_cancel₀ y hz0]
 
+/--
+@isnad1 id=eq.4h8v.s9.ddd639667e7e from=translated src=- shape=c5af5024 vocab=5b11dd96
+-/
 theorem sum_smul_eq_zero_imp
     (hld : ∀ (n : ℕ) (c : Fin n → L) (a : Fin n → N), LinearIndependent C c →
       ∑ i, c i • ((a i : N) : F) = 0 → ∀ i, a i = 0)
@@ -134,8 +155,14 @@ def subalgL : Subalgebra (KC C) F := (IsScalarTower.toAlgHom (KC C) L F).range
 def equivL : L ≃ₐ[KC C] subalgL (F := F) C :=
   AlgEquiv.ofInjective (IsScalarTower.toAlgHom (KC C) L F) (algebraMap L F).injective
 
+/--
+@isnad1 id=eq.0h4v.s10.d17159f5808b from=translated src=- shape=1fdd42d1 vocab=3be8ea11
+-/
 @[scoped simp] theorem coe_equivL (l : L) : ((equivL (F := F) C l : subalgL (F := F) C) : F) = algebraMap L F l := rfl
 
+/--
+@isnad1 id=lineardi.2h4v.s9.4bc6acf6be42 from=translated src=- shape=bfabaee0 vocab=a3bf6544
+-/
 theorem linearDisjoint
     (hld : ∀ (n : ℕ) (c : Fin n → L) (a : Fin n → N), LinearIndependent C c →
       ∑ i, c i • ((a i : N) : F) = 0 → ∀ i, a i = 0) :
@@ -160,6 +187,9 @@ theorem linearDisjoint
     (fun j => (g j).2) hrel ⟨i, hi⟩
   exact Subtype.ext this
 
+/--
+@isnad1 id=linearin.3h6v.s10.c63eb69909c3 from=translated src=- shape=0ddd58ac vocab=1a8c0263
+-/
 theorem linearIndependent_L
     (hld : ∀ (n : ℕ) (c : Fin n → L) (a : Fin n → N), LinearIndependent C c →
       ∑ i, c i • ((a i : N) : F) = 0 → ∀ i, a i = 0)
@@ -203,10 +233,16 @@ variable (hCmem : ∀ c : L, c ∈ C → algebraMap L F c ∈ N)
 def φC : C →+* N :=
   ((algebraMap L F).comp C.subtype).codRestrict N (fun c => hCmem c c.2)
 
+/--
+@isnad1 id=eq.1h5v.s10.1128b9423041 from=translated src=- shape=cc078b32 vocab=ca211cec
+-/
 @[scoped simp] theorem coe_φC (c : C) : ((φC C N hCmem c : N) : F) = algebraMap L F c := rfl
 
 open Polynomial IntermediateField in
 
+/--
+@isnad1 id=finitedi.4h5v.s11.eaa7779ab908 from=translated src=- shape=3f069804 vocab=2ba5021d
+-/
 theorem finiteDimensional_adjoin_FN
     (hld : ∀ (n : ℕ) (c : Fin n → L) (a : Fin n → N), LinearIndependent C c →
       ∑ i, c i • ((a i : N) : F) = 0 → ∀ i, a i = 0)
@@ -350,11 +386,17 @@ variable (hCmem : ∀ c : L, c ∈ C → algebraMap L F c ∈ N)
 
 def toFN : N →+* FN N := (N.subtype).codRestrict (FN N) (fun x => Subfield.subset_closure x.2)
 
+/--
+@isnad1 id=injectiv.0h2v.s9.1026ab5a51ca from=translated src=- shape=e1ae8591 vocab=9f2d0431
+-/
 theorem toFN_injective : Function.Injective (toFN N) := fun a b h =>
   Subtype.ext (congrArg (fun z : FN N => (z : F)) h)
 
 open Polynomial in
 
+/--
+@isnad1 id=ex.0h3v.s11.8c7ec192c497 from=translated src=- shape=65b7aeaa vocab=678a1ff6
+-/
 theorem exists_C_mul_eq_map (P : (KC C)[X]) :
     letI := algCK C
     ∃ (Z : C) (Q : C[X]), Z ≠ 0 ∧
@@ -393,6 +435,9 @@ theorem exists_C_mul_eq_map (P : (KC C)[X]) :
 
 open Polynomial in
 
+/--
+@isnad1 id=eq.1h6v.s11.d5ad281236d7 from=translated src=- shape=5584990d vocab=f5db37aa
+-/
 theorem aeval_map_eq (Q : (C : Type _)[X]) (x : N) :
     letI := algKFN C N hCmem
     letI := algCK C
@@ -404,6 +449,9 @@ theorem aeval_map_eq (Q : (C : Type _)[X]) (x : N) :
 
 open Polynomial in
 
+/--
+@isnad1 id=mem.2h7v.s11.d2a31c0bacb7 from=translated src=- shape=f2879e7e vocab=be04eacc
+-/
 theorem eval₂_sub_mem (𝔭 : Ideal N) (t : N) (ht : t ∈ 𝔭) (Q : (C : Type _)[X]) :
     Q.eval₂ (φC C N hCmem) t - φC C N hCmem (Q.coeff 0) ∈ 𝔭 := by
   have h := congrArg (fun R => R.eval₂ (φC C N hCmem) t) (divX_mul_X_add Q)
@@ -416,6 +464,9 @@ variable (𝔭 : Ideal N) (hC𝔭 : ∀ c : C, φC C N hCmem c ∈ 𝔭 → c = 
 open Polynomial in
 include hC𝔭 in
 
+/--
+@isnad1 id=transcen.4h6v.s11.ebe3f953ebe9 from=translated src=- shape=11a76e82 vocab=d15720dc
+-/
 theorem transcendental_K [𝔭.IsPrime] (t : N) (ht : t ∈ 𝔭) (ht0 : t ≠ 0) :
     letI := algKFN C N hCmem
     Transcendental (KC C) (toFN N t) := by
@@ -442,6 +493,9 @@ theorem transcendental_K [𝔭.IsPrime] (t : N) (ht : t ∈ 𝔭) (ht0 : t ≠ 0
 
 open Polynomial in
 
+/--
+@isnad1 id=transcen.3h5v.s9.84da684ef8ac from=translated src=- shape=bc2e3af6 vocab=41b83a8d
+-/
 theorem transcendental_L
     (hld : ∀ (n : ℕ) (c : Fin n → L) (a : Fin n → N), LinearIndependent C c →
       ∑ i, c i • ((a i : N) : F) = 0 → ∀ i, a i = 0)
@@ -546,6 +600,9 @@ variable (𝔭 : Ideal N) (hC𝔭 : ∀ c : C, φC C N hCmem c ∈ 𝔭 → c = 
 
 open Polynomial IntermediateField in
 
+/--
+@isnad1 id=le.6h8v.s13.b1e823c432d3 from=translated src=- shape=9ea7341f vocab=e66b1528
+-/
 theorem card_le_finrank (t : N) (ht : t ∈ 𝔭) (ht0 : t ≠ 0)
     (htK : letI := algKFN C N hCmem; Transcendental (KC C) (toFN N t))
     (hFD : letI := algKFN C N hCmem; FiniteDimensional (KC C)⟮toFN N t⟯ (FN N))
@@ -639,6 +696,9 @@ theorem card_le_finrank (t : N) (ht : t ∈ 𝔭) (ht0 : t ≠ 0)
 open IntermediateField in
 include hC𝔭 in
 
+/--
+@isnad1 id=ex.5h5v.s12.a34f2a268f3a from=translated src=- shape=8746a4ec vocab=513f0035
+-/
 theorem core [𝔭.IsPrime]
     (hld : ∀ (n : ℕ) (c : Fin n → L) (a : Fin n → N), LinearIndependent C c →
       ∑ i, c i • ((a i : N) : F) = 0 → ∀ i, a i = 0)
@@ -673,6 +733,9 @@ theorem eq_zero_of_φC_mem [IsDomain C] [IsDiscreteValuationRing C]
   have hϖI : ϖ ∈ I := by rw [hIeq]; exact hϖu
   exact hϖ𝔭 hϖI
 
+/--
+@isnad1 id=finitedi.3h8v.s12.da623647baa7 from=translated src=- shape=207e6c70 vocab=168b0273
+-/
 theorem finiteDimensional_of_bound (𝔭 : Ideal N) [𝔭.IsPrime] (n : ℕ)
     (hbound : ∀ (m : ℕ) (d : Fin m → N),
       (∀ c : Fin m → C, (∑ i, φC C N hCmem (c i) * d i) ∈ 𝔭 → ∀ i, c i = 0) → m ≤ n)
@@ -732,6 +795,9 @@ end KappaFin
 open scoped _root_.P2MW.S_AlgebraicCurve_NodeAnnulusEngine_finiteDimensional_fractionRing_quotient_of_not_mem.KappaFin
 
 open KappaFin in
+/--
+@isnad1 id=finitedi.7h8v.s12.55be67f959bf from=translated src=- shape=b1da6994 vocab=7463fdeb
+-/
 theorem solution
     {L : Type*} [Field L] {F : Type*} [Field F] [Algebra L F] [IsCurveOver L F] [Algebra.EssFiniteType L F]
     (𝒩₀ : Subring F) [IsLocalRing ↥𝒩₀] [IsNoetherianRing ↥𝒩₀]

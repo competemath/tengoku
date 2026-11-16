@@ -12,6 +12,9 @@ open CategoryTheory AlgebraicGeometry IsLocalRing
 
 universe u v
 
+/--
+@isnad1 id=eq.1h5v.s12.51bd3e34906e from=translated src=- shape=5e20b5f9 vocab=609ff6f6
+-/
 theorem solution
     {K : Type u} [Field K] {L : Type v} [Field L] [Algebra K L]
     (M : AlgebraicCurve.CurveModel K L) (x : closedPoints M.C) (g : M.C.presheaf.stalk x.1)

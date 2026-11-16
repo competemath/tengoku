@@ -14,6 +14,9 @@ universe u v w w'
 
 namespace AlgSpreadDirected
 
+/--
+@isnad1 id=le.2h6v.s9.c2e6a04533f5 from=translated src=- shape=c7701f03 vocab=81cffb63
+-/
 theorem range_mono {ι : Type u} [Preorder ι]
     {G : ι → Type v} [∀ i, CommRing (G i)] (f : ∀ i j : ι, i ≤ j → G i →+* G j)
     [DirectedSystem G fun i j h => ⇑(f i j h)]
@@ -24,6 +27,9 @@ theorem range_mono {ι : Type u} [Preorder ι]
   rintro _ ⟨x, rfl⟩
   exact ⟨f i j hij x, hR.compatibility i j hij x⟩
 
+/--
+@isnad1 id=ex.2h5v.s8.7af637b69a77 from=translated src=- shape=f0eb2870 vocab=409c259f
+-/
 theorem exists_subset_range_of_finite {ι : Type u} [Preorder ι] [Nonempty ι] [IsDirectedOrder ι]
     {G : ι → Type v} [∀ i, CommRing (G i)] (f : ∀ i j : ι, i ≤ j → G i →+* G j)
     [DirectedSystem G fun i j h => ⇑(f i j h)]
@@ -45,6 +51,9 @@ theorem exists_subset_range_of_finite {ι : Type u} [Preorder ι] [Nonempty ι] 
 end AlgSpreadDirected
 
 open AlgSpreadDirected in
+/--
+@isnad1 id=ex.1h5v.s9.0fe3b94adc24 from=translated src=- shape=0129ccba vocab=fcbbf89f
+-/
 theorem solution
     {ι : Type u} [Preorder ι] [Nonempty ι] [IsDirectedOrder ι]
     (G : ι → Type v) [∀ i, CommRing (G i)] (f : ∀ i j : ι, i ≤ j → G i →+* G j)

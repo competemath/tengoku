@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open Polynomial
 
+/--
+@isnad1 id=ex.0h3v.s12.e56a74cf31ca from=translated src=- shape=79c0040a vocab=001d58e2
+-/
 theorem Algebra.IsStandardEtale.exists_forall_algHom_eval_map_eval_eq_zero_and_ext_and_surj_and_repr_of_mvPolynomial
     (k : Type) [Field k] {n : ℕ} (A : Type) [CommRing A] [Algebra k A] [Algebra (MvPolynomial (Fin n) k) A]
     [IsScalarTower k (MvPolynomial (Fin n) k) A] [Algebra.IsStandardEtale (MvPolynomial (Fin n) k) A] :

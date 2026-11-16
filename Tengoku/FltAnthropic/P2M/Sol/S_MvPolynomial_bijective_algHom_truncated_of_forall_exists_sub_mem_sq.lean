@@ -19,6 +19,9 @@ local notation "T" => MvPolynomial (Fin N) k ⧸ (RingHom.ker (MvPolynomial.cons
 local notation "𝔱" => Ideal.map (Ideal.Quotient.mk ((RingHom.ker (MvPolynomial.constantCoeff : MvPolynomial (Fin N) k →+* k)) ^ (M + 1)))
   (RingHom.ker (MvPolynomial.constantCoeff : MvPolynomial (Fin N) k →+* k))
 
+/--
+@isnad1 id=eq.0h2v.s7.8c7060739045 from=translated src=- shape=33847f37 vocab=ace31251
+-/
 theorem ker_constantCoeff_eq_span : (𝔫 : Ideal P) = Ideal.span (Set.range (X : Fin N → P)) := by
   ext f
   rw [RingHom.mem_ker, ← Set.image_univ, mem_ideal_span_X_image, constantCoeff_eq, ← notMem_support_iff]
@@ -32,16 +35,28 @@ theorem ker_constantCoeff_eq_span : (𝔫 : Ideal P) = Ideal.span (Set.range (X 
     obtain ⟨i, -, hi⟩ := h 0 h0
     exact hi rfl
 
+/--
+@isnad1 id=mem.0h4v.s13.d512ce98f58e from=translated src=- shape=560fa6c0 vocab=4473dbd7
+-/
 theorem mk_X_mem_t (j : Fin N) : (Ideal.Quotient.mk _ (X j) : T) ∈ (𝔱 : Ideal T) :=
   Ideal.mem_map_of_mem _ (by rw [RingHom.mem_ker, constantCoeff_X])
 
+/--
+@isnad1 id=eq.0h3v.s13.1a80942057a5 from=translated src=- shape=e9588fcb vocab=b2268725
+-/
 theorem t_eq_span : (𝔱 : Ideal T) = Ideal.span (Set.range fun j : Fin N => (Ideal.Quotient.mk _ (X j) : T)) := by
   rw [ker_constantCoeff_eq_span, Ideal.map_span, ← Set.range_comp]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s13.623fb14637f5 from=translated src=- shape=0243362e vocab=08e7fe1c
+-/
 theorem t_pow_eq_bot : (𝔱 : Ideal T) ^ (M + 1) = ⊥ := by
   rw [← Ideal.map_pow, Ideal.map_quotient_self]
 
+/--
+@isnad1 id=ex.0h4v.s14.b5dfaacdc9ba from=translated src=- shape=1750e968 vocab=08d2562a
+-/
 theorem exists_eq_algebraMap_add (t : T) : ∃ (c : k) (u : T), u ∈ (𝔱 : Ideal T) ∧ t = algebraMap k T c + u := by
   obtain ⟨f, rfl⟩ := Ideal.Quotient.mk_surjective t
   refine ⟨constantCoeff f, Ideal.Quotient.mk _ (f - C (constantCoeff f)), Ideal.mem_map_of_mem _ ?_, ?_⟩
@@ -131,6 +146,9 @@ theorem eq_top_of_forall_X (S : Subalgebra k T)
   have huV : u ∈ V := hC M 1 le_rfl (by omega) u (by simpa using hu)
   exact S.add_mem (S.algebraMap_mem c) huV
 
+/--
+@isnad1 id=finite.0h3v.s10.f00349c186d6 from=translated src=- shape=8814106a vocab=18d5f17d
+-/
 theorem moduleFinite : Module.Finite k T := by
   classical
   have hint : ∀ t ∈ Set.range (fun j : Fin N => (Ideal.Quotient.mk _ (X j) : T)), IsIntegral k t := by
@@ -151,6 +169,9 @@ theorem moduleFinite : Module.Finite k T := by
   rw [htop] at hfin
   exact Module.Finite.of_surjective (⊤ : Subalgebra k T).val.toLinearMap (fun t => ⟨⟨t, Algebra.mem_top⟩, rfl⟩)
 
+/--
+@isnad1 id=bijectiv.1h4v.s15.72ae50fa57bd from=translated src=- shape=e318c77a vocab=7727b657
+-/
 theorem main (θ : T →ₐ[k] T)
     (hθ : ∀ j : Fin N, ∃ t, θ t - Ideal.Quotient.mk _ (X j) ∈ (𝔱 : Ideal T) ^ 2) :
     Function.Bijective θ := by
@@ -166,6 +187,9 @@ theorem main (θ : T →ₐ[k] T)
 
 end TruncIFT
 
+/--
+@isnad1 id=bijectiv.1h4v.s15.8690a7339f38 from=translated src=- shape=e318c77a vocab=7727b657
+-/
 theorem solution
     (k : Type*) [Field k] (N M : ℕ)
     (θ : (MvPolynomial (Fin N) k ⧸ (RingHom.ker (MvPolynomial.constantCoeff : MvPolynomial (Fin N) k →+* k)) ^ (M + 1)) →ₐ[k]

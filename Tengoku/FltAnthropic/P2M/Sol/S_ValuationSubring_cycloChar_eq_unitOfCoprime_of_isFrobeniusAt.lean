@@ -12,6 +12,9 @@ namespace P2MW.S_ValuationSubring_cycloChar_eq_unitOfCoprime_of_isFrobeniusAt
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.5h5v.s11.bb403eb49cad from=translated src=- shape=b99bda2d vocab=ba077357
+-/
 theorem solution
     (m : ℕ)
     (cyc : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) →* (ZMod m)ˣ)

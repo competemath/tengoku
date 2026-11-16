@@ -12,6 +12,9 @@ universe u v
 
 open IsLocalRing
 
+/--
+@isnad1 id=formally.2h3v.s6.c5a9740f0245 from=translated src=- shape=f05a7edf vocab=833cd20e
+-/
 theorem solution
     (K : Type u) [Field K] [PerfectField K] (𝒪 : Type v) [CommRing 𝒪] [IsLocalRing 𝒪] [IsDomain 𝒪] [IsNoetherianRing 𝒪]
     [Algebra K 𝒪] [Algebra.EssFiniteType K 𝒪]

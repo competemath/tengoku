@@ -12,6 +12,9 @@ open TensorProduct
 
 universe u
 
+/--
+@isnad1 id=ex.2h10v.s14.8ebe4e9055b0 from=translated src=- shape=232ca858 vocab=a8c871ae
+-/
 theorem solution
     {k : Type u} [Field k] {A : Type u} [CommRing A] [Algebra k A] (ev : A →+* k)
     (M M' N : Type u) [AddCommGroup M] [Module k M] [AddCommGroup M'] [Module k M'] [AddCommGroup N] [Module k N]

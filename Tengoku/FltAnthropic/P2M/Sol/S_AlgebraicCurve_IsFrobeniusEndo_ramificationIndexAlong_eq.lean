@@ -13,6 +13,9 @@ private theorem Place.ord_pow' {K F : Type*} [Field K] [Field F] [Algebra K F]
   have := v.ord_zpow f (n : ℤ)
   rwa [zpow_natCast] at this
 
+/--
+@isnad1 id=eq.2h5v.s6.8e6bd4374f92 from=translated src=- shape=33e50f13 vocab=49586370
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F]
     {φ : F →ₐ[K] F} {ℓ : ℕ} (h : AlgebraicCurve.IsFrobeniusEndo ℓ φ) (hℓ : ℓ ≠ 0)
     (w : AlgebraicCurve.Place K F) :

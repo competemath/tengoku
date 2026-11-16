@@ -12,6 +12,9 @@ noncomputable section
 end
 
 open AlgebraicCurve in
+/--
+@isnad1 id=eq.0h3v.s7.ebec074131a4 from=translated src=- shape=ba82dc60 vocab=847c2eed
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (D : Divisor K F) :
     Divisor.degree D = ∑ v ∈ D.support, D v * (v.deg : ℤ) :=
   Finsupp.liftAddHom_apply (fun v : Place K F => AddMonoidHom.mulRight (v.deg : ℤ)) D

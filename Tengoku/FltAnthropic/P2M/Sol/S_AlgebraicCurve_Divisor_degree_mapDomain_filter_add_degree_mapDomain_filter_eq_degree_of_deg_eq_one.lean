@@ -14,13 +14,22 @@ namespace FibreDegree
 
 def tmass {X : Type*} (D : X →₀ ℤ) : ℤ := D.sum fun _ m => m
 
+/--
+@isnad1 id=eq.0h3v.s6.82462abf2c73 from=translated src=- shape=bec3a04d vocab=11ef6b0f
+-/
 theorem tmass_add {X : Type*} (D₁ D₂ : X →₀ ℤ) : tmass (D₁ + D₂) = tmass D₁ + tmass D₂ :=
   Finsupp.sum_add_index' (fun _ => rfl) (fun _ _ _ => rfl)
 
+/--
+@isnad1 id=eq.0h4v.s4.c890c09b4315 from=translated src=- shape=ba1631cf vocab=bf15e8dd
+-/
 theorem tmass_mapDomain {X Y : Type*} (r : X → Y) (D : X →₀ ℤ) :
     tmass (Finsupp.mapDomain r D) = tmass D :=
   Finsupp.sum_mapDomain_index (fun _ => rfl) (fun _ _ _ => rfl)
 
+/--
+@isnad1 id=eq.1h3v.s7.867c06fcc621 from=translated src=- shape=2426b85a vocab=57d6ac87
+-/
 theorem degree_eq_tmass {K₀ F₀ : Type*} [Field K₀] [Field F₀] [Algebra K₀ F₀]
     (h : ∀ v : Place K₀ F₀, v.deg = 1) (D : Divisor K₀ F₀) : D.degree = tmass D := by
   induction D using Finsupp.induction_linear with
@@ -34,6 +43,9 @@ theorem degree_eq_tmass {K₀ F₀ : Type*} [Field K₀] [Field F₀] [Algebra K
 
 end FibreDegree
 
+/--
+@isnad1 id=eq.4h9v.s9.fd4611deda72 from=translated src=- shape=f7dc8f17 vocab=35a92ee3
+-/
 theorem solution
     {K F K' F' : Type*} [Field K] [Field F] [Algebra K F] [Field K'] [Field F'] [Algebra K' F']
     (hdeg : ∀ v : Place K F, v.deg = 1) (hdeg' : ∀ w : Place K' F', w.deg = 1)

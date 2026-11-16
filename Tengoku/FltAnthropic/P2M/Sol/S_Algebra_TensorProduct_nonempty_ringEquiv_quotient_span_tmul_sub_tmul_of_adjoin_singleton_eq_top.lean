@@ -20,6 +20,9 @@ noncomputable def J (μ : A) (w : C) : Ideal (A ⊗[Z₀] C) :=
 
 end TensorOverCyclo
 
+/--
+@isnad1 id=ex.3h7v.s15.32faf20a317a from=translated src=- shape=c0687085 vocab=f6ab5066
+-/
 theorem solution
     (Z₀ : Type) [CommRing Z₀] (V : Type) [CommRing V] [Algebra Z₀ V] (ϖ : V) (hgen : Algebra.adjoin Z₀ {ϖ} = ⊤)
     (A : Type) [CommRing A] [Algebra Z₀ A] [Algebra V A] [IsScalarTower Z₀ V A]

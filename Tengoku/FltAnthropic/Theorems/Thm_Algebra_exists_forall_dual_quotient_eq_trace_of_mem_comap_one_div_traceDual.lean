@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=ex.1h7v.s12.eadc2b5e6f89 from=translated src=- shape=966e8597 vocab=a3ad82a9
+-/
 theorem Algebra.exists_forall_dual_quotient_eq_trace_of_mem_comap_one_div_traceDual
     (R : Type u) [CommRing R] [IsDomain R] [IsNoetherianRing R] [IsIntegrallyClosed R]
     (K : Type u) [Field K] [Algebra R K] [IsFractionRing R K]

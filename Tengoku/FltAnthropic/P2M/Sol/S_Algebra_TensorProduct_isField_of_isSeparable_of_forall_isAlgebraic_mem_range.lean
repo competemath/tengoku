@@ -17,6 +17,9 @@ section Minpoly
 variable {k F M : Type*} [Field k] [Field F] [Field M] [Algebra k F] [Algebra F M]
   [Algebra k M] [IsScalarTower k F M]
 
+/--
+@isnad1 id=eq.2h4v.s8.f2bf067d4ac6 from=translated src=- shape=6e5adfed vocab=0aa9c7cc
+-/
 theorem minpoly_eq_map (hconst : ∀ y : F, IsIntegral k y → y ∈ (algebraMap k F).range)
     {β : M} (hβ : IsIntegral k β) :
     minpoly F β = (minpoly k β).map (algebraMap k F) := by
@@ -46,6 +49,9 @@ theorem minpoly_eq_map (hconst : ∀ y : F, IsIntegral k y → y ∈ (algebraMap
     rwa [natDegree_map]
   exact (eq_of_monic_of_dvd_of_natDegree_le hQm (hPm.map _) hdvd h2).symm
 
+/--
+@isnad1 id=eq.2h4v.s8.7707fe6f3e16 from=translated src=- shape=89161028 vocab=3817f28f
+-/
 theorem natDegree_minpoly_eq (hconst : ∀ y : F, IsIntegral k y → y ∈ (algebraMap k F).range)
     {β : M} (hβ : IsIntegral k β) :
     (minpoly F β).natDegree = (minpoly k β).natDegree := by
@@ -58,6 +64,9 @@ section Overfield
 variable {k F K Ω : Type*} [Field k] [Field F] [Field K] [Field Ω]
   [Algebra k F] [Algebra k K] [Algebra k Ω] (fa : F →ₐ[k] Ω) (fb : K →ₐ[k] Ω)
 
+/--
+@isnad1 id=mem.2h5v.s10.913dcf0d1de6 from=translated src=- shape=da82e4de vocab=c1f76611
+-/
 theorem hconst_range (hconst : ∀ y : F, IsIntegral k y → y ∈ (algebraMap k F).range)
     (y : fa.fieldRange) (hy : IsIntegral k y) : y ∈ (algebraMap k fa.fieldRange).range := by
   obtain ⟨y, z, rfl⟩ := y
@@ -70,6 +79,9 @@ theorem hconst_range (hconst : ∀ y : F, IsIntegral k y → y ∈ (algebraMap k
   change algebraMap k Ω c = fa z
   rw [← hc, fa.commutes]
 
+/--
+@isnad1 id=lineardi.2h5v.s7.c5e1cbb5f706 from=translated src=- shape=39705429 vocab=0d4852f2
+-/
 theorem linearDisjoint_adjoin_singleton
     (hconst : ∀ y : F, IsIntegral k y → y ∈ (algebraMap k F).range)
     {x : Ω} (hx : IsIntegral k x) :
@@ -93,6 +105,9 @@ theorem linearDisjoint_adjoin_singleton
   rw [← hdim] at hli
   exact hli
 
+/--
+@isnad1 id=ex.1h5v.s8.838fbaca2c5a from=translated src=- shape=5ef1e5a4 vocab=16041fb4
+-/
 theorem exists_le_adjoin_singleton [Algebra.IsSeparable k K]
     (B' : Subalgebra k Ω) (hB' : B' ≤ fb.range) [Module.Finite k B'] :
     ∃ β : K, B' ≤ Algebra.adjoin k {fb β} := by
@@ -127,6 +142,9 @@ theorem exists_le_adjoin_singleton [Algebra.IsSeparable k K]
   rintro _ ⟨_, ⟨i, rfl⟩, rfl⟩
   exact hmem i
 
+/--
+@isnad1 id=lineardi.1h6v.s8.a36e71ecaf58 from=translated src=- shape=cd319f77 vocab=b3bb5f0f
+-/
 theorem linearDisjoint_range [Algebra.IsSeparable k K]
     (hconst : ∀ y : F, IsIntegral k y → y ∈ (algebraMap k F).range) :
     fa.fieldRange.toSubalgebra.LinearDisjoint fb.range := by
@@ -145,6 +163,9 @@ end Overfield
 end RegularTensorField
 
 open RegularTensorField in
+/--
+@isnad1 id=isfield.1h3v.s7.18b132b2d8db from=translated src=- shape=d597839f vocab=278b10fc
+-/
 theorem solution
     (k F K : Type*) [Field k] [Field F] [Field K] [Algebra k F] [Algebra k K]
     [Algebra.IsSeparable k K]

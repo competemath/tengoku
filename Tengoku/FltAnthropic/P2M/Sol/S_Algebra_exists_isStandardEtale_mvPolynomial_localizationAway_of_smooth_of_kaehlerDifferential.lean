@@ -13,6 +13,9 @@ namespace EtaleCoordK1a
 
 variable {S : Type} [CommRing S]
 
+/--
+@isnad1 id=eq.1h4v.s6.2138981ced9f from=translated src=- shape=ea6f0b70 vocab=ff1cdd7b
+-/
 theorem rankAtStalk_eq [IsDomain S] {M : Type} [AddCommGroup M] [Module S M] [Module.FinitePresentation S M]
     [Module.Flat S M] {n : ℕ} (hrank : Module.rank S M = n) (p : PrimeSpectrum S) : Module.rankAtStalk M p = n := by
   rw [(Module.isLocallyConstant_rankAtStalk (R := S) (M := M)).apply_eq_of_preconnectedSpace p ⟨⊥, Ideal.isPrime_bot⟩]
@@ -26,6 +29,9 @@ theorem rankAtStalk_eq [IsDomain S] {M : Type} [AddCommGroup M] [Module S M] [Mo
   show Module.finrank (Localization.AtPrime (⊥ : Ideal S)) (LocalizedModule (⊥ : Ideal S).primeCompl M) = n
   exact Module.finrank_eq_of_rank_eq (by rw [hr])
 
+/--
+@isnad1 id=ex.1h5v.s10.ca2dcfbbc436 from=translated src=- shape=3a0e9d5c vocab=b415d3ac
+-/
 theorem exists_smul_mem_of_mk_mem {M : Type} [AddCommGroup M] [Module S M] (𝔭 : Ideal S) [𝔭.IsPrime]
     (N : Submodule S M) (x : M)
     (h : LocalizedModule.mk x (1 : 𝔭.primeCompl) ∈
@@ -41,6 +47,9 @@ theorem exists_smul_mem_of_mk_mem {M : Type} [AddCommGroup M] [Module S M] (𝔭
     exact this
   exact ⟨(c : S) * (s : S), ‹𝔭.IsPrime›.mul_notMem c.2 s.2, by rw [hcx]; exact N.smul_mem _ hm⟩
 
+/--
+@isnad1 id=eq.0h8v.s9.69a119cc755f from=translated src=- shape=e4799ac2 vocab=930dfca2
+-/
 theorem localized'_sup {M N : Type} [AddCommGroup M] [Module S M] [AddCommGroup N] [Module S N]
     (p : Submonoid S) (T : Type) [CommRing T] [Algebra S T] [IsLocalization p T] [Module T N]
     [IsScalarTower S T N] (f : M →ₗ[S] N) [IsLocalizedModule p f] (A B : Submodule S M) :
@@ -49,6 +58,9 @@ theorem localized'_sup {M N : Type} [AddCommGroup M] [Module S M] [AddCommGroup 
 
 attribute [local instance] Module.free_of_flat_of_isLocalRing in
 
+/--
+@isnad1 id=bijectiv.2h5v.s10.a9a2adbbe079 from=translated src=- shape=76902385 vocab=7725d55c
+-/
 theorem bijective_linearCombination {M : Type} [AddCommGroup M] [Module S M] [Module.Finite S M] [Module.Flat S M]
     (𝔪 : Ideal S) [𝔪.IsMaximal] {n : ℕ} (hn : Module.rankAtStalk M ⟨𝔪, inferInstance⟩ = n)
     (x : Fin n → M) (hx : 𝔪 • (⊤ : Submodule S M) ⊔ Submodule.span S (Set.range x) = ⊤) :
@@ -82,10 +94,16 @@ theorem bijective_linearCombination {M : Type} [AddCommGroup M] [Module S M] [Mo
     exact hinj
   exact ⟨Function.Injective.of_comp hinj', hsurj⟩
 
+/--
+@isnad1 id=eq.0h3v.s8.72eb212e577f from=translated src=- shape=c52dcddb vocab=1d4b9972
+-/
 theorem D_algebraMap_eq_zero (R A : Type) [CommRing R] [CommRing A] [Algebra R A] (r : R) :
     KaehlerDifferential.D R A (algebraMap R A r) = 0 := by
   rw [Algebra.algebraMap_eq_smul_one, Derivation.map_smul, Derivation.map_one_eq_zero, smul_zero]
 
+/--
+@isnad1 id=not.2h5v.s10.44019529f939 from=translated src=- shape=0754e9b7 vocab=faa166d4
+-/
 theorem notMem_support_kaehlerDifferential {R : Type} [CommRing R] [Algebra ℂ R] [Algebra ℂ S] [Algebra R S]
     [IsScalarTower ℂ R S] {n : ℕ} (t : Fin n → S) (ht : ∀ i, ∃ r : R, algebraMap R S r = t i)
     (𝔪 : Ideal S) [𝔪.IsMaximal]
@@ -116,6 +134,9 @@ theorem notMem_support_kaehlerDifferential {R : Type} [CommRing R] [Algebra ℂ 
     rw [LinearMap.mem_ker, KaehlerDifferential.map_D, Algebra.algebraMap_self_apply, ← hri, D_algebraMap_eq_zero]
   exact hle hrω
 
+/--
+@isnad1 id=not.2h4v.s11.d0447d8bf31e from=translated src=- shape=704464b9 vocab=d67361a8
+-/
 theorem notMem_support_h1Cotangent [Algebra ℂ S] [Algebra.FormallySmooth ℂ S] {n : ℕ}
     [Algebra (MvPolynomial (Fin n) ℂ) S] [IsScalarTower ℂ (MvPolynomial (Fin n) ℂ) S]
     (t : Fin n → S) (hX : ∀ i, algebraMap (MvPolynomial (Fin n) ℂ) S (MvPolynomial.X i) = t i)
@@ -182,6 +203,9 @@ theorem notMem_support_h1Cotangent [Algebra ℂ S] [Algebra.FormallySmooth ℂ S
 end EtaleCoordK1a
 
 open EtaleCoordK1a in
+/--
+@isnad1 id=ex.3h4v.s10.57263aa03a5f from=translated src=- shape=5e061b86 vocab=4c0ebc4c
+-/
 theorem solution
     (S : Type) [CommRing S] [IsDomain S] [Algebra ℂ S] [Algebra.FiniteType ℂ S] (hsm : Algebra.Smooth ℂ S)
     {n : ℕ} (hrank : Module.rank S (KaehlerDifferential ℂ S) = n)

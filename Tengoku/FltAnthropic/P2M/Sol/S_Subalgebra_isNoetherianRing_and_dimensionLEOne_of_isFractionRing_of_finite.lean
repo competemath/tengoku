@@ -15,14 +15,23 @@ def smulRange {A : Type*} [CommRing A] (a : A) (M : Type*) [AddCommGroup M] [Mod
     Submodule A M :=
   LinearMap.range (DistribSMul.toLinearMap A M a)
 
+/--
+@isnad1 id=iff.0h4v.s7.6780c1bfa990 from=translated src=- shape=16099086 vocab=c5fa8695
+-/
 theorem mem_smulRange_iff {A : Type*} [CommRing A] {a : A} {M : Type*} [AddCommGroup M] [Module A M]
     (x : M) : x ∈ smulRange a M ↔ ∃ y : M, a • y = x := by
   simp [smulRange, DistribSMul.toLinearMap_apply]
 
+/--
+@isnad1 id=mem.0h4v.s7.caa7d70a8bbc from=translated src=- shape=255dd9a7 vocab=c5fa8695
+-/
 theorem smul_mem_smulRange {A : Type*} [CommRing A] (a : A) {M : Type*} [AddCommGroup M] [Module A M]
     (x : M) : a • x ∈ smulRange a M :=
   (mem_smulRange_iff (a := a) (a • x)).mpr ⟨x, rfl⟩
 
+/--
+@isnad1 id=le.3h3v.s6.fa02a0a7995d from=translated src=- shape=4c9464e0 vocab=0876b6dd
+-/
 theorem le_of_forall_mul_le {x y c : ℕ∞} (hy : y ≠ ⊤) (hc : c ≠ ⊤)
     (h : ∀ k : ℕ, (k : ℕ∞) * x ≤ (k : ℕ∞) * y + c) : x ≤ y := by
   have hx : x ≠ ⊤ := by
@@ -47,6 +56,9 @@ section Domain
 
 variable {A : Type*} [CommRing A] [IsDomain A] [IsNoetherianRing A] [Ring.DimensionLEOne A]
 
+/--
+@isnad1 id=isartini.1h2v.s6.568e35faab3e from=translated src=- shape=c09d075a vocab=6d777686
+-/
 theorem isArtinianRing_quotient_span_singleton {d : A} (hd : d ≠ 0) :
     IsArtinianRing (A ⧸ Ideal.span {d}) := by
   rw [isArtinianRing_iff_isNoetherianRing_krullDimLE_zero]
@@ -72,6 +84,9 @@ theorem isArtinianRing_quotient_span_singleton {d : A} (hd : d ≠ 0) :
   · exact absurd (hPQ ▸ h) hP.ne_top
   · exact hPQ ▸ h
 
+/--
+@isnad1 id=ne.2h3v.s7.468247f39e6b from=translated src=- shape=3e278a1f vocab=271cd7e3
+-/
 theorem length_ne_top_of_isTorsionBy {M : Type*} [AddCommGroup M] [Module A M] [Module.Finite A M]
     {d : A} (hd : d ≠ 0) (hM : ∀ m : M, d • m = 0) : Module.length A M ≠ ⊤ := by
   have hI : Module.IsTorsionBySet A M (Ideal.span {d} : Set A) := by
@@ -94,6 +109,9 @@ section Filtration
 
 variable {A : Type*} [CommRing A]
 
+/--
+@isnad1 id=eq.2h5v.s8.30bdc86a413b from=translated src=- shape=123315fd vocab=96bdd4a5
+-/
 theorem pow_smul_injective {M : Type*} [AddCommGroup M] [Module A M] {a : A}
     (hinj : ∀ m : M, a • m = 0 → m = 0) (k : ℕ) (m : M) (h : a ^ k • m = 0) : m = 0 := by
   induction k generalizing m with
@@ -102,12 +120,18 @@ theorem pow_smul_injective {M : Type*} [AddCommGroup M] [Module A M] {a : A}
       rw [pow_succ, mul_smul] at h
       exact hinj m (ih (a • m) h)
 
+/--
+@isnad1 id=le.0h4v.s7.382e9f4b6d34 from=translated src=- shape=6fd8ef27 vocab=4b4ec56f
+-/
 theorem smulRange_pow_succ_le {M : Type*} [AddCommGroup M] [Module A M] (a : A) (k : ℕ) :
     smulRange (a ^ (k + 1)) M ≤ smulRange (a ^ k) M := by
   rintro x hx
   obtain ⟨y, rfl⟩ := (mem_smulRange_iff x).mp hx
   exact (mem_smulRange_iff _).mpr ⟨a • y, by rw [pow_succ, mul_smul]⟩
 
+/--
+@isnad1 id=eq.1h4v.s8.7a51c7bbbdf9 from=translated src=- shape=6803d610 vocab=28a3be13
+-/
 theorem length_quot_pow {M : Type*} [AddCommGroup M] [Module A M] (a : A)
     (hinj : ∀ m : M, a • m = 0 → m = 0) (k : ℕ) :
     Module.length A (M ⧸ smulRange (a ^ k) M) = k * Module.length A (M ⧸ smulRange a M) := by
@@ -182,6 +206,9 @@ theorem length_quot_pow {M : Type*} [AddCommGroup M] [Module A M] (a : A)
       rw [Module.length_eq_add_of_exact f g hf_inj hg_surj hexact, ih, Nat.cast_succ, add_mul, one_mul,
         add_comm]
 
+/--
+@isnad1 id=le.0h4v.s9.b4cf4c6c3646 from=translated src=- shape=ae5abc19 vocab=9f718427
+-/
 theorem length_quot_le {M : Type*} [AddCommGroup M] [Module A M] (E : Submodule A M) (b : A) :
     Module.length A (M ⧸ smulRange b M) ≤
       Module.length A (E ⧸ smulRange b E) + Module.length A (M ⧸ E) := by
@@ -221,6 +248,9 @@ theorem length_quot_le {M : Type*} [AddCommGroup M] [Module A M] (E : Submodule 
       induction y using Submodule.Quotient.induction_on with
       | H m => exact ⟨Submodule.Quotient.mk m, rfl⟩
 
+/--
+@isnad1 id=eq.0h5v.s7.c651144a4d06 from=translated src=- shape=659376fb vocab=141ef012
+-/
 theorem length_quot_smulRange_eq_of_equiv {M N : Type*} [AddCommGroup M] [Module A M] [AddCommGroup N] [Module A N]
     (e : M ≃ₗ[A] N) (a : A) :
     Module.length A (M ⧸ smulRange a M) = Module.length A (N ⧸ smulRange a N) := by
@@ -239,6 +269,9 @@ section Core
 
 variable {A : Type*} [CommRing A] [IsDomain A] [IsNoetherianRing A] [Ring.DimensionLEOne A]
 
+/--
+@isnad1 id=le.5h5v.s10.09f7aec4ecb5 from=translated src=- shape=3945f9c6 vocab=53acc35f
+-/
 theorem length_quot_le_of_fg {P : Type*} [AddCommGroup P] [Module A P]
     (htf : ∀ a : A, a ≠ 0 → ∀ p : P, a • p = 0 → p = 0)
     (E : Submodule A P) (hEd : ∀ p : P, ∃ d : A, d ≠ 0 ∧ d • p ∈ E)
@@ -304,6 +337,9 @@ theorem length_quot_le_of_fg {P : Type*} [AddCommGroup P] [Module A P]
     _ = (k : ℕ∞) * Module.length A (E ⧸ smulRange a E) + Module.length A (M₁ ⧸ E') := by
           rw [length_quot_smulRange_eq_of_equiv eE a]
 
+/--
+@isnad1 id=le.5h5v.s10.963f5ebaefef from=translated src=- shape=1c3cf9de vocab=53acc35f
+-/
 theorem length_le_of_fg_quot {P : Type*} [AddCommGroup P] [Module A P]
     (htf : ∀ a : A, a ≠ 0 → ∀ p : P, a • p = 0 → p = 0)
     (E : Submodule A P) (hE : E.FG) (hEd : ∀ p : P, ∃ d : A, d ≠ 0 ∧ d • p ∈ E)
@@ -348,6 +384,9 @@ theorem length_le_of_fg_quot {P : Type*} [AddCommGroup P] [Module A P]
     _ ≤ Module.length A (M₁ ⧸ smulRange a M₁) := Module.length_le_of_surjective _ hsurj
     _ ≤ Module.length A (E ⧸ smulRange a E) := length_quot_le_of_fg htf E hEd ha M₁ hM₁fg hEM₁
 
+/--
+@isnad1 id=ne.2h3v.s7.acedca3334d3 from=translated src=- shape=c3d3fa7f vocab=d8687cb3
+-/
 theorem length_ne_top_of_forall_fg_le {Q : Type*} [AddCommGroup Q] [Module A Q] {y : ℕ∞} (hy : y ≠ ⊤)
     (h : ∀ N : Submodule A Q, N.FG → Module.length A N ≤ y) : Module.length A Q ≠ ⊤ := by
   classical
@@ -398,6 +437,9 @@ theorem length_ne_top_of_forall_fg_le {Q : Type*} [AddCommGroup Q] [Module A Q] 
   rw [← Submodule.topEquiv.length_eq, ← htop, hN₀]
   exact ENat.natCast_ne_top m
 
+/--
+@isnad1 id=ne.4h4v.s8.9598b98d87c3 from=translated src=- shape=dc95e69f vocab=3afe683d
+-/
 theorem core {P : Type*} [AddCommGroup P] [Module A P]
     (htf : ∀ a : A, a ≠ 0 → ∀ p : P, a • p = 0 → p = 0)
     (E : Submodule A P) (hE : E.FG) (hEd : ∀ p : P, ∃ d : A, d ≠ 0 ∧ d • p ∈ E)
@@ -419,6 +461,9 @@ section Lattice
 
 variable {A K : Type*} [CommRing A] [IsDomain A] [Field K] [Algebra A K] [IsFractionRing A K]
 
+/--
+@isnad1 id=ex.1h5v.s8.02975e832cdc from=translated src=- shape=7c911d33 vocab=5aa1177e
+-/
 theorem exists_smul_mem_span {V : Type*} [AddCommGroup V] [Module K V] [Module A V] [IsScalarTower A K V]
     (S : Set V) {x : V} (hx : x ∈ Submodule.span K S) :
     ∃ d : A, d ≠ 0 ∧ d • x ∈ Submodule.span A S := by
@@ -443,6 +488,9 @@ theorem exists_smul_mem_span {V : Type*} [AddCommGroup V] [Module K V] [Module A
       rw [this]
       exact Submodule.smul_mem _ _ h
 
+/--
+@isnad1 id=ex.1h5v.s9.099237daaa4e from=translated src=- shape=09fba9d9 vocab=27c7f353
+-/
 theorem exists_lattice {V P : Type*} [AddCommGroup V] [Module K V] [Module A V] [IsScalarTower A K V]
     [FiniteDimensional K V] [AddCommGroup P] [Module A P] (f : P →ₗ[A] V) (hf : Function.Injective f) :
     ∃ E : Submodule A P, E.FG ∧ ∀ p : P, ∃ d : A, d ≠ 0 ∧ d • p ∈ E := by
@@ -494,6 +542,9 @@ end Lattice
 
 section Main
 
+/--
+@isnad1 id=and.0h4v.s10.8bc6b172ee8b from=translated src=- shape=2d38aa49 vocab=80de6346
+-/
 theorem main {A K L : Type*} [CommRing A] [IsDomain A] [IsNoetherianRing A] [Ring.KrullDimLE 1 A]
     [Field K] [Algebra A K] [IsFractionRing A K]
     [Field L] [Algebra A L] [Algebra K L] [IsScalarTower A K L] [Module.Finite K L]
@@ -602,6 +653,9 @@ end Main
 
 end KrullAkizukiLa
 
+/--
+@isnad1 id=and.0h4v.s10.8bc6b172ee8b from=translated src=- shape=2d38aa49 vocab=80de6346
+-/
 theorem solution
     {A K L : Type*} [CommRing A] [IsDomain A] [IsNoetherianRing A] [Ring.KrullDimLE 1 A]
     [Field K] [Algebra A K] [IsFractionRing A K]

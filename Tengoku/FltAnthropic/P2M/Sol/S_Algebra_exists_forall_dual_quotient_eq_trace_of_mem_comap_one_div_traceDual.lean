@@ -17,6 +17,9 @@ variable {R S : Type*} [CommRing R] [CommRing S] [Algebra R S] (I : Ideal R)
 
 local notation "IS" => Ideal.map (algebraMap R S) I
 
+/--
+@isnad1 id=eq.1h4v.s11.1b8d3c3d847e from=translated src=- shape=f24e0034 vocab=b89ce52c
+-/
 theorem span_mk_image_eq_top {s : Set S} (hs : Submodule.span R s = ⊤) :
     Submodule.span (R ⧸ I) ((Ideal.Quotient.mk IS) '' s) = ⊤ := by
   have hcoe : ⇑((IsScalarTower.toAlgHom R S (S ⧸ IS)).toLinearMap) = ⇑(Ideal.Quotient.mk IS) := by
@@ -30,6 +33,9 @@ theorem span_mk_image_eq_top {s : Set S} (hs : Submodule.span R s = ⊤) :
 
 variable {ι : Type*}
 
+/--
+@isnad1 id=linearin.0h5v.s10.1e23aea476ea from=translated src=- shape=e57e7fe9 vocab=18e98858
+-/
 theorem linearIndependent_mk_comp (b : Basis ι R S) :
     LinearIndependent (R ⧸ I) (Ideal.Quotient.mk IS ∘ b) := by
   classical
@@ -62,9 +68,15 @@ theorem linearIndependent_mk_comp (b : Basis ι R S) :
 noncomputable def basisQuot (b : Basis ι R S) : Basis ι (R ⧸ I) (S ⧸ IS) :=
   Basis.mk (linearIndependent_mk_comp I b) (by rw [Set.range_comp]; exact (span_mk_image_eq_top I b.span_eq).ge)
 
+/--
+@isnad1 id=eq.0h6v.s10.b6357e4d82a0 from=translated src=- shape=ae6a254c vocab=0e638dc6
+-/
 theorem basisQuot_apply (b : Basis ι R S) (i : ι) : basisQuot I b i = Ideal.Quotient.mk IS (b i) := by
   rw [basisQuot, Basis.coe_mk, Function.comp_apply]
 
+/--
+@isnad1 id=eq.0h7v.s11.e5f7a1b58da8 from=translated src=- shape=ccf6c6f6 vocab=0db3fa98
+-/
 theorem basisQuot_repr [Fintype ι] (b : Basis ι R S) (x : S) (i : ι) :
     (basisQuot I b).repr (Ideal.Quotient.mk IS x) i = Ideal.Quotient.mk I (b.repr x i) := by
   classical
@@ -76,6 +88,9 @@ theorem basisQuot_repr [Fintype ι] (b : Basis ι R S) (x : S) (i : ι) :
   simp only [Function.comp_apply, basisQuot_apply, Ideal.Quotient.mk_smul_mk_quotient_map_quotient, ← Algebra.smul_def]
   rw [← map_sum, Basis.sum_repr b x]
 
+/--
+@isnad1 id=eq.0h4v.s11.845f0b9dbb8e from=translated src=- shape=d50abe96 vocab=c026ec5d
+-/
 theorem trace_quot_mk [Module.Free R S] [Module.Finite R S] (x : S) :
     Algebra.trace (R ⧸ I) (S ⧸ IS) (Ideal.Quotient.mk IS x) = Ideal.Quotient.mk I (Algebra.trace R S x) := by
   classical
@@ -95,6 +110,9 @@ open KBAux in
 set_option synthInstance.maxHeartbeats 1600000 in
 set_option maxHeartbeats 6400000 in
 
+/--
+@isnad1 id=ex.1h7v.s12.eadc2b5e6f89 from=translated src=- shape=966e8597 vocab=a3ad82a9
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsDomain R] [IsNoetherianRing R] [IsIntegrallyClosed R]
     (K : Type u) [Field K] [Algebra R K] [IsFractionRing R K]

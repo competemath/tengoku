@@ -21,24 +21,45 @@ variable (e : A →ₐ[R] R)
 
 def proj (a : A) : A := a - algebraMap R A (e a)
 
+/--
+@isnad1 id=eq.0h4v.s6.6b8d12d91024 from=translated src=- shape=45c5edd6 vocab=d28f8d16
+-/
 theorem e_proj (a : A) : e (proj e a) = 0 := by
   simp [proj]
 
+/--
+@isnad1 id=mem.0h4v.s7.8deec34fe3c7 from=translated src=- shape=18288f12 vocab=ca8243a0
+-/
 theorem proj_mem (a : A) : proj e a ∈ RingHom.ker e :=
   (RingHom.mem_ker).mpr (e_proj e a)
 
+/--
+@isnad1 id=eq.1h4v.s7.97c425279fd1 from=translated src=- shape=4078f4f4 vocab=d28f8d16
+-/
 theorem proj_of_eq_zero {a : A} (ha : e a = 0) : proj e a = a := by
   simp [proj, ha]
 
+/--
+@isnad1 id=eq.0h4v.s7.992b48df45dd from=translated src=- shape=95d179bb vocab=660812a3
+-/
 theorem self_eq_algebraMap_add_proj (a : A) : a = algebraMap R A (e a) + proj e a := by
   simp [proj]
 
+/--
+@isnad1 id=eq.0h5v.s6.f5e7d266397b from=translated src=- shape=a60c7839 vocab=b4da70f6
+-/
 theorem proj_add (a b : A) : proj e (a + b) = proj e a + proj e b := by
   simp only [proj, map_add]; ring
 
+/--
+@isnad1 id=eq.0h4v.s6.cd4bb51d6f89 from=translated src=- shape=895a00f3 vocab=1f44338f
+-/
 theorem proj_algebraMap (r : R) : proj e (algebraMap R A r) = 0 := by
   simp [proj]
 
+/--
+@isnad1 id=eq.0h5v.s8.de45b65bfcae from=translated src=- shape=34557f01 vocab=ff0c5f12
+-/
 theorem proj_mul (a b : A) :
     proj e (a * b) = algebraMap R A (e a) * proj e b + algebraMap R A (e b) * proj e a +
       proj e a * proj e b := by
@@ -50,6 +71,9 @@ section Coord
 
 variable {e : A →ₐ[R] R} {g : ℕ} {x : Fin g → A}
 
+/--
+@isnad1 id=ex.3h6v.s9.976b293f0102 from=translated src=- shape=b89a0d93 vocab=22535a3e
+-/
 theorem exists_coeff (hx : ∀ i, e (x i) = 0)
     (hgen : RingHom.ker e ≤ Ideal.span (Set.range x) ⊔ RingHom.ker e ^ 2)
     {a : A} (ha : a ∈ RingHom.ker e) :
@@ -65,6 +89,9 @@ theorem exists_coeff (hx : ∀ i, e (x i) = 0)
   rw [pow_two]
   exact Ideal.mul_mem_mul (proj_mem e (d i)) ((RingHom.mem_ker).mpr (hx i))
 
+/--
+@isnad1 id=eq.3h8v.s9.a39c9f7b75cd from=translated src=- shape=4f083bbe vocab=b0aee8ac
+-/
 theorem coeff_unique
     (hind : ∀ c : Fin g → R, (∑ i, c i • x i) ∈ RingHom.ker e ^ 2 → c = 0)
     {a : A} {c c' : Fin g → R}
@@ -87,16 +114,25 @@ variable (hx : ∀ i, e (x i) = 0)
 noncomputable def coord (a : A) : Fin g → R :=
   (exists_coeff hx hgen (proj_mem e a)).choose
 
+/--
+@isnad1 id=mem.2h6v.s9.f37e507a28ec from=translated src=- shape=f33337e6 vocab=cfef4d77
+-/
 theorem coord_spec (a : A) :
     proj e a - ∑ i, coord hx hgen a i • x i ∈ RingHom.ker e ^ 2 :=
   (exists_coeff hx hgen (proj_mem e a)).choose_spec
 
 include hind in
+/--
+@isnad1 id=eq.4h7v.s9.c03526e2584a from=translated src=- shape=cd960595 vocab=cfef4d77
+-/
 theorem coord_eq {a : A} {c : Fin g → R}
     (h : proj e a - ∑ i, c i • x i ∈ RingHom.ker e ^ 2) : coord hx hgen a = c :=
   coeff_unique hind (coord_spec hx hgen a) h
 
 include hind in
+/--
+@isnad1 id=eq.3h7v.s9.417bc66c5efc from=translated src=- shape=3c97c2fe vocab=3cd67029
+-/
 theorem coord_add (a b : A) : coord hx hgen (a + b) = coord hx hgen a + coord hx hgen b := by
   apply coord_eq hx hgen hind
   have hrw : proj e (a + b) - ∑ i, (coord hx hgen a + coord hx hgen b) i • x i =
@@ -107,11 +143,17 @@ theorem coord_add (a b : A) : coord hx hgen (a + b) = coord hx hgen a + coord hx
   exact add_mem (coord_spec hx hgen a) (coord_spec hx hgen b)
 
 include hind in
+/--
+@isnad1 id=eq.3h6v.s9.2db16a042e4c from=translated src=- shape=6cc1a5fe vocab=0aa5912a
+-/
 theorem coord_algebraMap (r : R) : coord hx hgen (algebraMap R A r) = 0 := by
   apply coord_eq hx hgen hind
   simp [proj_algebraMap]
 
 include hind in
+/--
+@isnad1 id=eq.3h6v.s9.fb31cd12887e from=translated src=- shape=e8d2f8fe vocab=cd8351ef
+-/
 theorem coord_x (j : Fin g) : coord hx hgen (x j) = Pi.single j 1 := by
   apply coord_eq hx hgen hind
   have hrw : proj e (x j) - ∑ i, (Pi.single j (1 : R) : Fin g → R) i • x i = 0 := by
@@ -122,6 +164,9 @@ theorem coord_x (j : Fin g) : coord hx hgen (x j) = Pi.single j 1 := by
 
 include hind in
 
+/--
+@isnad1 id=eq.3h7v.s9.8e33f80ae365 from=translated src=- shape=d9080843 vocab=12cbfcfe
+-/
 theorem coord_mul (a b : A) :
     coord hx hgen (a * b) = e a • coord hx hgen b + e b • coord hx hgen a := by
   apply coord_eq hx hgen hind
@@ -138,6 +183,9 @@ theorem coord_mul (a b : A) :
   rw [pow_two]
   exact Ideal.mul_mem_mul (proj_mem e a) (proj_mem e b)
 
+/--
+@isnad1 id=eq.2h6v.s9.27a46b18cee4 from=translated src=- shape=7cd2fc91 vocab=68fd2344
+-/
 theorem decomp (a : A) :
     a = algebraMap R A (e a) + ∑ i, coord hx hgen a i • x i +
       (proj e a - ∑ i, coord hx hgen a i • x i) := by
@@ -157,6 +205,9 @@ variable {e : A →ₐ[R] R} {g : ℕ} {x : Fin g → A}
 
 include hx hgen hφ hφ' hxφ in
 
+/--
+@isnad1 id=mem.6h11v.s10.55430451707b from=translated src=- shape=a89850d0 vocab=6bf7d063
+-/
 theorem sub_mem_pow : ∀ k : ℕ, 1 ≤ k → ∀ a : A, φ a - φ' a ∈ J ^ k := by
   intro k hk
   induction k, hk using Nat.le_induction with
@@ -215,6 +266,9 @@ variable {e : A →ₐ[R] R} {g : ℕ} {x : Fin g → A}
 
 include hx hgen hind in
 
+/--
+@isnad1 id=ex.6h9v.s10.808be56c180c from=translated src=- shape=ab2ba10d vocab=9339461b
+-/
 theorem exists_of_pow_eq_bot [Algebra.FormallySmooth R A] :
     ∀ k : ℕ, 1 ≤ k → ∀ (C : Type w) [CommRing C] [Algebra R C] (J : Ideal C), J ^ k = ⊥ →
       ∀ c : Fin g → C, (∀ i, c i ∈ J) →
@@ -307,6 +361,9 @@ theorem exists_of_pow_eq_bot [Algebra.FormallySmooth R A] :
     simp [err]
 
 include hx hgen hind in
+/--
+@isnad1 id=ex.5h8v.s10.1c7d16766a2f from=translated src=- shape=498b09c7 vocab=c3410778
+-/
 theorem exists_of_isNilpotent [Algebra.FormallySmooth R A]
     {C : Type w} [CommRing C] [Algebra R C] (J : Ideal C) (hJ : IsNilpotent J)
     (c : Fin g → C) (hc : ∀ i, c i ∈ J) :
@@ -320,6 +377,9 @@ end Existence
 end FormalCoordinatesAlongSectionP1
 
 open FormalCoordinatesAlongSectionP1 in
+/--
+@isnad1 id=existsun.5h8v.s10.2d2c1a90edc6 from=translated src=- shape=7ad69cd7 vocab=cdfd5b73
+-/
 theorem solution
     {R : Type u} {A : Type v} [CommRing R] [CommRing A] [Algebra R A] [Algebra.FormallySmooth R A]
     (e : A →ₐ[R] R) {g : ℕ} (x : Fin g → A) (hx : ∀ i, e (x i) = 0)

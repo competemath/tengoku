@@ -36,14 +36,26 @@ local notation "ℚ̄" => AlgebraicClosure ℚ
 
 namespace Chi
 
+/--
+@isnad1 id=isalgebr.0h0v.s4.92f995461263 from=translated src=- shape=3905abf2 vocab=c7f7e443
+-/
 scoped instance instIsAlgebraicRat : Algebra.IsAlgebraic ℚ ℚ̄ := AlgebraicClosure.isAlgebraic ℚ
 
+/--
+@isnad1 id=isalgebr.0h1v.s8.7766fe3252a2 from=translated src=- shape=4913de6f vocab=1ae26032
+-/
 scoped instance instIsAlgebraicOver (K : IntermediateField ℚ ℚ̄) : Algebra.IsAlgebraic K ℚ̄ :=
   Algebra.IsAlgebraic.tower_top (K := ℚ) (↥K)
 
+/--
+@isnad1 id=isalgclo.0h1v.s8.539d4a572562 from=translated src=- shape=4913de6f vocab=6de9da2a
+-/
 scoped instance instIsAlgClosure (K : IntermediateField ℚ ℚ̄) : IsAlgClosure K ℚ̄ :=
   ⟨inferInstance, inferInstance⟩
 
+/--
+@isnad1 id=ex.1h1v.s4.8056c49795ea from=translated src=- shape=483ba753 vocab=abdfac96
+-/
 theorem exists_primitiveRoot (p₀ : ℕ) (hp₀ : p₀.Prime) : ∃ ζ : ℚ̄, IsPrimitiveRoot ζ p₀ := by
   haveI : NeZero ((p₀ : ℕ) : ℚ̄) := ⟨Nat.cast_ne_zero.mpr hp₀.ne_zero⟩
   obtain ⟨ζ, hζ⟩ := IsAlgClosed.exists_root (Polynomial.cyclotomic p₀ ℚ̄) (by

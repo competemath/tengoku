@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Algebra_exists_ker_eq_span_of_surjective_t
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.3h8v.s14.c75bc5d71169 from=translated src=- shape=ffe2757d vocab=08865226
+-/
 theorem Algebra.exists_ker_eq_span_of_surjective_truncated_of_ker_eq_span
     (k : Type*) [Field k] (C : Type*) [CommRing C] [Algebra k C] [IsLocalRing C] [Module.Finite k C]
     (M : ℕ)

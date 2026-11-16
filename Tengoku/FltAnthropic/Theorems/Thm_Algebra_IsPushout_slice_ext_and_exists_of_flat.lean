@@ -10,6 +10,9 @@ set_option autoImplicit false
 open TensorProduct
 
 universe u
+/--
+@isnad1 id=and.6h7v.s10.5587150a225f from=translated src=- shape=d1cc8293 vocab=4684e78a
+-/
 theorem Algebra.IsPushout.slice_ext_and_exists_of_flat
     {B B₁ B' M N : Type u} [CommRing B] [CommRing B₁] [CommRing B'] [CommRing M] [CommRing N]
     [Algebra B B₁] [Algebra B' B₁] [Algebra B B'] [Algebra B M] [Algebra B' N] [Algebra M N] [Algebra B N]

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 namespace EulerGridCount
 
+/--
+@isnad1 id=eq.5h11v.s9.51cdad4c903b from=translated src=- shape=9cd0bdf6 vocab=5a336296
+-/
 theorem euler_count_grid (n J K np nc : ℕ) (g : ℤ) (hJK : np + nc = J * K)
     (ιc : Type*) [Fintype ιc] (hnc : Fintype.card ιc = nc)
     (fib : ιc → Type*) [∀ b, Fintype (fib b)] (ec : ∀ b, fib b → ℕ)
@@ -45,6 +48,9 @@ theorem euler_count_grid (n J K np nc : ℕ) (g : ℤ) (hJK : np + nc = J * K)
 
 end EulerGridCount
 
+/--
+@isnad1 id=eq.5h11v.s9.51cdad4c903b from=translated src=- shape=9cd0bdf6 vocab=5a336296
+-/
 theorem solution (n J K np nc : ℕ) (g : ℤ) (hJK : np + nc = J * K)
     (ιc : Type*) [Fintype ιc] (hnc : Fintype.card ιc = nc)
     (fib : ιc → Type*) [∀ b, Fintype (fib b)] (ec : ∀ b, fib b → ℕ)

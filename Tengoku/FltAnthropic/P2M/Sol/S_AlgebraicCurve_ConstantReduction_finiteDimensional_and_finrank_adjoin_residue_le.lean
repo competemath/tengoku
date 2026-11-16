@@ -26,13 +26,22 @@ def constHom (R : ConstantReduction A F Fbar) : A →+* R.integers where
   map_zero' := Subtype.ext (by simp)
   map_add' a b := Subtype.ext (by simp)
 
+/--
+@isnad1 id=eq.0h6v.s9.2cf4e5be0457 from=translated src=- shape=cd801897 vocab=aa8ead43
+-/
 @[scoped simp] theorem coe_constHom (R : ConstantReduction A F Fbar) (a : A) :
     ((constHom R a : R.integers) : F) = algebraMap L F a := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.25ea5bb2ab2b from=translated src=- shape=bab91eb3 vocab=713bdc44
+-/
 theorem residue_constHom (R : ConstantReduction A F Fbar) (a : A) :
     R.residue (constHom R a) = algebraMap (ResidueField A) Fbar (IsLocalRing.residue A a) :=
   R.residue_algebraMap a
 
+/--
+@isnad1 id=linearin.1h7v.s9.abe4ea32b592 from=translated src=- shape=85f2e7c6 vocab=b6fd1b46
+-/
 theorem linearIndependent_of_linearIndependent_residue' (R : ConstantReduction A F Fbar)
     {ι : Type*} (v : ι → R.integers)
     (hv : LinearIndependent (ResidueField A) (fun i => R.residue (v i))) :
@@ -84,6 +93,9 @@ theorem linearIndependent_of_linearIndependent_residue' (R : ConstantReduction A
   rw [ha1, map_one] at hall
   exact one_ne_zero hall
 
+/--
+@isnad1 id=eq.0h4v.s8.dfeddfdb67c9 from=translated src=- shape=a9a04e0e vocab=7ca384c9
+-/
 theorem aeval_eq_linearCombination {K B : Type*} [CommRing K] [Ring B] [Algebra K B]
     (x : B) (p : Polynomial K) :
     Polynomial.aeval x p = Finsupp.linearCombination K (fun j : ℕ => x ^ j) p.toFinsupp.coeff := by
@@ -92,6 +104,9 @@ theorem aeval_eq_linearCombination {K B : Type*} [CommRing K] [Ring B] [Algebra 
     Polynomial.support_ofFinsupp, Polynomial.coeff_ofFinsupp, Finsupp.linearCombination_apply,
     Finsupp.sum, Algebra.smul_def]
 
+/--
+@isnad1 id=iff.0h3v.s6.685ea4a15f4c from=translated src=- shape=c1965ffc vocab=c7f13679
+-/
 theorem linearIndependent_pow_iff_transcendental {K B : Type*} [Field K] [Ring B] [Algebra K B]
     (x : B) : LinearIndependent K (fun j : ℕ => x ^ j) ↔ Transcendental K x := by
   rw [linearIndependent_iff, transcendental_iff]
@@ -104,6 +119,9 @@ theorem linearIndependent_pow_iff_transcendental {K B : Type*} [Field K] [Ring B
     exact AddMonoidAlgebra.ofCoeff_eq_zero.mp (Polynomial.ofFinsupp_eq_zero.mp this)
 
 open scoped IntermediateField.algebraAdjoinAdjoin in
+/--
+@isnad1 id=and.1h6v.s12.b1be95e27b97 from=translated src=- shape=4692a646 vocab=e672596e
+-/
 theorem finiteDimensional_and_finrank_adjoin_residue_le' (R : ConstantReduction A F Fbar) (f : R.integers)
     (hf : Transcendental (ResidueField A) (R.residue f))
     [FiniteDimensional (IntermediateField.adjoin L ({(f : F)} : Set F)) F] :
@@ -189,6 +207,9 @@ open scoped _root_.P2MW.S_AlgebraicCurve_ConstantReduction_finiteDimensional_and
 open scoped _root_.P2MW.S_AlgebraicCurve_ConstantReduction_finiteDimensional_and_finrank_adjoin_residue_le.AlgebraicCurve
 
 open AlgebraicCurve.ConstantReduction.W7B2C in
+/--
+@isnad1 id=and.1h6v.s12.b1be95e27b97 from=translated src=- shape=4692a646 vocab=e672596e
+-/
 theorem solution
     {L : Type*} [Field L] {A : ValuationSubring L} {F : Type*} [Field F] [Algebra L F]
     {Fbar : Type*} [Field Fbar] [Algebra (IsLocalRing.ResidueField A) Fbar]

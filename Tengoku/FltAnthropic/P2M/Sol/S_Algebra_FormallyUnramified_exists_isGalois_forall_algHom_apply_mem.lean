@@ -31,9 +31,15 @@ noncomputable def factorHom [DecidableEq I] (φ : (Π i, Ai i) →ₐ[K] Ω) (i 
       Algebra.algebraMap_eq_smul_one]
 
 omit [Finite I] in
+/--
+@isnad1 id=eq.1h7v.s9.a837147d315c from=translated src=- shape=be0883ea vocab=f366c21c
+-/
 theorem factorHom_apply [DecidableEq I] (φ : (Π i, Ai i) →ₐ[K] Ω) (i : I)
     (hi : φ (Pi.single i 1) = 1) (a : Ai i) : factorHom K Ai φ i hi a = φ (Pi.single i a) := rfl
 
+/--
+@isnad1 id=ex.0h5v.s8.5f5973849637 from=translated src=- shape=a96a6d8a vocab=55abf0a8
+-/
 theorem exists_eq_comp_evalAlgHom (φ : (Π i, Ai i) →ₐ[K] Ω) :
     ∃ (i : I) (ψ : Ai i →ₐ[K] Ω), ∀ x, φ x = ψ (x i) := by
   classical
@@ -66,6 +72,9 @@ theorem exists_eq_comp_evalAlgHom (φ : (Π i, Ai i) →ₐ[K] Ω) :
 
 end PiFactor
 
+/--
+@isnad1 id=ex.0h3v.s8.887005ed5c3f from=translated src=- shape=d04e98c8 vocab=f7e1a144
+-/
 theorem exists_isGalois_forall_algHom_apply_mem
     (K : Type u) [Field K] (E : Type u) [CommRing E] [Algebra K E]
     [Module.Finite K E] [Algebra.FormallyUnramified K E]
@@ -109,6 +118,9 @@ theorem exists_isGalois_forall_algHom_apply_mem
 
 end P2mEtaleSplitting
 
+/--
+@isnad1 id=ex.0h3v.s8.887005ed5c3f from=translated src=- shape=d04e98c8 vocab=f7e1a144
+-/
 theorem solution
     (K : Type u) [Field K] (E : Type u) [CommRing E] [Algebra K E]
     [Module.Finite K E] [Algebra.FormallyUnramified K E]

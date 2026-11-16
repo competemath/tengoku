@@ -18,10 +18,16 @@ namespace P2mTensorTrdeg
 
 section General
 
+/--
+@isnad1 id=isalgebr.2h4v.s6.0b5c9597123f from=translated src=- shape=5f669fec vocab=d5754bcc
+-/
 theorem isAlgebraic_of_smul' {R A : Type*} [CommRing R] [IsDomain R] [Ring A] [Algebra R A] {z : A} {y : R}
     (hy : y ≠ 0) (h : IsAlgebraic R (y • z)) : IsAlgebraic R z :=
   IsAlgebraic.of_smul (mem_nonZeroDivisors_of_ne_zero hy) h
 
+/--
+@isnad1 id=isintegr.2h8v.s8.a0fc32d4ea50 from=translated src=- shape=75f34c11 vocab=2ccd1f7e
+-/
 theorem isIntegral_map_of_forall_mem {R R' C C' : Type*} [CommRing R] [CommRing R'] [CommRing C] [CommRing C']
     [Algebra R C] [Algebra R' C'] (f : C →+* C') (D : Subalgebra R C) (D' : Subalgebra R' C')
     (hDD' : ∀ x ∈ D, f x ∈ D') {x : C} (hx : IsIntegral D x) : IsIntegral D' (f x) := by
@@ -33,6 +39,9 @@ theorem isIntegral_map_of_forall_mem {R R' C C' : Type*} [CommRing R] [CommRing 
   refine ⟨p.map φ, hmonic.map φ, ?_⟩
   rw [eval₂_map, hφ, ← hom_eval₂, hp, map_zero]
 
+/--
+@isnad1 id=isalgebr.5h10v.s10.699b8f8ea6aa from=translated src=- shape=1eccbc9b vocab=717455ba
+-/
 theorem isAlgebraic_quotient_of_noether {E₀ E₀' C C' : Type*} [CommRing E₀] [CommRing E₀'] [IsDomain E₀']
     [CommRing C] [CommRing C'] [IsDomain C']
     [Algebra E₀ C] [Algebra E₀' C'] [FaithfulSMul E₀' C'] (πR : E₀ →+* E₀') (πC : C →+* C')
@@ -66,6 +75,9 @@ theorem isAlgebraic_quotient_of_noether {E₀ E₀' C C' : Type*} [CommRing E₀
     exact h1.isAlgebraic
   exact isAlgebraic_of_smul' hρ' h2
 
+/--
+@isnad1 id=ex.2h3v.s7.c65a847be0e6 from=translated src=- shape=77776d07 vocab=b98e7d41
+-/
 theorem exists_monic_aeval_eq_zero_coeff_ne_zero {D C : Type*} [CommRing D] [CommRing C] [IsDomain C] [Algebra D C]
     {y : C} (hy : y ≠ 0) (hint : IsIntegral D y) :
     ∃ p : D[X], p.Monic ∧ aeval y p = 0 ∧ p.coeff 0 ≠ 0 := by
@@ -112,6 +124,9 @@ variable {A B : Type u} [CommRing A] [CommRing B] [Algebra A B]
 set_option synthInstance.maxHeartbeats 800000 in
 set_option maxHeartbeats 3200000 in
 
+/--
+@isnad1 id=lt.1h5v.s8.22d8f88a12c4 from=translated src=- shape=21003ac2 vocab=59f01883
+-/
 theorem trdeg_quotient_lt_of_lt [Algebra.FiniteType A B] (𝔭 : Ideal A) [𝔭.IsPrime] (Q 𝔓 : Ideal B) [Q.IsPrime]
     [𝔓.IsPrime] [Q.LiesOver 𝔭] [𝔓.LiesOver 𝔭] (hlt : Q < 𝔓) :
     Algebra.trdeg (A ⧸ 𝔭) (B ⧸ 𝔓) < Algebra.trdeg (A ⧸ 𝔭) (B ⧸ Q) := by
@@ -228,6 +243,9 @@ section Le
 
 set_option maxHeartbeats 6400000 in
 
+/--
+@isnad1 id=le.2h5v.s8.0515b741fd22 from=translated src=- shape=09a28452 vocab=51ec8bbf
+-/
 theorem trdeg_le_of_generated {k₀ E₀ L₀ T : Type u} [CommRing k₀] [IsDomain k₀] [CommRing E₀] [CommRing L₀]
     [IsDomain L₀] [CommRing T] [IsDomain T] [Algebra k₀ E₀] [Algebra k₀ L₀] [FaithfulSMul k₀ L₀] [Algebra E₀ T]
     [Algebra k₀ T] [IsScalarTower k₀ E₀ T] (ι : L₀ →ₐ[k₀] T) (hι : Function.Injective ι)
@@ -274,11 +292,17 @@ theorem trdeg_le_of_generated {k₀ E₀ L₀ T : Type u} [CommRing k₀] [IsDom
 
 variable {R A A' : Type u} [CommRing R] [CommRing A] [CommRing A'] [Algebra R A] [Algebra R A']
 
+/--
+@isnad1 id=eq.0h4v.s9.a0a47232ce5d from=translated src=- shape=b9d66de4 vocab=b6820505
+-/
 theorem includeRight_algebraMap (r : R) :
     (Algebra.TensorProduct.includeRight (R := R) (A := A) (B := A')).toRingHom (algebraMap R A' r) =
       algebraMap R (A ⊗[R] A') r :=
   (Algebra.TensorProduct.includeRight (R := R) (A := A) (B := A')).commutes r
 
+/--
+@isnad1 id=le.1h7v.s10.9c509ad2aa92 from=translated src=- shape=fd2b6f48 vocab=5e3efa74
+-/
 theorem trdeg_le (𝔓 : Ideal (A ⊗[R] A')) [𝔓.IsPrime] (𝔭 : Ideal A) [𝔭.IsPrime] [𝔓.LiesOver 𝔭]
     (𝔭' : Ideal A') [𝔭'.IsPrime]
     (h𝔭' : 𝔭' = 𝔓.comap (Algebra.TensorProduct.includeRight (R := R) (A := A) (B := A')).toRingHom)
@@ -323,6 +347,9 @@ end Le
 
 section GoingDown
 
+/--
+@isnad1 id=flat.0h2v.s6.8af5b99ba428 from=translated src=- shape=07f39a1f vocab=c8d12d81
+-/
 theorem flat_of_faithfulSMul_field (K' L : Type u) [CommRing K'] [IsDomain K'] [Field L] [Algebra K' L]
     [FaithfulSMul K' L] : Module.Flat K' L := by
   letI : Algebra (FractionRing K') L :=
@@ -333,6 +360,9 @@ theorem flat_of_faithfulSMul_field (K' L : Type u) [CommRing K'] [IsDomain K'] [
   haveI : Module.Flat K' (FractionRing K') := IsLocalization.flat (FractionRing K') (nonZeroDivisors K')
   exact Module.Flat.trans K' (FractionRing K') L
 
+/--
+@isnad1 id=eq.1h3v.s7.53ce6831a26a from=translated src=- shape=7f6902d0 vocab=3fe9205b
+-/
 theorem under_eq_bot_of_forall {S' D : Type u} [CommRing S'] [IsDomain S'] [CommRing D] [Algebra S' D]
     [Algebra.HasGoingDown S' D] (P₂ : Ideal D) [P₂.IsPrime]
     (hmin : ∀ P' : Ideal D, P'.IsPrime → P' ≤ P₂ → P'.under S' = ⊥ → P' = P₂) : P₂.under S' = ⊥ := by
@@ -351,6 +381,9 @@ variable {R A A' : Type u} [CommRing R] [CommRing A] [CommRing A'] [Algebra R A]
 
 set_option synthInstance.maxHeartbeats 800000 in
 set_option maxHeartbeats 12800000 in
+/--
+@isnad1 id=le.2h7v.s10.c61f7f22e7ab from=translated src=- shape=a3ca5314 vocab=89f7f0e8
+-/
 theorem le_trdeg_of_mem_minimalPrimes [Algebra.FiniteType R A']
     (𝔓 : Ideal (A ⊗[R] A')) [𝔓.IsPrime] (𝔭 : Ideal A) [𝔭.IsPrime] [𝔓.LiesOver 𝔭]
     (𝔭' : Ideal A') [𝔭'.IsPrime]
@@ -630,6 +663,9 @@ section Main
 
 variable {R A A' : Type u} [CommRing R] [CommRing A] [CommRing A'] [Algebra R A] [Algebra R A']
 
+/--
+@isnad1 id=eq.0h4v.s9.3344e4993b72 from=translated src=- shape=40ee27da vocab=4d937c32
+-/
 theorem comap_includeRight_under (Q : Ideal (A ⊗[R] A')) :
     (Q.comap (Algebra.TensorProduct.includeRight (R := R) (A := A) (B := A')).toRingHom).under R = Q.under R := by
   rw [Ideal.under, Ideal.under, Ideal.comap_comap]
@@ -637,6 +673,9 @@ theorem comap_includeRight_under (Q : Ideal (A ⊗[R] A')) :
   ext r
   exact includeRight_algebraMap r
 
+/--
+@isnad1 id=and.1h4v.s12.e74359a53221 from=translated src=- shape=fb45177a vocab=ca8800f8
+-/
 theorem main [Algebra.FiniteType R A']
     (𝔓 : Ideal (A ⊗[R] A')) [𝔓.IsPrime]
     (h : 𝔓.comap (Algebra.TensorProduct.includeRight (R := R) (A := A) (B := A')).toRingHom ∈
@@ -688,6 +727,9 @@ end Main
 
 end P2mTensorTrdeg
 
+/--
+@isnad1 id=and.1h4v.s12.e74359a53221 from=translated src=- shape=fb45177a vocab=ca8800f8
+-/
 theorem solution
     {R A A' : Type u} [CommRing R] [CommRing A] [CommRing A'] [Algebra R A] [Algebra R A']
     [Algebra.FiniteType R A']

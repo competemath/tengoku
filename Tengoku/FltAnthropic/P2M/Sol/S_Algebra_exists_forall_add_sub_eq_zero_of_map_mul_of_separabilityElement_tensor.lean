@@ -18,6 +18,9 @@ variable {k : Type u} [CommRing k] {Λ : Type v} [Ring Λ] {P : Type w} [AddComm
 noncomputable def extK (φ : Λ →ₗ[ℤ] P) : k ⊗[ℤ] Λ →ₗ[k] P :=
   TensorProduct.AlgebraTensorModule.lift ((LinearMap.id : k →ₗ[k] k).smulRight φ)
 
+/--
+@isnad1 id=eq.0h6v.s9.8b43cbbb2050 from=translated src=- shape=1cd97d2b vocab=1d874635
+-/
 @[scoped simp] theorem extK_tmul (φ : Λ →ₗ[ℤ] P) (c : k) (x : Λ) : extK φ (c ⊗ₜ[ℤ] x) = c • φ x := by
   rw [extK, TensorProduct.AlgebraTensorModule.lift_tmul]
   rfl
@@ -26,6 +29,9 @@ end HKAux
 open scoped _root_.P2MW.S_Algebra_exists_forall_add_sub_eq_zero_of_map_mul_of_separabilityElement_tensor.HKAux
 
 open HKAux in
+/--
+@isnad1 id=ex.4h7v.s13.1876515620b4 from=translated src=- shape=68f19bbb vocab=44a9318f
+-/
 theorem solution
     (k : Type u) [CommRing k] (Λ : Type v) [Ring Λ]
 

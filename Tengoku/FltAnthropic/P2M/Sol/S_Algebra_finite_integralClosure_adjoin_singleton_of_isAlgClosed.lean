@@ -13,10 +13,16 @@ namespace FiniteIntegralClosureAdjoinSingleton
 
 variable {k F : Type*} [Field k] [Field F] [Algebra k F]
 
+/--
+@isnad1 id=isnoethe.0h3v.s7.0d75ec438016 from=translated src=- shape=11311c9f vocab=ed3f018e
+-/
 theorem isNoetherianRing_adjoin (y : F) :
     IsNoetherianRing (Algebra.adjoin k ({y} : Set F)) :=
   isNoetherianRing_of_fg ⟨{y}, by rw [Finset.coe_singleton]⟩
 
+/--
+@isnad1 id=fg.4h7v.s10.c855491a2ce6 from=translated src=- shape=02f48728 vocab=58865676
+-/
 theorem fg_of_image_le {A A' : Subalgebra k F} (φ : F →+* F) (hφ : Function.Injective φ)
     (hlift : ∀ a' ∈ A', ∃ a ∈ A, φ a = a') [IsNoetherianRing A']
     (M' : Submodule A' F) (hM' : M'.FG) (B : Submodule A F) (hB : ∀ b ∈ B, φ b ∈ M') :
@@ -88,6 +94,9 @@ variable (x : F)
 local notation3 "𝓐" => Algebra.adjoin k ({x} : Set F)
 local notation3 "𝓚" => IntermediateField.adjoin k ({x} : Set F)
 
+/--
+@isnad1 id=fg.1h4v.s16.6f5b503cf8f7 from=translated src=- shape=2ccbf5fb vocab=05808ce1
+-/
 theorem fg_toSubmodule_integralClosure_of_isSeparable (hx : Transcendental k x)
     (E : IntermediateField 𝓚 F) [FiniteDimensional 𝓚 E] [Algebra.IsSeparable 𝓚 E] :
     (Subalgebra.toSubmodule (integralClosure 𝓐 E)).FG := by
@@ -100,6 +109,9 @@ theorem fg_toSubmodule_integralClosure_of_isSeparable (hx : Transcendental k x)
     IsScalarTower.subalgebra' 𝓐 E E (integralClosure 𝓐 E)
   exact Module.Finite.iff_fg.mp (IsIntegralClosure.finite 𝓐 𝓚 E (integralClosure 𝓐 E))
 
+/--
+@isnad1 id=ex.1h4v.s12.22dfeb892f66 from=translated src=- shape=e9eb23a0 vocab=18b6c070
+-/
 theorem exists_fg_of_isSeparable (hx : Transcendental k x)
     (E : IntermediateField 𝓚 F) [FiniteDimensional 𝓚 E] [Algebra.IsSeparable 𝓚 E] :
     ∃ N : Submodule 𝓐 F, N.FG ∧ ∀ f : F, f ∈ E → IsIntegral 𝓐 f → f ∈ N := by
@@ -113,6 +125,9 @@ theorem exists_fg_of_isSeparable (hx : Transcendental k x)
   rw [← this] at hint
   exact (isIntegral_algHom_iff _ Subtype.val_injective).mp hint
 
+/--
+@isnad1 id=ex.0h3v.s9.45bc033b3329 from=translated src=- shape=6587d3f7 vocab=0c0d8357
+-/
 theorem exists_pow_mem_separableClosure [FiniteDimensional 𝓚 F] :
     ∃ p e : ℕ, ExpChar F p ∧ ∀ f : F, f ^ p ^ e ∈ separableClosure 𝓚 F := by
   haveI : IsPurelyInseparable (separableClosure 𝓚 F) F :=
@@ -124,6 +139,9 @@ theorem exists_pow_mem_separableClosure [FiniteDimensional 𝓚 F] :
   rw [← hy]
   exact y.2
 
+/--
+@isnad1 id=ex.1h6v.s8.71856eb89232 from=translated src=- shape=5c86ac33 vocab=40754cf2
+-/
 theorem exists_pow_eq_of_mem_adjoin_pow [IsAlgClosed k] (p e : ℕ) [ExpChar F p]
     {a' : F} (ha' : a' ∈ Algebra.adjoin k ({x ^ p ^ e} : Set F)) :
     ∃ a ∈ 𝓐, a ^ p ^ e = a' := by
@@ -143,6 +161,9 @@ theorem exists_pow_eq_of_mem_adjoin_pow [IsAlgClosed k] (p e : ℕ) [ExpChar F p
     obtain ⟨b, hb, rfl⟩ := hz
     exact ⟨a * b, mul_mem ha hb, mul_pow a b _⟩
 
+/--
+@isnad1 id=ex.2h5v.s11.9ba6cbda5fb2 from=translated src=- shape=d41d4e7b vocab=9c33ef90
+-/
 theorem exists_fg_adjoin_pow_of_fg (q : ℕ) (hq : 0 < q) (N : Submodule 𝓐 F) (hN : N.FG) :
     ∃ M' : Submodule (Algebra.adjoin k ({x ^ q} : Set F)) F,
       M'.FG ∧ ∀ f ∈ N, f ∈ M' := by
@@ -201,6 +222,9 @@ theorem exists_fg_adjoin_pow_of_fg (q : ℕ) (hq : 0 < q) (N : Submodule 𝓐 F)
     rw [Algebra.smul_def]
     exact hstable _ (hAA₁ _ a.2) _ hy
 
+/--
+@isnad1 id=fg.2h3v.s12.8ab828546249 from=translated src=- shape=dc270d1b vocab=f7c1da69
+-/
 theorem fg_toSubmodule_integralClosure [IsAlgClosed k] (hx : Transcendental k x)
     (hfd : FiniteDimensional 𝓚 F) :
     (Subalgebra.toSubmodule (integralClosure 𝓐 F)).FG := by
@@ -229,6 +253,9 @@ end WithX
 
 end FiniteIntegralClosureAdjoinSingleton
 
+/--
+@isnad1 id=finite.2h3v.s11.1e2cb9c97db8 from=translated src=- shape=def57aa9 vocab=3c693cf9
+-/
 theorem solution
     {k F : Type*} [Field k] [IsAlgClosed k] [Field F] [Algebra k F] (x : F)
     (hx : Transcendental k x)

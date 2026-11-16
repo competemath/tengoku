@@ -27,21 +27,33 @@ variable {R₀ : Type u₀} [CommRing R₀]
 
 abbrev F (i j : ι) (h : i ≤ j) : G i →ₗ[R₀] G j := (f i j h).toLinearMap
 
+/--
+@isnad1 id=directed.0h4v.s8.3d835b663382 from=translated src=- shape=b28d276e vocab=0912cbe8
+-/
 scoped instance directedSystem_F : DirectedSystem G fun i j h => ⇑(F f i j h) := by
   change DirectedSystem G fun i j h => ⇑(f i j h)
   infer_instance
 
 abbrev toR (i : ι) : G i →ₐ[R₀] R := IsScalarTower.toAlgHom R₀ (G i) R
 
+/--
+@isnad1 id=eq.0h6v.s8.304faeadbb45 from=translated src=- shape=3f3196c6 vocab=78798772
+-/
 theorem toR_apply (i : ι) (x : G i) : toR (R₀ := R₀) (R := R) i x = algebraMap (G i) R x := rfl
 
 noncomputable def limToR : Module.DirectLimit G (F f) →ₗ[R₀] R :=
   Module.DirectLimit.lift R₀ ι G (F f) (fun i => (toR i).toLinearMap) (fun i j hij x => hR.compatibility i j hij x)
 
+/--
+@isnad1 id=eq.1h7v.s10.ae948eb441e5 from=translated src=- shape=81dfb51a vocab=a531abea
+-/
 theorem limToR_of (i : ι) (x : G i) :
     limToR f hR (Module.DirectLimit.of R₀ ι G (F f) i x) = algebraMap (G i) R x :=
   Module.DirectLimit.lift_of _ _ x
 
+/--
+@isnad1 id=bijectiv.1h5v.s10.44051b74fab5 from=translated src=- shape=7b39f547 vocab=6aa8e4b4
+-/
 theorem limToR_bijective : Function.Bijective (limToR f hR) := by
   constructor
   · rw [injective_iff_map_eq_zero]
@@ -64,6 +76,9 @@ theorem limToR_bijective : Function.Bijective (limToR f hR) := by
 noncomputable def limEquiv : Module.DirectLimit G (F f) ≃ₗ[R₀] R :=
   LinearEquiv.ofBijective (limToR f hR) (limToR_bijective f hR)
 
+/--
+@isnad1 id=eq.1h7v.s11.3878b8122a1c from=translated src=- shape=c8adb83e vocab=3963894d
+-/
 theorem limEquiv_symm_algebraMap (i : ι) (x : G i) :
     (limEquiv f hR).symm (algebraMap (G i) R x) = Module.DirectLimit.of R₀ ι G (F f) i x := by
   rw [LinearEquiv.symm_apply_eq]
@@ -79,6 +94,9 @@ abbrev mapT (i : ι) : G i ⊗[R₀] B →ₐ[R₀] R ⊗[R₀] B :=
 abbrev stepT {i j : ι} (hij : i ≤ j) : G i ⊗[R₀] B →ₐ[R₀] G j ⊗[R₀] B :=
   Algebra.TensorProduct.map (f i j hij) (AlgHom.id R₀ B)
 
+/--
+@isnad1 id=eq.1h8v.s11.20e7bc4b9f92 from=translated src=- shape=9b29ffaa vocab=7f7fb9b2
+-/
 theorem stepT_eq_rTensor {i j : ι} (hij : i ≤ j) (x : G i ⊗[R₀] B) :
     stepT f B hij x = (F f i j hij).rTensor B x := by
   induction x using TensorProduct.induction_on with
@@ -86,6 +104,9 @@ theorem stepT_eq_rTensor {i j : ι} (hij : i ≤ j) (x : G i ⊗[R₀] B) :
   | tmul g b => rw [Algebra.TensorProduct.map_tmul, LinearMap.rTensor_tmul]; rfl
   | add x y hx hy => rw [map_add, map_add, hx, hy]
 
+/--
+@isnad1 id=eq.2h9v.s11.4aeed0e59a5f from=translated src=- shape=96b1e15c vocab=32e6cf17
+-/
 theorem stepT_stepT {i j k : ι} (hij : i ≤ j) (hjk : j ≤ k) (x : G i ⊗[R₀] B) :
     stepT f B hjk (stepT f B hij x) = stepT f B (hij.trans hjk) x := by
   induction x using TensorProduct.induction_on with
@@ -100,6 +121,9 @@ noncomputable def Φ :
     R ⊗[R₀] B ≃ₗ[R₀] Module.DirectLimit (fun i => G i ⊗[R₀] B) (fun i j h => (F f i j h).rTensor B) :=
   (limEquiv f hR).symm.rTensor B ≪≫ₗ TensorProduct.directLimitLeft (F f) B
 
+/--
+@isnad1 id=eq.1h8v.s13.8e1848a3420f from=translated src=- shape=debca32f vocab=45e1238f
+-/
 theorem Φ_mapT (i : ι) (x : G i ⊗[R₀] B) :
     Φ f hR B (mapT B i x) =
       Module.DirectLimit.of R₀ ι (fun i => G i ⊗[R₀] B) (fun i j h => (F f i j h).rTensor B) i x := by
@@ -113,6 +137,9 @@ theorem Φ_mapT (i : ι) (x : G i ⊗[R₀] B) :
 
 include hR in
 
+/--
+@isnad1 id=ex.2h8v.s11.0ee553a40347 from=translated src=- shape=fee7d6fd vocab=5b8e3fe3
+-/
 theorem exists_stepT_eq_zero {i : ι} (x : G i ⊗[R₀] B) (hx : mapT (R := R) B i x = 0) :
     ∃ (j : ι) (hij : i ≤ j), stepT f B hij x = 0 := by
   have h0 : Module.DirectLimit.of R₀ ι (fun i => G i ⊗[R₀] B) (fun i j h => (F f i j h).rTensor B) i x = 0 := by
@@ -122,6 +149,9 @@ theorem exists_stepT_eq_zero {i : ι} (x : G i ⊗[R₀] B) (hx : mapT (R := R) 
 
 include hR in
 
+/--
+@isnad1 id=ex.2h9v.s11.11275aff8f5f from=translated src=- shape=1ace8eab vocab=58d9d8fa
+-/
 theorem exists_common_kill {i : ι} {m : ℕ} (x : Fin m → G i ⊗[R₀] B) (hx : ∀ l, mapT (R := R) B i (x l) = 0) :
     ∃ (j : ι) (hij : i ≤ j), ∀ l, stepT f B hij (x l) = 0 := by
   choose idx hidx hzero using fun l => exists_stepT_eq_zero f hR B (x l) (hx l)
@@ -138,6 +168,9 @@ end Tensor
 
 open MvPolynomial in
 include hR in
+/--
+@isnad1 id=ex.2h10v.s12.f132c1e3ff3d from=translated src=- shape=273f5f7d vocab=dc8bcc41
+-/
 theorem exists_apply_eq
     (A : Type w₁) [CommRing A] [Algebra R₀ A] [Algebra.FiniteType R₀ A]
     (B : Type w₂) [CommRing B] [Algebra R₀ B]
@@ -185,6 +218,9 @@ theorem exists_apply_eq
 end AlgHomSpreadUnique
 open scoped _root_.P2MW.S_Algebra_exists_tensorProduct_map_apply_eq_of_finiteType_of_isDirectLimit.AlgHomSpreadUnique
 
+/--
+@isnad1 id=ex.2h10v.s12.864737eb6792 from=translated src=- shape=7bd5105b vocab=434134c3
+-/
 theorem solution
     {ι : Type u} [Preorder ι] [Nonempty ι] [IsDirectedOrder ι]
     (R₀ : Type u₀) [CommRing R₀]

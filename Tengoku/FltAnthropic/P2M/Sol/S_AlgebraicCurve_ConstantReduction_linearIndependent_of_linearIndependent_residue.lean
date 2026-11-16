@@ -26,13 +26,22 @@ def constHom (R : ConstantReduction A F Fbar) : A →+* R.integers where
   map_zero' := Subtype.ext (by simp)
   map_add' a b := Subtype.ext (by simp)
 
+/--
+@isnad1 id=eq.0h6v.s9.191a2107e688 from=translated src=- shape=cd801897 vocab=091ffe91
+-/
 @[scoped simp] theorem coe_constHom (R : ConstantReduction A F Fbar) (a : A) :
     ((constHom R a : R.integers) : F) = algebraMap L F a := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.42ebe445405f from=translated src=- shape=bab91eb3 vocab=e63e4784
+-/
 theorem residue_constHom (R : ConstantReduction A F Fbar) (a : A) :
     R.residue (constHom R a) = algebraMap (ResidueField A) Fbar (IsLocalRing.residue A a) :=
   R.residue_algebraMap a
 
+/--
+@isnad1 id=linearin.1h7v.s9.abe4ea32b592 from=translated src=- shape=85f2e7c6 vocab=b6fd1b46
+-/
 theorem linearIndependent_of_linearIndependent_residue' (R : ConstantReduction A F Fbar)
     {ι : Type*} (v : ι → R.integers)
     (hv : LinearIndependent (ResidueField A) (fun i => R.residue (v i))) :
@@ -90,6 +99,9 @@ open scoped _root_.P2MW.S_AlgebraicCurve_ConstantReduction_linearIndependent_of_
 open scoped _root_.P2MW.S_AlgebraicCurve_ConstantReduction_linearIndependent_of_linearIndependent_residue.AlgebraicCurve
 
 open AlgebraicCurve.ConstantReduction.W7B2B in
+/--
+@isnad1 id=linearin.1h7v.s9.abe4ea32b592 from=translated src=- shape=85f2e7c6 vocab=b6fd1b46
+-/
 theorem solution
     {L : Type*} [Field L] {A : ValuationSubring L} {F : Type*} [Field F] [Algebra L F]
     {Fbar : Type*} [Field Fbar] [Algebra (IsLocalRing.ResidueField A) Fbar]

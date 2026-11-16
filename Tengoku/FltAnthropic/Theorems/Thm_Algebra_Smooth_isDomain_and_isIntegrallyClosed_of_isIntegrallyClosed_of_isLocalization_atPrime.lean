@@ -8,6 +8,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=and.0h4v.s6.abea73bbdf3b from=translated src=- shape=30482ce7 vocab=8be464f3
+-/
 theorem Algebra.Smooth.isDomain_and_isIntegrallyClosed_of_isIntegrallyClosed_of_isLocalization_atPrime
     (R : Type u) [CommRing R] [IsDomain R] [IsIntegrallyClosed R]
     (S : Type u) [CommRing S] [Algebra R S] [Algebra.Smooth R S]

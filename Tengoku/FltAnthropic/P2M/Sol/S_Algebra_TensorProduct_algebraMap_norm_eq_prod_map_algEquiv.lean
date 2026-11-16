@@ -23,19 +23,34 @@ abbrev ψM : M →ₐ[F] R ⊗[F] M := Algebra.TensorProduct.includeRight
 
 abbrev ψR : R →+* R ⊗[F] M := algebraMap R (R ⊗[F] M)
 
+/--
+@isnad1 id=eq.0h4v.s9.9fb58546d940 from=translated src=- shape=ad28b7f2 vocab=47bd211e
+-/
 theorem ψR_apply (r : R) : ψR F M R r = r ⊗ₜ[F] (1 : M) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.487c190efec4 from=translated src=- shape=1d737e2f vocab=b3ee3523
+-/
 theorem ψM_apply (m : M) : ψM F M R m = (1 : R) ⊗ₜ[F] m := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.7f51120a4560 from=translated src=- shape=cedb44de vocab=e62e76b3
+-/
 theorem ψM_algebraMap (f : F) : ψM F M R (algebraMap F M f) = algebraMap F (R ⊗[F] M) f :=
   AlgHom.commutes _ f
 
+/--
+@isnad1 id=eq.0h4v.s9.2f0639fec4aa from=translated src=- shape=c28b73f4 vocab=60ff0658
+-/
 theorem ψR_algebraMap (f : F) : ψR F M R (algebraMap F R f) = algebraMap F (R ⊗[F] M) f :=
   (IsScalarTower.algebraMap_apply F R (R ⊗[F] M) f).symm
 
 abbrev act (g : M ≃ₐ[F] M) : R ⊗[F] M →ₐ[F] R ⊗[F] M :=
   Algebra.TensorProduct.map (AlgHom.id F R) (g : M →ₐ[F] M)
 
+/--
+@isnad1 id=eq.0h6v.s9.ec81a8ec8f7b from=translated src=- shape=c2eeaeb1 vocab=1b77ee15
+-/
 theorem act_tmul (g : M ≃ₐ[F] M) (r : R) (m : M) : act F M R g (r ⊗ₜ[F] m) = r ⊗ₜ[F] g m := rfl
 
 section Matrices
@@ -46,6 +61,9 @@ abbrev A (x : M) : Matrix (Fin n) (Fin n) F := Algebra.leftMulMatrix b x
 
 def P : Matrix (Fin n) (Fin n) M := fun i j => e.symm i (b j)
 
+/--
+@isnad1 id=eq.0h6v.s9.d30399ef1a72 from=translated src=- shape=976d09cb vocab=7fd3dff9
+-/
 theorem P_mul_A (x : M) :
     P F M b e * (A F M b x).map (algebraMap F M) = diagonal (fun i => e.symm i x) * P F M b e := by
   ext i k
@@ -61,6 +79,9 @@ theorem P_mul_A (x : M) :
   simp only [Matrix.map_apply, P]
   rw [map_mul, AlgEquiv.commutes, mul_comm]
 
+/--
+@isnad1 id=ne.0h5v.s7.2c2439baf35d from=translated src=- shape=98b20b17 vocab=9d25c6b9
+-/
 theorem det_P_ne_zero : (P F M b e).det ≠ 0 := by
   intro h0
   obtain ⟨c, hc0, hc⟩ := Matrix.exists_vecMul_eq_zero_iff.mpr h0
@@ -89,6 +110,9 @@ variable (bR : Module.Basis (Fin n) R (R ⊗[F] M)) (hbR : ∀ i, bR i = 1 ⊗�
 
 include hbR in
 
+/--
+@isnad1 id=eq.1h8v.s10.79e8e99abe92 from=translated src=- shape=9720b298 vocab=87ca0c1f
+-/
 theorem leftMulMatrix_tmul (r : R) (x : M) :
     Algebra.leftMulMatrix bR (r ⊗ₜ[F] x) = r • (A F M b x).map (algebraMap F R) := by
   have hb : bR = Algebra.TensorProduct.basis R b := by
@@ -103,6 +127,9 @@ theorem leftMulMatrix_tmul (r : R) (x : M) :
 
 include hbR in
 
+/--
+@isnad1 id=eq.1h8v.s12.caef023c909f from=translated src=- shape=13577fa4 vocab=ac75eba3
+-/
 theorem P_mul_L (z : R ⊗[F] M) :
     (P F M b e).map (ψM F M R) * (Algebra.leftMulMatrix bR z).map (ψR F M R)
       = diagonal (fun i => act F M R (e.symm i) z) * (P F M b e).map (ψM F M R) := by
@@ -133,6 +160,9 @@ theorem P_mul_L (z : R ⊗[F] M) :
 
 include b bR hbR in
 
+/--
+@isnad1 id=eq.1h8v.s11.ba729085419e from=translated src=- shape=86f0c275 vocab=2b347148
+-/
 theorem algebraMap_norm_eq_prod (z : R ⊗[F] M) :
     ψR F M R (Algebra.norm R z) = ∏ i, act F M R (e.symm i) z := by
   classical
@@ -152,6 +182,9 @@ theorem algebraMap_norm_eq_prod (z : R ⊗[F] M) :
 
 end Matrices
 
+/--
+@isnad1 id=eq.0h4v.s11.18c97a2b4a23 from=translated src=- shape=8b46cfa1 vocab=e03afa04
+-/
 theorem result [IsGalois F M] (z : R ⊗[F] M) :
     algebraMap R (R ⊗[F] M) (Algebra.norm R z) =
       ∏ g : M ≃ₐ[F] M, Algebra.TensorProduct.map (AlgHom.id F R) (g : M →ₐ[F] M) z := by
@@ -170,6 +203,9 @@ end R3NormProd
 
 end
 
+/--
+@isnad1 id=eq.0h4v.s11.ea862c6d3061 from=translated src=- shape=e3a52053 vocab=e03afa04
+-/
 theorem solution
     (F M : Type*) [Field F] [Field M] [Algebra F M] [FiniteDimensional F M] [IsGalois F M]
     (R : Type*) [CommRing R] [Algebra F R] (z : R ⊗[F] M) :

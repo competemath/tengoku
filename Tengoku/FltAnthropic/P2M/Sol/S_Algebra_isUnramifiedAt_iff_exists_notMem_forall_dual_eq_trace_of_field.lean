@@ -12,6 +12,9 @@ universe u
 
 namespace L2bAux
 
+/--
+@isnad1 id=eq.0h4v.s9.0f7ad71546c5 from=translated src=- shape=d00122ea vocab=a2e52b3b
+-/
 theorem trace_pi_apply {R : Type*} [CommRing R] {ι : Type*} [Fintype ι] [DecidableEq ι]
     {A : ι → Type*} [∀ i, CommRing (A i)] [∀ i, Algebra R (A i)]
     [∀ i, Module.Free R (A i)] [∀ i, Module.Finite R (A i)] (x : ∀ i, A i) :
@@ -28,6 +31,9 @@ theorem trace_pi_apply {R : Type*} [CommRing R] {ι : Type*} [Fintype ι] [Decid
   simp only [Matrix.diag_apply, Algebra.leftMulMatrix_eq_repr_mul]
   rw [Pi.single_eq_same]
 
+/--
+@isnad1 id=isunit.2h4v.s9.9f4a38f11cbc from=translated src=- shape=c1614079 vocab=69245470
+-/
 theorem isUnit_mk_pow_of_notMem {T : Type*} [CommRing T] {Q : Ideal T} (hQ : Q.IsMaximal) (n : ℕ)
     {x : T} (hx : x ∉ Q) : IsUnit (Ideal.Quotient.mk (Q ^ n) x) := by
   obtain ⟨y, i, hi, h⟩ := hQ.exists_inv hx
@@ -41,6 +47,9 @@ theorem isUnit_mk_pow_of_notMem {T : Type*} [CommRing T] {Q : Ideal T} (hQ : Q.I
     ring
   exact isUnit_of_mul_isUnit_right (h1 ▸ hnil.isUnit_one_sub)
 
+/--
+@isnad1 id=eq.0h4v.s7.974915fd4e0d from=translated src=- shape=5f87a99e vocab=5d2c785e
+-/
 theorem single_one_mul {ι : Type*} [DecidableEq ι] {A : ι → Type*} [∀ i, MulZeroOneClass (A i)]
     (j : ι) (f : ∀ i, A i) : Pi.single j 1 * f = Pi.single j (f j) := by
   ext i
@@ -50,6 +59,9 @@ theorem single_one_mul {ι : Type*} [DecidableEq ι] {A : ι → Type*} [∀ i, 
     rw [Pi.single_eq_same, Pi.single_eq_same, one_mul]
   · rw [Pi.single_eq_of_ne h, Pi.single_eq_of_ne h, zero_mul]
 
+/--
+@isnad1 id=eq.0h5v.s6.842439ac6e8e from=translated src=- shape=70f0944a vocab=5773068d
+-/
 theorem mul_single {ι : Type*} [DecidableEq ι] {A : ι → Type*} [∀ i, MulZeroClass (A i)]
     (j : ι) (f : ∀ i, A i) (z : A j) : f * Pi.single j z = Pi.single j (f j * z) := by
   ext i
@@ -59,6 +71,9 @@ theorem mul_single {ι : Type*} [DecidableEq ι] {A : ι → Type*} [∀ i, MulZ
     rw [Pi.single_eq_same, Pi.single_eq_same]
   · rw [Pi.single_eq_of_ne h, Pi.single_eq_of_ne h, mul_zero]
 
+/--
+@isnad1 id=iff.0h2v.s9.dc30e99164d0 from=translated src=- shape=bc552d8b vocab=915e9724
+-/
 theorem traceForm_surjective_iff {κ R : Type*} [Field κ] [CommRing R] [Algebra κ R]
     [Module.Finite κ R] :
     Function.Surjective (Algebra.traceForm κ R) ↔ (Algebra.traceForm κ R).Nondegenerate := by
@@ -80,6 +95,9 @@ theorem traceForm_surjective_iff {κ R : Type*} [Field κ] [CommRing R] [Algebra
 end L2bAux
 
 open L2bAux in
+/--
+@isnad1 id=iff.0h3v.s8.1585a5be3e04 from=translated src=- shape=2fbdcfa9 vocab=526a06aa
+-/
 theorem solution
     (κ : Type u) [Field κ] (T : Type u) [CommRing T] [Algebra κ T] [Module.Finite κ T]
     (Q : Ideal T) [Q.IsPrime] :

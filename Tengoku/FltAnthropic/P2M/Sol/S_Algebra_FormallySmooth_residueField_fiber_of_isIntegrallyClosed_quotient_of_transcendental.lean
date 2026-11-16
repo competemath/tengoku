@@ -14,6 +14,9 @@ namespace C3M4aGen
 open IsLocalRing
 
 open IntermediateField.algebraAdjoinAdjoin in
+/--
+@isnad1 id=and.3h4v.s8.5eebaee67c57 from=translated src=- shape=3583a9eb vocab=2a8a1c9f
+-/
 theorem ringKrullDim_le_one_of_transcendental {L K : Type} [Field L] [Field K] [Algebra L K]
     (x : K) (hx : Transcendental L x)
     (hfin : FiniteDimensional ↥(IntermediateField.adjoin L ({x} : Set K)) K)
@@ -39,6 +42,9 @@ theorem ringKrullDim_le_one_of_transcendental {L K : Type} [Field L] [Field K] [
   exact IsNoetherianRing.of_ringKrullDim_le_one_of_finiteDimensional_subalgebra (R := ↥R) hdimR
     ↥(IntermediateField.adjoin L ({x} : Set K)) K T'
 
+/--
+@isnad1 id=formally.4h6v.s10.e1aa388d9f13 from=translated src=- shape=5767f3a0 vocab=e1dae003
+-/
 theorem formallySmooth_fiber_of_eq_bot
     (O : Type) [CommRing O] [IsDomain O] [CharZero O]
     (A : Type) [CommRing A] [IsDomain A] [Algebra O A] [FaithfulSMul O A] [Algebra.FiniteType O A] [IsIntegrallyClosed A]
@@ -124,6 +130,9 @@ theorem formallySmooth_fiber_of_eq_bot
 
 open IsLocalRing in
 
+/--
+@isnad1 id=formally.6h4v.s9.13f718ecf2ce from=translated src=- shape=526cb60c vocab=a355d123
+-/
 theorem formallySmooth_fiber_maximalIdeal
     (O : Type) [CommRing O] [IsLocalRing O]
     (π : O) (hπ : maximalIdeal O = Ideal.span {π})
@@ -159,6 +168,9 @@ theorem formallySmooth_fiber_maximalIdeal
 end C3M4aGen
 
 open IsLocalRing in
+/--
+@isnad1 id=formally.8h7v.s10.44898178258d from=translated src=- shape=11624ce6 vocab=36f402f0
+-/
 theorem solution
     (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] [CharZero O]
     (π : O) (hπ : IsLocalRing.maximalIdeal O = Ideal.span {π})

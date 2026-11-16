@@ -24,11 +24,17 @@ noncomputable def transl : MvPolynomial (Fin n) k ≃ₐ[k] MvPolynomial (Fin n)
   AlgEquiv.ofAlgHom (aeval fun j => X j + C (a j)) (aeval fun j => X j - C (a j))
     (by ext j; simp) (by ext j; simp)
 
+/--
+@isnad1 id=eq.0h4v.s9.179ff068f48a from=translated src=- shape=2e35f554 vocab=ec082343
+-/
 @[scoped simp] theorem transl_X (j : Fin n) : transl k n a (X j) = X j + C (a j) := by
   simp [transl]
 
 end Translate
 
+/--
+@isnad1 id=eq.0h2v.s7.8c7060739045 from=translated src=- shape=33847f37 vocab=ace31251
+-/
 theorem ker_constantCoeff_eq_span (n : ℕ) :
     RingHom.ker (constantCoeff : MvPolynomial (Fin n) k →+* k) = Ideal.span (Set.range (X : Fin n → _)) := by
   ext f
@@ -64,6 +70,9 @@ section Trunc
 
 variable {C : Type u} [CommRing C] [Algebra k C] [IsLocalRing C]
 
+/--
+@isnad1 id=ex.1h3v.s8.c96bc5b1e525 from=translated src=- shape=5eb3c7fd vocab=a3b2b23f
+-/
 theorem exists_add_algebraMap_mem (hres : Function.Surjective (algebraMap k (IsLocalRing.ResidueField C))) (c : C) : ∃ a : k, c + algebraMap k C a ∈ IsLocalRing.maximalIdeal C := by
   obtain ⟨b, hb⟩ := hres (IsLocalRing.residue C c)
   refine ⟨-b, ?_⟩
@@ -75,11 +84,17 @@ theorem exists_add_algebraMap_mem (hres : Function.Surjective (algebraMap k (IsL
 
 variable {n : ℕ} (φ : MvPolynomial (Fin n) k →ₐ[k] C)
 
+/--
+@isnad1 id=ex.1h4v.s9.cf7682558422 from=translated src=- shape=d07e3b74 vocab=5380a077
+-/
 theorem exists_transl_X_mem (hres : Function.Surjective (algebraMap k (IsLocalRing.ResidueField C))) :
     ∃ a : Fin n → k, ∀ j, (φ.comp (transl k n a).toAlgHom) (X j) ∈ IsLocalRing.maximalIdeal C := by
   choose a ha using fun j => exists_add_algebraMap_mem k hres (φ (X j))
   exact ⟨a, fun j => by simpa [AlgHom.commutes] using ha j⟩
 
+/--
+@isnad1 id=le.2h5v.s10.6799d26a7a11 from=translated src=- shape=e5acdefb vocab=7972f44f
+-/
 theorem pow_ker_constantCoeff_le_ker (M : ℕ) (hM : IsLocalRing.maximalIdeal C ^ M = ⊥)
     (hX : ∀ j, φ (X j) ∈ IsLocalRing.maximalIdeal C) :
     RingHom.ker (constantCoeff : MvPolynomial (Fin n) k →+* k) ^ M ≤ RingHom.ker φ := by
@@ -101,6 +116,9 @@ open scoped _root_.P2MW.S_Algebra_exists_ker_map_localization_eq_span_of_surject
 open PresIndep MvPolynomial in
 set_option synthInstance.maxHeartbeats 1600000 in
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=ex.4h5v.s11.07eacfea831c from=translated src=- shape=15f85953 vocab=ffbe69e9
+-/
 theorem solution
     (k : Type u) [Field k] (C : Type u) [CommRing C] [Algebra k C] [IsLocalRing C]
     (hres : Function.Surjective (algebraMap k (IsLocalRing.ResidueField C)))

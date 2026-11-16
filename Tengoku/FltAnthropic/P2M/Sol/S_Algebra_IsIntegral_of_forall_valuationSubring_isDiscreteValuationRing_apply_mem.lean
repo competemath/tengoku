@@ -16,6 +16,9 @@ open IsLocalRing
 
 namespace IntValCrit
 
+/--
+@isnad1 id=mem.1h3v.s6.e38696b5c301 from=translated src=- shape=70e49438 vocab=0f5a6cd0
+-/
 theorem nonunits_subset {E : Type u} [Field E] (V : ValuationSubring E) (z : E) (hz : z ∈ V.nonunits) : z ∈ V := by
   rw [ValuationSubring.mem_nonunits_iff] at hz
   exact (V.valuation_le_one_iff z).mp hz.le

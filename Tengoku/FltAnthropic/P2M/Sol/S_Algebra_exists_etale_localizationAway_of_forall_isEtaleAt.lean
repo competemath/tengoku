@@ -11,6 +11,9 @@ open Polynomial PrimeSpectrum
 
 universe u
 
+/--
+@isnad1 id=ex.3h3v.s9.1d123dd4ea9b from=translated src=- shape=a03cf203 vocab=b7793faa
+-/
 theorem solution
     {R S : Type u} [CommRing R] [IsDomain R] [CommRing S] [Algebra R S]
     [Module.Finite R S] [Algebra.FinitePresentation R S]

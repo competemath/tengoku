@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=iff.1h5v.s13.f2d26f30d832 from=translated src=- shape=b2c7e083 vocab=362516b4
+-/
 theorem Algebra.exists_notMem_forall_dual_eq_trace_iff_fiber
     {A B : Type*} [CommRing A] [CommRing B] [Algebra A B] [Module.Finite A B] [Module.Free A B]
     (p : Ideal A) [p.IsPrime] (P : Ideal B) [P.IsPrime] [P.LiesOver p]

@@ -21,6 +21,9 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 def dualMulMap (τ : Dual R A) : A →ₗ[R] Dual R A := (LinearMap.mul R A).compr₂ τ
 
+/--
+@isnad1 id=eq.0h3v.s9.978d912f8863 from=translated src=- shape=93da6bac vocab=64b04944
+-/
 theorem coe_dualMulMap (τ : Dual R A) :
     ⇑(dualMulMap R A τ) = fun a : A => τ.comp (LinearMap.mulLeft R a) := by
   funext a
@@ -28,6 +31,9 @@ theorem coe_dualMulMap (τ : Dual R A) :
   intro x
   rfl
 
+/--
+@isnad1 id=isunit.1h5v.s9.bdf6640597f6 from=translated src=- shape=27c571fa vocab=7664b907
+-/
 theorem main4 (b : Basis ι R A) (τ : Dual R A)
     (hτ : Function.Bijective (fun a : A => τ.comp (LinearMap.mulLeft R a))) :
     IsUnit (Matrix.of fun i j => τ (b i * b j)).det := by
@@ -46,6 +52,9 @@ end DLB4
 
 end Ws23.DLB
 
+/--
+@isnad1 id=isunit.1h5v.s9.bdf6640597f6 from=translated src=- shape=27c571fa vocab=7664b907
+-/
 theorem solution
     (R : Type*) [CommRing R] (A : Type*) [CommRing A] [Algebra R A]
     {ι : Type*} [Fintype ι] [DecidableEq ι] (b : Module.Basis ι R A) (τ : Module.Dual R A)

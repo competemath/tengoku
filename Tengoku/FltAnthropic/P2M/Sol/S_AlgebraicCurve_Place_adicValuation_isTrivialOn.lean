@@ -48,6 +48,9 @@ end AlgebraicCurve
 end
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_adicValuation_isTrivialOn.AlgebraicCurve in
+/--
+@isnad1 id=istrivia.0h3v.s6.e966e87a0ef2 from=translated src=- shape=d532bde5 vocab=3942a964
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) :
     v.adicValuation.IsTrivialOn K :=
   AlgebraicCurve.Place.rowMain v

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsLocalRing TensorProduct
 
+/--
+@isnad1 id=ex.3h5v.s11.c50b2cce5b5a from=translated src=- shape=ffb92c59 vocab=98f778da
+-/
 theorem solution
     (A₀ A : Type) [CommRing A₀] [IsLocalRing A₀] [CommRing A] [IsLocalRing A] [Algebra A₀ A]
     [IsLocalHom (algebraMap A₀ A)] [IsAlgClosed (ResidueField A)]

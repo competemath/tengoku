@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=linearin.2h4v.s7.b4f104510245 from=translated src=- shape=baddcd99 vocab=543b1c29
+-/
 theorem Algebra.FormallySmooth.linearIndepOn_pow_of_linearIndepOn_id
     {k K : Type u} [Field k] [Field K] [Algebra k K] [Algebra.FormallySmooth k K]
     (p : ℕ) (hp : p.Prime) [ExpChar k p]

@@ -7,6 +7,9 @@ namespace P2MW.S_Algebra_exists_algHom_adjoin_range_apply_eq_of_forall_sum_smul_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.3h6v.s10.0c7dddbbefbc from=translated src=- shape=f907faca vocab=5c39c901
+-/
 theorem solution
     {K : Type*} [Field K] {F : Type*} [CommRing F] [Algebra K F]
     (L : Type*) [CommRing L] [Algebra K L]

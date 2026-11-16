@@ -82,6 +82,9 @@ private theorem _root_.AlgebraicCurve.Place.one_lt_adicValuation_iff_ord_neg {x 
 
 export _root_.AlgebraicCurve.Place (one_lt_adicValuation_iff_ord_neg)
 
+/--
+@isnad1 id=eq.1h5v.s8.9719025c3d8b from=translated src=- shape=978bc103 vocab=c21b84e1
+-/
 theorem ord_coe_unit_eq_zero_of_le {v w : Place K F}
     (h : v.toValuationSubring ≤ w.toValuationSubring) (u : v.toValuationSubringˣ) :
     w.ord ((u : v.toValuationSubring) : F) = 0 := by
@@ -100,6 +103,9 @@ theorem ord_coe_unit_eq_zero_of_le {v w : Place K F}
   rw [w.ord_mul hui0 hu0, ord_one] at hsum
   omega
 
+/--
+@isnad1 id=ex.1h4v.s6.c734bfd1250a from=translated src=- shape=b7953745 vocab=732e7315
+-/
 theorem exists_mem_and_not_mem {v w : Place K F} (hvw : v ≠ w) :
     ∃ x : F, x ∈ v.toValuationSubring ∧ x ∉ w.toValuationSubring := by
   by_contra! h
@@ -138,6 +144,9 @@ theorem exists_mem_and_not_mem {v w : Place K F} (hvw : v ≠ w) :
       by_contra hneg
       exact absurd h0 (not_le.mpr (mul_neg_of_neg_of_pos (not_le.mp hneg) hpos))
 
+/--
+@isnad1 id=ex.1h4v.s6.83ed455da307 from=translated src=- shape=6199217b vocab=3e8c36e2
+-/
 theorem exists_ord_neg_and_ord_pos {v w : Place K F} (hvw : v ≠ w) :
     ∃ a : F, v.ord a < 0 ∧ 0 < w.ord a := by
   obtain ⟨x, hxv, hxw⟩ := exists_mem_and_not_mem hvw
@@ -187,6 +196,9 @@ private theorem _root_.AlgebraicCurve.Place.ord_one_add_of_ord_pos {t : F} (ht :
 
 export _root_.AlgebraicCurve.Place (ord_one_add_of_ord_pos)
 
+/--
+@isnad1 id=ex.1h4v.s7.8c305af3ef5b from=translated src=- shape=daad8cd7 vocab=4556677c
+-/
 theorem exists_ord_neg_forall_ord_pos (T : Finset (Place K F)) {v : Place K F}
     (hv : v ∉ T) :
     ∃ z : F, v.ord z < 0 ∧ ∀ w ∈ T, 0 < w.ord z := by
@@ -266,6 +278,9 @@ theorem exists_ord_neg_forall_ord_pos (T : Finset (Place K F)) {v : Place K F}
         exact ⟨z, hzv, fun w hw =>
           (Finset.mem_insert.mp hw).elim (fun h => h ▸ hc) (hzs w)⟩
 
+/--
+@isnad1 id=ex.2h6v.s8.85fda2d537ad from=translated src=- shape=5590a71a vocab=1600bc60
+-/
 theorem exists_indicator (T : Finset (Place K F)) {v : Place K F} {z : F} (hzv : v.ord z < 0)
     (hzT : ∀ w ∈ T, w ≠ v → 0 < w.ord z) (N : ℤ) :
     ∃ e : F, v.adicValuation (e - 1) ≤ WithZero.exp (-N) ∧
@@ -304,6 +319,9 @@ theorem exists_indicator (T : Finset (Place K F)) {v : Place K F} {z : F} (hzv :
     have hwz : 0 < w.ord z := hzT w hw hwv
     nlinarith
 
+/--
+@isnad1 id=ex.1h4v.s8.2f32ec9a38a9 from=translated src=- shape=57f3800d vocab=4556677c
+-/
 theorem exists_forall_ord_eq_of_sep (T : Finset (Place K F)) (n : Place K F → ℤ)
     (hsep : ∀ v ∈ T, ∃ z : F, v.ord z < 0 ∧ ∀ w ∈ T, w ≠ v → 0 < w.ord z) :
     ∃ f : F, f ≠ 0 ∧ ∀ v ∈ T, v.ord f = n v := by
@@ -397,6 +415,9 @@ end AlgebraicCurve
 
 open _root_.AlgebraicCurve open _root_.P2MW.S_AlgebraicCurve_Place_exists_forall_ord_eq.AlgebraicCurve
 
+/--
+@isnad1 id=ex.0h4v.s6.248fae9d6630 from=translated src=- shape=4a1e48c2 vocab=49cc900f
+-/
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F]
     (T : Finset (Place K F)) (n : Place K F → ℤ) :
     ∃ f : F, f ≠ 0 ∧ ∀ v ∈ T, v.ord f = n v := by

@@ -18,6 +18,9 @@ section Dim
 
 variable {A T : Type*} [CommRing A] [CommRing T]
 
+/--
+@isnad1 id=injectiv.3h3v.s7.e83b39c49977 from=translated src=- shape=b4d897e5 vocab=edda0698
+-/
 theorem injective_of_surjective_of_ringKrullDim_le [IsDomain A] (ψ : A →+* T)
     (hψ : Function.Surjective ψ) (hfin : ringKrullDim A < ⊤) (hdim : ringKrullDim A ≤ ringKrullDim T) :
     Function.Injective ψ := by
@@ -55,6 +58,9 @@ section Unram
 
 variable {R : Type u} [CommRing R] {E : Type u} [CommRing E] [Algebra R E]
 
+/--
+@isnad1 id=le.0h3v.s6.a016140aae0e from=translated src=- shape=4909a77a vocab=652caf2f
+-/
 theorem height_le_height_of_isUnramifiedAt [IsNoetherianRing R] [IsNoetherianRing E]
     [Algebra.EssFiniteType R E]
     (𝔔 : Ideal E) [𝔔.IsPrime] [Algebra.IsUnramifiedAt R 𝔔] :
@@ -123,6 +129,9 @@ variable (R : Type u) [CommRing R] [IsDomain R] [IsNoetherianRing R] [IsIntegral
   (S : Type v) [CommRing S] [Algebra R S] [Algebra.FiniteType R S]
   (q : Ideal S) [q.IsPrime] [Algebra.IsUnramifiedAt R q]
 
+/--
+@isnad1 id=and.1h3v.s8.8d1bef8207fb from=translated src=- shape=ef4d4c7d vocab=6acb14bf
+-/
 theorem isEtaleAt_and_flat
     (hdim : ringKrullDim (Localization.AtPrime (q.under R)) ≤ ringKrullDim (Localization.AtPrime q)) :
     Algebra.IsEtaleAt R q ∧ Module.Flat R (Localization.AtPrime q) := by
@@ -208,6 +217,9 @@ end Main
 
 end FlatUnramEngine
 
+/--
+@isnad1 id=and.1h3v.s8.8d1bef8207fb from=translated src=- shape=ef4d4c7d vocab=6acb14bf
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsDomain R] [IsNoetherianRing R] [IsIntegrallyClosed R]
     (S : Type v) [CommRing S] [Algebra R S] [Algebra.FiniteType R S]

@@ -48,21 +48,33 @@ noncomputable def outR {B : Type u} [CommRing B] [Algebra S B] (g : B →ₐ[S] 
     (w : S' →ₐ[S] S' ⊗[S] (S' ⊗[S] S')) : (B ⊗[S] S') →ₐ[S] R''' :=
   Algebra.TensorProduct.lift g ((IsScalarTower.toAlgHom S (S' ⊗[S] (S' ⊗[S] S')) R''').comp w) fun _ _ => Commute.all _ _
 
+/--
+@isnad1 id=eq.0h8v.s12.3dc2212d3651 from=translated src=- shape=b8ead4a9 vocab=3c5a2bcb
+-/
 lemma bT_tmul (ρ : R' →ₐ[S] R''') (w : S' →ₐ[S] S' ⊗[S] (S' ⊗[S] S'))
     (r : R') (t : S') :
     bT S' ρ w (r ⊗ₜ t) = ρ r * (IsScalarTower.toAlgHom S (S' ⊗[S] (S' ⊗[S] S')) R''') (w t) := by
   simp [bT]
 
+/--
+@isnad1 id=eq.0h8v.s12.70e9b8429b1f from=translated src=- shape=a1ead85b vocab=6ca201e2
+-/
 lemma bS_tmul (w : S' →ₐ[S] S' ⊗[S] (S' ⊗[S] S')) (ρ : R' →ₐ[S] R''')
     (s : S') (r : R') :
     bS S' w ρ (s ⊗ₜ r) = (IsScalarTower.toAlgHom S (S' ⊗[S] (S' ⊗[S] S')) R''') (w s) * ρ r := by
   simp [bS]
 
+/--
+@isnad1 id=eq.0h7v.s11.d5e7e3c7344c from=translated src=- shape=70e1632b vocab=b8ce7f37
+-/
 lemma outL_tmul {B : Type u} [CommRing B] [Algebra S B] (g : B →ₐ[S] R''')
     (s : S') (y : B) :
     outL S' g (s ⊗ₜ y) = (IsScalarTower.toAlgHom S (S' ⊗[S] (S' ⊗[S] S')) R''') (s ⊗ₜ (1 : S' ⊗[S] S')) * g y := by
   simp [outL]
 
+/--
+@isnad1 id=eq.0h6v.s12.788f51250bee from=translated src=- shape=0a7a5a0a vocab=704e0f2f
+-/
 lemma outL_map_assoc (D : (S' ⊗[S] R') →ₐ[S] R''') (ψ : (R' ⊗[S] S') →ₐ[S] S' ⊗[S] R') :
     (outL S' D).comp ((Algebra.TensorProduct.map (AlgHom.id S S') ψ).comp
       (Algebra.TensorProduct.assoc S S S S' R' S').toAlgHom) =
@@ -74,6 +86,9 @@ lemma outL_map_assoc (D : (S' ⊗[S] R') →ₐ[S] R''') (ψ : (R' ⊗[S] S') �
   simp [Algebra.TensorProduct.assoc_tmul, outL_tmul, Algebra.TensorProduct.lift_tmul]
   rw [mul_assoc, ← map_mul, ← map_mul, Algebra.TensorProduct.tmul_mul_tmul, mul_one, one_mul]
 
+/--
+@isnad1 id=eq.3h11v.s12.19c02c2c981f from=translated src=- shape=5b5a98b1 vocab=cbed53cf
+-/
 lemma sig_beta1 (σ : R'' →ₐ[S] R''') (ϑ₁ : R' →ₐ[S] R'') (ρ : R' →ₐ[S] R''')
     (hρ : ∀ x, σ (ϑ₁ x) = ρ x)
     (c : (S' ⊗[S] S') →ₐ[S] S' ⊗[S] (S' ⊗[S] S'))
@@ -91,6 +106,9 @@ lemma sig_beta1 (σ : R'' →ₐ[S] R''') (ϑ₁ : R' →ₐ[S] R'') (ρ : R' �
     simpa using h
   | add a b ha hb => simp only [map_add, ha, hb]
 
+/--
+@isnad1 id=eq.3h11v.s12.a02ea394fa8b from=translated src=- shape=ff54c738 vocab=669b624c
+-/
 lemma sig_beta2 (σ : R'' →ₐ[S] R''') (ϑ₂ : R' →ₐ[S] R'') (ρ : R' →ₐ[S] R''')
     (hρ : ∀ x, σ (ϑ₂ x) = ρ x)
     (c : (S' ⊗[S] S') →ₐ[S] S' ⊗[S] (S' ⊗[S] S'))
@@ -112,6 +130,9 @@ end K6
 
 end K6Helpers
 
+/--
+@isnad1 id=other.9h12v.s14.60a0f381a123 from=translated src=- shape=cc4356ec vocab=9dfea8a8
+-/
 theorem solution
     {S : Type u} [CommRing S] (S' : Type u) [CommRing S'] [Algebra S S']
     (R' : Type u) [CommRing R'] [Algebra S R']

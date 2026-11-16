@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Algebra_IsInvariant_moduleFinite_and_finit
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.0h4v.s7.a5e06cd02d8b from=translated src=- shape=1555dc3d vocab=c0f5249e
+-/
 theorem Algebra.IsInvariant.moduleFinite_and_finiteType_of_finiteType
     (R : Type*) [CommRing R] [IsNoetherianRing R]
     (A : Type*) [CommRing A] [Algebra R A]

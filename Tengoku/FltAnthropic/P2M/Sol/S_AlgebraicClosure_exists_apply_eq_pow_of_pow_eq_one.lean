@@ -6,6 +6,9 @@ import Tengoku.Seed.NumberTheory.Cyclotomic.CyclotomicCharacter
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AlgebraicClosure_exists_apply_eq_pow_of_pow_eq_one.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 namespace P2MW.S_AlgebraicClosure_exists_apply_eq_pow_of_pow_eq_one
 
+/--
+@isnad1 id=ex.1h2v.s8.7d9f4f13f1b7 from=translated src=- shape=d7600af0 vocab=f3c08465
+-/
 theorem solution (n : ℕ) (hn : n ≠ 0)
     (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) :
     ∃ a : ℕ, ∀ μ : AlgebraicClosure ℚ, μ ^ n = 1 → σ μ = μ ^ a := by

@@ -11,6 +11,9 @@ universe u v
 
 open IsLocalRing
 
+/--
+@isnad1 id=ex.1h3v.s9.e1cb8f982216 from=translated src=- shape=6abc09ad vocab=8e6f8f4b
+-/
 theorem ValuationSubring.exists_isDiscreteValuationRing_dominates_of_finiteDimensional
     {F : Type u} {E : Type v} [Field F] [Field E] [Algebra F E] [FiniteDimensional F E]
     (W : ValuationSubring F) (hW : IsDiscreteValuationRing ↥W) :

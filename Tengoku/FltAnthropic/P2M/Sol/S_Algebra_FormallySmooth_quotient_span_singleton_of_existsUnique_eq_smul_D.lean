@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open Polynomial
 
+/--
+@isnad1 id=formally.1h3v.s8.8f6c62c5444a from=translated src=- shape=c5cd23d0 vocab=2b3005e9
+-/
 theorem solution
     {A : Type} [CommRing A] {S : Type} [CommRing S] [Algebra A S] [Algebra.FormallySmooth A S]
     (t : S) (hdt : ∀ ω : Ω[S⁄A], ∃! s : S, ω = s • KaehlerDifferential.D A S t) :

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open Topology Polynomial Filter
 
+/--
+@isnad1 id=ex.2h4v.s10.a9f55c707c5d from=translated src=- shape=c968c287 vocab=3ff5775b
+-/
 theorem solution
     {n : ℕ} (F : Polynomial (MvPolynomial (Fin n) ℂ)) (z₀ : Fin n → ℂ) (w₀ : ℂ)
     (h₀ : (F.map (MvPolynomial.eval z₀)).eval w₀ = 0)

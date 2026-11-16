@@ -15,6 +15,9 @@ namespace GFRingGC7
 
 open _root_.Polynomial open _root_.AlgebraicGeometry.Polynomial open _root_.TensorProduct
 
+/--
+@isnad1 id=isintegr.1h2v.s6.1c8b0e5530dc from=translated src=- shape=48f1952b vocab=0dc32dbf
+-/
 theorem isIntegral_of_isLocalRing_of_forall_isNilpotent
     {R S : Type*} [CommRing R] [CommRing S] [Algebra R S] [IsLocalRing R]
     [Algebra.QuasiFinite R S]
@@ -44,6 +47,9 @@ theorem isIntegral_of_isLocalRing_of_forall_isNilpotent
   obtain ⟨n, hn⟩ := mem_nilradical.mp (hInil hx)
   exact ⟨F ^ n, hFm.pow n, by rw [← aeval_def, map_pow, hn]⟩
 
+/--
+@isnad1 id=ex.1h4v.s7.b45f99177a31 from=translated src=- shape=b890a2bd vocab=be8aabc9
+-/
 theorem exists_not_mem_isIntegral_smul
     {R A : Type*} [CommRing R] [CommRing A] [Algebra R A] [Algebra.QuasiFinite R A]
     (p : Ideal R) (hp : p ∈ minimalPrimes R) (a : A) :
@@ -78,6 +84,9 @@ theorem exists_not_mem_isIntegral_smul
   have := isIntegral_leadingCoeff_smul (C (s : R) * G) ((m : R) • a) h3
   rwa [leadingCoeff_mul_monic hGm, leadingCoeff_C, smul_smul] at this
 
+/--
+@isnad1 id=finite.2h4v.s9.a4272e2a5972 from=translated src=- shape=5303a24d vocab=cf4e723c
+-/
 theorem finite_awayMap_of_forall_isIntegral_smul
     {R A : Type u} [CommRing R] [CommRing A] [Algebra R A]
     (gens : Finset A) (hgens : Algebra.adjoin R (gens : Set A) = ⊤)
@@ -148,6 +157,9 @@ theorem finite_awayMap_of_forall_isIntegral_smul
 
 end GFRingGC7
 
+/--
+@isnad1 id=ex.1h3v.s8.f8779ddae3b9 from=translated src=- shape=a856f643 vocab=94a068c2
+-/
 theorem solution
     {R A : Type u} [CommRing R] [CommRing A] [Algebra R A] [Algebra.FiniteType R A] [Algebra.QuasiFinite R A]
     (p : Ideal R) (hp : p ∈ minimalPrimes R) :

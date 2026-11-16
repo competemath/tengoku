@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=ex.1h4v.s7.3aa3afdd40a9 from=translated src=- shape=b9145744 vocab=1e1e6316
+-/
 theorem solution
     {R : Type u} [CommRing R] (m : ℕ) (hm : 0 < m) {ι : Type} [Finite ι] (u : ι → Rˣ) :
     ∃ (R' : Type u) (_ : CommRing R') (_ : Algebra R R'),

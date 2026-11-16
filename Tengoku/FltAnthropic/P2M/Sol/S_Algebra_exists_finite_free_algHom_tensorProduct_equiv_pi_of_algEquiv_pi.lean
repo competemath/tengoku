@@ -19,6 +19,9 @@ section twist
 
 variable (B A' H : Type u) [CommRing B] [CommRing A'] [CommRing H] [Algebra B H] [Algebra B A']
 
+/--
+@isnad1 id=ex.0h3v.s11.887d8b1a3605 from=translated src=- shape=03b345bd vocab=71d03241
+-/
 theorem twist_points :
     ∃ τ : ∀ (T : Type u) [CommRing T] [Algebra A' T],
         (A' ⊗[B] H →ₐ[A'] T) ≃
@@ -78,6 +81,9 @@ def chi (i : Fin d) : B →+* A' :=
     (φ.toRingEquiv.toRingHom.comp
       (Algebra.TensorProduct.includeRight : B →ₐ[A] A' ⊗[A] B).toRingHom)
 
+/--
+@isnad1 id=eq.0h7v.s9.0bd1a331525e from=translated src=- shape=d84e356c vocab=47377fea
+-/
 lemma chi_apply (i : Fin d) (b : B) : chi A B A' d φ i b = φ (1 ⊗ₜ b) i := rfl
 
 variable (T : Type u) [CommRing T] [Algebra A T] [Algebra A' T] [IsScalarTower A A' T]
@@ -88,10 +94,16 @@ def omega : B ⊗[A] T ≃+* (Fin d → T) :=
       (Algebra.TensorProduct.congr (AlgEquiv.refl : T ≃ₐ[T] T) φ)).trans
         (Algebra.TensorProduct.piScalarRight A' T T (Fin d))).toRingEquiv
 
+/--
+@isnad1 id=eq.0h8v.s10.6005c8a543f5 from=translated src=- shape=58d7cc69 vocab=e430c877
+-/
 lemma omega_tmul (b : B) (t : T) :
     omega A B A' d φ T (b ⊗ₜ t) = fun i => (chi A B A' d φ i b) • t := by
   simp [omega, chi_apply, Algebra.TensorProduct.congr_apply, Algebra.TensorProduct.piScalarRight_tmul]
 
+/--
+@isnad1 id=eq.0h7v.s10.842972b8dd91 from=translated src=- shape=8ec3c567 vocab=9949a593
+-/
 lemma omega_algebraMap (b : B) :
     omega A B A' d φ T (algebraMap B (B ⊗[A] T) b) = fun i => algebraMap A' T (chi A B A' d φ i b) := by
   rw [Algebra.TensorProduct.algebraMap_apply, Algebra.algebraMap_self, RingHom.id_apply, omega_tmul]
@@ -101,6 +113,9 @@ lemma omega_algebraMap (b : B) :
 variable {T}
 variable (T' : Type u) [CommRing T'] [Algebra A T'] [Algebra A' T'] [IsScalarTower A A' T'] (u : T →ₐ[A'] T')
 
+/--
+@isnad1 id=eq.0h9v.s11.07cd7223aaf9 from=translated src=- shape=426df87e vocab=9b18681f
+-/
 lemma omega_map (x : B ⊗[A] T) :
     omega A B A' d φ T' (Algebra.TensorProduct.map (AlgHom.id B B) (u.restrictScalars A) x) =
       fun i => u (omega A B A' d φ T x i) := by
@@ -122,6 +137,9 @@ section lhs
 variable (A B A' H : Type u) [CommRing A] [CommRing B] [CommRing A'] [CommRing H]
   [Algebra A B] [Algebra A A'] [Algebra B H] (d : ℕ) (φ : (A' ⊗[A] B) ≃ₐ[A'] (Fin d → A'))
 
+/--
+@isnad1 id=ex.0h6v.s12.04df9a7e4c18 from=translated src=- shape=7630e519 vocab=749014d6
+-/
 theorem lhs_points :
     ∃ ρ : ∀ (T : Type u) [CommRing T] [Algebra A T] [Algebra A' T] [IsScalarTower A A' T],
         (H →ₐ[B] (B ⊗[A] T)) ≃
@@ -185,6 +203,9 @@ end S17SplitPoints
 
 open S17SplitPoints in
 
+/--
+@isnad1 id=ex.0h6v.s11.62871c8ae84b from=translated src=- shape=42bbf4e8 vocab=c5c9c9ff
+-/
 theorem solution
     (A : Type u) [CommRing A] (B : Type u) [CommRing B] [Algebra A B]
     (H : Type u) [CommRing H] [Algebra B H] [Module.Finite B H] [Module.Free B H]

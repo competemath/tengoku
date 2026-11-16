@@ -15,6 +15,9 @@ open TensorProduct
 
 namespace PtwiseSmooth
 
+/--
+@isnad1 id=surjecti.0h2v.s9.c1b36898afa5 from=translated src=- shape=ce66e8d0 vocab=a7da1277
+-/
 theorem includeRight_surjective_of_residueField (Rp Sq : Type u) [CommRing Rp] [IsLocalRing Rp] [CommRing Sq]
     [Algebra Rp Sq] :
     Function.Surjective (Algebra.TensorProduct.includeRight :
@@ -34,6 +37,9 @@ theorem includeRight_surjective_of_residueField (Rp Sq : Type u) [CommRing Rp] [
 end PtwiseSmooth
 
 open PtwiseSmooth in
+/--
+@isnad1 id=issmooth.1h5v.s11.03e78a1160cb from=translated src=- shape=8d144ef9 vocab=567cf946
+-/
 theorem solution
     {R S : Type u} [CommRing R] [CommRing S] [Algebra R S] [Module.Flat R S] [Algebra.FinitePresentation R S]
     (p : Ideal R) [p.IsPrime] (q : Ideal S) [q.IsPrime] [q.LiesOver p]

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=issmooth.3h4v.s9.4d9a8ae53103 from=translated src=- shape=9e33e2cb vocab=da29cf8b
+-/
 theorem Algebra.isSmoothAt_of_mem_minimalPrimes_of_dense_of_formallySmooth_residueField
     {k : Type u} [Field k] {B : Type u} [CommRing B] [Algebra k B] [Algebra.FiniteType k B] [IsReduced B]
     (S : Set (PrimeSpectrum B))

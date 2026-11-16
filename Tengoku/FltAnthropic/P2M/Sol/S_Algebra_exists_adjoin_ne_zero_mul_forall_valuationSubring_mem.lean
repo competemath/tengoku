@@ -12,6 +12,9 @@ open Polynomial
 
 noncomputable section
 
+/--
+@isnad1 id=ex.0h4v.s9.839dba413604 from=translated src=- shape=b4562fbf vocab=8719b1e9
+-/
 theorem solution
     {L : Type*} [Field L] {F : Type*} [Field F] [Algebra L F]
     (f : F) [FiniteDimensional (IntermediateField.adjoin L ({f} : Set F)) F]

@@ -7,6 +7,9 @@ namespace P2MW.S_Algebra_exists_pow_mem_mul_pow_eq_of_mem_adjoin_blowupChart
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.3h5v.s9.ba990042ee90 from=translated src=- shape=c26fcc5b vocab=8b491aca
+-/
 theorem solution
     (C K : Type) [CommRing C] [Field K] [Algebra C K]
     (J : Ideal C) (a : C) (ha : a ∈ J) (ha0 : algebraMap C K a ≠ 0)

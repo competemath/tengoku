@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=eq.1h5v.s12.e00f2b3ed236 from=translated src=- shape=fd16db86 vocab=f21aa9f7
+-/
 theorem MvPolynomial.lmul_eq_pderiv_of_tmul_one_sub_one_tmul_eq_sum_mul
     (R : Type*) [CommRing R] {m : ℕ} (g : MvPolynomial (Fin m) R)
     (a : Fin m → MvPolynomial (Fin m) R ⊗[R] MvPolynomial (Fin m) R)

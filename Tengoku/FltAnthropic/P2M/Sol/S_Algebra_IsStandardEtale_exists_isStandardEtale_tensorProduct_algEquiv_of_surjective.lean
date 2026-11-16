@@ -10,6 +10,9 @@ set_option autoImplicit false
 open scoped TensorProduct
 open Polynomial
 
+/--
+@isnad1 id=ex.1h3v.s7.400c14e4602c from=translated src=- shape=bf8a9843 vocab=1e64e1ca
+-/
 theorem solution
     {C C₀ : Type} [CommRing C] [CommRing C₀] [Algebra C C₀] (hC : Function.Surjective (algebraMap C C₀))
     (S₀ : Type) [CommRing S₀] [Algebra C₀ S₀] [Algebra.IsStandardEtale C₀ S₀] :

@@ -11,6 +11,9 @@ universe u
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=eq.0h3v.s11.2fb577fd06c8 from=translated src=- shape=7d1b97c1 vocab=c0b7f49a
+-/
 theorem solution
     (A' B : Type u) [CommRing A'] [CommRing B] [Algebra A' B] [Module.Free A' B] [Module.Finite A' B] (f : B) :
     Algebra.norm (DualNumber A') ((1 : DualNumber A' ⊗[A'] B) + (DualNumber.eps : DualNumber A') ⊗ₜ[A'] f) =

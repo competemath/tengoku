@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u v
 
+/--
+@isnad1 id=smooth.0h2v.s6.d070f287e4db from=translated src=- shape=8b2b4704 vocab=3cbb85c8
+-/
 theorem Algebra.Smooth.of_isIntegrallyClosed_of_krullDimLE_one_of_perfectField
     (k : Type u) [Field k] [PerfectField k] (B : Type v) [CommRing B] [IsDomain B] [Algebra k B]
     [Algebra.FiniteType k B] [IsIntegrallyClosed B] [Ring.KrullDimLE 1 B] :

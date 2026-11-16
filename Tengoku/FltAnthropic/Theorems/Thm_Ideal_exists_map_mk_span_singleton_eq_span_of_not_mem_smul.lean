@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Ideal_exists_map_mk_span_singleton_eq_span
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.2h4v.s9.3fa14d2c929e from=translated src=- shape=abda943b vocab=39e67917
+-/
 theorem Ideal.exists_map_mk_span_singleton_eq_span_of_not_mem_smul
     {R : Type*} [CommRing R] [IsLocalRing R] {n : ℕ} (g : Fin (n + 1) → R)
     (x : R) (hx : x ∈ Ideal.span (Set.range g))

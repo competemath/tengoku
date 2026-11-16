@@ -11,6 +11,9 @@ universe u v
 
 open Polynomial
 
+/--
+@isnad1 id=isintegr.1h3v.s7.2bd6e36c171c from=translated src=- shape=72053461 vocab=cf6545c2
+-/
 theorem solution
     {R : Type u} {A : Type v} [CommRing R] [CommRing A] [Algebra R A] (a : A)
     (h : ∀ (p : Ideal A), p.IsPrime → IsIntegral R (Ideal.Quotient.mk p a)) :

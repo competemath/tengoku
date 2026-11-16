@@ -22,6 +22,9 @@ universe u
 variable {R : Type u} [CommRing R] [IsDomain R] {M : Type u} [AddCommGroup M] [Module R M]
   [Module.FinitePresentation R M] [Module.Flat R M]
 
+/--
+@isnad1 id=eq.1h2v.s6.86f7c98d2e32 from=translated src=- shape=8e0592b7 vocab=e1394564
+-/
 theorem rankAtStalk_bot (h1 : Module.rank R M = 1) :
     Module.rankAtStalk M (⟨⊥, Ideal.isPrime_bot⟩ : PrimeSpectrum R) = 1 := by
   have hp : (⊥ : Ideal R).primeCompl ≤ nonZeroDivisors R := by
@@ -33,12 +36,18 @@ theorem rankAtStalk_bot (h1 : Module.rank R M = 1) :
     IsLocalizedModule.rank_eq (⊥ : Ideal R).primeCompl hp (LocalizedModule.mkLinearMap (⊥ : Ideal R).primeCompl M), h1]
   simp
 
+/--
+@isnad1 id=eq.1h3v.s6.4883412f7da8 from=translated src=- shape=2cae2b29 vocab=30e0516f
+-/
 theorem rankAtStalk_eq_one (h1 : Module.rank R M = 1) (p : PrimeSpectrum R) : Module.rankAtStalk M p = 1 := by
   haveI : PreconnectedSpace (PrimeSpectrum R) :=
     ⟨(IrreducibleSpace.isIrreducible_univ (PrimeSpectrum R)).2.isPreconnected⟩
   rw [Module.isLocallyConstant_rankAtStalk.apply_eq_of_preconnectedSpace p ⟨⊥, Ideal.isPrime_bot⟩]
   exact rankAtStalk_bot h1
 
+/--
+@isnad1 id=ex.1h3v.s8.a48cad20dfdf from=translated src=- shape=df7755d4 vocab=4911e663
+-/
 theorem exists_generator_mod (h1 : Module.rank R M = 1) (𝔪 : Ideal R) [h𝔪 : 𝔪.IsMaximal] :
     ∃ m₀ : M, ∀ m : M, m ∈ Submodule.span R {m₀} ⊔ 𝔪 • (⊤ : Submodule R M) := by
   classical
@@ -92,6 +101,9 @@ end rankone
 
 section main
 
+/--
+@isnad1 id=eq.7h6v.s10.23795944b963 from=translated src=- shape=db6b4ef5 vocab=d719c537
+-/
 theorem core
     (Sc : Type) [CommRing Sc] [IsDomain Sc] [Algebra ℂ Sc] [Algebra.FiniteType ℂ Sc]
     (hSc : Algebra.Smooth ℂ Sc) (hΩ : Module.rank Sc (KaehlerDifferential ℂ Sc) = 1)
@@ -224,6 +236,9 @@ end DtNeZero
 
 end
 
+/--
+@isnad1 id=eq.7h6v.s10.23795944b963 from=translated src=- shape=db6b4ef5 vocab=d719c537
+-/
 theorem solution
     (Sc : Type) [CommRing Sc] [IsDomain Sc] [Algebra ℂ Sc] [Algebra.FiniteType ℂ Sc]
     (hSc : Algebra.Smooth ℂ Sc) (hΩ : Module.rank Sc (KaehlerDifferential ℂ Sc) = 1)

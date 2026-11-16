@@ -11,6 +11,9 @@ universe u
 
 open Polynomial IntermediateField
 
+/--
+@isnad1 id=ne.2h3v.s12.767d8a077e3e from=translated src=- shape=1d63e591 vocab=e611566d
+-/
 theorem solution
     {k : Type u} [Field k] (p : ℕ) (hp : p.Prime) [ExpChar k p]
     (c : k) (hc : ∀ b : k, b ^ p ≠ c) :

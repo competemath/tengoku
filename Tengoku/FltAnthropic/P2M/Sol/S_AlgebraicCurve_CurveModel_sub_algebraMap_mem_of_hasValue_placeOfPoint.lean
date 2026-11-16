@@ -23,6 +23,9 @@ export _root_.AlgebraicCurve.CurveModel (placeOfPoint toBase C range_stalk_eq ff
 namespace PlaceRead
 open _root_.AlgebraicCurve.CurveModel open _root_.AlgebraicCurve
 
+/--
+@isnad1 id=eq.1h7v.s12.45d6a8124c3a from=translated src=- shape=6a887928 vocab=fab9df55
+-/
 theorem germToFunctionField_appIso_inv_base {Y : Scheme.{u}} [IsIntegral Y] {B : CommRingCat.{u}} (G : Spec B ⟶ Y)
     [IsOpenImmersion G] {K : Type u} [Field K] (y : Y ⟶ Spec (CommRingCat.of K)) (c : CommRingCat.of K ⟶ B)
     (hc : G ≫ y = Spec.map c) [Nonempty ((G ''ᵁ ⊤ : Y.Opens) : Scheme.{u})] (k : K) :
@@ -39,6 +42,9 @@ theorem germToFunctionField_appIso_inv_base {Y : Scheme.{u}} [IsIntegral Y] {B :
 
 variable {K : Type u} [Field K] {L : Type v} [Field L] [Algebra K L]
 
+/--
+@isnad1 id=mem.3h8v.s13.970592f4ce13 from=translated src=- shape=9e6e2e39 vocab=72e17ffe
+-/
 theorem sub_algebraMap_mem_of_hasValue_placeOfPoint (M : CurveModel K L)
     {B : Type u} [CommRing B] [Algebra K B] (G : Spec (CommRingCat.of B) ⟶ M.C) [IsOpenImmersion G]
     (hG : G ≫ M.toBase = Spec.map (CommRingCat.ofHom (algebraMap K B)))
@@ -100,6 +106,9 @@ theorem sub_algebraMap_mem_of_hasValue_placeOfPoint (M : CurveModel K L)
 
 end AlgebraicCurve.CurveModel.PlaceRead
 
+/--
+@isnad1 id=mem.3h8v.s13.970592f4ce13 from=translated src=- shape=9e6e2e39 vocab=72e17ffe
+-/
 theorem solution
     {K : Type u} [Field K] {L : Type v} [Field L] [Algebra K L] (M : CurveModel K L)
     {B : Type u} [CommRing B] [Algebra K B] (G : Spec (CommRingCat.of B) ⟶ M.C) [IsOpenImmersion G]

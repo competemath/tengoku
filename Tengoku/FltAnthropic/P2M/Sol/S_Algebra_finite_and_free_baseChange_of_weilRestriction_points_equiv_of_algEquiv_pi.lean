@@ -15,6 +15,9 @@ universe u
 
 namespace S17WRSplit
 
+/--
+@isnad1 id=ex.1h4v.s10.98b79856a22f from=translated src=- shape=b7e76c49 vocab=56ce7f20
+-/
 theorem exists_algEquiv_of_points_equiv
     (R : Type u) [CommRing R] (P : Type u) [CommRing P] [Algebra R P] (Q : Type u) [CommRing Q] [Algebra R Q]
     (η : ∀ (T : Type u) [CommRing T] [Algebra R T], (P →ₐ[R] T) ≃ (Q →ₐ[R] T))
@@ -40,6 +43,9 @@ theorem exists_algEquiv_of_points_equiv
   rw [key]
   rfl
 
+/--
+@isnad1 id=ex.0h3v.s11.25ca1872bee2 from=translated src=- shape=cf48783f vocab=9b149318
+-/
 theorem exists_points_baseChange_equiv
     (A : Type u) [CommRing A] (W : Type u) [CommRing W] [Algebra A W] (A' : Type u) [CommRing A'] [Algebra A A'] :
     ∃ β : ∀ (T : Type u) [CommRing T] [Algebra A T] [Algebra A' T] [IsScalarTower A A' T],
@@ -72,6 +78,9 @@ end S17WRSplit
 open S17WRSplit in
 set_option maxHeartbeats 1600000 in
 
+/--
+@isnad1 id=and.1h8v.s11.e6b53987cb19 from=translated src=- shape=7a8d39ff vocab=427fa74e
+-/
 theorem solution
     (A : Type u) [CommRing A] (B : Type u) [CommRing B] [Algebra A B]
     (H : Type u) [CommRing H] [Algebra B H] [Module.Finite B H] [Module.Free B H]
