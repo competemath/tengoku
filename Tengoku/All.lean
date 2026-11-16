@@ -37,6 +37,7 @@ import Tengoku.TenProofs
 import Tengoku.Leanmodularforms
 import Tengoku.Foundation
 import Tengoku.Erdos1196
+import Tengoku.Xilab
 import Tengoku.OpenaiMath
 import Tengoku.ImmermanVardi
 import Tengoku.GeneralStochToDet
