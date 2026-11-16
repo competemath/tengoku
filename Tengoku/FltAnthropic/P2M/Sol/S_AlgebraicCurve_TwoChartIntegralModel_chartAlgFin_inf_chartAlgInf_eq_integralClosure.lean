@@ -1,0 +1,49 @@
+import Tengoku
+import Tengoku.FltAnthropic.Definitions.Def_AlgebraicCurve_TwoChartIntegralModel
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AlgebraicCurve_TwoChartIntegralModel_chartAlgFin_inf_chartAlgInf_eq_integralClosure.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AlgebraicCurve_TwoChartIntegralModel_chartAlgFin_inf_chartAlgInf_eq_integralClosure
+
+set_option autoImplicit false
+
+universe u
+
+open AlgebraicCurve.TwoChartIntegralModel
+
+/--
+@isnad1 id=eq.0h3v.s7.9d7bb59b5a30 from=translated src=- shape=4b8657a4 vocab=c35d35ec
+-/
+theorem solution
+    (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F] (j : F) [Fact (j ≠ 0)] :
+    (chartAlgFin R F j) ⊓ (chartAlgInf R F j) = integralClosure R F := by
+  apply le_antisymm
+  · intro x hx
+    obtain ⟨hxFin, hxInf⟩ := Algebra.mem_inf.mp hx
+    rw [mem_integralClosure_iff]
+    by_contra hxR
+    have hxR' : x ∉ (integralClosure R F).toSubring := fun h => hxR h
+    obtain ⟨V, hRV, hxV⟩ := Subring.exists_le_valuationSubring_of_isIntegrallyClosedIn hxR'
+    haveI : IsIntegrallyClosedIn V.toSubring F := inferInstanceAs (IsIntegrallyClosedIn V F)
+
+    have key : ∀ S : Set F, S ⊆ V → x ∈ AlgebraicCurve.TwoChartIntegralModel.chartAlg R F S →
+        x ∈ V := by
+      intro S hS hxS
+      have hle : (Algebra.adjoin R S).toSubring ≤ V.toSubring := by
+        rw [Algebra.adjoin_eq_ring_closure]
+        refine Subring.closure_le.mpr (Set.union_subset ?_ hS)
+        rintro _ ⟨r, rfl⟩
+        exact hRV (Subalgebra.algebraMap_mem (integralClosure R F) r)
+      have hV : IsIntegral V.toSubring x :=
+        ((AlgebraicCurve.TwoChartIntegralModel.mem_chartAlg_iff R F).mp hxS).map_of_comp_eq
+          (Subring.inclusion hle) (RingHom.id F) (by ext; rfl)
+      exact Subring.isIntegrallyClosedIn_iff.mp ‹_› hV
+    rcases V.mem_or_inv_mem j with hj | hj
+    · exact hxV (key {j} (Set.singleton_subset_iff.mpr hj) hxFin)
+    · exact hxV (key {j⁻¹} (Set.singleton_subset_iff.mpr hj) hxInf)
+  · intro x hx
+    have hx' : IsIntegral R x := hx
+    exact Algebra.mem_inf.mpr
+      ⟨(AlgebraicCurve.TwoChartIntegralModel.mem_chartAlg_iff R F).mpr hx'.tower_top,
+       (AlgebraicCurve.TwoChartIntegralModel.mem_chartAlg_iff R F).mpr hx'.tower_top⟩

@@ -1,0 +1,49 @@
+import Tengoku.FltAnthropic.Definitions.Def_AlgebraicCurve_DivisorClassGroup
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AlgebraicCurve_Place_ord_nonneg_of_mem.lean`: wrote out 4 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 2 `p2m_export`, 2 `p2m_open`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AlgebraicCurve_Place_ord_nonneg_of_mem
+
+open IsDedekindDomain WithZero IsLocalRing
+
+noncomputable section
+
+namespace AlgebraicCurve
+export _root_.AlgebraicCurve (Place)
+open _root_.AlgebraicCurve
+
+namespace Place
+export _root_.AlgebraicCurve.Place (ord ord_unit_smul_zpow toValuationSubring)
+open _root_.AlgebraicCurve.Place
+
+variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
+
+private theorem rowMain {f : F} (hf : f ∈ v.toValuationSubring) : 0 ≤ v.ord f := by
+  rcases eq_or_ne f 0 with rfl | hf0
+  · simp
+  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
+  obtain ⟨n, u, hu⟩ :=
+    IsDiscreteValuationRing.eq_unit_mul_pow_irreducible
+      (x := (⟨f, hf⟩ : v.toValuationSubring)) (by simpa [Subtype.ext_iff] using hf0) hπ
+  have hcoe : f = ((u : v.toValuationSubring) : F) * ((π : F) ^ (n : ℤ)) := by
+    have h := congrArg (Subtype.val) hu
+    push_cast at h
+    rw [zpow_natCast]
+    exact h
+  rw [hcoe, v.ord_unit_smul_zpow u hπ (n : ℤ)]
+  exact Int.natCast_nonneg n
+
+end Place
+
+end AlgebraicCurve
+
+end
+
+open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_ord_nonneg_of_mem.AlgebraicCurve in
+/--
+@isnad1 id=le.1h4v.s6.8b7be70d1b92 from=translated src=- shape=c89bac7e vocab=d89c618f
+-/
+theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) {f : F} (hf : f ∈ v.toValuationSubring) :
+    0 ≤ v.ord f :=
+  AlgebraicCurve.Place.rowMain v hf

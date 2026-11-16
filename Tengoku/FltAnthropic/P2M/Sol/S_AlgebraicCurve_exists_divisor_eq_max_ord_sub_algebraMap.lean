@@ -1,0 +1,28 @@
+import Tengoku
+import Tengoku.FltAnthropic.Definitions.Def_AlgebraicCurve_DivisorClassGroup
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AlgebraicCurve_exists_divisor_eq_max_ord_sub_algebraMap.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AlgebraicCurve_exists_divisor_eq_max_ord_sub_algebraMap
+
+set_option autoImplicit false
+
+open AlgebraicCurve
+
+/--
+@isnad1 id=ex.1h4v.s7.413933d9bf8e from=translated src=- shape=83daa238 vocab=864c11be
+-/
+theorem solution
+    {K F : Type*} [Field K] [Field F] [Algebra K F] [HasPrincipalDivisors K F]
+    (x : F) (hx : Transcendental K x) (a : K) :
+    ∃ D : Divisor K F, ∀ v : Place K F, D v = max 0 (v.ord (x - algebraMap K F a)) := by
+  classical
+  have hxa : x - algebraMap K F a ≠ 0 := by
+    intro h
+    apply hx
+    rw [sub_eq_zero] at h
+    rw [h]
+    exact isAlgebraic_algebraMap a
+  obtain ⟨P, hP, -⟩ := HasPrincipalDivisors.exists_divisor (K := K) (x - algebraMap K F a) hxa
+  exact ⟨P.mapRange (fun n => max 0 n) (by simp), fun v => by rw [Finsupp.mapRange_apply, hP v]⟩

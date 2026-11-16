@@ -1,0 +1,18 @@
+import Tengoku.FltAnthropic.Definitions.Def_AlgebraicCurve_Correspondence
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AlgebraicCurve_finrankAlong_comp.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AlgebraicCurve_finrankAlong_comp
+
+open AlgebraicCurve
+
+/--
+@isnad1 id=eq.0h6v.s7.6bf14caf20ee from=translated src=- shape=a932df67 vocab=f5f01a52
+-/
+theorem solution {K F F' F'' : Type*} [Field K] [Field F] [Field F'] [Field F''] [Algebra K F] [Algebra K F'] [Algebra K F''] (φ : F →ₐ[K] F') (χ : F' →ₐ[K] F'') : AlgebraicCurve.finrankAlong K (χ.comp φ) = AlgebraicCurve.finrankAlong K φ * AlgebraicCurve.finrankAlong K χ := by
+  letI iφ : Algebra F F' := algebraAlong φ
+  letI iψ : Algebra F' F'' := algebraAlong χ
+  letI iψφ : Algebra F F'' := algebraAlong (χ.comp φ)
+  haveI : IsScalarTower F F' F'' := IsScalarTower.of_algebraMap_eq fun _ => rfl
+  exact (Module.finrank_mul_finrank F F' F'').symm

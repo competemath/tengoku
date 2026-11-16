@@ -1,0 +1,78 @@
+import Tengoku
+import Tengoku.FltAnthropic.Definitions.Def_AlgebraicCurve_PlaceEvaluation
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku repair: removed `#print axioms solution` (it only prints; the queue checks the axioms of every declaration). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AlgebraicCurve_Place_exists_ord_eq_one_of_ord_sum_eq_one.lean`: wrote out 6 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 4 `p2m_export`, 2 `p2m_open`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AlgebraicCurve_Place_exists_ord_eq_one_of_ord_sum_eq_one
+
+set_option maxHeartbeats 800000
+set_option synthInstance.maxHeartbeats 80000
+
+set_option autoImplicit false
+
+open _root_.AlgebraicCurve open _root_.Polynomial
+
+namespace AlgebraicCurve
+export _root_.AlgebraicCurve (Place Place.ord_zero)
+namespace Place
+export _root_.AlgebraicCurve.Place (adicValuation adicValuation_ne_zero adicValuation_coe ord ord_zero algebraMap_mem' toValuationSubring)
+open _root_.AlgebraicCurve.Place open _root_.AlgebraicCurve
+
+variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
+
+private theorem _root_.AlgebraicCurve.Place.c3a_adicValuation_le_exp_neg_iff (f : F) (n : ℤ) :
+    v.adicValuation f ≤ WithZero.exp (-n) ↔ f = 0 ∨ n ≤ v.ord f := by
+  rcases eq_or_ne f 0 with rfl | hf
+  · simp
+  · have hne := v.adicValuation_ne_zero hf
+    rw [← WithZero.log_le_iff_le_exp hne]
+    simp only [hf, false_or, ord]
+    omega
+
+export _root_.AlgebraicCurve.Place (c3a_adicValuation_le_exp_neg_iff)
+
+private theorem _root_.AlgebraicCurve.Place.c3a_adicValuation_algebraMap_le_one (c : K) : v.adicValuation (algebraMap K F c) ≤ 1 := by
+  have h : algebraMap K F c = ((⟨algebraMap K F c, v.algebraMap_mem' c⟩ : v.toValuationSubring) : F) := rfl
+  rw [h, v.adicValuation_coe]
+  exact IsDedekindDomain.HeightOneSpectrum.intValuation_le_one _ _
+
+export _root_.AlgebraicCurve.Place (c3a_adicValuation_algebraMap_le_one)
+end AlgebraicCurve.Place
+
+/--
+@isnad1 id=ex.2h7v.s7.3393965ad722 from=translated src=- shape=4e9fa945 vocab=df04798c
+-/
+theorem solution
+    {K F : Type*} [Field K] [Field F] [Algebra K F]
+    (v : Place K F) {ι : Type*} (s : Finset ι) (c : ι → K) (f : ι → F)
+    (hf : ∀ i ∈ s, f i = 0 ∨ 1 ≤ v.ord (f i))
+    (h : v.ord (∑ i ∈ s, algebraMap K F (c i) * f i) = 1) :
+    ∃ i ∈ s, v.ord (f i) = 1 := by
+  classical
+  by_contra hcon
+  push Not at hcon
+
+  have hterm : ∀ i ∈ s,
+      v.adicValuation (algebraMap K F (c i) * f i) ≤ WithZero.exp (-(2 : ℤ)) := by
+    intro i hi
+    rcases hf i hi with h0 | h1
+    · simp [h0]
+    · have h2 : (2 : ℤ) ≤ v.ord (f i) := by
+        have := hcon i hi
+        omega
+      rw [map_mul]
+      calc v.adicValuation (algebraMap K F (c i)) * v.adicValuation (f i)
+          ≤ 1 * WithZero.exp (-(2 : ℤ)) :=
+            mul_le_mul' (v.c3a_adicValuation_algebraMap_le_one (c i))
+              ((v.c3a_adicValuation_le_exp_neg_iff (f i) 2).mpr (Or.inr h2))
+        _ = WithZero.exp (-(2 : ℤ)) := one_mul _
+
+  have hsum := (v.c3a_adicValuation_le_exp_neg_iff _ 2).mp (v.adicValuation.map_sum_le hterm)
+  rcases hsum with h0 | h2
+  · rw [h0, AlgebraicCurve.Place.ord_zero] at h
+    exact zero_ne_one h
+  · omega
+

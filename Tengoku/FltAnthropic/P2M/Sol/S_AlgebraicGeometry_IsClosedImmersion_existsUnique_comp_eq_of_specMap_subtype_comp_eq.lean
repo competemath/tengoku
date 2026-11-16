@@ -1,0 +1,37 @@
+import Tengoku
+import Tengoku.FltAnthropic.Theorems.Thm_AlgebraicGeometry_IsClosedImmersion_existsUnique_comp_eq_of_denseRange_of_comp_eq
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AlgebraicGeometry_IsClosedImmersion_existsUnique_comp_eq_of_specMap_subtype_comp_eq.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AlgebraicGeometry_IsClosedImmersion_existsUnique_comp_eq_of_specMap_subtype_comp_eq
+
+set_option autoImplicit false
+
+universe u
+
+open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
+
+/--
+@isnad1 id=existsun.1h7v.s9.3eac7483212e from=translated src=- shape=c294838a vocab=3ebdbb37
+-/
+theorem solution
+    {Ω : Type u} [Field Ω] (O : Subring Ω)
+    {Y Z : Scheme.{u}} (ι : Z ⟶ Y) [IsClosedImmersion ι] (z : Spec (CommRingCat.of ↥O) ⟶ Y)
+    (ψ : Spec (CommRingCat.of Ω) ⟶ Z) (hψ : ψ ≫ ι = Spec.map (CommRingCat.ofHom O.subtype) ≫ z) :
+    ∃! χ : Spec (CommRingCat.of ↥O) ⟶ Z, χ ≫ ι = z := by
+  haveI : IsReduced (Spec (CommRingCat.of ↥O)) := inferInstance
+  refine AlgebraicGeometry.IsClosedImmersion.existsUnique_comp_eq_of_denseRange_of_comp_eq
+    (Spec.map (CommRingCat.ofHom O.subtype)) ?_ ι z ψ hψ
+
+  have hker : RingHom.ker O.subtype ≤ nilradical ↥O := by
+    intro a ha
+    rw [RingHom.mem_ker] at ha
+    have : a = 0 := Subtype.ext ha
+    rw [this]; exact Ideal.zero_mem _
+  have h := (PrimeSpectrum.denseRange_comap_iff_ker_le_nilRadical (f := O.subtype)).mpr hker
+  convert h using 1
+  rfl
+  rfl
+  rfl
+  rfl
