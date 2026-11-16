@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "ea67a8bbc5350bc2be251c5f0e261d8ace57c96b55f95e67b98a079ae945dcea",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "quadratic-algebras",
+ "lint_mode": "proposed",
+ "modules": 2,
+ "part": 1,
+ "theorems": 3
+}
