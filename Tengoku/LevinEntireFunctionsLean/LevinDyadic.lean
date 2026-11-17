@@ -18,14 +18,18 @@ open MeasureTheory Set Filter Topology
 
 namespace LevinDyadic
 
-/-- The finite geometric sum used in the radial-measure estimate.-/
+/-- The finite geometric sum used in the radial-measure estimate.
+@isnad1 id=eq.0h1v.s6.97457122237a from=translated src=- shape=f533a9fe vocab=5a035925
+-/
 theorem sum_two_pow (k : ℕ) :
     ∑ n ∈ Finset.range k, (2 : ℝ) ^ n = 2 ^ k - 1 := by
   simpa only [show (2 : ℝ) - 1 = 1 by norm_num, div_one] using
     geom_sum_eq (show (2 : ℝ) ≠ 1 by norm_num) k
 
 /-- Dyadic annular estimates after scale `N` give an estimate at every `R ≥ 1`.
-The additive term is the uncontrolled finite initial segment.-/
+The additive term is the uncontrolled finite initial segment.
+@isnad1 id=le.3h4v.s7.69fc51078a8e from=translated src=- shape=a6121556 vocab=040fab2f
+-/
 theorem volume_le_of_dyadic_bounds (E : Set ℝ) (eta : ℝ) (heta : 0 ≤ eta)
     (N : ℕ)
     (hE : ∀ n : ℕ, N ≤ n →
@@ -94,7 +98,9 @@ theorem volume_le_of_dyadic_bounds (E : Set ℝ) (eta : ℝ) (heta : 0 ≤ eta)
       nlinarith
 
 /-- The finite initial segment can be absorbed into an arbitrarily large
-radius. A factor of three suffices for the resulting density bound.-/
+radius. A factor of three suffices for the resulting density bound.
+@isnad1 id=ex.2h3v.s7.791e1ac565b3 from=translated src=- shape=7c82e6ad vocab=d560f4a9
+-/
 theorem eventually_volume_le_of_dyadic_bounds (E : Set ℝ) (eta : ℝ)
     (heta : 0 < eta) (N : ℕ)
     (hE : ∀ n : ℕ, N ≤ n →
@@ -113,7 +119,9 @@ theorem eventually_volume_le_of_dyadic_bounds (E : Set ℝ) (eta : ℝ)
   nlinarith
 
 /-- If the relative annular bound becomes arbitrarily small at sufficiently
-late dyadic scales, then the whole exceptional set has zero radial density.-/
+late dyadic scales, then the whole exceptional set has zero radial density.
+@isnad1 id=zeroradi.1h1v.s7.61ba121bc432 from=translated src=- shape=31113445 vocab=78161b8a
+-/
 theorem zeroRadialDensity_of_dyadic_bounds (E : Set ℝ)
     (hE : ∀ eta : ℝ, 0 < eta → ∃ N : ℕ, ∀ n : ℕ, N ≤ n →
       volume (E ∩ Icc ((2 : ℝ) ^ n) (2 ^ (n + 1))) ≤

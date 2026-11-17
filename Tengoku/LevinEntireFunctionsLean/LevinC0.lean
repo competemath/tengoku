@@ -22,7 +22,9 @@ open LevinGrowth LevinIndicatorModulus
 namespace LevinC0
 
 /-- Actual finite exceptional disks on each sufficiently large rescaled
-annulus. Both the target error and the radius budget are independent inputs.-/
+annulus. Both the target error and the radius budget are independent inputs.
+@isnad1 id=ex.6h5v.s8.c5a8ef1cb71b from=translated src=- shape=8fba72f8 vocab=1144bf31
+-/
 theorem exists_scaled_shell_covers {f : ℂ → ℂ} {ρ : ℝ} {h : Direction → ℝ}
     (hf : Differentiable ℂ f) (hρ : 0 < ρ) (htype : FinitePositiveType f ρ)
     (hreg : RadialRegular f ρ h) {ε b : ℝ} (hε : 0 < ε) (hb : 0 < b) :
@@ -87,7 +89,9 @@ theorem exists_scaled_shell_covers {f : ℂ → ℂ} {ρ : ℝ} {h : Direction �
 
 /-- The full radial-to-C₀ implication for an entire function of positive order
 and finite nonzero type. Every shell's disks and their analytic estimates are
-provided by the preceding construction, rather than assumed as a certificate.-/
+provided by the preceding construction, rather than assumed as a certificate.
+@isnad1 id=diskregu.4h3v.s6.42032a84c586 from=translated src=- shape=de2a59ba vocab=e31d66af
+-/
 theorem diskRegular_of_radialRegular {f : ℂ → ℂ} {ρ : ℝ} {h : Direction → ℝ}
     (hf : Differentiable ℂ f) (hρ : 0 < ρ) (htype : FinitePositiveType f ρ)
     (hreg : RadialRegular f ρ h) : DiskRegular f ρ h := by
@@ -120,7 +124,9 @@ theorem diskRegular_of_radialRegular {f : ℂ → ℂ} {ρ : ℝ} {h : Direction
     exact hscaled z hz ((hclip z (by simpa using hz)).mp hzout)
 
 /-- The exact original constant-order Levin goal, including the actual C₀ disk
-definition and the unrestricted extended-real indicator, now has a proof.-/
+definition and the unrestricted extended-real indicator, now has a proof.
+@isnad1 id=constant.0h0v.s0.026806553981 from=translated src=- shape=45709ebd vocab=02680655
+-/
 theorem constantOrderLevin : ConstantOrderLevinGoal := by
   intro f ρ hf hρ htype hdense
   obtain ⟨h, hradial, hindicator⟩ :=

@@ -17,7 +17,9 @@ open LevinGrowth
 namespace LevinIndicatorUpper
 
 /-- A fixed proportional window simultaneously controls the Poisson tail and
-the rescaling of the growth normalization, even when the limiting value is negative.-/
+the rescaling of the growth normalization, even when the limiting value is negative.
+@isnad1 id=ex.2h5v.s8.bec07a559165 from=translated src=- shape=9f29bb84 vocab=762a6581
+-/
 theorem exists_ratio_window (ρ a B δ ε : ℝ) (hδ : 0 < δ) (hε : 0 < ε) :
     ∃ b : ℝ, 1 < b ∧ ∀ t : ℝ, 1 < t → t < b →
       1 - 1 / t ≤ δ / 2 ∧
@@ -37,7 +39,9 @@ theorem exists_ratio_window (ρ a B δ ε : ℝ) (hδ : 0 < δ) (hε : 0 < ε) :
   exact ⟨(hball htball).2.le, (hball htball).1⟩
 
 /-- Poisson's upper inequality after scaling a good circle to the unit circle
-and normalizing its logarithmic modulus.-/
+and normalizing its logarithmic modulus.
+@isnad1 id=le.8h5v.s8.002709af173e from=translated src=- shape=67fd8b1f vocab=7d07479a
+-/
 theorem scaled_poisson_upper {f : ℂ → ℂ} {S ρ q : ℝ} {v : ℂ}
     (hf : Differentiable ℂ f) (hf0 : f 0 ≠ 0) (hS : 0 < S)
     (hq : 0 ≤ q) (hq1 : q < 1) (hv : ‖v‖ = 1)
@@ -71,7 +75,9 @@ theorem scaled_poisson_upper {f : ℂ → ℂ} {S ρ q : ℝ} {v : ℂ}
       Real.circleAverage_fun_smul
     _ = _ := by simp only [smul_eq_mul]; ring
 
-/-- A single ratio window works for all limiting values in a fixed bounded interval.-/
+/-- A single ratio window works for all limiting values in a fixed bounded interval.
+@isnad1 id=ex.3h5v.s8.ce6bb33e5370 from=translated src=- shape=3775af61 vocab=36ea17d5
+-/
 theorem exists_uniform_ratio_window (ρ M B δ ε : ℝ) (_hM : 0 ≤ M)
     (hδ : 0 < δ) (hε : 0 < ε) :
     ∃ b : ℝ, 1 < b ∧ ∀ t : ℝ, 1 < t → t < b →
@@ -102,7 +108,9 @@ theorem exists_uniform_ratio_window (ρ M B δ ε : ℝ) (_hM : 0 ≤ M)
   nlinarith
 
 /-- Radial regularity gives the unrestricted normalized upper bound uniformly
-in direction. The Poisson argument fills every omitted radius.-/
+in direction. The Poisson argument fills every omitted radius.
+@isnad1 id=eventual.4h4v.s7.df8352442247 from=translated src=- shape=2257271e vocab=62c80765
+-/
 theorem uniform_upper_bounds {f : ℂ → ℂ} {ρ : ℝ} {h : Direction → ℝ}
     (hf : Differentiable ℂ f) (hf0 : f 0 ≠ 0)
     (hreg : RadialRegular f ρ h) :

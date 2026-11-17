@@ -17,7 +17,9 @@ open LevinGrowth LevinDensity LevinAssembly
 namespace LevinRadial
 
 /-- Add the actual countable set of zero radii to a uniform-limit exception.
-This recovers the nonvanishing clause of the paper-facing radial definition.-/
+This recovers the nonvanishing clause of the paper-facing radial definition.
+@isnad1 id=radialre.6h4v.s7.d7e11303fb55 from=translated src=- shape=b19ad44a vocab=94cf9b09
+-/
 theorem radialRegular_of_uniform_limit {f : ℂ → ℂ} {ρ : ℝ}
     (hf : Differentiable ℂ f) (hn : ∃ z : ℂ, f z ≠ 0)
     (E : Set ℝ) (hEm : MeasurableSet E) (hEz : ZeroRadialDensity E)
@@ -38,7 +40,9 @@ theorem radialRegular_of_uniform_limit {f : ℂ → ℂ} {ρ : ℝ}
   simpa only [Real.dist_eq, abs_sub_comm] using hb
 
 /-- Assemble the general radial conclusion from an explicit analytic estimate.
-The actual entire-function estimate is supplied separately, not as an axiom.-/
+The actual entire-function estimate is supplied separately, not as an axiom.
+@isnad1 id=ex.5h3v.s7.e4a68fe00cfd from=translated src=- shape=dba44797 vocab=5031167b
+-/
 theorem radialRegular_of_dense_sequence_and_small_density {f : ℂ → ℂ} {ρ : ℝ}
     (hf : Differentiable ℂ f) (hn : ∃ z : ℂ, f z ≠ 0)
     (d : ℕ → Direction) (hd : DenseRange d)

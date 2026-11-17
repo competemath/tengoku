@@ -25,6 +25,9 @@ abbrev ZeroIndex {f : ℂ → ℂ} {S : ℝ}
     (hf : AnalyticOnNhd ℂ f (closedBall 0 S)) :=
   Σ a : LevinFiniteProduct.zeroSupport hf, Fin ((divisor f (ball 0 S) a).toNat)
 
+/--
+@isnad1 id=eq.1h3v.s9.bea578f92bf9 from=translated src=- shape=c4ea12cc vocab=b0bf5441
+-/
 theorem zeroIndex_prod {f : ℂ → ℂ} {S : ℝ}
     (hf : AnalyticOnNhd ℂ f (closedBall 0 S)) (P : ℂ → ℝ) :
     (∏ i : ZeroIndex hf, P i.1.val) =
@@ -35,6 +38,9 @@ theorem zeroIndex_prod {f : ℂ → ℂ} {S : ℝ}
   exact Finset.prod_coe_sort (LevinFiniteProduct.zeroSupport hf)
     (fun a => P a ^ (divisor f (ball 0 S) a).toNat)
 
+/--
+@isnad1 id=eq.1h2v.s8.4b025a083963 from=translated src=- shape=2ae53c22 vocab=4018befc
+-/
 theorem zeroIndex_card {f : ℂ → ℂ} {S : ℝ}
     (hf : AnalyticOnNhd ℂ f (closedBall 0 S)) :
     (Fintype.card (ZeroIndex hf) : ℝ) = LevinFiniteProduct.zeroCount hf := by
@@ -47,6 +53,9 @@ theorem zeroIndex_card {f : ℂ → ℂ} {S : ℝ}
   intro a _
   rw [← Int.cast_natCast, Int.toNat_of_nonneg ((hf.mono ball_subset_closedBall).divisor_nonneg a)]
 
+/--
+@isnad1 id=eq.1h3v.s9.a0d1a0f8e8a2 from=translated src=- shape=cc4b66f6 vocab=45463637
+-/
 theorem norm_finiteBlaschke_eq_prod {f : ℂ → ℂ} {S : ℝ}
     (hf : AnalyticOnNhd ℂ f (closedBall 0 S)) (z : ℂ) :
     ‖LevinFactorization.finiteBlaschke f S z‖ =
@@ -63,7 +72,9 @@ theorem norm_finiteBlaschke_eq_prod {f : ℂ → ℂ} {S : ℝ}
   simp only [Pi.pow_apply, zpow_neg, norm_inv, norm_zpow]
   rw [← zpow_natCast, Int.toNat_of_nonneg hn, inv_zpow]
 
-/-- A single genuine Blaschke factor is bounded below by a scaled distance.-/
+/-- A single genuine Blaschke factor is bounded below by a scaled distance.
+@isnad1 id=le.3h3v.s6.3a1a50d21692 from=translated src=- shape=8e55c53c vocab=9ae3d5d4
+-/
 theorem inverse_canonical_lower {S : ℝ} {a z : ℂ}
     (hS : 0 < S) (ha : a ∈ ball 0 S) (hz : z ∈ closedBall 0 S) :
     ‖z - a‖ / (2 * S) ≤ ‖(canonicalFactor S a z)⁻¹‖ := by
@@ -83,6 +94,9 @@ theorem inverse_canonical_lower {S : ℝ} {a z : ℂ}
     ‖z-a‖ / (2*S) = S * ‖z-a‖ / (2*S^2) := by field_simp
     _ ≤ _ := div_le_div_of_nonneg_left (by positivity) hden hb
 
+/--
+@isnad1 id=le.3h3v.s10.5e30d51a5ab4 from=translated src=- shape=359b51fd vocab=59559c27
+-/
 theorem finiteBlaschke_product_lower {f : ℂ → ℂ} {S : ℝ}
     (hf : AnalyticOnNhd ℂ f (closedBall 0 S)) (hS : 0 < S)
     {z : ℂ} (hz : z ∈ closedBall 0 S) :
@@ -101,7 +115,9 @@ theorem finiteBlaschke_product_lower {f : ℂ → ℂ} {S : ℝ}
     exact (divisor f (ball 0 S)).supportWithinDomain
       ((LevinFiniteProduct.mem_zeroSupport hf).mp i.1.property)
 
-/-- Jensen counts the actual local zeros using the outer disk bound.-/
+/-- Jensen counts the actual local zeros using the outer disk bound.
+@isnad1 id=le.7h4v.s8.d94ec27c600d from=translated src=- shape=5485646a vocab=d6ddf577
+-/
 theorem zeroCount_local_bound {f : ℂ → ℂ} {R S M : ℝ}
     (hf : Differentiable ℂ f) (hR : 0 < R) (hM : 0 ≤ M)
     (hf0 : f 0 = 1) (hS : S ≤ 4*R)
@@ -134,7 +150,9 @@ theorem zeroCount_local_bound {f : ℂ → ℂ} {R S M : ℝ}
   exact (Int.cast_le.mpr hmono).trans (by simpa [hf0] using hj)
 
 /-- Actual local factorization and its lower bound; no minimum-modulus estimate
-for the original function is assumed here.-/
+for the original function is assumed here.
+@isnad1 id=ex.5h3v.s8.cd5c09882ee0 from=translated src=- shape=49c82362 vocab=1d171158
+-/
 theorem exists_local_decomposition {f : ℂ → ℂ} {R M : ℝ}
     (hf : Differentiable ℂ f) (hR : 0 < R) (hM : 0 ≤ M)
     (hf0 : f 0 = 1)
@@ -181,6 +199,9 @@ theorem exists_local_decomposition {f : ℂ → ℂ} {R M : ℝ}
 /-- The loss in the local minimum-modulus estimate.-/
 def loss (η : ℝ) : ℝ := 2 + Real.log (8 * Real.exp 1 / η) / Real.log 2
 
+/--
+@isnad1 id=lt.2h1v.s5.48dcb2a8c4d9 from=translated src=- shape=91c05246 vocab=82734fad
+-/
 theorem loss_pos {η : ℝ} (hη : 0 < η) (hη1 : η ≤ 1) : 0 < loss η := by
   have he : 1 ≤ Real.exp 1 := Real.one_le_exp (by norm_num)
   have harg : 1 ≤ 8 * Real.exp 1 / η := (le_div_iff₀ hη).mpr (by linarith)
@@ -190,7 +211,9 @@ theorem loss_pos {η : ℝ} (hη : 0 < η) (hη1 : η ≤ 1) : 0 < loss η := by
   positivity
 
 /-- The analytic implication from a finite zero-product lower bound. The next
-covering theorem will supply that bound outside its concrete finite disks.-/
+covering theorem will supply that bound outside its concrete finite disks.
+@isnad1 id=and.12h7v.s10.0e0765e9e054 from=translated src=- shape=2f753655 vocab=a33289a9
+-/
 theorem log_norm_lower_of_zero_product {f g : ℂ → ℂ} {R S M η : ℝ}
     (hR : 0 < R) (hS : 2*R < S) (hS4 : S < 4*R)
     (hη : 0 < η) (hη1 : η ≤ 1)
@@ -254,7 +277,9 @@ theorem log_norm_lower_of_zero_product {f g : ℂ → ℂ} {R S M η : ℝ}
 
 /-- A fully constructed local minimum-modulus estimate for an entire function
 normalized at a nonzero center. Repeated zeros enter the Cartan point cloud with
-their exact analytic multiplicities.-/
+their exact analytic multiplicities.
+@isnad1 id=ex.7h4v.s8.912fc81c05e6 from=translated src=- shape=100b052b vocab=17ffc9c3
+-/
 theorem exists_disks_local_lower {f : ℂ → ℂ} {R M η : ℝ}
     (hf : Differentiable ℂ f) (hR : 0 < R) (hM : 0 ≤ M)
     (hf0 : f 0 = 1)

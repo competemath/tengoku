@@ -27,10 +27,16 @@ namespace LevinAnnulus
 /-- The logarithmic modulus of continuity used for the radial integral estimate.-/
 def modulus (δ : ℝ) : ℝ := δ + δ * (2 - Real.log (δ / 8))
 
+/--
+@isnad1 id=le.2h1v.s5.1752ce4e741b from=translated src=- shape=536e06c9 vocab=beebde8c
+-/
 theorem modulus_nonneg {δ : ℝ} (hδ : 0 < δ) (hδ1 : δ ≤ 1) : 0 ≤ modulus δ := by
   have hl : Real.log (δ / 8) ≤ 0 := Real.log_nonpos (by positivity) (by linarith)
   exact add_nonneg hδ.le (mul_nonneg hδ.le (by linarith))
 
+/--
+@isnad1 id=tendsto.0h0v.s4.6d1477e37849 from=translated src=- shape=1ec14745 vocab=a7a008a1
+-/
 theorem modulus_tendsto_zero : Tendsto modulus (𝓝 0) (𝓝 0) := by
   have hc : Continuous (fun δ : ℝ => 3 * δ - 8 * ((δ / 8) * Real.log (δ / 8))) :=
     (continuous_const.mul continuous_id).sub
@@ -43,7 +49,9 @@ theorem modulus_tendsto_zero : Tendsto modulus (𝓝 0) (𝓝 0) := by
   simpa using hc.tendsto 0
 
 /-- Jensen supplies one polynomial bound for all local divisor counts at every
-large radius. The radius of the local finite factor may vary with the scale.-/
+large radius. The radius of the local finite factor may vary with the scale.
+@isnad1 id=ex.4h2v.s7.090ca88afb84 from=translated src=- shape=75807a23 vocab=4577a6b3
+-/
 theorem exists_uniform_zeroCount_bound {f : ℂ → ℂ} {ρ : ℝ}
     (hf : Differentiable ℂ f) (hρ : 0 ≤ ρ)
     (htype : LevinGrowth.FinitePositiveType f ρ) (hf0 : f 0 ≠ 0) :
@@ -99,7 +107,9 @@ theorem exists_uniform_zeroCount_bound {f : ℂ → ℂ} {ρ : ℝ}
     _ = K * R ^ ρ := by dsimp [K]; ring
 
 /-- Divisor support really consists of zeros; this direction does not need a
-separate nontriviality hypothesis.-/
+separate nontriviality hypothesis.
+@isnad1 id=eq.2h3v.s6.c6516668eea1 from=translated src=- shape=57fa6edc vocab=3efb29a9
+-/
 theorem zero_of_mem_zeroSupport {f : ℂ → ℂ} {S : ℝ}
     (hfS : AnalyticOnNhd ℂ f (closedBall 0 S)) {z : ℂ}
     (hz : z ∈ LevinFiniteProduct.zeroSupport hfS) : f z = 0 := by
@@ -112,7 +122,9 @@ theorem zero_of_mem_zeroSupport {f : ℂ → ℂ} {S : ℝ}
   simp
 
 /-- The finite radial potential is globally measurable, including its convention
-at the finite set of singular radii.-/
+at the finite set of singular radii.
+@isnad1 id=measurab.1h4v.s6.07f1e8595322 from=translated src=- shape=2e67a4b1 vocab=d30deb63
+-/
 theorem measurable_radialPotential {f : ℂ → ℂ} {S : ℝ}
     (hfS : AnalyticOnNhd ℂ f (closedBall 0 S)) (R δ : ℝ) :
     Measurable (LevinFiniteProduct.radialPotential hfS R δ) := by
@@ -120,7 +132,9 @@ theorem measurable_radialPotential {f : ℂ → ℂ} {S : ℝ}
   fun_prop
 
 /-- The zero-free local factor has a uniform angular bound throughout one annulus.
-The larger disk has radius 8R, so the same factor is used for every r in [R,2R].-/
+The larger disk has radius 8R, so the same factor is used for every r in [R,2R].
+@isnad1 id=le.11h8v.s8.6d5ad1fde0d7 from=translated src=- shape=1cb5796b vocab=100ae742
+-/
 theorem zero_free_annular_oscillation {g : ℂ → ℂ} {R r A ρ δ : ℝ} {v w : ℂ}
     (hR : 0 < R) (hr : r ∈ Icc R (2 * R)) (hA : 0 ≤ A) (_hδ : 0 ≤ δ)
     (hg : AnalyticOnNhd ℂ g (closedBall 0 (8 * R)))
@@ -155,23 +169,35 @@ finite divisor potential normalized at the annulus scale.-/
 def majorant {f : ℂ → ℂ} {S : ℝ} (hfS : AnalyticOnNhd ℂ f (closedBall 0 S))
     (G R ρ δ r : ℝ) : ℝ := G * δ + LevinFiniteProduct.radialPotential hfS R δ r / R ^ ρ
 
+/--
+@isnad1 id=measurab.1h6v.s6.21b07081ae9f from=translated src=- shape=76390162 vocab=85fe2904
+-/
 theorem measurable_majorant {f : ℂ → ℂ} {S : ℝ}
     (hfS : AnalyticOnNhd ℂ f (closedBall 0 S)) (G R ρ δ : ℝ) :
     Measurable (majorant hfS G R ρ δ) := by
   exact measurable_const.add ((measurable_radialPotential hfS R δ).div_const _)
 
+/--
+@isnad1 id=le.4h7v.s6.fec09136d7e9 from=translated src=- shape=c0b8b2e7 vocab=55e68cb7
+-/
 theorem majorant_nonneg {f : ℂ → ℂ} {S G R ρ δ r : ℝ}
     (hfS : AnalyticOnNhd ℂ f (closedBall 0 S)) (hG : 0 ≤ G) (hR : 0 < R) (hδ : 0 ≤ δ) :
     0 ≤ majorant hfS G R ρ δ r := by
   exact add_nonneg (mul_nonneg hG hδ) (div_nonneg
     (LevinFiniteProduct.radialPotential_nonneg hfS hR.le hδ) (Real.rpow_nonneg hR.le _))
 
+/--
+@isnad1 id=interval.3h6v.s6.f44b1786b6eb from=translated src=- shape=f7e8b890 vocab=68a501fd
+-/
 theorem majorant_intervalIntegrable {f : ℂ → ℂ} {S G R ρ δ : ℝ}
     (hfS : AnalyticOnNhd ℂ f (closedBall 0 S)) (hR : 0 < R) (hδ : 0 < δ) :
     IntervalIntegrable (majorant hfS G R ρ δ) volume R (2 * R) := by
   exact intervalIntegrable_const.add
     ((LevinFiniteProduct.radialPotential_intervalIntegrable hfS hR hδ).div_const _)
 
+/--
+@isnad1 id=le.8h7v.s7.9fdd5cd56572 from=translated src=- shape=e4b97918 vocab=4a716935
+-/
 theorem integral_majorant_bound {f : ℂ → ℂ} {S G K R ρ δ : ℝ}
     (hfS : AnalyticOnNhd ℂ f (closedBall 0 S)) (hG : 0 ≤ G) (hK : 0 ≤ K)
     (hR : 0 < R) (hδ : 0 < δ) (hδ1 : δ ≤ 1) (hS : S ≤ 16 * R)
@@ -206,7 +232,9 @@ theorem integral_majorant_bound {f : ℂ → ℂ} {S G K R ρ δ : ℝ}
 /-- Annular angular control for general entire finite-type functions with zeros.
 For every large annulus and angular tolerance, the measurable nonnegative
 majorant is constructed from a genuine finite Blaschke factorization. Its L¹
-cost is uniform over all scales.-/
+cost is uniform over all scales.
+@isnad1 id=ex.4h2v.s8.0eaced10a31e from=translated src=- shape=05807635 vocab=01ffbaa2
+-/
 theorem exists_annular_majorant {f : ℂ → ℂ} {ρ : ℝ}
     (hf : Differentiable ℂ f) (hρ : 0 < ρ)
     (htype : LevinGrowth.FinitePositiveType f ρ) (hf0 : f 0 ≠ 0) :

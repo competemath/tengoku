@@ -29,17 +29,25 @@ def clippedRadius (R : ℝ) (c : ℂ) (r : ℝ) : ℝ := by
   classical
   exact if MeetsShell R c r then r else 0
 
+/--
+@isnad1 id=le.1h3v.s4.ae1349499d6d from=translated src=- shape=b86a77a8 vocab=517cf28e
+-/
 theorem clippedRadius_nonneg (R : ℝ) (c : ℂ) {r : ℝ} (hr : 0 ≤ r) :
     0 ≤ clippedRadius R c r := by
   unfold clippedRadius
   split_ifs <;> simp_all
 
+/--
+@isnad1 id=le.1h3v.s4.12663db6bf90 from=translated src=- shape=7b625231 vocab=517cf28e
+-/
 theorem clippedRadius_le (R : ℝ) (c : ℂ) {r : ℝ} (hr : 0 ≤ r) :
     clippedRadius R c r ≤ r := by
   unfold clippedRadius
   split_ifs <;> simp_all
 
-/-- A point in the shell belongs to exactly the same disks after clipping.-/
+/-- A point in the shell belongs to exactly the same disks after clipping.
+@isnad1 id=iff.1h4v.s6.57488bc2200d from=translated src=- shape=e97c7dcb vocab=da5dc9f0
+-/
 theorem mem_clipped_ball_iff {R : ℝ} {z : ℂ} (hz : ‖z‖ ∈ Icc R (2 * R))
     (c : ℂ) (r : ℝ) : z ∈ ball c (clippedRadius R c r) ↔ z ∈ ball c r := by
   classical
@@ -49,7 +57,9 @@ theorem mem_clipped_ball_iff {R : ℝ} {z : ℂ} (hz : ‖z‖ ∈ Icc R (2 * R)
     simp [clippedRadius, hmeet, hnot]
 
 /-- Any active disk of radius at most half the inner shell radius has its
-center at or beyond half that shell radius.-/
+center at or beyond half that shell radius.
+@isnad1 id=le.2h3v.s6.ff5a5b124728 from=translated src=- shape=3dd756f7 vocab=4daa102c
+-/
 theorem center_lower_of_clipped_ne_zero {R r : ℝ} {c : ℂ}
     (hsmall : r ≤ R / 2) (hactive : clippedRadius R c r ≠ 0) : R / 2 ≤ ‖c‖ := by
   classical
@@ -61,14 +71,18 @@ theorem center_lower_of_clipped_ne_zero {R r : ℝ} {c : ℂ}
   have htri := norm_sub_norm_le z c
   linarith [hz.1]
 
-/-- Clipping decreases the actual finite sum of radii.-/
+/-- Clipping decreases the actual finite sum of radii.
+@isnad1 id=le.1h4v.s5.94035fd3c724 from=translated src=- shape=0e7fda12 vocab=d6eb9277
+-/
 theorem sum_clippedRadius_le {ι : Type*} [Fintype ι]
     (R : ℝ) (c : ι → ℂ) (r : ι → ℝ) (hr : ∀ j, 0 ≤ r j) :
     (∑ j, clippedRadius R (c j) (r j)) ≤ ∑ j, r j := by
   exact Finset.sum_le_sum (fun j _ => clippedRadius_le R (c j) (hr j))
 
 /-- Same-index clipping supplies the center constraint needed by C₀ assembly,
-while preserving every shellwise pointwise estimate outside the disks.-/
+while preserving every shellwise pointwise estimate outside the disks.
+@isnad1 id=ex.2h4v.s7.51b232b1e5af from=translated src=- shape=acfdf63f vocab=e63a6c30
+-/
 theorem exists_clipped_family {ι : Type*} [Fintype ι]
     (R : ℝ) (c : ι → ℂ) (r : ι → ℝ) (hr : ∀ j, 0 ≤ r j)
     (hsum : (∑ j, r j) ≤ R / 2) :

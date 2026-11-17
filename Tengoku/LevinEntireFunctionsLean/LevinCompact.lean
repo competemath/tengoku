@@ -32,7 +32,9 @@ namespace LevinCompact
 variable {ι X Y : Type*} [TopologicalSpace X] [MetricSpace Y]
   {F : ι → X → Y} {l : Filter ι} {s : Set X}
 
-/-- Equicontinuity and convergence at dense points make every evaluation Cauchy.-/
+/-- Equicontinuity and convergence at dense points make every evaluation Cauchy.
+@isnad1 id=cauchy.3h7v.s6.e24b795fbc6d from=translated src=- shape=7b085c3f vocab=b2671c9c
+-/
 theorem cauchy_of_dense_convergence [l.NeBot]
     (hF : Equicontinuous F) (hs : Dense s)
     (hlim : ∀ y ∈ s, ∃ z, Tendsto (fun i => F i y) l (𝓝 z)) (x : X) :
@@ -58,7 +60,9 @@ theorem cauchy_of_dense_convergence [l.NeBot]
     _ < ε := by rw [dist_comm z (F j y), dist_comm (F j y) (F j x)]; linarith [hy i, hy j]
 
 /-- On a compact space, convergence on a dense set yields a continuous uniform
-limit for an equicontinuous family with complete metric target.-/
+limit for an equicontinuous family with complete metric target.
+@isnad1 id=ex.3h6v.s6.e67cc97bf0d6 from=translated src=- shape=fc13dfd5 vocab=e02daaea
+-/
 theorem exists_continuous_uniform_limit [CompactSpace X] [CompleteSpace Y] [l.NeBot]
     (hF : Equicontinuous F) (hs : Dense s)
     (hlim : ∀ y ∈ s, ∃ z, Tendsto (fun i => F i y) l (𝓝 z)) :
@@ -71,7 +75,9 @@ theorem exists_continuous_uniform_limit [CompactSpace X] [CompleteSpace Y] [l.Ne
   exact UniformFun.tendsto_iff_tendstoUniformly.mp
     ((hF.tendsto_uniformFun_iff_pi l f).mpr hpoint)
 
-/-- A continuous candidate limit is determined on a dense set.-/
+/-- A continuous candidate limit is determined on a dense set.
+@isnad1 id=tendstou.4h7v.s6.b87b4a5a0034 from=translated src=- shape=871fc4f6 vocab=a6273125
+-/
 theorem uniform_limit_of_dense [CompactSpace X] (hF : Equicontinuous F)
     (hs : Dense s) {f : X → Y} (hf : Continuous f)
     (hlim : ∀ x ∈ s, Tendsto (fun i => F i x) l (𝓝 (f x))) :
@@ -92,7 +98,9 @@ requiring the whole family to be equicontinuous.-/
 def AsymptoticUniformEquicontinuous (G : ι → M → Y) (l : Filter ι) : Prop :=
   ∀ ε > 0, ∃ δ > 0, ∀ᶠ i in l, ∀ x y, dist x y < δ → dist (G i x) (G i y) < ε
 
-/-- Asymptotic equicontinuity suffices for Cauchy convergence at every point.-/
+/-- Asymptotic equicontinuity suffices for Cauchy convergence at every point.
+@isnad1 id=cauchy.3h7v.s6.5b05e0bcc0b2 from=translated src=- shape=db689537 vocab=8a1ad945
+-/
 theorem cauchy_of_asymptotic_dense [l.NeBot]
     (hG : AsymptoticUniformEquicontinuous G l) (hD : Dense D)
     (hlim : ∀ y ∈ D, ∃ z, Tendsto (fun i => G i y) l (𝓝 z)) (x : M) :
@@ -124,7 +132,9 @@ theorem cauchy_of_asymptotic_dense [l.NeBot]
       linarith [hi.1, hi.2, hj.1, hj.2]
 
 /-- A pointwise limit inherits uniform continuity from asymptotic uniform
- equicontinuity; no continuity of the candidate limit is assumed.-/
+ equicontinuity; no continuity of the candidate limit is assumed.
+@isnad1 id=uniformc.2h6v.s6.25e51fbc080e from=translated src=- shape=680fd6f4 vocab=0355ad71
+-/
 theorem uniformContinuous_of_asymptotic [l.NeBot] {f : M → Y}
     (hG : AsymptoticUniformEquicontinuous G l)
     (hlim : ∀ x, Tendsto (fun i => G i x) l (𝓝 (f x))) : UniformContinuous f := by
@@ -139,7 +149,9 @@ theorem uniformContinuous_of_asymptotic [l.NeBot] {f : M → Y}
   linarith
 
 /-- Finite compact covering upgrades pointwise convergence to uniform convergence
-under an asymptotic uniform modulus.-/
+under an asymptotic uniform modulus.
+@isnad1 id=tendstou.2h6v.s6.5b39bd2289b5 from=translated src=- shape=2dff6f50 vocab=c073473d
+-/
 theorem uniform_of_asymptotic_pointwise [CompactSpace M] [l.NeBot] {f : M → Y}
     (hG : AsymptoticUniformEquicontinuous G l)
     (hlim : ∀ x, Tendsto (fun i => G i x) l (𝓝 (f x))) : TendstoUniformly G f l := by
@@ -171,7 +183,9 @@ theorem uniform_of_asymptotic_pointwise [CompactSpace M] [l.NeBot] {f : M → Y}
 
 /-- Full topological conclusion needed after the analytic Levin estimate:
 dense-point convergence plus asymptotic equicontinuity constructs a continuous
-uniform limit. Completeness supplies the missing limits outside the dense set.-/
+uniform limit. Completeness supplies the missing limits outside the dense set.
+@isnad1 id=ex.3h6v.s7.21ad937fc012 from=translated src=- shape=801dd707 vocab=2105e9e3
+-/
 theorem exists_uniform_limit_of_asymptotic_dense [CompactSpace M] [CompleteSpace Y] [l.NeBot]
     (hG : AsymptoticUniformEquicontinuous G l) (hD : Dense D)
     (hlim : ∀ y ∈ D, ∃ z, Tendsto (fun i => G i y) l (𝓝 z)) :
@@ -181,7 +195,9 @@ theorem exists_uniform_limit_of_asymptotic_dense [CompactSpace M] [CompleteSpace
   choose f hf using hex
   exact ⟨f, uniformContinuous_of_asymptotic hG hf, uniform_of_asymptotic_pointwise hG hf⟩
 
-/-- Prescribed limits on the dense set are retained by the constructed limit.-/
+/-- Prescribed limits on the dense set are retained by the constructed limit.
+@isnad1 id=ex.3h7v.s7.912ec78f63a0 from=translated src=- shape=37b93359 vocab=6619f73a
+-/
 theorem exists_uniform_extension_of_asymptotic_dense [CompactSpace M] [CompleteSpace Y] [l.NeBot]
     (hG : AsymptoticUniformEquicontinuous G l) (hD : Dense D) {g : M → Y}
     (hlim : ∀ y ∈ D, Tendsto (fun i => G i y) l (𝓝 (g y))) :
@@ -190,7 +206,9 @@ theorem exists_uniform_extension_of_asymptotic_dense [CompactSpace M] [CompleteS
     (fun y hy => ⟨g y, hlim y hy⟩)
   exact ⟨f, hf, huf, fun y hy => tendsto_nhds_unique (huf.tendsto_at y) (hlim y hy)⟩
 
-/-- A continuous prescribed candidate is the unique possible uniform limit.-/
+/-- A continuous prescribed candidate is the unique possible uniform limit.
+@isnad1 id=tendstou.4h7v.s7.2c1edbb5aaaa from=translated src=- shape=741e2b99 vocab=ebc63850
+-/
 theorem uniform_of_asymptotic_dense [CompactSpace M] [CompleteSpace Y] [l.NeBot]
     (hG : AsymptoticUniformEquicontinuous G l) (hD : Dense D) {g : M → Y}
     (hg : Continuous g)
@@ -201,7 +219,9 @@ theorem uniform_of_asymptotic_dense [CompactSpace M] [CompleteSpace Y] [l.NeBot]
   simpa only [this] using huf
 
 /-- Countably many dense test directions suffice; no limit is supplied at other
-angles and continuity is obtained as part of the conclusion.-/
+angles and continuity is obtained as part of the conclusion.
+@isnad1 id=ex.3h6v.s6.5da1c0b3c057 from=translated src=- shape=ead7e6a8 vocab=2dfced51
+-/
 theorem exists_uniform_limit_of_asymptotic_dense_sequence
     [CompactSpace M] [CompleteSpace Y] [l.NeBot] {d : ℕ → M}
     (hG : AsymptoticUniformEquicontinuous G l) (hd : DenseRange d)

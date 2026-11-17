@@ -15,7 +15,9 @@ open ComplexConjugate
 namespace CRGLevinCanonicalKernel
 
 /-- The numerator of a canonical factor stays uniformly away from zero on the
-inner half disk, even when the original zero approaches the outer boundary.-/
+inner half disk, even when the original zero approaches the outer boundary.
+@isnad1 id=le.3h3v.s7.4af4c46f4f2f from=translated src=- shape=b2905665 vocab=df7c861d
+-/
 theorem canonical_numerator_lower {R : ℝ} {a z : ℂ} (hR : 0 < R)
     (ha : ‖a‖ ≤ R) (hz : ‖z‖ ≤ R / 2) :
     R ^ 2 / 2 ≤ ‖(R : ℂ) ^ 2 - conj a * z‖ := by
@@ -29,7 +31,9 @@ theorem canonical_numerator_lower {R : ℝ} {a z : ℂ} (hR : 0 < R)
   nlinarith
 
 /-- The logarithmic modulus of the smooth numerator has a linear oscillation
-bound independent of the position of the original zero.-/
+bound independent of the position of the original zero.
+@isnad1 id=le.4h4v.s8.c37ddf188f08 from=translated src=- shape=73ef59a2 vocab=6747815b
+-/
 theorem canonical_numerator_log_difference {R : ℝ} {a z w : ℂ} (hR : 0 < R)
     (ha : ‖a‖ ≤ R) (hz : ‖z‖ ≤ R / 2) (hw : ‖w‖ ≤ R / 2) :
     |Real.log ‖(R : ℂ) ^ 2 - conj a * z‖ -
@@ -53,7 +57,9 @@ theorem canonical_numerator_log_difference {R : ℝ} {a z w : ℂ} (hR : 0 < R)
     _ = _ := by field_simp
 
 /-- The true canonical factor inherits a smooth numerator term plus the singular
-zero-factor radial term. All zero-avoidance requirements are explicit.-/
+zero-factor radial term. All zero-avoidance requirements are explicit.
+@isnad1 id=le.7h5v.s7.31f6806154f9 from=translated src=- shape=05ec4c31 vocab=d8dae6b9
+-/
 theorem canonicalFactor_log_difference {R d : ℝ} {a z w : ℂ} (hR : 0 < R)
     (ha : ‖a‖ ≤ R) (hz : ‖z‖ ≤ R / 2) (hw : ‖w‖ ≤ R / 2)
     (hd : 0 < d) (hza : d ≤ ‖z - a‖) (hwa : d ≤ ‖w - a‖) :
@@ -79,7 +85,9 @@ theorem canonicalFactor_log_difference {R d : ℝ} {a z w : ℂ} (hR : 0 < R)
     (CRGLevinLogKernel.zero_factor_log_difference hd hza hwa))
 
 /-- On a dyadic annulus, every sufficiently close pair of angular directions is
-controlled by the same radial function for the actual canonical factor.-/
+controlled by the same radial function for the actual canonical factor.
+@isnad1 id=le.10h7v.s7.5f35598b905e from=translated src=- shape=4bb84673 vocab=3f439b88
+-/
 theorem canonicalFactor_circle_uniform_bound {S R r δ : ℝ} {a v w : ℂ}
     (hS : 0 < S) (hr : 0 < r) (hrS : r ≤ S / 2) (hrR : r ≤ 2 * R)
     (ha : ‖a‖ ≤ S) (hδ : 0 ≤ δ) (hv : ‖v‖ = 1) (hw : ‖w‖ = 1)

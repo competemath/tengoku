@@ -36,7 +36,9 @@ negative divisor in this definition.-/
 noncomputable def finiteBlaschke (f : ℂ → ℂ) (R : ℝ) : ℂ → ℂ :=
   ∏ᶠ w, (canonicalFactor R w) ^ (-divisor f (ball 0 R) w)
 
-/-- Boundary nonvanishing kills the boundary divisor.-/
+/-- Boundary nonvanishing kills the boundary divisor.
+@isnad1 id=eq.2h2v.s8.d55b9fb4e5d2 from=translated src=- shape=a46c0c92 vocab=34fa137e
+-/
 theorem divisor_sphere_eq_zero {f : ℂ → ℂ} {R : ℝ}
     (hf : AnalyticOnNhd ℂ f (closedBall 0 R))
     (hnz : ∀ z ∈ sphere 0 R, f z ≠ 0) : divisor f (sphere 0 R) = 0 := by
@@ -49,7 +51,9 @@ theorem divisor_sphere_eq_zero {f : ℂ → ℂ} {R : ℝ}
   · exact Function.locallyFinsuppWithin.apply_eq_zero_of_notMem _ hz
 
 /-- Nonvanishing at the center excludes infinite analytic order everywhere on
- the connected closed disk.-/
+ the connected closed disk.
+@isnad1 id=ne.3h3v.s7.29317701fa3e from=translated src=- shape=67774bdb vocab=83899771
+-/
 theorem finite_order_on_disk {f : ℂ → ℂ} {R : ℝ} (hR : 0 < R)
     (hf : AnalyticOnNhd ℂ f (closedBall 0 R)) (hf0 : f 0 ≠ 0) :
     ∀ z : closedBall (0 : ℂ) R, meromorphicOrderAt f z ≠ ⊤ := by
@@ -60,7 +64,9 @@ theorem finite_order_on_disk {f : ℂ → ℂ} {R : ℝ} (hR : 0 < R)
   exact WithTop.zero_ne_top
 
 /-- The library's extended decomposition constructs an analytic zero-free factor;
-boundary nonvanishing leaves only the interior finite Blaschke product.-/
+boundary nonvanishing leaves only the interior finite Blaschke product.
+@isnad1 id=ex.4h2v.s8.946fffed51ef from=translated src=- shape=784654d6 vocab=e0273792
+-/
 theorem exists_zero_free_canonical_factor {f : ℂ → ℂ} {R : ℝ} (hR : 0 < R)
     (hf : AnalyticOnNhd ℂ f (closedBall 0 R)) (hf0 : f 0 ≠ 0)
     (hboundary : ∀ z ∈ sphere 0 R, f z ≠ 0) :
@@ -72,7 +78,9 @@ theorem exists_zero_free_canonical_factor {f : ℂ → ℂ} {R : ℝ} (hR : 0 < 
   simpa [divisor_sphere_eq_zero hf hboundary, finiteBlaschke, smul_eq_mul] using hg.eventuallyEq
 
 /-- The denominator of an interior Blaschke factor does not vanish anywhere on
- the closed disk.-/
+ the closed disk.
+@isnad1 id=ne.2h3v.s7.13923309af17 from=translated src=- shape=e405864f vocab=dc89369d
+-/
 theorem canonical_numerator_ne_zero {R : ℝ} {w z : ℂ}
     (hw : w ∈ ball 0 R) (hz : z ∈ closedBall 0 R) :
     (R : ℂ) ^ 2 - conj w * z ≠ 0 := by
@@ -87,7 +95,9 @@ theorem canonical_numerator_ne_zero {R : ℝ} {w z : ℂ}
       _ = R ^ 2 := by ring
   exact sub_ne_zero.mpr fun heq => (ne_of_lt hnorm) (congrArg norm heq.symm)
 
-/-- The reciprocal of a canonical factor is analytic even at its zero.-/
+/-- The reciprocal of a canonical factor is analytic even at its zero.
+@isnad1 id=analytic.1h2v.s6.177ca106f9ed from=translated src=- shape=ea737732 vocab=4ac7cfde
+-/
 theorem analyticOnNhd_inverse_canonical {R : ℝ} {w : ℂ} (hw : w ∈ ball 0 R) :
     AnalyticOnNhd ℂ (fun z => (canonicalFactor R w z)⁻¹) (closedBall 0 R) := by
   intro z hz
@@ -97,7 +107,9 @@ theorem analyticOnNhd_inverse_canonical {R : ℝ} {w : ℂ} (hw : w ∈ ball 0 R
     (canonical_numerator_ne_zero hw hz)
 
 /-- The finite Blaschke factor of an analytic function is analytic on the disk,
-including the original zeros.-/
+including the original zeros.
+@isnad1 id=analytic.1h2v.s6.7ecf16ebd8e2 from=translated src=- shape=3c44b75a vocab=c5ec558e
+-/
 theorem analyticOnNhd_finiteBlaschke {f : ℂ → ℂ} {R : ℝ}
     (hf : AnalyticOnNhd ℂ f (closedBall 0 R)) :
     AnalyticOnNhd ℂ (finiteBlaschke f R) (closedBall 0 R) := by
@@ -117,7 +129,9 @@ theorem analyticOnNhd_finiteBlaschke {f : ℂ → ℂ} {R : ℝ}
   · simp only [Function.locallyFinsuppWithin.apply_eq_zero_of_notMem _ hw, neg_zero, zpow_zero]
     exact analyticAt_const
 
-/-- The finite Blaschke product has modulus one on the boundary.-/
+/-- The finite Blaschke product has modulus one on the boundary.
+@isnad1 id=eq.2h3v.s6.c05a717c9d10 from=translated src=- shape=4c7baf5e vocab=ac5393fb
+-/
 theorem norm_finiteBlaschke_on_sphere {f : ℂ → ℂ} {R : ℝ}
     (hf : AnalyticOnNhd ℂ f (closedBall 0 R)) {z : ℂ} (hz : z ∈ sphere 0 R) :
     ‖finiteBlaschke f R z‖ = 1 := by
@@ -133,7 +147,9 @@ theorem norm_finiteBlaschke_on_sphere {f : ℂ → ℂ} {R : ℝ}
   simp only [Pi.pow_apply, norm_zpow, norm_canonicalFactor_eval_circle_eq_one hwball hz, one_zpow]
 
 /-- Removal of the codiscrete qualification: for analytic functions the
-canonical product equality holds at the original zeros as well.-/
+canonical product equality holds at the original zeros as well.
+@isnad1 id=eqon.4h3v.s7.859d9750bcba from=translated src=- shape=7532d056 vocab=925e7b1e
+-/
 theorem eqOn_of_canonical_factor {f g : ℂ → ℂ} {R : ℝ} (hR : 0 < R)
     (hf : AnalyticOnNhd ℂ f (closedBall 0 R))
     (hg : AnalyticOnNhd ℂ g (closedBall 0 R))
@@ -149,7 +165,9 @@ theorem eqOn_of_canonical_factor {f g : ℂ → ℂ} {R : ℝ} (hR : 0 < R)
     hprod.continuousAt).mp hne |>.eq_of_nhds
 
 /-- A genuine pointwise finite Blaschke factorization on the closed disk,
-with the boundary norm of the zero-free factor unchanged.-/
+with the boundary norm of the zero-free factor unchanged.
+@isnad1 id=ex.4h2v.s8.efec51445a2b from=translated src=- shape=e86ac174 vocab=aeeee1e5
+-/
 theorem exists_zero_free_factorization {f : ℂ → ℂ} {R : ℝ} (hR : 0 < R)
     (hf : AnalyticOnNhd ℂ f (closedBall 0 R)) (hf0 : f 0 ≠ 0)
     (hboundary : ∀ z ∈ sphere 0 R, f z ≠ 0) :
@@ -164,7 +182,9 @@ theorem exists_zero_free_factorization {f : ℂ → ℂ} {R : ℝ} (hR : 0 < R)
   rw [hpoint (sphere_subset_closedBall hz), Pi.mul_apply, norm_mul,
     norm_finiteBlaschke_on_sphere hf hz, one_mul]
 
-/-- At a nonzero center-to-zero displacement, the canonical norm is `R / |w|`.-/
+/-- At a nonzero center-to-zero displacement, the canonical norm is `R / |w|`.
+@isnad1 id=eq.2h2v.s5.98ebc65d1739 from=translated src=- shape=22c728a0 vocab=40c4fa7e
+-/
 theorem norm_canonicalFactor_at_zero {R : ℝ} (hR : 0 < R) {w : ℂ} (hw : w ≠ 0) :
     ‖canonicalFactor R w 0‖ = R / ‖w‖ := by
   have hn : ‖w‖ ≠ 0 := norm_ne_zero_iff.mpr hw
@@ -173,7 +193,9 @@ theorem norm_canonicalFactor_at_zero {R : ℝ} (hR : 0 < R) {w : ℂ} (hw : w �
   field_simp
 
 /-- Exact logarithmic decomposition at every point where the original function
-is nonzero. This gives the finite sum to which radial kernel estimates apply.-/
+is nonzero. This gives the finite sum to which radial kernel estimates apply.
+@isnad1 id=eq.6h4v.s8.e4ce42a51e02 from=translated src=- shape=eba23ebc vocab=74a4c59c
+-/
 theorem log_norm_decomposition {f g : ℂ → ℂ} {R : ℝ} (hR : 0 < R)
     (hf : AnalyticOnNhd ℂ f (closedBall 0 R))
     (hboundary : ∀ z ∈ sphere 0 R, f z ≠ 0) (D : ECanonicalDecomp f g R)
@@ -188,7 +210,9 @@ theorem log_norm_decomposition {f g : ℂ → ℂ} {R : ℝ} (hR : 0 < R)
   linarith
 
 /-- Removing the interior zeros increases the logarithmic modulus at the
-nonzero center. This follows from the actual nonnegative zero multiplicities.-/
+nonzero center. This follows from the actual nonnegative zero multiplicities.
+@isnad1 id=le.5h3v.s7.40d923658da5 from=translated src=- shape=45c92fed vocab=0fbdb454
+-/
 theorem log_norm_center_le {f g : ℂ → ℂ} {R : ℝ} (hR : 0 < R)
     (hf : AnalyticOnNhd ℂ f (closedBall 0 R)) (hf0 : f 0 ≠ 0)
     (hboundary : ∀ z ∈ sphere 0 R, f z ≠ 0) (D : ECanonicalDecomp f g R) :
@@ -215,7 +239,9 @@ theorem log_norm_center_le {f g : ℂ → ℂ} {R : ℝ} (hR : 0 < R)
   linarith
 
 /-- Complete local finite Blaschke removal, including the center logarithmic
-estimate required to control the zero-free factor.-/
+estimate required to control the zero-free factor.
+@isnad1 id=ex.4h2v.s8.084cfa88bb65 from=translated src=- shape=91e0cd6b vocab=a98b7bba
+-/
 theorem exists_zero_free_factorization_with_center_bound
     {f : ℂ → ℂ} {R : ℝ} (hR : 0 < R)
     (hf : AnalyticOnNhd ℂ f (closedBall 0 R)) (hf0 : f 0 ≠ 0)

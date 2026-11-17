@@ -26,6 +26,9 @@ open LevinGrowth LevinDensity LevinAssembly
 
 namespace LevinZeroFree
 
+/--
+@isnad1 id=compacts.0h0v.s4.3a823fa61a18 from=translated src=- shape=49959d42 vocab=03b284d2
+-/
 instance directionCompactSpace : CompactSpace Direction := by
   have hset : {ζ : ℂ | ‖ζ‖ = 1} = sphere (0 : ℂ) 1 := by
     ext ζ
@@ -35,9 +38,14 @@ instance directionCompactSpace : CompactSpace Direction := by
     exact isCompact_sphere _ _
   exact isCompact_iff_compactSpace.mp hc
 
+/--
+@isnad1 id=nonempty.0h0v.s1.4d2474343b7e from=translated src=- shape=49959d42 vocab=13d5fb52
+-/
 instance directionNonempty : Nonempty Direction := ⟨⟨1, norm_one⟩⟩
 
-/-- Translate the epsilon definition on one ray into its outside filter.-/
+/-- Translate the epsilon definition on one ray into its outside filter.
+@isnad1 id=ex.1h4v.s5.0759ba2ea3b0 from=translated src=- shape=feea5ae9 vocab=66d244cc
+-/
 theorem rayRegular_tendsto {f : ℂ → ℂ} {ρ : ℝ} {ζ : Direction} {a : ℝ}
     (h : RayRegular f ρ ζ a) :
     ∃ E : Set ℝ, MeasurableSet E ∧ ZeroRadialDensity E ∧
@@ -51,7 +59,9 @@ theorem rayRegular_tendsto {f : ℂ → ℂ} {ρ : ℝ} {ζ : Direction} {a : �
   simpa only [Real.dist_eq] using (hR r hr hrE).2
 
 /-- Convert a uniform limit outside an actual zero-density radial set to the
-paper-facing radial definition. The nonvanishing clause is retained explicitly.-/
+paper-facing radial definition. The nonvanishing clause is retained explicitly.
+@isnad1 id=radialre.5h4v.s6.73d2c290eca6 from=translated src=- shape=af081c1d vocab=4db0d46d
+-/
 theorem radialRegular_of_uniform_limit {f : ℂ → ℂ} {ρ : ℝ}
     (hnz : ∀ z : ℂ, f z ≠ 0) (E : Set ℝ)
     (hEm : MeasurableSet E) (hEz : ZeroRadialDensity E) (h : Direction → ℝ)
@@ -69,7 +79,9 @@ theorem radialRegular_of_uniform_limit {f : ℂ → ℂ} {ρ : ℝ}
   simpa only [Real.dist_eq, abs_sub_comm] using hb
 
 /-- A dense set of directions admits a countable dense sequence of directions
-inside it. This uses the actual topology inherited from the complex plane.-/
+inside it. This uses the actual topology inherited from the complex plane.
+@isnad1 id=ex.1h1v.s6.d4723355a8a8 from=translated src=- shape=19f52772 vocab=1d607ce4
+-/
 theorem exists_dense_sequence_in {S : Set Direction} (hS : Dense S) :
     ∃ d : ℕ → Direction, DenseRange d ∧ ∀ n, d n ∈ S := by
   obtain ⟨T, hTS, hTc, hTd⟩ := hS.exists_countable_dense_subset
@@ -84,7 +96,9 @@ theorem exists_dense_sequence_in {S : Set Direction} (hS : Dense S) :
 
 /-- Globally zero-free entire functions of finite positive type satisfy the
 radial dense-ray criterion. The angular equicontinuity is proved analytically
-from these hypotheses by `LevinFiniteType`, rather than assumed here.-/
+from these hypotheses by `LevinFiniteType`, rather than assumed here.
+@isnad1 id=ex.6h3v.s7.775aa8ebc900 from=translated src=- shape=b7c59789 vocab=e7d35f61
+-/
 theorem radialRegular_of_zero_free_dense_sequence {f : ℂ → ℂ} {ρ : ℝ}
     (hf : Differentiable ℂ f) (hρ : 0 ≤ ρ)
     (htype : FinitePositiveType f ρ) (hnz : ∀ z : ℂ, f z ≠ 0)
@@ -109,7 +123,9 @@ theorem radialRegular_of_zero_free_dense_sequence {f : ℂ → ℂ} {ρ : ℝ}
   exact ⟨h, radialRegular_of_uniform_limit hnz E hEm hEz h hh.continuous hlim⟩
 
 /-- Dense-set version of the zero-free special case, without a preselected
-countable dense sequence. The conclusion remains radial regularity.-/
+countable dense sequence. The conclusion remains radial regularity.
+@isnad1 id=ex.5h2v.s7.7fa5e59c6bed from=translated src=- shape=72995110 vocab=b4f97621
+-/
 theorem radialRegular_of_zero_free_dense_rays {f : ℂ → ℂ} {ρ : ℝ}
     (hf : Differentiable ℂ f) (hρ : 0 ≤ ρ)
     (htype : FinitePositiveType f ρ) (hnz : ∀ z : ℂ, f z ≠ 0)

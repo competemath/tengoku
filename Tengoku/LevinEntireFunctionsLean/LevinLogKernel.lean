@@ -29,7 +29,9 @@ open Set Metric Real Complex MeasureTheory intervalIntegral
 namespace CRGLevinLogKernel
 
 /-- Positive quantities bounded away from zero have logarithmic oscillation
-controlled by their absolute difference through a logarithmic modulus.-/
+controlled by their absolute difference through a logarithmic modulus.
+@isnad1 id=le.5h4v.s6.acab2148003a from=translated src=- shape=8e3a7081 vocab=9e41dd82
+-/
 theorem abs_log_sub_le {p q d t : ℝ} (hd : 0 < d) (ht : 0 ≤ t)
     (hp : d ≤ p) (hq : d ≤ q) (hdiff : |p - q| ≤ t) :
     |Real.log p - Real.log q| ≤ Real.log (1 + t / d) := by
@@ -48,7 +50,9 @@ theorem abs_log_sub_le {p q d t : ℝ} (hd : 0 < d) (ht : 0 ≤ t)
     aux p q hp0 hq0 hq (by linarith)⟩
 
 /-- The logarithmic moduli of two zero factors are controlled by their separation
-and a positive lower bound on their distances from the zero.-/
+and a positive lower bound on their distances from the zero.
+@isnad1 id=le.3h4v.s7.6997b22493cb from=translated src=- shape=1de8857e vocab=c6abda8e
+-/
 theorem zero_factor_log_difference {x y a : ℂ} {d : ℝ} (hd : 0 < d)
     (hx : d ≤ ‖x - a‖) (hy : d ≤ ‖y - a‖) :
     |Real.log ‖x - a‖ - Real.log ‖y - a‖| ≤ Real.log (1 + ‖x - y‖ / d) := by
@@ -57,7 +61,9 @@ theorem zero_factor_log_difference {x y a : ℂ} {d : ℝ} (hd : 0 < d)
   simpa only [sub_sub_sub_cancel_right] using h
 
 /-- The same bound on a circle, with a denominator depending only on the radius.
-The excluded radii are explicitly those that meet the zero.-/
+The excluded radii are explicitly those that meet the zero.
+@isnad1 id=le.4h4v.s7.7edd3b6b5c4a from=translated src=- shape=d9a6eb21 vocab=4dd6cf04
+-/
 theorem circular_zero_factor_log_difference {v w a : ℂ} {r : ℝ}
     (hr : 0 < r) (hv : ‖v‖ = 1) (hw : ‖w‖ = 1) (hgap : r ≠ ‖a‖) :
     |Real.log ‖(r : ℂ) * v - a‖ - Real.log ‖(r : ℂ) * w - a‖| ≤
@@ -80,18 +86,26 @@ theorem circular_zero_factor_log_difference {v w a : ℂ} {r : ℝ}
 irrelevant for Lebesgue integration; pointwise factor bounds exclude that point.-/
 noncomputable def radialKernel (h x : ℝ) : ℝ := Real.log (1 + h / |x|)
 
+/--
+@isnad1 id=le.1h2v.s4.00481202aa86 from=translated src=- shape=334a1355 vocab=dfa6bb5e
+-/
 lemma radialKernel_nonneg {h x : ℝ} (hh : 0 ≤ h) : 0 ≤ radialKernel h x := by
   apply Real.log_nonneg
   have h := div_nonneg hh (abs_nonneg x)
   linarith
 
+/--
+@isnad1 id=eq.2h2v.s5.9664016783ec from=translated src=- shape=400be9d1 vocab=0b006b25
+-/
 lemma radialKernel_eq_log_sub {h x : ℝ} (hh : 0 < h) (hx : 0 < x) :
     radialKernel h x = Real.log (x + h) - Real.log x := by
   rw [radialKernel, abs_of_pos hx]
   have heq : 1 + h / x = (x + h) / x := by field_simp
   rw [heq, Real.log_div (by positivity : x + h ≠ 0) hx.ne']
 
-/-- The logarithmic radial singularity is genuinely Lebesgue integrable.-/
+/-- The logarithmic radial singularity is genuinely Lebesgue integrable.
+@isnad1 id=interval.2h2v.s5.443cde52f8fa from=translated src=- shape=99875bc5 vocab=7f14be06
+-/
 theorem radialKernel_intervalIntegrable {h L : ℝ} (hh : 0 < h) (hL : 0 ≤ L) :
     IntervalIntegrable (radialKernel h) volume 0 L := by
   have hshift : IntervalIntegrable (fun x : ℝ => Real.log (x + h)) volume 0 L :=
@@ -101,7 +115,9 @@ theorem radialKernel_intervalIntegrable {h L : ℝ} (hh : 0 < h) (hL : 0 ≤ L) 
   rw [uIoo_of_le hL] at hx
   exact (radialKernel_eq_log_sub hh hx.1).symm
 
-/-- Exact integral of the radial logarithmic majorant.-/
+/-- Exact integral of the radial logarithmic majorant.
+@isnad1 id=eq.2h2v.s6.dd9ea8f7051a from=translated src=- shape=6cf3bd7a vocab=4bc779cc
+-/
 theorem integral_radialKernel {h L : ℝ} (hh : 0 < h) (hL : 0 ≤ L) :
     (∫ x in 0..L, radialKernel h x) =
       (L + h) * Real.log (L + h) - L * Real.log L - h * Real.log h := by
@@ -115,7 +131,9 @@ theorem integral_radialKernel {h L : ℝ} (hh : 0 < h) (hL : 0 ≤ L) :
   ring
 
 /-- The averaged radial kernel is `O(δ log(1/δ))` as the angular separation δ
-shrinks. This estimate is what is needed before Markov's inequality.-/
+shrinks. This estimate is what is needed before Markov's inequality.
+@isnad1 id=le.2h1v.s6.131d3cb385ee from=translated src=- shape=2ef46e37 vocab=eae1327d
+-/
 theorem integral_radialKernel_unit_bound {δ : ℝ} (hδ : 0 < δ) (hδ1 : δ ≤ 1) :
     (∫ x in 0..1, radialKernel δ x) ≤ δ * (2 - Real.log δ) := by
   rw [integral_radialKernel hδ (by norm_num)]
@@ -126,14 +144,18 @@ theorem integral_radialKernel_unit_bound {δ : ℝ} (hδ : 0 < δ) (hδ1 : δ �
   simp only [Real.log_one, mul_zero, sub_zero]
   nlinarith
 
-/-- Evenness extends the radial-kernel integrability to every finite interval.-/
+/-- Evenness extends the radial-kernel integrability to every finite interval.
+@isnad1 id=interval.1h3v.s5.4325d946856d from=translated src=- shape=8e34e826 vocab=18313171
+-/
 theorem radialKernel_intervalIntegrable_all {h a b : ℝ} (hh : 0 < h) :
     IntervalIntegrable (radialKernel h) volume a b := by
   apply intervalIntegrable_of_even (fun x => by simp [radialKernel])
   intro x hx
   exact radialKernel_intervalIntegrable hh hx.le
 
-/-- Integral on a symmetric interval, including the integrable central singularity.-/
+/-- Integral on a symmetric interval, including the integrable central singularity.
+@isnad1 id=eq.1h2v.s6.164498e6fd09 from=translated src=- shape=bd43ad9b vocab=cae3f4f7
+-/
 theorem integral_radialKernel_symmetric {h L : ℝ} (hh : 0 < h) :
     (∫ x in -L..L, radialKernel h x) = 2 * (∫ x in 0..L, radialKernel h x) := by
   have hn : (∫ x in -L..0, radialKernel h x) = ∫ x in 0..L, radialKernel h x := by
@@ -142,7 +164,9 @@ theorem integral_radialKernel_symmetric {h L : ℝ} (hh : 0 < h) :
     (radialKernel_intervalIntegrable_all hh), hn]
   ring
 
-/-- Scaling the spatial interval scales the radial-kernel integral linearly.-/
+/-- Scaling the spatial interval scales the radial-kernel integral linearly.
+@isnad1 id=eq.2h2v.s6.dfee29fcec92 from=translated src=- shape=55c3ff92 vocab=888584c7
+-/
 theorem integral_radialKernel_scale {δ L : ℝ} (hδ : 0 < δ) (hL : 0 < L) :
     (∫ x in 0..L, radialKernel (δ * L) x) =
       L * (∫ x in 0..1, radialKernel δ x) := by
@@ -155,7 +179,9 @@ theorem integral_radialKernel_scale {δ L : ℝ} (hδ : 0 < δ) (hL : 0 < L) :
   ring
 
 /-- A uniform bound for every translated interval lying within distance L of the
-singular radius. It is independent of the position of that radius.-/
+singular radius. It is independent of the position of that radius.
+@isnad1 id=le.6h5v.s7.59ade4f791ff from=translated src=- shape=ebd03de4 vocab=8ba7276d
+-/
 theorem integral_radialKernel_shift_bound {δ L a b s : ℝ}
     (hδ : 0 < δ) (hδ1 : δ ≤ 1) (hL : 0 < L)
     (hab : a ≤ b) (ha : -L ≤ a - s) (hb : b - s ≤ L) :
@@ -174,7 +200,9 @@ theorem integral_radialKernel_shift_bound {δ L a b s : ℝ}
       (by positivity)
 
 /-- The angular scale `δ` yields a uniform radial L¹ bound on a dyadic annulus,
-for any zero of modulus at most `8R`.-/
+for any zero of modulus at most `8R`.
+@isnad1 id=le.5h3v.s7.666aad427eb8 from=translated src=- shape=fa409cf6 vocab=dff2911e
+-/
 theorem integral_radialKernel_dyadic_bound {δ R s : ℝ}
     (hδ : 0 < δ) (hδ1 : δ ≤ 1) (hR : 0 < R) (hs0 : 0 ≤ s) (hs : s ≤ 8 * R) :
     (∫ x in R..(2 * R), radialKernel (2 * δ * R) (x - s)) ≤
@@ -189,7 +217,9 @@ theorem integral_radialKernel_dyadic_bound {δ R s : ℝ}
   ring
 
 /-- The angular bound has a radial majorant independent of the two directions,
-which allows one bad set to control all sufficiently close direction pairs.-/
+which allows one bad set to control all sufficiently close direction pairs.
+@isnad1 id=le.7h6v.s7.fcd8d5a3f999 from=translated src=- shape=4c107387 vocab=b8c4681e
+-/
 theorem circular_zero_factor_uniform_bound {v w a : ℂ} {r R δ : ℝ}
     (hr : 0 < r) (hrR : r ≤ 2 * R) (hδ : 0 ≤ δ)
     (hv : ‖v‖ = 1) (hw : ‖w‖ = 1) (hvw : ‖v - w‖ ≤ δ) (hgap : r ≠ ‖a‖) :
@@ -203,7 +233,9 @@ theorem circular_zero_factor_uniform_bound {v w a : ℂ} {r R δ : ℝ}
     nlinarith
   exact add_le_add_right (div_le_div_of_nonneg_right hmul (abs_nonneg _)) 1
 
-/-- The explicit bound on the average tends to zero with the angular scale.-/
+/-- The explicit bound on the average tends to zero with the angular scale.
+@isnad1 id=tendsto.0h0v.s5.17f125262cff from=translated src=- shape=624c75c7 vocab=b5a609fa
+-/
 theorem radialKernel_modulus_tendsto_zero :
     Filter.Tendsto (fun δ : ℝ => δ * (2 - Real.log δ)) (nhds 0) (nhds 0) := by
   have hc : Continuous (fun δ : ℝ => 2 * δ - δ * Real.log δ) :=

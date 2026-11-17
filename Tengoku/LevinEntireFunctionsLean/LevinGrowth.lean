@@ -44,6 +44,9 @@ def IsIndicator (f : ℂ → ℂ) (ρ : ℝ) (h : Direction → ℝ) : Prop :=
   ∀ ζ : Direction,
     Filter.limsup (fun r : ℝ => extendedNormalizedLog f ρ r ζ) atTop = (h ζ : EReal)
 
+/--
+@isnad1 id=eq.1h2v.s4.a4cb76ebfce5 from=translated src=- shape=e3c413d5 vocab=9ab8fdb7
+-/
 theorem norm_rayPoint {r : ℝ} (hr : 0 ≤ r) (ζ : Direction) :
     ‖rayPoint r ζ‖ = r := by
   simp [rayPoint, ζ.property, Real.norm_of_nonneg hr]
@@ -56,6 +59,9 @@ def FinitePositiveType (f : ℂ → ℂ) (ρ : ℝ) : Prop :=
   (∃ c : ℝ, 0 < c ∧ ∀ R : ℝ, ∃ z : ℂ, max R 1 ≤ ‖z‖ ∧
     Real.exp (c * ‖z‖ ^ ρ) ≤ ‖f z‖)
 
+/--
+@isnad1 id=ex.1h2v.s4.2f49ad486f24 from=translated src=- shape=5a2e74f2 vocab=5f5ecc95
+-/
 theorem finitePositiveType_nontrivial {f : ℂ → ℂ} {ρ : ℝ}
     (hf : FinitePositiveType f ρ) : ∃ z : ℂ, f z ≠ 0 := by
   obtain ⟨c, _, hc⟩ := hf.2
@@ -64,6 +70,9 @@ theorem finitePositiveType_nontrivial {f : ℂ → ℂ} {ρ : ℝ}
   have hp : 0 < ‖f z‖ := (Real.exp_pos _).trans_le hz
   exact norm_pos_iff.mp hp
 
+/--
+@isnad1 id=countabl.2h1v.s6.85c697a1e8f1 from=translated src=- shape=42df9735 vocab=7e1fa161
+-/
 theorem entire_zeroSet_countable {f : ℂ → ℂ} (hf : Differentiable ℂ f)
     (hn : ∃ z : ℂ, f z ≠ 0) : {z : ℂ | f z = 0}.Countable := by
   have ha : AnalyticOnNhd ℂ f univ :=
@@ -77,10 +86,16 @@ theorem entire_zeroSet_countable {f : ℂ → ℂ} (hf : Differentiable ℂ f)
 
 def zeroRadii (f : ℂ → ℂ) : Set ℝ := (fun z : ℂ => ‖z‖) '' {z : ℂ | f z = 0}
 
+/--
+@isnad1 id=countabl.2h1v.s6.1772df6489aa from=translated src=- shape=42bdb752 vocab=a83d4fd1
+-/
 theorem zeroRadii_countable {f : ℂ → ℂ} (hf : Differentiable ℂ f)
     (hn : ∃ z : ℂ, f z ≠ 0) : (zeroRadii f).Countable :=
   (entire_zeroSet_countable hf hn).image _
 
+/--
+@isnad1 id=zeroradi.2h1v.s6.75b1a677e98d from=translated src=- shape=394191dc vocab=98d66cbd
+-/
 theorem zeroRadii_zero_density {f : ℂ → ℂ} (hf : Differentiable ℂ f)
     (hn : ∃ z : ℂ, f z ≠ 0) : LevinDensity.ZeroRadialDensity (zeroRadii f) := by
   have hzero := (zeroRadii_countable hf hn).measure_zero (volume : Measure ℝ)
@@ -91,6 +106,9 @@ theorem zeroRadii_zero_density {f : ℂ → ℂ} (hf : Differentiable ℂ f)
     _ = 0 := hzero
     _ ≤ _ := bot_le
 
+/--
+@isnad1 id=ne.2h3v.s5.19209eff03c6 from=translated src=- shape=47b32d65 vocab=a6be9f27
+-/
 theorem nonzero_of_not_zeroRadii {f : ℂ → ℂ} {r : ℝ}
     (hr : 0 ≤ r) (he : r ∉ zeroRadii f) (ζ : Direction) : f (rayPoint r ζ) ≠ 0 := by
   intro hz
@@ -98,7 +116,9 @@ theorem nonzero_of_not_zeroRadii {f : ℂ → ℂ} {r : ℝ}
   exact ⟨rayPoint r ζ, hz, norm_rayPoint hr ζ⟩
 
 /-- One can choose a circle avoiding every zero inside any nonempty radial interval.
-This supplies the boundary condition for local finite Blaschke decomposition.-/
+This supplies the boundary condition for local finite Blaschke decomposition.
+@isnad1 id=ex.3h3v.s7.baf1eda00973 from=translated src=- shape=f915f0d5 vocab=9f2f8b11
+-/
 theorem exists_zero_free_sphere_between {f : ℂ → ℂ} (hf : Differentiable ℂ f)
     (hn : ∃ z : ℂ, f z ≠ 0) {a b : ℝ} (hab : a < b) :
     ∃ R ∈ Ioo a b, ∀ z : ℂ, ‖z‖ = R → f z ≠ 0 := by
@@ -135,7 +155,9 @@ def DiskRegular (f : ℂ → ℂ) (ρ : ℝ) (h : Direction → ℝ) : Prop :=
         f (rayPoint r ζ) ≠ 0 ∧ |normalizedLog f ρ r ζ - h ζ| < ε
 
 /-- The easy geometric direction of the equivalence uses the actual radial shadow
-of the exceptional disks. It requires no analytic hypothesis on f.-/
+of the exceptional disks. It requires no analytic hypothesis on f.
+@isnad1 id=radialre.1h3v.s4.0ecda92425dd from=translated src=- shape=7a002696 vocab=f8cf560f
+-/
 theorem diskRegular_radialRegular {f : ℂ → ℂ} {ρ : ℝ} {h : Direction → ℝ}
     (hf : DiskRegular f ρ h) : RadialRegular f ρ h := by
   obtain ⟨hh, D, hD, hgrowth⟩ := hf
@@ -150,6 +172,9 @@ theorem diskRegular_radialRegular {f : ℂ → ℂ} {ρ : ℝ} {h : Direction �
   have hs := LevinGeometry.norm_mem_radialShadow D hz
   simpa only [norm_rayPoint (hR.le.trans hr) ζ] using hs
 
+/--
+@isnad1 id=rayregul.1h4v.s4.e255682ff6cf from=translated src=- shape=15cb74b0 vocab=863724f1
+-/
 theorem radialRegular_rayRegular {f : ℂ → ℂ} {ρ : ℝ} {h : Direction → ℝ}
     (hf : RadialRegular f ρ h) (ζ : Direction) : RayRegular f ρ ζ (h ζ) := by
   obtain ⟨_, E, hE, hzero, hgrowth⟩ := hf

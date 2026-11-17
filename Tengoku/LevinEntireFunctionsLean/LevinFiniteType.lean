@@ -18,7 +18,9 @@ open Set Filter Metric
 open scoped Topology
 namespace LevinFiniteType
 
-/-- Absorb the compact initial region into a single finite-type constant.-/
+/-- Absorb the compact initial region into a single finite-type constant.
+@isnad1 id=ex.3h2v.s7.d5b0467df7ef from=translated src=- shape=c51573aa vocab=8f004cf3
+-/
 theorem scaled_exp_bound {f : ℂ → ℂ} {ρ : ℝ} (hf : Continuous f) (hρ : 0 ≤ ρ)
     (htype : LevinGrowth.FinitePositiveType f ρ) :
     ∃ A : ℝ, 0 < A ∧ ∀ r : ℝ, 1 ≤ r → ∀ z : ℂ, ‖z‖ ≤ 4 * r →
@@ -48,7 +50,9 @@ theorem scaled_exp_bound {f : ℂ → ℂ} {ρ : ℝ} (hf : Continuous f) (hρ :
       _ ≤ A * r ^ ρ := by nlinarith
       _ ≤ Real.exp (A * r ^ ρ) := by linarith [Real.add_one_le_exp (A * r ^ ρ)]
 
-/-- The same constant can also control the lower value at a fixed nonzero center.-/
+/-- The same constant can also control the lower value at a fixed nonzero center.
+@isnad1 id=ex.4h2v.s7.c48bff5a0f1a from=translated src=- shape=b486b45f vocab=26103471
+-/
 theorem scaled_log_bounds {f : ℂ → ℂ} {ρ : ℝ} (hf : Continuous f) (hρ : 0 ≤ ρ)
     (htype : LevinGrowth.FinitePositiveType f ρ) (hnz : ∀ z : ℂ, f z ≠ 0) :
     ∃ A : ℝ, 0 < A ∧ ∀ r : ℝ, 1 ≤ r →
@@ -71,7 +75,9 @@ theorem scaled_log_bounds {f : ℂ → ℂ} {ρ : ℝ} (hf : Continuous f) (hρ 
     nlinarith
 
 /-- No equicontinuity premise is assumed here: the common Lipschitz bound is
-derived from holomorphy, finite type, and absence of zeros.-/
+derived from holomorphy, finite type, and absence of zeros.
+@isnad1 id=ex.4h2v.s7.2834b16135d9 from=translated src=- shape=30fc0fd7 vocab=00d3ef54
+-/
 theorem zero_free_normalized_lipschitz {f : ℂ → ℂ} {ρ : ℝ}
     (hf : Differentiable ℂ f) (hρ : 0 ≤ ρ)
     (htype : LevinGrowth.FinitePositiveType f ρ) (hnz : ∀ z : ℂ, f z ≠ 0) :
@@ -86,6 +92,9 @@ theorem zero_free_normalized_lipschitz {f : ℂ → ℂ} {ρ : ℝ}
     (hb r hr).1 (hb r hr).2
   simpa only [LevinGrowth.normalizedLog, LevinGrowth.rayPoint, Subtype.dist_eq, dist_eq_norm] using h
 
+/--
+@isnad1 id=asymptot.4h2v.s7.8926bc805964 from=translated src=- shape=f925a204 vocab=33e0aa4a
+-/
 theorem zero_free_asymptotic_equicontinuity {f : ℂ → ℂ} {ρ : ℝ}
     (hf : Differentiable ℂ f) (hρ : 0 ≤ ρ)
     (htype : LevinGrowth.FinitePositiveType f ρ) (hnz : ∀ z : ℂ, f z ≠ 0) :

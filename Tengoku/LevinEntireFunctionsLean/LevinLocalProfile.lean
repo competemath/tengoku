@@ -10,6 +10,9 @@ noncomputable section
 open Set Metric Real Complex
 namespace LevinLocalProfile
 
+/--
+@isnad1 id=ex.13h8v.s9.bce3b9949314 from=translated src=- shape=b6b817f9 vocab=b10b2745
+-/
 theorem exists_local_disks {F : ℂ → ℂ} {H : ℂ → ℝ} {T a Ω δ η : ℝ}
     (hF : Differentiable ℂ F) (hT : 0 < T) (ha : 0 ≤ a) (hΩ : 0 ≤ Ω)
     (hδ : 0 < δ) (hδ1 : δ ≤ 1/128) (hη : 0 < η) (hη1 : η ≤ 1)

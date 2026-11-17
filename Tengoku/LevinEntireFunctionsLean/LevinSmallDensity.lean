@@ -32,7 +32,9 @@ def EventuallyDensityLE (E : Set ℝ) (η : ℝ) : Prop :=
     volume (E ∩ Icc 0 R) ≤ ENNReal.ofReal (η * R)
 
 /-- Even an exceptional set of sufficiently small positive density has
-arbitrarily large good radii.-/
+arbitrarily large good radii.
+@isnad1 id=ex.2h3v.s5.82cb219a8a19 from=translated src=- shape=042f3fd5 vocab=9ab62387
+-/
 theorem exists_ge_outside_of_density_bound {E : Set ℝ} {η : ℝ}
     (hE : EventuallyDensityLE E η) (hη : η ≤ 1 / 2) (A : ℝ) :
     ∃ r : ℝ, A ≤ r ∧ r ∉ E := by
@@ -54,7 +56,9 @@ theorem exists_ge_outside_of_density_bound {E : Set ℝ} {η : ℝ}
   have hreal := (ENNReal.ofReal_le_ofReal_iff (show 0 ≤ (1 / 2 : ℝ) * R by positivity)).mp hmeasure
   linarith
 
-/-- The corresponding outside filter is nontrivial.-/
+/-- The corresponding outside filter is nontrivial.
+@isnad1 id=nebot.2h2v.s5.89e756cf9518 from=translated src=- shape=23a9e5c6 vocab=c3006b01
+-/
 theorem outsideFilter_neBot_of_density_bound {E : Set ℝ} {η : ℝ}
     (hE : EventuallyDensityLE E η) (hη : η ≤ 1 / 2) :
     (outsideFilter E).NeBot := by
@@ -64,7 +68,9 @@ theorem outsideFilter_neBot_of_density_bound {E : Set ℝ} {η : ℝ}
   obtain ⟨r, hr, hrE⟩ := exists_ge_outside_of_density_bound hE hη A
   exact ⟨r, hA r hr, hrE⟩
 
-/-- Adding a zero-density set at most doubles any positive eventual bound.-/
+/-- Adding a zero-density set at most doubles any positive eventual bound.
+@isnad1 id=eventual.3h3v.s5.6829eaffa59a from=translated src=- shape=d9f1dc8d vocab=c9691dec
+-/
 theorem density_bound_union_zero {E D : Set ℝ} {η : ℝ}
     (hE : EventuallyDensityLE E η) (hD : ZeroRadialDensity D) (hη : 0 < η) :
     EventuallyDensityLE (E ∪ D) (2 * η) := by
@@ -86,17 +92,24 @@ theorem density_bound_union_zero {E D : Set ℝ} {η : ℝ}
       ring
 
 /-- The outside filter of a union is finer than either individual outside
-filter; bounded initial tails are not needed for this special case.-/
+filter; bounded initial tails are not needed for this special case.
+@isnad1 id=le.0h2v.s4.6379e9a0ec21 from=translated src=- shape=71f93941 vocab=7d25c244
+-/
 theorem outsideFilter_union_le_left (E D : Set ℝ) :
     outsideFilter (E ∪ D) ≤ outsideFilter E :=
   outsideFilter_le_of_eventually_contains ⟨0, fun _ _ hr => Or.inl hr⟩
 
+/--
+@isnad1 id=le.0h2v.s4.d31eae9c4683 from=translated src=- shape=bcd9c8da vocab=7d25c244
+-/
 theorem outsideFilter_union_le_right (E D : Set ℝ) :
     outsideFilter (E ∪ D) ≤ outsideFilter D :=
   outsideFilter_le_of_eventually_contains ⟨0, fun _ _ hr => Or.inr hr⟩
 
 /-- Limits obtained with different small positive-density equicontinuity sets
-are identical, because their values agree on the given dense directions.-/
+are identical, because their values agree on the given dense directions.
+@isnad1 id=ex.6h6v.s7.6054e1314d5b from=translated src=- shape=1876660b vocab=bd254077
+-/
 theorem exists_single_limit_all_density_bounds
     {M : Type*} [PseudoMetricSpace M] [CompactSpace M]
     (G : ℝ → M → ℝ) (d : ℕ → M) (hd : DenseRange d) (a : ℕ → ℝ)
@@ -138,7 +151,9 @@ theorem exists_single_limit_all_density_bounds
 
 /-- The actual epsilon/eta assembly. Each equicontinuity exceptional set may
 have positive density bounded by `η n`; only these bounds tend to zero. A
-single measurable zero-density exceptional set supports uniform convergence.-/
+single measurable zero-density exceptional set supports uniform convergence.
+@isnad1 id=ex.8h6v.s7.a32cbc9c8b2d from=translated src=- shape=e5fb48f1 vocab=e14d4021
+-/
 theorem exists_zero_density_uniform_limit
     {M : Type*} [PseudoMetricSpace M] [CompactSpace M]
     (G : ℝ → M → ℝ) (d : ℕ → M) (hd : DenseRange d) (a : ℕ → ℝ)
@@ -186,7 +201,9 @@ theorem exists_zero_density_uniform_limit
 each positive density budget there is an exceptional set outside which the
 family is asymptotically uniformly equicontinuous. Together with the separate
 zero-density raywise limits, this yields one zero-density set and angularly
-uniform convergence.-/
+uniform convergence.
+@isnad1 id=ex.3h4v.s7.00bd3383ba96 from=translated src=- shape=3b71e7dc vocab=b9d3ab6e
+-/
 theorem exists_zero_density_uniform_limit_of_arbitrarily_small_density
     {M : Type*} [PseudoMetricSpace M] [CompactSpace M]
     (G : ℝ → M → ℝ) (d : ℕ → M) (hd : DenseRange d) (a : ℕ → ℝ)

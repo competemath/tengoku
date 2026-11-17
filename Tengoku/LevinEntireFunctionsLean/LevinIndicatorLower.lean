@@ -25,7 +25,9 @@ open LevinGrowth LevinDensity LevinAssembly
 namespace LevinIndicatorLower
 
 /-- Raywise regularity gives the extended-real limit outside its exceptional
-set; eventual nonvanishing justifies passage from the real logarithm.-/
+set; eventual nonvanishing justifies passage from the real logarithm.
+@isnad1 id=ex.1h4v.s5.d38978a8b92d from=translated src=- shape=d7c29305 vocab=9c85ea06
+-/
 theorem rayRegular_extended_tendsto {f : ℂ → ℂ} {ρ : ℝ} {ζ : Direction} {a : ℝ}
     (hf : RayRegular f ρ ζ a) :
     ∃ E : Set ℝ, MeasurableSet E ∧ ZeroRadialDensity E ∧
@@ -47,7 +49,9 @@ theorem rayRegular_extended_tendsto {f : ℂ → ℂ} {ρ : ℝ} {ζ : Direction
     simp only [extendedNormalizedLog, ite_eq_right (hR r hr hrE).1]
   exact ⟨E, hEm, hEz, (EReal.tendsto_coe.2 hreal).congr' heq.symm⟩
 
-/-- The unrestricted limsup dominates every finite radial regular limit.-/
+/-- The unrestricted limsup dominates every finite radial regular limit.
+@isnad1 id=le.1h4v.s5.88eb555f0381 from=translated src=- shape=9741bc36 vocab=3241cf35
+-/
 theorem rayRegular_le_limsup {f : ℂ → ℂ} {ρ : ℝ} {ζ : Direction} {a : ℝ}
     (hf : RayRegular f ρ ζ a) :
     (a : EReal) ≤ Filter.limsup (fun r => extendedNormalizedLog f ρ r ζ) atTop := by
@@ -57,14 +61,18 @@ theorem rayRegular_le_limsup {f : ℂ → ℂ} {ρ : ℝ} {ζ : Direction} {a : 
   exact limsup_le_limsup_of_le inf_le_left
 
 /-- Lower indicator inequality for every direction of a radially regular
-function. No holomorphy premise is needed for this purely limiting step.-/
+function. No holomorphy premise is needed for this purely limiting step.
+@isnad1 id=le.1h4v.s5.d0dfb6eb3d60 from=translated src=- shape=8ce5942b vocab=3b4a0abb
+-/
 theorem radialRegular_le_limsup {f : ℂ → ℂ} {ρ : ℝ} {h : Direction → ℝ}
     (hf : RadialRegular f ρ h) (ζ : Direction) :
     (h ζ : EReal) ≤ Filter.limsup (fun r => extendedNormalizedLog f ρ r ζ) atTop :=
   rayRegular_le_limsup (radialRegular_rayRegular hf ζ)
 
 /-- An unrestricted eventual upper bound at every positive tolerance controls
-the extended-real limsup, including functions which can take minus infinity.-/
+the extended-real limsup, including functions which can take minus infinity.
+@isnad1 id=le.1h2v.s6.d8fcd72f53ef from=translated src=- shape=9eec69b4 vocab=162f7b5a
+-/
 theorem limsup_le_of_eventual_upper_bounds (u : ℝ → EReal) (a : ℝ)
     (hu : ∀ ε : ℝ, 0 < ε → ∀ᶠ r : ℝ in atTop, u r ≤ ((a + ε : ℝ) : EReal)) :
     Filter.limsup u atTop ≤ (a : EReal) := by
@@ -78,7 +86,9 @@ theorem limsup_le_of_eventual_upper_bounds (u : ℝ → EReal) (a : ℝ)
   exact limsup_le_of_le (h := hu ε hε)
 
 /-- Radial regularity plus the separate full-radius upper estimate identifies
-the radial limit with the manuscript's unrestricted indicator.-/
+the radial limit with the manuscript's unrestricted indicator.
+@isnad1 id=isindica.2h3v.s6.cbf5b4ed695c from=translated src=- shape=565c010d vocab=55e9fdbe
+-/
 theorem isIndicator_of_radialRegular_and_eventual_upper_bounds
     {f : ℂ → ℂ} {ρ : ℝ} {h : Direction → ℝ}
     (hf : RadialRegular f ρ h)

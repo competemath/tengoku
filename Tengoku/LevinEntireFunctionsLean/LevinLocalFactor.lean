@@ -15,7 +15,9 @@ open Set Metric Filter
 open scoped Topology
 namespace LevinLocalFactor
 
-/-- The boundary norm control in finite Blaschke removal extends to the full disk.-/
+/-- The boundary norm control in finite Blaschke removal extends to the full disk.
+@isnad1 id=le.6h5v.s7.84886f0bf3c2 from=translated src=- shape=dd8d51c5 vocab=6eb2666d
+-/
 theorem zero_free_factor_log_bound {f g : ℂ → ℂ} {S M : ℝ} (hS : 0 < S)
     (hg : AnalyticOnNhd ℂ g (closedBall 0 S))
     (hgnz : ∀ z ∈ closedBall 0 S, g z ≠ 0)
@@ -37,7 +39,9 @@ theorem zero_free_factor_log_bound {f g : ℂ → ℂ} {S M : ℝ} (hS : 0 < S)
 
 /-- At every scale r≥1, choose a boundary-free radius 4r<S<8r and construct an
 actual zero-free local factor with uniform normalized growth bounds. The original
-entire function is allowed to have arbitrary zeros away from its center.-/
+entire function is allowed to have arbitrary zeros away from its center.
+@isnad1 id=ex.4h2v.s8.ebad714eee33 from=translated src=- shape=06c349f9 vocab=dfb99f72
+-/
 theorem exists_scaled_local_factor {f : ℂ → ℂ} {ρ : ℝ}
     (hf : Differentiable ℂ f) (hρ : 0 ≤ ρ)
     (htype : LevinGrowth.FinitePositiveType f ρ) (hf0 : f 0 ≠ 0) :

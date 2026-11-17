@@ -26,7 +26,9 @@ namespace LevinAssembly
 /-- Radii tending to infinity outside an exceptional set.-/
 def outsideFilter (E : Set ℝ) : Filter ℝ := atTop ⊓ 𝓟 Eᶜ
 
-/-- A zero-density set cannot contain an entire final ray.-/
+/-- A zero-density set cannot contain an entire final ray.
+@isnad1 id=ex.1h2v.s4.fec0be4d48a4 from=translated src=- shape=95d8d5e6 vocab=cc993638
+-/
 theorem exists_ge_outside {E : Set ℝ} (hE : ZeroRadialDensity E) (A : ℝ) :
     ∃ r : ℝ, A ≤ r ∧ r ∉ E := by
   by_contra h
@@ -46,7 +48,9 @@ theorem exists_ge_outside {E : Set ℝ} (hE : ZeroRadialDensity E) (A : ℝ) :
   linarith
 
 /-- In particular, restricting to the complement of a zero-density set never
-makes convergence vacuous.-/
+makes convergence vacuous.
+@isnad1 id=nebot.1h1v.s3.b87a0d033ac1 from=translated src=- shape=314ae98c vocab=73a23192
+-/
 theorem outsideFilter_neBot {E : Set ℝ} (hE : ZeroRadialDensity E) :
     (outsideFilter E).NeBot := by
   apply Filter.inf_principal_neBot_iff.mpr
@@ -56,7 +60,9 @@ theorem outsideFilter_neBot {E : Set ℝ} (hE : ZeroRadialDensity E) :
   exact ⟨r, hA r hr, hrE⟩
 
 /-- Eventual inclusion of exceptional sets reverses the corresponding outside
-filters, and therefore transports convergence hypotheses.-/
+filters, and therefore transports convergence hypotheses.
+@isnad1 id=le.1h2v.s5.30cd96d40571 from=translated src=- shape=b7eb5bf5 vocab=cc9c6bd4
+-/
 theorem outsideFilter_le_of_eventually_contains {E F : Set ℝ}
     (h : ∃ A : ℝ, ∀ r, A ≤ r → r ∈ E → r ∈ F) :
     outsideFilter F ≤ outsideFilter E := by
@@ -70,7 +76,9 @@ theorem outsideFilter_le_of_eventually_contains {E F : Set ℝ}
   filter_upwards [htail, hout] with r hr hrF
   exact fun hrE => hrF (hA r hr hrE)
 
-/-- Asymptotic equicontinuity passes to any finer index filter.-/
+/-- Asymptotic equicontinuity passes to any finer index filter.
+@isnad1 id=asymptot.2h6v.s5.d4d6a99cb992 from=translated src=- shape=50caae05 vocab=0064e827
+-/
 theorem asymptoticUniformEquicontinuous_mono {ι M Y : Type*}
     [PseudoMetricSpace M] [MetricSpace Y] {G : ι → M → Y} {l k : Filter ι}
     (hG : AsymptoticUniformEquicontinuous G l) (hkl : k ≤ l) :
@@ -81,7 +89,9 @@ theorem asymptoticUniformEquicontinuous_mono {ι M Y : Type*}
 
 /-- A single measurable zero-density set simultaneously supports the angular
 modulus and all prescribed limits on countably many dense directions. The
-resulting limit is uniformly continuous and convergence is uniform in angle.-/
+resulting limit is uniformly continuous and convergence is uniform in angle.
+@isnad1 id=ex.7h6v.s7.bc8953523060 from=translated src=- shape=91c25c70 vocab=cb7b9383
+-/
 theorem exists_common_exceptional_uniform_limit
     {M : Type*} [PseudoMetricSpace M] [CompactSpace M]
     (G : ℝ → M → ℝ) (d : ℕ → M) (hd : DenseRange d) (a : ℕ → ℝ)
@@ -124,7 +134,9 @@ theorem exists_common_exceptional_uniform_limit
   exact tendsto_nhds_unique (hconv.tendsto_at (d n)) (hlim' n)
 
 /-- Existential-input version: the separate raywise exceptional sets need not
-be chosen in advance. Only the final common set appears in the conclusion.-/
+be chosen in advance. Only the final common set appears in the conclusion.
+@isnad1 id=ex.3h4v.s7.a1ed5e221dfa from=translated src=- shape=7a61d30b vocab=cb7b9383
+-/
 theorem exists_uniform_limit_from_separate_exceptional_sets
     {M : Type*} [PseudoMetricSpace M] [CompactSpace M]
     (G : ℝ → M → ℝ) (d : ℕ → M) (hd : DenseRange d) (a : ℕ → ℝ)

@@ -16,7 +16,9 @@ noncomputable section
 open Set Metric Complex MeasureTheory InnerProductSpace
 namespace LevinPoisson
 
-/-- The actual finite Blaschke factor has modulus at most one inside its disk.-/
+/-- The actual finite Blaschke factor has modulus at most one inside its disk.
+@isnad1 id=le.3h3v.s6.9e37f584cf58 from=translated src=- shape=f8fb52c7 vocab=be5d8aa6
+-/
 theorem norm_finiteBlaschke_le_one {f : ℂ → ℂ} {S : ℝ} (hS : 0 < S)
     (hf : AnalyticOnNhd ℂ f (closedBall 0 S)) {z : ℂ} (hz : z ∈ closedBall 0 S) :
     ‖LevinFactorization.finiteBlaschke f S z‖ ≤ 1 := by
@@ -34,7 +36,9 @@ theorem norm_finiteBlaschke_le_one {f : ℂ → ℂ} {S : ℝ} (hS : 0 < S)
 
 /-- Poisson's upper inequality for log modulus, including functions with zeros.
 At a zero the mathematical extended logarithm is minus infinity; the real-valued
-statement is therefore restricted to a nonzero evaluation point.-/
+statement is therefore restricted to a nonzero evaluation point.
+@isnad1 id=le.6h3v.s7.85c414b8c282 from=translated src=- shape=2c776cf9 vocab=5d961b6e
+-/
 theorem log_norm_le_poisson_average {f : ℂ → ℂ} {S : ℝ} (hS : 0 < S)
     (hf : AnalyticOnNhd ℂ f (closedBall 0 S)) (hf0 : f 0 ≠ 0)
     (hboundary : ∀ z ∈ sphere 0 S, f z ≠ 0)
@@ -58,7 +62,9 @@ theorem log_norm_le_poisson_average {f : ℂ → ℂ} {S : ℝ} (hS : 0 < S)
   have hz' : z ∈ sphere (0 : ℂ) S := by simpa [abs_of_pos hS] using hz
   simp only [smul_eq_mul, Pi.mul_apply, hbdy z hz']
 
-/-- Positivity of the Poisson kernel on the outer circle.-/
+/-- Positivity of the Poisson kernel on the outer circle.
+@isnad1 id=le.2h3v.s6.98bbb74fefec from=translated src=- shape=ca4a6cf0 vocab=843ba593
+-/
 theorem poissonKernel_nonneg {S : ℝ} {w z : ℂ}
     (hw : w ∈ ball 0 S) (hz : z ∈ sphere 0 S) :
     0 ≤ poissonKernel 0 w z := by
@@ -69,7 +75,9 @@ theorem poissonKernel_nonneg {S : ℝ} {w z : ℂ}
   exact div_nonneg (by nlinarith [norm_nonneg w]) (sq_nonneg _)
 
 /-- Away from its limiting boundary point, the Poisson kernel tends uniformly
-to zero. This estimate retains angular information absent from a maximum norm.-/
+to zero. This estimate retains angular information absent from a maximum norm.
+@isnad1 id=le.7h4v.s7.b3e092191310 from=translated src=- shape=81490f3b vocab=cbd7f0b2
+-/
 theorem poissonKernel_far_bound {q δ : ℝ} {v z : ℂ}
     (hq : 0 ≤ q) (hq1 : q < 1) (hδ : 0 < δ) (hclose : 1 - q ≤ δ / 2)
     (hv : ‖v‖ = 1) (hz : ‖z‖ = 1) (hfar : δ ≤ ‖z - v‖) :
@@ -104,7 +112,9 @@ theorem poissonKernel_far_bound {q δ : ℝ} {v z : ℂ}
       field_simp
 
 /-- Quantitative localization of the Poisson average near a boundary direction.
-Only a small arc needs the sharp bound; the remainder has vanishing kernel mass.-/
+Only a small arc needs the sharp bound; the remainder has vanishing kernel mass.
+@isnad1 id=le.10h7v.s8.ad9367c9ffd7 from=translated src=- shape=ff9d8ba1 vocab=4ce7367f
+-/
 theorem poisson_average_local_upper {u : ℂ → ℝ} {q δ a ε B : ℝ} {v : ℂ}
     (hq : 0 ≤ q) (hq1 : q < 1) (hδ : 0 < δ) (hclose : 1 - q ≤ δ / 2)
     (hv : ‖v‖ = 1) (hε : 0 ≤ ε) (hB : 0 ≤ B)

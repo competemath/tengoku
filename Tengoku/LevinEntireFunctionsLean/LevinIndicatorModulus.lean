@@ -27,7 +27,9 @@ open LevinGrowth LevinDensity
 namespace LevinIndicatorModulus
 
 /-- The logarithmic modulus is strictly positive at every allowed scale,
-including the endpoint `δ = 1`.-/
+including the endpoint `δ = 1`.
+@isnad1 id=lt.2h1v.s5.35a93715ab9b from=translated src=- shape=91c05246 vocab=beebde8c
+-/
 theorem modulus_pos {δ : ℝ} (hδ : 0 < δ) (hδ1 : δ ≤ 1) :
     0 < LevinAnnulus.modulus δ := by
   have hl : Real.log (δ / 8) ≤ 0 := Real.log_nonpos (by positivity) (by linarith)
@@ -35,7 +37,9 @@ theorem modulus_pos {δ : ℝ} (hδ : 0 < δ) (hδ1 : δ ≤ 1) :
   exact add_pos_of_pos_of_nonneg hδ (mul_nonneg hδ.le (by linarith))
 
 /-- An exceptional set occupying at most one quarter of a shell cannot cover
-all of the radii where a nonnegative majorant is below twice its mean bound.-/
+all of the radii where a nonnegative majorant is below twice its mean bound.
+@isnad1 id=ex.7h4v.s8.924f54565e0e from=translated src=- shape=ae6e9a7e vocab=8f409b13
+-/
 theorem exists_good_radius {E : Set ℝ} {P : ℝ → ℝ} {R c : ℝ}
     (hR : 0 < R) (hc : 0 < c)
     (hPm : Measurable P) (hPi : IntervalIntegrable P volume R (2 * R))
@@ -67,7 +71,9 @@ theorem exists_good_radius {E : Set ℝ} {P : ℝ → ℝ} {R c : ℝ}
     exact hn (Or.inr ⟨hr, le_of_not_gt h⟩)
 
 /-- Uniform radial limits inherit the annular logarithmic modulus. This first
-form has a nonzero value at the origin, as required by the local factorization.-/
+form has a nonzero value at the origin, as required by the local factorization.
+@isnad1 id=ex.5h3v.s7.9baadb27553b from=translated src=- shape=3f0630f8 vocab=bb3618f7
+-/
 theorem exists_indicator_modulus_of_ne_zero {f : ℂ → ℂ} {ρ : ℝ}
     {h : Direction → ℝ} (hf : Differentiable ℂ f) (hρ : 0 < ρ)
     (htype : FinitePositiveType f ρ) (hf0 : f 0 ≠ 0)
@@ -116,7 +122,9 @@ theorem exists_indicator_modulus_of_ne_zero {f : ℂ → ℂ} {ρ : ℝ}
   nlinarith
 
 /-- Every radial regular indicator of an entire function of finite positive
-type has one fixed quantitative angular modulus, also when the origin is a zero.-/
+type has one fixed quantitative angular modulus, also when the origin is a zero.
+@isnad1 id=ex.4h3v.s7.d79af535f4da from=translated src=- shape=9e233535 vocab=bb3618f7
+-/
 theorem exists_indicator_modulus {f : ℂ → ℂ} {ρ : ℝ} {h : Direction → ℝ}
     (hf : Differentiable ℂ f) (hρ : 0 < ρ) (htype : FinitePositiveType f ρ)
     (hreg : RadialRegular f ρ h) :
@@ -139,7 +147,9 @@ def normalizedDirection (z : ℂ) : Direction :=
 def homogeneousIndicator (ρ : ℝ) (h : Direction → ℝ) (z : ℂ) : ℝ :=
   ‖z‖ ^ ρ * h (normalizedDirection z)
 
-/-- Polar reconstruction, valid also under the chosen convention at zero.-/
+/-- Polar reconstruction, valid also under the chosen convention at zero.
+@isnad1 id=eq.0h1v.s3.98575b28d06b from=translated src=- shape=56767900 vocab=6ffee03a
+-/
 theorem rayPoint_normalizedDirection (z : ℂ) :
     rayPoint ‖z‖ (normalizedDirection z) = z := by
   by_cases hz : z = 0
@@ -147,7 +157,9 @@ theorem rayPoint_normalizedDirection (z : ℂ) :
   · have hn : (‖z‖ : ℂ) ≠ 0 := by exact_mod_cast (norm_ne_zero_iff.mpr hz)
     simp [normalizedDirection, rayPoint, hz, mul_div_cancel₀, hn]
 
-/-- Radial normalization is quantitatively continuous away from zero.-/
+/-- Radial normalization is quantitatively continuous away from zero.
+@isnad1 id=le.1h2v.s6.6d15f8ad801a from=translated src=- shape=4bff4b02 vocab=8564b178
+-/
 theorem normalizedDirection_dist_le {z w : ℂ} (hz : 1 / 4 ≤ ‖z‖) :
     dist (normalizedDirection z) (normalizedDirection w) ≤ 8 * ‖z - w‖ := by
   let v := normalizedDirection z
@@ -169,7 +181,9 @@ theorem normalizedDirection_dist_le {z w : ℂ} (hz : 1 / 4 ≤ ‖z‖) :
   rw [Subtype.dist_eq, dist_eq_norm]
   nlinarith
 
-/-- A real power has a fixed Lipschitz bound on the enlarged positive annulus.-/
+/-- A real power has a fixed Lipschitz bound on the enlarged positive annulus.
+@isnad1 id=ex.0h1v.s7.ac97726b5e8a from=translated src=- shape=03f8f36b vocab=c3885bc5
+-/
 theorem exists_rpow_lipschitz (ρ : ℝ) : ∃ D : ℝ, 0 < D ∧
     ∀ s ∈ Icc (1 / 4 : ℝ) 4, ∀ t ∈ Icc (1 / 4 : ℝ) 4,
       |s ^ ρ - t ^ ρ| ≤ D * |s - t| := by
@@ -190,7 +204,9 @@ theorem exists_rpow_lipschitz (ρ : ℝ) : ∃ D : ℝ, 0 < D ∧
     Convex.norm_image_sub_le_of_norm_hasDerivWithin_le hder hbound (convex_Icc _ _) ht hs
 
 /-- A quantitative polar modulus on the enlarged annulus. The same constant
-handles angular variation and variation of the radial homogeneity factor.-/
+handles angular variation and variation of the radial homogeneity factor.
+@isnad1 id=ex.4h3v.s8.99ba418f3727 from=translated src=- shape=127e0c84 vocab=be62a368
+-/
 theorem exists_polar_modulus {ρ : ℝ} {h : Direction → ℝ} (hρ : 0 ≤ ρ)
     (hh : Continuous h) {K : ℝ} (hK : 0 < K)
     (hmod : ∀ δ : ℝ, 0 < δ → δ ≤ 1 → ∀ v w : Direction,
@@ -236,7 +252,9 @@ theorem exists_polar_modulus {ρ : ℝ} {h : Direction → ℝ} (hρ : 0 ≤ ρ)
   nlinarith
 
 /-- The actual homogeneous indicator has a quantitative Euclidean modulus on
-`1/4 ≤ ‖z‖, ‖w‖ ≤ 4`, with an angular normalization factor of eight.-/
+`1/4 ≤ ‖z‖, ‖w‖ ≤ 4`, with an angular normalization factor of eight.
+@isnad1 id=ex.4h3v.s8.f2f6bbcc79af from=translated src=- shape=891b0160 vocab=b47f57b1
+-/
 theorem exists_homogeneous_modulus {f : ℂ → ℂ} {ρ : ℝ} {h : Direction → ℝ}
     (hf : Differentiable ℂ f) (hρ : 0 < ρ) (htype : FinitePositiveType f ρ)
     (hreg : RadialRegular f ρ h) :

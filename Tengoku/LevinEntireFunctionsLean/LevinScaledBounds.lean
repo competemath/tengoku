@@ -25,11 +25,17 @@ open LevinGrowth LevinDensity LevinIndicatorModulus
 
 namespace LevinScaledBounds
 
+/--
+@isnad1 id=eq.0h2v.s4.fc610fd5907d from=translated src=- shape=e0dc6ce4 vocab=4c003027
+-/
 theorem rayPoint_scaled_normalizedDirection (R : ℝ) (w : ℂ) :
     rayPoint (R * ‖w‖) (normalizedDirection w) = (R : ℂ) * w := by
   have h := congrArg (fun z : ℂ => (R : ℂ) * z) (rayPoint_normalizedDirection w)
   simpa only [rayPoint, Complex.ofReal_mul, mul_assoc] using h
 
+/--
+@isnad1 id=eq.1h2v.s4.eaa01fb33b65 from=translated src=- shape=e912e0f4 vocab=15f03d18
+-/
 theorem normalizedDirection_rayPoint {s : ℝ} (hs : 0 < s) (ζ : Direction) :
     normalizedDirection (rayPoint s ζ) = ζ := by
   have hn := norm_rayPoint hs.le ζ
@@ -42,7 +48,9 @@ theorem normalizedDirection_rayPoint {s : ℝ} (hs : 0 < s) (ζ : Direction) :
   rw [hn]
   exact mul_div_cancel_left₀ _ hsC
 
-/-- The exact change from normalization at `R * ‖w‖` to normalization at `R`.-/
+/-- The exact change from normalization at `R * ‖w‖` to normalization at `R`.
+@isnad1 id=eq.2h5v.s7.fe4bca9e46ad from=translated src=- shape=723d7cd4 vocab=eb2676c6
+-/
 theorem scaled_error_identity (f : ℂ → ℂ) (ρ : ℝ) (h : Direction → ℝ)
     {R : ℝ} (hR : 0 < R) {w : ℂ} (hw : 0 < ‖w‖) :
     Real.log ‖f ((R : ℂ) * w)‖ / R ^ ρ - homogeneousIndicator ρ h w =
@@ -55,7 +63,9 @@ theorem scaled_error_identity (f : ℂ → ℂ) (ρ : ℝ) (h : Direction → �
   field_simp
 
 /-- The unrestricted angular upper bound gives one upper estimate on the whole
-scaled annulus `1/4 ≤ ‖w‖ ≤ 4`, including points where the function vanishes.-/
+scaled annulus `1/4 ≤ ‖w‖ ≤ 4`, including points where the function vanishes.
+@isnad1 id=ex.5h4v.s7.a22b3ba773be from=translated src=- shape=faaa974f vocab=92c7377c
+-/
 theorem eventually_scaled_upper_bound {f : ℂ → ℂ} {ρ : ℝ} {h : Direction → ℝ}
     (hf : Differentiable ℂ f) (hρ : 0 < ρ) (htype : FinitePositiveType f ρ)
     (hreg : RadialRegular f ρ h) {a : ℝ} (ha : 0 < a) :
@@ -100,7 +110,9 @@ theorem eventually_scaled_upper_bound {f : ℂ → ℂ} {ρ : ℝ} {h : Directio
       _ ≤ _ := Real.exp_le_exp.mpr hupper
 
 /-- A single starting scale supplies nearby regular centers everywhere on the
-scaled annulus. Only radial regularity is needed for this lower estimate.-/
+scaled annulus. Only radial regularity is needed for this lower estimate.
+@isnad1 id=ex.5h5v.s8.594c3271ee58 from=translated src=- shape=dc653581 vocab=7b12bfe3
+-/
 theorem eventually_scaled_good_centers {f : ℂ → ℂ} {ρ : ℝ} {h : Direction → ℝ}
     (hρ : 0 ≤ ρ) (hreg : RadialRegular f ρ h)
     {a δ : ℝ} (ha : 0 < a) (hδ : 0 < δ) (hδ1 : δ ≤ 1 / 4) :
@@ -157,7 +169,9 @@ theorem eventually_scaled_good_centers {f : ℂ → ℂ} {ρ : ℝ} {h : Directi
       _ = a := by dsimp [t]; field_simp
 
 /-- Uniform upper bounds and nearby regular centers, with a common scale
-threshold suitable for every center of a finite annular grid.-/
+threshold suitable for every center of a finite annular grid.
+@isnad1 id=ex.7h5v.s8.7e34d937e2d9 from=translated src=- shape=23162fe9 vocab=2ae65649
+-/
 theorem exists_scaled_bounds {f : ℂ → ℂ} {ρ : ℝ} {h : Direction → ℝ}
     (hf : Differentiable ℂ f) (hρ : 0 < ρ) (htype : FinitePositiveType f ρ)
     (hreg : RadialRegular f ρ h)

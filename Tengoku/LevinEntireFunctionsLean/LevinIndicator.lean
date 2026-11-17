@@ -13,7 +13,9 @@ open LevinGrowth LevinDensity LevinAssembly
 namespace LevinIndicator
 
 /-- Every sufficiently distant proportional interval contains a good radius.
-Thus the exceptional set cannot hide a whole annulus of fixed relative width.-/
+Thus the exceptional set cannot hide a whole annulus of fixed relative width.
+@isnad1 id=ex.3h3v.s6.537fc622e9a7 from=translated src=- shape=844c102c vocab=acf1cd95
+-/
 theorem eventually_exists_good_radius {E : Set ℝ} (hE : ZeroRadialDensity E)
     {a b : ℝ} (ha : 0 ≤ a) (hab : a < b) :
     ∃ R₁ : ℝ, 0 < R₁ ∧ ∀ r : ℝ, R₁ ≤ r →

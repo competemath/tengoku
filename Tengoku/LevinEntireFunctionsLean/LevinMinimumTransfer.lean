@@ -20,12 +20,16 @@ open scoped BigOperators
 
 namespace LevinMinimumTransfer
 
-/-- Translation preserves membership in an open disk.-/
+/-- Translation preserves membership in an open disk.
+@isnad1 id=iff.0h4v.s6.090fbf1e2505 from=translated src=- shape=c67c4f88 vocab=71c8db56
+-/
 theorem sub_mem_ball_iff (z q c : ℂ) (r : ℝ) :
     z - q ∈ ball c r ↔ z ∈ ball (q + c) r := by
   simp only [mem_ball, dist_eq_norm, sub_sub]
 
-/-- The genuine local Cartan estimate around an arbitrary nonzero center.-/
+/-- The genuine local Cartan estimate around an arbitrary nonzero center.
+@isnad1 id=ex.7h5v.s8.9e7bc547355e from=translated src=- shape=1ca5dea9 vocab=0a54d8a7
+-/
 theorem exists_disks_local_lower {f : ℂ → ℂ} {q : ℂ} {R M η : ℝ}
     (hf : Differentiable ℂ f) (hfq : f q ≠ 0)
     (hR : 0 < R) (hM : 0 ≤ M)

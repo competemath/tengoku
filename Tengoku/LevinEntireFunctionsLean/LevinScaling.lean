@@ -21,18 +21,24 @@ open LevinGrowth LevinIndicatorModulus
 
 namespace LevinScaling
 
-/-- Positive dilation preserves membership in the corresponding open disk.-/
+/-- Positive dilation preserves membership in the corresponding open disk.
+@isnad1 id=iff.1h4v.s6.fd3b20d9c72b from=translated src=- shape=126c9654 vocab=ccece9d0
+-/
 theorem mem_scaled_ball_iff {R : ℝ} (hR : 0 < R) (z c : ℂ) (s : ℝ) :
     (R : ℂ) * z ∈ ball ((R : ℂ) * c) (R * s) ↔ z ∈ ball c s := by
   rw [mem_ball, mem_ball, dist_eq_norm, dist_eq_norm, ← mul_sub, norm_mul,
     Complex.norm_real, Real.norm_eq_abs, abs_of_pos hR]
   exact mul_lt_mul_iff_right₀ hR
 
-/-- Physical radii have exactly the scaled total radius.-/
+/-- Physical radii have exactly the scaled total radius.
+@isnad1 id=eq.0h3v.s5.2a077a70bd85 from=translated src=- shape=7411ebfc vocab=00f59c33
+-/
 theorem sum_scaled_radii {ι : Type*} [Fintype ι] (R : ℝ) (r : ι → ℝ) :
     (∑ j, R * r j) = R * ∑ j, r j := (Finset.mul_sum _ _ _).symm
 
-/-- The homogeneous indicator has the intended polar form at positive radius.-/
+/-- The homogeneous indicator has the intended polar form at positive radius.
+@isnad1 id=eq.1h4v.s5.1b77e84a4882 from=translated src=- shape=75f1192f vocab=32954946
+-/
 theorem homogeneousIndicator_rayPoint {t ρ : ℝ} (ht : 0 < t)
     (h : Direction → ℝ) (ζ : Direction) :
     homogeneousIndicator ρ h (rayPoint t ζ) = t ^ ρ * h ζ := by
@@ -40,7 +46,9 @@ theorem homogeneousIndicator_rayPoint {t ρ : ℝ} (ht : 0 < t)
     LevinScaledBounds.normalizedDirection_rayPoint ht ζ]
 
 /-- A normalized unit-shell estimate transfers to the original physical shell.
-The same absolute error remains valid because `(r/R)^ρ ≥ 1`.-/
+The same absolute error remains valid because `(r/R)^ρ ≥ 1`.
+@isnad1 id=and.6h10v.s8.c85df72f4bed from=translated src=- shape=c5d0e46d vocab=45967cea
+-/
 theorem shell_estimate_of_scaled_shell {ι : Type*} [Fintype ι]
     {f : ℂ → ℂ} {ρ R ε : ℝ} {h : Direction → ℝ}
     (c : ι → ℂ) (radius : ι → ℝ)

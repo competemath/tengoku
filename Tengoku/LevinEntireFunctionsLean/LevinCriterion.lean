@@ -18,7 +18,9 @@ open Set Filter Topology
 open LevinGrowth
 namespace LevinCriterion
 
-/-- Origin reduction also preserves upper estimates uniform in direction.-/
+/-- Origin reduction also preserves upper estimates uniform in direction.
+@isnad1 id=eventual.4h6v.s7.aa14cebc37fc from=translated src=- shape=33a3c224 vocab=a1722874
+-/
 theorem uniform_upper_bounds_restore_monomial {f F : ℂ → ℂ} {m : ℕ} {ρ : ℝ}
     {h : Direction → ℝ} (hρ : 0 < ρ)
     (hfactor : ∀ z : ℂ, f z = z ^ m * F z)
@@ -42,7 +44,9 @@ theorem uniform_upper_bounds_restore_monomial {f F : ℂ → ℂ} {m : ℕ} {ρ 
     linarith
 
 /-- The full-radius upper estimate holds uniformly in direction, including
-functions with a zero at the origin.-/
+functions with a zero at the origin.
+@isnad1 id=eventual.5h4v.s7.e80aba467cb1 from=translated src=- shape=28fc8e0a vocab=204f8dbc
+-/
 theorem uniform_upper_bounds_of_radialRegular {f : ℂ → ℂ} {ρ : ℝ}
     {h : Direction → ℝ} (hf : Differentiable ℂ f) (hρ : 0 < ρ)
     (htype : FinitePositiveType f ρ) (hreg : RadialRegular f ρ h) :
@@ -55,7 +59,9 @@ theorem uniform_upper_bounds_of_radialRegular {f : ℂ → ℂ} {ρ : ℝ}
     (LevinIndicatorUpper.uniform_upper_bounds hF hF0 hFreg)
 
 /-- The radial regular limit equals the unrestricted, extended-real indicator.
-No upper-bound or indicator-identification premise remains.-/
+No upper-bound or indicator-identification premise remains.
+@isnad1 id=isindica.4h3v.s6.6bdc2129ee13 from=translated src=- shape=de2a59ba vocab=f5363602
+-/
 theorem isIndicator_of_radialRegular {f : ℂ → ℂ} {ρ : ℝ}
     {h : Direction → ℝ} (hf : Differentiable ℂ f) (hρ : 0 < ρ)
     (htype : FinitePositiveType f ρ) (hreg : RadialRegular f ρ h) :
@@ -66,7 +72,9 @@ theorem isIndicator_of_radialRegular {f : ℂ → ℂ} {ρ : ℝ}
   exact hr ζ
 
 /-- Dense-ray regularity gives one common radial exception and the genuine
-indicator, for arbitrary finite-positive-type entire functions at positive order.-/
+indicator, for arbitrary finite-positive-type entire functions at positive order.
+@isnad1 id=ex.4h2v.s7.eb9d462bd17b from=translated src=- shape=f1b0ca13 vocab=9267d742
+-/
 theorem radialRegular_and_indicator_of_dense_rays {f : ℂ → ℂ} {ρ : ℝ}
     (hf : Differentiable ℂ f) (hρ : 0 < ρ) (htype : FinitePositiveType f ρ)
     (hgood : Dense {ζ : Direction | ∃ a : ℝ, RayRegular f ρ ζ a}) :
@@ -82,6 +90,9 @@ def ConstantOrderRadialIndicatorLevinGoal : Prop :=
     Dense {ζ : Direction | ∃ a : ℝ, RayRegular f ρ ζ a} →
     ∃ h : Direction → ℝ, RadialRegular f ρ h ∧ IsIndicator f ρ h
 
+/--
+@isnad1 id=constant.0h0v.s0.28d3bcaeb427 from=translated src=- shape=45709ebd vocab=28d3bcae
+-/
 theorem constantOrderRadialIndicatorLevin : ConstantOrderRadialIndicatorLevinGoal := by
   intro f ρ hf hρ htype hgood
   exact radialRegular_and_indicator_of_dense_rays hf hρ htype hgood

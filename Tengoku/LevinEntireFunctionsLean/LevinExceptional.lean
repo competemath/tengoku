@@ -38,7 +38,9 @@ def AnnularMajorants {M : Type*} [PseudoMetricSpace M]
     ∀ r ∈ Icc ((2 : ℝ) ^ n) (2 * 2 ^ n), r ∉ Z →
       ∀ v w : M, dist v w ≤ δ → dist (G r v) (G r w) ≤ P r
 
-/-- Markov's inequality on one actual radial shell, expressed in outer measure.-/
+/-- Markov's inequality on one actual radial shell, expressed in outer measure.
+@isnad1 id=le.6h4v.s7.a4c46b820a3c from=translated src=- shape=a6d995a2 vocab=e1b1179e
+-/
 theorem shell_markov (P : ℝ → ℝ) {R ε β : ℝ} (hR : 0 ≤ R) (hε : 0 < ε)
     (hPm : Measurable P) (hPi : IntervalIntegrable P volume R (2 * R))
     (hPnonneg : ∀ r, 0 ≤ P r)
@@ -71,7 +73,9 @@ theorem shell_markov (P : ℝ → ℝ) {R ε β : ℝ} (hR : 0 ≤ R) (hε : 0 <
     _ ≤ ENNReal.ofReal (β * R) := ENNReal.ofReal_le_ofReal hreal
 
 /-- The limit of the uniform cost supplies one angular scale that works on all
-radial shells at once.-/
+radial shells at once.
+@isnad1 id=ex.2h2v.s6.ba8177cfede6 from=translated src=- shape=845a2f98 vocab=25bae640
+-/
 theorem exists_small_scale {cost : ℝ → ℝ}
     (hc : Tendsto cost (𝓝[>] (0 : ℝ)) (𝓝 0)) {t : ℝ} (ht : 0 < t) :
     ∃ δ : ℝ, 0 < δ ∧ δ ≤ 1 ∧ cost δ ≤ t := by
@@ -82,7 +86,9 @@ theorem exists_small_scale {cost : ℝ → ℝ}
   obtain ⟨δ, hδ, hδ1, hct⟩ := (hp.and (h1.and hc')).exists
   exact ⟨δ, hδ, hδ1.le, hct.le⟩
 
-/-- Half-open dyadic shells have unique indices.-/
+/-- Half-open dyadic shells have unique indices.
+@isnad1 id=eq.2h3v.s7.d7679442dc61 from=translated src=- shape=74abf18d vocab=9225205c
+-/
 theorem dyadic_shell_index_unique {m n : ℕ} {r : ℝ}
     (hm : r ∈ Ico ((2 : ℝ) ^ m) (2 * 2 ^ m))
     (hn : r ∈ Ico ((2 : ℝ) ^ n) (2 * 2 ^ n)) : m = n := by
@@ -99,7 +105,9 @@ theorem dyadic_shell_index_unique {m n : ℕ} {r : ℝ}
     nlinarith [hn.1, hm.2]
 
 /-- On a closed dyadic shell, a union of shell-supported sets contributes only
-its own shell, apart from one endpoint of zero Lebesgue measure.-/
+its own shell, apart from one endpoint of zero Lebesgue measure.
+@isnad1 id=le.1h2v.s7.60a522e4e449 from=translated src=- shape=ee7ad42c vocab=1676c3cb
+-/
 theorem volume_dyadic_union_shell_le (B : ℕ → Set ℝ)
     (hB : ∀ n, B n ⊆ Ico ((2 : ℝ) ^ n) (2 * 2 ^ n)) (n : ℕ) :
     volume ((⋃ m, B m) ∩ Icc ((2 : ℝ) ^ n) (2 * 2 ^ n)) ≤ volume (B n) := by
@@ -119,7 +127,9 @@ theorem volume_dyadic_union_shell_le (B : ℕ → Set ℝ)
     _ = volume (B n) := by simp
 
 /-- Allocate a summable bad-set budget to all angular precisions on every
-shell. The chosen angular scales are independent of the shell index.-/
+shell. The chosen angular scales are independent of the shell index.
+@isnad1 id=ex.3h5v.s8.d6e0aa985be4 from=translated src=- shape=6015775d vocab=12844415
+-/
 theorem exists_shell_badsets {M : Type*} [PseudoMetricSpace M]
     (G : ℝ → M → ℝ) (Z : Set ℝ) (cost : ℝ → ℝ)
     (hc : Tendsto cost (𝓝[>] (0 : ℝ)) (𝓝 0))
@@ -181,7 +191,9 @@ theorem exists_shell_badsets {M : Type*} [PseudoMetricSpace M]
 
 /-- Actual annular integral majorants produce one measurable exceptional set
 for each positive density budget. Outside that set the family is asymptotically
-uniformly equicontinuous at every angular precision.-/
+uniformly equicontinuous at every angular precision.
+@isnad1 id=ex.5h5v.s6.0bc60fd710cb from=translated src=- shape=6b845105 vocab=94512ba8
+-/
 theorem exists_small_density_equicontinuity {M : Type*} [PseudoMetricSpace M]
     (G : ℝ → M → ℝ) (Z : Set ℝ) (hZm : MeasurableSet Z)
     (hZz : ZeroRadialDensity Z) (cost : ℝ → ℝ)

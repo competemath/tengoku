@@ -30,6 +30,9 @@ def zeroSupport {f : ℂ → ℂ} {S : ℝ}
     (hf : AnalyticOnNhd ℂ f (closedBall 0 S)) : Finset ℂ :=
   hf.meromorphicOn.divisor_ball_support_finite.toFinset
 
+/--
+@isnad1 id=iff.1h3v.s7.8be6ec73e4b2 from=translated src=- shape=e70d2565 vocab=af73e38d
+-/
 lemma mem_zeroSupport {f : ℂ → ℂ} {S : ℝ}
     (hf : AnalyticOnNhd ℂ f (closedBall 0 S)) {a : ℂ} :
     a ∈ zeroSupport hf ↔ divisor f (ball 0 S) a ≠ 0 := by
@@ -40,12 +43,17 @@ when the analytic germ is not identically zero.-/
 def multiplicity (f : ℂ → ℂ) (S : ℝ) (a : ℂ) : ℝ :=
   (divisor f (ball 0 S) a : ℝ)
 
+/--
+@isnad1 id=le.1h3v.s6.30c7eef01cf6 from=translated src=- shape=4ddc95e6 vocab=18178f8f
+-/
 lemma multiplicity_nonneg {f : ℂ → ℂ} {S : ℝ}
     (hf : AnalyticOnNhd ℂ f (closedBall 0 S)) (a : ℂ) :
     0 ≤ multiplicity f S a := by
   exact Int.cast_nonneg ((hf.mono ball_subset_closedBall).divisor_nonneg a)
 
-/-- Conversion from the actual divisor's finsum to its finite support.-/
+/-- Conversion from the actual divisor's finsum to its finite support.
+@isnad1 id=eq.1h3v.s6.00c425bdd701 from=translated src=- shape=e86571f8 vocab=a47b40ac
+-/
 theorem weighted_divisor_finsum {f : ℂ → ℂ} {S : ℝ}
     (hf : AnalyticOnNhd ℂ f (closedBall 0 S)) (H : ℂ → ℝ) :
     (∑ᶠ a, multiplicity f S a * H a) = ∑ a ∈ zeroSupport hf, multiplicity f S a * H a := by
@@ -57,7 +65,9 @@ theorem weighted_divisor_finsum {f : ℂ → ℂ} {S : ℝ}
   have hzero : multiplicity f S a * H a = 0 := by simp [multiplicity, hz]
   exact ha hzero
 
-/-- A radius avoiding the support of the actual divisor has no zeros on its circle.-/
+/-- A radius avoiding the support of the actual divisor has no zeros on its circle.
+@isnad1 id=ne.6h4v.s7.a673405036df from=translated src=- shape=32b7b725 vocab=fa9ef37c
+-/
 theorem nonzero_of_radial_gap {f : ℂ → ℂ} {S r : ℝ} {z : ℂ}
     (hS : 0 < S) (hf : AnalyticOnNhd ℂ f (closedBall 0 S)) (hf0 : f 0 ≠ 0)
     (hz : z ∈ ball 0 S) (hzr : ‖z‖ = r)
@@ -77,7 +87,9 @@ def radialPotential {f : ℂ → ℂ} {S : ℝ}
   ∑ a ∈ zeroSupport hf, multiplicity f S a *
     (δ + CRGLevinLogKernel.radialKernel (2 * δ * R) (r - ‖a‖))
 
-/-- The complete finite-product angular estimate, before normalization by r^ρ.-/
+/-- The complete finite-product angular estimate, before normalization by r^ρ.
+@isnad1 id=le.13h8v.s8.4f38f898eff9 from=translated src=- shape=3c638223 vocab=dda95274
+-/
 theorem log_norm_angular_bound {f g : ℂ → ℂ} {S R r δ : ℝ} {v w : ℂ}
     (hS : 0 < S) (hf : AnalyticOnNhd ℂ f (closedBall 0 S)) (hf0 : f 0 ≠ 0)
     (hboundary : ∀ z ∈ sphere 0 S, f z ≠ 0) (D : ECanonicalDecomp f g S)
@@ -136,7 +148,9 @@ def zeroCount {f : ℂ → ℂ} {S : ℝ}
     (hf : AnalyticOnNhd ℂ f (closedBall 0 S)) : ℝ :=
   ∑ a ∈ zeroSupport hf, multiplicity f S a
 
-/-- The count is exactly the real cast of the integer divisor sum.-/
+/-- The count is exactly the real cast of the integer divisor sum.
+@isnad1 id=eq.1h2v.s7.3992e92049ff from=translated src=- shape=40839999 vocab=cb8dfdac
+-/
 theorem zeroCount_eq_divisor_sum {f : ℂ → ℂ} {S : ℝ}
     (hf : AnalyticOnNhd ℂ f (closedBall 0 S)) :
     zeroCount hf = (∑ᶠ a, divisor f (ball 0 S) a : ℤ) := by
@@ -145,7 +159,9 @@ theorem zeroCount_eq_divisor_sum {f : ℂ → ℂ} {S : ℝ}
   rw [zeroCount, ← h]
   exact (map_finsum (Int.castRingHom ℝ) hf.meromorphicOn.divisor_ball_support_finite).symm
 
-/-- Nonnegativity is inherited from the actual analytic zero multiplicities.-/
+/-- Nonnegativity is inherited from the actual analytic zero multiplicities.
+@isnad1 id=le.3h5v.s6.94aed75686be from=translated src=- shape=bc3c536f vocab=d91f32cb
+-/
 theorem radialPotential_nonneg {f : ℂ → ℂ} {S R δ r : ℝ}
     (hf : AnalyticOnNhd ℂ f (closedBall 0 S)) (hR : 0 ≤ R) (hδ : 0 ≤ δ) :
     0 ≤ radialPotential hf R δ r := by
@@ -155,7 +171,9 @@ theorem radialPotential_nonneg {f : ℂ → ℂ} {S R δ r : ℝ}
     (add_nonneg hδ (CRGLevinLogKernel.radialKernel_nonneg (by positivity)))
 
 /-- The entire finite radial majorant, including each logarithmic singularity,
-is interval integrable.-/
+is interval integrable.
+@isnad1 id=interval.3h6v.s6.8070660e6e11 from=translated src=- shape=e262a3f5 vocab=a73b1bda
+-/
 theorem radialPotential_intervalIntegrable {f : ℂ → ℂ} {S R δ a b : ℝ}
     (hf : AnalyticOnNhd ℂ f (closedBall 0 S)) (hR : 0 < R) (hδ : 0 < δ) :
     IntervalIntegrable (radialPotential hf R δ) volume a b := by
@@ -177,7 +195,9 @@ theorem radialPotential_intervalIntegrable {f : ℂ → ℂ} {S R δ a b : ℝ}
 
 /-- The dyadic L¹ cost is linear in the analytic divisor mass, which is the
 ordinary zero count for a nontrivial analytic function. No separation or regular
-distribution of those zeros is assumed.-/
+distribution of those zeros is assumed.
+@isnad1 id=le.5h4v.s7.5518b5ec3c9d from=translated src=- shape=c820422e vocab=ea134b1f
+-/
 theorem integral_radialPotential_bound {f : ℂ → ℂ} {S R δ : ℝ}
     (hf : AnalyticOnNhd ℂ f (closedBall 0 S)) (hR : 0 < R)
     (hδ : 0 < δ) (hδ1 : δ ≤ 1) (hS : S ≤ 16 * R) :

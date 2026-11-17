@@ -39,7 +39,9 @@ def flatten (D : ℕ → DiskFamily) : DiskFamily where
   radius i := (D (Nat.unpair i).1).radius (Nat.unpair i).2
   radius_nonneg i := (D (Nat.unpair i).1).radius_nonneg (Nat.unpair i).2
 
-/-- Flattening preserves the actual union of open disks.-/
+/-- Flattening preserves the actual union of open disks.
+@isnad1 id=iff.0h2v.s5.f6d2692314ea from=translated src=- shape=3174597d vocab=14592e02
+-/
 theorem mem_disks_flatten (D : ℕ → DiskFamily) (z : ℂ) :
     z ∈ disks (flatten D) ↔ ∃ n : ℕ, z ∈ disks (D n) := by
   constructor
@@ -52,7 +54,9 @@ theorem mem_disks_flatten (D : ℕ → DiskFamily) (z : ℂ) :
     refine ⟨Nat.pair n k, ?_⟩
     simpa only [flatten, Nat.unpair_pair] using hk
 
-/-- Flattening preserves the center-truncated sum of all radii.-/
+/-- Flattening preserves the center-truncated sum of all radii.
+@isnad1 id=eq.0h2v.s4.1fa7d053317e from=translated src=- shape=53c4e703 vocab=b01814d4
+-/
 theorem radiusMass_flatten (D : ℕ → DiskFamily) (R : ℝ) :
     radiusMass (flatten D) R = ∑' n, radiusMass (D n) R := by
   unfold radiusMass
@@ -64,7 +68,9 @@ theorem radiusMass_flatten (D : ℕ → DiskFamily) (R : ℝ) :
       (ENNReal.tsum_prod (f := fun n k : ℕ =>
         if ‖(D n).center k‖ ≤ R then ENNReal.ofReal ((D n).radius k) else 0))
 
-/-- A finite initial sum plus a geometric tail controls every weighted partial sum.-/
+/-- A finite initial sum plus a geometric tail controls every weighted partial sum.
+@isnad1 id=le.3h4v.s7.08949faad389 from=translated src=- shape=bbc84cec vocab=e28674ea
+-/
 theorem weighted_partial_sum_le (b : ℕ → ℝ) (hb : ∀ n, 0 ≤ b n)
     (N : ℕ) {δ : ℝ} (hδ : 0 ≤ δ) (htail : ∀ n, N ≤ n → b n ≤ δ) (K : ℕ) :
     (∑ n ∈ Finset.range K, b n * (2 : ℝ) ^ n) ≤
@@ -95,7 +101,9 @@ theorem weighted_partial_sum_le (b : ℕ → ℝ) (hb : ∀ n, 0 ≤ b n)
       nlinarith
 
 /-- A shell contributes no radius mass below its center scale. Zero-radius
-padding disks need not satisfy the center constraint.-/
+padding disks need not satisfy the center constraint.
+@isnad1 id=eq.2h3v.s5.a9eb709f8a5d from=translated src=- shape=5b99e697 vocab=44904465
+-/
 theorem radiusMass_eq_zero_below_scale (D : DiskFamily) {s R : ℝ}
     (hcenter : ∀ k, D.radius k ≠ 0 → s ≤ ‖D.center k‖) (hR : R < s) :
     radiusMass D R = 0 := by
@@ -107,7 +115,9 @@ theorem radiusMass_eq_zero_below_scale (D : DiskFamily) {s R : ℝ}
     simp only [ite_eq_right hn]
 
 /-- Center lower bounds turn the infinite flattened mass into a bounded
-weighted partial sum of the shell budgets.-/
+weighted partial sum of the shell budgets.
+@isnad1 id=le.5h5v.s7.3026f3fef4d6 from=translated src=- shape=d28f1f49 vocab=0086c7ce
+-/
 theorem radiusMass_le_partial_sum (D : ℕ → DiskFamily) {c R : ℝ}
     (hc : 0 < c) (b : ℕ → ℝ) (hb : ∀ n, 0 ≤ b n)
     (hcenter : ∀ n k, (D n).radius k ≠ 0 → c * (2 : ℝ) ^ n ≤ ‖(D n).center k‖)
@@ -132,7 +142,9 @@ theorem radiusMass_le_partial_sum (D : ℕ → DiskFamily) {c R : ℝ}
   · exact bot_le
 
 /-- Shellwise radius budgets tending to zero produce a genuine C₀ disk family.
-The conclusion uses the specified center-truncated `radiusMass` definition.-/
+The conclusion uses the specified center-truncated `radiusMass` definition.
+@isnad1 id=isc0.5h3v.s7.891d176e482f from=translated src=- shape=74f40bfa vocab=71137158
+-/
 theorem isC0_flatten (D : ℕ → DiskFamily) {c : ℝ} (hc : 0 < c)
     (b : ℕ → ℝ) (hb : ∀ n, 0 ≤ b n) (hblim : Tendsto b atTop (𝓝 0))
     (hcenter : ∀ n k, (D n).radius k ≠ 0 → c * (2 : ℝ) ^ n ≤ ‖(D n).center k‖)
@@ -176,6 +188,9 @@ def ofFinite (N : ℕ) (center : Fin N → ℂ) (radius : Fin N → ℝ)
   radius k := if hk : k < N then radius ⟨k, hk⟩ else 0
   radius_nonneg k := by split_ifs with hk; exact hnonneg _; exact le_rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.465659174a80 from=translated src=- shape=9a28bf28 vocab=615996d6
+-/
 theorem ofFinite_total_radius (N : ℕ) (center : Fin N → ℂ) (radius : Fin N → ℝ)
     (hnonneg : ∀ k, 0 ≤ radius k) :
     (∑' k, ENNReal.ofReal ((ofFinite N center radius hnonneg).radius k)) =
@@ -188,6 +203,9 @@ theorem ofFinite_total_radius (N : ℕ) (center : Fin N → ℂ) (radius : Fin N
   intro k hk
   simp only [ofFinite, dite_eq_left (Finset.mem_range.1 hk)]
 
+/--
+@isnad1 id=iff.1h4v.s6.174a1647361e from=translated src=- shape=8c11b724 vocab=a5f7487c
+-/
 theorem mem_disks_ofFinite (N : ℕ) (center : Fin N → ℂ) (radius : Fin N → ℝ)
     (hnonneg : ∀ k, 0 ≤ radius k) (z : ℂ) :
     z ∈ disks (ofFinite N center radius hnonneg) ↔
@@ -205,7 +223,9 @@ theorem mem_disks_ofFinite (N : ℕ) (center : Fin N → ℂ) (radius : Fin N �
     exact ⟨k.val, by simpa only [ofFinite, dite_eq_left k.isLt] using hk⟩
 
 /-- The finite-shell form: only a finite sum of real radii is required in each
-shell, then zero padding and flattening produce the requested C₀ family.-/
+shell, then zero padding and flattening produce the requested C₀ family.
+@isnad1 id=isc0.6h5v.s7.d2f5fee39137 from=translated src=- shape=06a6deff vocab=4ddb7773
+-/
 theorem isC0_flatten_ofFinite (N : ℕ → ℕ) (center : ∀ n, Fin (N n) → ℂ)
     (radius : ∀ n, Fin (N n) → ℝ) (hnonneg : ∀ n k, 0 ≤ radius n k)
     {c : ℝ} (hc : 0 < c) (b : ℕ → ℝ) (hb : ∀ n, 0 ≤ b n)
@@ -233,7 +253,9 @@ def ShellCertificate (f : ℂ → ℂ) (ρ : ℝ) (h : Direction → ℝ)
 
 /-- A certified family on all sufficiently late shells, with both errors and
 radius budgets tending to zero, gives `DiskRegular`. The analytic certificate
-is explicitly retained as an input.-/
+is explicitly retained as an input.
+@isnad1 id=diskregu.8h7v.s8.e9ec7cf0b2f1 from=translated src=- shape=ff8b53f0 vocab=ee216857
+-/
 theorem diskRegular_of_shell_certificates (f : ℂ → ℂ) (ρ : ℝ) (h : Direction → ℝ)
     (hh : Continuous h) (D : ℕ → DiskFamily) {c : ℝ} (hc : 0 < c)
     (b : ℕ → ℝ) (hb : ∀ n, 0 ≤ b n) (hblim : Tendsto b atTop (𝓝 0))
@@ -260,7 +282,9 @@ theorem diskRegular_of_shell_certificates (f : ℂ → ℂ) (ρ : ℝ) (h : Dire
 
 /-- A legal diagonal level: it tends to infinity, while every selected level
 has already reached its own prescribed starting index. No growth rate of the
-starting indices is assumed.-/
+starting indices is assumed.
+@isnad1 id=ex.0h1v.s5.0003f06be573 from=translated src=- shape=a86f2708 vocab=06f35533
+-/
 theorem exists_slow_index (T : ℕ → ℕ) :
     ∃ level : ℕ → ℕ, Tendsto level atTop atTop ∧
       ∀ n, T 0 ≤ n → T (level n) ≤ n := by
@@ -287,7 +311,9 @@ theorem exists_slow_index (T : ℕ → ℕ) :
     exact (Finset.mem_filter.1 (Finset.max'_mem (S n) (hS n hn))).2
 
 /-- Diagonalize shell certificates with arbitrarily delayed starting scales.
-The analytic shell certificate and its radius/center estimates remain explicit.-/
+The analytic shell certificate and its radius/center estimates remain explicit.
+@isnad1 id=diskregu.6h6v.s8.abb74b0a18db from=translated src=- shape=ce89b835 vocab=92489547
+-/
 theorem diskRegular_of_eventual_shell_certificates
     (f : ℂ → ℂ) (ρ : ℝ) (h : Direction → ℝ) (hh : Continuous h)
     {c : ℝ} (hc : 0 < c) (b : ℕ → ℝ) (hb : ∀ j, 0 ≤ b j)
@@ -323,7 +349,9 @@ theorem diskRegular_of_eventual_shell_certificates
   exact hDcert n hn
 
 /-- Convenient interface with an independent positive error and radius budget.
-It chooses both to tend geometrically to zero and then applies legal diagonalization.-/
+It chooses both to tend geometrically to zero and then applies legal diagonalization.
+@isnad1 id=diskregu.3h4v.s7.8e16064acbb5 from=translated src=- shape=1a70c250 vocab=625b0375
+-/
 theorem diskRegular_of_arbitrarily_small_shell_certificates
     (f : ℂ → ℂ) (ρ : ℝ) (h : Direction → ℝ) (hh : Continuous h)
     {c : ℝ} (hc : 0 < c)
@@ -343,7 +371,9 @@ theorem diskRegular_of_arbitrarily_small_shell_certificates
 
 /-- Real-scale finite shell interface for the forthcoming analytic Cartan
 construction. The hypothesis explicitly supplies the actual finite disks and
-pointwise shell estimate; this theorem only assembles and diagonalizes them.-/
+pointwise shell estimate; this theorem only assembles and diagonalizes them.
+@isnad1 id=diskregu.3h4v.s8.c578ea610415 from=translated src=- shape=a4117e28 vocab=55b25af3
+-/
 theorem diskRegular_of_finite_shell_covers
     (f : ℂ → ℂ) (ρ : ℝ) (h : Direction → ℝ) (hh : Continuous h)
     {c : ℝ} (hc : 0 < c)

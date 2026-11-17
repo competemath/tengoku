@@ -21,7 +21,9 @@ open LevinGrowth LevinOrigin
 namespace LevinIndicatorOrigin
 
 /-- Removing a monomial preserves radial regularity with the same angular
-limit and the same measurable zero-density exceptional set.-/
+limit and the same measurable zero-density exceptional set.
+@isnad1 id=radialre.3h5v.s6.2c541bfd96ee from=translated src=- shape=afb67329 vocab=cd270610
+-/
 theorem radialRegular_remove_monomial {f F : ℂ → ℂ} {m : ℕ} {ρ : ℝ}
     {h : Direction → ℝ} (hρ : 0 < ρ)
     (hfactor : ∀ z : ℂ, f z = z ^ m * F z)
@@ -51,7 +53,9 @@ theorem radialRegular_remove_monomial {f F : ℂ → ℂ} {m : ℕ} {ρ : ℝ}
 
 /-- Unrestricted extended-real upper estimates pass from the quotient back to
 the original function. At zeros the conclusion is the bottom-element bound;
-elsewhere the exact real logarithmic identity and its vanishing error apply.-/
+elsewhere the exact real logarithmic identity and its vanishing error apply.
+@isnad1 id=eventual.4h7v.s7.d8838e92e4fd from=translated src=- shape=8237389e vocab=a1722874
+-/
 theorem eventual_upper_bounds_restore_monomial {f F : ℂ → ℂ} {m : ℕ} {ρ : ℝ}
     {h : Direction → ℝ} (hρ : 0 < ρ)
     (hfactor : ∀ z : ℂ, f z = z ^ m * F z)

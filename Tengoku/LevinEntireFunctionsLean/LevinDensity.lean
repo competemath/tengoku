@@ -46,20 +46,32 @@ def ZeroRadialDensity (E : Set ℝ) : Prop :=
 noncomputable def radialDensity (E : Set ℝ) (R : ℝ) : ℝ :=
   (volume (E ∩ Icc 0 R)).toReal / R
 
+/--
+@isnad1 id=ne.0h2v.s5.93199e2867c8 from=translated src=- shape=adb10a2c vocab=93297048
+-/
 theorem local_volume_ne_top (E : Set ℝ) (R : ℝ) :
     volume (E ∩ Icc 0 R) ≠ ⊤ := by
   exact (measure_lt_top_of_subset inter_subset_right (by simp [Real.volume_Icc])).ne
 
+/--
+@isnad1 id=le.1h2v.s4.4140679cafa4 from=translated src=- shape=d6db598b vocab=515996b4
+-/
 theorem radialDensity_nonneg (E : Set ℝ) {R : ℝ} (hR : 0 ≤ R) :
     0 ≤ radialDensity E R := by
   exact div_nonneg ENNReal.toReal_nonneg hR
 
+/--
+@isnad1 id=le.2h3v.s5.ff89e74e18d0 from=translated src=- shape=4344109b vocab=515996b4
+-/
 theorem radialDensity_mono {E F : Set ℝ} (h : E ⊆ F) {R : ℝ} (hR : 0 ≤ R) :
     radialDensity E R ≤ radialDensity F R := by
   exact div_le_div_of_nonneg_right
     (ENNReal.toReal_mono (local_volume_ne_top F R)
       (measure_mono (inter_subset_inter_left _ h))) hR
 
+/--
+@isnad1 id=iff.2h3v.s6.6bff16293409 from=translated src=- shape=fff7f04c vocab=7bb20038
+-/
 theorem radialDensity_le_iff (E : Set ℝ) {R ε : ℝ} (hR : 0 < R) (hε : 0 ≤ ε) :
     radialDensity E R ≤ ε ↔
       volume (E ∩ Icc 0 R) ≤ ENNReal.ofReal (ε * R) := by
@@ -67,6 +79,9 @@ theorem radialDensity_le_iff (E : Set ℝ) {R ε : ℝ} (hR : 0 < R) (hε : 0 �
     ← ENNReal.ofReal_le_ofReal_iff (mul_nonneg hε hR.le),
     ENNReal.ofReal_toReal (local_volume_ne_top E R)]
 
+/--
+@isnad1 id=iff.0h1v.s4.59911f5df059 from=translated src=- shape=5d945d27 vocab=2422d68b
+-/
 theorem zeroRadialDensity_iff_tendsto (E : Set ℝ) :
     ZeroRadialDensity E ↔ Tendsto (radialDensity E) atTop (𝓝 0) := by
   constructor
@@ -91,6 +106,9 @@ theorem zeroRadialDensity_iff_tendsto (E : Set ℝ) :
     exact (radialDensity_le_iff E hRpos hε.le).1
       (h₀ R ((le_max_left R₀ 1).trans hR)).le
 
+/--
+@isnad1 id=zeroradi.2h2v.s4.94fecc81f896 from=translated src=- shape=a856e1a3 vocab=ffba33a8
+-/
 theorem ZeroRadialDensity.mono {E F : Set ℝ} (hF : ZeroRadialDensity F)
     (h : E ⊆ F) : ZeroRadialDensity E := by
   intro ε hε
@@ -98,7 +116,9 @@ theorem ZeroRadialDensity.mono {E F : Set ℝ} (hF : ZeroRadialDensity F)
   refine ⟨R₀, hR₀, fun R hR => ?_⟩
   exact (measure_mono (inter_subset_inter_left _ h)).trans (h₀ R hR)
 
-/-- Countable subadditivity after normalization; all sets may be nonmeasurable.-/
+/-- Countable subadditivity after normalization; all sets may be nonmeasurable.
+@isnad1 id=le.2h2v.s6.e1e4e68ed948 from=translated src=- shape=f10d5805 vocab=2a83eb6d
+-/
 theorem radialDensity_iUnion_le (E : ℕ → Set ℝ) {R : ℝ} (hR : 0 < R)
     (hs : Summable (fun n => radialDensity (E n) R)) :
     radialDensity (⋃ n, E n) R ≤ ∑' n, radialDensity (E n) R := by
@@ -119,7 +139,9 @@ theorem radialDensity_iUnion_le (E : ℕ → Set ℝ) {R : ℝ} (hR : 0 < R)
       rw [← ENNReal.ofReal_tsum_of_nonneg
         (fun n => mul_nonneg (hnonneg n) hR.le) (hs.mul_right R), tsum_mul_right]
 
-/-- A uniformly summable bound allows countably many zero-density sets to be united.-/
+/-- A uniformly summable bound allows countably many zero-density sets to be united.
+@isnad1 id=zeroradi.3h2v.s5.31084f5a39c6 from=translated src=- shape=8832cf13 vocab=2486380b
+-/
 theorem zeroRadialDensity_iUnion_of_summable_bound (E : ℕ → Set ℝ)
     (hE : ∀ n, ZeroRadialDensity (E n)) (b : ℕ → ℝ) (hb : Summable b)
     (hbound : ∀ᶠ R : ℝ in atTop, ∀ n, radialDensity (E n) R ≤ b n) :
@@ -138,7 +160,9 @@ theorem zeroRadialDensity_iUnion_of_summable_bound (E : ℕ → Set ℝ)
     exact radialDensity_iUnion_le E (by linarith) (hb.of_norm_bounded hn)
 
 /-- Truncating each exceptional set sufficiently far out makes their union have
-zero radial density. The proof uses the summable geometric weights `2⁻ⁿ`.-/
+zero radial density. The proof uses the summable geometric weights `2⁻ⁿ`.
+@isnad1 id=ex.1h1v.s5.5274adbb5fec from=translated src=- shape=fed44085 vocab=a50a00d9
+-/
 theorem exists_truncation_zeroRadialDensity (E : ℕ → Set ℝ)
     (hE : ∀ n, ZeroRadialDensity (E n)) :
     ∃ cutoff : ℕ → ℝ, (∀ n, 0 ≤ cutoff n) ∧
@@ -166,7 +190,9 @@ theorem exists_truncation_zeroRadialDensity (E : ℕ → Set ℝ)
     positivity
 
 /-- One exceptional set of zero density eventually contains each set of a
-countable family of zero-density exceptional sets.-/
+countable family of zero-density exceptional sets.
+@isnad1 id=ex.1h1v.s6.95202977251c from=translated src=- shape=ed878d02 vocab=b9db1688
+-/
 theorem exists_zeroRadialDensity_eventually_contains (E : ℕ → Set ℝ)
     (hE : ∀ n, ZeroRadialDensity (E n)) :
     ∃ F : Set ℝ, ZeroRadialDensity F ∧
@@ -178,7 +204,9 @@ theorem exists_zeroRadialDensity_eventually_contains (E : ℕ → Set ℝ)
   intro r hr hrE
   exact mem_iUnion.2 ⟨n, hrE, hr⟩
 
-/-- The measurable version retains measurability of the common exceptional set.-/
+/-- The measurable version retains measurability of the common exceptional set.
+@isnad1 id=ex.2h1v.s6.da00e84c9a8a from=translated src=- shape=d1131470 vocab=69168301
+-/
 theorem exists_measurable_zeroRadialDensity_eventually_contains (E : ℕ → Set ℝ)
     (hE : ∀ n, ZeroRadialDensity (E n)) (hm : ∀ n, MeasurableSet (E n)) :
     ∃ F : Set ℝ, MeasurableSet F ∧ ZeroRadialDensity F ∧
@@ -193,7 +221,9 @@ theorem exists_measurable_zeroRadialDensity_eventually_contains (E : ℕ → Set
 
 /-- Eventual properties outside countably many zero-density exceptional sets
 can be transferred to a single zero-density exceptional set. The radius still
-may depend on the property index.-/
+may depend on the property index.
+@isnad1 id=ex.2h2v.s6.049627278035 from=translated src=- shape=c17b7261 vocab=b9db1688
+-/
 theorem exists_common_exceptional_set (E : ℕ → Set ℝ) (P : ℕ → ℝ → Prop)
     (hE : ∀ n, ZeroRadialDensity (E n))
     (hP : ∀ n, ∃ R₀ : ℝ, ∀ r : ℝ, R₀ ≤ r → r ∉ E n → P n r) :
@@ -211,7 +241,9 @@ theorem exists_common_exceptional_set (E : ℕ → Set ℝ) (P : ℕ → ℝ →
   exact hrF (hA r ((le_max_left A B).trans hr) hrE)
 
 /-- Tail intersections have zero density when arbitrarily late exceptional
-sets have arbitrarily small eventual relative-measure bounds.-/
+sets have arbitrarily small eventual relative-measure bounds.
+@isnad1 id=zeroradi.1h2v.s7.b0c65297a1f2 from=translated src=- shape=9e3e6685 vocab=a666bbda
+-/
 theorem zeroRadialDensity_tail_iInter (E : ℕ → Set ℝ)
     (hsmall : ∀ ε : ℝ, 0 < ε → ∀ N : ℕ, ∃ n : ℕ, N ≤ n ∧
       ∃ R₀ : ℝ, 0 ≤ R₀ ∧ ∀ R : ℝ, R₀ ≤ R →
@@ -226,7 +258,9 @@ theorem zeroRadialDensity_tail_iInter (E : ℕ → Set ℝ)
 
 /-- An epsilon/eta diagonal principle for a sequence of increasingly strong
 properties. This includes positive exceptional-density bounds tending to zero;
-it does not require the input exceptional sets themselves to have density zero.-/
+it does not require the input exceptional sets themselves to have density zero.
+@isnad1 id=ex.1h4v.s7.d1e00f1d09dc from=translated src=- shape=49640b98 vocab=c6b37623
+-/
 theorem exists_common_exceptional_set_of_small_density (E : ℕ → Set ℝ)
     (P : ℕ → ℝ → Prop)
     (hsmall : ∀ ε : ℝ, 0 < ε → ∀ N : ℕ, ∃ n : ℕ, N ≤ n ∧
@@ -249,7 +283,9 @@ theorem exists_common_exceptional_set_of_small_density (E : ℕ → Set ℝ)
   exact hnot (hmono n m hnm r (hP m r hrm))
 
 /-- A convenient version of the epsilon/eta principle with explicit bounds
-`eta n` tending to zero. The bounds use actual Lebesgue outer measure.-/
+`eta n` tending to zero. The bounds use actual Lebesgue outer measure.
+@isnad1 id=ex.2h5v.s7.109c9c849304 from=translated src=- shape=a8c3b0ec vocab=08fd528d
+-/
 theorem exists_common_exceptional_set_of_density_bounds (E : ℕ → Set ℝ)
     (P : ℕ → ℝ → Prop) (eta : ℕ → ℝ) (heta : Tendsto eta atTop (𝓝 0))
     (hE : ∀ n, ∃ R₀ : ℝ, 0 ≤ R₀ ∧ ∀ R : ℝ, R₀ ≤ R →
@@ -267,7 +303,9 @@ theorem exists_common_exceptional_set_of_density_bounds (E : ℕ → Set ℝ)
   apply ENNReal.ofReal_le_ofReal
   exact mul_le_mul_of_nonneg_right (hM _ (le_max_right _ _)).le (hR₀.trans hR)
 
-/-- A finite initial interval has zero radial density.-/
+/-- A finite initial interval has zero radial density.
+@isnad1 id=zeroradi.0h1v.s2.8d0f6b5e0854 from=translated src=- shape=66c9b6c6 vocab=9080a2e7
+-/
 theorem zeroRadialDensity_Iic (A : ℝ) : ZeroRadialDensity (Iic A) := by
   intro ε hε
   refine ⟨max 0 (max A 0 / ε), le_max_left _ _, ?_⟩
@@ -284,7 +322,9 @@ theorem zeroRadialDensity_Iic (A : ℝ) : ZeroRadialDensity (Iic A) := by
       have := (div_le_iff₀ hε).1 hdiv
       linarith
 
-/-- Normalized finite subadditivity.-/
+/-- Normalized finite subadditivity.
+@isnad1 id=le.1h3v.s5.e9b076bdaa91 from=translated src=- shape=f2267d4f vocab=806a5bac
+-/
 theorem radialDensity_union_le (E F : Set ℝ) {R : ℝ} (hR : 0 ≤ R) :
     radialDensity (E ∪ F) R ≤ radialDensity E R + radialDensity F R := by
   unfold radialDensity
@@ -292,6 +332,9 @@ theorem radialDensity_union_le (E F : Set ℝ) {R : ℝ} (hR : 0 ≤ R) :
   apply div_le_div_of_nonneg_right _ hR
   exact measureReal_union_le _ _
 
+/--
+@isnad1 id=zeroradi.2h2v.s4.84008e622870 from=translated src=- shape=286d108b vocab=e8ba93a1
+-/
 theorem ZeroRadialDensity.union {E F : Set ℝ}
     (hE : ZeroRadialDensity E) (hF : ZeroRadialDensity F) :
     ZeroRadialDensity (E ∪ F) := by
@@ -307,7 +350,9 @@ theorem ZeroRadialDensity.union {E F : Set ℝ}
 
 /-- The full epsilon/eta diagonal principle also allows each input property
 to start at its own radius. Finite initial failures are absorbed into each
-exceptional set before performing the tail-intersection construction.-/
+exceptional set before performing the tail-intersection construction.
+@isnad1 id=ex.3h4v.s7.e86a8ab7d0be from=translated src=- shape=adb5dbe0 vocab=08fd528d
+-/
 theorem exists_common_exceptional_set_of_eventual_density_bounds (E : ℕ → Set ℝ)
     (P : ℕ → ℝ → Prop) (eta : ℕ → ℝ) (heta : Tendsto eta atTop (𝓝 0))
     (hE : ∀ n, ∃ R₀ : ℝ, 0 ≤ R₀ ∧ ∀ R : ℝ, R₀ ≤ R →

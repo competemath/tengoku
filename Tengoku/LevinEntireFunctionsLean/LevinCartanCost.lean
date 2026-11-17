@@ -17,6 +17,9 @@ open Filter Real
 open scoped Topology
 namespace LevinCartanCost
 
+/--
+@isnad1 id=tendsto.0h0v.s6.5c35ec08085d from=translated src=- shape=aeaa5225 vocab=dec3fad0
+-/
 theorem tendsto_mul_log_sq :
     Tendsto (fun δ : ℝ => δ * (Real.log δ)^2) (𝓝[>] 0) (𝓝 0) := by
   have h := tendsto_log_mul_rpow_nhdsGT_zero (r := 1/2) (by norm_num)
@@ -31,13 +34,18 @@ theorem tendsto_mul_log_sq :
     _ = (δ ^ (1/2 : ℝ) * δ ^ (1/2 : ℝ)) * (Real.log δ)^2 := by ring
     _ = _ := by rw [hp]
 
+/--
+@isnad1 id=tendsto.0h0v.s5.b333743eb4fd from=translated src=- shape=1deb81b1 vocab=f5ec3e81
+-/
 theorem tendsto_mul_log :
     Tendsto (fun δ : ℝ => δ * Real.log δ) (𝓝[>] 0) (𝓝 0) := by
   simpa using (Real.continuous_mul_log.tendsto (0 : ℝ)).mono_left
     (nhdsWithin_le_nhds : 𝓝[>] (0 : ℝ) ≤ 𝓝 0)
 
 /-- The logarithmic loss of the local minimum modulus remains negligible
-after paying a polynomial-size grid's disk budget.-/
+after paying a polynomial-size grid's disk budget.
+@isnad1 id=tendsto.2h2v.s6.2c313deb3eec from=translated src=- shape=4712047a vocab=8d2580b0
+-/
 theorem loss_mul_modulus_tendsto {b C : ℝ} (hb : 0 < b) (hC : 0 < C) :
     Tendsto (fun δ : ℝ => LevinMinimumModulus.loss (b*δ/C) *
       (δ + LevinAnnulus.modulus (8*δ))) (𝓝[>] 0) (𝓝 0) := by
@@ -67,6 +75,9 @@ theorem loss_mul_modulus_tendsto {b C : ℝ} (hb : 0 < b) (hC : 0 < C) :
 
 def profileModulus (δ : ℝ) : ℝ := 16*δ + LevinAnnulus.modulus (128*δ)
 
+/--
+@isnad1 id=tendsto.0h0v.s5.6ddc8bde0b80 from=translated src=- shape=7068697d vocab=350bfaa5
+-/
 theorem profileModulus_tendsto_zero :
     Tendsto profileModulus (𝓝[>] 0) (𝓝 0) := by
   have hδ : Tendsto (fun δ : ℝ => δ) (𝓝[>] 0) (𝓝 0) :=
@@ -77,6 +88,9 @@ theorem profileModulus_tendsto_zero :
   change Tendsto (fun δ : ℝ => 16*δ + LevinAnnulus.modulus (128*δ)) (𝓝[>] 0) (𝓝 0)
   simpa only [mul_zero, add_zero, Function.comp_def] using (hδ.const_mul 16).add hm
 
+/--
+@isnad1 id=tendsto.2h2v.s6.f1de3346a19a from=translated src=- shape=f0521884 vocab=adc65d30
+-/
 theorem loss_mul_profileModulus_tendsto {b C : ℝ} (hb : 0 < b) (hC : 0 < C) :
     Tendsto (fun δ : ℝ => LevinMinimumModulus.loss (b*δ/C) * profileModulus δ)
       (𝓝[>] 0) (𝓝 0) := by
@@ -97,7 +111,9 @@ theorem loss_mul_profileModulus_tendsto {b C : ℝ} (hb : 0 < b) (hC : 0 < C) :
   rfl
 
 /-- Choose the mesh scale first, then the radial error. This leaves room for
-both the disk-radius budget and the desired asymptotic error.-/
+both the disk-radius budget and the desired asymptotic error.
+@isnad1 id=ex.3h3v.s7.e38b2f169a6c from=translated src=- shape=96d2c8d4 vocab=deb5927d
+-/
 theorem exists_parameters {L b ε : ℝ} (_hL : 0 < L) (hb : 0 < b) (hε : 0 < ε) :
     ∃ δ a η : ℝ, 0 < δ ∧ δ ≤ 1/128 ∧ 0 < a ∧ 0 < η ∧ η ≤ 1 ∧
       1000*η/δ ≤ b ∧

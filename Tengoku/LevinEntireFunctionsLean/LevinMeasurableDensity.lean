@@ -19,7 +19,9 @@ namespace LevinMeasurableDensity
 
 /-- The epsilon/eta diagonal principle with measurable output. Each property
 may start at its own radius. The properties become stronger as the index grows,
-while the eventual relative-measure bounds tend to zero.-/
+while the eventual relative-measure bounds tend to zero.
+@isnad1 id=ex.4h4v.s7.5e548d801a56 from=translated src=- shape=35c4e064 vocab=a566ba49
+-/
 theorem exists_common_exceptional_set_of_eventual_density_bounds
     (E : ℕ → Set ℝ) (P : ℕ → ℝ → Prop)
     (hEm : ∀ n, MeasurableSet (E n))

@@ -40,9 +40,15 @@ def IsC0 (D : DiskFamily) : Prop :=
   ∀ ε : ℝ, 0 < ε → ∃ R₀ : ℝ, 0 ≤ R₀ ∧
     ∀ R : ℝ, R₀ ≤ R → radiusMass D R ≤ ENNReal.ofReal (ε * R)
 
+/--
+@isnad1 id=measurab.0h1v.s2.3a26564d0cb9 from=translated src=- shape=1a6c1393 vocab=c7f0524c
+-/
 theorem measurableSet_radialShadow (D : DiskFamily) : MeasurableSet (radialShadow D) := by
   exact MeasurableSet.iUnion (fun _ => measurableSet_Ioo)
 
+/--
+@isnad1 id=mem.1h2v.s4.c538e846633f from=translated src=- shape=c5db5d9f vocab=6b27ccbe
+-/
 theorem norm_mem_radialShadow (D : DiskFamily) {z : ℂ} (hz : z ∈ disks D) :
     ‖z‖ ∈ radialShadow D := by
   obtain ⟨n, hn⟩ := mem_iUnion.mp hz
@@ -53,12 +59,18 @@ theorem norm_mem_radialShadow (D : DiskFamily) {z : ℂ} (hz : z ∈ disks D) :
   rw [abs_lt] at h
   exact ⟨by linarith [h.1], by linarith [h.2]⟩
 
+/--
+@isnad1 id=le.1h3v.s4.02618046b96d from=translated src=- shape=42e708bb vocab=8e0cc94b
+-/
 theorem radius_le_mass (D : DiskFamily) (n : ℕ) {R : ℝ} (hn : ‖D.center n‖ ≤ R) :
     ENNReal.ofReal (D.radius n) ≤ radiusMass D R := by
   have h := ENNReal.le_tsum (f := fun k =>
     if ‖D.center k‖ ≤ R then ENNReal.ofReal (D.radius k) else 0) n
   simpa only [ite_eq_left hn, radiusMass] using h
 
+/--
+@isnad1 id=ex.1h1v.s5.916b297ce0de from=translated src=- shape=d9790bc1 vocab=a892569d
+-/
 theorem small_radius_at_large_center (D : DiskFamily) (hD : IsC0 D) :
     ∃ R₀ : ℝ, 0 ≤ R₀ ∧ ∀ n, R₀ ≤ ‖D.center n‖ →
       D.radius n ≤ ‖D.center n‖ / 2 := by
@@ -68,6 +80,9 @@ theorem small_radius_at_large_center (D : DiskFamily) (hD : IsC0 D) :
   have hreal := (ENNReal.ofReal_le_ofReal_iff (by positivity)).mp h
   linarith
 
+/--
+@isnad1 id=le.3h3v.s7.466844da36d9 from=translated src=- shape=ab10c993 vocab=8cc9115f
+-/
 theorem radialShadow_volume_bound (D : DiskFamily) {R₀ R : ℝ}
     (hR₀ : 0 ≤ R₀) (hR : R₀ ≤ R)
     (hsmall : ∀ n, R₀ ≤ ‖D.center n‖ → D.radius n ≤ ‖D.center n‖ / 2) :
@@ -103,7 +118,9 @@ theorem radialShadow_volume_bound (D : DiskFamily) {R₀ R : ℝ}
       · simp
     _ = 2 * radiusMass D (2 * R) := by rw [ENNReal.tsum_mul_left]; rfl
 
-/-- A C₀ union of disks has a measurable radial shadow of zero relative measure.-/
+/-- A C₀ union of disks has a measurable radial shadow of zero relative measure.
+@isnad1 id=zeroradi.1h1v.s3.3c8e9a65b69a from=translated src=- shape=58f8d12c vocab=2c7409a3
+-/
 theorem radialShadow_zero_density (D : DiskFamily) (hD : IsC0 D) :
     LevinDensity.ZeroRadialDensity (radialShadow D) := by
   obtain ⟨A, hA, hsmall⟩ := small_radius_at_large_center D hD

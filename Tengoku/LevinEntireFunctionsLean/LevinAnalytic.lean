@@ -29,7 +29,9 @@ open Set Metric Real Complex InnerProductSpace
 namespace CRGLevinAnalytic
 
 /-- Jensen's inequality gives a zero-count estimate from a concrete exponential
-bound, with multiplicities represented by the analytic divisor.-/
+bound, with multiplicities represented by the analytic divisor.
+@isnad1 id=le.5h4v.s8.a7aee13eb05e from=translated src=- shape=d3565cb0 vocab=ed135518
+-/
 theorem zero_count_exp_bound {f : ℂ → ℂ} {c : ℂ} {r A : ℝ}
     (hr : 0 < r) (hA : 0 ≤ A)
     (hf : AnalyticOnNhd ℂ f (closedBall c (2 * r))) (hc : f c ≠ 0)
@@ -50,7 +52,9 @@ theorem zero_count_exp_bound {f : ℂ → ℂ} {c : ℂ} {r A : ℝ}
   simpa only [Real.log_div he hn, Real.log_exp, hd] using h
 
 /-- A finite-type bound immediately gives the expected polynomial bound on the
-number of zeros. No zero-density hypothesis is assumed.-/
+number of zeros. No zero-density hypothesis is assumed.
+@isnad1 id=le.5h5v.s8.1f8ea53db785 from=translated src=- shape=7e02e7a7 vocab=7c0325e9
+-/
 theorem zero_count_finite_type {f : ℂ → ℂ} {c : ℂ} {r C ρ : ℝ}
     (hr : 0 < r) (hC : 0 ≤ C)
     (hf : AnalyticOnNhd ℂ f (closedBall c (2 * r))) (hc : f c = 1)
@@ -62,7 +66,9 @@ theorem zero_count_finite_type {f : ℂ → ℂ} {c : ℂ} {r C ρ : ℝ}
   simpa [hc] using h
 
 /-- Harnack's upper bound on a disk, proved using the Poisson formula and its
-kernel estimate. Nonnegativity is required only on the boundary.-/
+kernel estimate. Nonnegativity is required only on the boundary.
+@isnad1 id=le.3h4v.s7.d7382919edf9 from=translated src=- shape=01041f0a vocab=ac6add23
+-/
 theorem harmonic_harnack_upper {u : ℂ → ℝ} {c w : ℂ} {R : ℝ}
     (hu : HarmonicOnNhd u (closedBall c R)) (hw : w ∈ ball c R)
     (hpos : ∀ z ∈ sphere c R, 0 ≤ u z) :
@@ -86,7 +92,9 @@ theorem harmonic_harnack_upper {u : ℂ → ℝ} {c w : ℂ} {R : ℝ}
     (show HarmonicOnNhd u (closedBall c |R|) by simpa [abs_of_pos hR] using hu).circleAverage_eq
   simpa only [smul_eq_mul, hmean] using hm
 
-/-- The complementary lower Harnack bound.-/
+/-- The complementary lower Harnack bound.
+@isnad1 id=le.3h4v.s7.d0ee7fc18555 from=translated src=- shape=2a4b558d vocab=ac6add23
+-/
 theorem harmonic_harnack_lower {u : ℂ → ℝ} {c w : ℂ} {R : ℝ}
     (hu : HarmonicOnNhd u (closedBall c R)) (hw : w ∈ ball c R)
     (hpos : ∀ z ∈ sphere c R, 0 ≤ u z) :
@@ -111,7 +119,9 @@ theorem harmonic_harnack_lower {u : ℂ → ℝ} {c w : ℂ} {R : ℝ}
   simpa only [smul_eq_mul, hmean] using hm
 
 /-- Harnack's comparison between two arbitrary interior points. This removes the
-artificial requirement that the normalization point be the center of the disk.-/
+artificial requirement that the normalization point be the center of the disk.
+@isnad1 id=le.4h5v.s7.b09cdfefc9cb from=translated src=- shape=4e530e0a vocab=ac6add23
+-/
 theorem harmonic_harnack_two_points {u : ℂ → ℝ} {c v w : ℂ} {R : ℝ}
     (hu : HarmonicOnNhd u (closedBall c R)) (hv : v ∈ ball c R)
     (hw : w ∈ ball c R) (hpos : ∀ z ∈ sphere c R, 0 ≤ u z) :
@@ -135,7 +145,9 @@ theorem harmonic_harnack_two_points {u : ℂ → ℝ} {c v w : ℂ} {R : ℝ}
     _ = _ := (mul_assoc _ _ _).symm
 
 /-- A zero-free holomorphic function bounded above has a lower logarithmic bound
-inside the disk controlled by its actual value at the center.-/
+inside the disk controlled by its actual value at the center.
+@isnad1 id=le.4h5v.s7.bbdeb9e18c8e from=translated src=- shape=600ea111 vocab=ca488662
+-/
 theorem log_norm_lower_bound {f : ℂ → ℂ} {c w : ℂ} {R M : ℝ}
     (hf : AnalyticOnNhd ℂ f (closedBall c R))
     (hnz : ∀ z ∈ closedBall c R, f z ≠ 0) (hw : w ∈ ball c R)
@@ -149,7 +161,9 @@ theorem log_norm_lower_bound {f : ℂ → ℂ} {c w : ℂ} {R M : ℝ}
   dsimp at h
   linarith
 
-/-- Levin's zero-free disk estimate with an arbitrary normalization point.-/
+/-- Levin's zero-free disk estimate with an arbitrary normalization point.
+@isnad1 id=le.5h6v.s8.7a73ffbffc94 from=translated src=- shape=ea3a3154 vocab=ca488662
+-/
 theorem log_norm_lower_bound_from_point {f : ℂ → ℂ} {c v w : ℂ} {R M : ℝ}
     (hf : AnalyticOnNhd ℂ f (closedBall c R))
     (hnz : ∀ z ∈ closedBall c R, f z ≠ 0) (hv : v ∈ ball c R)
@@ -166,7 +180,9 @@ theorem log_norm_lower_bound_from_point {f : ℂ → ℂ} {c v w : ℂ} {R M : �
   linarith
 
 /-- A quantitative oscillation bound for the actual Poisson kernel on the inner
-half disk. The dependence is linear in the distance between the evaluation points.-/
+half disk. The dependence is linear in the distance between the evaluation points.
+@isnad1 id=le.4h5v.s7.bbc8d8d80fbb from=translated src=- shape=53fcb101 vocab=53a91f78
+-/
 theorem poisson_kernel_half_disk_bound {c z v w : ℂ} {R : ℝ}
     (hR : 0 < R) (hz : z ∈ sphere c R)
     (hv : v ∈ closedBall c (R / 2)) (hw : w ∈ closedBall c (R / 2)) :
@@ -203,7 +219,9 @@ theorem poisson_kernel_half_disk_bound {c z v w : ℂ} {R : ℝ}
     _ = _ := by field_simp; ring
 
 /-- The Poisson formula gives a Lipschitz bound for every real harmonic function
-bounded on the outer circle, without assuming equicontinuity as an input.-/
+bounded on the outer circle, without assuming equicontinuity as an input.
+@isnad1 id=le.5h6v.s7.a715d1293602 from=translated src=- shape=60cac5e8 vocab=25215018
+-/
 theorem harmonic_half_disk_oscillation {u : ℂ → ℝ} {c v w : ℂ} {R M : ℝ}
     (hR : 0 < R) (hu : HarmonicOnNhd u (closedBall c R))
     (hv : v ∈ closedBall c (R / 2)) (hw : w ∈ closedBall c (R / 2))
@@ -242,7 +260,9 @@ theorem harmonic_half_disk_oscillation {u : ℂ → ℝ} {c v w : ℂ} {R M : �
     _ = _ := by ring
 
 /-- Consequently the logarithmic modulus of a zero-free analytic function has
-the same quantitative oscillation bound when its boundary logarithm is bounded.-/
+the same quantitative oscillation bound when its boundary logarithm is bounded.
+@isnad1 id=le.6h6v.s8.aa3f2ed10c73 from=translated src=- shape=c51b40bf vocab=d18002fb
+-/
 theorem log_norm_half_disk_oscillation {f : ℂ → ℂ} {c v w : ℂ} {R M : ℝ}
     (hR : 0 < R) (hf : AnalyticOnNhd ℂ f (closedBall c R))
     (hnz : ∀ z ∈ closedBall c R, f z ≠ 0)
@@ -254,7 +274,9 @@ theorem log_norm_half_disk_oscillation {f : ℂ → ℂ} {c v w : ℂ} {R M : �
 
 /-- A one-sided logarithmic growth bound and one non-small value imply a genuine
 interior oscillation estimate for a zero-free analytic function. In particular,
-no equicontinuity or lower bound at other points is hidden in the assumptions.-/
+no equicontinuity or lower bound at other points is hidden in the assumptions.
+@isnad1 id=le.8h6v.s8.7ae8d630c667 from=translated src=- shape=8963189a vocab=9dc7dd9c
+-/
 theorem log_norm_quarter_disk_oscillation {f : ℂ → ℂ} {c v w : ℂ} {R M : ℝ}
     (hR : 0 < R) (hM : 0 ≤ M)
     (hf : AnalyticOnNhd ℂ f (closedBall c R))
@@ -288,7 +310,9 @@ theorem log_norm_quarter_disk_oscillation {f : ℂ → ℂ} {c v w : ℂ} {R M :
 
 /-- At a growing radius the normalization by `r^ρ` cancels the harmonic
 oscillation scale. This is a uniform Lipschitz estimate on the unit disk for the
-zero-free factor that remains after the local zeros have been removed.-/
+zero-free factor that remains after the local zeros have been removed.
+@isnad1 id=le.8h6v.s8.082dedeb71a7 from=translated src=- shape=90e4a978 vocab=82388d48
+-/
 theorem normalized_log_norm_oscillation {f : ℂ → ℂ} {v w : ℂ} {r A ρ : ℝ}
     (hr : 0 < r) (hA : 0 ≤ A)
     (hf : AnalyticOnNhd ℂ f (closedBall 0 (4 * r)))

@@ -25,6 +25,9 @@ def coordinate (n : ℕ) (i : Fin (4 * n + 1)) : ℝ := (i.val : ℝ) / n - 2
 def point (n : ℕ) (i : Fin (4 * n + 1) × Fin (4 * n + 1)) : ℂ :=
   ⟨coordinate n i.1, coordinate n i.2⟩
 
+/--
+@isnad1 id=ex.2h2v.s6.274ba9a52913 from=translated src=- shape=6db8172d vocab=a83c6875
+-/
 theorem exists_coordinate {n : ℕ} (hn : 0 < n) {x : ℝ} (hx : |x| ≤ 2) :
     ∃ i : Fin (4 * n + 1), |x - coordinate n i| ≤ 1 / n := by
   have hnR : 0 < (n : ℝ) := by exact_mod_cast hn
@@ -50,6 +53,9 @@ theorem exists_coordinate {n : ℕ} (hn : 0 < n) {x : ℝ} (hx : |x| ≤ 2) :
     rw [heq]
     linarith
 
+/--
+@isnad1 id=ex.2h2v.s7.39c9579c113d from=translated src=- shape=6b266344 vocab=3502a1d6
+-/
 theorem exists_point {n : ℕ} (hn : 0 < n) {z : ℂ} (hz : ‖z‖ ≤ 2) :
     ∃ i : Fin (4 * n + 1) × Fin (4 * n + 1), ‖z - point n i‖ ≤ 2 / n := by
   obtain ⟨i, hi⟩ := exists_coordinate hn ((abs_re_le_norm z).trans hz)
@@ -67,11 +73,17 @@ def annularGrid (n : ℕ) : Finset ℂ := by
   classical
   exact (Finset.univ.image (point n)).filter (fun z => 1 - 2 / (n : ℝ) ≤ ‖z‖ ∧ ‖z‖ ≤ 2 + 2 / (n : ℝ))
 
+/--
+@isnad1 id=le.0h1v.s5.6bc0936d820f from=translated src=- shape=09b71fed vocab=2a292452
+-/
 theorem annularGrid_card (n : ℕ) : (annularGrid n).card ≤ (4 * n + 1) ^ 2 := by
   classical
   unfold annularGrid
   exact Finset.card_filter_le _ _ |>.trans (Finset.card_image_le.trans (by simp [sq]))
 
+/--
+@isnad1 id=ex.2h2v.s6.19ac6c120bc3 from=translated src=- shape=301c3dd8 vocab=4c034e4f
+-/
 theorem annularGrid_covers {n : ℕ} (hn : 0 < n) {z : ℂ}
     (hz : ‖z‖ ∈ Icc (1 : ℝ) 2) :
     ∃ c ∈ annularGrid n, ‖z - c‖ ≤ 2 / n := by
@@ -86,6 +98,9 @@ theorem annularGrid_covers {n : ℕ} (hn : 0 < n) {z : ℂ}
     rw [norm_sub_rev] at hr
     linarith [hz.2]
 
+/--
+@isnad1 id=mem.2h2v.s6.6f228ca1ce7e from=translated src=- shape=19f68227 vocab=db72ccea
+-/
 theorem annularGrid_norm_bounds {n : ℕ} (hn : 8 ≤ n) {c : ℂ}
     (hc : c ∈ annularGrid n) : ‖c‖ ∈ Icc (3 / 4 : ℝ) (9 / 4) := by
   classical
@@ -96,7 +111,9 @@ theorem annularGrid_norm_bounds {n : ℕ} (hn : 8 ≤ n) {c : ℂ}
   exact ⟨by linarith [hc'.1], by linarith [hc'.2]⟩
 
 /-- A concrete annular cover at every small real mesh size. Its quadratic
-cardinality bound is uniform in the mesh size.-/
+cardinality bound is uniform in the mesh size.
+@isnad1 id=ex.2h1v.s7.e6e6d6ac396d from=translated src=- shape=979e4fef vocab=d027b4d4
+-/
 theorem exists_annular_cover {δ : ℝ} (hδ : 0 < δ) (hδ1 : δ ≤ 1 / 4) :
     ∃ Γ : Finset ℂ, (Γ.card : ℝ) * δ ^ 2 ≤ 100 ∧
       (∀ c ∈ Γ, ‖c‖ ∈ Icc (3 / 4 : ℝ) (9 / 4)) ∧
@@ -132,7 +149,9 @@ theorem exists_annular_cover {δ : ℝ} (hδ : 0 < δ) (hδ1 : δ ≤ 1 / 4) :
     exact ⟨c, hc, hdist.trans hmesh⟩
 
 /-- Zero radial density leaves a good radius in every mesh-length interval
-throughout a whole enlarged annulus, at every sufficiently large scale.-/
+throughout a whole enlarged annulus, at every sufficiently large scale.
+@isnad1 id=ex.3h2v.s7.0f45f5969a99 from=translated src=- shape=253f864a vocab=1062f1be
+-/
 theorem eventually_good_mesh_radii {E : Set ℝ} (hE : LevinDensity.ZeroRadialDensity E)
     {δ : ℝ} (hδ : 0 < δ) (hδ1 : δ ≤ 1 / 4) :
     ∃ R₀ : ℝ, 0 < R₀ ∧ ∀ R : ℝ, R₀ ≤ R →

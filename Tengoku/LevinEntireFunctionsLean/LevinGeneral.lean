@@ -21,7 +21,9 @@ open LevinGrowth LevinDensity LevinAssembly
 namespace LevinGeneral
 
 /-- Entire-function hypotheses imply the genuine small-density angular estimate.
-The temporary center condition is removed by the final origin reduction.-/
+The temporary center condition is removed by the final origin reduction.
+@isnad1 id=ex.5h3v.s7.34e91569f2f2 from=translated src=- shape=2c2e7b04 vocab=0bb6cea0
+-/
 theorem small_density_equicontinuity_of_ne_zero_at_origin {f : ℂ → ℂ} {ρ : ℝ}
     (hf : Differentiable ℂ f) (hρ : 0 < ρ)
     (htype : FinitePositiveType f ρ) (hf0 : f 0 ≠ 0) :
@@ -46,7 +48,9 @@ theorem small_density_equicontinuity_of_ne_zero_at_origin {f : ℂ → ℂ} {ρ 
     (zeroRadii_zero_density hf ⟨0, hf0⟩) cost hc hcontrol
 
 /-- General zeros away from the origin are allowed; no equicontinuity hypothesis
-remains in this theorem.-/
+remains in this theorem.
+@isnad1 id=ex.6h3v.s7.3cb868fdc9e8 from=translated src=- shape=a3d4b09c vocab=b860ad64
+-/
 theorem radialRegular_of_dense_sequence_of_ne_zero_at_origin {f : ℂ → ℂ} {ρ : ℝ}
     (hf : Differentiable ℂ f) (hρ : 0 < ρ)
     (htype : FinitePositiveType f ρ) (hf0 : f 0 ≠ 0)
@@ -57,7 +61,9 @@ theorem radialRegular_of_dense_sequence_of_ne_zero_at_origin {f : ℂ → ℂ} {
     (small_density_equicontinuity_of_ne_zero_at_origin hf hρ htype hf0)
 
 /-- The radial dense-ray criterion for arbitrary entire functions of finite
-positive type and positive constant order. This includes zeros at the origin.-/
+positive type and positive constant order. This includes zeros at the origin.
+@isnad1 id=ex.4h2v.s7.dbc7e065c881 from=translated src=- shape=099296e0 vocab=ac894ea9
+-/
 theorem radialRegular_of_dense_rays {f : ℂ → ℂ} {ρ : ℝ}
     (hf : Differentiable ℂ f) (hρ : 0 < ρ) (htype : FinitePositiveType f ρ)
     (hgood : Dense {ζ : Direction | ∃ a : ℝ, RayRegular f ρ ζ a}) :
@@ -81,6 +87,9 @@ def ConstantOrderRadialLevinGoal : Prop :=
     Dense {ζ : Direction | ∃ a : ℝ, RayRegular f ρ ζ a} →
     ∃ h : Direction → ℝ, RadialRegular f ρ h
 
+/--
+@isnad1 id=constant.0h0v.s0.92db59b33b8e from=translated src=- shape=45709ebd vocab=92db59b3
+-/
 theorem constantOrderRadialLevin : ConstantOrderRadialLevinGoal := by
   intro f ρ hf hρ htype hgood
   exact radialRegular_of_dense_rays hf hρ htype hgood

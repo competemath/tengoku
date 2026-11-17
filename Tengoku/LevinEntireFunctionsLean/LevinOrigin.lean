@@ -28,7 +28,9 @@ open LevinGrowth
 namespace LevinOrigin
 
 /-- A nonzero entire function has a global monomial factorization with a
-zero-free value at the origin. The factor itself may have zeros elsewhere.-/
+zero-free value at the origin. The factor itself may have zeros elsewhere.
+@isnad1 id=ex.2h1v.s7.c8f17bf76c44 from=translated src=- shape=9872afe7 vocab=d97f8fc7
+-/
 theorem exists_entire_factor_at_origin {f : ℂ → ℂ} (hf : Differentiable ℂ f)
     (hn : ∃ z : ℂ, f z ≠ 0) :
     ∃ m : ℕ, ∃ F : ℂ → ℂ, Differentiable ℂ F ∧ F 0 ≠ 0 ∧
@@ -69,13 +71,18 @@ theorem exists_entire_factor_at_origin {f : ℂ → ℂ} (hf : Differentiable �
 /-- The exact normalized contribution of the removed monomial.-/
 def monomialError (m : ℕ) (ρ r : ℝ) : ℝ := (m : ℝ) * Real.log r / r ^ ρ
 
+/--
+@isnad1 id=tendsto.1h2v.s5.293d3297f892 from=translated src=- shape=10275891 vocab=85a958c2
+-/
 theorem monomialError_tendsto_zero (m : ℕ) {ρ : ℝ} (hρ : 0 < ρ) :
     Tendsto (monomialError m ρ) atTop (𝓝 0) := by
   have h := (isLittleO_log_rpow_atTop hρ).tendsto_div_nhds_zero
   change Tendsto (fun r => (m : ℝ) * Real.log r / r ^ ρ) atTop (𝓝 0)
   simpa only [mul_div_assoc, mul_zero] using h.const_mul (m : ℝ)
 
-/-- At positive radii, removing a monomial preserves nonvanishing exactly.-/
+/-- At positive radii, removing a monomial preserves nonvanishing exactly.
+@isnad1 id=iff.2h5v.s6.d90d8bb17932 from=translated src=- shape=60e2cb61 vocab=3deb7fea
+-/
 theorem ray_nonzero_iff {f F : ℂ → ℂ} {m : ℕ}
     (hfactor : ∀ z : ℂ, f z = z ^ m * F z) {r : ℝ} (hr : 0 < r) (ζ : Direction) :
     f (rayPoint r ζ) ≠ 0 ↔ F (rayPoint r ζ) ≠ 0 := by
@@ -84,7 +91,9 @@ theorem ray_nonzero_iff {f F : ℂ → ℂ} {m : ℕ}
   exact and_iff_right (pow_ne_zero m hz)
 
 /-- The logarithmic identity uses an actual nonzero quotient value; it never
-substitutes Lean's totalized logarithm at a zero.-/
+substitutes Lean's totalized logarithm at a zero.
+@isnad1 id=eq.3h6v.s6.7515119bac44 from=translated src=- shape=9e32991d vocab=7dcbfb31
+-/
 theorem normalizedLog_factorization {f F : ℂ → ℂ} {m : ℕ}
     (hfactor : ∀ z : ℂ, f z = z ^ m * F z) {r ρ : ℝ} (hr : 0 < r) (ζ : Direction)
     (hnz : F (rayPoint r ζ) ≠ 0) :
@@ -95,7 +104,9 @@ theorem normalizedLog_factorization {f F : ℂ → ℂ} {m : ℕ}
   ring
 
 /-- Dividing out a fixed monomial preserves finite nonzero type at positive
-order. The positive lower type loses only a factor of two in its witness.-/
+order. The positive lower type loses only a factor of two in its witness.
+@isnad1 id=finitepo.3h4v.s6.3a8f042fcbce from=translated src=- shape=5d6f5837 vocab=8c748260
+-/
 theorem finitePositiveType_remove_monomial {f F : ℂ → ℂ} {m : ℕ} {ρ : ℝ}
     (hρ : 0 < ρ) (htype : FinitePositiveType f ρ)
     (hfactor : ∀ z : ℂ, f z = z ^ m * F z) : FinitePositiveType F ρ := by
@@ -138,7 +149,9 @@ theorem finitePositiveType_remove_monomial {f F : ℂ → ℂ} {m : ℕ} {ρ : �
         _ ≤ _ := mul_le_mul_of_nonneg_right hpoly (norm_nonneg _)
     nlinarith [Real.exp_pos ((c / 2) * ‖z‖ ^ ρ)]
 
-/-- Raywise regularity passes to the quotient at the same exponent and limit.-/
+/-- Raywise regularity passes to the quotient at the same exponent and limit.
+@isnad1 id=rayregul.3h6v.s6.1f9af3839611 from=translated src=- shape=d045fbe0 vocab=e27203e2
+-/
 theorem rayRegular_remove_monomial {f F : ℂ → ℂ} {m : ℕ} {ρ a : ℝ} {ζ : Direction}
     (hρ : 0 < ρ) (hfactor : ∀ z : ℂ, f z = z ^ m * F z)
     (hreg : RayRegular f ρ ζ a) : RayRegular F ρ ζ a := by
@@ -166,7 +179,9 @@ theorem rayRegular_remove_monomial {f F : ℂ → ℂ} {m : ℕ} {ρ a : ℝ} {�
   exact (abs_sub _ _).trans_lt (by linarith [hgood.2])
 
 /-- Multiplication by the removed monomial restores radial regularity without
-changing the limiting angular function or the exceptional set.-/
+changing the limiting angular function or the exceptional set.
+@isnad1 id=radialre.3h5v.s6.f34937fb4ca4 from=translated src=- shape=a8cd23ef vocab=cd270610
+-/
 theorem radialRegular_restore_monomial {f F : ℂ → ℂ} {m : ℕ} {ρ : ℝ}
     {h : Direction → ℝ} (hρ : 0 < ρ)
     (hfactor : ∀ z : ℂ, f z = z ^ m * F z)
@@ -196,7 +211,9 @@ theorem radialRegular_restore_monomial {f F : ℂ → ℂ} {m : ℕ} {ρ : ℝ}
 
 /-- Complete origin reduction for the general positive-order radial criterion.
 The quotient has the same finite positive type, inherits every good ray, and
-any radial conclusion for it transfers back to the original function.-/
+any radial conclusion for it transfers back to the original function.
+@isnad1 id=ex.3h2v.s7.2dc8b2c4e05a from=translated src=- shape=2dfcb078 vocab=249274ed
+-/
 theorem exists_origin_reduction {f : ℂ → ℂ} {ρ : ℝ}
     (hf : Differentiable ℂ f) (hρ : 0 < ρ) (htype : FinitePositiveType f ρ) :
     ∃ m : ℕ, ∃ F : ℂ → ℂ, Differentiable ℂ F ∧ F 0 ≠ 0 ∧

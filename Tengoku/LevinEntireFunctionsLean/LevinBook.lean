@@ -14,7 +14,9 @@ namespace LevinBook
 open LevinGrowth
 
 /-- Levin, Chapter III, section 1, p. 142: dense rays imply CRG,
-specialized to an entire function of positive constant order and normal type.-/
+specialized to an entire function of positive constant order and normal type.
+@isnad1 id=ex.4h2v.s7.9740456d5aae from=translated src=- shape=f1b0ca13 vocab=1e3e75a6
+-/
 theorem dense_rays_constant_order {f : ℂ → ℂ} {ρ : ℝ}
     (hf : Differentiable ℂ f) (hρ : 0 < ρ)
     (htype : FinitePositiveType f ρ)
@@ -23,7 +25,9 @@ theorem dense_rays_constant_order {f : ℂ → ℂ} {ρ : ℝ}
   LevinC0.constantOrderLevin f ρ hf hρ htype hdense
 
 /-- The constant-order radial/C0 equivalence, with all analytic hypotheses
-explicit. The construction of the exceptional disks is part of the proof.-/
+explicit. The construction of the exceptional disks is part of the proof.
+@isnad1 id=iff.3h3v.s6.3a5b5427f154 from=translated src=- shape=76900581 vocab=e31d66af
+-/
 theorem radial_iff_c0 {f : ℂ → ℂ} {ρ : ℝ} {h : Direction → ℝ}
     (hf : Differentiable ℂ f) (hρ : 0 < ρ)
     (htype : FinitePositiveType f ρ) :

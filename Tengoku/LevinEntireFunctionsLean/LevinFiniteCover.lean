@@ -13,7 +13,9 @@ open Set Filter MeasureTheory Metric Real Complex
 open scoped Topology
 namespace LevinFiniteCover
 
-/-- Concatenate finite local disk families over a finite covering index set.-/
+/-- Concatenate finite local disk families over a finite covering index set.
+@isnad1 id=ex.2h6v.s8.8a7a56291a80 from=translated src=- shape=6c0f4cc3 vocab=834b3290
+-/
 theorem combine_finite_covers {ι : Type*} [Fintype ι] {P : ℂ → Prop}
     (q : ι → ℂ) (τ B : ℝ) (A : Set ℂ)
     (hcover : ∀ z ∈ A, ∃ i : ι, ‖z - q i‖ ≤ τ)
@@ -49,7 +51,9 @@ theorem combine_finite_covers {ι : Type*} [Fintype ι] {P : ℂ → Prop}
     exact hb
 
 /-- A perturbed quadratic grid combines all local Cartan disk certificates.
-The radius cost `1000 * η / δ` is explicit and uniform in the mesh.-/
+The radius cost `1000 * η / δ` is explicit and uniform in the mesh.
+@isnad1 id=ex.6h5v.s9.a4da592be3ac from=translated src=- shape=11d68af9 vocab=15b3ead3
+-/
 theorem combine_annular_local_disks {P : ℂ → Prop} {δ η : ℝ}
     (hδ : 0 < δ) (hη : 0 ≤ η) (Γ : Finset ℂ)
     (hcard : (Γ.card : ℝ) * δ ^ 2 ≤ 100)

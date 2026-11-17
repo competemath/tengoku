@@ -28,7 +28,9 @@ namespace LevinCartan
 
 /-- Disjoint selected balls account for disjoint, nonempty sets of point
 indices. Their total radius is at most `H`, and fivefold enlargement covers
-every ball containing too many indexed points for its radius.-/
+every ball containing too many indexed points for its radius.
+@isnad1 id=ex.2h3v.s8.1d7f6410f5a3 from=translated src=- shape=8fd32646 vocab=6ed879ef
+-/
 theorem exists_selected_balls {ι : Type*} [Fintype ι] (a : ι → ℂ)
     {H : ℝ} (hH : 0 < H) (hN : 0 < Fintype.card ι) :
     ∃ D : Finset (ℂ × Finset ι),
@@ -82,7 +84,9 @@ theorem exists_selected_balls {ι : Type*} [Fintype ι] (a : ι → ℂ)
     exact ⟨d, (hDU d).mpr hd, hsub (mem_ball_self (hrpos (z, s) hT))⟩
 
 /-- A finite disk family with controlled total radius and the indexed-distance
-property underlying Cartan's product estimate.-/
+property underlying Cartan's product estimate.
+@isnad1 id=ex.2h3v.s7.b16f644f0c02 from=translated src=- shape=4ab8ae92 vocab=08e1eb29
+-/
 theorem exists_disks_distance_property {ι : Type*} [Fintype ι] (a : ι → ℂ)
     {H : ℝ} (hH : 0 < H) (hN : 0 < Fintype.card ι) :
     ∃ m : ℕ, ∃ c : Fin m → ℂ, ∃ r : Fin m → ℝ,
@@ -118,7 +122,9 @@ theorem exists_disks_distance_property {ι : Type*} [Fintype ι] (a : ι → ℂ
     exact hz (e ⟨d, hd⟩) (by simpa only [c, r, he] using hmem)
 
 /-- The elementary lower factorial estimate, with an exponential rather than
-an `N log N` loss.-/
+an `N log N` loss.
+@isnad1 id=le.0h1v.s5.1985d72498c0 from=translated src=- shape=0f1664f2 vocab=38f987ca
+-/
 theorem factorial_lower (n : ℕ) : ((n : ℝ) / Real.exp 1) ^ n ≤ (n.factorial : ℝ) := by
   by_cases hn : n = 0
   · simp [hn]
@@ -130,7 +136,9 @@ theorem factorial_lower (n : ℕ) : ((n : ℝ) / Real.exp 1) ^ n ≤ (n.factoria
   exact (le_mul_of_one_le_left (by positivity) hsqrt).trans (Stirling.le_factorial_stirling n)
 
 /-- A finite tuple satisfying the indexed distance property has Cartan's
-product lower bound. Sorting retains repeated values and their multiplicities.-/
+product lower bound. Sorting retains repeated values and their multiplicities.
+@isnad1 id=le.3h3v.s7.8d1394ce2fcc from=translated src=- shape=ea4ac349 vocab=5431f2ce
+-/
 theorem prod_lower_of_spread_fin {n : ℕ} (hn : 0 < n) (d : Fin n → ℝ)
     {H : ℝ} (hH : 0 < H)
     (hspread : ∀ s : Finset (Fin n), s.Nonempty →
@@ -173,7 +181,9 @@ theorem prod_lower_of_spread_fin {n : ℕ} (hn : 0 < n) (d : Fin n → ℝ)
       mul_le_mul_of_nonneg_left (factorial_lower n) (by positivity)
     _ ≤ _ := hprod
 
-/-- The product estimate for any finite index type, including repeated values.-/
+/-- The product estimate for any finite index type, including repeated values.
+@isnad1 id=le.3h3v.s7.8200c5fa454f from=translated src=- shape=9e649564 vocab=7b6357b8
+-/
 theorem prod_lower_of_spread {ι : Type*} [Fintype ι] (d : ι → ℝ)
     {H : ℝ} (hH : 0 < H) (hN : 0 < Fintype.card ι)
     (hspread : ∀ s : Finset ι, s.Nonempty →
@@ -195,7 +205,9 @@ theorem prod_lower_of_spread {ι : Type*} [Fintype ι] (d : ι → ℝ)
 /-- Finite-point Cartan inequality with total exceptional radius at most `5H`.
 There is no separation hypothesis, and repeated points encode multiplicities.
 Outside the open disks every point distance is positive and the product is at
-least `(H / exp 1)^N`, so the logarithmic loss is linear in the point count.-/
+least `(H / exp 1)^N`, so the logarithmic loss is linear in the point count.
+@isnad1 id=ex.1h3v.s7.e0dbf505568d from=translated src=- shape=d1218a23 vocab=96e3c71a
+-/
 theorem exists_disks_product_bound {ι : Type*} [Fintype ι] (a : ι → ℂ)
     {H : ℝ} (hH : 0 < H) :
     ∃ m : ℕ, ∃ c : Fin m → ℂ, ∃ r : Fin m → ℝ,
