@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "274a28c4cf49005eb6cbb0c2d923767290859c27745f2a99f5b2c4e06b0d57df",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "char-p-nahodge-formalization",
+ "lint_mode": "proposed",
+ "modules": 28,
+ "part": 1,
+ "theorems": 302
+}
