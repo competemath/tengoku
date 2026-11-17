@@ -659,6 +659,86 @@ class BatchesInParallel(unittest.TestCase):
         self.assertEqual(self.facts_with(8, batch=100)[2:], (1, 2))
 
 
+class Waypoints(unittest.TestCase):
+    def have_line(self, theorem, canon='(Π "Nat" (Π "Nat" ("LE.le"{0} "Nat" "instLENat" v1 v0)))'):
+        return "\t".join(["isnad1-have", theorem, "Mod.X", "le", "0", "2", "9", canon, ADD_COMM_SHAPE, ADD_COMM_VOCAB])
+
+    def test_a_have_line_is_a_record_and_its_id_is_the_waypoint(self):
+        name, rec = isnad.parse_have_line(self.have_line("A.t"))
+        self.assertEqual(name, "A.t")
+        self.assertTrue(rec.id.startswith("le.0h2v.s3."))
+        with self.assertRaises(ValueError):
+            isnad.parse_have_line(ADD_COMM_LINE)
+
+    def test_sets_are_sorted_distinct_and_per_theorem(self):
+        other = '(Π "Nat" ("LT.lt"{0} "Nat" "instLTNat" v0 v0))'
+        lines = [self.have_line("A.t"), self.have_line("A.t", other), self.have_line("A.t"), self.have_line("B.u")]
+        got = isnad.waypoint_sets(lines)
+        self.assertEqual(sorted(got), ["A.t", "B.u"])
+        self.assertEqual(len(got["A.t"]), 2)
+        self.assertEqual(got["A.t"], sorted(got["A.t"]))
+        self.assertEqual(len(got["B.u"]), 1)
+
+    def lines_of(self, sets: dict[str, list[tuple[str, str, str]]]) -> list[str]:
+        """(kind, vars, canonical) per have, per theorem, as `tengoku-isnad --haves` lines"""
+        out = []
+        for name, haves in sets.items():
+            for kind, nvars, canon in haves:
+                out.append(
+                    "\t".join(
+                        ["isnad1-have", f"IsnadWp.{name}", "IsnadWaypoints", kind, "0", nvars, "9", canon, ADD_COMM_SHAPE, ADD_COMM_VOCAB]
+                    )
+                )
+        return out
+
+    def run_waypoints_ok(self, sets, compile_code=0):
+        compiled = mock.Mock(returncode=compile_code, stdout="", stderr="boom")
+        with tempfile.TemporaryDirectory() as d:
+            with (
+                mock.patch.object(isnad.subprocess, "run", lambda *a, **k: compiled),
+                mock.patch.object(isnad, "run_exe_lines", lambda a, exe=None, extra_path=None: self.lines_of(sets)),
+            ):
+                return isnad.waypoints_ok(Path(d), None)
+
+    GOOD = {
+        "two_haves": [("le", "2", "(c1)"), ("le", "1", "(c2)")],
+        "padded": [("le", "2", "(c1)"), ("le", "1", "(c2)")],
+        "reordered": [("le", "1", "(c2)"), ("le", "2", "(c1)")],
+        "with_local": [("eq", "2", "(c3)")],
+        "with_let": [("eq", "1", "(c4)")],
+    }
+
+    def test_the_fixture_check_accepts_the_expected_waypoints(self):
+        self.assertTrue(self.run_waypoints_ok(self.GOOD))
+
+    def test_the_fixture_check_rejects_each_broken_rule(self):
+        padded_differs = {**self.GOOD, "padded": [("le", "2", "(c1)"), ("le", "1", "(c2)"), ("le", "0", "(junk)")]}
+        self.assertFalse(self.run_waypoints_ok(padded_differs))  # padding changed the waypoints
+        reorder_differs = {**self.GOOD, "reordered": [("le", "2", "(c1)")]}
+        self.assertFalse(self.run_waypoints_ok(reorder_differs))
+        self.assertFalse(self.run_waypoints_ok({**self.GOOD, "none_here": [("eq", "0", "(c5)")]}))  # a proof without haves has none
+        self.assertFalse(
+            self.run_waypoints_ok({**self.GOOD, "with_let": [("eq", "2", "(c4)")]})
+        )  # the let variable was left free: two variables, not one
+        self.assertFalse(self.run_waypoints_ok({**self.GOOD, "with_local": []}))
+
+    def test_a_fixture_that_does_not_compile_stops_the_run(self):
+        with self.assertRaises(SystemExit):
+            self.run_waypoints_ok(self.GOOD, compile_code=1)
+
+    def test_the_command_prints_one_row_per_theorem(self):
+        out = io.StringIO()
+        args = mock.Mock(module=["M"], exe=None)
+        with (
+            mock.patch.object(isnad, "run_exe_lines", lambda a, exe=None: [self.have_line("A.t")]),
+            contextlib.redirect_stdout(out),
+        ):
+            self.assertEqual(isnad.cmd_waypoints(args), 0)
+        name, n, ids = out.getvalue().strip().split("\t")
+        self.assertEqual((name, n), ("A.t", "1"))
+        self.assertTrue(ids.startswith("le.0h2v.s3."))
+
+
 class Dependencies(unittest.TestCase):
     ID_A = "eq.0h2v.s4.0123456789ab"
     ID_B = "le.1h1v.s5.ba9876543210"
