@@ -6,6 +6,9 @@ import Tengoku.Seed.AlgebraicGeometry.EllipticCurve.Affine.Point
 namespace P2MW.S_WeierstrassCurve_Affine_Point_two_nsmul_eq_zero_iff_Y_eq_negY
 
 open WeierstrassCurve.Affine.Point
+/--
+@isnad1 id=iff.1h4v.s7.941ca78894ff from=translated src=- shape=2f30677b vocab=c9061137
+-/
 theorem solution {F : Type*} [Field F] [DecidableEq F]
     {W : WeierstrassCurve.Affine F} {x y : F} (h : W.Nonsingular x y) :
     2 • (some _ _ h : W.Point) = 0 ↔ y = W.negY x y := by

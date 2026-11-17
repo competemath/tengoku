@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=ne.8h11v.s11.848faa605ec9 from=translated src=- shape=7f776fcd vocab=8e3e322c
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] {T : Type*} [AddCommGroup T] [Module ℤ_[p] T]
     (K : Type*) [Field K] [IsAlgClosed K] [CharZero K] [Algebra ℤ_[p] K]

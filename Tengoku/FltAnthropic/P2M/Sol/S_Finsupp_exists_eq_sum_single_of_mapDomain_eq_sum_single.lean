@@ -9,6 +9,9 @@ set_option synthInstance.maxHeartbeats 1600000
 
 namespace Finsupp export _root_.Finsupp (sub_apply sum_nonpos mapDomain_finset_sum coe_sub mapDomain_sub supported mapDomain_single sum_zero_index finset_sum_apply ext single_apply sum sum_mapDomain_index coe_zero single sum_pos' zero_apply sum_apply mapDomain sum_eq_single mem_support_iff) end Finsupp
 open scoped _root_.Finsupp in
+/--
+@isnad1 id=ex.3h6v.s7.9a7b0af89835 from=translated src=- shape=445fd8f4 vocab=4529a0f4
+-/
 theorem Finsupp.exists_eq_sum_single_of_mapDomain_eq_sum_single'
     {α β : Type*} (f : α → β) (E : α →₀ ℤ) (hE : 0 ≤ E)
     {d : ℕ} (v : Fin d → β) (hv : Function.Injective v)
@@ -87,6 +90,9 @@ theorem Finsupp.exists_eq_sum_single_of_mapDomain_eq_sum_single'
     simpa [hE'] using this
   exact this
 
+/--
+@isnad1 id=ex.3h6v.s7.9a7b0af89835 from=translated src=- shape=445fd8f4 vocab=4529a0f4
+-/
 theorem solution
     {α β : Type*} (f : α → β) (E : α →₀ ℤ) (hE : 0 ≤ E)
     {d : ℕ} (v : Fin d → β) (hv : Function.Injective v)

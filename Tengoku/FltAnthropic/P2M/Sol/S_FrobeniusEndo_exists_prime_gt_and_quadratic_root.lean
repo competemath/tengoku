@@ -16,6 +16,9 @@ set_option autoImplicit false
 
 namespace FrobeniusEndo
 
+/--
+@isnad1 id=ex.1h3v.s7.171f6dbe7e16 from=translated src=- shape=2dd4d860 vocab=b53380c0
+-/
 theorem exists_prime_gt_and_quadratic_root (a q : ℤ) (hq : 1 ≤ q) (N : ℕ) :
     ∃ r : ℕ, N < r ∧ r.Prime ∧
       ∃ c : ZMod r, c ^ 2 - (a : ZMod r) * c + (q : ZMod r) = 0 := by
@@ -98,5 +101,8 @@ theorem exists_prime_gt_and_quadratic_root (a q : ℤ) (hq : 1 ≤ q) (N : ℕ) 
 
 end FrobeniusEndo
 
+/--
+@isnad1 id=ex.1h3v.s7.171f6dbe7e16 from=translated src=- shape=2dd4d860 vocab=b53380c0
+-/
 theorem solution (a q : ℤ) (hq : 1 ≤ q) (N : ℕ) : ∃ r : ℕ, N < r ∧ r.Prime ∧ ∃ c : ZMod r, c ^ 2 - (a : ZMod r) * c + (q : ZMod r) = 0 :=
   FrobeniusEndo.exists_prime_gt_and_quadratic_root a q hq N

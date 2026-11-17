@@ -71,6 +71,9 @@ private theorem ratMonoid_eq_primeCompl {p : ℕ} (hp : p.Prime)
 
 end SCMFlatB0B
 
+/--
+@isnad1 id=isdiscre.1h1v.s5.c89d384e6ce4 from=translated src=- shape=6cdec8b9 vocab=252e9c07
+-/
 theorem solution (p : ℕ) (hp : p.Prime) :
     IsDiscreteValuationRing (GaloisRep.ratLocalizedAt p) := by
   have hpz : (p : ℤ) ≠ 0 := Int.natCast_ne_zero.mpr hp.ne_zero

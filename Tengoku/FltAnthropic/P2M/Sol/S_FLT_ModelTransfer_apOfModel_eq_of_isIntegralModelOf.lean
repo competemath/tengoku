@@ -9,6 +9,9 @@ attribute [-simp] FLT.ModelTransfer.reducedChange_r FLT.ModelTransfer.reducedCha
 
 open WeierstrassCurve
 
+/--
+@isnad1 id=eq.7h4v.s5.a5cfd6449641 from=translated src=- shape=e988b558 vocab=0feb5f36
+-/
 theorem solution {V W : WeierstrassCurve ℤ} {E : WeierstrassCurve ℚ} {q : ℕ}
     (hVE : V.IsIntegralModelOf E) (hWE : W.IsIntegralModelOf E)
     (hq : q.Prime) (hq2 : q ≠ 2) (hq3 : q ≠ 3)

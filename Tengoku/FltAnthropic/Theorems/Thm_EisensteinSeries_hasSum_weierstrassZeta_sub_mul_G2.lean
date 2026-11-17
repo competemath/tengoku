@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open scoped Real
 
+/--
+@isnad1 id=hassum.1h2v.s8.3a60789e3f6b from=translated src=- shape=861517a1 vocab=86df799d
+-/
 theorem EisensteinSeries.hasSum_weierstrassZeta_sub_mul_G2 (τ : UpperHalfPlane) (z : ℂ)
     (hz : ∀ v : Fin 2 → ℤ, z ≠ (v 0 : ℂ) * τ + v 1) :
     HasSum (fun m : ℕ => π * Complex.cot (π * (z + ((m : ℂ) + 1) * τ)) +

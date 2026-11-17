@@ -20,9 +20,15 @@ variable {N : ℕ} {k : ℤ}
 
 def congrSet (N : ℕ) (a : Fin 2 → ZMod N) : Set (Fin 2 → ℤ) := {v | ((↑) : ℤ → ZMod N) ∘ v = a}
 
+/--
+@isnad1 id=eq.0h3v.s7.7e43eb2ee4de from=translated src=- shape=b3f804c6 vocab=9f08242d
+-/
 lemma eisensteinG_eq (N : ℕ) (k : ℤ) (a : Fin 2 → ZMod N) :
     EisensteinSeries.eisensteinG N k a = fun z => ∑' v : congrSet N a, eisSummand k v z := rfl
 
+/--
+@isnad1 id=mem.1h4v.s9.23ed09539737 from=translated src=- shape=da627742 vocab=100982ae
+-/
 lemma vecMul_mem_congrSet {a : Fin 2 → ZMod N} {v : Fin 2 → ℤ} (hv : v ∈ congrSet N a)
     (γ : SL(2, ℤ)) : v ᵥ* (γ : Matrix (Fin 2) (Fin 2) ℤ) ∈ congrSet N (a ᵥ* γ) := by
   simp only [congrSet, Set.mem_ofPred_eq] at hv ⊢
@@ -43,6 +49,9 @@ def congrSetEquiv (a : Fin 2 → ZMod N) (γ : SL(2, ℤ)) : congrSet N a ≃ co
   right_inv v := by simp_rw [Matrix.vecMul_vecMul, ← Matrix.SpecialLinearGroup.coe_mul,
     inv_mul_cancel, Matrix.SpecialLinearGroup.coe_one, Matrix.vecMul_one]
 
+/--
+@isnad1 id=eq.0h4v.s9.d095aefc417f from=translated src=- shape=3e2f4df6 vocab=73eec6e0
+-/
 theorem eisensteinG_slash_apply (N : ℕ) (k : ℤ) (a : Fin 2 → ZMod N) (γ : SL(2, ℤ)) :
     EisensteinSeries.eisensteinG N k a ∣[k] γ = EisensteinSeries.eisensteinG N k (a ᵥ* γ) := by
   ext1 z
@@ -59,9 +68,15 @@ def eisensteinGSIF (N : ℕ) (k : ℤ) (a : Fin 2 → ZMod N) : SlashInvariantFo
     simp [Matrix.SpecialLinearGroup.mapGL, ← ModularForm.SL_slash, eisensteinG_slash_apply,
       CongruenceSubgroup.Gamma_mem'.mp hA]
 
+/--
+@isnad1 id=eq.0h3v.s8.57531e7b3c6e from=translated src=- shape=019a1e75 vocab=cc5a5a09
+-/
 lemma coe_eisensteinGSIF (N : ℕ) (k : ℤ) (a : Fin 2 → ZMod N) :
     ⇑(eisensteinGSIF N k a) = EisensteinSeries.eisensteinG N k a := rfl
 
+/--
+@isnad1 id=tendstol.1h3v.s7.0ca6f171ce1f from=translated src=- shape=a07d3059 vocab=e995d490
+-/
 theorem eisensteinG_tendstoLocallyUniformly (hk : 3 ≤ k) (a : Fin 2 → ZMod N) :
     TendstoLocallyUniformly (fun (s : Finset (congrSet N a)) => (∑ x ∈ s, eisSummand k x ·))
       (EisensteinSeries.eisensteinG N k a ·) Filter.atTop := by
@@ -76,6 +91,9 @@ theorem eisensteinG_tendstoLocallyUniformly (hk : 3 ≤ k) (a : Fin 2 → ZMod N
   simpa only [eisSummand, one_div, ← zpow_neg, norm_zpow, ← Real.rpow_intCast,
     Int.cast_neg] using summand_bound_of_mem_verticalStrip (by positivity) p hB hz
 
+/--
+@isnad1 id=tendstol.1h3v.s9.cd05e39de3e3 from=translated src=- shape=3c83545e vocab=92365e08
+-/
 lemma eisensteinG_tendstoLocallyUniformlyOn (hk : 3 ≤ k) (a : Fin 2 → ZMod N) :
     TendstoLocallyUniformlyOn (fun (s : Finset (congrSet N a)) =>
       ↑ₕ(fun (z : ℍ) => ∑ x ∈ s, eisSummand k x z)) (↑ₕ(eisensteinGSIF N k a))
@@ -87,6 +105,9 @@ lemma eisensteinG_tendstoLocallyUniformlyOn (hk : 3 ≤ k) (a : Fin 2 → ZMod N
   · simp only [Topology.IsOpenEmbedding.toOpenPartialHomeomorph_target, Set.top_eq_univ,
       Set.mapsTo_range_iff, Set.mem_univ, forall_const]
 
+/--
+@isnad1 id=mdiffere.1h3v.s8.94d5974a7aa9 from=translated src=- shape=b9c17145 vocab=f5fb9d9b
+-/
 theorem eisensteinGSIF_mdifferentiable (hk : 3 ≤ k) (a : Fin 2 → ZMod N) :
     MDiff (eisensteinGSIF N k a) := by
   intro τ
@@ -99,6 +120,9 @@ theorem eisensteinGSIF_mdifferentiable (hk : 3 ≤ k) (a : Fin 2 → ZMod N) :
     (Eventually.of_forall fun s => DifferentiableOn.fun_sum
     fun _ _ => eisSummand_extension_differentiableOn _ _) isOpen_upperHalfPlaneSet
 
+/--
+@isnad1 id=le.1h4v.s6.c4bf307a94c7 from=translated src=- shape=75abb741 vocab=9bbc5372
+-/
 lemma norm_le_tsum_norm (N : ℕ) (a : Fin 2 → ZMod N) (k : ℤ) (hk : 3 ≤ k) (z : ℍ) :
     ‖EisensteinSeries.eisensteinG N k a z‖ ≤ ∑' (x : Fin 2 → ℤ), ‖eisSummand k x z‖ := by
   rw [eisensteinG_eq]
@@ -106,6 +130,9 @@ lemma norm_le_tsum_norm (N : ℕ) (a : Fin 2 → ZMod N) (k : ℤ) (hk : 3 ≤ k
     (Summable.tsum_subtype_le (fun (x : Fin 2 → ℤ) => ‖(eisSummand k x z)‖) _ (fun _ => norm_nonneg _)
       (summable_norm_eisSummand hk z))
 
+/--
+@isnad1 id=isbounde.1h3v.s5.9a7301bda314 from=translated src=- shape=4cc514b2 vocab=ad574b62
+-/
 theorem isBoundedAtImInfty_eisensteinG [NeZero N] (a : Fin 2 → ZMod N) (hk : 3 ≤ k) :
     IsBoundedAtImInfty (EisensteinSeries.eisensteinG N k a) := by
   simp_rw [UpperHalfPlane.isBoundedAtImInfty_iff]
@@ -124,11 +151,17 @@ theorem isBoundedAtImInfty_eisensteinG [NeZero N] (a : Fin 2 → ZMod N) (hk : 3
       summand_bound_of_mem_verticalStrip (lt_trans two_pos hk').le x two_pos
       (verticalStrip_anti_right N hz hn)
 
+/--
+@isnad1 id=eq.0h4v.s8.4d2557e0c387 from=translated src=- shape=d5d27840 vocab=4b37358a
+-/
 lemma slash_T_zpow_apply (h : ℍ → ℂ) (b : ℤ) (τ : ℍ) :
     (h ∣[k] (ModularGroup.T ^ b)) τ = h (((b : ℝ)) +ᵥ τ) := by
   rw [ModularForm.SL_slash_apply, ModularGroup.denom_apply, UpperHalfPlane.modular_T_zpow_smul]
   simp [ModularGroup.coe_T_zpow]
 
+/--
+@isnad1 id=periodic.0h3v.s5.3a893f0db439 from=translated src=- shape=f3be4bcb vocab=aed252ed
+-/
 lemma periodic_eisensteinG (k : ℤ) (a : Fin 2 → ZMod N) :
     Function.Periodic (EisensteinSeries.eisensteinG N k a ∘ ofComplex) (N : ℝ) := by
   have hT : EisensteinSeries.eisensteinG N k a ∣[k] (ModularGroup.T ^ (N : ℤ)) =
@@ -151,6 +184,9 @@ lemma periodic_eisensteinG (k : ℤ) (a : Fin 2 → ZMod N) :
     simp only [Function.comp_apply]
     rw [ofComplex_apply_of_im_nonpos hw', ofComplex_apply_of_im_nonpos (not_lt.mp hw)]
 
+/--
+@isnad1 id=eq.2h5v.s7.2dcd3787cd92 from=translated src=- shape=26d6eb6d vocab=393ec972
+-/
 theorem qExpansion_coeff_eq [NeZero N] (hk : 3 ≤ k) (a : Fin 2 → ZMod N) {c : ℕ → ℂ}
     (hsum : ∀ τ : ℍ, HasSum (fun m => c m * Function.Periodic.qParam N τ ^ m)
       (EisensteinSeries.eisensteinG N k a τ)) (n : ℕ) :
@@ -185,12 +221,18 @@ def congrSetEquivSigma (a : Fin 2 → ZMod N) : congrSet N a ≃ (Σ _ : cls N (
     rfl
 
 omit [NeZero N] in
+/--
+@isnad1 id=eq.0h3v.s6.2b9bdce31758 from=translated src=- shape=ff699dbd vocab=722d7a76
+-/
 lemma eisSummand_natCast (v : Fin 2 → ℤ) (z : ℍ) :
     eisSummand (k : ℤ) v z = ((((v 0 : ℂ)) * z + v 1) ^ k)⁻¹ := by
   rw [eisSummand, zpow_neg, zpow_natCast]
 
 omit [NeZero N] in
 
+/--
+@isnad1 id=eq.1h4v.s8.571ff9cd8338 from=translated src=- shape=37ea14ae vocab=073b5927
+-/
 lemma eisensteinG_eq_tsum_tsum (hk : 3 ≤ k) (a : Fin 2 → ZMod N) (τ : ℍ) :
     EisensteinSeries.eisensteinG N k a τ =
       ∑' c : cls N (a 0), ∑' d : cls N (a 1), ((((c.1 : ℂ)) * τ + d.1) ^ k)⁻¹ := by
@@ -232,12 +274,18 @@ def wpt (c : ℕ) (hc : 0 < c) (bv : ℕ) (τ : ℍ) : ℍ :=
       add_zero, UpperHalfPlane.coe_im, UpperHalfPlane.coe_re]
     exact mul_pos (Nat.cast_pos.mpr hc) τ.2⟩
 
+/--
+@isnad1 id=eq.1h4v.s7.9c80c95a3158 from=translated src=- shape=799278a8 vocab=5b053b8e
+-/
 lemma stdAddChar_mul_natCast (b : ZMod N) (bv : ℕ) (hbv : (bv : ZMod N) = b) (m : ℕ) :
     ZMod.stdAddChar (b * (m : ZMod N)) = cexp (2 * π * I * (((bv * m : ℕ) : ℤ) : ℂ) / N) := by
   have : (b * (m : ZMod N) : ZMod N) = (((bv * m : ℕ) : ℤ) : ZMod N) := by
     rw [← hbv]; push_cast; ring
   rw [this, ZMod.stdAddChar_coe]
 
+/--
+@isnad1 id=eq.3h6v.s8.2087f1dea5f1 from=translated src=- shape=95560c21 vocab=6ab08508
+-/
 lemma tsum_int_eq (hk : 2 ≤ k) (b : ZMod N) (bv : ℕ) (hbv : (bv : ZMod N) = b) (c : ℕ) (hc : 0 < c)
     (τ : ℍ) :
     ∑' j : ℤ, ((((c : ℂ)) * τ + ((bv : ℂ) + (N : ℂ) * j)) ^ k)⁻¹ =
@@ -273,6 +321,9 @@ lemma tsum_int_eq (hk : 2 ≤ k) (b : ZMod N) (bv : ℕ) (hbv : (bv : ZMod N) = 
   field_simp
   ring
 
+/--
+@isnad1 id=eq.2h5v.s8.d4971f647920 from=translated src=- shape=465d6068 vocab=395556c2
+-/
 lemma tsum_cls_eq (hk : 2 ≤ k) (b : ZMod N) (c : ℕ) (hc : 0 < c) (τ : ℍ) :
     ∑' d : cls N b, ((((c : ℂ)) * τ + d.1) ^ k)⁻¹ =
       ((N : ℂ) ^ k)⁻¹ * ((-2 * π * I) ^ k / (k - 1)!) *
@@ -294,6 +345,9 @@ def clsNegEquiv (b : ZMod N) : cls N b ≃ cls N (-b) where
 
 omit [NeZero N] in
 
+/--
+@isnad1 id=eq.0h5v.s8.22cbdfe8b127 from=translated src=- shape=7bec3009 vocab=824c96a7
+-/
 lemma tsum_cls_neg_eq (b : ZMod N) (c : ℕ) (τ : ℍ) :
     ∑' d : cls N b, (((((-(c : ℤ) : ℤ) : ℂ)) * τ + d.1) ^ k)⁻¹ =
       (-1) ^ k * ∑' d : cls N (-b), ((((c : ℂ)) * τ + d.1) ^ k)⁻¹ := by
@@ -305,6 +359,9 @@ lemma tsum_cls_neg_eq (b : ZMod N) (c : ℕ) (τ : ℍ) :
 
 omit [NeZero N] in
 
+/--
+@isnad1 id=eq.1h3v.s8.5afa2186f683 from=translated src=- shape=061829b2 vocab=15fd3f89
+-/
 lemma tsum_cls_split (b : ZMod N) (F : ℤ → ℂ) (hF : Summable F) :
     ∑' c : cls N b, F c.1 =
       (if (0 : ZMod N) = b then F 0 else 0) +
@@ -333,6 +390,9 @@ lemma tsum_cls_split (b : ZMod N) (F : ℤ → ℂ) (hF : Summable F) :
     refine tsum_congr fun c => ?_
     simp [hG]
 
+/--
+@isnad1 id=eq.2h5v.s8.854570f1c3ce from=translated src=- shape=0518adef vocab=b8f95393
+-/
 lemma tsum_prod_eq_tsum_antidiagonal {F G : ℕ → ℂ} {r : ℂ} (e : ℕ) (h : ℕ+ × ℕ+ → ℂ)
     (hs : Summable h)
     (hh : ∀ p, h p = F p.1 * ((((p.2 : ℕ) : ℂ)) ^ e * (G p.2 * r ^ ((p.2 : ℕ) * p.1)))) :
@@ -353,6 +413,9 @@ lemma tsum_prod_eq_tsum_antidiagonal {F G : ℕ → ℂ} {r : ℂ} (e : ℕ) (h 
   rw [hh, e1, e2, mul_comm x.1.2 x.1.1, hx]
   ring
 
+/--
+@isnad1 id=eq.3h4v.s8.e922daa27033 from=translated src=- shape=aacc27e8 vocab=59f4ebe0
+-/
 lemma tsum_tsum_eq_tsum_antidiagonal {F G : ℕ → ℂ} (hF : ∀ c, ‖F c‖ ≤ 1) (hG : ∀ m, ‖G m‖ ≤ 1)
     {r : ℂ} (hr : ‖r‖ < 1) (e : ℕ) :
     ∑' c : ℕ+, F c * ∑' m : ℕ+, (((m : ℕ) : ℂ)) ^ e * (G m * r ^ ((m : ℕ) * c)) =
@@ -374,6 +437,9 @@ lemma tsum_tsum_eq_tsum_antidiagonal {F G : ℕ → ℂ} (hF : ∀ c, ‖F c‖ 
 
 omit [NeZero N] in
 
+/--
+@isnad1 id=summable.1h4v.s7.0b8bbd31837e from=translated src=- shape=a7fec416 vocab=25dc106a
+-/
 lemma summable_inner (hk : 3 ≤ k) (b : ZMod N) (τ : ℍ) :
     Summable fun c : ℤ => ∑' d : cls N b, ((((c : ℂ)) * τ + d.1) ^ k)⁻¹ := by
   have hk' : 3 ≤ ((k : ℕ) : ℤ) := by exact_mod_cast hk
@@ -410,9 +476,15 @@ def coefFun (N k : ℕ) [NeZero N] (a : Fin 2 → ZMod N) (n : ℕ) : ℂ :=
   if h : n = 0 then (if a 0 = 0 then ∑' d : cls N (a 1), (((d.1 : ℂ)) ^ k)⁻¹ else 0)
   else kappa N k * (Splus N k a ⟨n, Nat.pos_of_ne_zero h⟩ + (-1) ^ k * Sminus N k a ⟨n, Nat.pos_of_ne_zero h⟩)
 
+/--
+@isnad1 id=eq.0h2v.s6.da52a5d51aa0 from=translated src=- shape=86fd08a5 vocab=6b61d454
+-/
 lemma norm_stdAddChar (x : ZMod N) : ‖ZMod.stdAddChar x‖ = 1 := by
   rw [ZMod.stdAddChar_apply]; exact Circle.norm_coe _
 
+/--
+@isnad1 id=lt.0h2v.s4.9b4ef275b1f7 from=translated src=- shape=ae3134d2 vocab=ade01013
+-/
 lemma norm_qParam_lt_one (τ : ℍ) : ‖Function.Periodic.qParam N τ‖ < 1 := by
   rw [Function.Periodic.norm_qParam, Real.exp_lt_one_iff]
   have hN : (0 : ℝ) < N := by exact_mod_cast NeZero.pos N
@@ -420,6 +492,9 @@ lemma norm_qParam_lt_one (τ : ℍ) : ‖Function.Periodic.qParam N τ‖ < 1 :=
   rw [UpperHalfPlane.coe_im]
   exact div_neg_of_neg_of_pos (by nlinarith [Real.pi_pos]) hN
 
+/--
+@isnad1 id=le.1h5v.s8.68f2388cebca from=translated src=- shape=08c5ae8e vocab=8b38cd84
+-/
 lemma norm_divisorSum_le (hk : 1 ≤ k) (b b' : ZMod N) (n : ℕ+) :
     ‖∑ x ∈ (n : ℕ).divisorsAntidiagonal,
       (if ((x.1 : ℕ) : ZMod N) = b then (1 : ℂ) else 0) * ZMod.stdAddChar (b' * ((x.2 : ℕ) : ZMod N)) *
@@ -447,6 +522,9 @@ lemma norm_divisorSum_le (hk : 1 ≤ k) (b b' : ZMod N) (n : ℕ+) :
         gcongr; exact_mod_cast Nat.card_divisors_le_self _
     _ = ((n : ℕ) : ℝ) ^ k := by rw [← pow_succ']; congr 1; omega
 
+/--
+@isnad1 id=summable.2h5v.s8.6ac20efd850c from=translated src=- shape=2c030f01 vocab=50fd7270
+-/
 lemma summable_divisorSum_mul_pow (hk : 1 ≤ k) (b b' : ZMod N) {r : ℂ} (hr : ‖r‖ < 1) :
     Summable fun n : ℕ+ => (∑ x ∈ (n : ℕ).divisorsAntidiagonal,
       (if ((x.1 : ℕ) : ZMod N) = b then (1 : ℂ) else 0) * ZMod.stdAddChar (b' * ((x.2 : ℕ) : ZMod N)) *
@@ -456,6 +534,9 @@ lemma summable_divisorSum_mul_pow (hk : 1 ≤ k) (b b' : ZMod N) {r : ℂ} (hr :
   simp only [Function.comp_apply, norm_mul, norm_pow, Complex.norm_natCast]
   exact mul_le_mul_of_nonneg_right (norm_divisorSum_le hk b b' n) (by positivity)
 
+/--
+@isnad1 id=eq.1h4v.s8.9a2bf77c3120 from=translated src=- shape=daed0262 vocab=e46427b2
+-/
 theorem eisensteinG_eq_expansion (hk : 3 ≤ k) (a : Fin 2 → ZMod N) (τ : ℍ) :
     EisensteinSeries.eisensteinG N k a τ =
       (if a 0 = 0 then ∑' d : cls N (a 1), (((d.1 : ℂ)) ^ k)⁻¹ else 0) +
@@ -533,6 +614,9 @@ theorem eisensteinG_eq_expansion (hk : 3 ≤ k) (a : Fin 2 → ZMod N) (τ : ℍ
   refine tsum_congr fun n => ?_
   ring
 
+/--
+@isnad1 id=hassum.1h4v.s6.3a6d9cab3648 from=translated src=- shape=ced9c935 vocab=16f0dd11
+-/
 theorem hasSum_coefFun (hk : 3 ≤ k) (a : Fin 2 → ZMod N) (τ : ℍ) :
     HasSum (fun n : ℕ => coefFun N k a n * Function.Periodic.qParam N τ ^ n)
       (EisensteinSeries.eisensteinG N k a τ) := by
@@ -559,6 +643,9 @@ theorem hasSum_coefFun (hk : 3 ≤ k) (a : Fin 2 → ZMod N) (τ : ℍ) :
     simp [coefFun]
   exact htsum ▸ hsumN.hasSum
 
+/--
+@isnad1 id=eq.1h4v.s10.dc9e590c2270 from=translated src=- shape=53ad328d vocab=c401067b
+-/
 theorem qExpansion_coeff_formula (hk : 3 ≤ k) (a : Fin 2 → ZMod N) (n : ℕ) :
     (qExpansion N (EisensteinSeries.eisensteinG N k a)).coeff n =
       if n = 0 then
@@ -608,6 +695,9 @@ end CardC
 end
 
 open CardC in
+/--
+@isnad1 id=eq.1h4v.s10.dc9e590c2270 from=translated src=- shape=53ad328d vocab=c401067b
+-/
 theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 3 ≤ k)
     (a : Fin 2 → ZMod N) (n : ℕ) :
     (UpperHalfPlane.qExpansion N (EisensteinSeries.eisensteinG N k a)).coeff n =

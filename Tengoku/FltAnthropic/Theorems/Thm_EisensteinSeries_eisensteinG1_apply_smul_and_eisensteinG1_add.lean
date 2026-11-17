@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open scoped Real MatrixGroups Matrix
 
+/--
+@isnad1 id=and.0h2v.s10.582259ad036c from=translated src=- shape=ef764f85 vocab=fbc1e250
+-/
 theorem EisensteinSeries.eisensteinG1_apply_smul_and_eisensteinG1_add (N : ℕ) [NeZero N]
     (τ : UpperHalfPlane) :
     (∀ (γ : SL(2, ℤ)) (v : Fin 2 → ℤ),

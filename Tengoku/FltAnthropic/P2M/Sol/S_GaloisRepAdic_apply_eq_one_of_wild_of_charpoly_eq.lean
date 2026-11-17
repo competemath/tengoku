@@ -56,6 +56,9 @@ private theorem mem_of_isUnit_smul_mem {A V : Type} [CommRing A] [AddCommGroup V
 
 end WildUnipotent
 
+/--
+@isnad1 id=eq.7h6v.s11.64f5dff1cafd from=translated src=- shape=13bdb85f vocab=cda3317e
+-/
 theorem solution
     {A : Type} [CommRing A] [IsLocalRing A] [IsNoetherianRing A] (ρ : GaloisRepAdic A)
     {p : ℕ} (hp : p.Prime) (hpA : (p : A) ∈ IsLocalRing.maximalIdeal A) {q : ℕ} (hq : q.Prime) (hqp : q ≠ p)

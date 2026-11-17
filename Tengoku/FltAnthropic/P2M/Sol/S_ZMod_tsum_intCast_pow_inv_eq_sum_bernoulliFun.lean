@@ -14,6 +14,9 @@ namespace CardC0
 
 variable {N : ℕ} [NeZero N] {k : ℕ}
 
+/--
+@isnad1 id=hassum.1h3v.s7.3db7c4d68b69 from=translated src=- shape=53f710e6 vocab=65905ded
+-/
 lemma hasSum_twisted (hk : 2 ≤ k) (r : ZMod N) :
     HasSum (fun d : ℤ => ZMod.stdAddChar (r * (d : ZMod N)) * ((d : ℂ) ^ k)⁻¹)
       (-(2 * π * I) ^ k / k ! * (bernoulliFun k ((r.val : ℝ) / N) : ℂ)) := by
@@ -32,22 +35,34 @@ lemma hasSum_twisted (hk : 2 ≤ k) (r : ZMod N) :
   push_cast
   ring
 
+/--
+@isnad1 id=summable.1h1v.s5.afb91317f40c from=translated src=- shape=eb052c90 vocab=44618283
+-/
 lemma summable_inv_pow (hk : 2 ≤ k) : Summable fun d : ℤ => ((d : ℂ) ^ k)⁻¹ := by
   have : Summable fun d : ℤ => (1 : ℝ) / (d : ℝ) ^ k := Real.summable_one_div_int_pow.mpr (by omega)
   have := (this.map Complex.ofRealCLM Complex.ofRealCLM.continuous)
   refine this.congr fun d => ?_
   simp
 
+/--
+@isnad1 id=eq.0h2v.s6.da52a5d51aa0 from=translated src=- shape=86fd08a5 vocab=6b61d454
+-/
 lemma norm_stdAddChar (x : ZMod N) : ‖ZMod.stdAddChar x‖ = 1 := by
   rw [ZMod.stdAddChar_apply]
   exact Circle.norm_coe _
 
+/--
+@isnad1 id=summable.1h3v.s7.fe65a30a2981 from=translated src=- shape=e5159c1d vocab=6cb108a6
+-/
 lemma summable_twisted (hk : 2 ≤ k) (r : ZMod N) :
     Summable fun d : ℤ => ZMod.stdAddChar (r * (d : ZMod N)) * ((d : ℂ) ^ k)⁻¹ := by
   refine Summable.of_norm_bounded (g := fun d : ℤ => ‖((d : ℂ) ^ k)⁻¹‖) (summable_inv_pow hk).norm ?_
   intro d
   rw [norm_mul, norm_stdAddChar, one_mul]
 
+/--
+@isnad1 id=eq.0h3v.s8.36e95b4f1644 from=translated src=- shape=e6cb9c1b vocab=9d3fb2a2
+-/
 lemma indicator_eq_sum (a b : ZMod N) :
     (if b = a then (1 : ℂ) else 0) =
       (N : ℂ)⁻¹ * ∑ r : ZMod N, ZMod.stdAddChar (-(r * a)) * ZMod.stdAddChar (r * b) := by
@@ -62,6 +77,9 @@ lemma indicator_eq_sum (a b : ZMod N) :
   have hN : (N : ℂ) ≠ 0 := by exact_mod_cast NeZero.ne N
   split_ifs <;> simp [hN]
 
+/--
+@isnad1 id=eq.1h3v.s8.386d6772ebe2 from=translated src=- shape=7697108a vocab=c5f3709b
+-/
 theorem main (hk : 2 ≤ k) (a : ZMod N) :
     ∑' d : {d : ℤ // (d : ZMod N) = a}, ((d : ℂ) ^ k)⁻¹ =
       -(2 * π * I) ^ k / (k ! * N) *
@@ -96,6 +114,9 @@ theorem main (hk : 2 ≤ k) (a : ZMod N) :
 
 end CardC0
 
+/--
+@isnad1 id=eq.1h3v.s8.386d6772ebe2 from=translated src=- shape=7697108a vocab=c5f3709b
+-/
 theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 2 ≤ k)
     (a : ZMod N) :
     ∑' d : {d : ℤ // (d : ZMod N) = a}, ((d : ℂ) ^ k)⁻¹ =

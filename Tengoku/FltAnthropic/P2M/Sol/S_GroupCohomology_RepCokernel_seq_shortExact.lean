@@ -10,6 +10,9 @@ set_option autoImplicit false
 universe u
 open CategoryTheory
 
+/--
+@isnad1 id=shortexa.1h5v.s9.081e8f963d69 from=translated src=- shape=46b304ea vocab=12eee9e4
+-/
 theorem solution {k G : Type u} [CommRing k] [Group G] {X Y : Rep.{u} k G} (f : X ⟶ Y)
     (hf : Function.Injective f.hom) : (GroupCohomology.RepCokernel.seq f).ShortExact where
   exact := (forget₂ (Rep.{u} k G) (ModuleCat k)).reflects_exact_of_faithful _ <|

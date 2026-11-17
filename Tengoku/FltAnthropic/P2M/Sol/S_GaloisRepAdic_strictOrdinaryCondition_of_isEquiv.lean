@@ -15,6 +15,9 @@ open _root_.Tengoku.FltAnthropic.GaloisRepAdic
 
 variable {A : Type} [CommRing A] [IsLocalRing A]
 
+/--
+@isnad1 id=eq.0h5v.s11.01e149ca589b from=translated src=- shape=8f7d7cb5 vocab=911d72c2
+-/
 theorem conj_eq {ρ₁ ρ₂ : GaloisRepAdic A} (e : Equiv ρ₁ ρ₂)
     (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) :
     ρ₂.ρ σ = (e.toLinearEquiv : ρ₁.V →ₗ[A] ρ₂.V) ∘ₗ ρ₁.ρ σ ∘ₗ
@@ -23,11 +26,17 @@ theorem conj_eq {ρ₁ ρ₂ : GaloisRepAdic A} (e : Equiv ρ₁ ρ₂)
   rw [LinearMap.comp_apply, LinearMap.comp_apply, LinearEquiv.coe_coe, LinearEquiv.coe_coe,
     e.map_apply, LinearEquiv.apply_symm_apply]
 
+/--
+@isnad1 id=eq.0h5v.s11.d9b62092f9ff from=translated src=- shape=ee3d17eb vocab=e7930d07
+-/
 theorem det_apply_eq {ρ₁ ρ₂ : GaloisRepAdic A} (e : Equiv ρ₁ ρ₂)
     (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) :
     LinearMap.det (ρ₂.ρ σ) = LinearMap.det (ρ₁.ρ σ) := by
   rw [conj_eq e σ, LinearMap.det_conj]
 
+/--
+@isnad1 id=detiscyc.2h4v.s5.88364e49f296 from=translated src=- shape=fadfb841 vocab=9eee625c
+-/
 theorem detIsCyclotomic_of_isEquiv {ρ₁ ρ₂ : GaloisRepAdic A} (e : ρ₁.IsEquiv ρ₂) {p : ℕ}
     (h : ρ₁.DetIsCyclotomic p) : ρ₂.DetIsCyclotomic p := by
   obtain ⟨e⟩ := e
@@ -35,6 +44,9 @@ theorem detIsCyclotomic_of_isEquiv {ρ₁ ρ₂ : GaloisRepAdic A} (e : ρ₁.Is
   rw [det_apply_eq e σ]
   exact h.2 n σ a hσ
 
+/--
+@isnad1 id=isunrami.2h4v.s5.4328d4ba96f4 from=translated src=- shape=fadfb841 vocab=2fb060c9
+-/
 theorem isUnramifiedAt_of_isEquiv {ρ₁ ρ₂ : GaloisRepAdic A} (e : ρ₁.IsEquiv ρ₂) {q : ℕ}
     (h : ρ₁.IsUnramifiedAt q) : ρ₂.IsUnramifiedAt q := by
   obtain ⟨e⟩ := e
@@ -43,6 +55,9 @@ theorem isUnramifiedAt_of_isEquiv {ρ₁ ρ₂ : GaloisRepAdic A} (e : ρ₁.IsE
   obtain ⟨v, rfl⟩ := e.toLinearEquiv.surjective w
   rw [← e.map_apply, h P hP σ hσ, Module.End.one_apply, Module.End.one_apply]
 
+/--
+@isnad1 id=isstrict.2h4v.s5.faadedfa1719 from=translated src=- shape=fadfb841 vocab=e654899b
+-/
 theorem isStrictOrdinaryAt_of_isEquiv
     {A : Type} [CommRing A] [IsLocalRing A]
     {ρ₁ ρ₂ : GaloisRepAdic A} (e : ρ₁.IsEquiv ρ₂) {p : ℕ}
@@ -76,6 +91,9 @@ theorem isStrictOrdinaryAt_of_isEquiv
 
 end GaloisRepAdic.S1Aux
 
+/--
+@isnad1 id=strictor.2h6v.s6.4156c96df1e3 from=translated src=- shape=8d952400 vocab=593bc8b0
+-/
 theorem solution
     {A : Type} [CommRing A] [IsLocalRing A]
     (𝒪 : Type) [CommRing 𝒪] [Algebra 𝒪 A]

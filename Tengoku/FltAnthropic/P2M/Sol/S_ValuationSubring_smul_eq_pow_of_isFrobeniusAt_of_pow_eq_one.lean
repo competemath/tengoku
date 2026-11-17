@@ -12,6 +12,9 @@ namespace P2mS17Roots
 
 variable {K L : Type*} [Field K] [Field L] [Algebra K L] (A : ValuationSubring L)
 
+/--
+@isnad1 id=charp.2h3v.s7.b96ddfab35ce from=translated src=- shape=4bee0a33 vocab=3bec298f
+-/
 theorem charP_residueField_of_liesOverPrime {q : ℕ} (hq : q.Prime) (hA : A.LiesOverPrime q) :
     CharP (IsLocalRing.ResidueField A) q := by
   have hq0 : ((q : ℕ) : IsLocalRing.ResidueField A) = 0 := by
@@ -35,11 +38,17 @@ theorem eq_one_of_residue_eq_one {q : ℕ} (hq : q.Prime) (hA : A.LiesOverPrime 
   rw [map_sum, map_zero] at this
   simpa [map_pow, hres] using this
 
+/--
+@isnad1 id=mem.2h4v.s6.98064f96f065 from=translated src=- shape=365c7e79 vocab=1e96c8e9
+-/
 theorem mem_of_pow_eq_one {ζ : L} {m : ℕ} (hm : m ≠ 0) (hζ : ζ ^ m = 1) : ζ ∈ A := by
   rw [← ValuationSubring.valuation_le_one_iff]
   have : (A.valuation ζ) ^ m = 1 := by rw [← map_pow, hζ, map_one]
   exact ((pow_eq_one_iff_of_nonneg zero_le hm).mp this).le
 
+/--
+@isnad1 id=eq.5h8v.s11.6ad7ef2ffb41 from=translated src=- shape=33f321b4 vocab=61a2c63a
+-/
 theorem smul_eq_pow_of_residue {q : ℕ} (hq : q.Prime) (hA : A.LiesOverPrime q)
     (σ : A.decompositionSubgroup K) (e : ℕ)
     (hσ : ∀ x : IsLocalRing.ResidueField A, σ • x = x ^ e)
@@ -65,6 +74,9 @@ theorem smul_eq_pow_of_residue {q : ℕ} (hq : q.Prime) (hA : A.LiesOverPrime q)
 
 end P2mS17Roots
 
+/--
+@isnad1 id=eq.5h7v.s7.95a341d05387 from=translated src=- shape=e1184f08 vocab=61eb1754
+-/
 theorem solution
     {K L : Type*} [Field K] [Field L] [Algebra K L] (A : ValuationSubring L) {q : ℕ} (hq : q.Prime)
     (hA : A.LiesOverPrime q) {σ : L ≃ₐ[K] L} (hσ : A.IsFrobeniusAt σ q)

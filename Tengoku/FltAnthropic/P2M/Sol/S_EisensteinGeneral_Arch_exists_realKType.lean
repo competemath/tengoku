@@ -764,6 +764,9 @@ end EgenArch
 
 open EgenArch
 
+/--
+@isnad1 id=ex.0h1v.s8.39dd5647d446 from=translated src=- shape=9adda984 vocab=49e385d1
+-/
 theorem solution (k : ℤ) :
     ∃ J : ℂ → ℝ → ℂ,
       (∀ t : ℝ, t ≠ 0 → Differentiable ℂ (fun w : ℂ => J w t)) ∧

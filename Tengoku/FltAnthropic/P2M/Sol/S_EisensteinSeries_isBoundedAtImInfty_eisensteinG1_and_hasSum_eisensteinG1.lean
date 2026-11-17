@@ -20,14 +20,23 @@ namespace WZD
 
 local notation "ℂ_ℤ" => Complex.integerComplement
 
+/--
+@isnad1 id=eq.0h1v.s3.4b6c9b7db7c9 from=translated src=- shape=c7188113 vocab=404065af
+-/
 lemma cot_neg (x : ℂ) : Complex.cot (-x) = -Complex.cot x := by
   simp [Complex.cot_eq_cos_div_sin, Complex.sin_neg, Complex.cos_neg, div_neg]
 
+/--
+@isnad1 id=eq.0h1v.s6.63e3f9de1111 from=translated src=- shape=02b24123 vocab=6d4f05ef
+-/
 lemma norm_cexp_two_pi_I (w : ℂ) : ‖cexp (2 * π * I * w)‖ = Real.exp (-2 * π * w.im) := by
   rw [Complex.norm_exp]
   congr 1
   simp [Complex.mul_re, Complex.mul_im, mul_comm]
 
+/--
+@isnad1 id=eq.1h1v.s7.5caed8ac1b54 from=translated src=- shape=12609c81 vocab=d9ebac99
+-/
 lemma pi_cot_add_eq (w : ℂ) (hq : cexp (2 * π * I * w) ≠ 1) :
     π * Complex.cot (π * w) + π * I =
       2 * π * cexp (2 * π * I * w) / (I * (1 - cexp (2 * π * I * w))) := by
@@ -40,6 +49,9 @@ lemma pi_cot_add_eq (w : ℂ) (hq : cexp (2 * π * I * w) ≠ 1) :
   rw [I_sq]
   ring
 
+/--
+@isnad1 id=le.2h2v.s7.ab1850fc586a from=translated src=- shape=2a439568 vocab=7ee6fa58
+-/
 lemma norm_pi_cot_add_le {w : ℂ} {Y : ℝ} (hY : 0 < Y) (hw : Y ≤ w.im) :
     ‖π * Complex.cot (π * w) + π * I‖ ≤
       2 * π * Real.exp (-2 * π * w.im) / (1 - Real.exp (-2 * π * Y)) := by
@@ -62,6 +74,9 @@ lemma norm_pi_cot_add_le {w : ℂ} {Y : ℝ} (hY : 0 < Y) (hw : Y ≤ w.im) :
   have hpos : 0 < 1 - Real.exp (-2 * π * Y) := by linarith
   exact div_le_div_of_nonneg_left (by positivity) hpos hden
 
+/--
+@isnad1 id=le.2h2v.s7.e1fc8a00f61b from=translated src=- shape=50fdea32 vocab=4ea67fbe
+-/
 lemma norm_pi_cot_sub_le {w : ℂ} {Y : ℝ} (hY : 0 < Y) (hw : w.im ≤ -Y) :
     ‖π * Complex.cot (π * w) - π * I‖ ≤
       2 * π * Real.exp (2 * π * w.im) / (1 - Real.exp (-2 * π * Y)) := by
@@ -71,6 +86,9 @@ lemma norm_pi_cot_sub_le {w : ℂ} {Y : ℝ} (hY : 0 < Y) (hw : w.im ≤ -Y) :
   rw [show π * Complex.cot (π * w) - π * I = -(π * -Complex.cot (π * w) + π * I) by ring, norm_neg]
   simpa using this
 
+/--
+@isnad1 id=hassum.1h1v.s7.d99ba8a36363 from=translated src=- shape=6c6a7fba vocab=c85aa4d1
+-/
 lemma hasSum_pi_cot_add {w : ℂ} (hw : 0 < w.im) :
     HasSum (fun k : ℕ+ => -2 * π * I * cexp (2 * π * I * w) ^ (k : ℕ))
       (π * Complex.cot (π * w) + π * I) := by
@@ -94,6 +112,9 @@ def om (v : Fin 2 → ℤ) : ℂ := (v 0 : ℂ) * τ + v 1
 
 def NotLat (τ : ℍ) (z : ℂ) : Prop := ∀ v : Fin 2 → ℤ, z ≠ (v 0 : ℂ) * τ + v 1
 
+/--
+@isnad1 id=injectiv.0h1v.s3.9f4bda50e52f from=translated src=- shape=0c61405d vocab=96f8cf29
+-/
 lemma om_injective : Function.Injective (om τ) := by
   intro u v huv
   have h : om τ (u - v) = 0 := by
@@ -112,6 +133,9 @@ lemma om_injective : Function.Injective (om τ) := by
   apply this
   simpa [om] using h
 
+/--
+@isnad1 id=notlat.1h3v.s5.1dea1883e202 from=translated src=- shape=09342f5f vocab=19422f18
+-/
 lemma notLat_of_not_dvd {v : Fin 2 → ℤ} (hv : ¬ ∀ i, (N : ℤ) ∣ v i) :
     NotLat τ (om τ v / N) := by
   intro u hu
@@ -131,9 +155,15 @@ def pval (z : ℂ) : ℂ := weierstrassZeta τ z - z * G2 τ - π * Complex.cot 
 def ser (z : ℂ) (m : ℕ) : ℂ :=
   π * Complex.cot (π * (z + ((m : ℂ) + 1) * τ)) + π * Complex.cot (π * (z - ((m : ℂ) + 1) * τ))
 
+/--
+@isnad1 id=hassum.1h2v.s5.4134ed94bda9 from=translated src=- shape=e433dcf7 vocab=9c9ca96f
+-/
 lemma hasSum_ser {z : ℂ} (hz : NotLat τ z) : HasSum (ser τ z) (pval τ z) :=
   EisensteinSeries.hasSum_weierstrassZeta_sub_mul_G2 τ z hz
 
+/--
+@isnad1 id=eq.0h3v.s7.4c6467b0ff43 from=translated src=- shape=c08b5784 vocab=967726c6
+-/
 lemma eisensteinG1_eq (v : Fin 2 → ℤ) :
     eisensteinG1 N v τ = 1 / (N : ℂ) *
       (pval τ (om τ v / N) + π * Complex.cot (π * (om τ v / N)) + 2 * π * I * (v 0 : ℂ) / N) := by
@@ -145,6 +175,9 @@ lemma eisensteinG1_eq (v : Fin 2 → ℤ) :
   ring
 
 omit [NeZero N] in
+/--
+@isnad1 id=dvd.1h3v.s6.fa9f4f9e6e16 from=translated src=- shape=aefd594e vocab=ed583928
+-/
 lemma dvd_of_dvd_reduce (v : Fin 2 → ℤ) (h : ∀ i, (N : ℤ) ∣ (![v 0 % N, v 1] : Fin 2 → ℤ) i) :
     ∀ i, (N : ℤ) ∣ v i := by
   rw [Fin.forall_fin_two] at h ⊢
@@ -153,6 +186,9 @@ lemma dvd_of_dvd_reduce (v : Fin 2 → ℤ) (h : ∀ i, (N : ℤ) ∣ (![v 0 % N
   rw [← Int.emod_add_mul_ediv (v 0) N]
   exact dvd_add h.1 (dvd_mul_right _ _)
 
+/--
+@isnad1 id=ex.1h2v.s7.4e80cd473487 from=translated src=- shape=1582bed5 vocab=46297832
+-/
 lemma exists_reduce (v : Fin 2 → ℤ) (hv : ¬ ∀ i, (N : ℤ) ∣ v i) :
     ∃ v' : Fin 2 → ℤ, 0 ≤ v' 0 ∧ v' 0 < N ∧ (¬ ∀ i, (N : ℤ) ∣ v' i) ∧
       eisensteinG1 N v = eisensteinG1 N v' := by
@@ -174,16 +210,28 @@ lemma exists_reduce (v : Fin 2 → ℤ) (hv : ¬ ∀ i, (N : ℤ) ∣ v i) :
 
 def rho : ℝ := Real.exp (-2 * π)
 
+/--
+@isnad1 id=le.0h0v.s3.759513cb1571 from=translated src=- shape=ff3a10fc vocab=cc47c5b2
+-/
 lemma rho_nonneg : 0 ≤ rho := (Real.exp_pos _).le
 
+/--
+@isnad1 id=lt.0h0v.s3.167138945580 from=translated src=- shape=ffdda526 vocab=9836aca8
+-/
 lemma rho_lt_one : rho < 1 := by
   rw [rho, Real.exp_lt_one_iff]; nlinarith [Real.pi_pos]
 
 def Kof (Y : ℝ) : ℝ := 1 - Real.exp (-2 * π * Y)
 
+/--
+@isnad1 id=lt.1h1v.s4.61990b2bf800 from=translated src=- shape=35bd48ee vocab=6a2e36a6
+-/
 lemma Kof_pos {Y : ℝ} (hY : 0 < Y) : 0 < Kof Y := by
   rw [Kof, sub_pos, Real.exp_lt_one_iff]; nlinarith [Real.pi_pos]
 
+/--
+@isnad1 id=le.4h5v.s7.27f5c84f0f1f from=translated src=- shape=6de7faca vocab=b114ce19
+-/
 lemma norm_ser_le {τ : ℍ} (hτ : 1 ≤ τ.im) {z : ℂ} {α : ℝ} (hα0 : 0 ≤ α)
     (hα1 : α ≤ 1 - 1 / N) (hzim : z.im = α * τ.im) (m : ℕ) :
     ‖ser τ z m‖ ≤ (2 * π / Kof 1 + 2 * π / Kof (1 / N)) * rho ^ m := by
@@ -246,6 +294,9 @@ lemma norm_ser_le {τ : ℍ} (hτ : 1 ≤ τ.im) {z : ℂ} {α : ℝ} (hα0 : 0 
     _ ≤ 2 * π / Kof 1 * rho ^ m + 2 * π / Kof (1 / N) * rho ^ m := add_le_add hA' hB'
     _ = (2 * π / Kof 1 + 2 * π / Kof (1 / N)) * rho ^ m := by ring
 
+/--
+@isnad1 id=le.5h4v.s7.efe719c10e2b from=translated src=- shape=bed91a28 vocab=40c8a9ec
+-/
 lemma norm_pval_le {τ : ℍ} (hτ : 1 ≤ τ.im) {z : ℂ} (hzn : NotLat τ z) {α : ℝ} (hα0 : 0 ≤ α)
     (hα1 : α ≤ 1 - 1 / N) (hzim : z.im = α * τ.im) :
     ‖pval τ z‖ ≤ (2 * π / Kof 1 + 2 * π / Kof (1 / N)) * (1 - rho)⁻¹ := by
@@ -254,6 +305,9 @@ lemma norm_pval_le {τ : ℍ} (hτ : 1 ≤ τ.im) {z : ℂ} (hzn : NotLat τ z) 
     (hasSum_geometric_of_lt_one rho_nonneg rho_lt_one).mul_left _
   exact (hasSum_ser τ hzn).norm_le_of_bounded hgeo (norm_ser_le N hτ hα0 hα1 hzim)
 
+/--
+@isnad1 id=le.1h2v.s6.c4b496d7679a from=translated src=- shape=7d1935ad vocab=26874422
+-/
 lemma norm_pi_cot_le_of_im {z : ℂ} (hIm : 1 / (N : ℝ) ≤ z.im) :
     ‖π * Complex.cot (π * z)‖ ≤ π + 2 * π / Kof (1 / N) := by
   have hNpos : (0 : ℝ) < N := by exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne N)
@@ -277,6 +331,9 @@ lemma norm_pi_cot_le_of_im {z : ℂ} (hIm : 1 / (N : ℝ) ≤ z.im) :
           Real.norm_of_nonneg Real.pi_pos.le]
     _ = π + 2 * π / Kof (1 / N) := by ring
 
+/--
+@isnad1 id=isbounde.1h2v.s5.3c64ed8abc71 from=translated src=- shape=9a8ae1ef vocab=811d8cc6
+-/
 theorem isBoundedAtImInfty_eisensteinG1 (v : Fin 2 → ℤ) (hv : ¬ ∀ i, (N : ℤ) ∣ v i) :
     IsBoundedAtImInfty (eisensteinG1 N v) := by
   obtain ⟨v', h0, h1, hv', heq⟩ := exists_reduce N v hv
@@ -334,6 +391,9 @@ def Fterm (τ : ℍ) (z : ℂ) (p : ℕ+ × ℕ+) : ℂ :=
   -(2 * π * I) * (cexp (2 * π * I * (p.2 : ℕ) * z) - cexp (-(2 * π * I * (p.2 : ℕ) * z))) *
     cexp (2 * π * I * τ) ^ ((p.1 : ℕ) * (p.2 : ℕ))
 
+/--
+@isnad1 id=and.1h2v.s7.129fd569ef52 from=translated src=- shape=4a3997d6 vocab=b4d3287d
+-/
 lemma norm_cexp_real {z : ℂ} (hz : z.im = 0) (k : ℕ) :
     ‖cexp (2 * π * I * k * z)‖ = 1 ∧ ‖cexp (-(2 * π * I * k * z))‖ = 1 := by
   have hzre : (z.re : ℂ) = z := by
@@ -346,6 +406,9 @@ lemma norm_cexp_real {z : ℂ} (hz : z.im = 0) (k : ℕ) :
   · rw [e, show -((((2 * π * k * z.re : ℝ)) : ℂ) * I) = ((-(2 * π * k * z.re) : ℝ) : ℂ) * I by
       push_cast; ring, Complex.norm_exp_ofReal_mul_I]
 
+/--
+@isnad1 id=summable.1h2v.s5.6dcaf5a5fa82 from=translated src=- shape=da30530e vocab=2fa1b7eb
+-/
 lemma summable_Fterm {z : ℂ} (hz : z.im = 0) : Summable (Fterm τ z) := by
   have hq1 : ‖cexp (2 * π * I * τ)‖ < 1 := UpperHalfPlane.norm_exp_two_pi_I_lt_one τ
   have hr' : ‖(‖cexp (2 * π * I * τ)‖ : ℝ)‖ < 1 := by simpa using hq1
@@ -363,6 +426,9 @@ lemma summable_Fterm {z : ℂ} (hz : z.im = 0) : Summable (Fterm τ z) := by
       ≤ 2 * π * 2 * ‖cexp (2 * π * I * τ)‖ ^ ((p.1 : ℕ) * (p.2 : ℕ)) := by gcongr
     _ = 4 * π * ‖cexp (2 * π * I * τ)‖ ^ ((p.1 : ℕ) * (p.2 : ℕ)) := by ring
 
+/--
+@isnad1 id=hassum.1h3v.s7.a1945b2400f2 from=translated src=- shape=dd037877 vocab=4500d092
+-/
 lemma hasSum_Fterm_row {z : ℂ} (hz : z.im = 0) (m : ℕ+) :
     HasSum (fun k : ℕ+ => Fterm τ z (m, k))
       (π * Complex.cot (π * (z + ((m : ℕ) : ℂ) * τ)) +
@@ -401,6 +467,9 @@ lemma hasSum_Fterm_row {z : ℂ} (hz : z.im = 0) (m : ℕ+) :
   rw [e1, e2]
   ring
 
+/--
+@isnad1 id=eq.2h2v.s5.0c7403b4c6d2 from=translated src=- shape=2c251d13 vocab=8926cad0
+-/
 lemma tsum_Fterm_eq_pval {z : ℂ} (hzn : NotLat τ z) (hz : z.im = 0) :
     ∑' p, Fterm τ z p = pval τ z := by
   have hrows : HasSum (fun m : ℕ+ => π * Complex.cot (π * (z + ((m : ℕ) : ℂ) * τ)) +
@@ -417,6 +486,9 @@ lemma tsum_Fterm_eq_pval {z : ℂ} (hzn : NotLat τ z) (hz : z.im = 0) :
 def coef (z : ℂ) (n : ℕ) : ℂ :=
   -(2 * π * I) * ∑ k ∈ n.divisors, (cexp (2 * π * I * k * z) - cexp (-(2 * π * I * k * z)))
 
+/--
+@isnad1 id=eq.1h2v.s7.ef07e4002a56 from=translated src=- shape=733baba6 vocab=ddfc525b
+-/
 lemma tsum_regroup {z : ℂ} (hz : z.im = 0) :
     ∑' p, Fterm τ z p = ∑' n : ℕ+, coef z n * cexp (2 * π * I * τ) ^ (n : ℕ) := by
   have hFs := summable_Fterm τ hz
@@ -438,6 +510,9 @@ lemma tsum_regroup {z : ℂ} (hz : z.im = 0) :
   simp only [Fterm]
   rw [e1, e2, hx]
 
+/--
+@isnad1 id=summable.1h2v.s6.f801c3087d6c from=translated src=- shape=9003db90 vocab=1aac8a76
+-/
 lemma summable_regroup {z : ℂ} (hz : z.im = 0) :
     Summable fun n : ℕ+ => coef z n * cexp (2 * π * I * τ) ^ (n : ℕ) := by
   have hFs := summable_Fterm τ hz
@@ -457,11 +532,17 @@ lemma summable_regroup {z : ℂ} (hz : z.im = 0) :
   simp only [Fterm]
   rw [e1, e2, hx]
 
+/--
+@isnad1 id=hassum.1h2v.s7.5b03a4a2dad0 from=translated src=- shape=81b9b499 vocab=63257434
+-/
 lemma hasSum_regroup {z : ℂ} (hz : z.im = 0) :
     HasSum (fun n : ℕ+ => coef z n * cexp (2 * π * I * τ) ^ (n : ℕ)) (∑' p, Fterm τ z p) := by
   rw [tsum_regroup τ hz]
   exact (summable_regroup τ hz).hasSum
 
+/--
+@isnad1 id=eq.0h3v.s7.e2cedd548dbd from=translated src=- shape=38af72d2 vocab=4a2b495d
+-/
 lemma coef_eq (b : ℤ) (n : ℕ) :
     coef ((b : ℂ) / N) n = -(2 * π * I) * ∑ k ∈ n.divisors,
       (cexp (2 * π * I * b * k / N) - cexp (-(2 * π * I * b * k / N))) := by
@@ -471,6 +552,9 @@ lemma coef_eq (b : ℤ) (n : ℕ) :
   refine Finset.sum_congr rfl fun k _ => ?_
   rw [show 2 * π * I * (k : ℂ) * ((b : ℂ) / N) = 2 * π * I * b * k / N by ring]
 
+/--
+@isnad1 id=hassum.1h3v.s8.830f7fd9e20f from=translated src=- shape=81db90c8 vocab=9d361e55
+-/
 theorem hasSum_eisensteinG1 (b : ℤ) (hb : ¬ (N : ℤ) ∣ b) :
     HasSum (fun n : ℕ => (if n = 0 then π / N * Complex.cot (π * b / N) else
         -(2 * π * I) / N * ∑ k ∈ n.divisors,
@@ -521,6 +605,9 @@ end WZD
 
 end
 
+/--
+@isnad1 id=and.0h1v.s8.3d50a0e046fa from=translated src=- shape=44de63e6 vocab=99c8a88e
+-/
 theorem solution (N : ℕ) [NeZero N] :
     (∀ v : Fin 2 → ℤ, (¬ ∀ i, (N : ℤ) ∣ v i) →
         UpperHalfPlane.IsBoundedAtImInfty (EisensteinSeries.eisensteinG1 N v)) ∧

@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open scoped MatrixGroups
 
+/--
+@isnad1 id=other.17h16v.s17.3c954d68d249 from=translated src=- shape=94202c60 vocab=359bc9d5
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime]
     (W : Type) [CommRing W] [IsDomain W] [IsDiscreteValuationRing W]

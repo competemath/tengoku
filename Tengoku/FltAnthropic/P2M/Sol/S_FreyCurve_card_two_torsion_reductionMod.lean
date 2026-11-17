@@ -18,6 +18,9 @@ namespace FreyCurve
 export _root_.FreyCurve (eight_mul_Psi2Sq_eval_reductionMod)
 open _root_.FreyCurve
 
+/--
+@isnad1 id=eq.2h2v.s8.a214a582f3b8 from=translated src=- shape=28ada59f vocab=539d7f8c
+-/
 theorem _root_.P2MW.S_FreyCurve_card_two_torsion_reductionMod.solution (P : FreyPackage) {q : ℕ} [Fact q.Prime] (hq2 : q ≠ 2)
     (hgood : (FreyPackage.freyCurveInt P).IsGoodPrimeFor q) :
     Nat.card (Submodule.torsionBy ℤ ((FreyPackage.freyCurveInt P).reductionMod q).toAffine.Point 2) = 4 := by

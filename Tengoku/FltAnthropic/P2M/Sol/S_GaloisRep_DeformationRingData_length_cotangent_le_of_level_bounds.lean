@@ -96,6 +96,9 @@ variable (θ : R' →ₐ[𝒪] R₀) (x₀ : R₀ →ₐ[𝒪] 𝒪)
 
 omit [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪] [IsAdicComplete (IsLocalRing.maximalIdeal 𝒪) 𝒪] in
 
+/--
+@isnad1 id=surjecti.1h5v.s11.d2629dcce5b3 from=translated src=- shape=02dc7aa2 vocab=7073ae14
+-/
 theorem mapCotangent_surjective_along (hθ : Function.Surjective θ) :
     Function.Surjective (Ideal.mapCotangent
       (RingHom.ker (x₀.comp θ : R' →ₐ[𝒪] 𝒪)) (RingHom.ker x₀) θ
@@ -111,6 +114,9 @@ theorem mapCotangent_surjective_along (hθ : Function.Surjective θ) :
 
 omit [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪] [IsAdicComplete (IsLocalRing.maximalIdeal 𝒪) 𝒪] in
 
+/--
+@isnad1 id=eq.1h5v.s12.a38fd2d89318 from=translated src=- shape=59fa5b7d vocab=5200f01f
+-/
 theorem length_cotangent_eq_add_of_surjective (hθ : Function.Surjective θ) :
     Module.length 𝒪 (RingHom.ker (x₀.comp θ : R' →ₐ[𝒪] 𝒪)).Cotangent =
       Module.length 𝒪 (LinearMap.ker (Ideal.mapCotangent
@@ -132,11 +138,17 @@ namespace WCOTFin
 
 variable {𝒪 B : Type} [CommRing 𝒪] [CommRing B] [Algebra 𝒪 B]
 
+/--
+@isnad1 id=eq.1h4v.s7.b4ec5ed14278 from=translated src=- shape=260b1381 vocab=d68c04cd
+-/
 theorem smul_cotangent_eq_zero (I : Ideal B) {i : B} (hi : i ∈ I) (m : I.Cotangent) : i • m = 0 := by
   obtain ⟨j, rfl⟩ := I.toCotangent_surjective m
   rw [← map_smul, Ideal.toCotangent_eq_zero, pow_two]
   exact Ideal.mul_mem_mul hi j.2
 
+/--
+@isnad1 id=eq.0h5v.s10.5693dc1c16a5 from=translated src=- shape=7a3a2a33 vocab=87aae56d
+-/
 theorem smul_cotangent_eq (x : B →ₐ[𝒪] 𝒪) (b : B) (m : (RingHom.ker (x : B →+* 𝒪)).Cotangent) :
     b • m = x b • m := by
   have hb : b - algebraMap 𝒪 B (x b) ∈ RingHom.ker (x : B →+* 𝒪) := by
@@ -146,6 +158,9 @@ theorem smul_cotangent_eq (x : B →ₐ[𝒪] 𝒪) (b : B) (m : (RingHom.ker (x
   have h := smul_cotangent_eq_zero _ hb m
   rwa [sub_smul, sub_eq_zero, algebraMap_smul] at h
 
+/--
+@isnad1 id=finite.0h3v.s9.dd5b38fa9ca6 from=translated src=- shape=4961c06f vocab=2199281e
+-/
 theorem finite_cotangent_ker [IsNoetherianRing B] (x : B →ₐ[𝒪] 𝒪) :
     Module.Finite 𝒪 (RingHom.ker (x : B →+* 𝒪)).Cotangent := by
   haveI : Module.Finite B (RingHom.ker (x : B →+* 𝒪)) :=
@@ -179,6 +194,9 @@ abbrev DivCoeff : Type :=
 
 variable {𝒪}
 
+/--
+@isnad1 id=ex.1h3v.s9.a0b7b73ca12d from=translated src=- shape=b11750e1 vocab=1e892346
+-/
 theorem divCoeff_isTorsion (ϖ : 𝒪) (hϖ : Irreducible ϖ) (x : DivCoeff 𝒪) :
     ∃ m : ℕ, ϖ ^ m • x = 0 := by
   obtain ⟨f, rfl⟩ := Submodule.Quotient.mk_surjective _ x
@@ -197,6 +215,9 @@ theorem divCoeff_isTorsion (ϖ : 𝒪) (hϖ : Irreducible ϖ) (x : DivCoeff 𝒪
   rw [Algebra.linearMap_apply, map_mul, h1, Algebra.smul_def, map_mul]
   field_simp
 
+/--
+@isnad1 id=ex.1h3v.s15.009dacda0353 from=translated src=- shape=1e82c591 vocab=435cc21b
+-/
 theorem exists_surjective_onto_torsionBy_divCoeff (ϖ : 𝒪) (hϖ : Irreducible ϖ) (m : ℕ) :
     ∃ f : 𝒪 →ₗ[𝒪] Submodule.torsionBy 𝒪 (DivCoeff 𝒪) (ϖ ^ m),
       Function.Surjective f ∧ LinearMap.ker f = Ideal.span {ϖ ^ m} := by
@@ -254,6 +275,9 @@ theorem exists_surjective_onto_torsionBy_divCoeff (ϖ : 𝒪) (hϖ : Irreducible
       rw [Algebra.linearMap_apply, Algebra.smul_def, map_mul, hc,
         mul_comm (algebraMap 𝒪 K (ϖ ^ m)), mul_assoc, mul_inv_cancel₀ hϖK, mul_one]
 
+/--
+@isnad1 id=injectiv.0h1v.s9.50f34a972e18 from=translated src=- shape=3e22dc9c vocab=55e25e8f
+-/
 theorem injective_divCoeff : Module.Injective 𝒪 (DivCoeff 𝒪) := by
   refine Module.Baer.injective ?_
   intro I g
@@ -293,6 +317,9 @@ end WCOTDev
 
 namespace WCOTDev1e
 
+/--
+@isnad1 id=ex.1h5v.s8.926bbd7edc8c from=translated src=- shape=b3d47067 vocab=da0ec2d4
+-/
 theorem exists_pow_smul_comp_eq_zero {R : Type} [CommRing R] {E M : Type} [AddCommGroup E] [Module R E]
     [AddCommGroup M] [Module R M] [Module.Finite R M] (ϖ : R) (hE : ∀ e : E, ∃ n : ℕ, ϖ ^ n • e = 0)
     (φ : M →ₗ[R] E) : ∃ n : ℕ, ∀ x : M, ϖ ^ n • φ x = 0 := by
@@ -325,6 +352,9 @@ namespace WCOTDev1e
 
 variable {R : Type} [CommRing R] {E : Type} [AddCommGroup E] [Module R E]
 
+/--
+@isnad1 id=ex.2h4v.s9.a2bada548cb4 from=translated src=- shape=00f25053 vocab=c4a286d3
+-/
 theorem exists_linearMap_apply_ne_zero [Module.Injective R E]
     (hE : ∀ m : Ideal R, m.IsMaximal → ∃ f : (R ⧸ m) →ₗ[R] E, f (Submodule.Quotient.mk 1) ≠ 0)
     {M : Type} [AddCommGroup M] [Module R M] (y : M) (hy : y ≠ 0) :
@@ -350,6 +380,9 @@ theorem exists_linearMap_apply_ne_zero [Module.Injective R E]
   rw [← h1, hψ]
   simpa [g, Submodule.mapQ_apply] using hf
 
+/--
+@isnad1 id=le.1h3v.s9.47c258ceb17c from=translated src=- shape=61ad17ad vocab=aae17613
+-/
 theorem length_le_length_linearMap [Module.Injective R E]
     (hE : ∀ m : Ideal R, m.IsMaximal → ∃ f : (R ⧸ m) →ₗ[R] E, f (Submodule.Quotient.mk 1) ≠ 0)
     (K : Type) [AddCommGroup K] [Module R K] :
@@ -413,6 +446,9 @@ theorem eq_of_le_of_length_le {R M : Type} [Ring R] [AddCommGroup M] [Module R M
   have hmem : (⟨x, hx⟩ : ↥P) ∈ N' := hN'top ▸ Submodule.mem_top
   simpa [hN'def, Submodule.mem_comap] using hmem
 
+/--
+@isnad1 id=le.3h4v.s7.84c1efb962b7 from=translated src=- shape=be93d8e7 vocab=b7b51f27
+-/
 theorem length_le_of_monotone_exhaustive {R M : Type} [Ring R] [AddCommGroup M] [Module R M]
     (A : ℕ → Submodule R M) (hmono : Monotone A)
     (hexh : ∀ x : M, ∃ m, x ∈ A m) (B : ℕ∞)
@@ -445,6 +481,9 @@ theorem length_le_of_monotone_exhaustive {R M : Type} [Ring R] [AddCommGroup M] 
         rw [htop]; exact Submodule.topEquiv.length_eq.symm
     _ ≤ B := hB m₀
 
+/--
+@isnad1 id=le.1h4v.s13.812987af9095 from=translated src=- shape=e6dc3d96 vocab=0ec50d13
+-/
 theorem length_submodule_le_of_level_hom_bounds
     {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪]
     {M : Type} [AddCommGroup M] [Module 𝒪 M] [Module.Finite 𝒪 M]
@@ -588,6 +627,9 @@ namespace WCOTLadderG
 
 open GaloisRep
 
+/--
+@isnad1 id=le.0h4v.s12.d997a7860e85 from=translated src=- shape=d18df496 vocab=4e46745e
+-/
 theorem length_level_zero_le {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪]
     {M : Type} [AddCommGroup M] [Module 𝒪 M]
     (K' : Submodule 𝒪 (M →ₗ[𝒪] 𝒪 ⧸ (IsLocalRing.maximalIdeal 𝒪) ^ (0 : ℕ))) (B : ℕ∞) :
@@ -604,6 +646,9 @@ theorem length_level_zero_le {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪]
   rw [Module.length_eq_zero]
   exact bot_le
 
+/--
+@isnad1 id=le.2h9v.s17.33936faa3f45 from=translated src=- shape=14c590b7 vocab=7928fd8f
+-/
 theorem length_cotangent_le_of_levelwise_bounds
     {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪]
     [IsAdicComplete (IsLocalRing.maximalIdeal 𝒪) 𝒪]
@@ -642,6 +687,9 @@ end WCOTLadderG
 
 open GaloisRep
 
+/--
+@isnad1 id=le.2h9v.s17.58643a6d8d9d from=translated src=- shape=920287d9 vocab=88ba649e
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪]
     [IsAdicComplete (IsLocalRing.maximalIdeal 𝒪) 𝒪]

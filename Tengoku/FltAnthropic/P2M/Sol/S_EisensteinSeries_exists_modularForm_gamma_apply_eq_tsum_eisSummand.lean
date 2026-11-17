@@ -25,23 +25,38 @@ variable (N : ℕ)
 
 def coset (v : Fin 2 → ZMod N) : Set (Fin 2 → ℤ) := {x | ((↑) : ℤ → ZMod N) ∘ x = v}
 
+/--
+@isnad1 id=iff.0h3v.s6.410efc313c4d from=translated src=- shape=40b8b8be vocab=cb3b1222
+-/
 theorem mem_coset {v : Fin 2 → ZMod N} {x : Fin 2 → ℤ} :
     x ∈ coset N v ↔ ((↑) : ℤ → ZMod N) ∘ x = v := Iff.rfl
 
 def red (γ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) (ZMod N) :=
   (γ : Matrix (Fin 2) (Fin 2) ℤ).map (Int.cast : ℤ → ZMod N)
 
+/--
+@isnad1 id=eq.0h2v.s7.a1ef40d33198 from=translated src=- shape=501d32c6 vocab=520c3d02
+-/
 theorem red_eq (γ : SL(2, ℤ)) :
     red N γ = (γ : Matrix (Fin 2) (Fin 2) ℤ).map ⇑(Int.castRingHom (ZMod N)) := by
   rw [red, Int.coe_castRingHom]
 
+/--
+@isnad1 id=eq.0h3v.s8.3fcea7fcf280 from=translated src=- shape=96f4848b vocab=f1f42e2b
+-/
 theorem red_mul (γ δ : SL(2, ℤ)) : red N (γ * δ) = red N γ * red N δ := by
   rw [red_eq, red_eq, red_eq, Matrix.SpecialLinearGroup.coe_mul, Matrix.map_mul]
 
+/--
+@isnad1 id=eq.0h1v.s7.de366926646a from=translated src=- shape=4a4f560f vocab=2cf41345
+-/
 theorem red_one : red N 1 = 1 := by
   rw [red_eq, Matrix.SpecialLinearGroup.coe_one]
   exact Matrix.map_one _ (map_zero _) (map_one _)
 
+/--
+@isnad1 id=eq.0h3v.s7.a9dbc416991d from=translated src=- shape=6da47951 vocab=74a9fdf9
+-/
 theorem comp_vecMul (x : Fin 2 → ℤ) (γ : SL(2, ℤ)) :
     ((↑) : ℤ → ZMod N) ∘ (x ᵥ* (γ : Matrix (Fin 2) (Fin 2) ℤ)) = (((↑) : ℤ → ZMod N) ∘ x) ᵥ* red N γ := by
   funext i
@@ -49,6 +64,9 @@ theorem comp_vecMul (x : Fin 2 → ℤ) (γ : SL(2, ℤ)) :
   simp only [Int.coe_castRingHom] at hi
   exact hi
 
+/--
+@isnad1 id=mem.1h4v.s7.d22763891127 from=translated src=- shape=e498b191 vocab=85f0234b
+-/
 theorem vecMul_mem_coset {v : Fin 2 → ZMod N} {x : Fin 2 → ℤ} (hx : x ∈ coset N v) (γ : SL(2, ℤ)) :
     x ᵥ* (γ : Matrix (Fin 2) (Fin 2) ℤ) ∈ coset N (v ᵥ* red N γ) := by
   rw [mem_coset, comp_vecMul, (mem_coset N).mp hx]
@@ -69,6 +87,9 @@ def cosetEquiv (v : Fin 2 → ZMod N) (γ : SL(2, ℤ)) : coset N v ≃ coset N 
     rw [Matrix.vecMul_vecMul, ← Matrix.SpecialLinearGroup.coe_mul, inv_mul_cancel, Matrix.SpecialLinearGroup.coe_one,
       Matrix.vecMul_one y.1]
 
+/--
+@isnad1 id=eq.1h2v.s8.d6b2c402ac58 from=translated src=- shape=bdfebd5b vocab=153da2cd
+-/
 theorem red_eq_one_of_mem_Gamma {γ : SL(2, ℤ)} (hγ : γ ∈ Gamma N) : red N γ = 1 := by
   have h := Gamma_mem'.mp hγ
   have h2 := congrArg (fun A : SL(2, ZMod N) => (A : Matrix (Fin 2) (Fin 2) (ZMod N))) h
@@ -85,6 +106,9 @@ variable (N : ℕ) (k : ℤ)
 
 def G (v : Fin 2 → ZMod N) (z : ℍ) : ℂ := ∑' x : coset N v, eisSummand k x z
 
+/--
+@isnad1 id=eq.0h4v.s7.fcc6586e98c9 from=translated src=- shape=32142960 vocab=cfbfe882
+-/
 theorem G_slash_apply (v : Fin 2 → ZMod N) (γ : SL(2, ℤ)) :
     (G N k v) ∣[k] γ = G N k (v ᵥ* red N γ) := by
   ext1 z
@@ -102,6 +126,9 @@ def GSIF (v : Fin 2 → ZMod N) : SlashInvariantForm (Gamma N) k where
       rw [G_slash_apply, red_eq_one_of_mem_Gamma N hA, Matrix.vecMul_one v]
     simpa [Matrix.SpecialLinearGroup.mapGL, ← ModularForm.SL_slash] using h1
 
+/--
+@isnad1 id=eq.0h3v.s8.68a0bd7e4fc5 from=translated src=- shape=019a1e75 vocab=9e1fd5e0
+-/
 theorem coe_GSIF (v : Fin 2 → ZMod N) : (⇑(GSIF N k v) : ℍ → ℂ) = G N k v := rfl
 
 end Series
@@ -110,6 +137,9 @@ section Analytic
 
 variable {N : ℕ} {k : ℤ}
 
+/--
+@isnad1 id=tendstol.1h3v.s7.4d3a921adeed from=translated src=- shape=a07d3059 vocab=58b4ccff
+-/
 theorem G_tendstoLocallyUniformly (hk : 3 ≤ k) (v : Fin 2 → ZMod N) :
     TendstoLocallyUniformly (fun (s : Finset (coset N v)) ↦ (∑ x ∈ s, eisSummand k x ·))
       (G N k v ·) atTop := by
@@ -124,6 +154,9 @@ theorem G_tendstoLocallyUniformly (hk : 3 ≤ k) (v : Fin 2 → ZMod N) :
   simpa only [eisSummand, one_div, ← zpow_neg, norm_zpow, ← Real.rpow_intCast,
     Int.cast_neg] using summand_bound_of_mem_verticalStrip (by positivity) p hB hz
 
+/--
+@isnad1 id=tendstol.1h3v.s9.c9e4eb9bcd27 from=translated src=- shape=3c83545e vocab=172b5b80
+-/
 theorem G_tendstoLocallyUniformlyOn (hk : 3 ≤ k) (v : Fin 2 → ZMod N) :
     TendstoLocallyUniformlyOn (fun (s : Finset (coset N v)) ↦
       ↑ₕ(fun (z : ℍ) ↦ ∑ x ∈ s, eisSummand k x z)) (↑ₕ(GSIF N k v)) atTop {z : ℂ | 0 < z.im} := by
@@ -134,6 +167,9 @@ theorem G_tendstoLocallyUniformlyOn (hk : 3 ≤ k) (v : Fin 2 → ZMod N) :
   · simp only [IsOpenEmbedding.toOpenPartialHomeomorph_target, Set.top_eq_univ, mapsTo_range_iff,
     Set.mem_univ, forall_const]
 
+/--
+@isnad1 id=mdiffere.1h3v.s8.9bd5f140be90 from=translated src=- shape=b9c17145 vocab=0ccf67c4
+-/
 theorem GSIF_mdifferentiable (hk : 3 ≤ k) (v : Fin 2 → ZMod N) : MDiff (GSIF N k v) := by
   intro τ
   suffices DifferentiableAt ℂ (↑ₕGSIF N k v) τ.1 by
@@ -145,6 +181,9 @@ theorem GSIF_mdifferentiable (hk : 3 ≤ k) (v : Fin 2 → ZMod N) : MDiff (GSIF
     (Eventually.of_forall fun s ↦ DifferentiableOn.fun_sum
     fun _ _ ↦ eisSummand_extension_differentiableOn _ _) isOpen_upperHalfPlaneSet
 
+/--
+@isnad1 id=le.1h4v.s6.cae28e5fd8d3 from=translated src=- shape=e549bfd3 vocab=ac5c2a56
+-/
 theorem norm_G_le_tsum_norm (hk : 3 ≤ k) (v : Fin 2 → ZMod N) (z : ℍ) :
     ‖G N k v z‖ ≤ ∑' (x : Fin 2 → ℤ), ‖eisSummand k x z‖ := by
   simp_rw [G]
@@ -152,6 +191,9 @@ theorem norm_G_le_tsum_norm (hk : 3 ≤ k) (v : Fin 2 → ZMod N) (z : ℍ) :
     (Summable.tsum_subtype_le (fun (x : Fin 2 → ℤ) ↦ ‖(eisSummand k x z)‖) _ (fun _ ↦ norm_nonneg _)
       (summable_norm_eisSummand hk z))
 
+/--
+@isnad1 id=isbounde.1h4v.s8.3d390cadb329 from=translated src=- shape=f405be50 vocab=81c9781f
+-/
 theorem isBoundedAtImInfty_GSIF [NeZero N] (hk : 3 ≤ k) (v : Fin 2 → ZMod N) (A : SL(2, ℤ)) :
     IsBoundedAtImInfty ((⇑(GSIF N k v) : ℍ → ℂ) ∣[k] A) := by
   simp_rw [UpperHalfPlane.isBoundedAtImInfty_iff]
@@ -182,6 +224,9 @@ def GMF {k : ℤ} {N : ℕ} [NeZero N] (hk : 3 ≤ k) (v : Fin 2 → ZMod N) :
     rw [OnePoint.isBoundedAt_iff_forall_SL2Z hc]
     exact fun γ hγ ↦ isBoundedAtImInfty_GSIF hk v γ
 
+/--
+@isnad1 id=eq.1h3v.s8.3b4fa3c75c27 from=translated src=- shape=1935218f vocab=0ed08f81
+-/
 theorem coe_GMF {k : ℤ} {N : ℕ} [NeZero N] (hk : 3 ≤ k) (v : Fin 2 → ZMod N) :
     (⇑(GMF hk v) : ℍ → ℂ) = G N k v := rfl
 
@@ -193,6 +238,9 @@ end
 open scoped _root_.P2MW.S_EisensteinSeries_exists_modularForm_gamma_apply_eq_tsum_eisSummand.EisensteinSeries _root_.P2MW.S_EisensteinSeries_exists_modularForm_gamma_apply_eq_tsum_eisSummand.EisensteinSeries.FullLattice
 
 open _root_.EisensteinSeries _root_.P2MW.S_EisensteinSeries_exists_modularForm_gamma_apply_eq_tsum_eisSummand.EisensteinSeries EisensteinSeries.FullLattice in
+/--
+@isnad1 id=ex.1h2v.s11.3dbc38b7a109 from=translated src=- shape=9cb8bfb1 vocab=105fc48c
+-/
 theorem solution
     (N : ℕ) [NeZero N] (k : ℤ) (hk : 3 ≤ k) :
     ∃ G : (Fin 2 → ZMod N) → ModularForm (CongruenceSubgroup.Gamma N : Subgroup (GL (Fin 2) ℝ)) k,

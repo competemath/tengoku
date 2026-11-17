@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_FLT_ModelTransfer_exists_clearedData_not_d
 
 open WeierstrassCurve
 namespace FLT.ModelTransfer
+/--
+@isnad1 id=ex.5h4v.s6.903e1ac2453e from=translated src=- shape=3a745abe vocab=b55e545e
+-/
 theorem exists_clearedData_not_dvd_odd {V W : WeierstrassCurve ℤ} {C : WeierstrassCurve.VariableChange ℚ} {q : ℕ}
     (hq : q.Prime) (hq2 : q ≠ 2)
     (hC : C • (V.map (Int.castRingHom ℚ)) = W.map (Int.castRingHom ℚ))

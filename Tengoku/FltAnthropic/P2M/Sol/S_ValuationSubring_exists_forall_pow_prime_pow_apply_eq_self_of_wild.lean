@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.Theorems.Thm_ValuationSubring_apply_eq_self_of_pow_a
 namespace P2MW.S_ValuationSubring_exists_forall_pow_prime_pow_apply_eq_self_of_wild
 set_option autoImplicit false
 
+/--
+@isnad1 id=mem.2h5v.s9.47a2e02b2e48 from=translated src=- shape=f596c83d vocab=6f2f1876
+-/
 theorem wild_pow {L : Type} [Field L] [Algebra ℚ L] (A : ValuationSubring L) {σ : L ≃ₐ[ℚ] L}
     (hwild : ∀ z : L, z ≠ 0 → σ z * z⁻¹ - 1 ∈ A.nonunits) (n : ℕ) :
     ∀ z : L, z ≠ 0 → (σ ^ n) z * z⁻¹ - 1 ∈ A.nonunits := by
@@ -45,6 +48,9 @@ theorem wild_pow {L : Type} [Field L] [Algebra ℚ L] (A : ValuationSubring L) {
   rw [this, map_div₀, div_lt_one₀ (zero_lt_iff.mpr ((map_ne_zero _).mpr hz))]
   exact hpow n z hz
 
+/--
+@isnad1 id=ex.3h4v.s10.319c33e0a0cd from=translated src=- shape=5384dfe0 vocab=c97a09f4
+-/
 theorem solution {q : ℕ} (hq : q.Prime)
     (P : ValuationSubring (AlgebraicClosure ℚ)) (hP : P.LiesOverPrime q)
     {σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ}

@@ -8,6 +8,9 @@ namespace P2MW.S_EisensteinWeightOne_coeff_e1Chi3
 
 open EisensteinWeightOne
 
+/--
+@isnad1 id=eq.0h1v.s6.5ce33dc245fc from=translated src=- shape=47159a6a vocab=cbd60f3d
+-/
 theorem solution (n : ℕ) :
     PowerSeries.coeff n e1Chi3 = if n = 0 then 1 else 6 * sigmaChi n := by
   rw [e1Chi3, PowerSeries.coeff_mk]

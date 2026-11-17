@@ -14,6 +14,9 @@ export _root_.Tengoku.FltAnthropic.GaloisRepAdic (residual ρ V)
 namespace S0aLineUniqueAux
 open _root_.Tengoku.FltAnthropic.GaloisRepAdic
 
+/--
+@isnad1 id=iff.0h4v.s9.4fa5178196f3 from=translated src=- shape=26e5fcd2 vocab=244f8369
+-/
 theorem mem_span_iff_repr_one_eq_zero {R V : Type} [CommRing R] [AddCommGroup V] [Module R V]
     (b : Module.Basis (Fin 2) R V) (v : V) : v ∈ R ∙ b 0 ↔ b.repr v 1 = 0 := by
   constructor
@@ -28,6 +31,9 @@ theorem mem_span_iff_repr_one_eq_zero {R V : Type} [CommRing R] [AddCommGroup V]
 
 end GaloisRepAdic.S0aLineUniqueAux
 
+/--
+@isnad1 id=eq.5h5v.s12.8961189e1be6 from=translated src=- shape=9f0d84b6 vocab=93ed7098
+-/
 theorem solution
     {A : Type} [CommRing A] [IsLocalRing A] (ρ : GaloisRepAdic A)
     (P : ValuationSubring (AlgebraicClosure ℚ))

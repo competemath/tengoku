@@ -10,6 +10,9 @@ set_option autoImplicit false
 namespace OrdLat
 namespace FreeLocal
 
+/--
+@isnad1 id=and.1h4v.s8.16d7458b3201 from=translated src=- shape=2fdca7d3 vocab=99575a7b
+-/
 theorem free_of_isCompl {C : Type} [CommRing C] [IsLocalRing C] {N : Type} [AddCommGroup N] [Module C N]
     [Module.Finite C N] [Module.Free C N] (N0 N1 : Submodule C N) (h : IsCompl N0 N1) :
     Module.Free C N0 ∧ Module.Finite C N0 := by
@@ -22,6 +25,9 @@ theorem free_of_isCompl {C : Type} [CommRing C] [IsLocalRing C] {N : Type} [AddC
   have hflat : Module.Flat C N0 := Module.Flat.of_projective
   exact ⟨Module.free_of_flat_of_isLocalRing, hfin⟩
 
+/--
+@isnad1 id=eq.1h4v.s8.a7843835fd38 from=translated src=- shape=ecbd46b7 vocab=d3456c04
+-/
 theorem finrank_add_finrank_of_isCompl {C : Type} [CommRing C] [IsLocalRing C] {N : Type} [AddCommGroup N]
     [Module C N] [Module.Finite C N] [Module.Free C N] (N0 N1 : Submodule C N) (h : IsCompl N0 N1) :
     Module.finrank C N0 + Module.finrank C N1 = Module.finrank C N := by
@@ -29,6 +35,9 @@ theorem finrank_add_finrank_of_isCompl {C : Type} [CommRing C] [IsLocalRing C] {
   obtain ⟨hfr1, hfi1⟩ := free_of_isCompl N1 N0 h.symm
   rw [← Module.finrank_prod, LinearEquiv.finrank_eq (Submodule.prodEquivOfIsCompl N0 N1 h)]
 
+/--
+@isnad1 id=ex.1h2v.s7.3fc010d06a4e from=translated src=- shape=f4969321 vocab=b7ef96d4
+-/
 theorem exists_generator_of_finrank_eq_one {C : Type} [CommRing C] [Nontrivial C] {L : Type} [AddCommGroup L]
     [Module C L] [Module.Free C L] [Module.Finite C L] (h : Module.finrank C L = 1) :
     ∃ v : L, (∀ x : L, ∃ c : C, x = c • v) ∧ (∀ c : C, c • v = 0 → c = 0) := by
@@ -42,6 +51,9 @@ theorem exists_generator_of_finrank_eq_one {C : Type} [CommRing C] [Nontrivial C
   · have := congrArg (fun y => b.repr y i0) hc
     simpa using this
 
+/--
+@isnad1 id=and.7h6v.s9.fbdc665ed012 from=translated src=- shape=00a67e2f vocab=f11b7bcc
+-/
 theorem basis_pair_of_isCompl {C : Type} [CommRing C] {N : Type} [AddCommGroup N] [Module C N]
     (N0 N1 : Submodule C N) (h : IsCompl N0 N1) (v0 v1 : N) (hv0 : v0 ∈ N0) (hv1 : v1 ∈ N1)
     (hg0 : ∀ x ∈ N0, ∃ c : C, x = c • v0) (ha0 : ∀ c : C, c • v0 = 0 → c = 0)
@@ -63,6 +75,9 @@ theorem basis_pair_of_isCompl {C : Type} [CommRing C] {N : Type} [AddCommGroup N
 
 end OrdLat.FreeLocal
 
+/--
+@isnad1 id=and.1h4v.s9.018736c82665 from=translated src=- shape=2e209da4 vocab=d3456c04
+-/
 theorem solution
     {C : Type} [CommRing C] [IsLocalRing C] {N : Type} [AddCommGroup N] [Module C N]
     [Module.Finite C N] [Module.Free C N] (N0 N1 : Submodule C N) (h : IsCompl N0 N1) :

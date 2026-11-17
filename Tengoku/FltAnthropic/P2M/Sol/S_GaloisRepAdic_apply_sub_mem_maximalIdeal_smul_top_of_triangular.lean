@@ -8,6 +8,9 @@ namespace P2MW.S_GaloisRepAdic_apply_sub_mem_maximalIdeal_smul_top_of_triangular
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=mem.5h8v.s12.6d36b900111f from=translated src=- shape=f30315d8 vocab=167dc543
+-/
 theorem solution
     {B : Type} [CommRing B] [IsLocalRing B] (ρ : GaloisRepAdic B)
     (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) (b : Module.Basis (Fin 2) B ρ.V) (x y z : B)

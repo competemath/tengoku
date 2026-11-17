@@ -11,6 +11,9 @@ namespace P2MW.S_ExtCitation_coe_cycloChar_primeLocalToGlobal_eq_natCast_of_isFr
 set_option autoImplicit false
 open CategoryTheory Module groupCohomology ExtCitation
 
+/--
+@isnad1 id=eq.2h3v.s11.acc5b2444d79 from=translated src=- shape=1bc7f0ac vocab=7de9e563
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] (q : Nat.Primes) (hqp : (q : ℕ) ≠ p)
     {φ : primeLocalGaloisGroup q}

@@ -133,6 +133,9 @@ private theorem prime_rel (q : ℕ) (hq : q ≠ 1) :
 
 end DrinfeldCoordRingDomain
 
+/--
+@isnad1 id=isdomain.1h2v.s5.5f8196658593 from=translated src=- shape=1ccb5fe8 vocab=378940a3
+-/
 theorem solution (q : ℕ) (hq : q ≠ 1) (k : Type u) [Field k] : IsDomain (DrinfeldCurve.CoordRing q k) := by
   have hp : Prime (1 - DrinfeldCurve.drinfeldPoly q k) := DrinfeldCoordRingDomain.prime_rel q hq
   have hI : DrinfeldCurve.drinfeldIdeal q k = Ideal.span {1 - DrinfeldCurve.drinfeldPoly q k} := by

@@ -11,6 +11,9 @@ open CategoryTheory ExtCitation
 open Polynomial
 open scoped Pointwise
 
+/--
+@isnad1 id=iff.0h3v.s13.dd5f1d461bd9 from=translated src=- shape=8674436f vocab=0403df3e
+-/
 theorem solution
     (q : Nat.Primes) [Fact (q : ℕ).Prime]
     {k : Type} [CommRing k] (M : Rep k (primeLocalGaloisGroup q)) :

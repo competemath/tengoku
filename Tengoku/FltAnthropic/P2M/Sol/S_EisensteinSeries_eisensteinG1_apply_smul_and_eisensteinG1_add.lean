@@ -21,22 +21,34 @@ variable (τ : ℍ)
 
 def om (v : Fin 2 → ℤ) : ℂ := (v 0 : ℂ) * τ + v 1
 
+/--
+@isnad1 id=eq.0h3v.s10.73c2761aa176 from=translated src=- shape=c34f1497 vocab=6993a616
+-/
 lemma om_smul (γ : SL(2, ℤ)) (v : Fin 2 → ℤ) :
     om (γ • τ) v = om τ (v ᵥ* (γ : Matrix (Fin 2) (Fin 2) ℤ)) / denom γ τ := by
   have h := eisSummand_SL2_apply (-1) v γ τ
   simp only [eisSummand, neg_neg, zpow_one, zpow_neg] at h
   simpa [om, div_eq_inv_mul] using h
 
+/--
+@isnad1 id=eq.0h2v.s10.995bd5f564f2 from=translated src=- shape=31b8f864 vocab=cf165746
+-/
 lemma coe_smul_eq (γ : SL(2, ℤ)) :
     ((γ • τ : ℍ) : ℂ) = (((γ 0 0 : ℤ) : ℂ) * τ + ((γ 0 1 : ℤ) : ℂ)) / denom γ τ := by
   have := om_smul τ γ ![1, 0]
   simp [om, Matrix.vecMul, Matrix.vec2_dotProduct] at this
   exact this
 
+/--
+@isnad1 id=eq.0h2v.s10.bff6ddfa6a54 from=translated src=- shape=5185c269 vocab=7cd7a895
+-/
 lemma denom_eq (γ : SL(2, ℤ)) :
     (denom γ τ : ℂ) = ((γ 1 0 : ℤ) : ℂ) * τ + ((γ 1 1 : ℤ) : ℂ) := by
   simp [ModularGroup.denom_apply]
 
+/--
+@isnad1 id=eq.0h2v.s11.32b09972f61e from=translated src=- shape=48fb2511 vocab=1aea5099
+-/
 lemma G2_smul (γ : SL(2, ℤ)) :
     G2 (γ • τ) = denom γ τ ^ 2 * G2 τ - 2 * π * I * ((γ 1 0 : ℤ) : ℂ) * denom γ τ := by
   have hD : (denom γ τ : ℂ) ≠ 0 := denom_ne_zero _ τ
@@ -47,12 +59,18 @@ lemma G2_smul (γ : SL(2, ℤ)) :
   rw [h]
   field_simp
 
+/--
+@isnad1 id=eq.0h1v.s8.22f991ebcb94 from=translated src=- shape=b760eac4 vocab=e383e1bc
+-/
 lemma det_eq (γ : SL(2, ℤ)) :
     ((γ 0 0 : ℤ) : ℂ) * ((γ 1 1 : ℤ) : ℂ) - ((γ 0 1 : ℤ) : ℂ) * ((γ 1 0 : ℤ) : ℂ) = 1 := by
   have h := Matrix.SpecialLinearGroup.det_coe γ
   rw [Matrix.det_fin_two] at h
   exact_mod_cast h
 
+/--
+@isnad1 id=eq.0h4v.s10.5aa46f9455c8 from=translated src=- shape=548816dd vocab=cd09773a
+-/
 theorem eisensteinG1_smul (N : ℕ) (γ : SL(2, ℤ)) (v : Fin 2 → ℤ) :
     eisensteinG1 N v (γ • τ) =
       denom γ τ * eisensteinG1 N (v ᵥ* (γ : Matrix (Fin 2) (Fin 2) ℤ)) τ := by
@@ -96,12 +114,18 @@ def NotLat (τ : ℍ) (z : ℂ) : Prop := ∀ v : Fin 2 → ℤ, z ≠ (v 0 : �
 
 variable {τ}
 
+/--
+@isnad1 id=notlat.1h3v.s4.850e3e31931b from=translated src=- shape=d0c3c226 vocab=79ef1e62
+-/
 lemma NotLat.add_intCast {z : ℂ} (hz : NotLat τ z) (n : ℤ) : NotLat τ (z + n) := by
   intro v hv
   apply hz (v - ![0, n])
   simp only [Pi.sub_apply, Matrix.cons_val_zero, Matrix.cons_val_one, sub_zero, Int.cast_sub]
   linear_combination hv
 
+/--
+@isnad1 id=notlat.1h3v.s5.117701208aaa from=translated src=- shape=ae7675fd vocab=bf37d040
+-/
 lemma NotLat.add_intCast_mul {z : ℂ} (hz : NotLat τ z) (n : ℤ) : NotLat τ (z + n * τ) := by
   intro v hv
   apply hz (v - ![n, 0])
@@ -111,6 +135,9 @@ lemma NotLat.add_intCast_mul {z : ℂ} (hz : NotLat τ z) (n : ℤ) : NotLat τ 
 
 variable (τ)
 
+/--
+@isnad1 id=eq.1h3v.s5.8ddb9e1969a1 from=translated src=- shape=579e8821 vocab=4a6c2c16
+-/
 lemma weierstrassZeta_add_int {z : ℂ} (hz : NotLat τ z) (n : ℤ) :
     weierstrassZeta τ (z + n) = weierstrassZeta τ z + n * G2 τ := by
   have h1 := (EisensteinSeries.weierstrassZeta_add_one_and_add_tau_and_smul τ).1
@@ -127,6 +154,9 @@ lemma weierstrassZeta_add_int {z : ℂ} (hz : NotLat τ z) (n : ℤ) :
       rw [show z + (-(n : ℂ) - 1) + 1 = z + -(n : ℂ) by ring, ih] at this
       linear_combination -this
 
+/--
+@isnad1 id=eq.1h3v.s6.8472ac6bf074 from=translated src=- shape=83367b19 vocab=b444cecf
+-/
 lemma weierstrassZeta_add_int_mul {z : ℂ} (hz : NotLat τ z) (m : ℤ) :
     weierstrassZeta τ (z + m * τ) =
       weierstrassZeta τ z + m * ((τ : ℂ) * G2 τ - 2 * π * I) := by
@@ -144,6 +174,9 @@ lemma weierstrassZeta_add_int_mul {z : ℂ} (hz : NotLat τ z) (m : ℤ) :
       rw [show z + (-(n : ℂ) - 1) * τ + τ = z + -(n : ℂ) * τ by ring, ih] at this
       linear_combination -this
 
+/--
+@isnad1 id=eq.1h3v.s7.b2041e0ece76 from=translated src=- shape=7cf743bf vocab=60973ba6
+-/
 lemma weierstrassZeta_add_lattice {z : ℂ} (hz : NotLat τ z) (w : Fin 2 → ℤ) :
     weierstrassZeta τ (z + ((w 0 : ℂ) * τ + w 1)) =
       weierstrassZeta τ z + (w 0 : ℂ) * ((τ : ℂ) * G2 τ - 2 * π * I) + (w 1 : ℂ) * G2 τ := by
@@ -151,6 +184,9 @@ lemma weierstrassZeta_add_lattice {z : ℂ} (hz : NotLat τ z) (w : Fin 2 → �
     weierstrassZeta_add_int τ ((hz.add_intCast_mul (w 0))) (w 1),
     weierstrassZeta_add_int_mul τ hz (w 0)]
 
+/--
+@isnad1 id=injectiv.0h1v.s3.ba75ee4cf124 from=translated src=- shape=0c61405d vocab=46af4fde
+-/
 lemma om_injective : Function.Injective (om τ) := by
   intro u v huv
   have h : om τ (u - v) = 0 := by
@@ -169,6 +205,9 @@ lemma om_injective : Function.Injective (om τ) := by
   apply this
   simpa [om] using h
 
+/--
+@isnad1 id=notlat.1h3v.s5.6f9b9343f21b from=translated src=- shape=f654cd46 vocab=160640ee
+-/
 lemma notLat_of_not_dvd (N : ℕ) [NeZero N] {v : Fin 2 → ℤ} (hv : ¬ ∀ i, (N : ℤ) ∣ v i) :
     NotLat τ (om τ v / N) := by
   intro u hu
@@ -183,6 +222,9 @@ lemma notLat_of_not_dvd (N : ℕ) [NeZero N] {v : Fin 2 → ℤ} (hv : ¬ ∀ i,
   rw [this]
   simp
 
+/--
+@isnad1 id=eq.1h4v.s7.4ccc95772362 from=translated src=- shape=c2f7c2ba vocab=c8f8522d
+-/
 theorem eisensteinG1_add (N : ℕ) [NeZero N] (v w : Fin 2 → ℤ) (hv : ¬ ∀ i, (N : ℤ) ∣ v i) :
     eisensteinG1 N (v + (N : ℤ) • w) τ = eisensteinG1 N v τ := by
   have hN : (N : ℂ) ≠ 0 := by exact_mod_cast NeZero.ne N
@@ -205,6 +247,9 @@ end WZC
 
 end
 
+/--
+@isnad1 id=and.0h2v.s10.582259ad036c from=translated src=- shape=ef764f85 vocab=fbc1e250
+-/
 theorem solution (N : ℕ) [NeZero N] (τ : UpperHalfPlane) :
     (∀ (γ : SL(2, ℤ)) (v : Fin 2 → ℤ),
         EisensteinSeries.eisensteinG1 N v (γ • τ) =

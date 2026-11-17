@@ -840,6 +840,9 @@ open scoped _root_.P2MW.S_EisensteinGeneral_Factorization_integrable_finprod_and
 end
 open scoped _root_.P2MW.S_EisensteinGeneral_Factorization_integrable_finprod_and_inv_measure_mul_integral_eq_tprod.FiniteAdelicFactorization
 
+/--
+@isnad1 id=and.3h5v.s11.92ed9bb8c0e5 from=translated src=- shape=cde411c6 vocab=9b9bb7ba
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F]
     [MeasurableSpace (FiniteAdeleRing (𝓞 F) F)] [BorelSpace (FiniteAdeleRing (𝓞 F) F)]

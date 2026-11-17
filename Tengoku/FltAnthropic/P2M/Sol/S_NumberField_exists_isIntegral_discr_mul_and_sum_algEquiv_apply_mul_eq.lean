@@ -8,6 +8,9 @@ namespace P2MW.S_NumberField_exists_isIntegral_discr_mul_and_sum_algEquiv_apply_
 set_option autoImplicit false
 
 open NumberField in
+/--
+@isnad1 id=ex.0h1v.s9.f8b0c09d54b2 from=translated src=- shape=f0f39cd4 vocab=0d00777c
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] [IsGalois ℚ K] :
     ∃ (n : ℕ) (a b : Fin n → K),

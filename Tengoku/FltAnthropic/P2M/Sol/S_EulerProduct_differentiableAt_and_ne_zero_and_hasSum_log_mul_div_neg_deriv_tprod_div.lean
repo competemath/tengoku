@@ -11,17 +11,26 @@ open Complex
 
 namespace R1EulerLogDeriv
 
+/--
+@isnad1 id=le.2h3v.s6.8f0382e0088a from=translated src=- shape=4cee79be vocab=be113d05
+-/
 lemma norm_coeff_le (N : ℕ) (hN : 2 ≤ N) (c : ℂ) (hc : ‖c‖ ≤ 1) (z : ℂ) :
     ‖c * (N : ℂ) ^ (-z)‖ ≤ (N : ℝ) ^ (-z.re) := by
   rw [norm_mul, norm_natCast_cpow_of_pos (by omega), neg_re]
   exact mul_le_of_le_one_left (Real.rpow_nonneg (Nat.cast_nonneg _) _) hc
 
+/--
+@isnad1 id=le.2h3v.s5.66bd7eb6bb39 from=translated src=- shape=9470a4d8 vocab=18faec3c
+-/
 lemma rpow_neg_le_rpow_neg (N : ℕ) (hN : 2 ≤ N) {σ σ' : ℝ} (h : σ' ≤ σ) :
     (N : ℝ) ^ (-σ) ≤ (N : ℝ) ^ (-σ') := by
   apply Real.rpow_le_rpow_of_exponent_le
   · exact_mod_cast (by omega : 1 ≤ N)
   · linarith
 
+/--
+@isnad1 id=le.2h2v.s6.d7279dd8bca3 from=translated src=- shape=4c9b87b5 vocab=e9fe8c4f
+-/
 lemma rpow_neg_le_half (N : ℕ) (hN : 2 ≤ N) (σ : ℝ) (hσ : 1 ≤ σ) : (N : ℝ) ^ (-σ) ≤ 1 / 2 := by
   have h1 : (N : ℝ) ^ (-σ) ≤ (N : ℝ) ^ (-(1 : ℝ)) := rpow_neg_le_rpow_neg N hN hσ
   have h2 : (N : ℝ) ^ (-(1 : ℝ)) = 1 / N := by
@@ -31,6 +40,9 @@ lemma rpow_neg_le_half (N : ℕ) (hN : 2 ≤ N) (σ : ℝ) (hσ : 1 ≤ σ) : (N
     exact one_div_le_one_div_of_le (by norm_num) this
   linarith [h1, h2.le, h2.ge, h3]
 
+/--
+@isnad1 id=and.4h4v.s9.bf2ccaa527f6 from=translated src=- shape=743b0c72 vocab=f0576831
+-/
 theorem main {ι : Type} (N : ι → ℕ) (hN : ∀ i, 2 ≤ N i) (c : ι → ℂ) (hc : ∀ i, ‖c i‖ ≤ 1)
     (hsum : ∀ σ : ℝ, 1 < σ → Summable fun i => ((N i : ℕ) : ℝ) ^ (-σ))
     (s : ℂ) (hs : 1 < s.re) :
@@ -147,6 +159,9 @@ theorem main {ι : Type} (N : ι → ℕ) (hN : ∀ i, 2 ≤ N i) (c : ι → �
 
 end R1EulerLogDeriv
 
+/--
+@isnad1 id=and.4h4v.s9.bf2ccaa527f6 from=translated src=- shape=743b0c72 vocab=f0576831
+-/
 theorem solution
     {ι : Type} (N : ι → ℕ) (hN : ∀ i, 2 ≤ N i) (c : ι → ℂ) (hc : ∀ i, ‖c i‖ ≤ 1)
     (hsum : ∀ σ : ℝ, 1 < σ → Summable fun i => ((N i : ℕ) : ℝ) ^ (-σ))

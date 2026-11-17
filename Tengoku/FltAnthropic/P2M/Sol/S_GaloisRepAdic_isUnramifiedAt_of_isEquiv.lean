@@ -16,6 +16,9 @@ open _root_.Tengoku.FltAnthropic.GaloisRepAdic
 
 variable {A B : Type} [CommRing A] [IsLocalRing A] [CommRing B] [IsLocalRing B]
 
+/--
+@isnad1 id=isunrami.2h4v.s5.4328d4ba96f4 from=translated src=- shape=fadfb841 vocab=2fb060c9
+-/
 theorem isUnramifiedAt_of_isEquiv {ρ₁ ρ₂ : GaloisRepAdic A} (e : ρ₁.IsEquiv ρ₂) {q : ℕ}
     (h : ρ₁.IsUnramifiedAt q) : ρ₂.IsUnramifiedAt q := by
   obtain ⟨e⟩ := e
@@ -26,6 +29,9 @@ theorem isUnramifiedAt_of_isEquiv {ρ₁ ρ₂ : GaloisRepAdic A} (e : ρ₁.IsE
 
 end GaloisRepAdic.LCSol
 
+/--
+@isnad1 id=isunrami.2h4v.s5.4328d4ba96f4 from=translated src=- shape=fadfb841 vocab=2fb060c9
+-/
 theorem solution
     {A : Type} [CommRing A] [IsLocalRing A]
     {ρ₁ ρ₂ : GaloisRepAdic A} (e : ρ₁.IsEquiv ρ₂) {q : ℕ}

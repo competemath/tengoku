@@ -11,6 +11,9 @@ open scoped IntermediateField
 open Polynomial
 open scoped Pointwise
 
+/--
+@isnad1 id=ex.0h2v.s10.f4bf1f85844b from=translated src=- shape=f6831683 vocab=e8b1ed21
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime]
     (K : IntermediateField ℚ_[q] (PadicAlgCl q)) [FiniteDimensional ℚ_[q] K] :

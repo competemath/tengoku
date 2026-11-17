@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_GaloisRep_exists_finiteFlat_of_subalgebra_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.6h3v.s14.b669505f7c23 from=translated src=- shape=6d13abbe vocab=fb3605ab
+-/
 theorem GaloisRep.exists_finiteFlat_of_subalgebra_pi_algebraicClosure (p : ℕ) (hp : p.Prime)
     {X : Type} [AddCommGroup X] [Finite X]
     [DistribMulAction (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) X]

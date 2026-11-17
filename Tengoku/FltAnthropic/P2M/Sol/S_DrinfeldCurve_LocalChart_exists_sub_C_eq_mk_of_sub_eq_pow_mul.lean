@@ -29,6 +29,9 @@ def lowVanish (W : Type*) [CommRing W] (k : ℕ) : Ideal (MvPowerSeries (Fin 2) 
       have := congrArg Finsupp.degree hpn; rw [map_add] at this; omega
     rw [ha p.2 this, mul_zero]
 
+/--
+@isnad1 id=le.0h3v.s8.71c2e77433d2 from=translated src=- shape=36c6f4c3 vocab=6b79a7e2
+-/
 theorem lowVanish_mul_le {W : Type*} [CommRing W] (k l : ℕ) :
     lowVanish W k * lowVanish W l ≤ lowVanish W (k + l) := by
   classical
@@ -42,6 +45,9 @@ theorem lowVanish_mul_le {W : Type*} [CommRing W] (k l : ℕ) :
   · have : p.2.degree < l := by omega
     rw [hb p.2 this, mul_zero]
 
+/--
+@isnad1 id=le.0h1v.s8.7ad815c1962f from=translated src=- shape=f5b31c2c vocab=71e97cb3
+-/
 theorem span_X_le_lowVanish (W : Type*) [CommRing W] :
     Ideal.span {(X 0 : MvPowerSeries (Fin 2) W), X 1} ≤ lowVanish W 1 := by
   classical
@@ -52,6 +58,9 @@ theorem span_X_le_lowVanish (W : Type*) [CommRing W] :
     subst hn0
     rw [coeff_X]; simp [eq_comm, Finsupp.single_eq_zero]
 
+/--
+@isnad1 id=le.0h2v.s8.a8b2142970fc from=translated src=- shape=8530e4ef vocab=4a410a1c
+-/
 theorem span_X_pow_le_lowVanish (W : Type*) [CommRing W] (k : ℕ) :
     (Ideal.span {(X 0 : MvPowerSeries (Fin 2) W), X 1}) ^ k ≤ lowVanish W k := by
   induction k with
@@ -63,6 +72,9 @@ theorem span_X_pow_le_lowVanish (W : Type*) [CommRing W] (k : ℕ) :
 end DrinfeldCurve.LocalChart
 
 open _root_.DrinfeldCurve.LocalChart _root_.P2MW.S_DrinfeldCurve_LocalChart_exists_sub_C_eq_mk_of_sub_eq_pow_mul.DrinfeldCurve.LocalChart in
+/--
+@isnad1 id=ex.6h13v.s14.201c37ef2352 from=translated src=- shape=e266dfff vocab=5b721423
+-/
 theorem solution
     (q : ℕ) {W : Type} [CommRing W]
     (c : W) (f u v : MvPowerSeries (Fin 2) W) (hv : IsUnit v)

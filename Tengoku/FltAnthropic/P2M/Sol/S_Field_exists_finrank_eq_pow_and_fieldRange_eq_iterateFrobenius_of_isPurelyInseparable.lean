@@ -11,24 +11,39 @@ variable {E : Type*} [Field E] (p : ℕ) [Fact p.Prime] [CharP E p]
 
 noncomputable def En (n : ℕ) : Subfield E := Subfield.map (iterateFrobenius E p n) ⊤
 
+/--
+@isnad1 id=eq.0h2v.s5.a838279149da from=translated src=- shape=8d62bf95 vocab=7059d3f2
+-/
 lemma En_zero : En p 0 = (⊤ : Subfield E) := by
   ext x
   simp only [En, iterateFrobenius_zero, Subfield.mem_map, RingHom.id_apply, Subfield.mem_top,
     true_and, exists_eq]
 
+/--
+@isnad1 id=eq.0h3v.s6.12ceb6e0204d from=translated src=- shape=61e18463 vocab=c4abcc2d
+-/
 lemma En_succ (n : ℕ) :
     En p (n + 1) = Subfield.map (frobenius E p) (En p n) := by
   rw [En, En, Subfield.map_map, ← iterateFrobenius_one, ← iterateFrobenius_add, Nat.add_comm]
 
+/--
+@isnad1 id=eq.0h2v.s5.f56a48c0ab48 from=translated src=- shape=1fc8f458 vocab=e9f46dad
+-/
 lemma En_one : En p 1 = (frobenius E p).fieldRange := by
   rw [En, iterateFrobenius_one, RingHom.fieldRange_eq_map]
 
+/--
+@isnad1 id=le.0h3v.s6.7c9a80835b4b from=translated src=- shape=d766690c vocab=2552b2aa
+-/
 lemma map_frobenius_le (S : Subfield E) :
     Subfield.map (frobenius E p) S ≤ S := by
   rintro _ ⟨x, hx, rfl⟩
   rw [frobenius_def]
   exact pow_mem hx p
 
+/--
+@isnad1 id=le.0h3v.s8.fbcb23f36fbf from=translated src=- shape=a407faf3 vocab=e8b038db
+-/
 lemma En_exponent_le (S : Subfield E) [IsPurelyInseparable S E]
     [FiniteDimensional S E] :
     En p (IsPurelyInseparable.exponent S E) ≤ S := by
@@ -38,6 +53,9 @@ lemma En_exponent_le (S : Subfield E) [IsPurelyInseparable S E]
   rw [← hy]
   exact y.2
 
+/--
+@isnad1 id=le.2h3v.s8.0824bc723616 from=translated src=- shape=5edb6c22 vocab=a107ab22
+-/
 lemma le_En_one (hp : Module.finrank (frobenius E p).fieldRange E = p)
     (S : Subfield E) [IsPurelyInseparable S E] [FiniteDimensional S E] (hS : S ≠ ⊤) :
     S ≤ En p 1 := by
@@ -74,6 +92,9 @@ lemma le_En_one (hp : Module.finrank (frobenius E p).fieldRange E = p)
       exact Nat.eq_of_mul_eq_mul_right hprime.pos this
     exact le_sup_right.trans (Subfield.relfinrank_eq_one_iff.1 h1)
 
+/--
+@isnad1 id=ex.4h4v.s9.9f2b5a3b1534 from=translated src=- shape=3ab9b6fa vocab=16e90d5c
+-/
 theorem core (hp : Module.finrank (frobenius E p).fieldRange E = p) :
     ∀ (d : ℕ) (S : Subfield E), IsPurelyInseparable S E → FiniteDimensional S E →
       Module.finrank S E = d → ∃ r : ℕ, d = p ^ r ∧ S = En p r := by
@@ -123,6 +144,9 @@ theorem core (hp : Module.finrank (frobenius E p).fieldRange E = p) :
     · rw [← hd, hrel, hr, pow_succ]
     · rw [← hmap, hS₁r, En_succ]
 
+/--
+@isnad1 id=ex.1h3v.s8.3f6ca0edff77 from=translated src=- shape=83f9f733 vocab=d4b84a13
+-/
 theorem main {M E : Type*} [Field M] [Field E] [Algebra M E] [FiniteDimensional M E]
     [IsPurelyInseparable M E] (p : ℕ) [Fact p.Prime] [CharP E p]
     (hp : Module.finrank (frobenius E p).fieldRange E = p) :
@@ -146,6 +170,9 @@ theorem main {M E : Type*} [Field M] [Field E] [Algebra M E] [FiniteDimensional 
 
 end W8OChildA
 
+/--
+@isnad1 id=ex.1h3v.s8.3f6ca0edff77 from=translated src=- shape=83f9f733 vocab=d4b84a13
+-/
 theorem solution
     {M E : Type*} [Field M] [Field E] [Algebra M E] [FiniteDimensional M E]
     [IsPurelyInseparable M E] (p : ℕ) [Fact p.Prime] [CharP E p]

@@ -13,6 +13,9 @@ open ExtCitation
 
 namespace P2mS17K3
 
+/--
+@isnad1 id=iff.0h5v.s7.a3fb00a7f70d from=translated src=- shape=4c39380b vocab=dc9359c5
+-/
 theorem mem_nonunits_comap {K L : Type*} [Field K] [Field L] {B : ValuationSubring L} {f : K →+* L} {x : K} :
     x ∈ (B.comap f).nonunits ↔ f x ∈ B.nonunits := by
   rw [ValuationSubring.mem_nonunits_iff_or, ValuationSubring.mem_nonunits_iff_or, ValuationSubring.mem_comap, map_inv₀]
@@ -25,6 +28,9 @@ theorem mem_nonunits_comap {K L : Type*} [Field K] [Field L] {B : ValuationSubri
     · exact Or.inr h
 
 open scoped NNReal in
+/--
+@isnad1 id=liesover.0h1v.s4.3f5074e157b0 from=translated src=- shape=025085eb vocab=9ff962aa
+-/
 theorem padicPlace_liesOverPrime (q : ℕ) [Fact q.Prime] : (padicPlace q).LiesOverPrime q := by
   have hq : Valued.v ((q : ℕ) : PadicAlgCl q) = 1 / (q : ℝ≥0) := PadicAlgCl.valuation_p q
   have hq2 : (2 : ℕ) ≤ q := (Fact.out : q.Prime).two_le
@@ -34,15 +40,24 @@ theorem padicPlace_liesOverPrime (q : ℕ) [Fact q.Prime] : (padicPlace q).LiesO
   rw [map_natCast, hq, div_lt_one (by exact_mod_cast Nat.lt_of_lt_of_le Nat.zero_lt_two hq2)]
   exact_mod_cast Nat.lt_of_lt_of_le Nat.one_lt_two hq2
 
+/--
+@isnad1 id=liesover.0h1v.s4.47951e5446ba from=translated src=- shape=069d1425 vocab=a1a869e7
+-/
 theorem primeLocalPlace_liesOverPrime (q : Nat.Primes) : (primeLocalPlace q).LiesOverPrime q := by
   haveI : Fact (q : ℕ).Prime := ⟨q.2⟩
   exact padicPlace_liesOverPrime q
 
+/--
+@isnad1 id=mem.0h2v.s10.2015d070bc62 from=translated src=- shape=5e6522cb vocab=d2e95237
+-/
 theorem primeLocalToGlobal_mem_decompositionSubgroup (q : Nat.Primes) (g : primeLocalGaloisGroup q) :
     primeLocalToGlobal q g ∈ (primeLocalPlace q).decompositionSubgroup ℚ := by
   haveI : Fact (q : ℕ).Prime := ⟨q.2⟩
   exact localGaloisToGlobal_mem_decompositionSubgroup (q : ℕ) g
 
+/--
+@isnad1 id=iff.0h2v.s12.696f5250ea48 from=translated src=- shape=f611ab98 vocab=9dad5d2a
+-/
 theorem mem_inertiaPullback_iff (q : Nat.Primes) (g : primeLocalGaloisGroup q) :
     g ∈ ((primeLocalPlace q).inertiaSubgroupIn ℚ).comap (primeLocalToGlobal q) ↔
       ∀ x : IsLocalRing.ResidueField (primeLocalPlace q),
@@ -76,6 +91,9 @@ theorem eq_one_of_residue_eq_one_of_pow_eq_one {A : Type*} [CommRing A] [IsDomai
   rw [map_sum, map_zero] at this
   simpa [map_pow, hres] using this
 
+/--
+@isnad1 id=dvd.2h3v.s6.0fdd6a6e61dd from=translated src=- shape=c4c3409b vocab=e4b21fc6
+-/
 theorem dvd_of_pow_sub_one_dvd_pow_sub_one {a n j : ℕ} (ha : 2 ≤ a) (h : a ^ n - 1 ∣ a ^ j - 1) : n ∣ j := by
   have hg := Nat.pow_sub_one_gcd_pow_sub_one a n j
   rw [Nat.gcd_eq_left h] at hg
@@ -89,6 +107,9 @@ theorem dvd_of_pow_sub_one_dvd_pow_sub_one {a n j : ℕ} (ha : 2 ≤ a) (h : a ^
 end P2mS17K3
 
 open P2mS17K3 in
+/--
+@isnad1 id=ex.2h4v.s11.2cc2a8f0df68 from=translated src=- shape=3315d39e vocab=00cccf60
+-/
 theorem solution (q : Nat.Primes)
     (φ : primeLocalGaloisGroup q) (hφ : (primeLocalPlace q).IsFrobeniusAt (primeLocalToGlobal q φ) q)
     (F₀ : IntermediateField ℚ (AlgebraicClosure ℚ)) [FiniteDimensional ℚ F₀] (n : ℕ) (hn : 0 < n) :

@@ -10,6 +10,9 @@ namespace P2MW.S_GaloisRep_exists_inertia_eigenvector_tameCharacter_pow_of_conj_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.4h11v.s14.4e6bb08c69db from=translated src=- shape=61afb76b vocab=973bb303
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] {F F' : Type} [Field F] [Field F'] (e : F →+* F')
     (ρ : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) →* GL (Fin 2) F)

@@ -11,6 +11,9 @@ open scoped nonZeroDivisors
 
 namespace TSEP
 
+/--
+@isnad1 id=ex.1h2v.s6.6a10fbd517b3 from=translated src=- shape=3e2d12a9 vocab=6874ca4b
+-/
 theorem exists_mul_isIdempotentElem_ne_zero
     {A : Type*} [CommRing A] [IsArtinianRing A] [IsReduced A] (a : A) (ha : a ≠ 0) :
     ∃ b : A, IsIdempotentElem (b * a) ∧ b * a ≠ 0 := by
@@ -55,6 +58,9 @@ theorem exists_mul_isIdempotentElem_ne_zero
     rw [Pi.mul_apply, Pi.single_eq_same, Pi.zero_apply, mul_comm, hc] at h2
     exact hone i h2
 
+/--
+@isnad1 id=ne.2h3v.s8.4552ea0c5175 from=translated src=- shape=115b989f vocab=949fd3b3
+-/
 theorem trace_ne_zero_of_isIdempotentElem
     {K : Type*} [Field K] [CharZero K] {A : Type*} [CommRing A] [Algebra K A] [Module.Finite K A]
     (ε : A) (hε : IsIdempotentElem ε) (hε0 : ε ≠ 0) : Algebra.trace K A ε ≠ 0 := by
@@ -74,6 +80,9 @@ theorem trace_ne_zero_of_isIdempotentElem
     exact hε0 (congrArg Subtype.val h)
   exact_mod_cast hpos.ne'
 
+/--
+@isnad1 id=ex.1h3v.s8.dfc1b78ea483 from=translated src=- shape=06ab1453 vocab=9055b509
+-/
 theorem exists_trace_mul_ne_zero_field
     {K : Type*} [Field K] [CharZero K] {A : Type*} [CommRing A] [Algebra K A] [Module.Finite K A]
     [IsReduced A] (a : A) (ha : a ≠ 0) : ∃ t : A, Algebra.trace K A (a * t) ≠ 0 := by
@@ -85,6 +94,9 @@ theorem exists_trace_mul_ne_zero_field
 
 end TSEP
 
+/--
+@isnad1 id=ex.1h2v.s7.ab5ddc1c4dc4 from=translated src=- shape=cae96f16 vocab=09831b65
+-/
 theorem solution
     (R : Type) [CommRing R] [Module.Free ℤ R] [Module.Finite ℤ R] [IsReduced R] (r : R) (hr : r ≠ 0) :
     ∃ s : R, Algebra.trace ℤ R (r * s) ≠ 0 := by

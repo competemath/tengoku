@@ -11,6 +11,9 @@ attribute [-simp] WeierstrassCurve.Affine.vcY_vcYInv WeierstrassCurve.Affine.vcX
 
 open WeierstrassCurve FLT.ModelTransfer
 
+/--
+@isnad1 id=eq.6h4v.s6.ad9ae432eb38 from=translated src=- shape=36feb5e6 vocab=99ef0b6c
+-/
 theorem solution {V W : WeierstrassCurve ℤ}
     {C : WeierstrassCurve.VariableChange ℚ} {q : ℕ}
     (hq : q.Prime) (hq2 : q ≠ 2) (hq3 : q ≠ 3)

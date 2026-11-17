@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_AlgebraicClosure_linearIndependent_of_line
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=linearin.2h3v.s10.b87079b8413a from=translated src=- shape=786feb7c vocab=b3ef6256
+-/
 theorem AlgebraicClosure.linearIndependent_of_linearIndependent_rat_of_forall_apply_smul
     {X : Type} [MulAction (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) X]
     {ι : Type} (F : ι → X → AlgebraicClosure ℚ)

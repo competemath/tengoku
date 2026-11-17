@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_IsLocalRing_free_and_finrank_add_eq_of_isC
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.1h4v.s9.018736c82665 from=translated src=- shape=2e209da4 vocab=d3456c04
+-/
 theorem IsLocalRing.free_and_finrank_add_eq_of_isCompl
     {C : Type} [CommRing C] [IsLocalRing C] {N : Type} [AddCommGroup N] [Module C N]
     [Module.Finite C N] [Module.Free C N] (N0 N1 : Submodule C N) (h : IsCompl N0 N1) :

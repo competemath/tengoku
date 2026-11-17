@@ -8,6 +8,9 @@ namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropi
 set_option autoImplicit false
 open Polynomial
 
+/--
+@isnad1 id=ex.6h6v.s11.c4e734504643 from=translated src=- shape=9f55e6cb vocab=9174599e
+-/
 theorem Tengoku.FltAnthropic.GaloisRepAdic.exists_pow_prime_pow_eq_one_of_wild
     {A : Type} [CommRing A] [IsLocalRing A] [IsNoetherianRing A] (ρ : GaloisRepAdic A)
     {p : ℕ} (hp : p.Prime) (hpA : (p : A) ∈ IsLocalRing.maximalIdeal A) {q : ℕ} (hq : q.Prime) (hqp : q ≠ p)

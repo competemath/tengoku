@@ -19,16 +19,25 @@ variable (q : ℕ) [hq : Fact q.Prime]
 
 abbrev F2 : Type := GaloisField q 2
 
+/--
+@isnad1 id=eq.0h2v.s6.b085f096c497 from=translated src=- shape=63d0ba27 vocab=5227213f
+-/
 theorem pow_card_F2 (x : F2 q) : x ^ q ^ 2 = x := by
   haveI : Fintype (F2 q) := Fintype.ofFinite _
   have h : Fintype.card (F2 q) = q ^ 2 := by rw [Fintype.card_eq_nat_card, GaloisField.card q 2 two_ne_zero]
   rw [← h]; exact FiniteField.pow_card x
 
+/--
+@isnad1 id=eq.0h2v.s7.30c66f8c9ad3 from=translated src=- shape=47f67c59 vocab=0d9923c8
+-/
 theorem neg_pow_q (x : F2 q) : (-x) ^ q = -(x ^ q) := by
   rw [← frobenius_def, map_neg, frobenius_def]
 
 variable {q}
 
+/--
+@isnad1 id=eq.1h2v.s7.333a1fd5503b from=translated src=- shape=d5715f11 vocab=d316457d
+-/
 theorem inv_eq_pow_of_pow_succ_eq_one {l : F2 q} (hl : l ^ (q + 1) = 1) : l ^ q = l⁻¹ := by
   have hl0 : l ≠ 0 := by
     rintro rfl; rw [zero_pow (Nat.succ_ne_zero q)] at hl; exact zero_ne_one hl
@@ -37,6 +46,9 @@ theorem inv_eq_pow_of_pow_succ_eq_one {l : F2 q} (hl : l ^ (q + 1) = 1) : l ^ q 
 noncomputable def w₁ (l₁ l₂ d : F2 q) : F2 q := (d ^ q - l₂ * d) / (l₁ - l₂)
 noncomputable def w₂ (l₁ l₂ d : F2 q) : F2 q := w₁ l₁ l₂ d - d
 
+/--
+@isnad1 id=eq.1h4v.s7.a35e9f6da249 from=translated src=- shape=a6b5a9b2 vocab=24894aea
+-/
 theorem w₂_eq (l₁ l₂ d : F2 q) (h12 : l₁ ≠ l₂) : w₂ l₁ l₂ d = (d ^ q - l₁ * d) / (l₁ - l₂) := by
   have h := sub_ne_zero.mpr h12
   rw [w₂, w₁, eq_div_iff h, sub_mul, div_mul_cancel₀ _ h]
@@ -46,17 +58,26 @@ variable {l₁ l₂ d : F2 q} (h12 : l₁ ≠ l₂) (hl1 : l₁ ^ (q + 1) = 1) (
   (hd : d ^ q = -d)
 
 include hd h12 in
+/--
+@isnad1 id=iff.2h4v.s8.3487a5be1fed from=translated src=- shape=9b85823c vocab=bfef9f4a
+-/
 theorem w₁_eq_zero_iff : w₁ l₁ l₂ d = 0 ↔ d = 0 ∨ l₂ = -1 := by
   rw [w₁, div_eq_zero_iff, or_iff_left (sub_ne_zero.mpr h12), hd,
     show -d - l₂ * d = -(d * (1 + l₂)) by ring, neg_eq_zero, mul_eq_zero, add_eq_zero_iff_eq_neg']
 
 include hd h12 in
+/--
+@isnad1 id=iff.2h4v.s8.def1c6c96258 from=translated src=- shape=0cff6b45 vocab=1c944308
+-/
 theorem w₂_eq_zero_iff : w₂ l₁ l₂ d = 0 ↔ d = 0 ∨ l₁ = -1 := by
   rw [w₂_eq _ _ _ h12, div_eq_zero_iff, or_iff_left (sub_ne_zero.mpr h12), hd,
     show -d - l₁ * d = -(d * (1 + l₁)) by ring, neg_eq_zero, mul_eq_zero, add_eq_zero_iff_eq_neg']
 
 include h12 hl1 hl2 hd in
 
+/--
+@isnad1 id=eq.4h4v.s8.57491bdf1333 from=translated src=- shape=f520486e vocab=af693fc3
+-/
 theorem w₁_pow : w₁ l₁ l₂ d ^ q = l₁ * w₁ l₁ l₂ d := by
   have hl10 : l₁ ≠ 0 := by rintro rfl; rw [zero_pow (Nat.succ_ne_zero q)] at hl1; exact zero_ne_one hl1
   have hl20 : l₂ ≠ 0 := by rintro rfl; rw [zero_pow (Nat.succ_ne_zero q)] at hl2; exact zero_ne_one hl2
@@ -72,6 +93,9 @@ theorem w₁_pow : w₁ l₁ l₂ d ^ q = l₁ * w₁ l₁ l₂ d := by
 
 include h12 hl1 hl2 hd in
 
+/--
+@isnad1 id=eq.4h4v.s8.c65ea9ba9bf9 from=translated src=- shape=457b727a vocab=41252ae3
+-/
 theorem w₂_pow : w₂ l₁ l₂ d ^ q = l₂ * w₂ l₁ l₂ d := by
   have hl10 : l₁ ≠ 0 := by rintro rfl; rw [zero_pow (Nat.succ_ne_zero q)] at hl1; exact zero_ne_one hl1
   have hl20 : l₂ ≠ 0 := by rintro rfl; rw [zero_pow (Nat.succ_ne_zero q)] at hl2; exact zero_ne_one hl2
@@ -93,8 +117,14 @@ variable (q : ℕ) [hq : Fact q.Prime] (K : Type*) [Field K] [Algebra (GaloisFie
 
 abbrev ι : F2 q →+* K := algebraMap (F2 q) K
 
+/--
+@isnad1 id=charp.0h2v.s6.b4746b574aae from=translated src=- shape=ef5701de vocab=2607237b
+-/
 theorem charP_K : CharP K q := charP_of_injective_algebraMap' (F2 q) q
 
+/--
+@isnad1 id=ne.0h2v.s6.3337a2114716 from=translated src=- shape=0491334a vocab=5a17fbff
+-/
 theorem cast_succ_ne_zero : ((q + 1 : ℕ) : K) ≠ 0 := by
   haveI := charP_K q K
   rw [Ne, CharP.cast_eq_zero_iff K q]
@@ -102,6 +132,9 @@ theorem cast_succ_ne_zero : ((q + 1 : ℕ) : K) ≠ 0 := by
   have h1 : q ∣ 1 := (Nat.dvd_add_right (dvd_refl q)).mp h
   exact hq.out.one_lt.ne' (Nat.dvd_one.mp h1)
 
+/--
+@isnad1 id=eq.3h3v.s6.dcb182d32c47 from=translated src=- shape=2aff64cf vocab=ff6dc4bd
+-/
 theorem ncard_setOf_pow_eq [IsAlgClosed K] (n : ℕ) (hn : 0 < n) (hnK : (n : K) ≠ 0) {w : K} (hw : w ≠ 0) :
     {u : K | u ^ n = w}.ncard = n := by
   classical
@@ -125,6 +158,9 @@ def T (l₁ l₂ d : F2 q) : Set (K × K) :=
 
 variable {q K}
 
+/--
+@isnad1 id=eq.2h4v.s8.a7ba786b4b95 from=translated src=- shape=ccf4c36c vocab=9df1bdf8
+-/
 theorem pow_succ_pow_of_twist {u : K} {l : F2 q} (hu : u ^ q ^ 2 = ι q K l * u) (hu0 : u ≠ 0) :
     (u ^ (q + 1)) ^ q = ι q K l * u ^ (q + 1) := by
   have hq1 := hq.out.one_lt
@@ -137,6 +173,9 @@ theorem pow_succ_pow_of_twist {u : K} {l : F2 q} (hu : u ^ q ^ 2 = ι q K l * u)
     zify [Nat.one_le_pow 2 q hq.out.pos]; ring
   rw [← pow_mul, h2, pow_add, h1]
 
+/--
+@isnad1 id=eq.3h5v.s8.12fc184cefee from=translated src=- shape=96dc2f37 vocab=9df1bdf8
+-/
 theorem twist_of_pow_succ {u : K} {l w : F2 q} (hu : u ^ (q + 1) = ι q K w) (hw : w ^ q = l * w) (hw0 : w ≠ 0) :
     u ^ q ^ 2 = ι q K l * u := by
   have hq1 := hq.out.one_lt
@@ -170,6 +209,9 @@ theorem eq_w_of_twist {W₁ W₂ : K} (h1 : W₁ ^ q = ι q K l₁ * W₁) (h2 :
 
 include h12 hl1 hl2 hd hd0 in
 
+/--
+@isnad1 id=and.5h5v.s9.3060e265863f from=translated src=- shape=b1597cd8 vocab=3181d21c
+-/
 theorem ncard_T [IsAlgClosed K] :
     ((l₁ = -1 ∨ l₂ = -1) → (T q K l₁ l₂ d).ncard = q + 1) ∧
     (¬ (l₁ = -1 ∨ l₂ = -1) → (T q K l₁ l₂ d).ncard = (q + 1) ^ 2) := by
@@ -300,6 +342,9 @@ end EllForm
 end DrinfeldCurve
 
 open DrinfeldCurve.EllForm in
+/--
+@isnad1 id=and.5h5v.s11.f781bec0103f from=translated src=- shape=d35df4ce vocab=6ee780f5
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime] (K : Type*) [Field K] [Algebra (GaloisField q 2) K] [IsAlgClosed K]
     (l₁ l₂ d : GaloisField q 2) (h12 : l₁ ≠ l₂) (hl1 : l₁ ^ (q + 1) = 1) (hl2 : l₂ ^ (q + 1) = 1)

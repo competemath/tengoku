@@ -10,6 +10,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_EisensteinGeneral_Arch_exists_norm_archInt
 open Set MeasureTheory
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.1h2v.s7.d4016ef1f1e1 from=translated src=- shape=e57cbf9d vocab=81c39dfc
+-/
 theorem EisensteinGeneral.Arch.exists_norm_archIntegral_le (c : ℂ) (hc : 0 < c.re) (M : ℝ) :
     ∃ C c' : ℝ, ∃ N : ℕ, 0 < C ∧ 0 < c' ∧ ∀ (z : ℂ) (r : ℝ), |z.re| ≤ M → r ≠ 0 →
       ‖∫ u in Ioi (0 : ℝ), (u : ℂ) ^ z * Complex.exp (-c * (u + r ^ 2 / u))‖

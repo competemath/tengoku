@@ -23,11 +23,17 @@ export _root_.EisensteinSeries (summable_one_div_norm_rpow summand_bound_of_mem_
 namespace FullLatticeQExp
 open _root_.EisensteinSeries
 
+/--
+@isnad1 id=mem.0h1v.s7.57e082199cdd from=translated src=- shape=158f6cd7 vocab=f966fc58
+-/
 theorem natCast_mem_strictPeriods_Gamma (N : ℕ) :
     (N : ℝ) ∈ ((CongruenceSubgroup.Gamma N : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)).strictPeriods := by
   rw [CongruenceSubgroup.strictPeriods_Gamma]
   exact AddSubgroup.mem_zmultiples _
 
+/--
+@isnad1 id=eq.0h3v.s9.87e31679201d from=translated src=- shape=4494940d vocab=6dc2eb17
+-/
 theorem qExpansion_coeff_zero_eq_valueAtInfty (N : ℕ) [NeZero N] (k : ℤ)
     (G : ModularForm (CongruenceSubgroup.Gamma N : Subgroup (GL (Fin 2) ℝ)) k) :
     (qExpansion (N : ℝ) (⇑G)).coeff 0 = valueAtInfty (⇑G) :=
@@ -36,6 +42,9 @@ theorem qExpansion_coeff_zero_eq_valueAtInfty (N : ℕ) [NeZero N] (k : ℤ)
     (ModularFormClass.analyticAt_cuspFunction_zero G hh (natCast_mem_strictPeriods_Gamma N))
     (SlashInvariantFormClass.periodic_comp_ofComplex G (natCast_mem_strictPeriods_Gamma N))
 
+/--
+@isnad1 id=tendsto.0h3v.s9.4b6d7700fa6a from=translated src=- shape=3d67d1d6 vocab=9df34909
+-/
 theorem tendsto_valueAtInfty (N : ℕ) [NeZero N] (k : ℤ)
     (G : ModularForm (CongruenceSubgroup.Gamma N : Subgroup (GL (Fin 2) ℝ)) k) :
     Tendsto (⇑G) atImInfty (𝓝 (valueAtInfty (⇑G))) := by
@@ -51,22 +60,40 @@ def vert (n : ℕ) : ℍ := ⟨(((n : ℝ) + 1 : ℝ) : ℂ) * I, by
   have h : (0 : ℝ) < (n : ℝ) + 1 := by positivity
   simpa using h⟩
 
+/--
+@isnad1 id=eq.0h1v.s5.4ef16e91973e from=translated src=- shape=808bb7ec vocab=d5807302
+-/
 theorem coe_vert (n : ℕ) : ((vert n : ℍ) : ℂ) = (((n : ℝ) + 1 : ℝ) : ℂ) * I := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.e4229f69a665 from=translated src=- shape=da54a431 vocab=d32f959c
+-/
 theorem vert_im (n : ℕ) : (vert n).im = (n : ℝ) + 1 := by
   simp [UpperHalfPlane.im, coe_vert]
 
+/--
+@isnad1 id=eq.0h1v.s3.f6f6628e61e1 from=translated src=- shape=f6b6ad72 vocab=2df160f4
+-/
 theorem vert_re (n : ℕ) : (vert n).re = 0 := by
   simp [UpperHalfPlane.re, coe_vert]
 
+/--
+@isnad1 id=tendsto.0h0v.s3.3240f312dd37 from=translated src=- shape=efeaa6a0 vocab=62be6a6d
+-/
 theorem tendsto_vert_atImInfty : Tendsto vert atTop atImInfty := by
   simp only [atImInfty, tendsto_comap_iff, Function.comp_def, vert_im]
   exact tendsto_atTop_add_const_right _ _ tendsto_natCast_atTop_atTop
 
+/--
+@isnad1 id=mem.0h1v.s4.7a45b53ef395 from=translated src=- shape=f045d2f3 vocab=69d20430
+-/
 theorem vert_mem_verticalStrip (n : ℕ) : vert n ∈ verticalStrip 0 1 := by
   rw [mem_verticalStrip_iff, vert_re, vert_im, abs_zero]
   exact ⟨le_rfl, by simp⟩
 
+/--
+@isnad1 id=le.3h5v.s7.4d5b34d2dbf7 from=translated src=- shape=227df336 vocab=258afaa4
+-/
 theorem norm_eisSummand_le_of_mem_verticalStrip {k : ℤ} (hk : 0 ≤ k) (x : Fin 2 → ℤ)
     {A B : ℝ} (hB : 0 < B) {z : ℍ} (hz : z ∈ verticalStrip A B) :
     ‖eisSummand k x z‖ ≤ r ⟨⟨A, B⟩, hB⟩ ^ (-k : ℝ) * ‖x‖ ^ (-k) := by
@@ -74,10 +101,16 @@ theorem norm_eisSummand_le_of_mem_verticalStrip {k : ℤ} (hk : 0 ≤ k) (x : Fi
   simpa only [eisSummand, one_div, ← zpow_neg, norm_zpow, ← Real.rpow_intCast, Int.cast_neg] using
     summand_bound_of_mem_verticalStrip hk' x hB hz
 
+/--
+@isnad1 id=eq.1h3v.s6.dcda48d2dc19 from=translated src=- shape=d254f85d vocab=00e1390f
+-/
 theorem eisSummand_of_apply_zero_eq_zero (k : ℤ) {x : Fin 2 → ℤ} (hx : x 0 = 0) (z : ℍ) :
     eisSummand k x z = ((x 1 : ℤ) : ℂ) ^ (-k) := by
   simp [eisSummand, hx]
 
+/--
+@isnad1 id=tendsto.2h2v.s6.a39745424b3d from=translated src=- shape=c5da2cf3 vocab=5c2e2cd4
+-/
 theorem tendsto_eisSummand_vert {k : ℤ} (hk : 0 < k) {x : Fin 2 → ℤ} (hx : x 0 ≠ 0) :
     Tendsto (fun n ↦ eisSummand k x (vert n)) atTop (𝓝 0) := by
   rw [tendsto_zero_iff_norm_tendsto_zero]
@@ -108,17 +141,29 @@ def rowZero (hv : v 0 = 0) (n : ℤ) : {x : Fin 2 → ℤ // ((↑) : ℤ → ZM
     · simp [hv]
     · simp⟩
 
+/--
+@isnad1 id=eq.1h3v.s7.6f4e9f5d08c8 from=translated src=- shape=17406fd1 vocab=6a75fe57
+-/
 theorem rowZero_apply_zero (hv : v 0 = 0) (n : ℤ) : (rowZero N v hv n).1 0 = 0 := rfl
 
+/--
+@isnad1 id=eq.1h3v.s7.d13dcbffb161 from=translated src=- shape=2047f474 vocab=8f8a35e1
+-/
 theorem rowZero_apply_one (hv : v 0 = 0) (n : ℤ) :
     (rowZero N v hv n).1 1 = ((v 1).val : ℤ) + N * n := rfl
 
+/--
+@isnad1 id=injectiv.1h2v.s6.d3dade1d8bd3 from=translated src=- shape=10c74f8a vocab=d04b8679
+-/
 theorem rowZero_injective (hv : v 0 = 0) : Function.Injective (rowZero N v hv) := by
   intro a b h
   have h1 := congr_arg (fun x : {x : Fin 2 → ℤ // ((↑) : ℤ → ZMod N) ∘ x = v} ↦ x.1 1) h
   simp only [rowZero_apply_one, add_right_inj] at h1
   exact Int.eq_of_mul_eq_mul_left (by exact_mod_cast NeZero.ne N) h1
 
+/--
+@isnad1 id=ex.1h3v.s8.d0a76a1c3723 from=translated src=- shape=b608db35 vocab=c882a731
+-/
 theorem exists_rowZero_eq {x : {x : Fin 2 → ℤ // ((↑) : ℤ → ZMod N) ∘ x = v}} (hx : x.1 0 = 0) :
     ∃ (hv : v 0 = 0) (n : ℤ), rowZero N v hv n = x := by
   have h0 : v 0 = 0 := by
@@ -139,6 +184,9 @@ theorem exists_rowZero_eq {x : {x : Fin 2 → ℤ // ((↑) : ℤ → ZMod N) �
 
 end RowZero
 
+/--
+@isnad1 id=eq.2h4v.s10.be0728a02dc6 from=translated src=- shape=221366f0 vocab=1af83fa0
+-/
 theorem qExpansion_coeff_zero_of_apply_eq_tsum_eisSummand
     (N : ℕ) [NeZero N] (k : ℕ) (hk : 3 ≤ k) (v : Fin 2 → ZMod N)
     (G : ModularForm (CongruenceSubgroup.Gamma N : Subgroup (GL (Fin 2) ℝ)) (k : ℤ))
@@ -197,6 +245,9 @@ end
 
 end QXProof
 
+/--
+@isnad1 id=eq.2h4v.s10.be0728a02dc6 from=translated src=- shape=221366f0 vocab=1af83fa0
+-/
 theorem solution
     (N : ℕ) [NeZero N] (k : ℕ) (hk : 3 ≤ k) (v : Fin 2 → ZMod N)
     (G : ModularForm (CongruenceSubgroup.Gamma N : Subgroup (GL (Fin 2) ℝ)) (k : ℤ))

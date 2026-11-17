@@ -14,10 +14,16 @@ namespace RationalClass
 
 variable {G : Type*} [Group G]
 
+/--
+@isnad1 id=iff.0h2v.s4.2dae0ddb9b94 from=translated src=- shape=e4052852 vocab=368387ec
+-/
 theorem coprime_mod_iff {k n : ℕ} : (k % n).Coprime n ↔ k.Coprime n := by
   unfold Nat.Coprime
   rw [← Nat.gcd_rec, Nat.gcd_comm]
 
+/--
+@isnad1 id=eq.1h3v.s7.ed0ab728a8ec from=translated src=- shape=d3fd34eb vocab=e7edc58d
+-/
 theorem card_filter_conj_eq [Fintype G] (a b : G) (h : IsConj a b) :
     (Finset.univ.filter (fun g : G => g * a * g⁻¹ = b)).card
       = Fintype.card (Subgroup.centralizer ({a} : Set G)) := by
@@ -40,12 +46,18 @@ theorem card_filter_conj_eq [Fintype G] (a b : G) (h : IsConj a b) :
   simp only [Finset.mem_filter, Finset.mem_univ, true_and, Equiv.coe_mulLeft]
   exact key g
 
+/--
+@isnad1 id=eq.1h3v.s7.af317d9ffc15 from=translated src=- shape=b924c562 vocab=5a883cc1
+-/
 theorem card_filter_conj_eq_zero [Fintype G] (a b : G) (h : ¬ IsConj a b) :
     (Finset.univ.filter (fun g : G => g * a * g⁻¹ = b)).card = 0 := by
   rw [Finset.card_eq_zero, Finset.filter_eq_empty_iff]
   intro g _ hg
   exact h (isConj_iff.mpr ⟨g, hg⟩)
 
+/--
+@isnad1 id=eq.1h3v.s5.bb5c49e1bd55 from=translated src=- shape=715ffd35 vocab=9c939829
+-/
 theorem centralizer_pow_eq_of_coprime (σ : G) {k : ℕ} (hk : k.Coprime (orderOf σ)) :
     Subgroup.centralizer ({σ ^ k} : Set G) = Subgroup.centralizer ({σ} : Set G) := by
   ext g
@@ -58,6 +70,9 @@ theorem centralizer_pow_eq_of_coprime (σ : G) {k : ℕ} (hk : k.Coprime (orderO
   · intro h
     exact (Commute.pow_right (show Commute g σ from h) k)
 
+/--
+@isnad1 id=eq.2h3v.s8.aea250e3caf3 from=translated src=- shape=7e930166 vocab=e4ea5eb4
+-/
 theorem ncard_conj_gen_eq_of_orderOf_eq_eight [Finite G] (σ τ : G)
     (h8 : orderOf σ = 8) (h3 : IsConj σ (σ ^ 3)) :
     {g : G | ∃ k : ℕ, k.Coprime (orderOf σ) ∧ g * σ ^ k * g⁻¹ = τ}.ncard
@@ -125,6 +140,9 @@ theorem ncard_conj_gen_eq_of_orderOf_eq_eight [Finite G] (σ τ : G)
 end FltWs24.RationalClass
 
 open scoped Classical in
+/--
+@isnad1 id=eq.2h3v.s8.aea250e3caf3 from=translated src=- shape=7e930166 vocab=e4ea5eb4
+-/
 theorem solution {G : Type*} [Group G] [Finite G]
     (σ τ : G) (h8 : orderOf σ = 8) (h3 : IsConj σ (σ ^ 3)) :
     {g : G | ∃ k : ℕ, k.Coprime (orderOf σ) ∧ g * σ ^ k * g⁻¹ = τ}.ncard

@@ -13,6 +13,9 @@ set_option autoImplicit false
 set_option maxHeartbeats 1600000
 open ExtCitation
 
+/--
+@isnad1 id=ex.1h3v.s12.992ddade3cb6 from=translated src=- shape=e8caa962 vocab=36ea25bc
+-/
 theorem solution (q : ℕ) [Fact q.Prime] (p : ℕ) [Fact p.Prime]
     (K : IntermediateField ℚ_[q] (PadicAlgCl q))
     (hK : ∀ σ : PadicAlgCl q ≃ₐ[ℚ_[q]] PadicAlgCl q, σ ∈ K.fixingSubgroup → cycloChar p (localGaloisToGlobal q σ) = 1) :

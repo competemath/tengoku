@@ -22,14 +22,23 @@ local notation "Pt" => WithConv (H →ₐ[GaloisRep.ratLocalizedAt p] AlgebraicC
 abbrev Conn (A : ValuationSubring K) (f : Pt) : Prop :=
   ∀ h : H, A.valuation (f h - algebraMap Rp K (counit h)) < 1
 
+/--
+@isnad1 id=lt.2h3v.s7.c821466cbf0e from=translated src=- shape=86a2aefa vocab=f73bff2c
+-/
 theorem mul_lt_one_aux {Γ₀ : Type*} [LinearOrderedCommGroupWithZero Γ₀] {a b : Γ₀}
     (ha : a < 1) (hb : b ≤ 1) : a * b < 1 :=
   lt_of_le_of_lt (mul_le_mul_right hb a) (by rwa [mul_one])
 
+/--
+@isnad1 id=lt.2h3v.s7.3ebbd8df1be4 from=translated src=- shape=bd81da49 vocab=f73bff2c
+-/
 theorem mul_lt_one_aux' {Γ₀ : Type*} [LinearOrderedCommGroupWithZero Γ₀] {a b : Γ₀}
     (ha : a ≤ 1) (hb : b < 1) : a * b < 1 := by
   rw [mul_comm]; exact mul_lt_one_aux hb ha
 
+/--
+@isnad1 id=mem.1h3v.s9.84c333d0da99 from=translated src=- shape=182d6dc0 vocab=6221f4b6
+-/
 theorem algebraMap_mem (A : ValuationSubring K) (hA : A.LiesOverPrime p) (r : Rp) :
     algebraMap Rp K r ∈ A := by
   have hcop : (r : ℚ).den.Coprime p := r.2
@@ -54,6 +63,9 @@ theorem algebraMap_mem (A : ValuationSubring K) (hA : A.LiesOverPrime p) (r : Rp
     exact lt_irrefl _ this
   rw [← A.valuation_le_one_iff, map_inv₀, hv1, inv_one]
 
+/--
+@isnad1 id=mem.1h5v.s10.2a77024d5fc5 from=translated src=- shape=a06c4f31 vocab=76ebae0d
+-/
 theorem apply_mem (A : ValuationSubring K) (hA : A.LiesOverPrime p) (f : Pt) (h : H) :
     (f h : K) ∈ A := by
   have hint : IsIntegral Rp h := Algebra.IsIntegral.isIntegral h
@@ -71,19 +83,31 @@ theorem apply_mem (A : ValuationSubring K) (hA : A.LiesOverPrime p) (f : Pt) (h 
       exists_of_le_one := fun r hr => ⟨⟨r, (A.valuation_le_one_iff r).mp hr⟩, rfl⟩ }
   exact (A.valuation_le_one_iff _).mp ((hv.isIntegral_iff_v_le_one).mp hint3)
 
+/--
+@isnad1 id=le.1h5v.s11.dcb50ae64f33 from=translated src=- shape=5d3abf9d vocab=d15b9846
+-/
 theorem val_apply_le_one (A : ValuationSubring K) (hA : A.LiesOverPrime p) (f : Pt) (h : H) :
     A.valuation (f h) ≤ 1 :=
   (A.valuation_le_one_iff _).mpr (apply_mem A hA f h)
 
+/--
+@isnad1 id=le.1h3v.s9.0630bbe815a6 from=translated src=- shape=fd7b61cb vocab=c8315e46
+-/
 theorem val_algebraMap_le_one (A : ValuationSubring K) (hA : A.LiesOverPrime p) (r : Rp) :
     A.valuation (algebraMap Rp K r) ≤ 1 :=
   (A.valuation_le_one_iff _).mpr (algebraMap_mem A hA r)
 
+/--
+@isnad1 id=conn.0h3v.s10.4c5288a4232d from=translated src=- shape=acd95e3d vocab=1a0946e5
+-/
 theorem conn_one (A : ValuationSubring K) : Conn A (1 : Pt) := by
   intro h
   rw [AlgHom.convOne_apply, sub_self, map_zero]
   exact zero_lt_one
 
+/--
+@isnad1 id=eq.0h7v.s13.c7979213c27d from=translated src=- shape=d635cb69 vocab=e73a271d
+-/
 theorem convMul_apply_repr (f g : Pt) {h : H} {ι𝓡 : Type*} (𝓡 : Coalgebra.Repr Rp h ι𝓡) :
     (f * g) h = ∑ i ∈ 𝓡.index, f (𝓡.left i) * g (𝓡.right i) := by
   have := congrArg (fun (φ : WithConv (H →ₗ[Rp] K)) => (WithConv.ofConv φ) h)
@@ -92,6 +116,9 @@ theorem convMul_apply_repr (f g : Pt) {h : H} {ι𝓡 : Type*} (𝓡 : Coalgebra
   rw [this, Coalgebra.Repr.convMul_apply 𝓡]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s13.2e0608b73237 from=translated src=- shape=a1488e30 vocab=14494ad6
+-/
 theorem counit_repr {h : H} {ι𝓡 : Type*} (𝓡 : Coalgebra.Repr Rp h ι𝓡) :
     algebraMap Rp K (counit h) =
       ∑ i ∈ 𝓡.index, algebraMap Rp K (counit (𝓡.left i)) *
@@ -103,12 +130,18 @@ theorem counit_repr {h : H} {ι𝓡 : Type*} (𝓡 : Coalgebra.Repr Rp h ι𝓡)
   rw [h2, map_sum]
   simp [map_mul]
 
+/--
+@isnad1 id=eq.0h6v.s13.abe23cfcdf79 from=translated src=- shape=19c21496 vocab=e9a5361b
+-/
 theorem apply_repr (g : Pt) {h : H} {ι𝓡 : Type*} (𝓡 : Coalgebra.Repr Rp h ι𝓡) :
     (g h : K) = ∑ i ∈ 𝓡.index, algebraMap Rp K (counit (𝓡.left i)) * g (𝓡.right i) := by
   have h1 := Coalgebra.sum_counit_smul 𝓡
   conv_lhs => rw [← h1]
   simp [map_sum, map_smul, Algebra.smul_def]
 
+/--
+@isnad1 id=conn.3h5v.s11.5c2630ead85c from=translated src=- shape=f0c90f8d vocab=567238e0
+-/
 theorem conn_mul (A : ValuationSubring K) (hA : A.LiesOverPrime p) {f g : Pt}
     (hf : Conn A f) (hg : Conn A g) : Conn A (f * g) := by
   classical
@@ -128,6 +161,9 @@ theorem conn_mul (A : ValuationSubring K) (hA : A.LiesOverPrime p) {f g : Pt}
   · rw [map_mul]
     exact mul_lt_one_aux' (val_algebraMap_le_one A hA _) (hg _)
 
+/--
+@isnad1 id=conn.3h5v.s11.7767555c7b8d from=translated src=- shape=13f3e23f vocab=567238e0
+-/
 theorem conn_inv (A : ValuationSubring K) (hA : A.LiesOverPrime p) {f f' : Pt}
     (hf : Conn A f) (hff' : f * f' = 1) : Conn A f' := by
   classical
@@ -149,8 +185,14 @@ noncomputable def translate (σ : K ≃ₐ[ℚ] K) (f : Pt) : Pt :=
         change σ (algebraMap ℚ K (r : ℚ)) = algebraMap ℚ K (r : ℚ)
         exact σ.commutes (r : ℚ) }
 
+/--
+@isnad1 id=eq.0h5v.s11.89652f74396b from=translated src=- shape=d4ba5417 vocab=cc25237d
+-/
 theorem translate_apply (σ : K ≃ₐ[ℚ] K) (f : Pt) (h : H) : translate σ f h = σ (f h) := rfl
 
+/--
+@isnad1 id=conn.3h6v.s12.6ffed27acf32 from=translated src=- shape=563594ce vocab=d7410533
+-/
 theorem conn_displacement (A : ValuationSubring K) (hA : A.LiesOverPrime p)
     {σ : K ≃ₐ[ℚ] K} (hσ : σ ∈ A.inertiaSubgroupIn ℚ) {f f' : Pt} (hff' : f * f' = 1) :
     Conn A (translate σ f * f') := by
@@ -169,6 +211,9 @@ theorem conn_displacement (A : ValuationSubring K) (hA : A.LiesOverPrime p)
 end EASY
 
 open EASY in
+/--
+@isnad1 id=lt.4h8v.s14.71fca66631da from=translated src=- shape=d1abb24c vocab=1c965e5a
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime]
     (H : Type) [CommRing H] [HopfAlgebra (GaloisRep.ratLocalizedAt p) H]

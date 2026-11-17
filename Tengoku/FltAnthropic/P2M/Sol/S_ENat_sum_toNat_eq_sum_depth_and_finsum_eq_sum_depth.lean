@@ -11,6 +11,9 @@ namespace DepthSum
 
 open Finset
 
+/--
+@isnad1 id=eq.1h5v.s6.736f8ad10e6b from=translated src=- shape=356ff759 vocab=b6283782
+-/
 theorem finsum_cond_eq_sum_filter {α M : Type*} [AddCommMonoid M] (P : α → Prop) [DecidablePred P] (f : α → M)
     (F : Finset α) (hF : ∀ a, P a → f a ≠ 0 → a ∈ F) :
     (∑ᶠ (a : α) (_ : P a), f a) = ∑ a ∈ F.filter P, f a := by
@@ -26,6 +29,9 @@ theorem finsum_cond_eq_sum_filter {α M : Type*} [AddCommMonoid M] (P : α → P
 end FltWs21.DepthSum
 
 open FltWs21.DepthSum in
+/--
+@isnad1 id=and.4h13v.s9.0e6b5d1fd9b6 from=translated src=- shape=44ab64db vocab=bf744612
+-/
 theorem solution
     {Pl Pr : Type*} (E r : ℕ)
     (Ttot : Finset Pl) (ordZ : Pl → ℤ)

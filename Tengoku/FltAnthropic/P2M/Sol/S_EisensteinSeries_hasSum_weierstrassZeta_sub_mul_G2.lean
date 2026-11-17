@@ -23,8 +23,14 @@ def om (v : Fin 2 → ℤ) : ℂ := (v 0 : ℂ) * τ + v 1
 def zterm (z : ℂ) (v : Fin 2 → ℤ) : ℂ :=
   if v = 0 then 0 else (1 / (z - om τ v) + 1 / om τ v + z / om τ v ^ 2)
 
+/--
+@isnad1 id=eq.0h2v.s6.2deb62234ced from=translated src=- shape=57b27e4b vocab=eb80c4cf
+-/
 lemma weierstrassZeta_eq (z : ℂ) : weierstrassZeta τ z = 1 / z + ∑' v, zterm τ z v := rfl
 
+/--
+@isnad1 id=ne.1h2v.s6.c8ee5bf720b2 from=translated src=- shape=39db1099 vocab=5d3f7505
+-/
 lemma om_ne_zero {v : Fin 2 → ℤ} (hv : v ≠ 0) : om τ v ≠ 0 := by
   have := UpperHalfPlane.linear_ne_zero (cd := fun i => (v i : ℝ)) τ
     (by
@@ -35,9 +41,15 @@ lemma om_ne_zero {v : Fin 2 → ℤ} (hv : v ≠ 0) : om τ v ≠ 0 := by
       simpa using this)
   simpa [om] using this
 
+/--
+@isnad1 id=le.1h2v.s7.57c817961fce from=translated src=- shape=8a654af3 vocab=e3c56e4b
+-/
 lemma norm_om_ge {v : Fin 2 → ℤ} (hv : v ≠ 0) : r τ * ‖v‖ ≤ ‖om τ v‖ := by
   simpa [om] using r_mul_max_le τ hv
 
+/--
+@isnad1 id=eq.2h3v.s7.29b68dad92b4 from=translated src=- shape=28c9faa7 vocab=00281683
+-/
 lemma zterm_eq_of_ne (z : ℂ) {v : Fin 2 → ℤ} (hv : v ≠ 0) (hz : z ≠ om τ v) :
     zterm τ z v = z ^ 2 / (om τ v ^ 2 * (z - om τ v)) := by
   have h1 : om τ v ≠ 0 := om_ne_zero τ hv
@@ -46,6 +58,9 @@ lemma zterm_eq_of_ne (z : ℂ) {v : Fin 2 → ℤ} (hv : v ≠ 0) (hz : z ≠ om
   field_simp
   ring
 
+/--
+@isnad1 id=eventual.0h1v.s6.179f9d11b03c from=translated src=- shape=597f8eab vocab=53effa1f
+-/
 lemma eventually_le_norm (R : ℝ) : ∀ᶠ v : Fin 2 → ℤ in cofinite, R ≤ ‖v‖ := by
   have hfin : Set.Finite (Metric.closedBall (0 : Fin 2 → ℤ) R) :=
     (isCompact_closedBall (0 : Fin 2 → ℤ) R).finite_of_discrete
@@ -53,6 +68,9 @@ lemma eventually_le_norm (R : ℝ) : ∀ᶠ v : Fin 2 → ℤ in cofinite, R ≤
   simp only [Set.mem_compl_iff, Metric.mem_closedBall, dist_zero_right, not_le] at hv
   exact hv.le
 
+/--
+@isnad1 id=isbigo.0h2v.s6.1f6e11f92fe7 from=translated src=- shape=076b2008 vocab=f8a92a15
+-/
 lemma zterm_isBigO (z : ℂ) :
     zterm τ z =O[cofinite] fun v : Fin 2 → ℤ => (‖v‖ ^ (3 : ℝ))⁻¹ := by
   have hr : 0 < r τ := r_pos τ
@@ -101,20 +119,35 @@ lemma zterm_isBigO (z : ℂ) :
         rw [show (3 : ℝ) = ((3 : ℕ) : ℝ) by norm_num, Real.rpow_natCast, mul_pow, mul_inv, inv_pow]
         ring
 
+/--
+@isnad1 id=summable.0h2v.s5.6fb5108d8183 from=translated src=- shape=3686c6ce vocab=c8ac6555
+-/
 lemma summable_zterm (z : ℂ) : Summable (zterm τ z) :=
   summable_of_isBigO_rpow_norm (by norm_num) (zterm_isBigO τ z)
 
+/--
+@isnad1 id=summable.0h2v.s5.d48934d600a4 from=translated src=- shape=6bf15127 vocab=d8b1c24e
+-/
 lemma summable_zterm_prod (z : ℂ) : Summable fun p : ℤ × ℤ => zterm τ z ![p.1, p.2] := by
   apply (finTwoArrowEquiv _).symm.summable_iff.mpr (summable_zterm τ z)
 
 def row (z : ℂ) (m : ℤ) : ℂ := ∑' n : ℤ, zterm τ z ![m, n]
 
+/--
+@isnad1 id=summable.0h2v.s4.5897a50e7a9a from=translated src=- shape=e944138b vocab=6f8f8455
+-/
 lemma summable_row (z : ℂ) : Summable (row τ z) :=
   (summable_zterm_prod τ z).prod
 
+/--
+@isnad1 id=summable.0h3v.s5.ade1e3d2b84f from=translated src=- shape=97e68b73 vocab=47d31ca2
+-/
 lemma summable_zterm_right (z : ℂ) (m : ℤ) : Summable fun n : ℤ => zterm τ z ![m, n] :=
   (summable_zterm_prod τ z).prod_factor m
 
+/--
+@isnad1 id=eq.0h2v.s6.18fb3d1d9c46 from=translated src=- shape=fd22ef65 vocab=de99499e
+-/
 lemma tsum_zterm_eq_tsum_row (z : ℂ) : ∑' v, zterm τ z v = ∑' m, row τ z m := by
   rw [← (finTwoArrowEquiv _).symm.tsum_eq]
   exact (summable_zterm_prod τ z).tsum_prod' (summable_zterm_right τ z)
@@ -125,14 +158,23 @@ namespace WZA
 
 local notation "ℂ_ℤ" => Complex.integerComplement
 
+/--
+@isnad1 id=eq.0h1v.s3.4b6c9b7db7c9 from=translated src=- shape=c7188113 vocab=404065af
+-/
 lemma cot_neg (x : ℂ) : Complex.cot (-x) = -Complex.cot x := by
   simp [Complex.cot_eq_cos_div_sin, Complex.sin_neg, Complex.cos_neg, div_neg]
 
+/--
+@isnad1 id=ne.1h2v.s5.7f282a150818 from=translated src=- shape=5cb092bf vocab=ccd1e967
+-/
 lemma intComp_add_ne_zero {w : ℂ} (hw : w ∈ ℂ_ℤ) (n : ℤ) : w + n ≠ 0 := by
   intro h
   rw [Complex.mem_integerComplement_iff] at hw
   exact hw ⟨-n, by rw [Int.cast_neg]; linear_combination -h⟩
 
+/--
+@isnad1 id=summable.0h2v.s5.8e2d50c13336 from=translated src=- shape=96012ad6 vocab=e6d77d5d
+-/
 lemma summable_inv_mul_linear (w w' : ℂ) :
     Summable fun n : ℤ => ((w + n) * (w' + n))⁻¹ := by
   apply summable_inv_of_isBigO_rpow_inv (a := 2) (by norm_num)
@@ -144,6 +186,9 @@ lemma summable_inv_mul_linear (w w' : ℂ) :
   · intro n
     rw [← mul_inv, Real.rpow_two, sq_abs, sq]
 
+/--
+@isnad1 id=hassum.2h2v.s7.eaa4882f75d8 from=translated src=- shape=8faa8b0a vocab=46f7e156
+-/
 lemma hasSum_inv_linear_sub (w w' : ℂ) (hw : w ∈ ℂ_ℤ) (hw' : w' ∈ ℂ_ℤ) :
     HasSum (fun n : ℤ => 1 / (w + n) - 1 / (w' + n))
       (π * Complex.cot (π * w) - π * Complex.cot (π * w')) := by
@@ -180,17 +225,26 @@ variable {τ}
 
 def IsLatticePt (τ : ℍ) (z : ℂ) : Prop := ∃ v : Fin 2 → ℤ, z = om τ v
 
+/--
+@isnad1 id=mem.1h3v.s5.c7df029ccfcd from=translated src=- shape=d1d34b53 vocab=d2347c8d
+-/
 lemma intComp_of_not_isLatticePt {z : ℂ} (hz : ¬ IsLatticePt τ z) (m : ℤ) :
     (m : ℂ) * τ - z ∈ ℂ_ℤ := by
   rw [Complex.mem_integerComplement_iff]
   rintro ⟨k, hk⟩
   exact hz ⟨![m, -k], by simp [om]; linear_combination hk⟩
 
+/--
+@isnad1 id=mem.1h2v.s4.0a4e63648184 from=translated src=- shape=f2fc3dfc vocab=b1ad0eb8
+-/
 lemma intComp_self_of_not_isLatticePt {z : ℂ} (hz : ¬ IsLatticePt τ z) : z ∈ ℂ_ℤ := by
   rw [Complex.mem_integerComplement_iff]
   rintro ⟨k, hk⟩
   exact hz ⟨![0, k], by simp [om, hk]⟩
 
+/--
+@isnad1 id=mem.1h2v.s5.1772e076613c from=translated src=- shape=ff8c09b3 vocab=b4691cf4
+-/
 lemma intComp_mul_of_ne_zero (τ : ℍ) {m : ℤ} (hm : m ≠ 0) : (m : ℂ) * τ ∈ ℂ_ℤ := by
   rw [Complex.mem_integerComplement_iff]
   rintro ⟨k, hk⟩
@@ -204,14 +258,23 @@ variable (τ)
 
 def E2row (m : ℤ) : ℂ := ∑' n : ℤ, 1 / ((m : ℂ) * τ + n) ^ 2
 
+/--
+@isnad1 id=summable.0h2v.s6.df6a076458c6 from=translated src=- shape=f3402764 vocab=d41b286a
+-/
 lemma summable_E2row_summand (m : ℤ) : Summable fun n : ℤ => 1 / ((m : ℂ) * τ + n) ^ 2 := by
   simpa [one_div] using linear_right_summable (τ : ℂ) m (k := 2) le_rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.c4bfab4dcf77 from=translated src=- shape=31efcfda vocab=5e593983
+-/
 lemma E2row_eq_e2Summand (m : ℤ) : E2row τ m = e2Summand m τ := by
   simp only [E2row, e2Summand, eisSummand, one_div]
   refine tsum_congr fun n => ?_
   simp [zpow_ofNat]
 
+/--
+@isnad1 id=eq.2h3v.s6.58eba0e88e8f from=translated src=- shape=c8d1a393 vocab=35eafd24
+-/
 lemma row_of_ne_zero {z : ℂ} (hz : ¬ IsLatticePt τ z) {m : ℤ} (hm : m ≠ 0) :
     row τ z m = (π * Complex.cot (π * ((m : ℂ) * τ)) + π * Complex.cot (π * (z - (m : ℂ) * τ))) +
       z * E2row τ m := by
@@ -240,6 +303,9 @@ lemma row_of_ne_zero {z : ℂ} (hz : ¬ IsLatticePt τ z) {m : ℤ} (hm : m ≠ 
 
 def azero (z : ℂ) (n : ℤ) : ℂ := if n = 0 then 0 else 1 / (z - n) + 1 / n
 
+/--
+@isnad1 id=eq.2h1v.s6.dea0b14c6a4f from=translated src=- shape=a39f118a vocab=3b66d37d
+-/
 lemma tsum_azero {z : ℂ} (hzC : z ∈ ℂ_ℤ) (has : Summable (azero z)) :
     ∑' n, azero z n = π * Complex.cot (π * z) - 1 / z := by
   have hnat : Summable fun n : ℕ => azero z n := has.comp_injective Nat.cast_injective
@@ -264,6 +330,9 @@ lemma tsum_azero {z : ℂ} (hzC : z ∈ ℂ_ℤ) (has : Summable (azero z)) :
   rw [add_assoc, ← hnat1.tsum_add hneg, tsum_congr key, ← cot_series_rep' hzC]
   simp [azero]
 
+/--
+@isnad1 id=eq.1h2v.s6.0a23697e75be from=translated src=- shape=786de711 vocab=028010ae
+-/
 lemma row_zero {z : ℂ} (hz : ¬ IsLatticePt τ z) :
     row τ z 0 = (π * Complex.cot (π * z) - 1 / z) + z * E2row τ 0 := by
   have hzC : z ∈ ℂ_ℤ := intComp_self_of_not_isLatticePt hz
@@ -290,11 +359,17 @@ lemma row_zero {z : ℂ} (hz : ¬ IsLatticePt τ z) :
   rw [row, tsum_congr hkey, has.tsum_add (hbs.mul_left z), tsum_mul_left, tsum_azero hzC has,
     E2row]
 
+/--
+@isnad1 id=eq.0h1v.s6.63e3f9de1111 from=translated src=- shape=02b24123 vocab=6d4f05ef
+-/
 lemma norm_cexp_two_pi_I (w : ℂ) : ‖cexp (2 * π * I * w)‖ = Real.exp (-2 * π * w.im) := by
   rw [Complex.norm_exp]
   congr 1
   simp [Complex.mul_re, Complex.mul_im, mul_comm]
 
+/--
+@isnad1 id=eq.1h1v.s7.5caed8ac1b54 from=translated src=- shape=12609c81 vocab=d9ebac99
+-/
 lemma pi_cot_add_eq (w : ℂ) (hq : cexp (2 * π * I * w) ≠ 1) :
     π * Complex.cot (π * w) + π * I =
       2 * π * cexp (2 * π * I * w) / (I * (1 - cexp (2 * π * I * w))) := by
@@ -307,6 +382,9 @@ lemma pi_cot_add_eq (w : ℂ) (hq : cexp (2 * π * I * w) ≠ 1) :
   rw [I_sq]
   ring
 
+/--
+@isnad1 id=le.2h2v.s7.ab1850fc586a from=translated src=- shape=2a439568 vocab=7ee6fa58
+-/
 lemma norm_pi_cot_add_le {w : ℂ} {Y : ℝ} (hY : 0 < Y) (hw : Y ≤ w.im) :
     ‖π * Complex.cot (π * w) + π * I‖ ≤
       2 * π * Real.exp (-2 * π * w.im) / (1 - Real.exp (-2 * π * Y)) := by
@@ -329,6 +407,9 @@ lemma norm_pi_cot_add_le {w : ℂ} {Y : ℝ} (hY : 0 < Y) (hw : Y ≤ w.im) :
   have hpos : 0 < 1 - Real.exp (-2 * π * Y) := by linarith
   exact div_le_div_of_nonneg_left (by positivity) hpos hden
 
+/--
+@isnad1 id=le.2h2v.s7.e1fc8a00f61b from=translated src=- shape=50fdea32 vocab=4ea67fbe
+-/
 lemma norm_pi_cot_sub_le {w : ℂ} {Y : ℝ} (hY : 0 < Y) (hw : w.im ≤ -Y) :
     ‖π * Complex.cot (π * w) - π * I‖ ≤
       2 * π * Real.exp (2 * π * w.im) / (1 - Real.exp (-2 * π * Y)) := by
@@ -342,14 +423,23 @@ def crow (z : ℂ) (m : ℤ) : ℂ :=
   if m = 0 then π * Complex.cot (π * z) - 1 / z
   else π * Complex.cot (π * ((m : ℂ) * τ)) + π * Complex.cot (π * (z - (m : ℂ) * τ))
 
+/--
+@isnad1 id=eq.1h3v.s5.4c5c54f63e32 from=translated src=- shape=50f697ee vocab=0917d9de
+-/
 lemma row_eq_crow_add {z : ℂ} (hz : ¬ IsLatticePt τ z) (m : ℤ) :
     row τ z m = crow τ z m + z * E2row τ m := by
   by_cases hm : m = 0
   · subst hm; rw [row_zero τ hz, crow, ite_eq_left rfl]
   · rw [row_of_ne_zero τ hz hm, crow, ite_eq_right hm]
 
+/--
+@isnad1 id=eq.0h2v.s5.b146d66e601f from=translated src=- shape=cc93df25 vocab=4e0ba18c
+-/
 lemma im_int_mul (m : ℤ) : ((m : ℂ) * τ).im = m * τ.im := by simp
 
+/--
+@isnad1 id=summable.0h2v.s5.efe284386dd0 from=translated src=- shape=29d1580c vocab=9cc3e8b1
+-/
 lemma summable_crow_nat (z : ℂ) : Summable fun n : ℕ => crow τ z n := by
   have hτ : 0 < τ.im := τ.2
   set ρ : ℝ := Real.exp (-2 * π * τ.im) with hρ
@@ -394,6 +484,9 @@ lemma summable_crow_nat (z : ℂ) : Summable fun n : ℕ => crow τ z n := by
         add_le_add hb1 hb2
     _ = A * ρ ^ n := by rw [hA, hK]; field_simp; try ring_nf
 
+/--
+@isnad1 id=summable.0h2v.s5.a9f653be0399 from=translated src=- shape=b10b4f81 vocab=618140db
+-/
 lemma summable_crow_neg (z : ℂ) : Summable fun n : ℕ => crow τ z (-n) := by
   have hτ : 0 < τ.im := τ.2
   set ρ : ℝ := Real.exp (-2 * π * τ.im) with hρ
@@ -441,9 +534,15 @@ lemma summable_crow_neg (z : ℂ) : Summable fun n : ℕ => crow τ z (-n) := by
         add_le_add hb2 hb1
     _ = A * ρ ^ n := by rw [hA, hK]; field_simp; try ring_nf
 
+/--
+@isnad1 id=summable.0h2v.s4.949f57266ce7 from=translated src=- shape=e944138b vocab=53868a5f
+-/
 lemma summable_crow (z : ℂ) : Summable (crow τ z) :=
   summable_int_iff_summable_nat_and_neg.mpr ⟨summable_crow_nat τ z, summable_crow_neg τ z⟩
 
+/--
+@isnad1 id=not.0h1v.s4.e93205c36cbf from=translated src=- shape=2bea0a7b vocab=f3dd3cdd
+-/
 lemma not_isLatticePt_half : ¬ IsLatticePt τ (1 / 2 : ℂ) := by
   rintro ⟨v, hv⟩
   have him := congr_arg Complex.im hv
@@ -461,6 +560,9 @@ lemma not_isLatticePt_half : ¬ IsLatticePt τ (1 / 2 : ℂ) := by
   have h3 : (2 * v 1 : ℤ) = 1 := by exact_mod_cast h2
   omega
 
+/--
+@isnad1 id=summable.0h1v.s4.e1b53447a013 from=translated src=- shape=71d2428f vocab=1a1780f3
+-/
 lemma summable_E2row : Summable (E2row τ) := by
   set z : ℂ := 1 / 2 with hzdef
   have hz : ¬ IsLatticePt τ z := not_isLatticePt_half τ
@@ -472,6 +574,9 @@ lemma summable_E2row : Summable (E2row τ) := by
   have := h.mul_left z⁻¹
   simpa [hz0] using this
 
+/--
+@isnad1 id=hassum.0h1v.s4.eb1dd8ccb742 from=translated src=- shape=e8e9a6bf vocab=b95c8019
+-/
 lemma hasSum_E2row : HasSum (E2row τ) (G2 τ) := by
   have h1 : HasSum (E2row τ) (∑' m, E2row τ m) (SummationFilter.symmetricIcc ℤ) :=
     (summable_E2row τ).hasSum.mono_left (SummationFilter.symmetricIcc ℤ).le_atTop
@@ -482,6 +587,9 @@ lemma hasSum_E2row : HasSum (E2row τ) (G2 τ) := by
   rw [← h1.unique h2]
   exact (h3 ▸ summable_E2row τ).hasSum
 
+/--
+@isnad1 id=hassum.1h2v.s7.7e75d03f5e9d from=translated src=- shape=fb69013f vocab=9102b958
+-/
 theorem hasSum_weierstrassZeta_sub {z : ℂ} (hz : ¬ IsLatticePt τ z) :
     HasSum (fun m : ℕ => π * Complex.cot (π * (z + ((m : ℂ) + 1) * τ)) +
         π * Complex.cot (π * (z - ((m : ℂ) + 1) * τ)))
@@ -524,6 +632,9 @@ end WZA
 
 end
 
+/--
+@isnad1 id=hassum.1h2v.s8.3a60789e3f6b from=translated src=- shape=861517a1 vocab=86df799d
+-/
 theorem solution (τ : UpperHalfPlane) (z : ℂ)
     (hz : ∀ v : Fin 2 → ℤ, z ≠ (v 0 : ℂ) * τ + v 1) :
     HasSum (fun m : ℕ => π * Complex.cot (π * (z + ((m : ℂ) + 1) * τ)) +

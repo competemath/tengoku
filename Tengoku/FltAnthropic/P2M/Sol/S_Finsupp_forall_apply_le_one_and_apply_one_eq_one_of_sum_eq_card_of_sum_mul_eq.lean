@@ -19,6 +19,9 @@ namespace NV3Arch
 namespace C7b
 open _root_.CuspidalType
 
+/--
+@isnad1 id=eq.0h4v.s9.58a14ada40db from=translated src=- shape=475e35a8 vocab=1bd99837
+-/
 theorem sum_coe_apply_mul_coe_apply_inv {C : Type*} [CommGroup C] [Fintype C] {K : Type*} [Field K]
     [DecidableEq (C →* Kˣ)] (μ ν : C →* Kˣ) :
     ∑ c, ((μ c : Kˣ) : K) * ((ν c⁻¹ : Kˣ) : K) = if μ = ν then (Fintype.card C : K) else 0 := by
@@ -47,6 +50,9 @@ end CuspidalType.NV3Arch.C7b
 
 open CuspidalType.NV3Arch.C7b in
 
+/--
+@isnad1 id=and.3h4v.s10.4368123d4517 from=translated src=- shape=0dd33102 vocab=db755555
+-/
 theorem solution {C : Type*} [CommGroup C] [Fintype C] {K : Type*} [Field K] [CharZero K]
     (m : (C →* Kˣ) →₀ ℕ) (f : C → K) (hf : ∀ c, f c = m.sum fun μ n => (n : K) * ((μ c : Kˣ) : K))
     (h1 : ∑ c, f c = Fintype.card C)

@@ -16,6 +16,9 @@ open _root_.Tengoku.FltAnthropic.GaloisRepAdic
 
 variable {A B : Type} [CommRing A] [IsLocalRing A] [CommRing B] [IsLocalRing B]
 
+/--
+@isnad1 id=isordina.2h5v.s6.9616d06b8ac8 from=translated src=- shape=cbde18a5 vocab=5a9966d4
+-/
 theorem isOrdinaryAt_baseChangeAlong (φ : A →+* B) (hφ : IsLocalHom φ) (ρ : GaloisRepAdic A)
     {p : ℕ} (h : ρ.IsOrdinaryAt p) : (ρ.baseChangeAlong φ hφ).IsOrdinaryAt p := by
   letI : Algebra A B := φ.toAlgebra
@@ -55,6 +58,9 @@ theorem isOrdinaryAt_baseChangeAlong (φ : A →+* B) (hφ : IsLocalHom φ) (ρ 
 
 end GaloisRepAdic.LCSol
 
+/--
+@isnad1 id=isordina.2h5v.s6.9616d06b8ac8 from=translated src=- shape=cbde18a5 vocab=5a9966d4
+-/
 theorem solution
     {A B : Type} [CommRing A] [IsLocalRing A] [CommRing B] [IsLocalRing B]
     (φ : A →+* B) (hφ : IsLocalHom φ) (ρ : GaloisRepAdic A)

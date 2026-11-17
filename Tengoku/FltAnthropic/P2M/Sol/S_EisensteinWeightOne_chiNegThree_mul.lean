@@ -8,6 +8,9 @@ namespace P2MW.S_EisensteinWeightOne_chiNegThree_mul
 
 open EisensteinWeightOne
 
+/--
+@isnad1 id=eq.0h2v.s4.37976a92f514 from=translated src=- shape=0438c7a3 vocab=30272206
+-/
 theorem solution (m n : ℕ) :
     chiNegThree (m * n) = chiNegThree m * chiNegThree n := by
   simp only [chiNegThree]

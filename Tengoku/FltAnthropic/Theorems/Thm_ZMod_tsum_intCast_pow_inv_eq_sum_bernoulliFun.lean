@@ -10,6 +10,9 @@ set_option autoImplicit false
 open Real Complex
 open scoped Nat
 
+/--
+@isnad1 id=eq.1h3v.s8.386d6772ebe2 from=translated src=- shape=7697108a vocab=c5f3709b
+-/
 theorem ZMod.tsum_intCast_pow_inv_eq_sum_bernoulliFun (N : ℕ) [NeZero N] (k : ℕ) (hk : 2 ≤ k)
     (a : ZMod N) :
     ∑' d : {d : ℤ // (d : ZMod N) = a}, ((d : ℂ) ^ k)⁻¹ =

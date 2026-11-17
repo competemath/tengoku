@@ -14,6 +14,9 @@ open _root_.Function
 
 open Finset
 
+/--
+@isnad1 id=ex.0h2v.s8.2cfdbf67fd35 from=translated src=- shape=ed7de927 vocab=1d332981
+-/
 theorem exists_points_eq_sum_apply_smul {X : Type} (W : Submodule ℂ (X → ℂ)) [FiniteDimensional ℂ W] :
     ∃ (r : ℕ) (s : Fin r → X) (ℓ : Fin r → (X → ℂ)), (∀ j, ℓ j ∈ W) ∧ ∀ f ∈ W, f = ∑ j, f (s j) • ℓ j := by
   classical
@@ -93,6 +96,9 @@ variable {ι : Type} [Fintype ι] [DecidableEq ι] {X : ι → Type}
 
 omit [Fintype ι] in
 
+/--
+@isnad1 id=ex.1h4v.s7.f766ee4b786e from=translated src=- shape=3a697596 vocab=b84f44db
+-/
 theorem direction_step (Φ : (∀ j, X j) → ℂ) (i : ι)
     (h : ∃ (d : ℕ) (φ : Fin d → X i → ℂ), ∀ b : ∀ j, X j, ∃ c : Fin d → ℂ,
       ∀ t : X i, Φ (Function.update b i t) = ∑ k, c k * φ k t) :
@@ -141,6 +147,9 @@ theorem direction_step (Φ : (∀ j, X j) → ℂ) (i : ι)
 
 omit [Fintype ι] in
 
+/--
+@isnad1 id=ex.2h5v.s7.7f682fef9b38 from=translated src=- shape=4582c4f2 vocab=bf67f46f
+-/
 theorem main_induction (Φ : (∀ j, X j) → ℂ) (i₀ : ι)
     (h : ∀ i, i ≠ i₀ → ∃ (d : ℕ) (φ : Fin d → X i → ℂ), ∀ b : ∀ j, X j, ∃ c : Fin d → ℂ,
       ∀ t : X i, Φ (Function.update b i t) = ∑ k, c k * φ k t) :
@@ -196,6 +205,9 @@ theorem main_induction (Φ : (∀ j, X j) → ℂ) (i₀ : ι)
 end Function.SepFinAux
 
 open Function.SepFinAux in
+/--
+@isnad1 id=ex.1h4v.s7.06a09ca8bb11 from=translated src=- shape=a19ccc2b vocab=187b5bf3
+-/
 theorem solution
     {ι : Type} [Fintype ι] [DecidableEq ι] {X : ι → Type}
     (Φ : (∀ i, X i) → ℂ) (i₀ : ι)

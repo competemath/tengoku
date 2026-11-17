@@ -6,5 +6,8 @@ import Tengoku.FltAnthropic.P2M.Sol.S_GaloisRep_isDiscreteValuationRing_ratLocal
 
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_GaloisRep_isDiscreteValuationRing_ratLocalizedAt.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
+/--
+@isnad1 id=isdiscre.1h1v.s5.c89d384e6ce4 from=translated src=- shape=6cdec8b9 vocab=252e9c07
+-/
 theorem GaloisRep.isDiscreteValuationRing_ratLocalizedAt (p : ℕ) (hp : p.Prime) :
     IsDiscreteValuationRing (GaloisRep.ratLocalizedAt p) := by exact @_root_.P2MW.S_GaloisRep_isDiscreteValuationRing_ratLocalizedAt.solution p hp

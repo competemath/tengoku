@@ -494,6 +494,9 @@ end FinitePlaces
 end FiniteAdelicFactorization
 open scoped _root_.P2MW.S_EisensteinGeneral_Factorization_inv_measure_mul_setIntegral_integralOffSet_finprod_eq.FiniteAdelicFactorization
 
+/--
+@isnad1 id=eq.1h5v.s10.a1b6b236e650 from=translated src=- shape=fdc56997 vocab=27aec3de
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F]
     [MeasurableSpace (FiniteAdeleRing (𝓞 F) F)] [BorelSpace (FiniteAdeleRing (𝓞 F) F)]

@@ -11,6 +11,9 @@ namespace P2MW.S_ExtCitation_cycloChar_primeLocalToGlobal_eq_one_of_mem_inertia
 set_option autoImplicit false
 open CategoryTheory Module groupCohomology ExtCitation
 
+/--
+@isnad1 id=eq.2h3v.s10.bc98b02a2230 from=translated src=- shape=c068adfa vocab=0ea255ff
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] (q : Nat.Primes) (hqp : (q : ℕ) ≠ p)
     {σ : primeLocalGaloisGroup q}

@@ -18,6 +18,9 @@ variable {R : Type*} {S : Type*} {K : Type*} [CommRing R] [CommRing S] [Field K]
   [Algebra R S] [Algebra R K] [Algebra S K] [IsScalarTower R S K]
   (W : WeierstrassCurve R) (σ : K ≃ₐ[S] K) (p : ℕ)
 
+/--
+@isnad1 id=eq.0h9v.s12.75eadadeea9b from=translated src=- shape=5f49625c vocab=8919aff9
+-/
 lemma coe_frobPencilEnd_apply (m n : ℤ) (x : Submodule.torsionBy ℤ (W⁄K).Point p) :
     ((frobPencilEnd W σ p m n x : Submodule.torsionBy ℤ (W⁄K).Point p) : (W⁄K).Point)
       = linePencil (frobEnd W σ) m n x := by
@@ -25,6 +28,9 @@ lemma coe_frobPencilEnd_apply (m n : ℤ) (x : Submodule.torsionBy ℤ (W⁄K).P
     frobEnd_apply, Int.cast_smul_eq_zsmul, Submodule.coe_sub, Submodule.coe_smul_of_tower]
   rfl
 
+/--
+@isnad1 id=iff.0h9v.s12.94d28a24a8d6 from=translated src=- shape=4c210609 vocab=9609db8c
+-/
 lemma frobPencilEnd_eq_zero_iff (m n : ℤ) (x : Submodule.torsionBy ℤ (W⁄K).Point p) :
     frobPencilEnd W σ p m n x = 0 ↔ (x : (W⁄K).Point) ∈ (linePencil (frobEnd W σ) m n).ker := by
   rw [AddMonoidHom.mem_ker, ← coe_frobPencilEnd_apply, ZeroMemClass.coe_eq_zero]
@@ -37,6 +43,9 @@ variable {R : Type*} {S : Type*} {K : Type*} [CommRing R] [CommRing S] [Field K]
   [Algebra R S] [Algebra R K] [Algebra S K] [IsScalarTower R S K]
   (W : WeierstrassCurve R) (σ : K ≃ₐ[S] K) (p : ℕ) [Fact p.Prime]
 
+/--
+@isnad1 id=dvd.1h8v.s14.9abd0599112f from=translated src=- shape=6b07c5cc vocab=8d594428
+-/
 theorem dvd_kerDeg_of_det_eq_zero {m n : ℤ}
     (hdet : LinearMap.det (frobPencilEnd W σ p m n) = 0) :
     p ∣ kerDeg (frobEnd W σ) m n := by
@@ -67,5 +76,8 @@ end Dictionary
 
 end FrobeniusEndo
 
+/--
+@isnad1 id=dvd.1h8v.s14.9abd0599112f from=translated src=- shape=6b07c5cc vocab=8d594428
+-/
 theorem solution {R : Type*} {S : Type*} {K : Type*} [CommRing R] [CommRing S] [Field K] [DecidableEq K] [Algebra R S] [Algebra R K] [Algebra S K] [IsScalarTower R S K] (W : WeierstrassCurve R) (σ : K ≃ₐ[S] K) (p : ℕ) [Fact p.Prime] {m n : ℤ} (h : LinearMap.det (frobPencilEnd W σ p m n) = 0) : p ∣ kerDeg (frobEnd W σ) m n :=
   FrobeniusEndo.dvd_kerDeg_of_det_eq_zero W σ p h

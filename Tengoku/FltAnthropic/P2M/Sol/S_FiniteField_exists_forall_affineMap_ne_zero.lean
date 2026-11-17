@@ -13,6 +13,9 @@ open _root_.FiniteField
 
 variable {𝔽 : Type*} [Field 𝔽] [Fintype 𝔽]
 
+/--
+@isnad1 id=le.2h4v.s9.08c3c1b89621 from=translated src=- shape=8724a54c vocab=b162b41d
+-/
 theorem card_zeroSet_le {n : ℕ} (hn : 0 < n) {V : Type*} [AddCommGroup V] [Module 𝔽 V]
     (φ : (Fin n → 𝔽) →ᵃ[𝔽] V) (hφ : ∃ x, φ x ≠ 0) [DecidablePred fun x : Fin n → 𝔽 => φ x = 0] :
     (Finset.univ.filter fun x : Fin n → 𝔽 => φ x = 0).card ≤ Fintype.card 𝔽 ^ (n - 1) := by
@@ -51,6 +54,9 @@ end FiniteField
 
 open _root_.FiniteField _root_.P2MW.S_FiniteField_exists_forall_affineMap_ne_zero.FiniteField in
 
+/--
+@isnad1 id=ex.2h5v.s9.6ae303931e2a from=translated src=- shape=a1edf60b vocab=a6a23844
+-/
 theorem solution
     {𝔽 : Type*} [Field 𝔽] [Fintype 𝔽] {n : ℕ} {ι : Type*} [Fintype ι]
     {V : ι → Type*} [∀ j, AddCommGroup (V j)] [∀ j, Module 𝔽 (V j)]

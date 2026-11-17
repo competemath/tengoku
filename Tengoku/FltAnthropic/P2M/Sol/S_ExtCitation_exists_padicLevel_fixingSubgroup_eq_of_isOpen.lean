@@ -12,6 +12,9 @@ set_option autoImplicit false
 set_option maxHeartbeats 1600000
 open ExtCitation
 
+/--
+@isnad1 id=ex.1h2v.s11.82ff7574079f from=translated src=- shape=4d646178 vocab=c581ecb9
+-/
 theorem solution (q : Nat.Primes) [Fact (q : ℕ).Prime]
     (S : Subgroup (primeLocalGaloisGroup q))
     (hS : ∃ F₀ : IntermediateField ℚ (AlgebraicClosure ℚ), FiniteDimensional ℚ F₀ ∧

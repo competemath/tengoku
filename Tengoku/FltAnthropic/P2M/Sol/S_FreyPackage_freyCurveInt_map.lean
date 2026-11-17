@@ -17,6 +17,9 @@ open Tengoku.FltAnthropic.FreyPackage
 
 open WeierstrassCurve
 
+/--
+@isnad1 id=eq.0h1v.s4.309d22298e79 from=translated src=- shape=b4d18b3e vocab=01b2f9d2
+-/
 theorem freyCurveInt_map (P : FreyPackage) :
     (freyCurveInt P).map (algebraMap ℤ ℚ) = freyCurve P := by
   have two_dvd_b : 2 ∣ P.b := (ZMod.intCast_zmod_eq_zero_iff_dvd P.b 2).1 P.hb2
@@ -53,6 +56,9 @@ def c₄Int (P : FreyPackage) : ℤ :=
 
 end FreyArith
 
+/--
+@isnad1 id=eq.0h1v.s4.198ee008e69c from=translated src=- shape=bc26997f vocab=1ed11aac
+-/
 theorem solution (P : FreyPackage) :
     P.freyCurveInt.map (Int.castRingHom ℚ) = P.freyCurve := by
   rw [← algebraMap_int_eq]; exact FreyArith.freyCurveInt_map P

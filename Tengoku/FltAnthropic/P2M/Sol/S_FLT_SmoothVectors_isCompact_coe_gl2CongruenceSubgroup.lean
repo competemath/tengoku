@@ -11,6 +11,9 @@ namespace P2MW.S_FLT_SmoothVectors_isCompact_coe_gl2CongruenceSubgroup
 
 open FLT.SmoothVectors
 
+/--
+@isnad1 id=iscompac.0h2v.s8.03c7564d8199 from=translated src=- shape=04e55d0c vocab=229f1f88
+-/
 theorem solution (p : ℕ) [Fact p.Prime] (n : ℕ) :
     IsCompact ((gl2CongruenceSubgroup p n : Subgroup (GL (Fin 2) ℚ_[p])) :
       Set (GL (Fin 2) ℚ_[p])) := by

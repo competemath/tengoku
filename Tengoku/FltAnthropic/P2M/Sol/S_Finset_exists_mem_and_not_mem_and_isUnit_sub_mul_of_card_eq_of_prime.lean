@@ -7,6 +7,9 @@ namespace P2MW.S_Finset_exists_mem_and_not_mem_and_isUnit_sub_mul_of_card_eq_of_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.2h2v.s7.bec6085a2f7b from=translated src=- shape=0306b305 vocab=9defabbb
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime] (S : Finset (ℕ × ℕ)) (hS : S ⊆ Finset.range q ×ˢ Finset.range q)
     (hcard : S.card = q) :

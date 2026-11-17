@@ -29,6 +29,9 @@ noncomputable def cornerRestrict (f : M →ₗ[B] M) :
     show f ((z : B) • (x : M)) = (z : B) • f (x : M)
     exact map_smul f _ _)
 
+/--
+@isnad1 id=linearin.0h6v.s9.4af5ca044f76 from=translated src=- shape=c344e10d vocab=12da087a
+-/
 theorem cornerBasis_linearIndependent {ι : Type} (b : Module.Basis ι B M) :
     LinearIndependent (S.CornerRing i) (fun k => toCorner (M := M) (S.e i) (b k)) := by
   rw [linearIndependent_iff']
@@ -41,6 +44,9 @@ theorem cornerBasis_linearIndependent {ι : Type} (b : Module.Basis ι B M) :
   have := linearIndependent_iff'.mp b.linearIndependent s (fun k => (g k : B)) h0 k hk
   exact IdempotentSplitting.ext_cornerRing S i this
 
+/--
+@isnad1 id=le.0h6v.s10.d359b0d92502 from=translated src=- shape=1a0f9499 vocab=3317951c
+-/
 theorem cornerBasis_span {ι : Type} (b : Module.Basis ι B M) :
     ⊤ ≤ Submodule.span (S.CornerRing i) (Set.range fun k => toCorner (M := M) (S.e i) (b k)) := by
   rintro x -
@@ -65,6 +71,9 @@ noncomputable def cornerBasis {ι : Type} (b : Module.Basis ι B M) :
     Module.Basis ι (S.CornerRing i) ↥(cornerSubmodule (M := M) (S.e i)) :=
   Module.Basis.mk (cornerBasis_linearIndependent S i b) (cornerBasis_span S i b)
 
+/--
+@isnad1 id=eq.0h7v.s8.ecacae1fb911 from=translated src=- shape=9ff392a0 vocab=8e6f115f
+-/
 theorem coe_cornerBasis {ι : Type} (b : Module.Basis ι B M) (k : ι) :
     ((cornerBasis S i b k : cornerSubmodule (M := M) (S.e i)) : M) = S.e i • b k := by
   unfold cornerBasis
@@ -73,6 +82,9 @@ theorem coe_cornerBasis {ι : Type} (b : Module.Basis ι B M) (k : ι) :
 
 end OrdLat.Corner
 
+/--
+@isnad1 id=ex.0h6v.s9.901a9c4b63b8 from=translated src=- shape=c02396e3 vocab=fb6c2d1f
+-/
 theorem solution
     {B : Type} [CommRing B] (S : IharaLemma.IdempotentSplitting B) (i : Fin S.n)
     {M : Type} [AddCommGroup M] [Module B M] {ι : Type} (b : Module.Basis ι B M) :

@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_IntermediateField_finiteDimensional_adjoin
 namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 set_option autoImplicit false
 open scoped IntermediateField
+/--
+@isnad1 id=finitedi.0h2v.s11.b6140a9a4402 from=translated src=- shape=0f4379ab vocab=d1e7ac10
+-/
 theorem IntermediateField.finiteDimensional_adjoin_padicEmbedding_image
     (q : ℕ) [Fact q.Prime]
     (F : IntermediateField ℚ (AlgebraicClosure ℚ)) [FiniteDimensional ℚ F] :

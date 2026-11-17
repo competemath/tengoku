@@ -122,6 +122,9 @@ end
 end C6PortS10BNA2
 
 open C6PortS10BNA2 in
+/--
+@isnad1 id=iff.0h5v.s12.5d6171459752 from=translated src=- shape=1af73d63 vocab=b556a4d6
+-/
 theorem solution
     {k K G V : Type*} [Field k] [Field K] [Algebra k K] [Monoid G] [AddCommGroup V] [Module k V]
     [FiniteDimensional k V] (ρ : Representation k G V) :

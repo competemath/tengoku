@@ -49,6 +49,9 @@ private theorem eq_zero_of_forall_baseChange_quotient_eq_zero {A : Type} [CommRi
 
 end LCMazur
 
+/--
+@isnad1 id=isunrami.1h3v.s8.e8c8f2c341c6 from=translated src=- shape=3b72bd74 vocab=8b992f8f
+-/
 theorem solution {A : Type} [CommRing A] [IsLocalRing A]
     [IsNoetherianRing A] (ρ : GaloisRepAdic A) {q : ℕ}
     (h : ∀ m : ℕ,

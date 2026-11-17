@@ -74,6 +74,9 @@ end IsEigensystem
 export _root_.FormalHecke (IsEigensystem.mul_coprime')
 end FormalHecke
 
+/--
+@isnad1 id=isrecurs.1h3v.s4.c4467582d952 from=translated src=- shape=d2e8f1bd vocab=8824cc0b
+-/
 theorem solution {R : Type*} [CommRing R] {e a : ℕ → R}
     (h : FormalHecke.IsEigensystem e a) : FormalHecke.IsRecursive e a :=
   ⟨h.1, h.mul_coprime', fun _ r hℓ => h.prime_pow' hℓ r⟩

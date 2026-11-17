@@ -8,6 +8,9 @@ namespace P2MW.S_FLT_OccurrenceStatement_three_dvd_natCast_sub_chiNegThree_cast
 
 open EisensteinWeightOne
 
+/--
+@isnad1 id=dvd.0h2v.s6.f42a8396cff9 from=translated src=- shape=dc2606f7 vocab=e55f4cee
+-/
 theorem solution (R : Type*) [CommRing R] (ℓ : ℕ) :
     (3 : R) ∣ (ℓ : R) - ((chiNegThree ℓ : ℤ) : R) := by
   have hint : (3 : ℤ) ∣ (ℓ : ℤ) - chiNegThree ℓ := by

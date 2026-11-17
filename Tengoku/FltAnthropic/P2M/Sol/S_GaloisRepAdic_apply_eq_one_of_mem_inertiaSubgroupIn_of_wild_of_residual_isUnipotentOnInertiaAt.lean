@@ -164,6 +164,9 @@ private theorem inertia_exists_range_pow_sub_one_le {R : Type} [CommRing R] [IsL
   rw [← map_pow]
   exact hL _ (fun x hx => ha x (hLF hx)) v
 
+/--
+@isnad1 id=eq.8h6v.s11.594ce42f8d30 from=translated src=- shape=dd10ddb5 vocab=391a78e6
+-/
 theorem solution
     {R : Type} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     (ρ : GaloisRepAdic R) {p : ℕ} (hp : p.Prime) (hpR : (p : R) ∈ maximalIdeal R) {q : ℕ} (hq : q.Prime)

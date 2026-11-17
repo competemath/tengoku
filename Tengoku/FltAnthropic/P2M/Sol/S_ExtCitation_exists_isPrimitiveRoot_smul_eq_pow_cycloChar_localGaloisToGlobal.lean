@@ -10,6 +10,9 @@ set_option autoImplicit false
 open ExtCitation
 open scoped IntermediateField Pointwise
 
+/--
+@isnad1 id=ex.0h2v.s12.e80d3306c7d1 from=translated src=- shape=45b430bb vocab=c491dfdb
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime] (p : ℕ) [Fact p.Prime] :
     ∃ ζ : (PadicAlgCl q)ˣ, IsPrimitiveRoot ζ p ∧ ∀ g : PadicAlgCl q ≃ₐ[ℚ_[q]] PadicAlgCl q,

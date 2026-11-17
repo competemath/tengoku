@@ -25,13 +25,25 @@ abbrev Qb : Type := AlgebraicClosure ℚ
 
 abbrev Rp (p : ℕ) : Type := GaloisRep.ratLocalizedAt p
 
+/--
+@isnad1 id=isalgebr.0h0v.s4.92f995461263 from=translated src=- shape=3905abf2 vocab=c7f7e443
+-/
 scoped instance isAlgebraicQbar : Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) :=
   AlgebraicClosure.isAlgebraic ℚ
 
+/--
+@isnad1 id=isalgclo.0h0v.s4.728a7497b292 from=translated src=- shape=3905abf2 vocab=bcf091a8
+-/
 scoped instance isAlgClosureQbar : IsAlgClosure ℚ (AlgebraicClosure ℚ) := ⟨inferInstance, inferInstance⟩
 
+/--
+@isnad1 id=isgalois.0h0v.s4.b04052bb8761 from=translated src=- shape=3905abf2 vocab=49029860
+-/
 scoped instance isGaloisQbar : IsGalois ℚ (AlgebraicClosure ℚ) := IsAlgClosure.isGalois ℚ (AlgebraicClosure ℚ)
 
+/--
+@isnad1 id=finite.0h3v.s6.04e5120b19aa from=translated src=- shape=42bc47c3 vocab=ef42a10b
+-/
 theorem finite_algHom_of_moduleFinite {R A L : Type} [CommRing R] [CommRing A] [Algebra R A]
     [Module.Finite R A] [Field L] [Algebra R L] : Finite (A →ₐ[R] L) := by
   classical
@@ -74,20 +86,38 @@ variable {p : ℕ} {G : Type} [CommRing G] [HopfAlgebra (Rp p) G]
 
 def E (h : G) (m : M) : Qb := (e.symm m).ofConv h
 
+/--
+@isnad1 id=eq.0h6v.s10.55b854a88efb from=translated src=- shape=999a8ed4 vocab=b3197dd0
+-/
 theorem E_def (h : G) (m : M) : E e h m = (e.symm m).ofConv h := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.6b73f13bd421 from=translated src=- shape=82819578 vocab=780669ef
+-/
 theorem E_add_left (h h' : G) (m : M) : E e (h + h') m = E e h m + E e h' m := map_add _ _ _
 
+/--
+@isnad1 id=eq.0h7v.s8.825046f0dadb from=translated src=- shape=82819578 vocab=1bc92319
+-/
 theorem E_mul_left (h h' : G) (m : M) : E e (h * h') m = E e h m * E e h' m := map_mul _ _ _
 
+/--
+@isnad1 id=eq.0h7v.s9.281f767fd556 from=translated src=- shape=98ff18e7 vocab=b96ed31b
+-/
 theorem E_smul_left (r : Rp p) (h : G) (m : M) :
     E e (r • h) m = algebraMap (Rp p) Qb r * E e h m := by
   rw [E_def, E_def, ← Algebra.smul_def]
   exact (e.symm m).ofConv.toLinearMap.map_smul r h
 
+/--
+@isnad1 id=eq.0h6v.s9.596993129963 from=translated src=- shape=f9af1eec vocab=79205032
+-/
 theorem E_algebraMap (r : Rp p) (m : M) : E e (algebraMap (Rp p) G r) m = algebraMap (Rp p) Qb r :=
   (e.symm m).ofConv.commutes r
 
+/--
+@isnad1 id=eq.0h5v.s8.c25f6d35c0a6 from=translated src=- shape=2d8711fd vocab=55283434
+-/
 theorem E_one_left (m : M) : E e 1 m = 1 := map_one _
 
 def evalAlgHom {X : Type} (π : X → M) : G →ₐ[Rp p] (X → Qb) where
@@ -102,14 +132,23 @@ variable (he_add : ∀ f g, e (f * g) = e f + e g)
 
 include he_add
 
+/--
+@isnad1 id=eq.1h6v.s13.2f1807447e75 from=translated src=- shape=98382a0f vocab=2fbaf0bb
+-/
 theorem symm_add (m m' : M) : e.symm (m + m') = e.symm m * e.symm m' :=
   e.injective (by rw [he_add, Equiv.apply_symm_apply, Equiv.apply_symm_apply, Equiv.apply_symm_apply])
 
+/--
+@isnad1 id=eq.1h4v.s12.f7da0598ae72 from=translated src=- shape=8450f4af vocab=2fbaf0bb
+-/
 theorem symm_zero : e.symm 0 = 1 := by
   have h : e 1 + e 1 = e 1 := by rw [← he_add, one_mul]
   have h1 : e 1 = 0 := by simpa using h
   rw [← h1, Equiv.symm_apply_apply]
 
+/--
+@isnad1 id=eq.1h9v.s12.21cc5eb9c3db from=translated src=- shape=b2c044e5 vocab=f8366e77
+-/
 theorem E_add_right {h : G} {ι𝓡 : Type*} (𝓡 : Coalgebra.Repr (Rp p) h ι𝓡) (m m' : M) :
     E e h (m + m') = ∑ i ∈ 𝓡.index, E e (𝓡.left i) m * E e (𝓡.right i) m' := by
   rw [E_def, symm_add e he_add]
@@ -122,6 +161,9 @@ def antipodeAlgHom : G →ₐ[Rp p] G :=
   AlgHom.ofLinearMap (HopfAlgebra.antipode (Rp p)) HopfAlgebra.antipode_one
     fun a b => by rw [HopfAlgebra.antipode_mul_antidistrib, mul_comm]
 
+/--
+@isnad1 id=eq.1h6v.s12.6dfbbf8bc9c0 from=translated src=- shape=32f1dd44 vocab=9111f48b
+-/
 theorem E_neg_right (h : G) (m : M) : E e h (-m) = E e (HopfAlgebra.antipode (Rp p) h) m := by
   classical
 
@@ -155,6 +197,9 @@ variable (he_act : ∀ (σ : Γℚ) (f g : WithConv (G →ₐ[Rp p] Qb)),
 
 include he_act
 
+/--
+@isnad1 id=eq.1h7v.s12.0f059ff05146 from=translated src=- shape=1ed8ec14 vocab=ab72bd27
+-/
 theorem E_smul_right (σ : Γℚ) (h : G) (m : M) : E e h (σ • m) = σ (E e h m) := by
   let g : WithConv (G →ₐ[Rp p] Qb) :=
     WithConv.toConv (((σ : Qb ≃ₐ[ℚ] Qb) : Qb →ₐ[ℚ] Qb).restrictScalars (Rp p) |>.comp
@@ -167,6 +212,9 @@ theorem E_smul_right (σ : Γℚ) (h : G) (m : M) : E e h (σ • m) = σ (E e h
 
 omit he_act
 
+/--
+@isnad1 id=eq.1h6v.s8.3495368723b4 from=translated src=- shape=99078765 vocab=55283434
+-/
 theorem E_injective {m m' : M} (h : ∀ x : G, E e x m = E e x m') : m = m' := by
   apply e.symm.injective
   apply WithConv.ext
@@ -181,9 +229,15 @@ variable {S : Type} [MulAction Γℚ S] (K : IntermediateField ℚ Qb) [Normal �
 noncomputable def lift (γ : K ≃ₐ[ℚ] K) : Γℚ :=
   Function.surjInv (AlgEquiv.restrictNormalHom_surjective (AlgebraicClosure ℚ)) γ
 
+/--
+@isnad1 id=eq.0h2v.s13.921f75f4fe02 from=translated src=- shape=a1f0e41e vocab=ae6073c3
+-/
 theorem restrictNormalHom_lift (γ : K ≃ₐ[ℚ] K) : AlgEquiv.restrictNormalHom K (lift K γ) = γ :=
   Function.surjInv_eq (AlgEquiv.restrictNormalHom_surjective (AlgebraicClosure ℚ)) γ
 
+/--
+@isnad1 id=eq.0h3v.s13.982e4d9f5f49 from=translated src=- shape=6d3d7afb vocab=ed1cd8dc
+-/
 theorem coe_restrictNormalHom (σ : Γℚ) (x : K) :
     ((AlgEquiv.restrictNormalHom (K₁ := Qb) K σ x : K) : Qb) = σ (x : Qb) :=
   AlgEquiv.restrictNormal_commutes σ K x
@@ -191,6 +245,9 @@ theorem coe_restrictNormalHom (σ : Γℚ) (x : K) :
 variable (hS : ∀ σ : Γℚ, (∀ x ∈ K, σ x = x) → ∀ s : S, σ • s = s)
 include hS
 
+/--
+@isnad1 id=eq.2h5v.s14.75f8d54e7886 from=translated src=- shape=75323b3d vocab=d3043246
+-/
 theorem smul_eq_of_restrict_eq {τ τ' : Γℚ}
     (h : AlgEquiv.restrictNormalHom K τ = AlgEquiv.restrictNormalHom K τ') (s : S) :
     τ • s = τ' • s := by
@@ -206,13 +263,22 @@ theorem smul_eq_of_restrict_eq {τ τ' : Γℚ}
   calc τ • s = τ' • τ'⁻¹ • τ • s := by rw [smul_inv_smul]
     _ = τ' • s := by rw [h3]
 
+/--
+@isnad1 id=eq.1h4v.s13.de2ccae0e1e3 from=translated src=- shape=c58f139e vocab=50ce3740
+-/
 theorem lift_restrict_smul (σ : Γℚ) (s : S) :
     lift K (AlgEquiv.restrictNormalHom K σ) • s = σ • s :=
   smul_eq_of_restrict_eq K hS (by rw [restrictNormalHom_lift]) s
 
+/--
+@isnad1 id=eq.1h3v.s12.f27e2355c72b from=translated src=- shape=d8062f13 vocab=dcb59f1a
+-/
 theorem lift_one_smul (s : S) : lift K 1 • s = s := by
   rw [← map_one (AlgEquiv.restrictNormalHom (K₁ := Qb) K), lift_restrict_smul K hS, one_smul]
 
+/--
+@isnad1 id=eq.1h5v.s14.c3f44bfe387c from=translated src=- shape=9d5d845f vocab=141725cc
+-/
 theorem inv_smul_lift_smul (σ : Γℚ) (γ : K ≃ₐ[ℚ] K) (s : S) :
     σ⁻¹ • lift K γ • s = lift K ((AlgEquiv.restrictNormalHom K σ)⁻¹ * γ) • s := by
   rw [← mul_smul]
@@ -233,14 +299,26 @@ def TwFun.val {S N : Type} (φ : TwFun S N) : S → N := φ
 
 def TwFun.mk {S N : Type} (φ : S → N) : TwFun S N := φ
 
+/--
+@isnad1 id=eq.1h4v.s5.c99855335fd1 from=translated src=- shape=7914e4cd vocab=fca09926
+-/
 theorem TwFun.ext {S N : Type} {φ ψ : TwFun S N} (h : ∀ s, φ.val s = ψ.val s) : φ = ψ :=
   funext h
 
+/--
+@isnad1 id=eq.0h5v.s6.9d8682071a59 from=translated src=- shape=5b679db6 vocab=e3f5cc30
+-/
 theorem TwFun.val_add {S N : Type} [AddCommGroup N] (φ ψ : TwFun S N) (s : S) :
     (φ + ψ).val s = φ.val s + ψ.val s := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.74b76b56c3a7 from=translated src=- shape=5a9f3e09 vocab=af2b148b
+-/
 theorem TwFun.val_zero {S N : Type} [AddCommGroup N] (s : S) : (0 : TwFun S N).val s = 0 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.4078869f2b84 from=translated src=- shape=0804351b vocab=d6d72f34
+-/
 theorem TwFun.val_neg {S N : Type} [AddCommGroup N] (φ : TwFun S N) (s : S) :
     (-φ).val s = -(φ.val s) := rfl
 
@@ -260,6 +338,9 @@ scoped instance twFunDistribMulAction (S N : Type) [MulAction Γℚ S] [AddCommG
     change σ • (φ + ψ).val (σ⁻¹ • s) = σ • φ.val (σ⁻¹ • s) + σ • ψ.val (σ⁻¹ • s)
     rw [TwFun.val_add, smul_add]
 
+/--
+@isnad1 id=eq.0h5v.s8.5419d0af1042 from=translated src=- shape=e5af8658 vocab=1db548a8
+-/
 theorem TwFun.val_smul {S N : Type} [MulAction Γℚ S] [AddCommGroup N] [DistribMulAction Γℚ N]
     (σ : Γℚ) (φ : TwFun S N) (s : S) : (σ • φ).val s = σ • φ.val (σ⁻¹ • s) := rfl
 
@@ -273,9 +354,15 @@ variable {p : ℕ} {G : Type} [CommRing G] [HopfAlgebra (Rp p) G]
 def FF (c : K) (s : S) (h : G) : TwFun S M → Qb :=
   fun φ => ∑ γ : K ≃ₐ[ℚ] K, ((γ c : K) : Qb) * E e h (φ.val (lift K γ • s))
 
+/--
+@isnad1 id=eq.0h10v.s12.fc1c61036c2f from=translated src=- shape=bbf270f0 vocab=aff4d59b
+-/
 theorem FF_apply (c : K) (s : S) (h : G) (φ : TwFun S M) :
     FF e K c s h φ = ∑ γ : K ≃ₐ[ℚ] K, ((γ c : K) : Qb) * E e h (φ.val (lift K γ • s)) := rfl
 
+/--
+@isnad1 id=eq.0h9v.s12.5ee3f615ff3b from=translated src=- shape=53b7f484 vocab=255ea2de
+-/
 theorem FF_eq_sum_evalAlgHom (c : K) (s : S) (h : G) :
     FF e K c s h = ∑ γ : K ≃ₐ[ℚ] K, algebraMap Qb (TwFun S M → Qb) ((γ c : K) : Qb) *
       evalAlgHom e (fun φ : TwFun S M => φ.val (lift K γ • s)) h := by
@@ -283,6 +370,9 @@ theorem FF_eq_sum_evalAlgHom (c : K) (s : S) (h : G) :
   rw [FF_apply, Finset.sum_apply]
   rfl
 
+/--
+@isnad1 id=eq.0h10v.s10.156a839739c6 from=translated src=- shape=babd30f5 vocab=bbaf8b69
+-/
 theorem FF_add_left (c c' : K) (s : S) (h : G) : FF e K (c + c') s h = FF e K c s h + FF e K c' s h := by
   funext φ
   simp only [FF_apply, Pi.add_apply, map_add, ← Finset.sum_add_distrib]
@@ -290,10 +380,16 @@ theorem FF_add_left (c c' : K) (s : S) (h : G) : FF e K (c + c') s h = FF e K c 
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h8v.s10.d4cf9d96bd97 from=translated src=- shape=2dae26bb vocab=09c2ce5c
+-/
 theorem FF_zero_left (s : S) (h : G) : FF e K 0 s h = 0 := by
   funext φ
   simp [FF_apply]
 
+/--
+@isnad1 id=eq.0h10v.s10.cb435f880c4a from=translated src=- shape=8009622b vocab=484a6de8
+-/
 theorem FF_zsmul_left (n : ℤ) (c : K) (s : S) (h : G) : FF e K (n • c) s h = n • FF e K c s h := by
   funext φ
   simp only [FF_apply, Pi.smul_apply, zsmul_eq_mul, Finset.mul_sum]
@@ -302,15 +398,24 @@ theorem FF_zsmul_left (n : ℤ) (c : K) (s : S) (h : G) : FF e K (n • c) s h =
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h10v.s9.0185fd4913ba from=translated src=- shape=ba4c406a vocab=bbaf8b69
+-/
 theorem FF_add_right (c : K) (s : S) (h h' : G) : FF e K c s (h + h') = FF e K c s h + FF e K c s h' := by
   rw [FF_eq_sum_evalAlgHom, FF_eq_sum_evalAlgHom, FF_eq_sum_evalAlgHom, ← Finset.sum_add_distrib]
   refine Finset.sum_congr rfl fun γ _ => ?_
   rw [map_add, mul_add]
 
+/--
+@isnad1 id=eq.0h8v.s9.cc6d2e759c67 from=translated src=- shape=5f4b7a9a vocab=09c2ce5c
+-/
 theorem FF_zero_right (c : K) (s : S) : FF e K c s 0 = 0 := by
   rw [FF_eq_sum_evalAlgHom]
   simp
 
+/--
+@isnad1 id=eq.0h10v.s10.7ce770fb6143 from=translated src=- shape=9fc6f6ca vocab=80990970
+-/
 theorem FF_smul_right (c : K) (s : S) (r : Rp p) (h : G) :
     FF e K c s (r • h) = algebraMap (Rp p) (TwFun S M → Qb) r * FF e K c s h := by
   funext φ
@@ -320,6 +425,9 @@ theorem FF_smul_right (c : K) (s : S) (r : Rp p) (h : G) :
   rw [E_smul_left]
   ring
 
+/--
+@isnad1 id=isintegr.1h2v.s6.ef509a9ca418 from=translated src=- shape=fdfc4d65 vocab=ce606855
+-/
 theorem isIntegral_of_int {y : Qb} (hy : IsIntegral ℤ y) : IsIntegral (Rp p) y := by
   obtain ⟨P, hm, hP⟩ := hy
   refine ⟨P.map (Int.castRingHom (Rp p)), hm.map _, ?_⟩
@@ -327,6 +435,9 @@ theorem isIntegral_of_int {y : Qb} (hy : IsIntegral ℤ y) : IsIntegral (Rp p) y
     RingHom.ext_int ((algebraMap (Rp p) Qb).comp (Int.castRingHom (Rp p))) (algebraMap ℤ Qb)]
   exact hP
 
+/--
+@isnad1 id=isintegr.1h9v.s10.3a8824c72690 from=translated src=- shape=3187c41b vocab=3fc810fa
+-/
 theorem isIntegral_FF [Module.Finite (Rp p) G] {c : K} (hc : IsIntegral ℤ c) (s : S) (h : G) :
     IsIntegral (Rp p) (FF e K c s h) := by
   rw [FF_eq_sum_evalAlgHom]
@@ -345,6 +456,9 @@ variable (he_act : ∀ (σ : Γℚ) (f g : WithConv (G →ₐ[Rp p] Qb)),
 
 include hS he_act in
 
+/--
+@isnad1 id=eq.2h11v.s12.ca8958ac34b1 from=translated src=- shape=126c087f vocab=ddd7fc4e
+-/
 theorem FF_smul (c : K) (s : S) (h : G) (σ : Γℚ) (φ : TwFun S M) :
     FF e K c s h (σ • φ) = σ (FF e K c s h φ) := by
   set σb : K ≃ₐ[ℚ] K := AlgEquiv.restrictNormalHom (K₁ := Qb) K σ with hσb
@@ -365,6 +479,9 @@ variable (he_add : ∀ f g, e (f * g) = e f + e g)
 
 include he_add in
 
+/--
+@isnad1 id=eq.1h10v.s12.2dc6d048e96a from=translated src=- shape=4971f94a vocab=57551222
+-/
 theorem FF_neg (c : K) (s : S) (h : G) (φ : TwFun S M) :
     FF e K c s h (-φ) = FF e K c s (HopfAlgebra.antipode (Rp p) h) φ := by
   rw [FF_apply, FF_apply]
@@ -373,6 +490,9 @@ theorem FF_neg (c : K) (s : S) (h : G) (φ : TwFun S M) :
 
 include hS in
 
+/--
+@isnad1 id=eq.3h12v.s13.6c80b725bc0e from=translated src=- shape=2f907d2b vocab=ea53dfab
+-/
 theorem E_val_eq_sum_FF {n : ℕ} (a b : Fin n → K)
     (h1 : ∀ γ : K ≃ₐ[ℚ] K, ∑ j, γ (a j) * γ (b j) = 1)
     (h0 : ∀ γ δ : K ≃ₐ[ℚ] K, γ ≠ δ → ∑ j, γ (a j) * δ (b j) = 0)
@@ -402,6 +522,9 @@ theorem E_val_eq_sum_FF {n : ℕ} (a b : Fin n → K)
 
 include he_add in
 
+/--
+@isnad1 id=eq.4h18v.s14.f9c82f84e93f from=translated src=- shape=b84bc952 vocab=e25d0bc1
+-/
 theorem FF_add {n : ℕ} (a b : Fin n → K)
     (h1 : ∀ γ : K ≃ₐ[ℚ] K, ∑ j, γ (a j) * γ (b j) = 1)
     (h0 : ∀ γ δ : K ≃ₐ[ℚ] K, γ ≠ δ → ∑ j, γ (a j) * δ (b j) = 0)
@@ -534,6 +657,9 @@ end P2mWeilRestriction
 open scoped _root_.P2MW.S_GaloisRep_exists_finiteFlat_pi_of_forall_smul_eq_of_not_dvd_discr.P2mWeilRestriction
 
 open P2mWeilRestriction in
+/--
+@isnad1 id=ex.5h6v.s15.c33132383ec9 from=translated src=- shape=dfdd9d28 vocab=f711ce30
+-/
 theorem solution
     (p : ℕ) (hp : p.Prime)
     (G : Type) [CommRing G] [HopfAlgebra (GaloisRep.ratLocalizedAt p) G]

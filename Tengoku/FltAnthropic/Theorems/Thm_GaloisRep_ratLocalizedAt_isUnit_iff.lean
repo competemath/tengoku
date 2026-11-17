@@ -5,6 +5,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_GaloisRep_ratLocalizedAt_isUnit_iff
 
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_GaloisRep_ratLocalizedAt_isUnit_iff.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
+/--
+@isnad1 id=iff.1h2v.s7.8de4831a5e5f from=translated src=- shape=edf58b6b vocab=ad4f134a
+-/
 theorem GaloisRep.ratLocalizedAt.isUnit_iff
     {p : ℕ} (hp : p.Prime) (x : GaloisRep.ratLocalizedAt p) :
     IsUnit x ↔ ¬ p ∣ (x : ℚ).num.natAbs := by exact @_root_.P2MW.S_GaloisRep_ratLocalizedAt_isUnit_iff.solution p hp x

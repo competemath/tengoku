@@ -23,16 +23,25 @@ private def _root_.S04.I (n : ℤ) (q : ℚ) : Prop := q = 0 ∨ n ≤ v q
 
 export _root_.S04 (I)
 
+/--
+@isnad1 id=i.2h3v.s4.dc608ea320b6 from=translated src=- shape=5dc478f2 vocab=1a55eb0f
+-/
 lemma I_of_le {n m : ℤ} {q : ℚ} (h : I m q) (hnm : n ≤ m) : I n q := by
   rcases h with h | h
   · exact Or.inl h
   · exact Or.inr (le_trans hnm h)
 
+/--
+@isnad1 id=i.1h2v.s3.2378e4f8415f from=translated src=- shape=d086edac vocab=9a8e2626
+-/
 lemma I_neg {n : ℤ} {q : ℚ} (h : I n q) : I n (-q) := by
   rcases h with h | h
   · exact Or.inl (by rw [h, _root_.neg_zero])
   · exact Or.inr (by rwa [padicValRat.neg])
 
+/--
+@isnad1 id=i.2h3v.s4.eba803642c98 from=translated src=- shape=d203bb48 vocab=9e983185
+-/
 lemma I_add {n : ℤ} {q r : ℚ} (hq : I n q) (hr : I n r) : I n (q + r) := by
   by_cases hqr : q + r = 0
   · exact Or.inl hqr
@@ -42,9 +51,15 @@ lemma I_add {n : ℤ} {q r : ℚ} (hq : I n q) (hr : I n r) : I n (q + r) := by
   · subst hr; simp only [add_zero]; exact Or.inr hq
   exact Or.inr (le_trans (le_min hq hr) (padicValRat.min_le_padicValRat_add hqr))
 
+/--
+@isnad1 id=i.2h3v.s4.0c607f048e59 from=translated src=- shape=d203bb48 vocab=debf064c
+-/
 lemma I_sub {n : ℤ} {q r : ℚ} (hq : I n q) (hr : I n r) : I n (q - r) := by
   rw [sub_eq_add_neg]; exact I_add hq (I_neg hr)
 
+/--
+@isnad1 id=i.2h4v.s5.1c0926f48aca from=translated src=- shape=fe1f177a vocab=31a26f36
+-/
 lemma I_mul {n m : ℤ} {q r : ℚ} (hq : I n q) (hr : I m r) : I (n + m) (q * r) := by
   rcases hq with hq | hq
   · exact Or.inl (by rw [hq, zero_mul])
@@ -56,36 +71,66 @@ lemma I_mul {n m : ℤ} {q r : ℚ} (hq : I n q) (hr : I m r) : I (n + m) (q * r
   · exact Or.inl (by rw [hr0, mul_zero])
   exact Or.inr (by rw [padicValRat.mul hq0 hr0]; omega)
 
+/--
+@isnad1 id=i.1h2v.s5.4ab1a754917e from=translated src=- shape=a404b347 vocab=c056a858
+-/
 lemma I_pow_two {n : ℤ} {q : ℚ} (hq : I n q) : I (n + n) (q ^ 2) := by
   rw [pow_two]; exact I_mul hq hq
 
+/--
+@isnad1 id=i.0h1v.s3.3eeaf3b10f4b from=translated src=- shape=7e26e3a7 vocab=fcfa7d4f
+-/
 lemma I_int (z : ℤ) : I 0 (z : ℚ) := by
   by_cases hz : (z : ℚ) = 0
   · exact Or.inl hz
   · exact Or.inr (by rw [padicValRat.of_int]; exact_mod_cast Nat.zero_le _)
 
+/--
+@isnad1 id=i.0h0v.s3.ebbf4abc1af5 from=translated src=- shape=6d6f5044 vocab=a4d9ba68
+-/
 lemma I_two : I 1 (2 : ℚ) := by
   right; rw [show (2 : ℚ) = ((2 : ℕ) : ℚ) by norm_num, padicValRat.of_nat]; simp
 
+/--
+@isnad1 id=eq.0h0v.s4.cbfe477e1df0 from=translated src=- shape=8640e5ff vocab=3eb21020
+-/
 lemma v_two : v (2 : ℚ) = 1 := by
   rw [show (2 : ℚ) = ((2 : ℕ) : ℚ) by norm_num, padicValRat.self (by norm_num)]
 
 def E (n : ℤ) (q : ℚ) : Prop := q ≠ 0 ∧ v q = n
 
+/--
+@isnad1 id=i.1h2v.s3.47b6889734fa from=translated src=- shape=6ef4b4a0 vocab=b15963dc
+-/
 lemma E.I {n : ℤ} {q : ℚ} (h : E n q) : I n q := Or.inr h.2.ge
 
+/--
+@isnad1 id=e.2h4v.s5.14f1dd3519b6 from=translated src=- shape=fe1f177a vocab=43ce8f62
+-/
 lemma E_mul {n m : ℤ} {q r : ℚ} (hq : E n q) (hr : E m r) : E (n + m) (q * r) :=
   ⟨mul_ne_zero hq.1 hr.1, by rw [padicValRat.mul hq.1 hr.1, hq.2, hr.2]⟩
 
+/--
+@isnad1 id=e.1h2v.s5.e5ccb48cb5a0 from=translated src=- shape=a404b347 vocab=40fcc203
+-/
 lemma E_pow_two {n : ℤ} {q : ℚ} (hq : E n q) : E (n + n) (q ^ 2) := by
   rw [pow_two]; exact E_mul hq hq
 
+/--
+@isnad1 id=e.2h4v.s5.70f2301f9a70 from=translated src=- shape=fe1f177a vocab=829f4651
+-/
 lemma E_div {n m : ℤ} {q r : ℚ} (hq : E n q) (hr : E m r) : E (n - m) (q / r) :=
   ⟨div_ne_zero hq.1 hr.1, by rw [padicValRat.div hq.1 hr.1, hq.2, hr.2]⟩
 
+/--
+@isnad1 id=e.1h2v.s3.2091fdedb106 from=translated src=- shape=d086edac vocab=157d8237
+-/
 lemma E_neg {n : ℤ} {q : ℚ} (hq : E n q) : E n (-q) :=
   ⟨neg_ne_zero.mpr hq.1, by rw [padicValRat.neg, hq.2]⟩
 
+/--
+@isnad1 id=e.3h4v.s5.07f43f191914 from=translated src=- shape=15ad8452 vocab=2f4c446e
+-/
 lemma E_add_I {n m : ℤ} {q r : ℚ} (hq : E n q) (hr : I m r) (hnm : n < m) : E n (q + r) := by
   rcases hr with hr | hr
   · subst hr; simpa using hq
@@ -99,20 +144,35 @@ lemma E_add_I {n m : ℤ} {q r : ℚ} (hq : E n q) (hr : I m r) (hnm : n < m) : 
     exact lt_irrefl _ hlt
   exact ⟨hqr, by rw [padicValRat.add_eq_of_lt hqr hq.1 hr0 hlt, hq.2]⟩
 
+/--
+@isnad1 id=e.3h4v.s5.b8a8012e0d8d from=translated src=- shape=6b3dd1a5 vocab=2f4c446e
+-/
 lemma I_add_E {n m : ℤ} {q r : ℚ} (hq : I m q) (hr : E n r) (hnm : n < m) : E n (q + r) := by
   rw [add_comm]; exact E_add_I hr hq hnm
 
+/--
+@isnad1 id=e.3h4v.s5.b227a931007d from=translated src=- shape=15ad8452 vocab=b386af8e
+-/
 lemma E_sub_I {n m : ℤ} {q r : ℚ} (hq : E n q) (hr : I m r) (hnm : n < m) : E n (q - r) := by
   rw [sub_eq_add_neg]; exact E_add_I hq (I_neg hr) hnm
 
+/--
+@isnad1 id=e.3h4v.s5.32386aac6606 from=translated src=- shape=6b3dd1a5 vocab=b386af8e
+-/
 lemma I_sub_E {n m : ℤ} {q r : ℚ} (hq : I m q) (hr : E n r) (hnm : n < m) : E n (q - r) := by
   rw [sub_eq_add_neg]; exact I_add_E hq (E_neg hr) hnm
 
+/--
+@isnad1 id=false.3h3v.s4.080b8289ad1c from=translated src=- shape=fa61fd43 vocab=9f742d42
+-/
 lemma E_I_absurd {n m : ℤ} {q : ℚ} (hq : E n q) (hq' : I m q) (hnm : n < m) : False := by
   rcases hq' with h | h
   · exact hq.1 h
   · rw [hq.2] at h; omega
 
+/--
+@isnad1 id=i.1h1v.s4.7c8eae1a9b5a from=translated src=- shape=bb37e0cf vocab=36accbf3
+-/
 lemma I_one_sub_one_of_unit {q : ℚ} (hq : E 0 q) : I 1 (q - 1) := by
   obtain ⟨hq0, hv⟩ := hq
   have hnum : q.num ≠ 0 := Rat.num_ne_zero.mpr hq0
@@ -164,6 +224,9 @@ lemma I_one_sub_one_of_unit {q : ℚ} (hq : E 0 q) : I 1 (q - 1) := by
   push_cast
   omega
 
+/--
+@isnad1 id=i.2h2v.s5.9aeb016cb764 from=translated src=- shape=803fec6b vocab=17a00c59
+-/
 lemma I_one_add_of_units {q r : ℚ} (hq : E 0 q) (hr : E 0 r) : I 1 (q + r) := by
   have h1 := I_one_sub_one_of_unit hq
   have h2 := I_one_sub_one_of_unit hr
@@ -171,6 +234,9 @@ lemma I_one_add_of_units {q r : ℚ} (hq : E 0 q) (hr : E 0 r) : I 1 (q + r) := 
   rw [this]
   exact I_add (I_add h1 h2) I_two
 
+/--
+@isnad1 id=i.2h2v.s5.1a843131e729 from=translated src=- shape=803fec6b vocab=36accbf3
+-/
 lemma I_one_sub_of_units {q r : ℚ} (hq : E 0 q) (hr : E 0 r) : I 1 (q - r) := by
   have h1 := I_one_sub_one_of_unit hq
   have h2 := I_one_sub_one_of_unit hr
@@ -178,6 +244,9 @@ lemma I_one_sub_of_units {q r : ℚ} (hq : E 0 q) (hr : E 0 r) : I 1 (q - r) := 
   rw [this]
   exact I_sub h1 h2
 
+/--
+@isnad1 id=i.1h1v.s5.1e33d68e34ea from=translated src=- shape=fe4766ce vocab=31a26f36
+-/
 lemma I_one_mul_add_one {q : ℚ} (hq : I 0 q) : I 1 (q * (q + 1)) := by
   by_cases hq0 : q = 0
   · exact Or.inl (by rw [hq0, zero_mul])
@@ -196,6 +265,9 @@ lemma I_one_mul_add_one {q : ℚ} (hq : I 0 q) : I 1 (q * (q + 1)) := by
     have := I_mul hq1 h1
     simpa using this
 
+/--
+@isnad1 id=i.2h4v.s5.2f1701f33077 from=translated src=- shape=9621ffd9 vocab=c26c857d
+-/
 lemma I_div_E {n m : ℤ} {q r : ℚ} (hq : I n q) (hr : E m r) : I (n - m) (q / r) := by
   rcases hq with hq | hq
   · exact Or.inl (by rw [hq, zero_div])
@@ -203,18 +275,33 @@ lemma I_div_E {n m : ℤ} {q r : ℚ} (hq : I n q) (hr : E m r) : I (n - m) (q /
   · exact Or.inl (by rw [hq0, zero_div])
   exact Or.inr (by rw [padicValRat.div hq0 hr.1, hr.2]; omega)
 
+/--
+@isnad1 id=e.1h1v.s4.b765ac579405 from=translated src=- shape=7542aad0 vocab=674957e0
+-/
 lemma E_of_v {q : ℚ} (hq : q ≠ 0) : E (v q) q := ⟨hq, rfl⟩
 
+/--
+@isnad1 id=e.0h0v.s3.a4f1a4ccac9b from=translated src=- shape=6d6f5044 vocab=4d3a4451
+-/
 lemma E_three : E 0 (3 : ℚ) := by
   refine ⟨by norm_num, ?_⟩
   rw [show (3 : ℚ) = ((3 : ℕ) : ℚ) by norm_num, padicValRat.of_nat]
   simp [padicValNat.eq_zero_of_not_dvd (show ¬ 2 ∣ 3 by omega)]
 
+/--
+@isnad1 id=e.0h0v.s3.a90c1f87d4a7 from=translated src=- shape=6d6f5044 vocab=4d3a4451
+-/
 lemma E_two : E 1 (2 : ℚ) := ⟨by norm_num, v_two⟩
 
+/--
+@isnad1 id=e.0h0v.s3.9468394ccb73 from=translated src=- shape=6d6f5044 vocab=4d3a4451
+-/
 lemma E_four : E 2 (4 : ℚ) := by
   have := E_mul E_two E_two; norm_num at this; exact this
 
+/--
+@isnad1 id=e.0h0v.s3.6c0e86f128da from=translated src=- shape=6d6f5044 vocab=4d3a4451
+-/
 lemma E_sixteen : E 4 (16 : ℚ) := by
   have := E_mul E_four E_four; norm_num at this; exact this
 
@@ -222,23 +309,47 @@ section Frey
 
 variable (P : FreyPackage)
 
+/--
+@isnad1 id=eq.0h1v.s4.c56b3d0834ab from=translated src=- shape=418f340c vocab=abe13f51
+-/
 lemma frey_a₁ : (P.freyCurve⁄ℚ).a₁ = 1 := by simp [FreyPackage.freyCurve]
+/--
+@isnad1 id=eq.0h1v.s4.7bb93455ab3d from=translated src=- shape=418f340c vocab=94fd67b5
+-/
 lemma frey_a₃ : (P.freyCurve⁄ℚ).a₃ = 0 := by simp [FreyPackage.freyCurve]
+/--
+@isnad1 id=eq.0h1v.s4.abd4ae393054 from=translated src=- shape=418f340c vocab=60f969f1
+-/
 lemma frey_a₆ : (P.freyCurve⁄ℚ).a₆ = 0 := by simp [FreyPackage.freyCurve]
+/--
+@isnad1 id=eq.0h1v.s6.a371da89996b from=translated src=- shape=04f47d04 vocab=6e6dd487
+-/
 lemma frey_a₂ : (P.freyCurve⁄ℚ).a₂ = ((P.b : ℚ) ^ P.p - 1 - (P.a : ℚ) ^ P.p) / 4 := by
   simp [FreyPackage.freyCurve]
+/--
+@isnad1 id=eq.0h1v.s6.aad49a02d818 from=translated src=- shape=142786d2 vocab=080826fc
+-/
 lemma frey_a₄ : (P.freyCurve⁄ℚ).a₄ = -((P.a : ℚ) ^ P.p) * (P.b : ℚ) ^ P.p / 16 := by
   simp [FreyPackage.freyCurve]
 
+/--
+@isnad1 id=eq.0h3v.s5.410b5102fcb3 from=translated src=- shape=efa9d1d3 vocab=c8e09575
+-/
 lemma frey_negY (x y : ℚ) : (P.freyCurve⁄ℚ).negY x y = -y - x := by
   simp [negY, FreyPackage.freyCurve]
 
+/--
+@isnad1 id=eq.1h3v.s7.2e1ede12d3d1 from=translated src=- shape=6fc9f474 vocab=e74d3bff
+-/
 lemma frey_eqn {x y : ℚ} (h : (P.freyCurve⁄ℚ).Nonsingular x y) :
     y ^ 2 + x * y = x ^ 3 + (P.freyCurve⁄ℚ).a₂ * x ^ 2 + (P.freyCurve⁄ℚ).a₄ * x := by
   have he := (equation_iff x y).mp h.left
   rw [frey_a₁, frey_a₃, frey_a₆] at he
   linear_combination he
 
+/--
+@isnad1 id=eq.0h1v.s4.bd11698dd477 from=translated src=- shape=fc9f0b91 vocab=4730736a
+-/
 lemma frey_a_mod_four : P.a % 4 = 3 := by
   have h := P.ha4
   have : (P.a : ZMod 4) = ((3 : ℤ) : ZMod 4) := by rw [h]; rfl
@@ -246,35 +357,62 @@ lemma frey_a_mod_four : P.a % 4 = 3 := by
   norm_num at this
   exact this
 
+/--
+@isnad1 id=not.0h1v.s3.c1f350934522 from=translated src=- shape=4c12b637 vocab=1509210c
+-/
 lemma frey_two_not_dvd_a : ¬ (2 : ℤ) ∣ P.a := by
   have := frey_a_mod_four P; omega
 
+/--
+@isnad1 id=dvd.0h1v.s3.08e5971fe640 from=translated src=- shape=b9369acb vocab=b9a0b009
+-/
 lemma frey_two_dvd_b : (2 : ℤ) ∣ P.b := by
   have h := P.hb2
   exact (ZMod.intCast_zmod_eq_zero_iff_dvd P.b 2).mp h
 
+/--
+@isnad1 id=e.0h1v.s3.89beb5aa6cee from=translated src=- shape=8d8f87ed vocab=c5726ec6
+-/
 lemma frey_Ea : E 0 (P.a : ℚ) := by
   refine ⟨by exact_mod_cast P.ha0, ?_⟩
   rw [padicValRat.of_int, padicValInt.eq_zero_of_not_dvd (frey_two_not_dvd_a P)]
   rfl
 
+/--
+@isnad1 id=le.0h1v.s4.63e00bc10f3d from=translated src=- shape=fe6e5df3 vocab=ee0b0bd2
+-/
 lemma frey_vb_pos : 1 ≤ padicValInt 2 P.b := by
   rcases (padicValInt_dvd_iff 1 P.b).mp (by have h__af := frey_two_dvd_b P; simp at h__af ⊢; exact h__af) with h | h
   · exact absurd h P.hb0
   · exact h
 
+/--
+@isnad1 id=e.0h1v.s4.5eda875433de from=translated src=- shape=e84bfaf1 vocab=9c2ef408
+-/
 lemma frey_Eb : E (padicValInt 2 P.b : ℤ) (P.b : ℚ) :=
   ⟨by exact_mod_cast P.hb0, by rw [padicValRat.of_int]⟩
 
+/--
+@isnad1 id=e.1h3v.s5.b847f552d53c from=translated src=- shape=a775fae2 vocab=d7192bd0
+-/
 lemma E_pow {n : ℤ} {q : ℚ} (hq : E n q) (k : ℕ) : E (k * n) (q ^ k) :=
   ⟨pow_ne_zero _ hq.1, by rw [padicValRat.pow _, hq.2]⟩
 
+/--
+@isnad1 id=e.0h1v.s4.36e6a1f2ec13 from=translated src=- shape=3da112df vocab=89b986a9
+-/
 lemma frey_EA : E 0 ((P.a : ℚ) ^ P.p) := by
   have := E_pow (frey_Ea P) P.p; simpa using this
 
+/--
+@isnad1 id=e.0h1v.s5.9e6ca09732d6 from=translated src=- shape=32eb7e20 vocab=4410f411
+-/
 lemma frey_EB : E ((P.p : ℤ) * (padicValInt 2 P.b : ℤ)) ((P.b : ℚ) ^ P.p) :=
   E_pow (frey_Eb P) P.p
 
+/--
+@isnad1 id=le.0h1v.s5.82e570b060d5 from=translated src=- shape=9534589c vocab=c24eb95b
+-/
 lemma frey_beta_ge : (5 : ℤ) ≤ (P.p : ℤ) * (padicValInt 2 P.b : ℤ) := by
   have h1 := frey_vb_pos P
   have h5 := P.hp5
@@ -282,6 +420,9 @@ lemma frey_beta_ge : (5 : ℤ) ≤ (P.p : ℤ) * (padicValInt 2 P.b : ℤ) := by
     _ ≤ (P.p : ℤ) * (padicValInt 2 P.b : ℤ) :=
       mul_le_mul (by exact_mod_cast h5) (by exact_mod_cast h1) (by norm_num) (by positivity)
 
+/--
+@isnad1 id=dvd.0h1v.s5.ed91d6668092 from=translated src=- shape=c84e30da vocab=0da8a93c
+-/
 lemma frey_four_dvd : (4 : ℤ) ∣ P.b ^ P.p - 1 - P.a ^ P.p := by
   have hb : ((P.b ^ P.p : ℤ) : ZMod 4) = 0 := by
     obtain ⟨k, hk⟩ := frey_two_dvd_b P
@@ -304,6 +445,9 @@ lemma frey_four_dvd : (4 : ℤ) ∣ P.b ^ P.p - 1 - P.a ^ P.p := by
     rw [hb, ha]; decide
   exact (ZMod.intCast_zmod_eq_zero_iff_dvd _ 4).mp this
 
+/--
+@isnad1 id=i.0h1v.s4.9ea34c4c6e50 from=translated src=- shape=c9aad8d6 vocab=693a13b0
+-/
 lemma frey_I_a₂ : I 0 (P.freyCurve⁄ℚ).a₂ := by
   obtain ⟨k, hk⟩ := frey_four_dvd P
   have : (P.freyCurve⁄ℚ).a₂ = (k : ℚ) := by
@@ -312,14 +456,23 @@ lemma frey_I_a₂ : I 0 (P.freyCurve⁄ℚ).a₂ := by
     rw [hk']; ring
   rw [this]; exact I_int k
 
+/--
+@isnad1 id=e.0h1v.s5.2e90ab9c5c12 from=translated src=- shape=e941efe6 vocab=dd31c8b5
+-/
 lemma frey_E_a₄ : E ((P.p : ℤ) * (padicValInt 2 P.b : ℤ) - 4) (P.freyCurve⁄ℚ).a₄ := by
   rw [frey_a₄]
   have h := E_div (E_mul (E_neg (frey_EA P)) (frey_EB P)) E_sixteen
   simpa using h
 
+/--
+@isnad1 id=le.0h1v.s5.168ae6f58243 from=translated src=- shape=c8cd0034 vocab=9c990826
+-/
 lemma frey_gamma_ge : (1 : ℤ) ≤ (P.p : ℤ) * (padicValInt 2 P.b : ℤ) - 4 := by
   have := frey_beta_ge P; omega
 
+/--
+@isnad1 id=i.0h1v.s4.df7dd33c1231 from=translated src=- shape=c9aad8d6 vocab=0990d2fa
+-/
 lemma frey_I_a₄ : I 1 (P.freyCurve⁄ℚ).a₄ := I_of_le (frey_E_a₄ P).I (frey_gamma_ge P)
 
 end Frey
@@ -332,12 +485,21 @@ def xc : (P.freyCurve⁄ℚ).Point → ℚ
   | .zero => 0
   | .some x _ _ => x
 
+/--
+@isnad1 id=eq.0h1v.s4.64f2dde67ece from=translated src=- shape=4ffb13a3 vocab=b334a578
+-/
 @[scoped simp] lemma xc_zero' : xc P .zero = 0 := rfl
+/--
+@isnad1 id=eq.1h3v.s5.8b2403976f61 from=translated src=- shape=7df6f96a vocab=0582c232
+-/
 @[scoped simp] lemma xc_some {x y : ℚ} (h : (P.freyCurve⁄ℚ).Nonsingular x y) :
     xc P (.some x y h) = x := rfl
 
 variable {P}
 
+/--
+@isnad1 id=i.2h3v.s5.a124cbe61f37 from=translated src=- shape=a6ee82e2 vocab=9fb2f0e7
+-/
 lemma frey_I_y {x y : ℚ} (h : (P.freyCurve⁄ℚ).Nonsingular x y) (hx : I 0 x) : I 0 y := by
   by_cases hy0 : y = 0
   · exact Or.inl hy0
@@ -363,6 +525,9 @@ lemma frey_I_y {x y : ℚ} (h : (P.freyCurve⁄ℚ).Nonsingular x y) (hx : I 0 x
   rw [heq] at hL
   exact E_I_absurd hL hR (by omega)
 
+/--
+@isnad1 id=and.3h4v.s6.f7434fd35ab3 from=translated src=- shape=412c79d1 vocab=7c48a42f
+-/
 lemma frey_neg_val {x y : ℚ} (h : (P.freyCurve⁄ℚ).Nonsingular x y) {e : ℤ} (hx : E e x)
     (he : e < 0) : y ≠ 0 ∧ v y < e ∧ 2 * v y = 3 * e := by
   have heq := frey_eqn P h
@@ -404,6 +569,9 @@ lemma frey_neg_val {x y : ℚ} (h : (P.freyCurve⁄ℚ).Nonsingular x y) {e : �
     have := hL.2.symm.trans hR.2
     omega
 
+/--
+@isnad1 id=and.4h4v.s7.c305efcd3b11 from=translated src=- shape=ccb43fe7 vocab=edd28839
+-/
 lemma frey_double_neg {x y : ℚ} (h : (P.freyCurve⁄ℚ).Nonsingular x y) {e : ℤ} (hx : E e x)
     (he : e < 0) (hy : y ≠ (P.freyCurve⁄ℚ).negY x y) :
     (P.freyCurve⁄ℚ).addX x x ((P.freyCurve⁄ℚ).slope x x y y) ≠ 0 ∧
@@ -460,6 +628,9 @@ section Orbit
 
 variable {P : FreyPackage}
 
+/--
+@isnad1 id=i.1h3v.s8.1561e241de25 from=translated src=- shape=0ec00b1d vocab=310800ab
+-/
 theorem frey_I_xc_nsmul (Q : (P.freyCurve⁄ℚ).Point) (hQ : addOrderOf Q = P.p) (k : ℕ) :
     I 0 (xc P (k • Q)) := by
   classical
@@ -520,6 +691,9 @@ theorem frey_I_xc_nsmul (Q : (P.freyCurve⁄ℚ).Point) (hQ : addOrderOf Q = P.p
   have hle := hmin ((k₀ * 2) % P.p) (Finset.mem_range.mpr (Nat.mod_lt _ P.hppos))
   omega
 
+/--
+@isnad1 id=ne.3h4v.s7.1a354c0547a1 from=translated src=- shape=6f302cc1 vocab=b51f08cd
+-/
 lemma frey_x_ne_zero_of_order (Q : (P.freyCurve⁄ℚ).Point) (hQ : addOrderOf Q = P.p)
     {x y : ℚ} {h : (P.freyCurve⁄ℚ).Nonsingular x y} (hxy : Q = .some x y h) : x ≠ 0 := by
   intro hx0
@@ -535,6 +709,9 @@ lemma frey_x_ne_zero_of_order (Q : (P.freyCurve⁄ℚ).Point) (hQ : addOrderOf Q
   have := Nat.le_of_dvd (by norm_num) hdvd
   omega
 
+/--
+@isnad1 id=le.3h4v.s7.3ae19c47defc from=translated src=- shape=6f16f644 vocab=b66da724
+-/
 theorem frey_deep_of_order (Q : (P.freyCurve⁄ℚ).Point) (hQ : addOrderOf Q = P.p) {x y : ℚ}
     {h : (P.freyCurve⁄ℚ).Nonsingular x y} (hxy : Q = .some x y h) : 1 ≤ v x := by
   have hp5 := P.hp5
@@ -663,6 +840,9 @@ end Orbit
 
 section Algebra
 
+/--
+@isnad1 id=eq.2h6v.s9.332f6961ead3 from=translated src=- shape=adc87221 vocab=f37b0cf8
+-/
 theorem pm_core (x₁ y₁ x₂ y₂ a₂ a₄ : ℚ)
     (heq₁ : y₁ ^ 2 + x₁ * y₁ = x₁ ^ 3 + a₂ * x₁ ^ 2 + a₄ * x₁)
     (heq₂ : y₂ ^ 2 + x₂ * y₂ = x₂ ^ 3 + a₂ * x₂ ^ 2 + a₄ * x₂) :
@@ -679,6 +859,9 @@ theorem pm_core (x₁ y₁ x₂ y₂ a₂ a₄ : ℚ)
         - (4 * x₂ ^ 3 + (1 + 4 * a₂) * x₂ ^ 2 + 4 * a₄ * x₂))
         - 2 * (1 + 4 * a₂ + 4 * x₁ + 4 * x₂) * (x₁ - x₂) ^ 2)) * heq₂
 
+/--
+@isnad1 id=eq.3h6v.s9.38dfd40d6b1c from=translated src=- shape=d16d03fb vocab=49309312
+-/
 theorem pm_ident (x₁ y₁ x₂ y₂ a₂ a₄ : ℚ)
     (heq₁ : y₁ ^ 2 + x₁ * y₁ = x₁ ^ 3 + a₂ * x₁ ^ 2 + a₄ * x₁)
     (heq₂ : y₂ ^ 2 + x₂ * y₂ = x₂ ^ 3 + a₂ * x₂ ^ 2 + a₄ * x₂)
@@ -701,6 +884,9 @@ theorem pm_ident (x₁ y₁ x₂ y₂ a₂ a₄ : ℚ)
   field_simp
   ring
 
+/--
+@isnad1 id=eq.2h4v.s8.4fb888e5b59c from=translated src=- shape=10fc68b7 vocab=4c78aa22
+-/
 theorem dbl_ident (x y a₂ a₄ : ℚ) (heq : y ^ 2 + x * y = x ^ 3 + a₂ * x ^ 2 + a₄ * x)
     (hD : x + 2 * y ≠ 0) :
     (((3 * x ^ 2 + 2 * a₂ * x + a₄ - y) / (x + 2 * y)) ^ 2
@@ -709,6 +895,9 @@ theorem dbl_ident (x y a₂ a₄ : ℚ) (heq : y ^ 2 + x * y = x ^ 3 + a₂ * x 
   field_simp
   linear_combination (-1 - 4 * a₂ - 8 * x) * heq
 
+/--
+@isnad1 id=eq.2h4v.s7.9f46d902cbf6 from=translated src=- shape=83bf73e8 vocab=4c78aa22
+-/
 theorem T0_ident (x y a₂ a₄ : ℚ) (heq : y ^ 2 + x * y = x ^ 3 + a₂ * x ^ 2 + a₄ * x)
     (hx : x ≠ 0) :
     ((y - 0) / (x - 0)) ^ 2 + (y - 0) / (x - 0) - a₂ - x - 0 = a₄ / x := by
@@ -724,8 +913,14 @@ variable {P : FreyPackage}
 
 def gam (P : FreyPackage) : ℤ := (P.p : ℤ) * (padicValInt 2 P.b : ℤ) - 4
 
+/--
+@isnad1 id=e.0h1v.s4.3003104b72c8 from=translated src=- shape=73feb043 vocab=a1c9b595
+-/
 lemma frey_E_a₄' (P : FreyPackage) : E (gam P) (P.freyCurve⁄ℚ).a₄ := frey_E_a₄ P
 
+/--
+@isnad1 id=or.0h1v.s5.2a7b104ba4f8 from=translated src=- shape=1f77317c vocab=303461b6
+-/
 lemma frey_a₂_dichotomy (P : FreyPackage) :
     I 1 (P.freyCurve⁄ℚ).a₂ ∨ E 0 (P.freyCurve⁄ℚ).a₂ := by
   by_cases hA2 : I 1 (P.freyCurve⁄ℚ).a₂
@@ -736,6 +931,9 @@ lemma frey_a₂_dichotomy (P : FreyPackage) :
     · exact absurd (Or.inl h0) hA2
     · by_contra hv; exact hA2 (Or.inr (by omega))
 
+/--
+@isnad1 id=false.3h3v.s5.72564fc69bc2 from=translated src=- shape=79d450a1 vocab=0133718d
+-/
 lemma frey_no_unit_point_split (hA2 : I 1 (P.freyCurve⁄ℚ).a₂) {x y : ℚ}
     (h : (P.freyCurve⁄ℚ).Nonsingular x y) (hEx : E 0 x) : False := by
   have hIy : I 0 y := frey_I_y h hEx.I
@@ -764,6 +962,9 @@ lemma frey_no_unit_point_split (hA2 : I 1 (P.freyCurve⁄ℚ).a₂) {x y : ℚ}
   rw [heq] at hL
   exact E_I_absurd hR hL (by norm_num)
 
+/--
+@isnad1 id=and.3h3v.s6.4f47a095d8b7 from=translated src=- shape=7b0da58c vocab=7af55937
+-/
 lemma frey_unit_double_nonsplit (hEA2 : E 0 (P.freyCurve⁄ℚ).a₂) {x y : ℚ}
     (h : (P.freyCurve⁄ℚ).Nonsingular x y) (hEx : E 0 x) :
     y ≠ (P.freyCurve⁄ℚ).negY x y ∧
@@ -797,14 +998,23 @@ lemma frey_unit_double_nonsplit (hEA2 : E 0 (P.freyCurve⁄ℚ).a₂) {x y : ℚ
   rw [hrw]
   exact E_add_I (E_neg hEA2) (I_sub (I_one_mul_add_one hIℓ) h2x) (by norm_num)
 
+/--
+@isnad1 id=nonsingu.0h1v.s4.b3e60d4b6f49 from=translated src=- shape=1d725a3a vocab=02372eb1
+-/
 lemma frey_ns00 (P : FreyPackage) : (P.freyCurve⁄ℚ).Nonsingular 0 0 := by
   rw [nonsingular_zero]
   exact ⟨frey_a₆ P, Or.inr (frey_E_a₄ P).1⟩
 
+/--
+@isnad1 id=eq.0h1v.s7.53889e36501d from=translated src=- shape=971fa178 vocab=b48d377f
+-/
 lemma frey_T0_T0 (P : FreyPackage) :
     Point.some 0 0 (frey_ns00 P) + Point.some 0 0 (frey_ns00 P) = 0 :=
   add_self_of_Y_eq (by rw [frey_negY]; norm_num)
 
+/--
+@isnad1 id=eq.2h3v.s6.6e167b8b5fd5 from=translated src=- shape=82488e45 vocab=c2424b66
+-/
 lemma frey_addX_T0 {x y : ℚ} (h : (P.freyCurve⁄ℚ).Nonsingular x y) (hx0 : x ≠ 0) :
     (P.freyCurve⁄ℚ).addX x 0 ((P.freyCurve⁄ℚ).slope x 0 y 0) = (P.freyCurve⁄ℚ).a₄ / x := by
   have heq := frey_eqn P h
@@ -814,6 +1024,9 @@ lemma frey_addX_T0 {x y : ℚ} (h : (P.freyCurve⁄ℚ).Nonsingular x y) (hx0 : 
   set A4 := (P.freyCurve⁄ℚ).a₄ with hA4
   exact T0_ident x y A2 A4 heq hx0
 
+/--
+@isnad1 id=eq.2h3v.s7.42d30b1a330a from=translated src=- shape=879ff4e6 vocab=dfe90149
+-/
 lemma frey_dbl_ident {x y : ℚ} (h : (P.freyCurve⁄ℚ).Nonsingular x y)
     (hy : y ≠ (P.freyCurve⁄ℚ).negY x y) :
     (P.freyCurve⁄ℚ).addX x x ((P.freyCurve⁄ℚ).slope x x y y) * (x + 2 * y) ^ 2 =
@@ -827,6 +1040,9 @@ lemma frey_dbl_ident {x y : ℚ} (h : (P.freyCurve⁄ℚ).Nonsingular x y)
   set A4 := (P.freyCurve⁄ℚ).a₄ with hA4
   exact dbl_ident x y A2 A4 heq hD0
 
+/--
+@isnad1 id=eq.3h5v.s7.0e6fa12b71b5 from=translated src=- shape=19711c4e vocab=48546b29
+-/
 lemma frey_pm_ident {x₁ y₁ x₂ y₂ : ℚ} (h₁ : (P.freyCurve⁄ℚ).Nonsingular x₁ y₁)
     (h₂ : (P.freyCurve⁄ℚ).Nonsingular x₂ y₂) (hx : x₁ ≠ x₂) :
     (P.freyCurve⁄ℚ).addX x₁ x₂ ((P.freyCurve⁄ℚ).slope x₁ x₂ y₁ y₂) *
@@ -840,6 +1056,9 @@ lemma frey_pm_ident {x₁ y₁ x₂ y₂ : ℚ} (h₁ : (P.freyCurve⁄ℚ).Nons
   set A4 := (P.freyCurve⁄ℚ).a₄ with hA4
   exact pm_ident x₁ y₁ x₂ y₂ A2 A4 heq₁ heq₂ (sub_ne_zero.mpr hx)
 
+/--
+@isnad1 id=eq.2h3v.s8.aebb752e831b from=translated src=- shape=2130e657 vocab=ea3ac15f
+-/
 lemma frey_order_nsmul (Q : (P.freyCurve⁄ℚ).Point) (hQ : addOrderOf Q = P.p) {k : ℕ}
     (hk : ¬ P.p ∣ k) : addOrderOf (k • Q) = P.p := by
   haveI : Fact P.p.Prime := ⟨P.pp⟩
@@ -849,6 +1068,9 @@ lemma frey_order_nsmul (Q : (P.freyCurve⁄ℚ).Point) (hQ : addOrderOf Q = P.p)
     apply hk
     rw [← hQ]; exact addOrderOf_dvd_iff_nsmul_eq_zero.mpr h0
 
+/--
+@isnad1 id=le.3h4v.s7.6009a804b0ec from=translated src=- shape=d6be5329 vocab=8479988e
+-/
 theorem frey_shallow_of_order (Q : (P.freyCurve⁄ℚ).Point) (hQ : addOrderOf Q = P.p) {x y : ℚ}
     {h : (P.freyCurve⁄ℚ).Nonsingular x y} (hxy : Q = .some x y h) : v x ≤ gam P - 1 := by
   classical
@@ -901,6 +1123,9 @@ theorem frey_shallow_of_order (Q : (P.freyCurve⁄ℚ).Point) (hQ : addOrderOf Q
       rw [hE2.2] at hdeep
       omega
 
+/--
+@isnad1 id=e.3h4v.s7.e0ce48d6fe45 from=translated src=- shape=c7c5da22 vocab=0a77b220
+-/
 theorem frey_E_D (Q : (P.freyCurve⁄ℚ).Point) (hQ : addOrderOf Q = P.p) {x y : ℚ}
     {h : (P.freyCurve⁄ℚ).Nonsingular x y} (hxy : Q = .some x y h) : E (v x) (x + 2 * y) := by
   have hx0 : x ≠ 0 := frey_x_ne_zero_of_order Q hQ hxy
@@ -937,6 +1162,9 @@ end Node
 
 section Arith
 
+/--
+@isnad1 id=or.4h2v.s6.c463f3f5e0d5 from=translated src=- shape=4b1585e9 vocab=395769cb
+-/
 lemma wrap_cases {γ t : ℤ} (hγ : 0 < γ) (hdvd : 2 * γ ∣ t) (h1 : -4 * γ < t) (h2 : t < 2 * γ) :
     t = 0 ∨ t = -(2 * γ) := by
   obtain ⟨q, hq⟩ := hdvd
@@ -949,6 +1177,9 @@ lemma wrap_cases {γ t : ℤ} (hγ : 0 < γ) (hdvd : 2 * γ ∣ t) (h1 : -4 * γ
   · left; rw [hq]; ring
   · right; rw [hq]; ring
 
+/--
+@isnad1 id=eq.4h2v.s6.c9ae8db44ebc from=translated src=- shape=87fed4df vocab=395769cb
+-/
 lemma wrap_zero {γ t : ℤ} (hγ : 0 < γ) (hdvd : 2 * γ ∣ t) (h1 : -(2 * γ) < t) (h2 : t < 2 * γ) :
     t = 0 := by
   obtain ⟨q, hq⟩ := hdvd
@@ -959,6 +1190,9 @@ lemma wrap_zero {γ t : ℤ} (hγ : 0 < γ) (hdvd : 2 * γ ∣ t) (h1 : -(2 * γ
   have : q = 0 := by omega
   rw [hq, this]; ring
 
+/--
+@isnad1 id=false.9h6v.s9.66bff4aeb349 from=translated src=- shape=4c54bd66 vocab=26a9c55e
+-/
 theorem arith_core (p : ℕ) (hp5 : 5 ≤ p) (γ : ℤ) (e A B : ℕ → ℤ) (A₁ : ℤ)
     (hbd : ∀ k, 1 ≤ k → k ≤ p - 1 → 1 ≤ e k ∧ e k ≤ γ - 1)
     (hA₁ : (2 * e 1 ≠ γ → A₁ = min (2 * e 1) γ) ∧ (2 * e 1 = γ → γ ≤ A₁))
@@ -1116,6 +1350,9 @@ theorem arith_core (p : ℕ) (hp5 : 5 ≤ p) (γ : ℤ) (e A B : ℕ → ℤ) (A
 
 end Arith
 
+/--
+@isnad1 id=eq.1h2v.s8.f29d5a096d2c from=translated src=- shape=a6e6dca7 vocab=3678efb8
+-/
 theorem frey_no_rational_p_torsion (P : FreyPackage) (Q : (P.freyCurve⁄ℚ).Point)
     (hQp : P.p • Q = 0) : Q = 0 := by
   classical
@@ -1349,6 +1586,9 @@ theorem frey_no_rational_p_torsion (P : FreyPackage) (Q : (P.freyCurve⁄ℚ).Po
 end S04
 open scoped _root_.P2MW.S_FreyPackage_freyCurve_rational_p_torsion_eq_zero.S04
 
+/--
+@isnad1 id=eq.1h2v.s8.f29d5a096d2c from=translated src=- shape=a6e6dca7 vocab=3678efb8
+-/
 theorem solution (P : FreyPackage) (y : (P.freyCurve⁄ℚ).Point) (hy : P.p • y = 0) : y = 0 :=
   S04.frey_no_rational_p_torsion P y hy
 -- Tengoku: root names of this library moved to Tengoku.FltAnthropic so they do not collide with other libraries (generated)

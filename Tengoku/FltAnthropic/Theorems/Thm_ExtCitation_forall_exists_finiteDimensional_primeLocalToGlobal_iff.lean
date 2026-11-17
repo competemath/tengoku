@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_ExtCitation_forall_exists_finiteDimensiona
 
 set_option autoImplicit false
 open CategoryTheory ExtCitation
+/--
+@isnad1 id=iff.0h3v.s13.dd5f1d461bd9 from=translated src=- shape=8674436f vocab=0403df3e
+-/
 theorem ExtCitation.forall_exists_finiteDimensional_primeLocalToGlobal_iff
     (q : Nat.Primes) [Fact (q : ℕ).Prime]
     {k : Type} [CommRing k] (M : Rep k (primeLocalGaloisGroup q)) :

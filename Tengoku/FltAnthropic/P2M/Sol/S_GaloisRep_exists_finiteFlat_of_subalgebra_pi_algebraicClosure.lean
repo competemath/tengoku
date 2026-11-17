@@ -30,13 +30,25 @@ abbrev Qb : Type := AlgebraicClosure ℚ
 
 abbrev Rp (p : ℕ) : Type := GaloisRep.ratLocalizedAt p
 
+/--
+@isnad1 id=isalgebr.0h0v.s4.92f995461263 from=translated src=- shape=3905abf2 vocab=c7f7e443
+-/
 scoped instance isAlgebraicQbar : Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) :=
   AlgebraicClosure.isAlgebraic ℚ
 
+/--
+@isnad1 id=isalgclo.0h0v.s4.728a7497b292 from=translated src=- shape=3905abf2 vocab=1bc39e89
+-/
 scoped instance isAlgClosureQbar : IsAlgClosure ℚ (AlgebraicClosure ℚ) := ⟨inferInstance, inferInstance⟩
 
+/--
+@isnad1 id=isgalois.0h0v.s4.b04052bb8761 from=translated src=- shape=3905abf2 vocab=49029860
+-/
 scoped instance isGaloisQbar : IsGalois ℚ (AlgebraicClosure ℚ) := IsAlgClosure.isGalois ℚ (AlgebraicClosure ℚ)
 
+/--
+@isnad1 id=injectiv.1h6v.s8.a70aadeba3fd from=translated src=- shape=3ea1cc50 vocab=66280617
+-/
 theorem injective_of_linearIndependent_basis {R V W ι : Type} [CommRing R] [AddCommGroup V]
     [Module R V] [AddCommGroup W] [Module R W] (b : Module.Basis ι R V) (f : V →ₗ[R] W)
     (h : LinearIndependent R (fun i => f (b i))) : Function.Injective f := by
@@ -48,6 +60,9 @@ theorem injective_of_linearIndependent_basis {R V W ι : Type} [CommRing R] [Add
   rw [key v, key w] at hvw
   exact b.repr.injective (h hvw)
 
+/--
+@isnad1 id=linearin.2h7v.s8.dd42db3ca2f2 from=translated src=- shape=dacd43c3 vocab=a09a5cb5
+-/
 theorem linearIndependent_mul {L X Y ι κ : Type} [Field L] [Fintype ι] [Fintype κ]
     (v : ι → X → L) (w : κ → Y → L) (hv : LinearIndependent L v) (hw : LinearIndependent L w) :
     LinearIndependent L (fun ij : ι × κ => fun xy : X × Y => v ij.1 xy.1 * w ij.2 xy.2) := by
@@ -77,13 +92,22 @@ section setting
 variable {p : ℕ} (hp : p.Prime) {X : Type} [AddCommGroup X]
   [DistribMulAction Γℚ X] (B : Subalgebra (Rp p) (X → Qb))
 
+/--
+@isnad1 id=eq.0h3v.s8.0b676c8b6db6 from=translated src=- shape=f28c6a5f vocab=1187946e
+-/
 theorem subring_smul_eq (r : Rp p) (v : Qb) : r • v = algebraMap (Rp p) Qb r * v :=
   Algebra.smul_def r v
 
+/--
+@isnad1 id=injectiv.0h1v.s7.95622c46018e from=translated src=- shape=c34db14e vocab=9f57d29e
+-/
 theorem algebraMap_injective : Function.Injective (algebraMap (Rp p) Qb) := by
   rw [IsScalarTower.algebraMap_eq (Rp p) ℚ Qb]
   exact (algebraMap ℚ Qb).injective.comp Subtype.val_injective
 
+/--
+@isnad1 id=istorsio.0h2v.s7.aac3b6ddc5fa from=translated src=- shape=92e90191 vocab=50f2d066
+-/
 scoped instance isTorsionFree_pi : Module.IsTorsionFree (Rp p) (X → Qb) := by
   refine Module.IsTorsionFree.of_smul_eq_zero fun r F hrF => ?_
   by_cases hr : r = 0
@@ -95,6 +119,9 @@ scoped instance isTorsionFree_pi : Module.IsTorsionFree (Rp p) (X → Qb) := by
     · exact absurd (algebraMap_injective (by rw [h1, map_zero])) hr
     · exact h1
 
+/--
+@isnad1 id=istorsio.0h3v.s10.6b257ad4636b from=translated src=- shape=7392005a vocab=3769d3f4
+-/
 scoped instance isTorsionFree_B : Module.IsTorsionFree (Rp p) B :=
   Function.Injective.moduleIsTorsionFree (fun F : B => (F : X → Qb)) Subtype.val_injective
     fun _ _ => rfl
@@ -112,6 +139,9 @@ def incl {Y : Type} (π : Y → X) : B →ₐ[Rp p] (Y → Qb) := (precomp π).c
 def θ₂ : B ⊗[Rp p] B →ₐ[Rp p] (X × X → Qb) :=
   Algebra.TensorProduct.productMap (incl B Prod.fst) (incl B Prod.snd)
 
+/--
+@isnad1 id=eq.0h6v.s14.de25dfb98618 from=translated src=- shape=c28c9b09 vocab=ee0fb196
+-/
 theorem θ₂_tmul (F F' : B) (xy : X × X) :
     θ₂ B (F ⊗ₜ F') xy = (F : X → Qb) xy.1 * (F' : X → Qb) xy.2 := rfl
 
@@ -119,6 +149,9 @@ def θ₃ : B ⊗[Rp p] (B ⊗[Rp p] B) →ₐ[Rp p] (X × (X × X) → Qb) :=
   Algebra.TensorProduct.productMap (incl B Prod.fst)
     ((precomp (fun t : X × (X × X) => t.2)).comp (θ₂ B))
 
+/--
+@isnad1 id=eq.0h6v.s16.35fa0f104b82 from=translated src=- shape=31b30ac5 vocab=543c6635
+-/
 theorem θ₃_tmul (F : B) (T : B ⊗[Rp p] B) (t : X × (X × X)) :
     θ₃ B (F ⊗ₜ T) t = (F : X → Qb) t.1 * θ₂ B T t.2 := rfl
 
@@ -134,13 +167,22 @@ variable {B} [Finite X] (H : IsHopfOrder B)
 
 include hp H
 
+/--
+@isnad1 id=finite.2h3v.s10.8c84b9f996a5 from=translated src=- shape=0252f0b3 vocab=480ccdd9
+-/
 theorem moduleFinite : Module.Finite (Rp p) B := Module.Finite.iff_fg.mpr H.fg
 
+/--
+@isnad1 id=free.2h3v.s10.b02255c4ebbf from=translated src=- shape=0252f0b3 vocab=41510f3b
+-/
 theorem moduleFree : Module.Free (Rp p) B := by
   haveI := GaloisRep.isDiscreteValuationRing_ratLocalizedAt p hp
   haveI := moduleFinite hp H
   exact Module.free_of_finite_type_torsion_free'
 
+/--
+@isnad1 id=linearin.3h5v.s11.814392755c8e from=translated src=- shape=6cfe7058 vocab=8e16fbc1
+-/
 theorem linearIndependent_qb {ι : Type} (b : ι → B) (hb : LinearIndependent (Rp p) b) :
     LinearIndependent Qb (fun i => (b i : X → Qb)) := by
   haveI := GaloisRep.isFractionRing_ratLocalizedAt p
@@ -152,6 +194,9 @@ theorem linearIndependent_qb {ι : Type} (b : ι → B) (hb : LinearIndependent 
   exact AlgebraicClosure.linearIndependent_of_linearIndependent_rat_of_forall_apply_smul _
     (fun i σ x => H.equiv _ (b i).2 σ x) h2
 
+/--
+@isnad1 id=linearin.3h5v.s8.06328d457237 from=translated src=- shape=809095ed vocab=0ffcf333
+-/
 theorem restrict_qb {ι : Type} {v : ι → X × X → Qb} (h : LinearIndependent Qb v) :
     LinearIndependent (Rp p) v :=
   letI : SMulWithZero (Rp p) Qb := (Module.toMulActionWithZero (R := Rp p) (M := Qb)).toSMulWithZero
@@ -161,6 +206,9 @@ theorem restrict_qb {ι : Type} {v : ι → X × X → Qb} (h : LinearIndependen
     simp only [Algebra.smul_def, mul_one] at hrs
     exact hrs)
 
+/--
+@isnad1 id=linearin.3h5v.s8.a4970b1a8763 from=translated src=- shape=17d5d8bf vocab=0ffcf333
+-/
 theorem restrict_qb₃ {ι : Type} {v : ι → X × (X × X) → Qb} (h : LinearIndependent Qb v) :
     LinearIndependent (Rp p) v :=
   letI : SMulWithZero (Rp p) Qb := (Module.toMulActionWithZero (R := Rp p) (M := Qb)).toSMulWithZero
@@ -170,6 +218,9 @@ theorem restrict_qb₃ {ι : Type} {v : ι → X × (X × X) → Qb} (h : Linear
     simp only [Algebra.smul_def, mul_one] at hrs
     exact hrs)
 
+/--
+@isnad1 id=injectiv.2h3v.s14.0dc6b64d532c from=translated src=- shape=2fe10ddb vocab=02f2c92b
+-/
 theorem θ₂_injective : Function.Injective (θ₂ B) := by
   haveI := moduleFree hp H
   haveI := moduleFinite hp H
@@ -184,6 +235,9 @@ theorem θ₂_injective : Function.Injective (θ₂ B) := by
   rw [Module.Basis.tensorProduct_apply']
   rfl
 
+/--
+@isnad1 id=injectiv.2h3v.s15.83d85b61ed9d from=translated src=- shape=f1515d03 vocab=17385a57
+-/
 theorem θ₃_injective : Function.Injective (θ₃ B) := by
   haveI := moduleFree hp H
   haveI := moduleFinite hp H
@@ -203,8 +257,14 @@ variable (B) in
 def mstar : B →ₐ[Rp p] (X × X → Qb) := incl B (fun xy => xy.1 + xy.2)
 
 omit hp H in
+/--
+@isnad1 id=eq.0h5v.s11.9a1a1554bbeb from=translated src=- shape=1f526490 vocab=ffb132eb
+-/
 theorem mstar_apply (F : B) (xy : X × X) : mstar B F xy = (F : X → Qb) (xy.1 + xy.2) := rfl
 
+/--
+@isnad1 id=mem.2h4v.s14.06b5bc082419 from=translated src=- shape=58abb141 vocab=865dd73a
+-/
 theorem mstar_mem_range (F : B) : mstar B F ∈ LinearMap.range (θ₂ B).toLinearMap := by
   obtain ⟨n, F₁, F₂, h₁, h₂, hlaw⟩ := H.comul F F.2
   refine ⟨∑ i, (⟨F₁ i, h₁ i⟩ : B) ⊗ₜ (⟨F₂ i, h₂ i⟩ : B), ?_⟩
@@ -217,6 +277,9 @@ def comulLin : B →ₗ[Rp p] B ⊗[Rp p] B :=
     LinearMap.codRestrict (LinearMap.range (θ₂ B).toLinearMap) (mstar B).toLinearMap
       (mstar_mem_range hp H)
 
+/--
+@isnad1 id=eq.2h4v.s15.a57bca304bf6 from=translated src=- shape=f7907d29 vocab=57b5d7f1
+-/
 theorem θ₂_comulLin (F : B) : θ₂ B (comulLin hp H F) = mstar B F := by
   have h1 := LinearEquiv.ofInjective_apply (θ₂ B).toLinearMap (h := θ₂_injective hp H)
     ((LinearEquiv.ofInjective (θ₂ B).toLinearMap (θ₂_injective hp H)).symm
@@ -224,10 +287,16 @@ theorem θ₂_comulLin (F : B) : θ₂ B (comulLin hp H F) = mstar B F := by
   rw [LinearEquiv.apply_symm_apply] at h1
   exact h1.symm
 
+/--
+@isnad1 id=eq.2h5v.s15.3608308a5193 from=translated src=- shape=3ca4b02f vocab=09edbdc1
+-/
 theorem θ₂_comulLin_apply (F : B) (xy : X × X) :
     θ₂ B (comulLin hp H F) xy = (F : X → Qb) (xy.1 + xy.2) := by
   rw [θ₂_comulLin]; rfl
 
+/--
+@isnad1 id=eq.3h7v.s14.b59e59f1bcbb from=translated src=- shape=9fb4000f vocab=f07fc2c7
+-/
 theorem comulLin_eq_sum (F : B) {n : ℕ} (F₁ F₂ : Fin n → B)
     (hlaw : ∀ x y : X, (F : X → Qb) (x + y) = ∑ i, (F₁ i : X → Qb) x * (F₂ i : X → Qb) y) :
     comulLin hp H F = ∑ i, F₁ i ⊗ₜ F₂ i := by
@@ -236,11 +305,17 @@ theorem comulLin_eq_sum (F : B) {n : ℕ} (F₁ F₂ : Fin n → B)
   rw [θ₂_comulLin_apply, hlaw, map_sum, Finset.sum_apply]
   rfl
 
+/--
+@isnad1 id=ex.2h4v.s11.79f6dfa7c007 from=translated src=- shape=e861d5b6 vocab=8a026df0
+-/
 theorem exists_law (F : B) : ∃ (n : ℕ) (F₁ F₂ : Fin n → B),
     ∀ x y : X, (F : X → Qb) (x + y) = ∑ i, (F₁ i : X → Qb) x * (F₂ i : X → Qb) y := by
   obtain ⟨n, F₁, F₂, h₁, h₂, hlaw⟩ := H.comul F F.2
   exact ⟨n, fun i => ⟨F₁ i, h₁ i⟩, fun i => ⟨F₂ i, h₂ i⟩, hlaw⟩
 
+/--
+@isnad1 id=mem.2h4v.s10.7bbc22e8b59f from=translated src=- shape=560be97d vocab=4afa118a
+-/
 theorem apply_zero_mem_range (F : B) : (F : X → Qb) 0 ∈ Set.range (algebraMap (Rp p) Qb) := by
   haveI := GaloisRep.isDiscreteValuationRing_ratLocalizedAt p hp
   haveI := GaloisRep.isFractionRing_ratLocalizedAt p
@@ -262,6 +337,9 @@ theorem apply_zero_mem_range (F : B) : (F : X → Qb) 0 ∈ Set.range (algebraMa
 
 def counitFun (F : B) : Rp p := Classical.choose (apply_zero_mem_range hp H F)
 
+/--
+@isnad1 id=eq.2h4v.s10.c0d8ab37f990 from=translated src=- shape=cfacd77c vocab=10b8a83d
+-/
 theorem algebraMap_counitFun (F : B) : algebraMap (Rp p) Qb (counitFun hp H F) = (F : X → Qb) 0 :=
   Classical.choose_spec (apply_zero_mem_range hp H F)
 
@@ -275,10 +353,16 @@ def counitAlg : B →ₐ[Rp p] Rp p where
     rw [algebraMap_counitFun, map_add, algebraMap_counitFun, algebraMap_counitFun]; rfl)
   commutes' r := algebraMap_injective (by rw [algebraMap_counitFun]; rfl)
 
+/--
+@isnad1 id=eq.2h4v.s11.980ff91e67cc from=translated src=- shape=395be631 vocab=45be079a
+-/
 theorem algebraMap_counitAlg (F : B) : algebraMap (Rp p) Qb (counitAlg hp H F) = (F : X → Qb) 0 :=
   algebraMap_counitFun hp H F
 
 omit hp H in
+/--
+@isnad1 id=eq.0h6v.s17.99df069ca459 from=translated src=- shape=b951a9b7 vocab=37aa5973
+-/
 theorem θ₃_assoc_tmul (T : B ⊗[Rp p] B) (G : B) (t : X × (X × X)) :
     θ₃ B (TensorProduct.assoc (Rp p) B B B (T ⊗ₜ G)) t = θ₂ B T (t.1, t.2.1) * (G : X → Qb) t.2.2 := by
   induction T using TensorProduct.induction_on with
@@ -288,6 +372,9 @@ theorem θ₃_assoc_tmul (T : B ⊗[Rp p] B) (G : B) (t : X × (X × X)) :
   | add a b ha hb => rw [TensorProduct.add_tmul, map_add, map_add, Pi.add_apply, ha, hb, map_add,
       Pi.add_apply, add_mul]
 
+/--
+@isnad1 id=eq.2h5v.s18.95764950bdbf from=translated src=- shape=d0579da3 vocab=b86364a4
+-/
 theorem coassoc_lhs (F : B) (t : X × (X × X)) :
     θ₃ B (TensorProduct.assoc (Rp p) B B B
       (LinearMap.rTensor B (comulLin hp H) (comulLin hp H F))) t =
@@ -297,6 +384,9 @@ theorem coassoc_lhs (F : B) (t : X × (X × X)) :
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [LinearMap.rTensor_tmul, θ₃_assoc_tmul, θ₂_comulLin_apply]
 
+/--
+@isnad1 id=eq.2h5v.s17.36e1c36ed82e from=translated src=- shape=8ea00b91 vocab=b2ac7ede
+-/
 theorem coassoc_rhs (F : B) (t : X × (X × X)) :
     θ₃ B (LinearMap.lTensor B (comulLin hp H) (comulLin hp H F)) t =
       (F : X → Qb) (t.1 + (t.2.1 + t.2.2)) := by
@@ -305,6 +395,9 @@ theorem coassoc_rhs (F : B) (t : X × (X × X)) :
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [LinearMap.lTensor_tmul, θ₃_tmul, θ₂_comulLin_apply]
 
+/--
+@isnad1 id=eq.2h5v.s16.ed5776283eff from=translated src=- shape=a742fc4e vocab=2f89bcfa
+-/
 theorem counit_left (F : B) (y : X) :
     ((TensorProduct.lid (Rp p) B (LinearMap.rTensor B (counitAlg hp H).toLinearMap
       (comulLin hp H F)) : B) : X → Qb) y = (F : X → Qb) y := by
@@ -316,6 +409,9 @@ theorem counit_left (F : B) (y : X) :
   change counitAlg hp H (F₁ i) • ((F₂ i : X → Qb) y) = _
   rw [subring_smul_eq, algebraMap_counitAlg]
 
+/--
+@isnad1 id=eq.2h5v.s16.d1c28ca0fb3b from=translated src=- shape=998a08cf vocab=753982a7
+-/
 theorem counit_right (F : B) (x : X) :
     ((TensorProduct.rid (Rp p) B (LinearMap.lTensor B (counitAlg hp H).toLinearMap
       (comulLin hp H F)) : B) : X → Qb) x = (F : X → Qb) x := by
@@ -386,6 +482,9 @@ def antipodeLin : B →ₗ[Rp p] B where
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+/--
+@isnad1 id=eq.2h5v.s16.d95212a03130 from=translated src=- shape=edc16376 vocab=1c01f52b
+-/
 theorem antipode_left (F : B) (y : X) :
     ((LinearMap.mul' (Rp p) B (LinearMap.rTensor B (antipodeLin H) (comulLin hp H F)) : B) :
       X → Qb) y = (F : X → Qb) 0 := by
@@ -396,6 +495,9 @@ theorem antipode_left (F : B) (y : X) :
   rw [LinearMap.rTensor_tmul, LinearMap.mul'_apply]
   rfl
 
+/--
+@isnad1 id=eq.2h5v.s16.0700d7ad232f from=translated src=- shape=edc16376 vocab=739fec92
+-/
 theorem antipode_right (F : B) (y : X) :
     ((LinearMap.mul' (Rp p) B (LinearMap.lTensor B (antipodeLin H) (comulLin hp H F)) : B) :
       X → Qb) y = (F : X → Qb) 0 := by
@@ -431,6 +533,9 @@ theorem antipode_right (F : B) (y : X) :
       rw [algebraMap_counitAlg] }
 
 omit hp H in
+/--
+@isnad1 id=eq.0h5v.s16.ddc1c171f7ad from=translated src=- shape=3603591f vocab=b3776d1e
+-/
 theorem θ₂_comm (T : B ⊗[Rp p] B) (xy : X × X) :
     θ₂ B (TensorProduct.comm (Rp p) B B T) xy = θ₂ B T xy.swap := by
   induction T using TensorProduct.induction_on with
@@ -438,6 +543,9 @@ theorem θ₂_comm (T : B ⊗[Rp p] B) (xy : X × X) :
   | tmul a b => rw [TensorProduct.comm_tmul, θ₂_tmul, θ₂_tmul, Prod.fst_swap, Prod.snd_swap, mul_comm]
   | add a b ha hb => rw [map_add, map_add, Pi.add_apply, ha, hb, map_add, Pi.add_apply]
 
+/--
+@isnad1 id=iscocomm.2h3v.s10.8d669ed90d46 from=translated src=- shape=0252f0b3 vocab=79d785e3
+-/
 theorem isCocomm : @Coalgebra.IsCocomm (Rp p) B _ _ _ (coalgebra hp H) := by
   refine @Coalgebra.IsCocomm.mk (Rp p) B _ _ _ (coalgebra hp H) ?_
   apply LinearMap.ext
@@ -447,6 +555,9 @@ theorem isCocomm : @Coalgebra.IsCocomm (Rp p) B _ _ _ (coalgebra hp H) := by
   change θ₂ B (TensorProduct.comm (Rp p) B B (comulLin hp H F)) xy = θ₂ B (comulLin hp H F) xy
   rw [θ₂_comm, θ₂_comulLin_apply, θ₂_comulLin_apply, Prod.fst_swap, Prod.snd_swap, add_comm]
 
+/--
+@isnad1 id=flat.2h3v.s10.1667992e73bd from=translated src=- shape=0252f0b3 vocab=07509f71
+-/
 theorem moduleFlat : Module.Flat (Rp p) B := by
   haveI := moduleFree hp H
   infer_instance
@@ -456,8 +567,14 @@ variable (B) in
 def evalPt (x : X) : B →ₐ[Rp p] Qb := (Pi.evalAlgHom (Rp p) (fun _ : X => Qb) x).comp B.val
 
 omit hp H in
+/--
+@isnad1 id=eq.0h5v.s11.91f94d1722c0 from=translated src=- shape=573c036b vocab=b18a68b2
+-/
 theorem evalPt_apply (x : X) (F : B) : evalPt B x F = (F : X → Qb) x := rfl
 
+/--
+@isnad1 id=injectiv.2h3v.s9.6c3f1d1e7793 from=translated src=- shape=97a41237 vocab=5c5d0a96
+-/
 theorem evalPt_injective : Function.Injective (evalPt B) := by
   intro x y hxy
   exact H.sep x y fun F hF => by
@@ -470,9 +587,15 @@ def ΦQ : Qb ⊗[Rp p] B →ₐ[Qb] (X → Qb) :=
   Algebra.TensorProduct.lift (Algebra.ofId Qb (X → Qb)) B.val fun _ _ => Commute.all _ _
 
 omit hp H in
+/--
+@isnad1 id=eq.0h5v.s13.2181613dd1db from=translated src=- shape=91a50166 vocab=dae005c9
+-/
 theorem ΦQ_tmul (c : Qb) (F : B) : ΦQ B (c ⊗ₜ F) = algebraMap Qb (X → Qb) c * (F : X → Qb) :=
   Algebra.TensorProduct.lift_tmul _ _ _ c F
 
+/--
+@isnad1 id=injectiv.2h3v.s13.a9e5b748a1eb from=translated src=- shape=e2491310 vocab=6eca9277
+-/
 theorem ΦQ_injective : Function.Injective (ΦQ B) := by
   haveI := moduleFree hp H
   haveI := moduleFinite hp H
@@ -484,6 +607,9 @@ theorem ΦQ_injective : Function.Injective (ΦQ B) := by
   funext i
   rw [Algebra.TensorProduct.basis_apply, AlgHom.toLinearMap_apply, ΦQ_tmul, map_one, one_mul]
 
+/--
+@isnad1 id=mem.2h4v.s11.17094e4e44bc from=translated src=- shape=e7291342 vocab=ff803b2d
+-/
 theorem single_mem_range [DecidableEq X] (x : X) : (Pi.single x (1 : Qb) : X → Qb) ∈ (ΦQ B).range := by
   haveI := Fintype.ofFinite X
 
@@ -522,6 +648,9 @@ theorem single_mem_range [DecidableEq X] (x : X) : (Pi.single x (1 : Qb) : X →
   rw [← hprod]
   exact Subalgebra.prod_mem _ fun y hy => hfac_mem y (Finset.mem_filter.mp hy).2
 
+/--
+@isnad1 id=surjecti.2h3v.s13.fc983335ed69 from=translated src=- shape=e2491310 vocab=8b94e162
+-/
 theorem ΦQ_surjective : Function.Surjective (ΦQ B) := by
   classical
   haveI := Fintype.ofFinite X
@@ -536,6 +665,9 @@ theorem ΦQ_surjective : Function.Surjective (ΦQ B) := by
     rw [h1]
     exact Subalgebra.smul_mem _ (single_mem_range hp H x) c
 
+/--
+@isnad1 id=ex.2h4v.s8.8b34777ca02b from=translated src=- shape=618a081c vocab=4859fe56
+-/
 theorem exists_eq_eval (ψ : (X → Qb) →ₐ[Qb] Qb) : ∃ x₀ : X, ∀ f : X → Qb, ψ f = f x₀ := by
   classical
   haveI := Fintype.ofFinite X
@@ -592,6 +724,9 @@ theorem exists_eq_eval (ψ : (X → Qb) →ₐ[Qb] Qb) : ∃ x₀ : X, ∀ f : X
   rw [Finset.sum_eq_single x₀ (fun x _ hx => by rw [hother x hx, mul_zero])
     (fun h => absurd (Finset.mem_univ x₀) h), hone, mul_one]
 
+/--
+@isnad1 id=surjecti.2h3v.s9.6cc130995a5f from=translated src=- shape=97a41237 vocab=7722ec94
+-/
 theorem evalPt_surjective : Function.Surjective (evalPt B) := by
   intro π
   let Φe : Qb ⊗[Rp p] B ≃ₐ[Qb] (X → Qb) :=
@@ -611,6 +746,9 @@ theorem evalPt_surjective : Function.Surjective (evalPt B) := by
   rw [evalPt_apply, h1, h2]
   exact (hx₀ (F : X → Qb)).symm
 
+/--
+@isnad1 id=eq.2h5v.s12.6df5d466a43c from=translated src=- shape=f149840c vocab=d5986e04
+-/
 theorem conv_evalPt (x y : X) :
     letI := bialgebra hp H
     WithConv.toConv (evalPt B x) * WithConv.toConv (evalPt B y) =
@@ -637,6 +775,9 @@ end P2mHopfOrder
 open scoped _root_.P2MW.S_GaloisRep_exists_finiteFlat_of_subalgebra_pi_algebraicClosure.P2mHopfOrder
 
 open P2mHopfOrder in
+/--
+@isnad1 id=ex.6h3v.s14.b669505f7c23 from=translated src=- shape=6d13abbe vocab=fb3605ab
+-/
 theorem solution (p : ℕ) (hp : p.Prime)
     {X : Type} [AddCommGroup X] [Finite X]
     [DistribMulAction (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) X]

@@ -34,6 +34,9 @@ private theorem exists_padicEmbedding_eq_of_isIntegral_A (q : ℕ) [Fact q.Prime
   obtain ⟨b, -, hb⟩ := hβroot
   exact ⟨b, hb⟩
 
+/--
+@isnad1 id=ex.0h2v.s8.43de96a3784e from=translated src=- shape=812d27b2 vocab=e45e4e22
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime] (α : PadicAlgCl q) :
     ∃ b : AlgebraicClosure ℚ, α ∈ ℚ_[q]⟮padicEmbedding q b⟯ := by

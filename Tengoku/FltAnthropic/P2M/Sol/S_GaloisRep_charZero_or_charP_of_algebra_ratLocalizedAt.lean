@@ -14,6 +14,9 @@ set_option autoImplicit false
 set_option maxHeartbeats 6400000
 set_option synthInstance.maxHeartbeats 1600000
 
+/--
+@isnad1 id=or.0h2v.s6.87879d29f237 from=translated src=- shape=4804f460 vocab=68d010ae
+-/
 theorem solution (ℓ : ℕ) [Fact ℓ.Prime] (K : Type*) [Field K]
     [Algebra ↥(GaloisRep.ratLocalizedAt ℓ) K] :
     CharZero K ∨ CharP K ℓ := by

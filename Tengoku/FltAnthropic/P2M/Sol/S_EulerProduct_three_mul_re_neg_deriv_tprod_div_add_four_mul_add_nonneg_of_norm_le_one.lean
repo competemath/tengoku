@@ -13,17 +13,26 @@ namespace R1LogDer341
 
 section EulerLogDeriv
 
+/--
+@isnad1 id=le.2h3v.s6.8f0382e0088a from=translated src=- shape=4cee79be vocab=be113d05
+-/
 lemma norm_coeff_le (N : ℕ) (hN : 2 ≤ N) (c : ℂ) (hc : ‖c‖ ≤ 1) (z : ℂ) :
     ‖c * (N : ℂ) ^ (-z)‖ ≤ (N : ℝ) ^ (-z.re) := by
   rw [norm_mul, norm_natCast_cpow_of_pos (by omega), neg_re]
   exact mul_le_of_le_one_left (Real.rpow_nonneg (Nat.cast_nonneg _) _) hc
 
+/--
+@isnad1 id=le.2h3v.s5.66bd7eb6bb39 from=translated src=- shape=9470a4d8 vocab=18faec3c
+-/
 lemma rpow_neg_le_rpow_neg (N : ℕ) (hN : 2 ≤ N) {σ σ' : ℝ} (h : σ' ≤ σ) :
     (N : ℝ) ^ (-σ) ≤ (N : ℝ) ^ (-σ') := by
   apply Real.rpow_le_rpow_of_exponent_le
   · exact_mod_cast (by omega : 1 ≤ N)
   · linarith
 
+/--
+@isnad1 id=le.2h2v.s6.d7279dd8bca3 from=translated src=- shape=4c9b87b5 vocab=e9fe8c4f
+-/
 lemma rpow_neg_le_half (N : ℕ) (hN : 2 ≤ N) (σ : ℝ) (hσ : 1 ≤ σ) : (N : ℝ) ^ (-σ) ≤ 1 / 2 := by
   have h1 : (N : ℝ) ^ (-σ) ≤ (N : ℝ) ^ (-(1 : ℝ)) := rpow_neg_le_rpow_neg N hN hσ
   have h2 : (N : ℝ) ^ (-(1 : ℝ)) = 1 / N := by
@@ -33,6 +42,9 @@ lemma rpow_neg_le_half (N : ℕ) (hN : 2 ≤ N) (σ : ℝ) (hσ : 1 ≤ σ) : (N
     exact one_div_le_one_div_of_le (by norm_num) this
   linarith [h1, h2.le, h2.ge, h3]
 
+/--
+@isnad1 id=and.4h4v.s9.bf2ccaa527f6 from=translated src=- shape=743b0c72 vocab=f0576831
+-/
 theorem main {ι : Type} (N : ι → ℕ) (hN : ∀ i, 2 ≤ N i) (c : ι → ℂ) (hc : ∀ i, ‖c i‖ ≤ 1)
     (hsum : ∀ σ : ℝ, 1 < σ → Summable fun i => ((N i : ℕ) : ℝ) ^ (-σ))
     (s : ℂ) (hs : 1 < s.re) :
@@ -149,6 +161,9 @@ theorem main {ι : Type} (N : ι → ℕ) (hN : ∀ i, 2 ≤ N i) (c : ι → �
 
 end EulerLogDeriv
 
+/--
+@isnad1 id=le.1h1v.s6.db41c9dc6e94 from=translated src=- shape=de9e1df2 vocab=38325dc8
+-/
 theorem kernel_nonneg {w : ℂ} (hw : ‖w‖ ≤ 1) : 0 ≤ 3 + 4 * w.re + (w ^ 2).re := by
   have h1 : (w ^ 2).re = w.re ^ 2 - w.im ^ 2 := by simp [sq, mul_re]
   have h2 : w.re ^ 2 + w.im ^ 2 ≤ 1 := by
@@ -158,11 +173,17 @@ theorem kernel_nonneg {w : ℂ} (hw : ‖w‖ ≤ 1) : 0 ≤ 3 + 4 * w.re + (w ^
   rw [h1]
   nlinarith [sq_nonneg (w.re + 1)]
 
+/--
+@isnad1 id=le.1h1v.s5.571b0c3ceeb9 from=translated src=- shape=1ca623a3 vocab=086a7d13
+-/
 theorem kernel_nonneg' {w : ℂ} (hw : ‖w‖ ≤ 1) : 0 ≤ 3 + w.re := by
   have := (abs_re_le_norm w).trans hw
   have := neg_abs_le w.re
   linarith
 
+/--
+@isnad1 id=hassum.1h1v.s6.62b037f40c93 from=translated src=- shape=c3df1336 vocab=41c2781c
+-/
 theorem hasSum_geom_shift {w : ℂ} (hw : ‖w‖ < 1) :
     HasSum (fun n : ℕ => w ^ (n + 1)) (w / (1 - w)) := by
   have h := (hasSum_geometric_of_norm_lt_one hw).mul_left w
@@ -173,6 +194,9 @@ theorem hasSum_geom_shift {w : ℂ} (hw : ‖w‖ < 1) :
   rw [div_eq_mul_inv]
   exact h
 
+/--
+@isnad1 id=le.5h3v.s8.7b1142b27afd from=translated src=- shape=a304986b vocab=f24b79e7
+-/
 theorem re_geom_comb_nonneg {x : ℝ} (hx₀ : 0 ≤ x) (hx₁ : x < 1) {z z₂ : ℂ} (hz : ‖z‖ ≤ 1)
     (hz₂ : ‖z₂‖ ≤ 1) (hzz : z = 0 ∨ z₂ = z ^ 2) :
     0 ≤ 3 * ((x : ℂ) / (1 - x)).re + 4 * ((x : ℂ) * z / (1 - x * z)).re
@@ -214,17 +238,26 @@ theorem re_geom_comb_nonneg {x : ℝ} (hx₀ : 0 ≤ x) (hx₁ : x < 1) {z z₂ 
     rw [← pow_mul, mul_comm 2 n, pow_mul]
     nlinarith
 
+/--
+@isnad1 id=eq.1h3v.s6.223e9cefb5d2 from=translated src=- shape=b856993c vocab=313bc068
+-/
 theorem natCast_cpow_neg_add (n : ℕ) (hn : n ≠ 0) (σ : ℝ) (τ : ℂ) :
     (n : ℂ) ^ (-((σ : ℂ) + τ)) = ((n : ℝ) ^ (-σ) : ℝ) * (n : ℂ) ^ (-τ) := by
   have hn' : (n : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr hn
   rw [neg_add, cpow_add _ _ hn', ofReal_cpow (Nat.cast_nonneg n) (-σ)]
   simp
 
+/--
+@isnad1 id=eq.1h2v.s5.740adf64b885 from=translated src=- shape=b149d0be vocab=638d493a
+-/
 theorem norm_natCast_cpow_neg_mul_I (n : ℕ) (hn : n ≠ 0) (u : ℝ) :
     ‖(n : ℂ) ^ (-((u : ℂ) * I))‖ = 1 := by
   rw [norm_natCast_cpow_of_pos (Nat.pos_of_ne_zero hn)]
   simp
 
+/--
+@isnad1 id=le.6h6v.s9.6516d16df343 from=translated src=- shape=6aa620ca vocab=284f9adc
+-/
 theorem main341
     {ι : Type} (N : ι → ℕ) (hN : ∀ i, 2 ≤ N i)
     (c c₂ : ι → ℂ) (hc : ∀ i, ‖c i‖ ≤ 1) (hc₂ : ∀ i, ‖c₂ i‖ ≤ 1)
@@ -293,6 +326,9 @@ theorem main341
 
 end R1LogDer341
 
+/--
+@isnad1 id=le.6h6v.s9.6516d16df343 from=translated src=- shape=6aa620ca vocab=284f9adc
+-/
 theorem solution
     {ι : Type} (N : ι → ℕ) (hN : ∀ i, 2 ≤ N i)
     (c c₂ : ι → ℂ) (hc : ∀ i, ‖c i‖ ≤ 1) (hc₂ : ∀ i, ‖c₂ i‖ ≤ 1)

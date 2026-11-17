@@ -17,6 +17,9 @@ section RankTwo
 
 variable {p : ℕ} [Fact p.Prime] {V : Type*} [AddCommGroup V] [Module (ZMod p) V]
 
+/--
+@isnad1 id=eq.1h2v.s6.3ca9e6e851ac from=translated src=- shape=088b0113 vocab=65681af4
+-/
 theorem finrank_eq_two_of_natCard (hV : Nat.card V = p ^ 2) : Module.finrank (ZMod p) V = 2 := by
   haveI : Finite V := Nat.finite_of_card_ne_zero (by rw [hV]; exact pow_ne_zero 2 (Fact.out : p.Prime).ne_zero)
   have h := Module.natCard_eq_pow_finrank (K := ZMod p) (V := V)
@@ -35,6 +38,9 @@ variable {R : Type*} {S : Type*} {K : Type*} [CommRing R] [CommRing S] [Field K]
   [Algebra R S] [Algebra R K] [Algebra S K] [IsScalarTower R S K]
   (W : WeierstrassCurve R) (σ : K ≃ₐ[S] K) (p : ℕ) [Fact p.Prime]
 
+/--
+@isnad1 id=and.3h8v.s16.725dbe432bf3 from=translated src=- shape=62878202 vocab=b3782b3e
+-/
 theorem trace_det_of_charEq_of_anisotropic
     (hfull : Nat.card (Submodule.torsionBy ℤ (W⁄K).Point p) = p ^ 2) {a : ℤ} {q : ℕ}
     (hCE : galoisRepModuleEnd S W p σ * galoisRepModuleEnd S W p σ
@@ -98,5 +104,8 @@ end Endgame
 
 end FrobeniusEndo
 
+/--
+@isnad1 id=and.3h8v.s16.725dbe432bf3 from=translated src=- shape=62878202 vocab=b3782b3e
+-/
 theorem solution {R : Type*} {S : Type*} {K : Type*} [CommRing R] [CommRing S] [Field K] [DecidableEq K] [Algebra R S] [Algebra R K] [Algebra S K] [IsScalarTower R S K] (W : WeierstrassCurve R) (σ : K ≃ₐ[S] K) (p : ℕ) [Fact p.Prime] (hfull : Nat.card (Submodule.torsionBy ℤ (W⁄K).Point p) = p ^ 2) (a : ℤ) (q : ℕ) (hCE : galoisRepModuleEnd S W p σ * galoisRepModuleEnd S W p σ - (a : ZMod p) • galoisRepModuleEnd S W p σ + (q : ZMod p) • (1 : Module.End (ZMod p) (Submodule.torsionBy ℤ (W⁄K).Point p)) = 0) (hno : ¬ ∃ c : ZMod p, c ^ 2 - (a : ZMod p) * c + (q : ZMod p) = 0) : galoisTrace S W p σ = (a : ZMod p) ∧ LinearMap.det (galoisRepModuleEnd S W p σ) = (q : ZMod p) :=
   FrobeniusEndo.trace_det_of_charEq_of_anisotropic W σ p hfull hCE hno

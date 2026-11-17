@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_exists_finiteDimensional_comap_localGalois
 namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 set_option autoImplicit false
 open scoped IntermediateField
+/--
+@isnad1 id=iff.0h3v.s11.9e03394058d1 from=translated src=- shape=d34655d4 vocab=aee1b925
+-/
 theorem _root_.Tengoku.FltAnthropic.exists_finiteDimensional_comap_localGaloisToGlobal_iff
     (q : ℕ) [Fact q.Prime]
     (P : Subgroup (PadicAlgCl q ≃ₐ[ℚ_[q]] PadicAlgCl q) → Prop)

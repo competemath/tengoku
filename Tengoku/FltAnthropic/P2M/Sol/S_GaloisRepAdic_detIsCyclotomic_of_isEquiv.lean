@@ -16,6 +16,9 @@ open _root_.Tengoku.FltAnthropic.GaloisRepAdic
 
 variable {A B : Type} [CommRing A] [IsLocalRing A] [CommRing B] [IsLocalRing B]
 
+/--
+@isnad1 id=eq.0h5v.s11.01e149ca589b from=translated src=- shape=8f7d7cb5 vocab=911d72c2
+-/
 theorem Equiv.conj_eq {ρ₁ ρ₂ : GaloisRepAdic A} (e : Equiv ρ₁ ρ₂)
     (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) :
     ρ₂.ρ σ = (e.toLinearEquiv : ρ₁.V →ₗ[A] ρ₂.V) ∘ₗ ρ₁.ρ σ ∘ₗ
@@ -24,11 +27,17 @@ theorem Equiv.conj_eq {ρ₁ ρ₂ : GaloisRepAdic A} (e : Equiv ρ₁ ρ₂)
   rw [LinearMap.comp_apply, LinearMap.comp_apply, LinearEquiv.coe_coe, LinearEquiv.coe_coe,
     e.map_apply, LinearEquiv.apply_symm_apply]
 
+/--
+@isnad1 id=eq.0h5v.s11.d9b62092f9ff from=translated src=- shape=ee3d17eb vocab=e7930d07
+-/
 theorem Equiv.det_apply_eq {ρ₁ ρ₂ : GaloisRepAdic A} (e : Equiv ρ₁ ρ₂)
     (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) :
     LinearMap.det (ρ₂.ρ σ) = LinearMap.det (ρ₁.ρ σ) := by
   rw [Equiv.conj_eq e σ, LinearMap.det_conj]
 
+/--
+@isnad1 id=detiscyc.2h4v.s5.88364e49f296 from=translated src=- shape=fadfb841 vocab=9eee625c
+-/
 theorem detIsCyclotomic_of_isEquiv {ρ₁ ρ₂ : GaloisRepAdic A} (e : ρ₁.IsEquiv ρ₂) {p : ℕ}
     (h : ρ₁.DetIsCyclotomic p) : ρ₂.DetIsCyclotomic p := by
   obtain ⟨e⟩ := e
@@ -38,6 +47,9 @@ theorem detIsCyclotomic_of_isEquiv {ρ₁ ρ₂ : GaloisRepAdic A} (e : ρ₁.Is
 
 end GaloisRepAdic.LCSol
 
+/--
+@isnad1 id=detiscyc.2h4v.s5.88364e49f296 from=translated src=- shape=fadfb841 vocab=9eee625c
+-/
 theorem solution
     {A : Type} [CommRing A] [IsLocalRing A]
     {ρ₁ ρ₂ : GaloisRepAdic A} (e : ρ₁.IsEquiv ρ₂) {p : ℕ}

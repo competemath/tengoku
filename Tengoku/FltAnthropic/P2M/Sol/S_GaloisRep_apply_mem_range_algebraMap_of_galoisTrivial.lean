@@ -10,6 +10,9 @@ namespace P2MW.S_GaloisRep_apply_mem_range_algebraMap_of_galoisTrivial
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=mem.2h6v.s13.b6973615b979 from=translated src=- shape=c0cc0deb vocab=5ff57d82
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime]
     (H : Type) [CommRing H] [HopfAlgebra (GaloisRep.ratLocalizedAt q) H]

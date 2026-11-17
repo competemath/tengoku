@@ -22,27 +22,48 @@ def Small (I : Ideal A) (n : ℕ) (D : Module.End A V) : Prop :=
 
 variable {I : Ideal A}
 
+/--
+@isnad1 id=small.2h6v.s6.e51484bb666e from=translated src=- shape=9df70e0c vocab=4b81543c
+-/
 theorem Small.mono {m n : ℕ} (h : m ≤ n) {D : Module.End A V} (hD : Small I n D) : Small I m D :=
   fun v => Submodule.smul_mono_left (Ideal.pow_le_pow_right h) (hD v)
 
+/--
+@isnad1 id=small.0h4v.s6.f10a5124ff4f from=translated src=- shape=c955e03b vocab=6d0a48f4
+-/
 theorem Small.zero (n : ℕ) : Small I n (0 : Module.End A V) :=
   fun v => by rw [LinearMap.zero_apply]; exact Submodule.zero_mem _
 
+/--
+@isnad1 id=small.2h6v.s7.b629d841bf2a from=translated src=- shape=133fa67b vocab=552777e3
+-/
 theorem Small.add {n : ℕ} {D D' : Module.End A V} (hD : Small I n D) (hD' : Small I n D') :
     Small I n (D + D') :=
   fun v => by rw [LinearMap.add_apply]; exact Submodule.add_mem _ (hD v) (hD' v)
 
+/--
+@isnad1 id=small.2h6v.s7.17350467c0d7 from=translated src=- shape=133fa67b vocab=0adaae02
+-/
 theorem Small.sub {n : ℕ} {D D' : Module.End A V} (hD : Small I n D) (hD' : Small I n D') :
     Small I n (D - D') :=
   fun v => by rw [LinearMap.sub_apply]; exact Submodule.sub_mem _ (hD v) (hD' v)
 
+/--
+@isnad1 id=small.1h6v.s7.ebea44b83f5c from=translated src=- shape=68f20b72 vocab=d2bc5fbf
+-/
 theorem Small.nsmul {n : ℕ} {D : Module.End A V} (hD : Small I n D) (N : ℕ) : Small I n (N • D) :=
   fun v => by rw [LinearMap.smul_apply]; exact nsmul_mem (hD v) N
 
+/--
+@isnad1 id=small.1h6v.s7.1ee483f06d46 from=translated src=- shape=e4049c1d vocab=9f1ae86e
+-/
 theorem Small.mul_right {n : ℕ} {D : Module.End A V} (hD : Small I n D) (D' : Module.End A V) :
     Small I n (D * D') :=
   fun v => by rw [Module.End.mul_apply]; exact hD (D' v)
 
+/--
+@isnad1 id=small.2h7v.s7.7676ba3000f3 from=translated src=- shape=9c6bdb75 vocab=538881b0
+-/
 theorem Small.mul {m n : ℕ} {D D' : Module.End A V} (hD : Small I n D) (hD' : Small I m D') :
     Small I (m + n) (D * D') := by
   intro v
@@ -57,6 +78,9 @@ theorem Small.mul {m n : ℕ} {D D' : Module.End A V} (hD : Small I n D) (hD' : 
       _ = I ^ (m + n) • ⊤ := by rw [← Submodule.mul_smul, ← pow_add]
   exact h3 h1
 
+/--
+@isnad1 id=small.1h6v.s8.b9183f16b7bb from=translated src=- shape=547d3d90 vocab=52df1f7d
+-/
 theorem Small.one_add_pow_sub_one {n : ℕ} {D : Module.End A V} (hD : Small I n D) (N : ℕ) :
     Small I n ((1 + D) ^ N - 1) := by
   induction N with
@@ -70,6 +94,9 @@ theorem Small.one_add_pow_sub_one {n : ℕ} {D : Module.End A V} (hD : Small I n
       rw [e]
       exact (ih.add (ih.mul_right D)).add hD
 
+/--
+@isnad1 id=small.1h6v.s9.453efa7a57c8 from=translated src=- shape=e6e57b8a vocab=5c5d99d6
+-/
 theorem Small.one_add_pow_sub_one_sub_nsmul {n : ℕ} {D : Module.End A V} (hD : Small I n D) (N : ℕ) :
     Small I (n + n) ((1 + D) ^ N - 1 - N • D) := by
   induction N with
@@ -86,6 +113,9 @@ theorem Small.one_add_pow_sub_one_sub_nsmul {n : ℕ} {D : Module.End A V} (hD :
 
 end Small
 
+/--
+@isnad1 id=isunit.4h3v.s6.aaca29da8915 from=translated src=- shape=b9589d6e vocab=e18de9e3
+-/
 theorem isUnit_natCast_of_prime_ne {A : Type} [CommRing A] [IsLocalRing A] {p q : ℕ} (hp : p.Prime)
     (hq : q.Prime) (hqp : q ≠ p) (hpA : (p : A) ∈ IsLocalRing.maximalIdeal A) : IsUnit (q : A) := by
   have hcop : IsCoprime (p : ℤ) (q : ℤ) :=
@@ -101,11 +131,17 @@ theorem isUnit_natCast_of_prime_ne {A : Type} [CommRing A] [IsLocalRing A] {p q 
     exact Ideal.add_mem _ (Ideal.mul_mem_left _ _ hpA) (Ideal.mul_mem_left _ _ hqm)
   exact Ideal.IsMaximal.ne_top (IsLocalRing.maximalIdeal.isMaximal A) ((Ideal.eq_top_iff_one _).mpr h1)
 
+/--
+@isnad1 id=mem.2h5v.s7.27c5282a1b52 from=translated src=- shape=3bf69b94 vocab=8e81558d
+-/
 theorem mem_of_isUnit_smul_mem {A V : Type} [CommRing A] [AddCommGroup V] [Module A V]
     (N : Submodule A V) {r : A} (hu : IsUnit r) {x : V} (h : r • x ∈ N) : x ∈ N := by
   rw [← hu.unit_spec, ← Units.smul_def] at h
   exact (N.smul_mem_iff' hu.unit).mp h
 
+/--
+@isnad1 id=ex.3h6v.s11.94b2ff0f08a2 from=translated src=- shape=214a9c46 vocab=4f92a92b
+-/
 theorem exists_small_pow_sub_one {A : Type} [CommRing A] [IsLocalRing A] (ρ : GaloisRepAdic A)
     {q : ℕ} (hq : q.Prime) (P : ValuationSubring (AlgebraicClosure ℚ)) (hP : P.LiesOverPrime q)
     {σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ}
@@ -136,6 +172,9 @@ theorem exists_small_pow_sub_one {A : Type} [CommRing A] [IsLocalRing A] (ρ : G
 end WildOrder
 
 open WildOrder in
+/--
+@isnad1 id=ex.6h6v.s11.c4e734504643 from=translated src=- shape=9f55e6cb vocab=9174599e
+-/
 theorem solution
     {A : Type} [CommRing A] [IsLocalRing A] [IsNoetherianRing A] (ρ : GaloisRepAdic A)
     {p : ℕ} (hp : p.Prime) (hpA : (p : A) ∈ IsLocalRing.maximalIdeal A) {q : ℕ} (hq : q.Prime) (hqp : q ≠ p)

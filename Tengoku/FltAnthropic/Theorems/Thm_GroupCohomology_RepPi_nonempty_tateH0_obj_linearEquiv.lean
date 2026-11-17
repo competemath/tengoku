@@ -10,6 +10,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_GroupCohomology_RepPi_nonempty_tateH0_obj_
 set_option autoImplicit false
 universe u
 open CategoryTheory Rep
+/--
+@isnad1 id=nonempty.0h4v.s13.5cf56157ae1e from=translated src=- shape=a684f593 vocab=ec0b86e7
+-/
 theorem GroupCohomology.RepPi.nonempty_tateH0_obj_linearEquiv {k G ι : Type u} [CommRing k] [Group G] [Fintype G]
     (F : ι → Rep.{u} k G) :
     Nonempty ((GroupCohomology.RepPi.obj F).tateH0 ≃ₗ[k] ((i : ι) → (F i).tateH0)) := by exact @_root_.P2MW.S_GroupCohomology_RepPi_nonempty_tateH0_obj_linearEquiv.solution k G ι _ _ _ F

@@ -8,6 +8,9 @@ namespace P2MW.S_GaloisRepAdic_exists_level_forall_baseChangeAlong_apply_eq_one
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.0h3v.s11.879d14ec58e2 from=translated src=- shape=6d0e7a87 vocab=195a80c7
+-/
 theorem solution
     {A : Type} [CommRing A] [IsLocalRing A] (ρ : GaloisRepAdic A) (K : ℕ) :
     ∃ L : IntermediateField ℚ (AlgebraicClosure ℚ), FiniteDimensional ℚ L ∧

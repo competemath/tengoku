@@ -9,6 +9,9 @@ namespace P2MW.S_ExtCitation_cycloChar_eq_one_of_apply_eq_self_of_isPrimitiveRoo
 set_option autoImplicit false
 open ExtCitation
 
+/--
+@isnad1 id=eq.2h3v.s10.2ca77c99ac8f from=translated src=- shape=515536f7 vocab=f50e6bdc
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] (g : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ)
     {ξ : AlgebraicClosure ℚ} (hξ : IsPrimitiveRoot ξ p) (hg : g ξ = ξ) :

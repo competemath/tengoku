@@ -107,6 +107,9 @@ end DrinfeldPhi
 
 open DrinfeldCurve
 
+/--
+@isnad1 id=ex.0h4v.s15.9a36cd5e68aa from=translated src=- shape=f2fceda4 vocab=333688fe
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime]
     (k : Type) [Field k] [Algebra (GaloisField q 2) k] [IsDomain (DrinfeldCurve.CoordRing q k)]

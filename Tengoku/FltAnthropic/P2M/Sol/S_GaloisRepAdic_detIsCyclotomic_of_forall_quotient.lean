@@ -62,6 +62,9 @@ end LCMazur
 attribute [local instance] LCMazur.nontrivial_quotient_maximalIdeal_pow_succ
   LCMazur.isLocalRing_quotient_maximalIdeal_pow_succ
 
+/--
+@isnad1 id=detiscyc.1h3v.s8.32655cb2b575 from=translated src=- shape=3b72bd74 vocab=62be0664
+-/
 theorem solution {A : Type} [CommRing A]
     [IsLocalRing A] [IsNoetherianRing A] (ρ : GaloisRepAdic A) {p : ℕ}
     (h : ∀ m : ℕ,

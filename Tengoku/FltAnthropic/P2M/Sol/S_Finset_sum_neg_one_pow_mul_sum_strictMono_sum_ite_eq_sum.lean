@@ -15,6 +15,9 @@ namespace AltChainCount
 
 variable {ι : Type u} [Fintype ι] [LinearOrder ι]
 
+/--
+@isnad1 id=eq.0h3v.s10.13b160d70caf from=translated src=- shape=1eb3ddae vocab=ced609aa
+-/
 theorem card_filter_strictMono_eq_choose (P : Finset ι) (p : ℕ)
     [DecidablePred (fun s : {s : Fin (p + 1) → ι // StrictMono s} => ∀ j, s.1 j ∈ P)] :
     (univ.filter (fun s : {s : Fin (p + 1) → ι // StrictMono s} => ∀ j, s.1 j ∈ P)).card = P.card.choose (p + 1) := by
@@ -47,6 +50,9 @@ theorem card_filter_strictMono_eq_choose (P : Finset ι) (p : ℕ)
       rw [coe_image, coe_univ, Set.image_univ]
       exact range_orderEmbOfFin t ht.2
 
+/--
+@isnad1 id=eq.2h3v.s10.a4b63c145ab0 from=translated src=- shape=3cfee8ca vocab=9e55361a
+-/
 theorem sum_neg_one_pow_mul_card_filter_eq_one (P : Finset ι) (hP : P.Nonempty) (N : ℕ)
     (hN : Fintype.card ι ≤ N)
     [∀ p, DecidablePred (fun s : {s : Fin (p + 1) → ι // StrictMono s} => ∀ j, s.1 j ∈ P)] :
@@ -81,6 +87,9 @@ end AltChainCount
 
 open Classical in
 
+/--
+@isnad1 id=eq.2h6v.s10.6ffe7e54237a from=translated src=- shape=20295837 vocab=2c6bc579
+-/
 theorem solution
     {ι : Type u} [Fintype ι] [LinearOrder ι] {β : Type v} (T : Finset β) (a : β → ℤ)
     (mem : ι → β → Prop) (hcov : ∀ y ∈ T, ∃ i, mem i y) (N : ℕ) (hN : Fintype.card ι ≤ N) :

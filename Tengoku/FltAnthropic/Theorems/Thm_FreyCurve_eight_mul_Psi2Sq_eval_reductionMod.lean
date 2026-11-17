@@ -9,6 +9,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_FreyCurve_eight_mul_Psi2Sq_eval_reductionM
 namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 namespace FreyCurve
 open WeierstrassCurve
+/--
+@isnad1 id=eq.0h3v.s8.d865bdf4bc8e from=translated src=- shape=fbac4fc4 vocab=f6b4abbc
+-/
 theorem eight_mul_Psi2Sq_eval_reductionMod (P : FreyPackage) {q : ℕ} [Fact q.Prime]
     (x : ZMod q) :
     8 * (((FreyPackage.freyCurveInt P).reductionMod q).Ψ₂Sq.eval x) =

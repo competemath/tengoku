@@ -25,19 +25,31 @@ def iota : M →ₗ[O] K ⊗[O] M := TensorProduct.mk O K M 1
 
 omit [IsDomain O] [IsDiscreteValuationRing O] [IsFractionRing O K] [Module.Finite O M]
   [Module.Free O M] in
+/--
+@isnad1 id=eq.0h4v.s8.9c236b97b09c from=translated src=- shape=1388acc6 vocab=dbb22503
+-/
 @[scoped simp] theorem iota_apply (m : M) : iota O K M m = (1 : K) ⊗ₜ[O] m := rfl
 
+/--
+@isnad1 id=islocali.0h3v.s7.54c13e077957 from=translated src=- shape=3e999186 vocab=1437bb54
+-/
 scoped instance isLocalizedModule_iota : IsLocalizedModule (nonZeroDivisors O) (iota O K M) :=
   (isLocalizedModule_iff_isBaseChange (nonZeroDivisors O) K (iota O K M)).mpr
     (TensorProduct.isBaseChange O M K)
 
 omit [Module.Finite O M] in
+/--
+@isnad1 id=injectiv.0h3v.s8.bba0dba4f9f1 from=translated src=- shape=a484f3e8 vocab=16237222
+-/
 theorem iota_injective : Function.Injective (iota O K M) :=
   (IsLocalizedModule.injective_iff_isRegular (nonZeroDivisors O) (iota O K M)).mpr fun c =>
     Module.IsTorsionFree.isSMulRegular (isRegular_iff_ne_zero'.mpr (nonZeroDivisors.coe_ne_zero c))
 
 omit [Module.Finite O M] [Module.Free O M] in
 
+/--
+@isnad1 id=ex.0h4v.s9.eda7ebf56abd from=translated src=- shape=7fcc477e vocab=b6ee7523
+-/
 theorem exists_iota_eq_smul (x : K ⊗[O] M) :
     ∃ (a : O) (m : M), a ≠ 0 ∧ iota O K M m = algebraMap O K a • x := by
   obtain ⟨⟨m, s⟩, h⟩ := IsLocalizedModule.surj (nonZeroDivisors O) (iota O K M) x
@@ -47,6 +59,9 @@ theorem exists_iota_eq_smul (x : K ⊗[O] M) :
 
 omit [IsDomain O] [IsDiscreteValuationRing O] [IsFractionRing O K] [Module.Finite O M]
   [Module.Free O M] in
+/--
+@isnad1 id=eq.0h5v.s10.462086a4f95f from=translated src=- shape=f693d16b vocab=eafe90b5
+-/
 theorem baseChange_iota (f : M →ₗ[O] M) (m : M) :
     f.baseChange K (iota O K M m) = iota O K M (f m) := by
   rw [iota_apply, LinearMap.baseChange_tmul, iota_apply]
@@ -57,9 +72,15 @@ def latt : Submodule O M := (W.restrictScalars O).comap (iota O K M)
 
 omit [IsDomain O] [IsDiscreteValuationRing O] [IsFractionRing O K] [Module.Finite O M]
   [Module.Free O M] in
+/--
+@isnad1 id=iff.0h5v.s9.74c9fc1a4021 from=translated src=- shape=95996423 vocab=ac3200f9
+-/
 theorem mem_latt (m : M) : m ∈ latt W ↔ iota O K M m ∈ W := Iff.rfl
 
 omit [IsDomain O] [IsDiscreteValuationRing O] [Module.Finite O M] [Module.Free O M] in
+/--
+@isnad1 id=mem.2h6v.s8.9bab95321c54 from=translated src=- shape=95821465 vocab=019fed1d
+-/
 theorem latt_saturated {a : O} (ha : a ≠ 0) {m : M} (h : a • m ∈ latt W) : m ∈ latt W := by
   rw [mem_latt] at h ⊢
   rw [map_smul, ← algebraMap_smul K a] at h
@@ -68,17 +89,26 @@ theorem latt_saturated {a : O} (ha : a ≠ 0) {m : M} (h : a • m ∈ latt W) :
   have h2 := W.smul_mem (algebraMap O K a)⁻¹ h
   rwa [smul_smul, inv_mul_cancel₀ haK, one_smul] at h2
 
+/--
+@isnad1 id=free.0h4v.s8.97969d9b8b0e from=translated src=- shape=f428adb1 vocab=1c49abe8
+-/
 scoped instance latt_free : Module.Free O (latt W) := Module.free_of_finite_type_torsion_free'
 
 def psi : K ⊗[O] latt W →ₗ[K] K ⊗[O] M := ((latt W).subtype).baseChange K
 
 omit [IsDomain O] [IsDiscreteValuationRing O] [IsFractionRing O K] [Module.Finite O M]
   [Module.Free O M] in
+/--
+@isnad1 id=eq.0h6v.s11.66ac56d3e97b from=translated src=- shape=4fe001fa vocab=79ac4192
+-/
 theorem psi_tmul (k : K) (v : latt W) : psi W (k ⊗ₜ[O] v) = k • iota O K M (v : M) := by
   simp only [psi, LinearMap.baseChange_tmul, Submodule.coe_subtype, iota_apply]
   rw [TensorProduct.smul_tmul', smul_eq_mul, mul_one]
 
 omit [IsDomain O] [IsDiscreteValuationRing O] [Module.Finite O M] [Module.Free O M] in
+/--
+@isnad1 id=injectiv.0h4v.s10.0a9af78a7554 from=translated src=- shape=4a028725 vocab=3c5e10ee
+-/
 theorem psi_injective : Function.Injective (psi W) := by
   haveI : Module.Flat O K := IsLocalization.flat K (nonZeroDivisors O)
   have h := Module.Flat.lTensor_preserves_injective_linearMap (M := K) (latt W).subtype
@@ -93,6 +123,9 @@ theorem psi_injective : Function.Injective (psi W) := by
 
 omit [IsDomain O] [IsDiscreteValuationRing O] [IsFractionRing O K] [Module.Finite O M]
   [Module.Free O M] in
+/--
+@isnad1 id=mem.0h5v.s11.89170cc5d93c from=translated src=- shape=61c7185f vocab=b34e237a
+-/
 theorem psi_mem (x : K ⊗[O] latt W) : psi W x ∈ W := by
   induction x using TensorProduct.induction_on with
   | zero => rw [map_zero]; exact W.zero_mem
@@ -102,6 +135,9 @@ theorem psi_mem (x : K ⊗[O] latt W) : psi W x ∈ W := by
   | add x y hx hy => rw [map_add]; exact W.add_mem hx hy
 
 omit [Module.Finite O M] [Module.Free O M] in
+/--
+@isnad1 id=eq.0h4v.s9.dc767a29441b from=translated src=- shape=ad06fb53 vocab=86b72380
+-/
 theorem range_psi : LinearMap.range (psi W) = W := by
   apply le_antisymm
   · rintro _ ⟨x, rfl⟩
@@ -122,8 +158,14 @@ def Phi : K ⊗[O] latt W ≃ₗ[K] W :=
   (LinearEquiv.ofInjective (psi W) (psi_injective W)).trans (LinearEquiv.ofEq _ _ (range_psi W))
 
 omit [Module.Finite O M] [Module.Free O M] in
+/--
+@isnad1 id=eq.0h5v.s12.f50479d28d54 from=translated src=- shape=19cc23f1 vocab=fd7437a1
+-/
 theorem Phi_apply_coe (x : K ⊗[O] latt W) : ((Phi W x : W) : K ⊗[O] M) = psi W x := rfl
 
+/--
+@isnad1 id=eq.1h4v.s10.74771f6daece from=translated src=- shape=39184ac6 vocab=0d461ca9
+-/
 theorem finrank_latt (hrank : Module.finrank K W = 2) : Module.finrank O (latt W) = 2 := by
   rw [← Module.finrank_baseChange (R := K), (Phi W).finrank_eq, hrank]
 
@@ -133,6 +175,9 @@ variable (ρM : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) →* Mod
 omit [IsDomain O] [IsDiscreteValuationRing O] [IsFractionRing O K] [Module.Finite O M]
   [Module.Free O M] in
 include hW in
+/--
+@isnad1 id=mem.2h7v.s12.4476c60314e8 from=translated src=- shape=4e5d2c09 vocab=1c26c6ac
+-/
 theorem rho_mem_latt (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) :
     ∀ m ∈ latt W, ρM σ m ∈ latt W := by
   intro m hm
@@ -151,11 +196,17 @@ def rhoL : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) →* Module.E
 
 omit [IsDomain O] [IsDiscreteValuationRing O] [IsFractionRing O K] [Module.Finite O M]
   [Module.Free O M] in
+/--
+@isnad1 id=eq.1h7v.s12.1d95442d1f70 from=translated src=- shape=64d1587f vocab=93f549ac
+-/
 @[scoped simp] theorem coe_rhoL_apply (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) (v : latt W) :
     ((rhoL W ρM hW σ v : latt W) : M) = ρM σ (v : M) := rfl
 
 omit [Module.Finite O M] [Module.Free O M] in
 
+/--
+@isnad1 id=galoisac.2h5v.s11.acebd3bfc198 from=translated src=- shape=2367e223 vocab=15c68a56
+-/
 theorem rhoL_isAdicContinuous (hcont : GaloisActionIsAdicContinuous O ρM) :
     GaloisActionIsAdicContinuous O (rhoL W ρM hW) := by
   intro n
@@ -179,6 +230,9 @@ theorem rhoL_isAdicContinuous (hcont : GaloisActionIsAdicContinuous O ρM) :
 
 omit [IsFractionRing O K] in
 
+/--
+@isnad1 id=eq.1h3v.s10.4ee942edd3db from=translated src=- shape=d39b1a4e vocab=99d6c20a
+-/
 theorem charpoly_eq_of_finrank_eq_two {V : Type} [AddCommGroup V] [Module K V]
     [Module.Finite K V] [Module.Free K V] (h2 : Module.finrank K V = 2) (f : V →ₗ[K] V) :
     LinearMap.charpoly f = X ^ 2 - C (LinearMap.trace K V f) * X + C (LinearMap.det f) := by
@@ -189,6 +243,9 @@ theorem charpoly_eq_of_finrank_eq_two {V : Type} [AddCommGroup V] [Module K V]
 
 omit [Module.Finite O M] [Module.Free O M] in
 
+/--
+@isnad1 id=eq.1h6v.s14.2095d8da35f6 from=translated src=- shape=0a2a9a39 vocab=e5cad01a
+-/
 theorem Phi_conj (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) :
     (Phi W).conj ((rhoL W ρM hW σ).baseChange K) = ((ρM σ).baseChange K).restrict (hW σ) := by
   have key : ∀ x : K ⊗[O] latt W,
@@ -207,6 +264,9 @@ theorem Phi_conj (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) :
     (ρM σ).baseChange K (w : K ⊗[O] M)
   rw [key, LinearEquiv.apply_symm_apply]
 
+/--
+@isnad1 id=eq.2h6v.s15.629e7518017c from=translated src=- shape=d9503877 vocab=84c8ab27
+-/
 theorem charpoly_map (hrank : Module.finrank K W = 2) (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) :
     (LinearMap.charpoly (rhoL W ρM hW σ)).map (algebraMap O K) =
       X ^ 2 - C (LinearMap.trace K W (((ρM σ).baseChange K).restrict (hW σ))) * X
@@ -224,6 +284,9 @@ end
 open scoped _root_.P2MW.S_GaloisRepAdic_exists_linearMap_baseChange_of_galoisStable_plane.LattC4
 
 open LattC4 in
+/--
+@isnad1 id=ex.3h5v.s15.de0b3044840c from=translated src=- shape=164ac374 vocab=c9d79422
+-/
 theorem solution
     (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     (K : Type) [Field K] [Algebra O K] [IsFractionRing O K]

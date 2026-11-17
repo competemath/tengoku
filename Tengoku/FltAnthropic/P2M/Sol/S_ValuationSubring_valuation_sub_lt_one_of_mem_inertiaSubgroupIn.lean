@@ -9,6 +9,9 @@ namespace P2MW.S_ValuationSubring_valuation_sub_lt_one_of_mem_inertiaSubgroupIn
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.2h5v.s9.f77e67644797 from=translated src=- shape=749a549f vocab=9d489254
+-/
 theorem solution {K L : Type*} [Field K] [Field L] [Algebra K L] (A : ValuationSubring L)
     {σ : L ≃ₐ[K] L} (hσ : σ ∈ A.inertiaSubgroupIn K) {a : L} (ha : a ∈ A) :
     σ a ∈ A ∧ A.valuation (σ a - a) < 1 := by

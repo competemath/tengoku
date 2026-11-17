@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open IsLocalRing
 
+/--
+@isnad1 id=and.7h8v.s13.62913dbabe6a from=translated src=- shape=f39c5113 vocab=dff3fe3c
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪] [IsDomain 𝒪]
     (ρ' : GaloisRepAdic 𝒪) (p : ℕ)

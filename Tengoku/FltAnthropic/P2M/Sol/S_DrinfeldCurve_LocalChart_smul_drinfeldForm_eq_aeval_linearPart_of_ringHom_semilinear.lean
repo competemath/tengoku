@@ -18,16 +18,25 @@ variable {W : Type} [CommRing W]
 
 local notation "IX" => (Ideal.span {(X 0 : MvPowerSeries (Fin 2) W), X 1} : Ideal (MvPowerSeries (Fin 2) W))
 
+/--
+@isnad1 id=eq.0h1v.s8.fba45b4ff06a from=translated src=- shape=49ea6cc3 vocab=57dd135f
+-/
 theorem degree_fin_two (n : Fin 2 →₀ ℕ) : n.degree = n 0 + n 1 := by
   have h : ∑ i ∈ n.support, n i = ∑ i, n i :=
     Finset.sum_subset (Finset.subset_univ _) (by intro i _ hi; simpa using hi)
   show ∑ i ∈ n.support, n i = n 0 + n 1
   rw [h, Fin.sum_univ_two]
 
+/--
+@isnad1 id=iff.0h3v.s9.373296bd5b8d from=translated src=- shape=5b464554 vocab=ba08a040
+-/
 theorem mem_IX_pow_iff (e : ℕ) (g : MvPowerSeries (Fin 2) W) :
     g ∈ IX ^ e ↔ ∀ n : Fin 2 →₀ ℕ, n 0 + n 1 < e → coeff n g = 0 :=
   MvPowerSeries.mem_span_X_pow_iff_forall_coeff_eq_zero_of_degree_lt W e g
 
+/--
+@isnad1 id=mem.3h5v.s8.72ef9924ca4d from=translated src=- shape=daee661b vocab=1551cced
+-/
 theorem pow_sub_pow_mem {R : Type} [CommRing R] (P : Ideal R) (a b : R) (ha : a ∈ P) (hb : b ∈ P)
     (hab : a - b ∈ P ^ 2) (k : ℕ) : a ^ k - b ^ k ∈ P ^ (k + 1) := by
   induction k with
@@ -41,6 +50,9 @@ theorem pow_sub_pow_mem {R : Type} [CommRing R] (P : Ideal R) (a b : R) (ha : a 
     · rw [show k + 1 + 1 = 2 + k by ring, pow_add]
       exact Ideal.mul_mem_mul hab (Ideal.pow_mem_pow hb k)
 
+/--
+@isnad1 id=eq.2h5v.s10.4a086afd7c1f from=translated src=- shape=8bd825cc vocab=e47d0a3f
+-/
 theorem coeff_mul_of_mem_pow (k : ℕ) (a b : MvPowerSeries (Fin 2) W) (ha : a ∈ IX ^ k)
     (n : Fin 2 →₀ ℕ) (hn : n 0 + n 1 = k) :
     coeff n (a * b) = coeff n a * constantCoeff b := by
@@ -75,17 +87,26 @@ open MvPowerSeries
 variable {W : Type} [CommRing W]
 local notation "IX" => (Ideal.span {(X 0 : MvPowerSeries (Fin 2) W), X 1} : Ideal (MvPowerSeries (Fin 2) W))
 
+/--
+@isnad1 id=mem.0h2v.s8.fca9623ab433 from=translated src=- shape=bd0f23b0 vocab=24015801
+-/
 theorem X_mem_IX (i : Fin 2) : (X i : MvPowerSeries (Fin 2) W) ∈ IX := by
   fin_cases i
   · exact Ideal.subset_span (by simp)
   · exact Ideal.subset_span (by simp)
 
+/--
+@isnad1 id=mem.0h3v.s9.e9e73b7682a1 from=translated src=- shape=d8ffa2d9 vocab=a8dd321b
+-/
 theorem sub_trunc_mem (N : ℕ) (p : MvPowerSeries (Fin 2) W) :
     p - ((MvPowerSeries.truncTotal N p : MvPolynomial (Fin 2) W) : MvPowerSeries (Fin 2) W) ∈ IX ^ N := by
   rw [mem_IX_pow_iff]
   intro n hn
   rw [map_sub, MvPolynomial.coeff_coe, MvPowerSeries.coeff_truncTotal _ (by rw [degree_fin_two]; exact hn), sub_self]
 
+/--
+@isnad1 id=mem.0h2v.s8.eff5187c7368 from=translated src=- shape=2e52d5a4 vocab=c9b0f384
+-/
 theorem linear_mem_IX (c : Fin 2 → W) : (∑ ii : Fin 2, C (c ii) * X ii : MvPowerSeries (Fin 2) W) ∈ IX :=
   Ideal.sum_mem _ (fun ii _ => Ideal.mul_mem_left _ _ (X_mem_IX ii))
 
@@ -93,6 +114,9 @@ end FormTransportAux
 
 open MvPowerSeries FormTransportAux in
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=eq.8h10v.s15.a9bdba6b73d7 from=translated src=- shape=ba417228 vocab=be189ba8
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime]
     (W : Type) [CommRing W] [IsDomain W] (t : W) (ht : t ≠ 0)

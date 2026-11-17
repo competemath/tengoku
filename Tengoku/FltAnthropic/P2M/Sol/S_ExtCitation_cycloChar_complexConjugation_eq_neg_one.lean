@@ -8,6 +8,9 @@ namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropi
 namespace P2MW.S_ExtCitation_cycloChar_complexConjugation_eq_neg_one
 open ExtCitation
 
+/--
+@isnad1 id=eq.0h1v.s10.ff716bbdac7b from=translated src=- shape=e1e5ad92 vocab=c976df5d
+-/
 theorem solution (p : ℕ) [Fact p.Prime] :
     cycloChar p complexConjugation = -1 := by
   haveI : NeZero p := ⟨(Fact.out : p.Prime).ne_zero⟩

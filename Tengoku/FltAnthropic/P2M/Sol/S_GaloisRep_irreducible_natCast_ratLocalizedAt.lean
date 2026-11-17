@@ -10,6 +10,9 @@ namespace P2MW.S_GaloisRep_irreducible_natCast_ratLocalizedAt
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=irreduci.1h1v.s8.7e0a9516db7f from=translated src=- shape=6660af18 vocab=019b2b2b
+-/
 theorem solution (q : ℕ) (hq : q.Prime) :
     Irreducible ((q : ℕ) : GaloisRep.ratLocalizedAt q) := by
   haveI : IsDiscreteValuationRing (GaloisRep.ratLocalizedAt q) := GaloisRep.isDiscreteValuationRing_ratLocalizedAt q hq

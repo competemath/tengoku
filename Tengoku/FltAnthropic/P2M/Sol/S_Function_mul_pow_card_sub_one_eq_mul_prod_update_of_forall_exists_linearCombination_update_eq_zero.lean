@@ -12,6 +12,9 @@ export _root_.Function (update update_of_ne update_eq_self)
 namespace FactorAux
 open _root_.Function
 
+/--
+@isnad1 id=eq.1h5v.s6.5cd0c5d5ae10 from=translated src=- shape=a45bbd97 vocab=07a45718
+-/
 theorem det_eq_of_dep {X : Type} (f g : X → ℂ) (h : ∃ c : ℂ × ℂ, c ≠ 0 ∧ ∀ t, c.1 * f t + c.2 * g t = 0)
     (x y : X) : f x * g y = f y * g x := by
   obtain ⟨c, hc, hfg⟩ := h
@@ -32,6 +35,9 @@ end Function.FactorAux
 
 open Function.FactorAux in
 
+/--
+@isnad1 id=eq.1h6v.s7.5b747f8bcfa7 from=translated src=- shape=bcedbf50 vocab=5a590fe1
+-/
 theorem solution
     {ι : Type} [Fintype ι] [DecidableEq ι] {X : ι → Type}
     (Φ : (∀ i, X i) → ℂ) (i₀ : ι)

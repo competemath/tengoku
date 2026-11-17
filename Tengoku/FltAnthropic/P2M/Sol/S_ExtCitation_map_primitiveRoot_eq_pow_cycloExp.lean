@@ -12,6 +12,9 @@ variable {V : Type} [AddCommGroup V] [Module (ZMod p) V]
   [DistribMulAction (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) V]
   [SMulCommClass (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) (ZMod p) V]
 
+/--
+@isnad1 id=eq.1h3v.s8.aab1fb832016 from=translated src=- shape=530a943f vocab=2f56ef57
+-/
 theorem solution (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ)
     {ξ : AlgebraicClosure ℚ} (hξ : IsPrimitiveRoot ξ p) : σ ξ = ξ ^ cycloExp p σ := by
   haveI : NeZero p := ⟨(Fact.out : p.Prime).ne_zero⟩

@@ -64,6 +64,9 @@ variable {A : Type} [CommRing A] [IsLocalRing A] (ρ : GaloisRepAdic A) (b : Bas
 noncomputable abbrev endToMatrix : Module.End A ρ.V ≃ₐ[A] Matrix (Fin 2) (Fin 2) A :=
   LinearMap.toMatrixAlgEquiv b
 
+/--
+@isnad1 id=eq.0h4v.s10.606105591b91 from=translated src=- shape=8b5b0b1a vocab=9b218db5
+-/
 theorem trace_endToMatrix (f : Module.End A ρ.V) :
     LinearMap.trace A ρ.V f = Matrix.trace (endToMatrix ρ b f) :=
   LinearMap.trace_eq_matrix_trace A b f
@@ -84,12 +87,18 @@ noncomputable def adZeroEquivSl2 :
         simp only [LinearMap.restrict_apply]
         exact (endToMatrix ρ b).apply_symm_apply M)⟩⟩
 
+/--
+@isnad1 id=eq.0h4v.s11.7d65ce5a0c7b from=translated src=- shape=873303b3 vocab=e2e94d23
+-/
 theorem coe_det_eq_matrix_det (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) :
     (ρ.det σ : A) = Matrix.det (endToMatrix ρ b (ρ.ρ σ)) := by
   have h1 : (ρ.det σ : A) = LinearMap.det (ρ.ρ σ) := rfl
   rw [h1, ← LinearMap.det_toMatrix b]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.59534b6923de from=translated src=- shape=7e7f21c2 vocab=c9415132
+-/
 theorem endToMatrix_twAd (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) (f : Module.End A ρ.V) :
     endToMatrix ρ b (twAd ρ σ f) =
       endToMatrix ρ b (ρ.ρ σ) * endToMatrix ρ b f * Matrix.adjugate (endToMatrix ρ b (ρ.ρ σ)) := by
@@ -114,6 +123,9 @@ def conjAdj (F : Matrix (Fin 2) (Fin 2) R) : Matrix (Fin 2) (Fin 2) R →ₗ[R] 
   toFun X := F * X * F.adjugate
   map_add' X Y := by rw [Matrix.mul_add, Matrix.add_mul]
   map_smul' c X := by rw [Matrix.mul_smul, Matrix.smul_mul, RingHom.id_apply]
+/--
+@isnad1 id=eq.0h3v.s9.8021340544f4 from=translated src=- shape=56bb4ce8 vocab=6d17a53a
+-/
 @[scoped simp] theorem conjAdj_apply (F X : Matrix (Fin 2) (Fin 2) R) : conjAdj F X = F * X * F.adjugate := rfl
 def trLin : Matrix (Fin 2) (Fin 2) R →ₗ[R] R where
   toFun X := X 0 0 + X 1 1
@@ -130,6 +142,9 @@ namespace COTGlue
 open WCOTGlueBCore
 variable {A : Type} [CommRing A] [IsLocalRing A] (ρ : GaloisRepAdic A) (b : Basis (Fin 2) A ρ.V)
 
+/--
+@isnad1 id=iff.0h5v.s11.092d8312a7b0 from=translated src=- shape=b7e82f66 vocab=e3caf52f
+-/
 theorem mem_adZeroInertiaInv_iff_endToMatrix_mem_invM (P : ValuationSubring (AlgebraicClosure ℚ))
     (f : Module.End A ρ.V) :
     f ∈ adZeroInertiaInv ρ P ↔
@@ -147,6 +162,9 @@ theorem mem_adZeroInertiaInv_iff_endToMatrix_mem_invM (P : ValuationSubring (Alg
     rw [← endToMatrix_twAd ρ b]
     exact ⟨fun h => congrArg _ h, fun h => (endToMatrix ρ b).injective h⟩
 
+/--
+@isnad1 id=eq.0h4v.s11.57a5112e4609 from=translated src=- shape=ae3c7bc7 vocab=e0fa27bf
+-/
 theorem map_adZeroInertiaInv_eq_invM (P : ValuationSubring (AlgebraicClosure ℚ)) :
     Submodule.map (endToMatrix ρ b).toLinearMap (adZeroInertiaInv ρ P) =
       invM ((fun τ => endToMatrix ρ b (ρ.ρ τ)) '' (P.inertiaSubgroupIn ℚ)) := by
@@ -187,12 +205,18 @@ open Polynomial
 
 variable {R : Type} [CommRing R]
 
+/--
+@isnad1 id=eq.1h2v.s9.681c5fd929eb from=translated src=- shape=7c3bbf30 vocab=2b6ce213
+-/
 theorem sub_one_mul_sub_one_eq_zero_of_charpoly (M : Matrix (Fin 2) (Fin 2) R)
     (h : M.charpoly = (X - 1) ^ 2) : (M - 1) * (M - 1) = 0 := by
   have h0 := M.aeval_self_charpoly
   rw [h, map_pow, map_sub, aeval_X, map_one] at h0
   simpa [sq] using h0
 
+/--
+@isnad1 id=eq.1h2v.s7.3e2dcbf73270 from=translated src=- shape=6c131984 vocab=049a6bfb
+-/
 theorem trace_eq_two_of_charpoly (M : Matrix (Fin 2) (Fin 2) R)
     (h : M.charpoly = (X - 1) ^ 2) : M.trace = 2 := by
   have ht := Matrix.trace_eq_neg_charpoly_coeff M
@@ -216,6 +240,9 @@ private def _root_.WCOTDevB6.sl2M (s t u : R) : Matrix (Fin 2) (Fin 2) R := Matr
 
 export _root_.WCOTDevB6 (sl2M)
 
+/--
+@isnad1 id=eq.1h2v.s7.7a35c47ceb5b from=translated src=- shape=738135f1 vocab=0f578b42
+-/
 theorem trace_eq_zero_of_mul_self_eq_zero (N : Matrix (Fin 2) (Fin 2) R) (hN : N * N = 0) : N.trace = 0 := by
   have h00 : N 0 0 * N 0 0 + N 0 1 * N 1 0 = 0 := by
     have := congrFun (congrFun hN 0) 0; simpa [Matrix.mul_apply, Fin.sum_univ_two] using this
@@ -272,6 +299,9 @@ private def _root_.WCOTGlueBAdapt.sl2M (s t u : R) : Matrix (Fin 2) (Fin 2) R :=
 
 export _root_.WCOTGlueBAdapt (sl2M)
 
+/--
+@isnad1 id=eq.1h2v.s7.7a35c47ceb5b from=translated src=- shape=738135f1 vocab=0f578b42
+-/
 theorem trace_eq_zero_of_mul_self_eq_zero [NoZeroDivisors R] (N : Matrix (Fin 2) (Fin 2) R) (hN : N * N = 0) :
     N.trace = 0 := by
   have h00 : N 0 0 * N 0 0 + N 0 1 * N 1 0 = 0 := by
@@ -298,6 +328,9 @@ theorem trace_eq_zero_of_mul_self_eq_zero [NoZeroDivisors R] (N : Matrix (Fin 2)
     exact (mul_self_eq_zero.mp this)
   exact h (by rw [ha, hd, add_zero])
 
+/--
+@isnad1 id=ex.2h2v.s9.77d735045b06 from=translated src=- shape=393b7707 vocab=fd1aa925
+-/
 theorem exists_conj_eq_sl2M [IsDomain R] [ValuationRing R] (M : Matrix (Fin 2) (Fin 2) R)
     (hM : M * M = 0) (hM0 : M ≠ 0) :
     ∃ P : Matrix (Fin 2) (Fin 2) R, IsUnit P.det ∧ ∃ t : R, t ≠ 0 ∧ M * P = P * sl2M 0 t 0 := by
@@ -361,6 +394,9 @@ namespace WCOTGlueBT1
 
 variable {A : Type} [CommRing A] {V : Type} [AddCommGroup V] [Module A V] {n : Type} [Fintype n] [DecidableEq n]
 
+/--
+@isnad1 id=eq.1h6v.s9.155a10b39ac2 from=translated src=- shape=ab86a2d5 vocab=c4c25712
+-/
 theorem toMatrixAlgEquiv_basis_map (b₀ : Basis n A V) (P : Matrix n n A) (hP : IsUnit P.det)
     (f : Module.End A V) :
     LinearMap.toMatrixAlgEquiv (b₀.map (Matrix.toLinearEquiv b₀ P hP)) f =
@@ -376,6 +412,9 @@ theorem toMatrixAlgEquiv_basis_map (b₀ : Basis n A V) (P : Matrix n n A) (hP :
     = _
   rw [LinearMap.toMatrix_mul, LinearMap.toMatrix_mul, hg, hgs, LinearMap.toMatrix_toLin, LinearMap.toMatrix_toLin]
 
+/--
+@isnad1 id=eq.2h7v.s9.9cb56ea31283 from=translated src=- shape=85a98075 vocab=53e756e9
+-/
 theorem toMatrixAlgEquiv_basis_map_eq (b₀ : Basis n A V) (P : Matrix n n A) (hP : IsUnit P.det)
     (f : Module.End A V) (T : Matrix n n A) (h : LinearMap.toMatrixAlgEquiv b₀ f * P = P * T) :
     LinearMap.toMatrixAlgEquiv (b₀.map (Matrix.toLinearEquiv b₀ P hP)) f = T := by
@@ -391,8 +430,14 @@ open WCOTGlueBCore
 
 variable {R : Type} [CommRing R]
 
+/--
+@isnad1 id=eq.0h4v.s5.1affed805b15 from=translated src=- shape=7a0b7423 vocab=7df2c901
+-/
 theorem sl2M_B6_eq (s t u : R) : WCOTDevB6.sl2M s t u = sl2M s t u := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.fbf13f706734 from=translated src=- shape=7a0b7423 vocab=f368d5d1
+-/
 theorem sl2M_adapt_eq (s t u : R) : WCOTGlueBAdapt.sl2M s t u = sl2M s t u := rfl
 
 end WCOTGlueBFinal
@@ -421,6 +466,9 @@ theorem eq_zero_of_forall_pow_dvd [IsNoetherianRing R] [IsLocalRing R] (p : R)
 
 variable {n : Type} [Fintype n] [DecidableEq n] {G : Type} [Group G]
 
+/--
+@isnad1 id=eq.7h12v.s10.c868c1669e8f from=translated src=- shape=1de34ff9 vocab=93bd5ad4
+-/
 theorem conj_eq_pow_of_tameQ (N : Matrix n n R) (hN : N * N = 0) (hNreg : ∀ a : R, a • N = 0 → a = 0)
     (p : R) (hsep : ∀ d : R, (∀ k : ℕ, p ^ k ∣ d) → d = 0)
     (f : G →* Matrix n n R) (hline : ∀ g, ∃ a : R, f g = 1 + a • N)
@@ -481,14 +529,23 @@ namespace COTGlue
 
 open WCOTGlueBCore Polynomial
 
+/--
+@isnad1 id=eq.0h4v.s7.8272cd50c2f0 from=translated src=- shape=b59f24c1 vocab=6cb35879
+-/
 theorem conj_pow_aux {G : Type} [Group G] (a w : G) (n : ℕ) : (a⁻¹ * w * a) ^ n = a⁻¹ * w ^ n * a := by
   induction n with
   | zero => simp
   | succ n ih => rw [pow_succ, ih, pow_succ]; group
 
+/--
+@isnad1 id=eq.0h2v.s7.76b4f9ffc87b from=translated src=- shape=f793ca5a vocab=a69ba8a7
+-/
 theorem sl2M_smul_eq {R : Type} [CommRing R] (b : R) : sl2M (0 : R) b 0 = b • sl2M 0 1 0 := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [sl2M]
 
+/--
+@isnad1 id=eq.5h7v.s13.87e8da544ff6 from=translated src=- shape=7a318c11 vocab=cdc791f0
+-/
 theorem frob_tame_rel {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪]
     (ρ : GaloisRepAdic 𝒪) (q : ℕ)
     (hunip : ∀ P' : ValuationSubring (AlgebraicClosure ℚ), P'.LiesOverPrime q →
@@ -592,6 +649,9 @@ theorem frob_tame_rel {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteV
 end COTGlue
 open scoped _root_.P2MW.S_GaloisRepAdic_conj_mul_conj_eq_pow_of_isUnipotentOnInertiaAt.WCOTGlueBCore
 
+/--
+@isnad1 id=eq.5h7v.s13.87e8da544ff6 from=translated src=- shape=7a318c11 vocab=cdc791f0
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪]
     (ρ : GaloisRepAdic 𝒪) (q : ℕ)

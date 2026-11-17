@@ -12,6 +12,9 @@ namespace FreyPackage
 export _root_.Tengoku.FltAnthropic.FreyPackage (gcdab_eq_gcdac c hb2 p a hc0 ha0 hgcdab hp5 b hFLT hb0 ha4 pp)
 open _root_.Tengoku.FltAnthropic.FreyPackage
 
+/--
+@isnad1 id=nonempty.6h4v.s6.3e1c8eccca72 from=translated src=- shape=4225025c vocab=2053c56c
+-/
 theorem of_counterexample (a b c : ℤ) (ha : a ≠ 0) (hb : b ≠ 0) (hc : c ≠ 0)
     (p : ℕ) (pp : p.Prime) (hp5 : 5 ≤ p) (H : a ^ p + b ^ p = c ^ p) :
     Nonempty FreyPackage := by
@@ -70,6 +73,9 @@ theorem of_counterexample (a b c : ℤ) (ha : a ≠ 0) (hb : b ≠ 0) (hc : c �
 
 end FreyPackage
 
+/--
+@isnad1 id=nonempty.6h4v.s6.3e1c8eccca72 from=translated src=- shape=4225025c vocab=2053c56c
+-/
 theorem solution (a b c : ℤ) (ha : a ≠ 0) (hb : b ≠ 0) (hc : c ≠ 0)
     (p : ℕ) (pp : p.Prime) (hp5 : 5 ≤ p) (H : a ^ p + b ^ p = c ^ p) :
     Nonempty FreyPackage :=

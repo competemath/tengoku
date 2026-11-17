@@ -22,11 +22,17 @@ theorem Equiv.eq_conj {ρ₁ ρ₂ : GaloisRepAdic A} (e : Equiv ρ₁ ρ₂)
   refine LinearMap.ext fun y => ?_
   rw [LinearEquiv.conj_apply_apply, e.map_apply, LinearEquiv.apply_symm_apply]
 
+/--
+@isnad1 id=eq.0h5v.s11.7c08d2bbfe11 from=translated src=- shape=be0b1f20 vocab=987dc9ec
+-/
 theorem Equiv.charpoly_apply_eq {ρ₁ ρ₂ : GaloisRepAdic A} (e : Equiv ρ₁ ρ₂)
     (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) :
     (ρ₂.ρ σ).charpoly = (ρ₁.ρ σ).charpoly := by
   rw [Equiv.eq_conj e σ, LinearEquiv.charpoly_conj]
 
+/--
+@isnad1 id=isunipot.2h4v.s5.b1ec5e7ded9f from=translated src=- shape=fadfb841 vocab=c1cc0570
+-/
 theorem isUnipotentOnInertiaAt_of_isEquiv {ρ₁ ρ₂ : GaloisRepAdic A} (e : ρ₁.IsEquiv ρ₂) {q : ℕ}
     (h : ρ₁.IsUnipotentOnInertiaAt q) : ρ₂.IsUnipotentOnInertiaAt q := by
   obtain ⟨e⟩ := e
@@ -36,6 +42,9 @@ theorem isUnipotentOnInertiaAt_of_isEquiv {ρ₁ ρ₂ : GaloisRepAdic A} (e : �
 
 end GaloisRepAdic.LCSol
 
+/--
+@isnad1 id=isunipot.2h4v.s5.b1ec5e7ded9f from=translated src=- shape=fadfb841 vocab=c1cc0570
+-/
 theorem solution
     {A : Type} [CommRing A] [IsLocalRing A]
     {ρ₁ ρ₂ : GaloisRepAdic A} (e : ρ₁.IsEquiv ρ₂) {q : ℕ}

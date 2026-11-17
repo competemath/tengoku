@@ -16,6 +16,9 @@ variable {F K : Type*} [Field F] [Field K] [Algebra F K] {σ ι : Type*}
 noncomputable def coord (b : Module.Basis ι F K) (j : ι) (g : MvPolynomial σ K) : MvPolynomial σ F :=
   ∑ m ∈ g.support, monomial m (b.repr (g.coeff m) j)
 
+/--
+@isnad1 id=eq.0h8v.s9.76dc6d1168c6 from=translated src=- shape=46cac758 vocab=99ab1054
+-/
 theorem coeff_coord (b : Module.Basis ι F K) (j : ι) (g : MvPolynomial σ K) (m : σ →₀ ℕ) :
     (coord b j g).coeff m = b.repr (g.coeff m) j := by
   classical
@@ -28,11 +31,17 @@ theorem coeff_coord (b : Module.Basis ι F K) (j : ι) (g : MvPolynomial σ K) (
   · have h0 : g.coeff m = 0 := by simpa [mem_support_iff] using hm
     rw [h0, map_zero, Finsupp.zero_apply]
 
+/--
+@isnad1 id=eq.0h8v.s8.e6082174dd2f from=translated src=- shape=e3a89026 vocab=1a125601
+-/
 theorem coord_add (b : Module.Basis ι F K) (j : ι) (g h : MvPolynomial σ K) :
     coord b j (g + h) = coord b j g + coord b j h := by
   ext m
   simp only [coeff_coord, coeff_add, map_add, Finsupp.add_apply]
 
+/--
+@isnad1 id=eq.0h6v.s7.85d514845f2b from=translated src=- shape=04e35072 vocab=7e457028
+-/
 theorem coord_zero (b : Module.Basis ι F K) (j : ι) : coord b j (0 : MvPolynomial σ K) = 0 := by
   ext m
   simp only [coeff_coord, coeff_zero, map_zero, Finsupp.zero_apply]
@@ -42,20 +51,32 @@ noncomputable def coordHom (b : Module.Basis ι F K) (j : ι) : MvPolynomial σ 
   map_zero' := coord_zero b j
   map_add' := coord_add b j
 
+/--
+@isnad1 id=eq.0h7v.s8.eadaa6d524d8 from=translated src=- shape=a63fc4ad vocab=0b0771f4
+-/
 @[scoped simp] theorem coordHom_apply (b : Module.Basis ι F K) (j : ι) (g : MvPolynomial σ K) :
     coordHom b j g = coord (σ := σ) b j g := rfl
 
+/--
+@isnad1 id=eq.0h9v.s7.6c23ad850c7d from=translated src=- shape=e3ba3f5a vocab=d05c2233
+-/
 theorem coord_sum (b : Module.Basis ι F K) (j : ι) {α : Type*} (s : Finset α) (g : α → MvPolynomial σ K) :
     coord b j (∑ a ∈ s, g a) = ∑ a ∈ s, coord b j (g a) := by
   rw [← coordHom_apply, map_sum]
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s9.ab3009a327c4 from=translated src=- shape=ca3c2451 vocab=6717a6e0
+-/
 theorem coord_C_mul_map (b : Module.Basis ι F K) (j : ι) (c : K) (w : MvPolynomial σ F) :
     coord b j (C c * map (algebraMap F K) w) = (b.repr c j) • w := by
   ext m
   rw [coeff_coord, coeff_C_mul, coeff_map, coeff_smul, mul_comm c, ← Algebra.smul_def, map_smul,
     Finsupp.smul_apply, smul_eq_mul, smul_eq_mul, mul_comm]
 
+/--
+@isnad1 id=eq.1h7v.s9.9e2d2234d520 from=translated src=- shape=361aa8f0 vocab=e87581d4
+-/
 theorem sum_C_mul_map_coord (b : Module.Basis ι F K) (g : MvPolynomial σ K) (J : Finset ι)
     (hJ : ∀ m, (b.repr (g.coeff m)).support ⊆ J) :
     ∑ j ∈ J, C (b j) * map (algebraMap F K) (coord b j g) = g := by
@@ -68,6 +89,9 @@ theorem sum_C_mul_map_coord (b : Module.Basis ι F K) (g : MvPolynomial σ K) (J
       (fun j _ => zero_smul _ _)] at key
   exact (Finset.sum_congr rfl fun j _ => by rw [Algebra.smul_def, mul_comm]).trans key
 
+/--
+@isnad1 id=le.0h7v.s10.8895cd64f28a from=translated src=- shape=55ed9199 vocab=bdb89021
+-/
 theorem repr_coeff_support_subset [DecidableEq ι] (b : Module.Basis ι F K) (g : MvPolynomial σ K)
     (m : σ →₀ ℕ) :
     (b.repr (g.coeff m)).support ⊆ g.support.biUnion fun m => (b.repr (g.coeff m)).support := by
@@ -77,6 +101,9 @@ theorem repr_coeff_support_subset [DecidableEq ι] (b : Module.Basis ι F K) (g 
     rw [h0, map_zero, Finsupp.support_zero]
     exact Finset.empty_subset _
 
+/--
+@isnad1 id=eq.1h8v.s9.ddf41dbb0dd1 from=translated src=- shape=dbaafc07 vocab=ef30bcf6
+-/
 theorem coord_sum_C_mul_map [DecidableEq ι] (b : Module.Basis ι F K) (J : Finset ι) (w : ι → MvPolynomial σ F)
     (j : ι) (hj : j ∈ J) :
     coord b j (∑ j' ∈ J, C (b j') * map (algebraMap F K) (w j')) = w j := by
@@ -85,6 +112,9 @@ theorem coord_sum_C_mul_map [DecidableEq ι] (b : Module.Basis ι F K) (J : Fins
   rw [Finset.sum_ite_eq' J j]
   exact ite_eq_left hj
 
+/--
+@isnad1 id=eq.0h5v.s9.f0acaed66e0d from=translated src=- shape=d3e6f2a2 vocab=a2b4e80d
+-/
 theorem aeval_X_pow_map {p : ℕ} [Fact p.Prime] {L : Type*} [CommRing L] [Algebra (ZMod p) L]
     (n : ℕ) (u : MvPolynomial σ (ZMod p)) :
     aeval (fun i => (X i : MvPolynomial σ L) ^ p ^ n) (map (algebraMap (ZMod p) L) u) =
@@ -101,6 +131,9 @@ end RelFrobAux
 open scoped _root_.P2MW.S_MvPolynomial_mem_span_map_of_aeval_X_pow_mem_span_map.RelFrobAux
 
 open RelFrobAux MvPolynomial in
+/--
+@isnad1 id=mem.2h6v.s10.0b15dfdf085b from=translated src=- shape=29616cc7 vocab=5cfef6a9
+-/
 theorem solution
     {p : ℕ} [Fact p.Prime] {K : Type*} [Field K] [Algebra (ZMod p) K] {σ : Type*} (n : ℕ)
     (f : MvPolynomial σ (ZMod p)) (hf : Prime f) (g : MvPolynomial σ K)

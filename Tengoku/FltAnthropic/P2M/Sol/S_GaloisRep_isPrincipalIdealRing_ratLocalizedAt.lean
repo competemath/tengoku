@@ -54,6 +54,9 @@ private scoped instance isLocalization (p : ℕ) :
 end SolB0A
 open scoped _root_.P2MW.S_GaloisRep_isPrincipalIdealRing_ratLocalizedAt.SolB0A
 
+/--
+@isnad1 id=isprinci.0h1v.s6.4e68c6254e74 from=translated src=- shape=bf98a028 vocab=d5036b2e
+-/
 theorem solution (p : ℕ) :
     IsPrincipalIdealRing (GaloisRep.ratLocalizedAt p) := by
   refine ⟨fun I => ?_⟩

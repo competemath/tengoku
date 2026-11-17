@@ -35,6 +35,9 @@ private theorem freyCurveInt_Δ_mul' (P : FreyPackage) :
     norm_num
   exact_mod_cast h
 
+/--
+@isnad1 id=dvd.0h1v.s3.4a9fdb9af38f from=translated src=- shape=2cbac45b vocab=2f3c4726
+-/
 theorem solution (P : FreyPackage) :
     (2 : ℤ) ∣ (FreyPackage.freyCurveInt P).Δ := by
 

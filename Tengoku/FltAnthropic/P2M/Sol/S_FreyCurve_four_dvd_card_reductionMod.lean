@@ -10,6 +10,9 @@ namespace P2MW.S_FreyCurve_four_dvd_card_reductionMod
 
 open WeierstrassCurve Tengoku.FltAnthropic.FreyPackage
 
+/--
+@isnad1 id=dvd.2h2v.s5.ea3c33c947b4 from=translated src=- shape=1a2d172c vocab=df4fe73e
+-/
 theorem solution (P : FreyPackage) {q : ℕ} [Fact q.Prime] (hq2 : q ≠ 2)
     (hgood : (FreyPackage.freyCurveInt P).IsGoodPrimeFor q) :
     4 ∣ ((FreyPackage.freyCurveInt P).reductionMod q).card := by

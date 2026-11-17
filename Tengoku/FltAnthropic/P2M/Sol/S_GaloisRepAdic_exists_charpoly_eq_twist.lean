@@ -12,6 +12,9 @@ open Polynomial IsLocalRing
 
 namespace GaloisRepTwist
 
+/--
+@isnad1 id=eq.1h3v.s10.c603028eae9a from=translated src=- shape=9f7c0cbc vocab=9eb6aad4
+-/
 theorem charpoly_eq_X_sq_sub {A : Type*} [CommRing A] [Nontrivial A] {V : Type*} [AddCommGroup V]
     [Module A V] [Module.Free A V] [Module.Finite A V] (h2 : Module.finrank A V = 2)
     (T : Module.End A V) :
@@ -24,6 +27,9 @@ theorem charpoly_eq_X_sq_sub {A : Type*} [CommRing A] [Nontrivial A] {V : Type*}
 end GaloisRepTwist
 
 open GaloisRepTwist in
+/--
+@isnad1 id=ex.1h3v.s13.58865e50450b from=translated src=- shape=ddc6c217 vocab=c795e42c
+-/
 theorem solution
     {A : Type} [CommRing A] [IsLocalRing A] (ρ : GaloisRepAdic A)
     (θ : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) →* Aˣ)

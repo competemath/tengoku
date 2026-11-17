@@ -11,6 +11,9 @@ attribute [-simp] WeierstrassCurve.Affine.vcY_vcYInv WeierstrassCurve.Affine.vcX
 
 open WeierstrassCurve FLT.ModelTransfer
 
+/--
+@isnad1 id=eq.5h4v.s6.71e3f54ab78c from=translated src=- shape=fea22b24 vocab=99ef0b6c
+-/
 theorem apOfModel_eq_of_isGoodPrimeFor_odd_local {V W : WeierstrassCurve ℤ}
     {C : WeierstrassCurve.VariableChange ℚ} {q : ℕ}
     (hq : q.Prime) (hq2 : q ≠ 2)
@@ -25,6 +28,9 @@ theorem apOfModel_eq_of_isGoodPrimeFor_odd_local {V W : WeierstrassCurve ℤ}
     card_eq_of_variableChange_smul_eq hred
   simp only [WeierstrassCurve.apOfModel, WeierstrassCurve.traceOfFrobenius, hcard]
 
+/--
+@isnad1 id=eq.6h4v.s5.f774686ea8ec from=translated src=- shape=bdd777a3 vocab=0feb5f36
+-/
 theorem solution {V W : WeierstrassCurve ℤ} {E : WeierstrassCurve ℚ} {q : ℕ}
     (hVE : V.IsIntegralModelOf E) (hWE : W.IsIntegralModelOf E)
     (hq : q.Prime) (hq2 : q ≠ 2)

@@ -147,6 +147,9 @@ end Weight
 end FrobeniusDensity
 
 open scoped Classical in
+/--
+@isnad1 id=eq.0h3v.s9.c3792c6a8a4c from=translated src=- shape=fd270ce8 vocab=c025b9d4
+-/
 theorem solution {G : Type*} [Group G] [Finite G] (σ τ : G) :
     ∑ f ∈ (orderOf σ).divisors,
         (ArithmeticFunction.moebius (orderOf σ / f)) *

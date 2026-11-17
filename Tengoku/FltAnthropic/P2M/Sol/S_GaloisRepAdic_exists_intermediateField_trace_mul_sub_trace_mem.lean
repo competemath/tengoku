@@ -10,6 +10,9 @@ set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 1600000
 open IsLocalRing
 
+/--
+@isnad1 id=ex.1h3v.s10.07f19b702b19 from=translated src=- shape=8dd5e3ab vocab=5c01485d
+-/
 theorem solution
     {R : Type} [CommRing R] [IsLocalRing R] (ρ : GaloisRepAdic R)
     (J : Ideal R) (hJ : ∃ m : ℕ, maximalIdeal R ^ m ≤ J) :

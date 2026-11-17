@@ -8,6 +8,9 @@ namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropi
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_GaloisRepAdic_flatCondition_of_isEquiv.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 namespace P2MW.S_GaloisRepAdic_flatCondition_of_isEquiv
 
+/--
+@isnad1 id=flatcond.2h6v.s6.71deb8b01340 from=translated src=- shape=8d952400 vocab=a58c7a13
+-/
 theorem solution
     {A : Type} [CommRing A] [IsLocalRing A]
     (𝒪 : Type) [CommRing 𝒪] [Algebra 𝒪 A]

@@ -13,6 +13,9 @@ export _root_.Tengoku.FltAnthropic.GaloisRepAdic (IsStrictOrdinaryAt DetIsCyclot
 namespace K1StrictOrdinaryAux
 open _root_.Tengoku.FltAnthropic.GaloisRepAdic
 
+/--
+@isnad1 id=ex.1h4v.s10.fd0b75cbf661 from=translated src=- shape=b116efd0 vocab=2c5bc719
+-/
 theorem exists_lineScalar_quotientScalar_det_eq {A V : Type} [CommRing A] [AddCommGroup V]
     [Module A V] (b : Module.Basis (Fin 2) A V) (M : Module.End A V)
     (hL : ∀ v ∈ A ∙ b 0, M v ∈ A ∙ b 0) :
@@ -57,6 +60,9 @@ theorem exists_lineScalar_quotientScalar_det_eq {A V : Type} [CommRing A] [AddCo
       rw [LinearMap.toMatrix_apply, hz]
     rw [h00, h10, h11]; ring
 
+/--
+@isnad1 id=mem.2h5v.s7.f2bef338d2a1 from=translated src=- shape=8c72f011 vocab=1006be06
+-/
 theorem sub_mul_mem_span_singleton_of_mul_self_eq_one {A : Type} [CommRing A] (x z a q : A)
     (hz : z * z = 1) (h : x * z - a ∈ Ideal.span {q}) : x - a * z ∈ Ideal.span {q} := by
   have hxz : x - a * z = z * (x * z - a) := by
@@ -67,6 +73,9 @@ theorem sub_mul_mem_span_singleton_of_mul_self_eq_one {A : Type} [CommRing A] (x
 
 end GaloisRepAdic.K1StrictOrdinaryAux
 
+/--
+@isnad1 id=isstrict.2h3v.s12.5e87f4fb8774 from=translated src=- shape=8adb0490 vocab=2bc88684
+-/
 theorem solution
     {A : Type} [CommRing A] [IsLocalRing A] (ρ : GaloisRepAdic A) (p : ℕ)
     (hdet : ρ.DetIsCyclotomic p)

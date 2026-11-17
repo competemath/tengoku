@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=ex.1h4v.s13.a4873c498875 from=translated src=- shape=e7a5c84a vocab=270e5bb8
+-/
 theorem solution
     (lam : ℕ) [Fact lam.Prime] (O' : Type) [CommRing O'] [Algebra ℤ_[lam] O']
     (K : Type) [CommRing K] [Algebra O' K] [Algebra ℚ_[lam] K]

@@ -8,6 +8,9 @@ namespace P2MW.S_GaloisRep_exists_intermediateField_isGalois_fixingSubgroup_eq_k
 namespace S18
 namespace KernelField
 
+/--
+@isnad1 id=ex.2h3v.s11.0aa4e97d795a from=translated src=- shape=4efe5fb7 vocab=9cf993e4
+-/
 theorem exists_kernelField {G : Type*} [Group G] [Finite G]
     (ρ : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) →* G)
     (M : IntermediateField ℚ (AlgebraicClosure ℚ)) (hM : FiniteDimensional ℚ M)
@@ -53,6 +56,9 @@ theorem exists_kernelField {G : Type*} [Group G] [Finite G]
 
 end S18.KernelField
 
+/--
+@isnad1 id=ex.2h3v.s11.0aa4e97d795a from=translated src=- shape=4efe5fb7 vocab=9cf993e4
+-/
 theorem solution
     {G : Type*} [Group G] [Finite G] (ρ : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) →* G)
     (M : IntermediateField ℚ (AlgebraicClosure ℚ)) (hM : FiniteDimensional ℚ M)

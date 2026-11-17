@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_IntermediateField_exists_le_adjoin_padicEm
 namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 set_option autoImplicit false
 open scoped IntermediateField
+/--
+@isnad1 id=ex.0h2v.s10.f4bf1f85844b from=translated src=- shape=f6831683 vocab=e8b1ed21
+-/
 theorem IntermediateField.exists_le_adjoin_padicEmbedding_image
     (q : ℕ) [Fact q.Prime]
     (K : IntermediateField ℚ_[q] (PadicAlgCl q)) [FiniteDimensional ℚ_[q] K] :

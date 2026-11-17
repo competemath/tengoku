@@ -18,12 +18,18 @@ section Valuation
 
 variable {K L : Type*} [Field K] [Field L] [Algebra K L]
 
+/--
+@isnad1 id=iff.0h4v.s10.6bcb6505dc11 from=translated src=- shape=e3f680db vocab=81c3f580
+-/
 theorem residue_eq_iff (A : ValuationSubring L) (a b : A) :
     IsLocalRing.residue A a = IsLocalRing.residue A b ↔ ((a : L) - b) ∈ A.nonunits := by
   rw [← sub_eq_zero, ← map_sub, IsLocalRing.residue_eq_zero_iff,
     ← ValuationSubring.coe_mem_nonunits_iff]
   rfl
 
+/--
+@isnad1 id=and.1h4v.s8.61674addef3a from=translated src=- shape=ca0d9356 vocab=b2927b70
+-/
 theorem smul_eq_and_sub_mem_of_mem_inertiaSubgroupIn (A : ValuationSubring L) {τ : L ≃ₐ[K] L}
     (hτ : τ ∈ A.inertiaSubgroupIn K) : τ • A = A ∧ ∀ a ∈ A, τ a - a ∈ A.nonunits := by
   obtain ⟨d, hd, rfl⟩ := hτ
@@ -36,22 +42,34 @@ theorem smul_eq_and_sub_mem_of_mem_inertiaSubgroupIn (A : ValuationSubring L) {�
   simp at h1
   exact h1
 
+/--
+@isnad1 id=mem.2h5v.s8.3472fdfd2462 from=translated src=- shape=91792c4c vocab=e7b33659
+-/
 theorem apply_mem_of_smul_eq (A : ValuationSubring L) {τ : L ≃ₐ[K] L} (hτ : τ • A = A) {x : L}
     (hx : x ∈ A) : τ x ∈ A := by
   have : τ • x ∈ τ • A := Set.smul_mem_smul_set (a := τ) hx
   rw [hτ] at this
   exact this
 
+/--
+@isnad1 id=eq.1h4v.s8.9e986dfd0f2e from=translated src=- shape=82a5834b vocab=de23d481
+-/
 theorem inv_smul_eq_of_smul_eq (A : ValuationSubring L) {τ : L ≃ₐ[K] L} (hτ : τ • A = A) :
     τ⁻¹ • A = A := by
   have := congrArg (fun B : ValuationSubring L => τ⁻¹ • B) hτ
   simpa [smul_smul] using this.symm
 
+/--
+@isnad1 id=mem.2h5v.s8.782bd2ff3086 from=translated src=- shape=9150cc35 vocab=e7b33659
+-/
 theorem mem_of_apply_mem_of_smul_eq (A : ValuationSubring L) {τ : L ≃ₐ[K] L} (hτ : τ • A = A)
     {x : L} (hx : τ x ∈ A) : x ∈ A := by
   have := apply_mem_of_smul_eq A (inv_smul_eq_of_smul_eq A hτ) hx
   simpa [AlgEquiv.aut_inv] using this
 
+/--
+@isnad1 id=lt.2h5v.s9.8a1ee41e8e30 from=translated src=- shape=66963490 vocab=ecc00135
+-/
 theorem valuation_apply_lt_one (A : ValuationSubring L) {τ : L ≃ₐ[K] L} (hτ : τ • A = A)
     {x : L} (hx : A.valuation x < 1) : A.valuation (τ x) < 1 := by
   by_cases hx0 : x = 0
@@ -69,6 +87,9 @@ theorem valuation_apply_lt_one (A : ValuationSubring L) {τ : L ≃ₐ[K] L} (h�
   rw [map_inv₀, inv_le_one₀ hpos] at h2
   exact absurd hx (not_lt.mpr h2)
 
+/--
+@isnad1 id=lt.3h6v.s9.7ae303748fc2 from=translated src=- shape=d5014071 vocab=ecc00135
+-/
 theorem valuation_apply_lt_of_lt (A : ValuationSubring L) {τ : L ≃ₐ[K] L} (hτ : τ • A = A)
     {x y : L} (hy : y ≠ 0) (h : A.valuation x < A.valuation y) :
     A.valuation (τ x) < A.valuation (τ y) := by
@@ -79,6 +100,9 @@ theorem valuation_apply_lt_of_lt (A : ValuationSubring L) {τ : L ≃ₐ[K] L} (
   have := valuation_apply_lt_one A hτ hxy
   rwa [map_div₀, map_div₀, div_lt_one₀ hvτy] at this
 
+/--
+@isnad1 id=eq.1h5v.s8.1417d8f79433 from=translated src=- shape=b744e9a0 vocab=6b10c9da
+-/
 theorem valuation_apply_eq [Algebra.IsAlgebraic K L] (A : ValuationSubring L) {τ : L ≃ₐ[K] L}
     (hτ : τ • A = A) (z : L) : A.valuation (τ z) = A.valuation z := by
 
@@ -115,11 +139,17 @@ theorem valuation_apply_eq [Algebra.IsAlgebraic K L] (A : ValuationSubring L) {�
     refine key τ⁻¹ (inv_smul_eq_of_smul_eq A hτ) (τ z) ?_
     simpa [AlgEquiv.aut_inv] using h
 
+/--
+@isnad1 id=eq.2h5v.s8.b4ba01188dcb from=translated src=- shape=e7eac411 vocab=f4bfaab1
+-/
 theorem valuation_apply_div_self [Algebra.IsAlgebraic K L] (A : ValuationSubring L)
     {τ : L ≃ₐ[K] L} (hτ : τ • A = A) {z : L} (hz : z ≠ 0) : A.valuation (τ z / z) = 1 := by
   rw [map_div₀, valuation_apply_eq A hτ z, div_self]
   simpa using hz
 
+/--
+@isnad1 id=lt.2h5v.s9.346c726aedd4 from=translated src=- shape=be0073c9 vocab=42c6d2bd
+-/
 theorem valuation_apply_div_self_sub_one_lt (A : ValuationSubring L) {σ : L ≃ₐ[K] L}
     (hσ : σ ∈ A.inertiaSubgroupIn K) {w : L} (hw : A.valuation w = 1) :
     A.valuation (σ w / w - 1) < 1 := by
@@ -133,6 +163,9 @@ theorem valuation_apply_div_self_sub_one_lt (A : ValuationSubring L) {σ : L ≃
   rw [this, map_div₀, hw, div_one]
   exact h
 
+/--
+@isnad1 id=lt.3h6v.s9.8c4437a0427d from=translated src=- shape=f2703e79 vocab=a03e636e
+-/
 theorem valuation_cocycle_translate_sub_lt [Algebra.IsAlgebraic K L] (A : ValuationSubring L)
     {σ τ : L ≃ₐ[K] L} (hσ : σ ∈ A.inertiaSubgroupIn K) (hτ : τ • A = A) {z : L} (hz : z ≠ 0) :
     A.valuation (σ (τ z) / τ z - σ z / z) < 1 := by
@@ -151,6 +184,9 @@ theorem valuation_cocycle_translate_sub_lt [Algebra.IsAlgebraic K L] (A : Valuat
     (smul_eq_and_sub_mem_of_mem_inertiaSubgroupIn A hσ).1 hz, mul_one]
   exact valuation_apply_div_self_sub_one_lt A hσ hwv
 
+/--
+@isnad1 id=mem.2h5v.s8.6ae00120acc4 from=translated src=- shape=87db2713 vocab=09073ebc
+-/
 theorem apply_div_self_mem [Algebra.IsAlgebraic K L] (A : ValuationSubring L) {τ : L ≃ₐ[K] L}
     (hτ : τ • A = A) {z : L} (hz : z ≠ 0) : τ z / z ∈ A :=
   (A.valuation_le_one_iff _).mp (valuation_apply_div_self A hτ hz).le
@@ -162,6 +198,9 @@ noncomputable def tameAt [Algebra.IsAlgebraic K L] (A : ValuationSubring L) (z :
   IsLocalRing.residue A ⟨σ.1 z / z,
     apply_div_self_mem A (smul_eq_and_sub_mem_of_mem_inertiaSubgroupIn A σ.2).1 hz⟩
 
+/--
+@isnad1 id=ne.1h5v.s9.7655c17379ab from=translated src=- shape=f503251f vocab=ada1f406
+-/
 theorem tameAt_ne_zero [Algebra.IsAlgebraic K L] (A : ValuationSubring L) (z : L) (hz : z ≠ 0)
     (σ : A.inertiaSubgroupIn K) : tameAt K A z hz σ ≠ 0 := by
   rw [tameAt, Ne, IsLocalRing.residue_eq_zero_iff, ← ValuationSubring.coe_mem_nonunits_iff,
@@ -169,6 +208,9 @@ theorem tameAt_ne_zero [Algebra.IsAlgebraic K L] (A : ValuationSubring L) (z : L
   simp only [not_lt]
   exact (valuation_apply_div_self A (smul_eq_and_sub_mem_of_mem_inertiaSubgroupIn A σ.2).1 hz).ge
 
+/--
+@isnad1 id=eq.1h6v.s10.718e2f091739 from=translated src=- shape=163d9403 vocab=a48725ba
+-/
 theorem tameAt_mul [Algebra.IsAlgebraic K L] (A : ValuationSubring L) (z : L) (hz : z ≠ 0)
     (σ τ : A.inertiaSubgroupIn K) : tameAt K A z hz (σ * τ) = tameAt K A z hz σ * tameAt K A z hz τ := by
   rw [tameAt, tameAt, tameAt, ← map_mul, residue_eq_iff]
@@ -184,6 +226,9 @@ theorem tameAt_mul [Algebra.IsAlgebraic K L] (A : ValuationSubring L) (z : L) (h
     mul_one]
   exact valuation_cocycle_translate_sub_lt A σ.2 hτA hz
 
+/--
+@isnad1 id=mem.3h6v.s10.6345fee20506 from=translated src=- shape=46cc7cd2 vocab=82bc56d1
+-/
 theorem commutator_apply_mul_inv_sub_one_mem_nonunits [Algebra.IsAlgebraic K L]
     (A : ValuationSubring L) {σ τ : L ≃ₐ[K] L} (hσ : σ ∈ A.inertiaSubgroupIn K)
     (hτ : τ ∈ A.inertiaSubgroupIn K) (z : L) (hz : z ≠ 0) :
@@ -207,6 +252,9 @@ section RankTwo
 variable {A : Type*} [CommRing A] [Nontrivial A] {V : Type*} [AddCommGroup V] [Module A V]
   [Module.Free A V] [Module.Finite A V]
 
+/--
+@isnad1 id=eq.1h3v.s8.68e9aeda240d from=translated src=- shape=f67c1526 vocab=c50000d8
+-/
 theorem det_eq_charpoly_coeff_zero (hV : Module.finrank A V = 2) (f : Module.End A V) :
     LinearMap.det f = f.charpoly.coeff 0 := by
   classical
@@ -215,6 +263,9 @@ theorem det_eq_charpoly_coeff_zero (hV : Module.finrank A V = 2) (f : Module.End
     ← Module.finrank_eq_card_basis b, hV]
   ring
 
+/--
+@isnad1 id=eq.1h3v.s9.d582ab84da08 from=translated src=- shape=5bff2dfb vocab=d3077888
+-/
 theorem charpoly_eq_of_finrank_eq_two (hV : Module.finrank A V = 2) (f : Module.End A V) :
     f.charpoly = X ^ 2 + C (f.charpoly.coeff 1) * X + C (LinearMap.det f) := by
   have hmon := f.charpoly_monic
@@ -226,12 +277,18 @@ theorem charpoly_eq_of_finrank_eq_two (hV : Module.finrank A V = 2) (f : Module.
 
 omit [Nontrivial A] in
 
+/--
+@isnad1 id=eq.1h3v.s8.adcf4ba16d4f from=translated src=- shape=38b62788 vocab=8b3d2771
+-/
 theorem sub_one_sq_eq_zero_of_charpoly (f : Module.End A V) (h : f.charpoly = (X - 1) ^ 2) :
     (f - 1) ^ 2 = 0 := by
   have hCH := f.aeval_self_charpoly
   rw [h] at hCH
   simpa [map_pow, map_sub, aeval_X] using hCH
 
+/--
+@isnad1 id=eq.3h3v.s9.b2b4cdcb8181 from=translated src=- shape=a2fb2ed0 vocab=1cf80bae
+-/
 theorem charpoly_eq_X_sub_one_sq (hV : Module.finrank A V = 2) (f : Module.End A V)
     (h1 : f.charpoly.IsRoot 1) (hdet : LinearMap.det f = 1) : f.charpoly = (X - 1) ^ 2 := by
   have hform := charpoly_eq_of_finrank_eq_two hV f
@@ -252,21 +309,33 @@ section Adic
 open _root_.IsLocalRing open _root_.Module.IsLocalRing
 open scoped TensorProduct
 
+/--
+@isnad1 id=normal.0h0v.s4.8393bcded6c9 from=translated src=- shape=3905abf2 vocab=399da0a7
+-/
 theorem normal_algebraicClosure_rat : Normal ℚ (AlgebraicClosure ℚ) := by
   convert @IsAlgClosure.normal ℚ (AlgebraicClosure ℚ) _ _ (AlgebraicClosure.instAlgebra ℚ)
     inferInstance
   rfl
 
+/--
+@isnad1 id=isalgebr.0h0v.s4.92f995461263 from=translated src=- shape=3905abf2 vocab=c7f7e443
+-/
 theorem isAlgebraic_algebraicClosure_rat : Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) :=
   haveI := normal_algebraicClosure_rat
   inferInstance
 
+/--
+@isnad1 id=ex.0h1v.s10.d92550da445e from=translated src=- shape=c9a73c27 vocab=bb7a726a
+-/
 theorem exists_normal_ge (L : IntermediateField ℚ (AlgebraicClosure ℚ)) [FiniteDimensional ℚ L] :
     ∃ F : IntermediateField ℚ (AlgebraicClosure ℚ), FiniteDimensional ℚ F ∧ Normal ℚ F ∧ L ≤ F := by
   haveI := normal_algebraicClosure_rat
   exact ⟨IntermediateField.normalClosure ℚ L (AlgebraicClosure ℚ), inferInstance,
     normalClosure.normal ℚ L (AlgebraicClosure ℚ), IntermediateField.le_normalClosure L⟩
 
+/--
+@isnad1 id=eq.1h3v.s7.5c209a7e8f3c from=translated src=- shape=b4a4bf97 vocab=accd7c28
+-/
 theorem one_add_pow_of_mul_self_eq_zero {E : Type*} [Ring E] (N : E) (h : N * N = 0) (m : ℕ) :
     (1 + N) ^ m = 1 + m • N := by
   induction m with
@@ -277,6 +346,9 @@ theorem one_add_pow_of_mul_self_eq_zero {E : Type*} [Ring E] (N : E) (h : N * N 
 
 variable {A : Type} [CommRing A] [IsLocalRing A]
 
+/--
+@isnad1 id=eq.5h5v.s11.e3fa211ca88b from=translated src=- shape=754305f4 vocab=1d53841c
+-/
 theorem apply_eq_one_of_wild_of_sub_one_sq_eq_zero [IsNoetherianRing A] (ρ : GaloisRepAdic A)
     {q : ℕ} (hq : q.Prime) (hqA : IsUnit (q : A))
     (P : ValuationSubring (AlgebraicClosure ℚ)) (hP : P.LiesOverPrime q)
@@ -315,6 +387,9 @@ theorem apply_eq_one_of_wild_of_sub_one_sq_eq_zero [IsNoetherianRing A] (ρ : Ga
   rwa [Ideal.iInf_pow_smul_eq_bot_of_isLocalRing _ (maximalIdeal.isMaximal A).ne_top,
     Submodule.mem_bot] at hmem
 
+/--
+@isnad1 id=eq.6h6v.s12.718dc1d569a2 from=translated src=- shape=ac6e2355 vocab=5eef4944
+-/
 theorem inertia_comm [IsDomain A] [IsNoetherianRing A] (ρ : GaloisRepAdic A)
     {q : ℕ} (hq : q.Prime) (hqA : IsUnit (q : A))
     (P : ValuationSubring (AlgebraicClosure ℚ)) (hP : P.LiesOverPrime q)
@@ -352,6 +427,9 @@ end InertiaEigenOne
 
 open InertiaEigenOne in
 
+/--
+@isnad1 id=eq.6h6v.s12.f4d82320f438 from=translated src=- shape=ac6e2355 vocab=5eef4944
+-/
 theorem solution
     {A : Type} [CommRing A] [IsDomain A] [IsLocalRing A] [IsNoetherianRing A]
     (ρ : GaloisRepAdic A) {q : ℕ} (hq : q.Prime) (hqA : IsUnit (q : A))

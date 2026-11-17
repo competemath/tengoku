@@ -11,6 +11,9 @@ open Finset
 
 namespace ResidualNorm
 
+/--
+@isnad1 id=ex.5h4v.s10.fdca46ea558d from=translated src=- shape=c63a1c95 vocab=cd267702
+-/
 theorem finiteField_exists_prod_pow_apply_eq {F : Type*} [Field F] [Finite F]
     (τ : F ≃+* F) (ℓ : ℕ) (hℓ : ℓ.Prime) (hτℓ : τ ^ ℓ = 1) (hτ1 : τ ≠ 1)
     (c : F) (hc : c ≠ 0) (hτc : τ c = c) :
@@ -70,9 +73,15 @@ variable {R : Type*} [CommRing R]
 def pull (τ : R ≃+* R) (I : MaximalSpectrum R) : MaximalSpectrum R :=
   ⟨I.asIdeal.comap (τ : R →+* R), Ideal.comap_isMaximal_of_surjective _ τ.surjective⟩
 
+/--
+@isnad1 id=iff.0h4v.s8.4846d476ab8e from=translated src=- shape=3d5718ca vocab=922a8fb9
+-/
 theorem mem_pull (τ : R ≃+* R) (I : MaximalSpectrum R) (x : R) :
     x ∈ (pull τ I).asIdeal ↔ τ x ∈ I.asIdeal := Iff.rfl
 
+/--
+@isnad1 id=iff.0h5v.s9.7dc359a39d4b from=translated src=- shape=fafc94e1 vocab=0412bc89
+-/
 theorem mem_pull_iterate (τ : R ≃+* R) (I : MaximalSpectrum R) (k : ℕ) (x : R) :
     x ∈ ((pull τ)^[k] I).asIdeal ↔ (τ ^ k) x ∈ I.asIdeal := by
   induction k generalizing x with
@@ -81,6 +90,9 @@ theorem mem_pull_iterate (τ : R ≃+* R) (I : MaximalSpectrum R) (k : ℕ) (x :
     rw [Function.iterate_succ_apply', mem_pull, ih, pow_succ]
     rfl
 
+/--
+@isnad1 id=eq.1h4v.s9.add51345ee2a from=translated src=- shape=5eddd063 vocab=9251caf3
+-/
 theorem pull_iterate_eq_self_of_pow_eq_one (τ : R ≃+* R) (ℓ : ℕ) (hτℓ : τ ^ ℓ = 1)
     (I : MaximalSpectrum R) : (pull τ)^[ℓ] I = I := by
   apply MaximalSpectrum.ext
@@ -94,6 +106,9 @@ def push (τ : R ≃+* R) (I : MaximalSpectrum R) (k : ℕ) :
     rw [Ideal.mem_comap]
     exact (mem_pull_iterate τ I k x).1 hx
 
+/--
+@isnad1 id=eq.0h5v.s10.5378db6c94bc from=translated src=- shape=95a3c542 vocab=9c6f3552
+-/
 theorem push_mk (τ : R ≃+* R) (I : MaximalSpectrum R) (k : ℕ) (x : R) :
     push τ I k (Ideal.Quotient.mk _ x) = Ideal.Quotient.mk _ ((τ ^ k) x) :=
   Ideal.quotientMap_mk
@@ -114,10 +129,16 @@ def resAut (τ : R ≃+* R) (I : MaximalSpectrum R) (h : pull τ I = I) :
       rw [mem_pull, RingEquiv.apply_symm_apply] at h2
       exact h2)
 
+/--
+@isnad1 id=eq.1h4v.s10.e2e89752eede from=translated src=- shape=51dfc340 vocab=3ddbc059
+-/
 theorem resAut_mk (τ : R ≃+* R) (I : MaximalSpectrum R) (h : pull τ I = I) (x : R) :
     resAut τ I h (Ideal.Quotient.mk _ x) = Ideal.Quotient.mk _ (τ x) :=
   Ideal.quotientEquiv_mk _ _ _ _ x
 
+/--
+@isnad1 id=eq.1h5v.s11.443441a29436 from=translated src=- shape=0b286796 vocab=3ceb2e16
+-/
 theorem resAut_pow_mk (τ : R ≃+* R) (I : MaximalSpectrum R) (h : pull τ I = I) (k : ℕ) (x : R) :
     (resAut τ I h ^ k) (Ideal.Quotient.mk _ x) = Ideal.Quotient.mk _ ((τ ^ k) x) := by
   induction k generalizing x with
@@ -133,6 +154,9 @@ namespace ResidualNorm
 
 variable {R : Type*} [CommRing R]
 
+/--
+@isnad1 id=eq.1h4v.s9.6199b7846447 from=translated src=- shape=d7c554a8 vocab=b9e2ca6e
+-/
 theorem pow_apply_of_fix (τ : R ≃+* R) {c : R} (hτc : τ c = c) (k : ℕ) : (τ ^ k) c = c := by
   induction k with
   | zero => rfl
@@ -141,6 +165,9 @@ theorem pow_apply_of_fix (τ : R ≃+* R) {c : R} (hτc : τ c = c) (k : ℕ) : 
     show τ ((τ ^ k) c) = c
     rw [ih, hτc]
 
+/--
+@isnad1 id=eq.0h3v.s9.386237070318 from=translated src=- shape=a67cc65e vocab=533f972f
+-/
 theorem equivPi_apply [IsArtinianRing R] [IsReduced R] (x : R) (I : MaximalSpectrum R) :
     IsArtinianRing.equivPi R x I = Ideal.Quotient.mk I.asIdeal x := by
   have : IsArtinianRing.equivPi R x = x • (1 : (J : MaximalSpectrum R) → R ⧸ J.asIdeal) := by
@@ -152,6 +179,9 @@ theorem equivPi_apply [IsArtinianRing R] [IsReduced R] (x : R) (I : MaximalSpect
 def orb (φ : MaximalSpectrum R → MaximalSpectrum R) (I : MaximalSpectrum R) : Set (MaximalSpectrum R) :=
   {J | ∃ i : ℕ, φ^[i] I = J}
 
+/--
+@isnad1 id=eq.2h4v.s6.12cb05b0c479 from=translated src=- shape=3aa4bc17 vocab=42a2d3f3
+-/
 theorem orb_apply_eq (φ : MaximalSpectrum R → MaximalSpectrum R) (ℓ : ℕ) (hℓ : 0 < ℓ)
     (hper : ∀ I, φ^[ℓ] I = I) (I : MaximalSpectrum R) : orb φ (φ I) = orb φ I := by
   ext J
@@ -163,6 +193,9 @@ theorem orb_apply_eq (φ : MaximalSpectrum R → MaximalSpectrum R) (ℓ : ℕ) 
     rw [← Function.iterate_succ_apply, show (i + (ℓ - 1)).succ = i + ℓ by omega,
       Function.iterate_add_apply, hper]
 
+/--
+@isnad1 id=eq.2h5v.s6.e9cb483d246a from=translated src=- shape=933669c3 vocab=42a2d3f3
+-/
 theorem orb_iterate_eq (φ : MaximalSpectrum R → MaximalSpectrum R) (ℓ : ℕ) (hℓ : 0 < ℓ)
     (hper : ∀ I, φ^[ℓ] I = I) (I : MaximalSpectrum R) (k : ℕ) : orb φ (φ^[k] I) = orb φ I := by
   induction k with
@@ -173,16 +206,25 @@ noncomputable def rep (φ : MaximalSpectrum R → MaximalSpectrum R) (I : Maxima
     MaximalSpectrum R :=
   @Classical.epsilon _ ⟨I⟩ (orb φ I)
 
+/--
+@isnad1 id=mem.0h3v.s5.e1baca39d1d8 from=translated src=- shape=a6b010ec vocab=74a66bed
+-/
 theorem rep_mem (φ : MaximalSpectrum R → MaximalSpectrum R) (I : MaximalSpectrum R) :
     rep φ I ∈ orb φ I :=
   @Classical.epsilon_spec _ (orb φ I) ⟨I, 0, rfl⟩
 
+/--
+@isnad1 id=eq.2h5v.s6.48a4c3214bd5 from=translated src=- shape=1aeb9bb4 vocab=075be626
+-/
 theorem rep_iterate (φ : MaximalSpectrum R → MaximalSpectrum R) (ℓ : ℕ) (hℓ : 0 < ℓ)
     (hper : ∀ I, φ^[ℓ] I = I) (I : MaximalSpectrum R) (k : ℕ) : rep φ (φ^[k] I) = rep φ I := by
   unfold rep
   have h := orb_iterate_eq φ ℓ hℓ hper I k
   simp only [h]
 
+/--
+@isnad1 id=ex.5h4v.s10.aad6761573c5 from=translated src=- shape=55020c2f vocab=91215354
+-/
 theorem exists_isUnit_prod_pow_apply_eq_of_isReduced [Finite R] [IsReduced R]
     (τ : R ≃+* R) (ℓ : ℕ) (hℓ : ℓ.Prime) (hτℓ : τ ^ ℓ = 1)
     (hmax : ∀ m : Ideal R, m.IsMaximal → (∀ x ∈ m, τ x ∈ m) → ∃ x, τ x - x ∉ m)
@@ -302,6 +344,9 @@ theorem exists_isUnit_prod_pow_apply_eq_of_isReduced [Finite R] [IsReduced R]
 
 end ResidualNorm
 
+/--
+@isnad1 id=ex.5h4v.s10.aad6761573c5 from=translated src=- shape=55020c2f vocab=91215354
+-/
 theorem solution
     {R : Type*} [CommRing R] [Finite R] [IsReduced R]
     (τ : R ≃+* R) (ℓ : ℕ) (hℓ : ℓ.Prime) (hτℓ : τ ^ ℓ = 1)

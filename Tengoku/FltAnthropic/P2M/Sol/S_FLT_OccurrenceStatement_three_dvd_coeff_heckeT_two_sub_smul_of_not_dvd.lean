@@ -13,11 +13,17 @@ open EisensteinWeightOne
 
 namespace LaneB
 
+/--
+@isnad1 id=eq.0h2v.s7.c926f36322f5 from=translated src=- shape=39ec5e47 vocab=43cd06c6
+-/
 lemma coeff_e1Chi3In {R : Type*} [CommRing R] (j : ℕ) :
     PowerSeries.coeff j (e1Chi3In R) = if j = 0 then 1 else ((6 * sigmaChi j : ℤ) : R) := by
   simp only [e1Chi3In, e1Chi3, PowerSeries.coeff_map, PowerSeries.coeff_mk]
   split_ifs <;> simp
 
+/--
+@isnad1 id=dvd.0h3v.s8.735c5a48b98e from=translated src=- shape=c6ac899d vocab=534cef87
+-/
 theorem three_dvd_coeff_mul_e1Chi3In_sub {R : Type*} [CommRing R] (g : PowerSeries R) (n : ℕ) :
     (3 : R) ∣ PowerSeries.coeff n (g * e1Chi3In R) - PowerSeries.coeff n g := by
   classical
@@ -37,11 +43,17 @@ theorem three_dvd_coeff_mul_e1Chi3In_sub {R : Type*} [CommRing R] (g : PowerSeri
   push_cast
   ring
 
+/--
+@isnad1 id=dvd.0h3v.s7.9a7c22ebe904 from=translated src=- shape=2fc70913 vocab=be03cac9
+-/
 theorem three_dvd_coeff_bridgeProduct_sub {R : Type*} [CommRing R] (a : ℕ → R) (m : ℕ) :
     (3 : R) ∣ PowerSeries.coeff m (bridgeProduct a) - a m := by
   have h := three_dvd_coeff_mul_e1Chi3In_sub (PowerSeries.mk a) m
   rwa [PowerSeries.coeff_mk] at h
 
+/--
+@isnad1 id=dvd.0h2v.s6.f42a8396cff9 from=translated src=- shape=dc2606f7 vocab=e55f4cee
+-/
 theorem three_dvd_natCast_sub_chiNegThree_cast (R : Type*) [CommRing R] (ℓ : ℕ) :
     (3 : R) ∣ (ℓ : R) - ((chiNegThree ℓ : ℤ) : R) := by
   have h : (3 : ℤ) ∣ (ℓ : ℤ) - chiNegThree ℓ := by
@@ -53,6 +65,9 @@ theorem three_dvd_natCast_sub_chiNegThree_cast (R : Type*) [CommRing R] (ℓ : �
   push_cast at h
   convert h using 2
 
+/--
+@isnad1 id=dvd.1h5v.s9.8642288017ce from=translated src=- shape=ff05e36e vocab=0a1288dd
+-/
 theorem three_dvd_coeff_heckeT_two_sub_residual {R : Type*} [CommRing R] (a : ℕ → R)
     {ℓ : ℕ} (eℓ : R)
     (hrec : ∀ n : ℕ, a (ℓ * n) + eℓ * (if ℓ ∣ n then a (n / ℓ) else 0) = a ℓ * a n)
@@ -82,6 +97,9 @@ theorem three_dvd_coeff_heckeT_two_sub_residual {R : Type*} [CommRing R] (a : �
 
 end LaneB
 
+/--
+@isnad1 id=dvd.3h5v.s9.8cb4d6f137fd from=translated src=- shape=8a73196c vocab=c85ba1d5
+-/
 theorem solution {R : Type*} [CommRing R] {N : ℕ} {a : ℕ → R}
     (heig : FormalHecke.IsEigensystem
       (fun ℓ => if ℓ ∣ N then 0 else ((chiNegThree ℓ : ℤ) : R)) a)

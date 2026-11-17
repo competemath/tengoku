@@ -8,6 +8,9 @@ namespace P2MW.S_FrobeniusDensity_ncard_conj_gen_ne_zero_iff
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=iff.0h3v.s7.6bafd5ebb8a1 from=translated src=- shape=3a072dcc vocab=129b8cff
+-/
 theorem solution {G : Type*} [Group G] [Finite G] (σ τ : G) :
     {g : G | ∃ k : ℕ, k.Coprime (orderOf σ) ∧ g * σ ^ k * g⁻¹ = τ}.ncard ≠ 0
       ↔ ∃ k : ℕ, k.Coprime (orderOf σ) ∧ IsConj (σ ^ k) τ := by

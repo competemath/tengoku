@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_localGaloisToGlobal_mem_fixingSubgroup_iff
 namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 set_option autoImplicit false
 open scoped IntermediateField
+/--
+@isnad1 id=iff.0h3v.s12.c7b14d67991e from=translated src=- shape=6c83ae1f vocab=4bac702a
+-/
 theorem _root_.Tengoku.FltAnthropic.localGaloisToGlobal_mem_fixingSubgroup_iff
     (q : ℕ) [Fact q.Prime]
     (F : IntermediateField ℚ (AlgebraicClosure ℚ)) (s : PadicAlgCl q ≃ₐ[ℚ_[q]] PadicAlgCl q) :

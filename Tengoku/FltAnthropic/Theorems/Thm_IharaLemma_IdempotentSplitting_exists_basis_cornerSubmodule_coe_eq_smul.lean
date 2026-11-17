@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_IharaLemma_IdempotentSplitting_exists_basi
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.0h6v.s9.901a9c4b63b8 from=translated src=- shape=c02396e3 vocab=fb6c2d1f
+-/
 theorem IharaLemma.IdempotentSplitting.exists_basis_cornerSubmodule_coe_eq_smul
     {B : Type} [CommRing B] (S : IharaLemma.IdempotentSplitting B) (i : Fin S.n)
     {M : Type} [AddCommGroup M] [Module B M] {ι : Type} (b : Module.Basis ι B M) :

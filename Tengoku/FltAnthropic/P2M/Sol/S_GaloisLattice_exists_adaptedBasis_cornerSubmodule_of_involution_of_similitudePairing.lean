@@ -31,8 +31,14 @@ noncomputable def toV (p : ℕ) [Fact p.Prime] (T : Type) [AddCommGroup T] [Modu
     T →ₗ[ℤ_[p]] V p T :=
   TensorProduct.mk ℤ_[p] ℚ_[p] T 1
 
+/--
+@isnad1 id=eq.0h3v.s9.ffe054540ffd from=translated src=- shape=7626bd1f vocab=ec4b0732
+-/
 theorem toV_apply (x : T) : toV p T x = (1 : ℚ_[p]) ⊗ₜ x := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.3e1031f07f8b from=translated src=- shape=d3c9b3ee vocab=0f333b5a
+-/
 theorem toV_smul (z : ℤ_[p]) (x : T) : toV p T (z • x) = (z : ℚ_[p]) • toV p T x := by
   rw [LinearMap.map_smul]
   exact (algebraMap_smul ℚ_[p] z (toV p T x)).symm
@@ -41,11 +47,17 @@ noncomputable abbrev bc (p : ℕ) [Fact p.Prime] (T : Type) [AddCommGroup T] [Mo
     Module.End ℤ_[p] T →ₐ[ℤ_[p]] Module.End ℚ_[p] (V p T) :=
   Module.End.baseChangeHom ℤ_[p] ℚ_[p] T
 
+/--
+@isnad1 id=eq.0h4v.s11.ba5c1b84bf50 from=translated src=- shape=4b26da55 vocab=92b6b984
+-/
 theorem bc_toV (f : Module.End ℤ_[p] T) (x : T) : bc p T f (toV p T x) = toV p T (f x) := rfl
 
 section inj
 variable [Module.Free ℤ_[p] T]
 
+/--
+@isnad1 id=injectiv.0h2v.s8.289fd701ca5a from=translated src=- shape=bb602eae vocab=7e1ff1fc
+-/
 theorem toV_injective : Function.Injective (toV p T) := by
   have h1 : Function.Injective (Algebra.linearMap ℤ_[p] ℚ_[p]) :=
     IsFractionRing.injective ℤ_[p] ℚ_[p]
@@ -59,6 +71,9 @@ theorem toV_injective : Function.Injective (toV p T) := by
     exact hxy
   exact (TensorProduct.lid ℤ_[p] T).symm.injective (h2 this)
 
+/--
+@isnad1 id=injectiv.0h2v.s11.8375e2d34d56 from=translated src=- shape=0ee96564 vocab=df90d5aa
+-/
 theorem bc_injective : Function.Injective (bc p T) := by
   intro f g hfg
   ext x
@@ -67,6 +82,9 @@ theorem bc_injective : Function.Injective (bc p T) := by
 
 end inj
 
+/--
+@isnad1 id=ex.0h2v.s7.4a834c8c9205 from=translated src=- shape=9d939fc7 vocab=17d1a780
+-/
 theorem exists_pow_mul_eq_coe (a : ℚ_[p]) : ∃ (k : ℕ) (z : ℤ_[p]), (p : ℚ_[p]) ^ k * a = z := by
   obtain ⟨k, hk⟩ : ∃ k : ℕ, ‖a‖ ≤ (p : ℝ) ^ k := by
     have hp : (1 : ℝ) < p := by exact_mod_cast (Fact.out : p.Prime).one_lt
@@ -79,6 +97,9 @@ theorem exists_pow_mul_eq_coe (a : ℚ_[p]) : ∃ (k : ℕ) (z : ℤ_[p]), (p : 
     exact hk
   exact ⟨k, ⟨_, hnorm⟩, rfl⟩
 
+/--
+@isnad1 id=ex.0h3v.s9.1e83b21a76c8 from=translated src=- shape=e0f1aafa vocab=905f4233
+-/
 theorem exists_pow_smul_eq_toV (v : V p T) :
     ∃ (k : ℕ) (x : T), ((p : ℚ_[p]) ^ k) • v = toV p T x := by
   induction v using TensorProduct.induction_on with
@@ -107,6 +128,9 @@ noncomputable def R (p : ℕ) [Fact p.Prime] (T : Type) [AddCommGroup T] [Module
     (A : ι₀ → Module.End ℤ_[p] T) : Subalgebra ℚ_[p] (Module.End ℚ_[p] (V p T)) :=
   Algebra.adjoin ℚ_[p] (Set.range fun g : ι₀ => (A g).baseChange ℚ_[p])
 
+/--
+@isnad1 id=mem.0h5v.s12.135d06dd1bc1 from=translated src=- shape=2d68720b vocab=bf0c194f
+-/
 theorem bc_mem_R (i : ι₀) : bc p T (A i) ∈ R p T A :=
   Algebra.subset_adjoin ⟨i, rfl⟩
 
@@ -117,10 +141,19 @@ noncomputable def ψ (p : ℕ) [Fact p.Prime] (T : Type) [AddCommGroup T] [Modul
     𝕋 →ₐ[ℤ_[p]] Module.End ℚ_[p] (V p T) :=
   (bc p T).comp (Algebra.lsmul ℤ_[p] ℤ_[p] T)
 
+/--
+@isnad1 id=eq.0h4v.s12.935e0889edbe from=translated src=- shape=2335c56b vocab=67a1e705
+-/
 theorem ψ_apply (t : 𝕋) : ψ p T 𝕋 t = bc p T (Algebra.lsmul ℤ_[p] ℤ_[p] T t) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.226d3cda9948 from=translated src=- shape=63f28bee vocab=c78bee4d
+-/
 theorem ψ_toV (t : 𝕋) (x : T) : ψ p T 𝕋 t (toV p T x) = toV p T (t • x) := rfl
 
+/--
+@isnad1 id=injectiv.1h3v.s11.97520be47551 from=translated src=- shape=88cb9a6d vocab=d3a97ded
+-/
 theorem ψ_injective [Module.Free ℤ_[p] T] (hfaith : ∀ t : 𝕋, (∀ x : T, t • x = 0) → t = 0) :
     Function.Injective (ψ p T 𝕋) := by
   intro s t hst
@@ -133,12 +166,18 @@ theorem ψ_injective [Module.Free ℤ_[p] T] (hfaith : ∀ t : 𝕋, (∀ x : T,
 
 variable (op : ι₀ → 𝕋)
 
+/--
+@isnad1 id=eq.1h7v.s12.3217dd9259a3 from=translated src=- shape=0a2b8a58 vocab=0a132c97
+-/
 theorem ψ_op (hop : ∀ (g : ι₀) (x : T), op g • x = A g x) (g : ι₀) :
     ψ p T 𝕋 (op g) = bc p T (A g) := by
   rw [ψ_apply]
   congr 1
   exact LinearMap.ext (hop g)
 
+/--
+@isnad1 id=mem.2h7v.s12.2e12962663d6 from=translated src=- shape=910c330c vocab=52260063
+-/
 theorem ψ_mem_R (hop : ∀ (g : ι₀) (x : T), op g • x = A g x)
     (hgen : Algebra.adjoin ℤ_[p] (Set.range op) = ⊤) (t : 𝕋) : ψ p T 𝕋 t ∈ R p T A := by
   have ht : t ∈ Algebra.adjoin ℤ_[p] (Set.range op) := by rw [hgen]; exact Algebra.mem_top
@@ -157,6 +196,9 @@ theorem ψ_mem_R (hop : ∀ (g : ι₀) (x : T), op g • x = A g x)
   | add x y _ _ hx hy => rw [map_add]; exact Subalgebra.add_mem _ hx hy
   | mul x y _ _ hx hy => rw [map_mul]; exact Subalgebra.mul_mem _ hx hy
 
+/--
+@isnad1 id=ismulcom.1h6v.s13.acb8a185dc07 from=translated src=- shape=8887d59d vocab=d39792cb
+-/
 theorem isMulCommutative_R (hop : ∀ (g : ι₀) (x : T), op g • x = A g x) :
     IsMulCommutative (R p T A) := by
   refine Algebra.isMulCommutative_adjoin ℚ_[p] ?_
@@ -164,10 +206,16 @@ theorem isMulCommutative_R (hop : ∀ (g : ι₀) (x : T), op g • x = A g x) :
   show bc p T (A i) * bc p T (A j) = bc p T (A j) * bc p T (A i)
   rw [← ψ_op A op hop, ← ψ_op A op hop, ← map_mul, ← map_mul, mul_comm]
 
+/--
+@isnad1 id=eq.0h5v.s12.a54f41f5dc12 from=translated src=- shape=4c81c60a vocab=75abfe7c
+-/
 theorem pow_smul_ψ (n : ℕ) (u : 𝕋) :
     ((p : ℚ_[p]) ^ n) • ψ p T 𝕋 u = ψ p T 𝕋 (((p : ℤ_[p]) ^ n) • u) := by
   rw [map_smul, ← algebraMap_smul ℚ_[p] ((p : ℤ_[p]) ^ n) (ψ p T 𝕋 u), map_pow, map_natCast]
 
+/--
+@isnad1 id=ex.2h7v.s12.890705c76578 from=translated src=- shape=3948278f vocab=fd240853
+-/
 theorem exists_pow_smul_eq_ψ (hop : ∀ (g : ι₀) (x : T), op g • x = A g x)
     {r : Module.End ℚ_[p] (V p T)} (hr : r ∈ R p T A) :
     ∃ (c : ℕ) (t : 𝕋), ((p : ℚ_[p]) ^ c) • r = ψ p T 𝕋 t := by
@@ -193,6 +241,9 @@ theorem exists_pow_smul_eq_ψ (hop : ∀ (g : ι₀) (x : T), op g • x = A g x
     refine ⟨c + d, s * t, ?_⟩
     rw [map_mul, ← hs, ← ht, pow_add, smul_mul_smul_comm]
 
+/--
+@isnad1 id=eq.2h6v.s13.93c46754a44f from=translated src=- shape=5e3cd5d0 vocab=eee740de
+-/
 theorem commute_bc_of_mem_R (f : Module.End ℤ_[p] T) (hcomm : ∀ (g : ι₀) (x : T), f (A g x) = A g (f x))
     {r : Module.End ℚ_[p] (V p T)} (hr : r ∈ R p T A) : r * bc p T f = bc p T f * r := by
   have hle : R p T A ≤ Subalgebra.centralizer ℚ_[p] {bc p T f} := by
@@ -212,6 +263,9 @@ section Invol
 
 variable {C : Type} [CommRing C] {N : Type} [AddCommGroup N] [Module C N]
 
+/--
+@isnad1 id=iscompl.2h3v.s9.54764cbbb08b from=translated src=- shape=6f6c7fdb vocab=d80480a1
+-/
 theorem isCompl_eigenspaces_of_involution (s : N →ₗ[C] N) (hs : ∀ x, s (s x) = x)
     (h2 : IsUnit (2 : C)) :
     IsCompl (LinearMap.ker (s + LinearMap.id)) (LinearMap.ker (s - LinearMap.id)) := by
@@ -244,6 +298,9 @@ section RankParity
 
 variable {K : Type} [Field K] {N : Type} [AddCommGroup N] [Module K N] [FiniteDimensional K N]
 
+/--
+@isnad1 id=eq.6h7v.s11.3e4b572bc476 from=translated src=- shape=a0df67a2 vocab=0d0d2a3b
+-/
 theorem finrank_eq_of_similitude (N0 N1 : Submodule K N) (hc : IsCompl N0 N1)
     (B : N →ₗ[K] N →ₗ[K] K) (hB : ∀ x, (∀ y, B x y = 0) → x = 0)
     (g : N →ₗ[K] N) (u : K) (hu : u * (u - 1) ≠ 0)
@@ -335,11 +392,17 @@ variable {𝕋 : Type} [CommRing 𝕋] [Algebra ℤ_[p] 𝕋] [Module 𝕋 T] [I
 scoped instance instCommRingR [h : IsMulCommutative (R p T A)] : CommRing (R p T A) :=
   { (inferInstance : Ring (R p T A)) with mul_comm := fun a b => h.is_comm.comm a b }
 
+/--
+@isnad1 id=isscalar.0h4v.s13.20b8c4848123 from=translated src=- shape=87c5df65 vocab=7a2d3171
+-/
 scoped instance instIsScalarTower_R_V : IsScalarTower ℚ_[p] (R p T A) (V p T) :=
   ⟨fun c r v => by
     show ((c • r : R p T A) : Module.End ℚ_[p] (V p T)) v = c • ((r : Module.End ℚ_[p] (V p T)) v)
     rfl⟩
 
+/--
+@isnad1 id=eq.0h6v.s13.331838f464b2 from=translated src=- shape=23ea3337 vocab=c123a5db
+-/
 theorem R_smul_def (r : R p T A) (v : V p T) : r • v = (r : Module.End ℚ_[p] (V p T)) v := rfl
 
 variable (A) in
@@ -352,12 +415,18 @@ noncomputable def toRLin (f : Module.End ℤ_[p] T) (hf : ∀ (g : ι₀) (x : T
     show bc p T f ((r : Module.End ℚ_[p] (V p T)) v) = (r : Module.End ℚ_[p] (V p T)) (bc p T f v)
     rw [← Module.End.mul_apply, ← commute_bc_of_mem_R A f hf r.2, Module.End.mul_apply]
 
+/--
+@isnad1 id=eq.2h9v.s10.e9811e1ebc51 from=translated src=- shape=dea429e7 vocab=aceba992
+-/
 theorem comm_A_of_comm_𝕋 {op : ι₀ → 𝕋} (hop : ∀ (g : ι₀) (x : T), op g • x = A g x)
     (f : Module.End ℤ_[p] T) (hf : ∀ (t : 𝕋) (x : T), f (t • x) = t • f x) :
     ∀ (g : ι₀) (x : T), f (A g x) = A g (f x) := by
   intro g x
   rw [← hop, ← hop, hf]
 
+/--
+@isnad1 id=eq.2h8v.s15.ce90ccde1223 from=translated src=- shape=e3e6e445 vocab=2a1cc681
+-/
 theorem selfAdjoint_of_mem_R [IsMulCommutative (R p T A)]
     (Bf : V p T →ₗ[ℚ_[p]] V p T →ₗ[ℚ_[p]] ℚ_[p])
     (hB : ∀ (g : ι₀) (x y : V p T), Bf (bc p T (A g) x) y = Bf x (bc p T (A g) y))
@@ -383,6 +452,9 @@ theorem selfAdjoint_of_mem_R [IsMulCommutative (R p T A)]
 
 variable (S' : IharaLemma.IdempotentSplitting 𝕋) (i₀ : Fin S'.n)
 
+/--
+@isnad1 id=iff.0h5v.s7.1fb85c06ac79 from=translated src=- shape=f6b26159 vocab=83ba6a5b
+-/
 theorem mem_corner_iff (x : T) :
     x ∈ IharaLemma.cornerSubmodule (M := T) (S'.e i₀) ↔ S'.e i₀ • x = x := by
   constructor
@@ -392,6 +464,9 @@ theorem mem_corner_iff (x : T) :
   · intro h
     exact ⟨x, h⟩
 
+/--
+@isnad1 id=eq.1h6v.s8.9791fce7008b from=translated src=- shape=f9afd3f3 vocab=50f805ef
+-/
 theorem toCornerRing_smul_of_mem (t : 𝕋) {x : T} (hx : x ∈ IharaLemma.cornerSubmodule (M := T) (S'.e i₀)) :
     ((S'.toCornerRing i₀ t : S'.CornerRing i₀) : 𝕋) • x = t • x := by
   have he := (mem_corner_iff S' i₀ x).mp hx
@@ -400,6 +475,9 @@ theorem toCornerRing_smul_of_mem (t : 𝕋) {x : T} (hx : x ∈ IharaLemma.corne
 
 variable [Module.Free ℤ_[p] T]
 
+/--
+@isnad1 id=mem.2h8v.s11.449fe43a3a59 from=translated src=- shape=21b6a019 vocab=73ff46a6
+-/
 theorem mem_corner_of_toV {v : V p T} (hv : ψ p T 𝕋 (S'.e i₀) v = v) {k : ℕ} {x : T}
     (hx : ((p : ℚ_[p]) ^ k) • v = toV p T x) :
     x ∈ IharaLemma.cornerSubmodule (M := T) (S'.e i₀) := by
@@ -407,6 +485,9 @@ theorem mem_corner_of_toV {v : V p T} (hv : ψ p T 𝕋 (S'.e i₀) v = v) {k : 
   apply toV_injective (p := p)
   rw [← ψ_toV, ← hx, map_smul, hv]
 
+/--
+@isnad1 id=eq.2h7v.s11.75b9ec06b145 from=translated src=- shape=07c4638c vocab=dd48813b
+-/
 theorem apply_eq_smul_of_toV (f : Module.End ℤ_[p] T) (c : ℤ_[p]) {v : V p T} (hv : bc p T f v = (c : ℚ_[p]) • v)
     {k : ℕ} {x : T} (hx : ((p : ℚ_[p]) ^ k) • v = toV p T x) : f x = c • x := by
   apply toV_injective (p := p)
@@ -425,6 +506,9 @@ open IharaLemma
 variable {B : Type} [CommRing B] (S : IdempotentSplitting B) (i : Fin S.n)
 variable {M : Type} [AddCommGroup M] [Module B M]
 
+/--
+@isnad1 id=eq.1h6v.s7.080e1a0d6137 from=translated src=- shape=be6a9215 vocab=5ebcc717
+-/
 theorem e_smul_of_mem_corner (j k : Fin S.n) {v : M} (hv : v ∈ cornerSubmodule (M := M) (S.e k)) :
     S.e j • v = if j = k then v else 0 := by
   have hv' : S.e k • v = v := S.e_smul_coe k ⟨v, hv⟩
@@ -449,6 +533,9 @@ noncomputable def cornerRestrict (f : M →ₗ[B] M) :
     show f ((z : B) • (x : M)) = (z : B) • f (x : M)
     exact map_smul f _ _)
 
+/--
+@isnad1 id=ex.2h7v.s10.b37c5923f58d from=translated src=- shape=a05ab9c0 vocab=ecc76797
+-/
 theorem exists_smul_add_smul_of_corner (v0 v1 : cornerSubmodule (M := M) (S.e i))
     (hsp : ∀ x : cornerSubmodule (M := M) (S.e i), ∃ z0 z1 : S.CornerRing i, x = z0 • v0 + z1 • v1)
     (m : M) (hm : m ∈ cornerSubmodule (M := M) (S.e i)) :
@@ -458,6 +545,9 @@ theorem exists_smul_add_smul_of_corner (v0 v1 : cornerSubmodule (M := M) (S.e i)
   have := congrArg Subtype.val hx
   simpa only [Submodule.coe_add, IdempotentSplitting.coe_cornerSmul] using this
 
+/--
+@isnad1 id=and.2h8v.s10.c162b7abc94c from=translated src=- shape=57b60273 vocab=c5912f12
+-/
 theorem mul_e_eq_zero_of_corner (v0 v1 : cornerSubmodule (M := M) (S.e i))
     (hind : ∀ z0 z1 : S.CornerRing i, z0 • v0 + z1 • v1 = 0 → z0 = 0 ∧ z1 = 0)
     (r s : B) (h : r • (v0 : M) + s • (v1 : M) = 0) : r * S.e i = 0 ∧ s * S.e i = 0 := by
@@ -478,6 +568,9 @@ theorem mul_e_eq_zero_of_corner (v0 v1 : cornerSubmodule (M := M) (S.e i))
   · calc s * S.e i = S.e i * s * S.e i := by rw [mul_comm (S.e i) s, mul_assoc, (S.idem i).eq]
       _ = 0 := e1
 
+/--
+@isnad1 id=and.4h6v.s10.b1ed498ce32c from=translated src=- shape=92598472 vocab=0d2425c6
+-/
 theorem glue (J : Finset (Fin S.n)) (v0 v1 : Fin S.n → M)
     (hv0 : ∀ j, v0 j ∈ cornerSubmodule (M := M) (S.e j)) (hv1 : ∀ j, v1 j ∈ cornerSubmodule (M := M) (S.e j))
     (hspan : ∀ j ∈ J, ∀ m ∈ cornerSubmodule (M := M) (S.e j), ∃ r s : B, m = r • v0 j + s • v1 j)
@@ -538,6 +631,9 @@ open scoped _root_.P2MW.S_GaloisLattice_exists_adaptedBasis_cornerSubmodule_of_i
 namespace OrdLat
 namespace FreeLocal
 
+/--
+@isnad1 id=ex.1h2v.s7.3fc010d06a4e from=translated src=- shape=f4969321 vocab=b7ef96d4
+-/
 theorem exists_generator_of_finrank_eq_one {C : Type} [CommRing C] [Nontrivial C] {L : Type} [AddCommGroup L]
     [Module C L] [Module.Free C L] [Module.Finite C L] (h : Module.finrank C L = 1) :
     ∃ v : L, (∀ x : L, ∃ c : C, x = c • v) ∧ (∀ c : C, c • v = 0 → c = 0) := by
@@ -551,6 +647,9 @@ theorem exists_generator_of_finrank_eq_one {C : Type} [CommRing C] [Nontrivial C
   · have := congrArg (fun y => b.repr y i0) hc
     simpa using this
 
+/--
+@isnad1 id=and.7h6v.s9.fbdc665ed012 from=translated src=- shape=00a67e2f vocab=f11b7bcc
+-/
 theorem basis_pair_of_isCompl {C : Type} [CommRing C] {N : Type} [AddCommGroup N] [Module C N]
     (N0 N1 : Submodule C N) (h : IsCompl N0 N1) (v0 v1 : N) (hv0 : v0 ∈ N0) (hv1 : v1 ∈ N1)
     (hg0 : ∀ x ∈ N0, ∃ c : C, x = c • v0) (ha0 : ∀ c : C, c • v0 = 0 → c = 0)
@@ -578,6 +677,9 @@ namespace OrdLat
 
 section RankParity2
 
+/--
+@isnad1 id=eq.7h6v.s12.db2f185bff6b from=translated src=- shape=b21ad3c1 vocab=0ae7d560
+-/
 theorem finrank_eigenspaces_of_similitude {K : Type} [Field K] {N : Type} [AddCommGroup N] [Module K N]
     [FiniteDimensional K N] (h2 : (2 : K) ≠ 0) (s g : N →ₗ[K] N) (hs : ∀ x, s (s x) = x)
     (B : N →ₗ[K] N →ₗ[K] K) (hB : ∀ x, (∀ y, B x y = 0) → x = 0)
@@ -594,6 +696,9 @@ theorem finrank_eigenspaces_of_similitude {K : Type} [Field K] {N : Type} [AddCo
   · intro x
     rw [LinearMap.mem_ker, LinearMap.add_apply, LinearMap.id_apply, hg1, neg_add_cancel]
 
+/--
+@isnad1 id=ex.3h5v.s11.802a1000bd29 from=translated src=- shape=9b2e04df vocab=103aac4f
+-/
 theorem generators_of_involution {K : Type} [Field K] {C : Type} [CommRing C] [IsLocalRing C] [Algebra K C]
     [Module.Finite K C] {N : Type} [AddCommGroup N] [Module C N] [Module K N] [IsScalarTower K C N]
     (bN : Module.Basis (Fin 2) C N) (s : N →ₗ[C] N) (hs : ∀ x, s (s x) = x) (h2 : IsUnit (2 : C))
@@ -667,6 +772,9 @@ variable {T : Type} [AddCommGroup T] [Module ℤ_[p] T] [Module.Finite ℤ_[p] T
 variable {ι₀ : Type} {A : ι₀ → Module.End ℤ_[p] T}
 variable [IsMulCommutative (R p T A)]
 
+/--
+@isnad1 id=or.1h2v.s5.7c143012fc02 from=translated src=- shape=78e62f3c vocab=97f19c26
+-/
 theorem idem_eq_zero_or_one {C : Type} [CommRing C] [IsLocalRing C] {z : C} (hz : IsIdempotentElem z) :
     z = 0 ∨ z = 1 := by
   rcases IsLocalRing.isUnit_or_isUnit_one_sub_self z with h | h
@@ -689,6 +797,9 @@ theorem idem_eq_zero_or_one {C : Type} [CommRing C] [IsLocalRing C] {z : C} (hz 
 
 variable (SR : IdempotentSplitting (R p T A))
 
+/--
+@isnad1 id=or.1h7v.s16.0bdcb8c01b1a from=translated src=- shape=cd748bac vocab=c396880e
+-/
 theorem mul_e_eq_or (er : R p T A) (her : IsIdempotentElem er) (j : Fin SR.n) :
     er * SR.e j = SR.e j ∨ er * SR.e j = 0 := by
   have hz : IsIdempotentElem (SR.toCornerRing j er) := her.map _
@@ -717,12 +828,18 @@ theorem eq_sum_e (er : R p T A) (her : IsIdempotentElem er) :
         rw [h] at h'
         exact SR.notMem j (h' ▸ Submodule.zero_mem _)
 
+/--
+@isnad1 id=eq.1h7v.s15.12a5aa7ea697 from=translated src=- shape=7fb338ff vocab=077652f8
+-/
 theorem coe_e_apply_of_mem (j : Fin SR.n) {v : V p T} (hv : v ∈ cornerSubmodule (M := V p T) (SR.e j)) :
     (SR.e j : Module.End ℚ_[p] (V p T)) v = v := by
   obtain ⟨z, rfl⟩ := hv
   show ((SR.e j * SR.e j : R p T A) : Module.End ℚ_[p] (V p T)) z = (SR.e j : Module.End ℚ_[p] (V p T)) z
   rw [(SR.idem j).eq]
 
+/--
+@isnad1 id=eq.2h8v.s16.e270929c4e89 from=translated src=- shape=df24facd vocab=4b85505e
+-/
 theorem er_apply_of_mem (er : R p T A) (j : Fin SR.n) (hj : er * SR.e j = SR.e j) {v : V p T}
     (hv : v ∈ cornerSubmodule (M := V p T) (SR.e j)) : (er : Module.End ℚ_[p] (V p T)) v = v := by
   have h := coe_e_apply_of_mem SR j hv
@@ -732,6 +849,9 @@ theorem er_apply_of_mem (er : R p T A) (j : Fin SR.n) (hj : er * SR.e j = SR.e j
   rw [hj]
   exact h
 
+/--
+@isnad1 id=ex.11h12v.s18.16c32932a10c from=translated src=- shape=1bcd9c40 vocab=27549998
+-/
 theorem factor_generators
     (er : R p T A) (her : IsIdempotentElem er) (j : Fin SR.n) (hj : er * SR.e j = SR.e j)
     (s0 t1 : Module.End ℤ_[p] T)
@@ -831,6 +951,9 @@ namespace OrdLat
 
 section Uniform
 
+/--
+@isnad1 id=ex.2h5v.s8.dc651699ab80 from=translated src=- shape=21f3a95f vocab=88df87f5
+-/
 theorem exists_uniform_pow {Rg : Type} [CommRing Rg] {Mg : Type} [AddCommGroup Mg] [Module Rg Mg]
     (q : Rg) (P Q : Submodule Rg Mg) (hP : P.FG) (h : ∀ z ∈ P, ∃ n : ℕ, q ^ n • z ∈ Q) :
     ∃ N : ℕ, ∀ z ∈ P, q ^ N • z ∈ Q := by
@@ -863,12 +986,21 @@ variable {T : Type} [AddCommGroup T] [Module ℤ_[p] T] [Module.Finite ℤ_[p] T
 variable {ι₀ : Type} {A : ι₀ → Module.End ℤ_[p] T}
 variable {𝕋 : Type} [CommRing 𝕋] [Algebra ℤ_[p] 𝕋] [Module 𝕋 T] [IsScalarTower ℤ_[p] 𝕋 T]
 
+/--
+@isnad1 id=ne.0h1v.s5.8b5a55b85359 from=translated src=- shape=6a12b434 vocab=f889e549
+-/
 theorem p_ne_zero_Q : (p : ℚ_[p]) ≠ 0 := by exact_mod_cast (Fact.out : p.Prime).ne_zero
 
+/--
+@isnad1 id=eq.0h2v.s7.92a46de8d5c5 from=translated src=- shape=cb761f57 vocab=37e02be2
+-/
 theorem castpow (n : ℕ) : (((p : ℤ_[p]) ^ n : ℤ_[p]) : ℚ_[p]) = (p : ℚ_[p]) ^ n := by
   push_cast
   rfl
 
+/--
+@isnad1 id=ex.14h14v.s15.ad77d6d3d38e from=translated src=- shape=f1d40de1 vocab=95a48da3
+-/
 theorem core
     (hfaith : ∀ t : 𝕋, (∀ x : T, t • x = 0) → t = 0)
     (op : ι₀ → 𝕋) (hop : ∀ (g : ι₀) (x : T), op g • x = A g x)
@@ -1126,6 +1258,9 @@ open scoped _root_.P2MW.S_GaloisLattice_exists_adaptedBasis_cornerSubmodule_of_i
 end OrdLat
 open scoped _root_.P2MW.S_GaloisLattice_exists_adaptedBasis_cornerSubmodule_of_involution_of_similitudePairing.OrdLat
 
+/--
+@isnad1 id=ex.14h14v.s15.a68f11c209b0 from=translated src=- shape=21cb1557 vocab=423f8173
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] (T : Type) [AddCommGroup T] [Module ℤ_[p] T] [Module.Finite ℤ_[p] T]
     [Module.Free ℤ_[p] T] {ι₀ : Type} (A : ι₀ → Module.End ℤ_[p] T)

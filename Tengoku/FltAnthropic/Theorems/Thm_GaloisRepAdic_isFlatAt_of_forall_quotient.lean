@@ -5,6 +5,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_GaloisRepAdic_isFlatAt_of_forall_quotient
 
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_GaloisRepAdic_isFlatAt_of_forall_quotient.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
+/--
+@isnad1 id=isflatat.1h3v.s8.7942bf10f73a from=translated src=- shape=f2b38780 vocab=4322ce5b
+-/
 theorem Tengoku.FltAnthropic.GaloisRepAdic.isFlatAt_of_forall_quotient {A : Type} [CommRing A]
     [IsLocalRing A] (ρ : GaloisRepAdic A) {p : ℕ}
     (h : ∀ m : ℕ,

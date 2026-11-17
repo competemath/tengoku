@@ -8,6 +8,9 @@ namespace P2MW.S_FiniteField_exists_forall_affineMap_apply_ne_zero_of_forall_lt
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.3h6v.s10.81c19652553b from=translated src=- shape=bcf6d601 vocab=a6a23844
+-/
 theorem solution
     {𝔽 : Type*} [Field 𝔽] [Fintype 𝔽] {s : ℕ} {n : Fin s → ℕ}
     {ι : Fin s → Type*} [∀ i, Fintype (ι i)]

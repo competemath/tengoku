@@ -29,6 +29,9 @@ private theorem det_eq_of_triangular {R W : Type} [CommRing R] [AddCommGroup W] 
 
 end U1cAux
 
+/--
+@isnad1 id=ex.7h5v.s15.2dbf4e04bfaa from=translated src=- shape=2c0c1ae2 vocab=afaf8ce3
+-/
 theorem solution
     {B : Type} [CommRing B] [IsLocalRing B] [Finite B] (p : ℕ) [Fact p.Prime]
     (ρ : GaloisRepAdic B) (hdet : ρ.DetIsCyclotomic p)

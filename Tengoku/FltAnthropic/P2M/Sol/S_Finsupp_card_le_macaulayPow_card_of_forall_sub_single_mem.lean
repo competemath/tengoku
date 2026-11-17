@@ -14,12 +14,21 @@ def top (d a : ℕ) : ℕ := Nat.findGreatest (fun k => k.choose (d + 1) ≤ a) 
 
 def rem (d a : ℕ) : ℕ := a - (top d a).choose (d + 1)
 
+/--
+@isnad1 id=eq.0h1v.s4.4c1971dcb6e5 from=translated src=- shape=fe2c2146 vocab=9e4fbcdb
+-/
 theorem macaulayPow_zero (a : ℕ) : Nat.macaulayPow 0 a = 0 := by simp [Nat.macaulayPow]
 
+/--
+@isnad1 id=eq.0h2v.s5.415e0f5b7728 from=translated src=- shape=030f4f4e vocab=ba117db1
+-/
 theorem macaulayPow_succ (d a : ℕ) :
     Nat.macaulayPow (d + 1) a = (top d a + 1).choose (d + 2) + Nat.macaulayPow d (rem d a) := by
   rw [Nat.macaulayPow]; rfl
 
+/--
+@isnad1 id=le.0h2v.s4.07ec6f5cf2c6 from=translated src=- shape=d2ff0e15 vocab=2297b6f3
+-/
 theorem sub_le_choose (d : ℕ) : ∀ k : ℕ, k - d ≤ k.choose (d + 1)
   | 0 => by simp
   | k + 1 => by
@@ -31,9 +40,15 @@ theorem sub_le_choose (d : ℕ) : ∀ k : ℕ, k - d ≤ k.choose (d + 1)
       · have hpos : 1 ≤ k.choose d := Nat.choose_pos h
         omega
 
+/--
+@isnad1 id=le.0h2v.s4.682b52370281 from=translated src=- shape=d5c96991 vocab=43256a22
+-/
 theorem choose_top_le (d a : ℕ) : (top d a).choose (d + 1) ≤ a :=
   Nat.findGreatest_spec (P := fun k => k.choose (d + 1) ≤ a) (Nat.zero_le _) (by simp)
 
+/--
+@isnad1 id=lt.1h3v.s5.4f90d1f9b041 from=translated src=- shape=daa6bc3d vocab=e3c4b964
+-/
 theorem lt_choose_of_top_lt (d a : ℕ) {k : ℕ} (hk : top d a < k) : a < k.choose (d + 1) := by
   rcases le_or_gt k (a + d + 1) with h | h
   · have := Nat.findGreatest_is_greatest (P := fun k => k.choose (d + 1) ≤ a) hk h
@@ -41,9 +56,15 @@ theorem lt_choose_of_top_lt (d a : ℕ) {k : ℕ} (hk : top d a < k) : a < k.cho
   · have := sub_le_choose d k
     omega
 
+/--
+@isnad1 id=lt.0h2v.s5.7ee71d69990e from=translated src=- shape=cb038863 vocab=e3c4b964
+-/
 theorem lt_choose_top_succ (d a : ℕ) : a < (top d a + 1).choose (d + 1) :=
   lt_choose_of_top_lt d a (Nat.lt_succ_self _)
 
+/--
+@isnad1 id=eq.2h3v.s6.66d7bdbb657b from=translated src=- shape=6c07a21a vocab=b024aec2
+-/
 theorem top_eq_of (d a k : ℕ) (h₁ : k.choose (d + 1) ≤ a) (h₂ : a < (k + 1).choose (d + 1)) :
     top d a = k := by
   apply le_antisymm
@@ -57,12 +78,18 @@ theorem top_eq_of (d a k : ℕ) (h₁ : k.choose (d + 1) ≤ a) (h₂ : a < (k +
     have := lt_choose_of_top_lt d a h
     omega
 
+/--
+@isnad1 id=le.1h3v.s5.b630545f1b41 from=translated src=- shape=9e65ee99 vocab=43256a22
+-/
 theorem le_top_of_choose_le (d a k : ℕ) (h : k.choose (d + 1) ≤ a) : k ≤ top d a := by
   by_contra h'
   push Not at h'
   have := lt_choose_of_top_lt d a h'
   omega
 
+/--
+@isnad1 id=lt.1h3v.s5.747a64340666 from=translated src=- shape=f3b3f3dd vocab=e3c4b964
+-/
 theorem top_lt_of_lt_choose (d a k : ℕ) (h : a < k.choose (d + 1)) : top d a < k := by
   by_contra h'
   push Not at h'
@@ -70,28 +97,55 @@ theorem top_lt_of_lt_choose (d a k : ℕ) (h : a < k.choose (d + 1)) : top d a <
   have := choose_top_le d a
   omega
 
+/--
+@isnad1 id=le.0h2v.s3.f3acf3a16d1a from=translated src=- shape=70252ff3 vocab=07bf02b1
+-/
 theorem d_le_top (d a : ℕ) : d ≤ top d a := le_top_of_choose_le d a d (by simp)
 
+/--
+@isnad1 id=eq.0h1v.s3.3a81d0662632 from=translated src=- shape=1fa26838 vocab=2a34844d
+-/
 theorem top_zero_right (d : ℕ) : top d 0 = d := top_eq_of d 0 d (by simp) (by simp)
 
+/--
+@isnad1 id=lt.1h2v.s4.01f504df252f from=translated src=- shape=9030f010 vocab=d00bd7b9
+-/
 theorem d_lt_top_of_pos (d a : ℕ) (ha : 0 < a) : d < top d a := by
   have := le_top_of_choose_le d a (d + 1) (by simp; omega)
   omega
 
+/--
+@isnad1 id=eq.0h1v.s3.d53019e3d238 from=translated src=- shape=a60e91e3 vocab=2a34844d
+-/
 theorem top_zero_left (a : ℕ) : top 0 a = a := top_eq_of 0 a a (by simp) (by simp)
 
+/--
+@isnad1 id=eq.0h1v.s4.3bb8d1f5900d from=translated src=- shape=fe2c2146 vocab=9f850b09
+-/
 theorem rem_zero_left (a : ℕ) : rem 0 a = 0 := by simp [rem, top_zero_left]
 
+/--
+@isnad1 id=eq.0h1v.s4.7c8e4876a127 from=translated src=- shape=1d838610 vocab=9f850b09
+-/
 theorem rem_zero_right (d : ℕ) : rem d 0 = 0 := by simp [rem]
 
+/--
+@isnad1 id=eq.0h2v.s5.a15846ffc42b from=translated src=- shape=98a64286 vocab=6951e99a
+-/
 theorem rem_add_choose (d a : ℕ) : rem d a + (top d a).choose (d + 1) = a := by
   unfold rem; have := choose_top_le d a; omega
 
+/--
+@isnad1 id=lt.0h2v.s3.c7d2c13afa1e from=translated src=- shape=167e73b6 vocab=67a84c70
+-/
 theorem rem_lt (d a : ℕ) : rem d a < (top d a).choose d := by
   have h := lt_choose_top_succ d a
   rw [Nat.choose_succ_succ'] at h
   unfold rem; have := choose_top_le d a; omega
 
+/--
+@isnad1 id=lt.1h3v.s5.cc4e447355a4 from=translated src=- shape=c053cf03 vocab=bf0e55b6
+-/
 theorem macaulayPow_lt_choose : ∀ (d m r : ℕ), r < m.choose d →
     Nat.macaulayPow d r < (m + 1).choose (d + 1)
   | 0, m, r, _ => by simp [macaulayPow_zero]
@@ -108,6 +162,9 @@ theorem macaulayPow_lt_choose : ∀ (d m r : ℕ), r < m.choose d →
         Nat.choose_le_choose _ (by omega)
       omega
 
+/--
+@isnad1 id=le.1h3v.s4.d9750b577910 from=translated src=- shape=32f89d1d vocab=87c0a6ba
+-/
 theorem macaulayPow_mono : ∀ (d : ℕ) {a b : ℕ}, a ≤ b → Nat.macaulayPow d a ≤ Nat.macaulayPow d b
   | 0, a, b, _ => by simp [macaulayPow_zero]
   | d + 1, a, b, h => by
@@ -126,19 +183,31 @@ theorem macaulayPow_mono : ∀ (d : ℕ) {a b : ℕ}, a ≤ b → Nat.macaulayPo
           rw [macaulayPow_succ]; exact Nat.le_add_right _ _
         omega
 
+/--
+@isnad1 id=eq.0h1v.s4.53cd8a5c100c from=translated src=- shape=c3982312 vocab=aa789aff
+-/
 theorem macaulayPow_one (a : ℕ) : Nat.macaulayPow 1 a = (a + 1).choose 2 := by
   rw [macaulayPow_succ, top_zero_left, rem_zero_left, macaulayPow_zero]; rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.1e3b0bba89c7 from=translated src=- shape=1d838610 vocab=9e4fbcdb
+-/
 theorem macaulayPow_zero_right : ∀ d : ℕ, Nat.macaulayPow d 0 = 0
   | 0 => macaulayPow_zero 0
   | d + 1 => by
       rw [macaulayPow_succ, top_zero_right, rem_zero_right, macaulayPow_zero_right d,
         Nat.choose_eq_zero_of_lt (by omega)]
 
+/--
+@isnad1 id=eq.2h2v.s5.72dd3f7b7b5e from=translated src=- shape=c6d857a0 vocab=ee4bd50a
+-/
 theorem top_succ_of_le (d a : ℕ) (ha : 1 ≤ a) (h : a ≤ d + 2) : top (d + 1) a = d + 2 :=
   top_eq_of (d + 1) a (d + 2) (by rw [Nat.choose_self]; exact ha)
     (by have : (d + 2 + 1).choose (d + 1 + 1) = d + 2 + 1 := Nat.choose_succ_self_right (d + 2); omega)
 
+/--
+@isnad1 id=eq.1h2v.s5.87eeef13462c from=translated src=- shape=eb19043f vocab=644d85f7
+-/
 theorem macaulayPow_eq_self : ∀ (d a : ℕ), a ≤ d + 1 → Nat.macaulayPow (d + 1) a = a
   | d, 0, _ => macaulayPow_zero_right (d + 1)
   | 0, a + 1, h => by
@@ -156,15 +225,27 @@ def low : ℕ → ℕ → ℕ
   | 0, _ => 0
   | d + 1, a => (top d a - 1).choose (d + 1) + low d (rem d a)
 
+/--
+@isnad1 id=eq.0h1v.s4.d8f8dff2bc7c from=translated src=- shape=fe2c2146 vocab=788f1afa
+-/
 theorem low_zero (a : ℕ) : low 0 a = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.258dc605847c from=translated src=- shape=b617f051 vocab=c11085af
+-/
 theorem low_succ (d a : ℕ) : low (d + 1) a = (top d a - 1).choose (d + 1) + low d (rem d a) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.91e87cf51895 from=translated src=- shape=1d838610 vocab=788f1afa
+-/
 theorem low_zero_right : ∀ d : ℕ, low d 0 = 0
   | 0 => rfl
   | d + 1 => by
       rw [low_succ, top_zero_right, rem_zero_right, low_zero_right d, Nat.choose_eq_zero_of_lt (by omega)]
 
+/--
+@isnad1 id=eq.1h2v.s5.fc7a94ae7f75 from=translated src=- shape=b7870e07 vocab=2418a587
+-/
 theorem low_eq_zero : ∀ (d a : ℕ), a ≤ d + 1 → low (d + 1) a = 0
   | d, 0, _ => low_zero_right _
   | 0, a + 1, h => by
@@ -175,6 +256,9 @@ theorem low_eq_zero : ∀ (d a : ℕ), a ≤ d + 1 → low (d + 1) a = 0
       have hr : rem (d + 1) (a + 1) = a := by simp [rem, ht]
       rw [low_succ, ht, hr, low_eq_zero d a (by omega), Nat.choose_eq_zero_of_lt (by omega)]
 
+/--
+@isnad1 id=lt.2h3v.s6.ea912c71dc11 from=translated src=- shape=b6c1ccae vocab=d7269fcb
+-/
 theorem low_lt_choose : ∀ (d m r : ℕ), r < (m + 1).choose (d + 1) → d + 1 ≤ m →
     low (d + 1) r < m.choose (d + 1)
   | 0, m, r, h, hm => by
@@ -202,6 +286,9 @@ theorem low_lt_choose : ∀ (d m r : ℕ), r < (m + 1).choose (d + 1) → d + 1 
         have h2 : (top (d + 1) r).choose (d + 2) ≤ m.choose (d + 2) := Nat.choose_le_choose _ hT
         omega
 
+/--
+@isnad1 id=eq.0h2v.s5.9851fc95574c from=translated src=- shape=237f4b52 vocab=88072e25
+-/
 theorem macaulayPow_low_add : ∀ (d a : ℕ),
     Nat.macaulayPow (d + 1) (low (d + 1) a) + a = Nat.macaulayPow (d + 1) a
   | 0, a => by
@@ -250,6 +337,9 @@ theorem macaulayPow_low_add : ∀ (d a : ℕ),
           show T.choose (d + 3) + Nat.macaulayPow (d + 1) (low (d + 1) R) + a = _
           omega
 
+/--
+@isnad1 id=le.1h3v.s6.c4cbdc79436a from=translated src=- shape=37fd55b6 vocab=d7269fcb
+-/
 theorem le_choose_add_low : ∀ (d m r : ℕ), r < (m + 1).choose (d + 1) → r ≤ m.choose d + low (d + 1) r
   | 0, m, r, _ => by
       rw [low_succ, top_zero_left, low_zero, Nat.choose_zero_right, Nat.choose_one_right]; omega
@@ -275,6 +365,9 @@ theorem le_choose_add_low : ∀ (d m r : ℕ), r < (m + 1).choose (d + 1) → r 
       have h3 : (top (d + 1) r).choose (d + 1) ≤ m.choose (d + 1) := Nat.choose_le_choose _ hT
       omega
 
+/--
+@isnad1 id=le.1h3v.s5.3fb9cf7ce486 from=translated src=- shape=955c0b24 vocab=110cd920
+-/
 theorem le_add_low : ∀ (d a s : ℕ), a ≤ Nat.macaulayPow d s → a ≤ s + low (d + 1) a
   | 0, a, s, h => by rw [macaulayPow_zero] at h; omega
   | d + 1, a, s, h => by
@@ -317,6 +410,9 @@ theorem le_add_low : ∀ (d a s : ℕ), a ≤ Nat.macaulayPow d s → a ≤ s + 
         have ih := le_add_low d R (rem d s) hR'
         omega
 
+/--
+@isnad1 id=le.1h3v.s6.3091f8d101dd from=translated src=- shape=a1cd794f vocab=644d85f7
+-/
 theorem macaulayPow_add_le (d b s : ℕ) (h : b + s ≤ Nat.macaulayPow d s) :
     Nat.macaulayPow (d + 1) b + (b + s) ≤ Nat.macaulayPow (d + 1) (b + s) := by
   have h1 : b ≤ low (d + 1) (b + s) := by have := le_add_low d (b + s) s h; omega
@@ -324,6 +420,9 @@ theorem macaulayPow_add_le (d b s : ℕ) (h : b + s ≤ Nat.macaulayPow d s) :
   have h3 := macaulayPow_low_add d (b + s)
   omega
 
+/--
+@isnad1 id=le.4h3v.s7.aa5b8b1eef7a from=translated src=- shape=a7e3dd95 vocab=c31ad3c7
+-/
 theorem tower_bound : ∀ (e : ℕ) (b : ℕ → ℕ) (c : ℕ), b (e + 1) ≤ 1 → (1 ≤ b e → b (e + 1) = 1) →
     (∀ k, k + 2 ≤ e + 1 → b k ≤ Nat.macaulayPow (e - k) (b (k + 1))) →
     c ≤ Nat.macaulayPow (e + 1) (b 0) →
@@ -357,16 +456,25 @@ noncomputable def Mon (e : ℕ) : Finset (Fin (n + 1) →₀ ℕ) :=
   ((Finsupp.finite_of_degree_le (σ := Fin (n + 1)) e).subset
     (fun m (hm : m ∈ {m : Fin (n + 1) →₀ ℕ | m.degree = e}) => le_of_eq hm)).toFinset
 
+/--
+@isnad1 id=iff.0h3v.s8.fc1d86fb170b from=translated src=- shape=d4edef69 vocab=508b54bb
+-/
 @[scoped simp] theorem mem_Mon (e : ℕ) (m : Fin (n + 1) →₀ ℕ) : m ∈ Mon n e ↔ m.degree = e := by
   simp [Mon]
 
 noncomputable def MonW (w e : ℕ) : Finset (Fin (n + 1) →₀ ℕ) :=
   (Mon n e).filter (fun m => ∀ i : Fin (n + 1), w ≤ (i : ℕ) → m i = 0)
 
+/--
+@isnad1 id=iff.0h4v.s8.99aa502350f1 from=translated src=- shape=fa9e9568 vocab=744a9027
+-/
 theorem mem_MonW (w e : ℕ) (m : Fin (n + 1) →₀ ℕ) :
     m ∈ MonW n w e ↔ m.degree = e ∧ ∀ i : Fin (n + 1), w ≤ (i : ℕ) → m i = 0 := by
   simp [MonW]
 
+/--
+@isnad1 id=eq.0h2v.s6.0f36a562afcf from=translated src=- shape=cb9bcdc6 vocab=cf9d7c5a
+-/
 theorem MonW_zero_succ (e : ℕ) : MonW n 0 (e + 1) = ∅ := by
   ext u
   simp only [mem_MonW, Finset.notMem_empty, iff_false, not_and]
@@ -376,6 +484,9 @@ theorem MonW_zero_succ (e : ℕ) : MonW n 0 (e + 1) = ∅ := by
   rw [this, map_zero] at hdeg
   omega
 
+/--
+@isnad1 id=eq.0h2v.s7.c627e70d0a43 from=translated src=- shape=8bb72c75 vocab=ddfbaf88
+-/
 theorem MonW_zero_right (w : ℕ) : MonW n w 0 = {0} := by
   ext u
   simp only [mem_MonW, Finset.mem_singleton, Finsupp.degree_eq_zero_iff]
@@ -386,16 +497,25 @@ theorem MonW_zero_right (w : ℕ) : MonW n w 0 = {0} := by
 noncomputable def Bplus (w e : ℕ) (B : Finset (Fin (n + 1) →₀ ℕ)) : Finset (Fin (n + 1) →₀ ℕ) :=
   (MonW n w (e + 1)).filter (fun u => ∀ i : Fin (n + 1), 1 ≤ u i → u - Finsupp.single i 1 ∈ B)
 
+/--
+@isnad1 id=iff.0h5v.s9.9528f8c5b1a8 from=translated src=- shape=026cd04c vocab=a3f8a25f
+-/
 theorem mem_Bplus (w e : ℕ) (B : Finset (Fin (n + 1) →₀ ℕ)) (u : Fin (n + 1) →₀ ℕ) :
     u ∈ Bplus n w e B ↔
       u ∈ MonW n w (e + 1) ∧ ∀ i : Fin (n + 1), 1 ≤ u i → u - Finsupp.single i 1 ∈ B := by
   simp [Bplus]
 
+/--
+@isnad1 id=le.0h4v.s7.16ed842d2a09 from=translated src=- shape=bcf389af vocab=fd3e5e4d
+-/
 theorem Bplus_subset_MonW (w e : ℕ) (B : Finset (Fin (n + 1) →₀ ℕ)) : Bplus n w e B ⊆ MonW n w (e + 1) :=
   Finset.filter_subset _ _
 
 variable {n}
 
+/--
+@isnad1 id=ex.1h2v.s8.cd601016c52b from=translated src=- shape=4f42fe10 vocab=ca4988da
+-/
 theorem exists_one_le_of_degree_ne_zero (u : Fin (n + 1) →₀ ℕ) (hu : u.degree ≠ 0) :
     ∃ i, 1 ≤ u i := by
   rw [Finsupp.degree_eq_sum] at hu
@@ -421,18 +541,33 @@ def wt (u : Fin (n + 1) →₀ ℕ) : ℕ := ∑ l ∈ Finset.univ.erase c, u l
 
 def pot (A : Finset (Fin (n + 1) →₀ ℕ)) : ℕ := ∑ u ∈ A, wt c u
 
+/--
+@isnad1 id=eq.0h6v.s8.a5479dfbb960 from=translated src=- shape=d3d8a11e vocab=026f542d
+-/
 theorem mv_apply (u : Fin (n + 1) →₀ ℕ) (j : ℕ) (l : Fin (n + 1)) :
     mv i c u j l = if l = i then j else if l = c then u i + u c - j else u l := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.998e779a7658 from=translated src=- shape=1bd8f811 vocab=f9c3ee9d
+-/
 @[scoped simp] theorem mv_apply_i (u : Fin (n + 1) →₀ ℕ) (j : ℕ) : mv i c u j i = j := by simp [mv_apply]
 
+/--
+@isnad1 id=iff.0h6v.s8.c9aaa715b0fb from=translated src=- shape=d25db1cc vocab=951eddcc
+-/
 theorem mem_J {A : Finset (Fin (n + 1) →₀ ℕ)} {m : Fin (n + 1) →₀ ℕ} {j : ℕ} :
     j ∈ J i c A m ↔ j ≤ m c ∧ mv i c m j ∈ A := by
   simp [J]
 
+/--
+@isnad1 id=le.0h5v.s7.32229c9284c8 from=translated src=- shape=274a0797 vocab=2725a19f
+-/
 theorem card_J_le (A : Finset (Fin (n + 1) →₀ ℕ)) (m : Fin (n + 1) →₀ ℕ) : (J i c A m).card ≤ m c + 1 :=
   (Finset.card_filter_le _ _).trans (by simp)
 
+/--
+@isnad1 id=injectiv.0h4v.s6.69dc4fc489dc from=translated src=- shape=88a24236 vocab=93b9d91b
+-/
 theorem mv_injective (u : Fin (n + 1) →₀ ℕ) : Function.Injective (mv i c u) := fun j j' h => by
   have := congrArg (fun f => f i) h
   simpa using this
@@ -440,26 +575,44 @@ theorem mv_injective (u : Fin (n + 1) →₀ ℕ) : Function.Injective (mv i c u
 variable {i c} (hic : i ≠ c)
 include hic
 
+/--
+@isnad1 id=eq.1h5v.s8.561375122275 from=translated src=- shape=4a0b96a8 vocab=33d8eb32
+-/
 theorem mv_apply_c (u : Fin (n + 1) →₀ ℕ) (j : ℕ) : mv i c u j c = u i + u c - j := by
   simp [mv_apply, Ne.symm hic]
 
 omit hic in
+/--
+@isnad1 id=eq.2h6v.s7.1242f50327f0 from=translated src=- shape=a9528403 vocab=f9c3ee9d
+-/
 theorem mv_apply_ne {l : Fin (n + 1)} (hli : l ≠ i) (hlc : l ≠ c) (u : Fin (n + 1) →₀ ℕ) (j : ℕ) :
     mv i c u j l = u l := by
   simp [mv_apply, hli, hlc]
 
 omit hic in
+/--
+@isnad1 id=eq.0h4v.s7.242ed46c005b from=translated src=- shape=c23386ab vocab=67641bd3
+-/
 @[scoped simp] theorem key_apply_i (u : Fin (n + 1) →₀ ℕ) : key i c u i = 0 := by simp [key]
 
+/--
+@isnad1 id=eq.1h4v.s8.5f227f583381 from=translated src=- shape=8f5cb590 vocab=67641bd3
+-/
 theorem key_apply_c (u : Fin (n + 1) →₀ ℕ) : key i c u c = u i + u c := by
   simp [key, mv_apply_c hic]
 
 omit hic in
+/--
+@isnad1 id=eq.2h5v.s7.eac77f6b4363 from=translated src=- shape=8527560e vocab=67641bd3
+-/
 theorem key_apply_ne {l : Fin (n + 1)} (hli : l ≠ i) (hlc : l ≠ c) (u : Fin (n + 1) →₀ ℕ) :
     key i c u l = u l := mv_apply_ne hli hlc u 0
 
 omit hic in
 
+/--
+@isnad1 id=eq.3h5v.s9.175a05f49b42 from=translated src=- shape=3b04c53f vocab=9410ee70
+-/
 theorem ext3 {f g : Fin (n + 1) →₀ ℕ} (hi : f i = g i) (hc : f c = g c)
     (h : ∀ l, l ≠ i → l ≠ c → f l = g l) : f = g := by
   ext l
@@ -469,19 +622,34 @@ theorem ext3 {f g : Fin (n + 1) →₀ ℕ} (hi : f i = g i) (hc : f c = g c)
   · rw [hlc]; exact hc
   exact h l hli hlc
 
+/--
+@isnad1 id=eq.1h5v.s6.3795710d82dc from=translated src=- shape=c39a9d20 vocab=7ce4eea1
+-/
 theorem mv_key (u : Fin (n + 1) →₀ ℕ) (j : ℕ) : mv i c (key i c u) j = mv i c u j :=
   ext3 (i := i) (c := c) (by simp) (by rw [mv_apply_c hic, mv_apply_c hic, key_apply_i, key_apply_c hic]; omega)
     fun l hli hlc => by rw [mv_apply_ne hli hlc, mv_apply_ne hli hlc, key_apply_ne hli hlc]
 
+/--
+@isnad1 id=eq.2h5v.s8.9397eb6e70f5 from=translated src=- shape=6849a11a vocab=c9de227c
+-/
 theorem key_mv (u : Fin (n + 1) →₀ ℕ) (j : ℕ) (hj : j ≤ u i + u c) : key i c (mv i c u j) = key i c u :=
   ext3 (i := i) (c := c) (by simp) (by rw [key_apply_c hic, key_apply_c hic, mv_apply_i, mv_apply_c hic]; omega)
     fun l hli hlc => by rw [key_apply_ne hli hlc, key_apply_ne hli hlc, mv_apply_ne hli hlc]
 
+/--
+@isnad1 id=eq.1h4v.s6.539d51c61328 from=translated src=- shape=70bae3a3 vocab=c6994d36
+-/
 theorem key_key (u : Fin (n + 1) →₀ ℕ) : key i c (key i c u) = key i c u := key_mv hic u 0 (Nat.zero_le _)
 
+/--
+@isnad1 id=eq.1h4v.s7.38cf36e738c6 from=translated src=- shape=b4e772be vocab=f9c3ee9d
+-/
 theorem mv_self (u : Fin (n + 1) →₀ ℕ) : mv i c u (u i) = u :=
   ext3 (i := i) (c := c) (by simp) (by rw [mv_apply_c hic]; omega) fun l hli hlc => mv_apply_ne hli hlc u _
 
+/--
+@isnad1 id=eq.2h4v.s8.a53404303aac from=translated src=- shape=08815e4f vocab=e916f896
+-/
 theorem sub_add_eq_mv (u : Fin (n + 1) →₀ ℕ) (hu : 1 ≤ u i) :
     u - Finsupp.single i 1 + Finsupp.single c 1 = mv i c (key i c u) (u i - 1) :=
   ext3 (i := i) (c := c) (by simp [hic])
@@ -491,12 +659,18 @@ theorem sub_add_eq_mv (u : Fin (n + 1) →₀ ℕ) (hu : 1 ≤ u i) :
       rw [mv_apply_ne hli hlc, key_apply_ne hli hlc]
       simp [Ne.symm hli, Ne.symm hlc]
 
+/--
+@isnad1 id=eq.3h5v.s8.12ee724dc08d from=translated src=- shape=d6475c22 vocab=06671a57
+-/
 theorem mv_sub_single_i (u : Fin (n + 1) →₀ ℕ) (x : ℕ) (hx : 1 ≤ x) (hu : 1 ≤ u i) :
     mv i c u x - Finsupp.single i 1 = mv i c (u - Finsupp.single i 1) (x - 1) :=
   ext3 (i := i) (c := c) (by simp) (by rw [Finsupp.tsub_apply, mv_apply_c hic, mv_apply_c hic]; simp [Ne.symm hic]; omega)
     fun l hli hlc => by
       rw [Finsupp.tsub_apply, mv_apply_ne hli hlc, mv_apply_ne hli hlc, Finsupp.tsub_apply]
 
+/--
+@isnad1 id=eq.3h5v.s8.d816c0b453f3 from=translated src=- shape=f5851ce0 vocab=06671a57
+-/
 theorem mv_sub_single_i' (u : Fin (n + 1) →₀ ℕ) (x : ℕ) (hx : 1 ≤ x) (hu : 1 ≤ u c) :
     mv i c u x - Finsupp.single i 1 = mv i c (u - Finsupp.single c 1) (x - 1) :=
   ext3 (i := i) (c := c) (by simp) (by rw [Finsupp.tsub_apply, mv_apply_c hic, mv_apply_c hic]; simp [hic, Ne.symm hic]; omega)
@@ -504,6 +678,9 @@ theorem mv_sub_single_i' (u : Fin (n + 1) →₀ ℕ) (x : ℕ) (hx : 1 ≤ x) (
       rw [Finsupp.tsub_apply, mv_apply_ne hli hlc, mv_apply_ne hli hlc, Finsupp.tsub_apply]
       simp [Ne.symm hli, Ne.symm hlc]
 
+/--
+@isnad1 id=eq.2h5v.s8.18890f7ca2fe from=translated src=- shape=1630c764 vocab=06671a57
+-/
 theorem mv_sub_single_c (u : Fin (n + 1) →₀ ℕ) (x : ℕ) (hu : 1 ≤ u c) :
     mv i c u x - Finsupp.single c 1 = mv i c (u - Finsupp.single c 1) x :=
   ext3 (i := i) (c := c) (by simp [Ne.symm hic])
@@ -511,6 +688,9 @@ theorem mv_sub_single_c (u : Fin (n + 1) →₀ ℕ) (x : ℕ) (hu : 1 ≤ u c) 
     fun l hli hlc => by
       rw [Finsupp.tsub_apply, mv_apply_ne hli hlc, mv_apply_ne hli hlc, Finsupp.tsub_apply]
 
+/--
+@isnad1 id=eq.3h6v.s8.53c6231c7c9c from=translated src=- shape=64738ab8 vocab=66492792
+-/
 theorem mv_sub_single_ne {l : Fin (n + 1)} (hli : l ≠ i) (hlc : l ≠ c) (u : Fin (n + 1) →₀ ℕ) (x : ℕ) :
     mv i c u x - Finsupp.single l 1 = mv i c (u - Finsupp.single l 1) x :=
   ext3 (i := i) (c := c) (by simp [hli])
@@ -518,6 +698,9 @@ theorem mv_sub_single_ne {l : Fin (n + 1)} (hli : l ≠ i) (hlc : l ≠ c) (u : 
     fun l' hl'i hl'c => by
       rw [Finsupp.tsub_apply, mv_apply_ne hl'i hl'c, mv_apply_ne hl'i hl'c, Finsupp.tsub_apply]
 
+/--
+@isnad1 id=iff.1h5v.s8.662f73d96e6c from=translated src=- shape=f93bf768 vocab=1690349a
+-/
 theorem mem_comp_iff (A : Finset (Fin (n + 1) →₀ ℕ)) (u : Fin (n + 1) →₀ ℕ) :
     u ∈ comp i c A ↔ u i < (J i c A (key i c u)).card := by
   constructor
@@ -535,6 +718,9 @@ theorem mem_comp_iff (A : Finset (Fin (n + 1) →₀ ℕ)) (u : Fin (n + 1) →�
     refine ⟨key i c u, ⟨mv i c u j', hj'.2, key_mv hic u j' hj'.1⟩, u i, hu, ?_⟩
     rw [mv_key hic, mv_self hic]
 
+/--
+@isnad1 id=eq.3h6v.s9.f185d1fc95d2 from=translated src=- shape=c0b33d24 vocab=50ecd41e
+-/
 theorem sum_biUnion_mv (K : Finset (Fin (n + 1) →₀ ℕ)) (hK : ∀ m ∈ K, key i c m = m)
     (S : (Fin (n + 1) →₀ ℕ) → Finset ℕ) (hS : ∀ m ∈ K, ∀ j ∈ S m, j ≤ m i + m c)
     (f : (Fin (n + 1) →₀ ℕ) → ℕ) :
@@ -555,10 +741,16 @@ theorem sum_biUnion_mv (K : Finset (Fin (n + 1) →₀ ℕ)) (hK : ∀ m ∈ K, 
     rw [hK m' hm'] at h2
     exact h2
 
+/--
+@isnad1 id=eq.2h5v.s8.259884f4fb1e from=translated src=- shape=26f75278 vocab=3427f272
+-/
 theorem key_of_mem_image {A : Finset (Fin (n + 1) →₀ ℕ)} {m : Fin (n + 1) →₀ ℕ}
     (hm : m ∈ A.image (key i c)) : key i c m = m := by
   obtain ⟨a, -, rfl⟩ := Finset.mem_image.1 hm; exact key_key hic a
 
+/--
+@isnad1 id=eq.1h5v.s8.70f40cfa7802 from=translated src=- shape=cc13292c vocab=a6c69c94
+-/
 theorem sum_eq_sum_key (A : Finset (Fin (n + 1) →₀ ℕ)) (f : (Fin (n + 1) →₀ ℕ) → ℕ) :
     ∑ u ∈ A, f u = ∑ m ∈ A.image (key i c), ∑ j ∈ J i c A m, f (mv i c m j) := by
   have hA : A = (A.image (key i c)).biUnion (fun m => (J i c A m).image (mv i c m)) := by
@@ -574,16 +766,25 @@ theorem sum_eq_sum_key (A : Finset (Fin (n + 1) →₀ ℕ)) (f : (Fin (n + 1) �
   refine sum_biUnion_mv hic _ (fun m hm => key_of_mem_image hic hm) _ (fun m hm j hj => ?_) f
   have := ((mem_J i c).1 hj).1; omega
 
+/--
+@isnad1 id=eq.1h5v.s8.9b8b57ef1638 from=translated src=- shape=3b2c3ef9 vocab=076fa4cf
+-/
 theorem sum_comp (A : Finset (Fin (n + 1) →₀ ℕ)) (f : (Fin (n + 1) →₀ ℕ) → ℕ) :
     ∑ u ∈ comp i c A, f u = ∑ m ∈ A.image (key i c), ∑ j ∈ Finset.range (J i c A m).card, f (mv i c m j) := by
   refine sum_biUnion_mv hic _ (fun m hm => key_of_mem_image hic hm) _ (fun m hm j hj => ?_) f
   rw [Finset.mem_range] at hj
   have := card_J_le i c A m; omega
 
+/--
+@isnad1 id=eq.1h4v.s6.02fd82dd54d1 from=translated src=- shape=188f7916 vocab=ca34f0ad
+-/
 theorem card_comp (A : Finset (Fin (n + 1) →₀ ℕ)) : (comp i c A).card = A.card := by
   rw [Finset.card_eq_sum_ones, Finset.card_eq_sum_ones, sum_comp hic, sum_eq_sum_key hic A]
   simp
 
+/--
+@isnad1 id=eq.2h5v.s9.e9aacfdf3cf6 from=translated src=- shape=59bd3ab3 vocab=a1793714
+-/
 theorem degree_mv (u : Fin (n + 1) →₀ ℕ) (j : ℕ) (hj : j ≤ u i + u c) : (mv i c u j).degree = u.degree := by
   have hi := Finset.mem_univ i
   have hc' : c ∈ Finset.univ.erase i := Finset.mem_erase.2 ⟨Ne.symm hic, Finset.mem_univ c⟩
@@ -598,6 +799,9 @@ theorem degree_mv (u : Fin (n + 1) →₀ ℕ) (j : ℕ) (hj : j ≤ u i + u c) 
       exact mv_apply_ne hl.2.1 hl.1 u j
   rw [this]; omega
 
+/--
+@isnad1 id=mem.5h7v.s8.26aa3bb071f7 from=translated src=- shape=6afd93b1 vocab=6a456c17
+-/
 theorem mv_mem_MonW {u : Fin (n + 1) →₀ ℕ} {W e : ℕ} (hu : u ∈ MonW n W e) (hiW : (i : ℕ) < W)
     (hcW : (c : ℕ) < W) {j : ℕ} (hj : j ≤ u i + u c) : mv i c u j ∈ MonW n W e := by
   rw [mem_MonW] at hu ⊢
@@ -606,6 +810,9 @@ theorem mv_mem_MonW {u : Fin (n + 1) →₀ ℕ} {W e : ℕ} (hu : u ∈ MonW n 
   have hlc : l ≠ c := fun h => by rw [h] at hl; omega
   rw [mv_apply_ne hli hlc]; exact hu.2 l hl
 
+/--
+@isnad1 id=le.4h6v.s8.507eb41bcb03 from=translated src=- shape=fee5818a vocab=f3a2fe6c
+-/
 theorem comp_subset_MonW {A : Finset (Fin (n + 1) →₀ ℕ)} {W e : ℕ} (hA : A ⊆ MonW n W e)
     (hiW : (i : ℕ) < W) (hcW : (c : ℕ) < W) : comp i c A ⊆ MonW n W e := by
   intro u hu
@@ -618,6 +825,9 @@ theorem comp_subset_MonW {A : Finset (Fin (n + 1) →₀ ℕ)} {W e : ℕ} (hA :
 
 omit hic in
 
+/--
+@isnad1 id=and.0h1v.s5.bc7c1bfef27c from=translated src=- shape=a7227184 vocab=d27c490d
+-/
 theorem sum_range_card_le (S : Finset ℕ) :
     ∑ j ∈ Finset.range S.card, j ≤ ∑ j ∈ S, j ∧
       (∑ j ∈ Finset.range S.card, j = ∑ j ∈ S, j → S = Finset.range S.card) := by
@@ -637,6 +847,9 @@ theorem sum_range_card_le (S : Finset ℕ) :
 
 omit hic in
 
+/--
+@isnad1 id=le.2h3v.s6.09181e608203 from=translated src=- shape=1f8cbb66 vocab=f8e4f35a
+-/
 theorem min_card_le (S S' : Finset ℕ) (t : ℕ) (h1 : ∀ x ∈ S, x < t → x ∈ S')
     (h2 : ∀ x ∈ S, 1 ≤ x → x - 1 ∈ S') : min S.card t ≤ S'.card := by
   by_cases hfull : ∀ g, g ≤ t → g ∈ S
@@ -664,6 +877,9 @@ theorem min_card_le (S S' : Finset ℕ) (t : ℕ) (h1 : ∀ x ∈ S, x < t → x
         split_ifs at hxy <;> omega
     omega
 
+/--
+@isnad1 id=mem.4h7v.s9.a7077b46449c from=translated src=- shape=5ae5b60e vocab=3935476c
+-/
 theorem sub_single_mem_comp {A D : Finset (Fin (n + 1) →₀ ℕ)}
     (hAD : ∀ a ∈ A, ∀ l : Fin (n + 1), 1 ≤ a l → a - Finsupp.single l 1 ∈ D)
     {u : Fin (n + 1) →₀ ℕ} (hu : u ∈ comp i c A) (l : Fin (n + 1)) (hl : 1 ≤ u l) :
@@ -719,6 +935,9 @@ theorem sub_single_mem_comp {A D : Finset (Fin (n + 1) →₀ ℕ)}
       rwa [mv_sub_single_ne hic hli hlc u x] at this
     omega
 
+/--
+@isnad1 id=le.3h6v.s7.c06bfe2ce64a from=translated src=- shape=1e2db568 vocab=4487c92b
+-/
 theorem card_Bplus_le_comp (W e : ℕ) (X : Finset (Fin (n + 1) →₀ ℕ)) (hiW : (i : ℕ) < W)
     (hcW : (c : ℕ) < W) : (Bplus n W e X).card ≤ (Bplus n W e (comp i c X)).card := by
   rw [← card_comp hic (Bplus n W e X)]
@@ -727,6 +946,9 @@ theorem card_Bplus_le_comp (W e : ℕ) (X : Finset (Fin (n + 1) →₀ ℕ)) (hi
   refine ⟨comp_subset_MonW hic (Bplus_subset_MonW n W e X) hiW hcW hu, fun l hl => ?_⟩
   exact sub_single_mem_comp hic (fun a ha l hl => ((mem_Bplus n W e X a).1 ha).2 l hl) hu l hl
 
+/--
+@isnad1 id=eq.2h5v.s7.fa4203bd5f8a from=translated src=- shape=0e765222 vocab=fcda8af0
+-/
 theorem wt_mv (m : Fin (n + 1) →₀ ℕ) (j : ℕ) (hm : m i = 0) : wt c (mv i c m j) = wt c m + j := by
   unfold wt
   have hi : i ∈ Finset.univ.erase c := Finset.mem_erase.2 ⟨hic, Finset.mem_univ _⟩
@@ -737,6 +959,9 @@ theorem wt_mv (m : Fin (n + 1) →₀ ℕ) (j : ℕ) (hm : m i = 0) : wt c (mv i
     simp only [Finset.mem_erase] at hl
     exact mv_apply_ne hl.1 hl.2.1 _ _
 
+/--
+@isnad1 id=lt.4h5v.s9.6349ca5cb801 from=translated src=- shape=89e01055 vocab=7235d1be
+-/
 theorem pot_comp_lt (A : Finset (Fin (n + 1) →₀ ℕ)) {u : Fin (n + 1) →₀ ℕ} (hu : u ∈ A) (h1 : 1 ≤ u i)
     (hnot : u - Finsupp.single i 1 + Finsupp.single c 1 ∉ A) : pot c (comp i c A) < pot c A := by
   unfold pot
@@ -769,6 +994,9 @@ theorem pot_comp_lt (A : Finset (Fin (n + 1) →₀ ℕ)) {u : Fin (n + 1) →�
 
 end Compression
 
+/--
+@isnad1 id=ex.3h6v.s10.fa031c71c3ab from=translated src=- shape=ed14c080 vocab=60bab27d
+-/
 theorem exists_stable (w : ℕ) (c : Fin (n + 1)) (hcw : (c : ℕ) = w) (e : ℕ) :
     ∀ (P : ℕ) (X : Finset (Fin (n + 1) →₀ ℕ)), pot c X = P → X ⊆ MonW n (w + 1) e →
     ∃ Y : Finset (Fin (n + 1) →₀ ℕ), Y ⊆ MonW n (w + 1) e ∧ Y.card = X.card ∧
@@ -797,6 +1025,9 @@ noncomputable def T (w : ℕ) (c : Fin (n + 1)) (X : Finset (Fin (n + 1) →₀ 
     Finset (Fin (n + 1) →₀ ℕ) :=
   (MonW n w (e - k)).filter fun v => v + Finsupp.single c k ∈ X
 
+/--
+@isnad1 id=le.0h6v.s7.a644cad390b9 from=translated src=- shape=4cce4765 vocab=7063b69d
+-/
 theorem T_subset (w : ℕ) (c : Fin (n + 1)) (X : Finset (Fin (n + 1) →₀ ℕ)) (e k : ℕ) :
     T n w c X e k ⊆ MonW n w (e - k) := Finset.filter_subset _ _
 
@@ -808,6 +1039,9 @@ variable {w : ℕ} {c : Fin (n + 1)} (hcw : (c : ℕ) = w) {X : Finset (Fin (n +
   (hX : X ⊆ MonW n (w + 1) e)
 include hcw hX
 
+/--
+@isnad1 id=iff.3h7v.s9.3c007d56b0f7 from=translated src=- shape=b54870af vocab=8db068bc
+-/
 theorem mem_T_iff {k : ℕ} (hk : k ≤ e) (v : Fin (n + 1) →₀ ℕ) :
     v ∈ T n w c X e k ↔ v c = 0 ∧ v + Finsupp.single c k ∈ X := by
   rw [T, Finset.mem_filter, mem_MonW]
@@ -824,6 +1058,9 @@ theorem mem_T_iff {k : ℕ} (hk : k ≤ e) (v : Fin (n + 1) →₀ ℕ) :
         have := hu.2 l hl'
         rw [Finsupp.add_apply, Finsupp.single_apply, ite_eq_right (Ne.symm hlc)] at this; omega
 
+/--
+@isnad1 id=eq.3h6v.s8.c9c0d6aec3fb from=translated src=- shape=f1283741 vocab=97e2bd66
+-/
 theorem card_T {k : ℕ} (hk : k ≤ e) : (T n w c X e k).card = (X.filter fun u => u c = k).card := by
   refine Finset.card_bij' (fun v _ => v + Finsupp.single c k) (fun u _ => u - Finsupp.single c k)
     ?_ ?_ ?_ ?_
@@ -842,6 +1079,9 @@ theorem card_T {k : ℕ} (hk : k ≤ e) : (T n w c X e k).card = (X.filter fun u
     rw [Finset.mem_filter] at hu
     exact tsub_add_cancel_of_le (Finsupp.single_le_iff.2 (by rw [hu.2]))
 
+/--
+@isnad1 id=eq.2h5v.s7.b526746e9396 from=translated src=- shape=3aa5e56c vocab=a4fd5fc5
+-/
 theorem sum_card_T : ∑ k ∈ Finset.range (e + 1), (T n w c X e k).card = X.card := by
   rw [Finset.card_eq_sum_card_fiberwise (f := fun u => u c) (s := X) (t := Finset.range (e + 1))
     (fun u hu => by
@@ -850,6 +1090,9 @@ theorem sum_card_T : ∑ k ∈ Finset.range (e + 1), (T n w c X e k).card = X.ca
       exact Finsupp.le_degree c u)]
   exact Finset.sum_congr rfl fun k hk => card_T hcw hX (by rw [Finset.mem_range] at hk; omega)
 
+/--
+@isnad1 id=le.2h5v.s8.29b800f1ccd6 from=translated src=- shape=455456a8 vocab=f3955660
+-/
 theorem card_Bplus_succ_le : (Bplus n (w + 1) e X).card ≤ (Bplus n w e (T n w c X e 0)).card + X.card := by
   classical
   have hsub : Bplus n (w + 1) e X ⊆ Bplus n w e (T n w c X e 0) ∪ X.image (· + Finsupp.single c 1) := by
@@ -874,6 +1117,9 @@ theorem card_Bplus_succ_le : (Bplus n (w + 1) e X).card ≤ (Bplus n w e (T n w 
     _ ≤ _ := Nat.add_le_add_left Finset.card_image_le _
 
 omit hcw hX in
+/--
+@isnad1 id=eq.1h5v.s9.2435bbb6811e from=translated src=- shape=deac39cf vocab=c706178c
+-/
 theorem sub_add_single_comm (v : Fin (n + 1) →₀ ℕ) {l c' : Fin (n + 1)} (hlc : l ≠ c') (k : ℕ) :
     v - Finsupp.single l 1 + Finsupp.single c' (k + 1) =
       v + Finsupp.single c' k - Finsupp.single l 1 + Finsupp.single c' 1 := by
@@ -885,6 +1131,9 @@ theorem sub_add_single_comm (v : Fin (n + 1) →₀ ℕ) {l c' : Fin (n + 1)} (h
     · simp [h1, add_assoc]
     · simp [h1, h2]
 
+/--
+@isnad1 id=le.4h6v.s9.76a0b79e668e from=translated src=- shape=e35af344 vocab=16849494
+-/
 theorem T_subset_Bplus
     (hstab : ∀ u ∈ X, ∀ l : Fin (n + 1), (l : ℕ) < w → 1 ≤ u l →
       u - Finsupp.single l 1 + Finsupp.single c 1 ∈ X)
@@ -906,10 +1155,16 @@ theorem T_subset_Bplus
   rwa [← sub_add_single_comm v hlc k] at this
 
 omit hcw hX in
+/--
+@isnad1 id=le.0h5v.s6.8894ef7277d4 from=translated src=- shape=c3e90008 vocab=12d53a19
+-/
 theorem card_T_last_le : (T n w c X e e).card ≤ 1 := by
   refine (Finset.card_le_card (T_subset n w c X e e)).trans ?_
   rw [Nat.sub_self, MonW_zero_right, Finset.card_singleton]
 
+/--
+@isnad1 id=eq.5h5v.s9.6ff7d7e673ee from=translated src=- shape=c25c5b29 vocab=d348c6d8
+-/
 theorem card_T_last_eq
     (hstab : ∀ u ∈ X, ∀ l : Fin (n + 1), (l : ℕ) < w → 1 ≤ u l →
       u - Finsupp.single l 1 + Finsupp.single c 1 ∈ X)
@@ -924,6 +1179,9 @@ theorem card_T_last_eq
 
 end Tower
 
+/--
+@isnad1 id=le.5h5v.s9.6af8c15258dd from=translated src=- shape=f606a168 vocab=e78e09d8
+-/
 theorem stable_bound (w : ℕ) (c : Fin (n + 1)) (hcw : (c : ℕ) = w)
     (ih : ∀ e, 1 ≤ e → ∀ Z : Finset (Fin (n + 1) →₀ ℕ), Z ⊆ MonW n w e →
       (Bplus n w e Z).card ≤ Nat.macaulayPow e Z.card)
@@ -947,6 +1205,9 @@ theorem stable_bound (w : ℕ) (c : Fin (n + 1)) (hcw : (c : ℕ) = w)
     rwa [show e + 1 - (k + 1) = e - k by omega] at this
   · exact ih (e + 1) (by omega) _ (T_subset n w c X (e + 1) 0)
 
+/--
+@isnad1 id=le.3h4v.s7.b18cc967f492 from=translated src=- shape=031c5167 vocab=01e76ba0
+-/
 theorem main : ∀ w : ℕ, w ≤ n + 1 → ∀ e : ℕ, 1 ≤ e → ∀ X : Finset (Fin (n + 1) →₀ ℕ),
     X ⊆ MonW n w e → (Bplus n w e X).card ≤ Nat.macaulayPow e X.card
   | 0, _, e, he, X, hX => by
@@ -966,6 +1227,9 @@ end MacaulayCL
 open scoped _root_.P2MW.S_Finsupp_card_le_macaulayPow_card_of_forall_sub_single_mem.MacaulayCL
 
 open MacaulayCL in
+/--
+@isnad1 id=le.4h4v.s10.20b8cd7248e2 from=translated src=- shape=26e8c55c vocab=272e004a
+-/
 theorem solution
     (n d : ℕ) (hd : 1 ≤ d) (B : Finset (Fin (n + 1) →₀ ℕ)) (hB : ∀ m ∈ B, m.degree = d)
     (C : Finset (Fin (n + 1) →₀ ℕ)) (hC : ∀ u ∈ C, u.degree = d + 1)

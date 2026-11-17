@@ -42,6 +42,9 @@ section valuation
 
 variable {K L : Type} [Field K] [Field L] [Algebra K L]
 
+/--
+@isnad1 id=mem.2h4v.s6.aabc2b27cf4f from=translated src=- shape=62ba45dc vocab=1e96c8e9
+-/
 theorem mem_of_pow_eq_one (A : ValuationSubring L) {μ : L} {m : ℕ} (hm : m ≠ 0) (hμ : μ ^ m = 1) :
     μ ∈ A := by
   rcases A.mem_or_inv_mem μ with h | h
@@ -56,6 +59,9 @@ theorem mem_of_pow_eq_one (A : ValuationSubring L) {μ : L} {m : ℕ} (hm : m �
     rw [h2]
     exact pow_mem h _
 
+/--
+@isnad1 id=isunit.2h4v.s7.e7d447b19929 from=translated src=- shape=ac3d3d8a vocab=72b02aa4
+-/
 theorem isUnit_natCast_of_coprime (A : ValuationSubring L) {q m : ℕ} (hq : A.LiesOverPrime q)
     (hmq : Nat.Coprime m q) : IsUnit ((m : ℕ) : A) := by
   rw [← IsLocalRing.notMem_maximalIdeal]
@@ -82,6 +88,9 @@ section valuation
 
 variable {K L : Type} [Field K] [Field L] [Algebra K L]
 
+/--
+@isnad1 id=eq.5h7v.s8.0fe1c72bf5ce from=translated src=- shape=685362e8 vocab=e4c4931d
+-/
 theorem apply_eq_of_mem_inertia (A : ValuationSubring L) (τ : L ≃ₐ[K] L) (q : ℕ)
     (hτ : τ ∈ A.inertiaSubgroupIn K) (hq : A.LiesOverPrime q) {m : ℕ} (hm : m ≠ 0) (hmq : Nat.Coprime m q)
     (μ : L) (hμ : μ ^ m = 1) : τ μ = μ := by
@@ -109,6 +118,9 @@ theorem apply_eq_of_mem_inertia (A : ValuationSubring L) (τ : L ≃ₐ[K] L) (q
 
 end valuation
 
+/--
+@isnad1 id=mem.6h7v.s11.2cfaff43d900 from=translated src=- shape=c13cbc4b vocab=3979e424
+-/
 theorem det_sub_one_mem_span_of_mem_inertia {A : Type} [CommRing A] [IsLocalRing A]
     (ρ : GaloisRepAdic A) {p q : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q)
     (hdet : ρ.DetIsCyclotomic p) (P : ValuationSubring (AlgebraicClosure ℚ)) (hP : P.LiesOverPrime q)
@@ -120,6 +132,9 @@ theorem det_sub_one_mem_span_of_mem_inertia {A : Type} [CommRing A] [IsLocalRing
       (Nat.Coprime.pow_left n ((Nat.coprime_primes hp hq).mpr hpq)) μ hμ)
   rwa [Nat.cast_one] at h
 
+/--
+@isnad1 id=eq.6h6v.s11.5da9ed114a95 from=translated src=- shape=864dc77c vocab=fa2f2a89
+-/
 theorem det_eq_one_of_mem_inertia {A : Type} [CommRing A] [IsLocalRing A] [IsNoetherianRing A]
     (ρ : GaloisRepAdic A) {p q : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q)
     (hdet : ρ.DetIsCyclotomic p) (P : ValuationSubring (AlgebraicClosure ℚ)) (hP : P.LiesOverPrime q)
@@ -136,6 +151,9 @@ theorem det_eq_one_of_mem_inertia {A : Type} [CommRing A] [IsLocalRing A] [IsNoe
 
 end WCOTDetInertia
 
+/--
+@isnad1 id=eq.6h6v.s11.5da9ed114a95 from=translated src=- shape=864dc77c vocab=fa2f2a89
+-/
 theorem solution
     {A : Type} [CommRing A] [IsLocalRing A] [IsNoetherianRing A]
     (ρ : GaloisRepAdic A) {p q : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q)

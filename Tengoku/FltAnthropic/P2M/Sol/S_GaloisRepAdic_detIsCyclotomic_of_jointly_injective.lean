@@ -95,6 +95,9 @@ private theorem sub_natCast_mem_span_of_jointly_injective {P A B : Type} [CommRi
 
 end LCMazur
 
+/--
+@isnad1 id=detiscyc.7h7v.s8.d675b1e61298 from=translated src=- shape=e7eed720 vocab=7f9ce0e2
+-/
 theorem solution {P A B : Type} [CommRing P]
     [IsLocalRing P] [CommRing A] [IsLocalRing A] [CommRing B] [IsLocalRing B]
     (πA : P →+* A) (hπA : IsLocalHom πA) (πB : P →+* B) (hπB : IsLocalHom πB)

@@ -7,6 +7,9 @@ namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropi
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_FreyPackage_not_p_dvd_padicValInt_two_freyCurveInt_discr.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 namespace P2MW.S_FreyPackage_not_p_dvd_padicValInt_two_freyCurveInt_discr
 
+/--
+@isnad1 id=not.0h1v.s4.0c25a529dd4b from=translated src=- shape=d7a104e9 vocab=de297de0
+-/
 theorem solution (P : FreyPackage) : ¬ P.p ∣ padicValInt 2 P.freyCurveInt.Δ := by
   intro h
   have h8 : P.p ∣ 8 := by

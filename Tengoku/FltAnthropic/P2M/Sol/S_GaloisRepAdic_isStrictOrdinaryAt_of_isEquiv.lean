@@ -12,6 +12,9 @@ namespace P2mStrictEquiv
 
 variable {A : Type} [CommRing A] [IsLocalRing A] {ρ₁ ρ₂ : GaloisRepAdic A}
 
+/--
+@isnad1 id=eq.0h6v.s11.7650abc59236 from=translated src=- shape=a4ee6e32 vocab=c7c87294
+-/
 theorem map_apply_symm (e : GaloisRepAdic.Equiv ρ₁ ρ₂)
     (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) (y : ρ₂.V) :
     ρ₂.ρ σ y = e.toLinearEquiv (ρ₁.ρ σ (e.toLinearEquiv.symm y)) := by
@@ -20,6 +23,9 @@ theorem map_apply_symm (e : GaloisRepAdic.Equiv ρ₁ ρ₂)
 end P2mStrictEquiv
 
 open P2mStrictEquiv in
+/--
+@isnad1 id=isstrict.2h4v.s5.faadedfa1719 from=translated src=- shape=fadfb841 vocab=e654899b
+-/
 theorem solution
     {A : Type} [CommRing A] [IsLocalRing A]
     {ρ₁ ρ₂ : GaloisRepAdic A} (e : ρ₁.IsEquiv ρ₂) {p : ℕ}

@@ -16,6 +16,9 @@ open _root_.Tengoku.FltAnthropic.GaloisRepAdic
 
 variable {A B : Type} [CommRing A] [IsLocalRing A] [CommRing B] [IsLocalRing B]
 
+/--
+@isnad1 id=isordina.2h4v.s5.678a635e5bf8 from=translated src=- shape=fadfb841 vocab=baefa325
+-/
 theorem isOrdinaryAt_of_isEquiv {ρ₁ ρ₂ : GaloisRepAdic A} (e : ρ₁.IsEquiv ρ₂) {p : ℕ}
     (h : ρ₁.IsOrdinaryAt p) : ρ₂.IsOrdinaryAt p := by
   obtain ⟨e⟩ := e
@@ -35,6 +38,9 @@ theorem isOrdinaryAt_of_isEquiv {ρ₁ ρ₂ : GaloisRepAdic A} (e : ρ₁.IsEqu
 
 end GaloisRepAdic.LCSol
 
+/--
+@isnad1 id=isordina.2h4v.s5.678a635e5bf8 from=translated src=- shape=fadfb841 vocab=baefa325
+-/
 theorem solution
     {A : Type} [CommRing A] [IsLocalRing A]
     {ρ₁ ρ₂ : GaloisRepAdic A} (e : ρ₁.IsEquiv ρ₂) {p : ℕ}

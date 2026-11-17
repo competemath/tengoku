@@ -83,6 +83,9 @@ private lemma twoTorsionOfRoot'_bijective (h2 : (2 : K) ≠ 0) :
       show Affine.Point.some x (twoTorsionY' W x) _ = Affine.Point.some x y hxy
       subst hyx; rfl
 
+/--
+@isnad1 id=eq.1h2v.s8.cd1b5b889bf2 from=translated src=- shape=207ba361 vocab=7ba58b15
+-/
 theorem _root_.P2MW.S_WeierstrassCurve_card_torsionBy_two_eq_card_option_Psi2Sq_roots.solution (h2 : (2 : K) ≠ 0) :
     Nat.card (Submodule.torsionBy ℤ W.toAffine.Point 2) =
       Nat.card (Option {x : K // W.Ψ₂Sq.eval x = 0}) :=

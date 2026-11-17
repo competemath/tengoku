@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_FLT_ModelTransfer_reducedChange_smul_reduc
 
 open WeierstrassCurve
 namespace FLT.ModelTransfer
+/--
+@isnad1 id=eq.2h5v.s6.7ec7fd43c8a1 from=translated src=- shape=af24b03d vocab=968469e3
+-/
 theorem reducedChange_smul_reductionMod {V W : WeierstrassCurve ℤ} {C : WeierstrassCurve.VariableChange ℚ}
     (hC : C • (V.map (Int.castRingHom ℚ)) = W.map (Int.castRingHom ℚ))
     (D : FLT.ModelTransfer.ClearedData C) {q : ℕ} [Fact q.Prime] (hq : ¬ q ∣ D.N) :

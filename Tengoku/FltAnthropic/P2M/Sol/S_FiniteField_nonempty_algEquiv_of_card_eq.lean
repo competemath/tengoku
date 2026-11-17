@@ -7,6 +7,9 @@ namespace P2MW.S_FiniteField_nonempty_algEquiv_of_card_eq
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=nonempty.1h3v.s6.721b01e97ee3 from=translated src=- shape=df40dbf6 vocab=5c184d20
+-/
 theorem solution
     (K : Type) [Field K] (L₁ : Type) [Field L₁] [Algebra K L₁] [Finite L₁]
     (L₂ : Type) [Field L₂] [Algebra K L₂] [Finite L₂]

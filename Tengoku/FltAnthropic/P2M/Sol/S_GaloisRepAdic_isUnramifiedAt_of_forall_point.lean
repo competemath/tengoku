@@ -8,6 +8,9 @@ namespace P2MW.S_GaloisRepAdic_isUnramifiedAt_of_forall_point
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=isunrami.3h6v.s8.1ddc911b1b06 from=translated src=- shape=8b844d84 vocab=723b47f8
+-/
 theorem solution
     {P : Type} [CommRing P] [IsLocalRing P] {ι : Type} {A : ι → Type}
     [∀ i, CommRing (A i)] [∀ i, IsLocalRing (A i)]

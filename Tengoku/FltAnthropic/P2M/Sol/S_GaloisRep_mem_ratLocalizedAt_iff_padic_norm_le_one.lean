@@ -9,6 +9,9 @@ namespace P2MW.S_GaloisRep_mem_ratLocalizedAt_iff_padic_norm_le_one
 
 set_option maxHeartbeats 8000000
 
+/--
+@isnad1 id=iff.0h2v.s6.b92bd7dd2719 from=translated src=- shape=d01bcb8c vocab=37501ad8
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] (q : ℚ) :
     q ∈ GaloisRep.ratLocalizedAt p ↔ ‖(q : ℚ_[p])‖ ≤ 1 := by

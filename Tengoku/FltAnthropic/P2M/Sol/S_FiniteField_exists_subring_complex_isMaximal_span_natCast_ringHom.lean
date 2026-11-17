@@ -11,6 +11,9 @@ namespace FiniteFieldSubringComplex
 
 open Polynomial
 
+/--
+@isnad1 id=eq.0h6v.s6.2cde4f544d08 from=translated src=- shape=c3decf2a vocab=0cb44b5e
+-/
 theorem eval₂_map_intCast {S T : Type*} [CommRing S] [CommRing T] (P : ℤ[X]) (c : ℤ →+* S)
     (i : S →+* T) (x : T) : (P.map c).eval₂ i x = P.eval₂ (Int.castRingHom T) x := by
   rw [eval₂_map, RingHom.ext_int (i.comp c) (Int.castRingHom T)]
@@ -18,6 +21,9 @@ theorem eval₂_map_intCast {S T : Type*} [CommRing S] [CommRing T] (P : ℤ[X])
 end FiniteFieldSubringComplex
 
 open Polynomial FiniteFieldSubringComplex in
+/--
+@isnad1 id=ex.0h2v.s11.c091a430fbaa from=translated src=- shape=4105dab3 vocab=a1de18bf
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] (k : Type*) [Field k] [Finite k] [CharP k p] :
     ∃ (A : Subring ℂ) (_ : (Ideal.span ({(p : A)} : Set A)).IsMaximal),

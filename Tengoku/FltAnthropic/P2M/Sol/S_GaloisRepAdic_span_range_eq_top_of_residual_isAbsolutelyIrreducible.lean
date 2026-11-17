@@ -22,6 +22,9 @@ open _root_.Tengoku.FltAnthropic.GaloisRepAdic
 
 variable {A : Type} [CommRing A] [IsLocalRing A]
 
+/--
+@isnad1 id=mem.1h3v.s12.bf678ac48c07 from=translated src=- shape=15d988b0 vocab=8840a028
+-/
 theorem ctp_mem_smul_top_of_baseChange_eq_zero (ρ : GaloisRepAdic A) (f : Module.End A ρ.V)
     (hf : f.baseChange (ResidueField A) = 0) :
     f ∈ (maximalIdeal A) • (⊤ : Submodule A (Module.End A ρ.V)) := by
@@ -47,6 +50,9 @@ theorem ctp_mem_smul_top_of_baseChange_eq_zero (ρ : GaloisRepAdic A) (f : Modul
   exact Submodule.sum_mem _ fun i _ => Submodule.sum_mem _ fun j _ =>
     Submodule.smul_mem_smul (hent i j) Submodule.mem_top
 
+/--
+@isnad1 id=ex.1h3v.s13.27a3248c0c42 from=translated src=- shape=b82933e5 vocab=c49d28e9
+-/
 theorem ctp_exists_mem_span_baseChange_eq (ρ : GaloisRepAdic A)
     (h : Submodule.span (ResidueField A)
       (Set.range fun σ => (ρ.ρ σ).baseChange (ResidueField A)) =
@@ -77,6 +83,9 @@ theorem ctp_exists_mem_span_baseChange_eq (ρ : GaloisRepAdic A)
 end GaloisRepAdic
 
 open _root_.Tengoku.FltAnthropic.GaloisRepAdic _root_.P2MW.S_GaloisRepAdic_span_range_eq_top_of_residual_isAbsolutelyIrreducible.GaloisRepAdic in
+/--
+@isnad1 id=eq.1h2v.s10.a8d417a6767d from=translated src=- shape=86d22dcf vocab=fe12068d
+-/
 theorem solution
     {A : Type} [CommRing A] [IsLocalRing A] (ρ : GaloisRepAdic A)
     (h : ρ.residual.IsAbsolutelyIrreducible) :

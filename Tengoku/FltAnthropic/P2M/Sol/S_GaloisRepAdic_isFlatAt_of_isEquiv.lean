@@ -12,6 +12,9 @@ open _root_.Tengoku.FltAnthropic.GaloisRepAdic
 
 variable {A : Type} [CommRing A] [IsLocalRing A]
 
+/--
+@isnad1 id=isflatat.2h4v.s5.2ba1d17331d1 from=translated src=- shape=fadfb841 vocab=bdacb1a4
+-/
 theorem isFlatAt_of_isEquiv {ρ₁ ρ₂ : GaloisRepAdic A} (e : ρ₁.IsEquiv ρ₂) {p : ℕ}
     (h : ρ₁.IsFlatAt p) : ρ₂.IsFlatAt p := by
   obtain ⟨e⟩ := e
@@ -38,6 +41,9 @@ theorem isFlatAt_of_isEquiv {ρ₁ ρ₂ : GaloisRepAdic A} (e : ρ₁.IsEquiv �
 
 end GaloisRepAdic.FlatSol
 
+/--
+@isnad1 id=isflatat.2h4v.s5.2ba1d17331d1 from=translated src=- shape=fadfb841 vocab=bdacb1a4
+-/
 theorem solution
     {A : Type} [CommRing A] [IsLocalRing A]
     {ρ₁ ρ₂ : GaloisRepAdic A} (e : ρ₁.IsEquiv ρ₂) {p : ℕ}

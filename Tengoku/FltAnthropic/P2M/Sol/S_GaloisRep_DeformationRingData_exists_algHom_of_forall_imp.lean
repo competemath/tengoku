@@ -7,6 +7,9 @@ namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropi
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_GaloisRep_DeformationRingData_exists_algHom_of_forall_imp.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 namespace P2MW.S_GaloisRep_DeformationRingData_exists_algHom_of_forall_imp
 
+/--
+@isnad1 id=ex.0h7v.s10.9e13c7dd6834 from=translated src=- shape=01db0664 vocab=00eaa24c
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪]
     [IsAdicComplete (IsLocalRing.maximalIdeal 𝒪) 𝒪]

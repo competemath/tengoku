@@ -12,6 +12,9 @@ open EisensteinGeneral.LocalCorrection
 
 namespace S3aAux
 
+/--
+@isnad1 id=le.2h3v.s6.cd7e2abb50c7 from=translated src=- shape=58fd1581 vocab=6aadc3f3
+-/
 theorem norm_cpow_neg_two_mul_le {N : ℕ} (hN : 1 ≤ N) {σ₁ : ℝ} {s : ℂ} (hs : σ₁ ≤ s.re) :
     ‖((N : ℕ) : ℂ) ^ (-(2 * s))‖ ≤ (N : ℝ) ^ (2 * max 0 (-σ₁)) := by
   rw [Complex.norm_natCast_cpow_of_pos hN]
@@ -20,6 +23,9 @@ theorem norm_cpow_neg_two_mul_le {N : ℕ} (hN : 1 ≤ N) {σ₁ : ℝ} {s : ℂ
   simp only [Complex.neg_re, Complex.mul_re, Complex.re_ofNat, Complex.im_ofNat, zero_mul, sub_zero]
   linarith
 
+/--
+@isnad1 id=le.3h5v.s7.ae39e50e57fb from=translated src=- shape=dd9f816b vocab=8c07ffbe
+-/
 theorem geomSum_norm_le {χϖ : ℂ} (hχ : ‖χϖ‖ = 1) {N : ℕ} (hN : 1 ≤ N) (M : ℕ) {σ₁ : ℝ} {s : ℂ}
     (hs : σ₁ ≤ s.re) : ‖geomSum χϖ N M s‖ ≤ ((M : ℝ) + 1) * ((N : ℝ) ^ (2 * max 0 (-σ₁))) ^ M := by
   have hb1 : (1 : ℝ) ≤ (N : ℝ) ^ (2 * max 0 (-σ₁)) :=
@@ -37,6 +43,9 @@ theorem geomSum_norm_le {χϖ : ℂ} (hχ : ‖χϖ‖ = 1) {N : ℕ} (hN : 1 �
   refine (Finset.sum_le_card_nsmul _ _ _ hterm).trans ?_
   rw [Finset.card_range, nsmul_eq_mul, Nat.cast_succ]
 
+/--
+@isnad1 id=le.0h1v.s5.410df46afbf6 from=translated src=- shape=0c72263b vocab=94889561
+-/
 theorem succ_le_two_pow (M : ℕ) : M + 1 ≤ 2 ^ M := by
   induction M with
   | zero => simp
@@ -45,6 +54,9 @@ theorem succ_le_two_pow (M : ℕ) : M + 1 ≤ 2 ^ M := by
 end S3aAux
 
 open S3aAux in
+/--
+@isnad1 id=le.4h6v.s7.5ccd3ff06412 from=translated src=- shape=af298d53 vocab=0fcba321
+-/
 theorem solution
     {χϖ : ℂ} (hχ : ‖χϖ‖ = 1) {N : ℕ} (hN : 2 ≤ N) (e : ℤ) {σ₁ : ℝ} (k' : ℕ)
     (hk' : 2 * max 0 (-σ₁) ≤ k') {s : ℂ} (hs : σ₁ ≤ s.re) :

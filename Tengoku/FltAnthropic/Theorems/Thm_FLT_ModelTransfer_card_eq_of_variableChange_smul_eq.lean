@@ -9,6 +9,9 @@ attribute [-simp] WeierstrassCurve.Affine.vcY_vcYInv WeierstrassCurve.Affine.vcX
 
 open WeierstrassCurve
 namespace FLT.ModelTransfer
+/--
+@isnad1 id=eq.1h4v.s6.a8279b86fa40 from=translated src=- shape=9940acc6 vocab=ea9b8a16
+-/
 theorem card_eq_of_variableChange_smul_eq {K : Type*} [Field K] [DecidableEq K]
     {X Y : WeierstrassCurve K} {E : WeierstrassCurve.VariableChange K} (h : E • X = Y) :
     Y.card = X.card := by exact @_root_.P2MW.S_FLT_ModelTransfer_card_eq_of_variableChange_smul_eq.solution K _ _ X Y E h

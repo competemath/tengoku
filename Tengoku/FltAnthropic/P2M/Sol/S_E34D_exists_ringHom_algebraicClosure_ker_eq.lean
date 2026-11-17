@@ -55,6 +55,9 @@ end forward
 
 end E34D
 
+/--
+@isnad1 id=ex.2h3v.s8.832c0c58bab5 from=translated src=- shape=599ed469 vocab=642c8077
+-/
 theorem solution {R : Type*} [CommRing R] {p : ℕ}
     [hp : Fact p.Prime] [Module.Finite ℤ R]
     {𝔪 : Ideal R} (h𝔪 : 𝔪.IsMaximal) (hp𝔪 : (p : R) ∈ 𝔪) :

@@ -20,6 +20,9 @@ private lemma evalEval_ψ₂_sq_of_equation' {R : Type*} [CommRing R] (W : Weier
   simp only [map_add, map_mul, map_pow, map_ofNat, coe_evalEvalRingHom] at key
   rwa [show W.toAffine.polynomial.evalEval x y = 0 from h, mul_zero, add_zero, evalEval_C] at key
 
+/--
+@isnad1 id=eq.2h4v.s7.80c5d1f35517 from=translated src=- shape=f7ed4c75 vocab=ab616f4c
+-/
 theorem solution {F : Type*} [Field F] [DecidableEq F]
     {W : WeierstrassCurve.Affine F} {x y : F} (h : W.Nonsingular x y)
     (h2 : 2 • (Affine.Point.some _ _ h : W.Point) = 0) : W.Ψ₂Sq.eval x = 0 := by

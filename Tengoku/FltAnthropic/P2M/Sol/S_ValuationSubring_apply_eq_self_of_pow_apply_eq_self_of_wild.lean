@@ -16,6 +16,9 @@ namespace Sol4fb1
 section Wild
 variable {K : Type u} {L : Type v} [Field K] [Field L] [Algebra K L] (A : ValuationSubring L)
 
+/--
+@isnad1 id=iff.1h4v.s7.fb73ab8e7f27 from=translated src=- shape=39739d2b vocab=8abac43d
+-/
 theorem valuation_lt_iff_div_mem_nonunits (x y : L) (hy : y ≠ 0) :
     A.valuation x < A.valuation y ↔ x / y ∈ A.nonunits := by
   rw [ValuationSubring.mem_nonunits_iff, map_div₀, div_lt_one₀]
@@ -23,18 +26,27 @@ theorem valuation_lt_iff_div_mem_nonunits (x y : L) (hy : y ≠ 0) :
 
 def IsWildAt (σ : L ≃ₐ[K] L) : Prop := ∀ z : L, z ≠ 0 → A.valuation (σ z - z) < A.valuation z
 
+/--
+@isnad1 id=iswildat.1h4v.s7.ad6784617549 from=translated src=- shape=64bf2a84 vocab=aca30413
+-/
 theorem isWildAt_of_forall_mem_nonunits {σ : L ≃ₐ[K] L} (h : ∀ z : L, z ≠ 0 → σ z * z⁻¹ - 1 ∈ A.nonunits) :
     IsWildAt A σ := by
   intro z hz
   rw [valuation_lt_iff_div_mem_nonunits A _ _ hz, sub_div, div_self hz, div_eq_mul_inv]
   exact h z hz
 
+/--
+@isnad1 id=eq.1h5v.s7.0cf48d242e0f from=translated src=- shape=5aa69a2d vocab=1ebe24f9
+-/
 theorem IsWildAt.valuation_apply {σ : L ≃ₐ[K] L} (hw : IsWildAt A σ) (w : L) : A.valuation (σ w) = A.valuation w := by
   by_cases hw0 : w = 0
   · subst hw0; simp
   have h := Valuation.map_add_eq_of_lt_right A.valuation (hw w hw0)
   rwa [sub_add_cancel] at h
 
+/--
+@isnad1 id=iswildat.1h5v.s8.6d6fb17faf8f from=translated src=- shape=8cc789a2 vocab=f657d5fd
+-/
 theorem IsWildAt.pow {σ : L ≃ₐ[K] L} (hw : IsWildAt A σ) (n : ℕ) : IsWildAt A (σ ^ n) := by
   induction n with
   | zero => intro z hz; simp [(map_ne_zero A.valuation).mpr hz, zero_lt_iff]
@@ -47,6 +59,9 @@ theorem IsWildAt.pow {σ : L ≃ₐ[K] L} (hw : IsWildAt A σ) (n : ℕ) : IsWil
     rw [IsWildAt.valuation_apply A hw]
     exact ih z hz
 
+/--
+@isnad1 id=eq.2h4v.s8.2153223218b1 from=translated src=- shape=a560be26 vocab=fe23e1a6
+-/
 theorem valuation_natCast_eq_one_of_coprime {q m : ℕ} (hq : A.valuation (q : L) < 1) (hm : Nat.Coprime m q) :
     A.valuation (m : L) = 1 := by
   have hle : A.valuation (m : L) ≤ 1 := by rw [ValuationSubring.valuation_le_one_iff]; exact natCast_mem A m
@@ -65,6 +80,9 @@ theorem valuation_natCast_eq_one_of_coprime {q m : ℕ} (hq : A.valuation (q : L
   rw [map_one] at this
   exact lt_irrefl _ this
 
+/--
+@isnad1 id=eq.4h7v.s9.eed65ef74245 from=translated src=- shape=9d0ecfbc vocab=773dbe37
+-/
 theorem IsWildAt.apply_eq_of_pow_apply_eq {σ : L ≃ₐ[K] L} (hw : IsWildAt A σ) {q m : ℕ} (hq : A.valuation (q : L) < 1)
     (hm : Nat.Coprime m q) (y : L) (hy : (σ ^ m) y = y) : σ y = y := by
   by_contra hne
@@ -97,6 +115,9 @@ end Wild
 end GaloisRep.Sol4fb1
 
 open GaloisRep.Sol4fb1 in
+/--
+@isnad1 id=eq.4h7v.s9.f25a6a31d98b from=translated src=- shape=d461f6e3 vocab=c13df3f6
+-/
 theorem solution {K : Type u} {L : Type v} [Field K] [Field L]
     [Algebra K L] (A : ValuationSubring L) {q : ℕ} (hA : ((q : ℕ) : L) ∈ A.nonunits) {σ : L ≃ₐ[K] L}
     (hwild : ∀ z : L, z ≠ 0 → σ z * z⁻¹ - 1 ∈ A.nonunits) {m : ℕ} (hm : m.Coprime q) {y : L}

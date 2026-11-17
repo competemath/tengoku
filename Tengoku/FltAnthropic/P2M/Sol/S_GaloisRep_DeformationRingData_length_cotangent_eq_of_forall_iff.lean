@@ -19,6 +19,9 @@ section BaseChange
 variable {A B C : Type} [CommRing A] [IsLocalRing A] [CommRing B] [IsLocalRing B]
   [CommRing C] [IsLocalRing C]
 
+/--
+@isnad1 id=isequiv.1h2v.s6.515666027d89 from=translated src=- shape=6db13134 vocab=b76cb9e9
+-/
 theorem isEquiv_baseChangeAlong_id (ρ : GaloisRepAdic A) (h : IsLocalHom (RingHom.id A)) :
     (ρ.baseChangeAlong (RingHom.id A) h).IsEquiv ρ := by
   let e : A ⊗[A] ρ.V ≃ₗ[A] ρ.V := TensorProduct.lid A ρ.V
@@ -30,12 +33,18 @@ theorem isEquiv_baseChangeAlong_id (ρ : GaloisRepAdic A) (h : IsLocalHom (RingH
   refine ⟨{ toLinearEquiv := e, map_apply := fun σ x => ?_ }⟩
   exact LinearMap.congr_fun (key σ) x
 
+/--
+@isnad1 id=isequiv.3h5v.s7.ac381e666cf4 from=translated src=- shape=40413129 vocab=5ee489ab
+-/
 theorem isEquiv_baseChangeAlong_congr (ρ : GaloisRepAdic A) {φ φ' : A →+* B} (e : φ = φ')
     (h : IsLocalHom φ) (h' : IsLocalHom φ') :
     (ρ.baseChangeAlong φ h).IsEquiv (ρ.baseChangeAlong φ' h') := by
   subst e
   exact ⟨GaloisRepAdic.Equiv.refl _⟩
 
+/--
+@isnad1 id=isequiv.3h6v.s8.515963d0e8d5 from=translated src=- shape=be4f68af vocab=640c7d82
+-/
 theorem isEquiv_baseChangeAlong_comp (φ : A →+* B) (hφ : IsLocalHom φ) (ψ : B →+* C)
     (hψ : IsLocalHom ψ) (hψφ : IsLocalHom (ψ.comp φ)) (ρ : GaloisRepAdic A) :
     ((ρ.baseChangeAlong φ hφ).baseChangeAlong ψ hψ).IsEquiv (ρ.baseChangeAlong (ψ.comp φ) hψφ) := by
@@ -66,6 +75,9 @@ variable {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValuationRing 
   {ρbar : ResidualGaloisRep (IsLocalRing.ResidueField 𝒪)}
   {𝒟₀ 𝒟' : ∀ ⦃A : Type⦄ [CommRing A] [IsLocalRing A] [Algebra 𝒪 A], GaloisRepAdic A → Prop}
 
+/--
+@isnad1 id=ex.3h7v.s10.4ef4e8c24434 from=translated src=- shape=6f7f105f vocab=75832446
+-/
 theorem exists_algEquiv
     (h : ∀ ⦃A : Type⦄ [CommRing A] [IsLocalRing A] [Algebra 𝒪 A] (ρ : GaloisRepAdic A), 𝒟' ρ ↔ 𝒟₀ ρ)
     (D₀ : GaloisRep.DeformationRingData 𝒪 ρbar 𝒟₀) (D' : GaloisRep.DeformationRingData 𝒪 ρbar 𝒟')
@@ -150,6 +162,9 @@ end Cotangent
 end K2cEngine
 
 open K2cEngine in
+/--
+@isnad1 id=eq.3h8v.s11.e90c83b33161 from=translated src=- shape=832d1f82 vocab=25d30f51
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪]
     [IsAdicComplete (IsLocalRing.maximalIdeal 𝒪) 𝒪]

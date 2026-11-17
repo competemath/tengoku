@@ -19,6 +19,9 @@ variable {R S T : Type} [CommRing R] [CommRing S] [CommRing T] [Algebra R S] [Al
   [Algebra R T] [IsScalarTower R S T]
   {V W : Type} [AddCommGroup V] [Module R V] [AddCommGroup W] [Module R W]
 
+/--
+@isnad1 id=eq.0h7v.s12.894d520a0a4f from=translated src=- shape=bcb966e4 vocab=31241617
+-/
 theorem cancel_naturality (φ : V →ₗ[R] W) (x : T ⊗[S] (S ⊗[R] V)) :
     TensorProduct.AlgebraTensorModule.cancelBaseChange R S T T W ((φ.baseChange S).baseChange T x) =
       φ.baseChange T (TensorProduct.AlgebraTensorModule.cancelBaseChange R S T T V x) := by
@@ -70,6 +73,9 @@ variable {R S T : Type} [CommRing R] [CommRing S] [CommRing T] [Algebra R S] [Al
   [Algebra R T] [IsScalarTower R S T]
   {V W : Type} [AddCommGroup V] [Module R V] [AddCommGroup W] [Module R W]
 
+/--
+@isnad1 id=eq.0h7v.s13.2c8c2fb002f0 from=translated src=- shape=f771ec9c vocab=b6511b84
+-/
 theorem cancel_symm_naturality (φ : V →ₗ[R] W) (y : T ⊗[R] V) :
     (TensorProduct.AlgebraTensorModule.cancelBaseChange R S T T W).symm (φ.baseChange T y) =
       (φ.baseChange S).baseChange T
@@ -130,11 +136,17 @@ noncomputable def rbcComp (ρ : ResidualGaloisRep k) (f : k →+* k') (g : k' �
         ((ρ.ρ σ).baseChange k'') (TensorProduct.AlgebraTensorModule.cancelBaseChange k k' k'' k'' ρ.V x)
       exact cancel_naturality (ρ.ρ σ) x }
 
+/--
+@isnad1 id=isequiv.1h5v.s7.29712ca6919a from=translated src=- shape=1803edba vocab=72536d89
+-/
 theorem risEquiv_congr (ρ : ResidualGaloisRep k) {f g : k →+* k'} (hfg : ∀ x, f x = g x) :
     (ρ.baseChangeAlong f).IsEquiv (ρ.baseChangeAlong g) := by
   obtain rfl : f = g := RingHom.ext hfg
   exact ⟨ResidualGaloisRep.Equiv.refl _⟩
 
+/--
+@isnad1 id=isequiv.2h4v.s5.f4ff79ee742d from=translated src=- shape=46b34526 vocab=378f2fd0
+-/
 theorem risEquiv_trans {ρ₁ ρ₂ ρ₃ : ResidualGaloisRep k} (h₁ : ρ₁.IsEquiv ρ₂) (h₂ : ρ₂.IsEquiv ρ₃) :
     ρ₁.IsEquiv ρ₃ := by
   obtain ⟨e₁⟩ := h₁
@@ -148,6 +160,9 @@ variable {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValuationRing 
   {ρbar : ResidualGaloisRep (IsLocalRing.ResidueField 𝒪)}
   {𝒟 𝒟₀ 𝒟' : ∀ ⦃A : Type⦄ [CommRing A] [IsLocalRing A] [Algebra 𝒪 A], GaloisRepAdic A → Prop}
 
+/--
+@isnad1 id=isequiv.1h6v.s9.6b8e28647303 from=translated src=- shape=755cff66 vocab=6f143221
+-/
 theorem residual_isEquiv_baseChangeAlong (D : DeformationRingData 𝒪 ρbar 𝒟)
     {A : Type} [CommRing A] [IsLocalRing A] [Algebra 𝒪 A] [IsLocalHom (algebraMap 𝒪 A)]
     (f : D.R →ₐ[𝒪] A) (hf : IsLocalHom (f : D.R →+* A)) :
@@ -162,6 +177,9 @@ theorem residual_isEquiv_baseChangeAlong (D : DeformationRingData 𝒪 ρbar �
   rw [RingHom.comp_apply, ResidueField.map_residue, ResidueField.map_residue, ResidueField.map_residue]
   exact congrArg (IsLocalRing.residue A) (f.commutes r)
 
+/--
+@isnad1 id=eq.4h8v.s10.5a0a7edb2b52 from=translated src=- shape=32456697 vocab=7683ff4d
+-/
 theorem algHom_eq_of_isEquiv (D : DeformationRingData 𝒪 ρbar 𝒟)
     (A : Type) [CommRing A] [IsLocalRing A] [IsNoetherianRing A] [IsAdicComplete (IsLocalRing.maximalIdeal A) A]
     [Algebra 𝒪 A] [IsLocalHom (algebraMap 𝒪 A)]
@@ -174,6 +192,9 @@ theorem algHom_eq_of_isEquiv (D : DeformationRingData 𝒪 ρbar 𝒟)
   obtain ⟨egf⟩ := hfg
   exact hu.unique ⟨hf, ⟨GaloisRepAdic.Equiv.refl _⟩⟩ ⟨hg, ⟨egf.symm⟩⟩
 
+/--
+@isnad1 id=ex.4h11v.s11.e62b6778a238 from=translated src=- shape=75ec428f vocab=a69ca817
+-/
 theorem exists_algHom_comp_eq
     (D₀ : DeformationRingData 𝒪 ρbar 𝒟₀) (D' : DeformationRingData 𝒪 ρbar 𝒟')
     (θ : D'.R →ₐ[𝒪] D₀.R) (hθ : IsLocalHom (θ : D'.R →+* D₀.R))
@@ -210,6 +231,9 @@ end WCOTUniv
 
 open GaloisRep
 
+/--
+@isnad1 id=ex.4h11v.s11.e62b6778a238 from=translated src=- shape=75ec428f vocab=a69ca817
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪]
     [IsAdicComplete (IsLocalRing.maximalIdeal 𝒪) 𝒪]

@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_ExtCitation_exists_isPrimitiveRoot_smul_eq
 namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 set_option autoImplicit false
 open ExtCitation
+/--
+@isnad1 id=ex.0h2v.s12.e80d3306c7d1 from=translated src=- shape=45b430bb vocab=c491dfdb
+-/
 theorem ExtCitation.exists_isPrimitiveRoot_smul_eq_pow_cycloChar_localGaloisToGlobal
     (q : ℕ) [Fact q.Prime] (p : ℕ) [Fact p.Prime] :
     ∃ ζ : (PadicAlgCl q)ˣ, IsPrimitiveRoot ζ p ∧ ∀ g : PadicAlgCl q ≃ₐ[ℚ_[q]] PadicAlgCl q,

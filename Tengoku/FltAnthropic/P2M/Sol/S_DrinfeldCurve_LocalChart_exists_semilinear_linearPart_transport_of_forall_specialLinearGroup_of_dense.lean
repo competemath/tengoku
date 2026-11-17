@@ -24,6 +24,9 @@ namespace CoreAux
 
 variable {W : Type} [CommRing W]
 
+/--
+@isnad1 id=iff.0h2v.s8.e4d613811eca from=translated src=- shape=df085ddd vocab=e3ce9f79
+-/
 theorem mem_spanX_iff (g : MvPowerSeries (Fin 2) W) :
     g ∈ Ideal.span {(X 0 : MvPowerSeries (Fin 2) W), X 1} ↔ constantCoeff g = 0 := by
   have h := MvPowerSeries.mem_span_X_pow_iff_forall_coeff_eq_zero_of_degree_lt W 1 g
@@ -39,6 +42,9 @@ theorem mem_spanX_iff (g : MvPowerSeries (Fin 2) W) :
     subst hn0
     simpa [coeff_zero_eq_constantCoeff_apply] using H
 
+/--
+@isnad1 id=eq.1h3v.s9.d20ef4fb81b1 from=translated src=- shape=e990b4b9 vocab=21b73260
+-/
 theorem constantCoeff_eq_zero_of_sub_drinfeldForm_mem (q : ℕ) [Fact q.Prime] (f : MvPowerSeries (Fin 2) W)
     (hf : f - DrinfeldCurve.LocalChart.drinfeldForm q W ∈
       (Ideal.span {(X 0 : MvPowerSeries (Fin 2) W), X 1}) ^ (q + 2)) :
@@ -52,6 +58,9 @@ theorem constantCoeff_eq_zero_of_sub_drinfeldForm_mem (q : ℕ) [Fact q.Prime] (
   rw [this, sub_zero] at h1
   exact h1
 
+/--
+@isnad1 id=mem.3h6v.s13.36652c76afd2 from=translated src=- shape=29bff3e4 vocab=1bd11414
+-/
 theorem mk_C_mem_maximalIdeal [IsLocalRing W] (t : W) (ht : t ∈ IsLocalRing.maximalIdeal W)
     (f u v : MvPowerSeries (Fin 2) W) (hf0 : constantCoeff f = 0)
     [IsLocalRing (MvPowerSeries (Fin 2) W ⧸ Ideal.span {C t * v - f * u})]
@@ -87,6 +96,9 @@ theorem mk_C_mem_maximalIdeal [IsLocalRing W] (t : W) (ht : t ∈ IsLocalRing.ma
     exact Ideal.sub_mem _ (Ideal.mul_mem_right _ _ hw) (Ideal.mul_mem_right _ _ (Ideal.mul_mem_right _ _ ht))
   exact (IsLocalRing.maximalIdeal.isMaximal W).ne_top ((Ideal.eq_top_iff_one _).mpr hmem)
 
+/--
+@isnad1 id=mem.1h4v.s8.ef1f7b87f218 from=translated src=- shape=f3bf4bf5 vocab=f11cc471
+-/
 theorem mem_maximalIdeal_of_ringEquiv {R S : Type} [CommRing R] [CommRing S] [IsLocalRing R] [IsLocalRing S]
     (e : R ≃+* S) (x : R) (hx : x ∈ IsLocalRing.maximalIdeal R) : e x ∈ IsLocalRing.maximalIdeal S := by
   rw [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff] at hx ⊢
@@ -96,6 +108,9 @@ end CoreAux
 
 namespace CoreAux
 
+/--
+@isnad1 id=isunit.4h4v.s9.446d1f2c56a4 from=translated src=- shape=5dcb2ebe vocab=69d90e99
+-/
 theorem isUnit_det_one_sub {W : Type} [CommRing W] [IsLocalRing W] (q : ℕ) [Fact q.Prime] (hq2 : q ≠ 2)
     (hqW : (q : W) ∈ IsLocalRing.maximalIdeal W)
     (M : Matrix (Fin 2) (Fin 2) W) (G : Matrix (Fin 2) (Fin 2) ℤ)
@@ -150,6 +165,9 @@ end CoreAux
 
 open CoreAux
 
+/--
+@isnad1 id=other.12h26v.s18.728548f36c3e from=translated src=- shape=80e0c4f9 vocab=dd9dd613
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime] (hq2 : q ≠ 2)
     (A : Type) [CommRing A] [IsDomain A] [IsDiscreteValuationRing A]

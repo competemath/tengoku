@@ -59,6 +59,9 @@ private theorem exists_pos_neg_of_sum_fibre_eq_zero (D : α →₀ ℤ)
 
 end Finsupp
 
+/--
+@isnad1 id=ex.1h4v.s8.78e2f02a7dbe from=translated src=- shape=cac31f00 vocab=b050c053
+-/
 theorem solution
     {α β : Type*} [DecidableEq β] (ℓ : α → β) (D : α →₀ ℤ)
     (hD : ∀ b : β, ((D.support.filter fun a => ℓ a = b).sum fun a => D a) = 0) :

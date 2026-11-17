@@ -11,6 +11,9 @@ namespace P2MW.S_FLT_SmoothVectors_gl2CongruenceSubgroup_le_integralSubgroup
 
 open FLT.SmoothVectors
 
+/--
+@isnad1 id=le.0h2v.s8.7f8f0e22dc61 from=translated src=- shape=1c6df9fe vocab=317a30b3
+-/
 theorem solution (p : ℕ) [Fact p.Prime] (n : ℕ) :
     gl2CongruenceSubgroup p n ≤ LocalGL2.integralSubgroup ℤ_[p] ℚ_[p] := by
   rw [← gl2CongruenceSubgroup_zero_eq_integralSubgroup p]

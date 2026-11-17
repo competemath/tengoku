@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open IsLocalRing Polynomial
 
+/--
+@isnad1 id=ex.3h6v.s8.7dc7c6b4d682 from=translated src=- shape=c86a05d6 vocab=984aad70
+-/
 theorem solution
     (T : Type*) [CommRing T] (F : FormalGroup T) (q : ℕ) (g : T[X]) (v : PowerSeries T) (hv : IsUnit v)
     (hF : F.nthSeries q = PowerSeries.X * (↑g : PowerSeries T) * v)

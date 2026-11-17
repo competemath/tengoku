@@ -9,5 +9,8 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=isdomain.1h2v.s5.5f8196658593 from=translated src=- shape=1ccb5fe8 vocab=378940a3
+-/
 theorem DrinfeldCurve.isDomain_coordRing_of_ne_one (q : ℕ) (hq : q ≠ 1) (k : Type u) [Field k] :
     IsDomain (DrinfeldCurve.CoordRing q k) := by exact @_root_.P2MW.S_DrinfeldCurve_isDomain_coordRing_of_ne_one.solution q hq k _

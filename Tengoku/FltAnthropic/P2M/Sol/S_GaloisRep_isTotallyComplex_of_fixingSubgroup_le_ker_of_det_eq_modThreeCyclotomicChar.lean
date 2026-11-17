@@ -10,6 +10,9 @@ namespace P2MW.S_GaloisRep_isTotallyComplex_of_fixingSubgroup_le_ker_of_det_eq_m
 namespace S18
 namespace Parity
 
+/--
+@isnad1 id=eq.0h0v.s10.b4f3567e3e01 from=translated src=- shape=05845967 vocab=69647574
+-/
 theorem modThreeCyclotomicChar_complexConjugation :
     WeierstrassCurve.modThreeCyclotomicChar complexConjugation = -1 := by
   rw [WeierstrassCurve.modThreeCyclotomicChar_apply]
@@ -47,6 +50,9 @@ theorem modThreeCyclotomicChar_complexConjugation :
 
 end S18.Parity
 
+/--
+@isnad1 id=istotall.2h2v.s11.d6321cbdb71b from=translated src=- shape=b2de4a4e vocab=430c9cc5
+-/
 theorem solution
     (ρ : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) →* Matrix.GeneralLinearGroup (Fin 2) (ZMod 3))
     (F : IntermediateField ℚ (AlgebraicClosure ℚ)) [FiniteDimensional ℚ F] [IsGalois ℚ F]

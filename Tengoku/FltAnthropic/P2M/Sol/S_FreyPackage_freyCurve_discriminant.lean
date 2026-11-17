@@ -9,6 +9,9 @@ namespace P2MW.S_FreyPackage_freyCurve_discriminant
 
 open WeierstrassCurve
 
+/--
+@isnad1 id=eq.0h1v.s6.e8591116e2a1 from=translated src=- shape=52e0e257 vocab=65806b86
+-/
 theorem solution (P : FreyPackage) :
     P.freyCurve.Δ = (P.a * P.b * P.c) ^ (2 * P.p) / 2 ^ 8 := by
   have h : ((P.c : ℚ)) ^ P.p = (P.a : ℚ) ^ P.p + (P.b : ℚ) ^ P.p := by

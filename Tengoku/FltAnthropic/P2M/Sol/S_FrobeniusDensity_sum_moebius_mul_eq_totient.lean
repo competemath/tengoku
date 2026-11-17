@@ -14,6 +14,9 @@ namespace RationalClass
 
 variable {G : Type*} [Group G]
 
+/--
+@isnad1 id=eq.1h1v.s6.d1f5aee0749f from=translated src=- shape=48e1ce87 vocab=6fb309c8
+-/
 theorem sum_moebius_mul_eq_totient (n : ℕ) (hn : 0 < n) :
     ∑ f ∈ n.divisors, (ArithmeticFunction.moebius (n / f)) * (f : ℤ) = (Nat.totient n : ℤ) := by
   have key : ∀ m > 0, ∑ x ∈ m.divisorsAntidiagonal,
@@ -27,6 +30,9 @@ theorem sum_moebius_mul_eq_totient (n : ℕ) (hn : 0 < n) :
 
 end FltWs24.RationalClass
 
+/--
+@isnad1 id=eq.1h1v.s6.d1f5aee0749f from=translated src=- shape=48e1ce87 vocab=6fb309c8
+-/
 theorem solution (n : ℕ) (hn : 0 < n) :
     ∑ f ∈ n.divisors, (ArithmeticFunction.moebius (n / f)) * (f : ℤ) = (Nat.totient n : ℤ) :=
   FltWs24.RationalClass.sum_moebius_mul_eq_totient n hn

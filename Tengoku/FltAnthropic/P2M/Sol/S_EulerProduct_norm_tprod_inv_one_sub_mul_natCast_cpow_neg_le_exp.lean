@@ -11,6 +11,9 @@ open Complex
 
 namespace R4EulerDom
 
+/--
+@isnad1 id=eq.2h2v.s6.9f889a74315a from=translated src=- shape=7014fbfb vocab=c4e75eaa
+-/
 theorem norm_tprod_inv_one_sub_eq_exp {ι : Type*} (a : ι → ℂ) (ha : Summable fun i => ‖a i‖)
     (ha1 : ∀ i, ‖a i‖ < 1) :
     ‖∏' i, (1 - a i)⁻¹‖ = Real.exp (∑' i, (-log (1 - a i)).re) := by
@@ -27,16 +30,25 @@ theorem norm_tprod_inv_one_sub_eq_exp {ι : Type*} (a : ι → ℂ) (ha : Summab
   rw [hcongr] at H
   rw [H, norm_exp, re_tsum hsum]
 
+/--
+@isnad1 id=le.1h1v.s6.520e58600325 from=translated src=- shape=dd5bf31b vocab=a5261774
+-/
 theorem norm_neg_log_one_sub_le {a : ℂ} (ha : ‖a‖ ≤ 1 / 2) : ‖-log (1 - a)‖ ≤ 2 * ‖a‖ := by
   rw [norm_neg, sub_eq_add_neg]
   have h := Complex.norm_log_one_add_half_le_self (z := -a) (by rwa [norm_neg])
   rw [norm_neg] at h
   linarith [norm_nonneg a]
 
+/--
+@isnad1 id=eq.1h2v.s5.17011dd24305 from=translated src=- shape=0445874f vocab=47b535c4
+-/
 theorem norm_natCast_cpow_neg (n : ℕ) (hn : 0 < n) (s : ℂ) :
     ‖(n : ℂ) ^ (-s)‖ = (n : ℝ) ^ (-s.re) := by
   rw [norm_natCast_cpow_of_pos hn]; simp
 
+/--
+@isnad1 id=le.4h4v.s7.aff8543911c4 from=translated src=- shape=50bbe8f6 vocab=f4851e58
+-/
 theorem main {ι : Type} (N : ι → ℕ) (hN : ∀ i, 2 ≤ N i) (c : ι → ℂ) (hc : ∀ i, ‖c i‖ ≤ 1)
     (s : ℂ) (hs : 1 ≤ s.re) (hsum : Summable fun i => ((N i : ℕ) : ℝ) ^ (-s.re)) :
     ‖∏' i, (1 - c i * ((N i : ℕ) : ℂ) ^ (-s))⁻¹‖ ≤ Real.exp (2 * ∑' i, ((N i : ℕ) : ℝ) ^ (-s.re)) := by
@@ -78,6 +90,9 @@ theorem main {ι : Type} (N : ι → ℕ) (hN : ∀ i, 2 ≤ N i) (c : ι → �
 
 end R4EulerDom
 
+/--
+@isnad1 id=le.4h4v.s7.aff8543911c4 from=translated src=- shape=50bbe8f6 vocab=f4851e58
+-/
 theorem solution
     {ι : Type} (N : ι → ℕ) (hN : ∀ i, 2 ≤ N i) (c : ι → ℂ) (hc : ∀ i, ‖c i‖ ≤ 1)
     (s : ℂ) (hs : 1 ≤ s.re) (hsum : Summable fun i => ((N i : ℕ) : ℝ) ^ (-s.re)) :

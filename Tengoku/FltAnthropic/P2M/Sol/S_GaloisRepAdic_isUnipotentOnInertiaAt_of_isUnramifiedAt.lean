@@ -7,6 +7,9 @@ namespace P2MW.S_GaloisRepAdic_isUnipotentOnInertiaAt_of_isUnramifiedAt
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=isunipot.1h3v.s5.c98c5f07a3d6 from=translated src=- shape=bcd07521 vocab=d0746459
+-/
 theorem solution {A : Type} [CommRing A] [IsLocalRing A] (ρ : GaloisRepAdic A) {q : ℕ}
     (h : ρ.IsUnramifiedAt q) : ρ.IsUnipotentOnInertiaAt q := by
   intro P hP σ hσ

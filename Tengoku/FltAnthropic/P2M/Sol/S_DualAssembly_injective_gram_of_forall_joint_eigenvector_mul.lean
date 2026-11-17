@@ -13,6 +13,9 @@ open scoped TensorProduct
 
 open Module.End in
 
+/--
+@isnad1 id=injectiv.2h5v.s9.9489a4579b66 from=translated src=- shape=db2f1ac1 vocab=1f502980
+-/
 theorem injective_sq_sub_mul_of_forall_joint_eigenvector
     {K W : Type*} [Field K] [IsAlgClosed K] [AddCommGroup W] [Module K W] [FiniteDimensional K W]
     (c : K) (A B : Module.End K W) (hAB : Commute A B)
@@ -65,6 +68,9 @@ theorem injective_sq_sub_mul_of_forall_joint_eigenvector
   · exact h w a b hw0 hAw hBw (by linear_combination -h0)
   · exact hw0 h0
 
+/--
+@isnad1 id=injectiv.2h5v.s9.a74b172311cc from=translated src=- shape=2ed44d4f vocab=49ef336c
+-/
 theorem injective_block_of_injective_sq_sub_mul'
     {R W : Type*} [CommRing R] [AddCommGroup W] [Module R W]
     (c : R) (hc : ∀ z : W, c • z = 0 → z = 0) (A B : Module.End R W)
@@ -93,6 +99,9 @@ theorem injective_block_of_injective_sq_sub_mul'
   rw [hz₀', hz₁]
   rfl
 
+/--
+@isnad1 id=injectiv.2h4v.s9.b21d1074360c from=translated src=- shape=b62be078 vocab=9a0e92c3
+-/
 theorem injective_of_injective_baseChange {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M] [Module.Free R M]
     (K : Type*) [CommRing K] [Algebra R K] (hK : Function.Injective (algebraMap R K))
     (S : Module.End R M) (h : Function.Injective (S.baseChange K)) : Function.Injective S := by
@@ -116,6 +125,9 @@ end DualAssembly
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=injectiv.4h6v.s11.e6328f23a4b6 from=translated src=- shape=b720b90e vocab=b737652a
+-/
 theorem solution (p : ℕ) [Fact p.Prime]
     {T : Type*} [AddCommGroup T] [Module ℤ_[p] T] [Module.Finite ℤ_[p] T] [Module.Free ℤ_[p] T]
     (K : Type*) [Field K] [IsAlgClosed K] [Algebra ℤ_[p] K] (hK : Function.Injective (algebraMap ℤ_[p] K))

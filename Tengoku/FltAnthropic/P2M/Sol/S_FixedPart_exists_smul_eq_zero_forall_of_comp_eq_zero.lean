@@ -13,6 +13,9 @@ open Submodule
 namespace Module export _root_.Module (annihilator End) namespace End end Module.End
 open scoped _root_.Module _root_.Module.End in
 
+/--
+@isnad1 id=ex.1h4v.s8.ce204da9ee52 from=translated src=- shape=4f9b1bff vocab=d891ed58
+-/
 theorem Module.End.exists_ne_zero_forall_apply_eq_zero_of_forall_comp_eq_zero
     {R : Type u} {V : Type v} [Ring R] [AddCommGroup V] [Module R V] [Nontrivial V]
     {ι : Type w} (f : ι → Module.End R V) (h : ∀ i j, f i ∘ₗ f j = 0) :
@@ -31,6 +34,9 @@ theorem Module.End.exists_ne_zero_forall_apply_eq_zero_of_forall_comp_eq_zero
     have := congrArg (fun g : Module.End R V => g w) (h j i₀)
     simpa using this
 
+/--
+@isnad1 id=ex.1h5v.s9.10a9d2aca669 from=translated src=- shape=066a5b9a vocab=31daf324
+-/
 theorem solution
     (T : Type) [CommRing T] [IsReduced T] [IsArtinianRing T]
     (V : Type) [AddCommGroup V] [Module T V] (e : V ≃ₗ[T] (Fin 2 → T))

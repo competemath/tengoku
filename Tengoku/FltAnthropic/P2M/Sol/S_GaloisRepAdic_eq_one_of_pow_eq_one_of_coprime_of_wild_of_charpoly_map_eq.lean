@@ -15,6 +15,9 @@ open Polynomial
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=eq.10h10v.s11.e2f89f33f864 from=translated src=- shape=c73a933f vocab=3c0ce793
+-/
 theorem solution
     {A : Type} [CommRing A] [IsLocalRing A] [IsNoetherianRing A] (ρ : GaloisRepAdic A)
     {p : ℕ} (hp : p.Prime) (hpA : (p : A) ∈ IsLocalRing.maximalIdeal A) {q : ℕ} (hq : q.Prime) (hqp : q ≠ p)

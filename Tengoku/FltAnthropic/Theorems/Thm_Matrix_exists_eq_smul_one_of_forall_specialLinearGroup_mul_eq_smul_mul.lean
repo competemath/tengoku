@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Matrix_exists_eq_smul_one_of_forall_specia
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.2h4v.s9.5672afe1e818 from=translated src=- shape=7b796af2 vocab=8db6a014
+-/
 theorem Matrix.exists_eq_smul_one_of_forall_specialLinearGroup_mul_eq_smul_mul
     (q : ℕ) (k : Type) [Field k] (φ : ZMod q →+* k)
     (B : Matrix (Fin 2) (Fin 2) k) (hB : B.det ≠ 0)

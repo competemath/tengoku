@@ -31,6 +31,9 @@ private theorem three_dvd_coeff_e1Chi3_sub_one' (n : ℕ) :
   · rw [ite_eq_right hn, sub_zero]
     exact three_dvd_coeff_e1Chi3_of_ne_zero hn
 
+/--
+@isnad1 id=dvd.0h2v.s7.a641bce5173a from=translated src=- shape=eb274cd6 vocab=3cf9a5d3
+-/
 theorem solution (g : PowerSeries ℤ) (n : ℕ) :
     (3 : ℤ) ∣ PowerSeries.coeff n (g * e1Chi3) - PowerSeries.coeff n g := by
   have hfactor : g * e1Chi3 - g = g * (e1Chi3 - 1) := by ring

@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 namespace FrobPush
 
+/--
+@isnad1 id=or.0h3v.s7.af20d8b24ec4 from=translated src=- shape=a1e6459b vocab=75235043
+-/
 theorem pow_prime_pow_dichotomy {R : Type*} [Monoid R] (p j : ℕ) :
     (∀ x : R, x ^ p ^ 2 = x → x ^ p ^ j = x) ∨ (∀ x : R, x ^ p ^ 2 = x → x ^ p ^ j = x ^ p) := by
   induction j with
@@ -21,6 +24,9 @@ theorem pow_prime_pow_dichotomy {R : Type*} [Monoid R] (p j : ℕ) :
     · right; intro x hx; rw [pow_succ, pow_mul, h x hx]
     · left; intro x hx; rw [pow_succ, pow_mul, h x hx, ← pow_mul, ← pow_two, hx]
 
+/--
+@isnad1 id=eq.1h4v.s9.c3e13a45129d from=translated src=- shape=f4dfe606 vocab=f82abe61
+-/
 theorem tameCharacter_pow_sq (p : ℕ) [Fact p.Prime]
     (P : ValuationSubring (AlgebraicClosure ℚ)) (π : AlgebraicClosure ℚ)
     (hπ : π ^ (p ^ 2 - 1) = (p : AlgebraicClosure ℚ))
@@ -45,6 +51,9 @@ theorem tameCharacter_pow_sq (p : ℕ) [Fact p.Prime]
 end FrobPush
 
 open FrobPush in
+/--
+@isnad1 id=ex.4h7v.s14.b74eab7c7c36 from=translated src=- shape=3f167be4 vocab=7d79424c
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime]
     (P : ValuationSubring (AlgebraicClosure ℚ)) (hP : P.LiesOverPrime p)

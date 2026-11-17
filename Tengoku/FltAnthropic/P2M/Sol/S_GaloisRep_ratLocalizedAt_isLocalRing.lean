@@ -10,14 +10,23 @@ export _root_.GaloisRep (ratLocalizedAt)
 namespace FlatSol
 open _root_.GaloisRep
 
+/--
+@isnad1 id=iff.0h2v.s5.dac7271e7e36 from=translated src=- shape=c7a4012e vocab=9256c41c
+-/
 theorem mem_ratLocalizedAt_iff_coprime {p : ℕ} (q : ℚ) :
     q ∈ ratLocalizedAt p ↔ q.den.Coprime p :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.1h2v.s5.0bdd73cb1a52 from=translated src=- shape=c36e0ae1 vocab=665e5dc6
+-/
 theorem mem_ratLocalizedAt_iff {p : ℕ} (hp : p.Prime) (q : ℚ) :
     q ∈ ratLocalizedAt p ↔ ¬ p ∣ q.den := by
   rw [mem_ratLocalizedAt_iff_coprime, Nat.coprime_comm, hp.coprime_iff_not_dvd]
 
+/--
+@isnad1 id=iff.1h2v.s7.8de4831a5e5f from=translated src=- shape=edf58b6b vocab=ad4f134a
+-/
 theorem ratLocalizedAt.isUnit_iff {p : ℕ} (hp : p.Prime) (x : ratLocalizedAt p) :
     IsUnit x ↔ ¬ p ∣ (x : ℚ).num.natAbs := by
   constructor
@@ -39,6 +48,9 @@ theorem ratLocalizedAt.isUnit_iff {p : ℕ} (hp : p.Prime) (x : ratLocalizedAt p
       exact hx
     exact IsUnit.of_mul_eq_one ⟨(x : ℚ)⁻¹, hmem⟩ (Subtype.ext (mul_inv_cancel₀ hx0))
 
+/--
+@isnad1 id=islocalr.1h1v.s6.3fad730b80cf from=translated src=- shape=6cdec8b9 vocab=f8d952d1
+-/
 theorem ratLocalizedAt.isLocalRing {p : ℕ} (hp : p.Prime) : IsLocalRing (ratLocalizedAt p) := by
   refine IsLocalRing.of_isUnit_or_isUnit_one_sub_self fun a => ?_
   by_cases ha : p ∣ (a : ℚ).num.natAbs
@@ -63,6 +75,9 @@ theorem ratLocalizedAt.isLocalRing {p : ℕ} (hp : p.Prime) : IsLocalRing (ratLo
 
 end GaloisRep.FlatSol
 
+/--
+@isnad1 id=islocalr.1h1v.s6.3fad730b80cf from=translated src=- shape=6cdec8b9 vocab=f8d952d1
+-/
 theorem solution
     {p : ℕ} (hp : p.Prime) : IsLocalRing (GaloisRep.ratLocalizedAt p) :=
   GaloisRep.FlatSol.ratLocalizedAt.isLocalRing hp

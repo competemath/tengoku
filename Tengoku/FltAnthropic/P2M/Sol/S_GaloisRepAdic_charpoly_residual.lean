@@ -7,5 +7,8 @@ namespace P2MW.S_GaloisRepAdic_charpoly_residual
 
 open Polynomial
 
+/--
+@isnad1 id=eq.0h3v.s11.2145e5cdd381 from=translated src=- shape=4d5fdfd4 vocab=423d113b
+-/
 theorem solution {A : Type} [CommRing A] [IsLocalRing A] (ρ : GaloisRepAdic A) (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) : LinearMap.charpoly (ρ.residual.ρ σ) = (LinearMap.charpoly (ρ.ρ σ)).map (IsLocalRing.residue A) := LinearMap.charpoly_baseChange (ρ.ρ σ) (IsLocalRing.ResidueField A)
 -- Tengoku: root names of this library moved to Tengoku.FltAnthropic so they do not collide with other libraries (generated)

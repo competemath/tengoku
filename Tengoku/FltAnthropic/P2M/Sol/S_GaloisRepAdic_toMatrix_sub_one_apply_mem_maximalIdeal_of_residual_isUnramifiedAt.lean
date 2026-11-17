@@ -10,6 +10,9 @@ namespace P2MW.S_GaloisRepAdic_toMatrix_sub_one_apply_mem_maximalIdeal_of_residu
 set_option autoImplicit false
 open IsLocalRing
 
+/--
+@isnad1 id=mem.3h8v.s11.364c03813c3a from=translated src=- shape=be2de7e7 vocab=b53be899
+-/
 theorem solution
     {A : Type} [CommRing A] [IsLocalRing A] (ρ : GaloisRepAdic A) {q : ℕ} (hunr : ρ.residual.IsUnramifiedAt q)
     (b : Module.Basis (Fin 2) A ρ.V) (P : ValuationSubring (AlgebraicClosure ℚ)) (hP : P.LiesOverPrime q)

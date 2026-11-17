@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_FiniteField_exists_forall_affineMap_ne_zer
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.2h5v.s9.6ae303931e2a from=translated src=- shape=a1edf60b vocab=a6a23844
+-/
 theorem FiniteField.exists_forall_affineMap_ne_zero
     {𝔽 : Type*} [Field 𝔽] [Fintype 𝔽] {n : ℕ} {ι : Type*} [Fintype ι]
     {V : ι → Type*} [∀ j, AddCommGroup (V j)] [∀ j, Module 𝔽 (V j)]

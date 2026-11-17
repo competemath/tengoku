@@ -138,6 +138,9 @@ end Burnside
 
 end Representation
 
+/--
+@isnad1 id=eq.0h4v.s9.6f0cc205c04c from=translated src=- shape=59c1523d vocab=78281620
+-/
 theorem solution
     {k G V : Type*} [Field k] [IsAlgClosed k] [Monoid G] [AddCommGroup V] [Module k V]
     [FiniteDimensional k V] (ρ : Representation k G V) [ρ.IsIrreducible] :

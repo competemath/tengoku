@@ -16,6 +16,9 @@ open _root_.Tengoku.FltAnthropic.GaloisRepAdic
 
 variable {A B : Type} [CommRing A] [IsLocalRing A] [CommRing B] [IsLocalRing B]
 
+/--
+@isnad1 id=eq.1h5v.s12.c4b737551d18 from=translated src=- shape=8cf7b612 vocab=365ed307
+-/
 theorem det_apply_baseChangeAlong (φ : A →+* B) (hφ : IsLocalHom φ) (ρ : GaloisRepAdic A)
     (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) :
     LinearMap.det ((ρ.baseChangeAlong φ hφ).ρ σ) = φ (LinearMap.det (ρ.ρ σ)) := by
@@ -23,6 +26,9 @@ theorem det_apply_baseChangeAlong (φ : A →+* B) (hφ : IsLocalHom φ) (ρ : G
   show LinearMap.det ((ρ.ρ σ).baseChange B) = algebraMap A B (LinearMap.det (ρ.ρ σ))
   exact LinearMap.det_baseChange (ρ.ρ σ)
 
+/--
+@isnad1 id=detiscyc.2h5v.s6.3c40fbb80c46 from=translated src=- shape=cbde18a5 vocab=26b7bab2
+-/
 theorem detIsCyclotomic_baseChangeAlong (φ : A →+* B) (hφ : IsLocalHom φ) (ρ : GaloisRepAdic A)
     {p : ℕ} (h : ρ.DetIsCyclotomic p) : (ρ.baseChangeAlong φ hφ).DetIsCyclotomic p := by
   refine ⟨?_, fun n σ a hσ => ?_⟩
@@ -34,6 +40,9 @@ theorem detIsCyclotomic_baseChangeAlong (φ : A →+* B) (hφ : IsLocalHom φ) (
 
 end GaloisRepAdic.LCSol
 
+/--
+@isnad1 id=detiscyc.2h5v.s6.3c40fbb80c46 from=translated src=- shape=cbde18a5 vocab=26b7bab2
+-/
 theorem solution
     {A B : Type} [CommRing A] [IsLocalRing A] [CommRing B] [IsLocalRing B]
     (φ : A →+* B) (hφ : IsLocalHom φ) (ρ : GaloisRepAdic A)

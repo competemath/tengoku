@@ -148,6 +148,9 @@ end SCMFlatB3
 
 attribute [local instance] SCMFlatB3.nontrivial_quot SCMFlatB3.isLocalRing_quot
 
+/--
+@isnad1 id=isflatat.1h3v.s8.7942bf10f73a from=translated src=- shape=f2b38780 vocab=4322ce5b
+-/
 theorem solution {A : Type} [CommRing A]
     [IsLocalRing A] (ρ : GaloisRepAdic A) {p : ℕ}
     (h : ∀ m : ℕ,

@@ -13,6 +13,9 @@ open scoped IntermediateField
 open Polynomial
 open scoped Pointwise
 
+/--
+@isnad1 id=iff.0h3v.s11.9e03394058d1 from=translated src=- shape=d34655d4 vocab=aee1b925
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime]
     (P : Subgroup (PadicAlgCl q ≃ₐ[ℚ_[q]] PadicAlgCl q) → Prop)

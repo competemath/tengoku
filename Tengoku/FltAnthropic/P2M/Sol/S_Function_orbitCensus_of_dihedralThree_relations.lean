@@ -15,34 +15,55 @@ variable {X : Type*} [Fintype X] [DecidableEq X] (a b : X → X)
   (ha : ∀ x, a (a x) = x) (hb : ∀ x, b (b (b x)) = x) (hab : ∀ x, a (b x) = b (b (a x)))
 
 include hb in
+/--
+@isnad1 id=injectiv.1h2v.s4.f5a2a008fb60 from=translated src=- shape=c63fcb28 vocab=7a5d7ebb
+-/
 theorem b_injective : Function.Injective b := fun x y h => by
   have := congrArg (fun z => b (b z)) h
   simpa [hb] using this
 
 include hb hab in
 
+/--
+@isnad1 id=eq.2h4v.s5.ed8dcb9a4c63 from=translated src=- shape=b1bab6b2 vocab=e88e931a
+-/
 theorem abb (x : X) : a (b (b x)) = b (a x) := by
   have h := hab (b x)
   rw [hab x] at h
   rw [h, hb]
 
 include hb hab in
+/--
+@isnad1 id=eq.2h4v.s5.f07eb3e62304 from=translated src=- shape=33a2dd6a vocab=e88e931a
+-/
 theorem ba (x : X) : b (a x) = a (b (b x)) := (abb a b hb hab x).symm
 
 def T (x : X) : Finset X := {x, b x, b (b x)}
 
+/--
+@isnad1 id=iff.0h4v.s5.03c85040ac7e from=translated src=- shape=f8c408e4 vocab=7ab7aeed
+-/
 theorem mem_T {x y : X} : y ∈ T b x ↔ y = x ∨ y = b x ∨ y = b (b x) := by
   simp [T]
 
+/--
+@isnad1 id=mem.0h3v.s4.ae20d94d57f5 from=translated src=- shape=ad95ce20 vocab=7ab7aeed
+-/
 theorem self_mem_T (x : X) : x ∈ T b x := (mem_T b).mpr (Or.inl rfl)
 
 include hb in
+/--
+@isnad1 id=eq.1h3v.s5.b428b96a5757 from=translated src=- shape=13dfdb03 vocab=ce2ec700
+-/
 theorem T_b (x : X) : T b (b x) = T b x := by
   ext y
   simp only [mem_T, hb]
   tauto
 
 include hb in
+/--
+@isnad1 id=eq.2h4v.s5.0c0e0fe27105 from=translated src=- shape=1139a246 vocab=7ab7aeed
+-/
 theorem T_eq_of_mem {x y : X} (h : y ∈ T b x) : T b y = T b x := by
   rcases (mem_T b).mp h with rfl | rfl | rfl
   · rfl
@@ -51,6 +72,9 @@ theorem T_eq_of_mem {x y : X} (h : y ∈ T b x) : T b y = T b x := by
 
 include hb in
 
+/--
+@isnad1 id=or.1h4v.s5.127293d6beee from=translated src=- shape=9f3fd1c9 vocab=bfd0e01e
+-/
 theorem T_eq_or_disjoint (x y : X) : T b y = T b x ∨ Disjoint (T b x) (T b y) := by
   by_cases h : Disjoint (T b x) (T b y)
   · exact Or.inr h
@@ -60,12 +84,18 @@ theorem T_eq_or_disjoint (x y : X) : T b y = T b x ∨ Disjoint (T b x) (T b y) 
     rw [← T_eq_of_mem b hb hzy, T_eq_of_mem b hb hzx]
 
 include hb in
+/--
+@isnad1 id=eq.2h3v.s5.f8d5a468bc5d from=translated src=- shape=2035f525 vocab=dda81bd4
+-/
 theorem card_T_of_fix {x : X} (h : b x = x) : (T b x).card = 1 := by
   have : T b x = {x} := by
     ext y; simp [mem_T, h]
   rw [this, Finset.card_singleton]
 
 include hb in
+/--
+@isnad1 id=eq.2h3v.s5.e88cc8a49e9f from=translated src=- shape=1cdd5222 vocab=dda81bd4
+-/
 theorem card_T_of_not_fix {x : X} (h : b x ≠ x) : (T b x).card = 3 := by
   have h1 : b x ≠ x := h
   have h2 : b (b x) ≠ x := by
@@ -83,6 +113,9 @@ theorem card_T_of_not_fix {x : X} (h : b x ≠ x) : (T b x).card = 3 := by
     exact ⟨h1.symm, h2.symm⟩
 
 include hb in
+/--
+@isnad1 id=or.1h3v.s6.112c7dab3d67 from=translated src=- shape=e2f6ad94 vocab=dda81bd4
+-/
 theorem card_T (x : X) : ((T b x).card = 1 ∧ b x = x) ∨ ((T b x).card = 3 ∧ b x ≠ x) := by
   by_cases h : b x = x
   · exact Or.inl ⟨card_T_of_fix b hb h, h⟩
@@ -90,6 +123,9 @@ theorem card_T (x : X) : ((T b x).card = 1 ∧ b x = x) ∨ ((T b x).card = 3 �
 
 include ha hb hab in
 
+/--
+@isnad1 id=iff.3h4v.s6.d03f4a296494 from=translated src=- shape=0ff8c327 vocab=e88e931a
+-/
 theorem bfix_a_iff (x : X) : b (a x) = a x ↔ b x = x := by
   constructor
   · intro h
@@ -103,6 +139,9 @@ theorem bfix_a_iff (x : X) : b (a x) = a x ↔ b x = x := by
     rw [ba a b hb hab x, h, h]
 
 include ha hb hab in
+/--
+@isnad1 id=eq.3h4v.s6.b212f7eb6e53 from=translated src=- shape=d3cec449 vocab=dda81bd4
+-/
 theorem card_T_a (x : X) : (T b (a x)).card = (T b x).card := by
   rcases card_T b hb x with ⟨h1, hx⟩ | ⟨h3, hx⟩
   · rw [h1, card_T_of_fix b hb ((bfix_a_iff a b ha hb hab x).mpr hx)]
@@ -110,6 +149,9 @@ theorem card_T_a (x : X) : (T b (a x)).card = (T b x).card := by
 
 include hb hab in
 
+/--
+@isnad1 id=iff.2h5v.s6.5ecd9f975716 from=translated src=- shape=56e17a14 vocab=7ab7aeed
+-/
 theorem mem_T_a_iff {x y : X} : y ∈ T b (a x) ↔ y = a x ∨ y = a (b x) ∨ y = a (b (b x)) := by
   have h1 : b (a x) = a (b (b x)) := ba a b hb hab x
   have h2 : b (b (a x)) = a (b x) := (hab x).symm
@@ -127,6 +169,9 @@ theorem mem_T_a_iff {x y : X} : y ∈ T b (a x) ↔ y = a x ∨ y = a (b x) ∨ 
 def six (x : X) : Finset X := T b x ∪ T b (a x)
 
 include hb hab in
+/--
+@isnad1 id=iff.2h5v.s6.7a2ad47aec66 from=translated src=- shape=38d2b7ec vocab=455f33e8
+-/
 theorem mem_six {x y : X} :
     y ∈ six a b x ↔ (y = x ∨ y = a x ∨ y = b x ∨ y = b (b x) ∨ y = a (b x) ∨ y = a (b (b x))) := by
   rw [six, Finset.mem_union, mem_T, mem_T_a_iff a b hb hab]
@@ -134,6 +179,9 @@ theorem mem_six {x y : X} :
 
 include ha hb hab in
 
+/--
+@isnad1 id=or.3h4v.s7.ccbb96452997 from=translated src=- shape=859364ea vocab=56f9824b
+-/
 theorem card_six (x : X) :
     (T b (a x) = T b x ∧ (six a b x).card = (T b x).card) ∨
       (Disjoint (T b x) (T b (a x)) ∧ (six a b x).card = 2 * (T b x).card) := by
@@ -146,6 +194,9 @@ theorem card_six (x : X) :
     rw [six, Finset.card_union_of_disjoint h, card_T_a a b ha hb hab, two_mul]
 
 include ha hb hab in
+/--
+@isnad1 id=or.3h4v.s6.8b1183da779d from=translated src=- shape=d776ec28 vocab=d3dbb3b0
+-/
 theorem card_six_mem (x : X) :
     (six a b x).card = 1 ∨ (six a b x).card = 2 ∨ (six a b x).card = 3 ∨ (six a b x).card = 6 := by
   rcases card_six a b ha hb hab x with ⟨-, h⟩ | ⟨-, h⟩ <;>
@@ -157,6 +208,9 @@ theorem card_six_mem (x : X) :
 
 include ha hb hab in
 
+/--
+@isnad1 id=iff.3h4v.s6.ad2d5aacf009 from=translated src=- shape=5e617161 vocab=17e232e8
+-/
 theorem odd_iff (x : X) :
     ((six a b x).card = 1 ∨ (six a b x).card = 3) ↔ a x ∈ T b x := by
   constructor
@@ -176,6 +230,9 @@ theorem odd_iff (x : X) :
 
 include ha hb hab in
 
+/--
+@isnad1 id=iff.3h4v.s6.bdfef25867a7 from=translated src=- shape=8fe614ab vocab=d3dbb3b0
+-/
 theorem small_iff (x : X) :
     ((six a b x).card = 1 ∨ (six a b x).card = 2) ↔ b x = x := by
   constructor
@@ -194,6 +251,9 @@ variable {ι : Type*} [DecidableEq ι] (c : X → ι)
     (y = x ∨ y = a x ∨ y = b x ∨ y = b (b x) ∨ y = a (b x) ∨ y = a (b (b x))))
 
 include hb hab hc in
+/--
+@isnad1 id=eq.3h6v.s7.731d977fe9f2 from=translated src=- shape=a0d7c6cb vocab=315eca58
+-/
 theorem fibre_eq_six (x : X) : (Finset.univ.filter fun y => c y = c x) = six a b x := by
   ext y
   rw [Finset.mem_filter, mem_six a b hb hab]
@@ -201,12 +261,18 @@ theorem fibre_eq_six (x : X) : (Finset.univ.filter fun y => c y = c x) = six a b
   rw [eq_comm, hc x y]
 
 include hb hab hc in
+/--
+@isnad1 id=iff.3h7v.s7.aad539c2ad8b from=translated src=- shape=ac72da99 vocab=455f33e8
+-/
 theorem c_eq_iff_mem_six (x y : X) : c y = c x ↔ y ∈ six a b x := by
   rw [mem_six a b hb hab, eq_comm, hc x y]
 
 end P2MKcOrbitCensus
 
 open P2MKcOrbitCensus in
+/--
+@isnad1 id=and.5h6v.s9.24c93ed4cd55 from=translated src=- shape=76374a95 vocab=7ad5e29e
+-/
 theorem solution
     {X : Type*} [Fintype X] [DecidableEq X] (a b : X → X)
     (ha : ∀ x, a (a x) = x) (hb : ∀ x, b (b (b x)) = x) (hab : ∀ x, a (b x) = b (b (a x)))

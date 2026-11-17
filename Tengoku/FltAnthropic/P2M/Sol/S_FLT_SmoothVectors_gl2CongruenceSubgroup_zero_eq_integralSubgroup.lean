@@ -10,6 +10,9 @@ namespace P2MW.S_FLT_SmoothVectors_gl2CongruenceSubgroup_zero_eq_integralSubgrou
 
 open FLT.SmoothVectors
 
+/--
+@isnad1 id=eq.0h1v.s7.0e548426babe from=translated src=- shape=c3392215 vocab=759692b9
+-/
 theorem solution (p : ℕ) [Fact p.Prime] :
     gl2CongruenceSubgroup p 0 = LocalGL2.integralSubgroup ℤ_[p] ℚ_[p] := by
   have hinj : Function.Injective (algebraMap ℤ_[p] ℚ_[p]) := fun a b hab => by

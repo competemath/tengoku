@@ -11,6 +11,9 @@ namespace P2MW.S_GaloisRepAdic_strictOrdinaryCondition_baseChangeAlong
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=strictor.2h7v.s7.abf881e2ae02 from=translated src=- shape=07c16804 vocab=ba678ac1
+-/
 theorem solution
     {A B : Type} [CommRing A] [IsLocalRing A] [CommRing B] [IsLocalRing B]
     (𝒪 : Type) [CommRing 𝒪] [Algebra 𝒪 A] [Algebra 𝒪 B]

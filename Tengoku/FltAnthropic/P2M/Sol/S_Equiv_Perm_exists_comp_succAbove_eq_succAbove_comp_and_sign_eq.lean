@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open Equiv
 
+/--
+@isnad1 id=ex.0h3v.s9.1cc16d5aa1a1 from=translated src=- shape=32ddf72d vocab=193fa59b
+-/
 theorem solution
     {n : ℕ} (σ : Equiv.Perm (Fin (n + 1))) (j : Fin (n + 1)) :
     ∃ τ : Equiv.Perm (Fin n), (∀ k : Fin n, σ (j.succAbove k) = (σ j).succAbove (τ k)) ∧

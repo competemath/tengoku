@@ -11,6 +11,9 @@ open scoped TensorProduct
 
 namespace BCBCAProof
 
+/--
+@isnad1 id=eq.0h6v.s13.ba43a0beee44 from=translated src=- shape=927cb626 vocab=c202bf43
+-/
 theorem aux
     {A B C : Type} [CommRing A] [IsLocalRing A] [CommRing B] [CommRing C] [Algebra A B] [Algebra B C] [Algebra A C]
     [IsScalarTower A B C] (ρ : GaloisRepAdic A)
@@ -30,6 +33,9 @@ theorem aux
 
 end BCBCAProof
 
+/--
+@isnad1 id=isequiv.2h6v.s7.cbf2c133e259 from=translated src=- shape=8f5fdb47 vocab=640c7d82
+-/
 theorem solution
     {A B C : Type} [CommRing A] [IsLocalRing A] [CommRing B] [IsLocalRing B] [CommRing C] [IsLocalRing C]
     (f : A →+* B) (hf : IsLocalHom f) (g : B →+* C) (hg : IsLocalHom g) (ρ : GaloisRepAdic A) :

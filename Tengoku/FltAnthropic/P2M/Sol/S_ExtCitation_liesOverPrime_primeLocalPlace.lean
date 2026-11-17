@@ -12,6 +12,9 @@ open ExtCitation
 
 namespace P2mS17LOP
 
+/--
+@isnad1 id=iff.0h5v.s7.a3fb00a7f70d from=translated src=- shape=4c39380b vocab=dc9359c5
+-/
 theorem mem_nonunits_comap {K L : Type*} [Field K] [Field L] {B : ValuationSubring L} {f : K →+* L} {x : K} :
     x ∈ (B.comap f).nonunits ↔ f x ∈ B.nonunits := by
   rw [ValuationSubring.mem_nonunits_iff_or, ValuationSubring.mem_nonunits_iff_or, ValuationSubring.mem_comap, map_inv₀]
@@ -24,6 +27,9 @@ theorem mem_nonunits_comap {K L : Type*} [Field K] [Field L] {B : ValuationSubri
     · exact Or.inr h
 
 open scoped NNReal in
+/--
+@isnad1 id=liesover.0h1v.s4.3f5074e157b0 from=translated src=- shape=025085eb vocab=9ff962aa
+-/
 theorem padicPlace_liesOverPrime (q : ℕ) [Fact q.Prime] : (padicPlace q).LiesOverPrime q := by
   have hq : Valued.v ((q : ℕ) : PadicAlgCl q) = 1 / (q : ℝ≥0) := PadicAlgCl.valuation_p q
   have hq2 : (2 : ℕ) ≤ q := (Fact.out : q.Prime).two_le
@@ -35,6 +41,9 @@ theorem padicPlace_liesOverPrime (q : ℕ) [Fact q.Prime] : (padicPlace q).LiesO
 
 end P2mS17LOP
 
+/--
+@isnad1 id=liesover.0h1v.s4.47951e5446ba from=translated src=- shape=069d1425 vocab=a1a869e7
+-/
 theorem solution (q : Nat.Primes) : (primeLocalPlace q).LiesOverPrime q := by
   haveI : Fact (q : ℕ).Prime := ⟨q.2⟩
   exact P2mS17LOP.padicPlace_liesOverPrime q

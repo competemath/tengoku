@@ -54,6 +54,9 @@ private scoped instance isLocalization (p : ℕ) :
 end SolB0C
 open scoped _root_.P2MW.S_GaloisRep_isFractionRing_ratLocalizedAt.SolB0C
 
+/--
+@isnad1 id=isfracti.0h1v.s6.210398e3bdf8 from=translated src=- shape=68508a85 vocab=c3810cec
+-/
 theorem solution (p : ℕ) :
     IsFractionRing (GaloisRep.ratLocalizedAt p) ℚ :=
   IsFractionRing.isFractionRing_of_isDomain_of_isLocalization (SolB0C.ratLocalizedAtMonoid p)

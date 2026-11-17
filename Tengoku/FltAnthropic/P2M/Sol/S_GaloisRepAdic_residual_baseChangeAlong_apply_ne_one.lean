@@ -13,6 +13,9 @@ export _root_.Tengoku.FltAnthropic.GaloisRepAdic (baseChangeAlong residual ρ V)
 namespace K6Aux
 open _root_.Tengoku.FltAnthropic.GaloisRepAdic
 
+/--
+@isnad1 id=eq.1h5v.s8.e163d033ef02 from=translated src=- shape=37db1b54 vocab=ea104168
+-/
 theorem residue_eq_of_residue_map_eq {A B : Type} [CommRing A] [IsLocalRing A] [CommRing B]
     [IsLocalRing B] (φ : A →+* B) {a c : A}
     (h : IsLocalRing.residue B (φ a) = IsLocalRing.residue B (φ c)) :
@@ -24,6 +27,9 @@ theorem residue_eq_of_residue_map_eq {A B : Type} [CommRing A] [IsLocalRing A] [
 
 end GaloisRepAdic.K6Aux
 
+/--
+@isnad1 id=ne.2h5v.s12.c75c12a70627 from=translated src=- shape=fbc5702c vocab=07072def
+-/
 theorem solution
     {A B : Type} [CommRing A] [IsLocalRing A] [CommRing B] [IsLocalRing B]
     (φ : A →+* B) (hφ : IsLocalHom φ) (ρ : GaloisRepAdic A)

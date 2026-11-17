@@ -26,8 +26,14 @@ def om (v : Fin 2 → ℤ) : ℂ := (v 0 : ℂ) * τ + v 1
 def zterm (z : ℂ) (v : Fin 2 → ℤ) : ℂ :=
   if v = 0 then 0 else (1 / (z - om τ v) + 1 / om τ v + z / om τ v ^ 2)
 
+/--
+@isnad1 id=eq.0h2v.s6.8293076a84cd from=translated src=- shape=57b27e4b vocab=d3652452
+-/
 lemma weierstrassZeta_eq (z : ℂ) : weierstrassZeta τ z = 1 / z + ∑' v, zterm τ z v := rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.a1914099646a from=translated src=- shape=c34f1497 vocab=fa224932
+-/
 lemma om_smul (γ : SL(2, ℤ)) (v : Fin 2 → ℤ) :
     om (γ • τ) v = om τ (v ᵥ* (γ : Matrix (Fin 2) (Fin 2) ℤ)) / denom γ τ := by
   have h := eisSummand_SL2_apply (-1) v γ τ
@@ -44,6 +50,9 @@ def vecMulEquiv (γ : SL(2, ℤ)) : (Fin 2 → ℤ) ≃ (Fin 2 → ℤ) where
     simp_rw [Matrix.vecMul_vecMul, ← Matrix.SpecialLinearGroup.coe_mul, inv_mul_cancel,
       Matrix.SpecialLinearGroup.coe_one, Matrix.vecMul_one]
 
+/--
+@isnad1 id=iff.0h2v.s7.0947217d72b7 from=translated src=- shape=5413305e vocab=b10d8a31
+-/
 lemma vecMul_eq_zero_iff (γ : SL(2, ℤ)) (v : Fin 2 → ℤ) :
     v ᵥ* (γ : Matrix (Fin 2) (Fin 2) ℤ) = 0 ↔ v = 0 := by
   constructor
@@ -55,6 +64,9 @@ lemma vecMul_eq_zero_iff (γ : SL(2, ℤ)) (v : Fin 2 → ℤ) :
     simp [vecMulEquiv]
   · rintro rfl; simp
 
+/--
+@isnad1 id=eq.0h4v.s11.ecc2ee70c678 from=translated src=- shape=d467e4bc vocab=45e79f6f
+-/
 lemma zterm_smul (γ : SL(2, ℤ)) (z : ℂ) (v : Fin 2 → ℤ) :
     zterm (γ • τ) (z / denom γ τ) v =
       denom γ τ * zterm τ z (v ᵥ* (γ : Matrix (Fin 2) (Fin 2) ℤ)) := by
@@ -73,6 +85,9 @@ lemma zterm_smul (γ : SL(2, ℤ)) (z : ℂ) (v : Fin 2 → ℤ) :
     rw [div_eq_mul_one_div D (z - w), div_eq_mul_one_div D w]
     ring
 
+/--
+@isnad1 id=eq.0h3v.s11.34e671c2b1ca from=translated src=- shape=5965b18a vocab=bf46f2f7
+-/
 theorem weierstrassZeta_smul (γ : SL(2, ℤ)) (z : ℂ) :
     weierstrassZeta (γ • τ) (z / denom γ τ) = denom γ τ * weierstrassZeta τ z := by
   have hD : denom (γ : GL (Fin 2) ℝ) τ ≠ 0 := denom_ne_zero _ τ
@@ -84,20 +99,32 @@ theorem weierstrassZeta_smul (γ : SL(2, ℤ)) (z : ℂ) :
   rw [div_eq_mul_one_div]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s3.4b6c9b7db7c9 from=translated src=- shape=c7188113 vocab=404065af
+-/
 lemma cot_neg (x : ℂ) : Complex.cot (-x) = -Complex.cot x := by
   simp [Complex.cot_eq_cos_div_sin, Complex.sin_neg, Complex.cos_neg, div_neg]
 
+/--
+@isnad1 id=eq.0h1v.s5.9b4c0099c2b0 from=translated src=- shape=fd19dd1b vocab=3cc98425
+-/
 lemma cot_pi_add_one (w : ℂ) : Complex.cot (π * (w + 1)) = Complex.cot (π * w) := by
   rw [Complex.cot_pi_eq_exp_ratio, Complex.cot_pi_eq_exp_ratio]
   have : cexp (2 * π * I * (w + 1)) = cexp (2 * π * I * w) := by
     rw [mul_add, Complex.exp_add, mul_one, Complex.exp_two_pi_mul_I, mul_one]
   rw [this]
 
+/--
+@isnad1 id=eq.0h1v.s6.63e3f9de1111 from=translated src=- shape=02b24123 vocab=6d4f05ef
+-/
 lemma norm_cexp_two_pi_I (w : ℂ) : ‖cexp (2 * π * I * w)‖ = Real.exp (-2 * π * w.im) := by
   rw [Complex.norm_exp]
   congr 1
   simp [Complex.mul_re, Complex.mul_im, mul_comm]
 
+/--
+@isnad1 id=eq.1h1v.s7.5caed8ac1b54 from=translated src=- shape=12609c81 vocab=d9ebac99
+-/
 lemma pi_cot_add_eq (w : ℂ) (hq : cexp (2 * π * I * w) ≠ 1) :
     π * Complex.cot (π * w) + π * I =
       2 * π * cexp (2 * π * I * w) / (I * (1 - cexp (2 * π * I * w))) := by
@@ -110,6 +137,9 @@ lemma pi_cot_add_eq (w : ℂ) (hq : cexp (2 * π * I * w) ≠ 1) :
   rw [I_sq]
   ring
 
+/--
+@isnad1 id=le.2h2v.s7.ab1850fc586a from=translated src=- shape=2a439568 vocab=7ee6fa58
+-/
 lemma norm_pi_cot_add_le {w : ℂ} {Y : ℝ} (hY : 0 < Y) (hw : Y ≤ w.im) :
     ‖π * Complex.cot (π * w) + π * I‖ ≤
       2 * π * Real.exp (-2 * π * w.im) / (1 - Real.exp (-2 * π * Y)) := by
@@ -132,6 +162,9 @@ lemma norm_pi_cot_add_le {w : ℂ} {Y : ℝ} (hY : 0 < Y) (hw : Y ≤ w.im) :
   have hpos : 0 < 1 - Real.exp (-2 * π * Y) := by linarith
   exact div_le_div_of_nonneg_left (by positivity) hpos hden
 
+/--
+@isnad1 id=tendsto.0h2v.s6.872314478093 from=translated src=- shape=8d0af762 vocab=47f28276
+-/
 lemma tendsto_pi_cot_add (z : ℂ) :
     Tendsto (fun M : ℕ => π * Complex.cot (π * (z + (M : ℂ) * τ))) atTop (𝓝 (-(π * I))) := by
   have hτ : 0 < τ.im := τ.2
@@ -162,6 +195,9 @@ lemma tendsto_pi_cot_add (z : ℂ) :
     rw [hρ, ← Real.exp_nat_mul, ← Real.exp_add]; ring_nf
   rw [this]; ring
 
+/--
+@isnad1 id=tendsto.0h2v.s6.88d9c50bdf2e from=translated src=- shape=24f98fa4 vocab=e9ac57a6
+-/
 lemma tendsto_pi_cot_sub (z : ℂ) :
     Tendsto (fun M : ℕ => π * Complex.cot (π * (z - (M : ℂ) * τ))) atTop (𝓝 (π * I)) := by
   have h := (tendsto_pi_cot_add τ (-z)).neg
@@ -174,12 +210,18 @@ def NotLat (τ : ℍ) (z : ℂ) : Prop := ∀ v : Fin 2 → ℤ, z ≠ (v 0 : �
 
 variable {τ}
 
+/--
+@isnad1 id=notlat.1h3v.s4.e29936bc2d08 from=translated src=- shape=d0c3c226 vocab=6bf3e337
+-/
 lemma NotLat.add_intCast {z : ℂ} (hz : NotLat τ z) (n : ℤ) : NotLat τ (z + n) := by
   intro v hv
   apply hz (v - ![0, n])
   simp only [Pi.sub_apply, Matrix.cons_val_zero, Matrix.cons_val_one, sub_zero, Int.cast_sub]
   linear_combination hv
 
+/--
+@isnad1 id=notlat.1h3v.s5.c70da1fda442 from=translated src=- shape=ae7675fd vocab=ade94049
+-/
 lemma NotLat.add_intCast_mul {z : ℂ} (hz : NotLat τ z) (n : ℤ) : NotLat τ (z + n * τ) := by
   intro v hv
   apply hz (v - ![n, 0])
@@ -194,9 +236,15 @@ def ser (z : ℂ) (m : ℕ) : ℂ :=
 
 def pval (z : ℂ) : ℂ := weierstrassZeta τ z - z * G2 τ - π * Complex.cot (π * z)
 
+/--
+@isnad1 id=hassum.1h2v.s5.1d5e642b88fd from=translated src=- shape=e433dcf7 vocab=dd57c748
+-/
 lemma hasSum_ser {z : ℂ} (hz : NotLat τ z) : HasSum (ser τ z) (pval τ z) :=
   EisensteinSeries.hasSum_weierstrassZeta_sub_mul_G2 τ z hz
 
+/--
+@isnad1 id=eq.1h2v.s5.ed1ded22bfd1 from=translated src=- shape=6abb6016 vocab=d8bef6b8
+-/
 theorem weierstrassZeta_add_one {z : ℂ} (hz : NotLat τ z) :
     weierstrassZeta τ (z + 1) = weierstrassZeta τ z + G2 τ := by
   have h1 := hasSum_ser τ hz
@@ -211,6 +259,9 @@ theorem weierstrassZeta_add_one {z : ℂ} (hz : NotLat τ z) :
   simp only [pval, cot_pi_add_one] at this
   linear_combination -this
 
+/--
+@isnad1 id=eq.0h3v.s7.224a0534045f from=translated src=- shape=97b08f12 vocab=42bb7335
+-/
 lemma telescope (A B : ℕ → ℂ) (M : ℕ) :
     ∑ m ∈ Finset.range M, (A (m + 2) + B m) - ∑ m ∈ Finset.range M, (A (m + 1) + B (m + 1)) =
       (A (M + 1) - A 1) + (B 0 - B M) := by
@@ -220,6 +271,9 @@ lemma telescope (A B : ℕ → ℂ) (M : ℕ) :
       rw [Finset.sum_range_succ, Finset.sum_range_succ]
       linear_combination ih
 
+/--
+@isnad1 id=eq.1h2v.s6.0c373152c34b from=translated src=- shape=53a4ed3c vocab=4c3108a2
+-/
 theorem weierstrassZeta_add_tau {z : ℂ} (hz : NotLat τ z) :
     weierstrassZeta τ (z + τ) = weierstrassZeta τ z + ((τ : ℂ) * G2 τ - 2 * π * I) := by
   set A : ℕ → ℂ := fun k => π * Complex.cot (π * (z + (k : ℂ) * τ)) with hA
@@ -255,6 +309,9 @@ end WZB
 
 end
 
+/--
+@isnad1 id=and.0h1v.s11.d3716711af04 from=translated src=- shape=44f9ebee vocab=786a290c
+-/
 theorem solution (τ : UpperHalfPlane) :
     (∀ z : ℂ, (∀ v : Fin 2 → ℤ, z ≠ (v 0 : ℂ) * τ + v 1) →
         EisensteinSeries.weierstrassZeta τ (z + 1) =

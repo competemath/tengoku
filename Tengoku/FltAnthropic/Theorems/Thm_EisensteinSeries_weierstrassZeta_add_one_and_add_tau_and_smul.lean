@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open scoped Real MatrixGroups
 
+/--
+@isnad1 id=and.0h1v.s11.d3716711af04 from=translated src=- shape=44f9ebee vocab=786a290c
+-/
 theorem EisensteinSeries.weierstrassZeta_add_one_and_add_tau_and_smul (τ : UpperHalfPlane) :
     (∀ z : ℂ, (∀ v : Fin 2 → ℤ, z ≠ (v 0 : ℂ) * τ + v 1) →
         EisensteinSeries.weierstrassZeta τ (z + 1) =

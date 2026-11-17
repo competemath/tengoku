@@ -996,6 +996,9 @@ private theorem e7_head_of_family (a b : ℕ)
 
 end EgenArch
 
+/--
+@isnad1 id=ex.0h2v.s8.55e92cde11d7 from=translated src=- shape=23420c33 vocab=2c7548ca
+-/
 theorem solution (a b : ℕ) :
     ∃ J : ℂ → ℂ → ℂ,
       (∀ ζ : ℂ, ζ ≠ 0 → Differentiable ℂ (fun w : ℂ => J w ζ)) ∧

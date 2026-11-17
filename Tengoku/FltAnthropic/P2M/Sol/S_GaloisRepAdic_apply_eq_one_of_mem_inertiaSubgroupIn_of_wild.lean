@@ -24,11 +24,17 @@ open _root_.GaloisRep
 section P
 variable {R : Type} [CommRing R] {V : Type} [AddCommGroup V] [Module R V]
 
+/--
+@isnad1 id=le.1h5v.s9.c214251388e8 from=translated src=- shape=4df3a60b vocab=83dc1b21
+-/
 theorem map_smul_top_le (N : Module.End R V) (I J : Ideal R) (hN : LinearMap.range N ≤ J • (⊤ : Submodule R V)) :
     Submodule.map N (I • (⊤ : Submodule R V)) ≤ (I * J) • (⊤ : Submodule R V) := by
   rw [Submodule.map_smul'', Submodule.map_top, Submodule.mul_smul]
   exact Submodule.smul_mono le_rfl hN
 
+/--
+@isnad1 id=le.2h6v.s9.6c3d3a838369 from=translated src=- shape=0c036513 vocab=93554fd4
+-/
 theorem range_pow_sub_one_le (g : Module.End R V) (𝔪 I : Ideal R) (p : ℕ) (hp : (p : R) ∈ 𝔪)
     (hg : LinearMap.range (g - 1) ≤ I • (⊤ : Submodule R V)) :
     LinearMap.range (g ^ p - 1) ≤ (𝔪 * I ⊔ I * I) • (⊤ : Submodule R V) := by
@@ -59,6 +65,9 @@ theorem range_pow_sub_one_le (g : Module.End R V) (𝔪 I : Ideal R) (p : ℕ) (
     refine Submodule.smul_mono (le_sup_right : I * I ≤ 𝔪 * I ⊔ I * I) le_rfl ?_
     exact map_smul_top_le (g ^ i - 1) I I (hgi i) ⟨w, hwI, rfl⟩
 
+/--
+@isnad1 id=le.2h6v.s9.211b02eb84d9 from=translated src=- shape=51092450 vocab=2f8016f3
+-/
 theorem pow_prime_pow_sub_one_range_le (𝔪 : Ideal R) {p : ℕ} (hpm : (p : R) ∈ 𝔪) (f : Module.End R V)
     (hf : LinearMap.range (f - 1) ≤ 𝔪 • (⊤ : Submodule R V)) (n : ℕ) :
     LinearMap.range (f ^ (p ^ n) - 1) ≤ 𝔪 ^ (n + 1) • (⊤ : Submodule R V) := by
@@ -83,6 +92,9 @@ theorem eq_zero_of_forall_range_le_pow_smul {R : Type} [CommRing R] [IsLocalRing
   rw [Ideal.iInf_pow_smul_eq_bot_of_isLocalRing _ (maximalIdeal.isMaximal R).ne_top, Submodule.mem_bot] at hv
   rw [hv, LinearMap.zero_apply]
 
+/--
+@isnad1 id=le.4h6v.s9.c96b8f7e5bb5 from=translated src=- shape=196442b2 vocab=0512a006
+-/
 theorem range_sub_one_le_of_pow_of_pow {R : Type} [CommRing R] {V : Type} [AddCommGroup V] [Module R V]
     (f : Module.End R V) (W : Submodule R V) (hW : W ≤ W.comap f) {a b : ℕ} (hab : Nat.Coprime a b)
     (ha : LinearMap.range (f ^ a - 1) ≤ W) (hb : LinearMap.range (f ^ b - 1) ≤ W) :
@@ -108,6 +120,9 @@ theorem range_sub_one_le_of_pow_of_pow {R : Type} [CommRing R] {V : Type} [AddCo
 end GaloisRep.Sol4fb1
 
 open GaloisRep.Sol4fb1 in
+/--
+@isnad1 id=eq.8h6v.s11.ab5172fbc8c6 from=translated src=- shape=ee5e0692 vocab=1b22d0ea
+-/
 theorem solution
     {R : Type} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     (ρ : GaloisRepAdic R) {p : ℕ} (hp : p.Prime) (hpR : (p : R) ∈ maximalIdeal R) {q : ℕ} (hq : q.Prime)

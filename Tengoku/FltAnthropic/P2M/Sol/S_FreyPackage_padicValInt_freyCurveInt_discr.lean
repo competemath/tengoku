@@ -17,6 +17,9 @@ open Tengoku.FltAnthropic.FreyPackage
 
 open WeierstrassCurve
 
+/--
+@isnad1 id=eq.0h1v.s4.309d22298e79 from=translated src=- shape=b4d18b3e vocab=01b2f9d2
+-/
 theorem freyCurveInt_map (P : FreyPackage) :
     (freyCurveInt P).map (algebraMap ℤ ℚ) = freyCurve P := by
   have two_dvd_b : 2 ∣ P.b := (ZMod.intCast_zmod_eq_zero_iff_dvd P.b 2).1 P.hb2
@@ -48,6 +51,9 @@ theorem freyCurveInt_map (P : FreyPackage) :
         _        ∣ _         := Int.dvd_mul_left _ _
   · rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.e8591116e2a1 from=translated src=- shape=52e0e257 vocab=65806b86
+-/
 theorem freyCurve_Δ (P : FreyPackage) :
     P.freyCurve.Δ = (P.a * P.b * P.c) ^ (2 * P.p) / 2 ^ 8 := by
   trans (P.a ^ P.p) ^ 2 * (P.b ^ P.p) ^ 2 * (P.c ^ P.p) ^ 2 / 2 ^ 8
@@ -61,6 +67,9 @@ theorem freyCurve_Δ (P : FreyPackage) :
 def c₄Int (P : FreyPackage) : ℤ :=
   (P.a ^ P.p) ^ 2 + P.a ^ P.p * P.b ^ P.p + (P.b ^ P.p) ^ 2
 
+/--
+@isnad1 id=eq.0h1v.s6.83358e8f5bb7 from=translated src=- shape=f145f80f vocab=5874919a
+-/
 theorem freyCurveInt_Δ_mul (P : FreyPackage) :
     (freyCurveInt P).Δ * 2 ^ 8 = (P.a * P.b * P.c) ^ (2 * P.p) := by
   have hΔ : (algebraMap ℤ ℚ) (freyCurveInt P).Δ
@@ -75,12 +84,18 @@ theorem freyCurveInt_Δ_mul (P : FreyPackage) :
     norm_num
   exact_mod_cast h
 
+/--
+@isnad1 id=ne.0h1v.s3.55fd660a0bdb from=translated src=- shape=562e4a6d vocab=f5c91ea8
+-/
 theorem freyCurveInt_Δ_ne_zero (P : FreyPackage) : (freyCurveInt P).Δ ≠ 0 := by
   intro h
   have := freyCurveInt_Δ_mul P
   rw [h, zero_mul] at this
   exact pow_ne_zero _ P.habc0 this.symm
 
+/--
+@isnad1 id=eq.2h2v.s6.5d864332aff3 from=translated src=- shape=6352cb2e vocab=ff236e90
+-/
 theorem padicValInt_freyCurveInt_Δ (P : FreyPackage) {q : ℕ} (hq : q.Prime) (hq2 : q ≠ 2) :
     padicValInt q (freyCurveInt P).Δ = 2 * P.p * padicValInt q (P.a * P.b * P.c) := by
   haveI : Fact q.Prime := ⟨hq⟩
@@ -99,6 +114,9 @@ theorem padicValInt_freyCurveInt_Δ (P : FreyPackage) {q : ℕ} (hq : q.Prime) (
 
 end FreyArith
 
+/--
+@isnad1 id=eq.2h2v.s6.5d864332aff3 from=translated src=- shape=6352cb2e vocab=ff236e90
+-/
 theorem solution (P : FreyPackage) {q : ℕ} (hq : q.Prime) (hq2 : q ≠ 2) :
     padicValInt q P.freyCurveInt.Δ = 2 * P.p * padicValInt q (P.a * P.b * P.c) :=
   FreyArith.padicValInt_freyCurveInt_Δ P hq hq2

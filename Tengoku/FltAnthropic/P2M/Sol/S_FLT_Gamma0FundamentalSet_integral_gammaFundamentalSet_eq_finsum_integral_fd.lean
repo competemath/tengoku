@@ -16,9 +16,15 @@ namespace GammaTileUnfold
 
 variable {Γ : Subgroup SL(2, ℤ)}
 
+/--
+@isnad1 id=measurab.0h1v.s7.815cb8178bab from=translated src=- shape=eb1a4cad vocab=c25f5608
+-/
 theorem measurableSet_smul_fd (γ : SL(2, ℤ)) : MeasurableSet (γ • (𝒟 : Set ℍ)) :=
   (ModularGroup.isClosed_fd.smul γ).measurableSet
 
+/--
+@isnad1 id=measurep.0h1v.s7.fba4bc526887 from=translated src=- shape=a8325292 vocab=459267c1
+-/
 theorem measurePreserving_smul (γ : SL(2, ℤ)) :
     MeasurePreserving (fun w : ℍ => γ • w) volume volume := by
   have hemb : MeasurableEmbedding (fun w : ℍ => γ • w) :=
@@ -28,6 +34,9 @@ theorem measurePreserving_smul (γ : SL(2, ℤ)) :
     rw [Measure.map_apply hemb.measurable hs, Set.preimage_smul,
       FLT.HyperbolicMeasure.volume_smul_sl2z]⟩
 
+/--
+@isnad1 id=eq.0h3v.s8.065d07a6fba6 from=translated src=- shape=d079b74c vocab=3a681b9e
+-/
 theorem setIntegral_smul_fd {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (γ : SL(2, ℤ)) (f : ℍ → E) :
     ∫ u in γ • (𝒟 : Set ℍ), f u = ∫ w in (𝒟 : Set ℍ), f (γ • w) := by
@@ -35,6 +44,9 @@ theorem setIntegral_smul_fd {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ 
   exact (measurePreserving_smul γ).setIntegral_image_emb
     (Homeomorph.smul γ (α := ℍ)).measurableEmbedding f _
 
+/--
+@isnad1 id=aedisjoi.2h3v.s10.4f85eb2ac8af from=translated src=- shape=132ae3a3 vocab=0b88a0ae
+-/
 theorem aedisjoint_tiles (hΓ : (-1 : SL(2, ℤ)) ∈ Γ) {q q' : SL(2, ℤ) ⧸ Γ} (hqq' : q ≠ q') :
     AEDisjoint volume ((Quotient.out q)⁻¹ • (𝒟 : Set ℍ)) ((Quotient.out q')⁻¹ • (𝒟 : Set ℍ)) := by
   set a := (Quotient.out q : SL(2, ℤ))
@@ -69,6 +81,9 @@ end ModularCurve.GammaTileUnfold
 
 open ModularCurve.GammaTileUnfold in
 
+/--
+@isnad1 id=eq.2h3v.s9.d12239f7f27b from=translated src=- shape=7e5a1d75 vocab=be7ffedb
+-/
 theorem solution
     {Γ : Subgroup SL(2, ℤ)} [Γ.FiniteIndex] (hΓ : (-1 : SL(2, ℤ)) ∈ Γ)
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]

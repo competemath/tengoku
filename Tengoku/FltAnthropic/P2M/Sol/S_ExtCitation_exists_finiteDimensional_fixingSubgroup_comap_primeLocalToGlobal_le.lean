@@ -22,6 +22,9 @@ open CategoryTheory groupCohomology TrivSqZeroExt ExtCitation
 
 open CategoryTheory groupCohomology TrivSqZeroExt ExtCitation
 
+/--
+@isnad1 id=ex.0h2v.s11.559c59dff192 from=translated src=- shape=09ab3671 vocab=50745e58
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] (K : IntermediateField ℚ_[p] (PadicAlgCl p)) [FiniteDimensional ℚ_[p] K] :
     ∃ F : IntermediateField ℚ (AlgebraicClosure ℚ), FiniteDimensional ℚ F ∧

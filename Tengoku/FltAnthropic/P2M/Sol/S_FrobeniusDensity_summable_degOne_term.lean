@@ -43,6 +43,9 @@ end FrobeniusDensity
 
 open _root_.FrobeniusDensity open _root_.P2MW.S_FrobeniusDensity_summable_degOne_term.FrobeniusDensity
 
+/--
+@isnad1 id=summable.1h3v.s6.71373d282d53 from=translated src=- shape=5df6fcf2 vocab=a840a4ad
+-/
 theorem solution (K : Type*) [Field K] [NumberField K] (S₀ : Finset ℕ) {s : ℝ} (hs : 1 < s) :
     Summable (fun ℓ : ℕ => (if ℓ ∈ S₀ then 0 else
       (FrobeniusDensity.degOneCount K ℓ : ℝ)) * (ℓ : ℝ) ^ (-s)) :=

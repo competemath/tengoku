@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open IsLocalRing
 
+/--
+@isnad1 id=isunit.3h4v.s8.f93a1d37fef1 from=translated src=- shape=20d86029 vocab=157ca9c6
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime] (W : Type) [CommRing W] [IsLocalRing W] (hqW : (q : W) ∈ maximalIdeal W)
     (a b : W) (hab : a ∉ maximalIdeal W ∨ b ∉ maximalIdeal W)

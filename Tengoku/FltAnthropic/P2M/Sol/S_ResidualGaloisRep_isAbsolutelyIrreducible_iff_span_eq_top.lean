@@ -22,6 +22,9 @@ namespace C6P1R
 section Bridges
 variable {k : Type} [Field k]
 
+/--
+@isnad1 id=iff.0h2v.s8.c4db6ed57e4e from=translated src=- shape=06715a46 vocab=4be7d328
+-/
 theorem isIrreducible_iff_rep (ρ : ResidualGaloisRep k) : ρ.IsIrreducible ↔ Representation.IsIrreducible ρ.ρ := by
   haveI : Nontrivial ρ.V := Module.nontrivial_of_finrank_pos (R := k) (by rw [ρ.finrank_eq]; norm_num)
   have hne : (⊥ : Subrepresentation ρ.ρ) ≠ ⊤ := fun h =>
@@ -37,6 +40,9 @@ theorem isIrreducible_iff_rep (ρ : ResidualGaloisRep k) : ρ.IsIrreducible ↔ 
     · exact Or.inl (congrArg Subrepresentation.toSubmodule h0)
     · exact Or.inr (congrArg Subrepresentation.toSubmodule h1)
 
+/--
+@isnad1 id=isirredu.1h2v.s10.30f686200e67 from=translated src=- shape=5484c860 vocab=9e8b0840
+-/
 theorem isIrreducible_of_span_eq_top (ρ : ResidualGaloisRep k) (h : Submodule.span k (Set.range ⇑ρ.ρ) = ⊤) :
     ρ.IsIrreducible := by
   intro W hW
@@ -61,6 +67,9 @@ theorem isIrreducible_of_span_eq_top (ρ : ResidualGaloisRep k) (h : Submodule.s
   have h2 := W.smul_mem (φ v)⁻¹ h1
   rwa [smul_smul, inv_mul_cancel₀ hφ, one_smul] at h2
 
+/--
+@isnad1 id=eq.0h3v.s11.61835b770005 from=translated src=- shape=6c50b0a5 vocab=f98f2f89
+-/
 theorem range_baseChange_ρ (K : Type) [Field K] [Algebra k K] (ρ : ResidualGaloisRep k) :
     Set.range ⇑(ρ.baseChange K).ρ = Set.range fun σ => (ρ.ρ σ).baseChange K := rfl
 
@@ -69,6 +78,9 @@ end Bridges
 end C6P1R
 
 open C6P1R in
+/--
+@isnad1 id=iff.0h2v.s10.2374a8e7815b from=translated src=- shape=5561cae7 vocab=1a1340e1
+-/
 theorem solution
     {k : Type} [Field k] (ρ : ResidualGaloisRep k) :
     ρ.IsAbsolutelyIrreducible ↔ Submodule.span k (Set.range ⇑ρ.ρ) = ⊤ := by

@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_PadicAlgCl_exists_mem_adjoin_padicEmbeddin
 namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 set_option autoImplicit false
 open scoped IntermediateField
+/--
+@isnad1 id=ex.0h2v.s8.43de96a3784e from=translated src=- shape=812d27b2 vocab=e45e4e22
+-/
 theorem PadicAlgCl.exists_mem_adjoin_padicEmbedding
     (q : ℕ) [Fact q.Prime] (α : PadicAlgCl q) :
     ∃ b : AlgebraicClosure ℚ, α ∈ ℚ_[q]⟮padicEmbedding q b⟯ := by exact @_root_.P2MW.S_PadicAlgCl_exists_mem_adjoin_padicEmbedding.solution q _ α

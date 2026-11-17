@@ -17,6 +17,9 @@ open Tengoku.FltAnthropic.FreyPackage
 
 open WeierstrassCurve
 
+/--
+@isnad1 id=eq.0h1v.s4.309d22298e79 from=translated src=- shape=b4d18b3e vocab=01b2f9d2
+-/
 theorem freyCurveInt_map (P : FreyPackage) :
     (freyCurveInt P).map (algebraMap ℤ ℚ) = freyCurve P := by
   have two_dvd_b : 2 ∣ P.b := (ZMod.intCast_zmod_eq_zero_iff_dvd P.b 2).1 P.hb2
@@ -51,16 +54,25 @@ theorem freyCurveInt_map (P : FreyPackage) :
 def c₄Int (P : FreyPackage) : ℤ :=
   (P.a ^ P.p) ^ 2 + P.a ^ P.p * P.b ^ P.p + (P.b ^ P.p) ^ 2
 
+/--
+@isnad1 id=eq.0h1v.s3.6ee3d6f8e2df from=translated src=- shape=58a91df6 vocab=3e6e0ad4
+-/
 theorem freyCurve_c₄_eq_intCast (P : FreyPackage) : P.freyCurve.c₄ = (c₄Int P : ℚ) := by
   simp only [WeierstrassCurve.c₄, WeierstrassCurve.b₂, WeierstrassCurve.b₄, freyCurve, c₄Int]
   push_cast
   field_simp
   ring
 
+/--
+@isnad1 id=eq.0h1v.s6.5e4a046db342 from=translated src=- shape=44b1da3a vocab=78a3bd4c
+-/
 theorem c₄Int_eq_sub (P : FreyPackage) : c₄Int P = (P.c ^ P.p) ^ 2 - (P.a * P.b) ^ P.p := by
   rw [c₄Int, ← P.hFLT, mul_pow]
   ring
 
+/--
+@isnad1 id=not.2h2v.s5.6bfba98cb787 from=translated src=- shape=6e09de33 vocab=2a74c187
+-/
 theorem not_dvd_c₄Int (P : FreyPackage) {q : ℤ} (hq : Prime q)
     (hqbad : q ∣ P.a * P.b * P.c) : ¬q ∣ c₄Int P := by
   intro hdvd
@@ -89,6 +101,9 @@ theorem not_dvd_c₄Int (P : FreyPackage) {q : ℤ} (hq : Prime q)
     rcases hq.dvd_mul.mp (hq.dvd_of_dvd_pow hdvd) with h | h
     exacts [hqa h, hqb h]
 
+/--
+@isnad1 id=eq.0h1v.s3.10664bafc521 from=translated src=- shape=0a9af14d vocab=421513d5
+-/
 theorem freyCurveInt_c₄ (P : FreyPackage) : (freyCurveInt P).c₄ = c₄Int P := by
   have h : (algebraMap ℤ ℚ) (freyCurveInt P).c₄ = ((c₄Int P : ℤ) : ℚ) := by
     rw [← map_c₄, freyCurveInt_map, ← freyCurve_c₄_eq_intCast]
@@ -97,6 +112,9 @@ theorem freyCurveInt_c₄ (P : FreyPackage) : (freyCurveInt P).c₄ = c₄Int P 
 
 end FreyArith
 
+/--
+@isnad1 id=not.2h2v.s5.b037f1ec5650 from=translated src=- shape=120a904d vocab=f399301f
+-/
 theorem solution (P : FreyPackage) {q : ℕ} (hq : q.Prime)
     (hqabc : (q : ℤ) ∣ P.a * P.b * P.c) : ¬ (q : ℤ) ∣ P.freyCurveInt.c₄ := by
   rw [FreyArith.freyCurveInt_c₄]

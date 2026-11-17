@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_NumberField_exists_isIntegral_discr_mul_an
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.0h1v.s9.f8b0c09d54b2 from=translated src=- shape=f0f39cd4 vocab=0d00777c
+-/
 theorem NumberField.exists_isIntegral_discr_mul_and_sum_algEquiv_apply_mul_eq
     (K : Type) [Field K] [NumberField K] [IsGalois ℚ K] :
     ∃ (n : ℕ) (a b : Fin n → K),

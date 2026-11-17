@@ -12,10 +12,16 @@ open Polynomial IntermediateField
 
 namespace WEK1
 
+/--
+@isnad1 id=eq.1h2v.s5.e2d5d6ec9025 from=translated src=- shape=cad46b05 vocab=0ee0950a
+-/
 theorem add_pred_mul {p : ℕ} (hp : 0 < p) (j : ℕ) : j + (p - 1) * j = p * j := by
   obtain ⟨m, rfl⟩ := Nat.exists_eq_succ_of_ne_zero hp.ne'
   rw [Nat.succ_sub_one, Nat.succ_mul, add_comm]
 
+/--
+@isnad1 id=ex.6h8v.s8.20550fe47342 from=translated src=- shape=6e9fa938 vocab=8920b566
+-/
 theorem step {F E : Type*} [Field F] [Field E] [Algebra F E] {p : ℕ} (hp : p.Prime)
     {ζ : F} (hζ : IsPrimitiveRoot ζ p) {u : F} (hu : u ≠ 0) {b : E}
     (hb : b ^ p = algebraMap F E u) {z : F} {y : E} (hy : y ^ p = algebraMap F E z)
@@ -142,6 +148,9 @@ theorem step {F E : Type*} [Field F] [Field E] [Algebra F E] {p : ℕ} (hp : p.P
 
 end WEK1
 
+/--
+@isnad1 id=ex.7h9v.s8.3c8dfeb7d856 from=translated src=- shape=3f233a1e vocab=33f8618b
+-/
 theorem solution
     {K L : Type*} [Field K] [Field L] [Algebra K L] (p : ℕ) (hp : p.Prime)
     (ζ : K) (hζ : IsPrimitiveRoot ζ p) {n : ℕ}

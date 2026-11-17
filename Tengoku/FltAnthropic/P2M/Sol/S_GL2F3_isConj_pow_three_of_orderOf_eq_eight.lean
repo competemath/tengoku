@@ -13,6 +13,9 @@ def X (M : M2) : M2 := !![0, M 0 1; -M 1 0, 0]
 
 set_option maxHeartbeats 32000000 in
 set_option maxRecDepth 20000 in
+/--
+@isnad1 id=and.0h4v.s12.19f5a1d14d0f from=translated src=- shape=e9e520d9 vocab=8d2a113d
+-/
 theorem key (a b c d : ZMod 3) :
     ((!![a, b; c, d] : M2) ^ 4 = -1 →
       X !![a, b; c, d] * !![a, b; c, d] = !![a, b; c, d] ^ 3 * X !![a, b; c, d] ∧
@@ -21,6 +24,9 @@ theorem key (a b c d : ZMod 3) :
   fin_cases a <;> fin_cases b <;> fin_cases c <;> fin_cases d <;> decide
 
 open Matrix in
+/--
+@isnad1 id=eq.1h1v.s9.fe0730ce473b from=translated src=- shape=295eb129 vocab=1e261cf4
+-/
 theorem coe_pow_four_eq_neg_one (g : GL (Fin 2) (ZMod 3)) (hg : orderOf g = 8) :
     ((g : M2)) ^ 4 = -1 := by
   have h8 : (g : M2) ^ 8 = 1 := by
@@ -33,6 +39,9 @@ theorem coe_pow_four_eq_neg_one (g : GL (Fin 2) (ZMod 3)) (hg : orderOf g = 8) :
   rw [e] at h8 h4 ⊢
   exact (key _ _ _ _).2 h8 h4
 
+/--
+@isnad1 id=isconj.1h1v.s9.a33b5c5f222a from=translated src=- shape=bdfd3964 vocab=38e953b7
+-/
 theorem isConj_pow_three_of_orderOf_eq_eight (g : GL (Fin 2) (ZMod 3)) (hg : orderOf g = 8) :
     IsConj g (g ^ 3) := by
   have h4 := coe_pow_four_eq_neg_one g hg
@@ -51,6 +60,9 @@ theorem isConj_pow_three_of_orderOf_eq_eight (g : GL (Fin 2) (ZMod 3)) (hg : ord
 
 end FltWs24.GL2F3
 
+/--
+@isnad1 id=isconj.1h1v.s9.a33b5c5f222a from=translated src=- shape=bdfd3964 vocab=38e953b7
+-/
 theorem solution (g : GL (Fin 2) (ZMod 3))
     (hg : orderOf g = 8) : IsConj g (g ^ 3) :=
   FltWs24.GL2F3.isConj_pow_three_of_orderOf_eq_eight g hg

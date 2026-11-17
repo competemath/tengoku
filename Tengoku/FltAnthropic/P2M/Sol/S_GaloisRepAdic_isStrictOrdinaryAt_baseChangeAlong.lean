@@ -19,11 +19,17 @@ noncomputable def tm (b : B) (v : ρ.V) : (ρ.baseChangeAlong φ hφ).V :=
   letI : Algebra A B := φ.toAlgebra
   b ⊗ₜ[A] v
 
+/--
+@isnad1 id=eq.1h7v.s8.89f402144e3c from=translated src=- shape=fd4f42d8 vocab=62e9a018
+-/
 theorem tm_sub (b : B) (v w : ρ.V) : tm φ hφ ρ b (v - w) = tm φ hφ ρ b v - tm φ hφ ρ b w := by
   letI : Algebra A B := φ.toAlgebra
   show b ⊗ₜ[A] (v - w) = b ⊗ₜ[A] v - b ⊗ₜ[A] w
   exact TensorProduct.tmul_sub b v w
 
+/--
+@isnad1 id=eq.1h7v.s9.7f640227566a from=translated src=- shape=438297fd vocab=afd8c7c3
+-/
 theorem tm_smul (b : B) (c : A) (v : ρ.V) : tm φ hφ ρ b (c • v) = φ c • tm φ hφ ρ b v := by
   letI : Algebra A B := φ.toAlgebra
   show b ⊗ₜ[A] (c • v) = φ c • (b ⊗ₜ[A] v)
@@ -31,17 +37,26 @@ theorem tm_smul (b : B) (c : A) (v : ρ.V) : tm φ hφ ρ b (c • v) = φ c •
     TensorProduct.smul_tmul']
   rfl
 
+/--
+@isnad1 id=eq.1h7v.s9.d80207098f2e from=translated src=- shape=925009ae vocab=565c77c8
+-/
 theorem smul_tm (b b' : B) (v : ρ.V) : b' • tm φ hφ ρ b v = tm φ hφ ρ (b' * b) v := by
   letI : Algebra A B := φ.toAlgebra
   show b' • (b ⊗ₜ[A] v) = (b' * b) ⊗ₜ[A] v
   rw [TensorProduct.smul_tmul', smul_eq_mul]
 
+/--
+@isnad1 id=eq.1h7v.s11.2092acf8e50b from=translated src=- shape=62f0de75 vocab=a84d4761
+-/
 theorem rho_tm (σ : Γ) (b : B) (v : ρ.V) :
     (ρ.baseChangeAlong φ hφ).ρ σ (tm φ hφ ρ b v) = tm φ hφ ρ b (ρ.ρ σ v) := by
   letI : Algebra A B := φ.toAlgebra
   show (ρ.ρ σ).baseChange B (b ⊗ₜ[A] v) = b ⊗ₜ[A] (ρ.ρ σ v)
   exact LinearMap.baseChange_tmul _ _ _
 
+/--
+@isnad1 id=var.1h9v.s8.8b1ae9dd0c1c from=translated src=- shape=fa623367 vocab=e389ffcb
+-/
 theorem tm_induction {C : (ρ.baseChangeAlong φ hφ).V → Prop} (h0 : C 0)
     (ht : ∀ (b : B) (v : ρ.V), C (tm φ hφ ρ b v)) (hadd : ∀ x y, C x → C y → C (x + y))
     (x : (ρ.baseChangeAlong φ hφ).V) : C x := by
@@ -55,12 +70,18 @@ noncomputable def bcBasis (e : Module.Basis (Fin 2) A ρ.V) : Module.Basis (Fin 
   letI : Algebra A B := φ.toAlgebra
   Algebra.TensorProduct.basis B e
 
+/--
+@isnad1 id=eq.1h6v.s8.29ae1437ff88 from=translated src=- shape=45a3b86e vocab=61b1aa00
+-/
 theorem bcBasis_apply (e : Module.Basis (Fin 2) A ρ.V) (i : Fin 2) :
     bcBasis φ hφ ρ e i = tm φ hφ ρ 1 (e i) := by
   letI : Algebra A B := φ.toAlgebra
   show Algebra.TensorProduct.basis B e i = (1 : B) ⊗ₜ[A] e i
   exact Algebra.TensorProduct.basis_apply e i
 
+/--
+@isnad1 id=mem.2h7v.s9.56a0012cbfe6 from=translated src=- shape=1ccb0f7b vocab=79912ae1
+-/
 theorem tm_mem_span (w : ρ.V) (c : B) {v : ρ.V} (hv : v ∈ A ∙ w) :
     tm φ hφ ρ c v ∈ B ∙ tm φ hφ ρ 1 w := by
   obtain ⟨a, rfl⟩ := Submodule.mem_span_singleton.mp hv
@@ -71,6 +92,9 @@ theorem tm_mem_span (w : ρ.V) (c : B) {v : ρ.V} (hv : v ∈ A ∙ w) :
 end P2mStrictBC
 
 open P2mStrictBC in
+/--
+@isnad1 id=isstrict.2h5v.s6.903c3698ff87 from=translated src=- shape=cbde18a5 vocab=8669452f
+-/
 theorem solution
     {A B : Type} [CommRing A] [IsLocalRing A] [CommRing B] [IsLocalRing B]
     (φ : A →+* B) (hφ : IsLocalHom φ) (ρ : GaloisRepAdic A)

@@ -16,6 +16,9 @@ open _root_.Tengoku.FltAnthropic.GaloisRepAdic
 
 variable {A B : Type} [CommRing A] [IsLocalRing A] [CommRing B] [IsLocalRing B]
 
+/--
+@isnad1 id=eq.1h5v.s12.c4b737551d18 from=translated src=- shape=8cf7b612 vocab=365ed307
+-/
 theorem det_apply_baseChangeAlong (φ : A →+* B) (hφ : IsLocalHom φ) (ρ : GaloisRepAdic A)
     (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) :
     LinearMap.det ((ρ.baseChangeAlong φ hφ).ρ σ) = φ (LinearMap.det (ρ.ρ σ)) := by
@@ -23,6 +26,9 @@ theorem det_apply_baseChangeAlong (φ : A →+* B) (hφ : IsLocalHom φ) (ρ : G
   show LinearMap.det ((ρ.ρ σ).baseChange B) = algebraMap A B (LinearMap.det (ρ.ρ σ))
   exact LinearMap.det_baseChange (ρ.ρ σ)
 
+/--
+@isnad1 id=detiscyc.2h5v.s6.3c40fbb80c46 from=translated src=- shape=cbde18a5 vocab=26b7bab2
+-/
 theorem detIsCyclotomic_baseChangeAlong (φ : A →+* B) (hφ : IsLocalHom φ) (ρ : GaloisRepAdic A)
     {p : ℕ} (h : ρ.DetIsCyclotomic p) : (ρ.baseChangeAlong φ hφ).DetIsCyclotomic p := by
   refine ⟨?_, fun n σ a hσ => ?_⟩
@@ -32,6 +38,9 @@ theorem detIsCyclotomic_baseChangeAlong (φ : A →+* B) (hφ : IsLocalHom φ) (
     have hdvd := map_dvd φ (Ideal.mem_span_singleton.mp (h.2 n σ a hσ))
     rwa [map_natCast, map_sub, map_natCast] at hdvd
 
+/--
+@isnad1 id=isordina.2h5v.s6.9616d06b8ac8 from=translated src=- shape=cbde18a5 vocab=5a9966d4
+-/
 theorem isOrdinaryAt_baseChangeAlong (φ : A →+* B) (hφ : IsLocalHom φ) (ρ : GaloisRepAdic A)
     {p : ℕ} (h : ρ.IsOrdinaryAt p) : (ρ.baseChangeAlong φ hφ).IsOrdinaryAt p := by
   letI : Algebra A B := φ.toAlgebra
@@ -69,6 +78,9 @@ theorem isOrdinaryAt_baseChangeAlong (φ : A →+* B) (hφ : IsLocalHom φ) (ρ 
       rw [map_add, add_sub_add_comm]
       exact Submodule.add_mem _ hx hy
 
+/--
+@isnad1 id=isunrami.2h5v.s6.d0490229d467 from=translated src=- shape=cbde18a5 vocab=596d07dd
+-/
 theorem isUnramifiedAt_baseChangeAlong (φ : A →+* B) (hφ : IsLocalHom φ) (ρ : GaloisRepAdic A)
     {q : ℕ} (h : ρ.IsUnramifiedAt q) : (ρ.baseChangeAlong φ hφ).IsUnramifiedAt q := by
   letI : Algebra A B := φ.toAlgebra
@@ -76,6 +88,9 @@ theorem isUnramifiedAt_baseChangeAlong (φ : A →+* B) (hφ : IsLocalHom φ) (�
   show (ρ.ρ σ).baseChange B = 1
   rw [h P hP σ hσ, LinearMap.baseChange_one]
 
+/--
+@isnad1 id=ordinary.2h7v.s7.97ed1a0fa0e4 from=translated src=- shape=07c16804 vocab=c47ae4d6
+-/
 theorem ordinaryCondition_baseChangeAlong (𝒪 : Type) [CommRing 𝒪] [Algebra 𝒪 A] [Algebra 𝒪 B]
     (φ : A →+* B) (hφ : IsLocalHom φ) (ρ : GaloisRepAdic A) {p : ℕ} {S : Finset ℕ}
     (h : GaloisRep.ordinaryCondition 𝒪 p S ρ) :
@@ -86,6 +101,9 @@ theorem ordinaryCondition_baseChangeAlong (𝒪 : Type) [CommRing 𝒪] [Algebra
 
 end GaloisRepAdic.LCSol
 
+/--
+@isnad1 id=ordinary.2h7v.s7.97ed1a0fa0e4 from=translated src=- shape=07c16804 vocab=c47ae4d6
+-/
 theorem solution
     {A B : Type} [CommRing A] [IsLocalRing A] [CommRing B] [IsLocalRing B]
     (𝒪 : Type) [CommRing 𝒪] [Algebra 𝒪 A] [Algebra 𝒪 B]

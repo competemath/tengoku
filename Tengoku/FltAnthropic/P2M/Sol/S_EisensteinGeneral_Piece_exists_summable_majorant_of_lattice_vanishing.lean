@@ -636,6 +636,9 @@ open NumberField
 
 open scoped Classical in
 
+/--
+@isnad1 id=ex.12h17v.s11.f76265be3d9e from=translated src=- shape=50bd18ec vocab=75d5992b
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F] (n : ℕ) (R : ℝ)
     (C : Fin n → ℂ → ℂ) (hC : ∀ j, Continuous (C j))

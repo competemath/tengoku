@@ -7,6 +7,9 @@ namespace P2MW.S_RingHom_eq_of_forall_exists_sub_mem_pow_of_comp_eq
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.4h8v.s9.4d300b5c7548 from=translated src=- shape=a7ed4943 vocab=7df77cf8
+-/
 theorem solution
     (R Rh S : Type) [CommRing R] [CommRing Rh] [CommRing S]
     (ι : R →+* Rh) (I : Ideal Rh)

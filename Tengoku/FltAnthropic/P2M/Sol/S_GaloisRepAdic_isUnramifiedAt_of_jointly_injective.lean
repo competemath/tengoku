@@ -41,6 +41,9 @@ private theorem eq_zero_of_baseChange_eq_zero_of_jointly_injective {P A B : Type
 
 end LCMazur
 
+/--
+@isnad1 id=isunrami.5h7v.s8.2a58ac2112ab from=translated src=- shape=96b80193 vocab=723b47f8
+-/
 theorem solution {P A B : Type} [CommRing P]
     [IsLocalRing P] [CommRing A] [IsLocalRing A] [CommRing B] [IsLocalRing B]
     (πA : P →+* A) (hπA : IsLocalHom πA) (πB : P →+* B) (hπB : IsLocalHom πB)

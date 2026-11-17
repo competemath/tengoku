@@ -16,6 +16,9 @@ variable {V : Type*} [Fintype V] [DecidableEq V]
 def IsFlow {E : Type*} [Fintype E] (src tgt : E → V) (ε : E → ℤ) : Prop :=
   ∀ i : V, (∑ e, if src e = i then ε e else 0) = (∑ e, if tgt e = i then ε e else 0)
 
+/--
+@isnad1 id=eq.0h5v.s6.bc124b9667c9 from=translated src=- shape=50defda9 vocab=268fad8c
+-/
 theorem sum_mul_comp_eq {E : Type*} [Fintype E] (v : E → V) (ψ : V → ℤ) (ε : E → ℤ) :
     ∑ e, ε e * ψ (v e) = ∑ i, ψ i * ∑ e, (if v e = i then ε e else 0) := by
   have h : ∀ e, ε e * ψ (v e) = ∑ i, (if v e = i then ε e * ψ i else 0) := by
@@ -27,16 +30,25 @@ theorem sum_mul_comp_eq {E : Type*} [Fintype E] (v : E → V) (ψ : V → ℤ) (
   refine Finset.sum_congr rfl fun e _ => ?_
   split_ifs <;> ring
 
+/--
+@isnad1 id=eq.1h6v.s6.b2a9075ff9bf from=translated src=- shape=c0ea8073 vocab=8c733f19
+-/
 theorem sum_mul_coboundary_eq_zero {E : Type*} [Fintype E] (src tgt : E → V) (ψ : V → ℤ) (ε : E → ℤ)
     (hε : IsFlow src tgt ε) : ∑ e, ε e * (ψ (tgt e) - ψ (src e)) = 0 := by
   simp_rw [mul_sub]
   rw [Finset.sum_sub_distrib, sum_mul_comp_eq tgt ψ ε, sum_mul_comp_eq src ψ ε]
   rw [Finset.sum_congr rfl fun i _ => by rw [← hε i], sub_self]
 
+/--
+@isnad1 id=eq.0h3v.s6.e0987bfbacaf from=translated src=- shape=a6d859d8 vocab=d2c8d4a7
+-/
 theorem sum_eq_add_sum_ne {E : Type*} [Fintype E] [DecidableEq E] (e₀ : E) (f : E → ℤ) :
     ∑ e, f e = f e₀ + ∑ e : {e // e ≠ e₀}, f e.1 :=
   Fintype.sum_eq_add_sum_subtype_ne f e₀
 
+/--
+@isnad1 id=ex.2h7v.s6.7c9e9c674550 from=translated src=- shape=099d417f vocab=61563a31
+-/
 theorem main : ∀ (k : ℕ) (E : Type*) [Fintype E] [DecidableEq E], Fintype.card E = k →
     ∀ (src tgt : E → V) (q : ℤ) (τ : E → ℤ),
     (∀ ε : E → ℤ, IsFlow src tgt ε → (∑ e, ε e * τ e) ≡ 0 [ZMOD q]) →
@@ -188,6 +200,9 @@ theorem main : ∀ (k : ℕ) (E : Type*) [Fintype E] [DecidableEq E], Fintype.ca
 
 end PhiFin
 
+/--
+@isnad1 id=ex.1h6v.s7.1aa6632fdafa from=translated src=- shape=8f71271a vocab=47c1a679
+-/
 theorem solution
     (n m : ℕ) (src tgt : Fin m → Fin n) (q : ℤ) (τ : Fin m → ℤ)
     (hτ : ∀ ε : Fin m → ℤ,

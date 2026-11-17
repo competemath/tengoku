@@ -17,6 +17,9 @@ variable {X : Type*} (f : X → X) (hf : ∀ x : X, 0 < minimalPeriod f x)
 def rel (x y : X) : Prop := ∃ k : ℕ, f^[k] x = y
 
 include hf in
+/--
+@isnad1 id=rel.2h4v.s5.41e327c3cbaf from=translated src=- shape=c15a7b12 vocab=866a4627
+-/
 theorem rel_symm {x y : X} (h : rel f x y) : rel f y x := by
   obtain ⟨k, rfl⟩ := h
 
@@ -27,8 +30,14 @@ theorem rel_symm {x y : X} (h : rel f x y) : rel f y x := by
   rw [h1]
   exact (hper.mul_const k).eq
 
+/--
+@isnad1 id=rel.0h3v.s3.8ec6a5a513aa from=translated src=- shape=e6ea132d vocab=c946f7f9
+-/
 theorem rel_refl (x : X) : rel f x x := ⟨0, rfl⟩
 
+/--
+@isnad1 id=rel.2h5v.s4.ffe6102492df from=translated src=- shape=02fac14d vocab=c946f7f9
+-/
 theorem rel_trans {x y z : X} (h₁ : rel f x y) (h₂ : rel f y z) : rel f x z := by
   obtain ⟨k, rfl⟩ := h₁
   obtain ⟨l, rfl⟩ := h₂
@@ -40,6 +49,9 @@ def orbitSetoid (hf : ∀ x : X, 0 < minimalPeriod f x) : Setoid X where
 
 noncomputable def base (x : X) : X := (Quotient.mk (orbitSetoid f hf) x).out
 
+/--
+@isnad1 id=rel.1h3v.s5.6defc09b629c from=translated src=- shape=09b7f6fc vocab=6d67614b
+-/
 theorem rel_base (x : X) : rel f (base f hf x) x := by
   have h : Quotient.mk (orbitSetoid f hf) (base f hf x) = Quotient.mk (orbitSetoid f hf) x := Quotient.out_eq _
   exact Quotient.exact (s := orbitSetoid f hf) h

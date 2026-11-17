@@ -12,6 +12,9 @@ open EisensteinGeneral.LocalCorrection
 
 namespace S3bAux
 
+/--
+@isnad1 id=le.2h3v.s6.d94855cb1af5 from=translated src=- shape=606c04f2 vocab=f43b82b2
+-/
 theorem norm_cpow_neg_two_mul_add_one_le {N : ℕ} (hN : 1 ≤ N) {σ₁ : ℝ} {s : ℂ} (hs : σ₁ ≤ s.re) :
     ‖((N : ℕ) : ℂ) ^ (-(2 * s + 1))‖ ≤ (N : ℝ) ^ (2 * max 0 (-σ₁) + 1) := by
   rw [Complex.norm_natCast_cpow_of_pos hN]
@@ -22,6 +25,9 @@ theorem norm_cpow_neg_two_mul_add_one_le {N : ℕ} (hN : 1 ≤ N) {σ₁ : ℝ} 
     sub_zero, Complex.one_re]
   linarith
 
+/--
+@isnad1 id=le.6h9v.s7.f373386ddb1a from=translated src=- shape=34de4321 vocab=5514084d
+-/
 theorem ramSum_norm_le {N : ℕ} (hN : 1 ≤ N) (K : ℕ) {c₀ : ℂ} {c₀' : ℝ} (hc₀ : ‖c₀‖ ≤ c₀')
     {sh : ℕ → ℂ} {b d : ℝ} (hb : 0 ≤ b) (hd : 1 ≤ d) (hsh : ∀ k, 1 ≤ k → ‖sh k‖ ≤ b * d ^ k) {σ₁ : ℝ} {s : ℂ}
     (hs : σ₁ ≤ s.re) :
@@ -49,6 +55,9 @@ theorem ramSum_norm_le {N : ℕ} (hN : 1 ≤ N) (K : ℕ) {c₀ : ℂ} {c₀' : 
   refine (Finset.sum_le_card_nsmul _ _ _ hterm).trans ?_
   rw [Nat.card_Icc, Nat.add_sub_cancel, nsmul_eq_mul]
 
+/--
+@isnad1 id=le.0h1v.s5.410df46afbf6 from=translated src=- shape=0c72263b vocab=94889561
+-/
 theorem succ_le_two_pow (M : ℕ) : M + 1 ≤ 2 ^ M := by
   induction M with
   | zero => simp
@@ -57,6 +66,9 @@ theorem succ_le_two_pow (M : ℕ) : M + 1 ≤ 2 ^ M := by
 end S3bAux
 
 open S3bAux in
+/--
+@isnad1 id=ex.5h9v.s7.314514978a4d from=translated src=- shape=6717edfc vocab=f135d2c3
+-/
 theorem solution
     {N : ℕ} (hN : 2 ≤ N) (n : ℤ) (c₀ m₀ : ℕ) {μ𝒪 : ℝ} (hμ : 0 < μ𝒪)
     (c₀' b d σ₁ : ℝ) (hc₀' : 0 ≤ c₀') (hb : 0 ≤ b) (hd : 1 ≤ d) :

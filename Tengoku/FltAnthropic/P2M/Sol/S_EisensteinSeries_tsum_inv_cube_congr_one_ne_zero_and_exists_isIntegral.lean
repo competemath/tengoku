@@ -15,6 +15,9 @@ open _root_.EisensteinSeries
 
 open Finset Complex
 
+/--
+@isnad1 id=eq.1h3v.s7.36cd5e44ae2a from=translated src=- shape=53646a8e vocab=07d6b389
+-/
 theorem one_sub_mul_sum_pow_mul (w : ℂ) (N : ℕ) (hw : w ^ N = 1) (f : ℕ → ℂ) :
     (1 - w) * ∑ r ∈ range N, w ^ r * f r = f 0 - f N + w * ∑ r ∈ range N, w ^ r * (f (r + 1) - f r) := by
   have h1 : w * ∑ r ∈ range N, w ^ r * (f (r + 1) - f r) =
@@ -30,6 +33,9 @@ theorem one_sub_mul_sum_pow_mul (w : ℂ) (N : ℕ) (hw : w ^ N = 1) (f : ℕ �
     linear_combination h4 - h3
   rw [h1, h2]; ring
 
+/--
+@isnad1 id=eq.2h2v.s6.2541e740f6b7 from=translated src=- shape=2d3c357d vocab=611cb593
+-/
 theorem natCast_eq_one_sub_mul (u : ℂ) (N : ℕ) (hu : u ^ N = 1) (hu1 : u ≠ 1) :
     (N : ℂ) = (1 - u) * ∑ i ∈ range N, ∑ l ∈ range i, u ^ l := by
   have hgeom : ∑ i ∈ range N, u ^ i = 0 := by
@@ -43,6 +49,9 @@ theorem natCast_eq_one_sub_mul (u : ℂ) (N : ℕ) (hu : u ^ N = 1) (hu1 : u ≠
   rw [sum_congr rfl this, sum_sub_distrib, hgeom, sub_zero, sum_const, card_range]
   simp
 
+/--
+@isnad1 id=eq.2h2v.s7.d2364f459c14 from=translated src=- shape=e19bcb3d vocab=480f5ec4
+-/
 theorem key_identity (w : ℂ) (N : ℕ) (hw : w ^ N = 1) (hw1 : w ≠ 1) :
     (1 - w) ^ 3 * ∑ r ∈ range N, w ^ r * ((r : ℂ) * (2 * r - N) * (r - N)) = -6 * N * w * (1 + w) := by
   set f₃ : ℕ → ℂ := fun r => (r : ℂ) * (2 * r - N) * (r - N) with hf₃
@@ -93,6 +102,9 @@ open _root_.EisensteinSeries
 
 open Finset Complex
 
+/--
+@isnad1 id=eq.0h1v.s6.a9087478c1b9 from=translated src=- shape=866f8e7b vocab=0dc1b7a5
+-/
 theorem bernoulliFun_three (t : ℝ) : bernoulliFun 3 t = t ^ 3 - 3 / 2 * t ^ 2 + 1 / 2 * t := by
   have hb3 : bernoulli 3 = 0 := by
     rw [bernoulli_eq_bernoulli'_of_ne_one (by norm_num)]; exact bernoulli'_three
@@ -100,6 +112,9 @@ theorem bernoulliFun_three (t : ℝ) : bernoulliFun 3 t = t ^ 3 - 3 / 2 * t ^ 2 
     bernoulli_zero, Nat.choose]
   ring
 
+/--
+@isnad1 id=mem.2h2v.s6.b54f8ab2527e from=translated src=- shape=1ad41dc0 vocab=e37ff4a3
+-/
 theorem mem_integralClosure_of_pow_eq_one {w : ℂ} {N : ℕ} (hN : 0 < N) (hw : w ^ N = 1) :
     w ∈ integralClosure ℤ ℂ := by
   rw [mem_integralClosure_iff]
@@ -109,6 +124,9 @@ theorem mem_integralClosure_of_pow_eq_one {w : ℂ} {N : ℕ} (hN : 0 < N) (hw :
 end EisensteinSeries.ConstTermSol
 
 open EisensteinSeries.ConstTermSol Finset Complex in
+/--
+@isnad1 id=and.1h1v.s9.d49f7c325ed0 from=translated src=- shape=b5da3889 vocab=69aa8ec3
+-/
 theorem solution
     (N : ℕ) (hN : 3 ≤ N) :
     (∑' d : {d : ℤ // (d : ZMod N) = 1}, ((d : ℂ) ^ 3)⁻¹) ≠ 0 ∧

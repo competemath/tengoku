@@ -13,6 +13,9 @@ set_option autoImplicit false
 
 open GaloisRep
 
+/--
+@isnad1 id=tangentf.1h5v.s7.d00fdcd56c35 from=translated src=- shape=c9854ff4 vocab=3a5df965
+-/
 theorem solution (𝒪 : Type) [CommRing 𝒪] [IsLocalRing 𝒪]
     (ρbar : ResidualGaloisRep (ResidueField 𝒪))
     (𝒟 𝒟' : ∀ ⦃A : Type⦄ [CommRing A] [IsLocalRing A] [Algebra 𝒪 A], GaloisRepAdic A → Prop)

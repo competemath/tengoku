@@ -76,6 +76,9 @@ end RedAux
 
 end FixedPart
 
+/--
+@isnad1 id=and.3h4v.s10.a1dd2d9ab268 from=translated src=- shape=31698625 vocab=de3dc90e
+-/
 theorem solution
     (R : Type) [CommRing R] [Module.Free ℤ R] [Module.Finite ℤ R]
     (hsep : ∀ r : R, r ≠ 0 → ∃ s : R, Algebra.trace ℤ R (r * s) ≠ 0)

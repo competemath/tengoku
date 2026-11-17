@@ -10,16 +10,25 @@ export _root_.GaloisRep (ratLocalizedAt)
 namespace FlatSol
 open _root_.GaloisRep
 
+/--
+@isnad1 id=iff.0h2v.s5.dac7271e7e36 from=translated src=- shape=c7a4012e vocab=9256c41c
+-/
 theorem mem_ratLocalizedAt_iff_coprime {p : ℕ} (q : ℚ) :
     q ∈ ratLocalizedAt p ↔ q.den.Coprime p :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.1h2v.s5.0bdd73cb1a52 from=translated src=- shape=c36e0ae1 vocab=665e5dc6
+-/
 theorem mem_ratLocalizedAt_iff {p : ℕ} (hp : p.Prime) (q : ℚ) :
     q ∈ ratLocalizedAt p ↔ ¬ p ∣ q.den := by
   rw [mem_ratLocalizedAt_iff_coprime, Nat.coprime_comm, hp.coprime_iff_not_dvd]
 
 end GaloisRep.FlatSol
 
+/--
+@isnad1 id=iff.1h2v.s5.0bdd73cb1a52 from=translated src=- shape=c36e0ae1 vocab=665e5dc6
+-/
 theorem solution
     {p : ℕ} (hp : p.Prime) (q : ℚ) :
     q ∈ GaloisRep.ratLocalizedAt p ↔ ¬ p ∣ q.den :=

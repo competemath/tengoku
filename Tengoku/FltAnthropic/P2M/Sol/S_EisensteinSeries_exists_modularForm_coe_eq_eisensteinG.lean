@@ -18,9 +18,15 @@ variable {N : ℕ} {k : ℤ}
 
 def congrSet (N : ℕ) (a : Fin 2 → ZMod N) : Set (Fin 2 → ℤ) := {v | ((↑) : ℤ → ZMod N) ∘ v = a}
 
+/--
+@isnad1 id=eq.0h3v.s7.68e079d5490c from=translated src=- shape=b3f804c6 vocab=2029d642
+-/
 lemma eisensteinG_eq (N : ℕ) (k : ℤ) (a : Fin 2 → ZMod N) :
     EisensteinSeries.eisensteinG N k a = fun z => ∑' v : congrSet N a, eisSummand k v z := rfl
 
+/--
+@isnad1 id=mem.1h4v.s9.ee48cb5c7a9c from=translated src=- shape=da627742 vocab=fa503334
+-/
 lemma vecMul_mem_congrSet {a : Fin 2 → ZMod N} {v : Fin 2 → ℤ} (hv : v ∈ congrSet N a)
     (γ : SL(2, ℤ)) : v ᵥ* (γ : Matrix (Fin 2) (Fin 2) ℤ) ∈ congrSet N (a ᵥ* γ) := by
   simp only [congrSet, Set.mem_ofPred_eq] at hv ⊢
@@ -41,6 +47,9 @@ def congrSetEquiv (a : Fin 2 → ZMod N) (γ : SL(2, ℤ)) : congrSet N a ≃ co
   right_inv v := by simp_rw [Matrix.vecMul_vecMul, ← Matrix.SpecialLinearGroup.coe_mul,
     inv_mul_cancel, Matrix.SpecialLinearGroup.coe_one, Matrix.vecMul_one]
 
+/--
+@isnad1 id=eq.0h4v.s9.d095aefc417f from=translated src=- shape=3e2f4df6 vocab=73eec6e0
+-/
 theorem eisensteinG_slash_apply (N : ℕ) (k : ℤ) (a : Fin 2 → ZMod N) (γ : SL(2, ℤ)) :
     EisensteinSeries.eisensteinG N k a ∣[k] γ = EisensteinSeries.eisensteinG N k (a ᵥ* γ) := by
   ext1 z
@@ -57,12 +66,21 @@ noncomputable def eisensteinGSIF (N : ℕ) (k : ℤ) (a : Fin 2 → ZMod N) : Sl
     simp [Matrix.SpecialLinearGroup.mapGL, ← ModularForm.SL_slash, eisensteinG_slash_apply,
       CongruenceSubgroup.Gamma_mem'.mp hA]
 
+/--
+@isnad1 id=eq.0h4v.s8.e7e214342fcc from=translated src=- shape=6f83a4a8 vocab=9e3f6b0e
+-/
 lemma eisensteinGSIF_apply (N : ℕ) (k : ℤ) (a : Fin 2 → ZMod N) (z : ℍ) :
     eisensteinGSIF N k a z = EisensteinSeries.eisensteinG N k a z := rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.fefae2693618 from=translated src=- shape=019a1e75 vocab=9e3f6b0e
+-/
 lemma coe_eisensteinGSIF (N : ℕ) (k : ℤ) (a : Fin 2 → ZMod N) :
     ⇑(eisensteinGSIF N k a) = EisensteinSeries.eisensteinG N k a := rfl
 
+/--
+@isnad1 id=tendstol.1h3v.s7.51935e63b29c from=translated src=- shape=a07d3059 vocab=c88f679b
+-/
 theorem eisensteinG_tendstoLocallyUniformly (hk : 3 ≤ k) (a : Fin 2 → ZMod N) :
     TendstoLocallyUniformly (fun (s : Finset (congrSet N a)) => (∑ x ∈ s, eisSummand k x ·))
       (EisensteinSeries.eisensteinG N k a ·) Filter.atTop := by
@@ -77,6 +95,9 @@ theorem eisensteinG_tendstoLocallyUniformly (hk : 3 ≤ k) (a : Fin 2 → ZMod N
   simpa only [eisSummand, one_div, ← zpow_neg, norm_zpow, ← Real.rpow_intCast,
     Int.cast_neg] using summand_bound_of_mem_verticalStrip (by positivity) p hB hz
 
+/--
+@isnad1 id=tendstol.1h3v.s9.ce0a641bcb6a from=translated src=- shape=3c83545e vocab=a597b3e7
+-/
 lemma eisensteinG_tendstoLocallyUniformlyOn (hk : 3 ≤ k) (a : Fin 2 → ZMod N) :
     TendstoLocallyUniformlyOn (fun (s : Finset (congrSet N a)) =>
       ↑ₕ(fun (z : ℍ) => ∑ x ∈ s, eisSummand k x z)) (↑ₕ(eisensteinGSIF N k a))
@@ -88,6 +109,9 @@ lemma eisensteinG_tendstoLocallyUniformlyOn (hk : 3 ≤ k) (a : Fin 2 → ZMod N
   · simp only [Topology.IsOpenEmbedding.toOpenPartialHomeomorph_target, Set.top_eq_univ,
       Set.mapsTo_range_iff, Set.mem_univ, forall_const]
 
+/--
+@isnad1 id=mdiffere.1h3v.s8.1a7b1ebdf06d from=translated src=- shape=b9c17145 vocab=0b4a6427
+-/
 theorem eisensteinGSIF_mdifferentiable (hk : 3 ≤ k) (a : Fin 2 → ZMod N) :
     MDiff (eisensteinGSIF N k a) := by
   intro τ
@@ -100,6 +124,9 @@ theorem eisensteinGSIF_mdifferentiable (hk : 3 ≤ k) (a : Fin 2 → ZMod N) :
     (Eventually.of_forall fun s => DifferentiableOn.fun_sum
     fun _ _ => eisSummand_extension_differentiableOn _ _) isOpen_upperHalfPlaneSet
 
+/--
+@isnad1 id=le.1h4v.s6.c4bf307a94c7 from=translated src=- shape=75abb741 vocab=9bbc5372
+-/
 lemma norm_le_tsum_norm (N : ℕ) (a : Fin 2 → ZMod N) (k : ℤ) (hk : 3 ≤ k) (z : ℍ) :
     ‖EisensteinSeries.eisensteinG N k a z‖ ≤ ∑' (x : Fin 2 → ℤ), ‖eisSummand k x z‖ := by
   rw [eisensteinG_eq]
@@ -107,6 +134,9 @@ lemma norm_le_tsum_norm (N : ℕ) (a : Fin 2 → ZMod N) (k : ℤ) (hk : 3 ≤ k
     (Summable.tsum_subtype_le (fun (x : Fin 2 → ℤ) => ‖(eisSummand k x z)‖) _ (fun _ => norm_nonneg _)
       (summable_norm_eisSummand hk z))
 
+/--
+@isnad1 id=isbounde.1h4v.s8.e84b43699a91 from=translated src=- shape=6c4ccad8 vocab=4fce1a9c
+-/
 theorem isBoundedAtImInfty_eisensteinGSIF_slash [NeZero N] (a : Fin 2 → ZMod N)
     (hk : 3 ≤ k) (A : SL(2, ℤ)) : IsBoundedAtImInfty (eisensteinGSIF N k a ∣[k] A) := by
   simp_rw [UpperHalfPlane.isBoundedAtImInfty_iff, coe_eisensteinGSIF] at *
@@ -136,6 +166,9 @@ noncomputable def eisensteinGMF [NeZero N] (hk : 3 ≤ k) (a : Fin 2 → ZMod N)
 
 end CardG1
 
+/--
+@isnad1 id=and.1h3v.s10.e2f23194eaee from=translated src=- shape=6989af96 vocab=d2b0e257
+-/
 theorem solution (N : ℕ) [NeZero N] (k : ℤ) (hk : 3 ≤ k) (a : Fin 2 → ZMod N) :
     (∃ F : ModularForm Γ(N) k, ⇑F = EisensteinSeries.eisensteinG N k a) ∧
       ∀ γ : SL(2, ℤ), EisensteinSeries.eisensteinG N k a ∣[k] γ =

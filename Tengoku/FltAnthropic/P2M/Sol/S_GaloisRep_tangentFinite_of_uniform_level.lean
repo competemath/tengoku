@@ -22,6 +22,9 @@ open GaloisRep
 
 variable (𝒪 : Type) [CommRing 𝒪] [IsLocalRing 𝒪]
 
+/--
+@isnad1 id=tangentf.1h3v.s13.cf9980463cbf from=translated src=- shape=2ef5fca2 vocab=7890d282
+-/
 theorem tangentFinite_of_uniform_level [Finite (ResidueField 𝒪)]
     (ρbar : ResidualGaloisRep (ResidueField 𝒪))
     (𝒟 : ∀ ⦃A : Type⦄ [CommRing A] [IsLocalRing A] [Algebra 𝒪 A], GaloisRepAdic A → Prop)
@@ -129,6 +132,9 @@ end WtTFSol
 
 open _root_.IsLocalRing open _root_.Module.IsLocalRing open _root_.GaloisRep
 
+/--
+@isnad1 id=tangentf.1h3v.s13.cf9980463cbf from=translated src=- shape=2ef5fca2 vocab=7890d282
+-/
 theorem solution (𝒪 : Type) [CommRing 𝒪] [IsLocalRing 𝒪]
     [Finite (ResidueField 𝒪)] (ρbar : ResidualGaloisRep (ResidueField 𝒪))
     (𝒟 : ∀ ⦃A : Type⦄ [CommRing A] [IsLocalRing A] [Algebra 𝒪 A], GaloisRepAdic A → Prop)

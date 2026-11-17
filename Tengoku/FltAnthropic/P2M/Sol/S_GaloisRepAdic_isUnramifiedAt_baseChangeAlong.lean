@@ -16,6 +16,9 @@ open _root_.Tengoku.FltAnthropic.GaloisRepAdic
 
 variable {A B : Type} [CommRing A] [IsLocalRing A] [CommRing B] [IsLocalRing B]
 
+/--
+@isnad1 id=isunrami.2h5v.s6.d0490229d467 from=translated src=- shape=cbde18a5 vocab=596d07dd
+-/
 theorem isUnramifiedAt_baseChangeAlong (φ : A →+* B) (hφ : IsLocalHom φ) (ρ : GaloisRepAdic A)
     {q : ℕ} (h : ρ.IsUnramifiedAt q) : (ρ.baseChangeAlong φ hφ).IsUnramifiedAt q := by
   letI : Algebra A B := φ.toAlgebra
@@ -25,6 +28,9 @@ theorem isUnramifiedAt_baseChangeAlong (φ : A →+* B) (hφ : IsLocalHom φ) (�
 
 end GaloisRepAdic.LCSol
 
+/--
+@isnad1 id=isunrami.2h5v.s6.d0490229d467 from=translated src=- shape=cbde18a5 vocab=596d07dd
+-/
 theorem solution
     {A B : Type} [CommRing A] [IsLocalRing A] [CommRing B] [IsLocalRing B]
     (φ : A →+* B) (hφ : IsLocalHom φ) (ρ : GaloisRepAdic A)

@@ -40,6 +40,9 @@ private lemma freyCurveInt_b₆ (P : FreyPackage) : P.freyCurveInt.b₆ = 0 := b
   simp only [eq_intCast] at key
   exact_mod_cast key
 
+/--
+@isnad1 id=eq.0h3v.s8.d865bdf4bc8e from=translated src=- shape=fbac4fc4 vocab=f6b4abbc
+-/
 theorem _root_.P2MW.S_FreyCurve_eight_mul_Psi2Sq_eval_reductionMod.solution (P : FreyPackage) {q : ℕ} [Fact q.Prime]
     (x : ZMod q) :
     8 * (((FreyPackage.freyCurveInt P).reductionMod q).Ψ₂Sq.eval x) =

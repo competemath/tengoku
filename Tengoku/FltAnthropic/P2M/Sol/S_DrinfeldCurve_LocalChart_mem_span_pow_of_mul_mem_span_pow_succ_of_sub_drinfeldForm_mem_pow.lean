@@ -14,6 +14,9 @@ namespace PenOffendB1
 
 open MvPowerSeries
 
+/--
+@isnad1 id=eq.4h6v.s10.f1676cc02eb4 from=translated src=- shape=7103251d vocab=20f450bf
+-/
 theorem ord_aux (Λ : Type) [CommRing Λ] (q : ℕ) (hq : 2 ≤ q)
     (φ h : MvPowerSeries (Fin 2) Λ)
     (hφ : ∀ α : Fin 2 →₀ ℕ, α 0 + α 1 < q + 2 →
@@ -74,6 +77,9 @@ theorem ord_aux (Λ : Type) [CommRing Λ] (q : ℕ) (hq : 2 ≤ q)
 
 end PenOffendB1
 
+/--
+@isnad1 id=mem.8h10v.s15.8823033aadd8 from=translated src=- shape=84b964fd vocab=8839f18c
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime]
     (W : Type) [CommRing W] [IsDomain W] [IsDiscreteValuationRing W]
