@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "08e7d6ef88a7925118029c6a2a8d7afe766d2c94dd04463efe8a0cd4810cc0fb",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "agrawal-r5",
+ "lint_mode": "proposed",
+ "modules": 64,
+ "part": 1,
+ "theorems": 479
+}
