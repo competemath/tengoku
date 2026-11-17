@@ -127,6 +127,7 @@ import Tengoku.Formalbook
 import Tengoku.MiyaokaMoriCharzero
 import Tengoku.GrothendieckRiemannRoch
 import Tengoku.Automatatheory
+import Tengoku.TutteHomotopyLean
 import Tengoku.BrownianMotion
 import Tengoku.NsP23
 import Tengoku.Etingofrepresentationtheory
