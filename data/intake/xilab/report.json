@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "6fd8d9f4cd1f704cd4b436f83384f79ae9da5be40f7c3c76bfbaa6f1bea2a1c8",
+ "factory_changes": {
+  "modules changed": 11,
+  "print lines removed": 99
+ },
+ "gate2_unjudged": [],
+ "library": "xilab",
+ "lint_mode": "proposed",
+ "modules": 13,
+ "part": 1,
+ "theorems": 332
+}
