@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "2ede54a53d6ce0801c11719db4b2729e8d0ed2ba917664fca71267dfc6533630",
+ "factory_changes": {
+  "inert lines removed": 13,
+  "modules changed": 4
+ },
+ "gate2_unjudged": [],
+ "library": "lean-eval-platonic-classification",
+ "lint_mode": "proposed",
+ "modules": 114,
+ "part": 1,
+ "theorems": 610
+}
