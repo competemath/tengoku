@@ -311,20 +311,53 @@ class QueueStepsSurviveTheirFailures(unittest.TestCase):
             count = str(Path(d) / "n")
             r, *_ = self.seed(cache_sh=self.counting_cache(1, count), SHIM_SEED_TIMEOUT="1", SEED_RETRY_PAUSE="0")
             self.assertNotEqual(r.returncode, 0)  # the shim stops every call at its cap (exit 124) before cache.sh runs
-            self.assertIn("try 3 of 3", r.stdout)
+            tries = self.seed_numbers()[0]
+            self.assertIn(f"try {tries} of {tries}", r.stdout)
 
-    def test_every_try_has_a_twelve_minute_cap_and_the_worst_case_fits_the_job(self):
+    def seed_numbers(self):
+        """the try count, the per-try cap in minutes and the default pause in seconds, read from the step as it is written"""
         run = step(load()["jobs"]["queue-build"], "Seed from the newest published cache")["run"]
-        self.assertRegex(run, r"timeout -k \d+ 12m scripts/cache\.sh get")
+        tries = len(re.search(r"for try in ([\d ]+); do", run).group(1).split())
+        cap = int(re.search(r"timeout -k \d+ (\d+)m scripts/cache\.sh get", run).group(1))
+        pause = int(re.search(r"SEED_RETRY_PAUSE:-(\d+)", run).group(1))
+        return tries, cap, pause
+
+    def test_the_worst_case_derived_from_the_step_fits_an_hour_and_the_job(self):
+        tries, cap, pause = self.seed_numbers()
+        worst = (
+            tries * cap + sum(t * pause for t in range(1, tries)) / 60
+        )  # minutes: every try at its cap, a pause after every try but the last
+        self.assertLessEqual(worst, 60, f"{tries} tries of {cap} min and a {pause} s pause: the seed may not take more than an hour")
         job = load()["jobs"]["queue-build"]
-        worst = 3 * 12 + (20 * 1 + 20 * 2) / 60  # minutes: three tries of 12 and the two pauses of 20 and 40 seconds
-        self.assertLess(worst, 60)
-        self.assertGreaterEqual(job["timeout-minutes"], 240)
+        self.assertLess(worst, job["timeout-minutes"] - 120, "the build, the canary and the verdict need their share of the job")
+        self.assertEqual((tries, cap, pause), (3, 12, 20), "the numbers in the PR text: change them there when changing them here")
+
+    def test_a_failed_try_leaves_no_partial_download_behind(self):
+        # cache.sh stages the download under RUNNER_TEMP and removes it only on success: a reset or killed try leaves several GB (gitar on tengoku#883)
+        leaky = (
+            "#!/usr/bin/env bash\n"
+            'n=$(cat "$COUNT" 2>/dev/null || echo 0); n=$((n+1)); echo $n > "$COUNT"\n'
+            'mkdir -p "$RUNNER_TEMP/tmp.abc$n"; echo partial > "$RUNNER_TEMP/tmp.abc$n/tengoku-cache.tar.zst.part-1"\n'
+            'if [ "$n" -ge 3 ]; then echo unpacked; exit 0; fi\n' + self.REAL_RESET
+        )
+        with tempfile.TemporaryDirectory() as d:
+            base = Path(d) / "runner-temp"
+            base.mkdir()
+            count = str(Path(d) / "n")
+            r, *_ = self.seed(cache_sh=leaky, SEED_RETRY_PAUSE="0", RUNNER_TEMP=str(base), COUNT=count)
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            self.assertEqual(self.tries(count), 3)
+            self.assertEqual(sorted(p.name for p in base.iterdir()), [], "every try's temporary directory is removed")
+
+    def test_each_try_gets_a_temporary_directory_of_its_own(self):
+        run = step(load()["jobs"]["queue-build"], "Seed from the newest published cache")["run"]
+        self.assertRegex(run, r'RUNNER_TEMP="\$try_tmp" timeout -k \d+ 12m scripts/cache\.sh get')
+        self.assertIn("rm -rf", run)
 
     def test_mutant_the_step_as_it_was_ejects_the_group_on_the_first_reset(self):
         run = step(load()["jobs"]["queue-build"], "Seed from the newest published cache")["run"]
         start = run.index("seeded=0")
-        end = run.index('exit 1; fi\n', start) + len('exit 1; fi\n')
+        end = run.index("exit 1; fi\n", start) + len("exit 1; fi\n")
         old_run = run[:start] + "scripts/cache.sh get 2>&1 | tail -3\n" + run[end:]
         with tempfile.TemporaryDirectory() as d:
             count = str(Path(d) / "n")
