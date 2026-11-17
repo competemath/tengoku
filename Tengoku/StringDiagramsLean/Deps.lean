@@ -1,0 +1,1 @@
+-- StringDiagramsLean: a factory bundle (data/intake/string-diagrams-lean). This file only marks the library for Tengoku/All.lean.
