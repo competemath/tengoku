@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "6c80fdc70fb99c58793da51200046fe09a946734d5dbba1c45b392b84333454a",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "robust-inverse-uncertainty-lean",
+ "lint_mode": "proposed",
+ "modules": 8,
+ "part": 1,
+ "theorems": 190
+}
