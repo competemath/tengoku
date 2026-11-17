@@ -37,19 +37,25 @@ noncomputable section
 abbrev ReducedCandidate (x y B H : ℕ) :=
   {c : ℕ × ℕ // c ∈ reducedChannelCandidates x y B H}
 
-/-- The positive first coefficient of a bundled candidate.-/
+/-- The positive first coefficient of a bundled candidate.
+@isnad1 id=lt.0h5v.s5.df7c4122d3cf from=translated src=- shape=0cb33d51 vocab=1012ab87
+-/
 theorem candidate_fst_pos
     {x y B H : ℕ} (c : ReducedCandidate x y B H) :
     0 < c.1.1 :=
   (mem_reducedChannelCandidates.mp c.2).1
 
-/-- The positive second coefficient of a bundled candidate.-/
+/-- The positive second coefficient of a bundled candidate.
+@isnad1 id=lt.0h5v.s5.ff6163872a78 from=translated src=- shape=0cb33d51 vocab=fe88571a
+-/
 theorem candidate_snd_pos
     {x y B H : ℕ} (c : ReducedCandidate x y B H) :
     0 < c.1.2 :=
   (mem_reducedChannelCandidates.mp c.2).2.1
 
-/-- The candidate is primitive.-/
+/-- The candidate is primitive.
+@isnad1 id=coprime.0h5v.s6.27d1b817ce18 from=translated src=- shape=4158524c vocab=157c1dcf
+-/
 theorem candidate_coprime
     {x y B H : ℕ} (c : ReducedCandidate x y B H) :
     c.1.1.Coprime c.1.2 :=
@@ -65,6 +71,9 @@ noncomputable def canonicalReducedCandidate?
   else
     none
 
+/--
+@isnad1 id=iff.0h4v.s5.e57aa03a72b6 from=translated src=- shape=5644478f vocab=db853021
+-/
 theorem canonicalReducedCandidate?_eq_none_iff
     {x y B H : ℕ} :
     canonicalReducedCandidate? x y B H = none ↔
@@ -80,7 +89,9 @@ theorem canonicalReducedCandidate?_eq_none_iff
 
 /--
 The proof-carrying selector has exactly the same underlying optional pair as
-`canonicalReducedChannel?`.-/
+`canonicalReducedChannel?`.
+@isnad1 id=eq.0h4v.s6.b1e1f9cfab23 from=translated src=- shape=8be38b16 vocab=ff164419
+-/
 theorem canonicalReducedCandidate?_map_val
     (x y B H : ℕ) :
     Option.map Subtype.val
@@ -92,7 +103,9 @@ theorem canonicalReducedCandidate?_map_val
 
 /--
 Above the determinant threshold, the bundled canonical choice is every
-candidate witness.-/
+candidate witness.
+@isnad1 id=eq.2h5v.s7.b1e5263dfe75 from=translated src=- shape=7ba2b21f vocab=e83e9240
+-/
 theorem canonicalReducedCandidate?_eq_some_of_mem
     {x y B H : ℕ} (hx : 4 * H ^ 2 * B < x)
     {c : ℕ × ℕ}
@@ -142,7 +155,9 @@ noncomputable def canonicalMultiplicity
   | none => 0
   | some c => candidateMultiplicity L c
 
-/-- A multiplicity at least two exposes the selected bundled candidate.-/
+/-- A multiplicity at least two exposes the selected bundled candidate.
+@isnad1 id=ex.1h4v.s8.2a45f5caab13 from=translated src=- shape=45293200 vocab=17f445f5
+-/
 theorem exists_canonical_candidate_of_two_le_multiplicity
     {A L x y : ℕ}
     (hm : 2 ≤ canonicalMultiplicity A L x y) :
@@ -163,7 +178,9 @@ theorem exists_canonical_candidate_of_two_le_multiplicity
       simp only at hm
       exact ⟨c, rfl, hm⟩
 
-/-- A selected nontrivial candidate has height at most the offset length.-/
+/-- A selected nontrivial candidate has height at most the offset length.
+@isnad1 id=le.1h6v.s6.225b71c748d2 from=translated src=- shape=3a4aa5c3 vocab=8d54aee0
+-/
 theorem candidate_max_le_length_of_two_units
     {L x y B H : ℕ}
     (c : ReducedCandidate x y B H)
@@ -206,7 +223,9 @@ noncomputable def residualTau
 /--
 The code-theoretic definition of `σ` is exactly the elementary multiplicity
 formula `max(m_ex-1,0)`, for every input (including below the uniqueness
-threshold).-/
+threshold).
+@isnad1 id=eq.2h5v.s5.2824139ee64d from=translated src=- shape=95e6ba95 vocab=5821a4d2
+-/
 theorem rationalSigma_eq_canonicalMultiplicity_sub_one
     (M A x y L : ℕ) (hx : 2 ≤ x) (hy : 2 ≤ y) :
     rationalSigma M A x y L hx hy =
@@ -252,7 +271,9 @@ theorem rationalSigma_eq_canonicalMultiplicity_sub_one
           (RelationSpace (twoStartSystem M x y L))]
         omega
 
-/-- The rational subspace cannot exceed the full relation space.-/
+/-- The rational subspace cannot exceed the full relation space.
+@isnad1 id=le.2h5v.s7.34e76953220b from=translated src=- shape=eb487c40 vocab=90608f40
+-/
 theorem rationalSigma_le_relationRho
     (M A x y L : ℕ) (hx : 2 ≤ x) (hy : 2 ≤ y) :
     rationalSigma M A x y L hx hy ≤
@@ -261,7 +282,9 @@ theorem rationalSigma_le_relationRho
   exact Submodule.finrank_le
     (canonicalRationalCode M A x y L hx hy)
 
-/-- The defining codimension identity `ρ = σ + τ`.-/
+/-- The defining codimension identity `ρ = σ + τ`.
+@isnad1 id=eq.2h5v.s7.0d67b6b19dbc from=translated src=- shape=775b22af vocab=f9f6388a
+-/
 theorem relationRho_eq_rationalSigma_add_residualTau
     (M A x y L : ℕ) (hx : 2 ≤ x) (hy : 2 ≤ y) :
     relationRho (twoStartSystem M x y L) =
@@ -272,7 +295,9 @@ theorem relationRho_eq_rationalSigma_add_residualTau
     (Nat.add_sub_of_le
       (rationalSigma_le_relationRho M A x y L hx hy)).symm
 
-/-- If the canonical channel has at most one unit, `S_rat` is zero.-/
+/-- If the canonical channel has at most one unit, `S_rat` is zero.
+@isnad1 id=eq.3h5v.s11.ea3a6708f5b4 from=translated src=- shape=28d90929 vocab=227c21f6
+-/
 theorem canonicalRationalCode_eq_bot_of_multiplicity_le_one
     {M A x y L : ℕ} {hx : 2 ≤ x} {hy : 2 ≤ y}
     (hm : canonicalMultiplicity A L x y ≤ 1) :
@@ -296,7 +321,9 @@ theorem canonicalRationalCode_eq_bot_of_multiplicity_le_one
 
 /--
 Remark 5.3, dimension part: in the branch `m_ex ≤ 1`, no quotient is taken
-and `(S_rat, σ, τ) = (0,0,ρ)`.-/
+and `(S_rat, σ, τ) = (0,0,ρ)`.
+@isnad1 id=and.3h5v.s11.088e8d553043 from=translated src=- shape=7e682594 vocab=043e6ff0
+-/
 theorem degenerate_canonical_channel
     {M A x y L : ℕ} {hx : 2 ≤ x} {hy : 2 ≤ y}
     (hm : canonicalMultiplicity A L x y ≤ 1) :
@@ -320,7 +347,9 @@ theorem degenerate_canonical_channel
 
 /--
 At the determinant threshold, a nontrivial primitive channel is selected by
-the canonical construction and its systematic code is unchanged.-/
+the canonical construction and its systematic code is unchanged.
+@isnad1 id=eq.8h7v.s10.cb2260d4438a from=translated src=- shape=0db3d3d6 vocab=4941993b
+-/
 theorem canonicalRationalCode_eq_of_two_units
     {M A x y L a b : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)
@@ -366,7 +395,9 @@ theorem canonicalRationalCode_eq_of_two_units
 /--
 Literal coverage assertion of Lemma 5.2: if the systematic code of a
 primitive channel is nonzero, then that channel is the canonical one above
-the uniqueness threshold.-/
+the uniqueness threshold.
+@isnad1 id=eq.8h7v.s12.1ebc95391e1e from=translated src=- shape=3cb06bf8 vocab=abb9a6e6
+-/
 theorem canonicalRationalCode_eq_of_rationalCode_ne_bot
     {M A x y L a b : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)

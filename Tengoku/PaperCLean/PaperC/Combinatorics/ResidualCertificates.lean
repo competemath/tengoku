@@ -84,7 +84,9 @@ def ComponentCarriesPrime
   ∃ cell : Fin (L + 1) × Fin (L + 1),
     IsComponentPrimeCell x y L C p cell
 
-/-- A component-prime cell indeed gives an edge of the large-prime graph.-/
+/-- A component-prime cell indeed gives an edge of the large-prime graph.
+@isnad1 id=adj.1h6v.s7.6bbbcd4fc18e from=translated src=- shape=9775b3bf vocab=3d7cab6d
+-/
 theorem adj_of_isComponentPrimeCell
     {x y L p : ℕ}
     {C : (largePrimeGraph x y L).ConnectedComponent}
@@ -95,7 +97,9 @@ theorem adj_of_isComponentPrimeCell
   exact
     ⟨by simp, p, hcell.1, hcell.2.1, hcell.2.2.1⟩
 
-/-- The right endpoint of a component-prime cell belongs to the same component.-/
+/-- The right endpoint of a component-prime cell belongs to the same component.
+@isnad1 id=eq.1h6v.s7.da8f5d622602 from=translated src=- shape=cbab1d69 vocab=3af9b4b0
+-/
 theorem right_component_of_isComponentPrimeCell
     {x y L p : ℕ}
     {C : (largePrimeGraph x y L).ConnectedComponent}
@@ -110,7 +114,9 @@ theorem right_component_of_isComponentPrimeCell
 
 /--
 A finite connected component with at least two vertices contains an edge
-whose two endpoints belong to that component.-/
+whose two endpoints belong to that component.
+@isnad1 id=ex.1h4v.s8.080d323563a3 from=translated src=- shape=ac684432 vocab=0b01dd60
+-/
 theorem exists_adj_in_component_of_two_le_card
     (x y L : ℕ)
     (C : (largePrimeGraph x y L).ConnectedComponent)
@@ -159,7 +165,9 @@ theorem exists_adj_in_component_of_two_le_card
 
 /--
 Every nontrivial component of the concrete graph carries at least one large
-prime and at least one oriented left--right cell for that prime.-/
+prime and at least one oriented left--right cell for that prime.
+@isnad1 id=ex.3h4v.s7.6f45d47f8893 from=translated src=- shape=0cf47497 vocab=e22ec305
+-/
 theorem exists_componentCarriesPrime
     {x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -200,7 +208,9 @@ noncomputable def leastComponentPrime
   classical
   exact Nat.find (exists_componentCarriesPrime hx hy C hC)
 
-/-- The least selected prime really labels an edge of the component.-/
+/-- The least selected prime really labels an edge of the component.
+@isnad1 id=componen.3h4v.s7.30a111461868 from=translated src=- shape=09c1e6a9 vocab=a10bc6cb
+-/
 theorem leastComponentPrime_spec
     {x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -214,7 +224,9 @@ theorem leastComponentPrime_spec
   classical
   exact Nat.find_spec (exists_componentCarriesPrime hx hy C hC)
 
-/-- Minimality of the selected prime among all edge labels of `C`.-/
+/-- Minimality of the selected prime among all edge labels of `C`.
+@isnad1 id=le.4h5v.s7.ed529363f4b8 from=translated src=- shape=a691d2b6 vocab=a10bc6cb
+-/
 theorem leastComponentPrime_le
     {x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -240,6 +252,9 @@ noncomputable def componentPrimeCells
   exact Finset.univ.filter
     (IsComponentPrimeCell x y L C p)
 
+/--
+@isnad1 id=iff.0h6v.s7.332bdff62b64 from=translated src=- shape=a1acbedb vocab=bc2b655b
+-/
 @[simp]
 theorem mem_componentPrimeCells
     {x y L p : ℕ}
@@ -250,7 +265,9 @@ theorem mem_componentPrimeCells
   classical
   simp [componentPrimeCells]
 
-/-- The cell set at the selected least prime is nonempty.-/
+/-- The cell set at the selected least prime is nonempty.
+@isnad1 id=nonempty.3h4v.s7.9a7e9dd5e6f9 from=translated src=- shape=00ef4dcb vocab=bd5f5c8d
+-/
 theorem componentPrimeCells_least_nonempty
     {x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -281,7 +298,9 @@ noncomputable def leastComponentCell
       (leastComponentPrime hx hy C hC)).min'
     (componentPrimeCells_least_nonempty hx hy C hC)
 
-/-- The lexicographically least cell has the required label and component.-/
+/-- The lexicographically least cell has the required label and component.
+@isnad1 id=iscompon.3h4v.s7.df86047262fb from=translated src=- shape=c5293da8 vocab=751e6a2a
+-/
 theorem leastComponentCell_spec
     {x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -296,7 +315,9 @@ theorem leastComponentCell_spec
   exact mem_componentPrimeCells.mp
     (Finset.min'_mem _ _)
 
-/-- Lexicographic minimality at the already selected least prime.-/
+/-- Lexicographic minimality at the already selected least prime.
+@isnad1 id=le.4h5v.s10.fe2c1a512a45 from=translated src=- shape=83acc281 vocab=569091da
+-/
 theorem leastComponentCell_le
     {x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -354,6 +375,9 @@ noncomputable def canonicalComponentCertificate
     ⟨p, cell.1, cell.2,
       hcell.1, hcell.2.1, hcell.2.2.1, hcell.2.2.2⟩
 
+/--
+@isnad1 id=eq.3h4v.s7.4860128da191 from=translated src=- shape=97613232 vocab=5b2efd8e
+-/
 @[simp]
 theorem canonicalComponentCertificate_prime
     {x y L : ℕ}
@@ -367,6 +391,9 @@ theorem canonicalComponentCertificate_prime
       leastComponentPrime hx hy C hC :=
   rfl
 
+/--
+@isnad1 id=eq.3h4v.s8.ec575d1de5a8 from=translated src=- shape=126fa86e vocab=55ce5d97
+-/
 @[simp]
 theorem canonicalComponentCertificate_cell
     {x y L : ℕ}
@@ -381,7 +408,9 @@ theorem canonicalComponentCertificate_cell
       leastComponentCell hx hy C hC :=
   rfl
 
-/-- Every packaged certificate gives an edge.-/
+/-- Every packaged certificate gives an edge.
+@isnad1 id=adj.0h5v.s6.0c689595f8d0 from=translated src=- shape=96ede607 vocab=8797caa2
+-/
 theorem ComponentCertificate.adj
     {x y L : ℕ}
     {C : (largePrimeGraph x y L).ConnectedComponent}
@@ -392,7 +421,9 @@ theorem ComponentCertificate.adj
     ⟨by simp, cert.prime, cert.prime_large,
       cert.left_mem, cert.right_mem⟩
 
-/-- The right endpoint of a certificate lies in its indexed component.-/
+/-- The right endpoint of a certificate lies in its indexed component.
+@isnad1 id=eq.0h5v.s6.9728684bcfcb from=translated src=- shape=0203acdd vocab=6d98840d
+-/
 theorem ComponentCertificate.right_component
     {x y L : ℕ}
     {C : (largePrimeGraph x y L).ConnectedComponent}
@@ -403,7 +434,9 @@ theorem ComponentCertificate.right_component
     (SimpleGraph.ConnectedComponent.connectedComponentMk_eq_of_adj
       cert.adj).symm.trans cert.left_component
 
-/-- The selected prime divides the natural left label.-/
+/-- The selected prime divides the natural left label.
+@isnad1 id=dvd.0h5v.s5.bde8aaa3e85f from=translated src=- shape=e2d15bc1 vocab=333a15c2
+-/
 theorem ComponentCertificate.prime_dvd_left_label
     {x y L : ℕ}
     {C : (largePrimeGraph x y L).ConnectedComponent}
@@ -413,7 +446,9 @@ theorem ComponentCertificate.prime_dvd_left_label
   dvd_of_parityVec_ne_zero
     (parityVec_ne_zero_of_mem cert.left_mem)
 
-/-- The selected prime divides the natural right label.-/
+/-- The selected prime divides the natural right label.
+@isnad1 id=dvd.0h5v.s5.b6b6b8305db0 from=translated src=- shape=5c13ce67 vocab=e0007b31
+-/
 theorem ComponentCertificate.prime_dvd_right_label
     {x y L : ℕ}
     {C : (largePrimeGraph x y L).ConnectedComponent}
@@ -425,7 +460,9 @@ theorem ComponentCertificate.prime_dvd_right_label
 
 /--
 In the manuscript's signed offset coordinates, `p ∣ x+i` for the left
-certificate offset.-/
+certificate offset.
+@isnad1 id=dvd.1h5v.s5.5328fb59000f from=translated src=- shape=bcc8fa0d vocab=964aa1aa
+-/
 theorem ComponentCertificate.prime_dvd_left_start_add_offset
     {x y L : ℕ}
     {C : (largePrimeGraph x y L).ConnectedComponent}
@@ -438,7 +475,9 @@ theorem ComponentCertificate.prime_dvd_left_start_add_offset
 
 /--
 In the manuscript's signed offset coordinates, `p ∣ y+j` for the right
-certificate offset.-/
+certificate offset.
+@isnad1 id=dvd.1h5v.s5.97c38fb5c0de from=translated src=- shape=b85515f1 vocab=027a43f8
+-/
 theorem ComponentCertificate.prime_dvd_right_start_add_offset
     {x y L : ℕ}
     {C : (largePrimeGraph x y L).ConnectedComponent}
@@ -449,7 +488,9 @@ theorem ComponentCertificate.prime_dvd_right_start_add_offset
   rw [← startCompleteVertexLabel_cast hy]
   exact_mod_cast cert.prime_dvd_right_label
 
-/-- The signed vertex-offset map is injective.-/
+/-- The signed vertex-offset map is injective.
+@isnad1 id=injectiv.0h1v.s4.81af1b2a727e from=translated src=- shape=e16e573f vocab=52030cd9
+-/
 theorem channelVertexOffset_injective
     {L : ℕ} :
     Function.Injective
@@ -481,7 +522,9 @@ noncomputable def canonicalCertificates
 
 /--
 Certificates indexed by different components cannot reuse a left
-complete-boundary occurrence.-/
+complete-boundary occurrence.
+@isnad1 id=injectiv.3h4v.s8.0ed19f4bbe90 from=translated src=- shape=8f9eff5e vocab=939aecc3
+-/
 theorem canonicalCertificates_left_injective
     {x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -516,7 +559,9 @@ theorem canonicalCertificates_left_injective
 
 /--
 Certificates indexed by different components cannot reuse a right
-complete-boundary occurrence.-/
+complete-boundary occurrence.
+@isnad1 id=injectiv.3h4v.s8.6e58c828f206 from=translated src=- shape=8f9eff5e vocab=28a73b06
+-/
 theorem canonicalCertificates_right_injective
     {x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -551,7 +596,9 @@ theorem canonicalCertificates_right_injective
 
 /--
 A fixed large prime labels at most one component.  Hence the selected
-primes of different components are distinct.-/
+primes of different components are distinct.
+@isnad1 id=injectiv.3h4v.s8.abdd7885fc93 from=translated src=- shape=ee0cdf02 vocab=9ed3718c
+-/
 theorem canonicalCertificates_prime_injective
     {x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -584,7 +631,9 @@ theorem canonicalCertificates_prime_injective
   · exact hCmem
   · exact certD.left_mem
 
-/-- The actual signed left offsets are pairwise distinct.-/
+/-- The actual signed left offsets are pairwise distinct.
+@isnad1 id=injectiv.3h4v.s8.79c8fe841d31 from=translated src=- shape=53afc64f vocab=611e0f92
+-/
 theorem canonicalCertificates_leftOffset_injective
     {x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -605,7 +654,9 @@ theorem canonicalCertificates_leftOffset_injective
     hx hy components hcomponents
   exact channelVertexOffset_injective hoffset
 
-/-- The actual signed right offsets are pairwise distinct.-/
+/-- The actual signed right offsets are pairwise distinct.
+@isnad1 id=injectiv.3h4v.s8.334ad59cc482 from=translated src=- shape=53afc64f vocab=c62a46ac
+-/
 theorem canonicalCertificates_rightOffset_injective
     {x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -639,7 +690,9 @@ def ComponentCertificate.offsetCell
 
 /--
 The manuscript's residual nonvanishing expression is equivalent to saying
-that the selected cell does not lie on the rational channel.-/
+that the selected cell does not lie on the rational channel.
+@isnad1 id=iff.0h5v.s6.87cf60ad8abd from=translated src=- shape=22633213 vocab=2220eeb0
+-/
 theorem not_onChannel_iff_residualExpression_ne
     (a b : ℕ) (h i j : ℤ) :
     ¬OnChannel a b h (i, j) ↔
@@ -659,7 +712,9 @@ its connected component excluded from `components`, then no extracted
 certificate is exact.
 
 The quotient-core formalization only has to establish the exclusion
-hypothesis for its concrete definition of `C_res`.-/
+hypothesis for its concrete definition of `C_res`.
+@isnad1 id=not.4h8v.s9.9bb49bfb021e from=translated src=- shape=28628373 vocab=35a1c751
+-/
 theorem canonicalCertificates_not_onChannel_of_excluded
     {x y L a b : ℕ} {h : ℤ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -693,7 +748,9 @@ theorem canonicalCertificates_not_onChannel_of_excluded
 
 /--
 Direct form of part (iv) of Lemma 6.5 under the residual-component
-exclusion hypothesis.-/
+exclusion hypothesis.
+@isnad1 id=ne.4h8v.s9.3727cbf7b2bf from=translated src=- shape=c2300ced vocab=646295b6
+-/
 theorem canonicalCertificates_residualExpression_ne
     {x y L a b : ℕ} {h : ℤ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -741,6 +798,9 @@ noncomputable def componentsMeetingPair
     (largePrimeGraph x y L).connectedComponentMk v = C ∨
       (largePrimeGraph x y L).connectedComponentMk w = C
 
+/--
+@isnad1 id=iff.0h7v.s7.3e04caeeb057 from=translated src=- shape=4554148f vocab=90952bb9
+-/
 @[simp]
 theorem mem_componentsMeetingPair
     {x y L : ℕ}
@@ -758,7 +818,9 @@ theorem mem_componentsMeetingPair
 /--
 At most two connected components can meet a distinguished pair of
 occurrences.  This is the exact combinatorial bound used for the possible
-exceptions when a channel has one unit.-/
+exceptions when a channel has one unit.
+@isnad1 id=le.0h6v.s5.24d1d79ec578 from=translated src=- shape=d4346bc0 vocab=d1988e94
+-/
 theorem card_componentsMeetingPair_le_two
     {x y L : ℕ}
     (components :
@@ -802,6 +864,9 @@ noncomputable def canonicalCertificatePrimes
     (canonicalCertificates
       hx hy components hcomponents C).prime
 
+/--
+@isnad1 id=eq.3h4v.s7.c89c0cc44be3 from=translated src=- shape=7b20de3c vocab=1ea86908
+-/
 theorem card_canonicalCertificatePrimes
     {x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)

@@ -55,7 +55,9 @@ def canonicalResidualAmbientPrimeModulus
     CanonicalResidualAmbientPrime L a b → ℕ :=
   Subtype.val
 
-/-- Every modulus in the ambient prime range is prime.-/
+/-- Every modulus in the ambient prime range is prime.
+@isnad1 id=prime.0h4v.s4.12eea3aef609 from=translated src=- shape=9380dd05 vocab=8dc88bfe
+-/
 theorem canonicalResidualAmbientPrimeModulus_prime
     {L a b : ℕ}
     (p : CanonicalResidualAmbientPrime L a b) :
@@ -109,7 +111,9 @@ noncomputable def canonicalResidualCertificateToAmbientCell
       canonicalResidualCertificates_mem_residualVertexPrimeCells_of_choice
         hx hy c hchoice hm C⟩⟩
 
-/-- The ambient embedding preserves the selected prime modulus.-/
+/-- The ambient embedding preserves the selected prime modulus.
+@isnad1 id=eq.4h6v.s9.bd559c18210e from=translated src=- shape=701f007f vocab=ccdbf1bc
+-/
 @[simp]
 theorem canonicalResidualCertificateToAmbientCell_modulus
     {A x y L : ℕ}
@@ -129,7 +133,9 @@ theorem canonicalResidualCertificateToAmbientCell_modulus
       canonicalResidualCertificateModulus hx hy C := by
   rfl
 
-/-- The ambient embedding preserves the left-start residue.-/
+/-- The ambient embedding preserves the left-start residue.
+@isnad1 id=eq.4h6v.s9.447ac6d0cfe3 from=translated src=- shape=701f007f vocab=1ccf367c
+-/
 @[simp]
 theorem canonicalResidualCertificateToAmbientCell_leftResidue
     {A x y L : ℕ}
@@ -149,7 +155,9 @@ theorem canonicalResidualCertificateToAmbientCell_leftResidue
       canonicalResidualCertificateLeftResidue hx hy C := by
   rfl
 
-/-- The ambient embedding preserves the right-start residue.-/
+/-- The ambient embedding preserves the right-start residue.
+@isnad1 id=eq.4h6v.s9.d82cee06a712 from=translated src=- shape=701f007f vocab=df262def
+-/
 @[simp]
 theorem canonicalResidualCertificateToAmbientCell_rightResidue
     {A x y L : ℕ}
@@ -171,7 +179,9 @@ theorem canonicalResidualCertificateToAmbientCell_rightResidue
 
 /--
 Canonical residual components embed injectively in the common ambient
-cell family.-/
+cell family.
+@isnad1 id=injectiv.4h5v.s9.8e2b98d06dfd from=translated src=- shape=cda049ed vocab=cbadaed0
+-/
 theorem canonicalResidualCertificateToAmbientCell_injective
     {A x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -237,6 +247,9 @@ noncomputable def canonicalResidualAmbientCertificate
     Finset.card_univ]
   exact card_canonicalResidualCertificateIndex hx hy
 
+/--
+@isnad1 id=eq.4h5v.s13.af82a18556dd from=translated src=- shape=16b5c8a3 vocab=046b39dc
+-/
 @[simp]
 theorem canonicalResidualAmbientCertificate_coe
     {A x y L : ℕ}
@@ -257,6 +270,9 @@ theorem canonicalResidualAmbientCertificate_coe
           c hchoice hm) := by
   rfl
 
+/--
+@isnad1 id=mem.4h6v.s12.5d86052dd41c from=translated src=- shape=80ca6f28 vocab=96e44d47
+-/
 @[simp]
 theorem canonicalResidualCertificateToAmbientCell_mem
     {A x y L : ℕ}
@@ -279,7 +295,9 @@ theorem canonicalResidualCertificateToAmbientCell_mem
 
 /--
 The modulus product of the ambient certificate is the original canonical
-prime product `P#`.-/
+prime product `P#`.
+@isnad1 id=eq.4h5v.s11.e9e4878940c8 from=translated src=- shape=f073006f vocab=26650c53
+-/
 theorem canonicalResidualAmbientCertificate_modulusProduct
     {A x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)
@@ -311,7 +329,9 @@ theorem canonicalResidualAmbientCertificate_modulusProduct
         (show 1 ≤ x by omega) (show 1 ≤ y by omega)
         c hchoice hm hCD
 
-/-- The moduli selected inside the ambient certificate are pairwise distinct.-/
+/-- The moduli selected inside the ambient certificate are pairwise distinct.
+@isnad1 id=pairwise.4h5v.s12.58efb89464ce from=translated src=- shape=3b4cec6c vocab=0f360379
+-/
 theorem canonicalResidualAmbientCertificate_moduli_pairwise
     {A x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)
@@ -365,7 +385,9 @@ theorem canonicalResidualAmbientCertificate_moduli_pairwise
 
 /--
 For the ambient incarnation, admissibility is again exactly the branch
-`P# ≤ N`.-/
+`P# ≤ N`.
+@isnad1 id=iff.4h6v.s11.e98f59b9ecb3 from=translated src=- shape=86548dba vocab=6188e50f
+-/
 theorem canonicalResidualAmbientCertificate_admissible_iff
     {A x y L N : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)
@@ -396,7 +418,9 @@ theorem canonicalResidualAmbientCertificate_admissible_iff
 
 /-! ## Satisfaction of the transported congruences -/
 
-/-- The left start satisfies every congruence in the ambient certificate.-/
+/-- The left start satisfies every congruence in the ambient certificate.
+@isnad1 id=modeq.5h6v.s12.9269adf7f1e1 from=translated src=- shape=22ce1951 vocab=5aa34244
+-/
 theorem canonicalResidual_left_satisfies_ambientCertificate
     {A x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)
@@ -429,7 +453,9 @@ theorem canonicalResidual_left_satisfies_ambientCertificate
       (A := A) (L := L)
       (show 1 ≤ x by omega) (show 1 ≤ y by omega) C
 
-/-- The right start satisfies every congruence in the ambient certificate.-/
+/-- The right start satisfies every congruence in the ambient certificate.
+@isnad1 id=modeq.5h6v.s12.e9727356c431 from=translated src=- shape=19152279 vocab=86262ec2
+-/
 theorem canonicalResidual_right_satisfies_ambientCertificate
     {A x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)
@@ -464,7 +490,9 @@ theorem canonicalResidual_right_satisfies_ambientCertificate
 
 /--
 If the two starts lie in the prescribed intervals, their pair belongs to
-the rectangular solution set of the transported ambient certificate.-/
+the rectangular solution set of the transported ambient certificate.
+@isnad1 id=mem.6h9v.s13.69ba4c14d51d from=translated src=- shape=6902ce3f vocab=bc226715
+-/
 theorem canonicalResidual_pair_mem_ambientCertificatePairSolutions
     {A x y L a₁ b₁ a₂ b₂ : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)

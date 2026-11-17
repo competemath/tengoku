@@ -57,7 +57,9 @@ def ambientCells (N L : ℕ) :
     AmbientPrime N L → Finset (AmbientCell L) :=
   fun _p ↦ Finset.univ
 
-/-- Each ambient prime carries exactly the manuscript's `B²` cells.-/
+/-- Each ambient prime carries exactly the manuscript's `B²` cells.
+@isnad1 id=eq.0h3v.s5.5c24ca957764 from=translated src=- shape=206ec68c vocab=fa08a375
+-/
 @[simp]
 theorem card_ambientCells
     {N L : ℕ} (p : AmbientPrime N L) :
@@ -86,18 +88,26 @@ def ambientRightResidue {N L : ℕ}
     (z : AmbientLabeledCell N L) : ℕ :=
   CRT.startResidue z.1.1 z.2.1.2
 
+/--
+@isnad1 id=iff.0h3v.s5.5bbc07ebf060 from=translated src=- shape=a60962a8 vocab=6369cc28
+-/
 @[simp]
 theorem mem_ambientPrimes {N L p : ℕ} :
     p ∈ ambientPrimes N L ↔
       p.Prime ∧ L + 1 < p ∧ p ≤ dyadicCutoff N L := by
   simp [ambientPrimes]
 
-/-- Every modulus in the ambient family is prime.-/
+/-- Every modulus in the ambient family is prime.
+@isnad1 id=prime.0h3v.s3.cd8c954b8ff1 from=translated src=- shape=2ebfc141 vocab=0e6e0e07
+-/
 theorem ambientModulus_prime
     {N L : ℕ} (z : AmbientLabeledCell N L) :
     (ambientModulus z).Prime := by
   exact (mem_ambientPrimes.mp z.1.2).1
 
+/--
+@isnad1 id=le.2h4v.s5.a7aaffe4fa32 from=translated src=- shape=bd45e23b vocab=ccec13c1
+-/
 theorem pair_left_one_le
     {N x y L : ℕ} (hN : 2 ≤ N)
     (hpair : (x, y) ∈ separatedDyadicPairs N L) :
@@ -107,6 +117,9 @@ theorem pair_left_one_le
       (mem_separatedDyadicPairs.mp hpair).1
   omega
 
+/--
+@isnad1 id=le.2h4v.s5.8b111cba19c3 from=translated src=- shape=818ed2c3 vocab=ccec13c1
+-/
 theorem pair_right_one_le
     {N x y L : ℕ} (hN : 2 ≤ N)
     (hpair : (x, y) ∈ separatedDyadicPairs N L) :
@@ -118,7 +131,9 @@ theorem pair_right_one_le
 
 /--
 The prime chosen by a canonical residual component belongs to the fixed
-dyadic ambient prime family.-/
+dyadic ambient prime family.
+@isnad1 id=mem.2h6v.s7.c741d7ef58fd from=translated src=- shape=ef342ec4 vocab=a8fb312f
+-/
 theorem canonicalResidualCertificatePrime_mem_ambientPrimes
     {N A x y L : ℕ}
     (hN : 2 ≤ N)
@@ -186,7 +201,9 @@ noncomputable def componentAmbientCell
         C).right), by
       simp [ambientCells]⟩⟩
 
-/-- Distinct residual components give distinct ambient labeled cells.-/
+/-- Distinct residual components give distinct ambient labeled cells.
+@isnad1 id=injectiv.2h5v.s6.8058404d42df from=translated src=- shape=11c0c8f3 vocab=0dd2b5c4
+-/
 theorem componentAmbientCell_injective
     {N A x y L : ℕ}
     (hN : 2 ≤ N)
@@ -243,6 +260,9 @@ noncomputable def ambientCertificate
       (two_le_of_mem_dyadicBlock hN
         (mem_separatedDyadicPairs.mp hpair).2.1)
 
+/--
+@isnad1 id=eq.2h5v.s8.e98f9bd236a0 from=translated src=- shape=0a542a3c vocab=690dd8c2
+-/
 @[simp]
 theorem ambientCertificate_coe
     {N A x y L : ℕ}
@@ -252,6 +272,9 @@ theorem ambientCertificate_coe
       Finset.univ.image (componentAmbientCell (A := A) hN hpair) := by
   simp [ambientCertificate]
 
+/--
+@isnad1 id=eq.2h5v.s7.386f0944073f from=translated src=- shape=42b8824c vocab=06639e3b
+-/
 @[simp]
 theorem ambientCertificate_card
     {N A x y L : ℕ}
@@ -261,6 +284,9 @@ theorem ambientCertificate_card
       canonicalResidualComponentCount A x y L :=
   CRT.unorderedCertificate_card (ambientCertificate (A := A) hN hpair)
 
+/--
+@isnad1 id=eq.2h6v.s7.f143977fd98a from=translated src=- shape=6a958f61 vocab=a06e2821
+-/
 @[simp]
 theorem ambientModulus_componentAmbientCell
     {N A x y L : ℕ}
@@ -273,6 +299,9 @@ theorem ambientModulus_componentAmbientCell
         (pair_right_one_le hN hpair) C).prime := by
   rfl
 
+/--
+@isnad1 id=eq.2h6v.s6.d85fd81cbf77 from=translated src=- shape=4bc7af75 vocab=0a592925
+-/
 @[simp]
 theorem ambientLeftResidue_componentAmbientCell
     {N A x y L : ℕ}
@@ -285,6 +314,9 @@ theorem ambientLeftResidue_componentAmbientCell
         (pair_right_one_le hN hpair) C := by
   rfl
 
+/--
+@isnad1 id=eq.2h6v.s6.a47fd47a11ee from=translated src=- shape=4bc7af75 vocab=f2b87dc9
+-/
 @[simp]
 theorem ambientRightResidue_componentAmbientCell
     {N A x y L : ℕ}
@@ -299,7 +331,9 @@ theorem ambientRightResidue_componentAmbientCell
 
 /--
 Transport to the fixed ambient family preserves the complete modulus
-product exactly.-/
+product exactly.
+@isnad1 id=eq.2h5v.s7.1d9cf63474e1 from=translated src=- shape=31f47279 vocab=a0119415
+-/
 theorem ambientCertificate_modulusProduct
     {N A x y L : ℕ}
     (hN : 2 ≤ N)
@@ -319,7 +353,9 @@ theorem ambientCertificate_modulusProduct
   · intro C _hC D _hD hCD
     exact componentAmbientCell_injective (A := A) hN hpair hCD
 
-/-- The ambient modulus is injective on the transported certificate.-/
+/-- The ambient modulus is injective on the transported certificate.
+@isnad1 id=injon.2h5v.s7.8b610c4a919c from=translated src=- shape=aa5b9bbc vocab=c412091d
+-/
 theorem ambientModulus_injOn_ambientCertificate
     {N A x y L : ℕ}
     (hN : 2 ≤ N)
@@ -341,7 +377,9 @@ theorem ambientModulus_injOn_ambientCertificate
   subst D
   rfl
 
-/-- The transported certificate has pairwise distinct prime moduli.-/
+/-- The transported certificate has pairwise distinct prime moduli.
+@isnad1 id=pairwise.2h5v.s7.6ad77a85e7c1 from=translated src=- shape=7ad3c32f vocab=c17f453b
+-/
 theorem ambientCertificate_moduli_pairwise
     {N A x y L : ℕ}
     (hN : 2 ≤ N)
@@ -360,7 +398,9 @@ theorem ambientCertificate_moduli_pairwise
 
 /--
 Ambient admissibility is exactly the manuscript's small-product branch
-`P# ≤ N`.-/
+`P# ≤ N`.
+@isnad1 id=iff.2h5v.s7.847b20be672f from=translated src=- shape=64f2cf7f vocab=89bf3b00
+-/
 theorem ambientCertificate_admissible_iff
     {N A x y L : ℕ}
     (hN : 2 ≤ N)
@@ -382,7 +422,9 @@ theorem ambientCertificate_admissible_iff
 
 /-! ## Satisfaction of the transported congruences -/
 
-/-- The left start satisfies the ambient congruence of every component.-/
+/-- The left start satisfies the ambient congruence of every component.
+@isnad1 id=modeq.2h6v.s6.7a1901fa223d from=translated src=- shape=3f519548 vocab=837df899
+-/
 theorem left_modEq_componentAmbientCell
     {N A x y L : ℕ}
     (hN : 2 ≤ N)
@@ -399,7 +441,9 @@ theorem left_modEq_componentAmbientCell
     (pair_left_one_le hN hpair)
     (pair_right_one_le hN hpair) C
 
-/-- The right start satisfies the ambient congruence of every component.-/
+/-- The right start satisfies the ambient congruence of every component.
+@isnad1 id=modeq.2h6v.s6.fb34a2f951ad from=translated src=- shape=9a76e7bf vocab=87d53ab4
+-/
 theorem right_modEq_componentAmbientCell
     {N A x y L : ℕ}
     (hN : 2 ≤ N)
@@ -416,7 +460,9 @@ theorem right_modEq_componentAmbientCell
     (pair_left_one_le hN hpair)
     (pair_right_one_le hN hpair) C
 
-/-- The left start satisfies all congruences in the ambient certificate.-/
+/-- The left start satisfies all congruences in the ambient certificate.
+@isnad1 id=modeq.3h6v.s7.c04b68c7c930 from=translated src=- shape=778dfd1f vocab=34acc27f
+-/
 theorem left_satisfies_ambientCertificate
     {N A x y L : ℕ}
     (hN : 2 ≤ N)
@@ -431,7 +477,9 @@ theorem left_satisfies_ambientCertificate
   obtain ⟨C, _hC, rfl⟩ := hzSet
   exact left_modEq_componentAmbientCell hN hpair C
 
-/-- The right start satisfies all congruences in the ambient certificate.-/
+/-- The right start satisfies all congruences in the ambient certificate.
+@isnad1 id=modeq.3h6v.s7.5deb8a3f213d from=translated src=- shape=b0513fed vocab=3b0dfb15
+-/
 theorem right_satisfies_ambientCertificate
     {N A x y L : ℕ}
     (hN : 2 ≤ N)
@@ -448,7 +496,9 @@ theorem right_satisfies_ambientCertificate
 
 /--
 Every separated dyadic pair belongs to the rectangular CRT solution set of
-its transported ambient certificate.-/
+its transported ambient certificate.
+@isnad1 id=mem.4h9v.s11.40e8ba57b7f5 from=translated src=- shape=76cc8fc6 vocab=83fb625a
+-/
 theorem pair_mem_ambientCertificateSolutions
     {N A x y L a₁ b₁ a₂ b₂ : ℕ}
     (hN : 2 ≤ N)
@@ -473,7 +523,9 @@ theorem pair_mem_ambientCertificateSolutions
 
 /--
 In particular, the dyadic pair is counted by the two-dimensional solution
-count attached to its ambient certificate.-/
+count attached to its ambient certificate.
+@isnad1 id=le.2h5v.s8.f8359f106dd9 from=translated src=- shape=ba893ffc vocab=dc7c99cd
+-/
 theorem one_le_ambientCertificate_pairSolutionCount
     {N A x y L : ℕ}
     (hN : 2 ≤ N)

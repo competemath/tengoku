@@ -16,7 +16,9 @@ namespace UniformLinear
 
 /--
 The pointwise product of two uniform `N^(1+o(1))` quantities is
-`N^(2+o(1))`, encoded as rational power `2/1`.-/
+`N^(2+o(1))`, encoded as rational power `2/1`.
+@isnad1 id=uniformr.2h3v.s5.8d76ed072ae2 from=translated src=- shape=c66f0b85 vocab=cad701b4
+-/
 theorem mul
     {admissible : ℕ → ℕ → Prop}
     {f g : ℕ → ℕ → ℝ}

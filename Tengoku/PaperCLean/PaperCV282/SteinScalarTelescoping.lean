@@ -20,7 +20,9 @@ noncomputable section
 
 variable {Ω ι : Type*} [Fintype Ω] [Fintype ι] [DecidableEq ι]
 
-/-- The sum of the literal local costs is exactly b1+b2.-/
+/-- The sum of the literal local costs is exactly b1+b2.
+@isnad1 id=eq.0h5v.s7.374919609007 from=translated src=- shape=8effa135 vocab=2cd263e1
+-/
 theorem sum_local_cost_eq_bOne_add_bTwo (μ : FinitePMF Ω) (X : ι → Ω → Bool)
     (G : SimpleGraph ι) :
     (∑ i, (marginal μ X i ^ 2 +
@@ -37,7 +39,9 @@ theorem sum_local_cost_eq_bOne_add_bTwo (μ : FinitePMF Ω) (X : ι → Ω → B
     (self_mem_closedNeighborhood G i)]
   ring
 
-/-- Exact scalar telescoping, with no common-marginal restriction.-/
+/-- Exact scalar telescoping, with no common-marginal restriction.
+@isnad1 id=le.2h7v.s7.3cd1db246357 from=translated src=- shape=8750c7a7 vocab=2f062961
+-/
 theorem scalar_stein_error_le (μ : FinitePMF Ω) (X : ι → Ω → Bool)
     (G : SimpleGraph ι) (hdep : HasExactDependencyGraph μ X G)
     (f : ℕ → ℝ) {d : ℝ} (hd : ∀ k, |f (k + 1) - f k| ≤ d) :

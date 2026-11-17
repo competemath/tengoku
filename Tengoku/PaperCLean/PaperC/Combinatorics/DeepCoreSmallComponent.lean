@@ -43,7 +43,9 @@ variable {ι : Type*}
 /--
 Basic strict-average pigeonhole principle.  If the total mass is at most
 `budget`, but `family.card * (K + 1)` is larger than that budget, some
-member has size at most `K`.-/
+member has size at most `K`.
+@isnad1 id=ex.2h5v.s6.50ec4f57250c from=translated src=- shape=5987cd0a vocab=5c6131e3
+-/
 theorem exists_member_size_le_of_mass_lt
     (family : Finset ι) (size : ι → ℕ)
     (K budget : ℕ)
@@ -69,7 +71,9 @@ theorem exists_member_size_le_of_mass_lt
 
 /--
 Reciprocal-density form.  Under `B ≤ q * family.card` and total mass
-`≤ 2B`, a component has size at most `2q`.-/
+`≤ 2B`, a component has size at most `2q`.
+@isnad1 id=ex.3h5v.s6.5e679d33e581 from=translated src=- shape=78632f3f vocab=d585036a
+-/
 theorem exists_small_of_reciprocal_density
     (family : Finset ι) (size : ι → ℕ)
     {B q : ℕ}
@@ -95,7 +99,9 @@ theorem exists_small_of_reciprocal_density
 
 /--
 The preceding result bundled with the assumption that every member is a
-nontrivial component.-/
+nontrivial component.
+@isnad1 id=ex.4h5v.s7.06f8935faeeb from=translated src=- shape=ac5ebed3 vocab=d585036a
+-/
 theorem exists_nontrivial_small_of_reciprocal_density
     (family : Finset ι) (size : ι → ℕ)
     {B q : ℕ}
@@ -115,7 +121,9 @@ Exact rational-density form.  The inequality
 `alphaNum * B ≤ alphaDen * family.card`
 
 encodes density at least `alphaNum / alphaDen`.  Any cutoff `K` satisfying
-`2 * alphaDen < alphaNum * (K + 1)` then contains a member.-/
+`2 * alphaDen < alphaNum * (K + 1)` then contains a member.
+@isnad1 id=ex.5h7v.s7.07e3ac388680 from=translated src=- shape=0526b490 vocab=5c6131e3
+-/
 theorem exists_small_of_rational_density
     (family : Finset ι) (size : ι → ℕ)
     {B alphaNum alphaDen K : ℕ}
@@ -146,7 +154,9 @@ theorem exists_small_of_rational_density
     exists_member_size_le_of_mass_lt
       family size K (2 * B) hmass hstrict
 
-/-- Rational-density form with nontriviality included in the conclusion.-/
+/-- Rational-density form with nontriviality included in the conclusion.
+@isnad1 id=ex.6h7v.s7.17aa227f4fe3 from=translated src=- shape=a3d1ad59 vocab=5c6131e3
+-/
 theorem exists_nontrivial_small_of_rational_density
     (family : Finset ι) (size : ι → ℕ)
     {B alphaNum alphaDen K : ℕ}
@@ -168,7 +178,9 @@ theorem exists_nontrivial_small_of_rational_density
 
 /--
 Connected-component specialization of reciprocal density.  The ambient
-vertex bound supplies the total-mass hypothesis.-/
+vertex bound supplies the total-mass hypothesis.
+@isnad1 id=ex.4h5v.s8.30a082b5be24 from=translated src=- shape=b6e8171c vocab=3a619fbd
+-/
 theorem exists_bounded_connectedComponent_of_reciprocal_density
     {V : Type*} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]
@@ -189,7 +201,9 @@ theorem exists_bounded_connectedComponent_of_reciprocal_density
       hB hnontrivial hdensity
   exact (sum_component_support_sizes_le G family).trans hambient
 
-/-- Connected-component specialization for an arbitrary rational density.-/
+/-- Connected-component specialization for an arbitrary rational density.
+@isnad1 id=ex.6h7v.s8.7ec6dc7597b8 from=translated src=- shape=d4393d7f vocab=c3dea743
+-/
 theorem exists_bounded_connectedComponent_of_rational_density
     {V : Type*} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]
@@ -224,7 +238,9 @@ noncomputable local instance instDecidableLargePrimeAdj
 /--
 Reciprocal-density specialization to the residual component family
 `C_res`.  This is the structural bounded-component conclusion used before
-the host-counting argument of Lemma 9.6.-/
+the host-counting argument of Lemma 9.6.
+@isnad1 id=ex.1h7v.s9.d541cd78808a from=translated src=- shape=537b0ad6 vocab=b70a206a
+-/
 theorem residualComponents_exists_bounded_of_reciprocal_density
     {x y L a b : ℕ} {h : ℤ} {q : ℕ}
     (hdensity :
@@ -250,7 +266,9 @@ theorem residualComponents_exists_bounded_of_reciprocal_density
 /--
 Rational-density specialization to `C_res`.  The pair
 `alphaNum / alphaDen` is the exact integer presentation of the fixed
-positive density `α` in Corollary 9.7.-/
+positive density `α` in Corollary 9.7.
+@isnad1 id=ex.3h9v.s9.ea4e90699f39 from=translated src=- shape=3b587fbe vocab=6301cd02
+-/
 theorem residualComponents_exists_bounded_of_rational_density
     {x y L a b : ℕ} {h : ℤ}
     {alphaNum alphaDen K : ℕ}

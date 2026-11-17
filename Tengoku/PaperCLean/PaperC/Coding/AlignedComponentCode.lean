@@ -69,7 +69,9 @@ noncomputable def componentRightCount
   exact
     ((componentVertices x y L C).filter IsRightOccurrence).card
 
-/-- The left and right counts partition the vertices of a component.-/
+/-- The left and right counts partition the vertices of a component.
+@isnad1 id=eq.0h4v.s5.7882467d73a1 from=translated src=- shape=b693701a vocab=a92c750e
+-/
 theorem componentLeftCount_add_rightCount
     (x y L : ℕ)
     (C : (largePrimeGraph x y L).ConnectedComponent) :
@@ -112,7 +114,9 @@ noncomputable def componentCodeMap
     (fun i ↦ (componentLeftCount x y L (component i) : F₂))
     (fun i ↦ (componentRightCount x y L (component i) : F₂))
 
-/-- The component code has codimension at most `π(L+1)+2`.-/
+/-- The component code has codimension at most `π(L+1)+2`.
+@isnad1 id=le.0h5v.s10.752777d2510d from=translated src=- shape=0e3b55df vocab=6f90a125
+-/
 theorem componentCode_finrank_ge
     {m x y L : ℕ}
     (component :
@@ -125,7 +129,9 @@ theorem componentCode_finrank_ge
       (fun i ↦ (componentLeftCount x y L (component i) : F₂))
       (fun i ↦ (componentRightCount x y L (component i) : F₂))
 
-/-- A kernel word selects an even total number of left vertices.-/
+/-- A kernel word selects an even total number of left vertices.
+@isnad1 id=even.1h6v.s9.770de069c638 from=translated src=- shape=430eb037 vocab=5a199505
+-/
 theorem kernelWord_leftCount_even
     {m x y L : ℕ}
     (component :
@@ -155,7 +161,9 @@ theorem kernelWord_leftCount_even
       (∑ i ∈ HammingBound.wordSupport word,
         componentLeftCount x y L (component i)) 2).mp hcast)
 
-/-- A kernel word selects an even total number of right vertices.-/
+/-- A kernel word selects an even total number of right vertices.
+@isnad1 id=even.1h6v.s9.d24a768371bb from=translated src=- shape=430eb037 vocab=9a7272d4
+-/
 theorem kernelWord_rightCount_even
     {m x y L : ℕ}
     (component :
@@ -187,7 +195,9 @@ theorem kernelWord_rightCount_even
 
 /--
 A kernel word selects component products whose total product is a square.
-The matrix handles `p ≤ L+1`; unpinnedness handles all larger primes.-/
+The matrix handles `p ≤ L+1`; unpinnedness handles all larger primes.
+@isnad1 id=ex.4h6v.s9.19b0065e6c8e from=translated src=- shape=86aa0d1d vocab=e1e2d3b8
+-/
 theorem kernelWord_componentProducts_square
     {m x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)
@@ -234,7 +244,9 @@ theorem kernelWord_componentProducts_square
   · intro i hi
     exact (componentVertexProduct_pos hx hy (component i)).ne'
 
-/-- All three arithmetic consequences of a component-code kernel word.-/
+/-- All three arithmetic consequences of a component-code kernel word.
+@isnad1 id=and.4h6v.s9.a18919e4102c from=translated src=- shape=c86b3380 vocab=72bd28a5
+-/
 theorem kernelWord_parity_package
     {m x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)

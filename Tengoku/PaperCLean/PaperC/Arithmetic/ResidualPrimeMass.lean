@@ -24,7 +24,9 @@ Dividing a bound of the shape
 `E p ≤ C * (1 + q * B / p) * (1 + B / q)`
 
 by each positive `p` and summing produces exactly the two reciprocal-prime
-sums used after (7.3).-/
+sums used after (7.3).
+@isnad1 id=le.2h5v.s8.f2b31e0bce99 from=translated src=- shape=dd2c99c4 vocab=e00c25ad
+-/
 theorem residualPrimeMass_le
     (P : Finset ℕ) (E : ℕ → ℚ) (C q B : ℚ)
     (hP : ∀ p ∈ P, 0 < p)
@@ -62,7 +64,9 @@ theorem residualPrimeMass_le
 
 /--
 Natural-valued specialization, convenient when `E p` is the cardinality
-of a finite residual-cell family.-/
+of a finite residual-cell family.
+@isnad1 id=le.2h5v.s8.39bfcd294e05 from=translated src=- shape=68ad28b4 vocab=e00c25ad
+-/
 theorem residualPrimeMass_natCast_le
     (P : Finset ℕ) (E : ℕ → ℕ) (C q B : ℚ)
     (hP : ∀ p ∈ P, 0 < p)

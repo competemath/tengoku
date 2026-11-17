@@ -16,7 +16,9 @@ namespace PaperC.V282.LogarithmicWordPowers
 noncomputable section
 
 /-- The integer quotient exponent is bounded by the corresponding root
-of the actual word-space size.-/
+of the actual word-space size.
+@isnad1 id=le.1h2v.s6.7a4fc5af464b from=translated src=- shape=9284da82 vocab=e58eb647
+-/
 theorem two_pow_div_le_word_rpow (L d : ℕ) (hd : 0 < d) :
     (2 : ℝ) ^ (L / d) ≤ ((2 : ℝ) ^ (L + 1)) ^ (1 / (d : ℝ)) := by
   rw [one_div]
@@ -26,7 +28,9 @@ theorem two_pow_div_le_word_rpow (L d : ℕ) (hd : 0 < d) :
   exact pow_le_pow_right₀ (by norm_num) ((Nat.div_mul_le_self L d).trans (Nat.le_succ L))
 
 /-- Every fixed power of `L+1` is uniformly subpolynomial under the
-upper logarithmic ceiling alone.-/
+upper logarithmic ceiling alone.
+@isnad1 id=uniforms.1h2v.s6.f261ff364b44 from=translated src=- shape=b64f323d vocab=3ae59d93
+-/
 theorem length_pow_uniformSubpolynomial (C : ℝ) (hC : 0 ≤ C) (d : ℕ) :
     UniformSubpolynomialOn
       (fun M L => ((L + 1 : ℕ) : ℝ) ≤ C * Real.log M)
@@ -49,7 +53,9 @@ theorem length_pow_uniformSubpolynomial (C : ℝ) (hC : 0 ≤ C) (d : ℕ) :
     intro M hM L hL
     simpa only [abs_pow, ← pow_mul] using hM₀ M hM L hL
 
-/-- A fixed coefficient does not change the preceding uniform growth rate.-/
+/-- A fixed coefficient does not change the preceding uniform growth rate.
+@isnad1 id=uniforms.1h3v.s6.c781d02a5b0b from=translated src=- shape=646169b1 vocab=3ae59d93
+-/
 theorem polynomial_factor_uniformSubpolynomial
     (C : ℝ) (hC : 0 ≤ C) (a : ℝ) (d : ℕ) :
     UniformSubpolynomialOn
@@ -58,7 +64,9 @@ theorem polynomial_factor_uniformSubpolynomial
   ExpSqrtLog.uniformSubpolynomialOn_const_mul a (length_pow_uniformSubpolynomial C hC d)
 
 /-- The reciprocal-power convention gives the literal real-exponent
-bound used in the paper, for every fixed positive error exponent.-/
+bound used in the paper, for every fixed positive error exponent.
+@isnad1 id=ex.2h4v.s7.20db6c738921 from=translated src=- shape=b2921571 vocab=d59d411f
+-/
 theorem polynomial_factor_le_rpow_eventually
     (C : ℝ) (hC : 0 ≤ C) (a : ℝ) (d : ℕ) (ε : ℝ) (hε : 0 < ε) :
     ∃ M₀ : ℕ, ∀ M ≥ M₀, ∀ L : ℕ,

@@ -32,6 +32,9 @@ def heightTwoBackwardPairs (N B : ℕ) : Finset (ℕ × ℕ) :=
 def heightTwoBoundaryPairs (N B : ℕ) : Finset (ℕ × ℕ) :=
   heightTwoForwardPairs N B ∪ heightTwoBackwardPairs N B
 
+/--
+@isnad1 id=iff.0h4v.s6.5cd459df7451 from=translated src=- shape=196dffd9 vocab=07d0702e
+-/
 @[simp]
 theorem mem_heightTwoForwardPairs
     {N B x y : ℕ} :
@@ -40,6 +43,9 @@ theorem mem_heightTwoForwardPairs
         SatisfiesChannelInequality x y B 2 1 := by
   simp [heightTwoForwardPairs, and_assoc]
 
+/--
+@isnad1 id=iff.0h4v.s6.b0845407e98d from=translated src=- shape=196dffd9 vocab=2b058d22
+-/
 @[simp]
 theorem mem_heightTwoBackwardPairs
     {N B x y : ℕ} :
@@ -48,6 +54,9 @@ theorem mem_heightTwoBackwardPairs
         SatisfiesChannelInequality x y B 1 2 := by
   simp [heightTwoBackwardPairs, and_assoc]
 
+/--
+@isnad1 id=iff.0h4v.s6.010df4ef94e1 from=translated src=- shape=1955b4af vocab=0561a70c
+-/
 @[simp]
 theorem mem_heightTwoBoundaryPairs
     {N B x y : ℕ} :
@@ -60,7 +69,9 @@ theorem mem_heightTwoBoundaryPairs
 
 /--
 The `(2,1)` inequality confines a dyadic pair to the lower-left/upper-right
-corner rectangle.-/
+corner rectangle.
+@isnad1 id=and.1h4v.s7.ab546085d2b2 from=translated src=- shape=10737295 vocab=084b4010
+-/
 theorem heightTwoForwardPairs_confinement
     {N B x y : ℕ}
     (hpair : (x, y) ∈ heightTwoForwardPairs N B) :
@@ -90,7 +101,9 @@ theorem heightTwoForwardPairs_confinement
     constructor <;> omega
 
 /--
-The `(1,2)` inequality gives the transposed corner confinement.-/
+The `(1,2)` inequality gives the transposed corner confinement.
+@isnad1 id=and.1h4v.s7.cc6f822458be from=translated src=- shape=afa3ef18 vocab=f88df98a
+-/
 theorem heightTwoBackwardPairs_confinement
     {N B x y : ℕ}
     (hpair : (x, y) ∈ heightTwoBackwardPairs N B) :
@@ -119,7 +132,9 @@ theorem heightTwoBackwardPairs_confinement
     · exact hyBounds.1
     · omega
 
-/-- Rectangle containment for the `(2,1)` orientation.-/
+/-- Rectangle containment for the `(2,1)` orientation.
+@isnad1 id=le.0h2v.s6.aaab70c4dc7b from=translated src=- shape=4f5b8b69 vocab=07dc8763
+-/
 theorem heightTwoForwardPairs_subset_rectangle (N B : ℕ) :
     heightTwoForwardPairs N B ⊆
       Ico N (N + 3 * B) ×ˢ Ico (2 * N - 3 * B) (2 * N) := by
@@ -128,7 +143,9 @@ theorem heightTwoForwardPairs_subset_rectangle (N B : ℕ) :
   exact Finset.mem_product.mpr
     (heightTwoForwardPairs_confinement hpair)
 
-/-- Rectangle containment for the `(1,2)` orientation.-/
+/-- Rectangle containment for the `(1,2)` orientation.
+@isnad1 id=le.0h2v.s6.73ae424b17ad from=translated src=- shape=b7ab9c2a vocab=ec23209b
+-/
 theorem heightTwoBackwardPairs_subset_rectangle (N B : ℕ) :
     heightTwoBackwardPairs N B ⊆
       Ico (2 * N - 3 * B) (2 * N) ×ˢ Ico N (N + 3 * B) := by
@@ -137,7 +154,9 @@ theorem heightTwoBackwardPairs_subset_rectangle (N B : ℕ) :
   exact Finset.mem_product.mpr
     (heightTwoBackwardPairs_confinement hpair)
 
-/-- Each oriented height-two family contains at most `(3B)²` pairs.-/
+/-- Each oriented height-two family contains at most `(3B)²` pairs.
+@isnad1 id=le.0h2v.s5.b028bae3210a from=translated src=- shape=3a81927b vocab=c3dc9290
+-/
 theorem card_heightTwoForwardPairs_le (N B : ℕ) :
     (heightTwoForwardPairs N B).card ≤ (3 * B) ^ 2 := by
   have hsubset :=
@@ -159,7 +178,9 @@ theorem card_heightTwoForwardPairs_le (N B : ℕ) :
       Nat.mul_le_mul_left (3 * B) hlast
     _ = (3 * B) ^ 2 := by ring
 
-/-- The transposed orientation satisfies the same `(3B)²` bound.-/
+/-- The transposed orientation satisfies the same `(3B)²` bound.
+@isnad1 id=le.0h2v.s5.1068d37450a4 from=translated src=- shape=3a81927b vocab=2d062d09
+-/
 theorem card_heightTwoBackwardPairs_le (N B : ℕ) :
     (heightTwoBackwardPairs N B).card ≤ (3 * B) ^ 2 := by
   have hsubset :=
@@ -184,7 +205,9 @@ theorem card_heightTwoBackwardPairs_le (N B : ℕ) :
 /--
 Uniform `O(B²)` bound for both primitive height-two orientations.
 The displayed constant is deliberately compatible with the coarse
-`2(6B+1)²` envelope used downstream.-/
+`2(6B+1)²` envelope used downstream.
+@isnad1 id=le.0h2v.s6.1f4f153372b5 from=translated src=- shape=4831baf8 vocab=b441a5e9
+-/
 theorem card_heightTwoBoundaryPairs_le (N B : ℕ) :
     (heightTwoBoundaryPairs N B).card ≤
       2 * (6 * B + 1) ^ 2 := by

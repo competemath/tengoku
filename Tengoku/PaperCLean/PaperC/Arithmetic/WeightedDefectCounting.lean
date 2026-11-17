@@ -38,6 +38,9 @@ def positiveValuesForSupport (support : Finset ℕ) (X : ℕ) : Finset ℕ :=
 def positiveDefectValues (P : Finset ℕ) (X : ℕ) : Finset ℕ :=
   (defectValues P X).erase 0
 
+/--
+@isnad1 id=iff.0h3v.s6.3e711ac10a70 from=translated src=- shape=c65ec9b9 vocab=de057d66
+-/
 @[simp]
 theorem mem_positiveValuesForSupport_iff
     {support : Finset ℕ} {X n : ℕ} :
@@ -46,6 +49,9 @@ theorem mem_positiveValuesForSupport_iff
         ∃ a ≤ Nat.sqrt X, n = support.prod id * a ^ 2 := by
   simp [positiveValuesForSupport, mem_valuesForSupport_iff, and_assoc]
 
+/--
+@isnad1 id=iff.0h3v.s6.ab771aba7e99 from=translated src=- shape=ccd76310 vocab=6394a37f
+-/
 @[simp]
 theorem mem_positiveDefectValues_iff
     {P : Finset ℕ} {X n : ℕ} :
@@ -57,7 +63,9 @@ theorem mem_positiveDefectValues_iff
 
 /--
 For a positive support product, every positive represented value comes from a
-square part in the sharper interval `1 ≤ a ≤ √(X / ∏ S)`.-/
+square part in the sharper interval `1 ≤ a ≤ √(X / ∏ S)`.
+@isnad1 id=le.1h2v.s6.4532424dea5f from=translated src=- shape=de130e76 vocab=71131062
+-/
 theorem positiveValuesForSupport_subset_image_Icc
     {support : Finset ℕ} {X : ℕ}
     (hSupport : ∀ p ∈ support, 1 ≤ p) :
@@ -87,7 +95,9 @@ theorem positiveValuesForSupport_subset_image_Icc
 One fixed support contributes at most `√(X / ∏ S)` positive values.
 
 This is the integer estimate that avoids the `+ 1` in the coarse bound from
-`DefectCounting.card_valuesForSupport_le`.-/
+`DefectCounting.card_valuesForSupport_le`.
+@isnad1 id=le.1h2v.s5.02d691970bdf from=translated src=- shape=64f714e3 vocab=e563fc1f
+-/
 theorem card_positiveValuesForSupport_le
     {support : Finset ℕ} {X : ℕ}
     (hSupport : ∀ p ∈ support, 1 ≤ p) :
@@ -105,7 +115,9 @@ theorem card_positiveValuesForSupport_le
       simp [Nat.card_Icc]
 
 /--
-Finite weighted count before passing to real square roots.-/
+Finite weighted count before passing to real square roots.
+@isnad1 id=le.1h2v.s6.fea9ecaa66d7 from=translated src=- shape=2d3070e0 vocab=6aaeb868
+-/
 theorem card_positiveDefectValues_le_sqrtDiv_sum
     {P : Finset ℕ} {X : ℕ}
     (hP : ∀ p ∈ P, 1 ≤ p) :
@@ -126,7 +138,9 @@ theorem card_positiveDefectValues_le_sqrtDiv_sum
         card_positiveValuesForSupport_le fun p hp ↦
           hP p (Finset.mem_powerset.mp hsupport hp)
 
-/-- Real square root commutes with a finite product of natural numbers.-/
+/-- Real square root commutes with a finite product of natural numbers.
+@isnad1 id=eq.0h1v.s4.09111e0cf190 from=translated src=- shape=5beb84e8 vocab=0304478d
+-/
 theorem sqrt_natCast_prod (support : Finset ℕ) :
     Real.sqrt (↑(support.prod id) : ℝ) =
       ∏ p ∈ support, Real.sqrt p := by
@@ -140,7 +154,9 @@ theorem sqrt_natCast_prod (support : Finset ℕ) :
 
 /--
 The cast of the integer contribution of one support is bounded by its
-Euler-product weight.-/
+Euler-product weight.
+@isnad1 id=le.0h2v.s5.dfdff3869a19 from=translated src=- shape=a0bfec7a vocab=2b885180
+-/
 theorem cast_sqrt_div_prod_le
     (support : Finset ℕ) (X : ℕ) :
     (Nat.sqrt (X / support.prod id) : ℝ) ≤
@@ -166,7 +182,9 @@ The positive represented values satisfy the weighted Euler-product estimate
 
 The conclusion is stated in `ℝ`, which is the form consumed by the analytic
 Euler-product estimate.  The only hypothesis is positivity of the possible
-defect factors.-/
+defect factors.
+@isnad1 id=le.1h2v.s6.6370bcbea251 from=translated src=- shape=fb7ea653 vocab=f9d547de
+-/
 theorem card_positiveDefectValues_cast_le_eulerProduct
     {P : Finset ℕ} {X : ℕ}
     (hP : ∀ p ∈ P, 1 ≤ p) :
@@ -190,7 +208,9 @@ theorem card_positiveDefectValues_cast_le_eulerProduct
     _ = Real.sqrt X * ∏ p ∈ P, (1 + (Real.sqrt p)⁻¹) := by
       rw [← Finset.prod_one_add]
 
-/-- Prime-specialized form of the weighted count.-/
+/-- Prime-specialized form of the weighted count.
+@isnad1 id=le.0h2v.s5.39fda2e139df from=translated src=- shape=5c1c9e09 vocab=2994e89f
+-/
 theorem card_positiveHDefectValues_cast_le_eulerProduct
     (H X : ℕ) :
     ((positiveDefectValues (smallPrimesUpTo H) X).card : ℝ) ≤

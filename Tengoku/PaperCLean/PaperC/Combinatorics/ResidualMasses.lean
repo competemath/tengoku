@@ -47,7 +47,9 @@ noncomputable def pairSigma
     {N L : ℕ} (A : ℕ) (pair : SeparatedDyadicPair N L) : ℕ :=
   canonicalPairSigma A L pair.1.1 pair.1.2
 
-/-- Every coordinate of a separated dyadic pair is at least two when `N ≥ 2`.-/
+/-- Every coordinate of a separated dyadic pair is at least two when `N ≥ 2`.
+@isnad1 id=and.1h3v.s6.c30ccaa29861 from=translated src=- shape=b6249bdb vocab=8e59587d
+-/
 theorem pair_coordinates_two_le
     {N L : ℕ} (hN : 2 ≤ N) (pair : SeparatedDyadicPair N L) :
     2 ≤ pair.1.1 ∧ 2 ≤ pair.1.2 := by
@@ -70,7 +72,9 @@ noncomputable def pairRho
   relationRho
     (twoStartSystem (dyadicCutoff N L) pair.1.1 pair.1.2 L)
 
-/-- Literal identity `ρ=σ+τ` for a separated dyadic pair.-/
+/-- Literal identity `ρ=σ+τ` for a separated dyadic pair.
+@isnad1 id=eq.1h4v.s5.e40ba74ff7be from=translated src=- shape=85da9366 vocab=70f96d3d
+-/
 theorem pairRho_eq_pairSigma_add_pairTau
     {N A L : ℕ} (hN : 2 ≤ N)
     (pair : SeparatedDyadicPair N L) :
@@ -85,7 +89,9 @@ theorem pairRho_eq_pairSigma_add_pairTau
 
 /--
 Canonical form of (6.3) for a separated pair in the dyadic block:
-`τ ≤ D# + c#`.-/
+`τ ≤ D# + c#`.
+@isnad1 id=le.1h4v.s7.adf58a9a3eaf from=translated src=- shape=f357cf1c vocab=5f485628
+-/
 theorem pairTau_le_canonicalCorrected_add_residual
     {N A L : ℕ} (hN : 2 ≤ N)
     (pair : SeparatedDyadicPair N L) :
@@ -122,6 +128,9 @@ noncomputable def quadraticResidualWeight
     (pair : SeparatedDyadicPair N L) : ℕ :=
   4 ^ pairSigma A pair * (4 ^ pairTau A hN pair - 1)
 
+/--
+@isnad1 id=eq.2h4v.s5.480dc68849fe from=translated src=- shape=f84054a3 vocab=e8fcc08a
+-/
 @[simp]
 theorem linearResidualWeight_eq_zero_of_pairTau_eq_zero
     {N A L : ℕ} {hN : 2 ≤ N}
@@ -130,6 +139,9 @@ theorem linearResidualWeight_eq_zero_of_pairTau_eq_zero
     linearResidualWeight A hN pair = 0 := by
   simp [linearResidualWeight, htau]
 
+/--
+@isnad1 id=eq.2h4v.s5.5e5878d6adab from=translated src=- shape=f84054a3 vocab=4a25e8fb
+-/
 @[simp]
 theorem quadraticResidualWeight_eq_zero_of_pairTau_eq_zero
     {N A L : ℕ} {hN : 2 ≤ N}
@@ -156,7 +168,9 @@ private theorem two_pow_sub_one_sq_le_four_pow_sub_one (t : ℕ) :
 
 /--
 The square of the linear residual weight is bounded pointwise by the
-quadratic residual weight.-/
+quadratic residual weight.
+@isnad1 id=le.1h4v.s5.468e8cbf33ae from=translated src=- shape=4590d6e3 vocab=27b9a769
+-/
 theorem linearResidualWeight_sq_le_quadraticResidualWeight
     {N A L : ℕ} (hN : 2 ≤ N)
     (pair : SeparatedDyadicPair N L) :
@@ -179,7 +193,9 @@ theorem linearResidualWeight_sq_le_quadraticResidualWeight
 Pointwise extraction of the corrected-defect and residual-certificate
 factors:
 
-`4^σ(4^τ-1) ≤ 4^σ · 4^D# · 4^c#`.-/
+`4^σ(4^τ-1) ≤ 4^σ · 4^D# · 4^c#`.
+@isnad1 id=le.1h4v.s7.7255df11ed01 from=translated src=- shape=af260559 vocab=5fb3de38
+-/
 theorem quadraticResidualWeight_le_systematic_mul_corrected_mul_certificate
     {N A L : ℕ} (hN : 2 ≤ N)
     (pair : SeparatedDyadicPair N L) :
@@ -217,7 +233,9 @@ theorem quadraticResidualWeight_le_systematic_mul_corrected_mul_certificate
       rw [pow_add]
       ring
 
-/-- The preceding weight extraction specialized to the branch `σ=0`.-/
+/-- The preceding weight extraction specialized to the branch `σ=0`.
+@isnad1 id=le.2h4v.s7.e84d47cc389a from=translated src=- shape=0088e237 vocab=5fb3de38
+-/
 theorem quadraticResidualWeight_le_corrected_mul_certificate_of_sigma_eq_zero
     {N A L : ℕ} (hN : 2 ≤ N)
     (pair : SeparatedDyadicPair N L)
@@ -243,7 +261,9 @@ noncomputable def quadraticResidualMass
     (population : Finset (SeparatedDyadicPair N L)) : ℕ :=
   ∑ pair ∈ population, quadraticResidualWeight A hN pair
 
-/-- Sum of squared linear weights is bounded by the quadratic residual mass.-/
+/-- Sum of squared linear weights is bounded by the quadratic residual mass.
+@isnad1 id=le.1h4v.s6.e5f6db1c7363 from=translated src=- shape=c144a9ed vocab=5e79fa5a
+-/
 theorem sum_linearResidualWeight_sq_le_quadraticResidualMass
     {N A L : ℕ} (hN : 2 ≤ N)
     (population : Finset (SeparatedDyadicPair N L)) :
@@ -256,7 +276,9 @@ theorem sum_linearResidualWeight_sq_le_quadraticResidualMass
 
 /--
 Finite form of (6.6), before replacing the population cardinality by the
-relational-host bound.-/
+relational-host bound.
+@isnad1 id=le.1h4v.s5.572a7da23c1f from=translated src=- shape=f0845106 vocab=40ee70cc
+-/
 theorem linearResidualMass_cast_le_sqrt_card_mul_sqrt_quadratic
     {N A L : ℕ} (hN : 2 ≤ N)
     (population : Finset (SeparatedDyadicPair N L)) :
@@ -308,6 +330,9 @@ noncomputable def smallProductPairs
           (pair_coordinates_two_le hN pair).2)
       N
 
+/--
+@isnad1 id=iff.1h4v.s7.d56a0548e7a0 from=translated src=- shape=4a8ff710 vocab=67caa28a
+-/
 @[simp]
 theorem mem_smallProductPairs
     {N A L : ℕ} {hN : 2 ≤ N}
@@ -334,6 +359,9 @@ noncomputable def activeSmallProductPairs
   exact (smallProductPairs N A L hN).filter fun pair ↦
     0 < pairTau A hN pair
 
+/--
+@isnad1 id=iff.1h4v.s7.7385dfb11d01 from=translated src=- shape=4cadd5c0 vocab=933b535f
+-/
 @[simp]
 theorem mem_activeSmallProductPairs
     {N A L : ℕ} {hN : 2 ≤ N}
@@ -351,6 +379,9 @@ theorem mem_activeSmallProductPairs
         0 < pairTau A hN pair := by
   simp [activeSmallProductPairs]
 
+/--
+@isnad1 id=le.1h3v.s5.69147dacf792 from=translated src=- shape=5aca9b93 vocab=a75c18af
+-/
 theorem activeSmallProductPairs_subset_smallProductPairs
     {N A L : ℕ} (hN : 2 ≤ N) :
     activeSmallProductPairs N A L hN ⊆
@@ -375,6 +406,9 @@ noncomputable def positiveSigmaSmallProductPairs
   exact (activeSmallProductPairs N A L hN).filter fun pair ↦
     0 < pairSigma A pair
 
+/--
+@isnad1 id=iff.1h4v.s6.f55e475eaafd from=translated src=- shape=6bf6bf9b vocab=6278b68e
+-/
 @[simp]
 theorem mem_sigmaZeroSmallProductPairs
     {N A L : ℕ} {hN : 2 ≤ N}
@@ -384,6 +418,9 @@ theorem mem_sigmaZeroSmallProductPairs
         pairSigma A pair = 0 := by
   simp [sigmaZeroSmallProductPairs]
 
+/--
+@isnad1 id=iff.1h4v.s6.b612fd53270a from=translated src=- shape=43cd91ac vocab=06ef9841
+-/
 @[simp]
 theorem mem_positiveSigmaSmallProductPairs
     {N A L : ℕ} {hN : 2 ≤ N}
@@ -393,6 +430,9 @@ theorem mem_positiveSigmaSmallProductPairs
         0 < pairSigma A pair := by
   simp [positiveSigmaSmallProductPairs]
 
+/--
+@isnad1 id=disjoint.1h3v.s5.bc582ed4f60d from=translated src=- shape=57e17e57 vocab=b0b1f0b2
+-/
 theorem disjoint_sigmaZero_positiveSigmaSmallProductPairs
     {N A L : ℕ} (hN : 2 ≤ N) :
     Disjoint
@@ -404,6 +444,9 @@ theorem disjoint_sigmaZero_positiveSigmaSmallProductPairs
   rw [mem_positiveSigmaSmallProductPairs] at hpositive
   omega
 
+/--
+@isnad1 id=eq.1h3v.s6.9d52e7f8cb33 from=translated src=- shape=5a1e8b88 vocab=56399254
+-/
 theorem sigmaZero_union_positiveSigma_eq_activeSmallProductPairs
     {N A L : ℕ} (hN : 2 ≤ N) :
     sigmaZeroSmallProductPairs N A L hN ∪
@@ -426,6 +469,9 @@ noncomputable def activeSmallProductPairValues
     (N A L : ℕ) (hN : 2 ≤ N) : Finset (ℕ × ℕ) :=
   (activeSmallProductPairs N A L hN).image Subtype.val
 
+/--
+@isnad1 id=eq.1h3v.s5.1e3f479753db from=translated src=- shape=76232444 vocab=61fb7b77
+-/
 theorem card_activeSmallProductPairValues
     (N A L : ℕ) (hN : 2 ≤ N) :
     (activeSmallProductPairValues N A L hN).card =
@@ -434,7 +480,9 @@ theorem card_activeSmallProductPairValues
   exact Finset.card_image_of_injective
     (activeSmallProductPairs N A L hN) Subtype.val_injective
 
-/-- Every active small-product pair is a relational host.-/
+/-- Every active small-product pair is a relational host.
+@isnad1 id=le.1h3v.s5.9e1bb95f398c from=translated src=- shape=b02151f2 vocab=24d5b354
+-/
 theorem activeSmallProductPairValues_subset_relationalHosts
     {N A L : ℕ} (hN : 2 ≤ N) :
     activeSmallProductPairValues N A L hN ⊆
@@ -456,7 +504,9 @@ theorem activeSmallProductPairValues_subset_relationalHosts
         (twoStartSystem (dyadicCutoff N L) z.1.1 z.1.2 L) :=
       hrho.symm
 
-/-- Host-cardinality bound for the active small-product population.-/
+/-- Host-cardinality bound for the active small-product population.
+@isnad1 id=le.1h3v.s5.6ba8d7e5a53c from=translated src=- shape=8e93b465 vocab=720fab67
+-/
 theorem card_activeSmallProductPairs_le_relationalHosts
     {N A L : ℕ} (hN : 2 ≤ N) :
     (activeSmallProductPairs N A L hN).card ≤
@@ -501,7 +551,9 @@ noncomputable def positiveSigmaLinearResidualMass
   linearResidualMass A hN
     (positiveSigmaSmallProductPairs N A L hN)
 
-/-- Exact finite decomposition of the active quadratic residual mass.-/
+/-- Exact finite decomposition of the active quadratic residual mass.
+@isnad1 id=eq.1h3v.s5.733cd7d25fdc from=translated src=- shape=588e1398 vocab=056a55d6
+-/
 theorem activeSmallProductQuadraticResidualMass_eq_sigmaZero_add_positiveSigma
     {N A L : ℕ} (hN : 2 ≤ N) :
     activeSmallProductQuadraticResidualMass N A L hN =
@@ -517,7 +569,9 @@ theorem activeSmallProductQuadraticResidualMass_eq_sigmaZero_add_positiveSigma
     (disjoint_sigmaZero_positiveSigmaSmallProductPairs
       (A := A) hN)
 
-/-- Exact finite decomposition of the active linear residual mass.-/
+/-- Exact finite decomposition of the active linear residual mass.
+@isnad1 id=eq.1h3v.s5.9bf2aa67bd47 from=translated src=- shape=588e1398 vocab=2f16c600
+-/
 theorem activeSmallProductLinearResidualMass_eq_sigmaZero_add_positiveSigma
     {N A L : ℕ} (hN : 2 ≤ N) :
     activeSmallProductLinearResidualMass N A L hN =
@@ -545,7 +599,9 @@ noncomputable def smallProductLinearResidualMass
   linearResidualMass A hN
     (smallProductPairs N A L hN)
 
-/-- Deleting the pairs with `τ=0` does not change `Q_res`.-/
+/-- Deleting the pairs with `τ=0` does not change `Q_res`.
+@isnad1 id=eq.1h3v.s4.b2dfb58ee1cc from=translated src=- shape=cf7e9bf1 vocab=693bff91
+-/
 theorem smallProductQuadraticResidualMass_eq_active
     {N A L : ℕ} (hN : 2 ≤ N) :
     smallProductQuadraticResidualMass N A L hN =
@@ -568,7 +624,9 @@ theorem smallProductQuadraticResidualMass_eq_active
     omega
   exact quadraticResidualWeight_eq_zero_of_pairTau_eq_zero htau
 
-/-- Deleting the pairs with `τ=0` does not change `R_res`.-/
+/-- Deleting the pairs with `τ=0` does not change `R_res`.
+@isnad1 id=eq.1h3v.s4.3d46b68ac345 from=translated src=- shape=cf7e9bf1 vocab=bef689db
+-/
 theorem smallProductLinearResidualMass_eq_active
     {N A L : ℕ} (hN : 2 ≤ N) :
     smallProductLinearResidualMass N A L hN =
@@ -591,7 +649,9 @@ theorem smallProductLinearResidualMass_eq_active
     omega
   exact linearResidualWeight_eq_zero_of_pairTau_eq_zero htau
 
-/-- Proposition 7.3's exact split of the full quadratic mass.-/
+/-- Proposition 7.3's exact split of the full quadratic mass.
+@isnad1 id=eq.1h3v.s5.1d4ec2e6f88f from=translated src=- shape=588e1398 vocab=6cc01b10
+-/
 theorem smallProductQuadraticResidualMass_eq_sigmaZero_add_positiveSigma
     {N A L : ℕ} (hN : 2 ≤ N) :
     smallProductQuadraticResidualMass N A L hN =
@@ -602,7 +662,9 @@ theorem smallProductQuadraticResidualMass_eq_sigmaZero_add_positiveSigma
     activeSmallProductQuadraticResidualMass_eq_sigmaZero_add_positiveSigma
       (A := A) hN
 
-/-- The analogous exact split of the full linear mass.-/
+/-- The analogous exact split of the full linear mass.
+@isnad1 id=eq.1h3v.s5.cb27e241d1df from=translated src=- shape=588e1398 vocab=e6464e6d
+-/
 theorem smallProductLinearResidualMass_eq_sigmaZero_add_positiveSigma
     {N A L : ℕ} (hN : 2 ≤ N) :
     smallProductLinearResidualMass N A L hN =
@@ -615,7 +677,9 @@ theorem smallProductLinearResidualMass_eq_sigmaZero_add_positiveSigma
 
 /--
 Equation (6.6) on the small-product branch, with the total relational-host
-cardinality exposed for the later asymptotic substitution.-/
+cardinality exposed for the later asymptotic substitution.
+@isnad1 id=le.1h3v.s5.9e2ef53eef1c from=translated src=- shape=84104160 vocab=78893f2e
+-/
 theorem smallProductLinearResidualMass_cast_le
     {N A L : ℕ} (hN : 2 ≤ N) :
     (smallProductLinearResidualMass N A L hN : ℝ) ≤

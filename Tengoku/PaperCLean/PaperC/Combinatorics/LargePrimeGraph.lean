@@ -54,6 +54,9 @@ def largePrimeGraph (x y L : ℕ) :
     intro v hv
     exact hv.1 rfl
 
+/--
+@isnad1 id=iff.0h5v.s6.568177241385 from=translated src=- shape=f32c552f vocab=1b0a4d85
+-/
 @[simp]
 theorem largePrimeGraph_adj
     {x y L : ℕ} {v w : Occurrence L} :
@@ -96,6 +99,9 @@ def largePrimeSolution
     simp only [Pi.smul_apply, smul_eq_mul]
     rw [← Finset.mul_sum, hu p hp, mul_zero]
 
+/--
+@isnad1 id=iff.0h4v.s8.4f00f045bc3c from=translated src=- shape=2401bdfb vocab=477f8856
+-/
 @[simp]
 theorem mem_largePrimeSolution
     {x y L : ℕ} {u : Occurrence L → F₂} :
@@ -105,7 +111,9 @@ theorem mem_largePrimeSolution
   Iff.rfl
 
 /--
-The boundary prime equation is exactly the sum over the occurrence finset.-/
+The boundary prime equation is exactly the sum over the occurrence finset.
+@isnad1 id=eq.0h5v.s7.9a3d7b8a3e6e from=translated src=- shape=1af9c4aa vocab=2eb4b9cf
+-/
 theorem sum_mul_parityVec_eq_sum_primeOccurrences
     (x y L p : ℕ) (u : Occurrence L → F₂) :
     (∑ v : Occurrence L,
@@ -141,7 +149,9 @@ theorem sum_mul_parityVec_eq_sum_primeOccurrences
     rw [ite_eq_right hparity, hzero, mul_zero]
 
 /--
-Equivalent prime-coordinate formulation of `largePrimeSolution`.-/
+Equivalent prime-coordinate formulation of `largePrimeSolution`.
+@isnad1 id=iff.0h4v.s8.9706ff638a95 from=translated src=- shape=a28ee5c3 vocab=db37f7bb
+-/
 theorem mem_largePrimeSolution_iff_boundary_prime_equations
     {x y L : ℕ} {u : Occurrence L → F₂} :
     u ∈ largePrimeSolution x y L ↔
@@ -158,7 +168,9 @@ theorem mem_largePrimeSolution_iff_boundary_prime_equations
     rw [← sum_mul_parityVec_eq_sum_primeOccurrences]
     exact hu p hp
 
-/-- Two prescribed distinct members exhaust a large-prime occurrence set.-/
+/-- Two prescribed distinct members exhaust a large-prime occurrence set.
+@isnad1 id=eq.6h6v.s7.853ab12ab634 from=translated src=- shape=9ef72887 vocab=d8be10fc
+-/
 theorem primeOccurrences_eq_pair_of_mem
     {x y L p : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -233,7 +245,9 @@ theorem eq_zero_of_isPinned_of_mem
 
 /--
 Conversely, equality across graph edges and vanishing at pins solve every
-large-prime equation.-/
+large-prime equation.
+@isnad1 id=mem.4h4v.s8.26d7fa669e29 from=translated src=- shape=b79283f2 vocab=058fd919
+-/
 theorem mem_largePrimeSolution_of_graph_rules
     {x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -277,7 +291,9 @@ theorem mem_largePrimeSolution_of_graph_rules
     exact ZModModule.add_self (u w)
 
 /--
-Exact graph-rule characterization of `W_{>B}(x,y)`.-/
+Exact graph-rule characterization of `W_{>B}(x,y)`.
+@isnad1 id=iff.2h4v.s8.e7e053659fe6 from=translated src=- shape=0e171f63 vocab=058fd919
+-/
 theorem mem_largePrimeSolution_iff_graph_rules
     {x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -296,7 +312,9 @@ theorem mem_largePrimeSolution_iff_graph_rules
   · rintro ⟨hedge, hpin⟩
     exact mem_largePrimeSolution_of_graph_rules hx hy hedge hpin
 
-/-- Defective vertices are unpinned.-/
+/-- Defective vertices are unpinned.
+@isnad1 id=not.1h4v.s4.d80ccd40a216 from=translated src=- shape=26e02f44 vocab=53e29ef9
+-/
 theorem not_isPinned_of_isDefective
     {x y L : ℕ} {v : Occurrence L}
     (hv : IsDefective x y L v) :
@@ -304,7 +322,9 @@ theorem not_isPinned_of_isDefective
   rintro ⟨p, hp, hset⟩
   exact hv p hp (by simp [hset])
 
-/-- Defective vertices are isolated in the large-prime graph.-/
+/-- Defective vertices are isolated in the large-prime graph.
+@isnad1 id=not.1h5v.s4.cf02eaed4c3f from=translated src=- shape=e3389d5d vocab=10c51b60
+-/
 theorem not_adj_of_isDefective
     {x y L : ℕ} {v : Occurrence L}
     (hv : IsDefective x y L v)
@@ -315,7 +335,9 @@ theorem not_adj_of_isDefective
 
 /--
 An unpinned isolated vertex is defective.  This is the converse needed to
-identify the `D` free singleton components in Lemma 6.1.-/
+identify the `D` free singleton components in Lemma 6.1.
+@isnad1 id=isdefect.4h4v.s5.6214a5fdf929 from=translated src=- shape=81e8af88 vocab=f8a69305
+-/
 theorem isDefective_of_not_isPinned_of_isolated
     {x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)

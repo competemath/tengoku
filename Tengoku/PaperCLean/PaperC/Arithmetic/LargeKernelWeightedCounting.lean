@@ -29,6 +29,9 @@ open DefectCounting DefectivePredicate LargeOddKernel
 def largePrimesBetween (B X : ℕ) : Finset ℕ :=
   (smallPrimesUpTo X).filter fun p ↦ B < p
 
+/--
+@isnad1 id=iff.0h3v.s5.89be04162ad2 from=translated src=- shape=79037f53 vocab=b9a4098d
+-/
 @[simp]
 theorem mem_largePrimesBetween {B X p : ℕ} :
     p ∈ largePrimesBetween B X ↔
@@ -36,7 +39,9 @@ theorem mem_largePrimesBetween {B X p : ℕ} :
   simp only [largePrimesBetween, Finset.mem_filter, mem_smallPrimesUpTo]
   aesop
 
-/-- Forgetting primality, the large-prime finset lies in `(B,X]`.-/
+/-- Forgetting primality, the large-prime finset lies in `(B,X]`.
+@isnad1 id=le.0h2v.s4.d74f43876c18 from=translated src=- shape=dd68c58f vocab=c0fc6d7e
+-/
 theorem largePrimesBetween_subset_Ioc (B X : ℕ) :
     largePrimesBetween B X ⊆ Finset.Ioc B X := by
   intro p hp
@@ -48,12 +53,17 @@ noncomputable def largeKernelWeight (B n : ℕ) : ℝ :=
   (B : ℝ) ^ (largeOddPrimeSupport B n).card /
     (largeOddKernel B n : ℝ)
 
+/--
+@isnad1 id=le.0h2v.s4.21dc1362416b from=translated src=- shape=5ffe46ab vocab=3af67fe2
+-/
 theorem largeKernelWeight_nonneg (B n : ℕ) :
     0 ≤ largeKernelWeight B n := by
   unfold largeKernelWeight
   positivity
 
-/-- The same weight written with Mathlib's distinct-prime-factor function `ω`.-/
+/-- The same weight written with Mathlib's distinct-prime-factor function `ω`.
+@isnad1 id=eq.0h2v.s5.622ef673f3e8 from=translated src=- shape=cbc6a66c vocab=4767e753
+-/
 theorem largeKernelWeight_eq_cardDistinctFactors (B n : ℕ) :
     largeKernelWeight B n =
       (B : ℝ) ^
@@ -72,6 +82,9 @@ abbrev KernelTriple :=
 noncomputable def kernelTripleWeight (B : ℕ) (t : KernelTriple) : ℝ :=
   (B : ℝ) ^ t.2.1.card / (t.2.1.prod id : ℕ)
 
+/--
+@isnad1 id=le.0h2v.s4.3d1e0449b14e from=translated src=- shape=0d4521f5 vocab=8ffdea5f
+-/
 theorem kernelTripleWeight_nonneg (B : ℕ) (t : KernelTriple) :
     0 ≤ kernelTripleWeight B t := by
   unfold kernelTripleWeight
@@ -82,7 +95,9 @@ noncomputable def canonicalKernelTriple (B n : ℕ) : KernelTriple :=
   ⟨smallOddPrimeSupport B n,
     ⟨largeOddPrimeSupport B n, canonicalSquarePart n⟩⟩
 
-/-- On the canonical triple, the triple weight is the large-kernel weight.-/
+/-- On the canonical triple, the triple weight is the large-kernel weight.
+@isnad1 id=eq.0h2v.s3.22bc704cbbb4 from=translated src=- shape=ccb3c040 vocab=76b0a28b
+-/
 theorem kernelTripleWeight_canonical (B n : ℕ) :
     kernelTripleWeight B (canonicalKernelTriple B n) =
       largeKernelWeight B n := by
@@ -97,7 +112,9 @@ noncomputable def kernelTriplesUpTo (B X : ℕ) : Finset KernelTriple :=
       Finset.Icc 1
         (Nat.sqrt (X / (small.prod id * large.prod id)))
 
-/-- The canonical triple determines every nonzero integer uniquely.-/
+/-- The canonical triple determines every nonzero integer uniquely.
+@isnad1 id=eq.3h3v.s5.43affd396614 from=translated src=- shape=fa4fe01b vocab=3d68f803
+-/
 theorem canonicalKernelTriple_injective_of_ne_zero
     {B m n : ℕ} (hm : m ≠ 0) (hn : n ≠ 0)
     (h : canonicalKernelTriple B m = canonicalKernelTriple B n) :
@@ -122,7 +139,9 @@ theorem canonicalKernelTriple_injective_of_ne_zero
     _ = n :=
       (canonical_largeOddKernel_decomposition hn).symm
 
-/-- Every canonical triple for `1 ≤ n ≤ X` belongs to the candidate finset.-/
+/-- Every canonical triple for `1 ≤ n ≤ X` belongs to the candidate finset.
+@isnad1 id=mem.1h3v.s5.92d66be2aa69 from=translated src=- shape=0aec3fc0 vocab=0cf6a3d8
+-/
 theorem canonicalKernelTriple_mem_kernelTriplesUpTo
     {B X n : ℕ} (hn : n ∈ Finset.Icc 1 X) :
     canonicalKernelTriple B n ∈ kernelTriplesUpTo B X := by
@@ -176,7 +195,9 @@ noncomputable def canonicalKernelTriplesUpTo (B X : ℕ) :
     Finset KernelTriple :=
   (Finset.Icc 1 X).image (canonicalKernelTriple B)
 
-/-- Every canonical triple lies in the corresponding candidate space.-/
+/-- Every canonical triple lies in the corresponding candidate space.
+@isnad1 id=le.0h2v.s4.58a8ccf00436 from=translated src=- shape=646c05bb vocab=64896b66
+-/
 theorem canonicalKernelTriplesUpTo_subset_kernelTriplesUpTo (B X : ℕ) :
     canonicalKernelTriplesUpTo B X ⊆ kernelTriplesUpTo B X := by
   intro t ht
@@ -184,7 +205,9 @@ theorem canonicalKernelTriplesUpTo_subset_kernelTriplesUpTo (B X : ℕ) :
   obtain ⟨n, hn, rfl⟩ := ht
   exact canonicalKernelTriple_mem_kernelTriplesUpTo hn
 
-/-- Reindexing by canonical triples is exact because the map is injective on positive integers.-/
+/-- Reindexing by canonical triples is exact because the map is injective on positive integers.
+@isnad1 id=eq.0h2v.s5.aa42e5067c28 from=translated src=- shape=5ee50345 vocab=bb685751
+-/
 theorem sum_largeKernelWeight_eq_sum_canonicalKernelTriplesUpTo
     (B X : ℕ) :
     (∑ n ∈ Finset.Icc 1 X, largeKernelWeight B n) =
@@ -205,7 +228,9 @@ theorem sum_largeKernelWeight_eq_sum_canonicalKernelTriplesUpTo
       · exact Nat.ne_of_gt (Finset.mem_Icc.mp hn).1
       · exact hmn
 
-/-- The weighted integer sum is bounded by the sum over every candidate triple.-/
+/-- The weighted integer sum is bounded by the sum over every candidate triple.
+@isnad1 id=le.0h2v.s5.2637cb4ab0c6 from=translated src=- shape=5ee50345 vocab=9617906a
+-/
 theorem sum_largeKernelWeight_le_sum_kernelTriplesUpTo
     (B X : ℕ) :
     (∑ n ∈ Finset.Icc 1 X, largeKernelWeight B n) ≤
@@ -215,7 +240,9 @@ theorem sum_largeKernelWeight_le_sum_kernelTriplesUpTo
     (canonicalKernelTriplesUpTo_subset_kernelTriplesUpTo B X)
     (fun t _ht _hcanon ↦ kernelTripleWeight_nonneg B t)
 
-/-- Expanding the candidate sigma-finset gives the two support sums explicitly.-/
+/-- Expanding the candidate sigma-finset gives the two support sums explicitly.
+@isnad1 id=eq.0h2v.s6.2eade86dc524 from=translated src=- shape=ea36c9f5 vocab=7601561d
+-/
 theorem sum_kernelTriplesUpTo_eq_support_sums (B X : ℕ) :
     (∑ t ∈ kernelTriplesUpTo B X, kernelTripleWeight B t) =
       ∑ small ∈ (smallPrimesUpTo B).powerset,
@@ -247,7 +274,9 @@ noncomputable def largeSupportWeight
     (B : ℕ) (large : Finset ℕ) : ℝ :=
   ∏ p ∈ large, (B : ℝ) * (p : ℝ) ^ (-(3 / 2 : ℝ))
 
-/-- A small-prime support and a large-prime support are disjoint.-/
+/-- A small-prime support and a large-prime support are disjoint.
+@isnad1 id=disjoint.2h4v.s5.8af0b9d81e96 from=translated src=- shape=6bfe52e4 vocab=8299e745
+-/
 theorem disjoint_of_subset_smallPrimesUpTo_of_subset_largePrimesBetween
     {B X : ℕ} {small large : Finset ℕ}
     (hsmall : small ⊆ smallPrimesUpTo B)
@@ -263,7 +292,9 @@ theorem disjoint_of_subset_smallPrimesUpTo_of_subset_largePrimesBetween
 
 /--
 The square-root count for a pair of disjoint supports splits into its small
-and large reciprocal-square-root factors.-/
+and large reciprocal-square-root factors.
+@isnad1 id=le.1h3v.s6.85ead4ef0d77 from=translated src=- shape=2b737f41 vocab=3540701e
+-/
 theorem cast_sqrt_div_small_mul_large_le
     (X : ℕ) {small large : Finset ℕ}
     (hdisj : Disjoint small large) :
@@ -286,7 +317,9 @@ theorem cast_sqrt_div_small_mul_large_le
 
 /--
 The remaining large-support factors combine exactly into
-`B^#large / (r √r)`.-/
+`B^#large / (r √r)`.
+@isnad1 id=eq.0h2v.s6.167d444d5928 from=translated src=- shape=eba90d20 vocab=c4e2c985
+-/
 theorem invSqrtWeight_mul_kernelWeight_eq_denominatorWeight
     (B : ℕ) (large : Finset ℕ) :
     (∏ p ∈ large, (Real.sqrt p)⁻¹) *
@@ -299,7 +332,9 @@ theorem invSqrtWeight_mul_kernelWeight_eq_denominatorWeight
   simp only [id_eq]
   ring
 
-/-- On primes in `(B,X]`, denominator and negative-power notation agree.-/
+/-- On primes in `(B,X]`, denominator and negative-power notation agree.
+@isnad1 id=eq.1h3v.s4.438c291fa2b1 from=translated src=- shape=4bcaadb8 vocab=779125e9
+-/
 theorem largeSupportDenominatorWeight_eq_largeSupportWeight
     {B X : ℕ} {large : Finset ℕ}
     (hlarge : large ⊆ largePrimesBetween B X) :
@@ -317,7 +352,9 @@ theorem largeSupportDenominatorWeight_eq_largeSupportWeight
 
 /--
 One fixed pair of supports contributes at most its separated small/large
-Euler weight.-/
+Euler weight.
+@isnad1 id=le.2h4v.s7.41da7603b22d from=translated src=- shape=1cd828d2 vocab=fa6e4648
+-/
 theorem support_pair_contribution_le
     {B X : ℕ} {small large : Finset ℕ}
     (hsmall : small ⊆ smallPrimesUpTo B)
@@ -352,7 +389,9 @@ theorem support_pair_contribution_le
         largeSupportWeight B large := by
       rw [largeSupportDenominatorWeight_eq_largeSupportWeight hlarge]
 
-/-- Summing the preceding fibrewise estimate over both powersets.-/
+/-- Summing the preceding fibrewise estimate over both powersets.
+@isnad1 id=le.0h2v.s6.a95249c897a2 from=translated src=- shape=fa1bb926 vocab=acf18845
+-/
 theorem sum_kernelTriplesUpTo_le_support_weight_sums (B X : ℕ) :
     (∑ t ∈ kernelTriplesUpTo B X, kernelTripleWeight B t) ≤
       ∑ small ∈ (smallPrimesUpTo B).powerset,
@@ -368,7 +407,9 @@ theorem sum_kernelTriplesUpTo_le_support_weight_sums (B X : ℕ) :
     (Finset.mem_powerset.mp hsmall)
     (Finset.mem_powerset.mp hlarge)
 
-/-- The double support sum factors exactly into the two finite Euler products.-/
+/-- The double support sum factors exactly into the two finite Euler products.
+@isnad1 id=eq.0h2v.s7.18c9d3941a19 from=translated src=- shape=0b2d6261 vocab=53002cbf
+-/
 theorem support_weight_sums_eq_eulerProducts (B X : ℕ) :
     (∑ small ∈ (smallPrimesUpTo B).powerset,
         ∑ large ∈ (largePrimesBetween B X).powerset,
@@ -435,7 +476,9 @@ theorem support_weight_sums_eq_eulerProducts (B X : ℕ) :
 Finite weighted form of Lemma 4.2.
 
 The left side is the exact sum over `1 ≤ n ≤ X`; the right side is the
-small-prime Euler factor times the large-kernel Euler factor.-/
+small-prime Euler factor times the large-kernel Euler factor.
+@isnad1 id=le.0h2v.s7.5b5c92afdb36 from=translated src=- shape=61653669 vocab=cd2c09af
+-/
 theorem sum_largeKernelWeight_le_eulerProducts (B X : ℕ) :
     (∑ n ∈ Finset.Icc 1 X, largeKernelWeight B n) ≤
       Real.sqrt X *

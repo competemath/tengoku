@@ -36,7 +36,9 @@ noncomputable local instance instDecidableLargePrimeAdj
 
 /--
 Primitive cross-product equality produces the factorization
-`X=b*t`, `Y=a*t` used in Lemma 6.3.-/
+`X=b*t`, `Y=a*t` used in Lemma 6.3.
+@isnad1 id=ex.7h5v.s6.829c0b551387 from=translated src=- shape=731587a1 vocab=e434e1ac
+-/
 theorem exists_exactUnitFactorization_of_crossProduct
     {B a b X Y : ℕ}
     (ha : 0 < a) (hb : 0 < b)
@@ -69,7 +71,9 @@ theorem exists_exactUnitFactorization_of_crossProduct
       ⟨ha, hb, ht, hab, hheight, hXt, hYt⟩⟩
 
 /--
-Every exact channel unit supplies the canonical common-factor data.-/
+Every exact channel unit supplies the canonical common-factor data.
+@isnad1 id=ex.7h7v.s9.e7ed41d9c1cd from=translated src=- shape=3fbfdb8e vocab=c0f1419e
+-/
 theorem channelUnit_exactUnitFactorization
     {x y L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b)
@@ -94,7 +98,9 @@ theorem channelUnit_exactUnitFactorization
       (show 1 ≤ x by omega) (show 1 ≤ y by omega)
       hheight unit
 
-/-- Graph defectivity is exactly the arithmetic predicate `HDefective`.-/
+/-- Graph defectivity is exactly the arithmetic predicate `HDefective`.
+@isnad1 id=iff.0h4v.s5.9f40175ddc9d from=translated src=- shape=0b587d1c vocab=f7ba271b
+-/
 theorem isDefective_iff_hDefective
     (x y L : ℕ) (v : Occurrence L) :
     IsDefective x y L v ↔
@@ -114,7 +120,9 @@ theorem isDefective_iff_hDefective
     rw [hzero] at hone
     exact zero_ne_one hone
 
-/-- Large-prime occurrence at the left endpoint iff occurrence at the right.-/
+/-- Large-prime occurrence at the left endpoint iff occurrence at the right.
+@isnad1 id=iff.3h9v.s7.34e297074368 from=translated src=- shape=f573ab65 vocab=a0700749
+-/
 theorem left_mem_primeOccurrences_iff_right_mem
     {x y L a b t : ℕ}
     {v w : Fin (L + 1)}
@@ -134,7 +142,9 @@ theorem left_mem_primeOccurrences_iff_right_mem
       parityVec (startCompleteVertexLabel y L w) p = 1
   rw [hparity.1, hparity.2]
 
-/-- Neither endpoint of an exact unit can be pinned on its own.-/
+/-- Neither endpoint of an exact unit can be pinned on its own.
+@isnad1 id=not.1h8v.s6.f9b469bea60c from=translated src=- shape=1a2407c0 vocab=d254962c
+-/
 theorem not_isPinned_left
     {x y L a b t : ℕ}
     {v w : Fin (L + 1)}
@@ -155,7 +165,9 @@ theorem not_isPinned_left
   rw [hset] at hw
   simp at hw
 
-/-- The right endpoint of an exact unit cannot be pinned on its own.-/
+/-- The right endpoint of an exact unit cannot be pinned on its own.
+@isnad1 id=not.1h8v.s6.51ad01c32a5a from=translated src=- shape=ff51a73f vocab=2c91a31e
+-/
 theorem not_isPinned_right
     {x y L a b t : ℕ}
     {v w : Fin (L + 1)}
@@ -232,7 +244,9 @@ theorem eq_left_of_adj_right
 
 /--
 Every walk starting at one endpoint of an exact unit stays inside its
-two-element pair.-/
+two-element pair.
+@isnad1 id=or.3h10v.s7.d041bdb3302d from=translated src=- shape=2d041b03 vocab=97e20ea2
+-/
 theorem walk_from_left_stays_in_pair
     {x y L a b t : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -274,7 +288,9 @@ theorem walk_from_left_stays_in_pair
   exact hwalk walk (Or.inl rfl)
 
 /--
-In the nondefective branch, the two exact-unit occurrences form an edge.-/
+In the nondefective branch, the two exact-unit occurrences form an edge.
+@isnad1 id=adj.4h8v.s7.a365b8778d83 from=translated src=- shape=949c92ac vocab=0808e171
+-/
 theorem exactUnit_endpoints_adj
     {x y L a b t : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -304,7 +320,9 @@ theorem exactUnit_endpoints_adj
           (by simpa only [twoStartCompleteVertexLabel]
             using hright))⟩
 
-/-- Reachability from the left endpoint stays inside the exact pair.-/
+/-- Reachability from the left endpoint stays inside the exact pair.
+@isnad1 id=or.4h9v.s7.d6074f084d4c from=translated src=- shape=2d041b03 vocab=ed60d3a5
+-/
 theorem reachable_from_left_stays_in_pair
     {x y L a b t : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -322,7 +340,9 @@ theorem reachable_from_left_stays_in_pair
   hreach.elim fun walk ↦
     walk_from_left_stays_in_pair hx hy h walk
 
-/-- The component of a nondefective exact unit contains no pin.-/
+/-- The component of a nondefective exact unit contains no pin.
+@isnad1 id=not.3h8v.s7.c7c4601166b2 from=translated src=- shape=bc2bba43 vocab=3ddf625c
+-/
 theorem exactUnit_component_unpinned
     {x y L a b t : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -351,7 +371,9 @@ theorem exactUnit_component_unpinned
   · exact not_isPinned_right h
       (mem_pinnedVertices.mp hzPin)
 
-/-- The isolated exact-unit component has exactly two vertices.-/
+/-- The isolated exact-unit component has exactly two vertices.
+@isnad1 id=eq.4h8v.s8.19896921d2a9 from=translated src=- shape=95c78cf1 vocab=24078640
+-/
 theorem exactUnit_component_card_eq_two
     {x y L a b t : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -444,7 +466,9 @@ theorem exactUnit_component_card_eq_two
 
 /--
 The nontrivial branch of Lemma 6.3 gives an isolated nonpinned component of
-size two.-/
+size two.
+@isnad1 id=and.4h8v.s9.78f48acf4921 from=translated src=- shape=3398cdbe vocab=a7934700
+-/
 theorem exactUnit_nontrivial_component
     {x y L a b t : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -472,7 +496,9 @@ theorem exactUnit_nontrivial_component
       hcard⟩
 
 /--
-Lemma 6.3 in its two graph-theoretic branches.-/
+Lemma 6.3 in its two graph-theoretic branches.
+@isnad1 id=or.3h8v.s9.2b46a5e3c134 from=translated src=- shape=214277ba vocab=4472f850
+-/
 theorem exactUnit_graph_dichotomy
     {x y L a b t : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -515,7 +541,9 @@ theorem exactUnit_graph_dichotomy
 
 /-! ## Distinct exact units -/
 
-/-- Distinct units of a positive channel cannot share their left occurrence.-/
+/-- Distinct units of a positive channel cannot share their left occurrence.
+@isnad1 id=ne.2h6v.s9.6adfab25f2ae from=translated src=- shape=e09dfb53 vocab=8944df93
+-/
 theorem channelUnit_left_ne_of_ne
     {L a b : ℕ} {h : ℤ}
     (hb : 0 < b)
@@ -526,7 +554,9 @@ theorem channelUnit_left_ne_of_ne
   exact hne
     (channelUnit_left_injective hb heq)
 
-/-- Distinct units of a positive channel cannot share their right occurrence.-/
+/-- Distinct units of a positive channel cannot share their right occurrence.
+@isnad1 id=ne.2h6v.s9.218bb1afc810 from=translated src=- shape=b8bbd77f vocab=30b43447
+-/
 theorem channelUnit_right_ne_of_ne
     {L a b : ℕ} {h : ℤ}
     (ha : 0 < a)
@@ -544,6 +574,9 @@ def channelUnitOccurrencePair
     Finset (Occurrence L) :=
   {Sum.inl unit.1.1, Sum.inr unit.1.2}
 
+/--
+@isnad1 id=iff.0h6v.s9.7885157fa05f from=translated src=- shape=b6994df2 vocab=9406c8ec
+-/
 @[simp]
 theorem mem_channelUnitOccurrencePair
     {L a b : ℕ} {h : ℤ}
@@ -556,7 +589,9 @@ theorem mem_channelUnitOccurrencePair
 
 /--
 The two-vertex occurrence pairs of distinct units of a positive channel are
-disjoint.-/
+disjoint.
+@isnad1 id=disjoint.3h6v.s6.30ef8dc11769 from=translated src=- shape=f7f4f64d vocab=9c1823e2
+-/
 theorem channelUnitOccurrencePair_disjoint
     {L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b)
@@ -592,7 +627,9 @@ theorem channelUnitOccurrencePair_disjoint
 
 /--
 Once one exact pair is isolated by its factorization, any different left
-occurrence lies in a different connected component.-/
+occurrence lies in a different connected component.
+@isnad1 id=ne.4h9v.s7.8e6c746b06dc from=translated src=- shape=21101630 vocab=58a82770
+-/
 theorem exactUnit_left_components_ne
     {x y L a b t : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -620,7 +657,9 @@ theorem exactUnit_left_components_ne
 
 /--
 Distinct exact units of the same small primitive channel determine distinct
-large-prime connected components.-/
+large-prime connected components.
+@isnad1 id=ne.8h8v.s9.c7c78ae32c10 from=translated src=- shape=dac094ad vocab=c10acd36
+-/
 theorem distinct_channelUnits_components_ne
     {x y L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b)
@@ -644,7 +683,9 @@ theorem distinct_channelUnits_components_ne
 
 /--
 In the nondefective branch, distinct exact units give distinct isolated
-nonpinned two-vertex components.-/
+nonpinned two-vertex components.
+@isnad1 id=other.10h8v.s10.13df9b346460 from=translated src=- shape=1834284c vocab=3b8868f2
+-/
 theorem distinct_channelUnits_nondefective_components
     {x y L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b)

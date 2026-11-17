@@ -26,7 +26,9 @@ def largerStarts (s : Finset (ℕ × ℕ)) : Finset ℕ := s.image (fun p => max
 def smallerPartners (s : Finset (ℕ × ℕ)) (x : ℕ) : Finset ℕ :=
   (s.filter fun p => max p.1 p.2 = x).image (fun p => min p.1 p.2)
 
-/-- Normalization loses at most the original orientation.-/
+/-- Normalization loses at most the original orientation.
+@isnad1 id=iff.0h2v.s5.bca1ef41f969 from=translated src=- shape=90f52c22 vocab=066bd3ba
+-/
 theorem normalizedPair_eq_iff (p q : ℕ × ℕ) :
     normalizedPair p = normalizedPair q ↔ p = q ∨ p = q.swap := by
   rcases p with ⟨a,b⟩
@@ -34,7 +36,9 @@ theorem normalizedPair_eq_iff (p q : ℕ × ℕ) :
   simp only [normalizedPair, Prod.mk.injEq, Prod.swap_prod_mk]
   omega
 
-/-- Every normalized fibre is contained in the two possible orientations.-/
+/-- Every normalized fibre is contained in the two possible orientations.
+@isnad1 id=le.0h2v.s5.aab2b56131d3 from=translated src=- shape=b4fa32fb vocab=4fa98e2f
+-/
 theorem card_normalized_fiber_le_two (s : Finset (ℕ × ℕ)) (q : ℕ × ℕ) :
     ((s.filter fun p => normalizedPair p = q).card : ℝ) ≤ 2 := by
   have hsub : (s.filter fun p => normalizedPair p = q) ⊆ {q, q.swap} := by
@@ -53,7 +57,9 @@ theorem card_normalized_fiber_le_two (s : Finset (ℕ × ℕ)) (q : ℕ × ℕ) 
   have hc := (Finset.card_le_card hsub).trans hp
   exact_mod_cast hc
 
-/-- A common bound on all smaller-partner populations bounds every oriented fibre.-/
+/-- A common bound on all smaller-partner populations bounds every oriented fibre.
+@isnad1 id=le.0h2v.s6.213a73b0fcf9 from=translated src=- shape=3d32970f vocab=8e7808d0
+-/
 theorem card_larger_fiber_le_two_partners (s : Finset (ℕ × ℕ)) (x : ℕ) :
     ((s.filter fun p => max p.1 p.2 = x).card : ℝ) ≤
       2 * ((smallerPartners s x).card : ℝ) := by
@@ -80,7 +86,9 @@ theorem card_larger_fiber_le_two_partners (s : Finset (ℕ × ℕ)) (x : ℕ) :
     _ ≤ ∑ _y ∈ smallerPartners s x, (2 : ℝ) := Finset.sum_le_sum hfib
     _ = _ := by simp [mul_comm]
 
-/-- The factor two accounts for both orientations, without a symmetry premise on the mask.-/
+/-- The factor two accounts for both orientations, without a symmetry premise on the mask.
+@isnad1 id=le.1h2v.s6.e3b98f69682c from=translated src=- shape=9ee6d91b vocab=735344f2
+-/
 theorem card_le_two_mul_largerStarts_mul
     (s : Finset (ℕ × ℕ)) (R : ℝ)
     (hpartners : ∀ x ∈ largerStarts s, ((smallerPartners s x).card : ℝ) ≤ R) :

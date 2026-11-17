@@ -15,7 +15,9 @@ namespace PaperC.V282.MediumSquareExceptions
 open Finset MediumSquarePacking
 open scoped BigOperators
 
-/-- At most 854 medium square-divisor incidences occur in a quadratic window.-/
+/-- At most 854 medium square-divisor incidences occur in a quadratic window.
+@isnad1 id=le.4h3v.s7.cd87c25ce898 from=translated src=- shape=97ef3ee7 vocab=d4f86ad7
+-/
 theorem square_incidence_card_le {S : Finset (ℕ × ℕ)} {lo B : ℕ}
     (hB : 1332 ≤ B)
     (hwindow : ∀ z ∈ S, 0 < z.1 ∧ lo ≤ z.1 ∧ z.1 < lo + B ∧ z.1 ≤ B ^ 2 + B)
@@ -71,7 +73,9 @@ def squareIncidences (lo B : ℕ) : Finset (ℕ × ℕ) :=
   ((Ico lo (lo + B)).product (Icc 1 B)).filter
     (fun z => 0 < z.1 ∧ B < 11 * z.2 ∧ z.2 ^ 2 ∣ z.1)
 
-/-- The source's bound, uniform in the position of the quadratic window.-/
+/-- The source's bound, uniform in the position of the quadratic window.
+@isnad1 id=le.2h2v.s6.2d018c2b505e from=translated src=- shape=2feff130 vocab=695ad174
+-/
 theorem squareIncidences_card_le {lo B : ℕ} (hB : 1332 ≤ B)
     (hlo : lo + B ≤ B ^ 2 + B + 1) :
     (squareIncidences lo B).card ≤ 854 := by

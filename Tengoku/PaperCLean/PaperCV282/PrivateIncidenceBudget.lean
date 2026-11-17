@@ -18,6 +18,9 @@ noncomputable section
 variable {R C V : Type*} [Fintype R] [Fintype C] [Fintype V]
   [DecidableEq R] [DecidableEq V]
 
+/--
+@isnad1 id=le.5h7v.s9.19f65616e791 from=translated src=- shape=6d731084 vocab=5851ad93
+-/
 theorem private_incidence_rank_budget (A : Matrix R C F₂) (D : Finset R)
     (select : V → C) (K : ℕ)
     (hprivate : ∀ r ∈ D, Pi.single r (1 : F₂) ∈ LinearMap.range A.mulVecLin)
@@ -39,6 +42,9 @@ theorem private_incidence_rank_budget (A : Matrix R C F₂) (D : Finset R)
     _ = (K + 1) * (D.card + (deleteRows (A.submatrix id select) D).rank) := by ring
     _ ≤ _ := Nat.mul_le_mul_left (K + 1) hr
 
+/--
+@isnad1 id=le.5h7v.s9.a22f0f2ae7f5 from=translated src=- shape=e5a814e1 vocab=c3c5dda4
+-/
 theorem private_incidence_rank_real (A : Matrix R C F₂) (D : Finset R)
     (select : V → C) (K : ℕ)
     (hprivate : ∀ r ∈ D, Pi.single r (1 : F₂) ∈ LinearMap.range A.mulVecLin)
@@ -60,7 +66,9 @@ theorem private_incidence_rank_real (A : Matrix R C F₂) (D : Finset R)
       field_simp
     _ ≤ _ := (div_le_iff₀ hk).mpr (by nlinarith [hc])
 
-/-- The exact K=11 denominator, with the incidence loss truncated at zero.-/
+/-- The exact K=11 denominator, with the incidence loss truncated at zero.
+@isnad1 id=le.5h6v.s9.ee9f85b17fae from=translated src=- shape=24817af7 vocab=c3c5dda4
+-/
 theorem private_incidence_rank_twelfth (A : Matrix R C F₂) (D : Finset R)
     (select : V → C)
     (hprivate : ∀ r ∈ D, Pi.single r (1 : F₂) ∈ LinearMap.range A.mulVecLin)

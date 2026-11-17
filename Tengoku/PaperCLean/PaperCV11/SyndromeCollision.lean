@@ -31,7 +31,9 @@ def subsetSyndrome {m r : ℕ}
 
 /--
 If the kernel contains no nonzero word of weight at most `2t`, then distinct
-subsets of cardinality at most `t` have distinct syndromes.-/
+subsets of cardinality at most `t` have distinct syndromes.
+@isnad1 id=injon.1h4v.s9.f9129df42230 from=translated src=- shape=fa7f916c vocab=dbef5928
+-/
 theorem subsetSyndrome_injectiveOn_smallSupports
     {m r t : ℕ}
     (φ : BinaryWord m →ₗ[F₂] BinaryWord r)
@@ -76,7 +78,9 @@ theorem subsetSyndrome_injectiveOn_smallSupports
   have hsupports := congrArg wordSupport hxy
   simpa [x, y] using hsupports
 
-/-- Numerical syndrome-collision bound: `∑_{j≤t} choose m j ≤ 2^r`.-/
+/-- Numerical syndrome-collision bound: `∑_{j≤t} choose m j ≤ 2^r`.
+@isnad1 id=le.1h4v.s9.d2764b309d32 from=translated src=- shape=84010002 vocab=ce2e9a9a
+-/
 theorem volume_le_two_pow
     {m r t : ℕ}
     (φ : BinaryWord m →ₗ[F₂] BinaryWord r)
@@ -100,7 +104,9 @@ theorem volume_le_two_pow
     _ = 2 ^ r := by
       simp [ZMod.card]
 
-/-- Contrapositive form used when extracting a short relation.-/
+/-- Contrapositive form used when extracting a short relation.
+@isnad1 id=ex.1h4v.s9.0aadfcb7dc5b from=translated src=- shape=dd59f7f8 vocab=62d4eb4b
+-/
 theorem exists_short_kernel_word_of_two_pow_lt_volume
     {m r t : ℕ}
     (φ : BinaryWord m →ₗ[F₂] BinaryWord r)

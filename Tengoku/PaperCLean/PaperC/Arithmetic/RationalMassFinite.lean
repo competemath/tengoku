@@ -43,6 +43,9 @@ def separatedDyadicPairs (N L : ℕ) : Finset (ℕ × ℕ) :=
   ((dyadicBlock N) ×ˢ (dyadicBlock N)).filter fun pair =>
     L < Nat.dist pair.1 pair.2
 
+/--
+@isnad1 id=iff.0h4v.s6.596cf7161c78 from=translated src=- shape=b5374c4d vocab=0bc9c568
+-/
 @[simp]
 theorem mem_separatedDyadicPairs
     {N L x y : ℕ} :
@@ -70,7 +73,9 @@ noncomputable def rationalMass
   ∑ pair ∈ separatedDyadicPairs N L,
     (base ^ canonicalPairSigma A L pair.1 pair.2 - 1)
 
-/-- The combinatorial exponent is exactly the dimension of `S_rat`.-/
+/-- The combinatorial exponent is exactly the dimension of `S_rat`.
+@isnad1 id=eq.2h5v.s5.c406bf9d4225 from=translated src=- shape=ca4aae74 vocab=ac7d12e9
+-/
 theorem canonicalPairSigma_eq_rationalSigma
     (M A L x y : ℕ) (hx : 2 ≤ x) (hy : 2 ≤ y) :
     canonicalPairSigma A L x y =
@@ -80,6 +85,9 @@ theorem canonicalPairSigma_eq_rationalSigma
     rationalSigma_eq_canonicalMultiplicity_sub_one
       M A x y L hx hy
 
+/--
+@isnad1 id=le.1h4v.s5.5b02db548c6e from=translated src=- shape=8a1bade6 vocab=364d9021
+-/
 theorem two_le_canonicalMultiplicity_of_sigma_pos
     {A L x y : ℕ}
     (hsigma : 0 < canonicalPairSigma A L x y) :
@@ -87,7 +95,9 @@ theorem two_le_canonicalMultiplicity_of_sigma_pos
   unfold canonicalPairSigma at hsigma
   omega
 
-/-- Identify the combinatorial sigma with the selected channel's sigma.-/
+/-- Identify the combinatorial sigma with the selected channel's sigma.
+@isnad1 id=eq.1h5v.s8.c08db2a59f76 from=translated src=- shape=ec45ba26 vocab=71cb945c
+-/
 theorem canonicalPairSigma_eq_channelSigma_of_choice
     {A L x y : ℕ}
     {c : ReducedCandidate
@@ -102,6 +112,9 @@ theorem canonicalPairSigma_eq_channelSigma_of_choice
   simp [canonicalPairSigma, canonicalMultiplicity,
     hchoice, candidateMultiplicity, channelSigma]
 
+/--
+@isnad1 id=eq.1h5v.s8.d044db52a4b2 from=translated src=- shape=13e5e32d vocab=7c7a7a36
+-/
 theorem canonicalPairHeight_eq_of_choice
     {A L x y : ℕ}
     {c : ReducedCandidate
@@ -137,6 +150,9 @@ def largeChannelPairCover
 
 /-! ## Cardinality of the large-height cover -/
 
+/--
+@isnad1 id=le.5h5v.s6.ffe5d6ff6441 from=translated src=- shape=09e7c118 vocab=4486b2dc
+-/
 theorem card_largeChannelPairCoverAtRatio_le
     {N L q a b : ℕ}
     (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
@@ -185,6 +201,9 @@ theorem card_largeChannelPairCoverAtRatio_le
   exact hunion.trans
     (Nat.mul_le_mul_right (N + 1) hheights)
 
+/--
+@isnad1 id=le.2h3v.s6.1c0514f5d886 from=translated src=- shape=d12e3c3a vocab=d8f55535
+-/
 theorem card_largeChannelPairCoverAtHeight_le
     {N L q : ℕ} (_hq : 3 ≤ q) (hqL : q ≤ L) :
     (largeChannelPairCoverAtHeight N L q).card ≤
@@ -214,6 +233,9 @@ theorem card_largeChannelPairCoverAtHeight_le
   exact hunion.trans
     (Nat.mul_le_mul_right W hratios)
 
+/--
+@isnad1 id=le.0h2v.s6.12d92701cc6f from=translated src=- shape=09928000 vocab=7b45fbeb
+-/
 theorem card_largeChannelPairCover_le
     (N L : ℕ) :
     (largeChannelPairCover N L).card ≤
@@ -248,6 +270,9 @@ theorem card_largeChannelPairCover_le
 
 /-! ## Coverage of a positive canonical weight -/
 
+/--
+@isnad1 id=mem.2h6v.s8.cb7da1450703 from=translated src=- shape=59c2a77b vocab=3e535133
+-/
 theorem pair_mem_heightTwoBoundaryPairs_of_choice
     {N A L x y : ℕ}
     {c : ReducedCandidate
@@ -271,6 +296,9 @@ theorem pair_mem_heightTwoBoundaryPairs_of_choice
       ⟨hx, hy, by
         simpa [hbackward.1, hbackward.2] using hclose⟩
 
+/--
+@isnad1 id=mem.4h6v.s8.96625bc38ac5 from=translated src=- shape=113997c9 vocab=90af989d
+-/
 theorem pair_mem_largeChannelPairCover_of_choice
     {N A L x y : ℕ}
     {c : ReducedCandidate
@@ -309,7 +337,9 @@ theorem pair_mem_largeChannelPairCover_of_choice
   refine ⟨q, ?_, c.1, hc, h, hheight, hstart⟩
   exact Finset.mem_Icc.mpr ⟨hq3, hqL⟩
 
-/-- Weight of a selected nontrivial candidate at its exact height.-/
+/-- Weight of a selected nontrivial candidate at its exact height.
+@isnad1 id=le.2h6v.s8.21a7b87bced7 from=translated src=- shape=e24af041 vocab=88961947
+-/
 theorem canonicalPairWeight_le_pow_div_of_choice
     {A L base x y : ℕ}
     {c : ReducedCandidate
@@ -340,7 +370,9 @@ theorem canonicalPairWeight_le_pow_div_of_choice
 
 /--
 Pointwise weighted coverage: every positive canonical weight is charged
-either to the frontal height-two set or to the enumerated `q ≥ 3` cover.-/
+either to the frontal height-two set or to the enumerated `q ≥ 3` cover.
+@isnad1 id=le.2h6v.s8.e1901563675b from=translated src=- shape=54f25fe1 vocab=2b43a8bb
+-/
 theorem canonicalPairWeight_le_coverWeights
     {N A L base x y : ℕ}
     (hbase : 1 ≤ base)
@@ -439,7 +471,9 @@ private theorem sum_ite_mem_le_card_mul
 
 /--
 Finite rational-mass bound with the exceptional height two separated from
-all heights at least three.-/
+all heights at least three.
+@isnad1 id=le.2h4v.s8.2549ad6eb0a9 from=translated src=- shape=8c2a364e vocab=481254ed
+-/
 theorem rationalMass_le
     (N A L base : ℕ) (_hA : 1 ≤ A) (hbase : 1 ≤ base) :
     rationalMass N A L base ≤

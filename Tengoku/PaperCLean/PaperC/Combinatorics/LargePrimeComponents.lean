@@ -38,6 +38,9 @@ noncomputable def componentVertices
   exact Finset.univ.filter fun v ↦
     (largePrimeGraph x y L).connectedComponentMk v = C
 
+/--
+@isnad1 id=iff.0h5v.s5.71ac4e4d3a11 from=translated src=- shape=724c78ac vocab=ea1497ea
+-/
 @[simp]
 theorem mem_componentVertices
     {x y L : ℕ}
@@ -62,7 +65,9 @@ def componentLabels
   (componentVertices x y L C).image
     (Affine.twoStartCompleteVertexLabel x y L)
 
-/-- Every connected component has at least one vertex.-/
+/-- Every connected component has at least one vertex.
+@isnad1 id=nonempty.0h4v.s4.a81596395071 from=translated src=- shape=3150e4bb vocab=06812024
+-/
 theorem componentVertices_nonempty
     (x y L : ℕ)
     (C : (largePrimeGraph x y L).ConnectedComponent) :
@@ -73,7 +78,9 @@ theorem componentVertices_nonempty
   change Quot.mk (largePrimeGraph x y L).Reachable v = C
   exact hv
 
-/-- A complete label lies weakly above the left endpoint minus one.-/
+/-- A complete label lies weakly above the left endpoint minus one.
+@isnad1 id=le.1h3v.s5.7c07feb01967 from=translated src=- shape=f464e765 vocab=4f68b801
+-/
 theorem startCompleteVertexLabel_lower
     {x L : ℕ} (hx : 1 ≤ x)
     (v : Fin (L + 1)) :
@@ -81,7 +88,9 @@ theorem startCompleteVertexLabel_lower
   unfold Affine.startCompleteVertexLabel
   split_ifs <;> omega
 
-/-- A complete label lies strictly below the endpoint `x+L`.-/
+/-- A complete label lies strictly below the endpoint `x+L`.
+@isnad1 id=lt.1h3v.s5.ed1b9f77cbb7 from=translated src=- shape=5a7bab44 vocab=e2fdf0d6
+-/
 theorem startCompleteVertexLabel_upper
     {x L : ℕ} (hx : 1 ≤ x)
     (v : Fin (L + 1)) :
@@ -89,7 +98,9 @@ theorem startCompleteVertexLabel_upper
   unfold Affine.startCompleteVertexLabel
   split_ifs <;> omega
 
-/-- Literal separation by distance gives one of the two ordered gaps.-/
+/-- Literal separation by distance gives one of the two ordered gaps.
+@isnad1 id=or.1h3v.s5.7949dc7a66fa from=translated src=- shape=1213d940 vocab=6906477a
+-/
 theorem ordered_gap_of_lt_dist
     {x y L : ℕ} (hsep : L < Nat.dist x y) :
     x + L < y ∨ y + L < x := by
@@ -103,7 +114,9 @@ theorem ordered_gap_of_lt_dist
 
 /--
 For separated positive starts, all complete labels in the two blocks are
-pairwise distinct.-/
+pairwise distinct.
+@isnad1 id=injectiv.3h3v.s6.21ba69a5e3aa from=translated src=- shape=14f10ef0 vocab=7a87dd5e
+-/
 theorem twoStartCompleteVertexLabel_injective_of_separated
     {x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -167,7 +180,9 @@ theorem twoStartCompleteVertexLabel_injective_of_separated
               (Affine.RelationalPrimeAssignment.startCompleteVertexLabel_injective
                 hy hvw)
 
-/-- A parity coordinate is zero exactly off its occurrence set.-/
+/-- A parity coordinate is zero exactly off its occurrence set.
+@isnad1 id=eq.1h5v.s6.1959bf9beb8f from=translated src=- shape=536e1ecf vocab=551d5c48
+-/
 theorem parityVec_eq_zero_of_not_mem_primeOccurrences
     {x y L p : ℕ} {v : Occurrence L}
     (hv : v ∉ primeOccurrences x y L p) :
@@ -184,7 +199,9 @@ theorem parityVec_eq_zero_of_not_mem_primeOccurrences
 
 /--
 On an arbitrary finite vertex set, a prime-parity sum is the cardinality
-modulo two of the intersection with its occurrence set.-/
+modulo two of the intersection with its occurrence set.
+@isnad1 id=eq.0h5v.s7.3190dbbfe026 from=translated src=- shape=28b018e4 vocab=6aecf942
+-/
 theorem sum_parityVec_eq_filtered_card
     (x y L p : ℕ) (s : Finset (Occurrence L)) :
     (∑ v ∈ s,
@@ -213,7 +230,9 @@ theorem sum_parityVec_eq_filtered_card
 
 /--
 A nonpinned component contains either zero or both occurrences of every
-large prime.  Hence its total parity at that prime vanishes.-/
+large prime.  Hence its total parity at that prime vanishes.
+@isnad1 id=eq.4h5v.s7.0d477eb6d0bf from=translated src=- shape=c2d0f73a vocab=c97791d7
+-/
 theorem component_large_parity_eq_zero
     {x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -315,7 +334,9 @@ theorem component_large_parity_eq_zero
       rw [hfilter]
       simp
 
-/-- The labels of every component are positive for starts at least two.-/
+/-- The labels of every component are positive for starts at least two.
+@isnad1 id=lt.3h5v.s5.e517d0af28b3 from=translated src=- shape=d9d7a23f vocab=f316812e
+-/
 theorem componentLabels_pos
     {x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)
@@ -342,7 +363,9 @@ theorem componentLabels_pos
 
 /--
 The parity sum over a separated component may be rewritten over its set of
-integer labels.-/
+integer labels.
+@isnad1 id=eq.6h5v.s7.bb42893340cf from=translated src=- shape=d45e9098 vocab=f7d03b4a
+-/
 theorem componentLabels_large_parity_eq_zero
     {x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)
@@ -365,7 +388,9 @@ theorem componentLabels_large_parity_eq_zero
 /--
 Lemma 6.2, arithmetic conclusion for a concrete nonpinned component.
 The squarefree factor and positive root are canonical and unique by
-`ComponentSquareClass.decomposition_unique`.-/
+`ComponentSquareClass.decomposition_unique`.
+@isnad1 id=ex.4h4v.s7.45f518a5c250 from=translated src=- shape=5ec7d167 vocab=29988a91
+-/
 theorem exists_component_square_class
     {x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)

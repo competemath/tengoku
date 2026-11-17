@@ -28,7 +28,9 @@ open scoped BigOperators
 
 /--
 A nonzero defect-code kernel word selects `2 * k` entries for some `k ≥ 1`.
-This packages the parity condition `d = 2k ≥ 2` in Lemma 3.1.-/
+This packages the parity condition `d = 2k ≥ 2` in Lemma 3.1.
+@isnad1 id=ex.2h5v.s9.84b97dbfcb7d from=translated src=- shape=94ebbf01 vocab=14c96579
+-/
 theorem kernelWord_support_card_eq_two_mul
     {m r : ℕ}
     (smallPrime : Fin r → ℕ) (f : Fin m → ℕ)
@@ -64,7 +66,9 @@ theorem kernelWord_support_card_eq_two_mul
 /--
 The entries selected by a defect-code kernel word satisfy the translated
 Runge hypotheses: injective bounded shifts and a square product at the base
-point.-/
+point.
+@isnad1 id=other.6h7v.s10.024ba8375421 from=translated src=- shape=cea7160a vocab=55f94ffc
+-/
 theorem kernelWord_translatedRungeInput
     {m r U R : ℕ}
     (smallPrime : Fin r → ℕ) (f : Fin m → ℕ)

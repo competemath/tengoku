@@ -36,6 +36,9 @@ open scoped BigOperators
 def smallPrimesUpTo (H : ℕ) : Finset ℕ :=
   (Finset.range (H + 1)).filter Nat.Prime
 
+/--
+@isnad1 id=iff.0h2v.s4.705b2371f103 from=translated src=- shape=0cb4a935 vocab=5c41fe32
+-/
 @[simp]
 theorem mem_smallPrimesUpTo {H p : ℕ} :
     p ∈ smallPrimesUpTo H ↔ p.Prime ∧ p ≤ H := by
@@ -57,6 +60,9 @@ def DefectRepresentation.defectPart {P : Finset ℕ} {n : ℕ}
     (rep : DefectRepresentation P n) : ℕ :=
   rep.support.prod id
 
+/--
+@isnad1 id=eq.0h3v.s5.3d67c5cc0f1b from=translated src=- shape=fbb1c6f3 vocab=c5bf52a5
+-/
 @[simp]
 theorem DefectRepresentation.value_eq_defectPart_mul_sq
     {P : Finset ℕ} {n : ℕ} (rep : DefectRepresentation P n) :
@@ -79,6 +85,9 @@ def valuesForSupport (support : Finset ℕ) (X : ℕ) : Finset ℕ :=
 def defectValues (P : Finset ℕ) (X : ℕ) : Finset ℕ :=
   P.powerset.biUnion (fun support ↦ valuesForSupport support X)
 
+/--
+@isnad1 id=iff.0h3v.s6.7ff1d7ed40b6 from=translated src=- shape=677a9e5d vocab=2c131520
+-/
 theorem mem_valuesForSupport_iff
     {support : Finset ℕ} {X n : ℕ} :
     n ∈ valuesForSupport support X ↔
@@ -86,6 +95,9 @@ theorem mem_valuesForSupport_iff
   simp [valuesForSupport, Nat.lt_succ_iff, eq_comm, and_comm,
     and_left_comm, and_assoc]
 
+/--
+@isnad1 id=iff.0h3v.s6.e24a57669ff8 from=translated src=- shape=612e4fcc vocab=ccbbcc73
+-/
 theorem mem_defectValues_iff {P : Finset ℕ} {X n : ℕ} :
     n ∈ defectValues P X ↔
       n ≤ X ∧
@@ -102,7 +114,9 @@ theorem mem_defectValues_iff {P : Finset ℕ} {X n : ℕ} :
 /--
 The square part of a bounded representation is at most `Nat.sqrt X`, provided
 the allowed factors are positive.  For a set of primes this positivity is
-automatic.-/
+automatic.
+@isnad1 id=le.2h4v.s5.bb6d45f60ed9 from=translated src=- shape=02ebc529 vocab=68891281
+-/
 theorem squarePart_le_sqrt
     {P : Finset ℕ} {X n : ℕ}
     (hP : ∀ p ∈ P, 1 ≤ p)
@@ -122,7 +136,9 @@ theorem squarePart_le_sqrt
     _ = n := rep.value_eq.symm
     _ ≤ X := hnX
 
-/-- Every bounded explicit representation occurs in `defectValues`.-/
+/-- Every bounded explicit representation occurs in `defectValues`.
+@isnad1 id=mem.2h4v.s5.27ae7b5c2f56 from=translated src=- shape=d118b382 vocab=0f3070ce
+-/
 theorem mem_defectValues_of_representation
     {P : Finset ℕ} {X n : ℕ}
     (hP : ∀ p ∈ P, 1 ≤ p)
@@ -133,7 +149,9 @@ theorem mem_defectValues_of_representation
   exact ⟨hnX, rep.support, rep.support_subset, rep.squarePart,
     squarePart_le_sqrt hP rep hnX, rep.value_eq⟩
 
-/-- Specialization to defect parts supported on primes at most `H`.-/
+/-- Specialization to defect parts supported on primes at most `H`.
+@isnad1 id=mem.1h4v.s4.8333638ed1f8 from=translated src=- shape=2940ec35 vocab=4bc63265
+-/
 theorem mem_defectValues_of_HDefectRepresentation
     {H X n : ℕ}
     (rep : HDefectRepresentation H n)
@@ -143,7 +161,9 @@ theorem mem_defectValues_of_HDefectRepresentation
   intro p hp
   exact (mem_smallPrimesUpTo.mp hp).1.one_lt.le
 
-/-- Each fixed support contributes at most `Nat.sqrt X + 1` values.-/
+/-- Each fixed support contributes at most `Nat.sqrt X + 1` values.
+@isnad1 id=le.0h2v.s4.9427aeca726c from=translated src=- shape=e69fbf45 vocab=ea0d3529
+-/
 theorem card_valuesForSupport_le (support : Finset ℕ) (X : ℕ) :
     (valuesForSupport support X).card ≤ Nat.sqrt X + 1 := by
   unfold valuesForSupport
@@ -152,7 +172,9 @@ theorem card_valuesForSupport_le (support : Finset ℕ) (X : ℕ) :
 
 /--
 First form of the global defect count: a sum of the contributions of all
-subsets of the allowed small primes.-/
+subsets of the allowed small primes.
+@isnad1 id=le.0h2v.s4.76410c9f4be8 from=translated src=- shape=cdc55427 vocab=80c0c202
+-/
 theorem card_defectValues_le_sum (P : Finset ℕ) (X : ℕ) :
     (defectValues P X).card ≤
       ∑ support ∈ P.powerset, (valuesForSupport support X).card := by
@@ -161,7 +183,9 @@ theorem card_defectValues_le_sum (P : Finset ℕ) (X : ℕ) :
 
 /--
 Coarse finite bound for the global defect mass.  The `+ 1` makes the estimate
-valid at `X = 0` and allows the square part `a = 0`.-/
+valid at `X = 0` and allows the square part `a = 0`.
+@isnad1 id=le.0h2v.s5.b0ea153488c8 from=translated src=- shape=d640aee9 vocab=53d387ef
+-/
 theorem card_defectValues_le (P : Finset ℕ) (X : ℕ) :
     (defectValues P X).card ≤
       (Nat.sqrt X + 1) * 2 ^ P.card := by
@@ -176,7 +200,9 @@ theorem card_defectValues_le (P : Finset ℕ) (X : ℕ) :
     _ = (Nat.sqrt X + 1) * 2 ^ P.card := by
       simp [Finset.card_powerset, Nat.mul_comm]
 
-/-- The same bound for the actual set of primes at most `H`.-/
+/-- The same bound for the actual set of primes at most `H`.
+@isnad1 id=le.0h2v.s5.ad3749db2e98 from=translated src=- shape=1fa18ec1 vocab=65c913ae
+-/
 theorem card_HDefectValues_le (H X : ℕ) :
     (defectValues (smallPrimesUpTo H) X).card ≤
       (Nat.sqrt X + 1) * 2 ^ (smallPrimesUpTo H).card :=
@@ -190,6 +216,9 @@ contains `n`.-/
 def intervalStartsContaining (starts : Finset ℕ) (H n : ℕ) : Finset ℕ :=
   starts.filter (fun u ↦ u ≤ n ∧ n ≤ u + H)
 
+/--
+@isnad1 id=le.0h3v.s5.84168f7cdf27 from=translated src=- shape=a979d73e vocab=d53fd68b
+-/
 theorem intervalStartsContaining_subset_Icc
     (starts : Finset ℕ) (H n : ℕ) :
     intervalStartsContaining starts H n ⊆ Finset.Icc (n - H) n := by
@@ -202,7 +231,9 @@ theorem intervalStartsContaining_subset_Icc
 
 /--
 A fixed integer belongs to at most `H + 1` intervals `[u, u + H]`, even when
-the possible starting points are restricted to an arbitrary finset.-/
+the possible starting points are restricted to an arbitrary finset.
+@isnad1 id=le.0h3v.s4.f4566c4224ac from=translated src=- shape=6540336b vocab=f2b5c0bc
+-/
 theorem card_intervalStartsContaining_le
     (starts : Finset ℕ) (H n : ℕ) :
     (intervalStartsContaining starts H n).card ≤ H + 1 := by

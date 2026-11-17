@@ -18,7 +18,9 @@ namespace PaperC
 The positive values `n ≤ X` representable as `s * a^2`, with `s` a product
 of distinct primes at most `H`, satisfy
 
-`# ≤ √X * exp (2 √H)`.-/
+`# ≤ √X * exp (2 √H)`.
+@isnad1 id=le.0h2v.s5.73fec9e12c14 from=translated src=- shape=52da8219 vocab=b204f131
+-/
 theorem card_positiveHDefectValues_cast_le_sqrt_mul_exp
     (H X : ℕ) :
     ((WeightedDefectCounting.positiveDefectValues

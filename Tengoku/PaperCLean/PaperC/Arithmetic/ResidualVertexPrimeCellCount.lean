@@ -53,7 +53,9 @@ noncomputable def residualVertexPrimeCellEquiv
     · simp
     · simp
 
-/-- The two residual-cell finsets have the same cardinality.-/
+/-- The two residual-cell finsets have the same cardinality.
+@isnad1 id=eq.0h5v.s5.c3d386236a1b from=translated src=- shape=1fa27d96 vocab=98485953
+-/
 theorem residualVertexPrimeCells_card_eq_residualPrimeCells_card
     (L a b p : ℕ) (h : ℤ) :
     (residualVertexPrimeCells L a b p h).card =

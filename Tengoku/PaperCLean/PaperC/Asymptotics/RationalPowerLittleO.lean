@@ -27,7 +27,9 @@ A uniform `N^(p/q+o(1))` bound is uniformly little-oh of `N^r` whenever
 
 The proof uses the reciprocal-power estimate with `k=2`.  The strict
 exponent gap then leaves at least one power of `N`, which absorbs the
-arbitrary positive little-oh constant.-/
+arbitrary positive little-oh constant.
+@isnad1 id=uniforml.2h5v.s5.40de7adca022 from=translated src=- shape=0cfc3e5c vocab=888930d1
+-/
 theorem littleO_natPower_of_lt
     {p q r : ℕ}
     {admissible : ℕ → ℕ → Prop}
@@ -160,7 +162,9 @@ scale:
 
 `N^(19/12+o(1)) = o(N^2)`,
 
-uniformly in the same admissible family.-/
+uniformly in the same admissible family.
+@isnad1 id=uniforml.1h2v.s5.d67915625d2b from=translated src=- shape=c13e1ea9 vocab=b432183c
+-/
 theorem nineteenTwelfths_littleO_quadratic
     {admissible : ℕ → ℕ → Prop}
     {R : ℕ → ℕ → ℝ}

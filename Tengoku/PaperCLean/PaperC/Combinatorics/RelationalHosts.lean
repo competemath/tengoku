@@ -38,6 +38,9 @@ def relationalHosts (N L : ℕ) : Finset (ℕ × ℕ) := by
       0 < relationRho
         (twoStartSystem (dyadicCutoff N L) pair.1 pair.2 L)
 
+/--
+@isnad1 id=iff.0h4v.s7.3cbaac27861f from=translated src=- shape=fb215a1c vocab=075b793a
+-/
 @[simp]
 theorem mem_relationalHosts
     {N L x y : ℕ} :
@@ -52,7 +55,9 @@ theorem mem_relationalHosts
   tauto
 
 /-- Positive relation defect is equivalent to existence of a nonzero
-relation vector.-/
+relation vector.
+@isnad1 id=ex.1h4v.s11.9592946934a1 from=translated src=- shape=a48b6761 vocab=952d76e2
+-/
 theorem exists_nonzero_relation_of_rho_pos
     {M x y L : ℕ}
     (h :
@@ -73,6 +78,9 @@ noncomputable def chosenRelation
   then Classical.choose (exists_nonzero_relation_of_rho_pos h)
   else 0
 
+/--
+@isnad1 id=ne.1h3v.s10.3c0244719a4f from=translated src=- shape=6e172310 vocab=04d883ea
+-/
 theorem chosenRelation_ne_zero
     {N L : ℕ} {pair : ℕ × ℕ}
     (h :
@@ -92,6 +100,9 @@ noncomputable def selectedOccurrence
   else
     Sum.inl (startRootVertex L)
 
+/--
+@isnad1 id=ne.1h3v.s10.782a3c174601 from=translated src=- shape=d346bfe6 vocab=8ad05fb6
+-/
 theorem selectedOccurrence_ne_zero
     {N L : ℕ} {pair : ℕ × ℕ}
     (h :
@@ -114,6 +125,9 @@ def startsWithSelectedLabel
   (dyadicBlock N).filter fun x ↦
     startCompleteVertexLabel x L v = n
 
+/--
+@isnad1 id=iff.0h5v.s5.0d56233b69da from=translated src=- shape=d3f6b377 vocab=02e4b504
+-/
 @[simp]
 theorem mem_startsWithSelectedLabel
     {N L n x : ℕ} {v : Fin (L + 1)} :
@@ -122,7 +136,9 @@ theorem mem_startsWithSelectedLabel
         startCompleteVertexLabel x L v = n := by
   simp [startsWithSelectedLabel]
 
-/-- For `N ≥ 2`, one label and one offset determine at most one start.-/
+/-- For `N ≥ 2`, one label and one offset determine at most one start.
+@isnad1 id=le.1h4v.s5.8116f658028d from=translated src=- shape=0c0bdaf8 vocab=214c9dcc
+-/
 theorem card_startsWithSelectedLabel_le_one
     {N L n : ℕ} (hN : 2 ≤ N) (v : Fin (L + 1)) :
     (startsWithSelectedLabel N L n v).card ≤ 1 := by
@@ -159,7 +175,9 @@ def certificateCover (N L : ℕ) : Finset (ℕ × ℕ) := by
       leftCertificates N L n v ∪ rightCertificates N L n v
 
 /-- A complete label based at `x ∈ [N,2N)` lies in `[1,3N]` when `N ≥ 2`
-and `L ≤ N`.-/
+and `L ≤ N`.
+@isnad1 id=mem.3h4v.s6.1039b8a9b67f from=translated src=- shape=21b4f7aa vocab=136fabbc
+-/
 theorem selectedLabel_mem_Icc
     {N L x : ℕ} (hN : 2 ≤ N) (hL : L ≤ N)
     (hx : x ∈ dyadicBlock N) (v : Fin (L + 1)) :
@@ -178,7 +196,9 @@ theorem selectedLabel_mem_Icc
 
 /--
 Every separated relational host belongs to the finite certificate cover.
-This is the formal bridge from `ρ(x,y)>0` to the CRT count.-/
+This is the formal bridge from `ρ(x,y)>0` to the CRT count.
+@isnad1 id=le.2h2v.s5.befb2acf4942 from=translated src=- shape=618af854 vocab=4e85a5fb
+-/
 theorem relationalHosts_subset_certificateCover
     {N L : ℕ} (hN : 2 ≤ N) (hL : L ≤ N) :
     relationalHosts N L ⊆ certificateCover N L := by
@@ -239,6 +259,9 @@ noncomputable def assignmentCountBound
         (LargeOddKernel.largeOddKernel (L + 1) n : ℚ) +
       1)
 
+/--
+@isnad1 id=le.1h4v.s5.fdfe2a4d56b9 from=translated src=- shape=17f96a85 vocab=f45a8bab
+-/
 theorem card_leftCertificates_cast_le
     {N L n : ℕ} (hN : 2 ≤ N) (v : Fin (L + 1)) :
     ((leftCertificates N L n v).card : ℚ) ≤
@@ -272,6 +295,9 @@ theorem card_leftCertificates_cast_le
             (LargeOddKernel.largeOddKernel (L + 1) n : ℚ) +
           1) := by ring
 
+/--
+@isnad1 id=le.1h4v.s5.58f3618f2524 from=translated src=- shape=17f96a85 vocab=6b62c772
+-/
 theorem card_rightCertificates_cast_le
     {N L n : ℕ} (hN : 2 ≤ N) (v : Fin (L + 1)) :
     ((rightCertificates N L n v).card : ℚ) ≤
@@ -305,6 +331,9 @@ theorem card_rightCertificates_cast_le
             (LargeOddKernel.largeOddKernel (L + 1) n : ℚ) +
           1) := by ring
 
+/--
+@isnad1 id=le.1h4v.s6.b3f08b0a2aba from=translated src=- shape=5a186ef5 vocab=cbe37f0c
+-/
 theorem card_certificate_union_cast_le
     {N L n : ℕ} (hN : 2 ≤ N) (v : Fin (L + 1)) :
     (((leftCertificates N L n v ∪
@@ -332,7 +361,9 @@ theorem card_certificate_union_cast_le
     _ = 2 * assignmentCountBound N L n := by ring
 
 /--
-Exact finite certificate bound before replacing `N/K + 1` by `4N/K`.-/
+Exact finite certificate bound before replacing `N/K + 1` by `4N/K`.
+@isnad1 id=le.2h2v.s6.653199aa2026 from=translated src=- shape=abb907f6 vocab=d64b87dc
+-/
 theorem card_relationalHosts_cast_le_assignmentSum
     {N L : ℕ} (hN : 2 ≤ N) (hL : L ≤ N) :
     ((relationalHosts N L).card : ℚ) ≤
@@ -402,7 +433,9 @@ noncomputable def largeKernelWeightQ (B n : ℕ) : ℚ :=
 
 /--
 For `n ≤ 3N`, the soft bound `N/K + 1 ≤ 4N/K` converts one assignment
-contribution to four times the manuscript kernel weight.-/
+contribution to four times the manuscript kernel weight.
+@isnad1 id=le.1h3v.s6.5e7c94363ff1 from=translated src=- shape=4eb14053 vocab=ae2eeb60
+-/
 theorem assignmentCountBound_le_four_mul_kernelWeightQ
     {N L n : ℕ} (hn : n ∈ Finset.Icc 1 (3 * N)) :
     assignmentCountBound N L n ≤
@@ -463,7 +496,9 @@ theorem assignmentCountBound_le_four_mul_kernelWeightQ
 /--
 The explicit finite estimate displayed in Lemma 4.2:
 
-`H₂(N,L) ≤ 8 (L+1) N ∑_{1≤n≤3N} (L+1)^ω(K)/K`.-/
+`H₂(N,L) ≤ 8 (L+1) N ∑_{1≤n≤3N} (L+1)^ω(K)/K`.
+@isnad1 id=le.2h2v.s6.d73b1ebdaf46 from=translated src=- shape=5b9e7743 vocab=ddd71667
+-/
 theorem card_relationalHosts_cast_le_kernelSumQ
     {N L : ℕ} (hN : 2 ≤ N) (hL : L ≤ N) :
     ((relationalHosts N L).card : ℚ) ≤

@@ -51,6 +51,9 @@ def twoStartRhs (L : ℕ) : Sum (Fin L) (Fin L) → F₂
   | Sum.inl i => startRhs L i
   | Sum.inr i => startRhs L i
 
+/--
+@isnad1 id=eq.0h6v.s9.bd897c53c57c from=translated src=- shape=0839ef9a vocab=8fa6e534
+-/
 @[simp]
 theorem twoStartSystem_apply_inl
     (M x y L : ℕ) (ω : SampleSpace M) (i : Fin L) :
@@ -58,6 +61,9 @@ theorem twoStartSystem_apply_inl
       startSystem M x L ω i :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.516b8e8081e2 from=translated src=- shape=925b3770 vocab=6277e774
+-/
 @[simp]
 theorem twoStartSystem_apply_inr
     (M x y L : ℕ) (ω : SampleSpace M) (i : Fin L) :
@@ -65,17 +71,25 @@ theorem twoStartSystem_apply_inr
       startSystem M y L ω i :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.bee567a349f7 from=translated src=- shape=c542b7f0 vocab=a531aca0
+-/
 @[simp]
 theorem twoStartRhs_apply_inl (L : ℕ) (i : Fin L) :
     twoStartRhs L (Sum.inl i) = startRhs L i :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.b675f6d40d09 from=translated src=- shape=c542b7f0 vocab=09d1adbe
+-/
 @[simp]
 theorem twoStartRhs_apply_inr (L : ℕ) (i : Fin L) :
     twoStartRhs L (Sum.inr i) = startRhs L i :=
   rfl
 
-/-- The joint system is exactly the intersection of the two start events.-/
+/-- The joint system is exactly the intersection of the two start events.
+@isnad1 id=iff.1h5v.s8.a8a210612c7d from=translated src=- shape=434b1ed7 vocab=e5b44b83
+-/
 theorem twoStartSystem_eq_twoStartRhs_iff
     {M x y L : ℕ} (ω : SampleSpace M) (hL : 0 < L) :
     twoStartSystem M x y L ω = twoStartRhs L ↔
@@ -126,6 +140,9 @@ def startCompleteBoundary (L : ℕ) :
     (Fin L → F₂) →ₗ[F₂] (Fin (L + 1) → F₂) :=
   Fintype.linearCombination F₂ (startIncidenceColumn (L := L))
 
+/--
+@isnad1 id=eq.0h3v.s9.364c197aa342 from=translated src=- shape=11180969 vocab=c53eb310
+-/
 @[simp]
 theorem startCompleteBoundary_apply
     {L : ℕ} (u : Fin L → F₂) (v : Fin (L + 1)) :
@@ -213,7 +230,9 @@ private theorem startIncidenceColumn_apply_private
           startBaseVertex, Pi.single_apply, hi0, hj0,
           htip_ne_center, htip_ne_tip, hij]
 
-/-- The complete boundary determines every start-row coefficient.-/
+/-- The complete boundary determines every start-row coefficient.
+@isnad1 id=injectiv.0h1v.s9.0e79e460643c from=translated src=- shape=0498e90d vocab=0192c65f
+-/
 theorem startCompleteBoundary_injective
     (L : ℕ) :
     Function.Injective (startCompleteBoundary L) := by
@@ -244,18 +263,27 @@ def startEdgeParity (x p : ℕ) {L : ℕ} (i : Fin L) : F₂ :=
   else
     parityVec x p + parityVec (x + i.1) p
 
+/--
+@isnad1 id=eq.0h2v.s4.e4bbb136beb9 from=translated src=- shape=5a187e78 vocab=dc03452a
+-/
 @[simp]
 theorem startCompleteVertexLabel_root
     (x L : ℕ) :
     startCompleteVertexLabel x L (startRootVertex L) = x - 1 := by
   simp [startCompleteVertexLabel, startRootVertex]
 
+/--
+@isnad1 id=eq.0h3v.s4.125915daffc4 from=translated src=- shape=10271714 vocab=9693b619
+-/
 @[simp]
 theorem startCompleteVertexLabel_tip
     (x : ℕ) {L : ℕ} (i : Fin L) :
     startCompleteVertexLabel x L (startTipVertex i) = x + i.1 := by
   simp [startCompleteVertexLabel, startTipVertex]
 
+/--
+@isnad1 id=eq.0h3v.s5.818372ac3771 from=translated src=- shape=a43fda84 vocab=806f74ce
+-/
 theorem startCompleteVertexLabel_base
     (x : ℕ) {L : ℕ} (i : Fin L) :
     startCompleteVertexLabel x L (startBaseVertex i) =
@@ -264,7 +292,9 @@ theorem startCompleteVertexLabel_base
   · simp [startBaseVertex, hi]
   · simp [startBaseVertex, startCompleteVertexLabel, hi]
 
-/-- A row parity vector is the sum of the parity vectors at its endpoints.-/
+/-- A row parity vector is the sum of the parity vectors at its endpoints.
+@isnad1 id=eq.0h4v.s7.98a5f31929d5 from=translated src=- shape=ba66b2b2 vocab=45b29337
+-/
 theorem startEdgeParity_eq_endpoint_sum
     (x p : ℕ) {L : ℕ} (i : Fin L) :
     startEdgeParity x p i =
@@ -276,7 +306,9 @@ theorem startEdgeParity_eq_endpoint_sum
 
 /--
 Incidence form of one parity row: sum the vertex parity coordinates against
-the row's incidence column.-/
+the row's incidence column.
+@isnad1 id=eq.0h4v.s7.7fcb48caf133 from=translated src=- shape=4aa01293 vocab=b2e143dc
+-/
 theorem startEdgeParity_eq_sum_incidence
     (x p : ℕ) {L : ℕ} (i : Fin L) :
     startEdgeParity x p i =
@@ -291,7 +323,9 @@ theorem startEdgeParity_eq_sum_incidence
 Line--boundary identity for a complete start star.
 
 The linear combination of edge parity rows equals the linear combination of
-vertex parity vectors selected by the complete boundary.-/
+vertex parity vectors selected by the complete boundary.
+@isnad1 id=eq.0h4v.s9.da4f4e8ce013 from=translated src=- shape=58b5a881 vocab=7ef25968
+-/
 theorem sum_startEdgeParity_eq_sum_completeBoundary
     (x p : ℕ) {L : ℕ} (u : Fin L → F₂) :
     (∑ i : Fin L, u i * startEdgeParity x p i) =
@@ -383,6 +417,9 @@ def twoStartCompleteBoundary (L : ℕ) :
         rw [LinearMap.map_smul]
         rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.4aad913576c2 from=translated src=- shape=5032fe44 vocab=26ae32a8
+-/
 @[simp]
 theorem twoStartCompleteBoundary_apply_inl
     {L : ℕ} (u : Sum (Fin L) (Fin L) → F₂)
@@ -391,6 +428,9 @@ theorem twoStartCompleteBoundary_apply_inl
       startCompleteBoundary L (fun i => u (Sum.inl i)) v :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.3ad3ee37204a from=translated src=- shape=5032fe44 vocab=5c18be32
+-/
 @[simp]
 theorem twoStartCompleteBoundary_apply_inr
     {L : ℕ} (u : Sum (Fin L) (Fin L) → F₂)
@@ -399,7 +439,9 @@ theorem twoStartCompleteBoundary_apply_inr
       startCompleteBoundary L (fun i => u (Sum.inr i)) v :=
   rfl
 
-/-- The two-block complete boundary is injective.-/
+/-- The two-block complete boundary is injective.
+@isnad1 id=injectiv.0h1v.s9.5d0c481bb2dc from=translated src=- shape=815eb1ef vocab=f7539659
+-/
 theorem twoStartCompleteBoundary_injective
     (L : ℕ) :
     Function.Injective (twoStartCompleteBoundary L) := by
@@ -433,7 +475,9 @@ def twoStartCompleteVertexLabel (x y L : ℕ) :
   | Sum.inl v => startCompleteVertexLabel x L v
   | Sum.inr v => startCompleteVertexLabel y L v
 
-/-- Joint line--boundary identity for two arbitrary starts.-/
+/-- Joint line--boundary identity for two arbitrary starts.
+@isnad1 id=eq.0h5v.s10.8735e0326782 from=translated src=- shape=1be6f225 vocab=0c0bfea3
+-/
 theorem sum_twoStartEdgeParity_eq_sum_completeBoundary
     (x y p : ℕ) {L : ℕ}
     (u : Sum (Fin L) (Fin L) → F₂) :
@@ -457,7 +501,9 @@ theorem sum_twoStartEdgeParity_eq_sum_completeBoundary
 
 /-! ## Nonzero and canonical selected occurrences -/
 
-/-- A nonzero coefficient vector has a nonzero complete-boundary occurrence.-/
+/-- A nonzero coefficient vector has a nonzero complete-boundary occurrence.
+@isnad1 id=ex.1h2v.s9.66c819c2fd5e from=translated src=- shape=d4a4a05f vocab=f716d215
+-/
 theorem exists_twoStartCompleteBoundary_ne_zero
     {L : ℕ} {u : Sum (Fin L) (Fin L) → F₂}
     (hu : u ≠ 0) :
@@ -477,7 +523,9 @@ theorem exists_twoStartCompleteBoundary_ne_zero
 
 /--
 Relation-specific occurrence theorem: every nonzero relation of the two-start
-system selects at least one complete-boundary vertex.-/
+system selects at least one complete-boundary vertex.
+@isnad1 id=ex.1h5v.s11.f895ee59b269 from=translated src=- shape=30e80645 vocab=0745101c
+-/
 theorem relation_exists_selectedOccurrence
     {M x y L : ℕ}
     (u : RelationSpace (twoStartSystem M x y L))
@@ -504,6 +552,9 @@ noncomputable def twoStartBoundarySupport
       twoStartCompleteBoundary L u
         (finSumFinEquiv.symm k) ≠ 0)
 
+/--
+@isnad1 id=iff.0h3v.s10.6934dd4c5bc8 from=translated src=- shape=bc8e1c70 vocab=4b0b0593
+-/
 @[simp]
 theorem mem_twoStartBoundarySupport
     {L : ℕ} {u : Sum (Fin L) (Fin L) → F₂}
@@ -513,7 +564,9 @@ theorem mem_twoStartBoundarySupport
         (finSumFinEquiv.symm k) ≠ 0 := by
   simp [twoStartBoundarySupport]
 
-/-- The ordered boundary support of a nonzero relation is nonempty.-/
+/-- The ordered boundary support of a nonzero relation is nonempty.
+@isnad1 id=nonempty.1h5v.s11.0524ea6ba188 from=translated src=- shape=8442065b vocab=daa685d8
+-/
 theorem relation_twoStartBoundarySupport_nonempty
     {M x y L : ℕ}
     (u : RelationSpace (twoStartSystem M x y L))
@@ -540,6 +593,9 @@ noncomputable def canonicalTwoStartBoundaryOccurrence
     Sum (Fin (L + 1)) (Fin (L + 1)) :=
   finSumFinEquiv.symm (canonicalTwoStartBoundaryIndex u h)
 
+/--
+@isnad1 id=mem.1h2v.s7.23f59b2e93b2 from=translated src=- shape=f221befd vocab=b1e3552f
+-/
 theorem canonicalTwoStartBoundaryIndex_mem
     {L : ℕ} (u : Sum (Fin L) (Fin L) → F₂)
     (h : (twoStartBoundarySupport L u).Nonempty) :
@@ -547,7 +603,9 @@ theorem canonicalTwoStartBoundaryIndex_mem
       twoStartBoundarySupport L u :=
   Finset.min'_mem _ _
 
-/-- The canonical occurrence is genuinely selected.-/
+/-- The canonical occurrence is genuinely selected.
+@isnad1 id=ne.1h2v.s9.83688c9ff7b2 from=translated src=- shape=532f86ca vocab=ab1e9e0f
+-/
 theorem canonicalTwoStartBoundaryOccurrence_ne_zero
     {L : ℕ} (u : Sum (Fin L) (Fin L) → F₂)
     (h : (twoStartBoundarySupport L u).Nonempty) :
@@ -560,7 +618,9 @@ theorem canonicalTwoStartBoundaryOccurrence_ne_zero
   exact mem_twoStartBoundarySupport.mp
     (canonicalTwoStartBoundaryIndex_mem u h)
 
-/-- Minimality of the canonical index among all selected occurrences.-/
+/-- Minimality of the canonical index among all selected occurrences.
+@isnad1 id=le.2h3v.s8.856ef6292f66 from=translated src=- shape=ec65db32 vocab=404bba92
+-/
 theorem canonicalTwoStartBoundaryIndex_le
     {L : ℕ} (u : Sum (Fin L) (Fin L) → F₂)
     (h : (twoStartBoundarySupport L u).Nonempty)
@@ -579,7 +639,9 @@ noncomputable def relationCanonicalSelectedOccurrence
     (u : Sum (Fin L) (Fin L) → F₂)
     (relation_twoStartBoundarySupport_nonempty u hu)
 
-/-- The canonical occurrence of a nonzero relation has nonzero boundary bit.-/
+/-- The canonical occurrence of a nonzero relation has nonzero boundary bit.
+@isnad1 id=ne.1h5v.s11.6d6989e958f5 from=translated src=- shape=8c050e7c vocab=6172410d
+-/
 theorem relationCanonicalSelectedOccurrence_ne_zero
     {M x y L : ℕ}
     (u : RelationSpace (twoStartSystem M x y L))
@@ -594,7 +656,9 @@ theorem relationCanonicalSelectedOccurrence_ne_zero
 
 /--
 The canonical relation occurrence is first in left-block-then-right-block,
-increasing-offset order.-/
+increasing-offset order.
+@isnad1 id=le.2h6v.s11.e4e6f1faa793 from=translated src=- shape=669cdd85 vocab=1d2d4bb3
+-/
 theorem relationCanonicalSelectedOccurrence_minimal
     {M x y L : ℕ}
     (u : RelationSpace (twoStartSystem M x y L))

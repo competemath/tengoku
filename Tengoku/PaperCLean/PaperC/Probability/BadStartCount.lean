@@ -43,6 +43,9 @@ noncomputable def unitLargeKernelValues
     (B X : ℕ) : Finset ℕ :=
   (Finset.Icc 1 X).filter fun n ↦ largeOddKernel B n = 1
 
+/--
+@isnad1 id=iff.0h3v.s5.797867114868 from=translated src=- shape=0d1a3009 vocab=cdd93f9e
+-/
 @[simp]
 theorem mem_unitLargeKernelValues
     {B X n : ℕ} :
@@ -58,6 +61,9 @@ noncomputable def terminalBadStarts
   (dyadicBlock N).filter fun x ↦
     ∃ j ∈ Finset.range L, largeOddKernel B (x + j) = 1
 
+/--
+@isnad1 id=iff.0h4v.s6.25959389ea87 from=translated src=- shape=0341ea8e vocab=999d7555
+-/
 @[simp]
 theorem mem_terminalBadStarts
     {N L B x : ℕ} :
@@ -72,6 +78,9 @@ noncomputable def terminalBadStartIncidences
   ((dyadicBlock N).product (Finset.range L)).filter fun xj ↦
     largeOddKernel B (xj.1 + xj.2) = 1
 
+/--
+@isnad1 id=iff.0h4v.s6.31a71417dfb5 from=translated src=- shape=a963cb0a vocab=4a6a30f9
+-/
 @[simp]
 theorem mem_terminalBadStartIncidences
     {N L B : ℕ} {xj : ℕ × ℕ} :
@@ -81,7 +90,9 @@ theorem mem_terminalBadStartIncidences
           largeOddKernel B (xj.1 + xj.2) = 1 := by
   simp [terminalBadStartIncidences, and_assoc]
 
-/-- Projection of the incidence set is exactly the set of bad starts.-/
+/-- Projection of the incidence set is exactly the set of bad starts.
+@isnad1 id=eq.0h3v.s4.3cc34e5602b9 from=translated src=- shape=dd0f89b2 vocab=7ed3f4f6
+-/
 theorem image_fst_terminalBadStartIncidences
     (N L B : ℕ) :
     (terminalBadStartIncidences N L B).image Prod.fst =
@@ -95,7 +106,9 @@ theorem image_fst_terminalBadStartIncidences
   · rintro ⟨hx, ⟨j, hj, hkernel⟩⟩
     exact ⟨(x, j), ⟨hx, hj, hkernel⟩, rfl⟩
 
-/-- Every bad start has at least one incidence witness.-/
+/-- Every bad start has at least one incidence witness.
+@isnad1 id=le.0h3v.s4.8141c9824a05 from=translated src=- shape=ee183a17 vocab=1040823e
+-/
 theorem card_terminalBadStarts_le_incidences
     (N L B : ℕ) :
     (terminalBadStarts N L B).card ≤
@@ -107,7 +120,9 @@ theorem card_terminalBadStarts_le_incidences
 def terminalBadIncidenceCode (xj : ℕ × ℕ) : ℕ × ℕ :=
   (xj.1 + xj.2, xj.2)
 
-/-- The incidence recoding is injective.-/
+/-- The incidence recoding is injective.
+@isnad1 id=injectiv.0h0v.s3.2ecea6cc033f from=translated src=- shape=31244855 vocab=2a3b82b2
+-/
 theorem terminalBadIncidenceCode_injective :
     Function.Injective terminalBadIncidenceCode := by
   rintro ⟨x, j⟩ ⟨x', j'⟩ h
@@ -119,7 +134,9 @@ theorem terminalBadIncidenceCode_injective :
   · omega
   · exact hoffset
 
-/-- The recoded incidences all lie in the bounded unit-kernel product.-/
+/-- The recoded incidences all lie in the bounded unit-kernel product.
+@isnad1 id=le.1h3v.s6.70c7f60f6d55 from=translated src=- shape=74796dcc vocab=7e2214ac
+-/
 theorem image_terminalBadIncidenceCode_subset
     {N L B : ℕ} (hN : 1 ≤ N) :
     (terminalBadStartIncidences N L B).image
@@ -142,7 +159,9 @@ theorem image_terminalBadIncidenceCode_subset
   · exact startWindow_le_dyadicCutoff hxj'.1 hxj'.2.1
   · simpa using hxj'.2.1
 
-/-- Exact incidence bound supplied by the injective recoding.-/
+/-- Exact incidence bound supplied by the injective recoding.
+@isnad1 id=le.1h3v.s5.207ca08f8674 from=translated src=- shape=9d8acd07 vocab=5433e9f9
+-/
 theorem card_terminalBadStartIncidences_le
     {N L B : ℕ} (hN : 1 ≤ N) :
     (terminalBadStartIncidences N L B).card ≤
@@ -162,7 +181,9 @@ theorem card_terminalBadStartIncidences_le
 
 /--
 Finite counting core of Lemma 13.3.  The factor `L` is the maximum number of
-offsets by which a fixed defective value can witness a bad start.-/
+offsets by which a fixed defective value can witness a bad start.
+@isnad1 id=le.1h3v.s5.476d059bf1f6 from=translated src=- shape=4fc92ad5 vocab=1323c260
+-/
 theorem card_terminalBadStarts_le
     {N L B : ℕ} (hN : 1 ≤ N) :
     (terminalBadStarts N L B).card ≤
@@ -176,7 +197,9 @@ theorem card_terminalBadStarts_le
     _ = L * (unitLargeKernelValues B (dyadicCutoff N L)).card :=
       Nat.mul_comm _ _
 
-/-- Kernel one is equivalent to the `T=1` terminal-kernel cutoff.-/
+/-- Kernel one is equivalent to the `T=1` terminal-kernel cutoff.
+@isnad1 id=eq.0h2v.s4.bfc3fd21e112 from=translated src=- shape=e1a7a3ee vocab=986dcabb
+-/
 theorem unitLargeKernelValues_eq_bounded
     (B X : ℕ) :
     unitLargeKernelValues B X =
@@ -194,7 +217,9 @@ theorem unitLargeKernelValues_eq_bounded
 Prime-sensitive finite form obtained by inserting `T=1` in the exact
 terminal-kernel estimate:
 
-`#D_B ≤ 2 L √(2N+L) ∏_{p≤B}(1+p⁻¹/²)`.-/
+`#D_B ≤ 2 L √(2N+L) ∏_{p≤B}(1+p⁻¹/²)`.
+@isnad1 id=le.1h3v.s6.9171240832ed from=translated src=- shape=a6db1851 vocab=9c215e36
+-/
 theorem card_terminalBadStarts_cast_le_eulerProduct
     {N L B : ℕ} (hN : 1 ≤ N) :
     ((terminalBadStarts N L B).card : ℝ) ≤
@@ -228,7 +253,9 @@ Coarse unconditional corollary:
 `#D_B ≤ 2 L √(2N+L) exp(2√B)`.
 
 This estimate is useful as a finite sanity bound, but is deliberately not
-advertised as sufficient for the terminal specialization `B=Y`.-/
+advertised as sufficient for the terminal specialization `B=Y`.
+@isnad1 id=le.1h3v.s6.7a343b026385 from=translated src=- shape=ade80100 vocab=7068d8d2
+-/
 theorem card_terminalBadStarts_cast_le_exp
     {N L B : ℕ} (hN : 1 ≤ N) :
     ((terminalBadStarts N L B).card : ℝ) ≤

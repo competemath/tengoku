@@ -14,7 +14,9 @@ open PaperC.V282.SaddleParameters PaperC.V282.SaddleBranch PaperC.V282.Exponenti
 open PaperC.Prel8.InformationBudget
 noncomputable section
 
-/-- Increasing the coefficient from one to two decreases the saddle parameter.-/
+/-- Increasing the coefficient from one to two decreases the saddle parameter.
+@isnad1 id=le.1h1v.s5.c7f32adbea19 from=translated src=- shape=2befce41 vocab=ef0d7d91
+-/
 theorem parameter_two_le_one {H : ℝ} (hH : max (saddleThreshold 1) (saddleThreshold 2) ≤ H) :
     saddleParameter 2 H ≤ saddleParameter 1 H := by
   have h1 := saddleParameter_spec (by norm_num : (0:ℝ)<1) ((le_max_left _ _).trans hH)
@@ -29,7 +31,9 @@ theorem parameter_two_le_one {H : ℝ} (hH : max (saddleThreshold 1) (saddleThre
   rw [he,h2.2] at h
   linarith
 
-/-- The hard cutoff is the lower endpoint of the enlarged-cutoff interval.-/
+/-- The hard cutoff is the lower endpoint of the enlarged-cutoff interval.
+@isnad1 id=le.1h1v.s5.9de4ad55d733 from=translated src=- shape=2befce41 vocab=8f51461e
+-/
 theorem cutoff_one_le_two {H : ℝ} (hH : max (saddleThreshold 1) (saddleThreshold 2) ≤ H) :
     saddleCutoff 1 H ≤ saddleCutoff 2 H := by
   have h1 := saddleCutoff_pos (by norm_num : (0:ℝ)<1) ((le_max_left _ _).trans hH)
@@ -45,7 +49,9 @@ theorem cutoff_one_le_two {H : ℝ} (hH : max (saddleThreshold 1) (saddleThresho
   have hh := (div_le_div_iff₀ h2 h1).mp h
   nlinarith
 
-/-- On this exact interval the arithmetic deletion exponent is decreasing.-/
+/-- On this exact interval the arithmetic deletion exponent is decreasing.
+@isnad1 id=antitone.1h1v.s6.6a95d471dbcd from=translated src=- shape=4e947f80 vocab=b1a40b1c
+-/
 theorem deletion_antitone {H : ℝ} (hH : max (saddleThreshold 1) (saddleThreshold 2) ≤ H) :
     AntitoneOn (fun w => saddleCost (H/w)) (Icc (saddleCutoff 1 H) (saddleCutoff 2 H)) := by
   have hp := saddleCutoff_pos (by norm_num : (0:ℝ)<1) ((le_max_left _ _).trans hH)
@@ -57,7 +63,9 @@ theorem deletion_antitone {H : ℝ} (hH : max (saddleThreshold 1) (saddleThresho
   exact strictMonoOn_saddleCost.monotoneOn (hd y hy) (hd x hx)
     (div_le_div_of_nonneg_left hHp.le (hp.trans_le hx.1) hxy)
 
-/-- The root exists and is unique for every admissible information cost.-/
+/-- The root exists and is unique for every admissible information cost.
+@isnad1 id=existsun.3h2v.s6.10de6f0a51c0 from=translated src=- shape=2d8f3c52 vocab=f3d9d28f
+-/
 theorem existsUnique_crossing {H I : ℝ}
     (hH : max (saddleThreshold 1) (saddleThreshold 2) ≤ H)
     (hI : 0 ≤ I) (hIV : I ≤ saddleCutoff 1 H) :

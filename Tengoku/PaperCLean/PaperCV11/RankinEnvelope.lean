@@ -22,7 +22,9 @@ open DefectCounting
 /--
 If the reciprocal-prime sum up to `T` is at most `R`, the Rankin Euler product
 is at most `exp (T^σ R)`.  The termwise comparison is
-`p^(-1+σ) = p⁻¹ p^σ ≤ p⁻¹ T^σ`.-/
+`p^(-1+σ) = p⁻¹ p^σ ≤ p⁻¹ T^σ`.
+@isnad1 id=le.2h3v.s6.58e58b9d4b31 from=translated src=- shape=a6e9bfc1 vocab=90632fa0
+-/
 theorem prod_one_add_rankin_le_exp
     (T : ℕ) {σ R : ℝ}
     (hσ : 0 ≤ σ)
@@ -70,7 +72,9 @@ theorem prod_one_add_rankin_le_exp
 
 /--
 The finite defect count satisfies the exponential Rankin envelope whenever a
-reciprocal-prime bound is supplied.-/
+reciprocal-prime bound is supplied.
+@isnad1 id=le.3h4v.s7.64f386eee47b from=translated src=- shape=597b118e vocab=c93a6416
+-/
 theorem card_kernel_one_cast_le_rankin_exp
     (T X : ℕ) {σ R : ℝ}
     (hσ0 : 0 ≤ σ) (hσhalf : σ ≤ 1 / 2)

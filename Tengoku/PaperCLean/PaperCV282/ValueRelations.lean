@@ -40,20 +40,26 @@ def parityNullity (A : V →ₗ[𝔽₂] (β → 𝔽₂))
     (P : (β → 𝔽₂) →ₗ[𝔽₂] (Fin 2 → 𝔽₂)) : ℕ :=
   Module.finrank 𝔽₂ (LinearMap.ker (parityOnRelations A P))
 
-/-- The defining condition keeps the two parity constraints explicit.-/
+/-- The defining condition keeps the two parity constraints explicit.
+@isnad1 id=iff.0h5v.s12.ea2d65e29afa from=translated src=- shape=f090e9f9 vocab=44084f43
+-/
 @[simp]
 theorem mem_parity_kernel_iff (A : V →ₗ[𝔽₂] (β → 𝔽₂))
     (P : (β → 𝔽₂) →ₗ[𝔽₂] (Fin 2 → 𝔽₂)) (u : RelationSpace A) :
     u ∈ LinearMap.ker (parityOnRelations A P) ↔ P u = 0 :=
   Iff.rfl
 
-/-- Imposing two parity equations cannot increase nullity.-/
+/-- Imposing two parity equations cannot increase nullity.
+@isnad1 id=le.0h4v.s8.20c23a1805be from=translated src=- shape=690497a7 vocab=f075f44c
+-/
 theorem parityNullity_le (A : V →ₗ[𝔽₂] (β → 𝔽₂))
     (P : (β → 𝔽₂) →ₗ[𝔽₂] (Fin 2 → 𝔽₂)) :
     parityNullity A P ≤ relationRho A :=
   (LinearMap.ker (parityOnRelations A P)).finrank_le
 
-/-- Removing two parity equations increases nullity by at most two.-/
+/-- Removing two parity equations increases nullity by at most two.
+@isnad1 id=le.0h4v.s8.e6406af51929 from=translated src=- shape=13025fa5 vocab=a33b6464
+-/
 theorem relationRho_le_parityNullity_add_two
     (A : V →ₗ[𝔽₂] (β → 𝔽₂))
     (P : (β → 𝔽₂) →ₗ[𝔽₂] (Fin 2 → 𝔽₂)) :
@@ -68,7 +74,9 @@ theorem relationRho_le_parityNullity_add_two
   unfold relationRho parityNullity
   omega
 
-/-- The extra constant is paid only at a host with a nonzero full kernel.-/
+/-- The extra constant is paid only at a host with a nonzero full kernel.
+@isnad1 id=le.0h4v.s9.4fd6a328f20d from=translated src=- shape=2c99708a vocab=e4d2adc7
+-/
 theorem relation_weight_le_four_parity_weight_add_host
     (A : V →ₗ[𝔽₂] (β → 𝔽₂))
     (P : (β → 𝔽₂) →ₗ[𝔽₂] (Fin 2 → 𝔽₂)) :
@@ -86,7 +94,9 @@ theorem relation_weight_le_four_parity_weight_add_host
     simp only [ite_eq_left hzero]
     omega
 
-/-- Finite form of (3.24), before the uniform host bound is applied.-/
+/-- Finite form of (3.24), before the uniform host bound is applied.
+@isnad1 id=le.0h6v.s9.00831605edea from=translated src=- shape=369573ad vocab=1e727cf2
+-/
 theorem sum_relation_weight_le_four_parity_weight_add_hosts
     {ι : Type*} (s : Finset ι)
     (A : ι → V →ₗ[𝔽₂] (β → 𝔽₂))

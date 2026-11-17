@@ -25,6 +25,9 @@ def nontrivialChannelHeights
   (channelHeights L a b).filter fun h ↦
     2 ≤ (channelCells L a b h).card
 
+/--
+@isnad1 id=iff.0h4v.s5.1a16f7fef84e from=translated src=- shape=bee7d1da vocab=8f4d0ae7
+-/
 @[simp]
 theorem mem_nontrivialChannelHeights
     {L a b : ℕ} {h : ℤ} :
@@ -36,7 +39,9 @@ theorem mem_nontrivialChannelHeights
 /--
 The attained-height condition is automatic once the channel contains two
 cells.  Thus the finite height filter is extensionally the manuscript's
-condition `m(a,b,h) ≥ 2`.-/
+condition `m(a,b,h) ≥ 2`.
+@isnad1 id=iff.0h4v.s5.19ffa7c73740 from=translated src=- shape=fc17e394 vocab=524fc46c
+-/
 theorem mem_nontrivialChannelHeights_iff_two_le_card
     {L a b : ℕ} {h : ℤ} :
     h ∈ nontrivialChannelHeights L a b ↔
@@ -51,7 +56,9 @@ theorem mem_nontrivialChannelHeights_iff_two_le_card
 
 /--
 Every geometry retained by the weighted sum automatically has
-`max(a,b) ≤ L`; this justifies the finite outer range `q ∈ [2,L]`.-/
+`max(a,b) ≤ L`; this justifies the finite outer range `q ∈ [2,L]`.
+@isnad1 id=le.4h4v.s5.7798e56625a3 from=translated src=- shape=e2e07028 vocab=bc1d551c
+-/
 theorem max_coeff_le_length_of_mem_nontrivialChannelHeights
     {L a b : ℕ} (ha : 0 < a) (hb : 0 < b)
     (hab : a.Coprime b) {h : ℤ}
@@ -88,7 +95,9 @@ def weightedChannelMass (L : ℕ) : ℕ :=
   ∑ q ∈ Icc 2 L, weightedChannelMassAtHeight L q
 
 /-- One pair contributes at most its number of attained heights times the
-uniform multiplicity weight.-/
+uniform multiplicity weight.
+@isnad1 id=le.3h3v.s6.e1b5c2930b54 from=translated src=- shape=e8a26650 vocab=723ef4ad
+-/
 theorem weightedChannelMassAtPair_le
     (L a b : ℕ) (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b) :
     weightedChannelMassAtPair L a b ≤
@@ -117,7 +126,9 @@ theorem weightedChannelMassAtPair_le
 /--
 At height `q`, there are at most `2q` reduced pairs, at most `2qL+1`
 attained affine parameters per pair, and every weight is at most
-`4^(L/q)`.-/
+`4^(L/q)`.
+@isnad1 id=le.1h2v.s6.da9673654902 from=translated src=- shape=b0a2c2ef vocab=2386281c
+-/
 theorem weightedChannelMassAtHeight_le
     (L q : ℕ) (_hq : 0 < q) :
     weightedChannelMassAtHeight L q ≤
@@ -167,14 +178,18 @@ theorem weightedChannelMassAtHeight_le
       Nat.mul_le_mul_right W
         (card_reducedRatiosAtHeight_le q)
 
-/-- Explicit bound for the exceptional height `q = 2`.-/
+/-- Explicit bound for the exceptional height `q = 2`.
+@isnad1 id=le.0h1v.s6.2b9e6f26bfd7 from=translated src=- shape=20752149 vocab=292bbc1d
+-/
 theorem weightedChannelMassAtHeight_two_le
     (L : ℕ) :
     weightedChannelMassAtHeight L 2 ≤
       4 * ((4 * L + 1) * 4 ^ (L / 2)) := by
   simpa using weightedChannelMassAtHeight_le L 2 (by omega)
 
-/-- Every height `q ≥ 3` is bounded by one common large-height envelope.-/
+/-- Every height `q ≥ 3` is bounded by one common large-height envelope.
+@isnad1 id=le.2h2v.s6.db582bd9dee1 from=translated src=- shape=0a620da4 vocab=292bbc1d
+-/
 theorem weightedChannelMassAtHeight_ge_three_le
     {L q : ℕ} (hq : 3 ≤ q) (hqL : q ≤ L) :
     weightedChannelMassAtHeight L q ≤
@@ -197,7 +212,9 @@ theorem weightedChannelMassAtHeight_ge_three_le
     _ ≤ (2 * L) * (((2 * L) * L + 1) * 4 ^ (L / 3)) :=
       Nat.mul_le_mul htwo (Nat.mul_le_mul hheight hpower)
 
-/-- Sum of all heights at least three.-/
+/-- Sum of all heights at least three.
+@isnad1 id=le.0h1v.s6.eb1a80a5a7ba from=translated src=- shape=afa87e78 vocab=a4f467de
+-/
 theorem sum_weightedChannelMassAtHeight_ge_three_le
     (L : ℕ) :
     (∑ q ∈ Icc 3 L, weightedChannelMassAtHeight L q) ≤
@@ -224,7 +241,9 @@ theorem sum_weightedChannelMassAtHeight_ge_three_le
     _ ≤ L * W :=
       Nat.mul_le_mul_right W hcard
 
-/-- Exact separation of `q = 2` from the range `q ≥ 3`.-/
+/-- Exact separation of `q = 2` from the range `q ≥ 3`.
+@isnad1 id=eq.1h1v.s5.ca90d36a9b74 from=translated src=- shape=924e15c8 vocab=a74fb607
+-/
 theorem weightedChannelMass_eq_two_add_ge_three
     {L : ℕ} (hL : 2 ≤ L) :
     weightedChannelMass L =
@@ -241,7 +260,9 @@ theorem weightedChannelMass_eq_two_add_ge_three
 /--
 Finite weighted-mass estimate for Lemma 5.5.  The first term is the
 height-two contribution; every remaining height gains the stronger
-`4^(L/3)` exponential factor.-/
+`4^(L/3)` exponential factor.
+@isnad1 id=le.0h1v.s7.7658530636c1 from=translated src=- shape=bf878e96 vocab=dc044c12
+-/
 theorem weightedChannelMass_le_small_add_large
     (L : ℕ) :
     weightedChannelMass L ≤

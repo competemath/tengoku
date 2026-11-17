@@ -30,6 +30,9 @@ noncomputable def scaledRungeCoefficient
     (RungeCoefficients.two_pow_mul_rungeCoefficient_isRatInteger
       γ hmd)
 
+/--
+@isnad1 id=eq.1h3v.s5.655cc03e1a00 from=translated src=- shape=37361445 vocab=da7015e7
+-/
 theorem scaledRungeCoefficient_spec
     {d : ℕ} (γ : Fin d → ℤ) (m : ℕ) (hmd : 2 * m ≤ d) :
     (2 : ℚ) ^ d * RungeCoefficients.rungeCoefficient γ m =
@@ -48,6 +51,9 @@ noncomputable def scaledRungeCoefficientUpTo
   else
     0
 
+/--
+@isnad1 id=eq.1h3v.s6.5372fea00299 from=translated src=- shape=baecc36f vocab=38563dde
+-/
 theorem scaledRungeCoefficientUpTo_spec
     {k : ℕ} (γ : Fin (2 * k) → ℤ) {m : ℕ} (hmk : m ≤ k) :
     (scaledRungeCoefficientUpTo γ m : ℚ) =
@@ -72,7 +78,9 @@ noncomputable def integralRungeTruncation
 
 /--
 Coefficientwise integrality of the truncation: mapping the integral
-polynomial to `ℚ[X]` gives `2^(2k) P`.-/
+polynomial to `ℚ[X]` gives `2^(2k) P`.
+@isnad1 id=eq.0h2v.s6.bcc467632a9e from=translated src=- shape=6c725972 vocab=bee0329a
+-/
 theorem map_integralRungeTruncation
     {k : ℕ} (γ : Fin (2 * k) → ℤ) :
     (integralRungeTruncation γ).map (Int.castRingHom ℚ) =
@@ -92,7 +100,9 @@ theorem map_integralRungeTruncation
 /--
 Evaluation form used immediately before the dyadic separation argument:
 
-`P(u) = integralP(u) / 2^(2k)`.-/
+`P(u) = integralP(u) / 2^(2k)`.
+@isnad1 id=eq.0h3v.s6.1af41ac549ec from=translated src=- shape=ee98b746 vocab=3e92987d
+-/
 theorem eval_rungeTruncation_eq_integral_div
     {k : ℕ} (γ : Fin (2 * k) → ℤ) (u : ℤ) :
     (rungeTruncation γ).eval (u : ℚ) =
@@ -118,7 +128,9 @@ theorem eval_rungeTruncation_eq_integral_div
 
 /--
 The dyadic separation step for the actual truncation polynomial: if its value
-at an integer is not the integer `a`, the distance is at least `2^(-2k)`.-/
+at an integer is not the integer `a`, the distance is at least `2^(-2k)`.
+@isnad1 id=le.1h4v.s6.961200e58ef6 from=translated src=- shape=248ec892 vocab=7b7d35d7
+-/
 theorem one_div_two_pow_le_abs_integer_sub_rungeTruncation
     {k : ℕ} (γ : Fin (2 * k) → ℤ) (a u : ℤ)
     (hne :

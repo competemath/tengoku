@@ -48,12 +48,17 @@ noncomputable def valueLinear (M n : ℕ) : SampleSpace M →ₗ[F₂] F₂ wher
     intro c ω
     simp [valueBit, Finset.mul_sum, mul_assoc]
 
+/--
+@isnad1 id=eq.0h3v.s8.671c92a86ea6 from=translated src=- shape=98b67864 vocab=7e444903
+-/
 @[simp]
 theorem valueLinear_apply {M n : ℕ} (ω : SampleSpace M) :
     valueLinear M n ω = valueBit ω n :=
   rfl
 
-/-- Complete multiplicativity in additive coordinates.-/
+/-- Complete multiplicativity in additive coordinates.
+@isnad1 id=eq.2h4v.s6.b60f4a7496a5 from=translated src=- shape=f0a1df6b vocab=b16ebc38
+-/
 theorem valueBit_mul {M a b : ℕ} (ω : SampleSpace M)
     (ha : a ≠ 0) (hb : b ≠ 0) :
     valueBit ω (a * b) = valueBit ω a + valueBit ω b := by
@@ -63,10 +68,16 @@ theorem valueBit_mul {M a b : ℕ} (ω : SampleSpace M)
 def phase (z : F₂) : ℤ :=
   if z = 0 then 1 else -1
 
+/--
+@isnad1 id=eq.0h0v.s4.510cf40c28fd from=translated src=- shape=1ac31801 vocab=e740b621
+-/
 @[simp]
 theorem phase_zero : phase 0 = 1 := by
   simp [phase]
 
+/--
+@isnad1 id=eq.0h2v.s5.a8ea1134ecca from=translated src=- shape=0438c7a3 vocab=6445a529
+-/
 theorem phase_add (a b : F₂) : phase (a + b) = phase a * phase b := by
   revert a b
   decide
@@ -76,6 +87,9 @@ noncomputable def randomMultiplicativeValue {M : ℕ}
     (ω : SampleSpace M) (n : ℕ) : ℤ :=
   phase (valueBit ω n)
 
+/--
+@isnad1 id=eq.2h4v.s5.99e20ea29aae from=translated src=- shape=f0a1df6b vocab=2309e742
+-/
 theorem randomMultiplicativeValue_mul {M a b : ℕ} (ω : SampleSpace M)
     (ha : a ≠ 0) (hb : b ≠ 0) :
     randomMultiplicativeValue ω (a * b) =
@@ -95,7 +109,9 @@ def dyadicBlock (N : ℕ) : Finset ℕ :=
 
 /-- Every vertex in a start window based in the dyadic block lies below the
 chosen prime cutoff.  This is the finite-cylinder adequacy check used when
-relating the model to the unrestricted multiplicative function.-/
+relating the model to the unrestricted multiplicative function.
+@isnad1 id=le.2h4v.s5.56ef31a9e830 from=translated src=- shape=3d8f6715 vocab=ed2e1b91
+-/
 theorem startWindow_le_dyadicCutoff {N L x j : ℕ}
     (hx : x ∈ dyadicBlock N) (hj : j < L) :
     x + j ≤ dyadicCutoff N L := by
@@ -104,7 +120,9 @@ theorem startWindow_le_dyadicCutoff {N L x j : ℕ}
   omega
 
 /-- Under the paper's standing assumption `N ≥ 2`, every start index in the
-dyadic block is positive (indeed at least two).-/
+dyadic block is positive (indeed at least two).
+@isnad1 id=le.2h2v.s5.89f7fe0da1c4 from=translated src=- shape=2356277a vocab=bd8ac094
+-/
 theorem two_le_of_mem_dyadicBlock {N x : ℕ}
     (hN : 2 ≤ N) (hx : x ∈ dyadicBlock N) :
     2 ≤ x := by

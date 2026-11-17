@@ -25,11 +25,16 @@ noncomputable section
 def increasingPairs (s : Finset ℕ) : Finset (ℕ × ℕ) :=
   (s ×ˢ s).filter fun ij => ij.1 < ij.2
 
+/--
+@isnad1 id=iff.0h2v.s6.a0b01299a950 from=translated src=- shape=238954f0 vocab=0ea29018
+-/
 theorem mem_increasingPairs {s : Finset ℕ} {ij : ℕ × ℕ} :
     ij ∈ increasingPairs s ↔ ij.1 ∈ s ∧ ij.2 ∈ s ∧ ij.1 < ij.2 := by
   simp [increasingPairs, and_assoc]
 
-/-- Choosing two elements is exactly counting their increasing representatives.-/
+/-- Choosing two elements is exactly counting their increasing representatives.
+@isnad1 id=eq.0h1v.s4.30dc7da25237 from=translated src=- shape=36a3c9cd vocab=6edf3d45
+-/
 theorem card_increasingPairs (s : Finset ℕ) :
     (increasingPairs s).card = s.card.choose 2 := by
   rw [← Finset.card_powersetCard]
@@ -71,6 +76,9 @@ def windowEnergy (B T L : ℕ) (starts : Finset ℕ) : ℕ :=
 def windowIncidences (B T L : ℕ) (starts : Finset ℕ) : Finset (Σ _x : ℕ, ℕ × ℕ) :=
   starts.sigma fun x => increasingPairs (smallKernelOffsets B T L x)
 
+/--
+@isnad1 id=eq.0h4v.s4.fe408c671da1 from=translated src=- shape=942dca2e vocab=be884913
+-/
 theorem card_windowIncidences (B T L : ℕ) (starts : Finset ℕ) :
     (windowIncidences B T L starts).card = windowEnergy B T L starts := by
   simp only [windowIncidences, Finset.card_sigma, card_increasingPairs, windowEnergy]
@@ -91,7 +99,9 @@ def shiftedWindowIncidences (B T L a b : ℕ) (starts : Finset ℕ) :
   (Finset.Icc 1 L).sigma fun h =>
     (shiftedKernelValues B T a b h).sigma fun n => windowPlacements starts L h n
 
-/-- The two incidence descriptions are equinumerous with no unmentioned boundary convention.-/
+/-- The two incidence descriptions are equinumerous with no unmentioned boundary convention.
+@isnad1 id=eq.1h6v.s7.a378b40227f2 from=translated src=- shape=8e8c522a vocab=792aaf80
+-/
 theorem card_windowIncidences_eq_shifted
     (B T L a b : ℕ) (starts : Finset ℕ)
     (hcover : ∀ x ∈ starts, ∀ i ∈ Finset.range (L + 1), a ≤ x - 1 + i ∧ x - 1 + i < b) :
@@ -141,7 +151,9 @@ theorem card_windowIncidences_eq_shifted
       congr 2
       exact hnvalue.symm
 
-/-- Exact shifted-pair double counting of the literal binomial energy.-/
+/-- Exact shifted-pair double counting of the literal binomial energy.
+@isnad1 id=eq.1h6v.s7.b4029c4a2f19 from=translated src=- shape=e01cb972 vocab=9261a6a4
+-/
 theorem windowEnergy_eq_sum_shifted
     (B T L a b : ℕ) (starts : Finset ℕ)
     (hcover : ∀ x ∈ starts, ∀ i ∈ Finset.range (L + 1), a ≤ x - 1 + i ∧ x - 1 + i < b) :
@@ -151,7 +163,9 @@ theorem windowEnergy_eq_sum_shifted
   rw [← card_windowIncidences, card_windowIncidences_eq_shifted B T L a b starts hcover]
   simp only [shiftedWindowIncidences, Finset.card_sigma]
 
-/-- At positive starts, one left offset determines the entire placement.-/
+/-- At positive starts, one left offset determines the entire placement.
+@isnad1 id=le.1h4v.s5.308afb248b95 from=translated src=- shape=fe8eaf1f vocab=f6ba98dc
+-/
 theorem card_windowPlacements_le (starts : Finset ℕ) (L h n : ℕ)
     (hpos : ∀ x ∈ starts, 1 ≤ x) :
     (windowPlacements starts L h n).card ≤ L + 1 := by
@@ -168,7 +182,9 @@ theorem card_windowPlacements_le (starts : Finset ℕ) (L h n : ℕ)
         exact Prod.ext (by omega) heq
     _ = _ := Finset.card_range _
 
-/-- The finite energy costs at most one window length per shifted pair.-/
+/-- The finite energy costs at most one window length per shifted pair.
+@isnad1 id=le.2h6v.s7.20639cd6db99 from=translated src=- shape=e5709b77 vocab=5f7ab76a
+-/
 theorem windowEnergy_le_length_mul_sum_shifted
     (B T L a b : ℕ) (starts : Finset ℕ)
     (hpos : ∀ x ∈ starts, 1 ≤ x)
@@ -183,7 +199,9 @@ theorem windowEnergy_le_length_mul_sum_shifted
       exact Finset.sum_le_sum fun n _ => card_windowPlacements_le starts L h n hpos
     _ = _ := by simp [Finset.mul_sum, mul_comm]
 
-/-- The dyadic start block uses the enlarged value interval beginning at `X-1`.-/
+/-- The dyadic start block uses the enlarged value interval beginning at `X-1`.
+@isnad1 id=eq.1h4v.s7.24a14acc6889 from=translated src=- shape=8895447e vocab=a8f42728
+-/
 theorem dyadic_windowEnergy_eq_sum_shifted
     (B T L X : ℕ) (hX : 1 ≤ X) :
     windowEnergy B T L (Finset.Ico X (2 * X)) =
@@ -195,7 +213,9 @@ theorem dyadic_windowEnergy_eq_sum_shifted
   have hirange := Finset.mem_range.mp hi
   constructor <;> omega
 
-/-- The one-length multiplicity bound on the genuine dyadic window geometry.-/
+/-- The one-length multiplicity bound on the genuine dyadic window geometry.
+@isnad1 id=le.1h4v.s6.825421aecc05 from=translated src=- shape=89588ea4 vocab=47b81229
+-/
 theorem dyadic_windowEnergy_le_length_mul_sum_shifted
     (B T L X : ℕ) (hX : 1 ≤ X) :
     windowEnergy B T L (Finset.Ico X (2 * X)) ≤ (L + 1) *

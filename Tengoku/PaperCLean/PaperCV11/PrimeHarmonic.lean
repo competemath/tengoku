@@ -24,7 +24,9 @@ open scoped BigOperators
 open DefectCounting
 open DyadicPrimeReciprocalSums
 
-/-- Split the dyadic interval above `4` into its previous part and last shell.-/
+/-- Split the dyadic interval above `4` into its previous part and last shell.
+@isnad1 id=eq.0h1v.s6.6ce63d827416 from=translated src=- shape=7ca41618 vocab=5c44cd37
+-/
 theorem dyadicPrimes_four_succ_eq_union (K : ℕ) :
     dyadicPrimes 4 (K + 1) =
       dyadicPrimes 4 K ∪ dyadicPrimes (4 * 2 ^ K) 1 := by
@@ -48,7 +50,9 @@ theorem dyadicPrimes_four_succ_eq_union (K : ℕ) :
         (Nat.le_mul_of_pos_right 4 (by positivity)).trans_lt hp.2.1,
         by simpa [hcut] using hp.2.2⟩
 
-/-- The accumulated dyadic interval and its next shell are disjoint.-/
+/-- The accumulated dyadic interval and its next shell are disjoint.
+@isnad1 id=disjoint.0h1v.s5.cd3fd3455648 from=translated src=- shape=9f690e6b vocab=f2c7d1f1
+-/
 theorem disjoint_dyadicPrimes_four_shell (K : ℕ) :
     Disjoint (dyadicPrimes 4 K) (dyadicPrimes (4 * 2 ^ K) 1) := by
   rw [Finset.disjoint_left]
@@ -56,7 +60,9 @@ theorem disjoint_dyadicPrimes_four_shell (K : ℕ) :
   exact (Nat.not_lt_of_ge (mem_dyadicPrimes.mp hpLeft).2.2)
     (mem_dyadicPrimes.mp hpRight).2.1
 
-/-- The reciprocal mass of the `K`-th shell is at most `14/(K+2)`.-/
+/-- The reciprocal mass of the `K`-th shell is at most `14/(K+2)`.
+@isnad1 id=le.0h1v.s6.832aabaa84c2 from=translated src=- shape=445d86c9 vocab=327f0d4e
+-/
 theorem sum_inv_shell_four_le (K : ℕ) :
     (∑ p ∈ dyadicPrimes (4 * 2 ^ K) 1, 1 / (p : ℚ)) ≤
       14 / ((K + 2 : ℕ) : ℚ) := by
@@ -70,7 +76,9 @@ theorem sum_inv_shell_four_le (K : ℕ) :
       _ = 2 ^ (K + 2) := by congr 1; omega
   simpa [hpow, Nat.log_pow (by norm_num : 1 < 2)] using h
 
-/-- Dyadic shell summation in harmonic-number form.-/
+/-- Dyadic shell summation in harmonic-number form.
+@isnad1 id=le.0h1v.s5.ec960e6a33b3 from=translated src=- shape=fbe4a2bf vocab=2b3e13dd
+-/
 theorem sum_inv_dyadicPrimes_four_le_harmonic (K : ℕ) :
     (∑ p ∈ dyadicPrimes 4 K, 1 / (p : ℚ)) ≤
       14 * harmonic K := by
@@ -101,7 +109,9 @@ theorem sum_inv_dyadicPrimes_four_le_harmonic (K : ℕ) :
           rw [div_eq_mul_inv]
           ring
 
-/-- Every prime up to `T` is either at most `4` or in the dyadic cover.-/
+/-- Every prime up to `T` is either at most `4` or in the dyadic cover.
+@isnad1 id=le.0h1v.s5.ae828c9a0273 from=translated src=- shape=bdd884c9 vocab=dd90e998
+-/
 theorem smallPrimesUpTo_subset_low_union_dyadic (T : ℕ) :
     smallPrimesUpTo T ⊆
       smallPrimesUpTo 4 ∪ dyadicPrimes 4 (Nat.log 2 T + 1) := by
@@ -119,7 +129,9 @@ theorem smallPrimesUpTo_subset_low_union_dyadic (T : ℕ) :
       p ≤ T := hpData.2
       _ ≤ 4 * 2 ^ (Nat.log 2 T + 1) := by omega
 
-/-- The low-prime part and the dyadic part of the cover are disjoint.-/
+/-- The low-prime part and the dyadic part of the cover are disjoint.
+@isnad1 id=disjoint.0h1v.s5.d02b1b6d6d48 from=translated src=- shape=a4d4b23d vocab=0325b180
+-/
 theorem disjoint_low_dyadic (T : ℕ) :
     Disjoint (smallPrimesUpTo 4)
       (dyadicPrimes 4 (Nat.log 2 T + 1)) := by
@@ -128,7 +140,9 @@ theorem disjoint_low_dyadic (T : ℕ) :
   exact (Nat.not_lt_of_ge (mem_smallPrimesUpTo.mp hpLow).2)
     (mem_dyadicPrimes.mp hpHigh).2.1
 
-/-- A deliberately coarse constant bound for the primes at most `4`.-/
+/-- A deliberately coarse constant bound for the primes at most `4`.
+@isnad1 id=le.0h0v.s5.a9450feb0652 from=translated src=- shape=8ea403ca vocab=2fcb88dc
+-/
 theorem sum_inv_smallPrimesUpTo_low_le :
     (∑ p ∈ smallPrimesUpTo 4, 1 / (p : ℚ)) ≤ 4 := by
   calc
@@ -143,7 +157,9 @@ theorem sum_inv_smallPrimesUpTo_low_le :
     _ = ((smallPrimesUpTo 4).card : ℚ) := by simp
     _ ≤ 4 := by norm_cast
 
-/-- A finite rational prime-harmonic bound obtained from the shell cover.-/
+/-- A finite rational prime-harmonic bound obtained from the shell cover.
+@isnad1 id=le.0h1v.s6.637a65bc5002 from=translated src=- shape=ebfa19a7 vocab=1174892e
+-/
 theorem sum_inv_smallPrimesUpTo_le_harmonic_log (T : ℕ) :
     (∑ p ∈ smallPrimesUpTo T, 1 / (p : ℚ)) ≤
       4 + 14 * harmonic (Nat.log 2 T + 1) := by
@@ -161,7 +177,9 @@ theorem sum_inv_smallPrimesUpTo_le_harmonic_log (T : ℕ) :
       add_le_add sum_inv_smallPrimesUpTo_low_le
         (sum_inv_dyadicPrimes_four_le_harmonic _)
 
-/-- Real version of the finite harmonic-number bound.-/
+/-- Real version of the finite harmonic-number bound.
+@isnad1 id=le.0h1v.s6.895872d645c8 from=translated src=- shape=4c87dd0d vocab=cd73e6c9
+-/
 theorem sum_inv_smallPrimesUpTo_real_le_harmonic_log (T : ℕ) :
     (∑ p ∈ smallPrimesUpTo T, (p : ℝ)⁻¹) ≤
       4 + 14 * (harmonic (Nat.log 2 T + 1) : ℝ) := by
@@ -174,7 +192,9 @@ theorem sum_inv_smallPrimesUpTo_real_le_harmonic_log (T : ℕ) :
   simpa only [Rat.cast_sum, Rat.cast_inv, Rat.cast_natCast,
     Rat.cast_add, Rat.cast_mul, Rat.cast_ofNat] using hR
 
-/-- First logarithmic form of the finite reciprocal-prime estimate.-/
+/-- First logarithmic form of the finite reciprocal-prime estimate.
+@isnad1 id=le.0h1v.s6.90b2c30180da from=translated src=- shape=39ee4491 vocab=716df4c7
+-/
 theorem sum_inv_smallPrimesUpTo_real_le_log_logTwo (T : ℕ) :
     (∑ p ∈ smallPrimesUpTo T, (p : ℝ)⁻¹) ≤
       18 + 14 * Real.log (Nat.log 2 T + 1) := by
@@ -193,7 +213,9 @@ theorem sum_inv_smallPrimesUpTo_real_le_log_logTwo (T : ℕ) :
           (by norm_num : (0 : ℝ) ≤ 14))
     _ = 18 + 14 * Real.log (Nat.log 2 T + 1) := by ring
 
-/-- Relate the dyadic logarithm to the manuscript's `log log (3T)` scale.-/
+/-- Relate the dyadic logarithm to the manuscript's `log log (3T)` scale.
+@isnad1 id=le.1h1v.s6.6c8a6c3354aa from=translated src=- shape=ad4786e4 vocab=b869fc65
+-/
 theorem one_add_log_natLog_add_two_le (T : ℕ) (hT : 3 ≤ T) :
     1 + Real.log ((Nat.log 2 T + 2 : ℕ) : ℝ) ≤
       6 * Real.log (Real.log ((3 * T : ℕ) : ℝ)) := by
@@ -255,7 +277,9 @@ theorem one_add_log_natLog_add_two_le (T : ℕ) (hT : 3 ≤ T) :
     _ = 6 * Real.log L := by ring
     _ = 6 * Real.log (Real.log ((3 * T : ℕ) : ℝ)) := by rfl
 
-/-- The matching estimate with `Nat.log 2 T + 1`.-/
+/-- The matching estimate with `Nat.log 2 T + 1`.
+@isnad1 id=le.1h1v.s6.28bc34534171 from=translated src=- shape=ad4786e4 vocab=b869fc65
+-/
 theorem one_add_log_natLog_add_one_le (T : ℕ) (hT : 3 ≤ T) :
     1 + Real.log ((Nat.log 2 T + 1 : ℕ) : ℝ) ≤
       6 * Real.log (Real.log ((3 * T : ℕ) : ℝ)) := by
@@ -270,7 +294,9 @@ theorem one_add_log_natLog_add_one_le (T : ℕ) (hT : 3 ≤ T) :
 
 /--
 Explicit unconditional prime-harmonic bound used below.  The constant `120`
-is absolute and deliberately generous.-/
+is absolute and deliberately generous.
+@isnad1 id=le.1h1v.s5.fad90e4d9035 from=translated src=- shape=51b8baab vocab=9b3df78e
+-/
 theorem sum_inv_smallPrimesUpTo_real_le_loglog
     (T : ℕ) (hT : 3 ≤ T) :
     (∑ p ∈ smallPrimesUpTo T, (p : ℝ)⁻¹) ≤

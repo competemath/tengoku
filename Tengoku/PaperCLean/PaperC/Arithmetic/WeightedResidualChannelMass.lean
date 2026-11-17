@@ -34,7 +34,9 @@ noncomputable def weightedResidualChannelMass
 
 /--
 A channel-uniform residual estimate factors against the exact systematic
-mass from Lemma 5.5.-/
+mass from Lemma 5.5.
+@isnad1 id=le.1h3v.s6.6af4f04098ff from=translated src=- shape=1ff0656e vocab=08585d73
+-/
 theorem weightedResidualChannelMass_le
     (L : ℕ) (residual : ℕ → ℕ → ℤ → ℝ) (K : ℝ)
     (hresidual :

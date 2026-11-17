@@ -24,7 +24,9 @@ noncomputable section
 
 /--
 Finite short-word conclusion for any enumerated family of unpinned
-large-prime components.-/
+large-prime components.
+@isnad1 id=ex.7h6v.s9.9e2a0c88f8c7 from=translated src=- shape=800b92c7 vocab=a028161d
+-/
 theorem exists_short_kernelWord_parity_package
     {m x y L t : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)

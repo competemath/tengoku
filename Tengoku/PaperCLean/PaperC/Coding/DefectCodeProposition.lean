@@ -20,7 +20,9 @@ open Finset
 
 /--
 The exact Hamming-volume inequality obtained directly from the represented
-integers and the absence of short Runge square products.-/
+integers and the absence of short Runge square products.
+@isnad1 id=le.9h9v.s7.37966848dece from=translated src=- shape=46cd57cc vocab=1485ea88
+-/
 theorem defectCode_volume_le_two_pow_of_representations
     {m r U R t : ℕ}
     (smallPrime : Fin r → ℕ)
@@ -48,7 +50,9 @@ The fully assembled finite length estimate:
 `m < 2 * t * 2 ^ ((r + 1) / t + 1)`.
 
 All arithmetic, coding, and Runge hypotheses are exposed explicitly; no
-minimum-distance or volume premise remains.-/
+minimum-distance or volume premise remains.
+@isnad1 id=lt.11h9v.s8.46b15ee1a49c from=translated src=- shape=09dbb97e vocab=aa7f29aa
+-/
 theorem defectCode_length_lt_of_representations
     {m r U R t : ℕ}
     (smallPrime : Fin r → ℕ)

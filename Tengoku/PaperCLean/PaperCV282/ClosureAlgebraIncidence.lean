@@ -19,6 +19,9 @@ open scoped BigOperators
 
 noncomputable section
 
+/--
+@isnad1 id=fact.0h0v.s2.2cde8ffc8dda from=translated src=- shape=8d7dbbf6 vocab=c1c9ca6d
+-/
 local instance instPrimeTwo : Fact (Nat.Prime 2) := Fact.mk Nat.prime_two
 
 variable {V E : Type*} [Fintype V] [Fintype E] [DecidableEq V] [DecidableEq E]
@@ -30,6 +33,9 @@ def componentSetoid (left right : E → V) : Setoid V :=
 /-- The genuine finite component type of an endpoint presentation.-/
 def Component (left right : E → V) := Quotient (componentSetoid left right)
 
+/--
+@isnad1 id=finite.0h4v.s4.97bd59ecd4c5 from=translated src=- shape=8b21e460 vocab=c328f51d
+-/
 instance instFiniteComponent (left right : E → V) : Finite (Component left right) :=
   inferInstanceAs (Finite (Quotient (componentSetoid left right)))
 
@@ -40,10 +46,16 @@ instance instFintypeComponent (left right : E → V) : Fintype (Component left r
 def component (left right : E → V) (v : V) : Component left right := Quotient.mk _ v
 
 omit [Fintype V] [Fintype E] [DecidableEq V] [DecidableEq E] in
+/--
+@isnad1 id=surjecti.0h4v.s4.a9ce2c0891b5 from=translated src=- shape=ffc4dba8 vocab=bdf01788
+-/
 theorem component_surjective (left right : E → V) : Function.Surjective (component left right) :=
   Quotient.mk_surjective
 
 omit [Fintype V] [Fintype E] [DecidableEq V] [DecidableEq E] in
+/--
+@isnad1 id=eq.0h5v.s5.dee35e1e3830 from=translated src=- shape=3b825091 vocab=3b4e46ab
+-/
 theorem component_edge (left right : E → V) (e : E) :
     component left right (left e) = component left right (right e) :=
   Quotient.sound (Relation.EqvGen.rel _ _ ⟨e,rfl,rfl⟩)
@@ -53,11 +65,17 @@ def gradientMatrix (left right : E → V) : Matrix E V F₂ :=
   fun e v => (if v = left e then 1 else 0) + (if v = right e then 1 else 0)
 
 omit [Fintype E] [DecidableEq E] in
+/--
+@isnad1 id=eq.0h6v.s8.559bb69e5f6c from=translated src=- shape=7492c178 vocab=c7a09923
+-/
 theorem gradientMatrix_apply (left right : E → V) (z : V → F₂) (e : E) :
     (gradientMatrix left right).mulVecLin z e = z (left e) + z (right e) := by
   simp [gradientMatrix, Matrix.mulVec, dotProduct, add_mul, Finset.sum_add_distrib]
 
 omit [Fintype E] [DecidableEq E] in
+/--
+@isnad1 id=iff.0h5v.s9.14a0283b9678 from=translated src=- shape=8b57ed7c vocab=4378a283
+-/
 theorem mem_gradient_kernel_iff (left right : E → V) (z : V → F₂) :
     z ∈ LinearMap.ker (gradientMatrix left right).mulVecLin ↔
       ∀ e, z (left e) = z (right e) := by
@@ -65,7 +83,9 @@ theorem mem_gradient_kernel_iff (left right : E → V) (z : V → F₂) :
     Affine.add_eq_zero_iff_eq]
 
 omit [Fintype V] [Fintype E] [DecidableEq V] [DecidableEq E] in
-/-- Edgewise equality propagates along the full equivalence closure.-/
+/-- Edgewise equality propagates along the full equivalence closure.
+@isnad1 id=eq.2h7v.s5.769c85efab59 from=translated src=- shape=0703ba7a vocab=e9e24896
+-/
 theorem constant_on_component (left right : E → V) (z : V → F₂)
     (hz : ∀ e, z (left e) = z (right e)) {v w : V}
     (h : component left right v = component left right w) : z v = z w := by
@@ -86,6 +106,9 @@ def componentFunctions (left right : E → V) :
   map_smul' _ _ := rfl
 
 omit [Fintype V] [Fintype E] [DecidableEq V] [DecidableEq E] in
+/--
+@isnad1 id=injectiv.0h4v.s8.8bdd488aabba from=translated src=- shape=b507365b vocab=0925512e
+-/
 theorem componentFunctions_injective (left right : E → V) :
     Function.Injective (componentFunctions left right) := by
   intro f g h
@@ -94,7 +117,9 @@ theorem componentFunctions_injective (left right : E → V) :
   exact congrFun h v
 
 omit [Fintype E] [DecidableEq E] in
-/-- The transpose kernel has exactly one free bit per connected component.-/
+/-- The transpose kernel has exactly one free bit per connected component.
+@isnad1 id=eq.0h4v.s9.c997b548785c from=translated src=- shape=e187cd5a vocab=0cc58781
+-/
 theorem range_componentFunctions (left right : E → V) :
     LinearMap.range (componentFunctions left right) =
       LinearMap.ker (gradientMatrix left right).mulVecLin := by
@@ -112,6 +137,9 @@ theorem range_componentFunctions (left right : E → V) :
     exact ⟨f,rfl⟩
 
 omit [Fintype E] [DecidableEq E] in
+/--
+@isnad1 id=eq.0h4v.s10.b9dbb4227f9a from=translated src=- shape=530f1c61 vocab=87e2a6a7
+-/
 theorem finrank_gradient_kernel (left right : E → V) :
     finrank F₂ (LinearMap.ker (gradientMatrix left right).mulVecLin) =
       Fintype.card (Component left right) := by
@@ -119,7 +147,9 @@ theorem finrank_gradient_kernel (left right : E → V) :
     (componentFunctions_injective left right)]
   exact Module.finrank_fintype_fun_eq_card F₂
 
-/-- Identification with the historical binary incidence map.-/
+/-- Identification with the historical binary incidence map.
+@isnad1 id=eq.0h4v.s7.866c15efc8c8 from=translated src=- shape=62fe2fd9 vocab=62408a96
+-/
 theorem transpose_gradient_eq_incidence (left right : E → V) :
     (gradientMatrix left right).transpose.mulVecLin = incidenceMap left right := by
   apply LinearMap.ext
@@ -131,7 +161,9 @@ theorem transpose_gradient_eq_incidence (left right : E → V) :
   intro e _
   ring
 
-/-- Exact incidence rank, in additive form to avoid truncated subtraction.-/
+/-- Exact incidence rank, in additive form to avoid truncated subtraction.
+@isnad1 id=eq.0h4v.s10.8a1e556dd343 from=translated src=- shape=614d66ef vocab=1dd05b58
+-/
 theorem incidence_rank_add_components (left right : E → V) :
     finrank F₂ (LinearMap.range (incidenceMap left right)) +
       Fintype.card (Component left right) = Fintype.card V := by
@@ -144,7 +176,9 @@ theorem incidence_rank_add_components (left right : E → V) :
   rw [hr]
   exact h
 
-/-- The genuine cycle space has dimension |E|+c-|V|, including empty graphs.-/
+/-- The genuine cycle space has dimension |E|+c-|V|, including empty graphs.
+@isnad1 id=eq.0h4v.s9.de9e053750e6 from=translated src=- shape=25637a56 vocab=8f826735
+-/
 theorem finrank_cycleSpace (left right : E → V) :
     finrank F₂ (cycleSpace left right) =
       Fintype.card E + Fintype.card (Component left right) - Fintype.card V := by

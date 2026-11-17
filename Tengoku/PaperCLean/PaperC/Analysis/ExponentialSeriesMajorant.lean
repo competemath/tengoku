@@ -15,7 +15,9 @@ namespace PaperC
 
 open scoped BigOperators
 
-/-- Every nonnegative finite exponential series is bounded by `Real.exp`.-/
+/-- Every nonnegative finite exponential series is bounded by `Real.exp`.
+@isnad1 id=le.1h2v.s5.4cf6b58c6194 from=translated src=- shape=cc31f56b vocab=4e8b7e82
+-/
 theorem sum_range_pow_div_factorial_le_exp
     (x : ℝ) (hx : 0 ≤ x) (R : ℕ) :
     (∑ r ∈ Finset.range R, x ^ r / (r.factorial : ℝ)) ≤
@@ -26,7 +28,9 @@ theorem sum_range_pow_div_factorial_le_exp
       (fun r hr ↦ div_nonneg (pow_nonneg hx r) (by positivity))
       (NormedSpace.expSeries_div_hasSum_exp x)
 
-/-- Rational finite sums, cast to `ℝ`, obey the same exponential bound.-/
+/-- Rational finite sums, cast to `ℝ`, obey the same exponential bound.
+@isnad1 id=le.1h2v.s5.f25fe879121a from=translated src=- shape=3032b011 vocab=60dc3bfa
+-/
 theorem ratCast_sum_range_pow_div_factorial_le_exp
     (x : ℚ) (hx : 0 ≤ x) (R : ℕ) :
     (((∑ r ∈ Finset.range R,

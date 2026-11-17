@@ -51,7 +51,9 @@ private theorem valueBit_single
 
 /--
 Every relation between the two start systems gives the corresponding parity
-equation at each represented prime coordinate.-/
+equation at each represented prime coordinate.
+@isnad1 id=eq.2h6v.s9.5ecd8961849d from=translated src=- shape=3f08d828 vocab=945c3465
+-/
 theorem relation_prime_equation
     {M x y L p : ℕ}
     (u : RelationSpace (twoStartSystem M x y L))
@@ -87,7 +89,9 @@ theorem relation_prime_equation
   simp_rw [valueBit_single hp hpM] at hrel
   exact hrel
 
-/-- Boundary form of `relation_prime_equation`.-/
+/-- Boundary form of `relation_prime_equation`.
+@isnad1 id=eq.2h6v.s10.a19f4ea8f72a from=translated src=- shape=537e53c1 vocab=fe687795
+-/
 theorem relation_boundary_prime_equation
     {M x y L p : ℕ}
     (u : RelationSpace (twoStartSystem M x y L))
@@ -100,7 +104,9 @@ theorem relation_boundary_prime_equation
   rw [← sum_twoStartEdgeParity_eq_sum_completeBoundary]
   exact relation_prime_equation u hp hpM
 
-/-- Complete labels in one start block are pairwise distinct away from zero.-/
+/-- Complete labels in one start block are pairwise distinct away from zero.
+@isnad1 id=injectiv.1h2v.s5.178ce031c1cd from=translated src=- shape=55bb6aa4 vocab=e4b87edb
+-/
 theorem startCompleteVertexLabel_injective
     {x L : ℕ} (hx : 1 ≤ x) :
     Function.Injective (startCompleteVertexLabel x L) := by
@@ -121,7 +127,9 @@ theorem startCompleteVertexLabel_injective
 
 /--
 Any two complete labels in one start block are at distance strictly less
-than `L + 1`.-/
+than `L + 1`.
+@isnad1 id=lt.1h4v.s6.c3b72abf1b0c from=translated src=- shape=eb7b4e0a vocab=fc174b7a
+-/
 theorem startCompleteVertexLabel_dist_lt
     {x L : ℕ} (hx : 1 ≤ x)
     (v w : Fin (L + 1)) :
@@ -153,7 +161,9 @@ theorem startCompleteVertexLabel_dist_lt
       have hwlt := w.2
       omega
 
-/-- A nonzero parity coordinate forces divisibility by its prime index.-/
+/-- A nonzero parity coordinate forces divisibility by its prime index.
+@isnad1 id=dvd.1h2v.s6.a55d19f925d1 from=translated src=- shape=10980df3 vocab=860a3405
+-/
 theorem dvd_of_parityVec_ne_zero
     {n p : ℕ} (h : parityVec n p ≠ 0) :
     p ∣ n := by
@@ -164,7 +174,9 @@ theorem dvd_of_parityVec_ne_zero
 
 /--
 A prime above `L+1` can have a nonzero parity coordinate at at most one
-complete vertex of a start block.-/
+complete vertex of a start block.
+@isnad1 id=eq.4h5v.s7.96fcf1d5c03a from=translated src=- shape=236cd1a3 vocab=84b7933c
+-/
 theorem parityVec_ne_zero_unique_in_start
     {x L p : ℕ} (hx : 1 ≤ x) (hpL : L + 1 < p)
     {v w : Fin (L + 1)}
@@ -206,7 +218,9 @@ private theorem sum_eq_selected
 /--
 If a relation-selected occurrence in the left block has a nonzero coordinate
 at a prime above `L+1`, there is a unique selected occurrence with nonzero
-coordinate at that prime in the right block.-/
+coordinate at that prime in the right block.
+@isnad1 id=existsun.7h7v.s11.0df00f6e9284 from=translated src=- shape=733e7409 vocab=9c53cbd4
+-/
 theorem existsUnique_opposite_of_left
     {M x y L p : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -266,7 +280,9 @@ theorem existsUnique_opposite_of_left
     exact parityVec_ne_zero_unique_in_start hy hpL hw'.2
       (right_ne_zero_of_mul hwTerm)
 
-/-- Symmetric right-to-left version.-/
+/-- Symmetric right-to-left version.
+@isnad1 id=existsun.7h7v.s11.87b773212e74 from=translated src=- shape=10240299 vocab=9c53cbd4
+-/
 theorem existsUnique_opposite_of_right
     {M x y L p : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -331,7 +347,9 @@ Large-kernel specialization of the left-to-right assignment theorem.
 
 For every prime in the large odd support of the selected left label, the
 opposite selected occurrence exists uniquely.  The hypothesis `hnM` merely
-says that the finite sample space contains every prime dividing that label.-/
+says that the finite sample space contains every prime dividing that label.
+@isnad1 id=existsun.5h7v.s11.932420ebc7a6 from=translated src=- shape=c227d01c vocab=c7cc2b2d
+-/
 theorem existsUnique_opposite_for_largeKernel_of_left
     {M x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)
@@ -365,7 +383,9 @@ theorem existsUnique_opposite_for_largeKernel_of_left
   exact existsUnique_opposite_of_left (one_le_two.trans hx) (one_le_two.trans hy)
     hpData.1 (hpLeN.trans hnM) hpData.2 u v hvSelected hpParity
 
-/-- Symmetric large-kernel specialization.-/
+/-- Symmetric large-kernel specialization.
+@isnad1 id=existsun.5h7v.s11.09d567dd132d from=translated src=- shape=684beb35 vocab=c7cc2b2d
+-/
 theorem existsUnique_opposite_for_largeKernel_of_right
     {M x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)

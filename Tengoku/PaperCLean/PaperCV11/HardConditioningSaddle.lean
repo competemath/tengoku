@@ -21,7 +21,9 @@ namespace PaperC
 namespace V11
 namespace HardConditioningSaddle
 
-/-- No positive cutoff can make both `B / u` and `u` exceed `sqrt B`.-/
+/-- No positive cutoff can make both `B / u` and `u` exceed `sqrt B`.
+@isnad1 id=le.2h2v.s5.94a1b3fc335f from=translated src=- shape=1ef63759 vocab=25c5ffda
+-/
 theorem min_div_self_le_sqrt
     {B u : ℝ} (hB : 0 ≤ B) (hu : 0 < u) :
     min (B / u) u ≤ Real.sqrt B := by

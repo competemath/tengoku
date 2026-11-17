@@ -39,11 +39,17 @@ abbrev UnorderedCertificate (s : Finset ι) (r : ℕ) :=
 abbrev OrderedCertificate (s : Finset ι) (r : ℕ) :=
   Σ T : UnorderedCertificate s r, Fin r ↪ T.1
 
+/--
+@isnad1 id=le.0h4v.s5.b33f62b76d63 from=translated src=- shape=26496202 vocab=c2b46579
+-/
 theorem unorderedCertificate_subset
     {s : Finset ι} {r : ℕ} (T : UnorderedCertificate s r) :
     T.1 ⊆ s :=
   (mem_powersetCard.mp T.2).1
 
+/--
+@isnad1 id=eq.0h4v.s5.972556b3838f from=translated src=- shape=0795ce77 vocab=66265952
+-/
 @[simp]
 theorem unorderedCertificate_card
     {s : Finset ι} {r : ℕ} (T : UnorderedCertificate s r) :
@@ -64,6 +70,9 @@ private theorem certificateOrdering_bijective
   rw [Fintype.bijective_iff_injective_and_card]
   exact ⟨e.injective, by simp⟩
 
+/--
+@isnad1 id=injectiv.0h3v.s5.1c15042f6d50 from=translated src=- shape=882825a8 vocab=c5f9f7b6
+-/
 theorem orderedCertificateToFunction_injective
     {s : Finset ι} {r : ℕ} :
     Function.Injective
@@ -122,7 +131,9 @@ private theorem ordering_product_eq_certificate_product
     _ = ∏ i ∈ T.1, w i := by
       exact Finset.prod_coe_sort T.1 w
 
-/-- Every unordered `r`-certificate has exactly `r!` weighted orderings.-/
+/-- Every unordered `r`-certificate has exactly `r!` weighted orderings.
+@isnad1 id=eq.0h4v.s7.33f87ae01989 from=translated src=- shape=4d64fee4 vocab=078dce5b
+-/
 theorem orderedCertificate_sum_eq_factorial_mul
     (s : Finset ι) (r : ℕ) (w : ι → ℚ) :
     (∑ z : OrderedCertificate s r,
@@ -145,7 +156,9 @@ theorem orderedCertificate_sum_eq_factorial_mul
 
 /--
 The sum over ordered injective selections is at most the sum over all ordered
-selections, provided the weights are nonnegative.-/
+selections, provided the weights are nonnegative.
+@isnad1 id=le.1h4v.s8.019c7b12e936 from=translated src=- shape=c06f9a89 vocab=d4f01781
+-/
 theorem orderedCertificate_sum_le_all_functions
     (s : Finset ι) (r : ℕ) (w : ι → ℚ)
     (hw : ∀ i ∈ s, 0 ≤ w i) :
@@ -173,7 +186,9 @@ theorem orderedCertificate_sum_le_all_functions
 
 /--
 The exact elementary-symmetric estimate furnishing the `1/r!` factor in
-Lemma 7.1.-/
+Lemma 7.1.
+@isnad1 id=le.1h4v.s6.4b3f9cec4328 from=translated src=- shape=21f54d98 vocab=12d426d2
+-/
 theorem factorial_mul_certificateWeightSum_le_pow_sum
     (s : Finset ι) (r : ℕ) (w : ι → ℚ)
     (hw : ∀ i ∈ s, 0 ≤ w i) :
@@ -184,7 +199,9 @@ theorem factorial_mul_certificateWeightSum_le_pow_sum
   simpa only [Finset.sum_coe_sort] using
     (Fintype.sum_pow (fun i : s ↦ w i.1) r).symm
 
-/-- Division form of the preceding bound.-/
+/-- Division form of the preceding bound.
+@isnad1 id=le.1h4v.s6.4d3136faf55a from=translated src=- shape=9d13c59f vocab=35232ce3
+-/
 theorem certificateWeightSum_le_pow_sum_div_factorial
     (s : Finset ι) (r : ℕ) (w : ι → ℚ)
     (hw : ∀ i ∈ s, 0 ≤ w i) :
@@ -197,7 +214,9 @@ theorem certificateWeightSum_le_pow_sum_div_factorial
 
 /--
 Specialization to the one-dimensional cell weights `u Eₚ / p` occurring in
-equation (7.1).-/
+equation (7.1).
+@isnad1 id=le.2h6v.s7.f8053e52f998 from=translated src=- shape=b276ae97 vocab=14f5ddf8
+-/
 theorem certificateCellWeightSum_le
     (s : Finset ι) (r : ℕ)
     (cellCount modulus : ι → ℕ) (u : ℚ)
@@ -219,7 +238,9 @@ theorem certificateCellWeightSum_le
 
 /--
 Specialization to the two-dimensional weights `u M / p²` occurring in
-equation (7.2).-/
+equation (7.2).
+@isnad1 id=le.2h6v.s7.c04b4cb70479 from=translated src=- shape=3d72bcb4 vocab=14f5ddf8
+-/
 theorem certificatePairCellWeightSum_le
     (s : Finset ι) (r : ℕ)
     (modulus : ι → ℕ) (M : ℕ) (u : ℚ)
@@ -253,7 +274,9 @@ theorem certificatePairCellWeightSum_le
 
 /--
 Finite partial-sum form of the exponential-series majorant.  Taking
-`R = card s + 1` covers every possible certificate size.-/
+`R = card s + 1` covers every possible certificate size.
+@isnad1 id=le.1h4v.s6.dfe465a0f245 from=translated src=- shape=5a22e36a vocab=778e39f5
+-/
 theorem sum_certificateWeightSum_le_exponentialMajorant
     (s : Finset ι) (R : ℕ) (w : ι → ℚ)
     (hw : ∀ i ∈ s, 0 ≤ w i) :

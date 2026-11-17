@@ -28,7 +28,9 @@ namespace UniformThreeHalves
 
 /--
 A factor `N * √N` times a uniformly subpolynomial factor is
-`N^(3/2+o(1))`.-/
+`N^(3/2+o(1))`.
+@isnad1 id=uniformt.2h3v.s6.f8c3ae19d4eb from=translated src=- shape=144b6b38 vocab=d8747b62
+-/
 theorem of_linear_sqrt_mul_subpolynomial
     {admissible : ℕ → ℕ → Prop}
     {f q : ℕ → ℕ → ℝ}
@@ -72,7 +74,9 @@ theorem of_linear_sqrt_mul_subpolynomial
 
 /--
 The three-halves-power predicate is stable under eventual pointwise
-domination.-/
+domination.
+@isnad1 id=uniformt.2h3v.s6.de0242dadbd2 from=translated src=- shape=6931d51c vocab=839b8852
+-/
 theorem mono
     {admissible : ℕ → ℕ → Prop}
     {f g : ℕ → ℕ → ℝ}

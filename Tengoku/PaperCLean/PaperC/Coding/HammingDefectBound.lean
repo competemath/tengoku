@@ -35,7 +35,9 @@ open Finset
 /--
 A division-safe lower bound for a binomial coefficient.  The hypotheses put
 us in the range used after (3.5).  The factor `2` avoids any rounding issue in
-the integer quotient.-/
+the integer quotient.
+@isnad1 id=le.2h2v.s6.4ce9950415f0 from=translated src=- shape=f24eb49c vocab=1ce930ef
+-/
 theorem half_ratio_pow_le_choose {m t : ℕ}
     (ht : 1 ≤ t) (hmt : 2 * t ≤ m) :
     (m / (2 * t)) ^ t ≤ m.choose t := by
@@ -80,7 +82,9 @@ theorem half_ratio_pow_le_choose {m t : ℕ}
   exact Nat.le_of_mul_le_mul_left hmul (Nat.factorial_pos t)
 
 /-- The last binomial coefficient is one of the nonnegative summands in the
-radius-`t` Hamming volume.-/
+radius-`t` Hamming volume.
+@isnad1 id=le.0h2v.s5.297d0e9a351b from=translated src=- shape=086e51fd vocab=e517c5bf
+-/
 theorem choose_le_volume (m t : ℕ) :
     m.choose t ≤
       ∑ j ∈ Finset.range (t + 1), m.choose j := by
@@ -90,7 +94,9 @@ theorem choose_le_volume (m t : ℕ) :
 
 /--
 The binomial-volume inequality in (3.5) forces a power bound on the integer
-ratio `m / (2*t)`.-/
+ratio `m / (2*t)`.
+@isnad1 id=le.3h3v.s7.56c073f9029d from=translated src=- shape=c8b3a743 vocab=8e9d2d2b
+-/
 theorem half_ratio_pow_le_two_pow {m t r : ℕ}
     (ht : 1 ≤ t) (hmt : 2 * t ≤ m)
     (hvolume :
@@ -101,7 +107,9 @@ theorem half_ratio_pow_le_two_pow {m t r : ℕ}
 
 /--
 Taking an integer `t`-th root of a comparison with `2^r`, with an explicit
-rounding loss in the exponent.-/
+rounding loss in the exponent.
+@isnad1 id=lt.2h3v.s6.115c9bd7b8d2 from=translated src=- shape=aeed73dd vocab=6c346eea
+-/
 theorem base_lt_two_pow_div_add_one {a t r : ℕ}
     (ht : 1 ≤ t) (hpow : a ^ t ≤ 2 ^ r) :
     a < 2 ^ (r / t + 1) := by
@@ -122,7 +130,9 @@ theorem base_lt_two_pow_div_add_one {a t r : ℕ}
 /--
 Finite quantitative defect bound deduced from (3.5).  It is a robust integer
 version of the paper's estimate `m ≤ t * 2^(r/t)`, up to an absolute factor
-and one exponent-rounding bit.-/
+and one exponent-rounding bit.
+@isnad1 id=lt.3h3v.s7.78d8bc4629ee from=translated src=- shape=1ce4b92f vocab=e19006a4
+-/
 theorem length_lt_of_sum_choose_le_two_pow {m t r : ℕ}
     (ht : 1 ≤ t) (hmt : 2 * t ≤ m)
     (hvolume :

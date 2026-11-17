@@ -12,7 +12,9 @@ namespace PaperC.Prel8.RoughKernelExponent
 open Finset LargeOddKernel RoughKernelAllocation ArratiaGoldsteinGordonInput
 noncomputable section
 
-/-- The number of prime factors is controlled by the logarithm of their product.-/
+/-- The number of prime factors is controlled by the logarithm of their product.
+@isnad1 id=le.1h2v.s5.9b6e74fc5e7d from=translated src=- shape=a1b943c1 vocab=93b836a8
+-/
 theorem card_log_le (Y m : ℕ) (hY : 1 < Y) :
     ((largeOddPrimeSupport Y m).card : ℝ)*Real.log Y ≤ Real.log (largeOddKernel Y m) := by
   have hp (p : ℕ) (h : p ∈ largeOddPrimeSupport Y m) : 0 < (p:ℝ) := by

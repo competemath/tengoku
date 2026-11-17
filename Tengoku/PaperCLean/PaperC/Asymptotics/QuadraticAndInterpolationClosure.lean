@@ -17,7 +17,9 @@ namespace UniformRationalPower
 
 /--
 The sum of two uniform `N^(2+o(1))` quantities is again uniformly
-`N^(2+o(1))`.-/
+`N^(2+o(1))`.
+@isnad1 id=uniformr.2h3v.s6.adbb5d65085e from=translated src=- shape=8a6ee9fe vocab=4aa5050b
+-/
 theorem add_quadratic
     {admissible : ℕ → ℕ → Prop}
     {f g : ℕ → ℕ → ℝ}
@@ -116,7 +118,9 @@ Generic square-root interpolation closure.
 
 If `H=N^(3/2+o(1))`, `Q=N^(2+o(1))`, and eventually all three
 quantities are nonnegative with `R ≤ √H √Q`, then
-`R=N^(7/4+o(1))`.-/
+`R=N^(7/4+o(1))`.
+@isnad1 id=uniformr.3h4v.s7.11c7be799ed3 from=translated src=- shape=758de150 vocab=c91f5de7
+-/
 theorem interpolate_threeHalves_quadratic
     {admissible : ℕ → ℕ → Prop}
     {H Q R : ℕ → ℕ → ℝ}

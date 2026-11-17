@@ -27,7 +27,9 @@ local instance instDecidableProposition (P : Prop) : Decidable P := Classical.pr
 variable {Ω ι : Type*} [Fintype Ω] [Fintype ι] [DecidableEq ι]
 
 omit [Fintype ι] [DecidableEq ι] in
-/-- Integrating the Stein equation gives the actual test-set discrepancy.-/
+/-- Integrating the Stein equation gives the actual test-set discrepancy.
+@isnad1 id=eq.1h6v.s7.8e3c710b1e97 from=translated src=- shape=69d6ac19 vocab=d78bc047
+-/
 theorem expectation_stein_equation (μ : FinitePMF Ω) (W : Ω → ℕ)
     (rate : ℝ≥0) (A : Set ℕ) (f : ℕ → ℝ)
     (heq : ∀ k : ℕ, (rate : ℝ) * f (k + 1) - (k : ℝ) * f k =
@@ -49,7 +51,9 @@ theorem expectation_stein_equation (μ : FinitePMF Ω) (W : Ω → ℕ)
       expectation_congr μ (fun ω => heq (W ω))
     _ = _ := by rw [expectation_sub, expectation_const, htest]
 
-/-- Sharp scalar dependency-graph factor for the actual matching intensity.-/
+/-- Sharp scalar dependency-graph factor for the actual matching intensity.
+@isnad1 id=le.2h7v.s6.1ac7262478cd from=translated src=- shape=898a5967 vocab=a1e555bc
+-/
 theorem scalar_poisson_bound_of_solutions (μ : FinitePMF Ω) (X : ι → Ω → Bool)
     (G : SimpleGraph ι) (hdep : HasExactDependencyGraph μ X G) {c d : ℝ}
     (hsol : SteinSolutionBounds (poissonRate μ X) c d) :
@@ -65,7 +69,9 @@ theorem scalar_poisson_bound_of_solutions (μ : FinitePMF Ω) (X : ι → Ω →
   rw [hidentity] at h
   exact h
 
-/-- Scalar AGG consequence with the intensity of the actual masked family.-/
+/-- Scalar AGG consequence with the intensity of the actual masked family.
+@isnad1 id=le.2h5v.s6.664cd6fb541c from=translated src=- shape=2b503cbe vocab=aadcc521
+-/
 theorem scalar_poisson_bound (hStein : ScalarSteinFactorsStatement)
     (μ : FinitePMF Ω) (X : ι → Ω → Bool) (G : SimpleGraph ι)
     (hdep : HasExactDependencyGraph μ X G) :
@@ -73,7 +79,9 @@ theorem scalar_poisson_bound (hStein : ScalarSteinFactorsStatement)
       firstSteinFactor (poissonRate μ X) * (bOne μ X G + bTwo μ X G) :=
   scalar_poisson_bound_of_solutions μ X G hdep (steinSolutionBounds_all hStein _)
 
-/-- Exact soft-exception Poisson bound with arbitrary supplied solution norms.-/
+/-- Exact soft-exception Poisson bound with arbitrary supplied solution norms.
+@isnad1 id=le.5h10v.s7.2fefcb2957f9 from=translated src=- shape=b2660cdd vocab=74999eb1
+-/
 theorem soft_poisson_bound_of_solutions (μ : FinitePMF Ω) (X : ι → Ω → Bool)
     (G : SimpleGraph ι) (hdep : HasExactDependencyGraph μ X G)
     (good : Finset ι) {p : ℝ} (hp : 0 ≤ p)
@@ -93,7 +101,9 @@ theorem soft_poisson_bound_of_solutions (μ : FinitePMF Ω) (X : ι → Ω → B
   rw [hidentity] at h
   exact h
 
-/-- Companion Lemma B.2 on each finite conditioning fibre, including zero rate.-/
+/-- Companion Lemma B.2 on each finite conditioning fibre, including zero rate.
+@isnad1 id=le.5h8v.s7.06c98ffa38fe from=translated src=- shape=e62c3141 vocab=684a56f9
+-/
 theorem lemma_b_two_finite (hStein : ScalarSteinFactorsStatement)
     (μ : FinitePMF Ω) (X : ι → Ω → Bool) (G : SimpleGraph ι)
     (hdep : HasExactDependencyGraph μ X G) (good : Finset ι)

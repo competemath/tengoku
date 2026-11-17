@@ -36,7 +36,9 @@ namespace UniformHalfPower
 
 /--
 A square-root factor times a uniformly subpolynomial factor is
-`N^(1/2+o(1))`.-/
+`N^(1/2+o(1))`.
+@isnad1 id=uniformh.2h3v.s6.a4700c8128a4 from=translated src=- shape=51fc02ba vocab=c4c66b29
+-/
 theorem of_sqrt_mul_subpolynomial
     {admissible : ℕ → ℕ → Prop}
     {f q : ℕ → ℕ → ℝ}
@@ -67,7 +69,9 @@ theorem of_sqrt_mul_subpolynomial
       rw [pow_succ]
 
 /--
-The half-power predicate is stable under an eventual pointwise domination.-/
+The half-power predicate is stable under an eventual pointwise domination.
+@isnad1 id=uniformh.2h3v.s6.61fb4a282b5f from=translated src=- shape=6931d51c vocab=b53f2c40
+-/
 theorem mono
     {admissible : ℕ → ℕ → Prop}
     {f g : ℕ → ℕ → ℝ}
@@ -86,7 +90,9 @@ theorem mono
       L hNL) _).trans
       (hNg N ((le_max_left _ _).trans hN) L hNL)
 
-/-- Multiplication by a fixed real constant preserves the half-power rate.-/
+/-- Multiplication by a fixed real constant preserves the half-power rate.
+@isnad1 id=uniformh.1h3v.s5.649af04b02e8 from=translated src=- shape=aa49963d vocab=d30ad805
+-/
 theorem const_mul
     {admissible : ℕ → ℕ → Prop}
     (B : ℝ) {f : ℕ → ℕ → ℝ}

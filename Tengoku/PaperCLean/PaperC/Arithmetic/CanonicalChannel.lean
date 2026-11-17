@@ -45,6 +45,9 @@ def reducedChannelCandidates
     c.1.Coprime c.2 ∧
       SatisfiesChannelInequality x y B c.1 c.2
 
+/--
+@isnad1 id=iff.0h6v.s6.b16024ae5a50 from=translated src=- shape=2cb800a2 vocab=40e38c49
+-/
 @[simp]
 theorem mem_reducedChannelCandidates
     {x y B H a b : ℕ} :
@@ -57,7 +60,9 @@ theorem mem_reducedChannelCandidates
 
 /--
 The exact determinant criterion implies that the finite candidate set has at
-most one element.-/
+most one element.
+@isnad1 id=le.1h4v.s6.c1bbf7560df5 from=translated src=- shape=a093cc35 vocab=6572d05b
+-/
 theorem card_reducedChannelCandidates_le_one
     {x y B H : ℕ} (hx : 4 * H ^ 2 * B < x) :
     (reducedChannelCandidates x y B H).card ≤ 1 := by
@@ -83,6 +88,9 @@ noncomputable def canonicalReducedChannel?
   else
     none
 
+/--
+@isnad1 id=iff.0h4v.s5.e0c84146ed26 from=translated src=- shape=e79bcfc2 vocab=c6fb74d3
+-/
 theorem canonicalReducedChannel?_eq_none_iff
     {x y B H : ℕ} :
     canonicalReducedChannel? x y B H = none ↔
@@ -90,6 +98,9 @@ theorem canonicalReducedChannel?_eq_none_iff
   classical
   simp [canonicalReducedChannel?, Finset.not_nonempty_iff_eq_empty]
 
+/--
+@isnad1 id=mem.1h5v.s5.f122665bcb78 from=translated src=- shape=47eab6be vocab=2efc9c75
+-/
 theorem canonicalReducedChannel?_mem
     {x y B H : ℕ} {c : ℕ × ℕ}
     (hc : canonicalReducedChannel? x y B H = some c) :
@@ -104,7 +115,9 @@ theorem canonicalReducedChannel?_mem
 
 /--
 Above the uniqueness threshold, the canonical option is exactly every
-candidate witness.-/
+candidate witness.
+@isnad1 id=eq.2h5v.s6.574dd34d9e3b from=translated src=- shape=bd18246f vocab=99dee218
+-/
 theorem canonicalReducedChannel?_eq_some_of_mem
     {x y B H : ℕ} (hx : 4 * H ^ 2 * B < x)
     {c : ℕ × ℕ}
@@ -122,7 +135,9 @@ theorem canonicalReducedChannel?_eq_some_of_mem
   rw [Finset.card_le_one] at hcard
   exact hcard _ hnonempty.choose_spec _ hc
 
-/-- Every allowed offset has absolute value strictly below `L+1`.-/
+/-- Every allowed offset has absolute value strictly below `L+1`.
+@isnad1 id=lt.2h2v.s5.d00fa4100c68 from=translated src=- shape=21e7b061 vocab=71458b82
+-/
 theorem abs_lt_length_add_one_of_mem_offsetInterval
     {L : ℕ} (hL : 0 < L) {i : ℤ}
     (hi : i ∈ offsetInterval L) :
@@ -133,7 +148,9 @@ theorem abs_lt_length_add_one_of_mem_offsetInterval
 
 /--
 A nonempty positive channel in the offset box automatically satisfies the
-strict error bound `|h| < (a+b)(L+1)`.-/
+strict error bound `|h| < (a+b)(L+1)`.
+@isnad1 id=lt.3h5v.s6.8b771dc738d9 from=translated src=- shape=38b26d2c vocab=ee85b5fa
+-/
 theorem abs_channelParameter_lt
     {L a b : ℕ} (ha : 0 < a) (hb : 0 < b)
     {h : ℤ} {cell : ℤ × ℤ}
@@ -196,7 +213,9 @@ theorem abs_channelParameter_lt
       ring
 
 /--
-An exact unit identifies the affine channel parameter with `b*y-a*x`.-/
+An exact unit identifies the affine channel parameter with `b*y-a*x`.
+@isnad1 id=eq.2h6v.s6.fc1d56b62c32 from=translated src=- shape=04dcd4e9 vocab=8ce9d589
+-/
 theorem pairChannelError_eq_of_exact_unit
     {x y a b : ℕ} {h : ℤ} {cell : ℤ × ℤ}
     (hchannel : OnChannel a b h cell)
@@ -210,7 +229,9 @@ theorem pairChannelError_eq_of_exact_unit
 /--
 Every primitive channel with at least two exact units is covered by the
 height-`(L+1)^A` candidate definition.  This is the finite second assertion
-of Lemma 5.2.-/
+of Lemma 5.2.
+@isnad1 id=mem.6h7v.s7.68267224deef from=translated src=- shape=5a81127a vocab=23e56340
+-/
 theorem channel_mem_reducedCandidates_of_two_units
     {x y L A a b : ℕ}
     (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)

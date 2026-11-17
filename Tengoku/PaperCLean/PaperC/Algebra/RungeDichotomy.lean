@@ -25,7 +25,9 @@ open scoped Polynomial
 
 /--
 An integer separated from a dyadic rational by denominator `2^d`, but at
-distance at most `B/U`, forces `U ≤ 2^d B`.-/
+distance at most `B/U`, forces `U ≤ 2^d B`.
+@isnad1 id=le.3h5v.s7.2d8dc8eda9a4 from=translated src=- shape=ec7db171 vocab=dbf3ba04
+-/
 theorem nat_le_two_pow_mul_of_dyadic_gap_and_tail
     (a b : ℤ) (d U B : ℕ)
     (hU : 1 ≤ U)
@@ -54,7 +56,9 @@ theorem nat_le_two_pow_mul_of_dyadic_gap_and_tail
 /--
 Specialization of the preceding numerical step to the actual Runge
 truncation, using the integral polynomial constructed in
-`RungeTruncation`.-/
+`RungeTruncation`.
+@isnad1 id=le.3h5v.s7.44654bee126f from=translated src=- shape=2d9b4f7c vocab=1053e4e5
+-/
 theorem nat_le_two_pow_mul_of_rungeTruncation_gap
     {k : ℕ} (γ : Fin (2 * k) → ℤ)
     (a : ℤ) (U B : ℕ)

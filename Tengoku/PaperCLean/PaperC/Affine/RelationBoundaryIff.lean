@@ -146,7 +146,9 @@ private theorem dotProduct_twoStartSystem_eq_sum_primeBoundary
 /--
 Exact converse to `relation_boundary_prime_equation`: an ambient row vector
 is a relation precisely when every represented prime coordinate annihilates
-its complete boundary.-/
+its complete boundary.
+@isnad1 id=iff.0h5v.s10.a8333e69dde9 from=translated src=- shape=d2ca53f4 vocab=add0619e
+-/
 theorem mem_relationSpace_twoStartSystem_iff_boundary_prime_equations
     {M x y L : ℕ} (u : Sum (Fin L) (Fin L) → F₂) :
     u ∈ RelationSpace (twoStartSystem M x y L) ↔

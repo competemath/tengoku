@@ -32,7 +32,9 @@ namespace StartEvent
 
 variable {g : ℕ → Bit} {x y L n : ℕ}
 
-/-- Extract the affine constraint at the left boundary of a start.-/
+/-- Extract the affine constraint at the left boundary of a start.
+@isnad1 id=eq.1h3v.s6.fab1a228b782 from=translated src=- shape=ba7af0c3 vocab=c32c5172
+-/
 theorem left_boundary (h : StartEvent g x L) :
     g (x - 1) + g x = 1 :=
   h.1
@@ -62,7 +64,9 @@ theorem eq_of_mem_run (h : StartEvent g x L)
     g n = g y :=
   (h.eq_on_run hxn hn).trans (h.eq_on_run hxy hy).symm
 
-/-- The two values at the left boundary of a start are distinct.-/
+/-- The two values at the left boundary of a start are distinct.
+@isnad1 id=ne.1h3v.s5.dc8bdc6a5a89 from=translated src=- shape=7cacbf8c vocab=69d868ec
+-/
 theorem left_ne (h : StartEvent g x L) :
     g (x - 1) ≠ g x := by
   intro heq
@@ -74,7 +78,9 @@ theorem left_ne (h : StartEvent g x L) :
 end StartEvent
 
 /-- Oriented form of Lemma 3.4(i): if `x < y < x + L`, starts at `x` and
-`y` cannot coexist.-/
+`y` cannot coexist.
+@isnad1 id=not.2h4v.s5.a06e2d7c0343 from=translated src=- shape=1aee0686 vocab=35d43325
+-/
 theorem startEvents_disjoint_of_lt
     {g : ℕ → Bit} {x y L : ℕ}
     (hxy : x < y) (hy : y < x + L) :
@@ -86,7 +92,9 @@ theorem startEvents_disjoint_of_lt
     hx.eq_on_run (by omega) hy
   exact hyStart.left_ne (hleft.trans hright.symm)
 
-/-- Implication form of the oriented local-exclusion lemma.-/
+/-- Implication form of the oriented local-exclusion lemma.
+@isnad1 id=not.3h4v.s5.2fa58e422da6 from=translated src=- shape=b5b92ba4 vocab=35d43325
+-/
 theorem StartEvent.not_of_lt
     {g : ℕ → Bit} {x y L : ℕ}
     (hx : StartEvent g x L) (hxy : x < y) (hy : y < x + L) :
@@ -94,7 +102,9 @@ theorem StartEvent.not_of_lt
   intro hyStart
   exact startEvents_disjoint_of_lt hxy hy ⟨hx, hyStart⟩
 
-/-- Symmetric form of Lemma 3.4(i), stated with natural-number distance.-/
+/-- Symmetric form of Lemma 3.4(i), stated with natural-number distance.
+@isnad1 id=not.2h4v.s5.41e595a2704a from=translated src=- shape=c1c6fd05 vocab=74dd1477
+-/
 theorem startEvents_disjoint_of_dist_lt
     {g : ℕ → Bit} {x y L : ℕ}
     (hxy : x ≠ y) (hdist : Nat.dist x y < L) :

@@ -29,7 +29,9 @@ open Finset
 /--
 The exact second inequality of (3.5) for the kernel of the augmented defect
 matrix.  The `r` supplied small-prime coordinates and the appended constant
-coordinate give `r + 1` rows.-/
+coordinate give `r + 1` rows.
+@isnad1 id=le.2h5v.s8.e145390c3753 from=translated src=- shape=d9c23c87 vocab=8088e38b
+-/
 theorem defectCode_volume_le_two_pow
     {m r t : ℕ}
     (smallPrime : Fin r → ℕ) (f : Fin m → ℕ)
@@ -50,7 +52,9 @@ theorem defectCode_volume_le_two_pow
 /--
 Finite quantitative consequence of the defect-code Hamming bound.  This is
 the fully assembled algebraic/combinatorial conclusion after Runge has
-excluded nonzero kernel words of weight at most `2 * t`.-/
+excluded nonzero kernel words of weight at most `2 * t`.
+@isnad1 id=lt.4h5v.s8.c9cb62c9804d from=translated src=- shape=a8eb1f02 vocab=1da00b1c
+-/
 theorem defectCode_length_lt
     {m r t : ℕ}
     (smallPrime : Fin r → ℕ) (f : Fin m → ℕ)

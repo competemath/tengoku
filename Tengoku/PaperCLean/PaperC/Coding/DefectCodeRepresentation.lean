@@ -22,7 +22,9 @@ open scoped BigOperators
 
 /--
 A kernel word selects a square product directly from the representations
-`f i = s i * (a i)^2` and coverage of the divisors of `s i`.-/
+`f i = s i * (a i)^2` and coverage of the divisors of `s i`.
+@isnad1 id=ex.5h7v.s9.7bc7aa91ddb5 from=translated src=- shape=9ba63aaa vocab=9146e776
+-/
 theorem square_product_of_defectRepresentations
     {m r : ℕ}
     (smallPrime : Fin r → ℕ)
@@ -50,7 +52,9 @@ theorem square_product_of_defectRepresentations
 
 /--
 The complete finite bridge from a represented defect-code word to the
-translated Runge inputs, with no residual parity-coverage hypothesis.-/
+translated Runge inputs, with no residual parity-coverage hypothesis.
+@isnad1 id=other.8h9v.s10.90b965f8cc4f from=translated src=- shape=fb257d97 vocab=d05f6efb
+-/
 theorem kernelWord_translatedRungeInput_of_defectRepresentations
     {m r U R : ℕ}
     (smallPrime : Fin r → ℕ)

@@ -20,13 +20,17 @@ variable {ι : Type*}
 def solutions (n : ℕ) (S : Finset ι) (modulus offset : ι → ℕ) : Finset ℕ :=
   (Icc 1 n).filter (fun x ↦ ∀ i ∈ S, modulus i ∣ x + offset i)
 
-/-- Membership without exposing the implementation of finite universal decidability.-/
+/-- Membership without exposing the implementation of finite universal decidability.
+@isnad1 id=iff.0h6v.s6.98b8b29c1b61 from=translated src=- shape=b4c86b07 vocab=95ec52d3
+-/
 theorem mem_solutions (n : ℕ) (S : Finset ι) (modulus offset : ι → ℕ) (x : ℕ) :
     x ∈ solutions n S modulus offset ↔ x ∈ Icc 1 n ∧ ∀ i ∈ S, modulus i ∣ x + offset i := by
   classical
   exact mem_filter
 
-/-- Exact elementary CRT count, including the empty certificate.-/
+/-- Exact elementary CRT count, including the empty certificate.
+@isnad1 id=le.2h5v.s6.608321522c87 from=translated src=- shape=d9434e3a vocab=3e538b01
+-/
 theorem solutions_count (n : ℕ) (S : Finset ι) (modulus offset : ι → ℕ)
     (hp : ∀ i, (modulus i).Prime) (hinj : Function.Injective modulus) :
     ((solutions n S modulus offset).card : ℝ) ≤ (n:ℝ)/(∏ i ∈ S, (modulus i:ℝ))+1 := by
@@ -50,7 +54,9 @@ theorem solutions_count (n : ℕ) (S : Finset ι) (modulus offset : ι → ℕ)
   simpa using hr
 
 /-- Under r<=2n, a nonempty block costs at most 3/r; an empty block costs exactly one.
-Charging one factor three per prime gives a uniform statement for both cases.-/
+Charging one factor three per prime gives a uniform statement for both cases.
+@isnad1 id=le.3h5v.s6.4391afb2b30d from=translated src=- shape=16fba09f vocab=67915f09
+-/
 theorem solutions_count_le (n : ℕ) (S : Finset ι) (modulus offset : ι → ℕ)
     (hp : ∀ i, (modulus i).Prime) (hinj : Function.Injective modulus)
     (hr : (∏ i ∈ S, modulus i) ≤ 2*n) :
@@ -81,7 +87,9 @@ def hostedGrid (n h Q : ℕ) (modulus : ι → ℕ) : Finset (Fin h → ℕ) :=
   (Fintype.piFinset (fun _ : Fin h ↦ Icc 1 n)).filter
     (fun J ↦ ∀ i, ∃ b : Fin h, ∃ a : Fin (Q+1), modulus i ∣ J b + a.val)
 
-/-- The union over all block-and-offset assignments covers the hosting event.-/
+/-- The union over all block-and-offset assignments covers the hosting event.
+@isnad1 id=le.0h5v.s7.9e1b1b753dfa from=translated src=- shape=d2eeb763 vocab=73e0b141
+-/
 theorem hosted_subset (n h Q : ℕ) (modulus : ι → ℕ) :
     hostedGrid n h Q modulus ⊆ (univ : Finset (ι → Fin h × Fin (Q+1))).biUnion
       (assignedGrid n h Q modulus) := by

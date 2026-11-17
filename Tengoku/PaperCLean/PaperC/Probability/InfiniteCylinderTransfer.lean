@@ -38,7 +38,9 @@ def finitePrimeCoordinate (M : ℕ) (p : PrimeUpTo M) : ℕ :=
   Nat.primeCounting' p.1
 
 /-- Distinct finite primes occupy distinct coordinates in the infinite
-enumeration.-/
+enumeration.
+@isnad1 id=injectiv.0h1v.s3.dbe6cec79394 from=translated src=- shape=9ef37d6b vocab=c5e4a330
+-/
 theorem finitePrimeCoordinate_injective (M : ℕ) :
     Function.Injective (finitePrimeCoordinate M) := by
   intro p q hpq
@@ -83,6 +85,9 @@ noncomputable def primeCoordinateEquiv (M : ℕ) :
       apply Subtype.ext
       exact hpk⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.680c39b0624a from=translated src=- shape=04f5b9e9 vocab=4112e11e
+-/
 @[simp]
 theorem primeCoordinateEquiv_apply_val (M : ℕ) (p : PrimeUpTo M) :
     (primeCoordinateEquiv M p : ℕ) = finitePrimeCoordinate M p :=
@@ -93,6 +98,9 @@ noncomputable def restrictToFinite (M : ℕ)
     (ω : InfiniteSample) : SampleSpace M :=
   fun p => ω (finitePrimeCoordinate M p)
 
+/--
+@isnad1 id=eq.0h3v.s4.62fd9fc8ab41 from=translated src=- shape=d5860c00 vocab=d9f2e039
+-/
 @[simp]
 theorem restrictToFinite_apply (M : ℕ) (ω : InfiniteSample)
     (p : PrimeUpTo M) :
@@ -100,7 +108,9 @@ theorem restrictToFinite_apply (M : ℕ) (ω : InfiniteSample)
   rfl
 
 /-- Every parity coordinate observed by an integer `n ≤ M` lies in the
-finite cutoff.-/
+finite cutoff.
+@isnad1 id=le.1h2v.s5.251321b2fa99 from=translated src=- shape=43954fe7 vocab=dac66556
+-/
 theorem parityVec_support_subset_range {M n : ℕ}
     (hnM : n ≤ M) :
     (parityVec n).support ⊆ Finset.range (M + 1) := by
@@ -112,7 +122,9 @@ theorem parityVec_support_subset_range {M n : ℕ}
     ((Nat.le_of_mem_primeFactors hpFactor).trans hnM)
 
 /-- The finite and infinite parity functionals agree on every integer covered
-by the cutoff.-/
+by the cutoff.
+@isnad1 id=eq.1h3v.s4.cf1cf04ebe79 from=translated src=- shape=7dfa2a49 vocab=37b0d287
+-/
 theorem valueBit_restrictToFinite_eq_infiniteValueBit
     {M n : ℕ} (ω : InfiniteSample) (hnM : n ≤ M) :
     valueBit (restrictToFinite M ω) n =
@@ -167,7 +179,9 @@ theorem valueBit_restrictToFinite_eq_infiniteValueBit
   exact hinfinite.symm
 
 /-- Integer-valued random multiplicative functions agree on every integer
-covered by the cutoff.-/
+covered by the cutoff.
+@isnad1 id=eq.1h3v.s4.127b0fe8e739 from=translated src=- shape=7dfa2a49 vocab=c24d68a0
+-/
 theorem randomMultiplicativeValue_restrictToFinite_eq_infiniteRandomValue
     {M n : ℕ} (ω : InfiniteSample) (hnM : n ≤ M) :
     randomMultiplicativeValue (restrictToFinite M ω) n =
@@ -176,7 +190,9 @@ theorem randomMultiplicativeValue_restrictToFinite_eq_infiniteRandomValue
     valueBit_restrictToFinite_eq_infiniteValueBit ω hnM]
 
 /-- Every finite start event covered by the cutoff is literally the
-corresponding event in the unrestricted model.-/
+corresponding event in the unrestricted model.
+@isnad1 id=iff.1h4v.s5.7b6bb7c20e6b from=translated src=- shape=ca0c39ac vocab=2b4bea3d
+-/
 theorem startAt_restrictToFinite_iff
     {M x L : ℕ} (ω : InfiniteSample) (hcut : x + L ≤ M) :
     startAt (restrictToFinite M ω) x L ↔
@@ -218,6 +234,9 @@ noncomputable def finiteRademacherMeasure (M : ℕ) :
     Measure (SampleSpace M) :=
   Measure.pi (fun _ : PrimeUpTo M => coordinateMeasure)
 
+/--
+@isnad1 id=isprobab.0h1v.s4.9aa4b1a3a6e6 from=translated src=- shape=627ed832 vocab=f5fa08f1
+-/
 noncomputable instance instIsProbabilityMeasureFiniteRademacherMeasure
     (M : ℕ) :
     IsProbabilityMeasure (finiteRademacherMeasure M) := by
@@ -233,7 +252,9 @@ noncomputable def finitePrimeReindex (M : ℕ) :
     (primeCoordinateEquiv M).symm
 
 /-- Restricting to the selected coordinate finset and then reindexing is
-definitionally the direct restriction `restrictToFinite`.-/
+definitionally the direct restriction `restrictToFinite`.
+@isnad1 id=eq.0h2v.s6.8125a37668ee from=translated src=- shape=a3ea1a5a vocab=62470b20
+-/
 theorem finitePrimeReindex_restrict (M : ℕ) (ω : InfiniteSample) :
     finitePrimeReindex M
         ((finitePrimeCoordinates M).restrict ω) =
@@ -249,7 +270,9 @@ theorem finitePrimeReindex_restrict (M : ℕ) (ω : InfiniteSample) :
     primeCoordinateEquiv_apply_val] using h
 
 /-- The image of the infinite Rademacher law on the primes at most `M` is
-exactly the finite uniform product law.-/
+exactly the finite uniform product law.
+@isnad1 id=eq.0h1v.s5.690c1c9299d9 from=translated src=- shape=496338ce vocab=0ef10b5f
+-/
 theorem map_infiniteRademacherMeasure_restrictToFinite (M : ℕ) :
     Measure.map (restrictToFinite M) infiniteRademacherMeasure =
       finiteRademacherMeasure M := by
@@ -273,7 +296,9 @@ theorem map_infiniteRademacherMeasure_restrictToFinite (M : ℕ) :
     (fun _ : PrimeUpTo M => coordinateMeasure)
 
 /-- Point masses of the finite image law are all equal.  This is the literal
-uniform-law characterization on the finite sample space.-/
+uniform-law characterization on the finite sample space.
+@isnad1 id=eq.0h2v.s6.fdabe3388bdd from=translated src=- shape=9daa7122 vocab=391961ad
+-/
 theorem finiteRademacherMeasure_singleton
     (M : ℕ) (σ : SampleSpace M) :
     finiteRademacherMeasure M ({σ} : Set (SampleSpace M)) =

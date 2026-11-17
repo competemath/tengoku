@@ -13,6 +13,9 @@ namespace PaperC.V282.SaddleBranchAsymptotics
 
 open Set Filter Topology SaddleBranch
 
+/--
+@isnad1 id=tendsto.0h0v.s5.0f60106a06a1 from=translated src=- shape=93a4dec3 vocab=93d3556b
+-/
 theorem tendsto_log_div_upperSaddleBranch :
     Tendsto (fun nu => Real.log nu / upperSaddleBranch nu) atTop (𝓝 1) := by
   have hsmall : Tendsto (fun nu =>
@@ -27,11 +30,17 @@ theorem tendsto_log_div_upperSaddleBranch :
   rw [log_upperSaddleBranch_identity hnu]
   field_simp [ne_of_gt (upperSaddleBranch_pos hnu)]
 
+/--
+@isnad1 id=tendsto.0h0v.s5.33fef6b268bb from=translated src=- shape=93a4dec3 vocab=93d3556b
+-/
 theorem tendsto_upperSaddleBranch_div_log :
     Tendsto (fun nu => upperSaddleBranch nu / Real.log nu) atTop (𝓝 1) := by
   simpa only [inv_div, inv_one] using
     tendsto_log_div_upperSaddleBranch.inv₀ (by norm_num : (1 : ℝ) ≠ 0)
 
+/--
+@isnad1 id=eq.2h1v.s5.5471919e2b39 from=translated src=- shape=66a139c8 vocab=66e1e9e0
+-/
 theorem upperSaddleBranch_refined_identity {nu : ℝ}
     (hnu : Real.exp 1 ≤ nu) (hnuone : 1 < nu) :
     upperSaddleBranch nu - Real.log nu - Real.log (Real.log nu) =
@@ -41,6 +50,9 @@ theorem upperSaddleBranch_refined_identity {nu : ℝ}
   have h := log_upperSaddleBranch_identity hnu
   linarith
 
+/--
+@isnad1 id=tendsto.0h0v.s5.1c9fe773a1fa from=translated src=- shape=7b32ea6b vocab=7a16b846
+-/
 theorem tendsto_upperSaddleBranch_second_order :
     Tendsto (fun nu => upperSaddleBranch nu - Real.log nu - Real.log (Real.log nu))
       atTop (𝓝 0) := by
@@ -53,11 +65,17 @@ theorem tendsto_upperSaddleBranch_second_order :
     with nu hnu hnuone
   exact (upperSaddleBranch_refined_identity hnu hnuone).symm
 
+/--
+@isnad1 id=le.1h1v.s4.7c4f6fe18c35 from=translated src=- shape=5ca95478 vocab=dc8ff3b5
+-/
 theorem log_le_upperSaddleBranch {nu : ℝ} (hnu : Real.exp 1 ≤ nu) :
     Real.log nu ≤ upperSaddleBranch nu := by
   rw [log_upperSaddleBranch_identity hnu]
   linarith [Real.log_nonneg (upperSaddleBranch_spec hnu).1]
 
+/--
+@isnad1 id=eventual.0h0v.s4.e1ed80b5b4a1 from=translated src=- shape=e7994ca5 vocab=685d0d3f
+-/
 theorem upperSaddleBranch_le_two_log_eventually :
     ∀ᶠ nu : ℝ in atTop, upperSaddleBranch nu ≤ 2 * Real.log nu := by
   filter_upwards [tendsto_upperSaddleBranch_div_log.eventually

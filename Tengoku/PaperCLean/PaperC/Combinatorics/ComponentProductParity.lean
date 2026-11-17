@@ -58,7 +58,9 @@ noncomputable def componentVerticesEquivSupp
   left_inv _ := rfl
   right_inv _ := rfl
 
-/-- Cardinality of the finset and support presentations agree.-/
+/-- Cardinality of the finset and support presentations agree.
+@isnad1 id=eq.0h4v.s7.fad5abdcaea5 from=translated src=- shape=7ea635f0 vocab=adc84652
+-/
 theorem card_componentVertices
     (x y L : ℕ)
     (C : (largePrimeGraph x y L).ConnectedComponent) :
@@ -68,7 +70,9 @@ theorem card_componentVertices
 
 /--
 The graph-resolution notion of an unpinned component implies the literal
-absence of a pinned occurrence used by the component-product lemmas.-/
+absence of a pinned occurrence used by the component-product lemmas.
+@isnad1 id=not.1h4v.s7.b36870ae1366 from=translated src=- shape=c8813fdd vocab=c5ae1364
+-/
 theorem not_isPinnedComponent_of_isNontrivialUnpinned
     {x y L : ℕ}
     {C : (largePrimeGraph x y L).ConnectedComponent}
@@ -85,7 +89,9 @@ theorem not_isPinnedComponent_of_isNontrivialUnpinned
       LargePrimeGraphResolution.mem_pinnedVertices.mpr hvPinned,
       mem_componentVertices.mp hvC⟩
 
-/-- Every factor occurring in `componentVertexProduct` is positive.-/
+/-- Every factor occurring in `componentVertexProduct` is positive.
+@isnad1 id=lt.3h5v.s6.4be3b1832221 from=translated src=- shape=cdb38f00 vocab=030f01ac
+-/
 theorem componentVertexLabel_pos
     {x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)
@@ -96,7 +102,9 @@ theorem componentVertexLabel_pos
   apply componentLabels_pos hx hy C
   exact Finset.mem_image.mpr ⟨v, hv, rfl⟩
 
-/-- The component product is nonzero (indeed positive).-/
+/-- The component product is nonzero (indeed positive).
+@isnad1 id=lt.2h4v.s5.d8ef74f477e9 from=translated src=- shape=1b7c7ea2 vocab=3fc17d09
+-/
 theorem componentVertexProduct_pos
     {x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)
@@ -108,7 +116,9 @@ theorem componentVertexProduct_pos
 
 /--
 Every prime above the complete-boundary cutoff has even valuation in the
-product of an unpinned component.-/
+product of an unpinned component.
+@isnad1 id=eq.5h5v.s7.390cf7de268a from=translated src=- shape=fdfaf85a vocab=584bb633
+-/
 theorem componentVertexProduct_large_parity_eq_zero
     {x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)
@@ -146,7 +156,9 @@ theorem componentVertexProduct_large_parity_eq_zero
 
 /--
 Every nonzero coordinate of a component-product parity vector is represented
-by the canonical enumeration of primes at most `L + 1`.-/
+by the canonical enumeration of primes at most `L + 1`.
+@isnad1 id=ex.4h5v.s7.c8dc260772eb from=translated src=- shape=e7c2a927 vocab=17789008
+-/
 theorem componentVertexProduct_smallPrime_coverage
     {x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)

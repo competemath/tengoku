@@ -19,7 +19,9 @@ namespace LargeEulerProduct
 
 open scoped BigOperators
 
-/-- Factorwise use of `1 + t ≤ exp t`.-/
+/-- Factorwise use of `1 + t ≤ exp t`.
+@isnad1 id=le.0h2v.s7.8dde854dcaef from=translated src=- shape=f7bce6d3 vocab=4ac0217c
+-/
 theorem prod_one_add_mul_rpow_neg_three_halves_le_exp_sum
     (B : ℕ) (S : Finset ℕ) :
     (∏ p ∈ S,
@@ -47,7 +49,9 @@ Large-range Euler-product estimate:
 
 `∏_{p∈S} (1 + B p⁻³ᐟ²) ≤ exp (2 √B)`
 
-whenever `S ⊆ (B,X]` and `B ≥ 1`.-/
+whenever `S ⊆ (B,X]` and `B ≥ 1`.
+@isnad1 id=le.2h3v.s7.321d7f6d7db1 from=translated src=- shape=e3553af0 vocab=5f968d88
+-/
 theorem prod_one_add_mul_rpow_neg_three_halves_le_exp_two_sqrt
     (B X : ℕ) (S : Finset ℕ)
     (hB : 1 ≤ B)
@@ -103,7 +107,9 @@ theorem prod_one_add_mul_rpow_neg_three_halves_le_exp_two_sqrt
         _ = 2 * Real.sqrt B := by
           rw [mul_inv_cancel₀ hsqrtPos.ne', mul_one]
 
-/-- Negative three-halves power written with an explicit square root.-/
+/-- Negative three-halves power written with an explicit square root.
+@isnad1 id=eq.1h1v.s6.464a4029c5bb from=translated src=- shape=ec70ae23 vocab=f4a40bf2
+-/
 theorem rpow_neg_three_halves_eq_inv_mul_sqrt
     {p : ℕ} (hp : 1 ≤ p) :
     (p : ℝ) ^ (-(3 / 2 : ℝ)) =
@@ -124,7 +130,9 @@ theorem rpow_neg_three_halves_eq_inv_mul_sqrt
       rw [Real.rpow_one, ← Real.sqrt_eq_rpow]
 
 /--
-Equivalent denominator notation used in some versions of the manuscript.-/
+Equivalent denominator notation used in some versions of the manuscript.
+@isnad1 id=le.2h3v.s6.06b99b843bef from=translated src=- shape=240c8163 vocab=e1b2bccd
+-/
 theorem prod_one_add_B_div_mul_sqrt_le_exp_two_sqrt
     (B X : ℕ) (S : Finset ℕ)
     (hB : 1 ≤ B)

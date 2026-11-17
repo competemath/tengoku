@@ -54,6 +54,9 @@ noncomputable def sigmaZeroSmallProductPairs
     Finset (ℕ × ℕ) :=
   (sigmaZeroSmallProductSubtypePairs N A L r hN).image Subtype.val
 
+/--
+@isnad1 id=iff.1h5v.s8.7c5a6304712d from=translated src=- shape=60ede24e vocab=55503214
+-/
 theorem mem_sigmaZeroSmallProductSubtypePairs
     {N A L r : ℕ} {hN : 2 ≤ N}
     {pair : ResidualMasses.SeparatedDyadicPair N L} :
@@ -72,7 +75,9 @@ theorem mem_sigmaZeroSmallProductSubtypePairs
           A pair.1.1 pair.1.2 L = r := by
   simp [sigmaZeroSmallProductSubtypePairs]
 
-/-- Every value in the population is a separated dyadic pair.-/
+/-- Every value in the population is a separated dyadic pair.
+@isnad1 id=mem.2h5v.s6.00dc00abca53 from=translated src=- shape=6d87abea vocab=20b63823
+-/
 theorem mem_sigmaZeroSmallProductPairs_separated
     {N A L r : ℕ} {hN : 2 ≤ N}
     {pair : ℕ × ℕ}
@@ -82,7 +87,9 @@ theorem mem_sigmaZeroSmallProductPairs_separated
   obtain ⟨z, _hz, rfl⟩ := hpair
   exact z.2
 
-/-- Every value in the fixed-size population has component count `r`.-/
+/-- Every value in the fixed-size population has component count `r`.
+@isnad1 id=eq.2h5v.s6.2a49dd87d3ab from=translated src=- shape=cc8ee275 vocab=c896eea8
+-/
 theorem mem_sigmaZeroSmallProductPairs_componentCount
     {N A L r : ℕ} {hN : 2 ≤ N}
     {pair : ℕ × ℕ}
@@ -92,7 +99,9 @@ theorem mem_sigmaZeroSmallProductPairs_componentCount
   obtain ⟨z, hz, rfl⟩ := hpair
   exact (mem_sigmaZeroSmallProductSubtypePairs.mp hz).2.2
 
-/-- Every value in the population lies in the small-product branch.-/
+/-- Every value in the population lies in the small-product branch.
+@isnad1 id=canonica.2h5v.s6.d35135667a8c from=translated src=- shape=f3b4fbd5 vocab=36633faa
+-/
 theorem mem_sigmaZeroSmallProductPairs_smallProduct
     {N A L r : ℕ} {hN : 2 ≤ N}
     {pair : ℕ × ℕ}
@@ -124,7 +133,9 @@ noncomputable def sigmaZeroAmbientAssignment
   exact ambientCertificate (A := A) hN hsep
 
 /--
-The dependent ambient assignment is admissible for every population member.-/
+The dependent ambient assignment is admissible for every population member.
+@isnad1 id=certific.2h5v.s6.ebcac576851a from=translated src=- shape=ac2d53f9 vocab=ca6495f4
+-/
 theorem sigmaZeroAmbientAssignment_admissible
     {N A L r : ℕ} (hN : 2 ≤ N)
     (pair : ℕ × ℕ)
@@ -138,7 +149,9 @@ theorem sigmaZeroAmbientAssignment_admissible
   simpa [sigmaZeroAmbientAssignment] using
     (ambientCertificate_admissible_iff hN hsep).2 hsmall
 
-/-- Every pair is contained in the solution rectangle of its assignment.-/
+/-- Every pair is contained in the solution rectangle of its assignment.
+@isnad1 id=mem.2h5v.s8.5d41aaaeed96 from=translated src=- shape=3d0ec344 vocab=a2ac4d53
+-/
 theorem sigmaZeroAmbientAssignment_solution
     {N A L r : ℕ} (hN : 2 ≤ N)
     (pair : ℕ × ℕ)
@@ -158,7 +171,9 @@ theorem sigmaZeroAmbientAssignment_solution
       (mem_separatedDyadicPairs.mp hsep).1
       (mem_separatedDyadicPairs.mp hsep).2.1
 
-/-- The exact dependent population-cover lower bound at fixed `r`.-/
+/-- The exact dependent population-cover lower bound at fixed `r`.
+@isnad1 id=le.1h4v.s8.fd3bdc70b353 from=translated src=- shape=e6def34f vocab=85fc81cd
+-/
 theorem four_pow_mul_card_le_ambientPairSolutionMass
     {N A L r : ℕ} (hN : 2 ≤ N) :
     (4 : ℚ) ^ r *
@@ -179,7 +194,9 @@ theorem four_pow_mul_card_le_ambientPairSolutionMass
 /--
 Lemma 7.1 specialized to the fixed ambient cell family.  Keeping the
 manuscript's unnormalized `((1+1)N)²` factor here avoids asking `simp` to
-normalize the whole certificate-mass expression.-/
+normalize the whole certificate-mass expression.
+@isnad1 id=le.0h3v.s9.79b99194fb9b from=translated src=- shape=7d25170b vocab=72b9115b
+-/
 theorem ambientPairSolutionMass_le
     {N L r : ℕ} :
     CRT.admissibleCertificatePairSolutionMass
@@ -209,7 +226,9 @@ theorem ambientPairSolutionMass_le
       4 (by norm_num)
 
 /--
-Fixed-size `σ=0` cover followed by the two-dimensional bound of Lemma 7.1.-/
+Fixed-size `σ=0` cover followed by the two-dimensional bound of Lemma 7.1.
+@isnad1 id=le.1h4v.s7.438b55df4117 from=translated src=- shape=21295e8f vocab=c6181a0c
+-/
 theorem four_pow_mul_card_sigmaZeroSmallProductPairs_le
     {N A L r : ℕ} (hN : 2 ≤ N) :
     (4 : ℚ) ^ r *
@@ -225,7 +244,9 @@ theorem four_pow_mul_card_sigmaZeroSmallProductPairs_le
   simpa only [one_add_one_eq_two] using
     (ambientPairSolutionMass_le (N := N) (L := L) (r := r))
 
-/-- The finite-size sum of the specialized ambient Lemma 7.1 bounds.-/
+/-- The finite-size sum of the specialized ambient Lemma 7.1 bounds.
+@isnad1 id=le.0h3v.s9.8aa7300fce9e from=translated src=- shape=1cbd198b vocab=54a830b8
+-/
 theorem sum_ambientPairSolutionMass_le
     {N L R : ℕ} :
     (∑ r ∈ Finset.range R,
@@ -258,7 +279,9 @@ theorem sum_ambientPairSolutionMass_le
       4 (by norm_num)
 
 /--
-Summed fixed-size cover over the full vertex-budget range `r < L+2`.-/
+Summed fixed-size cover over the full vertex-budget range `r < L+2`.
+@isnad1 id=le.1h3v.s8.5734ec5d1a38 from=translated src=- shape=0c8a705d vocab=9b011940
+-/
 theorem sum_four_pow_mul_card_sigmaZeroSmallProductPairs_le
     {N A L : ℕ} (hN : 2 ≤ N) :
     (∑ r ∈ Finset.range (L + 2),

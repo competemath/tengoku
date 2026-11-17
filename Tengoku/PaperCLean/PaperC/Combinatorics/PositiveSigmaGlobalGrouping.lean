@@ -52,6 +52,9 @@ noncomputable def positiveChannelKeys (L : ℕ) :
         (range (L + 2)).image fun r ↦
           { q := q, a := c.1, b := c.2, h := h, r := r }
 
+/--
+@isnad1 id=iff.0h2v.s6.dc4eb8992bd2 from=translated src=- shape=46fa61c1 vocab=ba4bccbb
+-/
 @[simp]
 theorem mem_positiveChannelKeys
     {L : ℕ} {key : PositiveChannelKey} :
@@ -79,7 +82,9 @@ noncomputable def fixedChannelFiber
 
 /--
 Two fixed-channel memberships determine exactly the same plain-data key.
-Thus the global grouping has no double counting.-/
+Thus the global grouping has no double counting.
+@isnad1 id=eq.5h6v.s6.6cc7a6b99a0c from=translated src=- shape=9524ee98 vocab=9e5bccfe
+-/
 theorem key_eq_of_pair_mem_fixedChannelFiber
     {N A L : ℕ} {hN : 2 ≤ N}
     {pair : SeparatedDyadicPair N L}
@@ -189,7 +194,9 @@ private theorem canonical_key_data
 
 /--
 Every positive-systematic pair has a unique key in the explicit finite key
-set, and belongs to that key's fixed-channel fiber.-/
+set, and belongs to that key's fixed-channel fiber.
+@isnad1 id=existsun.2h4v.s6.5f5325837dd9 from=translated src=- shape=89e15075 vocab=d82a1958
+-/
 theorem existsUnique_key_of_mem_positiveSigmaSmallProductPairs
     {N A L : ℕ} {hN : 2 ≤ N}
     {pair : SeparatedDyadicPair N L}
@@ -257,7 +264,9 @@ private theorem sum_indicator_fixedChannelFiber
 /--
 Finite global positive-`σ` grouping.  The hypothesis `hD` is the explicit
 uniform envelope for `D#`; all systematic and residual-certificate factors
-are then summed over the canonical finite channel partition.-/
+are then summed over the canonical finite channel partition.
+@isnad1 id=le.2h4v.s7.3c6f0a0e8f68 from=translated src=- shape=cb73db22 vocab=d4766a48
+-/
 theorem positiveSigmaQuadraticResidualMass_le_channelCertificateMass
     {N A L D : ℕ} (hN : 2 ≤ N)
     (hD :

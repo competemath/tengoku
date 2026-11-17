@@ -20,7 +20,9 @@ noncomputable section
 
 variable {Ω Θ ι : Type*} [Fintype Ω] [Fintype Θ] [Fintype ι] [DecidableEq ι]
 
-/-- Exact mean cost: the neighbours keep their true averaged marginals.-/
+/-- Exact mean cost: the neighbours keep their true averaged marginals.
+@isnad1 id=eq.0h9v.s7.f267df3aea47 from=translated src=- shape=454133ea vocab=9c766ab1
+-/
 theorem average_goodSteinCost (ν : FinitePMF Θ) (μ : Θ → FinitePMF Ω)
     (X : Θ → ι → Ω → Bool) (G : SimpleGraph ι) (good : Finset ι) (p : ℝ) :
     finitePMFExpectation ν (fun θ => goodSteinCost (μ θ) (X θ) G good p) =
@@ -32,7 +34,9 @@ theorem average_goodSteinCost (ν : FinitePMF Θ) (μ : Θ → FinitePMF Ω)
   simp only [goodSteinCost, expectation_add, expectation_const_mul,
     expectation_const, expectation_finset_sum]
 
-/-- Companion (B.4): mean conditional total variation, with both intensity factors.-/
+/-- Companion (B.4): mean conditional total variation, with both intensity factors.
+@isnad1 id=le.5h10v.s8.dd97dfcfc94c from=translated src=- shape=7a77e67b vocab=c96fcc1d
+-/
 theorem lemma_b_two_average (hStein : ScalarSteinFactorsStatement)
     (ν : FinitePMF Θ) (μ : Θ → FinitePMF Ω) (X : Θ → ι → Ω → Bool)
     (G : SimpleGraph ι) (hdep : ∀ θ, HasExactDependencyGraph (μ θ) (X θ) G)
@@ -55,7 +59,9 @@ theorem lemma_b_two_average (hStein : ScalarSteinFactorsStatement)
   simpa only [expectation_add, expectation_const_mul, expectation_const,
     expectation_finset_sum, average_goodSteinCost] using h
 
-/-- Restriction to a positive-probability environment event costs one inverse mass.-/
+/-- Restriction to a positive-probability environment event costs one inverse mass.
+@isnad1 id=le.3h6v.s6.efda290bc6c5 from=translated src=- shape=08ec6e08 vocab=360b7207
+-/
 theorem weighted_environment_restriction_le (ν : FinitePMF Θ)
     (event : Θ → Prop) [DecidablePred event] (distance budget : Θ → ℝ)
     (hpoint : ∀ θ, distance θ ≤ budget θ) (hbudget : ∀ θ, 0 ≤ budget θ)

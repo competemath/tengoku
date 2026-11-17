@@ -40,7 +40,9 @@ noncomputable def natTotalVariation
   (2 : ℝ)⁻¹ * ∑' k : ℕ, |p k - q k|
 
 /-- The absolute difference of two summable nonnegative mass functions is
-summable.-/
+summable.
+@isnad1 id=summable.4h2v.s6.585609f0fcaa from=translated src=- shape=7f28e6b9 vocab=7f18a828
+-/
 theorem summable_abs_sub_of_nonneg
     {p q : ℕ → ℝ}
     (hp : Summable p) (hq : Summable q)
@@ -53,7 +55,9 @@ theorem summable_abs_sub_of_nonneg
     exact abs_sub_le_iff.mpr
       ⟨by linarith [hp0 k, hq0 k], by linarith [hp0 k, hq0 k]⟩
 
-/-- Total variation is nonnegative whenever its defining series is summable.-/
+/-- Total variation is nonnegative whenever its defining series is summable.
+@isnad1 id=le.0h2v.s4.1e777a0046be from=translated src=- shape=5a3c7e9d vocab=5cc80388
+-/
 theorem natTotalVariation_nonneg
     (p q : ℕ → ℝ) :
     0 ≤ natTotalVariation p q := by
@@ -61,7 +65,9 @@ theorem natTotalVariation_nonneg
   exact mul_nonneg (by positivity)
     (tsum_nonneg fun _ ↦ abs_nonneg _)
 
-/-- Symmetry of half-`ℓ¹` total variation.-/
+/-- Symmetry of half-`ℓ¹` total variation.
+@isnad1 id=eq.0h2v.s4.4ece758f74f6 from=translated src=- shape=4b5c2936 vocab=e6ed2902
+-/
 theorem natTotalVariation_comm
     (p q : ℕ → ℝ) :
     natTotalVariation p q = natTotalVariation q p := by
@@ -71,7 +77,9 @@ theorem natTotalVariation_comm
   intro k
   exact abs_sub_comm _ _
 
-/-- Triangle inequality for discrete total variation.-/
+/-- Triangle inequality for discrete total variation.
+@isnad1 id=le.6h3v.s6.b25eb4b6da4b from=translated src=- shape=a5f1a640 vocab=c73756cb
+-/
 theorem natTotalVariation_triangle
     {p q r : ℕ → ℝ}
     (hp : Summable p) (hq : Summable q) (hr : Summable r)
@@ -120,7 +128,9 @@ noncomputable def finiteUniformAverage
 
 /--
 Convexity of total variation under a finite uniform mixture.  The reference
-mass `q` is the same in every component.-/
+mass `q` is the same in every component.
+@isnad1 id=le.1h3v.s6.e77a8e9f2c91 from=translated src=- shape=2e12046a vocab=c2ca038c
+-/
 theorem natTotalVariation_uniformMixture_le
     {ι : Type*} [Fintype ι] [Nonempty ι]
     (p : ι → ℕ → ℝ) (q : ℕ → ℝ)
@@ -220,7 +230,9 @@ noncomputable def finiteNatLaw
   classical
   exact ∑ ω, if Z ω = k then μ.prob ω else 0
 
-/-- The pushforward law is nonnegative.-/
+/-- The pushforward law is nonnegative.
+@isnad1 id=le.0h4v.s4.624dc57d67e8 from=translated src=- shape=f7570c3b vocab=f0717a0a
+-/
 theorem finiteNatLaw_nonneg
     {Ω : Type*} [Fintype Ω]
     (μ : FinitePMF Ω) (Z : Ω → ℕ) (k : ℕ) :
@@ -232,7 +244,9 @@ theorem finiteNatLaw_nonneg
     · exact μ.nonneg ω
     · exact le_rfl
 
-/-- The pushforward mass function has total mass one.-/
+/-- The pushforward mass function has total mass one.
+@isnad1 id=hassum.0h3v.s5.30b2881366c0 from=translated src=- shape=fa021149 vocab=498e0dd0
+-/
 theorem hasSum_finiteNatLaw
     {Ω : Type*} [Fintype Ω]
     (μ : FinitePMF Ω) (Z : Ω → ℕ) :
@@ -269,7 +283,9 @@ theorem hasSum_finiteNatLaw
   rw [hsum] at hfinite
   exact hfinite
 
-/-- The pushforward mass function is summable.-/
+/-- The pushforward mass function is summable.
+@isnad1 id=summable.0h3v.s4.858491089f2d from=translated src=- shape=d5911700 vocab=d24fce07
+-/
 theorem summable_finiteNatLaw
     {Ω : Type*} [Fintype Ω]
     (μ : FinitePMF Ω) (Z : Ω → ℕ) :
@@ -285,7 +301,9 @@ noncomputable def disagreementProbability
 
 /--
 Coupling inequality: total variation between two pushforward laws is bounded
-by the probability that the coupled variables differ.-/
+by the probability that the coupled variables differ.
+@isnad1 id=le.0h4v.s5.876f73016114 from=translated src=- shape=83a615c1 vocab=e6401a3a
+-/
 theorem natTotalVariation_finiteNatLaw_le_disagreement
     {Ω : Type*} [Fintype Ω]
     (μ : FinitePMF Ω) (Z W : Ω → ℕ) :
@@ -417,7 +435,9 @@ The four inputs correspond respectively to:
 * finite upper bounds for those three contributions.
 
 This theorem is deliberately independent of the concrete cylinder
-instantiation.-/
+instantiation.
+@isnad1 id=le.11h8v.s7.d7ac91772f25 from=translated src=- shape=d65718f5 vocab=60054153
+-/
 theorem finite_corollary_thirteen_nine
     {fullLaw goodLaw targetPoisson goodPoisson : ℕ → ℝ}
     {badMass bOne averageBTwo parameterShift : ℝ}
@@ -458,7 +478,9 @@ application:
 * `badCount = #D_Y`;
 * `edgeCount = E_Y`;
 * `pairDefect = R₂(N,L)`;
-* `localPairs` is the ordered touching population (at most `2N`).-/
+* `localPairs` is the ordered touching population (at most `2N`).
+@isnad1 id=le.15h16v.s8.cb4f346242a2 from=translated src=- shape=4a0ef29d vocab=c901160c
+-/
 theorem finite_corollary_thirteen_nine_of_component_bounds
     {fullLaw goodLaw targetPoisson goodPoisson : ℕ → ℝ}
     {badMass bOne averageBTwo parameterShift : ℝ}

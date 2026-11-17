@@ -21,7 +21,9 @@ Paper C.
 
 namespace PaperC.Affine
 
-/-- In `𝔽₂`, a sum vanishes exactly when its two summands are equal.-/
+/-- In `𝔽₂`, a sum vanishes exactly when its two summands are equal.
+@isnad1 id=iff.0h2v.s5.cffaad1909e8 from=translated src=- shape=57b3104e vocab=cd15ed3a
+-/
 @[simp]
 theorem add_eq_zero_iff_eq (a b : F₂) : a + b = 0 ↔ a = b := by
   revert a b
@@ -44,6 +46,9 @@ noncomputable def startSystem (M x L : ℕ) :
 def startRhs (L : ℕ) : Fin L → F₂ :=
   fun i => if i.1 = 0 then 1 else 0
 
+/--
+@isnad1 id=eq.0h5v.s9.a96f18009fbd from=translated src=- shape=8e7ab505 vocab=9587fae6
+-/
 @[simp]
 theorem startSystem_apply (M x L : ℕ) (ω : SampleSpace M) (i : Fin L) :
     startSystem M x L ω i =
@@ -58,6 +63,9 @@ theorem startSystem_apply (M x L : ℕ) (ω : SampleSpace M) (i : Fin L) :
   · rw [startRow, ite_eq_right hi, LinearMap.add_apply, valueLinear_apply, valueLinear_apply,
       ite_eq_right hi]
 
+/--
+@isnad1 id=eq.0h2v.s6.9a6c418860f1 from=translated src=- shape=dd65d304 vocab=c63ac7a5
+-/
 @[simp]
 theorem startRhs_apply (L : ℕ) (i : Fin L) :
     startRhs L i = if i.1 = 0 then 1 else 0 :=
@@ -65,7 +73,9 @@ theorem startRhs_apply (L : ℕ) (i : Fin L) :
 
 /--
 For positive `L`, solving the finite affine system is exactly the deterministic
-start event for the bit-valued multiplicative function.-/
+start event for the bit-valued multiplicative function.
+@isnad1 id=iff.1h4v.s8.1288569d412d from=translated src=- shape=dd49a69b vocab=46d8376e
+-/
 theorem startSystem_eq_startRhs_iff
     {M x L : ℕ} (ω : SampleSpace M) (hL : 0 < L) :
     startSystem M x L ω = startRhs L ↔
@@ -93,7 +103,9 @@ theorem startSystem_eq_startRhs_iff
         (add_eq_zero_iff_eq _ _).mpr (h.2 i.1 i.2).symm
       simpa [hi] using hsum
 
-/-- Set-membership form of `startSystem_eq_startRhs_iff`.-/
+/-- Set-membership form of `startSystem_eq_startRhs_iff`.
+@isnad1 id=iff.1h4v.s7.fe482d272513 from=translated src=- shape=6b853498 vocab=7e875555
+-/
 theorem mem_startSolutionSet_iff
     {M x L : ℕ} (ω : SampleSpace M) (hL : 0 < L) :
     ω ∈ solutionSet (startSystem M x L) (startRhs L) ↔
@@ -101,13 +113,17 @@ theorem mem_startSolutionSet_iff
   simpa only [mem_solutionSet_iff] using
     startSystem_eq_startRhs_iff ω hL
 
-/-- The same equivalence expressed using the finite-model predicate `startAt`.-/
+/-- The same equivalence expressed using the finite-model predicate `startAt`.
+@isnad1 id=iff.1h4v.s8.35829d34b23e from=translated src=- shape=38169d84 vocab=6b6b4760
+-/
 theorem startSystem_eq_startRhs_iff_startAt
     {M x L : ℕ} (ω : SampleSpace M) (hL : 0 < L) :
     startSystem M x L ω = startRhs L ↔ startAt ω x L := by
   simpa only [startAt] using startSystem_eq_startRhs_iff ω hL
 
-/-- Solution-set membership expressed using `startAt`.-/
+/-- Solution-set membership expressed using `startAt`.
+@isnad1 id=iff.1h4v.s7.a21f990e899b from=translated src=- shape=7b22b006 vocab=0d3608a3
+-/
 theorem mem_startSolutionSet_iff_startAt
     {M x L : ℕ} (ω : SampleSpace M) (hL : 0 < L) :
     ω ∈ solutionSet (startSystem M x L) (startRhs L) ↔ startAt ω x L := by

@@ -25,7 +25,9 @@ noncomputable section
 /--
 Analytic closing lemma: if a finite-model Laplace functional differs from
 `exp(-parameter)` by an error tending to zero, and the parameter tends to
-`a`, then the functional tends to `exp(-a)`.-/
+`a`, then the functional tends to `exp(-a)`.
+@isnad1 id=tendsto.3h6v.s6.51f621e939e8 from=translated src=- shape=3b0851ba vocab=bfa3d384
+-/
 theorem tendsto_laplace_of_parameter_and_error
     {ι : Type*} {l : Filter ι}
     {laplace parameter error : ι → ℝ} {a : ℝ}
@@ -62,7 +64,9 @@ theorem tendsto_laplace_of_parameter_and_error
 Section 14.2 endpoint in Laplace-functional form.  The test function is
 continuous and nonnegative, the arithmetic/probabilistic layer supplies only
 the displayed vanishing approximation error, and the conclusion is the
-Laplace functional of `PPP(rate dt)` on `[1,2)`.-/
+Laplace functional of `PPP(rate dt)` on `[1,2)`.
+@isnad1 id=tendsto.6h6v.s7.cd51dbfd28b5 from=translated src=- shape=88dfb102 vocab=d4a142ef
+-/
 theorem sectionFourteenTwo_laplaceFunctional
     {N L : ℕ → ℕ} {rate : ℝ} {g : ℝ → ℝ}
     {laplace error : ℕ → ℝ}
@@ -92,7 +96,9 @@ theorem sectionFourteenTwo_laplaceFunctional
 /--
 Section 14.4 endpoint for a fixed mark cutoff `E`.  It is the Laplace
 functional of the Poisson intensity
-`rate · dt ⊗ (∑_{e≤E} 2^{-(e+1)} δ_e)`.-/
+`rate · dt ⊗ (∑_{e≤E} 2^{-(e+1)} δ_e)`.
+@isnad1 id=tendsto.6h7v.s8.442d312294d6 from=translated src=- shape=6bbca577 vocab=1f7c845e
+-/
 theorem sectionFourteenFour_laplaceFunctional
     {N L : ℕ → ℕ} {rate : ℝ} {E : ℕ}
     {g : ℝ → ℕ → ℝ} {laplace error : ℕ → ℝ}

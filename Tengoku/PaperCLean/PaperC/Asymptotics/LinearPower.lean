@@ -20,7 +20,9 @@ Eventual-bound variant of
 `uniformSubpolynomialOn_two_pow_log_div_loglog`.
 
 This is useful when the logarithmic exponent estimate itself comes from an
-asymptotic theorem and therefore only holds beyond a uniform threshold.-/
+asymptotic theorem and therefore only holds beyond a uniform threshold.
+@isnad1 id=uniforms.2h3v.s6.50f012c12623 from=translated src=- shape=f97f0467 vocab=7fd24d61
+-/
 theorem uniformSubpolynomialOn_two_pow_log_div_loglog_eventually
     (admissible : ℕ → ℕ → Prop)
     (M : ℕ → ℕ → ℕ)
@@ -60,7 +62,9 @@ namespace UniformLinear
 
 /--
 A linear factor in `N` times a uniformly subpolynomial factor is
-`N^(1+o(1))`.-/
+`N^(1+o(1))`.
+@isnad1 id=uniforml.2h3v.s6.0610f9ff197e from=translated src=- shape=dc247a20 vocab=a33b52b9
+-/
 theorem of_linear_mul_subpolynomial
     {admissible : ℕ → ℕ → Prop}
     {f q : ℕ → ℕ → ℝ}
@@ -86,7 +90,9 @@ theorem of_linear_mul_subpolynomial
     _ = (N : ℝ) ^ (k + 1) := by
       rw [pow_succ]
 
-/-- The linear-power predicate is stable under eventual domination.-/
+/-- The linear-power predicate is stable under eventual domination.
+@isnad1 id=uniforml.2h3v.s6.d4f6024abc83 from=translated src=- shape=6931d51c vocab=f7e0b25b
+-/
 theorem mono
     {admissible : ℕ → ℕ → Prop}
     {f g : ℕ → ℕ → ℝ}

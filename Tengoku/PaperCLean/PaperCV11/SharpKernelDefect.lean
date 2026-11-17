@@ -27,6 +27,9 @@ open TerminalKernelCount
 noncomputable def rankinDefectCount (X T : ℕ) : ℕ :=
   (boundedLargeKernelValues T 1 X).card
 
+/--
+@isnad1 id=eq.0h2v.s4.d5d0a54ac078 from=translated src=- shape=136f7181 vocab=2cceecec
+-/
 @[simp]
 theorem rankinDefectCount_eq_card (X T : ℕ) :
     rankinDefectCount X T =
@@ -40,7 +43,9 @@ noncomputable def equationThreeFourEnvelope
 
 /--
 Literal finite form of (3.4), conditional only on the reciprocal-prime bound
-that will be supplied by the elementary dyadic-shell argument.-/
+that will be supplied by the elementary dyadic-shell argument.
+@isnad1 id=le.5h4v.s7.6893d031eb04 from=translated src=- shape=c30c437f vocab=372d4d4e
+-/
 theorem finite_equation_three_four_of_reciprocal_bound
     (X T : ℕ) {σ C : ℝ}
     (hT : 3 ≤ T) (hTX : T ≤ X)
@@ -84,7 +89,9 @@ theorem finite_equation_three_four_of_reciprocal_bound
             equationThreeFourEnvelope T σ C) := by
       rw [Real.exp_add, Real.exp_log hX]
 
-/-- Equation (3.4) with the explicit absolute constant supplied above.-/
+/-- Equation (3.4) with the explicit absolute constant supplied above.
+@isnad1 id=le.4h3v.s6.d291788b79cb from=translated src=- shape=8d850d6b vocab=20407267
+-/
 theorem finite_equation_three_four
     (X T : ℕ) {σ : ℝ}
     (hT : 3 ≤ T) (hTX : T ≤ X)

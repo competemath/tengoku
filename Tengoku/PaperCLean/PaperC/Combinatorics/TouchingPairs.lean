@@ -33,6 +33,9 @@ def touchingPairs (N L : ℕ) : Finset (ℕ × ℕ) :=
   ((dyadicBlock N) ×ˢ (dyadicBlock N)).filter
     (fun pair ↦ Nat.dist pair.1 pair.2 = L)
 
+/--
+@isnad1 id=iff.0h4v.s6.2ca3cdb66aea from=translated src=- shape=ed2e2101 vocab=ee37fef7
+-/
 @[simp]
 theorem mem_touchingPairs {N L x y : ℕ} :
     (x, y) ∈ touchingPairs N L ↔
@@ -57,7 +60,9 @@ theorem eq_add_or_eq_add_of_dist_eq
     omega
 
 /-- Under the positive-length hypothesis of Lemma 3.4, touching pairs are
-automatically off the diagonal, exactly as required by the manuscript.-/
+automatically off the diagonal, exactly as required by the manuscript.
+@isnad1 id=ne.2h3v.s5.35acb53dff8a from=translated src=- shape=2dcf0b5e vocab=41a50c2a
+-/
 theorem fst_ne_snd_of_mem
     {N L : ℕ} {pair : ℕ × ℕ} (hL : 0 < L)
     (hpair : pair ∈ touchingPairs N L) :
@@ -77,6 +82,9 @@ def forwardCandidates (N L : ℕ) : Finset (ℕ × ℕ) :=
 def backwardCandidates (N L : ℕ) : Finset (ℕ × ℕ) :=
   (dyadicBlock N).image (fun x ↦ (x + L, x))
 
+/--
+@isnad1 id=le.0h2v.s5.ceb608c38f8f from=translated src=- shape=9fd50641 vocab=317c9943
+-/
 theorem touchingPairs_subset_candidates (N L : ℕ) :
     touchingPairs N L ⊆
       forwardCandidates N L ∪ backwardCandidates N L := by
@@ -96,15 +104,23 @@ theorem touchingPairs_subset_candidates (N L : ℕ) :
       · exact hbackward.symm
       · rfl⟩
 
+/--
+@isnad1 id=le.0h2v.s4.7bd546f26aa3 from=translated src=- shape=d4f78913 vocab=f273c617
+-/
 theorem card_forwardCandidates_le (N L : ℕ) :
     (forwardCandidates N L).card ≤ (dyadicBlock N).card := by
   exact Finset.card_image_le
 
+/--
+@isnad1 id=le.0h2v.s4.171897293e79 from=translated src=- shape=d4f78913 vocab=d1132a71
+-/
 theorem card_backwardCandidates_le (N L : ℕ) :
     (backwardCandidates N L).card ≤ (dyadicBlock N).card := by
   exact Finset.card_image_le
 
-/-- At most two ordered touching pairs per element of the dyadic block.-/
+/-- At most two ordered touching pairs per element of the dyadic block.
+@isnad1 id=le.0h2v.s4.21bbb2a36d79 from=translated src=- shape=d8310c82 vocab=043f16f4
+-/
 theorem card_touchingPairs_le_two_mul_card (N L : ℕ) :
     (touchingPairs N L).card ≤ 2 * (dyadicBlock N).card := by
   calc
@@ -120,18 +136,25 @@ theorem card_touchingPairs_le_two_mul_card (N L : ℕ) :
         (card_backwardCandidates_le N L)
     _ = 2 * (dyadicBlock N).card := by omega
 
+/--
+@isnad1 id=eq.0h1v.s3.81c705506234 from=translated src=- shape=9baae94e vocab=97c156b9
+-/
 @[simp]
 theorem card_dyadicBlock (N : ℕ) :
     (dyadicBlock N).card = N := by
   simp [dyadicBlock]
   omega
 
-/-- Explicit form used in Lemma 3.4(ii).-/
+/-- Explicit form used in Lemma 3.4(ii).
+@isnad1 id=le.0h2v.s4.44b0e7d11893 from=translated src=- shape=a93d55c9 vocab=4e81cce5
+-/
 theorem card_touchingPairs_le_two_mul (N L : ℕ) :
     (touchingPairs N L).card ≤ 2 * N := by
   simpa using card_touchingPairs_le_two_mul_card N L
 
-/-- A pointwise natural weight bound gives a cardinality-times-weight bound.-/
+/-- A pointwise natural weight bound gives a cardinality-times-weight bound.
+@isnad1 id=le.1h4v.s6.d2cd8a38be05 from=translated src=- shape=592dc80b vocab=8bde5d76
+-/
 theorem sum_nat_le_card_mul
     (N L W : ℕ) (weight : ℕ × ℕ → ℕ)
     (hweight : ∀ pair ∈ touchingPairs N L, weight pair ≤ W) :
@@ -143,7 +166,9 @@ theorem sum_nat_le_card_mul
       Finset.sum_le_sum fun pair hpair ↦ hweight pair hpair
     _ = (touchingPairs N L).card * W := by simp
 
-/-- Natural-valued specialization using the explicit `2N` pair count.-/
+/-- Natural-valued specialization using the explicit `2N` pair count.
+@isnad1 id=le.1h4v.s6.9da78ce63e64 from=translated src=- shape=d4dec81a vocab=df73e452
+-/
 theorem sum_nat_le_two_mul
     (N L W : ℕ) (weight : ℕ × ℕ → ℕ)
     (hweight : ∀ pair ∈ touchingPairs N L, weight pair ≤ W) :
@@ -152,7 +177,9 @@ theorem sum_nat_le_two_mul
   exact (sum_nat_le_card_mul N L W weight hweight).trans
     (Nat.mul_le_mul_right W (card_touchingPairs_le_two_mul N L))
 
-/-- A pointwise real weight bound gives a cardinality-times-weight bound.-/
+/-- A pointwise real weight bound gives a cardinality-times-weight bound.
+@isnad1 id=le.1h4v.s6.934fca0e75e4 from=translated src=- shape=41886930 vocab=f286d19f
+-/
 theorem sum_real_le_card_mul
     (N L : ℕ) (W : ℝ) (weight : ℕ × ℕ → ℝ)
     (hweight : ∀ pair ∈ touchingPairs N L, weight pair ≤ W) :
@@ -164,7 +191,9 @@ theorem sum_real_le_card_mul
       Finset.sum_le_sum fun pair hpair ↦ hweight pair hpair
     _ = ((touchingPairs N L).card : ℝ) * W := by simp
 
-/-- Real-valued specialization using the explicit `2N` pair count.-/
+/-- Real-valued specialization using the explicit `2N` pair count.
+@isnad1 id=le.2h4v.s6.2dc9c67375d7 from=translated src=- shape=c9205b3b vocab=3cba48ed
+-/
 theorem sum_real_le_two_mul
     (N L : ℕ) (W : ℝ) (weight : ℕ × ℕ → ℝ)
     (hW : 0 ≤ W)

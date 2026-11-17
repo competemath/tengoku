@@ -49,18 +49,25 @@ noncomputable section
 def boundedRatioBlock (N M : ℕ) : Finset ℕ :=
   Ico N M
 
+/--
+@isnad1 id=iff.0h3v.s5.730367c3a11a from=translated src=- shape=c64d9c17 vocab=d753a3cc
+-/
 @[simp]
 theorem mem_boundedRatioBlock {N M x : ℕ} :
     x ∈ boundedRatioBlock N M ↔ N ≤ x ∧ x < M := by
   simp [boundedRatioBlock]
 
-/-- Exact width of the bounded-ratio interval.-/
+/-- Exact width of the bounded-ratio interval.
+@isnad1 id=eq.0h2v.s4.80bdca385734 from=translated src=- shape=40450ec6 vocab=9c4c2efb
+-/
 @[simp]
 theorem card_boundedRatioBlock (N M : ℕ) :
     (boundedRatioBlock N M).card = M - N := by
   simp [boundedRatioBlock]
 
-/-- Under `M ≤ κ₀N`, the interval contains at most `κ₀N` starts.-/
+/-- Under `M ≤ κ₀N`, the interval contains at most `κ₀N` starts.
+@isnad1 id=le.1h3v.s5.c8ffd39bf7b9 from=translated src=- shape=c09f4116 vocab=3948a7fa
+-/
 theorem card_boundedRatioBlock_le
     {N M κ₀ : ℕ} (hM : M ≤ κ₀ * N) :
     (boundedRatioBlock N M).card ≤ κ₀ * N := by
@@ -71,19 +78,26 @@ theorem card_boundedRatioBlock_le
 def boundedRatioPairs (N M : ℕ) : Finset (ℕ × ℕ) :=
   boundedRatioBlock N M ×ˢ boundedRatioBlock N M
 
+/--
+@isnad1 id=iff.0h4v.s5.5827dd3154b2 from=translated src=- shape=1b83cfd6 vocab=50ee90af
+-/
 @[simp]
 theorem mem_boundedRatioPairs {N M x y : ℕ} :
     (x, y) ∈ boundedRatioPairs N M ↔
       N ≤ x ∧ x < M ∧ N ≤ y ∧ y < M := by
   simp [boundedRatioPairs, and_assoc]
 
-/-- Exact ambient pair count, the finite form of replacement R1.-/
+/-- Exact ambient pair count, the finite form of replacement R1.
+@isnad1 id=eq.0h2v.s5.49ee90878411 from=translated src=- shape=84287e17 vocab=25647454
+-/
 @[simp]
 theorem card_boundedRatioPairs (N M : ℕ) :
     (boundedRatioPairs N M).card = (M - N) ^ 2 := by
   simp [boundedRatioPairs, pow_two]
 
-/-- Coarse pair count uniform under the fixed ratio bound.-/
+/-- Coarse pair count uniform under the fixed ratio bound.
+@isnad1 id=le.1h3v.s5.27e3caf81ab5 from=translated src=- shape=09333d76 vocab=e5f59607
+-/
 theorem card_boundedRatioPairs_le
     {N M κ₀ : ℕ} (hM : M ≤ κ₀ * N) :
     (boundedRatioPairs N M).card ≤ (κ₀ * N) ^ 2 := by
@@ -96,6 +110,9 @@ def separatedBoundedRatioPairs (N M L : ℕ) : Finset (ℕ × ℕ) :=
   (boundedRatioPairs N M).filter fun pair =>
     L < Nat.dist pair.1 pair.2
 
+/--
+@isnad1 id=iff.0h5v.s6.81a98cc4faff from=translated src=- shape=87be30bd vocab=2f8687fc
+-/
 @[simp]
 theorem mem_separatedBoundedRatioPairs
     {N M L x y : ℕ} :
@@ -105,6 +122,9 @@ theorem mem_separatedBoundedRatioPairs
       L < Nat.dist x y := by
   simp [separatedBoundedRatioPairs, boundedRatioPairs, and_assoc]
 
+/--
+@isnad1 id=le.0h3v.s5.4c8e021a02a2 from=translated src=- shape=87c5ec95 vocab=54dd53cb
+-/
 theorem card_separatedBoundedRatioPairs_le
     (N M L : ℕ) :
     (separatedBoundedRatioPairs N M L).card ≤ (M - N) ^ 2 := by
@@ -117,6 +137,9 @@ theorem card_separatedBoundedRatioPairs_le
 def dyadicShell (N r : ℕ) : Finset ℕ :=
   Ico (2 ^ r * N) (2 ^ (r + 1) * N)
 
+/--
+@isnad1 id=iff.0h3v.s6.22142bb4dbab from=translated src=- shape=68229c96 vocab=f5ab5718
+-/
 @[simp]
 theorem mem_dyadicShell {N r x : ℕ} :
     x ∈ dyadicShell N r ↔
@@ -127,6 +150,9 @@ theorem mem_dyadicShell {N r x : ℕ} :
 def boundedDyadicShell (N M r : ℕ) : Finset ℕ :=
   boundedRatioBlock N M ∩ dyadicShell N r
 
+/--
+@isnad1 id=iff.0h4v.s6.0e602209ae01 from=translated src=- shape=f1b09546 vocab=5f5814f0
+-/
 @[simp]
 theorem mem_boundedDyadicShell {N M r x : ℕ} :
     x ∈ boundedDyadicShell N M r ↔
@@ -140,7 +166,9 @@ def boundedDyadicCover (N M J : ℕ) : Finset ℕ :=
 
 /--
 Any point between `N` and `2^J N` belongs to one of the first `J` dyadic
-shells.  The induction avoids any convention about integer logarithms.-/
+shells.  The induction avoids any convention about integer logarithms.
+@isnad1 id=ex.2h3v.s6.e51fbe3ed9c6 from=translated src=- shape=2eb5d11a vocab=b05406d2
+-/
 theorem exists_mem_dyadicShell
     {N J x : ℕ}
     (hxLower : N ≤ x)
@@ -160,7 +188,9 @@ theorem exists_mem_dyadicShell
         · omega
         · simpa [Nat.succ_eq_add_one] using hxUpper
 
-/-- Elementary fixed-parameter bound `κ₀ ≤ 2^κ₀`.-/
+/-- Elementary fixed-parameter bound `κ₀ ≤ 2^κ₀`.
+@isnad1 id=le.0h1v.s4.7a35469a2be0 from=translated src=- shape=e17d9afa vocab=74f5fafa
+-/
 theorem self_le_two_pow (κ₀ : ℕ) :
     κ₀ ≤ 2 ^ κ₀ := by
   induction κ₀ with
@@ -174,7 +204,9 @@ theorem self_le_two_pow (κ₀ : ℕ) :
 /--
 The first `κ₀` dyadic shells cover `U(N,M)` whenever `M ≤ κ₀N`.
 The sharper logarithmic number of shells from the manuscript is unnecessary
-for finiteness: `κ₀` is fixed before `N`, and this bound is uniform in `M`.-/
+for finiteness: `κ₀` is fixed before `N`, and this bound is uniform in `M`.
+@isnad1 id=eq.3h3v.s5.993c6dbc43d6 from=translated src=- shape=ed4fe0bf vocab=0288b8f7
+-/
 theorem boundedDyadicCover_eq
     {N M κ₀ : ℕ}
     (hN : 0 < N) (hκ₀ : 1 ≤ κ₀)
@@ -199,7 +231,9 @@ theorem boundedDyadicCover_eq
 
 /--
 The bounded interval is thus covered by at most `κ₀` ordinary dyadic blocks,
-each based at the scale `2^r N`.-/
+each based at the scale `2^r N`.
+@isnad1 id=le.3h3v.s6.5a939f7847c2 from=translated src=- shape=1aa28915 vocab=fe7b2872
+-/
 theorem boundedRatioBlock_subset_dyadic_union
     {N M κ₀ : ℕ}
     (hN : 0 < N) (hκ₀ : 1 ≤ κ₀)
@@ -221,7 +255,9 @@ theorem boundedRatioBlock_subset_dyadic_union
 
 /--
 One residue class modulo `q` has at most `1 + (M-N)/q` representatives in
-`U(N,M)`.-/
+`U(N,M)`.
+@isnad1 id=le.2h4v.s6.a03364d02c2a from=translated src=- shape=a67a441a vocab=dadd949e
+-/
 theorem card_boundedRatioBlock_modClass_le_one_add_div
     (N M v q : ℕ) (hq : 0 < q) (hNM : N ≤ M) :
     {x ∈ boundedRatioBlock N M | x ≡ v [MOD q]}.card ≤
@@ -275,7 +311,9 @@ theorem card_boundedRatioBlock_modClass_le_one_add_div
 
 /--
 Rational-valued interval estimate, convenient when a later analytic bound
-keeps the quotient rather than taking its integer floor.-/
+keeps the quotient rather than taking its integer floor.
+@isnad1 id=le.2h4v.s6.c4008ae19d48 from=translated src=- shape=3d70ae81 vocab=9d6dc849
+-/
 theorem card_boundedRatioBlock_modClass_cast_le
     (N M v q : ℕ) (hq : 0 < q) (hNM : N ≤ M) :
     (({x ∈ boundedRatioBlock N M | x ≡ v [MOD q]}.card : ℕ) : ℚ) ≤
@@ -286,7 +324,9 @@ theorem card_boundedRatioBlock_modClass_cast_le
 
 /--
 The interval count with a fixed ratio upper bound substituted into the
-numerator.-/
+numerator.
+@isnad1 id=le.3h5v.s6.ad2d0b955dcd from=translated src=- shape=0c3568e6 vocab=dcb5cc69
+-/
 theorem card_boundedRatioBlock_modClass_cast_le_kappa
     {N M v q κ₀ : ℕ}
     (hq : 0 < q) (hNM : N ≤ M) (hM : M ≤ κ₀ * N) :
@@ -310,6 +350,9 @@ def boundedChannelStartPairs
   (boundedRatioPairs N M).filter fun pair =>
     pairChannelError pair.1 pair.2 a b = h
 
+/--
+@isnad1 id=iff.0h7v.s6.d1062a124063 from=translated src=- shape=883c8a73 vocab=c73b0a6f
+-/
 @[simp]
 theorem mem_boundedChannelStartPairs
     {N M a b x y : ℕ} {h : ℤ} :
@@ -323,7 +366,9 @@ theorem mem_boundedChannelStartPairs
 A channel unit and a start pair on the matching affine parameter determine
 the manuscript's common translation parameter:
 
-`x + i = b*t`, `y + j = a*t`.-/
+`x + i = b*t`, `y + j = a*t`.
+@isnad1 id=ex.5h9v.s7.66be4da3d82f from=translated src=- shape=d610e132 vocab=62fae5f3
+-/
 theorem exists_channelTranslationParameter
     {N M L a b x y : ℕ} {h : ℤ} {cell : ℤ × ℤ}
     (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
@@ -357,7 +402,9 @@ theorem exists_channelTranslationParameter
     _ = (a : ℤ) * ((b : ℤ) * t) := by rw [ht]
     _ = (b : ℤ) * ((a : ℤ) * t) := by ring
 
-/-- The translation parameter is unique once either coefficient is positive.-/
+/-- The translation parameter is unique once either coefficient is positive.
+@isnad1 id=eq.3h6v.s6.af00cdb97785 from=translated src=- shape=6849fb49 vocab=022063a0
+-/
 theorem channelTranslationParameter_unique
     {a b x : ℕ} {i t₁ t₂ : ℤ}
     (hb : 0 < b)
@@ -371,7 +418,9 @@ theorem channelTranslationParameter_unique
 
 /--
 The common parameter is confined simultaneously by both start coordinates.
-This is the division-free form of replacement R4.-/
+This is the division-free form of replacement R4.
+@isnad1 id=and.5h9v.s8.1ee0aee85307 from=translated src=- shape=4f18281b vocab=591d9ed3
+-/
 theorem channelTranslationParameter_bounds
     {N M L a b x y : ℕ} {cell : ℤ × ℤ} {t : ℤ}
     (hx : x ∈ boundedRatioBlock N M)
@@ -405,7 +454,9 @@ def boundedChannelSecondCoordinates
     (N M a b : ℕ) (h : ℤ) : Finset ℕ :=
   (boundedChannelStartPairs N M a b h).image Prod.snd
 
-/-- For `b>0`, the first start determines the second on an exact channel.-/
+/-- For `b>0`, the first start determines the second on an exact channel.
+@isnad1 id=injon.1h5v.s5.9615de181fc7 from=translated src=- shape=9cacf403 vocab=602d83d9
+-/
 theorem fst_injOn_boundedChannelStartPairs
     {N M a b : ℕ} (hb : 0 < b) {h : ℤ} :
     Set.InjOn Prod.fst
@@ -428,7 +479,9 @@ theorem fst_injOn_boundedChannelStartPairs
     (mul_eq_zero.mp hzero).resolve_left hb0
   exact_mod_cast (sub_eq_zero.mp hy)
 
-/-- For `a>0`, the second start determines the first on an exact channel.-/
+/-- For `a>0`, the second start determines the first on an exact channel.
+@isnad1 id=injon.1h5v.s5.682b9a7aa20d from=translated src=- shape=1914617f vocab=5c1a8c95
+-/
 theorem snd_injOn_boundedChannelStartPairs
     {N M a b : ℕ} (ha : 0 < a) {h : ℤ} :
     Set.InjOn Prod.snd
@@ -452,7 +505,9 @@ theorem snd_injOn_boundedChannelStartPairs
     exact_mod_cast (sub_eq_zero.mp hx)
   · exact hsnd
 
-/-- First coordinates on one primitive channel occupy one class modulo `b`.-/
+/-- First coordinates on one primitive channel occupy one class modulo `b`.
+@isnad1 id=le.4h6v.s6.a4c3408b8030 from=translated src=- shape=c0170517 vocab=27d42e00
+-/
 theorem boundedChannelFirstCoordinates_subset_modClass
     {N M a b : ℕ}
     (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
@@ -488,7 +543,9 @@ theorem boundedChannelFirstCoordinates_subset_modClass
   simp only [mem_filter]
   exact ⟨hbox, Int.natCast_modEq_iff.mp hcongruenceInt⟩
 
-/-- Second coordinates on one primitive channel occupy one class modulo `a`.-/
+/-- Second coordinates on one primitive channel occupy one class modulo `a`.
+@isnad1 id=le.4h6v.s6.87d5e15eb307 from=translated src=- shape=ba08324b vocab=cbaf3504
+-/
 theorem boundedChannelSecondCoordinates_subset_modClass
     {N M a b : ℕ}
     (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
@@ -524,7 +581,9 @@ theorem boundedChannelSecondCoordinates_subset_modClass
   simp only [mem_filter]
   exact ⟨hbox, Int.natCast_modEq_iff.mp hcongruenceInt⟩
 
-/-- Count one channel through its first-coordinate step `b`.-/
+/-- Count one channel through its first-coordinate step `b`.
+@isnad1 id=le.4h5v.s6.1f0fbbb6f468 from=translated src=- shape=35b628fe vocab=42d25fff
+-/
 theorem boundedChannelStartPairs_card_le_firstStep
     (N M a b : ℕ)
     (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
@@ -554,7 +613,9 @@ theorem boundedChannelStartPairs_card_le_firstStep
         card_boundedRatioBlock_modClass_le_one_add_div
           N M pair₀.1 b hb hNM
 
-/-- Count one channel through its second-coordinate step `a`.-/
+/-- Count one channel through its second-coordinate step `a`.
+@isnad1 id=le.4h5v.s6.e0ff78d41236 from=translated src=- shape=dd0f2e12 vocab=42d25fff
+-/
 theorem boundedChannelStartPairs_card_le_secondStep
     (N M a b : ℕ)
     (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
@@ -586,7 +647,9 @@ theorem boundedChannelStartPairs_card_le_secondStep
 
 /--
 Sharp bounded-ratio channel count with the primitive step
-`q=max(a,b)`.-/
+`q=max(a,b)`.
+@isnad1 id=le.4h5v.s6.3b050f763b11 from=translated src=- shape=edfd4ab1 vocab=a29f67a2
+-/
 theorem boundedChannelStartPairs_card_le_maxStep
     (N M a b : ℕ)
     (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
@@ -606,7 +669,9 @@ theorem boundedChannelStartPairs_card_le_maxStep
 
 /--
 The code dimension formula is independent of the start interval.  This
-wrapper records it at the Section 17 interface.-/
+wrapper records it at the Section 17 interface.
+@isnad1 id=eq.6h9v.s13.d0880664e533 from=translated src=- shape=1931d3b5 vocab=c971233e
+-/
 theorem boundedRatio_rationalCode_finrank
     {T N M x y L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b)
@@ -628,7 +693,9 @@ theorem boundedRatio_rationalCode_finrank
       hheight,
     RationalChannelCode.card_rationalChannelUnits_eq_channelCells]
 
-/-- A nonzero local rational code still forces `max(a,b)≤L`.-/
+/-- A nonzero local rational code still forces `max(a,b)≤L`.
+@isnad1 id=le.4h4v.s5.3078f51b8461 from=translated src=- shape=25694f82 vocab=fbd7e011
+-/
 theorem boundedRatio_channel_height_le
     {L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
@@ -644,7 +711,9 @@ theorem boundedRatio_channel_height_le
 
 /--
 The determinant criterion for uniqueness only consumes the lower endpoint
-`x≥N`; hence it transports verbatim to `U(N,M)`.-/
+`x≥N`; hence it transports verbatim to `U(N,M)`.
+@isnad1 id=le.2h6v.s6.ac3f5819543a from=translated src=- shape=42e68e3f vocab=077ada0e
+-/
 theorem boundedRatio_reducedChannelCandidates_card_le_one
     {N M x y B H : ℕ}
     (hx : x ∈ boundedRatioBlock N M)
@@ -655,7 +724,9 @@ theorem boundedRatio_reducedChannelCandidates_card_le_one
 
 /-! ## Exact interpolation (Lemma 17.2) -/
 
-/-- Cauchy--Schwarz on any population of bounded-ratio pairs.-/
+/-- Cauchy--Schwarz on any population of bounded-ratio pairs.
+@isnad1 id=le.1h4v.s6.2d688f6aa39c from=translated src=- shape=63e016cf vocab=87607e3b
+-/
 theorem boundedRatio_interpolation
     {N M : ℕ}
     (A : Finset (ℕ × ℕ)) (u : (ℕ × ℕ) → ℝ)
@@ -685,6 +756,9 @@ def boundedHeightTwoPairCover
   boundedHeightTwoForwardCover N M L ∪
     boundedHeightTwoBackwardCover N M L
 
+/--
+@isnad1 id=le.1h3v.s5.3aafa30665f5 from=translated src=- shape=1681203b vocab=865b66a2
+-/
 theorem nontrivialChannelHeights_card_le_three_mul_add_one
     (L a b : ℕ) (hsum : a + b = 3) :
     (nontrivialChannelHeights L a b).card ≤ 3 * L + 1 := by
@@ -696,7 +770,9 @@ theorem nontrivialChannelHeights_card_le_three_mul_add_one
       channelHeights_card_le L a b
     _ = 3 * L + 1 := by rw [hsum]
 
-/-- One oriented height-two family has the expected `O((3L+1)|U|)` size.-/
+/-- One oriented height-two family has the expected `O((3L+1)|U|)` size.
+@isnad1 id=le.1h3v.s6.f2dfcf5213a4 from=translated src=- shape=4213a08a vocab=b1073af6
+-/
 theorem card_boundedHeightTwoForwardCover_le
     {N M L : ℕ} (hNM : N ≤ M) :
     (boundedHeightTwoForwardCover N M L).card ≤
@@ -723,7 +799,9 @@ theorem card_boundedHeightTwoForwardCover_le
       (nontrivialChannelHeights_card_le_three_mul_add_one
         L 2 1 (by omega)))
 
-/-- The reverse orientation satisfies the same volumetric bound.-/
+/-- The reverse orientation satisfies the same volumetric bound.
+@isnad1 id=le.1h3v.s6.0cddbbc618a4 from=translated src=- shape=4213a08a vocab=41fa4903
+-/
 theorem card_boundedHeightTwoBackwardCover_le
     {N M L : ℕ} (hNM : N ≤ M) :
     (boundedHeightTwoBackwardCover N M L).card ≤
@@ -752,7 +830,9 @@ theorem card_boundedHeightTwoBackwardCover_le
 
 /--
 The complete height-two cover is volumetric.  This is the finite counting
-statement that replaces the dyadic boundary estimate.-/
+statement that replaces the dyadic boundary estimate.
+@isnad1 id=le.1h3v.s6.ffb699cb2843 from=translated src=- shape=df739b43 vocab=94a2d46a
+-/
 theorem card_boundedHeightTwoPairCover_le
     {N M L : ℕ} (hNM : N ≤ M) :
     (boundedHeightTwoPairCover N M L).card ≤
@@ -772,7 +852,9 @@ theorem card_boundedHeightTwoPairCover_le
 
 /--
 A selected nontrivial candidate of height two belongs to the volumetric
-height-two cover.-/
+height-two cover.
+@isnad1 id=mem.3h7v.s8.3cea889ef576 from=translated src=- shape=ddcb0cbe vocab=796a7649
+-/
 theorem pair_mem_boundedHeightTwoPairCover_of_choice
     {N M A L x y : ℕ}
     {c : ReducedCandidate
@@ -828,7 +910,9 @@ def boundedLargeChannelPairCover
   (Icc 3 L).biUnion fun q =>
     boundedLargeChannelPairCoverAtHeight N M L q
 
-/-- Cardinality of the cover at one fixed primitive ratio of height `q≥3`.-/
+/-- Cardinality of the cover at one fixed primitive ratio of height `q≥3`.
+@isnad1 id=le.7h6v.s7.4ee5ff09a743 from=translated src=- shape=3e30cdc3 vocab=a9dde872
+-/
 theorem card_boundedLargeChannelPairCoverAtRatio_le
     {N M L q a b : ℕ}
     (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
@@ -879,7 +963,9 @@ theorem card_boundedLargeChannelPairCoverAtRatio_le
   exact hunion.trans
     (Nat.mul_le_mul_right W hheights)
 
-/-- Cardinality at one height `q≥3`.-/
+/-- Cardinality at one height `q≥3`.
+@isnad1 id=le.3h4v.s7.5fe563142945 from=translated src=- shape=cd6d1e93 vocab=fc60754e
+-/
 theorem card_boundedLargeChannelPairCoverAtHeight_le
     {N M L q : ℕ}
     (hq3 : 3 ≤ q) (hqL : q ≤ L)
@@ -916,7 +1002,9 @@ theorem card_boundedLargeChannelPairCoverAtHeight_le
   exact hunion.trans
     (Nat.mul_le_mul_right W hratios)
 
-/-- Cardinality of the complete `q≥3` cover.-/
+/-- Cardinality of the complete `q≥3` cover.
+@isnad1 id=le.1h3v.s6.a22d043772d4 from=translated src=- shape=afbeab6e vocab=122423dd
+-/
 theorem card_boundedLargeChannelPairCover_le
     {N M L : ℕ} (hNM : N ≤ M) :
     (boundedLargeChannelPairCover N M L).card ≤
@@ -956,7 +1044,9 @@ theorem card_boundedLargeChannelPairCover_le
         (1 + (M - N) / 3) := by
       simp [W, Nat.mul_assoc]
 
-/-- A selected nontrivial candidate of height at least three is covered.-/
+/-- A selected nontrivial candidate of height at least three is covered.
+@isnad1 id=mem.4h7v.s8.dfeeacafcea0 from=translated src=- shape=50c3ca99 vocab=cb87ab3d
+-/
 theorem pair_mem_boundedLargeChannelPairCover_of_choice
     {N M A L x y : ℕ}
     {c : ReducedCandidate
@@ -1004,7 +1094,9 @@ noncomputable def boundedRationalMass
 
 /--
 Every positive canonical weight is charged either to the volumetric
-height-two cover or to the enumerated heights `q≥3`.-/
+height-two cover or to the enumerated heights `q≥3`.
+@isnad1 id=le.2h7v.s8.4114a6f80062 from=translated src=- shape=e8be2833 vocab=e4c7d52c
+-/
 theorem boundedCanonicalPairWeight_le_coverWeights
     {N M A L base x y : ℕ}
     (hbase : 1 ≤ base)
@@ -1109,7 +1201,9 @@ private theorem sum_ite_mem_le_card_mul
 /--
 Exact finite rational-mass estimate on `U(N,M)`.  The first summand is the
 new volumetric `q=2` term; the second is the unchanged `q≥3` geometry with
-the dyadic width `N` replaced by `M-N`.-/
+the dyadic width `N` replaced by `M-N`.
+@isnad1 id=le.3h5v.s8.99e471ad7d32 from=translated src=- shape=ddda3a21 vocab=3a322681
+-/
 theorem boundedRationalMass_le
     (N M A L base : ℕ)
     (hNM : N ≤ M) (_hA : 1 ≤ A) (hbase : 1 ≤ base) :
@@ -1207,7 +1301,9 @@ theorem boundedRationalMass_le
 
 /--
 A common base-two envelope under `M≤κ₀N`.  It displays the new scale
-`N·2^(L/2)` and is tailored to the critical-window asymptotic closure.-/
+`N·2^(L/2)` and is tailored to the critical-window asymptotic closure.
+@isnad1 id=le.4h5v.s7.4f7ab9e4339c from=translated src=- shape=71e8144c vocab=1f05e218
+-/
 theorem boundedRationalMass_two_le_common
     {N M A L κ₀ : ℕ}
     (hN : 1 ≤ N) (hNM : N ≤ M) (hM : M ≤ κ₀ * N)
@@ -1328,7 +1424,9 @@ theorem boundedRationalMass_two_le_common
           (Nat.mul_le_mul_right ((L + 1) ^ 4)
             (Nat.mul_le_mul_right (κ₀ + 1) (by omega))))
 
-/-- Base-two specialization of the volumetric `q=2` contribution.-/
+/-- Base-two specialization of the volumetric `q=2` contribution.
+@isnad1 id=le.1h3v.s7.a09fe2f10803 from=translated src=- shape=76f8e5d0 vocab=3abc2c46
+-/
 theorem boundedHeightTwoMass_two_le
     {N M L : ℕ} (hNM : N ≤ M) :
     (boundedHeightTwoPairCover N M L).card * 2 ^ (L / 2) ≤
@@ -1336,7 +1434,9 @@ theorem boundedHeightTwoMass_two_le
         2 ^ (L / 2) :=
   Nat.mul_le_mul_right _ (card_boundedHeightTwoPairCover_le hNM)
 
-/-- Base-four specialization of the volumetric `q=2` contribution.-/
+/-- Base-four specialization of the volumetric `q=2` contribution.
+@isnad1 id=le.1h3v.s7.a25986781fa9 from=translated src=- shape=76f8e5d0 vocab=3abc2c46
+-/
 theorem boundedHeightTwoMass_four_le
     {N M L : ℕ} (hNM : N ≤ M) :
     (boundedHeightTwoPairCover N M L).card * 4 ^ (L / 2) ≤
@@ -1348,6 +1448,9 @@ theorem boundedHeightTwoMass_four_le
 The geometry-only sum does not contain a start translation parameter.
 Consequently it is literally the same finite object on a dyadic block and
 on `U(N,M)`.  This wrapper is the finite content of Lemma 17.6.
+-/
+/--
+@isnad1 id=le.0h1v.s7.7658530636c1 from=translated src=- shape=bf878e96 vocab=dc044c12
 -/
 theorem boundedRatio_weightedChannelGeometry_le
     (L : ℕ) :

@@ -20,7 +20,9 @@ noncomputable section
 
 local instance instDecidableProposition (P : Prop) : Decidable P := Classical.propDecidable P
 
-/-- Restricting a summable nonnegative mass to an arbitrary set remains summable.-/
+/-- Restricting a summable nonnegative mass to an arbitrary set remains summable.
+@isnad1 id=summable.2h2v.s6.92e6714c1c75 from=translated src=- shape=068a48fb vocab=0d09b0ee
+-/
 theorem summable_restricted_mass {p : ℕ → ℝ} (hp : Summable p)
     (hp0 : ∀ k, 0 ≤ p k) (A : Set ℕ) :
     Summable (fun k => if k ∈ A then p k else 0) := by
@@ -31,7 +33,9 @@ theorem summable_restricted_mass {p : ℕ → ℝ} (hp : Summable p)
   · intro k
     split_ifs <;> simp [hp0]
 
-/-- The positive part of the mass difference is an exact maximizing test set.-/
+/-- The positive part of the mass difference is an exact maximizing test set.
+@isnad1 id=eq.4h2v.s7.1247240ea143 from=translated src=- shape=fec7882d vocab=de21dcd4
+-/
 theorem natTotalVariation_eq_positive_set {p q : ℕ → ℝ}
     (hp : HasSum p 1) (hq : HasSum q 1)
     (hp0 : ∀ k, 0 ≤ p k) (hq0 : ∀ k, 0 ≤ q k) :
@@ -61,7 +65,9 @@ theorem natTotalVariation_eq_positive_set {p q : ℕ → ℝ}
     hp.tsum_eq, hq.tsum_eq]
   ring
 
-/-- A uniform bound for all test-set discrepancies bounds the exact half-L1 distance.-/
+/-- A uniform bound for all test-set discrepancies bounds the exact half-L1 distance.
+@isnad1 id=le.5h3v.s7.dc2309df1462 from=translated src=- shape=a362ec30 vocab=bf7367a4
+-/
 theorem natTotalVariation_le_of_test_sets {p q : ℕ → ℝ}
     (hp : HasSum p 1) (hq : HasSum q 1)
     (hp0 : ∀ k, 0 ≤ p k) (hq0 : ∀ k, 0 ≤ q k) {r : ℝ}
@@ -71,7 +77,9 @@ theorem natTotalVariation_le_of_test_sets {p q : ℕ → ℝ}
   rw [natTotalVariation_eq_positive_set hp hq hp0 hq0]
   exact (le_abs_self _).trans (h {k | q k ≤ p k})
 
-/-- A finite pushforward assigns the same mass as its original event.-/
+/-- A finite pushforward assigns the same mass as its original event.
+@isnad1 id=eq.0h4v.s6.14f19424a2cc from=translated src=- shape=a7b7fbd7 vocab=4276276e
+-/
 theorem restricted_finiteNatLaw_eq_eventProbability {Ω : Type*} [Fintype Ω]
     (μ : FinitePMF Ω) (W : Ω → ℕ) (A : Set ℕ) :
     (∑' k, if k ∈ A then finiteNatLaw μ W k else 0) =
@@ -100,7 +108,9 @@ theorem restricted_finiteNatLaw_eq_eventProbability {Ω : Type*} [Fintype Ω]
       have hmem : W ω ∈ s := Finset.mem_image.mpr ⟨ω, Finset.mem_univ _, rfl⟩
       simp [hmem]
 
-/-- Test-set representation for any finite random variable against a countable target law.-/
+/-- Test-set representation for any finite random variable against a countable target law.
+@isnad1 id=le.3h5v.s7.18735800288e from=translated src=- shape=2f859219 vocab=d35cfbdc
+-/
 theorem finiteNatLaw_totalVariation_le_of_test_sets {Ω : Type*} [Fintype Ω]
     (μ : FinitePMF Ω) (W : Ω → ℕ) {q : ℕ → ℝ}
     (hq : HasSum q 1) (hq0 : ∀ k, 0 ≤ q k) {r : ℝ}

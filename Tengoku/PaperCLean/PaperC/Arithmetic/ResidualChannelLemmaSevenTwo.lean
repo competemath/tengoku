@@ -39,6 +39,9 @@ open DyadicPrimeReciprocalSums
 def residualPrimeRange (L a b : ℕ) : Finset ℕ :=
   dyadicPrimes (L + 1) (Nat.max a b + 2)
 
+/--
+@isnad1 id=iff.0h4v.s6.1152422a8d39 from=translated src=- shape=fbc1fb27 vocab=bb8de258
+-/
 @[simp]
 theorem mem_residualPrimeRange {L a b p : ℕ} :
     p ∈ residualPrimeRange L a b ↔
@@ -48,7 +51,9 @@ theorem mem_residualPrimeRange {L a b p : ℕ} :
 
 /--
 Every prime above `B=L+1` carrying a residual cell belongs to the finite
-dyadic range used in the summation.-/
+dyadic range used in the summation.
+@isnad1 id=mem.7h5v.s6.a48087234321 from=translated src=- shape=f01a2637 vocab=bcf135f9
+-/
 theorem mem_residualPrimeRange_of_nonempty
     {L a b p : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
@@ -98,7 +103,9 @@ def residualPrimeMass (L a b : ℕ) (h : ℤ) : ℚ :=
 /--
 The chosen dyadic range is the complete support, not merely a convenient
 truncation.  Once an ambient prime cutoff contains it, extending the sum to
-all primes in `(L+1,X]` adds only zero terms.-/
+all primes in `(L+1,X]` adds only zero terms.
+@isnad1 id=eq.5h5v.s7.cc79081f4516 from=translated src=- shape=eb3d78cf vocab=35b066fa
+-/
 theorem residualPrimeMass_eq_sum_primesBetween
     {L a b X : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
@@ -134,7 +141,9 @@ theorem residualPrimeMass_eq_sum_primesBetween
 /--
 Effective finite form of (7.4).  The extra hypothesis `2 ≤ max(a,b)` is the
 separation input used in the manuscript immediately after (7.3); the
-geometric channel hypotheses themselves imply `max(a,b) ≤ L`.-/
+geometric channel hypotheses themselves imply `max(a,b) ≤ L`.
+@isnad1 id=le.6h4v.s7.5facdc8fc3b6 from=translated src=- shape=a8d060b9 vocab=66909415
+-/
 theorem residualPrimeMass_le
     {L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)

@@ -45,6 +45,9 @@ noncomputable def boundedLargeKernelValues
     (B T X : ℕ) : Finset ℕ :=
   (Finset.Icc 1 X).filter fun n ↦ largeOddKernel B n ≤ T
 
+/--
+@isnad1 id=iff.0h4v.s5.f7739d252c6a from=translated src=- shape=75629993 vocab=0ebb0f25
+-/
 @[simp]
 theorem mem_boundedLargeKernelValues
     {B T X n : ℕ} :
@@ -74,7 +77,9 @@ noncomputable def terminalKernelTriples
       Finset.Icc 1
         (Nat.sqrt (X / (small.prod id * r)))
 
-/-- The canonical triple determines a positive integer uniquely.-/
+/-- The canonical triple determines a positive integer uniquely.
+@isnad1 id=eq.3h3v.s5.bab1345b4859 from=translated src=- shape=fa4fe01b vocab=f7b5ed3d
+-/
 theorem canonicalTerminalKernelTriple_injective_of_ne_zero
     {B m n : ℕ} (hm : m ≠ 0) (hn : n ≠ 0)
     (h :
@@ -104,7 +109,9 @@ theorem canonicalTerminalKernelTriple_injective_of_ne_zero
     _ = n :=
       (canonical_largeOddKernel_decomposition hn).symm
 
-/-- Every bounded positive integer supplies one of the candidate triples.-/
+/-- Every bounded positive integer supplies one of the candidate triples.
+@isnad1 id=mem.1h4v.s5.26a662ca162c from=translated src=- shape=05eace02 vocab=29485e12
+-/
 theorem canonicalTerminalKernelTriple_mem
     {B T X n : ℕ}
     (hn : n ∈ boundedLargeKernelValues B T X) :
@@ -151,7 +158,9 @@ noncomputable def canonicalTerminalKernelTriples
   (boundedLargeKernelValues B T X).image
     (canonicalTerminalKernelTriple B)
 
-/-- Canonical triples form a subset of the overcounting candidate space.-/
+/-- Canonical triples form a subset of the overcounting candidate space.
+@isnad1 id=le.0h3v.s4.7bbef94d7d3a from=translated src=- shape=9bf5fd4a vocab=bc60d3b8
+-/
 theorem canonicalTerminalKernelTriples_subset
     (B T X : ℕ) :
     canonicalTerminalKernelTriples B T X ⊆
@@ -161,7 +170,9 @@ theorem canonicalTerminalKernelTriples_subset
     Finset.mem_image.mp ht
   exact canonicalTerminalKernelTriple_mem hn
 
-/-- Reindexing by the canonical triple preserves cardinality exactly.-/
+/-- Reindexing by the canonical triple preserves cardinality exactly.
+@isnad1 id=eq.0h3v.s4.d6c12d16077f from=translated src=- shape=fd41dcd8 vocab=def7d219
+-/
 theorem card_canonicalTerminalKernelTriples
     (B T X : ℕ) :
     (canonicalTerminalKernelTriples B T X).card =
@@ -176,7 +187,9 @@ theorem card_canonicalTerminalKernelTriples
 
 /--
 First finite bound: expand the candidate sigma-finset into its exact
-square-root fibre count.-/
+square-root fibre count.
+@isnad1 id=le.0h3v.s6.8a4b09f3bece from=translated src=- shape=3b1c9385 vocab=089930c7
+-/
 theorem card_boundedLargeKernelValues_le_sqrt_sum
     (B T X : ℕ) :
     (boundedLargeKernelValues B T X).card ≤
@@ -201,7 +214,9 @@ theorem card_boundedLargeKernelValues_le_sqrt_sum
       intro r hr
       simp [Nat.card_Icc]
 
-/-- Generic reciprocal-square-root estimate for an arbitrary denominator.-/
+/-- Generic reciprocal-square-root estimate for an arbitrary denominator.
+@isnad1 id=le.0h2v.s5.8b78acf773df from=translated src=- shape=a3e5c4c7 vocab=6a49c56e
+-/
 theorem cast_sqrt_div_le
     (X d : ℕ) :
     (Nat.sqrt (X / d) : ℝ) ≤
@@ -220,7 +235,9 @@ theorem cast_sqrt_div_le
       _ = Real.sqrt X * (Real.sqrt d)⁻¹ := by
         rw [div_eq_mul_inv]
 
-/-- Split the denominator into the small support and the numerical kernel.-/
+/-- Split the denominator into the small support and the numerical kernel.
+@isnad1 id=le.0h3v.s6.f6bfd98e8622 from=translated src=- shape=32fb5808 vocab=2b885180
+-/
 theorem cast_sqrt_div_small_mul_kernel_le
     (X r : ℕ) (small : Finset ℕ) :
     (Nat.sqrt (X / (small.prod id * r)) : ℝ) ≤
@@ -242,7 +259,9 @@ theorem cast_sqrt_div_small_mul_kernel_le
       simp only [id_eq, mul_inv_rev, Finset.prod_inv_distrib]
       ring
 
-/-- Cast the finite fibre count and bound it by separated support weights.-/
+/-- Cast the finite fibre count and bound it by separated support weights.
+@isnad1 id=le.0h3v.s6.0cec507a0611 from=translated src=- shape=da2ecbcf vocab=f82b20de
+-/
 theorem card_boundedLargeKernelValues_cast_le_weight_sums
     (B T X : ℕ) :
     ((boundedLargeKernelValues B T X).card : ℝ) ≤
@@ -277,7 +296,9 @@ theorem card_boundedLargeKernelValues_cast_le_weight_sums
 /--
 Finite form of equation (10.3):
 
-`#A_{B,T}(X) ≤ 2 √X √T ∏_{p≤B}(1+p⁻¹/²)`.-/
+`#A_{B,T}(X) ≤ 2 √X √T ∏_{p≤B}(1+p⁻¹/²)`.
+@isnad1 id=le.0h3v.s6.c706e85b4ab6 from=translated src=- shape=e469ee0a vocab=3061c137
+-/
 theorem card_boundedLargeKernelValues_cast_le
     (B T X : ℕ) :
     ((boundedLargeKernelValues B T X).card : ℝ) ≤
@@ -350,7 +371,9 @@ theorem card_boundedLargeKernelValues_cast_le
 /--
 Explicit exponential envelope obtained from the elementary smooth-prime
 Euler product.  This is the finite expression whose critical-window
-specialization is `X^{1/2} T^{1/2} X^{o(1)}`.-/
+specialization is `X^{1/2} T^{1/2} X^{o(1)}`.
+@isnad1 id=le.0h3v.s6.214c13218b8b from=translated src=- shape=3073b449 vocab=f05c2f6d
+-/
 theorem card_boundedLargeKernelValues_cast_le_exp
     (B T X : ℕ) :
     ((boundedLargeKernelValues B T X).card : ℝ) ≤

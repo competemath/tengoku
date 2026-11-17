@@ -23,7 +23,9 @@ variable {π κ : Type*} [Fintype π] [DecidableEq π] [DecidableEq κ]
 
 /--
 The fixed-size one-dimensional conclusion (7.1), with the cell count over
-each prime displayed explicitly.-/
+each prime displayed explicitly.
+@isnad1 id=le.4h11v.s8.d452d3c169ce from=translated src=- shape=8968b709 vocab=d4cc0274
+-/
 theorem labeledCell_admissibleCertificateSolutionMass_le
     (cells : π → Finset κ) (r : ℕ)
     (residue : LabeledCell cells → ℕ) (modulus : π → ℕ)
@@ -50,7 +52,9 @@ theorem labeledCell_admissibleCertificateSolutionMass_le
 
 /--
 The fixed-size two-dimensional conclusion (7.2), retaining the exact number
-of cells above each prime.-/
+of cells above each prime.
+@isnad1 id=le.6h14v.s8.362854deb2f2 from=translated src=- shape=0023f044 vocab=a4143fa6
+-/
 theorem labeledCell_admissibleCertificatePairSolutionMass_le_exact
     (cells : π → Finset κ) (r : ℕ)
     (residue₁ residue₂ : LabeledCell cells → ℕ)
@@ -81,7 +85,9 @@ theorem labeledCell_admissibleCertificatePairSolutionMass_le_exact
 
 /--
 The usual bounded-cell form of (7.2): if every prime supports at most `M`
-cells, the local mass is bounded by `u M ∑ₚ 1 / p²`.-/
+cells, the local mass is bounded by `u M ∑ₚ 1 / p²`.
+@isnad1 id=le.7h15v.s8.9229e8179987 from=translated src=- shape=4cdb0ad6 vocab=a4143fa6
+-/
 theorem labeledCell_admissibleCertificatePairSolutionMass_le
     (cells : π → Finset κ) (r : ℕ)
     (residue₁ residue₂ : LabeledCell cells → ℕ)
@@ -130,7 +136,9 @@ theorem labeledCell_admissibleCertificatePairSolutionMass_le
   · positivity
 
 /--
-The finite sum over certificate sizes `r < R` in the one-dimensional case.-/
+The finite sum over certificate sizes `r < R` in the one-dimensional case.
+@isnad1 id=le.4h11v.s8.eaec60da0f1c from=translated src=- shape=f21a13fa vocab=0002e910
+-/
 theorem sum_labeledCell_admissibleCertificateSolutionMass_le
     (cells : π → Finset κ) (R : ℕ)
     (residue : LabeledCell cells → ℕ) (modulus : π → ℕ)
@@ -159,7 +167,9 @@ theorem sum_labeledCell_admissibleCertificateSolutionMass_le
 
 /--
 The finite sum over certificate sizes `r < R` in the exact two-dimensional
-cell-count form.-/
+cell-count form.
+@isnad1 id=le.6h14v.s8.fa1b332636e4 from=translated src=- shape=0cad5a7f vocab=3f4bd336
+-/
 theorem sum_labeledCell_admissibleCertificatePairSolutionMass_le_exact
     (cells : π → Finset κ) (R : ℕ)
     (residue₁ residue₂ : LabeledCell cells → ℕ)
@@ -191,7 +201,9 @@ theorem sum_labeledCell_admissibleCertificatePairSolutionMass_le_exact
       a₁ b₁ a₂ b₂ C₀ N h₁ h₂ hlength₁ hlength₂ u hu
 
 /--
-The finite sum over `r < R` in the bounded-cell two-dimensional form.-/
+The finite sum over `r < R` in the bounded-cell two-dimensional form.
+@isnad1 id=le.7h15v.s8.25a0421a671f from=translated src=- shape=50017a98 vocab=3f4bd336
+-/
 theorem sum_labeledCell_admissibleCertificatePairSolutionMass_le
     (cells : π → Finset κ) (R : ℕ)
     (residue₁ residue₂ : LabeledCell cells → ℕ)

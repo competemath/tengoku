@@ -23,7 +23,9 @@ noncomputable section
 variable {Θ Ω ι : Type*} [MeasurableSpace Θ] [Fintype Ω] [Fintype ι] [DecidableEq ι]
 
 omit [Fintype ι] [DecidableEq ι] in
-/-- A finite pushforward is a measurable function of the joint-pattern masses.-/
+/-- A finite pushforward is a measurable function of the joint-pattern masses.
+@isnad1 id=measurab.1h5v.s5.58707c48ef0f from=translated src=- shape=3f7f9a39 vocab=bf27a552
+-/
 theorem measurable_finiteNatLaw (μ : Θ → FinitePMF Ω)
     (hμ : ∀ ω, Measurable (fun θ => (μ θ).prob ω)) (W : Ω → ℕ) (k : ℕ) :
     Measurable (fun θ => finiteNatLaw (μ θ) W k) := by
@@ -36,7 +38,9 @@ theorem measurable_finiteNatLaw (μ : Θ → FinitePMF Ω)
   · simpa only [h, ite_false] using (measurable_const : Measurable (fun _ : Θ => (0 : ℝ)))
 
 omit [Fintype ι] [DecidableEq ι] in
-/-- The infinite sum in Poisson total variation is measurable by its finite partial sums.-/
+/-- The infinite sum in Poisson total variation is measurable by its finite partial sums.
+@isnad1 id=measurab.1h5v.s5.1e1e80caaaef from=translated src=- shape=05405a96 vocab=e8937725
+-/
 theorem measurable_poissonDistance (μ : Θ → FinitePMF Ω)
     (hμ : ∀ ω, Measurable (fun θ => (μ θ).prob ω)) (W : Ω → ℕ) (rate : ℝ≥0) :
     Measurable (fun θ => natTotalVariation (finiteNatLaw (μ θ) W) (poissonMass rate)) := by
@@ -54,7 +58,9 @@ theorem measurable_poissonDistance (μ : Θ → FinitePMF Ω)
   exact hsum.const_mul (2 : ℝ)⁻¹
 
 omit [Fintype ι] [DecidableEq ι] in
-/-- Measurable finite-PMF masses are integrable under any probability environment.-/
+/-- Measurable finite-PMF masses are integrable under any probability environment.
+@isnad1 id=integrab.1h5v.s6.8ad936ebc21f from=translated src=- shape=75bda674 vocab=327bd291
+-/
 theorem integrable_probability_mass (ν : Measure Θ) [IsProbabilityMeasure ν]
     (μ : Θ → FinitePMF Ω) (hμ : ∀ ω, Measurable (fun θ => (μ θ).prob ω)) (ω : Ω) :
     Integrable (fun θ => (μ θ).prob ω) ν := by
@@ -68,7 +74,9 @@ theorem integrable_probability_mass (ν : Measure Θ) [IsProbabilityMeasure ν]
     _ = 1 := (μ θ).sum_prob
 
 omit [Fintype ι] [DecidableEq ι] in
-/-- All fixed pattern events have integrable conditional probabilities.-/
+/-- All fixed pattern events have integrable conditional probabilities.
+@isnad1 id=integrab.1h5v.s6.27fa08bbeb08 from=translated src=- shape=5fc1186c vocab=0c0d1385
+-/
 theorem integrable_eventProbability (ν : Measure Θ) [IsProbabilityMeasure ν]
     (μ : Θ → FinitePMF Ω) (hμ : ∀ ω, Measurable (fun θ => (μ θ).prob ω))
     (event : Ω → Prop) : Integrable (fun θ => eventProbability (μ θ) event) ν := by
@@ -80,7 +88,9 @@ theorem integrable_eventProbability (ν : Measure Θ) [IsProbabilityMeasure ν]
   · simpa only [h, ite_true] using integrable_probability_mass ν μ hμ ω
   · simpa only [h, ite_false] using (integrable_const (0 : ℝ) : Integrable (fun _ : Θ => (0 : ℝ)) ν)
 
-/-- The soft error budget is integrable; exceptional neighbours retain their actual laws.-/
+/-- The soft error budget is integrable; exceptional neighbours retain their actual laws.
+@isnad1 id=integrab.1h10v.s7.dc4d2d424d0b from=translated src=- shape=b218e096 vocab=408bab61
+-/
 theorem integrable_soft_budget (ν : Measure Θ) [IsProbabilityMeasure ν]
     (μ : Θ → FinitePMF Ω) (hμ : ∀ ω, Measurable (fun θ => (μ θ).prob ω))
     (X : ι → Ω → Bool) (G : SimpleGraph ι) (good : Finset ι) (p : ℝ) (rate : ℝ≥0) :
@@ -98,7 +108,9 @@ theorem integrable_soft_budget (ν : Measure Θ) [IsProbabilityMeasure ν]
       |>.add (integrable_finsetSum _ (fun i _ => integrable_finsetSum _ (fun j _ => hj i j)))).const_mul _
     |>.add (((integrable_const _).add (integrable_finsetSum _ (fun i _ => hm i))).const_mul _)
 
-/-- B.4 for an arbitrary probability environment, expressed through its finite conditional laws.-/
+/-- B.4 for an arbitrary probability environment, expressed through its finite conditional laws.
+@isnad1 id=le.6h10v.s8.08ba708606e4 from=translated src=- shape=9385bbdf vocab=b3c2a2ad
+-/
 theorem lemma_b_two_integral (hStein : ScalarSteinFactorsStatement)
     (ν : Measure Θ) [IsProbabilityMeasure ν]
     (μ : Θ → FinitePMF Ω) (hμ : ∀ ω, Measurable (fun θ => (μ θ).prob ω))

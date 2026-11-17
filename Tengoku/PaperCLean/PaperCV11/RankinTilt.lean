@@ -24,7 +24,9 @@ open DefectCounting
 open TerminalKernelCount
 open TruncatedDefectCount
 
-/-- A product of a support of small primes is positive.-/
+/-- A product of a support of small primes is positive.
+@isnad1 id=le.1h2v.s5.4b10d671ef59 from=translated src=- shape=824b4e2a vocab=98ca0842
+-/
 theorem one_le_prod_of_subset_smallPrimesUpTo
     {primeCutoff : ℕ} {small : Finset ℕ}
     (hsmall : small ⊆ smallPrimesUpTo primeCutoff) :
@@ -34,7 +36,9 @@ theorem one_le_prod_of_subset_smallPrimesUpTo
   intro p hp
   exact (mem_smallPrimesUpTo.mp (hsmall hp)).1.ne_zero
 
-/-- The real-variable Rankin comparison used termwise in the finite sum.-/
+/-- The real-variable Rankin comparison used termwise in the finite sum.
+@isnad1 id=le.3h3v.s6.2531061aaf9a from=translated src=- shape=d3d0c2dd vocab=f2a2529d
+-/
 theorem sqrt_div_le_rankin
     {X s σ : ℝ}
     (hs : 1 ≤ s) (hsX : s ≤ X)
@@ -60,7 +64,9 @@ theorem sqrt_div_le_rankin
       congr 2
       ring
 
-/-- Natural square-root fibres satisfy the Rankin comparison after casting.-/
+/-- Natural square-root fibres satisfy the Rankin comparison after casting.
+@isnad1 id=le.3h3v.s7.edf21f00143b from=translated src=- shape=11241d5e vocab=0df4f885
+-/
 theorem cast_sqrt_div_le_rankin
     {X s : ℕ} {σ : ℝ}
     (hs : 1 ≤ s) (hsX : s ≤ X)
@@ -78,7 +84,9 @@ theorem cast_sqrt_div_le_rankin
       · exact_mod_cast hsX
       · exact hσ
 
-/-- A real power distributes over a finite product of natural numbers.-/
+/-- A real power distributes over a finite product of natural numbers.
+@isnad1 id=eq.0h2v.s6.ca14ba75c755 from=translated src=- shape=eceeefaf vocab=d696d36b
+-/
 theorem cast_prod_rpow_eq_prod
     (small : Finset ℕ) (σ : ℝ) :
     (↑(small.prod id) : ℝ) ^ (-1 + σ) =
@@ -88,7 +96,9 @@ theorem cast_prod_rpow_eq_prod
   exact (Real.finsetProd_rpow small (fun p : ℕ ↦ (p : ℝ))
     (fun p _ ↦ Nat.cast_nonneg p) (-1 + σ)).symm
 
-/-- Rankin's comparison specialized to one admissible small-prime support.-/
+/-- Rankin's comparison specialized to one admissible small-prime support.
+@isnad1 id=le.2h4v.s7.b9ff9325396c from=translated src=- shape=2aaa5665 vocab=c9893ac4
+-/
 theorem cast_sqrt_div_prod_le_rankin
     {primeCutoff X : ℕ} {small : Finset ℕ} {σ : ℝ}
     (hsmall : small ∈ admissibleSmallSupports primeCutoff X)
@@ -110,7 +120,9 @@ theorem cast_sqrt_div_prod_le_rankin
 
 /--
 Finite Rankin bound in the Euler-product form needed by the prime-harmonic
-envelope of Proposition 3.3.-/
+envelope of Proposition 3.3.
+@isnad1 id=le.1h3v.s7.b98cd345d22b from=translated src=- shape=bf73ce6e vocab=d97db20e
+-/
 theorem card_kernel_one_cast_le_rankin_eulerProduct
     (primeCutoff X : ℕ) {σ : ℝ}
     (hσ : σ ≤ 1 / 2) :

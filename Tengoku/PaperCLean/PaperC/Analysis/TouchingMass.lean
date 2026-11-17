@@ -47,7 +47,9 @@ def touchingMass (N L : ℕ) : ℕ :=
 def maxTouchingRho (N L : ℕ) : ℕ :=
   (TouchingPairs.touchingPairs N L).sup (touchingRho N L)
 
-/-- The lower endpoint of every touching pair remains in the dyadic block.-/
+/-- The lower endpoint of every touching pair remains in the dyadic block.
+@isnad1 id=mem.1h3v.s5.4e68a87a483e from=translated src=- shape=03a308e2 vocab=0aceb177
+-/
 theorem touchingLower_mem_dyadicBlock
     {N L : ℕ} {pair : ℕ × ℕ}
     (hpair : pair ∈ TouchingPairs.touchingPairs N L) :
@@ -60,14 +62,18 @@ theorem touchingLower_mem_dyadicBlock
   · have hge : pair.2 ≤ pair.1 := Nat.le_of_not_ge hle
     simpa [min_eq_right hge] using hright
 
-/-- Every member's defect is bounded by the finite supremum.-/
+/-- Every member's defect is bounded by the finite supremum.
+@isnad1 id=le.1h3v.s5.c05d698dcd70 from=translated src=- shape=729d3687 vocab=90cd8090
+-/
 theorem touchingRho_le_maxTouchingRho
     {N L : ℕ} {pair : ℕ × ℕ}
     (hpair : pair ∈ TouchingPairs.touchingPairs N L) :
     touchingRho N L pair ≤ maxTouchingRho N L := by
   exact Finset.le_sup hpair
 
-/-- Pointwise weight bound supplied by the maximal touching defect.-/
+/-- Pointwise weight bound supplied by the maximal touching defect.
+@isnad1 id=le.1h3v.s5.a52dfebf17fa from=translated src=- shape=2b73cd8d vocab=db54f499
+-/
 theorem touchingWeight_le_two_pow_maxTouchingRho
     {N L : ℕ} {pair : ℕ × ℕ}
     (hpair : pair ∈ TouchingPairs.touchingPairs N L) :
@@ -79,7 +85,9 @@ theorem touchingWeight_le_two_pow_maxTouchingRho
       Nat.pow_le_pow_right (by norm_num)
         (touchingRho_le_maxTouchingRho hpair)
 
-/-- Natural-valued mass bound using at most `2N` ordered touching pairs.-/
+/-- Natural-valued mass bound using at most `2N` ordered touching pairs.
+@isnad1 id=le.0h2v.s5.d6f27901fd3d from=translated src=- shape=7cedac5c vocab=adb1d00c
+-/
 theorem touchingMass_le_two_mul_two_pow_maxTouchingRho
     (N L : ℕ) :
     touchingMass N L ≤
@@ -89,7 +97,9 @@ theorem touchingMass_le_two_mul_two_pow_maxTouchingRho
     (fun _pair hpair ↦
       touchingWeight_le_two_pow_maxTouchingRho hpair)
 
-/-- Real-cast form of the same finite mass bound.-/
+/-- Real-cast form of the same finite mass bound.
+@isnad1 id=le.0h2v.s5.ea1c64db3128 from=translated src=- shape=ee22a060 vocab=d89c2838
+-/
 theorem touchingMass_cast_le_two_mul_two_pow_maxTouchingRho
     (N L : ℕ) :
     (touchingMass N L : ℝ) ≤
@@ -99,7 +109,9 @@ theorem touchingMass_cast_le_two_mul_two_pow_maxTouchingRho
 /--
 Convenient passage from a pointwise real bound for all touching defects to a
 bound for their finite maximum.  The nonnegativity hypothesis handles the
-empty touching-pair set, whose natural supremum is zero.-/
+empty touching-pair set, whose natural supremum is zero.
+@isnad1 id=le.2h3v.s6.65042b527615 from=translated src=- shape=246abb0d vocab=fa038b3a
+-/
 theorem maxTouchingRho_cast_le
     {N L : ℕ} {R : ℝ}
     (hR : 0 ≤ R)

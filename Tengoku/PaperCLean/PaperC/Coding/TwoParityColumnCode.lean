@@ -27,17 +27,26 @@ def appendTwo {r : ℕ} (v : Fin r → F₂) (left right : F₂) :
     Fin (r + 2) → F₂ :=
   Fin.lastCases right (Fin.lastCases left v)
 
+/--
+@isnad1 id=eq.0h5v.s5.8440092ab315 from=translated src=- shape=52f70110 vocab=83a5a0ba
+-/
 @[simp]
 theorem appendTwo_small {r : ℕ} (v : Fin r → F₂) (left right : F₂)
     (j : Fin r) :
     appendTwo v left right j.castSucc.castSucc = v j := by
   simp [appendTwo]
 
+/--
+@isnad1 id=eq.0h4v.s5.9de2a996b0a7 from=translated src=- shape=29a013b0 vocab=917534b8
+-/
 @[simp]
 theorem appendTwo_left {r : ℕ} (v : Fin r → F₂) (left right : F₂) :
     appendTwo v left right (Fin.last r).castSucc = left := by
   simp [appendTwo]
 
+/--
+@isnad1 id=eq.0h4v.s5.0e5cb4f992c1 from=translated src=- shape=140ef1ec vocab=cf7ffec4
+-/
 @[simp]
 theorem appendTwo_right {r : ℕ} (v : Fin r → F₂) (left right : F₂) :
     appendTwo v left right (Fin.last (r + 1)) = right := by
@@ -53,7 +62,9 @@ noncomputable def twoAugmentedColumnMap {m r : ℕ}
   Fintype.linearCombination F₂
     (fun i ↦ appendTwo (columns i) (leftBit i) (rightBit i))
 
-/-- Evaluation on one of the `r` small-prime coordinates.-/
+/-- Evaluation on one of the `r` small-prime coordinates.
+@isnad1 id=eq.0h7v.s9.e8378ec805dd from=translated src=- shape=3487d750 vocab=7d025aa6
+-/
 theorem twoAugmentedColumnMap_apply_small {m r : ℕ}
     (columns : Fin m → (Fin r → F₂))
     (leftBit rightBit : Fin m → F₂)
@@ -63,7 +74,9 @@ theorem twoAugmentedColumnMap_apply_small {m r : ℕ}
       ∑ i : Fin m, x i * columns i j := by
   simp [twoAugmentedColumnMap, Fintype.linearCombination_apply, smul_eq_mul]
 
-/-- Evaluation on the appended left-cardinality parity coordinate.-/
+/-- Evaluation on the appended left-cardinality parity coordinate.
+@isnad1 id=eq.0h6v.s9.dce16a49ef3b from=translated src=- shape=c5b02d20 vocab=052e533b
+-/
 theorem twoAugmentedColumnMap_apply_left {m r : ℕ}
     (columns : Fin m → (Fin r → F₂))
     (leftBit rightBit : Fin m → F₂)
@@ -73,7 +86,9 @@ theorem twoAugmentedColumnMap_apply_left {m r : ℕ}
       ∑ i : Fin m, x i * leftBit i := by
   simp [twoAugmentedColumnMap, Fintype.linearCombination_apply, smul_eq_mul]
 
-/-- Evaluation on the appended right-cardinality parity coordinate.-/
+/-- Evaluation on the appended right-cardinality parity coordinate.
+@isnad1 id=eq.0h6v.s9.81c2d962a375 from=translated src=- shape=5929c93f vocab=892b9a57
+-/
 theorem twoAugmentedColumnMap_apply_right {m r : ℕ}
     (columns : Fin m → (Fin r → F₂))
     (leftBit rightBit : Fin m → F₂)
@@ -83,7 +98,9 @@ theorem twoAugmentedColumnMap_apply_right {m r : ℕ}
       ∑ i : Fin m, x i * rightBit i := by
   simp [twoAugmentedColumnMap, Fintype.linearCombination_apply, smul_eq_mul]
 
-/-- The two appended rows cost at most two extra dimensions of codimension.-/
+/-- The two appended rows cost at most two extra dimensions of codimension.
+@isnad1 id=le.0h5v.s10.616eea2f52ee from=translated src=- shape=08f0e912 vocab=cf6bbfd6
+-/
 theorem columns_sub_twoAugmentedRows_le_finrank_ker {m r : ℕ}
     (columns : Fin m → (Fin r → F₂))
     (leftBit rightBit : Fin m → F₂) :
@@ -93,7 +110,9 @@ theorem columns_sub_twoAugmentedRows_le_finrank_ker {m r : ℕ}
   DefectCodeRank.columns_sub_rows_le_finrank_ker
     (twoAugmentedColumnMap columns leftBit rightBit)
 
-/-- A kernel word has zero weighted sum in the left parity row.-/
+/-- A kernel word has zero weighted sum in the left parity row.
+@isnad1 id=eq.1h6v.s9.1e1092243a37 from=translated src=- shape=89db71f1 vocab=c0c77fc8
+-/
 theorem kernel_left_weighted_sum_eq_zero {m r : ℕ}
     (columns : Fin m → (Fin r → F₂))
     (leftBit rightBit : Fin m → F₂)
@@ -104,7 +123,9 @@ theorem kernel_left_weighted_sum_eq_zero {m r : ℕ}
   have hzero := congrFun (LinearMap.mem_ker.mp hx) (Fin.last r).castSucc
   simpa [twoAugmentedColumnMap_apply_left] using hzero
 
-/-- A kernel word has zero weighted sum in the right parity row.-/
+/-- A kernel word has zero weighted sum in the right parity row.
+@isnad1 id=eq.1h6v.s9.9dac8f6a0b4d from=translated src=- shape=77e309a2 vocab=c0c77fc8
+-/
 theorem kernel_right_weighted_sum_eq_zero {m r : ℕ}
     (columns : Fin m → (Fin r → F₂))
     (leftBit rightBit : Fin m → F₂)
@@ -117,7 +138,9 @@ theorem kernel_right_weighted_sum_eq_zero {m r : ℕ}
 
 /--
 The selected components have zero total left parity.  This is the first
-separate even-cardinality equation required before the Runge step.-/
+separate even-cardinality equation required before the Runge step.
+@isnad1 id=eq.1h6v.s9.e238ffd32599 from=translated src=- shape=9ae4c9dd vocab=fd2d6754
+-/
 theorem kernel_left_selected_sum_eq_zero {m r : ℕ}
     (columns : Fin m → (Fin r → F₂))
     (leftBit rightBit : Fin m → F₂)
@@ -130,7 +153,9 @@ theorem kernel_left_selected_sum_eq_zero {m r : ℕ}
 
 /--
 The selected components have zero total right parity.  This is the second
-separate even-cardinality equation required before the Runge step.-/
+separate even-cardinality equation required before the Runge step.
+@isnad1 id=eq.1h6v.s9.dfad591d93cc from=translated src=- shape=e83b9981 vocab=fd2d6754
+-/
 theorem kernel_right_selected_sum_eq_zero {m r : ℕ}
     (columns : Fin m → (Fin r → F₂))
     (leftBit rightBit : Fin m → F₂)
@@ -146,7 +171,9 @@ Quantitative Hamming consequence used in Theorem 8.1.
 
 If the component count `m` reaches the explicit threshold forced by the
 integer Hamming estimate, the two-parity column map has a nonzero kernel word
-supported on at most `2 * t` components.-/
+supported on at most `2 * t` components.
+@isnad1 id=ex.4h6v.s9.9efd67fc396e from=translated src=- shape=c035b806 vocab=eec849a8
+-/
 theorem exists_nonzero_kernel_word_hammingNorm_le {m r t : ℕ}
     (columns : Fin m → (Fin r → F₂))
     (leftBit rightBit : Fin m → F₂)

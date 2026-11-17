@@ -27,6 +27,9 @@ def residualChannelValues
   (residualPrimeCells L a b p h).image
     (residualChannelExpression a b h)
 
+/--
+@isnad1 id=iff.0h6v.s6.174a688a14b4 from=translated src=- shape=ef3c8d61 vocab=8ba2e41a
+-/
 @[simp]
 theorem mem_residualChannelValues
     {L a b p : ℕ} {h d : ℤ} :
@@ -46,6 +49,9 @@ def residualValueEnvelope
         ((4 * Nat.max a b * (L + 1) : ℕ) : ℤ) |
     d ≡ 0 [ZMOD (p : ℤ)]}
 
+/--
+@isnad1 id=iff.0h5v.s6.a6a60c5dd2d9 from=translated src=- shape=149efe67 vocab=c99cd14c
+-/
 @[simp]
 theorem mem_residualValueEnvelope
     {L a b p : ℕ} {d : ℤ} :
@@ -57,7 +63,9 @@ theorem mem_residualValueEnvelope
     Int.modEq_zero_iff_dvd]
   tauto
 
-/-- Every attained residual value belongs to the explicit envelope.-/
+/-- Every attained residual value belongs to the explicit envelope.
+@isnad1 id=le.4h5v.s6.43b3a486352d from=translated src=- shape=dc090bde vocab=6f709fd2
+-/
 theorem residualChannelValues_subset_envelope
     {L a b p : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
@@ -77,7 +85,9 @@ theorem residualChannelValues_subset_envelope
 
 /--
 The number of possible residual values is at most
-`1 + 8*q*(L+1)/p`.-/
+`1 + 8*q*(L+1)/p`.
+@isnad1 id=le.1h4v.s6.e1234d53cc7a from=translated src=- shape=7c6b4f16 vocab=b48caf08
+-/
 theorem residualValueEnvelope_card_cast_le
     (L a b p : ℕ) (hp : 0 < p) :
     ((residualValueEnvelope L a b p).card : ℚ) ≤
@@ -102,7 +112,9 @@ theorem residualValueEnvelope_card_cast_le
 
 /--
 At a fixed residual value `d`, the relevant fiber lies on the translated
-exact channel of height `h-d`.-/
+exact channel of height `h-d`.
+@isnad1 id=le.0h6v.s6.5bea9de5c080 from=translated src=- shape=977ab5dd vocab=e205b208
+-/
 theorem residualExpression_fiber_subset_channelCells
     {L a b p : ℕ} {h d : ℤ} :
     {cell ∈ residualPrimeCells L a b p h |
@@ -116,7 +128,9 @@ theorem residualExpression_fiber_subset_channelCells
   linarith
 
 /--
-Every residual-value fiber satisfies the primitive-channel lattice count.-/
+Every residual-value fiber satisfies the primitive-channel lattice count.
+@isnad1 id=le.3h6v.s6.3c1c90f62683 from=translated src=- shape=a06059f7 vocab=5dc7552e
+-/
 theorem residualExpression_fiber_card_cast_le
     (L a b p : ℕ) (h d : ℤ)
     (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b) :
@@ -146,7 +160,9 @@ Finite form of the residual-cell estimate (7.3).
 
 The first factor counts the possible nonzero multiples of `p` in the
 geometric value range; the second is the maximal size of a translated
-primitive-channel fiber.-/
+primitive-channel fiber.
+@isnad1 id=le.5h5v.s7.1b3bf26ad6c8 from=translated src=- shape=325e4711 vocab=0f1c9471
+-/
 theorem residualPrimeCells_card_cast_le
     {L a b p : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)

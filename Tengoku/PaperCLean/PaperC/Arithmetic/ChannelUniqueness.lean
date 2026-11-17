@@ -20,7 +20,9 @@ namespace PaperC
 /--
 If two reduced positive pairs `(a,b)` and `(a',b')`, all bounded by `H`,
 satisfy the channel inequalities with error scale `B`, and
-`x > 4 H² B`, then the pairs coincide.-/
+`x > 4 H² B`, then the pairs coincide.
+@isnad1 id=and.13h8v.s8.31c8b2b57c60 from=translated src=- shape=327d4be4 vocab=a0f08e13
+-/
 theorem reducedChannel_unique
     (x y B H a b a' b' : ℕ)
     (ha : 0 < a) (hb : 0 < b) (ha' : 0 < a') (hb' : 0 < b')

@@ -38,7 +38,9 @@ noncomputable def halfChoose (j : ℕ) : ℚ :=
   Ring.choose (1 / 2 : ℚ) j
 
 /-- The standard one-step recurrence for generalized binomial coefficients
-over `ℚ`.-/
+over `ℚ`.
+@isnad1 id=eq.0h2v.s6.60d827e7d683 from=translated src=- shape=d16038dc vocab=28ec5cc6
+-/
 theorem choose_succ_recursion (r : ℚ) (n : ℕ) :
     (n + 1 : ℚ) * Ring.choose r (n + 1) =
       (r - n) * Ring.choose r n := by
@@ -62,7 +64,9 @@ theorem choose_succ_recursion (r : ℚ) (n : ℕ) :
       simp only [nsmul_eq_mul]
       ring
 
-/-- Quotient form of `choose_succ_recursion`.-/
+/-- Quotient form of `choose_succ_recursion`.
+@isnad1 id=eq.0h2v.s6.7e75f1fe3880 from=translated src=- shape=991fb9e0 vocab=c3655828
+-/
 theorem choose_succ_eq (r : ℚ) (n : ℕ) :
     Ring.choose r (n + 1) =
       Ring.choose r n * ((r - n) / (n + 1 : ℚ)) := by
@@ -80,7 +84,9 @@ private theorem abs_half_step_le_one (n : ℕ) :
   · rw [div_le_iff₀ hden]
     linarith
 
-/-- The elementary estimate `|(1/2 choose j)| ≤ 1` used in (3.2).-/
+/-- The elementary estimate `|(1/2 choose j)| ≤ 1` used in (3.2).
+@isnad1 id=le.0h1v.s4.638d994d4371 from=translated src=- shape=562e4a6d vocab=4aa6b6fd
+-/
 theorem abs_halfChoose_le_one (j : ℕ) : |halfChoose j| ≤ 1 := by
   induction j with
   | zero =>
@@ -115,7 +121,9 @@ private theorem catalan_succ_recursion (n : ℕ) :
         (2 * (2 * n + 1 : ℚ) * (catalan n : ℚ)) := by ring
 
 /-- The usual Catalan formula for the nonconstant coefficients of
-`(1+z)^(1/2)`.  It also records the exact power-of-two denominator.-/
+`(1+z)^(1/2)`.  It also records the exact power-of-two denominator.
+@isnad1 id=eq.0h1v.s6.3e8ef6b17766 from=translated src=- shape=03d0e0e2 vocab=820488ff
+-/
 theorem halfChoose_succ_eq_catalan (n : ℕ) :
     halfChoose (n + 1) =
       (-1 : ℚ) ^ n * (catalan n : ℚ) / (2 : ℚ) ^ (2 * n + 1) := by
@@ -144,7 +152,9 @@ theorem halfChoose_succ_eq_catalan (n : ℕ) :
       linear_combination
         2 * hcat
 
-/-- Multiplying `(1/2 choose j)` by `2^(2j)` gives an integer.-/
+/-- Multiplying `(1/2 choose j)` by `2^(2j)` gives an integer.
+@isnad1 id=ex.0h1v.s5.beda6de855b5 from=translated src=- shape=515c6744 vocab=8645e6e9
+-/
 theorem two_pow_two_mul_halfChoose_isInt (j : ℕ) :
     ∃ z : ℤ, (2 : ℚ) ^ (2 * j) * halfChoose j = (z : ℚ) := by
   cases j with
@@ -166,7 +176,9 @@ noncomputable instance instFintypeWeakComposition (d m : ℕ) :
   Fintype.ofEquiv (Sym (Fin d) m)
     (Sym.equivNatSumOfFintype (Fin d) m)
 
-/-- Stars and bars, in the exact form needed for the Runge coefficient.-/
+/-- Stars and bars, in the exact form needed for the Runge coefficient.
+@isnad1 id=eq.0h2v.s5.254f9c75a238 from=translated src=- shape=fe5fb27e vocab=cedbae8b
+-/
 theorem card_weakComposition (d m : ℕ) :
     Fintype.card (WeakComposition d m) = (d + m - 1).choose m := by
   calc
@@ -177,7 +189,9 @@ theorem card_weakComposition (d m : ℕ) :
       simpa using Sym.card_sym_eq_choose (α := Fin d) m
 
 /-- The paper's symmetric stars-and-bars form
-`(m+d-1 choose d-1)`, valid when there is at least one part.-/
+`(m+d-1 choose d-1)`, valid when there is at least one part.
+@isnad1 id=eq.1h2v.s5.4952235ba03e from=translated src=- shape=6022e085 vocab=2050f568
+-/
 theorem card_weakComposition_eq_choose_parts
     {d m : ℕ} (hd : 0 < d) :
     Fintype.card (WeakComposition d m) =
@@ -185,7 +199,9 @@ theorem card_weakComposition_eq_choose_parts
   rw [card_weakComposition, add_comm d m]
   exact Nat.choose_symm_of_eq_add (by omega)
 
-/-- The loose but uniform estimate used in (3.2).-/
+/-- The loose but uniform estimate used in (3.2).
+@isnad1 id=le.1h2v.s5.d666220d8464 from=translated src=- shape=55fc60a3 vocab=a67445da
+-/
 theorem card_weakComposition_le_two_pow
     {d m : ℕ} (hd : 0 < d) :
     Fintype.card (WeakComposition d m) ≤ 2 ^ (m + d) := by
@@ -283,7 +299,9 @@ private theorem scaled_rungeSummand_isRatInteger
   simpa [mul_assoc] using hprod
 
 /-- The first, sharper integrality statement behind (3.2):
-`2^(2m) c_m` is integral.-/
+`2^(2m) c_m` is integral.
+@isnad1 id=isratint.0h3v.s5.0ed10cc93315 from=translated src=- shape=9d132582 vocab=3bffce56
+-/
 theorem two_pow_two_mul_rungeCoefficient_isRatInteger
     {d : ℕ} (γ : Fin d → ℤ) (m : ℕ) :
     IsRatInteger ((2 : ℚ) ^ (2 * m) * rungeCoefficient γ m) := by
@@ -294,7 +312,9 @@ theorem two_pow_two_mul_rungeCoefficient_isRatInteger
   exact scaled_rungeSummand_isRatInteger γ j
 
 /-- The integrality assertion in (3.2): if `2m ≤ d`, then `2^d c_m`
-is an integer.-/
+is an integer.
+@isnad1 id=isratint.1h3v.s5.ba068c1eaef0 from=translated src=- shape=ba9e7fe5 vocab=61e605f2
+-/
 theorem two_pow_mul_rungeCoefficient_isRatInteger
     {d m : ℕ} (γ : Fin d → ℤ) (hmd : 2 * m ≤ d) :
     IsRatInteger ((2 : ℚ) ^ d * rungeCoefficient γ m) := by

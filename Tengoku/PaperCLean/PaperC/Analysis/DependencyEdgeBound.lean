@@ -37,6 +37,9 @@ Every prime in `(Y,3N]` lies in a deliberately oversized dyadic interval.
 The reciprocal-square estimate is uniform in the dyadic exponent, so no
 logarithmic rounding is needed.
 -/
+/--
+@isnad1 id=le.1h2v.s5.6ea3b8feec57 from=translated src=- shape=ef736727 vocab=7515b025
+-/
 theorem largePrimesInRange_subset_dyadicPrimes
     {N Y : ℕ} (hY : 1 ≤ Y) :
     largePrimesInRange Y (3 * N) ⊆
@@ -52,7 +55,9 @@ theorem largePrimesInRange_subset_dyadicPrimes
       Nat.mul_le_mul_right (2 ^ (3 * N)) hY
   exact hpData.2.2.trans (hpow.trans hscale)
 
-/-- Prime-sensitive reciprocal-square sum on the dependency range.-/
+/-- Prime-sensitive reciprocal-square sum on the dependency range.
+@isnad1 id=le.1h2v.s6.aeb576911ea0 from=translated src=- shape=7e325bcf vocab=49ea6099
+-/
 theorem sum_inv_sq_largePrimesInRange_le
     {N Y : ℕ} (hY : 4 ≤ Y) :
     (∑ p ∈ largePrimesInRange Y (3 * N),
@@ -62,7 +67,9 @@ theorem sum_inv_sq_largePrimesInRange_le
     Y (3 * N) (largePrimesInRange Y (3 * N)) hY
     (largePrimesInRange_subset_dyadicPrimes (by omega))
 
-/-- There are at most `3N` primes in the numerical support.-/
+/-- There are at most `3N` primes in the numerical support.
+@isnad1 id=le.0h2v.s5.16474b114509 from=translated src=- shape=269940ff vocab=43c5679a
+-/
 theorem card_largePrimesInRange_le
     (N Y : ℕ) :
     (largePrimesInRange Y (3 * N)).card ≤ 3 * N := by
@@ -80,7 +87,9 @@ theorem card_largePrimesInRange_le
     _ ≤ 3 * N := by
       simp [Nat.card_Icc]
 
-/-- Elementary first reciprocal sum, sufficient for a finite `o(N²)` route.-/
+/-- Elementary first reciprocal sum, sufficient for a finite `o(N²)` route.
+@isnad1 id=le.1h2v.s6.51152b893a8d from=translated src=- shape=6506003f vocab=29d15a19
+-/
 theorem sum_inv_largePrimesInRange_le
     {N Y : ℕ} (hY : 1 ≤ Y) :
     (∑ p ∈ largePrimesInRange Y (3 * N),
@@ -113,7 +122,9 @@ theorem sum_inv_largePrimesInRange_le
       push_cast
       ring
 
-/-- Expand the square before applying the three separate prime estimates.-/
+/-- Expand the square before applying the three separate prime estimates.
+@isnad1 id=eq.0h2v.s7.1621d96f9147 from=translated src=- shape=3879b30b vocab=569c7fd7
+-/
 theorem sum_div_add_one_sq_eq
     (N Y : ℕ) :
     (∑ p ∈ largePrimesInRange Y (3 * N),
@@ -135,7 +146,9 @@ theorem sum_div_add_one_sq_eq
 
 /--
 Explicit finite prime-sum envelope.  This is a slightly coarser, completely
-certified variant of the analytic estimate used in Lemma 13.6.-/
+certified variant of the analytic estimate used in Lemma 13.6.
+@isnad1 id=le.1h2v.s7.b3c17bb8fb20 from=translated src=- shape=4db418d0 vocab=8f11bc3b
+-/
 theorem sum_div_add_one_sq_le
     {N Y : ℕ} (hY : 4 ≤ Y) :
     (∑ p ∈ largePrimesInRange Y (3 * N),
@@ -175,7 +188,9 @@ theorem sum_div_add_one_sq_le
 
 /--
 Finite analytic dependency-edge bound obtained by composing the exact graph
-cover with the reciprocal-prime estimates.-/
+cover with the reciprocal-prime estimates.
+@isnad1 id=le.4h3v.s7.7e1d952e4750 from=translated src=- shape=1612497f vocab=8b537a94
+-/
 theorem card_orderedDependencyEdges_cast_le
     {N L Y : ℕ}
     (hN : 2 ≤ N) (hLN : L ≤ N)

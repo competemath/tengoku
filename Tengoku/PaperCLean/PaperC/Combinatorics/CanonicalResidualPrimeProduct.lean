@@ -34,7 +34,9 @@ noncomputable def canonicalResidualPrimeProduct
 /--
 The finite-set product is the product indexed directly by the canonical
 residual components.  Injectivity of the selected-prime map is precisely
-what prevents repeated factors when passing to its image.-/
+what prevents repeated factors when passing to its image.
+@isnad1 id=eq.2h4v.s8.ac0f5cbf3f36 from=translated src=- shape=09aad2da vocab=18a42a6d
+-/
 theorem canonicalResidualPrimeProduct_eq_product_certificates
     {A x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y) :
@@ -55,7 +57,9 @@ theorem canonicalResidualPrimeProduct_eq_product_certificates
     exact
       canonicalResidualCertificates_prime_injective hx hy hprime
 
-/-- Every factor of `P#` is a genuine prime strictly above `L + 1`.-/
+/-- Every factor of `P#` is a genuine prime strictly above `L + 1`.
+@isnad1 id=islargep.3h5v.s5.0f2bbb574e56 from=translated src=- shape=46b2bcfa vocab=80990728
+-/
 theorem prime_large_of_mem_canonicalResidualCertificatePrimes
     {A x y L p : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -70,7 +74,9 @@ theorem prime_large_of_mem_canonicalResidualCertificatePrimes
   obtain ⟨C, _hC, rfl⟩ := hp
   exact (canonicalResidualCertificates hx hy C).prime_large
 
-/-- The canonical residual prime product is positive.-/
+/-- The canonical residual prime product is positive.
+@isnad1 id=lt.2h4v.s5.641ce11108d8 from=translated src=- shape=b5986860 vocab=9ef23216
+-/
 theorem canonicalResidualPrimeProduct_pos
     {A x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y) :
@@ -83,7 +89,9 @@ theorem canonicalResidualPrimeProduct_pos
     (prime_large_of_mem_canonicalResidualCertificatePrimes
       hx hy hp).1.pos
 
-/-- In particular, the empty-product convention included, `1 ≤ P#`.-/
+/-- In particular, the empty-product convention included, `1 ≤ P#`.
+@isnad1 id=le.2h4v.s5.0606f9d12923 from=translated src=- shape=9b7d3db1 vocab=442b000d
+-/
 theorem one_le_canonicalResidualPrimeProduct
     {A x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y) :
@@ -93,7 +101,9 @@ theorem one_le_canonicalResidualPrimeProduct
 
 /--
 The number of factors of `P#` is exactly the canonical residual component
-count `c#`.-/
+count `c#`.
+@isnad1 id=eq.2h4v.s6.6c436e308f2b from=translated src=- shape=aa87f11b vocab=e4831dd3
+-/
 theorem canonicalResidualPrimeProduct_factorCount
     {A x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y) :
@@ -119,6 +129,9 @@ def CanonicalResidualPrimeProductExceeds
   N < canonicalResidualPrimeProduct
     (A := A) (L := L) hx hy
 
+/--
+@isnad1 id=iff.2h5v.s5.21ff047c114b from=translated src=- shape=34a99b73 vocab=c6d0c4b6
+-/
 @[simp]
 theorem canonicalResidualPrimeProductAtMost_iff
     {A x y L N : ℕ}
@@ -129,6 +142,9 @@ theorem canonicalResidualPrimeProductAtMost_iff
         (A := A) (L := L) hx hy ≤ N :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.2h5v.s5.258b262a055a from=translated src=- shape=e80fbe78 vocab=bfaf6479
+-/
 @[simp]
 theorem canonicalResidualPrimeProductExceeds_iff
     {A x y L N : ℕ}
@@ -139,7 +155,9 @@ theorem canonicalResidualPrimeProductExceeds_iff
         (A := A) (L := L) hx hy :=
   Iff.rfl
 
-/-- Every cutoff lies in exactly one of the small- or large-product cases.-/
+/-- Every cutoff lies in exactly one of the small- or large-product cases.
+@isnad1 id=or.2h5v.s5.08a7e5faade6 from=translated src=- shape=917b478c vocab=a685be1f
+-/
 theorem canonicalResidualPrimeProduct_dichotomy
     {A x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y) (N : ℕ) :
@@ -151,7 +169,9 @@ theorem canonicalResidualPrimeProduct_dichotomy
   unfold CanonicalResidualPrimeProductExceeds
   exact le_or_gt _ _
 
-/-- The two branches are disjoint.-/
+/-- The two branches are disjoint.
+@isnad1 id=not.2h5v.s5.d8f93cd355db from=translated src=- shape=2a918aa9 vocab=a685be1f
+-/
 theorem canonicalResidualPrimeProduct_branches_disjoint
     {A x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y) (N : ℕ) :
@@ -162,6 +182,9 @@ theorem canonicalResidualPrimeProduct_branches_disjoint
   intro h
   exact (Nat.not_lt_of_ge h.1) h.2
 
+/--
+@isnad1 id=iff.2h5v.s5.aff1a05231e3 from=translated src=- shape=d31f6e68 vocab=a685be1f
+-/
 @[simp]
 theorem canonicalResidualPrimeProductAtMost_iff_not_exceeds
     {A x y L : ℕ}
@@ -173,6 +196,9 @@ theorem canonicalResidualPrimeProductAtMost_iff_not_exceeds
   simp [CanonicalResidualPrimeProductAtMost,
     CanonicalResidualPrimeProductExceeds]
 
+/--
+@isnad1 id=iff.2h5v.s5.aec58452fdba from=translated src=- shape=d31f6e68 vocab=a685be1f
+-/
 @[simp]
 theorem canonicalResidualPrimeProductExceeds_iff_not_atMost
     {A x y L : ℕ}

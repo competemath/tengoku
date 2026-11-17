@@ -33,6 +33,9 @@ def primeOccurrences
   Finset.univ.filter fun v ↦
     parityVec (twoStartCompleteVertexLabel x y L v) p = 1
 
+/--
+@isnad1 id=iff.0h5v.s6.09b390e22bff from=translated src=- shape=fa1dd784 vocab=551d5c48
+-/
 @[simp]
 theorem mem_primeOccurrences
     {x y L p : ℕ} {v : Occurrence L} :
@@ -40,7 +43,9 @@ theorem mem_primeOccurrences
       parityVec (twoStartCompleteVertexLabel x y L v) p = 1 := by
   simp only [primeOccurrences, Finset.mem_filter, Finset.mem_univ, true_and]
 
-/-- Membership in the occurrence set gives a nonzero parity coordinate.-/
+/-- Membership in the occurrence set gives a nonzero parity coordinate.
+@isnad1 id=ne.1h5v.s6.9cf3e6737013 from=translated src=- shape=d6a4d9cd vocab=551d5c48
+-/
 theorem parityVec_ne_zero_of_mem
     {x y L p : ℕ} {v : Occurrence L}
     (hv : v ∈ primeOccurrences x y L p) :
@@ -52,7 +57,9 @@ theorem parityVec_ne_zero_of_mem
 /--
 There is at most one large-prime occurrence in the left start block.
 The primality hypothesis is retained to match the Section 6 interface;
-the stronger local uniqueness lemma only needs the size inequality.-/
+the stronger local uniqueness lemma only needs the size inequality.
+@isnad1 id=eq.5h6v.s7.55e0713be91e from=translated src=- shape=660d015e vocab=dd019c6c
+-/
 theorem inl_eq_of_mem
     {x y L p : ℕ}
     (hx : 1 ≤ x) (_hp : p.Prime) (hpL : L + 1 < p)
@@ -66,7 +73,9 @@ theorem inl_eq_of_mem
   · exact parityVec_ne_zero_of_mem hv
   · exact parityVec_ne_zero_of_mem hw
 
-/-- There is at most one large-prime occurrence in the right start block.-/
+/-- There is at most one large-prime occurrence in the right start block.
+@isnad1 id=eq.5h6v.s7.29bca35727e1 from=translated src=- shape=45b15ff9 vocab=44a66af3
+-/
 theorem inr_eq_of_mem
     {x y L p : ℕ}
     (hy : 1 ≤ y) (_hp : p.Prime) (hpL : L + 1 < p)
@@ -87,7 +96,9 @@ def occurrenceBlock {L : ℕ} : Occurrence L → Bool
 
 /--
 On the occurrence set of a prime above `L+1`, the block map is injective:
-each of the two blocks supplies at most one occurrence.-/
+each of the two blocks supplies at most one occurrence.
+@isnad1 id=injon.4h4v.s6.ab16c9442795 from=translated src=- shape=d849a598 vocab=4f832128
+-/
 theorem occurrenceBlock_injOn
     {x y L p : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -111,7 +122,9 @@ theorem occurrenceBlock_injOn
           exact congrArg Sum.inr
             (inr_eq_of_mem hy hp hpL hv hw)
 
-/-- A large prime has at most two occurrences across the two blocks.-/
+/-- A large prime has at most two occurrences across the two blocks.
+@isnad1 id=le.4h4v.s6.eb16c7fc9194 from=translated src=- shape=59aab0fc vocab=c957ad23
+-/
 theorem card_primeOccurrences_le_two
     {x y L p : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -137,7 +150,9 @@ def InOppositeBlocks {L : ℕ}
     (∃ i j, v = Sum.inr i ∧ w = Sum.inl j)
 
 /--
-Any two distinct large-prime occurrences must belong to opposite blocks.-/
+Any two distinct large-prime occurrences must belong to opposite blocks.
+@isnad1 id=inopposi.7h6v.s6.6afcdf8a81d9 from=translated src=- shape=32581190 vocab=7011a64e
+-/
 theorem inOppositeBlocks_of_mem_of_ne
     {x y L p : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -203,7 +218,9 @@ def IsPin
     (x y L p : ℕ) (v : Occurrence L) : Prop :=
   primeOccurrences x y L p = {v}
 
-/-- A singleton occurrence set is a pin, situated in one of the two blocks.-/
+/-- A singleton occurrence set is a pin, situated in one of the two blocks.
+@isnad1 id=or.1h4v.s7.7795555429a7 from=translated src=- shape=e12b6463 vocab=9121af1d
+-/
 theorem exists_pin_of_card_eq_one
     {x y L p : ℕ}
     (hcard : (primeOccurrences x y L p).card = 1) :

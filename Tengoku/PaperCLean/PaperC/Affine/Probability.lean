@@ -36,7 +36,9 @@ def uniformSolutionProbability (A : V →ₗ[𝔽₂] W) (b : W) : ℚ :=
   (Fintype.card (Solution A b) : ℚ) / (Fintype.card V : ℚ)
 
 /-- The cardinality of a finite `𝔽₂`-vector space is the corresponding power
-of two.-/
+of two.
+@isnad1 id=eq.0h1v.s6.7f454aedefe0 from=translated src=- shape=2a7f782c vocab=7160d684
+-/
 theorem card_eq_two_pow_finrank :
     Fintype.card V = 2 ^ Module.finrank 𝔽₂ V := by
   calc
@@ -46,7 +48,9 @@ theorem card_eq_two_pow_finrank :
     _ = 2 ^ Module.finrank 𝔽₂ V := by rw [ZMod.card]
 
 /-- Exact uniform probability of a finite affine system.  Incompatibility
-gives probability zero; otherwise the numerator is the size of the kernel.-/
+gives probability zero; otherwise the numerator is the size of the kernel.
+@isnad1 id=eq.0h4v.s9.b00090c1548d from=translated src=- shape=f7f12a5e vocab=5a865fcf
+-/
 theorem uniformSolutionProbability_eq_ite
     (A : V →ₗ[𝔽₂] W) (b : W) :
     uniformSolutionProbability A b =
@@ -60,7 +64,9 @@ theorem uniformSolutionProbability_eq_ite
   rw [card_solution_eq_ite, card_eq_two_pow_finrank (V := V)]
   split_ifs <;> simp_all
 
-/-- Compatible case of the exact affine probability formula.-/
+/-- Compatible case of the exact affine probability formula.
+@isnad1 id=eq.1h4v.s9.195b72e19ff5 from=translated src=- shape=88dab0ac vocab=99f9b826
+-/
 theorem uniformSolutionProbability_of_compatible
     (A : V →ₗ[𝔽₂] W) (b : W) (h : Compatible A b) :
     uniformSolutionProbability A b =
@@ -68,7 +74,9 @@ theorem uniformSolutionProbability_of_compatible
         (2 ^ Module.finrank 𝔽₂ V : ℚ) := by
   rw [uniformSolutionProbability_eq_ite, ite_eq_left h]
 
-/-- Incompatible affine systems have probability zero.-/
+/-- Incompatible affine systems have probability zero.
+@isnad1 id=eq.1h4v.s7.5daf3a6f83c2 from=translated src=- shape=d8368ed4 vocab=fcae2623
+-/
 theorem uniformSolutionProbability_of_not_compatible
     (A : V →ₗ[𝔽₂] W) (b : W) (h : ¬Compatible A b) :
     uniformSolutionProbability A b = 0 := by

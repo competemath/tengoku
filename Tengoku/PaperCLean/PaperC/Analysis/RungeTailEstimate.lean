@@ -48,7 +48,9 @@ private theorem ratio_le_half
   rw [div_le_iff₀ hU0]
   nlinarith
 
-/-- Pointwise comparison with the geometric majorant.-/
+/-- Pointwise comparison with the geometric majorant.
+@isnad1 id=le.3h5v.s7.567f8f2c4e29 from=translated src=- shape=058d2254 vocab=6a82a512
+-/
 theorem norm_coefficientSeriesTerm_le
     {c : ℕ → ℝ} {M R U : ℝ}
     (hR : 0 ≤ R) (hU : 4 * R < U)
@@ -66,7 +68,9 @@ theorem norm_coefficientSeriesTerm_le
       ring
 
 /-- Absolute convergence of the Runge series under the Cauchy-type
-coefficient estimate.-/
+coefficient estimate.
+@isnad1 id=summable.3h4v.s6.fe5128314807 from=translated src=- shape=36d61cb4 vocab=3ec81cbc
+-/
 theorem summable_coefficientSeriesTerm
     {c : ℕ → ℝ} {M R U : ℝ}
     (hR : 0 ≤ R) (hU : 4 * R < U)
@@ -82,7 +86,9 @@ theorem summable_coefficientSeriesTerm
     (hgeom.mul_left M)
     (norm_coefficientSeriesTerm_le hR hU hc)
 
-/-- Splitting a convergent series after the term of index `k`.-/
+/-- Splitting a convergent series after the term of index `k`.
+@isnad1 id=eq.1h3v.s6.ff095f74b67e from=translated src=- shape=3b5dd6ad vocab=a51b7062
+-/
 theorem tsum_sub_sum_range_eq_tail
     {c : ℕ → ℝ} {U : ℝ}
     (hs : Summable (coefficientSeriesTerm c U)) (k : ℕ) :
@@ -92,7 +98,9 @@ theorem tsum_sub_sum_range_eq_tail
   have hsplit := hs.sum_add_tsum_nat_add (k + 1)
   linarith
 
-/-- The unscaled tail is bounded by twice its first geometric majorant.-/
+/-- The unscaled tail is bounded by twice its first geometric majorant.
+@isnad1 id=le.4h5v.s7.ea0f2e22b5e1 from=translated src=- shape=d3f0e5c0 vocab=6775bd97
+-/
 theorem abs_tail_le_two_mul
     {c : ℕ → ℝ} {M R U : ℝ}
     (hM : 0 ≤ M) (hR : 0 ≤ R) (hU : 4 * R < U)
@@ -141,7 +149,9 @@ theorem abs_tail_le_two_mul
 Equation (3.3), in its exact abstract form: after multiplication by `U^k`,
 the discarded part is bounded by
 
-`2 M (2R)^(k+1) / U`.-/
+`2 M (2R)^(k+1) / U`.
+@isnad1 id=le.4h5v.s7.6ab2ac03cd58 from=translated src=- shape=33e5b26b vocab=6775bd97
+-/
 theorem pow_mul_abs_tail_le
     {c : ℕ → ℝ} {M R U : ℝ}
     (hM : 0 ≤ M) (hR : 0 ≤ R) (hU : 4 * R < U)
@@ -167,7 +177,9 @@ section RungeCoefficients
 
 /--
 The finite sum in the analytic estimate is exactly the polynomial truncation
-from `RungeTruncation`, after restoring the factor `u^k`.-/
+from `RungeTruncation`, after restoring the factor `u^k`.
+@isnad1 id=eq.1h3v.s6.519db095528a from=translated src=- shape=63c54911 vocab=2641bbed
+-/
 theorem eval_rungeTruncation_eq_pow_mul_partialSum
     {k : ℕ} (γ : Fin (2 * k) → ℤ) {u : ℚ} (hu : u ≠ 0) :
     (RungeTruncation.rungeTruncation γ).eval u =
@@ -198,7 +210,9 @@ noncomputable def realRungeCoefficient
 /--
 Integer-evaluation version of
 `eval_rungeTruncation_eq_pow_mul_partialSum`, cast to the real series used
-by the analytic tail estimate.-/
+by the analytic tail estimate.
+@isnad1 id=eq.1h3v.s6.5e3ca8321c6f from=translated src=- shape=55566ee4 vocab=c4c49510
+-/
 theorem cast_eval_rungeTruncation_eq_pow_mul_realPartialSum
     {k : ℕ} (γ : Fin (2 * k) → ℤ) {u : ℤ} (hu : u ≠ 0) :
     (((RungeTruncation.rungeTruncation γ).eval (u : ℚ) : ℚ) : ℝ) =

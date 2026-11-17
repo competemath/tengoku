@@ -66,10 +66,16 @@ abbrev F₂ := ZMod 2
 local instance instMeasurableSpaceF2 : MeasurableSpace F₂ := ⊤
 abbrev InfiniteSample := ℕ → F₂
 def coordinateMeasure : Measure F₂ := (PMF.uniformOfFintype F₂).toMeasure
+/--
+@isnad1 id=isprobab.0h0v.s2.92e1d3b7c052 from=translated src=- shape=54c8eceb vocab=ed3a2940
+-/
 instance instProbabilityCoordinate : IsProbabilityMeasure coordinateMeasure := by
   unfold coordinateMeasure; infer_instance
 def infiniteRademacherMeasure : Measure InfiniteSample :=
   Measure.infinitePi (fun _ : ℕ => coordinateMeasure)
+/--
+@isnad1 id=isprobab.0h0v.s3.a43185d2b88d from=translated src=- shape=42e9cbf9 vocab=84d68efe
+-/
 instance instProbabilityInfinite : IsProbabilityMeasure infiniteRademacherMeasure := by
   unfold infiniteRademacherMeasure; infer_instance
 def parityVec (n : ℕ) : ℕ →₀ F₂ :=
@@ -116,6 +122,9 @@ def eventProbability {Ω : Type*} [Fintype Ω] (mu : FinitePMF Ω) (A : Ω → P
   ∑ omega, if A omega then mu.prob omega else 0
 def marginal {Ω ι : Type*} [Fintype Ω] (mu : FinitePMF Ω) (X : ι → Ω → Bool) (i : ι) : ℝ :=
   eventProbability mu (fun omega => X i omega=true)
+/--
+@isnad1 id=le.0h5v.s5.48726cf58418 from=translated src=- shape=c181798b vocab=c4fa179b
+-/
 theorem marginal_nonneg {Ω ι : Type*} [Fintype Ω] (mu : FinitePMF Ω)
     (X : ι → Ω → Bool) (i : ι) : 0 ≤ marginal mu X i := by
   unfold marginal eventProbability
@@ -215,11 +224,17 @@ def spatialSource (N L : ℕ) (omega : InfiniteSample) : SpatialConfig N :=
     if ExactLengthEvent (infiniteValueBit omega) (N+j.1.val) (L+j.2.1+1) ∧
       infiniteValueBit omega (N+j.1.val)=j.2.2 then 1 else 0)
 instance instMeasurableCluster : MeasurableSpace (ℕ →₀ ℕ) := ⊤
+/--
+@isnad1 id=measurab.0h0v.s3.ca2b0d9711b0 from=translated src=- shape=049cd614 vocab=fc12ec4a
+-/
 instance instSingletonCluster : MeasurableSingletonClass (ℕ →₀ ℕ) := by infer_instance
 def halfSuccess : unitInterval := ⟨1/2, by norm_num, by norm_num⟩
 def geometricClusterMeasure : Measure ℕ := (geometricMeasure halfSuccess).map Nat.succ
 def clusterConfiguration (sample : ℕ × (ℕ → ℕ)) : ℕ →₀ ℕ :=
   ∑ i∈Finset.range sample.1, if 0<sample.2 i then Finsupp.single (sample.2 i-1) 1 else 0
+/--
+@isnad1 id=measurab.0h0v.s4.cc83af12252c from=translated src=- shape=2ed2ed8b vocab=32a6a8c0
+-/
 theorem measurable_clusterConfiguration : Measurable clusterConfiguration := by
   apply measurable_from_prod_countable_right
   intro n
@@ -269,6 +284,9 @@ namespace CriticalField
 /- Probability laws of finite point measures use the weak topology and its
 Borel sigma-algebra. The limiting PPP is an actual independently marked sum. -/
 local instance instTopologicalSign : TopologicalSpace F₂ := ⊥
+/--
+@isnad1 id=discrete.0h0v.s1.572da982c35a from=translated src=- shape=49959d42 vocab=6f9a624f
+-/
 local instance instDiscreteSign : DiscreteTopology F₂ := ⟨rfl⟩
 def PointCloud := FiniteMeasure (ℝ × (ℕ × F₂))
 instance instTopologicalPointCloud : TopologicalSpace PointCloud :=
@@ -295,6 +313,9 @@ end CriticalField
 
 namespace CriticalField
 open Analysis
+/--
+@isnad1 id=fact.0h0v.s2.2cde8ffc8dda from=translated src=- shape=8d7dbbf6 vocab=c1c9ca6d
+-/
 local instance instPrimeTwo : Fact (Nat.Prime 2) := ⟨Nat.prime_two⟩
 local instance instFinitePrime (M : ℕ) : Fintype (PrimeUpTo M) := Subtype.fintype _
 local instance instDecidablePrime (M : ℕ) : DecidableEq (PrimeUpTo M) := Classical.decEq _

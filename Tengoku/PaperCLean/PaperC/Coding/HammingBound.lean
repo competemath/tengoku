@@ -33,6 +33,9 @@ abbrev BinaryWord (n : ℕ) := Fin n → F₂
 def wordSupport {n : ℕ} (x : BinaryWord n) : Finset (Fin n) :=
   Finset.univ.filter fun i ↦ x i ≠ 0
 
+/--
+@isnad1 id=eq.0h2v.s5.bb449f45cff6 from=translated src=- shape=96719868 vocab=3f8b8138
+-/
 @[simp]
 theorem card_wordSupport {n : ℕ} (x : BinaryWord n) :
     (wordSupport x).card = hammingNorm x :=
@@ -49,12 +52,18 @@ theorem eq_one_of_ne_zero (a : F₂) (ha : a ≠ 0) : a = 1 := by
 def wordOfSupport {n : ℕ} (s : Finset (Fin n)) : BinaryWord n :=
   fun i ↦ if i ∈ s then 1 else 0
 
+/--
+@isnad1 id=eq.0h2v.s4.7e106bb42620 from=translated src=- shape=60f8d03b vocab=9b5e5645
+-/
 @[simp]
 theorem wordSupport_wordOfSupport {n : ℕ} (s : Finset (Fin n)) :
     wordSupport (wordOfSupport s) = s := by
   ext i
   by_cases hi : i ∈ s <;> simp [wordSupport, wordOfSupport, hi]
 
+/--
+@isnad1 id=eq.0h2v.s3.2d2b2b3d180b from=translated src=- shape=6ddf6d3e vocab=8a1376cd
+-/
 @[simp]
 theorem wordOfSupport_wordSupport {n : ℕ} (x : BinaryWord n) :
     wordOfSupport (wordSupport x) = x := by
@@ -75,6 +84,9 @@ def supportEquiv (n : ℕ) : BinaryWord n ≃ Finset (Fin n) where
 def differenceSupport {n : ℕ} (x y : BinaryWord n) : Finset (Fin n) :=
   wordSupport (x - y)
 
+/--
+@isnad1 id=eq.0h3v.s5.b820766715b6 from=translated src=- shape=90e10325 vocab=4a25c1a3
+-/
 theorem hammingDist_eq_card_differenceSupport {n : ℕ} (x y : BinaryWord n) :
     hammingDist x y = (differenceSupport x y).card := by
   rw [hammingDist_eq_hammingNorm]
@@ -90,6 +102,9 @@ def differenceSupportEquiv {n : ℕ} (x : BinaryWord n) :
     BinaryWord n ≃ Finset (Fin n) :=
   (Equiv.subLeft x).trans (supportEquiv n)
 
+/--
+@isnad1 id=eq.0h3v.s5.1300523cc6b5 from=translated src=- shape=ec202a4c vocab=f4c229ef
+-/
 @[simp]
 theorem differenceSupportEquiv_apply {n : ℕ} (x y : BinaryWord n) :
     differenceSupportEquiv x y = differenceSupport x y :=
@@ -99,6 +114,9 @@ theorem differenceSupportEquiv_apply {n : ℕ} (x y : BinaryWord n) :
 def ball {n : ℕ} (x : BinaryWord n) (t : ℕ) : Finset (BinaryWord n) :=
   Finset.univ.filter fun y ↦ hammingDist x y ≤ t
 
+/--
+@isnad1 id=iff.0h4v.s5.8a4eb8288d7c from=translated src=- shape=7c0a25ae vocab=e162635e
+-/
 @[simp]
 theorem mem_ball {n t : ℕ} {x y : BinaryWord n} :
     y ∈ ball x t ↔ hammingDist x y ≤ t := by
@@ -112,6 +130,9 @@ def smallSupports (n t : ℕ) : Finset (Finset (Fin n)) :=
 def volume (n t : ℕ) : ℕ :=
   ∑ j ∈ Finset.range (t + 1), n.choose j
 
+/--
+@isnad1 id=eq.0h3v.s4.7104e0dbe756 from=translated src=- shape=5647191e vocab=33164e44
+-/
 theorem card_ball_eq_card_smallSupports {n t : ℕ} (x : BinaryWord n) :
     (ball x t).card = (smallSupports n t).card := by
   classical
@@ -130,6 +151,9 @@ theorem card_ball_eq_card_smallSupports {n t : ℕ} (x : BinaryWord n) :
       simpa using hsle
     · simp
 
+/--
+@isnad1 id=eq.0h2v.s4.1a6029bfd224 from=translated src=- shape=1a44c769 vocab=6e62a6e6
+-/
 theorem card_smallSupports (n t : ℕ) :
     (smallSupports n t).card = volume n t := by
   classical
@@ -150,13 +174,17 @@ theorem card_smallSupports (n t : ℕ) :
   rw [← Finset.powersetCard_eq_filter, Finset.card_powersetCard]
   simp
 
-/-- Every binary Hamming ball of radius `t` has the expected binomial volume.-/
+/-- Every binary Hamming ball of radius `t` has the expected binomial volume.
+@isnad1 id=eq.0h3v.s4.eca4f55a4927 from=translated src=- shape=25cd1531 vocab=612fee2c
+-/
 theorem card_ball {n t : ℕ} (x : BinaryWord n) :
     (ball x t).card = volume n t :=
   (card_ball_eq_card_smallSupports x).trans (card_smallSupports n t)
 
 /-- Radius-`t` balls around two words at distance greater than `2t` are
-disjoint.-/
+disjoint.
+@isnad1 id=disjoint.1h4v.s6.96cb2a965d0a from=translated src=- shape=535c5679 vocab=1f1bcb85
+-/
 theorem disjoint_balls_of_two_mul_lt_distance {n t : ℕ} {x y : BinaryWord n}
     (hxy : 2 * t < hammingDist x y) :
     Disjoint (ball x t) (ball y t) := by
@@ -176,14 +204,18 @@ def MinDistanceAbove {n : ℕ} (C : Finset (BinaryWord n)) (d : ℕ) : Prop :=
   ∀ ⦃x⦄, x ∈ C → ∀ ⦃y⦄, y ∈ C → x ≠ y → d < hammingDist x y
 
 /-- The radius-`t` balls around codewords are pairwise disjoint when the
-minimum distance is greater than `2t`.-/
+minimum distance is greater than `2t`.
+@isnad1 id=pairwise.1h3v.s5.ea6ae4ba32d7 from=translated src=- shape=f78ede7b vocab=6005db59
+-/
 theorem pairwiseDisjoint_balls {n t : ℕ} {C : Finset (BinaryWord n)}
     (hmin : MinDistanceAbove C (2 * t)) :
     (C : Set (BinaryWord n)).PairwiseDisjoint fun x ↦ ball x t := by
   intro x hx y hy hxy
   exact disjoint_balls_of_two_mul_lt_distance (hmin hx hy hxy)
 
-/-- The finite binary Hamming (sphere-packing) bound.-/
+/-- The finite binary Hamming (sphere-packing) bound.
+@isnad1 id=le.1h3v.s5.3fc09f35b32a from=translated src=- shape=f4f13775 vocab=7fb047f8
+-/
 theorem hamming_bound {n t : ℕ} {C : Finset (BinaryWord n)}
     (hmin : MinDistanceAbove C (2 * t)) :
     C.card * volume n t ≤ 2 ^ n := by
@@ -199,7 +231,9 @@ theorem hamming_bound {n t : ℕ} {C : Finset (BinaryWord n)}
     _ = 2 ^ n := by
       simp [Fintype.card_fun, ZMod.card]
 
-/-- Equation (3.5), written without the abbreviation `volume`.-/
+/-- Equation (3.5), written without the abbreviation `volume`.
+@isnad1 id=le.1h3v.s6.44899fe10a80 from=translated src=- shape=3b64646b vocab=b4c6b6e4
+-/
 theorem hamming_bound_sum_choose {n t : ℕ} {C : Finset (BinaryWord n)}
     (hmin : MinDistanceAbove C (2 * t)) :
     C.card * (∑ j ∈ Finset.range (t + 1), n.choose j) ≤ 2 ^ n := by
@@ -207,7 +241,9 @@ theorem hamming_bound_sum_choose {n t : ℕ} {C : Finset (BinaryWord n)}
 
 /-- Codimension form of the Hamming bound once the code cardinality is
 identified as `2^(n-r)`.  This is the exact numerical form used in (3.5) and
-Section 8.-/
+Section 8.
+@isnad1 id=le.2h4v.s7.ce878f7e47ff from=translated src=- shape=4d87e488 vocab=4fc7c760
+-/
 theorem hamming_bound_codimension {n t r : ℕ} {C : Finset (BinaryWord n)}
     (hmin : MinDistanceAbove C (2 * t))
     (hcard : C.card = 2 ^ (n - r)) :
@@ -222,6 +258,9 @@ noncomputable def submoduleCodewords {n : ℕ} (C : Submodule F₂ (BinaryWord n
   classical
   exact (Finset.univ : Finset (BinaryWord n)).filter fun x ↦ x ∈ C
 
+/--
+@isnad1 id=iff.0h3v.s8.b81e853bae2f from=translated src=- shape=0c704858 vocab=588caef3
+-/
 @[simp]
 theorem mem_submoduleCodewords {n : ℕ} {C : Submodule F₂ (BinaryWord n)}
     {x : BinaryWord n} :
@@ -229,7 +268,9 @@ theorem mem_submoduleCodewords {n : ℕ} {C : Submodule F₂ (BinaryWord n)}
   classical
   simp [submoduleCodewords]
 
-/-- A binary linear code has `2^dim(C)` codewords.-/
+/-- A binary linear code has `2^dim(C)` codewords.
+@isnad1 id=eq.0h2v.s9.ce6642ff36b7 from=translated src=- shape=cd225e5c vocab=fac5921c
+-/
 theorem card_submoduleCodewords {n : ℕ} (C : Submodule F₂ (BinaryWord n)) :
     (submoduleCodewords C).card = 2 ^ Module.finrank F₂ C := by
   classical
@@ -253,7 +294,9 @@ def MinWeightAbove {n : ℕ} (C : Submodule F₂ (BinaryWord n)) (d : ℕ) : Pro
   ∀ c : C, c ≠ 0 → d < hammingNorm (c : BinaryWord n)
 
 /-- For a linear code, a lower bound on nonzero weights gives the same lower
-bound on pairwise distances.-/
+bound on pairwise distances.
+@isnad1 id=mindista.1h3v.s6.199e65a38501 from=translated src=- shape=5103b822 vocab=8578734a
+-/
 theorem minDistanceAbove_submoduleCodewords {n d : ℕ}
     {C : Submodule F₂ (BinaryWord n)}
     (hweight : MinWeightAbove C d) :
@@ -276,7 +319,9 @@ theorem minDistanceAbove_submoduleCodewords {n d : ℕ}
     simp only [Pi.neg_apply, Pi.add_apply, Pi.sub_apply,
       ZMod.neg_eq_self_mod_two, sub_eq_add_neg]] using hc
 
-/-- Sphere-packing bound for a binary linear code, in dimension form.-/
+/-- Sphere-packing bound for a binary linear code, in dimension form.
+@isnad1 id=le.1h3v.s9.db0c58587ff6 from=translated src=- shape=d11ff43e vocab=829fcd75
+-/
 theorem hamming_bound_submodule {n t : ℕ}
     {C : Submodule F₂ (BinaryWord n)}
     (hweight : MinWeightAbove C (2 * t)) :
@@ -287,7 +332,9 @@ theorem hamming_bound_submodule {n t : ℕ}
     (minDistanceAbove_submoduleCodewords hweight)
   rwa [card_submoduleCodewords] at h
 
-/-- The exact codimension form used in equations (3.5) and Section 8.-/
+/-- The exact codimension form used in equations (3.5) and Section 8.
+@isnad1 id=le.2h4v.s9.da0a3883f26c from=translated src=- shape=9db69da5 vocab=61adb8fe
+-/
 theorem hamming_bound_submodule_codimension {n t r : ℕ}
     {C : Submodule F₂ (BinaryWord n)}
     (hweight : MinWeightAbove C (2 * t))
@@ -299,7 +346,9 @@ theorem hamming_bound_submodule_codimension {n t r : ℕ}
 /--
 The form of the first inequality in (3.5) needed in the paper: it is enough
 that the code have dimension *at least* `n - r`, equivalently codimension at
-most `r` when `r ≤ n`.-/
+most `r` when `r ≤ n`.
+@isnad1 id=le.2h4v.s9.6b46b85b60d8 from=translated src=- shape=a365fb47 vocab=61adb8fe
+-/
 theorem hamming_bound_submodule_of_finrank_ge {n t r : ℕ}
     {C : Submodule F₂ (BinaryWord n)}
     (hweight : MinWeightAbove C (2 * t))
@@ -316,7 +365,9 @@ theorem hamming_bound_submodule_of_finrank_ge {n t r : ℕ}
 /--
 The second inequality in (3.5).  If `r ≤ n`, the factor
 `2 ^ (n - r)` can be cancelled from the first inequality, giving the
-binomial-volume bound by `2 ^ r`.-/
+binomial-volume bound by `2 ^ r`.
+@isnad1 id=le.3h4v.s9.d64f151dde5d from=translated src=- shape=55e5c8fc vocab=61adb8fe
+-/
 theorem sum_choose_le_pow_of_finrank_ge {n t r : ℕ}
     {C : Submodule F₂ (BinaryWord n)}
     (hweight : MinWeightAbove C (2 * t))

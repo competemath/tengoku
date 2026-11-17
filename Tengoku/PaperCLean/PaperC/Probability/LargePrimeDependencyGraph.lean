@@ -54,6 +54,9 @@ noncomputable section
 def startRunSupport (x L : ℕ) : Finset ℕ :=
   (Finset.range L).image fun j ↦ x + j
 
+/--
+@isnad1 id=iff.0h3v.s5.1512636b1deb from=translated src=- shape=69ed5c06 vocab=1640af99
+-/
 @[simp]
 theorem mem_startRunSupport {x L n : ℕ} :
     n ∈ startRunSupport x L ↔
@@ -64,6 +67,9 @@ theorem mem_startRunSupport {x L n : ℕ} :
 def startTreeSupport (x L : ℕ) : Finset ℕ :=
   insert (x - 1) (startRunSupport x L)
 
+/--
+@isnad1 id=iff.0h3v.s5.bd9f56b50aa1 from=translated src=- shape=a4ee16ab vocab=428c2cc5
+-/
 @[simp]
 theorem mem_startTreeSupport {x L n : ℕ} :
     n ∈ startTreeSupport x L ↔
@@ -77,6 +83,9 @@ def largePrimeCoordinates (x L Y : ℕ) : Finset ℕ :=
   (startTreeSupport x L).biUnion fun n ↦
     largeOddPrimeSupport Y n
 
+/--
+@isnad1 id=iff.0h4v.s5.40776b6b6cf6 from=translated src=- shape=4c7f3950 vocab=e39c2e31
+-/
 @[simp]
 theorem mem_largePrimeCoordinates {x L Y p : ℕ} :
     p ∈ largePrimeCoordinates x L Y ↔
@@ -88,6 +97,9 @@ theorem mem_largePrimeCoordinates {x L Y p : ℕ} :
 def goodStarts (N L Y : ℕ) : Finset ℕ :=
   dyadicBlock N \ terminalBadStarts N L Y
 
+/--
+@isnad1 id=iff.0h4v.s5.6bc67598044e from=translated src=- shape=e631d21a vocab=cd927e34
+-/
 @[simp]
 theorem mem_goodStarts {N L Y x : ℕ} :
     x ∈ goodStarts N L Y ↔
@@ -102,6 +114,9 @@ def LargePrimeAdjacent (L Y x y : ℕ) : Prop :=
     (largePrimeCoordinates x L Y ∩
       largePrimeCoordinates y L Y).Nonempty
 
+/--
+@isnad1 id=largepri.1h4v.s4.6140a8e022ac from=translated src=- shape=8ddedaae vocab=1f63405b
+-/
 theorem largePrimeAdjacent_symm
     {L Y x y : ℕ} :
     LargePrimeAdjacent L Y x y →
@@ -111,6 +126,9 @@ theorem largePrimeAdjacent_symm
   exact ⟨hxy.symm,
     ⟨p, Finset.mem_inter.mpr ⟨hp'.2, hp'.1⟩⟩⟩
 
+/--
+@isnad1 id=not.0h3v.s3.b8ffe28531ac from=translated src=- shape=627c77a1 vocab=1f63405b
+-/
 theorem not_largePrimeAdjacent_self
     (L Y x : ℕ) :
     ¬LargePrimeAdjacent L Y x x := by
@@ -124,6 +142,9 @@ def largePrimeDependencyGraph (N L Y : ℕ) :
   symm := ⟨fun _ _ h ↦ largePrimeAdjacent_symm h⟩
   loopless := ⟨fun x h ↦ not_largePrimeAdjacent_self L Y x.1 h⟩
 
+/--
+@isnad1 id=iff.0h5v.s6.511bc8a5b64f from=translated src=- shape=b5037e6a vocab=e1441411
+-/
 @[simp]
 theorem largePrimeDependencyGraph_adj
     {N L Y : ℕ}
@@ -132,6 +153,9 @@ theorem largePrimeDependencyGraph_adj
       LargePrimeAdjacent L Y x.1 y.1 :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h4v.s5.8e37dde8a942 from=translated src=- shape=114a3e77 vocab=e2b031e4
+-/
 theorem largePrimeAdjacent_iff
     {L Y x y : ℕ} :
     LargePrimeAdjacent L Y x y ↔
@@ -148,7 +172,9 @@ theorem largePrimeAdjacent_iff
 /-! ## Local good pairs are edges -/
 
 /--
-A good start supplies a large prime at each of its non-root vertices.-/
+A good start supplies a large prime at each of its non-root vertices.
+@isnad1 id=ex.2h5v.s6.780c4bec4508 from=translated src=- shape=a36b8c86 vocab=468340ae
+-/
 theorem exists_largePrime_of_mem_runSupport_of_good
     {N L Y x n : ℕ}
     (hx : x ∈ goodStarts N L Y)
@@ -177,7 +203,9 @@ theorem exists_largePrime_of_mem_runSupport_of_good
 
 /--
 If a non-root vertex of one good start belongs to the complete support of a
-second start, the same large prime witnesses an edge.-/
+second start, the same large prime witnesses an edge.
+@isnad1 id=largepri.4h6v.s6.99819d1ee78d from=translated src=- shape=66edff44 vocab=3cca0ba0
+-/
 theorem largePrimeAdjacent_of_common_run_tree_vertex
     {N L Y x y n : ℕ}
     (hxy : x ≠ y)
@@ -193,7 +221,9 @@ theorem largePrimeAdjacent_of_common_run_tree_vertex
 
 /--
 Oriented local-pair statement.  The common vertex is `y-1`: it is a
-non-root vertex of the earlier start and the root of the later start.-/
+non-root vertex of the earlier start and the root of the later start.
+@isnad1 id=largepri.3h5v.s5.90ea97881ff6 from=translated src=- shape=14553f71 vocab=b5b01e26
+-/
 theorem largePrimeAdjacent_of_lt_of_sub_le
     {N L Y x y : ℕ}
     (hx : x ∈ goodStarts N L Y)
@@ -212,7 +242,9 @@ theorem largePrimeAdjacent_of_lt_of_sub_le
 
 /--
 Symmetric local-pair form used in Lemma 13.5: two distinct good starts whose
-natural-number distance is at most `L` are adjacent.-/
+natural-number distance is at most `L` are adjacent.
+@isnad1 id=largepri.4h5v.s5.dc65066d6b44 from=translated src=- shape=838e6dd9 vocab=7d440359
+-/
 theorem largePrimeAdjacent_of_good_of_dist_le
     {N L Y x y : ℕ}
     (hx : x ∈ goodStarts N L Y)
@@ -229,7 +261,9 @@ theorem largePrimeAdjacent_of_good_of_dist_le
 
 /--
 The shared coordinate in a local good pair is a genuine prime strictly above
-the conditioning cutoff.-/
+the conditioning cutoff.
+@isnad1 id=ex.4h5v.s6.a6de972faa9c from=translated src=- shape=1ecafbfc vocab=7ebe03d0
+-/
 theorem exists_shared_largePrime_of_good_of_dist_le
     {N L Y x y : ℕ}
     (hx : x ∈ goodStarts N L Y)
@@ -250,7 +284,9 @@ theorem exists_shared_largePrime_of_good_of_dist_le
     prime_and_large_of_mem_largeOddPrimeSupport hpn
   exact ⟨p, hpData.1, hpData.2, hpx, hpy⟩
 
-/-- Overlapping distinct good starts share a prime coordinate above `Y`.-/
+/-- Overlapping distinct good starts share a prime coordinate above `Y`.
+@isnad1 id=ex.4h5v.s6.7041f93a624a from=translated src=- shape=d0835835 vocab=8e56473c
+-/
 theorem exists_shared_largePrime_of_good_of_dist_lt
     {N L Y x y : ℕ}
     (hx : x ∈ goodStarts N L Y)
@@ -264,7 +300,9 @@ theorem exists_shared_largePrime_of_good_of_dist_lt
   exists_shared_largePrime_of_good_of_dist_le
     hx hy hxy hdist.le
 
-/-- Touching distinct good starts share a prime coordinate above `Y`.-/
+/-- Touching distinct good starts share a prime coordinate above `Y`.
+@isnad1 id=ex.4h5v.s6.09a80740b707 from=translated src=- shape=1ecafbfc vocab=8e56473c
+-/
 theorem exists_shared_largePrime_of_good_of_dist_eq
     {N L Y x y : ℕ}
     (hx : x ∈ goodStarts N L Y)
@@ -287,6 +325,9 @@ def orderedDependencyEdges (N L Y : ℕ) : Finset (ℕ × ℕ) := by
     ((goodStarts N L Y).product (goodStarts N L Y)).filter
       fun xy ↦ LargePrimeAdjacent L Y xy.1 xy.2
 
+/--
+@isnad1 id=iff.0h4v.s6.6e5496c2fd87 from=translated src=- shape=eae28b95 vocab=c0a81d74
+-/
 @[simp]
 theorem mem_orderedDependencyEdges
     {N L Y : ℕ} {xy : ℕ × ℕ} :
@@ -298,7 +339,9 @@ theorem mem_orderedDependencyEdges
   rcases xy with ⟨x, y⟩
   simp [orderedDependencyEdges, and_assoc]
 
-/-- Reversing an ordered edge gives an ordered edge.-/
+/-- Reversing an ordered edge gives an ordered edge.
+@isnad1 id=mem.1h5v.s6.3fbd741705ff from=translated src=- shape=4f848001 vocab=d72864fa
+-/
 theorem swap_mem_orderedDependencyEdges
     {N L Y x y : ℕ}
     (hxy : (x, y) ∈ orderedDependencyEdges N L Y) :
@@ -307,14 +350,18 @@ theorem swap_mem_orderedDependencyEdges
   exact ⟨hxy.2.1, hxy.1,
     largePrimeAdjacent_symm hxy.2.2⟩
 
-/-- Ordered dependency edges have explicitly distinct endpoints.-/
+/-- Ordered dependency edges have explicitly distinct endpoints.
+@isnad1 id=ne.1h5v.s5.a9da6d939f4e from=translated src=- shape=3c96f106 vocab=d72864fa
+-/
 theorem ne_of_mem_orderedDependencyEdges
     {N L Y x y : ℕ}
     (hxy : (x, y) ∈ orderedDependencyEdges N L Y) :
     x ≠ y :=
   (mem_orderedDependencyEdges.mp hxy).2.2.1
 
-/-- There are no diagonal ordered dependency edges.-/
+/-- There are no diagonal ordered dependency edges.
+@isnad1 id=not.0h4v.s5.0678a4fde248 from=translated src=- shape=025c2de6 vocab=d72864fa
+-/
 theorem pair_self_not_mem_orderedDependencyEdges
     (N L Y x : ℕ) :
     (x, x) ∉ orderedDependencyEdges N L Y := by
@@ -325,6 +372,9 @@ theorem pair_self_not_mem_orderedDependencyEdges
 def largePrimesInRange (Y X : ℕ) : Finset ℕ :=
   (Finset.Ioc Y X).filter Nat.Prime
 
+/--
+@isnad1 id=iff.0h3v.s5.0e18945b01b9 from=translated src=- shape=79037f53 vocab=35aa90fe
+-/
 @[simp]
 theorem mem_largePrimesInRange {Y X p : ℕ} :
     p ∈ largePrimesInRange Y X ↔
@@ -338,6 +388,9 @@ def startsUsingPrime (N L Y p : ℕ) : Finset ℕ :=
   (goodStarts N L Y).filter fun x ↦
     p ∈ largePrimeCoordinates x L Y
 
+/--
+@isnad1 id=iff.0h5v.s5.edb09ca01019 from=translated src=- shape=62d80dd4 vocab=6e106d5c
+-/
 @[simp]
 theorem mem_startsUsingPrime {N L Y p x : ℕ} :
     x ∈ startsUsingPrime N L Y p ↔
@@ -351,6 +404,9 @@ def orderedPairsUsingPrime
   (startsUsingPrime N L Y p).product
     (startsUsingPrime N L Y p)
 
+/--
+@isnad1 id=iff.0h5v.s6.6cc2138d9361 from=translated src=- shape=943b0878 vocab=812f8491
+-/
 @[simp]
 theorem mem_orderedPairsUsingPrime
     {N L Y p : ℕ} {xy : ℕ × ℕ} :
@@ -367,7 +423,9 @@ def orderedPrimeWitnessCover
 
 /--
 A prime coordinate used by a dyadic start lies at most at `3N`, provided
-`L ≤ N`.  This is the support cutoff used in Lemma 13.6.-/
+`L ≤ N`.  This is the support cutoff used in Lemma 13.6.
+@isnad1 id=mem.4h5v.s6.8d0f15cf8a2b from=translated src=- shape=00195984 vocab=970a9d92
+-/
 theorem mem_largePrimesInRange_of_mem_coordinates
     {N L Y x p : ℕ}
     (hN : 2 ≤ N)
@@ -406,7 +464,9 @@ theorem mem_largePrimesInRange_of_mem_coordinates
     ⟨hpData.1, hpData.2,
       (Nat.le_of_dvd hnPos hpDvd).trans hnUpper⟩
 
-/-- Every ordered edge is covered by at least one shared-prime pair set.-/
+/-- Every ordered edge is covered by at least one shared-prime pair set.
+@isnad1 id=le.2h3v.s5.4ad00a05615a from=translated src=- shape=5652f827 vocab=86928ccf
+-/
 theorem orderedDependencyEdges_subset_primeWitnessCover
     {N L Y : ℕ}
     (hN : 2 ≤ N)
@@ -427,7 +487,9 @@ theorem orderedDependencyEdges_subset_primeWitnessCover
 
 /--
 First-shared-prime overcount: the number of ordered edges is at most the sum
-of the squares of the numbers of starts using each prime.-/
+of the squares of the numbers of starts using each prime.
+@isnad1 id=le.2h3v.s6.30212bfe1b1a from=translated src=- shape=ea10867d vocab=f15bade0
+-/
 theorem card_orderedDependencyEdges_le_sum_sq
     {N L Y : ℕ}
     (hN : 2 ≤ N)
@@ -459,6 +521,9 @@ def startsWithDivisibleOffset
   (dyadicBlock N).filter fun x ↦
     p ∣ x - 1 + j
 
+/--
+@isnad1 id=iff.0h4v.s5.9ef0a46a9383 from=translated src=- shape=12899a3c vocab=b9f5f0ee
+-/
 @[simp]
 theorem mem_startsWithDivisibleOffset
     {N p j x : ℕ} :
@@ -468,7 +533,9 @@ theorem mem_startsWithDivisibleOffset
 
 /--
 Divisibility of the offset vertex is a single residue class in the start
-variable.  The positivity assumption prevents truncated subtraction at zero.-/
+variable.  The positivity assumption prevents truncated subtraction at zero.
+@isnad1 id=iff.2h3v.s6.ea604c55744f from=translated src=- shape=097512da vocab=6c186314
+-/
 theorem dvd_sub_one_add_iff_modEq
     {p x j : ℕ}
     (hx : 1 ≤ x)
@@ -504,7 +571,9 @@ theorem dvd_sub_one_add_iff_modEq
 
 /--
 For a fixed complete-tree offset, a prime divides at most `N/p+1` labels as
-the start ranges over the dyadic interval of length `N`.-/
+the start ranges over the dyadic interval of length `N`.
+@isnad1 id=le.3h3v.s6.2675245b1810 from=translated src=- shape=a5daeda3 vocab=48714ff2
+-/
 theorem card_startsWithDivisibleOffset_cast_le
     {N p j : ℕ}
     (hN : 1 ≤ N)
@@ -542,7 +611,9 @@ theorem card_startsWithDivisibleOffset_cast_le
 
 /--
 Starts using `p` are covered by the union over the `L+1` possible vertices
-of their complete support.-/
+of their complete support.
+@isnad1 id=le.1h4v.s5.fdda61be15c7 from=translated src=- shape=6c69121d vocab=35708430
+-/
 theorem startsUsingPrime_subset_offsetUnion
     {N L Y p : ℕ}
     (hN : 1 ≤ N) :
@@ -579,7 +650,9 @@ theorem startsUsingPrime_subset_offsetUnion
 
 /--
 Concrete one-prime start count.  The factor `L+1` is the number of vertices
-of the complete start tree.-/
+of the complete start tree.
+@isnad1 id=le.3h4v.s6.726df0f82b7e from=translated src=- shape=4e3fb6bf vocab=fb430e8a
+-/
 theorem card_startsUsingPrime_cast_le
     {N L Y p : ℕ}
     (hN : 1 ≤ N)
@@ -616,7 +689,9 @@ Exact pre-analytic form of the edge estimate in Lemma 13.6:
 
 `E_Y ≤ (L+1)² ∑_{Y<p≤3N} (N/p+1)²`.
 
-The sum is restricted to primes by `largePrimesInRange`.-/
+The sum is restricted to primes by `largePrimesInRange`.
+@isnad1 id=le.3h3v.s7.046f91a00e34 from=translated src=- shape=12122ce6 vocab=58421cea
+-/
 theorem card_orderedDependencyEdges_cast_le_prime_sum
     {N L Y : ℕ}
     (hN : 2 ≤ N)

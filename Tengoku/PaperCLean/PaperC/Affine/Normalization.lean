@@ -47,6 +47,9 @@ def relationCharacter
     RelationSpace A →ₗ[𝔽₂] 𝔽₂ :=
   (dotLinear b).comp (RelationSpace A).subtype
 
+/--
+@isnad1 id=eq.0h5v.s11.153217ff5772 from=translated src=- shape=178dddda vocab=569877dc
+-/
 @[simp]
 theorem relationCharacter_apply
     (A : V →ₗ[𝔽₂] (β → 𝔽₂)) (b : β → 𝔽₂)
@@ -65,19 +68,27 @@ def relationEta
     (A : V →ₗ[𝔽₂] (β → 𝔽₂)) (b : β → 𝔽₂) : ℕ :=
   if relationCharacter A b = 0 then 1 else 0
 
+/--
+@isnad1 id=iff.0h4v.s11.f131309c5e55 from=translated src=- shape=3f72f4e8 vocab=1439c346
+-/
 @[simp]
 theorem relationEta_eq_one_iff
     (A : V →ₗ[𝔽₂] (β → 𝔽₂)) (b : β → 𝔽₂) :
     relationEta A b = 1 ↔ relationCharacter A b = 0 := by
   simp [relationEta]
 
+/--
+@isnad1 id=iff.0h4v.s11.f134f708bc4e from=translated src=- shape=5ed3ef28 vocab=1439c346
+-/
 @[simp]
 theorem relationEta_eq_zero_iff
     (A : V →ₗ[𝔽₂] (β → 𝔽₂)) (b : β → 𝔽₂) :
     relationEta A b = 0 ↔ relationCharacter A b ≠ 0 := by
   simp [relationEta]
 
-/-- In particular, the Fourier compatibility factor belongs to `{0,1}`.-/
+/-- In particular, the Fourier compatibility factor belongs to `{0,1}`.
+@isnad1 id=or.0h4v.s7.57706e25638b from=translated src=- shape=ab1f2fd7 vocab=b8d16f86
+-/
 theorem relationEta_eq_zero_or_one
     (A : V →ₗ[𝔽₂] (β → 𝔽₂)) (b : β → 𝔽₂) :
     relationEta A b = 0 ∨ relationEta A b = 1 := by
@@ -89,7 +100,9 @@ theorem relationEta_eq_zero_or_one
 /--
 Compatibility makes the right-hand side character vanish on every relation.
 This is the direct implication in the finite-dimensional Fredholm
-alternative underlying Lemma 2.1.-/
+alternative underlying Lemma 2.1.
+@isnad1 id=eq.1h4v.s11.651566706f13 from=translated src=- shape=319ded52 vocab=3f7e1fb7
+-/
 theorem relationCharacter_eq_zero_of_compatible
     (A : V →ₗ[𝔽₂] (β → 𝔽₂)) (b : β → 𝔽₂)
     (hcompat : Compatible A b) :
@@ -109,7 +122,9 @@ variable [DecidableEq β]
 
 /--
 The indicator sum used in `relationSignedSum` is exactly the character sum
-over the relation subtype.-/
+over the relation subtype.
+@isnad1 id=eq.0h4v.s11.fed8ce38fc51 from=translated src=- shape=4bc97127 vocab=bae21970
+-/
 theorem relationSignedSum_eq_sum_relationCharacter
     (A : V →ₗ[𝔽₂] (β → 𝔽₂)) (b : β → 𝔽₂) :
     relationSignedSum A b =
@@ -129,7 +144,9 @@ theorem relationSignedSum_eq_sum_relationCharacter
 
 /--
 A relation-character sum is the full power of two for the trivial character
-and zero for a nontrivial character.-/
+and zero for a nontrivial character.
+@isnad1 id=eq.0h4v.s12.19084352cf07 from=translated src=- shape=c58cda31 vocab=4bac753b
+-/
 theorem relationSignedSum_eq_ite
     (A : V →ₗ[𝔽₂] (β → 𝔽₂)) (b : β → 𝔽₂) :
     relationSignedSum A b =
@@ -148,7 +165,9 @@ theorem relationSignedSum_eq_ite
         (K := 𝔽₂) (V := RelationSpace A))
   · simp [hq]
 
-/-- Exact evaluation of the signed relation sum as `η 2^ρ`.-/
+/-- Exact evaluation of the signed relation sum as `η 2^ρ`.
+@isnad1 id=eq.0h4v.s7.c03fb5dcb957 from=translated src=- shape=4133f1e6 vocab=77628a2f
+-/
 theorem relationSignedSum_eq_eta_mul_two_pow_rho
     (A : V →ₗ[𝔽₂] (β → 𝔽₂)) (b : β → 𝔽₂) :
     relationSignedSum A b =
@@ -168,7 +187,9 @@ Conversely, if the right-hand side character vanishes on every relation, the
 affine system is compatible.  The proof uses the already established finite
 Fourier identity: an incompatible system would give a zero left-hand side,
 whereas a trivial relation character contributes the nonzero quantity
-`2^ρ`.-/
+`2^ρ`.
+@isnad1 id=compatib.1h4v.s11.3bf329ebcca5 from=translated src=- shape=0a37a418 vocab=1f12ee35
+-/
 theorem compatible_of_relationCharacter_eq_zero
     (A : V →ₗ[𝔽₂] (β → 𝔽₂)) (b : β → 𝔽₂)
     (hq : relationCharacter A b = 0) :
@@ -191,13 +212,18 @@ theorem compatible_of_relationCharacter_eq_zero
 
 /--
 The manuscript's criterion: the relation character is trivial exactly when
-the affine system is compatible.-/
+the affine system is compatible.
+@isnad1 id=iff.0h4v.s11.33c68b5f9845 from=translated src=- shape=8273342f vocab=1f12ee35
+-/
 theorem relationCharacter_eq_zero_iff_compatible
     (A : V →ₗ[𝔽₂] (β → 𝔽₂)) (b : β → 𝔽₂) :
     relationCharacter A b = 0 ↔ Compatible A b :=
   ⟨compatible_of_relationCharacter_eq_zero A b,
     relationCharacter_eq_zero_of_compatible A b⟩
 
+/--
+@isnad1 id=iff.0h4v.s8.e5180a1de8eb from=translated src=- shape=302a3809 vocab=0dde8967
+-/
 @[simp]
 theorem relationEta_eq_one_iff_compatible
     (A : V →ₗ[𝔽₂] (β → 𝔽₂)) (b : β → 𝔽₂) :
@@ -205,6 +231,9 @@ theorem relationEta_eq_one_iff_compatible
   rw [relationEta_eq_one_iff,
     relationCharacter_eq_zero_iff_compatible]
 
+/--
+@isnad1 id=iff.0h4v.s8.7a5c65a78c57 from=translated src=- shape=1d5027ab vocab=0dde8967
+-/
 @[simp]
 theorem relationEta_eq_zero_iff_not_compatible
     (A : V →ₗ[𝔽₂] (β → 𝔽₂)) (b : β → 𝔽₂) :
@@ -212,14 +241,18 @@ theorem relationEta_eq_zero_iff_not_compatible
   rw [relationEta_eq_zero_iff, ne_eq,
     relationCharacter_eq_zero_iff_compatible]
 
-/-- A coordinate space with `m` binary coordinates has cardinality `2^m`.-/
+/-- A coordinate space with `m` binary coordinates has cardinality `2^m`.
+@isnad1 id=eq.0h1v.s5.3d82ed2cb2d0 from=translated src=- shape=b0169be3 vocab=95aa96a4
+-/
 theorem card_pi_f2 :
     Fintype.card (β → 𝔽₂) = 2 ^ Fintype.card β := by
   rw [Fintype.card_fun, ZMod.card]
 
 /--
 The division-free affine identity with both manuscript normalization factors
-made explicit.-/
+made explicit.
+@isnad1 id=eq.0h4v.s9.e2365abf118d from=translated src=- shape=6fe6e125 vocab=6f494dc5
+-/
 theorem affineFiber_normalized_card_identity
     (A : V →ₗ[𝔽₂] (β → 𝔽₂)) (b : β → 𝔽₂) :
     (2 : ℤ) ^ Fintype.card β *
@@ -245,7 +278,9 @@ end SignedSum
 
 /--
 A nontrivial relation character forces the relation space to have positive
-dimension.  This is the precise fact used in the incompatible case of (2.1).-/
+dimension.  This is the precise fact used in the incompatible case of (2.1).
+@isnad1 id=lt.1h4v.s11.2db71d0d43f6 from=translated src=- shape=d36e6acc vocab=0606bf96
+-/
 theorem relationRho_pos_of_character_ne_zero
     (A : V →ₗ[𝔽₂] (β → 𝔽₂)) (b : β → 𝔽₂)
     (hq : relationCharacter A b ≠ 0) :
@@ -257,7 +292,9 @@ theorem relationRho_pos_of_character_ne_zero
 /--
 The unconditional absolute estimate in (2.1):
 
-`|η 2^ρ - 1| ≤ 2^ρ - 1`.-/
+`|η 2^ρ - 1| ≤ 2^ρ - 1`.
+@isnad1 id=le.0h4v.s7.09b6e3996781 from=translated src=- shape=a1eaa6ac vocab=326cc3f8
+-/
 theorem abs_eta_mul_two_pow_rho_sub_one_le
     (A : V →ₗ[𝔽₂] (β → 𝔽₂)) (b : β → 𝔽₂) :
     |(relationEta A b : ℤ) * (2 : ℤ) ^ relationRho A - 1| ≤

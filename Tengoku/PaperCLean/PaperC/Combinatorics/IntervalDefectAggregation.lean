@@ -30,6 +30,9 @@ def defectsInInterval (defects : Finset ℕ) (H u : ℕ) : Finset ℕ :=
 def localCount (defects : Finset ℕ) (H u : ℕ) : ℕ :=
   (defectsInInterval defects H u).card
 
+/--
+@isnad1 id=iff.0h4v.s5.27a4b9925f58 from=translated src=- shape=ef8cd78b vocab=eb3d339e
+-/
 @[simp]
 theorem mem_defectsInInterval
     {defects : Finset ℕ} {H u n : ℕ} :
@@ -39,7 +42,9 @@ theorem mem_defectsInInterval
 
 /--
 Double counting the incidence relation
-`u ∈ starts ∧ n ∈ defects ∧ u ≤ n ≤ u + H`.-/
+`u ∈ starts ∧ n ∈ defects ∧ u ≤ n ≤ u + H`.
+@isnad1 id=eq.0h3v.s5.28363830bf3a from=translated src=- shape=dee1b677 vocab=cfed80f8
+-/
 theorem sum_localCount_eq_sum_intervalStartsContaining
     (defects starts : Finset ℕ) (H : ℕ) :
     ∑ u ∈ starts, localCount defects H u =
@@ -53,7 +58,9 @@ theorem sum_localCount_eq_sum_intervalStartsContaining
 
 /--
 The total local defect count is at most `H + 1` times the global number of
-defects.-/
+defects.
+@isnad1 id=le.0h3v.s5.e17402c4357d from=translated src=- shape=2dbf50a5 vocab=8ab24be1
+-/
 theorem sum_localCount_le
     (defects starts : Finset ℕ) (H : ℕ) :
     ∑ u ∈ starts, localCount defects H u ≤
@@ -71,7 +78,9 @@ theorem sum_localCount_le
 /--
 For `m ≤ M`, the shifted dyadic weight `2^m - 1` is bounded by
 `m * 2^M`.  The factor `m` is what lets the overlap estimate, rather than the
-number of possible starting points, control the weighted sum.-/
+number of possible starting points, control the weighted sum.
+@isnad1 id=le.1h2v.s6.1bcc95260ce2 from=translated src=- shape=79f47829 vocab=3e115a59
+-/
 theorem two_pow_sub_one_le_mul
     {m M : ℕ} (hmM : m ≤ M) :
     2 ^ m - 1 ≤ m * 2 ^ M := by
@@ -91,7 +100,9 @@ Weighted form of the interval aggregation estimate.  If each interval
 contains at most `M` defects, then
 
 `∑_{u ∈ starts} (2 ^ localCount(u) - 1)
-  ≤ (H + 1) * defects.card * 2 ^ M`.-/
+  ≤ (H + 1) * defects.card * 2 ^ M`.
+@isnad1 id=le.1h4v.s6.1f7b1624d830 from=translated src=- shape=05cd32ec vocab=91477fea
+-/
 theorem sum_two_pow_localCount_sub_one_le
     (defects starts : Finset ℕ) (H M : ℕ)
     (hlocal : ∀ u ∈ starts, localCount defects H u ≤ M) :

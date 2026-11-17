@@ -36,7 +36,9 @@ def labeledCellModulus
   modulus z.1
 
 /--
-Exact regrouping of the one-dimensional weights `u / p` by the prime label.-/
+Exact regrouping of the one-dimensional weights `u / p` by the prime label.
+@isnad1 id=eq.0h5v.s6.bcf53bd470c1 from=translated src=- shape=5d211453 vocab=4033ea22
+-/
 theorem sum_labeledCell_div_eq
     (cells : π → Finset κ) (modulus : π → ℕ) (u : ℚ) :
     (∑ z : LabeledCell cells,
@@ -51,7 +53,9 @@ theorem sum_labeledCell_div_eq
   ring
 
 /--
-Exact regrouping of the two-dimensional weights `u / p²` by the prime label.-/
+Exact regrouping of the two-dimensional weights `u / p²` by the prime label.
+@isnad1 id=eq.0h5v.s7.5933bd8df7b6 from=translated src=- shape=27854788 vocab=5d098169
+-/
 theorem sum_labeledCell_div_sq_eq
     (cells : π → Finset κ) (modulus : π → ℕ) (u : ℚ) :
     (∑ z : LabeledCell cells,
@@ -68,7 +72,9 @@ theorem sum_labeledCell_div_sq_eq
 
 /--
 If every prime supports at most `M` cells, their total two-dimensional weight
-is at most `u M ∑ₚ 1 / p²`.-/
+is at most `u M ∑ₚ 1 / p²`.
+@isnad1 id=le.3h6v.s7.45cee86aeba2 from=translated src=- shape=b4bc1c33 vocab=2a5e60f4
+-/
 theorem sum_labeledCell_div_sq_le
     (cells : π → Finset κ) (modulus : π → ℕ) (M : ℕ) (u : ℚ)
     (hu : 0 ≤ u) (hmodulus : ∀ p, 0 < modulus p)

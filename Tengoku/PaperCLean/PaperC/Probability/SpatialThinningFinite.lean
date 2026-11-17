@@ -72,6 +72,9 @@ noncomputable def thinnedCount
       active i = true ∧ ξ i = true).card
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=iff.0h3v.s4.9f18f0c8157c from=translated src=- shape=0eccb7df vocab=58d0d978
+-/
 theorem thinnedCount_eq_zero_iff
     (active ξ : ι → Bool) :
     thinnedCount active ξ = 0 ↔
@@ -96,7 +99,9 @@ theorem thinnedCount_eq_zero_iff
 omit [DecidableEq ι] in
 /--
 Pointwise factorization of the indicator of the void event against the
-Bernoulli product weight.-/
+Bernoulli product weight.
+@isnad1 id=eq.0h4v.s6.76646a44fd6e from=translated src=- shape=e08881ca vocab=8874292b
+-/
 theorem voidIndicator_mul_product_eq
     (q : ι → ℝ) (active ξ : ι → Bool) :
     (if NoRetainedActive active ξ then
@@ -130,7 +135,9 @@ theorem voidIndicator_mul_product_eq
 
 /--
 Exact conditional void probability for an arbitrary deterministic active
-configuration.-/
+configuration.
+@isnad1 id=eq.2h3v.s6.a3c7ccb1009e from=translated src=- shape=7f3a12c2 vocab=9241ed38
+-/
 theorem eventProbability_noRetainedActive_eq_prod
     (q : ι → ℝ)
     (hq0 : ∀ i, 0 ≤ q i)
@@ -175,6 +182,9 @@ noncomputable def exponentialRetention
   1 - Real.exp (-g i)
 
 omit [Fintype ι] [DecidableEq ι] in
+/--
+@isnad1 id=le.1h3v.s5.96cbda560532 from=translated src=- shape=186a0309 vocab=0ecf225b
+-/
 theorem exponentialRetention_nonneg
     (g : ι → ℝ) (hg : ∀ i, 0 ≤ g i) (i : ι) :
     0 ≤ exponentialRetention g i := by
@@ -183,6 +193,9 @@ theorem exponentialRetention_nonneg
     (Real.exp_le_one_iff.mpr (neg_nonpos.mpr (hg i)))
 
 omit [Fintype ι] [DecidableEq ι] in
+/--
+@isnad1 id=le.0h3v.s4.94c1f3e04b62 from=translated src=- shape=9734203e vocab=0ecf225b
+-/
 theorem exponentialRetention_le_one
     (g : ι → ℝ) (i : ι) :
     exponentialRetention g i ≤ 1 := by
@@ -192,7 +205,9 @@ theorem exponentialRetention_le_one
 /--
 Finite conditional Laplace identity:
 
-`P(no retained active site | active) = exp(-∑ active g)`.-/
+`P(no retained active site | active) = exp(-∑ active g)`.
+@isnad1 id=eq.1h3v.s6.5b9e5679c147 from=translated src=- shape=4909dda2 vocab=1ab502df
+-/
 theorem eventProbability_noRetainedActive_exponential_eq
     (g : ι → ℝ) (hg : ∀ i, 0 ≤ g i)
     (active : ι → Bool) :
@@ -231,7 +246,9 @@ theorem eventProbability_noRetainedActive_exponential_eq
 
 /--
 Equivalent count form of the finite Laplace identity, matching the manuscript
-event `W_g = 0`.-/
+event `W_g = 0`.
+@isnad1 id=eq.1h3v.s6.9564a8c89ff3 from=translated src=- shape=83f67b97 vocab=d54197b1
+-/
 theorem eventProbability_thinnedCount_zero_exponential_eq
     (g : ι → ℝ) (hg : ∀ i, 0 ≤ g i)
     (active : ι → Bool) :
@@ -255,7 +272,9 @@ theorem eventProbability_thinnedCount_zero_exponential_eq
 omit [DecidableEq ι] in
 /--
 The weighted Poisson parameter of a thinned finite family is bounded by the
-unthinned parameter.-/
+unthinned parameter.
+@isnad1 id=le.2h3v.s6.9d23b6eeffb0 from=translated src=- shape=ba010c63 vocab=9c3f0da6
+-/
 theorem sum_retention_mul_le_sum
     (q p : ι → ℝ)
     (hq1 : ∀ i, q i ≤ 1)
@@ -267,7 +286,9 @@ theorem sum_retention_mul_le_sum
 
 omit [DecidableEq ι] in
 /--
-The pair-weighted Stein--Chen summand is likewise dominated coordinatewise.-/
+The pair-weighted Stein--Chen summand is likewise dominated coordinatewise.
+@isnad1 id=le.3h3v.s7.451e8bd8d5e2 from=translated src=- shape=96ef238e vocab=9c3f0da6
+-/
 theorem sum_pair_retention_mul_le_sum
     (q : ι → ℝ) (p : ι → ι → ℝ)
     (hq0 : ∀ i, 0 ≤ q i)

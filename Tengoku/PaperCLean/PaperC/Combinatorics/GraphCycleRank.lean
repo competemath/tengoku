@@ -63,6 +63,9 @@ def HasPrivatePivots
   ∀ v : V, v ≠ root (component v) →
     ∃ p : P, ∀ w : V, vertexVector w p = if w = v then 1 else 0
 
+/--
+@isnad1 id=eq.0h6v.s7.585fc45e8bae from=translated src=- shape=531722c2 vocab=97f4462d
+-/
 @[simp]
 theorem incidenceVector_apply
     (left right : E → V) (e : E) (v : V) :
@@ -70,6 +73,9 @@ theorem incidenceVector_apply
       (if v = left e then 1 else 0) + (if v = right e then 1 else 0) := by
   simp only [incidenceVector, Pi.add_apply, Pi.single_apply]
 
+/--
+@isnad1 id=eq.0h6v.s9.ec633b7fbd5e from=translated src=- shape=b52f6c12 vocab=2a84ec3a
+-/
 @[simp]
 theorem incidenceMap_apply
     (left right : E → V) (x : E → F₂) (v : V) :
@@ -80,7 +86,9 @@ theorem incidenceMap_apply
 
 /--
 A private coordinate reads a represented-edge dependence as the incidence equation at its
-private vertex.-/
+private vertex.
+@isnad1 id=ex.2h11v.s9.240ea22851a5 from=translated src=- shape=4363597c vocab=bd452bde
+-/
 theorem incidenceMap_apply_eq_privateCoordinate
     (vertexVector : V → P → F₂) (left right : E → V)
     (component : V → C) (root : C → V)
@@ -99,7 +107,9 @@ theorem incidenceMap_apply_eq_privateCoordinate
 
 /--
 Every dependence of represented edge vectors satisfies the incidence equation at each vertex
-which has a private coordinate.-/
+which has a private coordinate.
+@isnad1 id=eq.3h11v.s9.d48e3cf3d47f from=translated src=- shape=a330b0d6 vocab=3134e51b
+-/
 theorem incidence_eq_zero_at_nonRoot_of_mem_ker
     (vertexVector : V → P → F₂) (left right : E → V)
     (component : V → C) (root : C → V)
@@ -116,7 +126,9 @@ theorem incidence_eq_zero_at_nonRoot_of_mem_ker
 
 /--
 The sum of all incidence coordinates in one component is zero, because every edge inside that
-component contributes twice (and every edge outside it contributes zero).-/
+component contributes twice (and every edge outside it contributes zero).
+@isnad1 id=eq.1h8v.s8.f9e2f8af5b1a from=translated src=- shape=9bedff7b vocab=427d8920
+-/
 theorem sum_incidenceMap_on_component_eq_zero
     (left right : E → V) (component : V → C)
     (hedge : ∀ e : E, component (left e) = component (right e))
@@ -152,7 +164,9 @@ theorem sum_incidenceMap_on_component_eq_zero
 
 /--
 Private pivots force every represented-edge dependence to have even degree at every vertex.
-Equivalently, its coefficient vector lies in the binary cycle space.-/
+Equivalently, its coefficient vector lies in the binary cycle space.
+@isnad1 id=le.3h9v.s9.a1d5011091cd from=translated src=- shape=1e9a42bf vocab=f20b5644
+-/
 theorem ker_representedEdgeMap_le_cycleSpace
     (vertexVector : V → P → F₂) (left right : E → V)
     (component : V → C) (root : C → V)
@@ -201,7 +215,9 @@ theorem ker_representedEdgeMap_le_cycleSpace
 
 /--
 Pointwise form: a vanishing combination of represented edge vectors has binary degree zero at
-every vertex.-/
+every vertex.
+@isnad1 id=eq.4h11v.s9.2a3219704d02 from=translated src=- shape=cd55311a vocab=218f2cbd
+-/
 theorem representedEdge_dependence_has_even_degree
     (vertexVector : V → P → F₂) (left right : E → V)
     (component : V → C) (root : C → V)
@@ -220,7 +236,9 @@ theorem representedEdge_dependence_has_even_degree
       (ker_representedEdgeMap_le_cycleSpace
         vertexVector left right component root hroot hedge hprivate hxker)) v
 
-/-- The nullity of represented edge vectors is at most the dimension of the cycle space.-/
+/-- The nullity of represented edge vectors is at most the dimension of the cycle space.
+@isnad1 id=le.3h9v.s10.8b2e35b99aa8 from=translated src=- shape=f03b9d3a vocab=bb420d25
+-/
 theorem finrank_ker_representedEdgeMap_le_cycleSpace
     (vertexVector : V → P → F₂) (left right : E → V)
     (component : V → C) (root : C → V)
@@ -233,7 +251,9 @@ theorem finrank_ker_representedEdgeMap_le_cycleSpace
     (ker_representedEdgeMap_le_cycleSpace
       vertexVector left right component root hroot hedge hprivate)
 
-/-- Nullity form, after supplying any upper bound `β` for the binary cycle space.-/
+/-- Nullity form, after supplying any upper bound `β` for the binary cycle space.
+@isnad1 id=le.4h10v.s10.e8418b88b4d2 from=translated src=- shape=69460a18 vocab=bb420d25
+-/
 theorem finrank_ker_representedEdgeMap_le_beta
     (vertexVector : V → P → F₂) (left right : E → V)
     (component : V → C) (root : C → V)
@@ -247,7 +267,9 @@ theorem finrank_ker_representedEdgeMap_le_beta
 
 /--
 Cyclomatic specialization of the nullity bound.  Here
-`|E| - |V| + |C|` is `β₁` for an edge presentation whose component index is `C`.-/
+`|E| - |V| + |C|` is `β₁` for an edge presentation whose component index is `C`.
+@isnad1 id=le.4h9v.s10.62484d70137d from=translated src=- shape=2bb6f035 vocab=9e8c06f3
+-/
 theorem finrank_ker_representedEdgeMap_le_cyclomaticNumber
     (vertexVector : V → P → F₂) (left right : E → V)
     (component : V → C) (root : C → V)

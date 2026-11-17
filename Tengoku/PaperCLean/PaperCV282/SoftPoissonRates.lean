@@ -32,8 +32,14 @@ def softBudget (rate : ℝ≥0) (diagonal defect degree relation touching bad : 
     (diagonal + degree * (defect + 2) + touching) + relation) +
       zeroSteinFactor rate * (rate : ℝ) * (defect + 2 * bad)
 
+/--
+@isnad1 id=le.0h1v.s3.952178652e74 from=translated src=- shape=b9369acb vocab=61fb8118
+-/
 theorem one_le_intensityEnvelope (rate : ℝ≥0) : 1 ≤ intensityEnvelope rate := le_max_left _ _
 
+/--
+@isnad1 id=eq.0h1v.s3.769096aa49ff from=translated src=- shape=7718e021 vocab=8264a44e
+-/
 theorem exp_positiveLog (rate : ℝ≥0) : Real.exp (positiveLog rate) = intensityEnvelope rate := by
   by_cases hz : rate = 0
   · simp [hz, positiveLog, intensityEnvelope]
@@ -45,30 +51,45 @@ theorem exp_positiveLog (rate : ℝ≥0) : Real.exp (positiveLog rate) = intensi
       rw [positiveLog, max_eq_left (Real.log_nonpos rate.coe_nonneg hsmall), Real.exp_zero,
         intensityEnvelope, max_eq_left hsmall]
 
+/--
+@isnad1 id=eq.0h1v.s4.246e4657a7cc from=translated src=- shape=b0e34c26 vocab=9ee0f0b9
+-/
 theorem sqrt_intensityEnvelope_eq_exp (rate : ℝ≥0) :
     Real.sqrt (intensityEnvelope rate) = Real.exp (positiveLog rate / 2) := by
   apply (Real.sqrt_eq_iff_mul_self_eq_of_pos (Real.exp_pos _)).mpr
   rw [← Real.exp_add, show positiveLog rate / 2 + positiveLog rate / 2 = positiveLog rate by ring,
     exp_positiveLog]
 
+/--
+@isnad1 id=le.0h1v.s3.020f9fb248de from=translated src=- shape=7718e021 vocab=2b16f375
+-/
 theorem sqrt_intensityEnvelope_le (rate : ℝ≥0) :
     Real.sqrt (intensityEnvelope rate) ≤ intensityEnvelope rate := by
   have hk := one_le_intensityEnvelope rate
   have hs := Real.sq_sqrt (show 0 ≤ intensityEnvelope rate by linarith)
   nlinarith [Real.sqrt_nonneg (intensityEnvelope rate)]
 
+/--
+@isnad1 id=eq.0h3v.s5.cfa250e0f654 from=translated src=- shape=de3ce8eb vocab=36f5f29e
+-/
 theorem sqrt_envelope_mul_exp (rate : ℝ≥0) (w error : ℝ) :
     Real.sqrt (intensityEnvelope rate) * Real.exp (-w / 2 + error) = softExponential rate w error := by
   rw [sqrt_intensityEnvelope_eq_exp, ← Real.exp_add]
   congr 1
   ring
 
+/--
+@isnad1 id=eq.0h3v.s5.87d31988fcb8 from=translated src=- shape=83b1f269 vocab=7e45ed8d
+-/
 theorem envelope_mul_exp (rate : ℝ≥0) (w error : ℝ) :
     intensityEnvelope rate * Real.exp (-w + error) = Real.exp (positiveLog rate - w + error) := by
   rw [← exp_positiveLog, ← Real.exp_add]
   congr 1
   ring
 
+/--
+@isnad1 id=le.2h3v.s5.5232465672e6 from=translated src=- shape=33eb5f61 vocab=5a635fff
+-/
 theorem positiveLog_le_cutoff_of_softExponential_le_one {rate : ℝ≥0} {w error : ℝ}
     (herror : 0 ≤ error) (hsmall : softExponential rate w error ≤ 1) :
     positiveLog rate ≤ w := by
@@ -76,6 +97,9 @@ theorem positiveLog_le_cutoff_of_softExponential_le_one {rate : ℝ≥0} {w erro
   change -(w - positiveLog rate) / 2 + error ≤ 0 at h
   linarith
 
+/--
+@isnad1 id=le.2h3v.s5.391bf1572d8c from=translated src=- shape=a9409e30 vocab=57d1f06b
+-/
 theorem degree_exponential_le_softExponential {rate : ℝ≥0} {w error : ℝ}
     (herror : 0 ≤ error) (hsmall : softExponential rate w error ≤ 1) :
     Real.exp (positiveLog rate - w + error) ≤ softExponential rate w error := by
@@ -84,6 +108,9 @@ theorem degree_exponential_le_softExponential {rate : ℝ≥0} {w error : ℝ}
   change positiveLog rate - w + error ≤ -(w - positiveLog rate) / 2 + error
   linarith
 
+/--
+@isnad1 id=le.3h4v.s5.e4b290be5f74 from=translated src=- shape=ddd44190 vocab=699fe3ba
+-/
 theorem intensityEnvelope_le_rpow_of_positiveLog_le {rate : ℝ≥0} {N w delta : ℝ}
     (hN : 0 < N) (hw : w ≤ delta * Real.log N) (hlog : positiveLog rate ≤ w) :
     intensityEnvelope rate ≤ N ^ delta := by
@@ -91,6 +118,9 @@ theorem intensityEnvelope_le_rpow_of_positiveLog_le {rate : ℝ≥0} {N w delta 
   apply Real.exp_le_exp.mpr
   nlinarith
 
+/--
+@isnad1 id=le.3h5v.s6.16db2119d9e3 from=translated src=- shape=deed52e0 vocab=11474859
+-/
 theorem intensityEnvelope_mul_rpow_le {rate : ℝ≥0} {N w delta power : ℝ}
     (hN : 0 < N) (hw : w ≤ delta * Real.log N) (hlog : positiveLog rate ≤ w) :
     intensityEnvelope rate * N ^ power ≤ N ^ (power + delta) := by
@@ -99,6 +129,9 @@ theorem intensityEnvelope_mul_rpow_le {rate : ℝ≥0} {N w delta power : ℝ}
       (intensityEnvelope_le_rpow_of_positiveLog_le hN hw hlog) (Real.rpow_nonneg hN.le _)
     _ = _ := by rw [← Real.rpow_add hN]; congr 1; ring
 
+/--
+@isnad1 id=le.9h10v.s8.fc1da9497407 from=translated src=- shape=ff7a3ff0 vocab=3b1c0317
+-/
 theorem softBudget_le_exponentials {rate : ℝ≥0}
     {diagonal defect degree relation touching bad P w error : ℝ}
     (hP : 0 ≤ P) (hPone : P ≤ 1) (hdegree : 0 ≤ degree)
@@ -149,6 +182,9 @@ theorem softBudget_le_exponentials {rate : ℝ≥0}
   unfold softBudget
   nlinarith
 
+/--
+@isnad1 id=le.13h12v.s8.ab4145af9753 from=translated src=- shape=10580fd0 vocab=dd93a409
+-/
 theorem soft_rate_minimum_of_budget {rate : ℝ≥0}
     {value diagonal defect degree relation touching bad P S w error : ℝ}
     (hvalue : value ≤ 1) (herror : 0 ≤ error) (hP : 0 ≤ P) (hS : 0 ≤ S) (hdegree : 0 ≤ degree)
@@ -175,6 +211,9 @@ theorem soft_rate_minimum_of_budget {rate : ℝ≥0}
     have hq : 0 < softExponential rate w error := Real.exp_pos _
     linarith
 
+/--
+@isnad1 id=le.12h13v.s8.5250153d1da4 from=translated src=- shape=612b3d0b vocab=5caa539e
+-/
 theorem soft_rate_rpow_of_budget {rate : ℝ≥0}
     {value diagonal defect degree relation touching bad N power delta w error : ℝ}
     (hN : 0 < N) (hw : w ≤ delta * Real.log N)

@@ -41,6 +41,9 @@ def allAssignments (L n : ℕ) :
     Finset (LargePrimeAssignment L n) :=
   Finset.univ
 
+/--
+@isnad1 id=eq.0h2v.s5.5edae69252ce from=translated src=- shape=5975e4ab vocab=42f22ec5
+-/
 @[simp]
 theorem card_allAssignments (L n : ℕ) :
     (allAssignments L n).card =
@@ -64,6 +67,9 @@ def startsForAssignment
           p.1 ≠
         0
 
+/--
+@isnad1 id=iff.0h5v.s7.e8e6fc199c1e from=translated src=- shape=18517225 vocab=795949bb
+-/
 @[simp]
 theorem mem_startsForAssignment
     {N L n y : ℕ} {assignment : LargePrimeAssignment L n} :
@@ -79,7 +85,9 @@ theorem mem_startsForAssignment
 
 /--
 If the same fixed offset has a prime divisor in two start blocks, their
-starts are congruent modulo that prime.-/
+starts are congruent modulo that prime.
+@isnad1 id=modeq.4h5v.s6.54a16735017b from=translated src=- shape=13e2d6ee vocab=7cc095be
+-/
 theorem start_modEq_of_assigned_labels_dvd
     {y z L p : ℕ} (hy : 1 ≤ y) (hz : 1 ≤ z)
     (w : Fin (L + 1))
@@ -120,7 +128,9 @@ private theorem pairwise_coprime_of_nodup_primes
         intro q hq
         exact hprime q (by simp [hq])
 
-/-- The prime list of the large support is pairwise coprime.-/
+/-- The prime list of the large support is pairwise coprime.
+@isnad1 id=pairwise.0h2v.s4.c592f3a29be8 from=translated src=- shape=0be6aec7 vocab=c508cace
+-/
 theorem largeSupport_toList_pairwise_coprime (L n : ℕ) :
     (LargeOddKernel.largeOddPrimeSupport (L + 1) n).toList.Pairwise
       Nat.Coprime := by
@@ -134,7 +144,9 @@ theorem largeSupport_toList_pairwise_coprime (L n : ℕ) :
 
 /--
 Any two starts realizing a fixed assignment are congruent modulo the complete
-large odd kernel.-/
+large odd kernel.
+@isnad1 id=modeq.3h6v.s6.ede40eab27f5 from=translated src=- shape=cfee2cc0 vocab=fb88339a
+-/
 theorem pairwise_modEq_largeOddKernel
     {N L n : ℕ} (hN : 1 ≤ N)
     (assignment : LargePrimeAssignment L n)
@@ -178,7 +190,9 @@ theorem pairwise_modEq_largeOddKernel
 
 /--
 One fixed assignment contributes at most one residue class modulo the kernel
-inside `[N,2N)`.-/
+inside `[N,2N)`.
+@isnad1 id=le.1h4v.s6.065dfb19aaed from=translated src=- shape=9fdf4153 vocab=a4dea25f
+-/
 theorem card_startsForAssignment_cast_le
     {N L n : ℕ} (hN : 1 ≤ N)
     (assignment : LargePrimeAssignment L n) :
@@ -235,6 +249,9 @@ def startsForSomeAssignment (N L n : ℕ) : Finset ℕ :=
   (allAssignments L n).biUnion
     (startsForAssignment N L n)
 
+/--
+@isnad1 id=iff.0h4v.s5.001d994e8546 from=translated src=- shape=b88ff4b0 vocab=6055a902
+-/
 @[simp]
 theorem mem_startsForSomeAssignment
     {N L n y : ℕ} :
@@ -246,7 +263,9 @@ theorem mem_startsForSomeAssignment
 
 /--
 After summing over the `(L+1)^ω` assignments, the number of possible opposite
-starts is bounded by the assignment count times the one-class estimate.-/
+starts is bounded by the assignment count times the one-class estimate.
+@isnad1 id=le.1h3v.s6.9f1f3762be11 from=translated src=- shape=06e91d25 vocab=317a2ff3
+-/
 theorem card_startsForSomeAssignment_cast_le
     {N L n : ℕ} (hN : 1 ≤ N) :
     ((startsForSomeAssignment N L n).card : ℚ) ≤
@@ -284,7 +303,9 @@ theorem card_startsForSomeAssignment_cast_le
       rw [card_allAssignments]
       norm_cast
 
-/-- Every complete start label in the dyadic block is covered by the cutoff.-/
+/-- Every complete start label in the dyadic block is covered by the cutoff.
+@isnad1 id=le.1h4v.s5.0140308328ef from=translated src=- shape=75e5f221 vocab=b4e50d5f
+-/
 theorem startCompleteVertexLabel_le_dyadicCutoff
     {N L x : ℕ} (hx : x ∈ dyadicBlock N)
     (v : Fin (L + 1)) :
@@ -297,7 +318,9 @@ theorem startCompleteVertexLabel_le_dyadicCutoff
 
 /--
 A selected left occurrence of a relation forces the right start into the
-union of all large-kernel assignment classes attached to the selected label.-/
+union of all large-kernel assignment classes attached to the selected label.
+@isnad1 id=mem.4h6v.s10.1f13acdbd2ec from=translated src=- shape=4a25b74e vocab=2471a6ac
+-/
 theorem right_mem_startsForSomeAssignment_of_selected_left
     {N L x y : ℕ} (hN : 2 ≤ N)
     (hx : x ∈ dyadicBlock N) (hy : y ∈ dyadicBlock N)
@@ -331,7 +354,9 @@ theorem right_mem_startsForSomeAssignment_of_selected_left
         (startCompleteVertexLabel_le_dyadicCutoff hx v)
         p.2)).1.2
 
-/-- Symmetric right-selected version.-/
+/-- Symmetric right-selected version.
+@isnad1 id=mem.4h6v.s10.49edc199a36f from=translated src=- shape=be3e900b vocab=d88fea37
+-/
 theorem left_mem_startsForSomeAssignment_of_selected_right
     {N L x y : ℕ} (hN : 2 ≤ N)
     (hx : x ∈ dyadicBlock N) (hy : y ∈ dyadicBlock N)

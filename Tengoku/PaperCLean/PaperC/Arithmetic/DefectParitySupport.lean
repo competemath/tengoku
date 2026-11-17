@@ -19,7 +19,9 @@ the arithmetic counting elsewhere in the proposition.
 namespace PaperC
 namespace DefectParitySupport
 
-/-- Multiplying a nonzero integer by a square does not change its parity vector.-/
+/-- Multiplying a nonzero integer by a square does not change its parity vector.
+@isnad1 id=eq.2h2v.s6.1417e4219751 from=translated src=- shape=7d13d2a5 vocab=8d2c7b59
+-/
 theorem parityVec_mul_sq
     {s a : ℕ} (hs : s ≠ 0) (ha : a ≠ 0) :
     parityVec (s * a ^ 2) = parityVec s := by
@@ -27,7 +29,9 @@ theorem parityVec_mul_sq
 
 /--
 Every nonzero parity coordinate of `s * a^2` corresponds to a divisor of
-`s`.-/
+`s`.
+@isnad1 id=dvd.3h3v.s6.68623322b675 from=translated src=- shape=75a1ce0d vocab=ec74512d
+-/
 theorem dvd_of_parityVec_mul_sq_ne_zero
     {s a p : ℕ} (hs : s ≠ 0) (ha : a ≠ 0)
     (hp : parityVec (s * a ^ 2) p ≠ 0) :
@@ -40,7 +44,9 @@ theorem dvd_of_parityVec_mul_sq_ne_zero
 
 /--
 Transport the preceding divisor statement across an explicit representation
-`n = s * a^2`.-/
+`n = s * a^2`.
+@isnad1 id=dvd.4h4v.s6.68b21d818280 from=translated src=- shape=2f5869f2 vocab=ec74512d
+-/
 theorem dvd_defectPart_of_eq_mul_sq_of_parityVec_ne_zero
     {n s a p : ℕ} (hs : s ≠ 0) (ha : a ≠ 0)
     (hn : n = s * a ^ 2)
@@ -51,7 +57,9 @@ theorem dvd_defectPart_of_eq_mul_sq_of_parityVec_ne_zero
 
 /--
 A nonzero coordinate of a parity vector is necessarily indexed by a prime.
-Non-prime coordinates of `Nat.factorization` vanish by definition.-/
+Non-prime coordinates of `Nat.factorization` vanish by definition.
+@isnad1 id=prime.1h2v.s6.588aac1e01de from=translated src=- shape=b3959fc8 vocab=f1966fa1
+-/
 theorem prime_of_parityVec_ne_zero
     {n p : ℕ} (hp : parityVec n p ≠ 0) :
     Nat.Prime p := by
@@ -62,7 +70,9 @@ theorem prime_of_parityVec_ne_zero
 
 /--
 If an enumeration covers every prime divisor of the defect part `s`, it
-covers every nonzero parity coordinate of `n = s * a^2`.-/
+covers every nonzero parity coordinate of `n = s * a^2`.
+@isnad1 id=ex.5h6v.s7.445a4d6ff34f from=translated src=- shape=62f16406 vocab=f0e78fb0
+-/
 theorem parityCoverage_of_eq_mul_sq
     {r n s a : ℕ} (smallPrime : Fin r → ℕ)
     (hs : s ≠ 0) (ha : a ≠ 0)

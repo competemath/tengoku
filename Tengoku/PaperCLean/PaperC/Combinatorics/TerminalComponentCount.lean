@@ -39,6 +39,9 @@ def largeComponents
     (components : Finset ι) (size : ι → ℕ) : Finset ι :=
   components.filter fun C ↦ 3 ≤ size C
 
+/--
+@isnad1 id=iff.0h4v.s5.f6b5a5627c83 from=translated src=- shape=31d18f46 vocab=db117a1f
+-/
 @[simp]
 theorem mem_pairComponents
     {components : Finset ι} {size : ι → ℕ} {C : ι} :
@@ -46,6 +49,9 @@ theorem mem_pairComponents
       C ∈ components ∧ size C = 2 := by
   simp [pairComponents]
 
+/--
+@isnad1 id=iff.0h4v.s5.e48b37b78ecc from=translated src=- shape=7b93ae7a vocab=ca610519
+-/
 @[simp]
 theorem mem_largeComponents
     {components : Finset ι} {size : ι → ℕ} {C : ι} :
@@ -55,7 +61,9 @@ theorem mem_largeComponents
 
 /--
 Every component has size two or at least three, so these two filtered
-families partition a family whose members all have size at least two.-/
+families partition a family whose members all have size at least two.
+@isnad1 id=eq.1h3v.s5.68f7c35b9897 from=translated src=- shape=01b567ed vocab=3e0d1abb
+-/
 theorem pair_union_large_eq
     [DecidableEq ι]
     {components : Finset ι} {size : ι → ℕ}
@@ -73,7 +81,9 @@ theorem pair_union_large_eq
     · exact Or.inl ⟨hC, heq⟩
     · exact Or.inr ⟨hC, by omega⟩
 
-/-- The two classes in the preceding partition are disjoint.-/
+/-- The two classes in the preceding partition are disjoint.
+@isnad1 id=disjoint.0h3v.s4.b32042cef428 from=translated src=- shape=1a836b8d vocab=afa5ddb4
+-/
 theorem disjoint_pairComponents_largeComponents
     [DecidableEq ι]
     (components : Finset ι) (size : ι → ℕ) :
@@ -90,7 +100,9 @@ theorem disjoint_pairComponents_largeComponents
 The vertex budget bounds the number of components larger than two.
 
 We use `components.card + s = B`, the cancellation-safe natural-number
-form of `components.card = B - s`.-/
+form of `components.card = B - s`.
+@isnad1 id=le.3h5v.s6.e0a8faeb9f8f from=translated src=- shape=9b380328 vocab=9c11c316
+-/
 theorem card_largeComponents_le_two_mul
     {components : Finset ι} {size : ι → ℕ} {B s : ℕ}
     (hcard : components.card + s = B)
@@ -137,7 +149,9 @@ theorem card_largeComponents_le_two_mul
 
 /--
 Proposition 9.11, terminal-population combinatorics: at least `B - 3s`
-members of the family are isolated two-vertex components.-/
+members of the family are isolated two-vertex components.
+@isnad1 id=le.3h5v.s6.a2a49a6e57cf from=translated src=- shape=2ef7c9b0 vocab=07e681da
+-/
 theorem card_pairComponents_ge_sub_three_mul
     [DecidableEq ι]
     {components : Finset ι} {size : ι → ℕ} {B s : ℕ}
@@ -155,7 +169,9 @@ theorem card_pairComponents_ge_sub_three_mul
 
 /--
 Bundled form of the two numerical conclusions used to define the terminal
-population in Proposition 9.11.-/
+population in Proposition 9.11.
+@isnad1 id=and.3h5v.s7.604033e64a86 from=translated src=- shape=aefdc5c1 vocab=2310a5bf
+-/
 theorem terminal_component_count
     [DecidableEq ι]
     {components : Finset ι} {size : ι → ℕ} {B s : ℕ}
@@ -170,7 +186,9 @@ theorem terminal_component_count
 /--
 Literal `c = B - s` form of the terminal-component conclusion.  The
 side-condition `s ≤ B` records the range in which natural subtraction
-agrees with the manuscript's integer calculation.-/
+agrees with the manuscript's integer calculation.
+@isnad1 id=and.4h5v.s7.4ab40f9bb859 from=translated src=- shape=0eb08db5 vocab=d28e7608
+-/
 theorem terminal_component_count_of_card_eq_sub
     [DecidableEq ι]
     {components : Finset ι} {size : ι → ℕ} {B s : ℕ}
@@ -191,7 +209,9 @@ theorem terminal_component_count_of_card_eq_sub
 
 /--
 Graph-facing form of the terminal component count.  Here `size C` is the
-literal cardinality of the support of the connected component `C`.-/
+literal cardinality of the support of the connected component `C`.
+@isnad1 id=and.3h5v.s8.fda34991d15e from=translated src=- shape=034b2e1d vocab=aeaf3f2e
+-/
 theorem connectedComponent_terminal_count
     {V : Type*} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]

@@ -48,7 +48,9 @@ noncomputable def eventProbability
   classical
   exact ∑ ω, if event ω then μ.prob ω else 0
 
-/-- Event probabilities are nonnegative.-/
+/-- Event probabilities are nonnegative.
+@isnad1 id=le.0h3v.s4.625454f08fa4 from=translated src=- shape=9befd6ab vocab=b8cd9b38
+-/
 theorem eventProbability_nonneg
     {Ω : Type u} [Fintype Ω]
     (μ : FinitePMF Ω) (event : Ω → Prop) :
@@ -74,12 +76,18 @@ noncomputable def jointMarginal
   eventProbability μ fun ω ↦
     X α ω = true ∧ X β ω = true
 
+/--
+@isnad1 id=le.0h5v.s5.847027085d5d from=translated src=- shape=c181798b vocab=46368cfb
+-/
 theorem marginal_nonneg
     {Ω : Type u} {ι : Type v} [Fintype Ω]
     (μ : FinitePMF Ω) (X : ι → Ω → Bool) (α : ι) :
     0 ≤ marginal μ X α :=
   eventProbability_nonneg μ _
 
+/--
+@isnad1 id=le.0h6v.s5.e6d21b9835d2 from=translated src=- shape=d5ba6d23 vocab=e7abcc5c
+-/
 theorem jointMarginal_nonneg
     {Ω : Type u} {ι : Type v} [Fintype Ω]
     (μ : FinitePMF Ω) (X : ι → Ω → Bool)
@@ -93,6 +101,9 @@ noncomputable def poissonParameter
     (μ : FinitePMF Ω) (X : ι → Ω → Bool) : ℝ :=
   ∑ α, marginal μ X α
 
+/--
+@isnad1 id=le.0h4v.s5.9b4264b3e243 from=translated src=- shape=ba9a9680 vocab=7e53900e
+-/
 theorem poissonParameter_nonneg
     {Ω : Type u} {ι : Type v} [Fintype Ω] [Fintype ι]
     (μ : FinitePMF Ω) (X : ι → Ω → Bool) :
@@ -115,6 +126,9 @@ noncomputable def closedNeighborhood
   classical
   exact Finset.univ.filter fun β ↦ β = α ∨ G.Adj α β
 
+/--
+@isnad1 id=iff.0h4v.s5.ede82d9ebf24 from=translated src=- shape=8a73a797 vocab=a5090e14
+-/
 @[simp]
 theorem mem_closedNeighborhood
     {ι : Type v} [Fintype ι] [DecidableEq ι]
@@ -124,6 +138,9 @@ theorem mem_closedNeighborhood
   classical
   simp [closedNeighborhood]
 
+/--
+@isnad1 id=mem.0h3v.s4.9f09b3cbdcbd from=translated src=- shape=eabbea16 vocab=87cd4346
+-/
 @[simp]
 theorem self_mem_closedNeighborhood
     {ι : Type v} [Fintype ι] [DecidableEq ι]
@@ -195,6 +212,9 @@ noncomputable def bTwo
   ∑ α, ∑ β ∈ (closedNeighborhood G α).erase α,
     jointMarginal μ X α β
 
+/--
+@isnad1 id=le.0h5v.s5.88393def9c73 from=translated src=- shape=f4696f94 vocab=4a9eb80b
+-/
 theorem bOne_nonneg
     {Ω : Type u} {ι : Type v}
     [Fintype Ω] [Fintype ι] [DecidableEq ι]
@@ -207,6 +227,9 @@ theorem bOne_nonneg
       mul_nonneg (marginal_nonneg μ X α)
         (marginal_nonneg μ X β)
 
+/--
+@isnad1 id=le.0h5v.s5.3121b683fbd2 from=translated src=- shape=f4696f94 vocab=e91794ff
+-/
 theorem bTwo_nonneg
     {Ω : Type u} {ι : Type v}
     [Fintype Ω] [Fintype ι] [DecidableEq ι]
@@ -233,6 +256,9 @@ noncomputable def indicatorSumLaw
     (μ : FinitePMF Ω) (X : ι → Ω → Bool) (k : ℕ) : ℝ :=
   eventProbability μ fun ω ↦ indicatorSum X ω = k
 
+/--
+@isnad1 id=le.0h5v.s5.7e89bdec1898 from=translated src=- shape=81f16932 vocab=effdf931
+-/
 theorem indicatorSumLaw_nonneg
     {Ω : Type u} {ι : Type v} [Fintype Ω] [Fintype ι]
     (μ : FinitePMF Ω) (X : ι → Ω → Bool) (k : ℕ) :

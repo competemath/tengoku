@@ -20,7 +20,9 @@ open scoped BigOperators
 
 noncomputable section
 
-/-- A selected left value places the right start in the interval assignment cover.-/
+/-- A selected left value places the right start in the interval assignment cover.
+@isnad1 id=mem.5h7v.s8.a238b49bb92d from=translated src=- shape=54b20d0f vocab=40a0e394
+-/
 theorem right_mem_boundedAssignment_of_selected_left
     {A Z L x y : ℕ} (hA : 2 ≤ A)
     (hx : x ∈ boundedRatioBlock A Z) (hy : y ∈ boundedRatioBlock A Z)
@@ -47,7 +49,9 @@ theorem right_mem_boundedAssignment_of_selected_left
     (FullPrimeAssignment.existsUnique_opposite_for_largeKernel_of_left
       hxOne hyOne c hEq v hvSelected p.2)).1.2
 
-/-- The symmetric interval cover for a selected right value.-/
+/-- The symmetric interval cover for a selected right value.
+@isnad1 id=mem.5h7v.s8.d6509a02574e from=translated src=- shape=84928eb3 vocab=58103b3d
+-/
 theorem left_mem_boundedAssignment_of_selected_right
     {A Z L x y : ℕ} (hA : 2 ≤ A)
     (hx : x ∈ boundedRatioBlock A Z) (hy : y ∈ boundedRatioBlock A Z)

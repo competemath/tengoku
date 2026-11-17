@@ -33,7 +33,9 @@ noncomputable def primeUpToEquivSmallPrimes (H : ℕ) :
     apply Subtype.ext
     rfl
 
-/-- The canonical coordinate count equals the cardinality of the prime finset.-/
+/-- The canonical coordinate count equals the cardinality of the prime finset.
+@isnad1 id=eq.0h1v.s3.824278415c57 from=translated src=- shape=76945425 vocab=988f6e2a
+-/
 theorem count_eq_card_smallPrimesUpTo (H : ℕ) :
     PrimesUpTo.count H =
       (DefectCounting.smallPrimesUpTo H).card := by

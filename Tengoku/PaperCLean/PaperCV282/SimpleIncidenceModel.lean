@@ -45,25 +45,39 @@ def pinnedColumns (H : Matrix R V F₂) : Finset V := by
   exact Finset.univ.filter (fun v => ∃ r, rowSupport H r = {v})
 
 omit [Fintype R] [DecidableEq V] in
+/--
+@isnad1 id=iff.0h5v.s5.a46f39078329 from=translated src=- shape=59665156 vocab=b0f288b9
+-/
 theorem mem_rowSupport (H : Matrix R V F₂) (r : R) (v : V) :
     v ∈ rowSupport H r ↔ H r v ≠ 0 := by simp [rowSupport]
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=iff.0h5v.s5.40edc7c9bd65 from=translated src=- shape=bd452652 vocab=b1dc8179
+-/
 theorem mem_columnSupport (H : Matrix R V F₂) (r : R) (v : V) :
     r ∈ columnSupport H v ↔ H r v ≠ 0 := by simp [columnSupport]
 
+/--
+@isnad1 id=iff.0h4v.s5.c3f62f463844 from=translated src=- shape=273ff296 vocab=ecc5d939
+-/
 theorem mem_pinnedColumns (H : Matrix R V F₂) (v : V) :
     v ∈ pinnedColumns H ↔ ∃ r, rowSupport H r = {v} := by
   classical
   simp [pinnedColumns]
 
+/--
+@isnad1 id=eq.1h1v.s5.f18caf134268 from=translated src=- shape=23aa8b17 vocab=f40c9e1f
+-/
 theorem binary_eq_one_of_ne_zero {a : F₂} (ha : a ≠ 0) : a = 1 := by
   fin_cases a
   · exact (ha rfl).elim
   · rfl
 
 omit [Fintype R] [DecidableEq V] in
-/-- Matrix multiplication reads each nonzero entry as the binary coefficient one.-/
+/-- Matrix multiplication reads each nonzero entry as the binary coefficient one.
+@isnad1 id=eq.0h5v.s8.766804486c2a from=translated src=- shape=6ff99894 vocab=7116eb1d
+-/
 theorem mulVecLin_apply_eq_support_sum (H : Matrix R V F₂) (f : V → F₂) (r : R) :
     (H.mulVecLin f) r = ∑ v ∈ rowSupport H r, f v := by
   classical
@@ -76,7 +90,9 @@ theorem mulVecLin_apply_eq_support_sum (H : Matrix R V F₂) (f : V → F₂) (r
   · simp [binary_eq_one_of_ne_zero hv]
 
 omit [Fintype R] in
-/-- All row shapes allowed by the hypothesis, including the zero row.-/
+/-- All row shapes allowed by the hypothesis, including the zero row.
+@isnad1 id=or.1h4v.s6.cb0001f5d275 from=translated src=- shape=3956986b vocab=51dbeb66
+-/
 theorem row_shapes (H : Matrix R V F₂) (r : R) (hrow : (rowSupport H r).card ≤ 2) :
     rowSupport H r = ∅ ∨ (∃ v, rowSupport H r = {v}) ∨
       ∃ u v, u ≠ v ∧ rowSupport H r = {u,v} := by
@@ -87,7 +103,9 @@ theorem row_shapes (H : Matrix R V F₂) (r : R) (hrow : (rowSupport H r).card �
   exact Or.inr (Or.inr (Finset.card_eq_two.mp (by omega)))
 
 omit [DecidableEq V] in
-/-- The same incidence mass is obtained by summing actual column weights.-/
+/-- The same incidence mass is obtained by summing actual column weights.
+@isnad1 id=eq.0h3v.s5.64aea6ec458b from=translated src=- shape=75469183 vocab=a6f1ecdf
+-/
 theorem incidenceMass_eq_sum_columnSupport (H : Matrix R V F₂) :
     incidenceMass H = ∑ v, (columnSupport H v).card := by
   classical

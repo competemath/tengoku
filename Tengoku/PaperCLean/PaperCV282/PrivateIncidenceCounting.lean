@@ -16,10 +16,16 @@ noncomputable section
 variable {R V : Type*} [Fintype R] [Fintype V] [DecidableEq R] [DecidableEq V]
 
 omit [Fintype R] [DecidableEq R] [DecidableEq V] in
+/--
+@isnad1 id=eq.0h5v.s6.be624c295303 from=translated src=- shape=3ab97a9b vocab=b9274afd
+-/
 theorem rowSupport_deleteRows (H : Matrix R V F₂) (D : Finset R) (r : {r // r ∉ D}) :
     rowSupport (deleteRows H D) r = rowSupport H r.val := rfl
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=le.0h5v.s6.3a2416336c2e from=translated src=- shape=cd24b985 vocab=bd944a9d
+-/
 theorem columnSupport_deleteRows_le (H : Matrix R V F₂) (D : Finset R) (v : V) :
     (columnSupport (deleteRows H D) v).card ≤ (columnSupport H v).card := by
   classical
@@ -34,6 +40,9 @@ theorem columnSupport_deleteRows_le (H : Matrix R V F₂) (D : Finset R) (v : V)
   simpa only [Fintype.card_coe] using Fintype.card_le_of_injective f hf
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h4v.s7.7da3a4011cf7 from=translated src=- shape=548f733f vocab=cd8e8071
+-/
 theorem incidenceMass_deleteRows_add_private (H : Matrix R V F₂) (D : Finset R) :
     incidenceMass (deleteRows H D) + (∑ r : D, (rowSupport H r.val).card) =
       incidenceMass H := by
@@ -47,6 +56,9 @@ theorem incidenceMass_deleteRows_add_private (H : Matrix R V F₂) (D : Finset R
   exact Finset.sum_congr (by ext; simp) (fun _ _ => rfl)
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=le.1h4v.s7.d0b209e42976 from=translated src=- shape=413f1735 vocab=b84ebd5b
+-/
 theorem incidenceMass_le_deleted_add_private (H : Matrix R V F₂) (D : Finset R)
     (hprivate : ∀ r ∈ D, (rowSupport H r).card ≤ 1) :
     incidenceMass H ≤ incidenceMass (deleteRows H D) + D.card := by
@@ -56,6 +68,9 @@ theorem incidenceMass_le_deleted_add_private (H : Matrix R V F₂) (D : Finset R
     (fun (r : D) _ => hprivate r.val r.property)
   simpa using h
 
+/--
+@isnad1 id=le.3h5v.s7.284bd81f10f0 from=translated src=- shape=905c2e98 vocab=3f25f2ba
+-/
 theorem deleted_incidence_le_rank (H : Matrix R V F₂) (D : Finset R) (K : ℕ)
     (hrow : ∀ r, (rowSupport H r).card ≤ 2)
     (hcol : ∀ v, (columnSupport H v).card ≤ K)
@@ -70,6 +85,9 @@ theorem deleted_incidence_le_rank (H : Matrix R V F₂) (D : Finset R) (K : ℕ)
     apply Subtype.ext
     exact hsimple r.val s.val hr hrs
 
+/--
+@isnad1 id=le.4h5v.s7.ba987589e512 from=translated src=- shape=fdd6c276 vocab=3f25f2ba
+-/
 theorem incidenceMass_le_private_add_deleted_rank (H : Matrix R V F₂) (D : Finset R) (K : ℕ)
     (hrow : ∀ r, (rowSupport H r).card ≤ 2)
     (hcol : ∀ v, (columnSupport H v).card ≤ K)

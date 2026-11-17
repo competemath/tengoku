@@ -24,7 +24,9 @@ coefficient bound
 
 `|c_m| ≤ 2^(2k) (2R)^m`
 
-is bounded by `(8R)^(2k)`.-/
+is bounded by `(8R)^(2k)`.
+@isnad1 id=le.2h2v.s7.9e21cbacf5ad from=translated src=- shape=df5a3722 vocab=f96c6fce
+-/
 theorem tailNumerator_le
     {k R : ℕ} (hk : 1 ≤ k) (hR : 1 ≤ R) :
     2 ^ (2 * k + 1) * (2 * R) ^ (k + 1) ≤
@@ -53,7 +55,9 @@ theorem tailNumerator_le
 
 /--
 After the dyadic gap contributes the additional factor `2^(2k)`, the whole
-non-equality branch is bounded by `(16R)^(2k)`.-/
+non-equality branch is bounded by `(16R)^(2k)`.
+@isnad1 id=le.2h2v.s7.da4cfc9cea43 from=translated src=- shape=fa78780c vocab=f96c6fce
+-/
 theorem dyadicTailNumerator_le
     {k R : ℕ} (hk : 1 ≤ k) (hR : 1 ≤ R) :
     2 ^ (2 * k) *
@@ -69,7 +73,9 @@ theorem dyadicTailNumerator_le
       congr 1
       omega
 
-/-- The preceding constant is certainly of the manuscript's `C d R` form.-/
+/-- The preceding constant is certainly of the manuscript's `C d R` form.
+@isnad1 id=le.2h2v.s7.78e9b2566e4b from=translated src=- shape=b221307c vocab=f96c6fce
+-/
 theorem dyadicTailNumerator_le_paperScale
     {k R : ℕ} (hk : 1 ≤ k) (hR : 1 ≤ R) :
     2 ^ (2 * k) *
@@ -85,7 +91,9 @@ theorem dyadicTailNumerator_le_paperScale
 /--
 The explicit height expression obtained for the auxiliary polynomial `Q`
 fits the paper's `(C d R)^(2d)` scale.  Here `d = 2k`; the concrete absolute
-constant is `128`.-/
+constant is `128`.
+@isnad1 id=le.2h2v.s8.9aa13c63a6aa from=translated src=- shape=598ab1a6 vocab=f96c6fce
+-/
 theorem one_add_auxiliaryHeightExpression_le_paperScale
     {k R : ℕ} (hk : 1 ≤ k) (hR : 1 ≤ R) :
     1 +

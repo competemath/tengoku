@@ -24,7 +24,9 @@ open scoped BigOperators
 
 noncomputable section
 
-/-- A large prime isolates its selected term in one block.-/
+/-- A large prime isolates its selected term in one block.
+@isnad1 id=eq.3h5v.s8.91069fb9c290 from=translated src=- shape=8f102490 vocab=e3443711
+-/
 theorem sum_eq_selected
     {x L p : ℕ} (hx : 1 ≤ x) (hpL : L + 1 < p)
     (c : Fin (L + 1) → F₂) (v : Fin (L + 1))
@@ -41,7 +43,9 @@ theorem sum_eq_selected
     simp [hzero]
   · simp
 
-/-- One valuation equation forces the unique selected occurrence in the other block.-/
+/-- One valuation equation forces the unique selected occurrence in the other block.
+@isnad1 id=existsun.6h7v.s9.aa66d19b38ad from=translated src=- shape=cbeb0960 vocab=c7b853dc
+-/
 theorem existsUnique_selected_opposite_of_prime_equation
     {x y L p : ℕ} (hx : 1 ≤ x) (hy : 1 ≤ y) (hpL : L + 1 < p)
     (cLeft cRight : Fin (L + 1) → F₂)
@@ -67,7 +71,9 @@ theorem existsUnique_selected_opposite_of_prime_equation
   exact RelationalPrimeAssignment.parityVec_ne_zero_unique_in_start
     hy hpL hw'.2 (right_ne_zero_of_mul hwTerm)
 
-/-- A full-value coefficient on the left forces a selected occurrence on the right.-/
+/-- A full-value coefficient on the left forces a selected occurrence on the right.
+@isnad1 id=existsun.6h6v.s9.a7277b2f9d8e from=translated src=- shape=402f7df3 vocab=88de5219
+-/
 theorem existsUnique_opposite_of_left
     {x y L p : ℕ} (hx : 1 ≤ x) (hy : 1 ≤ y) (hpL : L + 1 < p)
     (c : Sum (Fin (L + 1)) (Fin (L + 1)) → F₂)
@@ -80,7 +86,9 @@ theorem existsUnique_opposite_of_left
     (fun w => c (Sum.inl w)) (fun w => c (Sum.inr w)) ?_ v hvSelected hvParity
   simpa only [Fintype.sum_sum_type, twoStartCompleteVertexLabel] using heq
 
-/-- The symmetric right-to-left consequence of the same valuation equation.-/
+/-- The symmetric right-to-left consequence of the same valuation equation.
+@isnad1 id=existsun.6h6v.s9.4edaea749170 from=translated src=- shape=90dc5f0a vocab=88de5219
+-/
 theorem existsUnique_opposite_of_right
     {x y L p : ℕ} (hx : 1 ≤ x) (hy : 1 ≤ y) (hpL : L + 1 < p)
     (c : Sum (Fin (L + 1)) (Fin (L + 1)) → F₂)
@@ -94,7 +102,9 @@ theorem existsUnique_opposite_of_right
   rw [add_comm]
   simpa only [Fintype.sum_sum_type, twoStartCompleteVertexLabel] using heq
 
-/-- Every prime of a selected left value's large odd kernel has a unique partner.-/
+/-- Every prime of a selected left value's large odd kernel has a unique partner.
+@isnad1 id=existsun.5h6v.s9.0cb79a01bcf5 from=translated src=- shape=0f71abf9 vocab=0cbdde6e
+-/
 theorem existsUnique_opposite_for_largeKernel_of_left
     {x y L : ℕ} (hx : 1 ≤ x) (hy : 1 ≤ y)
     (c : Sum (Fin (L + 1)) (Fin (L + 1)) → F₂)
@@ -109,7 +119,9 @@ theorem existsUnique_opposite_for_largeKernel_of_left
   exact existsUnique_opposite_of_left hx hy hpData.2 c (hEq p hpData.1)
     v hvSelected (LargeOddKernel.mem_largeOddPrimeSupport_iff.mp hpSupport).2
 
-/-- The symmetric large-kernel partner statement for a selected right value.-/
+/-- The symmetric large-kernel partner statement for a selected right value.
+@isnad1 id=existsun.5h6v.s9.edab1c05aea1 from=translated src=- shape=b2db2011 vocab=0cbdde6e
+-/
 theorem existsUnique_opposite_for_largeKernel_of_right
     {x y L : ℕ} (hx : 1 ≤ x) (hy : 1 ≤ y)
     (c : Sum (Fin (L + 1)) (Fin (L + 1)) → F₂)
@@ -124,7 +136,9 @@ theorem existsUnique_opposite_for_largeKernel_of_right
   exact existsUnique_opposite_of_right hx hy hpData.2 c (hEq p hpData.1)
     v hvSelected (LargeOddKernel.mem_largeOddPrimeSupport_iff.mp hpSupport).2
 
-/-- A selected left coefficient puts the right start in the retained CRT cover.-/
+/-- A selected left coefficient puts the right start in the retained CRT cover.
+@isnad1 id=mem.5h6v.s8.3dfc19a1886a from=translated src=- shape=3ea875ac vocab=40492909
+-/
 theorem right_mem_startsForSomeAssignment_of_selected_left
     {N L x y : ℕ} (hN : 2 ≤ N)
     (hx : x ∈ dyadicBlock N) (hy : y ∈ dyadicBlock N)
@@ -147,7 +161,9 @@ theorem right_mem_startsForSomeAssignment_of_selected_left
   exact (Classical.choose_spec
     (existsUnique_opposite_for_largeKernel_of_left hxOne hyOne c hEq v hvSelected p.2)).1.2
 
-/-- A selected right coefficient puts the left start in the retained CRT cover.-/
+/-- A selected right coefficient puts the left start in the retained CRT cover.
+@isnad1 id=mem.5h6v.s8.ebe814a7df08 from=translated src=- shape=5662e8a9 vocab=0c979c61
+-/
 theorem left_mem_startsForSomeAssignment_of_selected_right
     {N L x y : ℕ} (hN : 2 ≤ N)
     (hx : x ∈ dyadicBlock N) (hy : y ∈ dyadicBlock N)

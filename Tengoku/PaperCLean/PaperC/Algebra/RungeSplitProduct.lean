@@ -30,12 +30,18 @@ variable {F ι : Type*} [Field F] [Fintype ι]
 noncomputable def splitProduct (root : ι → F) : F[X] :=
   ∏ i, (X - C (root i))
 
+/--
+@isnad1 id=eq.0h3v.s5.8df47b935313 from=translated src=- shape=010b773d vocab=b4f42a90
+-/
 @[simp]
 theorem natDegree_splitProduct (root : ι → F) :
     (splitProduct root).natDegree = Fintype.card ι := by
   classical
   simp [splitProduct]
 
+/--
+@isnad1 id=iff.0h3v.s5.9a13f06aad6b from=translated src=- shape=bfebe4ff vocab=3dfd5958
+-/
 theorem splitProduct_separable_iff (root : ι → F) :
     (splitProduct root).Separable ↔ Function.Injective root := by
   classical
@@ -44,7 +50,9 @@ theorem splitProduct_separable_iff (root : ι → F) :
 
 /--
 A nonempty product of distinct linear factors is not a polynomial square.
-The paper applies this with `root i = -γ i` over `ℚ`.-/
+The paper applies this with `root i = -γ i` over `ℚ`.
+@isnad1 id=not.1h3v.s7.247945d378db from=translated src=- shape=d441a45b vocab=f8455dc2
+-/
 theorem splitProduct_not_isSquare
     [Nonempty ι] (root : ι → F) (hinjective : Function.Injective root) :
     ¬ ∃ q : F[X], splitProduct root = q ^ 2 := by

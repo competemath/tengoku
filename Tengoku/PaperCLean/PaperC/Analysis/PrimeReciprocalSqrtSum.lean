@@ -71,7 +71,9 @@ private theorem card_primesBetween_le_count (B X : ℕ) :
 
 /--
 The Chebyshev cardinality estimate for one shell `(Y,2Y]`, with the
-logarithm frozen at the lower reference scale `B`.-/
+logarithm frozen at the lower reference scale `B`.
+@isnad1 id=le.2h2v.s6.b21541f8c633 from=translated src=- shape=b1d77e0d vocab=1e8a6da6
+-/
 theorem log_mul_card_primesBetween_le
     {B Y : ℕ} (hB : 4 ≤ B) (hBY : B ≤ Y) :
     Nat.log 2 B * (primesBetween Y (2 * Y)).card ≤ 14 * Y := by
@@ -92,7 +94,9 @@ theorem log_mul_card_primesBetween_le
     _ = 14 * Y := by omega
 
 /--
-Prime-sensitive reciprocal-square-root estimate on one dyadic shell.-/
+Prime-sensitive reciprocal-square-root estimate on one dyadic shell.
+@isnad1 id=le.2h2v.s6.e4e84ba572fd from=translated src=- shape=c3617b0e vocab=fa816644
+-/
 theorem sum_inv_sqrt_primesBetween_le
     {B Y : ℕ} (hB : 4 ≤ B) (hBY : B ≤ Y) :
     (∑ p ∈ primesBetween Y (2 * Y), (Real.sqrt p)⁻¹) ≤
@@ -222,7 +226,9 @@ Explicit reciprocal-square-root estimate on the dyadic interval
 `(B, B*2^K]`.
 
 The constant `56` comes from the shell constant `14` and the elementary
-geometric inequality `5 ≤ 4√2`.-/
+geometric inequality `5 ≤ 4√2`.
+@isnad1 id=le.1h2v.s6.60f448bdf91b from=translated src=- shape=e80e54b7 vocab=027bc2b4
+-/
 theorem sum_inv_sqrt_dyadicPrimes_le
     (B K : ℕ) (hB : 4 ≤ B) :
     (∑ p ∈ dyadicPrimes B K, (Real.sqrt p)⁻¹) ≤
@@ -281,10 +287,16 @@ def coverExponent (H : ℕ) : ℕ :=
 def dyadicCover (H : ℕ) : ℕ :=
   rootCutoff H * 2 ^ coverExponent H
 
+/--
+@isnad1 id=eq.0h1v.s5.ae43edf63c8d from=translated src=- shape=c2614c8f vocab=1260aec9
+-/
 theorem rootCutoff_eq (H : ℕ) :
     rootCutoff H = 2 ^ (Nat.log 2 H / 2) :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.1035d9649155 from=translated src=- shape=c2614c8f vocab=35b640de
+-/
 theorem dyadicCover_eq_two_pow (H : ℕ) :
     dyadicCover H = 2 ^ (Nat.log 2 H + 1) := by
   unfold dyadicCover rootCutoff coverExponent
@@ -292,11 +304,17 @@ theorem dyadicCover_eq_two_pow (H : ℕ) :
   congr 1
   omega
 
+/--
+@isnad1 id=le.0h1v.s3.3cebe39dccda from=translated src=- shape=e63234f4 vocab=1f528ae4
+-/
 theorem le_dyadicCover (H : ℕ) :
     H ≤ dyadicCover H := by
   rw [dyadicCover_eq_two_pow]
   exact (Nat.lt_pow_succ_log_self (by norm_num : 1 < 2) H).le
 
+/--
+@isnad1 id=le.1h1v.s4.33d12e748be6 from=translated src=- shape=96c15876 vocab=19ef5148
+-/
 theorem dyadicCover_le_two_mul {H : ℕ} (hH : 1 ≤ H) :
     dyadicCover H ≤ 2 * H := by
   rw [dyadicCover_eq_two_pow, pow_succ]
@@ -306,7 +324,9 @@ theorem dyadicCover_le_two_mul {H : ℕ} (hH : 1 ≤ H) :
 
 /--
 The lower cutoff really is at most the square-root scale:
-`(rootCutoff H)² ≤ H`.-/
+`(rootCutoff H)² ≤ H`.
+@isnad1 id=le.1h1v.s5.ad9a7e8657c5 from=translated src=- shape=a8aaebd1 vocab=5fe25096
+-/
 theorem rootCutoff_sq_le {H : ℕ} (hH : 1 ≤ H) :
     rootCutoff H ^ 2 ≤ H := by
   unfold rootCutoff
@@ -319,6 +339,9 @@ theorem rootCutoff_sq_le {H : ℕ} (hH : 1 ≤ H) :
     _ ≤ H :=
       Nat.pow_log_le_self 2 (ne_of_gt hH)
 
+/--
+@isnad1 id=le.1h1v.s4.d3a57bb3758b from=translated src=- shape=35bd48ee vocab=3892deb8
+-/
 theorem four_le_rootCutoff {H : ℕ} (hH : 16 ≤ H) :
     4 ≤ rootCutoff H := by
   have hlog : 4 ≤ Nat.log 2 H := by
@@ -328,6 +351,9 @@ theorem four_le_rootCutoff {H : ℕ} (hH : 16 ≤ H) :
   change 2 ^ 2 ≤ 2 ^ (Nat.log 2 H / 2)
   exact Nat.pow_le_pow_right (by norm_num) (by omega)
 
+/--
+@isnad1 id=eq.0h1v.s4.888f06d9e013 from=translated src=- shape=a4dfe20c vocab=0b60e258
+-/
 theorem log_rootCutoff (H : ℕ) :
     Nat.log 2 (rootCutoff H) = Nat.log 2 H / 2 := by
   simp [rootCutoff, Nat.log_pow (by norm_num : 1 < 2)]
@@ -404,7 +430,9 @@ private theorem low_add_high_sum (H : ℕ) :
 /--
 Global explicit prime-sensitive estimate.  The first summand is the
 `O(H^(1/4))` low-prime contribution; the second is the
-`O(√H / log H)` dyadic contribution.-/
+`O(√H / log H)` dyadic contribution.
+@isnad1 id=le.1h1v.s6.bddb2b397356 from=translated src=- shape=13c64d97 vocab=d65a4b89
+-/
 theorem sum_smallPrimesUpTo_inv_sqrt_le
     {H : ℕ} (hH : 16 ≤ H) :
     (∑ p ∈ DefectCounting.smallPrimesUpTo H,
@@ -418,7 +446,9 @@ theorem sum_smallPrimesUpTo_inv_sqrt_le
 /--
 Slightly coarser form with the dyadic endpoint replaced by `2H`.  Together
 with `rootCutoff_sq_le`, this displays directly the finite
-`O(H^(1/4)) + O(√H / log H)` shape.-/
+`O(H^(1/4)) + O(√H / log H)` shape.
+@isnad1 id=le.1h1v.s6.20f17f449bfd from=translated src=- shape=bc473513 vocab=edf9f83c
+-/
 theorem sum_smallPrimesUpTo_inv_sqrt_le_two_mul
     {H : ℕ} (hH : 16 ≤ H) :
     (∑ p ∈ DefectCounting.smallPrimesUpTo H,
@@ -454,7 +484,9 @@ theorem sum_smallPrimesUpTo_inv_sqrt_le_two_mul
 
 /--
 The corresponding Euler-product envelope, in reciprocal-square-root
-notation.-/
+notation.
+@isnad1 id=le.1h1v.s6.76786a3727c6 from=translated src=- shape=d7073064 vocab=39f79046
+-/
 theorem prod_smallPrimesUpTo_one_add_inv_sqrt_le_primeSensitive
     {H : ℕ} (hH : 16 ≤ H) :
     (∏ p ∈ DefectCounting.smallPrimesUpTo H,
@@ -478,7 +510,9 @@ theorem prod_smallPrimesUpTo_one_add_inv_sqrt_le_primeSensitive
       Real.exp_le_exp.mpr (sum_smallPrimesUpTo_inv_sqrt_le hH)
 
 /--
-Euler-product envelope with the simpler endpoint `2H`.-/
+Euler-product envelope with the simpler endpoint `2H`.
+@isnad1 id=le.1h1v.s7.d6bc59b74e6a from=translated src=- shape=90b4b2cb vocab=541e5067
+-/
 theorem prod_smallPrimesUpTo_one_add_inv_sqrt_le_primeSensitive_two_mul
     {H : ℕ} (hH : 16 ≤ H) :
     (∏ p ∈ DefectCounting.smallPrimesUpTo H,
@@ -501,7 +535,9 @@ theorem prod_smallPrimesUpTo_one_add_inv_sqrt_le_primeSensitive_two_mul
             ((Nat.log 2 H / 2 : ℕ) : ℝ)) :=
       Real.exp_le_exp.mpr (sum_smallPrimesUpTo_inv_sqrt_le_two_mul hH)
 
-/-- The same prime-sensitive product bound in negative-half-power notation.-/
+/-- The same prime-sensitive product bound in negative-half-power notation.
+@isnad1 id=le.1h1v.s7.aa294ae19267 from=translated src=- shape=72fefd0f vocab=3ff37a76
+-/
 theorem prod_smallPrimesUpTo_one_add_rpow_neg_one_half_le_primeSensitive
     {H : ℕ} (hH : 16 ≤ H) :
     (∏ p ∈ DefectCounting.smallPrimesUpTo H,
@@ -517,7 +553,9 @@ theorem prod_smallPrimesUpTo_one_add_rpow_neg_one_half_le_primeSensitive
 Multiplicative interface for finite counting bounds: any nonnegative
 prefactor can be carried across the prime-sensitive Euler-product estimate.
 In particular the prefactor
-`2 L √(dyadicCutoff N L)` from `BadStartCount` can be inserted directly.-/
+`2 L √(dyadicCutoff N L)` from `BadStartCount` can be inserted directly.
+@isnad1 id=le.2h2v.s7.66d6ef64c56a from=translated src=- shape=55ba588d vocab=39f79046
+-/
 theorem mul_prod_smallPrimesUpTo_one_add_inv_sqrt_le_primeSensitive
     (A : ℝ) (hA : 0 ≤ A) {H : ℕ} (hH : 16 ≤ H) :
     A * (∏ p ∈ DefectCounting.smallPrimesUpTo H,
@@ -538,7 +576,9 @@ open PrimeReciprocalSqrtSum
 /--
 Prime-sensitive finite completion of the counting estimate in Lemma 13.3.
 It is obtained by composing `card_terminalBadStarts_cast_le_eulerProduct`
-with the Euler-product theorem above.-/
+with the Euler-product theorem above.
+@isnad1 id=le.2h3v.s7.aa11a5e91f58 from=translated src=- shape=b07956ad vocab=ffd051bf
+-/
 theorem card_terminalBadStarts_cast_le_primeSensitive
     {N L B : ℕ} (hN : 1 ≤ N) (hB : 16 ≤ B) :
     ((terminalBadStarts N L B).card : ℝ) ≤
@@ -563,7 +603,9 @@ theorem card_terminalBadStarts_cast_le_primeSensitive
           (2 * L * Real.sqrt (dyadicCutoff N L)) (by positivity) hB
 
 /--
-The same bad-start bound with the dyadic cover simplified to `2B`.-/
+The same bad-start bound with the dyadic cover simplified to `2B`.
+@isnad1 id=le.2h3v.s7.eb06c69c038c from=translated src=- shape=fa7a5072 vocab=2f97afd3
+-/
 theorem card_terminalBadStarts_cast_le_primeSensitive_two_mul
     {N L B : ℕ} (hN : 1 ≤ N) (hB : 16 ≤ B) :
     ((terminalBadStarts N L B).card : ℝ) ≤

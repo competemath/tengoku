@@ -31,7 +31,9 @@ variable [DivisionRing R] [AddCommGroup M] [Module R M]
 A family is linearly independent if every member has a linear functional which
 is nonzero on that member and zero on all the other members.
 
-This is the reusable, coordinate-free private-pivot criterion.-/
+This is the reusable, coordinate-free private-pivot criterion.
+@isnad1 id=linearin.2h5v.s8.3b35c5ad19ba from=translated src=- shape=62c953d9 vocab=926500f9
+-/
 theorem linearIndependent_of_private_pivots
     (v : ι → M) (pivot : ι → (M →ₗ[R] R))
     (hdiag : ∀ i, pivot i (v i) ≠ 0)
@@ -58,7 +60,9 @@ theorem linearIndependent_of_private_pivots
 
 /--
 Finsupp specialization of `linearIndependent_of_private_pivots`: each vector
-has a coordinate where it is nonzero and every other vector is zero.-/
+has a coordinate where it is nonzero and every other vector is zero.
+@isnad1 id=linearin.2h5v.s7.aa300cbb3402 from=translated src=- shape=6fcb9113 vocab=3114de64
+-/
 theorem finsupp_linearIndependent_of_private_pivots
     {κ : Type*} (v : ι → κ →₀ R) (pivot : ι → κ)
     (hdiag : ∀ i, v i (pivot i) ≠ 0)
@@ -75,6 +79,9 @@ section TreePivots
 def edgeSum {V M : Type*} [AddCommMonoid M] (x : V → M) : Sym2 V → M :=
   Sym2.lift ⟨fun a b => x a + x b, fun a b => add_comm (x a) (x b)⟩
 
+/--
+@isnad1 id=eq.0h5v.s5.11d104c5db71 from=translated src=- shape=5d67fbde vocab=3a366cfb
+-/
 @[simp]
 theorem edgeSum_pair {V M : Type*} [AddCommMonoid M]
     (x : V → M) (a b : V) :
@@ -86,7 +93,9 @@ variable {V κ : Type*} [Fintype V] [DecidableEq V]
 omit [Fintype V] in
 /--
 At a coordinate private to `n`, an edge sum over `𝔽₂` is one precisely when
-the edge is incident with `n`.-/
+the edge is incident with `n`.
+@isnad1 id=eq.3h6v.s8.151a2e9faa17 from=translated src=- shape=8562d024 vocab=fd81ca61
+-/
 theorem edgeSum_apply_private
     (x : V → κ →₀ F₂) (n : V) (p : κ)
     (hdiag : x n p = 1)
@@ -126,7 +135,9 @@ Tree form of the private-pivot lemma.
 Each non-root vertex `n` has a coordinate `pivot n` at which its vector is
 one and every other vertex vector is zero.  Then the vectors obtained by
 adding the endpoint vectors along the edges of a finite tree are linearly
-independent over `𝔽₂`.-/
+independent over `𝔽₂`.
+@isnad1 id=linearin.3h6v.s8.57f47e3567a7 from=translated src=- shape=1f4c7831 vocab=5d56f010
+-/
 theorem tree_edgeSum_linearIndependent_of_private_nonroot
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (hG : G.IsTree) (r : V)
@@ -229,7 +240,9 @@ theorem tree_edgeSum_linearIndependent_of_private_nonroot
 /--
 Two distinct multiples of `p` are at distance at least `p`.  Consequently,
 a number at distance less than `Y < p` from a multiple of `p` is not itself
-a multiple of `p`.-/
+a multiple of `p`.
+@isnad1 id=not.4h4v.s5.b449074fa290 from=translated src=- shape=9749903c vocab=09016438
+-/
 theorem not_dvd_of_dvd_and_dist_lt
     {a b p Y : ℕ} (hpa : p ∣ a) (hab : a ≠ b)
     (hpY : Y < p) (hdist : Nat.dist a b < Y) :
@@ -252,7 +265,9 @@ Arithmetic specialization matching Paper C, Lemma 13.1.
 Vertices carry pairwise distinct natural-number labels whose pairwise distance
 is less than `Y`.  Every non-root vertex has a prime `p > Y` occurring to odd
 valuation in its label.  The prime is then absent from every other vertex
-label, so the parity-vector edge family has full rank over `𝔽₂`.-/
+label, so the parity-vector edge family has full rank over `𝔽₂`.
+@isnad1 id=linearin.6h6v.s8.d0292504c1a6 from=translated src=- shape=89490996 vocab=5aafb4fe
+-/
 theorem tree_parityEdge_linearIndependent_of_large_odd_primes
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (hG : G.IsTree) (r : V)
@@ -299,6 +314,9 @@ noncomputable def parityVecAbove (Y n : ℕ) :
   (parityVec n).comapDomain Subtype.val
     Subtype.val_injective.injOn
 
+/--
+@isnad1 id=eq.0h3v.s7.2960f5c41cb3 from=translated src=- shape=55eb8d29 vocab=c251201f
+-/
 @[simp]
 theorem parityVecAbove_apply (Y n : ℕ) (p : {p : ℕ // Y < p}) :
     parityVecAbove Y n p = parityVec n p.1 := by
@@ -306,7 +324,9 @@ theorem parityVecAbove_apply (Y n : ℕ) (p : {p : ℕ // Y < p}) :
 
 /--
 Exact projected form of Paper C, Lemma 13.1: the edge vectors restricted to
-coordinates `p > Y` are linearly independent.-/
+coordinates `p > Y` are linearly independent.
+@isnad1 id=linearin.6h6v.s8.891d73c9e8c5 from=translated src=- shape=b3d04663 vocab=da104cc2
+-/
 theorem tree_projectedParityEdge_linearIndependent_of_large_odd_primes
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (hG : G.IsTree) (r : V)

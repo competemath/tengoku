@@ -14,6 +14,9 @@ open Matrix Finset
 
 noncomputable section
 
+/--
+@isnad1 id=fact.0h0v.s2.2cde8ffc8dda from=translated src=- shape=8d7dbbf6 vocab=c1c9ca6d
+-/
 local instance instPrimeTwo : Fact (Nat.Prime 2) := Fact.mk Nat.prime_two
 
 variable {R C V : Type*} [Fintype R] [Fintype C] [Fintype V] [DecidableEq R]
@@ -25,6 +28,9 @@ def rowProjection (D : Finset R) : (R → F₂) →ₗ[F₂] ({r // r ∉ D} →
   LinearMap.funLeft F₂ F₂ Subtype.val
 
 omit [Fintype R] [Fintype C] [Fintype V] in
+/--
+@isnad1 id=surjecti.0h2v.s9.9b25f532269e from=translated src=- shape=73df4f0f vocab=9326adec
+-/
 theorem rowProjection_surjective (D : Finset R) : Function.Surjective (rowProjection D) := by
   intro f
   refine ⟨fun r => if h : r ∈ D then 0 else f ⟨r,h⟩, ?_⟩
@@ -32,6 +38,9 @@ theorem rowProjection_surjective (D : Finset R) : Function.Surjective (rowProjec
   simp [rowProjection, r.property]
 
 omit [Fintype C] [Fintype V] in
+/--
+@isnad1 id=eq.0h2v.s10.7fcb4b9e9133 from=translated src=- shape=5b8c274a vocab=c768615a
+-/
 theorem finrank_ker_rowProjection (D : Finset R) :
     Module.finrank F₂ (LinearMap.ker (rowProjection D)) = D.card := by
   have h := LinearMap.finrank_range_add_finrank_ker (K := F₂) (rowProjection D)
@@ -42,12 +51,18 @@ theorem finrank_ker_rowProjection (D : Finset R) :
   omega
 
 omit [Fintype R] [Fintype V] [DecidableEq R] in
+/--
+@isnad1 id=eq.0h4v.s9.36ddcc88f7d7 from=translated src=- shape=870aebfd vocab=c5d7ab92
+-/
 theorem mulVecLin_deleteRows (A : Matrix R C F₂) (D : Finset R) :
     (deleteRows A D).mulVecLin = (rowProjection D).comp A.mulVecLin := by
   ext f r
   rfl
 
 omit [Fintype R] [Fintype C] [Fintype V] in
+/--
+@isnad1 id=le.1h3v.s10.736b806b9c1c from=translated src=- shape=5d927e29 vocab=4b2ce7cd
+-/
 theorem ker_rowProjection_le_of_private (D : Finset R) (S : Submodule F₂ (R → F₂))
     (hprivate : ∀ r ∈ D, Pi.single r (1 : F₂) ∈ S) :
     LinearMap.ker (rowProjection D) ≤ S := by
@@ -74,7 +89,9 @@ theorem ker_rowProjection_le_of_private (D : Finset R) (S : Submodule F₂ (R �
   exact Submodule.sum_mem S (fun r hr => S.smul_mem (f r) (hprivate r hr))
 
 omit [Fintype V] in
-/-- The quotient by genuinely private coordinate directions loses exactly their number.-/
+/-- The quotient by genuinely private coordinate directions loses exactly their number.
+@isnad1 id=eq.1h4v.s9.548fed8cd092 from=translated src=- shape=c53f8596 vocab=28cf73d0
+-/
 theorem rank_eq_private_add_deleted (A : Matrix R C F₂) (D : Finset R)
     (hprivate : ∀ r ∈ D, Pi.single r (1 : F₂) ∈ LinearMap.range A.mulVecLin) :
     A.rank = D.card + (deleteRows A D).rank := by
@@ -94,6 +111,9 @@ theorem rank_eq_private_add_deleted (A : Matrix R C F₂) (D : Finset R)
   exact (Nat.add_comm _ _).trans hn |>.symm
 
 omit [Fintype R] [Fintype V] in
+/--
+@isnad1 id=mem.1h5v.s9.e189d71dde32 from=translated src=- shape=35658431 vocab=cfa6c85f
+-/
 theorem private_column_mem_range (A : Matrix R C F₂) (r : R) (c : C)
     (hc : A.col c = Pi.single r (1 : F₂)) :
     Pi.single r (1 : F₂) ∈ LinearMap.range A.mulVecLin := by
@@ -102,6 +122,9 @@ theorem private_column_mem_range (A : Matrix R C F₂) (r : R) (c : C)
   simpa only [Matrix.mulVecLin_apply, Matrix.mulVec_single_one] using hc
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.1h5v.s7.1ec2d67677a4 from=translated src=- shape=80357599 vocab=57838d70
+-/
 theorem rank_eq_of_private_columns (A : Matrix R C F₂) (D : Finset R)
     (pivot : {r // r ∈ D} → C)
     (hpivot : ∀ r, A.col (pivot r) = Pi.single r.val (1 : F₂)) :
@@ -110,6 +133,9 @@ theorem rank_eq_of_private_columns (A : Matrix R C F₂) (D : Finset R)
   intro r hr
   exact private_column_mem_range A r (pivot ⟨r,hr⟩) (hpivot ⟨r,hr⟩)
 
+/--
+@isnad1 id=le.1h6v.s9.f0c8c80409db from=translated src=- shape=a5251bdd vocab=366c1381
+-/
 theorem private_add_selected_rank_le (A : Matrix R C F₂) (D : Finset R)
     (select : V → C)
     (hprivate : ∀ r ∈ D, Pi.single r (1 : F₂) ∈ LinearMap.range A.mulVecLin) :

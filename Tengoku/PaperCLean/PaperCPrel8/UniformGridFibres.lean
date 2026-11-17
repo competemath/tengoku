@@ -8,7 +8,9 @@ open Finset RoughKernelAllocation ArratiaGoldsteinGordonInput
 noncomputable section
 @[reducible] local instance (P : Prop) : Decidable P := Classical.propDecidable P
 
-/-- Exact probability on the independent uniform grid.-/
+/-- Exact probability on the independent uniform grid.
+@isnad1 id=eq.1h3v.s7.4dc1b6b5e96b from=translated src=- shape=95adca69 vocab=d42c3d91
+-/
 theorem probability_eq (n k : ℕ) (hn : 0<n) (P : (Fin k → ℕ) → Prop) :
     eventProbability (gridLaw n k hn) (fun J ↦ P J.val) =
       (((grid n k).filter P).card:ℝ)/(n:ℝ)^k := by
@@ -16,7 +18,9 @@ theorem probability_eq (n k : ℕ) (hn : 0<n) (P : (Fin k → ℕ) → Prop) :
   change eventProbability (FinitePMF.uniform (grid n k)) _ = _
   rw [uniform_finset_probability (grid n k) P,grid_card,Nat.cast_pow]
 
-/-- Deleting the exposed coordinate injects a fibre into the residual event.-/
+/-- Deleting the exposed coordinate injects a fibre into the residual event.
+@isnad1 id=le.0h7v.s8.f19d159080a6 from=translated src=- shape=e48793bd vocab=e44a6ec1
+-/
 theorem fibre_card_le (n h j : ℕ) (i : Fin (h+1))
     (P : (Fin (h+1) → ℕ) → Prop) (R : (Fin h → ℕ) → Prop)
     (hmap : ∀ J ∈ grid n (h+1), P J → J i=j → R (fun b ↦ J (i.succAbove b))) :
@@ -37,7 +41,9 @@ theorem fibre_card_le (n h j : ℕ) (i : Fin (h+1))
     · obtain ⟨b,rfl⟩ := Fin.exists_succAbove_eq hl
       exact congrFun he b
 
-/-- A uniform conditional bound on every exposed fibre bounds the whole event.-/
+/-- A uniform conditional bound on every exposed fibre bounds the whole event.
+@isnad1 id=le.2h7v.s9.46ed2849ffeb from=translated src=- shape=74843eb2 vocab=0087ea22
+-/
 theorem probability_le_of_fibres (n h : ℕ) (hn : 0<n) (i : Fin (h+1))
     (P : (Fin (h+1) → ℕ) → Prop) (R : ℕ → (Fin h → ℕ) → Prop) (B : ℝ)
     (hmap : ∀ j ∈ Icc 1 n, ∀ J ∈ grid n (h+1), P J → J i=j → R j (fun b ↦ J (i.succAbove b)))
@@ -59,7 +65,9 @@ theorem probability_le_of_fibres (n h : ℕ) (hn : 0<n) (i : Fin (h+1))
       exact (by exact_mod_cast hc : _ ≤ (((grid n h).filter (R j)).card:ℝ)).trans (hbound j hj)
     _ = _ := by simp [Nat.card_Icc,pow_succ]; ring
 
-/-- Nonconstant fibre bounds retain their average over the exposed source index.-/
+/-- Nonconstant fibre bounds retain their average over the exposed source index.
+@isnad1 id=le.2h7v.s9.a40ef97eb9b6 from=translated src=- shape=f7960dc6 vocab=6d0bb682
+-/
 theorem probability_le_of_fibres_average (n h : ℕ) (hn : 0<n) (i : Fin (h+1))
     (P : (Fin (h+1) → ℕ) → Prop) (R : ℕ → (Fin h → ℕ) → Prop) (B : ℕ → ℝ)
     (hmap : ∀ j ∈ Icc 1 n, ∀ J ∈ grid n (h+1), P J → J i=j → R j (fun b ↦ J (i.succAbove b)))
@@ -82,7 +90,9 @@ theorem probability_le_of_fibres_average (n h : ℕ) (hn : 0<n) (i : Fin (h+1))
       exact (by exact_mod_cast hc : _ ≤ (((grid n h).filter (R j)).card:ℝ)).trans (hbound j hj)
     _ = _ := by rw [← mul_sum,pow_succ]; field_simp
 
-/-- One uniform coordinate hits a deleted set with probability at most its grid fraction.-/
+/-- One uniform coordinate hits a deleted set with probability at most its grid fraction.
+@isnad1 id=le.1h4v.s9.c10a7f118cda from=translated src=- shape=97cf96e9 vocab=7100bba5
+-/
 theorem coordinate_deleted_le (n h : ℕ) (hn : 0<n) (i : Fin (h+1)) (G : Finset ℕ) :
     eventProbability (gridLaw n (h+1) hn) (fun J ↦ J.val i ∉ G) ≤
       (((Icc 1 n) \ G).card:ℝ)/n := by

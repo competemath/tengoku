@@ -72,6 +72,9 @@ noncomputable def shallowCorePairs
       HasCoreDensityAtMostThreeSixteenths
         A L pair.1.1 pair.1.2
 
+/--
+@isnad1 id=iff.1h4v.s8.5be0d6844043 from=translated src=- shape=edb2a313 vocab=abd57e0b
+-/
 @[simp]
 theorem mem_shallowCorePairs
     {N A L : ℕ} {hN : 2 ≤ N}
@@ -93,7 +96,9 @@ theorem mem_shallowCorePairs
 
 /--
 The density condition gives the rounded component envelope used in the
-finite mass estimate.-/
+finite mass estimate.
+@isnad1 id=le.2h4v.s6.5f7570c52b4a from=translated src=- shape=943ae8e9 vocab=3ed5453a
+-/
 theorem canonicalResidualComponentCount_le_envelope_of_mem
     {N A L : ℕ} {hN : 2 ≤ N}
     {pair : SeparatedDyadicPair N L}
@@ -116,6 +121,9 @@ noncomputable def activeShallowCorePairs
   exact (shallowCorePairs N A L hN).filter fun pair ↦
     0 < pairTau A hN pair
 
+/--
+@isnad1 id=iff.1h4v.s6.5696fb03f6af from=translated src=- shape=b2b65813 vocab=a5460a5e
+-/
 @[simp]
 theorem mem_activeShallowCorePairs
     {N A L : ℕ} {hN : 2 ≤ N}
@@ -125,6 +133,9 @@ theorem mem_activeShallowCorePairs
         0 < pairTau A hN pair := by
   simp [activeShallowCorePairs]
 
+/--
+@isnad1 id=le.1h3v.s5.50ce04bef922 from=translated src=- shape=5aca9b93 vocab=cb3ebb0a
+-/
 theorem activeShallowCorePairs_subset
     {N A L : ℕ} (hN : 2 ≤ N) :
     activeShallowCorePairs N A L hN ⊆
@@ -153,7 +164,9 @@ noncomputable def activeShallowCoreLinearResidualMass
     (N A L : ℕ) (hN : 2 ≤ N) : ℕ :=
   linearResidualMass A hN (activeShallowCorePairs N A L hN)
 
-/-- Deleting `τ=0` does not change the quadratic residual mass.-/
+/-- Deleting `τ=0` does not change the quadratic residual mass.
+@isnad1 id=eq.1h3v.s4.b1f5f15969b9 from=translated src=- shape=cf7e9bf1 vocab=2f3b741b
+-/
 theorem shallowCoreQuadraticResidualMass_eq_active
     {N A L : ℕ} (hN : 2 ≤ N) :
     shallowCoreQuadraticResidualMass N A L hN =
@@ -174,7 +187,9 @@ theorem shallowCoreQuadraticResidualMass_eq_active
     omega
   exact quadraticResidualWeight_eq_zero_of_pairTau_eq_zero htau
 
-/-- Deleting `τ=0` does not change the linear residual mass.-/
+/-- Deleting `τ=0` does not change the linear residual mass.
+@isnad1 id=eq.1h3v.s4.8ed1183ad738 from=translated src=- shape=cf7e9bf1 vocab=9a697119
+-/
 theorem shallowCoreLinearResidualMass_eq_active
     {N A L : ℕ} (hN : 2 ≤ N) :
     shallowCoreLinearResidualMass N A L hN =
@@ -202,6 +217,9 @@ noncomputable def shallowCorePairValues
     (N A L : ℕ) (hN : 2 ≤ N) : Finset (ℕ × ℕ) :=
   (shallowCorePairs N A L hN).image Subtype.val
 
+/--
+@isnad1 id=eq.1h3v.s5.5ee0d3d46bbf from=translated src=- shape=76232444 vocab=d992120c
+-/
 theorem card_shallowCorePairValues
     (N A L : ℕ) (hN : 2 ≤ N) :
     (shallowCorePairValues N A L hN).card =
@@ -210,6 +228,9 @@ theorem card_shallowCorePairValues
   exact Finset.card_image_of_injective
     (shallowCorePairs N A L hN) Subtype.val_injective
 
+/--
+@isnad1 id=le.1h3v.s5.29609f810159 from=translated src=- shape=a4458e33 vocab=445c5454
+-/
 theorem shallowCorePairValues_subset_dyadicProduct
     {N A L : ℕ} (hN : 2 ≤ N) :
     shallowCorePairValues N A L hN ⊆
@@ -220,7 +241,9 @@ theorem shallowCorePairValues_subset_dyadicProduct
   have hsep := mem_separatedDyadicPairs.mp z.2
   exact Finset.mem_product.mpr ⟨hsep.1, hsep.2.1⟩
 
-/-- Proposition 7.5 contains at most `N²` ordered pairs.-/
+/-- Proposition 7.5 contains at most `N²` ordered pairs.
+@isnad1 id=le.1h3v.s5.e5d157e4f751 from=translated src=- shape=5e08b386 vocab=e08bada9
+-/
 theorem card_shallowCorePairs_le_sq
     {N A L : ℕ} (hN : 2 ≤ N) :
     (shallowCorePairs N A L hN).card ≤ N ^ 2 := by
@@ -242,6 +265,9 @@ noncomputable def activeShallowCorePairValues
     (N A L : ℕ) (hN : 2 ≤ N) : Finset (ℕ × ℕ) :=
   (activeShallowCorePairs N A L hN).image Subtype.val
 
+/--
+@isnad1 id=eq.1h3v.s5.e5fe0de837be from=translated src=- shape=76232444 vocab=a9a149e8
+-/
 theorem card_activeShallowCorePairValues
     (N A L : ℕ) (hN : 2 ≤ N) :
     (activeShallowCorePairValues N A L hN).card =
@@ -250,7 +276,9 @@ theorem card_activeShallowCorePairValues
   exact Finset.card_image_of_injective
     (activeShallowCorePairs N A L hN) Subtype.val_injective
 
-/-- Every active shallow-core pair has positive relation rank.-/
+/-- Every active shallow-core pair has positive relation rank.
+@isnad1 id=mem.2h4v.s6.05197277d192 from=translated src=- shape=246bcfd2 vocab=11edd425
+-/
 theorem pair_mem_relationalHosts_of_mem_active
     {N A L : ℕ} {hN : 2 ≤ N}
     {pair : SeparatedDyadicPair N L}
@@ -271,6 +299,9 @@ theorem pair_mem_relationalHosts_of_mem_active
             (dyadicCutoff N L) pair.1.1 pair.1.2 L) :=
       hrho.symm
 
+/--
+@isnad1 id=le.1h3v.s5.84a9cce46f80 from=translated src=- shape=b02151f2 vocab=d589a936
+-/
 theorem activeShallowCorePairValues_subset_relationalHosts
     {N A L : ℕ} (hN : 2 ≤ N) :
     activeShallowCorePairValues N A L hN ⊆
@@ -280,6 +311,9 @@ theorem activeShallowCorePairValues_subset_relationalHosts
   obtain ⟨z, hz, rfl⟩ := hpair
   exact pair_mem_relationalHosts_of_mem_active hz
 
+/--
+@isnad1 id=le.1h3v.s5.399d8d197099 from=translated src=- shape=8e93b465 vocab=c9b8dbd7
+-/
 theorem card_activeShallowCorePairs_le_relationalHosts
     {N A L : ℕ} (hN : 2 ≤ N) :
     (activeShallowCorePairs N A L hN).card ≤
@@ -289,7 +323,9 @@ theorem card_activeShallowCorePairs_le_relationalHosts
     (activeShallowCorePairValues_subset_relationalHosts
       (A := A) hN)
 
-/-- Equation (6.6) on the exact Proposition 7.5 population.-/
+/-- Equation (6.6) on the exact Proposition 7.5 population.
+@isnad1 id=le.1h3v.s5.f73e953dafa5 from=translated src=- shape=84104160 vocab=0c7e4028
+-/
 theorem shallowCoreLinearResidualMass_cast_le
     {N A L : ℕ} (hN : 2 ≤ N) :
     (shallowCoreLinearResidualMass N A L hN : ℝ) ≤
@@ -319,6 +355,9 @@ noncomputable def maxShallowCoreSigma
     (N A L : ℕ) (hN : 2 ≤ N) : ℕ :=
   (shallowCorePairs N A L hN).sup fun pair ↦ pairSigma A pair
 
+/--
+@isnad1 id=le.2h4v.s5.e40ea3a7b040 from=translated src=- shape=9e9913df vocab=cf700a62
+-/
 theorem pairSigma_le_maxShallowCoreSigma
     {N A L : ℕ} {hN : 2 ≤ N}
     {pair : SeparatedDyadicPair N L}
@@ -329,7 +368,9 @@ theorem pairSigma_le_maxShallowCoreSigma
 
 /--
 A pointwise real upper bound passes to the finite `σ` maximum, including the
-empty-population case.-/
+empty-population case.
+@isnad1 id=le.3h4v.s6.c7890639fef7 from=translated src=- shape=b017d46d vocab=38e6d6e9
+-/
 theorem maxShallowCoreSigma_cast_le
     {N A L : ℕ} {hN : 2 ≤ N} {R : ℝ}
     (hR : 0 ≤ R)

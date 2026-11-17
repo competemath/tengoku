@@ -20,7 +20,9 @@ variable {R V : Type*} [Fintype R] [Fintype V] [DecidableEq V]
 def componentMass (H : Matrix R V F₂) (c : (incidenceGraph H).ConnectedComponent) : ℕ :=
   ∑ v : c.supp, (columnSupport H v.val).card
 
-/-- Summing over all components recovers every incidence exactly once.-/
+/-- Summing over all components recovers every incidence exactly once.
+@isnad1 id=eq.0h3v.s6.c3aa8361ae23 from=translated src=- shape=c188fa6e vocab=97623b45
+-/
 theorem sum_componentMass (H : Matrix R V F₂) :
     (∑ c : (incidenceGraph H).ConnectedComponent, componentMass H c) = incidenceMass H := by
   classical
@@ -29,7 +31,9 @@ theorem sum_componentMass (H : Matrix R V F₂) :
   rw [← Fintype.sum_sigma']
   exact Fintype.sum_equiv (componentSupportSigmaEquiv (incidenceGraph H)) _ _ (fun _ => rfl)
 
-/-- The degree hypothesis applies directly to each component.-/
+/-- The degree hypothesis applies directly to each component.
+@isnad1 id=le.1h5v.s6.aa122d972a6a from=translated src=- shape=f27a7e31 vocab=5d08560c
+-/
 theorem componentMass_le_degree (H : Matrix R V F₂) (K : ℕ)
     (hcol : ∀ v, (columnSupport H v).card ≤ K)
     (c : (incidenceGraph H).ConnectedComponent) :
@@ -39,7 +43,9 @@ theorem componentMass_le_degree (H : Matrix R V F₂) (K : ℕ)
     _ ≤ ∑ _v : c.supp, K := Finset.sum_le_sum (fun v _ => hcol v.val)
     _ = _ := by simp [Nat.mul_comm]
 
-/-- Every incidence at an unpinned vertex belongs to a genuine two-column row.-/
+/-- Every incidence at an unpinned vertex belongs to a genuine two-column row.
+@isnad1 id=ex.3h5v.s6.9aae82bf96e0 from=translated src=- shape=d24446a2 vocab=15fe4cf4
+-/
 theorem exists_other_endpoint (H : Matrix R V F₂)
     (hrow : ∀ r, (rowSupport H r).card ≤ 2) (v : V)
     (hpin : v ∉ pinnedColumns H) (r : R) (hr : r ∈ columnSupport H v) :
@@ -57,7 +63,9 @@ theorem exists_other_endpoint (H : Matrix R V F₂)
     · subst w
       exact ⟨u,huwn,huvw.trans (Finset.pair_comm _ _)⟩
 
-/-- Simplicity injects the row incidences into the other vertices of the component.-/
+/-- Simplicity injects the row incidences into the other vertices of the component.
+@isnad1 id=le.4h5v.s7.9be42f34291d from=translated src=- shape=73d06515 vocab=9b539a1c
+-/
 theorem columnSupport_le_component_sub_one (H : Matrix R V F₂)
     (hrow : ∀ r, (rowSupport H r).card ≤ 2)
     (hsimple : ∀ r s, (rowSupport H r).card = 2 → rowSupport H r = rowSupport H s → r = s)
@@ -88,7 +96,9 @@ theorem columnSupport_le_component_sub_one (H : Matrix R V F₂)
   have hcard := Fintype.card_le_of_injective f hf
   simpa only [Fintype.card_coe, Fintype.card_subtype_compl, Fintype.card_unique] using hcard
 
-/-- A simple unpinned component has at most r(r−1) incidences.-/
+/-- A simple unpinned component has at most r(r−1) incidences.
+@isnad1 id=le.3h4v.s7.024507d3af66 from=translated src=- shape=920ba8af vocab=59abb247
+-/
 theorem componentMass_le_simple (H : Matrix R V F₂)
     (hrow : ∀ r, (rowSupport H r).card ≤ 2)
     (hsimple : ∀ r s, (rowSupport H r).card = 2 → rowSupport H r = rowSupport H s → r = s)

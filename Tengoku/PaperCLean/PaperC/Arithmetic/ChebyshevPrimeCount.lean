@@ -76,7 +76,9 @@ private theorem cutoff_pow_card_highPrimes_le_primorial (H : ℕ) :
 
 /--
 The number of primes in the upper part `[2^(log₂ H / 2), H]` satisfies the
-key exponent bound obtained from the elementary primorial estimate.-/
+key exponent bound obtained from the elementary primorial estimate.
+@isnad1 id=le.0h1v.s5.afe7e509b16d from=translated src=- shape=421112b8 vocab=9311e134
+-/
 theorem halfLog_mul_card_highPrimes_le (H : ℕ) :
     (Nat.log 2 H / 2) * (highPrimes H).card ≤ 2 * H := by
   have hpow :
@@ -108,7 +110,9 @@ Explicit elementary prime-counting bound.  It is the usual
 `2^(⌊log₂ H / 2⌋)` kept visible.
 
 The positivity assumption is equivalent to `Nat.log 2 H ≥ 2`; in particular
-it holds for every `H ≥ 4`.-/
+it holds for every `H ≥ 4`.
+@isnad1 id=le.1h1v.s6.5acf7f48e258 from=translated src=- shape=abd4542e vocab=1c6e5743
+-/
 theorem count_le_pow_halfLog_add_div (H : ℕ)
     (hq : 0 < Nat.log 2 H / 2) :
     PrimesUpTo.count H ≤
@@ -116,7 +120,9 @@ theorem count_le_pow_halfLog_add_div (H : ℕ)
   rw [← card_primes H, ← card_low_add_card_high H]
   exact Nat.add_le_add (card_lowPrimes_le H) (card_highPrimes_le_div H hq)
 
-/-- The explicit estimate in a form with the easy-to-check threshold `4 ≤ H`.-/
+/-- The explicit estimate in a form with the easy-to-check threshold `4 ≤ H`.
+@isnad1 id=le.1h1v.s6.975f1e64cf15 from=translated src=- shape=e0bc11d9 vocab=340cdab3
+-/
 theorem count_le_pow_halfLog_add_div_of_four_le {H : ℕ} (hH : 4 ≤ H) :
     PrimesUpTo.count H ≤
       2 ^ (Nat.log 2 H / 2) + (2 * H) / (Nat.log 2 H / 2) := by
@@ -212,7 +218,9 @@ Fully simplified Chebyshev-type estimate with a numerical constant:
 
 Here `π(H)` is exactly the coordinate count `PrimesUpTo.count H`.  This is a
 direct finite consequence of `primorial_le_four_pow`; no analytic estimate for
-primes is assumed.-/
+primes is assumed.
+@isnad1 id=le.1h1v.s5.a2bbb29ca393 from=translated src=- shape=efd0f676 vocab=12ba92b8
+-/
 theorem log_mul_count_le_seven_mul {H : ℕ} (hH : 4 ≤ H) :
     Nat.log 2 H * PrimesUpTo.count H ≤ 7 * H := by
   rw [← card_primes H, ← card_low_add_card_high H, Nat.mul_add]
@@ -227,7 +235,9 @@ theorem log_mul_count_le_seven_mul {H : ℕ} (hH : 4 ≤ H) :
 /--
 Division form of the explicit Chebyshev bound:
 
-`π(H) ≤ 7H / ⌊log₂ H⌋` for `H ≥ 4`.-/
+`π(H) ≤ 7H / ⌊log₂ H⌋` for `H ≥ 4`.
+@isnad1 id=le.1h1v.s5.71b52823dae0 from=translated src=- shape=f07dc4a0 vocab=2266ddb5
+-/
 theorem count_le_seven_mul_div_log {H : ℕ} (hH : 4 ≤ H) :
     PrimesUpTo.count H ≤ (7 * H) / Nat.log 2 H := by
   have hlog : 0 < Nat.log 2 H := by

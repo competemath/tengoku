@@ -31,7 +31,9 @@ def NoShortRungeSquare (U R t : ℕ) : Prop :=
 
 /--
 Reindex translated Runge data on a finite support of cardinality `2 * k`
-by the standard type `Fin (2 * k)`.-/
+by the standard type `Fin (2 * k)`.
+@isnad1 id=ex.4h6v.s8.38eff98de5b2 from=translated src=- shape=663c0abc vocab=c132e7a0
+-/
 theorem reindex_translatedRungeInput
     {α : Type*} {S : Finset α} {U R k : ℕ}
     (selected : S → ℕ)
@@ -74,7 +76,9 @@ The reusable distance bridge for Proposition 3.2.
 The hypotheses `hrep`, `hs`, `ha`, and `hsmall` supply the square product
 selected by a kernel word.  Injectivity and interval membership supply the
 translated shifts.  `hRunge` rules out every possible nonzero word of weight
-at most `2 * t`.-/
+at most `2 * t`.
+@isnad1 id=minweigh.8h9v.s8.312d007ef26a from=translated src=- shape=9c052aff vocab=02f3896d
+-/
 theorem minWeightAbove_augmentedParityMap_of_noShortRungeSquare
     {m r U R t : ℕ}
     (smallPrime : Fin r → ℕ)

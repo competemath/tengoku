@@ -19,6 +19,9 @@ noncomputable section
 
 def saddleNu (a H : ℝ) : ℝ := H / saddleCutoff a H
 
+/--
+@isnad1 id=tendsto.1h1v.s6.363c6a418bb2 from=translated src=- shape=1280f3f6 vocab=e76376b8
+-/
 theorem tendsto_saddleCutoff_square_normalized {a : ℝ} (ha : 0 < a) :
     Tendsto (fun H => saddleCutoff a H ^ 2 / (H * Real.log H)) atTop (𝓝 (a / 2)) := by
   have hu := tendsto_saddleParameter_div_log ha
@@ -35,6 +38,9 @@ theorem tendsto_saddleCutoff_square_normalized {a : ℝ} (ha : 0 < a) :
   rw [← div_div, saddleCutoff_square_div_identity ha hH]
   ring
 
+/--
+@isnad1 id=tendsto.1h1v.s6.73c988ecc779 from=translated src=- shape=02d2c4e8 vocab=0fd19310
+-/
 theorem tendsto_saddleCutoff_normalized {a : ℝ} (ha : 0 < a) :
     Tendsto (fun H => saddleCutoff a H / Real.sqrt (H * Real.log H))
       atTop (𝓝 (Real.sqrt (a / 2))) := by
@@ -45,6 +51,9 @@ theorem tendsto_saddleCutoff_normalized {a : ℝ} (ha : 0 < a) :
   filter_upwards [eventually_ge_atTop (saddleThreshold a)] with H hH
   rw [Real.sqrt_div (sq_nonneg _), Real.sqrt_sq (saddleCutoff_pos ha hH).le]
 
+/--
+@isnad1 id=tendsto.0h0v.s5.b1bf08ac0e99 from=translated src=- shape=8692e814 vocab=feb0866d
+-/
 theorem tendsto_soft_div_hard_saddle :
     Tendsto (fun H => saddleCutoff 2 H / saddleCutoff 1 H)
       atTop (𝓝 (Real.sqrt 2)) := by
@@ -64,12 +73,18 @@ theorem tendsto_soft_div_hard_saddle :
     ne_of_gt (Real.sqrt_pos.2 (mul_pos (by linarith) (Real.log_pos hH)))
   field_simp [hroot]
 
+/--
+@isnad1 id=tendsto.1h1v.s4.5b25afd561f2 from=translated src=- shape=52e44ca1 vocab=e31f106c
+-/
 theorem tendsto_saddleNu_atTop {a : ℝ} (ha : 0 < a) :
     Tendsto (saddleNu a) atTop atTop := by
   apply (tendsto_saddleRatio_atTop.comp (tendsto_saddleParameter_atTop ha)).congr'
   filter_upwards [eventually_ge_atTop (saddleThreshold a)] with H hH
   exact (div_saddleCutoff_eq_ratio ha hH).symm
 
+/--
+@isnad1 id=tendsto.1h1v.s5.ee9bd44ec7f6 from=translated src=- shape=01e01b49 vocab=42940a33
+-/
 theorem tendsto_saddleParameter_div_nu {a : ℝ} (ha : 0 < a) :
     Tendsto (fun H => saddleParameter a H / saddleNu a H) atTop (𝓝 0) := by
   have h := (Real.tendsto_exp_div_pow_atTop 2).inv_tendsto_atTop.comp
@@ -83,6 +98,9 @@ theorem tendsto_saddleParameter_div_nu {a : ℝ} (ha : 0 < a) :
     linarith [saddleParameterBase_ge_two]
   field_simp [hu, Real.exp_ne_zero _]
 
+/--
+@isnad1 id=tendsto.1h1v.s5.5dbc60deb7b8 from=translated src=- shape=979c742f vocab=81695306
+-/
 theorem tendsto_log_div_saddleNu {a : ℝ} (ha : 0 < a) :
     Tendsto (fun H => Real.log H / saddleNu a H) atTop (𝓝 0) := by
   apply (show Tendsto (fun H =>
@@ -96,18 +114,27 @@ theorem tendsto_log_div_saddleNu {a : ℝ} (ha : 0 < a) :
     linarith [saddleParameterBase_ge_two]
   field_simp [hu]
 
+/--
+@isnad1 id=tendsto.0h0v.s7.962a1bd388b0 from=translated src=- shape=ee9a86a3 vocab=ff2d52f2
+-/
 theorem hard_saddle_second_order_log_scale :
     Tendsto (fun N : ℝ => saddleCutoff 1 (Real.log N) ^ 2 / Real.log N - (1 / 2 : ℝ) *
       (Real.log (Real.log N) + Real.log (Real.log (Real.log N)) - Real.log 2 - 2))
       atTop (𝓝 0) :=
   hard_saddle_second_order.comp Real.tendsto_log_atTop
 
+/--
+@isnad1 id=tendsto.0h0v.s6.17d4e0fa6124 from=translated src=- shape=05ae9201 vocab=f8767fc1
+-/
 theorem soft_saddle_second_order_log_scale :
     Tendsto (fun N : ℝ => saddleCutoff 2 (Real.log N) ^ 2 / Real.log N -
       (Real.log (Real.log N) + Real.log (Real.log (Real.log N)) - Real.log 4 - 2))
       atTop (𝓝 0) :=
   soft_saddle_second_order.comp Real.tendsto_log_atTop
 
+/--
+@isnad1 id=tendsto.0h0v.s5.544dfb845493 from=translated src=- shape=416c04a4 vocab=a6a6e1b2
+-/
 theorem log_log_small_against_hard_nu :
     Tendsto (fun N : ℝ => Real.log (Real.log N) / saddleNu 1 (Real.log N))
       atTop (𝓝 0) :=

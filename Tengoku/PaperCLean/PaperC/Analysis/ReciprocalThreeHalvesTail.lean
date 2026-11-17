@@ -21,7 +21,9 @@ The finite tail of the reciprocal-three-halves series is at most
 
 This is the integral comparison for the decreasing function
 `x ↦ x⁻³ᐟ²`.  Its formulation with `Finset.Ioc B X` is the one used by the
-large-odd-kernel Euler product.-/
+large-odd-kernel Euler product.
+@isnad1 id=le.1h2v.s6.d436548f0379 from=translated src=- shape=955dd0fc vocab=a8351327
+-/
 theorem sum_Ioc_rpow_neg_three_halves_le
     (B X : ℕ) (hB : 1 ≤ B) :
     (∑ n ∈ Finset.Ioc B X, (n : ℝ) ^ (-(3 / 2 : ℝ))) ≤

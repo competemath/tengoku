@@ -25,7 +25,9 @@ reciprocal-power formulation of `N^{o(1)}`.
 
 The proof chooses an integer strictly above `exp ((k*C)^2)`.  Beyond that
 threshold, `k*C < sqrt (log N)`, so the logarithm of the left-hand side is at
-most `log N`.-/
+most `log N`.
+@isnad1 id=ex.2h2v.s6.a59e111c877d from=translated src=- shape=904c17f4 vocab=9634859a
+-/
 theorem pow_le_nat_eventually
     (C : ℝ) (hC : 0 ≤ C) (k : ℕ) (_hk : 0 < k) :
     ∃ N₀ : ℕ, ∀ N ≥ N₀,
@@ -77,7 +79,9 @@ theorem pow_le_nat_eventually
 
 /--
 Uniform `N^{o(1)}` statement for a factor independent of the auxiliary
-parameter.-/
+parameter.
+@isnad1 id=uniforms.1h2v.s5.c8b747ce9315 from=translated src=- shape=4175c7b3 vocab=59990157
+-/
 theorem uniformSubpolynomialOn
     (admissible : ℕ → ℕ → Prop) (C : ℝ) (hC : 0 ≤ C) :
     UniformSubpolynomialOn admissible
@@ -91,7 +95,9 @@ theorem uniformSubpolynomialOn
 /--
 The same estimate after replacing the logarithm by any nonnegative quantity
 `H` bounded by `D * log N`.  This is the form needed for the Euler factor
-`exp (2 * sqrt H)` when `H = O(log N)`.-/
+`exp (2 * sqrt H)` when `H = O(log N)`.
+@isnad1 id=ex.3h3v.s6.1b9022b1e977 from=translated src=- shape=e9bd0a0a vocab=9634859a
+-/
 theorem exp_sqrt_of_le_log_pow_le_nat_eventually
     (C D : ℝ) (hC : 0 ≤ C) (hD : 0 ≤ D)
     (k : ℕ) (hk : 0 < k) :
@@ -126,7 +132,9 @@ theorem exp_sqrt_of_le_log_pow_le_nat_eventually
       (hN₀ N hNN₀)
 
 /--
-Uniform form of `exp_sqrt_of_le_log_pow_le_nat_eventually`.-/
+Uniform form of `exp_sqrt_of_le_log_pow_le_nat_eventually`.
+@isnad1 id=uniforms.3h4v.s6.33ef2e584c95 from=translated src=- shape=a1294443 vocab=59990157
+-/
 theorem uniformSubpolynomialOn_exp_sqrt_of_le_log
     (admissible : ℕ → ℕ → Prop)
     (H : ℕ → ℕ → ℕ)
@@ -144,7 +152,9 @@ theorem uniformSubpolynomialOn_exp_sqrt_of_le_log
     hN₀ N hNN₀ (H N L) (hH N L hNL)
 
 /--
-Elementary envelope `x ≤ exp (2 * sqrt x)` for `x ≥ 0`.-/
+Elementary envelope `x ≤ exp (2 * sqrt x)` for `x ≥ 0`.
+@isnad1 id=le.1h1v.s5.b4df9e5e6736 from=translated src=- shape=258e27c1 vocab=7f25486f
+-/
 theorem le_exp_two_mul_sqrt {x : ℝ} (hx : 0 ≤ x) :
     x ≤ Real.exp (2 * Real.sqrt x) := by
   have hsqrt_nonneg : 0 ≤ Real.sqrt x := Real.sqrt_nonneg _
@@ -165,7 +175,9 @@ theorem le_exp_two_mul_sqrt {x : ℝ} (hx : 0 ≤ x) :
 
 /--
 If `H ≤ D * log N` and `log N ≥ 1`, then the elementary linear factor
-`H + 1` is itself bounded by one exponential square-root logarithm.-/
+`H + 1` is itself bounded by one exponential square-root logarithm.
+@isnad1 id=le.3h3v.s6.f76ce5295755 from=translated src=- shape=555b89a3 vocab=b9bb5aa7
+-/
 theorem linear_log_add_one_le_exp_sqrt_log
     {N H : ℕ} {D : ℝ}
     (hD : 0 ≤ D)
@@ -210,7 +222,9 @@ theorem linear_log_add_one_le_exp_sqrt_log
       ring
 
 /--
-The factor `H + 1` is subpolynomial uniformly for `H ≤ D * log N`.-/
+The factor `H + 1` is subpolynomial uniformly for `H ≤ D * log N`.
+@isnad1 id=ex.2h2v.s6.794d1c0c492c from=translated src=- shape=a81d7f23 vocab=15c2e471
+-/
 theorem linear_log_add_one_pow_le_nat_eventually
     (D : ℝ) (hD : 0 ≤ D) (k : ℕ) (hk : 0 < k) :
     ∃ N₀ : ℕ, ∀ N ≥ N₀, ∀ H : ℕ,
@@ -236,7 +250,9 @@ theorem linear_log_add_one_pow_le_nat_eventually
     (pow_le_pow_left₀ (by positivity) hpoint k).trans
       (hNexp N hNexp_le)
 
-/-- Uniform form of `linear_log_add_one_pow_le_nat_eventually`.-/
+/-- Uniform form of `linear_log_add_one_pow_le_nat_eventually`.
+@isnad1 id=uniforms.2h3v.s6.7c5a1553ef6b from=translated src=- shape=66652d2e vocab=ab0b190d
+-/
 theorem uniformSubpolynomialOn_linear_log_add_one
     (admissible : ℕ → ℕ → Prop)
     (H : ℕ → ℕ → ℕ)
@@ -256,7 +272,9 @@ theorem uniformSubpolynomialOn_linear_log_add_one
 
 /--
 Two reciprocal-power subpolynomial bounds can be combined by applying each
-one at exponent `2*k`.-/
+one at exponent `2*k`.
+@isnad1 id=le.5h4v.s7.4a8d28e364a6 from=translated src=- shape=df3537f7 vocab=150e4428
+-/
 theorem mul_pow_le_nat_of_twice
     {a b n : ℝ} {k : ℕ}
     (ha : 0 ≤ a) (hb : 0 ≤ b) (hn : 0 ≤ n)
@@ -279,7 +297,9 @@ theorem mul_pow_le_nat_of_twice
   exact (sq_le_sq₀ (by positivity) hn).mp hsq
 
 /--
-`UniformSubpolynomialOn` is stable under pointwise multiplication.-/
+`UniformSubpolynomialOn` is stable under pointwise multiplication.
+@isnad1 id=uniforms.2h3v.s5.cb8d8b5c9de3 from=translated src=- shape=22590759 vocab=64412360
+-/
 theorem uniformSubpolynomialOn_mul
     {admissible : ℕ → ℕ → Prop}
     {f g : ℕ → ℕ → ℝ}
@@ -299,7 +319,9 @@ theorem uniformSubpolynomialOn_mul
   · exact hNf N ((le_max_left _ _).trans hN) L hNL
   · exact hNg N ((le_max_right _ _).trans hN) L hNL
 
-/-- Every fixed real constant is uniformly subpolynomial.-/
+/-- Every fixed real constant is uniformly subpolynomial.
+@isnad1 id=uniforms.0h2v.s3.f8c574d4a5f2 from=translated src=- shape=90ed4762 vocab=9ae427e4
+-/
 theorem uniformSubpolynomialOn_const
     (admissible : ℕ → ℕ → Prop) (B : ℝ) :
     UniformSubpolynomialOn admissible (fun _ _ => B) := by
@@ -309,7 +331,9 @@ theorem uniformSubpolynomialOn_const
   intro N hNN₀ L _hNL
   exact hN₀.le.trans (by exact_mod_cast hNN₀)
 
-/-- Multiplication by a fixed real constant preserves uniform subpolynomiality.-/
+/-- Multiplication by a fixed real constant preserves uniform subpolynomiality.
+@isnad1 id=uniforms.1h3v.s5.b97c573c4e81 from=translated src=- shape=aa49963d vocab=64412360
+-/
 theorem uniformSubpolynomialOn_const_mul
     {admissible : ℕ → ℕ → Prop}
     (B : ℝ) {f : ℕ → ℕ → ℝ}
@@ -326,7 +350,9 @@ The coding factor `2^M` is subpolynomial whenever
 
 The threshold is chosen above
 `exp (exp (k * D * log 2))`, making the exponent of `(2^M)^k` at most
-`log N`.-/
+`log N`.
+@isnad1 id=ex.2h2v.s6.cec8718418b8 from=translated src=- shape=79ad6df6 vocab=3e6f635e
+-/
 theorem two_pow_log_div_loglog_pow_le_nat_eventually
     (D : ℝ) (hD : 0 ≤ D) (k : ℕ) (_hk : 0 < k) :
     ∃ N₀ : ℕ, ∀ N ≥ N₀, ∀ M : ℕ,
@@ -400,7 +426,9 @@ theorem two_pow_log_div_loglog_pow_le_nat_eventually
       nlinarith [hscaled]
     _ = (N : ℝ) := Real.exp_log hNpos
 
-/-- Uniform form of the logarithm-over-logarithm estimate for `2^M`.-/
+/-- Uniform form of the logarithm-over-logarithm estimate for `2^M`.
+@isnad1 id=uniforms.2h3v.s6.3ff6325f602c from=translated src=- shape=b02b23bf vocab=7f505323
+-/
 theorem uniformSubpolynomialOn_two_pow_log_div_loglog
     (admissible : ℕ → ℕ → Prop)
     (M : ℕ → ℕ → ℕ)
@@ -425,7 +453,9 @@ subpolynomial under the two natural logarithmic budgets.
 
 This packages, with the same quantifier order as `UniformSubpolynomialOn`,
 
-`(H+1) * exp (2*sqrt H) * 2^M = N^{o(1)}`.-/
+`(H+1) * exp (2*sqrt H) * 2^M = N^{o(1)}`.
+@isnad1 id=uniforms.4h5v.s7.2cbfe760a42e from=translated src=- shape=e2c0d2f6 vocab=907097e2
+-/
 theorem uniformSubpolynomialOn_weighted_defect_factor
     (admissible : ℕ → ℕ → Prop)
     (H M : ℕ → ℕ → ℕ)

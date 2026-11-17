@@ -69,6 +69,9 @@ noncomputable def fixedChannelPairs
     (positiveSigmaSmallProductPairs N A L hN).filter fun pair ↦
       Nonempty (FixedChannelWitness A L a b h r pair.1)
 
+/--
+@isnad1 id=iff.1h8v.s6.b329b1238e89 from=translated src=- shape=fd00f410 vocab=8ef98784
+-/
 @[simp]
 theorem mem_fixedChannelPairs
     {N A L a b r : ℕ} {h : ℤ} {hN : 2 ≤ N}
@@ -85,7 +88,9 @@ noncomputable def fixedChannelFirstCoordinates
   (fixedChannelPairs N A L a b h r hN).image
     (fun pair ↦ pair.1.1)
 
-/-- A member of the fixed-channel population lies on the stated channel.-/
+/-- A member of the fixed-channel population lies on the stated channel.
+@isnad1 id=mem.2h8v.s6.ddd151d03702 from=translated src=- shape=b2d6b609 vocab=723dedc6
+-/
 theorem pair_mem_channelStartPairs_of_mem_fixedChannelPairs
     {N A L a b r : ℕ} {h : ℤ} {hN : 2 ≤ N}
     {pair : SeparatedDyadicPair N L}
@@ -99,7 +104,9 @@ theorem pair_mem_channelStartPairs_of_mem_fixedChannelPairs
 
 /--
 On the fixed population, the systematic exponent is the dimension of the
-fixed rational channel.-/
+fixed rational channel.
+@isnad1 id=eq.2h8v.s6.0f77bd4c3865 from=translated src=- shape=727ff6b8 vocab=1d3c195e
+-/
 theorem pairSigma_eq_channelSigma_of_mem_fixedChannelPairs
     {N A L a b r : ℕ} {h : ℤ} {hN : 2 ≤ N}
     {pair : SeparatedDyadicPair N L}
@@ -116,7 +123,9 @@ theorem pairSigma_eq_channelSigma_of_mem_fixedChannelPairs
 Every member of the positive-`σ` population belongs to a fixed-channel
 population, for the canonical candidate and its actual value of `c#`.
 This is the finite completeness statement needed before summing over
-channels and certificate sizes.-/
+channels and certificate sizes.
+@isnad1 id=ex.2h4v.s10.55e0ed90938b from=translated src=- shape=cff47a80 vocab=4c3e365d
+-/
 theorem exists_fixedChannelPairs_of_mem_positiveSigmaSmallProductPairs
     {N A L : ℕ} {hN : 2 ≤ N}
     {pair : SeparatedDyadicPair N L}
@@ -150,7 +159,9 @@ theorem exists_fixedChannelPairs_of_mem_positiveSigmaSmallProductPairs
       error_eq := rfl
       count_eq := rfl }
 
-/-- On a positive channel, the left-start projection is injective.-/
+/-- On a positive channel, the left-start projection is injective.
+@isnad1 id=injon.2h7v.s6.a6a8963bc874 from=translated src=- shape=3c25e1e5 vocab=2343c365
+-/
 theorem fst_injOn_fixedChannelPairs
     {N A L a b r : ℕ} {h : ℤ} {hN : 2 ≤ N}
     (hb : 0 < b) :
@@ -165,7 +176,9 @@ theorem fst_injOn_fixedChannelPairs
       (pair_mem_channelStartPairs_of_mem_fixedChannelPairs hpair₂)
       hfst
 
-/-- Projection to the left start preserves the population cardinality.-/
+/-- Projection to the left start preserves the population cardinality.
+@isnad1 id=eq.2h7v.s5.b3992ecdb6ff from=translated src=- shape=8c109d21 vocab=0608e016
+-/
 theorem card_fixedChannelFirstCoordinates
     {N A L a b r : ℕ} {h : ℤ} (hN : 2 ≤ N)
     (hb : 0 < b) :
@@ -191,6 +204,9 @@ noncomputable def pairOfFirstCoordinate
     SeparatedDyadicPair N L :=
   Classical.choose (exists_pair_of_mem_fixedChannelFirstCoordinates hx)
 
+/--
+@isnad1 id=mem.2h8v.s6.96f93a5782f2 from=translated src=- shape=0fd73398 vocab=312c6760
+-/
 theorem pairOfFirstCoordinate_mem
     {N A L a b r : ℕ} {h : ℤ} {hN : 2 ≤ N}
     (x : ℕ)
@@ -200,6 +216,9 @@ theorem pairOfFirstCoordinate_mem
   (Classical.choose_spec
     (exists_pair_of_mem_fixedChannelFirstCoordinates hx)).1
 
+/--
+@isnad1 id=eq.2h8v.s6.f5cd2e25a6c2 from=translated src=- shape=cd68d6fb vocab=c7ada81c
+-/
 theorem pairOfFirstCoordinate_fst
     {N A L a b r : ℕ} {h : ℤ} {hN : 2 ≤ N}
     (x : ℕ)
@@ -313,7 +332,9 @@ noncomputable def ambientCertificateOfFirstCoordinate
 
 /--
 The fixed-channel projected population is covered by the one-dimensional
-ambient certificate mass.-/
+ambient certificate mass.
+@isnad1 id=le.3h7v.s10.907ce41e667a from=translated src=- shape=ef67ff29 vocab=0397ddd7
+-/
 theorem four_pow_mul_card_fixedChannelPairs_le_solutionMass
     {N A L a b r : ℕ} {h : ℤ} (hN : 2 ≤ N)
     (hb : 0 < b)
@@ -343,7 +364,9 @@ theorem four_pow_mul_card_fixedChannelPairs_le_solutionMass
 
 /--
 The same cover followed by the one-dimensional fixed-size estimate of
-Lemma 7.1.-/
+Lemma 7.1.
+@isnad1 id=le.3h7v.s7.3d4221abb8d8 from=translated src=- shape=314baa8b vocab=a2e65350
+-/
 theorem four_pow_mul_card_fixedChannelPairs_le_lemmaSevenOne
     {N A L a b r : ℕ} {h : ℤ} (hN : 2 ≤ N)
     (hb : 0 < b)

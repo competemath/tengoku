@@ -28,7 +28,9 @@ noncomputable section
 
 universe u v
 
-/-- The AGG indicator-sum law is the generic finite pushforward law.-/
+/-- The AGG indicator-sum law is the generic finite pushforward law.
+@isnad1 id=eq.0h4v.s5.28151f2f24e7 from=translated src=- shape=0f79c5f4 vocab=8abd9e9a
+-/
 theorem indicatorSumLaw_eq_finiteNatLaw
     {Ω : Type u} {ι : Type v} [Fintype Ω] [Fintype ι]
     (μ : FinitePMF Ω) (X : ι → Ω → Bool) :
@@ -41,7 +43,9 @@ theorem indicatorSumLaw_eq_finiteNatLaw
   intro ω _hω
   by_cases h : indicatorSum X ω = k <;> simp [h]
 
-/-- The law of a finite indicator sum is summable.-/
+/-- The law of a finite indicator sum is summable.
+@isnad1 id=summable.0h4v.s5.c2b2707f02fd from=translated src=- shape=9eab147e vocab=34336ce4
+-/
 theorem summable_indicatorSumLaw
     {Ω : Type u} {ι : Type v} [Fintype Ω] [Fintype ι]
     (μ : FinitePMF Ω) (X : ι → Ω → Bool) :
@@ -49,7 +53,9 @@ theorem summable_indicatorSumLaw
   rw [indicatorSumLaw_eq_finiteNatLaw]
   exact summable_finiteNatLaw μ (indicatorSum X)
 
-/-- A single atom is bounded by twice half-`ℓ¹` total variation.-/
+/-- A single atom is bounded by twice half-`ℓ¹` total variation.
+@isnad1 id=le.4h2v.s6.d7c3ac574b25 from=translated src=- shape=39fe01e4 vocab=0c65010e
+-/
 theorem abs_mass_zero_sub_le_two_mul_natTotalVariation
     {p q : ℕ → ℝ}
     (hp : Summable p) (hq : Summable q)

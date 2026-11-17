@@ -31,13 +31,18 @@ def startVertexSum (L : ℕ) :
       c * ∑ v : Fin (L + 1), w v
     rw [Finset.mul_sum]
 
+/--
+@isnad1 id=eq.0h2v.s9.d0c8c659e15e from=translated src=- shape=e0cd227e vocab=b1964eaf
+-/
 @[simp]
 theorem startVertexSum_apply
     (L : ℕ) (w : Fin (L + 1) → F₂) :
     startVertexSum L w = ∑ v : Fin (L + 1), w v :=
   rfl
 
-/-- Every incidence column has even total parity.-/
+/-- Every incidence column has even total parity.
+@isnad1 id=eq.0h2v.s6.7cff069974b1 from=translated src=- shape=b47ea304 vocab=d2f3bc59
+-/
 theorem sum_startIncidenceColumn_eq_zero
     {L : ℕ} (i : Fin L) :
     ∑ v : Fin (L + 1), startIncidenceColumn i v = 0 := by
@@ -47,7 +52,9 @@ theorem sum_startIncidenceColumn_eq_zero
   rw [Finset.sum_add_distrib]
   simp
 
-/-- Every complete boundary has even total parity.-/
+/-- Every complete boundary has even total parity.
+@isnad1 id=eq.0h2v.s10.9b935ea3a3cf from=translated src=- shape=28648484 vocab=4bb93796
+-/
 theorem startVertexSum_startCompleteBoundary_eq_zero
     {L : ℕ} (u : Fin L → F₂) :
     startVertexSum L (startCompleteBoundary L u) = 0 := by
@@ -68,7 +75,9 @@ theorem startVertexSum_startCompleteBoundary_eq_zero
       intro i _hi
       rw [sum_startIncidenceColumn_eq_zero, mul_zero]
 
-/-- The coordinate-sum map is onto because the root coordinate is free.-/
+/-- The coordinate-sum map is onto because the root coordinate is free.
+@isnad1 id=surjecti.0h1v.s8.63a49dd246d2 from=translated src=- shape=ec046c63 vocab=bce4a7a7
+-/
 theorem startVertexSum_surjective (L : ℕ) :
     Function.Surjective (startVertexSum L) := by
   intro c
@@ -78,7 +87,9 @@ theorem startVertexSum_surjective (L : ℕ) :
   simp [startVertexSum, w]
 
 /--
-The range of the complete boundary is exactly the even-parity hyperplane.-/
+The range of the complete boundary is exactly the even-parity hyperplane.
+@isnad1 id=eq.0h1v.s9.053aec721fed from=translated src=- shape=84d11c9d vocab=6df0a6c8
+-/
 theorem range_startCompleteBoundary_eq_ker_startVertexSum
     (L : ℕ) :
     LinearMap.range (startCompleteBoundary L) =
@@ -117,12 +128,18 @@ def startBoundaryToEven (L : ℕ) :
     (LinearMap.ker (startVertexSum L))
     (fun u ↦ startVertexSum_startCompleteBoundary_eq_zero u)
 
+/--
+@isnad1 id=injectiv.0h1v.s12.9ba108d038bd from=translated src=- shape=8b8b7215 vocab=5710cdbe
+-/
 theorem startBoundaryToEven_injective (L : ℕ) :
     Function.Injective (startBoundaryToEven L) := by
   intro u v huv
   apply startCompleteBoundary_injective L
   exact congrArg Subtype.val huv
 
+/--
+@isnad1 id=surjecti.0h1v.s12.c4e9ecc34b14 from=translated src=- shape=8b8b7215 vocab=dfffe682
+-/
 theorem startBoundaryToEven_surjective (L : ℕ) :
     Function.Surjective (startBoundaryToEven L) := by
   intro w
@@ -145,6 +162,9 @@ noncomputable def startBoundaryEquivEven (L : ℕ) :
     ⟨startBoundaryToEven_injective L,
       startBoundaryToEven_surjective L⟩
 
+/--
+@isnad1 id=eq.0h2v.s13.682c32512c94 from=translated src=- shape=663b8bda vocab=821f6e0c
+-/
 @[simp]
 theorem startBoundaryEquivEven_apply_coe
     (L : ℕ) (u : Fin L → F₂) :
@@ -155,7 +175,9 @@ theorem startBoundaryEquivEven_apply_coe
   rfl
 
 /--
-An even complete-boundary vector has a unique row-coefficient preimage.-/
+An even complete-boundary vector has a unique row-coefficient preimage.
+@isnad1 id=existsun.1h2v.s10.f54beee12a68 from=translated src=- shape=684f811b vocab=3ffccf31
+-/
 theorem existsUnique_startCompleteBoundary_eq
     {L : ℕ} {w : Fin (L + 1) → F₂}
     (hw : startVertexSum L w = 0) :

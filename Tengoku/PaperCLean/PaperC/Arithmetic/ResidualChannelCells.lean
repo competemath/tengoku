@@ -48,6 +48,9 @@ def residualPrimeCells
     residualChannelExpression a b h cell ≠ 0 ∧
       (p : ℤ) ∣ residualChannelExpression a b h cell
 
+/--
+@isnad1 id=iff.0h6v.s6.7e272b46cf5e from=translated src=- shape=60d78142 vocab=cb98d92a
+-/
 @[simp]
 theorem mem_residualPrimeCells
     {L a b p : ℕ} {h : ℤ} {cell : ℤ × ℤ} :
@@ -57,7 +60,9 @@ theorem mem_residualPrimeCells
         (p : ℤ) ∣ residualChannelExpression a b h cell := by
   simp [residualPrimeCells]
 
-/-- Exact channel cells are exactly the zeroes of the residual expression.-/
+/-- Exact channel cells are exactly the zeroes of the residual expression.
+@isnad1 id=iff.0h4v.s4.ff4f1f69685a from=translated src=- shape=6779f6e7 vocab=4cbeb3b1
+-/
 @[simp]
 theorem residualChannelExpression_eq_zero_iff
     {a b : ℕ} {h : ℤ} {cell : ℤ × ℤ} :
@@ -66,7 +71,9 @@ theorem residualChannelExpression_eq_zero_iff
   unfold residualChannelExpression OnChannel
   constructor <;> intro hcell <;> linarith
 
-/-- Residual cells are, in particular, not exact channel cells.-/
+/-- Residual cells are, in particular, not exact channel cells.
+@isnad1 id=not.1h6v.s5.d4b74b8cb680 from=translated src=- shape=e3d90f1d vocab=42693a4b
+-/
 theorem not_onChannel_of_mem_residualPrimeCells
     {L a b p : ℕ} {h : ℤ} {cell : ℤ × ℤ}
     (hcell : cell ∈ residualPrimeCells L a b p h) :
@@ -85,6 +92,9 @@ def residualVertexExpression
   residualChannelExpression a b h
     (channelVertexOffset cell.1, channelVertexOffset cell.2)
 
+/--
+@isnad1 id=eq.0h5v.s7.0f45a980a932 from=translated src=- shape=4e35b2be vocab=1860a666
+-/
 @[simp]
 theorem residualVertexExpression_apply
     {L a b : ℕ} {h : ℤ}
@@ -102,6 +112,9 @@ def residualVertexPrimeCells
     residualVertexExpression a b h cell ≠ 0 ∧
       (p : ℤ) ∣ residualVertexExpression a b h cell
 
+/--
+@isnad1 id=iff.0h6v.s7.d5cef5b9e50b from=translated src=- shape=5ae4130b vocab=caf7e17d
+-/
 @[simp]
 theorem mem_residualVertexPrimeCells
     {L a b p : ℕ} {h : ℤ}
@@ -113,7 +126,9 @@ theorem mem_residualVertexPrimeCells
 
 /--
 The complete-start vertex definition is the pullback of the integer-box
-definition along the signed-offset map.-/
+definition along the signed-offset map.
+@isnad1 id=iff.0h6v.s8.f9bdf759250e from=translated src=- shape=403b8e9e vocab=6b2d8de8
+-/
 theorem mem_residualVertexPrimeCells_iff_offsets_mem
     {L a b p : ℕ} {h : ℤ}
     {cell : Fin (L + 1) × Fin (L + 1)} :
@@ -140,7 +155,9 @@ theorem mem_residualVertexPrimeCells_iff_offsets_mem
 Comparison with one exact cell bounds the residual expression everywhere
 in the offset box.  This stronger form only assumes that the channel is
 nonempty; positivity and primitivity are not needed for this elementary
-estimate.-/
+estimate.
+@isnad1 id=le.2h5v.s6.b287b7cc9e1b from=translated src=- shape=ac4f7214 vocab=89e68acb
+-/
 theorem abs_residualChannelExpression_le
     {L a b : ℕ} {h : ℤ}
     (hnonempty : (channelCells L a b h).Nonempty)
@@ -209,7 +226,9 @@ theorem abs_residualChannelExpression_le
 
 /--
 Manuscript-facing strict bound under the hypotheses of Lemma 7.2: the
-channel is positive, primitive, and contains at least two exact cells.-/
+channel is positive, primitive, and contains at least two exact cells.
+@isnad1 id=lt.5h5v.s7.63533326303b from=translated src=- shape=c857f58f vocab=143bfe08
+-/
 theorem abs_residualChannelExpression_lt_four_mul_max
     {L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (_hb : 0 < b) (_hab : a.Coprime b)
@@ -235,7 +254,9 @@ theorem abs_residualChannelExpression_lt_four_mul_max
 
 /--
 Every prime occurring in a residual cell is supported below the explicit
-geometric cutoff `4 * max(a,b) * (L+1)`.-/
+geometric cutoff `4 * max(a,b) * (L+1)`.
+@isnad1 id=lt.6h6v.s6.4d823834ba1f from=translated src=- shape=da870b70 vocab=063acc18
+-/
 theorem prime_lt_four_mul_max_of_mem_residualPrimeCells
     {L a b p : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
@@ -258,7 +279,9 @@ theorem prime_lt_four_mul_max_of_mem_residualPrimeCells
     exact_mod_cast habs
   exact hpLe.trans_lt hnatAbs
 
-/-- Vertex-coordinate version of the prime-support cutoff.-/
+/-- Vertex-coordinate version of the prime-support cutoff.
+@isnad1 id=lt.6h6v.s8.96592d688613 from=translated src=- shape=5b88a061 vocab=5fe02d99
+-/
 theorem prime_lt_four_mul_max_of_mem_residualVertexPrimeCells
     {L a b p : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)

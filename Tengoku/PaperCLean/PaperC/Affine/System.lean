@@ -44,17 +44,25 @@ abbrev Solution (A : V →ₗ[𝔽₂] W) (b : W) :=
 def Compatible (A : V →ₗ[𝔽₂] W) (b : W) : Prop :=
   b ∈ LinearMap.range A
 
+/--
+@isnad1 id=iff.0h5v.s7.f65e6e9fd053 from=translated src=- shape=2b43fe6b vocab=23970442
+-/
 @[simp]
 theorem mem_solutionSet_iff (A : V →ₗ[𝔽₂] W) (b : W) (x : V) :
     x ∈ solutionSet A b ↔ A x = b :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.bf2b720dfdcf from=translated src=- shape=b9b48d5d vocab=f188db18
+-/
 @[simp]
 theorem solution_property (A : V →ₗ[𝔽₂] W) (b : W) (x : Solution A b) :
     A x.1 = b :=
   x.2
 
-/-- A system is compatible exactly when its solution type is nonempty.-/
+/-- A system is compatible exactly when its solution type is nonempty.
+@isnad1 id=iff.0h4v.s7.7774d9fb0659 from=translated src=- shape=07400670 vocab=f49991db
+-/
 theorem compatible_iff_nonempty (A : V →ₗ[𝔽₂] W) (b : W) :
     Compatible A b ↔ Nonempty (Solution A b) := by
   constructor
@@ -64,7 +72,9 @@ theorem compatible_iff_nonempty (A : V →ₗ[𝔽₂] W) (b : W) :
   · rintro ⟨x⟩
     exact LinearMap.mem_range.mpr ⟨x.1, x.2⟩
 
-/-- A system is incompatible exactly when its solution type is empty.-/
+/-- A system is incompatible exactly when its solution type is empty.
+@isnad1 id=iff.0h4v.s7.5b17f9f6d274 from=translated src=- shape=37890967 vocab=34b8d7fa
+-/
 theorem not_compatible_iff_isEmpty (A : V →ₗ[𝔽₂] W) (b : W) :
     ¬Compatible A b ↔ IsEmpty (Solution A b) := by
   rw [compatible_iff_nonempty, not_nonempty_iff]
@@ -90,12 +100,18 @@ def solutionEquivKer (A : V →ₗ[𝔽₂] W) (b : W) (x₀ : Solution A b) :
     apply Subtype.ext
     exact add_sub_cancel_right k.1 x₀.1
 
+/--
+@isnad1 id=eq.0h6v.s9.129c514d1cb0 from=translated src=- shape=55a4820f vocab=f7d2b504
+-/
 @[simp]
 theorem solutionEquivKer_apply_coe
     (A : V →ₗ[𝔽₂] W) (b : W) (x₀ x : Solution A b) :
     ((solutionEquivKer A b x₀ x : LinearMap.ker A) : V) = x.1 - x₀.1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.0eaac3ee0a9c from=translated src=- shape=ee6f68fd vocab=3baa7213
+-/
 @[simp]
 theorem solutionEquivKer_symm_apply_coe
     (A : V →ₗ[𝔽₂] W) (b : W) (x₀ : Solution A b) (k : LinearMap.ker A) :
@@ -126,7 +142,9 @@ local instance compatibleDecidable (A : V →ₗ[𝔽₂] W) (b : W) :
     Decidable (Compatible A b) :=
   Classical.propDecidable _
 
-/-- A nonempty affine fiber and the kernel have the same cardinality.-/
+/-- A nonempty affine fiber and the kernel have the same cardinality.
+@isnad1 id=eq.0h5v.s8.637be0942fb9 from=translated src=- shape=571bed9c vocab=0abc2988
+-/
 theorem card_solution_eq_card_ker
     (A : V →ₗ[𝔽₂] W) (b : W) (x₀ : Solution A b) :
     Fintype.card (Solution A b) = Fintype.card (LinearMap.ker A) :=
@@ -134,7 +152,9 @@ theorem card_solution_eq_card_ker
 
 /--
 Exact cardinality of a compatible affine system over `𝔽₂`, expressed using
-the dimension of its kernel.-/
+the dimension of its kernel.
+@isnad1 id=eq.0h5v.s8.414b5dd4b555 from=translated src=- shape=0b581058 vocab=1a5e9db3
+-/
 theorem card_solution_eq_pow_finrank
     (A : V →ₗ[𝔽₂] W) (b : W) (x₀ : Solution A b) :
     Fintype.card (Solution A b) =
@@ -148,7 +168,9 @@ theorem card_solution_eq_pow_finrank
     _ = 2 ^ Module.finrank 𝔽₂ (LinearMap.ker A) := by
       rw [ZMod.card]
 
-/-- Compatibility alone suffices for the power-of-two cardinality formula.-/
+/-- Compatibility alone suffices for the power-of-two cardinality formula.
+@isnad1 id=eq.1h4v.s8.0c9da339c499 from=translated src=- shape=9bfc1a39 vocab=ef1c586f
+-/
 theorem card_solution_eq_pow_finrank_of_compatible
     (A : V →ₗ[𝔽₂] W) (b : W) (h : Compatible A b) :
     Fintype.card (Solution A b) =
@@ -157,14 +179,18 @@ theorem card_solution_eq_pow_finrank_of_compatible
     Classical.choice ((compatible_iff_nonempty A b).mp h)
   exact card_solution_eq_pow_finrank A b x₀
 
-/-- An incompatible affine system has no solutions.-/
+/-- An incompatible affine system has no solutions.
+@isnad1 id=eq.1h4v.s7.764406b2fa0f from=translated src=- shape=d0302977 vocab=8aeaa618
+-/
 theorem card_solution_eq_zero_of_not_compatible
     (A : V →ₗ[𝔽₂] W) (b : W) (h : ¬Compatible A b) :
     Fintype.card (Solution A b) = 0 := by
   rw [Fintype.card_eq_zero_iff]
   exact (not_compatible_iff_isEmpty A b).mp h
 
-/-- Uniform cardinality formula, covering both compatible and incompatible systems.-/
+/-- Uniform cardinality formula, covering both compatible and incompatible systems.
+@isnad1 id=eq.0h4v.s8.66b8ed72c4d1 from=translated src=- shape=b77e0a98 vocab=ac1174a4
+-/
 theorem card_solution_eq_ite
     (A : V →ₗ[𝔽₂] W) (b : W) :
     Fintype.card (Solution A b) =
@@ -179,7 +205,9 @@ theorem card_solution_eq_ite
   · rw [ite_eq_right h]
     exact card_solution_eq_zero_of_not_compatible A b h
 
-/-- In particular, every nonempty affine fiber over `𝔽₂` has power-of-two size.-/
+/-- In particular, every nonempty affine fiber over `𝔽₂` has power-of-two size.
+@isnad1 id=ex.1h4v.s7.1314ed031cdc from=translated src=- shape=2be14de0 vocab=083d5ea6
+-/
 theorem card_solution_is_power_of_two
     (A : V →ₗ[𝔽₂] W) (b : W) (h : Compatible A b) :
     ∃ d : ℕ, Fintype.card (Solution A b) = 2 ^ d :=

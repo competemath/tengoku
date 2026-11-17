@@ -35,6 +35,9 @@ def channelStartPairs (N a b : ℕ) (h : ℤ) :
   ((dyadicBlock N) ×ˢ (dyadicBlock N)).filter fun pair =>
     pairChannelError pair.1 pair.2 a b = h
 
+/--
+@isnad1 id=iff.0h6v.s6.4455ddbe2fac from=translated src=- shape=2b27df05 vocab=485feca0
+-/
 @[simp]
 theorem mem_channelStartPairs
     {N a b x y : ℕ} {h : ℤ} :
@@ -45,7 +48,9 @@ theorem mem_channelStartPairs
 
 /--
 The start-pair equation is the `ChannelGeometry` equation with parameter
-`-h`.-/
+`-h`.
+@isnad1 id=onchanne.1h5v.s5.3b50fd61b033 from=translated src=- shape=8cd7c352 vocab=63bb8c87
+-/
 theorem onChannel_neg_of_mem_channelStartPairs
     {N a b : ℕ} {h : ℤ} {pair : ℕ × ℕ}
     (hpair : pair ∈ channelStartPairs N a b h) :
@@ -67,7 +72,9 @@ def channelStartSecondCoordinates
     (N a b : ℕ) (h : ℤ) : Finset ℕ :=
   (channelStartPairs N a b h).image Prod.snd
 
-/-- For `b>0`, the first coordinate determines a start pair on the channel.-/
+/-- For `b>0`, the first coordinate determines a start pair on the channel.
+@isnad1 id=injon.1h4v.s5.c638784da0ca from=translated src=- shape=1dd50fe1 vocab=481c8d29
+-/
 theorem fst_injOn_channelStartPairs
     {N a b : ℕ} (hb : 0 < b) {h : ℤ} :
     Set.InjOn Prod.fst
@@ -88,7 +95,9 @@ theorem fst_injOn_channelStartPairs
     (mul_eq_zero.mp hzero).resolve_left hb0
   exact_mod_cast (sub_eq_zero.mp hy)
 
-/-- For `a>0`, the second coordinate determines a start pair on the channel.-/
+/-- For `a>0`, the second coordinate determines a start pair on the channel.
+@isnad1 id=injon.1h4v.s5.def562834bde from=translated src=- shape=d11edb92 vocab=95767ad3
+-/
 theorem snd_injOn_channelStartPairs
     {N a b : ℕ} (ha : 0 < a) {h : ℤ} :
     Set.InjOn Prod.snd
@@ -114,7 +123,9 @@ theorem snd_injOn_channelStartPairs
 
 /--
 First coordinates on one primitive channel all belong to one residue class
-modulo `b`.-/
+modulo `b`.
+@isnad1 id=le.4h5v.s6.7df8745ed666 from=translated src=- shape=dea3573b vocab=57417589
+-/
 theorem channelStartFirstCoordinates_subset_modClass
     {N a b : ℕ} (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
     {h : ℤ} {pair₀ : ℕ × ℕ}
@@ -140,7 +151,9 @@ theorem channelStartFirstCoordinates_subset_modClass
 
 /--
 Second coordinates on one primitive channel all belong to one residue class
-modulo `a`.-/
+modulo `a`.
+@isnad1 id=le.4h5v.s6.2ee0ca33ea02 from=translated src=- shape=42f5cc5f vocab=43be0ddc
+-/
 theorem channelStartSecondCoordinates_subset_modClass
     {N a b : ℕ} (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
     {h : ℤ} {pair₀ : ℕ × ℕ}
@@ -168,7 +181,9 @@ theorem channelStartSecondCoordinates_subset_modClass
 
 /--
 One residue class modulo `q` has at most `1 + N/q` representatives in the
-dyadic interval `[N,2N)`.-/
+dyadic interval `[N,2N)`.
+@isnad1 id=le.1h3v.s5.dce335804746 from=translated src=- shape=b295a168 vocab=27fe521a
+-/
 theorem card_dyadicBlock_modClass_le_one_add_div
     (N v q : ℕ) (hq : 0 < q) :
     {x ∈ dyadicBlock N | x ≡ v [MOD q]}.card ≤
@@ -225,7 +240,9 @@ theorem card_dyadicBlock_modClass_le_one_add_div
 
 /-! ## Channel-pair count -/
 
-/-- Count a channel by its first-coordinate step `b`.-/
+/-- Count a channel by its first-coordinate step `b`.
+@isnad1 id=le.3h4v.s6.7018b68b3067 from=translated src=- shape=55d09cb1 vocab=ec45fb37
+-/
 theorem channelStartPairs_card_le_one_add_div_firstStep
     (N a b : ℕ) (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
     (h : ℤ) :
@@ -252,7 +269,9 @@ theorem channelStartPairs_card_le_one_add_div_firstStep
         card_dyadicBlock_modClass_le_one_add_div
           N pair₀.1 b hb
 
-/-- Count a channel by its second-coordinate step `a`.-/
+/-- Count a channel by its second-coordinate step `a`.
+@isnad1 id=le.3h4v.s6.43d3e479306a from=translated src=- shape=cbd9250e vocab=ec45fb37
+-/
 theorem channelStartPairs_card_le_one_add_div_secondStep
     (N a b : ℕ) (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
     (h : ℤ) :
@@ -279,7 +298,9 @@ theorem channelStartPairs_card_le_one_add_div_secondStep
         card_dyadicBlock_modClass_le_one_add_div
           N pair₀.2 a ha
 
-/-- Sharp natural `O(N/q+1)` count with `q = max a b`.-/
+/-- Sharp natural `O(N/q+1)` count with `q = max a b`.
+@isnad1 id=le.3h4v.s6.b310464734ba from=translated src=- shape=ef2d62ee vocab=20e987d6
+-/
 theorem channelStartPairs_card_le_one_add_div_maxStep
     (N a b : ℕ) (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
     (h : ℤ) :
@@ -294,7 +315,9 @@ theorem channelStartPairs_card_le_one_add_div_maxStep
       channelStartPairs_card_le_one_add_div_secondStep
         N a b ha hb hab h
 
-/-- Equivalent subtraction-free packing form.-/
+/-- Equivalent subtraction-free packing form.
+@isnad1 id=le.3h4v.s6.aeb2699b12de from=translated src=- shape=3d9b274b vocab=db0064d1
+-/
 theorem maxStep_mul_channelStartPairs_card_sub_one_le
     (N a b : ℕ) (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
     (h : ℤ) :

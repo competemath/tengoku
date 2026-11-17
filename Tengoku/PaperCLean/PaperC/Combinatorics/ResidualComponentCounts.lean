@@ -68,14 +68,18 @@ noncomputable def nondefectiveExactUnitCount
   classical
   exact Fintype.card (NondefectiveChannelUnit x y L a b h)
 
-/-- The type-level unit count agrees with the original occurrence finset.-/
+/-- The type-level unit count agrees with the original occurrence finset.
+@isnad1 id=eq.0h4v.s5.4147e5d8779d from=translated src=- shape=0c79bf13 vocab=52fd5add
+-/
 theorem channelUnitCount_eq_card_rationalChannelUnits
     (L a b : ℕ) (h : ℤ) :
     channelUnitCount L a b h =
       (rationalChannelUnits L a b h).card := by
   simp [channelUnitCount]
 
-/-- It also agrees with the integer-cell multiplicity used in Section 5.-/
+/-- It also agrees with the integer-cell multiplicity used in Section 5.
+@isnad1 id=eq.0h4v.s4.6e8bcf799e5e from=translated src=- shape=a56f69b1 vocab=e61d29ec
+-/
 theorem channelUnitCount_eq_card_channelCells
     (L a b : ℕ) (h : ℤ) :
     channelUnitCount L a b h =
@@ -83,7 +87,9 @@ theorem channelUnitCount_eq_card_channelCells
   rw [channelUnitCount_eq_card_rationalChannelUnits,
     card_rationalChannelUnits_eq_channelCells]
 
-/-- The defective and nondefective classes form a partition of all units.-/
+/-- The defective and nondefective classes form a partition of all units.
+@isnad1 id=eq.0h6v.s5.3101628469e3 from=translated src=- shape=02344873 vocab=000461ef
+-/
 theorem defective_add_nondefective_eq_channelUnitCount
     (x y L a b : ℕ) (h : ℤ) :
     defectiveExactUnitCount x y L a b h +
@@ -109,7 +115,9 @@ def defectiveUnitVertex
     ⟨Sum.inl unit.1.1.1,
       mem_defectiveVertices.mpr unit.2⟩
 
-/-- Distinct units give distinct defective vertices.-/
+/-- Distinct units give distinct defective vertices.
+@isnad1 id=injectiv.1h6v.s5.bb95f4aab41c from=translated src=- shape=ec48b450 vocab=409b71f0
+-/
 theorem defectiveUnitVertex_injective
     {x y L a b : ℕ} {h : ℤ}
     (hb : 0 < b) :
@@ -122,7 +130,9 @@ theorem defectiveUnitVertex_injective
   apply channelUnit_left_injective hb
   exact Sum.inl.inj (congrArg Subtype.val huv)
 
-/-- Hence `d ≤ D`.-/
+/-- Hence `d ≤ D`.
+@isnad1 id=le.1h6v.s5.5d70b8eeb2b0 from=translated src=- shape=dd2683aa vocab=25c02197
+-/
 theorem defectiveExactUnitCount_le_defectiveVertexCount
     {x y L a b : ℕ} {h : ℤ}
     (hb : 0 < b) :
@@ -181,7 +191,9 @@ noncomputable def nondefectiveUnitComponent
   · exact (unit.2 hdef.1).elim
   · exact hnontrivial.2.1
 
-/-- Distinct nondefective units determine distinct residual components.-/
+/-- Distinct nondefective units determine distinct residual components.
+@isnad1 id=injectiv.7h6v.s8.f9ac64e66ab8 from=translated src=- shape=b0a132bc vocab=afc34d70
+-/
 theorem nondefectiveUnitComponent_injective
     {x y L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b)
@@ -200,7 +212,9 @@ theorem nondefectiveUnitComponent_injective
       ha hb hab hx hy hheight hsmall hne
   exact hdistinct (congrArg Subtype.val hcomponents)
 
-/-- Hence `n ≤ c`.-/
+/-- Hence `n ≤ c`.
+@isnad1 id=le.7h6v.s7.ba0caa45a554 from=translated src=- shape=a53958cb vocab=a4063b44
+-/
 theorem nondefectiveExactUnitCount_le_nontrivialComponentCount
     {x y L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b)
@@ -264,7 +278,9 @@ noncomputable def localResidualTau
   relationRho (twoStartSystem M x y L) -
     (channelUnitCount L a b h - 1)
 
-/-- Corrected counts never exceed their uncorrected counterparts.-/
+/-- Corrected counts never exceed their uncorrected counterparts.
+@isnad1 id=le.0h6v.s4.a47525b25a9e from=translated src=- shape=5ae26e9a vocab=640e6276
+-/
 theorem correctedDefectCount_le
     (x y L a b : ℕ) (h : ℤ) :
     correctedDefectCount x y L a b h ≤
@@ -272,6 +288,9 @@ theorem correctedDefectCount_le
   unfold correctedDefectCount
   split_ifs <;> omega
 
+/--
+@isnad1 id=le.0h6v.s4.acfa376d1094 from=translated src=- shape=5ae26e9a vocab=b8db8e49
+-/
 theorem residualComponentCount_le
     (x y L a b : ℕ) (h : ℤ) :
     residualComponentCount x y L a b h ≤
@@ -279,7 +298,9 @@ theorem residualComponentCount_le
   unfold residualComponentCount
   split_ifs <;> omega
 
-/-- The vertex budget survives removal of the systematic exact components.-/
+/-- The vertex budget survives removal of the systematic exact components.
+@isnad1 id=le.2h6v.s6.eedc7609678d from=translated src=- shape=daa575b3 vocab=50f0189f
+-/
 theorem corrected_add_twice_residual_le
     (x y L a b : ℕ) (h : ℤ)
     (hx : 1 ≤ x) (hy : 1 ≤ y) :
@@ -298,7 +319,9 @@ theorem corrected_add_twice_residual_le
 
 /--
 Finite quotient-core inequality of Lemma 6.4 for one explicit primitive
-channel.-/
+channel.
+@isnad1 id=le.8h7v.s7.9f536d4ff793 from=translated src=- shape=f58df703 vocab=e58f150e
+-/
 theorem localResidualTau_le_corrected_add_residual
     {M x y L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b)
@@ -380,7 +403,9 @@ noncomputable def canonicalResidualComponentCount
 
 /--
 The canonical `τ` of Section 5 is the local expression `ρ-(m-1)` whenever
-a candidate has been selected.-/
+a candidate has been selected.
+@isnad1 id=eq.3h6v.s9.ad22dc853fad from=translated src=- shape=98e47b60 vocab=fde75ea6
+-/
 theorem residualTau_eq_localResidualTau_of_choice
     {M A x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)
@@ -419,7 +444,9 @@ theorem residualTau_eq_localResidualTau_of_choice
 /--
 Canonical finite form of (6.3): no height hypothesis is used in the
 degenerate branch `m<2`; in the active branch it follows from the presence
-of two exact units.-/
+of two exact units.
+@isnad1 id=le.4h5v.s6.741594e49aa2 from=translated src=- shape=cae65de6 vocab=9576ed0b
+-/
 theorem residualTau_le_canonicalCorrected_add_residual
     {M A x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)
@@ -463,7 +490,9 @@ theorem residualTau_le_canonicalCorrected_add_residual
       simpa [canonicalCorrectedDefectCount,
         canonicalResidualComponentCount, hchoice] using hlocal
 
-/-- Canonical finite form of the vertex budget (6.5).-/
+/-- Canonical finite form of the vertex budget (6.5).
+@isnad1 id=le.2h4v.s6.2e136dacbed1 from=translated src=- shape=b7b59aba vocab=ac7683d9
+-/
 theorem canonicalCorrected_add_twice_residual_le
     (A x y L : ℕ)
     (hx : 1 ≤ x) (hy : 1 ≤ y) :

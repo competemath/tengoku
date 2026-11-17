@@ -37,6 +37,9 @@ open scoped BigOperators
 def primesBetween (B X : ℕ) : Finset ℕ :=
   (DefectCounting.smallPrimesUpTo X).filter fun p ↦ B < p
 
+/--
+@isnad1 id=iff.0h3v.s5.ea11542aa601 from=translated src=- shape=79037f53 vocab=d83c063d
+-/
 @[simp]
 theorem mem_primesBetween {B X p : ℕ} :
     p ∈ primesBetween B X ↔ p.Prime ∧ B < p ∧ p ≤ X := by
@@ -44,6 +47,9 @@ theorem mem_primesBetween {B X p : ℕ} :
     DefectCounting.mem_smallPrimesUpTo]
   aesop
 
+/--
+@isnad1 id=eq.0h1v.s3.c7e393dd5641 from=translated src=- shape=8defbcec vocab=ca9242bf
+-/
 @[simp]
 theorem primesBetween_self (B : ℕ) :
     primesBetween B B = ∅ := by
@@ -54,6 +60,9 @@ theorem primesBetween_self (B : ℕ) :
 def dyadicPrimes (B K : ℕ) : Finset ℕ :=
   primesBetween B (B * 2 ^ K)
 
+/--
+@isnad1 id=iff.0h3v.s5.92fc2ebe02e9 from=translated src=- shape=e9dd82d6 vocab=cee5b365
+-/
 @[simp]
 theorem mem_dyadicPrimes {B K p : ℕ} :
     p ∈ dyadicPrimes B K ↔
@@ -237,7 +246,9 @@ private theorem disjoint_dyadicPrimes_shell (B K : ℕ) :
   exact disjoint_primesBetween_adjacent B (B * 2 ^ K)
 
 /--
-Explicit first reciprocal-prime estimate on `(B, B * 2^K]`.-/
+Explicit first reciprocal-prime estimate on `(B, B * 2^K]`.
+@isnad1 id=le.1h2v.s6.547a7476036e from=translated src=- shape=7458804e vocab=6895b0cf
+-/
 theorem sum_inv_dyadicPrimes_le
     (B K : ℕ) (hB : 4 ≤ B) :
     (∑ p ∈ dyadicPrimes B K, 1 / (p : ℚ)) ≤
@@ -327,7 +338,9 @@ private theorem sum_inv_sq_dyadicPrimes_le_geometric
           field_simp
 
 /--
-Explicit reciprocal-square estimate on `(B, B * 2^K]`, uniform in `K`.-/
+Explicit reciprocal-square estimate on `(B, B * 2^K]`, uniform in `K`.
+@isnad1 id=le.1h2v.s6.b47b0304906e from=translated src=- shape=9ad06dc5 vocab=44436431
+-/
 theorem sum_inv_sq_dyadicPrimes_le
     (B K : ℕ) (hB : 4 ≤ B) :
     (∑ p ∈ dyadicPrimes B K, 1 / (p : ℚ) ^ 2) ≤
@@ -353,7 +366,9 @@ theorem sum_inv_sq_dyadicPrimes_le
 
 /--
 The first reciprocal estimate is inherited by every subfamily of the
-dyadic prime interval.-/
+dyadic prime interval.
+@isnad1 id=le.2h3v.s6.d395045373d8 from=translated src=- shape=9139eae0 vocab=b1c4a2a7
+-/
 theorem sum_inv_subset_dyadicPrimes_le
     (B K : ℕ) (P : Finset ℕ) (hB : 4 ≤ B)
     (hP : P ⊆ dyadicPrimes B K) :
@@ -369,7 +384,9 @@ theorem sum_inv_subset_dyadicPrimes_le
 
 /--
 The uniform reciprocal-square estimate is inherited by every subfamily of
-the dyadic prime interval.-/
+the dyadic prime interval.
+@isnad1 id=le.2h3v.s6.41fc78e3eda1 from=translated src=- shape=028603c9 vocab=1c610852
+-/
 theorem sum_inv_sq_subset_dyadicPrimes_le
     (B K : ℕ) (P : Finset ℕ) (hB : 4 ≤ B)
     (hP : P ⊆ dyadicPrimes B K) :
@@ -386,7 +403,9 @@ theorem sum_inv_sq_subset_dyadicPrimes_le
 /--
 The residual-channel cutoff `4 q B` lies below the dyadic cutoff with
 exponent `q + 2`.  The deliberately loose exponent avoids any logarithmic
-rounding in the later channel argument.-/
+rounding in the later channel argument.
+@isnad1 id=le.0h2v.s6.66813b500346 from=translated src=- shape=124526b8 vocab=f96c6fce
+-/
 theorem four_mul_q_mul_B_le_dyadicCutoff (B q : ℕ) :
     4 * q * B ≤ B * 2 ^ (q + 2) := by
   have hq : q ≤ 2 ^ q :=
@@ -399,7 +418,9 @@ theorem four_mul_q_mul_B_le_dyadicCutoff (B q : ℕ) :
 
 /--
 Every prime in the geometric support `(B, 4qB)` of a residual channel lies
-in the dyadic interval with exponent `q + 2`.-/
+in the dyadic interval with exponent `q + 2`.
+@isnad1 id=mem.3h3v.s6.5c30a90db275 from=translated src=- shape=d50356e5 vocab=87ad5b33
+-/
 theorem mem_dyadicPrimes_add_two_of_prime_lt_four_mul
     {B q p : ℕ} (hp : p.Prime) (hBp : B < p)
     (hpUpper : p < 4 * q * B) :
@@ -411,7 +432,9 @@ theorem mem_dyadicPrimes_add_two_of_prime_lt_four_mul
 /--
 A finite family of primes satisfying the residual-channel support
 restriction is contained in the dyadic prime interval with exponent
-`q + 2`.-/
+`q + 2`.
+@isnad1 id=le.3h3v.s6.94ddca4be8a9 from=translated src=- shape=35179abc vocab=70086bd2
+-/
 theorem subset_dyadicPrimes_add_two_of_prime_lt_four_mul
     {B q : ℕ} (P : Finset ℕ)
     (hprime : ∀ p ∈ P, p.Prime)
@@ -424,7 +447,9 @@ theorem subset_dyadicPrimes_add_two_of_prime_lt_four_mul
 
 /--
 First reciprocal-prime estimate in the exact support range supplied by the
-residual-channel geometry.-/
+residual-channel geometry.
+@isnad1 id=le.4h3v.s7.b0e724094ad9 from=translated src=- shape=e2512556 vocab=35de15b2
+-/
 theorem sum_inv_primes_lt_four_mul_le
     {B q : ℕ} (P : Finset ℕ) (hB : 4 ≤ B)
     (hprime : ∀ p ∈ P, p.Prime)
@@ -439,7 +464,9 @@ theorem sum_inv_primes_lt_four_mul_le
 
 /--
 Uniform reciprocal-square estimate in the exact support range supplied by
-the residual-channel geometry.-/
+the residual-channel geometry.
+@isnad1 id=le.4h3v.s7.9403894dd5da from=translated src=- shape=048d2afe vocab=e1488c09
+-/
 theorem sum_inv_sq_primes_lt_four_mul_le
     {B q : ℕ} (P : Finset ℕ) (hB : 4 ≤ B)
     (hprime : ∀ p ∈ P, p.Prime)

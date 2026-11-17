@@ -23,7 +23,9 @@ variable [DecidableEq V] [DecidableEq E] [DecidableEq P]
 def cyclomaticNumber (left right : E → V) : ℕ :=
   Fintype.card E + Fintype.card (Component left right) - Fintype.card V
 
-/-- Lemma 2.7, including the dimension computation for the graph itself.-/
+/-- Lemma 2.7, including the dimension computation for the graph itself.
+@isnad1 id=and.2h7v.s11.3388366d3947 from=translated src=- shape=2b4b673e vocab=1cc520f5
+-/
 theorem lemma_two_seven (left right : E → V) (vertexVector : V → P → F₂)
     (root : Component left right → V)
     (hroot : ∀ c, component left right (root c) = c)
@@ -44,7 +46,9 @@ theorem lemma_two_seven (left right : E → V) (vertexVector : V → P → F₂)
     Fintype.card V) ≤ _
   omega
 
-/-- Equivalent rank form: at least one degree of freedom per non-root vertex.-/
+/-- Equivalent rank form: at least one degree of freedom per non-root vertex.
+@isnad1 id=le.2h7v.s10.75b63050448b from=translated src=- shape=ffb9666d vocab=91bbe0b9
+-/
 theorem rank_add_components_le (left right : E → V) (vertexVector : V → P → F₂)
     (root : Component left right → V)
     (hroot : ∀ c, component left right (root c) = c)
@@ -59,7 +63,9 @@ theorem rank_add_components_le (left right : E → V) (vertexVector : V → P �
   omega
 
 omit [Fintype E] [Fintype P] [DecidableEq E] [DecidableEq P] in
-/-- The tree clause has full edge rank, directly from the tree boundary theorem.-/
+/-- The tree clause has full edge rank, directly from the tree boundary theorem.
+@isnad1 id=eq.3h6v.s10.3b50a0363677 from=translated src=- shape=78d84b82 vocab=292ae3e2
+-/
 theorem lemma_two_seven_tree (G : SimpleGraph V) [DecidableRel G.Adj]
     (hG : G.IsTree) (r : V) (v : V → P →₀ F₂)
     (pivot : {w : V // w ≠ r} → P)

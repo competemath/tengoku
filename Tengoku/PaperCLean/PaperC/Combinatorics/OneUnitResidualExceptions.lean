@@ -54,7 +54,9 @@ noncomputable def uniqueChannelUnit
     ChannelUnit L a b h :=
   (exists_unique_channelUnit hm).choose
 
-/-- Every exact unit equals the canonical unit in the one-unit branch.-/
+/-- Every exact unit equals the canonical unit in the one-unit branch.
+@isnad1 id=eq.1h5v.s5.4b967eaf83ae from=translated src=- shape=0f101a26 vocab=3abd4392
+-/
 theorem channelUnit_eq_uniqueChannelUnit
     {L a b : ℕ} {h : ℤ}
     (hm : channelUnitCount L a b h = 1)
@@ -64,7 +66,9 @@ theorem channelUnit_eq_uniqueChannelUnit
 
 /--
 Finset-level form of uniqueness: every cell belonging to
-`rationalChannelUnits` is the underlying cell of the canonical unit.-/
+`rationalChannelUnits` is the underlying cell of the canonical unit.
+@isnad1 id=eq.2h5v.s8.1b63e0fbd8a1 from=translated src=- shape=97c6cdd8 vocab=35addd85
+-/
 theorem channelCell_eq_uniqueChannelUnit
     {L a b : ℕ} {h : ℤ}
     (hm : channelUnitCount L a b h = 1)
@@ -88,6 +92,9 @@ noncomputable def oneUnitExceptionalComponents
     (Sum.inl (uniqueChannelUnit hm).1.1)
     (Sum.inr (uniqueChannelUnit hm).1.2)
 
+/--
+@isnad1 id=iff.1h8v.s9.fc21bbed8a82 from=translated src=- shape=de0fcde7 vocab=dd2d6ed7
+-/
 @[simp]
 theorem mem_oneUnitExceptionalComponents
     {x y L a b : ℕ} {h : ℤ}
@@ -103,7 +110,9 @@ theorem mem_oneUnitExceptionalComponents
               (Sum.inr (uniqueChannelUnit hm).1.2) = C) := by
   exact mem_componentsMeetingPair
 
-/-- At most two components can meet the unique exact unit.-/
+/-- At most two components can meet the unique exact unit.
+@isnad1 id=le.1h7v.s5.11e2bde7265a from=translated src=- shape=4afa1237 vocab=ec6c0047
+-/
 theorem card_oneUnitExceptionalComponents_le_two
     {x y L a b : ℕ} {h : ℤ}
     (components :
@@ -120,7 +129,9 @@ If a canonical certificate lies on a channel containing exactly one unit,
 its component belongs to the exceptional family meeting that unit.
 
 Positivity of `(a,b)` is not needed for this conclusion: cardinal-one
-uniqueness of `rationalChannelUnits` is already stronger.-/
+uniqueness of `rationalChannelUnits` is already stronger.
+@isnad1 id=mem.5h8v.s8.99cf4969a0f4 from=translated src=- shape=b0b84e5a vocab=11c3bb90
+-/
 theorem canonicalCertificate_mem_oneUnitExceptionalComponents_of_onChannel
     {x y L a b : ℕ} {h : ℤ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)

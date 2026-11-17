@@ -47,6 +47,9 @@ abbrev InfiniteSample := ℕ → F₂
 noncomputable def coordinateMeasure : Measure F₂ :=
   (PMF.uniformOfFintype F₂).toMeasure
 
+/--
+@isnad1 id=isprobab.0h0v.s2.320b2dce3ae6 from=translated src=- shape=54c8eceb vocab=94f25616
+-/
 noncomputable instance instIsProbabilityMeasureCoordinateMeasure :
     IsProbabilityMeasure coordinateMeasure := by
   unfold coordinateMeasure
@@ -56,7 +59,9 @@ noncomputable instance instIsProbabilityMeasureCoordinateMeasure :
 noncomputable def infiniteRademacherMeasure : Measure InfiniteSample :=
   Measure.infinitePi (fun _ : ℕ => coordinateMeasure)
 
-/-- Each of the two coordinate values has probability `1 / 2`.-/
+/-- Each of the two coordinate values has probability `1 / 2`.
+@isnad1 id=eq.0h1v.s5.22ef6b22c03b from=translated src=- shape=420c14c6 vocab=11367338
+-/
 @[simp]
 theorem coordinateMeasure_singleton (b : F₂) :
     coordinateMeasure ({b} : Set F₂) = (2 : ℝ≥0∞)⁻¹ := by
@@ -70,7 +75,9 @@ zero.-/
 def zeroPrefix (x N : ℕ) : Set InfiniteSample :=
   Set.pi (Finset.Ico x (x + N)) (fun _ => {0})
 
-/-- Exact mass `2⁻ᴺ` of a cylinder fixing `N` independent bits.-/
+/-- Exact mass `2⁻ᴺ` of a cylinder fixing `N` independent bits.
+@isnad1 id=eq.0h2v.s6.774c4cff18b6 from=translated src=- shape=180e6faa vocab=53d22474
+-/
 theorem measure_zeroPrefix (x N : ℕ) :
     infiniteRademacherMeasure (zeroPrefix x N) =
       ((2 : ℝ≥0∞)⁻¹) ^ N := by
@@ -83,7 +90,9 @@ theorem measure_zeroPrefix (x N : ℕ) :
 def zeroTail (x : ℕ) : Set InfiniteSample :=
   {ω | ∀ n, x ≤ n → ω n = 0}
 
-/-- A zero tail lies in each of its finite-prefix cylinders.-/
+/-- A zero tail lies in each of its finite-prefix cylinders.
+@isnad1 id=le.0h2v.s3.ae70455ce94e from=translated src=- shape=3b2541dc vocab=9be38f2e
+-/
 theorem zeroTail_subset_zeroPrefix (x N : ℕ) :
     zeroTail x ⊆ zeroPrefix x N := by
   intro ω hω
@@ -93,7 +102,9 @@ theorem zeroTail_subset_zeroPrefix (x N : ℕ) :
   exact hω n (Finset.mem_Ico.mp hn).1
 
 /-- An infinite prescribed tail of independent uniform bits has probability
-zero.-/
+zero.
+@isnad1 id=eq.0h1v.s5.307c42660c80 from=translated src=- shape=8591040a vocab=64b46fe9
+-/
 theorem measure_zeroTail (x : ℕ) :
     infiniteRademacherMeasure (zeroTail x) = 0 := by
   apply le_zero_iff.mp
@@ -116,7 +127,9 @@ noncomputable def infiniteRandomValue (ω : InfiniteSample) (n : ℕ) : ℤ :=
   phase (infiniteValueBit ω n)
 
 /-- Prime-exponent parity turns multiplication of nonzero naturals into
-addition of infinite-model value bits.-/
+addition of infinite-model value bits.
+@isnad1 id=eq.2h3v.s5.5378514cf69e from=translated src=- shape=e0aafbe0 vocab=64014cf0
+-/
 theorem infiniteValueBit_mul (ω : InfiniteSample) {a b : ℕ}
     (ha : a ≠ 0) (hb : b ≠ 0) :
     infiniteValueBit ω (a * b) =
@@ -129,38 +142,50 @@ theorem infiniteValueBit_mul (ω : InfiniteSample) {a b : ℕ}
     simp [mul_add]
 
 /-- Complete multiplicativity of the infinite extended-Rademacher function
-on nonzero naturals.-/
+on nonzero naturals.
+@isnad1 id=eq.2h3v.s5.fd689dc7e8c3 from=translated src=- shape=e0aafbe0 vocab=c03aae1b
+-/
 theorem infiniteRandomValue_mul (ω : InfiniteSample) {a b : ℕ}
     (ha : a ≠ 0) (hb : b ≠ 0) :
     infiniteRandomValue ω (a * b) =
       infiniteRandomValue ω a * infiniteRandomValue ω b := by
   simp only [infiniteRandomValue, infiniteValueBit_mul ω ha hb, phase_add]
 
-/-- At the `k`-th prime, the parity functional is exactly coordinate `k`.-/
+/-- At the `k`-th prime, the parity functional is exactly coordinate `k`.
+@isnad1 id=eq.0h2v.s3.280892d6aa02 from=translated src=- shape=20f0f39f vocab=0459bf07
+-/
 @[simp]
 theorem infiniteValueBit_nth_prime (ω : InfiniteSample) (k : ℕ) :
     infiniteValueBit ω (Nat.nth Nat.Prime k) = ω k := by
   simp [infiniteValueBit, parityVec, Nat.Prime.factorization]
 
-/-- Squares have zero prime-exponent parity.-/
+/-- Squares have zero prime-exponent parity.
+@isnad1 id=eq.0h2v.s5.868173179998 from=translated src=- shape=f01d1d18 vocab=a6cc551c
+-/
 @[simp]
 theorem infiniteValueBit_sq (ω : InfiniteSample) (n : ℕ) :
     infiniteValueBit ω (n ^ 2) = 0 := by
   simp [infiniteValueBit]
 
-/-- The random value at the `k`-th prime is its assigned sign.-/
+/-- The random value at the `k`-th prime is its assigned sign.
+@isnad1 id=eq.0h2v.s3.fd4301e65b07 from=translated src=- shape=6edfc1ff vocab=e9301e60
+-/
 @[simp]
 theorem infiniteRandomValue_nth_prime (ω : InfiniteSample) (k : ℕ) :
     infiniteRandomValue ω (Nat.nth Nat.Prime k) = phase (ω k) := by
   simp [infiniteRandomValue]
 
-/-- The extended model is deterministically `+1` on squares.-/
+/-- The extended model is deterministically `+1` on squares.
+@isnad1 id=eq.0h2v.s4.03be4b6574d6 from=translated src=- shape=f01d1d18 vocab=35c56242
+-/
 @[simp]
 theorem infiniteRandomValue_sq (ω : InfiniteSample) (n : ℕ) :
     infiniteRandomValue ω (n ^ 2) = 1 := by
   simp [infiniteRandomValue]
 
-/-- A phase is `+1` exactly when its bit is zero.-/
+/-- A phase is `+1` exactly when its bit is zero.
+@isnad1 id=iff.0h1v.s5.03cd1420f743 from=translated src=- shape=3a75f94e vocab=e740b621
+-/
 theorem phase_eq_one_iff (z : F₂) :
     phase z = 1 ↔ z = 0 := by
   simp [phase]
@@ -175,7 +200,9 @@ def constantTail (x : ℕ) : Set InfiniteSample :=
 If the function is constant from `x` onwards, then every coordinate `k ≥ x`
 is zero.  Indeed, for `p` the `k`-th prime, both `p` and `p²` lie beyond `x`;
 the square has value `+1`, forcing the prime value, and hence its bit, to be
-zero.-/
+zero.
+@isnad1 id=le.0h1v.s3.3020d527a785 from=translated src=- shape=ffc59986 vocab=3f62fe0b
+-/
 theorem constantTail_subset_zeroTail (x : ℕ) :
     constantTail x ⊆ zeroTail x := by
   intro ω hω k hk
@@ -198,12 +225,16 @@ theorem constantTail_subset_zeroTail (x : ℕ) :
   rw [← infiniteRandomValue_nth_prime ω k]
   exact hp_const.trans hfx
 
-/-- For each fixed start `x`, the constant-tail event has probability zero.-/
+/-- For each fixed start `x`, the constant-tail event has probability zero.
+@isnad1 id=eq.0h1v.s5.018bdffdb9ac from=translated src=- shape=8591040a vocab=cb397413
+-/
 theorem measure_constantTail (x : ℕ) :
     infiniteRademacherMeasure (constantTail x) = 0 :=
   measure_mono_null (constantTail_subset_zeroTail x) (measure_zeroTail x)
 
-/-- Almost surely, the function is not constant from a fixed start `x`.-/
+/-- Almost surely, the function is not constant from a fixed start `x`.
+@isnad1 id=eventual.0h1v.s5.0092aeb3d9d8 from=translated src=- shape=f6a0dbf8 vocab=d47d9ded
+-/
 theorem ae_not_constantTail (x : ℕ) :
     ∀ᵐ ω ∂infiniteRademacherMeasure, ω ∉ constantTail x := by
   rw [ae_iff]
@@ -214,7 +245,9 @@ theorem ae_not_constantTail (x : ℕ) :
 **Lemma 14.5 (almost-sure finiteness of runs), source-exact form.**
 
 Almost surely, for every integer `x ≥ 2`, some `n ≥ x` has value different
-from the value at `x`.  Equivalently, no constant run extends indefinitely.-/
+from the value at `x`.  Equivalently, no constant run extends indefinitely.
+@isnad1 id=eventual.0h0v.s5.51025fbc831d from=translated src=- shape=db2f8ceb vocab=e4f40820
+-/
 theorem lemma_fourteen_four :
     ∀ᵐ ω ∂infiniteRademacherMeasure, ∀ x : ℕ, 2 ≤ x →
       ∃ n : ℕ, x ≤ n ∧

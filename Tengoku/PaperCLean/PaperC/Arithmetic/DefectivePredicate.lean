@@ -33,7 +33,9 @@ Coordinates of `parityVec` at non-primes vanish automatically.-/
 def HDefective (H n : ℕ) : Prop :=
   ∀ p : ℕ, p.Prime → H < p → parityVec n p = 0
 
-/-- The parity-vector formulation is exactly evenness of every valuation above `H`.-/
+/-- The parity-vector formulation is exactly evenness of every valuation above `H`.
+@isnad1 id=iff.0h2v.s5.e52dcb4b59be from=translated src=- shape=52cb8733 vocab=73be350d
+-/
 theorem hDefective_iff_even_factorization (H n : ℕ) :
     HDefective H n ↔
       ∀ p : ℕ, p.Prime → H < p → 2 ∣ n.factorization p := by
@@ -42,7 +44,9 @@ theorem hDefective_iff_even_factorization (H n : ℕ) :
 
 /--
 Equivalent support formulation: every nonzero prime coordinate of the parity
-vector is indexed by a prime at most `H`.-/
+vector is indexed by a prime at most `H`.
+@isnad1 id=iff.0h2v.s6.a2790e707b93 from=translated src=- shape=0d37072d vocab=86f18cf0
+-/
 theorem hDefective_iff_parity_support_le (H n : ℕ) :
     HDefective H n ↔
       ∀ p : ℕ, p.Prime → parityVec n p ≠ 0 → p ≤ H := by
@@ -54,7 +58,9 @@ theorem hDefective_iff_parity_support_le (H n : ℕ) :
     by_contra hparity
     exact (Nat.not_le_of_gt hpH) (h p hp hparity)
 
-/-- The defect part of an `H`-defect representation is nonzero.-/
+/-- The defect part of an `H`-defect representation is nonzero.
+@isnad1 id=ne.0h3v.s4.141ed512d800 from=translated src=- shape=6d3b908a vocab=6977c282
+-/
 theorem defectPart_ne_zero_of_HDefectRepresentation
     {H n : ℕ} (rep : HDefectRepresentation H n) :
     rep.defectPart ≠ 0 := by
@@ -67,7 +73,9 @@ An explicit square-times-small-prime representation satisfies the intrinsic
 `K_H(n) = 1` predicate.
 
 This statement also covers the degenerate representation of `0` (necessarily
-with square part `0`): `Nat.factorization 0`, hence its parity vector, is zero.-/
+with square part `0`): `Nat.factorization 0`, hence its parity vector, is zero.
+@isnad1 id=hdefecti.0h3v.s3.7f86a21a00df from=translated src=- shape=8584b719 vocab=d57cd0d0
+-/
 theorem hDefective_of_HDefectRepresentation
     {H n : ℕ} (rep : HDefectRepresentation H n) :
     HDefective H n := by
@@ -91,7 +99,9 @@ theorem hDefective_of_HDefectRepresentation
       (Nat.prime_dvd_prime_iff_eq hp hq_small.1).mp hpq
     exact (Nat.not_le_of_gt hpH) (hp_eq_q ▸ hq_small.2)
 
-/-- Valuation-only consequence of an explicit `H`-defect representation.-/
+/-- Valuation-only consequence of an explicit `H`-defect representation.
+@isnad1 id=dvd.2h4v.s5.70c2bd0d8921 from=translated src=- shape=b4978ce2 vocab=5d3932b6
+-/
 theorem even_factorization_of_HDefectRepresentation
     {H n p : ℕ} (rep : HDefectRepresentation H n)
     (hp : p.Prime) (hpH : H < p) :
@@ -119,6 +129,9 @@ noncomputable def halfFactorization (n : ℕ) : ℕ →₀ ℕ :=
 noncomputable def canonicalSquarePart (n : ℕ) : ℕ :=
   (halfFactorization n).prod (· ^ ·)
 
+/--
+@isnad1 id=eq.0h1v.s6.1176cb470ec7 from=translated src=- shape=b91a737f vocab=521b02bc
+-/
 theorem factorization_eq_odd_add_two_half (n : ℕ) :
     n.factorization =
       oddFactorization n + 2 • halfFactorization n := by
@@ -127,7 +140,9 @@ theorem factorization_eq_odd_add_two_half (n : ℕ) :
     Finsupp.mapRange_apply, Finsupp.smul_apply, nsmul_eq_mul]
   exact (Nat.mod_add_div (n.factorization p) 2).symm
 
-/-- Every exponent occurring in `oddFactorization` is exactly one.-/
+/-- Every exponent occurring in `oddFactorization` is exactly one.
+@isnad1 id=eq.1h2v.s5.4e1755e22065 from=translated src=- shape=27f111ab vocab=79581ffc
+-/
 theorem oddFactorization_apply_eq_one_of_mem
     {n p : ℕ} (hp : p ∈ oddPrimeSupport n) :
     oddFactorization n p = 1 := by
@@ -138,7 +153,9 @@ theorem oddFactorization_apply_eq_one_of_mem
 
 /--
 The product encoded by `oddFactorization` is the ordinary product of its
-support, since every retained exponent is one.-/
+support, since every retained exponent is one.
+@isnad1 id=eq.0h1v.s5.ab486f9949d6 from=translated src=- shape=27a1a3ff vocab=12adbd12
+-/
 theorem prod_oddPrimeSupport_eq_prod_oddFactorization (n : ℕ) :
     (oddPrimeSupport n).prod id =
       (oddFactorization n).prod (· ^ ·) := by
@@ -149,7 +166,9 @@ theorem prod_oddPrimeSupport_eq_prod_oddFactorization (n : ℕ) :
   rw [oddFactorization_apply_eq_one_of_mem hp, pow_one]
   rfl
 
-/-- The canonical odd-support/half-exponent decomposition of a nonzero integer.-/
+/-- The canonical odd-support/half-exponent decomposition of a nonzero integer.
+@isnad1 id=eq.1h1v.s5.65052ea4801f from=translated src=- shape=f499e0fc vocab=a186615d
+-/
 theorem canonical_odd_mul_sq_decomposition
     {n : ℕ} (hn : n ≠ 0) :
     n = (oddPrimeSupport n).prod id * canonicalSquarePart n ^ 2 := by
@@ -176,7 +195,9 @@ theorem canonical_odd_mul_sq_decomposition
 
 /--
 If the intrinsic predicate holds, every prime in the canonical odd support is
-one of the primes at most `H`.-/
+one of the primes at most `H`.
+@isnad1 id=le.1h2v.s4.152df526dd4f from=translated src=- shape=ec846e44 vocab=68b34b1a
+-/
 theorem oddPrimeSupport_subset_smallPrimesUpTo
     {H n : ℕ} (h : HDefective H n) :
     oddPrimeSupport n ⊆ smallPrimesUpTo H := by
@@ -210,7 +231,9 @@ noncomputable def representationOfHDefective
   squarePart := canonicalSquarePart n
   value_eq := canonical_odd_mul_sq_decomposition hn
 
-/-- For nonzero integers, the predicate and finite representation are equivalent.-/
+/-- For nonzero integers, the predicate and finite representation are equivalent.
+@isnad1 id=iff.1h2v.s4.84dd4d83cdbb from=translated src=- shape=990e5ca5 vocab=7c65a492
+-/
 theorem hDefective_iff_exists_HDefectRepresentation
     {H n : ℕ} (hn : n ≠ 0) :
     HDefective H n ↔ Nonempty (HDefectRepresentation H n) := by

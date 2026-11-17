@@ -28,19 +28,31 @@ local instance instDecidableProposition (P : Prop) : Decidable P := Classical.pr
 /-- The real singleton mass of the actual Poisson measure.-/
 def poissonMass (rate : ℝ≥0) (k : ℕ) : ℝ := (poissonMeasure rate).real {k}
 
+/--
+@isnad1 id=eq.0h2v.s5.543146cb7ec2 from=translated src=- shape=a7cf24b9 vocab=e30a7316
+-/
 theorem poissonMass_formula (rate : ℝ≥0) (k : ℕ) :
     poissonMass rate k = Real.exp (-(rate : ℝ)) * (rate : ℝ) ^ k / (k.factorial : ℝ) :=
   poissonMeasure_real_singleton rate k
 
+/--
+@isnad1 id=le.0h2v.s4.672105cb37eb from=translated src=- shape=0d4521f5 vocab=6114be6f
+-/
 theorem poissonMass_nonneg (rate : ℝ≥0) (k : ℕ) : 0 ≤ poissonMass rate k := by
   rw [poissonMass_formula]
   positivity
 
+/--
+@isnad1 id=hassum.0h1v.s4.c3775d206514 from=translated src=- shape=a98592d8 vocab=8a4eecc1
+-/
 theorem hasSum_poissonMass (rate : ℝ≥0) : HasSum (poissonMass rate) 1 := by
   change HasSum (fun k => poissonMass rate k) 1
   simp_rw [poissonMass_formula]
   exact hasSum_one_poissonMeasure rate
 
+/--
+@isnad1 id=eq.0h1v.s5.32d6f05a6e8a from=translated src=- shape=d6bdd762 vocab=a1b15143
+-/
 theorem poissonMass_zero (k : ℕ) : poissonMass 0 k = if k = 0 then 1 else 0 := by
   cases k <;> simp [poissonMass_formula]
 
@@ -48,6 +60,9 @@ theorem poissonMass_zero (k : ℕ) : poissonMass 0 k = if k = 0 then 1 else 0 :=
 def poissonSetMass (rate : ℝ≥0) (A : Set ℕ) : ℝ :=
   ∑' k, if k ∈ A then poissonMass rate k else 0
 
+/--
+@isnad1 id=eq.0h1v.s5.9a2d18f37d7f from=translated src=- shape=540969d3 vocab=e045bd4f
+-/
 theorem poissonSetMass_zero (A : Set ℕ) : poissonSetMass 0 A = if 0 ∈ A then 1 else 0 := by
   unfold poissonSetMass
   simp_rw [poissonMass_zero]
@@ -65,20 +80,32 @@ def firstSteinFactor (rate : ℝ≥0) : ℝ :=
 def zeroSteinFactor (rate : ℝ≥0) : ℝ :=
   if rate = 0 then 1 else min 1 (Real.sqrt (rate : ℝ))⁻¹
 
+/--
+@isnad1 id=le.0h1v.s3.f7ab85f58d50 from=translated src=- shape=b9369acb vocab=a9ff0ffc
+-/
 theorem firstSteinFactor_nonneg (rate : ℝ≥0) : 0 ≤ firstSteinFactor rate := by
   unfold firstSteinFactor
   split_ifs <;> positivity
 
+/--
+@isnad1 id=le.0h1v.s3.e9e68ddffa5a from=translated src=- shape=a311c14d vocab=a9ff0ffc
+-/
 theorem firstSteinFactor_le_one (rate : ℝ≥0) : firstSteinFactor rate ≤ 1 := by
   unfold firstSteinFactor
   split_ifs
   · exact le_rfl
   · exact min_le_left _ _
 
+/--
+@isnad1 id=le.0h1v.s3.b372ebfd566a from=translated src=- shape=b9369acb vocab=a29921f7
+-/
 theorem zeroSteinFactor_nonneg (rate : ℝ≥0) : 0 ≤ zeroSteinFactor rate := by
   unfold zeroSteinFactor
   split_ifs <;> positivity
 
+/--
+@isnad1 id=le.0h1v.s3.4d4104872b0c from=translated src=- shape=a311c14d vocab=a29921f7
+-/
 theorem zeroSteinFactor_le_one (rate : ℝ≥0) : zeroSteinFactor rate ≤ 1 := by
   unfold zeroSteinFactor
   split_ifs
@@ -97,7 +124,9 @@ def ScalarSteinFactorsStatement : Prop :=
   ∀ rate : ℝ≥0, 0 < rate →
     SteinSolutionBounds rate (zeroSteinFactor rate) (firstSteinFactor rate)
 
-/-- The zero-rate equation has an elementary bounded solution.-/
+/-- The zero-rate equation has an elementary bounded solution.
+@isnad1 id=steinsol.0h0v.s4.9f2eea7a632b from=translated src=- shape=12666b46 vocab=df374c0f
+-/
 theorem steinSolutionBounds_zero : SteinSolutionBounds 0 1 1 := by
   intro A
   let f : ℕ → ℝ := fun k =>
@@ -133,7 +162,9 @@ theorem steinSolutionBounds_zero : SteinSolutionBounds 0 1 1 := by
     by_cases hA : 0 ∈ A <;> simp only [hA, ite_true, ite_false] at h hnext <;>
       exact abs_le.mpr ⟨by linarith [h.1, hnext.2], by linarith [h.2, hnext.1]⟩
 
-/-- The explicit literature input is needed only at positive rate; zero is proved internally.-/
+/-- The explicit literature input is needed only at positive rate; zero is proved internally.
+@isnad1 id=steinsol.1h1v.s3.082855d4ea8c from=translated src=- shape=fd9a14d9 vocab=70423f07
+-/
 theorem steinSolutionBounds_all (hStein : ScalarSteinFactorsStatement) (rate : ℝ≥0) :
     SteinSolutionBounds rate (zeroSteinFactor rate) (firstSteinFactor rate) := by
   by_cases h : rate = 0

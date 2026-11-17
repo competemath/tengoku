@@ -83,7 +83,9 @@ noncomputable def terminalSlack
     canonicalResidualComponentCount
       A pair.1.1 pair.1.2 L
 
-/-- The canonical residual-component count never exceeds `B = L+1`.-/
+/-- The canonical residual-component count never exceeds `B = L+1`.
+@isnad1 id=le.1h4v.s6.ae271b3ee9e6 from=translated src=- shape=c24be5ca vocab=979971e3
+-/
 theorem canonicalResidualComponentCount_le_runLength
     {N A L : ℕ} (hN : 2 ≤ N)
     (pair : SeparatedDyadicPair N L) :
@@ -99,7 +101,9 @@ theorem canonicalResidualComponentCount_le_runLength
 
 /--
 The canonical residual family has cardinality
-`B - terminalSlack = c#`.-/
+`B - terminalSlack = c#`.
+@isnad1 id=eq.1h4v.s7.92dd271a8d0b from=translated src=- shape=d34ff738 vocab=bcdb5b62
+-/
 theorem card_canonicalResidualComponents_eq_runLength_sub_slack
     {N A L : ℕ} (hN : 2 ≤ N)
     (pair : SeparatedDyadicPair N L) :
@@ -118,7 +122,9 @@ theorem card_canonicalResidualComponents_eq_runLength_sub_slack
 Concrete Proposition 9.11 component count for the canonical residual family.
 
 The first conclusion bounds components of size at least three by `2s`; the
-second gives at least `B-3s` components of size exactly two.-/
+second gives at least `B-3s` components of size exactly two.
+@isnad1 id=and.1h4v.s7.919c98a7aaa8 from=translated src=- shape=b9b73abc vocab=c1021fda
+-/
 theorem canonical_terminal_component_count
     {N A L : ℕ} (hN : 2 ≤ N)
     (pair : SeparatedDyadicPair N L) :
@@ -191,6 +197,9 @@ noncomputable def terminalPairsAtBudget
           A pair.1.1 pair.1.2 L ≤ 2 ∧
       terminalSlack A pair + smallRowRank pair ≤ rankBudget
 
+/--
+@isnad1 id=iff.1h6v.s7.d1a13f038cb9 from=translated src=- shape=ccef5688 vocab=0c04c3fa
+-/
 @[simp]
 theorem mem_terminalPairsAtBudget
     {N A L : ℕ} {hN : 2 ≤ N}
@@ -207,7 +216,9 @@ theorem mem_terminalPairsAtBudget
           rankBudget := by
   simp [terminalPairsAtBudget, and_assoc]
 
-/-- Every concrete terminal pair satisfies `τ ≤ B+2`.-/
+/-- Every concrete terminal pair satisfies `τ ≤ B+2`.
+@isnad1 id=le.2h6v.s6.41008dbaf327 from=translated src=- shape=0716b853 vocab=93132dcb
+-/
 theorem pairTau_le_runLength_add_two
     {N A L : ℕ} {hN : 2 ≤ N}
     {smallRowRank : SeparatedDyadicPair N L → ℕ}
@@ -228,7 +239,9 @@ theorem pairTau_le_runLength_add_two
 
 /--
 On this sigma-zero proxy, the residual weight is literally `2^τ-1`.  No
-equivalence between `σ=0` and the manuscript's nonaligned predicate is used.-/
+equivalence between `σ=0` and the manuscript's nonaligned predicate is used.
+@isnad1 id=eq.2h6v.s6.39df59184f57 from=translated src=- shape=1d805953 vocab=7a85318d
+-/
 theorem linearResidualWeight_eq_two_pow_sub_one
     {N A L : ℕ} {hN : 2 ≤ N}
     {smallRowRank : SeparatedDyadicPair N L → ℕ}
@@ -255,7 +268,9 @@ noncomputable def terminalResidualMassAtBudget
 /--
 Concrete Step 4 of Theorem 10.1:
 
-`terminal mass ≤ #T * (4 * 2^B)`.-/
+`terminal mass ≤ #T * (4 * 2^B)`.
+@isnad1 id=le.1h5v.s6.bdcce8be1355 from=translated src=- shape=460c9cee vocab=2c6b294e
+-/
 theorem terminalResidualMassAtBudget_le
     {N A L : ℕ} (hN : 2 ≤ N)
     (smallRowRank : SeparatedDyadicPair N L → ℕ)
@@ -286,7 +301,9 @@ noncomputable def terminalFirstStartsAtBudget
 
 /--
 Exact disintegration of the terminal population over its first coordinate.
-This is the finite bookkeeping behind Step 3 of Theorem 10.1.-/
+This is the finite bookkeeping behind Step 3 of Theorem 10.1.
+@isnad1 id=eq.1h5v.s7.54b9df0367b0 from=translated src=- shape=1e8945c1 vocab=4ff0df21
+-/
 theorem card_terminalPairsAtBudget_eq_sum_partnerFibers
     {N A L : ℕ} (hN : 2 ≤ N)
     (smallRowRank : SeparatedDyadicPair N L → ℕ)
@@ -310,7 +327,9 @@ theorem card_terminalPairsAtBudget_eq_sum_partnerFibers
 
 /--
 If every fixed first start has at most `Q` partners, the whole terminal
-population has cardinality at most `#firstStarts * Q`.-/
+population has cardinality at most `#firstStarts * Q`.
+@isnad1 id=le.2h6v.s7.0a1e83e1ef64 from=translated src=- shape=af39c9ed vocab=8bb650ff
+-/
 theorem card_terminalPairsAtBudget_le_firstStarts_mul
     {N A L : ℕ} (hN : 2 ≤ N)
     (smallRowRank : SeparatedDyadicPair N L → ℕ)
@@ -341,7 +360,9 @@ theorem card_terminalPairsAtBudget_le_firstStarts_mul
           N A L hN smallRowRank rankBudget).card * Q := by
       simp
 
-/-- Step 3 with a separate bound on the number of first starts.-/
+/-- Step 3 with a separate bound on the number of first starts.
+@isnad1 id=le.3h7v.s7.a45ab7afc6c7 from=translated src=- shape=58c4ef80 vocab=8bb650ff
+-/
 theorem card_terminalPairsAtBudget_le
     {N A L : ℕ} (hN : 2 ≤ N)
     (smallRowRank : SeparatedDyadicPair N L → ℕ)

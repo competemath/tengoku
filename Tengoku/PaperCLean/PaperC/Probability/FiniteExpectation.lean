@@ -24,7 +24,9 @@ noncomputable def uniformExpectation {M : ℕ}
   (∑ ω : SampleSpace M, f ω) /
     (Fintype.card (SampleSpace M) : ℚ)
 
-/-- The expectation of an event indicator is its uniform event probability.-/
+/-- The expectation of an event indicator is its uniform event probability.
+@isnad1 id=eq.0h2v.s5.3059d216d914 from=translated src=- shape=5365b9d9 vocab=4b7d16dd
+-/
 theorem uniformExpectation_indicator {M : ℕ}
     (P : SampleSpace M → Prop) [DecidablePred P] :
     uniformExpectation (fun ω => if P ω then (1 : ℚ) else 0) =
@@ -33,7 +35,9 @@ theorem uniformExpectation_indicator {M : ℕ}
   simp [uniformExpectation, uniformEventProbability]
 
 /-- The exact expectation of the dyadic count is the sum of its one-point
-start probabilities.-/
+start probabilities.
+@isnad1 id=eq.0h2v.s4.baff5f72763c from=translated src=- shape=da18603f vocab=6bfb6fdf
+-/
 theorem uniformExpectation_dyadicCount (N L : ℕ) :
     uniformExpectation
         (fun ω : DyadicSample N L => (dyadicCount N L ω : ℚ)) =

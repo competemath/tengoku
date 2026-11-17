@@ -50,7 +50,9 @@ def crossDeterminant
 
 /--
 The determinant vanishes exactly for the literal cross-product alignment
-of the two pairs.-/
+of the two pairs.
+@isnad1 id=iff.0h4v.s5.fde3b18ea913 from=translated src=- shape=0018a037 vocab=480363da
+-/
 theorem crossDeterminant_eq_zero_iff
     {Xs Ys Xt Yt : ℕ} :
     crossDeterminant Xs Ys Xt Yt = 0 ↔
@@ -58,7 +60,9 @@ theorem crossDeterminant_eq_zero_iff
   rw [crossDeterminant, sub_eq_zero]
   norm_cast
 
-/-- Nonalignment gives the nonvanishing assertion in Lemma 9.12.-/
+/-- Nonalignment gives the nonvanishing assertion in Lemma 9.12.
+@isnad1 id=ne.1h4v.s5.d3ecca4faede from=translated src=- shape=e5064e1c vocab=480363da
+-/
 theorem crossDeterminant_ne_zero_of_nonaligned
     {Xs Ys Xt Yt : ℕ}
     (h : Xs * Yt ≠ Xt * Ys) :
@@ -68,7 +72,9 @@ theorem crossDeterminant_ne_zero_of_nonaligned
 /--
 If `Rₛ` divides both labels of the first pair and `Rₜ` divides both labels
 of the second pair, then `RₛRₜ` divides their cross determinant over the
-integers.  No coprimality hypothesis is needed.-/
+integers.  No coprimality hypothesis is needed.
+@isnad1 id=dvd.4h6v.s5.05c1ab9ac828 from=translated src=- shape=44bc3f89 vocab=d35a7aee
+-/
 theorem product_dvd_crossDeterminant
     {Rs Rt Xs Ys Xt Yt : ℕ}
     (hXs : Rs ∣ Xs) (hYs : Rs ∣ Ys)
@@ -85,7 +91,9 @@ theorem product_dvd_crossDeterminant
 
 /--
 Specialization to large odd kernels.  Equality of the kernels at the two
-endpoints of each pair supplies all four divisibilities.-/
+endpoints of each pair supplies all four divisibilities.
+@isnad1 id=dvd.2h5v.s5.c8a265a671c0 from=translated src=- shape=66b2240d vocab=72575ec7
+-/
 theorem largeOddKernel_product_dvd_crossDeterminant
     {B Xs Ys Xt Yt : ℕ}
     (hs :
@@ -109,7 +117,9 @@ theorem largeOddKernel_product_dvd_crossDeterminant
 
 /--
 For a complete-boundary vertex, membership in the large odd support is
-exactly occurrence at that vertex of the corresponding graph prime.-/
+exactly occurrence at that vertex of the corresponding graph prime.
+@isnad1 id=iff.0h5v.s6.8baf147c498a from=translated src=- shape=ebbc8963 vocab=46e370f3
+-/
 theorem mem_largeOddPrimeSupport_vertexLabel
     {x y L p : ℕ} {v : Occurrence L} :
     p ∈
@@ -140,7 +150,9 @@ theorem mem_largeOddPrimeSupport_vertexLabel
 
 /--
 Two prescribed distinct vertices exhaust a component whose support has
-cardinality two.-/
+cardinality two.
+@isnad1 id=eq.4h6v.s8.1dca7f1a9daa from=translated src=- shape=46b5c2ac vocab=8b03cbbb
+-/
 theorem componentVertices_eq_pair_of_card_eq_two
     {x y L : ℕ}
     {C : (largePrimeGraph x y L).ConnectedComponent}
@@ -171,7 +183,9 @@ theorem componentVertices_eq_pair_of_card_eq_two
 
 /--
 In an unpinned two-vertex component, every large prime occurring at one
-vertex also occurs at the other.-/
+vertex also occurs at the other.
+@isnad1 id=mem.7h7v.s8.151a9c002f6b from=translated src=- shape=ece0aedb vocab=f1cf63c9
+-/
 theorem mem_primeOccurrences_other_of_two_vertex_component
     {x y L p : ℕ}
     (C : (largePrimeGraph x y L).ConnectedComponent)
@@ -220,7 +234,9 @@ theorem mem_primeOccurrences_other_of_two_vertex_component
 
 /--
 The two endpoints of an unpinned component of cardinality two have the
-same large odd kernel.-/
+same large odd kernel.
+@isnad1 id=eq.5h6v.s8.515baa6ffa1f from=translated src=- shape=bc358de9 vocab=2f3a59fc
+-/
 theorem largeOddKernel_eq_of_two_vertex_component
     {x y L : ℕ}
     (C : (largePrimeGraph x y L).ConnectedComponent)
@@ -257,7 +273,9 @@ theorem largeOddKernel_eq_of_two_vertex_component
 
 /--
 The graph-theoretic defect predicate is exactly the assertion that the
-large odd kernel of the vertex label is one.-/
+large odd kernel of the vertex label is one.
+@isnad1 id=iff.0h4v.s5.696c37ffa34c from=translated src=- shape=7cf7b1f6 vocab=3d248b0a
+-/
 theorem largeOddKernel_eq_one_iff_isDefective
     {x y L : ℕ} {v : Occurrence L} :
     largeOddKernel (L + 1)
@@ -285,7 +303,9 @@ theorem largeOddKernel_eq_one_iff_isDefective
 /--
 Any vertex sharing a connected component with a distinct vertex is
 nondefective.  This makes the strict lower bound `R > 1` automatic for
-each endpoint of a two-vertex component.-/
+each endpoint of a two-vertex component.
+@isnad1 id=not.3h6v.s6.e2b98654171d from=translated src=- shape=55f27a99 vocab=916a63e4
+-/
 theorem not_isDefective_of_distinct_mem_component
     {x y L : ℕ}
     {C : (largePrimeGraph x y L).ConnectedComponent}
@@ -309,7 +329,9 @@ theorem not_isDefective_of_distinct_mem_component
       (not_adj_of_isDefective hdef) hreach
   exact hvw hwv.symm
 
-/-- A nondefective vertex carries a genuinely nontrivial large kernel.-/
+/-- A nondefective vertex carries a genuinely nontrivial large kernel.
+@isnad1 id=lt.1h4v.s5.32a6060a9c32 from=translated src=- shape=416f5d32 vocab=78dc5afd
+-/
 theorem one_lt_largeOddKernel_of_not_isDefective
     {x y L : ℕ} {v : Occurrence L}
     (hv : ¬IsDefective x y L v) :
@@ -328,7 +350,9 @@ theorem one_lt_largeOddKernel_of_not_isDefective
 
 /--
 Large odd kernels carried by vertices in distinct connected components are
-coprime.-/
+coprime.
+@isnad1 id=coprime.1h5v.s6.0955c97794f9 from=translated src=- shape=b8ff5222 vocab=674a0248
+-/
 theorem largeOddKernel_coprime_of_distinct_components
     {x y L : ℕ} {v w : Occurrence L}
     (hcomponents :
@@ -371,7 +395,9 @@ theorem largeOddKernel_coprime_of_distinct_components
 The complete arithmetic package for two distinct two-vertex unpinned
 components.  It gives the two endpoint equalities, strict nontriviality,
 pairwise coprimality, and determinant divisibility from the concrete graph
-alone.-/
+alone.
+@isnad1 id=other.11h9v.s9.989e623c6842 from=translated src=- shape=1229c925 vocab=904fd19e
+-/
 theorem two_vertex_components_kernel_package
     {x y L : ℕ}
     {Cs Ct : (largePrimeGraph x y L).ConnectedComponent}
@@ -457,7 +483,9 @@ private theorem abs_natCast_sub_natCast_eq_dist
 
 /--
 A determinant estimate in terms of bounds for the first labels and the
-within-block distances.-/
+within-block distances.
+@isnad1 id=le.4h6v.s6.5e394dbc423a from=translated src=- shape=741b4545 vocab=b446632c
+-/
 theorem abs_crossDeterminant_le
     {Xs Ys Xt Yt A B : ℕ}
     (hXs : Xs ≤ A) (hYs : Ys ≤ A)
@@ -504,7 +532,9 @@ theorem abs_crossDeterminant_le
 
 /--
 For two complete-boundary pairs with starts in `[N,2N)`, the determinant
-is at most `6N(L+1)` when the complete boundary length is at most `N`.-/
+is at most `6N(L+1)` when the complete boundary length is at most `N`.
+@isnad1 id=le.4h8v.s7.6888789a0be7 from=translated src=- shape=e423df67 vocab=d7d3da00
+-/
 theorem abs_crossDeterminant_startCompleteVertexLabel_le
     {N L x y : ℕ}
     (hN : 2 ≤ N)

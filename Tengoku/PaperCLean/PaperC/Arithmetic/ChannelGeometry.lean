@@ -45,11 +45,17 @@ instance instDecidableOnChannel (a b : ℕ) (h : ℤ) (cell : ℤ × ℤ) :
 def channelCells (L a b : ℕ) (h : ℤ) : Finset (ℤ × ℤ) :=
   (offsetBox L).filter (OnChannel a b h)
 
+/--
+@isnad1 id=iff.0h2v.s5.e2fbe48713f9 from=translated src=- shape=6c8a5412 vocab=b6e72040
+-/
 @[simp]
 theorem mem_offsetInterval {L : ℕ} {i : ℤ} :
     i ∈ offsetInterval L ↔ -1 ≤ i ∧ i ≤ (L : ℤ) - 1 := by
   simp [offsetInterval]
 
+/--
+@isnad1 id=iff.0h2v.s6.358bf807e983 from=translated src=- shape=7e6d541e vocab=35e8ca60
+-/
 @[simp]
 theorem mem_offsetBox {L : ℕ} {cell : ℤ × ℤ} :
     cell ∈ offsetBox L ↔
@@ -57,6 +63,9 @@ theorem mem_offsetBox {L : ℕ} {cell : ℤ × ℤ} :
       (-1 ≤ cell.2 ∧ cell.2 ≤ (L : ℤ) - 1) := by
   simp [offsetBox]
 
+/--
+@isnad1 id=iff.0h5v.s6.404efee4dd50 from=translated src=- shape=3210ce80 vocab=c2b446a0
+-/
 @[simp]
 theorem mem_channelCells {L a b : ℕ} {h : ℤ} {cell : ℤ × ℤ} :
     cell ∈ channelCells L a b h ↔
@@ -65,7 +74,9 @@ theorem mem_channelCells {L a b : ℕ} {h : ℤ} {cell : ℤ × ℤ} :
 
 /--
 Subtracting the channel equations of two cells eliminates the affine
-parameter `h`.-/
+parameter `h`.
+@isnad1 id=eq.2h5v.s6.6191984039f6 from=translated src=- shape=d4552558 vocab=cf40e4dd
+-/
 theorem channel_difference_identity
     {a b : ℕ} {h : ℤ} {cell₁ cell₂ : ℤ × ℤ}
     (h₁ : OnChannel a b h cell₁)
@@ -77,7 +88,9 @@ theorem channel_difference_identity
 
 /--
 For coprime coefficients, the difference of two cells on one channel is an
-integer multiple of the primitive direction `(b,a)`.-/
+integer multiple of the primitive direction `(b,a)`.
+@isnad1 id=ex.5h5v.s6.fb93ed4e0215 from=translated src=- shape=b59d812e vocab=0bff9cd9
+-/
 theorem channel_difference_eq_multiple
     {a b : ℕ} (_ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
     {h : ℤ} {cell₁ cell₂ : ℤ × ℤ}
@@ -104,7 +117,9 @@ theorem channel_difference_eq_multiple
     _ = (a : ℤ) * ((b : ℤ) * t) := by rw [ht]
     _ = (b : ℤ) * ((a : ℤ) * t) := by ring
 
-/-- Two offsets in `{-1, ..., L - 1}` differ in absolute value by at most `L`.-/
+/-- Two offsets in `{-1, ..., L - 1}` differ in absolute value by at most `L`.
+@isnad1 id=le.2h3v.s5.ed0a242d7552 from=translated src=- shape=54eacc04 vocab=0bb40fee
+-/
 theorem abs_sub_le_of_mem_offsetInterval
     {L : ℕ} {i₁ i₂ : ℤ}
     (h₁ : i₁ ∈ offsetInterval L)
@@ -116,7 +131,9 @@ theorem abs_sub_le_of_mem_offsetInterval
 
 /--
 If two distinct cells of one positive primitive channel lie in the offset
-box, then both coefficients are bounded by the side length.-/
+box, then both coefficients are bounded by the side length.
+@isnad1 id=and.8h6v.s6.95333cec4ef8 from=translated src=- shape=7cc03e88 vocab=0265d8c6
+-/
 theorem channel_coefficients_le_length
     {L a b : ℕ} (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
     {h : ℤ} {cell₁ cell₂ : ℤ × ℤ}
@@ -167,7 +184,9 @@ theorem channel_coefficients_le_length
 
 /--
 Finite-set wrapper of `channel_coefficients_le_length`: a channel containing
-two distinct cells of `channelCells` has `a,b ≤ L`.-/
+two distinct cells of `channelCells` has `a,b ≤ L`.
+@isnad1 id=and.6h6v.s6.231a0de446fc from=translated src=- shape=f85e5ba5 vocab=ccefefe6
+-/
 theorem channel_coefficients_le_length_of_mem
     {L a b : ℕ} (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
     {h : ℤ} {cell₁ cell₂ : ℤ × ℤ}

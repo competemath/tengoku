@@ -57,6 +57,9 @@ noncomputable def deepCorePairs
         16 * canonicalResidualComponentCount
           A pair.1.1 pair.1.2 L
 
+/--
+@isnad1 id=iff.1h4v.s8.e19c4c01d972 from=translated src=- shape=54ec6a2f vocab=5aba68b6
+-/
 @[simp]
 theorem mem_deepCorePairs
     {N A L : ℕ} {hN : 2 ≤ N}
@@ -80,7 +83,9 @@ theorem mem_deepCorePairs
 /--
 The four Section 7 populations cover exactly all separated ordered pairs.
 The union is written in the chronological order of Propositions 7.3, 7.4,
-7.5 and the remaining deep-core sector.-/
+7.5 and the remaining deep-core sector.
+@isnad1 id=eq.1h3v.s7.16ad101376d3 from=translated src=- shape=240aa373 vocab=059f320b
+-/
 theorem sectionSeven_populations_cover
     {N A L : ℕ} (hN : 2 ≤ N) :
     ((smallProductPairs N A L hN ∪

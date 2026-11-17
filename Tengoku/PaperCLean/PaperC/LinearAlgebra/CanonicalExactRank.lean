@@ -71,6 +71,9 @@ noncomputable def exactDefectiveVertices
     unit : DefectiveChannelUnit x y L a b h ↦
       Sum.inl unit.1.1.1
 
+/--
+@isnad1 id=iff.0h7v.s9.660a41752418 from=translated src=- shape=d89272c0 vocab=0aa69365
+-/
 @[simp]
 theorem mem_exactDefectiveVertices
     {x y L a b : ℕ} {h : ℤ} {v : Occurrence L} :
@@ -80,7 +83,9 @@ theorem mem_exactDefectiveVertices
   classical
   simp [exactDefectiveVertices]
 
-/-- Every exact defective vertex belongs to the ambient defective family.-/
+/-- Every exact defective vertex belongs to the ambient defective family.
+@isnad1 id=le.0h6v.s5.446deb513516 from=translated src=- shape=d3cff684 vocab=c017892f
+-/
 theorem exactDefectiveVertices_subset_defectiveVertices
     {x y L a b : ℕ} {h : ℤ} :
     exactDefectiveVertices x y L a b h ⊆
@@ -93,7 +98,9 @@ theorem exactDefectiveVertices_subset_defectiveVertices
 
 /--
 Distinct exact units give distinct left vertices, so the concrete deleted
-family has exactly `d` elements.-/
+family has exactly `d` elements.
+@isnad1 id=eq.1h6v.s5.9b1ddfe22888 from=translated src=- shape=0063ca95 vocab=f066d594
+-/
 theorem card_exactDefectiveVertices
     {x y L a b : ℕ} {h : ℤ}
     (hb : 0 < b) :
@@ -129,7 +136,9 @@ noncomputable def correctedDefectiveVertices
     else
       defectiveVertices x y L
 
-/-- The explicit corrected family realizes the numerical count `D#`.-/
+/-- The explicit corrected family realizes the numerical count `D#`.
+@isnad1 id=eq.1h6v.s5.4d354fae563d from=translated src=- shape=0063ca95 vocab=e9cdebb8
+-/
 theorem card_correctedDefectiveVertices
     {x y L a b : ℕ} {h : ℤ}
     (hb : 0 < b) :
@@ -163,7 +172,9 @@ noncomputable def canonicalCorrectedDefectiveVertices
         x y L c.1.1 c.1.2
         (pairChannelError x y c.1.1 c.1.2)
 
-/-- The canonical corrected defective family has cardinality exactly `D#`.-/
+/-- The canonical corrected defective family has cardinality exactly `D#`.
+@isnad1 id=eq.0h4v.s4.ec0281d0fd50 from=translated src=- shape=8bbc748b vocab=a0ceb7bf
+-/
 theorem card_canonicalCorrectedDefectiveVertices
     (A x y L : ℕ) :
     (canonicalCorrectedDefectiveVertices A x y L).card =
@@ -200,7 +211,9 @@ abbrev CanonicalCoreCoordinate
     {C : (largePrimeGraph x y L).ConnectedComponent //
       C ∈ canonicalResidualComponents A x y L}
 
-/-- The canonical coordinate family has exactly `D# + c#` elements.-/
+/-- The canonical coordinate family has exactly `D# + c#` elements.
+@isnad1 id=eq.2h4v.s7.a9ea888e8d5b from=translated src=- shape=bcde2b7c vocab=2609a440
+-/
 theorem card_canonicalCoreCoordinate
     {A x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y) :
@@ -228,7 +241,9 @@ noncomputable def canonicalSmallRowRank
 /--
 Exact rank--nullity on the canonical coordinates.  Unlike
 `NonalignedCoreRank.lemma_nine_ten_exact_rank`, this theorem needs no
-cardinality hypothesis: both coordinate families are concrete finsets.-/
+cardinality hypothesis: both coordinate families are concrete finsets.
+@isnad1 id=eq.2h6v.s10.758324861345 from=translated src=- shape=89b2f714 vocab=32923380
+-/
 theorem finrank_canonicalSmallRowKernel
     {rowCount A x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)
@@ -241,7 +256,9 @@ theorem finrank_canonicalSmallRowKernel
     card_canonicalCoreCoordinate hx hy]
   rfl
 
-/-- The small-row rank cannot exceed the number `D# + c#` of columns.-/
+/-- The small-row rank cannot exceed the number `D# + c#` of columns.
+@isnad1 id=le.2h6v.s6.e1431b7900ac from=translated src=- shape=15c61e48 vocab=52fa6dce
+-/
 theorem canonicalSmallRowRank_le_corrected_add_components
     {rowCount A x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)
@@ -282,7 +299,9 @@ noncomputable def CanonicalSmallRowPresentation.kTilde
 
 /--
 Lemma 9.10 for the literal residual quotient: every supplied canonical
-small-row presentation satisfies `τ = D# + c# - k̃`.-/
+small-row presentation satisfies `τ = D# + c# - k̃`.
+@isnad1 id=eq.2h6v.s6.d6b93d7f8c3c from=translated src=- shape=cd8fb73c vocab=bb91e115
+-/
 theorem residualTau_eq_corrected_add_components_sub_kTilde
     {M A x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)
@@ -316,7 +335,9 @@ theorem residualTau_eq_corrected_add_components_sub_kTilde
 
 /--
 Equivalent non-truncated form of the quotient identity:
-`τ + k̃ = D# + c#`.-/
+`τ + k̃ = D# + c#`.
+@isnad1 id=eq.2h6v.s6.3d36a69cbeed from=translated src=- shape=0f7af333 vocab=4fc8ae80
+-/
 theorem residualTau_add_kTilde_eq_corrected_add_components
     {M A x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)
@@ -333,7 +354,9 @@ theorem residualTau_add_kTilde_eq_corrected_add_components
       hx hy presentation.matrix)
 
 /--
-Pair-level form of Lemma 9.10, stated directly using `pairTau`.-/
+Pair-level form of Lemma 9.10, stated directly using `pairTau`.
+@isnad1 id=eq.1h5v.s8.3968a8310050 from=translated src=- shape=eef80249 vocab=21bc0fa6
+-/
 theorem pairTau_eq_corrected_add_components_sub_kTilde
     {N A L : ℕ}
     (hN : 2 ≤ N)
@@ -356,7 +379,9 @@ theorem pairTau_eq_corrected_add_components_sub_kTilde
       (pair_coordinates_two_le hN pair).2
       presentation
 
-/-- Pair-level additive form `τ + k̃ = D# + c#`.-/
+/-- Pair-level additive form `τ + k̃ = D# + c#`.
+@isnad1 id=eq.1h5v.s8.04a5b1ab5488 from=translated src=- shape=d66edf6e vocab=ce399197
+-/
 theorem pairTau_add_kTilde_eq_corrected_add_components
     {N A L : ℕ}
     (hN : 2 ≤ N)

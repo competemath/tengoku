@@ -35,6 +35,9 @@ noncomputable def pinnedVertices
   classical
   exact Finset.univ.filter (IsPinned x y L)
 
+/--
+@isnad1 id=iff.0h4v.s5.a5e6411baf9d from=translated src=- shape=d2591102 vocab=57ca2197
+-/
 @[simp]
 theorem mem_pinnedVertices
     {x y L : ℕ} {v : Occurrence L} :
@@ -45,7 +48,9 @@ theorem mem_pinnedVertices
 
 /--
 The occurrence equations defining `W_{>B}` are exactly the pinned-graph
-equations.-/
+equations.
+@isnad1 id=eq.2h3v.s7.136f585a0464 from=translated src=- shape=f4e789a1 vocab=d6d5d577
+-/
 theorem largePrimeSolution_eq_pinnedGraphSpace
     {x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y) :
@@ -96,7 +101,9 @@ noncomputable def nontrivialComponentCount
     (largePrimeGraph x y L)
     (pinnedVertices x y L)).card
 
-/-- Exact dimension formula `dim W_{>B}=D+c`.-/
+/-- Exact dimension formula `dim W_{>B}=D+c`.
+@isnad1 id=eq.2h3v.s9.0fc083fccb0e from=translated src=- shape=97c1503f vocab=c2fbf348
+-/
 theorem finrank_largePrimeSolution
     {x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y) :
@@ -108,13 +115,17 @@ theorem finrank_largePrimeSolution
   rw [card_unpinnedComponent_eq_isolated_add_nontrivial]
   rfl
 
-/-- The two complete boundaries contain exactly `2(L+1)` occurrences.-/
+/-- The two complete boundaries contain exactly `2(L+1)` occurrences.
+@isnad1 id=eq.0h1v.s6.9e4b97b9281d from=translated src=- shape=fab95342 vocab=fe918850
+-/
 theorem card_occurrence (L : ℕ) :
     Fintype.card (Occurrence L) = 2 * (L + 1) := by
   simp [Occurrence]
   omega
 
-/-- Vertex budget from Lemma 6.1: `D+2c≤2B`, with `B=L+1`.-/
+/-- Vertex budget from Lemma 6.1: `D+2c≤2B`, with `B=L+1`.
+@isnad1 id=le.0h3v.s5.49c39308e8de from=translated src=- shape=11dd652c vocab=3a83e814
+-/
 theorem defective_add_twice_nontrivial_le
     (x y L : ℕ) :
     defectiveComponentCount x y L +
@@ -135,6 +146,9 @@ noncomputable def defectiveVertices
   classical
   exact Finset.univ.filter (IsDefective x y L)
 
+/--
+@isnad1 id=iff.0h4v.s5.acd041189a73 from=translated src=- shape=d2591102 vocab=ac3b45e3
+-/
 @[simp]
 theorem mem_defectiveVertices
     {x y L : ℕ} {v : Occurrence L} :
@@ -163,7 +177,9 @@ theorem eq_of_reachable_of_no_adj
   | cons hvz walk =>
       exact (hisolated _ hvz).elim
 
-/-- A defective vertex generates an isolated unpinned component.-/
+/-- A defective vertex generates an isolated unpinned component.
+@isnad1 id=isisolat.3h4v.s7.85290c320d22 from=translated src=- shape=839c8c7a vocab=bde915d3
+-/
 theorem isIsolatedUnpinnedComponent_of_isDefective
     {x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -209,7 +225,9 @@ theorem isIsolatedUnpinnedComponent_of_isDefective
       eq_of_reachable_of_no_adj
         (not_adj_of_isDefective hv) hreach
 
-/-- An isolated unpinned component representative is a defective vertex.-/
+/-- An isolated unpinned component representative is a defective vertex.
+@isnad1 id=isdefect.3h4v.s7.f2920a160b55 from=translated src=- shape=8206ba43 vocab=848ddb9e
+-/
 theorem isDefective_of_isolatedUnpinnedComponent
     {x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -291,7 +309,9 @@ noncomputable def defectiveVerticesEquivIsolatedComponents
     apply Subtype.ext
     exact C.1.out_eq
 
-/-- The two definitions of `D` have exactly the same cardinality.-/
+/-- The two definitions of `D` have exactly the same cardinality.
+@isnad1 id=eq.2h3v.s5.21adf165e91e from=translated src=- shape=a785d2aa vocab=8d572393
+-/
 theorem defectiveVertexCount_eq_defectiveComponentCount
     {x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y) :
@@ -304,7 +324,9 @@ theorem defectiveVertexCount_eq_defectiveComponentCount
   simpa [defectiveVertexCount, defectiveComponentCount]
     using hcard
 
-/-- Lemma 6.1 with `D` stated literally as the number of defective vertices.-/
+/-- Lemma 6.1 with `D` stated literally as the number of defective vertices.
+@isnad1 id=eq.2h3v.s9.e463f26b45d3 from=translated src=- shape=97c1503f vocab=3b5b8abf
+-/
 theorem finrank_largePrimeSolution_eq_defective_add_components
     {x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y) :
@@ -314,7 +336,9 @@ theorem finrank_largePrimeSolution_eq_defective_add_components
   rw [finrank_largePrimeSolution hx hy,
     ← defectiveVertexCount_eq_defectiveComponentCount hx hy]
 
-/-- Literal form of the vertex budget `D+2c≤2B`.-/
+/-- Literal form of the vertex budget `D+2c≤2B`.
+@isnad1 id=le.2h3v.s6.28b79687bd81 from=translated src=- shape=2d7d3be0 vocab=fdfdaeda
+-/
 theorem defectiveVertex_add_twice_nontrivial_le
     {x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y) :

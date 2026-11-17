@@ -24,7 +24,9 @@ variable {ι R : Type*} [DecidableEq ι]
 the ordered off-diagonal products.
 
 The result is valid in every commutative ring.  In particular, no probability
-space or expectation is needed for this algebraic step.-/
+space or expectation is needed for this algebraic step.
+@isnad1 id=eq.1h4v.s7.5168f6c767e3 from=translated src=- shape=1d84649c vocab=290bbcd6
+-/
 theorem factorialMoment_eq_sum_offDiag [CommRing R]
     (s : Finset ι) (f : ι → R)
     (h_idem : ∀ i ∈ s, f i * f i = f i) :
@@ -56,7 +58,9 @@ theorem factorialMoment_eq_sum_offDiag [CommRing R]
       rw [h_diag]
       ring
 
-/-- Integer-valued specialization to indicators of propositions.-/
+/-- Integer-valued specialization to indicators of propositions.
+@isnad1 id=eq.0h3v.s7.4d89229a16b6 from=translated src=- shape=26917fb3 vocab=1d73649e
+-/
 theorem intIndicator_factorialMoment (s : Finset ι)
     (P : ι → Prop) [DecidablePred P] :
     (∑ i ∈ s, if P i then (1 : ℤ) else 0) *
@@ -69,7 +73,9 @@ theorem intIndicator_factorialMoment (s : Finset ι)
         by_cases hPi : P i <;> simp [hPi])
   simpa only [ite_mul, one_mul, zero_mul, ite_and] using h
 
-/-- Rational-valued specialization to indicators of propositions.-/
+/-- Rational-valued specialization to indicators of propositions.
+@isnad1 id=eq.0h3v.s7.9e5e5fbbd5f5 from=translated src=- shape=26917fb3 vocab=09d7d1fc
+-/
 theorem ratIndicator_factorialMoment (s : Finset ι)
     (P : ι → Prop) [DecidablePred P] :
     (∑ i ∈ s, if P i then (1 : ℚ) else 0) *

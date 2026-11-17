@@ -24,7 +24,9 @@ open scoped Polynomial
 
 /--
 An integer and a distinct dyadic rational of denominator `2 ^ d` are
-separated by at least `1 / 2 ^ d`.-/
+separated by at least `1 / 2 ^ d`.
+@isnad1 id=le.1h3v.s6.98a6ca9be610 from=translated src=- shape=ef6d57fd vocab=0fa65153
+-/
 theorem one_div_two_pow_le_abs_integer_sub_dyadic
     (a b : ℤ) (d : ℕ)
     (hne : (a : ℚ) ≠ (b : ℚ) / (2 : ℚ) ^ d) :
@@ -50,7 +52,9 @@ theorem one_div_two_pow_le_abs_integer_sub_dyadic
   exact (div_le_div_iff_of_pos_right hden).2 honeQ
 
 /--
-The symmetric orientation of `one_div_two_pow_le_abs_integer_sub_dyadic`.-/
+The symmetric orientation of `one_div_two_pow_le_abs_integer_sub_dyadic`.
+@isnad1 id=le.1h3v.s6.111da81b0f1e from=translated src=- shape=4b828f81 vocab=0fa65153
+-/
 theorem one_div_two_pow_le_abs_dyadic_sub_integer
     (a b : ℤ) (d : ℕ)
     (hne : (b : ℚ) / (2 : ℚ) ^ d ≠ (a : ℚ)) :
@@ -63,7 +67,9 @@ theorem one_div_two_pow_le_abs_dyadic_sub_integer
 Polynomial-evaluation form of the dyadic gap.  In the application, `p` is
 the integral polynomial `2 ^ d * P`; consequently
 
-`P(u) = p(u) / 2 ^ d`.-/
+`P(u) = p(u) / 2 ^ d`.
+@isnad1 id=le.1h4v.s6.7235a2decb10 from=translated src=- shape=c5b4fb79 vocab=48e059b2
+-/
 theorem one_div_two_pow_le_abs_integer_sub_dyadicPolynomialEval
     (a u : ℤ) (p : ℤ[X]) (d : ℕ)
     (hne :
@@ -75,7 +81,9 @@ theorem one_div_two_pow_le_abs_integer_sub_dyadicPolynomialEval
 /--
 Transport the polynomial-evaluation gap across an explicitly supplied
 identity `P(u) = p(u) / 2 ^ d`.  This form can be applied without unfolding
-the representation of the rational polynomial `P`.-/
+the representation of the rational polynomial `P`.
+@isnad1 id=le.2h5v.s6.852053bb865d from=translated src=- shape=be8154ba vocab=48e059b2
+-/
 theorem one_div_two_pow_le_abs_integer_sub_polynomialEval
     (a u : ℤ) (P : ℚ[X]) (p : ℤ[X]) (d : ℕ)
     (hscaled :

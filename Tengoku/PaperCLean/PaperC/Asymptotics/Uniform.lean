@@ -49,6 +49,9 @@ def UniformRateOn
   ∃ N₀ : ℕ, ∀ N ≥ N₀, ∀ L, admissible N L →
     |error N L| ≤ rate N L
 
+/--
+@isnad1 id=uniforml.0h2v.s4.c25a63368081 from=translated src=- shape=a8874e9c vocab=87488c71
+-/
 theorem uniformLittleOOn_zero
     (admissible : ℕ → ℕ → Prop) (g : ℕ → ℕ → ℝ) :
     UniformLittleOOn admissible (fun _ _ => 0) g := by

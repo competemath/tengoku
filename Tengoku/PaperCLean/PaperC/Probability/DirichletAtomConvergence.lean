@@ -25,9 +25,15 @@ noncomputable section
 def inversePowerTransform (p : ℕ → ℝ) (s : ℕ) : ℝ :=
   ∑' j : ℕ, p j * ((j : ℝ)⁻¹) ^ s
 
+/--
+@isnad1 id=le.0h2v.s5.a491807c7878 from=translated src=- shape=3c8aab81 vocab=66cbad3f
+-/
 theorem inversePowerWeight_nonneg (j s : ℕ) :
     0 ≤ ((j : ℝ)⁻¹) ^ s := by positivity
 
+/--
+@isnad1 id=le.0h2v.s5.d0c22d520bc7 from=translated src=- shape=836fe1b4 vocab=66cbad3f
+-/
 theorem inversePowerWeight_le_one (j s : ℕ) :
     ((j : ℝ)⁻¹) ^ s ≤ 1 := by
   apply pow_le_one₀ (by positivity)
@@ -39,6 +45,9 @@ theorem inversePowerWeight_le_one (j s : ℕ) :
       exact_mod_cast Nat.pos_of_ne_zero hj
     exact (inv_le_one₀ hjpos).2 hj1
 
+/--
+@isnad1 id=summable.2h2v.s6.e24b2c83cabe from=translated src=- shape=aff2b1f3 vocab=fd70906a
+-/
 theorem summable_inversePowerTransform
     {p : ℕ → ℝ} (hp0 : ∀ j, 0 ≤ p j)
     (hp : Summable p) (s : ℕ) :
@@ -57,6 +66,9 @@ def scaledInversePowerTerm
     (p : ℕ → ℝ) (m s j : ℕ) : ℝ :=
   p j * (((m : ℝ) / (j : ℝ)) ^ s)
 
+/--
+@isnad1 id=eq.2h3v.s6.347339bf3770 from=translated src=- shape=24603bca vocab=69a7ec8c
+-/
 theorem scaledInversePowerTransform_eq
     {p : ℕ → ℝ} (hp0 : ∀ j, 0 ≤ p j)
     (hp : Summable p) (m s : ℕ) :
@@ -69,6 +81,9 @@ theorem scaledInversePowerTransform_eq
   rw [div_eq_mul_inv, mul_pow]
   ring
 
+/--
+@isnad1 id=summable.2h3v.s5.911ee55147c7 from=translated src=- shape=25dfdca1 vocab=f78ea0fe
+-/
 theorem summable_scaledInversePowerTerm
     {p : ℕ → ℝ} (hp0 : ∀ j, 0 ≤ p j)
     (hp : Summable p) (m s : ℕ) :
@@ -84,6 +99,9 @@ theorem summable_scaledInversePowerTerm
   rw [heq]
   exact (summable_inversePowerTransform hp0 hp s).mul_left _
 
+/--
+@isnad1 id=eq.1h3v.s4.e8c630a454e1 from=translated src=- shape=53ab14f2 vocab=bbfec371
+-/
 theorem scaledInversePowerTerm_self
     {p : ℕ → ℝ} {m s : ℕ} (hm : 0 < m) :
     scaledInversePowerTerm p m s m = p m := by
@@ -93,7 +111,9 @@ theorem scaledInversePowerTerm_self
 
 /--
 After removing the atoms below `m` and the atom at `m`, the scaled
-transform is exactly the shifted tail.-/
+transform is exactly the shifted tail.
+@isnad1 id=eq.3h3v.s7.16360ebb7029 from=translated src=- shape=bb2e748e vocab=6306faad
+-/
 theorem scaledInversePowerTransform_sub_lower_sub_eq_tail
     {p : ℕ → ℝ} (hp0 : ∀ j, 0 ≤ p j)
     (hp : Summable p) {m s : ℕ} (hm : 0 < m) :
@@ -113,11 +133,17 @@ theorem scaledInversePowerTransform_sub_lower_sub_eq_tail
 def tailRatio (m : ℕ) : ℝ :=
   (m : ℝ) / (m + 1 : ℕ)
 
+/--
+@isnad1 id=le.0h1v.s3.4063fe17aa0a from=translated src=- shape=b9369acb vocab=118b3f4d
+-/
 theorem tailRatio_nonneg (m : ℕ) :
     0 ≤ tailRatio m := by
   unfold tailRatio
   positivity
 
+/--
+@isnad1 id=lt.0h1v.s3.aeabf3d4060d from=translated src=- shape=a311c14d vocab=b041548f
+-/
 theorem tailRatio_lt_one (m : ℕ) :
     tailRatio m < 1 := by
   unfold tailRatio
@@ -125,6 +151,9 @@ theorem tailRatio_lt_one (m : ℕ) :
   rw [div_lt_one hpos]
   norm_num
 
+/--
+@isnad1 id=le.2h2v.s6.46e2c69b4774 from=translated src=- shape=06f1ae37 vocab=ba893517
+-/
 theorem shifted_mass_tsum_le_one
     {p : ℕ → ℝ} (hp0 : ∀ j, 0 ≤ p j)
     (hp : HasSum p 1) (k : ℕ) :
@@ -136,6 +165,9 @@ theorem shifted_mass_tsum_le_one
     Finset.sum_nonneg fun i _ ↦ hp0 i
   linarith
 
+/--
+@isnad1 id=le.1h3v.s6.c4e3f38bb43d from=translated src=- shape=baed1149 vocab=676ec600
+-/
 theorem scaledInversePowerTail_nonneg
     {p : ℕ → ℝ} (hp0 : ∀ j, 0 ≤ p j)
     (m s : ℕ) :
@@ -146,6 +178,9 @@ theorem scaledInversePowerTail_nonneg
   unfold scaledInversePowerTerm
   exact mul_nonneg (hp0 _) (pow_nonneg (by positivity) _)
 
+/--
+@isnad1 id=le.2h3v.s6.59172083f211 from=translated src=- shape=150a2a7d vocab=7d8acbbb
+-/
 theorem scaledInversePowerTail_le
     {p : ℕ → ℝ} (hp0 : ∀ j, 0 ≤ p j)
     (hp : HasSum p 1) (m s : ℕ) :
@@ -202,6 +237,9 @@ theorem scaledInversePowerTail_le
         (pow_nonneg (tailRatio_nonneg m) s)
     _ = tailRatio m ^ s := one_mul _
 
+/--
+@isnad1 id=le.4h4v.s7.fa77ea735e1d from=translated src=- shape=142665b1 vocab=fb88b30c
+-/
 theorem abs_scaledInversePowerTail_sub_le
     {p q : ℕ → ℝ}
     (hp0 : ∀ j, 0 ≤ p j) (hp : HasSum p 1)
@@ -226,7 +264,9 @@ theorem abs_scaledInversePowerTail_sub_le
 /--
 Convergence of every inverse-power transform implies pointwise convergence
 of the underlying probability masses on `ℕ`, once the atom at zero is
-known.  For positive-integer-valued laws the zero-atom premise is immediate.-/
+known.  For positive-integer-valued laws the zero-atom premise is immediate.
+@isnad1 id=tendsto.6h3v.s7.ae2434ae7de5 from=translated src=- shape=8604eabe vocab=6205c8d3
+-/
 theorem tendsto_atoms_of_inversePowerTransforms
     {p : ℕ → ℕ → ℝ} {q : ℕ → ℝ}
     (hp0 : ∀ n j, 0 ≤ p n j)

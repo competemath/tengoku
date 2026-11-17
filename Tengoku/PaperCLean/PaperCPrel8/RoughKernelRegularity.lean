@@ -16,14 +16,18 @@ def Regular {k : ℕ} (Q Y : ℕ) (J : Fin k → ℕ) : Prop :=
   ∀ i : Fin k, ∀ a : Fin (Q+1), ∃ p ∈ largeOddPrimeSupport Y (J i+a.val),
     ∀ l : Fin k, ∀ b : Fin (Q+1), l ≠ i ∨ b ≠ a → ¬ p ∣ J l+b.val
 
-/-- A prime larger than the diameter cannot divide two different vertices of one block.-/
+/-- A prime larger than the diameter cannot divide two different vertices of one block.
+@isnad1 id=eq.3h5v.s6.03315922bd65 from=translated src=- shape=6d97e929 vocab=72c11cd9
+-/
 theorem private_in_block (j Q p : ℕ) (hp : Q < p) (a b : Fin (Q+1))
     (ha : p ∣ j+a.val) (hb : p ∣ j+b.val) : a = b := by
   have h := Nat.ModEq.add_left_cancel' j (ha.modEq_zero_nat.trans hb.modEq_zero_nat.symm)
   apply Fin.ext
   exact h.eq_of_lt_of_lt (by have := a.isLt; omega) (by have := b.isLt; omega)
 
-/-- Failure of regularity forces every rough prime at some source occurrence into another block.-/
+/-- Failure of regularity forces every rough prime at some source occurrence into another block.
+@isnad1 id=ex.2h4v.s7.eac8ec2dd25e from=translated src=- shape=7a3af8f6 vocab=e9bdffe1
+-/
 theorem failure_hosted {k : ℕ} (Q Y : ℕ) (J : Fin k → ℕ) (hY : Q < Y)
     (hbad : ¬Regular Q Y J) :
     ∃ i : Fin k, ∃ a : Fin (Q+1), ∀ p ∈ largeOddPrimeSupport Y (J i+a.val),

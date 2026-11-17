@@ -20,6 +20,9 @@ namespace PoissonVectorMass
 
 noncomputable section
 
+/--
+@isnad1 id=hassum.2h3v.s6.8825c632a7cd from=translated src=- shape=20a26f3a vocab=e51a0534
+-/
 theorem hasSum_pi_prod_general
     (d : ℕ) (f : Fin d → ℕ → ℝ) (a : Fin d → ℝ)
     (hf0 : ∀ e k, 0 ≤ f e k)
@@ -78,6 +81,9 @@ theorem hasSum_pi_prod_general
           head, tail, tailMass]
       · simp only [Fin.prod_univ_succ, tailSum]
 
+/--
+@isnad1 id=hassum.2h2v.s6.7e1b34d7b140 from=translated src=- shape=9ed48d64 vocab=e51a0534
+-/
 theorem hasSum_pi_prod
     (d : ℕ) (f : Fin d → ℕ → ℝ)
     (hf0 : ∀ e k, 0 ≤ f e k)

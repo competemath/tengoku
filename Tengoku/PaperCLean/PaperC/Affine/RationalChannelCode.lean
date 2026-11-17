@@ -49,6 +49,9 @@ def rationalChannelUnits (L a b : ℕ) (h : ℤ) :
 abbrev ChannelUnit (L a b : ℕ) (h : ℤ) :=
   {cell // cell ∈ rationalChannelUnits L a b h}
 
+/--
+@isnad1 id=iff.0h5v.s8.f71bb23c8eba from=translated src=- shape=41fe0f74 vocab=c02cb507
+-/
 @[simp]
 theorem mem_rationalChannelUnits
     {L a b : ℕ} {h : ℤ}
@@ -58,7 +61,9 @@ theorem mem_rationalChannelUnits
         (channelVertexOffset cell.1, channelVertexOffset cell.2) := by
   simp [rationalChannelUnits]
 
-/-- Every vertex offset lies in the paper's interval `{-1, ..., L-1}`.-/
+/-- Every vertex offset lies in the paper's interval `{-1, ..., L-1}`.
+@isnad1 id=mem.0h2v.s5.ff4a75f14e0d from=translated src=- shape=4cbff7c4 vocab=4672efe7
+-/
 theorem channelVertexOffset_mem_offsetInterval
     {L : ℕ} (v : Fin (L + 1)) :
     channelVertexOffset v ∈ offsetInterval L := by
@@ -72,6 +77,9 @@ def channelUnitCell
     ℤ × ℤ :=
   (channelVertexOffset unit.1.1, channelVertexOffset unit.1.2)
 
+/--
+@isnad1 id=mem.0h5v.s5.b627a16d6dc7 from=translated src=- shape=07076a5f vocab=29251764
+-/
 theorem channelUnitCell_mem_channelCells
     {L a b : ℕ} {h : ℤ} (unit : ChannelUnit L a b h) :
     channelUnitCell unit ∈ channelCells L a b h := by
@@ -96,6 +104,9 @@ def offsetVertexOfMem
   rw [Int.toNat_lt (by omega)]
   omega
 
+/--
+@isnad1 id=eq.1h2v.s4.2dab17b2c68a from=translated src=- shape=ef857fe3 vocab=cdd91811
+-/
 @[simp]
 theorem channelVertexOffset_offsetVertexOfMem
     {L : ℕ} (i : ℤ) (hi : i ∈ offsetInterval L) :
@@ -105,6 +116,9 @@ theorem channelVertexOffset_offsetVertexOfMem
   rw [Int.toNat_of_nonneg (by omega)]
   omega
 
+/--
+@isnad1 id=eq.0h2v.s5.459783c01d08 from=translated src=- shape=ec167725 vocab=a0377c7e
+-/
 @[simp]
 theorem offsetVertexOfMem_channelVertexOffset
     {L : ℕ} (v : Fin (L + 1)) :
@@ -130,6 +144,9 @@ def channelCellUnit
   refine ⟨(vi, vj), mem_rationalChannelUnits.mpr ?_⟩
   simpa [vi, vj] using hcell.2
 
+/--
+@isnad1 id=eq.0h5v.s6.b82d1e6cf438 from=translated src=- shape=02dff467 vocab=1a8ec7b4
+-/
 @[simp]
 theorem channelUnitCell_channelCellUnit
     {L a b : ℕ} {h : ℤ}
@@ -138,6 +155,9 @@ theorem channelUnitCell_channelCellUnit
   apply Prod.ext <;>
     simp [channelCellUnit, channelUnitCell]
 
+/--
+@isnad1 id=eq.0h5v.s6.3848c18c33f7 from=translated src=- shape=2aa59863 vocab=4741c1bb
+-/
 @[simp]
 theorem channelCellUnit_channelUnitCell
     {L a b : ℕ} {h : ℤ}
@@ -165,7 +185,9 @@ def channelUnitEquivChannelCells
     apply Subtype.ext
     exact channelUnitCell_channelCellUnit cell
 
-/-- The vertex representation has exactly `m(a,b,h)` elements.-/
+/-- The vertex representation has exactly `m(a,b,h)` elements.
+@isnad1 id=eq.0h4v.s5.a3ca094368ef from=translated src=- shape=14cb3293 vocab=a270fcb2
+-/
 theorem card_rationalChannelUnits_eq_channelCells
     (L a b : ℕ) (h : ℤ) :
     (rationalChannelUnits L a b h).card =
@@ -176,7 +198,9 @@ theorem card_rationalChannelUnits_eq_channelCells
 
 /--
 After casting to integers, a complete-start label is the start plus the
-vertex offset.  The positivity assumption handles the root label `x - 1`.-/
+vertex offset.  The positivity assumption handles the root label `x - 1`.
+@isnad1 id=eq.1h3v.s5.28df133018e8 from=translated src=- shape=6e6654bc vocab=e719c2ac
+-/
 theorem startCompleteVertexLabel_cast
     {x L : ℕ} (hx : 1 ≤ x) (v : Fin (L + 1)) :
     (startCompleteVertexLabel x L v : ℤ) =
@@ -197,6 +221,9 @@ def coordinateSum (ι : Type*) [Fintype ι] :
     (ι → F₂) →ₗ[F₂] F₂ :=
   Fintype.linearCombination F₂ (fun _ => 1)
 
+/--
+@isnad1 id=eq.0h2v.s8.65b2bd575008 from=translated src=- shape=62a9ba2c vocab=b3518e0b
+-/
 @[simp]
 theorem coordinateSum_apply
     (ι : Type*) [Fintype ι] (c : ι → F₂) :
@@ -222,7 +249,9 @@ private theorem f2_eq_indicator_ne_zero (z : F₂) :
   · have hz1 : z = 1 := Fin.eq_one_of_ne_zero z hz
     simp [hz1]
 
-/-- Coordinate sum equals the selected-subset cardinality modulo two.-/
+/-- Coordinate sum equals the selected-subset cardinality modulo two.
+@isnad1 id=eq.0h5v.s8.4960d35bf06d from=translated src=- shape=9d64e1f4 vocab=0c7a8933
+-/
 theorem coordinateSum_eq_selectedChannelUnits_card
     {L a b : ℕ} {h : ℤ}
     (c : ChannelUnit L a b h → F₂) :
@@ -246,7 +275,9 @@ theorem coordinateSum_eq_selectedChannelUnits_card
 
 /--
 The kernel called `EvenChannelSelection` is literally the family of
-even-cardinality subsets of exact units.-/
+even-cardinality subsets of exact units.
+@isnad1 id=iff.0h5v.s8.151bd963497f from=translated src=- shape=fbaeef9e vocab=e4c6a0fd
+-/
 theorem mem_evenChannelSelection_iff_even_card
     {L a b : ℕ} {h : ℤ}
     (c : ChannelUnit L a b h → F₂) :
@@ -258,6 +289,9 @@ theorem mem_evenChannelSelection_iff_even_card
   exact ZMod.natCast_eq_zero_iff
     (selectedChannelUnits c).card 2
 
+/--
+@isnad1 id=surjecti.0h1v.s8.8de69d804dd6 from=translated src=- shape=9f7a716e vocab=f22aa0c4
+-/
 theorem coordinateSum_surjective
     (ι : Type*) [Fintype ι] [Nonempty ι] :
     Function.Surjective (coordinateSum ι) := by
@@ -269,7 +303,9 @@ theorem coordinateSum_surjective
 
 /--
 The even-subset hyperplane on a nonempty finite type has dimension one less
-than the number of coordinates.-/
+than the number of coordinates.
+@isnad1 id=eq.0h1v.s10.4ec2111193f4 from=translated src=- shape=68078396 vocab=262c1579
+-/
 theorem finrank_ker_coordinateSum
     (ι : Type*) [Fintype ι] [Nonempty ι] :
     Module.finrank F₂ (LinearMap.ker (coordinateSum ι)) =
@@ -283,6 +319,9 @@ theorem finrank_ker_coordinateSum
   simp [Module.finrank_pi] at hnullity
   omega
 
+/--
+@isnad1 id=eq.1h4v.s9.9357d1983f48 from=translated src=- shape=764211bf vocab=794006f7
+-/
 theorem finrank_evenChannelSelection
     {L a b : ℕ} {h : ℤ}
     (hm : 0 < (rationalChannelUnits L a b h).card) :
@@ -297,7 +336,9 @@ theorem finrank_evenChannelSelection
   simpa using
     (finrank_ker_coordinateSum (ChannelUnit L a b h))
 
-/-- The dimension formula also covers the empty channel (`0 - 1 = 0` in `ℕ`).-/
+/-- The dimension formula also covers the empty channel (`0 - 1 = 0` in `ℕ`).
+@isnad1 id=eq.0h4v.s9.d538097efd15 from=translated src=- shape=62a7e5ef vocab=44d7e5ba
+-/
 theorem finrank_evenChannelSelection_all
     (L a b : ℕ) (h : ℤ) :
     Module.finrank F₂ (EvenChannelSelection L a b h) =
@@ -335,6 +376,9 @@ def rightUnitBoundary
   Fintype.linearCombination F₂
     (fun unit => Pi.single unit.1.2 1)
 
+/--
+@isnad1 id=eq.0h6v.s10.c3a91264ec5f from=translated src=- shape=bd53d2fc vocab=d487012c
+-/
 @[simp]
 theorem leftUnitBoundary_apply
     {L a b : ℕ} {h : ℤ}
@@ -346,6 +390,9 @@ theorem leftUnitBoundary_apply
             Fin (L + 1) → F₂) v := by
   simp [leftUnitBoundary, Fintype.linearCombination_apply, smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h6v.s10.473453c82f35 from=translated src=- shape=bd53d2fc vocab=26f34418
+-/
 @[simp]
 theorem rightUnitBoundary_apply
     {L a b : ℕ} {h : ℤ}
@@ -357,6 +404,9 @@ theorem rightUnitBoundary_apply
             Fin (L + 1) → F₂) v := by
   simp [rightUnitBoundary, Fintype.linearCombination_apply, smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h5v.s10.f20acf16bcdd from=translated src=- shape=912f0494 vocab=82f2f1a5
+-/
 theorem startVertexSum_leftUnitBoundary
     {L a b : ℕ} {h : ℤ}
     (c : ChannelUnit L a b h → F₂) :
@@ -371,6 +421,9 @@ theorem startVertexSum_leftUnitBoundary
   rw [← Finset.mul_sum]
   simp
 
+/--
+@isnad1 id=eq.0h5v.s10.4e50f85f2d9a from=translated src=- shape=912f0494 vocab=3a2cb3c7
+-/
 theorem startVertexSum_rightUnitBoundary
     {L a b : ℕ} {h : ℤ}
     (c : ChannelUnit L a b h → F₂) :
@@ -390,6 +443,9 @@ def liftEvenBoundary (L : ℕ) :
     LinearMap.ker (startVertexSum L) →ₗ[F₂] (Fin L → F₂) :=
   (startBoundaryEquivEven L).symm.toLinearMap
 
+/--
+@isnad1 id=eq.0h2v.s12.ed5aaa29f91d from=translated src=- shape=6b140048 vocab=507397b1
+-/
 @[simp]
 theorem startCompleteBoundary_liftEvenBoundary
     {L : ℕ} (w : LinearMap.ker (startVertexSum L)) :
@@ -478,6 +534,9 @@ def channelRelationCoefficients
           LinearMap.map_smul]
         rfl
 
+/--
+@isnad1 id=eq.0h6v.s12.bb7b37bce5c7 from=translated src=- shape=a229669e vocab=c212c150
+-/
 @[simp]
 theorem twoStartCompleteBoundary_channelRelationCoefficients_inl
     {L a b : ℕ} {h : ℤ}
@@ -492,6 +551,9 @@ theorem twoStartCompleteBoundary_channelRelationCoefficients_inl
   exact congrFun
     (startCompleteBoundary_liftEvenBoundary (evenLeftBoundary c)) v
 
+/--
+@isnad1 id=eq.0h6v.s12.a3f825be4754 from=translated src=- shape=a229669e vocab=99d098f9
+-/
 @[simp]
 theorem twoStartCompleteBoundary_channelRelationCoefficients_inr
     {L a b : ℕ} {h : ℤ}
@@ -508,7 +570,9 @@ theorem twoStartCompleteBoundary_channelRelationCoefficients_inr
 
 /-! ## Injectivity of the unit boundary -/
 
-/-- Distinct units of a positive channel have distinct left vertices.-/
+/-- Distinct units of a positive channel have distinct left vertices.
+@isnad1 id=injectiv.1h4v.s8.2a9f369435f3 from=translated src=- shape=4a4616a6 vocab=0aa30148
+-/
 theorem channelUnit_left_injective
     {L a b : ℕ} {h : ℤ} (hb : 0 < b) :
     Function.Injective
@@ -528,7 +592,9 @@ theorem channelUnit_left_injective
     simp only [channelUnitCell, channelVertexOffset] at hsnd
     omega
 
-/-- Distinct units of a positive channel have distinct right vertices.-/
+/-- Distinct units of a positive channel have distinct right vertices.
+@isnad1 id=injectiv.1h4v.s8.1fa8621122df from=translated src=- shape=fe28d7b3 vocab=c88f9c07
+-/
 theorem channelUnit_right_injective
     {L a b : ℕ} {h : ℤ} (ha : 0 < a) :
     Function.Injective
@@ -548,7 +614,9 @@ theorem channelUnit_right_injective
     omega
   · exact huv
 
-/-- The left occurrence boundary remembers every unit coefficient.-/
+/-- The left occurrence boundary remembers every unit coefficient.
+@isnad1 id=injectiv.1h4v.s9.a05a56bc5721 from=translated src=- shape=43ce4155 vocab=ceb1215a
+-/
 theorem leftUnitBoundary_injective
     {L a b : ℕ} {h : ℤ} (hb : 0 < b) :
     Function.Injective (leftUnitBoundary L a b h) := by
@@ -579,7 +647,9 @@ theorem leftUnitBoundary_injective
       simp [Pi.single_apply, hvertex]
   exact hc ▸ hd ▸ hvalue
 
-/-- The canonical row-coefficient lift is injective on even selections.-/
+/-- The canonical row-coefficient lift is injective on even selections.
+@isnad1 id=injectiv.1h4v.s11.2a8c45493c63 from=translated src=- shape=97287b62 vocab=ccdfa568
+-/
 theorem channelRelationCoefficients_injective
     {L a b : ℕ} {h : ℤ} (hb : 0 < b) :
     Function.Injective (channelRelationCoefficients L a b h) := by
@@ -595,7 +665,9 @@ theorem channelRelationCoefficients_injective
 
 /--
 One row of a start is the incidence sum of the values at its two complete
-vertices.-/
+vertices.
+@isnad1 id=eq.0h5v.s9.aaf78a481c60 from=translated src=- shape=f288659d vocab=45ea9b58
+-/
 theorem startSystem_apply_eq_sum_incidence
     (M x L : ℕ) (ω : SampleSpace M) (i : Fin L) :
     startSystem M x L ω i =
@@ -611,7 +683,9 @@ theorem startSystem_apply_eq_sum_incidence
       startRootVertex, startCompleteVertexLabel, Pi.single_apply, hi,
       add_mul, Finset.sum_add_distrib]
 
-/-- Line-boundary identity for the actual finite-cylinder start rows.-/
+/-- Line-boundary identity for the actual finite-cylinder start rows.
+@isnad1 id=eq.0h5v.s10.98e00ebc27e6 from=translated src=- shape=a4963945 vocab=5df4bb15
+-/
 theorem sum_startSystem_eq_sum_completeBoundary
     (M x L : ℕ) (ω : SampleSpace M) (u : Fin L → F₂) :
     (∑ i : Fin L, u i * startSystem M x L ω i) =
@@ -651,7 +725,9 @@ theorem sum_startSystem_eq_sum_completeBoundary
             valueBit ω (startCompleteVertexLabel x L v) := by
           simp only [startCompleteBoundary_apply]
 
-/-- Joint line-boundary identity for the two finite-cylinder start systems.-/
+/-- Joint line-boundary identity for the two finite-cylinder start systems.
+@isnad1 id=eq.0h6v.s10.6a549f9227ea from=translated src=- shape=0c9796a2 vocab=ac03aba5
+-/
 theorem dotProduct_twoStartSystem_eq_sum_completeBoundary
     (M x y L : ℕ) (ω : SampleSpace M)
     (u : Sum (Fin L) (Fin L) → F₂) :
@@ -738,7 +814,9 @@ private theorem sum_rightUnitBoundary_mul
       intro unit _hunit
       simp [Pi.single_apply]
 
-/-- The boundary sum of a channel lift is the sum over its exact units.-/
+/-- The boundary sum of a channel lift is the sum over its exact units.
+@isnad1 id=eq.0h9v.s12.745a1f31748e from=translated src=- shape=f73a41b9 vocab=016bbfdb
+-/
 theorem sum_completeBoundary_channelRelationCoefficients
     {M x y L a b : ℕ} {h : ℤ}
     (ω : SampleSpace M) (c : EvenChannelSelection L a b h) :
@@ -765,7 +843,9 @@ theorem sum_completeBoundary_channelRelationCoefficients
 
 /--
 For the canonical height, each exact unit gives equal cross-products
-`a(x+i) = b(y+j)`.-/
+`a(x+i) = b(y+j)`.
+@isnad1 id=eq.3h7v.s9.54902462f6d8 from=translated src=- shape=a5aaa1b2 vocab=4aa8dc6f
+-/
 theorem channelUnit_label_mul_eq
     {x y L a b : ℕ} {h : ℤ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -785,6 +865,9 @@ theorem channelUnit_label_mul_eq
   simp only [OnChannel] at hunit
   linarith [hheight]
 
+/--
+@isnad1 id=lt.1h3v.s5.732f30b3ce80 from=translated src=- shape=78f5457e vocab=e2fdf0d6
+-/
 theorem startCompleteVertexLabel_pos
     {x L : ℕ} (hx : 2 ≤ x) (v : Fin (L + 1)) :
     0 < startCompleteVertexLabel x L v := by
@@ -797,7 +880,9 @@ private theorem add_cross_of_add_eq_add
   revert A X B Y
   decide
 
-/-- Every exact unit has the same two-vertex value parity, namely `v(a)+v(b)`.-/
+/-- Every exact unit has the same two-vertex value parity, namely `v(a)+v(b)`.
+@isnad1 id=eq.5h9v.s9.3de579158be7 from=translated src=- shape=37379c5c vocab=e7a00dc9
+-/
 theorem valueBit_add_of_channelUnit
     {M x y L a b : ℕ} {h : ℤ}
     (ω : SampleSpace M) (ha : 0 < a) (hb : 0 < b)
@@ -819,7 +904,9 @@ theorem valueBit_add_of_channelUnit
 
 /--
 The canonical row coefficients of an even channel selection form a relation
-between the two starts.-/
+between the two starts.
+@isnad1 id=mem.5h8v.s11.0d56074faf17 from=translated src=- shape=242ba85d vocab=78611591
+-/
 theorem channelRelationCoefficients_mem_relationSpace
     {M x y L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b)
@@ -878,6 +965,9 @@ def rationalRelationMap
     (channelRelationCoefficients_mem_relationSpace
       ha hb hx hy hheight)
 
+/--
+@isnad1 id=eq.5h8v.s13.b4f1c016c933 from=translated src=- shape=91e6db0a vocab=d051de6b
+-/
 @[simp]
 theorem rationalRelationMap_coe
     {M x y L a b : ℕ} {h : ℤ}
@@ -892,6 +982,9 @@ theorem rationalRelationMap_coe
       channelRelationCoefficients L a b h c :=
   rfl
 
+/--
+@isnad1 id=injectiv.5h7v.s12.65be453c9b39 from=translated src=- shape=40052823 vocab=f4bc1aa9
+-/
 theorem rationalRelationMap_injective
     {M x y L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b)
@@ -917,7 +1010,9 @@ def rationalCode
 
 /--
 If the channel contains `m ≥ 1` exact units, its rational code has dimension
-`m - 1`.-/
+`m - 1`.
+@isnad1 id=eq.6h7v.s13.38bc85913e4e from=translated src=- shape=93fbebe4 vocab=af3a393c
+-/
 theorem finrank_rationalCode
     {M x y L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b)
@@ -934,7 +1029,9 @@ theorem finrank_rationalCode
         ha hb hx hy hheight),
     finrank_evenChannelSelection hm]
 
-/-- Uniform dimension formula, including channels with no exact unit.-/
+/-- Uniform dimension formula, including channels with no exact unit.
+@isnad1 id=eq.5h7v.s13.5d7e7908c9fb from=translated src=- shape=3508c29a vocab=af3a393c
+-/
 theorem finrank_rationalCode_all
     {M x y L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b)
@@ -950,7 +1047,9 @@ theorem finrank_rationalCode_all
         ha hb hx hy hheight),
     finrank_evenChannelSelection_all]
 
-/-- The rational code is nonzero exactly when the channel has at least two units.-/
+/-- The rational code is nonzero exactly when the channel has at least two units.
+@isnad1 id=iff.5h7v.s11.eba7467738a6 from=translated src=- shape=50028d8e vocab=70256e09
+-/
 theorem rationalCode_ne_bot_iff_two_le_card
     {M x y L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b)
@@ -963,7 +1062,9 @@ theorem rationalCode_ne_bot_iff_two_le_card
     finrank_rationalCode_all ha hb hx hy hheight]
   omega
 
-/-- Nontriviality criterion using the manuscript's integer-cell count.-/
+/-- Nontriviality criterion using the manuscript's integer-cell count.
+@isnad1 id=iff.5h7v.s11.a524c3c6feec from=translated src=- shape=8851475a vocab=661e6e8f
+-/
 theorem rationalCode_ne_bot_iff_two_le_channelCells_card
     {M x y L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b)
@@ -976,7 +1077,9 @@ theorem rationalCode_ne_bot_iff_two_le_channelCells_card
       ha hb hx hy hheight,
     card_rationalChannelUnits_eq_channelCells]
 
-/-- Dimension formula stated with the manuscript's integer-cell count.-/
+/-- Dimension formula stated with the manuscript's integer-cell count.
+@isnad1 id=eq.6h7v.s13.489cf1cf217e from=translated src=- shape=5d38f1e4 vocab=9c7690b6
+-/
 theorem finrank_rationalCode_eq_channelCells_card_sub_one
     {M x y L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b)
@@ -1001,7 +1104,9 @@ theorem finrank_rationalCode_eq_channelCells_card_sub_one
 
 /--
 If a positive primitive channel contains at least two exact units, then the
-primitive coefficients satisfy the final assertion `max(a,b) ≤ L`.-/
+primitive coefficients satisfy the final assertion `max(a,b) ≤ L`.
+@isnad1 id=le.4h4v.s6.06345ceb51f8 from=translated src=- shape=9bcf582d vocab=97852ad6
+-/
 theorem max_channelCoefficients_le_length
     {L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
@@ -1025,7 +1130,9 @@ theorem max_channelCoefficients_le_length
 
 /-! ## Restriction of the affine character -/
 
-/-- The boundary of a start at its root is the dot product with `startRhs`.-/
+/-- The boundary of a start at its root is the dot product with `startRhs`.
+@isnad1 id=eq.0h2v.s9.c46e115c7b31 from=translated src=- shape=d38355bd vocab=ec6d8c0f
+-/
 theorem startCompleteBoundary_root_eq_dot_startRhs
     {L : ℕ} (u : Fin L → F₂) :
     startCompleteBoundary L u (startRootVertex L) =
@@ -1040,7 +1147,9 @@ theorem startCompleteBoundary_root_eq_dot_startRhs
   · simp [startIncidenceColumn, startBaseVertex, startTipVertex,
       startRootVertex, startRhs, Pi.single_apply, hi]
 
-/-- For two starts, the affine dot product is the sum of the two root bits.-/
+/-- For two starts, the affine dot product is the sum of the two root bits.
+@isnad1 id=eq.0h2v.s10.ca65517c8024 from=translated src=- shape=5c648e20 vocab=4976e5ff
+-/
 theorem dotProduct_twoStartRhs_eq_boundary_roots
     {L : ℕ} (u : Sum (Fin L) (Fin L) → F₂) :
     dotProduct u (twoStartRhs L) =
@@ -1071,6 +1180,9 @@ def channelAffineCharacter
     (ChannelUnit L a b h → F₂) →ₗ[F₂] F₂ :=
   Fintype.linearCombination F₂ channelUnitAffineBit
 
+/--
+@isnad1 id=eq.0h5v.s8.8892a14b4be1 from=translated src=- shape=af1dfb9d vocab=2485c536
+-/
 @[simp]
 theorem channelAffineCharacter_apply
     {L a b : ℕ} {h : ℤ}
@@ -1081,6 +1193,9 @@ theorem channelAffineCharacter_apply
   simp [channelAffineCharacter, Fintype.linearCombination_apply,
     smul_eq_mul]
 
+/--
+@isnad1 id=iff.0h2v.s5.20014342e4b1 from=translated src=- shape=2557df57 vocab=70ffdd18
+-/
 theorem channelVertexOffset_eq_neg_one_iff
     {L : ℕ} (v : Fin (L + 1)) :
     channelVertexOffset v = -1 ↔ v = startRootVertex L := by
@@ -1093,11 +1208,17 @@ theorem channelVertexOffset_eq_neg_one_iff
   · rintro rfl
     simp [channelVertexOffset, startRootVertex]
 
+/--
+@isnad1 id=eq.0h1v.s4.717a66739392 from=translated src=- shape=d0627bb1 vocab=35e247ee
+-/
 @[simp]
 theorem channelVertexOffset_startRootVertex (L : ℕ) :
     channelVertexOffset (startRootVertex L) = -1 := by
   simp [channelVertexOffset, startRootVertex]
 
+/--
+@isnad1 id=eq.0h5v.s10.94a7011290ba from=translated src=- shape=36731993 vocab=c30aa73d
+-/
 theorem leftUnitBoundary_root
     {L a b : ℕ} {h : ℤ}
     (c : ChannelUnit L a b h → F₂) :
@@ -1121,6 +1242,9 @@ theorem leftUnitBoundary_root
         ((channelVertexOffset_eq_neg_one_iff unit.1.1).mpr hv)
     simp [hoff, hv, Pi.single_apply]
 
+/--
+@isnad1 id=eq.0h5v.s10.ea5422be3358 from=translated src=- shape=36731993 vocab=306671ea
+-/
 theorem rightUnitBoundary_root
     {L a b : ℕ} {h : ℤ}
     (c : ChannelUnit L a b h → F₂) :
@@ -1146,7 +1270,9 @@ theorem rightUnitBoundary_root
 
 /--
 The affine relation character restricted to the rational code is exactly the
-root-boundary vector `d_{i,j} = 1_{i=-1} + 1_{j=-1}`.-/
+root-boundary vector `d_{i,j} = 1_{i=-1} + 1_{j=-1}`.
+@isnad1 id=eq.5h8v.s13.79ddf05094b7 from=translated src=- shape=3d2614fc vocab=5620c060
+-/
 theorem relationCharacter_rationalRelationMap
     {M x y L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b)

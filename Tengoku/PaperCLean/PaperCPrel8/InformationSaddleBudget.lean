@@ -17,6 +17,9 @@ def informationCutoff (H I : ℝ) : ℝ :=
 
 def informationBudget (H I : ℝ) : ℝ := (informationCutoff H I-I)/2
 
+/--
+@isnad1 id=and.3h2v.s6.505ca4854378 from=translated src=- shape=a7e22248 vocab=dc0fbb3c
+-/
 theorem cutoff_spec {H I : ℝ} (hH : max (saddleThreshold 1) (saddleThreshold 2) ≤ H)
     (hI : 0 ≤ I) (hIV : I ≤ saddleCutoff 1 H) :
     informationCutoff H I ∈ Icc (saddleCutoff 1 H) (saddleCutoff 2 H) ∧
@@ -24,10 +27,16 @@ theorem cutoff_spec {H I : ℝ} (hH : max (saddleThreshold 1) (saddleThreshold 2
   rw [informationCutoff,dite_eq_left ⟨hH,hI,hIV⟩]
   exact (Classical.choose_spec (existsUnique_crossing hH hI hIV)).1
 
+/--
+@isnad1 id=lt.3h2v.s6.4849161db789 from=translated src=- shape=32221cdc vocab=4bcf8c74
+-/
 theorem cutoff_pos {H I : ℝ} (hH : max (saddleThreshold 1) (saddleThreshold 2) ≤ H)
     (hI : 0 ≤ I) (hIV : I ≤ saddleCutoff 1 H) : 0 < informationCutoff H I :=
   (saddleCutoff_pos (by norm_num : (0:ℝ)<1) ((le_max_left _ _).trans hH)).trans_le (cutoff_spec hH hI hIV).1.1
 
+/--
+@isnad1 id=eq.1h1v.s5.f2a1c8e8aa34 from=translated src=- shape=5f95c830 vocab=a2332695
+-/
 theorem cutoff_zero {H : ℝ} (hH : max (saddleThreshold 1) (saddleThreshold 2) ≤ H) :
     informationCutoff H 0=saddleCutoff 2 H := by
   have hp := saddleCutoff_pos (by norm_num : (0:ℝ)<1) ((le_max_left _ _).trans hH)
@@ -36,6 +45,9 @@ theorem cutoff_zero {H : ℝ} (hH : max (saddleThreshold 1) (saddleThreshold 2) 
   apply crossing_unique (deletion_antitone hH) hs.1 ⟨cutoff_one_le_two hH,le_refl _⟩ hs.2
   linarith
 
+/--
+@isnad1 id=eq.1h1v.s5.2c208d3bc03f from=translated src=- shape=27c715f2 vocab=a2332695
+-/
 theorem cutoff_full_information {H : ℝ} (hH : max (saddleThreshold 1) (saddleThreshold 2) ≤ H) :
     informationCutoff H (saddleCutoff 1 H)=saddleCutoff 1 H := by
   have hp := saddleCutoff_pos (by norm_num : (0:ℝ)<1) ((le_max_left _ _).trans hH)
@@ -44,7 +56,9 @@ theorem cutoff_full_information {H : ℝ} (hH : max (saddleThreshold 1) (saddleT
   apply crossing_unique (deletion_antitone hH) hs.1 ⟨le_refl _,cutoff_one_le_two hH⟩ hs.2
   linarith
 
-/-- This is an attained maximum for the actual deletion exponent.-/
+/-- This is an attained maximum for the actual deletion exponent.
+@isnad1 id=le.4h3v.s6.0d4c786c9475 from=translated src=- shape=73cddf8c vocab=c9f14d08
+-/
 theorem budget_maximum {H I w : ℝ} (hH : max (saddleThreshold 1) (saddleThreshold 2) ≤ H)
     (hI : 0 ≤ I) (hIV : I ≤ saddleCutoff 1 H)
     (hw : w ∈ Icc (saddleCutoff 1 H) (saddleCutoff 2 H)) :
@@ -53,7 +67,9 @@ theorem budget_maximum {H I w : ℝ} (hH : max (saddleThreshold 1) (saddleThresh
   simpa only [budget_at_crossing (fun v => saddleCost (H/v)) I (informationCutoff H I) hs.2,informationBudget] using
     crossing_maximizes (deletion_antitone hH) hs.1 hw hs.2
 
-/-- A lower admissible cutoff is preserved, rather than assuming smaller-field measurability.-/
+/-- A lower admissible cutoff is preserved, rather than assuming smaller-field measurability.
+@isnad1 id=le.6h4v.s7.eac67dbc4194 from=translated src=- shape=01e763ea vocab=8a7b00d4
+-/
 theorem constrained_maximum {H I floor w : ℝ} (hH : max (saddleThreshold 1) (saddleThreshold 2) ≤ H)
     (hI : 0 ≤ I) (hIV : I ≤ saddleCutoff 1 H)
     (hf : floor ∈ Icc (saddleCutoff 1 H) (saddleCutoff 2 H))
@@ -63,7 +79,9 @@ theorem constrained_maximum {H I floor w : ℝ} (hH : max (saddleThreshold 1) (s
   admissible_cutoff_maximizes (deletion_antitone hH) (cutoff_spec hH hI hIV).1 hf hw hfw
     (cutoff_spec hH hI hIV).2
 
-/-- Both exponential margins follow at the constructed crossing.-/
+/-- Both exponential margins follow at the constructed crossing.
+@isnad1 id=and.4h4v.s7.844c33784759 from=translated src=- shape=b6be7d74 vocab=8f331336
+-/
 theorem actual_error_margins {H I ell c : ℝ} (hH : max (saddleThreshold 1) (saddleThreshold 2) ≤ H)
     (hI : 0 ≤ I) (hIV : I ≤ saddleCutoff 1 H)
     (hell : ell ≤ informationBudget H I-c*(H/informationCutoff H I)) :
@@ -71,7 +89,9 @@ theorem actual_error_margins {H I ell c : ℝ} (hH : max (saddleThreshold 1) (sa
     I+2*ell-informationCutoff H I ≤ -2*c*(H/informationCutoff H I) :=
   two_error_margins (cutoff_spec hH hI hIV).2 hell
 
-/-- The optimized log cutoff decreases as the information cost grows.-/
+/-- The optimized log cutoff decreases as the information cost grows.
+@isnad1 id=lt.4h3v.s6.a37ebc7d56f0 from=translated src=- shape=0c5c1ad2 vocab=4bcf8c74
+-/
 theorem cutoff_strict_antitone {H I J : ℝ} (hH : max (saddleThreshold 1) (saddleThreshold 2) ≤ H)
     (hI : 0 ≤ I) (hIJ : I < J) (hJV : J ≤ saddleCutoff 1 H) :
     informationCutoff H J < informationCutoff H I := by
@@ -81,7 +101,9 @@ theorem cutoff_strict_antitone {H I J : ℝ} (hH : max (saddleThreshold 1) (sadd
   have hd := deletion_antitone hH hi.1 hj.1 (le_of_not_gt hn)
   linarith [hi.2,hj.2]
 
-/-- Positive information loses strictly less than I from the enlarged-cutoff budget.-/
+/-- Positive information loses strictly less than I from the enlarged-cutoff budget.
+@isnad1 id=lt.3h2v.s6.d77f0603abaa from=translated src=- shape=5ce2004c vocab=3b90b0b5
+-/
 theorem budget_strict_improvement {H I : ℝ} (hH : max (saddleThreshold 1) (saddleThreshold 2) ≤ H)
     (hI : 0 < I) (hIV : I ≤ saddleCutoff 1 H) :
     saddleCutoff 2 H/2-I < informationBudget H I := by

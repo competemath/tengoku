@@ -17,6 +17,9 @@ open Set Filter Topology SaddleBranch SaddleParameters ExponentialIntegral Saddl
 
 noncomputable section
 
+/--
+@isnad1 id=tendsto.1h1v.s5.f2a75b48e2cf from=translated src=- shape=979c742f vocab=c1738752
+-/
 theorem tendsto_log_div_saddleParameter {a : ℝ} (ha : 0 < a) :
     Tendsto (fun H => Real.log H / saddleParameter a H) atTop (𝓝 2) := by
   have hu := tendsto_saddleParameter_atTop ha
@@ -43,11 +46,17 @@ theorem tendsto_log_div_saddleParameter {a : ℝ} (ha : 0 < a) :
   rw [log_saddleParameter_identity ha hH]
   field_simp [hune]
 
+/--
+@isnad1 id=tendsto.1h1v.s6.0ce5192522bf from=translated src=- shape=c17b8c73 vocab=c1738752
+-/
 theorem tendsto_saddleParameter_div_log {a : ℝ} (ha : 0 < a) :
     Tendsto (fun H => saddleParameter a H / Real.log H) atTop (𝓝 (1 / 2)) := by
   simpa only [inv_div, invOf_eq_inv, one_div] using
     (tendsto_log_div_saddleParameter ha).inv₀ (by norm_num : (2 : ℝ) ≠ 0)
 
+/--
+@isnad1 id=eq.3h2v.s7.376ef139e1ab from=translated src=- shape=6fc20156 vocab=e47a0fa3
+-/
 theorem saddleParameter_refined_identity {a H : ℝ} (ha : 0 < a)
     (hH : saddleThreshold a ≤ H) (hHone : 1 < H) :
     saddleParameter a H - (1 / 2 : ℝ) *
@@ -62,6 +71,9 @@ theorem saddleParameter_refined_identity {a H : ℝ} (ha : 0 < a)
   have hid := log_saddleParameter_identity ha hH
   linarith
 
+/--
+@isnad1 id=tendsto.1h1v.s6.e478836a5607 from=translated src=- shape=de14cfbf vocab=6b652721
+-/
 theorem tendsto_saddleParameter_second_order {a : ℝ} (ha : 0 < a) :
     Tendsto (fun H => saddleParameter a H - (1 / 2 : ℝ) *
       (Real.log H + Real.log (Real.log H) - Real.log (2 * a))) atTop (𝓝 0) := by
@@ -81,6 +93,9 @@ theorem tendsto_saddleParameter_second_order {a : ℝ} (ha : 0 < a) :
     with H hH hHone
   exact (saddleParameter_refined_identity ha hH hHone).symm
 
+/--
+@isnad1 id=eq.2h2v.s6.0e43dfba74a5 from=translated src=- shape=7290272c vocab=1ba6709b
+-/
 theorem saddleCutoff_square_div_identity {a H : ℝ} (ha : 0 < a)
     (hH : saddleThreshold a ≤ H) :
     saddleCutoff a H ^ 2 / H =
@@ -105,6 +120,9 @@ theorem saddleCutoff_square_div_identity {a H : ℝ} (ha : 0 < a)
       unfold saddleCostParam saddleRatio normalizedExponentialIntegral
       field_simp [ne_of_gt hupos, Real.exp_ne_zero u]
 
+/--
+@isnad1 id=tendsto.1h1v.s7.99f729f1b775 from=translated src=- shape=875e1f5d vocab=6cabc1c3
+-/
 theorem saddle_cutoff_second_order {a : ℝ} (ha : 0 < a) :
     Tendsto (fun H => saddleCutoff a H ^ 2 / H - (a / 2) *
       (Real.log H + Real.log (Real.log H) - Real.log (2 * a) - 2)) atTop (𝓝 0) := by
@@ -120,11 +138,17 @@ theorem saddle_cutoff_second_order {a : ℝ} (ha : 0 < a) :
   rw [saddleCutoff_square_div_identity ha hH]
   ring
 
+/--
+@isnad1 id=tendsto.0h0v.s7.e6f8313dee4e from=translated src=- shape=bf867fe6 vocab=ff2d52f2
+-/
 theorem hard_saddle_second_order :
     Tendsto (fun H => saddleCutoff 1 H ^ 2 / H - (1 / 2 : ℝ) *
       (Real.log H + Real.log (Real.log H) - Real.log 2 - 2)) atTop (𝓝 0) := by
   simpa only [mul_one] using saddle_cutoff_second_order (by norm_num : (0 : ℝ) < 1)
 
+/--
+@isnad1 id=tendsto.0h0v.s6.2e7f98da0467 from=translated src=- shape=d37ba038 vocab=f8767fc1
+-/
 theorem soft_saddle_second_order :
     Tendsto (fun H => saddleCutoff 2 H ^ 2 / H -
       (Real.log H + Real.log (Real.log H) - Real.log 4 - 2)) atTop (𝓝 0) := by

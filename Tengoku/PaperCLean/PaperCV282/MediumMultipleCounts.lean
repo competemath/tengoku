@@ -20,7 +20,9 @@ noncomputable section
 /-- Multiples of p in the literal B-integer window.-/
 def multiples (lo B p : ℕ) : Finset ℕ := (Ico lo (lo + B)).filter (p ∣ ·)
 
-/-- A uniform lower count, independent of the position of the window.-/
+/-- A uniform lower count, independent of the position of the window.
+@isnad1 id=le.2h3v.s5.eb8f202a28e0 from=translated src=- shape=393d1280 vocab=9be13fb9
+-/
 theorem div_le_multiples_card {lo B p : ℕ} (hlo : 0 < lo) (hp : 0 < p) :
     B / p ≤ (multiples lo B p).card := by
   let f (j : ℕ) := ((lo - 1) / p + 1 + j) * p
@@ -44,7 +46,9 @@ theorem div_le_multiples_card {lo B p : ℕ} (hlo : 0 < lo) (hp : 0 < p) :
     omega
   simpa only [card_range] using Finset.card_le_card_of_injOn f hmem hinj
 
-/-- A divisible prime of even parity must divide to at least the second power.-/
+/-- A divisible prime of even parity must divide to at least the second power.
+@isnad1 id=dvd.4h2v.s6.74f039aaac8e from=translated src=- shape=28ff7880 vocab=070d9aa2
+-/
 theorem square_dvd_of_divides_of_parity_zero {n p : ℕ} (hn : 0 < n)
     (hp : p.Prime) (hd : p ∣ n) (hz : parityVec n p = 0) : p ^ 2 ∣ n := by
   have hone := (hp.dvd_iff_one_le_factorization (by omega : n ≠ 0)).mp hd
@@ -61,7 +65,9 @@ def divisibilityIncidences (lo B : ℕ) (P : Finset ℕ) : Finset (ℕ × ℕ) :
 def oddIncidences (lo B : ℕ) (P : Finset ℕ) : Finset (ℕ × ℕ) :=
   ((Ico lo (lo + B)).product P).filter (fun z => parityVec z.1 z.2 ≠ 0)
 
-/-- Double counting the ordinary incidences prime by prime.-/
+/-- Double counting the ordinary incidences prime by prime.
+@isnad1 id=eq.0h3v.s4.bc1108e27a14 from=translated src=- shape=4b365868 vocab=649b239c
+-/
 theorem divisibilityIncidences_card (lo B : ℕ) (P : Finset ℕ) :
     (divisibilityIncidences lo B P).card = ∑ p ∈ P, (multiples lo B p).card := by
   classical
@@ -91,14 +97,18 @@ theorem divisibilityIncidences_card (lo B : ℕ) (P : Finset ℕ) :
     obtain ⟨m,hm,hmz⟩ := mem_image.mp hqz
     exact hpq (by simpa using congrArg Prod.snd (hnz.trans hmz.symm))
 
-/-- The ordinary floor-sum is a lower bound for the true incidence count.-/
+/-- The ordinary floor-sum is a lower bound for the true incidence count.
+@isnad1 id=le.2h3v.s6.f124985f38cc from=translated src=- shape=985e5e05 vocab=338da680
+-/
 theorem floor_sum_le_incidence_card {lo B : ℕ} {P : Finset ℕ}
     (hlo : 0 < lo) (hP : ∀ p ∈ P, 0 < p) :
     ∑ p ∈ P, B / p ≤ (divisibilityIncidences lo B P).card := by
   rw [divisibilityIncidences_card]
   exact sum_le_sum (fun p hp => div_le_multiples_card hlo (hP p hp))
 
-/-- At most 854 entries are lost between divisibility and odd valuation.-/
+/-- At most 854 entries are lost between divisibility and odd valuation.
+@isnad1 id=le.4h3v.s7.79357a98ddcc from=translated src=- shape=808ac0e0 vocab=d45fb59c
+-/
 theorem floor_sum_le_odd_incidence_add {lo B : ℕ} {P : Finset ℕ}
     (hlo : 0 < lo) (hB : 1332 ≤ B) (htop : lo + B ≤ B ^ 2 + B + 1)
     (hP : ∀ p ∈ P, p.Prime ∧ p ≤ B ∧ B < 11 * p) :

@@ -22,6 +22,9 @@ def reducedRatiosAtHeight (q : ℕ) : Finset (ℕ × ℕ) :=
   ((Icc 1 q) ×ˢ (Icc 1 q)).filter fun c ↦
     c.1.Coprime c.2 ∧ Nat.max c.1 c.2 = q
 
+/--
+@isnad1 id=iff.0h3v.s6.5ec14f3f335e from=translated src=- shape=d2f7a142 vocab=d3b8fb75
+-/
 @[simp]
 theorem mem_reducedRatiosAtHeight
     {q a b : ℕ} :
@@ -42,7 +45,9 @@ theorem mem_reducedRatiosAtHeight
 
 /--
 Every positive pair of height `q` lies on one of the two boundary faces of
-the square `[1,q]²`.-/
+the square `[1,q]²`.
+@isnad1 id=le.0h1v.s6.4d381136bdfd from=translated src=- shape=92fbdfdc vocab=d969631d
+-/
 theorem reducedRatiosAtHeight_subset_faces (q : ℕ) :
     reducedRatiosAtHeight q ⊆
       ((Icc 1 q) ×ˢ {q}) ∪ ({q} ×ˢ (Icc 1 q)) := by
@@ -82,7 +87,9 @@ theorem reducedRatiosAtHeight_subset_faces (q : ℕ) :
       rw [mem_Icc]
       exact ⟨by omega, haq⟩, by simp [hsecond]⟩
 
-/-- The `O(q)` reduced-ratio count, with explicit constant `2`.-/
+/-- The `O(q)` reduced-ratio count, with explicit constant `2`.
+@isnad1 id=le.0h1v.s4.7f24bfe9fd0a from=translated src=- shape=880a9178 vocab=b8364b59
+-/
 theorem card_reducedRatiosAtHeight_le (q : ℕ) :
     (reducedRatiosAtHeight q).card ≤ 2 * q := by
   calc
@@ -103,6 +110,9 @@ def channelHeights (L a b : ℕ) : Finset ℤ :=
   (offsetBox L).image fun cell ↦
     (a : ℤ) * cell.1 - (b : ℤ) * cell.2
 
+/--
+@isnad1 id=iff.0h4v.s5.32387d87d2cd from=translated src=- shape=5d75a0af vocab=07a137a2
+-/
 @[simp]
 theorem mem_channelHeights
     {L a b : ℕ} {h : ℤ} :
@@ -116,7 +126,9 @@ theorem mem_channelHeights
     refine ⟨cell, hcell, ?_⟩
     exact hchannel
 
-/-- A channel is nonempty exactly when its parameter is attained in the box.-/
+/-- A channel is nonempty exactly when its parameter is attained in the box.
+@isnad1 id=iff.0h4v.s5.d1def2b6ca86 from=translated src=- shape=1e93fd40 vocab=348fca1d
+-/
 theorem channelCells_nonempty_iff_mem_channelHeights
     {L a b : ℕ} {h : ℤ} :
     (channelCells L a b h).Nonempty ↔
@@ -139,7 +151,9 @@ def channelHeightLower (L a b : ℕ) : ℤ :=
 def channelHeightUpper (L a b : ℕ) : ℤ :=
   (a : ℤ) * ((L : ℤ) - 1) + (b : ℤ)
 
-/-- Every attained parameter lies in the sharp enclosing interval.-/
+/-- Every attained parameter lies in the sharp enclosing interval.
+@isnad1 id=le.0h3v.s5.5db95f2c3581 from=translated src=- shape=c658bbe9 vocab=5e6aaccf
+-/
 theorem channelHeights_subset_interval (L a b : ℕ) :
     channelHeights L a b ⊆
       Icc (channelHeightLower L a b)
@@ -179,7 +193,9 @@ theorem channelHeights_subset_interval (L a b : ℕ) :
 
 /--
 For fixed `(a,b)`, the number of nonempty affine channels is at most
-`(a+b)L+1`; this is the precise finite form of the paper's `O(qB)` count.-/
+`(a+b)L+1`; this is the precise finite form of the paper's `O(qB)` count.
+@isnad1 id=le.0h3v.s5.cdb834b43893 from=translated src=- shape=70322bda vocab=e3790a0a
+-/
 theorem channelHeights_card_le (L a b : ℕ) :
     (channelHeights L a b).card ≤ (a + b) * L + 1 := by
   have hmono :
@@ -216,6 +232,9 @@ theorem channelHeights_card_le (L a b : ℕ) :
 def channelSigma (L a b : ℕ) (h : ℤ) : ℕ :=
   (channelCells L a b h).card - 1
 
+/--
+@isnad1 id=eq.0h4v.s5.2db12ce7a8f5 from=translated src=- shape=5bd99fad vocab=db6a590e
+-/
 @[simp]
 theorem channelSigma_eq
     (L a b : ℕ) (h : ℤ) :

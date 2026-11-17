@@ -21,13 +21,18 @@ noncomputable section
 def boxSolutions (q q' h a b c d : ℕ) : Finset (ℕ × ℕ) :=
   (Finset.Ico a b ×ˢ Finset.Ico c d).filter fun rs => q * rs.1 + h = q' * rs.2
 
+/--
+@isnad1 id=iff.0h8v.s6.50df63f05c9d from=translated src=- shape=b38edf6e vocab=24ec5b62
+-/
 theorem mem_boxSolutions {q q' h a b c d : ℕ} {rs : ℕ × ℕ} :
     rs ∈ boxSolutions q q' h a b c d ↔
       (a ≤ rs.1 ∧ rs.1 < b) ∧ (c ≤ rs.2 ∧ rs.2 < d) ∧
         q * rs.1 + h = q' * rs.2 := by
   simp [boxSolutions, and_assoc]
 
-/-- Solubility forces the exact gcd obstruction, with no coprimality assumption.-/
+/-- Solubility forces the exact gcd obstruction, with no coprimality assumption.
+@isnad1 id=dvd.1h5v.s5.e425b28c9c0d from=translated src=- shape=dc84aeef vocab=c6dc8d66
+-/
 theorem gcd_dvd_shift_of_solution {q q' h r s : ℕ}
     (heq : q * r + h = q' * s) : q'.gcd q ∣ h := by
   have hleft : q'.gcd q ∣ q * r := dvd_mul_of_dvd_left (Nat.gcd_dvd_right q' q) r
@@ -36,7 +41,9 @@ theorem gcd_dvd_shift_of_solution {q q' h r s : ℕ}
     exact dvd_mul_of_dvd_left (Nat.gcd_dvd_left q' q) s
   exact (Nat.dvd_add_iff_right hleft).mpr hright
 
-/-- The second coefficient determines the second coordinate from the first.-/
+/-- The second coefficient determines the second coordinate from the first.
+@isnad1 id=injon.1h7v.s5.dcfa4d6a6366 from=translated src=- shape=f65e33d6 vocab=e426434a
+-/
 theorem fst_injOn_boxSolutions {q q' h a b c d : ℕ} (hq' : 0 < q') :
     Set.InjOn Prod.fst (↑(boxSolutions q q' h a b c d) : Set (ℕ × ℕ)) := by
   intro rs hrs uv huv heq
@@ -45,7 +52,9 @@ theorem fst_injOn_boxSolutions {q q' h a b c d : ℕ} (hq' : 0 < q') :
   have huvEq := (mem_boxSolutions.mp huv).2.2
   exact Nat.eq_of_mul_eq_mul_left hq' (by rw [← hrsEq, ← huvEq, heq])
 
-/-- Any two first coordinates agree modulo the primitive first-coordinate step.-/
+/-- Any two first coordinates agree modulo the primitive first-coordinate step.
+@isnad1 id=modeq.3h7v.s6.88f77ee3fe45 from=translated src=- shape=2a6a1489 vocab=b2deb616
+-/
 theorem first_coordinates_modEq {q q' h r s r' s' : ℕ} (hq' : 0 < q')
     (heq : q * r + h = q' * s) (heq' : q * r' + h = q' * s') :
     r ≡ r' [MOD q' / q'.gcd q] := by
@@ -55,12 +64,16 @@ theorem first_coordinates_modEq {q q' h r s r' s' : ℕ} (hq' : 0 < q')
   exact Nat.modEq_zero_iff_dvd.mpr (dvd_mul_right q' s) |>.trans
     (Nat.modEq_zero_iff_dvd.mpr (dvd_mul_right q' s')).symm
 
-/-- The primitive step is positive whenever the second coefficient is positive.-/
+/-- The primitive step is positive whenever the second coefficient is positive.
+@isnad1 id=lt.1h2v.s5.926e67f5ec38 from=translated src=- shape=6b09f82b vocab=f07a1922
+-/
 theorem primitive_step_pos {q q' : ℕ} (hq' : 0 < q') :
     0 < q' / q'.gcd q := by
   exact Nat.div_pos (Nat.gcd_le_left q hq') (Nat.gcd_pos_of_pos_left q hq')
 
-/-- Uniform interval count in terms of the exact primitive step.-/
+/-- Uniform interval count in terms of the exact primitive step.
+@isnad1 id=le.2h7v.s6.3a34f841b56a from=translated src=- shape=31c64eae vocab=68635ea2
+-/
 theorem card_boxSolutions_le_primitive_step
     (q q' h a b c d : ℕ) (hq' : 0 < q') (hab : a ≤ b) :
     ((boxSolutions q q' h a b c d).card : ℝ) ≤
@@ -96,7 +109,9 @@ theorem card_boxSolutions_le_primitive_step
       exact_mod_cast hcard
     exact hcardReal.trans hcountReal
 
-/-- Real arithmetic form of the primitive-step count.-/
+/-- Real arithmetic form of the primitive-step count.
+@isnad1 id=le.2h7v.s6.a3b12326e442 from=translated src=- shape=7c975bae vocab=ece91b87
+-/
 theorem card_boxSolutions_le_gcd
     (q q' h a b c d : ℕ) (hq' : 0 < q') (hab : a ≤ b) :
     ((boxSolutions q q' h a b c d).card : ℝ) ≤
@@ -110,7 +125,9 @@ theorem card_boxSolutions_le_gcd
   field_simp
   ring
 
-/-- A positive shift pays for the gcd, uniformly over both kernel ranges.-/
+/-- A positive shift pays for the gcd, uniformly over both kernel ranges.
+@isnad1 id=le.3h7v.s6.8eef0d4f9084 from=translated src=- shape=e971dd13 vocab=8f3489bb
+-/
 theorem card_boxSolutions_le_shift
     (q q' h a b c d : ℕ) (hq' : 0 < q') (hh : 0 < h) (hab : a ≤ b) :
     ((boxSolutions q q' h a b c d).card : ℝ) ≤
@@ -129,7 +146,9 @@ theorem card_boxSolutions_le_shift
       (mul_le_mul_of_nonneg_left (by exact_mod_cast hg)
         (sub_nonneg.mpr (by exact_mod_cast hab))) (Nat.cast_nonneg q')
 
-/-- The dyadic-range fibre estimate used in shifted kernel energy.-/
+/-- The dyadic-range fibre estimate used in shifted kernel energy.
+@isnad1 id=le.4h6v.s7.8a8bd34dd87c from=translated src=- shape=15c1dd97 vocab=c2096bd6
+-/
 theorem card_dyadic_boxSolutions_le
     (q q' h R S X : ℕ) (hq' : 0 < q') (hh : 0 < h) (hX : 0 < X)
     (hscale : X ≤ 2 * q' * S) :

@@ -14,7 +14,9 @@ open Finset RoughKernelCRT LargeOddKernel ArratiaGoldsteinGordonInput
 noncomputable section
 @[reducible] local instance (P : Prop) : Decidable P := Classical.propDecidable P
 
-/-- Uniform finite-set probabilities are exact normalized event cardinalities.-/
+/-- Uniform finite-set probabilities are exact normalized event cardinalities.
+@isnad1 id=eq.0h3v.s7.658cd864a0b7 from=translated src=- shape=af8a99b9 vocab=7e6e25cd
+-/
 theorem uniform_finset_probability {α : Type*} (S : Finset α) [Nonempty S] (P : α → Prop) :
     eventProbability (FinitePMF.uniform S) (fun x ↦ P x.val) =
       ((S.filter P).card : ℝ) / S.card := by
@@ -26,7 +28,9 @@ theorem uniform_finset_probability {α : Type*} (S : Finset α) [Nonempty S] (P 
 
 def grid (n h : ℕ) : Finset (Fin h → ℕ) := Fintype.piFinset (fun _ ↦ Icc 1 n)
 
-/-- The sampling grid has n^h equally likely points.-/
+/-- The sampling grid has n^h equally likely points.
+@isnad1 id=eq.0h2v.s4.b58609e4c6f6 from=translated src=- shape=f0344caf vocab=fbcd6c5a
+-/
 theorem grid_card (n h : ℕ) : (grid n h).card = n^h := by
   simp [grid,Fintype.card_piFinset,Nat.card_Icc]
 

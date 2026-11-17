@@ -28,7 +28,9 @@ noncomputable section
 
 /--
 The local one-dimensional weight of the vertex-cell ambient family is
-exactly the residual prime mass from Lemma 7.2.-/
+exactly the residual prime mass from Lemma 7.2.
+@isnad1 id=eq.0h4v.s6.e41d1c02649a from=translated src=- shape=7656ccae vocab=de1ba976
+-/
 theorem sum_canonicalResidualAmbientCells_card_div_eq_residualPrimeMass
     (L a b : ℕ) (h : ℤ) :
     (∑ p : CanonicalResidualAmbientPrime L a b,
@@ -48,7 +50,9 @@ theorem sum_canonicalResidualAmbientCells_card_div_eq_residualPrimeMass
 /--
 Effective fixed-size one-dimensional certificate-mass estimate for an active
 nontrivial channel.  The constant is `4 * 896`, because Lemma 7.1 is applied
-with certificate weight `u=4`.-/
+with certificate weight `u=4`.
+@isnad1 id=le.6h6v.s10.0855dabfbe45 from=translated src=- shape=1fedd432 vocab=5db5c43d
+-/
 theorem canonicalResidualAmbient_admissibleCertificateSolutionMass_le
     {L a b N r : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
@@ -122,7 +126,9 @@ theorem canonicalResidualAmbient_admissibleCertificateSolutionMass_le
       (div_le_div_of_nonneg_right hpow (by positivity))
       (by positivity))
 
-/-- Sum of the preceding estimate over all certificate sizes `r < R`.-/
+/-- Sum of the preceding estimate over all certificate sizes `r < R`.
+@isnad1 id=le.6h6v.s10.759a05abe43e from=translated src=- shape=e34aca7c vocab=d7164509
+-/
 theorem sum_canonicalResidualAmbient_admissibleCertificateSolutionMass_le
     {L a b N R : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
@@ -169,7 +175,9 @@ theorem sum_canonicalResidualAmbient_admissibleCertificateSolutionMass_le
       rw [Finset.mul_sum]
 
 /--
-Real-exponential form of the finite fixed-channel mass bound.-/
+Real-exponential form of the finite fixed-channel mass bound.
+@isnad1 id=le.6h6v.s10.c186bf2bcf09 from=translated src=- shape=4e1b1f11 vocab=f0842ac8
+-/
 theorem sum_canonicalResidualAmbient_admissibleCertificateSolutionMass_cast_le_exp
     {L a b N R : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)

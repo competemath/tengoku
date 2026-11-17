@@ -20,7 +20,9 @@ One residue class modulo a positive integer has at most the ceiling of
 `(b - a) / r` representatives in the half-open integer interval `[a,b)`.
 
 This is the exact form of the interval count used before replacing the ceiling
-by the softer `length / modulus + 1` notation in the manuscript.-/
+by the softer `length / modulus + 1` notation in the manuscript.
+@isnad1 id=le.2h4v.s6.8f09993295e3 from=translated src=- shape=32c4b4f5 vocab=902e4811
+-/
 theorem card_Ico_modEq_le_ceil_length
     (a b v r : ℤ) (hr : 0 < r) (hab : a ≤ b) :
     ((#{x ∈ Ico a b | x ≡ v [ZMOD r]} : ℕ) : ℤ) ≤
@@ -50,7 +52,9 @@ theorem card_Ico_modEq_le_ceil_length
 
 /--
 The softer form used in Paper C: the number of representatives is bounded by
-the interval length divided by the modulus, plus one.-/
+the interval length divided by the modulus, plus one.
+@isnad1 id=le.2h4v.s6.355f0704d40d from=translated src=- shape=3d7543eb vocab=d9679377
+-/
 theorem card_Ico_modEq_cast_le_div_add_one
     (a b v r : ℤ) (hr : 0 < r) (hab : a ≤ b) :
     ((#{x ∈ Ico a b | x ≡ v [ZMOD r]} : ℕ) : ℚ) ≤
@@ -68,7 +72,9 @@ theorem card_Ico_modEq_cast_le_div_add_one
 /--
 Natural-number wrapper of the preceding integer interval estimate.  It keeps
 the variable in `ℕ` for CRT certificates while expressing the interval length
-and modulus in the rational form used by the analytic estimates.-/
+and modulus in the rational form used by the analytic estimates.
+@isnad1 id=le.2h4v.s6.f2bbe1dbdbd4 from=translated src=- shape=d4e7211b vocab=857e04ca
+-/
 theorem card_nat_Ico_modEq_cast_le_div_add_one
     (a b v r : ℕ) (hr : 0 < r) (hab : a ≤ b) :
     ((#{x ∈ Ico a b | x ≡ v [MOD r]} : ℕ) : ℚ) ≤

@@ -27,7 +27,9 @@ open ResidualComponentCounts
 
 noncomputable section
 
-/-- Explicit fixed-size bound for the actual fixed-channel population.-/
+/-- Explicit fixed-size bound for the actual fixed-channel population.
+@isnad1 id=le.7h7v.s7.c81c0d17ec9b from=translated src=- shape=0e21a6e6 vocab=ca3e347c
+-/
 theorem four_pow_mul_card_fixedChannelPairs_le_effective
     {N A L a b r : ℕ} {h : ℤ} (hN : 2 ≤ N)
     (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
@@ -48,7 +50,9 @@ theorem four_pow_mul_card_fixedChannelPairs_le_effective
       ha hb hab hqTwo hB
   simpa only [channelUnitCount_eq_card_channelCells] using hm
 
-/-- Sum of the effective fixed-channel bounds for all `r < R`.-/
+/-- Sum of the effective fixed-channel bounds for all `r < R`.
+@isnad1 id=le.7h7v.s7.432852ef6143 from=translated src=- shape=9f8125f5 vocab=08f10ba1
+-/
 theorem sum_four_pow_mul_card_fixedChannelPairs_le_effective
     {N A L a b R : ℕ} {h : ℤ} (hN : 2 ≤ N)
     (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
@@ -70,7 +74,9 @@ theorem sum_four_pow_mul_card_fixedChannelPairs_le_effective
     four_pow_mul_card_fixedChannelPairs_le_effective
       hN ha hb hab hqTwo hB hm
 
-/-- Real-exponential form of the summed fixed-channel population bound.-/
+/-- Real-exponential form of the summed fixed-channel population bound.
+@isnad1 id=le.7h7v.s7.16144731738b from=translated src=- shape=663e5a52 vocab=1a6d0b05
+-/
 theorem sum_four_pow_mul_card_fixedChannelPairs_cast_le_exp
     {N A L a b R : ℕ} {h : ℤ} (hN : 2 ≤ N)
     (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)

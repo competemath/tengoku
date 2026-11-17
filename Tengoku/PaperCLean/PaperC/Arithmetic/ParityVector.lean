@@ -21,24 +21,32 @@ abbrev F₂ := ZMod 2
 noncomputable def parityVec (n : ℕ) : ℕ →₀ F₂ :=
   n.factorization.mapRange (fun e : ℕ => (e : F₂)) (by simp)
 
-/-- Evaluation of the parity vector at a coordinate.-/
+/-- Evaluation of the parity vector at a coordinate.
+@isnad1 id=eq.0h2v.s6.4dfb40e8b973 from=translated src=- shape=a0e56003 vocab=431fc44b
+-/
 @[simp]
 theorem parityVec_apply (n p : ℕ) :
     parityVec n p = (n.factorization p : F₂) :=
   rfl
 
-/-- The parity vector of one is zero.-/
+/-- The parity vector of one is zero.
+@isnad1 id=eq.0h0v.s6.e6ce659f6d7b from=translated src=- shape=978b4adc vocab=de97b2ca
+-/
 @[simp]
 theorem parityVec_one : parityVec 1 = 0 := by
   simp [parityVec]
 
-/-- On nonzero naturals, multiplication becomes addition of parity vectors.-/
+/-- On nonzero naturals, multiplication becomes addition of parity vectors.
+@isnad1 id=eq.2h2v.s7.0d17aeeb00d2 from=translated src=- shape=842673e1 vocab=7c195376
+-/
 theorem parityVec_mul {a b : ℕ} (ha : a ≠ 0) (hb : b ≠ 0) :
     parityVec (a * b) = parityVec a + parityVec b := by
   ext p
   simp [parityVec, Nat.factorization_mul ha hb]
 
-/-- Every square has zero parity vector.-/
+/-- Every square has zero parity vector.
+@isnad1 id=eq.0h1v.s6.4cbc43863b2d from=translated src=- shape=1a99460a vocab=2b2a5bce
+-/
 @[simp]
 theorem parityVec_pow_two (n : ℕ) : parityVec (n ^ 2) = 0 := by
   ext p
@@ -47,12 +55,16 @@ theorem parityVec_pow_two (n : ℕ) : parityVec (n ^ 2) = 0 := by
   change ((2 : ℕ) : F₂) * (n.factorization p : F₂) = 0
   rw [show ((2 : ℕ) : F₂) = 0 by decide, zero_mul]
 
-/-- The product notation for a square also has zero parity vector.-/
+/-- The product notation for a square also has zero parity vector.
+@isnad1 id=eq.0h1v.s6.bbff55c95b22 from=translated src=- shape=4d4bc655 vocab=532d89a3
+-/
 @[simp]
 theorem parityVec_mul_self (n : ℕ) : parityVec (n * n) = 0 := by
   simpa [pow_two] using parityVec_pow_two n
 
-/-- A positive natural identified with a square has zero parity vector.-/
+/-- A positive natural identified with a square has zero parity vector.
+@isnad1 id=eq.2h2v.s6.43a657f73b93 from=translated src=- shape=f6b1cd47 vocab=4523bd42
+-/
 theorem parityVec_eq_zero_of_eq_sq {n r : ℕ} (_hn : 0 < n) (h : n = r ^ 2) :
     parityVec n = 0 := by
   rw [h, parityVec_pow_two]
@@ -61,7 +73,9 @@ theorem parityVec_eq_zero_of_eq_sq {n r : ℕ} (_hn : 0 < n) (h : n = r ^ 2) :
 A nonzero natural number has zero parity vector exactly when it is a square.
 
 The reverse implication reconstructs a square root from the prime
-factorization by halving every (even) exponent.-/
+factorization by halving every (even) exponent.
+@isnad1 id=iff.1h1v.s6.29c803ff51e7 from=translated src=- shape=8f9629f8 vocab=2b2a5bce
+-/
 theorem parityVec_eq_zero_iff_exists_sq {n : ℕ} (hn : n ≠ 0) :
     parityVec n = 0 ↔ ∃ r : ℕ, n = r ^ 2 := by
   constructor
@@ -94,14 +108,18 @@ theorem parityVec_eq_zero_iff_exists_sq {n : ℕ} (hn : n ≠ 0) :
   · rintro ⟨r, rfl⟩
     exact parityVec_pow_two r
 
-/-- `IsSquare` formulation of `parityVec_eq_zero_iff_exists_sq`.-/
+/-- `IsSquare` formulation of `parityVec_eq_zero_iff_exists_sq`.
+@isnad1 id=iff.1h1v.s6.0b0aa0028aba from=translated src=- shape=801fcc11 vocab=0f359cfe
+-/
 theorem parityVec_eq_zero_iff_isSquare {n : ℕ} (hn : n ≠ 0) :
     parityVec n = 0 ↔ IsSquare n := by
   simpa only [isSquare_iff_exists_sq] using parityVec_eq_zero_iff_exists_sq hn
 
 /--
 The parity vector of a finite product of nonzero naturals is the sum of their
-parity vectors.-/
+parity vectors.
+@isnad1 id=eq.1h3v.s6.b1d89d9cc3a7 from=translated src=- shape=ab78d5cb vocab=b2e6724d
+-/
 theorem parityVec_prod {ι : Type*} (s : Finset ι) (f : ι → ℕ)
     (hf : ∀ i ∈ s, f i ≠ 0) :
     parityVec (∏ i ∈ s, f i) = ∑ i ∈ s, parityVec (f i) := by
@@ -121,7 +139,9 @@ theorem parityVec_prod {ι : Type*} (s : Finset ι) (f : ι → ℕ)
 /--
 The implication needed in the multiplicative translation of Lemma 2.2:
 if a finite product is a square, the sum of the selected parity vectors is
-zero.-/
+zero.
+@isnad1 id=eq.2h4v.s7.30df4bebd44d from=translated src=- shape=c5206478 vocab=1ba7b1e3
+-/
 theorem sum_parityVec_eq_zero_of_prod_eq_sq {ι : Type*} (s : Finset ι) (f : ι → ℕ)
     (hf : ∀ i ∈ s, f i ≠ 0) {r : ℕ}
     (hsq : ∏ i ∈ s, f i = r ^ 2) :
@@ -130,7 +150,9 @@ theorem sum_parityVec_eq_zero_of_prod_eq_sq {ι : Type*} (s : Finset ι) (f : ι
 
 /--
 The full multiplicative translation of Lemma 2.2: a finite sum of parity
-vectors vanishes exactly when the corresponding product is a square.-/
+vectors vanishes exactly when the corresponding product is a square.
+@isnad1 id=iff.1h3v.s7.7fbae69c82a1 from=translated src=- shape=9d5ec00d vocab=1ba7b1e3
+-/
 theorem sum_parityVec_eq_zero_iff_prod_eq_sq {ι : Type*}
     (s : Finset ι) (f : ι → ℕ) (hf : ∀ i ∈ s, f i ≠ 0) :
     (∑ i ∈ s, parityVec (f i) = 0) ↔
@@ -140,13 +162,17 @@ theorem sum_parityVec_eq_zero_iff_prod_eq_sq {ι : Type*}
   rw [← parityVec_prod s f hf]
   exact parityVec_eq_zero_iff_exists_sq hprod
 
-/-- Binary specialization of `sum_parityVec_eq_zero_of_prod_eq_sq`.-/
+/-- Binary specialization of `sum_parityVec_eq_zero_of_prod_eq_sq`.
+@isnad1 id=eq.3h3v.s7.3727bacec162 from=translated src=- shape=b9e2780a vocab=0fa18f06
+-/
 theorem add_parityVec_eq_zero_of_mul_eq_sq {a b r : ℕ}
     (ha : a ≠ 0) (hb : b ≠ 0) (hsq : a * b = r ^ 2) :
     parityVec a + parityVec b = 0 := by
   rw [← parityVec_mul ha hb, hsq, parityVec_pow_two]
 
-/-- Binary specialization of `sum_parityVec_eq_zero_iff_prod_eq_sq`.-/
+/-- Binary specialization of `sum_parityVec_eq_zero_iff_prod_eq_sq`.
+@isnad1 id=iff.2h2v.s7.ab50fb4094ad from=translated src=- shape=99ee09e2 vocab=0fa18f06
+-/
 theorem add_parityVec_eq_zero_iff_mul_eq_sq {a b : ℕ}
     (ha : a ≠ 0) (hb : b ≠ 0) :
     parityVec a + parityVec b = 0 ↔ ∃ r : ℕ, a * b = r ^ 2 := by

@@ -28,6 +28,9 @@ def goodSteinCost (μ : FinitePMF Ω) (X : ι → Ω → Bool) (G : SimpleGraph 
     p * (∑ i ∈ good, ∑ j ∈ (closedNeighborhood G i).erase i, marginal μ X j) +
     ∑ i ∈ good, ∑ j ∈ (closedNeighborhood G i).erase i, jointMarginal μ X i j
 
+/--
+@isnad1 id=le.1h7v.s5.8405b0c79965 from=translated src=- shape=e3037283 vocab=edcb1f15
+-/
 theorem goodSteinCost_nonneg (μ : FinitePMF Ω) (X : ι → Ω → Bool)
     (G : SimpleGraph ι) (good : Finset ι) {p : ℝ} (hp : 0 ≤ p) :
     0 ≤ goodSteinCost μ X G good p := by
@@ -38,7 +41,9 @@ theorem goodSteinCost_nonneg (μ : FinitePMF Ω) (X : ι → Ω → Bool)
   · exact Finset.sum_nonneg fun i _ => Finset.sum_nonneg fun j _ => jointMarginal_nonneg μ X i j
 
 omit [Fintype ι] [DecidableEq ι] in
-/-- A bounded test function costs at most its bound under a probability law.-/
+/-- A bounded test function costs at most its bound under a probability law.
+@isnad1 id=le.1h4v.s5.e122e5f4813a from=translated src=- shape=4ab34a30 vocab=87408e0a
+-/
 theorem abs_expectation_bounded (μ : FinitePMF Ω) (F : Ω → ℝ) {c : ℝ}
     (hF : ∀ ω, |F ω| ≤ c) : |finitePMFExpectation μ F| ≤ c := by
   calc
@@ -47,7 +52,9 @@ theorem abs_expectation_bounded (μ : FinitePMF Ω) (F : Ω → ℝ) {c : ℝ}
     _ = c := expectation_const μ c
 
 omit [DecidableEq ι] in
-/-- Exceptional indicators are paid through their actual first moment.-/
+/-- Exceptional indicators are paid through their actual first moment.
+@isnad1 id=le.2h8v.s7.a0a1a33989ac from=translated src=- shape=e39a7223 vocab=c463e76a
+-/
 theorem exceptional_error_le (μ : FinitePMF Ω) (X : ι → Ω → Bool)
     (bad : Finset ι) (f : ℕ → ℝ) {e c : ℝ} (he : 0 ≤ e)
     (hf : ∀ k, |f k| ≤ c) :
@@ -74,7 +81,9 @@ theorem exceptional_error_le (μ : FinitePMF Ω) (X : ι → Ω → Bool)
   rw [← sub_eq_add_neg, abs_neg, abs_mul, abs_of_nonneg he] at h
   nlinarith [mul_le_mul_of_nonneg_left hfirst he]
 
-/-- Sum of the local Stein terms over a prescribed good population.-/
+/-- Sum of the local Stein terms over a prescribed good population.
+@isnad1 id=le.3h9v.s7.1fb6a81494e1 from=translated src=- shape=b3da7f64 vocab=bc0cf1db
+-/
 theorem good_error_le (μ : FinitePMF Ω) (X : ι → Ω → Bool)
     (G : SimpleGraph ι) (hdep : HasExactDependencyGraph μ X G)
     (good : Finset ι) {p : ℝ} (hgood : ∀ i ∈ good, marginal μ X i = p)
@@ -122,7 +131,9 @@ theorem good_error_le (μ : FinitePMF Ω) (X : ι → Ω → Bool)
   rw [hid] at htriangle
   exact htriangle.trans hsum
 
-/-- The exact finite soft-exception calculation, before choosing Stein norm factors.-/
+/-- The exact finite soft-exception calculation, before choosing Stein norm factors.
+@isnad1 id=le.5h10v.s8.8cc60d64ce48 from=translated src=- shape=8b94da11 vocab=5d06c42a
+-/
 theorem soft_stein_error_le (μ : FinitePMF Ω) (X : ι → Ω → Bool)
     (G : SimpleGraph ι) (hdep : HasExactDependencyGraph μ X G)
     (good : Finset ι) {p : ℝ} (hp : 0 ≤ p)

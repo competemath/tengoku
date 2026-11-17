@@ -40,7 +40,9 @@ noncomputable section
 
 /--
 The candidate inequality controls the residual expression on the complete
-offset box, without any lower bound on the number of exact channel units.-/
+offset box, without any lower bound on the number of exact channel units.
+@isnad1 id=lt.0h6v.s9.c019fd1cb0f2 from=translated src=- shape=c1158f42 vocab=46d758be
+-/
 theorem abs_residualVertexExpression_lt_four_mul_max_of_candidate
     {A x y L : ℕ}
     (c : ReducedCandidate
@@ -132,7 +134,9 @@ theorem abs_residualVertexExpression_lt_four_mul_max_of_candidate
 
 /--
 Every nonexact canonical residual certificate has its selected prime below
-the explicit candidate cutoff.  No multiplicity hypothesis is used.-/
+the explicit candidate cutoff.  No multiplicity hypothesis is used.
+@isnad1 id=lt.3h6v.s9.0450c8a0e05a from=translated src=- shape=a6d38a39 vocab=6d85809f
+-/
 theorem canonicalResidualCertificates_prime_lt_four_mul_max_of_not_onChannel
     {A x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -203,6 +207,9 @@ noncomputable def exactCanonicalResidualCertificates
       (pairChannelError x y c.1.1 c.1.2)
       (canonicalResidualCertificates hx hy C).offsetCell
 
+/--
+@isnad1 id=iff.2h6v.s9.4034a1d4e8bc from=translated src=- shape=4344282e vocab=3e1528fd
+-/
 @[simp]
 theorem mem_exactCanonicalResidualCertificates
     {A x y L : ℕ}
@@ -221,7 +228,9 @@ theorem mem_exactCanonicalResidualCertificates
 /--
 For the selected canonical candidate, at most two canonical certificates
 can be exact.  The estimate is zero in the `m=0` and `m≥2` branches; in the
-one-unit branch it is inherited from the exceptional family of Lemma 6.5.-/
+one-unit branch it is inherited from the exceptional family of Lemma 6.5.
+@isnad1 id=le.3h5v.s8.53477e26b929 from=translated src=- shape=20af92f0 vocab=3a79c7b1
+-/
 theorem card_exactCanonicalResidualCertificates_le_two_of_choice
     {A x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -313,6 +322,9 @@ noncomputable def nonexactCanonicalResidualCertificates
       (pairChannelError x y c.1.1 c.1.2)
       (canonicalResidualCertificates hx hy C).offsetCell
 
+/--
+@isnad1 id=iff.2h6v.s9.f6a95741206d from=translated src=- shape=dd81f1ba vocab=cd8d4e1d
+-/
 @[simp]
 theorem mem_nonexactCanonicalResidualCertificates
     {A x y L : ℕ}
@@ -330,7 +342,9 @@ theorem mem_nonexactCanonicalResidualCertificates
 
 /--
 Nonexact certificates inject into the primes below the explicit geometric
-cutoff.-/
+cutoff.
+@isnad1 id=le.2h5v.s8.2c839f335c4a from=translated src=- shape=7717cfb2 vocab=85a8d520
+-/
 theorem card_nonexactCanonicalResidualCertificates_le_primeCount
     {A x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -379,7 +393,9 @@ theorem card_nonexactCanonicalResidualCertificates_le_primeCount
 /--
 Finite component-count estimate behind Proposition 7.4.  It is valid for
 every selected canonical candidate, independently of its number of exact
-units.-/
+units.
+@isnad1 id=le.3h5v.s8.fcb0ea1c06e3 from=translated src=- shape=5a6552d0 vocab=fbd513ae
+-/
 theorem canonicalResidualComponentCount_le_two_add_primeCount_of_choice
     {A x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)

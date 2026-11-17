@@ -22,13 +22,18 @@ def dictionaryPolynomialProfile (lambda m : ℝ) : ℝ :=
   lambda + lambda ^ (11 / (6 : ℝ)) * m ^ (1 / (6 : ℝ)) +
     lambda ^ (4 / (3 : ℝ)) * m ^ (2 / (3 : ℝ))
 
+/--
+@isnad1 id=le.2h2v.s5.c978e3348324 from=translated src=- shape=6c67d60b vocab=f2d69a93
+-/
 theorem dictionaryPolynomialProfile_nonneg {lambda m : ℝ}
     (hlambda : 0 ≤ lambda) (hm : 0 ≤ m) :
     0 ≤ dictionaryPolynomialProfile lambda m := by
   unfold dictionaryPolynomialProfile
   positivity
 
-/-- General exponent identity behind both uncapped monomials.-/
+/-- General exponent identity behind both uncapped monomials.
+@isnad1 id=eq.3h5v.s7.3f55243b41f8 from=translated src=- shape=c88d2382 vocab=762a6581
+-/
 theorem dictionary_monomial_identity {N a m : ℝ}
     (hN : 0 < N) (ha : 0 < a) (hm : 0 ≤ m) (u v : ℝ) :
     a ^ 2 * (N ^ u * (m / a) ^ v) =
@@ -46,7 +51,9 @@ theorem dictionary_monomial_identity {N a m : ℝ}
     _ = (N ^ u * (a ^ 2 / a ^ v)) * m ^ v := by ring
     _ = _ := by rw [← hNprod]; ring
 
-/-- Capping by the marginal leaves a single power of the total intensity.-/
+/-- Capping by the marginal leaves a single power of the total intensity.
+@isnad1 id=eq.2h2v.s7.e255db346ddf from=translated src=- shape=58b435f5 vocab=94fcc8ea
+-/
 theorem dictionary_terminal_identity {N a : ℝ} (hN : 0 < N) (ha : 0 < a) :
     a ^ 2 * (N ^ (2 / (3 : ℝ)) * (1 / a)) = N ^ (-(1 / (3 : ℝ))) * (N * a) := by
   have hpow : N ^ (-(1 / (3 : ℝ))) * N = N ^ (2 / (3 : ℝ)) := by
@@ -58,7 +65,9 @@ theorem dictionary_terminal_identity {N a : ℝ} (hN : 0 < N) (ha : 0 < a) :
     _ = (N ^ (-(1 / (3 : ℝ))) * N) * a := by rw [hpow]
     _ = _ := by ring
 
-/-- The actual marginal cap gives exactly the printed scale and cardinality exponents.-/
+/-- The actual marginal cap gives exactly the printed scale and cardinality exponents.
+@isnad1 id=le.4h4v.s7.79f841637f3a from=translated src=- shape=5310fa7c vocab=410ca1d4
+-/
 theorem normalized_cappedProfile_le {N a m Q : ℝ}
     (hN : 0 < N) (ha : 0 < a) (hm : 0 ≤ m) (hQ : Q = m / a) :
     a ^ 2 * cappedProfile N Q (1 / a) ≤
@@ -73,7 +82,9 @@ theorem normalized_cappedProfile_le {N a m Q : ℝ}
   rw [hQ] at *
   nlinarith
 
-/-- A diagonal error is already below the second dictionary profile monomial.-/
+/-- A diagonal error is already below the second dictionary profile monomial.
+@isnad1 id=le.3h3v.s7.c67fc54cbbe6 from=translated src=- shape=1e70fc81 vocab=47d3fe9b
+-/
 theorem dictionary_diagonal_le {N a m : ℝ}
     (hN : 0 < N) (ha : 0 < a) (ham : a ≤ m) :
     a ^ 2 * N ≤ N ^ (-(1 / (3 : ℝ))) *

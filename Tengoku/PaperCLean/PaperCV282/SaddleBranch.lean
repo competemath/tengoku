@@ -27,16 +27,25 @@ noncomputable section
 
 def saddleRatio (u : ℝ) : ℝ := Real.exp u / u
 
+/--
+@isnad1 id=hasderiv.1h1v.s6.b01dfccffbaf from=translated src=- shape=a9793376 vocab=b14337e4
+-/
 theorem hasDerivAt_saddleRatio {u : ℝ} (hu : u ≠ 0) :
     HasDerivAt saddleRatio (Real.exp u * (u - 1) / u ^ 2) u := by
   change HasDerivAt (fun t : ℝ => Real.exp t / t) _ u
   exact ((Real.hasDerivAt_exp u).div (hasDerivAt_id u) hu).congr_deriv (by simp only [id_eq]; ring)
 
+/--
+@isnad1 id=continuo.0h0v.s4.aa5523059b7b from=translated src=- shape=f2a09be3 vocab=559c026d
+-/
 theorem continuousOn_saddleRatio :
     ContinuousOn saddleRatio (Ici 1) := by
   intro u hu
   exact (hasDerivAt_saddleRatio (by linarith [show 1 ≤ u from hu])).continuousAt.continuousWithinAt
 
+/--
+@isnad1 id=strictmo.0h0v.s3.8126f98bbcdb from=translated src=- shape=f2a09be3 vocab=bfe0bee2
+-/
 theorem strictMonoOn_saddleRatio :
     StrictMonoOn saddleRatio (Ici 1) := by
   apply strictMonoOn_of_deriv_pos (convex_Ici 1) continuousOn_saddleRatio
@@ -45,11 +54,17 @@ theorem strictMonoOn_saddleRatio :
   rw [(hasDerivAt_saddleRatio (by linarith)).deriv]
   exact div_pos (mul_pos (Real.exp_pos _) (by linarith)) (sq_pos_of_pos (by linarith))
 
+/--
+@isnad1 id=tendsto.0h0v.s3.fb1616a0231d from=translated src=- shape=41b74a9e vocab=a617c692
+-/
 theorem tendsto_saddleRatio_atTop :
     Tendsto saddleRatio atTop atTop := by
   change Tendsto (fun u : ℝ => Real.exp u / u) atTop atTop
   simpa only [pow_one] using Real.tendsto_exp_div_pow_atTop 1
 
+/--
+@isnad1 id=existsun.1h1v.s5.a3a519fc8cad from=translated src=- shape=42c9494a vocab=38c6a59a
+-/
 theorem existsUnique_saddleRatio {nu : ℝ} (hnu : Real.exp 1 ≤ nu) :
     ∃! u : ℝ, 1 ≤ u ∧ saddleRatio u = nu := by
   obtain ⟨u, hu, heq⟩ := intermediate_value_Ici continuousOn_saddleRatio
@@ -61,11 +76,17 @@ theorem existsUnique_saddleRatio {nu : ℝ} (hnu : Real.exp 1 ≤ nu) :
 def upperSaddleBranch (nu : ℝ) : ℝ :=
   if hnu : Real.exp 1 ≤ nu then Classical.choose (existsUnique_saddleRatio hnu) else 1
 
+/--
+@isnad1 id=and.1h1v.s5.4ac2b3252cba from=translated src=- shape=5f2353a8 vocab=feaaf39a
+-/
 theorem upperSaddleBranch_spec {nu : ℝ} (hnu : Real.exp 1 ≤ nu) :
     1 ≤ upperSaddleBranch nu ∧ saddleRatio (upperSaddleBranch nu) = nu := by
   rw [upperSaddleBranch, dite_eq_left hnu]
   exact (Classical.choose_spec (existsUnique_saddleRatio hnu)).1
 
+/--
+@isnad1 id=eq.2h2v.s4.9b7d940710d2 from=translated src=- shape=a61560ea vocab=10ce7ccf
+-/
 theorem upperSaddleBranch_eq_of_spec {nu u : ℝ} (hu : 1 ≤ u)
     (heq : saddleRatio u = nu) :
     upperSaddleBranch nu = u := by
@@ -77,26 +98,44 @@ theorem upperSaddleBranch_eq_of_spec {nu u : ℝ} (hu : 1 ≤ u)
   exact strictMonoOn_saddleRatio.injOn (upperSaddleBranch_spec hnu).1 hu
     ((upperSaddleBranch_spec hnu).2.trans heq.symm)
 
+/--
+@isnad1 id=eq.1h1v.s4.ecffb5fcc076 from=translated src=- shape=cc7bc718 vocab=10ce7ccf
+-/
 theorem upperSaddleBranch_saddleRatio {u : ℝ} (hu : 1 ≤ u) :
     upperSaddleBranch (saddleRatio u) = u :=
   upperSaddleBranch_eq_of_spec hu rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.64d24574ea7b from=translated src=- shape=88d4f5c9 vocab=33d43619
+-/
 theorem upperSaddleBranch_exp_one : upperSaddleBranch (Real.exp 1) = 1 := by
   exact upperSaddleBranch_eq_of_spec (by norm_num) (by simp [saddleRatio])
 
+/--
+@isnad1 id=lt.1h1v.s4.dacfea0af6fb from=translated src=- shape=4f4a89fb vocab=1390a871
+-/
 theorem upperSaddleBranch_pos {nu : ℝ} (hnu : Real.exp 1 ≤ nu) :
     0 < upperSaddleBranch nu := by
   linarith [(upperSaddleBranch_spec hnu).1]
 
+/--
+@isnad1 id=iff.2h2v.s5.cd3fa665d3fa from=translated src=- shape=55f320c1 vocab=19a14cd7
+-/
 theorem saddleRatio_le_iff {u v : ℝ} (hu : 1 ≤ u) (hv : 1 ≤ v) :
     saddleRatio u ≤ saddleRatio v ↔ u ≤ v :=
   strictMonoOn_saddleRatio.le_iff_le hu hv
 
+/--
+@isnad1 id=iff.2h2v.s5.315c7a2d60b8 from=translated src=- shape=36c917c5 vocab=feaaf39a
+-/
 theorem le_upperSaddleBranch_iff {nu u : ℝ} (hnu : Real.exp 1 ≤ nu) (hu : 1 ≤ u) :
     u ≤ upperSaddleBranch nu ↔ saddleRatio u ≤ nu := by
   simpa only [(upperSaddleBranch_spec hnu).2] using
     (saddleRatio_le_iff hu (upperSaddleBranch_spec hnu).1).symm
 
+/--
+@isnad1 id=strictmo.0h0v.s4.fce91c351aac from=translated src=- shape=81225c50 vocab=5188ee59
+-/
 theorem strictMonoOn_upperSaddleBranch :
     StrictMonoOn upperSaddleBranch (Ici (Real.exp 1)) := by
   intro nu hnu mu hmu hlt
@@ -104,6 +143,9 @@ theorem strictMonoOn_upperSaddleBranch :
     (upperSaddleBranch_spec hnu).1 (upperSaddleBranch_spec hmu).1).1
   simpa [(upperSaddleBranch_spec hnu).2, (upperSaddleBranch_spec hmu).2] using hlt
 
+/--
+@isnad1 id=tendsto.0h0v.s3.9adca0afe3f9 from=translated src=- shape=41b74a9e vocab=fc5786a6
+-/
 theorem tendsto_upperSaddleBranch_atTop :
     Tendsto upperSaddleBranch atTop atTop := by
   apply tendsto_atTop.2
@@ -113,15 +155,24 @@ theorem tendsto_upperSaddleBranch_atTop :
   exact (le_max_right 1 b).trans
     ((le_upperSaddleBranch_iff hdomain (le_max_left 1 b)).2 ((le_max_right _ _).trans hnu))
 
+/--
+@isnad1 id=eq.1h1v.s4.e188d9376f8a from=translated src=- shape=64ee41b2 vocab=b2cc64e6
+-/
 theorem exp_upperSaddleBranch {nu : ℝ} (hnu : Real.exp 1 ≤ nu) :
     Real.exp (upperSaddleBranch nu) = nu * upperSaddleBranch nu := by
   exact (div_eq_iff (ne_of_gt (upperSaddleBranch_pos hnu))).1
     (upperSaddleBranch_spec hnu).2
 
+/--
+@isnad1 id=eq.1h1v.s4.a0af94ffbb8b from=translated src=- shape=0addd72b vocab=0f3f6fcb
+-/
 theorem log_saddleRatio {u : ℝ} (hu : 0 < u) :
     Real.log (saddleRatio u) = u - Real.log u := by
   rw [saddleRatio, Real.log_div (Real.exp_ne_zero _) (ne_of_gt hu), Real.log_exp]
 
+/--
+@isnad1 id=eq.1h1v.s4.d22fc0a32bbd from=translated src=- shape=0e450772 vocab=3705e856
+-/
 theorem log_upperSaddleBranch_identity {nu : ℝ} (hnu : Real.exp 1 ≤ nu) :
     Real.log nu = upperSaddleBranch nu - Real.log (upperSaddleBranch nu) := by
   calc

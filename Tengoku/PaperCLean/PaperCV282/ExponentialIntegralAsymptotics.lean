@@ -20,18 +20,27 @@ noncomputable section
 def exponentialIntegralRemainder (u : ℝ) : ℝ :=
   exponentialIntegral u - Real.exp u / u - Real.exp u / u ^ 2
 
+/--
+@isnad1 id=hasderiv.1h1v.s6.340fba6fc75b from=translated src=- shape=dfe733f7 vocab=e82072ab
+-/
 theorem hasDerivAt_exp_div_sq {u : ℝ} (hu : u ≠ 0) :
     HasDerivAt (fun t : ℝ => Real.exp t / t ^ 2)
       (Real.exp u * (u - 2) / u ^ 3) u := by
   exact ((Real.hasDerivAt_exp u).div ((hasDerivAt_id u).pow 2) (pow_ne_zero _ hu)).congr_deriv
     (by dsimp; field_simp)
 
+/--
+@isnad1 id=hasderiv.1h1v.s6.2d5a5e9219bd from=translated src=- shape=dfe733f7 vocab=e82072ab
+-/
 theorem hasDerivAt_exp_div_cube {u : ℝ} (hu : u ≠ 0) :
     HasDerivAt (fun t : ℝ => Real.exp t / t ^ 3)
       (Real.exp u * (u - 3) / u ^ 4) u := by
   exact ((Real.hasDerivAt_exp u).div ((hasDerivAt_id u).pow 3) (pow_ne_zero _ hu)).congr_deriv
     (by dsimp; field_simp)
 
+/--
+@isnad1 id=hasderiv.1h1v.s6.0db07d3c3170 from=translated src=- shape=73632f51 vocab=43a1ad2b
+-/
 theorem hasDerivAt_exponentialIntegralRemainder {u : ℝ} (hu : 0 < u) :
     HasDerivAt exponentialIntegralRemainder (2 * Real.exp u / u ^ 3) u := by
   have hfirst := (Real.hasDerivAt_exp u).div (hasDerivAt_id u) (ne_of_gt hu)
@@ -44,6 +53,9 @@ theorem hasDerivAt_exponentialIntegralRemainder {u : ℝ} (hu : 0 < u) :
 def exponentialIntegralUpperControl (u : ℝ) : ℝ :=
   4 * (Real.exp u / u ^ 3) - exponentialIntegralRemainder u
 
+/--
+@isnad1 id=hasderiv.1h1v.s6.77aaf81faf1d from=translated src=- shape=3b485992 vocab=7f477290
+-/
 theorem hasDerivAt_exponentialIntegralUpperControl {u : ℝ} (hu : 0 < u) :
     HasDerivAt exponentialIntegralUpperControl
       (2 * Real.exp u * (u - 6) / u ^ 4) u := by
@@ -52,6 +64,9 @@ theorem hasDerivAt_exponentialIntegralUpperControl {u : ℝ} (hu : 0 < u) :
     (hasDerivAt_exponentialIntegralRemainder hu)).congr_deriv
     (by field_simp [ne_of_gt hu]; ring)
 
+/--
+@isnad1 id=strictmo.0h0v.s4.566ba3773ab4 from=translated src=- shape=f2a09be3 vocab=198e8f84
+-/
 theorem strictMonoOn_exponentialIntegralRemainder :
     StrictMonoOn exponentialIntegralRemainder (Ici 6) := by
   apply strictMonoOn_of_deriv_pos (convex_Ici 6)
@@ -63,6 +78,9 @@ theorem strictMonoOn_exponentialIntegralRemainder :
     rw [(hasDerivAt_exponentialIntegralRemainder (by linarith)).deriv]
     positivity
 
+/--
+@isnad1 id=strictmo.0h0v.s4.a23c2b3a3011 from=translated src=- shape=f2a09be3 vocab=858acf96
+-/
 theorem strictMonoOn_exponentialIntegralUpperControl :
     StrictMonoOn exponentialIntegralUpperControl (Ici 6) := by
   apply strictMonoOn_of_deriv_pos (convex_Ici 6)
@@ -74,6 +92,9 @@ theorem strictMonoOn_exponentialIntegralUpperControl :
     rw [(hasDerivAt_exponentialIntegralUpperControl (by linarith)).deriv]
     exact div_pos (mul_pos (by positivity) (by linarith)) (by positivity)
 
+/--
+@isnad1 id=le.1h1v.s6.8a31771c4198 from=translated src=- shape=5b0c1a0b vocab=fb28b4ee
+-/
 theorem exponentialIntegralRemainder_bound {u : ℝ} (hu : 6 ≤ u) :
     |exponentialIntegralRemainder u| ≤
       |exponentialIntegralRemainder 6| + 4 * (Real.exp u / u ^ 3) := by
@@ -87,6 +108,9 @@ theorem exponentialIntegralRemainder_bound {u : ℝ} (hu : 6 ≤ u) :
   exact abs_le.2 ⟨by linarith [neg_abs_le (exponentialIntegralRemainder 6)],
     by linarith [le_abs_self (exponentialIntegralRemainder 6)]⟩
 
+/--
+@isnad1 id=eventual.0h0v.s5.2ca10c3db035 from=translated src=- shape=fc07860d vocab=e3c681b8
+-/
 theorem exponentialIntegralRemainder_bound_eventually :
     ∀ᶠ u : ℝ in atTop,
       |exponentialIntegralRemainder u| ≤ 5 * (Real.exp u / u ^ 3) := by
@@ -96,6 +120,9 @@ theorem exponentialIntegralRemainder_bound_eventually :
   have h := exponentialIntegralRemainder_bound hu
   linarith
 
+/--
+@isnad1 id=isbigo.0h0v.s6.4122a1d005cb from=translated src=- shape=1b792590 vocab=875d6be0
+-/
 theorem exponentialIntegral_two_term_expansion :
     (fun u => exponentialIntegral u - Real.exp u / u - Real.exp u / u ^ 2)
       =O[atTop] (fun u : ℝ => Real.exp u / u ^ 3) := by

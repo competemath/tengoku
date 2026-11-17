@@ -99,7 +99,9 @@ private theorem integral_lift_eq (f : ℝ → ℝ) :
 
 /--
 Riemann sums over the normalized lattice in `[1,2)` converge to the
-Lebesgue integral of every continuous test function.-/
+Lebesgue integral of every continuous test function.
+@isnad1 id=tendsto.1h1v.s6.bd841a0df80a from=translated src=- shape=6d3751b9 vocab=69d9dff6
+-/
 theorem tendsto_spatialRiemannSum
     {f : ℝ → ℝ} (hf : Continuous f) :
     Tendsto (fun N : ℕ ↦ spatialRiemannSum N f) atTop
@@ -267,7 +269,9 @@ private noncomputable def dyadicGridEquiv
 
 /--
 The lattice formulation is exactly the manuscript's finite sum over
-`N ≤ x < 2N`; this is not merely an asymptotic comparison.-/
+`N ≤ x < 2N`; this is not merely an asymptotic comparison.
+@isnad1 id=eq.1h2v.s4.d3cf1dae45f3 from=translated src=- shape=e700eda1 vocab=05d59de6
+-/
 theorem spatialRiemannSum_eq_dyadicRiemannSum
     {N : ℕ} (hN : 0 < N) (f : ℝ → ℝ) :
     spatialRiemannSum N f = dyadicRiemannSum N f := by
@@ -297,7 +301,9 @@ theorem spatialRiemannSum_eq_dyadicRiemannSum
 
 /--
 Literal Riemann sums on the dyadic integer block converge to the integral
-over `[1,2)`.-/
+over `[1,2)`.
+@isnad1 id=tendsto.1h1v.s6.c3a98cc2acb4 from=translated src=- shape=6d3751b9 vocab=51e95188
+-/
 theorem tendsto_dyadicRiemannSum
     {f : ℝ → ℝ} (hf : Continuous f) :
     Tendsto (fun N : ℕ ↦ dyadicRiemannSum N f) atTop
@@ -311,10 +317,16 @@ theorem tendsto_dyadicRiemannSum
 def dyadicClamp (t : ℝ) : ℝ :=
   max 1 (min t 2)
 
+/--
+@isnad1 id=continuo.0h0v.s3.288a8fd0d585 from=translated src=- shape=e3d48bcb vocab=568881be
+-/
 theorem continuous_dyadicClamp :
     Continuous dyadicClamp := by
   exact continuous_const.max (continuous_id.min continuous_const)
 
+/--
+@isnad1 id=mem.0h1v.s4.26718c2a25d1 from=translated src=- shape=828ff9db vocab=e70129c0
+-/
 theorem dyadicClamp_mem_Icc (t : ℝ) :
     dyadicClamp t ∈ Set.Icc (1 : ℝ) 2 := by
   constructor
@@ -322,6 +334,9 @@ theorem dyadicClamp_mem_Icc (t : ℝ) :
   · unfold dyadicClamp
     exact max_le (by norm_num) (min_le_right _ _)
 
+/--
+@isnad1 id=eq.1h1v.s5.6f71c75342ed from=translated src=- shape=59a9e9ba vocab=e70129c0
+-/
 theorem dyadicClamp_eq_self
     {t : ℝ} (ht : t ∈ Set.Icc (1 : ℝ) 2) :
     dyadicClamp t = t := by
@@ -366,7 +381,9 @@ private theorem integral_clampExtension_eq
 
 /--
 Source-shaped version: continuity is required only on `[1,2]`, exactly as
-in the manuscript.-/
+in the manuscript.
+@isnad1 id=tendsto.1h1v.s6.0d14bc6bb9e7 from=translated src=- shape=d45c63ec vocab=fb7a75d0
+-/
 theorem tendsto_dyadicRiemannSum_of_continuousOn
     {f : ℝ → ℝ}
     (hf : ContinuousOn f (Set.Icc (1 : ℝ) 2)) :

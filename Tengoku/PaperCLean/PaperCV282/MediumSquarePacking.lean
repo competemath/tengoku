@@ -16,7 +16,9 @@ namespace PaperC.V282.MediumSquarePacking
 
 open Finset
 
-/-- Seven buckets suffice for points separated by more than one seventh of a window.-/
+/-- Seven buckets suffice for points separated by more than one seventh of a window.
+@isnad1 id=le.3h3v.s6.d3fcc622493a from=translated src=- shape=1bea129c vocab=2ea98f90
+-/
 theorem card_le_seven_of_separated {S : Finset ℕ} {a B : ℕ} (hB : 0 < B)
     (hwindow : ∀ n ∈ S, a ≤ n ∧ n < a + B)
     (hsep : ∀ m ∈ S, ∀ n ∈ S, m < n → B < 7 * (n - m)) :
@@ -45,7 +47,9 @@ theorem card_le_seven_of_separated {S : Finset ℕ} {a B : ℕ} (hB : 0 < B)
   have hc := Finset.card_le_card_of_injOn (fun n => 7 * (n - a) / B) hmem hinj
   simpa only [card_range] using hc
 
-/-- Successive square multiples in the medium interval have the required gap.-/
+/-- Successive square multiples in the medium interval have the required gap.
+@isnad1 id=lt.3h4v.s6.251d2edc8c81 from=translated src=- shape=a04afc5d vocab=2da69026
+-/
 theorem square_multiple_separation {a B p q : ℕ} (ha : 1 ≤ a)
     (hp : B < 11 * p) (hpq : p < q) :
     B < 7 * (a * q ^ 2 - a * p ^ 2) := by
@@ -59,7 +63,9 @@ theorem square_multiple_separation {a B p q : ℕ} (ha : 1 ≤ a)
   rw [Nat.mul_sub_left_distrib] at hmul
   omega
 
-/-- For each coefficient, at most seven medium square multiples fit in the window.-/
+/-- For each coefficient, at most seven medium square multiples fit in the window.
+@isnad1 id=le.4h4v.s7.c2b212a553c9 from=translated src=- shape=038161a1 vocab=e8ad47f5
+-/
 theorem coefficient_card_le_seven {S : Finset ℕ} {a lo B : ℕ}
     (ha : 1 ≤ a) (hB : 0 < B)
     (hmedium : ∀ p ∈ S, B < 11 * p)
@@ -84,7 +90,9 @@ theorem coefficient_card_le_seven {S : Finset ℕ} {a lo B : ℕ}
       omega
     exact square_multiple_separation ha (hmedium p hp) hpq
 
-/-- Every possible square coefficient is at most 122 once B is at least 1332.-/
+/-- Every possible square coefficient is at most 122 once B is at least 1332.
+@isnad1 id=le.4h4v.s6.55179d1ea6a3 from=translated src=- shape=38f966d1 vocab=3f16b8dd
+-/
 theorem square_coefficient_le {B n p a : ℕ} (hB : 1332 ≤ B)
     (hp : B < 11 * p) (hn : n ≤ B ^ 2 + B) (heq : n = a * p ^ 2) :
     a ≤ 122 := by

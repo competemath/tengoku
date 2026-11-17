@@ -41,6 +41,9 @@ def relationBoundaryMap
   (twoStartCompleteBoundary L).domRestrict
     (RelationSpace (twoStartSystem M x y L))
 
+/--
+@isnad1 id=eq.0h5v.s12.f37993bdb347 from=translated src=- shape=4d0ae99e vocab=79107873
+-/
 @[simp]
 theorem relationBoundaryMap_apply
     (M x y L : ℕ)
@@ -50,7 +53,9 @@ theorem relationBoundaryMap_apply
         (u : Sum (Fin L) (Fin L) → F₂) :=
   rfl
 
-/-- Injectivity is inherited from the complete two-block boundary.-/
+/-- Injectivity is inherited from the complete two-block boundary.
+@isnad1 id=injectiv.0h4v.s11.05affae14dbc from=translated src=- shape=ae693cc4 vocab=647d7d50
+-/
 theorem relationBoundaryMap_injective
     (M x y L : ℕ) :
     Function.Injective (relationBoundaryMap M x y L) := by
@@ -59,7 +64,9 @@ theorem relationBoundaryMap_injective
   apply twoStartCompleteBoundary_injective L
   exact huv
 
-/-- Every complete label is positive for a start based at least at two.-/
+/-- Every complete label is positive for a start based at least at two.
+@isnad1 id=lt.2h4v.s5.27c171180edd from=translated src=- shape=ae79369a vocab=d80a7d99
+-/
 theorem twoStartCompleteVertexLabel_pos
     {x y L : ℕ} (hx : 2 ≤ x) (hy : 2 ≤ y)
     (v : Occurrence L) :
@@ -72,7 +79,9 @@ theorem twoStartCompleteVertexLabel_pos
 
 /--
 If the cylinder reaches both right endpoints, it contains every complete
-vertex label.-/
+vertex label.
+@isnad1 id=le.4h5v.s6.f88fb11d4e0d from=translated src=- shape=fce0c887 vocab=589c638b
+-/
 theorem twoStartCompleteVertexLabel_le
     {M x y L : ℕ} (hx : 2 ≤ x) (hy : 2 ≤ y)
     (hxM : x + L ≤ M) (hyM : y + L ≤ M)
@@ -92,7 +101,9 @@ theorem twoStartCompleteVertexLabel_le
 
 /--
 Every complete relation boundary solves the large-prime equations, as soon
-as the finite cylinder contains all labels occurring in the two boundaries.-/
+as the finite cylinder contains all labels occurring in the two boundaries.
+@isnad1 id=mem.4h5v.s12.0f6fff715297 from=translated src=- shape=5f466734 vocab=b2bc04dc
+-/
 theorem relationBoundaryMap_mem_largePrimeSolution
     {M x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)
@@ -141,7 +152,9 @@ def relationBoundaryToLargePrime
     (relationBoundaryMap_mem_largePrimeSolution
       hx hy hxM hyM)
 
-/-- The boundary embedding into `W_{>B}` remains injective.-/
+/-- The boundary embedding into `W_{>B}` remains injective.
+@isnad1 id=injectiv.4h4v.s12.1cc938a18ce5 from=translated src=- shape=586a0b27 vocab=a460168f
+-/
 theorem relationBoundaryToLargePrime_injective
     {M x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)
@@ -165,6 +178,9 @@ def leftBlockParity (L : ℕ) :
         c * ∑ v : Fin (L + 1), u (Sum.inl v)
     rw [Finset.mul_sum]
 
+/--
+@isnad1 id=eq.0h2v.s8.f9a23c14e377 from=translated src=- shape=59dd628c vocab=ba73da1a
+-/
 @[simp]
 theorem leftBlockParity_apply
     (L : ℕ) (u : Occurrence L → F₂) :
@@ -172,7 +188,9 @@ theorem leftBlockParity_apply
       ∑ v : Fin (L + 1), u (Sum.inl v) :=
   rfl
 
-/-- Every complete boundary has even parity separately in the left block.-/
+/-- Every complete boundary has even parity separately in the left block.
+@isnad1 id=eq.0h5v.s12.7c534a9d1749 from=translated src=- shape=298152f2 vocab=a8848ab8
+-/
 theorem leftBlockParity_relationBoundaryMap
     (M x y L : ℕ)
     (u : RelationSpace (twoStartSystem M x y L)) :
@@ -193,7 +211,9 @@ def exactUnitBoundaryVector
   Pi.single (Sum.inl unit.1.1) 1 +
     Pi.single (Sum.inr unit.1.2) 1
 
-/-- Pairing the unit vector with one prime selects its two endpoints.-/
+/-- Pairing the unit vector with one prime selects its two endpoints.
+@isnad1 id=eq.0h8v.s9.bcdef1b11fcc from=translated src=- shape=fac0dcc2 vocab=c42879f1
+-/
 theorem sum_exactUnitBoundaryVector_mul_parityVec
     {x y L a b p : ℕ} {h : ℤ}
     (unit : ChannelUnit L a b h) :
@@ -209,7 +229,9 @@ theorem sum_exactUnitBoundaryVector_mul_parityVec
   simp [exactUnitBoundaryVector, twoStartCompleteVertexLabel,
     Pi.single_apply, add_mul, Finset.sum_add_distrib]
 
-/-- Each exact unit individually supplies a vector of `W_{>B}`.-/
+/-- Each exact unit individually supplies a vector of `W_{>B}`.
+@isnad1 id=mem.7h7v.s8.b60fcfe1c929 from=translated src=- shape=3aaf9933 vocab=f3f56bbb
+-/
 theorem exactUnitBoundaryVector_mem_largePrimeSolution
     {x y L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b)
@@ -231,7 +253,9 @@ theorem exactUnitBoundaryVector_mem_largePrimeSolution
   rw [hparity.1, hparity.2]
   exact ZModModule.add_self _
 
-/-- One unit has odd left-block parity.-/
+/-- One unit has odd left-block parity.
+@isnad1 id=eq.0h5v.s8.3e68468119f7 from=translated src=- shape=0407d42f vocab=04b9ddf7
+-/
 @[simp]
 theorem leftBlockParity_exactUnitBoundaryVector
     {L a b : ℕ} {h : ℤ}
@@ -248,7 +272,9 @@ def leftBlockParityOnLargePrime
   (leftBlockParity L).domRestrict
     (largePrimeSolution x y L)
 
-/-- The presence of one exact unit makes the restricted parity surjective.-/
+/-- The presence of one exact unit makes the restricted parity surjective.
+@isnad1 id=surjecti.7h7v.s11.2ba562fd4bfb from=translated src=- shape=9d8a1885 vocab=c613f6f3
+-/
 theorem leftBlockParityOnLargePrime_surjective
     {x y L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b)
@@ -279,7 +305,9 @@ theorem leftBlockParityOnLargePrime_surjective
       exactUnitBoundaryVector unit (Sum.inl v)) = 1 at hleft
   rw [hleft, mul_one]
 
-/-- In particular the left-block parity survives on `W_{>B}`.-/
+/-- In particular the left-block parity survives on `W_{>B}`.
+@isnad1 id=ne.7h7v.s11.3e65f96e8da5 from=translated src=- shape=b2c446af vocab=e4af5703
+-/
 theorem leftBlockParityOnLargePrime_ne_zero
     {x y L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b)
@@ -298,7 +326,9 @@ theorem leftBlockParityOnLargePrime_ne_zero
 
 /--
 Without using an exact unit, injectivity of the complete boundary already
-gives the elementary inclusion `ρ ≤ dim W_{>B}`.-/
+gives the elementary inclusion `ρ ≤ dim W_{>B}`.
+@isnad1 id=le.4h4v.s9.11e8604ddd8d from=translated src=- shape=30ea5502 vocab=1c1fd605
+-/
 theorem relationRho_le_finrank_largePrimeSolution
     {M x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)
@@ -313,7 +343,9 @@ theorem relationRho_le_finrank_largePrimeSolution
 
 /--
 The complete relation space loses one dimension inside `W_{>B}` because all
-its boundaries have even left-block parity.-/
+its boundaries have even left-block parity.
+@isnad1 id=le.9h8v.s9.469f01423d7c from=translated src=- shape=cbcda125 vocab=073a0436
+-/
 theorem relationRho_le_finrank_largePrimeSolution_sub_one
     {M x y L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b)

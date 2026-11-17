@@ -24,6 +24,9 @@ def certificateWeightSum
     (s : Finset ι) (r : ℕ) (w : ι → ℝ) : ℝ :=
   ∑ T : UnorderedCertificate s r, ∏ i ∈ T.1, w i
 
+/--
+@isnad1 id=eq.0h6v.s8.33c1a8b0e55c from=translated src=- shape=39619b2c vocab=c898afcf
+-/
 theorem ordering_product_eq_certificate_product
     {s : Finset ι} {r : ℕ} (w : ι → ℝ)
     (T : UnorderedCertificate s r) (e : Fin r ↪ T.1) :
@@ -36,7 +39,9 @@ theorem ordering_product_eq_certificate_product
     _ = ∏ i ∈ T.1, w i := by
       exact Finset.prod_coe_sort T.1 w
 
-/-- Every unordered `r`-certificate has exactly `r!` weighted orderings.-/
+/-- Every unordered `r`-certificate has exactly `r!` weighted orderings.
+@isnad1 id=eq.0h4v.s7.956b46eb7823 from=translated src=- shape=4d64fee4 vocab=c4853cda
+-/
 theorem orderedCertificate_sum_eq_factorial_mul
     (s : Finset ι) (r : ℕ) (w : ι → ℝ) :
     (∑ z : OrderedCertificate s r,
@@ -59,7 +64,9 @@ theorem orderedCertificate_sum_eq_factorial_mul
 
 /--
 The sum over ordered injective selections is at most the sum over all ordered
-selections, provided the weights are nonnegative.-/
+selections, provided the weights are nonnegative.
+@isnad1 id=le.1h4v.s8.2b6b65f664db from=translated src=- shape=c06f9a89 vocab=b57d8675
+-/
 theorem orderedCertificate_sum_le_all_functions
     (s : Finset ι) (r : ℕ) (w : ι → ℝ)
     (hw : ∀ i ∈ s, 0 ≤ w i) :
@@ -87,7 +94,9 @@ theorem orderedCertificate_sum_le_all_functions
 
 /--
 The exact elementary-symmetric estimate furnishing the `1/r!` factor in
-Lemma 7.1.-/
+Lemma 7.1.
+@isnad1 id=le.1h4v.s6.05fa20c4a991 from=translated src=- shape=21f54d98 vocab=a390ed01
+-/
 theorem factorial_mul_certificateWeightSum_le_pow_sum
     (s : Finset ι) (r : ℕ) (w : ι → ℝ)
     (hw : ∀ i ∈ s, 0 ≤ w i) :
@@ -98,7 +107,9 @@ theorem factorial_mul_certificateWeightSum_le_pow_sum
   simpa only [Finset.sum_coe_sort] using
     (Fintype.sum_pow (fun i : s ↦ w i.1) r).symm
 
-/-- Division form of the preceding bound.-/
+/-- Division form of the preceding bound.
+@isnad1 id=le.1h4v.s6.70bac98ed648 from=translated src=- shape=9d13c59f vocab=56fa6e28
+-/
 theorem certificateWeightSum_le_pow_sum_div_factorial
     (s : Finset ι) (r : ℕ) (w : ι → ℝ)
     (hw : ∀ i ∈ s, 0 ≤ w i) :

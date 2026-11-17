@@ -17,7 +17,9 @@ open scoped BigOperators
 
 noncomputable section
 
-/-- The literal energy dominates every selected set of windows with two small kernels.-/
+/-- The literal energy dominates every selected set of windows with two small kernels.
+@isnad1 id=le.2h5v.s6.8fbfd0c88929 from=translated src=- shape=417fc2c8 vocab=c065dc4b
+-/
 theorem card_le_windowEnergy {B T L : ℕ} (starts selected : Finset ℕ)
     (hsub : selected ⊆ starts)
     (hsmall : ∀ x ∈ selected, 2 ≤ (smallKernelOffsets B T L x).card) :
@@ -28,14 +30,18 @@ theorem card_le_windowEnergy {B T L : ℕ} (starts selected : Finset ℕ)
       exact Finset.sum_le_sum fun x hx => Nat.choose_pos (hsmall x hx)
     _ ≤ windowEnergy B T L starts := Finset.sum_le_sum_of_subset hsub
 
-/-- The same incidence bound in the real-valued asymptotic interface.-/
+/-- The same incidence bound in the real-valued asymptotic interface.
+@isnad1 id=le.2h5v.s6.e21b98cc5d63 from=translated src=- shape=9f5ddbf1 vocab=b1fee460
+-/
 theorem card_cast_le_windowEnergy {B T L : ℕ} (starts selected : Finset ℕ)
     (hsub : selected ⊆ starts)
     (hsmall : ∀ x ∈ selected, 2 ≤ (smallKernelOffsets B T L x).card) :
     (selected.card : ℝ) ≤ (windowEnergy B T L starts : ℝ) := by
   exact_mod_cast card_le_windowEnergy starts selected hsub hsmall
 
-/-- A pair mask with two small kernels at its larger endpoint costs energy times partners.-/
+/-- A pair mask with two small kernels at its larger endpoint costs energy times partners.
+@isnad1 id=le.4h6v.s7.ff4fd0d53478 from=translated src=- shape=ce94f927 vocab=9960f44d
+-/
 theorem card_pairs_le_two_energy_mul {B T L : ℕ} (starts : Finset ℕ)
     (s : Finset (ℕ × ℕ)) {R : ℝ} (hR : 0 ≤ R)
     (hstarts : largerStarts s ⊆ starts)

@@ -34,6 +34,9 @@ def quotientFunctional
     (V ⧸ S) →ₗ[K] K :=
   S.liftQ lambda hSker
 
+/--
+@isnad1 id=eq.1h5v.s9.3e935795f15d from=translated src=- shape=0f8bfa5e vocab=e29d608a
+-/
 @[simp]
 theorem quotientFunctional_mkQ
     (S : Submodule K V)
@@ -46,7 +49,9 @@ theorem quotientFunctional_mkQ
 /--
 Factoring through a quotient does not destroy a genuinely nonzero
 functional.  Thus, once `lambda` vanishes on `S`, saying that it survives
-on `V / S` is equivalent to saying that it is nonzero on `V`.-/
+on `V / S` is equivalent to saying that it is nonzero on `V`.
+@isnad1 id=iff.1h4v.s9.137631b413e1 from=translated src=- shape=6f57ab7f vocab=bca81f9b
+-/
 theorem quotientFunctional_ne_zero_iff
     (S : Submodule K V)
     (lambda : V →ₗ[K] K)
@@ -70,7 +75,9 @@ theorem quotientFunctional_ne_zero_iff
 
 /--
 Regard a smaller ambient submodule `S ≤ W` as a submodule of the type `W`.
-Its dimension is unchanged.-/
+Its dimension is unchanged.
+@isnad1 id=eq.1h4v.s10.4777d18a2c13 from=translated src=- shape=6b205ce4 vocab=b5bbc253
+-/
 theorem finrank_comap_subtype_of_le
     [FiniteDimensional K V]
     {S W : Submodule K V}
@@ -82,7 +89,9 @@ theorem finrank_comap_subtype_of_le
 
 /--
 A nonzero functional annihilating `R` cuts at least one dimension from the
-ambient space.-/
+ambient space.
+@isnad1 id=le.2h4v.s9.511eccdaf0ff from=translated src=- shape=637a27ef vocab=09886fc1
+-/
 theorem finrank_le_finrank_sub_one_of_le_ker
     [FiniteDimensional K V]
     {R : Submodule K V}
@@ -103,7 +112,9 @@ theorem finrank_le_finrank_sub_one_of_le_ker
 /--
 Ambient-space form of the quotient estimate.  Here `V` plays the role of
 `W`; the quotient is represented literally as a quotient of the subtype
-`R` by the copy of `S` inside it.-/
+`R` by the copy of `S` inside it.
+@isnad1 id=le.5h6v.s10.d0aa3ec0a0c0 from=translated src=- shape=c157a220 vocab=a551c962
+-/
 theorem finrank_quotient_le_finrank_sub
     [FiniteDimensional K V]
     {S R : Submodule K V}
@@ -125,7 +136,9 @@ theorem finrank_quotient_le_finrank_sub
 
 /--
 Version whose nonvanishing hypothesis is stated literally on the quotient
-`V / S`.-/
+`V / S`.
+@isnad1 id=le.5h6v.s10.f01513b4e5b3 from=translated src=- shape=09b37016 vocab=cbf07214
+-/
 theorem finrank_quotient_le_finrank_sub_of_induced_ne_zero
     [FiniteDimensional K V]
     {S R : Submodule K V}
@@ -149,7 +162,9 @@ theorem finrank_quotient_le_finrank_sub_of_induced_ne_zero
 /--
 Nested-submodule form used by Lemma 6.4.  The functional is given on the
 original ambient space, but it only has to survive after restriction to
-`W`; it annihilates all of `R`.-/
+`W`; it annihilates all of `R`.
+@isnad1 id=le.6h7v.s10.f98c1656df76 from=translated src=- shape=e056f986 vocab=87773dde
+-/
 theorem finrank_nested_quotient_le_finrank_sub
     [FiniteDimensional K V]
     {S R W : Submodule K V}
@@ -193,7 +208,9 @@ theorem finrank_nested_quotient_le_finrank_sub
 /--
 The same nested estimate when the surviving functional is defined directly
 on `W`.  This is often the most convenient interface after passing to the
-large-prime solution space.-/
+large-prime solution space.
+@isnad1 id=le.6h7v.s11.d7c7a69d8ffa from=translated src=- shape=a33af7af vocab=a551c962
+-/
 theorem finrank_nested_quotient_le_of_functional_on_W
     [FiniteDimensional K V]
     {S R W : Submodule K V}

@@ -23,7 +23,9 @@ open Finset
 
 /--
 A residue class in the `L+1` consecutive offsets `{-1, ..., L-1}` contains
-at most `1 + L / q` elements.-/
+at most `1 + L / q` elements.
+@isnad1 id=le.1h3v.s6.eefc9e9a809c from=translated src=- shape=a5870778 vocab=c6f94e52
+-/
 theorem card_offsetInterval_modClass_le_one_add_div
     (L : ℕ) (v : ℤ) (q : ℕ) (hq : 0 < q) :
     {i ∈ Ico (-1 : ℤ) (L : ℤ) |
@@ -66,7 +68,9 @@ theorem card_offsetInterval_modClass_le_one_add_div
     exact_mod_cast hcardInt
   simpa [Nat.add_comm] using hcardNat
 
-/-- Sharp natural count obtained by projecting to the first coordinate.-/
+/-- Sharp natural count obtained by projecting to the first coordinate.
+@isnad1 id=le.3h4v.s6.02ca2ef96823 from=translated src=- shape=88362041 vocab=7961ebf7
+-/
 theorem channelCells_card_le_one_add_div_firstStep
     (L a b : ℕ) (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
     (h : ℤ) :
@@ -92,7 +96,9 @@ theorem channelCells_card_le_one_add_div_firstStep
         card_offsetInterval_modClass_le_one_add_div
           L cell₀.1 b hb
 
-/-- Sharp natural count obtained by projecting to the second coordinate.-/
+/-- Sharp natural count obtained by projecting to the second coordinate.
+@isnad1 id=le.3h4v.s6.c16fa240cad9 from=translated src=- shape=b04ea1bd vocab=7961ebf7
+-/
 theorem channelCells_card_le_one_add_div_secondStep
     (L a b : ℕ) (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
     (h : ℤ) :
@@ -120,7 +126,9 @@ theorem channelCells_card_le_one_add_div_secondStep
 
 /--
 Sharp natural-number form of the primitive-channel lattice-point estimate,
-with `q = max a b`.-/
+with `q = max a b`.
+@isnad1 id=le.3h4v.s6.96e7d77f99db from=translated src=- shape=cf789701 vocab=c8a77f78
+-/
 theorem channelCells_card_le_one_add_div_maxStep
     (L a b : ℕ) (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
     (h : ℤ) :
@@ -136,7 +144,9 @@ theorem channelCells_card_le_one_add_div_maxStep
 
 /--
 Subtraction-free packing form: successive cells consume at least one step
-`q = max a b` across an interval of diameter `L`.-/
+`q = max a b` across an interval of diameter `L`.
+@isnad1 id=le.3h4v.s6.a31d56650c94 from=translated src=- shape=e578e0fd vocab=37e46331
+-/
 theorem maxStep_mul_channelCells_card_sub_one_le
     (L a b : ℕ) (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
     (h : ℤ) :
@@ -155,7 +165,9 @@ theorem maxStep_mul_channelCells_card_sub_one_le
       Nat.mul_le_mul_left q hpred
     _ ≤ L := Nat.mul_div_le L q
 
-/-- The preceding estimate in the named `channelSigma` notation.-/
+/-- The preceding estimate in the named `channelSigma` notation.
+@isnad1 id=le.3h4v.s5.fb62f1a4ccca from=translated src=- shape=87f1edc5 vocab=bd82854f
+-/
 theorem maxStep_mul_channelSigma_le
     (L a b : ℕ) (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
     (h : ℤ) :
@@ -164,7 +176,9 @@ theorem maxStep_mul_channelSigma_le
     maxStep_mul_channelCells_card_sub_one_le
       L a b ha hb hab h
 
-/-- Quotient form of the channel-dimension estimate.-/
+/-- Quotient form of the channel-dimension estimate.
+@isnad1 id=le.3h4v.s5.8a088f4de776 from=translated src=- shape=4c166a11 vocab=04fe96da
+-/
 theorem channelSigma_le_div_maxStep
     (L a b : ℕ) (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
     (h : ℤ) :
@@ -175,7 +189,9 @@ theorem channelSigma_le_div_maxStep
   simpa [Nat.mul_comm] using
     maxStep_mul_channelSigma_le L a b ha hb hab h
 
-/-- Monotone consequence for binary choices on a channel.-/
+/-- Monotone consequence for binary choices on a channel.
+@isnad1 id=le.3h4v.s6.b27145ba878c from=translated src=- shape=1b8a6bfc vocab=58fb3c71
+-/
 theorem two_pow_channelSigma_le_div_maxStep
     (L a b : ℕ) (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
     (h : ℤ) :
@@ -184,7 +200,9 @@ theorem two_pow_channelSigma_le_div_maxStep
   Nat.pow_le_pow_right (by norm_num)
     (channelSigma_le_div_maxStep L a b ha hb hab h)
 
-/-- Monotone consequence for the squared binary weight.-/
+/-- Monotone consequence for the squared binary weight.
+@isnad1 id=le.3h4v.s6.fb022895d338 from=translated src=- shape=1b8a6bfc vocab=58fb3c71
+-/
 theorem four_pow_channelSigma_le_div_maxStep
     (L a b : ℕ) (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
     (h : ℤ) :

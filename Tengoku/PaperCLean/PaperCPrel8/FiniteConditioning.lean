@@ -20,7 +20,9 @@ def conditional (μ : FinitePMF Ω) (A : Ω → Prop) (hA : 0 < eventProbability
     rw [← Finset.sum_div]
     exact div_self hA.ne'
 
-/-- Conditional expectations are the usual normalized restricted expectations.-/
+/-- Conditional expectations are the usual normalized restricted expectations.
+@isnad1 id=eq.1h4v.s6.8af6311017ea from=translated src=- shape=fbef8f81 vocab=47ebaa30
+-/
 theorem expectation_conditional (μ : FinitePMF Ω) (A : Ω → Prop)
     (hA : 0 < eventProbability μ A) (f : Ω → ℝ) :
     finitePMFExpectation (conditional μ A hA) f =
@@ -30,7 +32,9 @@ theorem expectation_conditional (μ : FinitePMF Ω) (A : Ω → Prop)
   intro ω _
   split_ifs <;> ring
 
-/-- The conditional event probability has the expected intersection numerator.-/
+/-- The conditional event probability has the expected intersection numerator.
+@isnad1 id=eq.1h4v.s6.d4f12eee7124 from=translated src=- shape=8a8f5aea vocab=e514d5d3
+-/
 theorem probability_conditional (μ : FinitePMF Ω) (A B : Ω → Prop)
     (hA : 0 < eventProbability μ A) :
     eventProbability (conditional μ A hA) B =
@@ -40,7 +44,9 @@ theorem probability_conditional (μ : FinitePMF Ω) (A B : Ω → Prop)
   intro ω _
   split_ifs <;> simp_all
 
-/-- Conditioning increases any nonnegative expectation by at most the inverse event mass.-/
+/-- Conditioning increases any nonnegative expectation by at most the inverse event mass.
+@isnad1 id=le.2h4v.s6.d2585adbfcda from=translated src=- shape=8adbfe88 vocab=70bbe674
+-/
 theorem expectation_conditional_le (μ : FinitePMF Ω) (A : Ω → Prop)
     (hA : 0 < eventProbability μ A) (f : Ω → ℝ) (hf : ∀ ω, 0 ≤ f ω) :
     finitePMFExpectation (conditional μ A hA) f ≤

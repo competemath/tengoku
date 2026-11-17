@@ -25,7 +25,9 @@ def certificateMass (s : Finset ι) (r : ℕ) (modulus : ι → ℕ)
   ∑ T : UnorderedCertificate s r,
     if CertificateAdmissible modulus M T then u ^ r * count T else 0
 
-/-- Exact factorization of the local weights in any coordinate dimension.-/
+/-- Exact factorization of the local weights in any coordinate dimension.
+@isnad1 id=eq.0h7v.s7.908a9a6c8283 from=translated src=- shape=8e1813ef vocab=5678e521
+-/
 theorem product_local_weight {s : Finset ι} {r : ℕ} (modulus : ι → ℕ)
     (D : ℕ) (u : ℝ) (T : UnorderedCertificate s r) :
     (∏ i ∈ T.1, u / (modulus i : ℝ) ^ D) =
@@ -33,7 +35,9 @@ theorem product_local_weight {s : Finset ι} {r : ℕ} (modulus : ι → ℕ)
   rw [Finset.prod_div_distrib]
   simp [certificateModulusProduct, unorderedCertificate_card, Finset.prod_pow]
 
-/-- Finite algebraic summation of individual counts; used below with actual CRT counts.-/
+/-- Finite algebraic summation of individual counts; used below with actual CRT counts.
+@isnad1 id=le.3h9v.s7.02dbedc51ffa from=translated src=- shape=3d26eeb0 vocab=62aa5cdf
+-/
 theorem certificateMass_le_of_count
     (s : Finset ι) (r : ℕ) (modulus : ι → ℕ)
     (count : UnorderedCertificate s r → ℕ) (M D : ℕ) (u V : ℝ)
@@ -74,7 +78,9 @@ def rectangleMass (s : Finset ι) (r : ℕ) (residue₁ residue₂ : ι → ℤ)
   certificateMass s r modulus (fun T =>
     (integerSolutions residue₁ modulus a₁ b₁ T ×ˢ integerSolutions residue₂ modulus a₂ b₂ T).card) M u
 
-/-- Fixed-size interval estimate for every nonnegative real weight.-/
+/-- Fixed-size interval estimate for every nonnegative real weight.
+@isnad1 id=le.5h10v.s7.0bf79a9a7fde from=translated src=- shape=26e67905 vocab=7901b174
+-/
 theorem intervalMass_le (s : Finset ι) (r : ℕ) (residue : ι → ℤ) (modulus : ι → ℕ)
     (hprime : ∀ i, (modulus i).Prime) (a b : ℤ) (C₀ : ℝ) (M : ℕ)
     (hC : 0 ≤ C₀) (hab : a ≤ b) (hlen : (b - a : ℝ) ≤ C₀ * M)
@@ -87,7 +93,9 @@ theorem intervalMass_le (s : Finset ι) (r : ℕ) (residue : ι → ℤ) (modulu
     (fun T hT => by simpa only [pow_one] using
       integerSolutions_card_le residue modulus hprime a b C₀ M hC hab hlen T hT)
 
-/-- Fixed-size rectangular estimate, with no restriction on the size of the real weight.-/
+/-- Fixed-size rectangular estimate, with no restriction on the size of the real weight.
+@isnad1 id=le.7h13v.s8.fb2fe1231fee from=translated src=- shape=bd0666c6 vocab=aa395dfa
+-/
 theorem rectangleMass_le (s : Finset ι) (r : ℕ) (residue₁ residue₂ : ι → ℤ) (modulus : ι → ℕ)
     (hprime : ∀ i, (modulus i).Prime) (a₁ b₁ a₂ b₂ : ℤ) (C₀ : ℝ) (M : ℕ)
     (hC : 0 ≤ C₀) (h₁ : a₁ ≤ b₁) (h₂ : a₂ ≤ b₂)

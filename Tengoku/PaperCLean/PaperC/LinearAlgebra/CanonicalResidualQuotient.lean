@@ -31,7 +31,9 @@ abbrev ResidualQuotient
 
 /--
 The manuscript's residual dimension `τ = ρ - σ` is exactly the dimension
-of the quotient of the full relation space by the canonical rational code.-/
+of the quotient of the full relation space by the canonical rational code.
+@isnad1 id=eq.2h5v.s11.87d61758d54d from=translated src=- shape=d25cf96d vocab=3e79fe6f
+-/
 theorem residualTau_eq_finrank_residualQuotient
     (M A x y L : ℕ) (hx : 2 ≤ x) (hy : 2 ≤ y) :
     residualTau M A x y L hx hy =

@@ -26,7 +26,9 @@ in the natural CRT API are interpreted modulo `p`.-/
 def additiveStartResidue (p k : ℕ) : ℕ :=
   p - (k % p)
 
-/-- The defining residue becomes zero after adding its offset.-/
+/-- The defining residue becomes zero after adding its offset.
+@isnad1 id=dvd.1h2v.s4.ec14d6b39a55 from=translated src=- shape=df3f02ed vocab=51f31ca8
+-/
 theorem dvd_additiveStartResidue_add
     (p k : ℕ) (hp : 0 < p) :
     p ∣ additiveStartResidue p k + k := by
@@ -39,7 +41,9 @@ theorem dvd_additiveStartResidue_add
   rw [Nat.mul_add, Nat.mul_one]
   omega
 
-/-- A congruence to `additiveStartResidue` is exactly divisibility after adding `k`.-/
+/-- A congruence to `additiveStartResidue` is exactly divisibility after adding `k`.
+@isnad1 id=iff.1h3v.s5.c79a3bcf1c78 from=translated src=- shape=eb32ca3e vocab=96737a9b
+-/
 theorem modEq_additiveStartResidue_iff_dvd_add
     (p k x : ℕ) (hp : 0 < p) :
     x ≡ additiveStartResidue p k [MOD p] ↔ p ∣ x + k := by
@@ -61,7 +65,9 @@ def startResidue {L : ℕ} (p : ℕ) (v : Fin (L + 1)) : ℕ :=
   if v.1 = 0 then 1 else additiveStartResidue p (v.1 - 1)
 
 /--
-Concrete bridge from a residual certificate cell to a natural CRT class.-/
+Concrete bridge from a residual certificate cell to a natural CRT class.
+@isnad1 id=iff.2h4v.s5.192ce0a12165 from=translated src=- shape=d12de936 vocab=ec7661fd
+-/
 theorem modEq_startResidue_iff_dvd_startCompleteVertexLabel
     {L p x : ℕ} (v : Fin (L + 1))
     (hp : 0 < p) (hx : 1 ≤ x) :

@@ -26,7 +26,9 @@ namespace UniformRationalPower
 
 /--
 Multiplication by the exact natural power `N^r` shifts a rational exponent
-from `p/q` to `(p+r*q)/q`.-/
+from `p/q` to `(p+r*q)/q`.
+@isnad1 id=uniformr.1h5v.s6.91478f6e394e from=translated src=- shape=9ad5a6ce vocab=154eee05
+-/
 theorem natPower_mul
     {p q r : ℕ}
     {admissible : ℕ → ℕ → Prop}
@@ -60,7 +62,9 @@ theorem natPower_mul
 /--
 The exact combination needed for the shallow-core quadratic mass:
 
-`N² * N^o(1) * N^(3/8+o(1)) = N^(19/8+o(1))`.-/
+`N² * N^o(1) * N^(3/8+o(1)) = N^(19/8+o(1))`.
+@isnad1 id=uniformr.2h3v.s6.dc71485b9426 from=translated src=- shape=f3dd184a vocab=dd4b38de
+-/
 theorem quadratic_mul_subpolynomial_threeEighths
     {admissible : ℕ → ℕ → Prop}
     {s density : ℕ → ℕ → ℝ}
@@ -82,7 +86,9 @@ theorem quadratic_mul_subpolynomial_threeEighths
 
 /--
 Two independently established subpolynomial envelopes may be inserted in
-the preceding closure without first changing their interfaces.-/
+the preceding closure without first changing their interfaces.
+@isnad1 id=uniformr.3h4v.s6.6fe332dda0b5 from=translated src=- shape=a118ff7d vocab=dd4b38de
+-/
 theorem quadratic_mul_twoSubpolynomial_threeEighths
     {admissible : ℕ → ℕ → Prop}
     {s t density : ℕ → ℕ → ℝ}
@@ -107,7 +113,9 @@ Cauchy--Schwarz interpolation between `N^(3/2+o(1))` and
 `N^(19/8+o(1))`.
 
 If eventually `R ≤ √H √Q` and all three quantities are nonnegative, then
-`R=N^(31/16+o(1))`.-/
+`R=N^(31/16+o(1))`.
+@isnad1 id=uniformr.3h4v.s7.9d7017334241 from=translated src=- shape=758de150 vocab=c91f5de7
+-/
 theorem interpolate_threeHalves_nineteenEighths
     {admissible : ℕ → ℕ → Prop}
     {H Q R : ℕ → ℕ → ℝ}
@@ -211,7 +219,9 @@ theorem interpolate_threeHalves_nineteenEighths
 The interpolated exponent of Proposition 7.5 is strictly below the
 quadratic scale:
 
-`N^(31/16+o(1)) = o(N²)`.-/
+`N^(31/16+o(1)) = o(N²)`.
+@isnad1 id=uniforml.1h2v.s5.1b26b17fd3a5 from=translated src=- shape=c13e1ea9 vocab=b432183c
+-/
 theorem thirtyOneSixteenths_littleO_quadratic
     {admissible : ℕ → ℕ → Prop}
     {R : ℕ → ℕ → ℝ}

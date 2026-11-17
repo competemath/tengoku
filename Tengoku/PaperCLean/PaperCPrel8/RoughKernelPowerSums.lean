@@ -12,7 +12,9 @@ namespace PaperC.Prel8.RoughKernelPowerSums
 
 open scoped BigOperators
 
-/-- A decreasing power sum is bounded by its integral from the lower endpoint.-/
+/-- A decreasing power sum is bounded by its integral from the lower endpoint.
+@isnad1 id=le.3h3v.s6.49d5b15a4963 from=translated src=- shape=d319baa2 vocab=f4579830
+-/
 theorem sum_Ioc_le_integral (B X : ℕ) (hB : 1 ≤ B) (hBX : B ≤ X)
     {a : ℝ} (ha : a ≤ 0) :
     (∑ n ∈ Finset.Ioc B X, (n : ℝ) ^ a) ≤ ∫ x in (B : ℝ)..X, x ^ a := by
@@ -36,7 +38,9 @@ theorem sum_Ioc_le_integral (B X : ℕ) (hB : 1 ≤ B) (hBX : B ≤ X)
       omega
   rwa [hindex] at hsum
 
-/-- The truncated Rankin sum, including the endpoint 1 and the empty case.-/
+/-- The truncated Rankin sum, including the endpoint 1 and the empty case.
+@isnad1 id=le.2h2v.s6.e40c73b1d30d from=translated src=- shape=9cb3a6a5 vocab=9ba99488
+-/
 theorem sum_Icc_rankin_le (T : ℕ) {σ : ℝ} (hσ : 0 < σ) (hσ1 : σ ≤ 1) :
     (∑ r ∈ Finset.Icc 1 T, (r : ℝ) ^ (-1 + σ)) ≤
       1 + (T : ℝ) ^ σ / σ := by
@@ -63,7 +67,9 @@ theorem sum_Icc_rankin_le (T : ℕ) {σ : ℝ} (hσ : 0 < σ) (hσ1 : σ ≤ 1) 
     subst T
     simp [Real.zero_rpow hσ.ne']
 
-/-- A convergent power tail; the cutoff may exceed the upper endpoint.-/
+/-- A convergent power tail; the cutoff may exceed the upper endpoint.
+@isnad1 id=le.2h3v.s6.048e0f4bc851 from=translated src=- shape=fba03f6a vocab=1c652f2b
+-/
 theorem sum_Ioc_tail_le (Y X : ℕ) (hY : 1 ≤ Y) {s : ℝ} (hs : 0 < s) :
     (∑ r ∈ Finset.Ioc Y X, (r : ℝ) ^ (-1 - s)) ≤ (Y : ℝ) ^ (-s) / s := by
   by_cases hYX : Y ≤ X

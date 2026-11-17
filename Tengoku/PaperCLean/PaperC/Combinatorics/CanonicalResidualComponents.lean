@@ -56,6 +56,9 @@ noncomputable def exactNondefectiveComponents
       (largePrimeGraph x y L).connectedComponentMk
         (Sum.inl unit.1.1.1)
 
+/--
+@isnad1 id=iff.0h7v.s9.ba51627e325c from=translated src=- shape=0b54f923 vocab=1648e9c4
+-/
 @[simp]
 theorem mem_exactNondefectiveComponents
     {x y L a b : ℕ} {h : ℤ}
@@ -87,7 +90,9 @@ noncomputable def residualComponents
         (largePrimeGraph x y L)
         (pinnedVertices x y L)
 
-/-- Every member of `C_res` is a nontrivial unpinned component.-/
+/-- Every member of `C_res` is a nontrivial unpinned component.
+@isnad1 id=isnontri.1h7v.s7.246702b5a30f from=translated src=- shape=7bc7a646 vocab=388394c9
+-/
 theorem isNontrivialUnpinnedComponent_of_mem_residualComponents
     {x y L a b : ℕ} {h : ℤ}
     {C : (largePrimeGraph x y L).ConnectedComponent}
@@ -108,7 +113,9 @@ theorem isNontrivialUnpinnedComponent_of_mem_residualComponents
 
 /--
 Under the hypotheses of the exact-unit isolation theorem, every deleted
-component is indeed nontrivial and unpinned.-/
+component is indeed nontrivial and unpinned.
+@isnad1 id=le.7h6v.s8.b78c2852f4aa from=translated src=- shape=63526ac7 vocab=5a0688f4
+-/
 theorem exactNondefectiveComponents_subset_nontrivial
     {x y L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b)
@@ -128,7 +135,9 @@ theorem exactNondefectiveComponents_subset_nontrivial
     (nondefectiveUnitComponent
       ha hb hab hx hy hheight hsmall unit).2
 
-/-- The deleted family has exactly `n` components.-/
+/-- The deleted family has exactly `n` components.
+@isnad1 id=eq.7h6v.s7.54b62bce600b from=translated src=- shape=4f59aa65 vocab=c3385408
+-/
 theorem card_exactNondefectiveComponents
     {x y L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b)
@@ -159,7 +168,9 @@ theorem card_exactNondefectiveComponents
 
 /--
 The concrete residual family realizes exactly the corrected component count
-`c#`.-/
+`c#`.
+@isnad1 id=eq.6h6v.s6.a4e1c3ae6ac8 from=translated src=- shape=a70f9807 vocab=50321287
+-/
 theorem card_residualComponents
     {x y L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b)
@@ -196,7 +207,9 @@ theorem card_residualComponents
 /--
 When `m ≥ 2`, every exact channel cell has its left component outside
 `C_res`.  A defective left endpoint generates a singleton component; a
-nondefective endpoint belongs to the family explicitly removed above.-/
+nondefective endpoint belongs to the family explicitly removed above.
+@isnad1 id=not.4h7v.s8.b8acdb5f6109 from=translated src=- shape=5345a08a vocab=7212c1ab
+-/
 theorem onChannel_component_not_mem_residualComponents
     {x y L a b : ℕ} {h : ℤ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -253,7 +266,9 @@ theorem onChannel_component_not_mem_residualComponents
 
 /--
 The preceding theorem is exactly the exclusion hypothesis expected by
-`ResidualCertificates`.-/
+`ResidualCertificates`.
+@isnad1 id=not.3h7v.s8.5d76e1c1640a from=translated src=- shape=1c8b0435 vocab=64bb2018
+-/
 theorem residualCertificates_not_onChannel
     {x y L a b : ℕ} {h : ℤ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -288,7 +303,9 @@ noncomputable def canonicalResidualComponents
       residualComponents x y L c.1.1 c.1.2
         (pairChannelError x y c.1.1 c.1.2)
 
-/-- Every canonical residual component is nontrivial and unpinned.-/
+/-- Every canonical residual component is nontrivial and unpinned.
+@isnad1 id=isnontri.1h5v.s7.e1f9a5ccddf0 from=translated src=- shape=5b4771ec vocab=42f6fc1f
+-/
 theorem isNontrivialUnpinnedComponent_of_mem_canonicalResidualComponents
     {A x y L : ℕ}
     {C : (largePrimeGraph x y L).ConnectedComponent}
@@ -312,7 +329,9 @@ theorem isNontrivialUnpinnedComponent_of_mem_canonicalResidualComponents
       apply isNontrivialUnpinnedComponent_of_mem_residualComponents
       simpa [canonicalResidualComponents, hchoice] using hC
 
-/-- The canonical family has cardinality `canonicalResidualComponentCount`.-/
+/-- The canonical family has cardinality `canonicalResidualComponentCount`.
+@isnad1 id=eq.2h4v.s5.92209171a72f from=translated src=- shape=86a62ad1 vocab=6759eeaa
+-/
 theorem card_canonicalResidualComponents
     {A x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y) :
@@ -343,7 +362,9 @@ theorem card_canonicalResidualComponents
 
 /--
 For a selected canonical channel with `m ≥ 2`, the canonical residual
-family satisfies the exact-cell exclusion hypothesis.-/
+family satisfies the exact-cell exclusion hypothesis.
+@isnad1 id=not.5h6v.s10.1af9bff2e419 from=translated src=- shape=99b0e20c vocab=57245582
+-/
 theorem canonical_onChannel_component_not_mem_of_choice
     {A x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -386,7 +407,9 @@ noncomputable def canonicalResidualCertificates
       isNontrivialUnpinnedComponent_of_mem_canonicalResidualComponents hC)
     C
 
-/-- Every selected certificate label is a prime above `L+1`.-/
+/-- Every selected certificate label is a prime above `L+1`.
+@isnad1 id=islargep.2h5v.s7.063f2e631d80 from=translated src=- shape=fd44e401 vocab=78134a96
+-/
 theorem canonicalResidualCertificates_prime_large
     {A x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -395,7 +418,9 @@ theorem canonicalResidualCertificates_prime_large
       (canonicalResidualCertificates hx hy C).prime :=
   (canonicalResidualCertificates hx hy C).prime_large
 
-/-- Property (iii), left side: the selected prime divides `x+i`.-/
+/-- Property (iii), left side: the selected prime divides `x+i`.
+@isnad1 id=dvd.2h5v.s8.53e16517b833 from=translated src=- shape=697543f3 vocab=784b98f4
+-/
 theorem canonicalResidualCertificates_prime_dvd_left
     {A x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -407,7 +432,9 @@ theorem canonicalResidualCertificates_prime_dvd_left
   (canonicalResidualCertificates hx hy C)
     |>.prime_dvd_left_start_add_offset hx
 
-/-- Property (iii), right side: the selected prime divides `y+j`.-/
+/-- Property (iii), right side: the selected prime divides `y+j`.
+@isnad1 id=dvd.2h5v.s8.700d33233e16 from=translated src=- shape=0e4735b6 vocab=7102ec50
+-/
 theorem canonicalResidualCertificates_prime_dvd_right
     {A x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -419,7 +446,9 @@ theorem canonicalResidualCertificates_prime_dvd_right
   (canonicalResidualCertificates hx hy C)
     |>.prime_dvd_right_start_add_offset hy
 
-/-- Property (i): distinct residual components have distinct left offsets.-/
+/-- Property (i): distinct residual components have distinct left offsets.
+@isnad1 id=injectiv.2h4v.s7.3fc9791cb3da from=translated src=- shape=86c191ef vocab=7d7507d0
+-/
 theorem canonicalResidualCertificates_leftOffset_injective
     {A x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y) :
@@ -436,7 +465,9 @@ theorem canonicalResidualCertificates_leftOffset_injective
         isNontrivialUnpinnedComponent_of_mem_canonicalResidualComponents
           hC)
 
-/-- Property (i): distinct residual components have distinct right offsets.-/
+/-- Property (i): distinct residual components have distinct right offsets.
+@isnad1 id=injectiv.2h4v.s7.8abbfa37f712 from=translated src=- shape=86c191ef vocab=c92da4a7
+-/
 theorem canonicalResidualCertificates_rightOffset_injective
     {A x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y) :
@@ -453,7 +484,9 @@ theorem canonicalResidualCertificates_rightOffset_injective
         isNontrivialUnpinnedComponent_of_mem_canonicalResidualComponents
           hC)
 
-/-- Property (ii): distinct residual components select distinct primes.-/
+/-- Property (ii): distinct residual components select distinct primes.
+@isnad1 id=injectiv.2h4v.s7.bcf749debd67 from=translated src=- shape=dde6e952 vocab=b8dc1ac6
+-/
 theorem canonicalResidualCertificates_prime_injective
     {A x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y) :
@@ -471,7 +504,9 @@ theorem canonicalResidualCertificates_prime_injective
 
 /--
 The canonical certificate index has exactly `c#` elements.  This is the
-finite-family form of the manuscript's indexing `1 ≤ s ≤ c#`.-/
+finite-family form of the manuscript's indexing `1 ≤ s ≤ c#`.
+@isnad1 id=eq.2h4v.s6.5a0910dd9426 from=translated src=- shape=1efd57e4 vocab=e35794ae
+-/
 theorem card_canonicalResidualCertificateIndex
     {A x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y) :
@@ -494,7 +529,9 @@ noncomputable def canonicalResidualCertificatePrimes
       isNontrivialUnpinnedComponent_of_mem_canonicalResidualComponents
         hC)
 
-/-- Distinctness makes the selected-prime set have cardinality exactly `c#`.-/
+/-- Distinctness makes the selected-prime set have cardinality exactly `c#`.
+@isnad1 id=eq.2h4v.s6.6c436e308f2b from=translated src=- shape=aa87f11b vocab=59ea3998
+-/
 theorem card_canonicalResidualCertificatePrimes
     {A x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y) :
@@ -519,7 +556,9 @@ theorem card_canonicalResidualCertificatePrimes
 
 /--
 Property (iv): in the active canonical branch `m ≥ 2`, the selected
-certificate cell is not aligned with the selected rational channel.-/
+certificate cell is not aligned with the selected rational channel.
+@isnad1 id=not.4h6v.s9.786f9cf4a5b8 from=translated src=- shape=cd0094b7 vocab=5cea3de5
+-/
 theorem canonicalResidualCertificates_not_onChannel_of_choice
     {A x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -542,7 +581,9 @@ theorem canonicalResidualCertificates_not_onChannel_of_choice
     canonical_onChannel_component_not_mem_of_choice
       hx hy c hchoice hm cell hcell
 
-/-- Algebraic nonvanishing form of property (iv).-/
+/-- Algebraic nonvanishing form of property (iv).
+@isnad1 id=ne.4h6v.s10.f182ebe6e519 from=translated src=- shape=b4ccef77 vocab=4b153a3e
+-/
 theorem canonicalResidualCertificates_residualExpression_ne_of_choice
     {A x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -590,7 +631,9 @@ noncomputable def canonicalOneUnitExceptionalComponents
   oneUnitExceptionalComponents
     (canonicalResidualComponents A x y L) hm
 
-/-- Property (v), cardinal part: the exceptional canonical family has size at most two.-/
+/-- Property (v), cardinal part: the exceptional canonical family has size at most two.
+@isnad1 id=le.2h5v.s9.79973f6b4e01 from=translated src=- shape=4142a3f7 vocab=dd27d56f
+-/
 theorem card_canonicalOneUnitExceptionalComponents_le_two
     {A x y L : ℕ}
     (c : ReducedCandidate
@@ -610,7 +653,9 @@ theorem card_canonicalOneUnitExceptionalComponents_le_two
 
 /--
 Property (v), support part: if a canonical residual certificate is exact
-in the one-unit branch, its component belongs to the exceptional family.-/
+in the one-unit branch, its component belongs to the exceptional family.
+@isnad1 id=mem.5h6v.s10.3ab6232e1118 from=translated src=- shape=2a9a3408 vocab=2fccdb14
+-/
 theorem canonicalResidualCertificate_mem_oneUnitExceptionalComponents_of_choice
     {A x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)

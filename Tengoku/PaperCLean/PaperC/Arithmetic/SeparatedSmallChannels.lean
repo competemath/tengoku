@@ -15,7 +15,9 @@ only the two oriented pairs `(2,1)` and `(1,2)`.
 
 namespace PaperC
 
-/-- A positive pair of height one is necessarily `(1,1)`.-/
+/-- A positive pair of height one is necessarily `(1,1)`.
+@isnad1 id=and.3h2v.s5.e38819ebc0fa from=translated src=- shape=d8839307 vocab=4883d3e5
+-/
 theorem positive_pair_eq_one_of_max_eq_one
     {a b : ℕ} (ha : 0 < a) (hb : 0 < b)
     (hmax : Nat.max a b = 1) :
@@ -30,7 +32,9 @@ theorem positive_pair_eq_one_of_max_eq_one
 
 /--
 For the unit direction `(1,1)`, one cell with canonical parameter
-`y-x` already forces the starts to be separated by at most `L`.-/
+`y-x` already forces the starts to be separated by at most `L`.
+@isnad1 id=le.2h5v.s6.c60409fa68f3 from=translated src=- shape=e74e8bd4 vocab=dc79b5a1
+-/
 theorem dist_le_length_of_mem_unit_channel
     {x y L : ℕ} {h : ℤ} {cell : ℤ × ℤ}
     (hparameter : pairChannelError x y 1 1 = h)
@@ -50,7 +54,9 @@ theorem dist_le_length_of_mem_unit_channel
 
 /--
 Height-one primitive channels carrying at least two cells have unit
-coefficients, and their two starts are at distance at most `L`.-/
+coefficients, and their two starts are at distance at most `L`.
+@isnad1 id=and.6h6v.s6.5c496be59214 from=translated src=- shape=affb2168 vocab=f60bdd25
+-/
 theorem height_one_primitive_channel_forces_unit_and_nearby
     {x y L a b : ℕ}
     (ha : 0 < a) (hb : 0 < b) (_hab : a.Coprime b)
@@ -70,7 +76,9 @@ theorem height_one_primitive_channel_forces_unit_and_nearby
 
 /--
 The only positive coprime pairs of height two are the two orientations
-`(2,1)` and `(1,2)`.-/
+`(2,1)` and `(1,2)`.
+@isnad1 id=or.4h2v.s6.dbdf5b23dd79 from=translated src=- shape=6fe2c250 vocab=cfba51cb
+-/
 theorem positive_coprime_pair_of_max_eq_two
     {a b : ℕ} (ha : 0 < a) (hb : 0 < b)
     (hab : a.Coprime b) (hmax : Nat.max a b = 2) :

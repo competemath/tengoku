@@ -25,7 +25,9 @@ variable {ι : Type*}
 /--
 The natural numbers in `[a,b)` satisfying a finite pairwise-coprime CRT
 certificate are bounded by the interval length divided by the product
-modulus, plus one.-/
+modulus, plus one.
+@isnad1 id=le.3h6v.s7.d420fed2270a from=translated src=- shape=d3b38415 vocab=be3dbfd8
+-/
 theorem card_Ico_satisfies_cast_le_div_add_one
     (residue modulus : ι → ℕ) (indices : List ι)
     (hcoprime : indices.Pairwise (Nat.Coprime on modulus))
@@ -63,7 +65,9 @@ theorem card_Ico_satisfies_cast_le_div_add_one
 /--
 Two independent variables satisfying the same finite certificate in two
 intervals obey the product of the corresponding one-dimensional bounds.
-This matches the explicit rectangular domain of Lemma 7.1 in version 7c.-/
+This matches the explicit rectangular domain of Lemma 7.1 in version 7c.
+@isnad1 id=le.4h9v.s8.865d7fd556a7 from=translated src=- shape=30bc2699 vocab=fbc844d4
+-/
 theorem card_product_Ico_satisfies_cast_le
     (residue₁ residue₂ modulus : ι → ℕ) (indices : List ι)
     (hcoprime : indices.Pairwise (Nat.Coprime on modulus))
@@ -102,7 +106,9 @@ Scaled one-dimensional CRT count used in Lemma 7.1.
 
 If the interval has length at most `C₀ * N` and the product modulus is at
 most `N`, the harmless `+ 1` in the elementary interval count can be
-absorbed into one further copy of `N / productModulus`.-/
+absorbed into one further copy of `N / productModulus`.
+@isnad1 id=le.5h8v.s7.b9aa4a89c701 from=translated src=- shape=1ebb89ec vocab=f4b9b373
+-/
 theorem card_Ico_satisfies_cast_le_scaled
     (residue modulus : ι → ℕ) (indices : List ι)
     (hcoprime : indices.Pairwise (Nat.Coprime on modulus))
@@ -155,7 +161,9 @@ theorem card_Ico_satisfies_cast_le_scaled
 Scaled rectangular CRT count used in the two-dimensional part of Lemma 7.1.
 
 Both coordinate intervals have length at most `C₀ * N`; hence each
-coordinate contributes the same scaled one-dimensional majorant.-/
+coordinate contributes the same scaled one-dimensional majorant.
+@isnad1 id=le.7h11v.s8.f1f0c8e8299d from=translated src=- shape=d4d2bf3b vocab=b68badae
+-/
 theorem card_product_Ico_satisfies_cast_le_scaled
     (residue₁ residue₂ modulus : ι → ℕ) (indices : List ι)
     (hcoprime : indices.Pairwise (Nat.Coprime on modulus))

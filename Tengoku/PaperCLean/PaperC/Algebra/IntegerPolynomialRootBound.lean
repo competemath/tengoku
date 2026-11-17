@@ -29,6 +29,9 @@ defined to be zero.-/
 def integerPolynomialHeight (p : ℤ[X]) : ℕ :=
   p.support.sup fun n ↦ (p.coeff n).natAbs
 
+/--
+@isnad1 id=eq.0h0v.s4.bf1cedd7e522 from=translated src=- shape=479f814a vocab=09c936a0
+-/
 @[simp]
 theorem integerPolynomialHeight_zero :
     integerPolynomialHeight (0 : ℤ[X]) = 0 := by

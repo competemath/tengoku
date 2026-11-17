@@ -14,6 +14,9 @@ open scoped BigOperators
 
 noncomputable section
 
+/--
+@isnad1 id=le.4h4v.s7.1af4ac194903 from=translated src=- shape=06d49ca4 vocab=2ea98f90
+-/
 theorem card_le_of_separated {S : Finset ℕ} {a B K : ℕ} (hK : 0 < K) (hB : 0 < B)
     (hwindow : ∀ n ∈ S, a ≤ n ∧ n < a+B)
     (hsep : ∀ m ∈ S, ∀ n ∈ S, m<n → B<K*(n-m)) : S.card ≤ K := by
@@ -44,6 +47,9 @@ theorem card_le_of_separated {S : Finset ℕ} {a B K : ℕ} (hK : 0 < K) (hB : 0
     · exact (hgap n m hn hm h heq.symm).elim
   simpa only [card_range] using card_le_card_of_injOn (fun n => K*(n-a)/B) hmem hinj
 
+/--
+@isnad1 id=lt.3h5v.s6.f379ecba531d from=translated src=- shape=cbe10048 vocab=2da69026
+-/
 theorem square_multiple_separation {a B K p q : ℕ} (ha : 1≤a)
     (hp : B<K*p) (hpq : p<q) : B<K*(a*q^2-a*p^2) := by
   have hsq : (p+1)^2≤q^2 := Nat.pow_le_pow_left (by omega) 2
@@ -54,6 +60,9 @@ theorem square_multiple_separation {a B K p q : ℕ} (ha : 1≤a)
   rw [Nat.mul_sub_left_distrib] at hmul
   exact hp.trans_le (Nat.mul_le_mul_left K (hbase.trans hmul))
 
+/--
+@isnad1 id=le.5h5v.s7.86955925ffff from=translated src=- shape=c90ac018 vocab=e8ad47f5
+-/
 theorem coefficient_card_le {S : Finset ℕ} {a lo B K : ℕ}
     (ha : 1≤a) (hB : 0<B) (hK : 0<K)
     (hmedium : ∀ p∈S, B<K*p)
@@ -76,6 +85,9 @@ theorem coefficient_card_le {S : Finset ℕ} {a lo B K : ℕ}
       omega
     exact square_multiple_separation ha (hmedium p hp) hpq
 
+/--
+@isnad1 id=le.4h5v.s7.2a852c2a24b7 from=translated src=- shape=c553f21a vocab=3f16b8dd
+-/
 theorem square_coefficient_le {B K n p a : ℕ} (hB : 0<B)
     (hp : B<K*p) (hn : n≤B^2+B) (heq : n=a*p^2) : a≤2*K^2 := by
   have hs : B^2<(K*p)^2 := Nat.pow_lt_pow_left hp (by omega)
@@ -92,6 +104,9 @@ def squareIncidences (K lo B : ℕ) : Finset (ℕ×ℕ) :=
   ((Ico lo (lo+B)).product (Icc 1 B)).filter
     (fun z => 0<z.1 ∧ B<K*z.2 ∧ z.2^2∣z.1)
 
+/--
+@isnad1 id=le.3h3v.s6.7471c8b68bcc from=translated src=- shape=a7536550 vocab=aaf99682
+-/
 theorem squareIncidences_card_le {K lo B : ℕ} (hK : 0<K) (hB : 0<B)
     (htop : lo+B≤B^2+B+1) : (squareIncidences K lo B).card≤(2*K^2)*K := by
   let S := squareIncidences K lo B
@@ -135,6 +150,9 @@ theorem squareIncidences_card_le {K lo B : ℕ} (hK : 0<K) (hB : 0<B)
     _ ≤ ∑ _a∈Icc 1 (2*K^2), K := sum_le_sum hfiber
     _ = (2*K^2)*K := by simp
 
+/--
+@isnad1 id=le.5h4v.s7.ec7aec1ad788 from=translated src=- shape=8cf61fb0 vocab=d45fb59c
+-/
 theorem floor_sum_le_odd_incidence_add {K lo B : ℕ} {P : Finset ℕ}
     (hK : 0<K) (hB : 0<B) (hlo : 0<lo) (htop : lo+B≤B^2+B+1)
     (hP : ∀ p∈P, p.Prime ∧ p≤B ∧ B<K*p) :

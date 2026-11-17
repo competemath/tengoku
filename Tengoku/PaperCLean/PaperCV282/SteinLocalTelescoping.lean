@@ -21,7 +21,9 @@ noncomputable section
 variable {Ω ι : Type*} [Fintype Ω] [Fintype ι] [DecidableEq ι]
 
 omit [Fintype Ω] in
-/-- The first difference between the full count and the outside count.-/
+/-- The first difference between the full count and the outside count.
+@isnad1 id=le.1h8v.s7.57816dfcaae8 from=translated src=- shape=90c2f296 vocab=9e087623
+-/
 theorem full_outside_difference_le (X : ι → Ω → Bool) (G : SimpleGraph ι)
     (i : ι) (f : ℕ → ℝ) {d : ℝ}
     (hd : ∀ k, |f (k + 1) - f k| ≤ d) (ω : Ω) :
@@ -35,7 +37,9 @@ theorem full_outside_difference_le (X : ι → Ω → Bool) (G : SimpleGraph ι)
   exact abs_sub_le_step_mul f hd _ _
 
 omit [Fintype Ω] in
-/-- On an active site only the other neighbours contribute to the displacement.-/
+/-- On an active site only the other neighbours contribute to the displacement.
+@isnad1 id=le.1h8v.s7.6f7986a97cac from=translated src=- shape=ca583f1e vocab=034d34e0
+-/
 theorem active_outside_difference_le (X : ι → Ω → Bool) (G : SimpleGraph ι)
     (i : ι) (f : ℕ → ℝ) {d : ℝ}
     (hd : ∀ k, |f (k + 1) - f k| ≤ d) (ω : Ω) :
@@ -55,7 +59,9 @@ theorem active_outside_difference_le (X : ι → Ω → Bool) (G : SimpleGraph �
     exact abs_sub_le_step_mul f hd _ _
   · simp [hi]
 
-/-- Literal one-site telescoping bound, with the true marginals of all neighbours.-/
+/-- Literal one-site telescoping bound, with the true marginals of all neighbours.
+@isnad1 id=le.2h8v.s8.a3f16165b84c from=translated src=- shape=1e20b55d vocab=8fae2350
+-/
 theorem local_stein_error_le (μ : FinitePMF Ω) (X : ι → Ω → Bool)
     (G : SimpleGraph ι) (hdep : HasExactDependencyGraph μ X G)
     (i : ι) (f : ℕ → ℝ) {d : ℝ}

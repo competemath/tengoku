@@ -40,17 +40,23 @@ The canonical increasing enumeration of the prime numbers at most `H`.-/
 noncomputable def smallPrime (H : ℕ) : Fin (count H) → ℕ :=
   fun i ↦ (primeOrderIso H i).1
 
-/-- Every enumerated coordinate is prime.-/
+/-- Every enumerated coordinate is prime.
+@isnad1 id=prime.0h2v.s3.8715e821cff7 from=translated src=- shape=5293442f vocab=0539a266
+-/
 theorem smallPrime_prime (H : ℕ) (i : Fin (count H)) :
     Nat.Prime (smallPrime H i) :=
   (primeOrderIso H i).2
 
-/-- Every enumerated prime lies below the inclusive cutoff.-/
+/-- Every enumerated prime lies below the inclusive cutoff.
+@isnad1 id=le.0h2v.s3.4611bd95c67d from=translated src=- shape=e58733e2 vocab=425a6686
+-/
 theorem smallPrime_le (H : ℕ) (i : Fin (count H)) :
     smallPrime H i ≤ H := by
   exact Nat.le_of_lt_succ (primeOrderIso H i).1.2
 
-/-- The canonical prime enumeration contains no repetitions.-/
+/-- The canonical prime enumeration contains no repetitions.
+@isnad1 id=injectiv.0h1v.s3.b74a3ea9fd5a from=translated src=- shape=b12b929a vocab=fcf164de
+-/
 theorem smallPrime_injective (H : ℕ) :
     Function.Injective (smallPrime H) := by
   intro i j hij
@@ -59,7 +65,9 @@ theorem smallPrime_injective (H : ℕ) :
   exact Fin.ext hij
 
 /--
-Every prime below the inclusive cutoff occurs in the canonical enumeration.-/
+Every prime below the inclusive cutoff occurs in the canonical enumeration.
+@isnad1 id=ex.2h2v.s4.ac705fc0a746 from=translated src=- shape=8c0b70cd vocab=d0f009e7
+-/
 theorem exists_smallPrime_eq_of_prime_le
     {H p : ℕ} (hp : Nat.Prime p) (hpH : p ≤ H) :
     ∃ i : Fin (count H), smallPrime H i = p := by
@@ -71,7 +79,9 @@ theorem exists_smallPrime_eq_of_prime_le
 
 /--
 Equivalently, the range of `smallPrime H` consists exactly of the primes at
-most `H`.-/
+most `H`.
+@isnad1 id=iff.0h2v.s4.82125bf0a94f from=translated src=- shape=1e0ffb10 vocab=b8f08aff
+-/
 theorem mem_range_smallPrime_iff {H p : ℕ} :
     p ∈ Set.range (smallPrime H) ↔ Nat.Prime p ∧ p ≤ H := by
   constructor
@@ -85,7 +95,9 @@ If every prime divisor of `s` is at most `H`, then every prime divisor of
 `s` occurs among the canonical small-prime coordinates.
 
 This is the divisor-coverage statement consumed by the defect-code
-representation argument.-/
+representation argument.
+@isnad1 id=ex.3h3v.s5.7225ca2eb376 from=translated src=- shape=ea364129 vocab=44ecc3fc
+-/
 theorem covers_primeDivisors
     {H s : ℕ}
     (hbounded : ∀ p, Nat.Prime p → p ∣ s → p ≤ H) :

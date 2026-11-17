@@ -20,7 +20,9 @@ noncomputable section
 
 /--
 For positive run length, the event counted by `startProbability` is exactly
-the solution fiber of the affine start system.-/
+the solution fiber of the affine start system.
+@isnad1 id=eq.1h3v.s7.d72d197b4268 from=translated src=- shape=b33a643b vocab=8e2b5e94
+-/
 theorem startProbability_eq_uniformSolutionProbability
     (N L x : ℕ) (hL : 0 < L) :
     startProbability N L x =
@@ -44,7 +46,9 @@ local instance startCompatibleDecidable (N L x : ℕ) :
 /--
 Exact finite-cylinder probability of a start.  A compatible affine system has
 probability equal to the quotient of the kernel size by the ambient sample
-space size; an incompatible system has probability zero.-/
+space size; an incompatible system has probability zero.
+@isnad1 id=eq.1h3v.s10.17d6c13d4bf4 from=translated src=- shape=4ccededa vocab=6061edb0
+-/
 theorem startProbability_eq_ite
     (N L x : ℕ) (hL : 0 < L) :
     startProbability N L x =

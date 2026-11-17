@@ -23,6 +23,9 @@ def channelFirstCoordinates (L a b : ℕ) (h : ℤ) : Finset ℤ :=
 def channelSecondCoordinates (L a b : ℕ) (h : ℤ) : Finset ℤ :=
   (channelCells L a b h).image Prod.snd
 
+/--
+@isnad1 id=injon.1h4v.s5.dc92a93e1a43 from=translated src=- shape=5dc44504 vocab=1344a2cc
+-/
 theorem fst_injOn_channelCells
     {L a b : ℕ} (hb : 0 < b) {h : ℤ} :
     Set.InjOn Prod.fst (↑(channelCells L a b h) : Set (ℤ × ℤ)) := by
@@ -40,6 +43,9 @@ theorem fst_injOn_channelCells
     (mul_eq_zero.mp hzero).resolve_left hb0
   omega
 
+/--
+@isnad1 id=injon.1h4v.s5.4e0ab41ff21d from=translated src=- shape=dfda6681 vocab=3b691a34
+-/
 theorem snd_injOn_channelCells
     {L a b : ℕ} (ha : 0 < a) {h : ℤ} :
     Set.InjOn Prod.snd (↑(channelCells L a b h) : Set (ℤ × ℤ)) := by
@@ -58,6 +64,9 @@ theorem snd_injOn_channelCells
     omega
   · exact hsnd
 
+/--
+@isnad1 id=le.4h5v.s6.2c99baa0ffbe from=translated src=- shape=ba0474b0 vocab=7a41a5a4
+-/
 theorem channelFirstCoordinates_subset_modClass
     {L a b : ℕ} (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
     {h : ℤ} {cell₀ : ℤ × ℤ}
@@ -83,6 +92,9 @@ theorem channelFirstCoordinates_subset_modClass
   simp only [mem_filter, mem_Ico]
   exact ⟨⟨hinterval.1, by omega⟩, hcongruence⟩
 
+/--
+@isnad1 id=le.4h5v.s6.198115176f8f from=translated src=- shape=bfe98f7b vocab=d11b68ad
+-/
 theorem channelSecondCoordinates_subset_modClass
     {L a b : ℕ} (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
     {h : ℤ} {cell₀ : ℤ × ℤ}
@@ -108,7 +120,9 @@ theorem channelSecondCoordinates_subset_modClass
   simp only [mem_filter, mem_Ico]
   exact ⟨⟨hinterval.1, by omega⟩, hcongruence⟩
 
-/-- Count a channel by its first coordinate, whose primitive step is `b`.-/
+/-- Count a channel by its first coordinate, whose primitive step is `b`.
+@isnad1 id=le.3h4v.s6.83d73724c95b from=translated src=- shape=e26497f4 vocab=4878fc1b
+-/
 theorem channelCells_card_cast_le_firstStep
     (L a b : ℕ) (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
     (h : ℤ) :
@@ -143,7 +157,9 @@ theorem channelCells_card_cast_le_firstStep
       exact_mod_cast hmono
     exact hmonoQ.trans hcount
 
-/-- Count a channel by its second coordinate, whose primitive step is `a`.-/
+/-- Count a channel by its second coordinate, whose primitive step is `a`.
+@isnad1 id=le.3h4v.s6.4d8c833dbc7a from=translated src=- shape=981c27d7 vocab=4878fc1b
+-/
 theorem channelCells_card_cast_le_secondStep
     (L a b : ℕ) (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
     (h : ℤ) :
@@ -180,7 +196,9 @@ theorem channelCells_card_cast_le_secondStep
 
 /--
 Primitive-channel lattice-point bound with step `q = max a b`, matching the
-geometric factor in Lemma 7.2.-/
+geometric factor in Lemma 7.2.
+@isnad1 id=le.3h4v.s6.7b573782d0ab from=translated src=- shape=0fd8e6bd vocab=ea781d26
+-/
 theorem channelCells_card_cast_le_maxStep
     (L a b : ℕ) (ha : 0 < a) (hb : 0 < b) (hab : a.Coprime b)
     (h : ℤ) :

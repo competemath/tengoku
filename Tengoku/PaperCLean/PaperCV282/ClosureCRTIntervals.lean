@@ -26,7 +26,9 @@ def integerSolutions {s : Finset ι} {r : ℕ} (residue : ι → ℤ) (modulus :
   (Ico a b).filter fun x => ∀ i ∈ T.1.toList, x ≡ residue i [ZMOD (modulus i : ℤ)]
 
 omit [Fintype ι] [DecidableEq ι] in
-/-- Only primes at most `M` can occur; thus the relevant prime family is always finite.-/
+/-- Only primes at most `M` can occur; thus the relevant prime family is always finite.
+@isnad1 id=le.3h7v.s6.49a57b5c8fb2 from=translated src=- shape=5b18425a vocab=ec664d73
+-/
 theorem modulus_le_of_admissible {s : Finset ι} {r M : ℕ} (modulus : ι → ℕ)
     (hprime : ∀ i, (modulus i).Prime) (T : UnorderedCertificate s r)
     (hT : CertificateAdmissible modulus M T) {i : ι} (hi : i ∈ T.1) :
@@ -38,7 +40,9 @@ theorem modulus_le_of_admissible {s : Finset ι} {r M : ℕ} (modulus : ι → �
   exact (Nat.le_of_dvd hpos hdiv).trans hT.2
 
 omit [Fintype ι] [DecidableEq ι] in
-/-- Two integer solutions belong to one class modulo the full product.-/
+/-- Two integer solutions belong to one class modulo the full product.
+@isnad1 id=modeq.3h6v.s6.2f530722d48b from=translated src=- shape=3be98066 vocab=a164faa9
+-/
 theorem integer_solutions_modEq
     (residue : ι → ℤ) (modulus : ι → ℕ) (indices : List ι)
     (hcoprime : indices.Pairwise (Nat.Coprime on modulus)) {x y : ℤ}
@@ -52,7 +56,9 @@ theorem integer_solutions_modEq
   intro i hi
   exact Nat.modEq_zero_iff_dvd.mpr (Int.natCast_dvd.mp ((hx i hi).trans (hy i hi).symm).dvd)
 
-/-- The exact scaled one-coordinate bound for real interval constants.-/
+/-- The exact scaled one-coordinate bound for real interval constants.
+@isnad1 id=le.5h10v.s7.fee5dcd17d1d from=translated src=- shape=d90c79d2 vocab=a2fc0257
+-/
 theorem integerSolutions_card_le
     {s : Finset ι} {r : ℕ} (residue : ι → ℤ) (modulus : ι → ℕ)
     (hprime : ∀ i, (modulus i).Prime) (a b : ℤ) (C₀ : ℝ) (M : ℕ)
@@ -95,7 +101,9 @@ theorem integerSolutions_card_le
       add_le_add (div_le_div_of_nonneg_right hlen hposR.le) ((one_le_div₀ hposR).mpr hPM)
     _ = _ := by ring
 
-/-- Cartesian products retain the square of the same constant.-/
+/-- Cartesian products retain the square of the same constant.
+@isnad1 id=le.7h13v.s7.c32e72ceb6f8 from=translated src=- shape=ca44ec55 vocab=820a3780
+-/
 theorem rectangleSolutions_card_le
     {s : Finset ι} {r : ℕ} (residue₁ residue₂ : ι → ℤ) (modulus : ι → ℕ)
     (hprime : ∀ i, (modulus i).Prime) (a₁ b₁ a₂ b₂ : ℤ) (C₀ : ℝ) (M : ℕ)

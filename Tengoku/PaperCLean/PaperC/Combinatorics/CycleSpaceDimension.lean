@@ -78,6 +78,9 @@ inductive PresentedReachable (left right : E → V) : V → V → Prop
 def endpointVector (u v : V) : V → F₂ :=
   Pi.single u 1 + Pi.single v 1
 
+/--
+@isnad1 id=eq.0h2v.s5.a64f109c527f from=translated src=- shape=bc63d785 vocab=1da02df1
+-/
 @[simp]
 theorem endpointVector_self (v : V) :
     endpointVector v v = 0 := by
@@ -85,20 +88,27 @@ theorem endpointVector_self (v : V) :
   by_cases h : v = w <;>
     simp [endpointVector, Pi.single_apply, h] <;> decide
 
+/--
+@isnad1 id=eq.0h4v.s6.e3c09930aa9d from=translated src=- shape=69dcebbd vocab=8f9dafa5
+-/
 theorem endpointVector_add_endpointVector (u v w : V) :
     endpointVector u v + endpointVector v w = endpointVector u w := by
   ext z
   simp only [endpointVector, Pi.add_apply, Pi.single_apply, Pi.zero_apply]
   split_ifs <;> decide
 
-/-- Every displayed edge vector belongs to the range of the incidence map.-/
+/-- Every displayed edge vector belongs to the range of the incidence map.
+@isnad1 id=mem.0h5v.s8.30091f0cc756 from=translated src=- shape=2bd76c3a vocab=378af693
+-/
 theorem incidenceVector_mem_range
     (left right : E → V) (e : E) :
     incidenceVector left right e ∈ LinearMap.range (incidenceMap left right) := by
   refine ⟨Pi.single e 1, ?_⟩
   rw [incidenceMap, Fintype.linearCombination_apply_single, one_smul]
 
-/-- An adjacency step contributes its endpoint vector to the incidence range.-/
+/-- An adjacency step contributes its endpoint vector to the incidence range.
+@isnad1 id=mem.1h6v.s8.1296b1848946 from=translated src=- shape=0ac361f6 vocab=14009ae3
+-/
 theorem endpointVector_mem_range_of_adjacent
     (left right : E → V) {u v : V}
     (h : PresentedAdjacent left right u v) :
@@ -109,7 +119,9 @@ theorem endpointVector_mem_range_of_adjacent
   · have hmem := incidenceVector_mem_range left right e
     simpa [endpointVector, incidenceVector, he.1, he.2, add_comm] using hmem
 
-/-- A path telescopes in characteristic two.-/
+/-- A path telescopes in characteristic two.
+@isnad1 id=mem.1h6v.s8.8a0f224cd2b5 from=translated src=- shape=0ac361f6 vocab=238a0ea1
+-/
 theorem endpointVector_mem_range_of_reachable
     (left right : E → V) {u v : V}
     (h : PresentedReachable left right u v) :
@@ -133,6 +145,9 @@ def rootedEndpointVector
     (v : NonRoot component root) : V → F₂ :=
   endpointVector v.1 (root (component v.1))
 
+/--
+@isnad1 id=eq.0h5v.s6.e2e4415e0648 from=translated src=- shape=603b9746 vocab=aeaf6281
+-/
 @[simp]
 theorem rootedEndpointVector_apply_self
     (component : V → C) (root : C → V)
@@ -140,6 +155,9 @@ theorem rootedEndpointVector_apply_self
     rootedEndpointVector component root v v.1 = 1 := by
   simp [rootedEndpointVector, endpointVector, v.2]
 
+/--
+@isnad1 id=eq.2h6v.s6.066030eb9df7 from=translated src=- shape=c1426d3f vocab=aeaf6281
+-/
 theorem rootedEndpointVector_apply_ne
     (component : V → C) (root : C → V)
     (hroot : ∀ c : C, component (root c) = c)
@@ -157,7 +175,9 @@ theorem rootedEndpointVector_apply_ne
     rw [hc, h]
   simp [rootedEndpointVector, endpointVector, hwv', hrootne]
 
-/-- The root-to-vertex endpoint vectors are linearly independent.-/
+/-- The root-to-vertex endpoint vectors are linearly independent.
+@isnad1 id=linearin.1h4v.s7.8fa3cd408b5a from=translated src=- shape=750f4820 vocab=f795db74
+-/
 theorem linearIndependent_rootedEndpointVector
     (component : V → C) (root : C → V)
     (hroot : ∀ c : C, component (root c) = c) :
@@ -183,7 +203,9 @@ def rootVertexEquiv
     apply Subtype.ext
     exact v.2.symm
 
-/-- There are exactly `|V| - |C|` non-root vertices.-/
+/-- There are exactly `|V| - |C|` non-root vertices.
+@isnad1 id=eq.1h4v.s6.679456772ede from=translated src=- shape=7269f33c vocab=e6f5d82f
+-/
 theorem card_nonRoot
     (component : V → C) (root : C → V)
     (hroot : ∀ c : C, component (root c) = c) :
@@ -195,7 +217,9 @@ theorem card_nonRoot
 
 /--
 Connectivity to the selected component roots forces the incidence rank to be at least
-`|V| - |C|`.-/
+`|V| - |C|`.
+@isnad1 id=le.2h7v.s10.957530fc6821 from=translated src=- shape=8a4bd648 vocab=5ec74e16
+-/
 theorem card_vertices_sub_components_le_finrank_incidenceRange
     (left right : E → V)
     (component : V → C) (root : C → V)
@@ -221,7 +245,9 @@ theorem card_vertices_sub_components_le_finrank_incidenceRange
 
 /--
 The truncation-safe form of the cyclomatic bound.  The number of non-root vertices is
-`|V| - |C|`, so rank-nullity gives nullity at most `|E| - (|V| - |C|)`.-/
+`|V| - |C|`, so rank-nullity gives nullity at most `|E| - (|V| - |C|)`.
+@isnad1 id=le.2h7v.s9.3d3c72be1099 from=translated src=- shape=3994a805 vocab=d4b0fed0
+-/
 theorem finrank_cycleSpace_le_card_edges_sub_nonRoot
     (left right : E → V)
     (component : V → C) (root : C → V)
@@ -245,7 +271,9 @@ theorem finrank_cycleSpace_le_card_edges_sub_nonRoot
 The required cyclomatic dimension bound for an arbitrary finite edge presentation.
 
 The expression uses natural-number subtraction, matching the convention in
-`GraphCycleRank`.  The root section ensures `|C| ≤ |V|`.-/
+`GraphCycleRank`.  The root section ensures `|C| ≤ |V|`.
+@isnad1 id=le.2h7v.s9.2f0f9500a77a from=translated src=- shape=03b19c05 vocab=ccd7ba15
+-/
 theorem finrank_cycleSpace_le_cyclomaticNumber
     (left right : E → V)
     (component : V → C) (root : C → V)
@@ -266,7 +294,9 @@ theorem finrank_cycleSpace_le_cyclomaticNumber
 
 /--
 Lemma 14.7, nullity form, with the graph connectivity hypothesis in place of the former
-dimension hypothesis `hcycle`.-/
+dimension hypothesis `hcycle`.
+@isnad1 id=le.4h9v.s10.caecc21aedcf from=translated src=- shape=68375dc7 vocab=13852e72
+-/
 theorem finrank_ker_representedEdgeMap_le_cyclomaticNumber
     (vertexVector : V → P → F₂) (left right : E → V)
     (component : V → C) (root : C → V)
@@ -284,7 +314,9 @@ theorem finrank_ker_representedEdgeMap_le_cyclomaticNumber
         left right component root hroot hconnected)
 
 /--
-Lemma 14.7, nullity form with truncation-safe cyclomatic arithmetic.-/
+Lemma 14.7, nullity form with truncation-safe cyclomatic arithmetic.
+@isnad1 id=le.4h9v.s10.c9a47c729b73 from=translated src=- shape=29559d8a vocab=2fbe1ed3
+-/
 theorem finrank_ker_representedEdgeMap_le_card_edges_sub_nonRoot
     (vertexVector : V → P → F₂) (left right : E → V)
     (component : V → C) (root : C → V)
@@ -303,7 +335,9 @@ theorem finrank_ker_representedEdgeMap_le_card_edges_sub_nonRoot
 
 /--
 Lemma 14.7 in the paper's rank form: private pivots on every non-root vertex give rank at least
-`|V| - |C|`.-/
+`|V| - |C|`.
+@isnad1 id=le.4h9v.s10.1d4adebedc55 from=translated src=- shape=26ace099 vocab=59ab0291
+-/
 theorem card_vertices_sub_components_le_rank_representedEdgeMap
     (vertexVector : V → P → F₂) (left right : E → V)
     (component : V → C) (root : C → V)

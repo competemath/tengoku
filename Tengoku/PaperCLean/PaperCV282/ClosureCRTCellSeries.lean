@@ -18,7 +18,9 @@ open scoped BigOperators
 
 noncomputable section
 
-/-- Monotonicity of the entire factorial series, with summability established.-/
+/-- Monotonicity of the entire factorial series, with summability established.
+@isnad1 id=le.2h2v.s6.8814caeda550 from=translated src=- shape=58947c1f vocab=6a173076
+-/
 theorem factorialSeries_mono {x y : ℝ} (hx : 0 ≤ x) (hxy : x ≤ y) :
     (∑' r : ℕ, x ^ r / r.factorial) ≤ ∑' r : ℕ, y ^ r / r.factorial := by
   exact (NormedSpace.expSeries_div_hasSum_exp x).summable.tsum_le_tsum
@@ -28,7 +30,9 @@ theorem factorialSeries_mono {x y : ℝ} (hx : 0 ≤ x) (hxy : x ≤ y) :
 variable {π κ : Type*} [Fintype π] [DecidableEq π] [DecidableEq κ]
 
 omit [DecidableEq π] [DecidableEq κ] in
-/-- Regrouping real local weights counts every actual cell above each prime.-/
+/-- Regrouping real local weights counts every actual cell above each prime.
+@isnad1 id=eq.0h6v.s7.237f7a645768 from=translated src=- shape=b83d9235 vocab=204bb763
+-/
 theorem sum_labeledCell_weight (cells : π → Finset κ) (modulus : π → ℕ) (u : ℝ) (D : ℕ) :
     (∑ z : LabeledCell cells, u / (labeledCellModulus cells modulus z : ℝ) ^ D) =
       u * ∑ p : π, ((cells p).card : ℝ) / (modulus p : ℝ) ^ D := by
@@ -41,7 +45,9 @@ theorem sum_labeledCell_weight (cells : π → Finset κ) (modulus : π → ℕ)
   ring
 
 /-- Article 3.11 in one coordinate, including the complete unordered series.
-The explicit implicit constant is `C₀+1`, for every real `u≥0`.-/
+The explicit implicit constant is `C₀+1`, for every real `u≥0`.
+@isnad1 id=le.6h11v.s8.4597b1923186 from=translated src=- shape=5bdee2b0 vocab=2b01f9db
+-/
 theorem lemma_three_eleven_interval
     (cells : π → Finset κ) (E modulus : π → ℕ) (residue : LabeledCell cells → ℤ)
     (hprime : ∀ p, (modulus p).Prime) (hE : ∀ p, (cells p).card ≤ E p)
@@ -71,7 +77,9 @@ theorem lemma_three_eleven_interval
     _ ≤ _ := mul_le_mul_of_nonneg_left (factorialSeries_mono hnonneg hbase) (by positivity)
 
 /-- Article 3.11 in two coordinates, with at most `E` actual cells per prime.
-The explicit constant is `(C₀+1)²`, uniformly for every real `u≥0`.-/
+The explicit constant is `(C₀+1)²`, uniformly for every real `u≥0`.
+@isnad1 id=le.8h14v.s9.c2332aab85e5 from=translated src=- shape=98e50824 vocab=d9892d24
+-/
 theorem lemma_three_eleven_rectangle
     (cells : π → Finset κ) (E : ℕ) (modulus : π → ℕ)
     (residue₁ residue₂ : LabeledCell cells → ℤ)

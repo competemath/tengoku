@@ -32,23 +32,35 @@ variable {ι : Type*}
 def translatedShift (U : ℕ) (n : ι → ℕ) (i : ι) : ℤ :=
   (n i : ℤ) - (U : ℤ)
 
+/--
+@isnad1 id=eq.0h4v.s5.80cb24feff7f from=translated src=- shape=557c3fdb vocab=192cf879
+-/
 @[simp]
 theorem base_add_translatedShift (U : ℕ) (n : ι → ℕ) (i : ι) :
     (U : ℤ) + translatedShift U n i = n i := by
   simp [translatedShift]
 
+/--
+@isnad1 id=le.1h4v.s4.a13a6ebb3d92 from=translated src=- shape=cf0858ce vocab=5c2c864e
+-/
 theorem translatedShift_nonneg
     {U : ℕ} {n : ι → ℕ} {i : ι} (hU : U ≤ n i) :
     0 ≤ translatedShift U n i := by
   dsimp [translatedShift]
   omega
 
+/--
+@isnad1 id=le.1h5v.s5.207429cd6daf from=translated src=- shape=76a63526 vocab=cf66bfdd
+-/
 theorem translatedShift_le
     {U R : ℕ} {n : ι → ℕ} {i : ι} (hn : n i ≤ U + R) :
     translatedShift U n i ≤ R := by
   dsimp [translatedShift]
   omega
 
+/--
+@isnad1 id=le.2h5v.s5.e6eca1707ab7 from=translated src=- shape=3805a123 vocab=a6b9302f
+-/
 theorem abs_translatedShift_le
     {U R : ℕ} {n : ι → ℕ} {i : ι}
     (hU : U ≤ n i) (hn : n i ≤ U + R) :
@@ -56,6 +68,9 @@ theorem abs_translatedShift_le
   rw [abs_of_nonneg (translatedShift_nonneg hU)]
   exact translatedShift_le hn
 
+/--
+@isnad1 id=injectiv.1h3v.s4.f7dbfde0cd36 from=translated src=- shape=c37d0940 vocab=65ed25e5
+-/
 theorem translatedShift_injective
     (U : ℕ) {n : ι → ℕ} (hn : Function.Injective n) :
     Function.Injective (translatedShift U n) := by
@@ -66,20 +81,26 @@ theorem translatedShift_injective
     omega
   exact_mod_cast hcast
 
-/-- Evaluation of the translated split product at the base point.-/
+/-- Evaluation of the translated split product at the base point.
+@isnad1 id=eq.0h3v.s5.f46a0f4f47f9 from=translated src=- shape=c07ec1a7 vocab=b83710b7
+-/
 theorem prod_base_add_translatedShift [Fintype ι] (U : ℕ) (n : ι → ℕ) :
     (∏ i, ((U : ℤ) + translatedShift U n i)) =
       ∏ i, (n i : ℤ) := by
   simp [translatedShift]
 
-/-- Casting a finite product of natural numbers to the integers.-/
+/-- Casting a finite product of natural numbers to the integers.
+@isnad1 id=eq.0h2v.s5.2d81803b7486 from=translated src=- shape=3f297ea1 vocab=ab643504
+-/
 theorem prod_natCast [Fintype ι] (n : ι → ℕ) :
     ((∏ i, n i : ℕ) : ℤ) = ∏ i, (n i : ℤ) := by
   simp
 
 /--
 If the original product is a square in `ℕ`, evaluation of the translated
-split product at `U` is a square in `ℤ`.-/
+split product at `U` is a square in `ℤ`.
+@isnad1 id=ex.1h3v.s6.ae6ae7fd0808 from=translated src=- shape=2577428d vocab=c815a129
+-/
 theorem translatedProduct_isSquare
     [Fintype ι]
     (U : ℕ) (n : ι → ℕ)
@@ -93,7 +114,9 @@ theorem translatedProduct_isSquare
 
 /--
 Packaged input conditions for the split-product form of Runge: the shifts are
-distinct, bounded by `R`, and their product at `U` is an integer square.-/
+distinct, bounded by `R`, and their product at `U` is an integer square.
+@isnad1 id=and.4h4v.s7.9e9ac077632a from=translated src=- shape=14547548 vocab=d23d5dee
+-/
 theorem translatedRungeInput
     [Fintype ι]
     {U R : ℕ} {n : ι → ℕ}

@@ -38,19 +38,27 @@ def largeMembers
     (family : Finset ι) (size : ι → ℕ) (K : ℕ) : Finset ι :=
   family.filter fun i ↦ K < size i
 
+/--
+@isnad1 id=iff.0h5v.s5.1050ccaf61ca from=translated src=- shape=8ea25d71 vocab=706f8a46
+-/
 @[simp]
 theorem mem_smallMembers
     {family : Finset ι} {size : ι → ℕ} {K : ℕ} {i : ι} :
     i ∈ smallMembers family size K ↔ i ∈ family ∧ size i ≤ K := by
   simp [smallMembers]
 
+/--
+@isnad1 id=iff.0h5v.s5.d1b3cd7f7a9f from=translated src=- shape=d57e9d7d vocab=13a805e4
+-/
 @[simp]
 theorem mem_largeMembers
     {family : Finset ι} {size : ι → ℕ} {K : ℕ} {i : ι} :
     i ∈ largeMembers family size K ↔ i ∈ family ∧ K < size i := by
   simp [largeMembers]
 
-/-- The small and large members give an exact partition of the family.-/
+/-- The small and large members give an exact partition of the family.
+@isnad1 id=eq.0h4v.s5.c71b07593b0a from=translated src=- shape=cecdb104 vocab=637cc404
+-/
 theorem smallMembers_union_largeMembers
     [DecidableEq ι]
     (family : Finset ι) (size : ι → ℕ) (K : ℕ) :
@@ -64,7 +72,9 @@ theorem smallMembers_union_largeMembers
     · exact Or.inl ⟨hi, hsmall⟩
     · exact Or.inr ⟨hi, Nat.lt_of_not_ge hsmall⟩
 
-/-- No member can lie on both sides of the size cutoff.-/
+/-- No member can lie on both sides of the size cutoff.
+@isnad1 id=disjoint.0h4v.s4.3c57895ebb77 from=translated src=- shape=f0a95aaf vocab=808c4242
+-/
 theorem disjoint_smallMembers_largeMembers
     (family : Finset ι) (size : ι → ℕ) (K : ℕ) :
     Disjoint (smallMembers family size K) (largeMembers family size K) := by
@@ -74,7 +84,9 @@ theorem disjoint_smallMembers_largeMembers
   have hlarge := (mem_largeMembers.mp hiLarge).2
   omega
 
-/-- Cardinality identity associated with the small/large partition.-/
+/-- Cardinality identity associated with the small/large partition.
+@isnad1 id=eq.0h4v.s5.12aee837a4d0 from=translated src=- shape=bb14c96d vocab=2cdaf980
+-/
 theorem card_smallMembers_add_card_largeMembers
     (family : Finset ι) (size : ι → ℕ) (K : ℕ) :
     (smallMembers family size K).card +
@@ -86,7 +98,9 @@ theorem card_smallMembers_add_card_largeMembers
 
 /--
 Every large member contributes at least `K + 1` to the total mass.
-This is the quantitative pigeonhole estimate used in Theorem 8.1.-/
+This is the quantitative pigeonhole estimate used in Theorem 8.1.
+@isnad1 id=le.0h4v.s5.cb166ec67ec6 from=translated src=- shape=8a26edc1 vocab=8428e321
+-/
 theorem card_largeMembers_mul_succ_le_sum
     (family : Finset ι) (size : ι → ℕ) (K : ℕ) :
     (largeMembers family size K).card * (K + 1) ≤
@@ -105,7 +119,9 @@ theorem card_largeMembers_mul_succ_le_sum
       intro i hi
       exact (mem_largeMembers.mp hi).1
 
-/-- With total mass at most `budget`, at most `budget / (K + 1)` members are large.-/
+/-- With total mass at most `budget`, at most `budget / (K + 1)` members are large.
+@isnad1 id=le.1h5v.s5.e454491a5087 from=translated src=- shape=3f3ba1ec vocab=71d315b1
+-/
 theorem card_largeMembers_le_budget_div
     (family : Finset ι) (size : ι → ℕ) (K budget : ℕ)
     (hsum : (∑ i ∈ family, size i) ≤ budget) :
@@ -116,7 +132,9 @@ theorem card_largeMembers_le_budget_div
 
 /--
 If the family is larger than the maximum possible large part by `target`,
-then at least `target` of its members have size at most `K`.-/
+then at least `target` of its members have size at most `K`.
+@isnad1 id=le.2h6v.s6.b88cbe3b09be from=translated src=- shape=e84cea34 vocab=123a3c1c
+-/
 theorem target_le_card_smallMembers
     (family : Finset ι) (size : ι → ℕ) (K budget target : ℕ)
     (hsum : (∑ i ∈ family, size i) ≤ budget)
@@ -138,7 +156,9 @@ variable (G : SimpleGraph V) [DecidableRel G.Adj]
 
 /--
 The support sizes of any finite subfamily of connected components sum to
-at most the cardinality of the ambient vertex set.-/
+at most the cardinality of the ambient vertex set.
+@isnad1 id=le.0h3v.s6.2a16cc60b74c from=translated src=- shape=a657fb77 vocab=682a1081
+-/
 theorem sum_component_support_sizes_le
     (family : Finset G.ConnectedComponent) :
     (∑ C ∈ family, Fintype.card C.supp) ≤ Fintype.card V := by
@@ -153,7 +173,9 @@ theorem sum_component_support_sizes_le
 /--
 Paper-facing extraction lemma.  A component family with enough members
 beyond the quotient bound contains `target` components supported on at most
-`K` vertices each.-/
+`K` vertices each.
+@isnad1 id=le.1h5v.s6.8078fee944a5 from=translated src=- shape=9d4cd6c9 vocab=516df68e
+-/
 theorem target_small_components
     (family : Finset G.ConnectedComponent) (K target : ℕ)
     (hfamily :

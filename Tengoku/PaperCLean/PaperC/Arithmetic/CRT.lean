@@ -23,7 +23,9 @@ variable {ι : Type*}
 
 /--
 Any two natural numbers satisfying the same pairwise-coprime CRT certificate
-are congruent modulo the product of its moduli.-/
+are congruent modulo the product of its moduli.
+@isnad1 id=modeq.3h6v.s6.a7ced832ce90 from=translated src=- shape=c26086d6 vocab=274640eb
+-/
 theorem solutions_modEq
     (residue modulus : ι → ℕ) (indices : List ι)
     (hcoprime : indices.Pairwise (Nat.Coprime on modulus))
@@ -41,7 +43,9 @@ theorem solutions_modEq
 
 /--
 Membership in a CRT certificate is equivalent to membership in the single
-residue class represented by `Nat.chineseRemainderOfList`.-/
+residue class represented by `Nat.chineseRemainderOfList`.
+@isnad1 id=iff.1h5v.s6.f26eb2f2e035 from=translated src=- shape=d2aaf8a1 vocab=9330240b
+-/
 theorem satisfies_iff_modEq_representative
     (residue modulus : ι → ℕ) (indices : List ι)
     (hcoprime : indices.Pairwise (Nat.Coprime on modulus))
@@ -69,7 +73,9 @@ theorem satisfies_iff_modEq_representative
 Integer-congruence interface for the same certificate.  This is the bridge
 between the natural-number CRT API and the interval counts, which use
 `Int.ModEq`.  The variable itself and all residues/moduli are natural, while
-the displayed congruences are their casts to `ℤ`.-/
+the displayed congruences are their casts to `ℤ`.
+@isnad1 id=iff.1h5v.s6.6efbe2ac8f27 from=translated src=- shape=ab4ca863 vocab=24aa7c06
+-/
 theorem satisfies_iff_intModEq_representative
     (residue modulus : ι → ℕ) (indices : List ι)
     (hcoprime : indices.Pairwise (Nat.Coprime on modulus))
@@ -86,7 +92,9 @@ theorem satisfies_iff_intModEq_representative
 
 /--
 The canonical CRT representative lies strictly below the product modulus when
-all selected moduli are nonzero.-/
+all selected moduli are nonzero.
+@isnad1 id=lt.2h4v.s6.235724687244 from=translated src=- shape=b0a329a9 vocab=38868745
+-/
 theorem representative_lt_product
     (residue modulus : ι → ℕ) (indices : List ι)
     (hcoprime : indices.Pairwise (Nat.Coprime on modulus))

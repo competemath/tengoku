@@ -25,6 +25,9 @@ def shiftedKernelRangeValues (B h X R S : ℕ) : Finset ℕ :=
     (R ≤ largeOddKernel B n ∧ largeOddKernel B n < 2 * R) ∧
       (S ≤ largeOddKernel B (n + h) ∧ largeOddKernel B (n + h) < 2 * S)
 
+/--
+@isnad1 id=iff.0h6v.s6.e31e846e8326 from=translated src=- shape=5d36aaec vocab=f0815eb0
+-/
 theorem mem_shiftedKernelRangeValues {B h X R S n : ℕ} :
     n ∈ shiftedKernelRangeValues B h X R S ↔
       (X ≤ n ∧ n < 2 * X) ∧
@@ -42,7 +45,9 @@ def quotientBoxCover (B h X R S : ℕ) : Finset ℕ :=
     (admissibleSecondQuotients B X S).biUnion fun q' =>
       (boxSolutions q q' h R (2 * R) S (2 * S)).image fun rs => q * rs.1
 
-/-- Every true shifted pair enters the affine cover with its canonical two quotients.-/
+/-- Every true shifted pair enters the affine cover with its canonical two quotients.
+@isnad1 id=le.2h5v.s5.cc3f8eb72a22 from=translated src=- shape=4386ae31 vocab=a55abf86
+-/
 theorem shiftedKernelRangeValues_subset_quotientBoxCover
     (B h X R S : ℕ) (hX : 0 < X) (hhX : h ≤ X) :
     shiftedKernelRangeValues B h X R S ⊆ quotientBoxCover B h X R S := by
@@ -73,7 +78,9 @@ theorem shiftedKernelRangeValues_subset_quotientBoxCover
   refine ⟨kernelQuotient B (n + h), hq', Finset.mem_image.mpr ?_⟩
   exact ⟨(largeOddKernel B n, largeOddKernel B (n + h)), hbox, kernelQuotient_mul_kernel B n⟩
 
-/-- The canonical cover gives a sum of fibre counts without requiring injectivity of the cover.-/
+/-- The canonical cover gives a sum of fibre counts without requiring injectivity of the cover.
+@isnad1 id=le.2h5v.s6.97483829e2d3 from=translated src=- shape=326c18f9 vocab=4b2eb67c
+-/
 theorem card_shiftedKernelRangeValues_le_sum_boxes
     (B h X R S : ℕ) (hX : 0 < X) (hhX : h ≤ X) :
     (shiftedKernelRangeValues B h X R S).card ≤
@@ -87,7 +94,9 @@ theorem card_shiftedKernelRangeValues_le_sum_boxes
   refine Finset.card_biUnion_le.trans (Finset.sum_le_sum fun q _ => ?_)
   exact Finset.card_biUnion_le.trans (Finset.sum_le_sum fun q' _ => Finset.card_image_le)
 
-/-- Finite pair count in terms of the two quotient populations and one common fibre bound.-/
+/-- Finite pair count in terms of the two quotient populations and one common fibre bound.
+@isnad1 id=le.3h5v.s7.0c65a8f24443 from=translated src=- shape=d7e3ec23 vocab=d42e0eaf
+-/
 theorem card_shiftedKernelRangeValues_le_quotient_counts
     (B h X R S : ℕ) (hX : 0 < X) (hh : 0 < h) (hhX : h ≤ X) :
     ((shiftedKernelRangeValues B h X R S).card : ℝ) ≤
@@ -119,7 +128,9 @@ theorem card_shiftedKernelRangeValues_le_quotient_counts
       ring
     _ ≤ _ := by gcongr
 
-/-- The finite shifted-kernel estimate in two specified ranges, before any dyadic summation.-/
+/-- The finite shifted-kernel estimate in two specified ranges, before any dyadic summation.
+@isnad1 id=le.5h5v.s8.30dff98d9889 from=translated src=- shape=8d22992b vocab=5e1581e7
+-/
 theorem card_shiftedKernelRangeValues_le_sqrt_fibres
     (B h X R S : ℕ) (hX : 0 < X) (hh : 0 < h) (hhX : h ≤ X)
     (hR : 0 < R) (hS : 0 < S) :

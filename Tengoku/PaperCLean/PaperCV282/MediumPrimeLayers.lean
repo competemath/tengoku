@@ -18,6 +18,9 @@ open scoped BigOperators
 def mediumPrimes (B : ℕ) : Finset ℕ :=
   smallPrimesUpTo B \ smallPrimesUpTo (B / 11)
 
+/--
+@isnad1 id=iff.0h2v.s5.89347283a441 from=translated src=- shape=6f24c536 vocab=6ef55e2d
+-/
 theorem mem_mediumPrimes {B p : ℕ} :
     p ∈ mediumPrimes B ↔ p.Prime ∧ p ≤ B ∧ B < 11 * p := by
   simp only [mediumPrimes, mem_sdiff, mem_smallPrimesUpTo]
@@ -31,11 +34,15 @@ theorem mem_mediumPrimes {B p : ℕ} :
       (Nat.div_lt_iff_lt_mul (by decide : 0 < 11)).mpr (by simpa only [mul_comm] using hB)
     exact ⟨⟨hp,hpB⟩,by omega⟩
 
-/-- No medium prime contributes more than ten multiples to the floor-sum.-/
+/-- No medium prime contributes more than ten multiples to the floor-sum.
+@isnad1 id=lt.1h2v.s5.1d5623184c15 from=translated src=- shape=25844266 vocab=b1399a14
+-/
 theorem floor_lt_eleven {B p : ℕ} (hp : p ∈ mediumPrimes B) : B / p < 11 :=
   (Nat.div_lt_iff_lt_mul (mem_mediumPrimes.mp hp).1.pos).mpr (mem_mediumPrimes.mp hp).2.2
 
-/-- The exact ten-layer decomposition of a medium prime's floor weight.-/
+/-- The exact ten-layer decomposition of a medium prime's floor weight.
+@isnad1 id=eq.1h2v.s6.cb766eb989db from=translated src=- shape=40d533ca vocab=e43f16cf
+-/
 theorem floor_eq_layers {B p : ℕ} (hp : p ∈ mediumPrimes B) :
     B / p = ∑ j ∈ Icc 1 10, if j ≤ B / p then 1 else 0 := by
   have hsmall := floor_lt_eleven hp
@@ -46,7 +53,9 @@ theorem floor_eq_layers {B p : ℕ} (hp : p ∈ mediumPrimes B) :
   rw [← sum_filter, hfilter]
   simp
 
-/-- A fixed layer is precisely a difference of inclusive prime intervals.-/
+/-- A fixed layer is precisely a difference of inclusive prime intervals.
+@isnad1 id=eq.1h2v.s6.bd400b758869 from=translated src=- shape=e32118b5 vocab=457add4e
+-/
 theorem layer_primes_eq {B j : ℕ} (hj : j ∈ Icc 1 10) :
     (mediumPrimes B).filter (fun p => j ≤ B / p) =
       smallPrimesUpTo (B / j) \ smallPrimesUpTo (B / 11) := by
@@ -70,7 +79,9 @@ theorem layer_primes_eq {B j : ℕ} (hj : j ∈ Icc 1 10) :
     exact ⟨⟨hp,hpB,hmed⟩,
       (Nat.le_div_iff_mul_le hp.pos).mpr (by simpa only [mul_comm] using hpj')⟩
 
-/-- Counting a layer gives exactly pi(B/j)-pi(B/11).-/
+/-- Counting a layer gives exactly pi(B/j)-pi(B/11).
+@isnad1 id=eq.1h2v.s6.1c52779b0948 from=translated src=- shape=cfbd4bc5 vocab=a2a3d5df
+-/
 theorem layer_card {B j : ℕ} (hj : j ∈ Icc 1 10) :
     ((mediumPrimes B).filter (fun p => j ≤ B / p)).card =
       PrimesUpTo.count (B / j) - PrimesUpTo.count (B / 11) := by
@@ -82,7 +93,9 @@ theorem layer_card {B j : ℕ} (hj : j ∈ Icc 1 10) :
     exact mem_smallPrimesUpTo.mpr ⟨(mem_smallPrimesUpTo.mp hp).1,
       (mem_smallPrimesUpTo.mp hp).2.trans hd⟩
 
-/-- The exact floor-sum identity preceding companion equation (E.3).-/
+/-- The exact floor-sum identity preceding companion equation (E.3).
+@isnad1 id=eq.0h1v.s6.5d18cced836b from=translated src=- shape=575d82be vocab=b9f1f629
+-/
 theorem floor_sum_eq_prime_layers (B : ℕ) :
     ∑ p ∈ mediumPrimes B, B / p =
       ∑ j ∈ Icc 1 10, (PrimesUpTo.count (B / j) - PrimesUpTo.count (B / 11)) := by
@@ -96,7 +109,9 @@ theorem floor_sum_eq_prime_layers (B : ℕ) :
       rw [← sum_filter]
       simpa using layer_card (B := B) hj
 
-/-- Exact arithmetic lower bound for the odd incidence count in a quadratic window.-/
+/-- Exact arithmetic lower bound for the odd incidence count in a quadratic window.
+@isnad1 id=le.3h2v.s7.a3a14b276a83 from=translated src=- shape=e2fda2d0 vocab=13dc3b3c
+-/
 theorem prime_layers_le_odd_incidence_add {lo B : ℕ}
     (hlo : 0 < lo) (hB : 1332 ≤ B) (htop : lo + B ≤ B ^ 2 + B + 1) :
     ∑ j ∈ Icc 1 10, (PrimesUpTo.count (B / j) - PrimesUpTo.count (B / 11)) ≤

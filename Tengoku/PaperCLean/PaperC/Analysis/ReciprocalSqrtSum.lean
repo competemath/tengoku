@@ -14,17 +14,23 @@ we simply enlarge a set of primes to all integers in the same interval.
 
 namespace PaperC
 
-/-- The negative half power is the reciprocal of the square root.-/
+/-- The negative half power is the reciprocal of the square root.
+@isnad1 id=eq.1h1v.s5.c51bc7d15409 from=translated src=- shape=0cce855d vocab=85c136b9
+-/
 lemma rpow_neg_one_half_eq_inv_sqrt (x : ℝ) (hx : 0 ≤ x) :
     x ^ (-(1 / 2 : ℝ)) = (Real.sqrt x)⁻¹ := by
   rw [Real.rpow_neg hx, ← Real.sqrt_eq_rpow]
 
-/-- Taking square roots preserves the elementary inequality `n - 1 ≤ n`.-/
+/-- Taking square roots preserves the elementary inequality `n - 1 ≤ n`.
+@isnad1 id=le.0h1v.s4.330a99ddeb0c from=translated src=- shape=b5af248d vocab=ea1e23b9
+-/
 lemma sqrt_nat_sub_one_le (n : ℕ) :
     Real.sqrt ((n - 1 : ℕ) : ℝ) ≤ Real.sqrt n :=
   Real.sqrt_le_sqrt (Nat.cast_le.mpr (Nat.sub_le n 1))
 
-/-- Consecutive natural numbers have square-root squares differing by one.-/
+/-- Consecutive natural numbers have square-root squares differing by one.
+@isnad1 id=eq.1h1v.s6.3c3e47a4626d from=translated src=- shape=f799f870 vocab=30b5e73a
+-/
 lemma sqrt_nat_sq_sub_sq_eq_one (n : ℕ) (hn : 1 ≤ n) :
     (Real.sqrt n) ^ 2 - (Real.sqrt ((n - 1 : ℕ) : ℝ)) ^ 2 = 1 := by
   rw [Real.sq_sqrt (Nat.cast_nonneg n),
@@ -33,7 +39,9 @@ lemma sqrt_nat_sq_sub_sq_eq_one (n : ℕ) (hn : 1 ≤ n) :
 
 /--
 One reciprocal-square-root term is bounded by twice the corresponding
-increment of the square-root function.-/
+increment of the square-root function.
+@isnad1 id=le.1h1v.s6.3a65b958cc0e from=translated src=- shape=9f5562a2 vocab=cb0c310c
+-/
 lemma inv_sqrt_nat_le_two_mul_sqrt_sub (n : ℕ) (hn : 1 ≤ n) :
     (Real.sqrt n)⁻¹ ≤
       2 * (Real.sqrt n - Real.sqrt ((n - 1 : ℕ) : ℝ)) := by
@@ -64,7 +72,9 @@ The elementary bound
 `∑_{1 ≤ n ≤ H} n⁻¹/² ≤ 2 √H`.
 
 The proof is a finite telescoping argument, using
-`n⁻¹/² ≤ 2 (√n - √(n-1))`.-/
+`n⁻¹/² ≤ 2 (√n - √(n-1))`.
+@isnad1 id=le.0h1v.s6.71aed59ca115 from=translated src=- shape=ef21ac37 vocab=590ee6a4
+-/
 theorem sum_Icc_rpow_neg_one_half_le (H : ℕ) :
     (∑ n ∈ Finset.Icc 1 H, (n : ℝ) ^ (-(1 / 2 : ℝ))) ≤
       2 * Real.sqrt H := by
@@ -91,7 +101,9 @@ theorem sum_Icc_rpow_neg_one_half_le (H : ℕ) :
           add_le_add_left hterm _
         _ = 2 * Real.sqrt ((H : ℝ) + 1) := by ring
 
-/-- The same estimate written with reciprocal square roots.-/
+/-- The same estimate written with reciprocal square roots.
+@isnad1 id=le.0h1v.s5.e5ec30e54780 from=translated src=- shape=e7ab1bd8 vocab=c862994e
+-/
 theorem sum_Icc_inv_sqrt_le (H : ℕ) :
     (∑ n ∈ Finset.Icc 1 H, (Real.sqrt n)⁻¹) ≤ 2 * Real.sqrt H := by
   simpa only [rpow_neg_one_half_eq_inv_sqrt _ (Nat.cast_nonneg _)] using

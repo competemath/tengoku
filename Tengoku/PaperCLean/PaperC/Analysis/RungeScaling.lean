@@ -32,7 +32,9 @@ noncomputable def scaledRungeValue
 
 /--
 If every local factor squares to `1 + γᵢ/U`, the square of the scaled product
-is the split product evaluated at `U`.-/
+is the split product evaluated at `U`.
+@isnad1 id=eq.2h4v.s7.799c9a67589c from=translated src=- shape=c7015630 vocab=10b5edc1
+-/
 theorem scaledRungeValue_sq
     {k U : ℕ} (hU : 1 ≤ U)
     (γ : Fin (2 * k) → ℤ) (s : Fin (2 * k) → ℝ)
@@ -72,7 +74,9 @@ theorem scaledRungeValue_sq
 /--
 If the split product is the square of an integer and all local factors are
 nonnegative, the scaled analytic value is exactly the absolute value of that
-integer.  In particular it is integral.-/
+integer.  In particular it is integral.
+@isnad1 id=eq.4h5v.s8.e9a138232733 from=translated src=- shape=3e0eef60 vocab=8a4ffec4
+-/
 theorem scaledRungeValue_eq_abs_integer
     {k U : ℕ} (hU : 1 ≤ U)
     (γ : Fin (2 * k) → ℤ) (s : Fin (2 * k) → ℝ)

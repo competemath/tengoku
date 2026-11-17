@@ -20,6 +20,9 @@ noncomputable section
 
 def normalizedExponentialIntegral (u : ℝ) : ℝ := u * exponentialIntegral u / Real.exp u
 
+/--
+@isnad1 id=eventual.0h0v.s6.003eb844d6d3 from=translated src=- shape=6d6a0b36 vocab=e76c7852
+-/
 theorem normalizedExponentialIntegral_error_eventually :
     ∀ᶠ u : ℝ in atTop,
       |normalizedExponentialIntegral u - 1 - 1 / u| ≤ 5 / u ^ 2 := by
@@ -37,6 +40,9 @@ theorem normalizedExponentialIntegral_error_eventually :
       mul_le_mul_of_nonneg_left hu (div_pos hupos hexp).le
     _ = _ := by field_simp [ne_of_gt hupos, ne_of_gt hexp]
 
+/--
+@isnad1 id=tendsto.0h0v.s4.769bd8fbcddd from=translated src=- shape=95bb6042 vocab=79fa6cc4
+-/
 theorem tendsto_normalizedExponentialIntegral :
     Tendsto normalizedExponentialIntegral atTop (𝓝 1) := by
   have hinv : Tendsto (fun u : ℝ => 1 / u) atTop (𝓝 0) := by
@@ -53,11 +59,17 @@ theorem tendsto_normalizedExponentialIntegral :
 
 def saddleCostFactor (u : ℝ) : ℝ := 1 - exponentialIntegral u / Real.exp u
 
+/--
+@isnad1 id=eq.1h1v.s5.53bd6c50aeda from=translated src=- shape=560fa55c vocab=fb7e0a62
+-/
 theorem saddleCostFactor_identity {u : ℝ} (hu : u ≠ 0) :
     saddleCostFactor u = 1 - normalizedExponentialIntegral u / u := by
   unfold saddleCostFactor normalizedExponentialIntegral
   field_simp [hu]
 
+/--
+@isnad1 id=tendsto.0h0v.s4.aed37aafbdf3 from=translated src=- shape=95bb6042 vocab=64f2c7dc
+-/
 theorem tendsto_saddleCostFactor : Tendsto saddleCostFactor atTop (𝓝 1) := by
   have hquot : Tendsto (fun u => normalizedExponentialIntegral u / u) atTop (𝓝 0) :=
     tendsto_normalizedExponentialIntegral.div_atTop tendsto_id
@@ -67,16 +79,25 @@ theorem tendsto_saddleCostFactor : Tendsto saddleCostFactor atTop (𝓝 1) := by
   filter_upwards [eventually_gt_atTop (0 : ℝ)] with u hu
   exact (saddleCostFactor_identity (ne_of_gt hu)).symm
 
+/--
+@isnad1 id=tendsto.0h0v.s4.98c03cc7fe1b from=translated src=- shape=19381522 vocab=91fbdb5c
+-/
 theorem tendsto_log_saddleCostFactor :
     Tendsto (fun u => Real.log (saddleCostFactor u)) atTop (𝓝 0) := by
   simpa only [Real.log_one, Function.comp_def] using
     (Real.continuousAt_log (by norm_num : (1 : ℝ) ≠ 0)).tendsto.comp tendsto_saddleCostFactor
 
+/--
+@isnad1 id=eq.0h1v.s4.7537f580796d from=translated src=- shape=f108d266 vocab=5159cd83
+-/
 theorem saddleCostParam_eq_exp_mul_factor (u : ℝ) :
     saddleCostParam u = Real.exp u * saddleCostFactor u := by
   unfold saddleCostParam saddleCostFactor
   field_simp [Real.exp_ne_zero u]
 
+/--
+@isnad1 id=lt.1h1v.s4.6bfc6837c957 from=translated src=- shape=53ebcf8b vocab=1cfe6813
+-/
 theorem saddleCostFactor_pos {u : ℝ} (hu : saddleParameterBase ≤ u) :
     0 < saddleCostFactor u := by
   have hb : 1 ≤ saddleParameterBase := by linarith [saddleParameterBase_ge_two]
@@ -85,6 +106,9 @@ theorem saddleCostFactor_pos {u : ℝ} (hu : saddleParameterBase ≤ u) :
   rw [saddleCostParam_eq_exp_mul_factor] at hpos
   exact (mul_pos_iff_of_pos_left (Real.exp_pos _)).1 hpos
 
+/--
+@isnad1 id=eq.2h2v.s6.b0c99366b11b from=translated src=- shape=42a94938 vocab=0d98c8aa
+-/
 theorem log_saddleHeight {a u : ℝ} (ha : 0 < a) (hu : saddleParameterBase ≤ u) :
     Real.log (saddleHeight a u) =
       2 * u - Real.log u + Real.log a + Real.log (saddleCostFactor u) := by
@@ -98,6 +122,9 @@ theorem log_saddleHeight {a u : ℝ} (ha : 0 < a) (hu : saddleParameterBase ≤ 
     Real.log_mul (Real.exp_ne_zero _) (ne_of_gt hfpos), Real.log_exp]
   ring
 
+/--
+@isnad1 id=tendsto.1h1v.s4.bbaf6ac0790f from=translated src=- shape=52e44ca1 vocab=8b105da6
+-/
 theorem tendsto_saddleParameter_atTop {a : ℝ} (ha : 0 < a) :
     Tendsto (saddleParameter a) atTop atTop := by
   apply tendsto_atTop.2
@@ -113,6 +140,9 @@ theorem tendsto_saddleParameter_atTop {a : ℝ} (ha : 0 < a) :
     exact (le_max_right _ _).trans hH
   exact (le_max_right _ _).trans ((strictMonoOn_saddleHeight ha).le_iff_le hv hu |>.1 hh)
 
+/--
+@isnad1 id=eq.2h2v.s6.3a40b22cd87e from=translated src=- shape=7d0b3583 vocab=412e9293
+-/
 theorem log_saddleParameter_identity {a H : ℝ} (ha : 0 < a)
     (hH : saddleThreshold a ≤ H) :
     Real.log H = 2 * saddleParameter a H - Real.log (saddleParameter a H) +

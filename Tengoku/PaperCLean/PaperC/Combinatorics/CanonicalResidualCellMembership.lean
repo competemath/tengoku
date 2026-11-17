@@ -35,7 +35,9 @@ noncomputable section
 The prime selected by a canonical residual component divides the residual
 expression of its selected cell.  This algebraic fact does not require the
 candidate `(a,b)` to be the canonical one: it follows from divisibility of
-both complete-start vertex labels.-/
+both complete-start vertex labels.
+@isnad1 id=dvd.2h7v.s8.70667d7574c7 from=translated src=- shape=edee798f vocab=7c5b95f8
+-/
 theorem canonicalResidualCertificates_prime_dvd_residualVertexExpression
     {A x y L a b : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -80,7 +82,9 @@ theorem canonicalResidualCertificates_prime_dvd_residualVertexExpression
 
 /--
 In the active canonical branch `m ≥ 2`, the cell selected by every residual
-component belongs to the residual vertex-cell family at its selected prime.-/
+component belongs to the residual vertex-cell family at its selected prime.
+@isnad1 id=mem.4h6v.s10.0083ee9050f6 from=translated src=- shape=31cd8319 vocab=b3003d3e
+-/
 theorem canonicalResidualCertificates_mem_residualVertexPrimeCells_of_choice
     {A x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -112,7 +116,9 @@ theorem canonicalResidualCertificates_mem_residualVertexPrimeCells_of_choice
 
 /--
 The prime of every active canonical residual certificate lies in the finite
-dyadic range used to define `residualPrimeMass`.-/
+dyadic range used to define `residualPrimeMass`.
+@isnad1 id=mem.4h6v.s9.158ec1e6c3ed from=translated src=- shape=7e1d8682 vocab=b9f11bc5
+-/
 theorem canonicalResidualCertificates_prime_mem_residualPrimeRange_of_choice
     {A x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)

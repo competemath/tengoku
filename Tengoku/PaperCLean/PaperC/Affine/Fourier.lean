@@ -31,25 +31,40 @@ local instance : Fact (Nat.Prime 2) := Fact.mk Nat.prime_two
 def binarySign (t : 𝔽₂) : ℤ :=
   if t = 0 then 1 else -1
 
+/--
+@isnad1 id=eq.0h0v.s4.313e226c374a from=translated src=- shape=1ac31801 vocab=0c15a806
+-/
 @[simp]
 theorem binarySign_zero : binarySign 0 = 1 := by
   simp [binarySign]
 
+/--
+@isnad1 id=iff.0h1v.s5.455fcf88647d from=translated src=- shape=3a75f94e vocab=0c15a806
+-/
 @[simp]
 theorem binarySign_eq_one_iff (t : 𝔽₂) :
     binarySign t = 1 ↔ t = 0 := by
   by_cases ht : t = 0 <;> simp [binarySign, ht]
 
+/--
+@isnad1 id=eq.0h2v.s5.54d71dbca1c0 from=translated src=- shape=0438c7a3 vocab=40b70636
+-/
 theorem binarySign_add (a b : 𝔽₂) :
     binarySign (a + b) = binarySign a * binarySign b := by
   revert a b
   decide
 
+/--
+@isnad1 id=eq.0h1v.s5.3076fdfd7382 from=translated src=- shape=8fc7e33b vocab=ae7d75cf
+-/
 @[simp]
 theorem binarySign_neg (a : 𝔽₂) :
     binarySign (-a) = binarySign a := by
   rw [ZMod.neg_eq_self_mod_two]
 
+/--
+@isnad1 id=eq.0h2v.s5.028958cefc39 from=translated src=- shape=0438c7a3 vocab=48f8ac18
+-/
 theorem binarySign_sub (a b : 𝔽₂) :
     binarySign (a - b) = binarySign a * binarySign b := by
   rw [sub_eq_add_neg, binarySign_add, binarySign_neg]
@@ -82,7 +97,9 @@ private theorem sum_binarySign_linear_of_ne_zero
 
 /--
 Orthogonality of a binary character pulled back along a linear form.
-The sum is the size of the source for the zero form and vanishes otherwise.-/
+The sum is the size of the source for the zero form and vanishes otherwise.
+@isnad1 id=eq.0h2v.s9.20fdba84b20c from=translated src=- shape=6e327a7e vocab=b12fb084
+-/
 theorem sum_binarySign_linear [Fintype U] [DecidableEq U]
     (f : U →ₗ[𝔽₂] 𝔽₂) :
     ∑ x : U, binarySign (f x) =
@@ -106,12 +123,17 @@ def dotLinear (w : β → 𝔽₂) : (β → 𝔽₂) →ₗ[𝔽₂] 𝔽₂ wh
   map_smul' c y := dotProduct_smul c w y
 
 omit [DecidableEq β] in
+/--
+@isnad1 id=eq.0h3v.s8.6d9beb750967 from=translated src=- shape=cffdbcf9 vocab=651133e4
+-/
 @[simp]
 theorem dotLinear_apply (w y : β → 𝔽₂) :
     dotLinear w y = dotProduct w y :=
   rfl
 
-/-- Nondegeneracy of the standard dot product on a finite coordinate space.-/
+/-- Nondegeneracy of the standard dot product on a finite coordinate space.
+@isnad1 id=iff.0h2v.s9.59ac46528abb from=translated src=- shape=f298dd1e vocab=ac4ee3ef
+-/
 theorem dotLinear_eq_zero_iff (w : β → 𝔽₂) :
     dotLinear w = 0 ↔ w = 0 := by
   constructor
@@ -124,7 +146,9 @@ theorem dotLinear_eq_zero_iff (w : β → 𝔽₂) :
     ext y
     simp
 
-/-- Character orthogonality for the standard dot product on `β → 𝔽₂`.-/
+/-- Character orthogonality for the standard dot product on `β → 𝔽₂`.
+@isnad1 id=eq.0h2v.s7.e0dd17476b75 from=translated src=- shape=a34d5bcf vocab=23c4daef
+-/
 theorem sum_binarySign_dotProduct (w : β → 𝔽₂) :
     ∑ y : β → 𝔽₂, binarySign (dotProduct y w) =
       if w = 0 then (Fintype.card (β → 𝔽₂) : ℤ) else 0 := by
@@ -148,6 +172,9 @@ def relationFunctional (A : V →ₗ[𝔽₂] (β → 𝔽₂)) (u : β → 𝔽
   (dotLinear u).comp A
 
 omit [Fintype V] [DecidableEq V] [DecidableEq β] in
+/--
+@isnad1 id=eq.0h5v.s9.11545c8ec0e4 from=translated src=- shape=fc279cc1 vocab=9ad6f9a7
+-/
 @[simp]
 theorem relationFunctional_apply
     (A : V →ₗ[𝔽₂] (β → 𝔽₂)) (u : β → 𝔽₂) (x : V) :
@@ -166,6 +193,9 @@ def relationMap (A : V →ₗ[𝔽₂] (β → 𝔽₂)) :
     simp [relationFunctional, dotLinear, smul_dotProduct]
 
 omit [Fintype V] [DecidableEq V] [DecidableEq β] in
+/--
+@isnad1 id=eq.0h4v.s10.250d8badbf5f from=translated src=- shape=17aaa854 vocab=d454306d
+-/
 @[simp]
 theorem relationMap_apply
     (A : V →ₗ[𝔽₂] (β → 𝔽₂)) (u : β → 𝔽₂) :
@@ -190,7 +220,9 @@ The exact finite Fourier identity for an affine system over `𝔽₂`.
 
 This is the division-free form of Lemma 2.1.  The left side is the codomain
 size times the number of solutions; the right side is the source size times
-the signed sum over all row relations.-/
+the signed sum over all row relations.
+@isnad1 id=eq.0h4v.s9.4365dd5d75ef from=translated src=- shape=1f6e2847 vocab=660f2233
+-/
 theorem affineFiber_fourier_identity
     (A : V →ₗ[𝔽₂] (β → 𝔽₂)) (b : β → 𝔽₂) :
     (Fintype.card (β → 𝔽₂) : ℤ) *

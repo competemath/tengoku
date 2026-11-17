@@ -49,7 +49,9 @@ noncomputable instance certificateAdmissibleDecidable
     Decidable (CertificateAdmissible modulus N T) :=
   Classical.dec _
 
-/-- Distinct prime moduli in an admissible certificate are pairwise coprime.-/
+/-- Distinct prime moduli in an admissible certificate are pairwise coprime.
+@isnad1 id=pairwise.2h5v.s6.5a1d1d5d1f57 from=translated src=- shape=60f1628c vocab=fbbe18ea
+-/
 theorem certificate_pairwise_coprime
     {s : Finset ι} {r : ℕ} (modulus : ι → ℕ)
     (T : UnorderedCertificate s r)
@@ -81,7 +83,9 @@ noncomputable def certificatePairSolutionCount
 
 /--
 Per-certificate one-dimensional CRT estimate, including the absorption of the
-endpoint term under `P ≤ N`.-/
+endpoint term under `P ≤ N`.
+@isnad1 id=le.4h10v.s7.b39e4ddbd960 from=translated src=- shape=f78b930e vocab=6231c512
+-/
 theorem certificateSolutionCount_cast_le_scaled
     {s : Finset ι} {r : ℕ}
     (residue modulus : ι → ℕ)
@@ -107,7 +111,9 @@ theorem certificateSolutionCount_cast_le_scaled
 
 /--
 Per-certificate two-dimensional CRT estimate on the explicit rectangular
-domain of version 7c.-/
+domain of version 7c.
+@isnad1 id=le.6h13v.s7.574e5ae62a6d from=translated src=- shape=1db46763 vocab=d2d5bf5d
+-/
 theorem certificatePairSolutionCount_cast_le_scaled
     {s : Finset ι} {r : ℕ}
     (residue₁ residue₂ modulus : ι → ℕ)
@@ -135,7 +141,9 @@ theorem certificatePairSolutionCount_cast_le_scaled
         simpa [certificateModulusProduct] using hT.2)
 
 /--
-The product of the local one-dimensional weights is exactly `u^r / P`.-/
+The product of the local one-dimensional weights is exactly `u^r / P`.
+@isnad1 id=eq.0h6v.s6.5520dcb786e7 from=translated src=- shape=4a0a5f9f vocab=ebce3894
+-/
 theorem certificate_product_div_modulus
     {s : Finset ι} {r : ℕ} (modulus : ι → ℕ)
     (u : ℚ) (T : UnorderedCertificate s r) :
@@ -145,7 +153,9 @@ theorem certificate_product_div_modulus
   simp [certificateModulusProduct, unorderedCertificate_card]
 
 /--
-The product of the local two-dimensional weights is exactly `u^r / P²`.-/
+The product of the local two-dimensional weights is exactly `u^r / P²`.
+@isnad1 id=eq.0h6v.s7.4d49f5ca1210 from=translated src=- shape=557542e2 vocab=ebce3894
+-/
 theorem certificate_product_div_modulus_sq
     {s : Finset ι} {r : ℕ} (modulus : ι → ℕ)
     (u : ℚ) (T : UnorderedCertificate s r) :
@@ -185,7 +195,9 @@ noncomputable def admissibleCertificatePairSolutionMass
 Fixed-size one-dimensional form of equation (7.1), indexed directly by the
 finite family of admissible cells.  Repeated primes are discarded by
 `CertificateAdmissible`; dropping that restriction produces the symmetric
-sum and hence the exact factor `1 / r!`.-/
+sum and hence the exact factor `1 / r!`.
+@isnad1 id=le.4h10v.s7.4cd02d891b9e from=translated src=- shape=55234ed2 vocab=0cfda9d7
+-/
 theorem admissibleCertificateSolutionMass_le
     (s : Finset ι) (r : ℕ)
     (residue modulus : ι → ℕ)
@@ -249,7 +261,9 @@ theorem admissibleCertificateSolutionMass_le
 
 /--
 Fixed-size two-dimensional form of equation (7.2), on the explicit product
-of two intervals from version 7c.-/
+of two intervals from version 7c.
+@isnad1 id=le.6h13v.s7.fd0f0ef30091 from=translated src=- shape=63bceb74 vocab=d7e5b3f7
+-/
 theorem admissibleCertificatePairSolutionMass_le
     (s : Finset ι) (r : ℕ)
     (residue₁ residue₂ modulus : ι → ℕ)
@@ -321,7 +335,9 @@ theorem admissibleCertificatePairSolutionMass_le
 
 /--
 Finite partial-sum form of the one-dimensional conclusion (7.1).
-Choosing `R = s.card + 1` includes every nonempty certificate size.-/
+Choosing `R = s.card + 1` includes every nonempty certificate size.
+@isnad1 id=le.4h10v.s7.8db8ec2bd7df from=translated src=- shape=dcc795ec vocab=42f5b0e6
+-/
 theorem sum_admissibleCertificateSolutionMass_le
     (s : Finset ι) (R : ℕ)
     (residue modulus : ι → ℕ)
@@ -355,7 +371,9 @@ theorem sum_admissibleCertificateSolutionMass_le
       rw [Finset.mul_sum]
 
 /--
-Finite partial-sum form of the two-dimensional conclusion (7.2).-/
+Finite partial-sum form of the two-dimensional conclusion (7.2).
+@isnad1 id=le.6h13v.s7.b8d5b38705d4 from=translated src=- shape=a7b5c912 vocab=e7cc35b3
+-/
 theorem sum_admissibleCertificatePairSolutionMass_le
     (s : Finset ι) (R : ℕ)
     (residue₁ residue₂ modulus : ι → ℕ)

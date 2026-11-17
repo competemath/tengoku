@@ -52,7 +52,9 @@ If `s = N^(o(1))` uniformly and eventually
 
 `|f|³ ≤ N^p |s|`,
 
-then `f = N^(p/3+o(1))` in the rational-power convention.-/
+then `f = N^(p/3+o(1))` in the rational-power convention.
+@isnad1 id=uniformr.2h4v.s6.beef29b46f6c from=translated src=- shape=1e89a34e vocab=5a02ff35
+-/
 theorem of_cube_bound
     {p : ℕ}
     {admissible : ℕ → ℕ → Prop}
@@ -88,7 +90,9 @@ theorem of_cube_bound
 
 /--
 The rational-power predicate is stable under eventual pointwise
-domination.-/
+domination.
+@isnad1 id=uniformr.2h5v.s6.b6a7f2013c01 from=translated src=- shape=9b49a959 vocab=4d5fec68
+-/
 theorem mono
     {p q : ℕ}
     {admissible : ℕ → ℕ → Prop}

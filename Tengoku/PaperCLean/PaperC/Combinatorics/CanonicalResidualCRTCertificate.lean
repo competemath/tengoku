@@ -58,7 +58,9 @@ noncomputable def canonicalResidualCertificateRightResidue
       (canonicalResidualCertificateModulus hx hy C)
       (canonicalResidualCertificates hx hy C).right
 
-/-- Every canonical residual modulus is prime.-/
+/-- Every canonical residual modulus is prime.
+@isnad1 id=prime.2h5v.s5.3f88c4fff1ac from=translated src=- shape=e1cebb97 vocab=2280c5cb
+-/
 theorem canonicalResidualCertificateModulus_prime
     {A x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -81,6 +83,9 @@ noncomputable def canonicalResidualFullCertificate
   rw [Finset.card_univ]
   exact card_canonicalResidualCertificateIndex hx hy
 
+/--
+@isnad1 id=eq.2h4v.s7.7cfba2e80c06 from=translated src=- shape=8235f04b vocab=926f8813
+-/
 @[simp]
 theorem canonicalResidualFullCertificate_coe
     {A x y L : ℕ}
@@ -90,6 +95,9 @@ theorem canonicalResidualFullCertificate_coe
         Finset (CanonicalResidualCertificateIndex A x y L)) := by
   rfl
 
+/--
+@isnad1 id=eq.2h4v.s7.8d348659dc53 from=translated src=- shape=cbc32a8f vocab=58372319
+-/
 @[simp]
 theorem canonicalResidualFullCertificate_card
     {A x y L : ℕ}
@@ -104,7 +112,9 @@ theorem canonicalResidualFullCertificate_card
 
 /--
 The CRT modulus product of the complete certificate is exactly the canonical
-prime product `P#`.-/
+prime product `P#`.
+@isnad1 id=eq.2h4v.s6.a0a251a26349 from=translated src=- shape=f679dd43 vocab=a81e1d46
+-/
 theorem canonicalResidualFullCertificate_modulusProduct
     {A x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y) :
@@ -121,7 +131,9 @@ theorem canonicalResidualFullCertificate_modulusProduct
     canonicalResidualCertificateModulus]
 
 /--
-The moduli occurring in the complete certificate are pairwise distinct.-/
+The moduli occurring in the complete certificate are pairwise distinct.
+@isnad1 id=pairwise.2h4v.s7.5949b543aaef from=translated src=- shape=4b4dc908 vocab=bc8f5abb
+-/
 theorem canonicalResidualFullCertificate_moduli_pairwise
     {A x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y) :
@@ -147,7 +159,9 @@ theorem canonicalResidualFullCertificate_moduli_pairwise
 
 /--
 Admissibility of the complete certificate is exactly the small-product
-branch `P# ≤ N`.-/
+branch `P# ≤ N`.
+@isnad1 id=iff.2h5v.s7.61336b650958 from=translated src=- shape=c398ec2f vocab=716a26ed
+-/
 theorem canonicalResidualFullCertificate_admissible_iff
     {A x y L N : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y) :
@@ -179,7 +193,9 @@ theorem canonicalResidualFullCertificate_admissible_iff
 
 /-! ## The two starts satisfy every selected congruence -/
 
-/-- The left start satisfies the congruence attached to one component.-/
+/-- The left start satisfies the congruence attached to one component.
+@isnad1 id=modeq.2h5v.s5.623eeb87f522 from=translated src=- shape=70311a7e vocab=adb54f1c
+-/
 theorem canonicalResidual_left_modEq
     {A x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -193,7 +209,9 @@ theorem canonicalResidual_left_modEq
       hx).2
   exact (canonicalResidualCertificates hx hy C).prime_dvd_left_label
 
-/-- The right start satisfies the congruence attached to one component.-/
+/-- The right start satisfies the congruence attached to one component.
+@isnad1 id=modeq.2h5v.s5.509d4ea21322 from=translated src=- shape=15a309ee vocab=89c6b63c
+-/
 theorem canonicalResidual_right_modEq
     {A x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -207,7 +225,9 @@ theorem canonicalResidual_right_modEq
       hy).2
   exact (canonicalResidualCertificates hx hy C).prime_dvd_right_label
 
-/-- The left start satisfies all congruences of the complete certificate.-/
+/-- The left start satisfies all congruences of the complete certificate.
+@isnad1 id=modeq.3h5v.s7.d4a2d13e0e63 from=translated src=- shape=96bcc28b vocab=dc2dc2df
+-/
 theorem canonicalResidual_left_satisfies_fullCertificate
     {A x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y) :
@@ -228,7 +248,9 @@ theorem canonicalResidual_left_satisfies_fullCertificate
       (A := A) (L := L)
       (show 1 ≤ x by omega) (show 1 ≤ y by omega) C
 
-/-- The right start satisfies all congruences of the complete certificate.-/
+/-- The right start satisfies all congruences of the complete certificate.
+@isnad1 id=modeq.3h5v.s7.5b7472974446 from=translated src=- shape=5dd36885 vocab=c9a57a9a
+-/
 theorem canonicalResidual_right_satisfies_fullCertificate
     {A x y L : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y) :
@@ -251,7 +273,9 @@ theorem canonicalResidual_right_satisfies_fullCertificate
 
 /--
 If the two starts lie in the prescribed intervals, their pair belongs to
-the rectangular CRT solution set of the complete residual certificate.-/
+the rectangular CRT solution set of the complete residual certificate.
+@isnad1 id=mem.4h8v.s9.0bbefb22f612 from=translated src=- shape=6125c5a1 vocab=38ae2230
+-/
 theorem canonicalResidual_pair_mem_fullCertificateSolutions
     {A x y L a₁ b₁ a₂ b₂ : ℕ}
     (hx : 2 ≤ x) (hy : 2 ≤ y)

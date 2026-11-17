@@ -21,7 +21,9 @@ open DefectCounting LargeOddKernel
 
 /--
 The rational kernel weight used by the finite host count is exactly the real
-kernel weight used by the Euler-product estimate after scalar extension.-/
+kernel weight used by the Euler-product estimate after scalar extension.
+@isnad1 id=eq.0h2v.s3.d224405be6d9 from=translated src=- shape=ef554e1c vocab=bc5e8bfd
+-/
 theorem cast_largeKernelWeightQ (B n : ℕ) :
     ((RelationalHosts.largeKernelWeightQ B n : ℚ) : ℝ) =
       LargeKernelWeightedCounting.largeKernelWeight B n := by
@@ -31,7 +33,9 @@ theorem cast_largeKernelWeightQ (B n : ℕ) :
 
 /--
 Real-valued form of the exact finite certificate estimate from the
-relational-host construction.-/
+relational-host construction.
+@isnad1 id=le.2h2v.s6.a3e0ed2dbb9a from=translated src=- shape=5b9e7743 vocab=134b6afe
+-/
 theorem card_relationalHosts_cast_le_kernelSum
     {N L : ℕ} (hN : 2 ≤ N) (hL : L ≤ N) :
     ((RelationalHosts.relationalHosts N L).card : ℝ) ≤
@@ -68,7 +72,9 @@ theorem card_relationalHosts_cast_le_kernelSum
 
 /--
 The large-kernel weighted sum is bounded by the elementary exponential
-majorant appearing in Lemma 4.2.-/
+majorant appearing in Lemma 4.2.
+@isnad1 id=le.1h2v.s6.cb48587e3e12 from=translated src=- shape=ea269940 vocab=71d805f4
+-/
 theorem sum_largeKernelWeight_le_sqrt_mul_exp
     (B X : ℕ) (hB : 1 ≤ B) :
     (∑ n ∈ Finset.Icc 1 X,
@@ -133,7 +139,9 @@ theorem sum_largeKernelWeight_le_sqrt_mul_exp
 /--
 Explicit closed form of Lemma 4.2:
 
-`H₂(N,L) ≤ 8 (L+1) N √(3N) exp(4 √(L+1))`.-/
+`H₂(N,L) ≤ 8 (L+1) N √(3N) exp(4 √(L+1))`.
+@isnad1 id=le.2h2v.s7.bba65861b55d from=translated src=- shape=cfae2c3d vocab=4b3cb686
+-/
 theorem card_relationalHosts_cast_le_exp_bound
     {N L : ℕ} (hN : 2 ≤ N) (hL : L ≤ N) :
     ((RelationalHosts.relationalHosts N L).card : ℝ) ≤

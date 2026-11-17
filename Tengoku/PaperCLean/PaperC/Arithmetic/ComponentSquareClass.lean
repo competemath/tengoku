@@ -38,7 +38,9 @@ noncomputable def componentSquareClass (B : ℕ) (C : Finset ℕ) : ℕ :=
 noncomputable def componentSquareRoot (C : Finset ℕ) : ℕ :=
   DefectivePredicate.canonicalSquarePart (componentProduct C)
 
-/-- A component of positive integers has nonzero (indeed positive) product.-/
+/-- A component of positive integers has nonzero (indeed positive) product.
+@isnad1 id=lt.1h1v.s5.ea0161ab905d from=translated src=- shape=7fefa5d3 vocab=651932ab
+-/
 theorem componentProduct_pos
     {C : Finset ℕ}
     (hpos : ∀ n ∈ C, 0 < n) :
@@ -48,7 +50,9 @@ theorem componentProduct_pos
 
 /--
 Coordinatewise cancellation above `B` says exactly that the large odd kernel
-of the component product is trivial.-/
+of the component product is trivial.
+@isnad1 id=eq.2h2v.s7.453d51de6da9 from=translated src=- shape=d18f869f vocab=c5a034aa
+-/
 theorem largeOddKernel_componentProduct_eq_one
     {B : ℕ} {C : Finset ℕ}
     (hpos : ∀ n ∈ C, 0 < n)
@@ -78,7 +82,9 @@ Canonical square-class decomposition of a finite component.
 
 The four conclusions give positivity and squarefreeness of the canonical
 factor, its precise support restriction, positivity of the square root, and
-the exact product identity.-/
+the exact product identity.
+@isnad1 id=and.2h2v.s7.602ef0c56696 from=translated src=- shape=2ad7a077 vocab=35ee0385
+-/
 theorem canonical_decomposition
     {B : ℕ} {C : Finset ℕ}
     (hpos : ∀ n ∈ C, 0 < n)
@@ -112,7 +118,9 @@ theorem canonical_decomposition
 
 /--
 Existential form of the component square-class statement.  This is the direct
-arithmetic conclusion used in Lemma 6.2.-/
+arithmetic conclusion used in Lemma 6.2.
+@isnad1 id=ex.2h2v.s7.2260b0fd5efe from=translated src=- shape=dce7f6dd vocab=a39aa95a
+-/
 theorem exists_squarefree_mul_sq
     {B : ℕ} {C : Finset ℕ}
     (hpos : ∀ n ∈ C, 0 < n)
@@ -128,7 +136,9 @@ theorem exists_squarefree_mul_sq
 
 /--
 A positive squarefree factor supported at primes at most `B` is forced to be
-the canonical component square class.-/
+the canonical component square class.
+@isnad1 id=eq.5h4v.s6.322a444a4cc3 from=translated src=- shape=f868be7a vocab=55795c74
+-/
 theorem componentSquareClass_unique
     {B : ℕ} {C : Finset ℕ}
     {d z : ℕ}
@@ -177,7 +187,9 @@ theorem componentSquareClass_unique
 
 /--
 The canonical squarefree factor and the positive square root are jointly
-unique.-/
+unique.
+@isnad1 id=and.7h4v.s7.bffd8aafb748 from=translated src=- shape=22935f1e vocab=35ee0385
+-/
 theorem decomposition_unique
     {B : ℕ} {C : Finset ℕ}
     (hpos : ∀ n ∈ C, 0 < n)

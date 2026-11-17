@@ -40,6 +40,9 @@ def boundedRelationalHosts (N M L : ℕ) : Finset (ℕ × ℕ) := by
       L < Nat.dist pair.1 pair.2 ∧
         0 < relationRho (twoStartSystem (M + L) pair.1 pair.2 L)
 
+/--
+@isnad1 id=iff.0h5v.s7.35fb36993d2f from=translated src=- shape=75814dd2 vocab=f4a1725c
+-/
 @[simp]
 theorem mem_boundedRelationalHosts
     {N M L x y : ℕ} :
@@ -64,6 +67,9 @@ noncomputable def chosenRelation
       (RelationalHosts.exists_nonzero_relation_of_rho_pos h)
   else 0
 
+/--
+@isnad1 id=ne.1h3v.s10.b49c7ca6f8ad from=translated src=- shape=7efbd348 vocab=426d3242
+-/
 theorem chosenRelation_ne_zero
     {M L : ℕ} {pair : ℕ × ℕ}
     (h :
@@ -83,6 +89,9 @@ noncomputable def selectedOccurrence
   else
     Sum.inl (startRootVertex L)
 
+/--
+@isnad1 id=ne.1h3v.s10.baf06986e91f from=translated src=- shape=cbf062f2 vocab=f6c90a1c
+-/
 theorem selectedOccurrence_ne_zero
     {M L : ℕ} {pair : ℕ × ℕ}
     (h :
@@ -105,6 +114,9 @@ def startsWithSelectedLabel
   (boundedRatioBlock N M).filter fun x ↦
     startCompleteVertexLabel x L v = n
 
+/--
+@isnad1 id=iff.0h6v.s6.1bbe5d4f0efe from=translated src=- shape=ac34d5af vocab=fcb221a6
+-/
 @[simp]
 theorem mem_startsWithSelectedLabel
     {N M L n x : ℕ} {v : Fin (L + 1)} :
@@ -113,7 +125,9 @@ theorem mem_startsWithSelectedLabel
       startCompleteVertexLabel x L v = n := by
   simp [startsWithSelectedLabel]
 
-/-- One label and one offset determine at most one positive start.-/
+/-- One label and one offset determine at most one positive start.
+@isnad1 id=le.1h5v.s5.4eb6c99361bb from=translated src=- shape=f1afaed8 vocab=b3c56433
+-/
 theorem card_startsWithSelectedLabel_le_one
     {N M L n : ℕ} (hN : 2 ≤ N) (v : Fin (L + 1)) :
     (startsWithSelectedLabel N M L n v).card ≤ 1 := by
@@ -141,6 +155,9 @@ def startsForAssignment
           (startCompleteVertexLabel y L (assignment p))
           p.1 ≠ 0
 
+/--
+@isnad1 id=iff.0h6v.s7.7a36fb9c9e17 from=translated src=- shape=8117878f vocab=79fbeabf
+-/
 @[simp]
 theorem mem_startsForAssignment
     {N M L n y : ℕ} {assignment : LargePrimeAssignment L n} :
@@ -154,7 +171,9 @@ theorem mem_startsForAssignment
   simp [startsForAssignment]
 
 /-- Two starts realizing one assignment are congruent modulo the complete
-large odd kernel.-/
+large odd kernel.
+@isnad1 id=modeq.3h7v.s6.47d5fab9b5ba from=translated src=- shape=7b35ffd9 vocab=cd9f827d
+-/
 theorem pairwise_modEq_largeOddKernel
     {N M L n : ℕ} (hN : 1 ≤ N)
     (assignment : LargePrimeAssignment L n)
@@ -195,7 +214,9 @@ theorem pairwise_modEq_largeOddKernel
         ((LargeOddKernel.largeOddPrimeSupport (L + 1) n).toList.get_mem i))
   simpa [LargeOddKernel.largeOddKernel] using hcrt
 
-/-- One assignment contributes at most one residue class in `[N,M)`.-/
+/-- One assignment contributes at most one residue class in `[N,M)`.
+@isnad1 id=le.2h5v.s6.ebfd25ef6c9b from=translated src=- shape=11f0079e vocab=17b77b6b
+-/
 theorem card_startsForAssignment_cast_le
     {N M L n : ℕ} (hN : 1 ≤ N) (hNM : N ≤ M)
     (assignment : LargePrimeAssignment L n) :
@@ -253,6 +274,9 @@ def startsForSomeAssignment (N M L n : ℕ) : Finset ℕ :=
   (allAssignments L n).biUnion
     (startsForAssignment N M L n)
 
+/--
+@isnad1 id=iff.0h5v.s5.551f1ab4bafc from=translated src=- shape=4dbce826 vocab=b6c3bc51
+-/
 @[simp]
 theorem mem_startsForSomeAssignment
     {N M L n y : ℕ} :
@@ -271,6 +295,9 @@ noncomputable def assignmentCountBound
         (LargeOddKernel.largeOddKernel (L + 1) n : ℚ) +
       1)
 
+/--
+@isnad1 id=le.2h4v.s5.f74ca32d7c58 from=translated src=- shape=0244ef40 vocab=f986b5dd
+-/
 theorem card_startsForSomeAssignment_cast_le
     {N M L n : ℕ} (hN : 1 ≤ N) (hNM : N ≤ M) :
     ((startsForSomeAssignment N M L n).card : ℚ) ≤
@@ -303,7 +330,9 @@ theorem card_startsForSomeAssignment_cast_le
 /-! ## Relation-to-certificate transport -/
 
 /-- Every complete label of a start in `[N,M)` is represented at cutoff
-`M+L`.-/
+`M+L`.
+@isnad1 id=le.1h5v.s5.40c3672a443c from=translated src=- shape=85434dbe vocab=4869df8b
+-/
 theorem startCompleteVertexLabel_le_cutoff
     {N M L x : ℕ}
     (hx : x ∈ boundedRatioBlock N M)
@@ -313,7 +342,9 @@ theorem startCompleteVertexLabel_le_cutoff
   simp only [startCompleteVertexLabel]
   split_ifs <;> omega
 
-/-- A selected label belongs to the exact indexing interval `[1,M+L]`.-/
+/-- A selected label belongs to the exact indexing interval `[1,M+L]`.
+@isnad1 id=mem.2h5v.s6.7e0ecb87dfc7 from=translated src=- shape=f3d2ceea vocab=0bad0bb8
+-/
 theorem selectedLabel_mem_Icc
     {N M L x : ℕ} (hN : 2 ≤ N)
     (hx : x ∈ boundedRatioBlock N M)
@@ -327,7 +358,9 @@ theorem selectedLabel_mem_Icc
     split_ifs <;> omega
   · exact startCompleteVertexLabel_le_cutoff hx v
 
-/-- Left-selected relation transport to a bounded-interval assignment.-/
+/-- Left-selected relation transport to a bounded-interval assignment.
+@isnad1 id=mem.4h7v.s10.7c8753fc08d8 from=translated src=- shape=4e8330c3 vocab=fbc44494
+-/
 theorem right_mem_startsForSomeAssignment_of_selected_left
     {N M L x y : ℕ} (hN : 2 ≤ N)
     (hx : x ∈ boundedRatioBlock N M)
@@ -361,7 +394,9 @@ theorem right_mem_startsForSomeAssignment_of_selected_left
         hxTwo hyTwo u v hvSelected
         (startCompleteVertexLabel_le_cutoff hx v) p.2)).1.2
 
-/-- Symmetric right-selected relation transport.-/
+/-- Symmetric right-selected relation transport.
+@isnad1 id=mem.4h7v.s10.5ca110592c84 from=translated src=- shape=fd8efdbf vocab=09532423
+-/
 theorem left_mem_startsForSomeAssignment_of_selected_right
     {N M L x y : ℕ} (hN : 2 ≤ N)
     (hx : x ∈ boundedRatioBlock N M)
@@ -417,7 +452,9 @@ def certificateCover (N M L : ℕ) : Finset (ℕ × ℕ) := by
       leftCertificates N M L n v ∪ rightCertificates N M L n v
 
 /-- Every bounded relational host is covered by a selected-label
-certificate.-/
+certificate.
+@isnad1 id=le.1h3v.s5.66837ae10f72 from=translated src=- shape=0ee5c334 vocab=dd761f8b
+-/
 theorem boundedRelationalHosts_subset_certificateCover
     {N M L : ℕ} (hN : 2 ≤ N) :
     boundedRelationalHosts N M L ⊆ certificateCover N M L := by
@@ -468,6 +505,9 @@ theorem boundedRelationalHosts_subset_certificateCover
       rw [Finset.mem_union]
       exact Or.inr (Finset.mem_product.mpr ⟨hxCert, hyLabel⟩)
 
+/--
+@isnad1 id=le.2h5v.s5.ad2d94df2202 from=translated src=- shape=ca46bcd9 vocab=b96ca9e8
+-/
 theorem card_leftCertificates_cast_le
     {N M L n : ℕ} (hN : 2 ≤ N) (hNM : N ≤ M)
     (v : Fin (L + 1)) :
@@ -490,6 +530,9 @@ theorem card_leftCertificates_cast_le
       gcongr
     _ = assignmentCountBound N M L n := by ring
 
+/--
+@isnad1 id=le.2h5v.s5.b1f52390fc15 from=translated src=- shape=ca46bcd9 vocab=7b0dfc56
+-/
 theorem card_rightCertificates_cast_le
     {N M L n : ℕ} (hN : 2 ≤ N) (hNM : N ≤ M)
     (v : Fin (L + 1)) :
@@ -512,6 +555,9 @@ theorem card_rightCertificates_cast_le
       gcongr
     _ = assignmentCountBound N M L n := by ring
 
+/--
+@isnad1 id=le.2h5v.s6.acf7d3296e2b from=translated src=- shape=758ced84 vocab=29c184a9
+-/
 theorem card_certificate_union_cast_le
     {N M L n : ℕ} (hN : 2 ≤ N) (hNM : N ≤ M)
     (v : Fin (L + 1)) :
@@ -539,7 +585,9 @@ theorem card_certificate_union_cast_le
         (card_rightCertificates_cast_le hN hNM v)
     _ = 2 * assignmentCountBound N M L n := by ring
 
-/-- Exact finite cover bound, before using `M ≤ κ₀N`.-/
+/-- Exact finite cover bound, before using `M ≤ κ₀N`.
+@isnad1 id=le.2h3v.s6.7a3b0315b317 from=translated src=- shape=af378f9c vocab=14c8dca0
+-/
 theorem card_boundedRelationalHosts_cast_le_assignmentSum
     {N M L : ℕ} (hN : 2 ≤ N) (hNM : N ≤ M) :
     ((boundedRelationalHosts N M L).card : ℚ) ≤
@@ -605,7 +653,9 @@ theorem card_boundedRelationalHosts_cast_le_assignmentSum
 /-! ## Uniform finite kernel-sum estimate -/
 
 /-- Under `M ≤ κ₀N` and `L ≤ N`, the interval assignment cost is at most
-`2(κ₀+1)N` times the canonical kernel weight.-/
+`2(κ₀+1)N` times the canonical kernel weight.
+@isnad1 id=le.4h5v.s7.4ad6095dc29e from=translated src=- shape=a45368f9 vocab=8ac0232c
+-/
 theorem assignmentCountBound_le_ratio_mul_kernelWeightQ
     {κ₀ N M L n : ℕ}
     (hNM : N ≤ M) (hMκ : M ≤ κ₀ * N) (hL : L ≤ N)
@@ -684,7 +734,9 @@ theorem assignmentCountBound_le_ratio_mul_kernelWeightQ
           (LargeOddKernel.largeOddKernel (L + 1) n : ℚ)) := by
       ring
 
-/-- Finite bounded-ratio version of the kernel-sum estimate in Lemma 4.2.-/
+/-- Finite bounded-ratio version of the kernel-sum estimate in Lemma 4.2.
+@isnad1 id=le.4h4v.s7.1e9c42a37491 from=translated src=- shape=d19c2ddb vocab=4dacc607
+-/
 theorem card_boundedRelationalHosts_cast_le_kernelSumQ
     {κ₀ N M L : ℕ}
     (hN : 2 ≤ N) (hNM : N ≤ M)

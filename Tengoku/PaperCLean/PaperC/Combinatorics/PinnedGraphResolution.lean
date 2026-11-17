@@ -52,6 +52,9 @@ def PinnedGraphSpace (G : SimpleGraph V) (pins : Finset V) :
     · intro v hv
       simp [hf.2 v hv]
 
+/--
+@isnad1 id=iff.0h4v.s8.639f607518ea from=translated src=- shape=f1367189 vocab=b67f4b63
+-/
 @[simp]
 theorem mem_pinnedGraphSpace
     {pins : Finset V} {f : V → F₂} :
@@ -130,7 +133,9 @@ noncomputable def componentRestriction
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
-/-- Component restriction is injective.-/
+/-- Component restriction is injective.
+@isnad1 id=injectiv.0h3v.s11.d988635f0744 from=translated src=- shape=edb61a91 vocab=6f12bdd9
+-/
 theorem componentRestriction_injective
     (pins : Finset V) :
     Function.Injective (componentRestriction G pins) := by
@@ -171,6 +176,9 @@ noncomputable def componentExtension
       else
         g ⟨G.connectedComponentMk v, h⟩
 
+/--
+@isnad1 id=eq.1h6v.s5.757c0affc434 from=translated src=- shape=ccc8b5bf vocab=8fd22117
+-/
 theorem componentExtension_eq_of_adj
     (pins : Finset V)
     (g : UnpinnedComponent G pins → F₂)
@@ -195,6 +203,9 @@ theorem componentExtension_eq_of_adj
     congr 1
     exact Subtype.ext hcomp
 
+/--
+@isnad1 id=eq.1h5v.s6.89932e0a33f2 from=translated src=- shape=2bd9fd1a vocab=3184e5d2
+-/
 theorem componentExtension_eq_zero_of_mem
     (pins : Finset V)
     (g : UnpinnedComponent G pins → F₂)
@@ -204,7 +215,9 @@ theorem componentExtension_eq_zero_of_mem
   rw [dite_eq_left]
   exact ⟨v, hv, rfl⟩
 
-/-- Component restriction is surjective.-/
+/-- Component restriction is surjective.
+@isnad1 id=surjecti.0h3v.s11.19a8fcd4f67e from=translated src=- shape=edb61a91 vocab=048ed439
+-/
 theorem componentRestriction_surjective
     (pins : Finset V) :
     Function.Surjective (componentRestriction G pins) := by
@@ -240,7 +253,9 @@ noncomputable def pinnedGraphLinearEquiv
     ⟨componentRestriction_injective G pins,
       componentRestriction_surjective G pins⟩
 
-/-- Exact dimension formula from Lemma 6.1.-/
+/-- Exact dimension formula from Lemma 6.1.
+@isnad1 id=eq.0h3v.s9.35324ceff251 from=translated src=- shape=5cffa920 vocab=2cf3595b
+-/
 theorem finrank_pinnedGraphSpace
     (pins : Finset V) :
     Module.finrank F₂ (PinnedGraphSpace G pins) =
@@ -276,7 +291,9 @@ def componentSupportSigmaEquiv :
     rfl
   right_inv _ := rfl
 
-/-- The component supports partition the finite vertex set.-/
+/-- The component supports partition the finite vertex set.
+@isnad1 id=eq.0h2v.s6.ce92c8de1ff9 from=translated src=- shape=e9051a38 vocab=faff8fbf
+-/
 theorem sum_card_component_support :
     (∑ c : G.ConnectedComponent, Fintype.card c.supp) =
       Fintype.card V := by
@@ -306,6 +323,9 @@ noncomputable def nontrivialUnpinnedComponents
   classical
   exact Finset.univ.filter (IsNontrivialUnpinnedComponent G pins)
 
+/--
+@isnad1 id=iff.0h4v.s5.f6940f16215f from=translated src=- shape=0fb7fcb6 vocab=88b7c5f5
+-/
 @[simp]
 theorem mem_isolatedUnpinnedComponents
     {pins : Finset V} {c : G.ConnectedComponent} :
@@ -314,6 +334,9 @@ theorem mem_isolatedUnpinnedComponents
   classical
   simp [isolatedUnpinnedComponents]
 
+/--
+@isnad1 id=iff.0h4v.s5.715819e56f1d from=translated src=- shape=0fb7fcb6 vocab=85ffea3f
+-/
 @[simp]
 theorem mem_nontrivialUnpinnedComponents
     {pins : Finset V} {c : G.ConnectedComponent} :
@@ -333,6 +356,9 @@ noncomputable def unpinnedComponents
   exact Finset.univ.filter fun c ↦
     ¬ComponentPinned G pins c
 
+/--
+@isnad1 id=iff.0h4v.s5.22a3803182bc from=translated src=- shape=5e2a5b2a vocab=7a999622
+-/
 @[simp]
 theorem mem_unpinnedComponents
     {pins : Finset V} {c : G.ConnectedComponent} :
@@ -355,6 +381,9 @@ noncomputable def unpinnedComponentEquivFinset
   left_inv _ := rfl
   right_inv _ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.7ff1d2226dd9 from=translated src=- shape=c19896da vocab=64fcddbf
+-/
 theorem card_unpinnedComponents
     (pins : Finset V) :
     Fintype.card (UnpinnedComponent G pins) =
@@ -371,7 +400,9 @@ theorem card_unpinnedComponents
 
 /--
 Every unpinned component is uniquely either a singleton component or a
-component containing at least two vertices.-/
+component containing at least two vertices.
+@isnad1 id=eq.0h3v.s5.7d225019e783 from=translated src=- shape=1d19f070 vocab=214791e6
+-/
 theorem isolated_union_nontrivial_eq_unpinned
     (pins : Finset V) :
     isolatedUnpinnedComponents G pins ∪
@@ -399,7 +430,9 @@ theorem isolated_union_nontrivial_eq_unpinned
     · exact Or.inl ⟨hfree, hone⟩
     · exact Or.inr ⟨hfree, by omega⟩
 
-/-- The isolated and nontrivial unpinned families are disjoint.-/
+/-- The isolated and nontrivial unpinned families are disjoint.
+@isnad1 id=disjoint.0h3v.s5.624bc24cd787 from=translated src=- shape=b5c602cd vocab=585f8e36
+-/
 theorem disjoint_isolated_nontrivial
     (pins : Finset V) :
     Disjoint
@@ -416,7 +449,9 @@ theorem disjoint_isolated_nontrivial
   rw [IsNontrivialUnpinnedComponent] at hnontrivial
   omega
 
-/-- Exact splitting of the free-component count as `D+c`.-/
+/-- Exact splitting of the free-component count as `D+c`.
+@isnad1 id=eq.0h3v.s5.6dceb790b622 from=translated src=- shape=68c5bf36 vocab=ebefa007
+-/
 theorem card_unpinnedComponent_eq_isolated_add_nontrivial
     (pins : Finset V) :
     Fintype.card (UnpinnedComponent G pins) =
@@ -431,7 +466,9 @@ theorem card_unpinnedComponent_eq_isolated_add_nontrivial
 
 /--
 If `D` is the number of isolated unpinned components and `c` the number
-of nontrivial unpinned components, then `D + 2c ≤ |V|`.-/
+of nontrivial unpinned components, then `D + 2c ≤ |V|`.
+@isnad1 id=le.0h3v.s6.13902898d72a from=translated src=- shape=27531067 vocab=01c9f43b
+-/
 theorem card_isolated_add_twice_card_nontrivial_le
     (pins : Finset V) :
     (isolatedUnpinnedComponents G pins).card +

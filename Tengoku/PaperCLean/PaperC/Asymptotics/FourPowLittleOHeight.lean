@@ -20,7 +20,9 @@ namespace FourPowLittleOHeight
 /--
 If a natural-valued exponent is uniformly little-oh of a nonnegative height,
 and that height is eventually bounded by a fixed multiple of `log N`, then
-`4` to that exponent is uniformly subpolynomial.-/
+`4` to that exponent is uniformly subpolynomial.
+@isnad1 id=uniforms.4h4v.s7.fd9c28590b85 from=translated src=- shape=64fb6409 vocab=4ad5529d
+-/
 theorem uniformSubpolynomialOn_four_pow_of_uniformLittleO_height
     {admissible : ℕ → ℕ → Prop}
     (m : ℕ → ℕ → ℕ)

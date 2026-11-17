@@ -27,17 +27,25 @@ variable {V : Type*} [Fintype V] [DecidableEq V]
 def boundary (F : Finset (Sym2 V)) : Finset V :=
   Finset.univ.filter fun v ↦ Odd ((F.filter fun e ↦ v ∈ e).card)
 
+/--
+@isnad1 id=iff.0h3v.s6.5978932c276c from=translated src=- shape=332efaf9 vocab=3d534c65
+-/
 @[simp]
 theorem mem_boundary {F : Finset (Sym2 V)} {v : V} :
     v ∈ boundary F ↔ Odd ((F.filter fun e ↦ v ∈ e).card) := by
   simp [boundary]
 
+/--
+@isnad1 id=eq.0h1v.s4.ced08d4f5ee7 from=translated src=- shape=c55e6400 vocab=d95ced18
+-/
 @[simp]
 theorem boundary_empty : boundary (∅ : Finset (Sym2 V)) = ∅ := by
   ext
   simp
 
-/-- A finite set of genuine edges is exactly the edge finset of the graph it generates.-/
+/-- A finite set of genuine edges is exactly the edge finset of the graph it generates.
+@isnad1 id=eq.1h3v.s6.bb4b26fb42c8 from=translated src=- shape=4de9f632 vocab=2fa2169d
+-/
 theorem edgeFinset_fromEdgeSet_eq {G : SimpleGraph V} [DecidableRel G.Adj]
     (F : Finset (Sym2 V))
     (hF : F ⊆ G.edgeFinset) :
@@ -59,7 +67,9 @@ theorem edgeFinset_fromEdgeSet_eq {G : SimpleGraph V} [DecidableRel G.Adj]
 /--
 The handshaking half of Paper C, Lemma 2.2: the boundary of every finite edge subset has even
 cardinality.  This statement is valid in every finite simple graph; no connectedness or acyclicity
-is needed.-/
+is needed.
+@isnad1 id=even.1h3v.s5.605c5301a99b from=translated src=- shape=e6d2b0e1 vocab=3320bd90
+-/
 theorem even_card_boundary {G : SimpleGraph V} [DecidableRel G.Adj] (F : Finset (Sym2 V))
     (hF : F ⊆ G.edgeFinset) : Even (boundary F).card := by
   classical
@@ -74,7 +84,9 @@ theorem even_card_boundary {G : SimpleGraph V} [DecidableRel G.Adj] (F : Finset 
   exact H.even_card_odd_degree_vertices
 
 omit [Fintype V] in
-/-- Filtering commutes with symmetric difference.-/
+/-- Filtering commutes with symmetric difference.
+@isnad1 id=eq.0h4v.s6.bc9cc0fa4665 from=translated src=- shape=403354ea vocab=5504f246
+-/
 theorem filter_symmDiff (F K : Finset (Sym2 V)) (p : Sym2 V → Prop) [DecidablePred p] :
     (F ∆ K).filter p = F.filter p ∆ K.filter p := by
   ext e
@@ -83,7 +95,9 @@ theorem filter_symmDiff (F K : Finset (Sym2 V)) (p : Sym2 V → Prop) [Decidable
 
 /--
 The parity of the cardinality of a symmetric difference is the exclusive-or of the two input
-parities.-/
+parities.
+@isnad1 id=iff.0h3v.s5.9ad01174f04f from=translated src=- shape=3eaff5f0 vocab=4dca97fc
+-/
 theorem odd_card_symmDiff_iff {α : Type*} [DecidableEq α] (s t : Finset α) :
     Odd (s ∆ t).card ↔
       (Odd s.card ∧ ¬Odd t.card) ∨ (Odd t.card ∧ ¬Odd s.card) := by
@@ -114,7 +128,9 @@ theorem odd_card_symmDiff_iff {α : Type*} [DecidableEq α] (s t : Finset α) :
   rw [hparity, Nat.odd_add, ← Nat.not_odd_iff_even]
   tauto
 
-/-- Symmetric difference preserves even cardinality.-/
+/-- Symmetric difference preserves even cardinality.
+@isnad1 id=even.2h3v.s5.e170e2e134ca from=translated src=- shape=f3a60679 vocab=e1163c11
+-/
 theorem even_card_symmDiff {α : Type*} [DecidableEq α] {s t : Finset α}
     (hs : Even s.card) (ht : Even t.card) : Even (s ∆ t).card := by
   rw [← Nat.not_odd_iff_even]
@@ -123,7 +139,9 @@ theorem even_card_symmDiff {α : Type*} [DecidableEq α] {s t : Finset α}
   have hnt : ¬Odd t.card := Nat.not_odd_iff_even.mpr ht
   tauto
 
-/-- The boundary operation is additive for symmetric difference.-/
+/-- The boundary operation is additive for symmetric difference.
+@isnad1 id=eq.0h3v.s6.56d127e5f9a6 from=translated src=- shape=729b80ff vocab=53dc76f5
+-/
 theorem boundary_symmDiff (F K : Finset (Sym2 V)) :
     boundary (F ∆ K) = boundary F ∆ boundary K := by
   ext v
@@ -132,7 +150,9 @@ theorem boundary_symmDiff (F K : Finset (Sym2 V)) :
   exact odd_card_symmDiff_iff _ _
 
 omit [DecidableEq V] in
-/-- The edge finset of a trail is contained in the ambient graph.-/
+/-- The edge finset of a trail is contained in the ambient graph.
+@isnad1 id=le.1h5v.s6.046c0bc4a887 from=translated src=- shape=20d0e231 vocab=c9caf6b9
+-/
 theorem trailEdges_subset_edgeFinset {G : SimpleGraph V} [DecidableRel G.Adj]
     {u v : V} {p : G.Walk u v} (hp : p.IsTrail) :
     hp.edgesFinset ⊆ G.edgeFinset := by
@@ -143,7 +163,9 @@ theorem trailEdges_subset_edgeFinset {G : SimpleGraph V} [DecidableRel G.Adj]
 
 /--
 The boundary of a trail with distinct endpoints consists exactly of its two endpoints.
-In particular, this applies to the unique path between two vertices of a tree.-/
+In particular, this applies to the unique path between two vertices of a tree.
+@isnad1 id=eq.2h5v.s5.6a639424eedc from=translated src=- shape=f396674c vocab=7c4675e4
+-/
 theorem boundary_trailEdges {G : SimpleGraph V} {u v : V} {p : G.Walk u v}
     (hp : p.IsTrail) (huv : u ≠ v) :
     boundary hp.edgesFinset = {u, v} := by
@@ -161,7 +183,9 @@ theorem boundary_trailEdges {G : SimpleGraph V} {u v : V} {p : G.Walk u v}
 
 /--
 Existence half of the tree-boundary lemma, in the stronger form valid for every finite connected
-simple graph: every even vertex set is the boundary of an edge set.-/
+simple graph: every even vertex set is the boundary of an edge set.
+@isnad1 id=ex.2h3v.s6.99f1fae2b474 from=translated src=- shape=1411e517 vocab=de6d21df
+-/
 theorem exists_edgeSubset_boundary_eq_of_connected {G : SimpleGraph V} [DecidableRel G.Adj]
     (hG : G.Connected) (S : Finset V) (hS : Even S.card) :
     ∃ F : Finset (Sym2 V), F ⊆ G.edgeFinset ∧ boundary F = S := by
@@ -251,6 +275,9 @@ def edgeValueFinset {G : SimpleGraph V} (F : EdgeSubset G) : Finset (Sym2 V) :=
   F.map (Function.Embedding.subtype G.edgeSet)
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=iff.0h4v.s6.acbfeafeac68 from=translated src=- shape=51c33bc4 vocab=fb48894d
+-/
 @[simp]
 theorem mem_edgeValueFinset {G : SimpleGraph V} {F : EdgeSubset G} {e : Sym2 V} :
     e ∈ edgeValueFinset F ↔ ∃ he : e ∈ G.edgeSet, (⟨e, he⟩ : G.edgeSet) ∈ F := by
@@ -266,6 +293,9 @@ theorem mem_edgeValueFinset {G : SimpleGraph V} {F : EdgeSubset G} {e : Sym2 V} 
     exact ⟨⟨e, heG⟩, heF, rfl⟩
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=le.0h3v.s5.6a7838642147 from=translated src=- shape=2e80037b vocab=e86e2960
+-/
 theorem edgeValueFinset_subset_edgeFinset {G : SimpleGraph V} [DecidableRel G.Adj]
     (F : EdgeSubset G) : edgeValueFinset F ⊆ G.edgeFinset := by
   intro e he
@@ -278,6 +308,9 @@ def toEdgeSubset {G : SimpleGraph V} [DecidableRel G.Adj]
     (F : Finset (Sym2 V)) (_hF : F ⊆ G.edgeFinset) : EdgeSubset G :=
   Finset.univ.filter fun e : G.edgeSet ↦ e.1 ∈ F
 
+/--
+@isnad1 id=eq.1h3v.s6.7b261cce04fa from=translated src=- shape=4381d27e vocab=67cc5d82
+-/
 @[simp]
 theorem edgeValueFinset_toEdgeSubset {G : SimpleGraph V} [DecidableRel G.Adj]
     (F : Finset (Sym2 V)) (hF : F ⊆ G.edgeFinset) :
@@ -297,7 +330,9 @@ def boundaryMap (G : SimpleGraph V) [DecidableRel G.Adj] :
     EdgeSubset G → EvenVertexSubset V :=
   fun F ↦ ⟨boundary (edgeValueFinset F), even_card_boundary _ (edgeValueFinset_subset_edgeFinset F)⟩
 
-/-- On a connected graph, the boundary map is surjective onto even vertex subsets.-/
+/-- On a connected graph, the boundary map is surjective onto even vertex subsets.
+@isnad1 id=surjecti.1h2v.s5.797063abe4df from=translated src=- shape=2f778058 vocab=d7c674cb
+-/
 theorem boundaryMap_surjective_of_connected {G : SimpleGraph V} [DecidableRel G.Adj]
     (hG : G.Connected) : Function.Surjective (boundaryMap G) := by
   intro S
@@ -318,17 +353,26 @@ def nonRootValueFinset (r : V) (S : Finset {v : V // v ≠ r}) : Finset V :=
   S.map (Function.Embedding.subtype fun v : V ↦ v ≠ r)
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=iff.0h4v.s6.20a594488d6b from=translated src=- shape=430b1ede vocab=ad3bfea4
+-/
 @[simp]
 theorem mem_nonRootValueFinset (r : V) {S : Finset {v : V // v ≠ r}} {v : V} :
     v ∈ nonRootValueFinset r S ↔ ∃ hv : v ≠ r, (⟨v, hv⟩ : {w : V // w ≠ r}) ∈ S := by
   simp [nonRootValueFinset]
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=not.0h3v.s4.8703271e639e from=translated src=- shape=56e9e54d vocab=263d3d24
+-/
 @[simp]
 theorem root_not_mem_nonRootValueFinset (r : V) (S : Finset {v : V // v ≠ r}) :
     r ∉ nonRootValueFinset r S := by
   simp
 
+/--
+@isnad1 id=eq.0h3v.s4.c1c0126ff980 from=translated src=- shape=b972f85e vocab=bc0e3fa3
+-/
 theorem nonRootValueFinset_deleteRoot (r : V) (S : Finset V) :
     nonRootValueFinset r (deleteRoot r S) = S.erase r := by
   ext v
@@ -344,6 +388,9 @@ def evenCompletion (r : V) (S : Finset {v : V // v ≠ r}) : EvenVertexSubset V 
       rw [Finset.card_insert_of_notMem (root_not_mem_nonRootValueFinset r S)]
       exact (Nat.not_even_iff_odd.mp hU).add_one⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.8baaf04b2680 from=translated src=- shape=a3744067 vocab=bb7c4f10
+-/
 @[simp]
 theorem deleteRoot_evenCompletion (r : V) (S : Finset {v : V // v ≠ r}) :
     deleteRoot r (evenCompletion r S).1 = S := by
@@ -355,6 +402,9 @@ theorem deleteRoot_evenCompletion (r : V) (S : Finset {v : V // v ≠ r}) :
   · simp only [evenCompletion, h, ↓reduceDIte]
     simp [nonRootValueFinset, v.2]
 
+/--
+@isnad1 id=eq.0h3v.s5.041937353244 from=translated src=- shape=79ca6eba vocab=f318fcb0
+-/
 @[simp]
 theorem evenCompletion_deleteRoot (r : V) (S : EvenVertexSubset V) :
     evenCompletion r (deleteRoot r S.1) = S := by
@@ -380,7 +430,9 @@ def evenCompletionEquiv (r : V) :
 noncomputable instance instFintypeEvenVertexSubset : Fintype (EvenVertexSubset V) :=
   Fintype.ofInjective (fun S : EvenVertexSubset V ↦ S.1) Subtype.val_injective
 
-/-- There are `2^(|V|-1)` even vertex subsets, once a root is chosen.-/
+/-- There are `2^(|V|-1)` even vertex subsets, once a root is chosen.
+@isnad1 id=eq.0h2v.s5.e15dcb83e178 from=translated src=- shape=29b3ceb8 vocab=8fb06878
+-/
 theorem card_evenVertexSubset (r : V) :
     Fintype.card (EvenVertexSubset V) = 2 ^ (Fintype.card V - 1) := by
   have hcardNonRoot :
@@ -388,7 +440,9 @@ theorem card_evenVertexSubset (r : V) :
     exact Fintype.card_subtype_compl (fun v : V ↦ v = r)
   rw [← Fintype.card_congr (evenCompletionEquiv r), Fintype.card_finset, hcardNonRoot]
 
-/-- On a finite tree the source and target of the boundary map have the same cardinality.-/
+/-- On a finite tree the source and target of the boundary map have the same cardinality.
+@isnad1 id=eq.1h2v.s5.7450d0224ff5 from=translated src=- shape=377ca110 vocab=8fbba15b
+-/
 theorem card_edgeSubset_eq_evenVertexSubset {G : SimpleGraph V} [DecidableRel G.Adj]
     (hG : G.IsTree) :
     Fintype.card (EdgeSubset G) = Fintype.card (EvenVertexSubset V) := by
@@ -401,7 +455,9 @@ theorem card_edgeSubset_eq_evenVertexSubset {G : SimpleGraph V} [DecidableRel G.
 
 /--
 Full Paper C, Lemma 2.2: on a finite tree, boundary is a bijection from edge subsets to
-even-cardinality vertex subsets.-/
+even-cardinality vertex subsets.
+@isnad1 id=bijectiv.1h2v.s5.a201feabfef4 from=translated src=- shape=2f778058 vocab=abb954e8
+-/
 theorem boundaryMap_bijective_of_isTree {G : SimpleGraph V} [DecidableRel G.Adj]
     (hG : G.IsTree) : Function.Bijective (boundaryMap G) :=
   (Fintype.bijective_iff_surjective_and_card (boundaryMap G)).mpr
@@ -415,7 +471,9 @@ noncomputable def treeBoundaryEquiv {G : SimpleGraph V} [DecidableRel G.Adj]
 
 /--
 Usable existence-and-uniqueness form: every even vertex set of a finite tree is the boundary of
-exactly one intrinsic edge subset.-/
+exactly one intrinsic edge subset.
+@isnad1 id=existsun.2h3v.s5.3ea62d3c6689 from=translated src=- shape=855d96c0 vocab=937df0ac
+-/
 theorem existsUnique_edgeSubset_boundary_eq {G : SimpleGraph V} [DecidableRel G.Adj]
     (hG : G.IsTree) (S : Finset V) (hS : Even S.card) :
     ∃! F : EdgeSubset G, boundary (edgeValueFinset F) = S := by

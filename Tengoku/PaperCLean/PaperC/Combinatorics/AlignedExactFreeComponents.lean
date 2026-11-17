@@ -64,6 +64,9 @@ noncomputable def exactFreeResidualComponents
     (residualComponents x y L a b h).filter
       (IsExactFreeComponent x y L a b h)
 
+/--
+@isnad1 id=iff.0h7v.s6.928bd5c4402a from=translated src=- shape=03b9c0ab vocab=ea3fd9a9
+-/
 @[simp]
 theorem mem_exactFreeResidualComponents
     {x y L a b : ℕ} {h : ℤ}
@@ -74,7 +77,9 @@ theorem mem_exactFreeResidualComponents
   classical
   simp [exactFreeResidualComponents]
 
-/-- Membership in the filtered family implies exact-freeness.-/
+/-- Membership in the filtered family implies exact-freeness.
+@isnad1 id=isexactf.1h7v.s6.8e39bb6f0adb from=translated src=- shape=36d10392 vocab=f13f2fb2
+-/
 theorem isExactFreeComponent_of_mem
     {x y L a b : ℕ} {h : ℤ}
     {C : (largePrimeGraph x y L).ConnectedComponent}
@@ -82,7 +87,9 @@ theorem isExactFreeComponent_of_mem
     IsExactFreeComponent x y L a b h C :=
   (mem_exactFreeResidualComponents.mp hC).2
 
-/-- Membership in the filtered family still implies residual membership.-/
+/-- Membership in the filtered family still implies residual membership.
+@isnad1 id=mem.1h7v.s6.1aeb348ae310 from=translated src=- shape=6ee9819d vocab=29f89250
+-/
 theorem mem_residualComponents_of_mem_exactFree
     {x y L a b : ℕ} {h : ℤ}
     {C : (largePrimeGraph x y L).ConnectedComponent}
@@ -90,7 +97,9 @@ theorem mem_residualComponents_of_mem_exactFree
     C ∈ residualComponents x y L a b h :=
   (mem_exactFreeResidualComponents.mp hC).1
 
-/-- Exact-free residual components remain nontrivial and unpinned.-/
+/-- Exact-free residual components remain nontrivial and unpinned.
+@isnad1 id=isnontri.1h7v.s7.f121ce4c1533 from=translated src=- shape=7bc7a646 vocab=41670324
+-/
 theorem isNontrivialUnpinnedComponent_of_mem_exactFree
     {x y L a b : ℕ} {h : ℤ}
     {C : (largePrimeGraph x y L).ConnectedComponent}
@@ -108,7 +117,9 @@ With at least two exact units, every residual component is already
 exact-free.  The left occurrence is excluded by the definition of the
 canonical residual family.  For the right occurrence, the exact-unit
 dichotomy gives either a defective singleton or the same component as the
-left occurrence.-/
+left occurrence.
+@isnad1 id=isexactf.8h7v.s7.a8233f4bfd63 from=translated src=- shape=c1f7f2a0 vocab=5355a4a3
+-/
 theorem isExactFreeComponent_of_mem_residual_of_two_le
     {x y L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b)
@@ -181,7 +192,9 @@ theorem isExactFreeComponent_of_mem_residual_of_two_le
           hjoined.1
     exact hleft (hsame.trans hright)
 
-/-- In the active branch the exact-free filter leaves the family unchanged.-/
+/-- In the active branch the exact-free filter leaves the family unchanged.
+@isnad1 id=eq.7h6v.s7.d2682324840d from=translated src=- shape=650c3500 vocab=ba840214
+-/
 theorem exactFreeResidualComponents_eq_of_two_le
     {x y L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b)
@@ -206,7 +219,9 @@ theorem exactFreeResidualComponents_eq_of_two_le
 
 /--
 When there is one exact unit, every residual component which fails
-exact-freeness belongs to the canonical two-component exceptional family.-/
+exact-freeness belongs to the canonical two-component exceptional family.
+@isnad1 id=mem.3h7v.s7.44ba7ff6c04e from=translated src=- shape=ccc44a57 vocab=6b7e4a75
+-/
 theorem mem_oneUnitExceptionalComponents_of_not_exactFree
     {x y L a b : ℕ} {h : ℤ}
     (hm : channelUnitCount L a b h = 1)
@@ -229,7 +244,9 @@ theorem mem_oneUnitExceptionalComponents_of_not_exactFree
   · exact Or.inl (by simpa [hcellEq] using not_ne_iff.mp hleft)
   · exact Or.inr (by simpa [hcellEq] using not_ne_iff.mp hright)
 
-/-- With no exact unit, every residual component is exact-free.-/
+/-- With no exact unit, every residual component is exact-free.
+@isnad1 id=isexactf.1h7v.s5.23f94c1a3357 from=translated src=- shape=966b6aaf vocab=3b7668dc
+-/
 theorem isExactFreeComponent_of_channelUnitCount_eq_zero
     {x y L a b : ℕ} {h : ℤ}
     (hm : channelUnitCount L a b h = 0)
@@ -250,7 +267,9 @@ theorem isExactFreeComponent_of_channelUnitCount_eq_zero
 
 /--
 Removing every component which meets an exact channel unit costs at most two
-residual components.-/
+residual components.
+@isnad1 id=le.6h6v.s7.3db42b7552e1 from=translated src=- shape=52e70728 vocab=8ce57323
+-/
 theorem card_residualComponents_le_card_exactFree_add_two
     {x y L a b : ℕ} {h : ℤ}
     (ha : 0 < a) (hb : 0 < b)

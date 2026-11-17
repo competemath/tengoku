@@ -34,6 +34,9 @@ noncomputable def certificateSolutions
   {x ∈ Ico a b |
       ∀ i ∈ T.1.toList, x ≡ residue i [MOD modulus i]}
 
+/--
+@isnad1 id=eq.0h8v.s5.a0667119a706 from=translated src=- shape=449eecbe vocab=50d54d6d
+-/
 @[simp]
 theorem card_certificateSolutions
     {s : Finset ι} {r : ℕ}
@@ -56,7 +59,9 @@ noncomputable def admissibleCertificateSolutions
 
 /--
 One-dimensional population cover.  This is the version used after fixing a
-nontrivial rational channel and projecting its start pairs to one coordinate.-/
+nontrivial rational channel and projecting its start pairs to one coordinate.
+@isnad1 id=le.2h10v.s7.6932cf821452 from=translated src=- shape=3ac8f5ca vocab=a9d34d9b
+-/
 theorem card_population_le_sum_admissibleCertificateSolutionCount
     {s : Finset ι} {r : ℕ}
     (population : Finset ℕ)
@@ -108,7 +113,9 @@ theorem card_population_le_sum_admissibleCertificateSolutionCount
 /--
 Membership-dependent version of the one-dimensional cover.  It avoids an
 arbitrary default certificate when a certificate is naturally constructed
-only from the proof that `x` belongs to the population.-/
+only from the proof that `x` belongs to the population.
+@isnad1 id=le.2h10v.s7.37e5792b1870 from=translated src=- shape=4640a62c vocab=a9d34d9b
+-/
 theorem card_population_le_sum_admissibleCertificateSolutionCount'
     {s : Finset ι} {r : ℕ}
     (population : Finset ℕ)
@@ -159,7 +166,9 @@ theorem card_population_le_sum_admissibleCertificateSolutionCount'
       · simp [admissibleCertificateSolutions, hT]
       · simp [admissibleCertificateSolutions, hT]
 
-/-- Weighted lower bridge into the one-dimensional certificate mass.-/
+/-- Weighted lower bridge into the one-dimensional certificate mass.
+@isnad1 id=le.3h11v.s7.750739fdb8a1 from=translated src=- shape=a8cee515 vocab=33714754
+-/
 theorem pow_mul_card_population_le_admissibleCertificateSolutionMass
     {s : Finset ι} {r : ℕ}
     (population : Finset ℕ)
@@ -200,7 +209,9 @@ theorem pow_mul_card_population_le_admissibleCertificateSolutionMass
       simp [admissibleCertificateSolutionMass, Finset.mul_sum,
         mul_ite]
 
-/-- Weighted membership-dependent one-dimensional population cover.-/
+/-- Weighted membership-dependent one-dimensional population cover.
+@isnad1 id=le.3h11v.s7.1cdbb118ad29 from=translated src=- shape=64d1a88a vocab=33714754
+-/
 theorem pow_mul_card_population_le_admissibleCertificateSolutionMass'
     {s : Finset ι} {r : ℕ}
     (population : Finset ℕ)
@@ -254,6 +265,9 @@ noncomputable def certificatePairSolutions
     {y ∈ Ico a₂ b₂ |
       ∀ i ∈ T.1.toList, y ≡ residue₂ i [MOD modulus i]}
 
+/--
+@isnad1 id=eq.0h11v.s6.c2f58a8942ad from=translated src=- shape=c13e4399 vocab=66d60e14
+-/
 @[simp]
 theorem card_certificatePairSolutions
     {s : Finset ι} {r : ℕ}
@@ -282,7 +296,9 @@ noncomputable def admissibleCertificatePairSolutions
 /--
 If every pair in a finite population chooses an admissible certificate and
 satisfies all of its congruences, then the population cardinality is at most
-the sum of the corresponding rectangular CRT solution counts.-/
+the sum of the corresponding rectangular CRT solution counts.
+@isnad1 id=le.2h13v.s7.c6d65b126604 from=translated src=- shape=95547536 vocab=690abb98
+-/
 theorem card_population_le_sum_admissibleCertificatePairSolutionCount
     {s : Finset ι} {r : ℕ}
     (population : Finset (ℕ × ℕ))
@@ -339,7 +355,9 @@ theorem card_population_le_sum_admissibleCertificatePairSolutionCount
 /--
 Membership-dependent two-dimensional population cover.  This is the form
 used when the ambient certificate is extracted from the pair's canonical
-data and hence only exists canonically under the population predicate.-/
+data and hence only exists canonically under the population predicate.
+@isnad1 id=le.2h13v.s7.4564e3da410a from=translated src=- shape=74db33cd vocab=690abb98
+-/
 theorem card_population_le_sum_admissibleCertificatePairSolutionCount'
     {s : Finset ι} {r : ℕ}
     (population : Finset (ℕ × ℕ))
@@ -396,7 +414,9 @@ theorem card_population_le_sum_admissibleCertificatePairSolutionCount'
 
 /--
 Weighted population-cover form.  This is the exact lower bridge into
-`admissibleCertificatePairSolutionMass`.-/
+`admissibleCertificatePairSolutionMass`.
+@isnad1 id=le.3h14v.s7.1bb98f49287c from=translated src=- shape=a8cece57 vocab=aade0072
+-/
 theorem pow_mul_card_population_le_admissibleCertificatePairSolutionMass
     {s : Finset ι} {r : ℕ}
     (population : Finset (ℕ × ℕ))
@@ -441,7 +461,9 @@ theorem pow_mul_card_population_le_admissibleCertificatePairSolutionMass
       simp [admissibleCertificatePairSolutionMass, Finset.mul_sum,
         mul_ite]
 
-/-- Weighted membership-dependent two-dimensional population cover.-/
+/-- Weighted membership-dependent two-dimensional population cover.
+@isnad1 id=le.3h14v.s7.d1684fcc658b from=translated src=- shape=3b10643a vocab=aade0072
+-/
 theorem pow_mul_card_population_le_admissibleCertificatePairSolutionMass'
     {s : Finset ι} {r : ℕ}
     (population : Finset (ℕ × ℕ))

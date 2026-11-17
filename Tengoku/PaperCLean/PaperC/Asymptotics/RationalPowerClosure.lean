@@ -26,7 +26,9 @@ namespace UniformRationalPower
 
 /--
 Multiplication by a uniformly subpolynomial factor preserves every
-uniform rational-power bound with positive denominator.-/
+uniform rational-power bound with positive denominator.
+@isnad1 id=uniformr.3h5v.s6.75a23ce32aab from=translated src=- shape=15c00f42 vocab=f16e64a8
+-/
 theorem mul_subpolynomial
     {p q : ℕ} (hq : 0 < q)
     {admissible : ℕ → ℕ → Prop}
@@ -83,7 +85,9 @@ theorem mul_subpolynomial
 
 /--
 The sum of an `N^(5/3+o(1))` term and an
-`N^(3/2+o(1))` term is `N^(5/3+o(1))`.-/
+`N^(3/2+o(1))` term is `N^(5/3+o(1))`.
+@isnad1 id=uniformf.2h3v.s5.ff384d5c9483 from=translated src=- shape=4b7a5faf vocab=384da3bf
+-/
 theorem add_fiveThird_threeHalves
     {admissible : ℕ → ℕ → Prop}
     {f g : ℕ → ℕ → ℝ}
@@ -192,7 +196,9 @@ theorem add_fiveThird_threeHalves
       (show 0 ≤ (N : ℝ) ^ (5 * k + 1) by positivity)).mp hsq
 
 /--
-Symmetric form of `add_fiveThird_threeHalves`.-/
+Symmetric form of `add_fiveThird_threeHalves`.
+@isnad1 id=uniformf.2h3v.s5.8316ef1f7a48 from=translated src=- shape=06cf7de6 vocab=384da3bf
+-/
 theorem add_threeHalves_fiveThird
     {admissible : ℕ → ℕ → Prop}
     {f g : ℕ → ℕ → ℝ}
@@ -211,7 +217,9 @@ Cauchy--Schwarz interpolation between `N^(3/2+o(1))` and
 `N^(5/3+o(1))`.
 
 If eventually `R ≤ √H √Q` and all three quantities are nonnegative, then
-`R=N^(19/12+o(1))`.-/
+`R=N^(19/12+o(1))`.
+@isnad1 id=uniformr.3h4v.s7.1b2ef70e1da8 from=translated src=- shape=7db5450d vocab=1980e48e
+-/
 theorem interpolate_threeHalves_fiveThird
     {admissible : ℕ → ℕ → Prop}
     {H Q R : ℕ → ℕ → ℝ}

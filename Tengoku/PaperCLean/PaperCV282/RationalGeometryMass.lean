@@ -26,7 +26,9 @@ def geometryMass (L : ℕ) : ℕ :=
       2 ^ channelSigma L c.1 c.2 h
 
 /-- The finite support is exactly all positive primitive geometries with
-height at least two and multiplicity at least two.-/
+height at least two and multiplicity at least two.
+@isnad1 id=iff.0h4v.s7.619b62533c7c from=translated src=- shape=a34c878d vocab=dde9613a
+-/
 theorem geometry_mem_sum_iff {L a b : ℕ} {h : ℤ} :
     (Nat.max a b ∈ Icc 2 L ∧
       (a, b) ∈ reducedRatiosAtHeight (Nat.max a b) ∧
@@ -44,7 +46,9 @@ theorem geometry_mem_sum_iff {L a b : ℕ} {h : ℤ} :
         max_coeff_le_length_of_mem_nontrivialChannelHeights ha hb hcop hh⟩,
       mem_reducedRatiosAtHeight.mpr ⟨ha, hb, hcop, rfl⟩, hh⟩
 
-/-- An explicit contribution bound at every height, before summing heights.-/
+/-- An explicit contribution bound at every height, before summing heights.
+@isnad1 id=le.0h1v.s6.a4469c71603a from=translated src=- shape=d2011460 vocab=93aded53
+-/
 theorem geometryMass_le_height_envelope (L : ℕ) :
     geometryMass L ≤
       ∑ q ∈ Icc 2 L, (2 * q) * (((2 * q) * L + 1) * 2 ^ (L / q)) := by
@@ -92,7 +96,9 @@ theorem geometryMass_le_height_envelope (L : ℕ) :
     _ ≤ (2 * q) * W :=
       Nat.mul_le_mul_right W (card_reducedRatiosAtHeight_le q)
 
-/-- A common finite envelope for every nontrivial height `q ≥ 2`.-/
+/-- A common finite envelope for every nontrivial height `q ≥ 2`.
+@isnad1 id=le.0h1v.s6.0c525770f016 from=translated src=- shape=58f7a121 vocab=6f27b2be
+-/
 theorem geometryMass_le_uniform_height_envelope (L : ℕ) :
     geometryMass L ≤
       L * (2 * L) * ((2 * L) * L + 1) * 2 ^ (L / 2) := by
@@ -121,7 +127,9 @@ theorem geometryMass_le_uniform_height_envelope (L : ℕ) :
       dsimp [W]
       ring
 
-/-- The base-two finite majorant underlying equation (3.13).-/
+/-- The base-two finite majorant underlying equation (3.13).
+@isnad1 id=le.0h1v.s6.3fcbe1e06c8d from=translated src=- shape=2cfc9135 vocab=6f27b2be
+-/
 theorem geometryMass_le_poly_two_pow_half (L : ℕ) :
     geometryMass L ≤ 6 * (L + 1) ^ 4 * 2 ^ (L / 2) := by
   have hLB : L ≤ L + 1 := Nat.le_succ L

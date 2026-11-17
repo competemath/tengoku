@@ -36,7 +36,9 @@ variable {ι : Type*}
 If every two distinct factors have product at most `T²`, at most one factor
 can be strictly larger than `T`.
 
-This is the exact finite content of Step 1 in the proof of Theorem 10.1.-/
+This is the exact finite content of Step 1 in the proof of Theorem 10.1.
+@isnad1 id=le.1h4v.s6.c00bc9adbfc8 from=translated src=- shape=aa7208dc vocab=28a4501a
+-/
 theorem card_filter_large_le_one
     (indices : Finset ι) (factor : ι → ℕ) (T : ℕ)
     (hpair :
@@ -91,6 +93,9 @@ def incidences
     Finset (α × β) :=
   left ×ˢ right |>.filter fun z ↦ related z.1 z.2
 
+/--
+@isnad1 id=iff.0h7v.s6.cbe377722855 from=translated src=- shape=b784afa7 vocab=8bd44773
+-/
 @[simp]
 theorem mem_incidences
     {left : Finset α} {right : Finset β}
@@ -101,7 +106,9 @@ theorem mem_incidences
   simp [incidences, and_assoc]
 
 /--
-The incidence cardinality is the sum of the right fibres.-/
+The incidence cardinality is the sum of the right fibres.
+@isnad1 id=eq.0h5v.s5.fdb8c6db12f4 from=translated src=- shape=477e3b5e vocab=f6c7c3e7
+-/
 theorem card_incidences_eq_sum_right_fibers
     (left : Finset α) (right : Finset β)
     (related : α → β → Prop) [DecidableRel related] :
@@ -113,7 +120,9 @@ theorem card_incidences_eq_sum_right_fibers
   rw [Finset.sum_product]
 
 /--
-The same incidence cardinality is the sum of the left fibres.-/
+The same incidence cardinality is the sum of the left fibres.
+@isnad1 id=eq.0h5v.s5.67c8f934cd55 from=translated src=- shape=ab026b97 vocab=f6c7c3e7
+-/
 theorem card_incidences_eq_sum_left_fibers
     (left : Finset α) (right : Finset β)
     (related : α → β → Prop) [DecidableRel related] :
@@ -130,7 +139,9 @@ every right object has at most `q`, then
 
 `m * #left ≤ q * #right`.
 
-This is the exact form used in Step 2 of Theorem 10.1.-/
+This is the exact form used in Step 2 of Theorem 10.1.
+@isnad1 id=le.2h7v.s6.1c7de463b1f2 from=translated src=- shape=b046ec24 vocab=1512bf0a
+-/
 theorem incidence_double_count
     (left : Finset α) (right : Finset β)
     (related : α → β → Prop) [DecidableRel related]
@@ -177,7 +188,9 @@ theorem incidence_double_count
 
 /--
 The manuscript's `B/2` incidence specialization, stated without rounding
-ambiguity: if `B ≤ 2m`, then `B * #left ≤ 2B * #right`.-/
+ambiguity: if `B ≤ 2m`, then `B * #left ≤ 2B * #right`.
+@isnad1 id=le.3h7v.s7.941f2ebd5eed from=translated src=- shape=f566f286 vocab=1512bf0a
+-/
 theorem incidence_half_specialization
     (left : Finset α) (right : Finset β)
     (related : α → β → Prop) [DecidableRel related]
@@ -196,7 +209,9 @@ theorem incidence_half_specialization
 
 /--
 After cancelling a positive `B`, the preceding estimate gives the clean
-cardinality bound `#left ≤ 2 #right`.-/
+cardinality bound `#left ≤ 2 #right`.
+@isnad1 id=le.4h7v.s7.6500208d6b3a from=translated src=- shape=39b23fef vocab=e258baf1
+-/
 theorem card_left_le_twice_card_right
     (left : Finset α) (right : Finset β)
     (related : α → β → Prop) [DecidableRel related]
@@ -225,7 +240,9 @@ section ResidualWeights
 
 variable {α : Type*}
 
-/-- Pointwise domination bounds a finite sum by cardinality times the envelope.-/
+/-- Pointwise domination bounds a finite sum by cardinality times the envelope.
+@isnad1 id=le.1h4v.s5.3b592f5ae1cb from=translated src=- shape=f8b24bb3 vocab=8b8c6ed5
+-/
 theorem sum_le_card_mul
     (population : Finset α) (weight : α → ℕ) (W : ℕ)
     (hweight : ∀ z ∈ population, weight z ≤ W) :
@@ -237,7 +254,9 @@ theorem sum_le_card_mul
     _ = population.card * W := by simp
 
 /--
-If `τ ≤ B+2`, then the residual weight `2^τ-1` is at most `4·2^B`.-/
+If `τ ≤ B+2`, then the residual weight `2^τ-1` is at most `4·2^B`.
+@isnad1 id=le.1h2v.s6.07306be65c42 from=translated src=- shape=3bcebd91 vocab=cdb4433a
+-/
 theorem two_pow_sub_one_le_four_mul_two_pow
     {tau B : ℕ} (htau : tau ≤ B + 2) :
     2 ^ tau - 1 ≤ 4 * 2 ^ B := by
@@ -250,7 +269,9 @@ theorem two_pow_sub_one_le_four_mul_two_pow
       omega
 
 /--
-Finite weighted-summation step from the end of Theorem 10.1.-/
+Finite weighted-summation step from the end of Theorem 10.1.
+@isnad1 id=le.1h4v.s7.496755df9157 from=translated src=- shape=8baf485b vocab=d8dcc3ac
+-/
 theorem sum_two_pow_sub_one_le
     (population : Finset α) (tau : α → ℕ) (B : ℕ)
     (htau : ∀ z ∈ population, tau z ≤ B + 2) :

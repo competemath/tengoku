@@ -26,11 +26,17 @@ noncomputable section
 def spatialRetention (g : ℝ → ℝ) (t : ℝ) : ℝ :=
   1 - Real.exp (-g t)
 
+/--
+@isnad1 id=continuo.1h1v.s5.33dbeabcadd2 from=translated src=- shape=7861e8ca vocab=4f1ba1d3
+-/
 theorem continuous_spatialRetention
     {g : ℝ → ℝ} (hg : Continuous g) :
     Continuous (spatialRetention g) := by
   exact continuous_const.sub (Real.continuous_exp.comp hg.neg)
 
+/--
+@isnad1 id=continuo.1h1v.s6.c405ca66488d from=translated src=- shape=025ac4a0 vocab=88c0517f
+-/
 theorem continuousOn_spatialRetention
     {g : ℝ → ℝ}
     (hg : ContinuousOn g (Set.Icc (1 : ℝ) 2)) :
@@ -39,6 +45,9 @@ theorem continuousOn_spatialRetention
     (Real.continuous_exp.continuousOn.comp hg.neg
       (Set.mapsTo_univ _ _))
 
+/--
+@isnad1 id=le.1h2v.s5.d032bb73d47c from=translated src=- shape=8c2ee0a1 vocab=44866787
+-/
 theorem spatialRetention_nonneg
     {g : ℝ → ℝ} (hg : ∀ t, 0 ≤ g t) (t : ℝ) :
     0 ≤ spatialRetention g t := by
@@ -46,6 +55,9 @@ theorem spatialRetention_nonneg
   exact sub_nonneg.mpr
     (Real.exp_le_one_iff.mpr (neg_nonpos.mpr (hg t)))
 
+/--
+@isnad1 id=le.0h2v.s4.7eaff8611d34 from=translated src=- shape=5f12998d vocab=44866787
+-/
 theorem spatialRetention_le_one
     (g : ℝ → ℝ) (t : ℝ) :
     spatialRetention g t ≤ 1 := by
@@ -65,7 +77,9 @@ def spatialThinnedParameter
       spatialRetention g ((x : ℝ) / (N : ℝ))) /
     (2 : ℝ) ^ L
 
-/-- Exact factorization into the critical scale and normalized Riemann sum.-/
+/-- Exact factorization into the critical scale and normalized Riemann sum.
+@isnad1 id=eq.1h3v.s5.bf8020af82b6 from=translated src=- shape=29c5ea9f vocab=5a2307e6
+-/
 theorem spatialThinnedParameter_eq_scale_mul
     {N L : ℕ} (hN : 0 < N) (g : ℝ → ℝ) :
     spatialThinnedParameter N L g =
@@ -77,7 +91,9 @@ theorem spatialThinnedParameter_eq_scale_mul
 /--
 Source-facing parameter limit for Section 14.2.  Along arbitrary sequences
 with `N → ∞` and `N / 2^L → λ`, the thinned parameter tends to
-`λ ∫_[1,2) (1-exp(-g(t))) dt`.-/
+`λ ∫_[1,2) (1-exp(-g(t))) dt`.
+@isnad1 id=tendsto.3h4v.s7.366794d1bc10 from=translated src=- shape=aa520d4d vocab=2cb0db1a
+-/
 theorem tendsto_spatialThinnedParameter
     {N L : ℕ → ℕ} {rate : ℝ} {g : ℝ → ℝ}
     (hN : Tendsto N atTop atTop)
@@ -105,7 +121,9 @@ theorem tendsto_spatialThinnedParameter
 
 /--
 The corresponding convergence of exponential void probabilities, already in
-the exact form of the Laplace functional of a homogeneous Poisson process.-/
+the exact form of the Laplace functional of a homogeneous Poisson process.
+@isnad1 id=tendsto.3h4v.s7.b302e805b5bc from=translated src=- shape=42c555b2 vocab=799ae543
+-/
 theorem tendsto_exp_neg_spatialThinnedParameter
     {N L : ℕ → ℕ} {rate : ℝ} {g : ℝ → ℝ}
     (hN : Tendsto N atTop atTop)
@@ -127,16 +145,25 @@ theorem tendsto_exp_neg_spatialThinnedParameter
 def geometricMarkWeight (e : ℕ) : ℝ :=
   1 / (2 : ℝ) ^ (e + 1)
 
+/--
+@isnad1 id=le.0h1v.s3.4843e54ca9a4 from=translated src=- shape=b9369acb vocab=abba516e
+-/
 theorem geometricMarkWeight_nonneg (e : ℕ) :
     0 ≤ geometricMarkWeight e := by
   unfold geometricMarkWeight
   positivity
 
+/--
+@isnad1 id=eq.0h1v.s5.1807e1845592 from=translated src=- shape=d8b7bfe7 vocab=fa07ff98
+-/
 theorem geometricMarkWeight_eq_half_pow (e : ℕ) :
     geometricMarkWeight e = ((1 / 2 : ℝ) ^ (e + 1)) := by
   unfold geometricMarkWeight
   rw [one_div_pow]
 
+/--
+@isnad1 id=hassum.0h0v.s4.06f72ed152c0 from=translated src=- shape=b3278842 vocab=ccd19b8d
+-/
 theorem hasSum_geometricMarkWeight :
     HasSum geometricMarkWeight 1 := by
   have h :=
@@ -152,13 +179,18 @@ theorem hasSum_geometricMarkWeight :
   norm_num at hhalf
   exact hhalf
 
+/--
+@isnad1 id=eq.0h0v.s4.b1622c5504de from=translated src=- shape=db078bc9 vocab=f91eabe5
+-/
 theorem tsum_geometricMarkWeight :
     ∑' e : ℕ, geometricMarkWeight e = 1 :=
   hasSum_geometricMarkWeight.tsum_eq
 
 /--
 Exact geometric tail used in the final de-truncation:
-`∑_{e≥E+1} 2^{-(e+1)} = 2^{-(E+1)}`.-/
+`∑_{e≥E+1} 2^{-(e+1)} = 2^{-(E+1)}`.
+@isnad1 id=eq.0h1v.s6.92f194e07b8e from=translated src=- shape=fca6f41c vocab=8e2ed563
+-/
 theorem tsum_geometricMarkWeight_tail (E : ℕ) :
     ∑' e : ℕ, geometricMarkWeight (e + (E + 1)) =
       (1 / 2 : ℝ) ^ (E + 1) := by
@@ -178,6 +210,9 @@ theorem tsum_geometricMarkWeight_tail (E : ℕ) :
     _ = (1 / 2 : ℝ) ^ (E + 1) := by
       rw [tsum_geometricMarkWeight, mul_one]
 
+/--
+@isnad1 id=tendsto.0h0v.s6.12acc6084bcd from=translated src=- shape=2e1d21af vocab=fc906693
+-/
 theorem tendsto_geometricMarkWeight_tail_zero :
     Tendsto (fun E : ℕ ↦ (1 / 2 : ℝ) ^ (E + 1))
       atTop (𝓝 0) := by
@@ -205,6 +240,9 @@ def literalMarkedThinnedParameter
           ((x : ℝ) / (N : ℝ)) /
         (2 : ℝ) ^ (L + e + 1)
 
+/--
+@isnad1 id=eq.0h4v.s4.bae10af701ce from=translated src=- shape=303bae66 vocab=2804e2e8
+-/
 theorem markedThinnedParameter_eq_literal
     (N L E : ℕ) (g : ℝ → ℕ → ℝ) :
     markedThinnedParameter N L E g =
@@ -244,6 +282,9 @@ def markedRetentionIntegrand
     geometricMarkWeight e *
       spatialRetention (fun u ↦ g u e) t
 
+/--
+@isnad1 id=continuo.1h2v.s6.3bb7d622b2d6 from=translated src=- shape=05fa42bf vocab=2007937e
+-/
 theorem continuous_markedRetentionIntegrand
     {E : ℕ} {g : ℝ → ℕ → ℝ}
     (hg : ∀ e ≤ E,
@@ -257,6 +298,9 @@ theorem continuous_markedRetentionIntegrand
     (continuousOn_spatialRetention
       (hg e (Nat.le_of_lt_succ (Finset.mem_range.mp he))))
 
+/--
+@isnad1 id=le.1h3v.s5.51274440e2fd from=translated src=- shape=eb73b81b vocab=2b404a3b
+-/
 theorem markedRetentionIntegrand_nonneg
     {E : ℕ} {g : ℝ → ℕ → ℝ}
     (hg : ∀ t e, 0 ≤ g t e) (t : ℝ) :
@@ -266,7 +310,9 @@ theorem markedRetentionIntegrand_nonneg
     mul_nonneg (geometricMarkWeight_nonneg e)
       (spatialRetention_nonneg (fun u ↦ hg u e) t)
 
-/-- Integration commutes with the finite sum over marks.-/
+/-- Integration commutes with the finite sum over marks.
+@isnad1 id=eq.1h2v.s7.fce416988a8c from=translated src=- shape=540cdbd1 vocab=47898064
+-/
 theorem integral_markedRetentionIntegrand
     {E : ℕ} {g : ℝ → ℕ → ℝ}
     (hg : ∀ e ≤ E,
@@ -294,7 +340,9 @@ theorem integral_markedRetentionIntegrand
         (geometricMarkWeight e))
 
 /--
-Source-facing marked parameter limit for fixed truncation `E`.-/
+Source-facing marked parameter limit for fixed truncation `E`.
+@isnad1 id=tendsto.3h5v.s7.0eb7d96f5a86 from=translated src=- shape=8967940c vocab=e9bf3d62
+-/
 theorem tendsto_markedThinnedParameter
     {N L : ℕ → ℕ} {rate : ℝ} {E : ℕ}
     {g : ℝ → ℕ → ℝ}
@@ -335,7 +383,9 @@ theorem tendsto_markedThinnedParameter
     ring
 
 /--
-The fixed-`E` marked Laplace exponent converges to the Poisson exponent.-/
+The fixed-`E` marked Laplace exponent converges to the Poisson exponent.
+@isnad1 id=tendsto.3h5v.s7.3aa5ba0b6350 from=translated src=- shape=29702ebc vocab=05e11338
+-/
 theorem tendsto_exp_neg_markedThinnedParameter
     {N L : ℕ → ℕ} {rate : ℝ} {E : ℕ}
     {g : ℝ → ℕ → ℝ}

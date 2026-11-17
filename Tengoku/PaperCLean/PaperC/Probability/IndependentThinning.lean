@@ -47,7 +47,9 @@ def productPMF
     simp only [Prod.fst, Prod.snd, ← Finset.mul_sum,
       ν.sum_prob, mul_one, μ.sum_prob]
 
-/-- Rectangular events factor under the product PMF.-/
+/-- Rectangular events factor under the product PMF.
+@isnad1 id=eq.0h6v.s6.6a095b05797d from=translated src=- shape=a7548122 vocab=515b7dfe
+-/
 theorem eventProbability_product_and
     [Fintype Ω] [Fintype Ξ]
     (μ : FinitePMF Ω) (ν : FinitePMF Ξ)
@@ -84,7 +86,9 @@ def finitePMFExpectation
     [Fintype Ω] (μ : FinitePMF Ω) (F : Ω → ℝ) : ℝ :=
   ∑ ω, μ.prob ω * F ω
 
-/-- Event probabilities are expectations of their `0/1` indicators.-/
+/-- Event probabilities are expectations of their `0/1` indicators.
+@isnad1 id=eq.0h3v.s5.aaf9b2c28b5b from=translated src=- shape=8c949900 vocab=8c4d28e2
+-/
 theorem finitePMFExpectation_indicator
     [Fintype Ω] (μ : FinitePMF Ω) (P : Ω → Prop) :
     finitePMFExpectation μ
@@ -96,7 +100,9 @@ theorem finitePMFExpectation_indicator
   intro ω _hω
   by_cases hP : P ω <;> simp [hP]
 
-/-- Fubini identity for an event under the finite product PMF.-/
+/-- Fubini identity for an event under the finite product PMF.
+@isnad1 id=eq.0h5v.s5.7a67a4f98c98 from=translated src=- shape=31b1bea9 vocab=5d0427fc
+-/
 theorem eventProbability_product_eq_iterated
     [Fintype Ω] [Fintype Ξ]
     (μ : FinitePMF Ω) (ν : FinitePMF Ξ)
@@ -115,7 +121,9 @@ theorem eventProbability_product_eq_iterated
   by_cases hP : P (ω, ξ) <;> simp [hP]
 
 /-- Disintegrate a finite expectation over the fibers of a finite-valued
-map.-/
+map.
+@isnad1 id=eq.0h5v.s6.d362a8429866 from=translated src=- shape=ea64ee80 vocab=20940efe
+-/
 theorem finitePMFExpectation_eq_sum_fibers
     [Fintype Ω] {κ : Type*} [Fintype κ]
     (μ : FinitePMF Ω) (f : Ω → κ) (h : κ → ℝ) :
@@ -154,7 +162,9 @@ def outsideVector
 
 /--
 Atomwise exact dependence implies factorization for arbitrary real weights
-of the local Boolean value and of the complete outside Boolean vector.-/
+of the local Boolean value and of the complete outside Boolean vector.
+@isnad1 id=eq.1h8v.s6.131226e10ba7 from=translated src=- shape=57821de4 vocab=ba0289ac
+-/
 theorem finitePMFExpectation_mul_of_hasExactDependencyGraph
     [Fintype Ω] [Fintype ι] [DecidableEq ι]
     (μ : FinitePMF Ω) (X : ι → Ω → Bool)
@@ -238,7 +248,9 @@ theorem finitePMFExpectation_mul_of_hasExactDependencyGraph
       rw [Finset.sum_mul]
 
 /-- Coordinates required to be retained are simultaneously true with the
-expected Bernoulli product probability.-/
+expected Bernoulli product probability.
+@isnad1 id=eq.2h3v.s6.3c38c932fccb from=translated src=- shape=aedbf3a4 vocab=a4fc35ee
+-/
 theorem eventProbability_all_true_eq_prod
     [Fintype ι] [DecidableEq ι]
     (q : ι → ℝ)
@@ -316,7 +328,9 @@ def CoordinateEvent
     (ξ : ι → Bool) : Prop :=
   ∀ i ∈ s, P i (ξ i)
 
-/-- Exact probability of a finite coordinate event.-/
+/-- Exact probability of a finite coordinate event.
+@isnad1 id=eq.2h4v.s6.87b3bbe05502 from=translated src=- shape=b813a6a1 vocab=356c805a
+-/
 theorem eventProbability_coordinateEvent_eq_prod
     [Fintype ι] [DecidableEq ι]
     (q : ι → ℝ)
@@ -395,7 +409,9 @@ theorem eventProbability_coordinateEvent_eq_prod
       rw [Finset.prod_ite_mem]
       simp
 
-/-- Coordinate events on disjoint sets are independent.-/
+/-- Coordinate events on disjoint sets are independent.
+@isnad1 id=eq.3h6v.s7.3fb1c146535e from=translated src=- shape=6e8e512c vocab=90f3224e
+-/
 theorem eventProbability_coordinateEvent_and_of_disjoint
     [Fintype ι] [DecidableEq ι]
     (q : ι → ℝ)
@@ -460,6 +476,9 @@ theorem eventProbability_coordinateEvent_and_of_disjoint
     intro b _hb
     simp [R, hnotS]
 
+/--
+@isnad1 id=eq.2h3v.s6.d01c7ef551d5 from=translated src=- shape=093af945 vocab=66c80240
+-/
 theorem eventProbability_coordinate_true
     [Fintype ι] [DecidableEq ι]
     (q : ι → ℝ)
@@ -473,6 +492,9 @@ theorem eventProbability_coordinate_true
   simpa using
     eventProbability_all_true_eq_prod q hq0 hq1 ({i} : Finset ι)
 
+/--
+@isnad1 id=eq.3h4v.s6.c56bd9bdfa25 from=translated src=- shape=613234d4 vocab=b54928ff
+-/
 theorem eventProbability_two_coordinates_true
     [Fintype ι] [DecidableEq ι]
     (q : ι → ℝ)
@@ -500,6 +522,9 @@ def outsideVertices
     (G : SimpleGraph ι) (α : ι) : Finset ι :=
   Finset.univ.filter fun i ↦ i ∉ closedNeighborhood G α
 
+/--
+@isnad1 id=iff.0h4v.s5.831423602963 from=translated src=- shape=257490a7 vocab=c9bd3922
+-/
 @[simp]
 theorem mem_outsideVertices
     [Fintype ι] [DecidableEq ι]
@@ -520,7 +545,9 @@ def outsidePatternPredicate
 /--
 Independent Bernoulli coordinates satisfy the exact dependency-graph
 identity for every simple graph: enlarging the graph only removes
-coordinates from the outside vector.-/
+coordinates from the outside vector.
+@isnad1 id=hasexact.2h3v.s6.f1d51fa90c24 from=translated src=- shape=458e3080 vocab=f026e23c
+-/
 theorem hasExactDependencyGraph_coordinateIndicator
     [Fintype ι] [DecidableEq ι]
     (q : ι → ℝ)
@@ -596,7 +623,9 @@ def combineIndicator
 /--
 The product of two exact dependency-graph families, combined
 coordinatewise by an arbitrary Boolean operation, has the same exact
-dependency graph.-/
+dependency graph.
+@isnad1 id=hasexact.2h9v.s6.743f0852030e from=translated src=- shape=461f54e0 vocab=6747f918
+-/
 theorem hasExactDependencyGraph_combineIndicator
     [Fintype Ω] [Fintype Ξ] [Fintype ι] [DecidableEq ι]
     (μ : FinitePMF Ω) (ν : FinitePMF Ξ)
@@ -779,6 +808,9 @@ def thinnedIndicator
     (i : ι) (z : Ω × (ι → Bool)) : Bool :=
   X i z.1 && z.2 i
 
+/--
+@isnad1 id=iff.0h5v.s5.5a4bb8e4d3bc from=translated src=- shape=da41aa7e vocab=6abe2ae2
+-/
 @[simp]
 theorem thinnedIndicator_eq_true_iff
     (X : ι → Ω → Bool) (i : ι)
@@ -789,7 +821,9 @@ theorem thinnedIndicator_eq_true_iff
 
 /--
 Independent thinning preserves every exact dependency graph of the original
-indicator family.-/
+indicator family.
+@isnad1 id=hasexact.3h6v.s6.c6980b7ad8d8 from=translated src=- shape=4549028e vocab=c8d9cb3d
+-/
 theorem hasExactDependencyGraph_thinnedIndicator
     [Fintype Ω] [Fintype ι] [DecidableEq ι]
     (μ : FinitePMF Ω) (X : ι → Ω → Bool)
@@ -817,7 +851,9 @@ theorem hasExactDependencyGraph_thinnedIndicator
   rw [hfamily]
   exact hcombine
 
-/-- Marginals are multiplied by their retention probabilities.-/
+/-- Marginals are multiplied by their retention probabilities.
+@isnad1 id=eq.2h6v.s7.f91f01cc4aba from=translated src=- shape=0aaedc97 vocab=77b33787
+-/
 theorem marginal_thinnedIndicator
     [Fintype Ω] [Fintype ι] [DecidableEq ι]
     (μ : FinitePMF Ω) (X : ι → Ω → Bool)
@@ -851,7 +887,9 @@ theorem marginal_thinnedIndicator
       rw [eventProbability_coordinate_true]
       rfl
 
-/-- Distinct joint marginals acquire the product of the two retentions.-/
+/-- Distinct joint marginals acquire the product of the two retentions.
+@isnad1 id=eq.3h7v.s7.00bb8007d2bc from=translated src=- shape=142bac0c vocab=4f10a3f1
+-/
 theorem jointMarginal_thinnedIndicator
     [Fintype Ω] [Fintype ι] [DecidableEq ι]
     (μ : FinitePMF Ω) (X : ι → Ω → Bool)
@@ -893,7 +931,9 @@ theorem jointMarginal_thinnedIndicator
       rw [eventProbability_two_coordinates_true q hq0 hq1 hij]
       rfl
 
-/-- The first AGG term cannot increase under independent thinning.-/
+/-- The first AGG term cannot increase under independent thinning.
+@isnad1 id=le.2h6v.s6.43d499f7aefe from=translated src=- shape=c824a73c vocab=6476ede5
+-/
 theorem bOne_thinnedIndicator_le
     [Fintype Ω] [Fintype ι] [DecidableEq ι]
     (μ : FinitePMF Ω) (X : ι → Ω → Bool)
@@ -925,7 +965,9 @@ theorem bOne_thinnedIndicator_le
     _ ≤ marginal μ X i * marginal μ X j :=
       mul_le_of_le_one_right (mul_nonneg hpi hpj) hqq
 
-/-- The second AGG term cannot increase under independent thinning.-/
+/-- The second AGG term cannot increase under independent thinning.
+@isnad1 id=le.2h6v.s6.57a68064f10d from=translated src=- shape=c824a73c vocab=b8f64f9f
+-/
 theorem bTwo_thinnedIndicator_le
     [Fintype Ω] [Fintype ι] [DecidableEq ι]
     (μ : FinitePMF Ω) (X : ι → Ω → Bool)
@@ -960,7 +1002,9 @@ def exponentialFunctional
 
 /--
 The auxiliary void probability is exactly the expectation of the
-exponential functional of the unthinned configuration.-/
+exponential functional of the unthinned configuration.
+@isnad1 id=eq.1h5v.s7.354b22bfdb71 from=translated src=- shape=6c153a7a vocab=58e8108f
+-/
 theorem eventProbability_no_thinned_active_eq_exponentialFunctional
     [Fintype Ω] [Fintype ι] [DecidableEq ι]
     (μ : FinitePMF Ω) (X : ι → Ω → Bool)

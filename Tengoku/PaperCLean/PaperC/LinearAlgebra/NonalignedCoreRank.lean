@@ -44,7 +44,9 @@ noncomputable def kTilde
 
 /--
 Rank--nullity on the free component coordinates, in the exact truncated
-subtraction form used in Lemma 9.10.-/
+subtraction form used in Lemma 9.10.
+@isnad1 id=eq.0h3v.s10.8916d215a571 from=translated src=- shape=efda11d0 vocab=56b64711
+-/
 theorem finrank_componentKernel_eq_card_sub_kTilde
     {ι : Type*} [Fintype ι]
     (constraints : (ι → F₂) →ₗ[F₂] W) :
@@ -87,7 +89,9 @@ noncomputable def largePrimeKTilde
 
 /--
 Transport through the component equivalence does not change the rank of
-the remaining constraints.-/
+the remaining constraints.
+@isnad1 id=eq.2h5v.s8.259ce6ab017b from=translated src=- shape=54168686 vocab=33c75664
+-/
 theorem largePrimeKTilde_eq_kTilde
     {x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -105,7 +109,9 @@ theorem largePrimeKTilde_eq_kTilde
 Exact-rank formula on the uncorrected large-prime component coordinates.
 
 For arbitrary remaining binary linear constraints, the admissible
-large-prime solutions have dimension `D + c - k̃`.-/
+large-prime solutions have dimension `D + c - k̃`.
+@isnad1 id=eq.2h5v.s13.42f9c2a176a6 from=translated src=- shape=b2e729ba vocab=47b5ac59
+-/
 theorem largePrime_exact_rank
     {x y L : ℕ}
     (hx : 1 ≤ x) (hy : 1 ≤ y)
@@ -137,7 +143,9 @@ exactly `D# + c#` coordinates, rank--nullity gives
 
 The cardinality equality is kept explicit: constructing this residual
 coordinate equivalence from the canonical rational quotient is a separate
-graph-theoretic interface, and is not hidden in the rank calculation.-/
+graph-theoretic interface, and is not hidden in the rank calculation.
+@isnad1 id=eq.1h5v.s10.967e27efb3a3 from=translated src=- shape=e22e2b67 vocab=d66912b2
+-/
 theorem lemma_nine_ten_exact_rank
     {ι : Type*} [Fintype ι]
     {Dsharp csharp : ℕ}

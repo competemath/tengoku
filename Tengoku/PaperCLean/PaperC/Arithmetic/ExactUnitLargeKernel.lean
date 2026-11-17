@@ -38,7 +38,9 @@ structure ExactUnitFactorization
 
 /--
 Multiplication by a positive factor below `B` does not alter the parity
-coordinate at a prime strictly above `B`.-/
+coordinate at a prime strictly above `B`.
+@isnad1 id=eq.5h4v.s7.7fa24aea6565 from=translated src=- shape=99220162 vocab=cf5d6afc
+-/
 theorem parityVec_mul_small_eq
     {B c t p : ℕ}
     (hc : 0 < c) (ht : 0 < t) (hcB : c < B)
@@ -60,7 +62,9 @@ theorem parityVec_mul_small_eq
 
 /--
 The large-prime valuation parities of `X = bt`, `t`, and `Y = at`
-coincide coordinatewise.-/
+coincide coordinatewise.
+@isnad1 id=and.3h7v.s7.11ad0b9f22f0 from=translated src=- shape=70acaaaa vocab=1c4f89bd
+-/
 theorem exactUnit_large_parity_eq
     {B a b t X Y p : ℕ}
     (h : ExactUnitFactorization B a b t X Y)
@@ -79,7 +83,9 @@ theorem exactUnit_large_parity_eq
       (parityVec_mul_small_eq
         h.a_pos h.t_pos haB hp hpB).symm
 
-/-- Oddness of the large-prime valuations is the same at all three terms.-/
+/-- Oddness of the large-prime valuations is the same at all three terms.
+@isnad1 id=and.3h7v.s6.fdb028cde562 from=translated src=- shape=b1d4583b vocab=80c88e91
+-/
 theorem exactUnit_large_factorization_odd_iff
     {B a b t X Y p : ℕ}
     (h : ExactUnitFactorization B a b t X Y)
@@ -98,7 +104,9 @@ theorem exactUnit_large_factorization_odd_iff
 
 /--
 Multiplication by a positive small coefficient preserves the full large odd
-prime support.-/
+prime support.
+@isnad1 id=eq.3h3v.s5.5398547c2e70 from=translated src=- shape=579f9d31 vocab=ec7b9ca1
+-/
 theorem largeOddPrimeSupport_mul_small_eq
     {B c t : ℕ}
     (hc : 0 < c) (ht : 0 < t) (hcB : c < B) :
@@ -127,7 +135,9 @@ theorem largeOddPrimeSupport_mul_small_eq
       parityVec_mul_small_eq hc ht hcB hpData.1 hpData.2
     simpa only [heq] using hpParity
 
-/-- The corresponding large odd kernels are equal.-/
+/-- The corresponding large odd kernels are equal.
+@isnad1 id=eq.3h3v.s5.1f32b014ee85 from=translated src=- shape=656fc6a8 vocab=e7e211e3
+-/
 theorem largeOddKernel_mul_small_eq
     {B c t : ℕ}
     (hc : 0 < c) (ht : 0 < t) (hcB : c < B) :
@@ -136,7 +146,9 @@ theorem largeOddKernel_mul_small_eq
   unfold largeOddKernel
   rw [largeOddPrimeSupport_mul_small_eq hc ht hcB]
 
-/-- The exact unit has one common large odd prime support.-/
+/-- The exact unit has one common large odd prime support.
+@isnad1 id=and.1h6v.s5.62d81e1ff655 from=translated src=- shape=be9e04bb vocab=8b8e0383
+-/
 theorem exactUnit_largeOddPrimeSupport_eq
     {B a b t X Y : ℕ}
     (h : ExactUnitFactorization B a b t X Y) :
@@ -158,7 +170,9 @@ theorem exactUnit_largeOddPrimeSupport_eq
       largeOddPrimeSupport_mul_small_eq
         h.a_pos h.t_pos haB
 
-/-- The exact unit has one common large odd kernel.-/
+/-- The exact unit has one common large odd kernel.
+@isnad1 id=and.1h6v.s5.43db52d93f6b from=translated src=- shape=84046bd7 vocab=c800652c
+-/
 theorem exactUnit_largeOddKernel_eq
     {B a b t X Y : ℕ}
     (h : ExactUnitFactorization B a b t X Y) :
@@ -169,7 +183,9 @@ theorem exactUnit_largeOddKernel_eq
   · rw [hs.1]
   · rw [hs.2]
 
-/-- The common kernel divides all three terms of the exact unit.-/
+/-- The common kernel divides all three terms of the exact unit.
+@isnad1 id=and.1h6v.s5.ac92f4b79e73 from=translated src=- shape=48dd33fc vocab=f136b7a6
+-/
 theorem common_largeOddKernel_dvd
     {B a b t X Y : ℕ}
     (h : ExactUnitFactorization B a b t X Y) :
@@ -183,7 +199,9 @@ theorem common_largeOddKernel_dvd
   · rw [← hk.2]
     exact largeOddKernel_dvd B Y
 
-/-- Defectivity of the left endpoint is equivalent to defectivity of `t`.-/
+/-- Defectivity of the left endpoint is equivalent to defectivity of `t`.
+@isnad1 id=iff.1h6v.s4.560619bfc8ac from=translated src=- shape=5cbeea3f vocab=6bec76b1
+-/
 theorem hDefective_left_iff
     {B a b t X Y : ℕ}
     (h : ExactUnitFactorization B a b t X Y) :
@@ -192,7 +210,9 @@ theorem hDefective_left_iff
   rw [← largeOddKernel_eq_one_iff_hDefective,
     ← largeOddKernel_eq_one_iff_hDefective, hk]
 
-/-- Defectivity of the right endpoint is equivalent to defectivity of `t`.-/
+/-- Defectivity of the right endpoint is equivalent to defectivity of `t`.
+@isnad1 id=iff.1h6v.s4.12a62ffdfba8 from=translated src=- shape=c4efee23 vocab=6bec76b1
+-/
 theorem hDefective_right_iff
     {B a b t X Y : ℕ}
     (h : ExactUnitFactorization B a b t X Y) :
@@ -203,7 +223,9 @@ theorem hDefective_right_iff
 
 /--
 Kernel-one/kernel-nontrivial dichotomy for an exact unit.  In the first
-branch every term is defective; in the second none is.-/
+branch every term is defective; in the second none is.
+@isnad1 id=or.1h6v.s6.5139a95bc32c from=translated src=- shape=e48e2034 vocab=09a8314a
+-/
 theorem exactUnit_defect_dichotomy
     {B a b t X Y : ℕ}
     (h : ExactUnitFactorization B a b t X Y) :
@@ -235,7 +257,9 @@ theorem exactUnit_defect_dichotomy
 
 /--
 A nontrivial common kernel supplies a prime above `B` occurring oddly—and
-hence dividing—all three exact-unit terms.-/
+hence dividing—all three exact-unit terms.
+@isnad1 id=ex.2h6v.s8.4a7fe8508b88 from=translated src=- shape=b2bf9875 vocab=5681559a
+-/
 theorem exists_common_large_odd_prime
     {B a b t X Y : ℕ}
     (h : ExactUnitFactorization B a b t X Y)
@@ -277,7 +301,9 @@ theorem exists_common_large_odd_prime
 
 /--
 A prime strictly above the block length divides at most one number among
-`x, x+1, ..., x+B-1`.-/
+`x, x+1, ..., x+B-1`.
+@isnad1 id=eq.5h5v.s5.04bd2d771e73 from=translated src=- shape=ef8d3c90 vocab=fdf13b61
+-/
 theorem prime_dvd_unique_in_block
     {B p x i j : ℕ}
     (hpB : B < p) (hi : i < B) (hj : j < B)
@@ -296,7 +322,9 @@ theorem prime_dvd_unique_in_block
 
 /--
 In particular, an odd valuation at a prime above the block length can occur
-at at most one position of that block.-/
+at at most one position of that block.
+@isnad1 id=eq.5h5v.s7.ea9f7881e6bd from=translated src=- shape=ce7d7361 vocab=b929ae41
+-/
 theorem parityVec_ne_zero_unique_in_block
     {B p x i j : ℕ}
     (hpB : B < p) (hi : i < B) (hj : j < B)

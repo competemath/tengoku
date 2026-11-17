@@ -28,7 +28,9 @@ open scoped BigOperators
 /--
 Finite Cauchy--Schwarz inequality in the exact form used in equation (4.3).
 It is valid for arbitrary real weights; nonnegativity is only needed when the
-left-hand side is also required to be nonnegative.-/
+left-hand side is also required to be nonnegative.
+@isnad1 id=le.0h3v.s6.c9ab0e4ad312 from=translated src=- shape=7c3e0141 vocab=32a21548
+-/
 theorem sum_le_sqrt_card_mul_sqrt_sum_sq
     {α : Type*} [DecidableEq α]
     (A : Finset α) (u : α → ℝ) :
@@ -41,7 +43,9 @@ theorem sum_le_sqrt_card_mul_sqrt_sum_sq
 
 /--
 For nonnegative weights, the interpolated sum is itself nonnegative in
-addition to satisfying the Cauchy--Schwarz upper bound.-/
+addition to satisfying the Cauchy--Schwarz upper bound.
+@isnad1 id=and.1h3v.s6.0aed17d54644 from=translated src=- shape=67c7d04b vocab=3feaf9d7
+-/
 theorem sum_nonneg_and_le_sqrt_card_mul_sqrt_sum_sq
     {α : Type*} [DecidableEq α]
     (A : Finset α) (u : α → ℝ)
@@ -59,7 +63,9 @@ Specialization to a subset `A` of a parametrized set of relational hosts.
 An upper bound `H₂` for the total host cardinality replaces `#A`.
 
 The function `relationalHosts` is a parameter, so this theorem does not
-depend on any particular construction of the two-start system.-/
+depend on any particular construction of the two-start system.
+@isnad1 id=le.2h7v.s6.ea6dfb7c49c6 from=translated src=- shape=5e6619e5 vocab=32a21548
+-/
 theorem sum_le_sqrt_relationalHosts_bound_mul_sqrt_sum_sq
     {α : Type*} [DecidableEq α]
     (relationalHosts : ℕ → ℕ → Finset α)
@@ -92,7 +98,9 @@ theorem sum_le_sqrt_relationalHosts_bound_mul_sqrt_sum_sq
 
 /--
 Fully bounded finite interface: a host-cardinality bound `H₂` and a
-quadratic-mass bound `Q` yield the product of their square roots.-/
+quadratic-mass bound `Q` yield the product of their square roots.
+@isnad1 id=le.3h8v.s6.86c01c916f4a from=translated src=- shape=b48eaa27 vocab=32a21548
+-/
 theorem sum_le_sqrt_relationalHosts_bound_mul_sqrt_sqBound
     {α : Type*} [DecidableEq α]
     (relationalHosts : ℕ → ℕ → Finset α)
@@ -116,7 +124,9 @@ theorem sum_le_sqrt_relationalHosts_bound_mul_sqrt_sqBound
 /--
 Power-form interpolation.  If the host count is at most `N^a` and the
 quadratic mass is at most `N^b`, then Cauchy--Schwarz gives the averaged
-exponent `N^((a+b)/2)`.-/
+exponent `N^((a+b)/2)`.
+@isnad1 id=le.3h6v.s7.4d663679fe24 from=translated src=- shape=688697a4 vocab=1cce5d75
+-/
 theorem sum_le_rpow_average
     {α : Type*} [DecidableEq α]
     {N : ℕ} (hN : 1 ≤ N)
@@ -154,7 +164,9 @@ theorem sum_le_rpow_average
 /--
 The exponent arithmetic stated after (4.3): combining
 `N^(3/2+ε)` relational hosts with quadratic mass
-`N^(5/2-δ+ε)` gives linear mass `N^(2-δ/2+ε)`.-/
+`N^(5/2-δ+ε)` gives linear mass `N^(2-δ/2+ε)`.
+@isnad1 id=le.3h6v.s7.529c22c54664 from=translated src=- shape=81cff87d vocab=91c8dec2
+-/
 theorem sum_le_two_sub_half_delta_add_error
     {α : Type*} [DecidableEq α]
     {N : ℕ} (hN : 1 ≤ N)
@@ -172,7 +184,9 @@ theorem sum_le_two_sub_half_delta_add_error
 
 /--
 Relational-host specialization of the preceding exponent calculation:
-membership of `A` in the host population supplies its cardinality bound.-/
+membership of `A` in the host population supplies its cardinality bound.
+@isnad1 id=le.4h8v.s8.45a0fa23a574 from=translated src=- shape=111a669e vocab=91c8dec2
+-/
 theorem sum_le_two_sub_half_delta_add_error_of_subset
     {α : Type*} [DecidableEq α]
     (relationalHosts : ℕ → ℕ → Finset α)
@@ -198,7 +212,9 @@ Uniform eventual interpolation interface.
 If `A(N,L)` is contained in the relational-host set, the host cardinality is
 eventually at most `H₂(N,L)`, and the quadratic mass is eventually at most
 `Q(N,L)`, then the weighted sum is eventually bounded by
-`√H₂(N,L) * √Q(N,L)`.  Nonnegative weights also give the lower bound zero.-/
+`√H₂(N,L) * √Q(N,L)`.  Nonnegative weights also give the lower bound zero.
+@isnad1 id=ex.4h7v.s8.d28017be1c60 from=translated src=- shape=3f50781e vocab=abbc634d
+-/
 theorem eventually_sum_nonneg_and_le_sqrt_mul_sqrt
     {α : Type*} [DecidableEq α]
     (admissible : ℕ → ℕ → Prop)
