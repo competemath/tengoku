@@ -32,6 +32,7 @@ import Tengoku.Leanslt
 import Tengoku.FactorizationTheoryFormalization
 import Tengoku.EntropyConstrainedMissingMass
 import Tengoku.AddCombi
+import Tengoku.LieLean
 import Tengoku.LanaFormalSchemes
 import Tengoku.FltAnthropic
 import Tengoku.DescriptiveComplexity
