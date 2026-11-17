@@ -30,7 +30,9 @@ noncomputable def starM (td : TubalData n) (a b : Fin n → ℝ) : Fin n → ℝ
 
 /-! ## Key property: applying M to a real vector respects the real-paired structure -/
 
-/-- If M is real-paired and a is real, then (Ma)_i is real when row i is real.-/
+/-- If M is real-paired and a is real, then (Ma)_i is real when row i is real.
+@isnad1 id=eq.1h4v.s5.7dcd3e6a398f from=translated src=- shape=120d77f5 vocab=a9fb6d7c
+-/
 theorem applyM_real_row {td : TubalData n} {a : Fin n → ℝ} {i : Fin n}
     (hrow : IsRealRow td.M i) : (td.applyM (toComplex a) i).im = 0 := by
   simp only [TubalData.applyM_apply]
@@ -42,7 +44,9 @@ theorem applyM_real_row {td : TubalData n} {a : Fin n → ℝ} {i : Fin n}
     Complex.ofReal_im, mul_zero, hr, zero_mul, add_zero]
 
 /-- If M is real-paired and a is real, then for conjugate-pair rows i, k:
-    (Ma)_k = conj((Ma)_i).-/
+    (Ma)_k = conj((Ma)_i).
+@isnad1 id=eq.1h5v.s6.91f54324c805 from=translated src=- shape=0094af5f vocab=877f5e85
+-/
 theorem applyM_conj_row {td : TubalData n} {a : Fin n → ℝ} {i k : Fin n}
     (hconj : IsConjRow td.M i k) :
     td.applyM (toComplex a) k = starRingEnd ℂ (td.applyM (toComplex a) i) := by
@@ -58,13 +62,17 @@ def HasRealPairedStructure (td : TubalData n) (v : Fin n → ℂ) : Prop :=
   (∀ i, IsRealRow td.M i → (v i).im = 0) ∧
   (∀ i k, k ≠ i → IsConjRow td.M i k → v k = starRingEnd ℂ (v i))
 
-/-- Applying M to a real vector produces a vector with real-paired structure.-/
+/-- Applying M to a real vector produces a vector with real-paired structure.
+@isnad1 id=hasrealp.0h3v.s4.663b51e07f2e from=translated src=- shape=2cab76d7 vocab=8b88ae5c
+-/
 theorem applyM_toComplex_hasPairedStructure (td : TubalData n) (a : Fin n → ℝ) :
     HasRealPairedStructure td (td.applyM (toComplex a)) :=
   ⟨fun _ h => applyM_real_row h, fun _ _ _ h => applyM_conj_row h⟩
 
 /-- The Hadamard product of two vectors with real-paired structure also has
-    real-paired structure.-/
+    real-paired structure.
+@isnad1 id=hasrealp.2h4v.s5.14a72f4585cc from=translated src=- shape=586c417f vocab=20f65b68
+-/
 theorem vecHadamard_hasPairedStructure {td : TubalData n} {u v : Fin n → ℂ}
     (hu : HasRealPairedStructure td u) (hv : HasRealPairedStructure td v) :
     HasRealPairedStructure td (u ∘ₕ v) := by

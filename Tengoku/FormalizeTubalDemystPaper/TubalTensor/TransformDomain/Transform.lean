@@ -36,13 +36,18 @@ noncomputable def invTransform (Ahat : Fin n → Matrix (Fin m) (Fin p) ℂ) :
     TubalMatrix m p n td :=
   fun i j => KM.ofFun (vecRe (td.applyMinv (fun k => Ahat k i j)))
 
+/--
+@isnad1 id=eq.0h8v.s5.830946fc9af4 from=translated src=- shape=f877b802 vocab=0e631dfe
+-/
 @[simp]
 theorem transform_apply (A : TubalMatrix m p n td) (k : Fin n) (i : Fin m) (j : Fin p) :
     transform A k i j = td.applyM (toComplex (KM.toFun (A i j))) k := rfl
 
 /-! ## Transform / inverse transform are mutual inverses -/
 
-/-- Round-trip: invTransform ∘ transform = id.-/
+/-- Round-trip: invTransform ∘ transform = id.
+@isnad1 id=eq.0h5v.s5.e64941dc9063 from=translated src=- shape=e6462a5d vocab=91e7a331
+-/
 theorem invTransform_transform (A : TubalMatrix m p n td) :
     invTransform (transform A) = A := by
   funext i j
@@ -50,7 +55,9 @@ theorem invTransform_transform (A : TubalMatrix m p n td) :
   rw [td.applyMinv_applyM, vecRe_toComplex, KM.ofFun_toFun]
 
 /-- Round-trip: transform ∘ invTransform = id, provided the input arises
-    from a real tubal matrix (each tube through M⁻¹ gives a real vector).-/
+    from a real tubal matrix (each tube through M⁻¹ gives a real vector).
+@isnad1 id=eq.1h5v.s5.bb1bad0c4de3 from=translated src=- shape=b52793fc vocab=41b99a0c
+-/
 theorem transform_invTransform
     (Ahat : Fin n → Matrix (Fin m) (Fin p) ℂ)
     (hreal : ∀ i j, IsRealVec (td.applyMinv (fun k => Ahat k i j))) :
@@ -118,7 +125,9 @@ private theorem transform_injective :
     Function.Injective (transform : TubalMatrix m p n td → _) :=
   Function.LeftInverse.injective invTransform_transform
 
-/-- A tube is zero iff all its transform-domain components are zero.-/
+/-- A tube is zero iff all its transform-domain components are zero.
+@isnad1 id=iff.0h7v.s5.92cf2f700170 from=translated src=- shape=95fc6291 vocab=8bfaa4f7
+-/
 theorem tube_eq_zero_iff_transform {A : TubalMatrix m p n td}
     (i : Fin m) (j : Fin p) :
     A i j = 0 ↔ ∀ k, transform A k i j = 0 := by
@@ -139,7 +148,9 @@ theorem tube_eq_zero_iff_transform {A : TubalMatrix m p n td}
     rw [hfun]; rfl
 
 /-- **Fact 25**
-    C = A ⋆_M B ⟺ Ĉ = Â △ B̂.-/
+    C = A ⋆_M B ⟺ Ĉ = Â △ B̂.
+@isnad1 id=iff.0h8v.s6.3c8c6aad5d65 from=translated src=- shape=769d3e09 vocab=9ee79824
+-/
 theorem transform_eq_facewise_iff
     (A : TubalMatrix m p n td) (B : TubalMatrix p l n td) (C : TubalMatrix m l n td) :
     C = A * B ↔ transform C = transform A △ transform B :=

@@ -75,7 +75,9 @@ noncomputable instance instPartialOrder : PartialOrder (KM n td) where
   le_antisymm _ _ := leM_antisymm
   le_trans _ _ _ := leM_trans
 
-/-- Characterization of ≤_M: a ≤ b iff M(b − a) is real and entrywise nonneg.-/
+/-- Characterization of ≤_M: a ≤ b iff M(b − a) is real and entrywise nonneg.
+@isnad1 id=iff.0h4v.s7.f470a179cfdc from=translated src=- shape=cd1cbe00 vocab=b5ba2df4
+-/
 theorem le_iff (a b : KM n td) :
     a ≤ b ↔ (∀ i, (td.applyM (toComplex (KM.toFun b - KM.toFun a)) i).im = 0) ∧
              (∀ i, 0 ≤ (td.applyM (toComplex (KM.toFun b - KM.toFun a)) i).re) :=

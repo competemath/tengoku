@@ -32,7 +32,9 @@ def IsScaledUnitary (td : TubalData n) : Prop :=
 
 /-! ## Parseval: unitary preserves ∑ normSq for vectors -/
 
-/-- Parseval's identity: unitary matrices preserve ∑ normSq of vectors.-/
+/-- Parseval's identity: unitary matrices preserve ∑ normSq of vectors.
+@isnad1 id=eq.1h3v.s6.d3fc65d4d774 from=translated src=- shape=2c0ea8ef vocab=32997c7b
+-/
 theorem sum_normSq_unitary_mulVec {n' : ℕ}
     (W : Matrix (Fin n') (Fin n') ℂ) (hW : IsUnitary W) (v : Fin n' → ℂ) :
     ∑ k, Complex.normSq ((W.mulVec v) k) = ∑ k, Complex.normSq (v k) := by
@@ -58,7 +60,9 @@ theorem sum_normSq_unitary_mulVec {n' : ℕ}
 
 /-! ## Transform slices of ⋆_M-unitary are unitary -/
 
-/-- If U is ⋆_M-unitary, each transform slice is unitary.-/
+/-- If U is ⋆_M-unitary, each transform slice is unitary.
+@isnad1 id=isunitar.1h5v.s5.6e296655be25 from=translated src=- shape=fe53ee4f vocab=9b1990f3
+-/
 theorem transform_slice_unitary_of_starMUnitary
     (U : TubalMatrix m m n td) (hU : IsStarMUnitary U) (k : Fin n) :
     IsUnitary (transform U k) := by

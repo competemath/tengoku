@@ -23,7 +23,9 @@ namespace TubalTensor
 open Polynomial Complex IntermediateField Module
 
 /-- **Theorem 1 (Commutative Frobenius, weak form)**:
-    Every commutative finite-dimensional division algebra over ℝ has dimension ≤ 2.-/
+    Every commutative finite-dimensional division algebra over ℝ has dimension ≤ 2.
+@isnad1 id=le.0h1v.s6.f84552a96d4c from=translated src=- shape=f957bb2a vocab=6baa75f3
+-/
 theorem comm_frobenius (F : Type*) [Field F] [Algebra ℝ F] [FiniteDimensional ℝ F] :
     finrank ℝ F ≤ 2 := by
   -- By the primitive element theorem, F = ℝ⟮α⟯ for some α

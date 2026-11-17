@@ -22,7 +22,9 @@ open scoped ComplexOrder
 
 /-! ## Eckart-Young reduction lemmas -/
 
-/-- rank(Uᴴ * B * V) ≤ k when rank(B) ≤ k and U, V are unitary.-/
+/-- rank(Uᴴ * B * V) ≤ k when rank(B) ≤ k and U, V are unitary.
+@isnad1 id=le.3h6v.s7.65c518359a5f from=translated src=- shape=dbccce1d vocab=ec1975fd
+-/
 theorem rank_conj_le {m p : ℕ}
     (U : Matrix (Fin m) (Fin m) ℂ) (V : Matrix (Fin p) (Fin p) ℂ)
     (hU : IsUnitary U) (hV : IsUnitary V)
@@ -42,7 +44,9 @@ theorem rank_conj_le {m p : ℕ}
 /-! ## Core diagonal Eckart-Young inequality -/
 
 /-- The squared Frobenius norm of a difference with a truncated SVD-diagonal matrix
-    equals the sum of squared tail singular values.-/
+    equals the sum of squared tail singular values.
+@isnad1 id=eq.1h4v.s7.639e68f31dda from=translated src=- shape=a3217130 vocab=a15b6903
+-/
 theorem frobNormSq_svdDiag_sub_trunc {m p : ℕ} {S : Matrix (Fin m) (Fin p) ℝ}
     (hS : IsSVDDiag S) (k : ℕ) :
     frobNormSq (toComplexMatrix S - toComplexMatrix (svdTrunc S hS k)) =
@@ -78,7 +82,9 @@ theorem frobNormSq_svdDiag_sub_trunc {m p : ℕ} {S : Matrix (Fin m) (Fin p) ℝ
     So ∑_{i≥k} a_i w_i ≤ a_{k'} · ∑_{i≥k} w_i for a suitable k'.
     And ∑_{i≥k} w_i = ∑ w_i - ∑_{i<k} w_i ≤ k - ∑_{i<k} w_i.
     Combining: ∑ a_i w_i ≤ ∑_{i<k} a_i w_i + a_{k'} · (k - ∑_{i<k} w_i).
-    The difference from ∑_{i<k} a_i is bounded using a_i ≥ a_{k'} for i < k.-/
+    The difference from ∑_{i<k} a_i is bounded using a_i ≥ a_{k'} for i < k.
+@isnad1 id=le.4h4v.s7.40c22a7dceae from=translated src=- shape=1bfbf42d vocab=9740c9b4
+-/
 theorem weighted_sum_le_head {n : ℕ} (a w : Fin n → ℝ) (k : ℕ)
     (ha_nonneg : ∀ i, 0 ≤ a i)
     (ha_mono : ∀ i j : Fin n, i ≤ j → a j ≤ a i)

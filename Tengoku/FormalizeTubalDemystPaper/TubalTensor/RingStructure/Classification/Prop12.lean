@@ -85,7 +85,9 @@ private theorem canonicalMinv_mulVec_coord (m : ℕ) (hm : m ≤ n) (hpar : n % 
   exact congr_arg v (canonicalEquiv_inl_val hk i hi)
 
 /-- For i < m, the ⋆_M product in the canonical ring is componentwise:
-    `(a ⋆_M b) i = a i * b i`.-/
+    `(a ⋆_M b) i = a i * b i`.
+@isnad1 id=eq.3h5v.s6.1e1aac057907 from=translated src=- shape=426e803c vocab=3becc280
+-/
 theorem canonical_starM_coord (m : ℕ) (hm : m ≤ n) (hpar : n % 2 = m % 2)
     (a b : Fin n → ℝ) (i : Fin n) (hi : i.val < m) :
     starM (canonicalTubalData n m hm hpar) a b i = a i * b i := by
@@ -98,7 +100,9 @@ theorem canonical_starM_coord (m : ℕ) (hm : m ≤ n) (hpar : n % 2 = m % 2)
       canonicalM_mulVec_coord m hm hpar (toComplex b) i hi,
       toComplex_apply, toComplex_apply, ← Complex.ofReal_mul, Complex.ofReal_re]
 
-/-- For i < m, the unit tube of the canonical ring has `(unitTube td) i = 1`.-/
+/-- For i < m, the unit tube of the canonical ring has `(unitTube td) i = 1`.
+@isnad1 id=eq.3h3v.s6.e8d2d10d6484 from=translated src=- shape=cae7ca06 vocab=71ae7a91
+-/
 theorem canonical_unitTube_coord (m : ℕ) (hm : m ≤ n) (hpar : n % 2 = m % 2)
     (i : Fin n) (hi : i.val < m) :
     unitTube (canonicalTubalData n m hm hpar) i = 1 := by
@@ -122,13 +126,18 @@ noncomputable def coordProj (m : ℕ) (hm : m ≤ n) (hpar : n % 2 = m % 2)
     change (r • unitTube (canonicalTubalData n m hm hpar)) i = r
     rw [Pi.smul_apply, smul_eq_mul, canonical_unitTube_coord m hm hpar i hi, mul_one]
 
+/--
+@isnad1 id=eq.3h4v.s7.1e01574961db from=translated src=- shape=8f859fc4 vocab=0e4285a3
+-/
 @[simp]
 theorem coordProj_apply (m : ℕ) (hm : m ≤ n) (hpar : n % 2 = m % 2)
     (i : Fin n) (hi : i.val < m) (a : KM n (canonicalTubalData n m hm hpar)) :
     coordProj m hm hpar i hi a = KM.toFun a i := rfl
 
 /-- Coordinate projections are injective on indices: if `coordProj i = coordProj j`
-    then `i = j`.-/
+    then `i = j`.
+@isnad1 id=eq.5h4v.s6.4248621bfad9 from=translated src=- shape=45cdf605 vocab=ff2cf676
+-/
 theorem coordProj_injective (m : ℕ) (hm : m ≤ n) (hpar : n % 2 = m % 2)
     (i j : Fin n) (hi : i.val < m) (hj : j.val < m)
     (h : coordProj m hm hpar i hi = coordProj m hm hpar j hj) : i = j := by
@@ -179,7 +188,9 @@ private theorem canonicalMinv_pair_real_zero (m : ℕ) (hm : m ≤ n) (hpar : n 
 /-! ## Standard basis idempotent property -/
 
 /-- For i < m in the canonical ring, `Pi.single i 1 ⋆_M a = a i • Pi.single i 1`.
-    This means each standard basis vector is a "primitive absorbing idempotent".-/
+    This means each standard basis vector is a "primitive absorbing idempotent".
+@isnad1 id=eq.3h4v.s7.e6c7a02fd645 from=translated src=- shape=67e889f4 vocab=6fc877e5
+-/
 theorem stdBasis_mul_canonical (m : ℕ) (hm : m ≤ n) (hpar : n % 2 = m % 2)
     (i : Fin n) (hi : i.val < m) (a : Fin n → ℝ) :
     starM (canonicalTubalData n m hm hpar) (fun k => if k = i then 1 else 0) a =
@@ -468,7 +479,9 @@ private theorem algHom_pair_basis_zero (m : ℕ) (hm : m ≤ n) (hpar : n % 2 = 
 /-! ## AlgHom classification -/
 
 /-- Any ℝ-algebra homomorphism from the canonical ring to ℝ equals
-    some coordinate projection `coordProj i` for `i < m`.-/
+    some coordinate projection `coordProj i` for `i < m`.
+@isnad1 id=ex.2h3v.s7.ff120427a93f from=translated src=- shape=2479bec6 vocab=ff2cf676
+-/
 theorem algHom_canonical_eq_coordProj (m : ℕ) (hm : m ≤ n) (hpar : n % 2 = m % 2)
     (φ : KM n (canonicalTubalData n m hm hpar) →ₐ[ℝ] ℝ) :
     ∃ (i : Fin n) (hi : i.val < m), φ = coordProj m hm hpar i hi := by
@@ -518,7 +531,9 @@ theorem algHom_canonical_eq_coordProj (m : ℕ) (hm : m ≤ n) (hpar : n % 2 = m
 /-! ## Proposition 13: same realness implies isomorphic -/
 
 /-- **Proposition 13**: If two tubal rings K_M and K_{M'} have the same realness,
-    they are isomorphic as ℝ-algebras.-/
+    they are isomorphic as ℝ-algebras.
+@isnad1 id=nonempty.1h3v.s5.351601103e81 from=translated src=- shape=47840935 vocab=116aa048
+-/
 theorem KM_algEquiv_of_realness_eq (td₁ td₂ : TubalData n) (h : realness td₁ = realness td₂) :
     Nonempty (KM n td₁ ≃ₐ[ℝ] KM n td₂) := by
   obtain ⟨iso₁⟩ := KM_algEquiv_canonical td₁
@@ -540,13 +555,17 @@ theorem KM_algEquiv_of_realness_eq (td₁ td₂ : TubalData n) (h : realness td�
 Every ℝ-algebra isomorphism is a ring isomorphism, so the classification
 results hold for ring isomorphisms as well. -/
 
-/-- **Proposition 66 (ring version)**: K_M is ring-isomorphic to K_{n,m}.-/
+/-- **Proposition 66 (ring version)**: K_M is ring-isomorphic to K_{n,m}.
+@isnad1 id=nonempty.0h2v.s5.1adcb0baf64a from=translated src=- shape=e5621366 vocab=2f35f5a4
+-/
 theorem KM_ringEquiv_canonical (td : TubalData n) :
     Nonempty (KM n td ≃+* KM n (canonicalTubalData n (realness td)
       (realness_le td) (realness_parity td))) :=
   (KM_algEquiv_canonical td).map AlgEquiv.toRingEquiv
 
-/-- **Proposition 13 (ring version, backward)**: Same realness implies ring-isomorphic.-/
+/-- **Proposition 13 (ring version, backward)**: Same realness implies ring-isomorphic.
+@isnad1 id=nonempty.1h3v.s5.129913902047 from=translated src=- shape=fde6a51f vocab=f6862499
+-/
 theorem KM_ringEquiv_of_realness_eq (td₁ td₂ : TubalData n)
     (h : realness td₁ = realness td₂) :
     Nonempty (KM n td₁ ≃+* KM n td₂) :=
@@ -559,7 +578,9 @@ private noncomputable def ringHom_toAlgHom (td : TubalData n)
   { φ with commutes' := fun r =>
       Real.ringHom_apply (φ.comp (algebraMap ℝ (KM n td))) r }
 
-/-- **Proposition 13 (ring version, forward)**: Ring-isomorphic implies same realness.-/
+/-- **Proposition 13 (ring version, forward)**: Ring-isomorphic implies same realness.
+@isnad1 id=eq.1h3v.s5.c452dddfbf75 from=translated src=- shape=9e875b77 vocab=f6862499
+-/
 theorem realness_of_ringEquiv (td₁ td₂ : TubalData n)
     (h : Nonempty (KM n td₁ ≃+* KM n td₂)) :
     realness td₁ = realness td₂ := by
@@ -602,7 +623,9 @@ theorem realness_of_ringEquiv (td₁ td₂ : TubalData n)
     exact Fin.ext h
   exact absurd (Fintype.card_le_of_injective g g_inj) (by simp; omega)
 
-/-- **Proposition 13 (ring iff)**: Two tubal rings are ring-isomorphic iff same realness.-/
+/-- **Proposition 13 (ring iff)**: Two tubal rings are ring-isomorphic iff same realness.
+@isnad1 id=iff.0h3v.s5.f68965bcfd18 from=translated src=- shape=a2b47b07 vocab=f6862499
+-/
 theorem KM_ringEquiv_iff_realness_eq (td₁ td₂ : TubalData n) :
     Nonempty (KM n td₁ ≃+* KM n td₂) ↔ realness td₁ = realness td₂ :=
   ⟨realness_of_ringEquiv td₁ td₂, fun h => KM_ringEquiv_of_realness_eq td₁ td₂ h⟩

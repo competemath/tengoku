@@ -29,15 +29,24 @@ open Matrix Complex BigOperators
 def IsUnitary {n : ℕ} {𝕜 : Type*} [RCLike 𝕜] (A : Matrix (Fin n) (Fin n) 𝕜) : Prop :=
   Aᴴ * A = 1
 
+/--
+@isnad1 id=eq.1h3v.s7.b3aa58e2480d from=translated src=- shape=0725dba7 vocab=e2bb2ad2
+-/
 theorem IsUnitary.conjTranspose_mul_self {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {A : Matrix (Fin n) (Fin n) 𝕜}
     (h : IsUnitary A) : Aᴴ * A = 1 := h
 
+/--
+@isnad1 id=eq.1h3v.s7.aef75c1d2b70 from=translated src=- shape=dad54abf vocab=e2bb2ad2
+-/
 theorem IsUnitary.mul_conjTranspose_self {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {A : Matrix (Fin n) (Fin n) 𝕜}
     (h : IsUnitary A) : A * Aᴴ = 1 :=
   (mul_eq_one_comm_of_card_eq (Fin n) (Fin n) 𝕜 rfl).mp h
 
+/--
+@isnad1 id=isunitar.1h3v.s6.1728f04e4dd1 from=translated src=- shape=5b74fc42 vocab=c2aa4858
+-/
 theorem IsUnitary.conjTranspose {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {A : Matrix (Fin n) (Fin n) 𝕜}
     (h : IsUnitary A) : IsUnitary Aᴴ := by
@@ -58,7 +67,9 @@ noncomputable abbrev toComplexMatrix {m p : ℕ} (S : Matrix (Fin m) (Fin p) ℝ
     Matrix (Fin m) (Fin p) ℂ :=
   S.map (Complex.ofReal)
 
-/-- `S.map (algebraMap ℝ ℂ) = toComplexMatrix S`.-/
+/-- `S.map (algebraMap ℝ ℂ) = toComplexMatrix S`.
+@isnad1 id=eq.0h3v.s6.0e8f0fb43156 from=translated src=- shape=16a3d192 vocab=86da53f1
+-/
 theorem map_algebraMap_eq_toComplexMatrix {m p : ℕ} (S : Matrix (Fin m) (Fin p) ℝ) :
     S.map (algebraMap ℝ ℂ) = toComplexMatrix S := rfl
 
@@ -70,7 +81,9 @@ def IsSVDDiagC {m p : ℕ} (S : Matrix (Fin m) (Fin p) ℂ) : Prop :=
   (∀ (i₁ i₂ : Fin m) (j₁ j₂ : Fin p), (i₁ : ℕ) = (j₁ : ℕ) → (i₂ : ℕ) = (j₂ : ℕ) →
     i₁ ≤ i₂ → (S i₂ j₂).re ≤ (S i₁ j₁).re)
 
-/-- Bridge: real IsSVDDiag implies complex IsSVDDiagC via embedding.-/
+/-- Bridge: real IsSVDDiag implies complex IsSVDDiagC via embedding.
+@isnad1 id=issvddia.1h3v.s4.6c029e31fcf4 from=translated src=- shape=dbaef3ad vocab=8ddea30f
+-/
 theorem IsSVDDiag.toComplex {m p : ℕ} {S : Matrix (Fin m) (Fin p) ℝ}
     (h : IsSVDDiag S) : IsSVDDiagC (toComplexMatrix S) := by
   refine ⟨?_, ?_, ?_⟩
@@ -429,6 +442,9 @@ noncomputable def realPartMatrix {m p : ℕ} (A : Matrix (Fin m) (Fin p) ℂ)
     (_hA : IsRealMatrix A) : Matrix (Fin m) (Fin p) ℝ :=
   fun i j => (A i j).re
 
+/--
+@isnad1 id=eq.1h3v.s5.4bb2d3713888 from=translated src=- shape=27b36f3e vocab=74d208ca
+-/
 lemma realPartMatrix_map_eq {m p : ℕ} (A : Matrix (Fin m) (Fin p) ℂ)
     (hA : IsRealMatrix A) : (realPartMatrix A hA).map Complex.ofReal = A := by
   ext i j
@@ -477,12 +493,16 @@ noncomputable def MatrixSVD.toComplex {m p : ℕ} {A : Matrix (Fin m) (Fin p) �
     hS_svdDiag := svd.hS_svdDiag
     hA_eq := hA_decomp }
 
-/-- The U factor of a real SVD lifted to complex has all-real entries.-/
+/-- The U factor of a real SVD lifted to complex has all-real entries.
+@isnad1 id=isrealma.0h4v.s7.c1ba968a38a8 from=translated src=- shape=ab4064b5 vocab=1a3b6ad7
+-/
 theorem MatrixSVD.toComplex_isRealMatrix_U {m p : ℕ} {A : Matrix (Fin m) (Fin p) ℝ}
     (svd : MatrixSVD A) : IsRealMatrix svd.toComplex.U :=
   isRealMatrix_map_ofReal _
 
-/-- The V factor of a real SVD lifted to complex has all-real entries.-/
+/-- The V factor of a real SVD lifted to complex has all-real entries.
+@isnad1 id=isrealma.0h4v.s7.fc61ba260e68 from=translated src=- shape=e3bdb440 vocab=eea5f112
+-/
 theorem MatrixSVD.toComplex_isRealMatrix_V {m p : ℕ} {A : Matrix (Fin m) (Fin p) ℝ}
     (svd : MatrixSVD A) : IsRealMatrix svd.toComplex.V :=
   isRealMatrix_map_ofReal _
@@ -497,7 +517,9 @@ noncomputable def svdTrunc {m p : ℕ} (S : Matrix (Fin m) (Fin p) ℝ)
     (_hS : IsSVDDiag S) (k : ℕ) : Matrix (Fin m) (Fin p) ℝ :=
   fun i j => if (i : ℕ) < k ∧ (i : ℕ) = (j : ℕ) then S i j else 0
 
-/-- svdTrunc preserves IsSVDDiag.-/
+/-- svdTrunc preserves IsSVDDiag.
+@isnad1 id=issvddia.1h4v.s4.f03040adc04c from=translated src=- shape=8358ba36 vocab=417f10b5
+-/
 theorem isSVDDiag_svdTrunc {m p : ℕ} {S : Matrix (Fin m) (Fin p) ℝ}
     (hS : IsSVDDiag S) (k : ℕ) : IsSVDDiag (svdTrunc S hS k) := by
   refine ⟨?_, ?_, ?_⟩
@@ -530,7 +552,9 @@ noncomputable def MatrixSVD.truncApprox {m p : ℕ} {A : Matrix (Fin m) (Fin p) 
     (svd : MatrixSVD A) (k : ℕ) : Matrix (Fin m) (Fin p) ℂ :=
   svd.U * toComplexMatrix (svdTrunc svd.S svd.hS_svdDiag k) * svd.Vᴴ
 
-/-- The rank of the truncated SVD is at most k.-/
+/-- The rank of the truncated SVD is at most k.
+@isnad1 id=le.0h5v.s5.5c8a123f221e from=translated src=- shape=bda02c4e vocab=384c48a2
+-/
 theorem MatrixSVD.rank_truncApprox_le {m p : ℕ} {A : Matrix (Fin m) (Fin p) ℂ}
     (svd : MatrixSVD A) (k : ℕ) :
     (svd.truncApprox k).rank ≤ k := by

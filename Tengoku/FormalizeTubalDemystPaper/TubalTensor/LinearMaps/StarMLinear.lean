@@ -31,7 +31,9 @@ noncomputable def TubalMatrix.toLinearMap (A : TubalMatrix m p n td) :
     StarMLinearMap p m n td :=
   (Matrix.mulVecLin A).restrictScalars (KM n td)
 
-/-- The ⋆_M-linear map induced by A sends X to A.mulVec X.-/
+/-- The ⋆_M-linear map induced by A sends X to A.mulVec X.
+@isnad1 id=eq.0h6v.s7.09fa18bfb610 from=translated src=- shape=ae492431 vocab=8ca12dfb
+-/
 theorem TubalMatrix.toLinearMap_apply (A : TubalMatrix m p n td)
     (X : OrientedMatrix p n td) :
     A.toLinearMap X = A.mulVec X := rfl

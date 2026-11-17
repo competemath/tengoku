@@ -38,7 +38,9 @@ private theorem col_of_eq {m : ℕ} (S : Matrix (Fin m) (Fin m) ℂ)
 
 set_option synthInstance.maxHeartbeats 40000 in
 /-- If the eigenspaces of the complexified matrix span the whole space,
-    then A is diagonalizable in the `IsMatDiag` sense.-/
+    then A is diagonalizable in the `IsMatDiag` sense.
+@isnad1 id=ismatdia.1h2v.s8.95816c1a3e4f from=translated src=- shape=354271ac vocab=5f8fd3cd
+-/
 theorem isMatDiag_of_iSup_eigenspace_eq_top
     (A : Matrix (Fin n) (Fin n) ℝ)
     (h_top : (⨆ μ, (complexEnd A).eigenspace μ) = ⊤) :
@@ -126,7 +128,9 @@ theorem isMatDiag_of_iSup_eigenspace_eq_top
 /-! ## From squarefree annihilating polynomial to IsMatDiag -/
 
 /-- A real matrix whose complexification is annihilated by a squarefree polynomial
-    over ℂ is diagonalizable in the `IsMatDiag` sense.-/
+    over ℂ is diagonalizable in the `IsMatDiag` sense.
+@isnad1 id=ismatdia.2h3v.s9.f5c0aae05164 from=translated src=- shape=ea716edc vocab=abdd7f43
+-/
 theorem isMatDiag_of_squarefree_aeval_eq_zero
     (A : Matrix (Fin n) (Fin n) ℝ)
     {p : ℂ[X]} (hp_sq : Squarefree p)

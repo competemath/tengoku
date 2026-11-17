@@ -46,12 +46,16 @@ private theorem vecConj_applyM_hasPairedStructure (td : TubalData n) (a : Fin n 
       starRingEnd ℂ (starRingEnd ℂ (td.applyM (toComplex a) i))
     congr 1; exact hps.2 i k hki hconj
 
-/-- starConjC maps real vectors to real vectors.-/
+/-- starConjC maps real vectors to real vectors.
+@isnad1 id=isrealve.0h3v.s4.7015516dbc8f from=translated src=- shape=01803419 vocab=e14d0eb7
+-/
 theorem starConjC_real (td : TubalData n) (a : Fin n → ℝ) :
     IsRealVec (starConjC td (toComplex a)) :=
   applyMinv_real_of_pairedStructure td _ (vecConj_applyM_hasPairedStructure td a)
 
-/-- The real ⋆_M-conjugation equals the complex version on real inputs.-/
+/-- The real ⋆_M-conjugation equals the complex version on real inputs.
+@isnad1 id=eq.0h3v.s4.01068711c910 from=translated src=- shape=16fde087 vocab=84848658
+-/
 theorem starConjM_eq_starConjC (td : TubalData n) (a : Fin n → ℝ) :
     toComplex (starConjM td a) = starConjC td (toComplex a) :=
   toComplex_vecRe _ (starConjC_real td a)
@@ -102,18 +106,27 @@ private theorem starConjC_mul (td : TubalData n) (a b : Fin n → ℂ) :
 
 /-! ## Lift to real operations -/
 
+/--
+@isnad1 id=eq.0h3v.s4.b58e8de4bee0 from=translated src=- shape=e025fdef vocab=75a00cca
+-/
 theorem starConjM_involutive (td : TubalData n) (a : Fin n → ℝ) :
     starConjM td (starConjM td a) = a := by
   apply toComplex_injective
   rw [starConjM_eq_starConjC, starConjM_eq_starConjC]
   exact starConjC_involutive td _
 
+/--
+@isnad1 id=eq.0h4v.s6.58c89c96faea from=translated src=- shape=0c3f930b vocab=531d6f14
+-/
 theorem starConjM_add (td : TubalData n) (a b : Fin n → ℝ) :
     starConjM td (a + b) = starConjM td a + starConjM td b := by
   apply toComplex_injective
   rw [starConjM_eq_starConjC, toComplex_add, starConjC_add, toComplex_add,
       starConjM_eq_starConjC, starConjM_eq_starConjC]
 
+/--
+@isnad1 id=eq.0h4v.s5.233700b821bd from=translated src=- shape=d1055ae2 vocab=fe7a0347
+-/
 theorem starConjM_mul (td : TubalData n) (a b : Fin n → ℝ) :
     starConjM td (starM td a b) = starM td (starConjM td a) (starConjM td b) := by
   apply toComplex_injective
@@ -130,6 +143,9 @@ variable {td : TubalData n}
 noncomputable instance instStar : Star (KM n td) :=
   ⟨fun a => ofFun (starConjM td (toFun a))⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.c42d6ba3112b from=translated src=- shape=0b342eea vocab=f8eca635
+-/
 @[simp] theorem toFun_star (a : KM n td) :
     toFun (star a) = starConjM td (toFun a) := rfl
 

@@ -39,10 +39,16 @@ def squeeze (U : OrientedMatrix m n td) : Matrix (Fin m) (Fin n) ℝ :=
 def twist (M : Matrix (Fin m) (Fin n) ℝ) : OrientedMatrix m n td :=
   fun i => KM.ofFun (M i)
 
+/--
+@isnad1 id=eq.0h4v.s4.2041f1217d42 from=translated src=- shape=784ce04f vocab=33a9c842
+-/
 @[simp]
 theorem squeeze_twist (M : Matrix (Fin m) (Fin n) ℝ) :
     squeeze (twist M : OrientedMatrix m n td) = M := rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.1e192ba57713 from=translated src=- shape=76ab89c4 vocab=35947598
+-/
 @[simp]
 theorem twist_squeeze (U : OrientedMatrix m n td) :
     twist (squeeze U) = U := by
@@ -60,7 +66,9 @@ abbrev TubalMatrix (m p : ℕ) (n : ℕ) (td : TubalData n) :=
   I_m has eM on the diagonal and 0 elsewhere.
   This is just `(1 : Matrix (Fin m) (Fin m) (KM n td))`. -/
 
-/-- The identity tubal matrix is the Mathlib matrix identity.-/
+/-- The identity tubal matrix is the Mathlib matrix identity.
+@isnad1 id=eq.0h3v.s6.dfd0bb21f91f from=translated src=- shape=96e7d724 vocab=eefcaebb
+-/
 theorem tubalMatrix_one_eq :
     (1 : TubalMatrix m m n td) = Matrix.diagonal (fun _ => 1) := by
   ext i j; simp [Matrix.one_apply, Matrix.diagonal_apply]

@@ -34,11 +34,20 @@ def toFun (a : KM n td) : Fin n → ℝ := a
 /-- Construct a KM element from a function.-/
 def ofFun (a : Fin n → ℝ) : KM n td := a
 
+/--
+@isnad1 id=eq.1h4v.s5.ebc658b81fbc from=translated src=- shape=3f995efc vocab=69c49fe5
+-/
 @[ext]
 theorem ext {a b : KM n td} (h : ∀ i, toFun a i = toFun b i) : a = b :=
   funext h
 
+/--
+@isnad1 id=eq.0h3v.s4.c8dfcfca2466 from=translated src=- shape=9a6007cb vocab=320363d8
+-/
 @[simp] theorem ofFun_toFun (a : KM n td) : ofFun (toFun a) = a := rfl
+/--
+@isnad1 id=eq.0h3v.s4.daaeb4cfdb88 from=translated src=- shape=e025fdef vocab=fb6d84b8
+-/
 @[simp] theorem toFun_ofFun (a : Fin n → ℝ) : toFun (ofFun a : KM n td) = a := rfl
 
 /-! ## Additive structure (inherited from Fin n → ℝ) -/
@@ -54,11 +63,29 @@ noncomputable instance : SMul ℤ (KM n td) :=
 noncomputable instance : SMul ℕ (KM n td) :=
   ⟨fun n a => ofFun (n • toFun a)⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.81c3a1a9ae65 from=translated src=- shape=c11c53c6 vocab=69c49fe5
+-/
 @[simp] theorem toFun_zero : toFun (0 : KM n td) = 0 := rfl
+/--
+@isnad1 id=eq.0h4v.s6.151ddf542c87 from=translated src=- shape=13bfd051 vocab=5002ae54
+-/
 @[simp] theorem toFun_add (a b : KM n td) : toFun (a + b) = toFun a + toFun b := rfl
+/--
+@isnad1 id=eq.0h3v.s5.a749156f98f2 from=translated src=- shape=2e9eb214 vocab=effecaf1
+-/
 @[simp] theorem toFun_neg (a : KM n td) : toFun (-a) = -toFun a := rfl
+/--
+@isnad1 id=eq.0h4v.s6.c5d00333edaf from=translated src=- shape=13bfd051 vocab=b8442276
+-/
 @[simp] theorem toFun_sub (a b : KM n td) : toFun (a - b) = toFun a - toFun b := rfl
+/--
+@isnad1 id=eq.0h4v.s6.1b3763b3ce6c from=translated src=- shape=6ca41933 vocab=2eff08d6
+-/
 @[simp] theorem toFun_nsmul (k : ℕ) (a : KM n td) : toFun (k • a) = k • toFun a := rfl
+/--
+@isnad1 id=eq.0h4v.s6.3d24a2b708fb from=translated src=- shape=bbb8831e vocab=18bef6cc
+-/
 @[simp] theorem toFun_zsmul (k : ℤ) (a : KM n td) : toFun (k • a) = k • toFun a := rfl
 
 noncomputable instance : AddCommGroup (KM n td) where
@@ -76,12 +103,18 @@ noncomputable instance : AddCommGroup (KM n td) where
 noncomputable instance : Mul (KM n td) :=
   ⟨fun a b => ofFun (starM td (toFun a) (toFun b))⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.790a0973d361 from=translated src=- shape=36dfa8f4 vocab=fbbfbf13
+-/
 @[simp] theorem toFun_mul (a b : KM n td) :
     toFun (a * b) = starM td (toFun a) (toFun b) := rfl
 
 /-- The unit element of KM: eM = M⁻¹ * 1-/
 noncomputable instance : One (KM n td) := ⟨ofFun (unitTube td)⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.36dfec08c80a from=translated src=- shape=cdb7669c vocab=2b8730da
+-/
 @[simp] theorem toFun_one : toFun (1 : KM n td) = unitTube td := rfl
 
 /-! ## Core proof: ⋆_M associativity via complex lift -/
@@ -140,30 +173,45 @@ private theorem starMC_neg_left (td : TubalData n) (a b : Fin n → ℂ) :
 
 /-! ## Lift to real operations via toComplex embedding -/
 
+/--
+@isnad1 id=eq.0h5v.s5.9bbe749e8142 from=translated src=- shape=83d2c80a vocab=6ae8fc12
+-/
 theorem starM_assoc (td : TubalData n) (a b c : Fin n → ℝ) :
     starM td (starM td a b) c = starM td a (starM td b c) := by
   apply toComplex_injective
   rw [starM_eq_starMC, starM_eq_starMC, starM_eq_starMC, starM_eq_starMC]
   exact starMC_assoc td _ _ _
 
+/--
+@isnad1 id=eq.0h4v.s4.982cf5a10995 from=translated src=- shape=16c693cf vocab=6ae8fc12
+-/
 theorem starM_comm (td : TubalData n) (a b : Fin n → ℝ) :
     starM td a b = starM td b a := by
   apply toComplex_injective
   rw [starM_eq_starMC, starM_eq_starMC]
   exact starMC_comm td _ _
 
+/--
+@isnad1 id=eq.0h5v.s6.6b32afe6d0fb from=translated src=- shape=8a25a6ef vocab=f47240a8
+-/
 theorem starM_add_left (td : TubalData n) (a b c : Fin n → ℝ) :
     starM td (a + b) c = starM td a c + starM td b c := by
   apply toComplex_injective
   rw [toComplex_add, starM_eq_starMC, starM_eq_starMC, starM_eq_starMC, toComplex_add]
   exact starMC_add_left td _ _ _
 
+/--
+@isnad1 id=eq.0h3v.s4.a58d9140f67d from=translated src=- shape=1e4d3c36 vocab=b7a64059
+-/
 theorem starM_unitTube_left (td : TubalData n) (a : Fin n → ℝ) :
     starM td (unitTube td) a = a := by
   apply toComplex_injective
   rw [starM_eq_starMC, toComplex_unitTube]
   exact starMC_one_left td _
 
+/--
+@isnad1 id=eq.0h3v.s5.b2fb44c51400 from=translated src=- shape=6233bacd vocab=6ae8fc12
+-/
 theorem starM_zero_left (td : TubalData n) (a : Fin n → ℝ) :
     starM td 0 a = 0 := by
   apply toComplex_injective
@@ -171,6 +219,9 @@ theorem starM_zero_left (td : TubalData n) (a : Fin n → ℝ) :
   show starMC td 0 (toComplex a) = 0
   exact starMC_zero_left td _
 
+/--
+@isnad1 id=eq.0h4v.s5.155de31eba7c from=translated src=- shape=feb1a5a2 vocab=5b2e6444
+-/
 theorem starM_neg_left (td : TubalData n) (a b : Fin n → ℝ) :
     starM td (-a) b = -(starM td a b) := by
   apply toComplex_injective
@@ -242,10 +293,15 @@ private theorem smul_starM (td : TubalData n) (r : ℝ) (a b : Fin n → ℝ) :
 /-- **Proposition 5**: KM is an ℝ-algebra (scalar multiplication commutes with ⋆_M).-/
 noncomputable instance instAlgebra : Algebra ℝ (KM n td) := mkAlgebra
 
-/-- KM is finite-dimensional over ℝ (dimension n).-/
+/-- KM is finite-dimensional over ℝ (dimension n).
+@isnad1 id=finitedi.0h2v.s4.3a2d107eb7e7 from=translated src=- shape=595ce0b1 vocab=b77b297c
+-/
 noncomputable instance instFiniteDimensional : FiniteDimensional ℝ (KM n td) :=
   inferInstanceAs (FiniteDimensional ℝ (Fin n → ℝ))
 
+/--
+@isnad1 id=eq.0h2v.s5.8d333710e24f from=translated src=- shape=37d26c04 vocab=5899a674
+-/
 theorem finrank_eq : Module.finrank ℝ (KM n td) = n :=
   Module.finrank_fin_fun (R := ℝ)
 

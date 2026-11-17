@@ -30,6 +30,9 @@ noncomputable def facewise
 
 scoped notation:70 A " △ " B => facewise A B
 
+/--
+@isnad1 id=eq.0h7v.s6.79e3fd3e5d9c from=translated src=- shape=60aec030 vocab=93b4956d
+-/
 @[simp]
 theorem facewise_apply
     (A : Fin n → Matrix (Fin m) (Fin p) ℂ)

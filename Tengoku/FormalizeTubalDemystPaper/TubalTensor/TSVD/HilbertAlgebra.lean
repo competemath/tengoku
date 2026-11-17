@@ -96,7 +96,9 @@ private theorem parseval_bilinear {n' : ℕ}
 
 /-- **Proposition 70.** Suppose M = DW for some invertible real diagonal D and
     unitary W. Then for every a, x, y ∈ K_M we have
-    ⟨a ⋆_M x, y⟩_F = ⟨x, a* ⋆_M y⟩_F.-/
+    ⟨a ⋆_M x, y⟩_F = ⟨x, a* ⋆_M y⟩_F.
+@isnad1 id=eq.1h5v.s6.130ba31b3006 from=translated src=- shape=316f61eb vocab=23db8acc
+-/
 theorem hilbert_algebra_tube (hDU : IsDiagUnitary td)
     (a x y : KM n td) :
     tubeFrobInner (a * x) y = tubeFrobInner x (star a * y) := by

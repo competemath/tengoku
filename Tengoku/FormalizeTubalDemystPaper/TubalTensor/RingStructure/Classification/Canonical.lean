@@ -23,7 +23,9 @@ variable {n : ℕ}
 
 /-! ## Helper lemmas for real matrix–complex vector interplay -/
 
-/-- Complexification of a real matrix-vector product.-/
+/-- Complexification of a real matrix-vector product.
+@isnad1 id=eq.0h3v.s6.4dc3849e716a from=translated src=- shape=a2794b19 vocab=733857bc
+-/
 theorem toComplex_mulVec_real (R : Matrix (Fin n) (Fin n) ℝ) (a : Fin n → ℝ) :
     toComplex (R *ᵥ a) = R.map ((↑) : ℝ → ℂ) *ᵥ toComplex a := by
   ext i
@@ -31,7 +33,9 @@ theorem toComplex_mulVec_real (R : Matrix (Fin n) (Fin n) ℝ) (a : Fin n → �
   push_cast
   rfl
 
-/-- A real matrix commutes with taking real parts.-/
+/-- A real matrix commutes with taking real parts.
+@isnad1 id=eq.0h3v.s6.ed94e312c735 from=translated src=- shape=b85a2fdb vocab=fc1c0472
+-/
 theorem mulVec_vecRe_real (R : Matrix (Fin n) (Fin n) ℝ) (w : Fin n → ℂ) :
     R *ᵥ vecRe w = vecRe (R.map ((↑) : ℝ → ℂ) *ᵥ w) := by
   ext i
@@ -40,7 +44,9 @@ theorem mulVec_vecRe_real (R : Matrix (Fin n) (Fin n) ℝ) (w : Fin n → ℂ) :
   congr 1; ext j
   exact (Complex.re_ofReal_mul _ _).symm
 
-/-- The map (↑ : ℝ → ℂ) applied to a matrix respects multiplication.-/
+/-- The map (↑ : ℝ → ℂ) applied to a matrix respects multiplication.
+@isnad1 id=eq.0h3v.s6.9f36bc93bef7 from=translated src=- shape=ce0d748e vocab=920a8242
+-/
 theorem map_ofReal_mul (A B : Matrix (Fin n) (Fin n) ℝ) :
     (A * B).map ((↑) : ℝ → ℂ) = A.map ((↑) : ℝ → ℂ) * B.map ((↑) : ℝ → ℂ) := by
   ext i j
@@ -48,7 +54,9 @@ theorem map_ofReal_mul (A B : Matrix (Fin n) (Fin n) ℝ) :
   push_cast
   rfl
 
-/-- The identity matrix maps to the identity matrix.-/
+/-- The identity matrix maps to the identity matrix.
+@isnad1 id=eq.0h1v.s5.39a1f499e434 from=translated src=- shape=c85f3e63 vocab=eea1b5cb
+-/
 theorem map_ofReal_one :
     (1 : Matrix (Fin n) (Fin n) ℝ).map ((↑) : ℝ → ℂ) = 1 := by
   ext i j
@@ -62,7 +70,9 @@ private theorem ofReal_re_of_im_zero {z : ℂ} (h : z.im = 0) : (z.re : ℂ) = z
   apply Complex.ext <;> simp [h]
 
 /-- If all entries of a complex matrix have zero imaginary part, then it equals
-    the complexification of the matrix of real parts.-/
+    the complexification of the matrix of real parts.
+@isnad1 id=eq.1h2v.s7.1b7e6c85879a from=translated src=- shape=86396420 vocab=be9cc107
+-/
 theorem map_ofReal_re_of_im_zero {A : Matrix (Fin n) (Fin n) ℂ}
     (h : ∀ i j, (A i j).im = 0) :
     (Matrix.of (fun i j => (A i j).re)).map ((↑) : ℝ → ℂ) = A := by
@@ -71,7 +81,9 @@ theorem map_ofReal_re_of_im_zero {A : Matrix (Fin n) (Fin n) ℂ}
   exact ofReal_re_of_im_zero (h i j)
 
 /-- If all entries of a complex matrix have zero imaginary part, then
-    its inverse (given by Ainv) also has real entries.-/
+    its inverse (given by Ainv) also has real entries.
+@isnad1 id=eq.3h5v.s7.6a4a6b6ea695 from=translated src=- shape=e30bc1da vocab=df14984a
+-/
 theorem inv_real_of_real {A Ainv : Matrix (Fin n) (Fin n) ℂ}
     (hA : ∀ i j, (A i j).im = 0)
     (hL : Ainv * A = 1) (hR : A * Ainv = 1) :
@@ -224,6 +236,9 @@ private theorem sqrt2_cast_ne_zero : (↑(Real.sqrt 2) : ℂ) ≠ 0 := by
 
 private theorem sqrt2_nonneg : (0 : ℝ) ≤ 2 := by norm_num
 
+/--
+@isnad1 id=eq.0h0v.s7.1ed7d1224f01 from=translated src=- shape=af6c9ceb vocab=adadfebc
+-/
 theorem conjPairBlockInv_mul_conjPairBlock :
     conjPairBlockInv * conjPairBlock = 1 := by
   ext i j
@@ -237,6 +252,9 @@ theorem conjPairBlockInv_mul_conjPairBlock :
     field_simp <;>
     nlinarith [Real.mul_self_sqrt sqrt2_nonneg]
 
+/--
+@isnad1 id=eq.0h0v.s7.26e9fcc550e0 from=translated src=- shape=af6c9ceb vocab=adadfebc
+-/
 theorem conjPairBlock_mul_conjPairBlockInv :
     conjPairBlock * conjPairBlockInv = 1 := by
   ext i j
@@ -261,6 +279,9 @@ noncomputable def canonicalMinv_block (m k : ℕ) :
     Matrix (Fin m ⊕ (Fin 2 × Fin k)) (Fin m ⊕ (Fin 2 × Fin k)) ℂ :=
   fromBlocks 1 0 0 (blockDiagonal (fun _ : Fin k => conjPairBlockInv))
 
+/--
+@isnad1 id=eq.0h2v.s8.66565c5ef6ee from=translated src=- shape=820fecb0 vocab=92ad0623
+-/
 theorem canonicalMinv_block_mul (m k : ℕ) :
     canonicalMinv_block m k * canonicalM_block m k = 1 := by
   unfold canonicalMinv_block canonicalM_block
@@ -270,6 +291,9 @@ theorem canonicalMinv_block_mul (m k : ℕ) :
     (blockDiagonal (1 : Fin k → Matrix (Fin 2) (Fin 2) ℂ)) = 1
   rw [blockDiagonal_one]; exact fromBlocks_one
 
+/--
+@isnad1 id=eq.0h2v.s8.545765b97091 from=translated src=- shape=820fecb0 vocab=92ad0623
+-/
 theorem canonicalM_block_mul_inv (m k : ℕ) :
     canonicalM_block m k * canonicalMinv_block m k = 1 := by
   unfold canonicalM_block canonicalMinv_block
@@ -328,7 +352,9 @@ private theorem conjPairBlock_not_allReal (r : Fin 2) :
     Complex.I_re]
 
 /-- The canonical matrix is real-paired: first m rows are real,
-    remaining rows come in conjugate pairs.-/
+    remaining rows come in conjugate pairs.
+@isnad1 id=isrealpa.2h2v.s5.b4ea1219527b from=translated src=- shape=07206033 vocab=8664fee2
+-/
 theorem canonicalM_isRealPaired (n m : ℕ) (hm : m ≤ n) (hpar : n % 2 = m % 2) :
     IsRealPaired (canonicalM n m hm hpar) := by
   set k := (n - m) / 2
@@ -449,13 +475,17 @@ theorem canonicalM_isRealPaired (n m : ℕ) (hm : m ≤ n) (hpar : n % 2 = m % 2
         calc l = e (e.symm l) := (Equiv.apply_symm_apply e l).symm
           _ = e (Sum.inr (r', b)) := by rw [hl_eq, hb'_eq, hr''_eq]
 
-/-- The canonical inverse is a left inverse.-/
+/-- The canonical inverse is a left inverse.
+@isnad1 id=eq.2h2v.s6.9a00177a6c85 from=translated src=- shape=a546e04b vocab=e34af7ab
+-/
 theorem canonicalMinv_mul_canonicalM (n m : ℕ) (hm : m ≤ n) (hpar : n % 2 = m % 2) :
     canonicalMinv n m hm hpar * canonicalM n m hm hpar = 1 := by
   simp only [canonicalMinv, canonicalM]
   rw [submatrix_mul_equiv, canonicalMinv_block_mul, submatrix_one_equiv]
 
-/-- The canonical inverse is a right inverse.-/
+/-- The canonical inverse is a right inverse.
+@isnad1 id=eq.2h2v.s6.51777a9b87c5 from=translated src=- shape=a546e04b vocab=e34af7ab
+-/
 theorem canonicalM_mul_canonicalMinv (n m : ℕ) (hm : m ≤ n) (hpar : n % 2 = m % 2) :
     canonicalM n m hm hpar * canonicalMinv n m hm hpar = 1 := by
   simp only [canonicalM, canonicalMinv]
@@ -473,7 +503,9 @@ noncomputable def canonicalTubalData (n m : ℕ) (hm : m ≤ n) (hpar : n % 2 = 
 /-! ## Proposition 66: K_M is isomorphic to the canonical K_{n,m} -/
 
 /-- Parity of realness matches parity of n.
-    Non-real rows come in conjugate pairs, so n - realness is even.-/
+    Non-real rows come in conjugate pairs, so n - realness is even.
+@isnad1 id=eq.0h2v.s5.4db337e854f1 from=translated src=- shape=443e6f8b vocab=07fe8529
+-/
 theorem realness_parity (td : TubalData n) : n % 2 = realness td % 2 := by
   classical
   -- T = non-real rows
@@ -597,7 +629,9 @@ noncomputable def permuteTubalData (td : TubalData n) (σ : Equiv.Perm (Fin n)) 
           exact this
         exact σ.injective (by rw [σ.apply_symm_apply]; exact hk₀_uniq (σ l) h1 h2)
 
-/-- Realness is invariant under permutation: the number of real rows doesn't change.-/
+/-- Realness is invariant under permutation: the number of real rows doesn't change.
+@isnad1 id=eq.0h3v.s4.5ea1df94ee3f from=translated src=- shape=2fae1036 vocab=ea663a46
+-/
 theorem realness_permute (td : TubalData n) (σ : Equiv.Perm (Fin n)) :
     realness (permuteTubalData td σ) = realness td := by
   simp only [realness, permuteTubalData, submatrix_apply]
@@ -686,7 +720,9 @@ private theorem realness_block_sum (td : TubalData n) :
   have := realness_parity td; have := realness_le td; omega
 
 /-- There exists a permutation σ such that in td.M ∘ σ, the first m rows are real
-    and the remaining rows are correctly paired conjugate rows matching canonicalEquiv.-/
+    and the remaining rows are correctly paired conjugate rows matching canonicalEquiv.
+@isnad1 id=ex.0h2v.s9.b5f6af40e5f5 from=translated src=- shape=9d21ade0 vocab=18a3c02c
+-/
 theorem exists_ordering_perm (td : TubalData n) :
     ∃ σ : Equiv.Perm (Fin n),
       (∀ i : Fin n, i.val < realness td → IsRealRow td.M (σ i)) ∧
@@ -996,7 +1032,9 @@ private theorem product_im_eq_zero (td : TubalData n)
     exact conjPairBlockInv_conj_real _ r
 
 /-- When real rows come first and pairs align with canonicalEquiv, there exists
-    a real invertible R with td.M = canonicalM * R_ℂ.-/
+    a real invertible R with td.M = canonicalM * R_ℂ.
+@isnad1 id=ex.1h3v.s9.9f02527d0b4c from=translated src=- shape=57d23058 vocab=8017d23a
+-/
 theorem ordered_canonical_transition (td : TubalData n)
     (h_real : ∀ i : Fin n, i.val < realness td → IsRealRow td.M i)
     (h_paired : ∀ b : Fin ((n - realness td) / 2),
@@ -1089,7 +1127,9 @@ theorem ordered_canonical_transition (td : TubalData n)
 /-! ## Proposition 66: K_M is isomorphic to the canonical K_{n,m} -/
 
 /-- **Proposition 66**: K_M is isomorphic (as ℝ-algebra) to the canonical K_{n,m}
-    where m = realness(M).-/
+    where m = realness(M).
+@isnad1 id=nonempty.0h2v.s6.ba99c351808a from=translated src=- shape=e813aebf vocab=5c08276a
+-/
 theorem KM_algEquiv_canonical (td : TubalData n) :
     Nonempty (KM n td ≃ₐ[ℝ] KM n (canonicalTubalData n (realness td)
       (realness_le td) (realness_parity td))) := by

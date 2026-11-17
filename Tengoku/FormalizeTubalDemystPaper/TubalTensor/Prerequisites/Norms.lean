@@ -24,13 +24,18 @@ open Matrix Complex BigOperators
 noncomputable def frobNormSq {m p : ℕ} (A : Matrix (Fin m) (Fin p) ℂ) : ℝ :=
   ∑ i : Fin m, ∑ j : Fin p, Complex.normSq (A i j)
 
+/--
+@isnad1 id=le.0h3v.s4.82dd81086309 from=translated src=- shape=db38d34d vocab=8f91368b
+-/
 theorem frobNormSq_nonneg {m p : ℕ} (A : Matrix (Fin m) (Fin p) ℂ) :
     0 ≤ frobNormSq A :=
   Finset.sum_nonneg fun _ _ => Finset.sum_nonneg fun _ _ => Complex.normSq_nonneg _
 
 /-! ## Trace characterization -/
 
-/-- Frobenius norm squared equals re(trace(Aᴴ * A)).-/
+/-- Frobenius norm squared equals re(trace(Aᴴ * A)).
+@isnad1 id=eq.0h3v.s6.3265d785e693 from=translated src=- shape=fc0a5517 vocab=3a79ecb4
+-/
 theorem frobNormSq_eq_re_trace {m p : ℕ} (A : Matrix (Fin m) (Fin p) ℂ) :
     frobNormSq A = (Matrix.trace (Aᴴ * A)).re := by
   unfold frobNormSq
@@ -43,7 +48,9 @@ theorem frobNormSq_eq_re_trace {m p : ℕ} (A : Matrix (Fin m) (Fin p) ℂ) :
 
 /-! ## Unitary invariance -/
 
-/-- Left multiplication by a unitary matrix preserves Frobenius norm squared.-/
+/-- Left multiplication by a unitary matrix preserves Frobenius norm squared.
+@isnad1 id=eq.1h4v.s6.896d3f4f74a7 from=translated src=- shape=e3e9950c vocab=723c0709
+-/
 theorem frobNormSq_unitary_mul_left {m p : ℕ}
     (U : Matrix (Fin m) (Fin m) ℂ) (X : Matrix (Fin m) (Fin p) ℂ)
     (hU : IsUnitary U) :
@@ -53,7 +60,9 @@ theorem frobNormSq_unitary_mul_left {m p : ℕ}
   rw [conjTranspose_mul, Matrix.mul_assoc, ← Matrix.mul_assoc Uᴴ U X,
     hU.conjTranspose_mul_self, Matrix.one_mul]
 
-/-- Right multiplication by a unitary matrix preserves Frobenius norm squared.-/
+/-- Right multiplication by a unitary matrix preserves Frobenius norm squared.
+@isnad1 id=eq.1h4v.s6.0d2fdab94d04 from=translated src=- shape=81023003 vocab=723c0709
+-/
 theorem frobNormSq_unitary_mul_right {m p : ℕ}
     (X : Matrix (Fin m) (Fin p) ℂ) (V : Matrix (Fin p) (Fin p) ℂ)
     (hV : IsUnitary V) :

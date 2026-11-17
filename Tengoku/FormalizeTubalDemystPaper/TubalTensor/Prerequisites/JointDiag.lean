@@ -86,7 +86,9 @@ private lemma aeval_apply_mem_eigenspace {n : ℕ}
     rw [End.mul_apply, hpow, Module.algebraMap_end_apply ℂ ℂ, smul_smul]
 
 /-- A diagonal matrix's `toLin'` is semisimple. Proved using
-    `isSemisimple_of_squarefree_aeval_eq_zero` with the polynomial ∏_{μ distinct} (X - μ).-/
+    `isSemisimple_of_squarefree_aeval_eq_zero` with the polynomial ∏_{μ distinct} (X - μ).
+@isnad1 id=issemisi.0h2v.s10.e947f15b1cf8 from=translated src=- shape=54f96fa7 vocab=13356b1a
+-/
 theorem isSemisimple_toLin'_diagonal {n : ℕ} (d : Fin n → ℂ) :
     End.IsSemisimple (diagonal d).toLin' := by
   -- The polynomial p = ∏ μ ∈ (distinct eigenvalues), (X - C μ)
@@ -194,7 +196,9 @@ private lemma matrix_eq_conj_diagonal_of_eigenbasis {n : ℕ}
 /-- **Lemma 38** (Fact 5.17.8 in [2]): Let `T` be a set of pairwise-commuting real matrices
     that are each diagonalizable over ℂ. Then `T` is jointly diagonalizable.
 
-    Proved using Mathlib's eigenspace decomposition for commuting endomorphisms.-/
+    Proved using Mathlib's eigenspace decomposition for commuting endomorphisms.
+@isnad1 id=isjointl.2h2v.s7.4c873b5e25c3 from=translated src=- shape=926ce265 vocab=c484113d
+-/
 theorem jointly_diag_of_commuting {n : ℕ} (T : Set (Matrix (Fin n) (Fin n) ℝ))
     (hdiag : ∀ A ∈ T, IsMatDiag A)
     (hcomm : ∀ A ∈ T, ∀ B ∈ T, A * B = B * A) :

@@ -37,7 +37,9 @@ private theorem applyM_toComplex_star (a : KM n td) :
   show td.applyM (td.applyMinv (vecConj (td.applyM (toComplex (KM.toFun a))))) = _
   rw [td.applyM_applyMinv]
 
-/-- The transform of Aᴴ equals the facewise conjugate transpose.-/
+/-- The transform of Aᴴ equals the facewise conjugate transpose.
+@isnad1 id=eq.0h5v.s6.040ead19bf00 from=translated src=- shape=2ebc05d5 vocab=af7a3954
+-/
 theorem transform_conjTranspose (A : TubalMatrix m p n td) :
     transform Aᴴ = fun k => (transform A k)ᴴ := by
   funext k i j
@@ -47,7 +49,9 @@ theorem transform_conjTranspose (A : TubalMatrix m p n td) :
   rw [vecConj_apply]
   rfl
 
-/-- The transform of the identity tubal matrix is the identity on each slice.-/
+/-- The transform of the identity tubal matrix is the identity on each slice.
+@isnad1 id=eq.0h3v.s6.6fbedfd73ee2 from=translated src=- shape=f00d4b20 vocab=b234164c
+-/
 theorem transform_one :
     transform (1 : TubalMatrix m m n td) = fun _ => 1 := by
   funext k i j
@@ -127,7 +131,9 @@ private theorem isRealMatrix_of_pairedStructure_realRow {m p : ℕ}
 -/
 
 /-- **Paired family SVD.**
-    Proved from `matrix_svd` (proved over any `RCLike` field).-/
+    Proved from `matrix_svd` (proved over any `RCLike` field).
+@isnad1 id=ex.1h5v.s8.256b893fbd0c from=translated src=- shape=44072088 vocab=7ffa00dc
+-/
 theorem matrix_svd_paired {n : ℕ} (td : TubalData n) (m p : ℕ)
     (Ahat : Fin n → Matrix (Fin m) (Fin p) ℂ)
     (hpaired : ∀ i j, HasRealPairedStructure td (fun k => Ahat k i j)) :

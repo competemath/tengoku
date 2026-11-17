@@ -23,7 +23,9 @@ variable {n : ℕ} {td : TubalData n} {m p : ℕ}
 def IsFDiagonal (A : TubalMatrix m p n td) : Prop :=
   ∀ (i : Fin m) (j : Fin p), (i : ℕ) ≠ (j : ℕ) → A i j = 0
 
-/-- f-diagonal in primal domain implies diagonal frontal slices in the transform domain.-/
+/-- f-diagonal in primal domain implies diagonal frontal slices in the transform domain.
+@isnad1 id=eq.2h8v.s5.c1f42ef5fe72 from=translated src=- shape=9cfff6bc vocab=48d57185
+-/
 theorem IsFDiagonal.transform_diag {A : TubalMatrix m p n td}
     (hA : IsFDiagonal A) (k : Fin n) (i : Fin m) (j : Fin p)
     (hij : (i : ℕ) ≠ (j : ℕ)) : transform A k i j = 0 := by

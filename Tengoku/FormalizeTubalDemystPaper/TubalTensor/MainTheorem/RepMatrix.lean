@@ -26,14 +26,18 @@ variable {n : ℕ} (tr : TubalRing n)
 noncomputable def repMatrix (a : TubalCarrier n) : Matrix (Fin n) (Fin n) ℝ :=
   Matrix.of (fun i j => tr.mul a (Pi.single j 1) i)
 
-/-- `repMatrix` unfolds entry-by-entry. This is definitional (`rfl`).-/
+/-- `repMatrix` unfolds entry-by-entry. This is definitional (`rfl`).
+@isnad1 id=eq.0h5v.s5.6e3ef672aa21 from=translated src=- shape=9c8409b3 vocab=7f79be97
+-/
 @[simp]
 theorem repMatrix_apply (a : TubalCarrier n) (i j : Fin n) :
     repMatrix tr a i j = tr.mul a (Pi.single j 1) i := rfl
 
 /-! ## Lemma 43: Properties of the representation map -/
 
-/-- **Lemma 43.3**: `R_{αx} = α R_x`.-/
+/-- **Lemma 43.3**: `R_{αx} = α R_x`.
+@isnad1 id=eq.0h4v.s6.d09e33f4f443 from=translated src=- shape=d660d32c vocab=771b4ac6
+-/
 theorem repMatrix_smul (r : ℝ) (a : TubalCarrier n) :
     repMatrix tr (r • a) = r • repMatrix tr a := by
   ext i j

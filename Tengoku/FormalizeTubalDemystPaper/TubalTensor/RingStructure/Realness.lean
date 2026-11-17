@@ -62,7 +62,9 @@ private theorem mulVec_conj_pair_row (M : Matrix (Fin n) (Fin n) ℂ) (c : Fin n
   exact (hconj j).symm
 
 /-- Core lemma: M⁻¹ applied to a vector with real-paired structure gives a real vector.
-    This encapsulates the content of Lemmas 65 and 67 (forward direction of Lemma 2).-/
+    This encapsulates the content of Lemmas 65 and 67 (forward direction of Lemma 2).
+@isnad1 id=isrealve.1h3v.s4.01f11b0c63c1 from=translated src=- shape=867cf202 vocab=1df22994
+-/
 theorem applyMinv_real_of_pairedStructure (td : TubalData n) (v : Fin n → ℂ)
     (hv : HasRealPairedStructure td v) :
     IsRealVec (td.applyMinv v) := by
@@ -279,7 +281,9 @@ private theorem Minv_col_conj_of_conjRow (td : TubalData n) {j k : Fin n}
 /-- **Lemma 63**: The column structure of M⁻¹ mirrors the row structure of M.
     If rows j, k of M are conjugate (IsConjRow M j k), then columns j, k of M⁻¹
     are also conjugate: M⁻¹ᵢₖ = conj(M⁻¹ᵢⱼ) for all i.
-    Special case j = k: if row j is real, then column j of M⁻¹ is real.-/
+    Special case j = k: if row j is real, then column j of M⁻¹ is real.
+@isnad1 id=eq.1h5v.s6.b47d6d33649a from=translated src=- shape=a51dbe02 vocab=a9eae59f
+-/
 theorem Minv_col_conj_of_row_conj (td : TubalData n) {j k : Fin n}
     (h : IsConjRow td.M j k) :
     ∀ i : Fin n, td.M_inv i k = starRingEnd ℂ (td.M_inv i j) := by
@@ -317,7 +321,9 @@ private theorem conjCol_hasPairedStructure (td : TubalData n) (j : Fin n) :
     congr 1; exact hconj j
 
 /-- **Lemma 64**: M⁻¹M̄ is a real matrix.
-    Every entry of M⁻¹ · conj(M) has zero imaginary part.-/
+    Every entry of M⁻¹ · conj(M) has zero imaginary part.
+@isnad1 id=eq.0h4v.s6.25b33b7be5aa from=translated src=- shape=db8862da vocab=599b392a
+-/
 theorem Minv_mul_conjM_real (td : TubalData n) (i j : Fin n) :
     ((td.M_inv * td.M.map (starRingEnd ℂ)) i j).im = 0 := by
   -- Unfold to the sum form: (M⁻¹ * M̄)_{ij} = ∑_l M⁻¹_{il} * conj(M_{lj})
@@ -507,7 +513,9 @@ private theorem N_row_has_nonzero
   exact one_ne_zero (h1.symm.trans h2)
 
 /-- **Lemma 2/67 (reverse direction)**: If M is invertible and ⋆_M preserves ℝⁿ,
-    then M is IsRealPaired.-/
+    then M is IsRealPaired.
+@isnad1 id=isrealpa.3h3v.s7.11571888b306 from=translated src=- shape=aab2cd79 vocab=69e1694c
+-/
 theorem isRealPaired_of_starM_preserves_reals
     {M M_inv : Matrix (Fin n) (Fin n) ℂ}
     (hM_left : M_inv * M = 1) (hM_right : M * M_inv = 1)
@@ -534,7 +542,9 @@ theorem isRealPaired_of_starM_preserves_reals
 /-! ## Main realness results -/
 
 /-- The ⋆_M product of real vectors is real (forward direction of Lemma 2 / Lemma 65).
-    When M satisfies IsRealPaired, starMC td (toComplex a) (toComplex b) is a real vector.-/
+    When M satisfies IsRealPaired, starMC td (toComplex a) (toComplex b) is a real vector.
+@isnad1 id=isrealve.0h4v.s4.e90f60835a4b from=translated src=- shape=3d75566d vocab=099cba9d
+-/
 theorem starMC_real (td : TubalData n) (a b : Fin n → ℝ) :
     IsRealVec (starMC td (toComplex a) (toComplex b)) := by
   apply applyMinv_real_of_pairedStructure
@@ -544,7 +554,9 @@ theorem starMC_real (td : TubalData n) (a b : Fin n → ℝ) :
 
 /-- **Lemma 2 / Lemma 65 (bundled iff)**: ⋆_M preserves ℝⁿ if and only if M is IsRealPaired.
     This combines the forward direction (starMC_real) and the reverse direction
-    (isRealPaired_of_starM_preserves_reals).-/
+    (isRealPaired_of_starM_preserves_reals).
+@isnad1 id=iff.2h3v.s7.397170d7c65d from=translated src=- shape=9605e701 vocab=69e1694c
+-/
 theorem starM_preserves_reals_iff_isRealPaired
     {M M_inv : Matrix (Fin n) (Fin n) ℂ}
     (hM_left : M_inv * M = 1) (hM_right : M * M_inv = 1) :
@@ -556,13 +568,17 @@ theorem starM_preserves_reals_iff_isRealPaired
   · intro hRP a b
     exact starMC_real ⟨M, M_inv, hM_left, hM_right, hRP⟩ a b
 
-/-- The ⋆_M product via vecRe equals the complex version on real inputs.-/
+/-- The ⋆_M product via vecRe equals the complex version on real inputs.
+@isnad1 id=eq.0h4v.s5.03f4ccc0a01b from=translated src=- shape=87856e28 vocab=db5576d5
+-/
 theorem starM_eq_starMC (td : TubalData n) (a b : Fin n → ℝ) :
     toComplex (starM td a b) = starMC td (toComplex a) (toComplex b) := by
   apply toComplex_vecRe
   exact starMC_real td a b
 
-/-- The unit element eM = M⁻¹ 𝟙 is real.-/
+/-- The unit element eM = M⁻¹ 𝟙 is real.
+@isnad1 id=isrealve.0h2v.s3.44d52610f816 from=translated src=- shape=f71f3b9e vocab=f16cccb9
+-/
 theorem eM_isReal (td : TubalData n) :
     IsRealVec (td.applyMinv (allOnes n)) := by
   apply applyMinv_real_of_pairedStructure
@@ -575,6 +591,9 @@ theorem eM_isReal (td : TubalData n) :
 noncomputable def unitTube (td : TubalData n) : Fin n → ℝ :=
   vecRe (td.applyMinv (allOnes n))
 
+/--
+@isnad1 id=eq.0h2v.s4.4e38aa20a1e2 from=translated src=- shape=6328c418 vocab=77322603
+-/
 theorem toComplex_unitTube (td : TubalData n) :
     toComplex (unitTube td) = td.applyMinv (allOnes n) := by
   apply toComplex_vecRe

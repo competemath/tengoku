@@ -48,6 +48,9 @@ instance : SMul ℝ (TubalCarrier n) := inferInstanceAs (SMul ℝ (Fin n → ℝ
 instance : AddCommGroup (TubalCarrier n) := inferInstanceAs (AddCommGroup (Fin n → ℝ))
 noncomputable instance : Module ℝ (TubalCarrier n) := inferInstanceAs (Module ℝ (Fin n → ℝ))
 
+/--
+@isnad1 id=eq.1h3v.s4.42c3a749c069 from=translated src=- shape=96557b98 vocab=1cf5c96f
+-/
 @[ext]
 theorem ext {a b : TubalCarrier n} (h : ∀ i, a i = b i) : a = b :=
   funext h
@@ -58,12 +61,30 @@ These are needed because `simp` doesn't see through the `inferInstanceAs` wrappe
 to apply `Pi.zero_apply`, `Pi.add_apply`, etc. This is the standard pattern for
 type synonyms in Mathlib (cf. `Multiplicative`, `OrderDual`). -/
 
+/--
+@isnad1 id=eq.0h2v.s4.a86c1cf22e02 from=translated src=- shape=06057f13 vocab=1cf5c96f
+-/
 @[simp] theorem zero_apply (i : Fin n) : (0 : TubalCarrier n) i = 0 := rfl
+/--
+@isnad1 id=eq.0h4v.s5.85167124fea1 from=translated src=- shape=be8eec5f vocab=9953dd10
+-/
 @[simp] theorem add_apply (a b : TubalCarrier n) (i : Fin n) : (a + b) i = a i + b i := rfl
+/--
+@isnad1 id=eq.0h3v.s4.638dc7d9463b from=translated src=- shape=fbef95a5 vocab=34bc4fec
+-/
 @[simp] theorem neg_apply (a : TubalCarrier n) (i : Fin n) : (-a) i = -(a i) := rfl
+/--
+@isnad1 id=eq.0h4v.s5.56716361515c from=translated src=- shape=be8eec5f vocab=1f4d2f6f
+-/
 @[simp] theorem sub_apply (a b : TubalCarrier n) (i : Fin n) : (a - b) i = a i - b i := rfl
+/--
+@isnad1 id=eq.0h4v.s5.b059055a961b from=translated src=- shape=1384f9a5 vocab=f340f2b4
+-/
 @[simp] theorem smul_apply (r : ℝ) (a : TubalCarrier n) (i : Fin n) :
     (r • a) i = r * a i := rfl
+/--
+@isnad1 id=eq.0h5v.s5.410d4308c58d from=translated src=- shape=d5b2aaa8 vocab=f1f55ad2
+-/
 @[simp] theorem sum_apply {ι : Type*} (s : Finset ι) (f : ι → TubalCarrier n) (i : Fin n) :
     (∑ j ∈ s, f j) i = ∑ j ∈ s, f j i :=
   Finset.sum_apply i s f
@@ -104,20 +125,28 @@ variable {n : ℕ} (tr : TubalRing n)
 These are proved BEFORE `toCommRing`/`toAlgebra` so that `tr.mul` is not normalized
 to `*` notation during proof elaboration. -/
 
-/-- `one` is a right identity for multiplication.-/
+/-- `one` is a right identity for multiplication.
+@isnad1 id=eq.0h3v.s4.3880391d1613 from=translated src=- shape=a4da848d vocab=ab696adf
+-/
 theorem mul_one (a : TubalCarrier n) : tr.mul a tr.one = a := by
   rw [tr.mul_comm]; exact tr.one_mul a
 
-/-- Right distributivity: `(a + b) · c = a · c + b · c`.-/
+/-- Right distributivity: `(a + b) · c = a · c + b · c`.
+@isnad1 id=eq.0h5v.s5.1a5e7fbc352e from=translated src=- shape=c94475c8 vocab=adf559aa
+-/
 theorem right_distrib (a b c : TubalCarrier n) :
     tr.mul (a + b) c = tr.mul a c + tr.mul b c := by
   rw [tr.mul_comm, tr.left_distrib, tr.mul_comm c a, tr.mul_comm c b]
 
-/-- Zero is absorbing on the right: `a · 0 = 0`.-/
+/-- Zero is absorbing on the right: `a · 0 = 0`.
+@isnad1 id=eq.0h3v.s5.2b47608d65bb from=translated src=- shape=62849e3d vocab=788a5e37
+-/
 theorem mul_zero (a : TubalCarrier n) : tr.mul a 0 = 0 := by
   rw [tr.mul_comm]; exact tr.zero_mul a
 
-/-- Scalar multiplication commutes with ring multiplication on the right.-/
+/-- Scalar multiplication commutes with ring multiplication on the right.
+@isnad1 id=eq.0h5v.s5.78730e4adb3c from=translated src=- shape=4757dc0c vocab=f2b1e86c
+-/
 theorem mul_smul (r : ℝ) (a b : TubalCarrier n) :
     tr.mul a (r • b) = r • (tr.mul a b) := by
   rw [tr.mul_comm, tr.smul_mul, tr.mul_comm]
@@ -128,17 +157,24 @@ def mulLeftLinear (a : TubalCarrier n) : TubalCarrier n →ₗ[ℝ] TubalCarrier
   map_add' b c := tr.left_distrib a b c
   map_smul' r b := by simp [tr.mul_smul]
 
+/--
+@isnad1 id=eq.0h4v.s6.3d79b45c8fa3 from=translated src=- shape=bf73d481 vocab=c6c8ac05
+-/
 @[simp]
 theorem mulLeftLinear_apply (a x : TubalCarrier n) :
     tr.mulLeftLinear a x = tr.mul a x := rfl
 
-/-- `p = a * x` is idempotent when `a * x * a = a`.-/
+/-- `p = a * x` is idempotent when `a * x * a = a`.
+@isnad1 id=eq.1h4v.s5.2f3a1a881388 from=translated src=- shape=14ae6e73 vocab=788a5e37
+-/
 theorem mul_idempotent_of_vnr {a x : TubalCarrier n} (hx : tr.mul (tr.mul a x) a = a) :
     tr.mul (tr.mul a x) (tr.mul a x) = tr.mul a x := by
   rw [← tr.mul_assoc, hx]
 
 /-- VNR refinement: from `a · x · a = a` we can get `y` satisfying both
-    `a · y · a = a` and `y · a · y = y`.-/
+    `a · y · a = a` and `y · a · y = y`.
+@isnad1 id=ex.0h3v.s5.6a559ebe4826 from=translated src=- shape=4eee083b vocab=788a5e37
+-/
 theorem vnr_refined (a : TubalCarrier n) :
     ∃ x, tr.mul (tr.mul a x) a = a ∧ tr.mul (tr.mul x a) x = x := by
   obtain ⟨x, hx⟩ := tr.vnr a

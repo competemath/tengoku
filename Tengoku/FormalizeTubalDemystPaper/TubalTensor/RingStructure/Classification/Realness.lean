@@ -24,7 +24,9 @@ noncomputable def realness (td : TubalData n) : ℕ :=
     i.e., every row of M is real. (Definition 12 in the paper)-/
 def IsFullyReal (td : TubalData n) : Prop := realness td = n
 
-/-- Realness is at most n.-/
+/-- Realness is at most n.
+@isnad1 id=le.0h2v.s3.0c12700a684e from=translated src=- shape=26d77ceb vocab=a39e000a
+-/
 theorem realness_le (td : TubalData n) : realness td ≤ n := by
   unfold realness
   calc _ ≤ Finset.card Finset.univ := Finset.card_filter_le _ _

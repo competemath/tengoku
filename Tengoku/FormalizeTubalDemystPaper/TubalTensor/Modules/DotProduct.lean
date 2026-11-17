@@ -24,12 +24,17 @@ variable {n : ℕ} {td : TubalData n} {m : ℕ}
 noncomputable def dotM (U V : OrientedMatrix m n td) : KM n td :=
   ∑ i : Fin m, star (U i) * V i
 
+/--
+@isnad1 id=eq.0h5v.s6.d7e8cc019748 from=translated src=- shape=805797cf vocab=5225a0cd
+-/
 theorem dotM_apply (U V : OrientedMatrix m n td) :
     dotM U V = ∑ i : Fin m, star (U i) * V i := rfl
 
 /-! ## Theorem 20, Part 1: Conjugate symmetry -/
 
-/-- **Theorem 20 (conjugate symmetry)**: `dotM U V = star (dotM V U)`.-/
+/-- **Theorem 20 (conjugate symmetry)**: `dotM U V = star (dotM V U)`.
+@isnad1 id=eq.0h5v.s5.6576e13f49ef from=translated src=- shape=de4179d0 vocab=8dc0ad55
+-/
 theorem dotM_conj_symm (U V : OrientedMatrix m n td) :
     dotM U V = star (dotM V U) := by
   simp only [dotM_apply, star_sum, star_mul, star_star, mul_comm]

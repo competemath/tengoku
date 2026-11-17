@@ -24,25 +24,34 @@ variable {n : ℕ}
 noncomputable def vecPseudoInv {n : ℕ} (v : Fin n → ℂ) : Fin n → ℂ :=
   fun i => if v i = 0 then 0 else (v i)⁻¹
 
+/--
+@isnad1 id=eq.0h3v.s5.972919099039 from=translated src=- shape=979e4668 vocab=da9a37a2
+-/
 @[simp]
 theorem vecPseudoInv_apply {n : ℕ} (v : Fin n → ℂ) (i : Fin n) :
     vecPseudoInv v i = if v i = 0 then 0 else (v i)⁻¹ := rfl
 
 /-! ## Entrywise properties of pseudo-inverse -/
 
-/-- x * x⁺ * x = x entrywise.-/
+/-- x * x⁺ * x = x entrywise.
+@isnad1 id=eq.0h2v.s4.d54ade2c5c40 from=translated src=- shape=a2c71e36 vocab=77e25f71
+-/
 theorem vecPseudoInv_mp1 {n : ℕ} (v : Fin n → ℂ) :
     v ∘ₕ vecPseudoInv v ∘ₕ v = v := by
   ext i; simp only [vecHadamard_apply, vecPseudoInv_apply]
   by_cases h : v i = 0 <;> simp [h]
 
-/-- x⁺ * x * x⁺ = x⁺ entrywise.-/
+/-- x⁺ * x * x⁺ = x⁺ entrywise.
+@isnad1 id=eq.0h2v.s4.bd369378abda from=translated src=- shape=9bdb27f2 vocab=77e25f71
+-/
 theorem vecPseudoInv_mp2 {n : ℕ} (v : Fin n → ℂ) :
     vecPseudoInv v ∘ₕ v ∘ₕ vecPseudoInv v = vecPseudoInv v := by
   ext i; simp only [vecHadamard_apply, vecPseudoInv_apply]
   by_cases h : v i = 0 <;> simp [h]
 
-/-- x * x⁺ is entrywise 0 or 1, hence real.-/
+/-- x * x⁺ is entrywise 0 or 1, hence real.
+@isnad1 id=eq.0h3v.s4.d3b62293ee3f from=translated src=- shape=e9878256 vocab=4005283c
+-/
 theorem vecPseudoInv_proj_real {n : ℕ} (v : Fin n → ℂ) (i : Fin n) :
     ((v ∘ₕ vecPseudoInv v) i).im = 0 := by
   simp only [vecHadamard_apply, vecPseudoInv_apply]
@@ -50,14 +59,18 @@ theorem vecPseudoInv_proj_real {n : ℕ} (v : Fin n → ℂ) (i : Fin n) :
   · simp [h]
   · simp [h]
 
-/-- x * x⁺ = conj(x * x⁺) (it's real, so conj is identity).-/
+/-- x * x⁺ = conj(x * x⁺) (it's real, so conj is identity).
+@isnad1 id=eq.0h2v.s4.66f5108bcb41 from=translated src=- shape=d3f7934d vocab=d67fc0d8
+-/
 theorem vecPseudoInv_proj_self_conj {n : ℕ} (v : Fin n → ℂ) :
     vecConj (v ∘ₕ vecPseudoInv v) = v ∘ₕ vecPseudoInv v := by
   ext i
   show starRingEnd ℂ ((v ∘ₕ vecPseudoInv v) i) = (v ∘ₕ vecPseudoInv v) i
   rw [starRingEnd_apply, star_def, Complex.conj_eq_iff_im.mpr (vecPseudoInv_proj_real v i)]
 
-/-- x⁺ * x = x * x⁺ (both are the same 0/1 indicator).-/
+/-- x⁺ * x = x * x⁺ (both are the same 0/1 indicator).
+@isnad1 id=eq.0h2v.s4.adb6c299af13 from=translated src=- shape=cb18c858 vocab=77e25f71
+-/
 theorem vecPseudoInv_comm {n : ℕ} (v : Fin n → ℂ) :
     vecPseudoInv v ∘ₕ v = v ∘ₕ vecPseudoInv v := by
   ext i; simp only [vecHadamard_apply, vecPseudoInv_apply]
@@ -65,7 +78,9 @@ theorem vecPseudoInv_comm {n : ℕ} (v : Fin n → ℂ) :
 
 /-! ## Pseudo-inverse preserves real-paired structure -/
 
-/-- Conjugation commutes with pseudo-inverse entrywise.-/
+/-- Conjugation commutes with pseudo-inverse entrywise.
+@isnad1 id=eq.0h2v.s4.035ab4e5d66c from=translated src=- shape=1d35520a vocab=672169e5
+-/
 theorem vecConj_vecPseudoInv {n : ℕ} (v : Fin n → ℂ) :
     vecConj (vecPseudoInv v) = vecPseudoInv (vecConj v) := by
   ext i
@@ -78,7 +93,9 @@ theorem vecConj_vecPseudoInv {n : ℕ} (v : Fin n → ℂ) :
       rwa [map_zero, starRingEnd_apply, starRingEnd_apply, star_star] at this
     simp [h, hc, map_inv₀]
 
-/-- Pseudo-inverse of a vector with real-paired structure has real-paired structure.-/
+/-- Pseudo-inverse of a vector with real-paired structure has real-paired structure.
+@isnad1 id=hasrealp.1h3v.s4.3bb22f8cd2c8 from=translated src=- shape=fd632b9f vocab=a8f44912
+-/
 theorem vecPseudoInv_hasPairedStructure {td : TubalData n} {v : Fin n → ℂ}
     (hv : HasRealPairedStructure td v) :
     HasRealPairedStructure td (vecPseudoInv v) := by
@@ -121,13 +138,17 @@ noncomputable def weakInvM (td : TubalData n) (a : Fin n → ℝ) : Fin n → �
 
 /-! ## Lemma 7: Weak inverse is real -/
 
-/-- **Lemma 7**: The weak inverse of a real vector is real.-/
+/-- **Lemma 7**: The weak inverse of a real vector is real.
+@isnad1 id=isrealve.0h3v.s4.7d07abbb075d from=translated src=- shape=01803419 vocab=1878844e
+-/
 theorem weakInvC_real (td : TubalData n) (a : Fin n → ℝ) :
     IsRealVec (weakInvC td (toComplex a)) :=
   applyMinv_real_of_pairedStructure td _
     (vecPseudoInv_hasPairedStructure (applyM_toComplex_hasPairedStructure td a))
 
-/-- The real weak inverse equals the complex version on real inputs.-/
+/-- The real weak inverse equals the complex version on real inputs.
+@isnad1 id=eq.0h3v.s4.9f32af0cf5d8 from=translated src=- shape=16fde087 vocab=e82e6f16
+-/
 theorem weakInvM_eq_weakInvC (td : TubalData n) (a : Fin n → ℝ) :
     toComplex (weakInvM td a) = weakInvC td (toComplex a) :=
   toComplex_vecRe _ (weakInvC_real td a)
@@ -145,17 +166,23 @@ theorem weakInvM_eq_weakInvC (td : TubalData n) (a : Fin n → ℝ) :
   The MP conditions become purely entrywise statements about Hadamard products.
 -/
 
-/-- Transform-domain form of starMC: applying M to starMC gives Hadamard product.-/
+/-- Transform-domain form of starMC: applying M to starMC gives Hadamard product.
+@isnad1 id=eq.0h4v.s5.bbc7a44e9fdf from=translated src=- shape=9de39268 vocab=00acb433
+-/
 theorem applyM_starMC (td : TubalData n) (a b : Fin n → ℂ) :
     td.applyM (starMC td a b) = td.applyM a ∘ₕ td.applyM b := by
   unfold starMC; exact td.applyM_applyMinv _
 
-/-- Transform-domain form of starConjC: applying M to starConjC gives conjugation.-/
+/-- Transform-domain form of starConjC: applying M to starConjC gives conjugation.
+@isnad1 id=eq.0h3v.s4.0b2e925d1fba from=translated src=- shape=fa4a2e4f vocab=92da71ae
+-/
 theorem applyM_starConjC (td : TubalData n) (a : Fin n → ℂ) :
     td.applyM (starConjC td a) = vecConj (td.applyM a) := by
   unfold starConjC; exact td.applyM_applyMinv _
 
-/-- Transform-domain form of weakInvC: applying M to weakInvC gives pseudo-inverse.-/
+/-- Transform-domain form of weakInvC: applying M to weakInvC gives pseudo-inverse.
+@isnad1 id=eq.0h3v.s4.0524d4006769 from=translated src=- shape=fa4a2e4f vocab=a6f7f960
+-/
 theorem applyM_weakInvC (td : TubalData n) (a : Fin n → ℂ) :
     td.applyM (weakInvC td a) = vecPseudoInv (td.applyM a) := by
   unfold weakInvC; exact td.applyM_applyMinv _
@@ -191,14 +218,18 @@ private theorem weakInvC_mp4 (td : TubalData n) (a : Fin n → ℂ) :
 
 /-! ## Lift to real operations -/
 
-/-- **Lemma 8, MP1**: a ⋆_M a⁻ ⋆_M a = a.-/
+/-- **Lemma 8, MP1**: a ⋆_M a⁻ ⋆_M a = a.
+@isnad1 id=eq.0h3v.s4.cc01b82c6250 from=translated src=- shape=18375132 vocab=634bb929
+-/
 theorem weakInvM_mp1 (td : TubalData n) (a : Fin n → ℝ) :
     starM td (starM td a (weakInvM td a)) a = a := by
   apply toComplex_injective
   rw [starM_eq_starMC, starM_eq_starMC, weakInvM_eq_weakInvC]
   exact weakInvC_mp1 td _
 
-/-- **Lemma 8, MP2**: a⁻ ⋆_M a ⋆_M a⁻ = a⁻.-/
+/-- **Lemma 8, MP2**: a⁻ ⋆_M a ⋆_M a⁻ = a⁻.
+@isnad1 id=eq.0h3v.s5.acfb383009d5 from=translated src=- shape=02a3152d vocab=634bb929
+-/
 theorem weakInvM_mp2 (td : TubalData n) (a : Fin n → ℝ) :
     starM td (starM td (weakInvM td a) a) (weakInvM td a) = weakInvM td a := by
   apply toComplex_injective
@@ -206,7 +237,9 @@ theorem weakInvM_mp2 (td : TubalData n) (a : Fin n → ℝ) :
   simp only [weakInvM_eq_weakInvC]
   exact weakInvC_mp2 td _
 
-/-- **Lemma 8, MP3**: (a ⋆_M a⁻)* = a ⋆_M a⁻.-/
+/-- **Lemma 8, MP3**: (a ⋆_M a⁻)* = a ⋆_M a⁻.
+@isnad1 id=eq.0h3v.s5.82336ad197d5 from=translated src=- shape=095874c9 vocab=836a8737
+-/
 theorem weakInvM_mp3 (td : TubalData n) (a : Fin n → ℝ) :
     starConjM td (starM td a (weakInvM td a)) = starM td a (weakInvM td a) := by
   apply toComplex_injective
@@ -214,7 +247,9 @@ theorem weakInvM_mp3 (td : TubalData n) (a : Fin n → ℝ) :
   simp only [weakInvM_eq_weakInvC]
   exact weakInvC_mp3 td _
 
-/-- **Lemma 8, MP4**: (a⁻ ⋆_M a)* = a⁻ ⋆_M a.-/
+/-- **Lemma 8, MP4**: (a⁻ ⋆_M a)* = a⁻ ⋆_M a.
+@isnad1 id=eq.0h3v.s5.3a6be73594fd from=translated src=- shape=16bda755 vocab=836a8737
+-/
 theorem weakInvM_mp4 (td : TubalData n) (a : Fin n → ℝ) :
     starConjM td (starM td (weakInvM td a) a) = starM td (weakInvM td a) a := by
   apply toComplex_injective
@@ -266,7 +301,9 @@ private theorem weakInvC_unique (td : TubalData n) (a y : Fin n → ℂ)
     _ = (u i)⁻¹ := mul_one _
 
 /-- **Lemma 8 (uniqueness, real level)**: The weak inverse is the unique element
-    satisfying all four Moore-Penrose conditions.-/
+    satisfying all four Moore-Penrose conditions.
+@isnad1 id=eq.4h4v.s6.addd91bd382c from=translated src=- shape=4d1fb7d8 vocab=836a8737
+-/
 theorem weakInvM_unique (td : TubalData n) (a y : Fin n → ℝ)
     (h1 : starM td (starM td a y) a = a)
     (h2 : starM td (starM td y a) y = y)
@@ -286,7 +323,9 @@ theorem weakInvM_unique (td : TubalData n) (a y : Fin n → ℝ)
     rwa [starConjM_eq_starConjC, starM_eq_starMC] at h4
 
 /-- **Lemma 8 (bundled)**: The weak inverse a⁻ satisfies all four Moore-Penrose conditions,
-    and is the unique element doing so.-/
+    and is the unique element doing so.
+@isnad1 id=and.0h3v.s7.2f4456b9b98c from=translated src=- shape=919c4a2b vocab=836a8737
+-/
 theorem weakInvM_moorePenrose (td : TubalData n) (a : Fin n → ℝ) :
     starM td (starM td a (weakInvM td a)) a = a ∧
     starM td (starM td (weakInvM td a) a) (weakInvM td a) = weakInvM td a ∧
@@ -311,10 +350,15 @@ variable {td : TubalData n}
 noncomputable def weakInv (a : KM n td) : KM n td :=
   ofFun (weakInvM td (toFun a))
 
+/--
+@isnad1 id=eq.0h3v.s4.c3cbfae58faa from=translated src=- shape=e4fe32de vocab=9b66ece6
+-/
 @[simp] theorem toFun_weakInv (a : KM n td) :
     toFun (weakInv a) = weakInvM td (toFun a) := rfl
 
-/-- **Lemma 8, MP1 (KM version)**: a * a⁻ * a = a.-/
+/-- **Lemma 8, MP1 (KM version)**: a * a⁻ * a = a.
+@isnad1 id=eq.0h3v.s5.08426042f9c7 from=translated src=- shape=45f3a6fd vocab=e9cb92cd
+-/
 theorem weakInv_mp1 (a : KM n td) : a * weakInv a * a = a := by
   show ofFun _ = _
   exact congr_arg ofFun (weakInvM_mp1 td _)
