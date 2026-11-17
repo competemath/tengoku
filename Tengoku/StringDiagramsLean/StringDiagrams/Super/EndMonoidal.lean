@@ -1,0 +1,146 @@
+import Tengoku.StringDiagramsLean.StringDiagrams.Super.PiTwo
+import Tengoku.StringDiagramsLean.StringDiagrams.Super.MonoidalPi
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# The monoidal supercategory `End(A)`
+
+Following J. Brundan, A. P. Ellis, *Monoidal supercategories*, arXiv:1603.05928v3,
+Examples 1.5(ii) and 1.13(ii).
+
+For a supercategory `A`, the supercategory `End(A) = ℋom(A, A)` of superfunctors `A → A` and
+supernatural transformations (Example 1.2(iv), `Supercategory.Superfunctor`) is a strict
+monoidal supercategory with `F ⊗ G := F ∘ G` (in Lean, `G.comp F`) and
+`(x ⊗ y)_λ := x_{Kλ} ∘ F y_λ` for `x : F ⇒ G`, `y : H ⇒ K`
+(`SuperEnd.instMonoidalSupercategory`, `SuperEnd.instIsStrict`, `SuperEnd.superTensorHom_eq`).
+If `(A, Π, ζ)` is a Π-supercategory, then `(End(A), Π, ζ)` is a strict monoidal
+Π-supercategory (`SuperEnd.instMonoidalPiSupercategory`).
+
+`SuperEnd R A` is a type synonym for `Superfunctor R A A`, so that the monoidal structure is not
+an instance on all superfunctor supercategories.
+-/
+
+noncomputable section
+
+namespace StringDiagrams
+
+open CategoryTheory MonoidalCategory Supercategory
+
+universe w v u
+
+variable (R : Type w) [CommRing R] (A : Type u) [Category.{v} A] [Preadditive A] [Linear R A]
+  [Supercategory R A]
+
+/-- **Brundan–Ellis, Example 1.5(ii).** The supercategory `End(A)` of superfunctors `A → A`.-/
+def SuperEnd : Type _ := Superfunctor R A A
+
+namespace SuperEnd
+
+instance : Category (SuperEnd R A) := inferInstanceAs (Category (Superfunctor R A A))
+
+instance : Preadditive (SuperEnd R A) := inferInstanceAs (Preadditive (Superfunctor R A A))
+
+instance : Linear R (SuperEnd R A) := inferInstanceAs (Linear R (Superfunctor R A A))
+
+instance : Supercategory R (SuperEnd R A) :=
+  inferInstanceAs (Supercategory R (Superfunctor R A A))
+
+variable {R A}
+
+/-- A superfunctor, as an object of `End(A)`.-/
+def of (F : Superfunctor R A A) : SuperEnd R A := F
+
+/-- The superfunctor underlying an object of `End(A)`.-/
+def toSuperfunctor (F : SuperEnd R A) : Superfunctor R A A := F
+
+instance instMonoidalCategoryStruct : MonoidalCategoryStruct (SuperEnd R A) where
+  tensorObj F G := of ((toSuperfunctor G).comp (toSuperfunctor F))
+  whiskerLeft F _ _ y := Superfunctor.whiskerRight y (toSuperfunctor F)
+  whiskerRight x G := Superfunctor.whiskerLeft (toSuperfunctor G) x
+  tensorUnit := of (Superfunctor.id R A)
+  associator _ _ _ := Iso.refl _
+  leftUnitor _ := Iso.refl _
+  rightUnitor _ := Iso.refl _
+
+/-- `F ⊗ G = F ∘ G`.
+@isnad1 id=eq.0h4v.s7.5b595ac21f8a from=translated src=- shape=0f83ffd3 vocab=a7b08164
+-/
+theorem tensorObj_def (F G : SuperEnd R A) :
+    toSuperfunctor (F ⊗ G) = (toSuperfunctor G).comp (toSuperfunctor F) := rfl
+
+/-- `(F y)_λ = F(y_λ)`.
+@isnad1 id=eq.0h8v.s8.0d22c4702e58 from=translated src=- shape=466b3266 vocab=9de2ff2a
+-/
+theorem whiskerLeft_app (F : SuperEnd R A) {G K : SuperEnd R A} (y : G ⟶ K) (p : ZMod 2)
+    (X : A) : (F ◁ y).app p X = (toSuperfunctor F).map (y.app p X) := rfl
+
+/-- `(x G)_λ = x_{Gλ}`.
+@isnad1 id=eq.0h8v.s8.22fd5cba1e9b from=translated src=- shape=de6e1c87 vocab=b0581413
+-/
+theorem whiskerRight_app {F H : SuperEnd R A} (x : F ⟶ H) (G : SuperEnd R A) (p : ZMod 2)
+    (X : A) : (x ▷ G).app p X = x.app p ((toSuperfunctor G).obj X) := rfl
+
+/--
+@isnad1 id=eq.0h7v.s8.1ab99cdec986 from=translated src=- shape=538ba86f vocab=ba2af50f
+-/
+theorem whiskerLeft_whiskerLeft (F G : Superfunctor R A A) {H K : Superfunctor R A A}
+    (y : H ⟶ K) :
+    Superfunctor.whiskerLeft G (Superfunctor.whiskerLeft F y) =
+      Superfunctor.whiskerLeft (G.comp F) y :=
+  Superfunctor.hom_ext fun _ _ => rfl
+
+/--
+@isnad1 id=eq.0h7v.s8.72179a3c4d17 from=translated src=- shape=5514c11d vocab=adc97b88
+-/
+theorem whiskerLeft_whiskerRight (F : Superfunctor R A A) {G K : Superfunctor R A A}
+    (y : G ⟶ K) (H : Superfunctor R A A) :
+    Superfunctor.whiskerLeft F (Superfunctor.whiskerRight y H) =
+      Superfunctor.whiskerRight (Superfunctor.whiskerLeft F y) H :=
+  Superfunctor.hom_ext fun _ _ => rfl
+
+/--
+@isnad1 id=eq.0h7v.s8.367135320176 from=translated src=- shape=3cc87b49 vocab=46bce25b
+-/
+theorem whiskerRight_whiskerRight {F G : Superfunctor R A A} (x : F ⟶ G)
+    (H K : Superfunctor R A A) :
+    Superfunctor.whiskerRight x (H.comp K) =
+      Superfunctor.whiskerRight (Superfunctor.whiskerRight x H) K :=
+  Superfunctor.hom_ext fun _ _ => rfl
+
+/--
+@isnad1 id=eq.0h5v.s8.f7753cc72f51 from=translated src=- shape=76b163ae vocab=4d59376e
+-/
+theorem whiskerLeft_id' {G H : Superfunctor R A A} (x : G ⟶ H) :
+    Superfunctor.whiskerLeft (Superfunctor.id R A) x = x :=
+  Superfunctor.hom_ext fun _ _ => rfl
+
+/--
+@isnad1 id=eq.0h5v.s8.4c46801c73e8 from=translated src=- shape=9df96f0a vocab=915a3aa6
+-/
+theorem whiskerRight_id' {G H : Superfunctor R A A} (x : G ⟶ H) :
+    Superfunctor.whiskerRight x (Superfunctor.id R A) = x :=
+  Superfunctor.hom_ext fun _ _ => rfl
+
+/-- **Brundan–Ellis, Example 1.5(ii).** The paper's tensor product of supernatural
+transformations `x : F ⇒ G`, `y : H ⇒ K` is `(x ⊗ y)_λ = x_{Kλ} ∘ F y_λ`, i.e. the horizontal
+composite `Superfunctor.hcomp y x`.
+@isnad1 id=eq.0h8v.s8.6d5a85ce9cfd from=translated src=- shape=0aa3f155 vocab=6fcffd7f
+-/
+theorem superTensorHom_eq {F G H K : SuperEnd R A} (x : F ⟶ G) (y : H ⟶ K) :
+    MonoidalSupercategory.superTensorHom x y = Superfunctor.hcomp y x := rfl
+
+/-! ## Example 1.13(ii) -/
+
+variable [PiSupercategory R A]
+
+/-- **Brundan–Ellis, Example 1.13(ii).** For a Π-supercategory `(A, Π, ζ)`, `(End(A), Π, ζ)`
+is a strict monoidal Π-supercategory.-/
+instance instMonoidalPiSupercategory : MonoidalPiSupercategory R (SuperEnd R A) where
+  pi := of (PiSCat.piHom (PiSCat.of R A))
+  ζ := PiSCat.ζHom (PiSCat.of R A)
+  ζ_hom_mem := (PiTwoSupercategory.ζ_hom_mem (R := R) (B := PiSCat R) (PiSCat.of R A))
+
+end SuperEnd
+
+end StringDiagrams
