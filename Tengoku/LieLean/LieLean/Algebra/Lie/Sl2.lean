@@ -50,7 +50,9 @@ namespace Module.End
 variable {K M : Type*} [Field K] [AddCommGroup M] [Module K M] {T : Module.End K M}
   {P : Submodule K M}
 
-/-- A subspace stable under `T` is stable under every polynomial in `T`.-/
+/-- A subspace stable under `T` is stable under every polynomial in `T`.
+@isnad1 id=mem.2h6v.s9.5207fa59913c from=translated src=- shape=9b709e0b vocab=6de86a36
+-/
 lemma aeval_apply_mem (hP : ∀ x ∈ P, T x ∈ P) (q : K[X]) {x : M} (hx : x ∈ P) :
     aeval T q x ∈ P := by
   induction q using Polynomial.induction_on' with
@@ -62,17 +64,23 @@ lemma aeval_apply_mem (hP : ∀ x ∈ P, T x ∈ P) (q : K[X]) {x : M} (hx : x �
     | zero => simpa using hx
     | succ n ih => rw [pow_succ', Module.End.mul_apply]; exact hP _ ih
 
-/-- A subspace stable under `T` is stable under every power of `T`.-/
+/-- A subspace stable under `T` is stable under every power of `T`.
+@isnad1 id=mem.2h6v.s8.70b5f0cee5cc from=translated src=- shape=60aaf8fe vocab=ccbe8a92
+-/
 lemma pow_apply_mem (hP : ∀ x ∈ P, T x ∈ P) (n : ℕ) {x : M} (hx : x ∈ P) : (T ^ n) x ∈ P := by
   simpa using aeval_apply_mem hP (X ^ n) hx
 
-/-- If `a(T) x` and `b(T) x` lie in a `T`-stable subspace `P`, so does `(c a + d b)(T) x`.-/
+/-- If `a(T) x` and `b(T) x` lie in a `T`-stable subspace `P`, so does `(c a + d b)(T) x`.
+@isnad1 id=mem.3h9v.s10.8ea77fd58004 from=translated src=- shape=d646ec7d vocab=191bf74f
+-/
 lemma aeval_add_mul_apply_mem (hP : ∀ x ∈ P, T x ∈ P) (c d : K[X]) {a b : K[X]} {x : M}
     (ha : aeval T a x ∈ P) (hb : aeval T b x ∈ P) : aeval T (c * a + d * b) x ∈ P := by
   rw [map_add, map_mul, map_mul, LinearMap.add_apply, Module.End.mul_apply, Module.End.mul_apply]
   exact add_mem (aeval_apply_mem hP c ha) (aeval_apply_mem hP d hb)
 
-/-- A polynomial in `T` commutes with every endomorphism commuting with `T`.-/
+/-- A polynomial in `T` commutes with every endomorphism commuting with `T`.
+@isnad1 id=commute.1h5v.s8.0aea506fe06f from=translated src=- shape=cd557aaf vocab=da047a22
+-/
 lemma commute_aeval_left {S : Module.End K M} (hTS : Commute T S) (q : K[X]) :
     Commute (aeval T q) S := by
   induction q using Polynomial.induction_on' with
@@ -82,7 +90,9 @@ lemma commute_aeval_left {S : Module.End K M} (hTS : Commute T S) (q : K[X]) :
     exact (Algebra.commute_algebraMap_left a S).mul_left (hTS.pow_left n)
 
 /-- If `p(T) x ∈ P` for `p = ∏_{k ≤ N} (X - k)` and `((X - m)ʳ w)(T) x ∈ P` with `w` coprime to
-the factors `X - k`, `k ≠ m`, of `p`, then `(T - m) x ∈ P`.-/
+the factors `X - k`, `k ≠ m`, of `p`, then `(T - m) x ∈ P`.
+@isnad1 id=mem.4h9v.s11.0ed7c809f574 from=translated src=- shape=01bad513 vocab=e896dc54
+-/
 lemma aeval_X_sub_C_apply_mem [CharZero K] (hP : ∀ x ∈ P, T x ∈ P) {x : M} {N m r : ℕ}
     {w : K[X]} (hw : IsCoprime (∏ k ∈ (Finset.range (N + 1)).erase m, (X - C (k : K))) w)
     (hp : aeval T (∏ k ∈ Finset.range (N + 1), (X - C (k : K))) x ∈ P)
@@ -108,7 +118,9 @@ lemma aeval_X_sub_C_apply_mem [CharZero K] (hP : ∀ x ∈ P, T x ∈ P) {x : M}
   rw [heq]
   exact aeval_add_mul_apply_mem hP a (b * (X - C (m : K))) h1 hg
 
-/-- Kernel of a product of pairwise coprime polynomials in `T`.-/
+/-- Kernel of a product of pairwise coprime polynomials in `T`.
+@isnad1 id=le.1h6v.s10.966acf883388 from=translated src=- shape=c7dd2c0e vocab=a994a8a7
+-/
 lemma ker_aeval_prod_le_iSup {ι : Type*} (T : Module.End K M) (s : Finset ι)
     (g : ι → K[X]) (hg : ∀ i ∈ s, ∀ j ∈ s, i ≠ j → IsCoprime (g i) (g j)) :
     LinearMap.ker (aeval T (∏ i ∈ s, g i)) ≤ ⨆ i ∈ s, LinearMap.ker (aeval T (g i)) := by
@@ -135,7 +147,9 @@ def casimir (h e f : L) : Module.End K M :=
   toEnd K L M h * toEnd K L M h + (2 : K) • toEnd K L M h +
     (4 : K) • (toEnd K L M f * toEnd K L M e)
 
-/-- `Ω v = h h v + 2 h v + 4 f e v`.-/
+/-- `Ω v = h h v + 2 h v + 4 f e v`.
+@isnad1 id=eq.0h7v.s8.5ec594502cf5 from=translated src=- shape=f0618314 vocab=d7119f5b
+-/
 lemma casimir_apply (v : M) :
     casimir K M h e f v = ⁅h, ⁅h, v⁆⁆ + (2 : K) • ⁅h, v⁆ + (4 : K) • ⁅f, ⁅e, v⁆⁆ :=
   rfl
@@ -146,7 +160,9 @@ weight `m` killed by `e`.-/
 def primitiveSpan (h e f : L) (m : K) : Submodule K M :=
   ⨆ j : ℕ, (LinearMap.ker (toEnd K L M e) ⊓ (toEnd K L M h).eigenspace m).map (toEnd K L M f ^ j)
 
-/-- `(X² + 2X - k(k + 2)) = (X - k)(X + k + 2)`, multiplied over `k ≤ N`.-/
+/-- `(X² + 2X - k(k + 2)) = (X - k)(X + k + 2)`, multiplied over `k ≤ N`.
+@isnad1 id=eq.0h2v.s10.08e5ccc51199 from=translated src=- shape=0842d7ee vocab=dfc2937d
+-/
 lemma prod_comp_eq (N : ℕ) :
     (∏ k ∈ Finset.range (N + 1), (X - C ((k : K) * (k + 2)))).comp (X ^ 2 + 2 * X) =
       (∏ k ∈ Finset.range (N + 1), (X - C (k : K))) *
@@ -157,7 +173,9 @@ lemma prod_comp_eq (N : ℕ) :
   simp only [map_mul, map_add, C_ofNat]
   ring
 
-/-- `((X - m(m + 2))ʳ)(X² + 2X) = (X - m)ʳ (X + m + 2)ʳ`.-/
+/-- `((X - m(m + 2))ʳ)(X² + 2X) = (X - m)ʳ (X + m + 2)ʳ`.
+@isnad1 id=eq.0h3v.s10.02061530386d from=translated src=- shape=94494506 vocab=48b2d7fa
+-/
 lemma pow_comp_eq (m : K) (r : ℕ) :
     ((X - C (m * (m + 2))) ^ r).comp (X ^ 2 + 2 * X) = (X - C m) ^ r * (X + C (m + 2)) ^ r := by
   rw [pow_comp, ← mul_pow]
@@ -168,7 +186,9 @@ lemma pow_comp_eq (m : K) (r : ℕ) :
 
 include t
 
-/-- The Casimir operator commutes with `e`.-/
+/-- The Casimir operator commutes with `e`.
+@isnad1 id=commute.1h6v.s8.58dc2303de07 from=translated src=- shape=ee6c00f5 vocab=f4795692
+-/
 lemma commute_casimir_e : Commute (casimir K M h e f) (toEnd K L M e) := by
   have A1 : ∀ x : M, ⁅h, ⁅e, x⁆⁆ = ⁅e, ⁅h, x⁆⁆ + (2 : K) • ⁅e, x⁆ := fun x ↦ by
     rw [leibniz_lie h e x, t.lie_h_e_smul K, smul_lie, add_comm]
@@ -178,7 +198,9 @@ lemma commute_casimir_e : Commute (casimir K M h e f) (toEnd K L M e) := by
   simp only [Module.End.mul_apply, casimir_apply, toEnd_apply_apply, lie_add, lie_smul, A1, A2]
   module
 
-/-- `h e = e h + 2 e` as endomorphisms.-/
+/-- `h e = e h + 2 e` as endomorphisms.
+@isnad1 id=eq.1h6v.s10.f2570b1fbd4f from=translated src=- shape=5b92798f vocab=c083ed1e
+-/
 lemma toEnd_h_mul_e : toEnd K L M h * toEnd K L M e =
     toEnd K L M e * toEnd K L M h + (2 : K) • toEnd K L M e := by
   ext m
@@ -186,7 +208,9 @@ lemma toEnd_h_mul_e : toEnd K L M h * toEnd K L M e =
     leibniz_lie h e m, t.lie_h_e_smul K, smul_lie]
   abel
 
-/-- `h f = f h - 2 f` as endomorphisms.-/
+/-- `h f = f h - 2 f` as endomorphisms.
+@isnad1 id=eq.1h6v.s10.19d90f10ab25 from=translated src=- shape=466d3cc3 vocab=0dc71598
+-/
 lemma toEnd_h_mul_f : toEnd K L M h * toEnd K L M f =
     toEnd K L M f * toEnd K L M h - (2 : K) • toEnd K L M f := by
   ext m
@@ -194,7 +218,9 @@ lemma toEnd_h_mul_f : toEnd K L M h * toEnd K L M f =
     leibniz_lie h f m, t.lie_lie_smul_f K, smul_lie, neg_lie]
   abel
 
-/-- `e f = f e + h` as endomorphisms.-/
+/-- `e f = f e + h` as endomorphisms.
+@isnad1 id=eq.1h6v.s10.54e66d5f7e81 from=translated src=- shape=3025dab6 vocab=520573a9
+-/
 lemma toEnd_e_mul_f : toEnd K L M e * toEnd K L M f =
     toEnd K L M f * toEnd K L M e + toEnd K L M h := by
   ext m
@@ -202,7 +228,9 @@ lemma toEnd_e_mul_f : toEnd K L M e * toEnd K L M f =
     leibniz_lie e f m, t.lie_e_f]
   abel
 
-/-- `h eⁿ = eⁿ h + 2n eⁿ`.-/
+/-- `h eⁿ = eⁿ h + 2n eⁿ`.
+@isnad1 id=eq.1h7v.s11.5dbc7d4e5731 from=translated src=- shape=cd0339ee vocab=9242362e
+-/
 lemma toEnd_h_mul_e_pow (n : ℕ) : toEnd K L M h * toEnd K L M e ^ n =
     toEnd K L M e ^ n * toEnd K L M h + (2 * n : K) • toEnd K L M e ^ n := by
   induction n with
@@ -212,7 +240,9 @@ lemma toEnd_h_mul_e_pow (n : ℕ) : toEnd K L M h * toEnd K L M e ^ n =
       smul_mul_assoc, mul_smul_comm, add_assoc, ← add_smul]
     push_cast; ring_nf
 
-/-- `h fⁿ = fⁿ h - 2n fⁿ`.-/
+/-- `h fⁿ = fⁿ h - 2n fⁿ`.
+@isnad1 id=eq.1h7v.s11.f709c96cc88c from=translated src=- shape=22909233 vocab=92ed6474
+-/
 lemma toEnd_h_mul_f_pow (n : ℕ) : toEnd K L M h * toEnd K L M f ^ n =
     toEnd K L M f ^ n * toEnd K L M h - (2 * n : K) • toEnd K L M f ^ n := by
   induction n with
@@ -222,14 +252,18 @@ lemma toEnd_h_mul_f_pow (n : ℕ) : toEnd K L M h * toEnd K L M f ^ n =
       smul_mul_assoc, mul_smul_comm, sub_sub, ← add_smul]
     push_cast; ring_nf
 
-/-- If `h w = c w`, then `h fʲ w = (c - 2j) fʲ w`.-/
+/-- If `h w = c w`, then `h fʲ w = (c - 2j) fʲ w`.
+@isnad1 id=eq.2h9v.s10.e9dbc3234bd4 from=translated src=- shape=766e3885 vocab=1f7e7138
+-/
 lemma lie_h_pow_toEnd_f_of_eq {c : K} {w : M} (hw : ⁅h, w⁆ = c • w) (j : ℕ) :
     ⁅h, (toEnd K L M f ^ j) w⁆ = (c - 2 * j) • (toEnd K L M f ^ j) w := by
   rw [← toEnd_apply_apply (R := K), ← Module.End.mul_apply, t.toEnd_h_mul_f_pow,
     LinearMap.sub_apply, Module.End.mul_apply, toEnd_apply_apply, hw, map_smul,
     LinearMap.smul_apply, sub_smul]
 
-/-- `e fⁿ⁺¹ v = fⁿ⁺¹ e v + (n + 1) fⁿ (h v - n v)`.-/
+/-- `e fⁿ⁺¹ v = fⁿ⁺¹ e v + (n + 1) fⁿ (h v - n v)`.
+@isnad1 id=eq.1h8v.s10.a5566d833347 from=translated src=- shape=84bbe960 vocab=1af7fd89
+-/
 lemma lie_e_pow_succ_toEnd_f (n : ℕ) (v : M) :
     ⁅e, (toEnd K L M f ^ (n + 1)) v⁆ = (toEnd K L M f ^ (n + 1)) ⁅e, v⁆ +
       (n + 1 : K) • (toEnd K L M f ^ n) (⁅h, v⁆ - (n : K) • v) := by
@@ -247,7 +281,9 @@ lemma lie_e_pow_succ_toEnd_f (n : ℕ) (v : M) :
     push_cast
     module
 
-/-- `e h w = h e w - 2 e w`.-/
+/-- `e h w = h e w - 2 e w`.
+@isnad1 id=eq.1h7v.s7.1a3048d9a325 from=translated src=- shape=152ec61a vocab=5261ee2f
+-/
 lemma lie_e_lie_h (w : M) : ⁅e, ⁅h, w⁆⁆ = ⁅h, ⁅e, w⁆⁆ - (2 : K) • ⁅e, w⁆ := by
   rw [leibniz_lie h e w, t.lie_h_e_smul K, smul_lie]
   abel
@@ -259,7 +295,9 @@ variable {P : Submodule K M} (hPe : ∀ x ∈ P, ⁅e, x⁆ ∈ P) (hPf : ∀ x 
 include hPe hPh
 
 omit hPe in
-/-- If `P` is stable under `h`, then so is `{w | e w ∈ P}`.-/
+/-- If `P` is stable under `h`, then so is `{w | e w ∈ P}`.
+@isnad1 id=mem.3h8v.s10.9b40dd8d8ea5 from=translated src=- shape=e15e87a1 vocab=780a218d
+-/
 lemma comap_e_stable : ∀ w ∈ P.comap (toEnd K L M e),
     toEnd K L M h w ∈ P.comap (toEnd K L M e) := by
   intro w hw
@@ -270,7 +308,9 @@ lemma comap_e_stable : ∀ w ∈ P.comap (toEnd K L M e),
 include hPf
 
 /-- Let `P` be stable under `e`, `f`, `h` and `e v ∈ P`. Then `q(Ω) v ≡ q(h² + 2h) v` modulo `P`
-for every polynomial `q`, where `Ω` is the Casimir operator.-/
+for every polynomial `q`, where `Ω` is the Casimir operator.
+@isnad1 id=mem.5h9v.s10.0da78d706009 from=translated src=- shape=c953164f vocab=b5d0c4b5
+-/
 lemma aeval_casimir_sub_mem {v : M} (hv : ⁅e, v⁆ ∈ P) (q : K[X]) :
     aeval (casimir K M h e f) q v - aeval (toEnd K L M h) (q.comp (X ^ 2 + 2 * X)) v ∈ P := by
   set Ω := casimir K M h e f
@@ -314,7 +354,9 @@ lemma aeval_casimir_sub_mem {v : M} (hv : ⁅e, v⁆ ∈ P) (q : K[X]) :
 variable [CharZero K]
 
 /-- Let `P` be a subspace stable under `e`, `f` and `h`, and suppose that `f^{N+1} = 0`. If
-`e v ∈ P`, then `h (h - 1) ⋯ (h - N) v ∈ P`.-/
+`e v ∈ P`, then `h (h - 1) ⋯ (h - N) v ∈ P`.
+@isnad1 id=mem.6h9v.s10.60cf74604f1f from=translated src=- shape=ab1e5e00 vocab=7e1904dc
+-/
 theorem aeval_prod_apply_mem {N : ℕ} (hN : toEnd K L M f ^ (N + 1) = 0) {v : M}
     (hv : ⁅e, v⁆ ∈ P) :
     aeval (toEnd K L M h) (∏ k ∈ Finset.range (N + 1), (X - C (k : K))) v ∈ P := by
@@ -355,14 +397,18 @@ section PrimitiveSpan
 variable (m : K)
 
 omit t in
-/-- `fʲ w ∈ primitiveSpan m` for `w` with `e w = 0` and `h w = m w`.-/
+/-- `fʲ w ∈ primitiveSpan m` for `w` with `e w = 0` and `h w = m w`.
+@isnad1 id=mem.2h9v.s9.e48a7c2be260 from=translated src=- shape=2b6299f4 vocab=085bb510
+-/
 lemma pow_apply_mem_primitiveSpan (j : ℕ) {w : M} (hwe : ⁅e, w⁆ = 0) (hwh : ⁅h, w⁆ = m • w) :
     (toEnd K L M f ^ j) w ∈ primitiveSpan K M h e f m :=
   Submodule.mem_iSup_of_mem j (Submodule.mem_map_of_mem
     ⟨LinearMap.mem_ker.mpr hwe, Module.End.mem_eigenspace_iff.mpr hwh⟩)
 
 omit t in
-/-- To check that `primitiveSpan m` is `T`-stable, it suffices to check it on the vectors `fʲ w`.-/
+/-- To check that `primitiveSpan m` is `T`-stable, it suffices to check it on the vectors `fʲ w`.
+@isnad1 id=mem.2h9v.s9.b2cd9f76f6b5 from=translated src=- shape=92033b0a vocab=085bb510
+-/
 lemma primitiveSpan_le_comap {T : Module.End K M}
     (hT : ∀ (j : ℕ) (w : M), ⁅e, w⁆ = 0 → ⁅h, w⁆ = m • w →
       T ((toEnd K L M f ^ j) w) ∈ primitiveSpan K M h e f m) :
@@ -373,19 +419,25 @@ lemma primitiveSpan_le_comap {T : Module.End K M}
   exact hT j w (LinearMap.mem_ker.mp hwe) (Module.End.mem_eigenspace_iff.mp hwh)
 
 omit t in
-/-- `primitiveSpan m` is stable under `f`.-/
+/-- `primitiveSpan m` is stable under `f`.
+@isnad1 id=mem.1h8v.s7.2bbdcdf55e22 from=translated src=- shape=ad6db46c vocab=6e235af0
+-/
 lemma primitiveSpan_f : ∀ x ∈ primitiveSpan K M h e f m, ⁅f, x⁆ ∈ primitiveSpan K M h e f m :=
   primitiveSpan_le_comap m (T := toEnd K L M f) fun j w hwe hwh ↦ by
     rw [← Module.End.mul_apply, ← pow_succ']
     exact pow_apply_mem_primitiveSpan m (j + 1) hwe hwh
 
-/-- `primitiveSpan m` is stable under `h`.-/
+/-- `primitiveSpan m` is stable under `h`.
+@isnad1 id=mem.2h8v.s7.32b8d52fa619 from=translated src=- shape=193a235c vocab=ba4aa5a9
+-/
 lemma primitiveSpan_h : ∀ x ∈ primitiveSpan K M h e f m, ⁅h, x⁆ ∈ primitiveSpan K M h e f m :=
   primitiveSpan_le_comap m (T := toEnd K L M h) fun j w hwe hwh ↦ by
     rw [toEnd_apply_apply, t.lie_h_pow_toEnd_f_of_eq hwh]
     exact Submodule.smul_mem _ _ (pow_apply_mem_primitiveSpan m j hwe hwh)
 
-/-- `primitiveSpan m` is stable under `e`.-/
+/-- `primitiveSpan m` is stable under `e`.
+@isnad1 id=mem.2h8v.s7.e546c03af066 from=translated src=- shape=fc43858f vocab=ba4aa5a9
+-/
 lemma primitiveSpan_e : ∀ x ∈ primitiveSpan K M h e f m, ⁅e, x⁆ ∈ primitiveSpan K M h e f m :=
   primitiveSpan_le_comap m (T := toEnd K L M e) fun j w hwe hwh ↦ by
     rw [toEnd_apply_apply]
@@ -396,7 +448,9 @@ lemma primitiveSpan_e : ∀ x ∈ primitiveSpan K M h e f m, ⁅e, x⁆ ∈ prim
         smul_smul]
       exact Submodule.smul_mem _ _ (pow_apply_mem_primitiveSpan m j hwe hwh)
 
-/-- `primitiveSpan m ⊆ ⨁_{k ∈ ℤ} ker (h - k)` for `m ∈ ℕ`.-/
+/-- `primitiveSpan m ⊆ ⨁_{k ∈ ℤ} ker (h - k)` for `m ∈ ℕ`.
+@isnad1 id=le.1h7v.s9.621174fb18c1 from=translated src=- shape=9077a641 vocab=11e13b1b
+-/
 lemma primitiveSpan_le_iSup_eigenspace (m : ℕ) :
     primitiveSpan K M h e f (m : K) ≤ ⨆ k : ℤ, (toEnd K L M h).eigenspace (k : K) := by
   refine iSup_le fun j ↦ Submodule.map_le_iff_le_comap.mpr ?_
@@ -406,7 +460,9 @@ lemma primitiveSpan_le_iSup_eigenspace (m : ℕ) :
   push_cast
   rfl
 
-/-- If `f^{N+1} = 0`, then `∏_{j ≤ N} (h - (m - 2j))` vanishes on `primitiveSpan m`.-/
+/-- If `f^{N+1} = 0`, then `∏_{j ≤ N} (h - (m - 2j))` vanishes on `primitiveSpan m`.
+@isnad1 id=eq.3h9v.s10.c59c622362fc from=translated src=- shape=1103ca1b vocab=103e90d8
+-/
 lemma aeval_prod_apply_eq_zero_of_mem_primitiveSpan {N : ℕ}
     (hN : toEnd K L M f ^ (N + 1) = 0) {x : M} (hx : x ∈ primitiveSpan K M h e f m) :
     aeval (toEnd K L M h) (∏ j ∈ Finset.range (N + 1), (X - C (m - 2 * (j : K)))) x = 0 := by
@@ -428,7 +484,9 @@ end PrimitiveSpan
 variable [CharZero K]
 
 /-- If `f^{N+1} = 0` and `e^d v = 0`, then `q(Ω)^d v = 0`, where `Ω` is the Casimir operator and
-`q = ∏_{k ≤ N} (X - k(k + 2))`.-/
+`q = ∏_{k ≤ N} (X - k(k + 2))`.
+@isnad1 id=eq.3h9v.s10.7c81b2f57bbf from=translated src=- shape=c57bb7f3 vocab=e2a72638
+-/
 theorem aeval_casimir_pow_apply_eq_zero {N : ℕ} (hN : toEnd K L M f ^ (N + 1) = 0) (d : ℕ)
     {v : M} (hv : (toEnd K L M e ^ d) v = 0) :
     (aeval (casimir K M h e f) (∏ k ∈ Finset.range (N + 1), (X - C ((k : K) * (k + 2)))) ^ d)
@@ -461,7 +519,9 @@ By induction `e v ∈ P`. Modulo `P`, `v` is killed by `∏_{k ≤ N} (h - k)` (
 and by `((h - m)(h + m + 2))ʳ` (as `Ω ≡ h² + 2h`), hence by `h - m`. As `h` acts on
 `fʲ (ker e ∩ ker (h - m))` by `m - 2j`, a suitable polynomial `s` in `h` gives
 `v' = s(h) v / s(m) ≡ v` with `(h - m)² v' = 0`; then `e v' ∈ P` has generalized weight `m + 2`,
-which does not occur in `P`, so `e v' = 0`, and then `h v' = m v'`, so `v' ∈ P`.-/
+which does not occur in `P`, so `e v' = 0`, and then `h v' = m v'`, so `v' ∈ P`.
+@isnad1 id=mem.4h11v.s10.afaf5171bff8 from=translated src=- shape=66f721ba vocab=503f5fe1
+-/
 theorem mem_primitiveSpan {N : ℕ} (hN : toEnd K L M f ^ (N + 1) = 0) (m r d : ℕ) {v : M}
     (hd : (toEnd K L M e ^ d) v = 0)
     (hv : aeval (casimir K M h e f) ((X - C ((m : K) * (m + 2))) ^ r) v = 0) :
@@ -571,7 +631,9 @@ variable [FiniteDimensional K M]
 
 Proof: the ranges of the powers of `e` stabilize at some `R = range eⁿ`, on which `e` acts
 bijectively; `R` is stable under `h`, and there `h = e h e⁻¹ + 2`, so taking traces
-`2 dim R = 0`.-/
+`2 dim R = 0`.
+@isnad1 id=isnilpot.1h6v.s8.7ab5fd1e511d from=translated src=- shape=4b89d4ff vocab=9ad64cd8
+-/
 theorem isNilpotent_toEnd_e : IsNilpotent (toEnd K L M e) := by
   set E := toEnd K L M e
   set H := toEnd K L M h
@@ -616,7 +678,9 @@ theorem isNilpotent_toEnd_e : IsNilpotent (toEnd K L M e) := by
   refine ⟨n, LinearMap.range_eq_bot.mp ?_⟩
   exact Submodule.finrank_eq_zero.mp h0
 
-/-- In a finite-dimensional module over a field of characteristic zero, `f` acts nilpotently.-/
+/-- In a finite-dimensional module over a field of characteristic zero, `f` acts nilpotently.
+@isnad1 id=isnilpot.1h6v.s8.3a0a2db0c0df from=translated src=- shape=59f64cf7 vocab=9ad64cd8
+-/
 theorem isNilpotent_toEnd_f : IsNilpotent (toEnd K L M f) :=
   t.symm.isNilpotent_toEnd_e
 
@@ -628,7 +692,9 @@ This is a standard consequence of Weyl's theorem and the classification of irred
 (`isNilpotent_toEnd_e`), the Casimir operator `Ω` satisfies `∏_{m ≤ N} (Ω - m(m + 2))ⁿ = 0`
 (`aeval_casimir_pow_apply_eq_zero`), so `M` is the sum of the generalized eigenspaces of `Ω`.
 Each of these lies in the sum of `f`-strings through primitive vectors of some weight `m ∈ ℕ`
-(`mem_primitiveSpan`), on which `h` acts diagonally with eigenvalues `m - 2j`.-/
+(`mem_primitiveSpan`), on which `h` acts diagonally with eigenvalues `m - 2j`.
+@isnad1 id=eq.1h6v.s8.d7e648d5c659 from=translated src=- shape=c5600ce3 vocab=3c222d25
+-/
 theorem iSup_eigenspace_toEnd_h_eq_top :
     ⨆ k : ℤ, (toEnd K L M h).eigenspace (k : K) = ⊤ := by
   obtain ⟨n, hn⟩ := t.isNilpotent_toEnd_e (K := K) (M := M)

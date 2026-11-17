@@ -50,15 +50,26 @@ variable {ι X : Type*} [AddCommGroup X] (D : CartanDatum ι X)
 /-- `Σᵢ νᵢ αᵢ` for `ν ∈ ℕ[ι]`.-/
 def rootSum (ν : ι →₀ ℕ) : X := ν.sum fun i n ↦ n • D.root i
 
+/--
+@isnad1 id=eq.0h3v.s5.474083790a18 from=translated src=- shape=5be48e96 vocab=82ebccb3
+-/
 @[simp] lemma rootSum_zero : D.rootSum 0 = 0 := by simp [rootSum]
 
+/--
+@isnad1 id=eq.0h5v.s6.0bad6e85d59f from=translated src=- shape=050869b9 vocab=cb5bca79
+-/
 lemma rootSum_add (ν ν' : ι →₀ ℕ) : D.rootSum (ν + ν') = D.rootSum ν + D.rootSum ν' :=
   Finsupp.sum_add_index' (by simp) (fun _ _ _ ↦ add_smul _ _ _)
 
+/--
+@isnad1 id=eq.0h5v.s5.f379af98fc0f from=translated src=- shape=96f623a9 vocab=738f504e
+-/
 @[simp] lemma rootSum_single (i : ι) (n : ℕ) : D.rootSum (Finsupp.single i n) = n • D.root i := by
   simp [rootSum]
 
-/-- If the simple roots are linearly independent, `ν ↦ Σᵢ νᵢ αᵢ` is injective on `ℕ[ι]`.-/
+/-- If the simple roots are linearly independent, `ν ↦ Σᵢ νᵢ αᵢ` is injective on `ℕ[ι]`.
+@isnad1 id=injectiv.1h3v.s5.731262167eb8 from=translated src=- shape=24f7f3e2 vocab=d3af0567
+-/
 theorem rootSum_injective (hD : LinearIndependent ℤ D.root) : Function.Injective D.rootSum := by
   intro ν ν' he
   have key : ∀ ν : ι →₀ ℕ, Finsupp.linearCombination ℤ D.root
@@ -76,32 +87,56 @@ namespace Tengoku.LieLean.Crystal
 
 variable {ι X : Type*} [AddCommGroup X] [DecidableEq ι] {D : CartanDatum ι X} {B B' : Type*}
 
+/--
+@isnad1 id=eq.0h9v.s7.f3197afe198e from=translated src=- shape=b2030811 vocab=8a2a84b9
+-/
 lemma tensor_elementary_e (C : Crystal D B) (i j : ι) (b : B) (n : ℤ) :
     (C.tensor (elementary D i)).e j (b, n) =
       if (elementary D i).ε j n ≤ C.φ j b then (C.e j b).map (·, n)
       else ((elementary D i).e j n).map (b, ·) := rfl
 
+/--
+@isnad1 id=eq.0h9v.s7.c5fc69e5bd9b from=translated src=- shape=b2030811 vocab=559ae5dd
+-/
 lemma tensor_elementary_f (C : Crystal D B) (i j : ι) (b : B) (n : ℤ) :
     (C.tensor (elementary D i)).f j (b, n) =
       if (elementary D i).ε j n < C.φ j b then (C.f j b).map (·, n)
       else ((elementary D i).f j n).map (b, ·) := rfl
 
+/--
+@isnad1 id=eq.0h9v.s7.29e64bcf6a6b from=translated src=- shape=3ac444fe vocab=155bc3ba
+-/
 lemma tensor_elementary_ε (C : Crystal D B) (i j : ι) (b : B) (n : ℤ) :
     (C.tensor (elementary D i)).ε j (b, n) =
       max (C.ε j b) ((elementary D i).ε j n + ((-D.coroot j (C.wt b) : ℤ) : WithBot ℤ)) := rfl
 
+/--
+@isnad1 id=eq.0h8v.s6.da62949d993b from=translated src=- shape=ef88005a vocab=22251eb6
+-/
 lemma tensor_elementary_wt (C : Crystal D B) (i : ι) (b : B) (n : ℤ) :
     (C.tensor (elementary D i)).wt (b, n) = C.wt b + n • D.root i := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.0efddcc9579b from=translated src=- shape=6cbfbb79 vocab=f5f0f564
+-/
 lemma elementary_ε_self (i : ι) (n : ℤ) : (elementary D i).ε i n = ((-n : ℤ) : WithBot ℤ) := by
   simp [elementary]
 
+/--
+@isnad1 id=eq.1h6v.s5.210e03b7c846 from=translated src=- shape=bf83697b vocab=d6af2664
+-/
 lemma elementary_ε_of_ne {i j : ι} (h : j ≠ i) (n : ℤ) : (elementary D i).ε j n = ⊥ := by
   simp [elementary, h]
 
+/--
+@isnad1 id=eq.0h5v.s5.227d5e0c35ee from=translated src=- shape=cde56aeb vocab=6b5c20fb
+-/
 lemma elementary_e_self (i : ι) (n : ℤ) : (elementary D i).e i n = some (n + 1) := by
   simp [elementary]
 
+/--
+@isnad1 id=eq.0h5v.s5.569deb5c2ac4 from=translated src=- shape=cde56aeb vocab=884ed9ed
+-/
 lemma elementary_f_self (i : ι) (n : ℤ) : (elementary D i).f i n = some (n - 1) := by
   simp [elementary]
 
@@ -136,10 +171,16 @@ noncomputable def ht (b : B) : ℕ := (K.wt_mem b).choose.degree
 
 include K hD
 
+/--
+@isnad1 id=eq.2h9v.s7.8c3f0a54d3c3 from=translated src=- shape=d906d89c vocab=1db10a4e
+-/
 lemma ht_eq {b : B} {ν : ι →₀ ℕ} (h : C.wt b = -D.rootSum ν) : K.ht b = ν.degree := by
   have := (K.wt_mem b).choose_spec
   rw [ht, D.rootSum_injective hD (neg_injective (this.symm.trans h))]
 
+/--
+@isnad1 id=eq.1h7v.s6.7d19383d2e5d from=translated src=- shape=acc4a903 vocab=63a8ab02
+-/
 lemma ht_b₀ : K.ht b₀ = 0 := by
   rw [K.ht_eq hD (ν := 0) (by rw [K.wt_b₀, D.rootSum_zero, neg_zero])]
   simp
@@ -151,7 +192,9 @@ lemma eq_b₀_of_ht {b : B} (h : K.ht b = 0) : b = b₀ := by
   rw [ht, Finsupp.degree_eq_zero_iff] at h
   rw [hs, h, D.rootSum_zero, neg_zero]
 
-/-- `ht b = ht b' + 1` if `wt b = wt b' - αⱼ`.-/
+/-- `ht b = ht b' + 1` if `wt b = wt b' - αⱼ`.
+@isnad1 id=eq.2h10v.s7.7a73997ca0dd from=translated src=- shape=a11a14f3 vocab=be1dfa6d
+-/
 lemma ht_of_wt_sub {b b' : B} {j : ι} (h : C.wt b = C.wt b' - D.root j) :
     K.ht b = K.ht b' + 1 := by
   obtain ⟨ν, hν⟩ := K.wt_mem b'
@@ -159,7 +202,9 @@ lemma ht_of_wt_sub {b b' : B} {j : ι} (h : C.wt b = C.wt b' - D.root j) :
   · simp
   · rw [h, hν, D.rootSum_add, D.rootSum_single, one_smul]; abel
 
-/-- `Ψᵢ(b) = b' ⊗ bᵢ(-n)` gives `ht b = ht b' + n`.-/
+/-- `Ψᵢ(b) = b' ⊗ bᵢ(-n)` gives `ht b = ht b' + n`.
+@isnad1 id=eq.1h9v.s7.d27438b144b1 from=translated src=- shape=00d83bdb vocab=88b69d9c
+-/
 lemma ht_Ψ (i : ι) (b : B) : K.ht b = K.ht (K.Ψ i b).1 + (-(K.Ψ i b).2).toNat := by
   have hwt := (K.Ψ i).wt_apply b
   rcases hp : K.Ψ i b with ⟨c, n⟩
@@ -171,6 +216,9 @@ lemma ht_Ψ (i : ι) (b : B) : K.ht b = K.ht (K.Ψ i b).1 + (-(K.Ψ i b).2).toNa
   · simp
   · rw [← hwt, hν, D.rootSum_add, D.rootSum_single, neg_smul, natCast_zsmul]; abel
 
+/--
+@isnad1 id=eq.1h8v.s7.dc19c5d595db from=translated src=- shape=a21547f7 vocab=719bfc12
+-/
 lemma Ψ_b₀ (i : ι) : K.Ψ i b₀ = (b₀, 0) := by
   have h := K.ht_Ψ hD i b₀
   rw [K.ht_b₀ hD] at h
@@ -178,16 +226,24 @@ lemma Ψ_b₀ (i : ι) : K.Ψ i b₀ = (b₀, 0) := by
   exact Prod.ext (K.eq_b₀_of_ht (by omega)) (by simp only; omega)
 
 omit hD in
+/--
+@isnad1 id=eq.0h8v.s6.ed13efd509f3 from=translated src=- shape=c479c6e5 vocab=c40d9c27
+-/
 lemma φ_b₀ (i : ι) : C.φ i b₀ = 0 := by
   rw [C.φ_eq, K.ε_b₀, K.wt_b₀, map_zero]; rfl
 
 omit hD in
+/--
+@isnad1 id=ne.0h9v.s5.4fa0e4fe6759 from=translated src=- shape=369e401f vocab=269313d0
+-/
 lemma φ_ne_bot (i : ι) (b : B) : C.φ i b ≠ ⊥ := by
   rw [Ne, C.φ_eq_bot_iff]; exact K.ε_ne_bot i b
 
 /-! ### Generation by the `f̃ᵢ` -/
 
-/-- Every `b ≠ b₀` has `ẽⱼ b ≠ 0` for some `j` ([KS97], proof of Prop. 3.2.3).-/
+/-- Every `b ≠ b₀` has `ẽⱼ b ≠ 0` for some `j` ([KS97], proof of Prop. 3.2.3).
+@isnad1 id=ex.2h8v.s6.a6daeb174fcd from=translated src=- shape=e8cac2f9 vocab=b39c7f06
+-/
 theorem exists_e_ne_none (b : B) (hb : b ≠ b₀) : ∃ j, C.e j b ≠ none := by
   induction h : K.ht b using Nat.strong_induction_on generalizing b with
   | _ L ih =>
@@ -216,7 +272,9 @@ theorem exists_e_ne_none (b : B) (hb : b ≠ b₀) : ∃ j, C.e j b ≠ none := 
       · rw [elementary_ε_of_ne hji] at hle
         exact absurd bot_le hle
 
-/-- The `f̃ⱼ` never vanish.-/
+/-- The `f̃ⱼ` never vanish.
+@isnad1 id=ne.1h9v.s6.a95c11c7a74c from=translated src=- shape=d286107f vocab=82e4211a
+-/
 theorem f_ne_none (j : ι) (b : B) : C.f j b ≠ none := by
   induction h : K.ht b using Nat.strong_induction_on generalizing b with
   | _ L ih =>
@@ -248,6 +306,9 @@ theorem f_ne_none (j : ι) (b : B) : C.f j b ≠ none := by
 noncomputable def fT (j : ι) (b : B) : B :=
   (C.f j b).get (Option.isSome_iff_ne_none.2 (K.f_ne_none hD j b))
 
+/--
+@isnad1 id=eq.1h9v.s6.9c4a85bb49be from=translated src=- shape=c0636694 vocab=2f86030b
+-/
 lemma f_eq_fT (j : ι) (b : B) : C.f j b = some (K.fT hD j b) := (Option.some_get _).symm
 
 /-- `f̃_w b₀ = f̃_{i₁} ⋯ f̃_{iₗ} b₀` for `w = [i₁, …, iₗ]`.-/
@@ -255,24 +316,38 @@ noncomputable def fw : List ι → B
   | [] => b₀
   | j :: w => K.fT hD j (fw w)
 
+/--
+@isnad1 id=eq.1h7v.s6.3b8f578680d6 from=translated src=- shape=933455d5 vocab=ca65ea22
+-/
 @[simp] lemma fw_nil : K.fw hD [] = b₀ := rfl
 
+/--
+@isnad1 id=eq.1h9v.s6.8170f1f37769 from=translated src=- shape=13eed653 vocab=cfbe2320
+-/
 lemma f_fw (j : ι) (w : List ι) : C.f j (K.fw hD w) = some (K.fw hD (j :: w)) :=
   K.f_eq_fT hD j _
 
+/--
+@isnad1 id=eq.1h8v.s6.0489945ff2c3 from=translated src=- shape=a32b57ae vocab=b0784948
+-/
 lemma wt_fw (w : List ι) : C.wt (K.fw hD w) = -(w.map D.root).sum := by
   induction w with
   | nil => simp [K.wt_b₀]
   | cons j w ih =>
     rw [C.wt_f (K.f_fw hD j w), ih, List.map_cons, List.sum_cons]; abel
 
+/--
+@isnad1 id=eq.1h8v.s6.763b7e79b24e from=translated src=- shape=5a87dba7 vocab=590e1083
+-/
 lemma ht_fw (w : List ι) : K.ht (K.fw hD w) = w.length := by
   induction w with
   | nil => exact K.ht_b₀ hD
   | cons j w ih =>
     rw [K.ht_of_wt_sub hD (C.wt_f (K.f_fw hD j w)), ih, List.length_cons]
 
-/-- Every element is `f̃_w b₀` for some word `w` ([KS97], proof of Prop. 3.2.3).-/
+/-- Every element is `f̃_w b₀` for some word `w` ([KS97], proof of Prop. 3.2.3).
+@isnad1 id=ex.1h8v.s6.4f0ebae68df3 from=translated src=- shape=7e4d0089 vocab=08d3fa63
+-/
 theorem exists_fw_eq (b : B) : ∃ w, K.fw hD w = b := by
   induction h : K.ht b using Nat.strong_induction_on generalizing b with
   | _ L ih =>
@@ -293,7 +368,9 @@ theorem exists_fw_eq (b : B) : ∃ w, K.fw hD w = b := by
 variable {C' : Crystal D B'} {b₀' : B'} (K' : KSData C' b₀')
 
 /-- `Ψᵢ` on `f̃_w b₀` and `f̃_w b₀'` is computed in the same way, as long as the `εⱼ` agree on
-shorter words.-/
+shorter words.
+@isnad1 id=ex.3h14v.s8.b0c2b3354498 from=translated src=- shape=31c36cdf vocab=325530b9
+-/
 theorem exists_Ψ_fw (L : ℕ)
     (hE : ∀ w : List ι, w.length ≤ L → ∀ k, C.ε k (K.fw hD w) = C'.ε k (K'.fw hD w))
     (i : ι) (w : List ι) (hw : w.length ≤ L + 1) :
@@ -324,12 +401,17 @@ theorem exists_Ψ_fw (L : ℕ)
       rw [hn', Option.map_some, Option.some_inj] at hf'
       exact ⟨u, n', hΨ.symm, hf'.symm⟩
 
+/--
+@isnad1 id=ne.2h8v.s6.658557794dba from=translated src=- shape=e2e20607 vocab=8b26529e
+-/
 lemma fw_ne_b₀ {w : List ι} (hw : w ≠ []) : K.fw hD w ≠ b₀ := fun h ↦ by
   have := congrArg K.ht h
   rw [K.ht_fw, K.ht_b₀ hD] at this
   exact hw (List.eq_nil_of_length_eq_zero this)
 
-/-- The step of the induction for equalities of words.-/
+/-- The step of the induction for equalities of words.
+@isnad1 id=eq.6h14v.s8.b0b9af2abc5b from=translated src=- shape=69eb9cc0 vocab=f986a4d4
+-/
 theorem fw_eq_fw_step (L : ℕ)
     (hE : ∀ w : List ι, w.length ≤ L → ∀ k, C.ε k (K.fw hD w) = C'.ε k (K'.fw hD w))
     (hS : ∀ w w' : List ι, w.length ≤ L → w'.length ≤ L → K.fw hD w = K.fw hD w' →
@@ -362,7 +444,9 @@ theorem fw_eq_fw_step (L : ℕ)
   apply K'.Ψ_injective i
   rw [h1', h2', hfu']
 
-/-- The step of the induction for the `εₖ`.-/
+/-- The step of the induction for the `εₖ`.
+@isnad1 id=eq.3h14v.s7.96d227c9081e from=translated src=- shape=135a77a1 vocab=f986a4d4
+-/
 theorem ε_fw_step (L : ℕ)
     (hE : ∀ w : List ι, w.length ≤ L → ∀ k, C.ε k (K.fw hD w) = C'.ε k (K'.fw hD w))
     (w : List ι) (hw : w.length ≤ L + 1) (k : ι) :
@@ -381,6 +465,9 @@ theorem ε_fw_step (L : ℕ)
   rw [← (K.Ψ i).ε_apply, ← (K'.Ψ i).ε_apply, h1, h1', tensor_elementary_ε, tensor_elementary_ε,
     hE u hu k, K.wt_fw, K'.wt_fw]
 
+/--
+@isnad1 id=and.1h12v.s8.7c4fc04e92aa from=translated src=- shape=639725c0 vocab=c45f93bc
+-/
 theorem fw_eq_fw_and_ε (L : ℕ) :
     (∀ w : List ι, w.length ≤ L → ∀ k, C.ε k (K.fw hD w) = C'.ε k (K'.fw hD w)) ∧
     (∀ w w' : List ι, w.length ≤ L → w'.length ≤ L → K.fw hD w = K.fw hD w' →
@@ -398,9 +485,15 @@ theorem fw_eq_fw_and_ε (L : ℕ) :
     exact ⟨K.ε_fw_step hD K' L hE, K.fw_eq_fw_step hD K' L hE hS,
       K'.fw_eq_fw_step hD K L (fun w hw k ↦ (hE w hw k).symm) hS'⟩
 
+/--
+@isnad1 id=eq.1h13v.s6.139a9be3ea0d from=translated src=- shape=e8a8b36d vocab=02827e5f
+-/
 theorem ε_fw_eq (w : List ι) (k : ι) : C.ε k (K.fw hD w) = C'.ε k (K'.fw hD w) :=
   (K.fw_eq_fw_and_ε hD K' w.length).1 w le_rfl k
 
+/--
+@isnad1 id=eq.2h13v.s7.f68fede2794c from=translated src=- shape=034fb1f7 vocab=08d3fa63
+-/
 theorem fw_eq_fw_of_fw_eq {w w' : List ι} (h : K.fw hD w = K.fw hD w') :
     K'.fw hD w = K'.fw hD w' :=
   (K.fw_eq_fw_and_ε hD K' (max w.length w'.length)).2.1 w w' (le_max_left _ _)
@@ -409,11 +502,17 @@ theorem fw_eq_fw_of_fw_eq {w w' : List ι} (h : K.fw hD w = K.fw hD w') :
 /-- A word for `b`.-/
 noncomputable def word (b : B) : List ι := (K.exists_fw_eq hD b).choose
 
+/--
+@isnad1 id=eq.1h8v.s6.2540d9a80da0 from=translated src=- shape=399b896d vocab=b075ee6a
+-/
 lemma fw_word (b : B) : K.fw hD (K.word hD b) = b := (K.exists_fw_eq hD b).choose_spec
 
 /-- The map `f̃_w b₀ ↦ f̃_w b₀'`.-/
 noncomputable def toFun' (b : B) : B' := K'.fw hD (K.word hD b)
 
+/--
+@isnad1 id=eq.1h12v.s6.74f43e12fc9c from=translated src=- shape=30978cda vocab=abaab734
+-/
 lemma toFun'_fw (w : List ι) : K.toFun' hD K' (K.fw hD w) = K'.fw hD w :=
   K.fw_eq_fw_of_fw_eq hD K' (K.fw_word hD _)
 
@@ -458,6 +557,9 @@ noncomputable def equiv : Crystal.Equiv C C' where
     obtain ⟨w, rfl⟩ := K.exists_fw_eq hD b
     rw [K.toFun'_fw, K.f_fw, K'.f_fw, Option.map_some, K.toFun'_fw]
 
+/--
+@isnad1 id=eq.1h11v.s7.5dd77b830fb0 from=translated src=- shape=bc3a4092 vocab=b66347c9
+-/
 lemma equiv_b₀ : K.equiv hD K' b₀ = b₀' := K.toFun'_fw hD K' []
 
 end KSData

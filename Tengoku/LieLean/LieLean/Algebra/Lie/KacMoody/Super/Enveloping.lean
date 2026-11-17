@@ -70,12 +70,21 @@ variable {ι : Type*} (K : Type*) [Field K] (p : ι → ZMod 2)
 `p j`.-/
 def superSign (i j : ι) : K := if p i = 1 ∧ p j = 1 then -1 else 1
 
+/--
+@isnad1 id=eq.0h5v.s5.fd683c1c1287 from=translated src=- shape=b62f4d72 vocab=5ee11cc4
+-/
 lemma superSign_comm (i j : ι) : superSign K p i j = superSign K p j i := by
   simp [superSign, and_comm]
 
+/--
+@isnad1 id=eq.0h5v.s6.d6fd266caea1 from=translated src=- shape=b724a4a4 vocab=84f4a645
+-/
 lemma superSign_mul_self (i j : ι) : superSign K p i j * superSign K p i j = 1 := by
   unfold superSign; split_ifs <;> norm_num
 
+/--
+@isnad1 id=eq.0h4v.s7.6ef1e4d0d965 from=translated src=- shape=2a409188 vocab=7fd86108
+-/
 lemma superSign_self (i : ι) : superSign K p i i = if p i = 1 then -1 else 1 := by
   simp [superSign]
 
@@ -130,9 +139,15 @@ instance : Algebra K (P.SuperEnveloping p) := inferInstanceAs (Algebra K (RingQu
 /-- The quotient map from the free algebra.-/
 def mk : FreeAlgebra K (AuxGen ι H) →ₐ[K] P.SuperEnveloping p := RingQuot.mkAlgHom K (Rel P p)
 
+/--
+@isnad1 id=surjecti.0h6v.s8.991a7bd74cc1 from=translated src=- shape=2e40441c vocab=88fc1347
+-/
 lemma mk_surjective : Function.Surjective (mk P p) := RingQuot.mkAlgHom_surjective K _
 
 variable {P p} in
+/--
+@isnad1 id=eq.1h8v.s9.3fdbd8c9be55 from=translated src=- shape=ac18b75c vocab=cc6e44f4
+-/
 lemma mk_rel {x y : FreeAlgebra K (AuxGen ι H)} (hxy : Rel P p x y) : mk P p x = mk P p y :=
   RingQuot.mkAlgHom_rel K hxy
 
@@ -150,10 +165,16 @@ def h : H →ₗ[K] P.SuperEnveloping p where
   map_smul' c a := by
     rw [mk_rel (Rel.h_smul c a), map_smul, RingHom.id_apply]
 
+/--
+@isnad1 id=eq.0h8v.s10.08a066f2a04f from=translated src=- shape=8a17c872 vocab=b0d2ad11
+-/
 lemma h_mul_h (a b : H) : h P p a * h P p b = h P p b * h P p a := by
   simp only [h, LinearMap.coe_mk, AddHom.coe_mk, ← map_mul]
   exact mk_rel (Rel.h_h a b)
 
+/--
+@isnad1 id=eq.0h8v.s9.7834de3ae6e0 from=translated src=- shape=085c229d vocab=4246033e
+-/
 lemma e_mul_f (i j : ι) : e P p i * f P p j =
     superSign K p i j • (f P p j * e P p i) + if i = j then h P p (P.coroot i) else 0 := by
   have := mk_rel (Rel.e_f (P := P) (p := p) i j)
@@ -161,16 +182,24 @@ lemma e_mul_f (i j : ι) : e P p i * f P p j =
   rw [e, f, this]
   split_ifs <;> simp [h]
 
-/-- The super commutator relation `[eᵢ, fⱼ] = δᵢⱼ αᵢ^∨`.-/
+/-- The super commutator relation `[eᵢ, fⱼ] = δᵢⱼ αᵢ^∨`.
+@isnad1 id=eq.0h8v.s9.2b7f500b6230 from=translated src=- shape=5a881c43 vocab=cd7527d4
+-/
 lemma e_mul_f_sub (i j : ι) : e P p i * f P p j - superSign K p i j • (f P p j * e P p i) =
     if i = j then h P p (P.coroot i) else 0 := by
   rw [e_mul_f, add_sub_cancel_left]
 
+/--
+@isnad1 id=eq.0h8v.s10.d50d7014d3f1 from=translated src=- shape=395eb20f vocab=6c435e4b
+-/
 lemma h_mul_e (a : H) (i : ι) : h P p a * e P p i = e P p i * h P p a + P.root i a • e P p i := by
   have := mk_rel (Rel.h_e (P := P) (p := p) a i)
   simp only [map_mul, map_add, map_smul] at this
   exact this
 
+/--
+@isnad1 id=eq.0h8v.s10.c76aa93a8558 from=translated src=- shape=395eb20f vocab=b043a0de
+-/
 lemma h_mul_f (a : H) (i : ι) : h P p a * f P p i = f P p i * h P p a - P.root i a • f P p i := by
   have := mk_rel (Rel.h_f (P := P) (p := p) a i)
   simp only [map_mul, map_sub, map_smul] at this
@@ -203,6 +232,9 @@ def LiftData.gen (D : LiftData P p B) : AuxGen ι H → B
   | .f i => D.f i
   | .h a => D.h a
 
+/--
+@isnad1 id=eq.1h10v.s10.613075382230 from=translated src=- shape=035d2361 vocab=c4252e44
+-/
 lemma LiftData.rel (D : LiftData P p B) {x y : FreeAlgebra K (AuxGen ι H)} (hxy : Rel P p x y) :
     FreeAlgebra.lift K D.gen x = FreeAlgebra.lift K D.gen y := by
   cases hxy with
@@ -219,20 +251,34 @@ lemma LiftData.rel (D : LiftData P p B) {x y : FreeAlgebra K (AuxGen ι H)} (hxy
 def lift (D : LiftData P p B) : P.SuperEnveloping p →ₐ[K] B :=
   RingQuot.liftAlgHom K ⟨FreeAlgebra.lift K D.gen, fun _ _ hxy ↦ D.rel hxy⟩
 
+/--
+@isnad1 id=eq.0h9v.s9.8733320f971f from=translated src=- shape=2da6bee8 vocab=d73d26a6
+-/
 @[simp] lemma lift_mk (D : LiftData P p B) (x : FreeAlgebra K (AuxGen ι H)) :
     lift D (mk P p x) = FreeAlgebra.lift K D.gen x :=
   RingQuot.liftAlgHom_mkAlgHom_apply _ _ _ _
 
+/--
+@isnad1 id=eq.0h9v.s8.f1ec7a1ac2b2 from=translated src=- shape=65a57d6d vocab=85ca24d2
+-/
 @[simp] lemma lift_e (D : LiftData P p B) (i : ι) : lift D (e P p i) = D.e i := by
   simp [e, LiftData.gen]
 
+/--
+@isnad1 id=eq.0h9v.s8.9afcfa26a890 from=translated src=- shape=65a57d6d vocab=7606ba29
+-/
 @[simp] lemma lift_f (D : LiftData P p B) (i : ι) : lift D (f P p i) = D.f i := by
   simp [f, LiftData.gen]
 
+/--
+@isnad1 id=eq.0h9v.s9.9ce6612ad78f from=translated src=- shape=18c12d0f vocab=503d17b9
+-/
 @[simp] lemma lift_h (D : LiftData P p B) (a : H) : lift D (h P p a) = D.h a := by
   simp [h, LiftData.gen]
 
-/-- Algebra morphisms out of `U(G̃(A, τ))` are determined by their values on the generators.-/
+/-- Algebra morphisms out of `U(G̃(A, τ))` are determined by their values on the generators.
+@isnad1 id=eq.3h9v.s10.befed0027be7 from=translated src=- shape=7f81e71b vocab=8e442a69
+-/
 @[ext]
 lemma hom_ext {g₁ g₂ : P.SuperEnveloping p →ₐ[K] B} (he : ∀ i, g₁ (e P p i) = g₂ (e P p i))
     (hf : ∀ i, g₁ (f P p i) = g₂ (f P p i)) (hh : ∀ a, g₁ (h P p a) = g₂ (h P p a)) :

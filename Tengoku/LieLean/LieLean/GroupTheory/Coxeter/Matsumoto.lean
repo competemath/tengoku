@@ -69,34 +69,46 @@ def BraidMove (ω ω' : List B) : Prop :=
 
 variable {M}
 
-/-- The braid move relation is symmetric.-/
+/-- The braid move relation is symmetric.
+@isnad1 id=braidmov.1h4v.s4.8607520e15c6 from=translated src=- shape=f8656c9f vocab=1859fa0a
+-/
 theorem BraidMove.symm {ω ω' : List B} (h : M.BraidMove ω ω') : M.BraidMove ω' ω := by
   obtain ⟨l, r, i, j, hij, hm, h₁, h₂⟩ := h
   exact ⟨l, r, j, i, hij.symm, by rwa [M.symmetric], h₂, h₁⟩
 
-/-- Braid moves can be performed after a prefix.-/
+/-- Braid moves can be performed after a prefix.
+@isnad1 id=braidmov.1h5v.s4.9cb7841e8598 from=translated src=- shape=b5c39cbb vocab=df3ab6c9
+-/
 theorem BraidMove.cons {ω ω' : List B} (h : M.BraidMove ω ω') (a : B) :
     M.BraidMove (a :: ω) (a :: ω') := by
   obtain ⟨l, r, i, j, hij, hm, rfl, rfl⟩ := h
   exact ⟨a :: l, r, i, j, hij, hm, rfl, rfl⟩
 
-/-- Braid moves can be performed before a suffix.-/
+/-- Braid moves can be performed before a suffix.
+@isnad1 id=braidmov.1h5v.s5.46a16dea66e2 from=translated src=- shape=f6a6f56b vocab=cb38c4c7
+-/
 theorem BraidMove.append_right {ω ω' : List B} (h : M.BraidMove ω ω') (γ : List B) :
     M.BraidMove (ω ++ γ) (ω' ++ γ) := by
   obtain ⟨l, r, i, j, hij, hm, rfl, rfl⟩ := h
   exact ⟨l, r ++ γ, i, j, hij, hm, by simp, by simp⟩
 
-/-- The basic braid move `braidWord M i j ++ γ → braidWord M j i ++ γ`.-/
+/-- The basic braid move `braidWord M i j ++ γ → braidWord M j i ++ γ`.
+@isnad1 id=braidmov.2h5v.s6.4de3d3d7ce36 from=translated src=- shape=ae8429e5 vocab=4eed4b86
+-/
 theorem braidMove_braidWord {i j : B} (hij : i ≠ j) (hm : M i j ≠ 0) (γ : List B) :
     M.BraidMove (CoxeterSystem.braidWord M i j ++ γ) (CoxeterSystem.braidWord M j i ++ γ) :=
   ⟨[], γ, i, j, hij, hm, rfl, rfl⟩
 
-/-- Braid moves preserve the length of a word.-/
+/-- Braid moves preserve the length of a word.
+@isnad1 id=eq.1h4v.s4.bbedb0d0bcfa from=translated src=- shape=d5d3ce04 vocab=8d641ca2
+-/
 theorem BraidMove.length_eq {ω ω' : List B} (h : M.BraidMove ω ω') : ω.length = ω'.length := by
   obtain ⟨l, r, i, j, hij, hm, rfl, rfl⟩ := h
   simp [M.symmetric i j]
 
-/-- Being connected by braid moves is a symmetric relation.-/
+/-- Being connected by braid moves is a symmetric relation.
+@isnad1 id=refltran.1h4v.s4.2b876a238571 from=translated src=- shape=337eac27 vocab=4bcb973a
+-/
 theorem reflTransGen_braidMove_symm {ω ω' : List B}
     (h : Relation.ReflTransGen M.BraidMove ω ω') : Relation.ReflTransGen M.BraidMove ω' ω :=
   by
@@ -114,7 +126,9 @@ local prefix:100 "s " => cs.simple
 local prefix:100 "π " => cs.wordProd
 local prefix:100 "ℓ " => cs.length
 
-/-- The reverse of an alternating word.-/
+/-- The reverse of an alternating word.
+@isnad1 id=eq.0h4v.s5.a7cb5182d5ec from=translated src=- shape=d0580b3c vocab=865d2d96
+-/
 theorem reverse_alternatingWord (i j : B) (k : ℕ) :
     (alternatingWord i j k).reverse =
       if Even k then alternatingWord j i k else alternatingWord i j k := by
@@ -133,12 +147,16 @@ theorem reverse_alternatingWord (i j : B) (k : ℕ) :
 
 variable {cs}
 
-/-- Braid moves do not change the product of a word.-/
+/-- Braid moves do not change the product of a word.
+@isnad1 id=eq.1h6v.s5.992edeadcf63 from=translated src=- shape=0c830203 vocab=db9f5461
+-/
 theorem wordProd_eq_of_braidMove {ω ω' : List B} (h : M.BraidMove ω ω') : π ω = π ω' := by
   obtain ⟨l, r, i, j, -, -, rfl, rfl⟩ := h
   simp only [wordProd_append, wordProd_braidWord_eq]
 
-/-- Braid moves preserve reducedness.-/
+/-- Braid moves preserve reducedness.
+@isnad1 id=isreduce.2h6v.s5.a1c3691fcb9f from=translated src=- shape=585b5fff vocab=e4e7e002
+-/
 theorem IsReduced.of_braidMove {ω ω' : List B} (hω : cs.IsReduced ω) (h : M.BraidMove ω ω') :
     cs.IsReduced ω' := by
   unfold IsReduced
@@ -169,7 +187,9 @@ theorem IsReduced.eq_reverse_alternatingWord {a b : B} {ω : List B} (hω : cs.I
       alternatingWord_succ y x (ω.length + 1), concat_eq_append, reverse_append]
     simp
 
-/-- A reduced word `c :: η` has `c` as a left descent.-/
+/-- A reduced word `c :: η` has `c` as a left descent.
+@isnad1 id=isleftde.1h6v.s5.44239b6aaba3 from=translated src=- shape=23ab7fce vocab=1fe258c5
+-/
 theorem IsReduced.isLeftDescent_cons {c : B} {η : List B} (h : cs.IsReduced (c :: η)) :
     cs.IsLeftDescent (π (c :: η)) c := by
   unfold IsLeftDescent
@@ -180,7 +200,9 @@ theorem IsReduced.isLeftDescent_cons {c : B} {η : List B} (h : cs.IsReduced (c 
 
 /-- The key step of Matsumoto's theorem ([BB] proof of Thm. 3.3.1(ii)): if `a ≠ b` are both left
 descents of `w`, then `mₐᵦ < ∞` and `w` has reduced words `a ⋯ γ` and `b ⋯ γ` that differ by one
-braid move (they begin with the two alternating words of length `mₐᵦ`).-/
+braid move (they begin with the two alternating words of length `mₐᵦ`).
+@isnad1 id=ex.3h7v.s7.d7c66cdea5d6 from=translated src=- shape=b68e173f vocab=15676c3e
+-/
 theorem exists_braidMove_of_isLeftDescent {w : W} {a b : B} (hab : a ≠ b)
     (ha : cs.IsLeftDescent w a) (hb : cs.IsLeftDescent w b) :
     ∃ P₀ Q₀ γ : List B, M.BraidMove (a :: (P₀ ++ γ)) (b :: (Q₀ ++ γ)) ∧
@@ -260,7 +282,9 @@ theorem exists_braidMove_of_isLeftDescent {w : W} {a b : B} (hab : a ≠ b)
     rw [← cons_append, wordProd_append, hηae, hlen, hγ.eq, length_append, hka]
 
 /-- **Matsumoto's theorem** ([BB] Thm. 3.3.1, Matsumoto 1964, Tits 1969):
-any two reduced words for the same element of `W` are connected by a sequence of braid moves.-/
+any two reduced words for the same element of `W` are connected by a sequence of braid moves.
+@isnad1 id=refltran.3h6v.s5.6531ad5cf60e from=translated src=- shape=3e4cd6ea vocab=02411be2
+-/
 theorem reflTransGen_braidMove_of_isReduced {ω ω' : List B} (hω : cs.IsReduced ω)
     (hω' : cs.IsReduced ω') (h : π ω = π ω') : Relation.ReflTransGen M.BraidMove ω ω' := by
   induction hn : ω.length generalizing ω ω' with
@@ -306,7 +330,9 @@ theorem reflTransGen_braidMove_of_isReduced {ω ω' : List B} (hω : cs.IsReduce
           (ih hβ hQ this (by rw [hlβ]))
       exact (h1.tail hmove).trans (CoxeterMatrix.reflTransGen_braidMove_symm h2)
 
-/-- Braid moves connect reduced words to reduced words.-/
+/-- Braid moves connect reduced words to reduced words.
+@isnad1 id=isreduce.2h6v.s5.a3621bb10292 from=translated src=- shape=20b52c70 vocab=4f85a9f4
+-/
 theorem IsReduced.of_reflTransGen_braidMove {ω ω' : List B} (hω : cs.IsReduced ω)
     (h : Relation.ReflTransGen M.BraidMove ω ω') : cs.IsReduced ω' := by
   induction h with
@@ -323,7 +349,9 @@ theorem eq_of_reflTransGen_braidMove {α : Sort*} {f : List B → α}
   | tail hab hs ih => exact ih.trans (hf _ _ (hω.of_reflTransGen_braidMove hab) hs)
 
 /-- **Matsumoto's theorem**, functional form: a function on reduced words that is invariant under
-braid moves descends to a function on `W`.-/
+braid moves descends to a function on `W`.
+@isnad1 id=ex.1h6v.s6.8ffd0ea67a6a from=translated src=- shape=a900c0fe vocab=8d0506ce
+-/
 theorem exists_eq_of_braidMove {α : Sort*} (f : List B → α)
     (hf : ∀ ω ω', cs.IsReduced ω → M.BraidMove ω ω' → f ω = f ω') :
     ∃ F : W → α, ∀ ω, cs.IsReduced ω → F (π ω) = f ω := by
@@ -367,7 +395,9 @@ noncomputable def braidLift (g : B → G) (w : W) : G :=
 variable {cs} {g : B → G}
 
 /-- If the `g i` satisfy the braid relations, then `braidLift g (π ω) = g(i₁) ⋯ g(iₖ)` for every
-reduced word `ω = i₁ ⋯ iₖ` (Matsumoto's theorem).-/
+reduced word `ω = i₁ ⋯ iₖ` (Matsumoto's theorem).
+@isnad1 id=eq.2h7v.s6.3b0f4f47701d from=translated src=- shape=84594675 vocab=d50345fd
+-/
 theorem braidLift_wordProd (hg : M.IsBraidLiftable g) {ω : List B} (hω : cs.IsReduced ω) :
     cs.braidLift g (π ω) = (ω.map g).prod := by
   obtain ⟨hω₀, he⟩ := (cs.exists_isReduced (π ω)).choose_spec
@@ -377,7 +407,9 @@ theorem braidLift_wordProd (hg : M.IsBraidLiftable g) {ω : List B} (hω : cs.Is
   simp only [map_append, prod_append, hg i j hij hm]
 
 variable (cs g) in
-/-- `braidLift g 1 = 1`.-/
+/-- `braidLift g 1 = 1`.
+@isnad1 id=eq.0h6v.s5.b339f2ce853a from=translated src=- shape=c33d5da5 vocab=2bc92845
+-/
 theorem braidLift_one : cs.braidLift g 1 = 1 := by
   obtain ⟨hω, he⟩ := (cs.exists_isReduced (1 : W)).choose_spec
   have : (cs.exists_isReduced (1 : W)).choose = [] := by
@@ -385,7 +417,9 @@ theorem braidLift_one : cs.braidLift g 1 = 1 := by
   rw [braidLift, this, map_nil, prod_nil]
 
 variable (cs g) in
-/-- `braidLift g sᵢ = g i`.-/
+/-- `braidLift g sᵢ = g i`.
+@isnad1 id=eq.0h7v.s5.67e49ad29927 from=translated src=- shape=6778c10f vocab=99757475
+-/
 theorem braidLift_simple (i : B) : cs.braidLift g (s i) = g i := by
   obtain ⟨hω, he⟩ := (cs.exists_isReduced (s i)).choose_spec
   obtain ⟨j, hj⟩ : ∃ j, (cs.exists_isReduced (s i)).choose = [j] := by
@@ -395,7 +429,9 @@ theorem braidLift_simple (i : B) : cs.braidLift g (s i) = g i := by
   rw [braidLift, hj, cs.simple_injective he]
   simp
 
-/-- If lengths add, `braidLift` is multiplicative.-/
+/-- If lengths add, `braidLift` is multiplicative.
+@isnad1 id=eq.2h8v.s7.99e8fc4d731e from=translated src=- shape=d3ea1979 vocab=f636dcf8
+-/
 theorem braidLift_mul (hg : M.IsBraidLiftable g) {u v : W} (h : ℓ (u * v) = ℓ u + ℓ v) :
     cs.braidLift g (u * v) = cs.braidLift g u * cs.braidLift g v := by
   obtain ⟨ωu, hu, rfl⟩ := cs.exists_isReduced u
@@ -406,13 +442,17 @@ theorem braidLift_mul (hg : M.IsBraidLiftable g) {u v : W} (h : ℓ (u * v) = �
   rw [← wordProd_append, braidLift_wordProd hg huv, braidLift_wordProd hg hu,
     braidLift_wordProd hg hv, map_append, prod_append]
 
-/-- `braidLift g (w sᵢ) = braidLift g w * g i` if `ℓ(w sᵢ) > ℓ(w)`.-/
+/-- `braidLift g (w sᵢ) = braidLift g w * g i` if `ℓ(w sᵢ) > ℓ(w)`.
+@isnad1 id=eq.2h8v.s6.f49bb9669656 from=translated src=- shape=b28f90ba vocab=d2bb4744
+-/
 theorem braidLift_mul_simple (hg : M.IsBraidLiftable g) {w : W} {i : B}
     (h : ¬cs.IsRightDescent w i) : cs.braidLift g (w * s i) = cs.braidLift g w * g i := by
   rw [braidLift_mul hg (by rw [(cs.not_isRightDescent_iff).mp h, length_simple]),
     braidLift_simple]
 
-/-- `braidLift g (sᵢ w) = g i * braidLift g w` if `ℓ(sᵢ w) > ℓ(w)`.-/
+/-- `braidLift g (sᵢ w) = g i * braidLift g w` if `ℓ(sᵢ w) > ℓ(w)`.
+@isnad1 id=eq.2h8v.s6.d3d2775cf193 from=translated src=- shape=d9fcbdb0 vocab=843cecd0
+-/
 theorem braidLift_simple_mul (hg : M.IsBraidLiftable g) {w : W} {i : B}
     (h : ¬cs.IsLeftDescent w i) : cs.braidLift g (s i * w) = g i * cs.braidLift g w := by
   rw [braidLift_mul hg (by rw [(cs.not_isLeftDescent_iff).mp h, length_simple, add_comm]),

@@ -63,10 +63,16 @@ def involution (p : Finset σ × (σ →₀ ℕ)) : Finset σ × (σ →₀ ℕ)
 
 variable {x : σ} {p : Finset σ × (σ →₀ ℕ)}
 
+/--
+@isnad1 id=le.2h3v.s6.98aa2765dbf7 from=translated src=- shape=7501de55 vocab=76ea6062
+-/
 lemma single_le_of_mem_indices (hx : x ∈ indices p) (hxS : x ∉ p.1) : single x 1 ≤ p.2 := by
   rw [single_le_iff, Nat.one_le_iff_ne_zero, ← mem_support_iff]
   simpa [indices, hxS] using hx
 
+/--
+@isnad1 id=eq.1h3v.s5.ba8ced5f5b52 from=translated src=- shape=e8109bce vocab=f67cab6f
+-/
 lemma indices_toggle (hx : x ∈ indices p) : indices (toggle x p) = indices p := by
   unfold toggle
   split_ifs with hxS
@@ -85,6 +91,9 @@ lemma indices_toggle (hx : x ∈ indices p) : indices (toggle x p) = indices p :
     · subst hy; simp only [true_or, true_iff]; right; omega
     · simp [hy, Ne.symm hy]
 
+/--
+@isnad1 id=eq.1h3v.s5.deb5905d5370 from=translated src=- shape=6a11c268 vocab=f67cab6f
+-/
 lemma toggle_toggle (hx : x ∈ indices p) : toggle x (toggle x p) = p := by
   unfold toggle
   by_cases hxS : x ∈ p.1
@@ -93,6 +102,9 @@ lemma toggle_toggle (hx : x ∈ indices p) : toggle x (toggle x p) = p := by
   · rw [ite_eq_right hxS, ite_eq_left (Finset.mem_insert_self x p.1), Finset.erase_insert hxS,
       tsub_add_cancel_of_le (single_le_of_mem_indices hx hxS)]
 
+/--
+@isnad1 id=ne.0h3v.s5.ced960ea70cb from=translated src=- shape=f61b4bb6 vocab=36c2819a
+-/
 lemma toggle_ne (x : σ) (p : Finset σ × (σ →₀ ℕ)) : toggle x p ≠ p := by
   unfold toggle
   split_ifs with hxS
@@ -106,6 +118,9 @@ lemma toggle_ne (x : σ) (p : Finset σ × (σ →₀ ℕ)) : toggle x p ≠ p :
     simp only at this
     exact hxS (this ▸ Finset.mem_insert_self x p.1)
 
+/--
+@isnad1 id=eq.0h3v.s6.1c2596ea0f82 from=translated src=- shape=3ee634b5 vocab=42852242
+-/
 lemma neg_one_pow_card_toggle (x : σ) (p : Finset σ × (σ →₀ ℕ)) :
     (-1 : ℤ) ^ (toggle x p).1.card = -(-1) ^ p.1.card := by
   unfold toggle
@@ -115,6 +130,9 @@ lemma neg_one_pow_card_toggle (x : σ) (p : Finset σ × (σ →₀ ℕ)) :
   · rw [Finset.card_insert_of_notMem hxS, pow_succ]
     ring
 
+/--
+@isnad1 id=eq.1h5v.s5.f8ecf28d144b from=translated src=- shape=73bab0c7 vocab=5fcab867
+-/
 lemma pairWeight_toggle (w : σ → M) (hx : x ∈ indices p) :
     pairWeight w (toggle x p) = pairWeight w p := by
   unfold toggle pairWeight
@@ -130,6 +148,9 @@ lemma pairWeight_toggle (w : σ → M) (hx : x ∈ indices p) :
       sum_single_index (h := fun x n ↦ n • w x) (zero_nsmul _), one_nsmul]
     abel
 
+/--
+@isnad1 id=ex.1h2v.s5.c1fdfa5027c6 from=translated src=- shape=6a5d96de vocab=a220eed1
+-/
 lemma min'_indices_involution (h : (indices p).Nonempty) :
     ∃ h' : (indices (involution p)).Nonempty,
       (indices (involution p)).min' h' = (indices p).min' h := by
@@ -138,6 +159,9 @@ lemma min'_indices_involution (h : (indices p).Nonempty) :
     rw [involution, dite_eq_left h, indices_toggle hmem]
   exact ⟨hI ▸ h, by simp_rw [hI]⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.cbb9231a2889 from=translated src=- shape=b37232c1 vocab=33594a36
+-/
 lemma involution_involution (p : Finset σ × (σ →₀ ℕ)) : involution (involution p) = p := by
   by_cases h : (indices p).Nonempty
   · obtain ⟨h', hmin⟩ := min'_indices_involution h
@@ -151,6 +175,9 @@ lemma eq_of_not_nonempty_indices (h : ¬ (indices p).Nonempty) : p = (∅, 0) :=
     support_eq_empty] at h
   exact Prod.ext h.1 h.2
 
+/--
+@isnad1 id=ne.1h2v.s6.c73277f4d1cd from=translated src=- shape=ca2f2022 vocab=903713c0
+-/
 lemma involution_ne (hp : p ≠ (∅, 0)) : involution p ≠ p := by
   have h : (indices p).Nonempty := by
     by_contra h
@@ -158,6 +185,9 @@ lemma involution_ne (hp : p ≠ (∅, 0)) : involution p ≠ p := by
   rw [involution, dite_eq_left h]
   exact toggle_ne _ _
 
+/--
+@isnad1 id=eq.1h2v.s7.708ee386a7e7 from=translated src=- shape=331c0f41 vocab=eb6191d2
+-/
 lemma neg_one_pow_card_involution (hp : p ≠ (∅, 0)) :
     (-1 : ℤ) ^ (involution p).1.card = -(-1) ^ p.1.card := by
   have h : (indices p).Nonempty := by
@@ -165,6 +195,9 @@ lemma neg_one_pow_card_involution (hp : p ≠ (∅, 0)) :
     exact hp (eq_of_not_nonempty_indices h)
   rw [involution, dite_eq_left h, neg_one_pow_card_toggle]
 
+/--
+@isnad1 id=eq.0h4v.s5.c89f20eeaa27 from=translated src=- shape=92e44f0c vocab=51dd598f
+-/
 lemma pairWeight_involution (w : σ → M) (p : Finset σ × (σ →₀ ℕ)) :
     pairWeight w (involution p) = pairWeight w p := by
   unfold involution
@@ -174,7 +207,9 @@ lemma pairWeight_involution (w : σ → M) (p : Finset σ × (σ →₀ ℕ)) :
 
 /-- **The identity `∏ (1 - e^{wᵢ}) · ∏ (1 - e^{wᵢ})⁻¹ = 1`, coefficientwise**: if the set of
 pairs `(S, s)` of weight `β` is finite, their signed count `∑ (-1)^|S|` is `1` if `β = 0` and `0`
-otherwise.-/
+otherwise.
+@isnad1 id=eq.1h5v.s7.d056bda59b62 from=translated src=- shape=21c8a6fc vocab=d8606809
+-/
 theorem sum_neg_one_pow_card_eq_ite [DecidableEq M] (w : σ → M) (β : M)
     {T : Finset (Finset σ × (σ →₀ ℕ))}
     (hT : ∀ p, p ∈ T ↔ pairWeight w p = β) :

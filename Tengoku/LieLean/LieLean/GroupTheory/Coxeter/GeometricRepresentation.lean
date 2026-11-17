@@ -61,7 +61,9 @@ reducedness of alternating words is deduced from the order of `sᵢ sⱼ` via th
 
 open Polynomial in
 /-- An algebraically closed field of characteristic zero contains an element of every positive
-multiplicative order.-/
+multiplicative order.
+@isnad1 id=ex.1h2v.s5.06ef07eb5d97 from=translated src=- shape=d2456e94 vocab=7124b2c1
+-/
 theorem IsAlgClosed.exists_orderOf_eq (K : Type*) [Field K] [IsAlgClosed K] [CharZero K] {n : ℕ}
     (hn : 0 < n) : ∃ ζ : K, orderOf ζ = n := by
   have : NeZero n := ⟨hn.ne'⟩
@@ -85,7 +87,9 @@ variable {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
 
 /-- Closed form for the powers of a product of two reflections `σ, τ` of a plane spanned by
 `α, β`, where `σ α = -α`, `τ β = -β` and the off-diagonal entries are `x + y` with `x y = 1`:
-`(x - y) (στ)ᵏ α = (x^{2k+1} - y^{2k+1}) α + (x^{2k} - y^{2k}) β`.-/
+`(x - y) (στ)ᵏ α = (x^{2k+1} - y^{2k+1}) α + (x^{2k} - y^{2k}) β`.
+@isnad1 id=eq.5h9v.s10.a662f167895c from=translated src=- shape=e577fc83 vocab=c60b2206
+-/
 theorem Module.End.sub_smul_pow_mul_apply {σ τ : Module.End K V} {α β : V} {x y : K}
     (hxy : x * y = 1) (hσα : σ α = -α) (hσβ : σ β = β + (x + y) • α)
     (hτα : τ α = α + (x + y) • β) (hτβ : τ β = -β) (k : ℕ) :
@@ -107,7 +111,9 @@ theorem Module.End.sub_smul_pow_mul_apply {σ τ : Module.End K V} {α β : V} {
     module
 
 /-- Closed form for the powers of a product of two reflections `σ, τ` of a plane spanned by
-`α, β` with off-diagonal entries `2`: `(στ)ᵏ α = (2k + 1) α + 2k β`.-/
+`α, β` with off-diagonal entries `2`: `(στ)ᵏ α = (2k + 1) α + 2k β`.
+@isnad1 id=eq.4h7v.s10.42e45a1406f6 from=translated src=- shape=50f1ad42 vocab=e9d80194
+-/
 theorem Module.End.pow_mul_apply_of_two {σ τ : Module.End K V} {α β : V}
     (hσα : σ α = -α) (hσβ : σ β = β + (2 : K) • α)
     (hτα : τ α = α + (2 : K) • β) (hτβ : τ β = -β) (k : ℕ) :
@@ -134,7 +140,9 @@ private theorem aux_hyps (hσ : ∀ v, σ v = v - (2 * φ v) • α)
 
 /-- Let `σ, τ` be the reflections `σ v = v - 2 φ(v) α`, `τ v = v - 2 ψ(v) β` with
 `φ(α) = ψ(β) = 1` and `φ(β) = ψ(α) = -c`, where `2c = x + x⁻¹` for an element `x` with
-`x^{2m} = 1` and `x² ≠ 1`. Then `(στ)^m = 1`.-/
+`x^{2m} = 1` and `x² ≠ 1`. Then `(στ)^m = 1`.
+@isnad1 id=eq.10h11v.s10.25a00bfd3078 from=translated src=- shape=407a5083 vocab=c81ccd4d
+-/
 theorem Module.End.mul_pow_eq_one_of_reflections (hσ : ∀ v, σ v = v - (2 * φ v) • α)
     (hτ : ∀ v, τ v = v - (2 * ψ v) • β) (hφα : φ α = 1) (hφβ : φ β = -c) (hψα : ψ α = -c)
     (hψβ : ψ β = 1) {x : K} (hx : x ≠ 0) (hc : 2 * c = x + x⁻¹) (hx2 : x ^ 2 ≠ 1) {m : ℕ}
@@ -203,7 +211,9 @@ theorem Module.End.mul_pow_eq_one_of_reflections (hσ : ∀ v, σ v = v - (2 * �
   rw [hv, map_add, hfix, map_add, map_smul, map_smul, hgα, hgβ, Module.End.one_apply]
 
 /-- With the notation of `Module.End.mul_pow_eq_one_of_reflections`, if `x` has multiplicative
-order `2m` and `α, β` are linearly independent, then `(στ)^k α ≠ α` for `0 < k < m`.-/
+order `2m` and `α, β` are linearly independent, then `(στ)^k α ≠ α` for `0 < k < m`.
+@isnad1 id=ne.11h12v.s10.47d5e8f317de from=translated src=- shape=9e9845e7 vocab=bc370ba6
+-/
 theorem Module.End.mul_pow_apply_ne_of_reflections (hσ : ∀ v, σ v = v - (2 * φ v) • α)
     (hτ : ∀ v, τ v = v - (2 * ψ v) • β) (hφα : φ α = 1) (hφβ : φ β = -c) (hψα : ψ α = -c)
     (hψβ : ψ β = 1) (hαβ : ∀ a b : K, a • α + b • β = 0 → a = 0 ∧ b = 0) [CharZero K] {x : K}
@@ -254,7 +264,9 @@ theorem Module.End.mul_pow_apply_ne_of_reflections (hσ : ∀ v, σ v = v - (2 *
   omega
 
 /-- With the notation of `Module.End.mul_pow_eq_one_of_reflections` and `c = 1`, if `α, β` are
-linearly independent over a field of characteristic zero, then `(στ)^k α ≠ α` for `k > 0`.-/
+linearly independent over a field of characteristic zero, then `(στ)^k α ≠ α` for `k > 0`.
+@isnad1 id=ne.8h9v.s10.ff5db2ec00b8 from=translated src=- shape=6792dac8 vocab=77f828b8
+-/
 theorem Module.End.mul_pow_apply_ne_of_reflections_of_eq_one
     (hσ : ∀ v, σ v = v - (2 * φ v) • α) (hτ : ∀ v, τ v = v - (2 * ψ v) • β) (hφα : φ α = 1)
     (hφβ : φ β = -1) (hψα : ψ α = -1) (hψβ : ψ β = 1)
@@ -289,19 +301,25 @@ noncomputable def geomRoot (m : ℕ) : K :=
   if h : 0 < m then Classical.choose (IsAlgClosed.exists_orderOf_eq K (Nat.mul_pos two_pos h))
   else 1
 
-/-- `geomRoot K m` has order `2m`.-/
+/-- `geomRoot K m` has order `2m`.
+@isnad1 id=eq.1h2v.s6.a1353203d23f from=translated src=- shape=57957e3c vocab=0799dbbf
+-/
 theorem orderOf_geomRoot {m : ℕ} (hm : 0 < m) : orderOf (geomRoot K m) = 2 * m := by
   simp only [geomRoot, hm, ↓reduceDIte]
   exact Classical.choose_spec (IsAlgClosed.exists_orderOf_eq K (Nat.mul_pos two_pos hm))
 
-/-- `ζ^{2m} = 1`.-/
+/-- `ζ^{2m} = 1`.
+@isnad1 id=eq.0h2v.s6.84a457c7bd47 from=translated src=- shape=e38cf8cb vocab=abe207da
+-/
 theorem geomRoot_pow_two_mul (m : ℕ) : geomRoot K m ^ (2 * m) = 1 := by
   rcases Nat.eq_zero_or_pos m with rfl | hm
   · simp
   · rw [← orderOf_geomRoot K hm]
     exact pow_orderOf_eq_one _
 
-/-- `ζ ≠ 0`.-/
+/-- `ζ ≠ 0`.
+@isnad1 id=ne.0h2v.s5.3c417b42ca3f from=translated src=- shape=cf026e7b vocab=93045faf
+-/
 theorem geomRoot_ne_zero (m : ℕ) : geomRoot K m ≠ 0 := by
   rcases Nat.eq_zero_or_pos m with rfl | hm
   · simp [geomRoot]
@@ -310,7 +328,9 @@ theorem geomRoot_ne_zero (m : ℕ) : geomRoot K m ≠ 0 := by
     rw [h, zero_pow (by omega)] at this
     exact zero_ne_one this
 
-/-- `ζ² ≠ 1` for `m ≥ 2`.-/
+/-- `ζ² ≠ 1` for `m ≥ 2`.
+@isnad1 id=ne.1h2v.s6.fa1986e5afbb from=translated src=- shape=c947b514 vocab=0aac1999
+-/
 theorem geomRoot_sq_ne_one {m : ℕ} (hm : 1 < m) : geomRoot K m ^ 2 ≠ 1 := by
   intro h
   have := Nat.le_of_dvd two_pos (orderOf_dvd_of_pow_eq_one h)
@@ -322,16 +342,22 @@ theorem geomRoot_sq_ne_one {m : ℕ} (hm : 1 < m) : geomRoot K m ^ 2 ≠ 1 := by
 noncomputable def geomCoeff (m : ℕ) : K :=
   if m = 0 then 1 else (geomRoot K m + (geomRoot K m)⁻¹) / 2
 
-/-- `2 cos(π/m) = ζ + ζ⁻¹`.-/
+/-- `2 cos(π/m) = ζ + ζ⁻¹`.
+@isnad1 id=eq.1h2v.s6.5d1ca5b21bb5 from=translated src=- shape=af9919c0 vocab=8df35b90
+-/
 theorem two_mul_geomCoeff {m : ℕ} (hm : m ≠ 0) :
     2 * geomCoeff K m = geomRoot K m + (geomRoot K m)⁻¹ := by
   simp only [geomCoeff, hm, ↓reduceIte]
   ring
 
-/-- `cos(π/∞) = 1`.-/
+/-- `cos(π/∞) = 1`.
+@isnad1 id=eq.0h1v.s5.741f6d999fdf from=translated src=- shape=77b8cf6a vocab=afaeb36f
+-/
 theorem geomCoeff_zero : geomCoeff K 0 = 1 := by simp [geomCoeff]
 
-/-- `cos(π/1) = -1`.-/
+/-- `cos(π/1) = -1`.
+@isnad1 id=eq.0h1v.s6.b74088532f38 from=translated src=- shape=d31a52ea vocab=9c74e837
+-/
 theorem geomCoeff_one : geomCoeff K 1 = -1 := by
   have h1 : geomRoot K 1 ^ 2 = 1 := by simpa using geomRoot_pow_two_mul K 1
   have h2 : geomRoot K 1 ≠ 1 := by
@@ -358,39 +384,53 @@ noncomputable def geomForm (i : B) : (B →₀ K) →ₗ[K] K :=
 noncomputable def geomReflection (i : B) : Module.End K (B →₀ K) :=
   LinearMap.id - (M.geomForm K i).smulRight (Finsupp.single i 2)
 
-/-- `B(αᵢ, a αⱼ) = -a cos(π / mᵢⱼ)`.-/
+/-- `B(αᵢ, a αⱼ) = -a cos(π / mᵢⱼ)`.
+@isnad1 id=eq.0h6v.s8.5e6a46c9d6fd from=translated src=- shape=1f80e856 vocab=ca904d46
+-/
 theorem geomForm_single (i j : B) (a : K) :
     M.geomForm K i (Finsupp.single j a) = a * -geomCoeff K (M i j) := by
   simp [geomForm, Finsupp.linearCombination_single]
 
-/-- `B(αᵢ, a αᵢ) = a`.-/
+/-- `B(αᵢ, a αᵢ) = a`.
+@isnad1 id=eq.0h5v.s8.6118a01f780c from=translated src=- shape=485f9126 vocab=a084cc92
+-/
 theorem geomForm_single_self (i : B) (a : K) : M.geomForm K i (Finsupp.single i a) = a := by
   rw [geomForm_single, M.diagonal, geomCoeff_one]
   ring
 
-/-- The defining formula of `σᵢ`.-/
+/-- The defining formula of `σᵢ`.
+@isnad1 id=eq.0h5v.s9.878861d2b5ea from=translated src=- shape=211e6357 vocab=08b9e11a
+-/
 theorem geomReflection_apply (i : B) (v : B →₀ K) :
     M.geomReflection K i v = v - M.geomForm K i v • Finsupp.single i 2 := rfl
 
-/-- `σᵢ` fixes the hyperplane `B(αᵢ, -) = 0`.-/
+/-- `σᵢ` fixes the hyperplane `B(αᵢ, -) = 0`.
+@isnad1 id=eq.1h5v.s9.8e1a46c0374f from=translated src=- shape=65a6653f vocab=2d61a9e2
+-/
 theorem geomReflection_of_geomForm_eq_zero {i : B} {v : B →₀ K} (h : M.geomForm K i v = 0) :
     M.geomReflection K i v = v := by
   rw [geomReflection_apply, h, zero_smul, sub_zero]
 
-/-- `σᵢ αⱼ = αⱼ + 2 cos(π / mᵢⱼ) αᵢ`.-/
+/-- `σᵢ αⱼ = αⱼ + 2 cos(π / mᵢⱼ) αᵢ`.
+@isnad1 id=eq.0h5v.s9.f7da541ddad6 from=translated src=- shape=0f12b26f vocab=e44509dc
+-/
 theorem geomReflection_single (i j : B) :
     M.geomReflection K i (Finsupp.single j 1) =
       Finsupp.single j 1 + (2 * geomCoeff K (M i j)) • Finsupp.single i 1 := by
   rw [geomReflection_apply, geomForm_single, ← Finsupp.smul_single_one i (2 : K)]
   module
 
-/-- `σᵢ αᵢ = -αᵢ`.-/
+/-- `σᵢ αᵢ = -αᵢ`.
+@isnad1 id=eq.0h4v.s8.4b0b0171e7d4 from=translated src=- shape=fbdfb60b vocab=21f1e9c4
+-/
 theorem geomReflection_single_self (i : B) :
     M.geomReflection K i (Finsupp.single i 1) = -Finsupp.single i 1 := by
   rw [geomReflection_single, M.diagonal, geomCoeff_one]
   module
 
-/-- `σᵢ² = 1`.-/
+/-- `σᵢ² = 1`.
+@isnad1 id=eq.0h4v.s9.12666ce24b38 from=translated src=- shape=08c3cebf vocab=e712e4c1
+-/
 theorem geomReflection_mul_self (i : B) : M.geomReflection K i * M.geomReflection K i = 1 := by
   refine LinearMap.ext fun v ↦ ?_
   have : M.geomForm K i (M.geomReflection K i v) = -M.geomForm K i v := by
@@ -400,17 +440,23 @@ theorem geomReflection_mul_self (i : B) : M.geomReflection K i * M.geomReflectio
     M.geomReflection_apply K i (M.geomReflection K i v), this, geomReflection_apply]
   module
 
-/-- The formula `σᵢ v = v - 2 B(αᵢ, v) αᵢ`.-/
+/-- The formula `σᵢ v = v - 2 B(αᵢ, v) αᵢ`.
+@isnad1 id=eq.0h5v.s9.046be878b2d4 from=translated src=- shape=25c3eab1 vocab=fdc1e84c
+-/
 theorem geomReflection_apply' (i : B) (v : B →₀ K) :
     M.geomReflection K i v = v - (2 * M.geomForm K i v) • Finsupp.single i 1 := by
   rw [geomReflection_apply, ← Finsupp.smul_single_one i (2 : K), smul_smul, mul_comm]
 
-/-- `B(αⱼ, αᵢ) = -cos(π / mᵢⱼ)`.-/
+/-- `B(αⱼ, αᵢ) = -cos(π / mᵢⱼ)`.
+@isnad1 id=eq.0h5v.s8.ed595a6f1317 from=translated src=- shape=c950ad6e vocab=4a33fd82
+-/
 theorem geomForm_single_one_of_symm (i j : B) :
     M.geomForm K j (Finsupp.single i 1) = -geomCoeff K (M i j) := by
   rw [geomForm_single, one_mul, M.symmetric j i]
 
-/-- The reflections `σᵢ` satisfy the Coxeter relations `(σᵢ σⱼ)^{mᵢⱼ} = 1`.-/
+/-- The reflections `σᵢ` satisfy the Coxeter relations `(σᵢ σⱼ)^{mᵢⱼ} = 1`.
+@isnad1 id=isliftab.0h3v.s7.2ab906523294 from=translated src=- shape=f39ee324 vocab=822de728
+-/
 theorem isLiftable_geomReflection : M.IsLiftable (M.geomReflection K) := by
   intro i j
   by_cases hij : i = j
@@ -425,7 +471,9 @@ theorem isLiftable_geomReflection : M.IsLiftable (M.geomReflection K) := by
     (M.geomForm_single_self K j 1) (geomRoot_ne_zero K _) (two_mul_geomCoeff K hm0)
     (geomRoot_sq_ne_one K hm) (geomRoot_pow_two_mul K _)
 
-/-- For `i ≠ j` and `0 < k` with `k < mᵢⱼ` or `mᵢⱼ = ∞`, `(σᵢ σⱼ)^k` does not fix `αᵢ`.-/
+/-- For `i ≠ j` and `0 < k` with `k < mᵢⱼ` or `mᵢⱼ = ∞`, `(σᵢ σⱼ)^k` does not fix `αᵢ`.
+@isnad1 id=ne.3h6v.s10.29be5a61728e from=translated src=- shape=18965f4a vocab=3678d0a4
+-/
 theorem geomReflection_mul_pow_apply_ne {i j : B} (hij : i ≠ j) {k : ℕ} (hk0 : 0 < k)
     (hk : M i j = 0 ∨ k < M i j) :
     ((M.geomReflection K i * M.geomReflection K j) ^ k) (Finsupp.single i 1) ≠
@@ -456,7 +504,9 @@ usual geometric representation.-/
 noncomputable def geometricRepresentation : W →* Module.End K (B →₀ K) :=
   cs.lift ⟨M.geomReflection K, M.isLiftable_geomReflection K⟩
 
-/-- The geometric representation maps `sᵢ` to `σᵢ`.-/
+/-- The geometric representation maps `sᵢ` to `σᵢ`.
+@isnad1 id=eq.0h6v.s9.43fd1a973180 from=translated src=- shape=f48cefc3 vocab=c64ae987
+-/
 theorem geometricRepresentation_simple (i : B) :
     cs.geometricRepresentation K (cs.simple i) = M.geomReflection K i :=
   cs.lift_apply_simple _ i
@@ -464,7 +514,9 @@ theorem geometricRepresentation_simple (i : B) :
 omit K
 
 /-- The order of `sᵢ sⱼ` is exactly `mᵢⱼ` (with `orderOf = 0` meaning infinite order, matching
-the convention `mᵢⱼ = 0` for `mᵢⱼ = ∞`) ([HumC] §5.3–5.4, [Bou] Ch. V §4.3, Prop. 4).-/
+the convention `mᵢⱼ = 0` for `mᵢⱼ = ∞`) ([HumC] §5.3–5.4, [Bou] Ch. V §4.3, Prop. 4).
+@isnad1 id=eq.0h6v.s6.a65996360dd0 from=translated src=- shape=dec2b286 vocab=8dcc1d84
+-/
 theorem orderOf_simple_mul_simple (i j : B) : orderOf (cs.simple i * cs.simple j) = M i j := by
   by_cases hij : i = j
   · subst hij
@@ -484,7 +536,9 @@ theorem orderOf_simple_mul_simple (i j : B) : orderOf (cs.simple i * cs.simple j
   · rw [orderOf_eq_iff (Nat.pos_of_ne_zero hm0)]
     exact ⟨cs.simple_mul_simple_pow i j, fun k hk hk0 ↦ key k hk0 (.inr hk)⟩
 
-/-- The simple reflections are pairwise distinct.-/
+/-- The simple reflections are pairwise distinct.
+@isnad1 id=injectiv.0h4v.s4.f8e3b20726ac from=translated src=- shape=86422749 vocab=7220a463
+-/
 theorem simple_injective : Function.Injective cs.simple := by
   intro i j h
   by_contra hij
@@ -517,7 +571,9 @@ private theorem nodup_take_leftInvSeq_alternatingWord (a b : B) {k : ℕ}
     omega
 
 /-- Alternating words `⋯ sᵢ sⱼ` of length at most `mᵢⱼ` are reduced (a standard consequence of
-the fact that `sᵢ sⱼ` has order `mᵢⱼ`, cf. [HumC] §5.3 Prop.).-/
+the fact that `sᵢ sⱼ` has order `mᵢⱼ`, cf. [HumC] §5.3 Prop.).
+@isnad1 id=isreduce.1h7v.s5.29b355e265ac from=translated src=- shape=02dbfbb8 vocab=d68e2b6e
+-/
 theorem isReduced_alternatingWord (i j : B) {k : ℕ} (hk : M i j = 0 ∨ k ≤ M i j) :
     cs.IsReduced (alternatingWord i j k) := by
   rcases Nat.eq_zero_or_pos k with rfl | hk0
@@ -533,7 +589,9 @@ theorem isReduced_alternatingWord (i j : B) {k : ℕ} (hk : M i j = 0 ∨ k ≤ 
     rw [← this, leftInvSeq_take]
     exact cs.nodup_take_leftInvSeq_alternatingWord j i (by rwa [M.symmetric j i])
 
-/-- The length of an alternating word of length at most `mᵢⱼ`.-/
+/-- The length of an alternating word of length at most `mᵢⱼ`.
+@isnad1 id=eq.1h7v.s6.fdebc42a78e3 from=translated src=- shape=3eeb8293 vocab=b7320acf
+-/
 theorem length_wordProd_alternatingWord (i j : B) {k : ℕ} (hk : M i j = 0 ∨ k ≤ M i j) :
     cs.length (cs.wordProd (alternatingWord i j k)) = k := by
   rw [(cs.isReduced_alternatingWord i j hk).eq, length_alternatingWord]

@@ -93,15 +93,27 @@ variable {ι X : Type*} [AddCommGroup X] {𝕜 : Type*} [Field 𝕜] {D : Cartan
 /-- The simple reflection `sᵢ v = v - ⟨v, αᵢ^∨⟩ αᵢ` of the space `V` of a path space.-/
 noncomputable def reflection (i : ι) : V ≃ₗ[𝕜] V := Module.reflection (S.coroot_root_self i)
 
+/--
+@isnad1 id=eq.0h8v.s8.ee77d26fe7ac from=translated src=- shape=67be759b vocab=e85e4272
+-/
 lemma reflection_apply (i : ι) (v : V) : S.reflection i v = v - S.coroot i v • S.root i := rfl
 
+/--
+@isnad1 id=eq.0h8v.s8.a8b1ec47a7d1 from=translated src=- shape=8245c524 vocab=dc9887ff
+-/
 @[simp] lemma reflection_reflection (i : ι) (v : V) : S.reflection i (S.reflection i v) = v :=
   Module.involutive_reflection (S.coroot_root_self i) v
 
+/--
+@isnad1 id=eq.0h8v.s8.32d9266f9e84 from=translated src=- shape=37d701f9 vocab=4bc6829d
+-/
 lemma coroot_reflection (i : ι) (v : V) : S.coroot i (S.reflection i v) = -S.coroot i v := by
   rw [reflection_apply, map_sub, map_smul, coroot_root_self, smul_eq_mul]
   ring
 
+/--
+@isnad1 id=eq.0h8v.s8.9228464fd485 from=translated src=- shape=d30917f3 vocab=da82c0d8
+-/
 lemma embed_reflection (i : ι) (x : X) :
     S.embed (D.reflection i x) = S.reflection i (S.embed x) := by
   rw [reflection_apply, D.reflection_apply, map_sub, map_zsmul, S.coroot_embed, root,
@@ -154,6 +166,9 @@ def Chain (p : V) : X → X → Prop :=
 
 variable {L} {i : ι} {p p' : V} {x y : X}
 
+/--
+@isnad1 id=ex.3h10v.s9.9391f640e1e3 from=translated src=- shape=95a3de17 vocab=8dbe82b9
+-/
 lemma exists_int_coroot_reflection {c : Module.Dual 𝕜 V} (hc : ∃ x y, L.Step x y c)
     (hcp : ∃ n : ℤ, c p = n) (hp : ∃ n : ℤ, S.coroot i p = n) :
     ∃ n : ℤ, (c ∘ₗ (S.reflection i : V →ₗ[𝕜] V)) p = n := by
@@ -168,6 +183,9 @@ lemma exists_int_coroot_reflection {c : Module.Dual 𝕜 V} (hc : ∃ x y, L.Ste
   push_cast
   ring
 
+/--
+@isnad1 id=chain.2h11v.s8.bdebe3d01627 from=translated src=- shape=f34647af vocab=1f49e9b0
+-/
 lemma Chain.mono (h : L.Chain p x y)
     (hp : ∀ c x y, L.Step x y c → (∃ n : ℤ, c p = n) → ∃ n : ℤ, c p' = n) : L.Chain p' x y := by
   induction h with
@@ -176,18 +194,25 @@ lemma Chain.mono (h : L.Chain p x y)
     obtain ⟨c, hc, hn⟩ := hyz
     exact ih.tail ⟨c, hc, hp c _ _ hc hn⟩
 
-/-- Translating the position by an element of `X` preserves chains.-/
+/-- Translating the position by an element of `X` preserves chains.
+@isnad1 id=chain.1h11v.s7.56bc0e959f8c from=translated src=- shape=5b932326 vocab=8f9b0aa0
+-/
 lemma Chain.add_embed (h : L.Chain p x y) (μ : X) : L.Chain (p + S.embed μ) x y :=
   h.mono fun c a b hc ⟨n, hn⟩ ↦ by
     obtain ⟨k, hk⟩ := L.exists_int a b c hc μ
     exact ⟨n + k, by rw [map_add, hn, hk]; push_cast; ring⟩
 
+/--
+@isnad1 id=chain.1h11v.s7.e9aeac0fa0b9 from=translated src=- shape=5b932326 vocab=0d502eb1
+-/
 lemma Chain.sub_embed (h : L.Chain p x y) (μ : X) : L.Chain (p - S.embed μ) x y := by
   simpa [sub_eq_add_neg] using h.add_embed (-μ)
 
 /-- A chain along which `⟨·, αᵢ^∨⟩` goes from `≤ 0` to `> 0`, or from `< 0` to `≥ 0`, contains a
 step by `sᵢ`; hence `⟨p, αᵢ^∨⟩` is an integer. This is the path-model form of Deodhar's lemma used
-by Littelmann to show that local minima of `hᵢ` on Lakshmibai–Seshadri paths are integers.-/
+by Littelmann to show that local minima of `hᵢ` on Lakshmibai–Seshadri paths are integers.
+@isnad1 id=ex.2h11v.s8.d726edf62131 from=translated src=- shape=e987c42f vocab=a6a8780d
+-/
 theorem Chain.exists_int (h : L.Chain p x y) :
     (D.coroot i x ≤ 0 ∧ 0 < D.coroot i y) ∨ (D.coroot i x < 0 ∧ 0 ≤ D.coroot i y) →
       ∃ n : ℤ, S.coroot i p = n := by
@@ -216,7 +241,9 @@ theorem Chain.exists_int (h : L.Chain p x y) :
 /-- Reflecting chains at a position `p` with `⟨p, αᵢ^∨⟩ ∈ ℤ`: a chain from `x` to `y` with
 `⟨y, αᵢ^∨⟩ > 0` gives a chain from `sᵢ x` to `sᵢ y` if `⟨x, αᵢ^∨⟩ > 0`, and a chain from `x` to
 `sᵢ y` if `⟨x, αᵢ^∨⟩ ≤ 0`. (Our reconstruction of the corresponding step in [Lit94] §4;
-cf. [Lit95] Lemma 4.3 b) and the proof of Prop. 4.7.)-/
+cf. [Lit95] Lemma 4.3 b) and the proof of Prop. 4.7.)
+@isnad1 id=and.3h11v.s9.f0f9b22359e2 from=translated src=- shape=8a23d52c vocab=0ce0b48d
+-/
 theorem Chain.reflection (hp : ∃ n : ℤ, S.coroot i p = n) (h : L.Chain p x y) :
     x ∈ L.O →
       (0 < D.coroot i x → 0 < D.coroot i y →
@@ -245,7 +272,9 @@ theorem Chain.reflection (hp : ∃ n : ℤ, S.coroot i p = n) (h : L.Chain p x y
       · exact Relation.ReflTransGen.head ⟨c, hc, hcp⟩ (ih₂ hz hy)
 
 /-- If `⟨p, αᵢ^∨⟩ ∉ ℤ`, a chain from `x` to `y` with `⟨x, αᵢ^∨⟩, ⟨y, αᵢ^∨⟩ > 0` stays in the
-region `⟨·, αᵢ^∨⟩ > 0`, so it can be reflected by `sᵢ` step by step.-/
+region `⟨·, αᵢ^∨⟩ > 0`, so it can be reflected by `sᵢ` step by step.
+@isnad1 id=chain.5h12v.s9.076421691023 from=translated src=- shape=8f51d58b vocab=eb73f06c
+-/
 theorem Chain.reflection_of_not_int (hp : ¬ ∃ n : ℤ, S.coroot i p = n)
     (hp' : ∀ c x y, L.Step x y c → (∃ n : ℤ, c p = n) →
       ∃ n : ℤ, (c ∘ₗ (S.reflection i : V →ₗ[𝕜] V)) p' = n)
@@ -292,16 +321,27 @@ def dual : LSData S where
     simp at this
     omega
 
+/--
+@isnad1 id=iff.0h8v.s6.03b460e1785d from=translated src=- shape=c1f79b05 vocab=ceb66b09
+-/
 @[simp] lemma mem_dual_O {x : X} : x ∈ L.dual.O ↔ -x ∈ L.O := Set.mem_neg
 
+/--
+@isnad1 id=iff.0h10v.s7.67c37983596d from=translated src=- shape=f8994b27 vocab=7a9fe364
+-/
 lemma dual_step {x y : X} {c : Module.Dual 𝕜 V} : L.dual.Step x y c ↔ L.Step (-y) (-x) c :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.0h7v.s6.9039ead62838 from=translated src=- shape=1507590a vocab=ed5f8958
+-/
 @[simp] lemma dual_dual : L.dual.dual = L := by
   cases L
   simp only [dual, neg_neg]
 
-/-- A chain from `x` to `y` gives a chain for the dual data from `-y` to `-x`.-/
+/-- A chain from `x` to `y` gives a chain for the dual data from `-y` to `-x`.
+@isnad1 id=chain.1h10v.s7.9782c753fc1e from=translated src=- shape=a48795b5 vocab=1894c280
+-/
 lemma Chain.dual {p : V} {x y : X} (h : L.Chain p x y) : L.dual.Chain p (-y) (-x) := by
   induction h with
   | refl => exact .refl
@@ -332,18 +372,27 @@ def HasLeftDir (η : LittelmannPath S) (t : 𝕜) (x : X) : Prop :=
 variable {η η' : LittelmannPath S} {t : 𝕜} {x y : X} {i : ι}
 
 omit [IsStrictOrderedRing 𝕜] [OrderTopology 𝕜] in
+/--
+@isnad1 id=ex.1h10v.s8.c528315200d4 from=translated src=- shape=df2bc3da vocab=9cc53f90
+-/
 lemma HasRightDir.pairing (h : η.HasRightDir t x) :
     ∃ δ > 0, ∀ s ∈ Icc t (t + δ), η.pairing i s = η.pairing i t + (s - t) * D.coroot i x := by
   obtain ⟨δ, hδ, h⟩ := h
   exact ⟨δ, hδ, fun s hs ↦ by simp [LittelmannPath.pairing, h s hs, S.coroot_embed]⟩
 
 omit [IsStrictOrderedRing 𝕜] [OrderTopology 𝕜] in
+/--
+@isnad1 id=ex.1h10v.s8.cfa3af9a65a8 from=translated src=- shape=ff17f303 vocab=9462d1e1
+-/
 lemma HasLeftDir.pairing (h : η.HasLeftDir t x) :
     ∃ δ > 0, ∀ s ∈ Icc (t - δ) t, η.pairing i s = η.pairing i t + (s - t) * D.coroot i x := by
   obtain ⟨δ, hδ, h⟩ := h
   exact ⟨δ, hδ, fun s hs ↦ by simp [LittelmannPath.pairing, h s hs, S.coroot_embed]⟩
 
 omit [OrderTopology 𝕜] in
+/--
+@isnad1 id=eq.2h10v.s7.3155ad53a64a from=translated src=- shape=eb838fdb vocab=93e92cdc
+-/
 lemma HasRightDir.unique (h : η.HasRightDir t x) (h' : η.HasRightDir t y) : x = y := by
   obtain ⟨δ, hδ, h⟩ := h
   obtain ⟨δ', hδ', h'⟩ := h'
@@ -355,6 +404,9 @@ lemma HasRightDir.unique (h : η.HasRightDir t x) (h' : η.HasRightDir t y) : x 
   exact S.embed_injective (smul_right_injective V hm.ne' this)
 
 omit [OrderTopology 𝕜] in
+/--
+@isnad1 id=eq.2h10v.s7.a3f34919348c from=translated src=- shape=eb838fdb vocab=1cca3ec5
+-/
 lemma HasLeftDir.unique (h : η.HasLeftDir t x) (h' : η.HasLeftDir t y) : x = y := by
   obtain ⟨δ, hδ, h⟩ := h
   obtain ⟨δ', hδ', h'⟩ := h'
@@ -367,7 +419,9 @@ lemma HasLeftDir.unique (h : η.HasLeftDir t x) (h' : η.HasLeftDir t y) : x = y
 
 omit [OrderTopology 𝕜] in
 /-- If `η'` is obtained from `η` near the right of `t` by an affine map whose linear part maps
-`x` to `x'`, then `η'` has direction `x'` there.-/
+`x` to `x'`, then `η'` has direction `x'` there.
+@isnad1 id=hasright.4h14v.s9.1198e74cf225 from=translated src=- shape=3ce52c31 vocab=64e6a7e3
+-/
 lemma HasRightDir.of_eq (h : η.HasRightDir t x) {ε : 𝕜} (hε : 0 < ε) (A : V →ₗ[𝕜] V) (v : V)
     (hA : ∀ s ∈ Icc t (t + ε), η' s = A (η s) + v) {x' : X} (hx' : A (S.embed x) = S.embed x') :
     η'.HasRightDir t x' := by
@@ -379,6 +433,9 @@ lemma HasRightDir.of_eq (h : η.HasRightDir t x) {ε : 𝕜} (hε : 0 < ε) (A :
   abel
 
 omit [OrderTopology 𝕜] in
+/--
+@isnad1 id=hasleftd.4h14v.s9.5e794e8e7cb0 from=translated src=- shape=c869db83 vocab=79181075
+-/
 lemma HasLeftDir.of_eq (h : η.HasLeftDir t x) {ε : 𝕜} (hε : 0 < ε) (A : V →ₗ[𝕜] V) (v : V)
     (hA : ∀ s ∈ Icc (t - ε) t, η' s = A (η s) + v) {x' : X} (hx' : A (S.embed x) = S.embed x') :
     η'.HasLeftDir t x' := by
@@ -392,7 +449,9 @@ lemma HasLeftDir.of_eq (h : η.HasLeftDir t x) {ε : 𝕜} (hε : 0 < ε) (A : V
   abel
 
 omit [OrderTopology 𝕜] in
-/-- If `hᵢ > hᵢ(t)` just to the right of `t`, the right direction `y` has `⟨y, αᵢ^∨⟩ > 0`.-/
+/-- If `hᵢ > hᵢ(t)` just to the right of `t`, the right direction `y` has `⟨y, αᵢ^∨⟩ > 0`.
+@isnad1 id=lt.3h11v.s8.bff94641c630 from=translated src=- shape=2a0576af vocab=db222c66
+-/
 lemma HasRightDir.coroot_pos (h : η.HasRightDir t y) {ε : 𝕜} (hε : 0 < ε)
     (hlt : ∀ s ∈ Ioc t (t + ε), η.pairing i t < η.pairing i s) : 0 < D.coroot i y := by
   obtain ⟨δ, hδ, h⟩ := h.pairing (i := i)
@@ -404,7 +463,9 @@ lemma HasRightDir.coroot_pos (h : η.HasRightDir t y) {ε : 𝕜} (hε : 0 < ε)
   exact_mod_cast this
 
 omit [OrderTopology 𝕜] in
-/-- If `hᵢ ≥ hᵢ(t)` just to the right of `t`, then `⟨y, αᵢ^∨⟩ ≥ 0`.-/
+/-- If `hᵢ ≥ hᵢ(t)` just to the right of `t`, then `⟨y, αᵢ^∨⟩ ≥ 0`.
+@isnad1 id=le.3h11v.s8.1b2d63a21caf from=translated src=- shape=5c06d6b1 vocab=fa501adb
+-/
 lemma HasRightDir.coroot_nonneg (h : η.HasRightDir t y) {ε : 𝕜} (hε : 0 < ε)
     (hle : ∀ s ∈ Ioc t (t + ε), η.pairing i t ≤ η.pairing i s) : 0 ≤ D.coroot i y := by
   obtain ⟨δ, hδ, h⟩ := h.pairing (i := i)
@@ -416,7 +477,9 @@ lemma HasRightDir.coroot_nonneg (h : η.HasRightDir t y) {ε : 𝕜} (hε : 0 < 
   exact_mod_cast this
 
 omit [OrderTopology 𝕜] in
-/-- If `hᵢ ≥ hᵢ(t)` just to the left of `t`, the left direction `x` has `⟨x, αᵢ^∨⟩ ≤ 0`.-/
+/-- If `hᵢ ≥ hᵢ(t)` just to the left of `t`, the left direction `x` has `⟨x, αᵢ^∨⟩ ≤ 0`.
+@isnad1 id=le.3h11v.s8.624998c6aff1 from=translated src=- shape=ac837897 vocab=776b5ad5
+-/
 lemma HasLeftDir.coroot_nonpos (h : η.HasLeftDir t x) {ε : 𝕜} (hε : 0 < ε)
     (hle : ∀ s ∈ Ico (t - ε) t, η.pairing i t ≤ η.pairing i s) : D.coroot i x ≤ 0 := by
   obtain ⟨δ, hδ, h⟩ := h.pairing (i := i)
@@ -430,7 +493,9 @@ lemma HasLeftDir.coroot_nonpos (h : η.HasLeftDir t x) {ε : 𝕜} (hε : 0 < ε
   exact_mod_cast this
 
 omit [OrderTopology 𝕜] in
-/-- If `hᵢ < hᵢ(t)` just to the left of `t`, then `⟨x, αᵢ^∨⟩ > 0`.-/
+/-- If `hᵢ < hᵢ(t)` just to the left of `t`, then `⟨x, αᵢ^∨⟩ > 0`.
+@isnad1 id=lt.3h11v.s8.f54a763465a6 from=translated src=- shape=76b00a25 vocab=be5e9a29
+-/
 lemma HasLeftDir.coroot_pos (h : η.HasLeftDir t x) {ε : 𝕜} (hε : 0 < ε)
     (hlt : ∀ s ∈ Ico (t - ε) t, η.pairing i s < η.pairing i t) : 0 < D.coroot i x := by
   obtain ⟨δ, hδ, h⟩ := h.pairing (i := i)
@@ -443,6 +508,9 @@ lemma HasLeftDir.coroot_pos (h : η.HasLeftDir t x) {ε : 𝕜} (hε : 0 < ε)
 
 /-! ### Time reversal -/
 
+/--
+@isnad1 id=hasright.1h9v.s7.78b0290d0655 from=translated src=- shape=1783cd50 vocab=e1846568
+-/
 lemma HasLeftDir.rev (h : η.HasLeftDir t x) : η.rev.HasRightDir (1 - t) (-x) := by
   obtain ⟨δ, hδ, h⟩ := h
   refine ⟨δ, hδ, fun s hs ↦ ?_⟩
@@ -450,6 +518,9 @@ lemma HasLeftDir.rev (h : η.HasLeftDir t x) : η.rev.HasRightDir (1 - t) (-x) :
     map_neg]
   module
 
+/--
+@isnad1 id=hasleftd.1h9v.s7.c1a74ca66454 from=translated src=- shape=1783cd50 vocab=e1846568
+-/
 lemma HasRightDir.rev (h : η.HasRightDir t x) : η.rev.HasLeftDir (1 - t) (-x) := by
   obtain ⟨δ, hδ, h⟩ := h
   refine ⟨δ, hδ, fun s hs ↦ ?_⟩
@@ -465,7 +536,9 @@ variable {𝕜 : Type*} [Field 𝕜] [ConditionallyCompleteLinearOrder 𝕜] [Is
   {V : Type*} [AddCommGroup V] [Module 𝕜 V]
 
 omit [IsStrictOrderedRing 𝕜] in
-/-- Real induction on `[0, 1]`.-/
+/-- Real induction on `[0, 1]`.
+@isnad1 id=var.2h5v.s8.624d75a65d45 from=translated src=- shape=a5e8884c vocab=1eeb32a7
+-/
 lemma induction_Icc {P : 𝕜 → Prop} (h0 : P 0)
     (hright : ∀ t ∈ Ico (0 : 𝕜) 1, (∀ s ∈ Icc 0 t, P s) → ∃ t' > t, ∀ s ∈ Icc t t', P s)
     (hleft : ∀ t ∈ Ioc (0 : 𝕜) 1, (∀ s ∈ Ico 0 t, P s) → P t) :
@@ -543,7 +616,9 @@ structure IsLS (L : LSData S) (η : LittelmannPath S) : Prop where
 
 variable {L : LSData S} {η : LittelmannPath S} {i : ι}
 
-/-- Time reversal maps Lakshmibai–Seshadri paths for `L` to those for the dual data.-/
+/-- Time reversal maps Lakshmibai–Seshadri paths for `L` to those for the dual data.
+@isnad1 id=isls.1h8v.s7.68b1e7d7f830 from=translated src=- shape=79937136 vocab=f648ab05
+-/
 theorem IsLS.rev (h : IsLS L η) : IsLS L.dual η.rev where
   right t ht := by
     obtain ⟨x, hx, hx'⟩ := h.left (1 - t) ⟨by linarith [ht.2], by linarith [ht.1]⟩
@@ -561,7 +636,9 @@ theorem IsLS.rev (h : IsLS L η) : IsLS L.dual η.rev where
     exact this.sub_embed _
 
 omit [Field 𝕜] [IsStrictOrderedRing 𝕜] in
-/-- A continuous function on `[a, b]` has a last minimizer.-/
+/-- A continuous function on `[a, b]` has a last minimizer.
+@isnad1 id=ex.2h4v.s7.68404394276f from=translated src=- shape=44c19718 vocab=99b6b5e1
+-/
 lemma exists_last_minimizer {g : 𝕜 → 𝕜} (hg : Continuous g) {a b : 𝕜} (hab : a ≤ b) :
     ∃ w ∈ Icc a b, (∀ s ∈ Icc a b, g w ≤ g s) ∧ ∀ s ∈ Ioc w b, g w < g s := by
   obtain ⟨u, hu, hu'⟩ := exists_eq_sInf_image_Icc hg hab
@@ -580,7 +657,9 @@ lemma exists_last_minimizer {g : 𝕜 → 𝕜} (hg : Continuous g) {a b : 𝕜}
 
 omit [OrderTopology 𝕜] in
 /-- On a Lakshmibai–Seshadri path, a strict local minimum from the right (weak from the left) of
-`hᵢ` at a time `w ∈ (0,1)` is attained at an integer value ([Lit95] Lemma 4.5(d)).-/
+`hᵢ` at a time `w ∈ (0,1)` is attained at an integer value ([Lit95] Lemma 4.5(d)).
+@isnad1 id=ex.6h12v.s8.60ae8c8b494b from=translated src=- shape=22aeefb9 vocab=620f716b
+-/
 theorem IsLS.exists_int_of_isMin (hη : IsLS L η) {a b w : 𝕜} (hw : w ∈ Ioo (0 : 𝕜) 1)
     (haw : a < w) (hwb : w < b) (hmin : ∀ s ∈ Icc a b, η.pairing i w ≤ η.pairing i s)
     (hlt : ∀ s ∈ Ioc w b, η.pairing i w < η.pairing i s) : ∃ n : ℤ, η.pairing i w = n := by
@@ -592,7 +671,9 @@ theorem IsLS.exists_int_of_isMin (hη : IsLS L η) {a b w : 𝕜} (hw : w ∈ Io
     hlt s ⟨hs.1, by linarith [hs.2]⟩
   exact (hη.chain w hw x y hx hy).exists_int (Or.inl ⟨hx', hy'⟩)
 
-/-- The minimum `mᵢ` of `hᵢ` on a Lakshmibai–Seshadri path is an integer.-/
+/-- The minimum `mᵢ` of `hᵢ` on a Lakshmibai–Seshadri path is an integer.
+@isnad1 id=ex.1h9v.s7.f32c447fded4 from=translated src=- shape=a4bcd66a vocab=da384930
+-/
 theorem IsLS.exists_int_minPairing (hη : IsLS L η) (i : ι) :
     ∃ n : ℤ, η.minPairing i = n := by
   obtain ⟨w, hw, hmin, hlt⟩ := exists_last_minimizer (η.continuous_pairing i)
@@ -609,7 +690,9 @@ theorem IsLS.exists_int_minPairing (hη : IsLS L η) (i : ι) :
 /-- The shape of `hᵢ` on a Lakshmibai–Seshadri path with `fᵢ η ≠ 0` ([Lit94] §4, [Lit95]
 Prop. 4.7; reconstructed): with `m = mᵢ`, let `p` be the last time with `hᵢ(p) = m` and `q > p` the
 first time with `hᵢ(q) = m + 1`. Then `hᵢ` is strictly increasing on `[p, q]` and `hᵢ ≥ m + 1` on
-`[q, 1]`; this uses that local minima of `hᵢ` are integers.-/
+`[q, 1]`; this uses that local minima of `hᵢ` are integers.
+@isnad1 id=ex.2h9v.s9.e618b5bb1be2 from=translated src=- shape=a517bea0 vocab=9555339b
+-/
 theorem IsLS.exists_f_times (hη : IsLS L η) (i : ι)
     (h1 : η.minPairing i + 1 ≤ η.pairing i 1) :
     ∃ p q : 𝕜, 0 ≤ p ∧ p < q ∧ q ≤ 1 ∧ η.pairing i p = η.minPairing i ∧
@@ -684,7 +767,9 @@ theorem IsLS.exists_f_times (hη : IsLS L η) (i : ι)
 Cor. 2). With `p < q` as in `LittelmannPath.IsLS.exists_f_times`, `fᵢ η` is `η` on `[0, p]`,
 `sᵢ η + mᵢ αᵢ` on `[p, q]` and `η - αᵢ` on `[q, 1]`; the chain conditions at `p`, inside
 `(p, q)` and at `q` are provided by `LSData.Chain.reflection`,
-`LSData.Chain.reflection_of_not_int` and `LSData.step_simple`. (Our reconstruction.)-/
+`LSData.Chain.reflection_of_not_int` and `LSData.step_simple`. (Our reconstruction.)
+@isnad1 id=isls.2h10v.s8.8695b14aa99a from=translated src=- shape=b0372438 vocab=3d9031cb
+-/
 theorem IsLS.f (hη : IsLS L η) {η' : LittelmannPath S} (hf : LittelmannPath.f i η = some η') :
     IsLS L η' := by
   have h1 : η.minPairing i + 1 ≤ η.pairing i 1 := by
@@ -821,7 +906,9 @@ theorem IsLS.f (hη : IsLS L η) {η' : LittelmannPath S} (hf : LittelmannPath.f
 
 /-- **The root operators `eᵢ` preserve Lakshmibai–Seshadri paths** ([Lit94] §4, [Lit95] §4
 Cor. 2): by time reversal, `eᵢ η = (fᵢ η^∨)^∨`, and time reversal exchanges the data `L` with
-its dual.-/
+its dual.
+@isnad1 id=isls.2h10v.s8.d800cc61b6fc from=translated src=- shape=b0372438 vocab=0acfd512
+-/
 theorem IsLS.e (hη : IsLS L η) {η' : LittelmannPath S} (he : LittelmannPath.e i η = some η') :
     IsLS L η' := by
   have hf : LittelmannPath.f i η.rev = some η'.rev := by rw [f_rev, he, Option.map_some]
@@ -830,7 +917,9 @@ theorem IsLS.e (hη : IsLS L η) {η' : LittelmannPath S} (he : LittelmannPath.e
 
 omit [OrderTopology 𝕜] in
 /-- A linear form bounded by `C` on the directions of a Lakshmibai–Seshadri path is bounded by
-`t C` along the path.-/
+`t C` along the path.
+@isnad1 id=le.3h11v.s9.c285998f06e9 from=translated src=- shape=52138b40 vocab=3b674641
+-/
 theorem IsLS.le_mul (hη : IsLS L η) (g : V →ₗ[𝕜] 𝕜) {C : 𝕜}
     (hC : ∀ x ∈ L.O, g (S.embed x) ≤ C) : ∀ t ∈ Icc (0 : 𝕜) 1, g (η t) ≤ t * C := by
   refine induction_Icc (by simp) (fun t ht hP ↦ ?_) (fun t ht hP ↦ ?_)
@@ -895,7 +984,9 @@ theorem IsLS.eq_straightLine (hη : IsLS L η) {μ : X}
   refine ext_of_eqOn fun t ht ↦ ?_
   rw [key t ht, straightLine_apply, min_eq_right ht.2, max_eq_right ht.1]
 
-/-- The straight line path `π_λ` is a Lakshmibai–Seshadri path if `λ ∈ O`.-/
+/-- The straight line path `π_λ` is a Lakshmibai–Seshadri path if `λ ∈ O`.
+@isnad1 id=isls.1h8v.s7.af59a181b5c2 from=translated src=- shape=32cc7731 vocab=80afee88
+-/
 theorem isLS_straightLine {μ : X} (hμ : μ ∈ L.O) : IsLS L (straightLine S μ) := by
   have hR : ∀ t ∈ Ico (0 : 𝕜) 1, (straightLine S μ).HasRightDir t μ := fun t ht ↦
     ⟨1 - t, by linarith [ht.2], fun s hs ↦ by
@@ -923,7 +1014,9 @@ variable {ι X : Type*} [AddCommGroup X] {𝕜 : Type*} [Field 𝕜] [Conditiona
   {D : CartanDatum ι X} {V : Type*} [AddCommGroup V] [Module 𝕜 V] {S : D.PathSpace 𝕜 V}
   (L : LSData S)
 
-/-- The Lakshmibai–Seshadri paths for `L` form a subcrystal of the crystal of all paths.-/
+/-- The Lakshmibai–Seshadri paths for `L` form a subcrystal of the crystal of all paths.
+@isnad1 id=isstable.0h7v.s7.45ec1d196ca4 from=translated src=- shape=b2cef356 vocab=ae16ca3f
+-/
 theorem isStable_setOf_isLS : (crystal S).IsStable {η | IsLS L η} :=
   ⟨fun _ _ _ hη he ↦ IsLS.e hη he, fun _ _ _ hη hf ↦ IsLS.f hη hf⟩
 
@@ -938,7 +1031,9 @@ Proof: `B(π_λ)` consists of LS paths (`LittelmannPath.IsLS.e`, `LittelmannPath
 path `η` with all `eᵢ η = 0` has integral minima `mᵢ > -1`, so `mᵢ = 0`: it lies in the dominant
 chamber, hence equals `π_λ` (`LittelmannPath.IsLS.eq_straightLine`). Since `g(λ) - g(wt η)` is a
 nonnegative integer on `B(π_λ)` (`LittelmannPath.IsLS.le_mul`) which drops by one under each
-`eᵢ`, every `η ∈ B(π_λ)` is `fᵢ η'` for some `η'` closer to `π_λ`, unless `η = π_λ`.-/
+`eᵢ`, every `η ∈ B(π_λ)` is `fᵢ η'` for some `η'` closer to `π_λ`, unless `η = π_λ`.
+@isnad1 id=and.5h9v.s10.5e177afd35e1 from=translated src=- shape=1d9c1d71 vocab=39fa1fd2
+-/
 theorem component_straightLine_eq_fOrbit {μ : X} (hμ : μ ∈ L.O)
     (hdom : ∀ x ∈ L.O, (∀ i, 0 ≤ D.coroot i x) → x = μ) (hmin : ∀ y c, ¬ L.Step μ y c)
     (g : V →ₗ[𝕜] 𝕜) (hg : ∀ i, g (S.root i) = 1)

@@ -58,6 +58,9 @@ include hq0 hq
 /-! ### The operator `Ψ_{p,r}` -/
 
 omit hq0 hq in
+/--
+@isnad1 id=eq.3h5v.s6.6a5ae253492b from=translated src=- shape=3098d027 vocab=65971565
+-/
 lemma qBinomial_mul_qBinomial_eq' {a kk u : ℕ} (hka : kk ≤ a) (hu : u ≤ kk)
     (hf : ∀ n, qFactorial q n ≠ 0) :
     qBinomial q a kk * qBinomial q kk u = qBinomial q a u * qBinomial q (a - u) (kk - u) := by
@@ -72,7 +75,9 @@ lemma qBinomial_mul_qBinomial_eq' {a kk u : ℕ} (hka : kk ≤ a) (hu : u ≤ kk
   linear_combination (qBinomial q a kk * qFactorial q (a - kk)) * h2 + h1 -
     (qBinomial q a u * qFactorial q u) * h4 - h3
 
-/-- `[a, k] [k, u] = [a, u] [a - u, k - u]` for `u ≤ k`.-/
+/-- `[a, k] [k, u] = [a, u] [a - u, k - u]` for `u ≤ k`.
+@isnad1 id=eq.3h5v.s7.e0b43e1b5ce3 from=translated src=- shape=6ba2bc44 vocab=3e15718c
+-/
 lemma qBinomial_mul_qBinomial_eq {a kk u : ℕ} (hu : u ≤ kk) :
     qBinomial q a kk * qBinomial q kk u = qBinomial q a u * qBinomial q (a - u) (kk - u) := by
   rcases le_or_gt kk a with hka | hka
@@ -83,19 +88,27 @@ lemma qBinomial_mul_qBinomial_eq {a kk u : ℕ} (hu : u ≤ kk) :
     · rw [qBinomial_eq_zero_of_lt q hka, qBinomial_eq_zero_of_lt q hua, zero_mul, zero_mul]
 
 omit hq0 hq in
+/--
+@isnad1 id=eq.1h3v.s7.4f4f2f8d5623 from=translated src=- shape=eb4076fd vocab=90e5a5f2
+-/
 lemma neg_one_pow_sub {r u : ℕ} (h : u ≤ r) : (-1 : k) ^ (r - u) = (-1) ^ r * (-1) ^ u := by
   obtain ⟨d, rfl⟩ := Nat.exists_eq_add_of_le h
   rw [Nat.add_sub_cancel_left, pow_add, mul_comm ((-1 : k) ^ u), mul_assoc, ← pow_add,
     ← two_mul, pow_mul, neg_one_sq, one_pow, mul_one]
 
 omit hq in
+/--
+@isnad1 id=eq.2h4v.s7.190a1c5eb3fc from=translated src=- shape=72e072c7 vocab=497e8d54
+-/
 lemma inv_pow_sub {r u : ℕ} (h : u ≤ r) : q⁻¹ ^ (r - u) = q⁻¹ ^ r * q ^ u := by
   obtain ⟨d, rfl⟩ := Nat.exists_eq_add_of_le h
   have := pow_ne_zero u hq0
   simp only [Nat.add_sub_cancel_left, pow_add, inv_pow]
   field_simp
 
-/-- The coefficient identity behind `T_eq_psi_of_mem`.-/
+/-- The coefficient identity behind `T_eq_psi_of_mem`.
+@isnad1 id=eq.4h5v.s9.daa5272c1914 from=translated src=- shape=cfcd1016 vocab=8bbf2861
+-/
 lemma psi_coeff {p r kk : ℕ} (hk : kk ≤ r) (hh : r ≤ p + kk) :
     (-1) ^ p * q ^ p * ∑ s ∈ range (r + 1), (if s ≤ p then (-1) ^ s * q⁻¹ ^ s else 0) *
       (qBinomial q (p - s + kk) (p - s) * qBinomial q kk (r - s)) =
@@ -147,13 +160,18 @@ noncomputable def psi (p r : ℕ) : Module.End k M :=
   ∑ s ∈ range (r + 1), (if s ≤ p then (-1) ^ s * q⁻¹ ^ s else 0) • (V.dE (r - s) * V.dF (p - s))
 
 omit hq0 hq in
+/--
+@isnad1 id=eq.0h7v.s8.f88527360bb6 from=translated src=- shape=be1031c4 vocab=0ab59384
+-/
 lemma psi_apply (p r : ℕ) (w : M) : V.psi p r w = ∑ s ∈ range (r + 1),
     (if s ≤ p then (-1) ^ s * q⁻¹ ^ s else 0) • V.dE (r - s) (V.dF (p - s) w) := by
   rw [psi, LinearMap.sum_apply]
   rfl
 
 /-- `T''_q(w) = (-1)^p q^p Ψ_{p,r}(w)` for `w ∈ M^{p-r}` in the span of the vectors `F^{(k)} ζ`,
-`ζ` primitive, `k ≤ r`.-/
+`ζ` primitive, `k ≤ r`.
+@isnad1 id=eq.3h7v.s8.c53a6887ba65 from=translated src=- shape=585e29cb vocab=668c8711
+-/
 theorem T_eq_psi_of_mem {p r : ℕ} {w : M} (hw : w ∈ V.stringsLT ((p : ℤ) - r) (r + 1)) :
     V.T q w = ((-1) ^ p * q ^ p) • V.psi p r w := by
   induction hw using Submodule.span_induction with

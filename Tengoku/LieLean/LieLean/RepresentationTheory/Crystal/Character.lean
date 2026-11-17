@@ -45,13 +45,17 @@ noncomputable def character [Fintype B] (C : Crystal D B) : AddMonoidAlgebra ℤ
 
 variable [Fintype B] (C : Crystal D B)
 
-/-- The coefficient of `e^μ` in `ch B` is the number of elements of `B` of weight `μ`.-/
+/-- The coefficient of `e^μ` in `ch B` is the number of elements of `B` of weight `μ`.
+@isnad1 id=eq.0h6v.s6.33d0d1b378d2 from=translated src=- shape=384153dd vocab=3ce359ff
+-/
 theorem coeff_character (μ : X) : C.character.coeff μ = Nat.card {b // C.wt b = μ} := by
   classical
   simp only [character, coeff_sum, coeff_single, Finsupp.finsetSum_apply, Finsupp.single_apply]
   rw [Finset.sum_boole, Nat.card_eq_fintype_card, Fintype.card_subtype]
 
-/-- Isomorphic finite crystals have the same character.-/
+/-- Isomorphic finite crystals have the same character.
+@isnad1 id=eq.0h8v.s6.2eb8cf25c1cb from=translated src=- shape=0cde95cd vocab=6b349009
+-/
 theorem Equiv.character_eq [Fintype B₁] [Fintype B₂] {C₁ : Crystal D B₁} {C₂ : Crystal D B₂}
     (ψ : Equiv C₁ C₂) : C₁.character = C₂.character := by
   simp only [character]

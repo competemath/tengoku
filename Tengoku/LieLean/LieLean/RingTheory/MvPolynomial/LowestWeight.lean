@@ -48,7 +48,9 @@ variable {σ R : Type*} [CommSemiring R]
 section Derivation
 
 /-- A derivation of a polynomial ring in finitely many variables is determined by its values
-on the variables: `D p = ∑ᵢ ∂ᵢ p · D (Xᵢ)`.-/
+on the variables: `D p = ∑ᵢ ∂ᵢ p · D (Xᵢ)`.
+@isnad1 id=eq.0h4v.s9.cc0e2e7c2d7a from=translated src=- shape=d781f5a6 vocab=b9bcfe43
+-/
 theorem derivation_eq_sum_pderiv [Fintype σ]
     (D : Derivation R (MvPolynomial σ R) (MvPolynomial σ R)) (p : MvPolynomial σ R) :
     D p = ∑ i, pderiv i p * D (X i) := by
@@ -71,7 +73,9 @@ section LowWeight
 variable (w : σ → ℕ)
 
 /-- Products of polynomials of weight at least `a` and at least `b` have weight at least
-`a + b`.-/
+`a + b`.
+@isnad1 id=eq.3h8v.s8.beb20233ce58 from=translated src=- shape=4462d354 vocab=42ae20d8
+-/
 theorem coeff_mul_eq_zero_of_lowWeight {a b : ℕ} {p q : MvPolynomial σ R}
     (hp : ∀ d, weight w d < a → p.coeff d = 0) (hq : ∀ d, weight w d < b → q.coeff d = 0)
     (d : σ →₀ ℕ) (hd : weight w d < a + b) : (p * q).coeff d = 0 := by
@@ -85,12 +89,16 @@ theorem coeff_mul_eq_zero_of_lowWeight {a b : ℕ} {p q : MvPolynomial σ R}
   · rw [hp _ h, zero_mul]
   · rw [hq _ (by omega), mul_zero]
 
-/-- A weighted homogeneous polynomial of degree `n` has weight at least `n`.-/
+/-- A weighted homogeneous polynomial of degree `n` has weight at least `n`.
+@isnad1 id=eq.2h6v.s7.a49b7ad449fa from=translated src=- shape=b45392d6 vocab=e91dc396
+-/
 theorem IsWeightedHomogeneous.coeff_eq_zero_of_lt {p : MvPolynomial σ R} {n : ℕ}
     (hp : p.IsWeightedHomogeneous w n) (d : σ →₀ ℕ) (hd : weight w d < n) : p.coeff d = 0 :=
   hp.coeff_eq_zero d (Nat.ne_of_lt hd)
 
-/-- Components below the lowest weight vanish.-/
+/-- Components below the lowest weight vanish.
+@isnad1 id=eq.2h6v.s8.79ade86addc3 from=translated src=- shape=ae10e0b2 vocab=dbb9b6ca
+-/
 theorem weightedHomogeneousComponent_eq_zero_of_lowWeight {a n : ℕ} {p : MvPolynomial σ R}
     (hp : ∀ d, weight w d < a → p.coeff d = 0) (hn : n < a) :
     weightedHomogeneousComponent w n p = 0 := by
@@ -107,14 +115,18 @@ section Ring
 
 variable {R : Type*} [CommRing R] (w : σ → ℕ)
 
-/-- Partial derivatives lower the weight by the weight of the variable.-/
+/-- Partial derivatives lower the weight by the weight of the variable.
+@isnad1 id=eq.2h7v.s9.c7f181a9b6b0 from=translated src=- shape=814dbe17 vocab=43c0dead
+-/
 theorem coeff_pderiv_eq_zero_of_lowWeight {a : ℕ} {p : MvPolynomial σ R}
     (hp : ∀ d, weight w d < a → p.coeff d = 0) (i : σ) (d : σ →₀ ℕ)
     (hd : weight w d + w i < a) : (pderiv i p).coeff d = 0 := by
   rw [coeff_pderiv, hp, zero_mul]
   simpa [map_add, weight_single] using hd
 
-/-- Partial derivatives commute with weighted components, shifting the degree.-/
+/-- Partial derivatives commute with weighted components, shifting the degree.
+@isnad1 id=eq.0h6v.s10.4995e0df1653 from=translated src=- shape=6bb71474 vocab=29a09c20
+-/
 theorem weightedHomogeneousComponent_pderiv (i : σ) (n : ℕ) (p : MvPolynomial σ R) :
     weightedHomogeneousComponent w n (pderiv i p) =
       pderiv i (weightedHomogeneousComponent w (n + w i) p) := by
@@ -136,7 +148,9 @@ section Zero
 
 variable (w : σ → ℕ)
 
-/-- Setting every variable of positive weight to zero extracts the weight-zero component.-/
+/-- Setting every variable of positive weight to zero extracts the weight-zero component.
+@isnad1 id=eq.0h4v.s9.b02a9cf8793f from=translated src=- shape=786bfbc5 vocab=1890fd95
+-/
 theorem aeval_weight_zero_eq_weightedHomogeneousComponent [DecidablePred fun i => w i = 0]
     (p : MvPolynomial σ R) :
     aeval (fun i => if w i = 0 then X i else 0) p = weightedHomogeneousComponent w 0 p := by

@@ -32,7 +32,9 @@ No quantum-group structure is used.
 namespace Module.End
 
 /-- Multiplying distinct powers of a nonzero scalar of infinite multiplicative order
-by a nonzero scalar preserves distinctness. The elementary argument is reconstructed here.-/
+by a nonzero scalar preserves distinctness. The elementary argument is reconstructed here.
+@isnad1 id=injectiv.3h3v.s7.62990cf9faf2 from=translated src=- shape=ef70c0f6 vocab=ca68ccee
+-/
 theorem pow_mul_injective_of_forall_pow_ne_one
     {k : Type*} [GroupWithZero k] {q a : k} (hq0 : q ≠ 0)
     (hq : ∀ n : ℕ, 0 < n → q ^ n ≠ 1) (ha : a ≠ 0) :
@@ -54,7 +56,9 @@ variable {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     {K T : Module.End R M} {q a : R} {m : M}
 
 /-- Every iterate of a q-commuting map lies in the expected eigenspace, including
-zero iterates. This induction is reconstructed here and does not require a field.-/
+zero iterates. This induction is reconstructed here and does not require a field.
+@isnad1 id=eq.2h8v.s9.bc7890f48e5b from=translated src=- shape=e2e40623 vocab=5f2cc229
+-/
 theorem apply_pow_eq_smul_of_q_commute (hcomm : K * T = q • (T * K))
     (hm : K m = a • m) (n : ℕ) :
     K ((T ^ n) m) = (q ^ n * a) • ((T ^ n) m) := by
@@ -65,7 +69,9 @@ theorem apply_pow_eq_smul_of_q_commute (hcomm : K * T = q • (T * K))
     simp only [Module.End.mul_apply, LinearMap.smul_apply, ih, map_smul] at hc
     simpa [pow_succ', Module.End.mul_apply, smul_smul, mul_assoc] using hc
 
-/-- Eigenspace-membership form of `apply_pow_eq_smul_of_q_commute`.-/
+/-- Eigenspace-membership form of `apply_pow_eq_smul_of_q_commute`.
+@isnad1 id=mem.2h8v.s9.44b66c279a8f from=translated src=- shape=2c94f092 vocab=a1639127
+-/
 theorem pow_mem_eigenspace_of_q_commute (hcomm : K * T = q • (T * K))
     (hm : m ∈ K.eigenspace a) (n : ℕ) :
     (T ^ n) m ∈ K.eigenspace (q ^ n * a) :=
@@ -81,7 +87,9 @@ variable {k M : Type*} [Field k] [AddCommGroup M] [Module k M]
 
 /-- In finite dimension, a q-commuting string with a nonzero initial eigenvalue
 vanishes eventually if `q` has infinite multiplicative order. The proof by linear
-independence of eigenvectors with distinct eigenvalues is reconstructed here.-/
+independence of eigenvectors with distinct eigenvalues is reconstructed here.
+@isnad1 id=ex.5h7v.s9.407252f4212a from=translated src=- shape=c5feae1b vocab=c96a6c3e
+-/
 theorem exists_pow_eq_zero_of_q_commute (hq0 : q ≠ 0)
     (hq : ∀ n : ℕ, 0 < n → q ^ n ≠ 1) (ha : a ≠ 0)
     (hcomm : K * T = q • (T * K)) (hm : K m = a • m) :
@@ -95,7 +103,9 @@ theorem exists_pow_eq_zero_of_q_commute (hq0 : q ≠ 0)
 
 /-- A nonzero eigenvector of nonzero eigenvalue generates a finite q-commuting string:
 all iterates through `n` are nonzero, the next is zero, and the last has eigenvalue
-`q ^ n * a`. The least-vanishing-iterate argument is reconstructed here.-/
+`q ^ n * a`. The least-vanishing-iterate argument is reconstructed here.
+@isnad1 id=ex.6h7v.s10.e1d243e197f3 from=translated src=- shape=d83a8661 vocab=d71858e3
+-/
 theorem exists_last_nonzero_pow_of_q_commute (hq0 : q ≠ 0)
     (hq : ∀ n : ℕ, 0 < n → q ^ n ≠ 1) (ha : a ≠ 0)
     (hcomm : K * T = q • (T * K)) (hm : K m = a • m) (hm0 : m ≠ 0) :
@@ -118,7 +128,9 @@ theorem exists_last_nonzero_pow_of_q_commute (hq0 : q ≠ 0)
     exact hN
 
 omit [FiniteDimensional k M] in
-/-- `K Tⁿ = qⁿ Tⁿ K` for a q-commuting pair.-/
+/-- `K Tⁿ = qⁿ Tⁿ K` for a q-commuting pair.
+@isnad1 id=eq.1h6v.s9.9bc00f52b4a4 from=translated src=- shape=af127e3c vocab=8a7b1e39
+-/
 theorem mul_pow_eq_smul_of_q_commute (hcomm : K * T = q • (T * K)) (n : ℕ) :
     K * T ^ n = q ^ n • (T ^ n * K) := by
   induction n with
@@ -130,7 +142,9 @@ theorem mul_pow_eq_smul_of_q_commute (hcomm : K * T = q • (T * K)) (n : ℕ) :
 /-- In finite dimension, an endomorphism `T` q-commuting with an injective `K` is nilpotent if
 `q` has infinite multiplicative order. On the stable range `N` of `T`, both `T` and `K` are
 bijective and `det K · det T = q^{dim N} det T · det K`, so `N = 0`. This determinant argument is
-reconstructed here; it replaces Jantzen's argument with irreducible polynomials (Lemma 2.1).-/
+reconstructed here; it replaces Jantzen's argument with irreducible polynomials (Lemma 2.1).
+@isnad1 id=isnilpot.3h5v.s9.8753a5090e85 from=translated src=- shape=d243a9fe vocab=1714d906
+-/
 theorem isNilpotent_of_q_commute (hK : Function.Injective K)
     (hq : ∀ n : ℕ, 0 < n → q ^ n ≠ 1) (hcomm : K * T = q • (T * K)) : IsNilpotent T := by
   obtain ⟨n, hn⟩ := Filter.eventually_atTop.mp T.eventually_iInf_range_pow_eq
@@ -178,7 +192,9 @@ theorem isNilpotent_of_q_commute (hK : Function.Injective K)
 
 /-- Over an algebraically closed field, an injective `K` q-commuting with `T`
 has a nonzero eigenvector killed by `T`, provided `q` has infinite multiplicative
-order. The elementary eigenvector proof is reconstructed here.-/
+order. The elementary eigenvector proof is reconstructed here.
+@isnad1 id=ex.4h5v.s9.670f00a7676c from=translated src=- shape=d99668c7 vocab=5ef8ff5d
+-/
 theorem exists_highestWeight_of_q_commute [IsAlgClosed k] [Nontrivial M]
     (K T : Module.End k M) (hK : Function.Injective K)
     (q : k) (hq0 : q ≠ 0) (hq : ∀ n : ℕ, 0 < n → q ^ n ≠ 1)

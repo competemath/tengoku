@@ -68,12 +68,18 @@ def stringSummand (i : ℤ × ℕ) : Submodule k M :=
 
 variable {V}
 
+/--
+@isnad1 id=le.0h5v.s7.f9731abe30b8 from=translated src=- shape=b8f7c6ae vocab=3c2a3fc1
+-/
 lemma stringSummand_le (i : ℤ × ℕ) : V.stringSummand i ≤ V.prim (i.1 + 2 * i.2) := by
   unfold stringSummand
   split_ifs
   · exact le_rfl
   · exact bot_le
 
+/--
+@isnad1 id=iff.1h7v.s7.a5110fc6e743 from=translated src=- shape=573ee940 vocab=96a044b7
+-/
 lemma mem_stringSummand {n : ℤ} {j : ℕ} (h : 0 ≤ n + j) {η : M} :
     η ∈ V.stringSummand (n, j) ↔ η ∈ V.prim (n + 2 * j) := by
   simp [stringSummand, h]
@@ -82,6 +88,9 @@ lemma mem_stringSummand {n : ℤ} {j : ℕ} (h : 0 ≤ n + j) {η : M} :
 noncomputable def wtProj (n : ℤ) : Module.End k M :=
   (V.wt n).subtype ∘ₗ DirectSum.component k ℤ (fun n ↦ V.wt n) n ∘ₗ V.decompose.toLinearMap
 
+/--
+@isnad1 id=eq.1h7v.s7.dd46239de31c from=translated src=- shape=d297775a vocab=9d464de0
+-/
 lemma wtProj_of_mem {n n' : ℤ} {m : M} (hm : m ∈ V.wt n') :
     V.wtProj n m = if n' = n then m else 0 := by
   simp only [wtProj, LinearMap.comp_apply, LinearEquiv.coe_coe, decompose_of_mem V hm,
@@ -98,13 +107,17 @@ include hq0 hq
 
 /-! ### Uniqueness of the string decomposition -/
 
-/-- `E F^{(j)} η = [p - j + 1] F^{(j-1)} η`, in the form used below.-/
+/-- `E F^{(j)} η = [p - j + 1] F^{(j-1)} η`, in the form used below.
+@isnad1 id=eq.3h7v.s8.cf4b0c51c1d3 from=translated src=- shape=cceec31b vocab=4750f7da
+-/
 lemma E_dF_of_prim {p : ℤ} {η : M} (hη : η ∈ V.prim p) (j : ℕ) :
     V.E (V.dF (j + 1) η) = qIntZ q (p - j) • V.dF j η :=
   E_dF_succ_of_primitive hq0 hq hη.1 hη.2 j
 
 /-- If `F^{(j)} η = 0` would follow from `c • F^{(j-1)} η = 0` for the coefficient
-`c = [p - j + 1]`.-/
+`c = [p - j + 1]`.
+@isnad1 id=eq.4h7v.s8.f7dcb5fd1cf0 from=translated src=- shape=40c39e50 vocab=c8ebab79
+-/
 lemma dF_succ_eq_zero_of_smul {p : ℤ} {η : M} (hη : η ∈ V.prim p) {j : ℕ}
     (h : qIntZ q (p - j) • V.dF j η = 0) : V.dF (j + 1) η = 0 := by
   by_cases hc : p - j = 0
@@ -116,7 +129,9 @@ lemma dF_succ_eq_zero_of_smul {p : ℤ} {η : M} (hη : η ∈ V.prim p) {j : �
       (qInt_ne_zero_of_pow_ne_one hq0 hq (Nat.succ_pos j))
 
 /-- Uniqueness of the string decomposition ([HK] Lemma 4.1.1): if `Σ_{j<N} F^{(j)} ηⱼ = 0` with
-`ηⱼ ∈ M^{n+2j}` primitive, then every `F^{(j)} ηⱼ` vanishes. (We apply `E` and induct on `N`.)-/
+`ηⱼ ∈ M^{n+2j}` primitive, then every `F^{(j)} ηⱼ` vanishes. (We apply `E` and induct on `N`.)
+@isnad1 id=eq.5h8v.s8.052b53cb48c6 from=translated src=- shape=623e01ec vocab=53271151
+-/
 theorem dF_eq_zero_of_sum_range_eq_zero (N : ℕ) :
     ∀ (n : ℤ) (η : ℕ → M), (∀ j : ℕ, η j ∈ V.prim (n + 2 * j)) →
       ∑ j ∈ range N, V.dF j (η j) = 0 → ∀ j < N, V.dF j (η j) = 0 := by
@@ -155,7 +170,9 @@ theorem dF_eq_zero_of_sum_range_eq_zero (N : ℕ) :
       exact hsum
     · exact hsucc j (by omega)
 
-/-- Uniqueness of the string decomposition, for a finite set of indices.-/
+/-- Uniqueness of the string decomposition, for a finite set of indices.
+@isnad1 id=eq.5h8v.s8.6305284981e2 from=translated src=- shape=9304e2bd vocab=7bffb126
+-/
 theorem dF_eq_zero_of_sum_eq_zero {n : ℤ} {t : Finset ℕ} {η : ℕ → M}
     (hη : ∀ j ∈ t, η j ∈ V.prim (n + 2 * (j : ℕ))) (hsum : ∑ j ∈ t, V.dF j (η j) = 0) :
     ∀ j ∈ t, V.dF j (η j) = 0 := by
@@ -192,6 +209,9 @@ lemma eq_zero_of_dF_eq_zero_of_mem_stringSummand {n : ℤ} {j : ℕ} {η : M}
   · simpa [stringSummand, hnj] using hη
 
 omit hq0 hq in
+/--
+@isnad1 id=mem.1h7v.s7.83e628b2f05f from=translated src=- shape=bf577508 vocab=6b040033
+-/
 lemma dF_mem_wt_of_mem_stringSummand {n : ℤ} {j : ℕ} {η : M}
     (hη : η ∈ V.stringSummand (n, j)) : V.dF j η ∈ V.wt n := by
   have h := dF_mem (stringSummand_le (n, j) hη).1 j
@@ -205,10 +225,16 @@ noncomputable def stringMap : (⨁ i : ℤ × ℕ, V.stringSummand i) →ₗ[k] 
   DirectSum.toModule k (ℤ × ℕ) M fun i ↦ V.dF i.2 ∘ₗ (V.stringSummand i).subtype
 
 omit hq0 hq in
+/--
+@isnad1 id=eq.0h6v.s11.023129be60a3 from=translated src=- shape=d3cbc2fb vocab=9b2dbf72
+-/
 lemma stringMap_lof (i : ℤ × ℕ) (η : V.stringSummand i) :
     V.stringMap (DirectSum.lof k (ℤ × ℕ) (fun i ↦ V.stringSummand i) i η) = V.dF i.2 η := by
   simp [stringMap, DirectSum.toModule_lof]
 
+/--
+@isnad1 id=injectiv.2h4v.s10.9e366249c98e from=translated src=- shape=b6bc9c20 vocab=c112843b
+-/
 theorem stringMap_injective : Function.Injective V.stringMap := by
   classical
   rw [← LinearMap.ker_eq_bot, Submodule.eq_bot_iff]
@@ -250,6 +276,9 @@ theorem stringMap_injective : Function.Injective V.stringMap := by
   · exact eq_zero_of_dF_eq_zero_of_mem_stringSummand hq0 hq (x i).2 (key i hi)
   · simpa using hi
 
+/--
+@isnad1 id=surjecti.2h4v.s10.30328d80f87f from=translated src=- shape=b6bc9c20 vocab=5437a6da
+-/
 theorem stringMap_surjective : Function.Surjective V.stringMap := by
   rw [← LinearMap.range_eq_top, eq_top_iff, ← V.iSup_wt, iSup_le_iff]
   intro n m hm
@@ -266,6 +295,9 @@ theorem stringMap_surjective : Function.Surjective V.stringMap := by
 noncomputable def stringEquiv : (⨁ i : ℤ × ℕ, V.stringSummand i) ≃ₗ[k] M :=
   LinearEquiv.ofBijective V.stringMap ⟨stringMap_injective hq0 hq, stringMap_surjective hq0 hq⟩
 
+/--
+@isnad1 id=eq.3h7v.s11.62d81f776821 from=translated src=- shape=9069f55b vocab=860e54cb
+-/
 lemma stringEquiv_symm_dF {n : ℤ} {j : ℕ} {η : M} (hη : η ∈ V.stringSummand (n, j)) :
     (stringEquiv hq0 hq).symm (V.dF j η) =
       DirectSum.lof k (ℤ × ℕ) (fun i ↦ V.stringSummand i) (n, j) ⟨η, hη⟩ := by
@@ -289,7 +321,9 @@ noncomputable def fTilde : Module.End k M :=
       (fun i ↦ V.dF (i.2 + 1) ∘ₗ (V.stringSummand i).subtype) ∘ₗ
     (stringEquiv hq0 hq).symm.toLinearMap
 
-/-- `f̃ F^{(j)} η = F^{(j+1)} η` for every primitive `η`.-/
+/-- `f̃ F^{(j)} η = F^{(j+1)} η` for every primitive `η`.
+@isnad1 id=eq.4h7v.s8.fe1aaf5aa9a7 from=translated src=- shape=436db4ad vocab=ffb924eb
+-/
 theorem fTilde_dF {p : ℤ} {η : M} (hη : V.E η = 0) (hp : η ∈ V.wt p) (j : ℕ) :
     V.fTilde hq0 hq (V.dF j η) = V.dF (j + 1) η := by
   by_cases hjp : (j : ℤ) ≤ p
@@ -302,7 +336,9 @@ theorem fTilde_dF {p : ℤ} {η : M} (hη : V.E η = 0) (hp : η ∈ V.wt p) (j 
   · rw [dF_eq_zero_of_primitive hq0 hq hp hη (by omega),
       dF_eq_zero_of_primitive hq0 hq hp hη (by push_cast; omega), map_zero]
 
-/-- `ẽ F^{(j+1)} η = F^{(j)} η` for `η ∈ Mᵖ` primitive and `j < p`.-/
+/-- `ẽ F^{(j+1)} η = F^{(j)} η` for `η ∈ Mᵖ` primitive and `j < p`.
+@isnad1 id=eq.5h7v.s8.875cc2e8b466 from=translated src=- shape=cb598931 vocab=d42e4ab7
+-/
 theorem eTilde_dF_succ {p : ℤ} {η : M} (hη : V.E η = 0) (hp : η ∈ V.wt p) {j : ℕ}
     (hj : (j : ℤ) < p) : V.eTilde hq0 hq (V.dF (j + 1) η) = V.dF j η := by
   have hmem : η ∈ V.stringSummand (p - 2 * (j + 1 : ℕ), j + 1) := by
@@ -313,7 +349,9 @@ theorem eTilde_dF_succ {p : ℤ} {η : M} (hη : V.E η = 0) (hp : η ∈ V.wt p
     DirectSum.toModule_lof]
   simp
 
-/-- `ẽ η = 0` for `η` primitive.-/
+/-- `ẽ η = 0` for `η` primitive.
+@isnad1 id=eq.4h6v.s8.6b1aae9ae616 from=translated src=- shape=1c5d32ac vocab=357d35c5
+-/
 theorem eTilde_of_primitive {p : ℤ} {η : M} (hη : V.E η = 0) (hp : η ∈ V.wt p) :
     V.eTilde hq0 hq η = 0 := by
   by_cases hp0 : 0 ≤ p
@@ -326,7 +364,9 @@ theorem eTilde_of_primitive {p : ℤ} {η : M} (hη : V.E η = 0) (hp : η ∈ V
     simp
   · rw [eq_zero_of_primitive_of_neg hq0 hq hp hη (by omega), map_zero]
 
-/-- `ẽ` maps `Mⁿ` to `M^{n+2}`.-/
+/-- `ẽ` maps `Mⁿ` to `M^{n+2}`.
+@isnad1 id=mem.3h6v.s8.318e7b05c598 from=translated src=- shape=da8048c9 vocab=60003601
+-/
 theorem eTilde_mem {n : ℤ} {m : M} (hm : m ∈ V.wt n) : V.eTilde hq0 hq m ∈ V.wt (n + 2) := by
   refine wt_induction (V := V) hq0 hq (P := fun m ↦ V.eTilde hq0 hq m ∈ V.wt (n + 2))
     (by simp) (fun x y hx hy ↦ by rw [map_add]; exact add_mem hx hy)
@@ -341,7 +381,9 @@ theorem eTilde_mem {n : ℤ} {m : M} (hm : m ∈ V.wt n) : V.eTilde hq0 hq m ∈
     push_cast at hn ⊢
     omega
 
-/-- `f̃` maps `Mⁿ` to `M^{n-2}`.-/
+/-- `f̃` maps `Mⁿ` to `M^{n-2}`.
+@isnad1 id=mem.3h6v.s8.7bca27fa0e25 from=translated src=- shape=da8048c9 vocab=847ae173
+-/
 theorem fTilde_mem {n : ℤ} {m : M} (hm : m ∈ V.wt n) : V.fTilde hq0 hq m ∈ V.wt (n - 2) := by
   refine wt_induction (V := V) hq0 hq (P := fun m ↦ V.fTilde hq0 hq m ∈ V.wt (n - 2))
     (by simp) (fun x y hx hy ↦ by rw [map_add]; exact add_mem hx hy)
@@ -356,6 +398,9 @@ theorem fTilde_mem {n : ℤ} {m : M} (hm : m ∈ V.wt n) : V.fTilde hq0 hq m ∈
 /-! ### Naturality -/
 
 omit hq0 hq in
+/--
+@isnad1 id=eq.1h9v.s9.f8225791d484 from=translated src=- shape=c2cdb00b vocab=415452b1
+-/
 lemma map_dF {M' : Type*} [AddCommGroup M'] [Module k M'] {V' : IntegrableSl2 q M'}
     {f : M →ₗ[k] M'} (hF : ∀ m, f (V.F m) = V'.F (f m)) (a : ℕ) (m : M) :
     f (V.dF a m) = V'.dF a (f m) := by
@@ -368,7 +413,9 @@ lemma map_dF {M' : Type*} [AddCommGroup M'] [Module k M'] {V' : IntegrableSl2 q 
   rw [dF_apply, dF_apply, map_smul, hpow]
 
 /-- The Kashiwara operator `ẽ` commutes with linear maps commuting with `E`, `F` and preserving
-the gradings ([HK] Prop. 4.1.3 (2)).-/
+the gradings ([HK] Prop. 4.1.3 (2)).
+@isnad1 id=eq.5h8v.s10.7d9e232ceef0 from=translated src=- shape=8f2fb109 vocab=b0fe48ca
+-/
 theorem map_eTilde {M' : Type*} [AddCommGroup M'] [Module k M'] (V' : IntegrableSl2 q M')
     (f : M →ₗ[k] M') (hE : ∀ m, f (V.E m) = V'.E (f m)) (hF : ∀ m, f (V.F m) = V'.F (f m))
     (hwt : ∀ n, ∀ m ∈ V.wt n, f m ∈ V'.wt n) (m : M) :
@@ -390,7 +437,9 @@ theorem map_eTilde {M' : Type*} [AddCommGroup M'] [Module k M'] (V' : Integrable
     (V.ext_wt (f := f ∘ₗ V.eTilde hq0 hq) (g := V'.eTilde hq0 hq ∘ₗ f) key) m
 
 /-- The Kashiwara operator `f̃` commutes with linear maps commuting with `E`, `F` and preserving
-the gradings ([HK] Prop. 4.1.3 (2)).-/
+the gradings ([HK] Prop. 4.1.3 (2)).
+@isnad1 id=eq.5h8v.s10.c7cb5b5bd5c9 from=translated src=- shape=8f2fb109 vocab=a571bdbf
+-/
 theorem map_fTilde {M' : Type*} [AddCommGroup M'] [Module k M'] (V' : IntegrableSl2 q M')
     (f : M →ₗ[k] M') (hE : ∀ m, f (V.E m) = V'.E (f m)) (hF : ∀ m, f (V.F m) = V'.F (f m))
     (hwt : ∀ n, ∀ m ∈ V.wt n, f m ∈ V'.wt n) (m : M) :
@@ -411,7 +460,9 @@ theorem map_fTilde {M' : Type*} [AddCommGroup M'] [Module k M'] (V' : Integrable
 /-! ### Comparison with `E` and `F` -/
 
 /-- Every `m ∈ Mⁿ` is a finite sum `Σ_{j<N} F^{(j)} ηⱼ` with `ηⱼ ∈ M^{n+2j}` primitive and
-`ηⱼ = 0` unless `n + j ≥ 0` ([HK] Lemma 4.1.1, existence).-/
+`ηⱼ = 0` unless `n + j ≥ 0` ([HK] Lemma 4.1.1, existence).
+@isnad1 id=ex.3h6v.s8.b74ad9398e72 from=translated src=- shape=8c04b786 vocab=16a5f1ac
+-/
 theorem exists_sum_dF {n : ℤ} {m : M} (hm : m ∈ V.wt n) :
     ∃ (N : ℕ) (η : ℕ → M), (∀ j : ℕ, η j ∈ V.prim (n + 2 * j)) ∧ (∀ j : ℕ, η j ≠ 0 → 0 ≤ n + j) ∧
       (∀ j, N ≤ j → η j = 0) ∧ m = ∑ j ∈ range N, V.dF j (η j) := by
@@ -452,7 +503,9 @@ theorem exists_sum_dF {n : ℤ} {m : M} (hm : m ∈ V.wt n) :
     · rw [sum_eq_single_of_mem j (mem_range.2 (Nat.lt_succ_self j)) fun i _ hij ↦ by
         rw [Pi.single_eq_of_ne hij, map_zero], Pi.single_eq_same]
 
-/-- `ẽ m = 0` if and only if `E m = 0`, for `m ∈ Mⁿ`.-/
+/-- `ẽ m = 0` if and only if `E m = 0`, for `m ∈ Mⁿ`.
+@isnad1 id=iff.3h6v.s8.e1a62d044511 from=translated src=- shape=5df26579 vocab=357d35c5
+-/
 theorem eTilde_eq_zero_iff {n : ℤ} {m : M} (hm : m ∈ V.wt n) :
     V.eTilde hq0 hq m = 0 ↔ V.E m = 0 := by
   refine ⟨fun h ↦ ?_, fun h ↦ eTilde_of_primitive hq0 hq h hm⟩

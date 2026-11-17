@@ -51,15 +51,24 @@ namespace FreeAlgebra
 
 variable (R X : Type*) [CommRing R]
 
+/--
+@isnad1 id=eq.0h3v.s9.f1001bfa4c89 from=translated src=- shape=bb8dfec3 vocab=8ee5fb09
+-/
 lemma basisFreeMonoid_apply (w : FreeMonoid X) :
     basisFreeMonoid R X w = FreeMonoid.lift (ι R) w := by
   rw [basisFreeMonoid, Module.Basis.map_apply, Finsupp.coe_basisSingleOne]
   change equivMonoidAlgebraFreeMonoid.symm (MonoidAlgebra.single w 1) = _
   simp [equivMonoidAlgebraFreeMonoid]
 
+/--
+@isnad1 id=eq.0h2v.s7.b66e87c99ccf from=translated src=- shape=93e7ade7 vocab=fb04851a
+-/
 lemma basisFreeMonoid_one : basisFreeMonoid R X 1 = 1 := by
   simp [basisFreeMonoid_apply]
 
+/--
+@isnad1 id=eq.0h4v.s8.0f2ce1c3dec1 from=translated src=- shape=4c2de284 vocab=d01f2ff5
+-/
 lemma basisFreeMonoid_of_mul (x : X) (w : FreeMonoid X) :
     basisFreeMonoid R X (FreeMonoid.of x * w) = ι R x * basisFreeMonoid R X w := by
   simp [basisFreeMonoid_apply]
@@ -70,8 +79,14 @@ variable {R X}
 noncomputable abbrev word (w : List X) : FreeAlgebra R X :=
   basisFreeMonoid R X (FreeMonoid.ofList w)
 
+/--
+@isnad1 id=eq.0h2v.s5.ba494e0b02c5 from=translated src=- shape=b393f0ee vocab=6327b204
+-/
 lemma word_nil : word (R := R) ([] : List X) = 1 := basisFreeMonoid_one R X
 
+/--
+@isnad1 id=eq.0h4v.s6.cb214761e5ef from=translated src=- shape=3236e9d3 vocab=1608ef56
+-/
 lemma word_cons (j : X) (w : List X) : word (R := R) (j :: w) = ι R j * word w := by
   rw [word, FreeMonoid.ofList_cons, basisFreeMonoid_of_mul]
 
@@ -80,10 +95,16 @@ noncomputable def onWords {M : Type*} [AddCommGroup M] [Module R M] (g : List X 
     FreeAlgebra R X →ₗ[R] M :=
   (basisFreeMonoid R X).constr R fun w ↦ g (FreeMonoid.toList w)
 
+/--
+@isnad1 id=eq.0h5v.s7.be04717e4eb2 from=translated src=- shape=bcfd665e vocab=a5092549
+-/
 @[simp] lemma onWords_word {M : Type*} [AddCommGroup M] [Module R M] (g : List X → M)
     (w : List X) : onWords g (word (R := R) w) = g w := by
   simp [onWords, word]
 
+/--
+@isnad1 id=eq.1h4v.s9.b1ff482d42b9 from=translated src=- shape=dda0d182 vocab=d5afabde
+-/
 lemma endo_ext {φ ψ : Module.End R (FreeAlgebra R X)} (h : ∀ w, φ (word w) = ψ (word w)) :
     φ = ψ :=
   (basisFreeMonoid R X).ext fun w ↦ by simpa [word] using h (FreeMonoid.toList w)
@@ -109,9 +130,15 @@ local notation "T" => FreeAlgebra K ι
 def wordWt (w : List ι) : Dual K H := (w.map P.root).sum
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h5v.s7.394019ab8687 from=translated src=- shape=e586bea0 vocab=3e970208
+-/
 @[simp] lemma wordWt_nil : wordWt P [] = 0 := rfl
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h7v.s7.c4ff044422bc from=translated src=- shape=ad7e8292 vocab=f05b1e21
+-/
 @[simp] lemma wordWt_cons (j : ι) (w : List ι) : wordWt P (j :: w) = P.root j + wordWt P w := by
   simp [wordWt]
 
@@ -129,6 +156,9 @@ noncomputable def repH : H →ₗ[K] Module.End K T where
     module
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h8v.s10.ce5006532313 from=translated src=- shape=84ff449b vocab=6150443a
+-/
 @[simp] lemma repH_word (a : H) (w : List ι) :
     repH P Λ a (word w) = (Λ a - wordWt P w a) • word w := by
   simp [repH]
@@ -137,6 +167,9 @@ omit [DecidableEq ι] in
 noncomputable def repF (i : ι) : Module.End K T := LinearMap.mulLeft K (FreeAlgebra.ι K i)
 
 omit [Fintype ι] [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h4v.s8.f0ead1d459d0 from=translated src=- shape=1411cf69 vocab=af8a1740
+-/
 @[simp] lemma repF_word (i : ι) (w : List ι) : repF (K := K) i (word w) = word (i :: w) := by
   simp [repF, word_cons]
 
@@ -149,10 +182,16 @@ noncomputable def eWord (i : ι) : List ι → T
 /-- The action of `eᵢ` on `T(V)`.-/
 noncomputable def repE (i : ι) : Module.End K T := onWords (eWord P Λ i)
 
+/--
+@isnad1 id=eq.0h8v.s8.53eca08706be from=translated src=- shape=7cfe6a1a vocab=a9c483f0
+-/
 @[simp] lemma repE_word (i : ι) (w : List ι) : repE P Λ i (word w) = eWord P Λ i w := by
   simp [repE]
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h9v.s11.ed68a7492159 from=translated src=- shape=4d89cff1 vocab=6ce9a6dd
+-/
 lemma repH_mulLeft (a : H) (j : ι) (x : T) :
     repH P Λ a (FreeAlgebra.ι K j * x) =
       FreeAlgebra.ι K j * repH P Λ a x - P.root j a • (FreeAlgebra.ι K j * x) := by
@@ -163,6 +202,9 @@ lemma repH_mulLeft (a : H) (j : ι) (x : T) :
     module
   simpa [repF] using LinearMap.congr_fun this x
 
+/--
+@isnad1 id=eq.0h9v.s10.f1793f84ae94 from=translated src=- shape=2dbce4e7 vocab=dc29f01f
+-/
 lemma repH_eWord (a : H) (i : ι) (w : List ι) :
     repH P Λ a (eWord P Λ i w) =
       (Λ a - wordWt P w a + P.root i a) • eWord P Λ i w := by
@@ -210,15 +252,30 @@ noncomputable def tensorRepData : LiftData P (Module.End K T) where
 noncomputable def tensorRep : P.AuxLieAlgebra →ₗ⁅K⁆ Module.End K T :=
   lift (tensorRepData P Λ)
 
+/--
+@isnad1 id=eq.0h7v.s10.8d2c4e9ad2d8 from=translated src=- shape=bb29a095 vocab=84dca23b
+-/
 @[simp] lemma tensorRep_e (i : ι) : tensorRep P Λ (e P i) = repE P Λ i := lift_e _ i
+/--
+@isnad1 id=eq.0h7v.s10.46735ca99b2b from=translated src=- shape=823a5484 vocab=ed1b1ba0
+-/
 @[simp] lemma tensorRep_f (i : ι) : tensorRep P Λ (f P i) = repF i := lift_f _ i
+/--
+@isnad1 id=eq.0h7v.s11.05198e5d8124 from=translated src=- shape=aa5198d7 vocab=4d1acd61
+-/
 @[simp] lemma tensorRep_h (a : H) : tensorRep P Λ (h P a) = repH P Λ a := lift_h _ a
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h7v.s10.04149e029947 from=translated src=- shape=894c5abb vocab=b2e7d8b9
+-/
 @[simp] lemma repH_one (a : H) : repH P Λ a 1 = Λ a • 1 := by
   rw [← word_nil, repH_word]
   simp
 
+/--
+@isnad1 id=eq.0h7v.s11.45e937d1db73 from=translated src=- shape=de1c6659 vocab=4222f37c
+-/
 lemma tensorRep_h_one (a : H) : tensorRep P Λ (h P a) 1 = Λ a • 1 := by
   rw [tensorRep_h, ← word_nil, repH_word]
   simp
@@ -233,11 +290,19 @@ noncomputable def fHom : FreeLieAlgebra K ι →ₗ⁅K⁆ P.AuxLieAlgebra :=
 noncomputable def eHom : FreeLieAlgebra K ι →ₗ⁅K⁆ P.AuxLieAlgebra :=
   FreeLieAlgebra.lift K (e P)
 
+/--
+@isnad1 id=eq.0h6v.s8.2f90cecb7863 from=translated src=- shape=bc669aef vocab=dbc72542
+-/
 @[simp] lemma fHom_of (i : ι) : fHom P (FreeLieAlgebra.of K i) = f P i := by simp [fHom]
+/--
+@isnad1 id=eq.0h6v.s8.6e6fcccd54a3 from=translated src=- shape=bc669aef vocab=12dacc39
+-/
 @[simp] lemma eHom_of (i : ι) : eHom P (FreeLieAlgebra.of K i) = e P i := by simp [eHom]
 
 /-- The action of `𝔫̃₋` on `1 ∈ T(V)` is via the embedding of the free Lie algebra in
-`T(V)`.-/
+`T(V)`.
+@isnad1 id=eq.0h7v.s11.a78b50240529 from=translated src=- shape=6e0bbec9 vocab=0c371896
+-/
 lemma tensorRep_fHom_one (y : FreeLieAlgebra K ι) :
     tensorRep P Λ (fHom P y) 1 = FreeLieAlgebra.toFreeAlgebra K ι y := by
   have : (tensorRep P Λ).comp (fHom P) =
@@ -250,7 +315,9 @@ lemma tensorRep_fHom_one (y : FreeLieAlgebra K ι) :
   rw [this]
   simp
 
-/-- `𝔫̃₊` kills `1 ∈ T(V)`.-/
+/-- `𝔫̃₊` kills `1 ∈ T(V)`.
+@isnad1 id=eq.0h7v.s11.b37ff281eb16 from=translated src=- shape=ee34345d vocab=fcfa9032
+-/
 lemma tensorRep_eHom_one (z : FreeLieAlgebra K ι) : tensorRep P Λ (eHom P z) 1 = 0 := by
   induction z using FreeLieAlgebra.induction_on with
   | of i => rw [eHom_of, tensorRep_e, ← word_nil, repE_word]; rfl
@@ -260,7 +327,9 @@ lemma tensorRep_eHom_one (z : FreeLieAlgebra K ι) : tensorRep P Λ (eHom P z) 1
   | lie y z hy hz =>
     simp [LieRing.of_associative_ring_bracket, hy, hz]
 
-/-- The map `𝔥 → 𝔤̃(A)` is injective (part of [Kac] Thm. 1.2 (a)).-/
+/-- The map `𝔥 → 𝔤̃(A)` is injective (part of [Kac] Thm. 1.2 (a)).
+@isnad1 id=injectiv.0h5v.s9.52acdd9ca49e from=translated src=- shape=28ecb178 vocab=2296113c
+-/
 theorem h_injective : Function.Injective (h P) := by
   rw [← LinearMap.ker_eq_bot, LinearMap.ker_eq_bot']
   intro a ha
@@ -269,7 +338,9 @@ theorem h_injective : Function.Injective (h P) := by
   rw [ha, map_zero, LinearMap.zero_apply, eq_comm, smul_eq_zero] at this
   simpa using this
 
-/-- `𝔫̃₋` is freely generated by the `fᵢ` ([Kac] Thm. 1.2 (b)).-/
+/-- `𝔫̃₋` is freely generated by the `fᵢ` ([Kac] Thm. 1.2 (b)).
+@isnad1 id=injectiv.0h5v.s8.af14cd064e0d from=translated src=- shape=afddf74e vocab=18e6ea88
+-/
 theorem fHom_injective : Function.Injective (fHom P) := by
   intro y z hyz
   apply FreeLieAlgebra.toFreeAlgebra_injective ι K
@@ -280,14 +351,22 @@ noncomputable def negGen : FreeLieAlgebra K ι →ₗ⁅K⁆ FreeLieAlgebra K ι
   FreeLieAlgebra.lift K fun i ↦ -FreeLieAlgebra.of K i
 
 omit [Fintype ι] [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h3v.s7.939cf31b8c51 from=translated src=- shape=eb50eb42 vocab=f9c9ec4d
+-/
 lemma negGen_negGen (y : FreeLieAlgebra K ι) : negGen (negGen y) = y := by
   have : (negGen (K := K) (ι := ι)).comp negGen = LieHom.id := by ext; simp [negGen]
   exact LieHom.congr_fun this y
 
+/--
+@isnad1 id=eq.0h5v.s9.95d9c52db3e5 from=translated src=- shape=f9946694 vocab=cf6e6a70
+-/
 lemma eHom_eq : eHom P = (chevalleyInvolution P).comp ((fHom P).comp negGen) := by
   ext i; simp [negGen]
 
-/-- `𝔫̃₊` is freely generated by the `eᵢ` ([Kac] Thm. 1.2 (b)).-/
+/-- `𝔫̃₊` is freely generated by the `eᵢ` ([Kac] Thm. 1.2 (b)).
+@isnad1 id=injectiv.0h5v.s8.6a81069db1a5 from=translated src=- shape=afddf74e vocab=ffb71073
+-/
 theorem eHom_injective : Function.Injective (eHom P) := by
   rw [eHom_eq, LieHom.coe_comp, LieHom.coe_comp]
   refine Function.Injective.comp ?_ (Function.Injective.comp (fHom_injective P) ?_)
@@ -302,10 +381,16 @@ noncomputable def triangularMap :
   (fHom P : FreeLieAlgebra K ι →ₗ[K] P.AuxLieAlgebra).coprod
     ((h P).coprod (eHom P : FreeLieAlgebra K ι →ₗ[K] P.AuxLieAlgebra))
 
+/--
+@isnad1 id=eq.0h8v.s11.5bbe5ba60623 from=translated src=- shape=f6b552cb vocab=a5012378
+-/
 @[simp] lemma triangularMap_apply (y : FreeLieAlgebra K ι) (a : H) (z : FreeLieAlgebra K ι) :
     triangularMap P (y, a, z) = fHom P y + h P a + eHom P z := by
   simp [triangularMap, add_assoc]
 
+/--
+@isnad1 id=injectiv.0h5v.s10.cda107d8b14f from=translated src=- shape=9eec551d vocab=79019e71
+-/
 lemma triangularMap_injective : Function.Injective (triangularMap P) := by
   rw [← LinearMap.ker_eq_bot, LinearMap.ker_eq_bot']
   rintro ⟨y, a, z⟩ hyaz
@@ -336,6 +421,9 @@ lemma triangularMap_injective : Function.Injective (triangularMap P) := by
     simpa using hyaz
   simp [hz]
 
+/--
+@isnad1 id=ex.0h7v.s10.ca44ce14317a from=translated src=- shape=9b66f006 vocab=c562a5f0
+-/
 lemma lie_h_fHom (a : H) (y : FreeLieAlgebra K ι) : ∃ y', ⁅h P a, fHom P y⁆ = fHom P y' := by
   induction y using FreeLieAlgebra.induction_on with
   | of i => exact ⟨-(P.root i a • FreeLieAlgebra.of K i), by simp [lie_h_f]⟩
@@ -348,6 +436,9 @@ lemma lie_h_fHom (a : H) (y : FreeLieAlgebra K ι) : ∃ y', ⁅h P a, fHom P y�
     obtain ⟨y', hy⟩ := hy; obtain ⟨z', hz⟩ := hz
     exact ⟨⁅y', z⁆ + ⁅y, z'⁆, by simp [leibniz_lie, hy, hz]⟩
 
+/--
+@isnad1 id=ex.0h7v.s10.29f346ba8618 from=translated src=- shape=8770ff00 vocab=af30c81e
+-/
 lemma lie_e_fHom (i : ι) (y : FreeLieAlgebra K ι) :
     ∃ y' b, ⁅e P i, fHom P y⁆ = fHom P y' + h P b := by
   induction y using FreeLieAlgebra.induction_on with
@@ -370,16 +461,25 @@ lemma lie_e_fHom (i : ι) (y : FreeLieAlgebra K ι) :
     simp only [map_add, map_sub, LieHom.map_lie, map_zero, add_zero]
     abel
 
+/--
+@isnad1 id=eq.0h6v.s10.7d83780fa9d3 from=translated src=- shape=7fb32dc2 vocab=81e71078
+-/
 lemma chevalleyInvolution_fHom (y : FreeLieAlgebra K ι) :
     chevalleyInvolution P (fHom P y) = eHom P (negGen y) := by
   rw [eHom_eq, LieHom.comp_apply, LieHom.comp_apply, negGen_negGen]
 
+/--
+@isnad1 id=ex.0h7v.s10.ee22584f148e from=translated src=- shape=9b66f006 vocab=29708de4
+-/
 lemma lie_h_eHom (a : H) (z : FreeLieAlgebra K ι) : ∃ z', ⁅h P a, eHom P z⁆ = eHom P z' := by
   obtain ⟨w, hw⟩ := lie_h_fHom P (-a) (negGen z)
   refine ⟨negGen w, ?_⟩
   rw [← chevalleyInvolution_fHom, ← hw, LieHom.map_lie, chevalleyInvolution_h,
     chevalleyInvolution_fHom, negGen_negGen, map_neg, neg_neg]
 
+/--
+@isnad1 id=ex.0h7v.s10.c4862772ffd3 from=translated src=- shape=8770ff00 vocab=b4853df4
+-/
 lemma lie_f_eHom (i : ι) (z : FreeLieAlgebra K ι) :
     ∃ z' b, ⁅f P i, eHom P z⁆ = eHom P z' + h P b := by
   obtain ⟨y', b, hy⟩ := lie_e_fHom P i (negGen z)
@@ -390,6 +490,9 @@ lemma lie_f_eHom (i : ι) (z : FreeLieAlgebra K ι) :
   rw [map_neg, ← neg_neg (⁅f P i, eHom P z⁆), this]
   abel
 
+/--
+@isnad1 id=surjecti.0h5v.s10.9d52057e681a from=translated src=- shape=9eec551d vocab=9d2f2aad
+-/
 lemma triangularMap_surjective : Function.Surjective (triangularMap P) := by
   rw [← LinearMap.range_eq_top]
   set S := LinearMap.range (triangularMap P)
@@ -430,6 +533,9 @@ noncomputable def triangularEquiv :
   LinearEquiv.ofBijective (triangularMap P)
     ⟨triangularMap_injective P, triangularMap_surjective P⟩
 
+/--
+@isnad1 id=eq.0h8v.s11.7c0e6f98fb32 from=translated src=- shape=258599cd vocab=95200837
+-/
 @[simp] lemma triangularEquiv_apply (y : FreeLieAlgebra K ι) (a : H) (z : FreeLieAlgebra K ι) :
     triangularEquiv P (y, a, z) = fHom P y + h P a + eHom P z :=
   triangularMap_apply P y a z

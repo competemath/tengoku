@@ -111,9 +111,15 @@ variable {R L}
 /-- The quotient map from the Rees algebra onto the associated graded algebra.-/
 def mk : reesAlgebra R L →ₐ[R] AssociatedGraded R L := RingCon.mkₐ R (grCon R L)
 
+/--
+@isnad1 id=surjecti.0h2v.s10.e3e96f6e10c9 from=translated src=- shape=54025e37 vocab=b4ed79a6
+-/
 theorem mk_surjective : Function.Surjective (mk : reesAlgebra R L → AssociatedGraded R L) :=
   RingCon.mkₐ_surjective _
 
+/--
+@isnad1 id=iff.0h4v.s13.ef2f4a05d482 from=translated src=- shape=49e31ce5 vocab=360fbe8f
+-/
 theorem mk_eq_mk_iff {p q : reesAlgebra R L} : mk p = mk q ↔ grCon R L p q := RingCon.eq _
 
 end AssociatedGraded
@@ -138,18 +144,29 @@ def toGr (n : ℕ) : filtration R L n →ₗ[R] AssociatedGraded R L :=
 
 variable {R L}
 
+/--
+@isnad1 id=eq.0h4v.s12.e544f9eb3ae4 from=translated src=- shape=8d5346b6 vocab=9abc0628
+-/
 theorem toGr_apply (n : ℕ) (x : filtration R L n) :
     toGr R L n x = AssociatedGraded.mk (reesMonomial R L n x) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s12.6a7f20af696a from=translated src=- shape=ed0e7dbf vocab=5d8d8b2b
+-/
 @[simp] theorem coe_reesMonomial (n : ℕ) (x : filtration R L n) :
     (reesMonomial R L n x : (UniversalEnvelopingAlgebra R L)[X]) =
       monomial n (x : UniversalEnvelopingAlgebra R L) := rfl
 
+/--
+@isnad1 id=eq.2h6v.s12.f66b3fb8b0b0 from=translated src=- shape=77e18021 vocab=1297db5d
+-/
 theorem toGr_congr {m n : ℕ} (h : m = n) {x : filtration R L m} {y : filtration R L n}
     (hxy : (x : UniversalEnvelopingAlgebra R L) = y) : toGr R L m x = toGr R L n y := by
   subst h; rw [Subtype.ext hxy]
 
-/-- The multiplication of `gr U(L)` is induced by that of `U(L)`.-/
+/-- The multiplication of `gr U(L)` is induced by that of `U(L)`.
+@isnad1 id=eq.0h6v.s12.08621e01d54e from=translated src=- shape=580d4d1a vocab=6485f38b
+-/
 theorem toGr_mul {m n : ℕ} (x : filtration R L m) (y : filtration R L n) :
     toGr R L m x * toGr R L n y = toGr R L (m + n)
       ⟨(x * y : UniversalEnvelopingAlgebra R L), mul_mem_filtration x.2 y.2⟩ := by
@@ -158,7 +175,9 @@ theorem toGr_mul {m n : ℕ} (x : filtration R L m) (y : filtration R L n) :
   ext1
   simp [monomial_mul_monomial]
 
-/-- The kernel of `F_{n+1} → gr U(L)` is `Fₙ`.-/
+/-- The kernel of `F_{n+1} → gr U(L)` is `Fₙ`.
+@isnad1 id=iff.0h4v.s11.dd11fa5a8be6 from=translated src=- shape=6f296ffd vocab=48d5d9c3
+-/
 theorem toGr_succ_eq_zero_iff {n : ℕ} (x : filtration R L (n + 1)) :
     toGr R L (n + 1) x = 0 ↔ (x : UniversalEnvelopingAlgebra R L) ∈ filtration R L n := by
   rw [toGr_apply, ← map_zero AssociatedGraded.mk, mk_eq_mk_iff]
@@ -173,6 +192,9 @@ theorem toGr_succ_eq_zero_iff {n : ℕ} (x : filtration R L (n + 1)) :
     · exact (reesMonomial R L n ⟨x, hx⟩).2
     · simp
 
+/--
+@isnad1 id=iff.0h3v.s11.67e5ca696cd8 from=translated src=- shape=22870fb2 vocab=72b1b343
+-/
 theorem toGr_zero_eq_zero_iff (x : filtration R L 0) : toGr R L 0 x = 0 ↔ x = 0 := by
   rw [toGr_apply, ← map_zero AssociatedGraded.mk, mk_eq_mk_iff]
   constructor
@@ -184,6 +206,9 @@ theorem toGr_zero_eq_zero_iff (x : filtration R L 0) : toGr R L 0 x = 0 ↔ x = 
   · rintro rfl
     exact ⟨0, zero_mem _, by simp⟩
 
+/--
+@isnad1 id=eq.0h3v.s12.da1cdb31e01e from=translated src=- shape=7a2531a8 vocab=ce9c22d5
+-/
 theorem mk_eq_sum_toGr (p : reesAlgebra R L) :
     AssociatedGraded.mk p =
       ∑ n ∈ (p : (UniversalEnvelopingAlgebra R L)[X]).support, toGr R L n ⟨_, p.2 n⟩ := by
@@ -196,13 +221,18 @@ theorem mk_eq_sum_toGr (p : reesAlgebra R L) :
   rw [map_sum]
   rfl
 
-/-- `gr U(L)` is spanned by its graded pieces.-/
+/-- `gr U(L)` is spanned by its graded pieces.
+@isnad1 id=eq.0h2v.s10.c5c2ef2d8353 from=translated src=- shape=3db0ab64 vocab=c5beb45c
+-/
 theorem iSup_range_toGr : ⨆ n, LinearMap.range (toGr R L n) = ⊤ := by
   refine eq_top_iff.mpr fun a _ ↦ ?_
   obtain ⟨p, rfl⟩ := mk_surjective a
   rw [mk_eq_sum_toGr]
   exact Submodule.sum_mem _ fun n _ ↦ Submodule.mem_iSup_of_mem n ⟨_, rfl⟩
 
+/--
+@isnad1 id=eq.2h4v.s11.54a88e454791 from=translated src=- shape=762cc3de vocab=cc377c59
+-/
 theorem toGr_eq_zero_of_mem {k : ℕ} (x : filtration R L k)
     (hx : (x : UniversalEnvelopingAlgebra R L) ∈ filtration R L (k - 1))
     (h0 : k = 0 → (x : UniversalEnvelopingAlgebra R L) = 0) : toGr R L k x = 0 := by
@@ -210,6 +240,9 @@ theorem toGr_eq_zero_of_mem {k : ℕ} (x : filtration R L k)
   | zero => rw [toGr_zero_eq_zero_iff]; exact Subtype.ext (h0 rfl)
   | succ k => exact (toGr_succ_eq_zero_iff x).mpr hx
 
+/--
+@isnad1 id=eq.0h3v.s10.84aa35dd824f from=translated src=- shape=900b5ae3 vocab=acad8b69
+-/
 theorem ker_toGr_succ (n : ℕ) :
     LinearMap.ker (toGr R L (n + 1)) =
       (filtration R L n).comap (filtration R L (n + 1)).subtype := by
@@ -225,6 +258,9 @@ def quotEquivRangeToGr (n : ℕ) :
     (LinearMap.ker (toGr R L (n + 1))) (ker_toGr_succ n).symm).trans
     (toGr R L (n + 1)).quotKerEquivRange
 
+/--
+@isnad1 id=eq.0h6v.s12.6bc6048c507f from=translated src=- shape=f2612d93 vocab=29b0a442
+-/
 theorem toGr_mul_comm {m n : ℕ} (x : filtration R L m) (y : filtration R L n) :
     toGr R L m x * toGr R L n y = toGr R L n y * toGr R L m x := by
   rw [toGr_mul, toGr_mul, toGr_congr (add_comm n m)
@@ -271,16 +307,24 @@ variable (R L) in
 def symmetricAlgebraToAssociatedGraded : SymmetricAlgebra R L →ₐ[R] AssociatedGraded R L :=
   SymmetricAlgebra.lift (ιGr R L)
 
+/--
+@isnad1 id=eq.0h3v.s11.d727321f3dba from=translated src=- shape=024f58f5 vocab=eb5cec9f
+-/
 @[simp] theorem symmetricAlgebraToAssociatedGraded_ι (x : L) :
     symmetricAlgebraToAssociatedGraded R L (SymmetricAlgebra.ι R L x) =
       toGr R L 1 ⟨ι R x, ι_mem_filtration_one x⟩ :=
   SymmetricAlgebra.lift_ι_apply (ιGr R L) x
 
+/--
+@isnad1 id=eq.0h2v.s10.776688a6dcee from=translated src=- shape=0d0d69c1 vocab=24acf8a2
+-/
 theorem toGr_zero_one : toGr R L 0 ⟨1, one_mem_filtration 0⟩ = 1 := by
   rw [toGr_apply, ← map_one AssociatedGraded.mk]
   rfl
 
-/-- Every graded piece lies in the image of `Sym(L)`.-/
+/-- Every graded piece lies in the image of `Sym(L)`.
+@isnad1 id=mem.0h4v.s11.af0c9ddaeb2e from=translated src=- shape=9e72edb8 vocab=adab0709
+-/
 theorem toGr_mem_range (n : ℕ) (x : filtration R L n) :
     toGr R L n x ∈ (symmetricAlgebraToAssociatedGraded R L).range := by
   obtain ⟨x, hx⟩ := x
@@ -321,7 +365,9 @@ theorem toGr_mem_range (n : ℕ) (x : filtration R L n) :
       exact Submodule.smul_mem _ _ hx
 
 variable (R L) in
-/-- The canonical map `Sym(L) → gr U(L)` is surjective, for any Lie algebra `L`.-/
+/-- The canonical map `Sym(L) → gr U(L)` is surjective, for any Lie algebra `L`.
+@isnad1 id=surjecti.0h2v.s8.1e8620f6f559 from=translated src=- shape=9250e4fb vocab=63e95bd8
+-/
 theorem symmetricAlgebraToAssociatedGraded_surjective :
     Function.Surjective (symmetricAlgebraToAssociatedGraded R L) := by
   intro a
@@ -340,7 +386,9 @@ open PBW MvPolynomial
 variable {σ : Type*} [LinearOrder σ] (b : Basis σ R L)
 
 /-- Under `Sym(L) ≅ R[X_i]` (from a basis `b`), the monomial `X^s` maps to the class of the
-ordered monomial `pbwMonomial R b s` in degree `|s|`.-/
+ordered monomial `pbwMonomial R b s` in degree `|s|`.
+@isnad1 id=eq.1h6v.s12.7e17797fc2cc from=translated src=- shape=2e22f99f vocab=8804786c
+-/
 theorem symmetricAlgebraToAssociatedGraded_symm_monomial (m : ℕ) : ∀ s : σ →₀ ℕ,
     s.degree = m → symmetricAlgebraToAssociatedGraded R L
       ((SymmetricAlgebra.equivMvPolynomial b).symm (monomial s 1)) =
@@ -375,6 +423,9 @@ def reesLift : MvPolynomial σ R →ₗ[R] reesAlgebra R L :=
   (basisMonomials σ R).constr R fun s ↦
     reesMonomial R L s.degree ⟨pbwMonomial R b s, pbwMonomial_mem_filtration b s⟩
 
+/--
+@isnad1 id=eq.0h5v.s12.a99fc34e45cc from=translated src=- shape=63e58a20 vocab=0baf6d9d
+-/
 theorem mk_reesLift (P : MvPolynomial σ R) :
     AssociatedGraded.mk (reesLift b P) =
       symmetricAlgebraToAssociatedGraded R L ((SymmetricAlgebra.equivMvPolynomial b).symm P) := by
@@ -393,10 +444,16 @@ theorem mk_reesLift (P : MvPolynomial σ R) :
 def grInv : (UniversalEnvelopingAlgebra R L)[X] →ₗ[R] MvPolynomial σ R :=
   Polynomial.lsum fun n ↦ (homogeneousComponent n).comp (pbwEquiv b).toLinearMap
 
+/--
+@isnad1 id=eq.0h6v.s10.462eea40a1aa from=translated src=- shape=c3252fbf vocab=ef4d1c7c
+-/
 theorem grInv_monomial (n : ℕ) (a : UniversalEnvelopingAlgebra R L) :
     grInv b (Polynomial.monomial n a) = homogeneousComponent n (pbwEquiv b a) := by
   simp [grInv, sum_monomial_index]
 
+/--
+@isnad1 id=eq.0h5v.s11.1b0c026f4904 from=translated src=- shape=c727b284 vocab=9e0b925d
+-/
 theorem grInv_reesLift (P : MvPolynomial σ R) : grInv b (reesLift b P) = P := by
   have : grInv b ∘ₗ (reesAlgebra R L).val.toLinearMap ∘ₗ reesLift b = LinearMap.id :=
     (basisMonomials σ R).ext fun s ↦ by
@@ -407,6 +464,9 @@ theorem grInv_reesLift (P : MvPolynomial σ R) : grInv b (reesLift b P) = P := b
       exact homogeneousComponent_eq_self (isHomogeneous_monomial 1 rfl)
   exact LinearMap.congr_fun this P
 
+/--
+@isnad1 id=eq.1h5v.s9.ce767bdd2229 from=translated src=- shape=708c28b3 vocab=a5c5cc5a
+-/
 theorem grInv_X_mul {c : (UniversalEnvelopingAlgebra R L)[X]} (hc : c ∈ reesAlgebra R L) :
     grInv b (Polynomial.X * c) = 0 := by
   conv_lhs => rw [as_sum_support c, Finset.mul_sum, map_sum]
@@ -419,7 +479,9 @@ end PBW
 
 open PBW in
 include b in
-/-- If `L` has a basis, the canonical map `Sym(L) → gr U(L)` is injective.-/
+/-- If `L` has a basis, the canonical map `Sym(L) → gr U(L)` is injective.
+@isnad1 id=injectiv.0h4v.s8.f4b37d899d9a from=translated src=- shape=2d436935 vocab=452264c9
+-/
 theorem symmetricAlgebraToAssociatedGraded_injective_of_basis :
     Function.Injective (symmetricAlgebraToAssociatedGraded R L) := by
   rw [injective_iff_map_eq_zero]
@@ -439,7 +501,9 @@ map `Sym(L) → gr U(L)` is an isomorphism. See Humphreys, *Introduction to Lie 
 representation theory*, §17.3, PBW Theorem (proved in §17.4), stated there over a field;
 and Bourbaki, *Lie groups and Lie algebras*, Ch. I, §2.7, Theorem 1. The proof here
 deduces it from the PBW basis (`UniversalEnvelopingAlgebra.pbwBasis`) and its filtered version
-(`UniversalEnvelopingAlgebra.map_pbwEquiv_filtration`).-/
+(`UniversalEnvelopingAlgebra.map_pbwEquiv_filtration`).
+@isnad1 id=bijectiv.0h2v.s8.261ce6ea4b13 from=translated src=- shape=b3531a12 vocab=ddf04a99
+-/
 theorem symmetricAlgebraToAssociatedGraded_bijective [Module.Free R L] :
     Function.Bijective (symmetricAlgebraToAssociatedGraded R L) := by
   let : LinearOrder (Module.Free.ChooseBasisIndex R L) := IsWellOrder.linearOrder WellOrderingRel
@@ -454,6 +518,9 @@ def symmetricAlgebraEquivAssociatedGraded [Module.Free R L] :
     SymmetricAlgebra R L ≃ₐ[R] AssociatedGraded R L :=
   AlgEquiv.ofBijective _ (symmetricAlgebraToAssociatedGraded_bijective R L)
 
+/--
+@isnad1 id=eq.0h3v.s11.d628b2e467f4 from=translated src=- shape=842a55e1 vocab=240b449b
+-/
 @[simp] theorem symmetricAlgebraEquivAssociatedGraded_ι [Module.Free R L] (x : L) :
     symmetricAlgebraEquivAssociatedGraded R L (SymmetricAlgebra.ι R L x) =
       toGr R L 1 ⟨ι R x, ι_mem_filtration_one x⟩ :=

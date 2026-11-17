@@ -93,19 +93,40 @@ def qBinomial (v : k) : ℕ → ℕ → k
 
 variable (v : k)
 
+/--
+@isnad1 id=eq.0h2v.s5.10e7074f1f70 from=translated src=- shape=4e114734 vocab=e7766dd0
+-/
 @[simp] lemma qInt_zero : qInt v 0 = 0 := by simp [qInt]
 
+/--
+@isnad1 id=eq.0h2v.s5.c2d84b716ac1 from=translated src=- shape=4e114734 vocab=96413d44
+-/
 @[simp] lemma qFactorial_zero : qFactorial v 0 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.7a3ee34ed6af from=translated src=- shape=6add8e6e vocab=9e036226
+-/
 lemma qFactorial_succ (n : ℕ) : qFactorial v (n + 1) = qInt v (n + 1) * qFactorial v n := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.289fe016b0f2 from=translated src=- shape=0fc5a075 vocab=c729e2a5
+-/
 @[simp] lemma qBinomial_zero_right (n : ℕ) : qBinomial v n 0 = 1 := by cases n <;> rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.411e4ead964f from=translated src=- shape=f7bf52c5 vocab=60ef3bfa
+-/
 @[simp] lemma qBinomial_zero_succ (j : ℕ) : qBinomial v 0 (j + 1) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.9a7d9a68c296 from=translated src=- shape=d121922c vocab=3152a19c
+-/
 lemma qBinomial_succ_succ (n j : ℕ) : qBinomial v (n + 1) (j + 1) =
     v⁻¹ ^ (j + 1) * qBinomial v n (j + 1) + v ^ (n - j) * qBinomial v n j := rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.4948770d785e from=translated src=- shape=add6247f vocab=f19bc086
+-/
 lemma qBinomial_eq_zero_of_lt {n j : ℕ} (h : n < j) : qBinomial v n j = 0 := by
   induction n generalizing j with
   | zero => obtain ⟨j, rfl⟩ := Nat.exists_eq_succ_of_ne_zero h.ne'; rfl
@@ -114,15 +135,23 @@ lemma qBinomial_eq_zero_of_lt {n j : ℕ} (h : n < j) : qBinomial v n j = 0 := b
     rw [qBinomial_succ_succ, ih (by omega), ih (by omega)]
     ring
 
+/--
+@isnad1 id=eq.0h3v.s5.8a112b340202 from=translated src=- shape=334c2024 vocab=60ef3bfa
+-/
 @[simp] lemma qBinomial_succ_self (n : ℕ) : qBinomial v n (n + 1) = 0 :=
   qBinomial_eq_zero_of_lt v (Nat.lt_succ_self n)
 
+/--
+@isnad1 id=eq.0h3v.s5.8378feb158c3 from=translated src=- shape=82da11a8 vocab=c729e2a5
+-/
 @[simp] lemma qBinomial_self (n : ℕ) : qBinomial v n n = 1 := by
   induction n with
   | zero => rfl
   | succ n ih => simp [qBinomial_succ_succ, ih]
 
-/-- At `v = 1` the quantum binomial coefficients are the ordinary binomial coefficients.-/
+/-- At `v = 1` the quantum binomial coefficients are the ordinary binomial coefficients.
+@isnad1 id=eq.0h3v.s5.49abc1c951b4 from=translated src=- shape=6f561367 vocab=1831ffad
+-/
 theorem qBinomial_one (n j : ℕ) : qBinomial (1 : k) n j = n.choose j := by
   induction n generalizing j with
   | zero => cases j <;> simp
@@ -133,6 +162,9 @@ theorem qBinomial_one (n j : ℕ) : qBinomial (1 : k) n j = n.choose j := by
 
 variable {v}
 
+/--
+@isnad1 id=eq.0h4v.s7.8da62f3467a9 from=translated src=- shape=7d0e2aa9 vocab=de5dcd67
+-/
 lemma qInt_add (a b : ℕ) :
     qInt v (a + b) = v⁻¹ ^ b * qInt v a + v ^ a * qInt v b := by
   rw [qInt, add_comm a b, Finset.sum_range_add, add_comm, qInt, qInt, Finset.mul_sum,
@@ -147,10 +179,15 @@ lemma qInt_add (a b : ℕ) :
     rw [show b + a - 1 - s = a + (b - 1 - s) by omega, pow_add]
     ring
 
+/--
+@isnad1 id=eq.0h3v.s6.92f1c642d08e from=translated src=- shape=9145be35 vocab=de5dcd67
+-/
 lemma qInt_succ (n : ℕ) : qInt v (n + 1) = v⁻¹ * qInt v n + v ^ n := by
   rw [qInt_add]; simp [qInt]
 
-/-- `(v - v⁻¹) [n]_v = vⁿ - v⁻ⁿ`.-/
+/-- `(v - v⁻¹) [n]_v = vⁿ - v⁻ⁿ`.
+@isnad1 id=eq.0h3v.s7.21d5b5693ccc from=translated src=- shape=ac01f6bb vocab=c1b178e3
+-/
 lemma qInt_mul_sub (n : ℕ) : (v - v⁻¹) * qInt v n = v ^ n - v⁻¹ ^ n := by
   induction n with
   | zero => simp
@@ -158,7 +195,9 @@ lemma qInt_mul_sub (n : ℕ) : (v - v⁻¹) * qInt v n = v ^ n - v⁻¹ ^ n := b
     rw [qInt_succ, mul_add, mul_left_comm, ih]
     ring
 
-/-- `[n]_v ≠ 0` as soon as `v^{2n} ≠ 1`.-/
+/-- `[n]_v ≠ 0` as soon as `v^{2n} ≠ 1`.
+@isnad1 id=ne.2h3v.s6.546035c1baf9 from=translated src=- shape=55ef0b36 vocab=45dc47b5
+-/
 theorem qInt_ne_zero (hv : v ≠ 0) {n : ℕ} (h : v ^ (2 * n) ≠ 1) : qInt v n ≠ 0 := by
   intro h0
   have := qInt_mul_sub (v := v) n
@@ -168,6 +207,9 @@ theorem qInt_ne_zero (hv : v ≠ 0) {n : ℕ} (h : v ^ (2 * n) ≠ 1) : qInt v n
   nth_rewrite 2 [this]
   rw [inv_pow, mul_inv_cancel₀ (pow_ne_zero _ hv)]
 
+/--
+@isnad1 id=ne.2h3v.s6.0221d60d5723 from=translated src=- shape=a056c825 vocab=a4035e3b
+-/
 theorem qFactorial_ne_zero (hv : v ≠ 0) {n : ℕ} (h : ∀ m, 0 < m → m ≤ n → v ^ (2 * m) ≠ 1) :
     qFactorial v n ≠ 0 := by
   induction n with
@@ -177,7 +219,9 @@ theorem qFactorial_ne_zero (hv : v ≠ 0) {n : ℕ} (h : ∀ m, 0 < m → m ≤ 
     exact mul_ne_zero (qInt_ne_zero hv (h _ n.succ_pos le_rfl))
       (ih fun m hm hmn ↦ h m hm (hmn.trans n.le_succ))
 
-/-- `[n j]_v [j]_v! [n-j]_v! = [n]_v!` for `j ≤ n` ([Lus] 1.3.3).-/
+/-- `[n j]_v [j]_v! [n-j]_v! = [n]_v!` for `j ≤ n` ([Lus] 1.3.3).
+@isnad1 id=eq.1h4v.s6.5fa454a19fd4 from=translated src=- shape=149859df vocab=65971565
+-/
 theorem qBinomial_mul_qFactorial_mul_qFactorial {n j : ℕ} (hj : j ≤ n) :
     qBinomial v n j * qFactorial v j * qFactorial v (n - j) = qFactorial v n := by
   induction n generalizing j with
@@ -205,6 +249,9 @@ theorem qBinomial_mul_qFactorial_mul_qFactorial {n j : ℕ} (hj : j ≤ n) :
           (v ^ (n - (j + 1) + 1) * qInt v (j + 1)) * h2
 
 variable (v) in
+/--
+@isnad1 id=eq.0h3v.s4.0119a04e32b0 from=translated src=- shape=c14b4501 vocab=cd3f8fe7
+-/
 lemma qBinomial_one_right (n : ℕ) : qBinomial v n 1 = qInt v n := by
   induction n with
   | zero => simp
@@ -212,7 +259,9 @@ lemma qBinomial_one_right (n : ℕ) : qBinomial v n 1 = qInt v n := by
 
 variable (v) in
 /-- `(v^{n-k} - v^{k-n}) [n k]_v = (v^{k+1} - v^{-k-1}) [n, k+1]_v`, i.e. `[n-k] [n k] = [k+1]
-[n, k+1]` up to the factor `v - v⁻¹`.-/
+[n, k+1]` up to the factor `v - v⁻¹`.
+@isnad1 id=eq.0h4v.s8.b3a1c7e05172 from=translated src=- shape=0a676ad4 vocab=3152a19c
+-/
 theorem qBinomial_mul_sub (n k : ℕ) :
     (v ^ (n - k) - v⁻¹ ^ (n - k)) * qBinomial v n k =
       (v ^ (k + 1) - v⁻¹ ^ (k + 1)) * qBinomial v n (k + 1) := by
@@ -236,7 +285,9 @@ theorem qBinomial_mul_sub (n k : ℕ) :
         linear_combination (v ^ (p + 1)) * h1 + (v⁻¹ ^ (k + 2)) * h2
 
 variable (v) in
-/-- The symmetry `[n, n-k]_v = [n k]_v` of quantum binomial coefficients.-/
+/-- The symmetry `[n, n-k]_v = [n k]_v` of quantum binomial coefficients.
+@isnad1 id=eq.1h4v.s5.b7f86ce3306f from=translated src=- shape=a8a15c9b vocab=5115ad46
+-/
 theorem qBinomial_symm {n k : ℕ} (hk : k ≤ n) : qBinomial v n (n - k) = qBinomial v n k := by
   induction n generalizing k with
   | zero => obtain rfl : k = 0 := by omega
@@ -260,7 +311,9 @@ theorem qBinomial_symm {n k : ℕ} (hk : k ≤ n) : qBinomial v n (n - k) = qBin
         linear_combination -h1
 
 variable (v) in
-/-- The quantum binomial coefficients are invariant under `v ↦ v⁻¹`.-/
+/-- The quantum binomial coefficients are invariant under `v ↦ v⁻¹`.
+@isnad1 id=eq.0h4v.s5.938b0a957818 from=translated src=- shape=bc040834 vocab=68fbdefd
+-/
 theorem qBinomial_inv (n k : ℕ) : qBinomial v⁻¹ n k = qBinomial v n k := by
   induction n generalizing k with
   | zero => cases k <;> simp
@@ -291,7 +344,9 @@ variable (v) in
 def qSerreDiv (m : ℕ) (a b : B) : B :=
   ∑ r ∈ range (m + 1), (-1 : k) ^ r • (qDivPow v (m - r) a * b * qDivPow v r a)
 
-/-- If `[m]_v! ≠ 0`, the divided-power Serre element is `[m]_v!⁻¹` times the binomial one.-/
+/-- If `[m]_v! ≠ 0`, the divided-power Serre element is `[m]_v!⁻¹` times the binomial one.
+@isnad1 id=eq.1h6v.s6.99e8a64d2ac6 from=translated src=- shape=d57cae0c vocab=73b33239
+-/
 theorem qSerreDiv_eq {m : ℕ} (hm : qFactorial v m ≠ 0) (a b : B) :
     qSerreDiv v m a b = (qFactorial v m)⁻¹ • qSerre v m a b := by
   simp only [qSerreDiv, qSerre, qDivPow, Finset.smul_sum, smul_smul, smul_mul_assoc,
@@ -312,19 +367,34 @@ induction in `qSerre_add`.-/
 def serreAux (c : k) (m : ℕ) (a b : B) : B :=
   ∑ r ∈ range (m + 1), ((-1) ^ r * qBinomial v m r * c ^ r) • (a ^ (m - r) * b * a ^ r)
 
+/--
+@isnad1 id=eq.0h6v.s6.8b93613075dd from=translated src=- shape=de102509 vocab=a6330abc
+-/
 lemma serreAux_one (m : ℕ) (a b : B) : serreAux v 1 m a b = qSerre v m a b := by
   simp [serreAux, qSerre]
 
+/--
+@isnad1 id=eq.0h5v.s5.884d08eed4cc from=translated src=- shape=9ba35d11 vocab=d0a3da4c
+-/
 @[simp] lemma qSerre_zero (a b : B) : qSerre v 0 a b = b := by simp [qSerre]
 
+/--
+@isnad1 id=eq.0h9v.s7.20d77be0a579 from=translated src=- shape=968f00ca vocab=b910a0cc
+-/
 lemma map_serreAux {B' : Type*} [Ring B'] [Algebra k B'] (f : B →ₐ[k] B') (c : k) (m : ℕ)
     (a b : B) : f (serreAux v c m a b) = serreAux v c m (f a) (f b) := by
   simp [serreAux, map_sum, map_smul, map_mul, map_pow]
 
+/--
+@isnad1 id=eq.0h8v.s7.dcd353c2d837 from=translated src=- shape=89b67e85 vocab=f93eb608
+-/
 lemma map_qSerre {B' : Type*} [Ring B'] [Algebra k B'] (f : B →ₐ[k] B') (m : ℕ)
     (a b : B) : f (qSerre v m a b) = qSerre v m (f a) (f b) := by
   simp [← serreAux_one, map_serreAux]
 
+/--
+@isnad1 id=eq.0h9v.s7.04808256b713 from=translated src=- shape=d6b06fb8 vocab=aea7f9f5
+-/
 lemma serreAux_sub_smul (c : k) (m : ℕ) (a x y : B) (μ : k) :
     serreAux v c m a (x - μ • y) = serreAux v c m a x - μ • serreAux v c m a y := by
   simp only [serreAux, mul_sub, sub_mul, smul_sub, Finset.sum_sub_distrib, Finset.smul_sum,
@@ -332,6 +402,9 @@ lemma serreAux_sub_smul (c : k) (m : ℕ) (a x y : B) (μ : k) :
   congr 1
   exact Finset.sum_congr rfl fun _ _ ↦ smul_comm _ _ _
 
+/--
+@isnad1 id=eq.0h7v.s6.0c442a65579e from=translated src=- shape=79ff96ce vocab=a5386b2b
+-/
 lemma serreAux_mul_left (c : k) (m : ℕ) (a b : B) :
     serreAux v c m a (a * b) = a * serreAux v c m a b := by
   simp only [serreAux, Finset.mul_sum, mul_smul_comm]
@@ -340,6 +413,9 @@ lemma serreAux_mul_left (c : k) (m : ℕ) (a b : B) :
   simp only [mul_assoc]
   rw [← mul_assoc a (a ^ (m - r)), (Commute.self_pow a _).eq, mul_assoc]
 
+/--
+@isnad1 id=eq.0h7v.s6.12b1ea9adf2b from=translated src=- shape=cc9afecd vocab=a5386b2b
+-/
 lemma serreAux_mul_right (c : k) (m : ℕ) (a b : B) :
     serreAux v c m a (b * a) = serreAux v c m a b * a := by
   simp only [serreAux, Finset.sum_mul, smul_mul_assoc]
@@ -348,7 +424,9 @@ lemma serreAux_mul_right (c : k) (m : ℕ) (a b : B) :
   simp only [mul_assoc]
   rw [(Commute.self_pow a _).eq]
 
-/-- The inner recursion for Serre elements: `D_{c vᵐ}` applied first.-/
+/-- The inner recursion for Serre elements: `D_{c vᵐ}` applied first.
+@isnad1 id=eq.1h7v.s7.cc60537ca419 from=translated src=- shape=d430516c vocab=7f319270
+-/
 theorem serreAux_succ (hv : v ≠ 0) (c : k) (m : ℕ) (a b : B) :
     serreAux v c (m + 1) a b = serreAux v (c * v⁻¹) m a (a * b - (c * v ^ m) • (b * a)) := by
   rw [serreAux_sub_smul]
@@ -391,12 +469,17 @@ theorem serreAux_succ (hv : v ≠ 0) (c : k) (m : ℕ) (a b : B) :
     · simp only [Nat.add_sub_add_right, mul_assoc, ← pow_succ']
   rw [add_right_comm, h1, h2, sub_eq_add_neg]
 
-/-- The outer recursion for Serre elements: `D_{c vᵐ}` applied last.-/
+/-- The outer recursion for Serre elements: `D_{c vᵐ}` applied last.
+@isnad1 id=eq.1h7v.s8.a91c4ef71226 from=translated src=- shape=da893ddf vocab=7f319270
+-/
 theorem serreAux_succ' (hv : v ≠ 0) (c : k) (m : ℕ) (a b : B) :
     serreAux v c (m + 1) a b = a * serreAux v (c * v⁻¹) m a b -
       (c * v ^ m) • (serreAux v (c * v⁻¹) m a b * a) := by
   rw [serreAux_succ hv, serreAux_sub_smul, serreAux_mul_left, serreAux_mul_right]
 
+/--
+@isnad1 id=eq.1h6v.s7.b172eaebacdd from=translated src=- shape=12d0a2b6 vocab=42bc217f
+-/
 lemma mul_pow_of_mul_eq_smul {w a : B} {t : k} (h : w * a = t • (a * w)) (n : ℕ) :
     w * a ^ n = t ^ n • (a ^ n * w) := by
   induction n with
@@ -405,7 +488,9 @@ lemma mul_pow_of_mul_eq_smul {w a : B} {t : k} (h : w * a = t • (a * w)) (n : 
     rw [pow_succ, ← mul_assoc, ih, smul_mul_assoc, mul_assoc, h, mul_smul_comm, smul_smul,
       ← mul_assoc, pow_succ]
 
-/-- Serre elements of `w`-eigenvectors are `w`-eigenvectors.-/
+/-- Serre elements of `w`-eigenvectors are `w`-eigenvectors.
+@isnad1 id=eq.2h10v.s7.ac8f30412424 from=translated src=- shape=c97c6be7 vocab=9d33fc65
+-/
 lemma mul_serreAux_of_mul_eq_smul {w a b : B} {t μ : k} (ha : w * a = t • (a * w))
     (hb : w * b = μ • (b * w)) (c : k) (m : ℕ) :
     w * serreAux v c m a b = (μ * t ^ m) • (serreAux v c m a b * w) := by
@@ -426,7 +511,9 @@ lemma mul_serreAux_of_mul_eq_smul {w a b : B} {t μ : k} (ha : w * a = t • (a 
   rw [key, Nat.sub_add_cancel (by simpa [Nat.lt_succ_iff] using hr), smul_comm]
 
 /-- If `w u = v⁻² u w` and `w b = c vᵐ b w`, then the `w`-part does not contribute to the Serre
-element of `u + w` and `b`.-/
+element of `u + w` and `b`.
+@isnad1 id=eq.3h8v.s8.d6b5d49f8723 from=translated src=- shape=1a30350f vocab=dd08d87e
+-/
 theorem serreAux_add_left (hv : v ≠ 0) {u w : B} (hwu : w * u = v⁻¹ ^ 2 • (u * w)) (m : ℕ) :
     ∀ (c : k) (b : B), w * b = (c * v ^ m) • (b * w) →
       serreAux v c (m + 1) (u + w) b = serreAux v c (m + 1) u b := by
@@ -454,7 +541,9 @@ theorem serreAux_add_left (hv : v ≠ 0) {u w : B} (hwu : w * u = v⁻¹ ^ 2 •
     · simp only [l]; linear_combination (c * c * v ^ (2 * m + 1) * v⁻¹) * hvv
 
 /-- If `w u = v² u w` and `w b = c v⁻ᵐ b w`, then the `w`-part does not contribute to the Serre
-element of `u + w` and `b`.-/
+element of `u + w` and `b`.
+@isnad1 id=eq.3h8v.s8.eeaf84356482 from=translated src=- shape=252bcd5e vocab=dd08d87e
+-/
 theorem serreAux_add_right (hv : v ≠ 0) {u w : B} (hwu : w * u = v ^ 2 • (u * w)) (m : ℕ) :
     ∀ (c : k) (b : B), w * b = (c * v⁻¹ ^ m) • (b * w) →
       serreAux v c (m + 1) (u + w) b = serreAux v c (m + 1) u b := by
@@ -479,7 +568,9 @@ theorem serreAux_add_right (hv : v ≠ 0) {u w : B} (hwu : w * u = v ^ 2 • (u 
 /-- The additivity of quantum Serre elements: if `w u = v² u w`, `w b = v⁻ᵐ b w` and
 `u b' = vᵐ b' u`, then `S(u + w, b + b') = S(u, b) + S(w, b')` for the Serre element `S` of
 degree `m + 1`. It replaces the form computation of [Lus] 1.4.4–1.4.6 and is the core of
-[Jan] Lemma 4.10; the proof (via the factorization of `S` into twisted commutators) is our own.-/
+[Jan] Lemma 4.10; the proof (via the factorization of `S` into twisted commutators) is our own.
+@isnad1 id=eq.4h8v.s8.dd15acfb5eb3 from=translated src=- shape=2c5a4dec vocab=5b4f875a
+-/
 theorem qSerre_add (hv : v ≠ 0) {u w b b' : B} {m : ℕ} (hwu : w * u = v ^ 2 • (u * w))
     (hb : w * b = v⁻¹ ^ m • (b * w)) (hb' : u * b' = v ^ m • (b' * u)) :
     qSerre v (m + 1) (u + w) (b + b') = qSerre v (m + 1) u b + qSerre v (m + 1) w b' := by
@@ -493,13 +584,21 @@ theorem qSerre_add (hv : v ≠ 0) {u w b b' : B} {m : ℕ} (hwu : w * u = v ^ 2 
     add_comm u w, serreAux_add_left hv huw m 1 b' (by simpa using hb'), serreAux_one,
     serreAux_one]
 
+/--
+@isnad1 id=eq.0h5v.s5.b4c8bce91bb3 from=translated src=- shape=a90c2793 vocab=d0a3da4c
+-/
 @[simp] lemma qSerre_zero_right (m : ℕ) (a : B) : qSerre v m a 0 = 0 := by simp [qSerre]
 
+/--
+@isnad1 id=eq.0h7v.s6.c0b7e822d034 from=translated src=- shape=ac806d32 vocab=1ffdcf19
+-/
 lemma qSerre_add_right (m : ℕ) (a b b' : B) :
     qSerre v m a (b + b') = qSerre v m a b + qSerre v m a b' := by
   simp only [qSerre, mul_add, add_mul, smul_add, Finset.sum_add_distrib]
 
-/-- `Σ_{r=0}^{m+1} (-1)^r [m+1, r]_v v^{-mr} = 0` ([Lus] 1.3.4(a)).-/
+/-- `Σ_{r=0}^{m+1} (-1)^r [m+1, r]_v v^{-mr} = 0` ([Lus] 1.3.4(a)).
+@isnad1 id=eq.1h3v.s7.07b442cbccc6 from=translated src=- shape=4309cc4f vocab=983cfd67
+-/
 theorem sum_qBinomial_mul_inv_pow_eq_zero (hv : v ≠ 0) (m : ℕ) :
     ∑ r ∈ range (m + 2), (-1) ^ r * qBinomial v (m + 1) r * (v⁻¹ ^ m) ^ r = 0 := by
   have h := serreAux_succ (B := k) hv (v⁻¹ ^ m) m 1 1
@@ -507,7 +606,9 @@ theorem sum_qBinomial_mul_inv_pow_eq_zero (hv : v ≠ 0) (m : ℕ) :
   rw [h1, one_smul, mul_one, sub_self] at h
   simpa [serreAux] using h
 
-/-- If `b a = v^{-m} a b`, then the Serre element `S(a, b)` of degree `m + 1` vanishes.-/
+/-- If `b a = v^{-m} a b`, then the Serre element `S(a, b)` of degree `m + 1` vanishes.
+@isnad1 id=eq.2h6v.s7.82b122d2ce70 from=translated src=- shape=da32c2bf vocab=5b4f875a
+-/
 theorem qSerre_eq_zero_of_mul_eq_smul (hv : v ≠ 0) {m : ℕ} {a b : B}
     (h : b * a = v⁻¹ ^ m • (a * b)) : qSerre v (m + 1) a b = 0 := by
   have key : ∀ r ≤ m + 1, a ^ (m + 1 - r) * b * a ^ r = (v⁻¹ ^ m) ^ r • (a ^ (m + 1) * b) := by
@@ -523,7 +624,9 @@ theorem qSerre_eq_zero_of_mul_eq_smul (hv : v ≠ 0) {m : ℕ} {a b : B}
 
 /-! ### Opposite algebras and twisted generators -/
 
-/-- Serre elements in the opposite algebra: `S(aᵒᵖ, bᵒᵖ) = (-1)^m S(a, b)ᵒᵖ`.-/
+/-- Serre elements in the opposite algebra: `S(aᵒᵖ, bᵒᵖ) = (-1)^m S(a, b)ᵒᵖ`.
+@isnad1 id=eq.0h6v.s7.06a96f52eff6 from=translated src=- shape=497a1b61 vocab=a401ea8f
+-/
 theorem qSerre_op (m : ℕ) (a b : B) : qSerre v m (MulOpposite.op a) (MulOpposite.op b) =
     (-1 : k) ^ m • MulOpposite.op (qSerre v m a b) := by
   simp only [qSerre, ← MulOpposite.op_pow, ← MulOpposite.op_mul, Finset.op_sum,
@@ -539,6 +642,9 @@ theorem qSerre_op (m : ℕ) (a b : B) : qSerre v m (MulOpposite.op a) (MulOpposi
   rw [h1]
   linear_combination (-((-1) ^ (m - r) * qBinomial v m r)) * h2
 
+/--
+@isnad1 id=eq.1h7v.s7.9132fba1d118 from=translated src=- shape=508cd5db vocab=42bc217f
+-/
 lemma pow_mul_pow_of_mul_eq_smul {w a : B} {t : k} (h : w * a = t • (a * w)) (m n : ℕ) :
     w ^ m * a ^ n = t ^ (m * n) • (a ^ n * w ^ m) := by
   induction m with
@@ -547,6 +653,9 @@ lemma pow_mul_pow_of_mul_eq_smul {w a : B} {t : k} (h : w * a = t • (a * w)) (
     rw [pow_succ, mul_assoc, mul_pow_of_mul_eq_smul h, mul_smul_comm, ← mul_assoc, ih,
       smul_mul_assoc, smul_smul, mul_assoc, ← pow_succ, ← pow_add, Nat.succ_mul, add_comm]
 
+/--
+@isnad1 id=eq.2h6v.s7.1083fa41cf15 from=translated src=- shape=97e1872b vocab=9e8419cd
+-/
 lemma mul_pow_eq_smul {g e : B} {t : k} (ht : t ≠ 0) (h : g * e = t • (e * g)) (n : ℕ) :
     (g * e) ^ n = t⁻¹ ^ n.choose 2 • (g ^ n * e ^ n) := by
   have heg : e * g = t⁻¹ • (g * e) := by rw [h, smul_smul, inv_mul_cancel₀ ht, one_smul]
@@ -573,7 +682,9 @@ private lemma choose_two_add (a b : ℕ) : (a + b).choose 2 = a.choose 2 + b.cho
     ring
 
 /-- Serre elements of twisted generators: if `g e = t e g`, `e h = s h e`, `f g = s g f` and
-`g h = h g`, then `S(g e, h f) = t^{-C(M,2)} s^M g^M h S(e, f)`.-/
+`g h = h g`, then `S(g e, h f) = t^{-C(M,2)} s^M g^M h S(e, f)`.
+@isnad1 id=eq.5h10v.s8.9956eaddc513 from=translated src=- shape=21083be7 vocab=c0e06df1
+-/
 theorem qSerre_mul_mul {t s : k} (ht : t ≠ 0) {g e h f : B} (hge : g * e = t • (e * g))
     (heh : e * h = s • (h * e)) (hfg : f * g = s • (g * f)) (hgh : g * h = h * g) (M : ℕ) :
     qSerre v M (g * e) (h * f) = (t⁻¹ ^ M.choose 2 * s ^ M) • (g ^ M * h * qSerre v M e f) := by
@@ -619,9 +730,15 @@ theorem qSerre_mul_mul {t s : k} (ht : t ≠ 0) {g e h f : B} (hge : g * e = t �
           · simp only [mul_assoc]
   rw [key, smul_smul, mul_comm ((-1) ^ r * qBinomial v M r)]
 
+/--
+@isnad1 id=eq.0h6v.s6.26fde729d96d from=translated src=- shape=d1b0275f vocab=d644ed22
+-/
 lemma qSerre_inv (m : ℕ) (a b : B) : qSerre v⁻¹ m a b = qSerre v m a b := by
   simp [qSerre, qBinomial_inv]
 
+/--
+@isnad1 id=eq.0h8v.s7.0fe84d85a1d1 from=translated src=- shape=ea7f19e2 vocab=d1cb6e1c
+-/
 lemma qSerre_smul_smul (m : ℕ) (a b : B) (c d : k) :
     qSerre v m (c • a) (d • b) = (c ^ m * d) • qSerre v m a b := by
   simp only [qSerre, Finset.smul_sum, smul_pow, smul_mul_assoc, mul_smul_comm, smul_smul]
@@ -631,13 +748,22 @@ lemma qSerre_smul_smul (m : ℕ) (a b : B) (c d : k) :
   rw [show c ^ m = c ^ (m - r) * c ^ r by rw [← pow_add, Nat.sub_add_cancel hr]]
   ring
 
+/--
+@isnad1 id=eq.0h8v.s7.388d635c387d from=translated src=- shape=89b67e85 vocab=f5a5cfe5
+-/
 lemma map_qSerreDiv {B' : Type*} [Ring B'] [Algebra k B'] (f : B →ₐ[k] B') (m : ℕ)
     (a b : B) : f (qSerreDiv v m a b) = qSerreDiv v m (f a) (f b) := by
   simp [qSerreDiv, qDivPow, map_sum, map_smul, map_mul, map_pow]
 
+/--
+@isnad1 id=eq.0h5v.s5.cedc8f34b49f from=translated src=- shape=a90c2793 vocab=b8d03930
+-/
 @[simp] lemma qSerreDiv_zero_right (m : ℕ) (a : B) : qSerreDiv v m a 0 = 0 := by
   simp [qSerreDiv]
 
+/--
+@isnad1 id=eq.0h8v.s7.d211dd6b1870 from=translated src=- shape=ea7f19e2 vocab=0b1f57e8
+-/
 lemma qSerreDiv_smul_smul (m : ℕ) (a b : B) (c d : k) :
     qSerreDiv v m (c • a) (d • b) = (c ^ m * d) • qSerreDiv v m a b := by
   simp only [qSerreDiv, qDivPow, Finset.smul_sum, smul_pow, smul_mul_assoc, mul_smul_comm,
@@ -683,14 +809,23 @@ def qSerreU (m : ℕ) (a b : B) : B :=
 
 variable {k : Type*} [Field k] (φ : R →+* k)
 
+/--
+@isnad1 id=eq.0h6v.s8.bdd831c41fe5 from=translated src=- shape=5ce9042b vocab=7347c663
+-/
 lemma map_units_val_pow_inv (a b : ℕ) :
     φ ((q ^ a * q⁻¹ ^ b : Rˣ) : R) = φ q ^ a * (φ q)⁻¹ ^ b := by
   rw [Units.val_mul, map_mul, Units.val_pow_eq_pow_val, Units.val_pow_eq_pow_val, map_pow,
     map_pow, map_units_inv φ q]
 
+/--
+@isnad1 id=eq.0h5v.s7.5fc1d63699e6 from=translated src=- shape=2553cbf3 vocab=c21601c4
+-/
 lemma map_qNatU (n : ℕ) : φ (qNatU q n) = qInt (φ q) n := by
   simp only [qNatU, map_sum, map_units_val_pow_inv, qInt]
 
+/--
+@isnad1 id=eq.0h6v.s7.a9dbdcb8a47f from=translated src=- shape=2a4828ca vocab=4bdb6cf1
+-/
 lemma map_qBinomialU (n j : ℕ) : φ (qBinomialU q n j) = qBinomial (φ q) n j := by
   induction n generalizing j with
   | zero => cases j <;> simp [qBinomialU, qBinomial]
@@ -701,7 +836,9 @@ lemma map_qBinomialU (n j : ℕ) : φ (qBinomialU q n j) = qBinomial (φ q) n j 
       rw [qBinomialU, qBinomial_succ_succ, map_add, map_mul, map_mul, ih, ih,
         Units.val_pow_eq_pow_val, Units.val_pow_eq_pow_val, map_pow, map_pow, map_units_inv φ q]
 
-/-- `(q - q⁻¹) [n]_q = qⁿ - q⁻ⁿ` after mapping to a field, for `n ∈ ℤ`.-/
+/-- `(q - q⁻¹) [n]_q = qⁿ - q⁻ⁿ` after mapping to a field, for `n ∈ ℤ`.
+@isnad1 id=eq.0h5v.s8.df3c589f9084 from=translated src=- shape=1b21440e vocab=0e2dfa2b
+-/
 lemma sub_mul_map_qIntU (n : ℤ) :
     (φ q - (φ q)⁻¹) * φ (qIntU q n) = φ q ^ n - φ q ^ (-n) := by
   cases n with
@@ -713,7 +850,9 @@ lemma sub_mul_map_qIntU (n : ℤ) :
       zpow_negSucc, inv_pow]
     ring
 
-/-- At `q ↦ 1` the quantum integer `[n]_q` becomes `n`.-/
+/-- At `q ↦ 1` the quantum integer `[n]_q` becomes `n`.
+@isnad1 id=eq.1h5v.s7.62ccd55960a7 from=translated src=- shape=8210c9b2 vocab=fb0036ba
+-/
 lemma map_qIntU_of_eq_one (hφ : φ q = 1) (n : ℤ) : φ (qIntU q n) = n := by
   cases n with
   | ofNat n => simp [qIntU, map_qNatU, hφ, qInt]

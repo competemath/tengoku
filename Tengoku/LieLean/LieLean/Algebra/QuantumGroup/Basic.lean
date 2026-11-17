@@ -88,14 +88,23 @@ variable {k Y : Type*} [Field k] [AddCommGroup Y] [DecidableEq I] {D : LusztigCa
 def ktilde (i : I) : Y := D.d i • R.coroot i
 
 omit [DecidableEq I] in
+/--
+@isnad1 id=eq.0h6v.s6.c7aef8ef0068 from=translated src=- shape=b9e7d29e vocab=8409c2f6
+-/
 lemma root_ktilde (i j : I) : R.root j (ktilde R i) = D.d i * D.cartanMatrix i j := by
   simp [ktilde, R.root_coroot]
 
 omit [DecidableEq I] in
+/--
+@isnad1 id=eq.0h6v.s6.495c5c562a83 from=translated src=- shape=0fefbab9 vocab=f3bbc736
+-/
 lemma root_ktilde_eq_dot (i j : I) : R.root j (ktilde R i) = D.dot i j := by
   rw [root_ktilde, D.d_mul_cartanMatrix]
 
 omit [DecidableEq I] in
+/--
+@isnad1 id=eq.0h6v.s7.0daf4da101a9 from=translated src=- shape=183b98cb vocab=7b48d5af
+-/
 lemma root_ktilde_comm (i j : I) : R.root j (ktilde R i) = R.root i (ktilde R j) := by
   rw [root_ktilde, root_ktilde, D.d_mul_cartanMatrix_comm]
 
@@ -188,32 +197,55 @@ def K (μ : Y) : QuantumGroup R v := KHom R v (.ofAdd μ)
 /-- `K̃ᵢ = K_{dᵢ i}`.-/
 abbrev Kt (i : I) : QuantumGroup R v := K R v (ktilde R i)
 
+/--
+@isnad1 id=eq.0h7v.s8.83b900d58777 from=translated src=- shape=e25eca09 vocab=fe29629d
+-/
 @[simp] lemma KHom_apply (μ : Multiplicative Y) : KHom R v μ = K R v μ.toAdd := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.fb25288e61c0 from=translated src=- shape=a887488f vocab=f31c3d7c
+-/
 lemma KHom_apply' (μ : Multiplicative Y) : KHom R v μ = mkAlgHom R v (genK k μ.toAdd) := rfl
 
-/-- `K_0 = 1`.-/
+/-- `K_0 = 1`.
+@isnad1 id=eq.0h6v.s7.92d2f315b86b from=translated src=- shape=8578afe7 vocab=36b26299
+-/
 @[simp] theorem K_zero : K R v 0 = 1 := map_one (KHom R v)
 
-/-- `K_μ K_ν = K_{μ+ν}`.-/
+/-- `K_μ K_ν = K_{μ+ν}`.
+@isnad1 id=eq.0h8v.s7.482e5b951c16 from=translated src=- shape=03d7a51a vocab=736c6f72
+-/
 theorem K_add (μ ν : Y) : K R v μ * K R v ν = K R v (μ + ν) :=
   (map_mul (KHom R v) (.ofAdd μ) (.ofAdd ν)).symm
 
+/--
+@isnad1 id=eq.0h7v.s7.d831585ca1c4 from=translated src=- shape=6d915106 vocab=2e482025
+-/
 theorem K_mul_K_neg (μ : Y) : K R v μ * K R v (-μ) = 1 := by rw [K_add, add_neg_cancel, K_zero]
 
+/--
+@isnad1 id=eq.0h7v.s7.29b0bc0fe8a1 from=translated src=- shape=b34618a2 vocab=2e482025
+-/
 theorem K_neg_mul_K (μ : Y) : K R v (-μ) * K R v μ = 1 := by rw [K_add, neg_add_cancel, K_zero]
 
+/--
+@isnad1 id=eq.0h8v.s7.089bec71896a from=translated src=- shape=af7cb989 vocab=f7469b0e
+-/
 theorem K_comm (μ ν : Y) : K R v μ * K R v ν = K R v ν * K R v μ := by
   rw [K_add, K_add, add_comm]
 
-/-- `K_μ Eᵢ = v^{⟨μ, i'⟩} Eᵢ K_μ`.-/
+/-- `K_μ Eᵢ = v^{⟨μ, i'⟩} Eᵢ K_μ`.
+@isnad1 id=eq.0h8v.s8.3d11b5592cfc from=translated src=- shape=cc615b7f vocab=dd89cd8c
+-/
 theorem K_mul_E (μ : Y) (i : I) : K R v μ * E R v i = v ^ R.root i μ • (E R v i * K R v μ) := by
   change mkAlgHom R v (genK k μ) * mkAlgHom R v (genE k i) =
     v ^ R.root i μ • (mkAlgHom R v (genE k i) * mkAlgHom R v (genK k μ))
   rw [← map_mul, ← map_mul, ← map_smul]
   exact RingQuot.mkAlgHom_rel k (Rel.K_E μ i)
 
-/-- `K_μ Fᵢ = v^{-⟨μ, i'⟩} Fᵢ K_μ`.-/
+/-- `K_μ Fᵢ = v^{-⟨μ, i'⟩} Fᵢ K_μ`.
+@isnad1 id=eq.0h8v.s8.67dae8f255dc from=translated src=- shape=83bfa070 vocab=39fe7ca5
+-/
 theorem K_mul_F (μ : Y) (i : I) :
     K R v μ * F R v i = v ^ (-R.root i μ) • (F R v i * K R v μ) := by
   change mkAlgHom R v (genK k μ) * mkAlgHom R v (genF k i) =
@@ -221,7 +253,9 @@ theorem K_mul_F (μ : Y) (i : I) :
   rw [← map_mul, ← map_mul, ← map_smul]
   exact RingQuot.mkAlgHom_rel k (Rel.K_F μ i)
 
-/-- `Eᵢ Fⱼ - Fⱼ Eᵢ = δᵢⱼ (K̃ᵢ - K̃₋ᵢ)/(vᵢ - vᵢ⁻¹)`.-/
+/-- `Eᵢ Fⱼ - Fⱼ Eᵢ = δᵢⱼ (K̃ᵢ - K̃₋ᵢ)/(vᵢ - vᵢ⁻¹)`.
+@isnad1 id=eq.0h8v.s9.1414da5912d0 from=translated src=- shape=50d6b10a vocab=a2e03aa2
+-/
 theorem E_mul_F_sub (i j : I) : E R v i * F R v j - F R v j * E R v i = if i = j then
     (v ^ D.d i - (v ^ D.d i)⁻¹)⁻¹ • (Kt R v i - K R v (-ktilde R i)) else 0 := by
   have := RingQuot.mkAlgHom_rel k (Rel.E_F (R := R) (v := v) i j)
@@ -234,21 +268,27 @@ theorem E_mul_F_sub (i j : I) : E R v i * F R v j - F R v j * E R v i = if i = j
   · rw [← map_sub, ← map_smul]; exact this
   · rw [← map_zero (mkAlgHom R v)]; exact this
 
-/-- The quantum Serre relations for the `Eᵢ`.-/
+/-- The quantum Serre relations for the `Eᵢ`.
+@isnad1 id=eq.1h8v.s7.6f6e80fbf60d from=translated src=- shape=dd3904c9 vocab=42b0e844
+-/
 theorem serre_E {i j : I} (h : i ≠ j) :
     qSerre (v ^ D.d i) (1 - D.cartanMatrix i j).toNat (E R v i) (E R v j) = 0 := by
   change qSerre _ _ (mkAlgHom R v (genE k i)) (mkAlgHom R v (genE k j)) = 0
   rw [← map_qSerre, ← map_zero (mkAlgHom R v)]
   exact RingQuot.mkAlgHom_rel k (Rel.serre_E i j h)
 
-/-- The quantum Serre relations for the `Fᵢ`.-/
+/-- The quantum Serre relations for the `Fᵢ`.
+@isnad1 id=eq.1h8v.s7.6305749b88fb from=translated src=- shape=dd3904c9 vocab=edea9692
+-/
 theorem serre_F {i j : I} (h : i ≠ j) :
     qSerre (v ^ D.d i) (1 - D.cartanMatrix i j).toNat (F R v i) (F R v j) = 0 := by
   change qSerre _ _ (mkAlgHom R v (genF k i)) (mkAlgHom R v (genF k j)) = 0
   rw [← map_qSerre, ← map_zero (mkAlgHom R v)]
   exact RingQuot.mkAlgHom_rel k (Rel.serre_F i j h)
 
-/-- The generators of `U` satisfy the defining relations.-/
+/-- The generators of `U` satisfy the defining relations.
+@isnad1 id=relation.0h6v.s6.7d503c29c36e from=translated src=- shape=14dcc74b vocab=70cb373d
+-/
 theorem relations : Relations R v (E R v) (F R v) (KHom R v) where
   K_mul_E μ i := K_mul_E R v μ i
   K_mul_F μ i := K_mul_F R v μ i
@@ -257,7 +297,9 @@ theorem relations : Relations R v (E R v) (F R v) (KHom R v) where
   serre_F _ _ h := serre_F R v h
 
 /-- Induction on `U`: a property of elements of `U` that holds for scalars and the generators
-and is closed under sums and products holds everywhere.-/
+and is closed under sums and products holds everywhere.
+@isnad1 id=var.0h14v.s9.3e38e58ea9a9 from=translated src=- shape=5da9a2a4 vocab=2634db2b
+-/
 theorem induction_on {P : QuantumGroup R v → Prop} (x : QuantumGroup R v)
     (algebraMap : ∀ c, P (algebraMap k _ c)) (E : ∀ i, P (E R v i)) (F : ∀ i, P (F R v i))
     (K : ∀ μ, P (K R v μ)) (add : ∀ x y, P x → P y → P (x + y))
@@ -302,20 +344,34 @@ def lift {e f : I → A} {κ : Multiplicative Y →* A} (h : Relations R v e f �
 
 variable {e f : I → A} {κ : Multiplicative Y →* A} (h : Relations R v e f κ)
 
+/--
+@isnad1 id=eq.1h11v.s9.c1c68797b31e from=translated src=- shape=76bf0708 vocab=3ea4747c
+-/
 lemma lift_mkAlgHom (x : FreeAlgebra k (Generator I Y)) :
     lift h (mkAlgHom R v x) = freeLift e f κ x :=
   RingQuot.liftAlgHom_mkAlgHom_apply k _ _ x
 
+/--
+@isnad1 id=eq.1h11v.s8.e1d1d225f592 from=translated src=- shape=8911d373 vocab=dec370eb
+-/
 @[simp] theorem lift_E (i : I) : lift h (E R v i) = e i := by
   rw [E, lift_mkAlgHom]; simp [freeLift]
 
+/--
+@isnad1 id=eq.1h11v.s8.78330da8534a from=translated src=- shape=1d4df1ed vocab=6ccc51d6
+-/
 @[simp] theorem lift_F (i : I) : lift h (F R v i) = f i := by
   rw [F, lift_mkAlgHom]; simp [freeLift]
 
+/--
+@isnad1 id=eq.1h11v.s8.5c927405cd4a from=translated src=- shape=588051b2 vocab=b42bc6c9
+-/
 @[simp] theorem lift_K (μ : Y) : lift h (K R v μ) = κ (.ofAdd μ) := by
   rw [K, KHom_apply']; rw [lift_mkAlgHom]; simp [freeLift]
 
-/-- Algebra homomorphisms out of `U` are determined by their values on the generators.-/
+/-- Algebra homomorphisms out of `U` are determined by their values on the generators.
+@isnad1 id=eq.3h9v.s10.479fef19eb5b from=translated src=- shape=680e8764 vocab=ed026795
+-/
 @[ext]
 theorem hom_ext {φ ψ : QuantumGroup R v →ₐ[k] A} (hE : ∀ i, φ (E R v i) = ψ (E R v i))
     (hF : ∀ i, φ (F R v i) = ψ (F R v i)) (hK : ∀ μ, φ (K R v μ) = ψ (K R v μ)) : φ = ψ := by

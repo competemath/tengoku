@@ -42,7 +42,9 @@ namespace LieLean.QuantumGroup
 
 variable {k : Type*} [Field k] {q : k} {L : ℕ}
 
-/-- [Lus] 1.3.4: `Σ_{t<L} (-1)^t q^{t(a-1)} [a; t] = δ_{a,0}` for `a < L`.-/
+/-- [Lus] 1.3.4: `Σ_{t<L} (-1)^t q^{t(a-1)} [a; t] = δ_{a,0}` for `a < L`.
+@isnad1 id=eq.2h4v.s7.fd378e937773 from=translated src=- shape=730829a5 vocab=3ab0a389
+-/
 theorem sum_neg_one_pow_zpow_qBinomial (hq : q ≠ 0) {a : ℕ} (haL : a < L) :
     ∑ t ∈ range L, (-1) ^ t * q ^ ((t : ℤ) * ((a : ℤ) - 1)) * qBinomial q a t =
       if a = 0 then 1 else 0 := by
@@ -60,7 +62,9 @@ theorem sum_neg_one_pow_zpow_qBinomial (hq : q ≠ 0) {a : ℕ} (haL : a < L) :
   · intro t _ ht
     rw [qBinomial_eq_zero_of_lt _ (by simpa using ht), mul_zero]
 
-/-- `q^{L(L-1)} = (-1)^{L+1}` ([Lus] 34.1.2 (e)).-/
+/-- `q^{L(L-1)} = (-1)^{L+1}` ([Lus] 34.1.2 (e)).
+@isnad1 id=eq.4h3v.s8.bfea8605658e from=translated src=- shape=ed37940e vocab=3acf8d74
+-/
 lemma zpow_mul_sub_one_eq (hq : q ≠ 0) (hl : q ^ (2 * L) = 1)
     (hprim : ∀ t, 0 < t → t < L → q ^ (2 * t) ≠ 1) (hL : 0 < L) :
     q ^ ((L : ℤ) * ((L : ℤ) - 1)) = (-1) ^ (L + 1) := by
@@ -69,7 +73,9 @@ lemma zpow_mul_sub_one_eq (hq : q ≠ 0) (hl : q ^ (2 * L) = 1)
 
 /-- The coefficients of [Lus] 35.2.3: for `L ∣ N` and `r ≤ N + L`,
 `Σ_{t<L} (-1)^t q^{(N+L-1)t} (-1)^r q^{r(L-1-t)} [N+L-r; t] = (-1)^{r/L}` if `L ∣ r`, and `0`
-otherwise.-/
+otherwise.
+@isnad1 id=eq.6h5v.s9.3a3ec31721f6 from=translated src=- shape=ed0fd44d vocab=65b21191
+-/
 theorem sum_frobSerreCoeff (hq : q ≠ 0) (hl : q ^ (2 * L) = 1)
     (hprim : ∀ t, 0 < t → t < L → q ^ (2 * t) ≠ 1) (hL : 0 < L) {N : ℕ} (hN : L ∣ N)
     {r : ℕ} (hr : r ≤ N + L) :

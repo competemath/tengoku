@@ -53,6 +53,9 @@ def powSumIdeal (I : Submodule R R) (x : R) (n : ℕ) : Submodule R R where
     rintro r _ ⟨c, hc, rfl⟩
     exact ⟨fun k ↦ r * c k, fun k ↦ I.smul_mem r (hc k), by simp [mul_sum, mul_assoc]⟩
 
+/--
+@isnad1 id=monotone.0h3v.s6.2df6c4b903e0 from=translated src=- shape=0aa65c12 vocab=ba863a51
+-/
 lemma powSumIdeal_mono (I : Submodule R R) (x : R) : Monotone (powSumIdeal I x) := by
   refine monotone_nat_of_le_succ fun n ↦ ?_
   rintro _ ⟨c, hc, rfl⟩
@@ -99,7 +102,9 @@ lemma eq_zero_of_sum_mul_pow_eq_zero {I : Submodule R R} {x : R} (hx : IsRightRe
     · exact ih (fun k ↦ c (k + 1)) (fun k ↦ hc (k + 1)) hS k (by omega)
 
 /-- **Humphreys, GSM 94, Lemma 4.1.** In a left noetherian ring `R`, if `x` is not a right
-zero-divisor, the left ideal `R x` meets every nonzero left ideal `I` nontrivially.-/
+zero-divisor, the left ideal `R x` meets every nonzero left ideal `I` nontrivially.
+@isnad1 id=ne.2h3v.s7.3f7c4ef45312 from=translated src=- shape=8fbcf235 vocab=ec5d2aff
+-/
 theorem inf_span_singleton_ne_bot [IsNoetherian R R] {x : R} (hx : IsRightRegular x)
     {I : Submodule R R} (hI : I ≠ ⊥) : I ⊓ span R {x} ≠ ⊥ := by
   intro hinf
@@ -133,7 +138,9 @@ theorem inf_span_singleton_ne_bot [IsNoetherian R R] {x : R} (hx : IsRightRegula
   exact ha0 (by simpa using this)
 
 /-- **Humphreys, GSM 94, Lemma 4.1**, second assertion: in a left noetherian ring without
-zero-divisors, any two nonzero left ideals intersect nontrivially.-/
+zero-divisors, any two nonzero left ideals intersect nontrivially.
+@isnad1 id=ne.2h3v.s8.77d1a7124e32 from=translated src=- shape=ed253c72 vocab=efe0525c
+-/
 theorem inf_ne_bot_of_noZeroDivisors [IsNoetherian R R] [NoZeroDivisors R] {I J : Submodule R R}
     (hI : I ≠ ⊥) (hJ : J ≠ ⊥) : I ⊓ J ≠ ⊥ := by
   obtain ⟨x, hx, hx0⟩ := (Submodule.ne_bot_iff J).mp hJ

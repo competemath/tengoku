@@ -43,11 +43,16 @@ structure Block (π : R) (d : ℕ) where
 def Filtered (π : R) (d r : ℕ) (F : R[X]) : Prop :=
   ∀ n, π ^ (r - n / d) ∣ F.coeff n
 
+/--
+@isnad1 id=filtered.0h4v.s4.3c1a0db95514 from=translated src=- shape=eafdbbe9 vocab=8ff287b1
+-/
 lemma filtered_zero (π : R) (d : ℕ) (F : R[X]) : Filtered π d 0 F := by
   intro n
   simp
 
-/-- One block gains one power of `π`, except when crossing a block-width boundary.-/
+/-- One block gains one power of `π`, except when crossing a block-width boundary.
+@isnad1 id=filtered.2h6v.s8.bda1773f396f from=translated src=- shape=035690d9 vocab=87a12ce0
+-/
 theorem Block.filtered {π : R} {d r : ℕ} (T : Block π d) (hd : 0 < d)
     {F : R[X]} (hF : Filtered π d r F) : Filtered π d (r + 1) (T.toLinearMap F) := by
   intro n
@@ -79,7 +84,9 @@ def applyBlocks {π : R} {d : ℕ} (T : ℕ → Block π d) (F : R[X]) : ℕ →
   | r + 1 => (T r).toLinearMap (applyBlocks T F r)
 
 /-- Arbitrary-index power cancellation for filtered blocks, proved coefficientwise.
-In the G₂ application `R = ℤ[x]`, `π = Φ_(3h)` and `d = 3h`.-/
+In the G₂ application `R = ℤ[x]`, `π = Φ_(3h)` and `d = 3h`.
+@isnad1 id=dvd.1h7v.s6.403ccccf7c3d from=translated src=- shape=d6c609ae vocab=ef74f2aa
+-/
 theorem coeff_dvd_pow_of_blocks {π : R} {d : ℕ} (T : ℕ → Block π d)
     (hd : 0 < d) (F : R[X]) (r n : ℕ) :
     π ^ (r - n / d) ∣ (applyBlocks T F r).coeff n := by
@@ -90,7 +97,9 @@ theorem coeff_dvd_pow_of_blocks {π : R} {d : ℕ} (T : ℕ → Block π d)
   exact hf n
 
 /-- The floor inequality needed to compare the G₂ cyclotomic exponents.
-It includes `a = b = n = 0`.-/
+It includes `a = b = n = 0`.
+@isnad1 id=le.2h4v.s6.21a2e3b5a59f from=translated src=- shape=aa1f8fae vocab=ef4726aa
+-/
 theorem square_floor_comparison (a b n h : ℕ) (hh : 0 < h)
     (hw : 3 * a + b = 2 * n) :
     n / (3 * h) ≤ a / h + b / (3 * h) := by
@@ -106,7 +115,9 @@ theorem square_floor_comparison (a b n h : ℕ) (hh : 0 < h)
   nlinarith only [hw, ha, hb, ea, eb, en, hm, hz,
     Nat.zero_le (n % (3 * h))]
 
-/-- The block valuation dominates the possible denominator deficit.-/
+/-- The block valuation dominates the possible denominator deficit.
+@isnad1 id=le.2h5v.s7.4c47d2526d9d from=translated src=- shape=12981a84 vocab=91c4bd75
+-/
 theorem square_deficit_le (a b n t h : ℕ) (hh : 0 < h)
     (hw : 3 * a + b = 2 * n) :
     t / h - a / h - b / (3 * h) ≤ t / h - n / (3 * h) := by

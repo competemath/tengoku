@@ -55,7 +55,9 @@ protected def restrict (J : Set B) : CoxeterMatrix J where
   diagonal i := M.diagonal i
   off_diagonal i i' h := M.off_diagonal i i' (Subtype.val_injective.ne h)
 
-/-- The entries of `M|_J`.-/
+/-- The entries of `M|_J`.
+@isnad1 id=eq.0h5v.s5.41d3d47d14e8 from=translated src=- shape=59ba8dd0 vocab=d360bc2d
+-/
 @[simp]
 theorem restrict_apply (J : Set B) (i j : J) : M.restrict J i j = M i j := rfl
 
@@ -65,7 +67,9 @@ namespace CoxeterSystem
 
 variable {B B' : Type*}
 
-/-- The image of an alternating word under a map of index sets.-/
+/-- The image of an alternating word under a map of index sets.
+@isnad1 id=eq.0h6v.s5.774892e2ffb6 from=translated src=- shape=5b49251d vocab=11377689
+-/
 theorem map_alternatingWord (f : B → B') (i j : B) (m : ℕ) :
     (alternatingWord i j m).map f = alternatingWord (f i) (f j) m := by
   induction m generalizing i j with
@@ -83,7 +87,9 @@ theorem eq_or_eq_of_mem_alternatingWord {i j c : B} {m : ℕ} (h : c ∈ alterna
     · exact (ih h).symm
     · exact .inr rfl
 
-/-- An alternating word in `i, j` of length at least `2` contains both `i` and `j`.-/
+/-- An alternating word in `i, j` of length at least `2` contains both `i` and `j`.
+@isnad1 id=and.1h4v.s5.c01c68de715a from=translated src=- shape=396c19a1 vocab=9f0a2287
+-/
 theorem mem_alternatingWord_of_two_le {i j : B} {m : ℕ} (hm : 2 ≤ m) :
     i ∈ alternatingWord i j m ∧ j ∈ alternatingWord i j m := by
   obtain ⟨m, rfl⟩ : ∃ m', m = m' + 2 := ⟨m - 2, by omega⟩
@@ -178,7 +184,9 @@ private theorem toRestrict_reflTransGen {ω ω' : List B}
     exact ⟨ih.1.trans h1, h2⟩
 
 /-- A reduced word for the Coxeter group of the restricted matrix is reduced in `W`. This is the
-key to the fact that `W_J` is a Coxeter group; the proof uses Matsumoto's theorem.-/
+key to the fact that `W_J` is a Coxeter group; the proof uses Matsumoto's theorem.
+@isnad1 id=isreduce.1h6v.s6.d45afdbee017 from=translated src=- shape=ba247bb3 vocab=2f622880
+-/
 theorem isReduced_map_val {η : List J} (hη : (M.restrict J).toCoxeterSystem.IsReduced η) :
     cs.IsReduced (η.map Subtype.val) := by
   induction η using List.reverseRecOn with
@@ -221,7 +229,9 @@ theorem isReduced_map_val {η : List J} (hη : (M.restrict J).toCoxeterSystem.Is
     simp [ν] at h2
     omega
 
-/-- The simple reflections `sⱼ`, `j ∈ J`, satisfy the relations of `M|_J`.-/
+/-- The simple reflections `sⱼ`, `j ∈ J`, satisfy the relations of `M|_J`.
+@isnad1 id=isliftab.0h5v.s5.eb25f028da01 from=translated src=- shape=004b8fe8 vocab=d88fa8ce
+-/
 theorem isLiftable_restrict : (M.restrict J).IsLiftable (fun j : J ↦ s (j : B)) :=
   fun i j ↦ cs.simple_mul_simple_pow i j
 
@@ -230,11 +240,15 @@ theorem isLiftable_restrict : (M.restrict J).IsLiftable (fun j : J ↦ s (j : B)
 noncomputable def restrictHom : (M.restrict J).Group →* W :=
   (M.restrict J).toCoxeterSystem.lift ⟨_, cs.isLiftable_restrict J⟩
 
-/-- `restrictHom` maps `sⱼ` to `sⱼ`.-/
+/-- `restrictHom` maps `sⱼ` to `sⱼ`.
+@isnad1 id=eq.0h6v.s7.4eb142ea593f from=translated src=- shape=72e42edb vocab=6cd4bfa8
+-/
 theorem restrictHom_simple (j : J) : cs.restrictHom J ((M.restrict J).simple j) = s j :=
   (M.restrict J).toCoxeterSystem.lift_apply_simple (cs.isLiftable_restrict J) j
 
-/-- `restrictHom` on the product of a word.-/
+/-- `restrictHom` on the product of a word.
+@isnad1 id=eq.0h6v.s7.23c32915906a from=translated src=- shape=2ff9afae vocab=6ccbd342
+-/
 theorem restrictHom_wordProd (η : List J) :
     cs.restrictHom J ((M.restrict J).toCoxeterSystem.wordProd η) = π (η.map Subtype.val) := by
   rw [wordProd, map_list_prod, wordProd, map_map, map_map]
@@ -242,7 +256,9 @@ theorem restrictHom_wordProd (η : List J) :
   refine map_congr_left fun j _ ↦ ?_
   simp [restrictHom_simple]
 
-/-- `restrictHom` is injective.-/
+/-- `restrictHom` is injective.
+@isnad1 id=injectiv.0h5v.s7.ef1c1d9ddca9 from=translated src=- shape=e2420a66 vocab=8660dc6e
+-/
 theorem restrictHom_injective : Function.Injective (cs.restrictHom J) := by
   rw [injective_iff_map_eq_one]
   intro g hg
@@ -252,7 +268,9 @@ theorem restrictHom_injective : Function.Injective (cs.restrictHom J) := by
   rw [hg, length_one, length_map] at this
   rw [List.eq_nil_of_length_eq_zero this.symm, wordProd_nil]
 
-/-- The image of `restrictHom` is `W_J`.-/
+/-- The image of `restrictHom` is `W_J`.
+@isnad1 id=eq.0h5v.s5.33c0a64d499e from=translated src=- shape=55e534d7 vocab=575172ad
+-/
 theorem range_restrictHom : (cs.restrictHom J).range = cs.parabolicSubgroup J := by
   rw [MonoidHom.range_eq_map, ← (M.restrict J).toCoxeterSystem.subgroup_closure_range_simple,
     MonoidHom.map_closure, parabolicSubgroup]
@@ -261,7 +279,9 @@ theorem range_restrictHom : (cs.restrictHom J).range = cs.parabolicSubgroup J :=
   simp [restrictHom_simple]
 
 /-- A word in `J` is reduced for the Coxeter group of `M|_J` if and only if it is reduced
-in `W`.-/
+in `W`.
+@isnad1 id=iff.0h6v.s6.f7ebfcad8e85 from=translated src=- shape=c6bb78f5 vocab=2f622880
+-/
 theorem isReduced_map_val_iff {η : List J} :
     (M.restrict J).toCoxeterSystem.IsReduced η ↔ cs.IsReduced (η.map Subtype.val) := by
   refine ⟨cs.isReduced_map_val J, fun h ↦ ?_⟩
@@ -285,13 +305,17 @@ noncomputable def parabolicCoxeterSystem :
       ⟨MonoidHom.rangeRestrict_injective_iff.mpr (cs.restrictHom_injective J),
         MonoidHom.rangeRestrict_surjective _⟩).symm⟩
 
-/-- The simple reflections of `W_J` are the `sⱼ`, `j ∈ J`.-/
+/-- The simple reflections of `W_J` are the `sⱼ`, `j ∈ J`.
+@isnad1 id=eq.0h6v.s6.87556454340b from=translated src=- shape=df1d6c14 vocab=e02ed999
+-/
 @[simp]
 theorem coe_parabolicCoxeterSystem_simple (j : J) :
     ((cs.parabolicCoxeterSystem J).simple j : W) = s j :=
   cs.restrictHom_simple J j
 
-/-- Products of words in `W_J`.-/
+/-- Products of words in `W_J`.
+@isnad1 id=eq.0h6v.s7.2572993d53fc from=translated src=- shape=4445dd53 vocab=e68a7ca5
+-/
 theorem coe_parabolicCoxeterSystem_wordProd (η : List J) :
     ((cs.parabolicCoxeterSystem J).wordProd η : W) = π (η.map Subtype.val) := by
   rw [wordProd, ← (cs.parabolicSubgroup J).subtype_apply, map_list_prod, wordProd, map_map,
@@ -301,7 +325,9 @@ theorem coe_parabolicCoxeterSystem_wordProd (η : List J) :
   simp
 
 /-- The length function of `W_J` (as a Coxeter group) is the restriction of that of `W`
-([HumC] §5.5).-/
+([HumC] §5.5).
+@isnad1 id=eq.0h6v.s7.bca3732b3708 from=translated src=- shape=4579a09b vocab=63eebf83
+-/
 theorem length_parabolicCoxeterSystem (w : cs.parabolicSubgroup J) :
     (cs.parabolicCoxeterSystem J).length w = ℓ (w : W) := by
   apply le_antisymm

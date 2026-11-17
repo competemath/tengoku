@@ -155,18 +155,33 @@ noncomputable def tensor : Crystal D (B₁ × B₂) where
 
 variable {C₁ C₂ C₃}
 
+/--
+@isnad1 id=eq.0h8v.s6.fa5c66879793 from=translated src=- shape=5e1a2f40 vocab=430d3c55
+-/
 @[simp] lemma tensor_wt (b : B₁ × B₂) : (C₁.tensor C₂).wt b = C₁.wt b.1 + C₂.wt b.2 := rfl
 
+/--
+@isnad1 id=eq.0h9v.s7.0f816c7253a3 from=translated src=- shape=11bacaf7 vocab=7e5ac92f
+-/
 lemma tensor_ε (i : ι) (b : B₁ × B₂) : (C₁.tensor C₂).ε i b =
     max (C₁.ε i b.1) (C₂.ε i b.2 + ((-D.coroot i (C₁.wt b.1) : ℤ) : WithBot ℤ)) := rfl
 
+/--
+@isnad1 id=eq.0h9v.s7.24b88e057b74 from=translated src=- shape=f3babb6a vocab=74e9f204
+-/
 lemma tensor_φ (i : ι) (b : B₁ × B₂) : (C₁.tensor C₂).φ i b =
     max (C₂.φ i b.2) (C₁.φ i b.1 + (D.coroot i (C₂.wt b.2) : WithBot ℤ)) := rfl
 
+/--
+@isnad1 id=eq.0h9v.s7.ab43626fd086 from=translated src=- shape=25914ea8 vocab=6bdfbe6e
+-/
 lemma tensor_e (i : ι) (b : B₁ × B₂) : (C₁.tensor C₂).e i b =
     if C₂.ε i b.2 ≤ C₁.φ i b.1 then (C₁.e i b.1).map (·, b.2) else (C₂.e i b.2).map (b.1, ·) :=
   rfl
 
+/--
+@isnad1 id=eq.0h9v.s7.775f9e854510 from=translated src=- shape=25914ea8 vocab=5de866ec
+-/
 lemma tensor_f (i : ι) (b : B₁ × B₂) : (C₁.tensor C₂).f i b =
     if C₂.ε i b.2 < C₁.φ i b.1 then (C₁.f i b.1).map (·, b.2) else (C₂.f i b.2).map (b.1, ·) :=
   rfl
@@ -188,6 +203,9 @@ def StrictHom.tensorMap (ψ₁ : StrictHom C₁ C₁') (ψ₂ : StrictHom C₂ C
     simp only [tensor_f, ψ₁.φ_map, ψ₂.ε_apply, ψ₁.f_apply, ψ₂.f_apply]
     split_ifs <;> simp [Option.map_map, Function.comp_def]
 
+/--
+@isnad1 id=eq.0h14v.s7.2961943df7ff from=translated src=- shape=cb9e4975 vocab=e819319a
+-/
 @[simp] lemma StrictHom.tensorMap_apply (ψ₁ : StrictHom C₁ C₁') (ψ₂ : StrictHom C₂ C₂')
     (b : B₁ × B₂) : ψ₁.tensorMap ψ₂ b = (ψ₁ b.1, ψ₂ b.2) := rfl
 
@@ -264,6 +282,9 @@ def tensorAssoc : Equiv ((C₁.tensor C₂).tensor C₃) (C₁.tensor (C₂.tens
     simp only [add_assoc] at h₁ h₂
     split_ifs <;> first | tauto | simp [Option.map_map, Function.comp_def]
 
+/--
+@isnad1 id=eq.0h10v.s8.b00b1f67ee9d from=translated src=- shape=ed431f9e vocab=02040209
+-/
 @[simp] lemma tensorAssoc_apply (b : (B₁ × B₂) × B₃) :
     tensorAssoc C₁ C₂ C₃ b = (b.1.1, (b.1.2, b.2)) := rfl
 

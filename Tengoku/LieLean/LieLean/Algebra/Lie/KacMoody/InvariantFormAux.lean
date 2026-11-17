@@ -107,13 +107,18 @@ namespace AuxLieAlgebra
 /-! ### Complements on the root space decomposition -/
 
 omit [CharZero K] in
+/--
+@isnad1 id=mem.0h6v.s10.9c026fe5319d from=translated src=- shape=a68c6bb9 vocab=b79f2bfd
+-/
 lemma mem_iSup_rootSpace (x : P.AuxLieAlgebra) : x ∈ ⨆ μ, rootSpace P μ := by
   have hx : x ∈ ⨆ μ ∈ allWeights P, rootSpace P μ := by
     rw [iSup_rootSpace_eq_top]; trivial
   exact (iSup₂_le fun μ _ ↦ le_iSup (fun μ ↦ rootSpace P μ) μ) hx
 
 omit [CharZero K] in
-/-- Induction principle along the root space decomposition of `𝔤̃(A)`.-/
+/-- Induction principle along the root space decomposition of `𝔤̃(A)`.
+@isnad1 id=var.0h9v.s10.c82995cffd4c from=translated src=- shape=a9468bd3 vocab=d9e19e42
+-/
 @[elab_as_elim]
 lemma induction_on_rootSpace {p : P.AuxLieAlgebra → Prop} (x : P.AuxLieAlgebra)
     (mem : ∀ μ, ∀ x ∈ rootSpace P μ, p x) (add : ∀ x y, p x → p y → p (x + y)) : p x :=
@@ -121,7 +126,9 @@ lemma induction_on_rootSpace {p : P.AuxLieAlgebra → Prop} (x : P.AuxLieAlgebra
     (mem 0 0 (Submodule.zero_mem _)) add
 
 omit [CharZero K] in
-/-- `𝔤̃_μ = 0` unless `μ ∈ -(Q₊ \ 0) ∪ {0} ∪ (Q₊ \ 0)`.-/
+/-- `𝔤̃_μ = 0` unless `μ ∈ -(Q₊ \ 0) ∪ {0} ∪ (Q₊ \ 0)`.
+@isnad1 id=eq.1h6v.s9.b1db1c4d673e from=translated src=- shape=13a0ec06 vocab=8733f9ce
+-/
 lemma rootSpace_eq_bot {μ : Dual K H} (hμ : μ ∉ allWeights P) : rootSpace P μ = ⊥ := by
   refine eq_bot_iff.mpr fun x hx ↦ ?_
   have hx' : x ∈ ⨆ ν, ⨆ (_ : ν ∈ allWeights P), rootSpace P ν := by
@@ -132,6 +139,9 @@ lemma rootSpace_eq_bot {μ : Dual K H} (hμ : μ ∉ allWeights P) : rootSpace P
   simpa [hμ] using this
 
 omit [DecidableEq ι] [CharZero K] in
+/--
+@isnad1 id=iff.0h6v.s7.22ccc1109b5d from=translated src=- shape=a018cebf vocab=8e9bd4a6
+-/
 lemma mem_negWeights_iff {μ : Dual K H} : μ ∈ P.negWeights ↔ -μ ∈ P.posWeights := by
   constructor
   · rintro ⟨k, hk, rfl⟩; exact ⟨k, hk, by simp⟩
@@ -143,7 +153,9 @@ section FiniteDimensional
 variable [FiniteDimensional K H]
 
 omit [DecidableEq ι] [CharZero K] in
-/-- A weight `μ ∈ Q₊ \ {0}` has positive height `⟨μ, ρ^∨⟩`.-/
+/-- A weight `μ ∈ Q₊ \ {0}` has positive height `⟨μ, ρ^∨⟩`.
+@isnad1 id=ex.1h6v.s7.badee23b992c from=translated src=- shape=62f2e556 vocab=1ab81071
+-/
 lemma exists_nat_of_mem_posWeights {μ : Dual K H} (hμ : μ ∈ P.posWeights) :
     ∃ n : ℕ, 0 < n ∧ μ P.rhoCheck = n := by
   obtain ⟨k, ⟨hk0, hk⟩, rfl⟩ := hμ
@@ -155,6 +167,9 @@ lemma exists_nat_of_mem_posWeights {μ : Dual K H} (hμ : μ ∈ P.posWeights) :
   rw [rootOf_rhoCheck, ← Int.cast_natCast, Int.toNat_of_nonneg hpos.le]
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=ne.2h6v.s8.cbfce9a535dd from=translated src=- shape=c376b304 vocab=5d5797da
+-/
 lemma apply_rhoCheck_ne_zero {μ : Dual K H} (hμ : μ ∈ allWeights P) (hμ0 : μ ≠ 0) :
     μ P.rhoCheck ≠ 0 := by
   rcases hμ with (hμ | hμ) | hμ
@@ -167,6 +182,9 @@ lemma apply_rhoCheck_ne_zero {μ : Dual K H} (hμ : μ ∈ allWeights P) (hμ0 :
     rw [hμn]
     exact_mod_cast hn.ne'
 
+/--
+@isnad1 id=ne.3h7v.s10.fd7af9ab5e5d from=translated src=- shape=e794a129 vocab=3eaeeca1
+-/
 lemma apply_rhoCheck_ne_zero_of_mem {μ : Dual K H} (hμ : μ ≠ 0) {x : P.AuxLieAlgebra}
     (hx : x ∈ rootSpace P μ) (hx0 : x ≠ 0) : μ P.rhoCheck ≠ 0 := by
   by_cases hμw : μ ∈ allWeights P
@@ -186,6 +204,9 @@ def hComp : P.AuxLieAlgebra →ₗ[K] H :=
       (triangularEquiv P).symm.toLinearMap
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h8v.s11.591492fecc50 from=translated src=- shape=5dd39c46 vocab=fa684fec
+-/
 lemma hComp_triangular (y : FreeLieAlgebra K ι) (a : H) (z : FreeLieAlgebra K ι) :
     hComp P (fHom P y + h P a + eHom P z) = a := by
   rw [← triangularEquiv_apply]
@@ -193,17 +214,29 @@ lemma hComp_triangular (y : FreeLieAlgebra K ι) (a : H) (z : FreeLieAlgebra K �
     LinearMap.snd_apply, LinearMap.fst_apply]
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h6v.s10.30f0aebb3416 from=translated src=- shape=63ccbdd2 vocab=0073fc9e
+-/
 @[simp] lemma hComp_h (a : H) : hComp P (h P a) = a := by
   simpa using hComp_triangular P 0 a 0
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h6v.s9.a61339cc353e from=translated src=- shape=e4465e62 vocab=f29683d1
+-/
 lemma hComp_eHom (z : FreeLieAlgebra K ι) : hComp P (eHom P z) = 0 := by
   simpa using hComp_triangular P 0 0 z
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h6v.s9.9b0358affc13 from=translated src=- shape=e4465e62 vocab=ddbc5880
+-/
 lemma hComp_fHom (y : FreeLieAlgebra K ι) : hComp P (fHom P y) = 0 := by
   simpa using hComp_triangular P y 0 0
 
+/--
+@isnad1 id=eq.2h7v.s10.15bcac3e6760 from=translated src=- shape=db9c1acb vocab=b92a0bd5
+-/
 lemma hComp_of_mem {μ : Dual K H} (hμ : μ ≠ 0) {x : P.AuxLieAlgebra} (hx : x ∈ rootSpace P μ) :
     hComp P x = 0 := by
   by_cases hμw : μ ∈ allWeights P
@@ -216,10 +249,16 @@ lemma hComp_of_mem {μ : Dual K H} (hμ : μ ≠ 0) {x : P.AuxLieAlgebra} (hx : 
   · rw [rootSpace_eq_bot P hμw] at hx
     simp [(Submodule.mem_bot K).mp hx]
 
+/--
+@isnad1 id=mem.1h6v.s10.1b31f9056bbd from=translated src=- shape=0420503c vocab=bcd67242
+-/
 lemma mem_range_h_of_mem {x : P.AuxLieAlgebra} (hx : x ∈ rootSpace P 0) :
     x ∈ LinearMap.range (h P) := by
   rwa [← rootSpace_zero]
 
+/--
+@isnad1 id=eq.0h7v.s10.630f241a6432 from=translated src=- shape=b2998426 vocab=90b1b736
+-/
 lemma hComp_lie_h (a : H) (x : P.AuxLieAlgebra) : hComp P ⁅h P a, x⁆ = 0 := by
   induction x using induction_on_rootSpace P with
   | mem μ x hx =>
@@ -237,19 +276,31 @@ variable [FiniteDimensional K H]
 def degOp : Module.End K P.AuxLieAlgebra :=
   ad K _ (h P P.rhoCheck) + h P ∘ₗ hComp P
 
+/--
+@isnad1 id=eq.2h7v.s11.3aedb2941f31 from=translated src=- shape=60cfc138 vocab=65e0d5a5
+-/
 lemma degOp_of_mem {μ : Dual K H} (hμ : μ ≠ 0) {x : P.AuxLieAlgebra} (hx : x ∈ rootSpace P μ) :
     degOp P x = μ P.rhoCheck • x := by
   simp [degOp, hComp_of_mem P hμ hx, hx P.rhoCheck]
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h6v.s10.99f6902e63ca from=translated src=- shape=176794c0 vocab=1902f7af
+-/
 lemma degOp_h (a : H) : degOp P (h P a) = h P a := by
   simp [degOp, lie_h_h]
 
+/--
+@isnad1 id=eq.0h7v.s11.102abeac81ed from=translated src=- shape=54de435b vocab=fa301d79
+-/
 lemma lie_h_degOp (a : H) (x : P.AuxLieAlgebra) : ⁅h P a, degOp P x⁆ = degOp P ⁅h P a, x⁆ := by
   simp only [degOp, LinearMap.add_apply, ad_apply, LinearMap.comp_apply, lie_add, lie_h_h,
     hComp_lie_h, map_zero, add_zero]
   rw [leibniz_lie, lie_h_h, zero_lie, zero_add]
 
+/--
+@isnad1 id=surjecti.0h5v.s9.a9556e00c45c from=translated src=- shape=9c52673a vocab=8bccf57e
+-/
 lemma degOp_surjective : Function.Surjective (degOp P) := by
   intro y
   induction y using induction_on_rootSpace P with
@@ -268,6 +319,9 @@ lemma degOp_surjective : Function.Surjective (degOp P) := by
     obtain ⟨b, rfl⟩ := hz
     exact ⟨a + b, map_add _ _ _⟩
 
+/--
+@isnad1 id=injectiv.0h5v.s9.de0a2d9341dc from=translated src=- shape=9c52673a vocab=c45ec4f6
+-/
 lemma degOp_injective : Function.Injective (degOp P) := by
   rw [← LinearMap.ker_eq_bot, eq_bot_iff]
   intro x hx
@@ -296,6 +350,9 @@ def degOpEquiv : P.AuxLieAlgebra ≃ₗ[K] P.AuxLieAlgebra :=
 def degInv : Module.End K P.AuxLieAlgebra :=
   (degOpEquiv P).symm.toLinearMap - h P ∘ₗ hComp P
 
+/--
+@isnad1 id=eq.2h7v.s11.776627de134b from=translated src=- shape=8175da98 vocab=e7109310
+-/
 lemma degInv_of_mem {μ : Dual K H} (hμ : μ ≠ 0) {x : P.AuxLieAlgebra} (hx : x ∈ rootSpace P μ) :
     degInv P x = (μ P.rhoCheck)⁻¹ • x := by
   by_cases hx0 : x = 0
@@ -307,6 +364,9 @@ lemma degInv_of_mem {μ : Dual K H} (hμ : μ ≠ 0) {x : P.AuxLieAlgebra} (hx :
     rw [map_smul, degOp_of_mem P hμ hx, smul_smul, inv_mul_cancel₀ hne, one_smul]
   simp [degInv, this, hComp_of_mem P hμ hx]
 
+/--
+@isnad1 id=eq.0h6v.s10.69ea04f83fea from=translated src=- shape=e95e3668 vocab=966f8035
+-/
 lemma degInv_h (a : H) : degInv P (h P a) = 0 := by
   have : (degOpEquiv P).symm (h P a) = h P a := by
     rw [LinearEquiv.symm_apply_eq]
@@ -327,25 +387,38 @@ def invFormAux : LinearMap.BilinForm K P.AuxLieAlgebra :=
     (fun x y₁ y₂ ↦ by simp only [map_add, lie_add, LinearMap.add_apply]; ring)
     (fun c x y ↦ by simp only [map_smul, lie_smul, LinearMap.smul_apply, smul_eq_mul]; ring)
 
+/--
+@isnad1 id=eq.0h8v.s12.eb4e28531703 from=translated src=- shape=3c61393d vocab=f580488c
+-/
 lemma invFormAux_apply (x y : P.AuxLieAlgebra) :
     invFormAux P S x y = P.bilinForm S (hComp P x) (hComp P y) +
       P.bilinForm S (hComp P ⁅degInv P x, y⁆) P.rhoCheck := rfl
 
+/--
+@isnad1 id=eq.0h8v.s11.9def251e6dbe from=translated src=- shape=8d24f787 vocab=78454c10
+-/
 lemma invFormAux_h_left (a : H) (y : P.AuxLieAlgebra) :
     invFormAux P S (h P a) y = P.bilinForm S a (hComp P y) := by
   simp [invFormAux_apply, degInv_h]
 
-/-- The form restricts to the form `Matrix.Realization.bilinForm` on `𝔥`.-/
+/-- The form restricts to the form `Matrix.Realization.bilinForm` on `𝔥`.
+@isnad1 id=eq.0h8v.s11.e60a0d0fac23 from=translated src=- shape=8a376c9a vocab=d6a991ad
+-/
 @[simp] theorem invFormAux_h_h (a b : H) :
     invFormAux P S (h P a) (h P b) = P.bilinForm S a b := by
   simp [invFormAux_h_left]
 
+/--
+@isnad1 id=eq.2h9v.s12.c524aecc8c33 from=translated src=- shape=486cd4e8 vocab=643030be
+-/
 lemma invFormAux_of_mem {μ : Dual K H} (hμ : μ ≠ 0) {x : P.AuxLieAlgebra}
     (hx : x ∈ rootSpace P μ) (y : P.AuxLieAlgebra) :
     invFormAux P S x y = (μ P.rhoCheck)⁻¹ * P.bilinForm S (hComp P ⁅x, y⁆) P.rhoCheck := by
   simp [invFormAux_apply, hComp_of_mem P hμ hx, degInv_of_mem P hμ hx]
 
-/-- `(𝔤̃_μ | 𝔤̃_ν) = 0` unless `μ + ν = 0`.-/
+/-- `(𝔤̃_μ | 𝔤̃_ν) = 0` unless `μ + ν = 0`.
+@isnad1 id=eq.3h10v.s11.32fdec4fb0d0 from=translated src=- shape=68e59061 vocab=f70b671d
+-/
 theorem invFormAux_eq_zero {μ ν : Dual K H} {x y : P.AuxLieAlgebra} (hx : x ∈ rootSpace P μ)
     (hy : y ∈ rootSpace P ν) (hμν : μ + ν ≠ 0) : invFormAux P S x y = 0 := by
   by_cases hμ : μ = 0
@@ -356,6 +429,9 @@ theorem invFormAux_eq_zero {μ ν : Dual K H} {x y : P.AuxLieAlgebra} (hx : x �
   · rw [invFormAux_of_mem P S hμ hx, hComp_of_mem P hμν (lie_mem_rootSpace P hx hy)]
     simp
 
+/--
+@isnad1 id=eq.2h10v.s12.9cd8b8c3e619 from=translated src=- shape=169c544e vocab=13333eea
+-/
 lemma invFormAux_comm_of_mem {μ ν : Dual K H} {x y : P.AuxLieAlgebra} (hx : x ∈ rootSpace P μ)
     (hy : y ∈ rootSpace P ν) : invFormAux P S x y = invFormAux P S y x := by
   by_cases hμν : μ + ν = 0
@@ -369,7 +445,9 @@ lemma invFormAux_comm_of_mem {μ ν : Dual K H} {x y : P.AuxLieAlgebra} (hx : x 
       simp only [map_neg, LinearMap.neg_apply, inv_neg, neg_mul, mul_neg]
   · rw [invFormAux_eq_zero P S hx hy hμν, invFormAux_eq_zero P S hy hx (by rwa [add_comm])]
 
-/-- The form on `𝔤̃(A)` is symmetric.-/
+/-- The form on `𝔤̃(A)` is symmetric.
+@isnad1 id=issymm.0h6v.s8.7a2924da88f9 from=translated src=- shape=f8859e3c vocab=7f480d9b
+-/
 theorem isSymm_invFormAux : (invFormAux P S).IsSymm := by
   refine LinearMap.BilinForm.isSymm_def.mpr fun x y ↦ ?_
   induction x using induction_on_rootSpace P with
@@ -379,7 +457,9 @@ theorem isSymm_invFormAux : (invFormAux P S).IsSymm := by
     | add y₁ y₂ h₁ h₂ => simp [h₁, h₂]
   | add x₁ x₂ h₁ h₂ => simp [h₁, h₂]
 
-/-- `(eᵢ | fⱼ) = δᵢⱼ εᵢ` ([Kac] §2.2).-/
+/-- `(eᵢ | fⱼ) = δᵢⱼ εᵢ` ([Kac] §2.2).
+@isnad1 id=eq.0h8v.s11.2dabe24113cc from=translated src=- shape=3b002a52 vocab=10a0decc
+-/
 theorem invFormAux_e_f (i j : ι) :
     invFormAux P S (e P i) (f P j) = if i = j then (S.ε i : K) else 0 := by
   split_ifs with hij
@@ -406,6 +486,9 @@ def LieEqForm (μ : Dual K H) : Prop :=
 
 variable {P S}
 
+/--
+@isnad1 id=lieeqfor.2h7v.s11.ea7ef0aa8742 from=translated src=- shape=3d167761 vocab=951e10bc
+-/
 lemma lieEqForm_of_exists {μ : Dual K H} (hμ : μ ≠ 0)
     (hex : ∀ x ∈ rootSpace P μ, ∀ y ∈ rootSpace P (-μ),
       ∃ c : K, ⁅x, y⁆ = c • h P ((P.toDual S).symm μ)) : LieEqForm P S μ := by
@@ -420,6 +503,9 @@ lemma lieEqForm_of_exists {μ : Dual K H} (hμ : μ ≠ 0)
   field_simp
 
 variable (P S) in
+/--
+@isnad1 id=lieeqfor.0h6v.s7.8337945c1e09 from=translated src=- shape=42540512 vocab=865208d5
+-/
 lemma lieEqForm_zero : LieEqForm P S 0 := by
   intro x hx y hy
   rw [neg_zero] at hy
@@ -428,11 +514,17 @@ lemma lieEqForm_zero : LieEqForm P S 0 := by
   simp [lie_h_h]
 
 variable (S) in
+/--
+@isnad1 id=lieeqfor.1h7v.s7.f795aba340cd from=translated src=- shape=98c76e62 vocab=61231ffb
+-/
 lemma lieEqForm_of_notMem {μ : Dual K H} (hμ : μ ∉ allWeights P) : LieEqForm P S μ := by
   intro x hx y _
   rw [rootSpace_eq_bot P hμ, Submodule.mem_bot] at hx
   simp [hx]
 
+/--
+@isnad1 id=lieeqfor.1h7v.s7.3617c58f53e9 from=translated src=- shape=7f70ebba vocab=b5ad350c
+-/
 lemma LieEqForm.neg {μ : Dual K H} (hμ : LieEqForm P S μ) : LieEqForm P S (-μ) := by
   intro x hx y hy
   rw [neg_neg] at hy
@@ -440,6 +532,9 @@ lemma LieEqForm.neg {μ : Dual K H} (hμ : LieEqForm P S μ) : LieEqForm P S (-�
   simp only [map_neg, smul_neg]
 
 variable (P S) in
+/--
+@isnad1 id=lieeqfor.0h7v.s6.2f4bb614103b from=translated src=- shape=36cc21bf vocab=152ef2c2
+-/
 lemma lieEqForm_root (i : ι) : LieEqForm P S (P.root i) := by
   refine lieEqForm_of_exists (P.linearIndependent_root.ne_zero i) fun x hx y hy ↦ ?_
   rw [rootSpace_root, Submodule.mem_span_singleton] at hx
@@ -459,11 +554,16 @@ def InvTriple (x y z : P.AuxLieAlgebra) : Prop :=
   invFormAux P S x ⁅y, z⁆ = invFormAux P S z ⁅x, y⁆ ∧
     invFormAux P S y ⁅z, x⁆ = invFormAux P S z ⁅x, y⁆
 
+/--
+@isnad1 id=invtripl.1h9v.s7.12e464378450 from=translated src=- shape=64f6dd56 vocab=01cf170e
+-/
 lemma InvTriple.rotate {x y z : P.AuxLieAlgebra} (hxyz : InvTriple P S x y z) :
     InvTriple P S y z x :=
   ⟨hxyz.2.trans hxyz.1.symm, hxyz.1.symm⟩
 
-/-- Lemma 1 of the module docstring, independent case.-/
+/-- Lemma 1 of the module docstring, independent case.
+@isnad1 id=invtripl.8h12v.s11.828a8aa3a366 from=translated src=- shape=3193a3d4 vocab=bcfd4af5
+-/
 lemma invTriple_of_linearIndependent {α β γ : Dual K H} (hsum : α + β + γ = 0)
     (hα : LieEqForm P S α) (hβ : LieEqForm P S β) (hγ : LieEqForm P S γ)
     {x y z : P.AuxLieAlgebra} (hx : x ∈ rootSpace P α) (hy : y ∈ rootSpace P β)
@@ -487,7 +587,9 @@ lemma invTriple_of_linearIndependent {α β γ : Dual K H} (hsum : α + β + γ 
     (invFormAux P S y ⁅z, x⁆ - invFormAux P S z ⁅x, y⁆) (by rw [← hj']; module)
   exact ⟨sub_eq_zero.mp hs, sub_eq_zero.mp ht⟩
 
-/-- Lemma 1 of the module docstring, case of a zero weight.-/
+/-- Lemma 1 of the module docstring, case of a zero weight.
+@isnad1 id=invtripl.5h11v.s11.e15c73be2c55 from=translated src=- shape=d3de93f5 vocab=079665e7
+-/
 lemma invTriple_of_zero {β γ : Dual K H} (hsum : β + γ = 0) (hβ : LieEqForm P S β)
     {x y z : P.AuxLieAlgebra} (hx : x ∈ rootSpace P 0) (hy : y ∈ rootSpace P β)
     (hz : z ∈ rootSpace P γ) : InvTriple P S x y z := by
@@ -503,9 +605,15 @@ lemma invTriple_of_zero {β γ : Dual K H} (hsum : β + γ = 0) (hβ : LieEqForm
     simp
   exact ⟨e1.trans e2.symm, e3.trans e2.symm⟩
 
+/--
+@isnad1 id=invtripl.1h9v.s8.cb59571ff64e from=translated src=- shape=5e174ca7 vocab=82bfa1d4
+-/
 lemma invTriple_of_zero_left {x y z : P.AuxLieAlgebra} (hx : x = 0) : InvTriple P S x y z := by
   subst hx; simp [InvTriple]
 
+/--
+@isnad1 id=invtripl.1h9v.s8.2f2a9af317ed from=translated src=- shape=fe6ed8d6 vocab=82bfa1d4
+-/
 lemma invTriple_of_zero_right {x y z : P.AuxLieAlgebra} (hz : z = 0) : InvTriple P S x y z := by
   subst hz; simp [InvTriple]
 
@@ -561,7 +669,9 @@ lemma eq_root_or_eq_neg_root {μ : Dual K H} {x : P.AuxLieAlgebra} (hx : x ∈ r
   · exact Or.inl (eq_root_of_mem_posWeights hμ hx hx0 hc)
 
 /-- Lemmas 1 and 2 of the module docstring: invariance for a triple whose middle element has
-weight `±αₖ`.-/
+weight `±αₖ`.
+@isnad1 id=invtripl.8h13v.s11.831497ac64d4 from=translated src=- shape=aec181ca vocab=605439f1
+-/
 lemma invTriple_of_root {α β γ : Dual K H} (hsum : α + β + γ = 0)
     (hα : LieEqForm P S α) (hβ : LieEqForm P S β) (hγ : LieEqForm P S γ)
     {x y z : P.AuxLieAlgebra} (hx : x ∈ rootSpace P α) (hy : y ∈ rootSpace P β)
@@ -612,6 +722,9 @@ lemma invTriple_of_root {α β γ : Dual K H} (hsum : α + β + γ = 0)
 
 omit [DecidableEq ι] [CharZero K] [FiniteDimensional K H] in
 variable (P) in
+/--
+@isnad1 id=mem.0h7v.s6.1a02db41df26 from=translated src=- shape=a98b1289 vocab=92d3ee35
+-/
 lemma wordWt_cons_mem_posWeights (j : ι) (l : List ι) : wordWt P (j :: l) ∈ P.posWeights := by
   classical
   rw [wordWt_eq_rootOf]
@@ -623,7 +736,9 @@ lemma wordWt_cons_mem_posWeights (j : ι) (l : List ι) : wordWt P (j :: l) ∈ 
 
 omit [FiniteDimensional K H] in
 variable (P) in
-/-- For `μ > 0` not a simple root, `𝔤̃_μ` is spanned by the `[eⱼ, x]`, `x ∈ 𝔤̃_{μ - αⱼ}`.-/
+/-- For `μ > 0` not a simple root, `𝔤̃_μ` is spanned by the `[eⱼ, x]`, `x ∈ 𝔤̃_{μ - αⱼ}`.
+@isnad1 id=var.3h12v.s11.7752304c3cf9 from=translated src=- shape=cdeb9e0e vocab=5e222d71
+-/
 lemma rootSpace_induction_e {μ : Dual K H} {p : P.AuxLieAlgebra → Prop} (hμ : μ ∈ P.posWeights)
     (hμ1 : ∀ j, μ ≠ P.root j) (zero : p 0) (add : ∀ x y, p x → p y → p (x + y))
     (smul : ∀ (c : K) x, p x → p (c • x))
@@ -652,7 +767,9 @@ lemma rootSpace_induction_e {μ : Dual K H} {p : P.AuxLieAlgebra → Prop} (hμ 
 omit [FiniteDimensional K H] in
 variable (P) in
 /-- For `μ > 0` not a simple root, `𝔤̃_{-μ}` is spanned by the `[fⱼ, y]`,
-`y ∈ 𝔤̃_{-(μ - αⱼ)}`.-/
+`y ∈ 𝔤̃_{-(μ - αⱼ)}`.
+@isnad1 id=var.3h12v.s11.749031afe8d4 from=translated src=- shape=f77df9b6 vocab=34957ea6
+-/
 lemma rootSpace_induction_f {μ : Dual K H} {p : P.AuxLieAlgebra → Prop} (hμ : μ ∈ P.posWeights)
     (hμ1 : ∀ j, μ ≠ P.root j) (zero : p 0) (add : ∀ x y, p x → p y → p (x + y))
     (smul : ∀ (c : K) x, p x → p (c • x))
@@ -673,6 +790,9 @@ lemma rootSpace_induction_f {μ : Dual K H} {p : P.AuxLieAlgebra → Prop} (hμ 
 
 omit [DecidableEq ι] [FiniteDimensional K H] in
 variable (P) in
+/--
+@isnad1 id=not.1h7v.s7.ea4a62b5eee3 from=translated src=- shape=a3ff79cf vocab=184fe08f
+-/
 lemma root_sub_root_notMem {i j : ι} (hij : i ≠ j) : P.root i - P.root j ∉ allWeights P := by
   classical
   have hr : P.root i - P.root j = P.rootOf (Pi.single i 1 - Pi.single j 1) := by
@@ -693,7 +813,9 @@ lemma root_sub_root_notMem {i j : ι} (hij : i ≠ j) : P.root i - P.root j ∉ 
     simp [hij.symm] at h1 h2
     omega
 
-/-- The inductive step of the proof of `C_μ` (see the module docstring).-/
+/-- The inductive step of the proof of `C_μ` (see the module docstring).
+@isnad1 id=eq.9h13v.s12.e325030683aa from=translated src=- shape=86aa40b3 vocab=8d9344a2
+-/
 lemma lie_lie_e_lie_f {μ ν κ : Dual K H} {i j : ι} (hν : μ = P.root j + ν)
     (hκ : μ = P.root i + κ) (hCi : LieEqForm P S (P.root i)) (hCj : LieEqForm P S (P.root j))
     (hCν : LieEqForm P S ν) (hCκ : LieEqForm P S κ) (hCνi : LieEqForm P S (ν - P.root i))
@@ -768,6 +890,9 @@ lemma lie_lie_e_lie_f {μ ν κ : Dual K H} {i j : ι} (hν : μ = P.root j + ν
 
 omit [DecidableEq ι] [CharZero K] in
 variable (P) in
+/--
+@isnad1 id=ex.1h6v.s8.8db8c6c7d72f from=translated src=- shape=74f85253 vocab=f38f4af8
+-/
 lemma exists_nat_eq_of_mem_negWeights {μ : Dual K H} (hμ : μ ∈ P.negWeights) :
     ∃ n : ℕ, 0 < n ∧ μ P.rhoCheck = -(n : K) := by
   obtain ⟨n, hn, hμn⟩ := exists_nat_of_mem_posWeights P ((mem_negWeights_iff P).mp hμ)
@@ -775,7 +900,9 @@ lemma exists_nat_eq_of_mem_negWeights {μ : Dual K H} (hμ : μ ∈ P.negWeights
 
 variable (P S) in
 /-- `C_μ` for all `μ`: `[x, y] = (x | y) ν⁻¹(μ)` for `x ∈ 𝔤̃_μ` and `y ∈ 𝔤̃_{-μ}`
-([Kac] Thm. 2.2 e), for `𝔤̃(A)`).-/
+([Kac] Thm. 2.2 e), for `𝔤̃(A)`).
+@isnad1 id=lieeqfor.0h7v.s6.e4fe0bb69f95 from=translated src=- shape=6d9d5542 vocab=b68e3207
+-/
 theorem lie_eq_invFormAux_smul (μ : Dual K H) : LieEqForm P S μ := by
   have hpos : ∀ n : ℕ, ∀ μ ∈ P.posWeights, μ P.rhoCheck = n → LieEqForm P S μ := by
     intro n
@@ -863,6 +990,9 @@ theorem lie_eq_invFormAux_smul (μ : Dual K H) : LieEqForm P S μ := by
 
 /-! ### Invariance -/
 
+/--
+@isnad1 id=eq.2h10v.s12.bd3c11cb6587 from=translated src=- shape=02ef80eb vocab=8e4a3405
+-/
 lemma lie_left_eq_of_invTriple {β : Dual K H} {y : P.AuxLieAlgebra} (hy : y ∈ rootSpace P β)
     (hinv : ∀ α γ, α + β + γ = 0 → ∀ x ∈ rootSpace P α, ∀ z ∈ rootSpace P γ,
       InvTriple P S x y z) (x z : P.AuxLieAlgebra) :
@@ -879,7 +1009,9 @@ lemma lie_left_eq_of_invTriple {β : Dual K H} {y : P.AuxLieAlgebra} (hy : y ∈
   | add x₁ x₂ h₁ h₂ => simp [add_lie, h₁, h₂]
 
 variable (P S) in
-/-- The form on `𝔤̃(A)` is invariant: `([x, y] | z) = (x | [y, z])`.-/
+/-- The form on `𝔤̃(A)` is invariant: `([x, y] | z) = (x | [y, z])`.
+@isnad1 id=eq.0h9v.s12.9f42d9f76d62 from=translated src=- shape=88931a63 vocab=5086b7e0
+-/
 theorem invFormAux_lie (x y z : P.AuxLieAlgebra) :
     invFormAux P S ⁅x, y⁆ z = invFormAux P S x ⁅y, z⁆ := by
   have C := lie_eq_invFormAux_smul P S
@@ -907,7 +1039,9 @@ theorem invFormAux_lie (x y z : P.AuxLieAlgebra) :
     abel
 
 variable (P S) in
-/-- The form on `𝔤̃(A)` is invariant, in the sense of `LinearMap.BilinForm.lieInvariant`.-/
+/-- The form on `𝔤̃(A)` is invariant, in the sense of `LinearMap.BilinForm.lieInvariant`.
+@isnad1 id=lieinvar.0h6v.s8.4497787195bd from=translated src=- shape=18931d1d vocab=0ba9c7ce
+-/
 theorem lieInvariant_invFormAux : (invFormAux P S).lieInvariant P.AuxLieAlgebra := by
   intro x y z
   rw [← lie_skew, map_neg, LinearMap.neg_apply, invFormAux_lie]
@@ -915,7 +1049,9 @@ theorem lieInvariant_invFormAux : (invFormAux P S).lieInvariant P.AuxLieAlgebra 
 /-! ### The radical is `𝔯` -/
 
 variable (P S) in
-/-- The maximal ideal `𝔯` lies in the radical of the form.-/
+/-- The maximal ideal `𝔯` lies in the radical of the form.
+@isnad1 id=eq.1h8v.s11.f20369bbde84 from=translated src=- shape=91bd8bbd vocab=d30f6694
+-/
 theorem invFormAux_eq_zero_of_mem_maxIdeal {r : P.AuxLieAlgebra} (hr : r ∈ maxIdeal P)
     (y : P.AuxLieAlgebra) : invFormAux P S r y = 0 := by
   have hle := inf_iSup_weightSpaceOfMap_le (h P) (maxIdeal P).toSubmodule
@@ -950,7 +1086,9 @@ theorem invFormAux_eq_zero_of_mem_maxIdeal {r : P.AuxLieAlgebra} (hr : r ∈ max
   | add y₁ y₂ h₁ h₂ => rw [map_add, h₁, h₂, add_zero]
 
 variable (P S) in
-/-- The radical of the form on `𝔤̃(A)` is the maximal ideal `𝔯`.-/
+/-- The radical of the form on `𝔤̃(A)` is the maximal ideal `𝔯`.
+@isnad1 id=iff.0h7v.s11.99841a5bd431 from=translated src=- shape=957bcc15 vocab=d30f6694
+-/
 theorem invFormAux_eq_zero_iff_mem_maxIdeal {r : P.AuxLieAlgebra} :
     (∀ y, invFormAux P S r y = 0) ↔ r ∈ maxIdeal P := by
   refine ⟨fun hr ↦ ?_, fun hr y ↦ invFormAux_eq_zero_of_mem_maxIdeal P S hr y⟩

@@ -49,7 +49,9 @@ namespace LieLean.QuantumGroup
 
 variable {k : Type*} [Field k]
 
-/-- Quantum binomials at a square root `ε` of `1`: `[n j]_ε = ε^{j(n-j)} C(n, j)`.-/
+/-- Quantum binomials at a square root `ε` of `1`: `[n j]_ε = ε^{j(n-j)} C(n, j)`.
+@isnad1 id=eq.1h4v.s7.4d328816c3ea from=translated src=- shape=1f46b5a1 vocab=5798812b
+-/
 theorem qBinomial_of_sq_eq_one {ε : k} (hε : ε ^ 2 = 1) (n j : ℕ) :
     qBinomial ε n j = ε ^ (j * (n - j)) * n.choose j := by
   have hinv : ε⁻¹ = ε := by
@@ -97,11 +99,20 @@ def signWord : List I → K
 /-- The cross term `∏_{a ∈ u, b ∈ w} σ(a, b)`.-/
 def signCross (u w : List I) : K := (u.map fun a ↦ (w.map (σ a)).prod).prod
 
+/--
+@isnad1 id=eq.0h3v.s5.4ff975608c62 from=translated src=- shape=2ebad988 vocab=0cf6fec1
+-/
 @[simp] lemma signWord_nil : signWord σ [] = 1 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.75e80c39acef from=translated src=- shape=c15576bb vocab=37ecfb7b
+-/
 lemma signWord_cons (i : I) (w : List I) :
     signWord σ (i :: w) = (w.map (σ i)).prod * signWord σ w := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.73d4a40c9fcf from=translated src=- shape=398d209d vocab=bd678ee0
+-/
 lemma signWord_append (u w : List I) :
     signWord σ (u ++ w) = signWord σ u * signWord σ w * signCross σ u w := by
   induction u with
@@ -111,38 +122,58 @@ lemma signWord_append (u w : List I) :
       List.map_append, List.prod_append]
     ring
 
+/--
+@isnad1 id=eq.1h6v.s5.cc94bb28065d from=translated src=- shape=081847d1 vocab=edc633d6
+-/
 lemma signCross_perm_right {u w w' : List I} (h : w.Perm w') :
     signCross σ u w = signCross σ u w' := by
   simp only [signCross]
   congr 1
   exact List.map_congr_left fun a _ ↦ (h.map (σ a)).prod_eq
 
+/--
+@isnad1 id=eq.1h6v.s5.0a48601bf80a from=translated src=- shape=2b83b187 vocab=edc633d6
+-/
 lemma signCross_perm_left {u u' w : List I} (h : u.Perm u') :
     signCross σ u w = signCross σ u' w :=
   (h.map _).prod_eq
 
 variable {σ}
 
+/--
+@isnad1 id=eq.1h4v.s7.4c2ff5e19b7c from=translated src=- shape=446ca949 vocab=cf515c8c
+-/
 lemma sq_prod_map {l : List I} {f : I → K} (hf : ∀ i, f i ^ 2 = 1) : (l.map f).prod ^ 2 = 1 := by
   induction l with
   | nil => simp
   | cons i l ih => rw [List.map_cons, List.prod_cons, mul_pow, hf, ih, one_mul]
 
+/--
+@isnad1 id=eq.1h4v.s6.ca8c99915fc8 from=translated src=- shape=3d32904b vocab=8c06eef2
+-/
 lemma signWord_sq (hσ : ∀ i j, σ i j ^ 2 = 1) (w : List I) : signWord σ w ^ 2 = 1 := by
   induction w with
   | nil => simp
   | cons i w ih => rw [signWord_cons, mul_pow, sq_prod_map (hσ i), ih, one_mul]
 
+/--
+@isnad1 id=eq.1h5v.s6.26732b5b3968 from=translated src=- shape=ed4be256 vocab=7a70dc47
+-/
 lemma signCross_sq (hσ : ∀ i j, σ i j ^ 2 = 1) (u w : List I) : signCross σ u w ^ 2 = 1 :=
   sq_prod_map fun a ↦ sq_prod_map (hσ a)
 
+/--
+@isnad1 id=eq.1h5v.s6.8472ad645864 from=translated src=- shape=86314c8f vocab=5ec435f2
+-/
 lemma signWord_replicate (hσ : ∀ i, σ i i = 1) (i : I) (n : ℕ) :
     signWord σ (List.replicate n i) = 1 := by
   induction n with
   | zero => simp
   | succ n ih => simp [List.replicate_succ, signWord_cons, ih, hσ]
 
-/-- The sign of the word `i^{m-r} j i^r`.-/
+/-- The sign of the word `i^{m-r} j i^r`.
+@isnad1 id=eq.1h7v.s7.196c6f1ef6dc from=translated src=- shape=6639fadb vocab=45af9c08
+-/
 lemma signWord_serre (hσ : ∀ i, σ i i = 1) (i j : I) (m r : ℕ) :
     signWord σ (List.replicate (m - r) i ++ j :: List.replicate r i) =
       σ i j ^ (m - r) * σ j i ^ r := by
@@ -162,12 +193,18 @@ variable (σ : I → I → K)
 def signTwist : LusztigF K I →ₗ[K] LusztigF K I :=
   (wordBasis K I).constr K fun w ↦ signWord σ w • wordBasis K I w
 
+/--
+@isnad1 id=eq.0h4v.s9.c5f73a909d47 from=translated src=- shape=18887a68 vocab=fa695edf
+-/
 lemma signTwist_wordBasis (w : List I) :
     signTwist σ (wordBasis K I w) = signWord σ w • wordBasis K I w :=
   (wordBasis K I).constr_basis K _ w
 
 variable {σ}
 
+/--
+@isnad1 id=eq.1h4v.s9.fe0feedde17b from=translated src=- shape=72c3103c vocab=2298fe71
+-/
 lemma signTwist_signTwist (hσ : ∀ i j, σ i j ^ 2 = 1) (x : LusztigF K I) :
     signTwist σ (signTwist σ x) = x := by
   have : signTwist σ ∘ₗ signTwist σ = LinearMap.id :=
@@ -178,14 +215,18 @@ lemma signTwist_signTwist (hσ : ∀ i j, σ i j ^ 2 = 1) (x : LusztigF K I) :
 
 variable (D : LusztigCartanDatum I)
 
-/-- The word `i^{m-r} j i^r` in the Serre element.-/
+/-- The word `i^{m-r} j i^r` in the Serre element.
+@isnad1 id=eq.0h6v.s8.a06e66183835 from=translated src=- shape=ec66827a vocab=1120096b
+-/
 lemma pow_mul_mul_pow (i j : I) (m r : ℕ) :
     θ K i ^ (m - r) * θ K j * θ K i ^ r =
       wordBasis K I (List.replicate (m - r) i ++ j :: List.replicate r i) := by
   simp [List.prod_replicate, mul_assoc]
 
 /-- The twist maps a Serre product with parameters `q` to a nonzero multiple of the classical
-one.-/
+one.
+@isnad1 id=ex.5h6v.s9.3e2dd7b169d2 from=translated src=- shape=93d53753 vocab=847fc1f6
+-/
 lemma signTwist_serreProduct {q : I → K} (hq : ∀ i, q i ^ 2 = 1) (hσ : ∀ i j, σ i j ^ 2 = 1)
     (hσd : ∀ i, σ i i = 1)
     (hσq : ∀ i j, i ≠ j → σ i j * σ j i = q i ^ (serreExp D i j - 1))
@@ -241,7 +282,9 @@ lemma signTwist_serreProduct {q : I → K} (hq : ∀ i, q i ^ 2 = 1) (hσ : ∀ 
 
 /-- **Serre spans at parameters `±1`.** If `qᵢ² = 1` for all `i` and `qᵢ^{-aᵢⱼ} = qⱼ^{-aⱼᵢ}`
 for `i ≠ j`, the span of the Serre products of weight `ν` with parameters `q` has the same
-dimension as the span of the classical ones (cf. [Lus] 33.2.2 (b)).-/
+dimension as the span of the classical ones (cf. [Lus] 33.2.2 (b)).
+@isnad1 id=eq.2h5v.s9.15de270f09c4 from=translated src=- shape=a3fabd14 vocab=799089fb
+-/
 theorem finrank_serreSpan_of_sq_eq_one {q : I → K} (hq : ∀ i, q i ^ 2 = 1)
     (hsym : ∀ i j, i ≠ j → q i ^ (serreExp D i j - 1) = q j ^ (serreExp D j i - 1))
     (ν : I →₀ ℕ) :

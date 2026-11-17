@@ -71,7 +71,9 @@ local prefix:100 "ℓ " => cs.length
 
 /-! ### The parabolic subalgebra -/
 
-/-- The `T_s`, `s ∈ J`, satisfy the Hecke relations of the restricted Coxeter matrix `M|_J`.-/
+/-- The `T_s`, `s ∈ J`, satisfy the Hecke relations of the restricted Coxeter matrix `M|_J`.
+@isnad1 id=isheckef.0h7v.s6.aca420ca4c50 from=translated src=- shape=989009e0 vocab=d16e209c
+-/
 theorem isHeckeFamily_T_restrict :
     (M.restrict J).IsHeckeFamily q (fun j : J ↦ T cs q (s j)) where
   quadratic j := T_simple_sub_mul_T_simple_add cs q j
@@ -90,6 +92,9 @@ noncomputable def parabolicHom :
     IwahoriHeckeAlgebra (cs.parabolicCoxeterSystem J) q →ₐ[R] IwahoriHeckeAlgebra cs q :=
   lift _ q _ ⟨_, isHeckeFamily_T_restrict cs q J⟩
 
+/--
+@isnad1 id=eq.0h8v.s9.0da5927a7726 from=translated src=- shape=d716a5b0 vocab=0bb6bf98
+-/
 @[simp]
 theorem parabolicHom_T (w : cs.parabolicSubgroup J) :
     parabolicHom cs q J (T _ q w) = T cs q (w : W) := by
@@ -102,6 +107,9 @@ theorem parabolicHom_T (w : cs.parabolicSubgroup J) :
     List.map_map]
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s11.a2bc546b6fff from=translated src=- shape=2bf23e38 vocab=36f8bdad
+-/
 theorem toFinsupp_parabolicHom (x : IwahoriHeckeAlgebra (cs.parabolicCoxeterSystem J) q) :
     toFinsupp cs q (parabolicHom cs q J x) = Finsupp.mapDomain Subtype.val (toFinsupp _ q x) := by
   induction x using induction_on _ q with
@@ -109,7 +117,9 @@ theorem toFinsupp_parabolicHom (x : IwahoriHeckeAlgebra (cs.parabolicCoxeterSyst
   | add x y hx hy => rw [map_add, map_add, hx, hy, map_add, Finsupp.mapDomain_add]
   | smul a x hx => rw [map_smul, map_smul, hx, map_smul, Finsupp.mapDomain_smul]
 
-/-- `𝓗_q(W_J) → 𝓗_q(W)` is injective.-/
+/-- `𝓗_q(W_J) → 𝓗_q(W)` is injective.
+@isnad1 id=injectiv.0h7v.s9.351d56f97882 from=translated src=- shape=a1333497 vocab=5736d765
+-/
 theorem parabolicHom_injective : Function.Injective (parabolicHom cs q J) := by
   intro x y h
   have := congrArg (toFinsupp cs q) h
@@ -128,17 +138,24 @@ noncomputable instance : Module (IwahoriHeckeAlgebra (cs.parabolicCoxeterSystem 
     (IwahoriHeckeAlgebra cs q) :=
   Module.compHom _ (RingHom.op (parabolicHom cs q J).toRingHom)
 
+/--
+@isnad1 id=eq.0h9v.s10.5b4a2886c431 from=translated src=- shape=d9d413be vocab=547b0364
+-/
 theorem parabolic_op_smul_def (h : IwahoriHeckeAlgebra (cs.parabolicCoxeterSystem J) q)
     (x : IwahoriHeckeAlgebra cs q) : op h • x = x * parabolicHom cs q J h := rfl
 
 variable {J} in
-/-- `T_d T_v = T_{dv}` for `d ∈ W^J`, `v ∈ W_J`.-/
+/-- `T_d T_v = T_{dv}` for `d ∈ W^J`, `v ∈ W_J`.
+@isnad1 id=eq.2h9v.s7.26402bfbf3c4 from=translated src=- shape=2756ab95 vocab=f5130b55
+-/
 theorem T_mul_T_of_mem_minCosetReps {d v : W} (hd : d ∈ cs.minCosetReps J)
     (hv : v ∈ cs.parabolicSubgroup J) : T cs q d * T cs q v = T cs q (d * v) :=
   T_mul_T cs q (length_mul_of_mem_minCosetReps hd hv)
 
 variable {J} in
-/-- `T_v T_{d⁻¹} = T_{v d⁻¹}` for `d ∈ W^J`, `v ∈ W_J`.-/
+/-- `T_v T_{d⁻¹} = T_{v d⁻¹}` for `d ∈ W^J`, `v ∈ W_J`.
+@isnad1 id=eq.2h9v.s7.d64df1c42860 from=translated src=- shape=500400e0 vocab=9999abe6
+-/
 theorem T_mul_T_inv_of_mem_minCosetReps {d v : W} (hd : d ∈ cs.minCosetReps J)
     (hv : v ∈ cs.parabolicSubgroup J) : T cs q v * T cs q d⁻¹ = T cs q (v * d⁻¹) := by
   refine T_mul_T cs q ?_
@@ -154,6 +171,9 @@ noncomputable def rightDecomposition :
     (Finsupp.curryLinearEquiv R).symm ≪≫ₗ Finsupp.domLCongr (cs.minCosetRepsProdEquiv J) ≪≫ₗ
       (toFinsupp cs q).symm
 
+/--
+@isnad1 id=eq.0h9v.s12.774d1f23ed7e from=translated src=- shape=cdc71f78 vocab=05894168
+-/
 theorem rightDecomposition_single (d : cs.minCosetReps J)
     (x : IwahoriHeckeAlgebra (cs.parabolicCoxeterSystem J) q) :
     rightDecomposition cs q J (Finsupp.single d (op x)) = T cs q d * parabolicHom cs q J x := by
@@ -171,6 +191,9 @@ theorem rightDecomposition_single (d : cs.minCosetReps J)
   | add x y hx hy => rw [op_add, Finsupp.single_add, map_add, hx, hy, map_add, mul_add]
   | smul a x hx => rw [op_smul, ← Finsupp.smul_single, map_smul, hx, map_smul, mul_smul_comm]
 
+/--
+@isnad1 id=eq.0h8v.s13.083801ea77ed from=translated src=- shape=82b862f2 vocab=17a9c1d5
+-/
 theorem rightDecomposition_eq_linearCombination
     (f : cs.minCosetReps J →₀ (IwahoriHeckeAlgebra (cs.parabolicCoxeterSystem J) q)ᵐᵒᵖ) :
     rightDecomposition cs q J f =
@@ -196,10 +219,16 @@ noncomputable def rightBasis :
       rw [this]
       exact (rightDecomposition cs q J).bijective)).symm
 
+/--
+@isnad1 id=eq.0h8v.s9.9d05038fc495 from=translated src=- shape=e1a5b509 vocab=e0c4f057
+-/
 @[simp]
 theorem rightBasis_apply (d : cs.minCosetReps J) : rightBasis cs q J d = T cs q d := by
   simp [rightBasis, Basis.coe_ofRepr]
 
+/--
+@isnad1 id=eq.0h8v.s13.6dfc8bbdabfd from=translated src=- shape=e9adb488 vocab=3827b5f6
+-/
 theorem rightBasis_repr (x : IwahoriHeckeAlgebra cs q) :
     (rightBasis cs q J).repr x = (rightDecomposition cs q J).symm x := by
   apply (rightDecomposition cs q J).injective
@@ -209,6 +238,9 @@ theorem rightBasis_repr (x : IwahoriHeckeAlgebra cs q) :
   rw [e]
   exact (rightBasis cs q J).linearCombination_repr x
 
+/--
+@isnad1 id=eq.0h9v.s14.2a4a93342b48 from=translated src=- shape=106ad5a5 vocab=3e7a8434
+-/
 theorem rightDecomposition_symm_mul (x : IwahoriHeckeAlgebra cs q)
     (h : IwahoriHeckeAlgebra (cs.parabolicCoxeterSystem J) q) :
     (rightDecomposition cs q J).symm (x * parabolicHom cs q J h) =
@@ -220,6 +252,9 @@ noncomputable def minCosetRepsProdEquiv' : cs.minCosetReps J × cs.parabolicSubg
   ((Equiv.refl _).prodCongr (Equiv.inv _)).trans
     ((cs.minCosetRepsProdEquiv J).trans (Equiv.inv W))
 
+/--
+@isnad1 id=eq.0h6v.s8.33b16fcd471b from=translated src=- shape=3589d070 vocab=34c7807c
+-/
 theorem minCosetRepsProdEquiv'_apply (p : cs.minCosetReps J × cs.parabolicSubgroup J) :
     minCosetRepsProdEquiv' cs J p = (p.2 : W) * (p.1 : W)⁻¹ := by
   simp [minCosetRepsProdEquiv', mul_inv_rev]
@@ -231,6 +266,9 @@ noncomputable def leftDecomposition :
   Finsupp.mapRange.linearEquiv (toFinsupp _ q) ≪≫ₗ (Finsupp.curryLinearEquiv R).symm ≪≫ₗ
     Finsupp.domLCongr (minCosetRepsProdEquiv' cs J) ≪≫ₗ (toFinsupp cs q).symm
 
+/--
+@isnad1 id=eq.0h9v.s12.0fd9d89f01f5 from=translated src=- shape=4523701a vocab=c1e58438
+-/
 theorem leftDecomposition_single (d : cs.minCosetReps J)
     (x : IwahoriHeckeAlgebra (cs.parabolicCoxeterSystem J) q) :
     leftDecomposition cs q J (Finsupp.single d x) = parabolicHom cs q J x * T cs q (d : W)⁻¹ := by
@@ -248,6 +286,9 @@ theorem leftDecomposition_single (d : cs.minCosetReps J)
   | add x y hx hy => rw [Finsupp.single_add, map_add, hx, hy, map_add, add_mul]
   | smul a x hx => rw [← Finsupp.smul_single, map_smul, hx, map_smul, smul_mul_assoc]
 
+/--
+@isnad1 id=eq.0h8v.s12.7a64f2583c7d from=translated src=- shape=b31d931c vocab=3224702a
+-/
 theorem leftDecomposition_eq_linearCombination
     (f : cs.minCosetReps J →₀ IwahoriHeckeAlgebra (cs.parabolicCoxeterSystem J) q) :
     leftDecomposition cs q J f =
@@ -272,6 +313,9 @@ noncomputable def leftBasis :
       rw [this]
       exact (leftDecomposition cs q J).bijective)).symm
 
+/--
+@isnad1 id=eq.0h8v.s9.81cd3294bc77 from=translated src=- shape=07294a40 vocab=d2486453
+-/
 @[simp]
 theorem leftBasis_apply (d : cs.minCosetReps J) : leftBasis cs q J d = T cs q (d : W)⁻¹ := by
   simp [leftBasis, Basis.coe_ofRepr]
@@ -299,10 +343,16 @@ noncomputable def inducedCoeff : IwahoriHeckeAlgebra cs q →ₗ[R] (cs.minCoset
   Finsupp.mapRange.linearMap (χ.toLinearMap ∘ₗ (MulOpposite.opLinearEquiv R).symm.toLinearMap) ∘ₗ
     (rightDecomposition cs q J).symm.toLinearMap
 
+/--
+@isnad1 id=eq.0h10v.s12.6fdb56bf73e4 from=translated src=- shape=09fd7c5a vocab=809b7d4e
+-/
 theorem inducedCoeff_apply (x : IwahoriHeckeAlgebra cs q) (d : cs.minCosetReps J) :
     inducedCoeff χ x d = χ (unop ((rightDecomposition cs q J).symm x d)) := by
   simp [inducedCoeff]
 
+/--
+@isnad1 id=eq.0h10v.s11.e297def7f1c3 from=translated src=- shape=51614334 vocab=fd3f9921
+-/
 theorem inducedCoeff_mul_parabolicHom (x : IwahoriHeckeAlgebra cs q)
     (h : IwahoriHeckeAlgebra (cs.parabolicCoxeterSystem J) q) :
     inducedCoeff χ (x * parabolicHom cs q J h) = χ h • inducedCoeff χ x := by
@@ -310,12 +360,18 @@ theorem inducedCoeff_mul_parabolicHom (x : IwahoriHeckeAlgebra cs q)
   rw [inducedCoeff_apply, rightDecomposition_symm_mul, Finsupp.smul_apply, Finsupp.smul_apply,
     smul_eq_mul, unop_mul, unop_op, map_mul, inducedCoeff_apply, smul_eq_mul, mul_comm]
 
+/--
+@isnad1 id=eq.0h9v.s9.9fb2851c6d34 from=translated src=- shape=63825193 vocab=6fd33614
+-/
 theorem inducedCoeff_T (d : cs.minCosetReps J) :
     inducedCoeff χ (T cs q d) = Finsupp.single d 1 := by
   have h : (rightDecomposition cs q J).symm (T cs q d) = Finsupp.single d (op 1) := by
     rw [LinearEquiv.symm_apply_eq, rightDecomposition_single, map_one, mul_one]
   simp [inducedCoeff, h]
 
+/--
+@isnad1 id=surjecti.0h8v.s9.ac67855f7fef from=translated src=- shape=14ebd989 vocab=26a9b22d
+-/
 theorem inducedCoeff_surjective : Function.Surjective (inducedCoeff χ) := by
   intro f
   induction f using Finsupp.induction_linear with
@@ -328,6 +384,9 @@ theorem inducedCoeff_surjective : Function.Surjective (inducedCoeff χ) := by
     exact ⟨a • T cs q d, by rw [map_smul, inducedCoeff_T, Finsupp.smul_single, smul_eq_mul,
       mul_one]⟩
 
+/--
+@isnad1 id=eq.0h8v.s9.937a91299157 from=translated src=- shape=b7255360 vocab=ceaf52f2
+-/
 theorem restrictScalars_inducedIdeal :
     (inducedIdeal χ).restrictScalars R = LinearMap.ker (inducedCoeff χ) := by
   ext x
@@ -358,6 +417,9 @@ noncomputable def inducedModuleEquiv : InducedModule χ ≃ₗ[R] (cs.minCosetRe
     Submodule.quotEquivOfEq _ _ (restrictScalars_inducedIdeal χ) ≪≫ₗ
       (inducedCoeff χ).quotKerEquivOfSurjective (inducedCoeff_surjective χ)
 
+/--
+@isnad1 id=eq.0h9v.s10.1b01518c16a1 from=translated src=- shape=91bdc077 vocab=ce3d3808
+-/
 theorem inducedModuleEquiv_mk (x : IwahoriHeckeAlgebra cs q) :
     inducedModuleEquiv χ (Submodule.Quotient.mk x) = inducedCoeff χ x := by
   simp [inducedModuleEquiv, Submodule.Quotient.restrictScalarsEquiv_symm_mk,
@@ -369,6 +431,9 @@ theorem inducedModuleEquiv_mk (x : IwahoriHeckeAlgebra cs q) :
 noncomputable def inducedBasis : Basis (cs.minCosetReps J) R (InducedModule χ) :=
   Basis.ofRepr (inducedModuleEquiv χ)
 
+/--
+@isnad1 id=eq.0h9v.s9.a39b6395f0de from=translated src=- shape=9c3aed78 vocab=a7765f01
+-/
 @[simp]
 theorem inducedBasis_apply (d : cs.minCosetReps J) :
     inducedBasis χ d = Submodule.Quotient.mk (T cs q d) := by

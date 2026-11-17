@@ -71,19 +71,31 @@ namespace Symmetrization
 
 variable {A : Matrix ι ι ℤ} (S : A.Symmetrization)
 
+/--
+@isnad1 id=ne.0h4v.s4.afcd0826fd0a from=translated src=- shape=3ec71781 vocab=dbd277b8
+-/
 lemma ε_ne_zero (i : ι) : S.ε i ≠ 0 := (S.ε_pos i).ne'
 
 /-- The symmetric matrix `B = diag(ε)⁻¹ A`, with entries `bᵢⱼ = aᵢⱼ / εᵢ`.-/
 def matrix : Matrix ι ι ℚ := of fun i j ↦ A i j / S.ε i
 
+/--
+@isnad1 id=eq.0h5v.s5.e75742b19240 from=translated src=- shape=bf2e4d23 vocab=fb3446ec
+-/
 lemma matrix_apply (i j : ι) : S.matrix i j = A i j / S.ε i := rfl
 
+/--
+@isnad1 id=issymm.0h3v.s4.1dec8b0e4709 from=translated src=- shape=87998d37 vocab=bbb5cee2
+-/
 lemma isSymm_matrix : S.matrix.IsSymm := by
   ext i j
   simp only [transpose_apply, matrix_apply]
   rw [div_eq_div_iff (S.ε_ne_zero j) (S.ε_ne_zero i), mul_comm (A j i : ℚ), S.ε_mul_comm,
     mul_comm]
 
+/--
+@isnad1 id=eq.0h3v.s6.46d9bcf95b77 from=translated src=- shape=ca086f98 vocab=401e4862
+-/
 lemma map_eq_diagonal_mul [Fintype ι] [DecidableEq ι] :
     A.map (Int.cast : ℤ → ℚ) = diagonal S.ε * S.matrix := by
   ext i j
@@ -91,6 +103,9 @@ lemma map_eq_diagonal_mul [Fintype ι] [DecidableEq ι] :
 
 end Symmetrization
 
+/--
+@isnad1 id=iff.0h2v.s4.b85ad297e6cb from=translated src=- shape=f163994e vocab=759db46a
+-/
 theorem isSymmetrizable_iff_nonempty_symmetrization [Fintype ι] [DecidableEq ι]
     {A : Matrix ι ι ℤ} : A.IsSymmetrizable ↔ Nonempty A.Symmetrization := by
   rw [isSymmetrizable_iff_mul_eq_mul]
@@ -117,12 +132,21 @@ variable [Fintype ι] {A : Matrix ι ι ℤ} {K H : Type*} [Field K] [AddCommGro
 `c ↦ ∑ cᵢ αᵢ^∨`. Its kernel `P.corootCompl` is a complement of the span of the coroots.-/
 def corootCoord : H →ₗ[K] ι → K := P.corootMap.leftInverse
 
+/--
+@isnad1 id=eq.0h6v.s8.75d42aa93e3f from=translated src=- shape=1debc443 vocab=c6aba487
+-/
 @[simp] lemma corootCoord_corootMap (c : ι → K) : P.corootCoord (P.corootMap c) = c :=
   LinearMap.leftInverse_apply_of_inj (LinearMap.ker_eq_bot.mpr P.corootMap_injective) c
 
+/--
+@isnad1 id=eq.0h6v.s8.f21d4c8098d4 from=translated src=- shape=34345517 vocab=558e18d2
+-/
 lemma coroot_eq_corootMap [DecidableEq ι] (i : ι) : P.coroot i = P.corootMap (Pi.single i 1) := by
   simp [corootMap, Fintype.linearCombination_apply, Pi.single_apply]
 
+/--
+@isnad1 id=eq.0h6v.s8.f4d013516f83 from=translated src=- shape=6224030f vocab=2486c9e0
+-/
 @[simp] lemma corootCoord_coroot [DecidableEq ι] (i : ι) :
     P.corootCoord (P.coroot i) = Pi.single i 1 := by
   rw [coroot_eq_corootMap, corootCoord_corootMap]
@@ -137,6 +161,9 @@ def corootCompl : Submodule K H := LinearMap.ker P.corootCoord
 independent; it is unique only up to the annihilator of the coroots, and this is a chosen one.-/
 def rho : Dual K H := ∑ i, LinearMap.proj i ∘ₗ P.corootCoord
 
+/--
+@isnad1 id=eq.0h6v.s7.923de798d45b from=translated src=- shape=f7f5a066 vocab=0781a0d2
+-/
 @[simp] theorem rho_coroot (i : ι) : P.rho (P.coroot i) = 1 := by
   classical
   simp [rho, LinearMap.sum_apply]
@@ -146,10 +173,15 @@ linearly independent. It defines the principal gradation ([Kac] §1.5).-/
 def rhoCheck [FiniteDimensional K H] : H :=
   (P.rootMap_surjective (fun _ ↦ 1)).choose
 
+/--
+@isnad1 id=eq.0h6v.s7.4c459f924742 from=translated src=- shape=bdcea611 vocab=5319af7a
+-/
 @[simp] theorem root_rhoCheck [FiniteDimensional K H] (i : ι) : P.root i P.rhoCheck = 1 :=
   congr_fun (P.rootMap_surjective (fun _ ↦ 1)).choose_spec i
 
-/-- `⟨α, ρ^∨⟩` is the height of `α` for `α` in the root lattice.-/
+/-- `⟨α, ρ^∨⟩` is the height of `α` for `α` in the root lattice.
+@isnad1 id=eq.0h6v.s8.6bfe6a116e48 from=translated src=- shape=0434f505 vocab=b4496272
+-/
 theorem rootOf_rhoCheck [FiniteDimensional K H] (k : ι → ℤ) :
     P.rootOf k P.rhoCheck = ((height k : ℤ) : K) := by
   simp [rootOf_apply, height]
@@ -157,6 +189,9 @@ theorem rootOf_rhoCheck [FiniteDimensional K H] (k : ι → ℤ) :
 /-! ### The bilinear form on `𝔥` -/
 
 variable {P} in
+/--
+@isnad1 id=eq.0h6v.s8.9cc06bf5f722 from=translated src=- shape=28db5c80 vocab=fb9efbe7
+-/
 lemma sum_smul_coroot {c : ι → K} : ∑ i, c i • P.coroot i = P.corootMap c := by
   simp [corootMap, Fintype.linearCombination_apply]
 
@@ -173,6 +208,9 @@ def bilinForm : LinearMap.BilinForm K H :=
     ∑ i, ∑ j, ((S.ε j : K) * A i j) • LinearMap.BilinForm.linMulLin
       (LinearMap.proj i ∘ₗ P.corootCoord) (LinearMap.proj j ∘ₗ P.corootCoord)
 
+/--
+@isnad1 id=eq.0h8v.s10.f0d1c30bd5bc from=translated src=- shape=b3a5bcba vocab=1c182adf
+-/
 lemma bilinForm_apply (x y : H) :
     P.bilinForm S x y = ∑ i, (S.ε i : K) * (P.corootCoord x i * P.root i y +
       P.corootCoord y i * P.root i x) -
@@ -186,6 +224,9 @@ lemma bilinForm_apply (x y : H) :
 
 variable [CharZero K]
 
+/--
+@isnad1 id=issymm.0h6v.s6.b3594ee42089 from=translated src=- shape=3e0e83ad vocab=8d12acb6
+-/
 theorem isSymm_bilinForm : (P.bilinForm S).IsSymm := by
   refine LinearMap.BilinForm.isSymm_def.mpr fun x y ↦ ?_
   rw [bilinForm_apply, bilinForm_apply]
@@ -199,7 +240,9 @@ theorem isSymm_bilinForm : (P.bilinForm S).IsSymm := by
     linear_combination -(P.corootCoord x i * P.corootCoord y j) * this
 
 omit [CharZero K] in
-/-- [Kac] (2.1.2): `(αᵢ^∨ | h) = ⟨αᵢ, h⟩ εᵢ`.-/
+/-- [Kac] (2.1.2): `(αᵢ^∨ | h) = ⟨αᵢ, h⟩ εᵢ`.
+@isnad1 id=eq.0h8v.s9.83ad10899c44 from=translated src=- shape=b6ea174b vocab=67eeb83d
+-/
 @[simp] theorem bilinForm_coroot_left (i : ι) (x : H) :
     P.bilinForm S (P.coroot i) x = S.ε i * P.root i x := by
   classical
@@ -214,17 +257,25 @@ omit [CharZero K] in
     Finset.sum_ite_eq', Finset.mem_univ, ite_true]
   rw [add_sub_assoc, sub_eq_zero.mpr (Finset.sum_congr rfl fun _ _ ↦ by ring), add_zero]
 
+/--
+@isnad1 id=eq.0h8v.s9.e9c0aacb52ab from=translated src=- shape=cac55517 vocab=eb8b71ec
+-/
 @[simp] theorem bilinForm_coroot_right (i : ι) (x : H) :
     P.bilinForm S x (P.coroot i) = S.ε i * P.root i x := by
   rw [(P.isSymm_bilinForm S).eq, bilinForm_coroot_left]
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h8v.s9.7eae2931d5bb from=translated src=- shape=b9ad142a vocab=2396d740
+-/
 lemma bilinForm_corootMap_left (c : ι → K) (x : H) :
     P.bilinForm S (P.corootMap c) x = ∑ i, c i * S.ε i * P.root i x := by
   rw [← sum_smul_coroot, map_sum, LinearMap.sum_apply]
   simp [mul_assoc]
 
-/-- The form on `𝔥` is nondegenerate ([Kac] Lemma 2.1 b)).-/
+/-- The form on `𝔥` is nondegenerate ([Kac] Lemma 2.1 b)).
+@isnad1 id=nondegen.0h6v.s6.d0102a140ee6 from=translated src=- shape=30ee8a40 vocab=505ea502
+-/
 theorem nondegenerate_bilinForm [FiniteDimensional K H] : (P.bilinForm S).Nondegenerate := by
   refine (LinearMap.IsRefl.nondegenerate_iff_separatingLeft
     (P.isSymm_bilinForm S).isRefl).mpr fun x hx ↦ ?_
@@ -254,21 +305,35 @@ variable [FiniteDimensional K H]
 def toDual : H ≃ₗ[K] Dual K H :=
   (P.bilinForm S).toDual (P.nondegenerate_bilinForm S)
 
+/--
+@isnad1 id=eq.0h8v.s10.1e2aaba7cdd4 from=translated src=- shape=ce9eca9f vocab=b76852d3
+-/
 @[simp] lemma toDual_apply (x y : H) : P.toDual S x y = P.bilinForm S x y := rfl
 
+/--
+@isnad1 id=eq.0h8v.s10.ca280357d134 from=translated src=- shape=c0d7dcab vocab=b55e4923
+-/
 @[simp] lemma bilinForm_toDual_symm_left (μ : Dual K H) (x : H) :
     P.bilinForm S ((P.toDual S).symm μ) x = μ x :=
   LinearMap.BilinForm.apply_toDual_symm_apply μ x
 
+/--
+@isnad1 id=eq.0h8v.s10.ef67e5d60a85 from=translated src=- shape=115b414c vocab=b55e4923
+-/
 @[simp] lemma bilinForm_toDual_symm_right (μ : Dual K H) (x : H) :
     P.bilinForm S x ((P.toDual S).symm μ) = μ x := by
   rw [(P.isSymm_bilinForm S).eq, bilinForm_toDual_symm_left]
 
-/-- [Kac] (2.1.5): `ν(αᵢ^∨) = εᵢ αᵢ`.-/
+/-- [Kac] (2.1.5): `ν(αᵢ^∨) = εᵢ αᵢ`.
+@isnad1 id=eq.0h7v.s9.077ac6eab6a6 from=translated src=- shape=480dab4b vocab=3f5127ba
+-/
 theorem toDual_coroot (i : ι) : P.toDual S (P.coroot i) = (S.ε i : K) • P.root i := by
   ext x
   simp
 
+/--
+@isnad1 id=eq.0h7v.s9.1c34d639bdba from=translated src=- shape=53fcefa8 vocab=383c26f1
+-/
 theorem toDual_symm_root (i : ι) :
     (P.toDual S).symm (P.root i) = (S.ε i : K)⁻¹ • P.coroot i := by
   rw [LinearEquiv.symm_apply_eq, map_smul, toDual_coroot, smul_smul,
@@ -278,25 +343,37 @@ theorem toDual_symm_root (i : ι) :
 def dualBilinForm : LinearMap.BilinForm K (Dual K H) :=
   LinearMap.BilinForm.congr (P.toDual S) (P.bilinForm S)
 
+/--
+@isnad1 id=eq.0h8v.s11.0ee4bfab15ae from=translated src=- shape=3c1d40d4 vocab=825c6854
+-/
 lemma dualBilinForm_apply (μ μ' : Dual K H) :
     P.dualBilinForm S μ μ' = P.bilinForm S ((P.toDual S).symm μ) ((P.toDual S).symm μ') := rfl
 
-/-- `(λ | μ) = ⟨λ, ν⁻¹(μ)⟩`.-/
+/-- `(λ | μ) = ⟨λ, ν⁻¹(μ)⟩`.
+@isnad1 id=eq.0h8v.s11.349955b607f2 from=translated src=- shape=602e49d3 vocab=ef92c9ca
+-/
 lemma dualBilinForm_apply_eq (μ μ' : Dual K H) :
     P.dualBilinForm S μ μ' = μ ((P.toDual S).symm μ') := by
   rw [dualBilinForm_apply, bilinForm_toDual_symm_left]
 
+/--
+@isnad1 id=issymm.0h6v.s7.e67e520a8c6b from=translated src=- shape=d8531c44 vocab=dd0f28c7
+-/
 theorem isSymm_dualBilinForm : (P.dualBilinForm S).IsSymm :=
   LinearMap.BilinForm.isSymm_def.mpr fun μ μ' ↦ by
     rw [dualBilinForm_apply, dualBilinForm_apply, (P.isSymm_bilinForm S).eq]
 
-/-- `(λ | αᵢ) = ⟨λ, αᵢ^∨⟩ / εᵢ`.-/
+/-- `(λ | αᵢ) = ⟨λ, αᵢ^∨⟩ / εᵢ`.
+@isnad1 id=eq.0h8v.s10.f2621e50e576 from=translated src=- shape=11b23ca2 vocab=c0aae8ab
+-/
 lemma dualBilinForm_root_right (μ : Dual K H) (i : ι) :
     P.dualBilinForm S μ (P.root i) = μ (P.coroot i) / S.ε i := by
   rw [dualBilinForm_apply_eq, toDual_symm_root, map_smul, smul_eq_mul, inv_mul_eq_div]
 
 variable {P} in
-/-- `(αᵢ | αᵢ) = 2 / εᵢ` is a positive rational number ([Kac] (2.1.6), (2.3.3)).-/
+/-- `(αᵢ | αᵢ) = 2 / εᵢ` is a positive rational number ([Kac] (2.1.6), (2.3.3)).
+@isnad1 id=eq.1h7v.s10.0d72795f4522 from=translated src=- shape=a18e1b72 vocab=debaeb2f
+-/
 theorem dualBilinForm_root_self (hA : A.IsGeneralizedCartan) (i : ι) :
     P.dualBilinForm S (P.root i) (P.root i) = ((2 / S.ε i : ℚ) : K) := by
   rw [dualBilinForm_root_right, P.root_coroot, hA.diag]
@@ -304,14 +381,21 @@ theorem dualBilinForm_root_self (hA : A.IsGeneralizedCartan) (i : ι) :
   rfl
 
 omit [Fintype ι] in
+/--
+@isnad1 id=lt.0h4v.s5.c960b9dd2645 from=translated src=- shape=af5e1f13 vocab=dff55b61
+-/
 lemma two_div_ε_pos (i : ι) : 0 < 2 / S.ε i := div_pos two_pos (S.ε_pos i)
 
-/-- `(ρ | αᵢ) = εᵢ⁻¹`.-/
+/-- `(ρ | αᵢ) = εᵢ⁻¹`.
+@isnad1 id=eq.0h7v.s10.05a9236a7496 from=translated src=- shape=458ff298 vocab=22790b2e
+-/
 theorem dualBilinForm_rho_root (i : ι) : P.dualBilinForm S P.rho (P.root i) = (S.ε i : K)⁻¹ := by
   rw [dualBilinForm_root_right, rho_coroot, one_div]
 
 variable {P} in
-/-- `2 (ρ | αᵢ) = (αᵢ | αᵢ)` ([Kac] §2.5).-/
+/-- `2 (ρ | αᵢ) = (αᵢ | αᵢ)` ([Kac] §2.5).
+@isnad1 id=eq.1h7v.s11.da4d8d522abd from=translated src=- shape=29c17c88 vocab=3394705f
+-/
 theorem two_mul_dualBilinForm_rho_root (hA : A.IsGeneralizedCartan) (i : ι) :
     2 * P.dualBilinForm S P.rho (P.root i) = P.dualBilinForm S (P.root i) (P.root i) := by
   rw [dualBilinForm_rho_root, dualBilinForm_root_self S hA]

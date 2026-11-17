@@ -91,23 +91,37 @@ noncomputable def rightOp (i : B) : Module.End R (W →₀ R) :=
   linearCombination R fun w ↦ if ℓ w < ℓ (w * s i) then single (w * s i) 1
     else (q - 1) • single w 1 + q • single (w * s i) 1
 
+/--
+@isnad1 id=eq.0h8v.s9.47a0ab8f33cf from=translated src=- shape=eb66582b vocab=3c24c684
+-/
 theorem leftOp_single (i : B) (w : W) : leftOp cs q i (single w 1) =
     if ℓ w < ℓ (s i * w) then single (s i * w) 1
     else (q - 1) • single w 1 + q • single (s i * w) 1 := by
   simp [leftOp]
 
+/--
+@isnad1 id=eq.0h8v.s9.c9e0c62c08f7 from=translated src=- shape=edb5ee90 vocab=33f758e9
+-/
 theorem rightOp_single (i : B) (w : W) : rightOp cs q i (single w 1) =
     if ℓ w < ℓ (w * s i) then single (w * s i) 1
     else (q - 1) • single w 1 + q • single (w * s i) 1 := by
   simp [rightOp]
 
+/--
+@isnad1 id=eq.0h7v.s8.e4177e29cede from=translated src=- shape=6d6ee77c vocab=a9e4f663
+-/
 theorem leftOp_single_one (i : B) : leftOp cs q i (single 1 1) = single (s i) 1 := by
   simp [leftOp_single]
 
+/--
+@isnad1 id=eq.0h7v.s8.3ba39098e74d from=translated src=- shape=6d6ee77c vocab=f5a0fe6b
+-/
 theorem rightOp_single_one (i : B) : rightOp cs q i (single 1 1) = single (s i) 1 := by
   simp [rightOp_single]
 
-/-- The left operators `λ_s` commute with the right operators `ρ_t` (proof of [GP] Thm. 4.4.6).-/
+/-- The left operators `λ_s` commute with the right operators `ρ_t` (proof of [GP] Thm. 4.4.6).
+@isnad1 id=eq.0h8v.s9.e591a61d4822 from=translated src=- shape=1c48104a vocab=a47fba83
+-/
 theorem leftOp_mul_rightOp (i j : B) :
     leftOp cs q i * rightOp cs q j = rightOp cs q j * leftOp cs q i := by
   refine Finsupp.lhom_ext' fun w ↦ LinearMap.ext_ring ?_
@@ -135,16 +149,28 @@ def heckeOps : Submodule R (Module.End R (W →₀ R)) where
   smul_mem' c f hf i := by rw [smul_mul_assoc, mul_smul_comm, hf i]
 
 variable {cs q} in
+/--
+@isnad1 id=eq.1h9v.s10.db3267b4f734 from=translated src=- shape=d1f737b3 vocab=25d598e4
+-/
 theorem heckeOps_apply_rightOp {f : Module.End R (W →₀ R)} (hf : f ∈ heckeOps cs q) (i : B)
     (x : W →₀ R) : f (rightOp cs q i x) = rightOp cs q i (f x) :=
   LinearMap.congr_fun (hf i) x
 
+/--
+@isnad1 id=mem.0h7v.s10.79312cfd1618 from=translated src=- shape=df9611ae vocab=b1b4a92c
+-/
 theorem leftOp_mem_heckeOps (i : B) : leftOp cs q i ∈ heckeOps cs q :=
   fun j ↦ leftOp_mul_rightOp cs q i j
 
+/--
+@isnad1 id=mem.0h6v.s10.6784ee7d86c9 from=translated src=- shape=f418e824 vocab=5c650dd0
+-/
 theorem one_mem_heckeOps : (1 : Module.End R (W →₀ R)) ∈ heckeOps cs q := fun i ↦ by simp
 
 variable {cs q} in
+/--
+@isnad1 id=mem.2h8v.s11.207dce43bfcd from=translated src=- shape=41d98173 vocab=6abf4a44
+-/
 theorem mul_mem_heckeOps {f g : Module.End R (W →₀ R)} (hf : f ∈ heckeOps cs q)
     (hg : g ∈ heckeOps cs q) : f * g ∈ heckeOps cs q := fun i ↦ by
   rw [mul_assoc, hg i, ← mul_assoc, hf i, mul_assoc]
@@ -170,6 +196,9 @@ noncomputable def evalOne : heckeOps cs q →ₗ[R] (W →₀ R) where
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+/--
+@isnad1 id=bijectiv.0h6v.s12.9136044cdaf7 from=translated src=- shape=611ea1b6 vocab=1a9f6e19
+-/
 theorem evalOne_bijective : Function.Bijective (evalOne cs q) := by
   refine ⟨fun f g h ↦ Subtype.ext (eq_of_mem_heckeOps f.2 g.2 h), ?_⟩
   have key : ∀ w : W, single w (1 : R) ∈ LinearMap.range (evalOne cs q) := by
@@ -197,26 +226,47 @@ noncomputable def lmul : (W →₀ R) →ₗ[R] Module.End R (W →₀ R) :=
   (heckeOps cs q).subtype ∘ₗ
     (LinearEquiv.ofBijective (evalOne cs q) (evalOne_bijective cs q)).symm.toLinearMap
 
+/--
+@isnad1 id=mem.0h7v.s10.4cbe79f97011 from=translated src=- shape=897d7804 vocab=38400284
+-/
 theorem lmul_mem (x : W →₀ R) : lmul cs q x ∈ heckeOps cs q :=
   ((LinearEquiv.ofBijective (evalOne cs q) (evalOne_bijective cs q)).symm x).2
 
+/--
+@isnad1 id=eq.0h7v.s10.3daba7a50637 from=translated src=- shape=d90c7fc9 vocab=29e095bc
+-/
 theorem lmul_apply_single_one (x : W →₀ R) : lmul cs q x (single 1 1) = x :=
   (LinearEquiv.ofBijective (evalOne cs q) (evalOne_bijective cs q)).apply_symm_apply x
 
+/--
+@isnad1 id=eq.0h9v.s11.095d5cbf7a57 from=translated src=- shape=f00ea032 vocab=89862e90
+-/
 theorem lmul_apply_rightOp (x : W →₀ R) (i : B) (y : W →₀ R) :
     lmul cs q x (rightOp cs q i y) = rightOp cs q i (lmul cs q x y) :=
   heckeOps_apply_rightOp (lmul_mem cs q x) i y
 
 variable {cs q} in
+/--
+@isnad1 id=eq.1h7v.s11.c121ce7c216f from=translated src=- shape=33d6bd0d vocab=e90646fe
+-/
 theorem lmul_eq {f : Module.End R (W →₀ R)} (hf : f ∈ heckeOps cs q) :
     lmul cs q (f (single 1 1)) = f :=
   eq_of_mem_heckeOps (lmul_mem cs q _) hf (lmul_apply_single_one cs q _)
 
+/--
+@isnad1 id=eq.0h6v.s10.5bda14b19cdf from=translated src=- shape=d2fe762d vocab=29e095bc
+-/
 theorem lmul_single_one : lmul cs q (single 1 1) = 1 := lmul_eq (one_mem_heckeOps cs q)
 
+/--
+@isnad1 id=eq.0h7v.s9.a29a9ad46abc from=translated src=- shape=96a940a8 vocab=4813474b
+-/
 theorem lmul_single_simple (i : B) : lmul cs q (single (s i) 1) = leftOp cs q i := by
   rw [← lmul_eq (leftOp_mem_heckeOps cs q i), leftOp_single_one]
 
+/--
+@isnad1 id=eq.0h8v.s11.e730bc202dc1 from=translated src=- shape=beedefc6 vocab=61b6d78e
+-/
 theorem lmul_lmul (x y : W →₀ R) : lmul cs q (lmul cs q x y) = lmul cs q x * lmul cs q y := by
   conv_lhs => rw [← lmul_apply_single_one cs q y]
   exact lmul_eq (mul_mem_heckeOps (lmul_mem cs q x) (lmul_mem cs q y))
@@ -274,9 +324,15 @@ noncomputable instance : Ring (IwahoriHeckeAlgebra cs q) :=
       rw [map_zero, map_zero, LinearMap.zero_apply]
     mul_zero x := map_zero (lmul cs q x) }
 
+/--
+@isnad1 id=eq.0h8v.s11.f5184dc5cf32 from=translated src=- shape=9357e715 vocab=788f6aca
+-/
 theorem toFinsupp_mul (x y : IwahoriHeckeAlgebra cs q) :
     toFinsupp cs q (x * y) = lmul cs q (toFinsupp cs q x) (toFinsupp cs q y) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.63ad764bccbc from=translated src=- shape=a28b973c vocab=bf0d9ad4
+-/
 theorem toFinsupp_one : toFinsupp cs q 1 = single 1 1 := rfl
 
 noncomputable instance : Algebra R (IwahoriHeckeAlgebra cs q) :=
@@ -295,21 +351,38 @@ noncomputable def basis : Basis W R (IwahoriHeckeAlgebra cs q) :=
 /-- The standard basis element `T_w` of the Iwahori–Hecke algebra.-/
 noncomputable def T (w : W) : IwahoriHeckeAlgebra cs q := (toFinsupp cs q).symm (single w 1)
 
+/--
+@isnad1 id=eq.0h7v.s7.e11463f75836 from=translated src=- shape=aac3807c vocab=a697a2a0
+-/
 theorem basis_apply (w : W) : basis cs q w = T cs q w := by simp [basis, T]
 
+/--
+@isnad1 id=eq.0h7v.s8.25e426ec9486 from=translated src=- shape=a05108e5 vocab=5948e728
+-/
 theorem toFinsupp_T (w : W) : toFinsupp cs q (T cs q w) = single w 1 := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.a3306340ca08 from=translated src=- shape=da288e2a vocab=c8a81e46
+-/
 @[simp]
 theorem T_one : T cs q 1 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h8v.s10.3048b0cbc279 from=translated src=- shape=57cd5ffe vocab=8fc37e79
+-/
 theorem toFinsupp_T_mul (w : W) (x : IwahoriHeckeAlgebra cs q) :
     toFinsupp cs q (T cs q w * x) = lmul cs q (single w 1) (toFinsupp cs q x) := rfl
 
+/--
+@isnad1 id=eq.0h8v.s10.fe230c6602e7 from=translated src=- shape=b82bcece vocab=8fc37e79
+-/
 theorem toFinsupp_mul_T (x : IwahoriHeckeAlgebra cs q) (w : W) :
     toFinsupp cs q (x * T cs q w) = lmul cs q (toFinsupp cs q x) (single w 1) := rfl
 
 /-- `T_s T_w = T_{sw}` if `ℓ(sw) > ℓ(w)`, and `T_s T_w = (q - 1) T_w + q T_{sw}` otherwise
-([GP] Lemma 4.4.3(b)).-/
+([GP] Lemma 4.4.3(b)).
+@isnad1 id=eq.0h8v.s9.15fcfe7cce82 from=translated src=- shape=ca04b981 vocab=a6579b30
+-/
 theorem T_simple_mul_T (i : B) (w : W) : T cs q (s i) * T cs q w =
     if ℓ w < ℓ (s i * w) then T cs q (s i * w)
     else (q - 1) • T cs q w + q • T cs q (s i * w) := by
@@ -318,7 +391,9 @@ theorem T_simple_mul_T (i : B) (w : W) : T cs q (s i) * T cs q w =
   split_ifs <;> simp [toFinsupp_T]
 
 /-- `T_w T_s = T_{ws}` if `ℓ(ws) > ℓ(w)`, and `T_w T_s = (q - 1) T_w + q T_{ws}` otherwise
-([GP] Lemma 4.4.3(b)).-/
+([GP] Lemma 4.4.3(b)).
+@isnad1 id=eq.0h8v.s9.d33f70337936 from=translated src=- shape=0f6d3cf3 vocab=a6579b30
+-/
 theorem T_mul_T_simple (w : W) (i : B) : T cs q w * T cs q (s i) =
     if ℓ w < ℓ (w * s i) then T cs q (w * s i)
     else (q - 1) • T cs q w + q • T cs q (w * s i) := by
@@ -327,23 +402,37 @@ theorem T_mul_T_simple (w : W) (i : B) : T cs q w * T cs q (s i) =
     lmul_apply_single_one, rightOp_single]
   split_ifs <;> simp [toFinsupp_T]
 
+/--
+@isnad1 id=eq.1h8v.s7.b9360a97ad05 from=translated src=- shape=1b8c7be0 vocab=7cdc4c3f
+-/
 theorem T_simple_mul_T_of_lt {i : B} {w : W} (h : ℓ w < ℓ (s i * w)) :
     T cs q (s i) * T cs q w = T cs q (s i * w) := by
   rw [T_simple_mul_T, ite_eq_left h]
 
+/--
+@isnad1 id=eq.1h8v.s7.5aa8e2567884 from=translated src=- shape=4877797b vocab=7cdc4c3f
+-/
 theorem T_mul_T_simple_of_lt {w : W} {i : B} (h : ℓ w < ℓ (w * s i)) :
     T cs q w * T cs q (s i) = T cs q (w * s i) := by
   rw [T_mul_T_simple, ite_eq_left h]
 
+/--
+@isnad1 id=eq.1h8v.s8.6af88730a5a9 from=translated src=- shape=c67347b7 vocab=d5571be1
+-/
 theorem T_simple_mul_T_of_lt' {i : B} {w : W} (h : ℓ (s i * w) < ℓ w) :
     T cs q (s i) * T cs q w = (q - 1) • T cs q w + q • T cs q (s i * w) := by
   rw [T_simple_mul_T, ite_eq_right (by omega)]
 
+/--
+@isnad1 id=eq.1h8v.s8.af1affa95030 from=translated src=- shape=0f7ca39e vocab=d5571be1
+-/
 theorem T_mul_T_simple_of_lt' {w : W} {i : B} (h : ℓ (w * s i) < ℓ w) :
     T cs q w * T cs q (s i) = (q - 1) • T cs q w + q • T cs q (w * s i) := by
   rw [T_mul_T_simple, ite_eq_right (by omega)]
 
-/-- `T_x T_y = T_{xy}` whenever `ℓ(xy) = ℓ(x) + ℓ(y)` ([KL] §1).-/
+/-- `T_x T_y = T_{xy}` whenever `ℓ(xy) = ℓ(x) + ℓ(y)` ([KL] §1).
+@isnad1 id=eq.1h8v.s7.c5d88f78896d from=translated src=- shape=e3dced96 vocab=4291806e
+-/
 theorem T_mul_T {x y : W} (h : ℓ (x * y) = ℓ x + ℓ y) : T cs q x * T cs q y = T cs q (x * y) := by
   induction y using cs.induction_mul_simple generalizing x with
   | one => simp
@@ -355,20 +444,26 @@ theorem T_mul_T {x y : W} (h : ℓ (x * y) = ℓ x + ℓ y) : T cs q x * T cs q 
     have hxy : ℓ (x * y) = ℓ x + ℓ y := by omega
     rw [← T_mul_T_simple_of_lt cs q hlt, ← mul_assoc, ih hxy, T_mul_T_simple_of_lt cs q (by omega)]
 
-/-- The quadratic relation `T_s² = (q - 1) T_s + q` ([KL] §1).-/
+/-- The quadratic relation `T_s² = (q - 1) T_s + q` ([KL] §1).
+@isnad1 id=eq.0h7v.s8.f924e0ca0521 from=translated src=- shape=d38db2bf vocab=9db19e04
+-/
 theorem T_simple_mul_self (i : B) :
     T cs q (s i) * T cs q (s i) = (q - 1) • T cs q (s i) + algebraMap R _ q := by
   rw [T_simple_mul_T_of_lt' cs q (by simp), CoxeterSystem.simple_mul_simple_self, T_one,
     Algebra.algebraMap_eq_smul_one]
 
-/-- The quadratic relation in factored form: `(T_s - q)(T_s + 1) = 0`.-/
+/-- The quadratic relation in factored form: `(T_s - q)(T_s + 1) = 0`.
+@isnad1 id=eq.0h7v.s9.b5fb5d8fcf1a from=translated src=- shape=5ebab91b vocab=aeabeb51
+-/
 theorem T_simple_sub_mul_T_simple_add (i : B) :
     (T cs q (s i) - algebraMap R _ q) * (T cs q (s i) + 1) = 0 := by
   rw [sub_mul, mul_add, mul_add, T_simple_mul_self, mul_one, mul_one, ← Algebra.smul_def,
     sub_smul, one_smul]
   abel
 
-/-- If `q` is a unit, `T_s` is a unit, with inverse `q⁻¹ T_s - (1 - q⁻¹)` ([GP] Remark 4.4.4(b)).-/
+/-- If `q` is a unit, `T_s` is a unit, with inverse `q⁻¹ T_s - (1 - q⁻¹)` ([GP] Remark 4.4.4(b)).
+@isnad1 id=eq.1h7v.s9.7c98c97af3cd from=translated src=- shape=52531f4a vocab=887fd80c
+-/
 theorem T_simple_mul_inv (hq : IsUnit q) (i : B) :
     T cs q (s i) * (hq.unit⁻¹.1 • T cs q (s i) - (1 - hq.unit⁻¹.1) • 1) = 1 := by
   have e : hq.unit⁻¹.1 * q = 1 := hq.val_inv_mul
@@ -377,15 +472,23 @@ theorem T_simple_mul_inv (hq : IsUnit q) (i : B) :
     Algebra.algebraMap_eq_smul_one, smul_add, smul_smul, smul_smul, e, e', one_smul]
   abel
 
+/--
+@isnad1 id=eq.1h7v.s9.d85a7cb1cf45 from=translated src=- shape=cd444ab2 vocab=887fd80c
+-/
 theorem inv_mul_T_simple (hq : IsUnit q) (i : B) :
     (hq.unit⁻¹.1 • T cs q (s i) - (1 - hq.unit⁻¹.1) • 1) * T cs q (s i) = 1 := by
   rw [sub_mul, smul_mul_assoc, smul_mul_assoc, one_mul]
   rw [← T_simple_mul_inv cs q hq i, mul_sub, mul_smul_comm, mul_smul_comm, mul_one]
 
+/--
+@isnad1 id=isunit.1h7v.s6.df0c449d85e2 from=translated src=- shape=6ed65b81 vocab=daf8049b
+-/
 theorem isUnit_T_simple (hq : IsUnit q) (i : B) : IsUnit (T cs q (s i)) :=
   ⟨⟨_, _, T_simple_mul_inv cs q hq i, inv_mul_T_simple cs q hq i⟩, rfl⟩
 
-/-- If `q` is a unit, every `T_w` is a unit ([GP] Remark 4.4.4(b)).-/
+/-- If `q` is a unit, every `T_w` is a unit ([GP] Remark 4.4.4(b)).
+@isnad1 id=isunit.1h7v.s6.9290655df7a9 from=translated src=- shape=3077080b vocab=6eb1fb15
+-/
 theorem isUnit_T (hq : IsUnit q) (w : W) : IsUnit (T cs q w) := by
   induction w using cs.induction_simple_mul with
   | one => simp
@@ -393,7 +496,9 @@ theorem isUnit_T (hq : IsUnit q) (w : W) : IsUnit (T cs q w) := by
     rw [← T_simple_mul_T_of_lt cs q hlt]
     exact (isUnit_T_simple cs q hq i).mul ih
 
-/-- For a reduced word `ω`, `T_{π ω}` is the product of the `T_s` over the letters of `ω`.-/
+/-- For a reduced word `ω`, `T_{π ω}` is the product of the `T_s` over the letters of `ω`.
+@isnad1 id=eq.1h7v.s7.9329422ecf23 from=translated src=- shape=5df477c2 vocab=32f05d62
+-/
 theorem T_wordProd {ω : List B} (hω : cs.IsReduced ω) :
     T cs q (cs.wordProd ω) = (ω.map fun i ↦ T cs q (s i)).prod := by
   induction ω with
@@ -406,7 +511,9 @@ theorem T_wordProd {ω : List B} (hω : cs.IsReduced ω) :
     rw [this, hω'.eq, cs.length_simple, List.length_cons]
     ring
 
-/-- Induction principle on `𝓗` along the standard basis.-/
+/-- Induction principle on `𝓗` along the standard basis.
+@isnad1 id=var.0h11v.s8.7a254597f1e6 from=translated src=- shape=87568511 vocab=6fc4ba24
+-/
 theorem induction_on {p : IwahoriHeckeAlgebra cs q → Prop} (h : IwahoriHeckeAlgebra cs q)
     (T : ∀ w, p (T cs q w)) (add : ∀ x y, p x → p y → p (x + y))
     (smul : ∀ (a : R) x, p x → p (a • x)) : p h := by
@@ -418,7 +525,9 @@ theorem induction_on {p : IwahoriHeckeAlgebra cs q → Prop} (h : IwahoriHeckeAl
   | add x y _ _ hx hy => exact add x y hx hy
   | smul a x _ hx => exact smul a x hx
 
-/-- The Iwahori–Hecke algebra is generated by the `T_s`.-/
+/-- The Iwahori–Hecke algebra is generated by the `T_s`.
+@isnad1 id=eq.0h6v.s9.ee4b9bb25b82 from=translated src=- shape=52e3b405 vocab=f91af37d
+-/
 theorem adjoin_T_simple :
     Algebra.adjoin R (Set.range fun i ↦ T cs q (s i)) = ⊤ := by
   rw [eq_top_iff]
@@ -433,7 +542,9 @@ theorem adjoin_T_simple :
   | add x y hx hy => exact Subalgebra.add_mem _ hx hy
   | smul a x hx => exact Subalgebra.smul_mem _ hx a
 
-/-- An algebra homomorphism out of `𝓗` is determined by the images of the `T_s`.-/
+/-- An algebra homomorphism out of `𝓗` is determined by the images of the `T_s`.
+@isnad1 id=eq.1h9v.s8.d43e10ff95f0 from=translated src=- shape=4bc18b66 vocab=8051b68e
+-/
 @[ext]
 theorem algHom_ext {A : Type*} [Semiring A] [Algebra R A]
     {f g : IwahoriHeckeAlgebra cs q →ₐ[R] A} (h : ∀ i, f (T cs q (s i)) = g (T cs q (s i))) :
@@ -444,7 +555,9 @@ theorem algHom_ext {A : Type*} [Semiring A] [Algebra R A]
 
 /-- A criterion for multiplicativity: an additive map `φ : 𝓗 → A`, semilinear with respect to a
 ring homomorphism `σ : R → S` (`A` an `S`-algebra), with `φ 1 = 1` and
-`φ (h T_s) = φ h φ(T_s)` for all `h` and `s`, is multiplicative.-/
+`φ (h T_s) = φ h φ(T_s)` for all `h` and `s`, is multiplicative.
+@isnad1 id=eq.3h12v.s11.37b0cda1fcfe from=translated src=- shape=65ce577c vocab=14d1c3e8
+-/
 theorem map_mul_of_map_mul_T_simple {S A : Type*} [CommRing S] [Ring A] [Algebra S A]
     (σ : R →+* S) (φ : IwahoriHeckeAlgebra cs q →+ A)
     (hsmul : ∀ (a : R) h, φ (a • h) = σ a • φ h) (hone : φ 1 = 1)

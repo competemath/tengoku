@@ -57,24 +57,38 @@ def pbwMonomial : (ω : List B) → (Fin ω.length → ℕ) → A
   | [], _ => 1
   | i :: ω, c => E i ^ c ⟨0, Nat.succ_pos _⟩ * T i (pbwMonomial ω fun n ↦ c n.succ)
 
+/--
+@isnad1 id=eq.0h6v.s6.3489a18f83b9 from=translated src=- shape=90521940 vocab=5d852246
+-/
 @[simp] lemma pbwMonomial_nil (c : Fin ([] : List B).length → ℕ) :
     pbwMonomial T E [] c = 1 := rfl
 
+/--
+@isnad1 id=eq.0h8v.s7.c053cd98caf5 from=translated src=- shape=0903f205 vocab=647a30d7
+-/
 lemma pbwMonomial_cons (i : B) (ω : List B) (c : Fin (i :: ω).length → ℕ) :
     pbwMonomial T E (i :: ω) c =
       E i ^ c ⟨0, Nat.succ_pos _⟩ * T i (pbwMonomial T E ω fun n ↦ c n.succ) := rfl
 
+/--
+@isnad1 id=eq.1h7v.s6.30f6a5a9667b from=translated src=- shape=f4a666b9 vocab=e7021ed4
+-/
 lemma rootVector_cons_zero (i : B) (ω : List B) (h : 0 < (i :: ω).length) :
     rootVector T E (i :: ω) 0 h = E i := by
   simp [rootVector]
 
+/--
+@isnad1 id=eq.1h8v.s7.77f4965d06db from=translated src=- shape=bcb05abf vocab=af63e113
+-/
 lemma rootVector_cons_succ (i : B) (ω : List B) (n : ℕ) (h : n + 1 < (i :: ω).length) :
     rootVector T E (i :: ω) (n + 1) h =
       T i (rootVector T E ω n (Nat.lt_of_succ_lt_succ h)) := by
   simp [rootVector, AlgEquiv.mul_apply]
 
 /-- The ordered monomial is the product of the powers of the root vectors, in the order of the
-word.-/
+word.
+@isnad1 id=eq.0h7v.s6.49e43c104139 from=translated src=- shape=38adb510 vocab=a9de0f2c
+-/
 theorem pbwMonomial_eq_prod (ω : List B) (c : Fin ω.length → ℕ) :
     pbwMonomial T E ω c =
       (List.ofFn fun n : Fin ω.length ↦ rootVector T E ω n n.2 ^ c n).prod := by
@@ -92,7 +106,9 @@ theorem pbwMonomial_eq_prod (ω : List B) (c : Fin ω.length → ℕ) :
     rw [Function.comp_apply, map_pow]
     exact congrArg (· ^ c n.succ) (rootVector_cons_succ T E i ω n _).symm
 
-/-- The ordered monomials lie in every subalgebra containing the root vectors along the word.-/
+/-- The ordered monomials lie in every subalgebra containing the root vectors along the word.
+@isnad1 id=mem.1h8v.s7.f77f9075a2c6 from=translated src=- shape=a189549b vocab=015068c3
+-/
 theorem pbwMonomial_mem {P : Subalgebra k A} {ω : List B}
     (h : ∀ n (hn : n < ω.length), rootVector T E ω n hn ∈ P) (c : Fin ω.length → ℕ) :
     pbwMonomial T E ω c ∈ P := by
@@ -128,7 +144,9 @@ private theorem independent_single_map {k M N J : Type*} [Field k]
 /-- **Independence of ordered monomials** (cf. [Jan] Lemma 8.21 b)): let `S` be a subspace of `A`
 such that, for every `i`, a relation `∑ₐ Eᵢᵃ Tᵢ(uₐ) = 0` with all `uₐ ∈ S` forces `uₐ = 0`. If the
 ordered monomials along all final segments of `ω` lie in `S`, then the ordered monomials along `ω`
-are linearly independent.-/
+are linearly independent.
+@isnad1 id=linearin.2h7v.s9.e08cf64e567c from=translated src=- shape=f8e75211 vocab=8b9f8da4
+-/
 theorem linearIndependent_pbwMonomial {S : Submodule k A}
     (hS : ∀ (i : B) (f : ℕ →₀ A), (∀ a, f a ∈ S) →
       (f.sum fun a x ↦ E i ^ a * T i x) = 0 → f = 0)

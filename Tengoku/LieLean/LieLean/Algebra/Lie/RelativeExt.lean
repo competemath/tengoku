@@ -113,16 +113,30 @@ namespace extCocycles
 
 variable {φ}
 
+/--
+@isnad1 id=eq.0h9v.s12.e0c7cc6a3288 from=translated src=- shape=a7bb9320 vocab=c260b439
+-/
 theorem map_add' (c : extCocycles φ M N) (x y : L) : c.1 (x + y) = c.1 x + c.1 y := c.2.1 x y
 
+/--
+@isnad1 id=eq.0h9v.s11.061d566311ea from=translated src=- shape=a439f42a vocab=0a5bc369
+-/
 theorem map_smul' (c : extCocycles φ M N) (t : K) (x : L) : c.1 (t • x) = t • c.1 x := c.2.2.1 t x
 
+/--
+@isnad1 id=eq.0h8v.s11.f6abe2926dc0 from=translated src=- shape=6c41507b vocab=6d97c4f7
+-/
 theorem map_apply_eq_zero (c : extCocycles φ M N) (a : H) : c.1 (φ a) = 0 := c.2.2.2.1 a
 
+/--
+@isnad1 id=eq.0h7v.s11.9b2bd92ad0a5 from=translated src=- shape=83eab4b2 vocab=a8f86346
+-/
 theorem map_zero' (c : extCocycles φ M N) : c.1 0 = 0 := by
   simpa using extCocycles.map_smul' c 0 0
 
-/-- The cocycle identity, evaluated at a vector.-/
+/-- The cocycle identity, evaluated at a vector.
+@isnad1 id=eq.0h10v.s12.5c6ae7d5a90e from=translated src=- shape=e11291ce vocab=b7ac4fce
+-/
 theorem apply_lie_apply (c : extCocycles φ M N) (x y : L) (m : M) :
     c.1 ⁅x, y⁆ m = ⁅x, c.1 y m⁆ - c.1 y ⁅x, m⁆ - (⁅y, c.1 x m⁆ - c.1 x ⁅y, m⁆) := by
   rw [c.2.2.2.2 x y, LinearMap.sub_apply, LieHom.lie_apply, LieHom.lie_apply]
@@ -136,10 +150,15 @@ variable {φ}
 /-- The class of a cocycle.-/
 abbrev mk (c : extCocycles φ M N) : ExtOne φ M N := Submodule.Quotient.mk c
 
+/--
+@isnad1 id=surjecti.0h6v.s10.5d72d1f419d6 from=translated src=- shape=669cd7f6 vocab=d1978113
+-/
 theorem mk_surjective : Function.Surjective (mk : extCocycles φ M N → ExtOne φ M N) :=
   Submodule.Quotient.mk_surjective _
 
-/-- The class of `c` vanishes iff `c = ⁅·, f⁆` for an equivariant `f`.-/
+/-- The class of `c` vanishes iff `c = ⁅·, f⁆` for an equivariant `f`.
+@isnad1 id=iff.0h7v.s12.d8104ef4797d from=translated src=- shape=34d97590 vocab=05128b08
+-/
 theorem mk_eq_zero_iff_exists (c : extCocycles φ M N) :
     mk c = 0 ↔ ∃ f : M →ₗ[K] N, f ∈ relHom φ M N ∧ ∀ x m, c.1 x m = ⁅x, f m⁆ - f ⁅x, m⁆ := by
   rw [Submodule.Quotient.mk_eq_zero, LinearMap.mem_range]
@@ -171,13 +190,22 @@ instance : Bracket L (Extension c) where
   bracket x v := (equiv c).symm
     (⁅x, (equiv c v).1⁆ + c.1 x (equiv c v).2, ⁅x, (equiv c v).2⁆)
 
+/--
+@isnad1 id=iff.0h9v.s11.630b91bc35c5 from=translated src=- shape=323bb356 vocab=f0589868
+-/
 theorem ext_iff' {v w : Extension c} :
     v = w ↔ (equiv c v).1 = (equiv c w).1 ∧ (equiv c v).2 = (equiv c w).2 := by
   rw [← Prod.ext_iff, (equiv c).injective.eq_iff]
 
+/--
+@isnad1 id=eq.0h9v.s11.9a9498685605 from=translated src=- shape=f6d21861 vocab=3cc48ead
+-/
 theorem fst_lie (x : L) (v : Extension c) :
     (equiv c ⁅x, v⁆).1 = ⁅x, (equiv c v).1⁆ + c.1 x (equiv c v).2 := rfl
 
+/--
+@isnad1 id=eq.0h9v.s11.bbffe8facce5 from=translated src=- shape=eb953c9d vocab=32cc1af5
+-/
 theorem snd_lie' (x : L) (v : Extension c) : (equiv c ⁅x, v⁆).2 = ⁅x, (equiv c v).2⁆ := rfl
 
 instance : LieRingModule L (Extension c) where
@@ -236,14 +264,25 @@ def snd : Extension c →ₗ⁅K,L⁆ M where
   toLinearMap := LinearMap.snd K N M ∘ₗ (equiv c).toLinearMap
   map_lie' {_ _} := rfl
 
+/--
+@isnad1 id=eq.0h8v.s10.8e094260dab0 from=translated src=- shape=ca533196 vocab=e748b5c0
+-/
 @[simp] theorem equiv_inl (n : N) : equiv c (inl c n) = (n, 0) := rfl
 
+/--
+@isnad1 id=eq.0h8v.s10.0bb447fe0866 from=translated src=- shape=17a474df vocab=00536a71
+-/
 @[simp] theorem snd_apply (v : Extension c) : snd c v = (equiv c v).2 := rfl
 
+/--
+@isnad1 id=surjecti.0h7v.s10.d1f7d371b52a from=translated src=- shape=01d34c6a vocab=7ebbaaee
+-/
 theorem surjective_snd : Function.Surjective (snd c) := fun m ↦
   ⟨(equiv c).symm (0, m), rfl⟩
 
-/-- `E_μ = N_μ × M_μ`: the weight spaces of `E_c`.-/
+/-- `E_μ = N_μ × M_μ`: the weight spaces of `E_c`.
+@isnad1 id=iff.0h9v.s11.4f05987c443d from=translated src=- shape=652d0ff4 vocab=d44c66f5
+-/
 theorem mem_weightSpaceOfMap_iff (μ : Dual K H) (v : Extension c) :
     v ∈ weightSpaceOfMap (Extension c) φ μ ↔
       (equiv c v).1 ∈ weightSpaceOfMap N φ μ ∧ (equiv c v).2 ∈ weightSpaceOfMap M φ μ := by
@@ -251,12 +290,17 @@ theorem mem_weightSpaceOfMap_iff (μ : Dual K H) (v : Extension c) :
     LinearMap.zero_apply, add_zero, map_smul, Prod.smul_fst, Prod.smul_snd]
   exact ⟨fun h ↦ ⟨fun a ↦ (h a).1, fun a ↦ (h a).2⟩, fun h a ↦ ⟨h.1 a, h.2 a⟩⟩
 
+/--
+@isnad1 id=mem.1h9v.s11.5b16dfb9835b from=translated src=- shape=023bd2cc vocab=26b33c7b
+-/
 theorem symm_zero_mem_weightSpaceOfMap {μ : Dual K H} {m : M}
     (hm : m ∈ weightSpaceOfMap M φ μ) :
     (equiv c).symm (0, m) ∈ weightSpaceOfMap (Extension c) φ μ :=
   (mem_weightSpaceOfMap_iff c μ _).mpr ⟨Submodule.zero_mem _, hm⟩
 
-/-- `E_c` is a sum of weight spaces if `N` and `M` are.-/
+/-- `E_c` is a sum of weight spaces if `N` and `M` are.
+@isnad1 id=eq.2h7v.s11.2d847240455e from=translated src=- shape=04cf5c54 vocab=6c019d24
+-/
 theorem iSup_weightSpaceOfMap_eq_top (hN : ⨆ μ, weightSpaceOfMap N φ μ = ⊤)
     (hM : ⨆ μ, weightSpaceOfMap M φ μ = ⊤) :
     ⨆ μ, weightSpaceOfMap (Extension c) φ μ = ⊤ := by
@@ -300,6 +344,9 @@ def weightSpaceMap (μ : Dual K H) :
       (weightSpaceOfMap (Extension c) φ μ).subtype).codRestrict _ fun v ↦
         ((mem_weightSpaceOfMap_iff c μ v).mp v.2).2))
 
+/--
+@isnad1 id=injectiv.0h8v.s12.af71dd3fab26 from=translated src=- shape=745af6db vocab=b7a5cc74
+-/
 theorem injective_weightSpaceMap (μ : Dual K H) : Function.Injective (weightSpaceMap c μ) := by
   intro v w h
   have h1 := congrArg (fun p ↦ (p.1 : N)) h
@@ -309,7 +356,9 @@ theorem injective_weightSpaceMap (μ : Dual K H) : Function.Injective (weightSpa
 end Extension
 
 /-- **Splitting criterion.** The class of a cocycle `c` vanishes iff the extension
-`0 → N → E_c → M → 0` splits.-/
+`0 → N → E_c → M → 0` splits.
+@isnad1 id=iff.0h7v.s12.14afe6d99fbb from=translated src=- shape=e705d570 vocab=e730975b
+-/
 theorem mk_eq_zero_iff (c : extCocycles φ M N) :
     mk c = 0 ↔ ∃ σ : M →ₗ⁅K,L⁆ Extension c, ∀ m, Extension.snd c (σ m) = m := by
   rw [mk_eq_zero_iff_exists]
@@ -366,6 +415,9 @@ def comap (g : A →ₗ⁅K,L⁆ M) : ExtOne φ M N →ₗ[K] ExtOne φ A N :=
       rw [LieHom.lie_apply, LieHom.lie_apply]
       simp)
 
+/--
+@isnad1 id=eq.0h9v.s15.c19584137577 from=translated src=- shape=c869262c vocab=a0f00642
+-/
 @[simp] theorem comap_mk (g : A →ₗ⁅K,L⁆ M) (c : extCocycles φ M N) :
     comap g (mk c) = mk (cocycleComap φ g c) := rfl
 
@@ -393,12 +445,18 @@ variable {i : A →ₗ⁅K,L⁆ B} {p : B →ₗ⁅K,L⁆ C} (S : SplitData φ i
 
 omit [LieModule K L C] in
 include S in
+/--
+@isnad1 id=eq.0h11v.s8.fe3d3937ea71 from=translated src=- shape=dd2ca427 vocab=f2a8fd62
+-/
 theorem p_i (a : A) : p (i a) = 0 := by
   have h := S.i_r_add_s_p (i a)
   rw [S.r_i, add_eq_left] at h
   simpa [S.p_s] using congrArg p h
 
 omit [LieModule K L C] in
+/--
+@isnad1 id=eq.0h11v.s8.d2b86494b8b5 from=translated src=- shape=a7f2b55f vocab=8c70eed4
+-/
 theorem r_s (c : C) : S.r (S.s c) = 0 := by
   have h := S.i_r_add_s_p (S.s c)
   rw [S.p_s, add_eq_right] at h
@@ -406,16 +464,23 @@ theorem r_s (c : C) : S.r (S.s c) = 0 := by
   rwa [S.r_i, map_zero] at this
 
 omit [LieModule K L C] in
+/--
+@isnad1 id=eq.1h11v.s8.769b4fd689e3 from=translated src=- shape=2bf5685d vocab=4c4573c7
+-/
 theorem i_r_of_p_eq_zero {b : B} (hb : p b = 0) : i (S.r b) = b := by
   simpa [hb] using S.i_r_add_s_p b
 
 omit [LieModule K L C] in
-/-- The defect `x (s c) - s (x c)` lies in the kernel of `p`.-/
+/-- The defect `x (s c) - s (x c)` lies in the kernel of `p`.
+@isnad1 id=eq.0h12v.s9.e9adfe7cc07f from=translated src=- shape=488bf019 vocab=240d5da3
+-/
 theorem p_lie_s_sub (x : L) (c : C) : p (⁅x, S.s c⁆ - S.s ⁅x, c⁆) = 0 := by
   simp [S.p_s]
 
 omit [LieModule K L C] in
-/-- Moving `x ∈ L` past `r` on the kernel of `p`.-/
+/-- Moving `x ∈ L` past `r` on the kernel of `p`.
+@isnad1 id=eq.1h12v.s9.bb6a4870134b from=translated src=- shape=61f012f1 vocab=c6a44eb0
+-/
 theorem lie_r_of_p_eq_zero (z : L) {b : B} (hb : p b = 0) : ⁅z, S.r b⁆ = S.r ⁅z, b⁆ := by
   have h1 : i ⁅z, S.r b⁆ = ⁅z, b⁆ := by rw [LieModuleHom.map_lie, S.i_r_of_p_eq_zero hb]
   rw [← h1, S.r_i]
@@ -435,10 +500,16 @@ def cocycle : extCocycles φ C A :=
       simp only [lie_sub]
       abel⟩⟩
 
+/--
+@isnad1 id=eq.0h12v.s10.f0f56fdb956e from=translated src=- shape=7c788df4 vocab=4a138611
+-/
 theorem cocycle_apply (x : L) (c : C) :
     S.cocycle.1 x c = S.r (⁅x, S.s c⁆ - S.s ⁅x, c⁆) := by
   rfl
 
+/--
+@isnad1 id=eq.0h12v.s10.d1f31497e42d from=translated src=- shape=b38c7275 vocab=f6e818f7
+-/
 theorem i_cocycle_apply (x : L) (c : C) :
     i (S.cocycle.1 x c) = ⁅x, S.s c⁆ - S.s ⁅x, c⁆ := by
   rw [cocycle_apply, S.i_r_of_p_eq_zero (S.p_lie_s_sub x c)]
@@ -455,6 +526,9 @@ def pushCocycle (f : A →ₗ⁅K,L⁆ N) : extCocycles φ C N :=
         extCocycles.apply_lie_apply S.cocycle, map_sub, LieModuleHom.coe_toLinearMap,
         LieModuleHom.map_lie]⟩⟩
 
+/--
+@isnad1 id=eq.0h14v.s11.4e2d2689ffb9 from=translated src=- shape=b1e94537 vocab=13a65414
+-/
 theorem pushCocycle_apply (f : A →ₗ⁅K,L⁆ N) (x : L) (c : C) :
     (S.pushCocycle f).1 x c = f (S.cocycle.1 x c) := rfl
 
@@ -468,10 +542,15 @@ def connecting : (A →ₗ⁅K,L⁆ N) →ₗ[K] ExtOne φ C N where
     rw [RingHom.id_apply, ← Submodule.Quotient.mk_smul]
     congr 1
 
+/--
+@isnad1 id=eq.0h12v.s14.cf9a51ca9065 from=translated src=- shape=90c559f4 vocab=a0fad9f8
+-/
 theorem connecting_apply (f : A →ₗ⁅K,L⁆ N) :
     S.connecting f = ExtOne.mk (S.pushCocycle f) := rfl
 
-/-- **Exactness at `Hom(A, N)`.** `δ f = 0` iff `f` extends along `i : A → B`.-/
+/-- **Exactness at `Hom(A, N)`.** `δ f = 0` iff `f` extends along `i : A → B`.
+@isnad1 id=iff.0h12v.s14.d0f208e4c19f from=translated src=- shape=910b65fa vocab=db01ba44
+-/
 theorem connecting_eq_zero_iff (f : A →ₗ⁅K,L⁆ N) :
     S.connecting f = 0 ↔ ∃ g : B →ₗ⁅K,L⁆ N, g.comp i = f := by
   rw [connecting_apply, mk_eq_zero_iff_exists]
@@ -503,7 +582,9 @@ theorem connecting_eq_zero_iff (f : A →ₗ⁅K,L⁆ N) :
         LieModuleHom.map_lie, LinearMap.coe_comp, LieModuleHom.coe_toLinearMap]
 
 /-- **Exactness at `ExtOne φ C N`** (one inclusion): a class whose pullback along `p` vanishes
-is in the image of the connecting map.-/
+is in the image of the connecting map.
+@isnad1 id=ex.1h12v.s15.b5dd50854b07 from=translated src=- shape=d40f3b01 vocab=bddaeba2
+-/
 theorem exists_connecting_eq {y : ExtOne φ C N} (hy : comap p y = 0) :
     ∃ f : A →ₗ⁅K,L⁆ N, S.connecting f = y := by
   obtain ⟨c, rfl⟩ := mk_surjective y
@@ -552,12 +633,16 @@ end SplitData
 
 variable (φ)
 
-/-- A module map sends weight vectors to weight vectors of the same weight.-/
+/-- A module map sends weight vectors to weight vectors of the same weight.
+@isnad1 id=mem.1h9v.s8.3b7497c90441 from=translated src=- shape=7ca9b291 vocab=646932d2
+-/
 theorem map_mem_weightSpaceOfMap (g : B →ₗ⁅K,L⁆ C) {μ : Dual K H} {b : B}
     (hb : b ∈ weightSpaceOfMap B φ μ) : g b ∈ weightSpaceOfMap C φ μ := fun a ↦ by
   rw [← LieModuleHom.map_lie, hb a, map_smul]
 
-/-- A surjective module map out of a sum of weight spaces is surjective on each weight space.-/
+/-- A surjective module map out of a sum of weight spaces is surjective on each weight space.
+@isnad1 id=ex.3h9v.s9.3463cf3d8d23 from=translated src=- shape=46a3a824 vocab=ca9451dd
+-/
 theorem exists_mem_weightSpaceOfMap_of_surjective (hB : ⨆ μ, weightSpaceOfMap B φ μ = ⊤)
     {g : B →ₗ⁅K,L⁆ C} (hg : Function.Surjective g) {μ : Dual K H} {c : C}
     (hc : c ∈ weightSpaceOfMap C φ μ) : ∃ b ∈ weightSpaceOfMap B φ μ, g b = c := by
@@ -571,7 +656,9 @@ theorem exists_mem_weightSpaceOfMap_of_surjective (hB : ⨆ μ, weightSpaceOfMap
   exact ⟨b, hb, hbc⟩
 
 /-- **Equivariant sections.** A surjective module map `p : B → C` between sums of weight spaces
-has a linear section commuting with `φ(H)`.-/
+has a linear section commuting with `φ(H)`.
+@isnad1 id=ex.3h7v.s10.1b15ab6991fb from=translated src=- shape=e616df5f vocab=066843ce
+-/
 theorem exists_relHom_section (hB : ⨆ μ, weightSpaceOfMap B φ μ = ⊤)
     (hC : ⨆ μ, weightSpaceOfMap C φ μ = ⊤) {p : B →ₗ⁅K,L⁆ C} (hp : Function.Surjective p) :
     ∃ s : C →ₗ[K] B, (∀ c, p (s c) = c) ∧ s ∈ relHom φ C B := by

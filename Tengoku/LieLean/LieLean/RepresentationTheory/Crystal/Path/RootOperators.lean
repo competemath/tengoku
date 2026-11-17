@@ -91,14 +91,29 @@ def dual (C : Crystal D B) : Crystal D B where
 
 variable (C : Crystal D B)
 
+/--
+@isnad1 id=eq.0h6v.s5.a133e5e10604 from=translated src=- shape=323c8851 vocab=cabd6ac7
+-/
 @[simp] lemma dual_wt (b : B) : C.dual.wt b = -C.wt b := rfl
 
+/--
+@isnad1 id=eq.0h7v.s5.82696f0f7ef5 from=translated src=- shape=39e6c352 vocab=265a353c
+-/
 @[simp] lemma dual_ε (i : ι) (b : B) : C.dual.ε i b = C.φ i b := rfl
 
+/--
+@isnad1 id=eq.0h7v.s5.ea1b4b7bdd36 from=translated src=- shape=39e6c352 vocab=265a353c
+-/
 @[simp] lemma dual_φ (i : ι) (b : B) : C.dual.φ i b = C.ε i b := rfl
 
+/--
+@isnad1 id=eq.0h7v.s5.6b441398ab98 from=translated src=- shape=a9d2928b vocab=dede095d
+-/
 @[simp] lemma dual_e (i : ι) (b : B) : C.dual.e i b = C.f i b := rfl
 
+/--
+@isnad1 id=eq.0h7v.s5.d020989c83b7 from=translated src=- shape=a9d2928b vocab=dede095d
+-/
 @[simp] lemma dual_f (i : ι) (b : B) : C.dual.f i b = C.e i b := rfl
 
 end Tengoku.LieLean.Crystal
@@ -120,13 +135,22 @@ variable (π : LittelmannPath S) (i : ι) {t : 𝕜}
 noncomputable def eCoeff (t : 𝕜) : 𝕜 :=
   min (π.runningMin i t) (π.minPairing i + 1) - (π.minPairing i + 1)
 
+/--
+@isnad1 id=continuo.0h8v.s7.a98d800e776e from=translated src=- shape=c826f0fe vocab=dfc57666
+-/
 lemma continuous_eCoeff : Continuous (π.eCoeff i) :=
   ((π.continuous_runningMin i).min continuous_const).sub continuous_const
 
 omit [OrderTopology 𝕜] in
+/--
+@isnad1 id=eq.2h9v.s7.57438dd4044e from=translated src=- shape=03a4f255 vocab=c4c2ab19
+-/
 lemma eCoeff_of_nonpos (hQ : π.minPairing i ≤ -1) (ht : t ≤ 0) : π.eCoeff i t = 0 := by
   rw [eCoeff, π.runningMin_of_nonpos ht, min_eq_right (by linarith), sub_self]
 
+/--
+@isnad1 id=eq.1h9v.s7.bea6226e926d from=translated src=- shape=73d1ce6a vocab=62035b85
+-/
 lemma eCoeff_of_one_le (ht : 1 ≤ t) : π.eCoeff i t = -1 := by
   rw [eCoeff, π.runningMin_of_one_le ht, min_eq_left (by linarith)]
   ring
@@ -147,27 +171,44 @@ noncomputable def eRaw (hQ : π.minPairing i ≤ -1) : LittelmannPath S where
 
 variable (hQ : π.minPairing i ≤ -1)
 
+/--
+@isnad1 id=eq.1h9v.s8.68ead91eaf76 from=translated src=- shape=46f2ec10 vocab=41b5a870
+-/
 lemma eRaw_apply (t : 𝕜) : π.eRaw i hQ t = π t - π.eCoeff i t • S.root i := rfl
 
+/--
+@isnad1 id=eq.1h8v.s8.7680050d17de from=translated src=- shape=03feca20 vocab=346b7627
+-/
 @[simp] lemma wt_eRaw : (π.eRaw i hQ).wt = π.wt + D.root i := rfl
 
+/--
+@isnad1 id=eq.1h10v.s8.df97ed2129fe from=translated src=- shape=d5243530 vocab=60e0892f
+-/
 lemma pairing_eRaw (j : ι) (t : 𝕜) :
     (π.eRaw i hQ).pairing j t = π.pairing j t - π.eCoeff i t * D.cartanMatrix j i := by
   simp only [pairing, eRaw_apply, map_sub, map_smul, smul_eq_mul, S.coroot_root]
 
+/--
+@isnad1 id=eq.1h9v.s8.3ee2f410a742 from=translated src=- shape=a1c67e17 vocab=4270d850
+-/
 lemma pairing_eRaw_self (t : 𝕜) :
     (π.eRaw i hQ).pairing i t = π.pairing i t - 2 * π.eCoeff i t := by
   rw [pairing_eRaw, D.cartanMatrix_self]
   push_cast
   ring
 
+/--
+@isnad1 id=eq.1h8v.s8.297f462af518 from=translated src=- shape=a76e3526 vocab=4029767d
+-/
 lemma pairing_one_eRaw : (π.eRaw i hQ).pairing i 1 = π.pairing i 1 + 2 := by
   rw [pairing_eRaw_self, π.eCoeff_of_one_le i le_rfl]
   ring
 
 /-- The key identity behind `eᵢ fᵢ = id` and `fᵢ eᵢ = id` (reconstructed from the closed
 formulas): if `mᵢ ≤ -1` and `h = hᵢ(eᵢ π)`, then for `s ∈ [0,1]`,
-`min(min_{[s,1]} h, mᵢ + 2) = 2mᵢ + 2 - min(min_{[0,s]} hᵢ, mᵢ + 1)`.-/
+`min(min_{[s,1]} h, mᵢ + 2) = 2mᵢ + 2 - min(min_{[0,s]} hᵢ, mᵢ + 1)`.
+@isnad1 id=eq.2h9v.s8.50099b42891d from=translated src=- shape=14c8739d vocab=c571ba39
+-/
 theorem min_rightMin_eRaw {s : 𝕜} (hs : s ∈ Icc (0 : 𝕜) 1) :
     min ((π.eRaw i hQ).rightMin i s) (π.minPairing i + 2) =
       2 * π.minPairing i + 2 - min (π.runningMin i s) (π.minPairing i + 1) := by
@@ -216,7 +257,9 @@ theorem min_rightMin_eRaw {s : 𝕜} (hs : s ∈ Icc (0 : 𝕜) 1) :
         (by linarith : π.minPairing i ≤ π.minPairing i + 1)
       linarith
 
-/-- `eᵢ` raises the minimum `mᵢ` by one.-/
+/-- `eᵢ` raises the minimum `mᵢ` by one.
+@isnad1 id=eq.1h8v.s8.9ec298d11bef from=translated src=- shape=d0b10e50 vocab=7b2195af
+-/
 theorem minPairing_eRaw : (π.eRaw i hQ).minPairing i = π.minPairing i + 1 := by
   have h := π.min_rightMin_eRaw i hQ ⟨le_rfl, zero_le_one⟩
   rw [rightMin_zero, π.runningMin_of_nonpos le_rfl,
@@ -227,11 +270,16 @@ theorem minPairing_eRaw : (π.eRaw i hQ).minPairing i = π.minPairing i + 1 := b
   · rw [min_eq_right h'] at h
     linarith
 
+/--
+@isnad1 id=le.1h8v.s8.a92840fce3a3 from=translated src=- shape=84564225 vocab=4bb2765d
+-/
 lemma minPairing_rev_eRaw_le : (π.eRaw i hQ).rev.minPairing i ≤ -1 := by
   rw [minPairing_rev, minPairing_eRaw, pairing_one_eRaw]
   linarith [π.minPairing_le_pairing_one i]
 
-/-- `eᵢ (eᵢ π)^∨ = π^∨`: the core of `fᵢ eᵢ = id` and `eᵢ fᵢ = id`.-/
+/-- `eᵢ (eᵢ π)^∨ = π^∨`: the core of `fᵢ eᵢ = id` and `eᵢ fᵢ = id`.
+@isnad1 id=eq.1h8v.s8.51e853049644 from=translated src=- shape=468ffb33 vocab=9880d098
+-/
 theorem eRaw_rev_eRaw :
     (π.eRaw i hQ).rev.eRaw i (π.minPairing_rev_eRaw_le i hQ) = π.rev := by
   refine ext_of_eqOn fun t ht ↦ ?_
@@ -268,39 +316,62 @@ noncomputable def f (i : ι) (π : LittelmannPath S) : Option (LittelmannPath S)
 
 variable {i : ι} {π π' : LittelmannPath S}
 
+/--
+@isnad1 id=eq.1h8v.s8.dcfef9672a68 from=translated src=- shape=14bd2f5b vocab=388f7f5c
+-/
 lemma e_of_le (hQ : π.minPairing i ≤ -1) : e i π = some (π.eRaw i hQ) := by
   simp [e, hQ]
 
+/--
+@isnad1 id=iff.0h8v.s7.93cd866784b0 from=translated src=- shape=94156bb4 vocab=b67f6721
+-/
 lemma e_eq_none_iff : e i π = none ↔ -1 < π.minPairing i := by
   rw [e]
   split_ifs with hQ
   · simp [hQ]
   · simpa using hQ
 
+/--
+@isnad1 id=iff.0h9v.s8.be5bc84f0a49 from=translated src=- shape=a0eb952a vocab=388f7f5c
+-/
 lemma e_eq_some_iff : e i π = some π' ↔ ∃ hQ, π.eRaw i hQ = π' := by
   rw [e]
   split_ifs with hQ
   · simp [hQ]
   · simp [hQ]
 
+/--
+@isnad1 id=iff.0h8v.s8.6850c3dc6301 from=translated src=- shape=b784ec7f vocab=96a69b51
+-/
 lemma f_eq_none_iff : f i π = none ↔ π.pairing i 1 - π.minPairing i < 1 := by
   rw [f, Option.map_eq_none_iff, e_eq_none_iff, minPairing_rev]
   constructor <;> intro h <;> linarith
 
+/--
+@isnad1 id=eq.1h9v.s8.1f92eead64f7 from=translated src=- shape=b0612184 vocab=131656fe
+-/
 lemma minPairing_of_e_eq_some (h : e i π = some π') :
     π'.minPairing i = π.minPairing i + 1 := by
   obtain ⟨hQ, rfl⟩ := e_eq_some_iff.mp h
   exact π.minPairing_eRaw i hQ
 
+/--
+@isnad1 id=eq.1h9v.s8.801a16244f76 from=translated src=- shape=a31be013 vocab=0d87a79e
+-/
 lemma wt_of_e_eq_some (h : e i π = some π') : π'.wt = π.wt + D.root i := by
   obtain ⟨hQ, rfl⟩ := e_eq_some_iff.mp h
   rfl
 
+/--
+@isnad1 id=eq.1h9v.s8.97d17a5b8fb9 from=translated src=- shape=7d33e32e vocab=61845643
+-/
 theorem e_rev_of_e_eq_some (h : e i π = some π') : e i π'.rev = some π.rev := by
   obtain ⟨hQ, rfl⟩ := e_eq_some_iff.mp h
   rw [e_of_le (π.minPairing_rev_eRaw_le i hQ), eRaw_rev_eRaw]
 
-/-- `fᵢ π = π'` if and only if `eᵢ π' = π` ([Lit95] Lemma 2.1).-/
+/-- `fᵢ π = π'` if and only if `eᵢ π' = π` ([Lit95] Lemma 2.1).
+@isnad1 id=iff.0h9v.s8.8ae83e25d259 from=translated src=- shape=cffaa235 vocab=b7cdcd50
+-/
 theorem f_eq_some_iff : f i π = some π' ↔ e i π' = some π := by
   constructor
   · intro h
@@ -309,19 +380,30 @@ theorem f_eq_some_iff : f i π = some π' ↔ e i π' = some π := by
   · intro h
     rw [f, e_rev_of_e_eq_some h, Option.map_some, rev_rev]
 
+/--
+@isnad1 id=eq.0h8v.s8.603181ba3d1a from=translated src=- shape=308e70a2 vocab=1d41d571
+-/
 lemma rev_f (i : ι) (π : LittelmannPath S) : (f i π).map rev = e i π.rev := by
   rw [f, Option.map_map]
   simp [Function.comp_def]
 
+/--
+@isnad1 id=eq.0h8v.s8.8da57cee06e4 from=translated src=- shape=0c6f84bd vocab=1d41d571
+-/
 lemma f_rev (i : ι) (π : LittelmannPath S) : f i π.rev = (e i π).map rev := by
   rw [f, rev_rev]
 
+/--
+@isnad1 id=eq.0h8v.s7.7e703244656c from=translated src=- shape=e3f1a1c7 vocab=d9f2056b
+-/
 @[simp] lemma pairing_one_rev (i : ι) (π : LittelmannPath S) :
     π.rev.pairing i 1 = -π.pairing i 1 := by
   rw [pairing_rev, sub_self, pairing_zero, zero_sub]
 
 /-- The closed formula for `fᵢ` ([Lit95] §1, in our reformulation): if `fᵢ π = π'` then
-`π'(t) = π(t) - (min(min_{[t,1]} hᵢ, mᵢ + 1) - mᵢ) αᵢ` for `t ∈ [0,1]`.-/
+`π'(t) = π(t) - (min(min_{[t,1]} hᵢ, mᵢ + 1) - mᵢ) αᵢ` for `t ∈ [0,1]`.
+@isnad1 id=eq.2h10v.s9.4c6b0921b685 from=translated src=- shape=de2572ad vocab=1c54b9b8
+-/
 theorem f_apply (h : f i π = some π') {t : 𝕜} (ht : t ∈ Icc (0 : 𝕜) 1) :
     π' t = π t - (min (π.rightMin i t) (π.minPairing i + 1) - π.minPairing i) • S.root i := by
   obtain ⟨ρ, hρ, rfl⟩ := Option.map_eq_some_iff.mp h
@@ -370,19 +452,36 @@ noncomputable def crystal : Crystal D (LittelmannPath S) where
       sub_add_cancel]
   e_eq_none_of_φ_eq_bot _ _ h := by simp [φ] at h
 
+/--
+@isnad1 id=eq.0h7v.s7.4accbf0c8076 from=translated src=- shape=0068e356 vocab=9249d0b8
+-/
 @[simp] lemma crystal_wt (π : LittelmannPath S) : (crystal S).wt π = π.wt := rfl
 
+/--
+@isnad1 id=eq.0h8v.s7.cb5e4b346869 from=translated src=- shape=ff009775 vocab=5da46de8
+-/
 @[simp] lemma crystal_ε (i : ι) (π : LittelmannPath S) : (crystal S).ε i π = ε i π := rfl
 
+/--
+@isnad1 id=eq.0h8v.s7.65b2d73f4a3f from=translated src=- shape=ff009775 vocab=96644048
+-/
 @[simp] lemma crystal_φ (i : ι) (π : LittelmannPath S) : (crystal S).φ i π = φ i π := rfl
 
+/--
+@isnad1 id=eq.0h8v.s7.9bf1115878b8 from=translated src=- shape=be6f5561 vocab=fec8161e
+-/
 @[simp] lemma crystal_e (i : ι) (π : LittelmannPath S) : (crystal S).e i π = e i π := rfl
 
+/--
+@isnad1 id=eq.0h8v.s7.dd2fbc4618f6 from=translated src=- shape=be6f5561 vocab=652013eb
+-/
 @[simp] lemma crystal_f (i : ι) (π : LittelmannPath S) : (crystal S).f i π = f i π := rfl
 
 variable (S) in
 /-- The crystal of Littelmann paths is seminormal: `εᵢ(π)` (resp. `φᵢ(π)`) is the maximal number
-of times `eᵢ` (resp. `fᵢ`) can be applied to `π` ([Lit95] Lemma 2.1).-/
+of times `eᵢ` (resp. `fᵢ`) can be applied to `π` ([Lit95] Lemma 2.1).
+@isnad1 id=issemino.0h6v.s7.07f13f55673d from=translated src=- shape=745c0e1d vocab=2bc9f110
+-/
 theorem isSeminormal_crystal : (crystal S).IsSeminormal := by
   rw [Crystal.isSeminormal_iff]
   intro i π
@@ -401,10 +500,16 @@ theorem isSeminormal_crystal : (crystal S).IsSeminormal := by
 
 /-! ### Time reversal -/
 
+/--
+@isnad1 id=eq.0h8v.s7.64d21bf586f6 from=translated src=- shape=5a8482e7 vocab=fb6b4476
+-/
 lemma φ_rev (i : ι) (π : LittelmannPath S) : φ i π.rev = ε i π := by
   rw [φ, ε, pairing_one_rev, minPairing_rev]
   ring_nf
 
+/--
+@isnad1 id=eq.0h8v.s7.bf4f05e9a4cf from=translated src=- shape=5a8482e7 vocab=fb6b4476
+-/
 lemma ε_rev (i : ι) (π : LittelmannPath S) : ε i π.rev = φ i π := by
   rw [← φ_rev, rev_rev]
 

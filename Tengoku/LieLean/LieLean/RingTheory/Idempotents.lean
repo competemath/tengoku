@@ -48,15 +48,23 @@ def _root_.Tengoku.LieLean.idempotentLiftPow (n : ℕ) (x : R) : R := 1 - (1 - x
 `idempotentLiftPow n x` for every `n` with `(x - x ^ 2) ^ n = 0`.-/
 noncomputable def _root_.Tengoku.LieLean.idempotentLift (x : R) : R := idempotentLiftPow (nilpotencyClass (x - x ^ 2)) x
 
+/--
+@isnad1 id=eq.0h3v.s6.56bee3284acf from=translated src=- shape=f7927cbb vocab=9be10dfe
+-/
 theorem _root_.Tengoku.LieLean.aeval_idempotentLiftPow (n : ℕ) (x : R) :
     aeval x (idempotentLiftPow n (X : ℤ[X])) = idempotentLiftPow n x := by
   simp [idempotentLiftPow]
 
+/--
+@isnad1 id=eq.0h6v.s6.8ae0cb706deb from=translated src=- shape=4a78da26 vocab=3ba9ad75
+-/
 theorem _root_.Tengoku.LieLean.map_idempotentLiftPow {S F : Type*} [Ring S] [FunLike F R S] [RingHomClass F R S] (g : F)
     (n : ℕ) (x : R) : g (idempotentLiftPow n x) = idempotentLiftPow n (g x) := by
   simp [idempotentLiftPow]
 
-/-- For `n ≠ 0`, `X - X ^ 2` divides `1 - (1 - X ^ n) ^ n - X` in `ℤ[X]`.-/
+/-- For `n ≠ 0`, `X - X ^ 2` divides `1 - (1 - X ^ n) ^ n - X` in `ℤ[X]`.
+@isnad1 id=dvd.1h1v.s7.0963694f649f from=translated src=- shape=09a80789 vocab=c728041c
+-/
 theorem _root_.Tengoku.LieLean.X_sub_X_sq_dvd_idempotentLiftPow_sub {n : ℕ} (hn : n ≠ 0) :
     (X - X ^ 2 : ℤ[X]) ∣ idempotentLiftPow n X - X := by
   have h0 : (X : ℤ[X]) ∣ idempotentLiftPow n X - X := by
@@ -71,16 +79,23 @@ theorem _root_.Tengoku.LieLean.X_sub_X_sq_dvd_idempotentLiftPow_sub {n : ℕ} (h
   rw [he, neg_dvd]
   exact h
 
-/-- `X` divides `1 - (1 - X ^ n) ^ n` in `ℤ[X]` for `n ≠ 0`.-/
+/-- `X` divides `1 - (1 - X ^ n) ^ n` in `ℤ[X]` for `n ≠ 0`.
+@isnad1 id=dvd.1h1v.s5.fd56757612b3 from=translated src=- shape=6cb37282 vocab=c1c9ecd8
+-/
 theorem _root_.Tengoku.LieLean.X_dvd_idempotentLiftPow {n : ℕ} (hn : n ≠ 0) : (X : ℤ[X]) ∣ idempotentLiftPow n X := by
   rw [X_dvd_iff, coeff_zero_eq_eval_zero]
   simp [idempotentLiftPow, zero_pow hn]
 
+/--
+@isnad1 id=isidempo.1h3v.s6.22b6fa4dbdde from=translated src=- shape=8f310996 vocab=bcf34084
+-/
 theorem _root_.Tengoku.LieLean.isIdempotentElem_idempotentLiftPow {x : R} {n : ℕ} (h : (x - x ^ 2) ^ n = 0) :
     IsIdempotentElem (idempotentLiftPow n x) :=
   isIdempotentElem_one_sub_one_sub_pow_pow x n h
 
-/-- `1 - (1 - x ^ n) ^ n` does not depend on `n` once `(x - x ^ 2) ^ n = 0`.-/
+/-- `1 - (1 - x ^ n) ^ n` does not depend on `n` once `(x - x ^ 2) ^ n = 0`.
+@isnad1 id=eq.3h5v.s6.ee46e4b2bd9d from=translated src=- shape=c6bb6af8 vocab=1771f85a
+-/
 theorem _root_.Tengoku.LieLean.idempotentLiftPow_eq_idempotentLiftPow {x : R} {k n m : ℕ} (hk : (x - x ^ 2) ^ k = 0)
     (hn : k ≤ n) (hm : k ≤ m) : idempotentLiftPow n x = idempotentLiftPow m x := by
   rcases Nat.eq_zero_or_pos k with rfl | hk0
@@ -107,28 +122,40 @@ theorem _root_.Tengoku.LieLean.idempotentLiftPow_eq_idempotentLiftPow {x : R} {k
   · rw [← aeval_idempotentLiftPow n x, ← aeval_idempotentLiftPow m x]
     exact hcomm _ _
 
+/--
+@isnad1 id=le.1h3v.s6.04e121d9a8e1 from=translated src=- shape=94b76e9c vocab=d0ef0f6e
+-/
 theorem _root_.Tengoku.LieLean.nilpotencyClass_le_of_pow_eq_zero {x : R} {k : ℕ} (hk : x ^ k = 0) :
     nilpotencyClass x ≤ k :=
   Nat.sInf_le hk
 
-/-- `idempotentLift x = 1 - (1 - x ^ n) ^ n` whenever `(x - x ^ 2) ^ n = 0`.-/
+/-- `idempotentLift x = 1 - (1 - x ^ n) ^ n` whenever `(x - x ^ 2) ^ n = 0`.
+@isnad1 id=eq.1h3v.s6.a3e33c73cb73 from=translated src=- shape=5e73ed36 vocab=b172c2c2
+-/
 theorem _root_.Tengoku.LieLean.idempotentLift_eq {x : R} {n : ℕ} (h : (x - x ^ 2) ^ n = 0) :
     idempotentLift x = idempotentLiftPow n x :=
   idempotentLiftPow_eq_idempotentLiftPow (k := nilpotencyClass (x - x ^ 2))
     (pow_nilpotencyClass ⟨n, h⟩) le_rfl (nilpotencyClass_le_of_pow_eq_zero h)
 
+/--
+@isnad1 id=isidempo.1h2v.s6.a42ad3aeecdc from=translated src=- shape=8d4c7db4 vocab=d819782b
+-/
 theorem _root_.Tengoku.LieLean.isIdempotentElem_idempotentLift {x : R} (h : IsNilpotent (x - x ^ 2)) :
     IsIdempotentElem (idempotentLift x) :=
   isIdempotentElem_idempotentLiftPow (pow_nilpotencyClass h)
 
-/-- An idempotent is its own lift.-/
+/-- An idempotent is its own lift.
+@isnad1 id=eq.1h2v.s4.f6de31d9db29 from=translated src=- shape=c1222a62 vocab=402a01db
+-/
 theorem IsIdempotentElem.idempotentLift_eq {e : R} (he : IsIdempotentElem e) :
     idempotentLift e = e := by
   have h0 : e - e ^ 2 = 0 := by rw [sq, he.eq, sub_self]
   rw [_root_.Tengoku.LieLean.idempotentLift_eq (n := 1) (by rw [pow_one, h0])]
   simp [idempotentLiftPow]
 
-/-- If `x` is fixed by `e` on both sides, so is every `1 - (1 - x ^ n) ^ n`, `n ≠ 0`.-/
+/-- If `x` is fixed by `e` on both sides, so is every `1 - (1 - x ^ n) ^ n`, `n ≠ 0`.
+@isnad1 id=eq.2h4v.s6.6cbda5909ad8 from=translated src=- shape=2d60450a vocab=6d0ffb42
+-/
 theorem _root_.Tengoku.LieLean.idempotentLiftPow_mul_eq {x e : R} {n : ℕ} (hn : n ≠ 0) (hx : x * e = x) :
     idempotentLiftPow n x * e = idempotentLiftPow n x := by
   obtain ⟨a, ha⟩ := X_dvd_idempotentLiftPow hn
@@ -139,6 +166,9 @@ theorem _root_.Tengoku.LieLean.idempotentLiftPow_mul_eq {x e : R} {n : ℕ} (hn 
     rw [← map_mul, mul_comm, map_mul]
   rw [← aeval_idempotentLiftPow n x, ha, map_mul, aeval_X, ← hcomm.eq, mul_assoc, hx]
 
+/--
+@isnad1 id=eq.2h4v.s6.4485fef67f31 from=translated src=- shape=2c19d621 vocab=6d0ffb42
+-/
 theorem _root_.Tengoku.LieLean.mul_idempotentLiftPow_eq {x e : R} {n : ℕ} (hn : n ≠ 0) (hx : e * x = x) :
     e * idempotentLiftPow n x = idempotentLiftPow n x := by
   obtain ⟨a, ha⟩ := X_dvd_idempotentLiftPow hn
@@ -148,6 +178,9 @@ namespace LinearMap
 
 variable {S M N : Type*} [CommRing S] [AddCommGroup M] [Module S M] [AddCommGroup N] [Module S N]
 
+/--
+@isnad1 id=eq.1h7v.s9.0cbaa0950431 from=translated src=- shape=4460aac5 vocab=ad3d452c
+-/
 theorem comp_pow_of_comp_eq {f : M →ₗ[S] N} {u : Module.End S M} {v : Module.End S N}
     (h : f ∘ₗ u = v ∘ₗ f) (k : ℕ) : f ∘ₗ (u ^ k) = (v ^ k) ∘ₗ f := by
   induction k with
@@ -156,13 +189,18 @@ theorem comp_pow_of_comp_eq {f : M →ₗ[S] N} {u : Module.End S M} {v : Module
     rw [pow_succ, pow_succ, Module.End.mul_eq_comp, Module.End.mul_eq_comp, ← comp_assoc, ih,
       comp_assoc, h, comp_assoc]
 
+/--
+@isnad1 id=eq.1h6v.s9.383374a2d349 from=translated src=- shape=d4b759c8 vocab=3f5c4139
+-/
 theorem comp_one_sub_of_comp_eq {f : M →ₗ[S] N} {u : Module.End S M} {v : Module.End S N}
     (h : f ∘ₗ u = v ∘ₗ f) : f ∘ₗ (1 - u) = (1 - v) ∘ₗ f := by
   rw [comp_sub, sub_comp, h]
   rfl
 
 /-- A linear map intertwining `u` and `v` intertwines `1 - (1 - u ^ n) ^ n` and
-`1 - (1 - v ^ n) ^ n`.-/
+`1 - (1 - v ^ n) ^ n`.
+@isnad1 id=eq.1h7v.s8.d7ce161b3fb2 from=translated src=- shape=3d7da9f6 vocab=a613ca19
+-/
 theorem comp_idempotentLiftPow {f : M →ₗ[S] N} {u : Module.End S M} {v : Module.End S N}
     (h : f ∘ₗ u = v ∘ₗ f) (n : ℕ) :
     f ∘ₗ (idempotentLiftPow n u) = (idempotentLiftPow n v) ∘ₗ f :=
@@ -170,7 +208,9 @@ theorem comp_idempotentLiftPow {f : M →ₗ[S] N} {u : Module.End S M} {v : Mod
     (comp_pow_of_comp_eq h n)) n)
 
 /-- A linear map intertwining `u` and `v`, with `u - u ^ 2` and `v - v ^ 2` nilpotent,
-intertwines the idempotent lifts.-/
+intertwines the idempotent lifts.
+@isnad1 id=eq.3h6v.s9.04e7abd34553 from=translated src=- shape=0e9b79db vocab=c5a5c319
+-/
 theorem comp_idempotentLift {f : M →ₗ[S] N} {u : Module.End S M} {v : Module.End S N}
     (h : f ∘ₗ u = v ∘ₗ f) (hu : IsNilpotent (u - u ^ 2)) (hv : IsNilpotent (v - v ^ 2)) :
     f ∘ₗ (idempotentLift u) = (idempotentLift v) ∘ₗ f := by

@@ -46,7 +46,9 @@ local prefix:100 "s " => cs.simple
 local prefix:100 "π " => cs.wordProd
 local prefix:100 "ℓ " => cs.length
 
-/-- A simple reflection lying in `W_J` has its index in `J`.-/
+/-- A simple reflection lying in `W_J` has its index in `J`.
+@isnad1 id=mem.1h6v.s5.73d0ef0d9fcb from=translated src=- shape=3237d2fd vocab=7ccb8d34
+-/
 theorem mem_of_simple_mem_parabolicSubgroup {J : Set B} {l : B}
     (h : s l ∈ cs.parabolicSubgroup J) : l ∈ J := by
   obtain ⟨ω, hred, hJ, he⟩ := exists_isReduced_of_mem_parabolicSubgroup h
@@ -57,7 +59,9 @@ theorem mem_of_simple_mem_parabolicSubgroup {J : Set B} {l : B}
   exact hJ l' (by simp)
 
 /-- An element of `W_{i,k}` without right descent `i` is the product of an alternating word
-`⋯ sᵢ sₖ` of length `n < mᵢₖ` (any `n` if `mᵢₖ = ∞`).-/
+`⋯ sᵢ sₖ` of length `n < mᵢₖ` (any `n` if `mᵢₖ = ∞`).
+@isnad1 id=ex.3h7v.s6.08284089b0a0 from=translated src=- shape=125a7645 vocab=f2e37eaf
+-/
 theorem exists_eq_wordProd_alternatingWord {i k : B} (hik : i ≠ k) {u : W}
     (hu : u ∈ cs.parabolicSubgroup {i, k}) (hui : ¬cs.IsRightDescent u i) :
     ∃ n, (M i k = 0 ∨ n < M i k) ∧ u = π (alternatingWord i k n) := by
@@ -110,7 +114,9 @@ theorem exists_eq_wordProd_alternatingWord {i k : B} (hik : i ≠ k) {u : W}
   rw [length_alternatingWord] at this
   omega
 
-/-- The two alternating words of length `r` define the same element only if `mᵢₖ ∣ r`.-/
+/-- The two alternating words of length `r` define the same element only if `mᵢₖ ∣ r`.
+@isnad1 id=dvd.1h7v.s5.7c733447b92c from=translated src=- shape=2b36781f vocab=7afb718e
+-/
 theorem dvd_of_wordProd_alternatingWord_eq {i k : B} {r : ℕ}
     (h : π (alternatingWord i k r) = π (alternatingWord k i r)) : M i k ∣ r := by
   rw [← cs.orderOf_simple_mul_simple i k]

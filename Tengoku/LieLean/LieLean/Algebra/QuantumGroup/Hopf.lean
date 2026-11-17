@@ -68,7 +68,9 @@ section TensorSerre
 
 variable {A B : Type*} [Ring A] [Algebra k A] [Ring B] [Algebra k B]
 
-/-- Serre elements of pure tensors with commuting left factors.-/
+/-- Serre elements of pure tensors with commuting left factors.
+@isnad1 id=eq.1h9v.s8.b1058efb1038 from=translated src=- shape=a915670a vocab=62b4ed18
+-/
 lemma qSerre_tmul_left (ν : k) (M : ℕ) {g h : A} (hgh : Commute g h) (a b : B) :
     qSerre ν M (g ⊗ₜ[k] a) (h ⊗ₜ[k] b) = (g ^ M * h) ⊗ₜ qSerre ν M a b := by
   simp only [qSerre, Algebra.TensorProduct.tmul_pow, Algebra.TensorProduct.tmul_mul_tmul,
@@ -77,7 +79,9 @@ lemma qSerre_tmul_left (ν : k) (M : ℕ) {g h : A} (hgh : Commute g h) (a b : B
   have hr : r ≤ M := Nat.lt_succ_iff.1 (Finset.mem_range.1 hr)
   rw [mul_assoc, ← (hgh.pow_left r).eq, ← mul_assoc, ← pow_add, Nat.sub_add_cancel hr]
 
-/-- Serre elements of pure tensors with commuting right factors.-/
+/-- Serre elements of pure tensors with commuting right factors.
+@isnad1 id=eq.1h9v.s8.729915ca18f2 from=translated src=- shape=2a88faa4 vocab=62b4ed18
+-/
 lemma qSerre_tmul_right (ν : k) (M : ℕ) {g h : B} (hgh : Commute g h) (a b : A) :
     qSerre ν M (a ⊗ₜ[k] g) (b ⊗ₜ[k] h) = qSerre ν M a b ⊗ₜ (g ^ M * h) := by
   simp only [qSerre, Algebra.TensorProduct.tmul_pow, Algebra.TensorProduct.tmul_mul_tmul,
@@ -94,10 +98,16 @@ variable {Y : Type*} [AddCommGroup Y] [DecidableEq I] {D : LusztigCartanDatum I}
 
 variable {R v}
 
+/--
+@isnad1 id=eq.1h8v.s8.1d720d23959c from=translated src=- shape=59d91c53 vocab=273dbc04
+-/
 lemma E_mul_K (hv : v ≠ 0) (μ : Y) (i : I) :
     E R v i * K R v μ = v ^ (-R.root i μ) • (K R v μ * E R v i) := by
   rw [K_mul_E, smul_smul, ← zpow_add₀ hv, neg_add_cancel, zpow_zero, one_smul]
 
+/--
+@isnad1 id=eq.1h8v.s8.43900a889dc8 from=translated src=- shape=9e46f27d vocab=3b007008
+-/
 lemma F_mul_K (hv : v ≠ 0) (μ : Y) (i : I) :
     F R v i * K R v μ = v ^ R.root i μ • (K R v μ * F R v i) := by
   rw [K_mul_F, smul_smul, ← zpow_add₀ hv, add_neg_cancel, zpow_zero, one_smul]
@@ -121,6 +131,9 @@ def comulF (i : I) : QuantumGroup R v ⊗[k] QuantumGroup R v :=
 variable {R v}
 
 omit [DecidableEq I] in
+/--
+@isnad1 id=eq.3h9v.s7.000475a65160 from=translated src=- shape=db80a1c3 vocab=da3dcbdd
+-/
 lemma zpow_root_ktilde_eq (hv : v ≠ 0) {i j : I} (hij : i ≠ j) {m : ℕ}
     (hm : (1 - D.cartanMatrix i j).toNat = m + 1) :
     v ^ R.root j (ktilde R i) = (v ^ D.d i)⁻¹ ^ m := by
@@ -131,10 +144,16 @@ lemma zpow_root_ktilde_eq (hv : v ≠ 0) {i j : I} (hij : i ≠ j) {m : ℕ}
     zpow_neg, zpow_natCast, pow_mul, inv_pow]
 
 omit [DecidableEq I] in
+/--
+@isnad1 id=eq.0h7v.s7.2b1ed0da1815 from=translated src=- shape=867981ed vocab=eb7b6fa1
+-/
 lemma zpow_root_ktilde_self (i : I) : v ^ R.root i (ktilde R i) = (v ^ D.d i) ^ 2 := by
   rw [root_ktilde, D.cartanMatrix_self, show (D.d i : ℤ) * 2 = ((D.d i * 2 : ℕ) : ℤ) by
     push_cast; ring, zpow_natCast, pow_mul]
 
+/--
+@isnad1 id=relation.1h6v.s8.d08b1d0193ac from=translated src=- shape=e78a48c9 vocab=598e4c93
+-/
 theorem comul_relations (hv : v ≠ 0) :
     Relations R v (comulE R v) (comulF R v) (KHom₂ R v) where
   K_mul_E μ i := by
@@ -219,17 +238,29 @@ variable (R v) [NeZero v]
 def comul : QuantumGroup R v →ₐ[k] QuantumGroup R v ⊗[k] QuantumGroup R v :=
   lift (comul_relations (NeZero.ne v))
 
+/--
+@isnad1 id=eq.0h7v.s11.f81902138893 from=translated src=- shape=644f2e16 vocab=27b9aa5c
+-/
 @[simp] theorem comul_E (i : I) : comul R v (E R v i) = E R v i ⊗ₜ 1 + Kt R v i ⊗ₜ E R v i := by
   simp [comul, comulE]
 
+/--
+@isnad1 id=eq.0h7v.s11.7888c01e61aa from=translated src=- shape=6ea52738 vocab=2962fef6
+-/
 @[simp] theorem comul_F (i : I) :
     comul R v (F R v i) = F R v i ⊗ₜ K R v (-ktilde R i) + 1 ⊗ₜ F R v i := by
   simp [comul, comulF]
 
+/--
+@isnad1 id=eq.0h7v.s10.85ea81fa4879 from=translated src=- shape=4fa9441b vocab=39f26528
+-/
 @[simp] theorem comul_K (μ : Y) : comul R v (K R v μ) = K R v μ ⊗ₜ K R v μ := by
   simp [comul, KHom₂]
 
 omit [NeZero v] in
+/--
+@isnad1 id=relation.0h6v.s7.a005c5b3b1df from=translated src=- shape=fd7d24c2 vocab=ff1ea7ed
+-/
 theorem counit_relations :
     Relations R v (0 : I → k) (0 : I → k) (1 : Multiplicative Y →* k) where
   K_mul_E _ _ := by simp
@@ -243,15 +274,26 @@ omit [NeZero v] in
 def counit : QuantumGroup R v →ₐ[k] k := lift (counit_relations R v)
 
 omit [NeZero v] in
+/--
+@isnad1 id=eq.0h7v.s7.8c9995ab4f02 from=translated src=- shape=f60a5c9b vocab=99442634
+-/
 @[simp] theorem counit_E (i : I) : counit R v (E R v i) = 0 := by simp [counit]
 
 omit [NeZero v] in
+/--
+@isnad1 id=eq.0h7v.s7.00b881702764 from=translated src=- shape=f60a5c9b vocab=79f435a8
+-/
 @[simp] theorem counit_F (i : I) : counit R v (F R v i) = 0 := by simp [counit]
 
 omit [NeZero v] in
+/--
+@isnad1 id=eq.0h7v.s7.f9c2c697028d from=translated src=- shape=938f2784 vocab=599c37a4
+-/
 @[simp] theorem counit_K (μ : Y) : counit R v (K R v μ) = 1 := by simp [counit]
 
-/-- Coassociativity of `Δ`.-/
+/-- Coassociativity of `Δ`.
+@isnad1 id=eq.0h6v.s13.d8302fa68267 from=translated src=- shape=7eb31cee vocab=9416466a
+-/
 theorem comul_coassoc :
     (Algebra.TensorProduct.assoc k k k (QuantumGroup R v) (QuantumGroup R v)
       (QuantumGroup R v)).toAlgHom.comp
@@ -259,13 +301,17 @@ theorem comul_coassoc :
       (Algebra.TensorProduct.map (.id k _) (comul R v)).comp (comul R v) := by
   ext i <;> simp [add_tmul, tmul_add, Algebra.TensorProduct.one_def, add_assoc]
 
-/-- The counit law `(ε ⊗ 1) ∘ Δ = id`.-/
+/-- The counit law `(ε ⊗ 1) ∘ Δ = id`.
+@isnad1 id=eq.0h6v.s10.08bfe8d99ba4 from=translated src=- shape=9c666389 vocab=f6b5c458
+-/
 theorem counit_rTensor_comul :
     (Algebra.TensorProduct.map (counit R v) (.id k _)).comp (comul R v) =
       (Algebra.TensorProduct.lid k (QuantumGroup R v)).symm := by
   ext i <;> simp
 
-/-- The counit law `(1 ⊗ ε) ∘ Δ = id`.-/
+/-- The counit law `(1 ⊗ ε) ∘ Δ = id`.
+@isnad1 id=eq.0h6v.s10.eaea965fbd0a from=translated src=- shape=e3aaeac7 vocab=3a923763
+-/
 theorem counit_lTensor_comul :
     (Algebra.TensorProduct.map (.id k _) (counit R v)).comp (comul R v) =
       (Algebra.TensorProduct.rid k k (QuantumGroup R v)).symm := by
@@ -294,6 +340,9 @@ def antipodeK : Multiplicative Y →* (QuantumGroup R v)ᵐᵒᵖ where
 variable {R v}
 
 omit [NeZero v] in
+/--
+@isnad1 id=relation.1h6v.s9.cce46b544bcf from=translated src=- shape=685e6c04 vocab=00a4ec91
+-/
 theorem antipode_relations (hv : v ≠ 0) :
     Relations R v (fun i ↦ op (-(K R v (-ktilde R i) * E R v i)))
       (fun i ↦ op (-(F R v i * Kt R v i))) (antipodeK R v) where
@@ -377,20 +426,38 @@ def antipodeOp : QuantumGroup R v →ₐ[k] (QuantumGroup R v)ᵐᵒᵖ :=
 def antipode : QuantumGroup R v →ₗ[k] QuantumGroup R v :=
   (opLinearEquiv k).symm.toLinearMap ∘ₗ (antipodeOp R v).toLinearMap
 
+/--
+@isnad1 id=eq.0h7v.s9.186bdafa1c4a from=translated src=- shape=d58b6d38 vocab=e984d56b
+-/
 lemma antipode_apply (x : QuantumGroup R v) : antipode R v x = unop (antipodeOp R v x) := rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.b806c3d4decb from=translated src=- shape=2c84e1a9 vocab=8ddab453
+-/
 @[simp] theorem antipode_E (i : I) :
     antipode R v (E R v i) = -(K R v (-ktilde R i) * E R v i) := by
   simp [antipode_apply, antipodeOp]
 
+/--
+@isnad1 id=eq.0h7v.s9.69dc27c0a931 from=translated src=- shape=1a3e50bc vocab=0d709a12
+-/
 @[simp] theorem antipode_F (i : I) : antipode R v (F R v i) = -(F R v i * Kt R v i) := by
   simp [antipode_apply, antipodeOp]
 
+/--
+@isnad1 id=eq.0h7v.s9.f5eec5050d9f from=translated src=- shape=db215e38 vocab=0606cc64
+-/
 @[simp] theorem antipode_K (μ : Y) : antipode R v (K R v μ) = K R v (-μ) := by
   simp [antipode_apply, antipodeOp, antipodeK]
 
+/--
+@isnad1 id=eq.0h6v.s9.dc481c215a76 from=translated src=- shape=1b1de221 vocab=20512cd4
+-/
 @[simp] theorem antipode_one : antipode R v 1 = 1 := by simp [antipode_apply]
 
+/--
+@isnad1 id=eq.0h7v.s9.33f6978fe53d from=translated src=- shape=5caf1a09 vocab=df762e52
+-/
 @[simp] theorem antipode_algebraMap (c : k) :
     antipode R v (algebraMap k _ c) = algebraMap k _ c := by
   simp [antipode_apply]

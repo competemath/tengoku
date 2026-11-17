@@ -52,7 +52,9 @@ open Module
 
 noncomputable section
 
-/-- For dual bases `b`, `a` of a pairing `B`, `n = ∑ₖ B (b k) n • a k`.-/
+/-- For dual bases `b`, `a` of a pairing `B`, `n = ∑ₖ B (b k) n • a k`.
+@isnad1 id=eq.1h8v.s10.45d9923c2315 from=translated src=- shape=4bbe8bdb vocab=c9ca24a9
+-/
 lemma LinearMap.sum_apply_basis_smul_right {ι K M N : Type*} [Fintype ι] [DecidableEq ι]
     [Field K] [AddCommGroup M] [Module K M] [AddCommGroup N] [Module K N]
     (B : M →ₗ[K] N →ₗ[K] K) (b : Basis ι K M) (a : Basis ι K N)
@@ -63,7 +65,9 @@ lemma LinearMap.sum_apply_basis_smul_right {ι K M N : Type*} [Fintype ι] [Deci
   rw [show B (b k) n = B (b k) (∑ l, a.repr n l • a l) by rw [a.sum_repr], map_sum]
   simp [hB]
 
-/-- For dual bases `b`, `a` of a pairing `B`, `m = ∑ₖ B m (a k) • b k`.-/
+/-- For dual bases `b`, `a` of a pairing `B`, `m = ∑ₖ B m (a k) • b k`.
+@isnad1 id=eq.1h8v.s10.3919e1136f9d from=translated src=- shape=7e027930 vocab=c9ca24a9
+-/
 lemma LinearMap.sum_apply_basis_smul_left {ι K M N : Type*} [Fintype ι] [DecidableEq ι]
     [Field K] [AddCommGroup M] [Module K M] [AddCommGroup N] [Module K N]
     (B : M →ₗ[K] N →ₗ[K] K) (b : Basis ι K M) (a : Basis ι K N)
@@ -88,19 +92,31 @@ def gRoot (μ : Dual K H) : Submodule K (P.SuperEnveloping p) := gTilde P p ⊓ 
 def rootParity (k : ι → ℤ) : ZMod 2 := ∑ j, (k j : ZMod 2) * p j
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h4v.s7.497ab1fe616e from=translated src=- shape=b6ae538e vocab=e960ea42
+-/
 lemma rootParity_add (k l : ι → ℤ) :
     rootParity p (k + l) = rootParity p k + rootParity p l := by
   simp [rootParity, add_mul, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h3v.s5.b9432d6d8829 from=translated src=- shape=a6f165b1 vocab=7ad90b06
+-/
 lemma rootParity_single (j : ι) : rootParity p (Pi.single j 1) = p j := by
   simp [rootParity, Pi.single_apply]
 
+/--
+@isnad1 id=eq.0h3v.s7.23ac30be1f09 from=translated src=- shape=81528a00 vocab=ecbf1358
+-/
 lemma rootParity_wordVec (w : List ι) : rootParity p (wordVec w) = (w.map p).sum := by
   induction w with
   | nil => simp [rootParity]
   | cons j w ih =>
     rw [wordVec_cons, rootParity_add, rootParity_single, ih, List.map_cons, List.sum_cons]
 
+/--
+@isnad1 id=eq.0h2v.s5.2bf222d575c6 from=translated src=- shape=f7318924 vocab=d7d2c8df
+-/
 lemma sum_wordVec (w : List ι) : ∑ j, wordVec w j = w.length := by
   induction w with
   | nil => simp
@@ -111,6 +127,9 @@ lemma sum_wordVec (w : List ι) : ∑ j, wordVec w j = w.length := by
 
 variable [CharZero K]
 
+/--
+@isnad1 id=ishomog.1h8v.s8.15d6e21919d6 from=translated src=- shape=f99f22ab vocab=19b645a1
+-/
 lemma isHomog_of_mem_nPlusRoot {k : ι → ℤ} {x : P.SuperEnveloping p}
     (hx : x ∈ nPlusRoot P p k) : IsHomog P p (rootParity p k) x := by
   induction hx using Submodule.span_induction with
@@ -128,17 +147,25 @@ def weightParity (μ : Dual K H) : ZMod 2 :=
   if hμ : ∃ k, P.rootOf k = μ then rootParity p hμ.choose else 0
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h7v.s8.a39db4506c63 from=translated src=- shape=94634e5d vocab=879fad2d
+-/
 lemma weightParity_rootOf (k : ι → ℤ) : weightParity P p (P.rootOf k) = rootParity p k := by
   have hμ : ∃ l, P.rootOf l = P.rootOf k := ⟨k, rfl⟩
   simp only [weightParity, hμ, ↓reduceDIte]
   rw [P.rootOf_injective hμ.choose_spec]
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h3v.s5.58ea5ef7af70 from=translated src=- shape=0b1aa389 vocab=b33be9c4
+-/
 lemma rootParity_neg (k : ι → ℤ) : rootParity p (-k) = rootParity p k := by
   simp only [rootParity, Pi.neg_apply, Int.cast_neg, ZMod.neg_eq_self_mod_two]
 
 omit [DecidableEq ι] in
-/-- `G̃_μ` and `G̃_{-μ}` have the same parity.-/
+/-- `G̃_μ` and `G̃_{-μ}` have the same parity.
+@isnad1 id=eq.0h7v.s7.dbd14de2cedd from=translated src=- shape=d084c5c9 vocab=6e1c1da5
+-/
 @[simp] lemma weightParity_neg (μ : Dual K H) : weightParity P p (-μ) = weightParity P p μ := by
   by_cases hμ : ∃ k, P.rootOf k = μ
   · obtain ⟨k, rfl⟩ := hμ
@@ -146,7 +173,9 @@ omit [DecidableEq ι] in
   · have hμ' : ¬∃ k, P.rootOf k = -μ := fun ⟨k, hk⟩ ↦ hμ ⟨-k, by rw [map_neg, hk, neg_neg]⟩
     simp only [weightParity, hμ, hμ', ↓reduceDIte]
 
-/-- All elements of `G̃_μ` are homogeneous of parity `weightParity μ`.-/
+/-- All elements of `G̃_μ` are homogeneous of parity `weightParity μ`.
+@isnad1 id=ishomog.1h8v.s8.a2b95d072938 from=translated src=- shape=a376da89 vocab=4cd20030
+-/
 theorem isHomog_of_mem_gRoot {μ : Dual K H} {x : P.SuperEnveloping p} (hx : x ∈ gRoot P p μ) :
     IsHomog P p (weightParity P p μ) x := by
   by_cases hx0 : x = 0
@@ -170,6 +199,9 @@ theorem isHomog_of_mem_gRoot {μ : Dual K H} {x : P.SuperEnveloping p} (hx : x �
 /-! ### Finite-dimensionality -/
 
 omit [CharZero K] in
+/--
+@isnad1 id=finite.0h7v.s7.b26d5020ee0b from=translated src=- shape=d3fb0af3 vocab=9137183a
+-/
 lemma finite_nPlusRoot_generators (k : ι → ℤ) :
     {x | ∃ i w, wordVec (i :: w) = k ∧ eLie P p i w = x}.Finite := by
   let eL : List ι → P.SuperEnveloping p := fun l ↦ match l with
@@ -183,7 +215,9 @@ lemma finite_nPlusRoot_generators (k : ι → ℤ) :
   simp only [Set.mem_ofPred_eq, this]
   omega
 
-/-- The root spaces `G̃_μ` are finite-dimensional ([Kac78] §1.2).-/
+/-- The root spaces `G̃_μ` are finite-dimensional ([Kac78] §1.2).
+@isnad1 id=finitedi.0h7v.s9.b77e74e35f9f from=translated src=- shape=4813f63b vocab=3789136f
+-/
 instance finiteDimensional_gRoot [FiniteDimensional K H] (μ : Dual K H) :
     FiniteDimensional K (gRoot P p μ) := by
   by_cases hμ : μ ∈ AuxLieAlgebra.allWeights P
@@ -211,7 +245,9 @@ instance finiteDimensional_gRoot [FiniteDimensional K H] (μ : Dual K H) :
 
 variable [FiniteDimensional K H] (S : A.Symmetrization)
 
-/-- An element of `G̃_μ` orthogonal on the right to `G̃_{-μ}` lies in `R`.-/
+/-- An element of `G̃_μ` orthogonal on the right to `G̃_{-μ}` lies in `R`.
+@isnad1 id=mem.2h9v.s11.c790b6d5f398 from=translated src=- shape=ed83f9be vocab=ef49f2ab
+-/
 theorem mem_maxIdeal_of_forall_invForm_right {μ : Dual K H} {y : P.SuperEnveloping p}
     (hy : y ∈ gRoot P p μ) (h0 : ∀ x ∈ gRoot P p (-μ), invForm P p S x y = 0) :
     y ∈ maxIdeal P p := by
@@ -222,7 +258,9 @@ theorem mem_maxIdeal_of_forall_invForm_right {μ : Dual K H} {y : P.SuperEnvelop
   · subst hν; exact h0 x ⟨hx, hxν⟩
   · exact invForm_eq_zero P p S hxν hy.2 fun h ↦ hν (eq_neg_of_add_eq_zero_left h)
 
-/-- An element of `G̃_μ` orthogonal on the left to `G̃_{-μ}` lies in `R`.-/
+/-- An element of `G̃_μ` orthogonal on the left to `G̃_{-μ}` lies in `R`.
+@isnad1 id=mem.2h9v.s11.664b68b60db9 from=translated src=- shape=a0a457da vocab=ef49f2ab
+-/
 theorem mem_maxIdeal_of_forall_invForm_left {μ : Dual K H} {x : P.SuperEnveloping p}
     (hx : x ∈ gRoot P p μ) (h0 : ∀ y ∈ gRoot P p (-μ), invForm P p S x y = 0) :
     x ∈ maxIdeal P p := by
@@ -251,12 +289,18 @@ def rootPairing (μ : Dual K H) : RootQuot P p μ →ₗ[K] RootQuot P p (-μ) �
     fun _ hx ↦ LinearMap.ext fun y ↦ Submodule.Quotient.induction_on _ y fun y ↦
       (invForm_eq_zero_of_mem_maxIdeal P p S hx y.2.1).1
 
+/--
+@isnad1 id=eq.0h10v.s14.ac0f68a2da44 from=translated src=- shape=b5e59145 vocab=006e9925
+-/
 @[simp]
 lemma rootPairing_mk (μ : Dual K H) (x : gRoot P p μ) (y : gRoot P p (-μ)) :
     rootPairing P p S μ (Submodule.Quotient.mk x) (Submodule.Quotient.mk y) =
       invForm P p S x y :=
   rfl
 
+/--
+@isnad1 id=injectiv.0h8v.s14.7b554e37f938 from=translated src=- shape=174effbe vocab=65627d19
+-/
 lemma rootPairing_injective (μ : Dual K H) : Function.Injective (rootPairing P p S μ) := by
   refine (injective_iff_map_eq_zero _).2 fun q hq ↦ ?_
   induction q using Submodule.Quotient.induction_on with
@@ -265,6 +309,9 @@ lemma rootPairing_injective (μ : Dual K H) : Function.Injective (rootPairing P 
   refine mem_maxIdeal_of_forall_invForm_left P p S x.2 fun y hy ↦ ?_
   simpa using congrArg (fun φ ↦ φ (Submodule.Quotient.mk ⟨y, hy⟩)) hq
 
+/--
+@isnad1 id=injectiv.0h8v.s14.545a288b7f43 from=translated src=- shape=70aa3408 vocab=c53fa25d
+-/
 lemma rootPairing_flip_injective (μ : Dual K H) :
     Function.Injective (rootPairing P p S μ).flip := by
   refine (injective_iff_map_eq_zero _).2 fun q hq ↦ ?_
@@ -275,6 +322,9 @@ lemma rootPairing_flip_injective (μ : Dual K H) :
   rw [neg_neg] at hx
   simpa using congrArg (fun φ ↦ φ (Submodule.Quotient.mk ⟨x, hx⟩)) hq
 
+/--
+@isnad1 id=isperfpa.0h8v.s11.f6435432da6e from=translated src=- shape=300fd3ae vocab=c07e9641
+-/
 instance isPerfPair_rootPairing (μ : Dual K H) : (rootPairing P p S μ).IsPerfPair :=
   .of_injective (rootPairing_injective P p S μ) (rootPairing_flip_injective P p S μ)
 

@@ -77,22 +77,37 @@ def adE (i : ι) (n : ℕ) (v : 𝒰) : 𝒰 := (superBracketRight P p (e P p i)
 def adF (i : ι) (n : ℕ) (v : 𝒰) : 𝒰 := (superBracketRight P p (f P p i) ^ n) v
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h8v.s6.c957b354333f from=translated src=- shape=a086fb0d vocab=e1480ffe
+-/
 @[simp] lemma adE_zero (i : ι) (v : 𝒰) : adE P p i 0 v = v := rfl
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h9v.s7.56bf13552e75 from=translated src=- shape=1f03ea07 vocab=7f2ab347
+-/
 lemma adE_succ (i : ι) (n : ℕ) (v : 𝒰) :
     adE P p i (n + 1) v = superBracket P p (e P p i) (adE P p i n v) := by
   rw [adE, pow_succ', Module.End.mul_apply]; rfl
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h8v.s6.e809cd9869cc from=translated src=- shape=a086fb0d vocab=8ed9cf65
+-/
 @[simp] lemma adF_zero (i : ι) (v : 𝒰) : adF P p i 0 v = v := rfl
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h9v.s7.bd01fdae723c from=translated src=- shape=1f03ea07 vocab=baa38ce9
+-/
 lemma adF_succ (i : ι) (n : ℕ) (v : 𝒰) :
     adF P p i (n + 1) v = superBracket P p (f P p i) (adF P p i n v) := by
   rw [adF, pow_succ', Module.End.mul_apply]; rfl
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h9v.s9.757d5eb73907 from=translated src=- shape=85acbbe0 vocab=1723931e
+-/
 lemma omega_adE (i : ι) (n : ℕ) (v : 𝒰) :
     omega P p (adE P p i n v) = adF P p i n (omega P p v) := by
   induction n with
@@ -101,6 +116,9 @@ lemma omega_adE (i : ι) (n : ℕ) (v : 𝒰) :
 
 variable {P p}
 
+/--
+@isnad1 id=ishomog.1h10v.s8.8633ccc2fe2b from=translated src=- shape=ca0a83e6 vocab=261f2b4d
+-/
 lemma isHomog_adE (i : ι) (n : ℕ) {b : ZMod 2} {v : 𝒰} (hv : IsHomog P p b v) :
     IsHomog P p (n * p i + b) (adE P p i n v) := by
   induction n with
@@ -110,6 +128,9 @@ lemma isHomog_adE (i : ι) (n : ℕ) {b : ZMod 2} {v : 𝒰} (hv : IsHomog P p b
     exact (isHomog_e P p i).superBracket ih
 
 omit [CharZero K] in
+/--
+@isnad1 id=mem.1h10v.s10.d4b317a9e784 from=translated src=- shape=c1a22ce1 vocab=83ff7700
+-/
 lemma adE_mem_weightSpace (i : ι) (n : ℕ) {μ : Dual K H} {v : 𝒰} (hv : v ∈ weightSpace P p μ) :
     adE P p i n v ∈ weightSpace P p (μ + n • P.root i) := by
   induction n with
@@ -118,6 +139,9 @@ lemma adE_mem_weightSpace (i : ι) (n : ℕ) {μ : Dual K H} {v : 𝒰} (hv : v 
     rw [adE_succ, succ_nsmul, ← add_assoc, add_comm _ (P.root i)]
     exact superBracket_mem_weightSpace (e_mem_weightSpace P p i) ih
 
+/--
+@isnad1 id=mem.1h9v.s9.07c1f591503f from=translated src=- shape=258c08b8 vocab=67a7a514
+-/
 lemma adE_mem_gTilde (i : ι) (n : ℕ) {v : 𝒰} (hv : v ∈ gTilde P p) :
     adE P p i n v ∈ gTilde P p := by
   induction n with
@@ -127,10 +151,15 @@ lemma adE_mem_gTilde (i : ι) (n : ℕ) {v : 𝒰} (hv : v ∈ gTilde P p) :
 /-! ### Brackets with `fₖ` -/
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h2v.s6.8f3566d66a56 from=translated src=- shape=f0fa78e8 vocab=28c63667
+-/
 lemma zSign_mul_self' (q : ZMod 2) : zSign K (q * q) = zSign K q := by
   rcases zmod_two_cases q with rfl | rfl <;> rfl
 
-/-- `[fᵢ, [eᵢ, w]] = -(-1)^{p i} ν(αᵢ^∨) w + (-1)^{p i} [eᵢ, [fᵢ, w]]` for `w` of weight `ν`.-/
+/-- `[fᵢ, [eᵢ, w]] = -(-1)^{p i} ν(αᵢ^∨) w + (-1)^{p i} [eᵢ, [fᵢ, w]]` for `w` of weight `ν`.
+@isnad1 id=eq.2h10v.s10.3552e93269a0 from=translated src=- shape=faba68c4 vocab=aac8fc0f
+-/
 lemma superBracket_f_superBracket_e (i : ι) {c : ZMod 2} {ν : Dual K H} {w : 𝒰}
     (hw : IsHomog P p c w) (hwν : w ∈ weightSpace P p ν) :
     superBracket P p (f P p i) (superBracket P p (e P p i) w) =
@@ -142,7 +171,9 @@ lemma superBracket_f_superBracket_e (i : ι) {c : ZMod 2} {ν : Dual K H} {w : �
     smul_smul]
 
 /-- For `k ≠ i`, `fₖ` super-commutes with `eᵢ`, so `[fₖ, v] = 0` implies
-`[fₖ, (ad eᵢ)ⁿ v] = 0`.-/
+`[fₖ, (ad eᵢ)ⁿ v] = 0`.
+@isnad1 id=eq.3h11v.s8.d26226f94865 from=translated src=- shape=3e2708e2 vocab=40c3afdd
+-/
 lemma superBracket_f_adE_of_ne {k i : ι} (hki : k ≠ i) (n : ℕ) {b : ZMod 2} {v : 𝒰}
     (hv : IsHomog P p b v) (hfv : superBracket P p (f P p k) v = 0) :
     superBracket P p (f P p k) (adE P p i n v) = 0 := by
@@ -159,10 +190,16 @@ def serreCoeff (q : ZMod 2) (c : K) (m : ℕ) : K :=
   if q = 1 then (if Even m then c + m else m + 1) else -((m + 1) * (c + m))
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h3v.s6.2f1b93c8f255 from=translated src=- shape=e4b8a166 vocab=2d05f5e9
+-/
 lemma serreCoeff_zero (q : ZMod 2) (c : K) : serreCoeff q c 0 = -(zSign K q * c) := by
   rcases zmod_two_cases q with rfl | rfl <;> simp [serreCoeff, zSign]
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h4v.s7.3e1cf3b37cf6 from=translated src=- shape=c8245d58 vocab=3a4d45a2
+-/
 lemma serreCoeff_succ (q : ZMod 2) (c : K) (m : ℕ) :
     serreCoeff q c (m + 1) =
       -(zSign K q * (c + 2 * (m + 1 : ℕ))) + zSign K q * serreCoeff q c m := by
@@ -179,7 +216,9 @@ lemma serreCoeff_succ (q : ZMod 2) (c : K) (m : ℕ) :
       push_cast; ring
 
 /-- The super `𝔰𝔩₂` identity: for `v` of weight `μ` with `[fᵢ, v] = 0`,
-`[fᵢ, (ad eᵢ)^{m+1} v] = c_m (ad eᵢ)^m v`.-/
+`[fᵢ, (ad eᵢ)^{m+1} v] = c_m (ad eᵢ)^m v`.
+@isnad1 id=eq.4h11v.s9.d5958b015295 from=translated src=- shape=6a5a3864 vocab=8fe8718c
+-/
 lemma superBracket_f_adE_succ (hA : A.IsGeneralizedCartan) (i : ι) {b : ZMod 2} {μ : Dual K H}
     {v : 𝒰} (hv : IsHomog P p b v) (hvμ : v ∈ weightSpace P p μ)
     (hfv : superBracket P p (f P p i) v = 0) (m : ℕ) :
@@ -208,18 +247,29 @@ variable (P p) in
 def serreF (i j : ι) : 𝒰 := adF P p i ((-A i j).toNat + 1) (f P p j)
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h8v.s8.993e1fe7f460 from=translated src=- shape=2667bf65 vocab=bf2c871d
+-/
 lemma omega_serreE (i j : ι) : omega P p (serreE P p i j) = serreF P p i j := by
   rw [serreE, omega_adE, omega_e, serreF]
 
+/--
+@isnad1 id=mem.0h8v.s8.007d50d2658f from=translated src=- shape=e935e0c6 vocab=95835459
+-/
 lemma serreE_mem_gTilde (i j : ι) : serreE P p i j ∈ gTilde P p :=
   adE_mem_gTilde i _ (nPlus_le_gTilde P p (e_mem_nPlus P p j))
 
 omit [CharZero K] in
+/--
+@isnad1 id=mem.0h8v.s9.d6e8132876b7 from=translated src=- shape=53bca55a vocab=d8c7e1d9
+-/
 lemma serreE_mem_weightSpace (i j : ι) :
     serreE P p i j ∈ weightSpace P p (P.root j + ((-A i j).toNat + 1) • P.root i) :=
   adE_mem_weightSpace i _ (e_mem_weightSpace P p j)
 
-/-- `[fₖ, (ad eᵢ)^{1 - aᵢⱼ} eⱼ] = 0` for all `k` ([Kac78] §1.2, cf. [Kac] §3.3).-/
+/-- `[fₖ, (ad eᵢ)^{1 - aᵢⱼ} eⱼ] = 0` for all `k` ([Kac78] §1.2, cf. [Kac] §3.3).
+@isnad1 id=eq.3h9v.s7.27e9926e44b8 from=translated src=- shape=1adb6719 vocab=8a0b052d
+-/
 theorem superBracket_f_serreE (hA : A.IsGeneralizedCartan) (hp : A.IsSuperAdmissible p)
     {i j : ι} (hij : i ≠ j) (k : ι) : superBracket P p (f P p k) (serreE P p i j) = 0 := by
   have hn : ((-A i j).toNat : ℤ) = -A i j := Int.toNat_of_nonneg (by

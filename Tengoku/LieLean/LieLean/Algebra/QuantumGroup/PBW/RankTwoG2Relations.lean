@@ -76,7 +76,9 @@ variable {q e f}
 variable (hq : q ≠ 0) (hS4 : qSerre q 4 e f = 0) (hS2 : qSerre (q ^ 3) 2 f e = 0)
 
 include hq hS4 in
-/-- The quartic Serre relation: `x₃e = q⁻³ex₃`.-/
+/-- The quartic Serre relation: `x₃e = q⁻³ex₃`.
+@isnad1 id=eq.2h5v.s7.c4ab5402e7e6 from=translated src=- shape=3dbfed5e vocab=337c4132
+-/
 theorem x3_mul_e :
     x3 q e f * e = (q ^ 3)⁻¹ • (e * x3 q e f) := by
   have key : x3 q e f * e - ((q ^ 3)⁻¹ • (e * x3 q e f)) =
@@ -90,7 +92,9 @@ theorem x3_mul_e :
   simp
 
 include hq hS4 hS2 in
-/-- `ze = ez - (q⁶ - 1)/(q(q² + 1)) x₂²`.-/
+/-- `ze = ez - (q⁶ - 1)/(q(q² + 1)) x₂²`.
+@isnad1 id=eq.4h5v.s8.2223cff44c15 from=translated src=- shape=2b4f8114 vocab=4d17be5b
+-/
 theorem z_mul_e (hq2 : (q ^ 2 + 1) ≠ 0) :
     z q e f * e = e * z q e f + (-(q ^ 6 - 1) / (q * (q ^ 2 + 1))) • (x2 q e f * x2 q e f) := by
   have key : z q e f * e - (e * z q e f + (-(q ^ 6 - 1) / (q * (q ^ 2 +
@@ -111,7 +115,9 @@ theorem z_mul_e (hq2 : (q ^ 2 + 1) ≠ 0) :
   simp
 
 include hq hS2 in
-/-- The quadratic Serre relation: `y₁f = q⁻³fy₁`.-/
+/-- The quadratic Serre relation: `y₁f = q⁻³fy₁`.
+@isnad1 id=eq.2h5v.s7.9658b85833be from=translated src=- shape=248034f1 vocab=86d46435
+-/
 theorem y1_mul_f :
     y1 q e f * f = (q ^ 3)⁻¹ • (f * y1 q e f) := by
   have key : y1 q e f * f - ((q ^ 3)⁻¹ • (f * y1 q e f)) =
@@ -125,7 +131,9 @@ theorem y1_mul_f :
   simp
 
 include hq hS2 in
-/-- `y₃f = q⁻³fy₃ - (q² - 1)²(q² + 1)/q³ y₁³`.-/
+/-- `y₃f = q⁻³fy₃ - (q² - 1)²(q² + 1)/q³ y₁³`.
+@isnad1 id=eq.2h5v.s9.9ed65bca147d from=translated src=- shape=10374835 vocab=f665a4e7
+-/
 theorem y3_mul_f :
     y3 q e f * f = (q ^ 3)⁻¹ • (f * y3 q e f) + (-(q ^ 2 - 1) ^ 2 * (q ^ 2 +
         1) / q ^ 3) • (y1 q e f * (y1 q e f * y1 q e f)) := by
@@ -150,7 +158,9 @@ theorem y3_mul_f :
   simp
 
 include hq hS2 in
-/-- `y₂f = fy₂ - (q⁴ - 1)/q y₁²`.-/
+/-- `y₂f = fy₂ - (q⁴ - 1)/q y₁²`.
+@isnad1 id=eq.2h5v.s8.b798afcc099a from=translated src=- shape=1fb61eef vocab=d7a68e64
+-/
 theorem y2_mul_f :
     y2 q e f * f = f * y2 q e f + (-(q ^ 4 - 1) / q) • (y1 q e f * y1 q e f) := by
   have key : y2 q e f * f - (f * y2 q e f + (-(q ^ 4 - 1) / q) • (y1 q e f * y1 q e f)) =
@@ -165,7 +175,9 @@ theorem y2_mul_f :
   simp
 
 include hq hS2 in
-/-- `wf = q³fw + (q⁴ + q² - 1)y₃ - (q⁶ - 1)y₁y₂`.-/
+/-- `wf = q³fw + (q⁴ + q² - 1)y₃ - (q⁶ - 1)y₁y₂`.
+@isnad1 id=eq.2h5v.s8.a015cec0265c from=translated src=- shape=7eedc078 vocab=a75d6c93
+-/
 theorem w_mul_f :
     w q e f * f = q ^ 3 • (f * w q e f) + (q ^ 4 + q ^ 2 - 1) • y3 q e f +
         (-(q ^ 6 - 1)) • (y1 q e f * y2 q e f) := by
@@ -185,43 +197,67 @@ theorem w_mul_f :
 /-! ### Generation -/
 
 variable (q e f) in
+/--
+@isnad1 id=mem.0h5v.s6.a3f311e4ab85 from=translated src=- shape=e4a4e371 vocab=461e2caf
+-/
 lemma x1_mem : x1 q e f ∈ Algebra.adjoin k {e, f} := by
   have he : e ∈ Algebra.adjoin k {e, f} := Algebra.subset_adjoin (by simp)
   have hf : f ∈ Algebra.adjoin k {e, f} := Algebra.subset_adjoin (by simp)
   exact sub_mem (mul_mem he hf) (Subalgebra.smul_mem _ (mul_mem hf he) _)
 
 variable (q e f) in
+/--
+@isnad1 id=mem.0h5v.s6.e1091c26b8e0 from=translated src=- shape=e4a4e371 vocab=ad7ffa0e
+-/
 lemma x2_mem : x2 q e f ∈ Algebra.adjoin k {e, f} := by
   have he : e ∈ Algebra.adjoin k {e, f} := Algebra.subset_adjoin (by simp)
   exact sub_mem (mul_mem he (x1_mem q e f)) (Subalgebra.smul_mem _ (mul_mem (x1_mem q e f) he) _)
 
 variable (q e f) in
+/--
+@isnad1 id=mem.0h5v.s6.51093fc015e4 from=translated src=- shape=e4a4e371 vocab=39153f91
+-/
 lemma x3_mem : x3 q e f ∈ Algebra.adjoin k {e, f} := by
   have he : e ∈ Algebra.adjoin k {e, f} := Algebra.subset_adjoin (by simp)
   exact sub_mem (mul_mem he (x2_mem q e f)) (Subalgebra.smul_mem _ (mul_mem (x2_mem q e f) he) _)
 
 variable (q e f) in
+/--
+@isnad1 id=mem.0h5v.s6.54e651f4497e from=translated src=- shape=e4a4e371 vocab=4ebf0777
+-/
 lemma z_mem : z q e f ∈ Algebra.adjoin k {e, f} :=
   sub_mem (mul_mem (x2_mem q e f) (x1_mem q e f))
     (Subalgebra.smul_mem _ (mul_mem (x1_mem q e f) (x2_mem q e f)) _)
 
 variable (q e f) in
+/--
+@isnad1 id=mem.0h5v.s6.a2b723e5aa28 from=translated src=- shape=e4a4e371 vocab=ef5e8d17
+-/
 lemma y1_mem : y1 q e f ∈ Algebra.adjoin k {e, f} := by
   have he : e ∈ Algebra.adjoin k {e, f} := Algebra.subset_adjoin (by simp)
   have hf : f ∈ Algebra.adjoin k {e, f} := Algebra.subset_adjoin (by simp)
   exact sub_mem (mul_mem hf he) (Subalgebra.smul_mem _ (mul_mem he hf) _)
 
 variable (q e f) in
+/--
+@isnad1 id=mem.0h5v.s6.09fa259b7138 from=translated src=- shape=e4a4e371 vocab=8b90bf3c
+-/
 lemma y2_mem : y2 q e f ∈ Algebra.adjoin k {e, f} := by
   have he : e ∈ Algebra.adjoin k {e, f} := Algebra.subset_adjoin (by simp)
   exact sub_mem (mul_mem (y1_mem q e f) he) (Subalgebra.smul_mem _ (mul_mem he (y1_mem q e f)) _)
 
 variable (q e f) in
+/--
+@isnad1 id=mem.0h5v.s6.92e13b54c404 from=translated src=- shape=e4a4e371 vocab=7e652f1e
+-/
 lemma y3_mem : y3 q e f ∈ Algebra.adjoin k {e, f} :=
   sub_mem (mul_mem (y1_mem q e f) (y2_mem q e f))
     (Subalgebra.smul_mem _ (mul_mem (y2_mem q e f) (y1_mem q e f)) _)
 
 variable (q e f) in
+/--
+@isnad1 id=mem.0h5v.s6.0ec59c87303a from=translated src=- shape=e4a4e371 vocab=13a4ddb0
+-/
 lemma w_mem : w q e f ∈ Algebra.adjoin k {e, f} := by
   have he : e ∈ Algebra.adjoin k {e, f} := Algebra.subset_adjoin (by simp)
   exact sub_mem (mul_mem (y2_mem q e f) he) (Subalgebra.smul_mem _ (mul_mem he (y2_mem q e f)) _)
@@ -230,6 +266,9 @@ lemma w_mem : w q e f ∈ Algebra.adjoin k {e, f} := by
 
 open OrderedSpan
 
+/--
+@isnad1 id=mem.2h8v.s7.62e7b4954034 from=translated src=- shape=574514f0 vocab=33dd5012
+-/
 lemma smul_wordProd_mem {n : ℕ} (y : Fin n → B) {a b : Fin n} (κ : k) (u : List (Fin n))
     (hu : u.Pairwise (· ≤ ·)) (hab : ∀ m ∈ u, a < m ∧ m < b) :
     κ • wordProd y u ∈ innerSpan k y a b :=
@@ -237,7 +276,9 @@ lemma smul_wordProd_mem {n : ℕ} (y : Fin n → B) {a b : Fin n} (κ : k) (u : 
 
 include hq hS4 hS2 in
 /-- The relations between `e` and the later root vectors along `i j i j i j` (up to nonzero
-scalars `s₂, c₃, c₄, c₅`).-/
+scalars `s₂, c₃, c₄, c₅`).
+@isnad1 id=baserel.7h9v.s8.d08e98cd8bdc from=translated src=- shape=90fe9154 vocab=6eee1f54
+-/
 theorem baseRel_fwd (hq2 : q ^ 2 + 1 ≠ 0) {s2 c3 c4 c5 : k} (hs2 : s2 ≠ 0) (hc3 : c3 ≠ 0)
     (hc5 : c5 ≠ 0) :
     BaseRel k ![e, s2 • x3 q e f, c3 • x2 q e f, c4 • z q e f, c5 • x1 q e f, f] := by
@@ -283,7 +324,9 @@ theorem baseRel_fwd (hq2 : q ^ 2 + 1 ≠ 0) {s2 c3 c4 c5 : k} (hs2 : s2 ≠ 0) (
 
 include hq hS2 in
 /-- The relations between `f` and the later root vectors along `j i j i j i` (up to nonzero
-scalars `s₂, c₃, c₅`).-/
+scalars `s₂, c₃, c₅`).
+@isnad1 id=baserel.4h8v.s8.ed20a44125c0 from=translated src=- shape=92ef1cad vocab=78d4a51a
+-/
 theorem baseRel_rev {s2 c3 c5 : k} (hs2 : s2 ≠ 0) (hc3 : c3 ≠ 0) :
     BaseRel k ![f, y1 q e f, s2 • y3 q e f, c3 • y2 q e f, c5 • w q e f, e] := by
   set V : Fin 6 → B := ![f, y1 q e f, s2 • y3 q e f, c3 • y2 q e f, c5 • w q e f, e]

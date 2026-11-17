@@ -68,10 +68,16 @@ def jantzenSpace (G : Matrix n n K[X]) (i : ℕ) : Submodule K (n → K) where
     rw [smul_vecMul, Pi.smul_apply, smul_eq_mul]
     exact dvd_mul_of_dvd_right (hw s) _
 
+/--
+@isnad1 id=eq.1h2v.s5.9c3c02cb0f79 from=translated src=- shape=5acb2982 vocab=e4bee4d5
+-/
 lemma natTrailingDegree_eq_zero_of_isUnit {p : K[X]} (hp : IsUnit p) : p.natTrailingDegree = 0 := by
   obtain ⟨r, -, rfl⟩ := Polynomial.isUnit_iff.mp hp
   exact natTrailingDegree_C r
 
+/--
+@isnad1 id=eq.1h4v.s7.c45cfb93b8e5 from=translated src=- shape=f07b0628 vocab=d127e8e4
+-/
 lemma natTrailingDegree_prod {ι : Type*} (s : Finset ι) (f : ι → K[X]) (hf : ∀ i ∈ s, f i ≠ 0) :
     (∏ i ∈ s, f i).natTrailingDegree = ∑ i ∈ s, (f i).natTrailingDegree := by
   classical
@@ -83,6 +89,9 @@ lemma natTrailingDegree_prod {ι : Type*} (s : Finset ι) (f : ι → K[X]) (hf 
         (Finset.prod_ne_zero_iff.mpr fun i hi ↦ hf i (Finset.mem_insert_of_mem hi)),
       ih fun i hi ↦ hf i (Finset.mem_insert_of_mem hi)]
 
+/--
+@isnad1 id=iff.1h3v.s7.2a3cb881c317 from=translated src=- shape=a37ce3ce vocab=cb7d817f
+-/
 lemma X_pow_dvd_iff_le_natTrailingDegree {p : K[X]} (hp : p ≠ 0) {i : ℕ} :
     X ^ i ∣ p ↔ i ≤ p.natTrailingDegree := by
   rw [X_pow_dvd_iff]
@@ -91,7 +100,9 @@ lemma X_pow_dvd_iff_le_natTrailingDegree {p : K[X]} (hp : p ≠ 0) {i : ℕ} :
 
 /-- **Jantzen's order formula** (Smith normal form description): if `det G ≠ 0`, there are bases
 `(cⱼ)` of `K[X]ⁿ` and nonzero `aⱼ` with `ord det G = ∑ ord aⱼ` and
-`Vⁱ = span {cⱼ(0) | ord aⱼ ≥ i}`, the `cⱼ(0)` being linearly independent.-/
+`Vⁱ = span {cⱼ(0) | ord aⱼ ≥ i}`, the `cⱼ(0)` being linearly independent.
+@isnad1 id=ex.1h3v.s8.3b3884b64f5f from=translated src=- shape=b03a253b vocab=9fb6569b
+-/
 theorem exists_jantzenSpace_eq_span (G : Matrix n n K[X]) (hG : G.det ≠ 0) :
     ∃ (v : n → n → K) (a : n → K[X]), LinearIndependent K v ∧ (∀ j, a j ≠ 0) ∧
       G.det.natTrailingDegree = ∑ j, (a j).natTrailingDegree ∧
@@ -204,7 +215,9 @@ theorem exists_jantzenSpace_eq_span (G : Matrix n n K[X]) (hG : G.det ≠ 0) :
       exact dvd_mul_of_dvd_left ((X_pow_dvd_iff_le_natTrailingDegree (ha j)).mpr hj) _
 
 /-- **Jantzen's order formula**: if `det G ≠ 0` and `N` is the order of vanishing of `det G` at `0`,
-then `∑_{i = 1}^{N} dim Vⁱ = N`.-/
+then `∑_{i = 1}^{N} dim Vⁱ = N`.
+@isnad1 id=eq.1h3v.s9.61e34876466f from=translated src=- shape=9c5172a9 vocab=71fbc82b
+-/
 theorem sum_finrank_jantzenSpace (G : Matrix n n K[X]) (hG : G.det ≠ 0) :
     ∑ i ∈ Finset.range G.det.natTrailingDegree, finrank K (G.jantzenSpace (i + 1)) =
       G.det.natTrailingDegree := by
@@ -231,7 +244,9 @@ theorem sum_finrank_jantzenSpace (G : Matrix n n K[X]) (hG : G.det ≠ 0) :
     ext i; simp only [Finset.mem_filter, Finset.mem_range]; have := hle j; omega
   rw [← Finset.sum_filter, Finset.sum_const, smul_eq_mul, mul_one, this, Finset.card_range]
 
-/-- `Vⁱ = 0` for `i` larger than the order of vanishing of `det G` at `0`.-/
+/-- `Vⁱ = 0` for `i` larger than the order of vanishing of `det G` at `0`.
+@isnad1 id=eq.2h4v.s8.0f173fb5ecc2 from=translated src=- shape=c0b9bb8c vocab=7bbf9ad2
+-/
 theorem jantzenSpace_eq_bot (G : Matrix n n K[X]) (hG : G.det ≠ 0) {i : ℕ}
     (hi : G.det.natTrailingDegree < i) : G.jantzenSpace i = ⊥ := by
   obtain ⟨v, a, -, -, hdet, hspace⟩ := exists_jantzenSpace_eq_span G hG

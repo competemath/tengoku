@@ -41,7 +41,9 @@ variable {ι K H : Type*} [Fintype ι] [Field K] [CharZero K] [AddCommGroup H]
   [Module K H] {A : Matrix ι ι ℤ} (P : Realization A K H) (hA : A.IsGeneralizedCartan)
 
 /-- For a dominant integral weight `λ` (`⟨λ, αᵢ^∨⟩ ∈ ℤ₊` for all `i`) and `w ∈ W`, `λ - w λ` lies
-in `Q₊` ([Kac] Prop. 3.12 (d), for weights).-/
+in `Q₊` ([Kac] Prop. 3.12 (d), for weights).
+@isnad1 id=ex.2h7v.s12.0aad08fb7c8d from=translated src=- shape=a9a15ede vocab=ef967612
+-/
 theorem exists_sub_apply_eq_rootOf {μ : Dual K H} (hμ : ∀ i, ∃ n : ℕ, μ (P.coroot i) = n)
     (w : P.weylGroup hA) :
     ∃ k : ι → ℤ, 0 ≤ k ∧ μ - (w : Dual K H ≃ₗ[K] Dual K H) μ = P.rootOf k := by
@@ -59,7 +61,9 @@ theorem exists_sub_apply_eq_rootOf {μ : Dual K H} (hμ : ∀ i, ∃ n : ℕ, μ
 
 /-- If `λ` and `w λ` are both dominant integral weights, then `w λ = λ` ([Kac] Prop. 3.12 (b),
 for weights): the `W`-orbit of a dominant integral weight contains no other dominant
-integral weight.-/
+integral weight.
+@isnad1 id=eq.4h7v.s12.20220fddff6b from=translated src=- shape=5d9f47c8 vocab=bac6eea0
+-/
 theorem apply_eq_self_of_dominant {μ : Dual K H} (hμ : ∀ i, ∃ n : ℕ, μ (P.coroot i) = n)
     {w : Dual K H ≃ₗ[K] Dual K H} (hw : w ∈ P.weylGroup hA)
     (hwμ : ∀ i, ∃ n : ℕ, w μ (P.coroot i) = n) : w μ = μ := by

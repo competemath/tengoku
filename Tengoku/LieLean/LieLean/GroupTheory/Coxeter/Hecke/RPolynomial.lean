@@ -63,11 +63,16 @@ local prefix:100 "ℓ " => cs.length
 
 section rightOp
 
+/--
+@isnad1 id=eq.0h8v.s10.b092877582a8 from=translated src=- shape=e7cf82b8 vocab=f809df79
+-/
 theorem toFinsupp_mul_T_simple (h : IwahoriHeckeAlgebra cs q) (i : B) :
     toFinsupp cs q (h * T cs q (s i)) = rightOp cs q i (toFinsupp cs q h) := by
   rw [toFinsupp_mul_T, ← rightOp_single_one cs q, lmul_apply_rightOp, lmul_apply_single_one]
 
-/-- The coefficients of `h T_s` in terms of those of `h`.-/
+/-- The coefficients of `h T_s` in terms of those of `h`.
+@isnad1 id=eq.0h9v.s9.92c30f65c68b from=translated src=- shape=dcdcea0f vocab=d6606f14
+-/
 theorem rightOp_apply (i : B) (x : W →₀ R) (y : W) :
     rightOp cs q i x y = if ℓ (y * s i) < ℓ y then x (y * s i) + (q - 1) * x y
       else q * x (y * s i) := by
@@ -105,6 +110,9 @@ noncomputable def invCoeff (y w : W) : R := toFinsupp cs q (TInv cs hq w⁻¹) y
 `T_{w⁻¹}⁻¹ = ε_w q_w⁻¹ Σ_y ε_y R_{y,w} T_y` ([KL] (2.0.a), [BB] §6.1).-/
 noncomputable def rPoly (y w : W) : R := (-1) ^ (ℓ y + ℓ w) * q ^ ℓ w * invCoeff cs hq y w
 
+/--
+@isnad1 id=eq.1h8v.s7.75f2cac77452 from=translated src=- shape=ee81d7b6 vocab=2ddeca5b
+-/
 theorem invCoeff_eq_rPoly (y w : W) :
     invCoeff cs hq y w = (-1) ^ (ℓ y + ℓ w) * hq.unit⁻¹.1 ^ ℓ w * rPoly cs hq y w := by
   have e : hq.unit⁻¹.1 * q = 1 := hq.val_inv_mul
@@ -116,12 +124,17 @@ theorem invCoeff_eq_rPoly (y w : W) :
     (-invCoeff cs hq y w) * h2
 
 /-- The expansion `T_{w⁻¹}⁻¹ = Σ_y ε_y ε_w q^{-ℓ(w)} R_{y,w} T_y`, coefficientwise
-([KL] (2.0.a), [BB] §6.1).-/
+([KL] (2.0.a), [BB] §6.1).
+@isnad1 id=eq.1h8v.s9.1ce2b976542a from=translated src=- shape=e6add8d8 vocab=80c70d96
+-/
 theorem toFinsupp_TInv_inv_apply (y w : W) :
     toFinsupp cs q (TInv cs hq w⁻¹) y =
       (-1) ^ (ℓ y + ℓ w) * hq.unit⁻¹.1 ^ ℓ w * rPoly cs hq y w :=
   invCoeff_eq_rPoly cs hq y w
 
+/--
+@isnad1 id=eq.1h7v.s7.c36d1e2c57b0 from=translated src=- shape=d34475a3 vocab=cf07ae4c
+-/
 theorem invCoeff_one_right [DecidableEq W] (y : W) :
     invCoeff cs hq y 1 = if y = 1 then 1 else 0 := by
   rw [invCoeff, inv_one, TInv_one, ← T_one cs q, toFinsupp_T]
@@ -129,7 +142,9 @@ theorem invCoeff_one_right [DecidableEq W] (y : W) :
   · simp
   · simp [h]
 
-/-- The recursion for the coefficients of `T_{w⁻¹}⁻¹`.-/
+/-- The recursion for the coefficients of `T_{w⁻¹}⁻¹`.
+@isnad1 id=eq.2h9v.s8.7cdd7a487b0c from=translated src=- shape=cd0ebf12 vocab=2971bf94
+-/
 theorem invCoeff_mul_simple {w : W} {i : B} (hlt : ℓ w < ℓ (w * s i)) (y : W) :
     invCoeff cs hq y (w * s i) = if ℓ (y * s i) < ℓ y then hq.unit⁻¹.1 * invCoeff cs hq (y * s i) w
       else invCoeff cs hq (y * s i) w - (1 - hq.unit⁻¹.1) * invCoeff cs hq y w := by
@@ -147,7 +162,9 @@ theorem invCoeff_mul_simple {w : W} {i : B} (hlt : ℓ w < ℓ (w * s i)) (y : W
 
 /-- The recursion for `R`-polynomials ([BB] Thm. 5.1.1(iii), [KL] (2.0.b)): if
 `ℓ(ws) > ℓ(w)`, then `R_{y,ws} = R_{ys,w}` if `ℓ(ys) < ℓ(y)` and
-`R_{y,ws} = (q - 1) R_{y,w} + q R_{ys,w}` otherwise.-/
+`R_{y,ws} = (q - 1) R_{y,w} + q R_{ys,w}` otherwise.
+@isnad1 id=eq.2h9v.s8.4dbbd7a2c1af from=translated src=- shape=c61bec7f vocab=52d346b8
+-/
 theorem rPoly_mul_simple {w : W} {i : B} (hlt : ℓ w < ℓ (w * s i)) (y : W) :
     rPoly cs hq y (w * s i) = if ℓ (y * s i) < ℓ y then rPoly cs hq (y * s i) w
       else (q - 1) * rPoly cs hq y w + q * rPoly cs hq (y * s i) w := by
@@ -167,7 +184,9 @@ theorem rPoly_mul_simple {w : W} {i : B} (hlt : ℓ w < ℓ (w * s i)) (y : W) :
 
 /-- The recursion for `R`-polynomials along a right descent ([BB] Thm. 5.1.1(iii)): if
 `ℓ(ws) < ℓ(w)`, then `R_{y,w} = R_{ys,ws}` if `ℓ(ys) < ℓ(y)` and
-`R_{y,w} = (q - 1) R_{y,ws} + q R_{ys,ws}` otherwise.-/
+`R_{y,w} = (q - 1) R_{y,ws} + q R_{ys,ws}` otherwise.
+@isnad1 id=eq.2h9v.s8.5fe6bb75c740 from=translated src=- shape=e4fd7293 vocab=52d346b8
+-/
 theorem rPoly_of_length_mul_simple_lt {w : W} {i : B} (hlt : ℓ (w * s i) < ℓ w) (y : W) :
     rPoly cs hq y w = if ℓ (y * s i) < ℓ y then rPoly cs hq (y * s i) (w * s i)
       else (q - 1) * rPoly cs hq y (w * s i) + q * rPoly cs hq (y * s i) (w * s i) := by
@@ -175,12 +194,18 @@ theorem rPoly_of_length_mul_simple_lt {w : W} {i : B} (hlt : ℓ (w * s i) < ℓ
     (by rwa [CoxeterSystem.simple_mul_simple_cancel_right]) y
   rwa [CoxeterSystem.simple_mul_simple_cancel_right] at this
 
+/--
+@isnad1 id=eq.1h7v.s7.2d5a287388f4 from=translated src=- shape=d34475a3 vocab=5cf30695
+-/
 theorem rPoly_one_right [DecidableEq W] (y : W) : rPoly cs hq y 1 = if y = 1 then 1 else 0 := by
   rw [rPoly, invCoeff_one_right]
   split_ifs with h
   · simp [h]
   · simp
 
+/--
+@isnad1 id=eq.1h7v.s6.17ef8b61a6a4 from=translated src=- shape=c6b06fe5 vocab=50e0fb62
+-/
 theorem invCoeff_self (w : W) : invCoeff cs hq w w = hq.unit⁻¹.1 ^ ℓ w := by
   classical
   induction w using cs.induction_mul_simple with
@@ -191,7 +216,9 @@ theorem invCoeff_self (w : W) : invCoeff cs hq w w = hq.unit⁻¹.1 ^ ℓ w := b
     rw [invCoeff_mul_simple cs hq hlt, CoxeterSystem.simple_mul_simple_cancel_right,
       ite_eq_left (by omega), ih, hw, pow_succ, mul_comm]
 
-/-- `R_{w,w} = 1` ([BB] Thm. 5.1.1(ii)).-/
+/-- `R_{w,w} = 1` ([BB] Thm. 5.1.1(ii)).
+@isnad1 id=eq.1h7v.s6.05eddc8c981a from=translated src=- shape=018d1da2 vocab=67cf8ed2
+-/
 theorem rPoly_self (w : W) : rPoly cs hq w w = 1 := by
   have e : hq.unit⁻¹.1 * q = 1 := hq.val_inv_mul
   rw [rPoly, invCoeff_self, ← two_mul, pow_mul, neg_one_sq, one_pow, one_mul, ← mul_pow,
@@ -204,10 +231,16 @@ noncomputable def subwordSpan (ω : List B) : Submodule R (IwahoriHeckeAlgebra c
   Submodule.span R ((fun ω' ↦ T cs q (cs.wordProd ω')) '' {ω' | ω'.Sublist ω})
 
 variable {cs} in
+/--
+@isnad1 id=le.1h8v.s8.d65d4e7c9df8 from=translated src=- shape=f30e91ab vocab=9861670d
+-/
 theorem subwordSpan_mono {ω ω' : List B} (h : ω'.Sublist ω) :
     subwordSpan cs (q := q) ω' ≤ subwordSpan cs ω :=
   Submodule.span_mono (Set.image_mono fun _ h' ↦ List.Sublist.trans h' h)
 
+/--
+@isnad1 id=mem.1h9v.s9.ff136cb5f5c8 from=translated src=- shape=d638f75e vocab=f8d2a01d
+-/
 theorem T_simple_mul_mem_subwordSpan (i : B) {ω : List B} {h : IwahoriHeckeAlgebra cs q}
     (hh : h ∈ subwordSpan cs ω) : T cs q (s i) * h ∈ subwordSpan cs (i :: ω) := by
   induction hh using Submodule.span_induction with
@@ -225,6 +258,9 @@ theorem T_simple_mul_mem_subwordSpan (i : B) {ω : List B} {h : IwahoriHeckeAlge
   | add x y _ _ hx hy => rw [mul_add]; exact add_mem hx hy
   | smul a x _ hx => rw [mul_smul_comm]; exact Submodule.smul_mem _ _ hx
 
+/--
+@isnad1 id=mem.1h7v.s8.b9cf510fdf38 from=translated src=- shape=989bbd19 vocab=07b7f8ee
+-/
 theorem prod_TInv_mem_subwordSpan (ω : List B) :
     (ω.map fun i ↦ TInv cs hq (s i)).prod ∈ subwordSpan cs ω := by
   induction ω with
@@ -235,7 +271,9 @@ theorem prod_TInv_mem_subwordSpan (ω : List B) :
     exact sub_mem (Submodule.smul_mem _ _ (T_simple_mul_mem_subwordSpan cs i ih))
       (Submodule.smul_mem _ _ (subwordSpan_mono (List.sublist_cons_self i ω) ih))
 
-/-- For a reduced word `ω`, `T_{(π ω)⁻¹}⁻¹ = T_{s₁}⁻¹ ⋯ T_{sₖ}⁻¹`.-/
+/-- For a reduced word `ω`, `T_{(π ω)⁻¹}⁻¹ = T_{s₁}⁻¹ ⋯ T_{sₖ}⁻¹`.
+@isnad1 id=eq.2h7v.s7.78749cd8c7b3 from=translated src=- shape=177a51df vocab=27785c5d
+-/
 theorem TInv_wordProd_inv {ω : List B} (hω : cs.IsReduced ω) :
     TInv cs hq (cs.wordProd ω)⁻¹ = (ω.map fun i ↦ TInv cs hq (s i)).prod := by
   induction ω with
@@ -253,7 +291,9 @@ theorem TInv_wordProd_inv {ω : List B} (hω : cs.IsReduced ω) :
       List.map_cons, List.prod_cons]
 
 /-- Triangularity of the bar involution without the Bruhat order: if `[T_y] T_{w⁻¹}⁻¹ ≠ 0`,
-then `y` is the product of a subword of any reduced word `ω` of `w`.-/
+then `y` is the product of a subword of any reduced word `ω` of `w`.
+@isnad1 id=ex.3h8v.s6.afca4ce6475e from=translated src=- shape=68972666 vocab=3d1ced19
+-/
 theorem exists_sublist_of_invCoeff_ne_zero {ω : List B} (hω : cs.IsReduced ω) {y : W}
     (hy : invCoeff cs hq y (cs.wordProd ω) ≠ 0) : ∃ ω', ω'.Sublist ω ∧ cs.wordProd ω' = y := by
   have hmem := prod_TInv_mem_subwordSpan cs hq ω
@@ -275,12 +315,17 @@ theorem exists_sublist_of_invCoeff_ne_zero {ω : List B} (hω : cs.IsReduced ω)
 
 /-- If `R_{y,w} ≠ 0`, then `y` is the product of a subword of any reduced word of `w` (by the
 subword property, [BB] Thm. 2.2.2, this means `y ≤ w` in the Bruhat order; cf. [BB]
-Thm. 5.1.1(i)).-/
+Thm. 5.1.1(i)).
+@isnad1 id=ex.3h8v.s6.58cb266e5a6a from=translated src=- shape=68972666 vocab=8edf0840
+-/
 theorem exists_sublist_of_rPoly_ne_zero {ω : List B} (hω : cs.IsReduced ω) {y : W}
     (hy : rPoly cs hq y (cs.wordProd ω) ≠ 0) : ∃ ω', ω'.Sublist ω ∧ cs.wordProd ω' = y := by
   refine exists_sublist_of_invCoeff_ne_zero cs hq hω fun h ↦ hy ?_
   rw [rPoly, h, mul_zero]
 
+/--
+@isnad1 id=le.2h8v.s6.9b8c46e0a960 from=translated src=- shape=ec32df1f vocab=04e27f99
+-/
 theorem length_le_of_rPoly_ne_zero {y w : W} (hy : rPoly cs hq y w ≠ 0) : ℓ y ≤ ℓ w := by
   obtain ⟨ω, hω, rfl⟩ := cs.exists_isReduced w
   obtain ⟨ω', hω', rfl⟩ := exists_sublist_of_rPoly_ne_zero cs hq hω hy
@@ -298,7 +343,9 @@ end Triangular
 
 /-- `R_{y,w}` is the value at `q` of a polynomial with integer coefficients of degree at most
 `ℓ(w) - ℓ(y)`, which is `0` if `ℓ(y) > ℓ(w)` ([BB] Thm. 5.1.1, Prop. 5.1.3; the polynomial
-depends only on `(W, S)`, since it is produced by the recursion `rPoly_mul_simple`).-/
+depends only on `(W, S)`, since it is produced by the recursion `rPoly_mul_simple`).
+@isnad1 id=ex.1h8v.s7.2bc57d4d2767 from=translated src=- shape=e5b69982 vocab=a660f3de
+-/
 theorem exists_rPoly_eq_aeval_natDegree_le (y w : W) :
     ∃ p : Polynomial ℤ, rPoly cs hq y w = Polynomial.aeval q p ∧
       p.natDegree ≤ ℓ w - ℓ y ∧ (ℓ w < ℓ y → p = 0) := by
@@ -336,7 +383,9 @@ theorem exists_rPoly_eq_aeval_natDegree_le (y w : W) :
         simp [hp0 (by omega), hp0' (by omega)]
 
 /-- `R_{y,w}` is the value at `q` of a polynomial with integer coefficients
-([BB] Thm. 5.1.1).-/
+([BB] Thm. 5.1.1).
+@isnad1 id=ex.1h8v.s7.424a2bce6613 from=translated src=- shape=86787a54 vocab=753600a9
+-/
 theorem exists_rPoly_eq_aeval (y w : W) :
     ∃ p : Polynomial ℤ, rPoly cs hq y w = Polynomial.aeval q p :=
   (exists_rPoly_eq_aeval_natDegree_le cs hq y w).imp fun _ h ↦ h.1
@@ -346,7 +395,9 @@ section Bar
 variable (σ : R →+* R) (hσ : σ q * q = 1)
 
 /-- The expansion of `T̄_w` in the standard basis in terms of `R`-polynomials:
-`T̄_w = Σ_y ε_y ε_w σ(q)^{ℓ(w)} R_{y,w} T_y` ([KL] (2.0.a), [BB] §6.1).-/
+`T̄_w = Σ_y ε_y ε_w σ(q)^{ℓ(w)} R_{y,w} T_y` ([KL] (2.0.a), [BB] §6.1).
+@isnad1 id=eq.1h9v.s9.fa1c0ed43982 from=translated src=- shape=e6455642 vocab=a58c2cd6
+-/
 theorem toFinsupp_bar_T_apply (y w : W) :
     toFinsupp cs q (bar cs σ hσ (T cs q w)) y = (-1) ^ (ℓ y + ℓ w) * σ q ^ ℓ w *
       rPoly cs (isUnit_of_mul_eq_one' σ hσ) y w := by

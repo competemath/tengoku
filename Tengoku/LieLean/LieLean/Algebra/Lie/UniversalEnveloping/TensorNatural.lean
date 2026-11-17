@@ -75,6 +75,9 @@ instance : LieModule R L (AdRegular R L) := LieModule.compLieHom _ (ι R)
 /-- The underlying linear identification forgets only the type tag.-/
 def equiv : AdRegular R L ≃ₗ[R] 𝓤 := LinearEquiv.refl R _
 
+/--
+@isnad1 id=eq.0h4v.s10.81dd16df7dea from=translated src=- shape=911f7262 vocab=e56a1325
+-/
 @[simp] theorem equiv_lie (x : L) (u : AdRegular R L) :
     equiv R L ⁅x, u⁆ = ι R x * equiv R L u - equiv R L u * ι R x := rfl
 
@@ -89,6 +92,9 @@ variable (M : Type*) [AddCommGroup M] [Module R M] [LieRingModule L M] [LieModul
 /-- The action of `U(L)` on an `L`-module.-/
 abbrev actionHom : 𝓤 →ₐ[R] Module.End R M := lift R (toEnd R L M)
 
+/--
+@isnad1 id=eq.0h4v.s9.25ed7c4d1eb8 from=translated src=- shape=2b3311b6 vocab=a5e2d069
+-/
 theorem actionHom_ι (x : L) : actionHom (R := R) (L := L) M (ι R x) = toEnd R L M x :=
   lift_ι_apply R _ x
 
@@ -97,7 +103,9 @@ def IsKilledBy : Prop := ∀ a ∈ I, actionHom (R := R) (L := L) M a = 0
 
 variable {M} {N : Type*} [AddCommGroup N] [Module R N] [LieRingModule L N] [LieModule R L N]
 
-/-- Morphisms of `L`-modules commute with the action of `U(L)`.-/
+/-- Morphisms of `L`-modules commute with the action of `U(L)`.
+@isnad1 id=eq.0h7v.s9.ef938c5c2fc8 from=translated src=- shape=d06792fb vocab=dd9bfd0e
+-/
 theorem _root_.LieModuleHom.map_actionHom (f : M →ₗ⁅R,L⁆ N) (u : 𝓤) (m : M) :
     f (actionHom M u m) = actionHom N u (f m) := by
   obtain ⟨t, rfl⟩ : ∃ t, mkAlgHom R L t = u := by
@@ -149,6 +157,9 @@ def quotientEquiv : AdQuotient R L I ≃ₗ[R] LeftQuotient R L I :=
       · rintro ⟨v, hv, rfl⟩; exact hv
       · intro hu; exact ⟨u, hu, rfl⟩)
 
+/--
+@isnad1 id=eq.0h4v.s10.af805c4d33ac from=translated src=- shape=ca9e227f vocab=611fe9b2
+-/
 @[simp] theorem quotientEquiv_mk (u : AdRegular R L) :
     quotientEquiv R L I (LieSubmodule.Quotient.mk u) =
       LieSubmodule.Quotient.mk ((LeftRegular.equiv R L).symm (AdRegular.equiv R L u)) := rfl
@@ -163,6 +174,9 @@ def quotientAction (hM : IsKilledBy I M) : AdQuotient R L I →ₗ[R] Module.End
     ((actionHom M).toLinearMap ∘ₗ (AdRegular.equiv R L).toLinearMap)
     fun _ hu ↦ LinearMap.mem_ker.mpr (hM _ hu)
 
+/--
+@isnad1 id=eq.1h5v.s10.48eba51a2468 from=translated src=- shape=24b2eaa1 vocab=6d4257b4
+-/
 @[simp] theorem quotientAction_mk (hM : IsKilledBy I M) (u : AdRegular R L) :
     quotientAction hM (LieSubmodule.Quotient.mk u) = actionHom M (AdRegular.equiv R L u) := rfl
 
@@ -180,6 +194,9 @@ def orbitMap (hM : IsKilledBy I M) (m : M) : LeftQuotient R L I →ₗ⁅R,L⁆ 
       change actionHom M (LeftRegular.equiv R L u) m = 0
       rw [show actionHom M (LeftRegular.equiv R L u) = 0 from hM _ hu, LinearMap.zero_apply])
 
+/--
+@isnad1 id=eq.1h6v.s10.83fcf0d9a3ec from=translated src=- shape=b6a97011 vocab=4f926292
+-/
 @[simp] theorem orbitMap_mk (hM : IsKilledBy I M) (m : M) (u : LeftRegular R L) :
     orbitMap hM m (LieSubmodule.Quotient.mk u) = actionHom M (LeftRegular.equiv R L u) m := rfl
 
@@ -190,6 +207,9 @@ def quotientMulRight (u : 𝓤) : LeftQuotient R L I →ₗ⁅R,L⁆ LeftQuotien
     fun _ hv ↦ LieModuleHom.mem_ker.mpr
       ((LieSubmodule.Quotient.mk_eq_zero' (N := leftIdeal R L I)).mpr (I.mul_mem_right _ _ hv))
 
+/--
+@isnad1 id=eq.0h5v.s10.aaffef363ee4 from=translated src=- shape=cc811313 vocab=78210fac
+-/
 @[simp] theorem quotientMulRight_mk (u : 𝓤) (v : LeftRegular R L) :
     quotientMulRight I u (LieSubmodule.Quotient.mk v) =
       LieSubmodule.Quotient.mk ((LeftRegular.equiv R L).symm (LeftRegular.equiv R L v * u)) :=

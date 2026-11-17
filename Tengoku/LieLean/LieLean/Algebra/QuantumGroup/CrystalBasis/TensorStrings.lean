@@ -87,6 +87,9 @@ section Orders
 variable {A : Type*} [CommRing A] [Algebra A k] {ϖ : A}
 
 omit hq0 hq in
+/--
+@isnad1 id=isunitpo.4h4v.s8.aa2b3cef72ee from=translated src=- shape=cccd7e49 vocab=50529455
+-/
 lemma isUnitPow_qIntZ [IsLocalRing A] (hϖ : ϖ ∈ IsLocalRing.maximalIdeal A)
     (hq : ∀ n : ℕ, 0 < n → algebraMap A k ϖ ^ n ≠ 1) (hq0 : algebraMap A k ϖ ≠ 0) {n : ℤ}
     (hn : 0 < n) : IsUnitPow ϖ (1 - n) (qIntZ (algebraMap A k ϖ) n) := by
@@ -95,6 +98,9 @@ lemma isUnitPow_qIntZ [IsLocalRing A] (hϖ : ϖ ∈ IsLocalRing.maximalIdeal A)
   exact (isOnePow_qInt hq0 (by omega)).isUnitPow hϖ
 
 omit hq0 hq in
+/--
+@isnad1 id=isunitpo.3h5v.s8.9adbee9846f9 from=translated src=- shape=de57cac4 vocab=137849a6
+-/
 lemma isUnitPow_qBinomial [IsLocalRing A] (hϖ : ϖ ∈ IsLocalRing.maximalIdeal A)
     (hq0 : algebraMap A k ϖ ≠ 0) {n m : ℕ} (hmn : m ≤ n) :
     IsUnitPow ϖ (-(m * (n - m) : ℕ)) (qBinomial (algebraMap A k ϖ) n m) :=
@@ -106,6 +112,9 @@ def smallSpan {M : Type*} [AddCommGroup M] [Module k M] (g : ℕ × ℕ → M) :
   AddSubmonoid.closure {x | ∃ (κ : k) (p : ℕ × ℕ), InPow ϖ 1 κ ∧ x = κ • g p}
 
 omit hq0 hq in
+/--
+@isnad1 id=mem.1h7v.s7.d724eb1a8ad2 from=translated src=- shape=64915a38 vocab=9ad11060
+-/
 lemma smul_mem_smallSpan {M : Type*} [AddCommGroup M] [Module k M] (g : ℕ × ℕ → M) {κ : k}
     (hκ : InPow ϖ 1 κ) (p : ℕ × ℕ) : κ • g p ∈ smallSpan k ϖ g :=
   AddSubmonoid.subset_closure ⟨κ, p, hκ, rfl⟩
@@ -113,7 +122,9 @@ lemma smul_mem_smallSpan {M : Type*} [AddCommGroup M] [Module k M] (g : ℕ × �
 variable [IsLocalRing A] (hϖ : ϖ ∈ IsLocalRing.maximalIdeal A) (hϖq : algebraMap A k ϖ = q)
 include hϖ hϖq
 
-/-- `cᵢ ∈ q^{i(a-s+1)} A×`.-/
+/-- `cᵢ ∈ q^{i(a-s+1)} A×`.
+@isnad1 id=isunitpo.7h8v.s8.71e4f86d67db from=translated src=- shape=80f1b3ff vocab=181807e4
+-/
 lemma isUnitPow_highCoeff {s : ℕ} (hsa : s ≤ a) (hsb : s ≤ b) :
     ∀ i ≤ s, IsUnitPow ϖ ((i : ℤ) * ((a : ℤ) - s + 1)) (highCoeff q a b s i) := by
   subst hϖq
@@ -130,7 +141,9 @@ lemma isUnitPow_highCoeff {s : ℕ} (hsa : s ≤ a) (hsb : s ≤ b) :
     convert h using 1
     push_cast; ring
 
-/-- `dᵢ ∈ q^{i(b-s+1)} A×`.-/
+/-- `dᵢ ∈ q^{i(b-s+1)} A×`.
+@isnad1 id=isunitpo.7h8v.s8.2fe54358afc8 from=translated src=- shape=6bb9a399 vocab=846b61e4
+-/
 lemma isUnitPow_lowCoeff {s : ℕ} (hsa : s ≤ a) (hsb : s ≤ b) :
     ∀ i ≤ s, IsUnitPow ϖ ((i : ℤ) * ((b : ℤ) - s + 1)) (lowCoeff q a b s i) := by
   subst hϖq

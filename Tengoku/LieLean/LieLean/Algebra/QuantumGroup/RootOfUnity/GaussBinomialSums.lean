@@ -52,7 +52,9 @@ section Field
 variable {k : Type*} [Field k] {q : k}
 
 /-- The partial alternating sums `Σ_{s=0}^{k} (-1)^s q^{-sn} [n+1; s] = (-1)^k q^{-k(n+1)}
-[n; k]` (for `k = n + 1` this is [Lus] 1.3.4).-/
+[n; k]` (for `k = n + 1` this is [Lus] 1.3.4).
+@isnad1 id=eq.1h4v.s8.661c6b1a8cc7 from=translated src=- shape=d6dd1667 vocab=231cc0e0
+-/
 theorem sum_neg_one_pow_qBinomial (hq : q ≠ 0) (n m : ℕ) :
     ∑ s ∈ range (m + 1), (-1) ^ s * q ^ (-((s : ℤ) * n)) * qBinomial q (n + 1) s =
       (-1) ^ m * q ^ (-((m : ℤ) * (n + 1))) * qBinomial q n m := by
@@ -77,7 +79,9 @@ theorem sum_neg_one_pow_qBinomial (hq : q ≠ 0) (n m : ℕ) :
       ring
 
 /-- `[lp]^! = (∏_{j=1}^{p} [lj; l]) ([l]^!)^p`: the product `∏_{j=1}^{p} [lj; l]` is the element
-`[lp]^!/([l]^!)^p` of [Lus] 34.1.3.-/
+`[lp]^!/([l]^!)^p` of [Lus] 34.1.3.
+@isnad1 id=eq.0h4v.s6.75397fdde4b5 from=translated src=- shape=bcf6db01 vocab=d448d2ac
+-/
 theorem qFactorial_mul_eq (q : k) (l p : ℕ) :
     qFactorial q (l * p) =
       (∏ j ∈ range p, qBinomial q (l * (j + 1)) l) * qFactorial q l ^ p := by
@@ -93,7 +97,9 @@ theorem qFactorial_mul_eq (q : k) (l p : ℕ) :
 variable {l : ℕ}
 
 /-- [Lus] 34.1.3 (a) over a field: `∏_{j=1}^{p} [lj; l] = p! q^{l² p(p-1)/2}` if `q^{2l} = 1`
-and `q^{2t} ≠ 1` for `0 < t < l`.-/
+and `q^{2t} ≠ 1` for `0 < t < l`.
+@isnad1 id=eq.4h4v.s8.d784275a29bc from=translated src=- shape=0831ad99 vocab=19429005
+-/
 theorem prod_qBinomial_mul_root (hq : q ≠ 0) (hl : q ^ (2 * l) = 1)
     (hprim : ∀ t, 0 < t → t < l → q ^ (2 * t) ≠ 1) (hl0 : 0 < l) (p : ℕ) :
     ∏ j ∈ range p, qBinomial q (l * (j + 1)) l = (p.factorial : k) * q ^ (l ^ 2 * p.choose 2) := by
@@ -114,7 +120,9 @@ theorem prod_qBinomial_mul_root (hq : q ≠ 0) (hl : q ^ (2 * l) = 1)
 
 /-- [Lus] 34.1.4 (a) over a field: for `0 ≤ r ≤ a < l`,
 `Σ_{s=0}^{l-a-1} (-1)^{l-r+1+s} q^{-(l-r)(a-l+1+s)+s} [l-r; s] = q^{l(a-r)} [a; r]` if
-`q^{2l} = 1` and `q^{2t} ≠ 1` for `0 < t < l`.-/
+`q^{2l} = 1` and `q^{2t} ≠ 1` for `0 < t < l`.
+@isnad1 id=eq.5h5v.s8.a6d30c0fd03c from=translated src=- shape=38041697 vocab=7da14184
+-/
 theorem sum_qBinomial_root (hq : q ≠ 0) (hl : q ^ (2 * l) = 1)
     (hprim : ∀ t, 0 < t → t < l → q ^ (2 * t) ≠ 1) {r a : ℕ} (hra : r ≤ a) (hal : a < l) :
     ∑ s ∈ range (l - a), (-1) ^ (l - r + 1 + s) *
@@ -183,7 +191,9 @@ private lemma root_hyps' (hl : (v : R) ^ (2 * l) = 1)
 
 /-- [Lus] 34.1.3 (a): if `v^{2l} = 1` and `v^{2t} ≠ 1` for `0 < t < l`, then
 `∏_{j=1}^{p} [lj; l] = p! v^{l² p(p-1)/2}`; the left hand side is `[lp]^!/([l]^!)^p`
-(`qFactorial_mul_eq`).-/
+(`qFactorial_mul_eq`).
+@isnad1 id=eq.3h4v.s8.1d32d4973d9f from=translated src=- shape=b4c797ba vocab=0317651f
+-/
 theorem prod_qBinomialU_mul_root (hl : (v : R) ^ (2 * l) = 1)
     (hprim : ∀ t, 0 < t → t < l → (v : R) ^ (2 * t) ≠ 1) (hl0 : 0 < l) (p : ℕ) :
     ∏ j ∈ range p, qBinomialU v (l * (j + 1)) l =
@@ -195,7 +205,9 @@ theorem prod_qBinomialU_mul_root (hl : (v : R) ^ (2 * l) = 1)
 
 /-- [Lus] 34.1.4 (a): if `v^{2l} = 1` and `v^{2t} ≠ 1` for `0 < t < l`, then for
 `0 ≤ r ≤ a < l`,
-`Σ_{s=0}^{l-a-1} (-1)^{l-r+1+s} v^{-(l-r)(a-l+1+s)+s} [l-r; s] = v^{l(a-r)} [a; r]`.-/
+`Σ_{s=0}^{l-a-1} (-1)^{l-r+1+s} v^{-(l-r)(a-l+1+s)+s} [l-r; s] = v^{l(a-r)} [a; r]`.
+@isnad1 id=eq.4h5v.s9.00635a4030ee from=translated src=- shape=9e97a186 vocab=96291e25
+-/
 theorem sum_qBinomialU_root (hl : (v : R) ^ (2 * l) = 1)
     (hprim : ∀ t, 0 < t → t < l → (v : R) ^ (2 * t) ≠ 1) {r a : ℕ} (hra : r ≤ a)
     (hal : a < l) :
@@ -210,7 +222,9 @@ theorem sum_qBinomialU_root (hl : (v : R) ^ (2 * l) = 1)
 
 /-- [Lus] 35.1.5 (a): if `v^{2l} = 1` and `v^{2t} ≠ 1` for `0 < t < l`, then
 `[l a₁; l t₁]_v = [a₁; t₁]_{v^{l²}}` for `a₁ ∈ ℤ`, `t₁ ∈ ℕ` (Lusztig states it for `v = vᵢ`,
-`l = lᵢ`, with `vᵢ* = vᵢ^{lᵢ²}`). Part (b) of [Lus] 35.1.5 is `gaussBinom_eq_zero_of_not_dvd`.-/
+`l = lᵢ`, with `vᵢ* = vᵢ^{lᵢ²}`). Part (b) of [Lus] 35.1.5 is `gaussBinom_eq_zero_of_not_dvd`.
+@isnad1 id=eq.3h5v.s8.59a3155325d6 from=translated src=- shape=e77a95dd vocab=4c1fa44b
+-/
 theorem gaussBinom_mul_mul_eq_pow (hl : (v : R) ^ (2 * l) = 1)
     (hprim : ∀ t, 0 < t → t < l → (v : R) ^ (2 * t) ≠ 1) (hl0 : 0 < l) (a₁ : ℤ) (t₁ : ℕ) :
     gaussBinom v (l * a₁) (l * t₁) = gaussBinom (v ^ (l ^ 2)) a₁ t₁ := by

@@ -42,14 +42,22 @@ def frobOrder (i : I) : ℕ := l / Nat.gcd l (D.d i)
 
 variable {l}
 
+/--
+@isnad1 id=lt.1h4v.s5.69057a72b0f0 from=translated src=- shape=1e4980d4 vocab=739b5047
+-/
 lemma frobOrder_pos (hl : 0 < l) (i : I) : 0 < D.frobOrder l i :=
   Nat.div_pos (Nat.gcd_le_left _ hl) (Nat.gcd_pos_of_pos_left _ hl)
 
+/--
+@isnad1 id=dvd.0h4v.s4.b958fc181ffd from=translated src=- shape=0aa7f03b vocab=88896e06
+-/
 lemma frobOrder_dvd (i : I) : D.frobOrder l i ∣ l :=
   Nat.div_dvd_of_dvd (Nat.gcd_dvd_left _ _)
 
 /-- `lᵢ ∣ n` if and only if `l ∣ n dᵢ`: `lᵢ` is the least positive integer with
-`lᵢ dᵢ ∈ lℤ` ([Lus] 2.2.4).-/
+`lᵢ dᵢ ∈ lℤ` ([Lus] 2.2.4).
+@isnad1 id=iff.1h5v.s5.dc5bc003ba30 from=translated src=- shape=f66d7cc0 vocab=d212323b
+-/
 lemma frobOrder_dvd_iff (hl : 0 < l) (i : I) (n : ℤ) :
     (D.frobOrder l i : ℤ) ∣ n ↔ (l : ℤ) ∣ n * D.d i := by
   obtain ⟨g, hgdef⟩ : ∃ g, Nat.gcd l (D.d i) = g := ⟨_, rfl⟩
@@ -70,10 +78,15 @@ lemma frobOrder_dvd_iff (hl : 0 < l) (i : I) (n : ℤ) :
   · exact fun h ↦ h.mul_right _
   · exact fun h ↦ (Nat.isCoprime_iff_coprime.2 hcop).dvd_of_dvd_mul_right h
 
+/--
+@isnad1 id=dvd.1h4v.s5.535011531cec from=translated src=- shape=fae3acdd vocab=b0808c84
+-/
 lemma dvd_frobOrder_mul_d (hl : 0 < l) (i : I) : l ∣ D.frobOrder l i * D.d i := by
   exact_mod_cast (D.frobOrder_dvd_iff hl i _).1 dvd_rfl
 
-/-- `lᵢ` divides `lⱼ aᵢⱼ` ([Lus] 2.2.4).-/
+/-- `lᵢ` divides `lⱼ aᵢⱼ` ([Lus] 2.2.4).
+@isnad1 id=dvd.1h5v.s5.33bb5be8dfe2 from=translated src=- shape=ce2b05e3 vocab=1c04fba0
+-/
 lemma frobOrder_dvd_mul_cartanMatrix (hl : 0 < l) (i j : I) :
     (D.frobOrder l i : ℤ) ∣ D.frobOrder l j * D.cartanMatrix i j := by
   rw [D.frobOrder_dvd_iff hl, mul_assoc, mul_comm (D.cartanMatrix i j), D.d_mul_cartanMatrix_comm,
@@ -94,17 +107,24 @@ def frobenius (hl : 0 < l) : LusztigCartanDatum I where
     rw [← D.two_mul_d i, ← D.d_mul_cartanMatrix]
     linear_combination (2 * (D.frobOrder l i : ℤ) * D.d i) * hc
 
+/--
+@isnad1 id=eq.1h5v.s6.9b3e6e8b7562 from=translated src=- shape=290ff80a vocab=2aafa617
+-/
 lemma frobenius_dot (hl : 0 < l) (i j : I) :
     (D.frobenius hl).dot i j = D.frobOrder l i * D.frobOrder l j * D.dot i j := rfl
 
-/-- `i ∘ i / 2 = lᵢ² dᵢ`.-/
+/-- `i ∘ i / 2 = lᵢ² dᵢ`.
+@isnad1 id=eq.1h4v.s5.499c91f62b29 from=translated src=- shape=03192ff7 vocab=da530bc0
+-/
 lemma frobenius_d (hl : 0 < l) (i : I) : (D.frobenius hl).d i = D.frobOrder l i ^ 2 * D.d i := by
   have h := (D.frobenius hl).two_mul_d i
   rw [frobenius_dot, ← D.two_mul_d i] at h
   have : ((D.frobenius hl).d i : ℤ) = D.frobOrder l i ^ 2 * D.d i := by linarith
   exact_mod_cast this
 
-/-- The Cartan matrix of `(I, ∘)`: `lᵢ a*ᵢⱼ = lⱼ aᵢⱼ`.-/
+/-- The Cartan matrix of `(I, ∘)`: `lᵢ a*ᵢⱼ = lⱼ aᵢⱼ`.
+@isnad1 id=eq.1h5v.s6.2db27fc2f482 from=translated src=- shape=ab21889f vocab=b2cef1ea
+-/
 lemma frobOrder_mul_cartanMatrix_frobenius (hl : 0 < l) (i j : I) :
     (D.frobOrder l i : ℤ) * (D.frobenius hl).cartanMatrix i j =
       D.frobOrder l j * D.cartanMatrix i j := by

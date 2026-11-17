@@ -64,9 +64,15 @@ def integralWeights : AddSubgroup (Dual K H) where
     obtain ⟨m, hm⟩ := hμ i
     exact ⟨-m, by simp [hm]⟩
 
+/--
+@isnad1 id=iff.0h6v.s8.627592070fc8 from=translated src=- shape=bd9227d1 vocab=b53362b6
+-/
 lemma mem_integralWeights {μ : Dual K H} :
     μ ∈ P.integralWeights ↔ ∀ i, ∃ n : ℤ, μ (P.coroot i) = n := Iff.rfl
 
+/--
+@isnad1 id=mem.0h6v.s8.4d362917b60d from=translated src=- shape=9bee05b2 vocab=bf12427e
+-/
 lemma root_mem_integralWeights (j : ι) : P.root j ∈ P.integralWeights :=
   fun i ↦ ⟨A i j, P.root_coroot i j⟩
 
@@ -86,6 +92,9 @@ noncomputable def corootInt (i : ι) : Dual ℤ P.integralWeights where
       ← Classical.choose_spec ((m • μ).2 i)]
     simp
 
+/--
+@isnad1 id=eq.0h7v.s11.969accdd6834 from=translated src=- shape=e22915bf vocab=2b0564bd
+-/
 @[simp] lemma corootInt_spec (i : ι) (μ : P.integralWeights) :
     ((P.corootInt i μ : ℤ) : K) = (μ : Dual K H) (P.coroot i) :=
   (Classical.choose_spec (μ.2 i)).symm
@@ -101,21 +110,31 @@ noncomputable def cartanDatum (hA : A.IsGeneralizedCartan) :
 
 variable (hA : A.IsGeneralizedCartan)
 
+/--
+@isnad1 id=eq.1h6v.s9.bfc40e5234e3 from=translated src=- shape=cf225b3c vocab=ff64ef67
+-/
 @[simp] lemma coe_root_cartanDatum (j : ι) :
     ((P.cartanDatum hA).root j : Dual K H) = P.root j := rfl
 
+/--
+@isnad1 id=eq.1h7v.s11.897e029cec39 from=translated src=- shape=f09176bb vocab=28c16db0
+-/
 @[simp] lemma coroot_cartanDatum_cast (i : ι) (μ : P.integralWeights) :
     (((P.cartanDatum hA).coroot i μ : ℤ) : K) = (μ : Dual K H) (P.coroot i) :=
   P.corootInt_spec i μ
 
-/-- The Cartan matrix of the Cartan datum of a realization of `A` is `A`.-/
+/-- The Cartan matrix of the Cartan datum of a realization of `A` is `A`.
+@isnad1 id=eq.1h5v.s8.c9cc44830bbe from=translated src=- shape=d4e3b5da vocab=d99f6db9
+-/
 theorem cartanMatrix_cartanDatum : (P.cartanDatum hA).cartanMatrix = A := by
   ext i j
   apply Int.cast_injective (α := K)
   rw [CartanDatum.cartanMatrix_apply, coroot_cartanDatum_cast, coe_root_cartanDatum,
     P.root_coroot]
 
-/-- The simple reflections of the Cartan datum are the fundamental reflections `rᵢ` of `𝔥*`.-/
+/-- The simple reflections of the Cartan datum are the fundamental reflections `rᵢ` of `𝔥*`.
+@isnad1 id=eq.1h7v.s13.0581cb982901 from=translated src=- shape=0fbd628a vocab=abcaea11
+-/
 theorem coe_reflection_cartanDatum (i : ι) (μ : P.integralWeights) :
     ((P.cartanDatum hA).reflection i μ : Dual K H) = P.reflection hA i μ := by
   rw [CartanDatum.reflection_apply, P.reflection_apply, AddSubgroup.coe_sub,
@@ -138,7 +157,9 @@ noncomputable def formalCharacter [Fintype B] (C : Crystal (P.cartanDatum hA) B)
     P.CharacterRing ℤ :=
   ∑ b, CharacterRing.exp P ℤ (C.wt b : Dual K H)
 
-/-- The coefficient of `e^μ` in `ch B` is the number of elements of weight `μ`.-/
+/-- The coefficient of `e^μ` in `ch B` is the number of elements of weight `μ`.
+@isnad1 id=eq.1h8v.s10.46d0b055a5ad from=translated src=- shape=3277a08f vocab=ce462993
+-/
 theorem coeffAt_formalCharacter [Fintype B] (C : Crystal (P.cartanDatum hA) B) (μ : Dual K H) :
     (formalCharacter C).coeffAt μ = Nat.card {b // (C.wt b : Dual K H) = μ} := by
   classical
@@ -166,10 +187,16 @@ noncomputable def formalCharacterOfCones (C : Crystal (P.cartanDatum hA) B)
       exact hμ (by simp [Nat.card_of_isEmpty])
     exact ht b
 
+/--
+@isnad1 id=eq.2h8v.s11.e18aed39646d from=translated src=- shape=a0bcbc6a vocab=74c03750
+-/
 @[simp] lemma coeffAt_formalCharacterOfCones (C : Crystal (P.cartanDatum hA) B) (hC)
     (μ : Dual K H) :
     (formalCharacterOfCones C hC).coeffAt μ = Nat.card {b // (C.wt b : Dual K H) = μ} := rfl
 
+/--
+@isnad1 id=eq.2h7v.s10.9aaab4618b29 from=translated src=- shape=710ea3c3 vocab=db62629d
+-/
 lemma formalCharacterOfCones_eq [Fintype B] (C : Crystal (P.cartanDatum hA) B) (hC) :
     formalCharacterOfCones C hC = formalCharacter C :=
   CharacterRing.ext fun μ ↦ by rw [coeffAt_formalCharacterOfCones, coeffAt_formalCharacter]

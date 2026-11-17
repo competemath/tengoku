@@ -58,7 +58,9 @@ open CoxeterSystem
 
 variable {B : Type*} (M : CoxeterMatrix B)
 
-/-- A constant family satisfies the braid relations.-/
+/-- A constant family satisfies the braid relations.
+@isnad1 id=isbraidl.0h4v.s4.53e9c0b4ae68 from=translated src=- shape=248cd93d vocab=b3492066
+-/
 theorem isBraidLiftable_const {G : Type*} [Monoid G] (c : G) :
     M.IsBraidLiftable (fun _ : B ↦ c) := by
   intro i j _ _
@@ -66,7 +68,9 @@ theorem isBraidLiftable_const {G : Type*} [Monoid G] (c : G) :
 
 variable {M}
 
-/-- The braid relations for reversed braid words.-/
+/-- The braid relations for reversed braid words.
+@isnad1 id=eq.3h6v.s6.47a15c282b4f from=translated src=- shape=f88f6bb0 vocab=23ecbcb3
+-/
 theorem IsBraidLiftable.reverse {G : Type*} [Monoid G] {g : B → G} (hg : M.IsBraidLiftable g)
     {i j : B} (hij : i ≠ j) (hm : M i j ≠ 0) :
     (((braidWord M i j).reverse).map g).prod = (((braidWord M j i).reverse).map g).prod := by
@@ -77,7 +81,9 @@ theorem IsBraidLiftable.reverse {G : Type*} [Monoid G] {g : B → G} (hg : M.IsB
   · exact h.symm
   · exact h
 
-/-- If the `g i` satisfy the braid relations in `G`, so do the `op (g i)` in `Gᵐᵒᵖ`.-/
+/-- If the `g i` satisfy the braid relations in `G`, so do the `op (g i)` in `Gᵐᵒᵖ`.
+@isnad1 id=isbraidl.1h4v.s5.afda13ef33f8 from=translated src=- shape=8f69bec6 vocab=acdade7e
+-/
 theorem IsBraidLiftable.op {G : Type*} [Monoid G] {g : B → G} (hg : M.IsBraidLiftable g) :
     M.IsBraidLiftable (MulOpposite.op ∘ g) := by
   have key : ∀ ω : List B,
@@ -87,7 +93,9 @@ theorem IsBraidLiftable.op {G : Type*} [Monoid G] {g : B → G} (hg : M.IsBraidL
   intro i j hij hm
   rw [key, key, hg.reverse hij hm]
 
-/-- If the `g i` satisfy the braid relations in a group, so do their inverses.-/
+/-- If the `g i` satisfy the braid relations in a group, so do their inverses.
+@isnad1 id=isbraidl.1h4v.s5.84ea72057544 from=translated src=- shape=e188d309 vocab=b20857b4
+-/
 theorem IsBraidLiftable.inv {G : Type*} [Group G] {g : B → G} (hg : M.IsBraidLiftable g) :
     M.IsBraidLiftable (fun i ↦ (g i)⁻¹) := by
   have key : ∀ ω : List B, (ω.map (fun i ↦ (g i)⁻¹)).prod = ((ω.reverse.map g).prod)⁻¹ := by
@@ -98,7 +106,9 @@ theorem IsBraidLiftable.inv {G : Type*} [Group G] {g : B → G} (hg : M.IsBraidL
   intro i j hij hm
   rw [key, key, hg.reverse hij hm]
 
-/-- If the `g i` satisfy the braid relations in an `R`-algebra, so do the `c • g i`.-/
+/-- If the `g i` satisfy the braid relations in an `R`-algebra, so do the `c • g i`.
+@isnad1 id=isbraidl.1h6v.s6.cea72394b765 from=translated src=- shape=d30a8f3e vocab=3230d62d
+-/
 theorem IsBraidLiftable.smul {R A : Type*} [CommRing R] [Ring A] [Algebra R A] {g : B → A}
     (hg : M.IsBraidLiftable g) (c : R) : M.IsBraidLiftable (fun i ↦ c • g i) := by
   have key : ∀ ω : List B, (ω.map (fun i ↦ c • g i)).prod = c ^ ω.length • (ω.map g).prod := by
@@ -114,7 +124,9 @@ theorem IsBraidLiftable.smul {R A : Type*} [CommRing R] [Ring A] [Algebra R A] {
 
 variable {R : Type*} [CommRing R] {q : R}
 
-/-- If the `t i` satisfy the Hecke relations in `A`, so do the `op (t i)` in `Aᵐᵒᵖ`.-/
+/-- If the `t i` satisfy the Hecke relations in `A`, so do the `op (t i)` in `Aᵐᵒᵖ`.
+@isnad1 id=isheckef.1h6v.s6.e3cb37a440bd from=translated src=- shape=0aacb7f3 vocab=684cfb3e
+-/
 theorem IsHeckeFamily.op {A : Type*} [Ring A] [Algebra R A] {t : B → A}
     (ht : M.IsHeckeFamily q t) : M.IsHeckeFamily q (MulOpposite.op ∘ t) where
   quadratic i := by
@@ -151,20 +163,30 @@ noncomputable def ind : IwahoriHeckeAlgebra cs q →ₐ[R] R :=
 noncomputable def sgn : IwahoriHeckeAlgebra cs q →ₐ[R] R :=
   lift cs q R ⟨fun _ ↦ -1, by simp, M.isBraidLiftable_const (-1)⟩
 
+/--
+@isnad1 id=eq.0h7v.s7.63900789de1b from=translated src=- shape=22677853 vocab=f5bbd232
+-/
 @[simp]
 theorem ind_T_simple (i : B) : ind cs q (T cs q (s i)) = q := by
   simp [ind]
 
+/--
+@isnad1 id=eq.0h7v.s7.d2c069ca3c2c from=translated src=- shape=d65a8665 vocab=21ed6075
+-/
 @[simp]
 theorem sgn_T_simple (i : B) : sgn cs q (T cs q (s i)) = -1 := by
   simp [sgn]
 
-/-- `ind T_w = q^{ℓ(w)}`.-/
+/-- `ind T_w = q^{ℓ(w)}`.
+@isnad1 id=eq.0h7v.s7.f05ffe3dfd6a from=translated src=- shape=b6911283 vocab=668b83f4
+-/
 theorem ind_T (w : W) : ind cs q (T cs q w) = q ^ ℓ w := by
   obtain ⟨ω, hω, rfl⟩ := cs.exists_isReduced w
   rw [ind, lift_apply_T _ hω, List.map_const', List.prod_replicate, hω.eq]
 
-/-- `sgn T_w = (-1)^{ℓ(w)}`.-/
+/-- `sgn T_w = (-1)^{ℓ(w)}`.
+@isnad1 id=eq.0h7v.s7.bb09c1ed263c from=translated src=- shape=0e13a116 vocab=079c9691
+-/
 theorem sgn_T (w : W) : sgn cs q (T cs q w) = (-1) ^ ℓ w := by
   obtain ⟨ω, hω, rfl⟩ := cs.exists_isReduced w
   rw [sgn, lift_apply_T _ hω, List.map_const', List.prod_replicate, hω.eq]
@@ -176,6 +198,9 @@ noncomputable def antiInvolutionHom :
     IwahoriHeckeAlgebra cs q →ₐ[R] (IwahoriHeckeAlgebra cs q)ᵐᵒᵖ :=
   lift cs q _ ⟨_, (isHeckeFamily_T cs q).op⟩
 
+/--
+@isnad1 id=eq.0h7v.s8.248c71884886 from=translated src=- shape=804e67c1 vocab=47f559b1
+-/
 theorem antiInvolutionHom_T (w : W) : antiInvolutionHom cs q (T cs q w) = op (T cs q w⁻¹) := by
   induction w using cs.induction_simple_mul with
   | one => simp
@@ -191,6 +216,9 @@ noncomputable def antiInvolutionLinearEquiv :
     IwahoriHeckeAlgebra cs q ≃ₗ[R] (IwahoriHeckeAlgebra cs q)ᵐᵒᵖ :=
   ((basis cs q).equiv (basis cs q) (Equiv.inv W)).trans (MulOpposite.opLinearEquiv R)
 
+/--
+@isnad1 id=eq.0h7v.s9.8ce10b1250bc from=translated src=- shape=fd6cd715 vocab=6deb5016
+-/
 theorem antiInvolutionLinearEquiv_apply (x : IwahoriHeckeAlgebra cs q) :
     antiInvolutionLinearEquiv cs q x = antiInvolutionHom cs q x := by
   induction x using induction_on cs q with
@@ -210,12 +238,17 @@ noncomputable def antiInvolution :
     (by rw [antiInvolutionLinearEquiv_apply, map_one])
     (fun x y ↦ by simp only [antiInvolutionLinearEquiv_apply, map_mul])
 
+/--
+@isnad1 id=eq.0h7v.s8.2b0e179a728c from=translated src=- shape=804e67c1 vocab=77bdcfe1
+-/
 @[simp]
 theorem antiInvolution_T (w : W) : antiInvolution cs q (T cs q w) = op (T cs q w⁻¹) := by
   rw [← antiInvolutionHom_T]
   exact antiInvolutionLinearEquiv_apply cs q _
 
-/-- `T_w ↦ T_{w⁻¹}` is an involution.-/
+/-- `T_w ↦ T_{w⁻¹}` is an involution.
+@isnad1 id=eq.0h7v.s9.5d55e3e21b3e from=translated src=- shape=c2d8af0a vocab=6797d134
+-/
 theorem unop_antiInvolution_unop (x : IwahoriHeckeAlgebra cs q) :
     (antiInvolution cs q (antiInvolution cs q x).unop).unop = x := by
   induction x using induction_on cs q with
@@ -229,14 +262,22 @@ products (`antiInvolutionSelf_mul`).-/
 noncomputable def antiInvolutionSelf : IwahoriHeckeAlgebra cs q ≃ₗ[R] IwahoriHeckeAlgebra cs q :=
   (antiInvolution cs q).toLinearEquiv.trans (MulOpposite.opLinearEquiv R).symm
 
+/--
+@isnad1 id=eq.0h7v.s9.5f1b748c3a65 from=translated src=- shape=55e5de88 vocab=f28d1cbf
+-/
 theorem antiInvolutionSelf_apply (x : IwahoriHeckeAlgebra cs q) :
     antiInvolutionSelf cs q x = (antiInvolution cs q x).unop := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.bce08b81cab8 from=translated src=- shape=03fa381c vocab=7e58cd9f
+-/
 @[simp]
 theorem antiInvolutionSelf_T (w : W) : antiInvolutionSelf cs q (T cs q w) = T cs q w⁻¹ := by
   simp [antiInvolutionSelf_apply]
 
-/-- The map `T_w ↦ T_{w⁻¹}` reverses products.-/
+/-- The map `T_w ↦ T_{w⁻¹}` reverses products.
+@isnad1 id=eq.0h8v.s10.e23f1f803b1b from=translated src=- shape=b907660b vocab=61265cfd
+-/
 theorem antiInvolutionSelf_mul (x y : IwahoriHeckeAlgebra cs q) :
     antiInvolutionSelf cs q (x * y) = antiInvolutionSelf cs q y * antiInvolutionSelf cs q x := by
   simp [antiInvolutionSelf_apply]
@@ -247,7 +288,9 @@ section SignTwist
 
 variable {q} (hq : IsUnit q)
 
-/-- The `T_s⁻¹` satisfy the braid relations.-/
+/-- The `T_s⁻¹` satisfy the braid relations.
+@isnad1 id=isbraidl.1h6v.s6.94011d259a25 from=translated src=- shape=53d301f5 vocab=d4a0c2fc
+-/
 theorem isBraidLiftable_TInv : M.IsBraidLiftable (fun i ↦ TInv cs hq (s i)) := by
   have hU : M.IsBraidLiftable (fun i ↦ TUnit cs hq (s i)) := by
     intro i j hij hm
@@ -261,7 +304,9 @@ theorem isBraidLiftable_TInv : M.IsBraidLiftable (fun i ↦ TInv cs hq (s i)) :=
   rw [map_list_prod, map_list_prod, List.map_map, List.map_map] at this
   exact this
 
-/-- `-q T_s⁻¹ = (q - 1) - T_s`.-/
+/-- `-q T_s⁻¹ = (q - 1) - T_s`.
+@isnad1 id=eq.1h7v.s8.dba51a58feb3 from=translated src=- shape=9d941918 vocab=6adde6ed
+-/
 theorem neg_smul_TInv_simple (i : B) :
     (-q) • TInv cs hq (s i) = algebraMap R _ (q - 1) - T cs q (s i) := by
   have e : q * hq.unit⁻¹.1 = 1 := hq.mul_val_inv
@@ -269,7 +314,9 @@ theorem neg_smul_TInv_simple (i : B) :
   match_scalars <;> linear_combination (-1 : R) * e
 
 include hq in
-/-- The elements `(q - 1) - T_s = -q T_s⁻¹` satisfy the Hecke relations.-/
+/-- The elements `(q - 1) - T_s = -q T_s⁻¹` satisfy the Hecke relations.
+@isnad1 id=isheckef.1h6v.s8.66efa3f3dfa8 from=translated src=- shape=3522c168 vocab=a33f51a8
+-/
 theorem isHeckeFamily_signTwist :
     M.IsHeckeFamily q (fun i ↦ algebraMap R _ (q - 1) - T cs q (s i)) where
   quadratic i := by
@@ -292,10 +339,16 @@ theorem isHeckeFamily_signTwist :
 noncomputable def signTwistHom : IwahoriHeckeAlgebra cs q →ₐ[R] IwahoriHeckeAlgebra cs q :=
   lift cs q _ ⟨_, isHeckeFamily_signTwist cs hq⟩
 
+/--
+@isnad1 id=eq.1h7v.s9.a651ef223d6a from=translated src=- shape=74f0e45e vocab=a6d2262f
+-/
 theorem signTwistHom_T_simple (i : B) :
     signTwistHom cs hq (T cs q (s i)) = algebraMap R _ (q - 1) - T cs q (s i) := by
   simp [signTwistHom]
 
+/--
+@isnad1 id=eq.1h6v.s8.7b80e06175fa from=translated src=- shape=bbc392c0 vocab=ec7dc50a
+-/
 theorem signTwistHom_signTwistHom :
     (signTwistHom cs hq).comp (signTwistHom cs hq) = AlgHom.id R _ :=
   algHom_ext cs q fun i ↦ by simp [signTwistHom_T_simple]
@@ -307,16 +360,23 @@ noncomputable def signTwist : IwahoriHeckeAlgebra cs q ≃ₐ[R] IwahoriHeckeAlg
   AlgEquiv.ofAlgHom (signTwistHom cs hq) (signTwistHom cs hq) (signTwistHom_signTwistHom cs hq)
     (signTwistHom_signTwistHom cs hq)
 
+/--
+@isnad1 id=eq.1h7v.s9.b04d2dc2168e from=translated src=- shape=74f0e45e vocab=d476ad40
+-/
 @[simp]
 theorem signTwist_T_simple (i : B) :
     signTwist cs hq (T cs q (s i)) = algebraMap R _ (q - 1) - T cs q (s i) :=
   signTwistHom_T_simple cs hq i
 
-/-- The sign twist is an involution.-/
+/-- The sign twist is an involution.
+@isnad1 id=eq.1h6v.s7.5343a2b35d46 from=translated src=- shape=65a823c3 vocab=650f9d7e
+-/
 @[simp]
 theorem signTwist_symm : (signTwist cs hq).symm = signTwist cs hq := rfl
 
-/-- `T_w ↦ (-q)^{ℓ(w)} T_{w⁻¹}⁻¹` under the sign twist.-/
+/-- `T_w ↦ (-q)^{ℓ(w)} T_{w⁻¹}⁻¹` under the sign twist.
+@isnad1 id=eq.1h7v.s8.5734f0f26af5 from=translated src=- shape=f90a7e1f vocab=dcf71954
+-/
 theorem signTwist_T (w : W) :
     signTwist cs hq (T cs q w) = (-q) ^ ℓ w • TInv cs hq w⁻¹ := by
   induction w using cs.induction_simple_mul with
@@ -330,6 +390,9 @@ theorem signTwist_T (w : W) :
     rw [← T_simple_mul_T_of_lt cs q hlt, map_mul, ih, signTwist_T_simple,
       ← neg_smul_TInv_simple, smul_mul_smul_comm, e, TInv_mul cs hq hl', hl, pow_succ']
 
+/--
+@isnad1 id=eq.1h6v.s8.21995aa1bbe5 from=translated src=- shape=a934f665 vocab=3bcc1e34
+-/
 theorem sgn_comp_signTwist : (sgn cs q).comp (signTwist cs hq).toAlgHom = ind cs q :=
   algHom_ext cs q fun i ↦ by
     change sgn cs q (signTwist cs hq (T cs q (s i))) = ind cs q (T cs q (s i))
@@ -352,7 +415,9 @@ used to relate the bases `C_w` and `C'_w`.-/
 noncomputable def barSignTwist : IwahoriHeckeAlgebra cs q →+* IwahoriHeckeAlgebra cs q :=
   (signTwist cs (isUnit_of_mul_eq_one' σ hσ)).toRingEquiv.toRingHom.comp (bar cs σ hσ)
 
-/-- `j(T_w) = (-σ(q))^{ℓ(w)} T_w`.-/
+/-- `j(T_w) = (-σ(q))^{ℓ(w)} T_w`.
+@isnad1 id=eq.1h8v.s8.1a3d598160a4 from=translated src=- shape=a6f0b8ad vocab=4e59a91b
+-/
 theorem barSignTwist_T (w : W) :
     barSignTwist cs σ hσ (T cs q w) = (-σ q) ^ ℓ w • T cs q w := by
   set hq := isUnit_of_mul_eq_one' σ hσ

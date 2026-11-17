@@ -55,13 +55,18 @@ variable {ι K H : Type*} [Fintype ι] [Field K] [LinearOrder K] [IsStrictOrdere
   [AddCommGroup H] [Module K H] {A : Matrix ι ι ℤ} (P : Realization A K H)
   (hA : A.IsGeneralizedCartan)
 
+/--
+@isnad1 id=le.2h7v.s8.2cb27baf0dde from=translated src=- shape=57e9cba9 vocab=3cf42929
+-/
 lemma apply_corootOf_nonneg {μ : Dual K H} (hμ : μ ∈ P.dominantChamber) {k : ι → ℤ}
     (hk : 0 ≤ k) : 0 ≤ μ (P.corootOf k) := by
   rw [apply_corootOf]
   exact Finset.sum_nonneg fun i _ ↦ mul_nonneg (by simpa using hk i) (hμ i)
 
 /-- A point of the Tits cone is negative on only finitely many positive real coroots
-([Kac] Prop. 3.12 (c), dually).-/
+([Kac] Prop. 3.12 (c), dually).
+@isnad1 id=finite.2h6v.s8.ce5dc540ad9e from=translated src=- shape=258d9aca vocab=55762833
+-/
 theorem finite_of_mem_titsCone {μ : Dual K H} (hμ : μ ∈ P.titsCone hA) :
     {h | h ∈ P.posRealCoroots hA ∧ μ h < 0}.Finite := by
   obtain ⟨w, hw, ν, hν, rfl⟩ := hμ
@@ -73,7 +78,9 @@ theorem finite_of_mem_titsCone {μ : Dual K H} (hμ : μ ∈ P.titsCone hA) :
   exact (P.apply_corootOf_nonneg hν hk).not_gt hlt
 
 /-- A point of `𝔥*` which is negative on only finitely many positive real coroots lies in the
-Tits cone ([Kac] Prop. 3.12 (c), dually).-/
+Tits cone ([Kac] Prop. 3.12 (c), dually).
+@isnad1 id=mem.2h6v.s8.ef34aad6c5d3 from=translated src=- shape=3889a714 vocab=55762833
+-/
 theorem mem_titsCone_of_finite {μ : Dual K H}
     (hμ : {h | h ∈ P.posRealCoroots hA ∧ μ h < 0}.Finite) : μ ∈ P.titsCone hA := by
   generalize hn : {h | h ∈ P.posRealCoroots hA ∧ μ h < 0}.ncard = n
@@ -107,22 +114,31 @@ theorem mem_titsCone_of_finite {μ : Dual K H}
   rwa [reflection_reflection] at this
 
 /-- **The Tits cone** ([Kac] Prop. 3.12 (c), for the action on `𝔥*`):
-`X = {λ | ⟨λ, β^∨⟩ < 0 for only finitely many positive real coroots β^∨}`.-/
+`X = {λ | ⟨λ, β^∨⟩ < 0 for only finitely many positive real coroots β^∨}`.
+@isnad1 id=iff.1h6v.s8.62a6af11cc31 from=translated src=- shape=5a4b01c2 vocab=55762833
+-/
 theorem mem_titsCone_iff {μ : Dual K H} :
     μ ∈ P.titsCone hA ↔ {h | h ∈ P.posRealCoroots hA ∧ μ h < 0}.Finite :=
   ⟨P.finite_of_mem_titsCone hA, P.mem_titsCone_of_finite hA⟩
 
 omit [IsStrictOrderedRing K] in
+/--
+@isnad1 id=mem.1h5v.s7.4a0f7ec404d0 from=translated src=- shape=338b9205 vocab=143f8d1f
+-/
 lemma zero_mem_titsCone : 0 ∈ P.titsCone hA :=
   P.dominantChamber_subset_titsCone hA fun i ↦ by simp
 
-/-- The Tits cone is stable under multiplication by nonnegative scalars.-/
+/-- The Tits cone is stable under multiplication by nonnegative scalars.
+@isnad1 id=mem.3h7v.s8.3e3516839572 from=translated src=- shape=f5d10ce5 vocab=a7868a20
+-/
 theorem smul_mem_titsCone {c : K} (hc : 0 ≤ c) {μ : Dual K H} (hμ : μ ∈ P.titsCone hA) :
     c • μ ∈ P.titsCone hA := by
   obtain ⟨w, hw, ν, hν, rfl⟩ := hμ
   exact ⟨w, hw, c • ν, fun i ↦ by simpa using mul_nonneg hc (hν i), map_smul w c ν⟩
 
-/-- The Tits cone is stable under addition ([Kac] Prop. 3.12 (c), dually).-/
+/-- The Tits cone is stable under addition ([Kac] Prop. 3.12 (c), dually).
+@isnad1 id=mem.3h7v.s8.e10f9a458ec3 from=translated src=- shape=37f9d05b vocab=71932ac0
+-/
 theorem add_mem_titsCone {μ ν : Dual K H} (hμ : μ ∈ P.titsCone hA) (hν : ν ∈ P.titsCone hA) :
     μ + ν ∈ P.titsCone hA := by
   rw [mem_titsCone_iff] at hμ hν ⊢
@@ -140,6 +156,9 @@ def titsPointedCone : PointedCone K (Dual K H) where
   zero_mem' := P.zero_mem_titsCone hA
   smul_mem' c _ hμ := P.smul_mem_titsCone hA c.2 hμ
 
+/--
+@isnad1 id=eq.1h5v.s9.f38580262468 from=translated src=- shape=a4e167b3 vocab=15bd4958
+-/
 @[simp] lemma coe_titsPointedCone : (P.titsPointedCone hA : Set (Dual K H)) = P.titsCone hA :=
   rfl
 

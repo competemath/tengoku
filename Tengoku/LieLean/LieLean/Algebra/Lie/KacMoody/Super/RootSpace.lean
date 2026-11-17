@@ -45,6 +45,9 @@ namespace SuperEnveloping
 /-! ### Words -/
 
 omit [Fintype ι] in
+/--
+@isnad1 id=iff.0h2v.s5.024a1bb62c6e from=translated src=- shape=801ca248 vocab=299dcde5
+-/
 lemma wordVec_eq_zero_iff {w : List ι} : wordVec w = 0 ↔ w = [] := by
   refine ⟨fun hw ↦ ?_, fun hw ↦ hw ▸ wordVec_nil⟩
   cases w with
@@ -56,6 +59,9 @@ lemma wordVec_eq_zero_iff {w : List ι} : wordVec w = 0 ↔ w = [] := by
     omega
 
 omit [Fintype ι] in
+/--
+@isnad1 id=and.1h5v.s7.c471da5e9036 from=translated src=- shape=55abb05c vocab=57e73521
+-/
 lemma wordVec_cons_eq_nsmul_single {j i : ι} {w : List ι} {n : ℕ}
     (hw : wordVec (j :: w) = (n + 1 : ℕ) • Pi.single i (1 : ℤ)) :
     j = i ∧ wordVec w = n • Pi.single i (1 : ℤ) := by
@@ -99,10 +105,16 @@ open Classical in
 def wProj (μ : Dual K H) : Module.End K (P.SuperEnveloping p) :=
   wScale P p fun ν ↦ if ν = μ then 1 else 0
 
+/--
+@isnad1 id=eq.1h8v.s9.c8e702b5756d from=translated src=- shape=7422c5f3 vocab=b931e867
+-/
 lemma wProj_of_mem {μ : Dual K H} {x : P.SuperEnveloping p} (hx : x ∈ weightSpace P p μ) :
     wProj P p μ x = x := by
   rw [wProj, wScale_of_mem P p _ hx]; simp
 
+/--
+@isnad1 id=eq.2h9v.s9.38d6ca807fd1 from=translated src=- shape=64ac53c5 vocab=b931e867
+-/
 lemma wProj_of_mem_ne {μ ν : Dual K H} (hν : ν ≠ μ) {x : P.SuperEnveloping p}
     (hx : x ∈ weightSpace P p ν) : wProj P p μ x = 0 := by
   rw [wProj, wScale_of_mem P p _ hx]; simp [hν]
@@ -111,11 +123,17 @@ lemma wProj_of_mem_ne {μ ν : Dual K H} (hν : ν ≠ μ) {x : P.SuperEnvelopin
 def nPlusRoot (k : ι → ℤ) : Submodule K (P.SuperEnveloping p) :=
   Submodule.span K {x | ∃ i w, wordVec (i :: w) = k ∧ eLie P p i w = x}
 
+/--
+@isnad1 id=mem.0h8v.s9.39438fc65441 from=translated src=- shape=c29f2e0f vocab=b8fc38f3
+-/
 lemma eLie_mem_weightSpace_rootOf (i : ι) (w : List ι) :
     eLie P p i w ∈ weightSpace P p (P.rootOf (wordVec (i :: w))) := by
   rw [rootOf_wordVec, List.map_cons, List.sum_cons, add_comm]
   exact eLie_mem_weightSpace P p i w
 
+/--
+@isnad1 id=le.0h7v.s9.75bf0da14721 from=translated src=- shape=28e810d9 vocab=a9cb31d2
+-/
 lemma nPlusRoot_le_weightSpace (k : ι → ℤ) :
     nPlusRoot P p k ≤ weightSpace P p (P.rootOf k) := by
   refine Submodule.span_le.2 ?_
@@ -124,7 +142,9 @@ lemma nPlusRoot_le_weightSpace (k : ι → ℤ) :
 
 variable [CharZero K]
 
-/-- The projection of `ñ₊` onto `U_α` lies in the span of the matching iterated commutators.-/
+/-- The projection of `ñ₊` onto `U_α` lies in the span of the matching iterated commutators.
+@isnad1 id=mem.1h8v.s10.3fce0fe6ff0e from=translated src=- shape=6aec2c53 vocab=491c7890
+-/
 lemma wProj_mem_nPlusRoot (k : ι → ℤ) {x : P.SuperEnveloping p} (hx : x ∈ nPlus P p) :
     wProj P p (P.rootOf k) x ∈ nPlusRoot P p k := by
   suffices nPlus P p ≤ (nPlusRoot P p k).comap (wProj P p (P.rootOf k)) from this hx
@@ -137,7 +157,9 @@ lemma wProj_mem_nPlusRoot (k : ι → ℤ) {x : P.SuperEnveloping p} (hx : x ∈
       (eLie_mem_weightSpace_rootOf P p i w)]
     exact zero_mem _
 
-/-- The projection onto `U_α`, `α ∈ Q₊ \ {0}`, kills `ñ₋`.-/
+/-- The projection onto `U_α`, `α ∈ Q₊ \ {0}`, kills `ñ₋`.
+@isnad1 id=eq.2h8v.s10.f8a88fadd2c9 from=translated src=- shape=826dbea2 vocab=b1eee2f3
+-/
 lemma wProj_nMinus {k : ι → ℤ} (hk : k ∈ posCone ι) {x : P.SuperEnveloping p}
     (hx : x ∈ nMinus P p) : wProj P p (P.rootOf k) x = 0 := by
   obtain ⟨y, hy, rfl⟩ := hx
@@ -153,7 +175,9 @@ lemma wProj_nMinus {k : ι → ℤ} (hk : k ∈ posCone ι) {x : P.SuperEnvelopi
   rw [map_add, ← h, add_neg_cancel]
 
 /-- `G̃_α` for `α = ∑ kᵢ αᵢ ∈ Q₊ \ {0}` is spanned by the iterated super commutators
-`[e_{j₁}, ⋯ [e_{jₙ}, eᵢ] ⋯ ]` with `αᵢ + ∑ α_{jₗ} = α` ([Kac78] §1.2).-/
+`[e_{j₁}, ⋯ [e_{jₙ}, eᵢ] ⋯ ]` with `αᵢ + ∑ α_{jₗ} = α` ([Kac78] §1.2).
+@isnad1 id=eq.1h7v.s9.b5715906b4c6 from=translated src=- shape=f388258a vocab=a41cc537
+-/
 theorem gTilde_inf_weightSpace_rootOf {k : ι → ℤ} (hk : k ∈ posCone ι) :
     gTilde P p ⊓ weightSpace P p (P.rootOf k) = nPlusRoot P p k := by
   refine le_antisymm ?_ (le_inf ?_ (nPlusRoot_le_weightSpace P p k))
@@ -170,6 +194,9 @@ theorem gTilde_inf_weightSpace_rootOf {k : ι → ℤ} (hk : k ∈ posCone ι) :
 /-! ### Multiples of a simple root -/
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h7v.s9.7466c1149920 from=translated src=- shape=2b6dd0ea vocab=ec8845a5
+-/
 lemma rootOf_nsmul_single (i : ι) (n : ℕ) :
     P.rootOf (n • Pi.single i (1 : ℤ)) = n • P.root i := by
   rw [map_nsmul]
@@ -177,6 +204,9 @@ lemma rootOf_nsmul_single (i : ι) (n : ℕ) :
   simp
 
 omit [Fintype ι] [CharZero K] in
+/--
+@isnad1 id=mem.1h3v.s6.31834726785f from=translated src=- shape=11e9fcca vocab=9c98f33e
+-/
 lemma nsmul_single_mem_posCone (i : ι) {n : ℕ} (hn : n ≠ 0) :
     n • Pi.single i (1 : ℤ) ∈ posCone ι := by
   refine ⟨fun j ↦ ?_, fun h0 ↦ hn ?_⟩
@@ -187,6 +217,9 @@ lemma nsmul_single_mem_posCone (i : ι) {n : ℕ} (hn : n ≠ 0) :
     simpa using this
 
 omit [CharZero K] in
+/--
+@isnad1 id=mem.1h9v.s10.25bb44bba870 from=translated src=- shape=0373f321 vocab=e970c892
+-/
 lemma mem_nPlusRoot_nsmul {i : ι} {n : ℕ} {x : P.SuperEnveloping p}
     (hx : x ∈ nPlusRoot P p ((n + 1 : ℕ) • Pi.single i (1 : ℤ))) :
     x ∈ K ∙ eLie P p i (List.replicate n i) := by
@@ -196,6 +229,9 @@ lemma mem_nPlusRoot_nsmul {i : ι} {n : ℕ} {x : P.SuperEnveloping p}
   rw [eq_replicate_of_wordVec hw']
   exact Submodule.mem_span_singleton_self _
 
+/--
+@isnad1 id=mem.2h9v.s10.634e60ea427e from=translated src=- shape=e474273a vocab=231ec3db
+-/
 lemma mem_weightSpace_nsmul_root {i : ι} {n : ℕ} {x : P.SuperEnveloping p}
     (hx : x ∈ gTilde P p) (hxn : x ∈ weightSpace P p ((n + 1) • P.root i)) :
     x ∈ K ∙ eLie P p i (List.replicate n i) := by
@@ -206,14 +242,18 @@ lemma mem_weightSpace_nsmul_root {i : ι} {n : ℕ} {x : P.SuperEnveloping p}
   rw [gTilde_inf_weightSpace_rootOf P p hk] at this
   exact mem_nPlusRoot_nsmul P p this
 
-/-- `G̃_{αᵢ} = K eᵢ`.-/
+/-- `G̃_{αᵢ} = K eᵢ`.
+@isnad1 id=ex.2h8v.s9.34ec9506cb22 from=translated src=- shape=76450015 vocab=00ba89ab
+-/
 theorem mem_weightSpace_root {i : ι} {x : P.SuperEnveloping p} (hx : x ∈ gTilde P p)
     (hxi : x ∈ weightSpace P p (P.root i)) : ∃ c : K, x = c • e P p i := by
   have := mem_weightSpace_nsmul_root P p (n := 0) hx (by rwa [zero_add, one_smul])
   obtain ⟨c, hc⟩ := Submodule.mem_span_singleton.1 this
   exact ⟨c, by simpa using hc.symm⟩
 
-/-- `G̃_{2αᵢ} = K [eᵢ, eᵢ]`.-/
+/-- `G̃_{2αᵢ} = K [eᵢ, eᵢ]`.
+@isnad1 id=ex.2h8v.s10.786e88900a9a from=translated src=- shape=b60d85ed vocab=0bd04052
+-/
 theorem mem_weightSpace_two_root {i : ι} {x : P.SuperEnveloping p} (hx : x ∈ gTilde P p)
     (hxi : x ∈ weightSpace P p (2 • P.root i)) :
     ∃ c : K, x = c • superBracket P p (e P p i) (e P p i) := by
@@ -222,7 +262,9 @@ theorem mem_weightSpace_two_root {i : ι} {x : P.SuperEnveloping p} (hx : x ∈ 
   exact ⟨c, by simpa using hc.symm⟩
 
 /-- `[eᵢ, [eᵢ, eᵢ]] = 0`: for `i` even `[eᵢ, eᵢ] = 0`, and for `i` odd this is the super Jacobi
-identity.-/
+identity.
+@isnad1 id=eq.0h7v.s7.6697abfa461c from=translated src=- shape=f449e6ba vocab=ea80ca33
+-/
 lemma superBracket_e_superBracket_e_e (i : ι) :
     superBracket P p (e P p i) (superBracket P p (e P p i) (e P p i)) = 0 := by
   have hJ := superBracket_jacobi (isHomog_e P p i) (isHomog_e P p i) (isHomog_e P p i)
@@ -240,6 +282,9 @@ lemma superBracket_e_superBracket_e_e (i : ι) :
     have h3 : (3 : K) • X = 0 := by linear_combination (norm := module) hJ
     exact (smul_eq_zero.1 h3).resolve_left (by norm_num)
 
+/--
+@isnad1 id=eq.1h8v.s7.84887c0fe2a7 from=translated src=- shape=c4c9bcad vocab=4ab1a31d
+-/
 lemma eLie_replicate_eq_zero (i : ι) {n : ℕ} (hn : 2 ≤ n) :
     eLie P p i (List.replicate n i) = 0 := by
   induction n, hn using Nat.le_induction with

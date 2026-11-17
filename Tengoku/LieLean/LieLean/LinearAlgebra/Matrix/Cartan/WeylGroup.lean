@@ -45,7 +45,9 @@ variable {ι K H : Type*} [Fintype ι] [Field K] [AddCommGroup H] [Module K H]
   {A : Matrix ι ι ℤ} (P : Realization A K H) (hA : A.IsGeneralizedCartan)
 
 include hA in
-/-- `⟨αᵢ, αᵢ^∨⟩ = aᵢᵢ = 2`.-/
+/-- `⟨αᵢ, αᵢ^∨⟩ = aᵢᵢ = 2`.
+@isnad1 id=eq.1h6v.s7.850c3f0fe04a from=translated src=- shape=b1c28c28 vocab=400431f1
+-/
 lemma root_coroot_self (i : ι) : P.root i (P.coroot i) = 2 := by
   rw [P.root_coroot, hA.diag]
   norm_num
@@ -58,56 +60,90 @@ noncomputable def reflection (i : ι) : Dual K H ≃ₗ[K] Dual K H :=
 noncomputable def coreflection (i : ι) : H ≃ₗ[K] H :=
   Module.reflection (x := P.coroot i) (f := P.root i) (P.root_coroot_self hA i)
 
+/--
+@isnad1 id=eq.1h7v.s10.f67112096307 from=translated src=- shape=e191ca7e vocab=a56698fb
+-/
 lemma reflection_apply (i : ι) (μ : Dual K H) :
     P.reflection hA i μ = μ - μ (P.coroot i) • P.root i :=
   Module.reflection_apply _ _
 
+/--
+@isnad1 id=eq.1h7v.s8.b5e62a027531 from=translated src=- shape=03663a87 vocab=65edc299
+-/
 lemma coreflection_apply (i : ι) (a : H) :
     P.coreflection hA i a = a - P.root i a • P.coroot i :=
   Module.reflection_apply _ _
 
-/-- The reflections of `𝔥*` and `𝔥` are adjoint: `⟨rᵢ λ, h⟩ = ⟨λ, rᵢ^∨ h⟩`.-/
+/-- The reflections of `𝔥*` and `𝔥` are adjoint: `⟨rᵢ λ, h⟩ = ⟨λ, rᵢ^∨ h⟩`.
+@isnad1 id=eq.1h8v.s10.09bf4cf6fe64 from=translated src=- shape=7d44d241 vocab=a08d7187
+-/
 lemma reflection_apply_apply (i : ι) (μ : Dual K H) (a : H) :
     P.reflection hA i μ a = μ (P.coreflection hA i a) := by
   simp only [reflection_apply, coreflection_apply, LinearMap.sub_apply, LinearMap.smul_apply,
     map_sub, map_smul, smul_eq_mul]
   ring
 
+/--
+@isnad1 id=eq.1h7v.s11.eaba43e5b62b from=translated src=- shape=4ac40a28 vocab=9644c027
+-/
 @[simp] lemma reflection_reflection (i : ι) (μ : Dual K H) :
     P.reflection hA i (P.reflection hA i μ) = μ :=
   Module.involutive_reflection _ μ
 
+/--
+@isnad1 id=eq.1h7v.s8.6a2155df786e from=translated src=- shape=d2daef91 vocab=dbade55d
+-/
 @[simp] lemma coreflection_coreflection (i : ι) (a : H) :
     P.coreflection hA i (P.coreflection hA i a) = a :=
   Module.involutive_reflection _ a
 
+/--
+@isnad1 id=eq.1h6v.s12.d170c1009a5b from=translated src=- shape=203648f5 vocab=5ff012d1
+-/
 @[simp] lemma reflection_mul_self (i : ι) : P.reflection hA i * P.reflection hA i = 1 := by
   ext μ : 1
   exact P.reflection_reflection hA i μ
 
+/--
+@isnad1 id=eq.1h6v.s11.a85dd85b017e from=translated src=- shape=fd0ce763 vocab=9b0a7429
+-/
 @[simp] lemma reflection_inv (i : ι) : (P.reflection hA i)⁻¹ = P.reflection hA i := rfl
 
+/--
+@isnad1 id=eq.1h6v.s9.151334731103 from=translated src=- shape=dd009e38 vocab=e67fc33b
+-/
 @[simp] lemma reflection_symm (i : ι) : (P.reflection hA i).symm = P.reflection hA i := rfl
 
-/-- `rᵢ αᵢ = -αᵢ`.-/
+/-- `rᵢ αᵢ = -αᵢ`.
+@isnad1 id=eq.1h6v.s10.57bd90fcf8c8 from=translated src=- shape=b603f41f vocab=1f295293
+-/
 @[simp] lemma reflection_root_self (i : ι) : P.reflection hA i (P.root i) = -P.root i :=
   Module.reflection_apply_self _
 
+/--
+@isnad1 id=eq.1h6v.s8.19fc2b2bd3a2 from=translated src=- shape=fb246b16 vocab=734b0342
+-/
 @[simp] lemma coreflection_coroot_self (i : ι) :
     P.coreflection hA i (P.coroot i) = -P.coroot i :=
   Module.reflection_apply_self _
 
-/-- `⟨rᵢ λ, αᵢ^∨⟩ = -⟨λ, αᵢ^∨⟩`.-/
+/-- `⟨rᵢ λ, αᵢ^∨⟩ = -⟨λ, αᵢ^∨⟩`.
+@isnad1 id=eq.1h7v.s10.8c978b6ec0f2 from=translated src=- shape=e4d738d9 vocab=16f1ba73
+-/
 @[simp] lemma reflection_apply_coroot_self (i : ι) (μ : Dual K H) :
     P.reflection hA i μ (P.coroot i) = -μ (P.coroot i) := by
   rw [reflection_apply_apply, coreflection_coroot_self, map_neg]
 
-/-- The fundamental reflections preserve the pairing: `⟨rᵢ λ, rᵢ^∨ h⟩ = ⟨λ, h⟩`.-/
+/-- The fundamental reflections preserve the pairing: `⟨rᵢ λ, rᵢ^∨ h⟩ = ⟨λ, h⟩`.
+@isnad1 id=eq.1h8v.s10.ad70bc3f5034 from=translated src=- shape=6ed603cc vocab=a08d7187
+-/
 @[simp] lemma reflection_apply_coreflection (i : ι) (μ : Dual K H) (a : H) :
     P.reflection hA i μ (P.coreflection hA i a) = μ a := by
   rw [reflection_apply_apply, coreflection_coreflection]
 
-/-- `rᵢ` acts on the root lattice: `rᵢ (∑ kⱼ αⱼ) = ∑ kⱼ αⱼ - (∑ⱼ aᵢⱼ kⱼ) αᵢ`.-/
+/-- `rᵢ` acts on the root lattice: `rᵢ (∑ kⱼ αⱼ) = ∑ kⱼ αⱼ - (∑ⱼ aᵢⱼ kⱼ) αᵢ`.
+@isnad1 id=eq.1h7v.s10.333aea2e30c2 from=translated src=- shape=6729e885 vocab=8e5987da
+-/
 lemma reflection_rootOf [DecidableEq ι] (i : ι) (k : ι → ℤ) :
     P.reflection hA i (P.rootOf k) = P.rootOf (k - (A *ᵥ k) i • Pi.single i 1) := by
   rw [reflection_apply, map_sub, map_zsmul, rootOf_single]
@@ -123,11 +159,16 @@ reflections `rᵢ` ([Kac] §3.7).-/
 noncomputable def weylGroup : Subgroup (Dual K H ≃ₗ[K] Dual K H) :=
   Subgroup.closure (Set.range (P.reflection hA))
 
+/--
+@isnad1 id=mem.1h6v.s11.c9f1fc77cc0f from=translated src=- shape=a9c7719a vocab=3a6c05bd
+-/
 lemma reflection_mem_weylGroup (i : ι) : P.reflection hA i ∈ P.weylGroup hA :=
   Subgroup.subset_closure ⟨i, rfl⟩
 
 /-- Induction principle for the Weyl group: a property of elements of `GL(𝔥*)` which holds for
-`1` and is preserved by left multiplication by fundamental reflections holds on `W`.-/
+`1` and is preserved by left multiplication by fundamental reflections holds on `W`.
+@isnad1 id=var.2h9v.s12.9f7be2d8e005 from=translated src=- shape=dcb0eae4 vocab=c1bbedc0
+-/
 @[elab_as_elim]
 lemma weylGroup_induction {p : (Dual K H ≃ₗ[K] Dual K H) → Prop} (one : p 1)
     (mul : ∀ i w, p w → p (P.reflection hA i * w)) {w : Dual K H ≃ₗ[K] Dual K H}
@@ -143,7 +184,9 @@ lemma weylGroup_induction {p : (Dual K H ≃ₗ[K] Dual K H) → Prop} (one : p 
     exact mul i w ih
 
 /-- Every `w ∈ W` changes an integral weight `λ` (i.e. `⟨λ, αⱼ^∨⟩ ∈ ℤ` for all `j`) by an element
-of the root lattice: `w λ ∈ λ + Q`.-/
+of the root lattice: `w λ ∈ λ + Q`.
+@isnad1 id=ex.3h7v.s11.cca9bd18984d from=translated src=- shape=c5502b72 vocab=9548e8d3
+-/
 theorem exists_apply_eq_add_rootOf {w : Dual K H ≃ₗ[K] Dual K H} (hw : w ∈ P.weylGroup hA)
     {μ : Dual K H} (hμ : ∀ j, ∃ z : ℤ, μ (P.coroot j) = z) :
     ∃ k : ι → ℤ, w μ = μ + P.rootOf k := by
@@ -158,7 +201,9 @@ theorem exists_apply_eq_add_rootOf {w : Dual K H ≃ₗ[K] Dual K H} (hw : w ∈
       ← Int.cast_smul_eq_zsmul K (z + (A *ᵥ k) i)]
     abel
 
-/-- The Weyl group preserves the root lattice `Q`.-/
+/-- The Weyl group preserves the root lattice `Q`.
+@isnad1 id=ex.2h7v.s11.b819e1d1e7b1 from=translated src=- shape=4b556ae9 vocab=35354390
+-/
 theorem exists_apply_rootOf_eq_rootOf {w : Dual K H ≃ₗ[K] Dual K H} (hw : w ∈ P.weylGroup hA)
     (k : ι → ℤ) : ∃ k' : ι → ℤ, w (P.rootOf k) = P.rootOf k' := by
   obtain ⟨l, hl⟩ := P.exists_apply_eq_add_rootOf hA hw (μ := P.rootOf k)
@@ -171,7 +216,9 @@ theorem exists_apply_rootOf_eq_rootOf {w : Dual K H ≃ₗ[K] Dual K H} (hw : w 
 def realRoots : Set (Dual K H) :=
   {μ | ∃ w ∈ P.weylGroup hA, ∃ i, w (P.root i) = μ}
 
-/-- If `α = ∑ kⱼ αⱼ` with `kⱼ = 0` for `j ≠ i`, then `α = kᵢ αᵢ`.-/
+/-- If `α = ∑ kⱼ αⱼ` with `kⱼ = 0` for `j ≠ i`, then `α = kᵢ αᵢ`.
+@isnad1 id=eq.1h7v.s8.1acf38d0bfbd from=translated src=- shape=bf64b937 vocab=34be2866
+-/
 lemma rootOf_eq_smul_root_of_eq_zero {k : ι → ℤ} {i : ι} (hk : ∀ j, j ≠ i → k j = 0) :
     P.rootOf k = (k i : K) • P.root i := by
   rw [rootOf_apply, Finset.sum_eq_single i (fun j _ hj ↦ by rw [hk j hj, Int.cast_zero,

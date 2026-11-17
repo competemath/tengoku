@@ -54,6 +54,9 @@ def U {K : Type*} [CommRing K] (x y : K) : Mat K :=
 def V {K : Type*} [CommRing K] (x y : K) : Mat K :=
   A x * U x y * A x
 
+/--
+@isnad1 id=eq.0h3v.s10.332b87c07944 from=translated src=- shape=bb60fced vocab=fe31c723
+-/
 theorem U_eq {K : Type*} [CommRing K] (x y : K) :
     U x y = !![1 -3 * x ^ 2 + x ^ 2 * y ^ 2 + x ^ 4,
       2 * x -4 * x * y ^ 2 + x * y ^ 4 -x ^ 3 + x ^ 3 * y ^ 2,
@@ -65,6 +68,9 @@ theorem U_eq {K : Type*} [CommRing K] (x y : K) :
   fin_cases i <;> fin_cases j <;>
     simp [U, A, B, C, pow_two, Matrix.mul_apply, Fin.sum_univ_succ] <;> ring
 
+/--
+@isnad1 id=eq.0h3v.s10.95dd4f765a25 from=translated src=- shape=aedc056c vocab=e34b25a6
+-/
 theorem V_eq {K : Type*} [CommRing K] (x y : K) :
     V x y = !![1 -x ^ 2, -2 * x + x * y ^ 2 + x ^ 3, -x * y;
     2 * x -x * y ^ 2 -x ^ 3, 1 -3 * y ^ 2 + y ^ 4 -3 * x ^ 2 + 2 * x ^ 2 * y ^ 2 + x ^ 4,
@@ -75,7 +81,9 @@ theorem V_eq {K : Type*} [CommRing K] (x y : K) :
   fin_cases i <;> fin_cases j <;>
     simp [A, Matrix.mul_apply, Fin.sum_univ_succ] <;> ring
 
-/-- Reconstructed exact algebra: degenerate (2,5,10) choice kills this commutator.-/
+/-- Reconstructed exact algebra: degenerate (2,5,10) choice kills this commutator.
+@isnad1 id=eq.1h3v.s7.1df9c00ac5f2 from=translated src=- shape=a59cb48e vocab=77089fae
+-/
 theorem bad_commute {K : Type*} [CommRing K] (x y : K) (h : x ^ 2 + y ^ 2 = 4) :
     U x y * V x y = V x y * U x y := by
   ext i j
@@ -97,7 +105,9 @@ theorem bad_commute {K : Type*} [CommRing K] (x y : K) (h : x ^ 2 + y ^ 2 = 4) :
     | linear_combination (2 * x * y -2 * x * y ^ 3) * h
     | linear_combination (-x ^ 2 * y + x ^ 2 * y ^ 3) * h
 
-/-- The corresponding canonical coefficients distinguish the same two words.-/
+/-- The corresponding canonical coefficients distinguish the same two words.
+@isnad1 id=eq.2h3v.s8.d6ec8a676905 from=translated src=- shape=15cd09d0 vocab=3e936bbf
+-/
 theorem good_difference {K : Type*} [CommRing K] (x y : K)
     (hx : x ^ 2 = x + 1) (hy : y ^ 2 = x + 2) :
     (U x y * V x y) 0 0 - (V x y * U x y) 0 0 = -40 * x-25 := by
@@ -107,7 +117,9 @@ theorem good_difference {K : Type*} [CommRing K] (x y : K)
       (4 * x ^ 2 * y ^ 2 -x ^ 2 * y ^ 4 + 2 * x ^ 3 -x ^ 3 * y ^ 2 + x ^ 4 -
         2 * x ^ 4 * y ^ 2 -2 * x ^ 5 -x ^ 6) * hy
 
-/-- This does not invoke faithfulness of the canonical representation.-/
+/-- This does not invoke faithfulness of the canonical representation.
+@isnad1 id=ne.3h2v.s7.e6674698f5cd from=translated src=- shape=9dc21dbd vocab=27e2fa93
+-/
 theorem good_not_commute (x y : ℝ) (hx : x ^ 2 = x + 1) (hy : y ^ 2 = x + 2)
     (hpos : 0 < x) : U x y * V x y ≠ V x y * U x y := by
   intro h
@@ -115,7 +127,9 @@ theorem good_not_commute (x y : ℝ) (hx : x ^ 2 = x + 1) (hy : y ^ 2 = x + 2)
   rw [h, sub_self] at hd
   linarith
 
-/-- Concrete real coefficients show that the algebraic hypotheses are jointly inhabited.-/
+/-- Concrete real coefficients show that the algebraic hypotheses are jointly inhabited.
+@isnad1 id=ex.0h0v.s8.9cbf906846b7 from=translated src=- shape=2d22107f vocab=05bdfd15
+-/
 theorem explicit_coefficients : ∃ x y z : ℝ,
     0 < x ∧ x ^ 2 = x + 1 ∧ y ^ 2 = 3-x ∧ z ^ 2 = x + 2 ∧
     U x y * V x y = V x y * U x y ∧
@@ -152,25 +166,33 @@ namespace GeometricCounterexampleRelations
 
 open GeometricFaithfulScope
 
-/-- The first reflection is an involution (direct reconstructed calculation).-/
+/-- The first reflection is an involution (direct reconstructed calculation).
+@isnad1 id=eq.0h2v.s6.06a4b321889a from=translated src=- shape=53fd84b4 vocab=dc10ad47
+-/
 theorem A_sq {K : Type*} [CommRing K] (x : K) : A x ^ 2 = 1 := by
   ext i j
   fin_cases i <;> fin_cases j <;>
     simp [A, pow_two, Matrix.mul_apply, Fin.sum_univ_succ]
 
-/-- The second reflection is an involution (direct reconstructed calculation).-/
+/-- The second reflection is an involution (direct reconstructed calculation).
+@isnad1 id=eq.0h3v.s6.631d83748575 from=translated src=- shape=f7fee1fe vocab=537aab67
+-/
 theorem B_sq {K : Type*} [CommRing K] (x t : K) : B x t ^ 2 = 1 := by
   ext i j
   fin_cases i <;> fin_cases j <;>
     simp [B, pow_two, Matrix.mul_apply, Fin.sum_univ_succ]
 
-/-- The third reflection is an involution (direct reconstructed calculation).-/
+/-- The third reflection is an involution (direct reconstructed calculation).
+@isnad1 id=eq.0h2v.s6.ec1f55e18c4d from=translated src=- shape=53fd84b4 vocab=a31692a6
+-/
 theorem C_sq {K : Type*} [CommRing K] (t : K) : C t ^ 2 = 1 := by
   ext i j
   fin_cases i <;> fin_cases j <;>
     simp [C, pow_two, Matrix.mul_apply, Fin.sum_univ_succ]
 
-/-- The nonadjacent reflections satisfy the exponent-two relation.-/
+/-- The nonadjacent reflections satisfy the exponent-two relation.
+@isnad1 id=eq.0h3v.s7.b659816a436e from=translated src=- shape=0c5cc3cf vocab=d484ae67
+-/
 theorem AC_sq {K : Type*} [CommRing K] (x t : K) : (A x * C t) ^ 2 = 1 := by
   ext i j
   fin_cases i <;> fin_cases j <;>
@@ -222,7 +244,9 @@ private theorem AB_four_nf {K : Type*} [CommRing K] (x t : K)
     | linear_combination (1) * hx
     | linear_combination (-t) * hx
 
-/-- Reconstructed exact exponent-five relation for the first adjacent pair.-/
+/-- Reconstructed exact exponent-five relation for the first adjacent pair.
+@isnad1 id=eq.1h3v.s8.bb35fc0f2e27 from=translated src=- shape=bf2d05e4 vocab=19116997
+-/
 theorem AB_pow_five {K : Type*} [CommRing K] (x t : K) (hx : x ^ 2 = x + 1) :
     (A x * B x t) ^ 5 = 1 := by
   rw [show (5 : ℕ) = 4 + 1 from rfl, pow_add, pow_one, AB_four_nf x t hx]
@@ -312,7 +336,9 @@ private theorem BC_five_nf {K : Type*} [CommRing K] (x t : K)
   all_goals solve
     | ring
 
-/-- The quartic relation alone implies the exponent-ten Coxeter relation.-/
+/-- The quartic relation alone implies the exponent-ten Coxeter relation.
+@isnad1 id=eq.1h3v.s8.c9a29e8c9f4d from=translated src=- shape=79965408 vocab=47166e2b
+-/
 theorem BC_pow_ten {K : Type*} [CommRing K] (x t : K)
     (ht : t ^ 4 = 5 * t ^ 2 - 5) : (B x t * C t) ^ 10 = 1 := by
   rw [show (10 : ℕ) = 5 + 5 from rfl, pow_add, BC_five_nf x t ht]
@@ -320,22 +346,30 @@ theorem BC_pow_ten {K : Type*} [CommRing K] (x t : K)
   fin_cases i <;> fin_cases j <;>
     simp [Matrix.mul_apply, Fin.sum_univ_succ]
 
-/-- The incompatible coefficient choice satisfies the shared quartic.-/
+/-- The incompatible coefficient choice satisfies the shared quartic.
+@isnad1 id=eq.2h3v.s7.55c01ab8404c from=translated src=- shape=ef36995d vocab=9c1cdc1d
+-/
 theorem quartic_bad {K : Type*} [CommRing K] (x t : K)
     (hx : x ^ 2 = x + 1) (ht : t ^ 2 = 3 - x) : t ^ 4 = 5 * t ^ 2 - 5 := by
   linear_combination hx + (t ^ 2 - x - 2) * ht
 
-/-- The canonical coefficient choice satisfies the shared quartic.-/
+/-- The canonical coefficient choice satisfies the shared quartic.
+@isnad1 id=eq.2h3v.s7.28de3d7599cd from=translated src=- shape=49f179d1 vocab=9c1cdc1d
+-/
 theorem quartic_good {K : Type*} [CommRing K] (x t : K)
     (hx : x ^ 2 = x + 1) (ht : t ^ 2 = x + 2) : t ^ 4 = 5 * t ^ 2 - 5 := by
   linear_combination hx + (t ^ 2 + x - 3) * ht
 
-/-- The exponent-ten relation for the incompatible coefficient choice.-/
+/-- The exponent-ten relation for the incompatible coefficient choice.
+@isnad1 id=eq.2h3v.s8.7b632461f9dd from=translated src=- shape=ca106e7c vocab=76fa56c6
+-/
 theorem BC_pow_ten_bad {K : Type*} [CommRing K] (x t : K)
     (hx : x ^ 2 = x + 1) (ht : t ^ 2 = 3 - x) : (B x t * C t) ^ 10 = 1 :=
   BC_pow_ten x t (quartic_bad x t hx ht)
 
-/-- The exponent-ten relation for the canonical coefficient choice.-/
+/-- The exponent-ten relation for the canonical coefficient choice.
+@isnad1 id=eq.2h3v.s8.18e9a04af287 from=translated src=- shape=943cd4c7 vocab=6ebfd1cc
+-/
 theorem BC_pow_ten_good {K : Type*} [CommRing K] (x t : K)
     (hx : x ^ 2 = x + 1) (ht : t ^ 2 = x + 2) : (B x t * C t) ^ 10 = 1 :=
   BC_pow_ten x t (quartic_good x t hx ht)
@@ -370,7 +404,9 @@ private theorem reverse_relation {M : Type*} [Monoid M] (a b : M) (n : ℕ)
     _ = a * ((a * b) ^ n * a) := congrArg (a * ·) h
     _ = 1 := by rw [hab, one_mul, ha]
 
-/-- Polynomial equations suffice for every relation of the actual presentation.-/
+/-- Polynomial equations suffice for every relation of the actual presentation.
+@isnad1 id=isliftab.2h2v.s7.848675cbad8a from=translated src=- shape=3b0e22f5 vocab=d3f4a620
+-/
 theorem generators_liftable (x t : ℝ) (hx : x ^ 2 = x + 1)
     (ht : t ^ 4 = 5 * t ^ 2 - 5) : triangle.IsLiftable (generators x t) := by
   have ha : A x * A x = 1 := by simpa [pow_two] using A_sq x
@@ -399,7 +435,9 @@ noncomputable def representation (x t : ℝ) (hx : x ^ 2 = x + 1)
     (ht : t ^ 4 = 5 * t ^ 2 - 5) : W →* Mat ℝ :=
   triangle.toCoxeterSystem.lift ⟨generators x t, generators_liftable x t hx ht⟩
 
-/-- The value on each simple generator is exactly the declared reflection.-/
+/-- The value on each simple generator is exactly the declared reflection.
+@isnad1 id=eq.2h3v.s7.75265063c391 from=translated src=- shape=332fe7b2 vocab=21fc15d9
+-/
 @[simp] theorem representation_simple (x t : ℝ) (hx : x ^ 2 = x + 1)
     (ht : t ^ 4 = 5 * t ^ 2 - 5) (i : Fin 3) :
     representation x t hx ht (triangle.simple i) = generators x t i :=
@@ -414,15 +452,23 @@ def v : W := triangle.simple 0 * u * triangle.simple 0
 /-- A fixed potential kernel witness, independent of all coefficient choices.-/
 def w : W := (u * v) * (v * u)⁻¹
 
+/--
+@isnad1 id=eq.2h2v.s7.954803ae9a66 from=translated src=- shape=19fecda2 vocab=9941eb27
+-/
 @[simp] theorem representation_u (x t : ℝ) (hx : x ^ 2 = x + 1)
     (ht : t ^ 4 = 5 * t ^ 2 - 5) : representation x t hx ht u = U x t := by
   simp [u, generators, U]
 
+/--
+@isnad1 id=eq.2h2v.s7.df89fcfd7d7e from=translated src=- shape=19fecda2 vocab=e74aebb3
+-/
 @[simp] theorem representation_v (x t : ℝ) (hx : x ^ 2 = x + 1)
     (ht : t ^ 4 = 5 * t ^ 2 - 5) : representation x t hx ht v = V x t := by
   simp [v, generators, V]
 
-/-- The bad coefficient choice kills the fixed word in the actual Coxeter group.-/
+/-- The bad coefficient choice kills the fixed word in the actual Coxeter group.
+@isnad1 id=eq.2h2v.s7.8929a5797539 from=translated src=- shape=040a2382 vocab=3e39c0eb
+-/
 theorem bad_kills_w (x y : ℝ) (hx : x ^ 2 = x + 1) (hy : y ^ 2 = 3 - x) :
     representation x y hx (quartic_bad x y hx hy) w = 1 := by
   let ρ := representation x y hx (quartic_bad x y hx hy)
@@ -431,21 +477,27 @@ theorem bad_kills_w (x y : ℝ) (hx : x ^ 2 = x + 1) (hy : y ^ 2 = 3 - x) :
   change ρ ((u * v) * (v * u)⁻¹) = 1
   rw [map_mul, heq, ← map_mul, mul_inv_cancel, map_one]
 
-/-- The comparison representation certifies noncommutation without a faithfulness premise.-/
+/-- The comparison representation certifies noncommutation without a faithfulness premise.
+@isnad1 id=ne.3h2v.s7.2dc61ef7a9e4 from=translated src=- shape=36b6ceb9 vocab=0a03aee6
+-/
 theorem words_not_commute (x z : ℝ) (hx : x ^ 2 = x + 1)
     (hz : z ^ 2 = x + 2) (hp : 0 < x) : u * v ≠ v * u := by
   intro h
   have hm := congrArg (representation x z hx (quartic_good x z hx hz)) h
   exact good_not_commute x z hx hz hp (by simpa using hm)
 
-/-- Explicit coefficients prove that the fixed word is nontrivial in Mathlib's Coxeter group.-/
+/-- Explicit coefficients prove that the fixed word is nontrivial in Mathlib's Coxeter group.
+@isnad1 id=ne.0h0v.s4.7602f59e536f from=translated src=- shape=ffdda526 vocab=a8518dd4
+-/
 theorem w_ne_one : w ≠ 1 := by
   obtain ⟨x, y, z, hp, hx, hy, hz, _, _⟩ := explicit_coefficients
   intro h
   have heq : u * v = v * u := mul_inv_eq_one.mp h
   exact words_not_commute x z hx hz hp heq
 
-/-- Presentation-level nonfaithfulness, with explicit algebraic coefficient hypotheses.-/
+/-- Presentation-level nonfaithfulness, with explicit algebraic coefficient hypotheses.
+@isnad1 id=not.2h2v.s7.a7e232ac8c4a from=translated src=- shape=46699c11 vocab=5ca40391
+-/
 theorem bad_not_injective (x y : ℝ) (hx : x ^ 2 = x + 1)
     (hy : y ^ 2 = 3 - x) :
     ¬ Function.Injective (representation x y hx (quartic_bad x y hx hy)) := by
@@ -454,7 +506,9 @@ theorem bad_not_injective (x y : ℝ) (hx : x ^ 2 = x + 1)
   apply hinj
   rw [bad_kills_w x y hx hy, map_one]
 
-/-- An inhabited, unconditional group-level counterexample; no faithfulness hypotheses.-/
+/-- An inhabited, unconditional group-level counterexample; no faithfulness hypotheses.
+@isnad1 id=ex.0h0v.s8.cfe51c620d25 from=translated src=- shape=ed64daca vocab=33e5033e
+-/
 theorem exists_nonfaithful_representation :
     ∃ (x y : ℝ) (hx : x ^ 2 = x + 1) (hy : y ^ 2 = 3 - x),
       w ≠ 1 ∧ representation x y hx (quartic_bad x y hx hy) w = 1 ∧
@@ -473,13 +527,17 @@ noncomputable def golden : ℝ := (1 + Real.sqrt 5) / 2
 /-- The incompatible adjacent coefficient, specified without opaque choices.-/
 noncomputable def badCoefficient : ℝ := Real.sqrt (3 - golden)
 
-/-- Direct square-root calculation for the explicit coefficient.-/
+/-- Direct square-root calculation for the explicit coefficient.
+@isnad1 id=eq.0h0v.s5.99698bad5859 from=translated src=- shape=7dc6ab06 vocab=2373b167
+-/
 theorem golden_sq : golden ^ 2 = golden + 1 := by
   have hs : (Real.sqrt 5) ^ 2 = 5 := Real.sq_sqrt (by norm_num)
   dsimp [golden]
   nlinarith
 
-/-- Direct square-root calculation for the incompatible coefficient.-/
+/-- Direct square-root calculation for the incompatible coefficient.
+@isnad1 id=eq.0h0v.s5.f6225a074653 from=translated src=- shape=66c6525c vocab=d91717e2
+-/
 theorem badCoefficient_sq : badCoefficient ^ 2 = 3 - golden := by
   apply Real.sq_sqrt
   have hs : (Real.sqrt 5) ^ 2 = 5 := Real.sq_sqrt (by norm_num)
@@ -487,7 +545,9 @@ theorem badCoefficient_sq : badCoefficient ^ 2 = 3 - golden := by
   dsimp [golden]
   nlinarith
 
-/-- The positive golden coefficient, needed to distinguish the comparison images.-/
+/-- The positive golden coefficient, needed to distinguish the comparison images.
+@isnad1 id=lt.0h0v.s3.060259c33925 from=translated src=- shape=ff3a10fc vocab=d9cce349
+-/
 theorem golden_pos : 0 < golden := by
   dsimp [golden]
   positivity
@@ -495,7 +555,9 @@ theorem golden_pos : 0 < golden := by
 /-- The canonical comparison coefficient, again specified by an explicit square root.-/
 noncomputable def goodCoefficient : ℝ := Real.sqrt (golden + 2)
 
-/-- Direct square-root calculation for the comparison coefficient.-/
+/-- Direct square-root calculation for the comparison coefficient.
+@isnad1 id=eq.0h0v.s5.e5acca2e48ec from=translated src=- shape=046d9584 vocab=a75c80c6
+-/
 theorem goodCoefficient_sq : goodCoefficient ^ 2 = golden + 2 :=
   Real.sq_sqrt (by linarith [golden_pos])
 
@@ -504,7 +566,9 @@ noncomputable def goodRepresentation : W →* (Mat ℝ)ˣ :=
   groupRepresentation golden goodCoefficient golden_sq
     (quartic_good golden goodCoefficient golden_sq goodCoefficient_sq)
 
-/-- The comparison representation separates the same two group words.-/
+/-- The comparison representation separates the same two group words.
+@isnad1 id=ne.0h0v.s9.324d9706bf28 from=translated src=- shape=228981af vocab=115ea3fe
+-/
 theorem goodRepresentation_words_not_commute :
     goodRepresentation (u * v) ≠ goodRepresentation (v * u) := by
   intro h
@@ -521,21 +585,27 @@ noncomputable def badRepresentation : W →* (Mat ℝ)ˣ :=
   groupRepresentation golden badCoefficient golden_sq
     (quartic_bad golden badCoefficient golden_sq badCoefficient_sq)
 
-/-- On simple generators, the group-valued representation has the advertised matrix.-/
+/-- On simple generators, the group-valued representation has the advertised matrix.
+@isnad1 id=eq.0h1v.s8.ccd2b9b455d4 from=translated src=- shape=1fe71830 vocab=8b4e005a
+-/
 theorem badRepresentation_simple (i : Fin 3) :
     (badRepresentation (triangle.simple i) : Mat ℝ) =
       generators golden badCoefficient i := by
   exact representation_simple golden badCoefficient golden_sq
     (quartic_bad golden badCoefficient golden_sq badCoefficient_sq) i
 
-/-- The fixed nontrivial word belongs to the kernel of the concrete group homomorphism.-/
+/-- The fixed nontrivial word belongs to the kernel of the concrete group homomorphism.
+@isnad1 id=mem.0h0v.s6.6f975f1a6992 from=translated src=- shape=e4000541 vocab=a977b022
+-/
 theorem w_mem_badRepresentation_ker : w ∈ badRepresentation.ker := by
   change badRepresentation w = 1
   apply Units.ext
   exact bad_kills_w golden badCoefficient golden_sq badCoefficient_sq
 
 /-- Unconditional nonfaithfulness of the explicitly specified group representation.
-This is not a claim about the repository's opaque `Classical.choose` representation.-/
+This is not a claim about the repository's opaque `Classical.choose` representation.
+@isnad1 id=not.0h0v.s8.e684b3106a62 from=translated src=- shape=8add8946 vocab=1bb654c7
+-/
 theorem badRepresentation_not_injective : ¬ Function.Injective badRepresentation := by
   intro hinj
   apply w_ne_one
@@ -543,7 +613,9 @@ theorem badRepresentation_not_injective : ¬ Function.Injective badRepresentatio
   rw [map_one]
   exact w_mem_badRepresentation_ker
 
-/-- Nontriviality of the kernel, as an equality statement about actual subgroups.-/
+/-- Nontriviality of the kernel, as an equality statement about actual subgroups.
+@isnad1 id=ne.0h0v.s6.320d0f6e72a3 from=translated src=- shape=75be38c1 vocab=8afdc15b
+-/
 theorem badRepresentation_ker_ne_bot : badRepresentation.ker ≠ ⊥ := by
   intro h
   have hw := w_mem_badRepresentation_ker

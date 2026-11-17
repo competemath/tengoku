@@ -59,26 +59,47 @@ variable (K : Type*) [Field K]
 /-- The sign `(-1)^a` of `a ∈ ℤ/2`.-/
 def zSign (a : ZMod 2) : K := if a = 1 then -1 else 1
 
+/--
+@isnad1 id=eq.0h1v.s6.c265a1dd55ff from=translated src=- shape=0233a910 vocab=fb8ad48c
+-/
 @[simp] lemma zSign_zero : zSign K 0 = 1 := by simp [zSign]
 
+/--
+@isnad1 id=eq.0h1v.s6.512ca7bea96f from=translated src=- shape=253466b5 vocab=95bd3bb5
+-/
 @[simp] lemma zSign_one : zSign K 1 = -1 := by simp [zSign]
 
+/--
+@isnad1 id=or.0h1v.s7.bc72bed5d0ad from=translated src=- shape=a99d14a3 vocab=c87b9854
+-/
 lemma zmod_two_cases (a : ZMod 2) : a = 0 ∨ a = 1 := by
   fin_cases a
   exacts [Or.inl rfl, Or.inr rfl]
 
+/--
+@isnad1 id=eq.0h3v.s6.16a93fba0f97 from=translated src=- shape=a9f596b0 vocab=73d01c8f
+-/
 lemma zSign_add (a b : ZMod 2) : zSign K (a + b) = zSign K a * zSign K b := by
   rcases zmod_two_cases a with rfl | rfl <;> rcases zmod_two_cases b with rfl | rfl <;>
     simp [show (1 : ZMod 2) + 1 = 0 from rfl]
 
+/--
+@isnad1 id=eq.0h2v.s5.7c191d87af53 from=translated src=- shape=aa71e0d1 vocab=28c63667
+-/
 lemma zSign_mul_self (a : ZMod 2) : zSign K a * zSign K a = 1 := by
   rcases zmod_two_cases a with rfl | rfl <;> simp
 
+/--
+@isnad1 id=eq.0h5v.s6.6ed98000ab9c from=translated src=- shape=34ed8259 vocab=2bb8c0e5
+-/
 lemma superSign_eq_zSign {ι : Type*} (p : ι → ZMod 2) (i j : ι) :
     superSign K p i j = zSign K (p i * p j) := by
   rcases zmod_two_cases (p i) with hi | hi <;> rcases zmod_two_cases (p j) with hj | hj <;>
     simp [superSign, hi, hj]
 
+/--
+@isnad1 id=eq.0h4v.s5.807a6e3116a7 from=translated src=- shape=65c99a3f vocab=8a2cbfea
+-/
 lemma paritySign_eq_zSign {ι : Type*} (p : ι → ZMod 2) (i : ι) :
     paritySign K p i = zSign K (p i) := rfl
 
@@ -96,27 +117,47 @@ def IsHomog (a : ZMod 2) (u : P.SuperEnveloping p) : Prop := parity P p u = zSig
 
 variable {P p}
 
+/--
+@isnad1 id=ishomog.1h9v.s7.d734ae8f8614 from=translated src=- shape=8a47a8dd vocab=8b87218b
+-/
 lemma IsHomog.smul {a : ZMod 2} {x : P.SuperEnveloping p} (hx : IsHomog P p a x) (c : K) :
     IsHomog P p a (c • x) := by
   rw [IsHomog, map_smul, hx, smul_comm]
 
+/--
+@isnad1 id=ishomog.2h9v.s7.7775286d218c from=translated src=- shape=73937c6c vocab=7dc583c8
+-/
 lemma IsHomog.add {a : ZMod 2} {x y : P.SuperEnveloping p} (hx : IsHomog P p a x)
     (hy : IsHomog P p a y) : IsHomog P p a (x + y) := by
   rw [IsHomog, map_add, hx, hy, smul_add]
 
+/--
+@isnad1 id=ishomog.0h7v.s7.ac750753ce5f from=translated src=- shape=07fe2b03 vocab=24ec519e
+-/
 lemma isHomog_zero (a : ZMod 2) : IsHomog P p a 0 := by simp [IsHomog]
 
 variable (P p)
 
+/--
+@isnad1 id=ishomog.0h7v.s6.4c0aad826674 from=translated src=- shape=9f028315 vocab=bc13f9ce
+-/
 lemma isHomog_e (i : ι) : IsHomog P p (p i) (e P p i) := parity_e P p i
 
+/--
+@isnad1 id=ishomog.0h7v.s6.a6fb4a397e56 from=translated src=- shape=9f028315 vocab=0ff51b94
+-/
 lemma isHomog_f (i : ι) : IsHomog P p (p i) (f P p i) := parity_f P p i
 
+/--
+@isnad1 id=ishomog.0h7v.s8.044c93c4c7a4 from=translated src=- shape=c89f2353 vocab=a2603f00
+-/
 lemma isHomog_h (a : H) : IsHomog P p 0 (h P p a) := by simp [IsHomog]
 
 variable {P p} [CharZero K]
 
-/-- On homogeneous elements, `[x, y] = x y - (-1)^{|x||y|} y x`.-/
+/-- On homogeneous elements, `[x, y] = x y - (-1)^{|x||y|} y x`.
+@isnad1 id=eq.2h10v.s9.9cc423488043 from=translated src=- shape=c17541c8 vocab=fe0d7ed1
+-/
 lemma superBracket_of_isHomog {a b : ZMod 2} {x y : P.SuperEnveloping p}
     (hx : IsHomog P p a x) (hy : IsHomog P p b y) :
     superBracket P p x y = x * y - zSign K (a * b) • (y * x) := by
@@ -128,6 +169,9 @@ lemma superBracket_of_isHomog {a b : ZMod 2} {x y : P.SuperEnveloping p}
       ← two_smul K y, smul_mul_assoc, smul_smul, inv_mul_cancel₀ two_ne_zero, one_smul,
       mul_smul_comm, mul_one]
 
+/--
+@isnad1 id=ishomog.2h10v.s7.21912a3b89b3 from=translated src=- shape=fb66a3fe vocab=7d0d8fb4
+-/
 lemma IsHomog.superBracket {a b : ZMod 2} {x y : P.SuperEnveloping p} (hx : IsHomog P p a x)
     (hy : IsHomog P p b y) : IsHomog P p (a + b) (superBracket P p x y) := by
   rw [superBracket_of_isHomog hx hy, IsHomog, map_sub, map_smul, map_mul, map_mul, hx, hy,
@@ -135,7 +179,9 @@ lemma IsHomog.superBracket {a b : ZMod 2} {x y : P.SuperEnveloping p} (hx : IsHo
     mul_comm (zSign K b) (zSign K a), mul_comm (zSign K (a * b))]
 
 /-- The super Jacobi identity
-`[x, [y, z]] = [[x, y], z] + (-1)^{|x||y|} [y, [x, z]]` for homogeneous `x, y, z`.-/
+`[x, [y, z]] = [[x, y], z] + (-1)^{|x||y|} [y, [x, z]]` for homogeneous `x, y, z`.
+@isnad1 id=eq.3h12v.s9.88f4494f94cc from=translated src=- shape=34df458a vocab=b9a2af61
+-/
 theorem superBracket_jacobi {a b c : ZMod 2} {x y z : P.SuperEnveloping p}
     (hx : IsHomog P p a x) (hy : IsHomog P p b y) (hz : IsHomog P p c z) :
     superBracket P p x (superBracket P p y z) =
@@ -151,6 +197,9 @@ theorem superBracket_jacobi {a b c : ZMod 2} {x y z : P.SuperEnveloping p}
       one_smul, neg_smul, show (1 : ZMod 2) + 1 = 0 from rfl] <;> noncomm_ring
 
 omit [CharZero K] in
+/--
+@isnad1 id=mem.2h10v.s10.e1f8d826779e from=translated src=- shape=49a61f73 vocab=e82e8234
+-/
 lemma superBracket_mem_weightSpace {μ ν : Dual K H} {x y : P.SuperEnveloping p}
     (hx : x ∈ weightSpace P p μ) (hy : y ∈ weightSpace P p ν) :
     superBracket P p x y ∈ weightSpace P p (μ + ν) := by
@@ -170,20 +219,32 @@ def superBracketRight (x : P.SuperEnveloping p) : P.SuperEnveloping p →ₗ[K] 
       (LinearMap.mulRight K (parity P p x)) ∘ₗ (LinearMap.id - (parity P p).toLinearMap))
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h8v.s9.52b82a069cd8 from=translated src=- shape=d250c141 vocab=bde0f85d
+-/
 @[simp] lemma superBracketRight_apply (x y : P.SuperEnveloping p) :
     superBracketRight P p x y = superBracket P p x y := rfl
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h9v.s8.93ade93211e6 from=translated src=- shape=e37aa15d vocab=ffeee59e
+-/
 lemma superBracket_smul_left (c : K) (x y : P.SuperEnveloping p) :
     superBracket P p (c • x) y = c • superBracket P p x y := by
   simp only [superBracket, map_smul, mul_smul_comm, smul_mul_assoc, smul_sub, smul_add,
     smul_comm c]
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h7v.s7.da82c74e0ae5 from=translated src=- shape=5bd8552f vocab=cc03b1ef
+-/
 lemma superBracket_zero_left (y : P.SuperEnveloping p) : superBracket P p 0 y = 0 := by
   simpa using superBracket_smul_left (P := P) (p := p) 0 0 y
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h8v.s8.7af4c89b94b3 from=translated src=- shape=1855cd19 vocab=ac21940d
+-/
 lemma superBracket_neg_left (x y : P.SuperEnveloping p) :
     superBracket P p (-x) y = -superBracket P p x y := by
   simpa using superBracket_smul_left (P := P) (p := p) (-1) x y
@@ -198,12 +259,21 @@ def eLie (i : ι) : List ι → P.SuperEnveloping p
   | j :: w => superBracket P p (e P p j) (eLie i w)
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h7v.s6.11f46d53ae9f from=translated src=- shape=fab6d078 vocab=13b65d53
+-/
 @[simp] lemma eLie_nil (i : ι) : eLie P p i [] = e P p i := rfl
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h9v.s7.66e94c32c584 from=translated src=- shape=5be9bfb2 vocab=18f3f39a
+-/
 @[simp] lemma eLie_cons (i j : ι) (w : List ι) :
     eLie P p i (j :: w) = superBracket P p (e P p j) (eLie P p i w) := rfl
 
+/--
+@isnad1 id=ishomog.0h8v.s8.7fa68d03e48f from=translated src=- shape=faefa227 vocab=900d02c1
+-/
 lemma isHomog_eLie (i : ι) (w : List ι) :
     IsHomog P p ((w.map p).sum + p i) (eLie P p i w) := by
   induction w with
@@ -213,6 +283,9 @@ lemma isHomog_eLie (i : ι) (w : List ι) :
     exact (isHomog_e P p j).superBracket ih
 
 omit [CharZero K] in
+/--
+@isnad1 id=mem.0h8v.s9.a20e9d2f3d50 from=translated src=- shape=bda981c7 vocab=2a9aa2f1
+-/
 lemma eLie_mem_weightSpace (i : ι) (w : List ι) :
     eLie P p i w ∈ weightSpace P p ((w.map P.root).sum + P.root i) := by
   induction w with
@@ -226,33 +299,47 @@ def nPlus : Submodule K (P.SuperEnveloping p) :=
   Submodule.span K (Set.range fun x : ι × List ι ↦ eLie P p x.1 x.2)
 
 omit [CharZero K] in
+/--
+@isnad1 id=mem.0h8v.s8.1c2f93a5cbbf from=translated src=- shape=05c6226b vocab=c3c3edd2
+-/
 lemma eLie_mem_nPlus (i : ι) (w : List ι) : eLie P p i w ∈ nPlus P p :=
   Submodule.subset_span ⟨(i, w), rfl⟩
 
 omit [CharZero K] in
+/--
+@isnad1 id=mem.0h7v.s8.8ea15a40494d from=translated src=- shape=12933353 vocab=344f3718
+-/
 lemma e_mem_nPlus (i : ι) : e P p i ∈ nPlus P p := eLie_mem_nPlus P p i []
 
 omit [CharZero K] in
-/-- An inclusion `ñ₊ ≤ N` may be checked on the iterated super commutators.-/
+/-- An inclusion `ñ₊ ≤ N` may be checked on the iterated super commutators.
+@isnad1 id=iff.0h7v.s10.3c45beb228b6 from=translated src=- shape=578f5d2c vocab=6b7a26ab
+-/
 lemma nPlus_le_iff {N : Submodule K (P.SuperEnveloping p)} :
     nPlus P p ≤ N ↔ ∀ i w, eLie P p i w ∈ N := by
   rw [nPlus, Submodule.span_le, Set.range_subset_iff]
   exact Prod.forall
 
 omit [CharZero K] in
-/-- `[eⱼ, ñ₊] ⊆ ñ₊`.-/
+/-- `[eⱼ, ñ₊] ⊆ ñ₊`.
+@isnad1 id=mem.1h8v.s9.44378a1c8754 from=translated src=- shape=b042bb00 vocab=46aac275
+-/
 lemma superBracket_e_mem_nPlus (j : ι) {x : P.SuperEnveloping p} (hx : x ∈ nPlus P p) :
     superBracket P p (e P p j) x ∈ nPlus P p := by
   have : nPlus P p ≤ (nPlus P p).comap (superBracketRight P p (e P p j)) :=
     (nPlus_le_iff P p).2 fun i w ↦ eLie_mem_nPlus P p i (j :: w)
   exact this hx
 
-/-- `[h, x] = μ(h) x` for `x ∈ U_μ`.-/
+/-- `[h, x] = μ(h) x` for `x ∈ U_μ`.
+@isnad1 id=eq.1h9v.s9.d0792110b2ae from=translated src=- shape=217f0cfb vocab=eba63740
+-/
 lemma superBracket_h_of_mem_weightSpace (a : H) {μ : Dual K H} {x : P.SuperEnveloping p}
     (hx : x ∈ weightSpace P p μ) : superBracket P p (h P p a) x = μ a • x := by
   rw [superBracket_of_even_left P p (isEven_h P p a), hx a, add_sub_cancel_left]
 
-/-- `[𝔥, ñ₊] ⊆ ñ₊`.-/
+/-- `[𝔥, ñ₊] ⊆ ñ₊`.
+@isnad1 id=mem.1h8v.s10.116919353336 from=translated src=- shape=0631b11e vocab=61e85290
+-/
 lemma superBracket_h_mem_nPlus (a : H) {x : P.SuperEnveloping p} (hx : x ∈ nPlus P p) :
     superBracket P p (h P p a) x ∈ nPlus P p := by
   have : nPlus P p ≤ (nPlus P p).comap (superBracketRight P p (h P p a)) :=
@@ -262,13 +349,18 @@ lemma superBracket_h_mem_nPlus (a : H) {x : P.SuperEnveloping p} (hx : x ∈ nPl
       exact Submodule.smul_mem _ _ (eLie_mem_nPlus P p i w)
   exact this hx
 
-/-- `[e_j, h] = -αⱼ(h) eⱼ`.-/
+/-- `[e_j, h] = -αⱼ(h) eⱼ`.
+@isnad1 id=eq.0h8v.s9.3711b2404260 from=translated src=- shape=610ab674 vocab=c4eaad68
+-/
 lemma superBracket_e_h (j : ι) (a : H) :
     superBracket P p (e P p j) (h P p a) = -(P.root j a • e P p j) := by
   rw [superBracket_of_even_right P p _ (isEven_h P p a), h_mul_e]
   abel
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h8v.s10.dd021fc2e770 from=translated src=- shape=d27368b3 vocab=cd7527d4
+-/
 lemma f_mul_e (i j : ι) : f P p i * e P p j = superSign K p i j • (e P p j * f P p i) -
     superSign K p i j • if i = j then h P p (P.coroot i) else 0 := by
   rw [e_mul_f, superSign_comm K p j i, smul_add, smul_smul, superSign_mul_self, one_smul]
@@ -276,7 +368,9 @@ lemma f_mul_e (i j : ι) : f P p i * e P p j = superSign K p i j • (e P p j * 
   · subst hij; simp
   · simp [hij, Ne.symm hij]
 
-/-- `[fₖ, eⱼ] = -δₖⱼ (-1)^{p j} hⱼ`.-/
+/-- `[fₖ, eⱼ] = -δₖⱼ (-1)^{p j} hⱼ`.
+@isnad1 id=eq.0h8v.s9.ec43ca742145 from=translated src=- shape=799a30d8 vocab=e57a831a
+-/
 lemma superBracket_f_e (k j : ι) :
     superBracket P p (f P p k) (e P p j) =
       -(superSign K p k j • if k = j then h P p (P.coroot k) else 0) := by
@@ -284,7 +378,9 @@ lemma superBracket_f_e (k j : ι) :
     superSign_eq_zSign]
   abel
 
-/-- `[eⱼ, ñ₊ + 𝔥] ⊆ ñ₊`.-/
+/-- `[eⱼ, ñ₊ + 𝔥] ⊆ ñ₊`.
+@isnad1 id=mem.1h8v.s10.8fd0b05f39a3 from=translated src=- shape=a10869a3 vocab=264ad92c
+-/
 lemma superBracket_e_mem_nPlus_of_mem_sup (j : ι) {x : P.SuperEnveloping p}
     (hx : x ∈ nPlus P p ⊔ LinearMap.range (h P p)) :
     superBracket P p (e P p j) x ∈ nPlus P p := by
@@ -294,7 +390,9 @@ lemma superBracket_e_mem_nPlus_of_mem_sup (j : ι) {x : P.SuperEnveloping p}
   exact add_mem (superBracket_e_mem_nPlus P p j hy)
     (neg_mem (Submodule.smul_mem _ _ (e_mem_nPlus P p j)))
 
-/-- `[fₖ, eLie i w] ∈ ñ₊ + 𝔥`.-/
+/-- `[fₖ, eLie i w] ∈ ñ₊ + 𝔥`.
+@isnad1 id=mem.0h9v.s10.e697ea55c2ac from=translated src=- shape=d7c10072 vocab=0bce496f
+-/
 lemma superBracket_f_eLie_mem (k i : ι) (w : List ι) :
     superBracket P p (f P p k) (eLie P p i w) ∈ nPlus P p ⊔ LinearMap.range (h P p) := by
   induction w with
@@ -313,7 +411,9 @@ lemma superBracket_f_eLie_mem (k i : ι) (w : List ι) :
     · exact superBracket_h_mem_nPlus P p _ (eLie_mem_nPlus P p i w)
     · rw [superBracket_zero_left]; exact zero_mem _
 
-/-- `[fₖ, ñ₊] ⊆ ñ₊ + 𝔥`.-/
+/-- `[fₖ, ñ₊] ⊆ ñ₊ + 𝔥`.
+@isnad1 id=mem.1h8v.s10.537591d9c731 from=translated src=- shape=9cb238fe vocab=f86f4662
+-/
 lemma superBracket_f_mem_nPlus_sup (k : ι) {x : P.SuperEnveloping p} (hx : x ∈ nPlus P p) :
     superBracket P p (f P p k) x ∈ nPlus P p ⊔ LinearMap.range (h P p) := by
   have : nPlus P p ≤ (nPlus P p ⊔ LinearMap.range (h P p)).comap
@@ -349,22 +449,43 @@ def omegaData : LiftData P p (P.SuperEnveloping p) where
 Its square is the parity involution `σ`.-/
 def omega : P.SuperEnveloping p →ₐ[K] P.SuperEnveloping p := lift (omegaData P p)
 
+/--
+@isnad1 id=eq.0h7v.s8.948e7d2a0c24 from=translated src=- shape=a0b78e0e vocab=c304e50c
+-/
 @[simp] lemma omega_e (i : ι) : omega P p (e P p i) = f P p i := lift_e _ i
 
+/--
+@isnad1 id=eq.0h7v.s8.8b1cbb091165 from=translated src=- shape=7cdff0fa vocab=323e6764
+-/
 @[simp] lemma omega_f (i : ι) : omega P p (f P p i) = paritySign K p i • e P p i := lift_f _ i
 
+/--
+@isnad1 id=eq.0h7v.s10.7d720a7e18cf from=translated src=- shape=77619206 vocab=800eb56d
+-/
 @[simp] lemma omega_h (a : H) : omega P p (h P p a) = -h P p a := lift_h _ a
 
+/--
+@isnad1 id=eq.0h6v.s8.f00505fd08a5 from=translated src=- shape=e9bf4ad3 vocab=b63d0208
+-/
 lemma omega_comp_omega : (omega P p).comp (omega P p) = parity P p := by
   refine hom_ext (fun i ↦ ?_) (fun i ↦ ?_) (fun a ↦ ?_) <;> simp
 
+/--
+@isnad1 id=eq.0h6v.s9.f4cfb708a3be from=translated src=- shape=de43bc72 vocab=b63d0208
+-/
 lemma omega_comp_parity : (omega P p).comp (parity P p) = (parity P p).comp (omega P p) := by
   refine hom_ext (fun i ↦ ?_) (fun i ↦ ?_) (fun a ↦ ?_) <;> simp
 
+/--
+@isnad1 id=eq.0h7v.s10.4acadd550f50 from=translated src=- shape=e638f510 vocab=cb48580c
+-/
 lemma omega_parity (u : P.SuperEnveloping p) :
     omega P p (parity P p u) = parity P p (omega P p u) :=
   congrArg (fun φ : P.SuperEnveloping p →ₐ[K] _ ↦ φ u) (omega_comp_parity P p)
 
+/--
+@isnad1 id=eq.0h8v.s9.f4154a0aa13c from=translated src=- shape=96a4f37b vocab=3cfa7679
+-/
 lemma omega_superBracket (x y : P.SuperEnveloping p) :
     omega P p (superBracket P p x y) = superBracket P p (omega P p x) (omega P p y) := by
   simp only [superBracket, map_sub, map_mul, map_smul, map_add, omega_parity]
@@ -372,13 +493,22 @@ lemma omega_superBracket (x y : P.SuperEnveloping p) :
 /-- The negative part `ñ₋ = ω(ñ₊)` of `G̃(A, τ)`.-/
 def nMinus : Submodule K (P.SuperEnveloping p) := (nPlus P p).map (omega P p).toLinearMap
 
+/--
+@isnad1 id=mem.1h7v.s10.b8004b4b5dce from=translated src=- shape=701d332e vocab=2a93b09e
+-/
 lemma omega_mem_nMinus {x : P.SuperEnveloping p} (hx : x ∈ nPlus P p) :
     omega P p x ∈ nMinus P p :=
   Submodule.mem_map_of_mem hx
 
+/--
+@isnad1 id=mem.0h7v.s8.5a7cd8c17e16 from=translated src=- shape=12933353 vocab=52eb66b0
+-/
 lemma f_mem_nMinus (i : ι) : f P p i ∈ nMinus P p := by
   simpa using omega_mem_nMinus P p (e_mem_nPlus P p i)
 
+/--
+@isnad1 id=le.0h6v.s10.c6cc10ec083a from=translated src=- shape=4f7bd665 vocab=a1f15afe
+-/
 lemma omega_sup_range_h :
     (nPlus P p ⊔ LinearMap.range (h P p)).map (omega P p).toLinearMap ≤
       nMinus P p ⊔ LinearMap.range (h P p) := by
@@ -387,7 +517,9 @@ lemma omega_sup_range_h :
   rintro _ ⟨_, ⟨a, rfl⟩, rfl⟩
   exact ⟨-a, by simp⟩
 
-/-- `[fⱼ, ñ₋] ⊆ ñ₋`.-/
+/-- `[fⱼ, ñ₋] ⊆ ñ₋`.
+@isnad1 id=mem.1h8v.s9.e28706281fa5 from=translated src=- shape=b042bb00 vocab=5d0425b1
+-/
 lemma superBracket_f_mem_nMinus (j : ι) {x : P.SuperEnveloping p} (hx : x ∈ nMinus P p) :
     superBracket P p (f P p j) x ∈ nMinus P p := by
   obtain ⟨y, hy, rfl⟩ := hx
@@ -395,7 +527,9 @@ lemma superBracket_f_mem_nMinus (j : ι) {x : P.SuperEnveloping p} (hx : x ∈ n
   exact omega_mem_nMinus P p (superBracket_e_mem_nPlus P p j hy)
 
 variable [CharZero K] in
-/-- `[eₖ, ñ₋] ⊆ ñ₋ + 𝔥`.-/
+/-- `[eₖ, ñ₋] ⊆ ñ₋ + 𝔥`.
+@isnad1 id=mem.1h8v.s10.93594cacd12b from=translated src=- shape=9cb238fe vocab=612888f0
+-/
 lemma superBracket_e_mem_nMinus_sup (k : ι) {x : P.SuperEnveloping p} (hx : x ∈ nMinus P p) :
     superBracket P p (e P p k) x ∈ nMinus P p ⊔ LinearMap.range (h P p) := by
   obtain ⟨y, hy, rfl⟩ := hx
@@ -406,7 +540,9 @@ lemma superBracket_e_mem_nMinus_sup (k : ι) {x : P.SuperEnveloping p} (hx : x �
     (omega_sup_range_h P p (Submodule.mem_map_of_mem (superBracket_f_mem_nPlus_sup P p k hy)))
 
 variable [CharZero K] in
-/-- `[𝔥, ñ₋] ⊆ ñ₋`.-/
+/-- `[𝔥, ñ₋] ⊆ ñ₋`.
+@isnad1 id=mem.1h8v.s10.5f8d25f31058 from=translated src=- shape=0631b11e vocab=d6781877
+-/
 lemma superBracket_h_mem_nMinus (a : H) {x : P.SuperEnveloping p} (hx : x ∈ nMinus P p) :
     superBracket P p (h P p a) x ∈ nMinus P p := by
   obtain ⟨y, hy, rfl⟩ := hx
@@ -420,6 +556,9 @@ lemma superBracket_h_mem_nMinus (a : H) {x : P.SuperEnveloping p} (hx : x ∈ nM
 def parityT : FreeAlgebra K ι →ₐ[K] FreeAlgebra K ι :=
   FreeAlgebra.lift K fun i ↦ paritySign K p i • FreeAlgebra.ι K i
 
+/--
+@isnad1 id=eq.0h7v.s9.287993cfdd8d from=translated src=- shape=e5dba19a vocab=dbd0612a
+-/
 lemma parity_fAlg (x : FreeAlgebra K ι) : parity P p (fAlg P p x) = fAlg P p (parityT p x) := by
   have : (parity P p).comp (fAlg P p) = (fAlg P p).comp (parityT (K := K) p) :=
     FreeAlgebra.hom_ext (funext fun i ↦ by simp [parityT])
@@ -430,6 +569,9 @@ def fAug : Submodule K (P.SuperEnveloping p) :=
   (LinearMap.ker (FreeAlgebra.algebraMapInv (R := K) (X := ι)).toLinearMap).map
     (fAlg P p).toLinearMap
 
+/--
+@isnad1 id=mem.1h8v.s9.f96cfae221e1 from=translated src=- shape=b042bb00 vocab=f05a9a91
+-/
 lemma superBracket_f_mem_fAug (j : ι) {x : P.SuperEnveloping p} (hx : x ∈ fAug P p) :
     superBracket P p (f P p j) x ∈ fAug P p := by
   obtain ⟨t, ht, rfl⟩ := hx
@@ -438,6 +580,9 @@ lemma superBracket_f_mem_fAug (j : ι) {x : P.SuperEnveloping p} (hx : x ∈ fAu
   · simp [FreeAlgebra.algebraMapInv]
   · simp [superBracket, parity_fAlg]
 
+/--
+@isnad1 id=le.0h6v.s9.4a6553ba8d4f from=translated src=- shape=6e6a1e61 vocab=fdd71639
+-/
 lemma nMinus_le_fAug : nMinus P p ≤ fAug P p := by
   rintro _ ⟨y, hy, rfl⟩
   have : nPlus P p ≤ (fAug P p).comap (omega P p).toLinearMap :=
@@ -451,6 +596,9 @@ lemma nMinus_le_fAug : nMinus P p ≤ fAug P p := by
         exact superBracket_f_mem_fAug P p j ih
   exact this hy
 
+/--
+@isnad1 id=le.0h7v.s9.257063f625c0 from=translated src=- shape=8f356596 vocab=80a9baee
+-/
 lemma nPlus_le_vermaIdeal (Λ : Dual K H) : nPlus P p ≤ (vermaIdeal P p Λ).restrictScalars K := by
   refine (nPlus_le_iff P p).2 fun i w ↦ ?_
   induction w with

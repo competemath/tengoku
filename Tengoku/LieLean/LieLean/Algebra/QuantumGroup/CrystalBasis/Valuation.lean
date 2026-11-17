@@ -41,20 +41,32 @@ variable {ϖ}
 
 section Basic
 
+/--
+@isnad1 id=inpow.1h5v.s5.44bedb423f44 from=translated src=- shape=2df17bd1 vocab=b81e6983
+-/
 lemma IsUnitPow.inPow {e : ℤ} {κ : k} (h : IsUnitPow ϖ e κ) : InPow ϖ e κ := by
   obtain ⟨u, -, rfl⟩ := h
   exact ⟨u, rfl⟩
 
+/--
+@isnad1 id=isunitpo.3h7v.s7.8b3328a6e666 from=translated src=- shape=7598d43f vocab=9efa7e18
+-/
 lemma IsUnitPow.mul {e e' : ℤ} {κ κ' : k} (hq : algebraMap A k ϖ ≠ 0) (h : IsUnitPow ϖ e κ)
     (h' : IsUnitPow ϖ e' κ') : IsUnitPow ϖ (e + e') (κ * κ') := by
   obtain ⟨u, hu, rfl⟩ := h
   obtain ⟨u', hu', rfl⟩ := h'
   exact ⟨u * u', hu.mul hu', by rw [zpow_add₀ hq, map_mul]; ring⟩
 
+/--
+@isnad1 id=isunitpo.1h5v.s6.9b92425a0e80 from=translated src=- shape=5c80b7b1 vocab=c0b85184
+-/
 lemma IsUnitPow.neg {e : ℤ} {κ : k} (h : IsUnitPow ϖ e κ) : IsUnitPow ϖ e (-κ) := by
   obtain ⟨u, hu, rfl⟩ := h
   exact ⟨-u, hu.neg, by rw [map_neg, mul_neg]⟩
 
+/--
+@isnad1 id=isunitpo.1h5v.s6.1e3bad400327 from=translated src=- shape=f07eaa26 vocab=fcbb6b11
+-/
 lemma IsUnitPow.inv {e : ℤ} {κ : k} (h : IsUnitPow ϖ e κ) : IsUnitPow ϖ (-e) κ⁻¹ := by
   obtain ⟨u, hu, rfl⟩ := h
   obtain ⟨v, rfl⟩ := hu
@@ -63,47 +75,80 @@ lemma IsUnitPow.inv {e : ℤ} {κ : k} (h : IsUnitPow ϖ e κ) : IsUnitPow ϖ (-
   congr 1
   exact (eq_inv_of_mul_eq_one_left (by rw [← map_mul, v.inv_mul, map_one])).symm
 
+/--
+@isnad1 id=isunitpo.3h7v.s7.1adb7a2aa297 from=translated src=- shape=7598d43f vocab=c123ad08
+-/
 lemma IsUnitPow.div {e e' : ℤ} {κ κ' : k} (hq : algebraMap A k ϖ ≠ 0) (h : IsUnitPow ϖ e κ)
     (h' : IsUnitPow ϖ e' κ') : IsUnitPow ϖ (e - e') (κ / κ') := by
   rw [div_eq_mul_inv, sub_eq_add_neg]
   exact h.mul hq h'.inv
 
+/--
+@isnad1 id=isunitpo.0h4v.s6.687b9184f3df from=translated src=- shape=d44bddd8 vocab=8b20ef5c
+-/
 lemma isUnitPow_zpow (e : ℤ) : IsUnitPow ϖ e (algebraMap A k ϖ ^ e) :=
   ⟨1, isUnit_one, by simp⟩
 
+/--
+@isnad1 id=isunitpo.0h3v.s5.6bebf338c2c2 from=translated src=- shape=f622a803 vocab=94217de7
+-/
 lemma isUnitPow_one : IsUnitPow ϖ 0 (1 : k) := ⟨1, isUnit_one, by simp⟩
 
+/--
+@isnad1 id=inpow.2h6v.s6.de65f6ea4433 from=translated src=- shape=6801ef88 vocab=7f12ed86
+-/
 lemma InPow.add {e : ℤ} {κ κ' : k} (h : InPow ϖ e κ) (h' : InPow ϖ e κ') :
     InPow ϖ e (κ + κ') := by
   obtain ⟨a, rfl⟩ := h
   obtain ⟨a', rfl⟩ := h'
   exact ⟨a + a', by rw [map_add, mul_add]⟩
 
+/--
+@isnad1 id=inpow.1h5v.s6.03d551caa316 from=translated src=- shape=5c80b7b1 vocab=c21606a6
+-/
 lemma InPow.neg {e : ℤ} {κ : k} (h : InPow ϖ e κ) : InPow ϖ e (-κ) := by
   obtain ⟨a, rfl⟩ := h
   exact ⟨-a, by rw [map_neg, mul_neg]⟩
 
+/--
+@isnad1 id=inpow.2h6v.s6.4961dfe5427e from=translated src=- shape=6801ef88 vocab=9cc34682
+-/
 lemma InPow.sub {e : ℤ} {κ κ' : k} (h : InPow ϖ e κ) (h' : InPow ϖ e κ') :
     InPow ϖ e (κ - κ') := by
   rw [sub_eq_add_neg]; exact h.add h'.neg
 
+/--
+@isnad1 id=inpow.0h4v.s5.d83a7e344598 from=translated src=- shape=9465813d vocab=9320152d
+-/
 lemma inPow_zero (e : ℤ) : InPow ϖ e (0 : k) := ⟨0, by simp⟩
 
+/--
+@isnad1 id=inpow.2h6v.s5.955661f39ece from=translated src=- shape=2ac716e3 vocab=9320152d
+-/
 lemma InPow.congr_right {e : ℤ} {κ κ' : k} (h : InPow ϖ e κ) (hκ : κ = κ') : InPow ϖ e κ' :=
   hκ ▸ h
 
+/--
+@isnad1 id=inpow.3h7v.s7.6f4669ffe8d8 from=translated src=- shape=7598d43f vocab=24439b0f
+-/
 lemma InPow.mul {e e' : ℤ} {κ κ' : k} (hq : algebraMap A k ϖ ≠ 0) (h : InPow ϖ e κ)
     (h' : InPow ϖ e' κ') : InPow ϖ (e + e') (κ * κ') := by
   obtain ⟨a, rfl⟩ := h
   obtain ⟨a', rfl⟩ := h'
   exact ⟨a * a', by rw [zpow_add₀ hq, map_mul]; ring⟩
 
+/--
+@isnad1 id=inpow.3h6v.s7.5b991eadaec8 from=translated src=- shape=1c70ceae vocab=38b130a3
+-/
 lemma InPow.mono {e e' : ℤ} {κ : k} (hq : algebraMap A k ϖ ≠ 0) (hee' : e ≤ e')
     (h : InPow ϖ e' κ) : InPow ϖ e κ := by
   obtain ⟨a, rfl⟩ := h
   obtain ⟨d, hd⟩ : ∃ d : ℕ, e' = e + d := ⟨(e' - e).toNat, by omega⟩
   exact ⟨ϖ ^ d * a, by rw [hd, zpow_add₀ hq, map_mul, map_pow, zpow_natCast]; ring⟩
 
+/--
+@isnad1 id=inpow.1h7v.s6.53a3e29fd489 from=translated src=- shape=a8db6efa vocab=d247a72b
+-/
 lemma InPow.sum {ι : Type*} (s : Finset ι) {e : ℤ} {f : ι → k} (h : ∀ i ∈ s, InPow ϖ e (f i)) :
     InPow ϖ e (∑ i ∈ s, f i) := by
   classical
@@ -114,16 +159,31 @@ lemma InPow.sum {ι : Type*} (s : Finset ι) {e : ℤ} {f : ι → k} (h : ∀ i
     exact (h i (Finset.mem_insert_self _ _)).add
       (ih fun j hj ↦ h j (Finset.mem_insert_of_mem hj))
 
+/--
+@isnad1 id=inpow.0h4v.s6.74b8ab746a8c from=translated src=- shape=d810a211 vocab=4166576b
+-/
 lemma inPow_algebraMap (a : A) : InPow ϖ 0 (algebraMap A k a) := ⟨a, by simp⟩
 
+/--
+@isnad1 id=inpow.1h5v.s5.4ce453af1745 from=translated src=- shape=2df17bd1 vocab=e42f87f9
+-/
 lemma IsOnePow.inPow {e : ℤ} {κ : k} (h : IsOnePow ϖ e κ) : InPow ϖ e κ := by
   obtain ⟨a, rfl⟩ := h
   exact ⟨_, rfl⟩
 
+/--
+@isnad1 id=isonepow.0h4v.s6.4e9fc4ac0c38 from=translated src=- shape=d44bddd8 vocab=ed2721fc
+-/
 lemma isOnePow_zpow (e : ℤ) : IsOnePow ϖ e (algebraMap A k ϖ ^ e) := ⟨0, by simp⟩
 
+/--
+@isnad1 id=isonepow.0h3v.s5.5c48d8548e49 from=translated src=- shape=f622a803 vocab=ac62af3c
+-/
 lemma isOnePow_one : IsOnePow ϖ 0 (1 : k) := ⟨0, by simp⟩
 
+/--
+@isnad1 id=isonepow.3h7v.s7.8f245ced4ef3 from=translated src=- shape=7598d43f vocab=dfad7e68
+-/
 lemma IsOnePow.mul {e e' : ℤ} {κ κ' : k} (hq : algebraMap A k ϖ ≠ 0) (h : IsOnePow ϖ e κ)
     (h' : IsOnePow ϖ e' κ') : IsOnePow ϖ (e + e') (κ * κ') := by
   obtain ⟨a, rfl⟩ := h
@@ -133,7 +193,9 @@ lemma IsOnePow.mul {e e' : ℤ} {κ κ' : k} (hq : algebraMap A k ϖ ≠ 0) (h :
   simp only [map_add, map_mul, map_one]
   ring
 
-/-- `κ ∈ 1 + ϖ A` implies `κ - 1 ∈ ϖ A`.-/
+/-- `κ ∈ 1 + ϖ A` implies `κ - 1 ∈ ϖ A`.
+@isnad1 id=inpow.1h4v.s6.b5e259fed594 from=translated src=- shape=c6548b9d vocab=d2123286
+-/
 lemma IsOnePow.sub_one {κ : k} (h : IsOnePow ϖ 0 κ) : InPow ϖ 1 (κ - 1) := by
   obtain ⟨a, rfl⟩ := h
   exact ⟨a, by simp [map_add, map_mul]⟩
@@ -141,15 +203,24 @@ lemma IsOnePow.sub_one {κ : k} (h : IsOnePow ϖ 0 κ) : InPow ϖ 1 (κ - 1) := 
 variable [IsLocalRing A] (hϖ : ϖ ∈ IsLocalRing.maximalIdeal A)
 include hϖ
 
+/--
+@isnad1 id=isunit.1h3v.s6.0099a7ccd870 from=translated src=- shape=12c615c1 vocab=f4d9a752
+-/
 lemma isUnit_one_add_mul (a : A) : IsUnit (1 + ϖ * a) := by
   have h : -(ϖ * a) ∈ nonunits A :=
     (IsLocalRing.mem_maximalIdeal _).1 ((Ideal.neg_mem_iff _).2 (Ideal.mul_mem_right a _ hϖ))
   simpa using IsLocalRing.isUnit_one_sub_self_of_mem_nonunits _ h
 
+/--
+@isnad1 id=isunitpo.2h5v.s6.a83728f7bbe0 from=translated src=- shape=fc1c686b vocab=587bd2bc
+-/
 lemma IsOnePow.isUnitPow {e : ℤ} {κ : k} (h : IsOnePow ϖ e κ) : IsUnitPow ϖ e κ := by
   obtain ⟨a, rfl⟩ := h
   exact ⟨_, isUnit_one_add_mul hϖ a, rfl⟩
 
+/--
+@isnad1 id=isonepow.2h5v.s6.f81925c50812 from=translated src=- shape=8abbb8f3 vocab=03d6ce55
+-/
 lemma IsOnePow.inv {e : ℤ} {κ : k} (h : IsOnePow ϖ e κ) :
     IsOnePow ϖ (-e) κ⁻¹ := by
   obtain ⟨a, rfl⟩ := h
@@ -163,6 +234,9 @@ lemma IsOnePow.inv {e : ℤ} {κ : k} (h : IsOnePow ϖ e κ) :
     eq_inv_of_mul_eq_one_left (by rw [← map_mul, h1, map_one])
   rw [h2, mul_inv, zpow_neg]
 
+/--
+@isnad1 id=isonepow.4h7v.s7.0e09d8134ee6 from=translated src=- shape=7e9cf580 vocab=b446bfe7
+-/
 lemma IsOnePow.div {e e' : ℤ} {κ κ' : k} (hq : algebraMap A k ϖ ≠ 0) (h : IsOnePow ϖ e κ)
     (h' : IsOnePow ϖ e' κ') : IsOnePow ϖ (e - e') (κ / κ') := by
   rw [div_eq_mul_inv, sub_eq_add_neg]
@@ -178,7 +252,9 @@ variable [IsLocalRing A] (hϖ : ϖ ∈ IsLocalRing.maximalIdeal A) (hq : algebra
 include hq
 
 omit [IsLocalRing A] in
-/-- `[n] = q^{1-n} (1 + q² + ⋯ + q^{2(n-1)})` lies in `q^{1-n} (1 + ϖ A)` for `n ≥ 1`.-/
+/-- `[n] = q^{1-n} (1 + q² + ⋯ + q^{2(n-1)})` lies in `q^{1-n} (1 + ϖ A)` for `n ≥ 1`.
+@isnad1 id=isonepow.2h4v.s7.3979959674bc from=translated src=- shape=ea73331e vocab=6b1bbdf6
+-/
 lemma isOnePow_qInt {n : ℕ} (hn : 0 < n) :
     IsOnePow ϖ (1 - n) (qInt (algebraMap A k ϖ) n) := by
   obtain ⟨n, rfl⟩ := Nat.exists_eq_succ_of_ne_zero hn.ne'
@@ -204,7 +280,9 @@ lemma isOnePow_qInt {n : ℕ} (hn : 0 < n) :
   omega
 
 omit [IsLocalRing A] in
-/-- `[n, m] ∈ q^{-m(n-m)} (1 + ϖ A)` for `m ≤ n`.-/
+/-- `[n, m] ∈ q^{-m(n-m)} (1 + ϖ A)` for `m ≤ n`.
+@isnad1 id=isonepow.2h5v.s7.f30ebce2185b from=translated src=- shape=b90abe91 vocab=5b5a587f
+-/
 lemma isOnePow_qBinomial {n m : ℕ} (hmn : m ≤ n) :
     IsOnePow ϖ (-(m * (n - m) : ℕ)) (qBinomial (algebraMap A k ϖ) n m) := by
   induction n generalizing m with

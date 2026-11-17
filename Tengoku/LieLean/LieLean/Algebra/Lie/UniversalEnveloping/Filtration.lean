@@ -56,38 +56,64 @@ def filtration (n : ℕ) : Submodule R (UniversalEnvelopingAlgebra R L) :=
 
 variable {R L}
 
+/--
+@isnad1 id=eq.0h2v.s8.c7df8fc30c5f from=translated src=- shape=c2ffb2ae vocab=c02cc188
+-/
 theorem filtration_zero : filtration R L 0 = 1 := pow_zero _
 
+/--
+@isnad1 id=eq.0h3v.s10.29e86d0cd9bd from=translated src=- shape=4015ea60 vocab=ea1a9656
+-/
 theorem filtration_succ (n : ℕ) : filtration R L (n + 1) =
     (1 ⊔ LinearMap.range (ι R : L →ₗ⁅R⁆ UniversalEnvelopingAlgebra R L).toLinearMap) *
       filtration R L n := pow_succ' _ _
 
+/--
+@isnad1 id=eq.0h4v.s8.47ba5ac289b3 from=translated src=- shape=4d46957a vocab=5994562b
+-/
 theorem filtration_add (m n : ℕ) :
     filtration R L (m + n) = filtration R L m * filtration R L n := pow_add _ _ _
 
+/--
+@isnad1 id=monotone.0h2v.s7.9c36237a374e from=translated src=- shape=317b4148 vocab=e624b723
+-/
 theorem filtration_mono : Monotone (filtration R L) := by
   refine monotone_nat_of_le_succ fun n ↦ ?_
   rw [filtration_succ]
   calc filtration R L n = 1 * filtration R L n := (one_mul _).symm
     _ ≤ _ := mul_le_mul_left le_sup_left _
 
+/--
+@isnad1 id=mem.0h3v.s8.a831f09709c5 from=translated src=- shape=9ec90d40 vocab=b9007307
+-/
 theorem one_mem_filtration (n : ℕ) : (1 : UniversalEnvelopingAlgebra R L) ∈ filtration R L n :=
   filtration_mono (Nat.zero_le n) (by rw [filtration_zero]; exact Submodule.one_le.mp le_rfl)
 
+/--
+@isnad1 id=mem.0h4v.s8.bfb1975d61bc from=translated src=- shape=7502ed8f vocab=27662e8c
+-/
 theorem algebraMap_mem_filtration (r : R) (n : ℕ) :
     algebraMap R (UniversalEnvelopingAlgebra R L) r ∈ filtration R L n := by
   rw [Algebra.algebraMap_eq_smul_one]
   exact Submodule.smul_mem _ _ (one_mem_filtration n)
 
+/--
+@isnad1 id=mem.0h3v.s8.4f41051e102d from=translated src=- shape=d9bf2283 vocab=1dc89fbf
+-/
 theorem ι_mem_filtration_one (x : L) : ι R x ∈ filtration R L 1 := by
   rw [filtration, pow_one]
   exact Submodule.mem_sup_right ⟨x, rfl⟩
 
+/--
+@isnad1 id=mem.2h6v.s9.60503c0279e5 from=translated src=- shape=03995ce1 vocab=9c404625
+-/
 theorem mul_mem_filtration {m n : ℕ} {x y : UniversalEnvelopingAlgebra R L}
     (hx : x ∈ filtration R L m) (hy : y ∈ filtration R L n) : x * y ∈ filtration R L (m + n) := by
   rw [filtration_add]; exact Submodule.mul_mem_mul hx hy
 
-/-- The PBW filtration is exhaustive.-/
+/-- The PBW filtration is exhaustive.
+@isnad1 id=ex.0h3v.s8.131237609a3e from=translated src=- shape=8b1cbf3a vocab=b9007307
+-/
 theorem exists_mem_filtration (u : UniversalEnvelopingAlgebra R L) :
     ∃ n, u ∈ filtration R L n := by
   obtain ⟨a, rfl⟩ : ∃ a, mkAlgHom R L a = u := by
@@ -108,16 +134,24 @@ theorem exists_mem_filtration (u : UniversalEnvelopingAlgebra R L) :
     rw [map_mul]
     exact ⟨m + n, mul_mem_filtration hm hn⟩
 
+/--
+@isnad1 id=eq.0h2v.s9.78a41ea34616 from=translated src=- shape=ec71c742 vocab=fe1b3495
+-/
 theorem iSup_filtration : ⨆ n, filtration R L n = ⊤ := by
   refine eq_top_iff.mpr fun u _ ↦ ?_
   obtain ⟨n, hn⟩ := exists_mem_filtration u
   exact Submodule.mem_iSup_of_mem n hn
 
+/--
+@isnad1 id=iff.0h3v.s8.0b00e8c41744 from=translated src=- shape=8c86ade0 vocab=27662e8c
+-/
 theorem mem_filtration_zero {u : UniversalEnvelopingAlgebra R L} :
     u ∈ filtration R L 0 ↔ ∃ r : R, algebraMap R _ r = u := by
   rw [filtration_zero, Submodule.mem_one]
 
-/-- Elements of `F₁` have commutators with `Fₙ` in `Fₙ`.-/
+/-- Elements of `F₁` have commutators with `Fₙ` in `Fₙ`.
+@isnad1 id=mem.2h5v.s9.67436e29d806 from=translated src=- shape=0589af04 vocab=1ccd066c
+-/
 theorem commutator_mem_filtration_of_mem_one {g u : UniversalEnvelopingAlgebra R L}
     (hg : g ∈ filtration R L 1) {n : ℕ} (hu : u ∈ filtration R L n) :
     g * u - u * g ∈ filtration R L n := by
@@ -151,7 +185,9 @@ theorem commutator_mem_filtration_of_mem_one {g u : UniversalEnvelopingAlgebra R
 /-- **Commutators drop the filtration degree**: if `a ∈ Fₘ` and `u ∈ Fₙ` then
 `a * u - u * a ∈ F_{m + n - 1}`. Consequently the associated graded algebra of `U(L)` is
 commutative. See Humphreys, *Introduction to Lie algebras and representation theory*, §17.3
-and Bourbaki, *Lie groups and Lie algebras*, Ch. I, §2.6.-/
+and Bourbaki, *Lie groups and Lie algebras*, Ch. I, §2.6.
+@isnad1 id=mem.2h6v.s9.2a21f7214a65 from=translated src=- shape=94bc3b4e vocab=cdaaa49b
+-/
 theorem commutator_mem_filtration {m n : ℕ} {a u : UniversalEnvelopingAlgebra R L}
     (ha : a ∈ filtration R L m) (hu : u ∈ filtration R L n) :
     a * u - u * a ∈ filtration R L (m + n - 1) := by
@@ -171,10 +207,15 @@ theorem commutator_mem_filtration {m n : ℕ} {a u : UniversalEnvelopingAlgebra 
       rw [Algebra.commutes, sub_self, mul_zero]; exact zero_mem _
     · exact filtration_mono (by omega) (mul_mem_filtration hg1 ih)
 
+/--
+@isnad1 id=eq.0h3v.s10.45de0e633463 from=translated src=- shape=531cb4a9 vocab=0e76f07c
+-/
 theorem iSup_lt_filtration (n : ℕ) : ⨆ i < n + 1, filtration R L i = filtration R L n :=
   le_antisymm (iSup₂_le fun _ hi ↦ filtration_mono (by omega)) (le_iSup₂_of_le n (by omega) le_rfl)
 
-/-- A product of `k` elements of `ι L` lies in `Fₖ`.-/
+/-- A product of `k` elements of `ι L` lies in `Fₖ`.
+@isnad1 id=mem.0h3v.s8.2a4338a090fb from=translated src=- shape=7f661a38 vocab=b06c30ec
+-/
 theorem list_prod_mem_filtration (l : List L) :
     (l.map (ι R)).prod ∈ filtration R L l.length := by
   induction l with
@@ -187,6 +228,9 @@ section PBW
 
 variable {σ : Type*} [LinearOrder σ]
 
+/--
+@isnad1 id=mem.0h5v.s8.47b8629dff62 from=translated src=- shape=be79bb45 vocab=8d9cef43
+-/
 theorem pbwMonomial_mem_filtration (v : σ → L) (s : σ →₀ ℕ) :
     pbwMonomial R v s ∈ filtration R L s.degree := by
   have := list_prod_mem_filtration (R := R) (((toMultiset s).sort (· ≤ ·)).map v)
@@ -197,7 +241,9 @@ open PBW in
 /-- **PBW, filtered version**: the PBW isomorphism `U(L) ≃ₗ[R] R[X_i : i ∈ σ]` attached to an
 ordered basis of `L` maps `Fₙ` onto the polynomials of total degree at most `n`. See Humphreys,
 *Introduction to Lie algebras and representation theory*, §17.3; the statement is part of
-the proof of Corollary C there (via Corollary A).-/
+the proof of Corollary C there (via Corollary A).
+@isnad1 id=eq.0h5v.s8.b162a6c45235 from=translated src=- shape=c40b3ccf vocab=fe5b8293
+-/
 theorem map_pbwEquiv_filtration (b : Basis σ R L) (n : ℕ) :
     (filtration R L n).map (pbwEquiv b : _ →ₗ[R] MvPolynomial σ R) = restrictTotalDegree σ R n := by
   apply le_antisymm
@@ -226,6 +272,9 @@ theorem map_pbwEquiv_filtration (b : Basis σ R L) (n : ℕ) :
     · exact hs
     · simp
 
+/--
+@isnad1 id=iff.0h6v.s9.840bc63173be from=translated src=- shape=3b8d671a vocab=8ecf056a
+-/
 theorem mem_filtration_iff_pbwEquiv (b : Basis σ R L) {n : ℕ}
     {u : UniversalEnvelopingAlgebra R L} :
     u ∈ filtration R L n ↔ pbwEquiv b u ∈ restrictTotalDegree σ R n := by
@@ -233,7 +282,9 @@ theorem mem_filtration_iff_pbwEquiv (b : Basis σ R L) {n : ℕ}
   refine ⟨fun h ↦ ⟨u, h, rfl⟩, fun ⟨v, hv, e⟩ ↦ ?_⟩
   rwa [← (pbwEquiv b).injective e]
 
-/-- `Fₙ` is spanned by the ordered monomials of length at most `n`.-/
+/-- `Fₙ` is spanned by the ordered monomials of length at most `n`.
+@isnad1 id=eq.0h5v.s8.9e25cc1104ba from=translated src=- shape=c92f2fee vocab=51c19cf7
+-/
 theorem filtration_eq_span (b : Basis σ R L) (n : ℕ) :
     filtration R L n = Submodule.span R (pbwMonomial R b '' {s | s.degree ≤ n}) := by
   apply Submodule.map_injective_of_injective (pbwEquiv b).injective
@@ -243,6 +294,9 @@ theorem filtration_eq_span (b : Basis σ R L) (n : ℕ) :
   refine Set.image_congr fun s _ ↦ ?_
   simp
 
+/--
+@isnad1 id=linearin.0h5v.s9.1d9e43c142eb from=translated src=- shape=e2220c9b vocab=c7d5e4af
+-/
 theorem linearIndependent_pbwMonomial_subtype (b : Basis σ R L) (n : ℕ) :
     LinearIndependent R fun s : {s : σ →₀ ℕ // s.degree ≤ n} ↦ pbwMonomial R b s := by
   convert (pbwBasis b).linearIndependent.comp _ Subtype.val_injective
@@ -260,6 +314,9 @@ def filtrationBasis (b : Basis σ R L) (n : ℕ) :
       ext u
       simp))
 
+/--
+@isnad1 id=eq.0h6v.s11.ac98ec0a8716 from=translated src=- shape=2e8909f2 vocab=05ae0ce8
+-/
 @[simp] theorem filtrationBasis_apply (b : Basis σ R L) (n : ℕ)
     (s : {s : σ →₀ ℕ // s.degree ≤ n}) :
     (filtrationBasis b n s : UniversalEnvelopingAlgebra R L) = pbwMonomial R b s := by

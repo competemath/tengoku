@@ -44,7 +44,9 @@ attribute [local instance 100] LieRing.ofAssociativeRing
 variable {R L : Type*} [CommRing R] [LieRing L] [LieAlgebra R L]
 
 /-- Every nonzero element `u` of `U(L)` has a nonzero symbol in `gr U(L)`: the class of `u` in
-`Fₙ / Fₙ₋₁`, for `n` the least integer with `u ∈ Fₙ`.-/
+`Fₙ / Fₙ₋₁`, for `n` the least integer with `u ∈ Fₙ`.
+@isnad1 id=ex.1h3v.s11.117c5978e065 from=translated src=- shape=df889f19 vocab=18366231
+-/
 theorem exists_toGr_ne_zero {u : UniversalEnvelopingAlgebra R L} (hu : u ≠ 0) :
     ∃ n, ∃ hn : u ∈ filtration R L n, toGr R L n ⟨u, hn⟩ ≠ 0 := by
   classical
@@ -63,7 +65,9 @@ theorem exists_toGr_ne_zero {u : UniversalEnvelopingAlgebra R L} (hu : u ≠ 0) 
 /-- If `L` is a free module over a ring `R` without zero divisors, then `U(L)` has no zero
 divisors. This follows from the graded PBW theorem `gr U(L) ≅ Sym(L)`. See Humphreys,
 *Representations of semisimple Lie algebras in the BGG category 𝒪*, §0.5, and Dixmier,
-*Enveloping algebras*, Cor. 2.3.9 (both over a field).-/
+*Enveloping algebras*, Cor. 2.3.9 (both over a field).
+@isnad1 id=nozerodi.0h2v.s6.b5b6ccc999cd from=translated src=- shape=872e7571 vocab=e211e540
+-/
 instance instNoZeroDivisors [NoZeroDivisors R] [Module.Free R L] :
     NoZeroDivisors (UniversalEnvelopingAlgebra R L) := by
   have : NoZeroDivisors (AssociatedGraded R L) :=
@@ -79,6 +83,9 @@ instance instNoZeroDivisors [NoZeroDivisors R] [Module.Free R L] :
     Subtype.ext huv
   rw [h0, map_zero]
 
+/--
+@isnad1 id=nontrivi.0h2v.s4.c7ddf8cdf676 from=translated src=- shape=f79b5090 vocab=ec7011f3
+-/
 instance instNontrivial [Nontrivial R] : Nontrivial (UniversalEnvelopingAlgebra R L) :=
   (lift R (0 : L →ₗ⁅R⁆ R)).toRingHom.domain_nontrivial
 

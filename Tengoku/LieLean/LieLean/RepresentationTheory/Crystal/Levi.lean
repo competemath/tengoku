@@ -48,37 +48,51 @@ namespace IsLeviHom
 
 variable {C' : Crystal D' B'} {C : Crystal D B} {e : κ → ι} {Φ : B' → B}
 
+/--
+@isnad1 id=eq.1h15v.s6.2d3184247ccf from=translated src=- shape=8562d64c vocab=d1b978cc
+-/
 lemma map_eIter (h : IsLeviHom C' C e Φ) (k : κ) (n : ℕ) (b : B') :
     (C'.eIter k n b).map Φ = C.eIter (e k) n (Φ b) := by
   rw [eIter_eq_iterOpt, eIter_eq_iterOpt]
   exact iterOpt_map (h.map_e k) n b
 
+/--
+@isnad1 id=eq.1h15v.s6.125478aa5214 from=translated src=- shape=8562d64c vocab=16735da8
+-/
 lemma map_fIter (h : IsLeviHom C' C e Φ) (k : κ) (n : ℕ) (b : B') :
     (C'.fIter k n b).map Φ = C.fIter (e k) n (Φ b) := by
   rw [fIter_eq_iterOpt, fIter_eq_iterOpt]
   exact iterOpt_map (h.map_f k) n b
 
 /-- A Levi morphism between seminormal crystals intertwines Kashiwara's reflections:
-`Φ (Sₖ b) = S_{e k} Φ(b)`.-/
+`Φ (Sₖ b) = S_{e k} Φ(b)`.
+@isnad1 id=eq.3h14v.s6.6c0952aab42e from=translated src=- shape=cdd84f01 vocab=949c1231
+-/
 theorem map_reflection (h : IsLeviHom C' C e Φ) (hC' : C'.IsSeminormal) (hC : C.IsSeminormal)
     (k : κ) (b : B') : Φ (C'.reflection k b) = C.reflection (e k) (Φ b) :=
   hC'.map_reflection_of_eq hC (h.map_e k) (h.map_f k) (h.coroot_wt k) b
 
-/-- Precomposition with a strict morphism.-/
+/-- Precomposition with a strict morphism.
+@isnad1 id=isleviho.1h15v.s7.3c9c5a36dfe3 from=translated src=- shape=d16a51fb vocab=b24071cc
+-/
 theorem comp_strictHom (h : IsLeviHom C' C e Φ) {C'' : Crystal D' B''} (ψ : StrictHom C'' C') :
     IsLeviHom C'' C e (Φ ∘ ψ) where
   map_e k b := by rw [Function.comp_apply, ← h.map_e, ψ.e_apply, Option.map_map]
   map_f k b := by rw [Function.comp_apply, ← h.map_f, ψ.f_apply, Option.map_map]
   coroot_wt k b := by rw [Function.comp_apply, h.coroot_wt, ψ.wt_apply]
 
-/-- Postcomposition with a strict morphism.-/
+/-- Postcomposition with a strict morphism.
+@isnad1 id=isleviho.1h15v.s7.b8d46c88a88c from=translated src=- shape=da1ec488 vocab=b24071cc
+-/
 theorem strictHom_comp (h : IsLeviHom C' C e Φ) {C₂ : Crystal D B₂} (ψ : StrictHom C C₂) :
     IsLeviHom C' C₂ e (ψ ∘ Φ) where
   map_e k b := by rw [Function.comp_apply, ψ.e_apply, ← h.map_e, Option.map_map]
   map_f k b := by rw [Function.comp_apply, ψ.f_apply, ← h.map_f, Option.map_map]
   coroot_wt k b := by rw [Function.comp_apply, ψ.wt_apply, h.coroot_wt]
 
-/-- Composition with the first inclusion into a disjoint union.-/
+/-- Composition with the first inclusion into a disjoint union.
+@isnad1 id=isleviho.1h14v.s6.c34e30a62001 from=translated src=- shape=b67f15f8 vocab=fbe94c46
+-/
 theorem inl (h : IsLeviHom C' C e Φ) (C₂ : Crystal D B₂) :
     IsLeviHom C' (C.sum C₂) e (Sum.inl ∘ Φ) where
   map_e k b := by
@@ -89,7 +103,9 @@ theorem inl (h : IsLeviHom C' C e Φ) (C₂ : Crystal D B₂) :
     rw [← h.map_f, Option.map_map]
   coroot_wt k b := h.coroot_wt k b
 
-/-- Composition with the second inclusion into a disjoint union.-/
+/-- Composition with the second inclusion into a disjoint union.
+@isnad1 id=isleviho.1h14v.s6.08524c29fbfe from=translated src=- shape=c8102f3e vocab=d2ecb25e
+-/
 theorem inr (h : IsLeviHom C' C e Φ) (C₁ : Crystal D B₁) :
     IsLeviHom C' (C₁.sum C) e (Sum.inr ∘ Φ) where
   map_e k b := by

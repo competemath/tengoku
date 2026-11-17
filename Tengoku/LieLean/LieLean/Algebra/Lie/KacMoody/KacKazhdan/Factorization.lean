@@ -50,7 +50,9 @@ namespace Module.Dual
 variable {K H : Type*} [Field K] [IsAlgClosed K] [AddCommGroup H] [Module K H]
 
 /-- Over an algebraically closed field, a nonconstant polynomial whose zeros all lie on finitely
-many affine hyperplanes is divisible by the equation of one of them.-/
+many affine hyperplanes is divisible by the equation of one of them.
+@isnad1 id=ex.3h7v.s9.c7c192450eda from=translated src=- shape=f79ebc4f vocab=340bd8af
+-/
 theorem exists_affPoly_dvd_of_forall {F : MvPolynomial (PolyIdx K H) K}
     (hF : 0 < F.totalDegree) {κ : Type*} (s : Finset κ) (a : κ → H) (c : κ → K)
     (ha : ∀ k ∈ s, a k ≠ 0)
@@ -97,7 +99,9 @@ theorem exists_affPoly_dvd_of_forall {F : MvPolynomial (PolyIdx K H) K}
 
 /-- **Polynomials vanishing only on finitely many hyperplanes.** Over an algebraically closed
 field, a nonzero polynomial whose zeros all lie on the affine hyperplanes `λ(a_k) + c_k = 0`
-(`k ∈ s`) is a nonzero scalar times `∏_k (λ(a_k) + c_k)^{e_k}` for some exponents `e_k`.-/
+(`k ∈ s`) is a nonzero scalar times `∏_k (λ(a_k) + c_k)^{e_k}` for some exponents `e_k`.
+@isnad1 id=ex.3h7v.s10.d14f6cba9b55 from=translated src=- shape=5d098b43 vocab=e5a8491c
+-/
 theorem exists_eq_C_mul_prod_affPoly_pow {F : MvPolynomial (PolyIdx K H) K} (hF : F ≠ 0)
     {κ : Type*} (s : Finset κ) (a : κ → H) (c : κ → K) (ha : ∀ k ∈ s, a k ≠ 0)
     (hz : ∀ Λ : Dual K H, evalPoly K H F Λ = 0 → ∃ k ∈ s, Λ (a k) + c k = 0) :

@@ -62,6 +62,9 @@ noncomputable def symmTerm (t : k) (n : ℤ) (a c : ℕ) : Module.End k M :=
       (V.dE a * V.dF (n + a + c).toNat * V.dE c)
   else 0
 
+/--
+@isnad1 id=eq.0h9v.s9.1761b9105e4d from=translated src=- shape=67245768 vocab=585c2aa7
+-/
 lemma symmTerm_apply (t : k) (n : ℤ) (a c : ℕ) (m : M) :
     V.symmTerm t n a c m = if 0 ≤ n + a + c then
       ((-1) ^ (n + a + c).toNat * t ^ (n + a + c).toNat * t⁻¹ ^ (a * c)) •
@@ -69,20 +72,32 @@ lemma symmTerm_apply (t : k) (n : ℤ) (a c : ℕ) (m : M) :
   unfold symmTerm
   split_ifs <;> rfl
 
+/--
+@isnad1 id=eq.2h6v.s8.783fc706bbb4 from=translated src=- shape=c281871c vocab=5fc441b2
+-/
 lemma pow_apply_eq_zero_of_le {f : Module.End k M} {x : M} {N b : ℕ} (h : (f ^ N) x = 0)
     (hb : N ≤ b) : (f ^ b) x = 0 := by
   rw [← Nat.sub_add_cancel hb, pow_add, Module.End.mul_apply, h, map_zero]
 
 variable {V}
 
+/--
+@isnad1 id=eq.2h7v.s8.c648bd42759f from=translated src=- shape=c83a135c vocab=512d6f1d
+-/
 lemma dE_eq_zero_of_le {x : M} {N b : ℕ} (h : (V.E ^ N) x = 0) (hb : N ≤ b) : V.dE b x = 0 := by
   rw [dE_apply, pow_apply_eq_zero_of_le h hb, smul_zero]
 
+/--
+@isnad1 id=eq.2h7v.s8.b3517f5804a0 from=translated src=- shape=c83a135c vocab=103e2a37
+-/
 lemma dF_eq_zero_of_le {x : M} {N b : ℕ} (h : (V.F ^ N) x = 0) (hb : N ≤ b) : V.dF b x = 0 := by
   rw [dF_apply, pow_apply_eq_zero_of_le h hb, smul_zero]
 
 variable (V)
 
+/--
+@isnad1 id=finite.0h7v.s7.2e1c4d310b33 from=translated src=- shape=c1bb7c8b vocab=5d11dd13
+-/
 lemma hasFiniteSupport_symmTerm (t : k) (n : ℤ) (m : M) :
     (Function.support fun ac : ℕ × ℕ ↦ V.symmTerm t n ac.1 ac.2 m).Finite := by
   obtain ⟨N, hN⟩ := V.exists_E_pow_eq_zero m
@@ -116,6 +131,9 @@ noncomputable def symmWt (t : k) (n : ℤ) : M →ₗ[k] M where
     simp only [map_smul, RingHom.id_apply]
     exact (smul_finsum' c (V.hasFiniteSupport_symmTerm t n x)).symm
 
+/--
+@isnad1 id=isintern.0h4v.s6.441be6446b88 from=translated src=- shape=a1619055 vocab=f36e66bd
+-/
 lemma isInternal : DirectSum.IsInternal V.wt :=
   DirectSum.isInternal_submodule_of_iSupIndep_of_iSup_eq_top V.iSupIndep_wt V.iSup_wt
 
@@ -123,6 +141,9 @@ lemma isInternal : DirectSum.IsInternal V.wt :=
 noncomputable def decompose :=
   (LinearEquiv.ofBijective (DirectSum.coeLinearMap V.wt) V.isInternal).symm
 
+/--
+@isnad1 id=eq.1h6v.s11.1087d2b82ef2 from=translated src=- shape=dcd8d6d2 vocab=2c105b7f
+-/
 lemma decompose_of_mem {n : ℤ} {m : M} (hm : m ∈ V.wt n) :
     V.decompose m = DirectSum.of (fun n ↦ V.wt n) n ⟨m, hm⟩ := by
   rw [decompose, LinearEquiv.symm_apply_eq]
@@ -134,22 +155,33 @@ noncomputable def T (t : k) : Module.End k M :=
   DirectSum.toModule k ℤ M (fun n ↦ V.symmWt t n ∘ₗ (V.wt n).subtype) ∘ₗ
     V.decompose.toLinearMap
 
+/--
+@isnad1 id=eq.1h7v.s8.94832034cf5a from=translated src=- shape=add63154 vocab=42c67d62
+-/
 lemma T_of_mem (t : k) {n : ℤ} {m : M} (hm : m ∈ V.wt n) : V.T t m = V.symmWt t n m := by
   rw [T, LinearMap.comp_apply, LinearEquiv.coe_coe, decompose_of_mem V hm,
     ← DirectSum.lof_eq_of k, DirectSum.toModule_lof]
   rfl
 
+/--
+@isnad1 id=eq.1h7v.s7.75dadb689a56 from=translated src=- shape=6886ddcc vocab=57e06c26
+-/
 lemma T_of_mem' (t : k) {n : ℤ} {m : M} (hm : m ∈ V.wt n) :
     V.T t m = ∑ᶠ ac : ℕ × ℕ, V.symmTerm t n ac.1 ac.2 m :=
   V.T_of_mem t hm
 
-/-- Linear maps agreeing on all weight vectors are equal.-/
+/-- Linear maps agreeing on all weight vectors are equal.
+@isnad1 id=eq.1h7v.s8.e74dd5f7d5a7 from=translated src=- shape=9e9c3550 vocab=277076ab
+-/
 lemma ext_wt {N : Type*} [AddCommGroup N] [Module k N] {f g : M →ₗ[k] N}
     (h : ∀ n, ∀ m ∈ V.wt n, f m = g m) : f = g := by
   have : ⊤ ≤ LinearMap.eqLocus f g := V.iSup_wt ▸ iSup_le fun n m hm ↦ h n m hm
   ext m
   exact this Submodule.mem_top
 
+/--
+@isnad1 id=eq.0h4v.s5.29f246088522 from=translated src=- shape=f19dcc82 vocab=138243dd
+-/
 lemma flip_flip : V.flip.flip = V := by
   cases V
   simp only [flip, neg_neg]
@@ -161,7 +193,9 @@ variable {V}
 variable (hq0 : q ≠ 0) (hq : ∀ n : ℕ, 0 < n → q ^ n ≠ 1)
 include hq0 hq
 
-/-- `F^{(a)} F^{(b)} = [a+b, a] F^{(a+b)}`.-/
+/-- `F^{(a)} F^{(b)} = [a+b, a] F^{(a+b)}`.
+@isnad1 id=eq.2h7v.s8.6b945552b273 from=translated src=- shape=d91afe67 vocab=3dee1c8e
+-/
 lemma dF_dF (a b : ℕ) (m : M) : V.dF a (V.dF b m) = qBinomial q (a + b) a • V.dF (a + b) m := by
   have h := qBinomial_mul_qFactorial_mul_qFactorial (v := q) (show a ≤ a + b by omega)
   rw [Nat.add_sub_cancel_left] at h
@@ -174,7 +208,9 @@ lemma dF_dF (a b : ℕ) (m : M) : V.dF a (V.dF b m) = qBinomial q (a + b) a • 
   field_simp
 
 /-- Induction over strings: a property of vectors of `Mⁿ` closed under linear combinations holds
-as soon as it holds for the vectors `F^{(j)} η` with `η ∈ Mᵖ` primitive, `j ≤ p`, `n = p - 2j`.-/
+as soon as it holds for the vectors `F^{(j)} η` with `η ∈ Mᵖ` primitive, `j ≤ p`, `n = p - 2j`.
+@isnad1 id=var.3h11v.s9.a6b14d3d80ed from=translated src=- shape=b2b85a2d vocab=ab231452
+-/
 lemma wt_induction {n : ℤ} {P : M → Prop} (h0 : P 0) (hadd : ∀ x y, P x → P y → P (x + y))
     (hsmul : ∀ (c : k) x, P x → P (c • x))
     (hgen : ∀ (p j : ℕ) (η : M), j ≤ p → n = p - 2 * j → η ∈ V.wt p → V.E η = 0 →
@@ -206,7 +242,9 @@ lemma eq_on_wt {N : Type*} [AddCommGroup N] [Module k N] (f g : M →ₗ[k] N) {
   wt_induction (P := fun m ↦ f m = g m) hq0 hq (by simp)
     (fun x y hx hy ↦ by simp [hx, hy]) (fun c x hx ↦ by simp [hx]) hgen hm
 
-/-- `E^{(c)} F^{(j)} η = 0` for `η ∈ Mᵖ` primitive and `j < c`, `j ≤ p`.-/
+/-- `E^{(c)} F^{(j)} η = 0` for `η ∈ Mᵖ` primitive and `j < c`, `j ≤ p`.
+@isnad1 id=eq.6h8v.s8.f89d1d9e0f4a from=translated src=- shape=f8ecb885 vocab=7b865c1d
+-/
 lemma dE_dF_eq_zero_of_lt {p : ℕ} {η : M} (hη : η ∈ V.wt p) (hE : V.E η = 0) {j c : ℕ}
     (hjp : j ≤ p) (hjc : j < c) : V.dE c (V.dF j η) = 0 := by
   refine dE_eq_zero_of_le (N := j + 1) ?_ hjc
@@ -218,13 +256,17 @@ lemma dE_dF_eq_zero_of_lt {p : ℕ} {η : M} (hη : η ∈ V.wt p) (hE : V.E η 
   rw [pow_succ', Module.End.mul_apply, h', map_smul, hE, smul_zero]
 
 /-- `F^{(i)} η = E^{(p-i)} F^{(p)} η` for `η ∈ Mᵖ` primitive and `i ≤ p`: lowest-weight
-strings of the flipped module.-/
+strings of the flipped module.
+@isnad1 id=eq.5h7v.s8.36a90908cf88 from=translated src=- shape=570793d8 vocab=84bd1c49
+-/
 lemma dF_eq_flip_dF {p : ℕ} {η : M} (hη : η ∈ V.wt p) (hE : V.E η = 0) {i : ℕ} (hi : i ≤ p) :
     V.dF i η = V.flip.dF (p - i) (V.dF p η) := by
   rw [flip_dF, dE_dF_of_primitive hq0 hq hη hE (Nat.sub_le p i) le_rfl,
     show p - p + (p - i) = p - i by omega, qBinomial_self, one_smul, Nat.sub_sub_self hi]
 
-/-- `F^{(p)} η` is primitive in the flipped module, of weight `p`.-/
+/-- `F^{(p)} η` is primitive in the flipped module, of weight `p`.
+@isnad1 id=and.4h6v.s9.7e2079c844a8 from=translated src=- shape=2874dd77 vocab=6ae04fc7
+-/
 lemma flip_primitive {p : ℕ} {η : M} (hη : η ∈ V.wt p) (hE : V.E η = 0) :
     V.dF p η ∈ V.flip.wt p ∧ V.flip.E (V.dF p η) = 0 := by
   refine ⟨?_, ?_⟩
@@ -235,7 +277,9 @@ lemma flip_primitive {p : ℕ} {η : M} (hη : η ∈ V.wt p) (hE : V.E η = 0) 
       smul_zero]
 
 omit hq0 hq in
-/-- The `q`-binomial sum giving the coefficient of `T` on strings.-/
+/-- The `q`-binomial sum giving the coefficient of `T` on strings.
+@isnad1 id=eq.2h5v.s8.f195d40382bd from=translated src=- shape=b92ce513 vocab=a872b46e
+-/
 lemma sum_symm_coeff {t : k} (ht0 : t ≠ 0) (ht : ∀ n j, qBinomial t n j = qBinomial q n j)
     (h j : ℕ) :
     ∑ a ∈ range (j + 1), ∑ c ∈ range (j + 1), (-t) ^ (h + a + c) * t⁻¹ ^ (a * c) *
@@ -260,7 +304,9 @@ lemma sum_symm_coeff {t : k} (ht0 : t ≠ 0) (ht : ∀ n j, qBinomial t n j = qB
     simp at h0
 
 /-- The string formula: for `η ∈ Mᵖ` with `E η = 0` and `j ≤ p`,
-`T(F^{(j)} η) = (-1)^{p-j} t^{(p-j)(j+1)} F^{(p-j)} η` (cf. [Lus] 5.2.2).-/
+`T(F^{(j)} η) = (-1)^{p-j} t^{(p-j)(j+1)} F^{(p-j)} η` (cf. [Lus] 5.2.2).
+@isnad1 id=eq.7h8v.s9.2ea078e84c99 from=translated src=- shape=234ec791 vocab=43d8802a
+-/
 theorem T_dF_of_primitive {t : k} (ht0 : t ≠ 0) (ht : ∀ n j, qBinomial t n j = qBinomial q n j)
     {p : ℕ} {η : M} (hη : η ∈ V.wt p) (hE : V.E η = 0) {j : ℕ} (hj : j ≤ p) :
     V.T t (V.dF j η) = ((-1) ^ (p - j) * t ^ ((p - j) * (j + 1))) • V.dF (p - j) η := by
@@ -333,10 +379,15 @@ variable {t : k} (ht0 : t ≠ 0) (ht : ∀ n j, qBinomial t n j = qBinomial q n 
 include ht0 ht
 
 omit hq0 hq ht0 in
+/--
+@isnad1 id=eq.1h5v.s5.a106fa5a54ed from=translated src=- shape=3a852681 vocab=68fbdefd
+-/
 lemma qBinomial_inv_eq (n j : ℕ) : qBinomial t⁻¹ n j = qBinomial q n j := by
   rw [qBinomial_inv, ht]
 
-/-- `T'_{t⁻¹} T''_t = 1` ([Lus] 5.2.3(a)).-/
+/-- `T'_{t⁻¹} T''_t = 1` ([Lus] 5.2.3(a)).
+@isnad1 id=eq.4h6v.s8.e10f06874e5f from=translated src=- shape=278ef848 vocab=a6c5daf0
+-/
 theorem flip_T_inv_T (m : M) : V.flip.T t⁻¹ (V.T t m) = m := by
   have ht' := qBinomial_inv_eq ht
   have key := V.ext_wt (f := V.flip.T t⁻¹ ∘ₗ V.T t) (g := LinearMap.id) fun n m hm ↦
@@ -354,7 +405,9 @@ theorem flip_T_inv_T (m : M) : V.flip.T t⁻¹ (V.T t m) = m := by
       hm
   exact LinearMap.congr_fun key m
 
-/-- `T''_t T'_{t⁻¹} = 1` ([Lus] 5.2.3(a)).-/
+/-- `T''_t T'_{t⁻¹} = 1` ([Lus] 5.2.3(a)).
+@isnad1 id=eq.4h6v.s8.debc039346b2 from=translated src=- shape=201a55ad vocab=a6c5daf0
+-/
 theorem T_flip_T_inv (m : M) : V.T t (V.flip.T t⁻¹ m) = m := by
   have := flip_T_inv_T (V := V.flip) hq0 hq (inv_ne_zero ht0) (qBinomial_inv_eq ht) m
   rwa [flip_flip, inv_inv] at this
@@ -369,8 +422,14 @@ noncomputable def symmEquiv : M ≃ₗ[k] M where
   left_inv := flip_T_inv_T hq0 hq ht0 ht
   right_inv := T_flip_T_inv hq0 hq ht0 ht
 
+/--
+@isnad1 id=eq.4h6v.s8.eb3439bab8d6 from=translated src=- shape=3a1a3293 vocab=8f41900c
+-/
 @[simp] lemma symmEquiv_apply (m : M) : V.symmEquiv hq0 hq ht0 ht m = V.T t m := rfl
 
+/--
+@isnad1 id=eq.4h6v.s8.07f57073f5e9 from=translated src=- shape=64bc5db5 vocab=517bf3d8
+-/
 @[simp] lemma symmEquiv_symm_apply (m : M) :
     (V.symmEquiv hq0 hq ht0 ht).symm m = V.flip.T t⁻¹ m := rfl
 

@@ -73,7 +73,9 @@ noncomputable section
 
 open Module CoxeterSystem Filter Topology
 
-/-- For `a, b ∈ ℚ` with `a ∉ ℤ` or `b ≠ 0`, `a + ε b ∉ ℤ` for all small `ε > 0`.-/
+/-- For `a, b ∈ ℚ` with `a ∉ ℤ` or `b ≠ 0`, `a + ε b ∉ ℤ` for all small `ε > 0`.
+@isnad1 id=eventual.1h2v.s6.49c707c98203 from=translated src=- shape=6f8c2c11 vocab=976b4653
+-/
 theorem Rat.eventually_not_exists_int_add_mul {a b : ℚ} (h : (¬∃ z : ℤ, a = z) ∨ b ≠ 0) :
     ∀ᶠ ε in 𝓝[>] (0 : ℚ), ¬∃ z : ℤ, a + ε * b = z := by
   by_cases ha : ∃ z : ℤ, a = z
@@ -125,6 +127,9 @@ def IsPosRoot (v : P.weylGroup hA) (i : ι) : Prop :=
 
 variable {P hA}
 
+/--
+@isnad1 id=eq.1h7v.s12.4be577654929 from=translated src=- shape=d7c1a7ef vocab=490d674d
+-/
 @[simp] lemma corootPairing_one (x : Dual K H) (i : ι) :
     P.corootPairing hA x 1 i = x (P.coroot i) := by
   simp [corootPairing]

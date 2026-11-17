@@ -41,7 +41,9 @@ namespace MvPolynomial
 
 variable {R I : Type*} [CommRing R]
 
-/-- Removing the degree-`n+1` component lowers the total-degree bound to `n`.-/
+/-- Removing the degree-`n+1` component lowers the total-degree bound to `n`.
+@isnad1 id=mem.1h4v.s9.dd89591418dd from=translated src=- shape=f0639c8b vocab=558ff04f
+-/
 theorem sub_homogeneousComponent_mem_restrictTotalDegree (n : ℕ) (p : MvPolynomial I R)
     (hp : p ∈ restrictTotalDegree I R (n + 1)) :
     p - homogeneousComponent (n + 1) p ∈
@@ -63,7 +65,9 @@ theorem sub_homogeneousComponent_mem_restrictTotalDegree (n : ℕ) (p : MvPolyno
   change d.degree ≤ n + 1 at hdle
   omega
 
-/-- Multiplication by a variable shifts the polynomial projection by one.-/
+/-- Multiplication by a variable shifts the polynomial projection by one.
+@isnad1 id=eq.0h5v.s9.fe53c52b04d1 from=translated src=- shape=ae5a04f9 vocab=5403c32d
+-/
 theorem homogeneousComponent_X_mul (n : ℕ) (i : I) (p : MvPolynomial I R) :
     homogeneousComponent (n + 1) (X i * p) =
       X i * homogeneousComponent n p := by
@@ -94,6 +98,9 @@ def rectangle (q n : ℕ) : Submodule R EP :=
   Submodule.span R {z | ∃ (e : ExteriorAlgebra R M), e ∈ ⋀[R]^q M ∧
     ∃ p : P, p ∈ MvPolynomial.restrictTotalDegree I R n ∧ z = e ⊗ₜ[R] p}
 
+/--
+@isnad1 id=mem.2h7v.s11.9acaa1cc56a7 from=translated src=- shape=6d472a89 vocab=a4c7b09a
+-/
 lemma tmul_mem_rectangle {q n : ℕ} {e : ExteriorAlgebra R M} (he : e ∈ ⋀[R]^q M)
     {p : P} (hp : p ∈ MvPolynomial.restrictTotalDegree I R n) :
     e ⊗ₜ[R] p ∈ rectangle (R := R) (M := M) (I := I) q n :=
@@ -117,10 +124,15 @@ def IsLeadingKoszul (b : Module.Basis I R M) (D : Module.End R EP) : Prop :=
 def polynomialTop (n : ℕ) : Module.End R EP :=
   TensorProduct.map LinearMap.id (MvPolynomial.homogeneousComponent n)
 
+/--
+@isnad1 id=eq.0h6v.s11.fa9949ff9b73 from=translated src=- shape=f3ccc0f0 vocab=e4bad064
+-/
 @[simp] theorem polynomialTop_tmul (n : ℕ) (e : ExteriorAlgebra R M) (p : P) :
     polynomialTop n (e ⊗ₜ[R] p) = e ⊗ₜ[R] MvPolynomial.homogeneousComponent n p := rfl
 
-/-- Every homogeneous pure-tensor span lies in the corresponding rectangle.-/
+/-- Every homogeneous pure-tensor span lies in the corresponding rectangle.
+@isnad1 id=le.0h7v.s11.77c46bc212b3 from=translated src=- shape=ea05f0e6 vocab=180e73b1
+-/
 theorem homogeneousTensors_le_rectangle (b : Module.Basis I R M) (s : Finset I)
     (n q : ℕ) : homogeneousTensors b s n q ≤ rectangle q n := by
   apply Submodule.span_le.mpr
@@ -128,7 +140,9 @@ theorem homogeneousTensors_le_rectangle (b : Module.Basis I R M) (s : Finset I)
   exact tmul_mem_rectangle (hl ▸ basisWord_mem_exteriorPower b l)
     ((MvPolynomial.mem_restrictTotalDegree _ _ _).mpr hp.totalDegree_le)
 
-/-- The top component of a rectangle belongs to the full homogeneous tensor span.-/
+/-- The top component of a rectangle belongs to the full homogeneous tensor span.
+@isnad1 id=mem.1h8v.s13.3284e038815f from=translated src=- shape=c9921aa3 vocab=2b0e365a
+-/
 theorem polynomialTop_mem_iSup (b : Module.Basis I R M) (q m n : ℕ) {z : EP}
     (hz : z ∈ rectangle q m) :
     polynomialTop n z ∈ ⨆ s : Finset I, homogeneousTensors b s n q := by
@@ -142,7 +156,9 @@ theorem polynomialTop_mem_iSup (b : Module.Basis I R M) (q m n : ℕ) {z : EP}
   | add x y _ _ hx hy => simpa only [map_add] using add_mem hx hy
   | smul r x _ hx => simpa only [map_smul] using Submodule.smul_mem _ r hx
 
-/-- Projection acts as identity on the supported homogeneous span.-/
+/-- Projection acts as identity on the supported homogeneous span.
+@isnad1 id=eq.1h8v.s12.7f447f1cb0bb from=translated src=- shape=5cf8f0a6 vocab=3b940dc2
+-/
 theorem polynomialTop_eq_self (b : Module.Basis I R M) (s : Finset I) (n q : ℕ)
     {z : EP} (hz : z ∈ homogeneousTensors b s n q) : polynomialTop n z = z := by
   induction hz using Submodule.span_induction with
@@ -153,7 +169,9 @@ theorem polynomialTop_eq_self (b : Module.Basis I R M) (s : Finset I) (n q : ℕ
   | add x y _ _ hx hy => simp only [map_add, hx, hy]
   | smul r x _ hx => simp only [map_smul, hx]
 
-/-- Projection above the coefficient bound vanishes.-/
+/-- Projection above the coefficient bound vanishes.
+@isnad1 id=eq.2h7v.s12.d89b0b2bd4e6 from=translated src=- shape=747465ce vocab=169f62db
+-/
 theorem polynomialTop_eq_zero {q m n : ℕ} (hmn : m < n) {z : EP}
     (hz : z ∈ rectangle q m) : polynomialTop n z = 0 := by
   induction hz using Submodule.span_induction with
@@ -165,7 +183,9 @@ theorem polynomialTop_eq_zero {q m n : ℕ} (hmn : m < n) {z : EP}
   | add x y _ _ hx hy => simp only [map_add, hx, hy, add_zero]
   | smul r x _ hx => simp only [map_smul, hx, smul_zero]
 
-/-- Removing the top component of a rectangle strictly lowers its coefficient bound.-/
+/-- Removing the top component of a rectangle strictly lowers its coefficient bound.
+@isnad1 id=mem.1h6v.s13.2cd9ed5befa9 from=translated src=- shape=b1af2fd0 vocab=2a2af1d3
+-/
 theorem sub_polynomialTop_mem (q n : ℕ) {z : EP} (hz : z ∈ rectangle q (n + 1)) :
     z - polynomialTop (n + 1) z ∈ rectangle q n := by
   induction hz using Submodule.span_induction with
@@ -180,13 +200,17 @@ theorem sub_polynomialTop_mem (q n : ℕ) {z : EP} (hz : z ∈ rectangle q (n + 
   | smul r x _ hx =>
     simpa only [map_smul, smul_sub] using Submodule.smul_mem _ r hx
 
-/-- Positive-degree form of strict coefficient descent.-/
+/-- Positive-degree form of strict coefficient descent.
+@isnad1 id=mem.2h6v.s13.c466d9222937 from=translated src=- shape=0ca69fc6 vocab=b947494d
+-/
 theorem sub_polynomialTop_mem_pred (q n : ℕ) (hn : 0 < n) {z : EP}
     (hz : z ∈ rectangle q n) : z - polynomialTop n z ∈ rectangle q (n - 1) := by
   obtain ⟨m, rfl⟩ := Nat.exists_eq_succ_of_ne_zero (Nat.ne_of_gt hn)
   simpa only [Nat.succ_eq_add_one, Nat.add_sub_cancel] using sub_polynomialTop_mem q m hz
 
-/-- Every bounded tensor splits into a lower-degree tensor and a supported homogeneous top.-/
+/-- Every bounded tensor splits into a lower-degree tensor and a supported homogeneous top.
+@isnad1 id=ex.1h7v.s13.60a15727d903 from=translated src=- shape=aa7b17ce vocab=97fe9b9a
+-/
 theorem rectangle_decomposition (b : Module.Basis I R M) (q n : ℕ) {z : EP}
     (hz : z ∈ rectangle q (n + 1)) :
     ∃ (y t : EP) (s : Finset I), y ∈ rectangle q n ∧
@@ -197,7 +221,9 @@ theorem rectangle_decomposition (b : Module.Basis I R M) (q n : ℕ) {z : EP}
   exact ⟨z - polynomialTop (n + 1) z, polynomialTop (n + 1) z, s,
     sub_polynomialTop_mem q n hz, hs, (sub_add_cancel z _).symm⟩
 
-/-- Every homogeneous span lies in its concrete coefficient-degree rectangle.-/
+/-- Every homogeneous span lies in its concrete coefficient-degree rectangle.
+@isnad1 id=le.0h6v.s12.3b05ccf5464b from=translated src=- shape=ce9ad6d8 vocab=488a70b0
+-/
 theorem iSup_homogeneousTensors_le_rectangle (b : Module.Basis I R M) (q n : ℕ) :
     (⨆ s : Finset I, homogeneousTensors b s n q) ≤ rectangle q n := by
   rw [iSup_homogeneousTensors]
@@ -206,7 +232,9 @@ theorem iSup_homogeneousTensors_le_rectangle (b : Module.Basis I R M) (q n : ℕ
   exact tmul_mem_rectangle he
     (by rw [MvPolynomial.mem_restrictTotalDegree]; exact hp.totalDegree_le)
 
-/-- Projection onto degree zero is the identity on the degree-zero rectangle.-/
+/-- Projection onto degree zero is the identity on the degree-zero rectangle.
+@isnad1 id=eq.1h5v.s12.55ec5c461c8f from=translated src=- shape=e0ce51ed vocab=99220c61
+-/
 theorem polynomialTop_zero_eq_self (q : ℕ) {z : EP}
     (hz : z ∈ rectangle q 0) : polynomialTop 0 z = z := by
   induction hz using Submodule.span_induction with
@@ -221,14 +249,18 @@ theorem polynomialTop_zero_eq_self (q : ℕ) {z : EP}
   | add x y _ _ hx hy => simp only [map_add, hx, hy]
   | smul r x _ hx => simp only [map_smul, hx]
 
-/-- Bounded exterior support is monotone.-/
+/-- Bounded exterior support is monotone.
+@isnad1 id=le.1h8v.s11.a9693dbf5987 from=translated src=- shape=aa817b1c vocab=c8cfa561
+-/
 theorem supportedTensors_mono (b : Module.Basis I R M) (q n : ℕ)
     {s t : Finset I} (hst : s ⊆ t) : supportedTensors b s q n ≤ supportedTensors b t q n := by
   apply Submodule.span_mono
   rintro z ⟨l, p, hl, hs, hp, hz⟩
   exact ⟨l, p, hl, fun i hi => hst (hs i hi), hp, hz⟩
 
-/-- Every homogeneous supported tensor has the corresponding bounded support.-/
+/-- Every homogeneous supported tensor has the corresponding bounded support.
+@isnad1 id=le.0h7v.s11.36281d3c8c83 from=translated src=- shape=2a745c75 vocab=999fe033
+-/
 theorem homogeneousTensors_le_supportedTensors (b : Module.Basis I R M)
     (s : Finset I) (n q : ℕ) :
     homogeneousTensors b s n q ≤ supportedTensors b s q n := by
@@ -237,7 +269,9 @@ theorem homogeneousTensors_le_supportedTensors (b : Module.Basis I R M)
   exact Submodule.subset_span ⟨l, p, hl, hs,
     (MvPolynomial.mem_restrictTotalDegree _ _ _).mpr hp.totalDegree_le, rfl⟩
 
-/-- Every bounded rectangle tensor has finite exterior coordinate support.-/
+/-- Every bounded rectangle tensor has finite exterior coordinate support.
+@isnad1 id=ex.1h7v.s12.845a4439fed9 from=translated src=- shape=01599298 vocab=9aa8b2e6
+-/
 theorem exists_support_rectangle (b : Module.Basis I R M) (q n : ℕ)
     {z : EP} (hz : z ∈ rectangle q n) : ∃ s, z ∈ supportedTensors b s q n := by
   classical
@@ -267,7 +301,9 @@ theorem exists_support_rectangle (b : Module.Basis I R M) (q n : ℕ)
   exact ⟨s ∪ t, supportedTensors_mono b q n Finset.subset_union_left,
     supportedTensors_mono b q n Finset.subset_union_right⟩
 
-/-- Common finite support for a tensor and its homogeneous top.-/
+/-- Common finite support for a tensor and its homogeneous top.
+@isnad1 id=ex.1h7v.s13.6ee9d9da4958 from=translated src=- shape=d82ff22e vocab=d3d98715
+-/
 theorem exists_common_support (b : Module.Basis I R M) (q n : ℕ)
     {z : EP} (hz : z ∈ rectangle q n) :
     ∃ s, z ∈ supportedTensors b s q n ∧
@@ -280,7 +316,9 @@ theorem exists_common_support (b : Module.Basis I R M) (q n : ℕ)
   exact ⟨s ∪ t, supportedTensors_mono b q n Finset.subset_union_left hs,
     homogeneousTensors_mono b n q Finset.subset_union_right ht⟩
 
-/-- Coefficient rectangles are increasing in their degree bound.-/
+/-- Coefficient rectangles are increasing in their degree bound.
+@isnad1 id=le.1h6v.s11.e19ba2832bf6 from=translated src=- shape=3073ffb2 vocab=db4f9fcf
+-/
 theorem rectangle_mono (q : ℕ) {n m : ℕ} (hnm : n ≤ m) :
     rectangle (R := R) (M := M) (I := I) q n ≤ rectangle q m := by
   apply Submodule.span_le.mpr

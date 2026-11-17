@@ -69,7 +69,9 @@ instance : LieModule R L (LeftRegular R L) where
 /-- The underlying linear identification forgets only the coefficient-type tag.-/
 def equiv : LeftRegular R L ≃ₗ[R] UniversalEnvelopingAlgebra R L := LinearEquiv.refl R _
 
-/-- The action is left multiplication, not the commutator action.-/
+/-- The action is left multiplication, not the commutator action.
+@isnad1 id=eq.0h4v.s10.30ace5411da6 from=translated src=- shape=84bbda8c vocab=3b09af4d
+-/
 @[simp] theorem equiv_lie (x : L) (u : LeftRegular R L) :
     equiv R L ⁅x, u⁆ = ι R x * equiv R L u := rfl
 
@@ -81,6 +83,9 @@ def mulRight (u : UniversalEnvelopingAlgebra R L) : LeftRegular R L →ₗ⁅R,L
   map_lie' {x v} := by
     exact mul_assoc (ι R x) (equiv R L v) u
 
+/--
+@isnad1 id=eq.0h4v.s10.13cd586ec848 from=translated src=- shape=54ce19f5 vocab=c0d839b1
+-/
 @[simp] theorem equiv_mulRight (u : UniversalEnvelopingAlgebra R L) (v : LeftRegular R L) :
     equiv R L (mulRight u v) = equiv R L v * u := rfl
 

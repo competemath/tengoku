@@ -79,8 +79,14 @@ def straightLine (μ : X) : LittelmannPath S where
 
 variable {i : ι} {μ : X}
 
+/--
+@isnad1 id=eq.0h7v.s7.7ca89ca6848c from=translated src=- shape=2d342777 vocab=81bc8ea4
+-/
 @[simp] lemma wt_straightLine : (straightLine S μ).wt = μ := rfl
 
+/--
+@isnad1 id=eq.0h8v.s8.a6e4ecb3e135 from=translated src=- shape=446278f9 vocab=ca10d6b3
+-/
 lemma straightLine_apply (t : 𝕜) : straightLine S μ t = max 0 (min 1 t) • S.embed μ := rfl
 
 /-! ### The `αᵢ`-string through a straight line path -/
@@ -106,17 +112,26 @@ def stringPath (μ : X) (i : ι) (k : ℕ) (hk : (k : ℤ) ≤ D.coroot i μ) : 
     exact (hc.mul continuous_const).sub
       (((continuous_const.mul hc).min continuous_const).mul continuous_const)
 
+/--
+@isnad1 id=eq.2h10v.s9.41285d3aa41a from=translated src=- shape=989a29f6 vocab=87cab833
+-/
 lemma stringPath_apply {k : ℕ} (hk : (k : ℤ) ≤ D.coroot i μ) {t : 𝕜} (ht : t ∈ Icc (0 : 𝕜) 1) :
     stringPath S μ i k hk t = t • S.embed μ - min ((D.coroot i μ : 𝕜) * t) k • S.root i := by
   change max 0 (min 1 t) • S.embed μ - min ((D.coroot i μ : 𝕜) * max 0 (min 1 t)) k • S.root i = _
   rw [min_eq_right ht.2, max_eq_right ht.1]
 
+/--
+@isnad1 id=eq.1h8v.s7.a57a9b31d272 from=translated src=- shape=13b0e441 vocab=816ee3ab
+-/
 lemma stringPath_zero (hk : ((0 : ℕ) : ℤ) ≤ D.coroot i μ) :
     stringPath S μ i 0 hk = straightLine S μ := by
   refine ext_of_eqOn fun t ht ↦ ?_
   rw [stringPath_apply hk ht, straightLine_apply, min_eq_right ht.2, max_eq_right ht.1,
     Nat.cast_zero, min_eq_right (mul_nonneg (by exact_mod_cast hk) ht.1), zero_smul, sub_zero]
 
+/--
+@isnad1 id=eq.2h10v.s8.019ed629a0df from=translated src=- shape=3a7cfad4 vocab=5e8310cb
+-/
 lemma pairing_stringPath {k : ℕ} (hk : (k : ℤ) ≤ D.coroot i μ) {t : 𝕜}
     (ht : t ∈ Icc (0 : 𝕜) 1) :
     (stringPath S μ i k hk).pairing i t =
@@ -125,6 +140,9 @@ lemma pairing_stringPath {k : ℕ} (hk : (k : ℤ) ≤ D.coroot i μ) {t : 𝕜}
     S.coroot_root_self, smul_eq_mul, smul_eq_mul]
   ring
 
+/--
+@isnad1 id=eq.2h10v.s8.f108908fbe14 from=translated src=- shape=180cf3c1 vocab=33d15097
+-/
 lemma runningMin_stringPath {k : ℕ} (hk : ((k + 1 : ℕ) : ℤ) ≤ D.coroot i μ) {t : 𝕜}
     (ht : t ∈ Icc (0 : 𝕜) 1) :
     (stringPath S μ i (k + 1) hk).runningMin i t = -min ((D.coroot i μ : 𝕜) * t) (k + 1) := by
@@ -156,7 +174,9 @@ lemma runningMin_stringPath {k : ℕ} (hk : ((k + 1 : ℕ) : ℤ) ≤ D.coroot i
     · rw [min_eq_right h, min_eq_right (h.trans hnu)]
       linarith
 
-/-- `eᵢ` moves one step up the `αᵢ`-string through `π_λ`.-/
+/-- `eᵢ` moves one step up the `αᵢ`-string through `π_λ`.
+@isnad1 id=eq.1h9v.s8.d0294fee1dbd from=translated src=- shape=041873a5 vocab=603ca4ae
+-/
 theorem e_stringPath {k : ℕ} (hk : ((k + 1 : ℕ) : ℤ) ≤ D.coroot i μ) :
     e i (stringPath S μ i (k + 1) hk) =
       some (stringPath S μ i k ((Int.ofNat_le.mpr k.le_succ).trans hk)) := by
@@ -183,7 +203,9 @@ theorem e_stringPath {k : ℕ} (hk : ((k + 1 : ℕ) : ℤ) ≤ D.coroot i μ) :
   rw [← key]
   module
 
-/-- `fᵢ^k π_λ = t ↦ tλ - min(nt, k) αᵢ` for `k ≤ n = ⟨λ, αᵢ^∨⟩`.-/
+/-- `fᵢ^k π_λ = t ↦ tλ - min(nt, k) αᵢ` for `k ≤ n = ⟨λ, αᵢ^∨⟩`.
+@isnad1 id=eq.1h9v.s8.eb36c5cc4d89 from=translated src=- shape=d7a7867f vocab=07d2ef2f
+-/
 theorem f_stringPath {k : ℕ} (hk : ((k + 1 : ℕ) : ℤ) ≤ D.coroot i μ) :
     f i (stringPath S μ i k ((Int.ofNat_le.mpr k.le_succ).trans hk)) =
       some (stringPath S μ i (k + 1) hk) :=
@@ -199,8 +221,14 @@ def component (π : LittelmannPath S) : Set (LittelmannPath S) := (crystal S).cl
 
 variable (π : LittelmannPath S)
 
+/--
+@isnad1 id=mem.0h7v.s7.e783a34421fc from=translated src=- shape=c01cf610 vocab=8353bc21
+-/
 lemma mem_component_self : π ∈ π.component := (crystal S).subset_closure {π} rfl
 
+/--
+@isnad1 id=isstable.0h7v.s7.45270e542f8d from=translated src=- shape=4a6095be vocab=89afd938
+-/
 lemma isStable_component : (crystal S).IsStable π.component := Crystal.isStable_closure _
 
 /-- The crystal structure on the connected component `B(π)`. For the straight line path `π_λ` of
@@ -208,14 +236,18 @@ a dominant weight this is Littelmann's crystal `B(λ)`.-/
 noncomputable def componentCrystal : Crystal D π.component :=
   Crystal.restrict π.isStable_component
 
-/-- The crystal `B(π)` is seminormal.-/
+/-- The crystal `B(π)` is seminormal.
+@isnad1 id=issemino.0h7v.s7.243aa68b8969 from=translated src=- shape=eded5b54 vocab=1d546159
+-/
 theorem isSeminormal_componentCrystal : π.componentCrystal.IsSeminormal :=
   (isSeminormal_crystal S).restrict π.isStable_component
 
 /-! ### Connected components of crystals -/
 
 omit [IsStrictOrderedRing 𝕜] [TopologicalSpace 𝕜] [OrderTopology 𝕜] [FloorRing 𝕜] in
-/-- In a crystal, `a` lies in the connected component of `b` iff `b` lies in that of `a`.-/
+/-- In a crystal, `a` lies in the connected component of `b` iff `b` lies in that of `a`.
+@isnad1 id=mem.1h7v.s6.c6508b0928a9 from=translated src=- shape=16e94280 vocab=be53a603
+-/
 lemma _root_.Tengoku.LieLean.Crystal.mem_closure_singleton_comm {B : Type*} {C : Crystal D B} {a b : B}
     (h : a ∈ C.closure {b}) : b ∈ C.closure {a} := by
   have hT : C.IsStable {x | b ∈ C.closure {x}} := by
@@ -229,11 +261,17 @@ lemma _root_.Tengoku.LieLean.Crystal.mem_closure_singleton_comm {B : Type*} {C :
   exact Crystal.closure_subset hT (singleton_subset_iff.mpr (Crystal.subset_closure {b} rfl)) h
 
 omit [IsStrictOrderedRing 𝕜] [TopologicalSpace 𝕜] [OrderTopology 𝕜] [FloorRing 𝕜] in
+/--
+@isnad1 id=le.1h7v.s6.280a18eb2fc3 from=translated src=- shape=ff3ba236 vocab=02321664
+-/
 lemma _root_.Tengoku.LieLean.Crystal.closure_singleton_subset {B : Type*} {C : Crystal D B} {a b : B}
     (h : a ∈ C.closure {b}) : C.closure {a} ⊆ C.closure {b} :=
   Crystal.closure_subset (Crystal.isStable_closure _) (singleton_subset_iff.mpr h)
 
 omit [IsStrictOrderedRing 𝕜] [TopologicalSpace 𝕜] [OrderTopology 𝕜] [FloorRing 𝕜] in
+/--
+@isnad1 id=mem.1h9v.s6.65846f7847d0 from=translated src=- shape=d349a8af vocab=62592400
+-/
 lemma _root_.Tengoku.LieLean.Crystal.mem_closure_of_fIter_eq_some {B : Type*} {C : Crystal D B} {b b' : B}
     {i : ι} {k : ℕ} (h : C.fIter i k b = some b') : b' ∈ C.closure {b} := by
   induction k generalizing b' with
@@ -245,6 +283,9 @@ lemma _root_.Tengoku.LieLean.Crystal.mem_closure_of_fIter_eq_some {B : Type*} {C
     obtain ⟨c, hc, hf⟩ := Option.bind_eq_some_iff.mp h
     exact (Crystal.isStable_closure {b}).f_mem i c b' (ih hc) hf
 
+/--
+@isnad1 id=eq.1h9v.s8.72731a499e3f from=translated src=- shape=14c625f5 vocab=c4b8d0fc
+-/
 theorem fIter_straightLine {k : ℕ} (hk : (k : ℤ) ≤ D.coroot i μ) :
     (crystal S).fIter i k (straightLine S μ) = some (stringPath S μ i k hk) := by
   induction k with
@@ -265,6 +306,9 @@ def fOrbit : Set (LittelmannPath S) := {π' | ∃ l, fWord l π = some π'}
 
 variable {π}
 
+/--
+@isnad1 id=eq.1h9v.s8.31e00c2dc38d from=translated src=- shape=ab8dc398 vocab=4ee123f1
+-/
 lemma wt_of_fWord {l : List ι} {π' : LittelmannPath S} (h : fWord l π = some π') :
     π'.wt = π.wt - (l.map D.root).sum := by
   induction l generalizing π' with
@@ -278,6 +322,9 @@ lemma wt_of_fWord {l : List ι} {π' : LittelmannPath S} (h : fWord l π = some 
     rw [this, ih hρ, List.map_cons, List.sum_cons]
     abel
 
+/--
+@isnad1 id=le.0h7v.s7.26c0c4ddb4bc from=translated src=- shape=49177e27 vocab=5358bbf1
+-/
 lemma fOrbit_subset_component : π.fOrbit ⊆ π.component := by
   rintro π' ⟨l, hl⟩
   induction l generalizing π' with
@@ -290,7 +337,9 @@ lemma fOrbit_subset_component : π.fOrbit ⊆ π.component := by
 
 /-- If the set `{f_{i₁} ⋯ f_{iₖ} π}` is stable under all `eⱼ`, then it is the connected component
 `B(π)`. (Littelmann proves the hypothesis for paths `π` in the dominant chamber, [Lit95] §7,
-Cor. 1 c); this is not formalized here.)-/
+Cor. 1 c); this is not formalized here.)
+@isnad1 id=eq.1h7v.s8.40ed31adc27a from=translated src=- shape=c6813d51 vocab=9d52fb21
+-/
 theorem component_eq_fOrbit
     (h : ∀ π' ∈ π.fOrbit, ∀ j π'', e j π' = some π'' → π'' ∈ π.fOrbit) :
     π.component = π.fOrbit := by
@@ -299,7 +348,9 @@ theorem component_eq_fOrbit
     (singleton_subset_iff.mpr ⟨[], rfl⟩)) fOrbit_subset_component
 
 /-- If the set `{f_{i₁} ⋯ f_{iₖ} π}` is stable under all `eⱼ`, then the weights of `B(π)` lie in
-`wt π - Q₊`.-/
+`wt π - Q₊`.
+@isnad1 id=ex.2h8v.s9.a4b67edaee47 from=translated src=- shape=8f056c05 vocab=35d0ee93
+-/
 theorem exists_wt_eq_of_mem_component
     (h : ∀ π' ∈ π.fOrbit, ∀ j π'', e j π' = some π'' → π'' ∈ π.fOrbit)
     {π' : LittelmannPath S} (hπ' : π' ∈ π.component) :
@@ -310,7 +361,9 @@ theorem exists_wt_eq_of_mem_component
 
 /-- If the set `{f_{i₁} ⋯ f_{iₖ} π}` is stable under all `eⱼ` and the simple roots are linearly
 independent (in the sense that `s ↦ ∑_{i ∈ s} αᵢ` is injective on multisets), then every weight
-occurs only finitely often in `B(π)`.-/
+occurs only finitely often in `B(π)`.
+@isnad1 id=finite.2h8v.s9.e58ae9f1a092 from=translated src=- shape=789056e0 vocab=7b24894e
+-/
 theorem finite_wt_component
     (hroot : Function.Injective fun s : Multiset ι ↦ (s.map D.root).sum)
     (h : ∀ π' ∈ π.fOrbit, ∀ j π'', e j π' = some π'' → π'' ∈ π.fOrbit) (μ : X) :

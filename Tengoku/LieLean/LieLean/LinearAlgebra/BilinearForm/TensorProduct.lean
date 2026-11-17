@@ -39,7 +39,9 @@ namespace LinearMap.BilinForm
 
 variable {K L M : Type*} [Field K] [CommRing L] [Algebra K L] [AddCommGroup M] [Module K M]
 
-/-- Writing `x ∈ L ⊗_K M` as `Σ bᵢ ⊗ mᵢ` along a `K`-basis `b` of `L`.-/
+/-- Writing `x ∈ L ⊗_K M` as `Σ bᵢ ⊗ mᵢ` along a `K`-basis `b` of `L`.
+@isnad1 id=ex.0h6v.s8.c5932ff640b5 from=translated src=- shape=4da6808a vocab=c8742c54
+-/
 theorem exists_eq_sum_tmul_basis {ι : Type*} (b : Module.Basis ι K L) (x : L ⊗[K] M) :
     ∃ f : ι →₀ M, x = f.sum fun i m ↦ b i ⊗ₜ m := by
   classical

@@ -61,11 +61,17 @@ namespace IsGeneralizedCartan
 
 variable {A : Matrix ι ι ℤ}
 
+/--
+@isnad1 id=isgenera.1h2v.s4.173182acc98c from=translated src=- shape=dc6354b1 vocab=cecf977f
+-/
 lemma transpose (hA : A.IsGeneralizedCartan) : Aᵀ.IsGeneralizedCartan where
   diag i := by simpa using hA.diag i
   offDiag_nonpos i j hij := by simpa using hA.offDiag_nonpos j i hij.symm
   zero_comm i j := by simpa using hA.zero_comm j i
 
+/--
+@isnad1 id=eq.2h4v.s5.466f78ca6d70 from=translated src=- shape=809d9612 vocab=d559555f
+-/
 lemma toNat_neg_eq (hA : A.IsGeneralizedCartan) {i j : ι} (hij : i ≠ j) :
     ((-A i j).toNat : ℤ) = -A i j := by
   have := hA.offDiag_nonpos i j hij
@@ -82,9 +88,15 @@ equivalent form `A = D B` of [Kac] (2.3.1). [Kac] §2.1 allows any invertible co
 def IsSymmetrizable (A : Matrix ι ι ℤ) : Prop :=
   ∃ d : ι → ℤ, (∀ i, 0 < d i) ∧ (diagonal d * A).IsSymm
 
+/--
+@isnad1 id=issymmet.1h2v.s4.850f4062d8f1 from=translated src=- shape=48ebb60a vocab=ab03d239
+-/
 lemma IsSymmetrizable.of_isSymm {A : Matrix ι ι ℤ} (hA : A.IsSymm) : A.IsSymmetrizable :=
   ⟨1, fun _ ↦ one_pos, by simpa [← Pi.one_def] using hA⟩
 
+/--
+@isnad1 id=iff.0h2v.s6.34971257ad45 from=translated src=- shape=551ff653 vocab=2f5324d7
+-/
 lemma isSymmetrizable_iff_mul_eq_mul {A : Matrix ι ι ℤ} :
     A.IsSymmetrizable ↔ ∃ d : ι → ℤ, (∀ i, 0 < d i) ∧ ∀ i j, d i * A i j = d j * A j i := by
   refine exists_congr fun d ↦ and_congr_right fun _ ↦ ?_
@@ -93,7 +105,9 @@ lemma isSymmetrizable_iff_mul_eq_mul {A : Matrix ι ι ℤ} :
   exact ⟨fun h i j ↦ (h j i), fun h i j ↦ h j i⟩
 
 /-- Symmetrizability in the form of [Kac] (2.3.1): `A = D B` with `D` a diagonal matrix with
-positive (rational) entries and `B` a symmetric rational matrix.-/
+positive (rational) entries and `B` a symmetric rational matrix.
+@isnad1 id=iff.0h2v.s6.0ec4913090d8 from=translated src=- shape=1633e592 vocab=450a320d
+-/
 theorem isSymmetrizable_iff_exists_eq_diagonal_mul {A : Matrix ι ι ℤ} :
     A.IsSymmetrizable ↔ ∃ (ε : ι → ℚ) (B : Matrix ι ι ℚ), (∀ i, 0 < ε i) ∧ B.IsSymm ∧
       A.map (Int.cast : ℤ → ℚ) = diagonal ε * B := by
@@ -166,17 +180,29 @@ def corootMap (P : Realization A K H) : (ι → K) →ₗ[K] H :=
 def rootMap (P : Realization A K H) : H →ₗ[K] ι → K :=
   LinearMap.pi P.root
 
+/--
+@isnad1 id=eq.0h7v.s8.8e0dc49f3a19 from=translated src=- shape=e4a2b389 vocab=fc6d66df
+-/
 @[simp] lemma rootMap_apply (P : Realization A K H) (h : H) (j : ι) :
     P.rootMap h j = P.root j h := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.e33a29744100 from=translated src=- shape=196d10e1 vocab=5613a359
+-/
 lemma rootMap_corootMap (P : Realization A K H) (c : ι → K) :
     P.rootMap (P.corootMap c) = c ᵥ* A.map (Int.cast : ℤ → K) := by
   ext j
   simp [corootMap, Fintype.linearCombination_apply, vecMul, dotProduct, root_coroot]
 
+/--
+@isnad1 id=injectiv.0h5v.s7.042dac24e6e5 from=translated src=- shape=002c9259 vocab=df776217
+-/
 lemma corootMap_injective (P : Realization A K H) : Function.Injective P.corootMap :=
   P.linearIndependent_coroot.fintypeLinearCombination_injective
 
+/--
+@isnad1 id=surjecti.0h5v.s7.d0ff507a8a73 from=translated src=- shape=f877c690 vocab=a55de366
+-/
 lemma rootMap_surjective [FiniteDimensional K H] (P : Realization A K H) :
     Function.Surjective P.rootMap := by
   classical
@@ -194,6 +220,9 @@ lemma rootMap_surjective [FiniteDimensional K H] (P : Realization A K H) :
   rw [LinearMap.pi_apply_eq_sum_univ φ v]
   simp [show ∀ i, (φ fun j ↦ if i = j then 1 else 0) = 0 from h']
 
+/--
+@isnad1 id=eq.0h5v.s8.f3ced59bbea1 from=translated src=- shape=cd2a7246 vocab=9678dc3e
+-/
 lemma finrank_ker_rootMap [FiniteDimensional K H] (P : Realization A K H) :
     finrank K (LinearMap.ker P.rootMap) + Fintype.card ι = finrank K H := by
   have := LinearMap.finrank_range_add_finrank_ker P.rootMap
@@ -201,7 +230,9 @@ lemma finrank_ker_rootMap [FiniteDimensional K H] (P : Realization A K H) :
     at this
   omega
 
-/-- The common kernel of the simple roots is contained in the span of the simple coroots.-/
+/-- The common kernel of the simple roots is contained in the span of the simple coroots.
+@isnad1 id=le.0h5v.s8.074c44ea7d05 from=translated src=- shape=64337cd0 vocab=05b7feba
+-/
 lemma ker_rootMap_le [FiniteDimensional K H] (P : Realization A K H) :
     LinearMap.ker P.rootMap ≤ LinearMap.range P.corootMap := by
   set AK := A.map (Int.cast : ℤ → K)
@@ -237,19 +268,29 @@ def rootOf (P : Realization A K H) : (ι → ℤ) →+ Dual K H where
   map_zero' := by simp
   map_add' k l := by simp [add_smul, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h6v.s9.8a050f991f37 from=translated src=- shape=cb7cebdc vocab=a3b55abf
+-/
 lemma rootOf_apply (P : Realization A K H) (k : ι → ℤ) :
     P.rootOf k = ∑ i, (k i : K) • P.root i := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.49fbcc358d64 from=translated src=- shape=250dcf3b vocab=36f87132
+-/
 @[simp] lemma rootOf_single [DecidableEq ι] (P : Realization A K H) (i : ι) :
     P.rootOf (Pi.single i 1) = P.root i := by
   simp [rootOf_apply, Pi.single_apply]
 
-/-- `⟨∑ kₗ αₗ, αⱼ^∨⟩ = ∑ₗ aⱼₗ kₗ`.-/
+/-- `⟨∑ kₗ αₗ, αⱼ^∨⟩ = ∑ₗ aⱼₗ kₗ`.
+@isnad1 id=eq.0h7v.s8.30b11b1a718c from=translated src=- shape=e5bb1989 vocab=376e92ec
+-/
 lemma rootOf_apply_coroot (P : Realization A K H) (k : ι → ℤ) (j : ι) :
     P.rootOf k (P.coroot j) = ((A *ᵥ k) j : ℤ) := by
   simp [rootOf_apply, P.root_coroot, mulVec, dotProduct, mul_comm]
 
-/-- In characteristic zero, the root lattice embeds in `𝔥*`.-/
+/-- In characteristic zero, the root lattice embeds in `𝔥*`.
+@isnad1 id=injectiv.0h5v.s8.849e7ee66f81 from=translated src=- shape=8d14dc6f vocab=36a3bf1e
+-/
 lemma rootOf_injective [CharZero K] (P : Realization A K H) : Function.Injective P.rootOf := by
   rw [injective_iff_map_eq_zero]
   intro k hk
@@ -257,6 +298,9 @@ lemma rootOf_injective [CharZero K] (P : Realization A K H) : Function.Injective
   ext i
   exact_mod_cast this i
 
+/--
+@isnad1 id=ne.1h6v.s8.b0dffaeb96a1 from=translated src=- shape=cdd370b9 vocab=5bed01c0
+-/
 lemma rootOf_ne_zero [CharZero K] (P : Realization A K H) {k : ι → ℤ} (hk : k ≠ 0) :
     P.rootOf k ≠ 0 := by
   rwa [Ne, ← map_zero P.rootOf, P.rootOf_injective.eq_iff]
@@ -278,6 +322,9 @@ abbrev StdSpace : Type _ := (ι → K) × Dual K (stdKer A K)
 noncomputable def stdProj : (ι → K) →ₗ[K] stdKer A K :=
   ((stdKer A K).subtype.exists_leftInverse_of_injective (stdKer A K).ker_subtype).choose
 
+/--
+@isnad1 id=eq.0h4v.s10.edda46d82454 from=translated src=- shape=ecd3c97f vocab=c9a9239b
+-/
 lemma stdProj_subtype (c : stdKer A K) : stdProj A K c = c :=
   LinearMap.congr_fun
     ((stdKer A K).subtype.exists_leftInverse_of_injective (stdKer A K).ker_subtype).choose_spec c
@@ -287,10 +334,16 @@ noncomputable def stdRoot [DecidableEq ι] (j : ι) : Dual K (StdSpace A K) :=
   (LinearMap.proj j ∘ₗ (A.map (Int.cast : ℤ → K)).vecMulLinear) ∘ₗ LinearMap.fst K _ _ +
     Dual.eval K _ (stdProj A K (Pi.single j 1)) ∘ₗ LinearMap.snd K _ _
 
+/--
+@isnad1 id=eq.0h6v.s12.235a839e8238 from=translated src=- shape=e94c8b01 vocab=b6e1f1a8
+-/
 lemma stdRoot_apply [DecidableEq ι] (j : ι) (v : ι → K) (f : Dual K (stdKer A K)) :
     stdRoot A K j (v, f) = (v ᵥ* A.map (Int.cast : ℤ → K)) j + f (stdProj A K (Pi.single j 1)) :=
   rfl
 
+/--
+@isnad1 id=linearin.0h3v.s12.1df3a0d57530 from=translated src=- shape=7bb8503d vocab=d88788ea
+-/
 lemma linearIndependent_stdRoot [DecidableEq ι] : LinearIndependent K (stdRoot A K) := by
   rw [Fintype.linearIndependent_iff]
   intro c hc

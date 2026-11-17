@@ -52,41 +52,53 @@ local prefix:100 "ris " => cs.rightInvSeq
 local prefix:100 "lis " => cs.leftInvSeq
 
 /-- A reflection `t` is a right inversion of `w` (`ℓ(w t) < ℓ(w)`) if and only if
-`η(w, t) = 1`, for any `w` ([BB] §1.4, proof of Thm. 1.4.3; right-handed version).-/
+`η(w, t) = 1`, for any `w` ([BB] §1.4, proof of Thm. 1.4.3; right-handed version).
+@isnad1 id=iff.0h6v.s6.00e03a20f1d8 from=translated src=- shape=addf4044 vocab=ca05386e
+-/
 theorem isRightInversion_iff_inversionParity_eq_one [DecidableEq W] {w t : W} :
     cs.IsRightInversion w t ↔ cs.inversionParity w t = 1 := by
   obtain ⟨ω, hω, rfl⟩ := cs.exists_isReduced w
   rw [inversionParity_eq_one_iff cs hω, mem_rightInvSeq_iff cs hω]
 
 /-- A reflection `t` is a right inversion of `π ω` if and only if it occurs an odd number of
-times in the right inversion sequence of `ω`; here `ω` is any word.-/
+times in the right inversion sequence of `ω`; here `ω` is any word.
+@isnad1 id=iff.0h6v.s5.2f5d1307ab8d from=translated src=- shape=beb42a61 vocab=639ccd2e
+-/
 theorem isRightInversion_wordProd_iff [DecidableEq W] {ω : List B} {t : W} :
     cs.IsRightInversion (π ω) t ↔ Odd ((ris ω).count t) := by
   rw [isRightInversion_iff_inversionParity_eq_one, inversionParity_wordProd,
     ZMod.natCast_eq_one_iff_odd]
 
-/-- A right inversion of `π ω` occurs in the right inversion sequence of `ω`, for any word `ω`.-/
+/-- A right inversion of `π ω` occurs in the right inversion sequence of `ω`, for any word `ω`.
+@isnad1 id=mem.1h6v.s5.507600b90728 from=translated src=- shape=71887173 vocab=6c314813
+-/
 theorem IsRightInversion.mem_rightInvSeq {ω : List B} {t : W}
     (h : cs.IsRightInversion (π ω) t) : t ∈ ris ω := by
   classical
   rw [isRightInversion_wordProd_iff] at h
   exact count_pos_iff.mp h.pos
 
-/-- A left inversion of `π ω` occurs in the left inversion sequence of `ω`, for any word `ω`.-/
+/-- A left inversion of `π ω` occurs in the left inversion sequence of `ω`, for any word `ω`.
+@isnad1 id=mem.1h6v.s5.b1f87b83d712 from=translated src=- shape=71887173 vocab=942490ce
+-/
 theorem IsLeftInversion.mem_leftInvSeq {ω : List B} {t : W}
     (h : cs.IsLeftInversion (π ω) t) : t ∈ lis ω := by
   rw [← isRightInversion_inv_iff, ← wordProd_reverse] at h
   simpa [rightInvSeq_reverse] using h.mem_rightInvSeq
 
 /-- For a reduced word `ω`, the left inversions of `π ω` are exactly the entries of the left
-inversion sequence of `ω`.-/
+inversion sequence of `ω`.
+@isnad1 id=iff.1h6v.s5.17d7cc049c40 from=translated src=- shape=1ece302a vocab=77b7411b
+-/
 theorem IsReduced.isLeftInversion_iff {ω : List B} (hω : cs.IsReduced ω) {t : W} :
     cs.IsLeftInversion (π ω) t ↔ t ∈ lis ω :=
   ⟨fun h ↦ h.mem_leftInvSeq, cs.isLeftInversion_of_mem_leftInvSeq hω⟩
 
 /-- **The strong exchange condition** ([HumC] Thm. 5.8, [BB] Thm. 1.4.3), right-handed version:
 if `ω` is any word and `t` is a reflection with `ℓ(π ω * t) < ℓ(π ω)`, then `π ω * t` is obtained
-from `ω` by deleting one letter.-/
+from `ω` by deleting one letter.
+@isnad1 id=ex.1h6v.s6.8104b5f83c4f from=translated src=- shape=0670e25c vocab=6cfa1ded
+-/
 theorem IsRightInversion.exists_wordProd_mul_eq {ω : List B} {t : W}
     (h : cs.IsRightInversion (π ω) t) : ∃ j < ω.length, π ω * t = π (ω.eraseIdx j) := by
   obtain ⟨j, hj, rfl⟩ := List.mem_iff_getElem.mp h.mem_rightInvSeq
@@ -96,7 +108,9 @@ theorem IsRightInversion.exists_wordProd_mul_eq {ω : List B} {t : W}
 
 /-- **The strong exchange condition** ([HumC] Thm. 5.8, [BB] Thm. 1.4.3): if `ω` is any word
 and `t` is a reflection with `ℓ(t * π ω) < ℓ(π ω)`, then `t * π ω` is obtained from `ω` by
-deleting one letter.-/
+deleting one letter.
+@isnad1 id=ex.1h6v.s6.c5970bb3b04d from=translated src=- shape=3c295c2f vocab=22df4649
+-/
 theorem IsLeftInversion.exists_mul_wordProd_eq {ω : List B} {t : W}
     (h : cs.IsLeftInversion (π ω) t) : ∃ j < ω.length, t * π ω = π (ω.eraseIdx j) := by
   obtain ⟨j, hj, rfl⟩ := List.mem_iff_getElem.mp h.mem_leftInvSeq
@@ -104,20 +118,26 @@ theorem IsLeftInversion.exists_mul_wordProd_eq {ω : List B} {t : W}
   refine ⟨j, hj, ?_⟩
   rw [← getD_leftInvSeq_mul_wordProd, List.getD_eq_getElem]
 
-/-- **The exchange condition**, right-handed version ([BB] Thm. 1.4.3, [HumC] §5.8).-/
+/-- **The exchange condition**, right-handed version ([BB] Thm. 1.4.3, [HumC] §5.8).
+@isnad1 id=ex.1h6v.s6.8f571d4937cb from=translated src=- shape=168e17ac vocab=63759169
+-/
 theorem IsRightDescent.exists_wordProd_mul_eq {ω : List B} {i : B}
     (h : cs.IsRightDescent (π ω) i) : ∃ j < ω.length, π ω * s i = π (ω.eraseIdx j) :=
   IsRightInversion.exists_wordProd_mul_eq cs
     ((cs.isRightInversion_simple_iff_isRightDescent _ _).mpr h)
 
-/-- **The exchange condition** ([BB] Thm. 1.4.3, [HumC] §5.8).-/
+/-- **The exchange condition** ([BB] Thm. 1.4.3, [HumC] §5.8).
+@isnad1 id=ex.1h6v.s6.49a87a2e8095 from=translated src=- shape=bbd66093 vocab=71cbcb68
+-/
 theorem IsLeftDescent.exists_mul_wordProd_eq {ω : List B} {i : B}
     (h : cs.IsLeftDescent (π ω) i) : ∃ j < ω.length, s i * π ω = π (ω.eraseIdx j) :=
   IsLeftInversion.exists_mul_wordProd_eq cs
     ((cs.isLeftInversion_simple_iff_isLeftDescent _ _).mpr h)
 
 /-- **The deletion condition**: every word contains a reduced subword with the same product
-([HumC] §5.8 Cor., [BB] Cor. 1.4.8(i)).-/
+([HumC] §5.8 Cor., [BB] Cor. 1.4.8(i)).
+@isnad1 id=ex.0h5v.s5.fc47ca484f4f from=translated src=- shape=53381d43 vocab=cf8e188f
+-/
 theorem exists_sublist_isReduced (ω : List B) :
     ∃ ω' : List B, ω' <+ ω ∧ cs.IsReduced ω' ∧ π ω' = π ω := by
   induction ω with
@@ -140,7 +160,9 @@ theorem exists_sublist_isReduced (ω : List B) :
       unfold IsReduced
       rw [wordProd_cons, this, hred.eq, length_cons]
 
-/-- A word is reduced if and only if its right inversion sequence has no repetitions.-/
+/-- A word is reduced if and only if its right inversion sequence has no repetitions.
+@isnad1 id=iff.0h5v.s5.356b3b5c11c1 from=translated src=- shape=d9136ec4 vocab=fc0bb1f2
+-/
 theorem isReduced_iff_nodup_rightInvSeq {ω : List B} : cs.IsReduced ω ↔ (ris ω).Nodup := by
   classical
   refine ⟨IsReduced.nodup_rightInvSeq cs, fun hnd ↦ ?_⟩
@@ -161,12 +183,16 @@ theorem isReduced_iff_nodup_rightInvSeq {ω : List B} : cs.IsReduced ω ↔ (ris
   rw [he, hω₀.eq] at h2 ⊢
   omega
 
-/-- A word is reduced if and only if its left inversion sequence has no repetitions.-/
+/-- A word is reduced if and only if its left inversion sequence has no repetitions.
+@isnad1 id=iff.0h5v.s5.d5dc7683ba59 from=translated src=- shape=d9136ec4 vocab=5112f273
+-/
 theorem isReduced_iff_nodup_leftInvSeq {ω : List B} : cs.IsReduced ω ↔ (lis ω).Nodup := by
   rw [← isReduced_reverse_iff, isReduced_iff_nodup_rightInvSeq, rightInvSeq_reverse,
     nodup_reverse]
 
-/-- The number of right inversions of `w` is `ℓ(w)` ([BB] Cor. 1.4.5).-/
+/-- The number of right inversions of `w` is `ℓ(w)` ([BB] Cor. 1.4.5).
+@isnad1 id=eq.0h5v.s5.bbcc4224d0e1 from=translated src=- shape=6ffc83da vocab=edd650c8
+-/
 theorem ncard_setOf_isRightInversion (w : W) : {t | cs.IsRightInversion w t}.ncard = ℓ w := by
   classical
   obtain ⟨ω, hω, rfl⟩ := cs.exists_isReduced w
@@ -176,17 +202,23 @@ theorem ncard_setOf_isRightInversion (w : W) : {t | cs.IsRightInversion w t}.nca
   rw [this, Set.ncard_coe_finset, List.toFinset_card_of_nodup hω.nodup_rightInvSeq,
     length_rightInvSeq, hω.eq]
 
-/-- The number of left inversions of `w` is `ℓ(w)` ([BB] Cor. 1.4.5).-/
+/-- The number of left inversions of `w` is `ℓ(w)` ([BB] Cor. 1.4.5).
+@isnad1 id=eq.0h5v.s5.15fcd8a66e52 from=translated src=- shape=6ffc83da vocab=f8c0f832
+-/
 theorem ncard_setOf_isLeftInversion (w : W) : {t | cs.IsLeftInversion w t}.ncard = ℓ w := by
   simp_rw [← isRightInversion_inv_iff, ncard_setOf_isRightInversion, length_inv]
 
-/-- An element has finitely many right inversions.-/
+/-- An element has finitely many right inversions.
+@isnad1 id=finite.0h5v.s5.072d1be3c5f2 from=translated src=- shape=3076df0f vocab=fbe14216
+-/
 theorem finite_setOf_isRightInversion (w : W) : {t | cs.IsRightInversion w t}.Finite := by
   classical
   obtain ⟨ω, hω, rfl⟩ := cs.exists_isReduced w
   exact (ris ω).finite_toSet.subset fun t ht ↦ IsRightInversion.mem_rightInvSeq cs ht
 
-/-- An element has finitely many left inversions.-/
+/-- An element has finitely many left inversions.
+@isnad1 id=finite.0h5v.s5.15df9b8cf9e3 from=translated src=- shape=3076df0f vocab=91342d55
+-/
 theorem finite_setOf_isLeftInversion (w : W) : {t | cs.IsLeftInversion w t}.Finite := by
   simp_rw [← isRightInversion_inv_iff]
   exact cs.finite_setOf_isRightInversion w⁻¹

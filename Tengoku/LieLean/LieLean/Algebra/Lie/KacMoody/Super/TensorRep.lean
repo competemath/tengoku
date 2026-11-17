@@ -66,9 +66,15 @@ def eWord (i : ι) : List ι → T
 /-- The action of `eᵢ` on `T(V)`.-/
 def repE (i : ι) : Module.End K T := onWords (eWord P p Λ i)
 
+/--
+@isnad1 id=eq.0h9v.s8.45bb45260d20 from=translated src=- shape=42e8c735 vocab=916e089c
+-/
 @[simp] lemma repE_word (i : ι) (w : List ι) : repE P p Λ i (word w) = eWord P p Λ i w := by
   simp [repE]
 
+/--
+@isnad1 id=eq.0h10v.s11.52008eddf9a0 from=translated src=- shape=ab0d68b0 vocab=3607103d
+-/
 lemma repH_eWord (a : H) (i : ι) (w : List ι) :
     repH P Λ a (eWord P p Λ i w) =
       (Λ a - wordWt P w a + P.root i a) • eWord P p Λ i w := by
@@ -110,13 +116,28 @@ def tensorRepData : LiftData P p (Module.End K T) where
 def tensorRep : P.SuperEnveloping p →ₐ[K] Module.End K T :=
   lift (tensorRepData P p Λ)
 
+/--
+@isnad1 id=eq.0h8v.s9.c653403f45e7 from=translated src=- shape=85bea600 vocab=b7a1b5dc
+-/
 @[simp] lemma tensorRep_e (i : ι) : tensorRep P p Λ (e P p i) = repE P p Λ i := lift_e _ i
+/--
+@isnad1 id=eq.0h8v.s9.5696318dd3ca from=translated src=- shape=b0dd9a61 vocab=1ddc910c
+-/
 @[simp] lemma tensorRep_f (i : ι) : tensorRep P p Λ (f P p i) = repF i := lift_f _ i
+/--
+@isnad1 id=eq.0h8v.s11.f5e4381332be from=translated src=- shape=f7bc7a31 vocab=f6e9782a
+-/
 @[simp] lemma tensorRep_h (a : H) : tensorRep P p Λ (h P p a) = repH P Λ a := lift_h _ a
 
+/--
+@isnad1 id=eq.0h8v.s10.da35e285ab41 from=translated src=- shape=9bc38382 vocab=b35f0bcf
+-/
 lemma tensorRep_e_one (i : ι) : tensorRep P p Λ (e P p i) 1 = 0 := by
   rw [tensorRep_e, ← word_nil, repE_word]; rfl
 
+/--
+@isnad1 id=eq.0h8v.s10.420089f99f24 from=translated src=- shape=f12fa225 vocab=fceaba23
+-/
 lemma tensorRep_h_one (a : H) : tensorRep P p Λ (h P p a) 1 = Λ a • 1 := by
   rw [tensorRep_h, ← word_nil, repH_word]
   simp
@@ -124,14 +145,22 @@ lemma tensorRep_h_one (a : H) : tensorRep P p Λ (h P p a) 1 = Λ a • 1 := by
 /-- The algebra morphism `T(V) → U(G̃(A, τ))` sending `vᵢ` to `fᵢ`.-/
 def fAlg : FreeAlgebra K ι →ₐ[K] P.SuperEnveloping p := FreeAlgebra.lift K (f P p)
 
+/--
+@isnad1 id=eq.0h7v.s8.c13d5bb1b1dc from=translated src=- shape=106966ba vocab=ba73b22c
+-/
 @[simp] lemma fAlg_ι (i : ι) : fAlg P p (FreeAlgebra.ι K i) = f P p i := by simp [fAlg]
 
 /-- The algebra morphism `T(V) → U(G̃(A, τ))` sending `vᵢ` to `eᵢ`.-/
 def eAlg : FreeAlgebra K ι →ₐ[K] P.SuperEnveloping p := FreeAlgebra.lift K (e P p)
 
+/--
+@isnad1 id=eq.0h7v.s8.873cf6ccef83 from=translated src=- shape=106966ba vocab=895c61cf
+-/
 @[simp] lemma eAlg_ι (i : ι) : eAlg P p (FreeAlgebra.ι K i) = e P p i := by simp [eAlg]
 
-/-- The element `fAlg x` acts on `1 ∈ T(V)` as `x`.-/
+/-- The element `fAlg x` acts on `1 ∈ T(V)` as `x`.
+@isnad1 id=eq.0h8v.s10.34259e52f5cb from=translated src=- shape=b67dbae8 vocab=10e31e37
+-/
 lemma tensorRep_fAlg_one (x : FreeAlgebra K ι) : tensorRep P p Λ (fAlg P p x) 1 = x := by
   have : (tensorRep P p Λ).comp (fAlg P p) = Algebra.lmul K T := by
     ext i
@@ -139,7 +168,9 @@ lemma tensorRep_fAlg_one (x : FreeAlgebra K ι) : tensorRep P p Λ (fAlg P p x) 
   have := congrArg (fun φ ↦ φ x 1) this
   simpa using this
 
-/-- The map `𝔥 → U(G̃(A, τ))` is injective (cf. [Kac] Thm. 1.2 (a)).-/
+/-- The map `𝔥 → U(G̃(A, τ))` is injective (cf. [Kac] Thm. 1.2 (a)).
+@isnad1 id=injectiv.0h6v.s8.822c6176b73c from=translated src=- shape=4960c7b9 vocab=aac389f8
+-/
 theorem h_injective : Function.Injective (h P p) := by
   rw [← LinearMap.ker_eq_bot, LinearMap.ker_eq_bot']
   intro a ha

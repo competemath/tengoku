@@ -47,7 +47,9 @@ namespace Matrix.Realization
 variable {ι K H : Type*} [Fintype ι] [Field K] [CharZero K] [AddCommGroup H]
   [Module K H] {A : Matrix ι ι ℤ} (P : Realization A K H) (hA : A.IsGeneralizedCartan)
 
-/-- Every element of `W` maps a simple root into `Q₊` or into `-Q₊` ([Kac] Lemma 3.11 (a)).-/
+/-- Every element of `W` maps a simple root into `Q₊` or into `-Q₊` ([Kac] Lemma 3.11 (a)).
+@isnad1 id=or.2h7v.s12.8aa2dadf034b from=translated src=- shape=9c92ca25 vocab=c9e15f08
+-/
 theorem apply_root_nonneg_or_nonpos {w : Dual K H ≃ₗ[K] Dual K H} (hw : w ∈ P.weylGroup hA)
     (i : ι) : (∃ k : ι → ℤ, 0 ≤ k ∧ w (P.root i) = P.rootOf k) ∨
       ∃ k : ι → ℤ, 0 ≤ k ∧ w (P.root i) = -P.rootOf k := by
@@ -70,7 +72,9 @@ theorem eq_one_of_forall_apply_root_eq {w : Dual K H ≃ₗ[K] Dual K H} (hw : w
 
 omit [CharZero K] in
 /-- `⟨αⱼ, αᵢ^∨⟩` computed on the root lattice is an integer: an element of `W` maps `αⱼ` to a
-weight whose pairing with every coroot is integral.-/
+weight whose pairing with every coroot is integral.
+@isnad1 id=ex.2h8v.s11.c8d9de7b540f from=translated src=- shape=9456d730 vocab=b8d0f1bc
+-/
 lemma exists_int_apply_root_coroot {w : Dual K H ≃ₗ[K] Dual K H} (hw : w ∈ P.weylGroup hA)
     (i j : ι) : ∃ z : ℤ, w (P.root j) (P.coroot i) = z := by
   classical
@@ -78,7 +82,9 @@ lemma exists_int_apply_root_coroot {w : Dual K H ≃ₗ[K] Dual K H} (hw : w ∈
   rw [rootOf_single] at hk
   exact ⟨_, by rw [hk, rootOf_apply_coroot]⟩
 
-/-- If `w ∈ W` and `w αₖ = αₖ + z αᵢ` with `k ≠ i`, then `z ≥ 0`.-/
+/-- If `w ∈ W` and `w αₖ = αₖ + z αᵢ` with `k ≠ i`, then `z ≥ 0`.
+@isnad1 id=le.4h9v.s11.071ed0ec3827 from=translated src=- shape=b0e15928 vocab=47e222df
+-/
 lemma nonneg_of_apply_root_eq_add {w : Dual K H ≃ₗ[K] Dual K H} (hw : w ∈ P.weylGroup hA)
     {i k : ι} (hki : k ≠ i) {z : ℤ} (h : w (P.root k) = P.root k + (z : K) • P.root i) :
     0 ≤ z := by
@@ -103,7 +109,9 @@ lemma nonneg_of_apply_root_eq_add {w : Dual K H ≃ₗ[K] Dual K H} (hw : w ∈ 
 
 /-- **Proof of [Kac] Lemma 3.10, (3.10.3)**: if `u ∈ W` maps the simple root `αⱼ` to the
 simple root `αᵢ`, then `u rⱼ u⁻¹ = rᵢ`. The argument (reconstructed, see the module docstring) shows
-that `rᵢ u rⱼ u⁻¹` fixes all simple roots.-/
+that `rᵢ u rⱼ u⁻¹` fixes all simple roots.
+@isnad1 id=eq.3h8v.s13.700da4a8c33c from=translated src=- shape=d18f20b6 vocab=79230547
+-/
 theorem mul_reflection_mul_inv_eq {u : Dual K H ≃ₗ[K] Dual K H} (hu : u ∈ P.weylGroup hA)
     {i j : ι} (h : u (P.root j) = P.root i) :
     u * P.reflection hA j * u⁻¹ = P.reflection hA i := by

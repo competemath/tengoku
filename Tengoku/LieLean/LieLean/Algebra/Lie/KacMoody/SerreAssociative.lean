@@ -81,7 +81,9 @@ attribute [local instance 100] LieRing.ofAssociativeRing
 
 variable {K B : Type*} [CommRing K] [Ring B] [Algebra K B]
 
-/-- In an associative algebra, `(ad (-x))^n y = ∑_{r+s=n} (-1)^r (n choose r) x^r y x^s`.-/
+/-- In an associative algebra, `(ad (-x))^n y = ∑_{r+s=n} (-1)^r (n choose r) x^r y x^s`.
+@isnad1 id=eq.0h5v.s9.58e286dc6ede from=translated src=- shape=729a0a85 vocab=cc365154
+-/
 theorem ad_neg_pow_apply_eq_sum (x y : B) (n : ℕ) :
     (ad K B (-x) ^ n) y =
       ∑ r ∈ range (n + 1), ((-1 : K) ^ r * n.choose r) • (x ^ r * y * x ^ (n - r)) := by
@@ -158,13 +160,17 @@ section Ad
 
 attribute [local instance 100] LieRing.ofAssociativeRing
 
-/-- The associative Serre element is `(ad (-θᵢ))^n θⱼ`.-/
+/-- The associative Serre element is `(ad (-θᵢ))^n θⱼ`.
+@isnad1 id=eq.0h5v.s11.e0fedb461b50 from=translated src=- shape=82fe0725 vocab=2d442cb5
+-/
 theorem serreAssocElem_eq_ad_neg_pow (i j : ι) :
     serreAssocElem K A i j =
       (ad K _ (-FreeAlgebra.ι K i) ^ ((-A i j).toNat + 1)) (FreeAlgebra.ι K j) :=
   (ad_neg_pow_apply_eq_sum _ _ _).symm
 
-/-- The associative Serre element is `(-1)^n (ad θᵢ)^n θⱼ`.-/
+/-- The associative Serre element is `(-1)^n (ad θᵢ)^n θⱼ`.
+@isnad1 id=eq.0h5v.s11.5f90c1d6399f from=translated src=- shape=025e7a5a vocab=cbe19591
+-/
 theorem serreAssocElem_eq_neg_one_pow_smul_ad_pow (i j : ι) :
     serreAssocElem K A i j = (-1 : K) ^ ((-A i j).toNat + 1) •
       (ad K _ (FreeAlgebra.ι K i) ^ ((-A i j).toNat + 1)) (FreeAlgebra.ι K j) := by
@@ -172,7 +178,9 @@ theorem serreAssocElem_eq_neg_one_pow_smul_ad_pow (i j : ι) :
 
 variable {K A}
 
-/-- The image of an associative Serre element under an algebra morphism.-/
+/-- The image of an associative Serre element under an algebra morphism.
+@isnad1 id=eq.0h7v.s10.041a21a74909 from=translated src=- shape=2b698c29 vocab=5c44e121
+-/
 theorem map_serreAssocElem {B : Type*} [Ring B] [Algebra K B] (f : FreeAlgebra K ι →ₐ[K] B)
     (i j : ι) : f (serreAssocElem K A i j) =
       (ad K B (-f (FreeAlgebra.ι K i)) ^ ((-A i j).toNat + 1)) (f (FreeAlgebra.ι K j)) := by
@@ -187,21 +195,32 @@ namespace SerreAssocAlgebra
 def mkAlgHom : FreeAlgebra K ι →ₐ[K] SerreAssocAlgebra K A :=
   RingQuot.mkAlgHom K (SerreAssocRel K A)
 
+/--
+@isnad1 id=surjecti.0h3v.s7.8df7c6bae4eb from=translated src=- shape=91a3074f vocab=2e40fd74
+-/
 lemma mkAlgHom_surjective : Function.Surjective (mkAlgHom K A) :=
   RingQuot.mkAlgHom_surjective K _
 
 /-- The generator `θᵢ` of the associative Serre algebra.-/
 def θ (i : ι) : SerreAssocAlgebra K A := mkAlgHom K A (FreeAlgebra.ι K i)
 
+/--
+@isnad1 id=eq.0h4v.s7.9def1350b6fb from=translated src=- shape=1d1b5693 vocab=87b297ce
+-/
 @[simp] lemma mkAlgHom_ι (i : ι) : mkAlgHom K A (FreeAlgebra.ι K i) = θ K A i := rfl
 
 variable {K A}
 
+/--
+@isnad1 id=eq.1h5v.s8.586cb58b3643 from=translated src=- shape=a19e07f9 vocab=ce516988
+-/
 lemma mkAlgHom_serreAssocElem {i j : ι} (hij : i ≠ j) :
     mkAlgHom K A (serreAssocElem K A i j) = 0 := by
   rw [mkAlgHom, RingQuot.mkAlgHom_rel K (SerreAssocRel.serre hij), map_zero]
 
-/-- The **associative Serre relations** hold in `SerreAssocAlgebra K A`.-/
+/-- The **associative Serre relations** hold in `SerreAssocAlgebra K A`.
+@isnad1 id=eq.1h5v.s8.9b7ed526d657 from=translated src=- shape=ff3e000c vocab=84801720
+-/
 theorem sum_eq_zero {i j : ι} (hij : i ≠ j) :
     ∑ r ∈ range ((-A i j).toNat + 1 + 1), ((-1 : K) ^ r * ((-A i j).toNat + 1).choose r) •
       (θ K A i ^ r * θ K A j * θ K A i ^ ((-A i j).toNat + 1 - r)) = 0 := by
@@ -212,7 +231,9 @@ section Ad
 
 attribute [local instance 100] LieRing.ofAssociativeRing
 
-/-- The Serre relations `(ad θᵢ)^{nᵢⱼ} θⱼ = 0` in `SerreAssocAlgebra K A`.-/
+/-- The Serre relations `(ad θᵢ)^{nᵢⱼ} θⱼ = 0` in `SerreAssocAlgebra K A`.
+@isnad1 id=eq.1h5v.s11.9fb9229ca9ef from=translated src=- shape=3826b71d vocab=9b9ac755
+-/
 theorem ad_pow_θ {i j : ι} (hij : i ≠ j) :
     (ad K _ (θ K A i) ^ ((-A i j).toNat + 1)) (θ K A j) = 0 := by
   have h := mkAlgHom_serreAssocElem (K := K) (A := A) hij
@@ -225,7 +246,9 @@ end Ad
 variable {B : Type*} [Ring B] [Algebra K B]
 
 /-- Two algebra morphisms out of `SerreAssocAlgebra K A` agreeing on the generators `θᵢ` are
-equal.-/
+equal.
+@isnad1 id=eq.1h6v.s9.7201f132982e from=translated src=- shape=4858667a vocab=7b9419b6
+-/
 @[ext]
 theorem hom_ext {f g : SerreAssocAlgebra K A →ₐ[K] B} (h : ∀ i, f (θ K A i) = g (θ K A i)) :
     f = g :=
@@ -241,11 +264,17 @@ def lift : {f : FreeAlgebra K ι →ₐ[K] B // ∀ i j, i ≠ j → f (serreAss
     rw [hf _ _ hij, map_zero], fun hf i j hij ↦ by
     rw [hf (SerreAssocRel.serre hij), map_zero]⟩).trans (RingQuot.liftAlgHom K)
 
+/--
+@isnad1 id=eq.0h6v.s11.7dbb7126ae6f from=translated src=- shape=786e4b35 vocab=eea5e1de
+-/
 @[simp] lemma lift_mkAlgHom_apply
     (f : {f : FreeAlgebra K ι →ₐ[K] B // ∀ i j, i ≠ j → f (serreAssocElem K A i j) = 0})
     (x : FreeAlgebra K ι) : lift f (mkAlgHom K A x) = f.1 x :=
   RingQuot.liftAlgHom_mkAlgHom_apply _ _ _ _
 
+/--
+@isnad1 id=eq.0h6v.s11.11ef968d8375 from=translated src=- shape=19126924 vocab=f103b5df
+-/
 @[simp] lemma lift_θ
     (f : {f : FreeAlgebra K ι →ₐ[K] B // ∀ i j, i ≠ j → f (serreAssocElem K A i j) = 0})
     (i : ι) : lift f (θ K A i) = f.1 (FreeAlgebra.ι K i) :=
@@ -253,7 +282,9 @@ def lift : {f : FreeAlgebra K ι →ₐ[K] B // ∀ i j, i ≠ j → f (serreAss
 
 variable (K A) in
 /-- The kernel of the projection `FreeAlgebra K ι → SerreAssocAlgebra K A` is the two-sided
-ideal generated by the associative Serre elements.-/
+ideal generated by the associative Serre elements.
+@isnad1 id=eq.0h3v.s8.efda5a50a915 from=translated src=- shape=10d26f75 vocab=81b17170
+-/
 theorem ker_mkAlgHom : TwoSidedIdeal.ker (mkAlgHom K A) = serreAssocIdeal K A := by
   refine le_antisymm (fun x hx ↦ ?_) ?_
   · set J := serreAssocIdeal K A
@@ -268,6 +299,9 @@ theorem ker_mkAlgHom : TwoSidedIdeal.ker (mkAlgHom K A) = serreAssocIdeal K A :=
     rintro _ ⟨i, j, hij, rfl⟩
     rw [SetLike.mem_coe, TwoSidedIdeal.mem_ker, mkAlgHom_serreAssocElem hij]
 
+/--
+@isnad1 id=iff.0h4v.s8.38800495d858 from=translated src=- shape=f15587e6 vocab=cd06737b
+-/
 lemma mkAlgHom_eq_zero_iff {x : FreeAlgebra K ι} :
     mkAlgHom K A x = 0 ↔ x ∈ serreAssocIdeal K A := by
   rw [← ker_mkAlgHom, TwoSidedIdeal.mem_ker]
@@ -299,22 +333,36 @@ namespace SerreLieAlgebra
 /-- The projection from the free Lie algebra onto `𝔫̂(A)`.-/
 def mkHom : FreeLieAlgebra K ι →ₗ⁅K⁆ SerreLieAlgebra K A := LieIdeal.mkHom _
 
+/--
+@isnad1 id=surjecti.0h3v.s7.304619d96651 from=translated src=- shape=91a3074f vocab=7a1fd854
+-/
 lemma mkHom_surjective : Function.Surjective (mkHom K A) := LieIdeal.mkHom_surjective _
 
 /-- The generator `θᵢ` of `𝔫̂(A)`.-/
 def θ (i : ι) : SerreLieAlgebra K A := mkHom K A (FreeLieAlgebra.of K i)
 
+/--
+@isnad1 id=eq.0h4v.s7.c4a12d3e1510 from=translated src=- shape=1d1b5693 vocab=3f35bb87
+-/
 @[simp] lemma mkHom_of (i : ι) : mkHom K A (FreeLieAlgebra.of K i) = θ K A i := rfl
 
 variable {K A}
 
+/--
+@isnad1 id=iff.0h4v.s8.4e6f94312b18 from=translated src=- shape=9185853b vocab=466c4fac
+-/
 lemma mkHom_eq_zero_iff {x : FreeLieAlgebra K ι} : mkHom K A x = 0 ↔ x ∈ serreLieIdeal K A :=
   LieIdeal.mkHom_eq_zero_iff _
 
+/--
+@isnad1 id=eq.1h5v.s8.638e88e1fa07 from=translated src=- shape=a19e07f9 vocab=e75258df
+-/
 lemma mkHom_serreLieElem {i j : ι} (hij : i ≠ j) : mkHom K A (serreLieElem K A i j) = 0 :=
   mkHom_eq_zero_iff.mpr (LieSubmodule.subset_lieSpan ⟨i, j, hij, rfl⟩)
 
-/-- The **Serre relations** `(ad θᵢ)^{nᵢⱼ} θⱼ = 0` hold in `𝔫̂(A)`.-/
+/-- The **Serre relations** `(ad θᵢ)^{nᵢⱼ} θⱼ = 0` hold in `𝔫̂(A)`.
+@isnad1 id=eq.1h5v.s11.61c5abb90b6c from=translated src=- shape=3826b71d vocab=3517dacd
+-/
 theorem ad_pow_θ {i j : ι} (hij : i ≠ j) :
     (ad K _ (θ K A i) ^ ((-A i j).toNat + 1)) (θ K A j) = 0 := by
   rw [← mkHom_serreLieElem hij, serreLieElem, map_ad_pow_aux, mkHom_of, mkHom_of]
@@ -330,17 +378,25 @@ def lift (f : FreeLieAlgebra K ι →ₗ⁅K⁆ L') (hf : ∀ i j, i ≠ j → f
     rintro _ ⟨i, j, hij, rfl⟩
     exact (LieHom.mem_ker).mpr (hf i j hij))
 
+/--
+@isnad1 id=eq.1h6v.s8.fdf5e7f9f651 from=translated src=- shape=5aa7972f vocab=372e126c
+-/
 @[simp] lemma lift_mkHom (f : FreeLieAlgebra K ι →ₗ⁅K⁆ L')
     (hf : ∀ i j, i ≠ j → f (serreLieElem K A i j) = 0) (x : FreeLieAlgebra K ι) :
     lift f hf (mkHom K A x) = f x :=
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s8.0cbff7ea9567 from=translated src=- shape=f14541ce vocab=61f6c6bc
+-/
 @[simp] lemma lift_θ (f : FreeLieAlgebra K ι →ₗ⁅K⁆ L')
     (hf : ∀ i j, i ≠ j → f (serreLieElem K A i j) = 0) (i : ι) :
     lift f hf (θ K A i) = f (FreeLieAlgebra.of K i) :=
   rfl
 
-/-- Two morphisms of Lie algebras out of `𝔫̂(A)` agreeing on the generators `θᵢ` are equal.-/
+/-- Two morphisms of Lie algebras out of `𝔫̂(A)` agreeing on the generators `θᵢ` are equal.
+@isnad1 id=eq.1h6v.s8.90c0c7b55348 from=translated src=- shape=4858667a vocab=e247e710
+-/
 theorem hom_ext {f g : SerreLieAlgebra K A →ₗ⁅K⁆ L'} (h : ∀ i, f (θ K A i) = g (θ K A i)) :
     f = g := by
   refine LieIdeal.lieHom_ext _ fun x ↦ ?_
@@ -372,11 +428,17 @@ def ofUniversalEnveloping :
       rw [serreLieElem, map_ad_pow_aux, FreeLieAlgebra.lift_of_apply,
         FreeLieAlgebra.lift_of_apply, ad_pow_θ hij]
 
+/--
+@isnad1 id=eq.0h4v.s10.faefdeeef507 from=translated src=- shape=8b2f5271 vocab=e0e96588
+-/
 @[simp] lemma toUniversalEnveloping_θ (i : ι) :
     toUniversalEnveloping K A (θ K A i) =
       UniversalEnvelopingAlgebra.ι K (SerreLieAlgebra.θ K A i) := by
   rw [toUniversalEnveloping, lift_θ, FreeAlgebra.lift_ι_apply]
 
+/--
+@isnad1 id=eq.0h4v.s10.57d0c30f89bf from=translated src=- shape=5465f61c vocab=3a117955
+-/
 @[simp] lemma ofUniversalEnveloping_ι_θ (i : ι) :
     ofUniversalEnveloping K A (UniversalEnvelopingAlgebra.ι K (SerreLieAlgebra.θ K A i)) =
       θ K A i := by
@@ -408,11 +470,17 @@ def equivUniversalEnveloping :
     (hom_ext fun i ↦ by
       rw [AlgHom.comp_apply, toUniversalEnveloping_θ, ofUniversalEnveloping_ι_θ, AlgHom.id_apply])
 
+/--
+@isnad1 id=eq.0h4v.s10.b408c647b420 from=translated src=- shape=8b2f5271 vocab=5c523547
+-/
 @[simp] lemma equivUniversalEnveloping_θ (i : ι) :
     equivUniversalEnveloping K A (θ K A i) =
       UniversalEnvelopingAlgebra.ι K (SerreLieAlgebra.θ K A i) :=
   toUniversalEnveloping_θ K A i
 
+/--
+@isnad1 id=eq.0h4v.s10.cabf586a8a77 from=translated src=- shape=4935014d vocab=2e5db7a1
+-/
 @[simp] lemma equivUniversalEnveloping_symm_ι_θ (i : ι) :
     (equivUniversalEnveloping K A).symm
         (UniversalEnvelopingAlgebra.ι K (SerreLieAlgebra.θ K A i)) = θ K A i :=

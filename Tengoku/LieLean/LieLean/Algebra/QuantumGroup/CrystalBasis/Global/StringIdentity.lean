@@ -48,11 +48,16 @@ variable {k : Type*} [Field k] {q : k}
 
 /-! ### The `q`-Vandermonde identity -/
 
+/--
+@isnad1 id=eq.0h3v.s7.79bde4911aa7 from=translated src=- shape=f76949f5 vocab=db72a92d
+-/
 lemma rescale_C_eq (a c : k) : rescale a (C c) = C c := by
   ext n
   cases n <;> simp [coeff_rescale, coeff_C]
 
-/-- The `q`-Vandermonde identity for generating series: `P_{a+b}(x) = P_a(q^{-b} x) P_b(q^a x)`.-/
+/-- The `q`-Vandermonde identity for generating series: `P_{a+b}(x) = P_a(q^{-b} x) P_b(q^a x)`.
+@isnad1 id=eq.1h4v.s8.070990e418dd from=translated src=- shape=a537d722 vocab=4fcc2570
+-/
 theorem qBinomialSeries_add (hq : q ≠ 0) (a b : ℕ) :
     qBinomialSeries q (a + b) =
       rescale (q⁻¹ ^ b) (qBinomialSeries q a) * rescale (q ^ a) (qBinomialSeries q b) := by
@@ -65,7 +70,9 @@ theorem qBinomialSeries_add (hq : q ≠ 0) (a b : ℕ) :
     ring
 
 /-- The `q`-Vandermonde identity:
-`[a+b, c] = Σ_{i ≤ c} q^{-bi} q^{a(c-i)} [a, i] [b, c-i]`.-/
+`[a+b, c] = Σ_{i ≤ c} q^{-bi} q^{a(c-i)} [a, i] [b, c-i]`.
+@isnad1 id=eq.1h5v.s7.cc00214aa56c from=translated src=- shape=42a67453 vocab=913564a3
+-/
 theorem qBinomial_add_eq_sum (hq : q ≠ 0) (a b c : ℕ) :
     qBinomial q (a + b) c = ∑ i ∈ range (c + 1),
       q⁻¹ ^ (b * i) * q ^ (a * (c - i)) * qBinomial q a i * qBinomial q b (c - i) := by
@@ -75,7 +82,9 @@ theorem qBinomial_add_eq_sum (hq : q ≠ 0) (a b c : ℕ) :
   simp only [coeff_rescale, coeff_qBinomialSeries, ← pow_mul]
   ring
 
-/-- The leading coefficient of `Φ_{a+1}`: `coeff_a Φ_{a+1} = q^{(h+1)a}`.-/
+/-- The leading coefficient of `Φ_{a+1}`: `coeff_a Φ_{a+1} = q^{(h+1)a}`.
+@isnad1 id=eq.1h4v.s8.383b7881e288 from=translated src=- shape=054b70e6 vocab=03707dbc
+-/
 lemma coeff_qBinomialPhi_self (hq : q ≠ 0) (h a : ℕ) :
     coeff a (qBinomialPhi q h (a + 1)) = q ^ ((h + 1) * a) := by
   induction a with
@@ -88,6 +97,9 @@ lemma coeff_qBinomialPhi_self (hq : q ≠ 0) (h a : ℕ) :
 
 /-! ### Kashiwara's identity (6.1.19) -/
 
+/--
+@isnad1 id=eq.2h6v.s7.d7ef3028493c from=translated src=- shape=06b68066 vocab=cdbfe992
+-/
 lemma pow_mul_inv_pow_eq (hq : q ≠ 0) (a b c d : ℕ) (h : (a : ℤ) - b = c - d) :
     q ^ a * q⁻¹ ^ b = q ^ c * q⁻¹ ^ d := by
   rw [inv_pow, inv_pow, ← div_eq_mul_inv, ← div_eq_mul_inv,
@@ -100,7 +112,9 @@ section NotRoot
 variable (hq0 : q ≠ 0) (hq : ∀ n : ℕ, 0 < n → q ^ n ≠ 1)
 include hq0 hq
 
-/-- `[h+j, j] [j, i] = [h+i, i] [h+j, j-i]` for `i ≤ j`.-/
+/-- `[h+j, j] [j, i] = [h+i, i] [h+j, j-i]` for `i ≤ j`.
+@isnad1 id=eq.3h5v.s7.22b1a52debab from=translated src=- shape=acec66dd vocab=0d893081
+-/
 lemma qBinomial_add_self_mul_qBinomial {h i j : ℕ} (hij : i ≤ j) :
     qBinomial q (h + j) j * qBinomial q j i =
       qBinomial q (h + i) i * qBinomial q (h + j) (j - i) := by
@@ -122,7 +136,9 @@ lemma qBinomial_add_self_mul_qBinomial {h i j : ℕ} (hij : i ≤ j) :
 /-- [Kas91] (6.1.19): `Σ_{j ≤ p} (-1)^j [h+j, j] [h+1+p+j, h+1+j] [h+1+p, h+1+j] = 1`
 (with `n = h + 1`, `m = p`; the middle factor is written there as `[h+1+p+j, p]`).
 Kashiwara deduces it from an identity of Andrews; the proof here is our own (see the module
-docstring).-/
+docstring).
+@isnad1 id=eq.2h4v.s8.1f4a99f00241 from=translated src=- shape=1360cf41 vocab=207ea76c
+-/
 theorem sum_qBinomial_string (h p : ℕ) :
     ∑ j ∈ range (p + 1), (-1) ^ j * qBinomial q (h + j) j *
       qBinomial q (h + 1 + p + j) (h + 1 + j) * qBinomial q (h + 1 + p) (h + 1 + j) = 1 := by

@@ -66,11 +66,15 @@ def parabolicSubgroup (J : Set B) : Subgroup W := Subgroup.closure (cs.simple ''
 
 variable {cs} {J : Set B}
 
-/-- `sᵢ ∈ W_J` for `i ∈ J`.-/
+/-- `sᵢ ∈ W_J` for `i ∈ J`.
+@isnad1 id=mem.1h6v.s5.bdddeadcdc48 from=translated src=- shape=3d44d8d3 vocab=7ccb8d34
+-/
 theorem simple_mem_parabolicSubgroup {i : B} (hi : i ∈ J) : s i ∈ cs.parabolicSubgroup J :=
   Subgroup.subset_closure ⟨i, hi, rfl⟩
 
-/-- The product of a word with letters in `J` lies in `W_J`.-/
+/-- The product of a word with letters in `J` lies in `W_J`.
+@isnad1 id=mem.1h6v.s6.d6a7147f8558 from=translated src=- shape=2c0c6426 vocab=7b8a2f53
+-/
 theorem wordProd_mem_parabolicSubgroup {ω : List B} (hω : ∀ i ∈ ω, i ∈ J) :
     π ω ∈ cs.parabolicSubgroup J := by
   induction ω with
@@ -80,7 +84,9 @@ theorem wordProd_mem_parabolicSubgroup {ω : List B} (hω : ∀ i ∈ ω, i ∈ 
     exact Subgroup.mul_mem _ (simple_mem_parabolicSubgroup (hω i mem_cons_self))
       (ih fun j hj ↦ hω j (mem_cons_of_mem _ hj))
 
-/-- An element lies in `W_J` if and only if it is the product of a word with letters in `J`.-/
+/-- An element lies in `W_J` if and only if it is the product of a word with letters in `J`.
+@isnad1 id=iff.0h6v.s6.df4e51279675 from=translated src=- shape=c0d5c808 vocab=7b8a2f53
+-/
 theorem mem_parabolicSubgroup_iff {w : W} :
     w ∈ cs.parabolicSubgroup J ↔ ∃ ω : List B, (∀ i ∈ ω, i ∈ J) ∧ π ω = w := by
   refine ⟨fun h ↦ ?_, fun ⟨ω, hω, he⟩ ↦ he ▸ wordProd_mem_parabolicSubgroup hω⟩
@@ -100,14 +106,18 @@ theorem mem_parabolicSubgroup_iff {w : W} :
 
 /-- Every element of `W_J` has a reduced word with letters in `J`; in particular, the length
 function of `W_J` with respect to `{sᵢ : i ∈ J}` is the restriction of that of `W`
-([HumC] §5.5 Thm., [BB] Prop. 2.4.1(ii)).-/
+([HumC] §5.5 Thm., [BB] Prop. 2.4.1(ii)).
+@isnad1 id=ex.1h6v.s6.80942d975f27 from=translated src=- shape=360ac2f7 vocab=abce663d
+-/
 theorem exists_isReduced_of_mem_parabolicSubgroup {w : W} (hw : w ∈ cs.parabolicSubgroup J) :
     ∃ ω : List B, cs.IsReduced ω ∧ (∀ i ∈ ω, i ∈ J) ∧ π ω = w := by
   obtain ⟨ω, hω, rfl⟩ := mem_parabolicSubgroup_iff.mp hw
   obtain ⟨ω', hsub, hred, he⟩ := cs.exists_sublist_isReduced ω
   exact ⟨ω', hred, fun i hi ↦ hω i (hsub.subset hi), he⟩
 
-/-- A nontrivial element of `W_J` has a right descent in `J`.-/
+/-- A nontrivial element of `W_J` has a right descent in `J`.
+@isnad1 id=ex.2h6v.s6.1837d0593f2f from=translated src=- shape=7096c01a vocab=901ec29c
+-/
 theorem exists_isRightDescent_of_mem_parabolicSubgroup {w : W}
     (hw : w ∈ cs.parabolicSubgroup J) (hw1 : w ≠ 1) : ∃ i ∈ J, cs.IsRightDescent w i := by
   obtain ⟨ω, hred, hJ, rfl⟩ := exists_isReduced_of_mem_parabolicSubgroup hw
@@ -205,7 +215,9 @@ private theorem eq_of_min {u₀ u : W}
   exact Nat.add_lt_add_left hdesc _
 
 /-- **Length additivity** ([BB] Prop. 2.4.4, [HumC] §1.10 Prop. (c), §5.12): if
-`u ∈ W^J` and `v ∈ W_J`, then `ℓ(u v) = ℓ(u) + ℓ(v)`.-/
+`u ∈ W^J` and `v ∈ W_J`, then `ℓ(u v) = ℓ(u) + ℓ(v)`.
+@isnad1 id=eq.2h7v.s6.cdc68e72f243 from=translated src=- shape=c7eedfab vocab=34bb14d1
+-/
 theorem length_mul_of_mem_minCosetReps {u v : W} (hu : u ∈ cs.minCosetReps J)
     (hv : v ∈ cs.parabolicSubgroup J) : ℓ (u * v) = ℓ u + ℓ v := by
   obtain ⟨u₀, hu₀, hmin⟩ := exists_min_length cs J u
@@ -223,7 +235,9 @@ theorem eq_of_mem_minCosetReps {u u' : W} (hu : u ∈ cs.minCosetReps J)
   exact (eq_of_min hu₀ hu' h).symm
 
 /-- **The parabolic decomposition** ([BB] Prop. 2.4.4, [HumC] §1.10 Prop. (c), §5.12): every
-`w ∈ W` can be written as `w = u v` with `u ∈ W^J` and `v ∈ W_J`.-/
+`w ∈ W` can be written as `w = u v` with `u ∈ W^J` and `v ∈ W_J`.
+@isnad1 id=ex.0h6v.s6.af2be62d67d4 from=translated src=- shape=242a4f46 vocab=8f9b58bb
+-/
 theorem exists_mem_minCosetReps_mul_eq (J : Set B) (w : W) :
     ∃ u ∈ cs.minCosetReps J, ∃ v ∈ cs.parabolicSubgroup J, u * v = w := by
   obtain ⟨u, hu, hmin⟩ := exists_min_length cs J w
@@ -255,11 +269,15 @@ variable (cs J) in
 /-- The parabolic component `w_J = (w^J)⁻¹ w ∈ W_J` of `w`, so that `w = w^J w_J`.-/
 noncomputable def parabolicComponent (w : W) : W := (cs.minCosetRep J w)⁻¹ * w
 
-/-- `w^J ∈ W^J`.-/
+/-- `w^J ∈ W^J`.
+@isnad1 id=mem.0h6v.s5.c52a4aff7bca from=translated src=- shape=bb4e351f vocab=947482f8
+-/
 theorem minCosetRep_mem (w : W) : cs.minCosetRep J w ∈ cs.minCosetReps J :=
   (cs.exists_mem_minCosetReps_mul_eq J w).choose_spec.1
 
-/-- `w_J ∈ W_J`.-/
+/-- `w_J ∈ W_J`.
+@isnad1 id=mem.0h6v.s5.cd9f54eeb6a8 from=translated src=- shape=502c4fc2 vocab=3f3a8e53
+-/
 theorem parabolicComponent_mem (w : W) :
     cs.parabolicComponent J w ∈ cs.parabolicSubgroup J := by
   obtain ⟨v, hv, he⟩ := (cs.exists_mem_minCosetReps_mul_eq J w).choose_spec.2
@@ -269,18 +287,24 @@ theorem parabolicComponent_mem (w : W) :
   rw [this]
   exact hv
 
-/-- `w = w^J w_J`.-/
+/-- `w = w^J w_J`.
+@isnad1 id=eq.0h6v.s5.6fe54613e447 from=translated src=- shape=abec8435 vocab=4863059a
+-/
 theorem minCosetRep_mul_parabolicComponent (w : W) :
     cs.minCosetRep J w * cs.parabolicComponent J w = w := by
   rw [parabolicComponent, mul_inv_cancel_left]
 
-/-- `ℓ(w) = ℓ(w^J) + ℓ(w_J)` ([BB] Prop. 2.4.4(ii)).-/
+/-- `ℓ(w) = ℓ(w^J) + ℓ(w_J)` ([BB] Prop. 2.4.4(ii)).
+@isnad1 id=eq.0h6v.s6.aa8911d97696 from=translated src=- shape=849fbdfb vocab=fb741c74
+-/
 theorem length_eq_length_minCosetRep_add (w : W) :
     ℓ w = ℓ (cs.minCosetRep J w) + ℓ (cs.parabolicComponent J w) := by
   conv_lhs => rw [← minCosetRep_mul_parabolicComponent (cs := cs) (J := J) w]
   exact length_mul_of_mem_minCosetReps (minCosetRep_mem w) (parabolicComponent_mem w)
 
-/-- Characterization of `w^J` and `w_J`.-/
+/-- Characterization of `w^J` and `w_J`.
+@isnad1 id=iff.0h7v.s6.a1407756fa58 from=translated src=- shape=a5bc3b96 vocab=2f93f9a4
+-/
 theorem minCosetRep_eq_iff {w u : W} :
     cs.minCosetRep J w = u ↔ u ∈ cs.minCosetReps J ∧ u⁻¹ * w ∈ cs.parabolicSubgroup J := by
   constructor
@@ -291,7 +315,9 @@ theorem minCosetRep_eq_iff {w u : W} :
     rw [minCosetRep_mul_parabolicComponent, mul_inv_cancel_left]
 
 /-- Left-handed length additivity: if `u` has no left descent in `J` and `v ∈ W_J`, then
-`ℓ(v u) = ℓ(v) + ℓ(u)`.-/
+`ℓ(v u) = ℓ(v) + ℓ(u)`.
+@isnad1 id=eq.2h7v.s6.d671b0b6fb7a from=translated src=- shape=4d61dc5f vocab=74f401c6
+-/
 theorem length_mul_of_forall_not_isLeftDescent {u v : W}
     (hu : ∀ i ∈ J, ¬cs.IsLeftDescent u i) (hv : v ∈ cs.parabolicSubgroup J) :
     ℓ (v * u) = ℓ v + ℓ u := by
@@ -300,7 +326,9 @@ theorem length_mul_of_forall_not_isLeftDescent {u v : W}
   rwa [← mul_inv_rev, length_inv, length_inv, length_inv, add_comm] at this
 
 /-- Left-handed parabolic decomposition: every `w ∈ W` can be written as `w = v u` with
-`v ∈ W_J` and `u` without left descents in `J`.-/
+`v ∈ W_J` and `u` without left descents in `J`.
+@isnad1 id=ex.0h6v.s6.fe2a175c558e from=translated src=- shape=e41f3ac8 vocab=6fbebadf
+-/
 theorem exists_mul_eq_of_forall_not_isLeftDescent (J : Set B) (w : W) :
     ∃ v ∈ cs.parabolicSubgroup J, ∃ u, (∀ i ∈ J, ¬cs.IsLeftDescent u i) ∧ v * u = w := by
   obtain ⟨u, hu, v, hv, he⟩ := cs.exists_mem_minCosetReps_mul_eq J w⁻¹
@@ -320,6 +348,9 @@ noncomputable def minCosetRepsProdEquiv : cs.minCosetReps J × cs.parabolicSubgr
       exact ⟨(⟨u, hu⟩, ⟨v, hv⟩), rfl⟩⟩
 
 variable (cs J) in
+/--
+@isnad1 id=eq.0h6v.s8.78c5bb5ccbc4 from=translated src=- shape=dcf98815 vocab=6d9ace8a
+-/
 @[simp]
 theorem minCosetRepsProdEquiv_apply (p : cs.minCosetReps J × cs.parabolicSubgroup J) :
     cs.minCosetRepsProdEquiv J p = (p.1 : W) * p.2 := rfl

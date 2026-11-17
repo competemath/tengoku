@@ -70,15 +70,23 @@ abbrev θ (i : I) : LusztigF k I := FreeAlgebra.ι k i
 /-- The augmentation `'f → k` (the constant term), the counit of `'f`.-/
 abbrev counit : LusztigF k I →ₐ[k] k := FreeAlgebra.algebraMapInv
 
+/--
+@isnad1 id=eq.0h3v.s7.265138ed3362 from=translated src=- shape=643a5636 vocab=5a7d1abd
+-/
 @[simp] lemma counit_θ (i : I) : counit (θ k i) = 0 := by
   simp [counit, FreeAlgebra.algebraMapInv]
 
+/--
+@isnad1 id=eq.0h3v.s7.b655a20d82b9 from=translated src=- shape=87643048 vocab=e6c7eea3
+-/
 @[simp] lemma counit_algebraMap (c : k) : counit (algebraMap k (LusztigF k I) c) = c :=
   FreeAlgebra.algebraMap_leftInverse c
 
 /-! ### Induction principles -/
 
-/-- Induction on `'f` by left multiplication with generators.-/
+/-- Induction on `'f` by left multiplication with generators.
+@isnad1 id=var.0h8v.s8.38a4ef3bcad9 from=translated src=- shape=b2b84623 vocab=f5a115b2
+-/
 theorem induction_left {P : LusztigF k I → Prop} (algebraMap : ∀ c, P (algebraMap k _ c))
     (smul : ∀ (c : k) x, P x → P (c • x)) (add : ∀ x y, P x → P y → P (x + y))
     (θ_mul : ∀ i x, P x → P (θ k i * x)) (x : LusztigF k I) : P x := by
@@ -91,7 +99,9 @@ theorem induction_left {P : LusztigF k I → Prop} (algebraMap : ∀ c, P (algeb
     | add a b ha hb => intro y hy; rw [add_mul]; exact add _ _ (ha _ hy) (hb _ hy)
   simpa using key x 1 (by simpa using algebraMap 1)
 
-/-- Induction on `'f` by right multiplication with generators.-/
+/-- Induction on `'f` by right multiplication with generators.
+@isnad1 id=var.0h8v.s8.05773c9b1224 from=translated src=- shape=4fc16ffa vocab=f5a115b2
+-/
 theorem induction_right {P : LusztigF k I → Prop} (algebraMap : ∀ c, P (algebraMap k _ c))
     (smul : ∀ (c : k) x, P x → P (c • x)) (add : ∀ x y, P x → P y → P (x + y))
     (mul_θ : ∀ x i, P x → P (x * θ k i)) (x : LusztigF k I) : P x := by
@@ -113,22 +123,43 @@ def monomial (w : List I) : LusztigF k I := (w.map (θ k)).prod
 /-- The weight `i₁ + ⋯ + iₙ ∈ ℕ[I]` of a word `[i₁, …, iₙ]`.-/
 def wordWeight (w : List I) : I →₀ ℕ := (w.map fun i ↦ Finsupp.single i 1).sum
 
+/--
+@isnad1 id=eq.0h2v.s5.7a3c7bedf965 from=translated src=- shape=b393f0ee vocab=1647720c
+-/
 @[simp] lemma monomial_nil : monomial k ([] : List I) = 1 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.976636b5dbbc from=translated src=- shape=3236e9d3 vocab=acc2d96d
+-/
 @[simp] lemma monomial_cons (i : I) (w : List I) :
     monomial k (i :: w) = θ k i * monomial k w := by simp [monomial]
 
+/--
+@isnad1 id=eq.0h4v.s6.729b8e470f83 from=translated src=- shape=f60ddac9 vocab=58c6b6ee
+-/
 lemma monomial_append (w w' : List I) :
     monomial k (w ++ w') = monomial k w * monomial k w' := by simp [monomial]
 
+/--
+@isnad1 id=eq.0h1v.s5.e33bc95e8723 from=translated src=- shape=9e49d37a vocab=0b61c718
+-/
 @[simp] lemma wordWeight_nil : wordWeight ([] : List I) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.aa67098d2fba from=translated src=- shape=4c37c369 vocab=cf6b4c7b
+-/
 @[simp] lemma wordWeight_cons (i : I) (w : List I) :
     wordWeight (i :: w) = Finsupp.single i 1 + wordWeight w := by simp [wordWeight]
 
+/--
+@isnad1 id=eq.0h3v.s6.dbf44873b2c5 from=translated src=- shape=7e4b7a89 vocab=cf3e72d7
+-/
 lemma wordWeight_append (w w' : List I) :
     wordWeight (w ++ w') = wordWeight w + wordWeight w' := by simp [wordWeight]
 
+/--
+@isnad1 id=eq.0h3v.s5.09e59b65e80e from=translated src=- shape=9dc43b16 vocab=46407cf1
+-/
 lemma wordWeight_apply (w : List I) (i : I) [DecidableEq I] :
     wordWeight w i = w.count i := by
   induction w with
@@ -138,6 +169,9 @@ lemma wordWeight_apply (w : List I) (i : I) [DecidableEq I] :
       beq_iff_eq]
     split_ifs <;> omega
 
+/--
+@isnad1 id=eq.0h2v.s4.e110f42e0927 from=translated src=- shape=373b5316 vocab=afb1ffe3
+-/
 lemma length_eq_sum_wordWeight (w : List I) : w.length = (wordWeight w).sum fun _ n ↦ n := by
   induction w with
   | nil => simp
@@ -150,19 +184,34 @@ variable (k) in
 def weightSpace (ν : I →₀ ℕ) : Submodule k (LusztigF k I) :=
   Submodule.span k (monomial k '' {w | wordWeight w = ν})
 
+/--
+@isnad1 id=mem.0h3v.s7.a42aecfb663d from=translated src=- shape=d1a136de vocab=76824809
+-/
 lemma monomial_mem_weightSpace (w : List I) : monomial k w ∈ weightSpace k (wordWeight w) :=
   Submodule.subset_span ⟨w, rfl, rfl⟩
 
+/--
+@isnad1 id=mem.0h2v.s7.f2cd888e245f from=translated src=- shape=20767247 vocab=511a6e24
+-/
 lemma one_mem_weightSpace : (1 : LusztigF k I) ∈ weightSpace k 0 :=
   monomial_mem_weightSpace (k := k) ([] : List I)
 
+/--
+@isnad1 id=mem.0h3v.s8.031f1ffe16df from=translated src=- shape=84b263f3 vocab=c199f99d
+-/
 lemma algebraMap_mem_weightSpace (c : k) : algebraMap k (LusztigF k I) c ∈ weightSpace k 0 := by
   rw [Algebra.algebraMap_eq_smul_one]
   exact Submodule.smul_mem _ _ one_mem_weightSpace
 
+/--
+@isnad1 id=mem.0h3v.s7.a7f386a61aa5 from=translated src=- shape=490e5afb vocab=a144f9bf
+-/
 lemma θ_mem_weightSpace (i : I) : θ k i ∈ weightSpace k (Finsupp.single i 1) := by
   simpa [monomial] using monomial_mem_weightSpace (k := k) [i]
 
+/--
+@isnad1 id=mem.2h6v.s9.049434fa415a from=translated src=- shape=7de7f900 vocab=e7ce91f6
+-/
 lemma mul_mem_weightSpace {ν μ : I →₀ ℕ} {x y : LusztigF k I} (hx : x ∈ weightSpace k ν)
     (hy : y ∈ weightSpace k μ) : x * y ∈ weightSpace k (ν + μ) := by
   have : weightSpace k ν * weightSpace k μ ≤ weightSpace k (ν + μ) := by
@@ -175,6 +224,9 @@ lemma mul_mem_weightSpace {ν μ : I →₀ ℕ} {x y : LusztigF k I} (hx : x �
     exact monomial_mem_weightSpace _
   exact this (Submodule.mul_mem_mul hx hy)
 
+/--
+@isnad1 id=eq.0h2v.s8.fdffddaae7e0 from=translated src=- shape=2a9b26d8 vocab=578f7b4d
+-/
 lemma span_monomial : Submodule.span k (Set.range (monomial k (I := I))) = ⊤ := by
   suffices h : ∀ x, x ∈ Submodule.span k (Set.range (monomial k (I := I))) from
     eq_top_iff.2 fun x _ ↦ h x
@@ -194,6 +246,9 @@ lemma span_monomial : Submodule.span k (Set.range (monomial k (I := I))) = ⊤ :
     | add y z _ _ hy hz => rw [mul_add]; exact Submodule.add_mem _ hy hz
     | smul c y _ hy => rw [mul_smul_comm]; exact Submodule.smul_mem _ _ hy
 
+/--
+@isnad1 id=eq.0h2v.s8.a78c4cf23e36 from=translated src=- shape=ea8d1b85 vocab=331a6f03
+-/
 theorem iSup_weightSpace : ⨆ ν, weightSpace k (I := I) ν = ⊤ := by
   rw [eq_top_iff, ← span_monomial, Submodule.span_le]
   rintro _ ⟨w, rfl⟩
@@ -205,6 +260,9 @@ variable (k I) in
 def gradingHom : LusztigF k I →ₐ[k] AddMonoidAlgebra (LusztigF k I) (I →₀ ℕ) :=
   FreeAlgebra.lift k fun i ↦ AddMonoidAlgebra.single (Finsupp.single i 1) (θ k i)
 
+/--
+@isnad1 id=eq.0h3v.s8.d1e39d0e476d from=translated src=- shape=33f8be87 vocab=6a55764a
+-/
 lemma gradingHom_monomial (w : List I) :
     gradingHom k I (monomial k w) = AddMonoidAlgebra.single (wordWeight w) (monomial k w) := by
   induction w with
@@ -213,6 +271,9 @@ lemma gradingHom_monomial (w : List I) :
     rw [monomial_cons, map_mul, ih]
     simp [gradingHom, AddMonoidAlgebra.single_mul_single]
 
+/--
+@isnad1 id=eq.1h4v.s9.a038598a8746 from=translated src=- shape=0fa167b8 vocab=8568c4d8
+-/
 lemma gradingHom_of_mem {ν : I →₀ ℕ} {x : LusztigF k I} (hx : x ∈ weightSpace k ν) :
     gradingHom k I x = AddMonoidAlgebra.single ν x := by
   induction hx using Submodule.span_induction with
@@ -224,6 +285,9 @@ lemma gradingHom_of_mem {ν : I →₀ ℕ} {x : LusztigF k I} (hx : x ∈ weigh
   | smul c y _ hy =>
     rw [map_smul, hy, AddMonoidAlgebra.smul_single]
 
+/--
+@isnad1 id=isupinde.0h2v.s7.044d7c0c5796 from=translated src=- shape=782d1ae5 vocab=e3d658ed
+-/
 theorem iSupIndep_weightSpace : iSupIndep (weightSpace k (I := I)) := by
   classical
   intro ν
@@ -245,7 +309,9 @@ theorem iSupIndep_weightSpace : iSupIndep (weightSpace k (I := I)) := by
     | add y z _ _ hy hz => simp [hy, hz]
   rw [← h1, h2 x hx']
 
-/-- The words of a given weight form a finite set.-/
+/-- The words of a given weight form a finite set.
+@isnad1 id=finite.0h2v.s4.719cab43dc96 from=translated src=- shape=9ff6d37e vocab=b619bec8
+-/
 lemma finite_setOf_wordWeight_eq (ν : I →₀ ℕ) : {w : List I | wordWeight w = ν}.Finite := by
   classical
   have key : ∀ n, {w : List I | w.length = n ∧ ∀ i ∈ w, i ∈ ν.support}.Finite := by
@@ -263,6 +329,9 @@ lemma finite_setOf_wordWeight_eq (ν : I →₀ ℕ) : {w : List I | wordWeight 
   · rw [Finsupp.mem_support_iff, wordWeight_apply]
     exact (List.count_pos_iff.2 hi).ne'
 
+/--
+@isnad1 id=finitedi.0h3v.s8.179905c1aa92 from=translated src=- shape=af25124e vocab=564bc1ce
+-/
 instance finiteDimensional_weightSpace (ν : I →₀ ℕ) : FiniteDimensional k (weightSpace k ν) :=
   have := (finite_setOf_wordWeight_eq (I := I) ν).image (monomial k)
   have : Finite (monomial k '' {w | wordWeight w = ν}) := this.to_subtype
@@ -274,9 +343,15 @@ instance finiteDimensional_weightSpace (ν : I →₀ ℕ) : FiniteDimensional k
 def diagTwist (c : I → k) : LusztigF k I →ₐ[k] LusztigF k I :=
   FreeAlgebra.lift k fun j ↦ c j • θ k j
 
+/--
+@isnad1 id=eq.0h4v.s7.393dd2238ad3 from=translated src=- shape=478d6c25 vocab=bbca9c47
+-/
 @[simp] lemma diagTwist_θ (c : I → k) (j : I) : diagTwist c (θ k j) = c j • θ k j := by
   simp [diagTwist]
 
+/--
+@isnad1 id=eq.0h5v.s9.a6fc01f6e3d8 from=translated src=- shape=81c4f033 vocab=e91419ab
+-/
 lemma diagTwist_diagTwist (c c' : I → k) (x : LusztigF k I) :
     diagTwist c (diagTwist c' x) = diagTwist (c * c') x := by
   have : (diagTwist c).comp (diagTwist c') = diagTwist (k := k) (c * c') := by
@@ -284,14 +359,23 @@ lemma diagTwist_diagTwist (c c' : I → k) (x : LusztigF k I) :
     simp [smul_smul, mul_comm]
   exact congr($this x)
 
+/--
+@isnad1 id=eq.0h5v.s9.ed2cf0ff267d from=translated src=- shape=99f5cb66 vocab=c4355cec
+-/
 lemma diagTwist_comm (c c' : I → k) (x : LusztigF k I) :
     diagTwist c (diagTwist c' x) = diagTwist c' (diagTwist c x) := by
   rw [diagTwist_diagTwist, diagTwist_diagTwist, mul_comm]
 
+/--
+@isnad1 id=eq.0h3v.s7.d69354eafc0a from=translated src=- shape=e3ee28e5 vocab=c4355cec
+-/
 @[simp] lemma diagTwist_one (x : LusztigF k I) : diagTwist (fun _ ↦ (1 : k)) x = x := by
   have : diagTwist (k := k) (I := I) (fun _ ↦ 1) = AlgHom.id k _ := by ext l; simp
   rw [this, AlgHom.id_apply]
 
+/--
+@isnad1 id=eq.0h4v.s8.20329ff422f5 from=translated src=- shape=293f91c9 vocab=71aaa0de
+-/
 @[simp] lemma counit_diagTwist (c : I → k) (x : LusztigF k I) :
     counit (diagTwist c x) = counit x := by
   have : counit.comp (diagTwist (k := k) (I := I) c) = counit := by ext l; simp
@@ -304,9 +388,15 @@ variable (D : LusztigCartanDatum I) (v : k)
 def twist (i : I) : LusztigF k I →ₐ[k] LusztigF k I :=
   FreeAlgebra.lift k fun j ↦ (v ^ D.dot i j) • θ k j
 
+/--
+@isnad1 id=eq.0h6v.s8.0acf95a158bf from=translated src=- shape=c32e1f01 vocab=7a9ced6d
+-/
 @[simp] lemma twist_θ (i j : I) : twist D v i (θ k j) = v ^ D.dot i j • θ k j := by
   simp [twist]
 
+/--
+@isnad1 id=eq.0h7v.s9.7b41563bd5dc from=translated src=- shape=cc6f7576 vocab=a3c1edb1
+-/
 lemma twist_comm (i j : I) (x : LusztigF k I) :
     twist D v i (twist D v j x) = twist D v j (twist D v i x) := by
   have : (twist D v i).comp (twist D v j) = (twist D v j).comp (twist D v i) := by
@@ -314,12 +404,17 @@ lemma twist_comm (i j : I) (x : LusztigF k I) :
     simp [smul_smul, mul_comm]
   exact congr($this x)
 
+/--
+@isnad1 id=eq.0h6v.s8.9aabca5b097d from=translated src=- shape=8cd50e53 vocab=3a8f0f83
+-/
 @[simp] lemma counit_twist (i : I) (x : LusztigF k I) : counit (twist D v i x) = counit x := by
   have : counit.comp (twist D v i) = counit := by ext l; simp
   exact congr($this x)
 
 variable {D v} in
-/-- On `'f_ν` the twist `σᵢ` is multiplication by `v^{i·ν}`.-/
+/-- On `'f_ν` the twist `σᵢ` is multiplication by `v^{i·ν}`.
+@isnad1 id=eq.2h7v.s8.3f48ccb8f587 from=translated src=- shape=89ba9a9d vocab=71d9a411
+-/
 theorem twist_of_mem (hv : v ≠ 0) (i : I) {ν : I →₀ ℕ} {x : LusztigF k I}
     (hx : x ∈ weightSpace k ν) :
     twist D v i x = v ^ D.weightDot (Finsupp.single i 1) ν • x := by
@@ -363,6 +458,9 @@ def rDeriv (i : I) : LusztigF k I →ₗ[k] LusztigF k I :=
 def lDeriv (i : I) : LusztigF k I →ₗ[k] LusztigF k I :=
   entry01 ∘ₗ (lMat D v i).toLinearMap
 
+/--
+@isnad1 id=and.0h6v.s10.6e361cb6af93 from=translated src=- shape=aff84115 vocab=04703f26
+-/
 lemma rMat_entries (i : I) (x : LusztigF k I) :
     rMat D v i x 0 0 = x ∧ rMat D v i x 1 0 = 0 ∧ rMat D v i x 1 1 = twist D v i x := by
   induction x using FreeAlgebra.induction with
@@ -374,6 +472,9 @@ lemma rMat_entries (i : I) (x : LusztigF k I) :
     simp
   | add a b ha hb => simp [ha.1, ha.2.1, ha.2.2, hb.1, hb.2.1, hb.2.2]
 
+/--
+@isnad1 id=and.0h6v.s10.53ca6bd94e7b from=translated src=- shape=4e924761 vocab=b6bef610
+-/
 lemma lMat_entries (i : I) (x : LusztigF k I) :
     lMat D v i x 0 0 = twist D v i x ∧ lMat D v i x 1 0 = 0 ∧ lMat D v i x 1 1 = x := by
   induction x using FreeAlgebra.induction with
@@ -385,56 +486,95 @@ lemma lMat_entries (i : I) (x : LusztigF k I) :
     simp
   | add a b ha hb => simp [ha.1, ha.2.1, ha.2.2, hb.1, hb.2.1, hb.2.2]
 
+/--
+@isnad1 id=eq.0h6v.s9.b764b1e0b10a from=translated src=- shape=18a42b44 vocab=283ad7a8
+-/
 lemma rDeriv_apply (i : I) (x : LusztigF k I) : rDeriv D v i x = rMat D v i x 0 1 := rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.33c48e87f663 from=translated src=- shape=18a42b44 vocab=d7eeb3ae
+-/
 lemma lDeriv_apply (i : I) (x : LusztigF k I) : lDeriv D v i x = lMat D v i x 0 1 := rfl
 
-/-- `rᵢ(xy) = x rᵢ(y) + rᵢ(x) σᵢ(y)`.-/
+/-- `rᵢ(xy) = x rᵢ(y) + rᵢ(x) σᵢ(y)`.
+@isnad1 id=eq.0h7v.s10.a00a729b343f from=translated src=- shape=b4851dd3 vocab=ad33b07b
+-/
 theorem rDeriv_mul (i : I) (x y : LusztigF k I) :
     rDeriv D v i (x * y) = x * rDeriv D v i y + rDeriv D v i x * twist D v i y := by
   simp only [rDeriv_apply, map_mul, Matrix.mul_apply, Fin.sum_univ_two, (rMat_entries D v i x).1,
     (rMat_entries D v i y).2.2]
 
-/-- `ᵢr(xy) = ᵢr(x) y + σᵢ(x) ᵢr(y)`.-/
+/-- `ᵢr(xy) = ᵢr(x) y + σᵢ(x) ᵢr(y)`.
+@isnad1 id=eq.0h7v.s10.c0b9371433b4 from=translated src=- shape=4af8de93 vocab=99900c8c
+-/
 theorem lDeriv_mul (i : I) (x y : LusztigF k I) :
     lDeriv D v i (x * y) = lDeriv D v i x * y + twist D v i x * lDeriv D v i y := by
   simp only [lDeriv_apply, map_mul, Matrix.mul_apply, Fin.sum_univ_two, (lMat_entries D v i x).1,
     (lMat_entries D v i y).2.2]
   rw [add_comm]
 
+/--
+@isnad1 id=eq.0h6v.s8.9841373c4122 from=translated src=- shape=7a374f41 vocab=ccea2435
+-/
 @[simp] lemma rDeriv_θ (i j : I) : rDeriv D v i (θ k j) = if i = j then 1 else 0 := by
   simp [rDeriv_apply, rMat]
 
+/--
+@isnad1 id=eq.0h6v.s8.9cffa66cec67 from=translated src=- shape=7a374f41 vocab=80e4654c
+-/
 @[simp] lemma lDeriv_θ (i j : I) : lDeriv D v i (θ k j) = if i = j then 1 else 0 := by
   simp [lDeriv_apply, lMat]
 
+/--
+@isnad1 id=eq.0h6v.s8.8466245330d8 from=translated src=- shape=08739ef4 vocab=0c11f577
+-/
 @[simp] lemma rDeriv_algebraMap (i : I) (c : k) : rDeriv D v i (algebraMap k _ c) = 0 := by
   simp [rDeriv_apply, Matrix.algebraMap_matrix_apply]
 
+/--
+@isnad1 id=eq.0h6v.s8.a008caa053ef from=translated src=- shape=08739ef4 vocab=0ab7c152
+-/
 @[simp] lemma lDeriv_algebraMap (i : I) (c : k) : lDeriv D v i (algebraMap k _ c) = 0 := by
   simp [lDeriv_apply, Matrix.algebraMap_matrix_apply]
 
+/--
+@isnad1 id=eq.0h5v.s8.0562928257bc from=translated src=- shape=a2d7c5a1 vocab=ac7c3aa6
+-/
 @[simp] lemma rDeriv_one (i : I) : rDeriv D v i 1 = 0 := by
   simpa using rDeriv_algebraMap D v i (1 : k)
 
+/--
+@isnad1 id=eq.0h5v.s8.8989a15f84f3 from=translated src=- shape=a2d7c5a1 vocab=0b62bf4d
+-/
 @[simp] lemma lDeriv_one (i : I) : lDeriv D v i 1 = 0 := by
   simpa using lDeriv_algebraMap D v i (1 : k)
 
+/--
+@isnad1 id=eq.0h7v.s9.292ee5397840 from=translated src=- shape=9b0e43b1 vocab=ad6367be
+-/
 lemma rDeriv_θ_mul (i j : I) (x : LusztigF k I) :
     rDeriv D v i (θ k j * x) = θ k j * rDeriv D v i x + if i = j then twist D v i x else 0 := by
   rw [rDeriv_mul, rDeriv_θ]; split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h7v.s9.6e500c17695d from=translated src=- shape=24dc13c8 vocab=02fadd11
+-/
 lemma rDeriv_mul_θ (i j : I) (x : LusztigF k I) :
     rDeriv D v i (x * θ k j) =
       (if i = j then x else 0) + v ^ D.dot i j • (rDeriv D v i x * θ k j) := by
   rw [rDeriv_mul, rDeriv_θ, twist_θ, mul_smul_comm]; split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h7v.s9.3ae694ee4d5f from=translated src=- shape=10e38f94 vocab=36de9a89
+-/
 lemma lDeriv_θ_mul (i j : I) (x : LusztigF k I) :
     lDeriv D v i (θ k j * x) =
       (if i = j then x else 0) + v ^ D.dot i j • (θ k j * lDeriv D v i x) := by
   rw [lDeriv_mul, lDeriv_θ, twist_θ, smul_mul_assoc]; split_ifs <;> simp
 
-/-- `rᵢ ∘ σⱼ = v^{i·j} σⱼ ∘ rᵢ`.-/
+/-- `rᵢ ∘ σⱼ = v^{i·j} σⱼ ∘ rᵢ`.
+@isnad1 id=eq.0h7v.s9.dafc36603d41 from=translated src=- shape=81b1d569 vocab=1dd45729
+-/
 lemma rDeriv_twist (i j : I) (x : LusztigF k I) :
     rDeriv D v i (twist D v j x) = v ^ D.dot i j • twist D v j (rDeriv D v i x) := by
   induction x using FreeAlgebra.induction with
@@ -447,7 +587,9 @@ lemma rDeriv_twist (i j : I) (x : LusztigF k I) :
     simp only [mul_smul_comm, smul_mul_assoc, smul_add]
   | add a b ha hb => simp [ha, hb]
 
-/-- `ᵢr ∘ σⱼ = v^{i·j} σⱼ ∘ ᵢr`.-/
+/-- `ᵢr ∘ σⱼ = v^{i·j} σⱼ ∘ ᵢr`.
+@isnad1 id=eq.0h7v.s9.687bd7458eb5 from=translated src=- shape=81b1d569 vocab=35569656
+-/
 lemma lDeriv_twist (i j : I) (x : LusztigF k I) :
     lDeriv D v i (twist D v j x) = v ^ D.dot i j • twist D v j (lDeriv D v i x) := by
   induction x using FreeAlgebra.induction with
@@ -461,9 +603,14 @@ lemma lDeriv_twist (i j : I) (x : LusztigF k I) :
   | add a b ha hb => simp [ha, hb]
 
 omit [DecidableEq I] in
+/--
+@isnad1 id=eq.0h5v.s6.649e55662fcb from=translated src=- shape=1b48041e vocab=5c8d7e2d
+-/
 lemma twist_eq_diagTwist (i : I) : twist D v i = diagTwist fun j ↦ v ^ D.dot i j := rfl
 
-/-- `rᵢ ∘ φ = cᵢ φ ∘ rᵢ` for the diagonal twist `φ : θⱼ ↦ cⱼ θⱼ`.-/
+/-- `rᵢ ∘ φ = cᵢ φ ∘ rᵢ` for the diagonal twist `φ : θⱼ ↦ cⱼ θⱼ`.
+@isnad1 id=eq.0h7v.s9.f76d3f76e6b1 from=translated src=- shape=14868607 vocab=f44d8e9f
+-/
 lemma rDeriv_diagTwist (c : I → k) (i : I) (x : LusztigF k I) :
     rDeriv D v i (diagTwist c x) = c i • diagTwist c (rDeriv D v i x) := by
   induction x using FreeAlgebra.induction with
@@ -477,7 +624,9 @@ lemma rDeriv_diagTwist (c : I → k) (i : I) (x : LusztigF k I) :
     simp only [mul_smul_comm, smul_mul_assoc, smul_add]
   | add a b ha hb => simp [ha, hb]
 
-/-- `ᵢr ∘ φ = cᵢ φ ∘ ᵢr` for the diagonal twist `φ : θⱼ ↦ cⱼ θⱼ`.-/
+/-- `ᵢr ∘ φ = cᵢ φ ∘ ᵢr` for the diagonal twist `φ : θⱼ ↦ cⱼ θⱼ`.
+@isnad1 id=eq.0h7v.s9.540d98d09637 from=translated src=- shape=14868607 vocab=d0a5e793
+-/
 lemma lDeriv_diagTwist (c : I → k) (i : I) (x : LusztigF k I) :
     lDeriv D v i (diagTwist c x) = c i • diagTwist c (lDeriv D v i x) := by
   induction x using FreeAlgebra.induction with
@@ -491,6 +640,9 @@ lemma lDeriv_diagTwist (c : I → k) (i : I) (x : LusztigF k I) :
     simp only [mul_smul_comm, smul_mul_assoc, smul_add]
   | add a b ha hb => simp [ha, hb]
 
+/--
+@isnad1 id=eq.0h7v.s9.e14c4dfdf221 from=translated src=- shape=24eab10b vocab=e0fa59dd
+-/
 lemma counit_rDeriv_θ_mul (i j : I) (x : LusztigF k I) :
     counit (rDeriv D v i (θ k j * x)) = if i = j then counit x else 0 := by
   rw [rDeriv_θ_mul]; split_ifs <;> simp

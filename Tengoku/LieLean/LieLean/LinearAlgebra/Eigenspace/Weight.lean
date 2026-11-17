@@ -41,7 +41,9 @@ linearly independent); no specific reference.
 open Module
 
 /-- If `N i ≤ M i` for an independent family `M`, and `x ∈ M i` lies in `⨆ j, N j`, then
-`x ∈ N i`.-/
+`x ∈ N i`.
+@isnad1 id=mem.4h7v.s8.1449e82e57a4 from=translated src=- shape=7961f423 vocab=119c4919
+-/
 theorem iSupIndep.mem_of_mem_iSup_of_le {R M ι : Type*} [Ring R] [AddCommGroup M] [Module R M]
     {F G : ι → Submodule R M} (hG : iSupIndep G) (hFG : ∀ j, F j ≤ G j) {i : ι} {x : M}
     (hx : x ∈ G i) (hx' : x ∈ ⨆ j, F j) : x ∈ F i := by
@@ -69,13 +71,18 @@ def weightSpaceOf (μ : Dual K H) : Submodule K M where
 
 variable {T}
 
+/--
+@isnad1 id=iff.0h6v.s9.703dd524819c from=translated src=- shape=9d65ec3f vocab=c6de5efa
+-/
 lemma mem_weightSpaceOf {μ : Dual K H} {m : M} :
     m ∈ weightSpaceOf T μ ↔ ∀ a, T a m = μ a • m := Iff.rfl
 
 variable (T)
 
 /-- If a finite sum of weight vectors of distinct weights lies in a subspace `N` stable under the
-family, then so does each summand.-/
+family, then so does each summand.
+@isnad1 id=mem.4h8v.s10.7dd79eb74b97 from=translated src=- shape=b1ffe816 vocab=dda0eaf4
+-/
 theorem mem_of_sum_mem (N : Submodule K M) (hN : ∀ a, ∀ m ∈ N, T a m ∈ N)
     (s : Finset (Dual K H)) (x : Dual K H → M) (hx : ∀ μ ∈ s, x μ ∈ weightSpaceOf T μ)
     (hsum : ∑ μ ∈ s, x μ ∈ N) : ∀ μ ∈ s, x μ ∈ N := by
@@ -109,7 +116,9 @@ theorem mem_of_sum_mem (N : Submodule K M) (hN : ∀ a, ∀ m ∈ N, T a m ∈ N
     · exact hs μ hμ
 
 /-- A subspace stable under the family meets the sum of the weight spaces in the sum of its
-intersections with the weight spaces.-/
+intersections with the weight spaces.
+@isnad1 id=le.1h5v.s9.604de738d22e from=translated src=- shape=1791b7ca vocab=79207d8a
+-/
 theorem inf_iSup_weightSpaceOf_le (N : Submodule K M) (hN : ∀ a, ∀ m ∈ N, T a m ∈ N) :
     N ⊓ ⨆ μ, weightSpaceOf T μ ≤ ⨆ μ, (N ⊓ weightSpaceOf T μ) := by
   classical
@@ -122,7 +131,9 @@ theorem inf_iSup_weightSpaceOf_le (N : Submodule K M) (hN : ∀ a, ∀ m ∈ N, 
   have hmem := mem_of_sum_mem T N hN s (fun μ ↦ x μ) (fun μ _ ↦ (x μ).2) hmN
   exact Submodule.sum_mem _ fun μ hμ ↦ Submodule.mem_iSup_of_mem μ ⟨hmem μ hμ, (x μ).2⟩
 
-/-- Weight spaces for distinct weights are independent.-/
+/-- Weight spaces for distinct weights are independent.
+@isnad1 id=isupinde.0h4v.s7.e84006b06976 from=translated src=- shape=2d51d399 vocab=bab86049
+-/
 theorem iSupIndep_weightSpaceOf : iSupIndep fun μ : Dual K H ↦ weightSpaceOf T μ := by
   classical
   intro μ
@@ -155,7 +166,9 @@ theorem iSupIndep_weightSpaceOf : iSupIndep fun μ : Dual K H ↦ weightSpaceOf 
     μ (Finset.mem_insert_self _ _)
   simpa [x'] using this
 
-/-- If `N ν ≤ M_ν` for all `ν` and a weight vector `x ∈ M_μ` lies in `⨆ ν, N ν`, then `x ∈ N μ`.-/
+/-- If `N ν ≤ M_ν` for all `ν` and a weight vector `x ∈ M_μ` lies in `⨆ ν, N ν`, then `x ∈ N μ`.
+@isnad1 id=mem.3h7v.s9.347e25b2b9c4 from=translated src=- shape=07b5be98 vocab=22262178
+-/
 theorem mem_of_mem_iSup_of_le (N : Dual K H → Submodule K M)
     (hN : ∀ ν, N ν ≤ weightSpaceOf T ν) {μ : Dual K H} {x : M}
     (hx : x ∈ weightSpaceOf T μ) (hx' : x ∈ ⨆ ν, N ν) : x ∈ N μ :=

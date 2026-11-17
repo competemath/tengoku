@@ -28,7 +28,9 @@ noncomputable section
 namespace ExteriorAlgebra.Koszul
 variable {R M I : Type*} [CommRing R] [AddCommGroup M] [Module R M]
 
-/-- Enlarging the coordinate support enlarges the homogeneous tensor submodule.-/
+/-- Enlarging the coordinate support enlarges the homogeneous tensor submodule.
+@isnad1 id=le.1h8v.s11.f48f93c871c8 from=translated src=- shape=aa817b1c vocab=16494bc3
+-/
 theorem homogeneousTensors_mono (b : Module.Basis I R M) (n q : ℕ)
     {s t : Finset I} (hst : s ⊆ t) :
     homogeneousTensors b s n q ≤ homogeneousTensors b t n q := by
@@ -36,7 +38,9 @@ theorem homogeneousTensors_mono (b : Module.Basis I R M) (n q : ℕ)
   rintro z ⟨l, p, hl, hs, hp, hv, hz⟩
   exact ⟨l, p, hl, fun i hi => hst (hs i hi), hp, hv.trans hst, hz⟩
 
-/-- A basis word has its stated exterior degree, even when repetitions make it zero.-/
+/-- A basis word has its stated exterior degree, even when repetitions make it zero.
+@isnad1 id=mem.0h5v.s9.796977b28144 from=translated src=- shape=1a6b7e32 vocab=e1689158
+-/
 theorem basisWord_mem_exteriorPower (b : Module.Basis I R M) (l : List I) :
     basisWord b l ∈ ⋀[R]^l.length M := by
   induction l with
@@ -48,7 +52,9 @@ theorem basisWord_mem_exteriorPower (b : Module.Basis I R M) (l : List I) :
 
 /-- Finite-support homogeneous spans exhaust the usual span of pure tensors of fixed bidegree.
 The right side uses all exterior-degree `q` elements and all homogeneous degree-`n` polynomials,
-not merely basis words.-/
+not merely basis words.
+@isnad1 id=eq.0h6v.s12.6d741084f1d9 from=translated src=- shape=78426805 vocab=7615bd99
+-/
 theorem iSup_homogeneousTensors (b : Module.Basis I R M) (n q : ℕ) :
     (⨆ s : Finset I, homogeneousTensors b s n q) =
       Submodule.span R {z | ∃ (e : ExteriorAlgebra R M) (p : MvPolynomial I R),
@@ -86,7 +92,9 @@ theorem iSup_homogeneousTensors (b : Module.Basis I R M) (n q : ℕ) :
       rw [← TensorProduct.smul_tmul']
       exact Submodule.smul_mem _ r he
 
-/-- Every homogeneous exterior-polynomial tensor admits a common finite coordinate support.-/
+/-- Every homogeneous exterior-polynomial tensor admits a common finite coordinate support.
+@isnad1 id=ex.1h7v.s13.f6c720a1e607 from=translated src=- shape=c9bd359d vocab=020a3648
+-/
 theorem exists_support_of_mem_homogeneous_span (b : Module.Basis I R M) (n q : ℕ)
     {z : ExteriorAlgebra R M ⊗[R] MvPolynomial I R}
     (hz : z ∈ Submodule.span R {z | ∃ (e : ExteriorAlgebra R M) (p : MvPolynomial I R),

@@ -48,6 +48,9 @@ section Partial
 
 variable {π ξ : LittelmannPath S} {i : ι}
 
+/--
+@isnad1 id=le.0h9v.s7.8ad9ea33d03d from=translated src=- shape=7c038556 vocab=0790b4a0
+-/
 lemma minPairing_le_runningMin' (π : LittelmannPath S) (i : ι) (t : 𝕜) :
     π.minPairing i ≤ π.runningMin i t := by
   rcases le_total 0 t with ht | ht
@@ -56,6 +59,9 @@ lemma minPairing_le_runningMin' (π : LittelmannPath S) (i : ι) (t : 𝕜) :
     exact π.minPairing_nonpos i
 
 omit [IsStrictOrderedRing 𝕜] in
+/--
+@isnad1 id=le.0h9v.s7.56390fadbd61 from=translated src=- shape=a67a1628 vocab=c26700c0
+-/
 lemma runningMin_le_zero' (π : LittelmannPath S) (i : ι) (t : 𝕜) : π.runningMin i t ≤ 0 := by
   rcases le_total 0 t with ht | ht
   · exact π.runningMin_le_zero ht
@@ -63,7 +69,9 @@ lemma runningMin_le_zero' (π : LittelmannPath S) (i : ι) (t : 𝕜) : π.runni
 
 /-- The running minimum after a partial raising: if `hᵢ(ξ) = hᵢ(π) - 2(min(M, L) - L)` with
 `M = min_{[0,·]} hᵢ(π)` and `L ≤ -1`, then
-`min(min_{[0,t]} hᵢ(ξ), L + 1) = min(M(t), L + 1) - min(M(t), L) + L`.-/
+`min(min_{[0,t]} hᵢ(ξ), L + 1) = min(M(t), L + 1) - min(M(t), L) + L`.
+@isnad1 id=eq.2h11v.s9.9d9fe75bb10d from=translated src=- shape=53aabd12 vocab=9136119c
+-/
 theorem min_runningMin_partial {L : 𝕜} (hL : L ≤ -1)
     (hξ : ∀ s, ξ.pairing i s = π.pairing i s - 2 * (min (π.runningMin i s) L - L)) (t : 𝕜) :
     min (ξ.runningMin i t) (L + 1) =
@@ -127,7 +135,9 @@ theorem min_runningMin_partial {L : 𝕜} (hL : L ≤ -1)
 variable [FloorRing 𝕜]
 
 /-- **Partial Pitman formula**: `eᵢ^k π(t) = π(t) - (min(M(t), mᵢ + k) - (mᵢ + k)) αᵢ` for
-`mᵢ + k ≤ 0`, where `M(t) = min_{[0,t]} hᵢ`.-/
+`mᵢ + k ≤ 0`, where `M(t) = min_{[0,t]} hᵢ`.
+@isnad1 id=ex.1h9v.s9.f8374a4c03fc from=translated src=- shape=3ad80f86 vocab=16c4b73b
+-/
 theorem eIter_eq_partialPitman (π : LittelmannPath S) (i : ι) :
     ∀ k : ℕ, π.minPairing i + k ≤ 0 →
       ∃ ξ, (crystal S).eIter i k π = some ξ ∧ ∀ t, ξ t = π t -
@@ -169,7 +179,9 @@ theorem eIter_eq_partialPitman (π : LittelmannPath S) (i : ι) :
     module
 
 /-- **The Pitman transform** ([BBO05] Definition 2.1, (2.3)): if `mᵢ = z` is an integer, then
-`eᵢ^{-z} π = Pᵢ π` with `Pᵢ π(t) = π(t) - (min_{[0,t]} hᵢ) αᵢ`.-/
+`eᵢ^{-z} π = Pᵢ π` with `Pᵢ π(t) = π(t) - (min_{[0,t]} hᵢ) αᵢ`.
+@isnad1 id=ex.1h9v.s9.d815e8a9a175 from=translated src=- shape=ea8dc104 vocab=7bff3d90
+-/
 theorem eIter_eq_pitman (π : LittelmannPath S) (i : ι) {z : ℤ} (hz : π.minPairing i = z) :
     ∃ ξ, (crystal S).eIter i (-z).toNat π = some ξ ∧
       ∀ t, ξ t = π t - π.runningMin i t • S.root i := by
@@ -181,6 +193,9 @@ theorem eIter_eq_pitman (π : LittelmannPath S) (i : ι) {z : ℤ} (hz : π.minP
     min_eq_left (π.runningMin_le_zero' i t)]
 
 omit [OrderTopology 𝕜] in
+/--
+@isnad1 id=eq.1h9v.s7.8db5c19d109d from=translated src=- shape=cae27ca1 vocab=56e182ee
+-/
 lemma ε_of_minPairing_eq {π : LittelmannPath S} {i : ι} {z : ℤ} (hz : π.minPairing i = z) :
     ε i π = ((-z : ℤ) : WithBot ℤ) := by
   rw [ε, hz, ← Int.cast_neg, Int.floor_intCast]
@@ -195,7 +210,9 @@ variable {π π₁ π₂ π₃ ρ₁ : LittelmannPath S} {i j : ι}
 
 /-- [BBO05] Lemma 2.6 (one direction): if `u ≤ t₀ ≤ t` where `hᵢ(t₀) = min_{[0,t]} hᵢ`, some
 `s ∈ [u, t]` has `hᵢ(s) - 2 min_{[0,s]} hᵢ = - min_{[0,u]} hᵢ` (the first time after `u` at
-which `hᵢ` reaches `min_{[0,u]} hᵢ`).-/
+which `hᵢ` reaches `min_{[0,u]} hᵢ`).
+@isnad1 id=ex.4h11v.s8.7e303738a52e from=translated src=- shape=9c509517 vocab=29274438
+-/
 theorem exists_pairing_sub_two_runningMin (π : LittelmannPath S) (i : ι) {u t₀ t : 𝕜}
     (hu : 0 ≤ u) (hut : u ≤ t₀) (ht₀ : t₀ ≤ t) (hmin : π.pairing i t₀ = π.runningMin i t) :
     ∃ s ∈ Icc u t, π.pairing i s - 2 * π.runningMin i s = -π.runningMin i u := by
@@ -220,12 +237,18 @@ variable (hij : S.coroot i (S.root j) = -1) (hji : S.coroot j (S.root i) = -1)
 
 omit [IsStrictOrderedRing 𝕜] [OrderTopology 𝕜] in
 include hji h₁ in
+/--
+@isnad1 id=eq.2h11v.s9.9b5ed6f8d61c from=translated src=- shape=b61aa99d vocab=73eb5ee0
+-/
 lemma pairing_pitman_other (s : 𝕜) : π₁.pairing j s = π.pairing j s + π.runningMin i s := by
   simp only [pairing, h₁, map_sub, map_smul, hji, smul_eq_mul]
   ring
 
 omit [IsStrictOrderedRing 𝕜] [OrderTopology 𝕜] in
 include h₁ in
+/--
+@isnad1 id=eq.1h10v.s8.e079fb0635f1 from=translated src=- shape=ecf3f615 vocab=062e0a07
+-/
 lemma pairing_pitman_self (s : 𝕜) :
     π₁.pairing i s = π.pairing i s - 2 * π.runningMin i s := by
   simp only [pairing, h₁, map_sub, map_smul, S.coroot_root_self, smul_eq_mul]
@@ -233,6 +256,9 @@ lemma pairing_pitman_self (s : 𝕜) :
 
 omit [IsStrictOrderedRing 𝕜] [OrderTopology 𝕜] in
 include hij h₁ h₂ in
+/--
+@isnad1 id=eq.3h12v.s9.6051a585979e from=translated src=- shape=8310892e vocab=f94f23b9
+-/
 lemma pairing_pitman_two (s : 𝕜) :
     π₂.pairing i s = π.pairing i s - 2 * π.runningMin i s + π₁.runningMin j s := by
   have := pairing_pitman_self h₁ s
@@ -243,6 +269,9 @@ lemma pairing_pitman_two (s : 𝕜) :
 
 omit [IsStrictOrderedRing 𝕜] [OrderTopology 𝕜] in
 include hij hρ in
+/--
+@isnad1 id=eq.2h11v.s9.b29c07354d57 from=translated src=- shape=e2e5bebe vocab=73eb5ee0
+-/
 lemma pairing_pitman_rho (s : 𝕜) : ρ₁.pairing i s = π.pairing i s + π.runningMin j s := by
   simp only [pairing, hρ, map_sub, map_smul, hij, smul_eq_mul]
   ring
@@ -250,7 +279,9 @@ lemma pairing_pitman_rho (s : 𝕜) : ρ₁.pairing i s = π.pairing i s + π.ru
 include hij hji h₁ h₂ hρ in
 /-- **The key `A₂` identity** ([BBO05] Lemma 2.7, reconstructed): with `π₁ = Pᵢ π`,
 `π₂ = Pⱼ π₁` and `ρ₁ = Pⱼ π`,
-`min_{[0,t]} hᵢ(π) + min_{[0,t]} hᵢ(π₂) = min_{[0,t]} hᵢ(ρ₁)`.-/
+`min_{[0,t]} hᵢ(π) + min_{[0,t]} hᵢ(π₂) = min_{[0,t]} hᵢ(ρ₁)`.
+@isnad1 id=eq.5h13v.s10.42a14e916adb from=translated src=- shape=d122e9b6 vocab=0b7dc974
+-/
 theorem runningMin_add_runningMin_eq (t : 𝕜) :
     π.runningMin i t + π₂.runningMin i t = ρ₁.runningMin i t := by
   rcases lt_or_ge t 0 with ht | ht
@@ -306,7 +337,9 @@ theorem runningMin_add_runningMin_eq (t : 𝕜) :
 
 include hij hji h₁ hρ in
 /-- **String-parametrization identity** (elementary; proved here): with `π₁ = Pᵢ π` and
-`ρ₁ = Pⱼ π`, `min hⱼ(π) + min hᵢ(π) = min(min hᵢ(ρ₁), min hⱼ(π₁))`.-/
+`ρ₁ = Pⱼ π`, `min hⱼ(π) + min hᵢ(π) = min(min hᵢ(ρ₁), min hⱼ(π₁))`.
+@isnad1 id=eq.4h11v.s9.f80d36f73ef5 from=translated src=- shape=d7540c8f vocab=8656e8b2
+-/
 theorem minPairing_add_minPairing_eq :
     π.minPairing j + π.minPairing i = min (ρ₁.minPairing i) (π₁.minPairing j) := by
   have p1j := pairing_pitman_other hji h₁
@@ -338,7 +371,9 @@ theorem minPairing_add_minPairing_eq :
 
 include hij hji h₁ h₂ hρ in
 /-- **The `A₂` Pitman formula** ([BBO05] Theorem 2.5, `n = 3`, reconstructed):
-`PᵢPⱼPᵢ π(t) = π(t) - (min_{[0,t]} hᵢ(Pⱼπ)) αᵢ - (min_{[0,t]} hⱼ(Pᵢπ)) αⱼ`.-/
+`PᵢPⱼPᵢ π(t) = π(t) - (min_{[0,t]} hᵢ(Pⱼπ)) αᵢ - (min_{[0,t]} hⱼ(Pᵢπ)) αⱼ`.
+@isnad1 id=eq.6h14v.s10.3f8bffbb58af from=translated src=- shape=dd3d1d57 vocab=dfd555a1
+-/
 theorem pitman_three_apply (h₃ : ∀ t, π₃ t = π₂ t - π₂.runningMin i t • S.root i) (t : 𝕜) :
     π₃ t = π t - ρ₁.runningMin i t • S.root i - π₁.runningMin j t • S.root j := by
   rw [h₃, h₂, h₁, ← runningMin_add_runningMin_eq hij hji h₁ h₂ hρ t]

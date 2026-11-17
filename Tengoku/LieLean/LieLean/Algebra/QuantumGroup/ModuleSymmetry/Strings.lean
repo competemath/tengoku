@@ -64,17 +64,32 @@ noncomputable def qIntZ (n : ℤ) : k := (q ^ n - q ^ (-n)) / (q - q⁻¹)
 
 variable {q}
 
+/--
+@isnad1 id=eq.0h2v.s5.9bca5b131f1a from=translated src=- shape=4e114734 vocab=c1ec8025
+-/
 @[simp] lemma qIntZ_zero : qIntZ q 0 = 0 := by simp [qIntZ]
 
+/--
+@isnad1 id=eq.0h3v.s5.6977935e73fb from=translated src=- shape=cba72d6d vocab=94ea13f7
+-/
 lemma qIntZ_neg (n : ℤ) : qIntZ q (-n) = -qIntZ q n := by
   rw [qIntZ, qIntZ, neg_neg, ← neg_div, neg_sub]
 
+/--
+@isnad1 id=eq.1h3v.s6.a8847f05bb58 from=translated src=- shape=243d8e27 vocab=9c5705d6
+-/
 lemma qIntZ_natCast (hq : q - q⁻¹ ≠ 0) (n : ℕ) : qIntZ q n = qInt q n := by
   rw [qIntZ, div_eq_iff hq, mul_comm, qInt_mul_sub, zpow_neg, zpow_natCast, inv_pow]
 
+/--
+@isnad1 id=eq.1h2v.s6.b73ba2614d58 from=translated src=- shape=02eb5964 vocab=d88a14ee
+-/
 lemma qIntZ_one (hq : q - q⁻¹ ≠ 0) : qIntZ q 1 = 1 := by
   rw [qIntZ, zpow_one, zpow_neg_one, div_self hq]
 
+/--
+@isnad1 id=ne.2h3v.s6.2688ccb0bfb5 from=translated src=- shape=51fd82e7 vocab=03381104
+-/
 lemma zpow_ne_one_of_pow_ne_one (hq : ∀ n : ℕ, 0 < n → q ^ n ≠ 1) {n : ℤ} (hn : n ≠ 0) :
     q ^ n ≠ 1 := by
   rcases Int.natAbs_eq n with h | h
@@ -86,6 +101,9 @@ section NotRoot
 variable (hq0 : q ≠ 0) (hq : ∀ n : ℕ, 0 < n → q ^ n ≠ 1)
 include hq0 hq
 
+/--
+@isnad1 id=ne.2h2v.s7.7a6b82515595 from=translated src=- shape=34b0635b vocab=cdc85ba8
+-/
 lemma sub_inv_ne_zero_of_pow_ne_one : q - q⁻¹ ≠ 0 := by
   intro h
   refine hq 2 two_pos ?_
@@ -94,6 +112,9 @@ lemma sub_inv_ne_zero_of_pow_ne_one : q - q⁻¹ ≠ 0 := by
   nth_rw 2 [h]
   exact mul_inv_cancel₀ hq0
 
+/--
+@isnad1 id=ne.3h3v.s6.9454865554bd from=translated src=- shape=da02a335 vocab=7b5d101a
+-/
 lemma qIntZ_ne_zero {n : ℤ} (hn : n ≠ 0) : qIntZ q n ≠ 0 := by
   refine div_ne_zero ?_ (sub_inv_ne_zero_of_pow_ne_one hq0 hq)
   rw [sub_ne_zero]
@@ -103,13 +124,22 @@ lemma qIntZ_ne_zero {n : ℤ} (hn : n ≠ 0) : qIntZ q n ≠ 0 := by
   nth_rw 2 [h]
   rw [← zpow_add₀ hq0, add_neg_cancel, zpow_zero]
 
+/--
+@isnad1 id=ne.3h3v.s6.e2ba9de9296c from=translated src=- shape=bc1fa528 vocab=cb59f4d6
+-/
 lemma qInt_ne_zero_of_pow_ne_one {n : ℕ} (hn : 0 < n) : qInt q n ≠ 0 := by
   rw [← qIntZ_natCast (sub_inv_ne_zero_of_pow_ne_one hq0 hq)]
   exact qIntZ_ne_zero hq0 hq (by omega)
 
+/--
+@isnad1 id=ne.2h3v.s6.1a4e5ea7602d from=translated src=- shape=fc804d4f vocab=0c45c211
+-/
 lemma qFactorial_ne_zero_of_pow_ne_one (n : ℕ) : qFactorial q n ≠ 0 :=
   qFactorial_ne_zero hq0 fun m hm _ ↦ hq _ (by omega)
 
+/--
+@isnad1 id=ne.3h4v.s6.c58c14508bf7 from=translated src=- shape=e3ee786a vocab=b8d0f665
+-/
 lemma qBinomial_ne_zero_of_pow_ne_one {n j : ℕ} (h : j ≤ n) : qBinomial q n j ≠ 0 := by
   intro h0
   have e := qBinomial_mul_qFactorial_mul_qFactorial (v := q) h
@@ -118,7 +148,9 @@ lemma qBinomial_ne_zero_of_pow_ne_one {n j : ℕ} (h : j ≤ n) : qBinomial q n 
 
 end NotRoot
 
-/-- `[b+1][n-b] + [n-2b-2] = [b+2][n-b-1]`.-/
+/-- `[b+1][n-b] + [n-2b-2] = [b+2][n-b-1]`.
+@isnad1 id=eq.1h4v.s7.ca91bc2abcf7 from=translated src=- shape=fd768f5d vocab=a48dba40
+-/
 lemma qIntZ_succ_mul_add (hq0 : q ≠ 0) (n : ℤ) (b : ℕ) :
     qIntZ q (b + 1) * qIntZ q (n - b) + qIntZ q (n - 2 * b - 2) =
       qIntZ q (b + 2) * qIntZ q (n - b - 1) := by
@@ -179,22 +211,52 @@ def flip : IntegrableSl2 q M where
   exists_E_pow_eq_zero := V.exists_F_pow_eq_zero
   exists_F_pow_eq_zero := V.exists_E_pow_eq_zero
 
+/--
+@isnad1 id=eq.0h4v.s6.02293857d3fd from=translated src=- shape=864106f1 vocab=7a685b75
+-/
 @[simp] lemma flip_E : V.flip.E = V.F := rfl
+/--
+@isnad1 id=eq.0h4v.s6.5ef25f385364 from=translated src=- shape=864106f1 vocab=7a685b75
+-/
 @[simp] lemma flip_F : V.flip.F = V.E := rfl
+/--
+@isnad1 id=eq.0h5v.s6.974281fe5b56 from=translated src=- shape=33585580 vocab=71e2259e
+-/
 @[simp] lemma flip_wt (n : ℤ) : V.flip.wt n = V.wt (-n) := rfl
+/--
+@isnad1 id=eq.0h5v.s6.beac051fd159 from=translated src=- shape=c7019614 vocab=1f80b4d1
+-/
 @[simp] lemma flip_dE (a : ℕ) : V.flip.dE a = V.dF a := rfl
+/--
+@isnad1 id=eq.0h5v.s6.aa5d8277ec3a from=translated src=- shape=c7019614 vocab=1f80b4d1
+-/
 @[simp] lemma flip_dF (a : ℕ) : V.flip.dF a = V.dE a := rfl
 
 variable {V}
 
+/--
+@isnad1 id=eq.0h6v.s8.2d22ccb82a14 from=translated src=- shape=408b076a vocab=ac5837f0
+-/
 lemma dE_apply (a : ℕ) (m : M) : V.dE a m = (qFactorial q a)⁻¹ • (V.E ^ a) m := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.e33d02fc2fb5 from=translated src=- shape=408b076a vocab=e12157a4
+-/
 lemma dF_apply (a : ℕ) (m : M) : V.dF a m = (qFactorial q a)⁻¹ • (V.F ^ a) m := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.d8acad862d6c from=translated src=- shape=9f0380a3 vocab=7cd8e4bf
+-/
 @[simp] lemma dE_zero (m : M) : V.dE 0 m = m := by simp [dE_apply]
 
+/--
+@isnad1 id=eq.0h5v.s6.8c7e298e5234 from=translated src=- shape=9f0380a3 vocab=1686578d
+-/
 @[simp] lemma dF_zero (m : M) : V.dF 0 m = m := by simp [dF_apply]
 
+/--
+@isnad1 id=mem.1h7v.s8.b18cc1c7b340 from=translated src=- shape=7c17963d vocab=02825ae5
+-/
 lemma E_pow_mem {n : ℤ} {m : M} (hm : m ∈ V.wt n) (a : ℕ) : (V.E ^ a) m ∈ V.wt (n + 2 * a) := by
   induction a with
   | zero => simpa using hm
@@ -203,19 +265,30 @@ lemma E_pow_mem {n : ℤ} {m : M} (hm : m ∈ V.wt n) (a : ℕ) : (V.E ^ a) m �
     have := V.E_mem ih
     rwa [show n + 2 * (a : ℤ) + 2 = n + 2 * ((a + 1 : ℕ) : ℤ) by push_cast; ring] at this
 
+/--
+@isnad1 id=mem.1h7v.s8.d7ffeb39c463 from=translated src=- shape=7c17963d vocab=a2765288
+-/
 lemma F_pow_mem {n : ℤ} {m : M} (hm : m ∈ V.wt n) (a : ℕ) : (V.F ^ a) m ∈ V.wt (n - 2 * a) := by
   have := V.flip.E_pow_mem (n := -n) (by simpa using hm) a
   simpa [show -(-(n : ℤ) + 2 * a) = n - 2 * a by ring] using this
 
+/--
+@isnad1 id=mem.1h7v.s7.d3b00911a90a from=translated src=- shape=3c9fc936 vocab=baa3e6af
+-/
 lemma dE_mem {n : ℤ} {m : M} (hm : m ∈ V.wt n) (a : ℕ) : V.dE a m ∈ V.wt (n + 2 * a) := by
   rw [dE_apply]
   exact Submodule.smul_mem _ _ (E_pow_mem hm a)
 
+/--
+@isnad1 id=mem.1h7v.s7.8cb8fa85b13a from=translated src=- shape=3c9fc936 vocab=5a5355c2
+-/
 lemma dF_mem {n : ℤ} {m : M} (hm : m ∈ V.wt n) (a : ℕ) : V.dF a m ∈ V.wt (n - 2 * a) := by
   rw [dF_apply]
   exact Submodule.smul_mem _ _ (F_pow_mem hm a)
 
-/-- `E F^{b+1} m = F^{b+1} E m + [b+1][n-b] F^b m` for `m ∈ Mⁿ`.-/
+/-- `E F^{b+1} m = F^{b+1} E m + [b+1][n-b] F^b m` for `m ∈ Mⁿ`.
+@isnad1 id=eq.3h7v.s9.3db27643c2c6 from=translated src=- shape=2ae6a067 vocab=69e412d5
+-/
 lemma E_F_pow_succ (hq0 : q ≠ 0) (hq : q - q⁻¹ ≠ 0) {n : ℤ} {m : M} (hm : m ∈ V.wt n) (b : ℕ) :
     V.E ((V.F ^ (b + 1)) m) = (V.F ^ (b + 1)) (V.E m) +
       (qIntZ q (b + 1) * qIntZ q (n - b)) • (V.F ^ b) m := by
@@ -247,17 +320,23 @@ lemma E_F_pow_succ (hq0 : q ≠ 0) (hq : q - q⁻¹ ≠ 0) {n : ℤ} {m : M} (hm
 variable (hq0 : q ≠ 0) (hq : ∀ n : ℕ, 0 < n → q ^ n ≠ 1)
 include hq0 hq
 
-/-- `F F^{(b)} = [b+1] F^{(b+1)}`.-/
+/-- `F F^{(b)} = [b+1] F^{(b+1)}`.
+@isnad1 id=eq.2h6v.s8.7a74795e4d05 from=translated src=- shape=e70394fd vocab=16b9101b
+-/
 lemma F_dF (b : ℕ) (m : M) : V.F (V.dF b m) = qInt q (b + 1) • V.dF (b + 1) m := by
   have hb := qInt_ne_zero_of_pow_ne_one hq0 hq (Nat.succ_pos b)
   rw [dF_apply, dF_apply, map_smul, ← Module.End.mul_apply, ← pow_succ', smul_smul,
     qFactorial_succ, mul_inv, ← mul_assoc, mul_inv_cancel₀ hb, one_mul]
 
-/-- `E E^{(b)} = [b+1] E^{(b+1)}`.-/
+/-- `E E^{(b)} = [b+1] E^{(b+1)}`.
+@isnad1 id=eq.2h6v.s8.d6fd729cf87f from=translated src=- shape=e70394fd vocab=8b703df3
+-/
 lemma E_dE (b : ℕ) (m : M) : V.E (V.dE b m) = qInt q (b + 1) • V.dE (b + 1) m :=
   F_dF (V := V.flip) hq0 hq b m
 
-/-- `E F^{(b+1)} m = F^{(b+1)} E m + [n - b] F^{(b)} m` for `m ∈ Mⁿ`.-/
+/-- `E F^{(b+1)} m = F^{(b+1)} E m + [n - b] F^{(b)} m` for `m ∈ Mⁿ`.
+@isnad1 id=eq.3h7v.s9.9a1aae4ae6f3 from=translated src=- shape=27878335 vocab=48d698a9
+-/
 lemma E_dF_succ {n : ℤ} {m : M} (hm : m ∈ V.wt n) (b : ℕ) :
     V.E (V.dF (b + 1) m) = V.dF (b + 1) (V.E m) + qIntZ q (n - b) • V.dF b m := by
   have hq2 := sub_inv_ne_zero_of_pow_ne_one hq0 hq
@@ -270,7 +349,9 @@ lemma E_dF_succ {n : ℤ} {m : M} (hm : m ∈ V.wt n) (b : ℕ) :
   congr 2
   field_simp
 
-/-- For a primitive vector `η ∈ Mᵖ`: `E F^{(b+1)} η = [p - b] F^{(b)} η`.-/
+/-- For a primitive vector `η ∈ Mᵖ`: `E F^{(b+1)} η = [p - b] F^{(b)} η`.
+@isnad1 id=eq.4h7v.s9.c65e955b0694 from=translated src=- shape=0a09ac40 vocab=48d698a9
+-/
 lemma E_dF_succ_of_primitive {p : ℤ} {η : M} (hη : η ∈ V.wt p) (hE : V.E η = 0) (b : ℕ) :
     V.E (V.dF (b + 1) η) = qIntZ q (p - b) • V.dF b η := by
   rw [E_dF_succ hq0 hq hη, hE, map_zero, zero_add]
@@ -292,7 +373,9 @@ lemma eq_zero_of_primitive_of_neg {p : ℤ} {η : M} (hη : η ∈ V.wt p) (hE :
   have := h N (by rw [dF_apply, hN, smul_zero])
   simpa using this
 
-/-- For a primitive vector `η ∈ Mᵖ`, `F^{(b)} η = 0` for `b > p`.-/
+/-- For a primitive vector `η ∈ Mᵖ`, `F^{(b)} η = 0` for `b > p`.
+@isnad1 id=eq.5h7v.s8.0192af626882 from=translated src=- shape=017c9a08 vocab=54d9d666
+-/
 lemma dF_eq_zero_of_primitive {p : ℤ} {η : M} (hη : η ∈ V.wt p) (hE : V.E η = 0) {b : ℕ}
     (hb : p < b) : V.dF b η = 0 := by
   rcases lt_or_ge p 0 with hp | hp
@@ -310,7 +393,9 @@ lemma dF_eq_zero_of_primitive {p : ℤ} {η : M} (hη : η ∈ V.wt p) (hE : V.E
     exact (smul_eq_zero.1 e.symm).resolve_left hb1
 
 /-- For a primitive vector `η ∈ Mᵖ` and `a ≤ b ≤ p`:
-`E^{(a)} F^{(b)} η = [p - b + a, a] F^{(b-a)} η` (cf. [Jan] 2.6(3)).-/
+`E^{(a)} F^{(b)} η = [p - b + a, a] F^{(b-a)} η` (cf. [Jan] 2.6(3)).
+@isnad1 id=eq.6h8v.s9.4ec8ef5a6c19 from=translated src=- shape=693eab87 vocab=9b7608c2
+-/
 lemma dE_dF_of_primitive {p : ℕ} {η : M} (hη : η ∈ V.wt p) (hE : V.E η = 0) {a b : ℕ}
     (hab : a ≤ b) (hbp : b ≤ p) :
     V.dE a (V.dF b η) = qBinomial q (p - b + a) a • V.dF (b - a) η := by
@@ -351,10 +436,16 @@ def strings (n : ℤ) : Submodule k M :=
   Submodule.span k {x | ∃ (j : ℕ) (η : M), η ∈ V.wt (n + 2 * j) ∧ V.E η = 0 ∧ x = V.dF j η}
 
 omit hq0 hq in
+/--
+@isnad1 id=mem.2h7v.s8.73256e41748d from=translated src=- shape=7195b829 vocab=1d9c6f28
+-/
 lemma dF_mem_strings {n : ℤ} {j : ℕ} {η : M} (hη : η ∈ V.wt (n + 2 * j)) (hE : V.E η = 0) :
     V.dF j η ∈ V.strings n :=
   Submodule.subset_span ⟨j, η, hη, hE, rfl⟩
 
+/--
+@isnad1 id=mem.4h6v.s7.73c4f5dfe3bb from=translated src=- shape=4ec82d7e vocab=273aca01
+-/
 lemma mem_strings_of_nonneg {n : ℤ} (hn : 0 ≤ n) {m : M} (hm : m ∈ V.wt n) :
     m ∈ V.strings n := by
   obtain ⟨N, hN⟩ := V.exists_E_pow_eq_zero m
@@ -391,7 +482,9 @@ lemma mem_strings_of_nonneg {n : ℤ} (hn : 0 ≤ n) {m : M} (hm : m ∈ V.wt n)
     rw [this]
     exact add_mem h1 (Submodule.smul_mem _ _ h2)
 
-/-- Every `m ∈ Mⁿ` is a sum of vectors `F^{(j)} η` with `η ∈ M^{n+2j}` primitive.-/
+/-- Every `m ∈ Mⁿ` is a sum of vectors `F^{(j)} η` with `η ∈ M^{n+2j}` primitive.
+@isnad1 id=mem.3h6v.s7.0fc84430fb6e from=translated src=- shape=cac87807 vocab=b2365cac
+-/
 theorem mem_strings {n : ℤ} {m : M} (hm : m ∈ V.wt n) : m ∈ V.strings n := by
   rcases le_or_gt 0 n with hn | hn
   · exact mem_strings_of_nonneg hq0 hq hn hm

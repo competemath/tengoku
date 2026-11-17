@@ -68,8 +68,14 @@ noncomputable def transpose : Realization Aᵀ K (Dual K H) where
     rw [Subspace.dual_finrank_eq, transpose_map, rank_transpose]
     exact P.finrank_add_rank
 
+/--
+@isnad1 id=eq.0h6v.s7.54b368748599 from=translated src=- shape=9b43e657 vocab=244e72b4
+-/
 @[simp] lemma transpose_coroot (i : ι) : P.transpose.coroot i = P.root i := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.b3fbc50ac30e from=translated src=- shape=3efae3ed vocab=d04526d3
+-/
 @[simp] lemma transpose_root (i : ι) : P.transpose.root i = Dual.eval K H (P.coroot i) := rfl
 
 /-- The element `∑ kᵢ αᵢ^∨ ∈ 𝔥` of the coroot lattice attached to `k : ι → ℤ`.-/
@@ -78,22 +84,36 @@ def corootOf : (ι → ℤ) →+ H where
   map_zero' := by simp
   map_add' k l := by simp [add_smul, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h6v.s7.dc4bc6eb7aff from=translated src=- shape=bf05f9e0 vocab=9efdd74c
+-/
 lemma corootOf_apply (k : ι → ℤ) : P.corootOf k = ∑ i, (k i : K) • P.coroot i := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.56a86cd6e69c from=translated src=- shape=d651f6dd vocab=7d7d3384
+-/
 @[simp] lemma corootOf_single [DecidableEq ι] (i : ι) :
     P.corootOf (Pi.single i 1) = P.coroot i := by
   simp [corootOf_apply, Pi.single_apply]
 
+/--
+@isnad1 id=eq.0h6v.s11.d3f2eee2ed71 from=translated src=- shape=fde8a044 vocab=ee07d4cc
+-/
 lemma transpose_rootOf (k : ι → ℤ) :
     P.transpose.rootOf k = Dual.eval K H (P.corootOf k) := by
   simp [rootOf_apply, corootOf_apply, map_sum, map_smul]
 
+/--
+@isnad1 id=eq.0h7v.s8.aa726fdd228b from=translated src=- shape=c0c87c87 vocab=e9595bf7
+-/
 lemma apply_corootOf (μ : Dual K H) (k : ι → ℤ) :
     μ (P.corootOf k) = ∑ i, (k i : K) * μ (P.coroot i) := by
   simp [corootOf_apply, map_sum, map_smul]
 
 /-- The evaluation map `𝔥 → 𝔥**` intertwines `rᵢ^∨` with the fundamental reflection of the
-transposed realization.-/
+transposed realization.
+@isnad1 id=eq.1h7v.s12.0f2832712ea3 from=translated src=- shape=f9a2017f vocab=8911276f
+-/
 lemma eval_coreflection (i : ι) (x : H) :
     Dual.eval K H (P.coreflection hA i x) =
       P.transpose.reflection hA.transpose i (Dual.eval K H x) := by
@@ -103,11 +123,17 @@ lemma eval_coreflection (i : ι) (x : H) :
 
 /-! ### The group `W^∨` -/
 
+/--
+@isnad1 id=eq.1h6v.s9.189257b3b7ed from=translated src=- shape=ded646d5 vocab=fb9cefea
+-/
 @[simp] lemma coreflection_mul_self (i : ι) :
     P.coreflection hA i * P.coreflection hA i = 1 := by
   ext x : 1
   exact P.coreflection_coreflection hA i x
 
+/--
+@isnad1 id=eq.1h6v.s8.d92a3a858acc from=translated src=- shape=95c33d83 vocab=0de6c34d
+-/
 @[simp] lemma coreflection_inv (i : ι) : (P.coreflection hA i)⁻¹ = P.coreflection hA i :=
   inv_eq_of_mul_eq_one_right (P.coreflection_mul_self hA i)
 
@@ -116,10 +142,15 @@ contragredient of the Weyl group ([Kac] §3.7).-/
 noncomputable def coweylGroup : Subgroup (H ≃ₗ[K] H) :=
   Subgroup.closure (Set.range (P.coreflection hA))
 
+/--
+@isnad1 id=mem.1h6v.s8.e543f291a81e from=translated src=- shape=c429d52f vocab=cb110086
+-/
 lemma coreflection_mem_coweylGroup (i : ι) : P.coreflection hA i ∈ P.coweylGroup hA :=
   Subgroup.subset_closure ⟨i, rfl⟩
 
-/-- Induction principle for `W^∨`.-/
+/-- Induction principle for `W^∨`.
+@isnad1 id=var.2h9v.s10.055dc2affc9c from=translated src=- shape=5586cb4e vocab=6c6ec1ef
+-/
 @[elab_as_elim]
 lemma coweylGroup_induction {p : (H ≃ₗ[K] H) → Prop} (one : p 1)
     (mul : ∀ i u, u ∈ P.coweylGroup hA → p u → p (P.coreflection hA i * u)) {u : H ≃ₗ[K] H}
@@ -134,7 +165,9 @@ lemma coweylGroup_induction {p : (H ≃ₗ[K] H) → Prop} (one : p 1)
     rw [coreflection_inv]
     exact mul i u hu ih
 
-/-- For `w ∈ W` there is `u ∈ W^∨` with `⟨w λ, h⟩ = ⟨λ, u h⟩` for all `λ, h`.-/
+/-- For `w ∈ W` there is `u ∈ W^∨` with `⟨w λ, h⟩ = ⟨λ, u h⟩` for all `λ, h`.
+@isnad1 id=ex.2h6v.s12.320db6f79972 from=translated src=- shape=76b4a483 vocab=a8af3ce6
+-/
 theorem exists_coweylGroup_apply_apply {w : Dual K H ≃ₗ[K] Dual K H} (hw : w ∈ P.weylGroup hA) :
     ∃ u ∈ P.coweylGroup hA, ∀ μ x, w μ x = μ (u x) := by
   refine P.weylGroup_induction hA (p := fun w ↦ ∃ u ∈ P.coweylGroup hA, ∀ μ x, w μ x = μ (u x))
@@ -144,7 +177,9 @@ theorem exists_coweylGroup_apply_apply {w : Dual K H ≃ₗ[K] Dual K H} (hw : w
   rw [LinearEquiv.mul_apply, reflection_apply_apply, h, LinearEquiv.mul_apply]
 
 /-- The evaluation map `𝔥 → 𝔥**` intertwines `W^∨` with the Weyl group of the transposed
-realization.-/
+realization.
+@isnad1 id=ex.2h6v.s14.426d2215c0f2 from=translated src=- shape=1d88658a vocab=fa2446ef
+-/
 theorem exists_transpose_weylGroup {u : H ≃ₗ[K] H} (hu : u ∈ P.coweylGroup hA) :
     ∃ u' ∈ P.transpose.weylGroup hA.transpose,
       ∀ x, Dual.eval K H (u x) = u' (Dual.eval K H x) := by
@@ -166,24 +201,39 @@ simple coroots.-/
 def posRealCoroots : Set H :=
   {h | h ∈ P.realCoroots hA ∧ ∃ k : ι → ℤ, 0 ≤ k ∧ P.corootOf k = h}
 
+/--
+@isnad1 id=mem.1h6v.s6.e2c372589b97 from=translated src=- shape=2a71df25 vocab=03884f71
+-/
 lemma coroot_mem_realCoroots (i : ι) : P.coroot i ∈ P.realCoroots hA :=
   ⟨1, one_mem _, i, rfl⟩
 
+/--
+@isnad1 id=mem.1h6v.s6.ca958f89cd46 from=translated src=- shape=2a71df25 vocab=3b50297e
+-/
 lemma coroot_mem_posRealCoroots (i : ι) : P.coroot i ∈ P.posRealCoroots hA := by
   classical
   exact ⟨P.coroot_mem_realCoroots hA i, Pi.single i 1,
     fun j ↦ by by_cases h : j = i <;> simp [h], P.corootOf_single i⟩
 
+/--
+@isnad1 id=mem.3h7v.s9.fa9d77f48431 from=translated src=- shape=37f76bc8 vocab=6c878c27
+-/
 lemma apply_mem_realCoroots {u : H ≃ₗ[K] H} (hu : u ∈ P.coweylGroup hA) {h : H}
     (hh : h ∈ P.realCoroots hA) : u h ∈ P.realCoroots hA := by
   obtain ⟨v, hv, i, rfl⟩ := hh
   exact ⟨u * v, mul_mem hu hv, i, rfl⟩
 
+/--
+@isnad1 id=mem.2h6v.s6.53b7e88d5aa7 from=translated src=- shape=dc89ec3f vocab=4eaba48e
+-/
 lemma neg_mem_realCoroots {h : H} (hh : h ∈ P.realCoroots hA) : -h ∈ P.realCoroots hA := by
   obtain ⟨u, hu, i, rfl⟩ := hh
   refine ⟨u * P.coreflection hA i, mul_mem hu (P.coreflection_mem_coweylGroup hA i), i, ?_⟩
   rw [LinearEquiv.mul_apply, coreflection_coroot_self, map_neg]
 
+/--
+@isnad1 id=ne.2h6v.s6.4dac969c44af from=translated src=- shape=62990181 vocab=4e227178
+-/
 lemma ne_zero_of_mem_realCoroots {h : H} (hh : h ∈ P.realCoroots hA) : h ≠ 0 := by
   obtain ⟨u, -, i, rfl⟩ := hh
   rw [Ne, LinearEquiv.map_eq_zero_iff]
@@ -193,7 +243,9 @@ section CharZero
 
 variable [CharZero K]
 
-/-- Every real coroot is either positive or negative ([Kac] Lemma 3.11 (a), for coroots).-/
+/-- Every real coroot is either positive or negative ([Kac] Lemma 3.11 (a), for coroots).
+@isnad1 id=or.2h6v.s7.0f9f013a04e2 from=translated src=- shape=42a370be vocab=baba1c7a
+-/
 theorem mem_posRealCoroots_or_neg_mem {h : H} (hh : h ∈ P.realCoroots hA) :
     h ∈ P.posRealCoroots hA ∨ -h ∈ P.posRealCoroots hA := by
   obtain ⟨u, hu, i, rfl⟩ := hh
@@ -207,7 +259,9 @@ theorem mem_posRealCoroots_or_neg_mem {h : H} (hh : h ∈ P.realCoroots hA) :
       Module.eval_apply_injective K ?_⟩
     rw [← transpose_rootOf, map_neg, ← hr, hk', neg_neg]
 
-/-- A real coroot cannot be both positive and negative.-/
+/-- A real coroot cannot be both positive and negative.
+@isnad1 id=not.2h6v.s6.f0ed1438011a from=translated src=- shape=d74d53f3 vocab=d6160072
+-/
 theorem neg_notMem_posRealCoroots {h : H} (hh : h ∈ P.posRealCoroots hA) :
     -h ∉ P.posRealCoroots hA := by
   rintro ⟨-, l, hl, hlh⟩
@@ -240,7 +294,9 @@ theorem eq_coroot_of_coreflection_neg_mem {h : H} (hh : h ∈ P.posRealCoroots h
   · rw [hr, ← eval_coreflection, transpose_rootOf, hlh, map_neg, neg_neg]
 
 /-- `rᵢ^∨` maps a positive real coroot other than `αᵢ^∨` to a positive real coroot
-([Kac] Lemma 3.7, for coroots).-/
+([Kac] Lemma 3.7, for coroots).
+@isnad1 id=mem.3h7v.s8.e0711e39535b from=translated src=- shape=9991e4d8 vocab=73ab9a5e
+-/
 theorem coreflection_mem_posRealCoroots {h : H} (hh : h ∈ P.posRealCoroots hA) {i : ι}
     (hi : h ≠ P.coroot i) : P.coreflection hA i h ∈ P.posRealCoroots hA := by
   refine (P.mem_posRealCoroots_or_neg_mem hA (P.apply_mem_realCoroots hA
@@ -248,7 +304,9 @@ theorem coreflection_mem_posRealCoroots {h : H} (hh : h ∈ P.posRealCoroots hA)
   exact P.eq_coroot_of_coreflection_neg_mem hA hh h'
 
 /-- An element `u ∈ W^∨` maps only finitely many positive real coroots to non-positive ones
-([Kac] Exercise 3.6, for coroots; it follows from Lemma 3.7 by induction).-/
+([Kac] Exercise 3.6, for coroots; it follows from Lemma 3.7 by induction).
+@isnad1 id=finite.2h6v.s9.031df5ec9dd6 from=translated src=- shape=f6aee506 vocab=fcd31cfe
+-/
 theorem finite_inversionSet_coweylGroup {u : H ≃ₗ[K] H} (hu : u ∈ P.coweylGroup hA) :
     {h | h ∈ P.posRealCoroots hA ∧ u h ∉ P.posRealCoroots hA}.Finite := by
   refine P.coweylGroup_induction hA

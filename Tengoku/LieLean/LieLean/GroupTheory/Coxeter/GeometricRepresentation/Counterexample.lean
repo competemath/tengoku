@@ -41,12 +41,16 @@ noncomputable def badChoice : RootChoice ℂ where
     · subst m; exact root_orders.2.2
     · exact (opaqueChoice ℂ).order_root hm
 
-/-- All relevant roots are the explicit primitive roots, not opaque replacements.-/
+/-- All relevant roots are the explicit primitive roots, not opaque replacements.
+@isnad1 id=and.0h0v.s5.b4a95c6e21e2 from=translated src=- shape=e72d26a2 vocab=8776697a
+-/
 theorem badChoice_roots :
     badChoice.root 2 = root4 ∧ badChoice.root 5 = root10 ∧
     badChoice.root 10 = root20 := by norm_num [badChoice]
 
-/-- The exact doubled coefficients appearing in the reflections.-/
+/-- The exact doubled coefficients appearing in the reflections.
+@isnad1 id=and.0h0v.s7.daaf3a992740 from=translated src=- shape=ffaa07b0 vocab=c59d680c
+-/
 theorem badChoice_coefficients :
     2 * coeff badChoice 1 = -2 ∧ 2 * coeff badChoice 2 = 0 ∧
     2 * coeff badChoice 5 = (golden : ℂ) ∧
@@ -73,7 +77,9 @@ noncomputable def complexExtension : W →* Mat ℂ :=
 noncomputable def badGeometric : W →* Module.End ℂ (Fin 3 →₀ ℂ) :=
   GeometricParametric.representation badChoice triangle triangle.toCoxeterSystem
 
-/-- Formula-level identification: basis matrices are exactly the complexified real ones.-/
+/-- Formula-level identification: basis matrices are exactly the complexified real ones.
+@isnad1 id=eq.0h1v.s9.136d23bb6f0e from=translated src=- shape=bfa2cacc vocab=d649716a
+-/
 theorem reflection_matrix (i : Fin 3) :
     coordinates (reflection badChoice triangle i) =
       Complex.ofRealHom.mapMatrix (generators golden badCoefficient i) := by
@@ -87,7 +93,9 @@ theorem reflection_matrix (i : Fin 3) :
       badChoice_coefficients.2.2.1, badChoice_coefficients.2.2.2,
       generators, A, B, C]
 
-/-- Equality of entire representations after complex extension, not unrelated existence.-/
+/-- Equality of entire representations after complex extension, not unrelated existence.
+@isnad1 id=eq.0h0v.s9.4709ba8b7e84 from=translated src=- shape=6d4c7b89 vocab=db4d6cfb
+-/
 theorem representation_matrix :
     coordinates.toMonoidHom.comp badGeometric = complexExtension := by
   apply triangle.toCoxeterSystem.ext_simple
@@ -100,7 +108,9 @@ theorem representation_matrix :
     Complex.ofRealHom.mapMatrix (badRepresentation (triangle.simple i) : Mat ℝ)
   rw [badRepresentation_simple]
 
-/-- The fixed nontrivial Coxeter word is killed by these actual reflection formulas.-/
+/-- The fixed nontrivial Coxeter word is killed by these actual reflection formulas.
+@isnad1 id=eq.0h0v.s9.b57560417cb9 from=translated src=- shape=26552098 vocab=a95e5412
+-/
 theorem badGeometric_kills_w : badGeometric w = 1 := by
   apply coordinates.injective
   have heq := DFunLike.congr_fun representation_matrix w
@@ -109,7 +119,9 @@ theorem badGeometric_kills_w : badGeometric w = 1 := by
   have hw : badRepresentation w = 1 := w_mem_badRepresentation_ker
   simp [complexExtension, hw]
 
-/-- Nonfaithfulness of this admissible-root geometric representation.-/
+/-- Nonfaithfulness of this admissible-root geometric representation.
+@isnad1 id=not.0h0v.s8.37ea8bed79a1 from=translated src=- shape=4592d550 vocab=77680e0e
+-/
 theorem badGeometric_not_injective : ¬ Function.Injective badGeometric := by
   intro hinj
   exact w_ne_one (hinj (by rw [badGeometric_kills_w, map_one]))
@@ -118,7 +130,9 @@ theorem badGeometric_not_injective : ¬ Function.Injective badGeometric := by
 noncomputable def badGeometricUnits : W →* (Module.End ℂ (Fin 3 →₀ ℂ))ˣ :=
   badGeometric.toHomUnits
 
-/-- The same witness proves nonfaithfulness with a genuine group codomain.-/
+/-- The same witness proves nonfaithfulness with a genuine group codomain.
+@isnad1 id=not.0h0v.s9.acd3dc9520af from=translated src=- shape=0f2e5431 vocab=fec54ca8
+-/
 theorem badGeometricUnits_not_injective : ¬ Function.Injective badGeometricUnits := by
   intro hinj
   apply w_ne_one
@@ -126,7 +140,9 @@ theorem badGeometricUnits_not_injective : ¬ Function.Injective badGeometricUnit
   apply Units.ext
   exact (badGeometric_kills_w.trans (map_one badGeometric).symm)
 
-/-- There exists an admissible primitive-root choice whose geometric lift is nonfaithful.-/
+/-- There exists an admissible primitive-root choice whose geometric lift is nonfaithful.
+@isnad1 id=ex.0h0v.s11.8c69c26b4565 from=translated src=- shape=51fc4d26 vocab=a7680784
+-/
 theorem exists_nonfaithful_choice :
     ∃ r : RootChoice ℂ,
       (∀ m : ℕ, 0 < m → IsPrimitiveRoot (r.root m) (2 * m)) ∧

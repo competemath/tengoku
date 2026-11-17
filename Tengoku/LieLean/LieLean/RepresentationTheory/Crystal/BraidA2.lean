@@ -37,6 +37,9 @@ namespace Tengoku.LieLean.Crystal
 
 variable {ι X : Type*} [AddCommGroup X] {D : CartanDatum ι X} {B : Type*} (C : Crystal D B)
 
+/--
+@isnad1 id=eq.0h9v.s6.91e89e9670ce from=translated src=- shape=dede7235 vocab=102beab7
+-/
 lemma eIter_add (i : ι) (m n : ℕ) (b : B) :
     C.eIter i (m + n) b = (C.eIter i m b).bind (C.eIter i n) := by
   induction m generalizing b with
@@ -55,6 +58,9 @@ def top (i : ι) (b : B) : B := (C.eIter i (C.εN i b) b).getD b
 
 variable {C}
 
+/--
+@isnad1 id=mem.3h10v.s6.9f19f7bbcecc from=translated src=- shape=e246a9c6 vocab=89f29b10
+-/
 lemma IsStable.eIter_mem {S : Set B} (hS : C.IsStable S) {i : ι} {n : ℕ} {b b' : B}
     (hb : b ∈ S) (h : C.eIter i n b = some b') : b' ∈ S := by
   induction n generalizing b with
@@ -63,6 +69,9 @@ lemma IsStable.eIter_mem {S : Set B} (hS : C.IsStable S) {i : ι} {n : ℕ} {b b
     obtain ⟨c, hc, hcb⟩ := Option.bind_eq_some_iff.mp h
     exact ih (hS.e_mem i b c hb hc) hcb
 
+/--
+@isnad1 id=mem.3h10v.s6.7956b1585faf from=translated src=- shape=e246a9c6 vocab=f28e59b9
+-/
 lemma IsStable.fIter_mem {S : Set B} (hS : C.IsStable S) {i : ι} {n : ℕ} {b b' : B}
     (hb : b ∈ S) (h : C.fIter i n b = some b') : b' ∈ S := by
   induction n generalizing b with
@@ -71,6 +80,9 @@ lemma IsStable.fIter_mem {S : Set B} (hS : C.IsStable S) {i : ι} {n : ℕ} {b b
     obtain ⟨c, hc, hcb⟩ := Option.bind_eq_some_iff.mp h
     exact ih (hS.f_mem i b c hb hc) hcb
 
+/--
+@isnad1 id=mem.2h8v.s5.cf7db5b63877 from=translated src=- shape=16ad90a4 vocab=fb7f4d87
+-/
 lemma IsStable.reflection_mem {S : Set B} (hS : C.IsStable S) {i : ι} {b : B} (hb : b ∈ S) :
     C.reflection i b ∈ S := by
   unfold reflection
@@ -82,6 +94,9 @@ lemma IsStable.reflection_mem {S : Set B} (hS : C.IsStable S) {i : ι} {b : B} (
     | none => exact hb
     | some b' => exact hS.eIter_mem hb h
 
+/--
+@isnad1 id=mem.2h8v.s5.23f81d8b8928 from=translated src=- shape=16ad90a4 vocab=a205938b
+-/
 lemma IsStable.top_mem {S : Set B} (hS : C.IsStable S) {i : ι} {b : B} (hb : b ∈ S) :
     C.top i b ∈ S := by
   unfold top
@@ -91,7 +106,9 @@ lemma IsStable.top_mem {S : Set B} (hS : C.IsStable S) {i : ι} {b : B} (hb : b 
 
 /-- The piecewise-linear identity behind the `A₂` braid relation: the string coordinates of
 `SᵢSⱼSᵢ b` and of `SⱼSᵢSⱼ b`, computed through the transition map
-`(a₁, a₂, a₃) ↦ (max(a₃, a₂ - a₁), a₁ + a₃, a₂ - max(a₃, a₂ - a₁))` and its inverse, agree.-/
+`(a₁, a₂, a₃) ↦ (max(a₃, a₂ - a₁), a₁ + a₃, a₂ - max(a₃, a₂ - a₁))` and its inverse, agree.
+@isnad1 id=and.36h41v.s9.00e68d9b5845 from=translated src=- shape=f931ed3f vocab=2abe0b81
+-/
 theorem a2_braid_coordinates {mi mj a1 a2 a3 c1 c2 c3 p1 p2 p3 q1 q2 q3 r1 r2 r3 s1 s2 s3
     u1 u2 u3 v1 v2 v3 w1 w2 w3 x1 x2 x3 y1 y2 y3 z1 z2 z3 t1 t2 t3 : ℤ}
     (T1 : c1 = max a3 (a2 - a1)) (T2 : c2 = a1 + a3) (T3 : c3 = a2 - c1)
@@ -122,15 +139,24 @@ namespace IsSeminormal
 variable (hC : C.IsSeminormal) {i j : ι} {b : B}
 include hC
 
+/--
+@isnad1 id=eq.1h7v.s5.f8922bd4001b from=translated src=- shape=5870abdd vocab=1e8240bc
+-/
 lemma ε_eq_εN : C.ε i b = (C.εN i b : WithBot ℤ) := by
   obtain ⟨n, hn⟩ := hC.exists_ε_eq i b
   rw [εN, hn]
   rfl
 
+/--
+@isnad1 id=eq.1h7v.s6.5b89f58e2c61 from=translated src=- shape=cbddac6d vocab=e8ffad32
+-/
 lemma eIter_top : C.eIter i (C.εN i b) b = some (C.top i b) := by
   have hs : (C.eIter i (C.εN i b) b).isSome := (hC.isSome_eIter_iff _).mpr (hC.ε_eq_εN).ge
   rw [top, ← Option.some_get hs, Option.getD_some]
 
+/--
+@isnad1 id=eq.1h7v.s5.5a54adaea8c4 from=translated src=- shape=5501f0ea vocab=f79b2256
+-/
 lemma e_top : C.e i (C.top i b) = none := by
   have hn : C.eIter i (C.εN i b + 1) b = none := by
     rw [← Option.not_isSome_iff_eq_none, hC.isSome_eIter_iff, hC.ε_eq_εN]
@@ -139,12 +165,21 @@ lemma e_top : C.e i (C.top i b) = none := by
     omega
   rwa [eIter_succ', hC.eIter_top, Option.bind_some] at hn
 
+/--
+@isnad1 id=eq.1h7v.s6.ac300254dc50 from=translated src=- shape=952dedea vocab=fea075a8
+-/
 lemma wt_top : C.wt (C.top i b) = C.wt b + C.εN i b • D.root i :=
   C.wt_eIter hC.eIter_top
 
+/--
+@isnad1 id=eq.1h7v.s6.f61a19fb26c6 from=translated src=- shape=f06bf8a0 vocab=175ecac8
+-/
 lemma fIter_top : C.fIter i (C.εN i b) (C.top i b) = some b :=
   (C.fIter_eq_some_iff _ _ _).mpr hC.eIter_top
 
+/--
+@isnad1 id=eq.3h9v.s6.6fedeabf8898 from=translated src=- shape=8dad9268 vocab=79c53413
+-/
 lemma top_eq_of_eIter {k : ℕ} {y : B} (h : C.eIter i k b = some y) (hy : C.e i y = none) :
     C.top i b = y := by
   have h1 := C.ε_eIter h
@@ -160,7 +195,9 @@ lemma eq_of_top_eq {b' : B} (h : C.top i b = C.top i b') (hε : C.εN i b = C.ε
   rw [h, hε, hC.fIter_top] at h1
   exact (Option.some_injective _ h1).symm
 
-/-- `Sᵢ` stays in the `i`-string: `topᵢ (Sᵢ b) = topᵢ b`.-/
+/-- `Sᵢ` stays in the `i`-string: `topᵢ (Sᵢ b) = topᵢ b`.
+@isnad1 id=eq.1h7v.s5.bd92294cba6b from=translated src=- shape=7d166ba6 vocab=fb644539
+-/
 lemma top_reflection : C.top i (C.reflection i b) = C.top i b := by
   have hs := hC.stringMap_reflection i b
   unfold stringMap at hs
@@ -177,7 +214,9 @@ lemma top_reflection : C.top i (C.reflection i b) = C.top i b := by
     have := hC.eIter_top (i := i) (b := b)
     rwa [← Nat.add_sub_cancel' hm, eIter_add, hs, Option.bind_some] at this
 
-/-- `εᵢ(Sᵢ b) = ⟨wt (topᵢ b), αᵢ^∨⟩ - εᵢ(b)`.-/
+/-- `εᵢ(Sᵢ b) = ⟨wt (topᵢ b), αᵢ^∨⟩ - εᵢ(b)`.
+@isnad1 id=eq.1h7v.s7.b6d4800973ab from=translated src=- shape=7cc9dc45 vocab=66e4bca1
+-/
 lemma εN_reflection :
     (C.εN i (C.reflection i b) : ℤ) = D.coroot i (C.wt (C.top i b)) - C.εN i b := by
   have h := hC.ε_reflection i b
@@ -187,13 +226,18 @@ lemma εN_reflection :
   rw [hC.wt_top, map_add, map_nsmul, D.coroot_root_self, h', nsmul_eq_mul]
   ring
 
-/-- The weight of the string top along `(i, j, i)`.-/
+/-- The weight of the string top along `(i, j, i)`.
+@isnad1 id=eq.1h8v.s7.42f50c383e52 from=translated src=- shape=68b0899e vocab=fea075a8
+-/
 lemma wt_top_three :
     C.wt (C.top i (C.top j (C.top i b))) = C.wt b +
       ((C.εN i b + C.εN i (C.top j (C.top i b))) • D.root i + C.εN j (C.top i b) • D.root j) := by
   rw [hC.wt_top, hC.wt_top, hC.wt_top, add_nsmul]
   abel
 
+/--
+@isnad1 id=eq.2h8v.s8.5eff219e7b3b from=translated src=- shape=459f24a8 vocab=187e295d
+-/
 lemma coroot_wt_top (hij : D.coroot i (D.root j) = -1) :
     D.coroot i (C.wt (C.top i b)) = D.coroot i (C.wt (C.top i (C.top j (C.top i b)))) +
       C.εN j (C.top i b) - 2 * C.εN i (C.top j (C.top i b)) := by
@@ -205,7 +249,9 @@ lemma coroot_wt_top (hij : D.coroot i (D.root j) = -1) :
 /-- **The braid relation of length three** ([Kas94] §7, reconstructed): if
 `⟨αⱼ, αᵢ^∨⟩ = ⟨αᵢ, αⱼ^∨⟩ = -1` and, on a stable set `S`, the string tops along `(i, j, i)` and
 `(j, i, j)` agree and the string coordinates satisfy the `A₂` transition rule
-`c₁ = max(a₃, a₂ - a₁)` in both directions, then `SᵢSⱼSᵢ = SⱼSᵢSⱼ` on `S`.-/
+`c₁ = max(a₃, a₂ - a₁)` in both directions, then `SᵢSⱼSᵢ = SⱼSᵢSⱼ` on `S`.
+@isnad1 id=eq.8h9v.s8.194b9a0d5078 from=translated src=- shape=c13e9be9 vocab=eaefba54
+-/
 theorem reflection_braid_three (hij : D.coroot i (D.root j) = -1)
     (hji : D.coroot j (D.root i) = -1) {S : Set B} (hS : C.IsStable S)
     (htop : ∀ b ∈ S, C.top i (C.top j (C.top i b)) = C.top j (C.top i (C.top j b)))

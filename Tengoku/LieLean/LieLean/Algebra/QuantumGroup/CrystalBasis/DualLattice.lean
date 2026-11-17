@@ -49,7 +49,9 @@ section Bound
 variable {ϖ} (hk : ∀ c : k, ∃ (m : ℕ) (a : A), algebraMap A k (ϖ ^ m) * c = algebraMap A k a)
 include hk
 
-/-- Every vector of the `k`-span of `Λ` lies in some `ϖ^{-m} Λ`.-/
+/-- Every vector of the `k`-span of `Λ` lies in some `ϖ^{-m} Λ`.
+@isnad1 id=ex.2h6v.s9.5f14b02197ad from=translated src=- shape=231f2127 vocab=287e7be2
+-/
 theorem exists_pow_smul_mem {Λ : Submodule A V} {x : V}
     (hx : x ∈ Submodule.span k (Λ : Set V)) : ∃ m : ℕ, ϖ ^ m • x ∈ Λ := by
   induction hx using Submodule.span_induction with
@@ -74,7 +76,9 @@ theorem exists_pow_smul_mem {Λ : Submodule A V} {x : V}
     rw [this]
     exact Submodule.smul_mem _ _ hm
 
-/-- A finitely generated `A`-submodule of the `k`-span of `Λ` lies in some `ϖ^{-m} Λ`.-/
+/-- A finitely generated `A`-submodule of the `k`-span of `Λ` lies in some `ϖ^{-m} Λ`.
+@isnad1 id=ex.3h6v.s9.0c7936040891 from=translated src=- shape=fa875db6 vocab=ea7ad451
+-/
 theorem exists_pow_smul_le {Λ N : Submodule A V} (hN : N.FG)
     (hNs : ∀ x ∈ N, x ∈ Submodule.span k (Λ : Set V)) : ∃ m : ℕ, ∀ x ∈ N, ϖ ^ m • x ∈ Λ := by
   classical
@@ -110,10 +114,15 @@ def dual (B : LinearMap.BilinForm k V) (Λ : Submodule A V) : Submodule A V wher
 
 variable {ϖ}
 
+/--
+@isnad1 id=iff.0h6v.s9.d2e2c0172a9e from=translated src=- shape=5d1be426 vocab=207d9d0f
+-/
 lemma mem_dual {B : LinearMap.BilinForm k V} {Λ : Submodule A V} {x : V} :
     x ∈ dual B Λ ↔ ∀ y ∈ Λ, B x y ∈ (algebraMap A k).range := Iff.rfl
 
-/-- `(span_A b)^∨ = span_A b^*` for a `k`-basis `b` and its `B`-dual basis.-/
+/-- `(span_A b)^∨ = span_A b^*` for a `k`-basis `b` and its `B`-dual basis.
+@isnad1 id=eq.1h6v.s8.3b8521819c3f from=translated src=- shape=d21e7f44 vocab=0b0975c2
+-/
 theorem dual_span_basis {ι : Type*} [DecidableEq ι] [Finite ι] {B : LinearMap.BilinForm k V}
     (hB : B.Nondegenerate) (b : Module.Basis ι k V) :
     dual B (Submodule.span A (Set.range b)) = Submodule.span A (Set.range (B.dualBasis hB b)) := by
@@ -151,7 +160,9 @@ theorem dual_span_basis {ι : Type*} [DecidableEq ι] [Finite ι] {B : LinearMap
     | add a b _ _ ha hb => exact add_mem ha hb
     | smul c a _ ha => exact Submodule.smul_mem _ c ha
 
-/-- `(span_A b)^∨∨ = span_A b` for a symmetric nondegenerate form ([HK] Lemma 5.3.13).-/
+/-- `(span_A b)^∨∨ = span_A b` for a symmetric nondegenerate form ([HK] Lemma 5.3.13).
+@isnad1 id=eq.2h6v.s8.375685557381 from=translated src=- shape=5095ede3 vocab=ea87da8c
+-/
 theorem dual_dual_span {ι : Type*} [Finite ι] {B : LinearMap.BilinForm k V}
     (hB : B.Nondegenerate) (hs : B.IsSymm) (b : Module.Basis ι k V) :
     dual B (dual B (Submodule.span A (Set.range b))) = Submodule.span A (Set.range b) := by
@@ -164,13 +175,22 @@ theorem dual_dual_span {ι : Type*} [Finite ι] {B : LinearMap.BilinForm k V}
   rw [Module.Basis.repr_self, LinearMap.BilinForm.dualBasis_repr_apply, hs.eq,
     LinearMap.BilinForm.apply_dualBasis_left, Finsupp.single_apply]
 
+/--
+@isnad1 id=le.1h6v.s8.8d812c3b5949 from=translated src=- shape=9ca6977c vocab=8ee72fff
+-/
 lemma dual_antitone {B : LinearMap.BilinForm k V} {Λ Λ' : Submodule A V} (h : Λ ≤ Λ') :
     dual B Λ' ≤ dual B Λ := fun _ hx y hy ↦ hx y (h hy)
 
+/--
+@isnad1 id=eq.0h7v.s10.85cea6fb0520 from=translated src=- shape=94a8bc9d vocab=050f41d0
+-/
 lemma apply_smul_left_A (B : LinearMap.BilinForm k V) (a : A) (x y : V) :
     B (a • x) y = algebraMap A k a * B x y := by
   rw [← algebraMap_smul k a x, map_smul, LinearMap.smul_apply, smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h7v.s10.d109f641081a from=translated src=- shape=5eda0cd3 vocab=050f41d0
+-/
 lemma apply_smul_right_A (B : LinearMap.BilinForm k V) (a : A) (x y : V) :
     B x (a • y) = algebraMap A k a * B x y := by
   rw [← algebraMap_smul k a y, map_smul, smul_eq_mul]
@@ -181,7 +201,9 @@ variable (hk : ∀ c : k, ∃ (m : ℕ) (a : A), algebraMap A k (ϖ ^ m) * c = a
 include hk
 
 /-- For a nondegenerate form and a finitely generated `A`-lattice `M` spanning `V`,
-`M^∨ ⊆ ϖ^{-e} M` for some `e`.-/
+`M^∨ ⊆ ϖ^{-e} M` for some `e`.
+@isnad1 id=ex.4h6v.s9.ffe9df65bde6 from=translated src=- shape=045ed20e vocab=f72e8ac2
+-/
 theorem exists_pow_smul_mem_of_mem_dual {B : LinearMap.BilinForm k V} (hB : B.Nondegenerate)
     {M : Submodule A V} (hM : M.FG) (hspan : Submodule.span k (M : Set V) = ⊤) :
     ∃ e : ℕ, ∀ x ∈ dual B M, ϖ ^ e • x ∈ M := by
@@ -213,7 +235,9 @@ theorem exists_pow_smul_mem_of_mem_dual {B : LinearMap.BilinForm k V} (hB : B.No
   | add y z _ _ hy hz => rw [smul_add]; exact add_mem hy hz
   | smul c y _ hy => rw [smul_comm]; exact Submodule.smul_mem _ _ hy
 
-/-- If `ϖ^c Λ ⊆ M` with `M` finitely generated, every vector lies in some `ϖ^{-n} Λ^∨`.-/
+/-- If `ϖ^c Λ ⊆ M` with `M` finitely generated, every vector lies in some `ϖ^{-n} Λ^∨`.
+@isnad1 id=ex.3h9v.s9.551b646d6eb9 from=translated src=- shape=dcf2fc91 vocab=581ce295
+-/
 theorem exists_pow_smul_mem_dual (B : LinearMap.BilinForm k V) {M : Submodule A V} (hM : M.FG)
     {Λ : Submodule A V} {c : ℕ} (hΛ : ∀ y ∈ Λ, ϖ ^ c • y ∈ M) (x : V) :
     ∃ n : ℕ, ϖ ^ n • x ∈ dual B Λ := by
@@ -249,7 +273,9 @@ theorem exists_pow_smul_mem_dual (B : LinearMap.BilinForm k V) {M : Submodule A 
   ring
 
 omit hk in
-/-- A finitely generated torsion-free lattice over a PID `A ⊆ k`.-/
+/-- A finitely generated torsion-free lattice over a PID `A ⊆ k`.
+@isnad1 id=istorsio.1h4v.s8.a4eeba8797eb from=translated src=- shape=55f1a37e vocab=5df4f83b
+-/
 lemma isTorsionFree_of_injective [IsDomain A] (hinj : Function.Injective (algebraMap A k))
     (M : Submodule A V) : Module.IsTorsionFree A M := ⟨fun r hr m₁ m₂ h ↦ by
   have hr0 : algebraMap A k r ≠ 0 := fun h0 ↦ hr.ne_zero (hinj (by rw [h0, map_zero]))
@@ -257,7 +283,9 @@ lemma isTorsionFree_of_injective [IsDomain A] (hinj : Function.Injective (algebr
   simpa [algebraMap_smul] using congrArg Subtype.val h⟩
 
 /-- Over a principal ideal domain `A ⊆ k` with `k = A[ϖ⁻¹]`, a finitely generated `A`-lattice
-spanning `V` is the `A`-span of a `k`-basis.-/
+spanning `V` is the `A`-span of a `k`-basis.
+@isnad1 id=ex.5h5v.s9.aede31157ae7 from=translated src=- shape=30e1c531 vocab=878f693f
+-/
 theorem exists_basis_span_eq [IsDomain A] [IsPrincipalIdealRing A]
     (hinj : Function.Injective (algebraMap A k)) (hϖ0 : algebraMap A k ϖ ≠ 0)
     {M : Submodule A V} (hM : M.FG) (hspan : Submodule.span k (M : Set V) = ⊤) :
@@ -298,7 +326,9 @@ theorem exists_basis_span_eq [IsDomain A] [IsPrincipalIdealRing A]
   exact ⟨n, Module.Basis.mk hli hsp, by rw [Module.Basis.coe_mk, hspanA]⟩
 
 /-- **`M^∨∨ = M`** for a finitely generated full lattice over a principal ideal domain and a
-symmetric nondegenerate form ([HK] Lemma 5.3.13).-/
+symmetric nondegenerate form ([HK] Lemma 5.3.13).
+@isnad1 id=eq.7h6v.s9.dd1c0e581c24 from=translated src=- shape=609f9592 vocab=c227c1b5
+-/
 theorem dual_dual_of_fg [IsDomain A] [IsPrincipalIdealRing A]
     (hinj : Function.Injective (algebraMap A k)) (hϖ0 : algebraMap A k ϖ ≠ 0)
     {B : LinearMap.BilinForm k V} (hB : B.Nondegenerate) (hs : B.IsSymm) {M : Submodule A V}
@@ -311,7 +341,9 @@ end Bounds
 /-! ### Perturbation -/
 
 /-- If `Λ^∨ ⊆ ϖ^{-e} Λ` for `B` (and every vector lies in some `ϖ^{-n} Λ^∨`), and `B' ≡ B` modulo
-`ϖ^m` on `Λ × Λ` with `m > e`, then `B` and `B'` have the same dual lattice.-/
+`ϖ^m` on `Λ × Λ` with `m > e`, then `B` and `B'` have the same dual lattice.
+@isnad1 id=eq.5h9v.s10.a1c0df710977 from=translated src=- shape=a446063f vocab=c6c58507
+-/
 theorem dual_eq_of_sub (hϖ0 : algebraMap A k ϖ ≠ 0) {B B' : LinearMap.BilinForm k V}
     {Λ : Submodule A V} {e m : ℕ} (hem : e + 1 ≤ m)
     (hbound : ∀ x ∈ dual B Λ, ϖ ^ e • x ∈ Λ) (hfin : ∀ x : V, ∃ n : ℕ, ϖ ^ n • x ∈ dual B Λ)
@@ -361,12 +393,17 @@ section Stable
 
 variable [IsDomain A] [IsDiscreteValuationRing A]
 
+/--
+@isnad1 id=isartini.1h3v.s7.3665f71884dd from=translated src=- shape=c8183764 vocab=88c4ecac
+-/
 lemma isArtinian_quotient_pow (n : ℕ) (hϖ : ϖ ≠ 0) :
     IsArtinian A (A ⧸ Ideal.span {ϖ ^ n}) :=
   ((isFiniteLength_iff_isNoetherian_isArtinian).1 (isFiniteLength_quotient_span_singleton A
     (mem_nonZeroDivisors_of_ne_zero (pow_ne_zero n hϖ)))).2
 
-/-- A finitely generated `A`-module killed by `ϖⁿ` is Artinian.-/
+/-- A finitely generated `A`-module killed by `ϖⁿ` is Artinian.
+@isnad1 id=isartini.2h4v.s7.606fc1929e95 from=translated src=- shape=ae2211a8 vocab=0f1bb1bb
+-/
 lemma isArtinian_of_fg_of_pow_smul {M : Type*} [AddCommGroup M] [Module A M]
     [Module.Finite A M] (hϖ : ϖ ≠ 0) {n : ℕ} (hn : ∀ x : M, ϖ ^ n • x = 0) : IsArtinian A M := by
   classical
@@ -395,7 +432,9 @@ lemma isArtinian_of_fg_of_pow_smul {M : Type*} [AddCommGroup M] [Module A M]
   simp
 
 /-- A decreasing sequence of `A`-submodules `s n`, all containing `L₀`, with `s 0` finitely
-generated and `ϖᴺ s 0 ⊆ L₀`, stabilizes.-/
+generated and `ϖᴺ s 0 ⊆ L₀`, stabilizes.
+@isnad1 id=ex.5h6v.s8.7bbf35800b1b from=translated src=- shape=0361a272 vocab=bd26852b
+-/
 theorem exists_stable (hϖ : ϖ ≠ 0) (s : ℕ → Submodule A V) (hs : Antitone s) {L₀ : Submodule A V}
     (hL₀ : ∀ n, L₀ ≤ s n) (hfg : (s 0).FG) {N : ℕ} (hN : ∀ x ∈ s 0, ϖ ^ N • x ∈ L₀) :
     ∃ n, ∀ m, n ≤ m → s m = s n := by

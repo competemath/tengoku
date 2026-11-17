@@ -64,6 +64,9 @@ def adHLin : H →ₗ[K] Module.End K (P.SuperEnveloping p) where
       LinearMap.mulLeft_apply, LinearMap.mulRight_apply, smul_mul_assoc, mul_smul_comm,
       smul_sub, RingHom.id_apply]
 
+/--
+@isnad1 id=eq.0h7v.s8.fe50cb2cafe2 from=translated src=- shape=00d3c0a5 vocab=90613335
+-/
 lemma weightSpace_eq_weightSpaceOf (μ : Dual K H) :
     weightSpace P p μ = Module.End.weightSpaceOf (adHLin P p) μ := by
   ext u
@@ -73,7 +76,9 @@ lemma weightSpace_eq_weightSpaceOf (μ : Dual K H) :
 
 variable [CharZero K]
 
-/-- A subspace stable under `ad 𝔥` is the sum of its intersections with the weight spaces.-/
+/-- A subspace stable under `ad 𝔥` is the sum of its intersections with the weight spaces.
+@isnad1 id=le.1h7v.s11.73e955a3327f from=translated src=- shape=83aa2745 vocab=bec3157c
+-/
 lemma le_iSup_inf_weightSpace (N : Submodule K (P.SuperEnveloping p))
     (hN : ∀ a, ∀ x ∈ N, superBracket P p (h P p a) x ∈ N) :
     N ≤ ⨆ μ, N ⊓ weightSpace P p μ := by
@@ -90,7 +95,9 @@ structure IsIdeal (I : Submodule K (P.SuperEnveloping p)) : Prop where
   le_gTilde : I ≤ gTilde P p
   superBracket_mem : ∀ x ∈ gTilde P p, ∀ y ∈ I, superBracket P p x y ∈ I
 
-/-- An ideal meeting `𝔥` trivially lies in the sum of the nonzero weight spaces.-/
+/-- An ideal meeting `𝔥` trivially lies in the sum of the nonzero weight spaces.
+@isnad1 id=le.2h7v.s11.bf76973b74bc from=translated src=- shape=7df0bcf4 vocab=6782dbc8
+-/
 lemma IsIdeal.le_iSup_ne_zero {I : Submodule K (P.SuperEnveloping p)} (hI : IsIdeal P p I)
     (hI0 : I ⊓ LinearMap.range (h P p) = ⊥) :
     I ≤ ⨆ μ ∈ {μ : Dual K H | μ ≠ 0}, weightSpace P p μ := by
@@ -110,6 +117,9 @@ def maxIdeal : Submodule K (P.SuperEnveloping p) :=
   sSup {I | IsIdeal P p I ∧ I ⊓ LinearMap.range (h P p) = ⊥}
 
 omit [CharZero K] in
+/--
+@isnad1 id=isideal.0h6v.s6.3063c128038a from=translated src=- shape=43298999 vocab=218b1fbf
+-/
 theorem isIdeal_maxIdeal : IsIdeal P p (maxIdeal P p) where
   le_gTilde := sSup_le fun _ hI ↦ hI.1.le_gTilde
   superBracket_mem x hx := by
@@ -117,11 +127,16 @@ theorem isIdeal_maxIdeal : IsIdeal P p (maxIdeal P p) where
       sSup_le fun I hI y hy ↦ le_sSup hI (hI.1.superBracket_mem x hx y hy)
     exact fun y hy ↦ this hy
 
+/--
+@isnad1 id=le.0h6v.s10.f1022c25e3ea from=translated src=- shape=f8d8ca02 vocab=8987a091
+-/
 lemma maxIdeal_le_iSup_ne_zero :
     maxIdeal P p ≤ ⨆ μ ∈ {μ : Dual K H | μ ≠ 0}, weightSpace P p μ :=
   sSup_le fun _ hI ↦ hI.1.le_iSup_ne_zero P p hI.2
 
-/-- `R ∩ 𝔥 = 0`.-/
+/-- `R ∩ 𝔥 = 0`.
+@isnad1 id=eq.0h6v.s9.95ccc2390383 from=translated src=- shape=e376e630 vocab=cde5cb5f
+-/
 theorem maxIdeal_inf_range_h : maxIdeal P p ⊓ LinearMap.range (h P p) = ⊥ := by
   refine eq_bot_iff.2 fun x ⟨hx, hx0⟩ ↦ ?_
   obtain ⟨a, rfl⟩ := hx0
@@ -130,7 +145,9 @@ theorem maxIdeal_inf_range_h : maxIdeal P p ⊓ LinearMap.range (h P p) = ⊥ :=
     (maxIdeal_le_iSup_ne_zero P p hx)
 
 omit [CharZero K] in
-/-- `R` is the largest ideal meeting `𝔥` trivially ([Kac78] §1.2, cf. [Kac] Thm. 1.2 (e)).-/
+/-- `R` is the largest ideal meeting `𝔥` trivially ([Kac78] §1.2, cf. [Kac] Thm. 1.2 (e)).
+@isnad1 id=le.2h7v.s10.cee00e9f8179 from=translated src=- shape=08096fec vocab=3578fe4c
+-/
 theorem le_maxIdeal {I : Submodule K (P.SuperEnveloping p)} (hI : IsIdeal P p I)
     (hI0 : I ⊓ LinearMap.range (h P p) = ⊥) : I ≤ maxIdeal P p :=
   le_sSup ⟨hI, hI0⟩
@@ -138,14 +155,23 @@ theorem le_maxIdeal {I : Submodule K (P.SuperEnveloping p)} (hI : IsIdeal P p I)
 /-! ### Stability under the parity involution -/
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h8v.s9.7ca3c8e461a2 from=translated src=- shape=96a4f37b vocab=cb3481c5
+-/
 lemma parity_superBracket (x y : P.SuperEnveloping p) :
     parity P p (superBracket P p x y) = superBracket P p (parity P p x) (parity P p y) := by
   simp only [superBracket, map_sub, map_mul, map_smul, map_add, parity_parity]
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.1h8v.s8.ba5e5fd5fc6b from=translated src=- shape=72f7d5fb vocab=cdb7b971
+-/
 lemma IsHomog.parity_eq {c : ZMod 2} {x : P.SuperEnveloping p} (hx : IsHomog P p c x) :
     parity P p x = zSign K c • x := hx
 
+/--
+@isnad1 id=mem.1h7v.s10.e7c56d92ecd8 from=translated src=- shape=f8fef8c7 vocab=7945f66f
+-/
 lemma parity_mem_gTilde {x : P.SuperEnveloping p} (hx : x ∈ gTilde P p) :
     parity P p x ∈ gTilde P p := by
   have h1 : nPlus P p ≤ (gTilde P p).comap (parity P p).toLinearMap :=
@@ -165,7 +191,9 @@ lemma parity_mem_gTilde {x : P.SuperEnveloping p} (hx : x ∈ gTilde P p) :
     exact h_mem_gTilde P p a
   exact (sup_le (sup_le h2 h3) h1 : gTilde P p ≤ _) hx
 
-/-- `σ(R) ⊆ R`: the maximal ideal is graded.-/
+/-- `σ(R) ⊆ R`: the maximal ideal is graded.
+@isnad1 id=mem.1h7v.s10.2ea261a42a19 from=translated src=- shape=f8fef8c7 vocab=d42192eb
+-/
 theorem parity_mem_maxIdeal {x : P.SuperEnveloping p} (hx : x ∈ maxIdeal P p) :
     parity P p x ∈ maxIdeal P p := by
   let I := (maxIdeal P p).map (parity P p).toLinearMap

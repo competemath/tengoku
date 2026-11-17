@@ -89,8 +89,14 @@ namespace AuxLieAlgebra
 /-- The quotient map from the free Lie algebra.-/
 def mk : FreeLieAlgebra K (AuxGen ι H) →ₗ⁅K⁆ P.AuxLieAlgebra := LieIdeal.mkHom P.auxIdeal
 
+/--
+@isnad1 id=surjecti.0h5v.s8.17e3511144f4 from=translated src=- shape=1ed95603 vocab=872597b3
+-/
 lemma mk_surjective : Function.Surjective (mk P) := LieIdeal.mkHom_surjective _
 
+/--
+@isnad1 id=eq.1h6v.s9.0e7c4162feda from=translated src=- shape=852e8a83 vocab=d57046f4
+-/
 lemma mk_eq_zero_of_mem {x} (hx : x ∈ P.auxRels) : mk P x = 0 :=
   (LieIdeal.mkHom_eq_zero_iff _).mpr (LieSubmodule.subset_lieSpan hx)
 
@@ -114,27 +120,45 @@ def h : H →ₗ[K] P.AuxLieAlgebra where
     rw [map_sub, map_smul, sub_eq_zero] at this
     exact this
 
+/--
+@isnad1 id=eq.0h7v.s10.58b71224bd12 from=translated src=- shape=46c3c5b5 vocab=a1c96ad2
+-/
 lemma lie_h_h (a b : H) : ⁅h P a, h P b⁆ = 0 := by
   have := mk_eq_zero_of_mem P (Or.inr (Or.inr (Or.inl ⟨a, b, rfl⟩)))
   rwa [LieHom.map_lie] at this
 
+/--
+@isnad1 id=eq.0h7v.s9.fc40bde58921 from=translated src=- shape=4f3e0f0c vocab=e550e252
+-/
 lemma lie_e_f (i j : ι) : ⁅e P i, f P j⁆ = if i = j then h P (P.coroot i) else 0 := by
   have := mk_eq_zero_of_mem P (Or.inr (Or.inr (Or.inr (Or.inl ⟨i, j, rfl⟩))))
   rw [map_sub, LieHom.map_lie, sub_eq_zero] at this
   rw [e, f, this]
   split_ifs <;> simp [h]
 
+/--
+@isnad1 id=eq.0h6v.s9.5a8a1fa86151 from=translated src=- shape=79dda77d vocab=a3e35efe
+-/
 @[simp] lemma lie_e_f_self (i : ι) : ⁅e P i, f P i⁆ = h P (P.coroot i) := by
   simp [lie_e_f]
 
+/--
+@isnad1 id=eq.1h7v.s8.17a6d1001d46 from=translated src=- shape=b16000d8 vocab=8ef1e29d
+-/
 lemma lie_e_f_of_ne {i j : ι} (hij : i ≠ j) : ⁅e P i, f P j⁆ = 0 := by
   simp [lie_e_f, hij]
 
+/--
+@isnad1 id=eq.0h7v.s10.a946a8e65a05 from=translated src=- shape=9fe279f1 vocab=d9af66b4
+-/
 lemma lie_h_e (a : H) (i : ι) : ⁅h P a, e P i⁆ = P.root i a • e P i := by
   have := mk_eq_zero_of_mem P (Or.inr (Or.inr (Or.inr (Or.inr (Or.inl ⟨a, i, rfl⟩)))))
   rw [map_sub, LieHom.map_lie, map_smul, sub_eq_zero] at this
   exact this
 
+/--
+@isnad1 id=eq.0h7v.s10.b01cbb13324a from=translated src=- shape=66111bfb vocab=915d98c6
+-/
 lemma lie_h_f (a : H) (i : ι) : ⁅h P a, f P i⁆ = -(P.root i a • f P i) := by
   have := mk_eq_zero_of_mem P (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr ⟨a, i, rfl⟩)))))
   rw [map_add, LieHom.map_lie, map_smul, add_eq_zero_iff_eq_neg] at this
@@ -166,6 +190,9 @@ def LiftData.gen (D : LiftData P L) : AuxGen ι H → L
   | .f i => D.f i
   | .h a => D.h a
 
+/--
+@isnad1 id=le.0h7v.s9.35758bace02c from=translated src=- shape=f534ebce vocab=96ed4055
+-/
 lemma LiftData.le_ker (D : LiftData P L) :
     P.auxIdeal ≤ (FreeLieAlgebra.lift K D.gen).ker := by
   rw [auxIdeal, LieSubmodule.lieSpan_le]
@@ -184,16 +211,27 @@ lemma LiftData.le_ker (D : LiftData P L) :
 def lift (D : LiftData P L) : P.AuxLieAlgebra →ₗ⁅K⁆ L :=
   LieIdeal.lift P.auxIdeal (FreeLieAlgebra.lift K D.gen) D.le_ker
 
+/--
+@isnad1 id=eq.0h8v.s8.e96a60be2daa from=translated src=- shape=ada88f57 vocab=2b94388f
+-/
 @[simp] lemma lift_e (D : LiftData P L) (i : ι) : lift D (e P i) = D.e i := by
   simp [lift, e, mk, LiftData.gen]
 
+/--
+@isnad1 id=eq.0h8v.s8.7442d14cca7f from=translated src=- shape=ada88f57 vocab=7656168a
+-/
 @[simp] lemma lift_f (D : LiftData P L) (i : ι) : lift D (f P i) = D.f i := by
   simp [lift, f, mk, LiftData.gen]
 
+/--
+@isnad1 id=eq.0h8v.s9.6327fd70ed8a from=translated src=- shape=9a906816 vocab=e2a4273d
+-/
 @[simp] lemma lift_h (D : LiftData P L) (a : H) : lift D (h P a) = D.h a := by
   simp [lift, h, mk, LiftData.gen]
 
-/-- Morphisms out of `𝔤̃(A)` are determined by their values on the generators.-/
+/-- Morphisms out of `𝔤̃(A)` are determined by their values on the generators.
+@isnad1 id=eq.3h8v.s11.cdf2a3140eb3 from=translated src=- shape=6a67d838 vocab=3435cd08
+-/
 @[ext]
 lemma hom_ext {g₁ g₂ : P.AuxLieAlgebra →ₗ⁅K⁆ L} (he : ∀ i, g₁ (e P i) = g₂ (e P i))
     (hf : ∀ i, g₁ (f P i) = g₂ (f P i)) (hh : ∀ a, g₁ (h P a) = g₂ (h P a)) : g₁ = g₂ := by
@@ -208,7 +246,9 @@ end lift
 
 variable {P}
 
-/-- The generators span `𝔤̃(A)` as a Lie algebra.-/
+/-- The generators span `𝔤̃(A)` as a Lie algebra.
+@isnad1 id=eq.0h5v.s10.afad3912738d from=translated src=- shape=bc15f2e7 vocab=548f1840
+-/
 lemma lieSpan_generators :
     LieSubalgebra.lieSpan K P.AuxLieAlgebra
       (Set.range (e P) ∪ Set.range (f P) ∪ Set.range (h P)) = ⊤ := by
@@ -227,7 +267,9 @@ lemma lieSpan_generators :
   | smul a y hy => simpa using LieSubalgebra.smul_mem _ a hy
   | lie y z hy hz => simpa using LieSubalgebra.lie_mem _ hy hz
 
-/-- Induction principle for `𝔤̃(A)`.-/
+/-- Induction principle for `𝔤̃(A)`.
+@isnad1 id=var.0h14v.s10.5d70d526f906 from=translated src=- shape=781544c3 vocab=638f8bc0
+-/
 @[elab_as_elim]
 lemma induction_on {p : P.AuxLieAlgebra → Prop} (y : P.AuxLieAlgebra)
     (he : ∀ i, p (e P i)) (hf : ∀ i, p (f P i)) (hh : ∀ a, p (h P a)) (zero : p 0)
@@ -246,7 +288,9 @@ lemma induction_on {p : P.AuxLieAlgebra → Prop} (y : P.AuxLieAlgebra)
   | lie y z _ _ hy hz => exact lie y z hy hz
 
 /-- A submodule of `𝔤̃(A)` stable under the adjoint action of the generators is stable under the
-adjoint action of every element.-/
+adjoint action of every element.
+@isnad1 id=mem.4h8v.s12.11742fb076ff from=translated src=- shape=2831f7fc vocab=afb5827c
+-/
 lemma lie_mem_of_generators (S : Submodule K P.AuxLieAlgebra)
     (he : ∀ i, ∀ x ∈ S, ⁅e P i, x⁆ ∈ S) (hf : ∀ i, ∀ x ∈ S, ⁅f P i, x⁆ ∈ S)
     (hh : ∀ a, ∀ x ∈ S, ⁅h P a, x⁆ ∈ S) (y : P.AuxLieAlgebra) : ∀ x ∈ S, ⁅y, x⁆ ∈ S := by
@@ -270,6 +314,9 @@ def idealOfGenerators (S : Submodule K P.AuxLieAlgebra)
   __ := S
   lie_mem := fun {y} {_} hx ↦ lie_mem_of_generators S he hf hh y _ hx
 
+/--
+@isnad1 id=eq.3h6v.s12.836ea3476046 from=translated src=- shape=ee8475f8 vocab=e2274b12
+-/
 @[simp] lemma idealOfGenerators_toSubmodule (S : Submodule K P.AuxLieAlgebra) (he hf hh) :
     (idealOfGenerators S he hf hh).toSubmodule = S := rfl
 
@@ -309,15 +356,27 @@ def chevalleyInvolution : P.AuxLieAlgebra →ₗ⁅K⁆ P.AuxLieAlgebra :=
       lie_h_e := fun a i ↦ by simp [lie_h_f]
       lie_h_f := fun a i ↦ by simp [lie_h_e] }
 
+/--
+@isnad1 id=eq.0h6v.s9.7b40f74e24ce from=translated src=- shape=8050a55c vocab=35419365
+-/
 @[simp] lemma chevalleyInvolution_e (i : ι) : chevalleyInvolution P (e P i) = -f P i := by
   simp [chevalleyInvolution]
 
+/--
+@isnad1 id=eq.0h6v.s9.4d9418bb49a7 from=translated src=- shape=8050a55c vocab=35419365
+-/
 @[simp] lemma chevalleyInvolution_f (i : ι) : chevalleyInvolution P (f P i) = -e P i := by
   simp [chevalleyInvolution]
 
+/--
+@isnad1 id=eq.0h6v.s10.25faf521cba8 from=translated src=- shape=cc6a05b5 vocab=3829c474
+-/
 @[simp] lemma chevalleyInvolution_h (a : H) : chevalleyInvolution P (h P a) = -h P a := by
   simp [chevalleyInvolution]
 
+/--
+@isnad1 id=eq.0h6v.s9.55aa563146ef from=translated src=- shape=c56a8112 vocab=68ea5847
+-/
 @[simp] lemma chevalleyInvolution_chevalleyInvolution (x : P.AuxLieAlgebra) :
     chevalleyInvolution P (chevalleyInvolution P x) = x := by
   have : (chevalleyInvolution P).comp (chevalleyInvolution P) = LieHom.id := by

@@ -85,9 +85,15 @@ instance (i : σ) (s : σ →₀ ℕ) : Decidable (LeAll i s) :=
   inferInstanceAs (Decidable (∀ j ∈ s.support, i ≤ j))
 
 open Classical in
+/--
+@isnad1 id=eq.0h4v.s6.dc96b915cde6 from=translated src=- shape=5046bd50 vocab=6bb40b89
+-/
 @[simp] lemma pbwMonomial_zero (v : σ → L) : pbwMonomial R v 0 = 1 := by
   simp [pbwMonomial]
 
+/--
+@isnad1 id=eq.1h6v.s8.e03cd6d44b39 from=translated src=- shape=4ef8e504 vocab=b0dc966f
+-/
 lemma pbwMonomial_add_single {v : σ → L} {i : σ} {s : σ →₀ ℕ} (h : LeAll i s) :
     pbwMonomial R v (s + single i 1) = ι R (v i) * pbwMonomial R v s := by
   have hs : toMultiset (s + single i 1) = i ::ₘ toMultiset s := by
@@ -96,8 +102,14 @@ lemma pbwMonomial_add_single {v : σ → L} {i : σ} {s : σ →₀ ℕ} (h : Le
   intro j hj
   exact h j (by simpa using hj)
 
+/--
+@isnad1 id=leall.0h2v.s5.82dfebcb2fdb from=translated src=- shape=b81bd270 vocab=fc32a329
+-/
 lemma leAll_zero (i : σ) : LeAll i 0 := by simp [LeAll]
 
+/--
+@isnad1 id=nonempty.1h3v.s4.8319804abddd from=translated src=- shape=115c49de vocab=e5372ace
+-/
 lemma support_nonempty_of_not_leAll {i : σ} {s : σ →₀ ℕ} (h : ¬ LeAll i s) :
     s.support.Nonempty := by
   by_contra h'
@@ -107,12 +119,18 @@ lemma support_nonempty_of_not_leAll {i : σ} {s : σ →₀ ℕ} (h : ¬ LeAll i
 /-- The least index occurring in `s` (junk if `s = 0`).-/
 def minIdx (s : σ →₀ ℕ) (h : s.support.Nonempty) : σ := s.support.min' h
 
+/--
+@isnad1 id=lt.1h3v.s5.201567fed939 from=translated src=- shape=dc2de568 vocab=8a490297
+-/
 lemma minIdx_lt {i : σ} {s : σ →₀ ℕ} (h : ¬ LeAll i s) :
     minIdx s (support_nonempty_of_not_leAll h) < i := by
   simp only [LeAll, not_forall, not_le] at h
   obtain ⟨j, hj, hji⟩ := h
   exact lt_of_le_of_lt (Finset.min'_le _ _ hj) hji
 
+/--
+@isnad1 id=le.1h2v.s5.f04826bae968 from=translated src=- shape=10ef4cde vocab=18524993
+-/
 lemma single_minIdx_le (s : σ →₀ ℕ) (h : s.support.Nonempty) :
     single (minIdx s h) 1 ≤ s := by
   intro k
@@ -124,10 +142,16 @@ lemma single_minIdx_le (s : σ →₀ ℕ) (h : s.support.Nonempty) :
     exact Nat.one_le_iff_ne_zero.mpr this
   · simp [Ne.symm hk]
 
+/--
+@isnad1 id=eq.1h2v.s7.a64d5238f6ee from=translated src=- shape=b1f999be vocab=88595fe4
+-/
 lemma sub_add_single_minIdx (s : σ →₀ ℕ) (h : s.support.Nonempty) :
     s - single (minIdx s h) 1 + single (minIdx s h) 1 = s :=
   tsub_add_cancel_of_le (single_minIdx_le s h)
 
+/--
+@isnad1 id=leall.1h2v.s6.bbaaf41d125e from=translated src=- shape=e0a9c0e8 vocab=4da6b047
+-/
 lemma leAll_minIdx (s : σ →₀ ℕ) (h : s.support.Nonempty) :
     LeAll (minIdx s h) (s - single (minIdx s h) 1) := by
   intro j hj
@@ -137,11 +161,17 @@ lemma leAll_minIdx (s : σ →₀ ℕ) (h : s.support.Nonempty) :
   apply hj
   simp [h0]
 
+/--
+@isnad1 id=eq.1h2v.s8.8097492988cf from=translated src=- shape=44a04312 vocab=76106298
+-/
 lemma degree_sub_single_minIdx (s : σ →₀ ℕ) (h : s.support.Nonempty) :
     (s - single (minIdx s h) 1).degree + 1 = s.degree := by
   conv_rhs => rw [← sub_add_single_minIdx s h]
   rw [map_add, degree_single]
 
+/--
+@isnad1 id=leall.2h4v.s6.072d254b9a07 from=translated src=- shape=293cf88f vocab=dbaae9cc
+-/
 lemma leAll_add_single {i j : σ} {s : σ →₀ ℕ} (h : LeAll i s) (hij : i ≤ j) :
     LeAll i (s + single j 1) := by
   intro k hk
@@ -150,10 +180,15 @@ lemma leAll_add_single {i j : σ} {s : σ →₀ ℕ} (h : LeAll i s) (hij : i �
   · rw [support_single _ one_ne_zero, Finset.mem_singleton] at hk
     exact hk ▸ hij
 
+/--
+@isnad1 id=leall.2h4v.s5.775c3d157ad1 from=translated src=- shape=54067acd vocab=11daf2e0
+-/
 lemma leAll_of_le {i j : σ} {s : σ →₀ ℕ} (h : LeAll j s) (hij : i ≤ j) : LeAll i s :=
   fun k hk ↦ hij.trans (h k hk)
 
-/-- If `j ≤ s` and `j < i`, then the least index of `s + single j 1` is `j`.-/
+/-- If `j ≤ s` and `j < i`, then the least index of `s + single j 1` is `j`.
+@isnad1 id=eq.2h3v.s6.e0d030037978 from=translated src=- shape=a23f1758 vocab=0ebc8e9b
+-/
 lemma minIdx_add_single {j : σ} {t : σ →₀ ℕ} (h : LeAll j t)
     (hne : (t + single j 1).support.Nonempty) :
     minIdx (t + single j 1) hne = j := by
@@ -168,6 +203,9 @@ lemma minIdx_add_single {j : σ} {t : σ →₀ ℕ} (h : LeAll j t)
     · rw [support_single _ one_ne_zero, Finset.mem_singleton] at hk
       exact hk ▸ le_rfl
 
+/--
+@isnad1 id=not.1h4v.s6.4dd4f5939cc1 from=translated src=- shape=34ee75cd vocab=65bf0666
+-/
 lemma not_leAll_add_single {i j : σ} {t : σ →₀ ℕ} (hji : j < i) :
     ¬ LeAll i (t + single j 1) := by
   intro h
@@ -184,6 +222,9 @@ def extend {M : Type*} [AddCommGroup M] [Module R M] (f : (σ →₀ ℕ) → M)
   (basisMonomials σ R).constr R f
 
 omit [LinearOrder σ] in
+/--
+@isnad1 id=eq.0h5v.s7.b84606259741 from=translated src=- shape=4b51ad20 vocab=4a533c10
+-/
 @[simp] lemma extend_z {M : Type*} [AddCommGroup M] [Module R M] (f : (σ →₀ ℕ) → M)
     (s : σ →₀ ℕ) : extend f (z R σ s) = f s := by
   have := (basisMonomials σ R).constr_basis R f s
@@ -203,12 +244,18 @@ lemma eq_of_mem_restrictTotalDegree {M : Type*} [AddCommGroup M] [Module R M]
   rw [← mul_one (p.coeff s), ← smul_eq_mul, ← smul_monomial, map_smul, map_smul, h s hdeg]
 
 omit [LinearOrder σ] in
+/--
+@isnad1 id=mem.1h4v.s8.9abd56a4fcbc from=translated src=- shape=390759a6 vocab=b27b5c33
+-/
 lemma z_mem_restrictTotalDegree {s : σ →₀ ℕ} {n : ℕ} (h : s.degree ≤ n) :
     z R σ s ∈ restrictTotalDegree σ R n := by
   rw [mem_restrictTotalDegree]
   exact (totalDegree_monomial_le s 1).trans h
 
 omit [LinearOrder σ] in
+/--
+@isnad1 id=le.1h4v.s7.1f89a6f9bf7f from=translated src=- shape=e939c2eb vocab=a383965e
+-/
 lemma restrictTotalDegree_mono {m n : ℕ} (h : m ≤ n) :
     restrictTotalDegree σ R m ≤ restrictTotalDegree σ R n := by
   intro p hp
@@ -235,6 +282,9 @@ def actAux : ℕ → σ → (σ →₀ ℕ) → MvPolynomial σ R
 def opAux (n : ℕ) : L →ₗ[R] Module.End R (MvPolynomial σ R) :=
   b.constr R fun k ↦ extend (actAux b n k)
 
+/--
+@isnad1 id=eq.0h7v.s11.7eea6f821133 from=translated src=- shape=83d46a6e vocab=295b805a
+-/
 lemma actAux_succ (n : ℕ) (i : σ) (s : σ →₀ ℕ) :
     actAux b (n + 1) i s =
       if h : LeAll i s then z R σ (s + single i 1) else
@@ -250,17 +300,25 @@ lemma actAux_succ (n : ℕ) (i : σ) (s : σ →₀ ℕ) :
 def rho : L →ₗ[R] Module.End R (MvPolynomial σ R) :=
   b.constr R fun i ↦ extend fun s ↦ actAux b s.degree i s
 
+/--
+@isnad1 id=eq.0h6v.s10.25624b07fd8e from=translated src=- shape=ee01e6ae vocab=ccb024b4
+-/
 lemma rho_basis_z (i : σ) (s : σ →₀ ℕ) : rho b (b i) (z R σ s) = actAux b s.degree i s := by
   simp [rho]
 
 omit [LinearOrder σ] in
+/--
+@isnad1 id=eq.1h8v.s13.7ce3e2e1a6ff from=translated src=- shape=b6066831 vocab=762a5d04
+-/
 lemma constr_apply_apply_eq {F G : σ → Module.End R (MvPolynomial σ R)}
     {p : MvPolynomial σ R} (h : ∀ k, F k p = G k p) (x : L) :
     b.constr R F x p = b.constr R G x p := by
   simp only [Basis.constr_apply, Finsupp.sum, LinearMap.sum_apply,
     LinearMap.smul_apply, h]
 
-/-- Joint induction: stability of `actAux` in the fuel parameter, and property (B).-/
+/-- Joint induction: stability of `actAux` in the fuel parameter, and property (B).
+@isnad1 id=and.1h7v.s11.1702908d803b from=translated src=- shape=26a3495b vocab=0ecbce0c
+-/
 lemma actAux_spec (m : ℕ) : ∀ s : σ →₀ ℕ, s.degree = m → ∀ i : σ,
     (∀ n, m ≤ n → actAux b n i s = rho b (b i) (z R σ s)) ∧
       rho b (b i) (z R σ s) - z R σ (s + single i 1) ∈ restrictTotalDegree σ R m := by
@@ -332,7 +390,9 @@ lemma actAux_spec (m : ℕ) : ∀ s : σ →₀ ℕ, s.degree = m → ∀ i : σ
       rw [hrho, show ∀ a c d : MvPolynomial σ R, a + c + d - c = a + d from fun a c d ↦ by abel]
       exact this
 
-/-- Property (A).-/
+/-- Property (A).
+@isnad1 id=eq.1h6v.s10.cf8abb7f9a69 from=translated src=- shape=2df5d862 vocab=92fe0261
+-/
 lemma rho_of_leAll {i : σ} {s : σ →₀ ℕ} (h : LeAll i s) :
     rho b (b i) (z R σ s) = z R σ (s + single i 1) := by
   rw [rho_basis_z]
@@ -340,12 +400,16 @@ lemma rho_of_leAll {i : σ} {s : σ →₀ ℕ} (h : LeAll i s) :
   | zero => rfl
   | succ n => rw [actAux_succ, dite_eq_left h]
 
-/-- Property (B).-/
+/-- Property (B).
+@isnad1 id=mem.0h6v.s10.ba8fa46580ec from=translated src=- shape=1fdd1bda vocab=8b55015e
+-/
 lemma rho_sub_mem (i : σ) (s : σ →₀ ℕ) :
     rho b (b i) (z R σ s) - z R σ (s + single i 1) ∈ restrictTotalDegree σ R s.degree :=
   (actAux_spec b s.degree s rfl i).2
 
-/-- `ρ x` raises the total degree by at most one.-/
+/-- `ρ x` raises the total degree by at most one.
+@isnad1 id=mem.1h7v.s10.419726b6fb2f from=translated src=- shape=85e3be7e vocab=37e66103
+-/
 lemma rho_mem (k : ℕ) (x : L) {p : MvPolynomial σ R} (hp : p ∈ restrictTotalDegree σ R k) :
     rho b x p ∈ restrictTotalDegree σ R (k + 1) := by
   have : ∀ l, ∀ u : σ →₀ ℕ, u.degree ≤ k →
@@ -366,7 +430,9 @@ lemma rho_mem (k : ℕ) (x : L) {p : MvPolynomial σ R} (hp : p ∈ restrictTota
   exact Submodule.smul_mem _ _
     (this l u ((le_totalDegree hu).trans ((mem_restrictTotalDegree σ k p).mp hp)))
 
-/-- The defining recursion for `ρ`.-/
+/-- The defining recursion for `ρ`.
+@isnad1 id=eq.1h6v.s12.67a31c3d04a7 from=translated src=- shape=7789f09a vocab=72c3dfa3
+-/
 lemma rho_of_not_leAll {i : σ} {s : σ →₀ ℕ} (h : ¬ LeAll i s) :
     rho b (b i) (z R σ s) =
       rho b (b (minIdx s (support_nonempty_of_not_leAll h)))
@@ -391,7 +457,9 @@ lemma rho_of_not_leAll {i : σ} {s : σ →₀ ℕ} (h : ¬ LeAll i s) :
     z R σ (s + single i 1) + opAux b t.degree ⁅b i, b j⁆ (z R σ t) = _
   rw [hop _ _ hzt, hop _ _ (rho_sub_mem b i t), hop _ _ hzt]
 
-/-- The recursion in the form used in the proof of property (C).-/
+/-- The recursion in the form used in the proof of property (C).
+@isnad1 id=eq.2h7v.s12.3ee2a19f1fc3 from=translated src=- shape=c08c7ac9 vocab=f31b0f29
+-/
 lemma rho_add_single_of_lt {i j : σ} {t : σ →₀ ℕ} (ht : LeAll j t) (hji : j < i) :
     rho b (b i) (z R σ (t + single j 1)) =
       rho b (b j) (rho b (b i) (z R σ t) - z R σ (t + single i 1)) +
@@ -402,7 +470,9 @@ lemma rho_add_single_of_lt {i j : σ} {t : σ →₀ ℕ} (ht : LeAll j t) (hji 
     minIdx_add_single ht _
   simp only [hj, add_tsub_cancel_right]
 
-/-- Property (C) in the base case `j ≤ t`, `j < i`.-/
+/-- Property (C) in the base case `j ≤ t`, `j < i`.
+@isnad1 id=eq.2h7v.s12.14a8c5e6704c from=translated src=- shape=dbfbbdae vocab=737671c5
+-/
 lemma comm_of_leAll {i j : σ} {t : σ →₀ ℕ} (ht : LeAll j t) (hji : j < i) :
     rho b (b i) (rho b (b j) (z R σ t)) - rho b (b j) (rho b (b i) (z R σ t)) =
       rho b ⁅b i, b j⁆ (z R σ t) := by
@@ -410,7 +480,9 @@ lemma comm_of_leAll {i j : σ} {t : σ →₀ ℕ} (ht : LeAll j t) (hji : j < i
     rho_of_leAll b (leAll_add_single ht hji.le), add_right_comm t (single i 1)]
   abel
 
-/-- Bilinear extension of the commutator identity from basis vectors.-/
+/-- Bilinear extension of the commutator identity from basis vectors.
+@isnad1 id=eq.1h7v.s13.6eea72c278ac from=translated src=- shape=09de2fa0 vocab=f7a42e4c
+-/
 lemma comm_of_basis {p : MvPolynomial σ R}
     (h : ∀ i j, rho b (b i) (rho b (b j) p) - rho b (b j) (rho b (b i) p) =
       rho b ⁅b i, b j⁆ p) (x y : L) :
@@ -425,7 +497,9 @@ lemma comm_of_basis {p : MvPolynomial σ R}
   have := LinearMap.congr_fun₂ this x y
   simpa [F, sub_eq_zero] using this
 
-/-- Property (C): `ρ` is a Lie algebra morphism.-/
+/-- Property (C): `ρ` is a Lie algebra morphism.
+@isnad1 id=eq.1h8v.s12.d476285b2317 from=translated src=- shape=64cd47a8 vocab=40bc5d31
+-/
 lemma rho_comm (m : ℕ) : ∀ t : σ →₀ ℕ, t.degree = m → ∀ x y : L,
     rho b x (rho b y (z R σ t)) - rho b y (rho b x (z R σ t)) = rho b ⁅x, y⁆ (z R σ t) := by
   induction m using Nat.strong_induction_on with
@@ -539,15 +613,23 @@ def rhoHom : L →ₗ⁅R⁆ Module.End R (MvPolynomial σ R) :=
         LinearMap.sub_apply, Module.End.mul_apply]
       exact (rho_comm b t.degree t rfl x y).symm }
 
+/--
+@isnad1 id=eq.0h5v.s10.ee654b2850ce from=translated src=- shape=06f79871 vocab=8383ffa8
+-/
 @[simp] lemma rhoHom_apply (x : L) : rhoHom b x = rho b x := rfl
 
 /-- The linear map `R[X] → U(L)` sending `X^s` to the ordered monomial `pbwMonomial R b s`.-/
 def phi : MvPolynomial σ R →ₗ[R] UniversalEnvelopingAlgebra R L :=
   extend fun s ↦ pbwMonomial R b s
 
+/--
+@isnad1 id=eq.0h5v.s8.c7fcd4c8106d from=translated src=- shape=f8a879cc vocab=b56ef0af
+-/
 @[simp] lemma phi_z (s : σ →₀ ℕ) : phi b (z R σ s) = pbwMonomial R b s := extend_z _ s
 
-/-- Property (D): `φ` intertwines `ρ` with left multiplication.-/
+/-- Property (D): `φ` intertwines `ρ` with left multiplication.
+@isnad1 id=eq.1h7v.s10.1e924e1c33b5 from=translated src=- shape=c094ab06 vocab=5ef81e53
+-/
 lemma phi_rho (m : ℕ) : ∀ s : σ →₀ ℕ, s.degree = m → ∀ x : L,
     phi b (rho b x (z R σ s)) = ι R x * phi b (z R σ s) := by
   induction m using Nat.strong_induction_on with
@@ -592,7 +674,9 @@ lemma phi_rho (m : ℕ) : ∀ s : σ →₀ ℕ, s.degree = m → ∀ x : L,
       LieHom.map_lie, LieRing.of_associative_ring_bracket]
     noncomm_ring
 
-/-- `φ` is a morphism of `U(L)`-modules.-/
+/-- `φ` is a morphism of `U(L)`-modules.
+@isnad1 id=eq.0h6v.s12.4d07d8617572 from=translated src=- shape=ad2c4ed6 vocab=f4e2adc2
+-/
 lemma phi_lift (u : UniversalEnvelopingAlgebra R L) (p : MvPolynomial σ R) :
     phi b (lift R (rhoHom b) u p) = u * phi b p := by
   have hsurj : Function.Surjective (mkAlgHom R L) := by
@@ -617,7 +701,9 @@ lemma phi_lift (u : UniversalEnvelopingAlgebra R L) (p : MvPolynomial σ R) :
   | mul a₁ a₂ h₁ h₂ =>
     rw [map_mul, map_mul, Module.End.mul_apply, h₁, h₂, mul_assoc]
 
-/-- `u ↦ ρ(u) 1` sends ordered monomials to monomials.-/
+/-- `u ↦ ρ(u) 1` sends ordered monomials to monomials.
+@isnad1 id=eq.1h6v.s12.4a90684fdebd from=translated src=- shape=c73a7355 vocab=cc79d698
+-/
 lemma lift_pbwMonomial (m : ℕ) : ∀ s : σ →₀ ℕ, s.degree = m →
     lift R (rhoHom b) (pbwMonomial R b s) 1 = z R σ s := by
   induction m with
@@ -660,10 +746,16 @@ def pbwEquiv : UniversalEnvelopingAlgebra R L ≃ₗ[R] MvPolynomial σ R :=
         rw [show (1 : MvPolynomial σ R) = z R σ 0 from rfl, phi_z, pbwMonomial_zero]
       simpa [h1] using phi_lift b u 1)
 
+/--
+@isnad1 id=eq.0h5v.s9.be0e81da63b3 from=translated src=- shape=299b7d5c vocab=6b18b644
+-/
 @[simp] lemma pbwEquiv_symm_monomial (s : σ →₀ ℕ) :
     (pbwEquiv b).symm (monomial s 1) = pbwMonomial R b s :=
   phi_z b s
 
+/--
+@isnad1 id=eq.0h5v.s9.b58e50230bc7 from=translated src=- shape=90bd2f00 vocab=00f93edb
+-/
 @[simp] lemma pbwEquiv_pbwMonomial (s : σ →₀ ℕ) :
     pbwEquiv b (pbwMonomial R b s) = monomial s 1 := by
   rw [← pbwEquiv_symm_monomial, LinearEquiv.apply_symm_apply]
@@ -679,16 +771,27 @@ Theorem 1 and Corollary 3.-/
 def pbwBasis : Basis (σ →₀ ℕ) R (UniversalEnvelopingAlgebra R L) :=
   (basisMonomials σ R).map (pbwEquiv b).symm
 
+/--
+@isnad1 id=eq.0h5v.s8.c3c3f8b66835 from=translated src=- shape=57c4f68f vocab=f763c533
+-/
 @[simp] theorem pbwBasis_apply (s : σ →₀ ℕ) : pbwBasis b s = pbwMonomial R b s := by
   simp [pbwBasis]
 
+/--
+@isnad1 id=eq.0h5v.s8.50c8098d100a from=translated src=- shape=093270ee vocab=cf19e0ec
+-/
 lemma pbwMonomial_single (i : σ) : pbwMonomial R b (single i 1) = ι R (b i) := by
   simpa using pbwMonomial_add_single (R := R) (v := b) (leAll_zero i)
 
+/--
+@isnad1 id=eq.0h5v.s9.02f92464caba from=translated src=- shape=9812f0b2 vocab=32febfbb
+-/
 theorem pbwEquiv_ι_basis (i : σ) : pbwEquiv b (ι R (b i)) = X i := by
   rw [← pbwMonomial_single, pbwEquiv_pbwMonomial, X]
 
-/-- If `L` has a basis then `ι : L → U(L)` is injective.-/
+/-- If `L` has a basis then `ι : L → U(L)` is injective.
+@isnad1 id=injectiv.0h4v.s7.4c15982eb89c from=translated src=- shape=77b20293 vocab=36e44d0e
+-/
 theorem ι_injective_of_basis (b : Basis σ R L) :
     Function.Injective (ι R : L → UniversalEnvelopingAlgebra R L) := by
   intro x y h
@@ -706,7 +809,9 @@ theorem ι_injective_of_basis (b : Basis σ R L) :
 
 variable (R L) in
 /-- **Corollary of PBW**: if `L` is free as an `R`-module then the canonical map `ι : L → U(L)`
-is injective. See Humphreys, §17.3, Corollary B.-/
+is injective. See Humphreys, §17.3, Corollary B.
+@isnad1 id=injectiv.0h2v.s7.86e6b529d6a3 from=translated src=- shape=8758afb9 vocab=317df4ec
+-/
 theorem ι_injective [Module.Free R L] :
     Function.Injective (ι R : L → UniversalEnvelopingAlgebra R L) := by
   let b := Module.Free.chooseBasis R L

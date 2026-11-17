@@ -90,14 +90,26 @@ def IsNeg (f : ℤ[T;T⁻¹]) : Prop := ∀ n : ℤ, 0 ≤ n → f.coeff n = 0
 def IsBounded (N : ℤ) (f : ℤ[T;T⁻¹]) : Prop :=
   ∀ n : ℤ, f.coeff n ≠ 0 → -N ≤ n ∧ n ≤ N ∧ Even (n + N)
 
+/--
+@isnad1 id=eq.0h3v.s6.6f2353b5fb50 from=translated src=- shape=0bb10ca7 vocab=9818e12e
+-/
 theorem coeff_T_mul (k n : ℤ) (f : ℤ[T;T⁻¹]) : (T k * f).coeff n = f.coeff (n - k) := by
   rw [T, AddMonoidAlgebra.coeff_single_mul_apply, one_mul, sub_eq_neg_add]
 
+/--
+@isnad1 id=isneg.0h0v.s4.43530083ee8a from=translated src=- shape=42fca508 vocab=532bb7c8
+-/
 theorem isNeg_zero : IsNeg 0 := fun _ _ ↦ rfl
 
+/--
+@isnad1 id=isneg.2h2v.s5.2f169a025da5 from=translated src=- shape=7ebf9655 vocab=e5aef325
+-/
 theorem IsNeg.add {f g : ℤ[T;T⁻¹]} (hf : f.IsNeg) (hg : g.IsNeg) : (f + g).IsNeg := fun n hn ↦ by
   rw [AddMonoidAlgebra.coeff_add, Finsupp.add_apply, hf n hn, hg n hn, add_zero]
 
+/--
+@isnad1 id=isneg.2h2v.s5.a0c75f4e5049 from=translated src=- shape=7ebf9655 vocab=9486c416
+-/
 theorem IsNeg.sub {f g : ℤ[T;T⁻¹]} (hf : f.IsNeg) (hg : g.IsNeg) : (f - g).IsNeg := fun n hn ↦ by
   rw [AddMonoidAlgebra.coeff_sub, Finsupp.sub_apply, hf n hn, hg n hn, sub_zero]
 
@@ -110,8 +122,14 @@ theorem IsNeg.eq_zero_of_invert_eq {f : ℤ[T;T⁻¹]} (hf : f.IsNeg) (h : inver
   · rw [← h, invert_apply]
     exact hf _ (by omega)
 
+/--
+@isnad1 id=isbounde.0h1v.s4.7c46bd7be2d7 from=translated src=- shape=a7585d11 vocab=349aa92d
+-/
 theorem isBounded_zero (N : ℤ) : IsBounded N 0 := fun _ h ↦ absurd rfl h
 
+/--
+@isnad1 id=isbounde.2h3v.s5.e450c899835f from=translated src=- shape=0470a71f vocab=101ab9e2
+-/
 theorem IsBounded.add {N : ℤ} {f g : ℤ[T;T⁻¹]} (hf : f.IsBounded N) (hg : g.IsBounded N) :
     (f + g).IsBounded N := fun n hn ↦ by
   rw [AddMonoidAlgebra.coeff_add, Finsupp.add_apply] at hn
@@ -120,14 +138,23 @@ theorem IsBounded.add {N : ℤ} {f g : ℤ[T;T⁻¹]} (hf : f.IsBounded N) (hg :
     exact hg n hn
   · exact hf n h
 
+/--
+@isnad1 id=isbounde.1h2v.s5.b0f1310ec6b1 from=translated src=- shape=2b5efd71 vocab=7ac826cb
+-/
 theorem IsBounded.neg {N : ℤ} {f : ℤ[T;T⁻¹]} (hf : f.IsBounded N) : (-f).IsBounded N :=
   fun n hn ↦ hf n (by simpa using hn)
 
+/--
+@isnad1 id=isbounde.2h3v.s5.f39a9c358ad9 from=translated src=- shape=0470a71f vocab=bccace39
+-/
 theorem IsBounded.sub {N : ℤ} {f g : ℤ[T;T⁻¹]} (hf : f.IsBounded N) (hg : g.IsBounded N) :
     (f - g).IsBounded N := by
   rw [sub_eq_add_neg]
   exact hf.add hg.neg
 
+/--
+@isnad1 id=isbounde.1h4v.s5.66d2f32ce3a8 from=translated src=- shape=0b9592fa vocab=8e473f02
+-/
 theorem isBounded_sum {ι : Type*} {N : ℤ} (s : Finset ι) {f : ι → ℤ[T;T⁻¹]}
     (hf : ∀ i ∈ s, (f i).IsBounded N) : (∑ i ∈ s, f i).IsBounded N := by
   classical
@@ -137,6 +164,9 @@ theorem isBounded_sum {ι : Type*} {N : ℤ} (s : Finset ι) {f : ι → ℤ[T;T
     rw [Finset.sum_insert hi]
     exact (hf i (Finset.mem_insert_self i s)).add (ih fun j hj ↦ hf j (Finset.mem_insert_of_mem hj))
 
+/--
+@isnad1 id=isbounde.2h4v.s5.ad9f3c7cbe66 from=translated src=- shape=00c236af vocab=f847a3c2
+-/
 theorem IsBounded.mul {N N' : ℤ} {f g : ℤ[T;T⁻¹]} (hf : f.IsBounded N) (hg : g.IsBounded N') :
     (f * g).IsBounded (N + N') := by
   classical
@@ -150,6 +180,9 @@ theorem IsBounded.mul {N N' : ℤ} {f g : ℤ[T;T⁻¹]} (hf : f.IsBounded N) (h
   have := h3.add h3'
   rwa [show a + N + (c + N') = a + c + (N + N') by ring] at this
 
+/--
+@isnad1 id=isbounde.1h2v.s7.8ce25aeef8e0 from=translated src=- shape=429c8e28 vocab=2b9c70ae
+-/
 theorem IsBounded.invert {N : ℤ} {f : ℤ[T;T⁻¹]} (hf : f.IsBounded N) :
     (invert f).IsBounded N := fun n hn ↦ by
   rw [invert_apply] at hn
@@ -159,6 +192,9 @@ theorem IsBounded.invert {N : ℤ} {f : ℤ[T;T⁻¹]} (hf : f.IsBounded N) :
   rw [this]
   exact h3.add (even_two_mul n)
 
+/--
+@isnad1 id=isbounde.3h3v.s6.e5ce5ae5f6d1 from=translated src=- shape=9bf9777a vocab=ec101ae0
+-/
 theorem isBounded_C_mul_T {N n : ℤ} (c : ℤ) (h1 : -N ≤ n) (h2 : n ≤ N) (h3 : Even (n + N)) :
     (C c * T n : ℤ[T;T⁻¹]).IsBounded N := fun m hm ↦ by
   classical
@@ -168,17 +204,28 @@ theorem isBounded_C_mul_T {N n : ℤ} (c : ℤ) (h1 : -N ≤ n) (h2 : n ≤ N) (
     exact ⟨h1, h2, h3⟩
   · exact absurd rfl hm
 
+/--
+@isnad1 id=isbounde.3h2v.s5.a58ae90e5640 from=translated src=- shape=5e8a47ca vocab=86953a67
+-/
 theorem isBounded_T {N n : ℤ} (h1 : -N ≤ n) (h2 : n ≤ N) (h3 : Even (n + N)) :
     (T n : ℤ[T;T⁻¹]).IsBounded N := by
   simpa using isBounded_C_mul_T 1 h1 h2 h3
 
+/--
+@isnad1 id=isbounde.0h0v.s4.e7a6992aaf5a from=translated src=- shape=907c304a vocab=349aa92d
+-/
 theorem isBounded_one : (1 : ℤ[T;T⁻¹]).IsBounded 0 := by
   simpa using isBounded_T (N := 0) (n := 0) le_rfl le_rfl ⟨0, by simp⟩
 
+/--
+@isnad1 id=isbounde.2h3v.s4.5d9ff4be06c7 from=translated src=- shape=de790e34 vocab=349aa92d
+-/
 theorem IsBounded.of_eq {N N' : ℤ} {f : ℤ[T;T⁻¹]} (hf : f.IsBounded N) (h : N = N') :
     f.IsBounded N' := h ▸ hf
 
-/-- `v^a P(v²)` is supported in degrees `a, a + 2, …, a + 2 deg P`.-/
+/-- `v^a P(v²)` is supported in degrees `a, a + 2, …, a + 2 deg P`.
+@isnad1 id=isbounde.3h3v.s7.b5dcff6d68fd from=translated src=- shape=e84f5f47 vocab=718720f4
+-/
 theorem isBounded_T_mul_aeval {N a : ℤ} (P : ℤ[X]) (h1 : -N ≤ a)
     (h2 : a + 2 * P.natDegree ≤ N) (h3 : Even (a + N)) :
     (T a * aeval (T 2 : ℤ[T;T⁻¹]) P).IsBounded N := by
@@ -195,13 +242,22 @@ theorem isBounded_T_mul_aeval {N a : ℤ} (P : ℤ[X]) (h1 : -N ≤ a)
 noncomputable def negPart (f : ℤ[T;T⁻¹]) : ℤ[T;T⁻¹] :=
   AddMonoidAlgebra.ofCoeff (f.coeff.filter (· < 0))
 
+/--
+@isnad1 id=eq.0h2v.s6.fa8ac3d5b6f0 from=translated src=- shape=c2a8cd0b vocab=047d1339
+-/
 theorem coeff_negPart_apply (f : ℤ[T;T⁻¹]) (n : ℤ) :
     (negPart f).coeff n = if n < 0 then f.coeff n else 0 :=
   Finsupp.filter_apply _ _ _
 
+/--
+@isnad1 id=isneg.0h1v.s2.47ddf1af70ee from=translated src=- shape=94c7f951 vocab=73ef7840
+-/
 theorem isNeg_negPart (f : ℤ[T;T⁻¹]) : (negPart f).IsNeg := fun n hn ↦ by
   rw [coeff_negPart_apply, ite_eq_right (by omega)]
 
+/--
+@isnad1 id=isbounde.1h2v.s3.52be5bc034c3 from=translated src=- shape=cd29e5e1 vocab=373dae4e
+-/
 theorem IsBounded.negPart {N : ℤ} {f : ℤ[T;T⁻¹]} (hf : f.IsBounded N) :
     (negPart f).IsBounded N := fun n hn ↦ by
   rw [coeff_negPart_apply] at hn
@@ -227,7 +283,9 @@ theorem eq_negPart_sub_invert_negPart {f : ℤ[T;T⁻¹]} (h : invert f = -f) :
 /-! ### Extracting polynomials in `v²` -/
 
 /-- A Laurent polynomial supported in degrees `n ≥ a` with `n ≡ a (mod 2)` is `v^a P(v²)` for a
-polynomial `P` with `P_k = f_{a + 2k}`.-/
+polynomial `P` with `P_k = f_{a + 2k}`.
+@isnad1 id=ex.1h2v.s8.99275d0f403e from=translated src=- shape=971ce428 vocab=28de4d8f
+-/
 theorem exists_eq_T_mul_aeval {a : ℤ} {f : ℤ[T;T⁻¹]}
     (hf : ∀ n, f.coeff n ≠ 0 → a ≤ n ∧ Even (n - a)) :
     ∃ P : ℤ[X], f = T a * aeval (T 2 : ℤ[T;T⁻¹]) P ∧
@@ -293,7 +351,9 @@ namespace IsBarTriangular
 variable {b : Basis ι ℤ[T;T⁻¹] V} {ψ : V →+ V} {ℓ : ι → ℤ} (h : IsBarTriangular b ψ ℓ)
 include h
 
-/-- The coefficients of `ψ(x)`: `[b_j] ψ(x) = Σ_k x̄_k [b_j] ψ(b_k)`.-/
+/-- The coefficients of `ψ(x)`: `[b_j] ψ(x) = Σ_k x̄_k [b_j] ψ(b_k)`.
+@isnad1 id=eq.1h7v.s10.5f3fca4c0f2e from=translated src=- shape=83f1ca7d vocab=a814f4e3
+-/
 theorem repr_apply (x : V) (j : ι) :
     b.repr (ψ x) j = (b.repr x).sum fun k a ↦ invert a * b.repr (ψ (b k)) j := by
   conv_lhs => rw [← b.linearCombination_repr x]
@@ -301,6 +361,9 @@ theorem repr_apply (x : V) (j : ι) :
   simp only [h.map_smul, _root_.map_smul, Finsupp.smul_apply, smul_eq_mul]
 
 omit h [PartialOrder ι] in
+/--
+@isnad1 id=eq.0h6v.s10.80a62715a845 from=translated src=- shape=774c54c2 vocab=595803d5
+-/
 theorem repr_sub_apply (x : V) (j : ι) :
     b.repr (ψ x - x) j = b.repr (ψ x) j - b.repr x j := by
   rw [map_sub, Finsupp.sub_apply]
@@ -446,7 +509,9 @@ private theorem exists_fixed (i : ι) (S : Finset ι) (hSi : ∀ j ∈ S, j < i)
 
 /-- **Existence in Lusztig's lemma** ([KL] Thm. 1.1, cf. [Lus] Lemma 24.2.1): there is a
 `ψ`-invariant element `c ∈ b_i + Σ_{j < i} v⁻¹ ℤ[v⁻¹] b_j`, whose coefficients are moreover
-graded by `ℓ`.-/
+graded by `ℓ`.
+@isnad1 id=ex.1h6v.s10.d782f7d33b94 from=translated src=- shape=2602bdd9 vocab=6ebb081f
+-/
 theorem exists_canonical (i : ι) : ∃ c : V, ψ c = c ∧ b.repr c i = 1 ∧
     ∀ j, j ≠ i → (b.repr c j).IsNeg ∧ (b.repr c j ≠ 0 → j < i) ∧
       (b.repr c j).IsBounded (ℓ i - ℓ j) := by
@@ -469,7 +534,9 @@ theorem exists_canonical (i : ι) : ∃ c : V, ψ c = c ∧ b.repr c i = 1 ∧
 
 /-- **Lusztig's lemma** ([KL] Thm. 1.1, [Deo] Prop. 3.2, cf. [Lus] Lemma 24.2.1): for every
 `i` there is a unique `ψ`-invariant element `c` with `[b_i] c = 1` and `[b_j] c ∈ v⁻¹ ℤ[v⁻¹]` for
-`j ≠ i`.-/
+`j ≠ i`.
+@isnad1 id=existsun.1h6v.s10.caf8ce0a0f62 from=translated src=- shape=2029e393 vocab=ee2435d0
+-/
 theorem existsUnique_canonical (i : ι) :
     ∃! c : V, ψ c = c ∧ b.repr c i = 1 ∧ ∀ j, j ≠ i → (b.repr c j).IsNeg := by
   obtain ⟨c, hc, hci, hcj⟩ := h.exists_canonical i
@@ -488,24 +555,42 @@ theorem existsUnique_canonical (i : ι) :
 `b_i + Σ_{j < i} v⁻¹ ℤ[v⁻¹] b_j`.-/
 noncomputable def canonical (i : ι) : V := (h.exists_canonical i).choose
 
+/--
+@isnad1 id=eq.1h6v.s7.062686e51a7c from=translated src=- shape=12d86ec2 vocab=79b0b9d4
+-/
 theorem apply_canonical (i : ι) : ψ (h.canonical i) = h.canonical i :=
   (h.exists_canonical i).choose_spec.1
 
+/--
+@isnad1 id=eq.1h6v.s9.82598f49c5af from=translated src=- shape=94ca2ec1 vocab=752c3b7e
+-/
 theorem repr_canonical_self (i : ι) : b.repr (h.canonical i) i = 1 :=
   (h.exists_canonical i).choose_spec.2.1
 
+/--
+@isnad1 id=isneg.2h7v.s9.3d079f1b2fb3 from=translated src=- shape=aa60ad43 vocab=7c3e133a
+-/
 theorem isNeg_repr_canonical {i j : ι} (hj : j ≠ i) : (b.repr (h.canonical i) j).IsNeg :=
   ((h.exists_canonical i).choose_spec.2.2 j hj).1
 
+/--
+@isnad1 id=lt.3h7v.s9.0fc66d506f39 from=translated src=- shape=d684e4a0 vocab=dc85b66c
+-/
 theorem lt_of_repr_canonical_ne_zero {i j : ι} (hj : j ≠ i)
     (hne : b.repr (h.canonical i) j ≠ 0) : j < i :=
   ((h.exists_canonical i).choose_spec.2.2 j hj).2.1 hne
 
+/--
+@isnad1 id=le.2h7v.s9.e405c8c8ee87 from=translated src=- shape=e3eda48e vocab=59618ee7
+-/
 theorem le_of_repr_canonical_ne_zero {i j : ι} (hne : b.repr (h.canonical i) j ≠ 0) : j ≤ i := by
   rcases eq_or_ne j i with rfl | hj
   · exact le_rfl
   · exact (h.lt_of_repr_canonical_ne_zero hj hne).le
 
+/--
+@isnad1 id=isbounde.1h7v.s9.a09b284741b4 from=translated src=- shape=2a8c2cb2 vocab=bedb0c73
+-/
 theorem isBounded_repr_canonical (i j : ι) :
     (b.repr (h.canonical i) j).IsBounded (ℓ i - ℓ j) := by
   rcases eq_or_ne j i with rfl | hj

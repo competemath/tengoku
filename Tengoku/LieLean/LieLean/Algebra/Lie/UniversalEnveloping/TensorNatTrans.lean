@@ -107,7 +107,9 @@ def idealSMul : LieSubmodule K L M where
 variable {I n M}
 
 /-- A module killed by all products of `n` elements of `I` has the filtration
-`M ⊇ I M ⊇ I² M ⊇ ⋯ ⊇ Iⁿ M = 0` with subquotients killed by `I`.-/
+`M ⊇ I M ⊇ I² M ⊇ ⋯ ⊇ Iⁿ M = 0` with subquotients killed by `I`.
+@isnad1 id=haskille.1h5v.s6.7e1260c24904 from=translated src=- shape=06d5ab06 vocab=c034ef10
+-/
 theorem hasKilledFiltration_of_isKilledByPow (hM : IsKilledByPow I n M) :
     HasKilledFiltration I M n := by
   induction n generalizing M with
@@ -154,6 +156,9 @@ def comp (ψ : TensorNatTrans.{u, v, w} K L W X) (φ : TensorNatTrans.{u, v, w} 
   naturality M N _ _ _ _ _ _ _ _ f t := by
     rw [LieModuleHom.comp_apply, ψ.naturality, φ.naturality, LieModuleHom.comp_apply]
 
+/--
+@isnad1 id=eq.0h8v.s9.b69bef3233d9 from=translated src=- shape=98d6d6b2 vocab=fbf44070
+-/
 @[simp] theorem comp_app (ψ : TensorNatTrans.{u, v, w} K L W X)
     (φ : TensorNatTrans.{u, v, w} K L V W)
     (M : Type w) [AddCommGroup M] [Module K M] [LieRingModule L M] [LieModule K L M] :

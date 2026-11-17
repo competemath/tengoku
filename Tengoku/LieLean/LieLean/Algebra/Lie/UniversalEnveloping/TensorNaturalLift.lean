@@ -53,7 +53,9 @@ omit [LieAlgebra K L] [LieModule K L X] [LieModule K L Y] [LieModule K L V] in
 /-- **Lifting along a surjection of locally finite semisimple modules**: if every element of `X`
 lies in a finite-dimensional Lie submodule and finite-dimensional Lie submodules of `X` are
 semisimple, every morphism from a finite-dimensional module to `Y` lifts along a surjection
-`π : X → Y`.-/
+`π : X → Y`.
+@isnad1 id=ex.3h7v.s10.c8b40b27ca8f from=translated src=- shape=c8baac54 vocab=f9254531
+-/
 theorem exists_comp_eq_of_surjective (π : X →ₗ⁅K,L⁆ Y) (hπ : Function.Surjective π)
     (hX : ∀ x : X, ∃ N : LieSubmodule K L X, x ∈ N ∧ FiniteDimensional K N)
     (hC : ∀ N : LieSubmodule K L X, FiniteDimensional K N →

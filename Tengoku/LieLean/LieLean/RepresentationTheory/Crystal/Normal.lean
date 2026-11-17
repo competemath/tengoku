@@ -49,23 +49,35 @@ def IsSeminormal : Prop :=
   ∀ i b (n : ℕ), ((C.eIter i n b).isSome ↔ (n : WithBot ℤ) ≤ C.ε i b) ∧
     ((C.fIter i n b).isSome ↔ (n : WithBot ℤ) ≤ C.φ i b)
 
+/--
+@isnad1 id=eq.2h9v.s6.7d9fcf37ec99 from=translated src=- shape=5a2f894c vocab=e2a89da5
+-/
 lemma eIter_eq_none_of_le {m n : ℕ} (hmn : m ≤ n) (h : C.eIter i m b = none) :
     C.eIter i n b = none := by
   induction n, hmn using Nat.le_induction with
   | base => exact h
   | succ n _ ih => rw [eIter_succ', ih, Option.bind_none]
 
+/--
+@isnad1 id=eq.2h9v.s6.84f9a4abaf18 from=translated src=- shape=5a2f894c vocab=2f469095
+-/
 lemma fIter_eq_none_of_le {m n : ℕ} (hmn : m ≤ n) (h : C.fIter i m b = none) :
     C.fIter i n b = none := by
   induction n, hmn using Nat.le_induction with
   | base => exact h
   | succ n _ ih => rw [fIter_succ', ih, Option.bind_none]
 
+/--
+@isnad1 id=eq.2h9v.s6.8df38a2b1a06 from=translated src=- shape=53ee3ab7 vocab=49daf697
+-/
 lemma isSome_eIter_of_le {m n : ℕ} (hmn : m ≤ n) (h : (C.eIter i n b).isSome) :
     (C.eIter i m b).isSome := by
   by_contra h'
   simp [C.eIter_eq_none_of_le hmn (Option.not_isSome_iff_eq_none.mp h')] at h
 
+/--
+@isnad1 id=eq.2h9v.s6.56561b9f89f9 from=translated src=- shape=53ee3ab7 vocab=1327683b
+-/
 lemma isSome_fIter_of_le {m n : ℕ} (hmn : m ≤ n) (h : (C.fIter i n b).isSome) :
     (C.fIter i m b).isSome := by
   by_contra h'
@@ -93,7 +105,9 @@ private lemma natCast_le_iff_isGreatest {x : WithBot ℤ} {s : Set ℕ} (h0 : 0 
     exact ⟨fun hm ↦ by exact_mod_cast hn' hm, fun hm ↦ hs m n (by exact_mod_cast hm) hn⟩
 
 /-- Seminormality in the form of [Kas] §7.6: `εᵢ(b) = max {n ≥ 0 | ẽᵢⁿ b ≠ 0}` and
-`φᵢ(b) = max {n ≥ 0 | f̃ᵢⁿ b ≠ 0}` (in particular these maxima exist).-/
+`φᵢ(b) = max {n ≥ 0 | f̃ᵢⁿ b ≠ 0}` (in particular these maxima exist).
+@isnad1 id=iff.0h5v.s7.04c71d210d66 from=translated src=- shape=ce99e1d8 vocab=65a5680d
+-/
 theorem isSeminormal_iff_isGreatest : C.IsSeminormal ↔ ∀ i b,
     (∃ n : ℕ, C.ε i b = n ∧ IsGreatest {m | (C.eIter i m b).isSome} n) ∧
       ∃ n : ℕ, C.φ i b = n ∧ IsGreatest {m | (C.fIter i m b).isSome} n := by
@@ -144,7 +158,9 @@ private lemma isSome_fIter_iff (h0 : ∀ b, 0 ≤ C.φ i b)
         omega
 
 /-- A local characterization of seminormality: `εᵢ(b), φᵢ(b) ≥ 0`, and `εᵢ(b) = 0` (resp.
-`φᵢ(b) = 0`) whenever `ẽᵢ b = 0` (resp. `f̃ᵢ b = 0`).-/
+`φᵢ(b) = 0`) whenever `ẽᵢ b = 0` (resp. `f̃ᵢ b = 0`).
+@isnad1 id=iff.0h5v.s7.6602e35e222d from=translated src=- shape=65a1857e vocab=b5250b11
+-/
 theorem isSeminormal_iff : C.IsSeminormal ↔ ∀ i b, 0 ≤ C.ε i b ∧ 0 ≤ C.φ i b ∧
     (C.e i b = none → C.ε i b = 0) ∧ (C.f i b = none → C.φ i b = 0) := by
   constructor
@@ -175,28 +191,52 @@ namespace IsSeminormal
 
 variable {C}
 
+/--
+@isnad1 id=le.1h7v.s6.09d61787e96c from=translated src=- shape=bfeaa6b7 vocab=740f091d
+-/
 lemma ε_nonneg (hC : C.IsSeminormal) (i : ι) (b : B) : 0 ≤ C.ε i b :=
   ((C.isSeminormal_iff.mp hC) i b).1
 
+/--
+@isnad1 id=le.1h7v.s6.7b58542ff239 from=translated src=- shape=bfeaa6b7 vocab=fa717bf3
+-/
 lemma φ_nonneg (hC : C.IsSeminormal) (i : ι) (b : B) : 0 ≤ C.φ i b :=
   ((C.isSeminormal_iff.mp hC) i b).2.1
 
+/--
+@isnad1 id=eq.2h7v.s6.b8064622f946 from=translated src=- shape=31f3b73e vocab=6f6b666c
+-/
 lemma ε_eq_zero (hC : C.IsSeminormal) (h : C.e i b = none) : C.ε i b = 0 :=
   ((C.isSeminormal_iff.mp hC) i b).2.2.1 h
 
+/--
+@isnad1 id=eq.2h7v.s6.0f271cfd41e8 from=translated src=- shape=31f3b73e vocab=4fccf2d7
+-/
 lemma φ_eq_zero (hC : C.IsSeminormal) (h : C.f i b = none) : C.φ i b = 0 :=
   ((C.isSeminormal_iff.mp hC) i b).2.2.2 h
 
+/--
+@isnad1 id=ex.1h7v.s5.8a497388dd7d from=translated src=- shape=c791ce03 vocab=cc4c7e10
+-/
 lemma exists_ε_eq (hC : C.IsSeminormal) (i : ι) (b : B) : ∃ n : ℕ, C.ε i b = n :=
   nonneg_iff_exists.mp (hC.ε_nonneg i b)
 
+/--
+@isnad1 id=ex.1h7v.s5.0cdb232b924b from=translated src=- shape=c791ce03 vocab=2652785e
+-/
 lemma exists_φ_eq (hC : C.IsSeminormal) (i : ι) (b : B) : ∃ n : ℕ, C.φ i b = n :=
   nonneg_iff_exists.mp (hC.φ_nonneg i b)
 
+/--
+@isnad1 id=iff.1h8v.s6.5d020b3a12c3 from=translated src=- shape=7e7fb380 vocab=850fd030
+-/
 lemma isSome_eIter_iff (hC : C.IsSeminormal) (n : ℕ) :
     (C.eIter i n b).isSome ↔ (n : WithBot ℤ) ≤ C.ε i b :=
   (hC i b n).1
 
+/--
+@isnad1 id=iff.1h8v.s6.d21cc4dac7f8 from=translated src=- shape=7e7fb380 vocab=10205a7e
+-/
 lemma isSome_fIter_iff (hC : C.IsSeminormal) (n : ℕ) :
     (C.fIter i n b).isSome ↔ (n : WithBot ℤ) ≤ C.φ i b :=
   (hC i b n).2
@@ -204,7 +244,9 @@ lemma isSome_fIter_iff (hC : C.IsSeminormal) (n : ℕ) :
 variable {C₁ : Crystal D B₁} {C₂ : Crystal D B₂}
 
 /-- The tensor product of two seminormal crystals is seminormal (for seminormality see [Kas]
-§7.6).-/
+§7.6).
+@isnad1 id=issemino.2h7v.s5.73d8fbb60fdf from=translated src=- shape=46f46cf7 vocab=d4c2a1e7
+-/
 theorem tensor (h₁ : C₁.IsSeminormal) (h₂ : C₂.IsSeminormal) : (C₁.tensor C₂).IsSeminormal := by
   rw [isSeminormal_iff]
   rintro i ⟨b₁, b₂⟩

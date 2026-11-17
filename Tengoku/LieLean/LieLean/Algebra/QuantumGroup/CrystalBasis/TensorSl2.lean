@@ -110,6 +110,9 @@ section Structure
 variable (hq0 : q ≠ 0) (hq : ∀ n : ℕ, 0 < n → q ^ n ≠ 1)
 
 include hq0 hq in
+/--
+@isnad1 id=injectiv.2h2v.s6.8fef445d416c from=translated src=- shape=34b58dcf vocab=76fe28ad
+-/
 lemma zpow_injective : Function.Injective fun n : ℤ ↦ q ^ n := by
   intro m n h
   by_contra hne
@@ -118,6 +121,9 @@ lemma zpow_injective : Function.Injective fun n : ℤ ↦ q ^ n := by
   rw [zpow_sub₀ hq0, h, div_self (zpow_ne_zero _ hq0)]
 
 omit [Module k M] in
+/--
+@isnad1 id=eq.2h6v.s8.783fc706bbb4 from=translated src=- shape=c281871c vocab=5fc441b2
+-/
 lemma pow_apply_eq_zero_of_le' {N : Type*} [AddCommGroup N] [Module k N] {f : Module.End k N}
     {x : N} {n m : ℕ} (h : (f ^ n) x = 0) (hnm : n ≤ m) : (f ^ m) x = 0 := by
   rw [← Nat.sub_add_cancel hnm, pow_add, Module.End.mul_apply, h, map_zero]

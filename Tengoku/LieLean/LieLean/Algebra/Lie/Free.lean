@@ -37,7 +37,9 @@ namespace FreeLieAlgebra
 
 variable (R X : Type*) [CommRing R]
 
-/-- The free Lie algebra on `X` is generated, as a Lie algebra, by `X`.-/
+/-- The free Lie algebra on `X` is generated, as a Lie algebra, by `X`.
+@isnad1 id=eq.0h2v.s6.3f1fbc124a02 from=translated src=- shape=b165b955 vocab=b91d6929
+-/
 theorem lieSpan_range_of :
     LieSubalgebra.lieSpan R (FreeLieAlgebra R X) (Set.range (of R)) = ⊤ := by
   set S := LieSubalgebra.lieSpan R (FreeLieAlgebra R X) (Set.range (of R))
@@ -51,7 +53,9 @@ theorem lieSpan_range_of :
   exact (g y).2
 
 variable {R X} in
-/-- Induction principle for the free Lie algebra.-/
+/-- Induction principle for the free Lie algebra.
+@isnad1 id=var.0h9v.s7.300e76c3b112 from=translated src=- shape=dde00afc vocab=5fafbe88
+-/
 @[elab_as_elim]
 theorem induction_on {p : FreeLieAlgebra R X → Prop} (y : FreeLieAlgebra R X)
     (of : ∀ x, p (of R x)) (zero : p 0) (add : ∀ y z, p y → p z → p (y + z))
@@ -71,9 +75,15 @@ attribute [local instance 100] LieRing.ofAssociativeRing
 noncomputable def toFreeAlgebra : FreeLieAlgebra R X →ₗ⁅R⁆ FreeAlgebra R X :=
   lift R (FreeAlgebra.ι R)
 
+/--
+@isnad1 id=eq.0h3v.s7.05094776f564 from=translated src=- shape=ee6b5636 vocab=78798416
+-/
 @[simp] lemma toFreeAlgebra_of (x : X) : toFreeAlgebra R X (of R x) = FreeAlgebra.ι R x := by
   simp [toFreeAlgebra]
 
+/--
+@isnad1 id=eq.0h2v.s8.d7e91fdd3627 from=translated src=- shape=7fba0f62 vocab=e7588c04
+-/
 lemma toFreeAlgebra_eq :
     toFreeAlgebra R X = ((universalEnvelopingEquivFreeAlgebra R X).toAlgHom :
       UniversalEnvelopingAlgebra R (FreeLieAlgebra R X) →ₗ⁅R⁆ FreeAlgebra R X).comp
@@ -82,7 +92,9 @@ lemma toFreeAlgebra_eq :
   simp [toFreeAlgebra]
 
 /-- Over a field, the free Lie algebra embeds in the free associative algebra (a consequence of
-the Poincaré–Birkhoff–Witt theorem).-/
+the Poincaré–Birkhoff–Witt theorem).
+@isnad1 id=injectiv.0h2v.s7.e2e2705caafb from=translated src=- shape=10dd849d vocab=2b330646
+-/
 theorem toFreeAlgebra_injective (K : Type*) [Field K] :
     Function.Injective (toFreeAlgebra K X) := by
   rw [toFreeAlgebra_eq, LieHom.coe_comp]

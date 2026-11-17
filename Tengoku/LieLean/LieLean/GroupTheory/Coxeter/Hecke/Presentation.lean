@@ -64,7 +64,9 @@ structure IsHeckeFamily (t : B → A) : Prop where
 
 variable {M q}
 
-/-- The quadratic relation in the form `tᵢ² = (q - 1) tᵢ + q`.-/
+/-- The quadratic relation in the form `tᵢ² = (q - 1) tᵢ + q`.
+@isnad1 id=eq.1h7v.s7.1ee27996f720 from=translated src=- shape=d4df8561 vocab=d907f685
+-/
 theorem IsHeckeFamily.mul_self {t : B → A} (ht : M.IsHeckeFamily q t) (i : B) :
     t i * t i = (q - 1) • t i + algebraMap R A q := by
   have h := ht.quadratic i
@@ -72,7 +74,9 @@ theorem IsHeckeFamily.mul_self {t : B → A} (ht : M.IsHeckeFamily q t) (i : B) 
   rw [← sub_eq_zero, ← h, sub_smul, one_smul]
   abel
 
-/-- The image of a Hecke family under an algebra homomorphism is a Hecke family.-/
+/-- The image of a Hecke family under an algebra homomorphism is a Hecke family.
+@isnad1 id=isheckef.1h8v.s6.6bef27ee6f78 from=translated src=- shape=9eba4fd3 vocab=ec3c946a
+-/
 theorem IsHeckeFamily.map {A' : Type*} [Ring A'] [Algebra R A'] {t : B → A}
     (ht : M.IsHeckeFamily q t) (f : A →ₐ[R] A') : M.IsHeckeFamily q (f ∘ t) where
   quadratic i := by simpa using congrArg f (ht.quadratic i)
@@ -95,7 +99,9 @@ local prefix:100 "π " => cs.wordProd
 local prefix:100 "ℓ " => cs.length
 
 /-- The standard generators `T_s` of `𝓗` satisfy the Hecke relations ([GP] Def. 4.4.1,
-Thm. 4.4.6).-/
+Thm. 4.4.6).
+@isnad1 id=isheckef.0h6v.s6.96ce12d78fb6 from=translated src=- shape=b96b2b1d vocab=a1509215
+-/
 theorem isHeckeFamily_T : M.IsHeckeFamily q (fun i ↦ T cs q (s i)) where
   quadratic := T_simple_sub_mul_T_simple_add cs q
   braid i j _ _ := by
@@ -108,11 +114,17 @@ It is an algebra homomorphism if the `t i` satisfy the Hecke relations (`liftAlg
 noncomputable def liftLinear (t : B → A) : IwahoriHeckeAlgebra cs q →ₗ[R] A :=
   Finsupp.linearCombination R (cs.braidLift t) ∘ₗ (toFinsupp cs q).toLinearMap
 
+/--
+@isnad1 id=eq.0h9v.s8.ad7b10037a66 from=translated src=- shape=e578d1d5 vocab=023ff393
+-/
 theorem liftLinear_T (t : B → A) (w : W) : liftLinear cs q t (T cs q w) = cs.braidLift t w := by
   simp [liftLinear, toFinsupp_T]
 
 variable {cs q}
 
+/--
+@isnad1 id=eq.1h10v.s9.d3a994f7f51d from=translated src=- shape=15316f85 vocab=7f228af3
+-/
 theorem liftLinear_mul_T_simple {t : B → A} (ht : M.IsHeckeFamily q t)
     (h : IwahoriHeckeAlgebra cs q) (i : B) :
     liftLinear cs q t (h * T cs q (s i)) = liftLinear cs q t h * t i := by
@@ -146,6 +158,9 @@ noncomputable def liftAlgHom (t : B → A) (ht : M.IsHeckeFamily q t) :
           liftLinear cs q t h * liftLinear cs q t (T cs q (s i))
         rw [liftLinear_mul_T_simple ht, liftLinear_T, braidLift_simple]))
 
+/--
+@isnad1 id=eq.1h9v.s8.af43cf652a59 from=translated src=- shape=0134a5a1 vocab=541388ef
+-/
 theorem liftAlgHom_apply (t : B → A) (ht : M.IsHeckeFamily q t) (x : IwahoriHeckeAlgebra cs q) :
     liftAlgHom cs q t ht x = liftLinear cs q t x := rfl
 
@@ -166,13 +181,17 @@ noncomputable def lift :
     change liftAlgHom cs q _ _ (T cs q (s i)) = _
     rw [liftAlgHom_apply, liftLinear_T, braidLift_simple]
 
-/-- `lift t` maps `T_w` to `t_{i₁} ⋯ t_{iₖ}` for any reduced word `i₁ ⋯ iₖ` of `w`.-/
+/-- `lift t` maps `T_w` to `t_{i₁} ⋯ t_{iₖ}` for any reduced word `i₁ ⋯ iₖ` of `w`.
+@isnad1 id=eq.1h9v.s9.275a895b6296 from=translated src=- shape=7c6d84ea vocab=5101b4d4
+-/
 theorem lift_apply_T (t : {t : B → A // M.IsHeckeFamily q t}) {ω : List B}
     (hω : cs.IsReduced ω) : lift cs q A t (T cs q (π ω)) = (ω.map t.1).prod := by
   change liftAlgHom cs q t.1 t.2 _ = _
   rw [liftAlgHom_apply, liftLinear_T, braidLift_wordProd t.2.braid hω]
 
-/-- `lift t` maps `T_{sᵢ}` to `tᵢ`.-/
+/-- `lift t` maps `T_{sᵢ}` to `tᵢ`.
+@isnad1 id=eq.0h9v.s9.3aae056a71bc from=translated src=- shape=c1be15a5 vocab=4c9e9de0
+-/
 @[simp]
 theorem lift_apply_T_simple (t : {t : B → A // M.IsHeckeFamily q t}) (i : B) :
     lift cs q A t (T cs q (s i)) = t.1 i :=
@@ -209,7 +228,9 @@ namespace HeckeAlgebra
 /-- The generator `Tᵢ` of `M.HeckeAlgebra q`.-/
 noncomputable def gen (i : B) : M.HeckeAlgebra q := RingQuot.mkAlgHom R _ (ι R i)
 
-/-- The generators of `M.HeckeAlgebra q` satisfy the Hecke relations.-/
+/-- The generators of `M.HeckeAlgebra q` satisfy the Hecke relations.
+@isnad1 id=isheckef.0h4v.s6.a9103028d8fe from=translated src=- shape=dd7a4b16 vocab=7ae8ee8a
+-/
 theorem isHeckeFamily_gen : M.IsHeckeFamily q (gen M q) where
   quadratic i := by
     have := RingQuot.mkAlgHom_rel R (HeckeRel.quadratic (M := M) (q := q) i)
@@ -220,12 +241,17 @@ theorem isHeckeFamily_gen : M.IsHeckeFamily q (gen M q) where
 
 variable {M q}
 
-/-- Algebra homomorphisms out of `M.HeckeAlgebra q` agree if they agree on the generators.-/
+/-- Algebra homomorphisms out of `M.HeckeAlgebra q` agree if they agree on the generators.
+@isnad1 id=eq.1h7v.s9.9a77efbec157 from=translated src=- shape=25afbc5e vocab=d7f70e6d
+-/
 @[ext]
 theorem hom_ext {f g : M.HeckeAlgebra q →ₐ[R] A} (h : ∀ i, f (gen M q i) = g (gen M q i)) :
     f = g :=
   RingQuot.ringQuot_ext' R f g (FreeAlgebra.hom_ext (funext h))
 
+/--
+@isnad1 id=eq.2h8v.s9.2f51f4e3b6bb from=translated src=- shape=64b4d5a9 vocab=8894ff4a
+-/
 theorem freeAlgebraLift_heckeRel {t : B → A} (ht : M.IsHeckeFamily q t) ⦃x y : FreeAlgebra R B⦄
     (h : M.HeckeRel q x y) : FreeAlgebra.lift R t x = FreeAlgebra.lift R t y := by
   cases h with
@@ -246,6 +272,9 @@ noncomputable def lift :
   right_inv f := hom_ext fun i ↦ by
     simp [gen, RingQuot.liftAlgHom_mkAlgHom_apply]
 
+/--
+@isnad1 id=eq.0h7v.s9.6a2276b606fc from=translated src=- shape=a741d36a vocab=2f45eff2
+-/
 @[simp]
 theorem lift_apply_gen (t : {t : B → A // M.IsHeckeFamily q t}) (i : B) :
     lift M q A t (gen M q i) = t.1 i := by
@@ -271,11 +300,17 @@ noncomputable def equivHeckeAlgebra : IwahoriHeckeAlgebra cs q ≃ₐ[R] M.Hecke
     (CoxeterMatrix.HeckeAlgebra.hom_ext fun i ↦ by simp)
     (algHom_ext cs q fun i ↦ by simp)
 
+/--
+@isnad1 id=eq.0h7v.s8.33598f3c1cc0 from=translated src=- shape=cfe775b7 vocab=273ae7a6
+-/
 @[simp]
 theorem equivHeckeAlgebra_T_simple (i : B) :
     equivHeckeAlgebra cs q (T cs q (s i)) = CoxeterMatrix.HeckeAlgebra.gen M q i := by
   simp [equivHeckeAlgebra]
 
+/--
+@isnad1 id=eq.0h7v.s8.95f544ed94f1 from=translated src=- shape=ce721a40 vocab=e02208a6
+-/
 @[simp]
 theorem equivHeckeAlgebra_symm_gen (i : B) :
     (equivHeckeAlgebra cs q).symm (CoxeterMatrix.HeckeAlgebra.gen M q i) = T cs q (s i) := by

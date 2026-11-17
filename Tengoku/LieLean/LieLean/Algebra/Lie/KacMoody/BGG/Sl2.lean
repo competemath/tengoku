@@ -52,26 +52,34 @@ variable {K L M : Type*} [Field K] [LieRing L] [LieAlgebra K L] [AddCommGroup M]
   [LieRingModule L M] [LieModule K L M] {h e f : L} (t : IsSl2Triple h e f)
 include t
 
-/-- The Casimir operator of the triple `(-h, f, e)` is that of `(h, e, f)`.-/
+/-- The Casimir operator of the triple `(-h, f, e)` is that of `(h, e, f)`.
+@isnad1 id=eq.1h6v.s6.58751151b886 from=translated src=- shape=89708a9f vocab=27373aaf
+-/
 lemma casimir_symm : casimir K M (-h) f e = casimir K M h e f := by
   ext v
   simp only [casimir_apply, neg_lie, lie_neg, smul_neg, neg_neg, leibniz_lie e f v, t.lie_e_f]
   module
 
-/-- The Casimir operator commutes with `f`.-/
+/-- The Casimir operator commutes with `f`.
+@isnad1 id=commute.1h6v.s8.35af7a02e5eb from=translated src=- shape=58c478d2 vocab=f4795692
+-/
 lemma commute_casimir_f : Commute (casimir K M h e f) (toEnd K L M f) := by
   rw [← t.casimir_symm]
   exact t.symm.commute_casimir_e
 
 omit t in
-/-- `4 f e w = (Ω - c (c + 2)) w` for `w` of weight `c`.-/
+/-- `4 f e w = (Ω - c (c + 2)) w` for `w` of weight `c`.
+@isnad1 id=eq.1h8v.s8.b58a5ef253a1 from=translated src=- shape=b8176c3f vocab=58053bb2
+-/
 lemma four_smul_f_e {c : K} {w : M} (hw : ⁅h, w⁆ = c • w) :
     (4 : K) • ⁅f, ⁅e, w⁆⁆ = casimir K M h e f w - (c * (c + 2)) • w := by
   rw [casimir_apply, hw, lie_smul, hw, smul_smul]
   module
 
 /-- `4ᵏ fᵏ eᵏ x = ∏_{j < k} (Ω - cⱼ (cⱼ + 2)) x` for `x` of weight `μ`, where `cⱼ = μ + 2j` and `Ω`
-is the Casimir operator.-/
+is the Casimir operator.
+@isnad1 id=eq.2h9v.s10.458eebbdefc2 from=translated src=- shape=065d9238 vocab=064c8bd9
+-/
 theorem four_pow_smul_pow_f_pow_e {μ : K} {x : M} (hx : ⁅h, x⁆ = μ • x) (k : ℕ) :
     (4 : K) ^ k • (toEnd K L M f ^ k) ((toEnd K L M e ^ k) x) =
       aeval (casimir K M h e f)
@@ -102,7 +110,9 @@ theorem four_pow_smul_pow_f_pow_e {μ : K} {x : M} (hx : ⁅h, x⁆ = μ • x) 
 variable [CharZero K]
 
 omit t in
-/-- `n (n + 2) ≠ c (c + 2)` in `K` if `c = 2j - m` with `j < k < m ≤ n`.-/
+/-- `n (n + 2) ≠ c (c + 2)` in `K` if `c = 2j - m` with `j < k < m ≤ n`.
+@isnad1 id=ne.3h5v.s8.9d7d3e09065e from=translated src=- shape=abfd96ef vocab=e66e65e8
+-/
 lemma cast_mul_ne {n m j k : ℕ} (hj : j < k) (hkm : k < m) (hmn : m ≤ n) :
     (-(m : K) + 2 * j) * (-(m : K) + 2 * j + 2) - n * (n + 2) ≠ 0 := by
   have : ((-(m : ℤ) + 2 * j) * (-(m : ℤ) + 2 * j + 2) - n * (n + 2) : ℤ) ≠ 0 := by
@@ -112,7 +122,9 @@ lemma cast_mul_ne {n m j k : ℕ} (hj : j < k) (hkm : k < m) (hmn : m ≤ n) :
   exact_mod_cast this
 
 /-- Every `f`-string through a primitive vector of weight `n ∈ ℕ` stops after `n + 1` steps if `f`
-acts locally nilpotently.-/
+acts locally nilpotently.
+@isnad1 id=eq.4h8v.s10.439967f77dfb from=translated src=- shape=6b23bce9 vocab=e8bedfa5
+-/
 lemma pow_f_succ_eq_zero {n : ℕ} {w : M} (hwe : ⁅e, w⁆ = 0) (hwh : ⁅h, w⁆ = (n : K) • w)
     (hf : ∃ N, (toEnd K L M f ^ N) w = 0) : (toEnd K L M f ^ (n + 1)) w = 0 := by
   by_contra h0

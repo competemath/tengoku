@@ -65,17 +65,25 @@ def FirstHit (η : LittelmannPath S) (i : ι) (t₀ : 𝕜) (c : ℤ) : Prop :=
   t₀ ∈ Icc (0 : 𝕜) 1 ∧ (∀ t ∈ Ico 0 t₀, (c : 𝕜) < η.pairing i t) ∧ η.pairing i t₀ = c
 
 omit [IsStrictOrderedRing 𝕜] [FloorRing 𝕜] in
+/--
+@isnad1 id=le.1h10v.s7.615d9e732c9a from=translated src=- shape=0a46e0de vocab=22f6ef6b
+-/
 lemma FirstHit.minPairing_le (h : η.FirstHit i t₀ c) : η.minPairing i ≤ c :=
   h.2.2 ▸ η.minPairing_le h.1
 
 omit [IsStrictOrderedRing 𝕜] [OrderTopology 𝕜] [FloorRing 𝕜] in
+/--
+@isnad1 id=firsthit.2h11v.s8.ef2f2a290fc3 from=translated src=- shape=a5d23a26 vocab=d34e144e
+-/
 lemma FirstHit.of_eqOn (h : η.FirstHit i t₀ c) (heq : ∀ t ∈ Icc 0 t₀, ξ t = η t) :
     ξ.FirstHit i t₀ c :=
   ⟨h.1, fun t ht ↦ by rw [pairing, heq t ⟨ht.1, ht.2.le⟩]; exact h.2.1 t ht,
     by rw [pairing, heq t₀ ⟨h.1.1, le_rfl⟩]; exact h.2.2⟩
 
 omit [FloorRing 𝕜] in
-/-- Under `FirstHit`, `fᵢ` does not change the path on `[0, t₀]`.-/
+/-- Under `FirstHit`, `fᵢ` does not change the path on `[0, t₀]`.
+@isnad1 id=eq.3h12v.s8.00da4ada9842 from=translated src=- shape=63077c1e vocab=e65cdc08
+-/
 lemma FirstHit.f_eqOn (h : η.FirstHit i t₀ c) (hf : f i η = some ξ) :
     ∀ t ∈ Icc 0 t₀, ξ t = η t := by
   intro t ht
@@ -91,7 +99,9 @@ lemma FirstHit.f_eqOn (h : η.FirstHit i t₀ c) (hf : f i η = some ξ) :
     sub_zero]
 
 omit [FloorRing 𝕜] in
-/-- Under `FirstHit`, if `mᵢ + 1 ≤ c` then `eᵢ` does not change the path on `[0, t₀]`.-/
+/-- Under `FirstHit`, if `mᵢ + 1 ≤ c` then `eᵢ` does not change the path on `[0, t₀]`.
+@isnad1 id=eq.4h12v.s8.520873c91e9b from=translated src=- shape=e8b05144 vocab=f71b685d
+-/
 lemma FirstHit.e_eqOn (h : η.FirstHit i t₀ c) (hm : η.minPairing i + 1 ≤ c)
     (he : e i η = some ξ) : ∀ t ∈ Icc 0 t₀, ξ t = η t := by
   intro t ht
@@ -103,15 +113,23 @@ lemma FirstHit.e_eqOn (h : η.FirstHit i t₀ c) (hm : η.minPairing i + 1 ≤ c
   rw [eRaw_apply, eCoeff, min_eq_right hr, sub_self, zero_smul, sub_zero]
 
 omit [FloorRing 𝕜] in
+/--
+@isnad1 id=eq.1h9v.s8.14e8d6b7e7e3 from=translated src=- shape=260c9af9 vocab=2e76b91e
+-/
 lemma minPairing_of_f_eq_some (hf : f i η = some ξ) : ξ.minPairing i = η.minPairing i - 1 := by
   rw [minPairing_of_e_eq_some (f_eq_some_iff.mp hf)]
   ring
 
 omit [FloorRing 𝕜] in
+/--
+@isnad1 id=eq.1h9v.s8.c11eee471b84 from=translated src=- shape=ad6e2c89 vocab=30fab8d8
+-/
 lemma wt_of_f_eq_some (hf : f i η = some ξ) : ξ.wt = η.wt - D.root i := by
   rw [wt_of_e_eq_some (f_eq_some_iff.mp hf), add_sub_cancel_right]
 
-/-- Iterating `fᵢ` under `FirstHit`.-/
+/-- Iterating `fᵢ` under `FirstHit`.
+@isnad1 id=ex.2h11v.s9.410769e96455 from=translated src=- shape=cb9aaf6f vocab=74d06a7e
+-/
 lemma FirstHit.fIter (h : η.FirstHit i t₀ c) :
     ∀ k : ℕ, (k : 𝕜) ≤ η.pairing i 1 - η.minPairing i →
       ∃ ξ, (crystal S).fIter i k η = some ξ ∧ (∀ t ∈ Icc 0 t₀, ξ t = η t) ∧
@@ -138,7 +156,9 @@ lemma FirstHit.fIter (h : η.FirstHit i t₀ c) :
       push_cast
       ring
 
-/-- Iterating `eᵢ` under `FirstHit`.-/
+/-- Iterating `eᵢ` under `FirstHit`.
+@isnad1 id=ex.3h11v.s9.302d1804c952 from=translated src=- shape=1f551ecf vocab=08658909
+-/
 lemma FirstHit.eIter (h : η.FirstHit i t₀ c) (hc : c ≤ -1) :
     ∀ k : ℕ, η.minPairing i + k ≤ c →
       ∃ ξ, (crystal S).eIter i k η = some ξ ∧ (∀ t ∈ Icc 0 t₀, ξ t = η t) ∧
@@ -183,7 +203,9 @@ noncomputable def reflectAfter (η : LittelmannPath S) (i : ι) (c : ℤ) :
 /-- Littelmann's reflection of the part of a path after its first hitting time of `hᵢ = c`
 (a time-reversed variant of the involution of [Lit95] §9): if `hᵢ > c` on `[0, t₀)` and
 `hᵢ(t₀) = c ≤ -1`, then `reflectAfter η i c` is a path agreeing with `η` on `[0, t₀]`, of weight
-`rᵢ(wt η) + c αᵢ`, and `reflectAfter · i c` is an involution on such paths.-/
+`rᵢ(wt η) + c αᵢ`, and `reflectAfter · i c` is an involution on such paths.
+@isnad1 id=ex.2h10v.s9.0e333c63a5a4 from=translated src=- shape=e0954eed vocab=7bf8b20e
+-/
 theorem FirstHit.reflectAfter (h : η.FirstHit i t₀ c) (hc : c ≤ -1) :
     ∃ η', reflectAfter η i c = some η' ∧ (∀ t ∈ Icc 0 t₀, η' t = η t) ∧
       η'.wt = D.reflection i η.wt + c • D.root i ∧
@@ -230,7 +252,9 @@ theorem FirstHit.reflectAfter (h : η.FirstHit i t₀ c) (hc : c ≤ -1) :
     rw [LittelmannPath.reflectAfter, hn', ite_eq_left (by omega)]
     exact ((crystal S).fIter_eq_some_iff _ _ _).mpr hη'
 
-/-- `reflectAfter η i` lies in the connected component of `η`.-/
+/-- `reflectAfter η i` lies in the connected component of `η`.
+@isnad1 id=mem.1h10v.s8.81508716e394 from=translated src=- shape=630ef70d vocab=a4c0b604
+-/
 lemma mem_component_of_reflectAfter {η' : LittelmannPath S}
     (h : reflectAfter η i c = some η') :
     η' ∈ η.component := by
@@ -258,6 +282,9 @@ noncomputable def hitTime : 𝕜 := sInf (η.hitSet c)
 def hitIndexSet : Set ι := {j | η.pairing j (η.hitTime c) ≤ c j}
 
 omit [IsStrictOrderedRing 𝕜] [FloorRing 𝕜] in
+/--
+@isnad1 id=isclosed.0h8v.s6.09596b35ac01 from=translated src=- shape=87aef039 vocab=daa94626
+-/
 lemma isClosed_hitSet : IsClosed (η.hitSet c) := by
   rw [show η.hitSet c = Icc 0 1 ∩ ⋃ j, {t | η.pairing j t ≤ c j} by ext; simp [hitSet]]
   exact isClosed_Icc.inter
@@ -266,15 +293,24 @@ lemma isClosed_hitSet : IsClosed (η.hitSet c) := by
 variable {η c}
 
 omit [Finite ι] [FloorRing 𝕜] in
+/--
+@isnad1 id=nonempty.1h9v.s7.08196deb755b from=translated src=- shape=3924b3a1 vocab=96eef49f
+-/
 lemma hitSet_nonempty {j : ι} (hj : η.minPairing j ≤ c j) : (η.hitSet c).Nonempty := by
   obtain ⟨s, hs, hsm⟩ := η.exists_minPairing j
   exact ⟨s, hs, j, hsm.trans_le hj⟩
 
 omit [IsStrictOrderedRing 𝕜] [FloorRing 𝕜] in
+/--
+@isnad1 id=mem.1h8v.s7.c1f3a04f5a5c from=translated src=- shape=7b4bea19 vocab=d1f44217
+-/
 lemma hitTime_mem (h : (η.hitSet c).Nonempty) : η.hitTime c ∈ η.hitSet c :=
   (η.isClosed_hitSet c).csInf_mem h ⟨0, fun _ ht ↦ ht.1.1⟩
 
 omit [Finite ι] [IsStrictOrderedRing 𝕜] [OrderTopology 𝕜] [FloorRing 𝕜] in
+/--
+@isnad1 id=lt.2h10v.s7.3441b3318cc6 from=translated src=- shape=3548f7f6 vocab=ffca4eb0
+-/
 lemma lt_pairing_of_lt_hitTime {t : 𝕜} (ht : t ∈ Icc (0 : 𝕜) 1) (hlt : t < η.hitTime c)
     (j : ι) : (c j : 𝕜) < η.pairing j t := by
   by_contra hle
@@ -282,6 +318,9 @@ lemma lt_pairing_of_lt_hitTime {t : 𝕜} (ht : t ∈ Icc (0 : 𝕜) 1) (hlt : t
   exact absurd (csInf_le ⟨0, fun _ hs ↦ hs.1.1⟩ hmem) (not_le.mpr hlt)
 
 omit [FloorRing 𝕜] in
+/--
+@isnad1 id=le.2h9v.s7.5d077095cf4a from=translated src=- shape=b1607bc3 vocab=11d5550b
+-/
 lemma le_pairing_hitTime (hc : ∀ j, c j ≤ -1) (h : (η.hitSet c).Nonempty) (j : ι) :
     (c j : 𝕜) ≤ η.pairing j (η.hitTime c) := by
   have hτ := hitTime_mem h
@@ -295,6 +334,9 @@ lemma le_pairing_hitTime (hc : ∀ j, c j ≤ -1) (h : (η.hitSet c).Nonempty) (
   · exact absurd hu' (lt_pairing_of_lt_hitTime (t := u) ⟨hu.1, hu2.le.trans hτ.1.2⟩ hu2 j).ne'
 
 omit [IsStrictOrderedRing 𝕜] [FloorRing 𝕜] in
+/--
+@isnad1 id=nonempty.1h8v.s7.5de42966aa9a from=translated src=- shape=e6aec4e1 vocab=67a93937
+-/
 lemma hitIndexSet_nonempty (h : (η.hitSet c).Nonempty) : (η.hitIndexSet c).Nonempty :=
   (hitTime_mem h).2
 
@@ -302,6 +344,9 @@ lemma hitIndexSet_nonempty (h : (η.hitSet c).Nonempty) : (η.hitIndexSet c).Non
 noncomputable def hitIndex (h : (η.hitSet c).Nonempty) : ι := (hitIndexSet_nonempty h).some
 
 omit [FloorRing 𝕜] in
+/--
+@isnad1 id=firsthit.2h8v.s7.e8acd1dec664 from=translated src=- shape=45c0cce7 vocab=a2820d20
+-/
 theorem firstHit_hitIndex (hc : ∀ j, c j ≤ -1) (h : (η.hitSet c).Nonempty) :
     η.FirstHit (hitIndex h) (η.hitTime c) (c (hitIndex h)) :=
   ⟨(hitTime_mem h).1, fun _ ht ↦ lt_pairing_of_lt_hitTime
@@ -310,7 +355,9 @@ theorem firstHit_hitIndex (hc : ∀ j, c j ≤ -1) (h : (η.hitSet c).Nonempty) 
 
 omit [IsStrictOrderedRing 𝕜] [FloorRing 𝕜] in
 /-- Paths agreeing up to the first hitting time have the same first hitting time and the same
-hitting indices.-/
+hitting indices.
+@isnad1 id=and.2h9v.s8.2d504136bc2b from=translated src=- shape=59b00e95 vocab=827b586d
+-/
 theorem hitTime_eq_of_eqOn (h : (η.hitSet c).Nonempty)
     (heq : ∀ t ∈ Icc 0 (η.hitTime c), ξ t = η t) :
     (ξ.hitSet c).Nonempty ∧ ξ.hitTime c = η.hitTime c ∧ ξ.hitIndexSet c = η.hitIndexSet c := by
@@ -332,6 +379,9 @@ theorem hitTime_eq_of_eqOn (h : (η.hitSet c).Nonempty)
   simp only [hitIndexSet, Set.mem_ofPred_eq, heqτ, hpair j _ ⟨hτ.1.1, le_rfl⟩]
 
 omit [IsStrictOrderedRing 𝕜] [FloorRing 𝕜] in
+/--
+@isnad1 id=eq.2h9v.s8.b0b516ab69af from=translated src=- shape=0c3a473d vocab=b3fd4248
+-/
 theorem hitIndex_eq_of_eqOn (h : (η.hitSet c).Nonempty)
     (heq : ∀ t ∈ Icc 0 (η.hitTime c), ξ t = η t) :
     hitIndex (hitTime_eq_of_eqOn h heq).1 = hitIndex h := by
@@ -345,7 +395,9 @@ and `i` a chosen index with `hᵢ(τ) = cᵢ`. Then `η' = reflectAfter η i c�
 (so it has the same `τ` and `i`), has weight `rᵢ(wt η) + cᵢ αᵢ`, lies in the component of `η`, and
 `reflectAfter η' i cᵢ = η`. For `c = -1` this is the involution of the path-model Weyl character
 formula (`wt η' + ρ = rᵢ(wt η + ρ)`); for `cⱼ = -1 - ⟨λ, αⱼ^∨⟩` it is the involution of the
-Littlewood–Richardson rule.-/
+Littlewood–Richardson rule.
+@isnad1 id=ex.2h8v.s9.00f392caa1a3 from=translated src=- shape=47724fdc vocab=5246f2ca
+-/
 theorem exists_reflectAfter_hitIndex (hc : ∀ j, c j ≤ -1) (h : (η.hitSet c).Nonempty) :
     ∃ η', reflectAfter η (hitIndex h) (c (hitIndex h)) = some η' ∧ η' ∈ η.component ∧
       ∃ h' : (η'.hitSet c).Nonempty, hitIndex h' = hitIndex h ∧

@@ -51,10 +51,15 @@ variable {R L : Type*} [CommRing R] [LieRing L] [LieAlgebra R L]
   {V W : Type*} [AddCommGroup V] [Module R V] [LieRingModule L V] [LieModule R L V]
   [AddCommGroup W] [Module R W] [LieRingModule L W] [LieModule R L W]
 
+/--
+@isnad1 id=iskilled.2h5v.s7.3e406186a5c5 from=translated src=- shape=1cf416e6 vocab=bd814795
+-/
 theorem IsKilledBy.mono (hIJ : I ≤ J) (hM : IsKilledBy J M) : IsKilledBy I M :=
   fun a ha ↦ hM a (hIJ ha)
 
-/-- Every module is killed by the zero ideal.-/
+/-- Every module is killed by the zero ideal.
+@isnad1 id=iskilled.0h3v.s6.b4c723c5e155 from=translated src=- shape=14f0d548 vocab=60b87fb5
+-/
 theorem isKilledBy_bot : IsKilledBy (⊥ : TwoSidedIdeal (UniversalEnvelopingAlgebra R L)) M :=
   fun a ha ↦ by
     rw [TwoSidedIdeal.mem_bot] at ha
@@ -66,6 +71,9 @@ def adQuotientMap (hIJ : I ≤ J) : AdQuotient R L I →ₗ⁅R,L⁆ AdQuotient 
   LieSubmodule.Quotient.lift _ (LieSubmodule.Quotient.mk' (adIdeal R L J))
     fun _ hu ↦ LieModuleHom.mem_ker.mpr ((LieSubmodule.Quotient.mk_eq_zero _).mpr (hIJ hu))
 
+/--
+@isnad1 id=eq.1h5v.s9.926fa257a6bf from=translated src=- shape=eb216273 vocab=426a6c49
+-/
 @[simp] theorem adQuotientMap_mk (hIJ : I ≤ J) (u : AdRegular R L) :
     adQuotientMap R L hIJ (LieSubmodule.Quotient.mk u) = LieSubmodule.Quotient.mk u := rfl
 

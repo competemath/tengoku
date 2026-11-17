@@ -59,6 +59,9 @@ namespace SuperEnveloping
 
 /-! ### Negative root spaces -/
 
+/--
+@isnad1 id=mem.1h7v.s10.4ce05bbdd224 from=translated src=- shape=f8fef8c7 vocab=5e019bd1
+-/
 lemma omega_mem_gTilde {x : P.SuperEnveloping p} (hx : x ∈ gTilde P p) :
     omega P p x ∈ gTilde P p := by
   have h1 : nPlus P p ≤ (gTilde P p).comap (omega P p).toLinearMap := fun y hy ↦
@@ -75,7 +78,9 @@ lemma omega_mem_gTilde {x : P.SuperEnveloping p} (hx : x ∈ gTilde P p) :
     simpa using neg_mem (h_mem_gTilde P p a)
   exact (sup_le (sup_le h2 h3) h1 : gTilde P p ≤ _) hx
 
-/-- Every element of `G̃_{-μ}` is the image under `ω` of an element of `G̃_μ`.-/
+/-- Every element of `G̃_{-μ}` is the image under `ω` of an element of `G̃_μ`.
+@isnad1 id=ex.2h8v.s10.1039cb14edb8 from=translated src=- shape=58447c7a vocab=a57a0155
+-/
 lemma exists_omega_eq {μ : Dual K H} {x : P.SuperEnveloping p} (hx : x ∈ gTilde P p)
     (hxμ : x ∈ weightSpace P p (-μ)) :
     ∃ y ∈ gTilde P p, y ∈ weightSpace P p μ ∧ omega P p y = x := by
@@ -85,14 +90,18 @@ lemma exists_omega_eq {μ : Dual K H} {x : P.SuperEnveloping p} (hx : x ∈ gTil
       congrArg (fun φ : P.SuperEnveloping p →ₐ[K] _ ↦ φ _) (omega_comp_omega P p)
     rw [this, parity_parity]
 
-/-- `G̃_{-αᵢ} = K fᵢ`.-/
+/-- `G̃_{-αᵢ} = K fᵢ`.
+@isnad1 id=ex.2h8v.s10.0b40918f645d from=translated src=- shape=e826c1f4 vocab=2060bcb9
+-/
 theorem mem_weightSpace_neg_root {i : ι} {x : P.SuperEnveloping p} (hx : x ∈ gTilde P p)
     (hxi : x ∈ weightSpace P p (-P.root i)) : ∃ c : K, x = c • f P p i := by
   obtain ⟨y, hy, hyi, rfl⟩ := exists_omega_eq P p hx hxi
   obtain ⟨c, rfl⟩ := mem_weightSpace_root P p hy hyi
   exact ⟨c, by simp⟩
 
-/-- `G̃_{-2αᵢ} = K [fᵢ, fᵢ]`.-/
+/-- `G̃_{-2αᵢ} = K [fᵢ, fᵢ]`.
+@isnad1 id=ex.2h8v.s10.965c36705b8f from=translated src=- shape=9397cb58 vocab=848327b4
+-/
 theorem mem_weightSpace_neg_two_root {i : ι} {x : P.SuperEnveloping p} (hx : x ∈ gTilde P p)
     (hxi : x ∈ weightSpace P p (-(2 • P.root i))) :
     ∃ c : K, x = c • superBracket P p (f P p i) (f P p i) := by
@@ -160,6 +169,9 @@ lemma eq_nsmul_root_or_neg {μ : Dual K H} {x : P.SuperEnveloping p} (hx : x ∈
 
 /-! ### Parities in `G̃_{±αₖ}` -/
 
+/--
+@isnad1 id=injectiv.0h1v.s4.6699bfcc9aa5 from=translated src=- shape=4a489b7c vocab=c2ae449a
+-/
 lemma zSign_injective : Function.Injective (zSign K) := by
   intro a b hab
   rcases zmod_two_cases a with rfl | rfl <;> rcases zmod_two_cases b with rfl | rfl
@@ -174,7 +186,9 @@ lemma eq_of_isHomog_of_isHomog {a b : ZMod 2} {x : P.SuperEnveloping p} (hx0 : x
   have : (zSign K a - zSign K b) • x = 0 := by rw [sub_smul, ← ha, ← hb, sub_self]
   exact sub_eq_zero.1 ((smul_eq_zero.1 this).resolve_right hx0)
 
-/-- A nonzero homogeneous element of `G̃_{αₖ}` or `G̃_{-αₖ}` has parity `p k`.-/
+/-- A nonzero homogeneous element of `G̃_{αₖ}` or `G̃_{-αₖ}` has parity `p k`.
+@isnad1 id=eq.4h9v.s10.5dd2971e4737 from=translated src=- shape=e4882470 vocab=a1a82fda
+-/
 lemma parity_eq_of_mem_root {k : ι} {b : ZMod 2} {y : P.SuperEnveloping p} (hy : y ∈ gTilde P p)
     (hyk : y ∈ weightSpace P p (P.root k) ∨ y ∈ weightSpace P p (-P.root k)) (hy0 : y ≠ 0)
     (hyb : IsHomog P p b y) : b = p k := by
@@ -185,13 +199,17 @@ lemma parity_eq_of_mem_root {k : ι} {b : ZMod 2} {y : P.SuperEnveloping p} (hy 
   · obtain ⟨c, rfl⟩ := mem_weightSpace_neg_root P p hy hyk
     exact (isHomog_f P p k).smul c
 
-/-- For `k` even, `[eₖ, eₖ] = 0`.-/
+/-- For `k` even, `[eₖ, eₖ] = 0`.
+@isnad1 id=eq.1h7v.s8.35efbb9aff2a from=translated src=- shape=29973acd vocab=ea80ca33
+-/
 lemma superBracket_e_e_of_even {k : ι} (hk : p k = 0) :
     superBracket P p (e P p k) (e P p k) = 0 := by
   rw [superBracket_of_isHomog (isHomog_e P p k) (isHomog_e P p k), hk, mul_zero, zSign_zero,
     one_smul, sub_self]
 
-/-- For `k` even, `[fₖ, fₖ] = 0`.-/
+/-- For `k` even, `[fₖ, fₖ] = 0`.
+@isnad1 id=eq.1h7v.s8.7e10eb464643 from=translated src=- shape=29973acd vocab=7a97e4c1
+-/
 lemma superBracket_f_f_of_even {k : ι} (hk : p k = 0) :
     superBracket P p (f P p k) (f P p k) = 0 := by
   rw [superBracket_of_isHomog (isHomog_f P p k) (isHomog_f P p k), hk, mul_zero, zSign_zero,
@@ -209,10 +227,15 @@ lemma eq_zero_of_mem_two_root_of_even {k : ι} (hk : p k = 0) {x : P.SuperEnvelo
     rw [superBracket_f_f_of_even P p hk, smul_zero]
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h7v.s7.6f665d3ff09f from=translated src=- shape=6e1d9e06 vocab=cc03b1ef
+-/
 @[simp] lemma superBracket_zero_right (x : P.SuperEnveloping p) : superBracket P p x 0 = 0 :=
   (superBracketRight P p x).map_zero
 
-/-- Two elements of `G̃_{±αₖ}` are proportional.-/
+/-- Two elements of `G̃_{±αₖ}` are proportional.
+@isnad1 id=ex.6h10v.s10.ef122257f473 from=translated src=- shape=e40a175c vocab=eecc3767
+-/
 lemma exists_smul_eq_of_mem_root {β : Dual K H} {k : ι} (hβk : β = P.root k ∨ β = -P.root k)
     {x y : P.SuperEnveloping p} (hx : x ∈ gTilde P p) (hxβ : x ∈ weightSpace P p β)
     (hy : y ∈ gTilde P p) (hyβ : y ∈ weightSpace P p β) (hy0 : y ≠ 0) : ∃ c : K, x = c • y := by
@@ -253,7 +276,9 @@ section Invariance
 
 variable [FiniteDimensional K H] (S : A.Symmetrization)
 
-/-- `C_{αᵢ}`.-/
+/-- `C_{αᵢ}`.
+@isnad1 id=lieeqfor.0h8v.s6.0fb3d908dca3 from=translated src=- shape=5dd611a4 vocab=e08c3de3
+-/
 lemma lieEqForm_root (i : ι) : LieEqForm P p S (P.root i) := by
   refine lieEqForm_of_exists (P.linearIndependent_root.ne_zero i) fun x hx hxμ y hy hyμ ↦ ?_
   obtain ⟨c, rfl⟩ := mem_weightSpace_root P p hx hxμ
@@ -275,16 +300,25 @@ def InvTriple (a b : ZMod 2) (x y z : P.SuperEnveloping p) : Prop :=
 variable {P p S}
 
 omit [CharZero K] in
+/--
+@isnad1 id=invtripl.1h12v.s7.339a0f2e183f from=translated src=- shape=d2c91921 vocab=88a3d82d
+-/
 lemma invTriple_of_left_eq_zero {a b : ZMod 2} {x y z : P.SuperEnveloping p} (hx : x = 0) :
     InvTriple P p S a b x y z := by
   subst hx; simp [InvTriple, superBracket_zero_left]
 
 omit [CharZero K] in
+/--
+@isnad1 id=invtripl.1h12v.s7.d4466f447953 from=translated src=- shape=a49d2a0b vocab=88a3d82d
+-/
 lemma invTriple_of_middle_eq_zero {a b : ZMod 2} {x y z : P.SuperEnveloping p} (hy : y = 0) :
     InvTriple P p S a b x y z := by
   subst hy; simp [InvTriple, superBracket_zero_left]
 
 omit [CharZero K] in
+/--
+@isnad1 id=invtripl.1h12v.s7.35dad1215f8f from=translated src=- shape=6d0ca782 vocab=88a3d82d
+-/
 lemma invTriple_of_right_eq_zero {a b : ZMod 2} {x y z : P.SuperEnveloping p} (hz : z = 0) :
     InvTriple P p S a b x y z := by
   subst hz; simp [InvTriple]
@@ -296,7 +330,9 @@ lemma eq_of_smul_h_eq {μ : Dual K H} (hμ : μ ≠ 0) {A B : K}
   exact sub_eq_zero.1 ((smul_eq_zero.1 ((smul_eq_zero.1 h2).resolve_left two_ne_zero)).resolve_right
     hu)
 
-/-- Invariance for a triple whose first two weights are linearly independent.-/
+/-- Invariance for a triple whose first two weights are linearly independent.
+@isnad1 id=invtripl.13h15v.s11.7e7d42e85856 from=translated src=- shape=39937b12 vocab=7748cd99
+-/
 lemma invTriple_of_linearIndependent {α β : Dual K H} {a b c : ZMod 2}
     {x y z : P.SuperEnveloping p}
     (hα : LieEqForm P p S α) (hβ : LieEqForm P p S β) (hαβ : LieEqForm P p S (α + β))
@@ -324,7 +360,9 @@ lemma invTriple_of_linearIndependent {α β : Dual K H} {a b c : ZMod 2}
   obtain ⟨h1, h2⟩ := LinearIndependent.pair_iff.1 hind _ _ key
   exact ⟨sub_eq_zero.1 h1, by linear_combination -h2⟩
 
-/-- Invariance when the first element has weight `0`.-/
+/-- Invariance when the first element has weight `0`.
+@isnad1 id=invtripl.8h13v.s11.c088ef057587 from=translated src=- shape=5fdc5470 vocab=b9150187
+-/
 lemma invTriple_of_weight_zero_left {β : Dual K H} {a b : ZMod 2} {x y z : P.SuperEnveloping p}
     (hβ : LieEqForm P p S β) (hx : x ∈ gTilde P p) (hx0 : x ∈ weightSpace P p 0)
     (hxa : IsHomog P p a x) (hy : y ∈ gTilde P p) (hyβ : y ∈ weightSpace P p β)
@@ -345,7 +383,9 @@ lemma invTriple_of_weight_zero_left {β : Dual K H} {a b : ZMod 2} {x y z : P.Su
   refine ⟨e1.trans e2.symm, ?_⟩
   rw [e2, e3, zero_mul, zSign_zero, one_mul, neg_neg]
 
-/-- Invariance when the third element has weight `0`.-/
+/-- Invariance when the third element has weight `0`.
+@isnad1 id=invtripl.9h13v.s11.63dfe9330e12 from=translated src=- shape=fc0401cb vocab=b9150187
+-/
 lemma invTriple_of_weight_zero_right {α : Dual K H} {a b : ZMod 2} {x y z : P.SuperEnveloping p}
     (hα : LieEqForm P p S α) (hx : x ∈ gTilde P p) (hxα : x ∈ weightSpace P p α)
     (hxa : IsHomog P p a x) (hy : y ∈ gTilde P p) (hyα : y ∈ weightSpace P p (-α))
@@ -363,7 +403,9 @@ lemma invTriple_of_weight_zero_right {α : Dual K H} {a b : ZMod 2} {x y z : P.S
   refine ⟨by ring, ?_⟩
   linear_combination (-(α t * invForm P p S x y)) * zSign_mul_self (K := K) (a * b)
 
-/-- Invariance for `x = c • y` with `y` odd of weight `β` and `z` of weight `-2β`.-/
+/-- Invariance for `x = c • y` with `y` odd of weight `β` and `z` of weight `-2β`.
+@isnad1 id=invtripl.10h13v.s11.b5e29369cfa5 from=translated src=- shape=ab93aecc vocab=c9ae2a5f
+-/
 lemma invTriple_smul_left {β : Dual K H} (hβ0 : β ≠ 0) {a c' : ZMod 2} {c : K}
     {y z : P.SuperEnveloping p} (hβ : LieEqForm P p S β) (hββ : LieEqForm P p S (β + β))
     (hxa : IsHomog P p a (c • y)) (hy : y ∈ gTilde P p) (hyβ : y ∈ weightSpace P p β)
@@ -385,7 +427,9 @@ lemma invTriple_smul_left {β : Dual K H} (hβ0 : β ≠ 0) {a c' : ZMod 2} {c :
   rw [hAB]
   exact ⟨rfl, by ring⟩
 
-/-- Invariance for `z = c • y` with `y` odd of weight `β` and `x` of weight `-2β`.-/
+/-- Invariance for `z = c • y` with `y` odd of weight `β` and `x` of weight `-2β`.
+@isnad1 id=invtripl.9h12v.s11.f0c072209271 from=translated src=- shape=211d18f7 vocab=c9ae2a5f
+-/
 lemma invTriple_smul_right {β : Dual K H} (hβ0 : β ≠ 0) {a : ZMod 2} {c : K}
     {x y : P.SuperEnveloping p} (hβ : LieEqForm P p S β) (hββ : LieEqForm P p S (β + β))
     (hx : x ∈ gTilde P p) (hxβ : x ∈ weightSpace P p (-(β + β))) (hxa : IsHomog P p a x)
@@ -414,7 +458,9 @@ lemma invTriple_smul_right {β : Dual K H} (hβ0 : β ≠ 0) {a : ZMod 2} {c : K
     ring
 
 /-- Invariance for a triple whose middle element has weight `±αₖ`, given `C_α`, `C_β` and
-`C_{α+β}`.-/
+`C_{α+β}`.
+@isnad1 id=invtripl.13h16v.s11.6b474a50fb47 from=translated src=- shape=4fdb726d vocab=2c4e82be
+-/
 lemma invTriple_of_root {α β : Dual K H} {a b c : ZMod 2} {x y z : P.SuperEnveloping p}
     (hα : LieEqForm P p S α) (hβ : LieEqForm P p S β) (hαβ : LieEqForm P p S (α + β))
     (hx : x ∈ gTilde P p) (hxα : x ∈ weightSpace P p α) (hxa : IsHomog P p a x)
@@ -490,7 +536,9 @@ lemma invTriple_of_root {α β : Dual K H} {a b c : ZMod 2} {x y z : P.SuperEnve
 omit [FiniteDimensional K H] in
 variable (P p) in
 /-- For `μ > 0` not a simple root, `G̃_μ` is spanned by the `[eⱼ, x]` with `x ∈ G̃_{μ - αⱼ}`
-homogeneous.-/
+homogeneous.
+@isnad1 id=var.4h13v.s11.e0d8844cce06 from=translated src=- shape=3739dc8d vocab=173eb70e
+-/
 lemma gTilde_induction_e {μ : Dual K H} {q : P.SuperEnveloping p → Prop}
     (hμ : μ ∈ P.posWeights) (hμ1 : ∀ j, μ ≠ P.root j) (zero : q 0)
     (add : ∀ x y, q x → q y → q (x + y)) (smul : ∀ (c : K) x, q x → q (c • x))
@@ -523,7 +571,9 @@ lemma gTilde_induction_e {μ : Dual K H} {q : P.SuperEnveloping p → Prop}
 omit [FiniteDimensional K H] in
 variable (P p) in
 /-- For `μ > 0` not a simple root, `G̃_{-μ}` is spanned by the `[fⱼ, y]` with
-`y ∈ G̃_{-(μ - αⱼ)}` homogeneous.-/
+`y ∈ G̃_{-(μ - αⱼ)}` homogeneous.
+@isnad1 id=var.4h13v.s11.267aaee3f93d from=translated src=- shape=93a97e8c vocab=ba054e28
+-/
 lemma gTilde_induction_f {μ : Dual K H} {q : P.SuperEnveloping p → Prop}
     (hμ : μ ∈ P.posWeights) (hμ1 : ∀ j, μ ≠ P.root j) (zero : q 0)
     (add : ∀ x y, q x → q y → q (x + y)) (smul : ∀ (c : K) x, q x → q (c • x))
@@ -539,17 +589,25 @@ lemma gTilde_induction_f {μ : Dual K H} {q : P.SuperEnveloping p → Prop}
   exact gen j ν a hν hμν _ (omega_mem_gTilde P p hx) (omega_mem_weightSpace P p hxν) hxa.omega
 
 omit [FiniteDimensional K H] [CharZero K] in
+/--
+@isnad1 id=eq.0h4v.s8.a9ad9766aacf from=translated src=- shape=e94c8165 vocab=73d01c8f
+-/
 lemma zSign_mul_mul_zSign (a b c : ZMod 2) :
     zSign K (c * b) = zSign K (c * a) * zSign K ((a + b) * c) := by
   rcases zmod_two_cases a with rfl | rfl <;> rcases zmod_two_cases b with rfl | rfl <;>
     rcases zmod_two_cases c with rfl | rfl <;> simp [show (1 : ZMod 2) + 1 = 0 from rfl]
 
 omit [FiniteDimensional K H] [CharZero K] in
+/--
+@isnad1 id=eq.0h3v.s7.780f78ae0482 from=translated src=- shape=23c3f59e vocab=28c63667
+-/
 lemma zSign_mul_zSign_mul_comm (a b : ZMod 2) : zSign K (a * b) * zSign K (b * a) = 1 := by
   rw [mul_comm b a, zSign_mul_self]
 
 /-- The inductive step of the proof of `C_μ`: for `μ = αⱼ + ν = αᵢ + κ`, homogeneous
-`x ∈ G̃_ν` and `y ∈ G̃_{-κ}`, `[[eⱼ, x], [fᵢ, y]] = (eⱼ | [x, [fᵢ, y]]) ν⁻¹(μ)`.-/
+`x ∈ G̃_ν` and `y ∈ G̃_{-κ}`, `[[eⱼ, x], [fᵢ, y]] = (eⱼ | [x, [fᵢ, y]]) ν⁻¹(μ)`.
+@isnad1 id=eq.13h16v.s12.4986b73e08f9 from=translated src=- shape=faa821f5 vocab=1d9edc6f
+-/
 lemma superBracket_e_superBracket_f {μ ν κ : Dual K H} {i j : ι} {a b : ZMod 2}
     (hν : μ = P.root j + ν) (hκ : μ = P.root i + κ) (hCi : LieEqForm P p S (P.root i))
     (hCj : LieEqForm P p S (P.root j)) (hCν : LieEqForm P p S ν) (hCκ : LieEqForm P p S κ)
@@ -665,7 +723,9 @@ lemma superBracket_e_superBracket_f {μ ν κ : Dual K H} {i j : ι} {a b : ZMod
 variable (P p S) in
 /-- `C_μ` for all `μ`: `[x, y] = (x | y) ν⁻¹(μ)` for `x ∈ G̃_μ` and `y ∈ G̃_{-μ}`, in the auxiliary
 Lie superalgebra `G̃(A, τ)` (the super analogue of [Kac] Thm. 2.2 e); the argument is the
-height induction of [Kac] §2.2 with the signs of the super Jacobi identity).-/
+height induction of [Kac] §2.2 with the signs of the super Jacobi identity).
+@isnad1 id=lieeqfor.0h8v.s6.4323e089df97 from=translated src=- shape=565e46c2 vocab=1fe526da
+-/
 theorem lieEqForm (μ : Dual K H) : LieEqForm P p S μ := by
   have hpos : ∀ n : ℕ, ∀ μ ∈ P.posWeights, μ P.rhoCheck = n → LieEqForm P p S μ := by
     intro n
@@ -763,7 +823,9 @@ def MidInv (y : P.SuperEnveloping p) : Prop :=
 omit [FiniteDimensional K H] in
 variable (P p) in
 /-- A property of pairs of elements of `G̃`, additive in each variable, holds as soon as it holds
-for homogeneous weight vectors.-/
+for homogeneous weight vectors.
+@isnad1 id=var.2h12v.s11.2e7bfe7a6f91 from=translated src=- shape=d6bc56d9 vocab=7e9bbe8c
+-/
 lemma forall_gTilde_of_homog {q : P.SuperEnveloping p → P.SuperEnveloping p → Prop}
     (add_left : ∀ x₁ x₂ z, q x₁ z → q x₂ z → q (x₁ + x₂) z)
     (add_right : ∀ x z₁ z₂, q x z₁ → q x z₂ → q x (z₁ + z₂))
@@ -780,7 +842,9 @@ lemma forall_gTilde_of_homog {q : P.SuperEnveloping p → P.SuperEnveloping p �
     (fun c z hz hzγ hzc ↦ hom α γ a c x hx hxα hxa z hz hzγ hzc)
     (fun z₁ z₂ h₁ h₂ ↦ add_right _ _ _ h₁ h₂)
 
-/-- Invariance in the middle may be checked on homogeneous weight vectors of opposite weights.-/
+/-- Invariance in the middle may be checked on homogeneous weight vectors of opposite weights.
+@isnad1 id=midinv.2h9v.s12.d411f983bace from=translated src=- shape=55366d5d vocab=8887b362
+-/
 lemma midInv_of_weight {β : Dual K H} {y : P.SuperEnveloping p} (hyβ : y ∈ weightSpace P p β)
     (hinv : ∀ (α : Dual K H) (a c : ZMod 2), ∀ x ∈ gTilde P p, x ∈ weightSpace P p α →
       IsHomog P p a x → ∀ z ∈ gTilde P p, z ∈ weightSpace P p (-(α + β)) → IsHomog P p c z →
@@ -800,18 +864,27 @@ lemma midInv_of_weight {β : Dual K H} {y : P.SuperEnveloping p} (hyβ : y ∈ w
   · rw [invForm_eq_zero P p S (superBracket_mem_weightSpace hxα hyβ) hzγ hs,
       invForm_eq_zero P p S hxα (superBracket_mem_weightSpace hyβ hzγ) (by rwa [← add_assoc])]
 
+/--
+@isnad1 id=midinv.0h8v.s6.f63f16d74e91 from=translated src=- shape=af75ab79 vocab=9915b4ee
+-/
 lemma midInv_e (k : ι) : MidInv P p S (e P p k) :=
   midInv_of_weight (e_mem_weightSpace P p k) fun α _ _ _ hx hxα hxa _ hz hzγ hzc ↦
     ((invTriple_of_root (lieEqForm P p S α) (lieEqForm P p S _) (lieEqForm P p S _) hx hxα hxa
       (nPlus_le_gTilde P p (e_mem_nPlus P p k)) (e_mem_weightSpace P p k) (isHomog_e P p k)
       hz hzγ hzc (Or.inl rfl)).1).symm
 
+/--
+@isnad1 id=midinv.0h8v.s6.f6c77944ed30 from=translated src=- shape=af75ab79 vocab=bed0dd27
+-/
 lemma midInv_f (k : ι) : MidInv P p S (f P p k) :=
   midInv_of_weight (f_mem_weightSpace P p k) fun α _ _ _ hx hxα hxa _ hz hzγ hzc ↦
     ((invTriple_of_root (lieEqForm P p S α) (lieEqForm P p S _) (lieEqForm P p S _) hx hxα hxa
       (nMinus_le_gTilde P p (f_mem_nMinus P p k)) (f_mem_weightSpace P p k) (isHomog_f P p k)
       hz hzγ hzc (Or.inr rfl)).1).symm
 
+/--
+@isnad1 id=midinv.0h8v.s8.665eca4654f4 from=translated src=- shape=54b94651 vocab=5f344527
+-/
 lemma midInv_h (t : H) : MidInv P p S (h P p t) := by
   refine midInv_of_weight (h_mem_weightSpace P p t) fun α a _ x _ hxα hxa z _ hzγ _ ↦ ?_
   rw [add_zero] at hzγ
@@ -819,7 +892,9 @@ lemma midInv_h (t : H) : MidInv P p S (h P p t) := by
     superBracket_h_of_mem_weightSpace P p t hzγ, zero_mul, zSign_zero, one_smul]
   simp
 
-/-- The super Leibniz rule for invariance in the middle.-/
+/-- The super Leibniz rule for invariance in the middle.
+@isnad1 id=midinv.6h11v.s9.d80fe6c8a9cf from=translated src=- shape=807f4dd6 vocab=816e8c20
+-/
 lemma MidInv.bracket {a b : ZMod 2} {y₁ y₂ : P.SuperEnveloping p} (hy₁ : y₁ ∈ gTilde P p)
     (hy₂ : y₂ ∈ gTilde P p) (ha : IsHomog P p a y₁) (hb : IsHomog P p b y₂)
     (h₁ : MidInv P p S y₁) (h₂ : MidInv P p S y₂) : MidInv P p S (superBracket P p y₁ y₂) := by
@@ -860,7 +935,9 @@ def midInvSubmodule : Submodule K (P.SuperEnveloping p) where
       hy x hx z hz]
 
 variable (P p S) in
-/-- The form on `G̃(A, τ)` is invariant: `([x, y] | z) = (x | [y, z])` ([Kac78] Prop. 1.5).-/
+/-- The form on `G̃(A, τ)` is invariant: `([x, y] | z) = (x | [y, z])` ([Kac78] Prop. 1.5).
+@isnad1 id=eq.3h10v.s11.d12404ad7d0b from=translated src=- shape=a621a646 vocab=52e0d4e0
+-/
 theorem invForm_superBracket {x y z : P.SuperEnveloping p} (hx : x ∈ gTilde P p)
     (hy : y ∈ gTilde P p) (hz : z ∈ gTilde P p) :
     invForm P p S (superBracket P p x y) z = invForm P p S x (superBracket P p y z) := by
@@ -892,7 +969,9 @@ theorem invForm_superBracket {x y z : P.SuperEnveloping p} (hx : x ∈ gTilde P 
 
 omit [FiniteDimensional K H] in
 variable (P p) in
-/-- Induction over the homogeneous elements of a subspace stable under the parity involution.-/
+/-- Induction over the homogeneous elements of a subspace stable under the parity involution.
+@isnad1 id=var.2h11v.s11.d6d80cd61239 from=translated src=- shape=3d13745f vocab=d17b9d0a
+-/
 lemma induction_parity {N : Submodule K (P.SuperEnveloping p)}
     (hN : ∀ x ∈ N, parity P p x ∈ N) {q : P.SuperEnveloping p → Prop}
     (hom : ∀ a, ∀ x ∈ N, IsHomog P p a x → q x) (add : ∀ x y, q x → q y → q (x + y))
@@ -910,7 +989,9 @@ lemma induction_parity {N : Submodule K (P.SuperEnveloping p)}
 
 omit [FiniteDimensional K H] in
 variable (P p) in
-/-- `[R, G̃] ⊆ R`.-/
+/-- `[R, G̃] ⊆ R`.
+@isnad1 id=mem.2h8v.s10.f91a00d49a3a from=translated src=- shape=fa305e8d vocab=3ae289c5
+-/
 lemma superBracket_mem_maxIdeal_left {r y : P.SuperEnveloping p} (hr : r ∈ maxIdeal P p)
     (hy : y ∈ gTilde P p) : superBracket P p r y ∈ maxIdeal P p := by
   refine induction_parity P p (N := maxIdeal P p) (fun _ ↦ parity_mem_maxIdeal P p)
@@ -923,12 +1004,17 @@ lemma superBracket_mem_maxIdeal_left {r y : P.SuperEnveloping p} (hr : r ∈ max
   exact neg_mem (Submodule.smul_mem _ _
     ((isIdeal_maxIdeal P p).superBracket_mem y hy r hr))
 
+/--
+@isnad1 id=ne.1h8v.s10.deff24c08c7f from=translated src=- shape=2cbd0d4c vocab=f65f599e
+-/
 lemma h_toDual_symm_ne_zero {μ : Dual K H} (hμ : μ ≠ 0) : h P p ((P.toDual S).symm μ) ≠ 0 :=
   fun h0 ↦ hμ ((P.toDual S).symm.map_eq_zero_iff.1
     ((injective_iff_map_eq_zero _).1 (h_injective P p) _ h0))
 
 variable (P p S) in
-/-- The maximal ideal `R` lies in the radical of the form: `(R | G̃) = 0` and `(G̃ | R) = 0`.-/
+/-- The maximal ideal `R` lies in the radical of the form: `(R | G̃) = 0` and `(G̃ | R) = 0`.
+@isnad1 id=and.2h9v.s11.6f2f1b974617 from=translated src=- shape=a0d0a848 vocab=d24bfe9f
+-/
 theorem invForm_eq_zero_of_mem_maxIdeal {r y : P.SuperEnveloping p} (hr : r ∈ maxIdeal P p)
     (hy : y ∈ gTilde P p) : invForm P p S r y = 0 ∧ invForm P p S y r = 0 := by
   have hR := isIdeal_maxIdeal P p
@@ -969,7 +1055,9 @@ theorem invForm_eq_zero_of_mem_maxIdeal {r y : P.SuperEnveloping p} (hr : r ∈ 
 
 variable (P p S) in
 /-- The radical of the form on `G̃(A, τ)` is the maximal ideal `R` ([Kac78] Prop. 1.5;
-cf. [Kac] Thm. 2.2 for `𝔤̃(A)`).-/
+cf. [Kac] Thm. 2.2 for `𝔤̃(A)`).
+@isnad1 id=iff.1h8v.s11.09144a327b9a from=translated src=- shape=a7ee5aa8 vocab=d24bfe9f
+-/
 theorem mem_maxIdeal_iff {r : P.SuperEnveloping p} (hr : r ∈ gTilde P p) :
     r ∈ maxIdeal P p ↔ ∀ y ∈ gTilde P p, invForm P p S y r = 0 := by
   refine ⟨fun hr y hy ↦ (invForm_eq_zero_of_mem_maxIdeal P p S hr hy).2, fun h0 ↦ ?_⟩

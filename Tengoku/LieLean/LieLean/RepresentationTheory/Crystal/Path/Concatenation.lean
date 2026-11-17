@@ -81,22 +81,40 @@ noncomputable def concat : LittelmannPath S where
 
 variable {π₁ π₂} {i : ι} {t : 𝕜}
 
+/--
+@isnad1 id=eq.0h8v.s7.d2bd8ea9cad8 from=translated src=- shape=a624f5e9 vocab=77928c59
+-/
 @[simp] lemma wt_concat : (π₁.concat π₂).wt = π₁.wt + π₂.wt := rfl
 
+/--
+@isnad1 id=eq.1h9v.s8.10f0927f6cba from=translated src=- shape=0640e6f2 vocab=37be6ec8
+-/
 lemma concat_apply_of_le (ht : t ≤ 2⁻¹) : π₁.concat π₂ t = π₁ (2 * t) := ite_eq_left ht
 
+/--
+@isnad1 id=eq.1h9v.s8.3b8f67bb0c8b from=translated src=- shape=33edd872 vocab=34a02234
+-/
 lemma concat_apply_of_ge (ht : 2⁻¹ ≤ t) : π₁.concat π₂ t = π₁ 1 + π₂ (2 * t - 1) := by
   rcases ht.lt_or_eq with ht | rfl
   · exact ite_eq_right (not_le.mpr ht)
   · rw [concat_apply_of_le le_rfl, mul_inv_cancel₀ two_ne_zero, sub_self, apply_zero, add_zero]
 
+/--
+@isnad1 id=eq.1h10v.s8.b98f78e3f6de from=translated src=- shape=881432cb vocab=a57d23a7
+-/
 lemma pairing_concat_of_le (ht : t ≤ 2⁻¹) : (π₁.concat π₂).pairing i t = π₁.pairing i (2 * t) := by
   rw [pairing, concat_apply_of_le ht, pairing]
 
+/--
+@isnad1 id=eq.1h10v.s8.3b74ac0d7027 from=translated src=- shape=38808245 vocab=30e45314
+-/
 lemma pairing_concat_of_ge (ht : 2⁻¹ ≤ t) :
     (π₁.concat π₂).pairing i t = π₁.pairing i 1 + π₂.pairing i (2 * t - 1) := by
   rw [pairing, concat_apply_of_ge ht, map_add, pairing, pairing]
 
+/--
+@isnad1 id=eq.1h10v.s8.2620acec5f29 from=translated src=- shape=9ae55722 vocab=8dc9fee3
+-/
 lemma runningMin_concat_of_le (ht : t ∈ Icc (0 : 𝕜) 2⁻¹) :
     (π₁.concat π₂).runningMin i t = π₁.runningMin i (2 * t) := by
   have h2t : 0 ≤ 2 * t := by linarith [ht.1]
@@ -109,6 +127,9 @@ lemma runningMin_concat_of_le (ht : t ∈ Icc (0 : 𝕜) 2⁻¹) :
     rw [pairing_concat_of_le (hu.2.trans ht.2)]
     exact π₁.runningMin_le ⟨by linarith [hu.1], by linarith [hu.2]⟩
 
+/--
+@isnad1 id=eq.1h10v.s8.55755f4877f0 from=translated src=- shape=67343516 vocab=b2263850
+-/
 lemma runningMin_concat_of_ge (ht : t ∈ Icc (2⁻¹ : 𝕜) 1) :
     (π₁.concat π₂).runningMin i t =
       min (π₁.minPairing i) (π₁.pairing i 1 + π₂.runningMin i (2 * t - 1)) := by
@@ -141,14 +162,18 @@ lemma runningMin_concat_of_ge (ht : t ∈ Icc (2⁻¹ : 𝕜) 1) :
       gcongr
       exact π₂.runningMin_le ⟨by linarith, by linarith [hu.2]⟩
 
-/-- `mᵢ(π₁ * π₂) = min(mᵢ(π₁), hᵢ^{π₁}(1) + mᵢ(π₂))`.-/
+/-- `mᵢ(π₁ * π₂) = min(mᵢ(π₁), hᵢ^{π₁}(1) + mᵢ(π₂))`.
+@isnad1 id=eq.0h9v.s8.dfa9b484f8b9 from=translated src=- shape=a707b007 vocab=90e038a9
+-/
 theorem minPairing_concat :
     (π₁.concat π₂).minPairing i = min (π₁.minPairing i) (π₁.pairing i 1 + π₂.minPairing i) := by
   rw [minPairing, runningMin_concat_of_ge ⟨by norm_num, le_rfl⟩]
   norm_num
   rfl
 
-/-- The time reversal of a concatenation: `(π₁ * π₂)^∨ = π₂^∨ * π₁^∨`.-/
+/-- The time reversal of a concatenation: `(π₁ * π₂)^∨ = π₂^∨ * π₁^∨`.
+@isnad1 id=eq.0h8v.s7.08b2d5d7d195 from=translated src=- shape=d6a7edb9 vocab=44b98bf9
+-/
 theorem rev_concat : (π₁.concat π₂).rev = π₂.rev.concat π₁.rev := by
   refine ext_of_eqOn fun t ht ↦ ?_
   rw [rev_apply, concat_apply_of_ge (by norm_num : (2 : 𝕜)⁻¹ ≤ 1)]
@@ -165,11 +190,17 @@ theorem rev_concat : (π₁.concat π₂).rev = π₂.rev.concat π₁.rev := by
 property, [Lit95] 2.6).-/
 def IsIntegral (π : LittelmannPath S) : Prop := ∀ i, ∃ n : ℤ, π.minPairing i = n
 
+/--
+@isnad1 id=ex.1h8v.s7.33252311f353 from=translated src=- shape=821ba5f3 vocab=46ed86d5
+-/
 lemma exists_minPairing_rev_eq {π : LittelmannPath S} (h : ∃ n : ℤ, π.minPairing i = n) :
     ∃ n : ℤ, π.rev.minPairing i = n := by
   obtain ⟨n, hn⟩ := h
   exact ⟨n - D.coroot i π.wt, by rw [minPairing_rev, hn, pairing_one]; push_cast; ring⟩
 
+/--
+@isnad1 id=isintegr.2h8v.s7.74b47f6426a7 from=translated src=- shape=79684c1f vocab=cab63ac2
+-/
 lemma IsIntegral.concat (h₁ : π₁.IsIntegral) (h₂ : π₂.IsIntegral) :
     (π₁.concat π₂).IsIntegral := fun i ↦ by
   obtain ⟨n₁, hn₁⟩ := h₁ i
@@ -185,7 +216,9 @@ end Concat
 
 variable [FloorRing 𝕜] {π₁ π₂ : LittelmannPath S} {i : ι}
 
-/-- `εᵢ(π₁ * π₂) = max(εᵢ(π₁), εᵢ(π₂) - ⟨wt π₁, αᵢ^∨⟩)`, the tensor product formula.-/
+/-- `εᵢ(π₁ * π₂) = max(εᵢ(π₁), εᵢ(π₂) - ⟨wt π₁, αᵢ^∨⟩)`, the tensor product formula.
+@isnad1 id=eq.0h9v.s8.0851cc394637 from=translated src=- shape=79f220f9 vocab=ef459ca9
+-/
 theorem ε_concat :
     ε i (π₁.concat π₂) = max (ε i π₁) (ε i π₂ + ((-D.coroot i π₁.wt : ℤ) : WithBot ℤ)) := by
   rw [ε, ε, ε, minPairing_concat, pairing_one, ← WithBot.coe_add, ← WithBot.coe_max]
@@ -205,7 +238,9 @@ private lemma ε_le_φ_iff {n₁ n₂ : ℤ} (h₁ : π₁.minPairing i = n₁) 
 
 /-- Kashiwara's tensor product rule for `eᵢ` on concatenations ([Lit95] §2): if the minima
 `mᵢ(π₁)` and `mᵢ(π₂)` are integers, then `eᵢ (π₁ * π₂) = (eᵢ π₁) * π₂` if `εᵢ(π₂) ≤ φᵢ(π₁)` and
-`eᵢ (π₁ * π₂) = π₁ * (eᵢ π₂)` otherwise.-/
+`eᵢ (π₁ * π₂) = π₁ * (eᵢ π₂)` otherwise.
+@isnad1 id=eq.2h9v.s9.ce7502ef7b7d from=translated src=- shape=13f6945b vocab=7fa11644
+-/
 theorem e_concat (h₁ : ∃ n : ℤ, π₁.minPairing i = n) (h₂ : ∃ n : ℤ, π₂.minPairing i = n) :
     e i (π₁.concat π₂) = if ε i π₂ ≤ φ i π₁ then (e i π₁).map (·.concat π₂)
       else (e i π₂).map (π₁.concat ·) := by
@@ -268,7 +303,9 @@ theorem e_concat (h₁ : ∃ n : ℤ, π₁.minPairing i = n) (h₂ : ∃ n : �
 
 /-- Kashiwara's tensor product rule for `fᵢ` on concatenations ([Lit95] §2): if the minima
 `mᵢ(π₁)` and `mᵢ(π₂)` are integers, then `fᵢ (π₁ * π₂) = (fᵢ π₁) * π₂` if `εᵢ(π₂) < φᵢ(π₁)` and
-`fᵢ (π₁ * π₂) = π₁ * (fᵢ π₂)` otherwise.-/
+`fᵢ (π₁ * π₂) = π₁ * (fᵢ π₂)` otherwise.
+@isnad1 id=eq.2h9v.s9.4c26597f2a51 from=translated src=- shape=13f6945b vocab=77eb1ff9
+-/
 theorem f_concat (h₁ : ∃ n : ℤ, π₁.minPairing i = n) (h₂ : ∃ n : ℤ, π₂.minPairing i = n) :
     f i (π₁.concat π₂) = if ε i π₂ < φ i π₁ then (f i π₁).map (·.concat π₂)
       else (f i π₂).map (π₁.concat ·) := by
@@ -281,7 +318,9 @@ theorem f_concat (h₁ : ∃ n : ℤ, π₁.minPairing i = n) (h₂ : ∃ n : �
     simp only [f, Option.map_map, Function.comp_def, rev_concat, rev_rev]
 
 /-- For integral paths, `(π₁, π₂) ↦ π₁ * π₂` intertwines `eᵢ` on the tensor product of path
-crystals with `eᵢ` on paths ([Lit95] §2).-/
+crystals with `eᵢ` on paths ([Lit95] §2).
+@isnad1 id=eq.2h9v.s9.9a0c482a922c from=translated src=- shape=dec7296b vocab=98748b20
+-/
 theorem e_concat_eq_tensor (h₁ : π₁.IsIntegral) (h₂ : π₂.IsIntegral) (i : ι) :
     e i (π₁.concat π₂) =
       (((crystal S).tensor (crystal S)).e i (π₁, π₂)).map fun p ↦ p.1.concat p.2 := by
@@ -290,7 +329,9 @@ theorem e_concat_eq_tensor (h₁ : π₁.IsIntegral) (h₂ : π₂.IsIntegral) (
   split_ifs <;> simp [Option.map_map, Function.comp_def]
 
 /-- For integral paths, `(π₁, π₂) ↦ π₁ * π₂` intertwines `fᵢ` on the tensor product of path
-crystals with `fᵢ` on paths ([Lit95] §2).-/
+crystals with `fᵢ` on paths ([Lit95] §2).
+@isnad1 id=eq.2h9v.s9.997e9c374b59 from=translated src=- shape=dec7296b vocab=ebe584ee
+-/
 theorem f_concat_eq_tensor (h₁ : π₁.IsIntegral) (h₂ : π₂.IsIntegral) (i : ι) :
     f i (π₁.concat π₂) =
       (((crystal S).tensor (crystal S)).f i (π₁, π₂)).map fun p ↦ p.1.concat p.2 := by

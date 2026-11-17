@@ -70,6 +70,9 @@ private lemma withBot_le_of_eq {x y : WithBot ℤ} {k : ℤ} (hk : 0 ≤ k) (hy 
     rw [← WithBot.coe_natCast, ← WithBot.coe_add, WithBot.coe_le_coe]
     omega
 
+/--
+@isnad1 id=eq.2h7v.s7.16a6a277c794 from=translated src=- shape=ef0e1252 vocab=02e0cf68
+-/
 lemma fIter_reflection (hC : C.IsSeminormal) (h : 0 ≤ D.coroot i (C.wt b)) :
     C.fIter i (D.coroot i (C.wt b)).toNat b = some (C.reflection i b) := by
   have hs : (C.fIter i (D.coroot i (C.wt b)).toNat b).isSome :=
@@ -77,6 +80,9 @@ lemma fIter_reflection (hC : C.IsSeminormal) (h : 0 ≤ D.coroot i (C.wt b)) :
   simp only [reflection, h, ↓reduceIte]
   rw [← Option.some_get hs, Option.getD_some]
 
+/--
+@isnad1 id=eq.2h7v.s7.443a8a75378c from=translated src=- shape=efe74f99 vocab=db76681f
+-/
 lemma eIter_reflection (hC : C.IsSeminormal) (h : D.coroot i (C.wt b) < 0) :
     C.eIter i (-D.coroot i (C.wt b)).toNat b = some (C.reflection i b) := by
   have hε : C.ε i b = C.φ i b + ((-D.coroot i (C.wt b) : ℤ) : WithBot ℤ) := by
@@ -86,7 +92,9 @@ lemma eIter_reflection (hC : C.IsSeminormal) (h : D.coroot i (C.wt b) < 0) :
   simp only [reflection, not_le.mpr h, ↓reduceIte]
   rw [← Option.some_get hs, Option.getD_some]
 
-/-- `wt (Sᵢ b) = rᵢ (wt b)` ([Kas] (11.2)).-/
+/-- `wt (Sᵢ b) = rᵢ (wt b)` ([Kas] (11.2)).
+@isnad1 id=eq.1h7v.s7.c72c0608a25b from=translated src=- shape=67f5e96b vocab=23ec9c8d
+-/
 theorem wt_reflection (hC : C.IsSeminormal) (i : ι) (b : B) :
     C.wt (C.reflection i b) = D.reflection i (C.wt b) := by
   rw [D.reflection_apply]
@@ -95,11 +103,16 @@ theorem wt_reflection (hC : C.IsSeminormal) (i : ι) (b : B) :
   · rw [C.wt_eIter (hC.eIter_reflection (not_le.mp h)), ← natCast_zsmul,
       Int.toNat_of_nonneg (by omega), neg_smul, ← sub_eq_add_neg]
 
+/--
+@isnad1 id=eq.1h7v.s7.9deb10908fa9 from=translated src=- shape=03f980e8 vocab=1d4d967e
+-/
 lemma coroot_wt_reflection (hC : C.IsSeminormal) (i : ι) (b : B) :
     D.coroot i (C.wt (C.reflection i b)) = -D.coroot i (C.wt b) := by
   rw [hC.wt_reflection, D.coroot_reflection]
 
-/-- `Sᵢ² = id` ([Kas] §11).-/
+/-- `Sᵢ² = id` ([Kas] §11).
+@isnad1 id=eq.1h7v.s5.c3e0b003ccca from=translated src=- shape=320cfdcf vocab=517d380f
+-/
 theorem reflection_reflection (hC : C.IsSeminormal) (i : ι) (b : B) :
     C.reflection i (C.reflection i b) = b := by
   have hk := hC.coroot_wt_reflection i b
@@ -121,11 +134,16 @@ theorem reflection_reflection (hC : C.IsSeminormal) (i : ι) (b : B) :
     rw [(C.fIter_eq_some_iff _ _ _).mp this] at h₂
     exact Option.some_injective _ h₂
 
+/--
+@isnad1 id=involuti.1h6v.s5.ffeeb4232132 from=translated src=- shape=7ffddd17 vocab=b01aa779
+-/
 lemma reflection_involutive (hC : C.IsSeminormal) (i : ι) :
     Function.Involutive (C.reflection i) :=
   hC.reflection_reflection i
 
-/-- `εᵢ(Sᵢ b) = φᵢ(b)`.-/
+/-- `εᵢ(Sᵢ b) = φᵢ(b)`.
+@isnad1 id=eq.1h7v.s5.9b5bca685848 from=translated src=- shape=e9744b67 vocab=4374d798
+-/
 theorem ε_reflection (hC : C.IsSeminormal) (i : ι) (b : B) :
     C.ε i (C.reflection i b) = C.φ i b := by
   by_cases h : 0 ≤ D.coroot i (C.wt b)
@@ -139,6 +157,9 @@ theorem ε_reflection (hC : C.IsSeminormal) (i : ι) (b : B) :
 def reflectionPerm (hC : C.IsSeminormal) (i : ι) : Equiv.Perm B :=
   (hC.reflection_involutive i).toPerm
 
+/--
+@isnad1 id=eq.1h7v.s6.0b8697d892d6 from=translated src=- shape=255668ed vocab=a78f1459
+-/
 @[simp] lemma reflectionPerm_apply (hC : C.IsSeminormal) (i : ι) (b : B) :
     hC.reflectionPerm i b = C.reflection i b := rfl
 

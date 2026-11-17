@@ -26,12 +26,24 @@ def hermite (x z : R) : ℕ → R
   | n + 2 => (1 + x ^ (n + 2) * z) * hermite x z (n + 1) +
       x ^ (n + 2) * (1 - x ^ (n + 1)) * z ^ 2 * hermite x z n
 
+/--
+@isnad1 id=eq.0h3v.s5.6b3078526f15 from=translated src=- shape=9c02e61a vocab=5a1ecdcb
+-/
 @[simp] lemma hermite_zero (x z : R) : hermite x z 0 = 1 := rfl
+/--
+@isnad1 id=eq.0h3v.s6.5ec495dba072 from=translated src=- shape=56d94e71 vocab=f48180d0
+-/
 @[simp] lemma hermite_one (x z : R) : hermite x z 1 = 1 + x * z := rfl
+/--
+@isnad1 id=eq.0h4v.s8.f68c4c731e45 from=translated src=- shape=e6fab6ab vocab=e0211075
+-/
 lemma hermite_step (x z : R) (n : ℕ) :
     hermite x z (n + 2) = (1 + x ^ (n + 2) * z) * hermite x z (n + 1) +
       x ^ (n + 2) * (1 - x ^ (n + 1)) * z ^ 2 * hermite x z n := rfl
 
+/--
+@isnad1 id=and.0h4v.s9.133f8a4073d1 from=translated src=- shape=22a9c9d5 vocab=e0211075
+-/
 lemma hermite_identities (x z : R) (n : ℕ) :
     (hermite x (x * z) (n + 1) = x ^ (n + 1) * hermite x z (n + 1) +
       (1 - x ^ (n + 1)) * hermite x (x * z) n) ∧
@@ -50,11 +62,17 @@ lemma hermite_identities (x z : R) (n : ℕ) :
       simp only [pow_add, pow_one] at hn ⊢
       linear_combination (1 - x * x ^ n) * hn
 
+/--
+@isnad1 id=eq.0h4v.s7.df98b7c9ea5f from=translated src=- shape=0ef7de7b vocab=e0211075
+-/
 lemma hermite_shift (x z : R) (n : ℕ) :
     hermite x (x * z) (n + 1) = x ^ (n + 1) * hermite x z (n + 1) +
       (1 - x ^ (n + 1)) * hermite x (x * z) n :=
   (hermite_identities x z n).1
 
+/--
+@isnad1 id=eq.0h4v.s8.1daaaab281bb from=translated src=- shape=e881d6e5 vocab=e0211075
+-/
 lemma hermite_newton (x z : R) (n : ℕ) :
     hermite x z (n + 1) =
       (1 + x * z + x ^ 2 * z ^ 2) * hermite x (x * z) n -
@@ -72,10 +90,16 @@ def scalarPoly (x : R) : ℕ → ℕ → ℕ → R
   | a + 1, b, c => scalarPoly x a (b + 1) c +
       x ^ (2 * a + b + c + 2) * scalarPoly x a b c
 
+/--
+@isnad1 id=eq.0h5v.s7.32da8ce9ea36 from=translated src=- shape=e706f915 vocab=25c11d79
+-/
 lemma scalarPoly_a (x : R) (a b c : ℕ) :
     scalarPoly x (a + 1) b c = scalarPoly x a (b + 1) c +
       x ^ (2 * a + b + c + 2) * scalarPoly x a b c := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.310446c57315 from=translated src=- shape=284fbee4 vocab=25c11d79
+-/
 lemma scalarPoly_c (x : R) (a b c : ℕ) :
     scalarPoly x a b (c + 1) = scalarPoly x a (b + 1) c +
       x ^ (a + b + 2 * c + 2) * scalarPoly x a b c := by
@@ -90,6 +114,9 @@ lemma scalarPoly_c (x : R) (a b c : ℕ) :
     simp only [pow_add, pow_mul, pow_one]
     ring
 
+/--
+@isnad1 id=eq.0h5v.s4.750d3c9375f9 from=translated src=- shape=d9e941a4 vocab=5a156f05
+-/
 lemma scalarPoly_symm (x : R) (a b c : ℕ) :
     scalarPoly x a b c = scalarPoly x c b a := by
   induction a generalizing b c with
@@ -113,6 +140,9 @@ def residual (x : R) (a b c : ℕ) : R :=
     x ^ (3 * a + b - 1) * (1 + x) * (1 - x ^ b) * scalarPoly x a (b - 1) c -
     x ^ (3 * a + 2 * b) * (1 - x ^ (3 * c)) * scalarPoly x a b (c - 1)
 
+/--
+@isnad1 id=eq.0h5v.s7.105a01bc4857 from=translated src=- shape=284fbee4 vocab=1af8d4e1
+-/
 lemma residual_c (x : R) (a b c : ℕ) :
     residual x a b (c + 1) = residual x a (b + 1) c +
       x ^ (a + b + 2 * c + 2) * residual x a b c := by
@@ -126,6 +156,9 @@ lemma residual_c (x : R) (a b c : ℕ) :
   all_goals simp only [pow_add, pow_mul, pow_one, pow_zero]
   all_goals ring
 
+/--
+@isnad1 id=eq.0h4v.s9.8628cd0609ef from=translated src=- shape=091c7363 vocab=e0211075
+-/
 lemma hermite_boundary (x z : R) (b : ℕ) :
     (1 - (x * z) ^ 2 * x ^ b) * hermite x (x * z) b -
       (1 - x * z) * hermite x z (b + 1) -
@@ -145,11 +178,17 @@ lemma hermite_boundary (x z : R) (b : ℕ) :
       (x * z) ^ 2 * (1 - x ^ (b + 2)) * hb -
       (x * z) ^ 2 * (1 - x * z) * hs
 
+/--
+@isnad1 id=eq.0h4v.s6.ffb0eadd168b from=translated src=- shape=c98abb3d vocab=46eacab9
+-/
 lemma scalarPoly_last_zero (x : R) (a b : ℕ) :
     scalarPoly x a b 0 = triple x a * hermite x (x ^ a) b := by
   rw [scalarPoly_symm]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.9a9f2eac4df3 from=translated src=- shape=bff5c5aa vocab=457a1f40
+-/
 lemma residual_zero_right (x : R) (a b : ℕ) : residual x a b 0 = 0 := by
   rcases a with _ | a
   · rcases b with _ | _ | b
@@ -174,6 +213,9 @@ lemma residual_zero_right (x : R) (a b : ℕ) : residual x a b 0 = 0 := by
     all_goals simp only [triple, pow_add, pow_mul, pow_one] at he ⊢
     all_goals linear_combination triple x a * (1 + x ^ (a + 1) + x ^ (2 * (a + 1))) * he
 
+/--
+@isnad1 id=eq.0h5v.s5.27c3cd99561e from=translated src=- shape=62241139 vocab=457a1f40
+-/
 lemma residual_eq_zero (x : R) (a b c : ℕ) : residual x a b c = 0 := by
   induction c generalizing b with
   | zero => exact residual_zero_right x a b
@@ -184,10 +226,15 @@ open Polynomial Finset SquareCancellation
 /-- An integral polynomial, before any specialization of the parameter.-/
 def scalarPolynomial (a b c : ℕ) : ℤ[X] := scalarPoly X a b c
 
+/--
+@isnad1 id=eq.0h0v.s5.5c0c5a0abb73 from=translated src=- shape=3152ee67 vocab=4270865d
+-/
 lemma scalarPolynomial_zero : scalarPolynomial 0 0 0 = 1 := by
   simp [scalarPolynomial, scalarPoly, triple]
 
-/-- Polynomial cancellation of the complete quantum-integer divisor.-/
+/-- Polynomial cancellation of the complete quantum-integer divisor.
+@isnad1 id=eq.0h3v.s9.93de53182a75 from=translated src=- shape=d9c2a6d1 vocab=148e9143
+-/
 theorem scalarPolynomial_recurrence (a b c : ℕ) :
     gaussian (2 * a + b + c) * scalarPolynomial a b c =
       gaussian (3 * a) * scalarPolynomial (a - 1) (b + 1) c +

@@ -58,6 +58,9 @@ variable {ι : Type*} (K : Type*) [Field K] (p : ι → ZMod 2)
 /-- The sign `(-1)^{p i}`.-/
 def paritySign (i : ι) : K := if p i = 1 then -1 else 1
 
+/--
+@isnad1 id=eq.0h4v.s6.73e25ac1f08b from=translated src=- shape=83d58ed7 vocab=5960ff51
+-/
 lemma paritySign_mul_self (i : ι) : paritySign K p i * paritySign K p i = 1 := by
   unfold paritySign; split_ifs <;> norm_num
 
@@ -92,18 +95,33 @@ def parityData : LiftData P p (P.SuperEnveloping p) where
 `h ↦ h`.-/
 def parity : P.SuperEnveloping p →ₐ[K] P.SuperEnveloping p := lift (parityData P p)
 
+/--
+@isnad1 id=eq.0h7v.s8.5bf8167fd17c from=translated src=- shape=5faf26ab vocab=dcf90668
+-/
 @[simp] lemma parity_e (i : ι) : parity P p (e P p i) = paritySign K p i • e P p i :=
   lift_e _ i
 
+/--
+@isnad1 id=eq.0h7v.s8.8e26b1d7eea1 from=translated src=- shape=5faf26ab vocab=f430f139
+-/
 @[simp] lemma parity_f (i : ι) : parity P p (f P p i) = paritySign K p i • f P p i :=
   lift_f _ i
 
+/--
+@isnad1 id=eq.0h7v.s9.996f857c62dd from=translated src=- shape=4dd792dc vocab=b34e0884
+-/
 @[simp] lemma parity_h (a : H) : parity P p (h P p a) = h P p a := lift_h _ a
 
+/--
+@isnad1 id=eq.0h6v.s8.8f4126a003c2 from=translated src=- shape=832cd462 vocab=380f2f9c
+-/
 lemma parity_comp_parity : (parity P p).comp (parity P p) = AlgHom.id K _ := by
   refine hom_ext (fun i ↦ ?_) (fun i ↦ ?_) (fun a ↦ ?_) <;>
     simp [smul_smul, paritySign_mul_self]
 
+/--
+@isnad1 id=eq.0h7v.s9.04c3db789e22 from=translated src=- shape=cb1497b6 vocab=d1fe4cae
+-/
 @[simp] lemma parity_parity (u : P.SuperEnveloping p) : parity P p (parity P p u) = u :=
   congrArg (fun φ : P.SuperEnveloping p →ₐ[K] _ ↦ φ u) (parity_comp_parity P p)
 
@@ -117,6 +135,9 @@ def IsEven (u : P.SuperEnveloping p) : Prop := parity P p u = u
 /-- `u` is odd: `σ u = -u`.-/
 def IsOdd (u : P.SuperEnveloping p) : Prop := parity P p u = -u
 
+/--
+@isnad1 id=iseven.0h7v.s8.19a22c95bb70 from=translated src=- shape=f0549232 vocab=0ebb02e7
+-/
 lemma isEven_h (a : H) : IsEven P p (h P p a) := parity_h P p a
 
 /-! ### The super commutator -/
@@ -128,11 +149,17 @@ def superBracket (x y : P.SuperEnveloping p) : P.SuperEnveloping p :=
 
 variable [CharZero K]
 
+/--
+@isnad1 id=eq.1h8v.s8.9e66573e7ace from=translated src=- shape=06777968 vocab=8dd614f1
+-/
 lemma superBracket_of_even_left {x : P.SuperEnveloping p} (hx : IsEven P p x)
     (y : P.SuperEnveloping p) : superBracket P p x y = x * y - y * x := by
   rw [superBracket, hx, ← add_mul, add_add_sub_cancel, ← two_smul K y, smul_mul_assoc,
     smul_smul, inv_mul_cancel₀ two_ne_zero, one_smul]
 
+/--
+@isnad1 id=eq.1h8v.s8.cbd5176f9592 from=translated src=- shape=9a613429 vocab=8dd614f1
+-/
 lemma superBracket_of_even_right (x : P.SuperEnveloping p) {y : P.SuperEnveloping p}
     (hy : IsEven P p y) : superBracket P p x y = x * y - y * x := by
   rw [superBracket, hy, sub_self, zero_mul, add_zero, ← two_smul K y, smul_mul_assoc,
@@ -151,23 +178,44 @@ def weightSpace (μ : Dual K H) : Submodule K (P.SuperEnveloping p) where
   smul_mem' c u hu a := by
     rw [mul_smul_comm, hu a, smul_add, smul_mul_assoc, smul_comm]
 
+/--
+@isnad1 id=iff.0h8v.s10.7549c770452a from=translated src=- shape=053189f6 vocab=3910057d
+-/
 lemma mem_weightSpace {μ : Dual K H} {u : P.SuperEnveloping p} :
     u ∈ weightSpace P p μ ↔ ∀ a, h P p a * u = u * h P p a + μ a • u := Iff.rfl
 
+/--
+@isnad1 id=mem.0h7v.s8.3e85e2a467cc from=translated src=- shape=803b3b28 vocab=57b24b2a
+-/
 lemma e_mem_weightSpace (i : ι) : e P p i ∈ weightSpace P p (P.root i) := fun a ↦ h_mul_e P p a i
 
+/--
+@isnad1 id=mem.0h7v.s9.26d50910946b from=translated src=- shape=a4e7c8fc vocab=2df900d6
+-/
 lemma f_mem_weightSpace (i : ι) : f P p i ∈ weightSpace P p (-P.root i) := fun a ↦ by
   rw [h_mul_f, LinearMap.neg_apply, neg_smul, sub_eq_add_neg]
 
+/--
+@isnad1 id=mem.0h7v.s9.602c0172889c from=translated src=- shape=04d9cd1f vocab=53fa936e
+-/
 lemma h_mem_weightSpace (b : H) : h P p b ∈ weightSpace P p 0 := fun a ↦ by
   rw [h_mul_h, LinearMap.zero_apply, zero_smul, add_zero]
 
+/--
+@isnad1 id=mem.0h7v.s9.043ee2799d1b from=translated src=- shape=8c227ddf vocab=cfcdcb19
+-/
 lemma algebraMap_mem_weightSpace (c : K) : algebraMap K _ c ∈ weightSpace P p 0 := fun a ↦ by
   rw [Algebra.commutes, LinearMap.zero_apply, zero_smul, add_zero]
 
+/--
+@isnad1 id=mem.0h6v.s9.ca818e4a2482 from=translated src=- shape=8734a632 vocab=cdbd9c66
+-/
 lemma one_mem_weightSpace : (1 : P.SuperEnveloping p) ∈ weightSpace P p 0 := by
   simpa using algebraMap_mem_weightSpace P p 1
 
+/--
+@isnad1 id=mem.2h10v.s10.35ddd172b071 from=translated src=- shape=f1341da0 vocab=7916af05
+-/
 lemma mul_mem_weightSpace {μ ν : Dual K H} {u v : P.SuperEnveloping p}
     (hu : u ∈ weightSpace P p μ) (hv : v ∈ weightSpace P p ν) :
     u * v ∈ weightSpace P p (μ + ν) := fun a ↦ by
@@ -175,11 +223,17 @@ lemma mul_mem_weightSpace {μ ν : Dual K H} {u v : P.SuperEnveloping p}
     LinearMap.add_apply, add_smul, ← mul_assoc]
   abel
 
+/--
+@isnad1 id=mem.1h8v.s10.80221f46a7c4 from=translated src=- shape=722095c3 vocab=1e6102ed
+-/
 lemma parity_mem_weightSpace {μ : Dual K H} {u : P.SuperEnveloping p}
     (hu : u ∈ weightSpace P p μ) : parity P p u ∈ weightSpace P p μ := fun a ↦ by
   have := congrArg (parity P p) (hu a)
   simpa using this
 
+/--
+@isnad1 id=mem.2h8v.s11.f3aff99c4948 from=translated src=- shape=feefa5a7 vocab=a9df95db
+-/
 lemma mul_mem_iSup_weightSpace {u v : P.SuperEnveloping p}
     (hu : u ∈ ⨆ μ, weightSpace P p μ) (hv : v ∈ ⨆ μ, weightSpace P p μ) :
     u * v ∈ ⨆ μ, weightSpace P p μ := by
@@ -193,7 +247,9 @@ lemma mul_mem_iSup_weightSpace {u v : P.SuperEnveloping p}
   | zero => simp
   | add u w _ _ hu hw => rw [add_mul]; exact add_mem hu hw
 
-/-- The weight spaces span `U(G̃(A, τ))`.-/
+/-- The weight spaces span `U(G̃(A, τ))`.
+@isnad1 id=eq.0h6v.s9.c5aa1d4eec19 from=translated src=- shape=95b05959 vocab=d43a8ac8
+-/
 theorem iSup_weightSpace : ⨆ μ, weightSpace P p μ = ⊤ := by
   refine eq_top_iff.2 fun u _ ↦ ?_
   obtain ⟨w, rfl⟩ := mk_surjective P p u
@@ -212,6 +268,9 @@ theorem iSup_weightSpace : ⨆ μ, weightSpace P p μ = ⊤ := by
 def adH (a : H) : Module.End K (P.SuperEnveloping p) :=
   LinearMap.mulLeft K (h P p a) - LinearMap.mulRight K (h P p a)
 
+/--
+@isnad1 id=commute.0h8v.s8.468cdd2d01b5 from=translated src=- shape=846647c5 vocab=92d43d5c
+-/
 lemma commute_adH (a b : H) : Commute (adH P p a) (adH P p b) := by
   refine LinearMap.ext fun u ↦ ?_
   simp only [adH, Module.End.mul_apply, LinearMap.sub_apply, LinearMap.mulLeft_apply,
@@ -219,6 +278,9 @@ lemma commute_adH (a b : H) : Commute (adH P p a) (adH P p b) := by
   rw [mul_assoc u, mul_assoc u, h_mul_h P p a b]
   abel
 
+/--
+@isnad1 id=le.0h7v.s9.efcbc0c369cf from=translated src=- shape=9580fde1 vocab=f661173e
+-/
 lemma weightSpace_le_iInf (μ : Dual K H) :
     weightSpace P p μ ≤ ⨅ a, (adH P p a).maxGenEigenspace (μ a) := by
   intro u hu
@@ -227,7 +289,9 @@ lemma weightSpace_le_iInf (μ : Dual K H) :
   rw [Module.End.mem_eigenspace_iff, adH, LinearMap.sub_apply, LinearMap.mulLeft_apply,
     LinearMap.mulRight_apply, hu a, add_sub_cancel_left]
 
-/-- The weight spaces of `U(G̃(A, τ))` are independent.-/
+/-- The weight spaces of `U(G̃(A, τ))` are independent.
+@isnad1 id=isupinde.0h6v.s8.50071db06292 from=translated src=- shape=dcb50e44 vocab=36bf5fac
+-/
 theorem iSupIndep_weightSpace : iSupIndep (weightSpace P p) := by
   have := Module.End.independent_iInf_maxGenEigenspace_of_forall_mapsTo (adH P p)
     fun a b φ ↦ Module.End.mapsTo_maxGenEigenspace_of_comm (commute_adH P p b a) φ

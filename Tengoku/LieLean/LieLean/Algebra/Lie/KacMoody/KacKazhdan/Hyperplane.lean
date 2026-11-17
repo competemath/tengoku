@@ -53,7 +53,9 @@ namespace MvPolynomial
 
 variable {σ R : Type*} [CommRing R]
 
-/-- The top homogeneous component of a nonzero polynomial is nonzero.-/
+/-- The top homogeneous component of a nonzero polynomial is nonzero.
+@isnad1 id=ne.1h3v.s8.f94d299f81c2 from=translated src=- shape=159ca458 vocab=9606c23b
+-/
 lemma homogeneousComponent_totalDegree_ne_zero {p : MvPolynomial σ R} (hp : p ≠ 0) :
     homogeneousComponent p.totalDegree p ≠ 0 := by
   obtain ⟨m, hm, hmd⟩ := Finset.exists_mem_eq_sup p.support (support_nonempty.mpr hp)
@@ -65,7 +67,9 @@ lemma homogeneousComponent_totalDegree_ne_zero {p : MvPolynomial σ R} (hp : p �
   simp only [coeff_homogeneousComponent, hdeg, ↓reduceIte] at this
   exact (mem_support_iff.mp hm) this
 
-/-- Total degree is additive for nonzero polynomials over a domain.-/
+/-- Total degree is additive for nonzero polynomials over a domain.
+@isnad1 id=eq.2h4v.s7.da5eb32ee64f from=translated src=- shape=81a5078c vocab=f0a94537
+-/
 lemma totalDegree_mul_eq_add [IsDomain R] {p q : MvPolynomial σ R} (hp : p ≠ 0) (hq : q ≠ 0) :
     (p * q).totalDegree = p.totalDegree + q.totalDegree := by
   refine le_antisymm (totalDegree_mul p q) (le_of_not_gt fun hlt ↦ ?_)
@@ -74,6 +78,9 @@ lemma totalDegree_mul_eq_add [IsDomain R] {p q : MvPolynomial σ R} (hp : p ≠ 
   exact mul_ne_zero (homogeneousComponent_totalDegree_ne_zero hp)
     (homogeneousComponent_totalDegree_ne_zero hq) h.symm
 
+/--
+@isnad1 id=eq.1h3v.s6.8e4da29e8492 from=translated src=- shape=5e66b5dd vocab=1801d590
+-/
 lemma totalDegree_eq_zero_of_isUnit [IsDomain R] {p : MvPolynomial σ R} (hp : IsUnit p) :
     p.totalDegree = 0 := by
   obtain ⟨q, hq⟩ := hp.exists_right_inv
@@ -88,6 +95,9 @@ namespace Polynomial
 
 variable {R : Type*} [CommRing R] [IsDomain R]
 
+/--
+@isnad1 id=eq.0h3v.s6.87bbecd38efd from=translated src=- shape=c8950868 vocab=6f5b8210
+-/
 lemma natTrailingDegree_pow_eq_mul (p : R[X]) (n : ℕ) :
     (p ^ n).natTrailingDegree = n * p.natTrailingDegree := by
   by_cases hp : p = 0
@@ -98,6 +108,9 @@ lemma natTrailingDegree_pow_eq_mul (p : R[X]) (n : ℕ) :
   | zero => simp
   | succ n ih => rw [pow_succ, natTrailingDegree_mul (pow_ne_zero _ hp) hp, ih, add_one_mul]
 
+/--
+@isnad1 id=eq.1h4v.s7.b7ce2ae3a7d2 from=translated src=- shape=1ff39069 vocab=d47c2eb7
+-/
 lemma natTrailingDegree_finsetProd {ι : Type*} (s : Finset ι) (f : ι → R[X])
     (hf : ∀ i ∈ s, f i ≠ 0) :
     (∏ i ∈ s, f i).natTrailingDegree = ∑ i ∈ s, (f i).natTrailingDegree := by
@@ -120,13 +133,22 @@ variable (K H) in
 /-- The affine polynomial `λ ↦ λ(a) + c` on `H*`.-/
 def affPoly (a : H) (c : K) : MvPolynomial (PolyIdx K H) K := linPoly K H a + MvPolynomial.C c
 
+/--
+@isnad1 id=eq.0h5v.s9.f45d830cacc1 from=translated src=- shape=f54acaaa vocab=1dadc088
+-/
 @[simp] lemma evalPoly_affPoly (a : H) (c : K) (Λ : Dual K H) :
     evalPoly K H (affPoly K H a c) Λ = Λ a + c := by
   simp [affPoly]
 
+/--
+@isnad1 id=eq.0h4v.s9.0cb99d47672c from=translated src=- shape=79ab9156 vocab=b19ee0ed
+-/
 @[simp] lemma evalPoly_C (u : K) (Λ : Dual K H) : evalPoly K H (MvPolynomial.C u) Λ = u := by
   simp [evalPoly_apply]
 
+/--
+@isnad1 id=eq.0h5v.s10.7c79d6f50c7a from=translated src=- shape=206322b6 vocab=2450336d
+-/
 lemma evalPoly_aeval (g : PolyIdx K H → MvPolynomial (PolyIdx K H) K)
     (F : MvPolynomial (PolyIdx K H) K) (Λ : Dual K H) :
     evalPoly K H (MvPolynomial.aeval g F) Λ =
@@ -135,21 +157,31 @@ lemma evalPoly_aeval (g : PolyIdx K H → MvPolynomial (PolyIdx K H) K)
   exact congrArg (fun φ ↦ φ F) (MvPolynomial.comp_aeval (R := K) g
     (MvPolynomial.aeval fun j ↦ Λ (Module.Free.chooseBasis K H j)))
 
+/--
+@isnad1 id=ex.1h3v.s7.7aa4ed5a9898 from=translated src=- shape=3127f19e vocab=d910e91d
+-/
 lemma exists_dual_apply_ne_zero {a : H} (ha : a ≠ 0) : ∃ δ : Dual K H, δ a ≠ 0 := by
   by_contra! h
   exact ha ((Module.forall_dual_apply_eq_zero_iff K a).mp h)
 
+/--
+@isnad1 id=ex.1h3v.s7.ff3b61d92367 from=translated src=- shape=15c85c6b vocab=d910e91d
+-/
 lemma exists_dual_apply_eq_one {a : H} (ha : a ≠ 0) : ∃ δ : Dual K H, δ a = 1 := by
   obtain ⟨δ, hδ⟩ := exists_dual_apply_ne_zero (K := K) ha
   exact ⟨(δ a)⁻¹ • δ, by simp [hδ]⟩
 
-/-- A nonzero polynomial is nonzero at some point (over an infinite field).-/
+/-- A nonzero polynomial is nonzero at some point (over an infinite field).
+@isnad1 id=ex.1h3v.s9.9507d2f02fd6 from=translated src=- shape=8042f0b9 vocab=1e0d7b55
+-/
 lemma exists_evalPoly_ne_zero [Infinite K] {F : MvPolynomial (PolyIdx K H) K} (hF : F ≠ 0) :
     ∃ Λ : Dual K H, evalPoly K H F Λ ≠ 0 := by
   by_contra! h
   exact hF (evalPoly_injective (by ext Λ; simp [h Λ]))
 
-/-- Finitely many nonzero polynomials are simultaneously nonzero at some point.-/
+/-- Finitely many nonzero polynomials are simultaneously nonzero at some point.
+@isnad1 id=ex.1h5v.s9.4ff3e7b078bd from=translated src=- shape=f645815f vocab=08c12e6f
+-/
 lemma exists_forall_evalPoly_ne_zero [Infinite K] {κ : Type*} (s : Finset κ)
     (F : κ → MvPolynomial (PolyIdx K H) K) (hF : ∀ k ∈ s, F k ≠ 0) :
     ∃ Λ : Dual K H, ∀ k ∈ s, evalPoly K H (F k) Λ ≠ 0 := by
@@ -168,6 +200,9 @@ def projSubst (a : H) (c : K) (δ : Dual K H) :
   MvPolynomial.aeval fun j ↦
     MvPolynomial.X j - affPoly K H a c * MvPolynomial.C (δ (Module.Free.chooseBasis K H j))
 
+/--
+@isnad1 id=eq.0h7v.s10.8723b93a18be from=translated src=- shape=60568dd4 vocab=19797f8c
+-/
 lemma evalPoly_projSubst (a : H) (c : K) (δ : Dual K H) (F : MvPolynomial (PolyIdx K H) K)
     (Λ : Dual K H) :
     evalPoly K H (projSubst K H a c δ F) Λ = evalPoly K H F (Λ - (Λ a + c) • δ) := by
@@ -181,7 +216,9 @@ lemma evalPoly_projSubst (a : H) (c : K) (δ : Dual K H) (F : MvPolynomial (Poly
     smul_eq_mul]
 
 /-- `projSubst` is the identity modulo `λ(a) + c`; so if it kills `F`, then `λ(a) + c` divides
-`F`.-/
+`F`.
+@isnad1 id=dvd.1h6v.s9.ad2d705f7683 from=translated src=- shape=8d0c8890 vocab=6dc04661
+-/
 lemma affPoly_dvd_of_projSubst_eq_zero (a : H) (c : K) (δ : Dual K H)
     {F : MvPolynomial (PolyIdx K H) K} (h : projSubst K H a c δ F = 0) : affPoly K H a c ∣ F := by
   set I := Ideal.span {affPoly K H a c}
@@ -195,7 +232,9 @@ lemma affPoly_dvd_of_projSubst_eq_zero (a : H) (c : K) (δ : Dual K H)
   simp only [AlgHom.comp_apply, h, map_zero, Ideal.Quotient.mkₐ_eq_mk] at this
   exact Ideal.mem_span_singleton.mp (Ideal.Quotient.eq_zero_iff_mem.mp this.symm)
 
-/-- **A polynomial vanishing on an affine hyperplane is divisible by its equation.**-/
+/-- **A polynomial vanishing on an affine hyperplane is divisible by its equation.**
+@isnad1 id=dvd.2h5v.s9.a573e4ecb54d from=translated src=- shape=e3eef01a vocab=b0328586
+-/
 theorem affPoly_dvd_of_forall [Infinite K] {a : H} (ha : a ≠ 0) (c : K)
     {F : MvPolynomial (PolyIdx K H) K}
     (hF : ∀ Λ : Dual K H, Λ a + c = 0 → evalPoly K H F Λ = 0) : affPoly K H a c ∣ F := by
@@ -206,7 +245,9 @@ theorem affPoly_dvd_of_forall [Infinite K] {a : H} (ha : a ≠ 0) (c : K)
   exact hF _ (by simp [hδ])
 
 /-- A polynomial not divisible by the equation of an affine hyperplane is nonzero at some point of
-the hyperplane.-/
+the hyperplane.
+@isnad1 id=ex.2h5v.s9.6a4278ac0c44 from=translated src=- shape=6a7918b6 vocab=b0328586
+-/
 theorem exists_eval_ne_zero_of_not_dvd [Infinite K] {a : H} (ha : a ≠ 0) (c : K)
     {F : MvPolynomial (PolyIdx K H) K} (hF : ¬ affPoly K H a c ∣ F) :
     ∃ Λ : Dual K H, Λ a + c = 0 ∧ evalPoly K H F Λ ≠ 0 := by
@@ -214,7 +255,9 @@ theorem exists_eval_ne_zero_of_not_dvd [Infinite K] {a : H} (ha : a ≠ 0) (c : 
   exact hF (affPoly_dvd_of_forall ha c h)
 
 /-- **Generic points of a hyperplane.** Finitely many polynomials, each nonzero at some point of an
-affine hyperplane, are simultaneously nonzero at some point of it.-/
+affine hyperplane, are simultaneously nonzero at some point of it.
+@isnad1 id=ex.2h7v.s10.3c3e739eb53d from=translated src=- shape=44ac826f vocab=671449c4
+-/
 theorem exists_forall_evalPoly_ne_zero_of_hyperplane [Infinite K] {a : H} (ha : a ≠ 0) (c : K)
     {κ : Type*} (s : Finset κ) (F : κ → MvPolynomial (PolyIdx K H) K)
     (hF : ∀ k ∈ s, ∃ Λ : Dual K H, Λ a + c = 0 ∧ evalPoly K H (F k) Λ ≠ 0) :
@@ -232,9 +275,15 @@ theorem exists_forall_evalPoly_ne_zero_of_hyperplane [Infinite K] {a : H} (ha : 
 
 /-! ### Degree and irreducibility -/
 
+/--
+@isnad1 id=le.0h4v.s5.67ad16d010a4 from=translated src=- shape=e1ad725e vocab=77c00e20
+-/
 lemma totalDegree_affPoly_le (a : H) (c : K) : (affPoly K H a c).totalDegree ≤ 1 :=
   (MvPolynomial.totalDegree_add _ _).trans (max_le (totalDegree_linPoly_le a) (by simp))
 
+/--
+@isnad1 id=ne.1h4v.s7.934cf24af74f from=translated src=- shape=279dd294 vocab=49aa20f9
+-/
 lemma affPoly_ne_zero {a : H} (ha : a ≠ 0) (c : K) : affPoly K H a c ≠ 0 := by
   intro h
   obtain ⟨Λ, hΛ⟩ := exists_dual_apply_ne_zero (K := K) ha
@@ -246,6 +295,9 @@ lemma affPoly_ne_zero {a : H} (ha : a ≠ 0) (c : K) : affPoly K H a c ≠ 0 := 
   have : (1 : K) = 0 := by linear_combination h3 - 2 * h2 + h2
   exact one_ne_zero this
 
+/--
+@isnad1 id=eq.1h4v.s6.ef4e9251a123 from=translated src=- shape=d611526e vocab=5ed2560f
+-/
 lemma totalDegree_affPoly {a : H} (ha : a ≠ 0) (c : K) : (affPoly K H a c).totalDegree = 1 := by
   refine le_antisymm (totalDegree_affPoly_le a c) (Nat.one_le_iff_ne_zero.mpr fun h ↦ ?_)
   have hr := MvPolynomial.totalDegree_eq_zero_iff_eq_C.mp h
@@ -256,7 +308,9 @@ lemma totalDegree_affPoly {a : H} (ha : a ≠ 0) (c : K) : (affPoly K H a c).tot
   simp only [evalPoly_affPoly, evalPoly_C, LinearMap.zero_apply, zero_add] at h1 h2
   exact hΛ (by linear_combination h1 - h2)
 
-/-- The equation of an affine hyperplane is irreducible.-/
+/-- The equation of an affine hyperplane is irreducible.
+@isnad1 id=irreduci.1h4v.s6.b150c3eca0e6 from=translated src=- shape=3a245db9 vocab=b3e1bc65
+-/
 theorem irreducible_affPoly {a : H} (ha : a ≠ 0) (c : K) : Irreducible (affPoly K H a c) := by
   refine ⟨fun hu ↦ ?_, fun p q hpq ↦ ?_⟩
   · have := MvPolynomial.totalDegree_eq_zero_of_isUnit hu
@@ -283,35 +337,55 @@ theorem irreducible_affPoly {a : H} (ha : a ≠ 0) (c : K) : Irreducible (affPol
 def AffProportional (a : H) (c : K) (a₀ : H) (c₀ : K) : Prop :=
   ∃ u : K, a = u • a₀ ∧ c = u * c₀
 
+/--
+@isnad1 id=affpropo.0h4v.s5.2f6097f9f6aa from=translated src=- shape=74ff1c21 vocab=ec24b13b
+-/
 lemma AffProportional.refl (a : H) (c : K) : AffProportional a c a c := ⟨1, by simp, by simp⟩
 
+/--
+@isnad1 id=ex.2h6v.s7.3f74241cf20d from=translated src=- shape=a2509c4d vocab=a5bf2ff5
+-/
 lemma AffProportional.ne_zero {a a₀ : H} {c c₀ : K} (ha : a ≠ 0) :
     AffProportional a c a₀ c₀ → ∃ u : K, u ≠ 0 ∧ a = u • a₀ ∧ c = u * c₀ := by
   rintro ⟨u, rfl, rfl⟩
   exact ⟨u, fun h ↦ ha (by rw [h, zero_smul]), rfl, rfl⟩
 
+/--
+@isnad1 id=affpropo.2h6v.s6.70bfdc344209 from=translated src=- shape=a49706c7 vocab=ec24b13b
+-/
 lemma AffProportional.symm {a a₀ : H} {c c₀ : K} (ha : a ≠ 0) (h : AffProportional a c a₀ c₀) :
     AffProportional a₀ c₀ a c := by
   obtain ⟨u, hu, rfl, rfl⟩ := h.ne_zero ha
   exact ⟨u⁻¹, by rw [smul_smul, inv_mul_cancel₀ hu, one_smul], by rw [← mul_assoc,
     inv_mul_cancel₀ hu, one_mul]⟩
 
+/--
+@isnad1 id=affpropo.2h8v.s6.8ce79df84b7b from=translated src=- shape=4d1b31ac vocab=ec24b13b
+-/
 lemma AffProportional.trans {a a₁ a₂ : H} {c c₁ c₂ : K} (h : AffProportional a c a₁ c₁)
     (h' : AffProportional a₁ c₁ a₂ c₂) : AffProportional a c a₂ c₂ := by
   obtain ⟨u, rfl, rfl⟩ := h
   obtain ⟨v, rfl, rfl⟩ := h'
   exact ⟨u * v, by rw [smul_smul], by rw [mul_assoc]⟩
 
+/--
+@isnad1 id=eq.2h7v.s8.568a774b7722 from=translated src=- shape=7d9a7fc4 vocab=1d03f9b1
+-/
 lemma AffProportional.affPoly_eq {a a₀ : H} {c c₀ : K} {u : K} (ha : a = u • a₀)
     (hc : c = u * c₀) : affPoly K H a c = MvPolynomial.C u * affPoly K H a₀ c₀ := by
   rw [affPoly, affPoly, ha, hc, map_smul, MvPolynomial.smul_eq_C_mul, map_mul, mul_add]
 
+/--
+@isnad1 id=eq.2h7v.s8.301435981f02 from=translated src=- shape=62db03c1 vocab=1d9c533d
+-/
 lemma AffProportional.evalPoly_eq_zero {a a₀ : H} {c c₀ : K} (h : AffProportional a c a₀ c₀)
     {Λ : Dual K H} (hΛ : Λ a₀ + c₀ = 0) : Λ a + c = 0 := by
   obtain ⟨u, rfl, rfl⟩ := h
   rw [map_smul, smul_eq_mul, ← mul_add, hΛ, mul_zero]
 
-/-- If the equation of an affine hyperplane divides that of another, they are proportional.-/
+/-- If the equation of an affine hyperplane divides that of another, they are proportional.
+@isnad1 id=affpropo.3h6v.s7.773af2913b55 from=translated src=- shape=39d71c86 vocab=e253e7b3
+-/
 lemma affProportional_of_affPoly_dvd {a a₀ : H} (ha₀ : a₀ ≠ 0) (ha : a ≠ 0) {c c₀ : K}
     (h : affPoly K H a₀ c₀ ∣ affPoly K H a c) : AffProportional a c a₀ c₀ := by
   obtain ⟨q, hq⟩ := h
@@ -343,6 +417,9 @@ def linePoly (Λ₀ δ : Dual K H) : MvPolynomial (PolyIdx K H) K →ₐ[K] K[X]
   MvPolynomial.aeval fun j ↦
     C (δ (Module.Free.chooseBasis K H j)) * X + C (Λ₀ (Module.Free.chooseBasis K H j))
 
+/--
+@isnad1 id=eq.0h6v.s10.878ded13e17f from=translated src=- shape=96f19e6c vocab=a0a87307
+-/
 lemma eval_linePoly (Λ₀ δ : Dual K H) (F : MvPolynomial (PolyIdx K H) K) (t : K) :
     (linePoly K H Λ₀ δ F).eval t = evalPoly K H F (Λ₀ + t • δ) := by
   have := congrArg (fun φ ↦ φ F) (MvPolynomial.comp_aeval (R := K)
@@ -355,10 +432,16 @@ lemma eval_linePoly (Λ₀ δ : Dual K H) (F : MvPolynomial (PolyIdx K H) K) (t 
     LinearMap.add_apply, LinearMap.smul_apply, smul_eq_mul]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s9.20467ecda575 from=translated src=- shape=f8a79d04 vocab=f3e96776
+-/
 @[simp] lemma linePoly_C (Λ₀ δ : Dual K H) (u : K) :
     linePoly K H Λ₀ δ (MvPolynomial.C u) = C u :=
   MvPolynomial.aeval_C _ u
 
+/--
+@isnad1 id=eq.0h6v.s9.4df26f577225 from=translated src=- shape=cf1de9e3 vocab=39f0e25a
+-/
 lemma linePoly_affPoly [Infinite K] (Λ₀ δ : Dual K H) (a : H) (c : K) :
     linePoly K H Λ₀ δ (affPoly K H a c) = C (δ a) * X + C (Λ₀ a + c) :=
   Polynomial.funext fun t ↦ by
@@ -367,6 +450,9 @@ lemma linePoly_affPoly [Infinite K] (Λ₀ δ : Dual K H) (a : H) (c : K) :
       eval_C, eval_X]
     ring
 
+/--
+@isnad1 id=and.0h5v.s11.4cf8dfb0d7c2 from=translated src=- shape=fa74f2c4 vocab=28d0e395
+-/
 lemma natDegree_linePoly_monomial_le_and_coeff (Λ₀ δ : Dual K H)
     (m : PolyIdx K H →₀ ℕ) :
     (linePoly K H Λ₀ δ (MvPolynomial.monomial m 1)).natDegree ≤ m.degree ∧
@@ -391,7 +477,9 @@ lemma natDegree_linePoly_monomial_le_and_coeff (Λ₀ δ : Dual K H)
 
 /-- **Leading coefficient of a restriction to a line.** If `F` has degree `≤ d`, then
 `t ↦ F(λ₀ + t δ)` has degree `≤ d`, with coefficient of `t^d` equal to `F_d(δ)`, where `F_d` is
-the homogeneous component of degree `d` of `F`.-/
+the homogeneous component of degree `d` of `F`.
+@isnad1 id=and.1h6v.s10.d5f6989ea934 from=translated src=- shape=55f81468 vocab=c23eef94
+-/
 theorem natDegree_linePoly_le_and_coeff (Λ₀ δ : Dual K H) {d : ℕ}
     {F : MvPolynomial (PolyIdx K H) K} (hF : F.totalDegree ≤ d) :
     (linePoly K H Λ₀ δ F).natDegree ≤ d ∧
@@ -431,7 +519,9 @@ theorem natDegree_linePoly_le_and_coeff (Λ₀ δ : Dual K H) {d : ℕ}
     ⟨by simp, by simp⟩ key
 
 /-- A product of powers of affine polynomials restricted to a line transversal to all of the
-hyperplanes through `λ₀` is nonzero.-/
+hyperplanes through `λ₀` is nonzero.
+@isnad1 id=ne.2h10v.s10.c327425dd1e1 from=translated src=- shape=b3107667 vocab=06ba22f3
+-/
 theorem linePoly_C_mul_prod_ne_zero [Infinite K] {κ : Type*} (s : Finset κ)
     (a : κ → H) (c : κ → K) (e : κ → ℕ) {c₀ : K} (hc₀ : c₀ ≠ 0) {Λ₀ δ : Dual K H}
     (hδ : ∀ k ∈ s, Λ₀ (a k) + c k = 0 → δ (a k) ≠ 0) :
@@ -448,7 +538,9 @@ theorem linePoly_C_mul_prod_ne_zero [Infinite K] {κ : Type*} (s : Finset κ)
 
 /-- **Order of vanishing of a product of affine polynomials along a line.** Along a line
 `λ₀ + t δ` that is transversal to every hyperplane `λ(a_k) + c_k = 0` through `λ₀`, the product
-`c₀ ∏_k (λ(a_k) + c_k)^{e_k}` vanishes at `t = 0` to order `∑_{k : λ₀(a_k) + c_k = 0} e_k`.-/
+`c₀ ∏_k (λ(a_k) + c_k)^{e_k}` vanishes at `t = 0` to order `∑_{k : λ₀(a_k) + c_k = 0} e_k`.
+@isnad1 id=eq.2h10v.s10.928fa36fa436 from=translated src=- shape=a8fb175a vocab=3be94baf
+-/
 theorem natTrailingDegree_linePoly_prod [Infinite K] [DecidableEq K] {κ : Type*} (s : Finset κ)
     (a : κ → H) (c : κ → K) (e : κ → ℕ) {c₀ : K} (hc₀ : c₀ ≠ 0) {Λ₀ δ : Dual K H}
     (hδ : ∀ k ∈ s, Λ₀ (a k) + c k = 0 → δ (a k) ≠ 0) :
@@ -476,16 +568,24 @@ theorem natTrailingDegree_linePoly_prod [Infinite K] [DecidableEq K] {κ : Type*
 
 /-! ### Leading terms of products of affine polynomials -/
 
+/--
+@isnad1 id=eq.0h3v.s8.8c50126003e6 from=translated src=- shape=dc159321 vocab=dd947754
+-/
 @[simp] lemma affPoly_zero (a : H) : affPoly K H a 0 = linPoly K H a := by
   simp [affPoly]
 
+/--
+@isnad1 id=eq.0h4v.s9.11b4759de3d7 from=translated src=- shape=e1c4ff28 vocab=618a1e58
+-/
 lemma homogeneousComponent_one_affPoly (a : H) (c : K) :
     MvPolynomial.homogeneousComponent 1 (affPoly K H a c) = linPoly K H a := by
   rw [affPoly, map_add, MvPolynomial.homogeneousComponent_of_mem (isHomogeneous_linPoly a),
     MvPolynomial.homogeneousComponent_eq_zero _ _ (by simp)]
   simp
 
-/-- The leading term of `c₀ ∏_k (λ(a_k) + c_k)^{e_k}` is `c₀ ∏_k λ(a_k)^{e_k}`.-/
+/-- The leading term of `c₀ ∏_k (λ(a_k) + c_k)^{e_k}` is `c₀ ∏_k λ(a_k)^{e_k}`.
+@isnad1 id=hastop.0h8v.s10.834ac62ddd6b from=translated src=- shape=8be03c83 vocab=a389f297
+-/
 theorem hasTop_C_mul_prod_affPoly_pow {κ : Type*} (s : Finset κ) (a : κ → H) (c : κ → K)
     (e : κ → ℕ) (c₀ : K) :
     HasTop (∑ k ∈ s, e k) (MvPolynomial.C c₀ * ∏ k ∈ s, linPoly K H (a k) ^ e k)
@@ -510,6 +610,9 @@ theorem hasTop_C_mul_prod_affPoly_pow {κ : Type*} (s : Finset κ) (a : κ → H
       homogeneousComponent_one_affPoly] at this
     exact this
 
+/--
+@isnad1 id=iff.0h4v.s7.b8ba2ef66f00 from=translated src=- shape=16959da3 vocab=f638feb8
+-/
 lemma affProportional_zero_iff (a a₀ : H) :
     AffProportional a (0 : K) a₀ 0 ↔ ∃ u : K, a = u • a₀ := by
   simp [AffProportional]
@@ -519,7 +622,9 @@ lemma affProportional_zero_iff (a a₀ : H) :
 open Classical in
 /-- **The multiplicity of a hyperplane in a product of affine polynomials is well defined**: if
 two products `c₀ ∏_k (λ(a_k) + c_k)^{e_k}` agree, then for every affine hyperplane
-`λ(a₀) + b₀ = 0` the sums of the exponents of the factors proportional to `λ(a₀) + b₀` agree.-/
+`λ(a₀) + b₀ = 0` the sums of the exponents of the factors proportional to `λ(a₀) + b₀` agree.
+@isnad1 id=eq.6h16v.s10.af984de84586 from=translated src=- shape=1f50d4d8 vocab=47ac182f
+-/
 theorem sum_filter_eq_of_C_mul_prod_eq [Infinite K] {κ κ' : Type*} {s : Finset κ}
     {s' : Finset κ'} {a : κ → H} {c : κ → K} {a' : κ' → H} {c' : κ' → K}
     (ha : ∀ k ∈ s, a k ≠ 0) (ha' : ∀ k ∈ s', a' k ≠ 0) (e : κ → ℕ) (e' : κ' → ℕ) {c₀ c₀' : K}
@@ -566,7 +671,9 @@ open Classical in
 /-- **A product of affine polynomials is determined up to a scalar by the multiplicities of its
 hyperplanes**: if for every `k₀` the sums of the exponents `e_k` and `f_k` over the factors
 proportional to `λ(a_{k₀}) + c_{k₀}` agree, then `∏_k (λ(a_k) + c_k)^{e_k}` and
-`∏_k (λ(a_k) + c_k)^{f_k}` differ by a nonzero scalar.-/
+`∏_k (λ(a_k) + c_k)^{f_k}` differ by a nonzero scalar.
+@isnad1 id=ex.2h8v.s9.796ba4e4fff2 from=translated src=- shape=f6ebee7b vocab=cb869d64
+-/
 theorem exists_prod_pow_eq_C_mul_prod_pow {κ : Type*} (s : Finset κ) {a : κ → H} (c : κ → K)
     (ha : ∀ k ∈ s, a k ≠ 0) (e f : κ → ℕ)
     (h : ∀ k₀ ∈ s, ∑ k ∈ s with AffProportional (a k) (c k) (a k₀) (c k₀), e k =

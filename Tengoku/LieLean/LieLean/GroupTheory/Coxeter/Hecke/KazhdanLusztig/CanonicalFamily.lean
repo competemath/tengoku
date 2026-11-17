@@ -83,10 +83,16 @@ decreasing_by
   obtain ⟨hx₁, hx₂⟩ := Finset.mem_Ico.1 x.2
   exact Finset.card_lt_card (Finset.Icc_ssubset_Icc_right (hx₁.trans hx₂.le) le_rfl hx₂)
 
+/--
+@isnad1 id=eq.1h4v.s5.f7a9c0cdaefb from=translated src=- shape=2c1f4c17 vocab=8572a156
+-/
 theorem lusztigFamily_of_le (r : H → H → ℤ[T;T⁻¹]) {h h' : H} (hh : h' ≤ h) :
     lusztigFamily r h h' = 1 := by
   rw [lusztigFamily, ite_eq_left hh]
 
+/--
+@isnad1 id=eq.1h4v.s7.55f532101026 from=translated src=- shape=a3b0281d vocab=0210b2cc
+-/
 theorem lusztigFamily_of_not_le (r : H → H → ℤ[T;T⁻¹]) {h h' : H} (hh : ¬h' ≤ h) :
     lusztigFamily r h h' =
       negPart (∑ x ∈ Finset.Ico h h', invert (lusztigFamily r h x) * r x h') := by
@@ -105,7 +111,9 @@ private theorem induction_Icc {h : H} {P : H → Prop}
       (Finset.Icc_ssubset_Icc_right (hx.trans hx'.le) le_rfl hx')) x rfl
 
 /-- The key computation: if (e) holds on the intervals `[h, x]`, `x < h'`, then
-`q = Σ_{h ≤ x < h'} \bar p_{h,x} r_{x,h'}` satisfies `\bar q = -q`.-/
+`q = Σ_{h ≤ x < h'} \bar p_{h,x} r_{x,h'}` satisfies `\bar q = -q`.
+@isnad1 id=eq.2h5v.s9.5d80175bd2a9 from=translated src=- shape=eb478e6c vocab=5d75dbf7
+-/
 theorem invert_sum_Ico {r p : H → H → ℤ[T;T⁻¹]} (hr : IsLusztigMatrix r) {h h' : H}
     (hp : ∀ x, h ≤ x → x < h' → p h x = ∑ y ∈ Finset.Icc h x, invert (p h y) * r y x) :
     invert (∑ x ∈ Finset.Ico h h', invert (p h x) * r x h') =
@@ -135,6 +143,9 @@ theorem invert_sum_Ico {r p : H → H → ℤ[T;T⁻¹]} (hr : IsLusztigMatrix r
   simp only [mul_assoc, ← Finset.mul_sum]
   rw [← mul_add, add_comm, hδ, mul_zero]
 
+/--
+@isnad1 id=isluszti.1h2v.s5.a5eaad26b3c6 from=translated src=- shape=02b830af vocab=f258921c
+-/
 theorem isLusztigFamily_lusztigFamily {r : H → H → ℤ[T;T⁻¹]} (hr : IsLusztigMatrix r) :
     IsLusztigFamily r (lusztigFamily r) := by
   classical
@@ -157,7 +168,9 @@ theorem isLusztigFamily_lusztigFamily {r : H → H → ℤ[T;T⁻¹]} (hr : IsLu
   exact ⟨fun h ↦ lusztigFamily_of_le r le_rfl,
     fun h h' hh ↦ by rw [hlt hh]; exact isNeg_negPart _, he⟩
 
-/-- Uniqueness in [Lus] Lemma 24.2.1.-/
+/-- Uniqueness in [Lus] Lemma 24.2.1.
+@isnad1 id=eq.4h6v.s6.4001f5041d1b from=translated src=- shape=fa83d43c vocab=f2d0f1a1
+-/
 theorem IsLusztigFamily.eq {r p p' : H → H → ℤ[T;T⁻¹]} (hr : IsLusztigMatrix r)
     (hp : IsLusztigFamily r p) (hp' : IsLusztigFamily r p') {h h' : H} (hh : h ≤ h') :
     p' h h' = p h h' := by
@@ -186,7 +199,9 @@ theorem IsLusztigFamily.eq {r p p' : H → H → ℤ[T;T⁻¹]} (hr : IsLusztigM
 /-- **[Lus] Lemma 24.2.1.** If `r_{h,h'}` (`h ≤ h'`) satisfy (a) and (b), there is a family
 `p_{h,h'}` (`h ≤ h'`) satisfying (c), (d) and (e), and it is unique: any two such families agree
 at all pairs `h ≤ h'`. Lusztig works over a partially ordered set with finite open intervals,
-which is `LocallyFiniteOrder H`.-/
+which is `LocallyFiniteOrder H`.
+@isnad1 id=ex.1h2v.s6.9fb33ebfa9de from=translated src=- shape=10e31d58 vocab=f2d0f1a1
+-/
 theorem IsLusztigFamily.existsUnique {r : H → H → ℤ[T;T⁻¹]} (hr : IsLusztigMatrix r) :
     ∃ p, IsLusztigFamily r p ∧
       ∀ p', IsLusztigFamily r p' → ∀ h h', h ≤ h' → p' h h' = p h h' :=

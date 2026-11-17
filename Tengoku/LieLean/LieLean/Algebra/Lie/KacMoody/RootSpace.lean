@@ -51,6 +51,9 @@ variable {ι K H : Type*} [Fintype ι] [Field K] [AddCommGroup H] [Module K H]
 def posCone (ι : Type*) : Set (ι → ℤ) := {k | 0 ≤ k ∧ k ≠ 0}
 
 omit [Fintype ι] in
+/--
+@isnad1 id=mem.2h3v.s6.ac38f92d4d2b from=translated src=- shape=ad935d2c vocab=4ba8d75d
+-/
 lemma posCone_add {k l : ι → ℤ} (hk : k ∈ posCone ι) (hl : l ∈ posCone ι) :
     k + l ∈ posCone ι := by
   refine ⟨add_nonneg hk.1 hl.1, fun h ↦ hk.2 ?_⟩
@@ -60,6 +63,9 @@ lemma posCone_add {k l : ι → ℤ} (hk : k ∈ posCone ι) (hl : l ∈ posCone
   omega
 
 omit [Fintype ι] in
+/--
+@isnad1 id=mem.0h2v.s5.1cf32642cacd from=translated src=- shape=661207e9 vocab=7eb7933f
+-/
 lemma single_mem_posCone [DecidableEq ι] (i : ι) : Pi.single i 1 ∈ posCone ι := by
   refine ⟨fun j ↦ ?_, fun h ↦ by simpa using congr_fun h i⟩
   by_cases hj : j = i
@@ -72,32 +78,53 @@ def posWeights : Set (Dual K H) := P.rootOf '' posCone ι
 /-- The set of weights `-α` with `α ∈ Q₊ \ {0}`.-/
 def negWeights : Set (Dual K H) := (fun k ↦ -P.rootOf k) '' posCone ι
 
+/--
+@isnad1 id=mem.2h7v.s8.6d076f56fb09 from=translated src=- shape=98161b69 vocab=8f808972
+-/
 lemma posWeights_add {μ ν : Dual K H} (hμ : μ ∈ P.posWeights) (hν : ν ∈ P.posWeights) :
     μ + ν ∈ P.posWeights := by
   obtain ⟨k, hk, rfl⟩ := hμ; obtain ⟨l, hl, rfl⟩ := hν
   exact ⟨k + l, posCone_add hk hl, map_add _ _ _⟩
 
+/--
+@isnad1 id=mem.2h7v.s8.db37663dc34d from=translated src=- shape=98161b69 vocab=a375c2fe
+-/
 lemma negWeights_add {μ ν : Dual K H} (hμ : μ ∈ P.negWeights) (hν : ν ∈ P.negWeights) :
     μ + ν ∈ P.negWeights := by
   obtain ⟨k, hk, rfl⟩ := hμ; obtain ⟨l, hl, rfl⟩ := hν
   exact ⟨k + l, posCone_add hk hl, by simp only [map_add, neg_add]⟩
 
+/--
+@isnad1 id=mem.0h6v.s6.7d10e9726c48 from=translated src=- shape=9bee05b2 vocab=f1ab0b91
+-/
 lemma root_mem_posWeights (i : ι) : P.root i ∈ P.posWeights := by
   classical exact ⟨Pi.single i 1, single_mem_posCone i, by simp⟩
 
+/--
+@isnad1 id=mem.0h6v.s7.963d06370f70 from=translated src=- shape=8a028439 vocab=4939ff27
+-/
 lemma neg_root_mem_negWeights (i : ι) : -P.root i ∈ P.negWeights := by
   classical exact ⟨Pi.single i 1, single_mem_posCone i, by simp⟩
 
 variable [CharZero K]
 
+/--
+@isnad1 id=not.0h5v.s7.aaf0b9125f54 from=translated src=- shape=e4d93c2a vocab=51f197cb
+-/
 lemma zero_notMem_posWeights : (0 : Dual K H) ∉ P.posWeights := by
   rintro ⟨k, hk, h0⟩
   exact P.rootOf_ne_zero hk.2 h0
 
+/--
+@isnad1 id=not.0h5v.s7.dd78d0ee7d06 from=translated src=- shape=e4d93c2a vocab=c2a1d22b
+-/
 lemma zero_notMem_negWeights : (0 : Dual K H) ∉ P.negWeights := by
   rintro ⟨k, hk, h0⟩
   exact P.rootOf_ne_zero hk.2 (neg_eq_zero.mp h0)
 
+/--
+@isnad1 id=disjoint.0h5v.s7.e290b0a8af2e from=translated src=- shape=d06b11b3 vocab=5449602e
+-/
 lemma disjoint_posWeights_negWeights : Disjoint P.posWeights P.negWeights := by
   rw [Set.disjoint_left]
   rintro _ ⟨k, hk, rfl⟩ ⟨l, hl, hlk⟩
@@ -113,22 +140,36 @@ abbrev rootSpace (μ : Dual K H) : Submodule K P.AuxLieAlgebra :=
   weightSpaceOfMap P.AuxLieAlgebra (h P) μ
 
 omit [CharZero K] in
+/--
+@isnad1 id=mem.0h6v.s9.22249d9c4cdf from=translated src=- shape=06cafd1d vocab=672bebc9
+-/
 lemma e_mem_rootSpace (i : ι) : e P i ∈ rootSpace P (P.root i) := fun a ↦ lie_h_e P a i
 
 omit [CharZero K] in
+/--
+@isnad1 id=mem.0h6v.s9.5f2b46d3596c from=translated src=- shape=4000cb2a vocab=b6f91323
+-/
 lemma f_mem_rootSpace (i : ι) : f P i ∈ rootSpace P (-P.root i) := fun a ↦ by
   simp [lie_h_f]
 
 omit [CharZero K] in
+/--
+@isnad1 id=mem.0h6v.s10.af2e8fa9f16b from=translated src=- shape=bd8f3cf3 vocab=f6ca5c97
+-/
 lemma h_mem_rootSpace (a : H) : h P a ∈ rootSpace P 0 := fun b ↦ by simp [lie_h_h]
 
 omit [CharZero K] in
+/--
+@isnad1 id=mem.2h9v.s11.acf69467327c from=translated src=- shape=6b1db7fd vocab=45036358
+-/
 lemma lie_mem_rootSpace {μ ν : Dual K H} {x y : P.AuxLieAlgebra} (hx : x ∈ rootSpace P μ)
     (hy : y ∈ rootSpace P ν) : ⁅x, y⁆ ∈ rootSpace P (μ + ν) :=
   lie_mem_weightSpaceOfMap (h P) hx hy
 
 omit [CharZero K] in
-/-- The sum of root spaces over a set of weights closed under addition is a subalgebra.-/
+/-- The sum of root spaces over a set of weights closed under addition is a subalgebra.
+@isnad1 id=mem.3h8v.s13.d6913d6d5960 from=translated src=- shape=d81eea9c vocab=29a60555
+-/
 lemma lie_mem_biSup {S : Set (Dual K H)} (hS : ∀ μ ∈ S, ∀ ν ∈ S, μ + ν ∈ S)
     {x y : P.AuxLieAlgebra} (hx : x ∈ ⨆ μ ∈ S, rootSpace P μ) (hy : y ∈ ⨆ μ ∈ S, rootSpace P μ) :
     ⁅x, y⁆ ∈ ⨆ μ ∈ S, rootSpace P μ := by
@@ -140,7 +181,9 @@ lemma lie_mem_biSup {S : Set (Dual K H)} (hS : ∀ μ ∈ S, ∀ ν ∈ S, μ + 
   exact Submodule.mem_iSup_of_mem ⟨_, hS _ μ.2 _ ν.2⟩ (lie_mem_rootSpace P hx hy)
 
 omit [CharZero K] in
-/-- `𝔫̃₋ ⊆ ⊕_{α > 0} 𝔤̃_{-α}`.-/
+/-- `𝔫̃₋ ⊆ ⊕_{α > 0} 𝔤̃_{-α}`.
+@isnad1 id=mem.0h6v.s11.dbc90f7b8ff8 from=translated src=- shape=8ee733ee vocab=5a6219be
+-/
 lemma fHom_mem (y : FreeLieAlgebra K ι) : fHom P y ∈ ⨆ μ ∈ P.negWeights, rootSpace P μ := by
   induction y using FreeLieAlgebra.induction_on with
   | of i =>
@@ -154,7 +197,9 @@ lemma fHom_mem (y : FreeLieAlgebra K ι) : fHom P y ∈ ⨆ μ ∈ P.negWeights,
     rw [LieHom.map_lie]; exact lie_mem_biSup P (fun _ h₁ _ h₂ ↦ P.negWeights_add h₁ h₂) hy hz
 
 omit [CharZero K] in
-/-- `𝔫̃₊ ⊆ ⊕_{α > 0} 𝔤̃_α`.-/
+/-- `𝔫̃₊ ⊆ ⊕_{α > 0} 𝔤̃_α`.
+@isnad1 id=mem.0h6v.s11.a54c76d90f4c from=translated src=- shape=8ee733ee vocab=58090956
+-/
 lemma eHom_mem (z : FreeLieAlgebra K ι) : eHom P z ∈ ⨆ μ ∈ P.posWeights, rootSpace P μ := by
   induction z using FreeLieAlgebra.induction_on with
   | of i =>
@@ -168,6 +213,9 @@ lemma eHom_mem (z : FreeLieAlgebra K ι) : eHom P z ∈ ⨆ μ ∈ P.posWeights,
     rw [LieHom.map_lie]; exact lie_mem_biSup P (fun _ h₁ _ h₂ ↦ P.posWeights_add h₁ h₂) hy hz
 
 omit [CharZero K] in
+/--
+@isnad1 id=mem.0h6v.s11.f2451c88da41 from=translated src=- shape=c26372e6 vocab=f41bff01
+-/
 lemma h_mem_biSup (a : H) : h P a ∈ ⨆ μ ∈ ({0} : Set (Dual K H)), rootSpace P μ :=
   Submodule.mem_iSup_of_mem 0 (Submodule.mem_iSup_of_mem rfl (h_mem_rootSpace P a))
 
@@ -175,7 +223,9 @@ lemma h_mem_biSup (a : H) : h P a ∈ ⨆ μ ∈ ({0} : Set (Dual K H)), rootSpa
 def allWeights : Set (Dual K H) := P.negWeights ∪ {0} ∪ P.posWeights
 
 omit [CharZero K] in
-/-- `𝔤̃(A)` is the sum of its root spaces.-/
+/-- `𝔤̃(A)` is the sum of its root spaces.
+@isnad1 id=eq.0h5v.s11.4c76702918ff from=translated src=- shape=1558e9b8 vocab=6ece00cc
+-/
 lemma iSup_rootSpace_eq_top : ⨆ μ ∈ allWeights P, rootSpace P μ = ⊤ := by
   rw [eq_top_iff]
   rintro x -
@@ -191,21 +241,32 @@ lemma iSup_rootSpace_eq_top : ⨆ μ ∈ allWeights P, rootSpace P μ = ⊤ := b
     (h3 (eHom_mem P z))
 
 omit [CharZero K] in
+/--
+@isnad1 id=disjoint.1h7v.s12.fe9a954cf1c8 from=translated src=- shape=04025419 vocab=014958b3
+-/
 lemma disjoint_biSup {S T : Set (Dual K H)} (hST : Disjoint S T) :
     Disjoint (⨆ μ ∈ S, rootSpace P μ) (⨆ μ ∈ T, rootSpace P μ) :=
   (iSupIndep_weightSpaceOfMap (h P)).disjoint_biSup_biSup hST
 
 omit [CharZero K] in
+/--
+@isnad1 id=mem.2h8v.s12.aa7e78f99e6c from=translated src=- shape=b78b808b vocab=e926758b
+-/
 lemma mem_biSup_of_subset {S T : Set (Dual K H)} (hST : ∀ μ ∈ S, μ ∈ T) {x : P.AuxLieAlgebra}
     (hx : x ∈ ⨆ μ ∈ S, rootSpace P μ) : x ∈ ⨆ μ ∈ T, rootSpace P μ :=
   (biSup_mono hST : (⨆ μ ∈ S, rootSpace P μ) ≤ ⨆ μ ∈ T, rootSpace P μ) hx
 
 omit [CharZero K] in
+/--
+@isnad1 id=le.1h7v.s11.c38d89a67320 from=translated src=- shape=63a4e63d vocab=aef18559
+-/
 lemma rootSpace_le_biSup {μ : Dual K H} {S : Set (Dual K H)} (hμ : μ ∈ S) :
     rootSpace P μ ≤ ⨆ ν ∈ S, rootSpace P ν :=
   le_biSup (fun ν ↦ rootSpace P ν) hμ
 
-/-- `𝔤̃_0 = 𝔥` ([Kac] Thm. 1.2 (d)).-/
+/-- `𝔤̃_0 = 𝔥` ([Kac] Thm. 1.2 (d)).
+@isnad1 id=eq.0h5v.s9.9591b6fbd2e1 from=translated src=- shape=63e87ec5 vocab=f198b5e1
+-/
 theorem rootSpace_zero : rootSpace P 0 = LinearMap.range (h P) := by
   refine le_antisymm (fun x hx ↦ ?_) ?_
   · obtain ⟨⟨y, a, z⟩, rfl⟩ := (triangularEquiv P).surjective x
@@ -225,7 +286,9 @@ theorem rootSpace_zero : rootSpace P 0 = LinearMap.range (h P) := by
     exact LinearMap.mem_range_self _ _
   · rintro _ ⟨a, rfl⟩; exact h_mem_rootSpace P a
 
-/-- For `α > 0`, `𝔤̃_α ⊆ 𝔫̃₊` ([Kac] Thm. 1.2 (d)).-/
+/-- For `α > 0`, `𝔤̃_α ⊆ 𝔫̃₊` ([Kac] Thm. 1.2 (d)).
+@isnad1 id=le.1h6v.s10.3155742d622b from=translated src=- shape=01e7e149 vocab=ac1b2c45
+-/
 theorem rootSpace_pos_le {μ : Dual K H} (hμ : μ ∈ P.posWeights) :
     rootSpace P μ ≤ LinearMap.range (eHom P : FreeLieAlgebra K ι →ₗ[K] P.AuxLieAlgebra) := by
   intro x hx
@@ -244,7 +307,9 @@ theorem rootSpace_pos_le {μ : Dual K H} (hμ : μ ∈ P.posWeights) :
   rw [h0, zero_add]
   exact LinearMap.mem_range_self _ _
 
-/-- For `α > 0`, `𝔤̃_{-α} ⊆ 𝔫̃₋` ([Kac] Thm. 1.2 (d)).-/
+/-- For `α > 0`, `𝔤̃_{-α} ⊆ 𝔫̃₋` ([Kac] Thm. 1.2 (d)).
+@isnad1 id=le.1h6v.s10.fd82d6c487ed from=translated src=- shape=01e7e149 vocab=59f21466
+-/
 theorem rootSpace_neg_le {μ : Dual K H} (hμ : μ ∈ P.negWeights) :
     rootSpace P μ ≤ LinearMap.range (fHom P : FreeLieAlgebra K ι →ₗ[K] P.AuxLieAlgebra) := by
   intro x hx
@@ -266,12 +331,16 @@ theorem rootSpace_neg_le {μ : Dual K H} (hμ : μ ∈ P.negWeights) :
 /-! ### The maximal ideal `𝔯` -/
 
 omit [CharZero K] in
-/-- Ideals of `𝔤̃(A)` are stable under `ad 𝔥`.-/
+/-- Ideals of `𝔤̃(A)` are stable under `ad 𝔥`.
+@isnad1 id=mem.1h8v.s11.a9dc63bc80bb from=translated src=- shape=016e9752 vocab=08a23476
+-/
 lemma lie_h_mem (I : LieIdeal K P.AuxLieAlgebra) (a : H) :
     ∀ x ∈ I.toSubmodule, ⁅h P a, x⁆ ∈ I.toSubmodule :=
   fun _ hx ↦ I.lie_mem hx
 
-/-- An ideal of `𝔤̃(A)` meeting `𝔥` trivially lies in the sum of the nonzero root spaces.-/
+/-- An ideal of `𝔤̃(A)` meeting `𝔥` trivially lies in the sum of the nonzero root spaces.
+@isnad1 id=le.1h6v.s12.a31b774bfca0 from=translated src=- shape=b1546453 vocab=5cec3006
+-/
 lemma le_of_inf_eq_bot {I : LieIdeal K P.AuxLieAlgebra}
     (hI : I.toSubmodule ⊓ LinearMap.range (h P) = ⊥) :
     I.toSubmodule ≤ ⨆ μ ∈ P.negWeights ∪ P.posWeights, rootSpace P μ := by
@@ -289,6 +358,9 @@ lemma le_of_inf_eq_bot {I : LieIdeal K P.AuxLieAlgebra}
 def maxIdeal : LieIdeal K P.AuxLieAlgebra :=
   sSup {I | I.toSubmodule ⊓ LinearMap.range (h P) = ⊥}
 
+/--
+@isnad1 id=le.0h5v.s11.3464439bc084 from=translated src=- shape=c5b90bcc vocab=2c3db40d
+-/
 lemma maxIdeal_le : (maxIdeal P).toSubmodule ≤
     ⨆ μ ∈ P.negWeights ∪ P.posWeights, rootSpace P μ := by
   change (sSup _ : LieIdeal K P.AuxLieAlgebra).toSubmodule ≤ _
@@ -297,7 +369,9 @@ lemma maxIdeal_le : (maxIdeal P).toSubmodule ≤
   rintro _ ⟨I, hI, rfl⟩
   exact le_of_inf_eq_bot P hI
 
-/-- `𝔯 ∩ 𝔥 = 0`.-/
+/-- `𝔯 ∩ 𝔥 = 0`.
+@isnad1 id=eq.0h5v.s10.34d4743f7911 from=translated src=- shape=ad363321 vocab=7706a6fd
+-/
 theorem maxIdeal_inf_range_h :
     (maxIdeal P).toSubmodule ⊓ LinearMap.range (h P) = ⊥ := by
   rw [← rootSpace_zero]
@@ -308,14 +382,18 @@ theorem maxIdeal_inf_range_h :
   exact Submodule.disjoint_def.mp (disjoint_biSup P hS) x (maxIdeal_le P hx)
     (rootSpace_le_biSup P (Set.mem_singleton 0) hx0)
 
-/-- `𝔯` is the unique maximal ideal meeting `𝔥` trivially ([Kac] Thm. 1.2 (e)).-/
+/-- `𝔯` is the unique maximal ideal meeting `𝔥` trivially ([Kac] Thm. 1.2 (e)).
+@isnad1 id=iff.0h6v.s11.fb8d779dd69d from=translated src=- shape=36b817b0 vocab=ca1dd19d
+-/
 theorem le_maxIdeal_iff (I : LieIdeal K P.AuxLieAlgebra) :
     I ≤ maxIdeal P ↔ I.toSubmodule ⊓ LinearMap.range (h P) = ⊥ := by
   refine ⟨fun hI ↦ eq_bot_iff.mpr ?_, fun hI ↦ le_sSup hI⟩
   rw [← maxIdeal_inf_range_h P]
   exact inf_le_inf_right _ fun x hx ↦ hI hx
 
-/-- `𝔯 = (𝔯 ∩ 𝔫̃₋) ⊕ (𝔯 ∩ 𝔫̃₊)` ([Kac] Thm. 1.2 (e)).-/
+/-- `𝔯 = (𝔯 ∩ 𝔫̃₋) ⊕ (𝔯 ∩ 𝔫̃₊)` ([Kac] Thm. 1.2 (e)).
+@isnad1 id=eq.0h5v.s11.c61085056213 from=translated src=- shape=6d0dc58a vocab=5799db30
+-/
 theorem maxIdeal_eq : (maxIdeal P).toSubmodule =
     (maxIdeal P).toSubmodule ⊓
         LinearMap.range (fHom P : FreeLieAlgebra K ι →ₗ[K] P.AuxLieAlgebra) ⊔

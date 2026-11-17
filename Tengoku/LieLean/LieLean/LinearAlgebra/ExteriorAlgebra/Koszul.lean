@@ -78,27 +78,40 @@ def exteriorNumber (b : Module.Basis I R M) (s : Finset I) :
     Module.End R (ExteriorAlgebra R M) :=
   ∑ i ∈ s, (wedge b i).comp (contract b i)
 
+/--
+@isnad1 id=eq.0h6v.s10.19438f8d0e29 from=translated src=- shape=9c566ff4 vocab=a57c9f11
+-/
 @[simp]
 theorem wedge_apply (b : Module.Basis I R M) (i : I) (e : ExteriorAlgebra R M) :
     wedge b i e = ι R (b i) * e := rfl
 
+/--
+@isnad1 id=eq.0h7v.s12.cbc2eb5ed3a3 from=translated src=- shape=ae76cd67 vocab=4319eba2
+-/
 @[simp]
 theorem deltaTerm_tmul (b : Module.Basis I R M) (i : I)
     (e : ExteriorAlgebra R M) (p : MvPolynomial I R) :
     deltaTerm b i (e ⊗ₜ[R] p) = contract b i e ⊗ₜ[R] (MvPolynomial.X i * p) := rfl
 
+/--
+@isnad1 id=eq.0h7v.s12.21a099d76fbe from=translated src=- shape=ac2a576c vocab=50faa835
+-/
 @[simp]
 theorem homotopyTerm_tmul (b : Module.Basis I R M) (i : I)
     (e : ExteriorAlgebra R M) (p : MvPolynomial I R) :
     homotopyTerm b i (e ⊗ₜ[R] p) = wedge b i e ⊗ₜ[R] MvPolynomial.pderiv i p := rfl
 
-/-- Contraction and exterior multiplication satisfy the coordinate Clifford relation.-/
+/-- Contraction and exterior multiplication satisfy the coordinate Clifford relation.
+@isnad1 id=eq.0h7v.s11.145983d046c6 from=translated src=- shape=a80a0a63 vocab=4cf7d935
+-/
 theorem contract_wedge (b : Module.Basis I R M) (i j : I) (e : ExteriorAlgebra R M) :
     contract b i (wedge b j e) = (b.coord i (b j)) • e - wedge b j (contract b i e) :=
   CliffordAlgebra.contractLeft_ι_mul _ _ _
 
 /-- Off-diagonal mixed terms cancel, and diagonal terms are precisely the two number terms.
-This is an identity of concrete tensor operators, not an assumed anticommutator relation.-/
+This is an identity of concrete tensor operators, not an assumed anticommutator relation.
+@isnad1 id=eq.0h8v.s14.b4e716cfcc1c from=translated src=- shape=12321d17 vocab=3dfb3572
+-/
 theorem term_anticommutator (b : Module.Basis I R M) [DecidableEq I] (i j : I)
     (e : ExteriorAlgebra R M) (p : MvPolynomial I R) :
     deltaTerm b i (homotopyTerm b j (e ⊗ₜ[R] p)) +
@@ -114,7 +127,9 @@ theorem term_anticommutator (b : Module.Basis I R M) [DecidableEq I] (i j : I)
     abel
   · simp [Module.Basis.coord_apply, Module.Basis.repr_self, h]
 
-/-- The finite-support Koszul anticommutator, before restricting either homogeneous degree.-/
+/-- The finite-support Koszul anticommutator, before restricting either homogeneous degree.
+@isnad1 id=eq.0h7v.s14.b092ac669395 from=translated src=- shape=7b0750c4 vocab=cdb94c9b
+-/
 theorem anticommutator_tmul (b : Module.Basis I R M) (s : Finset I)
     (e : ExteriorAlgebra R M) (p : MvPolynomial I R) :
     delta b s (homotopy b s (e ⊗ₜ[R] p)) +
@@ -130,20 +145,26 @@ theorem anticommutator_tmul (b : Module.Basis I R M) (s : Finset I)
   simp [Finset.sum_add_distrib, TensorProduct.tmul_sum, exteriorNumber,
     LinearMap.sum_apply, TensorProduct.sum_tmul]
 
-/-- Exterior multiplication operators anticommute.-/
+/-- Exterior multiplication operators anticommute.
+@isnad1 id=eq.0h7v.s11.39d130678cb8 from=translated src=- shape=8d313ebc vocab=9dfa133f
+-/
 theorem wedge_wedge (b : Module.Basis I R M) (i j : I) (e : ExteriorAlgebra R M) :
     wedge b i (wedge b j e) = -(wedge b j (wedge b i e)) := by
   simp only [wedge_apply, ← mul_assoc]
   rw [eq_neg_of_add_eq_zero_left (ι_add_mul_swap (b i) (b j)), neg_mul]
 
-/-- One summand of the exterior number operator commutes past a generator.-/
+/-- One summand of the exterior number operator commutes past a generator.
+@isnad1 id=eq.0h7v.s12.16d547633a8d from=translated src=- shape=7cc547a1 vocab=6412a943
+-/
 theorem wedge_contract_wedge (b : Module.Basis I R M) (i j : I)
     (e : ExteriorAlgebra R M) :
     wedge b i (contract b i (wedge b j e)) =
       b.coord i (b j) • wedge b i e + wedge b j (wedge b i (contract b i e)) := by
   rw [contract_wedge, map_sub, map_smul, wedge_wedge, sub_neg_eq_add]
 
-/-- On a generator in the summation set, exterior number increases by one.-/
+/-- On a generator in the summation set, exterior number increases by one.
+@isnad1 id=eq.1h7v.s11.c358df348411 from=translated src=- shape=99849c19 vocab=83353450
+-/
 theorem exteriorNumber_wedge (b : Module.Basis I R M) (s : Finset I)
     (j : I) (hj : j ∈ s) (e : ExteriorAlgebra R M) :
     exteriorNumber b s (wedge b j e) =
@@ -158,7 +179,9 @@ theorem exteriorNumber_wedge (b : Module.Basis I R M) (s : Finset I)
 def basisWord (b : Module.Basis I R M) (l : List I) : ExteriorAlgebra R M :=
   (l.map fun i => ι R (b i)).prod
 
-/-- Exterior number counts the length of a basis word supported in the finite summation set.-/
+/-- Exterior number counts the length of a basis word supported in the finite summation set.
+@isnad1 id=eq.1h6v.s9.70249f90b363 from=translated src=- shape=0cc76190 vocab=6caf5a20
+-/
 theorem exteriorNumber_basisWord (b : Module.Basis I R M) (s : Finset I)
     (l : List I) (hl : ∀ i ∈ l, i ∈ s) :
     exteriorNumber b s (basisWord b l) = l.length • basisWord b l := by
@@ -171,7 +194,9 @@ theorem exteriorNumber_basisWord (b : Module.Basis I R M) (s : Finset I)
       ih (fun i hi => hl i (by simp [hi])), map_nsmul, add_smul, one_smul, add_comm]
 
 /-- The polynomial-plus-exterior degree anticommutator on actual homogeneous tensors,
-with arbitrary basis index type and a finite set containing both supports.-/
+with arbitrary basis index type and a finite set containing both supports.
+@isnad1 id=eq.3h8v.s13.4f5bebbde25d from=translated src=- shape=857d4724 vocab=1c9622be
+-/
 theorem anticommutator_basisWord (b : Module.Basis I R M) (s : Finset I)
     (l : List I) (hl : ∀ i ∈ l, i ∈ s) (p : MvPolynomial I R) (n : ℕ)
     (hp : p.IsHomogeneous n) (hs : p.vars ⊆ s) :
@@ -182,7 +207,9 @@ theorem anticommutator_basisWord (b : Module.Basis I R M) (s : Finset I)
     exteriorNumber_basisWord b s l hl, TensorProduct.tmul_smul,
     ← TensorProduct.smul_tmul', ← add_smul]
 
-/-- The anticommutator as an equality of endomorphisms on the entire tensor product.-/
+/-- The anticommutator as an equality of endomorphisms on the entire tensor product.
+@isnad1 id=eq.0h5v.s14.5dda158907c7 from=translated src=- shape=d6fe3a1c vocab=fea5ab8f
+-/
 theorem anticommutator (b : Module.Basis I R M) (s : Finset I) :
     (delta b s).comp (homotopy b s) + (homotopy b s).comp (delta b s) =
       TensorProduct.map LinearMap.id
@@ -196,7 +223,9 @@ theorem anticommutator (b : Module.Basis I R M) (s : Finset I) :
     Derivation.coeFn_coe] using
     anticommutator_tmul b s e p
 
-/-- Each coordinate differential squares to zero, using the existing contraction theorem.-/
+/-- Each coordinate differential squares to zero, using the existing contraction theorem.
+@isnad1 id=eq.0h5v.s12.d8f14486adef from=translated src=- shape=25f8b2d7 vocab=2531d3fd
+-/
 theorem deltaTerm_sq (b : Module.Basis I R M) (i : I) :
     deltaTerm b i * deltaTerm b i = 0 := by
   apply TensorProduct.ext'
@@ -204,7 +233,9 @@ theorem deltaTerm_sq (b : Module.Basis I R M) (i : I) :
   change deltaTerm b i (deltaTerm b i (e ⊗ₜ[R] p)) = 0
   simp [contract, CliffordAlgebra.contractLeft_contractLeft]
 
-/-- Distinct coordinate differentials anticommute (the relation also holds on the diagonal).-/
+/-- Distinct coordinate differentials anticommute (the relation also holds on the diagonal).
+@isnad1 id=eq.0h6v.s13.2343d6cbade4 from=translated src=- shape=601c7712 vocab=469f23b2
+-/
 theorem deltaTerm_anticomm (b : Module.Basis I R M) (i j : I) :
     deltaTerm b i * deltaTerm b j = -(deltaTerm b j * deltaTerm b i) := by
   apply TensorProduct.ext'
@@ -215,7 +246,9 @@ theorem deltaTerm_anticomm (b : Module.Basis I R M) (i j : I) :
   rw [CliffordAlgebra.contractLeft_comm, TensorProduct.neg_tmul, mul_left_comm]
 
 /-- The finite-coordinate Koszul operator is genuinely a differential, over any commutative ring.
-No characteristic-two cancellation or invertibility assumption is used.-/
+No characteristic-two cancellation or invertibility assumption is used.
+@isnad1 id=eq.0h5v.s12.10f38c347193 from=translated src=- shape=66e0aff7 vocab=a121a6dc
+-/
 theorem delta_sq (b : Module.Basis I R M) (s : Finset I) :
     delta b s * delta b s = 0 := by
   classical
@@ -242,7 +275,9 @@ def homogeneousTensors (b : Module.Basis I R M) (s : Finset I) (n q : ℕ) :
       z = basisWord b l ⊗ₜ[R] p}
 
 /-- The actual Koszul differential and derivative homotopy have anticommutator
-`(n + q) id` on every homogeneous finite-support tensor, not only on pure tensors.-/
+`(n + q) id` on every homogeneous finite-support tensor, not only on pure tensors.
+@isnad1 id=eq.1h8v.s14.9ea93caafa20 from=translated src=- shape=b25d8cf5 vocab=bf2829a3
+-/
 theorem anticommutator_homogeneous (b : Module.Basis I R M) (s : Finset I) (n q : ℕ)
     (z : ExteriorAlgebra R M ⊗[R] MvPolynomial I R)
     (hz : z ∈ homogeneousTensors b s n q) :

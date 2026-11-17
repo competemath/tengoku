@@ -42,7 +42,9 @@ variable {R L L' : Type*} [CommRing R] [LieRing L] [LieAlgebra R L] [LieRing L']
   [LieAlgebra R L']
 
 /-- If `ad x` is locally nilpotent on a set generating `L` as a Lie algebra, then `ad x` is locally
-nilpotent on `L`.-/
+nilpotent on `L`.
+@isnad1 id=eq.2h4v.s9.9e818a7cf183 from=translated src=- shape=5dd44e57 vocab=4f57c4a6
+-/
 theorem engel_eq_top_of_lieSpan_eq_top {s : Set L} (hs : lieSpan R L s = ⊤) (x : L)
     (hx : ∀ y ∈ s, ∃ n : ℕ, (ad R L x ^ n) y = 0) : engel R x = ⊤ := by
   rw [eq_top_iff, ← hs, lieSpan_le]
@@ -50,12 +52,16 @@ theorem engel_eq_top_of_lieSpan_eq_top {s : Set L} (hs : lieSpan R L s = ⊤) (x
   exact (mem_engel_iff R x y).mpr (hx y hy)
 
 /-- If `ad x` is locally nilpotent on a set generating `L` as a Lie algebra, then every `y ∈ L` is
-killed by a power of `ad x`.-/
+killed by a power of `ad x`.
+@isnad1 id=ex.2h5v.s10.4700536e764d from=translated src=- shape=9f3e2aa5 vocab=9630e27e
+-/
 theorem exists_ad_pow_eq_zero_of_lieSpan_eq_top {s : Set L} (hs : lieSpan R L s = ⊤) (x : L)
     (hx : ∀ y ∈ s, ∃ n : ℕ, (ad R L x ^ n) y = 0) (y : L) : ∃ n : ℕ, (ad R L x ^ n) y = 0 :=
   (mem_engel_iff R x y).mp (engel_eq_top_of_lieSpan_eq_top hs x hx ▸ mem_top y)
 
-/-- A morphism of Lie algebras maps the Engel subalgebra of `x` into that of `f x`.-/
+/-- A morphism of Lie algebras maps the Engel subalgebra of `x` into that of `f x`.
+@isnad1 id=le.0h5v.s6.2c5f2600d4c3 from=translated src=- shape=4860a96b vocab=b6f49c7d
+-/
 lemma map_engel_le (f : L →ₗ⁅R⁆ L') (x : L) : (engel R x).map f ≤ engel R (f x) := by
   rintro _ ⟨y, hy, rfl⟩
   obtain ⟨n, hn⟩ := (mem_engel_iff R x y).mp hy
@@ -71,7 +77,9 @@ lemma map_engel_le (f : L →ₗ⁅R⁆ L') (x : L) : (engel R x).map f ≤ enge
   rw [← key, hn, map_zero]
 
 /-- If `ad x` is locally nilpotent on `L` and `f : L → L'` is surjective, then `ad (f x)` is
-locally nilpotent on `L'`.-/
+locally nilpotent on `L'`.
+@isnad1 id=eq.2h5v.s7.8e5ef5b2041f from=translated src=- shape=4a33aa65 vocab=84b177f8
+-/
 lemma engel_eq_top_of_surjective {f : L →ₗ⁅R⁆ L'} (hf : Function.Surjective f) {x : L}
     (hx : engel R x = ⊤) : engel R (f x) = ⊤ := by
   rw [eq_top_iff]
@@ -89,7 +97,9 @@ variable {R L M : Type*} [CommRing R] [LieRing L] [LieAlgebra R L]
 
 /-- If `m` is a primitive vector of weight `μ` for an `𝔰𝔩₂`-triple `(h, e, f)` and some power of
 `f` kills `m`, then `μ` is a natural number. This is the standard `𝔰𝔩₂` computation, e.g.
-[Kac] (3.2.4) and the proof of Lemma 3.2 (b).-/
+[Kac] (3.2.4) and the proof of Lemma 3.2 (b).
+@isnad1 id=ex.3h8v.s8.40c509e87f56 from=translated src=- shape=450e483d vocab=5644c839
+-/
 theorem exists_nat_of_exists_pow_eq_zero [IsDomain R] [CharZero R] [Module.IsTorsionFree R M]
     (P : t.HasPrimitiveVectorWith m μ) (hm : ∃ n : ℕ, ((toEnd R L M f) ^ n) m = 0) :
     ∃ n : ℕ, μ = n := by

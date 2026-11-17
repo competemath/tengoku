@@ -25,11 +25,17 @@ namespace LieLean.QuantumGroup.G2Integral.SquareCancellation
 
 variable {R : Type*} [CommRing R]
 
+/--
+@isnad1 id=eq.0h4v.s10.35537188cbf4 from=translated src=- shape=b85785ee vocab=848f198f
+-/
 lemma shift_pow_mul_X (x : R) (n : ℕ) (F : R[X]) :
     (shift x ^ n) (X * F) = x ^ n • (X * (shift x ^ n) F) := by
   simp only [shift_pow_apply, mul_comp, X_comp, smul_eq_C_mul]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s9.8ae631cc6951 from=translated src=- shape=6a3fe1c5 vocab=c0ce3bd9
+-/
 lemma shift_newtonOp (x : R) (j n : ℕ) (F : R[X]) :
     shift x (newtonOp x j n F) = newtonOp x j n (shift x F) := by
   have hc (H : R[X]) : shift x ((shift x ^ 3) H) = (shift x ^ 3) (shift x H) :=
@@ -40,13 +46,18 @@ lemma shift_newtonOp (x : R) (j n : ℕ) (F : R[X]) :
     simp only [newtonOp_succ, Module.End.mul_apply, LinearMap.sub_apply,
       LinearMap.smul_apply, Module.End.one_apply, map_sub, map_smul, hc, ih]
 
+/--
+@isnad1 id=eq.0h6v.s10.e61c0deeb87e from=translated src=- shape=751a3cf6 vocab=c9bf738d
+-/
 lemma shift_pow_newtonOp (x : R) (j n k : ℕ) (F : R[X]) :
     (shift x ^ k) (newtonOp x j n F) = newtonOp x j n ((shift x ^ k) F) := by
   induction k with
   | zero => rfl
   | succ k ih => rw [pow_succ', Module.End.mul_apply, Module.End.mul_apply, ih, shift_newtonOp]
 
-/-- Moving one polynomial variable past a shifted interval of Newton factors.-/
+/-- Moving one polynomial variable past a shifted interval of Newton factors.
+@isnad1 id=eq.0h5v.s9.537748000f2e from=translated src=- shape=5b4eec1e vocab=42a093f7
+-/
 lemma newtonOp_succ_start_mul_X (x : R) (j t : ℕ) (F : R[X]) :
     newtonOp x (j + 1) t (X * F) = x ^ (3 * t) • (X * newtonOp x j t F) := by
   induction t with
@@ -58,6 +69,9 @@ lemma newtonOp_succ_start_mul_X (x : R) (j t : ℕ) (F : R[X]) :
       show 3 * (j + 1 + t) = 3 * (j + t) + 3 by omega, pow_add, map_mul]
     ring
 
+/--
+@isnad1 id=eq.0h4v.s10.7c56947248b2 from=translated src=- shape=f7c77890 vocab=56667e85
+-/
 lemma newtonOp_mul_X (x : R) (t : ℕ) (F : R[X]) :
     newtonOp x 0 (t + 1) (X * F) =
       x ^ (3 * t) • (X * (x ^ 3 • ((shift x ^ 3) (newtonOp x 0 t F)) -
@@ -74,7 +88,9 @@ lemma newtonOp_mul_X (x : R) (t : ℕ) (F : R[X]) :
   simp only [map_sub, map_smul, ← shift_pow_newtonOp]
 
 /-- The first-order, division-free dilation equation on the Newton polynomials.
-Unlike the cubic definition, this equation relates neighboring coefficients in `n`.-/
+Unlike the cubic definition, this equation relates neighboring coefficients in `n`.
+@isnad1 id=eq.0h1v.s10.5048455cd311 from=translated src=- shape=edcf4e4c vocab=7ab317f0
+-/
 theorem newtonPolynomial_dilation (t : ℕ) :
     (1 + X) * (newtonPolynomial (t + 1)).comp (C (X : ℤ[X]) * X) =
       (1 + C ((X : ℤ[X]) ^ (3 * (t + 1))) * X) * newtonPolynomial (t + 1) +
@@ -98,7 +114,9 @@ theorem newtonPolynomial_dilation (t : ℕ) :
   simp only [smul_eq_C_mul, show 3 * (t + 1) = 3 * t + 3 by omega, pow_add, map_mul]
   ring
 
-/-- The scalar coefficient recurrence extracted from first-order dilation.-/
+/-- The scalar coefficient recurrence extracted from first-order dilation.
+@isnad1 id=eq.0h2v.s8.b4f73c020593 from=translated src=- shape=fcbbd688 vocab=60ecb62b
+-/
 theorem newtonCoeff_recurrence (n t : ℕ) :
     ((X : ℤ[X]) ^ (n + 1) - 1) * newtonCoeff (n + 1) (t + 1) =
       ((X : ℤ[X]) ^ (3 * (t + 1)) - (X : ℤ[X]) ^ n) * newtonCoeff n (t + 1) +
@@ -110,7 +128,9 @@ theorem newtonCoeff_recurrence (n t : ℕ) :
   linear_combination hc
 
 /-- Ordinary Gaussian integers remove the common polynomial factor `x - 1`.
-This cancellation takes place in `ℤ[x]`, before any specialization of the parameter.-/
+This cancellation takes place in `ℤ[x]`, before any specialization of the parameter.
+@isnad1 id=eq.1h2v.s8.339dd98eaffb from=translated src=- shape=7a097cf9 vocab=55c4d1e9
+-/
 theorem newtonCoeff_gaussian_recurrence (n t : ℕ) (hn : n ≤ 3 * (t + 1)) :
     gaussian (n + 1) * newtonCoeff (n + 1) (t + 1) =
       (X : ℤ[X]) ^ n * gaussian (3 * (t + 1) - n) * newtonCoeff n (t + 1) +
@@ -132,13 +152,22 @@ theorem newtonCoeff_gaussian_recurrence (n t : ℕ) (hn : n ≤ 3 * (t + 1)) :
   rw [hd] at hrec
   linear_combination hrec
 
+/--
+@isnad1 id=eq.0h1v.s4.293b051ee467 from=translated src=- shape=a2cd355f vocab=42f0d7ad
+-/
 lemma progressionProduct_zero (k : ℕ) : progressionProduct k 0 = 1 := by
   simp [progressionProduct]
 
+/--
+@isnad1 id=eq.0h2v.s6.7cc86c6a09c8 from=translated src=- shape=8fbb884d vocab=bc2524dd
+-/
 lemma progressionProduct_succ (k n : ℕ) :
     progressionProduct k (n + 1) = progressionProduct k n * gaussian (k * (n + 1)) := by
   simp [progressionProduct, prod_range_succ]
 
+/--
+@isnad1 id=eq.0h1v.s5.aa826b1904fb from=translated src=- shape=baff438e vocab=c45c92f5
+-/
 lemma newtonCoeff_zero_succ (t : ℕ) : newtonCoeff 0 (t + 1) = 0 := by
   induction t with
   | zero => simp [newtonCoeff, newtonPolynomial_succ, newtonPolynomial_zero]
@@ -149,6 +178,9 @@ lemma newtonCoeff_zero_succ (t : ℕ) : newtonCoeff 0 (t + 1) = 0 := by
     rw [ih]
     ring
 
+/--
+@isnad1 id=eq.1h2v.s4.e6630efc0f36 from=translated src=- shape=b6eb7be6 vocab=91900dd6
+-/
 lemma newtonCoeff_eq_zero_of_lt (n t : ℕ) (h : n < t) : newtonCoeff n t = 0 := by
   induction n generalizing t with
   | zero => obtain ⟨t, rfl⟩ := Nat.exists_eq_succ_of_ne_zero (by omega : t ≠ 0)
@@ -159,6 +191,9 @@ lemma newtonCoeff_eq_zero_of_lt (n t : ℕ) (h : n < t) : newtonCoeff n t = 0 :=
     rw [ih (t + 1) (by omega), ih t (by omega), mul_zero, mul_zero, add_zero] at hr
     exact (mul_eq_zero.mp hr).resolve_left (gaussian_ne_zero (n + 1) (by omega))
 
+/--
+@isnad1 id=eq.1h2v.s5.000efcfe7cbc from=translated src=- shape=e67f2212 vocab=705a6cc2
+-/
 lemma newtonCoeff_eq_zero_of_gt (n t : ℕ) (h : 3 * t < n) : newtonCoeff n t = 0 := by
   induction n generalizing t with
   | zero => omega
@@ -179,10 +214,16 @@ lemma newtonCoeff_eq_zero_of_gt (n t : ℕ) (h : 3 * t < n) : newtonCoeff n t = 
         simp [coeff_one] at hc
       exact (mul_eq_zero.mp hr).resolve_left hn
 
+/--
+@isnad1 id=eq.1h2v.s5.8276c228cbe9 from=translated src=- shape=9479eae6 vocab=ac5c62fd
+-/
 lemma squarePolynomial_eq_zero (n t : ℕ) (h : ¬ (t ≤ n ∧ n ≤ 3 * t)) :
     squarePolynomial n t = 0 := by
   simp [squarePolynomial, h]
 
+/--
+@isnad1 id=eq.0h2v.s6.4444441a74aa from=translated src=- shape=898fad5a vocab=b4a580ff
+-/
 lemma squarePolynomial_spec_all (n t : ℕ) :
     progressionProduct 3 t * squarePolynomial n t =
       progressionProduct 1 (3 * t - n) * progressionProduct 3 (n - t) * newtonCoeff n t := by
@@ -195,11 +236,17 @@ lemma squarePolynomial_spec_all (n t : ℕ) :
       · exact newtonCoeff_eq_zero_of_gt n t (by omega)
     rw [hz, mul_zero, mul_zero]
 
+/--
+@isnad1 id=eq.0h0v.s4.a57b6e78cab7 from=translated src=- shape=0d7db0f8 vocab=1bcfb50c
+-/
 lemma squarePolynomial_zero_zero : squarePolynomial 0 0 = 1 := by
   symm
   apply squarePolynomial_unique 0 0 (by omega) (by omega)
   simp [progressionProduct_zero, newtonCoeff, newtonPolynomial_zero]
 
+/--
+@isnad1 id=eq.2h2v.s8.5100d999904e from=translated src=- shape=9ba2da28 vocab=681a162d
+-/
 lemma squarePolynomial_recurrence_first (n t : ℕ) (htn : t ≤ n)
     (hnt : n ≤ 3 * t + 2) :
     progressionProduct 1 (3 * t + 2 - n) * progressionProduct 3 (n - t) *
@@ -218,6 +265,9 @@ lemma squarePolynomial_recurrence_first (n t : ℕ) (htn : t ≤ n)
     rw [hb]
     linear_combination -gaussian (3 * (n - (t + 1) + 1)) * hs
 
+/--
+@isnad1 id=eq.1h2v.s8.5500f9c6ca73 from=translated src=- shape=2dd0e059 vocab=681a162d
+-/
 lemma squarePolynomial_recurrence_second (n t : ℕ) (htn : t ≤ n) :
     progressionProduct 1 (3 * t + 2 - n) * progressionProduct 3 (n - t) *
         gaussian (3 * (t + 1)) * newtonCoeff n t =
@@ -236,7 +286,9 @@ lemma squarePolynomial_recurrence_second (n t : ℕ) (htn : t ≤ n) :
       squarePolynomial_eq_zero n t (by omega), mul_zero, mul_zero]
 
 /-- The integral quotient satisfies the normalized first-order square recurrence.
-The successor support range is essential at its upper endpoint.-/
+The successor support range is essential at its upper endpoint.
+@isnad1 id=eq.2h2v.s8.f4dddaf40dc6 from=translated src=- shape=15f23d82 vocab=1e53412d
+-/
 theorem squarePolynomial_recurrence (n t : ℕ) (htn : t ≤ n)
     (hnt : n ≤ 3 * t + 2) :
     gaussian (n + 1) * squarePolynomial (n + 1) (t + 1) =

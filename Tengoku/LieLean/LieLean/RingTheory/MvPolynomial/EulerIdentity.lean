@@ -27,7 +27,9 @@ namespace MvPolynomial
 
 variable {R σ : Type*} [CommSemiring R]
 
-/-- Finite-support weighted Euler identity for a monomial, with extra zero coordinates allowed.-/
+/-- Finite-support weighted Euler identity for a monomial, with extra zero coordinates allowed.
+@isnad1 id=eq.1h6v.s9.04f46acaaaef from=translated src=- shape=448009ac vocab=f18d7d41
+-/
 theorem sum_weight_X_mul_pderiv_monomial_of_support_subset
     (w : σ → ℕ) (s : Finset σ) (m : σ →₀ ℕ) (r : R) (hs : m.support ⊆ s) :
     (∑ i ∈ s, w i • (X i * pderiv i (monomial m r))) =
@@ -45,7 +47,9 @@ theorem sum_weight_X_mul_pderiv_monomial_of_support_subset
     simp [Finsupp.notMem_support_iff.mp hi]
 
 /-- Weighted Euler identity on a finite set containing all occurring variables, for arbitrary
-variable types. This removes the `Fintype` restriction in the pinned Mathlib theorem.-/
+variable types. This removes the `Fintype` restriction in the pinned Mathlib theorem.
+@isnad1 id=eq.2h6v.s8.37d5aaa9bf99 from=translated src=- shape=d6fdff1b vocab=9f202d1f
+-/
 theorem IsWeightedHomogeneous.sum_weight_X_mul_pderiv_of_vars_subset
     {p : MvPolynomial σ R} {w : σ → ℕ} {n : ℕ}
     (hp : p.IsWeightedHomogeneous w n) (s : Finset σ) (hs : p.vars ⊆ s) :
@@ -67,7 +71,9 @@ theorem IsWeightedHomogeneous.sum_weight_X_mul_pderiv_of_vars_subset
       rw [hp (mem_support_iff.mp hm)]
     _ = n • p := by rw [← Finset.smul_sum, support_sum_monomial_coeff]
 
-/-- Euler identity for arbitrary-variable homogeneous polynomials, over any commutative semiring.-/
+/-- Euler identity for arbitrary-variable homogeneous polynomials, over any commutative semiring.
+@isnad1 id=eq.2h5v.s8.e60a4734196b from=translated src=- shape=319716be vocab=5250b95e
+-/
 theorem IsHomogeneous.sum_X_mul_pderiv_of_vars_subset
     {p : MvPolynomial σ R} {n : ℕ} (hp : p.IsHomogeneous n)
     (s : Finset σ) (hs : p.vars ⊆ s) :
@@ -76,7 +82,9 @@ theorem IsHomogeneous.sum_X_mul_pderiv_of_vars_subset
     hp.sum_weight_X_mul_pderiv_of_vars_subset s hs
 
 /-- The diagonal scalar needed after adding the exterior-degree contribution in a weighted
-Koszul calculation. This is only the Euler scalar identity, not a construction of a homotopy.-/
+Koszul calculation. This is only the Euler scalar identity, not a construction of a homotopy.
+@isnad1 id=eq.2h7v.s9.5e43a451f1a7 from=translated src=- shape=04dc5b3e vocab=f1e6ea84
+-/
 theorem IsWeightedHomogeneous.sum_weight_X_mul_pderiv_add_exteriorDegree
     {p : MvPolynomial σ R} {w : σ → ℕ} {n : ℕ}
     (hp : p.IsWeightedHomogeneous w n) (s : Finset σ) (hs : p.vars ⊆ s) (q : ℕ) :
@@ -84,7 +92,9 @@ theorem IsWeightedHomogeneous.sum_weight_X_mul_pderiv_add_exteriorDegree
   rw [hp.sum_weight_X_mul_pderiv_of_vars_subset s hs, add_smul]
 
 /-- In characteristic zero, the positive polynomial-plus-exterior degree scalar can be inverted.
-This supplies the normalization factor for a Koszul contraction, without asserting its existence.-/
+This supplies the normalization factor for a Koszul contraction, without asserting its existence.
+@isnad1 id=eq.3h7v.s9.049e8ef402ca from=translated src=- shape=49753271 vocab=680f3a7d
+-/
 theorem IsWeightedHomogeneous.inv_degree_smul_euler_add_exteriorDegree
     {K : Type*} [Field K] [CharZero K] {p : MvPolynomial σ K} {w : σ → ℕ} {n : ℕ}
     (hp : p.IsWeightedHomogeneous w n) (s : Finset σ) (hs : p.vars ⊆ s)

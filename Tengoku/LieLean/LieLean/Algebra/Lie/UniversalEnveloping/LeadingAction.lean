@@ -33,7 +33,9 @@ variable {R L σ : Type*} [CommRing R] [LieRing L] [LieAlgebra R L]
   [LinearOrder σ] (b : Basis σ R L)
 
 /-- Under PBW, left multiplication is the constructed polynomial representation, not the
-adjoint action. Reconstructed directly from the definition of the PBW equivalence.-/
+adjoint action. Reconstructed directly from the definition of the PBW equivalence.
+@isnad1 id=eq.0h6v.s11.646b81682c55 from=translated src=- shape=e64b4141 vocab=f59383b1
+-/
 theorem pbwEquiv_ι_mul (x : L) (u : UniversalEnvelopingAlgebra R L) :
     pbwEquiv b (ι R x * u) = PBW.rho b x (pbwEquiv b u) := by
   change (lift R (PBW.rhoHom b) (ι R x * u)) 1 =
@@ -42,7 +44,9 @@ theorem pbwEquiv_ι_mul (x : L) (u : UniversalEnvelopingAlgebra R L) :
 
 /-- For any polynomial of degree at most `n`, the difference between the PBW action of a
 basis generator and multiplication by its variable has degree at most `n`.
-Reconstructed by linear extension of the monomial PBW property.-/
+Reconstructed by linear extension of the monomial PBW property.
+@isnad1 id=mem.1h7v.s10.7f025bc27288 from=translated src=- shape=93d7cd49 vocab=dfe31e79
+-/
 theorem rho_sub_X_mul_mem (i : σ) (n : ℕ) {p : MvPolynomial σ R}
     (hp : p ∈ restrictTotalDegree σ R n) :
     PBW.rho b (b i) p - X i * p ∈ restrictTotalDegree σ R n := by
@@ -62,7 +66,9 @@ theorem rho_sub_X_mul_mem (i : σ) (n : ℕ) {p : MvPolynomial σ R}
 
 /-- The leading PBW symbol of actual left multiplication is polynomial multiplication.
 The error has one less total degree than the natural `n+1` bound for the product.
-No finite-dimensionality or characteristic-zero hypothesis is used.-/
+No finite-dimensionality or characteristic-zero hypothesis is used.
+@isnad1 id=mem.1h7v.s10.ae4afa1d00f2 from=translated src=- shape=3b6ed725 vocab=a2ab8dd4
+-/
 theorem pbwEquiv_ι_basis_mul_sub_mem (i : σ) (n : ℕ)
     {u : UniversalEnvelopingAlgebra R L} (hu : u ∈ filtration R L n) :
     pbwEquiv b (ι R (b i) * u) - X i * pbwEquiv b u ∈ restrictTotalDegree σ R n := by
@@ -71,7 +77,9 @@ theorem pbwEquiv_ι_basis_mul_sub_mem (i : σ) (n : ℕ)
 
 /-- For an arbitrary Lie algebra element, PBW intertwines left multiplication with
 multiplication by its degree-one polynomial modulo lower degree. Reconstructed by basis
-linearity from `pbwEquiv_ι_basis_mul_sub_mem`.-/
+linearity from `pbwEquiv_ι_basis_mul_sub_mem`.
+@isnad1 id=mem.1h7v.s11.62ad1731cb78 from=translated src=- shape=02976718 vocab=6a89340d
+-/
 theorem pbwEquiv_ι_mul_sub_mem (x : L) (n : ℕ)
     {u : UniversalEnvelopingAlgebra R L} (hu : u ∈ filtration R L n) :
     pbwEquiv b (ι R x * u) - pbwEquiv b (ι R x) * pbwEquiv b u ∈

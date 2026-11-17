@@ -43,6 +43,9 @@ structure IsStable (S : Set B) : Prop where
 
 variable {C} {S : Set B}
 
+/--
+@isnad1 id=isstable.1h6v.s5.35a2ec365b26 from=translated src=- shape=bb49c964 vocab=cb61cbd4
+-/
 lemma isStable_sInter {𝒮 : Set (Set B)} (h𝒮 : ∀ S ∈ 𝒮, C.IsStable S) : C.IsStable (⋂₀ 𝒮) where
   e_mem i b b' hb h := Set.mem_sInter.mpr fun S hS ↦
     (h𝒮 S hS).e_mem i b b' (Set.mem_sInter.mp hb S hS) h
@@ -54,12 +57,21 @@ variable (C) in
 the connected component of `b`).-/
 def closure (s : Set B) : Set B := ⋂₀ {S | C.IsStable S ∧ s ⊆ S}
 
+/--
+@isnad1 id=isstable.0h6v.s5.6aed47d0904c from=translated src=- shape=58a202e6 vocab=959dde75
+-/
 lemma isStable_closure (s : Set B) : C.IsStable (C.closure s) :=
   isStable_sInter fun _ hS ↦ hS.1
 
+/--
+@isnad1 id=le.0h6v.s5.f67a4956930c from=translated src=- shape=88fc5a0e vocab=002cddd6
+-/
 lemma subset_closure (s : Set B) : s ⊆ C.closure s :=
   Set.subset_sInter fun _ hS ↦ hS.2
 
+/--
+@isnad1 id=le.2h7v.s5.cdb73084c2c4 from=translated src=- shape=c122febd vocab=91a111b3
+-/
 lemma closure_subset {s : Set B} (hS : C.IsStable S) (hsS : s ⊆ S) : C.closure s ⊆ S :=
   Set.sInter_subset_of_mem ⟨hS, hsS⟩
 
@@ -88,18 +100,33 @@ def restrict (hS : C.IsStable S) : Crystal D S where
   e_eq_none_of_φ_eq_bot i b h := by
     simp [C.e_eq_none_of_φ_eq_bot i b h]
 
+/--
+@isnad1 id=eq.1h7v.s6.522f710ed47b from=translated src=- shape=4cb00223 vocab=ddcf4075
+-/
 @[simp] lemma restrict_wt (hS : C.IsStable S) (b : S) : (restrict hS).wt b = C.wt b := rfl
 
+/--
+@isnad1 id=eq.1h8v.s6.dbb947461bff from=translated src=- shape=795bb542 vocab=16811684
+-/
 @[simp] lemma restrict_ε (hS : C.IsStable S) (i : ι) (b : S) : (restrict hS).ε i b = C.ε i b :=
   rfl
 
+/--
+@isnad1 id=eq.1h8v.s6.683976cd5bd7 from=translated src=- shape=795bb542 vocab=a1a735eb
+-/
 @[simp] lemma restrict_φ (hS : C.IsStable S) (i : ι) (b : S) : (restrict hS).φ i b = C.φ i b :=
   rfl
 
+/--
+@isnad1 id=eq.1h8v.s6.59d95afebaeb from=translated src=- shape=caaa1e68 vocab=53a39ca0
+-/
 lemma restrict_e (hS : C.IsStable S) (i : ι) (b : S) :
     ((restrict hS).e i b).map Subtype.val = C.e i b := by
   simp [restrict, Option.map_pmap]
 
+/--
+@isnad1 id=eq.1h8v.s6.f48740a68a6b from=translated src=- shape=caaa1e68 vocab=5146ac89
+-/
 lemma restrict_f (hS : C.IsStable S) (i : ι) (b : S) :
     ((restrict hS).f i b).map Subtype.val = C.f i b := by
   simp [restrict, Option.map_pmap]
@@ -112,8 +139,14 @@ def restrictHom (hS : C.IsStable S) : StrictHom (restrict hS) C where
   e_map i b := (restrict_e hS i b).symm
   f_map i b := (restrict_f hS i b).symm
 
+/--
+@isnad1 id=eq.1h7v.s6.f9ccea80b247 from=translated src=- shape=9ba5069b vocab=62e69f77
+-/
 @[simp] lemma restrictHom_apply (hS : C.IsStable S) (b : S) : restrictHom hS b = b.1 := rfl
 
+/--
+@isnad1 id=issemino.2h6v.s5.5bcf3e9d4b4e from=translated src=- shape=6e047ef3 vocab=121367d1
+-/
 lemma IsSeminormal.restrict (hC : C.IsSeminormal) (hS : C.IsStable S) :
     (Crystal.restrict hS).IsSeminormal := by
   rw [isSeminormal_iff]
@@ -153,7 +186,9 @@ def sum : Crystal D (B₁ ⊕ B₂) where
 
 variable {C₁ C₂}
 
-/-- The character of a disjoint union of finite crystals is the sum of the characters.-/
+/-- The character of a disjoint union of finite crystals is the sum of the characters.
+@isnad1 id=eq.0h7v.s6.36a11e2ce50f from=translated src=- shape=82d7d969 vocab=7c3a23e4
+-/
 theorem character_sum [Fintype B₁] [Fintype B₂] :
     (C₁.sum C₂).character = C₁.character + C₂.character := by
   simp only [character]

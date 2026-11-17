@@ -32,7 +32,9 @@ namespace MvPolynomial
 
 variable {R I : Type*} [CommSemiring R]
 
-/-- Partial differentiation introduces no new polynomial variables.-/
+/-- Partial differentiation introduces no new polynomial variables.
+@isnad1 id=le.0h4v.s8.c62a72538d1c from=translated src=- shape=d269cd25 vocab=50809cd0
+-/
 theorem vars_pderiv_subset (p : MvPolynomial I R) (i : I) :
     (pderiv i p).vars ⊆ p.vars := by
   classical
@@ -53,7 +55,9 @@ namespace ExteriorAlgebra.Koszul
 variable {R M I : Type*} [CommRing R] [AddCommGroup M] [Module R M]
 
 /-- The concrete derivative homotopy has bidegree `(-1,+1)` and retains both supports.
-At polynomial degree zero, subtraction is truncated; the stronger vanishing result is below.-/
+At polynomial degree zero, subtraction is truncated; the stronger vanishing result is below.
+@isnad1 id=mem.1h8v.s13.68a5018c81f8 from=translated src=- shape=6675369c vocab=7b5048fe
+-/
 theorem homotopy_mem_homogeneousTensors (b : Module.Basis I R M) (s : Finset I)
     (n q : ℕ) (z : ExteriorAlgebra R M ⊗[R] MvPolynomial I R)
     (hz : z ∈ homogeneousTensors b s n q) :
@@ -82,7 +86,9 @@ theorem homotopy_mem_homogeneousTensors (b : Module.Basis I R M) (s : Finset I)
   | smul a x _ hx => simpa only [map_smul] using
       (homogeneousTensors b s (n - 1) (q + 1)).smul_mem a hx
 
-/-- The derivative homotopy vanishes on polynomial-degree-zero homogeneous tensors.-/
+/-- The derivative homotopy vanishes on polynomial-degree-zero homogeneous tensors.
+@isnad1 id=eq.1h7v.s12.ae6989e733e0 from=translated src=- shape=5ab6fe52 vocab=b451287a
+-/
 theorem homotopy_eq_zero_of_polynomial_degree_zero (b : Module.Basis I R M) (s : Finset I)
     (q : ℕ) (z : ExteriorAlgebra R M ⊗[R] MvPolynomial I R)
     (hz : z ∈ homogeneousTensors b s 0 q) : homotopy b s z = 0 := by
@@ -102,7 +108,9 @@ section Field
 variable {K : Type*} [Field K] [CharZero K] [Module K M]
 
 /-- An explicit, support-preserving homogeneous primitive, obtained by dividing the concrete
-homotopy by the positive total degree.-/
+homotopy by the positive total degree.
+@isnad1 id=and.3h8v.s14.899ae0b52a94 from=translated src=- shape=ff6de426 vocab=09973d19
+-/
 theorem normalized_homotopy_primitive (b : Module.Basis I K M) (s : Finset I) (n q : ℕ)
     (z : ExteriorAlgebra K M ⊗[K] MvPolynomial I K)
     (hz : z ∈ homogeneousTensors b s n q) (hcycle : delta b s z = 0)
@@ -129,7 +137,9 @@ theorem eq_zero_of_cycle_polynomial_degree_zero (b : Module.Basis I K M) (s : Fi
 /-- Homogeneous finite-support Koszul exactness in positive total degree: the primitive has
 polynomial degree `n - 1`, exterior degree `q + 1`, and both supports still contained in `s`.
 When `n = 0`, every such cycle vanishes and the primitive is zero. The basis index type is
-arbitrary; there is no global finiteness assumption.-/
+arbitrary; there is no global finiteness assumption.
+@isnad1 id=ex.3h8v.s14.b5853550b227 from=translated src=- shape=b5c9dcd9 vocab=69bc0da8
+-/
 theorem exists_homogeneous_primitive (b : Module.Basis I K M) (s : Finset I) (n q : ℕ)
     (z : ExteriorAlgebra K M ⊗[K] MvPolynomial I K)
     (hz : z ∈ homogeneousTensors b s n q) (hcycle : delta b s z = 0)

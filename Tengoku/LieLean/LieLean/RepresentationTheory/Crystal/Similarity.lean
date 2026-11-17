@@ -53,21 +53,36 @@ variable {ι X : Type*} [AddCommGroup X] {D : CartanDatum ι X}
 /-- The word `w` with every letter repeated `m` times.-/
 def stretchWord (m : ℕ) (w : List ι) : List ι := w.flatMap (List.replicate m)
 
+/--
+@isnad1 id=eq.0h2v.s3.bc914c7ef154 from=translated src=- shape=4eef11c7 vocab=0d4e0631
+-/
 @[simp] lemma stretchWord_nil (m : ℕ) : stretchWord m ([] : List ι) = [] := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.9f1fa19cfab4 from=translated src=- shape=1b0a09d3 vocab=2c27cfbf
+-/
 lemma stretchWord_cons (m : ℕ) (j : ι) (w : List ι) :
     stretchWord m (j :: w) = List.replicate m j ++ stretchWord m w := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.3bc8f589fda3 from=translated src=- shape=516ba66e vocab=54c06fb8
+-/
 lemma length_stretchWord (m : ℕ) (w : List ι) : (stretchWord m w).length = m * w.length := by
   induction w with
   | nil => simp
   | cons j w ih => rw [stretchWord_cons, List.length_append, List.length_replicate, ih,
       List.length_cons, mul_add, mul_one, add_comm]
 
+/--
+@isnad1 id=eq.0h4v.s5.21ada2cbfbb9 from=translated src=- shape=e4bfc4f6 vocab=a095cb05
+-/
 lemma stretchWord_append (m : ℕ) (w w' : List ι) :
     stretchWord m (w ++ w') = stretchWord m w ++ stretchWord m w' := by
   simp [stretchWord]
 
+/--
+@isnad1 id=eq.0h4v.s4.7bb74e64b455 from=translated src=- shape=4cfec3c0 vocab=24f888b8
+-/
 lemma stretchWord_replicate (m n : ℕ) (j : ι) :
     stretchWord m (List.replicate n j) = List.replicate (m * n) j := by
   induction n with
@@ -75,6 +90,9 @@ lemma stretchWord_replicate (m n : ℕ) (j : ι) :
   | succ n ih =>
     rw [List.replicate_succ, stretchWord_cons, ih, Nat.mul_succ, Nat.add_comm, List.replicate_add]
 
+/--
+@isnad1 id=eq.0h4v.s4.922a021851f4 from=translated src=- shape=f6e9c0e9 vocab=c10d8550
+-/
 lemma stretchWord_mul (m n : ℕ) (w : List ι) :
     stretchWord (m * n) w = stretchWord m (stretchWord n w) := by
   induction w with
@@ -84,17 +102,26 @@ lemma stretchWord_mul (m n : ℕ) (w : List ι) :
 
 variable (C : Crystal D B) {C₁ : Crystal D B₁} {C₂ : Crystal D B₂} {C₃ : Crystal D B₃}
 
+/--
+@isnad1 id=eq.0h8v.s6.f4bfded96352 from=translated src=- shape=736f5da3 vocab=f1c5a9e9
+-/
 lemma fWord_append (l₁ l₂ : List ι) (b : B) :
     C.fWord (l₁ ++ l₂) b = (C.fWord l₂ b).bind (C.fWord l₁) := by
   induction l₁ with
   | nil => rw [List.nil_append]; cases C.fWord l₂ b <;> rfl
   | cons i l ih => rw [List.cons_append, fWord_cons, ih, Option.bind_assoc]; rfl
 
+/--
+@isnad1 id=eq.0h8v.s5.facbc5f02dac from=translated src=- shape=4425c484 vocab=f09375ad
+-/
 lemma fWord_replicate (i : ι) (n : ℕ) (b : B) : C.fWord (List.replicate n i) b = C.fIter i n b := by
   induction n with
   | zero => rfl
   | succ n ih => rw [List.replicate_succ, fWord_cons, ih, fIter_succ']
 
+/--
+@isnad1 id=eq.0h9v.s6.a7a9f79b4ddf from=translated src=- shape=9e4ba55e vocab=61c9e630
+-/
 lemma fWord_stretchWord_cons (m : ℕ) (j : ι) (w : List ι) (b : B) :
     C.fWord (stretchWord m (j :: w)) b = (C.fWord (stretchWord m w) b).bind (C.fIter j m) := by
   rw [stretchWord_cons, fWord_append]
@@ -106,13 +133,22 @@ lemma fWord_stretchWord_cons (m : ℕ) (j : ι) (w : List ι) (b : B) :
 
 section Arith
 
+/--
+@isnad1 id=eq.1h1v.s5.9304f0ae5823 from=translated src=- shape=987214a3 vocab=0548137a
+-/
 lemma nsmul_bot_withBot {m : ℕ} (hm : 0 < m) : m • (⊥ : WithBot ℤ) = ⊥ := by
   obtain ⟨n, rfl⟩ := Nat.exists_eq_succ_of_ne_zero hm.ne'
   rw [succ_nsmul, WithBot.add_bot]
 
+/--
+@isnad1 id=eq.0h2v.s5.5764eae5042f from=translated src=- shape=424f41ff vocab=f97a2d3a
+-/
 lemma nsmul_coe_withBot (m : ℕ) (z : ℤ) : m • (z : WithBot ℤ) = ((m * z : ℤ) : WithBot ℤ) := by
   rw [← WithBot.coe_nsmul, nsmul_eq_mul]
 
+/--
+@isnad1 id=eq.1h4v.s7.35b3a5c6bbcd from=translated src=- shape=a4debbc3 vocab=c6b8ffbd
+-/
 lemma nsmul_max_add_withBot {m : ℕ} (hm : 0 < m) (a b : WithBot ℤ) (z : ℤ) :
     m • max a (b + (z : WithBot ℤ)) = max (m • a) (m • b + ((m * z : ℤ) : WithBot ℤ)) := by
   induction a using WithBot.recBotCoe with
@@ -130,6 +166,9 @@ lemma nsmul_max_add_withBot {m : ℕ} (hm : 0 < m) (a b : WithBot ℤ) (z : ℤ)
         nsmul_coe_withBot, ← WithBot.coe_add, ← WithBot.coe_max,
         mul_max_of_nonneg _ _ (by positivity : (0 : ℤ) ≤ m), mul_add]
 
+/--
+@isnad1 id=lt.3h5v.s7.bea08ed9b66f from=translated src=- shape=6c175684 vocab=cb499f07
+-/
 lemma nsmul_lt_of_lt_of_eq_add {m k : ℕ} (hk : k < m) {a b c : WithBot ℤ} (hab : a < b)
     (hc : m • b = c + k) : m • a < c := by
   induction b using WithBot.recBotCoe with
@@ -149,14 +188,23 @@ lemma nsmul_lt_of_lt_of_eq_add {m k : ℕ} (hk : k < m) {a b c : WithBot ℤ} (h
         have hk' : (k : ℤ) < m := by exact_mod_cast hk
         linarith
 
+/--
+@isnad1 id=le.1h4v.s6.e5f916c0ceab from=translated src=- shape=6c5635f8 vocab=7e1c6efd
+-/
 lemma nsmul_le_nsmul_add_of_le (m k : ℕ) {a b : WithBot ℤ} (hab : a ≤ b) :
     m • a ≤ m • b + k :=
   (nsmul_le_nsmul_right hab m).trans (le_add_of_nonneg_right (by exact_mod_cast Nat.zero_le k))
 
+/--
+@isnad1 id=not.2h5v.s6.d35214f066bc from=translated src=- shape=0a11c6ff vocab=1a660a68
+-/
 lemma not_lt_nsmul_of_le {m k : ℕ} {a b c : WithBot ℤ} (hab : a ≤ b) (hc : c = m • b + k) :
     ¬ c < m • a := by
   rw [not_lt, hc]; exact nsmul_le_nsmul_add_of_le m k hab
 
+/--
+@isnad1 id=not.3h5v.s7.0462c10d52d4 from=translated src=- shape=d7f26bad vocab=1a660a68
+-/
 lemma not_le_nsmul_of_lt {m k : ℕ} (hk : k < m) {a b c : WithBot ℤ} (hab : a < b)
     (hc : m • b = c + k) : ¬ c ≤ m • a := by
   rw [not_le]; exact nsmul_lt_of_lt_of_eq_add hk hab hc
@@ -169,6 +217,9 @@ section TensorIter
 
 variable (i : ι)
 
+/--
+@isnad1 id=eq.1h11v.s7.a5877551a54f from=translated src=- shape=98b52560 vocab=6c441323
+-/
 lemma tensor_fIter_left (n : ℕ) (x : B₁) (y : B₂)
     (h : ∀ k < n, ∀ x', C₁.fIter i k x = some x' → C₂.ε i y < C₁.φ i x') :
     (C₁.tensor C₂).fIter i n (x, y) = (C₁.fIter i n x).map (·, y) := by
@@ -182,6 +233,9 @@ lemma tensor_fIter_left (n : ℕ) (x : B₁) (y : B₂)
       simp only [Option.map_some, Option.bind_some]
       simp only [tensor_f, h n (by omega) x' hx, ↓reduceIte]
 
+/--
+@isnad1 id=eq.1h11v.s7.274c7aaf0f93 from=translated src=- shape=8192fd6d vocab=6c441323
+-/
 lemma tensor_fIter_right (n : ℕ) (x : B₁) (y : B₂)
     (h : ∀ k < n, ∀ y', C₂.fIter i k y = some y' → ¬ C₂.ε i y' < C₁.φ i x) :
     (C₁.tensor C₂).fIter i n (x, y) = (C₂.fIter i n y).map (x, ·) := by
@@ -195,6 +249,9 @@ lemma tensor_fIter_right (n : ℕ) (x : B₁) (y : B₂)
       simp only [Option.map_some, Option.bind_some]
       simp only [tensor_f, h n (by omega) y' hy, ↓reduceIte]
 
+/--
+@isnad1 id=eq.1h11v.s7.256d4b4af7f9 from=translated src=- shape=d91e4710 vocab=d05999b7
+-/
 lemma tensor_eIter_left (n : ℕ) (x : B₁) (y : B₂)
     (h : ∀ k < n, ∀ x', C₁.eIter i k x = some x' → C₂.ε i y ≤ C₁.φ i x') :
     (C₁.tensor C₂).eIter i n (x, y) = (C₁.eIter i n x).map (·, y) := by
@@ -208,6 +265,9 @@ lemma tensor_eIter_left (n : ℕ) (x : B₁) (y : B₂)
       simp only [Option.map_some, Option.bind_some]
       simp only [tensor_e, h n (by omega) x' hx, ↓reduceIte]
 
+/--
+@isnad1 id=eq.1h11v.s7.f0142973fae2 from=translated src=- shape=f1f6ad0f vocab=d05999b7
+-/
 lemma tensor_eIter_right (n : ℕ) (x : B₁) (y : B₂)
     (h : ∀ k < n, ∀ y', C₂.eIter i k y = some y' → ¬ C₂.ε i y' ≤ C₁.φ i x) :
     (C₁.tensor C₂).eIter i n (x, y) = (C₂.eIter i n y).map (x, ·) := by
@@ -245,24 +305,43 @@ instance : FunLike (Similarity C₁ C₂ m) B₁ B₂ where
   coe σ := σ.toFun
   coe_injective σ σ' h := by cases σ; cases σ'; congr
 
+/--
+@isnad1 id=eq.0h9v.s6.421384945fa4 from=translated src=- shape=e2c75b83 vocab=a867f5d4
+-/
 @[simp] lemma toFun_eq_coe (σ : Similarity C₁ C₂ m) : σ.toFun = σ := rfl
 
+/--
+@isnad1 id=eq.0h10v.s6.6440fc99ab91 from=translated src=- shape=37285cbf vocab=1122a1b3
+-/
 lemma wt_apply (σ : Similarity C₁ C₂ m) (b : B₁) : C₂.wt (σ b) = m • C₁.wt b := σ.wt_map b
 
+/--
+@isnad1 id=eq.0h11v.s6.e4c05d59235e from=translated src=- shape=b00816d6 vocab=03ff434d
+-/
 lemma ε_apply (σ : Similarity C₁ C₂ m) (i : ι) (b : B₁) : C₂.ε i (σ b) = m • C₁.ε i b :=
   σ.ε_map i b
 
+/--
+@isnad1 id=eq.0h11v.s6.1b1fd329d681 from=translated src=- shape=1a436f2b vocab=e10458d1
+-/
 lemma eIter_apply (σ : Similarity C₁ C₂ m) (i : ι) (b : B₁) :
     C₂.eIter i m (σ b) = (C₁.e i b).map σ := σ.e_map i b
 
+/--
+@isnad1 id=eq.0h11v.s6.371098d67189 from=translated src=- shape=1a436f2b vocab=846e7f70
+-/
 lemma fIter_apply (σ : Similarity C₁ C₂ m) (i : ι) (b : B₁) :
     C₂.fIter i m (σ b) = (C₁.f i b).map σ := σ.f_map i b
 
-/-- `φᵢ(σ b) = m φᵢ(b)`.-/
+/-- `φᵢ(σ b) = m φᵢ(b)`.
+@isnad1 id=eq.0h11v.s6.8d708653cf1c from=translated src=- shape=b00816d6 vocab=42861515
+-/
 lemma φ_apply (σ : Similarity C₁ C₂ m) (i : ι) (b : B₁) : C₂.φ i (σ b) = m • C₁.φ i b := by
   rw [C₂.φ_eq, C₁.φ_eq, σ.ε_apply, σ.wt_apply, map_nsmul, nsmul_add, ← WithBot.coe_nsmul]
 
-/-- `f̃_{wᵐ} σ(b) = σ(f̃_w b)`.-/
+/-- `f̃_{wᵐ} σ(b) = σ(f̃_w b)`.
+@isnad1 id=eq.0h11v.s6.0803ccf6452e from=translated src=- shape=0b3eeb1b vocab=e9da0353
+-/
 theorem fWord_stretchWord (σ : Similarity C₁ C₂ m) (w : List ι) (b : B₁) :
     C₂.fWord (stretchWord m w) (σ b) = (C₁.fWord w b).map σ := by
   induction w with
@@ -281,6 +360,9 @@ def compStrictHom (ψ : StrictHom C₂ C₃) (σ : Similarity C₁ C₂ m) : Sim
   e_map i b := by rw [ψ.eIter_apply, σ.eIter_apply, Option.map_map]; rfl
   f_map i b := by rw [ψ.fIter_apply, σ.fIter_apply, Option.map_map]; rfl
 
+/--
+@isnad1 id=eq.0h13v.s7.71f463ad3fce from=translated src=- shape=18dc0d9d vocab=fe5ec7cb
+-/
 @[simp] lemma compStrictHom_apply (ψ : StrictHom C₂ C₃) (σ : Similarity C₁ C₂ m) (b : B₁) :
     σ.compStrictHom ψ b = ψ (σ b) := rfl
 
@@ -292,6 +374,9 @@ def strictHomComp (σ : Similarity C₂ C₃ m) (ψ : StrictHom C₁ C₂) : Sim
   e_map i b := by rw [σ.eIter_apply, ψ.e_apply, Option.map_map]; rfl
   f_map i b := by rw [σ.fIter_apply, ψ.f_apply, Option.map_map]; rfl
 
+/--
+@isnad1 id=eq.0h13v.s7.0c3c97699482 from=translated src=- shape=565ebcbc vocab=e2ea7ffe
+-/
 @[simp] lemma strictHomComp_apply (σ : Similarity C₂ C₃ m) (ψ : StrictHom C₁ C₂) (b : B₁) :
     σ.strictHomComp ψ b = σ (ψ b) := rfl
 
@@ -336,6 +421,9 @@ def tensorMap (hm : 0 < m) (σ₁ : Similarity C₁ C₁' m) (σ₂ : Similarity
         rw [σ₁.φ_apply]
         exact not_lt_nsmul_of_le (not_lt.mp h) (by rw [C₂'.ε_fIter hy', σ₂.ε_apply])
 
+/--
+@isnad1 id=eq.1h15v.s7.43bbaf4f4150 from=translated src=- shape=ab64e059 vocab=4b16e2dd
+-/
 @[simp] lemma tensorMap_apply (hm : 0 < m) (σ₁ : Similarity C₁ C₁' m) (σ₂ : Similarity C₂ C₂' m)
     (b : B₁ × B₂) : tensorMap hm σ₁ σ₂ b = (σ₁ b.1, σ₂ b.2) := rfl
 
@@ -347,6 +435,9 @@ section KS
 
 variable [DecidableEq ι]
 
+/--
+@isnad1 id=eq.0h6v.s5.6a3e2d0e19fc from=translated src=- shape=6e03e84b vocab=566f9ae1
+-/
 lemma elementary_fIter_self (i : ι) (n : ℕ) (a : ℤ) :
     (elementary D i).fIter i n a = some (a - n) := by
   induction n with
@@ -357,6 +448,9 @@ lemma elementary_fIter_self (i : ι) (n : ℕ) (a : ℤ) :
     push_cast
     ring
 
+/--
+@isnad1 id=eq.1h7v.s6.575b50c8e2b9 from=translated src=- shape=d25aff3a vocab=f3a6cc4e
+-/
 lemma elementary_ε_nsmul {m : ℕ} (hm : 0 < m) (i k : ι) (n : ℤ) :
     (elementary D i).ε k (m * n) = m • (elementary D i).ε k n := by
   by_cases hki : k = i
@@ -364,6 +458,9 @@ lemma elementary_ε_nsmul {m : ℕ} (hm : 0 < m) (i k : ι) (n : ℤ) :
     rw [elementary_ε_self, elementary_ε_self, nsmul_coe_withBot, mul_neg]
   · rw [elementary_ε_of_ne hki, elementary_ε_of_ne hki, nsmul_bot_withBot hm]
 
+/--
+@isnad1 id=eq.3h13v.s7.82f3fc699d28 from=translated src=- shape=83f302a3 vocab=ec6317bc
+-/
 lemma ε_tensor_elementary_nsmul {C : Crystal D B} {C' : Crystal D B'} {m : ℕ} (hm : 0 < m)
     (i k : ι) {b : B} {b' : B'} (n : ℤ) (hε : C'.ε k b' = m • C.ε k b)
     (hwt : C'.wt b' = m • C.wt b) :
@@ -378,16 +475,25 @@ variable {C : Crystal D B} {b₀ : B} (K : KSData C b₀) (hD : LinearIndependen
 
 include hD
 
+/--
+@isnad1 id=eq.1h8v.s6.f368016d87d2 from=translated src=- shape=a2727945 vocab=5a76ef4f
+-/
 lemma fWord_eq_some_fw (w : List ι) : C.fWord w b₀ = some (K.fw hD w) := by
   induction w with
   | nil => rfl
   | cons j w ih => rw [fWord_cons, ih, Option.bind_some, K.f_fw]
 
+/--
+@isnad1 id=eq.1h10v.s6.6b1d39ce16a6 from=translated src=- shape=1ba9f5f5 vocab=628a9d85
+-/
 lemma fIter_fw_stretchWord (j : ι) (w : List ι) :
     C.fIter j m (K.fw hD (stretchWord m w)) = some (K.fw hD (stretchWord m (j :: w))) := by
   have h := K.fWord_eq_some_fw hD (stretchWord m (j :: w))
   rwa [fWord_stretchWord_cons, K.fWord_eq_some_fw hD, Option.bind_some] at h
 
+/--
+@isnad1 id=eq.1h9v.s6.7279ff7fce95 from=translated src=- shape=3cbf8efb vocab=7be7a89a
+-/
 lemma wt_fw_stretchWord (w : List ι) :
     C.wt (K.fw hD (stretchWord m w)) = m • C.wt (K.fw hD w) := by
   rw [K.wt_fw, K.wt_fw, smul_neg]
@@ -398,21 +504,32 @@ lemma wt_fw_stretchWord (w : List ι) :
     rw [stretchWord_cons, List.map_append, List.sum_append, ih, List.map_cons, List.sum_cons,
       nsmul_add, List.map_replicate, List.sum_replicate]
 
+/--
+@isnad1 id=eq.1h13v.s7.28e3e099fbd4 from=translated src=- shape=61ae57ce vocab=7be7a89a
+-/
 lemma wt_fw_stretchWord_eq (w : List ι) :
     C'.wt (K'.fw hD (stretchWord m w)) = m • C.wt (K.fw hD w) := by
   rw [K'.wt_fw_stretchWord hD, K'.wt_fw, K.wt_fw]
 
+/--
+@isnad1 id=eq.1h9v.s6.cc7fa7aacbd5 from=translated src=- shape=d51a6249 vocab=5f4b69a3
+-/
 lemma ht_fw_stretchWord (w : List ι) : K.ht (K.fw hD (stretchWord m w)) = m * w.length := by
   rw [K.ht_fw, length_stretchWord]
 
 omit hD [DecidableEq ι] in
+/--
+@isnad1 id=eq.2h11v.s7.9843668483af from=translated src=- shape=2316aae1 vocab=6a9a738b
+-/
 lemma φ_eq_nsmul_of_ε_eq {b : B} {b' : B'} (j : ι)
     (hε : C'.ε j b' = m • C.ε j b) (hwt : C'.wt b' = m • C.wt b) :
     C'.φ j b' = m • C.φ j b := by
   rw [C'.φ_eq, C.φ_eq, hε, hwt, map_nsmul, nsmul_add, ← WithBot.coe_nsmul]
 
 /-- `Ψᵢ` on `f̃_w b₀` and on `f̃_{wᵐ} b₀'` correspond, as long as
-`εⱼ(f̃_{uᵐ} b₀') = m εⱼ(f̃_u b₀)` on shorter words `u`.-/
+`εⱼ(f̃_{uᵐ} b₀') = m εⱼ(f̃_u b₀)` on shorter words `u`.
+@isnad1 id=ex.4h15v.s8.af9ddff7403e from=translated src=- shape=01f8ab8b vocab=bf7708b2
+-/
 theorem exists_Ψ_fw_stretchWord (hm : 0 < m) (L : ℕ)
     (hE : ∀ w : List ι, w.length ≤ L →
       ∀ k, C'.ε k (K'.fw hD (stretchWord m w)) = m • C.ε k (K.fw hD w))
@@ -468,7 +585,9 @@ theorem exists_Ψ_fw_stretchWord (hm : 0 < m) (L : ℕ)
       · rw [elementary_ε_of_ne hji] at hc
         exact absurd (bot_lt_iff_ne_bot.2 (K.φ_ne_bot j _)) hc
 
-/-- The induction for the scaled comparison of `C` and `C'`.-/
+/-- The induction for the scaled comparison of `C` and `C'`.
+@isnad1 id=and.2h13v.s8.542cffa7b471 from=translated src=- shape=364ea9c4 vocab=338c1450
+-/
 theorem fw_stretchWord_and_ε (hm : 0 < m) (L : ℕ) :
     (∀ w : List ι, w.length ≤ L →
       ∀ k, C'.ε k (K'.fw hD (stretchWord m w)) = m • C.ε k (K.fw hD w)) ∧
@@ -542,15 +661,24 @@ theorem fw_stretchWord_and_ε (hm : 0 < m) (L : ℕ) :
       apply K.Ψ_injective i
       rw [h1, h2, hS' u u' hlu hlu' hfu]
 
+/--
+@isnad1 id=eq.2h14v.s7.bbcb4dfaae7c from=translated src=- shape=821d89c7 vocab=de6ed9d1
+-/
 theorem ε_fw_stretchWord (hm : 0 < m) (w : List ι) (k : ι) :
     C'.ε k (K'.fw hD (stretchWord m w)) = m • C.ε k (K.fw hD w) :=
   (K.fw_stretchWord_and_ε hD K' hm w.length).1 w le_rfl k
 
+/--
+@isnad1 id=eq.3h14v.s7.960c0163a39e from=translated src=- shape=e764e88b vocab=3a5bfa90
+-/
 theorem fw_stretchWord_eq_of_fw_eq (hm : 0 < m) {w w' : List ι} (h : K.fw hD w = K.fw hD w') :
     K'.fw hD (stretchWord m w) = K'.fw hD (stretchWord m w') :=
   (K.fw_stretchWord_and_ε hD K' hm (max w.length w'.length)).2.1 w w' (le_max_left _ _)
     (le_max_right _ _) h
 
+/--
+@isnad1 id=eq.3h14v.s7.874e855d4be3 from=translated src=- shape=09742364 vocab=3a5bfa90
+-/
 theorem fw_eq_of_fw_stretchWord_eq (hm : 0 < m) {w w' : List ι}
     (h : K'.fw hD (stretchWord m w) = K'.fw hD (stretchWord m w')) : K.fw hD w = K.fw hD w' :=
   (K.fw_stretchWord_and_ε hD K' hm (max w.length w'.length)).2.2 w w' (le_max_left _ _)
@@ -560,6 +688,9 @@ variable (m) in
 /-- The map `f̃_w b₀ ↦ f̃_{wᵐ} b₀'`.-/
 noncomputable def stretchFun (b : B) : B' := K'.fw hD (stretchWord m (K.word hD b))
 
+/--
+@isnad1 id=eq.2h13v.s7.38d4f8c7fc37 from=translated src=- shape=a2d09d3f vocab=880c3e6d
+-/
 lemma stretchFun_fw (hm : 0 < m) (w : List ι) :
     K.stretchFun hD K' m (K.fw hD w) = K'.fw hD (stretchWord m w) :=
   K.fw_stretchWord_eq_of_fw_eq hD K' hm (K.fw_word hD _)
@@ -601,10 +732,16 @@ noncomputable def similarity (hm : 0 < m) (hC : ∀ i b, C.e i b = none → C.ε
     rw [K.stretchFun_fw hD K' hm, K'.fIter_fw_stretchWord hD, K.f_fw, Option.map_some,
       K.stretchFun_fw hD K' hm]
 
+/--
+@isnad1 id=eq.4h13v.s7.ec51aeb25ebb from=translated src=- shape=93fe0e3e vocab=e6e5bd6b
+-/
 lemma similarity_apply (hm : 0 < m) (hC : ∀ i b, C.e i b = none → C.ε i b = 0)
     (hC' : ∀ i b, C'.ε i b = 0 → C'.e i b = none) (b : B) :
     K.similarity hD K' hm hC hC' b = K.stretchFun hD K' m b := rfl
 
+/--
+@isnad1 id=injectiv.4h12v.s7.d0c2fc269a77 from=translated src=- shape=8160fd6d vocab=b53ab6ed
+-/
 theorem similarity_injective (hm : 0 < m) (hC : ∀ i b, C.e i b = none → C.ε i b = 0)
     (hC' : ∀ i b, C'.ε i b = 0 → C'.e i b = none) :
     Function.Injective (K.similarity hD K' hm hC hC') := by
@@ -615,6 +752,9 @@ theorem similarity_injective (hm : 0 < m) (hC : ∀ i b, C.e i b = none → C.ε
     K.stretchFun_fw hD K' hm] at h
   exact K.fw_eq_of_fw_stretchWord_eq hD K' hm h
 
+/--
+@isnad1 id=eq.4h12v.s7.d815b2619cb5 from=translated src=- shape=2a001ab5 vocab=c7378352
+-/
 theorem similarity_b₀ (hm : 0 < m) (hC : ∀ i b, C.e i b = none → C.ε i b = 0)
     (hC' : ∀ i b, C'.ε i b = 0 → C'.e i b = none) :
     K.similarity hD K' hm hC hC' b₀ = b₀' := by

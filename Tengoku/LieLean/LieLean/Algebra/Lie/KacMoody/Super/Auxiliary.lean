@@ -52,6 +52,9 @@ namespace SuperEnveloping
 
 /-! ### Linearity of the super commutator -/
 
+/--
+@isnad1 id=eq.0h9v.s8.890fe2ffec5d from=translated src=- shape=be13f786 vocab=4af80fc5
+-/
 lemma superBracket_add_left (x y z : P.SuperEnveloping p) :
     superBracket P p (x + y) z = superBracket P p x z + superBracket P p y z := by
   simp only [superBracket, map_add, add_mul, mul_add, smul_add]
@@ -63,6 +66,9 @@ def superBracketLeft (y : P.SuperEnveloping p) : P.SuperEnveloping p →ₗ[K] P
   map_add' x x' := superBracket_add_left P p x x' y
   map_smul' c x := superBracket_smul_left c x y
 
+/--
+@isnad1 id=eq.0h8v.s9.4fcb2c66b957 from=translated src=- shape=5329fdb0 vocab=22a64c87
+-/
 @[simp] lemma superBracketLeft_apply (x y : P.SuperEnveloping p) :
     superBracketLeft P p y x = superBracket P p x y := rfl
 
@@ -72,6 +78,9 @@ def superBracketLeft (y : P.SuperEnveloping p) : P.SuperEnveloping p →ₗ[K] P
 def gTilde : Submodule K (P.SuperEnveloping p) :=
   nMinus P p ⊔ LinearMap.range (h P p) ⊔ nPlus P p
 
+/--
+@isnad1 id=iff.0h7v.s10.55f9e8839a5c from=translated src=- shape=0ded4ff9 vocab=d788b84e
+-/
 lemma mem_gTilde_iff {x : P.SuperEnveloping p} :
     x ∈ gTilde P p ↔ ∃ n ∈ nMinus P p, ∃ a, ∃ m ∈ nPlus P p, n + h P p a + m = x := by
   simp only [gTilde, Submodule.mem_sup, LinearMap.mem_range]
@@ -81,22 +90,42 @@ lemma mem_gTilde_iff {x : P.SuperEnveloping p} :
   · rintro ⟨n, hn, a, m, hm, rfl⟩
     exact ⟨_, ⟨n, hn, _, ⟨a, rfl⟩, rfl⟩, m, hm, rfl⟩
 
+/--
+@isnad1 id=le.0h6v.s9.3f34ef935c82 from=translated src=- shape=6e6a1e61 vocab=f84ccc2d
+-/
 lemma nMinus_le_gTilde : nMinus P p ≤ gTilde P p := le_sup_left.trans le_sup_left
 
+/--
+@isnad1 id=le.0h6v.s9.283f1b47bd96 from=translated src=- shape=f85806b1 vocab=568a5cb1
+-/
 lemma range_h_le_gTilde : LinearMap.range (h P p) ≤ gTilde P p := le_sup_right.trans le_sup_left
 
+/--
+@isnad1 id=le.0h6v.s9.0cf6fbeb813e from=translated src=- shape=6e6a1e61 vocab=6496fea2
+-/
 lemma nPlus_le_gTilde : nPlus P p ≤ gTilde P p := le_sup_right
 
+/--
+@isnad1 id=mem.0h7v.s9.952d09042ca4 from=translated src=- shape=ca5bcf23 vocab=374d2c83
+-/
 lemma h_mem_gTilde (a : H) : h P p a ∈ gTilde P p := range_h_le_gTilde P p ⟨a, rfl⟩
 
+/--
+@isnad1 id=le.0h6v.s10.c5ca97f5550f from=translated src=- shape=d65c7584 vocab=f6f9e821
+-/
 lemma nMinus_sup_le_gTilde : nMinus P p ⊔ LinearMap.range (h P p) ≤ gTilde P p := le_sup_left
 
+/--
+@isnad1 id=le.0h6v.s10.e836fa5b6914 from=translated src=- shape=d65c7584 vocab=0fee2b08
+-/
 lemma nPlus_sup_le_gTilde : nPlus P p ⊔ LinearMap.range (h P p) ≤ gTilde P p :=
   sup_le (nPlus_le_gTilde P p) (range_h_le_gTilde P p)
 
 variable [CharZero K]
 
-/-- `[eⱼ, G̃] ⊆ G̃`.-/
+/-- `[eⱼ, G̃] ⊆ G̃`.
+@isnad1 id=mem.1h8v.s9.7dc47c94168d from=translated src=- shape=c36462ca vocab=4cfb2c5b
+-/
 lemma superBracket_e_mem_gTilde (j : ι) {x : P.SuperEnveloping p} (hx : x ∈ gTilde P p) :
     superBracket P p (e P p j) x ∈ gTilde P p := by
   obtain ⟨n, hn, a, m, hm, rfl⟩ := (mem_gTilde_iff P p).1 hx
@@ -106,7 +135,9 @@ lemma superBracket_e_mem_gTilde (j : ι) {x : P.SuperEnveloping p} (hx : x ∈ g
   rw [superBracketRight_apply, superBracket_e_h]
   exact neg_mem (Submodule.smul_mem _ _ (nPlus_le_gTilde P p (e_mem_nPlus P p j)))
 
-/-- `[fⱼ, G̃] ⊆ G̃`.-/
+/-- `[fⱼ, G̃] ⊆ G̃`.
+@isnad1 id=mem.1h8v.s9.c61430f71654 from=translated src=- shape=c36462ca vocab=3ee28d73
+-/
 lemma superBracket_f_mem_gTilde (j : ι) {x : P.SuperEnveloping p} (hx : x ∈ gTilde P p) :
     superBracket P p (f P p j) x ∈ gTilde P p := by
   obtain ⟨n, hn, a, m, hm, rfl⟩ := (mem_gTilde_iff P p).1 hx
@@ -117,7 +148,9 @@ lemma superBracket_f_mem_gTilde (j : ι) {x : P.SuperEnveloping p} (hx : x ∈ g
   rw [sub_sub_cancel]
   exact Submodule.smul_mem _ _ (nMinus_le_gTilde P p (f_mem_nMinus P p j))
 
-/-- `[𝔥, G̃] ⊆ G̃`.-/
+/-- `[𝔥, G̃] ⊆ G̃`.
+@isnad1 id=mem.1h8v.s10.f1bb746f10d1 from=translated src=- shape=0631b11e vocab=66d1acf4
+-/
 lemma superBracket_h_mem_gTilde (b : H) {x : P.SuperEnveloping p} (hx : x ∈ gTilde P p) :
     superBracket P p (h P p b) x ∈ gTilde P p := by
   obtain ⟨n, hn, a, m, hm, rfl⟩ := (mem_gTilde_iff P p).1 hx
@@ -137,11 +170,16 @@ def bracketStable : Submodule K (P.SuperEnveloping p) where
     rw [superBracket_smul_left]; exact Submodule.smul_mem _ _ (hy x hx)
 
 omit [CharZero K] in
+/--
+@isnad1 id=ishomog.1h8v.s8.cf1cf191ca0d from=translated src=- shape=b7fa98d7 vocab=6e5f3722
+-/
 lemma IsHomog.omega {c : ZMod 2} {x : P.SuperEnveloping p} (hx : IsHomog P p c x) :
     IsHomog P p c (omega P p x) := by
   rw [IsHomog, ← omega_parity, hx, map_smul]
 
-/-- `G̃` is spanned by homogeneous elements.-/
+/-- `G̃` is spanned by homogeneous elements.
+@isnad1 id=le.0h6v.s10.0f16e4945a86 from=translated src=- shape=4ad89795 vocab=4fd0385c
+-/
 lemma gTilde_le_span_homog :
     gTilde P p ≤ Submodule.span K {x | x ∈ gTilde P p ∧ ∃ c, IsHomog P p c x} := by
   have hP : nPlus P p ≤ Submodule.span K {x | x ∈ gTilde P p ∧ ∃ c, IsHomog P p c x} :=
@@ -159,7 +197,9 @@ lemma gTilde_le_span_homog :
     exact Submodule.subset_span ⟨h_mem_gTilde P p a, 0, isHomog_h P p a⟩
 
 /-- If `[y, G̃] ⊆ G̃` and `g` is a homogeneous element with `[g, G̃] ⊆ G̃`, then
-`[[g, y], G̃] ⊆ G̃`, by the super Jacobi identity.-/
+`[[g, y], G̃] ⊆ G̃`, by the super Jacobi identity.
+@isnad1 id=mem.4h10v.s10.0268a8f990ad from=translated src=- shape=040c7b4c vocab=7f03c126
+-/
 lemma superBracket_mem_bracketStable {a b : ZMod 2} {g y : P.SuperEnveloping p}
     (hg : IsHomog P p a g) (hy : IsHomog P p b y) (hg' : g ∈ bracketStable P p)
     (hy' : y ∈ bracketStable P p) : superBracket P p g y ∈ bracketStable P p := by
@@ -173,15 +213,27 @@ lemma superBracket_mem_bracketStable {a b : ZMod 2} {g y : P.SuperEnveloping p}
     exact sub_mem (hg' _ (hy' _ hz)) (Submodule.smul_mem _ _ (hy' _ (hg' _ hz)))
   exact key (gTilde_le_span_homog P p hx)
 
+/--
+@isnad1 id=mem.0h7v.s8.929f5dec20ef from=translated src=- shape=15d7cbd9 vocab=1aeb059e
+-/
 lemma e_mem_bracketStable (j : ι) : e P p j ∈ bracketStable P p :=
   fun _ hx ↦ superBracket_e_mem_gTilde P p j hx
 
+/--
+@isnad1 id=mem.0h7v.s8.b97ec4cb2fe9 from=translated src=- shape=15d7cbd9 vocab=2566e9eb
+-/
 lemma f_mem_bracketStable (j : ι) : f P p j ∈ bracketStable P p :=
   fun _ hx ↦ superBracket_f_mem_gTilde P p j hx
 
+/--
+@isnad1 id=mem.0h7v.s9.8477bb658f31 from=translated src=- shape=e9b8a601 vocab=bdf937da
+-/
 lemma h_mem_bracketStable (a : H) : h P p a ∈ bracketStable P p :=
   fun _ hx ↦ superBracket_h_mem_gTilde P p a hx
 
+/--
+@isnad1 id=le.0h6v.s9.128eb40d81f4 from=translated src=- shape=5e452d66 vocab=748a2842
+-/
 lemma nPlus_le_bracketStable : nPlus P p ≤ bracketStable P p := by
   refine (nPlus_le_iff P p).2 fun i w ↦ ?_
   induction w with
@@ -192,10 +244,16 @@ lemma nPlus_le_bracketStable : nPlus P p ≤ bracketStable P p := by
       (e_mem_bracketStable P p j) ih
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h9v.s9.9cee0eefd7d9 from=translated src=- shape=2db37b71 vocab=046c57e2
+-/
 lemma omega_eLie_cons (i j : ι) (w : List ι) :
     omega P p (eLie P p i (j :: w)) = superBracket P p (f P p j) (omega P p (eLie P p i w)) := by
   rw [eLie_cons, omega_superBracket, omega_e]
 
+/--
+@isnad1 id=le.0h6v.s9.1f641d784864 from=translated src=- shape=5e452d66 vocab=86a05abf
+-/
 lemma nMinus_le_bracketStable : nMinus P p ≤ bracketStable P p := by
   refine Submodule.map_le_iff_le_comap.2 ((nPlus_le_iff P p).2 fun i w ↦ ?_)
   simp only [Submodule.mem_comap, AlgHom.toLinearMap_apply]
@@ -206,11 +264,16 @@ lemma nMinus_le_bracketStable : nMinus P p ≤ bracketStable P p := by
     exact superBracket_mem_bracketStable P p (isHomog_f P p j) (isHomog_eLie P p i w).omega
       (f_mem_bracketStable P p j) ih
 
+/--
+@isnad1 id=le.0h6v.s9.ce556f931bb2 from=translated src=- shape=5e452d66 vocab=892e3600
+-/
 lemma gTilde_le_bracketStable : gTilde P p ≤ bracketStable P p :=
   sup_le (sup_le (nMinus_le_bracketStable P p) (by
     rintro _ ⟨a, rfl⟩; exact h_mem_bracketStable P p a)) (nPlus_le_bracketStable P p)
 
-/-- `G̃` is closed under the super commutator: `[G̃, G̃] ⊆ G̃` ([Kac78] §1.1).-/
+/-- `G̃` is closed under the super commutator: `[G̃, G̃] ⊆ G̃` ([Kac78] §1.1).
+@isnad1 id=mem.2h8v.s10.8ae5e607f62d from=translated src=- shape=67b1cd4f vocab=926ed877
+-/
 theorem superBracket_mem_gTilde {x y : P.SuperEnveloping p} (hx : x ∈ gTilde P p)
     (hy : y ∈ gTilde P p) : superBracket P p x y ∈ gTilde P p :=
   gTilde_le_bracketStable P p hx y hy
@@ -223,14 +286,23 @@ omit [CharZero K]
 def wordVec (w : List ι) : ι → ℤ := (w.map fun j ↦ Pi.single j 1).sum
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.0h1v.s5.4c296516d30b from=translated src=- shape=b7e5311c vocab=56f28d98
+-/
 @[simp] lemma wordVec_nil : wordVec ([] : List ι) = 0 := rfl
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.0h3v.s6.08c7e34f13fc from=translated src=- shape=fb640fb4 vocab=59131f23
+-/
 @[simp] lemma wordVec_cons (j : ι) (w : List ι) :
     wordVec (j :: w) = Pi.single j 1 + wordVec w := by
   simp [wordVec]
 
 omit [Fintype ι] in
+/--
+@isnad1 id=le.0h2v.s5.e83a3b225ee4 from=translated src=- shape=2e2f1ae2 vocab=470e8c03
+-/
 lemma wordVec_nonneg (w : List ι) : 0 ≤ wordVec w := by
   induction w with
   | nil => exact le_rfl
@@ -239,6 +311,9 @@ lemma wordVec_nonneg (w : List ι) : 0 ≤ wordVec w := by
     exact add_nonneg (fun k ↦ by by_cases hk : k = j <;> simp [hk]) ih
 
 omit [Fintype ι] in
+/--
+@isnad1 id=mem.0h3v.s4.80ae70192d93 from=translated src=- shape=fbe87156 vocab=ffde0fb0
+-/
 lemma wordVec_cons_mem_posCone (i : ι) (w : List ι) : wordVec (i :: w) ∈ posCone ι := by
   refine ⟨wordVec_nonneg _, fun h0 ↦ ?_⟩
   have := congrFun h0 i
@@ -246,12 +321,17 @@ lemma wordVec_cons_mem_posCone (i : ι) (w : List ι) : wordVec (i :: w) ∈ pos
   simp only [wordVec_cons, Pi.add_apply, Pi.single_eq_same, Pi.zero_apply] at this hw
   omega
 
+/--
+@isnad1 id=eq.0h6v.s8.2bd4658da717 from=translated src=- shape=262a654e vocab=ff2fa640
+-/
 lemma rootOf_wordVec (w : List ι) : P.rootOf (wordVec w) = (w.map P.root).sum := by
   induction w with
   | nil => simp
   | cons j w ih => simp [ih]
 
-/-- `ñ₊ ⊆ ⨁_{α ∈ Q₊ \ {0}} U_α`.-/
+/-- `ñ₊ ⊆ ⨁_{α ∈ Q₊ \ {0}} U_α`.
+@isnad1 id=le.0h6v.s10.98873b9ded47 from=translated src=- shape=14ad7b0b vocab=37c23c8c
+-/
 lemma nPlus_le_iSup_weightSpace :
     nPlus P p ≤ ⨆ k ∈ posCone ι, weightSpace P p (P.rootOf k) := by
   refine (nPlus_le_iff P p).2 fun i w ↦ ?_
@@ -260,6 +340,9 @@ lemma nPlus_le_iSup_weightSpace :
     exact eLie_mem_weightSpace P p i w
   exact (le_biSup (fun k ↦ weightSpace P p (P.rootOf k)) (wordVec_cons_mem_posCone i w)) hw
 
+/--
+@isnad1 id=mem.1h8v.s10.34ea58d88783 from=translated src=- shape=ccb09b88 vocab=662535a9
+-/
 lemma omega_mem_weightSpace {μ : Dual K H} {x : P.SuperEnveloping p}
     (hx : x ∈ weightSpace P p μ) : omega P p x ∈ weightSpace P p (-μ) := fun a ↦ by
   have := congrArg (omega P p) (hx a)
@@ -267,7 +350,9 @@ lemma omega_mem_weightSpace {μ : Dual K H} {x : P.SuperEnveloping p}
   rw [LinearMap.neg_apply, neg_smul, ← neg_inj, this]
   abel
 
-/-- `ñ₋ ⊆ ⨁_{α ∈ Q₊ \ {0}} U_{-α}`.-/
+/-- `ñ₋ ⊆ ⨁_{α ∈ Q₊ \ {0}} U_{-α}`.
+@isnad1 id=le.0h6v.s10.074a4bac4770 from=translated src=- shape=78227ce5 vocab=9dcfa4c6
+-/
 lemma nMinus_le_iSup_weightSpace :
     nMinus P p ≤ ⨆ k ∈ posCone ι, weightSpace P p (-P.rootOf k) := by
   refine Submodule.map_le_iff_le_comap.2 ((nPlus_le_iSup_weightSpace P p).trans ?_)
@@ -276,16 +361,24 @@ lemma nMinus_le_iSup_weightSpace :
 
 variable [CharZero K]
 
+/--
+@isnad1 id=le.0h6v.s10.3eafbb9a8338 from=translated src=- shape=f8d8ca02 vocab=1b26f7b1
+-/
 lemma nPlus_le_iSup_ne_zero : nPlus P p ≤ ⨆ μ ∈ {μ : Dual K H | μ ≠ 0}, weightSpace P p μ :=
   (nPlus_le_iSup_weightSpace P p).trans <| iSup₂_le fun k hk ↦
     le_biSup (fun μ ↦ weightSpace P p μ) (show P.rootOf k ≠ 0 from P.rootOf_ne_zero hk.2)
 
+/--
+@isnad1 id=le.0h6v.s10.fbf25a8be888 from=translated src=- shape=f8d8ca02 vocab=b923eb7d
+-/
 lemma nMinus_le_iSup_ne_zero : nMinus P p ≤ ⨆ μ ∈ {μ : Dual K H | μ ≠ 0}, weightSpace P p μ :=
   (nMinus_le_iSup_weightSpace P p).trans <| iSup₂_le fun k hk ↦
     le_biSup (fun μ ↦ weightSpace P p μ)
       (show -P.rootOf k ≠ 0 from neg_ne_zero.2 (P.rootOf_ne_zero hk.2))
 
-/-- `G̃ ∩ U_0 = 𝔥`.-/
+/-- `G̃ ∩ U_0 = 𝔥`.
+@isnad1 id=eq.0h6v.s9.d56c1d940f69 from=translated src=- shape=cef34ff4 vocab=4ba16e41
+-/
 theorem gTilde_inf_weightSpace_zero :
     gTilde P p ⊓ weightSpace P p 0 = LinearMap.range (h P p) := by
   refine le_antisymm ?_ (le_inf (range_h_le_gTilde P p) ?_)

@@ -74,14 +74,26 @@ def qBinomInt : ℤ → ℕ → k
   | .ofNat n, t => qBinomial q n t
   | .negSucc n, t => (-1) ^ t * qBinomial q (n + t) t
 
+/--
+@isnad1 id=eq.0h4v.s4.b3af3d0f5c23 from=translated src=- shape=1abb26b7 vocab=b8b0c4dd
+-/
 @[simp] lemma qBinomInt_natCast (n t : ℕ) : qBinomInt q n t = qBinomial q n t := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.68f3e866704f from=translated src=- shape=2baf001c vocab=b650a95c
+-/
 lemma qBinomInt_negSucc (n t : ℕ) :
     qBinomInt q (Int.negSucc n) t = (-1) ^ t * qBinomial q (n + t) t := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.871fb06f5747 from=translated src=- shape=2c8c9297 vocab=e03b499b
+-/
 @[simp] lemma qBinomInt_zero_right (a : ℤ) : qBinomInt q a 0 = 1 := by
   cases a <;> simp [qBinomInt]
 
+/--
+@isnad1 id=eq.0h4v.s5.c471d2afd44a from=translated src=- shape=0e5914eb vocab=7c48fb99
+-/
 lemma qBinomInt_inv (a : ℤ) (t : ℕ) : qBinomInt q⁻¹ a t = qBinomInt q a t := by
   cases a <;> simp [qBinomInt, qBinomial_inv]
 
@@ -90,6 +102,9 @@ def qBinomIntSeries : ℤ → PowerSeries k
   | .ofNat n => qBinomialSeries q n
   | .negSucc n => qBinomialInvSeries q (n + 1)
 
+/--
+@isnad1 id=eq.0h4v.s7.75b8310284aa from=translated src=- shape=63eeb064 vocab=a5f635be
+-/
 @[simp] lemma coeff_qBinomIntSeries (a : ℤ) (t : ℕ) :
     coeff t (qBinomIntSeries q a) = qBinomInt q a t := by
   cases a with
@@ -98,18 +113,29 @@ def qBinomIntSeries : ℤ → PowerSeries k
     simp only [qBinomIntSeries, coeff_qBinomialInvSeries, qBinomInt]
     rw [show n + 1 + t - 1 = n + t by omega]
 
+/--
+@isnad1 id=eq.0h2v.s5.7c583f20098f from=translated src=- shape=447a4d78 vocab=3bce7e3b
+-/
 @[simp] lemma qBinomIntSeries_zero : qBinomIntSeries q 0 = 1 := qBinomialSeries_zero
 
+/--
+@isnad1 id=eq.0h3v.s5.936896a23d50 from=translated src=- shape=96257e2e vocab=0a2d1104
+-/
 lemma qBinomialInvSeries_inv (h : ℕ) : qBinomialInvSeries q⁻¹ h = qBinomialInvSeries q h := by
   ext n; simp [qBinomial_inv]
 
 variable {q}
 
+/--
+@isnad1 id=eq.0h3v.s7.79bde4911aa7 from=translated src=- shape=f76949f5 vocab=db72a92d
+-/
 lemma rescale_C' (a c : k) : rescale a (C c) = C c := by
   ext n
   cases n <;> simp [coeff_rescale, coeff_C]
 
-/-- `P_{a+1}(x) = (1 + qᵃ x) P_a(q⁻¹ x)` for every `a ∈ ℤ`: the Pascal rule.-/
+/-- `P_{a+1}(x) = (1 + qᵃ x) P_a(q⁻¹ x)` for every `a ∈ ℤ`: the Pascal rule.
+@isnad1 id=eq.1h3v.s8.f5512ffef301 from=translated src=- shape=59a6492c vocab=606dcb6e
+-/
 theorem qBinomIntSeries_add_one (hq : q ≠ 0) (a : ℤ) :
     qBinomIntSeries q (a + 1) = (1 + C (q ^ a) * X) * rescale q⁻¹ (qBinomIntSeries q a) := by
   rcases a with n | _ | n
@@ -134,6 +160,9 @@ theorem qBinomIntSeries_add_one (hq : q ≠ 0) (a : ℤ) :
     rw [hc]
     linear_combination -h
 
+/--
+@isnad1 id=eq.1h4v.s9.3e75b2b8eebb from=translated src=- shape=6a8a7176 vocab=55e041e7
+-/
 lemma rescale_qBinomIntSeries_add_one (hq : q ≠ 0) (a b : ℤ) :
     rescale (q ^ (-(b + 1))) (qBinomIntSeries q a) * rescale (q ^ a) (qBinomIntSeries q (b + 1)) =
       (1 + C (q ^ (a + b)) * X) * rescale q⁻¹
@@ -146,7 +175,9 @@ lemma rescale_qBinomIntSeries_add_one (hq : q ≠ 0) (a b : ℤ) :
   rw [e1, e3, mul_comm q⁻¹ (q ^ a)]
   ring
 
-/-- The `q`-Vandermonde identity `P_{a+b}(x) = P_a(q^{-b} x) P_b(qᵃ x)` for `a, b ∈ ℤ`.-/
+/-- The `q`-Vandermonde identity `P_{a+b}(x) = P_a(q^{-b} x) P_b(qᵃ x)` for `a, b ∈ ℤ`.
+@isnad1 id=eq.1h4v.s8.100efae6649d from=translated src=- shape=1c4a8666 vocab=b4bded4a
+-/
 theorem qBinomIntSeries_add (hq : q ≠ 0) (a b : ℤ) :
     qBinomIntSeries q (a + b) =
       rescale (q ^ (-b)) (qBinomIntSeries q a) * rescale (q ^ a) (qBinomIntSeries q b) := by
@@ -166,7 +197,9 @@ theorem qBinomIntSeries_add (hq : q ≠ 0) (a b : ℤ) :
     simpa only [rescale_rescale, inv_mul_cancel₀ hq, rescale_one, RingHom.id_apply] using h2
 
 /-- The `q`-Vandermonde identity
-`[a + b; t] = Σ_{i ≤ t} q^{a(t-i) - bi} [a; i] [b; t - i]` for `a, b ∈ ℤ` ([Lus] 1.3.1).-/
+`[a + b; t] = Σ_{i ≤ t} q^{a(t-i) - bi} [a; i] [b; t - i]` for `a, b ∈ ℤ` ([Lus] 1.3.1).
+@isnad1 id=eq.1h5v.s7.b6da4550088c from=translated src=- shape=c472cccf vocab=0d836253
+-/
 theorem qBinomInt_add (hq : q ≠ 0) (a b : ℤ) (t : ℕ) :
     qBinomInt q (a + b) t = ∑ i ∈ range (t + 1),
       q ^ (a * (t - i : ℕ) - b * i) * qBinomInt q a i * qBinomInt q b (t - i) := by
@@ -187,7 +220,9 @@ section RootOfUnity
 
 variable {k : Type*} [Field k] {q : k} {l : ℕ}
 
-/-- `[l; t] = 0` for `0 < t < l` if `q^{2l} = 1` and `q^{2t} ≠ 1` for `0 < t < l`.-/
+/-- `[l; t] = 0` for `0 < t < l` if `q^{2l} = 1` and `q^{2t} ≠ 1` for `0 < t < l`.
+@isnad1 id=eq.5h4v.s7.fff1c874cb18 from=translated src=- shape=9415adfe vocab=ffbec7ff
+-/
 theorem qBinomial_eq_zero_of_root (hq : q ≠ 0) (hl : q ^ (2 * l) = 1)
     (hprim : ∀ t, 0 < t → t < l → q ^ (2 * t) ≠ 1) {t : ℕ} (ht0 : 0 < t) (htl : t < l) :
     qBinomial q l t = 0 := by
@@ -214,7 +249,9 @@ theorem qBinomial_eq_zero_of_root (hq : q ≠ 0) (hl : q ^ (2 * l) = 1)
   · exact (mul_eq_zero.1 h).resolve_right (hf t htl)
   · exact absurd h (hf _ (by omega))
 
-/-- At a root of `1` as above, `P_l(x) = 1 + xˡ`.-/
+/-- At a root of `1` as above, `P_l(x) = 1 + xˡ`.
+@isnad1 id=eq.4h3v.s8.ffa668927848 from=translated src=- shape=b72ff465 vocab=1b07de61
+-/
 theorem qBinomIntSeries_eq_of_root (hq : q ≠ 0) (hl : q ^ (2 * l) = 1)
     (hprim : ∀ t, 0 < t → t < l → q ^ (2 * t) ≠ 1) (hl0 : 0 < l) :
     qBinomIntSeries q l = 1 + X ^ l := by
@@ -227,13 +264,18 @@ theorem qBinomIntSeries_eq_of_root (hq : q ≠ 0) (hl : q ^ (2 * l) = 1)
   · simp [hl0.ne']
   · simp [qBinomial_eq_zero_of_lt q h, h.ne', show n ≠ 0 by omega]
 
-/-- `q^z = q^{z'}` if `q^{2l} = 1` and `2l ∣ z - z'`.-/
+/-- `q^z = q^{z'}` if `q^{2l} = 1` and `2l ∣ z - z'`.
+@isnad1 id=eq.3h5v.s7.53444a26c588 from=translated src=- shape=51c58c97 vocab=19c11879
+-/
 lemma zpow_eq_of_dvd (hq : q ≠ 0) (hl : q ^ (2 * l) = 1) {z z' : ℤ}
     (h : 2 * (l : ℤ) ∣ z - z') : q ^ z = q ^ z' := by
   obtain ⟨w, hw⟩ := h
   rw [show z = z' + 2 * l * w by omega, zpow_add₀ hq, zpow_mul, show (2 * (l : ℤ)) = (2 * l : ℕ)
     by push_cast; ring, zpow_natCast, hl, one_zpow, mul_one]
 
+/--
+@isnad1 id=eq.1h4v.s9.b18676b6963c from=translated src=- shape=46eb423c vocab=e9e1f1b1
+-/
 lemma rescale_expand (c : k) (f : PowerSeries k) (hl0 : 0 < l) :
     rescale c (expand l hl0.ne' f) = expand l hl0.ne' (rescale (c ^ l) f) := by
   ext n
@@ -247,13 +289,22 @@ lemma rescale_expand (c : k) (f : PowerSeries k) (hl0 : 0 < l) :
 def rootSeries (q : k) (l : ℕ) (hl0 : 0 < l) (m : ℤ) : PowerSeries k :=
   expand l hl0.ne' (rescale (q ^ ((l : ℤ) ^ 2 * (m + 1))) (binomialSeries k m))
 
+/--
+@isnad1 id=eq.1h3v.s5.7a9e6290baf2 from=translated src=- shape=9d827e2b vocab=7ad9ce54
+-/
 lemma rootSeries_zero (hl0 : 0 < l) : rootSeries q l hl0 0 = 1 := by
   simp [rootSeries]
 
+/--
+@isnad1 id=eq.0h3v.s8.b12c67610ec1 from=translated src=- shape=f3f557e5 vocab=633c890d
+-/
 lemma rescale_one_add_X_pow (c : k) :
     rescale c (1 + X ^ l : PowerSeries k) = 1 + C (c ^ l) * X ^ l := by
   rw [map_add, map_one, map_pow, rescale_X, mul_pow, map_pow]
 
+/--
+@isnad1 id=eq.3h4v.s8.bea1a3372387 from=translated src=- shape=eda0239f vocab=d829f1b2
+-/
 lemma rootSeries_add_one (hq : q ≠ 0) (hl : q ^ (2 * l) = 1) (hl0 : 0 < l) (m : ℤ) :
     rootSeries q l hl0 (m + 1) =
       rescale (q ^ (-(l : ℤ))) (rootSeries q l hl0 m) *
@@ -272,6 +323,9 @@ lemma rootSeries_add_one (hq : q ≠ 0) (hl : q ^ (2 * l) = 1) (hl0 : 0 < l) (m 
   · rw [zpow_eq_of_dvd hq hl (z := (l : ℤ) ^ 2 * (m + 1 + 1)) (z' := (l : ℤ) ^ 2 * m)
       ⟨l, by ring⟩]
 
+/--
+@isnad1 id=eq.4h4v.s9.07b3c9126244 from=translated src=- shape=dd97f70f vocab=a60a63d4
+-/
 lemma qBinomIntSeries_mul_add_one (hq : q ≠ 0) (hl : q ^ (2 * l) = 1)
     (hprim : ∀ t, 0 < t → t < l → q ^ (2 * t) ≠ 1) (hl0 : 0 < l) (m : ℤ) :
     qBinomIntSeries q (l * (m + 1)) = rescale (q ^ (-(l : ℤ))) (qBinomIntSeries q (l * m)) *
@@ -281,7 +335,9 @@ lemma qBinomIntSeries_mul_add_one (hq : q ≠ 0) (hl : q ^ (2 * l) = 1)
   congr 4
   ring_nf
 
-/-- `P_{lm}(x) = (1 + q^{l²(m+1)} xˡ)^m` at a root of `1`.-/
+/-- `P_{lm}(x) = (1 + q^{l²(m+1)} xˡ)^m` at a root of `1`.
+@isnad1 id=eq.4h4v.s7.0a451eedf987 from=translated src=- shape=3e6992a5 vocab=8a49e13f
+-/
 theorem qBinomIntSeries_mul_eq (hq : q ≠ 0) (hl : q ^ (2 * l) = 1)
     (hprim : ∀ t, 0 < t → t < l → q ^ (2 * t) ≠ 1) (hl0 : 0 < l) (m : ℤ) :
     qBinomIntSeries q (l * m) = rootSeries q l hl0 m := by
@@ -301,7 +357,9 @@ theorem qBinomIntSeries_mul_eq (hq : q ≠ 0) (hl : q ^ (2 * l) = 1)
     simpa only [rescale_rescale, ← zpow_add₀ hq, neg_add_cancel, zpow_zero, rescale_one,
       RingHom.id_apply] using h2
 
-/-- [Lus] 34.1.2 (a): `[a; t] = 0` if `l ∣ a` and `l ∤ t`.-/
+/-- [Lus] 34.1.2 (a): `[a; t] = 0` if `l ∣ a` and `l ∤ t`.
+@isnad1 id=eq.6h5v.s7.aae3a25d633a from=translated src=- shape=857a5edd vocab=f79c8f29
+-/
 theorem qBinomInt_eq_zero_of_not_dvd (hq : q ≠ 0) (hl : q ^ (2 * l) = 1)
     (hprim : ∀ t, 0 < t → t < l → q ^ (2 * t) ≠ 1) (hl0 : 0 < l) {a : ℤ} (ha : (l : ℤ) ∣ a)
     {t : ℕ} (ht : ¬ l ∣ t) : qBinomInt q a t = 0 := by
@@ -309,7 +367,9 @@ theorem qBinomInt_eq_zero_of_not_dvd (hq : q ≠ 0) (hl : q ^ (2 * l) = 1)
   rw [← coeff_qBinomIntSeries, qBinomIntSeries_mul_eq hq hl hprim hl0, rootSeries,
     coeff_expand_of_not_dvd _ _ _ ht]
 
-/-- [Lus] 34.1.2 (b): `[l a₁; l t₁] = q^{l²(a₁+1)t₁} (a₁ choose t₁)` for `a₁ ∈ ℤ`.-/
+/-- [Lus] 34.1.2 (b): `[l a₁; l t₁] = q^{l²(a₁+1)t₁} (a₁ choose t₁)` for `a₁ ∈ ℤ`.
+@isnad1 id=eq.4h5v.s8.e69ef4e4ad7d from=translated src=- shape=1ec67275 vocab=f61b9543
+-/
 theorem qBinomInt_mul_mul (hq : q ≠ 0) (hl : q ^ (2 * l) = 1)
     (hprim : ∀ t, 0 < t → t < l → q ^ (2 * t) ≠ 1) (hl0 : 0 < l) (a₁ : ℤ) (t₁ : ℕ) :
     qBinomInt q (l * a₁) (l * t₁) =
@@ -319,7 +379,9 @@ theorem qBinomInt_mul_mul (hq : q ≠ 0) (hl : q ^ (2 * l) = 1)
     zsmul_eq_mul, mul_one]
 
 /-- [Lus] 34.1.2 (d): `[a₀ + l a₁; t₀ + l t₁] = q^{l a₀ t₁ - l a₁ t₀} [a₀; t₀] [l a₁; l t₁]`
-for `0 ≤ a₀, t₀ < l`.-/
+for `0 ≤ a₀, t₀ < l`.
+@isnad1 id=eq.6h7v.s8.fca64721751c from=translated src=- shape=70a2efba vocab=46d3a857
+-/
 theorem qBinomInt_add_mul_add_mul_eq (hq : q ≠ 0) (hl : q ^ (2 * l) = 1)
     (hprim : ∀ t, 0 < t → t < l → q ^ (2 * t) ≠ 1) (hl0 : 0 < l) {a₀ t₀ : ℕ} (ha₀ : a₀ < l)
     (ht₀ : t₀ < l) (a₁ : ℤ) (t₁ : ℕ) :
@@ -346,7 +408,9 @@ theorem qBinomInt_add_mul_add_mul_eq (hq : q ≠ 0) (hl : q ^ (2 * l) = 1)
     exact absurd (mem_range.2 (by omega)) h
 
 /-- [Lus] 34.1.2 (c): `[a₀ + l a₁; t₀ + l t₁] = q^{(a₀t₁ - a₁t₀)l + (a₁+1)t₁l²} [a₀; t₀]
-(a₁ choose t₁)` for `0 ≤ a₀, t₀ < l`, `a₁ ∈ ℤ`, `t₁ ∈ ℕ`.-/
+(a₁ choose t₁)` for `0 ≤ a₀, t₀ < l`, `a₁ ∈ ℤ`, `t₁ ∈ ℕ`.
+@isnad1 id=eq.6h7v.s8.8794824acc72 from=translated src=- shape=266ef468 vocab=7d59a5d5
+-/
 theorem qBinomInt_add_mul_add_mul (hq : q ≠ 0) (hl : q ^ (2 * l) = 1)
     (hprim : ∀ t, 0 < t → t < l → q ^ (2 * t) ≠ 1) (hl0 : 0 < l) {a₀ t₀ : ℕ} (ha₀ : a₀ < l)
     (ht₀ : t₀ < l) (a₁ : ℤ) (t₁ : ℕ) :
@@ -362,7 +426,9 @@ theorem qBinomInt_add_mul_add_mul (hq : q ≠ 0) (hl : q ^ (2 * l) = 1)
   rw [this]
   ring
 
-/-- [Lus] 34.1.2 (e): `q^{l² + l} = (-1)^{l+1}`.-/
+/-- [Lus] 34.1.2 (e): `q^{l² + l} = (-1)^{l+1}`.
+@isnad1 id=eq.3h3v.s8.9b15030c8894 from=translated src=- shape=1b63c995 vocab=e033c715
+-/
 theorem pow_sq_add_eq (hl : q ^ (2 * l) = 1) (hprim : ∀ t, 0 < t → t < l → q ^ (2 * t) ≠ 1)
     (hl0 : 0 < l) : q ^ (l ^ 2 + l) = (-1) ^ (l + 1) := by
   have hε : (q ^ l) ^ 2 = 1 := by rw [← pow_mul, mul_comm, hl]
@@ -392,8 +458,14 @@ def gaussBinom : ℤ → ℕ → R
   | .ofNat n, t => qBinomialU v n t
   | .negSucc n, t => (-1) ^ t * qBinomialU v (n + t) t
 
+/--
+@isnad1 id=eq.0h4v.s5.c271bf8896bd from=translated src=- shape=a1beeee0 vocab=ea7b1d01
+-/
 @[simp] lemma gaussBinom_natCast (n t : ℕ) : gaussBinom v n t = qBinomialU v n t := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.bfb290dbc8d7 from=translated src=- shape=c5914a6d vocab=da721746
+-/
 lemma qBinomialU_map {S : Type*} [CommRing S] (φ : R →+* S) (n t : ℕ) :
     φ (qBinomialU v n t) = qBinomialU (Units.map φ.toMonoidHom v) n t := by
   induction n generalizing t with
@@ -404,16 +476,23 @@ lemma qBinomialU_map {S : Type*} [CommRing S] (φ : R →+* S) (n t : ℕ) :
     | succ t =>
       simp [qBinomialU, ih, Units.coe_map_inv]
 
-/-- Gaussian binomials commute with ring homomorphisms.-/
+/-- Gaussian binomials commute with ring homomorphisms.
+@isnad1 id=eq.0h6v.s8.5fb4d64a1005 from=translated src=- shape=11f6c8ed vocab=165e56f0
+-/
 lemma map_gaussBinom {S : Type*} [CommRing S] (φ : R →+* S) (a : ℤ) (t : ℕ) :
     φ (gaussBinom v a t) = gaussBinom (Units.map φ.toMonoidHom v) a t := by
   cases a <;> simp [gaussBinom, qBinomialU_map]
 
-/-- Gaussian binomials over a field are `qBinomInt`.-/
+/-- Gaussian binomials over a field are `qBinomInt`.
+@isnad1 id=eq.0h6v.s7.001f7ed5268f from=translated src=- shape=d3595f2e vocab=73a13184
+-/
 lemma map_gaussBinom_field {k : Type*} [Field k] (φ : R →+* k) (a : ℤ) (t : ℕ) :
     φ (gaussBinom v a t) = qBinomInt (φ v) a t := by
   cases a <;> simp [gaussBinom, qBinomInt, map_qBinomialU]
 
+/--
+@isnad1 id=eq.0h5v.s7.b4067c3a5b0f from=translated src=- shape=b42daa91 vocab=ef685d9f
+-/
 lemma map_units_zpow {k : Type*} [Field k] (φ : R →+* k) (z : ℤ) :
     φ ((v ^ z : Rˣ) : R) = φ v ^ z := by
   cases z with
@@ -438,7 +517,9 @@ private lemma root_hyps (hl : (v : R) ^ (2 * l) = 1)
   exact hprim t h0 ht (hinj (by rw [map_pow, h, map_one]))
 
 /-- [Lus] 34.1.2 (a): if `v^{2l} = 1` and `v^{2t} ≠ 1` for `0 < t < l`, then `[a; t] = 0` for
-`l ∣ a`, `l ∤ t`.-/
+`l ∣ a`, `l ∤ t`.
+@isnad1 id=eq.5h5v.s7.f1a7d50ee578 from=translated src=- shape=60834952 vocab=16e9073c
+-/
 theorem gaussBinom_eq_zero_of_not_dvd (hl : (v : R) ^ (2 * l) = 1)
     (hprim : ∀ t, 0 < t → t < l → (v : R) ^ (2 * t) ≠ 1) (hl0 : 0 < l) {a : ℤ}
     (ha : (l : ℤ) ∣ a) {t : ℕ} (ht : ¬ l ∣ t) : gaussBinom v a t = 0 := by
@@ -446,7 +527,9 @@ theorem gaussBinom_eq_zero_of_not_dvd (hl : (v : R) ^ (2 * l) = 1)
   apply IsFractionRing.injective R (FractionRing R)
   rw [map_gaussBinom_field, map_zero, qBinomInt_eq_zero_of_not_dvd h0 h1 h2 hl0 ha ht]
 
-/-- [Lus] 34.1.2 (b): `[l a₁; l t₁] = v^{l²(a₁+1)t₁} (a₁ choose t₁)`.-/
+/-- [Lus] 34.1.2 (b): `[l a₁; l t₁] = v^{l²(a₁+1)t₁} (a₁ choose t₁)`.
+@isnad1 id=eq.3h5v.s8.2d864f91b5fa from=translated src=- shape=abe7f211 vocab=b814a0a0
+-/
 theorem gaussBinom_mul_mul (hl : (v : R) ^ (2 * l) = 1)
     (hprim : ∀ t, 0 < t → t < l → (v : R) ^ (2 * t) ≠ 1) (hl0 : 0 < l) (a₁ : ℤ) (t₁ : ℕ) :
     gaussBinom v (l * a₁) (l * t₁) =
@@ -457,7 +540,9 @@ theorem gaussBinom_mul_mul (hl : (v : R) ^ (2 * l) = 1)
     qBinomInt_mul_mul h0 h1 h2 hl0]
 
 /-- [Lus] 34.1.2 (c): `[a₀ + l a₁; t₀ + l t₁] = v^{(a₀t₁ - a₁t₀)l + (a₁+1)t₁l²} [a₀; t₀]
-(a₁ choose t₁)` for `0 ≤ a₀, t₀ < l`.-/
+(a₁ choose t₁)` for `0 ≤ a₀, t₀ < l`.
+@isnad1 id=eq.5h7v.s8.1a730534be3c from=translated src=- shape=59cb04a2 vocab=afb0639e
+-/
 theorem gaussBinom_add_mul_add_mul (hl : (v : R) ^ (2 * l) = 1)
     (hprim : ∀ t, 0 < t → t < l → (v : R) ^ (2 * t) ≠ 1) (hl0 : 0 < l) {a₀ t₀ : ℕ}
     (ha₀ : a₀ < l) (ht₀ : t₀ < l) (a₁ : ℤ) (t₁ : ℕ) :
@@ -469,7 +554,9 @@ theorem gaussBinom_add_mul_add_mul (hl : (v : R) ^ (2 * l) = 1)
   rw [map_gaussBinom_field, map_mul, map_mul, map_units_zpow, map_intCast,
     map_gaussBinom_field, qBinomInt_natCast, qBinomInt_add_mul_add_mul h0 h1 h2 hl0 ha₀ ht₀]
 
-/-- [Lus] 34.1.2 (e): `v^{l² + l} = (-1)^{l+1}`.-/
+/-- [Lus] 34.1.2 (e): `v^{l² + l} = (-1)^{l+1}`.
+@isnad1 id=eq.3h3v.s8.2cb4c62b3b8a from=translated src=- shape=91950259 vocab=3de52a0b
+-/
 theorem pow_sq_add_eq_of_root (hl : (v : R) ^ (2 * l) = 1)
     (hprim : ∀ t, 0 < t → t < l → (v : R) ^ (2 * t) ≠ 1) (hl0 : 0 < l) :
     (v : R) ^ (l ^ 2 + l) = (-1) ^ (l + 1) := by

@@ -27,7 +27,9 @@ variable {ι R M : Type*} [Ring R] [AddCommGroup M] [Module R M]
   (e : Module.Basis ι R M) {c : ι → M} {f : ι → ℕ}
 
 include e in
-/-- A family unitriangular with respect to a basis spans.-/
+/-- A family unitriangular with respect to a basis spans.
+@isnad1 id=eq.1h6v.s7.bf4392ab82c2 from=translated src=- shape=70210821 vocab=aa86aa94
+-/
 theorem span_eq_top_of_unitriangular
     (h : ∀ i, c i - e i ∈ Submodule.span R (e '' {j | f j < f i})) :
     Submodule.span R (Set.range c) = ⊤ := by
@@ -45,6 +47,9 @@ theorem span_eq_top_of_unitriangular
   exact key _ i rfl
 
 include e in
+/--
+@isnad1 id=eq.2h8v.s8.a954607d3251 from=translated src=- shape=34d922dc vocab=84b99740
+-/
 lemma repr_apply_of_unitriangular
     (h : ∀ i, c i - e i ∈ Submodule.span R (e '' {j | f j < f i})) {i j : ι} (hij : f j ≤ f i) :
     e.repr (c j) i = Finsupp.single j 1 i := by
@@ -55,7 +60,9 @@ lemma repr_apply_of_unitriangular
   rwa [map_sub, Finsupp.sub_apply, sub_eq_zero, e.repr_self] at h1
 
 include e in
-/-- A family unitriangular with respect to a basis is linearly independent.-/
+/-- A family unitriangular with respect to a basis is linearly independent.
+@isnad1 id=linearin.1h6v.s7.9005a8f0c106 from=translated src=- shape=8dc024df vocab=f2408822
+-/
 theorem linearIndependent_of_unitriangular
     (h : ∀ i, c i - e i ∈ Submodule.span R (e '' {j | f j < f i})) : LinearIndependent R c := by
   classical
@@ -82,6 +89,9 @@ noncomputable def ofUnitriangular
   Module.Basis.mk (e.linearIndependent_of_unitriangular h)
     (e.span_eq_top_of_unitriangular h).ge
 
+/--
+@isnad1 id=eq.1h7v.s7.9f129e9e1099 from=translated src=- shape=ef4c0d27 vocab=0c7a07c2
+-/
 @[simp] lemma ofUnitriangular_apply
     (h : ∀ i, c i - e i ∈ Submodule.span R (e '' {j | f j < f i})) (i : ι) :
     e.ofUnitriangular h i = c i :=

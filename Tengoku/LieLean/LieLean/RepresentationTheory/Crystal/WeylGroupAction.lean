@@ -41,6 +41,9 @@ namespace StrictHom
 
 variable {C₁ : Crystal D B₁} {C₂ : Crystal D B₂} (ψ : StrictHom C₁ C₂)
 
+/--
+@isnad1 id=eq.0h11v.s6.0499767e9021 from=translated src=- shape=93d7ea33 vocab=c02c9c5b
+-/
 lemma eIter_apply (i : ι) (n : ℕ) (b : B₁) :
     C₂.eIter i n (ψ b) = (C₁.eIter i n b).map ψ := by
   induction n generalizing b with
@@ -51,6 +54,9 @@ lemma eIter_apply (i : ι) (n : ℕ) (b : B₁) :
     | none => rfl
     | some c => exact ih c
 
+/--
+@isnad1 id=eq.0h11v.s6.66a51fdaaa18 from=translated src=- shape=93d7ea33 vocab=feace8f3
+-/
 lemma fIter_apply (i : ι) (n : ℕ) (b : B₁) :
     C₂.fIter i n (ψ b) = (C₁.fIter i n b).map ψ := by
   induction n generalizing b with
@@ -64,7 +70,9 @@ lemma fIter_apply (i : ι) (n : ℕ) (b : B₁) :
 private lemma getD_map (x : Option B₁) (b : B₁) : (x.map ψ).getD (ψ b) = ψ (x.getD b) := by
   cases x <;> rfl
 
-/-- Strict morphisms commute with Kashiwara's reflections.-/
+/-- Strict morphisms commute with Kashiwara's reflections.
+@isnad1 id=eq.0h10v.s6.9e2a1651a283 from=translated src=- shape=d783d9d7 vocab=a45e09dd
+-/
 theorem map_reflection (i : ι) (b : B₁) : ψ (C₁.reflection i b) = C₂.reflection i (ψ b) := by
   simp only [reflection, ψ.wt_apply]
   split_ifs
@@ -73,7 +81,9 @@ theorem map_reflection (i : ι) (b : B₁) : ψ (C₁.reflection i b) = C₂.ref
 
 end StrictHom
 
-/-- The reflections of a stable subset are the restrictions of the ambient reflections.-/
+/-- The reflections of a stable subset are the restrictions of the ambient reflections.
+@isnad1 id=eq.1h8v.s6.53b7f5c9a2a6 from=translated src=- shape=18b27202 vocab=fe214f73
+-/
 lemma coe_reflection_restrict (C : Crystal D B) {S : Set B} (hS : C.IsStable S) (i : ι)
     (b : S) : ((restrict hS).reflection i b : B) = C.reflection i b :=
   (restrictHom hS).map_reflection i b
@@ -87,7 +97,9 @@ structure OperatorsCommute (C : Crystal D B) (i j : ι) : Prop where
   f_e : ∀ b, (C.f i b).bind (C.e j) = (C.e j b).bind (C.f i)
   f_f : ∀ b, (C.f i b).bind (C.f j) = (C.f j b).bind (C.f i)
 
-/-- If two partial maps commute, an iterate of the first commutes with the second.-/
+/-- If two partial maps commute, an iterate of the first commutes with the second.
+@isnad1 id=eq.3h6v.s6.9b390e67e2ca from=translated src=- shape=54a0f943 vocab=a366d3da
+-/
 lemma bind_comm_of_iter (F G : B → Option B) (hFG : ∀ b, (F b).bind G = (G b).bind F)
     (T : ℕ → B → Option B) (h0 : ∀ b, T 0 b = some b)
     (hs : ∀ n b, T (n + 1) b = (F b).bind (T n)) (n : ℕ) (b : B) :
@@ -108,6 +120,9 @@ namespace OperatorsCommute
 
 variable {C : Crystal D B} {i j : ι}
 
+/--
+@isnad1 id=operator.1h7v.s5.7059db5497a5 from=translated src=- shape=c41f35bf vocab=d5212f06
+-/
 lemma symm (h : C.OperatorsCommute i j) : C.OperatorsCommute j i where
   e_e b := (h.e_e b).symm
   e_f b := (h.f_e b).symm
@@ -119,6 +134,9 @@ lemma symm (h : C.OperatorsCommute i j) : C.OperatorsCommute j i where
 def _root_.Tengoku.LieLean.Crystal.stringMap (C : Crystal D B) (i : ι) (n : ℤ) : B → Option B :=
   if 0 ≤ n then C.fIter i n.toNat else C.eIter i (-n).toNat
 
+/--
+@isnad1 id=eq.0h7v.s6.3f9a491f179d from=translated src=- shape=691c2604 vocab=b9d07675
+-/
 lemma _root_.Tengoku.LieLean.Crystal.reflection_eq_getD_stringMap (C : Crystal D B) (i : ι) (b : B) :
     C.reflection i b = (C.stringMap i (D.coroot i (C.wt b)) b).getD b := by
   unfold reflection stringMap
@@ -133,7 +151,9 @@ private lemma iter_left (G : B → Option B)
   · exact bind_comm_of_iter _ G hG' _ (fun _ => rfl) (fun _ _ => rfl) _ b
   · exact bind_comm_of_iter _ G hG _ (fun _ => rfl) (fun _ _ => rfl) _ b
 
-/-- String maps of commuting colours commute.-/
+/-- String maps of commuting colours commute.
+@isnad1 id=eq.1h10v.s6.f65d0d9f151f from=translated src=- shape=256a9a9b vocab=1afed499
+-/
 theorem stringMap_comm (h : C.OperatorsCommute i j) (m n : ℤ) (b : B) :
     (C.stringMap i m b).bind (C.stringMap j n) =
       (C.stringMap j n b).bind (C.stringMap i m) := by
@@ -147,6 +167,9 @@ namespace IsSeminormal
 
 variable {C : Crystal D B} {i j : ι}
 
+/--
+@isnad1 id=eq.1h7v.s6.33bbb61005a0 from=translated src=- shape=67a0bff5 vocab=f8391b2b
+-/
 lemma stringMap_reflection (hC : C.IsSeminormal) (i : ι) (b : B) :
     C.stringMap i (D.coroot i (C.wt b)) b = some (C.reflection i b) := by
   unfold stringMap
@@ -155,7 +178,9 @@ lemma stringMap_reflection (hC : C.IsSeminormal) (i : ι) (b : B) :
   · exact hC.eIter_reflection (not_le.mp h)
 
 /-- **The braid relation of length two** ([Kas94] §7): if the operators of colours
-`i, j` commute and `⟨αⱼ, αᵢ^∨⟩ = ⟨αᵢ, αⱼ^∨⟩ = 0`, then `Sᵢ Sⱼ = Sⱼ Sᵢ`.-/
+`i, j` commute and `⟨αⱼ, αᵢ^∨⟩ = ⟨αᵢ, αⱼ^∨⟩ = 0`, then `Sᵢ Sⱼ = Sⱼ Sᵢ`.
+@isnad1 id=eq.4h8v.s7.4889cf7fc6b9 from=translated src=- shape=7033334c vocab=677329ff
+-/
 theorem reflection_comm (hC : C.IsSeminormal) (h : C.OperatorsCommute i j)
     (hij : D.coroot i (D.root j) = 0) (hji : D.coroot j (D.root i) = 0) (b : B) :
     C.reflection i (C.reflection j b) = C.reflection j (C.reflection i b) := by
@@ -172,7 +197,9 @@ theorem reflection_comm (hC : C.IsSeminormal) (h : C.OperatorsCommute i j)
 
 variable {M : CoxeterMatrix ι} {W : Type*} [Group W]
 
-/-- The Coxeter relations for the `Sᵢ` reduce to the pairs with `2 ≤ mᵢⱼ < ∞`.-/
+/-- The Coxeter relations for the `Sᵢ` reduce to the pairs with `2 ≤ mᵢⱼ < ∞`.
+@isnad1 id=iff.1h6v.s7.26904a0d6961 from=translated src=- shape=1bc82546 vocab=581de505
+-/
 theorem isLiftable_iff (hC : C.IsSeminormal) :
     M.IsLiftable hC.reflectionPerm ↔ ∀ i j, i ≠ j → M i j ≠ 0 →
       (hC.reflectionPerm i * hC.reflectionPerm j) ^ M i j = 1 := by
@@ -186,7 +213,9 @@ theorem isLiftable_iff (hC : C.IsSeminormal) :
     · rw [hM, pow_zero]
     · exact h i j hij hM
 
-/-- Commuting reflections satisfy the Coxeter relation of order two.-/
+/-- Commuting reflections satisfy the Coxeter relation of order two.
+@isnad1 id=eq.2h7v.s7.f9d0116b9a92 from=translated src=- shape=9f9e487d vocab=5837db1a
+-/
 lemma reflectionPerm_mul_pow_two (hC : C.IsSeminormal)
     (hcomm : ∀ b, C.reflection i (C.reflection j b) = C.reflection j (C.reflection i b)) :
     (hC.reflectionPerm i * hC.reflectionPerm j) ^ 2 = 1 := by
@@ -201,6 +230,9 @@ noncomputable def weylAction (hC : C.IsSeminormal) (cs : CoxeterSystem M W)
     (h : M.IsLiftable hC.reflectionPerm) : W →* Equiv.Perm B :=
   cs.lift ⟨hC.reflectionPerm, h⟩
 
+/--
+@isnad1 id=eq.2h9v.s7.7b1352f85df3 from=translated src=- shape=1f46ca9c vocab=df679ba5
+-/
 @[simp] lemma weylAction_simple (hC : C.IsSeminormal) (cs : CoxeterSystem M W)
     (h : M.IsLiftable hC.reflectionPerm) (i : ι) :
     hC.weylAction cs h (cs.simple i) = hC.reflectionPerm i :=

@@ -75,14 +75,26 @@ def toWeightOrd : Dual K H ≃+ P.WeightOrd := AddEquiv.refl _
 /-- The identity map `P.WeightOrd → 𝔥*`.-/
 def ofWeightOrd : P.WeightOrd ≃+ Dual K H := AddEquiv.refl _
 
+/--
+@isnad1 id=eq.0h6v.s9.3f25dbda7ba4 from=translated src=- shape=b7dc0e86 vocab=970c186f
+-/
 @[simp] lemma ofWeightOrd_toWeightOrd (μ : Dual K H) :
     ofWeightOrd P (toWeightOrd P μ) = μ := rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.2fd80647cca6 from=translated src=- shape=5a423c12 vocab=970c186f
+-/
 @[simp] lemma toWeightOrd_ofWeightOrd (μ : P.WeightOrd) :
     toWeightOrd P (ofWeightOrd P μ) = μ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.ddda00aa6a45 from=translated src=- shape=9eb8a5f7 vocab=5b9e1363
+-/
 @[simp] lemma toWeightOrd_symm : (toWeightOrd P).symm = ofWeightOrd P := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.3cfc54c5cc1d from=translated src=- shape=27a313fe vocab=5b9e1363
+-/
 @[simp] lemma ofWeightOrd_symm : (ofWeightOrd P).symm = toWeightOrd P := rfl
 
 variable [CharZero K]
@@ -110,6 +122,9 @@ instance : PartialOrder P.WeightOrd where
     rw [hk0, map_zero, sub_eq_zero] at hμν
     exact hμν
 
+/--
+@isnad1 id=iff.0h7v.s10.33c7c9639ef3 from=translated src=- shape=7e5a225b vocab=076c305a
+-/
 lemma toWeightOrd_le_iff {μ ν : Dual K H} :
     toWeightOrd P μ ≤ toWeightOrd P ν ↔ ∃ k : ι → ℤ, 0 ≤ k ∧ μ - ν = P.rootOf k := Iff.rfl
 
@@ -120,7 +135,9 @@ instance : IsOrderedAddMonoid P.WeightOrd where
     rw [map_add, map_add, ← h]
     abel
 
-/-- `μ ≥ Λ` in `P.WeightOrd` iff `μ` lies in the cone `D(Λ) = Λ - Q₊`.-/
+/-- `μ ≥ Λ` in `P.WeightOrd` iff `μ` lies in the cone `D(Λ) = Λ - Q₊`.
+@isnad1 id=iff.0h7v.s10.3e21bd9d635a from=translated src=- shape=aaea6d9b vocab=076c305a
+-/
 lemma toWeightOrd_le_toWeightOrd_iff_exists_eq_sub {Λ μ : Dual K H} :
     toWeightOrd P Λ ≤ toWeightOrd P μ ↔ ∃ k : ι → ℤ, 0 ≤ k ∧ μ = Λ - P.rootOf k := by
   rw [toWeightOrd_le_iff]
@@ -130,7 +147,9 @@ lemma toWeightOrd_le_toWeightOrd_iff_exists_eq_sub {Λ μ : Dual K H} :
   · rw [h]; abel
 
 /-- The cone `D(Λ) = Λ - Q₊`, as a subset of `P.WeightOrd`, is partially well-ordered (Dickson's
-lemma).-/
+lemma).
+@isnad1 id=ispwo.0h6v.s7.9ba9d066f592 from=translated src=- shape=94f20921 vocab=3fed2fe2
+-/
 theorem isPWO_Ici (Λ : P.WeightOrd) : (Set.Ici Λ).IsPWO := by
   let g : (ι → ℕ) → P.WeightOrd := fun k ↦ Λ - toWeightOrd P (P.rootOf fun i ↦ (k i : ℤ))
   have hg : Monotone g := by
@@ -155,7 +174,9 @@ theorem isPWO_Ici (Λ : P.WeightOrd) : (Set.Ici Λ).IsPWO := by
 /-- **Characterization of the supports of elements of `ℰ`**: a subset of `P.WeightOrd` is
 partially well-ordered if and only if it lies in a finite union of cones `D(Λ) = Λ - Q₊`.
 (The argument is standard: a partially well-ordered set has finitely many minimal elements, and
-conversely the cones are partially well-ordered by Dickson's lemma.)-/
+conversely the cones are partially well-ordered by Dickson's lemma.)
+@isnad1 id=iff.0h6v.s10.860f7713f992 from=translated src=- shape=ff7c317d vocab=f48a9aea
+-/
 theorem isPWO_iff {s : Set P.WeightOrd} :
     s.IsPWO ↔ ∃ t : Finset (Dual K H), ∀ μ ∈ s, ∃ Λ ∈ t,
       ∃ k : ι → ℤ, 0 ≤ k ∧ ofWeightOrd P μ = Λ - P.rootOf k := by
@@ -196,11 +217,17 @@ variable {P} {R : Type*}
 abbrev coeffAt [Zero R] (c : P.CharacterRing R) (μ : Dual K H) : R :=
   HahnSeries.coeff c (toWeightOrd P μ)
 
+/--
+@isnad1 id=ex.0h7v.s9.fc56f2ed360a from=translated src=- shape=dc79bdcd vocab=236bf2c3
+-/
 lemma exists_finset [Zero R] (c : P.CharacterRing R) : ∃ t : Finset (Dual K H), ∀ μ,
     c.coeffAt μ ≠ 0 → ∃ Λ ∈ t, ∃ k : ι → ℤ, 0 ≤ k ∧ μ = Λ - P.rootOf k := by
   obtain ⟨t, ht⟩ := (isPWO_iff P).mp c.isPWO_support
   exact ⟨t, fun μ hμ ↦ ht (toWeightOrd P μ) hμ⟩
 
+/--
+@isnad1 id=eq.1h8v.s7.8a7ae5072f1c from=translated src=- shape=8340067c vocab=3369dab4
+-/
 @[ext] lemma ext [Zero R] {c d : P.CharacterRing R} (h : ∀ μ, c.coeffAt μ = d.coeffAt μ) : c = d :=
   HahnSeries.ext (funext fun μ ↦ h (ofWeightOrd P μ))
 
@@ -214,6 +241,9 @@ def ofFun [Zero R] (c : Dual K H → R) (hc : ∃ t : Finset (Dual K H), ∀ μ,
     obtain ⟨t, ht⟩ := hc
     exact (isPWO_iff P).mpr ⟨t, fun μ hμ ↦ ht _ hμ⟩
 
+/--
+@isnad1 id=eq.1h8v.s9.e298f305ec59 from=translated src=- shape=40e68fd1 vocab=fe0c661d
+-/
 @[simp] lemma coeff_ofFun [Zero R] (c : Dual K H → R) (hc) (μ : Dual K H) :
     (ofFun P c hc).coeffAt μ = c μ := rfl
 
@@ -222,21 +252,32 @@ variable (P R) in
 def exp [Zero R] [One R] (μ : Dual K H) : P.CharacterRing R := HahnSeries.single (toWeightOrd P μ) 1
 
 open Classical in
+/--
+@isnad1 id=eq.0h8v.s7.be53a6c11c5c from=translated src=- shape=4b5fc458 vocab=d415fdc0
+-/
 lemma coeff_exp [Zero R] [One R] (μ ν : Dual K H) :
     (exp P R μ).coeffAt ν = if ν = μ then 1 else 0 := by
   simp only [coeffAt, exp, HahnSeries.coeff_single]
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s6.60dabab9568a from=translated src=- shape=ebb6b80c vocab=3583edb5
+-/
 @[simp] lemma coeff_exp_self [Zero R] [One R] (μ : Dual K H) : (exp P R μ).coeffAt μ = 1 := by
   simp [coeffAt, exp]
 
 variable [CommRing R]
 
+/--
+@isnad1 id=eq.0h6v.s8.6d33754c526a from=translated src=- shape=f7625292 vocab=98398249
+-/
 @[simp] lemma exp_zero : exp P R 0 = 1 := by
   simp [exp]
 
 /-- The convolution formula for the product of `ℰ`: `(c d)_μ = ∑_ν c_ν d_{μ - ν}`, the sum
-having only finitely many nonzero terms.-/
+having only finitely many nonzero terms.
+@isnad1 id=eq.0h9v.s8.a6224a3e59bb from=translated src=- shape=1fa2f863 vocab=57270ada
+-/
 lemma coeff_mul (c d : P.CharacterRing R) (μ : Dual K H) :
     (c * d).coeffAt μ = ∑ᶠ ν, c.coeffAt ν * d.coeffAt (μ - ν) := by
   classical

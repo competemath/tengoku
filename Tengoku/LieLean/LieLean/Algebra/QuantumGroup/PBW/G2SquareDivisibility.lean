@@ -30,16 +30,25 @@ def gaussian (m : ℕ) : ℤ[X] := ∑ i ∈ range m, X ^ i
 def progressionProduct (k n : ℕ) : ℤ[X] :=
   ∏ i ∈ range n, gaussian (k * (i + 1))
 
+/--
+@isnad1 id=ne.1h1v.s4.8ebd987591c7 from=translated src=- shape=ccd8a632 vocab=a77645d0
+-/
 lemma gaussian_ne_zero (m : ℕ) (hm : 0 < m) : gaussian m ≠ 0 := by
   rw [gaussian, ← prod_cyclotomic_eq_geom_sum hm]
   exact prod_ne_zero_iff.mpr fun i _ ↦ cyclotomic_ne_zero i ℤ
 
+/--
+@isnad1 id=ne.1h2v.s5.7947eaef08b9 from=translated src=- shape=a5894039 vocab=cadd2d0d
+-/
 lemma progressionProduct_ne_zero (k n : ℕ) (hk : 0 < k) :
     progressionProduct k n ≠ 0 := by
   apply prod_ne_zero_iff.mpr
   intro i _
   exact gaussian_ne_zero _ (by positivity)
 
+/--
+@isnad1 id=eq.2h2v.s6.528f8ce09762 from=translated src=- shape=df682bc5 vocab=f5f12e37
+-/
 lemma cyclotomic_emultiplicity (d e : ℕ) (hd : 0 < d) (he : 0 < e) :
     emultiplicity (cyclotomic d ℤ) (cyclotomic e ℤ) = if d = e then 1 else 0 := by
   split_ifs with h
@@ -52,6 +61,9 @@ lemma cyclotomic_emultiplicity (d e : ℕ) (hd : 0 < d) (he : 0 < e) :
     exact eq_of_monic_of_associated (cyclotomic.monic d ℤ) (cyclotomic.monic e ℤ)
       ((cyclotomic.irreducible hd).associated_of_dvd (cyclotomic.irreducible he) hdiv)
 
+/--
+@isnad1 id=eq.2h2v.s6.bf97648473c2 from=translated src=- shape=722701aa vocab=68ab25b3
+-/
 lemma gaussian_emultiplicity (d m : ℕ) (hd : 1 < d) (hm : 0 < m) :
     emultiplicity (cyclotomic d ℤ) (gaussian m) = if d ∣ m then 1 else 0 := by
   classical
@@ -62,6 +74,9 @@ lemma gaussian_emultiplicity (d m : ℕ) (hd : 1 < d) (hm : 0 < m) :
   simp_rw [sum_congr rfl (fun e he' ↦ cyclotomic_emultiplicity d e (by omega) (he e he'))]
   simp [Nat.mem_divisors, hm.ne', show d ≠ 1 by omega]
 
+/--
+@isnad1 id=eq.2h3v.s6.8437d6368596 from=translated src=- shape=4739d48c vocab=02b23ae2
+-/
 lemma progressionProduct_emultiplicity (k n d : ℕ) (hk : 0 < k) (hd : 1 < d) :
     emultiplicity (cyclotomic d ℤ) (progressionProduct k n) =
       (#{i ∈ range n | d ∣ k * (i + 1)} : ℕ∞) := by
@@ -72,22 +87,34 @@ lemma progressionProduct_emultiplicity (k n d : ℕ) (hk : 0 < k) (hd : 1 < d) :
     (by positivity))]
   simp
 
+/--
+@isnad1 id=eq.1h2v.s5.667fe41af231 from=translated src=- shape=9d442169 vocab=e8f4f490
+-/
 lemma factorial_emultiplicity (n d : ℕ) (hd : 1 < d) :
     emultiplicity (cyclotomic d ℤ) (progressionProduct 1 n) = (n / d : ℕ) := by
   rw [progressionProduct_emultiplicity 1 n d (by decide) hd]
   simp only [one_mul, Nat.card_multiples]
 
+/--
+@isnad1 id=eq.1h2v.s6.bdd0df07b5d6 from=translated src=- shape=21ac6ab9 vocab=7fe2bb90
+-/
 lemma tripleProduct_emultiplicity (n h : ℕ) (hh : 0 < h) :
     emultiplicity (cyclotomic (3 * h) ℤ) (progressionProduct 3 n) = (n / h : ℕ) := by
   rw [progressionProduct_emultiplicity 3 n (3 * h) (by decide) (by omega)]
   simp only [Nat.mul_dvd_mul_iff_left (by decide : 0 < 3), Nat.card_multiples]
 
+/--
+@isnad1 id=eq.2h2v.s6.b5db976b7627 from=translated src=- shape=be63eef0 vocab=dface86a
+-/
 lemma tripleProduct_emultiplicity_of_not_dvd (n d : ℕ) (hd : 1 < d) (h3 : ¬3 ∣ d) :
     emultiplicity (cyclotomic d ℤ) (progressionProduct 3 n) = (n / d : ℕ) := by
   have hc : d.Coprime 3 := ((Nat.prime_three.coprime_iff_not_dvd).mpr h3).symm
   rw [progressionProduct_emultiplicity 3 n d (by decide) hd]
   simp only [hc.dvd_mul_left, Nat.card_multiples]
 
+/--
+@isnad1 id=ex.3h3v.s6.0b8d8758dc79 from=translated src=- shape=01250035 vocab=c3e405af
+-/
 lemma prime_dvd_progressionProduct (k t : ℕ) (hk : 0 < k) {p : ℤ[X]}
     (hp : Prime p) (hdiv : p ∣ progressionProduct k t) :
     ∃ d : ℕ, 1 < d ∧ Associated p (cyclotomic d ℤ) := by
@@ -104,7 +131,9 @@ lemma prime_dvd_progressionProduct (k t : ℕ) (hk : 0 < k) {p : ℤ[X]}
 /-- Full polynomial denominator cancellation for the G₂ Newton coefficients.
 For `a = n-t`, `b = 3t-n`, this is `P_t ∣ [b]! P_a d(n,t)` in `ℤ[x]`.
 The proof uses the all-index cyclotomic block estimate, not termwise cancellation
-in a Newton expansion.-/
+in a Newton expansion.
+@isnad1 id=dvd.2h2v.s7.b34804876587 from=translated src=- shape=420e3b19 vocab=e6bc1255
+-/
 theorem newtonCoeff_factorial_dvd (n t : ℕ) (htn : t ≤ n) (hnt : n ≤ 3 * t) :
     progressionProduct 3 t ∣ progressionProduct 1 (3 * t - n) *
       progressionProduct 3 (n - t) * newtonCoeff n t := by
@@ -148,14 +177,18 @@ def squarePolynomial (n t : ℕ) : ℤ[X] :=
     Classical.choose (newtonCoeff_factorial_dvd n t h.1 h.2)
   else 0
 
-/-- The exact, division-free identity defining the integral square polynomial.-/
+/-- The exact, division-free identity defining the integral square polynomial.
+@isnad1 id=eq.2h2v.s7.bdda9d415009 from=translated src=- shape=734c0ab5 vocab=adf98320
+-/
 theorem squarePolynomial_spec (n t : ℕ) (htn : t ≤ n) (hnt : n ≤ 3 * t) :
     progressionProduct 3 t * squarePolynomial n t =
       progressionProduct 1 (3 * t - n) * progressionProduct 3 (n - t) * newtonCoeff n t := by
   rw [squarePolynomial, dite_eq_left ⟨htn, hnt⟩]
   exact (Classical.choose_spec (newtonCoeff_factorial_dvd n t htn hnt)).symm
 
-/-- The polynomial witness is unique; no inverse in `ℤ[x]` is used.-/
+/-- The polynomial witness is unique; no inverse in `ℤ[x]` is used.
+@isnad1 id=eq.3h3v.s7.5b65b9433d3c from=translated src=- shape=d03c69ab vocab=adf98320
+-/
 theorem squarePolynomial_unique (n t : ℕ) (htn : t ≤ n) (hnt : n ≤ 3 * t)
     (H : ℤ[X]) (hH : progressionProduct 3 t * H =
       progressionProduct 1 (3 * t - n) * progressionProduct 3 (n - t) * newtonCoeff n t) :

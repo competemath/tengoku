@@ -51,7 +51,9 @@ variable {k : Type*} [Field k] {q : k} {M : Type*} [AddCommGroup M] [Module k M]
 /-! ### Iterates of the Kashiwara operators on strings -/
 
 include hq0 hq in
-/-- `f̃ʲ η = F^{(j)} η` for `η` primitive.-/
+/-- `f̃ʲ η = F^{(j)} η` for `η` primitive.
+@isnad1 id=eq.3h7v.s8.9e7959fd56cc from=translated src=- shape=6b979e14 vocab=d52526e7
+-/
 lemma fTilde_pow_apply {p : ℤ} {η : M} (hη : η ∈ V.prim p) (j : ℕ) :
     (V.fTilde hq0 hq ^ j) η = V.dF j η := by
   induction j with
@@ -59,7 +61,9 @@ lemma fTilde_pow_apply {p : ℤ} {η : M} (hη : η ∈ V.prim p) (j : ℕ) :
   | succ j ih => rw [pow_succ', Module.End.mul_apply, ih, fTilde_dF hq0 hq hη.2 hη.1]
 
 include hq0 hq in
-/-- `ẽ (Σ_{j ≤ N} F^{(j)} ηⱼ) = Σ_{j < N} F^{(j)} η_{j+1}` for a string decomposition.-/
+/-- `ẽ (Σ_{j ≤ N} F^{(j)} ηⱼ) = Σ_{j < N} F^{(j)} η_{j+1}` for a string decomposition.
+@isnad1 id=eq.4h7v.s8.1af7d692d864 from=translated src=- shape=fab50fca vocab=329d907f
+-/
 lemma eTilde_sum {n : ℤ} {η : ℕ → M} (h1 : ∀ j : ℕ, η j ∈ V.prim (n + 2 * j))
     (h2 : ∀ j : ℕ, η j ≠ 0 → 0 ≤ n + j) (N : ℕ) :
     V.eTilde hq0 hq (∑ j ∈ range (N + 1), V.dF j (η j)) =
@@ -72,10 +76,16 @@ lemma eTilde_sum {n : ℤ} {η : ℕ → M} (h1 : ∀ j : ℕ, η j ∈ V.prim (
   · have := h2 _ h0
     exact eTilde_dF_succ hq0 hq (h1 (j + 1)).2 (h1 (j + 1)).1 (by push_cast at this ⊢; omega)
 
+/--
+@isnad1 id=mem.1h7v.s7.ef84e4a9ff97 from=translated src=- shape=162e72a7 vocab=58cea721
+-/
 lemma prim_shift {n : ℤ} {η : ℕ → M} (h1 : ∀ j : ℕ, η j ∈ V.prim (n + 2 * j)) (j : ℕ) :
     η (j + 1) ∈ V.prim (n + 2 + 2 * j) := by
   convert h1 (j + 1) using 2; push_cast; ring
 
+/--
+@isnad1 id=le.2h4v.s6.f543b20e900d from=translated src=- shape=7513d223 vocab=b21b3b38
+-/
 lemma norm_shift {n : ℤ} {η : ℕ → M} (h2 : ∀ j : ℕ, η j ≠ 0 → 0 ≤ n + j) (j : ℕ)
     (h : η (j + 1) ≠ 0) : 0 ≤ n + 2 + j := by
   have := h2 _ h; push_cast at this; omega
@@ -92,13 +102,18 @@ structure IsKashiwaraStable (L : Submodule A M) : Prop where
 
 variable {hq0 hq} {L : Submodule A M}
 
+/--
+@isnad1 id=mem.2h7v.s9.e986a087cd7a from=translated src=- shape=ea95d116 vocab=5fe71909
+-/
 lemma _root_.LinearMap.map_mem_smul_of_mem {f : Module.End k M} (c : A)
     (hf : ∀ m ∈ L, f m ∈ L) {m : M} (hm : m ∈ c • L) : f m ∈ c • L := by
   obtain ⟨x, hx, rfl⟩ := (Submodule.mem_smul_pointwise_iff_exists _ _ _).1 hm
   rw [LinearMap.map_smul_of_tower]
   exact Submodule.smul_mem_pointwise_smul _ _ _ (hf x hx)
 
-/-- If `L` is Kashiwara-stable then so is `c L`.-/
+/-- If `L` is Kashiwara-stable then so is `c L`.
+@isnad1 id=iskashiw.3h7v.s9.eb8ec4d8b85e from=translated src=- shape=68113686 vocab=a29429ab
+-/
 lemma IsKashiwaraStable.smul (hL : V.IsKashiwaraStable hq0 hq L) (c : A) :
     V.IsKashiwaraStable hq0 hq (c • L) where
   wtProj_mem _ hm n := LinearMap.map_mem_smul_of_mem c (fun m hm ↦ hL.wtProj_mem m hm n) hm
@@ -106,6 +121,9 @@ lemma IsKashiwaraStable.smul (hL : V.IsKashiwaraStable hq0 hq L) (c : A) :
   fTilde_mem _ hm := LinearMap.map_mem_smul_of_mem c hL.fTilde_mem hm
 
 omit [Algebra A k] [IsScalarTower A k M] in
+/--
+@isnad1 id=mem.4h8v.s8.3bd9d3c14444 from=translated src=- shape=de1cec7e vocab=ead82fa3
+-/
 lemma IsKashiwaraStable.fTilde_pow_mem (hL : V.IsKashiwaraStable hq0 hq L) (j : ℕ) {m : M}
     (hm : m ∈ L) : (V.fTilde hq0 hq ^ j) m ∈ L := by
   induction j with
@@ -113,6 +131,9 @@ lemma IsKashiwaraStable.fTilde_pow_mem (hL : V.IsKashiwaraStable hq0 hq L) (j : 
   | succ j ih => rw [pow_succ', Module.End.mul_apply]; exact hL.fTilde_mem _ ih
 
 omit [Algebra A k] [IsScalarTower A k M] in
+/--
+@isnad1 id=mem.5h9v.s8.4e1338b40818 from=translated src=- shape=3336cd66 vocab=c3283465
+-/
 lemma IsKashiwaraStable.dF_mem (hL : V.IsKashiwaraStable hq0 hq L) {p : ℤ} {η : M}
     (hη : η ∈ V.prim p) (hηL : η ∈ L) (j : ℕ) : V.dF j η ∈ L := by
   rw [← fTilde_pow_apply hq0 hq hη]
@@ -120,7 +141,9 @@ lemma IsKashiwaraStable.dF_mem (hL : V.IsKashiwaraStable hq0 hq L) {p : ℤ} {η
 
 omit [Algebra A k] [IsScalarTower A k M] in
 /-- [HK] Prop. 4.2.11 (1): the vectors of the string decomposition of an element of `L` lie in
-`L`.-/
+`L`.
+@isnad1 id=mem.7h10v.s8.dc63ff647b65 from=translated src=- shape=2b46be4d vocab=4e03f6f6
+-/
 theorem IsKashiwaraStable.mem_of_sum_mem (hL : V.IsKashiwaraStable hq0 hq L) (N : ℕ) :
     ∀ (n : ℤ) (η : ℕ → M), (∀ j : ℕ, η j ∈ V.prim (n + 2 * j)) →
       (∀ j : ℕ, η j ≠ 0 → 0 ≤ n + j) → ∑ j ∈ range N, V.dF j (η j) ∈ L →
@@ -140,7 +163,9 @@ theorem IsKashiwaraStable.mem_of_sum_mem (hL : V.IsKashiwaraStable hq0 hq L) (N 
       simpa using sub_mem hu hrest
     · exact hsucc j (by omega)
 
-/-- [HK] Prop. 4.2.11 (2): if `ẽ u ∈ c L` then `ηⱼ ∈ c L` for `j ≥ 1`.-/
+/-- [HK] Prop. 4.2.11 (2): if `ẽ u ∈ c L` then `ηⱼ ∈ c L` for `j ≥ 1`.
+@isnad1 id=mem.7h11v.s10.44d281be0d18 from=translated src=- shape=420c247d vocab=282c7c2e
+-/
 theorem IsKashiwaraStable.mem_smul_of_eTilde_mem (hL : V.IsKashiwaraStable hq0 hq L) (c : A)
     {n : ℤ} {η : ℕ → M} (h1 : ∀ j : ℕ, η j ∈ V.prim (n + 2 * j))
     (h2 : ∀ j : ℕ, η j ≠ 0 → 0 ≤ n + j) {N : ℕ}
@@ -171,15 +196,23 @@ noncomputable def fTildeQ (hL : ∀ m ∈ L, V.fTilde hq0 hq m ∈ L) (c : A) :
     rw [Submodule.mem_comap, map_smul]
     exact Submodule.smul_mem_pointwise_smul _ _ _ Submodule.mem_top
 
+/--
+@isnad1 id=eq.3h8v.s13.63fbc7060091 from=translated src=- shape=9fc00671 vocab=7dc0932a
+-/
 lemma eTildeQ_mk (hL : ∀ m ∈ L, V.eTilde hq0 hq m ∈ L) (c : A) (x : L) :
     V.eTildeQ hq0 hq hL c (Submodule.Quotient.mk x) =
       Submodule.Quotient.mk ⟨V.eTilde hq0 hq x, hL x x.2⟩ := rfl
 
+/--
+@isnad1 id=eq.3h8v.s13.9ecdc81a4aba from=translated src=- shape=9fc00671 vocab=81e46dd1
+-/
 lemma fTildeQ_mk (hL : ∀ m ∈ L, V.fTilde hq0 hq m ∈ L) (c : A) (x : L) :
     V.fTildeQ hq0 hq hL c (Submodule.Quotient.mk x) =
       Submodule.Quotient.mk ⟨V.fTilde hq0 hq x, hL x x.2⟩ := rfl
 
-/-- Membership in `c L`, seen in `L`.-/
+/-- Membership in `c L`, seen in `L`.
+@isnad1 id=iff.0h5v.s10.95c87abe6050 from=translated src=- shape=86b4db53 vocab=54c7c464
+-/
 lemma mem_span_smul_top_iff (c : A) (x : L) :
     x ∈ (Ideal.span {c} • ⊤ : Submodule A L) ↔ (x : M) ∈ c • L := by
   rw [Submodule.ideal_span_singleton_smul, Submodule.mem_smul_pointwise_iff_exists,
@@ -188,16 +221,25 @@ lemma mem_span_smul_top_iff (c : A) (x : L) :
   · rintro ⟨y, -, rfl⟩; exact ⟨y, y.2, rfl⟩
   · rintro ⟨y, hy, h⟩; exact ⟨⟨y, hy⟩, Submodule.mem_top, Subtype.ext h⟩
 
+/--
+@isnad1 id=iff.0h6v.s11.5197bcf1bb3c from=translated src=- shape=fc110704 vocab=10352c9b
+-/
 lemma mk_eq_mk_iff (c : A) (x y : L) :
     (Submodule.Quotient.mk x : L ⧸ (Ideal.span {c} • ⊤ : Submodule A L)) =
       Submodule.Quotient.mk y ↔ (x : M) - y ∈ c • L := by
   rw [Submodule.Quotient.eq, mem_span_smul_top_iff, Submodule.coe_sub]
 
+/--
+@isnad1 id=iff.0h5v.s11.4e02416bff32 from=translated src=- shape=463b17ea vocab=50c652b8
+-/
 lemma mk_eq_zero_iff (c : A) (x : L) :
     (Submodule.Quotient.mk x : L ⧸ (Ideal.span {c} • ⊤ : Submodule A L)) = 0 ↔
       (x : M) ∈ c • L := by
   rw [Submodule.Quotient.mk_eq_zero, mem_span_smul_top_iff]
 
+/--
+@isnad1 id=le.0h4v.s8.d26896811dbf from=translated src=- shape=b0638d05 vocab=3442d45f
+-/
 lemma smul_le (c : A) : c • L ≤ L := by
   intro x hx
   obtain ⟨y, hy, rfl⟩ := (Submodule.mem_smul_pointwise_iff_exists _ _ _).1 hx
@@ -206,7 +248,9 @@ lemma smul_le (c : A) : c • L ≤ L := by
 /-- [HK] Prop. 4.2.11 (3): let `B ⊆ L / c L` be a set of nonzero vectors with
 `ẽ B, f̃ B ⊆ B ∪ {0}` and `f̃ b = b' ↔ ẽ b' = b` for `b, b' ∈ B`. If `u = Σ_{j<N} F^{(j)} ηⱼ ∈ L`
 is a string decomposition and the class of `u` lies in `B`, then there is `k` with `ηₖ ∈ L`, the
-class of `ηₖ` in `B`, `ηⱼ ∈ c L` for `j ≠ k` and `u ≡ F^{(k)} ηₖ` modulo `c L`.-/
+class of `ηₖ` in `B`, `ηⱼ ∈ c L` for `j ≠ k` and `u ≡ F^{(k)} ηₖ` modulo `c L`.
+@isnad1 id=ex.10h11v.s16.33eedd1370ef from=translated src=- shape=899d04d7 vocab=f9fddf81
+-/
 theorem IsKashiwaraStable.exists_of_mk_mem (hL : V.IsKashiwaraStable hq0 hq L) (c : A)
     (B : Set (L ⧸ (Ideal.span {c} • ⊤ : Submodule A L))) (hB0 : 0 ∉ B)
     (hBe : ∀ b ∈ B, V.eTildeQ hq0 hq hL.eTilde_mem c b ∈ B ∨

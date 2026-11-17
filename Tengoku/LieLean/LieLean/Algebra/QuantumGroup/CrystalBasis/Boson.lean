@@ -79,15 +79,26 @@ noncomputable abbrev df (n : ℕ) : Module.End k M := qDivPow q n V.f
 
 variable {V}
 
+/--
+@isnad1 id=eq.0h6v.s8.881d92a29eee from=translated src=- shape=408b076a vocab=7cbd54ba
+-/
 lemma df_apply (n : ℕ) (m : M) : V.df n m = (qFactorial q n)⁻¹ • (V.f ^ n) m := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.2b878c2c14fb from=translated src=- shape=9f0380a3 vocab=63bb2dac
+-/
 @[simp] lemma df_zero (m : M) : V.df 0 m = m := by simp [df_apply, qFactorial]
 
+/--
+@isnad1 id=eq.0h5v.s8.2d3d337fc4e2 from=translated src=- shape=8f32264a vocab=5b090a75
+-/
 lemma e_f_apply (m : M) : V.e (V.f m) = (q⁻¹ ^ 2) • V.f (V.e m) + m := by
   have := LinearMap.congr_fun V.e_mul_f m
   simpa using this
 
-/-- `e f^{n+1} m = q^{-2(n+1)} f^{n+1} e m + (Σ_{j ≤ n} q^{-2j}) fⁿ m`.-/
+/-- `e f^{n+1} m = q^{-2(n+1)} f^{n+1} e m + (Σ_{j ≤ n} q^{-2j}) fⁿ m`.
+@isnad1 id=eq.0h6v.s9.dcc969b4d27a from=translated src=- shape=42577a01 vocab=a9076ccb
+-/
 lemma e_f_pow_succ (n : ℕ) (m : M) :
     V.e ((V.f ^ (n + 1)) m) = ((q⁻¹ ^ 2) ^ (n + 1)) • (V.f ^ (n + 1)) (V.e m) +
       (∑ j ∈ range (n + 1), (q⁻¹ ^ 2) ^ j) • (V.f ^ n) m := by
@@ -104,7 +115,9 @@ lemma e_f_pow_succ (n : ℕ) (m : M) :
     rw [show V.f ((V.f ^ n) m) = (V.f ^ (n + 1)) m by rw [pow_succ', Module.End.mul_apply]]
     module
 
-/-- `Σ_{j ≤ n} q^{-2j} = q^{-n} [n+1]`.-/
+/-- `Σ_{j ≤ n} q^{-2j} = q^{-n} [n+1]`.
+@isnad1 id=eq.1h3v.s7.ee9481a6e61b from=translated src=- shape=d15b7c6e vocab=fc1c1a1d
+-/
 lemma sum_inv_sq_pow (hq0 : q ≠ 0) (n : ℕ) :
     ∑ j ∈ range (n + 1), (q⁻¹ ^ 2) ^ j = q⁻¹ ^ n * qInt q (n + 1) := by
   rw [qInt, mul_sum]
@@ -119,13 +132,21 @@ lemma sum_inv_sq_pow (hq0 : q ≠ 0) (n : ℕ) :
 variable (hq0 : q ≠ 0) (hq : ∀ n : ℕ, 0 < n → q ^ n ≠ 1)
 include hq0 hq
 
+/--
+@isnad1 id=ne.3h3v.s6.e2ba9de9296c from=translated src=- shape=bc1fa528 vocab=cb59f4d6
+-/
 lemma qInt_ne_zero' {n : ℕ} (hn : 0 < n) : qInt q n ≠ 0 :=
   qInt_ne_zero hq0 (hq _ (by omega))
 
+/--
+@isnad1 id=ne.2h3v.s6.1a4e5ea7602d from=translated src=- shape=fc804d4f vocab=0c45c211
+-/
 lemma qFactorial_ne_zero' (n : ℕ) : qFactorial q n ≠ 0 :=
   qFactorial_ne_zero hq0 fun m hm _ ↦ hq _ (by omega)
 
-/-- `e f^{(n+1)} x = q^{-n} f^{(n)} x` for `x ∈ ker e`.-/
+/-- `e f^{(n+1)} x = q^{-n} f^{(n)} x` for `x ∈ ker e`.
+@isnad1 id=eq.3h6v.s9.64545a576a1a from=translated src=- shape=3a080b41 vocab=3e1a1e93
+-/
 theorem e_df_succ {x : M} (hx : V.e x = 0) (n : ℕ) :
     V.e (V.df (n + 1) x) = q⁻¹ ^ n • V.df n x := by
   rw [df_apply, map_smul, e_f_pow_succ, hx, map_zero, smul_zero, zero_add,
@@ -135,7 +156,9 @@ theorem e_df_succ {x : M} (hx : V.e x = 0) (n : ℕ) :
   field_simp
 
 /-- `eⁿ f^{(n)} x = q^{-n(n-1)/2} x` for `x ∈ ker e`, recorded as `x = c • eⁿ f^{(n)} x` with
-`c ≠ 0`.-/
+`c ≠ 0`.
+@isnad1 id=ex.3h6v.s9.a98448430467 from=translated src=- shape=d75c55a5 vocab=811adaad
+-/
 theorem e_pow_df {x : M} (hx : V.e x = 0) (n : ℕ) :
     ∃ c : k, c ≠ 0 ∧ (V.e ^ n) (V.df n x) = c • x := by
   induction n with
@@ -180,16 +203,25 @@ noncomputable def stringMap : (ℕ →₀ LinearMap.ker V.e) →ₗ[k] M :=
   Finsupp.lsum k fun n ↦ V.df n ∘ₗ (LinearMap.ker V.e).subtype
 
 omit hq0 hq in
+/--
+@isnad1 id=eq.0h6v.s10.900cd0c4510c from=translated src=- shape=b6a5ffc6 vocab=79111932
+-/
 lemma stringMap_single (n : ℕ) (x : LinearMap.ker V.e) :
     V.stringMap (Finsupp.single n x) = V.df n x := by
   simp [stringMap]
 
 omit hq0 hq in
+/--
+@isnad1 id=eq.0h5v.s11.e268145d2b89 from=translated src=- shape=9c5ff934 vocab=e3796f14
+-/
 lemma stringMap_apply (s : ℕ →₀ LinearMap.ker V.e) :
     V.stringMap s = s.sum fun n x ↦ V.df n x := by
   simp only [stringMap, Finsupp.lsum_apply]
   rfl
 
+/--
+@isnad1 id=injectiv.2h4v.s10.b0d312365ee2 from=translated src=- shape=99782f2a vocab=e19e9a93
+-/
 theorem stringMap_injective : Function.Injective V.stringMap := by
   classical
   rw [← LinearMap.ker_eq_bot, Submodule.eq_bot_iff]
@@ -209,6 +241,9 @@ theorem stringMap_injective : Function.Injective V.stringMap := by
   · simpa using this n (hN n hn)
   · simpa using Finsupp.notMem_support_iff.1 hn
 
+/--
+@isnad1 id=surjecti.2h4v.s10.4a371ce74807 from=translated src=- shape=99782f2a vocab=82c7c2c1
+-/
 theorem stringMap_surjective : Function.Surjective V.stringMap := by
   rw [← LinearMap.range_eq_top, eq_top_iff]
   rintro m -
@@ -239,8 +274,14 @@ variable (V) in
 noncomputable def stringEquiv : (ℕ →₀ LinearMap.ker V.e) ≃ₗ[k] M :=
   LinearEquiv.ofBijective V.stringMap ⟨stringMap_injective hq0 hq, stringMap_surjective hq0 hq⟩
 
+/--
+@isnad1 id=eq.2h5v.s11.4eb90653ecc8 from=translated src=- shape=dd3563f6 vocab=f3758aa0
+-/
 lemma stringEquiv_apply (s : ℕ →₀ LinearMap.ker V.e) : V.stringEquiv hq0 hq s = V.stringMap s := rfl
 
+/--
+@isnad1 id=eq.3h6v.s11.b8cbf35521d7 from=translated src=- shape=8ac80068 vocab=39271469
+-/
 lemma stringEquiv_symm_df {x : M} (hx : V.e x = 0) (n : ℕ) :
     (V.stringEquiv hq0 hq).symm (V.df n x) = Finsupp.single n ⟨x, hx⟩ := by
   rw [LinearEquiv.symm_apply_eq, stringEquiv_apply, stringMap_single]
@@ -250,16 +291,24 @@ variable (V) in
 noncomputable def component (n : ℕ) : M →ₗ[k] M :=
   (LinearMap.ker V.e).subtype ∘ₗ Finsupp.lapply n ∘ₗ (V.stringEquiv hq0 hq).symm.toLinearMap
 
+/--
+@isnad1 id=eq.2h6v.s8.9a4bdb936352 from=translated src=- shape=68516aef vocab=da2d23f2
+-/
 lemma e_component (n : ℕ) (m : M) : V.e (V.component hq0 hq n m) = 0 :=
   ((V.stringEquiv hq0 hq).symm m n).2
 
+/--
+@isnad1 id=eq.3h7v.s8.54d7a1a4d511 from=translated src=- shape=e090273b vocab=f526e346
+-/
 lemma component_df {x : M} (hx : V.e x = 0) (n n' : ℕ) :
     V.component hq0 hq n' (V.df n x) = if n = n' then x else 0 := by
   simp only [component, LinearMap.comp_apply, LinearEquiv.coe_coe, stringEquiv_symm_df hq0 hq hx,
     Finsupp.lapply_apply, Finsupp.single_apply]
   split_ifs <;> rfl
 
-/-- The components of an explicit decomposition `Σ_{n<N} f^{(n)} xₙ` with `e xₙ = 0`.-/
+/-- The components of an explicit decomposition `Σ_{n<N} f^{(n)} xₙ` with `e xₙ = 0`.
+@isnad1 id=eq.3h7v.s8.26751136b246 from=translated src=- shape=0c8b9338 vocab=d1eb0bd6
+-/
 theorem component_sum {N : ℕ} {x : ℕ → M} (hx : ∀ n, V.e (x n) = 0) (n : ℕ) :
     V.component hq0 hq n (∑ j ∈ range N, V.df j (x j)) = if n < N then x n else 0 := by
   rw [map_sum]
@@ -267,7 +316,9 @@ theorem component_sum {N : ℕ} {x : ℕ → M} (hx : ∀ n, V.e (x n) = 0) (n :
   rw [sum_ite_eq' (range N) n x]
   simp
 
-/-- `m = Σ_{n<N} f^{(n)} mₙ` for `N` large.-/
+/-- `m = Σ_{n<N} f^{(n)} mₙ` for `N` large.
+@isnad1 id=ex.2h5v.s8.ce685a1e20c9 from=translated src=- shape=5c4ff030 vocab=14c62fa2
+-/
 theorem exists_sum_component (m : M) :
     ∃ N, (∀ n, N ≤ n → V.component hq0 hq n m = 0) ∧
       m = ∑ n ∈ range N, V.df n (V.component hq0 hq n m) := by
@@ -302,23 +353,31 @@ noncomputable def fTilde : Module.End k M :=
   (Finsupp.lsum k fun n ↦ V.df (n + 1) ∘ₗ (LinearMap.ker V.e).subtype) ∘ₗ
     (V.stringEquiv hq0 hq).symm.toLinearMap
 
-/-- `f̃ f^{(n)} x = f^{(n+1)} x` for `x ∈ ker e`.-/
+/-- `f̃ f^{(n)} x = f^{(n+1)} x` for `x ∈ ker e`.
+@isnad1 id=eq.3h6v.s8.b9f1fd0e7ec9 from=translated src=- shape=7632aad3 vocab=ac572927
+-/
 theorem fTilde_df {x : M} (hx : V.e x = 0) (n : ℕ) :
     V.fTilde hq0 hq (V.df n x) = V.df (n + 1) x := by
   simp [fTilde, stringEquiv_symm_df hq0 hq hx]
 
-/-- `ẽ f^{(n+1)} x = f^{(n)} x` for `x ∈ ker e`.-/
+/-- `ẽ f^{(n+1)} x = f^{(n)} x` for `x ∈ ker e`.
+@isnad1 id=eq.3h6v.s8.6437a3275690 from=translated src=- shape=9ad0a641 vocab=583f3383
+-/
 theorem eTilde_df_succ {x : M} (hx : V.e x = 0) (n : ℕ) :
     V.eTilde hq0 hq (V.df (n + 1) x) = V.df n x := by
   simp [eTilde, stringEquiv_symm_df hq0 hq hx]
 
-/-- `ẽ x = 0` for `x ∈ ker e`.-/
+/-- `ẽ x = 0` for `x ∈ ker e`.
+@isnad1 id=eq.3h5v.s8.590ec721a277 from=translated src=- shape=e8f8afda vocab=8792caf1
+-/
 theorem eTilde_of_ker {x : M} (hx : V.e x = 0) : V.eTilde hq0 hq x = 0 := by
   have := stringEquiv_symm_df hq0 hq hx 0
   rw [df_zero] at this
   simp [eTilde, this]
 
-/-- Two linear maps out of `M` agreeing on all `f^{(n)} x`, `x ∈ ker e`, are equal.-/
+/-- Two linear maps out of `M` agreeing on all `f^{(n)} x`, `x ∈ ker e`, are equal.
+@isnad1 id=eq.3h7v.s9.690be823b85b from=translated src=- shape=3a59de0a vocab=5da60d93
+-/
 theorem ext_df {N : Type*} [AddCommGroup N] [Module k N] {φ ψ : M →ₗ[k] N}
     (h : ∀ n (x : M), V.e x = 0 → φ (V.df n x) = ψ (V.df n x)) : φ = ψ := by
   have : φ ∘ₗ (V.stringEquiv hq0 hq).toLinearMap = ψ ∘ₗ (V.stringEquiv hq0 hq).toLinearMap := by
@@ -329,18 +388,24 @@ theorem ext_df {N : Type*} [AddCommGroup N] [Module k N] {φ ψ : M →ₗ[k] N}
   have := LinearMap.congr_fun this ((V.stringEquiv hq0 hq).symm m)
   simpa using this
 
-/-- `ẽ f̃ = 1`.-/
+/-- `ẽ f̃ = 1`.
+@isnad1 id=eq.2h5v.s7.496d9da76472 from=translated src=- shape=86898c93 vocab=d9b5d040
+-/
 theorem eTilde_fTilde (m : M) : V.eTilde hq0 hq (V.fTilde hq0 hq m) = m := by
   have : V.eTilde hq0 hq ∘ₗ V.fTilde hq0 hq = LinearMap.id :=
     ext_df (V := V) hq0 hq fun n x hx ↦ by
       simp [fTilde_df hq0 hq hx, eTilde_df_succ hq0 hq hx]
   exact LinearMap.congr_fun this m
 
-/-- `f̃` is injective.-/
+/-- `f̃` is injective.
+@isnad1 id=injectiv.2h4v.s7.a75408b6943a from=translated src=- shape=5c0f9085 vocab=95e5da21
+-/
 theorem fTilde_injective : Function.Injective (V.fTilde hq0 hq) :=
   Function.LeftInverse.injective (eTilde_fTilde hq0 hq)
 
-/-- `f̃ ẽ m + m₀ = m`.-/
+/-- `f̃ ẽ m + m₀ = m`.
+@isnad1 id=eq.2h5v.s8.23a74c43750d from=translated src=- shape=b0553da1 vocab=529439d1
+-/
 theorem fTilde_eTilde_add_component (m : M) :
     V.fTilde hq0 hq (V.eTilde hq0 hq m) + V.component hq0 hq 0 m = m := by
   have : V.fTilde hq0 hq ∘ₗ V.eTilde hq0 hq + V.component hq0 hq 0 = LinearMap.id :=
@@ -351,7 +416,9 @@ theorem fTilde_eTilde_add_component (m : M) :
       · simp [eTilde_df_succ hq0 hq hx, fTilde_df hq0 hq hx, component_df hq0 hq hx]
   exact LinearMap.congr_fun this m
 
-/-- `ẽ m = 0` if and only if `e m = 0`.-/
+/-- `ẽ m = 0` if and only if `e m = 0`.
+@isnad1 id=iff.2h5v.s8.6893dc332e49 from=translated src=- shape=6f1566fa vocab=8792caf1
+-/
 theorem eTilde_eq_zero_iff (m : M) : V.eTilde hq0 hq m = 0 ↔ V.e m = 0 := by
   refine ⟨fun h ↦ ?_, eTilde_of_ker hq0 hq⟩
   have := fTilde_eTilde_add_component (V := V) hq0 hq m
@@ -359,7 +426,9 @@ theorem eTilde_eq_zero_iff (m : M) : V.eTilde hq0 hq m = 0 ↔ V.e m = 0 := by
   rw [← this]
   exact e_component hq0 hq 0 m
 
-/-- `f̃ⁿ x = f^{(n)} x` for `x ∈ ker e`.-/
+/-- `f̃ⁿ x = f^{(n)} x` for `x ∈ ker e`.
+@isnad1 id=eq.3h6v.s8.1734680bbf0c from=translated src=- shape=01ffdb42 vocab=bc0897e5
+-/
 theorem fTilde_pow_apply {x : M} (hx : V.e x = 0) (n : ℕ) :
     (V.fTilde hq0 hq ^ n) x = V.df n x := by
   induction n with
@@ -369,6 +438,9 @@ theorem fTilde_pow_apply {x : M} (hx : V.e x = 0) (n : ℕ) :
 /-! ### Naturality -/
 
 omit hq0 hq in
+/--
+@isnad1 id=eq.1h9v.s9.2bfd74e4852b from=translated src=- shape=c2cdb00b vocab=1fe66768
+-/
 lemma map_df {M' : Type*} [AddCommGroup M'] [Module k M'] {V' : BosonModule q M'}
     {φ : M →ₗ[k] M'} (hf : ∀ m, φ (V.f m) = V'.f (φ m)) (n : ℕ) (m : M) :
     φ (V.df n m) = V'.df n (φ m) := by
@@ -380,7 +452,9 @@ lemma map_df {M' : Type*} [AddCommGroup M'] [Module k M'] {V' : BosonModule q M'
         Module.End.mul_apply, hf, ih]
   rw [df_apply, df_apply, map_smul, hpow]
 
-/-- The Kashiwara operator `ẽ` commutes with linear maps commuting with `e` and `f`.-/
+/-- The Kashiwara operator `ẽ` commutes with linear maps commuting with `e` and `f`.
+@isnad1 id=eq.4h8v.s10.f300df29967b from=translated src=- shape=8abe0f53 vocab=e635fa3a
+-/
 theorem map_eTilde {M' : Type*} [AddCommGroup M'] [Module k M'] (V' : BosonModule q M')
     (φ : M →ₗ[k] M') (he : ∀ m, φ (V.e m) = V'.e (φ m)) (hf : ∀ m, φ (V.f m) = V'.f (φ m))
     (m : M) : φ (V.eTilde hq0 hq m) = V'.eTilde hq0 hq (φ m) := by
@@ -393,7 +467,9 @@ theorem map_eTilde {M' : Type*} [AddCommGroup M'] [Module k M'] (V' : BosonModul
     · rw [eTilde_df_succ hq0 hq hx, eTilde_df_succ hq0 hq hx', map_df hf]
   exact LinearMap.congr_fun this m
 
-/-- The Kashiwara operator `f̃` commutes with linear maps commuting with `e` and `f`.-/
+/-- The Kashiwara operator `f̃` commutes with linear maps commuting with `e` and `f`.
+@isnad1 id=eq.4h8v.s10.7ac07bbe700f from=translated src=- shape=8abe0f53 vocab=2d687eb1
+-/
 theorem map_fTilde {M' : Type*} [AddCommGroup M'] [Module k M'] (V' : BosonModule q M')
     (φ : M →ₗ[k] M') (he : ∀ m, φ (V.e m) = V'.e (φ m)) (hf : ∀ m, φ (V.f m) = V'.f (φ m))
     (m : M) : φ (V.fTilde hq0 hq m) = V'.fTilde hq0 hq (φ m) := by
@@ -416,6 +492,9 @@ variable {Γ : Type*} [AddCommGroup Γ] {M' : Type*} [AddCommGroup M'] [Module k
   (V' : BosonModule q M') (φ : Γ → M →ₗ[k] M') (δ : Γ)
 
 omit hq0 hq in
+/--
+@isnad1 id=eq.1h12v.s9.fa4d0d3abf78 from=translated src=- shape=a1e80cea vocab=6cfa2cb4
+-/
 lemma map_df_shift (hf : ∀ γ m, φ γ (V.f m) = V'.f (φ (γ - δ) m)) (n : ℕ) (γ : Γ) (m : M) :
     φ γ (V.df n m) = V'.df n (φ (γ - n • δ) m) := by
   have hpow : ∀ (n : ℕ) (γ : Γ) m, φ γ ((V.f ^ n) m) = (V'.f ^ n) (φ (γ - n • δ) m) := by
@@ -428,7 +507,9 @@ lemma map_df_shift (hf : ∀ γ m, φ γ (V.f m) = V'.f (φ (γ - δ) m)) (n : �
         sub_sub, succ_nsmul, add_comm δ]
   rw [df_apply, df_apply, map_smul, hpow]
 
-/-- `φ_γ mₙ = (φ_{γ+nδ} m)ₙ` for a family shifting `e`, `f` by `δ`.-/
+/-- `φ_γ mₙ = (φ_{γ+nδ} m)ₙ` for a family shifting `e`, `f` by `δ`.
+@isnad1 id=eq.4h12v.s10.8a8f2ea83a3c from=translated src=- shape=d9b14cd2 vocab=57c5f8a1
+-/
 theorem map_component_shift (he : ∀ γ m, φ γ (V.e m) = V'.e (φ (γ + δ) m))
     (hf : ∀ γ m, φ γ (V.f m) = V'.f (φ (γ - δ) m)) (n : ℕ) (γ : Γ) (m : M) :
     V'.component hq0 hq n (φ γ m) = φ (γ - n • δ) (V.component hq0 hq n m) := by
@@ -451,7 +532,9 @@ theorem map_component_shift (he : ∀ γ m, φ γ (V.e m) = V'.e (φ (γ + δ) m
       exact h
     rw [this, map_zero]
 
-/-- `φ_γ (ẽ m) = ẽ (φ_{γ+δ} m)` for a family shifting `e`, `f` by `δ`.-/
+/-- `φ_γ (ẽ m) = ẽ (φ_{γ+δ} m)` for a family shifting `e`, `f` by `δ`.
+@isnad1 id=eq.4h11v.s10.b3ceb47dcd88 from=translated src=- shape=e5d9b786 vocab=f4503247
+-/
 theorem map_eTilde_shift (he : ∀ γ m, φ γ (V.e m) = V'.e (φ (γ + δ) m))
     (hf : ∀ γ m, φ γ (V.f m) = V'.f (φ (γ - δ) m)) (γ : Γ) (m : M) :
     φ γ (V.eTilde hq0 hq m) = V'.eTilde hq0 hq (φ (γ + δ) m) := by
@@ -474,7 +557,9 @@ theorem map_eTilde_shift (he : ∀ γ m, φ γ (V.e m) = V'.e (φ (γ + δ) m))
     rw [succ_nsmul]
     abel_nf
 
-/-- `φ_γ (f̃ m) = f̃ (φ_{γ+δ} m)` for a family shifting `e`, `f` by `δ`.-/
+/-- `φ_γ (f̃ m) = f̃ (φ_{γ+δ} m)` for a family shifting `e`, `f` by `δ`.
+@isnad1 id=eq.4h11v.s10.d81f97d49ed1 from=translated src=- shape=e42cd709 vocab=2fce112f
+-/
 theorem map_fTilde_shift (he : ∀ γ m, φ γ (V.e m) = V'.e (φ (γ + δ) m))
     (hf : ∀ γ m, φ γ (V.f m) = V'.f (φ (γ - δ) m)) (γ : Γ) (m : M) :
     φ γ (V.fTilde hq0 hq m) = V'.fTilde hq0 hq (φ (γ - δ) m) := by

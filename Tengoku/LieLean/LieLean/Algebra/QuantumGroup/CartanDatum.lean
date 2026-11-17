@@ -62,12 +62,18 @@ variable {I : Type*} (D : LusztigCartanDatum I)
 /-- `dᵢ = (i · i)/2`, a positive integer ([Lus] 1.1.1, 1.1.2); `vᵢ = v^{dᵢ}`.-/
 def d (i : I) : ℕ := (D.dot i i / 2).toNat
 
+/--
+@isnad1 id=eq.0h3v.s5.c5d264a14e61 from=translated src=- shape=fb59f4c9 vocab=725276e8
+-/
 lemma two_mul_d (i : I) : 2 * (D.d i : ℤ) = D.dot i i := by
   obtain ⟨m, hm⟩ := D.even_dot_self i
   have := D.dot_self_pos i
   simp only [d, hm]
   omega
 
+/--
+@isnad1 id=lt.0h3v.s4.ef2c1ca72c1a from=translated src=- shape=2826fe40 vocab=bc73176b
+-/
 lemma d_pos (i : I) : 0 < D.d i := by
   have h1 := D.two_mul_d i
   have h2 := D.dot_self_pos i
@@ -77,7 +83,9 @@ lemma d_pos (i : I) : 0 < D.d i := by
 ([Lus] 2.2.1).-/
 def cartanMatrix : Matrix I I ℤ := Matrix.of fun i j ↦ 2 * D.dot i j / D.dot i i
 
-/-- `dᵢ aᵢⱼ = i · j`.-/
+/-- `dᵢ aᵢⱼ = i · j`.
+@isnad1 id=eq.0h4v.s5.e417e86cef11 from=translated src=- shape=83ec83ca vocab=30410338
+-/
 lemma d_mul_cartanMatrix (i j : I) : (D.d i : ℤ) * D.cartanMatrix i j = D.dot i j := by
   obtain ⟨c, hc⟩ := D.dot_self_dvd i j
   have hpos := D.dot_self_pos i
@@ -86,9 +94,15 @@ lemma d_mul_cartanMatrix (i j : I) : (D.d i : ℤ) * D.cartanMatrix i j = D.dot 
   have : 2 * ((D.d i : ℤ) * c) = 2 * D.dot i j := by rw [hc, ← h2]; ring
   omega
 
+/--
+@isnad1 id=eq.0h3v.s4.b795d9420dea from=translated src=- shape=934604d6 vocab=9b82ce1f
+-/
 lemma cartanMatrix_self (i : I) : D.cartanMatrix i i = 2 := by
   simp [cartanMatrix, Int.mul_ediv_cancel _ (D.dot_self_pos i).ne']
 
+/--
+@isnad1 id=iff.0h4v.s5.ac33b7aef2bb from=translated src=- shape=e9d59e05 vocab=192546e0
+-/
 lemma cartanMatrix_eq_zero_iff (i j : I) : D.cartanMatrix i j = 0 ↔ D.dot i j = 0 := by
   rw [← D.d_mul_cartanMatrix]
   have := D.d_pos i
@@ -99,7 +113,9 @@ lemma cartanMatrix_eq_zero_iff (i j : I) : D.cartanMatrix i j = 0 ↔ D.dot i j 
     · omega
     · exact h
 
-/-- The matrix of a Cartan datum is a generalized Cartan matrix.-/
+/-- The matrix of a Cartan datum is a generalized Cartan matrix.
+@isnad1 id=isgenera.0h2v.s3.0c893641c951 from=translated src=- shape=16be0546 vocab=f4ed16fe
+-/
 theorem isGeneralizedCartan_cartanMatrix : D.cartanMatrix.IsGeneralizedCartan where
   diag := D.cartanMatrix_self
   offDiag_nonpos i j hij := by
@@ -112,7 +128,9 @@ theorem isGeneralizedCartan_cartanMatrix : D.cartanMatrix.IsGeneralizedCartan wh
   zero_comm i j := by
     rw [D.cartanMatrix_eq_zero_iff, D.cartanMatrix_eq_zero_iff, D.dot_comm]
 
-/-- The symmetrizer: `dᵢ aᵢⱼ = dⱼ aⱼᵢ`.-/
+/-- The symmetrizer: `dᵢ aᵢⱼ = dⱼ aⱼᵢ`.
+@isnad1 id=eq.0h4v.s5.909b039c9000 from=translated src=- shape=f72d2b7c vocab=8a863967
+-/
 lemma d_mul_cartanMatrix_comm (i j : I) :
     (D.d i : ℤ) * D.cartanMatrix i j = D.d j * D.cartanMatrix j i := by
   rw [D.d_mul_cartanMatrix, D.d_mul_cartanMatrix, D.dot_comm]
@@ -121,10 +139,19 @@ lemma d_mul_cartanMatrix_comm (i j : I) :
 def weightDot (ν μ : I →₀ ℕ) : ℤ :=
   ν.sum fun i a ↦ μ.sum fun j b ↦ (a * b : ℤ) * D.dot i j
 
+/--
+@isnad1 id=eq.0h3v.s5.a2ff649e23ff from=translated src=- shape=e6cb434b vocab=5efd99bb
+-/
 @[simp] lemma weightDot_zero_left (μ : I →₀ ℕ) : D.weightDot 0 μ = 0 := by simp [weightDot]
 
+/--
+@isnad1 id=eq.0h3v.s5.e7874713859a from=translated src=- shape=af8ed0a4 vocab=5efd99bb
+-/
 @[simp] lemma weightDot_zero_right (ν : I →₀ ℕ) : D.weightDot ν 0 = 0 := by simp [weightDot]
 
+/--
+@isnad1 id=eq.0h5v.s6.586886401eaf from=translated src=- shape=fb4027b7 vocab=a5c461fe
+-/
 lemma weightDot_add_left (ν ν' μ : I →₀ ℕ) :
     D.weightDot (ν + ν') μ = D.weightDot ν μ + D.weightDot ν' μ := by
   unfold weightDot
@@ -132,6 +159,9 @@ lemma weightDot_add_left (ν ν' μ : I →₀ ℕ) :
   · intro i; simp
   · intro i a b; simp [add_mul, Finsupp.sum_add]
 
+/--
+@isnad1 id=eq.0h5v.s6.e5b497425715 from=translated src=- shape=a59b92ce vocab=a5c461fe
+-/
 lemma weightDot_add_right (ν μ μ' : I →₀ ℕ) :
     D.weightDot ν (μ + μ') = D.weightDot ν μ + D.weightDot ν μ' := by
   unfold weightDot
@@ -141,10 +171,16 @@ lemma weightDot_add_right (ν μ μ' : I →₀ ℕ) :
   · intro j; simp
   · intro j a b; push_cast; ring
 
+/--
+@isnad1 id=eq.0h4v.s5.4787747068e1 from=translated src=- shape=2e2d4b1e vocab=37ffc253
+-/
 @[simp] lemma weightDot_single_single (i j : I) :
     D.weightDot (Finsupp.single i 1) (Finsupp.single j 1) = D.dot i j := by
   simp [weightDot]
 
+/--
+@isnad1 id=eq.0h4v.s4.7e266cb5f97c from=translated src=- shape=abdc3374 vocab=5efd99bb
+-/
 lemma weightDot_comm (ν μ : I →₀ ℕ) : D.weightDot ν μ = D.weightDot μ ν := by
   unfold weightDot
   rw [Finsupp.sum_comm]
@@ -161,16 +197,25 @@ variable [Fintype I] [DecidableEq I] {A : Matrix I I ℤ}
 def symmetrizerOf (S : A.Symmetrization) (i : I) : ℤ :=
   (S.ε i).den * ∏ k ∈ univ.erase i, (S.ε k).num
 
+/--
+@isnad1 id=lt.0h4v.s5.17d3c0beeaa7 from=translated src=- shape=7553ece5 vocab=85445f19
+-/
 lemma symmetrizerOf_pos (S : A.Symmetrization) (i : I) : 0 < symmetrizerOf S i :=
   mul_pos (by exact_mod_cast (S.ε i).den_pos)
     (prod_pos fun k _ ↦ Rat.num_pos.2 (S.ε_pos k))
 
+/--
+@isnad1 id=eq.0h4v.s5.ada51563527c from=translated src=- shape=d25847d5 vocab=3f390a49
+-/
 lemma symmetrizerOf_mul_ε (S : A.Symmetrization) (i : I) :
     (symmetrizerOf S i : ℚ) * S.ε i = ∏ k, ((S.ε k).num : ℚ) := by
   rw [← mul_prod_erase univ (fun k ↦ ((S.ε k).num : ℚ)) (mem_univ i), symmetrizerOf]
   push_cast
   linear_combination (∏ k ∈ univ.erase i, ((S.ε k).num : ℚ)) * Rat.mul_den_eq_num (S.ε i)
 
+/--
+@isnad1 id=eq.0h5v.s5.ed789f895c8e from=translated src=- shape=cd0f1869 vocab=cffb4590
+-/
 lemma symmetrizerOf_mul_comm (S : A.Symmetrization) (i j : I) :
     symmetrizerOf S i * A i j = symmetrizerOf S j * A j i := by
   have hi := symmetrizerOf_mul_ε S i
@@ -199,7 +244,9 @@ def ofSymmetrization (hA : A.IsGeneralizedCartan) (S : A.Symmetrization) :
     (hA.offDiag_nonpos i j hij)
   dot_self_dvd i j := by rw [hA.diag]; exact ⟨A i j, by ring⟩
 
-/-- The Cartan datum of a symmetrized generalized Cartan matrix has Cartan matrix `A`.-/
+/-- The Cartan datum of a symmetrized generalized Cartan matrix has Cartan matrix `A`.
+@isnad1 id=eq.1h3v.s5.7fb315d6b676 from=translated src=- shape=4c65a735 vocab=755f8398
+-/
 theorem cartanMatrix_ofSymmetrization (hA : A.IsGeneralizedCartan) (S : A.Symmetrization) :
     (ofSymmetrization hA S).cartanMatrix = A := by
   ext i j

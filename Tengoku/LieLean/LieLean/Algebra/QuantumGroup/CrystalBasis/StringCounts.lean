@@ -39,7 +39,9 @@ variable {k : Type*} [Field k] {q : k} {M : Type*} [AddCommGroup M] [Module k M]
 /-! ### Iterates on strings -/
 
 include hq0 hq in
-/-- `ẽᵃ F^{(j)} η = F^{(j-a)} η` for `η ∈ Mᵖ` primitive and `a ≤ j ≤ p`.-/
+/-- `ẽᵃ F^{(j)} η = F^{(j-a)} η` for `η ∈ Mᵖ` primitive and `a ≤ j ≤ p`.
+@isnad1 id=eq.5h8v.s8.d60061a926ec from=translated src=- shape=e5ad9bbc vocab=35d395f2
+-/
 lemma eTilde_pow_dF {p : ℤ} {η : M} (hη : η ∈ V.prim p) {a j : ℕ} (haj : a ≤ j)
     (hjp : (j : ℤ) ≤ p) : (V.eTilde hq0 hq ^ a) (V.dF j η) = V.dF (j - a) η := by
   induction a with
@@ -50,7 +52,9 @@ lemma eTilde_pow_dF {p : ℤ} {η : M} (hη : η ∈ V.prim p) {a j : ℕ} (haj 
       eTilde_dF_succ hq0 hq hη.2 hη.1 (by omega)]
 
 include hq0 hq in
-/-- `ẽᵃ F^{(j)} η = 0` for `η` primitive and `a > j`.-/
+/-- `ẽᵃ F^{(j)} η = 0` for `η` primitive and `a > j`.
+@isnad1 id=eq.4h8v.s8.e2c2447683af from=translated src=- shape=7fa3e9cf vocab=1898fd73
+-/
 lemma eTilde_pow_dF_eq_zero {p : ℤ} {η : M} (hη : η ∈ V.prim p) {a j : ℕ} (haj : j < a) :
     (V.eTilde hq0 hq ^ a) (V.dF j η) = 0 := by
   by_cases hjp : (j : ℤ) ≤ p
@@ -61,7 +65,9 @@ lemma eTilde_pow_dF_eq_zero {p : ℤ} {η : M} (hη : η ∈ V.prim p) {a j : �
   · rw [dF_eq_zero_of_primitive hq0 hq hη.1 hη.2 (by omega), map_zero]
 
 include hq0 hq in
-/-- `f̃ᵃ F^{(j)} η = F^{(j+a)} η` for `η` primitive.-/
+/-- `f̃ᵃ F^{(j)} η = F^{(j+a)} η` for `η` primitive.
+@isnad1 id=eq.3h8v.s8.d4db1d5452dd from=translated src=- shape=cdfcd8df vocab=f62da678
+-/
 lemma fTilde_pow_dF {p : ℤ} {η : M} (hη : η ∈ V.prim p) (a j : ℕ) :
     (V.fTilde hq0 hq ^ a) (V.dF j η) = V.dF (j + a) η := by
   rw [← fTilde_pow_apply hq0 hq hη, ← Module.End.mul_apply, ← pow_add, add_comm,
@@ -72,6 +78,9 @@ lemma fTilde_pow_dF {p : ℤ} {η : M} (hη : η ∈ V.prim p) (a j : ℕ) :
 variable {L : Submodule A M}
 
 omit [Algebra A k] [IsScalarTower A k M] in
+/--
+@isnad1 id=mem.2h7v.s8.44404bb7c4d7 from=translated src=- shape=d403962e vocab=f18301ab
+-/
 lemma pow_apply_mem {T : Module.End k M} (hT : ∀ m ∈ L, T m ∈ L) (a : ℕ) :
     ∀ m ∈ L, (T ^ a) m ∈ L := by
   intro m hm
@@ -79,6 +88,9 @@ lemma pow_apply_mem {T : Module.End k M} (hT : ∀ m ∈ L, T m ∈ L) (a : ℕ)
   | zero => simpa using hm
   | succ a ih => rw [pow_succ', Module.End.mul_apply]; exact hT _ ih
 
+/--
+@isnad1 id=eq.3h9v.s15.996cd6e1526e from=translated src=- shape=d80b187a vocab=7f17e71e
+-/
 lemma eTildeQ_pow_mk (hL : ∀ m ∈ L, V.eTilde hq0 hq m ∈ L) (c : A) (a : ℕ) (x : L) :
     (V.eTildeQ hq0 hq hL c ^ a) (Submodule.Quotient.mk x) =
       Submodule.Quotient.mk ⟨(V.eTilde hq0 hq ^ a) x, pow_apply_mem hL a x x.2⟩ := by
@@ -89,6 +101,9 @@ lemma eTildeQ_pow_mk (hL : ∀ m ∈ L, V.eTilde hq0 hq m ∈ L) (c : A) (a : �
     congr 2
     rw [pow_succ', Module.End.mul_apply]
 
+/--
+@isnad1 id=eq.3h9v.s15.94ba6c84f0b5 from=translated src=- shape=d80b187a vocab=cc3ddd37
+-/
 lemma fTildeQ_pow_mk (hL : ∀ m ∈ L, V.fTilde hq0 hq m ∈ L) (c : A) (a : ℕ) (x : L) :
     (V.fTildeQ hq0 hq hL c ^ a) (Submodule.Quotient.mk x) =
       Submodule.Quotient.mk ⟨(V.fTilde hq0 hq ^ a) x, pow_apply_mem hL a x x.2⟩ := by
@@ -102,7 +117,9 @@ lemma fTildeQ_pow_mk (hL : ∀ m ∈ L, V.fTilde hq0 hq m ∈ L) (c : A) (a : �
 variable {hq0 hq} in
 /-- The lengths of the strings through an element of a crystal base at one colour
 ([HK] Prop. 4.2.11 (3), (4.9)): if `b ∈ B` is the class of `x ∈ L ∩ Mⁿ`, there are `k ≤ p` with
-`p = n + 2k` such that `ẽᵃ b = 0 ↔ a > k` and `f̃ᵃ b = 0 ↔ k + a > p`.-/
+`p = n + 2k` such that `ẽᵃ b = 0 ↔ a > k` and `f̃ᵃ b = 0 ↔ k + a > p`.
+@isnad1 id=ex.8h10v.s17.263018a9eddd from=translated src=- shape=6a88ad5d vocab=c8674493
+-/
 theorem IsKashiwaraStable.exists_string_counts (hL : V.IsKashiwaraStable hq0 hq L) (c : A)
     (B : Set (L ⧸ (Ideal.span {c} • ⊤ : Submodule A L))) (hB0 : 0 ∉ B)
     (hBe : ∀ b ∈ B, V.eTildeQ hq0 hq hL.eTilde_mem c b ∈ B ∨

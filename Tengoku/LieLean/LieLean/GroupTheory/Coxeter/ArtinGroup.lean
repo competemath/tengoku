@@ -63,6 +63,9 @@ variable {M} {G : Type*} [Group G] (g : B → G)
     ((braidWord M i i').map g).prod = ((braidWord M i' i).map g).prod)
 
 include hg in
+/--
+@isnad1 id=eq.1h6v.s8.180086a1fa8e from=translated src=- shape=32563bc1 vocab=6c5f5b9b
+-/
 theorem lift_artinRelation (i i' : B) : FreeGroup.lift g (M.artinRelation i i') = 1 := by
   rw [artinRelation, map_mul, map_inv, mul_inv_eq_one, map_list_prod, map_list_prod,
     List.map_map, List.map_map]
@@ -82,11 +85,16 @@ def artinLift : M.ArtinGroup →* G :=
     rintro _ ⟨⟨i, i'⟩, rfl⟩
     exact lift_artinRelation g hg i i')
 
+/--
+@isnad1 id=eq.1h5v.s7.57b114dd6eae from=translated src=- shape=2c47df29 vocab=4d545a20
+-/
 @[simp]
 theorem artinLift_artinGenerator (i : B) : artinLift g hg (M.artinGenerator i) = g i :=
   PresentedGroup.toGroup.of _
 
-/-- Homomorphisms out of the Artin group are determined by the images of the generators.-/
+/-- Homomorphisms out of the Artin group are determined by the images of the generators.
+@isnad1 id=eq.1h5v.s8.1eab68c64fb2 from=translated src=- shape=61d4fb82 vocab=83f71059
+-/
 @[ext]
 theorem artinGroup_hom_ext {φ ψ : M.ArtinGroup →* G}
     (h : ∀ i, φ (M.artinGenerator i) = ψ (M.artinGenerator i)) : φ = ψ :=

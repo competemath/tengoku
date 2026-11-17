@@ -64,11 +64,16 @@ local prefix:100 "ℓ " => cs.length
 local prefix:100 "ris " => cs.rightInvSeq
 local prefix:100 "lis " => cs.leftInvSeq
 
+/--
+@isnad1 id=eq.0h6v.s6.1d1798290a93 from=translated src=- shape=1278724e vocab=33565f1e
+-/
 theorem rightInvSeq_cons (i : B) (ω : List B) :
     ris (i :: ω) = (π ω)⁻¹ * s i * π ω :: ris ω := rfl
 
 /-- Conjugating the right inversion sequence of `ω` by `π ω` gives its left inversion
-sequence.-/
+sequence.
+@isnad1 id=eq.0h5v.s8.c777e0bd6cb5 from=translated src=- shape=3c7e0ec2 vocab=ebef5631
+-/
 theorem map_conj_rightInvSeq (ω : List B) : (ris ω).map (MulAut.conj (π ω)) = lis ω := by
   induction ω with
   | nil => simp
@@ -81,17 +86,25 @@ theorem map_conj_rightInvSeq (ω : List B) : (ris ω).map (MulAut.conj (π ω)) 
       ext x
       simp [MulAut.conj_apply, mul_assoc]
 
-/-- If `π ω = 1`, the left and right inversion sequences of `ω` agree.-/
+/-- If `π ω = 1`, the left and right inversion sequences of `ω` agree.
+@isnad1 id=eq.1h5v.s5.35ad5ea2b934 from=translated src=- shape=0811d25f vocab=235ca906
+-/
 theorem rightInvSeq_eq_leftInvSeq_of_wordProd_eq_one {ω : List B} (h : π ω = 1) :
     ris ω = lis ω := by
   rw [← map_conj_rightInvSeq, h, map_one]
   simp
 
+/--
+@isnad1 id=eq.0h7v.s6.e31638d68348 from=translated src=- shape=fec9e8b3 vocab=79f1ddf2
+-/
 theorem wordProd_alternatingWord_two_mul (i i' : B) (m : ℕ) :
     π (alternatingWord i i' (2 * m)) = (s i * s i') ^ m := by
   rw [prod_alternatingWord_eq_mul_pow]
   simp
 
+/--
+@isnad1 id=eq.0h6v.s6.32abbd41c194 from=translated src=- shape=47c684f6 vocab=62762cd0
+-/
 theorem prod_map_alternatingWord_two_mul {G : Type*} [Monoid G] (f : B → G) (i i' : B) (m : ℕ) :
     ((alternatingWord i i' (2 * m)).map f).prod = (f i * f i') ^ m := by
   induction m with
@@ -105,7 +118,9 @@ section reflRep
 variable [DecidableEq W]
 
 /-- The number of occurrences of any element in the right inversion sequence of the braid word
-`(s s')^{m(s,s')}` is even.-/
+`(s s')^{m(s,s')}` is even.
+@isnad1 id=even.0h7v.s5.bfe62e94198c from=translated src=- shape=6f1e871c vocab=d3b39238
+-/
 theorem even_count_rightInvSeq_alternatingWord (i i' : B) (t : W) :
     Even ((ris (alternatingWord i i' (2 * M i i'))).count t) := by
   set p := M i i'
@@ -153,9 +168,15 @@ def reflPerm (i : B) : Equiv.Perm (W × ZMod 2) :=
       · simp only [h, add_assoc]
         split_ifs <;> simp [show (1 : ZMod 2) + 1 = 0 from rfl]
 
+/--
+@isnad1 id=eq.0h6v.s8.f19130bc46ca from=translated src=- shape=9b176c67 vocab=c2589649
+-/
 theorem reflPerm_apply (i : B) (x : W × ZMod 2) :
     cs.reflPerm i x = (s i * x.1 * s i, x.2 + if x.1 = s i then 1 else 0) := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.c24849f85996 from=translated src=- shape=bfa369f1 vocab=2cd87da1
+-/
 theorem prod_map_reflPerm_apply (ω : List B) (t : W) (ε : ZMod 2) :
     (ω.map cs.reflPerm).prod (t, ε) = (π ω * t * (π ω)⁻¹, ε + ((ris ω).count t : ZMod 2)) := by
   induction ω generalizing t ε with
@@ -174,6 +195,9 @@ theorem prod_map_reflPerm_apply (ω : List B) (t : W) (ε : ZMod 2) :
     · simp only [h]
       split_ifs <;> push_cast <;> ring
 
+/--
+@isnad1 id=isliftab.0h4v.s6.bad1e510f945 from=translated src=- shape=4e96aa09 vocab=40b5a377
+-/
 theorem isLiftable_reflPerm : M.IsLiftable cs.reflPerm := by
   intro i i'
   ext ⟨t, ε⟩ : 1
@@ -189,9 +213,15 @@ theorem isLiftable_reflPerm : M.IsLiftable cs.reflPerm := by
 (cf. [BB] Thm. 1.3.2, where it acts on `T × {±1}`).-/
 def reflRep : W →* Equiv.Perm (W × ZMod 2) := cs.lift ⟨cs.reflPerm, cs.isLiftable_reflPerm⟩
 
+/--
+@isnad1 id=eq.0h5v.s7.4b15e71bf25a from=translated src=- shape=e9284e3e vocab=ab4babe1
+-/
 theorem reflRep_simple (i : B) : cs.reflRep (s i) = cs.reflPerm i :=
   cs.lift_apply_simple cs.isLiftable_reflPerm i
 
+/--
+@isnad1 id=eq.0h5v.s7.2d87ec2a46be from=translated src=- shape=b8b6f1b9 vocab=82fe3884
+-/
 theorem reflRep_wordProd (ω : List B) : cs.reflRep (π ω) = (ω.map cs.reflPerm).prod := by
   rw [wordProd, map_list_prod, map_map]
   congr 1
@@ -202,29 +232,46 @@ sequence of any word for `w`. [BB] §1.3 count occurrences in left inversion seq
 ((1.13), (1.17)), so `(-1)^{n(w, t)}` is their `η(w⁻¹; t)` (compare `reflRep_apply` with (1.18)).-/
 def inversionParity (w t : W) : ZMod 2 := (cs.reflRep w (t, 0)).2
 
+/--
+@isnad1 id=eq.0h6v.s6.4b03947b8843 from=translated src=- shape=53df9b11 vocab=a3c290a8
+-/
 theorem inversionParity_wordProd (ω : List B) (t : W) :
     cs.inversionParity (π ω) t = (ris ω).count t := by
   simp [inversionParity, reflRep_wordProd, prod_map_reflPerm_apply]
 
+/--
+@isnad1 id=eq.0h7v.s8.abd3646e67f7 from=translated src=- shape=9174cbf2 vocab=bddf9d4b
+-/
 theorem reflRep_apply (w t : W) (ε : ZMod 2) :
     cs.reflRep w (t, ε) = (w * t * w⁻¹, ε + cs.inversionParity w t) := by
   obtain ⟨ω, -, rfl⟩ := cs.exists_isReduced w
   rw [inversionParity_wordProd, reflRep_wordProd, prod_map_reflPerm_apply]
 
+/--
+@isnad1 id=eq.0h5v.s6.7c12a381eb6b from=translated src=- shape=ecfe1c46 vocab=0448854b
+-/
 theorem inversionParity_one (t : W) : cs.inversionParity 1 t = 0 := by
   simp [inversionParity]
 
-/-- The cocycle property of `n`.-/
+/-- The cocycle property of `n`.
+@isnad1 id=eq.0h7v.s7.eb2b9d3f16f1 from=translated src=- shape=f89e2569 vocab=987e162d
+-/
 theorem inversionParity_mul (u v t : W) :
     cs.inversionParity (u * v) t = cs.inversionParity v t + cs.inversionParity u (v * t * v⁻¹) := by
   have := cs.reflRep_apply (u * v) t 0
   rw [map_mul, Equiv.Perm.mul_apply, reflRep_apply, reflRep_apply] at this
   simpa using (congrArg Prod.snd this).symm
 
+/--
+@isnad1 id=eq.0h6v.s7.87d01d7ae1d1 from=translated src=- shape=1cf15f9e vocab=336760d7
+-/
 theorem inversionParity_simple (i : B) (t : W) :
     cs.inversionParity (s i) t = if t = s i then 1 else 0 := by
   simp [inversionParity, reflRep_simple, reflPerm_apply]
 
+/--
+@isnad1 id=eq.1h5v.s6.0f33342032e3 from=translated src=- shape=10b4a512 vocab=d53cfd61
+-/
 theorem inversionParity_self {t : W} (ht : cs.IsReflection t) : cs.inversionParity t t = 1 := by
   obtain ⟨u, i, rfl⟩ := ht
   have h₁ := cs.inversionParity_mul (u * s i) u⁻¹ (u * s i * u⁻¹)
@@ -239,12 +286,18 @@ theorem inversionParity_self {t : W} (ht : cs.IsReflection t) : cs.inversionPari
   rw [h₁, h₂]
   linear_combination -h₃
 
+/--
+@isnad1 id=eq.1h6v.s7.3dcab70d07df from=translated src=- shape=f2924845 vocab=3ed7be84
+-/
 theorem inversionParity_mul_self {t : W} (ht : cs.IsReflection t) (w : W) :
     cs.inversionParity (w * t) t = 1 + cs.inversionParity w t := by
   rw [inversionParity_mul, inversionParity_self cs ht]
   congr 2
   group
 
+/--
+@isnad1 id=iff.1h6v.s6.57e3a797311c from=translated src=- shape=28039c08 vocab=4ee831e9
+-/
 theorem inversionParity_eq_one_iff {ω : List B} (hω : cs.IsReduced ω) (t : W) :
     cs.inversionParity (π ω) t = 1 ↔ t ∈ ris ω := by
   rw [inversionParity_wordProd, ← List.count_pos_iff]
@@ -255,7 +308,9 @@ end reflRep
 
 /-- The strong exchange condition: for a reduced word `ω`, the right inversions of `π ω` are
 exactly the entries of the right inversion sequence of `ω` ([BB] Cor. 1.4.4,
-[HumC] §5.8).-/
+[HumC] §5.8).
+@isnad1 id=iff.1h6v.s5.055c491b864f from=translated src=- shape=1e2527ec vocab=0719ccd0
+-/
 theorem mem_rightInvSeq_iff {ω : List B} (hω : cs.IsReduced ω) {t : W} :
     t ∈ ris ω ↔ cs.IsRightInversion (π ω) t := by
   classical
@@ -275,7 +330,9 @@ theorem mem_rightInvSeq_iff {ω : List B} (hω : cs.IsReduced ω) {t : W} :
 
 /-- The strong exchange condition: if `ω` is reduced and `t` is a reflection with
 `ℓ(π ω * t) < ℓ(π ω)`, then `π ω * t` is obtained from `ω` by deleting a letter
-([BB] Thm. 1.4.3).-/
+([BB] Thm. 1.4.3).
+@isnad1 id=ex.2h6v.s7.b43934131b4f from=translated src=- shape=150516c5 vocab=855d00a0
+-/
 theorem exists_mul_eq_wordProd_eraseIdx {ω : List B} (hω : cs.IsReduced ω) {t : W}
     (ht : cs.IsRightInversion (π ω) t) :
     ∃ (j : ℕ) (hj : j < ω.length), t = (ris ω)[j]'(by simpa using hj) ∧
@@ -285,7 +342,9 @@ theorem exists_mul_eq_wordProd_eraseIdx {ω : List B} (hω : cs.IsReduced ω) {t
   rw [← cs.wordProd_mul_getD_rightInvSeq, List.getD_eq_getElem]
 
 /-- If `ℓ(s w t) = ℓ(w)` and `ℓ(s w) = ℓ(w t)` for simple reflections `s = sᵢ`, `t = sⱼ`, then
-`s w = w t` ([GP] Lemma 1.2.6; the proof uses the exchange condition).-/
+`s w = w t` ([GP] Lemma 1.2.6; the proof uses the exchange condition).
+@isnad1 id=eq.2h7v.s7.27154bc3e5d2 from=translated src=- shape=1ba3fcdb vocab=45d3276f
+-/
 theorem simple_mul_eq_mul_simple {i j : B} {w : W} (h₁ : ℓ (s i * w * s j) = ℓ w)
     (h₂ : ℓ (s i * w) = ℓ (w * s j)) : s i * w = w * s j := by
   -- First the case `ℓ(s w) > ℓ(w)`.
@@ -320,7 +379,9 @@ theorem simple_mul_eq_mul_simple {i j : B} {w : W} (h₁ : ℓ (s i * w * s j) =
 /-! ### Induction on the length -/
 
 /-- Induction along reduced words, adding simple reflections on the right: a property that holds
-for `1` and passes from `w` to `w sᵢ` whenever `ℓ(w sᵢ) > ℓ(w)` holds for all `w`.-/
+for `1` and passes from `w` to `w sᵢ` whenever `ℓ(w sᵢ) > ℓ(w)` holds for all `w`.
+@isnad1 id=var.0h8v.s6.7dc592aff5bf from=translated src=- shape=bb83a583 vocab=17d9ffd0
+-/
 theorem induction_mul_simple {p : W → Prop} (one : p 1)
     (mul_simple : ∀ w i, ℓ w < ℓ (w * s i) → p w → p (w * s i)) (w : W) : p w := by
   induction h : ℓ w using Nat.strong_induction_on generalizing w with
@@ -335,7 +396,9 @@ theorem induction_mul_simple {p : W → Prop} (one : p 1)
     exact hi
 
 /-- Induction along reduced words, adding simple reflections on the left: a property that holds
-for `1` and passes from `w` to `sᵢ w` whenever `ℓ(sᵢ w) > ℓ(w)` holds for all `w`.-/
+for `1` and passes from `w` to `sᵢ w` whenever `ℓ(sᵢ w) > ℓ(w)` holds for all `w`.
+@isnad1 id=var.0h8v.s6.2d633859d040 from=translated src=- shape=a00c2ae1 vocab=17d9ffd0
+-/
 theorem induction_simple_mul {p : W → Prop} (one : p 1)
     (simple_mul : ∀ w i, ℓ w < ℓ (s i * w) → p w → p (s i * w)) (w : W) : p w := by
   induction h : ℓ w using Nat.strong_induction_on generalizing w with

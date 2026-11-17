@@ -53,7 +53,9 @@ theorem _root_.MvPolynomial.eq_zero_of_eval_int_eq_zero [Finite ι] (P : MvPolyn
 
 /-- **Density of integral points** ([HumO] §4.7): if `A + ∑ⱼ yⱼ Bⱼ` is not injective at every
 integral point `y` where a fixed nonzero polynomial `D` does not vanish, then it is not injective
-at any point `y ∈ K^ι`.-/
+at any point `y ∈ K^ι`.
+@isnad1 id=not.2h8v.s10.906ed92dd4c4 from=translated src=- shape=7218a6ad vocab=34e76698
+-/
 theorem not_injective_add_sum_smul_of_forall_int (A : N →ₗ[K] V) (B : ι → N →ₗ[K] V)
     {D : MvPolynomial ι K} (hD : D ≠ 0)
     (h : ∀ y : ι → ℤ, eval (fun j ↦ (y j : K)) D ≠ 0 →

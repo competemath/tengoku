@@ -55,10 +55,16 @@ variable (R) in
 def weightProj (ν : X →₀ ℕ) : FreeAlgebra R X →ₗ[R] FreeAlgebra R X :=
   (wordBasis R X).constr R fun w ↦ if LusztigF.wordWeight w = ν then wordBasis R X w else 0
 
+/--
+@isnad1 id=eq.0h4v.s9.09817b62e2b7 from=translated src=- shape=3709edae vocab=7992fe4d
+-/
 lemma weightProj_wordBasis (ν : X →₀ ℕ) (w : List X) :
     weightProj R ν (wordBasis R X w) = if LusztigF.wordWeight w = ν then wordBasis R X w else 0 :=
   (wordBasis R X).constr_basis R _ w
 
+/--
+@isnad1 id=eq.1h5v.s8.a0c6858432f2 from=translated src=- shape=a51457c9 vocab=1ae966f4
+-/
 lemma weightProj_of_mem {ν μ : X →₀ ℕ} {x : FreeAlgebra R X} (hx : x ∈ wordSpan R μ) :
     weightProj R ν x = if μ = ν then x else 0 := by
   induction hx using wordSpan_induction with
@@ -67,10 +73,16 @@ lemma weightProj_of_mem {ν μ : X →₀ ℕ} {x : FreeAlgebra R X} (hx : x ∈
   | add y z _ _ hy hz => rw [map_add, hy, hz]; split_ifs <;> simp
   | smul c y _ hy => rw [map_smul, hy]; split_ifs <;> simp
 
+/--
+@isnad1 id=eq.1h4v.s8.f053bbdaa12e from=translated src=- shape=5593f5ae vocab=955133e5
+-/
 lemma weightProj_self {ν : X →₀ ℕ} {x : FreeAlgebra R X} (hx : x ∈ wordSpan R ν) :
     weightProj R ν x = x := by
   simp [weightProj_of_mem hx]
 
+/--
+@isnad1 id=mem.0h4v.s8.4d34eb6c415c from=translated src=- shape=4e69d004 vocab=955133e5
+-/
 lemma weightProj_mem (ν : X →₀ ℕ) (x : FreeAlgebra R X) : weightProj R ν x ∈ wordSpan R ν := by
   induction x using induction_wordBasis with
   | zero => simp
@@ -83,11 +95,17 @@ lemma weightProj_mem (ν : X →₀ ℕ) (x : FreeAlgebra R X) : weightProj R ν
     · exact zero_mem _
 
 omit [DecidableEq X] in
+/--
+@isnad1 id=iff.0h4v.s6.7be43394991e from=translated src=- shape=f90f3e7f vocab=55eea248
+-/
 lemma wordWeight_add_eq_iff {a b ν : X →₀ ℕ} : a + b = ν ↔ a ≤ ν ∧ b = ν - a := by
   constructor
   · rintro rfl; exact ⟨le_self_add, (add_tsub_cancel_left a b).symm⟩
   · rintro ⟨h, rfl⟩; exact add_tsub_cancel_of_le h
 
+/--
+@isnad1 id=eq.0h5v.s9.7480d90c4ee8 from=translated src=- shape=64a45728 vocab=a41993bf
+-/
 lemma weightProj_wordBasis_mul (ν : X →₀ ℕ) (a : List X) (x : FreeAlgebra R X) :
     weightProj R ν (wordBasis R X a * x) =
       if LusztigF.wordWeight a ≤ ν then
@@ -109,6 +127,9 @@ lemma weightProj_wordBasis_mul (ν : X →₀ ℕ) (a : List X) (x : FreeAlgebra
         fun h ↦ h1 (wordWeight_add_eq_iff.1 h).1
       simp [h, h1]
 
+/--
+@isnad1 id=eq.0h5v.s9.78318ec71c37 from=translated src=- shape=7972d036 vocab=a41993bf
+-/
 lemma weightProj_mul_wordBasis (ν : X →₀ ℕ) (b : List X) (x : FreeAlgebra R X) :
     weightProj R ν (x * wordBasis R X b) =
       if LusztigF.wordWeight b ≤ ν then
@@ -131,6 +152,9 @@ lemma weightProj_mul_wordBasis (ν : X →₀ ℕ) (b : List X) (x : FreeAlgebra
         fun h ↦ h1 (wordWeight_add_eq_iff.1 h).1
       simp [h, h1]
 
+/--
+@isnad1 id=eq.1h6v.s8.5b4cdb550dc1 from=translated src=- shape=3ec31beb vocab=cfc40f71
+-/
 lemma weightProj_mul_ι_pow {ν : X →₀ ℕ} {i : X} {N : ℕ} (h : ν i < N)
     (x : FreeAlgebra R X) : weightProj R ν (x * ι R i ^ N) = 0 := by
   have hN : ι R i ^ N = wordBasis R X (List.replicate N i) := by simp
@@ -162,12 +186,18 @@ parameter `qᵢ`, `m = 1 - aᵢⱼ`.-/
 def serreWord (i j : I) : LusztigF K I :=
   qSerre (q i) (serreExp D i j) (θ K i) (θ K j)
 
+/--
+@isnad1 id=eq.0h3v.s5.b0a77f8913ac from=translated src=- shape=2ebe2f89 vocab=3f416a15
+-/
 lemma wordWeight_replicate (N : ℕ) (i : I) :
     wordWeight (List.replicate N i) = N • Finsupp.single i 1 := by
   induction N with
   | zero => simp
   | succ N ih => rw [List.replicate_succ, wordWeight_cons, ih, succ_nsmul, add_comm]
 
+/--
+@isnad1 id=mem.0h6v.s7.54e6db67b36c from=translated src=- shape=075d02eb vocab=6df57d0b
+-/
 lemma serreWord_mem (i j : I) : serreWord D q i j ∈ weightSpace K (serreWeight D i j) := by
   rw [serreWord, qSerre]
   refine Submodule.sum_mem _ fun r hr ↦ Submodule.smul_mem _ _ ?_
@@ -197,20 +227,32 @@ def serreIndices (ν : I →₀ ℕ) : Set (List I × I × I × List I) :=
 def serreSpan (ν : I →₀ ℕ) : Submodule K (LusztigF K I) :=
   Submodule.span K (serreProduct D q '' serreIndices D ν)
 
+/--
+@isnad1 id=mem.0h5v.s7.606ec781895a from=translated src=- shape=51d6135c vocab=17089660
+-/
 lemma serreProduct_mem (g : List I × I × I × List I) :
     serreProduct D q g ∈ weightSpace K (serreIndexWeight D g) :=
   mul_mem_weightSpace (mul_mem_weightSpace (wordBasis_mem_wordSpan g.1) (serreWord_mem D q _ _))
     (wordBasis_mem_wordSpan g.2.2.2)
 
+/--
+@isnad1 id=le.0h5v.s8.78fdf2a19962 from=translated src=- shape=0eb66bb9 vocab=92615475
+-/
 lemma serreSpan_le_weightSpace (ν : I →₀ ℕ) : serreSpan D q ν ≤ weightSpace K ν := by
   rw [serreSpan, Submodule.span_le]
   rintro _ ⟨g, ⟨_, hg⟩, rfl⟩
   exact hg ▸ serreProduct_mem D q g
 
+/--
+@isnad1 id=mem.1h5v.s8.d57cd51496a2 from=translated src=- shape=95c61cda vocab=62042d76
+-/
 lemma serreProduct_mem_serreSpan {g : List I × I × I × List I} (hg : g.2.1 ≠ g.2.2.1) :
     serreProduct D q g ∈ serreSpan D q (serreIndexWeight D g) :=
   Submodule.subset_span ⟨g, ⟨hg, rfl⟩, rfl⟩
 
+/--
+@isnad1 id=mem.1h7v.s9.dbf833cc0876 from=translated src=- shape=0219ee78 vocab=18a68fbc
+-/
 lemma wordBasis_mul_mem_serreSpan (a : List I) {μ : I →₀ ℕ} {x : LusztigF K I}
     (hx : x ∈ serreSpan D q μ) : wordBasis K I a * x ∈ serreSpan D q (wordWeight a + μ) := by
   induction hx using Submodule.span_induction with
@@ -228,6 +270,9 @@ lemma wordBasis_mul_mem_serreSpan (a : List I) {μ : I →₀ ℕ} {x : LusztigF
   | add y z _ _ hy hz => rw [mul_add]; exact add_mem hy hz
   | smul c y _ hy => rw [mul_smul_comm]; exact Submodule.smul_mem _ _ hy
 
+/--
+@isnad1 id=mem.1h7v.s9.d61f8d4c5aef from=translated src=- shape=c268f46c vocab=18a68fbc
+-/
 lemma mul_wordBasis_mem_serreSpan (b : List I) {μ : I →₀ ℕ} {x : LusztigF K I}
     (hx : x ∈ serreSpan D q μ) : x * wordBasis K I b ∈ serreSpan D q (μ + wordWeight b) := by
   induction hx using Submodule.span_induction with
@@ -249,7 +294,9 @@ variable [DecidableEq I]
 
 /-- **The weight components of the Serre ideal.** The weight-`ν` component of any element of the
 two-sided ideal generated by the Serre elements `sᵢⱼ` (`i ≠ j`) is a linear combination of the
-products `a sᵢⱼ b` of weight `ν`.-/
+products `a sᵢⱼ b` of weight `ν`.
+@isnad1 id=mem.1h6v.s9.cebaa6dd32f0 from=translated src=- shape=b63c1771 vocab=8c1601fb
+-/
 theorem weightProj_mem_serreSpan {x : LusztigF K I}
     (hx : x ∈ TwoSidedIdeal.span {y | ∃ i j, i ≠ j ∧ serreWord D q i j = y}) (ν : I →₀ ℕ) :
     weightProj K ν x ∈ serreSpan D q ν := by

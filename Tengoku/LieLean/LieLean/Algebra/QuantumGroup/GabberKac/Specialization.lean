@@ -56,7 +56,9 @@ private lemma mulVec_map_of_eq {R K ι n : Type*} [CommRing R] [Field K] [Fintyp
 commutative ring `R`, and let `φ₁ : R → ℚ`, `φ₂ : R → F` be ring homomorphisms, `F` a field and
 `φ₂` injective. If the vectors `φ₁ ∘ p a` are linearly independent over `ℚ`, then the vectors
 `φ₂ ∘ p a` are linearly independent over `F`. (The Gram determinant `det(Mᵀ M) ∈ R` of the matrix
-of the `p a` is nonzero after `φ₁`, hence nonzero, hence nonzero after `φ₂`.)-/
+of the `p a` is nonzero after `φ₁`, hence nonzero, hence nonzero after `φ₂`.)
+@isnad1 id=linearin.2h7v.s8.c85e3bc89be9 from=translated src=- shape=c9afea93 vocab=5d93c7f7
+-/
 theorem LinearIndependent.of_comp_ratHom {R F ι n : Type*} [CommRing R] [Field F] [Finite ι]
     [Finite n] (φ₁ : R →+* ℚ) (φ₂ : R →+* F) (hφ₂ : Function.Injective φ₂)
     (p : ι → n → R) (h : LinearIndependent ℚ fun a ↦ φ₁ ∘ p a) :
@@ -100,7 +102,9 @@ theorem LinearIndependent.of_comp_ratHom {R F ι n : Type*} [CommRing R] [Field 
 
 /-! ### Evaluation of Laurent polynomials at a transcendental element -/
 
-/-- Evaluation of `ℚ[T, T⁻¹]` at a transcendental element `v` of a field `k` is injective.-/
+/-- Evaluation of `ℚ[T, T⁻¹]` at a transcendental element `v` of a field `k` is injective.
+@isnad1 id=injectiv.2h2v.s7.280dc7ca5bb8 from=translated src=- shape=c106c041 vocab=50bf1d22
+-/
 theorem LaurentPolynomial.eval₂_injective_of_transcendental {k : Type*} [Field k] [CharZero k]
     {v : k} (hv : Transcendental ℚ v) (hv0 : v ≠ 0) :
     Function.Injective (LaurentPolynomial.eval₂ (algebraMap ℚ k) (Units.mk0 v hv0)) := by

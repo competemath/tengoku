@@ -50,16 +50,25 @@ noncomputable def mapAddHom (q' : S) : IwahoriHeckeAlgebra cs q →+ IwahoriHeck
     ((Finsupp.mapRange.addMonoidHom f.toAddMonoidHom).comp
       (toFinsupp cs q).toAddEquiv.toAddMonoidHom)
 
+/--
+@isnad1 id=eq.0h11v.s9.af62ba3c0cd0 from=translated src=- shape=942f3095 vocab=36506d58
+-/
 theorem mapAddHom_smul (q' : S) (a : R) (h : IwahoriHeckeAlgebra cs q) :
     mapAddHom cs q f q' (a • h) = f a • mapAddHom cs q f q' h := by
   apply (toFinsupp cs q').injective
   ext w
   simp [mapAddHom]
 
+/--
+@isnad1 id=eq.0h10v.s8.f53f137ef0e7 from=translated src=- shape=8effc354 vocab=c38b60ff
+-/
 theorem mapAddHom_T (q' : S) (w : W) : mapAddHom cs q f q' (T cs q w) = T cs q' w := by
   apply (toFinsupp cs q').injective
   simp [mapAddHom, toFinsupp_T]
 
+/--
+@isnad1 id=eq.1h11v.s10.77f253140b07 from=translated src=- shape=7f2e8ad7 vocab=5b990925
+-/
 theorem mapAddHom_mul_T_simple (hq : f q = q') (h : IwahoriHeckeAlgebra cs q) (i : B) :
     mapAddHom cs q f q' (h * T cs q (s i)) =
       mapAddHom cs q f q' h * mapAddHom cs q f q' (T cs q (s i)) := by
@@ -81,6 +90,9 @@ noncomputable def map (hq : f q = q') : IwahoriHeckeAlgebra cs q →+* IwahoriHe
     (by rw [← T_one, ← T_one]; exact mapAddHom_T cs q f q' 1)
     (mapAddHom_mul_T_simple cs q f hq)
 
+/--
+@isnad1 id=eq.1h10v.s8.c33a347c3f0f from=translated src=- shape=5474e4a3 vocab=5d89d726
+-/
 @[simp]
 theorem map_T (hq : f q = q') (w : W) : map cs q f hq (T cs q w) = T cs q' w :=
   mapAddHom_T cs q f q' w
@@ -89,7 +101,9 @@ end map
 
 section one
 
-/-- For `q = 1`, `T_x T_y = T_{xy}` for all `x, y`.-/
+/-- For `q = 1`, `T_x T_y = T_{xy}` for all `x, y`.
+@isnad1 id=eq.0h7v.s8.52fce0db84a6 from=translated src=- shape=0dacde38 vocab=a70db26b
+-/
 theorem T_mul_T_of_eq_one (x y : W) : T cs (1 : R) x * T cs (1 : R) y = T cs (1 : R) (x * y) := by
   induction y using cs.induction_mul_simple with
   | one => simp
@@ -105,6 +119,9 @@ noncomputable def THom : W →* IwahoriHeckeAlgebra cs (1 : R) where
   map_one' := T_one cs 1
   map_mul' x y := (T_mul_T_of_eq_one cs x y).symm
 
+/--
+@isnad1 id=eq.0h6v.s11.310edf2b2e44 from=translated src=- shape=8eee9ef7 vocab=f4162bee
+-/
 theorem lift_THom_ofCoeff (x : W →₀ R) :
     MonoidAlgebra.lift R (IwahoriHeckeAlgebra cs (1 : R)) W (THom cs) (MonoidAlgebra.ofCoeff x) =
       (toFinsupp cs 1).symm x := by
@@ -128,6 +145,9 @@ noncomputable def equivMonoidAlgebra : IwahoriHeckeAlgebra cs (1 : R) ≃ₐ[R] 
     · rw [h]
       rfl).symm
 
+/--
+@isnad1 id=eq.0h6v.s9.27fd3a4eb591 from=translated src=- shape=c2d27f74 vocab=89e22668
+-/
 @[simp]
 theorem equivMonoidAlgebra_T (w : W) :
     equivMonoidAlgebra cs (T cs (1 : R) w) = MonoidAlgebra.of R W w := by
@@ -140,6 +160,9 @@ section Laurent
 
 open LaurentPolynomial
 
+/--
+@isnad1 id=eq.0h1v.s7.0f6cda273a91 from=translated src=- shape=f889febc vocab=fc48f6f2
+-/
 theorem eval₂_one_T_two : eval₂ (RingHom.id R) 1 (LaurentPolynomial.T 2 : R[T;T⁻¹]) = 1 := by
   simp [eval₂_T]
 
@@ -151,6 +174,9 @@ noncomputable def specializeOne :
   (equivMonoidAlgebra cs).toRingEquiv.toRingHom.comp
     (map cs _ (eval₂ (RingHom.id R) 1) eval₂_one_T_two)
 
+/--
+@isnad1 id=eq.0h6v.s9.3147cd07b0ee from=translated src=- shape=7ff89443 vocab=d729dd78
+-/
 @[simp]
 theorem specializeOne_T (w : W) :
     specializeOne cs (IwahoriHeckeAlgebra.T cs (LaurentPolynomial.T 2 : R[T;T⁻¹]) w) =

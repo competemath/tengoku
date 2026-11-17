@@ -52,7 +52,9 @@ variable {ι K H : Type*} [Fintype ι] [DecidableEq ι] [Field K] [AddCommGroup 
 
 namespace SuperEnveloping
 
-/-- Induction over `U(G̃(A, τ))`: it is generated as an algebra by the `eᵢ`, the `fᵢ` and `𝔥`.-/
+/-- Induction over `U(G̃(A, τ))`: it is generated as an algebra by the `eᵢ`, the `fᵢ` and `𝔥`.
+@isnad1 id=var.0h14v.s9.0476e477e306 from=translated src=- shape=3b267686 vocab=704a6188
+-/
 theorem induction {C : P.SuperEnveloping p → Prop} (algebraMap : ∀ c : K, C (algebraMap K _ c))
     (e : ∀ i, C (e P p i)) (f : ∀ i, C (f P p i)) (h : ∀ a, C (h P p a))
     (add : ∀ x y, C x → C y → C (x + y)) (mul : ∀ x y, C x → C y → C (x * y))
@@ -74,12 +76,21 @@ variable (Λ : Dual K H)
 def vermaIdeal : Submodule (P.SuperEnveloping p) (P.SuperEnveloping p) :=
   Submodule.span _ (Set.range (e P p) ∪ Set.range fun a ↦ h P p a - algebraMap K _ (Λ a))
 
+/--
+@isnad1 id=mem.0h8v.s8.a27641a4e75d from=translated src=- shape=e0760db2 vocab=2c8466ef
+-/
 lemma e_mem_vermaIdeal (i : ι) : e P p i ∈ vermaIdeal P p Λ :=
   Submodule.subset_span (Or.inl ⟨i, rfl⟩)
 
+/--
+@isnad1 id=mem.0h8v.s10.284ebe328ca8 from=translated src=- shape=8268aa6b vocab=d17c04da
+-/
 lemma h_sub_mem_vermaIdeal (a : H) : h P p a - algebraMap K _ (Λ a) ∈ vermaIdeal P p Λ :=
   Submodule.subset_span (Or.inr ⟨a, rfl⟩)
 
+/--
+@isnad1 id=mem.1h9v.s10.2dcf5c871db2 from=translated src=- shape=0073ea30 vocab=ad4feb3b
+-/
 lemma mul_mem_vermaIdeal (u : P.SuperEnveloping p) {x : P.SuperEnveloping p}
     (hx : x ∈ vermaIdeal P p Λ) : u * x ∈ vermaIdeal P p Λ :=
   (vermaIdeal P p Λ).smul_mem u hx
@@ -89,6 +100,9 @@ lemma mul_mem_vermaIdeal (u : P.SuperEnveloping p) {x : P.SuperEnveloping p}
 def fSpan : Submodule K (P.SuperEnveloping p) :=
   LinearMap.range (fAlg P p).toLinearMap ⊔ (vermaIdeal P p Λ).restrictScalars K
 
+/--
+@isnad1 id=iff.0h8v.s10.004597330d41 from=translated src=- shape=b36c4c8e vocab=66de7aba
+-/
 lemma mem_fSpan_iff {u : P.SuperEnveloping p} :
     u ∈ fSpan P p Λ ↔ ∃ x, u - fAlg P p x ∈ vermaIdeal P p Λ := by
   rw [fSpan, Submodule.mem_sup]
@@ -98,13 +112,22 @@ lemma mem_fSpan_iff {u : P.SuperEnveloping p} :
   · rintro ⟨x, hx⟩
     exact ⟨_, ⟨x, rfl⟩, _, hx, add_sub_cancel _ _⟩
 
+/--
+@isnad1 id=mem.0h8v.s9.ad60c9352068 from=translated src=- shape=42b53569 vocab=790f2281
+-/
 lemma fAlg_mem_fSpan (x : FreeAlgebra K ι) : fAlg P p x ∈ fSpan P p Λ :=
   (mem_fSpan_iff P p Λ).2 ⟨x, by simp⟩
 
+/--
+@isnad1 id=mem.1h8v.s9.a9e01113fd71 from=translated src=- shape=a52927fe vocab=4eede506
+-/
 lemma mem_fSpan_of_mem {u : P.SuperEnveloping p} (hu : u ∈ vermaIdeal P p Λ) :
     u ∈ fSpan P p Λ :=
   Submodule.mem_sup_right hu
 
+/--
+@isnad1 id=mem.1h9v.s9.f1174b890347 from=translated src=- shape=b4f1981c vocab=eac8dfe9
+-/
 lemma f_mul_mem_fSpan (i : ι) {u : P.SuperEnveloping p} (hu : u ∈ fSpan P p Λ) :
     f P p i * u ∈ fSpan P p Λ := by
   obtain ⟨x, hx⟩ := (mem_fSpan_iff P p Λ).1 hu
@@ -112,13 +135,18 @@ lemma f_mul_mem_fSpan (i : ι) {u : P.SuperEnveloping p} (hu : u ∈ fSpan P p �
   rw [map_mul, fAlg_ι, ← mul_sub]
   exact mul_mem_vermaIdeal P p Λ _ hx
 
+/--
+@isnad1 id=mem.0h8v.s9.e2738d0fa33b from=translated src=- shape=4357fc09 vocab=223cecc0
+-/
 lemma h_mem_fSpan (a : H) : h P p a ∈ fSpan P p Λ := by
   refine (mem_fSpan_iff P p Λ).2 ⟨algebraMap K _ (Λ a), ?_⟩
   rw [AlgHom.commutes]
   exact h_sub_mem_vermaIdeal P p Λ a
 
 /-- The left action of the generators `eᵢ` and `h` preserves `fAlg(T(V)) + vermaIdeal Λ` on the
-image of the words.-/
+image of the words.
+@isnad1 id=and.0h8v.s10.be7740d0dcae from=translated src=- shape=81485d74 vocab=9cf09d55
+-/
 lemma gen_mul_fAlg_word_mem (w : List ι) :
     (∀ i, e P p i * fAlg P p (FreeAlgebra.word w) ∈ fSpan P p Λ) ∧
       ∀ a, h P p a * fAlg P p (FreeAlgebra.word w) ∈ fSpan P p Λ := by
@@ -138,6 +166,9 @@ lemma gen_mul_fAlg_word_mem (w : List ι) :
       refine sub_mem (f_mul_mem_fSpan P p Λ j (ih.2 a)) (Submodule.smul_mem _ _ ?_)
       exact f_mul_mem_fSpan P p Λ j (fAlg_mem_fSpan P p Λ _)
 
+/--
+@isnad1 id=and.0h8v.s10.517485945249 from=translated src=- shape=e6a7c0b6 vocab=4f667f9a
+-/
 lemma gen_mul_fAlg_mem (x : FreeAlgebra K ι) :
     (∀ i, e P p i * fAlg P p x ∈ fSpan P p Λ) ∧ ∀ a, h P p a * fAlg P p x ∈ fSpan P p Λ := by
   have hx : x ∈ Submodule.span K (Set.range (FreeAlgebra.basisFreeMonoid K ι)) := by
@@ -155,7 +186,9 @@ lemma gen_mul_fAlg_mem (x : FreeAlgebra K ι) :
     simp only [map_smul, mul_smul_comm]
     exact ⟨fun i ↦ Submodule.smul_mem _ c (hy.1 i), fun a ↦ Submodule.smul_mem _ c (hy.2 a)⟩
 
-/-- `fAlg(T(V)) + vermaIdeal Λ` is a left ideal.-/
+/-- `fAlg(T(V)) + vermaIdeal Λ` is a left ideal.
+@isnad1 id=mem.1h9v.s9.ef75bb120c97 from=translated src=- shape=804fb5a2 vocab=4318de52
+-/
 lemma mul_mem_fSpan (u : P.SuperEnveloping p) {v : P.SuperEnveloping p}
     (hv : v ∈ fSpan P p Λ) : u * v ∈ fSpan P p Λ := by
   induction u using induction generalizing v with
@@ -180,7 +213,9 @@ lemma mul_mem_fSpan (u : P.SuperEnveloping p) {v : P.SuperEnveloping p}
   | mul x y hx hy => rw [mul_assoc]; exact hx (hy hv)
 
 /-- Every element of `U(G̃(A, τ))` is congruent modulo `vermaIdeal Λ` to an element of the
-subalgebra generated by the `fᵢ`.-/
+subalgebra generated by the `fᵢ`.
+@isnad1 id=ex.0h8v.s9.ee14d5845a4a from=translated src=- shape=c7811818 vocab=588eb932
+-/
 theorem exists_sub_fAlg_mem_vermaIdeal (u : P.SuperEnveloping p) :
     ∃ x, u - fAlg P p x ∈ vermaIdeal P p Λ := by
   rw [← mem_fSpan_iff, ← mul_one u]
@@ -194,14 +229,23 @@ namespace Verma
 /-- The highest weight vector `v_Λ`, the class of `1`.-/
 def hwv : Verma P p Λ := Submodule.Quotient.mk 1
 
+/--
+@isnad1 id=eq.0h8v.s9.bf0c1b6d86f7 from=translated src=- shape=c0d0a2ea vocab=e97ddb8e
+-/
 lemma mk_eq_smul_hwv (u : P.SuperEnveloping p) :
     (Submodule.Quotient.mk u : Verma P p Λ) = u • hwv P p Λ := by
   rw [hwv, ← Submodule.Quotient.mk_smul, smul_eq_mul, mul_one]
 
+/--
+@isnad1 id=eq.0h8v.s8.f5d10431b0ea from=translated src=- shape=ddfb0d7d vocab=cdfdefc0
+-/
 lemma e_smul_hwv (i : ι) : e P p i • hwv P p Λ = 0 := by
   rw [← mk_eq_smul_hwv, Submodule.Quotient.mk_eq_zero]
   exact e_mem_vermaIdeal P p Λ i
 
+/--
+@isnad1 id=eq.0h8v.s9.a9a47dd36fff from=translated src=- shape=2ae29d58 vocab=a89827aa
+-/
 lemma h_smul_hwv (a : H) : h P p a • hwv P p Λ = Λ a • hwv P p Λ := by
   rw [← mk_eq_smul_hwv, hwv, ← Submodule.Quotient.mk_smul, ← sub_eq_zero,
     ← Submodule.Quotient.mk_sub, Submodule.Quotient.mk_eq_zero, Algebra.smul_def, mul_one]
@@ -212,7 +256,9 @@ section lift
 variable {M : Type*} [AddCommGroup M] [Module (P.SuperEnveloping p) M] (m : M)
 
 /-- The kernel of `u ↦ u • m` contains `vermaIdeal Λ` when `m` is killed by the `eᵢ` and has
-weight `Λ`.-/
+weight `Λ`.
+@isnad1 id=le.2h9v.s11.bf14c1065c2e from=translated src=- shape=d503a108 vocab=8470a613
+-/
 lemma vermaIdeal_le_ker (he : ∀ i, e P p i • m = 0)
     (hh : ∀ a, h P p a • m = algebraMap K (P.SuperEnveloping p) (Λ a) • m) :
     vermaIdeal P p Λ ≤ LinearMap.ker (LinearMap.toSpanSingleton _ M m) := by
@@ -228,9 +274,15 @@ def lift (he : ∀ i, e P p i • m = 0)
     Verma P p Λ →ₗ[P.SuperEnveloping p] M :=
   (vermaIdeal P p Λ).liftQ (LinearMap.toSpanSingleton _ M m) (vermaIdeal_le_ker P p Λ m he hh)
 
+/--
+@isnad1 id=eq.2h10v.s11.0ae9fa0c75f7 from=translated src=- shape=6abd4525 vocab=344c41eb
+-/
 @[simp] lemma lift_mk (he hh) (u : P.SuperEnveloping p) :
     lift P p Λ m he hh (Submodule.Quotient.mk u) = u • m := rfl
 
+/--
+@isnad1 id=eq.2h9v.s11.8bafd9380344 from=translated src=- shape=00164d47 vocab=56a2abdc
+-/
 @[simp] lemma lift_hwv (he hh) : lift P p Λ m he hh (hwv P p Λ) = m := by
   simp [hwv]
 
@@ -240,9 +292,15 @@ end lift
 def toTensorAux : P.SuperEnveloping p →ₗ[K] FreeAlgebra K ι :=
   LinearMap.applyₗ (R := K) (1 : FreeAlgebra K ι) ∘ₗ (tensorRep P p Λ).toLinearMap
 
+/--
+@isnad1 id=eq.0h8v.s10.c52e58721638 from=translated src=- shape=7a9cbcc6 vocab=57a2080b
+-/
 @[simp] lemma toTensorAux_apply (u : P.SuperEnveloping p) :
     toTensorAux P p Λ u = tensorRep P p Λ u 1 := rfl
 
+/--
+@isnad1 id=le.0h7v.s9.6a935ab14193 from=translated src=- shape=226287ed vocab=2d6e9163
+-/
 lemma vermaIdeal_le_ker_toTensorAux :
     (vermaIdeal P p Λ).restrictScalars K ≤ LinearMap.ker (toTensorAux P p Λ) := by
   intro u hu
@@ -265,9 +323,15 @@ def toTensor : Verma P p Λ →ₗ[K] FreeAlgebra K ι :=
     (vermaIdeal_le_ker_toTensorAux P p Λ) ∘ₗ
       (Submodule.Quotient.restrictScalarsEquiv K (vermaIdeal P p Λ)).symm.toLinearMap
 
+/--
+@isnad1 id=eq.0h8v.s11.3aff2b3f2af9 from=translated src=- shape=b44197f7 vocab=d14efe07
+-/
 @[simp] lemma toTensor_mk (u : P.SuperEnveloping p) :
     toTensor P p Λ (Submodule.Quotient.mk u) = tensorRep P p Λ u 1 := rfl
 
+/--
+@isnad1 id=eq.0h8v.s10.a0be025e8ae8 from=translated src=- shape=dd160dec vocab=9cd091de
+-/
 lemma toTensor_mk_fAlg (x : FreeAlgebra K ι) :
     toTensor P p Λ (Submodule.Quotient.mk (fAlg P p x)) = x := by
   rw [toTensor_mk, tensorRep_fAlg_one]
@@ -285,13 +349,21 @@ def toTensorEquiv : Verma P p Λ ≃ₗ[K] FreeAlgebra K ι :=
     rw [hx, hx', toTensor_mk_fAlg, toTensor_mk_fAlg] at hvw
     rw [hx, hx', hvw]
 
+/--
+@isnad1 id=eq.0h8v.s11.b3ae7c250731 from=translated src=- shape=9f91c799 vocab=323827b9
+-/
 @[simp] lemma toTensorEquiv_mk (u : P.SuperEnveloping p) :
     toTensorEquiv P p Λ (Submodule.Quotient.mk u) = tensorRep P p Λ u 1 := rfl
 
+/--
+@isnad1 id=eq.0h7v.s10.792a81035b74 from=translated src=- shape=dad7cfbb vocab=a6fef542
+-/
 @[simp] lemma toTensorEquiv_hwv : toTensorEquiv P p Λ (hwv P p Λ) = 1 := by
   simp [hwv]
 
-/-- The map `T(V) → M(Λ)`, `x ↦ fAlg x • v_Λ`, is a linear isomorphism.-/
+/-- The map `T(V) → M(Λ)`, `x ↦ fAlg x • v_Λ`, is a linear isomorphism.
+@isnad1 id=eq.0h8v.s11.c5635de659db from=translated src=- shape=f7243c40 vocab=9aa8a8e5
+-/
 lemma toTensorEquiv_symm_apply (x : FreeAlgebra K ι) :
     (toTensorEquiv P p Λ).symm x = fAlg P p x • hwv P p Λ := by
   rw [LinearEquiv.symm_apply_eq, ← mk_eq_smul_hwv, toTensorEquiv_mk, tensorRep_fAlg_one]

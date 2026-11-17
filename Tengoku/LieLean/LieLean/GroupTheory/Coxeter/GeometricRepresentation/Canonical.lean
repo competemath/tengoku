@@ -54,7 +54,9 @@ noncomputable def rootChoice : GeometricParametric.RootChoice ℂ where
     simpa only [Nat.cast_mul, Nat.cast_ofNat] using
       (Complex.isPrimitiveRoot_exp (2 * m) (by omega)).eq_orderOf.symm
 
-/-- The canonical root equals exp(iπ/m), including the zero convention.-/
+/-- The canonical root equals exp(iπ/m), including the zero convention.
+@isnad1 id=eq.0h1v.s5.af7f0cd0fdb6 from=translated src=- shape=62d31f83 vocab=2a7b0440
+-/
 theorem rootChoice_root (m : ℕ) :
     rootChoice.root m = Complex.exp ((Real.pi / m : ℝ) * Complex.I) := by
   change Complex.exp (2 * Real.pi * Complex.I / (2 * m)) = _
@@ -62,7 +64,9 @@ theorem rootChoice_root (m : ℕ) :
   push_cast
   ring
 
-/-- Exact identification of the parametric coefficients with real cosine coefficients.-/
+/-- Exact identification of the parametric coefficients with real cosine coefficients.
+@isnad1 id=eq.0h1v.s3.6b813defabe3 from=translated src=- shape=3e51c941 vocab=2bc6909c
+-/
 theorem coeff_complex (m : ℕ) :
     GeometricParametric.coeff rootChoice m = (coeff m : ℂ) := by
   by_cases hm : m = 0
@@ -76,10 +80,14 @@ theorem coeff_complex (m : ℕ) :
     simp only [Real.cos_neg, Real.sin_neg, Complex.ofReal_neg, coeff]
     ring
 
-/-- The infinity coefficient is one, so the bilinear form entry is minus one.-/
+/-- The infinity coefficient is one, so the bilinear form entry is minus one.
+@isnad1 id=eq.0h0v.s3.97fad97ee494 from=translated src=- shape=1ac31801 vocab=0b850ed0
+-/
 @[simp] theorem coeff_zero : coeff 0 = 1 := by simp [coeff]
 
-/-- Diagonal normalization.-/
+/-- Diagonal normalization.
+@isnad1 id=eq.0h0v.s4.9b3ee67d3fc1 from=translated src=- shape=b5968027 vocab=9719a928
+-/
 @[simp] theorem coeff_one : coeff 1 = -1 := by simp [coeff]
 
 variable {B : Type*} (M : CoxeterMatrix B)
@@ -92,34 +100,46 @@ noncomputable def form (i : B) : (B →₀ ℝ) →ₗ[ℝ] ℝ :=
 noncomputable def reflection (i : B) : Module.End ℝ (B →₀ ℝ) :=
   LinearMap.id - (form M i).smulRight (Finsupp.single i 2)
 
-/-- Evaluation of the form on a basis vector.-/
+/-- Evaluation of the form on a basis vector.
+@isnad1 id=eq.0h5v.s6.b49b620d7fa8 from=translated src=- shape=b31832fb vocab=663ecbfd
+-/
 theorem form_single (i j : B) (a : ℝ) :
     form M i (Finsupp.single j a) = a * -coeff (M i j) := by
   simp [form, Finsupp.linearCombination_single]
 
-/-- Diagonal form evaluation.-/
+/-- Diagonal form evaluation.
+@isnad1 id=eq.0h4v.s6.3ab3ecd51e27 from=translated src=- shape=052d7ec4 vocab=24495aa2
+-/
 theorem form_single_self (i : B) (a : ℝ) : form M i (Finsupp.single i a) = a := by
   rw [form_single, M.diagonal, coeff_one]
   ring
 
-/-- Defining action of the real reflection.-/
+/-- Defining action of the real reflection.
+@isnad1 id=eq.0h4v.s8.9cf7afa107cd from=translated src=- shape=f247d853 vocab=d6eaf20d
+-/
 theorem reflection_apply (i : B) (v : B →₀ ℝ) :
     reflection M i v = v - form M i v • Finsupp.single i 2 := rfl
 
-/-- Basis action of the real reflection.-/
+/-- Basis action of the real reflection.
+@isnad1 id=eq.0h4v.s7.b6d1558c98b6 from=translated src=- shape=345715ad vocab=405a0a22
+-/
 theorem reflection_single (i j : B) :
     reflection M i (Finsupp.single j 1) =
       Finsupp.single j 1 + (2 * coeff (M i j)) • Finsupp.single i 1 := by
   rw [reflection_apply, form_single, ← Finsupp.smul_single_one i (2 : ℝ)]
   module
 
-/-- A real simple reflection negates its simple root.-/
+/-- A real simple reflection negates its simple root.
+@isnad1 id=eq.0h3v.s7.65096595953e from=translated src=- shape=8ae41c42 vocab=4a67d3a0
+-/
 theorem reflection_single_self (i : B) :
     reflection M i (Finsupp.single i 1) = -Finsupp.single i 1 := by
   rw [reflection_single, M.diagonal, coeff_one]
   module
 
-/-- The real reflections are involutions.-/
+/-- The real reflections are involutions.
+@isnad1 id=eq.0h3v.s7.b7875c658ac8 from=translated src=- shape=bfee786c vocab=51f36ab4
+-/
 theorem reflection_mul_self (i : B) : reflection M i * reflection M i = 1 := by
   refine LinearMap.ext fun v ↦ ?_
   have h : form M i (reflection M i v) = -form M i v := by
@@ -133,16 +153,22 @@ theorem reflection_mul_self (i : B) : reflection M i * reflection M i = 1 := by
 noncomputable def embed : (B →₀ ℝ) →ₗ[ℝ] (B →₀ ℂ) :=
   Finsupp.mapRange.linearMap Complex.ofRealCLM.toLinearMap
 
-/-- Complexification is injective, for arbitrary rank.-/
+/-- Complexification is injective, for arbitrary rank.
+@isnad1 id=injectiv.0h1v.s7.d325c0bfea50 from=translated src=- shape=5ae11f45 vocab=02570110
+-/
 theorem embed_injective : Function.Injective (embed (B := B)) :=
   Finsupp.mapRange_injective _ (map_zero _) Complex.ofReal_injective
 
-/-- Inclusion on basis vectors.-/
+/-- Inclusion on basis vectors.
+@isnad1 id=eq.0h3v.s7.f82924b2c386 from=translated src=- shape=ec58d442 vocab=c3555917
+-/
 @[simp] theorem embed_single (i : B) (a : ℝ) :
     embed (Finsupp.single i a) = Finsupp.single i (a : ℂ) := by
   simp [embed]
 
-/-- Exact generator-level transfer, using the proved cosine identification.-/
+/-- Exact generator-level transfer, using the proved cosine identification.
+@isnad1 id=eq.0h4v.s9.108dacc40815 from=translated src=- shape=89b9762f vocab=40270adb
+-/
 theorem embed_reflection (i : B) (v : B →₀ ℝ) :
     embed (reflection M i v) = GeometricParametric.reflection rootChoice M i (embed v) := by
   have h : (embed (B := B)).comp (reflection M i) =
@@ -156,7 +182,9 @@ theorem embed_reflection (i : B) (v : B →₀ ℝ) :
     simp [Complex.real_smul, mul_assoc]
   exact LinearMap.congr_fun h v
 
-/-- The complexification intertwines arbitrary powers of a pair of real reflections.-/
+/-- The complexification intertwines arbitrary powers of a pair of real reflections.
+@isnad1 id=eq.0h6v.s10.d2c8d52e5a49 from=translated src=- shape=ee78e89e vocab=f84d696b
+-/
 theorem embed_pair_pow (i j : B) (n : ℕ) (v : B →₀ ℝ) :
     embed (((reflection M i * reflection M j) ^ n) v) =
       ((GeometricParametric.reflection rootChoice M i *
@@ -166,7 +194,9 @@ theorem embed_pair_pow (i j : B) (n : ℕ) (v : B →₀ ℝ) :
   | succ n ih =>
     simp only [pow_succ, Module.End.mul_apply, ih, embed_reflection]
 
-/-- All Coxeter relations hold on the actual real space, by injective complexification.-/
+/-- All Coxeter relations hold on the actual real space, by injective complexification.
+@isnad1 id=isliftab.0h2v.s5.4c29a9dd296d from=translated src=- shape=57bda610 vocab=f4edbe83
+-/
 theorem reflection_liftable : M.IsLiftable (reflection M) := by
   intro i j
   apply LinearMap.ext
@@ -181,11 +211,15 @@ variable {W : Type*} [Group W] (cs : CoxeterSystem M W)
 noncomputable def representation : W →* Module.End ℝ (B →₀ ℝ) :=
   cs.lift ⟨reflection M, reflection_liftable M⟩
 
-/-- The canonical real lift has exactly the source reflection formula on generators.-/
+/-- The canonical real lift has exactly the source reflection formula on generators.
+@isnad1 id=eq.0h5v.s8.a21fa290c3f4 from=translated src=- shape=58698542 vocab=f40bd6c2
+-/
 theorem representation_simple (i : B) :
     representation M cs (cs.simple i) = reflection M i := cs.lift_apply_simple _ i
 
-/-- The full real representation intertwines with the canonical complex parametric lift.-/
+/-- The full real representation intertwines with the canonical complex parametric lift.
+@isnad1 id=eq.0h6v.s10.0244b4a5640a from=translated src=- shape=d8d6b5a3 vocab=a830640d
+-/
 theorem embed_representation (w : W) (v : B →₀ ℝ) :
     embed (representation M cs w v) =
       GeometricParametric.representation rootChoice M cs w (embed v) := by
@@ -199,7 +233,9 @@ theorem embed_representation (w : W) (v : B →₀ ℝ) :
 noncomputable def representationUnits : W →* (Module.End ℝ (B →₀ ℝ))ˣ :=
   (representation M cs).toHomUnits
 
-/-- Passing to units does not change the underlying real action.-/
+/-- Passing to units does not change the underlying real action.
+@isnad1 id=eq.0h5v.s9.259ac7684d6e from=translated src=- shape=3fbdf413 vocab=5fe9799a
+-/
 theorem representationUnits_val (w : W) :
     (representationUnits M cs w : Module.End ℝ (B →₀ ℝ)) = representation M cs w := rfl
 
@@ -208,7 +244,9 @@ The infinite-edge case is the limiting arithmetic progression.-/
 noncomputable def dihedralCoeff (m n : ℕ) : ℝ :=
   if m = 0 then n else Real.sin (n * (Real.pi / m)) / Real.sin (Real.pi / m)
 
-/-- The finite dihedral angle lies strictly between zero and pi.-/
+/-- The finite dihedral angle lies strictly between zero and pi.
+@isnad1 id=and.1h1v.s5.b1c4590a360f from=translated src=- shape=06f03e34 vocab=9df7e4a4
+-/
 theorem angle_bounds {m : ℕ} (hm : 1 < m) :
     0 < Real.pi / m ∧ Real.pi / m < Real.pi := by
   have hm' : (1 : ℝ) < m := by exact_mod_cast hm
@@ -216,22 +254,30 @@ theorem angle_bounds {m : ℕ} (hm : 1 < m) :
   · positivity
   · exact (div_lt_iff₀ (by positivity)).mpr (by nlinarith [Real.pi_pos])
 
-/-- The denominator of the finite dihedral sine formula is positive.-/
+/-- The denominator of the finite dihedral sine formula is positive.
+@isnad1 id=lt.1h1v.s5.7f1ac3d7a96a from=translated src=- shape=63211a6c vocab=05b9ef1b
+-/
 theorem sin_angle_pos {m : ℕ} (hm : 1 < m) : 0 < Real.sin (Real.pi / m) :=
   Real.sin_pos_of_pos_of_lt_pi (angle_bounds hm).1 (angle_bounds hm).2
 
-/-- Initial dihedral coefficient.-/
+/-- Initial dihedral coefficient.
+@isnad1 id=eq.0h1v.s4.b1490351c7a9 from=translated src=- shape=8fc7241c vocab=79bb5cbd
+-/
 @[simp] theorem dihedralCoeff_zero (m : ℕ) : dihedralCoeff m 0 = 0 := by
   simp [dihedralCoeff]
 
-/-- The second dihedral coefficient, for every possible off-diagonal exponent.-/
+/-- The second dihedral coefficient, for every possible off-diagonal exponent.
+@isnad1 id=eq.1h1v.s5.e3753e13709d from=translated src=- shape=5bc437e7 vocab=5de960ec
+-/
 theorem dihedralCoeff_one {m : ℕ} (hm : m = 0 ∨ 1 < m) : dihedralCoeff m 1 = 1 := by
   rcases hm with rfl | hm
   · simp [dihedralCoeff]
   · simp [dihedralCoeff, ne_of_gt (sin_angle_pos hm)]
 
 /-- The sine addition formulas give the dihedral recurrence; this supplies the
-explicit calculation in Humphreys §5.4, pp. 112–113.-/
+explicit calculation in Humphreys §5.4, pp. 112–113.
+@isnad1 id=eq.0h2v.s6.2629ee34bcc7 from=translated src=- shape=5e75ac80 vocab=4e3a7d40
+-/
 theorem dihedralCoeff_recurrence (m n : ℕ) :
     dihedralCoeff m (n + 2) =
       2 * coeff m * dihedralCoeff m (n + 1) - dihedralCoeff m n := by
@@ -253,7 +299,9 @@ theorem dihedralCoeff_recurrence (m n : ℕ) :
     rw [hs]
     ring_nf
 
-/-- Precisely the sign range needed for reduced dihedral words.-/
+/-- Precisely the sign range needed for reduced dihedral words.
+@isnad1 id=le.2h2v.s5.d817052147a5 from=translated src=- shape=499bfaf5 vocab=cffb5ac0
+-/
 theorem dihedralCoeff_nonneg {m n : ℕ} (hm : m = 0 ∨ 1 < m)
     (hn : m = 0 ∨ n ≤ m) : 0 ≤ dihedralCoeff m n := by
   rcases hm with rfl | hm
@@ -271,7 +319,9 @@ theorem dihedralCoeff_nonneg {m n : ℕ} (hm : m = 0 ∨ 1 < m)
         _ = Real.pi := by field_simp
 
 /-- Exact rank-two formula for an even alternating product.  This is the
-calculation underlying the positive cone step of Humphreys §5.4.-/
+calculation underlying the positive cone step of Humphreys §5.4.
+@isnad1 id=eq.1h5v.s9.baf7998b84dd from=translated src=- shape=2bd3e424 vocab=d0ccf1b7
+-/
 theorem pair_pow_single {i j : B} (hij : i ≠ j) (k : ℕ) :
     ((reflection M i * reflection M j) ^ k) (Finsupp.single i 1) =
       dihedralCoeff (M i j) (2 * k + 1) • Finsupp.single i 1 +
@@ -292,7 +342,9 @@ theorem pair_pow_single {i j : B} (hij : i ≠ j) (k : ℕ) :
       dihedralCoeff_recurrence]
     module
 
-/-- Exact rank-two formula for an odd alternating product ending on the right in j.-/
+/-- Exact rank-two formula for an odd alternating product ending on the right in j.
+@isnad1 id=eq.1h5v.s9.46c04b89396f from=translated src=- shape=1fedf9f7 vocab=d0ccf1b7
+-/
 theorem reflection_pair_pow_single {i j : B} (hij : i ≠ j) (k : ℕ) :
     (reflection M j * (reflection M i * reflection M j) ^ k) (Finsupp.single i 1) =
       dihedralCoeff (M i j) (2 * k + 1) • Finsupp.single i 1 +
@@ -305,7 +357,9 @@ theorem reflection_pair_pow_single {i j : B} (hij : i ≠ j) (k : ℕ) :
 /-- Nonnegative-coordinate cone, including zero; roots themselves will be nonzero.-/
 def Nonnegative (v : B →₀ ℝ) : Prop := ∀ i, 0 ≤ v i
 
-/-- A nonnegative linear combination of two simple roots belongs to the positive cone.-/
+/-- A nonnegative linear combination of two simple roots belongs to the positive cone.
+@isnad1 id=nonnegat.2h5v.s7.980f1be40ebd from=translated src=- shape=8313caae vocab=c6ca220a
+-/
 theorem nonnegative_two_simple {i j : B} {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) :
     Nonnegative (a • Finsupp.single i 1 + b • Finsupp.single j 1) := by
   intro t
@@ -320,7 +374,9 @@ theorem nonnegative_two_simple {i j : B} {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ 
       split_ifs <;> norm_num))
 
 /-- Positive-cone part of Humphreys §5.4 for every finite or infinite rank-two
-alternating product of even length below its braid bound.-/
+alternating product of even length below its braid bound.
+@isnad1 id=nonnegat.2h5v.s8.ec78817a9101 from=translated src=- shape=b2388f46 vocab=6c03cb7b
+-/
 theorem pair_pow_nonnegative {i j : B} (hij : i ≠ j) {k : ℕ}
     (hk : M i j = 0 ∨ 2 * k < M i j) :
     Nonnegative (((reflection M i * reflection M j) ^ k) (Finsupp.single i 1)) := by
@@ -332,7 +388,9 @@ theorem pair_pow_nonnegative {i j : B} (hij : i ≠ j) {k : ℕ}
   · exact dihedralCoeff_nonneg hm (by omega)
   · exact dihedralCoeff_nonneg hm (by omega)
 
-/-- The odd-length case of the same dihedral positive-cone calculation.-/
+/-- The odd-length case of the same dihedral positive-cone calculation.
+@isnad1 id=nonnegat.2h5v.s8.c3bc2b43b555 from=translated src=- shape=e9879d2e vocab=51d39004
+-/
 theorem reflection_pair_pow_nonnegative {i j : B} (hij : i ≠ j) {k : ℕ}
     (hk : M i j = 0 ∨ 2 * k + 1 < M i j) :
     Nonnegative ((reflection M j * (reflection M i * reflection M j) ^ k)
@@ -347,7 +405,9 @@ theorem reflection_pair_pow_nonnegative {i j : B} (hij : i ≠ j) {k : ℕ}
 
 /-- A rank-two parabolic element with a right ascent at i has an alternating
 expression ending in j, strictly shorter than the finite braid bound. This is the
-combinatorial input used in Humphreys §5.4.-/
+combinatorial input used in Humphreys §5.4.
+@isnad1 id=ex.2h7v.s7.4e7a0827ea1b from=translated src=- shape=3660b14b vocab=1ccba96d
+-/
 theorem exists_alternating_of_parabolic_ascent {i j : B} {v : W}
     (hv : v ∈ cs.parabolicSubgroup {i, j})
     (hi : cs.length v < cs.length (v * cs.simple i)) :
@@ -383,7 +443,9 @@ theorem exists_alternating_of_parabolic_ascent {i j : B} {v : W}
     rwa [← halt']
 
 /-- The dihedral step of Humphreys §5.4, in precisely the form needed to combine
-with two positive root images under a shorter minimal coset representative.-/
+with two positive root images under a shorter minimal coset representative.
+@isnad1 id=ex.3h7v.s9.a272f4ba1273 from=translated src=- shape=0d2c947a vocab=dbfba2c0
+-/
 theorem parabolic_ascent_two_nonnegative {i j : B} (hij : i ≠ j) {v : W}
     (hv : v ∈ cs.parabolicSubgroup {i, j})
     (hi : cs.length v < cs.length (v * cs.simple i)) :
@@ -409,7 +471,9 @@ theorem parabolic_ascent_two_nonnegative {i j : B} (hij : i ≠ j) {v : W}
 
 /-- Humphreys §5.4, Theorem (positive half): a right ascent gives a positive
 root. The proof uses his shorter minimal-coset-representative / dihedral-cone
-induction; the already-proved combinatorial parabolic API supplies the decomposition.-/
+induction; the already-proved combinatorial parabolic API supplies the decomposition.
+@isnad1 id=nonnegat.1h6v.s8.75a40897d231 from=translated src=- shape=b05f576d vocab=5c0860ae
+-/
 theorem nonnegative_of_length_lt {w : W} {i : B}
     (hi : cs.length w < cs.length (w * cs.simple i)) :
     Nonnegative (representation M cs w (Finsupp.single i 1)) := by
@@ -460,7 +524,9 @@ theorem nonnegative_of_length_lt {w : W} {i : B}
     exact add_nonneg (mul_nonneg ha (hui t)) (mul_nonneg hb (huj t))
 
 /-- Humphreys §5.4, Theorem (negative half): a right descent gives a negative
-root. It follows from the positive half by applying it to ws.-/
+root. It follows from the positive half by applying it to ws.
+@isnad1 id=le.1h7v.s8.775157864895 from=translated src=- shape=59c18b73 vocab=cf6c3aad
+-/
 theorem nonpositive_of_length_lt {w : W} {i : B}
     (hi : cs.length (w * cs.simple i) < cs.length w) :
     ∀ t, (representation M cs w (Finsupp.single i 1)) t ≤ 0 := by
@@ -471,7 +537,9 @@ theorem nonpositive_of_length_lt {w : W} {i : B}
   intro t
   exact neg_nonneg.mp (hpos t)
 
-/-- Humphreys §5.4, Corollary: the canonical real action has trivial kernel.-/
+/-- Humphreys §5.4, Corollary: the canonical real action has trivial kernel.
+@isnad1 id=iff.0h5v.s8.bd1510b79523 from=translated src=- shape=60763b5c vocab=68af97ac
+-/
 theorem representation_eq_one_iff (w : W) : representation M cs w = 1 ↔ w = 1 := by
   constructor
   · intro h
@@ -484,7 +552,9 @@ theorem representation_eq_one_iff (w : W) : representation M cs w = 1 ↔ w = 1 
     exact map_one _
 
 /-- Faithfulness into the genuine group of invertible real endomorphisms;
-Humphreys §5.4, Corollary, with no finiteness assumption on the Coxeter system.-/
+Humphreys §5.4, Corollary, with no finiteness assumption on the Coxeter system.
+@isnad1 id=injectiv.0h4v.s8.edd670201aa2 from=translated src=- shape=d8903d66 vocab=f0e11d65
+-/
 theorem representationUnits_injective : Function.Injective (representationUnits M cs) := by
   intro w v h
   have hker : representationUnits M cs (w⁻¹ * v) = 1 := by
@@ -494,14 +564,18 @@ theorem representationUnits_injective : Function.Injective (representationUnits 
   have := (representation_eq_one_iff M cs _).mp hker'
   exact inv_mul_eq_one.mp this
 
-/-- The endomorphism-valued canonical real representation is injective as well.-/
+/-- The endomorphism-valued canonical real representation is injective as well.
+@isnad1 id=injectiv.0h4v.s8.a55c173a3ebf from=translated src=- shape=cdc620a5 vocab=6a4fc443
+-/
 theorem representation_injective : Function.Injective (representation M cs) := by
   intro w v h
   apply representationUnits_injective M cs
   exact Units.ext h
 
 /-- Root images are nonzero, so the two coordinate cones give the source's
-positive/negative distinction, not merely a weak sign assertion about zero.-/
+positive/negative distinction, not merely a weak sign assertion about zero.
+@isnad1 id=ne.0h6v.s8.cf0cad65578b from=translated src=- shape=9a639969 vocab=efcd6d8e
+-/
 theorem root_image_ne_zero (w : W) (i : B) :
     representation M cs w (Finsupp.single i 1) ≠ 0 := by
   intro hzero
@@ -512,7 +586,9 @@ theorem root_image_ne_zero (w : W) (i : B) :
   simp at hi
 
 /-- The proved real theorem transfers to the explicit exponential specialization
-of the parametric complex construction. It says nothing about the opaque choice.-/
+of the parametric complex construction. It says nothing about the opaque choice.
+@isnad1 id=injectiv.0h4v.s9.ed08c4880e44 from=translated src=- shape=ffac0551 vocab=24e93d3a
+-/
 theorem canonicalComplex_injective :
     Function.Injective (GeometricParametric.representation rootChoice M cs) := by
   intro w v h

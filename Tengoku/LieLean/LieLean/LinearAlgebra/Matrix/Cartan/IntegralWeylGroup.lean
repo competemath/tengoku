@@ -48,7 +48,9 @@ variable {ι K H : Type*} [Fintype ι] [Field K] [AddCommGroup H] [Module K H]
 /-- The root lattice `Q = ⊕ ℤ αᵢ` as an additive subgroup of `𝔥*`.-/
 def rootLattice : AddSubgroup (Dual K H) := P.rootOf.range
 
-/-- The Weyl group preserves `Q`.-/
+/-- The Weyl group preserves `Q`.
+@isnad1 id=mem.3h7v.s11.1d6f62690769 from=translated src=- shape=691eb6df vocab=e7b0e2d1
+-/
 lemma apply_mem_rootLattice {w : Dual K H ≃ₗ[K] Dual K H} (hw : w ∈ P.weylGroup hA)
     {μ : Dual K H} (hμ : μ ∈ P.rootLattice) : w μ ∈ P.rootLattice := by
   obtain ⟨k, rfl⟩ := hμ

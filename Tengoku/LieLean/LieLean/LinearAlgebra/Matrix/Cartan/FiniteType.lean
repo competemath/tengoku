@@ -57,7 +57,9 @@ namespace Matrix
 variable {ι : Type*} [Fintype ι] [DecidableEq ι] {A : Matrix ι ι ℤ}
 
 /-- For a symmetric matrix `D A` with `D = diag(d)`, the quadratic form `k ↦ kᵀ D A k` is
-invariant under the fundamental reflection `k ↦ k - (A k)ᵢ eᵢ`.-/
+invariant under the fundamental reflection `k ↦ k - (A k)ᵢ eᵢ`.
+@isnad1 id=eq.2h5v.s8.04246b8f6184 from=translated src=- shape=518a7014 vocab=e0a0efa1
+-/
 lemma dotProduct_diagonal_mul_mulVec_reflection {d : ι → ℤ} (hd : (diagonal d * A).IsSymm)
     (hA : A.IsGeneralizedCartan) (i : ι) (k : ι → ℤ) :
     (k - (A *ᵥ k) i • Pi.single i 1) ⬝ᵥ (diagonal d * A) *ᵥ (k - (A *ᵥ k) i • Pi.single i 1) =
