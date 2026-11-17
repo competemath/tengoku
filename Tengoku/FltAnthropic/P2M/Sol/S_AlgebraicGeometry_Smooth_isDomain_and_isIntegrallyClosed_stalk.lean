@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry TopologicalSpace
 
+/--
+@isnad1 id=and.0h4v.s10.e9172d262497 from=translated src=- shape=f28eaca4 vocab=612a7ec5
+-/
 theorem solution {U S : Scheme.{u}} (f : U ⟶ S) [Smooth f]
     [IsAffine S] [IsDomain Γ(S, ⊤)] [IsIntegrallyClosed Γ(S, ⊤)] (y : U) :
     IsDomain (U.presheaf.stalk y) ∧ IsIntegrallyClosed (U.presheaf.stalk y) := by

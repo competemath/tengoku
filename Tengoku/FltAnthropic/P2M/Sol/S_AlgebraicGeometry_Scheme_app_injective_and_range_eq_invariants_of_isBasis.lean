@@ -15,6 +15,9 @@ namespace QBAGC4
 
 open TopologicalSpace Opposite TopCat TopCat.Presheaf
 
+/--
+@isnad1 id=mem.2h6v.s13.e864dbe62df3 from=translated src=- shape=d6df2e94 vocab=da39793c
+-/
 theorem mem_range_of_locally {X : TopCat.{u}} {F G : TopCat.Sheaf CommRingCat.{u} X} (f : F ⟶ G)
     (U : Opens X) (hinj : ∀ x ∈ U, Function.Injective ((TopCat.Presheaf.stalkFunctor _ x).map f.1))
     (t : ToType (G.1.obj (op U)))
@@ -40,6 +43,9 @@ theorem mem_range_of_locally {X : TopCat.{u}} {F G : TopCat.Sheaf CommRingCat.{u
     ← ConcreteCategory.comp_apply, ← G.1.map_comp]
   rfl
 
+/--
+@isnad1 id=eq.2h6v.s12.6e11b795a4f7 from=translated src=- shape=e65f889a vocab=e37bf72c
+-/
 theorem appLE_app_eq {M X : Scheme.{u}} (π : M ⟶ X) (V : X.Opens) (f : M ⟶ M) (hf : f ≫ π = π)
     (e : π ⁻¹ᵁ V ≤ f ⁻¹ᵁ (π ⁻¹ᵁ V)) (t : Γ(X, V)) :
     f.appLE (π ⁻¹ᵁ V) (π ⁻¹ᵁ V) e (π.app V t) = π.app V t := by
@@ -53,6 +59,9 @@ theorem appLE_app_eq {M X : Scheme.{u}} (π : M ⟶ X) (V : X.Opens) (f : M ⟶ 
   change (π.appLE V (π ⁻¹ᵁ V) le_rfl ≫ f.appLE _ _ e) t = _
   rw [h3]
 
+/--
+@isnad1 id=eq.3h8v.s13.b980be07dbe5 from=translated src=- shape=6f75812e vocab=bd7c5e0c
+-/
 theorem appLE_map_eq {M X : Scheme.{u}} (π : M ⟶ X) {V W : X.Opens} (f : M ⟶ M)
     (eV : π ⁻¹ᵁ V ≤ f ⁻¹ᵁ (π ⁻¹ᵁ V)) (eW : π ⁻¹ᵁ W ≤ f ⁻¹ᵁ (π ⁻¹ᵁ W))
     (i : π ⁻¹ᵁ W ⟶ π ⁻¹ᵁ V) (s : Γ(M, π ⁻¹ᵁ V))
@@ -66,6 +75,9 @@ theorem appLE_map_eq {M X : Scheme.{u}} (π : M ⟶ X) {V W : X.Opens} (f : M �
 
 end QBAGC4
 
+/--
+@isnad1 id=and.4h6v.s13.98953f653cfd from=translated src=- shape=615ce1ab vocab=f76339b4
+-/
 theorem solution
     {M X : Scheme.{0}} (π : M ⟶ X)
     {H : Type} [Group H] (ρ : H →* Aut M) (hπ : ∀ h : H, (ρ h).hom ≫ π = π)

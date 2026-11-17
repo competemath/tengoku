@@ -12,6 +12,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=eq.3h14v.s10.600aca47b85b from=translated src=- shape=38c5050b vocab=868eae28
+-/
 theorem AlgebraicGeometry.Scheme.Modules.baseChangeHom_comp_horizontal
     {X T X' T' X'' T'' : Scheme.{u}} {π : X ⟶ T} {ψ : T' ⟶ T} {π' : X' ⟶ T'} {g' : X' ⟶ X}
     {ψ' : T'' ⟶ T'} {π'' : X'' ⟶ T''} {g'' : X'' ⟶ X'}

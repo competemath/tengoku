@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry IsLocalRing
 
+/--
+@isnad1 id=le.1h4v.s9.9b1163aa350c from=translated src=- shape=380efbf8 vocab=5adf2bd4
+-/
 theorem solution
     {X : Scheme.{u}} (U : X.Opens) (T : Type u) [CommRing T] [IsLocalRing T]
     (f : Spec (CommRingCat.of T) ⟶ X) (hx : f.base (IsLocalRing.closedPoint T) ∈ U) :

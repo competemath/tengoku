@@ -16,6 +16,9 @@ universe u v
 namespace IsoGlueOI
 open _root_.AlgebraicGeometry.Scheme.Modules
 
+/--
+@isnad1 id=faithful.0h3v.s4.eca518dba692 from=translated src=- shape=c9be7c68 vocab=1e8808f7
+-/
 theorem pullback_faithful_of_iso {V W : Scheme.{u}} (i : V ≅ W) :
     (Scheme.Modules.pullback i.inv).Faithful := by
   have η : Scheme.Modules.pullback i.inv ⋙ Scheme.Modules.pullback i.hom ≅ 𝟭 _ :=
@@ -34,6 +37,9 @@ noncomputable def eT {X Y : Scheme.{u}} (b : Y ⟶ X) [IsOpenImmersion b] {P Q :
       (Scheme.Modules.pullback (Scheme.Hom.opensRange b).ι).obj Q :=
   ((cmp b).app P).symm ≪≫ (Scheme.Modules.pullback (Scheme.Hom.isoOpensRange b).inv).mapIso e ≪≫ (cmp b).app Q
 
+/--
+@isnad1 id=iff.0h7v.s8.dc6852f8979d from=translated src=- shape=9413d35a vocab=74cad69e
+-/
 theorem mapIso_eq_eT_iff {X Y : Scheme.{u}} (b : Y ⟶ X) [IsOpenImmersion b] {P Q : X.Modules}
     (e : (Scheme.Modules.pullback b).obj P ≅ (Scheme.Modules.pullback b).obj Q) (φ : P ≅ Q) :
     (Scheme.Modules.pullback (Scheme.Hom.opensRange b).ι).mapIso φ = eT b e ↔
@@ -67,6 +73,9 @@ theorem mapIso_eq_eT_iff {X Y : Scheme.{u}} (b : Y ⟶ X) [IsOpenImmersion b] {P
 end IsoGlueOI
 
 open IsoGlueOI in
+/--
+@isnad1 id=existsun.2h7v.s8.232df0b30eb5 from=translated src=- shape=03acdaf5 vocab=eac7f2d5
+-/
 theorem solution
     {X : Scheme.{u}} (M N : X.Modules) {ι : Type v} {Y : ι → Scheme.{u}} (b : ∀ j, Y j ⟶ X)
     [∀ j, IsOpenImmersion (b j)]

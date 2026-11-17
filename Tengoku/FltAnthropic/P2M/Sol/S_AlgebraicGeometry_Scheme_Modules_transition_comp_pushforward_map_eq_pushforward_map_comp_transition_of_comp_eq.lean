@@ -15,6 +15,9 @@ namespace NatKey
 
 universe v₁ v₂ v₃ u₁ u₂ u₃
 
+/--
+@isnad1 id=eq.0h22v.s9.88f31eafbed3 from=translated src=- shape=753682d4 vocab=989397aa
+-/
 theorem key {CZ : Type u₁} {CZ' : Type u₂} {CX : Type u₃} [Category.{v₁} CZ] [Category.{v₂} CZ'] [Category.{v₃} CX]
     (Pbt : CZ' ⥤ CZ) (Pt : CZ ⥤ CZ') (Pι' : CZ' ⥤ CX) (P : CZ ⥤ CX) (Pι : CZ ⥤ CX)
     (η : 𝟭 CZ' ⟶ Pbt ⋙ Pt) (σ : Pt ⋙ Pι' ⟶ P) (κ : P ⟶ Pι)
@@ -36,6 +39,9 @@ theorem key {CZ : Type u₁} {CZ' : Type u₂} {CX : Type u₃} [Category.{v₁}
 
 end NatKey
 
+/--
+@isnad1 id=eq.2h10v.s11.cff39b5469cb from=translated src=- shape=66fe66ef vocab=36ca2a47
+-/
 theorem solution
     {Z Z' X : Scheme.{u}} (t : Z ⟶ Z') (ι' : Z' ⟶ X) (ι : Z ⟶ X) (h : t ≫ ι' = ι) (N N' : X.Modules)
     (φ' : (Scheme.Modules.pullback ι').obj N ⟶ (Scheme.Modules.pullback ι').obj N')

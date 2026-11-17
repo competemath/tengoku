@@ -10,6 +10,9 @@ set_option autoImplicit false
 open scoped BigOperators
 open AlgebraicGeometry AlgebraicGeometry.ThetaLevel
 
+/--
+@isnad1 id=ex.6h9v.s9.ceac9b4a9137 from=translated src=- shape=37ce1b58 vocab=87ba90f2
+-/
 theorem AlgebraicGeometry.ThetaLevel.exists_isUnit_sum_schrod_eta_single_apply_of_mem_gam
     {g : ℕ} (δ : Fin g → ℕ) [∀ i, NeZero (δ i)] (d : ℕ) [NeZero d] (hδd : ∏ i, δ i = d)
     (B : Type) [CommRing B] (hd : IsUnit ((d : ℕ) : B)) (ζ ω : B) (hζ : ζ ^ d = 1)

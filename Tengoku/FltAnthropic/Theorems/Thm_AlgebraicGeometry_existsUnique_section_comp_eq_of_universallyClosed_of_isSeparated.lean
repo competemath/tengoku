@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=existsun.1h5v.s8.4c11a1fe2e2b from=translated src=- shape=1eec74b7 vocab=2296dc8b
+-/
 theorem AlgebraicGeometry.existsUnique_section_comp_eq_of_universallyClosed_of_isSeparated
     {R : Type u} [CommRing R] [IsDomain R] [ValuationRing R]
     {K : Type u} [Field K] [Algebra R K] [IsFractionRing R K]

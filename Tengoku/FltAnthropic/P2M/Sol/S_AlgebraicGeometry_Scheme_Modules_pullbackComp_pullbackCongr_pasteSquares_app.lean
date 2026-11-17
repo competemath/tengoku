@@ -21,6 +21,9 @@ open _root_.AlgebraicGeometry.Scheme.Modules open _root_.AlgebraicGeometry.Schem
 
 variable {X₀ X₁ X₂ X₃ : Scheme.{u}}
 
+/--
+@isnad1 id=eq.0h7v.s10.e1dc7a20a360 from=translated src=- shape=d5d38fc3 vocab=f348ac3d
+-/
 theorem pullbackComp_paste (f : X₀ ⟶ X₁) (g : X₁ ⟶ X₂) (h : X₂ ⟶ X₃) :
     Functor.whiskerLeft (pullback h) (pullbackComp f g).hom ≫ (pullbackComp (f ≫ g) h).hom =
       (Functor.associator _ _ _).inv ≫ Functor.whiskerRight (pullbackComp g h).hom (pullback f) ≫
@@ -37,6 +40,9 @@ theorem pullbackComp_paste (f : X₀ ⟶ X₁) (g : X₁ ⟶ X₂) (h : X₂ ⟶
   rw [H0] at H1
   exact H1
 
+/--
+@isnad1 id=eq.0h8v.s10.f3e9225d7e98 from=translated src=- shape=c674af89 vocab=79e4b074
+-/
 theorem pullbackComp_paste_app (f : X₀ ⟶ X₁) (g : X₁ ⟶ X₂) (h : X₂ ⟶ X₃) (M : X₃.Modules) :
     (pullbackComp f g).hom.app ((pullback h).obj M) ≫ (pullbackComp (f ≫ g) h).hom.app M =
       (pullback f).map ((pullbackComp g h).hom.app M) ≫ (pullbackComp f (g ≫ h)).hom.app M ≫
@@ -49,11 +55,17 @@ theorem pullbackComp_paste_app (f : X₀ ⟶ X₁) (g : X₁ ⟶ X₂) (h : X₂
 noncomputable def τ (f : X₀ ⟶ X₁) (g : X₁ ⟶ X₂) (m : X₀ ⟶ X₂) (e : f ≫ g = m) : pullback g ⋙ pullback f ≅ pullback m :=
   pullbackComp f g ≪≫ pullbackCongr e
 
+/--
+@isnad1 id=eq.1h7v.s8.b39852d9bf60 from=translated src=- shape=b89858ef vocab=acc30977
+-/
 theorem τ_hom_app (f : X₀ ⟶ X₁) (g : X₁ ⟶ X₂) (m : X₀ ⟶ X₂) (e : f ≫ g = m) (M : X₂.Modules) :
     (τ f g m e).hom.app M = (pullbackComp f g).hom.app M ≫ eqToHom (by rw [e]) := by
   subst e
   simp [τ, pullbackCongr]
 
+/--
+@isnad1 id=eq.3h11v.s9.700b367667bc from=translated src=- shape=70262461 vocab=cb5b2afe
+-/
 theorem τ_paste_app (f : X₀ ⟶ X₁) (g : X₁ ⟶ X₂) (h : X₂ ⟶ X₃) (fg : X₀ ⟶ X₂) (gh : X₁ ⟶ X₃) (m : X₀ ⟶ X₃)
     (e₁ : f ≫ g = fg) (e₂ : g ≫ h = gh) (e₃ : fg ≫ h = m) (M : X₃.Modules) :
     (τ f g fg e₁).hom.app ((pullback h).obj M) ≫ (τ fg h m e₃).hom.app M =
@@ -66,6 +78,9 @@ noncomputable def sqIso {W X Y Z : Scheme.{u}} {f : W ⟶ X} {g : X ⟶ Z} {h : 
     (e : f ≫ g = h ≫ k) : pullback g ⋙ pullback f ≅ pullback k ⋙ pullback h :=
   pullbackComp f g ≪≫ pullbackCongr e ≪≫ (pullbackComp h k).symm
 
+/--
+@isnad1 id=eq.1h9v.s9.54aac9f44397 from=translated src=- shape=03d6b607 vocab=09fb4623
+-/
 theorem sqIso_hom_app {W X Y Z : Scheme.{u}} {f : W ⟶ X} {g : X ⟶ Z} {h : W ⟶ Y} {k : Y ⟶ Z}
     (e : f ≫ g = h ≫ k) (M : Z.Modules) :
     (sqIso e).hom.app M = (τ f g (h ≫ k) e).hom.app M ≫ (τ h k (h ≫ k) rfl).inv.app M := by
@@ -80,11 +95,17 @@ variable {X X₀' X₁' Y Y₀ Y₁ : Scheme.{u}}
   (E : s₀ ≫ a = r ≫ s₁) (F : s₁ ≫ b = p ≫ s)
 
 include e G E F in
+/--
+@isnad1 id=eq.4h15v.s7.a6943abab8b3 from=translated src=- shape=7d3307c5 vocab=d1519fa5
+-/
 theorem route_comm : s₀ ≫ d = m ≫ s := by
   rw [← e, ← Category.assoc, E, Category.assoc, F, ← Category.assoc, G]
 
 set_option maxHeartbeats 3200000 in
 
+/--
+@isnad1 id=eq.4h16v.s10.ca1f3696538a from=translated src=- shape=2ae6cb6c vocab=73417e11
+-/
 theorem route (M : X.Modules) :
     (sqIso E).hom.app ((pullback b).obj M) ≫ (pullback r).map ((sqIso F).hom.app M) ≫
         (τ r p m G).hom.app ((pullback s).obj M) =
@@ -147,6 +168,9 @@ namespace Modules
 export _root_.AlgebraicGeometry.Scheme.Modules (pullback pseudofunctor_associativity pullbackCongr pullbackComp)
 open _root_.AlgebraicGeometry.Scheme.Modules open _root_.AlgebraicGeometry.Scheme open _root_.AlgebraicGeometry
 
+/--
+@isnad1 id=eq.5h16v.s10.1770897b04b9 from=translated src=- shape=31a1fcf6 vocab=4d87660b
+-/
 theorem route' {X X₀' X₁' Y Y₀ Y₁ : Scheme.{u}}
     (a : X₀' ⟶ X₁') (b : X₁' ⟶ X) (d : X₀' ⟶ X) (e : a ≫ b = d)
     (s₀ : Y₀ ⟶ X₀') (s₁ : Y₁ ⟶ X₁') (s : Y ⟶ X)
@@ -160,6 +184,9 @@ theorem route' {X X₀' X₁' Y Y₀ Y₁ : Scheme.{u}}
 
 end AlgebraicGeometry.Scheme.Modules
 
+/--
+@isnad1 id=eq.5h16v.s11.80b363074917 from=translated src=- shape=ef760860 vocab=3d28e987
+-/
 theorem solution
     {X X₀ X₁ Y Y₀ Y₁ : Scheme.{u}}
     (a : X₀ ⟶ X₁) (b : X₁ ⟶ X) (d : X₀ ⟶ X) (e : a ≫ b = d)

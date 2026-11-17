@@ -23,6 +23,9 @@ variable {C : Type w} [Category.{v} C] {F : Pseudofunctor (LocallyDiscrete Cᵒ�
 
 set_option backward.isDefEq.respectTransparency false in
 
+/--
+@isnad1 id=eq.2h14v.s14.a1ce283beec3 from=translated src=- shape=dbb97f4d vocab=ecfd70c3
+-/
 theorem pullHom_hom_inv_id {X₁ X₂ Y Y' : C} {M₁ : F.obj (.mk (op X₁))} {M₂ : F.obj (.mk (op X₂))}
     {f₁ : Y ⟶ X₁} {f₂ : Y ⟶ X₂}
     (φ : (F.map f₁.op.toLoc).toFunctor.obj M₁ ≅ (F.map f₂.op.toLoc).toFunctor.obj M₂)
@@ -43,6 +46,9 @@ abbrev homG : ∀ (i j : Unit),
       (F.map ((fun _ _ : Unit => sq) i j).p₂.op.toLoc).toFunctor.obj ((fun _ : Unit => M) j) :=
   fun _ _ => φ.hom
 
+/--
+@isnad1 id=eq.1h12v.s14.474aa28406e6 from=translated src=- shape=79f4bca2 vocab=afd1fa8e
+-/
 theorem generic_comp
     (hφ : pullHom φ.hom sq₃.p₁₂ sq₃.p₁ sq₃.p₂ sq₃.p₁₂_p₁ sq₃.p₁₂_p₂ ≫
         pullHom φ.hom sq₃.p₂₃ sq₃.p₂ sq₃.p₃ sq₃.p₂₃_p₂ sq₃.p₂₃_p₃ =
@@ -66,6 +72,9 @@ theorem generic_comp
     DescentData'.pullHom'₁₃_eq_pullHom_of_chosenPullback₃ (sq₃ := fun _ _ _ : Unit => sq₃) (homG sq M φ) () () ()]
   exact hφ
 
+/--
+@isnad1 id=eq.1h10v.s14.ad4bae19e265 from=translated src=- shape=450401de vocab=11832124
+-/
 theorem generic_self
     (hφ : pullHom φ.hom sq₃.p₁₂ sq₃.p₁ sq₃.p₂ sq₃.p₁₂_p₁ sq₃.p₁₂_p₂ ≫
         pullHom φ.hom sq₃.p₂₃ sq₃.p₂ sq₃.p₃ sq₃.p₂₃_p₂ sq₃.p₂₃_p₃ =
@@ -102,6 +111,9 @@ open AlgebraicGeometry
 
 noncomputable abbrev FF := (Scheme.Modules.pseudofunctor.{u}).comp Bicategory.Adj.forget₁
 
+/--
+@isnad1 id=eq.2h11v.s11.85e4ad7c9c91 from=translated src=- shape=773eacfd vocab=178beced
+-/
 theorem pullHom_FF {X' X'' W : Scheme.{u}} {a₁ a₂ : X'' ⟶ X'} {L₁ L₂ : X'.Modules}
     (φ : (Scheme.Modules.pullback a₁).obj L₁ ⟶ (Scheme.Modules.pullback a₂).obj L₂)
     (b : W ⟶ X'') (g₁ g₂ : W ⟶ X') (hg₁ : b ≫ a₁ = g₁) (hg₂ : b ≫ a₂ = g₂) :
@@ -129,6 +141,9 @@ noncomputable def pullHomIso {X' X'' W : Scheme.{u}} {a₁ a₂ : X'' ⟶ X'} {L
     (Scheme.Modules.pullback b).mapIso ψ ≪≫ (Scheme.Modules.pullbackComp b a₂).app L₂ ≪≫
     (Scheme.Modules.pullbackCongr hg₂).app L₂
 
+/--
+@isnad1 id=eq.2h11v.s11.5ac9fbbe1ef9 from=translated src=- shape=38cf3d52 vocab=e885bad9
+-/
 theorem pullHom_FF_iso {X' X'' W : Scheme.{u}} {a₁ a₂ : X'' ⟶ X'} {L₁ L₂ : X'.Modules}
     (ψ : (Scheme.Modules.pullback a₁).obj L₁ ≅ (Scheme.Modules.pullback a₂).obj L₂)
     (b : W ⟶ X'') (g₁ g₂ : W ⟶ X') (hg₁ : b ≫ a₁ = g₁) (hg₂ : b ≫ a₂ = g₂) :
@@ -169,10 +184,16 @@ noncomputable def ψF :
     (FF.map (sqC c a₁ a₂ ha).p₁.op.toLoc).toFunctor.obj L' ≅ (FF.map (sqC c a₁ a₂ ha).p₂.op.toLoc).toFunctor.obj L' :=
   ⟨ψ.hom, ψ.inv, ψ.hom_inv_id, ψ.inv_hom_id⟩
 
+/--
+@isnad1 id=eq.3h12v.s12.f4747de2d4b0 from=translated src=- shape=15324f4c vocab=c96618d4
+-/
 theorem pullHom_ψF {W : Scheme.{u}} (b : W ⟶ X'') (g₁ g₂ : W ⟶ X') (hg₁ : b ≫ a₁ = g₁) (hg₂ : b ≫ a₂ = g₂) :
     pullHom (F := FF) (ψF c a₁ a₂ ha L' ψ).hom b g₁ g₂ hg₁ hg₂ = (pullHomIso ψ b g₁ g₂ hg₁ hg₂).hom :=
   pullHom_FF_iso ψ b g₁ g₂ hg₁ hg₂
 
+/--
+@isnad1 id=eq.4h10v.s11.27a7865d252f from=translated src=- shape=ed6c0483 vocab=024bba59
+-/
 theorem cocycle_iso (hψ : ((Scheme.Modules.pullbackCongr h₁).app L').symm ≪≫ ((Scheme.Modules.pullbackComp b₁₂ a₁).app L').symm ≪≫ (Scheme.Modules.pullback b₁₂).mapIso ψ ≪≫ ((Scheme.Modules.pullbackComp b₁₂ a₂).app L') ≪≫
           ((Scheme.Modules.pullbackCongr h₂).app L') ≪≫ ((Scheme.Modules.pullbackComp b₂₃ a₁).app L').symm ≪≫ (Scheme.Modules.pullback b₂₃).mapIso ψ ≪≫ ((Scheme.Modules.pullbackComp b₂₃ a₂).app L') ≪≫ ((Scheme.Modules.pullbackCongr h₃).app L').symm
         = ((Scheme.Modules.pullbackComp b₁₃ a₁).app L').symm ≪≫ (Scheme.Modules.pullback b₁₃).mapIso ψ ≪≫ ((Scheme.Modules.pullbackComp b₁₃ a₂).app L')) :
@@ -189,6 +210,9 @@ theorem cocycle_iso (hψ : ((Scheme.Modules.pullbackCongr h₁).app L').symm ≪
     Category.id_comp, Category.comp_id, Category.assoc]
   exact t
 
+/--
+@isnad1 id=eq.6h12v.s12.a92d2d710060 from=translated src=- shape=cd7a485e vocab=de20bdc7
+-/
 theorem cocycle_iso' (hψ : ((Scheme.Modules.pullbackCongr h₁).app L').symm ≪≫ ((Scheme.Modules.pullbackComp b₁₂ a₁).app L').symm ≪≫ (Scheme.Modules.pullback b₁₂).mapIso ψ ≪≫ ((Scheme.Modules.pullbackComp b₁₂ a₂).app L') ≪≫
           ((Scheme.Modules.pullbackCongr h₂).app L') ≪≫ ((Scheme.Modules.pullbackComp b₂₃ a₁).app L').symm ≪≫ (Scheme.Modules.pullback b₂₃).mapIso ψ ≪≫ ((Scheme.Modules.pullbackComp b₂₃ a₂).app L') ≪≫ ((Scheme.Modules.pullbackCongr h₃).app L').symm
         = ((Scheme.Modules.pullbackComp b₁₃ a₁).app L').symm ≪≫ (Scheme.Modules.pullback b₁₃).mapIso ψ ≪≫ ((Scheme.Modules.pullbackComp b₁₃ a₂).app L')) :
@@ -197,6 +221,9 @@ theorem cocycle_iso' (hψ : ((Scheme.Modules.pullbackCongr h₁).app L').symm �
       (pullHomIso ψ (sq3C c a₁ a₂ ha b₁₂ b₁₃ b₂₃ h₁ h₂ h₃ hb).p₁₃ (sq3C c a₁ a₂ ha b₁₂ b₁₃ b₂₃ h₁ h₂ h₃ hb).p₁ (sq3C c a₁ a₂ ha b₁₂ b₁₃ b₂₃ h₁ h₂ h₃ hb).p₃ (sq3C c a₁ a₂ ha b₁₂ b₁₃ b₂₃ h₁ h₂ h₃ hb).p₁₃_p₁ (sq3C c a₁ a₂ ha b₁₂ b₁₃ b₂₃ h₁ h₂ h₃ hb).p₁₃_p₃).hom :=
   cocycle_iso a₁ a₂ b₁₂ b₁₃ b₂₃ h₁ h₂ h₃ L' ψ hψ
 
+/--
+@isnad1 id=eq.6h12v.s14.6aa3239cf77b from=translated src=- shape=1e19b3a1 vocab=cd4c39c8
+-/
 theorem cocycle_pullHom (hψ : ((Scheme.Modules.pullbackCongr h₁).app L').symm ≪≫ ((Scheme.Modules.pullbackComp b₁₂ a₁).app L').symm ≪≫ (Scheme.Modules.pullback b₁₂).mapIso ψ ≪≫ ((Scheme.Modules.pullbackComp b₁₂ a₂).app L') ≪≫
           ((Scheme.Modules.pullbackCongr h₂).app L') ≪≫ ((Scheme.Modules.pullbackComp b₂₃ a₁).app L').symm ≪≫ (Scheme.Modules.pullback b₂₃).mapIso ψ ≪≫ ((Scheme.Modules.pullbackComp b₂₃ a₂).app L') ≪≫ ((Scheme.Modules.pullbackCongr h₃).app L').symm
         = ((Scheme.Modules.pullbackComp b₁₃ a₁).app L').symm ≪≫ (Scheme.Modules.pullback b₁₃).mapIso ψ ≪≫ ((Scheme.Modules.pullbackComp b₁₃ a₂).app L')) :
@@ -212,6 +239,9 @@ noncomputable def datum (hψ : ((Scheme.Modules.pullbackCongr h₁).app L').symm
   (genericDatum (F := FF) (sqC c a₁ a₂ ha) (sq3C c a₁ a₂ ha b₁₂ b₁₃ b₂₃ h₁ h₂ h₃ hb) L' (ψF c a₁ a₂ ha L' ψ)
     (cocycle_pullHom c a₁ a₂ ha b₁₂ b₁₃ b₂₃ h₁ h₂ h₃ hb L' ψ hψ)).descentData
 
+/--
+@isnad1 id=eq.6h13v.s11.cd39df818523 from=translated src=- shape=1770eccf vocab=129b9e85
+-/
 theorem datum_obj (hψ : ((Scheme.Modules.pullbackCongr h₁).app L').symm ≪≫ ((Scheme.Modules.pullbackComp b₁₂ a₁).app L').symm ≪≫ (Scheme.Modules.pullback b₁₂).mapIso ψ ≪≫ ((Scheme.Modules.pullbackComp b₁₂ a₂).app L') ≪≫
           ((Scheme.Modules.pullbackCongr h₂).app L') ≪≫ ((Scheme.Modules.pullbackComp b₂₃ a₁).app L').symm ≪≫ (Scheme.Modules.pullback b₂₃).mapIso ψ ≪≫ ((Scheme.Modules.pullbackComp b₂₃ a₂).app L') ≪≫ ((Scheme.Modules.pullbackCongr h₃).app L').symm
         = ((Scheme.Modules.pullbackComp b₁₃ a₁).app L').symm ≪≫ (Scheme.Modules.pullback b₁₃).mapIso ψ ≪≫ ((Scheme.Modules.pullbackComp b₁₃ a₂).app L')) (i : Unit) :
@@ -224,6 +254,9 @@ end LDescDatumAux
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 open scoped TensorProduct in
+/--
+@isnad1 id=ex.6h12v.s11.ed933e3829fa from=translated src=- shape=63036b8c vocab=8f29e655
+-/
 theorem solution
     {X X' X'' X''' : Scheme.{u}} (c : X' ⟶ X) (a₁ a₂ : X'' ⟶ X') (ha : IsPullback a₁ a₂ c c)
     (b₁₂ b₁₃ b₂₃ : X''' ⟶ X'')

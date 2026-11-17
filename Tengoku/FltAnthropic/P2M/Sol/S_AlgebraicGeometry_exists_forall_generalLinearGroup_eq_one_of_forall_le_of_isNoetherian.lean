@@ -27,6 +27,9 @@ variable {G : Scheme.{u}}
 abbrev res (U : G.Opens) (e : Γ(G, ⊤)) : Γ(G, U) :=
   G.presheaf.map (homOfLE le_top).op e
 
+/--
+@isnad1 id=eq.0h5v.s13.963e56b513f4 from=translated src=- shape=ecfc7ce5 vocab=553bcd3c
+-/
 theorem app_res {T : Scheme.{u}} (x : T ⟶ G) (U : G.Opens) (e : Γ(G, ⊤)) :
     x.app U (res U e) = T.presheaf.map (homOfLE le_top).op (x.appTop e) := by
   have h := x.naturality (homOfLE (le_top : U ≤ ⊤)).op
@@ -55,6 +58,9 @@ def Kills {A : ℕ → Type*} (e : ∀ n, A n → Γ(G, ⊤)) (n : ℕ) {T : Sch
 def J {A : ℕ → Type*} (e : ∀ n, A n → Γ(G, ⊤)) (U : G.Opens) (n : ℕ) : Ideal Γ(G, U) :=
   Ideal.span (⋃ m ∈ Set.Iic n, Set.range fun a : A m => res U (e m a))
 
+/--
+@isnad1 id=monotone.0h4v.s11.afbd70d7da72 from=translated src=- shape=a9b0e5a2 vocab=ff023f31
+-/
 theorem J_mono {A : ℕ → Type*} (e : ∀ n, A n → Γ(G, ⊤)) (U : G.Opens) : Monotone (J e U) := by
   intro n n' h
   apply Ideal.span_mono
@@ -63,16 +69,25 @@ theorem J_mono {A : ℕ → Type*} (e : ∀ n, A n → Γ(G, ⊤)) (U : G.Opens)
   obtain ⟨m, hm, a, ha⟩ := hs
   exact ⟨m, hm.trans h, a, ha⟩
 
+/--
+@isnad1 id=mem.1h7v.s11.3cec0f4f0372 from=translated src=- shape=8924c741 vocab=fd1f4957
+-/
 theorem res_mem_J {A : ℕ → Type*} (e : ∀ n, A n → Γ(G, ⊤)) (U : G.Opens) {m n : ℕ} (h : m ≤ n)
     (a : A m) : res U (e m a) ∈ J e U n := by
   apply Ideal.subset_span
   simp only [Set.mem_iUnion, Set.mem_Iic, Set.mem_range, exists_prop]
   exact ⟨m, h, a, rfl⟩
 
+/--
+@isnad1 id=ex.0h4v.s10.808b8e7ad9db from=translated src=- shape=e8d6259b vocab=c4aaa44b
+-/
 theorem exists_J_stable {A : ℕ → Type*} (e : ∀ n, A n → Γ(G, ⊤)) (U : G.Opens)
     [IsNoetherianRing Γ(G, U)] : ∃ N, ∀ n, N ≤ n → J e U N = J e U n :=
   (monotone_stabilizes_iff_noetherian.mpr inferInstance) ⟨J e U, J_mono e U⟩
 
+/--
+@isnad1 id=le.1h7v.s13.6f0a87ecd9bb from=translated src=- shape=6b91cb83 vocab=ae47ef04
+-/
 theorem J_le_ker {A : ℕ → Type*} (e : ∀ n, A n → Γ(G, ⊤)) (U : G.Opens) (n : ℕ)
     {T : Scheme.{u}} (x : T ⟶ G) (hx : ∀ m ≤ n, Kills e m x) :
     J e U n ≤ RingHom.ker (x.app U).hom := by
@@ -82,6 +97,9 @@ theorem J_le_ker {A : ℕ → Type*} (e : ∀ n, A n → Γ(G, ⊤)) (U : G.Open
   obtain ⟨m, hm, a, rfl⟩ := hs
   rw [SetLike.mem_coe, RingHom.mem_ker, app_res, hx m hm a, map_zero]
 
+/--
+@isnad1 id=ex.0h3v.s8.a21094ae292b from=translated src=- shape=41ea26b1 vocab=b58e9081
+-/
 theorem exists_forall_kills_of_isNoetherian [IsNoetherian G] {A : ℕ → Type*}
     (e : ∀ n, A n → Γ(G, ⊤)) :
     ∃ N : ℕ, ∀ {T : Scheme.{u}} (x : T ⟶ G), (∀ n ≤ N, Kills e n x) → ∀ n, Kills e n x := by
@@ -157,6 +175,9 @@ end AlgebraicGeometry.KernelTowerStabilization
 end
 
 open AlgebraicGeometry.KernelTowerStabilization in
+/--
+@isnad1 id=ex.1h3v.s14.c6fbe52b2c6e from=translated src=- shape=338b5498 vocab=a933c274
+-/
 theorem solution
     {G : Scheme.{u}} [IsNoetherian G] (d : ℕ → ℕ)
     (ρ : ∀ (n : ℕ) {T : Scheme.{u}}, (T ⟶ G) → GL (Fin (d n)) Γ(T, ⊤))

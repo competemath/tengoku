@@ -15,6 +15,9 @@ namespace EtaleOfReducedFinite
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=formally.0h2v.s6.891ed90c5266 from=translated src=- shape=ab1bca40 vocab=86b44ac9
+-/
 theorem formallyUnramified_of_isReduced_of_finite (K : Type u) [Field K] [PerfectField K]
     (R : Type u) [CommRing R] [Algebra K R] [Module.Finite K R] [IsReduced R] : Algebra.FormallyUnramified K R := by
   haveI : IsArtinianRing R := IsArtinianRing.of_finite K R
@@ -30,6 +33,9 @@ theorem formallyUnramified_of_isReduced_of_finite (K : Type u) [Field K] [Perfec
 end EtaleOfReducedFinite
 
 open EtaleOfReducedFinite in
+/--
+@isnad1 id=etale.0h3v.s5.acb40b183745 from=translated src=- shape=d48d14fc vocab=bca4a4f5
+-/
 theorem solution
     {K : Type u} [Field K] [PerfectField K]
     {B : Scheme.{u}} (g : B ⟶ Spec (CommRingCat.of K)) [IsFinite g] [IsReduced B] : Etale g := by

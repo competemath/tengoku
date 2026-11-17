@@ -13,6 +13,9 @@ open CategoryTheory AlgebraicGeometry
 
 namespace ClopenGC4
 
+/--
+@isnad1 id=ex.1h5v.s8.8cf754224460 from=translated src=- shape=5d978760 vocab=940811d9
+-/
 theorem exists_point_of_isClosed {k : Type u} [Field k] {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of k))
     [LocallyOfFiniteType f] (x : X) (hx : IsClosed ({x} : Set X))
     (K : Type u) [Field K] [IsAlgClosed K] [Algebra k K] :
@@ -44,6 +47,9 @@ end ClopenGC4
 
 namespace ClopenGC4
 
+/--
+@isnad1 id=false.2h5v.s9.553ec88cf366 from=translated src=- shape=bb099397 vocab=2cdf4fd6
+-/
 theorem false_of_mem_diff {k : Type u} [Field k] {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of k))
     [LocallyOfFiniteType f] (U V : X.Opens)
     (h : ∀ (K : Type u) [Field K] [IsAlgClosed K] (i : k →+* K) (p : Spec (CommRingCat.of K) ⟶ X),
@@ -62,6 +68,9 @@ theorem false_of_mem_diff {k : Type u} [Field k] {X : Scheme.{u}} (f : X ⟶ Spe
 end ClopenGC4
 
 open ClopenGC4 in
+/--
+@isnad1 id=eq.1h5v.s9.473345d46e07 from=translated src=- shape=72d991bf vocab=9259c868
+-/
 theorem solution
     {k : Type u} [Field k] {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of k)) [LocallyOfFiniteType f]
     (U V : X.Opens)

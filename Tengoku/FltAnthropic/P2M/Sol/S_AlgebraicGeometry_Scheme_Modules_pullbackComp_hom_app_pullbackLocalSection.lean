@@ -27,6 +27,9 @@ namespace PullbackCompSection
 
 variable {Y : Scheme.{u}}
 
+/--
+@isnad1 id=eq.0h8v.s12.34c1e2d3a939 from=translated src=- shape=1efab415 vocab=0aca4a7f
+-/
 theorem pullbackComp_hom_app_pullbackLocalSection {X Z : Scheme.{u}} (f : X ⟶ Y) (g : Y ⟶ Z) (M : Z.Modules)
     (U : Z.Opens) (s : Γ(M, U)) :
     Scheme.Modules.Hom.app ((pullbackComp f g).hom.app M) (f ⁻¹ᵁ (g ⁻¹ᵁ U))
@@ -53,6 +56,9 @@ end AlgebraicGeometry.Scheme.Modules
 
 end
 
+/--
+@isnad1 id=eq.0h8v.s12.d33f22f0ae9b from=translated src=- shape=ec372708 vocab=0aca4a7f
+-/
 theorem solution
     {X Y Z : Scheme.{u}} (f : X ⟶ Y) (g : Y ⟶ Z) (M : Z.Modules) (U : Z.Opens) (s : Γ(M, U)) :
     ((AlgebraicGeometry.Scheme.Modules.pullbackComp f g).hom.app M).app (f ⁻¹ᵁ (g ⁻¹ᵁ U))

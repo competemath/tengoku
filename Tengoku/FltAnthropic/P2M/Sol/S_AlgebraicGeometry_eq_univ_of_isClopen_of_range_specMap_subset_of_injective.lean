@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=eq.3h4v.s8.b592f684cb9e from=translated src=- shape=a3af12a1 vocab=cb9df6e9
+-/
 theorem solution
     {R₀ L : Type} [CommRing R₀] [CommRing L] (φ : R₀ →+* L) (hφ : Function.Injective φ)
     (W : Set ↥(Spec (CommRingCat.of R₀))) (hW : IsClopen W)

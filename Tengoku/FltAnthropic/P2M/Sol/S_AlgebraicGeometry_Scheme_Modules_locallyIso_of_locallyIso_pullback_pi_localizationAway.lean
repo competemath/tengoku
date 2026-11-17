@@ -13,6 +13,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 noncomputable section
 
+/--
+@isnad1 id=ex.3h11v.s13.1554ed5879b4 from=translated src=- shape=785f0f07 vocab=0003cbfc
+-/
 theorem solution
     {S : Type u} [CommRing S] {k : ℕ} (r : Fin k → S) (hr : Ideal.span (Set.range r) = ⊤)
     {X X₁ : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of S))

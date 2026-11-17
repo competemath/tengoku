@@ -12,6 +12,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry IsLocalRing
 
 universe u
 
+/--
+@isnad1 id=ex.3h5v.s16.bee69817f98a from=translated src=- shape=b2eb70aa vocab=28b1a251
+-/
 theorem solution
     {X : Scheme.{u}} (I : X.IdealSheafData) (U : X.affineOpens) (x : ↥X) (hx : x ∈ (U : X.Opens))
     (π : X.presheaf.stalk x) (hgen : (I.ideal U).map (X.presheaf.germ (U : X.Opens) x hx).hom = Ideal.span {π})

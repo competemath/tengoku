@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=ex.1h4v.s8.538be12f616d from=translated src=- shape=ba1452ef vocab=5b331e22
+-/
 theorem solution
     {S : Type u} [CommRing S] {K : Scheme.{u}} (p : K ⟶ Spec (CommRingCat.of S)) [IsFinite p] [Flat p]
     (𝒢 : K.Opens) (h𝒢 : IsClosed (𝒢 : Set ↥K)) :

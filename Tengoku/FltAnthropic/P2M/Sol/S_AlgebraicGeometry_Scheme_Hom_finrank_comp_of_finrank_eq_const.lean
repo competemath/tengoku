@@ -18,6 +18,9 @@ export _root_.AlgebraicGeometry (Spec.map_comp Scheme.Hom.finrank_comp_left_of_i
 namespace FinrankComp
 open _root_.AlgebraicGeometry
 
+/--
+@isnad1 id=eq.1h4v.s8.cc8a772ea722 from=translated src=- shape=578939b6 vocab=47cbe996
+-/
 theorem finrank_eq_mul_of_rankAtStalk_eq (K B C : Type u) [Field K] [CommRing B] [Algebra K B]
     [CommRing C] [Algebra B C] [Algebra K C] [IsScalarTower K B C]
     [Module.Finite K B] [Module.Finite B C] [Module.Flat B C]
@@ -47,6 +50,9 @@ theorem finrank_eq_mul_of_rankAtStalk_eq (K B C : Type u) [Field K] [CommRing B]
     exact this.symm
   rw [← Module.finrank_mul_finrank K B C, hrk, mul_comm]
 
+/--
+@isnad1 id=eq.1h7v.s7.7f2aec7d9830 from=translated src=- shape=cf15dafd vocab=1cceb69d
+-/
 theorem finrank_comp_SpecMap {K : Type u} [Field K] {B C : CommRingCat.{u}} (ψ : CommRingCat.of K ⟶ B)
     (φ : B ⟶ C)
     [IsFinite (Spec.map ψ)] [Flat (Spec.map ψ)] [IsFinite (Spec.map φ)] [Flat (Spec.map φ)]
@@ -74,6 +80,9 @@ theorem finrank_comp_SpecMap {K : Type u} [Field K] {B C : CommRingCat.{u}} (ψ 
   rw [Module.rankAtStalk_eq_finrank_of_free, Module.rankAtStalk_eq_finrank_of_free]
   exact finrank_eq_mul_of_rankAtStalk_eq K B C m hf'
 
+/--
+@isnad1 id=eq.0h6v.s7.a38bb310c4b8 from=translated src=- shape=5d2f4b5e vocab=033d5489
+-/
 theorem finrank_comp_right_of_isIso {X Y Y' : Scheme.{u}} (f : X ⟶ Y) (e : Y ⟶ Y') [IsIso e]
     [IsFinite f] [Flat f] (y : Y) : (f ≫ e).finrank (e y) = f.finrank y := by
   have sq : IsPullback (𝟙 X) (f ≫ e) f (inv e) :=
@@ -82,6 +91,9 @@ theorem finrank_comp_right_of_isIso {X Y Y' : Scheme.{u}} (f : X ⟶ Y) (e : Y �
   congr 1
   simp [← Scheme.Hom.comp_apply]
 
+/--
+@isnad1 id=eq.1h7v.s7.e9a0b60f1b75 from=translated src=- shape=d136aef1 vocab=9812e815
+-/
 theorem finrank_comp_of_field {X Y : Scheme.{u}} (K : Type u) [Field K] (f : X ⟶ Y)
     (g : Y ⟶ Spec (CommRingCat.of K)) [IsFinite f] [Flat f] [IsFinite g] [Flat g]
     (m : ℕ) (hf : ∀ y, f.finrank y = m) (z : Spec (CommRingCat.of K)) :
@@ -116,6 +128,9 @@ theorem finrank_comp_of_field {X Y : Scheme.{u}} (K : Type u) [Field K] (f : X �
 end AlgebraicGeometry.FinrankComp
 
 open AlgebraicGeometry.FinrankComp in
+/--
+@isnad1 id=eq.1h7v.s6.0c59e158108c from=translated src=- shape=5b1b1db2 vocab=a8efba0b
+-/
 theorem solution
     {X Y Z : Scheme.{u}} (f : X ⟶ Y) (g : Y ⟶ Z) [IsFinite f] [Flat f] [IsFinite g] [Flat g]
     (m : ℕ) (hf : ∀ y : Y, f.finrank y = m) (z : Z) :

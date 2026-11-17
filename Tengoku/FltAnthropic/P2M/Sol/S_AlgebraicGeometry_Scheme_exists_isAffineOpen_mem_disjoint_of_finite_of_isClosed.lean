@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=ex.3h3v.s8.5e86ce5b6961 from=translated src=- shape=b7995c26 vocab=324d7d1b
+-/
 theorem solution
     {X : Scheme.{u}} (S : Set X) (hS : S.Finite) (hcl : ∀ s ∈ S, IsClosed ({s} : Set X))
     (x : X) (hx : x ∉ S) :

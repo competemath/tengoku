@@ -19,39 +19,72 @@ namespace ThetaNormalMatrix
 
 variable {g : ℕ} (δ : Fin g → ℕ) [∀ i, NeZero (δ i)] (d : ℕ) [NeZero d] (B : Type) [CommRing B] (ω : B)
 
+/--
+@isnad1 id=eq.2h4v.s7.0530e12d329d from=translated src=- shape=a781cd06 vocab=1a6b5aa5
+-/
 theorem pow_two_d (ζ : B) (hζ : ζ ^ d = 1) (hω : ω ^ 2 = ζ) : ω ^ (2 * d) = 1 := by
   rw [pow_mul, hω, hζ]
 
+/--
+@isnad1 id=eq.0h7v.s6.a63812a9f5fc from=translated src=- shape=09dc0f7f vocab=067b0225
+-/
 theorem thetaChar_apply (k h : HH δ) : thetaChar δ d B ω k h = omegaPow d B ω (pair δ d k h) := rfl
 
+/--
+@isnad1 id=eq.1h8v.s7.166df925f558 from=translated src=- shape=7f09f6b7 vocab=4e21c4ec
+-/
 theorem thetaChar_add_right (h2d : ω ^ (2 * d) = 1) (k a b : HH δ) :
     thetaChar δ d B ω k (a + b) = thetaChar δ d B ω k a * thetaChar δ d B ω k b := by
   simp only [thetaChar_apply, pair_add_right, omegaPow_add d B ω h2d]
 
+/--
+@isnad1 id=eq.1h8v.s7.c03018c1450d from=translated src=- shape=60cba78a vocab=4e21c4ec
+-/
 theorem thetaChar_add_left (h2d : ω ^ (2 * d) = 1) (k l a : HH δ) :
     thetaChar δ d B ω (k + l) a = thetaChar δ d B ω k a * thetaChar δ d B ω l a := by
   simp only [thetaChar_apply, pair_add_left, omegaPow_add d B ω h2d]
 
+/--
+@isnad1 id=eq.0h6v.s6.09d38a2f683c from=translated src=- shape=9467bf8a vocab=fbf486d1
+-/
 theorem thetaChar_zero_right (k : HH δ) : thetaChar δ d B ω k 0 = 1 := by
   simp only [thetaChar_apply, pair_zero_right, omegaPow_zero]
 
+/--
+@isnad1 id=eq.0h6v.s6.bd997daaef52 from=translated src=- shape=e40b4fe7 vocab=fbf486d1
+-/
 theorem thetaChar_zero_left (a : HH δ) : thetaChar δ d B ω 0 a = 1 := by
   simp only [thetaChar_apply, pair_zero_left, omegaPow_zero]
 
+/--
+@isnad1 id=eq.0h7v.s5.656518a0df42 from=translated src=- shape=e0a44461 vocab=6eadff91
+-/
 theorem thetaChar_comm (k h : HH δ) : thetaChar δ d B ω k h = thetaChar δ d B ω h k := by
   simp only [thetaChar_apply, pair_comm]
 
+/--
+@isnad1 id=eq.1h7v.s7.56637c162e49 from=translated src=- shape=1320dabc vocab=6cef77a4
+-/
 theorem thetaChar_neg_mul_self (h2d : ω ^ (2 * d) = 1) (k a : HH δ) :
     thetaChar δ d B ω k (-a) * thetaChar δ d B ω k a = 1 := by
   rw [← thetaChar_add_right δ d B ω h2d, neg_add_cancel, thetaChar_zero_right]
 
+/--
+@isnad1 id=eq.0h7v.s7.82c6eba1d8fd from=translated src=- shape=b606f425 vocab=3bfee5c1
+-/
 theorem thetaChar_neg_right (k a : HH δ) : thetaChar δ d B ω k (-a) = thetaChar δ d B ω (-k) a := by
   simp only [thetaChar_apply, pair_neg_right, pair_neg_left]
 
+/--
+@isnad1 id=eq.1h3v.s6.d51f73eda207 from=translated src=- shape=2e4511b4 vocab=2ce2af52
+-/
 theorem card_HH (hδd : ∏ i, δ i = d) : Fintype.card (HH δ) = d := by
   rw [← hδd]
   simp [HH, Fintype.card_pi, ZMod.card]
 
+/--
+@isnad1 id=ex.5h7v.s8.f9e14f2cc8e5 from=translated src=- shape=50328442 vocab=0f6b1ae3
+-/
 theorem exists_isUnit_one_sub_thetaChar (hδd : ∏ i, δ i = d) (ζ : B) (hζ : ζ ^ d = 1)
     (hζu : ∀ j : ℕ, 0 < j → j < d → IsUnit (1 - ζ ^ j)) (hω : ω ^ 2 = ζ) (x : HH δ) (hx : x ≠ 0) :
     ∃ k : HH δ, IsUnit (1 - omegaPow d B ω (pair δ d k x)) := by
@@ -88,6 +121,9 @@ theorem exists_isUnit_one_sub_thetaChar (hδd : ∏ i, δ i = d) (ζ : B) (hζ :
       _ = d := by rw [hm, mul_comm]
   exact hζu _ hmv1 hmv2
 
+/--
+@isnad1 id=eq.4h7v.s8.5ab096c9cf9b from=translated src=- shape=f677f022 vocab=c76b0be0
+-/
 theorem sum_thetaChar (hδd : ∏ i, δ i = d) (ζ : B) (hζ : ζ ^ d = 1)
     (hζu : ∀ j : ℕ, 0 < j → j < d → IsUnit (1 - ζ ^ j)) (hω : ω ^ 2 = ζ) (k : HH δ) :
     ∑ a, thetaChar δ d B ω k a = if k = 0 then (d : B) else 0 := by
@@ -111,6 +147,9 @@ theorem sum_thetaChar (hδd : ∏ i, δ i = d) (ζ : B) (hζ : ζ ^ d = 1)
 noncomputable def four (dinv : B) (lam : HH δ → B) (k : HH δ) : B :=
   dinv * ∑ a, lam a * thetaChar δ d B ω k (-a)
 
+/--
+@isnad1 id=eq.2h9v.s7.f1e10f1304e2 from=translated src=- shape=6344120e vocab=dbedb6e6
+-/
 theorem mul_four (h2d : ω ^ (2 * d) = 1) (dinv : B) (lam : HH δ → B)
     (hmul : ∀ a b, lam (a + b) = lam a * lam b) (k b : HH δ) :
     lam b * four δ d B ω dinv lam k = thetaChar δ d B ω k b * four δ d B ω dinv lam k := by
@@ -127,6 +166,9 @@ theorem mul_four (h2d : ω ^ (2 * d) = 1) (dinv : B) (lam : HH δ → B)
   simp only [four]
   rw [mul_left_comm, key, mul_left_comm]
 
+/--
+@isnad1 id=eq.6h8v.s8.37372626cb23 from=translated src=- shape=8f280ac6 vocab=8c1a9389
+-/
 theorem sum_four (hδd : ∏ i, δ i = d) (ζ : B) (hζ : ζ ^ d = 1)
     (hζu : ∀ j : ℕ, 0 < j → j < d → IsUnit (1 - ζ ^ j)) (hω : ω ^ 2 = ζ)
     (dinv : B) (hdinv : dinv * (d : B) = 1) (lam : HH δ → B) (h0 : lam 0 = 1) :
@@ -147,6 +189,9 @@ theorem sum_four (hδd : ∏ i, δ i = d) (ζ : B) (hζ : ζ ^ d = 1)
     rw [ite_eq_right (by simpa using ha), mul_zero]
   · intro hh; exact absurd (Finset.mem_univ _) hh
 
+/--
+@isnad1 id=eq.6h10v.s8.98de6dd94f5e from=translated src=- shape=e14711b4 vocab=53f39c9c
+-/
 theorem four_mul_four (hδd : ∏ i, δ i = d) (ζ : B) (hζ : ζ ^ d = 1)
     (hζu : ∀ j : ℕ, 0 < j → j < d → IsUnit (1 - ζ ^ j)) (hω : ω ^ 2 = ζ)
     (dinv : B) (lam : HH δ → B)
@@ -166,6 +211,9 @@ theorem four_mul_four (hδd : ∏ i, δ i = d) (ζ : B) (hζ : ζ ^ d = 1)
     ring
   rw [step, sum_thetaChar δ d B ω hδd ζ hζ hζu hω, ite_eq_right (sub_ne_zero.mpr hkl), mul_zero]
 
+/--
+@isnad1 id=complete.7h8v.s8.0378e6be9f73 from=translated src=- shape=d9acb502 vocab=d9edacc2
+-/
 theorem completeOrthogonalIdempotents_four (hδd : ∏ i, δ i = d) (ζ : B) (hζ : ζ ^ d = 1)
     (hζu : ∀ j : ℕ, 0 < j → j < d → IsUnit (1 - ζ ^ j)) (hω : ω ^ 2 = ζ)
     (dinv : B) (hdinv : dinv * (d : B) = 1) (lam : HH δ → B) (h0 : lam 0 = 1)
@@ -183,6 +231,9 @@ namespace ThetaNormalMatrix
 variable {g : ℕ} (δ : Fin g → ℕ) [∀ i, NeZero (δ i)] (d : ℕ) [NeZero d] (B : Type) [CommRing B] (ω : B) {n : ℕ}
   (e : Fin n ≃ HH δ)
 
+/--
+@isnad1 id=eq.1h8v.s8.bca805a73bd3 from=translated src=- shape=9ed9b06f vocab=875dfd9a
+-/
 theorem schrodMat_smul_base (h2d : ω ^ (2 * d) = 1) (z : Heis δ d) :
     schrodMat δ d B ω e z = omegaPow d B ω z.a • schrodMat δ d B ω e ⟨0, z.h, z.k⟩ := by
   ext i j
@@ -191,6 +242,9 @@ theorem schrodMat_smul_base (h2d : ω ^ (2 * d) = 1) (z : Heis δ d) :
   · rw [zero_add, omegaPow_add d B ω h2d]
   · rw [mul_zero]
 
+/--
+@isnad1 id=eq.0h5v.s7.6980cb5c4401 from=translated src=- shape=9d34c3ec vocab=7f15fa91
+-/
 theorem theta_mul_eta (h k : HH δ) : (Heis.theta h * Heis.eta k : Heis δ d) = ⟨0, h, k⟩ := by
   refine Heis.ext ?_ ?_ ?_ <;> simp [Heis.theta, Heis.eta, pair_zero_right]
 
@@ -202,6 +256,9 @@ theorem eq_zero_of_smul_eq_zero_of_isUnit (i₀ : Fin n) (c : B) (M : Matrix (Fi
   have h2 := congrFun (congrFun h1 i₀) i₀
   simpa using h2
 
+/--
+@isnad1 id=and.5h8v.s9.df612582f29e from=translated src=- shape=72b19708 vocab=a678d868
+-/
 theorem char_of_proj_comm (i₀ : Fin n) (P : HH δ → Matrix (Fin n) (Fin n) B) (hP0 : P 0 = 1)
     (hPmul : ∀ a b, P (a + b) = P a * P b) (hPu : ∀ a, IsUnit (P a))
     (T : Matrix (Fin n) (Fin n) B) (hT : IsUnit T) (lam : HH δ → B)
@@ -222,6 +279,9 @@ theorem char_of_proj_comm (i₀ : Fin n) (P : HH δ → Matrix (Fin n) (Fin n) B
       rw [sub_smul, ← h1, ← h2, sub_self]
     exact sub_eq_zero.mp (eq_zero_of_smul_eq_zero_of_isUnit B i₀ _ _ ((hPu _).mul hT) h3)
 
+/--
+@isnad1 id=eq.6h15v.s10.d77959aeb840 from=translated src=- shape=3d57987e vocab=e376dc04
+-/
 theorem piece_comm (ζ : B) (hζ : ζ ^ d = 1) (hω : ω ^ 2 = ζ)
     (T : Matrix (Fin n) (Fin n) B) (lam mu : HH δ → B)
     (hθ : ∀ h' : HH δ, T * schrodMat δ d B ω e (Heis.theta h') = lam h' • (schrodMat δ d B ω e (Heis.theta h') * T))
@@ -291,6 +351,9 @@ theorem piece_comm (ζ : B) (hζ : ζ ^ d = 1) (hω : ω ^ 2 = ζ)
 end TN.ThetaNormalMatrix
 
 open TN.ThetaNormalMatrix in
+/--
+@isnad1 id=ex.8h11v.s9.2d6eac8a2601 from=translated src=- shape=d162d8af vocab=4d07291a
+-/
 theorem solution
     {g : ℕ} (δ : Fin g → ℕ) [∀ i, NeZero (δ i)] (d : ℕ) [NeZero d] (hδd : ∏ i, δ i = d)
     (B : Type) [CommRing B] (hd : IsUnit ((d : ℕ) : B)) (ζ ω : B) (hζ : ζ ^ d = 1)

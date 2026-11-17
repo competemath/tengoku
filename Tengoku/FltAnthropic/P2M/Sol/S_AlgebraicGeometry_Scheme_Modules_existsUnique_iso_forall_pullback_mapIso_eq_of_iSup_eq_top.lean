@@ -30,11 +30,17 @@ universe w
 
 variable {X Y Z : Scheme.{u}}
 
+/--
+@isnad1 id=eq.0h8v.s12.4f13e68f4ba5 from=translated src=- shape=33453e5b vocab=c426c32e
+-/
 lemma app_naturality {M N : X.Modules} (φ : M ⟶ N) {U V : X.Opens} (i : U ⟶ V) (x : Γ(M, V)) :
     N.presheaf.map i.op (φ.app V x) = φ.app U (M.presheaf.map i.op x) := by
   have h := φ.mapPresheaf.naturality i.op
   exact (congrFun (congrArg (fun f => (ConcreteCategory.hom f : Γ(M, V) → Γ(N, U))) h) x).symm
 
+/--
+@isnad1 id=bijectiv.1h5v.s10.e38c44236b40 from=translated src=- shape=a0e6f81c vocab=d3c2860b
+-/
 lemma map_bijective_of_eq (M : X.Modules) {U V : X.Opens} (e : U = V) (i : U ⟶ V) :
     Function.Bijective (M.presheaf.map i.op) := by
   subst e
@@ -42,6 +48,9 @@ lemma map_bijective_of_eq (M : X.Modules) {U V : X.Opens} (e : U = V) (i : U ⟶
   simp only [op_id]
   exact ⟨fun a b h => by simpa using h, fun b => ⟨b, by simp⟩⟩
 
+/--
+@isnad1 id=eq.0h8v.s11.a2655bcf8447 from=translated src=- shape=9737110a vocab=729d4ee2
+-/
 lemma pullbackComp_inv_app_app_pullbackLocalSection (f : X ⟶ Y) (g : Y ⟶ Z) (M : Z.Modules)
     (U : Z.Opens) (s : Γ(M, U)) :
     ((pullbackComp f g).inv.app M).app ((f ≫ g) ⁻¹ᵁ U) (pullbackLocalSection (f ≫ g) s) =
@@ -53,6 +62,9 @@ lemma pullbackComp_inv_app_app_pullbackLocalSection (f : X ⟶ Y) (g : Y ⟶ Z) 
   rw [pullbackLocalSection_def, pullbackLocalSection_def, pullbackLocalSection_def]
   exact h'.symm
 
+/--
+@isnad1 id=eq.0h8v.s11.9abc0d432be0 from=translated src=- shape=f660a1cd vocab=0aca4a7f
+-/
 lemma pullbackComp_hom_app_app_pullbackLocalSection (f : X ⟶ Y) (g : Y ⟶ Z) (M : Z.Modules)
     (U : Z.Opens) (s : Γ(M, U)) :
     ((pullbackComp f g).hom.app M).app ((f ≫ g) ⁻¹ᵁ U)
@@ -61,6 +73,9 @@ lemma pullbackComp_hom_app_app_pullbackLocalSection (f : X ⟶ Y) (g : Y ⟶ Z) 
   rw [← pullbackComp_inv_app_app_pullbackLocalSection f g M U s, ← CategoryTheory.comp_apply,
     ← Scheme.Modules.Hom.comp_app, Iso.inv_hom_id_app, Scheme.Modules.Hom.id_app, CategoryTheory.id_apply]
 
+/--
+@isnad1 id=bijectiv.1h5v.s9.ae23e4741c00 from=translated src=- shape=be64ae3c vocab=3a3e1b38
+-/
 lemma pullbackLocalSection_bijective_of_le (f : X ⟶ Y) [IsOpenImmersion f] (M : Y.Modules)
     (W : Y.Opens) (hW : W ≤ f.opensRange) :
     Function.Bijective (fun s : Γ(M, W) => pullbackLocalSection f s) := by
@@ -78,6 +93,9 @@ lemma pullbackLocalSection_bijective_of_le (f : X ⟶ Y) [IsOpenImmersion f] (M 
         (M.presheaf.map (homOfLE (f.image_preimage_le W)).op) from funext key]
   exact (ConcreteCategory.bijective_of_isIso _).comp (map_bijective_of_eq M e (homOfLE (f.image_preimage_le W)))
 
+/--
+@isnad1 id=eq.3h7v.s11.cabd8f94dbf9 from=translated src=- shape=4cfec9fe vocab=e396c4ff
+-/
 lemma sections_eq_of_cover (M : X.Modules) {K : Type w} (W : X.Opens) (Wk : K → X.Opens)
     (hle : ∀ k, Wk k ≤ W) (hcov : W ≤ ⨆ k, Wk k) (s t : Γ(M, W))
     (h : ∀ k, M.presheaf.map (homOfLE (hle k)).op s = M.presheaf.map (homOfLE (hle k)).op t) : s = t :=
@@ -91,6 +109,9 @@ def pb (M : X.Modules) {W : X.Opens} (hW : W ≤ f.opensRange) :
     Γ(M, W) ≃ Γ((Scheme.Modules.pullback f).obj M, f ⁻¹ᵁ W) :=
   Equiv.ofBijective _ (pullbackLocalSection_bijective_of_le f M W hW)
 
+/--
+@isnad1 id=eq.1h6v.s11.3706558fabc5 from=translated src=- shape=d9f05d9e vocab=6b1f6c9d
+-/
 @[scoped simp] lemma pb_apply (M : X.Modules) {W : X.Opens} (hW : W ≤ f.opensRange) (x : Γ(M, W)) :
     pb f M hW x = pullbackLocalSection f x := rfl
 
@@ -98,11 +119,17 @@ def T (Φ : (Scheme.Modules.pullback f).obj M ⟶ (Scheme.Modules.pullback f).ob
     {W : X.Opens} (hW : W ≤ f.opensRange) (x : Γ(M, W)) : Γ(N, W) :=
   (pb f N hW).symm (Φ.app (f ⁻¹ᵁ W) (pullbackLocalSection f x))
 
+/--
+@isnad1 id=eq.1h8v.s11.f8b3bd09ef99 from=translated src=- shape=923eaa28 vocab=ca9728a2
+-/
 lemma pullbackLocalSection_T (Φ : (Scheme.Modules.pullback f).obj M ⟶ (Scheme.Modules.pullback f).obj N)
     {W : X.Opens} (hW : W ≤ f.opensRange) (x : Γ(M, W)) :
     pullbackLocalSection f (T f Φ hW x) = Φ.app (f ⁻¹ᵁ W) (pullbackLocalSection f x) :=
   (pb f N hW).apply_symm_apply _
 
+/--
+@isnad1 id=eq.1h10v.s8.b9d2f8f43bef from=translated src=- shape=06abad70 vocab=c25f9794
+-/
 lemma T_comp (Φ : (Scheme.Modules.pullback f).obj M ⟶ (Scheme.Modules.pullback f).obj N)
     (Φ' : (Scheme.Modules.pullback f).obj N ⟶ (Scheme.Modules.pullback f).obj P)
     {W : X.Opens} (hW : W ≤ f.opensRange) (x : Γ(M, W)) :
@@ -110,23 +137,35 @@ lemma T_comp (Φ : (Scheme.Modules.pullback f).obj M ⟶ (Scheme.Modules.pullbac
   apply (pb f P hW).injective
   simp only [pb_apply, pullbackLocalSection_T, Scheme.Modules.Hom.comp_app, CategoryTheory.comp_apply]
 
+/--
+@isnad1 id=eq.1h6v.s8.2e0b47cbe4d8 from=translated src=- shape=aca62f47 vocab=b62f303c
+-/
 lemma T_id {W : X.Opens} (hW : W ≤ f.opensRange) (x : Γ(M, W)) :
     T f (𝟙 ((Scheme.Modules.pullback f).obj M)) hW x = x := by
   apply (pb f M hW).injective
   simp only [pb_apply, pullbackLocalSection_T, Scheme.Modules.Hom.id_app, CategoryTheory.id_apply]
 
+/--
+@isnad1 id=eq.1h9v.s11.161bf9b2577d from=translated src=- shape=9b196bfc vocab=7f09bad0
+-/
 lemma T_add (Φ : (Scheme.Modules.pullback f).obj M ⟶ (Scheme.Modules.pullback f).obj N)
     {W : X.Opens} (hW : W ≤ f.opensRange) (x y : Γ(M, W)) :
     T f Φ hW (x + y) = T f Φ hW x + T f Φ hW y := by
   apply (pb f N hW).injective
   simp only [pb_apply, pullbackLocalSection_T, pullbackLocalSection_add, map_add]
 
+/--
+@isnad1 id=eq.1h9v.s13.132e486919ff from=translated src=- shape=51072ddc vocab=aa967241
+-/
 lemma T_smul (Φ : (Scheme.Modules.pullback f).obj M ⟶ (Scheme.Modules.pullback f).obj N)
     {W : X.Opens} (hW : W ≤ f.opensRange) (r : Γ(X, W)) (x : Γ(M, W)) :
     T f Φ hW (r • x) = r • T f Φ hW x := by
   apply (pb f N hW).injective
   simp only [pb_apply, pullbackLocalSection_T, pullbackLocalSection_smul, Scheme.Modules.Hom.app_smul]
 
+/--
+@isnad1 id=eq.2h9v.s11.886527af5453 from=translated src=- shape=a1a59699 vocab=32c1e138
+-/
 lemma T_restrict (Φ : (Scheme.Modules.pullback f).obj M ⟶ (Scheme.Modules.pullback f).obj N)
     {W W' : X.Opens} (hW : W ≤ f.opensRange) (h : W' ≤ W) (x : Γ(M, W)) :
     N.presheaf.map (homOfLE h).op (T f Φ hW x) = T f Φ (h.trans hW) (M.presheaf.map (homOfLE h).op x) := by
@@ -143,6 +182,9 @@ def Tlin (Φ : (Scheme.Modules.pullback f).obj M ⟶ (Scheme.Modules.pullback f)
 
 end transport
 
+/--
+@isnad1 id=and.4h11v.s10.9c6f777d5e1f from=translated src=- shape=0350a8eb vocab=3b786e3a
+-/
 lemma T_nest {M N : X.Modules} {Y₁ Y₂ : Scheme.{u}} (f₁ : Y₁ ⟶ X) (f₂ : Y₂ ⟶ X)
     [IsOpenImmersion f₁] [IsOpenImmersion f₂] (j : Y₂ ⟶ Y₁) (hj : j ≫ f₁ = f₂)
     (E₁ : (Scheme.Modules.pullback f₁).obj M ≅ (Scheme.Modules.pullback f₁).obj N)
@@ -228,6 +270,9 @@ lemma T_nest {M N : X.Modules} {Y₁ Y₂ : Scheme.{u}} (f₁ : Y₁ ⟶ X) (f�
 
 section cover
 
+/--
+@isnad1 id=le.1h3v.s6.b2ff3a4be01d from=translated src=- shape=0c81daa7 vocab=a1bad4a9
+-/
 lemma le_opensRange {O W : X.Opens} (hW : W ≤ O) : W ≤ O.ι.opensRange := by
   rwa [Scheme.Opens.opensRange_ι]
 
@@ -239,6 +284,9 @@ variable {M N : X.Modules} {ι : Type v} (U : ι → X.Opens)
 
 include hB hn in
 
+/--
+@isnad1 id=eq.4h10v.s10.0a102de13d04 from=translated src=- shape=3ac6df38 vocab=e994e846
+-/
 lemma T_indep {i j : ι} {W : X.Opens} (hWi : W ≤ U i) (hWj : W ≤ U j) (x : Γ(M, W)) :
     T (U i).ι (Φ i) (le_opensRange hWi) x = T (U j).ι (Φ j) (le_opensRange hWj) x := by
   refine sections_eq_of_cover N W (fun k : {k : ι // U k ≤ U i ⊓ U j} => W ⊓ U k.1)
@@ -254,15 +302,24 @@ lemma T_indep {i j : ι} {W : X.Opens} (hWi : W ≤ U i) (hWj : W ≤ U j) (x : 
 def fam (W : X.Opens) (hW : ∃ i, W ≤ U i) : Γ(M, W) →ₗ[Γ(X, W)] Γ(N, W) :=
   Tlin (U hW.choose).ι (Φ hW.choose) (le_opensRange hW.choose_spec)
 
+/--
+@isnad1 id=eq.1h8v.s12.c2c96f5e16e8 from=translated src=- shape=5895b8c9 vocab=4eb5d1a7
+-/
 lemma fam_apply (W : X.Opens) (hW : ∃ i, W ≤ U i) (x : Γ(M, W)) :
     fam U Φ W hW x = T (U hW.choose).ι (Φ hW.choose) (le_opensRange hW.choose_spec) x := rfl
 
 include hB hn in
+/--
+@isnad1 id=eq.4h9v.s12.d3700840926a from=translated src=- shape=42b1fd14 vocab=4dc4d61c
+-/
 lemma fam_eq {i : ι} (W : X.Opens) (hW : ∃ i, W ≤ U i) (hWi : W ≤ U i) (x : Γ(M, W)) :
     fam U Φ W hW x = T (U i).ι (Φ i) (le_opensRange hWi) x := by
   rw [fam_apply]; exact T_indep U hB Φ hn hW.choose_spec hWi x
 
 include hB hn in
+/--
+@isnad1 id=eq.4h9v.s13.46cc7163bfe5 from=translated src=- shape=461b7f68 vocab=db143d98
+-/
 lemma fam_restrict (W W' : X.Opens) (hW : ∃ i, W ≤ U i) (h : W' ≤ W) (x : Γ(M, W)) :
     N.presheaf.map (homOfLE h).op (fam U Φ W hW x) =
       fam U Φ W' (hW.imp fun _ hi => h.trans hi) (M.presheaf.map (homOfLE h).op x) := by
@@ -278,6 +335,9 @@ open scoped _root_.P2MW.S_AlgebraicGeometry_Scheme_Modules_existsUnique_iso_fora
 open scoped _root_.P2MW.S_AlgebraicGeometry_Scheme_Modules_existsUnique_iso_forall_pullback_mapIso_eq_of_iSup_eq_top.AlgebraicGeometry
 
 open AlgebraicGeometry.Scheme.Modules.IsoGlueAux in
+/--
+@isnad1 id=existsun.3h6v.s11.944e61463f03 from=translated src=- shape=0d36a755 vocab=a367469c
+-/
 theorem solution
     {X : Scheme.{u}} (M N : X.Modules) {ι : Type v} (U : ι → X.Opens) (hU : ⨆ i, U i = ⊤)
     (hB : ∀ i j, U i ⊓ U j ≤ ⨆ (k : {k : ι // U k ≤ U i ⊓ U j}), U k.1)

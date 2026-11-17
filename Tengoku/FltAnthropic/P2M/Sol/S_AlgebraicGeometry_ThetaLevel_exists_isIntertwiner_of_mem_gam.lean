@@ -13,6 +13,9 @@ set_option autoImplicit false
 open scoped BigOperators
 open AlgebraicGeometry AlgebraicGeometry.ThetaLevel
 
+/--
+@isnad1 id=ex.6h9v.s8.e51214365955 from=translated src=- shape=21ca2633 vocab=fe24a488
+-/
 theorem solution
     {g : ℕ} (δ : Fin g → ℕ) [∀ i, NeZero (δ i)] (d : ℕ) [NeZero d] (hδd : ∏ i, δ i = d)
     (B : Type) [CommRing B] (hd : IsUnit ((d : ℕ) : B)) (ζ ω : B) (hζ : ζ ^ d = 1)

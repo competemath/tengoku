@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=jacobson.0h3v.s5.eb3fa1e567a0 from=translated src=- shape=ff0a9f69 vocab=ffe5f61f
+-/
 theorem AlgebraicGeometry.jacobsonSpace_of_locallyOfFiniteType
     {k : Type u} [Field k] {X : Scheme.{u}} (t : X ⟶ Spec (CommRingCat.of k)) [LocallyOfFiniteType t] :
     JacobsonSpace X := by exact @_root_.P2MW.S_AlgebraicGeometry_jacobsonSpace_of_locallyOfFiniteType.solution k _ X t _

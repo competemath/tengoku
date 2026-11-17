@@ -13,6 +13,9 @@ open CategoryTheory AlgebraicGeometry
 
 namespace CharZeroGenerization
 
+/--
+@isnad1 id=ex.2h2v.s7.7677243aa6c1 from=translated src=- shape=149bc183 vocab=ed6f1bc4
+-/
 theorem exists_ringHom_field_charZero {A : Type u} [CommRing A] [IsLocalRing A] (n : ℕ)
     (hn : (n : A) ∈ IsLocalRing.maximalIdeal A) (hnil : ¬ IsNilpotent (n : A)) :
     ∃ (K : Type u) (_ : Field K) (_ : CharZero K), Nonempty (A →+* K) := by
@@ -60,6 +63,9 @@ end CharZeroGenerization
 
 open CharZeroGenerization
 
+/--
+@isnad1 id=ex.2h3v.s10.90320b5d4744 from=translated src=- shape=df7c05eb vocab=2d323567
+-/
 theorem solution
     {X : Scheme.{u}} (x : X) (n : ℕ)
     (hn : ((n : ℕ) : X.presheaf.stalk x) ∈ IsLocalRing.maximalIdeal (X.presheaf.stalk x))

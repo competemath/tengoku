@@ -11,6 +11,9 @@ open CategoryTheory AlgebraicGeometry TopologicalSpace
 
 universe u
 
+/--
+@isnad1 id=ex.1h3v.s13.4e901ca0cffa from=translated src=- shape=ec96d3f9 vocab=6b4fc448
+-/
 theorem solution
     {X : Scheme.{u}} [IsNoetherian X] (𝓙₁ 𝓙₂ : X.IdealSheafData)
     (h : ∀ U : X.affineOpens, 𝓙₁.ideal U ≤ (𝓙₂.ideal U).radical) :

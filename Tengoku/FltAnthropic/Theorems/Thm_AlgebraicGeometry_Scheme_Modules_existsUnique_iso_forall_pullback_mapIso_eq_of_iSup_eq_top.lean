@@ -12,6 +12,9 @@ open CategoryTheory Opposite AlgebraicGeometry
 
 universe u v
 
+/--
+@isnad1 id=existsun.3h6v.s11.944e61463f03 from=translated src=- shape=0d36a755 vocab=a367469c
+-/
 theorem AlgebraicGeometry.Scheme.Modules.existsUnique_iso_forall_pullback_mapIso_eq_of_iSup_eq_top
     {X : Scheme.{u}} (M N : X.Modules) {ι : Type v} (U : ι → X.Opens) (hU : ⨆ i, U i = ⊤)
     (hB : ∀ i j, U i ⊓ U j ≤ ⨆ (k : {k : ι // U k ≤ U i ⊓ U j}), U k.1)

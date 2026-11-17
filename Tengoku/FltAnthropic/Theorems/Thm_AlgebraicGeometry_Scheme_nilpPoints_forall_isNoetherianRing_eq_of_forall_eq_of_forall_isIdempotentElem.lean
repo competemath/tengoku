@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open CategoryTheory AlgebraicGeometry CerednikDrinfeld.FormalOmega
 
+/--
+@isnad1 id=eq.4h9v.s10.ea0e9576d76b from=translated src=- shape=c3b40fc9 vocab=f64aa831
+-/
 theorem AlgebraicGeometry.Scheme.nilpPoints.forall_isNoetherianRing_eq_of_forall_eq_of_forall_isIdempotentElem
     {𝒪 : Type} [CommRing 𝒪] (π : 𝒪) (F : AlgFunctor 𝒪)
     {N : Scheme.{0}} (fN : N ⟶ Spec (CommRingCat.of 𝒪))

@@ -12,6 +12,9 @@ open scoped TensorProduct
 
 universe u v w w'
 
+/--
+@isnad1 id=ex.1h5v.s9.0fe3b94adc24 from=translated src=- shape=0129ccba vocab=fcbbf89f
+-/
 theorem Algebra.exists_finitePresentation_tensorProduct_algEquiv_of_isDirectLimit
     {ι : Type u} [Preorder ι] [Nonempty ι] [IsDirectedOrder ι]
     (G : ι → Type v) [∀ i, CommRing (G i)] (f : ∀ i j : ι, i ≤ j → G i →+* G j)

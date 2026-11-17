@@ -11,12 +11,18 @@ universe u
 
 open AlgebraicGeometry CategoryTheory
 
+/--
+@isnad1 id=iff.1h5v.s8.3ea694bb1d5d from=translated src=- shape=f60d737a vocab=069df9ad
+-/
 theorem g3c_map_le_map_iff_of_bijective {R S : Type*} [CommRing R] [CommRing S] (φ : R →+* S)
     (hφ : Function.Bijective φ) (a b : Ideal R) : a.map φ ≤ b.map φ ↔ a ≤ b := by
   refine ⟨fun h => ?_, fun h => Ideal.map_mono h⟩
   have := Ideal.comap_mono (f := φ) h
   rwa [Ideal.comap_map_of_bijective φ hφ, Ideal.comap_map_of_bijective φ hφ] at this
 
+/--
+@isnad1 id=iff.0h4v.s15.497f03902662 from=translated src=- shape=fe0673de vocab=180ba845
+-/
 theorem solution
     (A : Type u) [CommRing A] (𝔭 : Ideal A) [𝔭.IsPrime]
     (J K : Ideal ((Spec (CommRingCat.of A)).presheaf.obj (Opposite.op ⊤))) :

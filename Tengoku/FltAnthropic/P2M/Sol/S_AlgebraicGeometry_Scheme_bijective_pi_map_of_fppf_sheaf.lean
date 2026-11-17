@@ -11,9 +11,15 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry Opposite
 
+/--
+@isnad1 id=isiso.0h2v.s5.2396d54426f6 from=translated src=- shape=5ecfe535 vocab=6129495d
+-/
 theorem FinProdAux.isIso_sigmaSpec {ι : Type u} [Finite ι] (A : ι → CommRingCat.{u}) :
     IsIso (AlgebraicGeometry.sigmaSpec A) := inferInstance
 
+/--
+@isnad1 id=bijectiv.0h3v.s10.6093cdd0eebc from=translated src=- shape=3dd0e557 vocab=44b803de
+-/
 theorem solution
     (E : Sheaf Scheme.fppfTopology.{u} AddCommGrpCat.{u + 1}) {ι : Type u} [Finite ι] (A : ι → CommRingCat.{u}) :
     Function.Bijective (fun (x : ToType (E.obj.obj (op (Spec (CommRingCat.of (∀ i, A i)))))) (i : ι) =>

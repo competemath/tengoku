@@ -10,6 +10,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=ex.1h5v.s9.bb619141bc95 from=translated src=- shape=f2b2fa29 vocab=5911e82b
+-/
 theorem solution
     {F L : Type u} [Field F] [Field L] [Algebra F L] (H : Subgroup (L ≃ₐ[F] L))
     {X : Scheme.{u}} (x : Spec (CommRingCat.of L) ⟶ X)

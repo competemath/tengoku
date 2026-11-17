@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=nonempty.1h5v.s9.c407c03abfab from=translated src=- shape=acaa5c72 vocab=709cef0a
+-/
 theorem solution
     {R : Type u} [CommRing R] {Y : Scheme.{u}} (f : Y ⟶ Spec (CommRingCat.of R))
     (n : ℕ) [SmoothOfRelativeDimension n f] (y : Y)

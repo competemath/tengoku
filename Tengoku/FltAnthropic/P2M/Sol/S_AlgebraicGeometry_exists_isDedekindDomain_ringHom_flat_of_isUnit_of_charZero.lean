@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=ex.1h2v.s7.0ae65aa8fbf7 from=translated src=- shape=19fc3446 vocab=c8b5b9bd
+-/
 theorem solution
     (𝒪 : Type) [CommRing 𝒪] [IsDomain 𝒪] [CharZero 𝒪] (n : ℕ) (hn : IsUnit ((n : ℕ) : 𝒪)) :
     ∃ (B₀ : Type) (_ : CommRing B₀) (_ : IsDedekindDomain B₀) (i : B₀ →+* 𝒪),

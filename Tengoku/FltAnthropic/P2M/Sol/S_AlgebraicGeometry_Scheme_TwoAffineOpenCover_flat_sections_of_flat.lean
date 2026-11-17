@@ -12,6 +12,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=flat.1h4v.s10.dc3e6412f8e5 from=translated src=- shape=3a5d6973 vocab=cfd5f2e3
+-/
 theorem solution
     {R : Type u} [CommRing R] {X : Scheme.{u}} (c : X ⟶ Spec (CommRingCat.of R)) [Flat c]
     (U : X.Opens) (hU : IsAffineOpen U) :

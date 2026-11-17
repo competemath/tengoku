@@ -20,17 +20,26 @@ namespace Modules
 export _root_.AlgebraicGeometry.Scheme.Modules (hom_ext pushforward pullback presheaf Hom.comp_app Hom Hom.app pullbackPushforwardAdjunction pullbackComp baseChangeHom unit_app_app_comp_baseChangeHom_app unit_app_comp_pullbackComp_inv)
 open _root_.AlgebraicGeometry.Scheme.Modules open _root_.AlgebraicGeometry.Scheme open _root_.AlgebraicGeometry
 
+/--
+@isnad1 id=eq.1h6v.s10.b959118dd108 from=translated src=- shape=8140387f vocab=891d3e66
+-/
 theorem phE5_map_eqToHom_comp_app {Y : Scheme.{u}} {M N : Y.Modules} (φ : M ⟶ N) {U V : Y.Opens}
     (e : U = V) :
     M.presheaf.map (eqToHom e).op ≫ φ.app U = φ.app V ≫ N.presheaf.map (eqToHom e).op := by
   subst e; simp
 
+/--
+@isnad1 id=eq.2h5v.s10.197cc076c799 from=translated src=- shape=b5af2333 vocab=5ea91f81
+-/
 theorem phE5_map_eqToHom_comp_map_eqToHom {Y : Scheme.{u}} (M : Y.Modules) {A₁ A₂ B₁ : Y.Opens}
     (a : A₁ = A₂) (b : B₁ = A₁) :
     M.presheaf.map (eqToHom a).op ≫ M.presheaf.map (eqToHom b).op =
       M.presheaf.map (eqToHom (b.trans a)).op := by
   subst a; subst b; simp
 
+/--
+@isnad1 id=eq.1h7v.s11.f3c9a8e1e840 from=translated src=- shape=a3ea8be2 vocab=e94ed6c3
+-/
 theorem phE5_ext_of_unit_app_comp {T T' : Scheme.{u}} (ψ : T' ⟶ T) {M : T.Modules} {N : T'.Modules}
     (f₁ f₂ : (pullback ψ).obj M ⟶ N)
     (h : ∀ U : T.Opens, ((pullbackPushforwardAdjunction ψ).unit.app M).app U ≫ f₁.app (ψ ⁻¹ᵁ U) =
@@ -40,6 +49,9 @@ theorem phE5_ext_of_unit_app_comp {T T' : Scheme.{u}} (ψ : T' ⟶ T) {M : T.Mod
   refine Scheme.Modules.hom_ext _ _ fun U => ?_
   exact h U
 
+/--
+@isnad1 id=eq.1h6v.s10.027a6edd1469 from=translated src=- shape=81678c1c vocab=1d92a5fc
+-/
 theorem phE5_inv_app_map_eqToHom_hom_app {Y : Scheme.{u}} {P Q : Y.Modules} (c : P ≅ Q) {W₁ W₃ : Y.Opens}
     (e : W₃ = W₁) :
     c.inv.app W₁ ≫ P.presheaf.map (eqToHom e).op ≫ c.hom.app W₃ = Q.presheaf.map (eqToHom e).op := by
@@ -47,6 +59,9 @@ theorem phE5_inv_app_map_eqToHom_hom_app {Y : Scheme.{u}} {P Q : Y.Modules} (c :
   simp [← Scheme.Modules.Hom.comp_app]
 
 set_option maxHeartbeats 1600000 in
+/--
+@isnad1 id=eq.3h14v.s10.600aca47b85b from=translated src=- shape=38c5050b vocab=868eae28
+-/
 theorem _root_.P2MW.S_AlgebraicGeometry_Scheme_Modules_baseChangeHom_comp_horizontal.solution
     {X T X' T' X'' T'' : Scheme.{u}} {π : X ⟶ T} {ψ : T' ⟶ T} {π' : X' ⟶ T'} {g' : X' ⟶ X}
     {ψ' : T'' ⟶ T'} {π'' : X'' ⟶ T''} {g'' : X'' ⟶ X'}

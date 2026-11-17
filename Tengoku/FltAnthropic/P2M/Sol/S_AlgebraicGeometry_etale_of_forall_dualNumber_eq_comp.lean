@@ -47,10 +47,16 @@ noncomputable def dualNumberHom (x : B →ₐ[κ] κ)
       · simp [Algebra.algebraMap_eq_smul_one]
       · simp [Algebra.algebraMap_eq_smul_one] }
 
+/--
+@isnad1 id=eq.0h5v.s9.c6e48f47ebff from=translated src=- shape=904db09f vocab=46a14eda
+-/
 theorem snd_dualNumberHom (x : B →ₐ[κ] κ) (d : letI := x.toRingHom.toAlgebra; Derivation κ B κ) (b : B) :
     TrivSqZeroExt.snd (dualNumberHom x d b) = d b := by
   simp [dualNumberHom]
 
+/--
+@isnad1 id=eq.1h4v.s9.63341bf8d8bf from=translated src=- shape=8015f202 vocab=34959d66
+-/
 theorem derivation_eq_zero (h : ∀ (φ : B →ₐ[κ] DualNumber κ) (b : B), TrivSqZeroExt.snd (φ b) = 0)
     (x : B →ₐ[κ] κ) (d : letI := x.toRingHom.toAlgebra; Derivation κ B κ) : d = 0 := by
   letI := x.toRingHom.toAlgebra
@@ -58,6 +64,9 @@ theorem derivation_eq_zero (h : ∀ (φ : B →ₐ[κ] DualNumber κ) (b : B), T
   have := h (dualNumberHom x d) b
   rwa [snd_dualNumberHom] at this
 
+/--
+@isnad1 id=eq.1h4v.s9.e684ed07d466 from=translated src=- shape=aef930cf vocab=a1e09479
+-/
 theorem linearMap_eq_zero (h : ∀ (φ : B →ₐ[κ] DualNumber κ) (b : B), TrivSqZeroExt.snd (φ b) = 0)
     (x : B →ₐ[κ] κ) :
     letI := x.toRingHom.toAlgebra
@@ -68,6 +77,9 @@ theorem linearMap_eq_zero (h : ∀ (φ : B →ₐ[κ] DualNumber κ) (b : B), Tr
   have hd : KaehlerDifferential.linearMapEquivDerivation κ B L = 0 := derivation_eq_zero h x _
   exact (LinearEquiv.map_eq_zero_iff _).mp hd
 
+/--
+@isnad1 id=eq.1h3v.s9.cc685fed8fed from=translated src=- shape=45665035 vocab=f98b7249
+-/
 theorem ker_smul_top_eq_top (h : ∀ (φ : B →ₐ[κ] DualNumber κ) (b : B), TrivSqZeroExt.snd (φ b) = 0)
     (x : B →ₐ[κ] κ) :
     ((RingHom.ker x.toRingHom) • ⊤ : Submodule B Ω[B⁄κ]) = ⊤ := by
@@ -96,6 +108,9 @@ theorem ker_smul_top_eq_top (h : ∀ (φ : B →ₐ[κ] DualNumber κ) (b : B), 
   obtain ⟨ω, rfl⟩ := N.mkQ_surjective v
   exact congrArg (fun f : Ω[B⁄κ] →ₗ[B] κ => f ω) hL
 
+/--
+@isnad1 id=ex.0h3v.s7.6413499fe99d from=translated src=- shape=6ebd4ba3 vocab=91451cfe
+-/
 theorem exists_algHom_ker_eq [IsAlgClosed κ] [Algebra.FiniteType κ B] (𝔪 : Ideal B) [𝔪.IsMaximal] :
     ∃ x : B →ₐ[κ] κ, RingHom.ker x.toRingHom = 𝔪 := by
   letI : Field (B ⧸ 𝔪) := Ideal.Quotient.field 𝔪
@@ -110,6 +125,9 @@ theorem exists_algHom_ker_eq [IsAlgClosed κ] [Algebra.FiniteType κ B] (𝔪 : 
   change e.symm (Ideal.Quotient.mk 𝔪 b) = 0 ↔ b ∈ 𝔪
   rw [map_eq_zero_iff _ e.symm.injective, Ideal.Quotient.eq_zero_iff_mem]
 
+/--
+@isnad1 id=subsingl.1h2v.s8.c78afef0af85 from=translated src=- shape=ae08b061 vocab=c71d2ac1
+-/
 theorem subsingleton_kaehlerDifferential [IsAlgClosed κ] [Algebra.FiniteType κ B]
     (h : ∀ (φ : B →ₐ[κ] DualNumber κ) (b : B), TrivSqZeroExt.snd (φ b) = 0) :
     Subsingleton Ω[B⁄κ] := by

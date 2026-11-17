@@ -24,6 +24,9 @@ variable {C : Type u'} [Category.{v'} C] {J : GrothendieckTopology C}
   [Presheaf.IsLocallyInjective J α] [Presheaf.IsLocallySurjective J α]
   [HasSheafify J AddCommGrpCat.{v}] [J.WEqualsLocallyBijective AddCommGrpCat.{v}]
 
+/--
+@isnad1 id=epi.0h8v.s9.2558a7342f77 from=translated src=- shape=02be0133 vocab=9a65df05
+-/
 theorem epi_sheafification_map_of_isLocallySurjective {P Q : PresheafOfModules.{v} R₀}
     (ψ : P ⟶ Q) [Presheaf.IsLocallySurjective J ((toPresheaf R₀).map ψ)] :
     Epi ((sheafification.{v} α).map ψ) := by
@@ -53,6 +56,9 @@ open _root_.AlgebraicGeometry.Scheme.Modules open _root_.AlgebraicGeometry.Schem
 
 variable {X : Scheme.{u}}
 
+/--
+@isnad1 id=epi.1h4v.s17.e98bfe2a469a from=translated src=- shape=138898e9 vocab=2950cc7e
+-/
 theorem _root_.P2MW.S_AlgebraicGeometry_Scheme_Modules_epi_sheafification_map_of_locallySurjective.solution {P Q : X.PresheafOfModules} (ψ : P ⟶ Q)
     (h : ∀ (U : X.Opens) (s : Q.obj (op U)), ∀ x ∈ U, ∃ (V : X.Opens) (i : V ≤ U),
       x ∈ V ∧ Q.map (homOfLE i).op s ∈ Set.range (ψ.app (op V))) :

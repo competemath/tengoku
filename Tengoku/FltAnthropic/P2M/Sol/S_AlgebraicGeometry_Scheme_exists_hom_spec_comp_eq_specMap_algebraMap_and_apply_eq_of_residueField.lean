@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=ex.1h6v.s10.7d5288b8db12 from=translated src=- shape=7e244997 vocab=849d884d
+-/
 theorem solution
     {R : Type u} [CommRing R] {X : Scheme.{u}} (c : X ⟶ Spec (CommRingCat.of R)) (P : X)
     {Ω : Type u} [Field Ω] [Algebra R Ω]

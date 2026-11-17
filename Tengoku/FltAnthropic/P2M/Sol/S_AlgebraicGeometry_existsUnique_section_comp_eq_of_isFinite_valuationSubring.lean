@@ -12,6 +12,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=existsun.1h5v.s9.0d3b45264d64 from=translated src=- shape=0eb657f6 vocab=8834c351
+-/
 theorem solution
     {L : Type u} [Field L] (O : ValuationSubring L)
     {Z : Scheme.{u}} (f : Z ⟶ Spec (CommRingCat.of ↥O)) [IsFinite f]

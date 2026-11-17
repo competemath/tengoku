@@ -11,6 +11,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=ex.0h3v.s7.95b771104baa from=translated src=- shape=c215cbd6 vocab=5909f8f5
+-/
 theorem AlgebraicGeometry.IsClosedImmersion.exists_ideal_fg_forall_exists_comp_eq_specMap_iff_map_eq_bot
     {S : Type u} [CommRing S] {Z : Scheme.{u}} (ι : Z ⟶ Spec (CommRingCat.of S))
     [IsClosedImmersion ι] [LocallyOfFinitePresentation ι] :

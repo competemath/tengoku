@@ -13,6 +13,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=isiso.1h9v.s7.fa4e16e4cf2f from=translated src=- shape=cf5d4ba7 vocab=31355eeb
+-/
 theorem solution
     {X T Y S : Scheme.{u}} {π : X ⟶ T} {j : S ⟶ T} [IsOpenImmersion j] {ρ : Y ⟶ S} {u : Y ⟶ X}
     (hu : IsPullback u ρ π j) (F : X.Modules) :

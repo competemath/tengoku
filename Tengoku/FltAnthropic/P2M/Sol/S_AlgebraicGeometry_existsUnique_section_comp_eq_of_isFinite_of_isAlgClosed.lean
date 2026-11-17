@@ -13,6 +13,9 @@ open CategoryTheory AlgebraicGeometry
 
 namespace FinPtsExtAux
 
+/--
+@isnad1 id=existsun.2h6v.s8.81fd6b452c24 from=translated src=- shape=e85fb8e2 vocab=91cbfaea
+-/
 theorem ringHom_existsUnique {κ : Type u} [Field κ] [IsAlgClosed κ] {k : Type u} [Field k] (j : κ →+* k)
     {B : Type u} [CommRing B] (φ : κ →+* B) (hφ : φ.Finite) (ψ : B →+* k) (hψ : ψ.comp φ = j) :
     ∃! χ : B →+* κ, χ.comp φ = RingHom.id κ ∧ j.comp χ = ψ := by
@@ -56,6 +59,9 @@ theorem ringHom_existsUnique {κ : Type u} [Field κ] [IsAlgClosed κ] {k : Type
 
 end FinPtsExtAux
 
+/--
+@isnad1 id=existsun.1h6v.s8.a400305a54d3 from=translated src=- shape=cafaffe0 vocab=df0f09cf
+-/
 theorem solution
     {κ : Type u} [Field κ] [IsAlgClosed κ] {k : Type u} [Field k] (j : κ →+* k)
     {Z : Scheme.{u}} (g : Z ⟶ Spec (CommRingCat.of κ)) [IsFinite g]

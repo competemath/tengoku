@@ -13,6 +13,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 namespace C2E5
 
+/--
+@isnad1 id=isintegr.2h2v.s6.283bbfabc796 from=translated src=- shape=2f709f57 vocab=775bdd51
+-/
 theorem isIntegral_subscheme_vanishingIdeal {X : Scheme.{u}} (Z : Set X) (hZ : IsClosed Z) (hZ' : IsIrreducible Z) :
     IsIntegral (Scheme.IdealSheafData.vanishingIdeal ⟨Z, hZ⟩).subscheme := by
   set I := Scheme.IdealSheafData.vanishingIdeal (X := X) ⟨Z, hZ⟩ with hI
@@ -31,6 +34,9 @@ theorem isIntegral_subscheme_vanishingIdeal {X : Scheme.{u}} (Z : Set X) (hZ : I
   haveI : IsReduced I.subscheme := IsReduced.of_openCover (X := I.subscheme) I.subschemeCover.openCover
   exact isIntegral_of_irreducibleSpace_of_isReduced _
 
+/--
+@isnad1 id=or.3h6v.s8.9a8522b9b52e from=translated src=- shape=46c6d4a2 vocab=b382d45c
+-/
 theorem _root_.P2MW.S_AlgebraicGeometry_Scheme_subset_basicOpen_or_disjoint_of_isProper_of_isIrreducible_monoidalV2.solution
     (k : Type u) [Field k] [IsAlgClosed k] {X : Scheme.{u}} (t : X ⟶ Spec (CommRingCat.of k)) [IsProper t]
     (Z : Set X) (hZ : IsClosed Z) (hZ' : IsIrreducible Z) (U : X.Opens) (hZU : Z ⊆ U) (g : Γ(X, U)) :

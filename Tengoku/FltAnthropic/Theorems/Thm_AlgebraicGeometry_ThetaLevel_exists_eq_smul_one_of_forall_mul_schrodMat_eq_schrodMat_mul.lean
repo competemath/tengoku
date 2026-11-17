@@ -10,6 +10,9 @@ set_option autoImplicit false
 open scoped BigOperators
 open AlgebraicGeometry AlgebraicGeometry.ThetaLevel
 
+/--
+@isnad1 id=ex.5h9v.s8.c24ba375e424 from=translated src=- shape=808d5de1 vocab=cf0fc801
+-/
 theorem AlgebraicGeometry.ThetaLevel.exists_eq_smul_one_of_forall_mul_schrodMat_eq_schrodMat_mul
     {g : ℕ} (δ : Fin g → ℕ) [∀ i, NeZero (δ i)] (d : ℕ) [NeZero d] (hδd : ∏ i, δ i = d)
     (B : Type) [CommRing B] (ζ ω : B) (hζ : ζ ^ d = 1) (hζu : ∀ j : ℕ, 0 < j → j < d → IsUnit (1 - ζ ^ j))

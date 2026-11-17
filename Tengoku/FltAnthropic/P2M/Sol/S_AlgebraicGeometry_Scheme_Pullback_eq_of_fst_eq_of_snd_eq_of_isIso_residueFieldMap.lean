@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=eq.2h7v.s10.9d223d0a4849 from=translated src=- shape=8a48baa8 vocab=e41d5855
+-/
 theorem solution
     {X Y S : Scheme.{u}} {f : X ⟶ S} {g : Y ⟶ S} {t₁ t₂ : ↥(pullback f g)}
     (h₁ : (pullback.fst f g).base t₁ = (pullback.fst f g).base t₂)

@@ -16,6 +16,9 @@ namespace HeisSchur
 variable {g : ℕ} (δ : Fin g → ℕ) [∀ i, NeZero (δ i)] (d : ℕ) [NeZero d] (B : Type) [CommRing B] (ω : B) {n : ℕ}
   (e : Fin n ≃ HH δ)
 
+/--
+@isnad1 id=eq.0h8v.s7.0fef23114788 from=translated src=- shape=88b56d88 vocab=215217a4
+-/
 theorem schrodMat_eta (k : HH δ) :
     schrodMat δ d B ω e (Heis.eta k) = Matrix.diagonal fun j => omegaPow d B ω (pair δ d k (e j)) := by
   ext i j
@@ -25,11 +28,17 @@ theorem schrodMat_eta (k : HH δ) :
   · subst hij; simp
   · rw [ite_eq_right hij, ite_eq_right hij]
 
+/--
+@isnad1 id=eq.0h10v.s8.ab8e16e4a9f5 from=translated src=- shape=6dd808d0 vocab=b4c76eb3
+-/
 theorem schrodMat_theta (h : HH δ) (i j : Fin n) :
     schrodMat δ d B ω e (Heis.theta h) i j = if e i = e j + h then 1 else 0 := by
   rw [schrodMat_apply]
   simp only [Heis.theta_h, Heis.theta_a, Heis.theta_k, pair_zero_left, add_zero, omegaPow_zero]
 
+/--
+@isnad1 id=eq.0h11v.s8.3367b60cb260 from=translated src=- shape=2c7ace37 vocab=5fd8f66c
+-/
 theorem mul_theta_apply (T : Matrix (Fin n) (Fin n) B) (h : HH δ) (i j : Fin n) :
     (T * schrodMat δ d B ω e (Heis.theta h)) i j = T i (e.symm (e j + h)) := by
   rw [Matrix.mul_apply]
@@ -42,6 +51,9 @@ theorem mul_theta_apply (T : Matrix (Fin n) (Fin n) B) (h : HH δ) (i j : Fin n)
     exact hl (e.injective (by rw [hel, Equiv.apply_symm_apply]))
   · intro hh; exact absurd (Finset.mem_univ _) hh
 
+/--
+@isnad1 id=eq.0h11v.s8.83940062cfe0 from=translated src=- shape=b8e7a22f vocab=23087952
+-/
 theorem theta_mul_apply (T : Matrix (Fin n) (Fin n) B) (h : HH δ) (i j : Fin n) :
     (schrodMat δ d B ω e (Heis.theta h) * T) i j = T (e.symm (e i - h)) j := by
   rw [Matrix.mul_apply]
@@ -54,6 +66,9 @@ theorem theta_mul_apply (T : Matrix (Fin n) (Fin n) B) (h : HH δ) (i j : Fin n)
     exact hl (e.injective (by rw [Equiv.apply_symm_apply, hel, add_sub_cancel_right]))
   · intro hh; exact absurd (Finset.mem_univ _) hh
 
+/--
+@isnad1 id=ex.5h7v.s8.f9e14f2cc8e5 from=translated src=- shape=50328442 vocab=0f6b1ae3
+-/
 theorem exists_isUnit_one_sub_thetaChar (hδd : ∏ i, δ i = d) (ζ : B) (hζ : ζ ^ d = 1)
     (hζu : ∀ j : ℕ, 0 < j → j < d → IsUnit (1 - ζ ^ j)) (hω : ω ^ 2 = ζ) (x : HH δ) (hx : x ≠ 0) :
     ∃ k : HH δ, IsUnit (1 - omegaPow d B ω (pair δ d k x)) := by
@@ -92,6 +107,9 @@ theorem exists_isUnit_one_sub_thetaChar (hδd : ∏ i, δ i = d) (ζ : B) (hζ :
       _ = d := by rw [hm, mul_comm]
   exact hζu _ hmv1 hmv2
 
+/--
+@isnad1 id=eq.6h11v.s8.5f803735cfc5 from=translated src=- shape=f6d9ec0b vocab=3b2af68c
+-/
 theorem apply_eq_zero_of_ne (hδd : ∏ i, δ i = d) (ζ : B) (hζ : ζ ^ d = 1)
     (hζu : ∀ j : ℕ, 0 < j → j < d → IsUnit (1 - ζ ^ j)) (hω : ω ^ 2 = ζ)
     (T : Matrix (Fin n) (Fin n) B) (hT : ∀ k : HH δ, T * schrodMat δ d B ω e (Heis.eta k) = schrodMat δ d B ω e (Heis.eta k) * T)
@@ -114,6 +132,9 @@ theorem apply_eq_zero_of_ne (hδd : ∏ i, δ i = d) (ζ : B) (hζ : ζ ^ d = 1)
   rw [mul_comm] at key
   exact (hu.mul hk).mul_right_eq_zero.mp key |> fun h => by simpa using h
 
+/--
+@isnad1 id=eq.1h10v.s7.0054e131952e from=translated src=- shape=fb2fa5ff vocab=16b451a3
+-/
 theorem apply_eq_apply (T : Matrix (Fin n) (Fin n) B)
     (hT : ∀ h : HH δ, T * schrodMat δ d B ω e (Heis.theta h) = schrodMat δ d B ω e (Heis.theta h) * T)
     (i j : Fin n) : T i i = T j j := by
@@ -126,6 +147,9 @@ theorem apply_eq_apply (T : Matrix (Fin n) (Fin n) B)
 end K77TH3.HeisSchur
 
 open K77TH3.HeisSchur in
+/--
+@isnad1 id=ex.5h9v.s8.c24ba375e424 from=translated src=- shape=808d5de1 vocab=cf0fc801
+-/
 theorem solution
     {g : ℕ} (δ : Fin g → ℕ) [∀ i, NeZero (δ i)] (d : ℕ) [NeZero d] (hδd : ∏ i, δ i = d)
     (B : Type) [CommRing B] (ζ ω : B) (hζ : ζ ^ d = 1) (hζu : ∀ j : ℕ, 0 < j → j < d → IsUnit (1 - ζ ^ j))

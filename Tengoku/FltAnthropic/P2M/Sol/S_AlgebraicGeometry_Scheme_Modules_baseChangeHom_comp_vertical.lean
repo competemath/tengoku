@@ -20,17 +20,26 @@ namespace Modules
 export _root_.AlgebraicGeometry.Scheme.Modules (hom_ext pushforward pushforwardComp pullback presheaf Hom.comp_app Hom pushforward_map_app Hom.app pullbackPushforwardAdjunction baseChangeHom unit_app_app_comp_baseChangeHom_app)
 open _root_.AlgebraicGeometry.Scheme.Modules open _root_.AlgebraicGeometry.Scheme open _root_.AlgebraicGeometry
 
+/--
+@isnad1 id=eq.1h6v.s10.b959118dd108 from=translated src=- shape=8140387f vocab=891d3e66
+-/
 theorem pvE5_map_eqToHom_comp_app {Y : Scheme.{u}} {M N : Y.Modules} (φ : M ⟶ N) {U V : Y.Opens}
     (e : U = V) :
     M.presheaf.map (eqToHom e).op ≫ φ.app U = φ.app V ≫ N.presheaf.map (eqToHom e).op := by
   subst e; simp
 
+/--
+@isnad1 id=eq.2h5v.s10.fab78cd1788b from=translated src=- shape=03ba0625 vocab=6fca7803
+-/
 theorem pvE5_map_eqToHom_comp_map_eqToHom_comp_id {Y : Scheme.{u}} (M : Y.Modules) {A₁ A₂ B₁ : Y.Opens}
     (a : A₁ = A₂) (b : B₁ = A₁) :
     M.presheaf.map (eqToHom a).op ≫ M.presheaf.map (eqToHom b).op ≫ 𝟙 _ =
       M.presheaf.map (eqToHom (b.trans a)).op := by
   subst a; subst b; simp
 
+/--
+@isnad1 id=eq.1h7v.s11.f3c9a8e1e840 from=translated src=- shape=a3ea8be2 vocab=e94ed6c3
+-/
 theorem pvE5_ext_of_unit_app_comp {T T' : Scheme.{u}} (ψ : T' ⟶ T) {M : T.Modules} {N : T'.Modules}
     (f₁ f₂ : (pullback ψ).obj M ⟶ N)
     (h : ∀ U : T.Opens, ((pullbackPushforwardAdjunction ψ).unit.app M).app U ≫ f₁.app (ψ ⁻¹ᵁ U) =
@@ -42,6 +51,9 @@ theorem pvE5_ext_of_unit_app_comp {T T' : Scheme.{u}} (ψ : T' ⟶ T) {M : T.Mod
 
 set_option maxRecDepth 4000 in
 set_option maxHeartbeats 1600000 in
+/--
+@isnad1 id=eq.3h14v.s10.e27813d48f5c from=translated src=- shape=c402a5f7 vocab=94786b33
+-/
 theorem _root_.P2MW.S_AlgebraicGeometry_Scheme_Modules_baseChangeHom_comp_vertical.solution
     {X Y T X' Y' T' : Scheme.{u}} {ρ : X ⟶ Y} {σ : Y ⟶ T} {ρ' : X' ⟶ Y'} {σ' : Y' ⟶ T'}
     {g' : X' ⟶ X} {k' : Y' ⟶ Y} {ψ : T' ⟶ T}

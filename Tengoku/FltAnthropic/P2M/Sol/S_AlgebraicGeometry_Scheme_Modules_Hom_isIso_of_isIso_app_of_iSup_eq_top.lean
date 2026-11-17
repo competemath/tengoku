@@ -12,6 +12,9 @@ universe u v
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=isiso.2h6v.s8.3789002c51e8 from=translated src=- shape=5c5b726a vocab=ec9fac83
+-/
 theorem solution {X : Scheme.{u}} {M N : X.Modules} (φ : M ⟶ N) {ι : Type v}
     (U : ι → X.Opens) (hU : ⨆ i, U i = ⊤)
     (h : ∀ (i : ι) (V : X.Opens), V ≤ U i → IsIso (φ.app V)) : IsIso φ := by

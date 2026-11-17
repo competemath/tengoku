@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=dense.0h3v.s8.7e5942437efd from=translated src=- shape=e4b80bc7 vocab=03288ed1
+-/
 theorem solution
     {k : Type u} [Field k] [IsAlgClosed k] {X : Scheme.{u}} (f : X ⟶ Spec (.of k))
     [LocallyOfFiniteType f] :

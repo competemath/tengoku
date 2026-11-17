@@ -28,6 +28,9 @@ noncomputable def pullbackIsoPushforwardInv :
 
 end PushIso
 
+/--
+@isnad1 id=nonempty.0h6v.s6.c10128282ee1 from=translated src=- shape=684ee046 vocab=e615e523
+-/
 theorem solution
     {X Y Z : Scheme.{u}} (e : X ≅ Y) (f : Y ⟶ Z) (F : X.Modules) :
     Nonempty ((Scheme.Modules.pushforward (e.hom ≫ f)).obj F ≅

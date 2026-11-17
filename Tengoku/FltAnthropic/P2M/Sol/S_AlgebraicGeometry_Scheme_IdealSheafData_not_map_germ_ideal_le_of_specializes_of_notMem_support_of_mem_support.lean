@@ -12,6 +12,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry IsLocalRing
 
 universe u
 
+/--
+@isnad1 id=not.4h6v.s12.7c062d7ee337 from=translated src=- shape=1b09c21f vocab=9ffc6bfc
+-/
 theorem solution
     {X : Scheme.{u}} (I J : X.IdealSheafData) (U : X.affineOpens) (x ξ : ↥X) (hx : x ∈ (U : X.Opens)) (hξx : ξ ⤳ x)
     (hξI : ξ ∉ (I.support : Set ↥X)) (hξJ : ξ ∈ (J.support : Set ↥X)) :

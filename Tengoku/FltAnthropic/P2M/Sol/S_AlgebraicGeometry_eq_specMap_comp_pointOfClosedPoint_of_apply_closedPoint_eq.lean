@@ -10,6 +10,9 @@ open CategoryTheory AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=eq.3h7v.s8.27a8d45a223d from=translated src=- shape=4117d59c vocab=c61ff64b
+-/
 theorem solution
     {k K : Type u} [Field k] [IsAlgClosed k] [Field K] (ι : k →+* K)
     {X : Scheme.{u}} (f : X ⟶ Spec (.of k)) [LocallyOfFiniteType f]

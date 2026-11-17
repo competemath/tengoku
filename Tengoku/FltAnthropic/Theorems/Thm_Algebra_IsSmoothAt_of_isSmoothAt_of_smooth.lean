@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=issmooth.2h5v.s7.30f5de55f880 from=translated src=- shape=31767781 vocab=114556e6
+-/
 theorem Algebra.IsSmoothAt.of_isSmoothAt_of_smooth (R S T : Type u) [CommRing R] [CommRing S] [CommRing T]
     [Algebra R S] [Algebra S T] [Algebra R T] [IsScalarTower R S T]
     [Algebra.FinitePresentation R S] [Algebra.Smooth S T] (𝔓 : Ideal T) [𝔓.IsPrime]

@@ -15,6 +15,9 @@ namespace AlgebraicGeometry
 export _root_.AlgebraicGeometry (Scheme.IdealSheafData.radical_ideal Scheme.IdealSheafData.le_support_iff_le_vanishingIdeal Scheme.IdealSheafData.vanishingIdeal_antimono Scheme.Hom Scheme.range_fromSpecResidueField QuasiCompact Scheme.Hom.support_ker Spec Scheme Scheme.IdealSheafData.vanishingIdeal IsClosedImmersion IsReduced IsClosedImmersion.lift IsClosedImmersion.lift_fac Scheme.Hom.ker_apply Scheme.IdealSheafData.vanishingIdeal_support Scheme.IdealSheafData)
 open _root_.AlgebraicGeometry
 
+/--
+@isnad1 id=isclosed.1h2v.s6.851f148c54f5 from=translated src=- shape=73613ae1 vocab=b9f47604
+-/
 theorem isClosedImmersion_fromSpecResidueField {S : Scheme.{u}} (s : S) (hs : IsClosed ({s} : Set S)) :
     IsClosedImmersion (S.fromSpecResidueField s) :=
   .of_isPreimmersion _ (by rw [Scheme.range_fromSpecResidueField]; exact hs)
@@ -22,6 +25,9 @@ theorem isClosedImmersion_fromSpecResidueField {S : Scheme.{u}} (s : S) (hs : Is
 namespace Scheme export _root_.AlgebraicGeometry.Scheme (fromSpecResidueField IdealSheafData.radical_ideal IdealSheafData.le_support_iff_le_vanishingIdeal IdealSheafData.vanishingIdeal_antimono Hom range_fromSpecResidueField Hom.support_ker IdealSheafData.vanishingIdeal residueField Hom.ker_apply residue IdealSheafData.vanishingIdeal_support IdealSheafData) namespace Hom export _root_.AlgebraicGeometry.Scheme.Hom (support_ker ker ker_apply) end Scheme.Hom
 open scoped _root_.AlgebraicGeometry.Scheme _root_.AlgebraicGeometry.Scheme.Hom in
 
+/--
+@isnad1 id=eq.0h3v.s5.77384589495f from=translated src=- shape=1bcaea23 vocab=7b2ef8fd
+-/
 theorem Scheme.Hom.radical_ker_of_isReduced {Z S : Scheme.{u}} (g : Z ⟶ S) [QuasiCompact g] [IsReduced Z] :
     g.ker.radical = g.ker := by
   ext U : 2
@@ -31,6 +37,9 @@ theorem Scheme.Hom.radical_ker_of_isReduced {Z S : Scheme.{u}} (g : Z ⟶ S) [Qu
   rw [map_pow] at hn
   exact IsReduced.eq_zero _ ⟨n, hn⟩
 
+/--
+@isnad1 id=ex.2h4v.s8.10e807a8ed5c from=translated src=- shape=a747d979 vocab=eaddd9e3
+-/
 theorem exists_eq_comp_fromSpecResidueField_of_range_subset_aux {Z S : Scheme.{u}} [IsReduced Z] (g : Z ⟶ S) [QuasiCompact g]
     (s : S) (hs : IsClosed ({s} : Set S)) (hg : Set.range g.base ⊆ {s}) :
     ∃ t : Z ⟶ Spec (S.residueField s), t ≫ S.fromSpecResidueField s = g := by
@@ -52,6 +61,9 @@ theorem exists_eq_comp_fromSpecResidueField_of_range_subset_aux {Z S : Scheme.{u
 
 end AlgebraicGeometry
 
+/--
+@isnad1 id=ex.2h4v.s8.10e807a8ed5c from=translated src=- shape=a747d979 vocab=eaddd9e3
+-/
 theorem solution
     {Z S : Scheme.{u}} [IsReduced Z] (g : Z ⟶ S) [QuasiCompact g]
     (s : S) (hs : IsClosed ({s} : Set S)) (hg : Set.range g.base ⊆ {s}) :

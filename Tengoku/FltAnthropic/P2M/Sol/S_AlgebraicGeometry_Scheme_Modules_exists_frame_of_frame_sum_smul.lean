@@ -17,14 +17,23 @@ variable {X : Scheme.{u}} (M : X.Modules)
 
 noncomputable abbrev res (m : Γ(M, ⊤)) (W : X.Opens) : Γ(M, W) := M.presheaf.map (homOfLE (le_top : W ≤ ⊤)).op m
 
+/--
+@isnad1 id=eq.0h6v.s11.adcc9b2025d7 from=translated src=- shape=cd6636b1 vocab=1e2a9f6f
+-/
 theorem res_map (m : Γ(M, ⊤)) {W W' : X.Opens} (i : W' ⟶ W) : M.presheaf.map i.op (res M m W) = res M m W' := by
   simp only [res, ← ConcreteCategory.comp_apply, ← Functor.map_comp, ← op_comp]
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s13.eef880ff2400 from=translated src=- shape=c689d986 vocab=9a9d37d8
+-/
 theorem smul_res (m : Γ(M, ⊤)) {W W' : X.Opens} (i : W' ⟶ W) (g : Γ(X, W)) :
     M.presheaf.map i.op (g • res M m W) = X.presheaf.map i.op g • res M m W' := by
   rw [Scheme.Modules.map_smul, res_map]
 
+/--
+@isnad1 id=ex.1h6v.s14.cfb0ef3ea837 from=translated src=- shape=f394e982 vocab=baf86ec6
+-/
 theorem main {ι : Type*} [Fintype ι] (a : ι → Γ(X, ⊤)) (t : ι → Γ(M, ⊤)) (x : X)
     (h : ∃ U : X.Opens, x ∈ U ∧ ∀ V : X.Opens, V ≤ U →
       Function.Bijective fun g : Γ(X, V) => g • res M (∑ j, a j • t j) V) :
@@ -85,6 +94,9 @@ theorem main {ι : Type*} [Fintype ι] (a : ι → Γ(X, ⊤)) (t : ι → Γ(M,
 
 end FrameSumSol
 
+/--
+@isnad1 id=ex.1h6v.s14.6be125fdcad0 from=translated src=- shape=dedeba55 vocab=5a0b6177
+-/
 theorem solution
     {X : Scheme.{u}} (M : X.Modules) {ι : Type*} [Fintype ι] (a : ι → Γ(X, ⊤)) (t : ι → Γ(M, ⊤)) (x : X)
     (h : ∃ U : X.Opens, x ∈ U ∧ ∀ V : X.Opens, V ≤ U →

@@ -23,6 +23,9 @@ open _root_.AlgebraicGeometry.Scheme.Modules open _root_.AlgebraicGeometry.Schem
 
 variable {X : Scheme.{u}}
 
+/--
+@isnad1 id=eq.2h5v.s10.394ccf25a8c0 from=translated src=- shape=9dadc9ad vocab=da624e42
+-/
 lemma sections_eq_zero_of_isZero_pullback_ι {M : X.Modules} (U : X.Opens)
     (hU : IsZero ((Scheme.Modules.pullback U.ι).obj M)) (W : X.Opens) (hWU : W ≤ U)
     (s : Γ(M, W)) : s = 0 := by
@@ -45,6 +48,9 @@ lemma sections_eq_zero_of_isZero_pullback_ι {M : X.Modules} (U : X.Opens)
       rw [op_comp, M.presheaf.map_comp]; rfl
     _ = 0 := by rw [h4 (M.presheaf.map i.op s), map_zero]
 
+/--
+@isnad1 id=iszero.1h2v.s6.4d9f30a17002 from=translated src=- shape=4912d987 vocab=28ed8184
+-/
 theorem _root_.P2MW.S_AlgebraicGeometry_Scheme_Modules_isZero_of_forall_exists_isZero_pullback_obj.solution (M : X.Modules)
     (h : ∀ x : X, ∃ U : X.Opens, x ∈ U ∧ IsZero ((Scheme.Modules.pullback U.ι).obj M)) :
     IsZero M := by

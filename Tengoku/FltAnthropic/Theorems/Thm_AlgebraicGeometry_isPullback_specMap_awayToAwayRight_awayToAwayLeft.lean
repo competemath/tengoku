@@ -11,6 +11,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=ispullba.0h3v.s10.040361317091 from=translated src=- shape=510e7119 vocab=7af674f3
+-/
 theorem AlgebraicGeometry.isPullback_specMap_awayToAwayRight_awayToAwayLeft
     {R : Type u} [CommRing R] (f g : R) :
     IsPullback

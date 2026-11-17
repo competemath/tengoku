@@ -14,6 +14,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 namespace G2cEb6
 
+/--
+@isnad1 id=iff.2h4v.s11.30068f597723 from=translated src=- shape=4e5332e2 vocab=9f0fc97d
+-/
 lemma not_mem_primeIdealOf_iff {X : Scheme.{u}} {V : X.Opens} (hV : IsAffineOpen V) {x : X} (hx : x ∈ V)
     (r : Γ(X, V)) : r ∉ (hV.primeIdealOf ⟨x, hx⟩).asIdeal ↔ x ∈ X.basicOpen r := by
   rw [← PrimeSpectrum.mem_basicOpen, IsAffineOpen.primeIdealOf,
@@ -24,6 +27,9 @@ lemma not_mem_primeIdealOf_iff {X : Scheme.{u}} {V : X.Opens} (hV : IsAffineOpen
 end G2cEb6
 
 open G2cEb6 in
+/--
+@isnad1 id=ex.1h3v.s6.80c60f42e8b7 from=translated src=- shape=f5f1fcd3 vocab=ccc57885
+-/
 theorem solution
     {X : Scheme.{u}} [IsAffine X] (V : X.Opens) (F : Set V.toScheme) (hF : F.Finite) :
     ∃ W : (V.toScheme).Opens, IsAffineOpen W ∧ F ⊆ (W : Set V.toScheme) := by

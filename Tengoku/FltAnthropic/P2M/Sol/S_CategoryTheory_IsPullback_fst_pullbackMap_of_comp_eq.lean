@@ -11,6 +11,9 @@ universe v w u
 
 open CategoryTheory CategoryTheory.Limits
 
+/--
+@isnad1 id=ispullba.1h9v.s7.89a5b923d0d1 from=translated src=- shape=01976612 vocab=54ba6430
+-/
 theorem solution {C : Type w} [Category.{v} C] {X X' S T : C}
     (f : X ⟶ S) (f' : X' ⟶ S) (t : T ⟶ S) (π : X' ⟶ X) (hπ : π ≫ f = f')
     [HasPullback f t] [HasPullback f' t] :

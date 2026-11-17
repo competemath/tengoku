@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits TopologicalSpace AlgebraicGeometry Opposite
 
+/--
+@isnad1 id=ex.0h3v.s9.9f665390696c from=translated src=- shape=cdeefc61 vocab=45cd0533
+-/
 theorem solution
     {X P : Scheme.{u}} [IsIntegral X] (f : X ⟶ P) [IsImmersion f] [QuasiCompact f] :
     ∃ (_ : IsIntegral f.image),

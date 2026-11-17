@@ -9,6 +9,9 @@ open CategoryTheory AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=eq.1h2v.s10.7c5b87705779 from=translated src=- shape=94f97d70 vocab=6360a4af
+-/
 theorem AlgebraicGeometry.IsAffineOpen.range_algebraMap_functionField_eq_iInf
     {X : Scheme.{u}} [IsIntegral X] {U : X.Opens} (hU : IsAffineOpen U) [Nonempty U] :
     (algebraMap Γ(X, U) X.functionField).range =

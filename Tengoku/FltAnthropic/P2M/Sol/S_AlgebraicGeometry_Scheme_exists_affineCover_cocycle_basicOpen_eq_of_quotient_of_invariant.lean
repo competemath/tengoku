@@ -17,36 +17,57 @@ variable {X Y : Scheme.{u}}
 noncomputable abbrev rO {A B : X.Opens} (h : B ≤ A) : Γ(X, A) →+* Γ(X, B) :=
   (X.presheaf.map (homOfLE h).op).hom
 
+/--
+@isnad1 id=eq.2h5v.s13.e7f0b46f7fc1 from=translated src=- shape=17fbc4cf vocab=116a56f5
+-/
 theorem rO_rO {A B C : X.Opens} (hBA : B ≤ A) (hCB : C ≤ B) (g : Γ(X, A)) :
     rO hCB (rO hBA g) = rO (hCB.trans hBA) g := by
   change (X.presheaf.map (homOfLE hBA).op ≫ X.presheaf.map (homOfLE hCB).op).hom g = _
   rw [← Functor.map_comp]; rfl
 
+/--
+@isnad1 id=eq.0h3v.s11.d309002d01f1 from=translated src=- shape=dd0705d4 vocab=8d26f449
+-/
 theorem rO_refl {A : X.Opens} (g : Γ(X, A)) : rO (le_refl A) g = g := by
   change (X.presheaf.map (homOfLE (le_refl A)).op).hom g = g
   rw [Subsingleton.elim (homOfLE (le_refl A)) (𝟙 A), op_id, X.presheaf.map_id]; rfl
 
+/--
+@isnad1 id=eq.2h4v.s12.ebb75ce79919 from=translated src=- shape=f2df8a3c vocab=a35f1e65
+-/
 theorem rO_rO_self {A B : X.Opens} (h : B ≤ A) (h' : A ≤ B) (g : Γ(X, B)) : rO h (rO h' g) = g := by
   rw [rO_rO]; exact rO_refl g
 
 variable (q : X ⟶ Y)
 
+/--
+@isnad1 id=eq.2h5v.s9.da839e002aed from=translated src=- shape=20fdef59 vocab=08080a63
+-/
 theorem preimage_injective (hsurj : Function.Surjective q.base) {V V' : Y.Opens}
     (h : q ⁻¹ᵁ V = q ⁻¹ᵁ V') : V = V' := by
   ext1
   have := congrArg (fun W : X.Opens => (W : Set X)) h
   simpa [Set.preimage_eq_preimage hsurj] using this
 
+/--
+@isnad1 id=eq.2h7v.s12.78ed00cdf8ab from=translated src=- shape=2c7a9d7e vocab=45feb94d
+-/
 theorem rO_appLE {V : Y.Opens} {U U' : X.Opens} (e : U ≤ q ⁻¹ᵁ V) (h : U' ≤ U) (s : Γ(Y, V)) :
     rO h (q.appLE V U e s) = q.appLE V U' (h.trans e) s := by
   change (q.appLE V U e ≫ X.presheaf.map (homOfLE h).op) s = _
   rw [Scheme.Hom.appLE_map]
 
+/--
+@isnad1 id=eq.2h7v.s12.60e61da22266 from=translated src=- shape=8392f959 vocab=fc070d81
+-/
 theorem appLE_rO {V V' : Y.Opens} {U : X.Opens} (h : V' ≤ V) (e : U ≤ q ⁻¹ᵁ V') (s : Γ(Y, V)) :
     q.appLE V' U e (rO h s) = q.appLE V U (e.trans (q.preimage_mono h)) s := by
   change (Y.presheaf.map (homOfLE h).op ≫ q.appLE V' U e) s = _
   rw [Scheme.Hom.map_appLE]
 
+/--
+@isnad1 id=injectiv.2h5v.s11.fa97037ce276 from=translated src=- shape=899e693c vocab=832fa77d
+-/
 theorem appLE_injective (hinj : ∀ V : Y.Opens, Function.Injective (q.app V))
     {V : Y.Opens} {U : X.Opens} (hU : q ⁻¹ᵁ V = U) :
     Function.Injective (q.appLE V U hU.ge) := by
@@ -58,6 +79,9 @@ theorem appLE_injective (hinj : ∀ V : Y.Opens, Function.Injective (q.app V))
 end QPB
 
 open QPB in
+/--
+@isnad1 id=ex.12h8v.s14.106cc17f9904 from=translated src=- shape=c00d1f56 vocab=72c4c7f3
+-/
 theorem solution
     (X Y : Scheme.{0}) (Γ : Type) [Group Γ] (ρ : Γ →* Aut X)
     (q : X ⟶ Y) (hq : ∀ γ : Γ, (ρ γ).hom ≫ q = q) (hsurj : Function.Surjective q.base)

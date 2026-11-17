@@ -16,6 +16,9 @@ namespace HeisFaithful
 variable {g : ℕ} (δ : Fin g → ℕ) [∀ i, NeZero (δ i)] (d : ℕ) [NeZero d] (B : Type) [CommRing B] (ω : B) {n : ℕ}
   (e : Fin n ≃ HH δ)
 
+/--
+@isnad1 id=ex.5h7v.s8.f9e14f2cc8e5 from=translated src=- shape=50328442 vocab=0f6b1ae3
+-/
 theorem exists_isUnit_one_sub_thetaChar (hδd : ∏ i, δ i = d) (ζ : B) (hζ : ζ ^ d = 1)
     (hζu : ∀ j : ℕ, 0 < j → j < d → IsUnit (1 - ζ ^ j)) (hω : ω ^ 2 = ζ) (x : HH δ) (hx : x ≠ 0) :
     ∃ k : HH δ, IsUnit (1 - omegaPow d B ω (pair δ d k x)) := by
@@ -78,6 +81,9 @@ theorem eq_zero_of_omegaPow_eq_one [Nontrivial B] (ζ : B) (hζu : ∀ j : ℕ, 
     rw [hpow, sub_self] at hu
     exact not_isUnit_zero hu
 
+/--
+@isnad1 id=and.5h10v.s8.c4196a6b0340 from=translated src=- shape=53368a47 vocab=84eae95d
+-/
 theorem components_of_schrodMat_eq [Nontrivial B] (hδd : ∏ i, δ i = d) (ζ : B) (hζ : ζ ^ d = 1)
     (hζu : ∀ j : ℕ, 0 < j → j < d → IsUnit (1 - ζ ^ j)) (hω : ω ^ 2 = ζ)
     (w z : Heis δ d) (hwz : schrodMat δ d B ω e w = schrodMat δ d B ω e z) :
@@ -117,6 +123,9 @@ theorem components_of_schrodMat_eq [Nontrivial B] (hδd : ∏ i, δ i = d) (ζ :
   exact not_isUnit_zero hy
 
 omit [∀ i, NeZero (δ i)] [NeZero d] in
+/--
+@isnad1 id=eq.0h6v.s8.cb130145745d from=translated src=- shape=7e053462 vocab=87ef69d6
+-/
 theorem pow_theta_like (a : ZMod (2 * d)) (h : HH δ) (m : ℕ) :
     (⟨a, h, 0⟩ : Heis δ d) ^ m = ⟨m • a, m • h, 0⟩ := by
   induction m with
@@ -126,6 +135,9 @@ theorem pow_theta_like (a : ZMod (2 * d)) (h : HH δ) (m : ℕ) :
     exact Heis.ext (by simp [pair_zero_left, add_smul, add_comm]) (by simp [add_smul, add_comm]) (by simp)
 
 omit [∀ i, NeZero (δ i)] [NeZero d] in
+/--
+@isnad1 id=eq.0h6v.s8.7553f3d4ebee from=translated src=- shape=639a35d1 vocab=87ef69d6
+-/
 theorem pow_eta_like (a : ZMod (2 * d)) (k : HH δ) (m : ℕ) :
     (⟨a, 0, k⟩ : Heis δ d) ^ m = ⟨m • a, 0, m • k⟩ := by
   induction m with
@@ -134,6 +146,9 @@ theorem pow_eta_like (a : ZMod (2 * d)) (k : HH δ) (m : ℕ) :
     rw [pow_succ, ih]
     exact Heis.ext (by simp [pair_zero_right, add_smul, add_comm]) (by simp) (by simp [add_smul, add_comm])
 
+/--
+@isnad1 id=eq.1h4v.s7.67e249e1b9e5 from=translated src=- shape=d0fee22b vocab=a2f046e9
+-/
 theorem d_nsmul_eq_zero (hδd : ∏ i, δ i = d) (h : HH δ) : d • h = 0 := by
   funext i
   have hdvd : δ i ∣ d := hδd ▸ Finset.dvd_prod_of_mem δ (Finset.mem_univ i)
@@ -142,6 +157,9 @@ theorem d_nsmul_eq_zero (hδd : ∏ i, δ i = d) (h : HH δ) : d • h = 0 := by
 end K77TH3.HeisFaithful
 
 open K77TH3.HeisFaithful in
+/--
+@isnad1 id=eq.6h9v.s8.959580c44ae9 from=translated src=- shape=8ea6a2d6 vocab=50fba395
+-/
 theorem solution
     {g : ℕ} (δ : Fin g → ℕ) [∀ i, NeZero (δ i)] (d : ℕ) [NeZero d] (hδd : ∏ i, δ i = d)
     (B : Type) [CommRing B] [Nontrivial B] (ζ ω : B) (hζ : ζ ^ d = 1) (hζu : ∀ j : ℕ, 0 < j → j < d → IsUnit (1 - ζ ^ j))

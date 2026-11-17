@@ -11,6 +11,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=nonempty.0h5v.s13.a6cff6de1697 from=translated src=- shape=97bb896b vocab=befab9c4
+-/
 theorem solution
     {k : Type u} [Field k] {Y : Scheme.{u}} (p : Y ⟶ Spec (.of k)) (n : ℕ) [SmoothOfRelativeDimension n p] (y : Y) :
     letI : Algebra k (Y.presheaf.stalk y) :=

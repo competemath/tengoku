@@ -18,6 +18,9 @@ open _root_.Algebra open _root_.CategoryTheory.Algebra open _root_.IsLocalRing o
 namespace Algebra export _root_.Algebra (FormallySmooth FormallyEtale.of_formallyUnramified_and_formallySmooth IsEtaleAt EssFiniteType isPushout_of_isLocalization ofId FormallyUnramified.of_map_maximalIdeal FormallySmooth.of_formallySmooth_residueField_tensor IsPushout algebraMap FormallyUnramified FormallyUnramified.comp algebraMapSubmonoid IsPushout.equiv FormallyEtale Smooth IsSmoothAt Etale exists_etale_of_isEtaleAt FormallyEtale.of_formallyUnramified_of_field IsSmoothAt.of_formallySmooth_fiber IsUnramifiedAt FinitePresentation) end Algebra
 open scoped _root_.Algebra in
 
+/--
+@isnad1 id=isetalea.0h3v.s7.e6c62fd1111d from=translated src=- shape=85489b30 vocab=3f1f2cbb
+-/
 theorem Algebra.isEtaleAt_of_isUnramifiedAt_of_flat_localization
     {R S : Type*} [CommRing R] [CommRing S] [Algebra R S] [Algebra.FinitePresentation R S]
     (q : Ideal S) [q.IsPrime] [Module.Flat R (Localization.AtPrime q)] [Algebra.IsUnramifiedAt R q] :
@@ -66,6 +69,9 @@ open _root_.AlgebraicGeometry
 
 set_option backward.isDefEq.respectTransparency false in
 
+/--
+@isnad1 id=ex.2h4v.s10.6aae1253f4b7 from=translated src=- shape=d0814678 vocab=3abab1f4
+-/
 theorem exists_etale_nhd_of_flat_of_formallyUnramified_stalkMap
     {U S : Scheme.{u}} (f : U ⟶ S) [LocallyOfFinitePresentation f] (x : U)
     (hflat : (f.stalkMap x).hom.Flat) (H : (f.stalkMap x).hom.FormallyUnramified) :
@@ -122,6 +128,9 @@ theorem exists_etale_nhd_of_flat_of_formallyUnramified_stalkMap
   rw [← Scheme.Hom.resLE_comp_ι f e]
   infer_instance
 
+/--
+@isnad1 id=formally.2h4v.s12.4d5be66ea006 from=translated src=- shape=561549f8 vocab=a11c9bcd
+-/
 theorem formallyUnramified_stalkMap_of_map_maximalIdeal_eq_of_surjective
     {U S : Scheme.{u}} (f : U ⟶ S) [LocallyOfFiniteType f] (x : U)
     (hmax : Ideal.map (f.stalkMap x).hom (IsLocalRing.maximalIdeal (S.presheaf.stalk (f x))) =
@@ -149,6 +158,9 @@ theorem formallyUnramified_stalkMap_of_map_maximalIdeal_eq_of_surjective
 
 end AlgebraicGeometry
 
+/--
+@isnad1 id=ex.2h4v.s12.2de5fe2f30e0 from=translated src=- shape=bab10a72 vocab=0b451af3
+-/
 theorem solution
     {U S : Scheme.{u}} (f : U ⟶ S) [LocallyOfFinitePresentation f] (x : U)
     (hflat : (f.stalkMap x).hom.Flat)

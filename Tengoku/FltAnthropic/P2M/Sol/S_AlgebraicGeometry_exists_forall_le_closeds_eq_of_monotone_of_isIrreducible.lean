@@ -11,6 +11,9 @@ universe u v
 
 open CategoryTheory AlgebraicGeometry Topology
 
+/--
+@isnad1 id=ex.3h4v.s8.55dadfc12bd0 from=translated src=- shape=232763fa vocab=8da7beb9
+-/
 theorem solution
     {X : Scheme.{u}} [IsLocallyNoetherian X] (x : X) {ι : Type v} [Preorder ι] [Nonempty ι]
     (Z : ι → TopologicalSpace.Closeds X) (hZ : ∀ i, IsIrreducible (Z i : Set X)) (hx : ∀ i, x ∈ Z i)

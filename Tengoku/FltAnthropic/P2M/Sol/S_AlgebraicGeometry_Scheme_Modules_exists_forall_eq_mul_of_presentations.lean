@@ -23,6 +23,9 @@ open TopologicalSpace Opposite
 
 variable {X : Scheme.{u}} [IsIntegral X] (M : X.Modules)
 
+/--
+@isnad1 id=ne.4h6v.s13.645eed42112b from=translated src=- shape=681e7195 vocab=78c377a4
+-/
 theorem map_ne_zero (φ : ∀ U : X.Opens, Γ(M, U) →+ (X.functionField : Type u))
     (hnat : ∀ (U V : X.Opens) (h : V ≤ U), Nonempty V → ∀ m : Γ(M, U), φ V (M.presheaf.map (homOfLE h).op m) = φ U m)
     (hinj : ∀ U : X.Opens, Nonempty U → Function.Injective (φ U))
@@ -34,6 +37,9 @@ theorem map_ne_zero (φ : ∀ U : X.Opens, Γ(M, U) →+ (X.functionField : Type
   apply hinj U inferInstance
   rw [map_zero, ← hnat U V h hV m, h0, map_zero]
 
+/--
+@isnad1 id=eq.6h7v.s15.ac185c15cd37 from=translated src=- shape=5cfcf89b vocab=07dfd3ed
+-/
 theorem ratio_eq_of_affine (φ φ' : ∀ U : X.Opens, Γ(M, U) →+ (X.functionField : Type u))
     (hsmul : ∀ (U : X.Opens) [Nonempty U] (a : Γ(X, U)) (m : Γ(M, U)),
       φ U (a • m) = algebraMap Γ(X, U) X.functionField a * φ U m)
@@ -94,6 +100,9 @@ variable (φ φ' : ∀ U : X.Opens, Γ(M, U) →+ (X.functionField : Type u))
 
 include hnat hnat' hsmul hsmul' hinj in
 
+/--
+@isnad1 id=eq.7h8v.s15.35b0b73051af from=translated src=- shape=ff207307 vocab=80fd87c5
+-/
 theorem ratio_eq (U₁ U₂ : X.Opens) [Nonempty U₁] [Nonempty U₂] (m₁ : Γ(M, U₁)) (m₂ : Γ(M, U₂))
     (h₁ : m₁ ≠ 0) (h₂ : m₂ ≠ 0) :
     φ' U₁ m₁ / φ U₁ m₁ = φ' U₂ m₂ / φ U₂ m₂ := by
@@ -114,6 +123,9 @@ theorem ratio_eq (U₁ U₂ : X.Opens) [Nonempty U₁] [Nonempty U₂] (m₁ : �
 
 include hnat hnat' hsmul hsmul' hinj hinj' in
 
+/--
+@isnad1 id=ex.7h6v.s15.6bbb9b79726b from=translated src=- shape=3aeed1cd vocab=a053d82f
+-/
 theorem exists_eq_mul (U₀ : X.Opens) [Nonempty U₀] (m₀ : Γ(M, U₀)) (hm₀ : m₀ ≠ 0) :
     ∃ g : X.functionField, g ≠ 0 ∧ ∀ (U : X.Opens) [Nonempty U] (m : Γ(M, U)), φ' U m = g * φ U m := by
   refine ⟨φ' U₀ m₀ / φ U₀ m₀, ?_, ?_⟩
@@ -132,6 +144,9 @@ namespace AlgebraicGeometry export _root_.AlgebraicGeometry (IsIntegral Scheme f
 open scoped _root_.AlgebraicGeometry _root_.AlgebraicGeometry.Scheme _root_.AlgebraicGeometry.Scheme.Modules in
 open AlgebraicGeometry.Scheme.Modules.PresUniq in
 
+/--
+@isnad1 id=ex.7h4v.s15.d3443d63fad6 from=translated src=- shape=72a7f2bf vocab=a053d82f
+-/
 theorem AlgebraicGeometry.Scheme.Modules.exists_forall_eq_mul_of_presentations'
     {X : Scheme.{u}} [IsIntegral X] (M : X.Modules)
     (φ φ' : ∀ U : X.Opens, Γ(M, U) →+ (X.functionField : Type u))
@@ -165,6 +180,9 @@ theorem AlgebraicGeometry.Scheme.Modules.exists_forall_eq_mul_of_presentations'
     exact hz.elim
 
 open AlgebraicGeometry.Scheme.Modules.PresUniq in
+/--
+@isnad1 id=ex.7h4v.s15.d3443d63fad6 from=translated src=- shape=72a7f2bf vocab=a053d82f
+-/
 theorem solution
     {X : Scheme.{u}} [IsIntegral X] (M : X.Modules)
     (φ φ' : ∀ U : X.Opens, Γ(M, U) →+ (X.functionField : Type u))

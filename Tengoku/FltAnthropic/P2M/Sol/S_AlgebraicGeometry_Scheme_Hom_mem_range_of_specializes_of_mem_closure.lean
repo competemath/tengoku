@@ -12,6 +12,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits TopologicalSpace AlgebraicGeometry Opposite
 
+/--
+@isnad1 id=mem.6h6v.s9.4f1249eb9e37 from=translated src=- shape=af53601a vocab=df356cb5
+-/
 theorem solution
     {Γ G : Scheme.{u}} (π : Γ ⟶ G) [QuasiCompact π] [LocallyOfFiniteType π] [IsLocallyNoetherian G]
     (S : Set G) (hS : IsClosed S) (η : G) (hηS : η ∈ S) (hirr : ∀ x ∈ S, η ⤳ x)

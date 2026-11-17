@@ -23,13 +23,22 @@ abbrev Pt (t : X ⟶ Spec (CommRingCat.of k)) := Over.mk (𝟙 (Spec (CommRingCa
 
 def pt (z : Pt t) : X := z.left (IsLocalRing.closedPoint k)
 
+/--
+@isnad1 id=eq.0h4v.s7.a4cd1dc7c3fb from=translated src=- shape=06075c1f vocab=b46c3785
+-/
 lemma left_comp (z : Pt t) : (z.left : Spec (CommRingCat.of k) ⟶ X) ≫ t = 𝟙 _ := Over.w z
 
+/--
+@isnad1 id=injectiv.0h3v.s5.a43cb70ae232 from=translated src=- shape=ec110de3 vocab=c2546d36
+-/
 lemma pt_injective [LocallyOfFiniteType t] [IsAlgClosed k] : Function.Injective (pt (t := t)) :=
   fun z z' h => Over.OverMorphism.ext
     (ext_of_apply_closedPoint_eq (X := X) (f := z.left) (g := z'.left) t (left_comp z)
       (left_comp z') h)
 
+/--
+@isnad1 id=ex.1h4v.s7.3e7af353661c from=translated src=- shape=e9f5b207 vocab=757669f8
+-/
 lemma exists_pt_eq [LocallyOfFiniteType t] [IsAlgClosed k] {y : X} (hy : IsClosed ({y} : Set X)) :
     ∃ z : Pt t, pt z = y :=
   ⟨Over.homMk (pointOfClosedPoint (X := X) t y hy) (by simp), pointOfClosedPoint_apply t y hy _⟩
@@ -41,6 +50,9 @@ variable [GrpObj (Over.mk t)]
 def lmul (z : Pt t) : Over.mk t ⟶ Over.mk t :=
   (CartesianMonoidalCategory.toUnit (Over.mk t) ≫ z) * 𝟙 (Over.mk t)
 
+/--
+@isnad1 id=eq.0h5v.s8.4f046684ca1d from=translated src=- shape=c9da0708 vocab=bd5fd8c4
+-/
 lemma comp_lmul (x z : Pt t) : x ≫ lmul z = z * x := by
   have h1 : CartesianMonoidalCategory.toUnit (Over.mk (𝟙 (Spec (CommRingCat.of k)))) ≫ z = z := by
     rw [show CartesianMonoidalCategory.toUnit (Over.mk (𝟙 (Spec (CommRingCat.of k)))) = 𝟙 _ from
@@ -49,6 +61,9 @@ lemma comp_lmul (x z : Pt t) : x ≫ lmul z = z * x := by
   rw [lmul, MonObj.comp_mul, Category.comp_id, ← Category.assoc,
     CartesianMonoidalCategory.comp_toUnit, h1]
 
+/--
+@isnad1 id=eq.0h5v.s9.6289295bd63e from=translated src=- shape=5810468a vocab=98aa6000
+-/
 lemma pt_mul (z x : Pt t) : pt (z * x) = (lmul z).left (pt x) := by
   rw [← comp_lmul]
   rfl
@@ -56,6 +71,9 @@ lemma pt_mul (z x : Pt t) : pt (z * x) = (lmul z).left (pt x) := by
 def invLeft (t : X ⟶ Spec (CommRingCat.of k)) [GrpObj (Over.mk t)] : X ⟶ X :=
   (ι[Over.mk t]).left
 
+/--
+@isnad1 id=eq.0h4v.s8.93ad16670fdf from=translated src=- shape=e37cc64e vocab=0f9266ad
+-/
 lemma pt_inv (x : Pt t) : pt x⁻¹ = invLeft t (pt x) := by
   rw [Hom.inv_def]
   rfl
@@ -63,9 +81,15 @@ lemma pt_inv (x : Pt t) : pt x⁻¹ = invLeft t (pt x) := by
 def Cplus (t : X ⟶ Spec (CommRingCat.of k)) [GrpObj (Over.mk t)] (Z : Set X) : Set X :=
   ⋂ z ∈ {z : Pt t | pt z ∈ Z}, ((lmul z).left : X ⟶ X) ⁻¹' Z
 
+/--
+@isnad1 id=isclosed.1h4v.s6.c23eb1206c9a from=translated src=- shape=57521186 vocab=909b4b5a
+-/
 lemma isClosed_Cplus {Z : Set X} (hZ : IsClosed Z) : IsClosed (Cplus t Z) :=
   isClosed_biInter fun z _ => hZ.preimage (lmul z).left.continuous
 
+/--
+@isnad1 id=iff.0h5v.s8.d639904efa39 from=translated src=- shape=3ad1937e vocab=8022ed94
+-/
 lemma mem_Cplus_iff {Z : Set X} (x : Pt t) :
     pt x ∈ Cplus t Z ↔ ∀ z : Pt t, pt z ∈ Z → pt (z * x) ∈ Z := by
   simp only [Cplus, Set.mem_iInter, Set.mem_ofPred_eq, Set.mem_preimage, pt_mul]
@@ -73,9 +97,15 @@ lemma mem_Cplus_iff {Z : Set X} (x : Pt t) :
 def C (t : X ⟶ Spec (CommRingCat.of k)) [GrpObj (Over.mk t)] (Z : Set X) : Set X :=
   Cplus t Z ∩ (invLeft t) ⁻¹' Cplus t Z
 
+/--
+@isnad1 id=isclosed.1h4v.s6.19cee1c8d2c1 from=translated src=- shape=57521186 vocab=a85be77a
+-/
 lemma isClosed_C {Z : Set X} (hZ : IsClosed Z) : IsClosed (C t Z) :=
   (isClosed_Cplus hZ).inter ((isClosed_Cplus hZ).preimage (invLeft t).continuous)
 
+/--
+@isnad1 id=iff.0h5v.s8.61a2d6728335 from=translated src=- shape=158bd971 vocab=f828c4ff
+-/
 lemma mem_stab_iff {Z : Set X} (x : Pt t) :
     (∀ z : Pt t, pt z ∈ Z ↔ pt (z * x) ∈ Z) ↔ pt x ∈ C t Z := by
   rw [C, Set.mem_inter_iff, Set.mem_preimage, ← pt_inv, mem_Cplus_iff, mem_Cplus_iff]
@@ -94,6 +124,9 @@ end Grp
 
 variable (t) in
 
+/--
+@isnad1 id=finite.3h5v.s7.5053ba31450b from=translated src=- shape=c581e07f vocab=af5d72cb
+-/
 lemma finite_of_isClosed_of_subset_affineOpen [IsProper t] {C : Set X} (hC : IsClosed C)
     {U : X.Opens} (hU : IsAffineOpen U) (hCU : C ⊆ U) : C.Finite := by
 
@@ -125,6 +158,9 @@ lemma finite_of_isClosed_of_subset_affineOpen [IsProper t] {C : Set X} (hC : IsC
   rw [← hrange, ← Set.image_univ]
   exact huniv.image _
 
+/--
+@isnad1 id=finite.4h5v.s9.73183720555c from=translated src=- shape=b6117810 vocab=b0579c79
+-/
 theorem main [IsAlgClosed k] [IsProper t] [GrpObj (Over.mk t)] (Z : Set X) (hZ : IsClosed Z) (U : X.Opens)
     (hU : IsAffineOpen U) (hZU : Zᶜ ⊆ U) (he : pt (1 : Pt t) ∉ Z) :
     Set.Finite {x : Pt t | ∀ z : Pt t, pt z ∈ Z ↔ pt (z * x) ∈ Z} := by
@@ -160,6 +196,9 @@ end P2mThetaFinB
 
 end
 
+/--
+@isnad1 id=finite.4h5v.s11.c8a8847c86ea from=translated src=- shape=4413eed9 vocab=a805571f
+-/
 theorem solution
     (k : Type u) [Field k] [IsAlgClosed k] {X : Scheme.{u}} (t : X ⟶ Spec (CommRingCat.of k))
     [IsProper t] [GrpObj (Over.mk t)]

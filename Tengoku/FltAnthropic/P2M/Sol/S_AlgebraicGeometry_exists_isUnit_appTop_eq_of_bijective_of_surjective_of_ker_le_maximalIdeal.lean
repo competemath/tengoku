@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=ex.6h9v.s13.5c354aaf0bcc from=translated src=- shape=d8022d91 vocab=753d8ecb
+-/
 theorem solution
     {B₁ B₀ : Type} [CommRing B₁] [IsLocalRing B₁] [CommRing B₀]
     (π : B₁ →+* B₀) (hπ : Function.Surjective π) (hI : RingHom.ker π ≤ IsLocalRing.maximalIdeal B₁)

@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Topology
 
+/--
+@isnad1 id=atprime.1h3v.s10.0b672899c312 from=translated src=- shape=c8e7f53c vocab=3a2aa27b
+-/
 theorem solution
     {X : Scheme.{u}} {x y : ↥X} (h : y ⤳ x) :
     letI : Algebra ↑(X.presheaf.stalk x) ↑(X.presheaf.stalk y) := (X.presheaf.stalkSpecializes h).hom.toAlgebra

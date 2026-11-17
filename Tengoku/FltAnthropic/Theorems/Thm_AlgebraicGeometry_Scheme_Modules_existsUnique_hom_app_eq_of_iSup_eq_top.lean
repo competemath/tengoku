@@ -11,6 +11,9 @@ open CategoryTheory Opposite AlgebraicGeometry
 
 universe u v
 
+/--
+@isnad1 id=existsun.2h6v.s14.72ae243e1bac from=translated src=- shape=942537e3 vocab=eb04b9d5
+-/
 theorem AlgebraicGeometry.Scheme.Modules.existsUnique_hom_app_eq_of_iSup_eq_top
     {X : Scheme.{u}} (M N : X.Modules) {ι : Type v} (U : ι → X.Opens) (hU : ⨆ i, U i = ⊤)
     (f : ∀ (W : X.Opens), (∃ i, W ≤ U i) → (Γ(M, W) →ₗ[Γ(X, W)] Γ(N, W)))

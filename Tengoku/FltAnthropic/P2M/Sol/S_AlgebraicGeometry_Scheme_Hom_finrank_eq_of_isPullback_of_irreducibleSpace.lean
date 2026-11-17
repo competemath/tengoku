@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=eq.2h10v.s7.b3d8ea9ea350 from=translated src=- shape=e259d68e vocab=1843b26e
+-/
 theorem solution
     {X Y X' Y' : Scheme.{u}} (π : X ⟶ Y) [IsFinite π] [Flat π] [LocallyOfFinitePresentation π] [IrreducibleSpace Y]
     (g : Y' ⟶ Y) (π' : X' ⟶ Y') (g' : X' ⟶ X) (h : IsPullback g' π' π g) [Nonempty Y'] (d : ℕ)

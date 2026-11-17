@@ -20,6 +20,9 @@ variable {T' : Type u} [CommRing T'] [IsLocalRing T']
   (V : Type u) [AddCommGroup V] [Module (ResidueField T') V] [Module (ResidueField T')ᵐᵒᵖ V] [IsCentralScalar (ResidueField T') V]
   (C : Type u) [CommRing C] [Algebra T' C]
 
+/--
+@isnad1 id=eq.0h5v.s14.dd3a28fa12bb from=translated src=- shape=54279a83 vocab=0b6ac5d2
+-/
 theorem vPart_map (h : (V × V) →ₗ[ResidueField T'] V) (e : thickening T' (V × V) C) :
     vPart T' V C ((Algebra.TensorProduct.map (AlgHom.id (ResidueField T') (ResidueField T' ⊗[T'] C)) (TrivSqZeroExt.map h)) e) =
       TensorProduct.map LinearMap.id (h ∘ₗ TrivSqZeroExt.sndHom (ResidueField T') (V × V)) e := by
@@ -34,6 +37,9 @@ theorem vPart_map (h : (V × V) →ₗ[ResidueField T'] V) (e : thickening T' (V
     exact TrivSqZeroExt.snd_map h x
   | add x y hx hy => rw [map_add, map_add, map_add, hx, hy]
 
+/--
+@isnad1 id=eq.0h5v.s14.8201f5772b75 from=translated src=- shape=031b288d vocab=0eadc681
+-/
 theorem vPart_map' (h : (V × V) →ₗ[ResidueField T'] V) (e : thickening T' (V × V) C) :
     vPart T' V C ((Algebra.TensorProduct.map (AlgHom.id (ResidueField T') (ResidueField T' ⊗[T'] C)) (TrivSqZeroExt.map h)).toRingHom e) =
       TensorProduct.map LinearMap.id (h ∘ₗ TrivSqZeroExt.sndHom (ResidueField T') (V × V)) e :=
@@ -43,6 +49,9 @@ end CSAux
 
 open AlgebraicGeometry.SmallExtension
 
+/--
+@isnad1 id=eq.0h5v.s14.14af8e53c75a from=translated src=- shape=0e8b187e vocab=51517e51
+-/
 theorem solution
     {T' : Type u} [CommRing T'] [IsLocalRing T']
     (V : Type u) [AddCommGroup V] [Module (ResidueField T') V] [Module (ResidueField T')ᵐᵒᵖ V]

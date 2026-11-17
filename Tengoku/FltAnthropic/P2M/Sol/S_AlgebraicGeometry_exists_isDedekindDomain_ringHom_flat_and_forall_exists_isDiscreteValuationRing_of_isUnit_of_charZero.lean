@@ -12,6 +12,9 @@ open CategoryTheory AlgebraicGeometry IsLocalRing
 namespace ASM21
 namespace E4
 
+/--
+@isnad1 id=ex.2h2v.s9.2f58da39f001 from=translated src=- shape=8390f442 vocab=cd6dc60b
+-/
 theorem away_lift (n : ℕ) (hn0 : (n : ℤ) ≠ 0) (T : Type) [CommRing T] [IsDomain T] [CharZero T] (hT : IsUnit ((n : ℕ) : T)) :
     ∃ i : Localization.Away (n : ℤ) →+* T, Function.Injective i ∧
       (∀ z : ℤ, i (algebraMap ℤ (Localization.Away (n : ℤ)) z) = (z : T)) ∧
@@ -58,6 +61,9 @@ theorem away_lift (n : ℕ) (hn0 : (n : ℤ) ≠ 0) (T : Type) [CommRing T] [IsD
     exact nonZeroDivisors.ne_zero ha this
   · exact h
 
+/--
+@isnad1 id=not.3h2v.s6.c86be04f248e from=translated src=- shape=d136a2be vocab=3ca956c8
+-/
 theorem not_isUnit_of_prime_not_dvd (n : ℕ) (hn0 : (n : ℤ) ≠ 0) (p : ℕ) (hp : p.Prime) (hpn : ¬ p ∣ n) :
     ¬ IsUnit ((p : ℕ) : Localization.Away (n : ℤ)) := by
   classical
@@ -86,6 +92,9 @@ end ASM21.E4
 namespace ASM21
 namespace E4
 
+/--
+@isnad1 id=ex.2h2v.s9.8cbc231a9f2a from=translated src=- shape=b27b3de5 vocab=98f255ae
+-/
 theorem witt_witness (n : ℕ) (hn0 : (n : ℤ) ≠ 0) (p : ℕ) [hp : Fact p.Prime] (hpn : ¬ p ∣ n) :
     ∃ (W : Type) (_ : CommRing W) (_ : IsDomain W) (_ : IsDiscreteValuationRing W)
       (_ : IsAdicComplete (IsLocalRing.maximalIdeal W) W) (_ : IsAlgClosed (IsLocalRing.ResidueField W))
@@ -135,6 +144,9 @@ theorem witt_witness (n : ℕ) (hn0 : (n : ℤ) ≠ 0) (p : ℕ) [hp : Fact p.Pr
 
 end ASM21.E4
 
+/--
+@isnad1 id=ex.1h2v.s8.4c85f754e4d7 from=translated src=- shape=6d94de70 vocab=136bdd03
+-/
 theorem solution
     (𝒪 : Type) [CommRing 𝒪] [IsDomain 𝒪] [CharZero 𝒪] (n : ℕ) (hn : IsUnit ((n : ℕ) : 𝒪)) :
     ∃ (B₀ : Type) (_ : CommRing B₀) (_ : IsDedekindDomain B₀) (i : B₀ →+* 𝒪),

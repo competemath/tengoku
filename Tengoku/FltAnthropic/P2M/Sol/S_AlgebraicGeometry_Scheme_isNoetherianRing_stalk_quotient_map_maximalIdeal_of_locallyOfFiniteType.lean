@@ -11,18 +11,27 @@ open AlgebraicGeometry CategoryTheory IsLocalRing
 
 namespace FibreNoethAux
 
+/--
+@isnad1 id=isnoethe.0h2v.s5.9018b06b46e1 from=translated src=- shape=f82cba46 vocab=9e532e01
+-/
 theorem isNoetherianRing_of_essFiniteType (R S : Type*) [CommRing R] [CommRing S] [Algebra R S]
     [Algebra.EssFiniteType R S] [IsNoetherianRing R] : IsNoetherianRing S := by
   have h : IsNoetherianRing (Algebra.EssFiniteType.subalgebra R S) :=
     Algebra.FiniteType.isNoetherianRing R _
   exact IsLocalization.isNoetherianRing (Algebra.EssFiniteType.submonoid R S) S h
 
+/--
+@isnad1 id=essfinit.0h2v.s5.03f239912073 from=translated src=- shape=ddb0a872 vocab=f43715be
+-/
 theorem essFiniteType_toStalk (A : Type) [CommRing A] (p : PrimeSpectrum A) :
     (StructureSheaf.toStalk A p).hom.EssFiniteType := by
   change (algebraMap A ((Spec.structureSheaf A).presheaf.stalk p)).EssFiniteType
   rw [RingHom.essFiniteType_algebraMap]
   exact Algebra.EssFiniteType.of_isLocalization _ p.asIdeal.primeCompl
 
+/--
+@isnad1 id=eq.0h4v.s13.f357fd002dc9 from=translated src=- shape=2ba761e0 vocab=22d4aa50
+-/
 theorem const_eq_comp (A : Type) [CommRing A]
     (X : Scheme.{0}) (f : X ⟶ Spec (CommRingCat.of A)) (x : X) :
     (X.presheaf.germ ⊤ x trivial).hom.comp (f.appTop.hom.comp (Scheme.ΓSpecIso (CommRingCat.of A)).inv.hom) =
@@ -36,6 +45,9 @@ theorem const_eq_comp (A : Type) [CommRing A]
   rw [h2, ← h1]
   rfl
 
+/--
+@isnad1 id=essfinit.0h4v.s12.0253506c3dcc from=translated src=- shape=53148626 vocab=222b4185
+-/
 theorem essFiniteType_const (A : Type) [CommRing A]
     (X : Scheme.{0}) (f : X ⟶ Spec (CommRingCat.of A)) [LocallyOfFiniteType f] (x : X) :
     ((X.presheaf.germ ⊤ x trivial).hom.comp
@@ -45,6 +57,9 @@ theorem essFiniteType_const (A : Type) [CommRing A]
 
 end FibreNoethAux
 
+/--
+@isnad1 id=isnoethe.1h4v.s13.4643a57009ff from=translated src=- shape=f4e733ad vocab=06d014a2
+-/
 theorem solution
     (A : Type) [CommRing A] [IsLocalRing A]
     (X : Scheme.{0}) (f : X ⟶ Spec (CommRingCat.of A)) [LocallyOfFiniteType f]

@@ -24,6 +24,9 @@ open IsLocalRing
 variable {B C : Type u} [CommRing B] [IsLocalRing B] [CommRing C] [IsLocalRing C]
 
 omit [IsLocalRing C] in
+/--
+@isnad1 id=speciali.1h3v.s5.71ad5adfcece from=translated src=- shape=421db264 vocab=05c8e813
+-/
 theorem specializes_of_eq {X : Scheme.{u}} {x y : ↥X} (h : x = y) : x ⤳ y := h ▸ specializes_rfl
 
 end TanLift8

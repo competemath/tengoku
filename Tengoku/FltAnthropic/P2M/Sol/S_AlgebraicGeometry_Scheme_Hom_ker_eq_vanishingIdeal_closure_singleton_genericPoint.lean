@@ -11,6 +11,9 @@ open CategoryTheory AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=eq.0h3v.s8.ae4540dc62a7 from=translated src=- shape=255f9e8a vocab=5d03af11
+-/
 theorem solution
     {C Y : Scheme.{u}} (f : C ⟶ Y) [IsIntegral C] [QuasiCompact f] :
     f.ker = Scheme.IdealSheafData.vanishingIdeal (X := Y) ⟨closure ({f.base (genericPoint C)} : Set Y), isClosed_closure⟩ := by

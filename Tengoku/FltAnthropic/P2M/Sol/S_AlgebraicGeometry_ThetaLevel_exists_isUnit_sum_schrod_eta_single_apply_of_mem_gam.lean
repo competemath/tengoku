@@ -14,6 +14,9 @@ noncomputable section
 
 namespace C4bKit
 
+/--
+@isnad1 id=eq.2h4v.s7.acf06e7b73de from=translated src=- shape=c1cbc508 vocab=997fd4c0
+-/
 theorem sum_eq_zero_of_isUnit_one_sub {K : Type} [AddCommGroup K] [Fintype K] {R : Type} [CommRing R]
     (χ : K → R) (hχ : ∀ k k' : K, χ (k + k') = χ k * χ k') (k₁ : K) (hk₁ : IsUnit (1 - χ k₁)) :
     ∑ k, χ k = 0 := by
@@ -24,6 +27,9 @@ theorem sum_eq_zero_of_isUnit_one_sub {K : Type} [AddCommGroup K] [Fintype K] {R
   have h2 : (1 - χ k₁) * ∑ k, χ k = 0 := by rw [sub_mul, one_mul, ← h, sub_self]
   exact (hk₁.mul_right_eq_zero).1 h2
 
+/--
+@isnad1 id=and.1h5v.s8.27e83a7d6796 from=translated src=- shape=55541588 vocab=8660dcf0
+-/
 theorem pow_a_h_k {g : ℕ} {δ : Fin g → ℕ} {d : ℕ} (z : AlgebraicGeometry.ThetaLevel.Heis δ d) (hz : z.h = 0) (m : ℕ) :
     (z ^ m).a = m • z.a ∧ (z ^ m).h = 0 ∧ (z ^ m).k = m • z.k := by
   induction m with
@@ -35,6 +41,9 @@ theorem pow_a_h_k {g : ℕ} {δ : Fin g → ℕ} {d : ℕ} (z : AlgebraicGeometr
     · rw [pow_succ, AlgebraicGeometry.ThetaLevel.Heis.mul_h, hh, hz, add_zero]
     · rw [pow_succ, AlgebraicGeometry.ThetaLevel.Heis.mul_k, hk, succ_nsmul]
 
+/--
+@isnad1 id=ex.1h2v.s8.479ebd8ebc09 from=translated src=- shape=d0e07fb3 vocab=d4001639
+-/
 theorem exists_eq_two_mul_of_nsmul_eq_zero {d : ℕ} [NeZero d] (a : ZMod (2 * d)) (ha : d • a = 0) :
     ∃ j : ℕ, a = ((2 * j : ℕ) : ZMod (2 * d)) := by
   have hd0 : 0 < d := Nat.pos_of_ne_zero (NeZero.ne _)
@@ -51,6 +60,9 @@ end
 
 open C4bKit in
 
+/--
+@isnad1 id=ex.6h9v.s9.ceac9b4a9137 from=translated src=- shape=37ce1b58 vocab=87ba90f2
+-/
 theorem solution
     {g : ℕ} (δ : Fin g → ℕ) [∀ i, NeZero (δ i)] (d : ℕ) [NeZero d] (hδd : ∏ i, δ i = d)
     (B : Type) [CommRing B] (hd : IsUnit ((d : ℕ) : B)) (ζ ω : B) (hζ : ζ ^ d = 1)

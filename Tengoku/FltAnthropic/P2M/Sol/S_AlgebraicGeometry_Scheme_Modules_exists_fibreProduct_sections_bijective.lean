@@ -44,6 +44,9 @@ open scoped _root_.P2MW.S_AlgebraicGeometry_Scheme_Modules_exists_fibreProduct_s
 
 open CategoryTheory.Limits _root_.AlgebraicGeometry.Scheme.Modules _root_.P2MW.S_AlgebraicGeometry_Scheme_Modules_exists_fibreProduct_sections_bijective.AlgebraicGeometry.Scheme.Modules AlgebraicGeometry.Scheme.Modules.FibreProductSections in
 
+/--
+@isnad1 id=ex.0h6v.s13.2b65a1a3acd6 from=translated src=- shape=5f6b8088 vocab=d846f288
+-/
 theorem solution
     {X : Scheme.{u}} {N₀ N₁ N₀₁ : X.Modules} (a : N₀ ⟶ N₀₁) (b : N₁ ⟶ N₀₁) :
     ∃ (L : X.Modules) (π₀ : L ⟶ N₀) (π₁ : L ⟶ N₁), π₀ ≫ a = π₁ ≫ b ∧

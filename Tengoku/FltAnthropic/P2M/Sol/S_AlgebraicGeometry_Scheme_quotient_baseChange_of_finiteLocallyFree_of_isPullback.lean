@@ -11,6 +11,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=and.5h15v.s8.28a20eaac564 from=translated src=- shape=da2192a5 vocab=53a8d6de
+-/
 theorem solution
     {X R Y X' R' Y' : Scheme.{u}} {s t : R ⟶ X} {p : X ⟶ Y}
     [IsFinite p] [Flat p] [LocallyOfFinitePresentation p] [Surjective p]

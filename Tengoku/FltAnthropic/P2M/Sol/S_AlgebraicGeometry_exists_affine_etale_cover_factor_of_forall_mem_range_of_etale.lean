@@ -11,6 +11,9 @@ universe v u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=ex.1h6v.s9.94279ba8c00a from=translated src=- shape=acfe2f31 vocab=65ea9509
+-/
 theorem solution
     {T N : Scheme.{u}} [IsAffine T] (y : T ⟶ N)
     {ι : Type v} (X : ι → Scheme.{u}) (h : ∀ i, X i ⟶ N) [∀ i, Etale (h i)]

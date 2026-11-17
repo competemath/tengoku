@@ -14,6 +14,9 @@ open CategoryTheory AlgebraicGeometry TopologicalSpace
 
 namespace P2mSmoothDimGe
 
+/--
+@isnad1 id=eq.0h3v.s6.23d888cdd3fc from=translated src=- shape=81b6d922 vocab=b413bf3b
+-/
 theorem height_eq_of_isMaximal_mvPolynomial (L : Type u) [Field L] (n : ℕ)
     (𝔭 : Ideal (MvPolynomial (Fin n) L)) [h𝔭 : 𝔭.IsMaximal] : 𝔭.height = n := by
   have hform := Ideal.height_add_ringKrullDim_quotient_eq_ringKrullDim_of_finiteType L 𝔭
@@ -25,6 +28,9 @@ theorem height_eq_of_isMaximal_mvPolynomial (L : Type u) [Field L] (n : ℕ)
   rw [hquot, hP, add_zero] at hform
   exact_mod_cast hform
 
+/--
+@isnad1 id=le.2h4v.s6.65cfdcbd69bb from=translated src=- shape=5eddd7af vocab=e1c61cf0
+-/
 theorem le_ringKrullDim_of_isStandardSmoothOfRelativeDimension {L R : Type u} [CommRing L] (hL : IsField L)
     [CommRing R] [Nontrivial R] (φ : L →+* R) (n : ℕ) (hφ : φ.IsStandardSmoothOfRelativeDimension n) :
     (n : WithBot ℕ∞) ≤ ringKrullDim R := by
@@ -62,6 +68,9 @@ theorem le_ringKrullDim_of_isStandardSmoothOfRelativeDimension {L R : Type u} [C
   calc (n : WithBot ℕ∞) = (l'.length : WithBot ℕ∞) := by rw [hl'len, hlen]
     _ ≤ ringKrullDim R := Order.LTSeries.length_le_krullDim l'
 
+/--
+@isnad1 id=le.0h4v.s6.05937a72f71e from=translated src=- shape=a12f8abb vocab=bc734d07
+-/
 theorem le_topologicalKrullDim {K : Type u} [Field K] {X : Scheme.{u}}
     (f : X ⟶ Spec (CommRingCat.of K)) (n : ℕ) [SmoothOfRelativeDimension n f] [Nonempty X] :
     (n : WithBot ℕ∞) ≤ topologicalKrullDim X := by
@@ -94,6 +103,9 @@ theorem le_topologicalKrullDim {K : Type u} [Field K] {X : Scheme.{u}}
 
 end P2mSmoothDimGe
 
+/--
+@isnad1 id=le.0h4v.s6.05937a72f71e from=translated src=- shape=a12f8abb vocab=bc734d07
+-/
 theorem solution
     {K : Type u} [Field K] {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of K)) (n : ℕ)
     [SmoothOfRelativeDimension n f] [Nonempty X] :

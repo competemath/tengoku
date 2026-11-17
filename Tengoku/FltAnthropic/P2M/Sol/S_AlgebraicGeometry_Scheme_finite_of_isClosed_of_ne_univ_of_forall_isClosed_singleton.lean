@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace
 
+/--
+@isnad1 id=finite.3h2v.s7.8e344df37fdd from=translated src=- shape=afb00197 vocab=326691c2
+-/
 theorem solution
     {X : Scheme.{u}} [IsIntegral X] [NoetherianSpace X]
     (hdim : ∀ x : X, x ≠ genericPoint X → IsClosed ({x} : Set X)) :

@@ -14,6 +14,9 @@ universe u
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 open scoped TensorProduct
 
+/--
+@isnad1 id=ex.1h5v.s8.c8ba3723280c from=translated src=- shape=4b249fe9 vocab=41e002cd
+-/
 theorem solution
     {H M : Scheme.{u}} (q : H ⟶ M) [IsFinite q] [Flat q] [Etale q] (hqsurj : Function.Surjective q.base)
     {S : Type u} [CommRing S] (x : Spec (CommRingCat.of S) ⟶ M) :

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Opposite HomogeneousLocalization
 
+/--
+@isnad1 id=ex.2h6v.s13.3842dc01436e from=translated src=- shape=a71ac435 vocab=320a44a4
+-/
 theorem solution
     {A σ : Type} [CommRing A] [SetLike σ A] [AddSubgroupClass σ A] (𝒜 : ℕ → σ) [GradedRing 𝒜]
     {d : ℕ} (hd : 0 < d) {r : ℕ} (F : Fin r → A) (hF : ∀ i : Fin r, F i ∈ 𝒜 d) :

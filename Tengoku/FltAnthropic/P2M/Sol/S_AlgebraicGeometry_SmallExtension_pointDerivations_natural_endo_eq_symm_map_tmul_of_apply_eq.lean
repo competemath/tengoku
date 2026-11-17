@@ -12,6 +12,9 @@ open scoped TensorProduct
 
 universe u
 
+/--
+@isnad1 id=eq.3h9v.s16.0048af79f79e from=translated src=- shape=04848708 vocab=87e4f2f0
+-/
 theorem solution
     {k : Type u} [Field k] {A : Type u} [CommRing A] [Algebra k A] (ev : A →+* k)
 

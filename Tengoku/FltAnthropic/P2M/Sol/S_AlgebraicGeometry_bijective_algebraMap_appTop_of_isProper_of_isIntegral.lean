@@ -14,6 +14,9 @@ universe u
 
 open _root_.CategoryTheory open _root_.CategoryTheory.Limits open _root_.AlgebraicGeometry open _root_.Polynomial open _root_.AlgebraicGeometry.Polynomial
 
+/--
+@isnad1 id=bijectiv.0h3v.s11.530586e91e31 from=translated src=- shape=2460dbcb vocab=60144a35
+-/
 theorem solution
     (k : Type u) [Field k] [IsAlgClosed k] {X : Scheme.{u}}
     (fX : X ⟶ Spec (CommRingCat.of k)) [IsProper fX] [IsIntegral X] :

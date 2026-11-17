@@ -12,6 +12,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=nonempty.1h2v.s6.abbf38dfa912 from=translated src=- shape=116deb7f vocab=4a23cb4a
+-/
 theorem solution
     {X : Scheme.{u}} [IrreducibleSpace X] (𝒱 : X.TwoAffineOpenCover) (hX : ¬ IsAffine X) :
     ((𝒱.U0 ⊓ 𝒱.U1 : X.Opens) : Set X).Nonempty := by

@@ -21,17 +21,26 @@ namespace Modules
 export _root_.AlgebraicGeometry.Scheme.Modules (hom_ext pushforwardCongr pushforward pushforwardComp pullback presheaf Hom.comp_app pushforwardId Hom pullbackPushforwardAdjunction pullbackComp baseChangeHom unit_app_app_comp_baseChangeHom_app unit_app_comp_pullbackComp_inv)
 open _root_.AlgebraicGeometry.Scheme.Modules open _root_.AlgebraicGeometry.Scheme open _root_.AlgebraicGeometry
 
+/--
+@isnad1 id=eq.1h6v.s10.b959118dd108 from=translated src=- shape=8140387f vocab=891d3e66
+-/
 theorem invE5_map_eqToHom_comp_app {Y : Scheme.{u}} {M N : Y.Modules} (φ : M ⟶ N) {U V : Y.Opens}
     (e : U = V) :
     M.presheaf.map (eqToHom e).op ≫ φ.app U = φ.app V ≫ N.presheaf.map (eqToHom e).op := by
   subst e; simp
 
+/--
+@isnad1 id=eq.1h6v.s11.5ba2476705cd from=translated src=- shape=16048628 vocab=0fd5e020
+-/
 theorem invE5_inv_app_map_eqToHom_id_hom_app {Y : Scheme.{u}} {P Q : Y.Modules} (c : P ≅ Q) {W₁ W₃ : Y.Opens}
     (e : W₃ = W₁) :
     c.inv.app W₁ ≫ P.presheaf.map (eqToHom e).op ≫ 𝟙 _ ≫ c.hom.app W₃ = Q.presheaf.map (eqToHom e).op := by
   subst e
   simp [← Scheme.Modules.Hom.comp_app]
 
+/--
+@isnad1 id=eq.1h7v.s11.f3c9a8e1e840 from=translated src=- shape=a3ea8be2 vocab=e94ed6c3
+-/
 theorem invE5_ext_of_unit_app_comp {T T' : Scheme.{u}} (ψ : T' ⟶ T) {M : T.Modules} {N : T'.Modules}
     (f₁ f₂ : (pullback ψ).obj M ⟶ N)
     (h : ∀ U : T.Opens, ((pullbackPushforwardAdjunction ψ).unit.app M).app U ≫ f₁.app (ψ ⁻¹ᵁ U) =
@@ -48,6 +57,9 @@ noncomputable def invE5_pushforwardIsoEquivalence {Y Y' : Scheme.{u}} (e : Y ≅
 
 set_option maxHeartbeats 1600000 in
 
+/--
+@isnad1 id=eq.2h11v.s10.df244c7ec8db from=translated src=- shape=5225cba5 vocab=6f7ab7ac
+-/
 theorem invE5_baseChangeHom_iso_comp {X T T' X₁ X₂ : Scheme.{u}} {π : X ⟶ T} {ψ : T' ⟶ T}
     {π₂ : X₂ ⟶ T'} {g₂ : X₂ ⟶ X} (θ : X₁ ≅ X₂) (h₂ : g₂ ≫ π = π₂ ≫ ψ)
     (h₁ : (θ.hom ≫ g₂) ≫ π = (θ.hom ≫ π₂) ≫ ψ) (F : X.Modules) :
@@ -86,6 +98,9 @@ theorem invE5_baseChangeHom_iso_comp {X T T' X₁ X₂ : Scheme.{u}} {π : X ⟶
   erw [fin]
   rfl
 
+/--
+@isnad1 id=iff.2h12v.s7.3f9e6806bf98 from=translated src=- shape=46ad6603 vocab=78f1eb4f
+-/
 theorem _root_.P2MW.S_AlgebraicGeometry_Scheme_Modules_isIso_baseChangeHom_iff_of_isPullback.solution
     {X T T' X₁ X₂ : Scheme.{u}} {π : X ⟶ T} {ψ : T' ⟶ T}
     {π₁ : X₁ ⟶ T'} {g₁ : X₁ ⟶ X} {π₂ : X₂ ⟶ T'} {g₂ : X₂ ⟶ X}

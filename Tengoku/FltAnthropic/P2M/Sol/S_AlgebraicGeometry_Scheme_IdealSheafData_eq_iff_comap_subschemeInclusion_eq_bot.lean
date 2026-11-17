@@ -11,6 +11,9 @@ universe u
 
 open AlgebraicGeometry CategoryTheory
 
+/--
+@isnad1 id=iff.0h3v.s6.ea63a83aeabb from=translated src=- shape=6e5ad17e vocab=69c379de
+-/
 theorem solution
     {W : Scheme.{u}} (I₁ I₂ : W.IdealSheafData) :
     I₁ = I₂ ↔ I₂.comap I₁.subschemeι = ⊥ ∧ I₁.comap I₂.subschemeι = ⊥ := by

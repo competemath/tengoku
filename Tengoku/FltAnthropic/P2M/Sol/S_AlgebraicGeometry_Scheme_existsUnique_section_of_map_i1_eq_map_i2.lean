@@ -13,6 +13,9 @@ universe u
 open CategoryTheory Opposite AlgebraicGeometry Algebra.TensorProduct Algebra.DescentCofaces
 open scoped TensorProduct
 
+/--
+@isnad1 id=existsun.1h4v.s11.32d34bf5e1f2 from=translated src=- shape=a59a1899 vocab=e3344be7
+-/
 theorem solution
     (E : Sheaf Scheme.fppfTopology.{u} AddCommGrpCat.{u + 1})
     (R A : Type u) [CommRing R] [CommRing A] [Algebra R A] [Module.FaithfullyFlat R A] [Algebra.FinitePresentation R A]

@@ -15,16 +15,25 @@ universe u v
 
 namespace Ws23ClopenGlue
 
+/--
+@isnad1 id=eq.1h5v.s8.1847c300c452 from=translated src=- shape=bc23b548 vocab=4b6544c3
+-/
 theorem sections_subsingleton_of_isEmpty {Z : Scheme.{u}} (hZ : IsEmpty ↥Z) (P : Z.Modules) (W : Z.Opens)
     (s t : Γ(P, W)) : s = t :=
   TopCat.Sheaf.eq_of_locally_eq' (C := Ab) ⟨P.presheaf, Scheme.Modules.isSheaf P⟩ (fun i : Empty => i.elim) W
     (fun i => i.elim) (fun x _ => (hZ.false x).elim) s t (fun i => i.elim)
 
+/--
+@isnad1 id=eq.1h5v.s6.d49149f654fb from=translated src=- shape=45ec909b vocab=ac71dfbe
+-/
 theorem modules_hom_eq_of_isEmpty {Z : Scheme.{u}} (hZ : IsEmpty ↥Z) {P Q : Z.Modules} (a b : P ⟶ Q) : a = b :=
   Scheme.Modules.hom_ext a b fun W => by
     ext s
     exact sections_subsingleton_of_isEmpty hZ Q W _ _
 
+/--
+@isnad1 id=eq.1h4v.s8.d6a470671e5a from=translated src=- shape=5913d49b vocab=9f3cebb3
+-/
 theorem pullbackComp_id_trans_pullbackCongr_app {Z Y : Scheme.{u}} (ι' : Z ⟶ Y) (hf : 𝟙 Z ≫ ι' = ι') (K : Y.Modules) :
     (Scheme.Modules.pullbackComp (𝟙 Z) ι').app K ≪≫ (Scheme.Modules.pullbackCongr hf).app K =
       (Scheme.Modules.pullbackId Z).app ((Scheme.Modules.pullback ι').obj K) := by
@@ -39,6 +48,9 @@ theorem pullbackComp_id_trans_pullbackCongr_app {Z Y : Scheme.{u}} (ι' : Z ⟶ 
   rw [Iso.trans_hom, Iso.app_hom (Scheme.Modules.pullbackId Z), U']
   congr 1
 
+/--
+@isnad1 id=eq.2h7v.s9.9d30e74b961f from=translated src=- shape=e5f90987 vocab=8828cab4
+-/
 theorem mapIso_eq_conj_of_eq_id {Z Y : Scheme.{u}} (ι' : Z ⟶ Y) (p : Z ⟶ Z) (hp : p = 𝟙 Z) (hf : p ≫ ι' = ι')
     (M N : Y.Modules)
     (e : (Scheme.Modules.pullback ι').obj M ≅ (Scheme.Modules.pullback ι').obj N) :
@@ -55,6 +67,9 @@ end Ws23ClopenGlue
 
 open Ws23ClopenGlue
 
+/--
+@isnad1 id=existsun.2h6v.s8.371445c81795 from=translated src=- shape=0daf7e37 vocab=3adc832e
+-/
 theorem solution
     {X : Scheme.{u}} (M N : X.Modules) {ι : Type v} (U : ι → X.Opens) (hU : ⨆ i, U i = ⊤)
     (hdisj : ∀ i j, i ≠ j → U i ⊓ U j = ⊥)

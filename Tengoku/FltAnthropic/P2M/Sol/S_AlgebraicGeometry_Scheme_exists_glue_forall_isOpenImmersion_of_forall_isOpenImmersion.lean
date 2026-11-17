@@ -13,12 +13,18 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 namespace E86WPS
 
+/--
+@isnad1 id=eq.0h4v.s4.520e9b3a6271 from=translated src=- shape=68942072 vocab=4ce89d45
+-/
 theorem some_hom_eq {J : Type u} {k i : J} (a : WidePushoutShape.Hom (some k) (some i)) : k = i := by
   match a with
   | .id _ => rfl
 
 end E86WPS
 
+/--
+@isnad1 id=ex.0h4v.s10.73889e3d5781 from=translated src=- shape=611f2f7b vocab=e7065f94
+-/
 theorem solution
     (W : Scheme.{u}) {ι : Type u} [Nonempty ι] (U : ι → Scheme.{u}) (f : ∀ i, W ⟶ U i)
     [∀ i, IsOpenImmersion (f i)] :

@@ -22,6 +22,9 @@ variable {R B : Type*} [CommRing R] [CommRing B] [IsLocalRing B] [Algebra R B]
 def cotangentEquivOfEq {S : Type*} [CommRing S] {I J : Ideal S} (h : I = J) :
     I.Cotangent ≃ₗ[S] J.Cotangent := h ▸ LinearEquiv.refl S I.Cotangent
 
+/--
+@isnad1 id=eq.1h2v.s8.c243ba73dfdc from=translated src=- shape=79b603c6 vocab=fa07a23f
+-/
 theorem finrank_kaehlerDifferential_eq_finrank_cotangentSpace
     [Algebra.FormallySmooth R B] [Algebra.EssFiniteType R B]
     (hB : Function.Bijective (algebraMap R (ResidueField B))) :
@@ -52,6 +55,9 @@ theorem finrank_kaehlerDifferential_eq_finrank_cotangentSpace
     LinearEquiv.ofBijective (ψ.extendScalarsOfSurjective hsurj) hψ
   rw [ψ'.finrank_eq, Module.finrank_baseChange]
 
+/--
+@isnad1 id=bijectiv.2h4v.s8.d998b76b0ae2 from=translated src=- shape=d318d9cb vocab=b52fc694
+-/
 theorem bijective_algebraMap_residueField_of_section {R₀ : Type*} [CommRing R₀] [Nontrivial R₀]
     (hR : IsField R) (s : B →+* R₀) (hs : Function.Surjective (s.comp (algebraMap R B))) :
     Function.Bijective (algebraMap R (ResidueField B)) := by
@@ -86,6 +92,9 @@ variable {R A B : Type*} [CommRing R] [CommRing A] [CommRing B] [IsLocalRing A] 
   [Algebra.EssFiniteType R A] [Algebra.EssFiniteType R B]
   [Algebra.FormallyUnramified A B]
 
+/--
+@isnad1 id=formally.3h3v.s8.09f526fdcbc9 from=translated src=- shape=fa629e55 vocab=11f8b8b4
+-/
 theorem formallySmooth_of_formallyUnramified_of_finrank_eq
     (hA : Function.Bijective (algebraMap R (ResidueField A)))
     (hB : Function.Bijective (algebraMap R (ResidueField B)))
@@ -128,6 +137,9 @@ open _root_.AlgebraicGeometry
 
 open CategoryTheory CategoryTheory.Limits JacobianCriterionAux
 
+/--
+@isnad1 id=isfield.0h2v.s7.415f8d4339b5 from=translated src=- shape=6e445ad0 vocab=3069fc7c
+-/
 theorem isField_stalk_Spec_of_field {K : Type u} [Field K] (p : ↥(Spec (.of K))) :
     IsField ((Spec (.of K)).presheaf.stalk p) := by
   obtain rfl : p = closedPoint K := Subsingleton.elim (α := PrimeSpectrum K) p (closedPoint K)
@@ -136,6 +148,9 @@ theorem isField_stalk_Spec_of_field {K : Type u} [Field K] (p : ↥(Spec (.of K)
 
 set_option backward.isDefEq.respectTransparency false in
 
+/--
+@isnad1 id=ex.7h6v.s11.28c1c6aa0fd4 from=translated src=- shape=2e30268f vocab=72457894
+-/
 theorem exists_etale_of_formallySmooth_of_formallyUnramified_stalkMap
     {X Y : Scheme.{u}} (f : X ⟶ Y) (x : X)
     (U : Y.Opens) (hU : IsAffineOpen U) (V : X.Opens) (hV : IsAffineOpen V) (hVU : V ≤ f ⁻¹ᵁ U)
@@ -187,6 +202,9 @@ theorem exists_etale_of_formallySmooth_of_formallyUnramified_stalkMap
 
 set_option backward.isDefEq.respectTransparency false in
 
+/--
+@isnad1 id=ex.4h7v.s13.560e90f27e4f from=translated src=- shape=febcb82a vocab=10ec34a1
+-/
 theorem exists_etale_of_formallyUnramified_stalkMap_aux
     {K : Type u} [Field K] {X Y : Scheme.{u}}
     (sX : X ⟶ Spec (.of K)) (sY : Y ⟶ Spec (.of K)) [Smooth sX] [Smooth sY]
@@ -278,6 +296,9 @@ theorem exists_etale_of_formallyUnramified_stalkMap_aux
 
 end AlgebraicGeometry
 
+/--
+@isnad1 id=ex.4h7v.s13.560e90f27e4f from=translated src=- shape=febcb82a vocab=10ec34a1
+-/
 theorem solution
     {K : Type u} [Field K] {X Y : Scheme.{u}}
     (sX : X ⟶ Spec (.of K)) (sY : Y ⟶ Spec (.of K)) [Smooth sX] [Smooth sY]

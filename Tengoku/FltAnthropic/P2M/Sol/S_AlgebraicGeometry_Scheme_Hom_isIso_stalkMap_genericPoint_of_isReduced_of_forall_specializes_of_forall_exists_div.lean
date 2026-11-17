@@ -12,6 +12,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=isiso.4h4v.s13.2a912d6fb3ed from=translated src=- shape=5ec29b62 vocab=0bf1d20c
+-/
 theorem solution
     {Y Z : Scheme.{u}} [IsIntegral Y] (f : Y ⟶ Z)
     (hred : _root_.IsReduced (Z.presheaf.stalk (f (genericPoint Y))))

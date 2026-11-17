@@ -9,6 +9,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=eq.0h7v.s11.4dc326cf3bab from=translated src=- shape=579fc4f0 vocab=3aabad1b
+-/
 theorem AlgebraicGeometry.Scheme.Modules.unit_app_comp_pullbackComp_inv
     {X Y Z : Scheme.{u}} (g : Z ⟶ Y) (f : Y ⟶ X) (M : X.Modules) (U : X.Opens) :
     ((Scheme.Modules.pullbackPushforwardAdjunction (g ≫ f)).unit.app M).app U ≫

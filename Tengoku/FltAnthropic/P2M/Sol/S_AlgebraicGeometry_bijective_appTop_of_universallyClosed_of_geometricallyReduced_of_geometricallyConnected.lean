@@ -15,6 +15,9 @@ section Algebra
 
 variable {K A : Type*} [Field K] [CommRing A] [Algebra K A]
 
+/--
+@isnad1 id=subsingl.1h1v.s6.5df4c3326df6 from=translated src=- shape=56d0d891 vocab=c8625bb9
+-/
 theorem subsingleton_maximalSpectrum_of_idem {S : Type*} [CommRing S] [IsArtinianRing S] [IsReduced S]
     (h : ∀ e : S, IsIdempotentElem e → e = 0 ∨ e = 1) : Subsingleton (MaximalSpectrum S) := by
   classical
@@ -41,6 +44,9 @@ theorem subsingleton_maximalSpectrum_of_idem {S : Type*} [CommRing S] [IsArtinia
     have := congr_fun this m₂
     simp [hm.symm] at this
 
+/--
+@isnad1 id=isfield.1h2v.s6.5e2c3a17ad10 from=translated src=- shape=1f6b852b vocab=b03d70d1
+-/
 theorem isField_of_isReduced_of_isIntegral_of_idem [Nontrivial A] [IsReduced A]
     [Algebra.IsIntegral K A] (h : ∀ e : A, IsIdempotentElem e → e = 0 ∨ e = 1) : IsField A := by
   classical
@@ -73,6 +79,9 @@ end Algebra
 
 section Idem
 
+/--
+@isnad1 id=or.1h2v.s12.318653bb32c2 from=translated src=- shape=a0f6815e vocab=ef01fae0
+-/
 theorem idem_trivial_of_connectedSpace {Y : Scheme.{u}} [IsReduced Y] [ConnectedSpace Y]
     (e : Γ(Y, ⊤)) (he : IsIdempotentElem e) : e = 0 ∨ e = 1 := by
   have he' : IsIdempotentElem (1 - e) := he.one_sub
@@ -128,6 +137,9 @@ theorem idem_trivial_of_connectedSpace {Y : Scheme.{u}} [IsReduced Y] [Connected
 
 end Idem
 
+/--
+@isnad1 id=nontrivi.0h1v.s7.ab6fcc19d991 from=translated src=- shape=8c967035 vocab=74f07308
+-/
 theorem nontrivial_sections_top (Y : Scheme.{u}) [Nonempty Y] : Nontrivial Γ(Y, ⊤) := by
   obtain ⟨y⟩ := ‹Nonempty Y›
   exact (Y.presheaf.germ ⊤ y trivial).hom.domain_nontrivial
@@ -140,6 +152,9 @@ variable {K : Type u} [Field K] {X : Scheme.{u}} (f : X ⟶ Spec (.of K))
     [UniversallyClosed f] [GeometricallyReduced f] [GeometricallyConnected f]
 
 set_option maxHeartbeats 3200000 in
+/--
+@isnad1 id=bijectiv.0h3v.s11.91d5197a9c9f from=translated src=- shape=649e4fa8 vocab=d777ac67
+-/
 theorem main : Function.Bijective f.appTop := by
   classical
 
@@ -250,6 +265,9 @@ end Main
 
 end SolFieldCaseH0
 
+/--
+@isnad1 id=bijectiv.0h3v.s11.91d5197a9c9f from=translated src=- shape=649e4fa8 vocab=d777ac67
+-/
 theorem solution
     {K : Type u} [Field K] {X : Scheme.{u}} (f : X ⟶ Spec (.of K))
     [UniversallyClosed f] [GeometricallyReduced f] [GeometricallyConnected f] :

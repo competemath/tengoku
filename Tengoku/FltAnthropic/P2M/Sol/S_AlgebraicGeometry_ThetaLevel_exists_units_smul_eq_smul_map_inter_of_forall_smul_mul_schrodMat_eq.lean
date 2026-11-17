@@ -21,17 +21,26 @@ variable {g : ℕ} (δ : Fin g → ℕ) [∀ i, NeZero (δ i)] (d : ℕ) [NeZero
   {n : ℕ} (e : Fin n ≃ HH δ)
 
 omit [∀ i, NeZero (δ i)] [NeZero d] in
+/--
+@isnad1 id=eq.0h6v.s7.a1cbcfe94a9a from=translated src=- shape=54a91bd7 vocab=7e4a1aa3
+-/
 theorem map_omegaPow {B : Type} [CommRing B] (φ : B →+* S) (ωB : B) (a : ZMod (2 * d)) :
     φ (omegaPow d B ωB a) = omegaPow d S (φ ωB) a := by
   simp [omegaPow, map_pow]
 
 omit [∀ i, NeZero (δ i)] [NeZero d] in
+/--
+@isnad1 id=eq.0h10v.s7.f46cf8b3a165 from=translated src=- shape=b03f4957 vocab=daa213fe
+-/
 theorem schrodMat_map {B : Type} [CommRing B] (φ : B →+* S) (ωB : B) (z : Heis δ d) :
     (schrodMat δ d B ωB e z).map φ = schrodMat δ d S (φ ωB) e z := by
   ext i j
   rw [Matrix.map_apply, schrodMat_apply, schrodMat_apply]
   split_ifs <;> simp [map_omegaPow]
 
+/--
+@isnad1 id=ex.9h12v.s9.a153ce80867d from=translated src=- shape=664c301e vocab=ebe6f8d6
+-/
 theorem exists_unit (hδd : ∏ i, δ i = d) (ζ : S) (hζ : ζ ^ d = 1) (hζu : ∀ j : ℕ, 0 < j → j < d → IsUnit (1 - ζ ^ j))
     (hω : ω ^ 2 = ζ) (T : Matrix (Fin n) (Fin n) S) (hT : IsUnit T) (ε : S) (hε : IsIdempotentElem ε)
     (γ : MulAut (Heis δ d)) (U : Matrix (Fin n) (Fin n) S) (hU : IsUnit U)
@@ -112,6 +121,9 @@ theorem exists_unit (hδd : ∏ i, δ i = d) (ζ : S) (hζ : ζ ^ d = 1) (hζu :
 end K77TH3.LGS
 
 open K77TH3.LGS in
+/--
+@isnad1 id=ex.9h12v.s11.081f8744b463 from=translated src=- shape=347a7da9 vocab=7c68ea04
+-/
 theorem solution
     {g : ℕ} (δ : Fin g → ℕ) [hδ : ∀ i, NeZero (δ i)] (N : ℕ) (hδd : ∏ i, δ i = N + 1)
     (e : Fin (N + 1) ≃ ((i : Fin g) → ZMod (δ i)))

@@ -24,10 +24,16 @@ open _root_.AlgebraicGeometry.Scheme.Modules open _root_.AlgebraicGeometry.Schem
 
 variable {X : Scheme.{u}}
 
+/--
+@isnad1 id=eq.0h6v.s9.af29a2ffb79f from=translated src=- shape=45a5e74f vocab=2439cf95
+-/
 lemma restrictFunctor_map_app' {M N : X.Modules} (φ : M ⟶ N) (U : X.Opens)
     (W : (U : Scheme.{u}).Opens) :
     ((restrictFunctor U.ι).map φ).app W = φ.app (U.ι ''ᵁ W) := rfl
 
+/--
+@isnad1 id=isiso.2h6v.s8.8f80d234b857 from=translated src=- shape=a3895cf7 vocab=5d68dd9d
+-/
 lemma isIso_app_of_isIso_pullback_ι_map {M N : X.Modules} (φ : M ⟶ N) (U : X.Opens)
     (hU : IsIso ((Scheme.Modules.pullback U.ι).map φ)) (W : X.Opens) (hWU : W ≤ U) :
     IsIso (φ.app W) := by
@@ -41,6 +47,9 @@ lemma isIso_app_of_isIso_pullback_ι_map {M N : X.Modules} (φ : M ⟶ N) (U : X
   rw [← e]
   exact h2
 
+/--
+@isnad1 id=isiso.1h4v.s7.df610f08da66 from=translated src=- shape=90744337 vocab=db50bf5f
+-/
 theorem _root_.P2MW.S_AlgebraicGeometry_Scheme_Modules_Hom_isIso_of_forall_exists_isIso_pullback_map.solution {M N : X.Modules} (φ : M ⟶ N)
     (h : ∀ x : X, ∃ U : X.Opens, x ∈ U ∧ IsIso ((Scheme.Modules.pullback U.ι).map φ)) :
     IsIso φ := by

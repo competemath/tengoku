@@ -11,6 +11,9 @@ open CategoryTheory AlgebraicGeometry TopologicalSpace Opposite
 
 universe u
 
+/--
+@isnad1 id=existsun.2h6v.s11.40f7e5a17f67 from=translated src=- shape=506ca2a1 vocab=28209d0f
+-/
 theorem solution
     {X : Scheme.{u}} [IsIntegral X] {ι : Type u} (V : ι → X.Opens) (W : X.Opens) (hV : iSup V = W)
     [hW : Nonempty W] [hVi : ∀ i, Nonempty (V i)]

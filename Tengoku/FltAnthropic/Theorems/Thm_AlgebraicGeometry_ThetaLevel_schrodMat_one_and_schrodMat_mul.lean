@@ -10,6 +10,9 @@ set_option autoImplicit false
 open scoped BigOperators
 open AlgebraicGeometry AlgebraicGeometry.ThetaLevel
 
+/--
+@isnad1 id=and.1h7v.s8.d239377a20c7 from=translated src=- shape=5fff70de vocab=ebd282e7
+-/
 theorem AlgebraicGeometry.ThetaLevel.schrodMat_one_and_schrodMat_mul
     {g : ℕ} (δ : Fin g → ℕ) [∀ i, NeZero (δ i)] (d : ℕ) [NeZero d] (B : Type) [CommRing B] (ω : B) (hω : ω ^ (2 * d) = 1)
     {n : ℕ} (e : Fin n ≃ HH δ) :

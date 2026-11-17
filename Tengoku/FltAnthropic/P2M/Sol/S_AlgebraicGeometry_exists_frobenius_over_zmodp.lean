@@ -21,6 +21,9 @@ noncomputable def powHom (p : ℕ) (hp : p.Prime) (R : Type*) [CommRing R] (h : 
     rw [add_pow_prime_eq hp, h]
     simp
 
+/--
+@isnad1 id=eq.2h6v.s8.305916fe027e from=translated src=- shape=9ead9310 vocab=dc4d5f0d
+-/
 theorem spec_comm {p : ℕ} {A C : CommRingCat.{0}} (u : A ⟶ A) (v : C ⟶ C)
     (hu : ∀ a, u.hom a = a ^ p) (hv : ∀ c, v.hom c = c ^ p) (θ : A ⟶ C) :
     Spec.map θ ≫ Spec.map u = Spec.map v ≫ Spec.map θ := by
@@ -29,10 +32,16 @@ theorem spec_comm {p : ℕ} {A C : CommRingCat.{0}} (u : A ⟶ A) (v : C ⟶ C)
   ext a
   simp [hu, hv, map_pow]
 
+/--
+@isnad1 id=eq.1h4v.s6.208c2da2e2be from=translated src=- shape=1cb7e0e5 vocab=827b446e
+-/
 theorem natCast_eq_zero_of_hom (p : ℕ) {A C : Type*} [CommRing A] [CommRing C] (θ : A →+* C) (h : (p : A) = 0) :
     (p : C) = 0 := by
   rw [← map_natCast θ p, h, map_zero]
 
+/--
+@isnad1 id=eq.3h7v.s8.a4dbad2b0eae from=translated src=- shape=733b6854 vocab=f878f0ee
+-/
 theorem point_comm (p : ℕ) (hp : p.Prime) {A C : CommRingCat.{0}} {X : Scheme.{0}} (u : A ⟶ A)
     (hu : ∀ a, u.hom a = a ^ p) (g : Spec A ⟶ X) (b : Spec C ⟶ Spec A) (hpC : (p : C) = 0) :
     b ≫ Spec.map u ≫ g = Spec.map (CommRingCat.ofHom (powHom p hp C hpC)) ≫ b ≫ g := by
@@ -40,10 +49,16 @@ theorem point_comm (p : ℕ) (hp : p.Prime) {A C : CommRingCat.{0}} {X : Scheme.
   rw [hb, ← Category.assoc, spec_comm u (CommRingCat.ofHom (powHom p hp C hpC)) hu (fun _ => rfl) (Spec.preimage b),
     Category.assoc]
 
+/--
+@isnad1 id=eq.1h4v.s6.576905475009 from=translated src=- shape=f2931402 vocab=ff70d171
+-/
 theorem natCast_eq_zero_of_point (p : ℕ) {A C : CommRingCat.{0}} (b : Spec C ⟶ Spec A) (h : (p : A) = 0) :
     (p : C) = 0 :=
   natCast_eq_zero_of_hom p (Spec.preimage b).hom h
 
+/--
+@isnad1 id=ex.0h3v.s7.fa4904e60c9d from=translated src=- shape=8d89c99a vocab=90839eb0
+-/
 theorem main (p : ℕ) [hp : Fact p.Prime] {X : Scheme.{0}} (f : X ⟶ Spec (CommRingCat.of (ZMod p))) :
     ∃ F : X ⟶ X, F ≫ f = f ∧
       ∀ (B : Type) [CommRing B] [Algebra (ZMod p) B] [CharP B p] (x : Spec (CommRingCat.of B) ⟶ X),
@@ -132,6 +147,9 @@ end Ws23.FrobExists
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=ex.0h3v.s7.fa4904e60c9d from=translated src=- shape=8d89c99a vocab=90839eb0
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] {X : Scheme.{0}} (f : X ⟶ Spec (CommRingCat.of (ZMod p))) :
     ∃ F : X ⟶ X, F ≫ f = f ∧

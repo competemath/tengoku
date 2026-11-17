@@ -17,30 +17,48 @@ namespace AlgC4c
 variable {g : ℕ} (δ : Fin g → ℕ) [∀ i, NeZero (δ i)] (d : ℕ) [NeZero d] (B : Type) [CommRing B] (ω : B)
 
 omit [NeZero d] in
+/--
+@isnad1 id=eq.0h5v.s6.cda2a944a62d from=translated src=- shape=2c4c311c vocab=81c0bb39
+-/
 theorem eta_mul_eta (k k' : HH δ) : (Heis.eta k * Heis.eta k' : Heis δ d) = Heis.eta (k + k') := by
   refine Heis.ext ?_ ?_ ?_ <;> simp [Heis.eta, pair_zero_right]
 
 omit [NeZero d] in
+/--
+@isnad1 id=eq.0h3v.s6.39fd794ae1a8 from=translated src=- shape=37a1e6e8 vocab=910539b8
+-/
 theorem theta_zero : (Heis.theta (0 : HH δ) : Heis δ d) = 1 := by
   refine Heis.ext ?_ ?_ ?_ <;> simp [Heis.theta]
 
 omit [NeZero d] in
 
+/--
+@isnad1 id=eq.0h5v.s8.5ff6b071811d from=translated src=- shape=962bb864 vocab=51e2751e
+-/
 theorem mul_theta_eq (w : Heis δ d) (x : HH δ) :
     w * Heis.theta x = Heis.cen (w.a + pair δ d w.k x) * Heis.theta (w.h + x) * Heis.eta w.k := by
   refine Heis.ext ?_ ?_ ?_ <;> simp [Heis.cen, Heis.theta, Heis.eta, pair_zero_left, pair_zero_right]
 
 omit [NeZero d] in
+/--
+@isnad1 id=eq.0h6v.s9.869eba10982c from=translated src=- shape=72d106f3 vocab=db5a7d98
+-/
 theorem schrod_cen (a : ZMod (2 * d)) : schrod δ d B ω (Heis.cen a) = omegaPow d B ω a • LinearMap.id := by
   refine LinearMap.ext fun v => funext fun x => ?_
   simp [schrod_apply, thetaChar, pair_zero_left, omegaPow_zero]
 
 omit [NeZero d] in
+/--
+@isnad1 id=eq.0h8v.s8.1aac30264bea from=translated src=- shape=b946e43c vocab=367cc6e6
+-/
 theorem schrod_eta_apply (k : HH δ) (v : HH δ → B) (x : HH δ) :
     schrod δ d B ω (Heis.eta k) v x = thetaChar δ d B ω k x * v x := by
   simp [schrod_apply, omegaPow_zero]
 
 omit [NeZero d] in
+/--
+@isnad1 id=eq.0h7v.s8.8b1f462964ed from=translated src=- shape=6f053724 vocab=5889766d
+-/
 theorem schrod_theta_single (h y : HH δ) :
     schrod δ d B ω (Heis.theta h) (Pi.single y 1) = Pi.single (y + h) 1 := by
   classical
@@ -52,19 +70,31 @@ theorem schrod_theta_single (h y : HH δ) :
   · have : x - h ≠ y := fun h' => hx (by rw [← h']; abel)
     simp [Pi.single_eq_of_ne this, Pi.single_eq_of_ne hx]
 
+/--
+@isnad1 id=eq.1h8v.s7.c03018c1450d from=translated src=- shape=60cba78a vocab=4e21c4ec
+-/
 theorem thetaChar_add_left (hω2d : ω ^ (2 * d) = 1) (k k' x : HH δ) :
     thetaChar δ d B ω (k + k') x = thetaChar δ d B ω k x * thetaChar δ d B ω k' x := by
   simp only [thetaChar, pair_add_left, omegaPow_add d B ω hω2d]
 
+/--
+@isnad1 id=eq.1h8v.s7.166df925f558 from=translated src=- shape=7f09f6b7 vocab=4e21c4ec
+-/
 theorem thetaChar_add_right (hω2d : ω ^ (2 * d) = 1) (k x x' : HH δ) :
     thetaChar δ d B ω k (x + x') = thetaChar δ d B ω k x * thetaChar δ d B ω k x' := by
   simp only [thetaChar, pair_add_right, omegaPow_add d B ω hω2d]
 
 omit [NeZero d] in
+/--
+@isnad1 id=eq.0h6v.s6.2b9fd33ddc8e from=translated src=- shape=245f05b0 vocab=fbf486d1
+-/
 theorem thetaChar_zero_right (k : HH δ) : thetaChar δ d B ω k 0 = 1 := by
   simp [thetaChar, pair_zero_right, omegaPow_zero]
 
 omit [NeZero d] in
+/--
+@isnad1 id=eq.0h5v.s8.73c024d50deb from=translated src=- shape=072d6a34 vocab=19402758
+-/
 theorem pair_single (i : Fin g) (x : HH δ) : pair δ d (Pi.single i 1) x = iota δ d i (x i) := by
   classical
   unfold pair
@@ -73,6 +103,9 @@ theorem pair_single (i : Fin g) (x : HH δ) : pair δ d (Pi.single i 1) x = iota
   · intro j hj
     rw [Pi.single_eq_of_ne hj, zero_mul, map_zero]
 
+/--
+@isnad1 id=ex.5h8v.s8.73ea684a98e7 from=translated src=- shape=cc070934 vocab=a3335ffd
+-/
 theorem exists_isUnit_thetaChar_sub (hδd : ∏ i, δ i = d) (ζ : B) (hζ : ζ ^ d = 1)
     (hζu : ∀ j : ℕ, 0 < j → j < d → IsUnit (1 - ζ ^ j)) (hω : ω ^ 2 = ζ)
     {x y : HH δ} (hxy : x ≠ y) :
@@ -109,10 +142,16 @@ theorem exists_isUnit_thetaChar_sub (hδd : ∏ i, δ i = d) (ζ : B) (hζ : ζ 
   exact (hu1.mul (hζu m hm0 hmd)).neg
 
 omit [NeZero d] in
+/--
+@isnad1 id=eq.1h3v.s6.1af7e17602b0 from=translated src=- shape=5d4e18df vocab=2ce2af52
+-/
 theorem card_HH (hδd : ∏ i, δ i = d) : Fintype.card (HH δ) = d := by
   rw [← hδd]
   simp [HH, Fintype.card_pi, ZMod.card]
 
+/--
+@isnad1 id=eq.4h7v.s8.7e527a14274d from=translated src=- shape=27adda0f vocab=c76b0be0
+-/
 theorem sum_thetaChar (hδd : ∏ i, δ i = d) (ζ : B) (hζ : ζ ^ d = 1)
     (hζu : ∀ j : ℕ, 0 < j → j < d → IsUnit (1 - ζ ^ j)) (hω : ω ^ 2 = ζ) (x : HH δ) :
     ∑ k : HH δ, thetaChar δ d B ω k x = if x = 0 then ((d : ℕ) : B) else 0 := by
@@ -135,6 +174,9 @@ theorem sum_thetaChar (hδd : ∏ i, δ i = d) (ζ : B) (hζ : ζ ^ d = 1)
 end AlgC4c
 
 open AlgC4c in
+/--
+@isnad1 id=and.7h10v.s11.2fc3e4b7e584 from=translated src=- shape=f9a1b383 vocab=775ca42b
+-/
 theorem solution
     {g : ℕ} (δ : Fin g → ℕ) [∀ i, NeZero (δ i)] (d : ℕ) [NeZero d] (hδd : ∏ i, δ i = d)
     (B : Type) [CommRing B] (hd : IsUnit ((d : ℕ) : B)) (ζ ω : B) (hζ : ζ ^ d = 1)

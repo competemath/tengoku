@@ -11,6 +11,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=ex.0h4v.s9.1756a8ce7ba4 from=translated src=- shape=d066066b vocab=85a26221
+-/
 theorem solution
     {B Y : Scheme.{u}} (πY : Y ⟶ B) (n : ℕ) :
     ∃ (P : Scheme.{u}) (πP : P ⟶ B) (q : Fin n → (P ⟶ Y)),

@@ -13,6 +13,9 @@ open TopologicalSpace Opposite
 
 namespace P4Aux
 
+/--
+@isnad1 id=bijectiv.2h5v.s11.44f41ce273c3 from=translated src=- shape=e4c12a7a vocab=78855a3a
+-/
 theorem bijective_app_congr {X B : Scheme.{u}} (p : X ⟶ B) {V W : B.Opens} (e : V = W)
     (h : Function.Bijective (p.app V)) : Function.Bijective (p.app W) := by
   subst e; exact h
@@ -23,6 +26,9 @@ open P4Aux
 
 set_option backward.isDefEq.respectTransparency false in
 
+/--
+@isnad1 id=bijectiv.1h4v.s15.d022251157d4 from=translated src=- shape=1a1a9d11 vocab=4ef3a675
+-/
 theorem solution {X B : Scheme.{u}} (p : X ⟶ B) (U : B.Opens)
     (h : Function.Bijective (p ∣_ U).appTop) : Function.Bijective (p.app U) := by
   have e : U.ι ''ᵁ ⊤ = U := U.ι_image_top

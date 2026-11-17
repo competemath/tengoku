@@ -9,6 +9,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry Opposite AlgebraicGeometry.Scheme.Modules
 
+/--
+@isnad1 id=bijectiv.1h5v.s11.c6fcac9cb81b from=translated src=- shape=96e4f5d4 vocab=970764a0
+-/
 theorem solution
     {X Y : Scheme.{u}} (j : Y ⟶ X) [IsOpenImmersion j] (N : X.Modules)
     (V : X.Opens) (hV : V ≤ j.opensRange) :

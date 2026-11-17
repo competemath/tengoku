@@ -17,6 +17,9 @@ namespace Modules
 export _root_.AlgebraicGeometry.Scheme.Modules (pullback pullbackCongr pullbackComp IsLocallyFreeOfRank)
 open _root_.AlgebraicGeometry.Scheme.Modules open _root_.AlgebraicGeometry.Scheme open _root_.AlgebraicGeometry
 
+/--
+@isnad1 id=final.0h3v.s7.e0f065c98e32 from=translated src=- shape=5f26ffc8 vocab=6d7edeab
+-/
 theorem opensMap_final' {X Y : Scheme.{u}} (f : X ⟶ Y) : (TopologicalSpace.Opens.map f.base).Final :=
   CategoryTheory.final_of_representablyFlat _
 

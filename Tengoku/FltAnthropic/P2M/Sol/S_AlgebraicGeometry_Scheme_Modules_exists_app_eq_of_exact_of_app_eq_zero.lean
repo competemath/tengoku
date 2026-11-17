@@ -30,6 +30,9 @@ noncomputable abbrev evalAt (U : X.Opens) : TopCat.Presheaf Ab.{u} X ⥤ Ab.{u} 
 scoped instance (U : X.Opens) : (evalAt (X := X) U).Additive where
   map_add := by intros; rfl
 
+/--
+@isnad1 id=ex.2h4v.s12.f60eff1020e2 from=translated src=- shape=525834a1 vocab=70d657c4
+-/
 theorem exists_app_eq_of_exact_of_app_eq_zero (S : ShortComplex X.Modules) (hS : S.Exact) [Mono S.f]
     (U : X.Opens) (m : Γ(S.X₂, U)) (hm : S.g.app U m = 0) :
     ∃ e : Γ(S.X₁, U), S.f.app U e = m := by
@@ -61,6 +64,9 @@ open scoped _root_.P2MW.S_AlgebraicGeometry_Scheme_Modules_exists_app_eq_of_exac
 open scoped _root_.P2MW.S_AlgebraicGeometry_Scheme_Modules_exists_app_eq_of_exact_of_app_eq_zero.AlgebraicGeometry _root_.P2MW.S_AlgebraicGeometry_Scheme_Modules_exists_app_eq_of_exact_of_app_eq_zero.AlgebraicGeometry.Scheme
 open scoped _root_.P2MW.S_AlgebraicGeometry_Scheme_Modules_exists_app_eq_of_exact_of_app_eq_zero.AlgebraicGeometry
 
+/--
+@isnad1 id=ex.2h4v.s12.f60eff1020e2 from=translated src=- shape=525834a1 vocab=70d657c4
+-/
 theorem solution {X : Scheme.{u}} (S : ShortComplex X.Modules) (hS : S.Exact) [Mono S.f]
     (U : X.Opens) (m : Γ(S.X₂, U)) (hm : S.g.app U m = 0) :
     ∃ e : Γ(S.X₁, U), S.f.app U e = m :=

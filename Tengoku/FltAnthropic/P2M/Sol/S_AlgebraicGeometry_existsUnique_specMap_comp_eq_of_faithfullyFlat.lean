@@ -12,6 +12,9 @@ universe u
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 open scoped TensorProduct
 
+/--
+@isnad1 id=existsun.1h4v.s9.9742a5f8d4e0 from=translated src=- shape=c729e3e2 vocab=4c614085
+-/
 theorem solution
     {B B' : Type u} [CommRing B] [CommRing B'] [Algebra B B'] [Module.FaithfullyFlat B B']
     {T : Scheme.{u}} (φ' : Spec (CommRingCat.of B') ⟶ T)

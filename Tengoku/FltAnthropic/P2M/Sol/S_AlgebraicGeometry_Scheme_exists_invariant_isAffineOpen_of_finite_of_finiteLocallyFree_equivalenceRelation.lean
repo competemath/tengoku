@@ -24,21 +24,33 @@ variable (hequiv : ∀ T : Scheme.{u},
   _root_.Equivalence fun x y : T ⟶ X => ∃ φ : T ⟶ R, φ ≫ s = x ∧ φ ≫ t = y)
 include hequiv
 
+/--
+@isnad1 id=mem.1h5v.s7.a1823cf98503 from=translated src=- shape=fd973f76 vocab=312fd710
+-/
 theorem mem_cls_self (w : X) : w ∈ cls s t w := by
   obtain ⟨e, hes, het⟩ := (hequiv X).refl (𝟙 X)
   refine ⟨e w, ?_, ?_⟩
   · rw [← Scheme.Hom.comp_apply, hes]; rfl
   · rw [← Scheme.Hom.comp_apply, het]; rfl
 
+/--
+@isnad1 id=ex.1h5v.s9.b5cd6c56cce2 from=translated src=- shape=3d9642b5 vocab=422eb86e
+-/
 theorem exists_inv (r : R) : ∃ r' : R, s r' = t r ∧ t r' = s r := by
   obtain ⟨ι, hιs, hιt⟩ := (hequiv R).symm ⟨𝟙 R, Category.id_comp s, Category.id_comp t⟩
   exact ⟨ι r, by rw [← Scheme.Hom.comp_apply, hιs], by rw [← Scheme.Hom.comp_apply, hιt]⟩
 
+/--
+@isnad1 id=mem.2h6v.s7.9c53e6934e6f from=translated src=- shape=7f4cc23d vocab=312fd710
+-/
 theorem cls_symm {w w' : X} (h : w' ∈ cls s t w) : w ∈ cls s t w' := by
   obtain ⟨r, rfl, rfl⟩ := h
   obtain ⟨r', h₁, h₂⟩ := exists_inv s t hequiv r
   exact ⟨r', h₁, h₂⟩
 
+/--
+@isnad1 id=mem.3h7v.s8.19e36c043846 from=translated src=- shape=74f5c226 vocab=312fd710
+-/
 theorem cls_trans {w w' w'' : X} (h : w' ∈ cls s t w) (h' : w'' ∈ cls s t w') : w'' ∈ cls s t w := by
   obtain ⟨r₁, rfl, rfl⟩ := h
   obtain ⟨r₂, h₂, rfl⟩ := h'
@@ -51,6 +63,9 @@ theorem cls_trans {w w' w'' : X} (h : w' ∈ cls s t w) (h' : w'' ∈ cls s t w'
   · rw [← Scheme.Hom.comp_apply, hcs, Scheme.Hom.comp_apply, hz₁]
   · rw [← Scheme.Hom.comp_apply, hct, Scheme.Hom.comp_apply, hz₂]
 
+/--
+@isnad1 id=eq.2h6v.s7.772a8b51916e from=translated src=- shape=1fd0980b vocab=312fd710
+-/
 theorem cls_eq_of_mem {w w' : X} (h : w' ∈ cls s t w) : cls s t w' = cls s t w :=
   Set.ext fun _ => ⟨fun h'' => cls_trans s t hequiv h h'', fun h'' => cls_trans s t hequiv (cls_symm s t hequiv h) h''⟩
 
@@ -65,6 +80,9 @@ def W' : X.Opens :=
     rw [isOpen_compl_iff]
     exact t.isClosedMap _ (isClosed_compl_iff.mpr (Opens.isOpen _))⟩
 
+/--
+@isnad1 id=iff.0h6v.s9.05c966c8a3fa from=translated src=- shape=bbe3cbb9 vocab=b2e689f9
+-/
 theorem mem_W'_iff (w : X) : w ∈ W' s t U ↔ ∀ z : R, t z = w → s z ∈ U ∧ t z ∈ U := by
   change w ∈ (t.base '' _)ᶜ ↔ _
   simp only [Set.mem_compl_iff, Set.mem_image, not_exists, not_and, SetLike.mem_coe]
@@ -79,6 +97,9 @@ variable (hequiv : ∀ T : Scheme.{u},
   _root_.Equivalence fun x y : T ⟶ X => ∃ φ : T ⟶ R, φ ≫ s = x ∧ φ ≫ t = y)
 include hequiv
 
+/--
+@isnad1 id=le.2h6v.s8.55aaf929c021 from=translated src=- shape=bff9db59 vocab=88b51fc7
+-/
 theorem cls_subset_W' {x : X} (hx : cls s t x ⊆ (U : Set X)) : cls s t x ⊆ (W' s t U : Set X) := by
   intro w' hw'
   change w' ∈ W' s t U
@@ -89,6 +110,9 @@ theorem cls_subset_W' {x : X} (hx : cls s t x ⊆ (U : Set X)) : cls s t x ⊆ (
   have : s z ∈ cls s t w' := cls_symm s t hequiv ⟨z, rfl, hz⟩
   rwa [cls_eq_of_mem s t hequiv hw'] at this
 
+/--
+@isnad1 id=le.1h5v.s9.86ef3825a020 from=translated src=- shape=5a5e16f2 vocab=22301b5a
+-/
 theorem preimage_W'_le : s ⁻¹ᵁ W' s t U ≤ t ⁻¹ᵁ U := by
   intro r hr
   change s r ∈ W' s t U at hr
@@ -103,6 +127,9 @@ section S4
 
 variable (A B : Type u) [CommRing A] [CommRing B] [Algebra A B] [Module.Finite A B] [Module.Projective A B]
 
+/--
+@isnad1 id=ex.0h2v.s7.fe1f973aef51 from=translated src=- shape=ef116289 vocab=a21b8788
+-/
 theorem exists_norm : ∃ N : B → A, ∀ (b : B) (p : PrimeSpectrum A),
     N b ∉ p.asIdeal ↔ ∀ q : PrimeSpectrum B, q.comap (algebraMap A B) = p → b ∉ q.asIdeal := by
   classical
@@ -215,6 +242,9 @@ theorem exists_norm : ∃ N : B → A, ∀ (b : B) (p : PrimeSpectrum A),
 
 end S4
 
+/--
+@isnad1 id=ex.4h4v.s8.11016acb2007 from=translated src=- shape=a969204d vocab=19e1085a
+-/
 theorem exists_basicOpen_of_finite {X : Scheme.{u}} {U : X.Opens} (hU : IsAffineOpen U)
     (F : Set X) (hF : F.Finite) (V : X.Opens) (hFV : F ⊆ (V : Set X)) (hFU : F ⊆ (U : Set X)) :
     ∃ f : Γ(X, U), F ⊆ (X.basicOpen f : Set X) ∧ X.basicOpen f ≤ V := by
@@ -278,6 +308,9 @@ section core
 
 variable {X R : Scheme.{u}} (s t : R ⟶ X) [IsFinite s] [Flat s] [LocallyOfFinitePresentation s]
 
+/--
+@isnad1 id=iff.2h4v.s11.7991f530c6a3 from=translated src=- shape=0d0f33ee vocab=9f0fc97d
+-/
 theorem mem_basicOpen_iff_notMem {U : X.Opens} (hU : IsAffineOpen U) (g : Γ(X, U)) {w : X}
     (hw : w ∈ U) : w ∈ X.basicOpen g ↔ g ∉ (hU.primeIdealOf ⟨w, hw⟩).asIdeal := by
   rw [← PrimeSpectrum.mem_basicOpen]
@@ -287,16 +320,25 @@ theorem mem_basicOpen_iff_notMem {U : X.Opens} (hU : IsAffineOpen U) (g : Γ(X, 
   rw [← key, hU.fromSpec_preimage_basicOpen]
   rfl
 
+/--
+@isnad1 id=mem.1h3v.s10.84e63a321a0e from=translated src=- shape=80e4e352 vocab=c7ed4b58
+-/
 theorem fromSpec_mem {U : X.Opens} (hU : IsAffineOpen U) (p : PrimeSpectrum Γ(X, U)) :
     hU.fromSpec p ∈ U := by
   rw [← SetLike.mem_coe, ← hU.range_fromSpec]
   exact ⟨p, rfl⟩
 
+/--
+@isnad1 id=eq.1h3v.s10.f7bcb5540fbb from=translated src=- shape=fb9a1e28 vocab=2d218e66
+-/
 theorem primeIdealOf_fromSpec {U : X.Opens} (hU : IsAffineOpen U) (p : PrimeSpectrum Γ(X, U)) :
     hU.primeIdealOf ⟨hU.fromSpec p, fromSpec_mem hU p⟩ = p := by
   apply hU.fromSpec.injective
   rw [hU.fromSpec_primeIdealOf]
 
+/--
+@isnad1 id=ex.2h6v.s10.0ebfbf3f8370 from=translated src=- shape=4a126113 vocab=bbd33ccf
+-/
 theorem exists_basicOpen_forall {U : X.Opens} (f : Γ(X, U)) (hD : IsAffineOpen (X.basicOpen f))
     (hVU : s ⁻¹ᵁ X.basicOpen f ≤ t ⁻¹ᵁ U) :
     ∃ g : Γ(X, X.basicOpen f), ∀ w : X, w ∈ X.basicOpen f →
@@ -362,6 +404,9 @@ theorem exists_basicOpen_forall {U : X.Opens} (f : Γ(X, U)) (hD : IsAffineOpen 
 
 end core
 
+/--
+@isnad1 id=ex.4h6v.s10.914c282dfba4 from=translated src=- shape=858db4e5 vocab=fd9ff5ac
+-/
 theorem main_finite [IsFinite s] [Flat s] [LocallyOfFinitePresentation s]
     [IsFinite t] [Flat t] [LocallyOfFinitePresentation t]
     (hequiv : ∀ T : Scheme.{u},
@@ -424,6 +469,9 @@ theorem main_finite [IsFinite s] [Flat s] [LocallyOfFinitePresentation s]
 
 end Q1NBHDfin
 
+/--
+@isnad1 id=ex.4h6v.s10.914c282dfba4 from=translated src=- shape=858db4e5 vocab=fd9ff5ac
+-/
 theorem solution
     {X R : Scheme.{u}} (s t : R ⟶ X)
     [IsFinite s] [Flat s] [LocallyOfFinitePresentation s]

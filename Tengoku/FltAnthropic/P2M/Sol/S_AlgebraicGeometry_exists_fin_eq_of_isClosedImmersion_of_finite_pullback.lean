@@ -11,6 +11,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=ex.0h5v.s9.1721d8dee47b from=translated src=- shape=12a1c8ec vocab=cb012e26
+-/
 theorem solution
     {X Y Z : Scheme.{u}} (i₁ : Y ⟶ X) (i₂ : Z ⟶ X) [IsClosedImmersion i₂]
     [Finite ↥(pullback i₁ i₂)] :

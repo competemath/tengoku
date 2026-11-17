@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u v
 
+/--
+@isnad1 id=eq.0h3v.s6.16c0bf7cd504 from=translated src=- shape=59cf8c71 vocab=fec76491
+-/
 theorem Ideal.height_add_ringKrullDim_quotient_eq_ringKrullDim_of_finiteType
     (k : Type u) [Field k] {A : Type v} [CommRing A] [IsDomain A] [Algebra k A]
     [Algebra.FiniteType k A] (P : Ideal A) [P.IsPrime] :

@@ -13,6 +13,9 @@ open CategoryTheory AlgebraicGeometry
 
 namespace SmoothNilpLiftAffine
 
+/--
+@isnad1 id=ex.3h7v.s8.80a178a57a75 from=translated src=- shape=438fbd45 vocab=93e4637a
+-/
 theorem ring_lift {R A : CommRingCat.{u}} (φ : R ⟶ A) (hφ : φ.hom.FormallySmooth)
     {C : Type u} [CommRing C] (J : Ideal C) (hJ : IsNilpotent J)
     (τ : R ⟶ CommRingCat.of C) (ξ₀ : A ⟶ CommRingCat.of (C ⧸ J))
@@ -40,6 +43,9 @@ theorem ring_lift {R A : CommRingCat.{u}} (φ : R ⟶ A) (hφ : φ.hom.FormallyS
     change g (ψ a) = ξ₀.hom a
     exact Algebra.FormallySmooth.liftOfSurjective_apply f₀ g hg hg' a
 
+/--
+@isnad1 id=ex.3h7v.s8.3ebc0c9bd934 from=translated src=- shape=7233e8b2 vocab=17922484
+-/
 theorem spec_lift {R A : CommRingCat.{u}} (φ : R ⟶ A) (hφ : φ.hom.FormallySmooth)
     {C : Type u} [CommRing C] (J : Ideal C) (hJ : IsNilpotent J)
     (t : Spec (CommRingCat.of C) ⟶ Spec R) (x₀ : Spec (CommRingCat.of (C ⧸ J)) ⟶ Spec A)
@@ -60,6 +66,9 @@ theorem spec_lift {R A : CommRingCat.{u}} (φ : R ⟶ A) (hφ : φ.hom.FormallyS
 
 end SmoothNilpLiftAffine
 
+/--
+@isnad1 id=ex.2h7v.s8.a3c9cc226560 from=translated src=- shape=f55a2ea8 vocab=43d798ba
+-/
 theorem solution
     {X S : Scheme.{u}} [IsAffine X] [IsAffine S] (f : X ⟶ S) [Smooth f]
     {C : Type u} [CommRing C] (J : Ideal C) (hJ : IsNilpotent J)

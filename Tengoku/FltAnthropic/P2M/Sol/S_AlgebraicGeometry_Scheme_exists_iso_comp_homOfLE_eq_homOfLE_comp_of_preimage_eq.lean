@@ -11,6 +11,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=ex.3h7v.s9.ac1c5c8344e1 from=translated src=- shape=60e8d17c vocab=5e430f26
+-/
 theorem solution
     {Y Y' : Scheme.{u}} (V : Y.Opens) (V' : Y'.Opens) (φ : (V : Scheme.{u}) ≅ (V' : Scheme.{u}))
     (Z : Y.Opens) (Z' : Y'.Opens) (hZ : Z ≤ V) (hZ' : Z' ≤ V')

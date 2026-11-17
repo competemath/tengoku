@@ -11,6 +11,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=eq.2h4v.s9.53cd9045d51b from=translated src=- shape=a6c49d1b vocab=7cef51ec
+-/
 theorem solution
     {Z X : Scheme.{u}} [IrreducibleSpace ↥Z] [IsIntegral X] (q : Z ⟶ X) (U : X.Opens)
     (hU : (U : Set ↥X).Nonempty) (hsub : (U : Set ↥X) ⊆ Set.range q.base) :

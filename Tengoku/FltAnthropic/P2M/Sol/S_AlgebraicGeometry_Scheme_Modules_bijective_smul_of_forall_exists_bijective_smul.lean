@@ -17,16 +17,25 @@ variable {X : Scheme.{u}} (M : X.Modules) (σ : Γ(M, ⊤))
 
 noncomputable abbrev res (W : X.Opens) : Γ(M, W) := M.presheaf.map (homOfLE (le_top : W ≤ ⊤)).op σ
 
+/--
+@isnad1 id=eq.0h6v.s11.294af228dbcc from=translated src=- shape=cd6636b1 vocab=7337ffdb
+-/
 theorem res_map {W W' : X.Opens} (i : W' ⟶ W) : M.presheaf.map i.op (res M σ W) = res M σ W' := by
   simp only [res, ← ConcreteCategory.comp_apply, ← Functor.map_comp, ← op_comp]
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s13.3d38251780f9 from=translated src=- shape=c689d986 vocab=ae6864a2
+-/
 theorem smul_res {W W' : X.Opens} (i : W' ⟶ W) (g : Γ(X, W)) :
     M.presheaf.map i.op (g • res M σ W) = X.presheaf.map i.op g • res M σ W' := by
   rw [Scheme.Modules.map_smul, res_map]
 
 noncomputable def abSheaf : TopCat.Sheaf Ab X.carrier := ⟨M.presheaf, M.isSheaf⟩
 
+/--
+@isnad1 id=bijectiv.1h4v.s13.b91e8ae39345 from=translated src=- shape=5d4da774 vocab=e1b839c8
+-/
 theorem main (V : X.Opens)
     (h : ∀ x ∈ V, ∃ U : X.Opens, x ∈ U ∧ ∀ W : X.Opens, W ≤ U →
       Function.Bijective fun g : Γ(X, W) => g • res M σ W) :
@@ -70,6 +79,9 @@ theorem main (V : X.Opens)
 
 end FrameLocalSol
 
+/--
+@isnad1 id=bijectiv.1h4v.s13.1247b3426bd5 from=translated src=- shape=75a66e17 vocab=3f6d59d1
+-/
 theorem solution
     {X : Scheme.{u}} (M : X.Modules) (σ : Γ(M, ⊤)) (V : X.Opens)
     (h : ∀ x ∈ V, ∃ U : X.Opens, x ∈ U ∧ ∀ W : X.Opens, W ≤ U →

@@ -13,6 +13,9 @@ universe u v
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=existsun.2h7v.s10.3c46a7770e5b from=translated src=- shape=3503fcc3 vocab=3c890fe6
+-/
 theorem solution
     {R A' : Type u} [CommRing R] [IsLocalRing R] [CommRing A'] [IsLocalRing A']
     (φ : R →+* A') [IsLocalHom φ]

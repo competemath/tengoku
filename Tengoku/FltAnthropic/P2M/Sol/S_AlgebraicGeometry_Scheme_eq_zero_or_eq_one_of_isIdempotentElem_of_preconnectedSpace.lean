@@ -29,11 +29,17 @@ end E160GC
 
 namespace E160GC
 
+/--
+@isnad1 id=or.1h3v.s13.80d76e2f59f3 from=translated src=- shape=d30a5636 vocab=b3d406d4
+-/
 theorem germ_eq_zero_or_eq_one {X : Scheme.{u}} (e : Γ(X, ⊤)) (he : IsIdempotentElem e) (x : X) :
     X.presheaf.germ ⊤ x trivial e = 0 ∨ X.presheaf.germ ⊤ x trivial e = 1 :=
   eq_zero_or_eq_one_of_isIdempotentElem_of_isLocalRing _
     (he.map (X.presheaf.germ ⊤ x trivial).hom)
 
+/--
+@isnad1 id=iff.1h3v.s12.3f61f46aa8d4 from=translated src=- shape=de3c40a2 vocab=32a75021
+-/
 theorem mem_basicOpen_iff_germ_eq_one {X : Scheme.{u}} (e : Γ(X, ⊤)) (he : IsIdempotentElem e)
     (x : X) : x ∈ X.basicOpen e ↔ X.presheaf.germ ⊤ x trivial e = 1 := by
   rw [Scheme.mem_basicOpen_top]
@@ -44,6 +50,9 @@ theorem mem_basicOpen_iff_germ_eq_one {X : Scheme.{u}} (e : Γ(X, ⊤)) (he : Is
     · exact h
   · intro h; rw [h]; exact isUnit_one
 
+/--
+@isnad1 id=eq.1h2v.s12.ca38155922b4 from=translated src=- shape=518a9782 vocab=9b61c1eb
+-/
 theorem compl_basicOpen_eq_of_isIdempotentElem {X : Scheme.{u}} (e : Γ(X, ⊤))
     (he : IsIdempotentElem e) :
     (X.basicOpen e : Set X)ᶜ = (X.basicOpen (1 - e) : Set X) := by
@@ -55,6 +64,9 @@ theorem compl_basicOpen_eq_of_isIdempotentElem {X : Scheme.{u}} (e : Γ(X, ⊤))
   · rw [h]; simp
   · rw [h]; simp
 
+/--
+@isnad1 id=isclopen.1h2v.s10.ac9cd25495d0 from=translated src=- shape=a8cf5861 vocab=8704b6ef
+-/
 theorem isClopen_basicOpen_of_isIdempotentElem {X : Scheme.{u}} (e : Γ(X, ⊤))
     (he : IsIdempotentElem e) : IsClopen (X.basicOpen e : Set X) := by
   refine ⟨?_, (X.basicOpen e).isOpen⟩
@@ -63,6 +75,9 @@ theorem isClopen_basicOpen_of_isIdempotentElem {X : Scheme.{u}} (e : Γ(X, ⊤))
 
 end E160GC
 
+/--
+@isnad1 id=or.1h2v.s12.06a66d1555d3 from=translated src=- shape=61403b0b vocab=c9e7a5c9
+-/
 theorem solution
     (X : Scheme.{u}) [PreconnectedSpace X] (e : Γ(X, ⊤)) (he : IsIdempotentElem e) :
     e = 0 ∨ e = 1 := by

@@ -10,6 +10,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=ex.2h4v.s8.a1f5eed77081 from=translated src=- shape=10f3c099 vocab=8d1409b5
+-/
 theorem solution
     {K L : Type u} [Field K] [Field L] [Algebra K L]
     (hfix : ∀ x : L, (∀ σ : L ≃ₐ[K] L, σ x = x) → ∃ a : K, algebraMap K L a = x)

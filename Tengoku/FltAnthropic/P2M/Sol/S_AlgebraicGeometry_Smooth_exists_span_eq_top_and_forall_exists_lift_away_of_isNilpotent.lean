@@ -16,10 +16,16 @@ namespace SmoothNilpLiftLocal
 
 variable {C : Type u} [CommRing C]
 
+/--
+@isnad1 id=le.1h3v.s7.e1dcbbf5b415 from=translated src=- shape=6925ef96 vocab=87d10506
+-/
 theorem le_of_isPrime_of_isNilpotent {J P : Ideal C} (hJ : IsNilpotent J) [P.IsPrime] : J ≤ P := by
   obtain ⟨n, hn⟩ := hJ
   exact Ideal.IsPrime.le_of_pow_le (I := J) (P := P) (n := n) (by rw [hn]; exact bot_le)
 
+/--
+@isnad1 id=isnilpot.1h4v.s7.779abaf4f379 from=translated src=- shape=da61f75c vocab=005c8f5f
+-/
 theorem isNilpotent_map {D : Type u} [CommRing D] (φ : C →+* D) {J : Ideal C} (hJ : IsNilpotent J) :
     IsNilpotent (J.map φ) := by
   obtain ⟨n, hn⟩ := hJ
@@ -30,6 +36,9 @@ theorem isNilpotent_map {D : Type u} [CommRing D] (φ : C →+* D) {J : Ideal C}
 end SmoothNilpLiftLocal
 
 open SmoothNilpLiftLocal in
+/--
+@isnad1 id=ex.2h7v.s12.18842f9c6533 from=translated src=- shape=49acbb5e vocab=e442926b
+-/
 theorem solution
     {X S : Scheme.{u}} [IsAffine S] (f : X ⟶ S) [Smooth f]
     {C : Type u} [CommRing C] (J : Ideal C) (hJ : IsNilpotent J)

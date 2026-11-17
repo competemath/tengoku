@@ -13,10 +13,16 @@ open scoped Pointwise
 
 namespace GenOrbitGC5
 
+/--
+@isnad1 id=eq.2h6v.s9.3524ec9fe71a from=translated src=- shape=ddcac5d7 vocab=a3599977
+-/
 theorem appLE_congr_hom {X Y : Scheme.{0}} {f g : X ⟶ Y} (hfg : f = g) (U : Y.Opens) (V : X.Opens)
     (hf : V ≤ f ⁻¹ᵁ U) : f.appLE U V hf = g.appLE U V (hfg ▸ hf) := by
   subst hfg; rfl
 
+/--
+@isnad1 id=eq.1h2v.s9.6db2846f06c7 from=translated src=- shape=933f3698 vocab=6891efb9
+-/
 theorem id_appLE {X : Scheme.{0}} (U : X.Opens) (e : U ≤ (𝟙 X) ⁻¹ᵁ U) :
     (𝟙 X : X ⟶ X).appLE U U e = 𝟙 _ := by
   rw [Scheme.Hom.appLE, Scheme.Hom.id_app]
@@ -25,6 +31,9 @@ theorem id_appLE {X : Scheme.{0}} (U : X.Opens) (e : U ≤ (𝟙 X) ⁻¹ᵁ U) 
 
 end GenOrbitGC5
 
+/--
+@isnad1 id=iff.3h7v.s12.d5de38372228 from=translated src=- shape=f4b08bc2 vocab=fe2239f1
+-/
 theorem solution
     {M X : Scheme.{0}} (π : M ⟶ X)
     {H : Type} [Group H] [Finite H] (ρ : H →* Aut M)

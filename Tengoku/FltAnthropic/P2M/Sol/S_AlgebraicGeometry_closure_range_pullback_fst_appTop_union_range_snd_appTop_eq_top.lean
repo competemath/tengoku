@@ -13,6 +13,9 @@ namespace AffineProductSectionsAux
 
 open TensorProduct
 
+/--
+@isnad1 id=eq.4h9v.s8.45f920449a18 from=translated src=- shape=ea3b3143 vocab=1a9e8e97
+-/
 theorem closure_union_range_eq_top_of_injective {Γ Γ' A B : Type*} [CommRing Γ] [CommRing Γ'] [CommRing A] [CommRing B]
     (E : Γ →+* Γ') (hE : Function.Injective E) (F₁ : A → Γ) (F₂ : B → Γ) (X₁ X₂ : Set Γ')
     (h₁ : E '' Set.range F₁ = X₁) (h₂ : E '' Set.range F₂ = X₂) (h : Subring.closure (X₁ ∪ X₂) = ⊤) :
@@ -24,6 +27,9 @@ theorem closure_union_range_eq_top_of_injective {Γ Γ' A B : Type*} [CommRing �
   obtain ⟨y, hy, hyx⟩ := Subring.mem_map.1 hx
   exact hE hyx ▸ hy
 
+/--
+@isnad1 id=eq.0h3v.s16.6d91bfc8f882 from=translated src=- shape=45fef14b vocab=f6291f1c
+-/
 theorem core (R A B : Type u) [CommRing R] [CommRing A] [CommRing B] [Algebra R A] [Algebra R B] :
     Subring.closure
       (Set.range (pullback.fst (Spec.map (CommRingCat.ofHom (algebraMap R A))) (Spec.map (CommRingCat.ofHom (algebraMap R B)))).appTop ∪
@@ -91,6 +97,9 @@ theorem core (R A B : Type u) [CommRing R] [CommRing A] [CommRing B] [Algebra R 
 end AffineProductSectionsAux
 
 open AffineProductSectionsAux in
+/--
+@isnad1 id=eq.0h5v.s14.86ccf1297e8f from=translated src=- shape=00086f80 vocab=59f62bf7
+-/
 theorem solution
     {S : Scheme.{u}} [IsAffine S] {A B : CommRingCat.{u}} (a : Spec A ⟶ S) (b : Spec B ⟶ S) :
     Subring.closure

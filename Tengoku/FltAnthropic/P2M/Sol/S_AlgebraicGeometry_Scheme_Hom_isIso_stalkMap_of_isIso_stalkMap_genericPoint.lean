@@ -13,6 +13,9 @@ open CategoryTheory CategoryTheory.Limits TopologicalSpace AlgebraicGeometry Opp
 
 namespace G3s
 
+/--
+@isnad1 id=injectiv.1h3v.s8.2c4313546b2c from=translated src=- shape=3a399315 vocab=a2163ff9
+-/
 theorem stalkSpecializes_injective {X : Scheme.{u}} [IsIntegral X] {x y : X} (h : x ⤳ y) :
     Function.Injective (X.presheaf.stalkSpecializes h) := by
 
@@ -33,6 +36,9 @@ theorem stalkSpecializes_injective {X : Scheme.{u}} [IsIntegral X] {x y : X} (h 
     exact hab
   exact hinj'.of_comp
 
+/--
+@isnad1 id=ex.2h4v.s10.0102af5a052f from=translated src=- shape=d2319f45 vocab=f0eefc85
+-/
 theorem exists_frac {G : Scheme.{u}} [IsIntegral G] (y z : G) (hy : y = genericPoint G) (h : y ⤳ z)
     (k : G.presheaf.stalk y) :
     ∃ r s : G.presheaf.stalk z, s ≠ 0 ∧ k * G.presheaf.stalkSpecializes h s = G.presheaf.stalkSpecializes h r := by
@@ -41,6 +47,9 @@ theorem exists_frac {G : Scheme.{u}} [IsIntegral G] (y z : G) (hy : y = genericP
   refine ⟨r, s.1, nonZeroDivisors.ne_zero s.2, ?_⟩
   exact hrs
 
+/--
+@isnad1 id=isiso.2h4v.s10.7599ec4afee6 from=translated src=- shape=f4ef39fe vocab=a136634a
+-/
 theorem main {Γ G : Scheme.{u}} [IsIntegral Γ] [IsIntegral G] (π : Γ ⟶ G)
     (hgen : π.base (genericPoint Γ) = genericPoint G)
     (hbir : IsIso (π.stalkMap (genericPoint Γ)))
@@ -121,6 +130,9 @@ theorem main {Γ G : Scheme.{u}} [IsIntegral Γ] [IsIntegral G] (π : Γ ⟶ G)
 
 end G3s
 
+/--
+@isnad1 id=isiso.3h4v.s10.66ac4f52ff39 from=translated src=- shape=631197d3 vocab=a136634a
+-/
 theorem solution
     {Γ G : Scheme.{u}} [IsIntegral Γ] [IsIntegral G] (π : Γ ⟶ G)
     (hgen : π.base (genericPoint Γ) = genericPoint G)

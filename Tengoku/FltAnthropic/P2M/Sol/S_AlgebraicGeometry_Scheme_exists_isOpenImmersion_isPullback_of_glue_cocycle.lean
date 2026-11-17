@@ -114,6 +114,9 @@ private lemma isPullback (i k : ι) (hik : i ≠ k) :
 
 end GlueCocycleAux
 
+/--
+@isnad1 id=ex.3h7v.s9.73bd762c03e0 from=translated src=- shape=af0d2ff1 vocab=8c99a978
+-/
 theorem solution
     {S X U : Scheme.{u}} (f : X ⟶ S) (j : U ⟶ X) [IsOpenImmersion j]
     {ι : Type u} (t : ι → ι → (U ≅ U))

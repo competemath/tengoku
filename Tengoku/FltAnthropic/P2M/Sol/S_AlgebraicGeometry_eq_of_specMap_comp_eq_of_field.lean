@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=eq.1h6v.s7.4ea080960acc from=translated src=- shape=d2b1506a vocab=04faa555
+-/
 theorem solution
     {X : Scheme.{0}} {κ κ' : Type} [Field κ] [Field κ'] (i : κ →+* κ')
     (P Q : Spec (CommRingCat.of κ) ⟶ X)

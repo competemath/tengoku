@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits TopologicalSpace AlgebraicGeometry Opposite
 
+/--
+@isnad1 id=eq.3h7v.s8.36119c09a5b0 from=translated src=- shape=e4c082d2 vocab=f85d861b
+-/
 theorem solution
     {U H S : Scheme.{u}} [IsIntegral U] (sU : U ⟶ S) (sH : H ⟶ S) [IsSeparated sH]
     (f g : U ⟶ H) (hf : f ≫ sH = sU) (hg : g ≫ sH = sU)

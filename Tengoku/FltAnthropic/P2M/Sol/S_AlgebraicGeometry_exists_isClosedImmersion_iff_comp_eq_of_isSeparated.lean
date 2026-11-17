@@ -11,6 +11,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=ex.2h7v.s7.b965ce5b5367 from=translated src=- shape=d6ed08c8 vocab=f06b81db
+-/
 theorem solution
     {H S T : Scheme.{u}} (q : H ⟶ S) [IsSeparated q] (t : T ⟶ S) (u v : T ⟶ H) (hu : u ≫ q = t) (hv : v ≫ q = t) :
     ∃ (Z : Scheme.{u}) (j : Z ⟶ T), IsClosedImmersion j ∧

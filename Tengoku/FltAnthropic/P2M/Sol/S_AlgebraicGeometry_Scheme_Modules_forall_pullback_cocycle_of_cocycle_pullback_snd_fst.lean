@@ -19,14 +19,23 @@ open _root_.AlgebraicGeometry.Scheme.Modules open _root_.CategoryTheory.Pseudofu
 noncomputable abbrev F : Pseudofunctor (LocallyDiscrete Scheme.{u}ᵒᵖ) Cat :=
   (AlgebraicGeometry.Scheme.Modules.pseudofunctor.{u}).comp Bicategory.Adj.forget₁
 
+/--
+@isnad1 id=eq.0h6v.s13.5a16cf46a5df from=translated src=- shape=c42266f4 vocab=5dee3464
+-/
 theorem keyMC {a b d : LocallyDiscrete Scheme.{u}ᵒᵖ} (u' : a ⟶ b) (v' : b ⟶ d) (M : F.obj a) :
     (F.mapComp' u' v' (u' ≫ v') rfl).hom.toNatTrans.app M = (F.mapComp u' v').hom.toNatTrans.app M := by
   rw [Pseudofunctor.mapComp'_eq_mapComp]
 
+/--
+@isnad1 id=eq.0h6v.s13.7bc9e028d754 from=translated src=- shape=b2a2bf1d vocab=91be4c0d
+-/
 theorem keyMC_inv {a b d : LocallyDiscrete Scheme.{u}ᵒᵖ} (u' : a ⟶ b) (v' : b ⟶ d) (M : F.obj a) :
     (F.mapComp' u' v' (u' ≫ v') rfl).inv.toNatTrans.app M = (F.mapComp u' v').inv.toNatTrans.app M := by
   rw [Pseudofunctor.mapComp'_eq_mapComp]
 
+/--
+@isnad1 id=eq.1h7v.s13.883b0f1e83bc from=translated src=- shape=484ae340 vocab=6deeec6e
+-/
 theorem mapComp'_hom_app {X₀ X₁ Y : Scheme.{u}} (f : X₀ ⟶ X₁) (g : X₁ ⟶ Y) (L : Y.Modules)
     (fg : X₀ ⟶ Y) (hfg : f ≫ g = fg) :
     (F.mapComp' g.op.toLoc f.op.toLoc fg.op.toLoc (by rw [← hfg]; rfl)).hom.toNatTrans.app L =
@@ -35,6 +44,9 @@ theorem mapComp'_hom_app {X₀ X₁ Y : Scheme.{u}} (f : X₀ ⟶ X₁) (g : X�
   simp only [Scheme.Modules.pullbackCongr, eqToIso_refl, Iso.refl_hom, NatTrans.id_app, Category.id_comp]
   exact keyMC g.op.toLoc f.op.toLoc L
 
+/--
+@isnad1 id=eq.1h7v.s13.d714a2bd33c2 from=translated src=- shape=6dc4b5ce vocab=6deeec6e
+-/
 theorem mapComp'_inv_app {X₀ X₁ Y : Scheme.{u}} (f : X₀ ⟶ X₁) (g : X₁ ⟶ Y) (L : Y.Modules)
     (fg : X₀ ⟶ Y) (hfg : f ≫ g = fg) :
     (F.mapComp' g.op.toLoc f.op.toLoc fg.op.toLoc (by rw [← hfg]; rfl)).inv.toNatTrans.app L =
@@ -43,6 +55,9 @@ theorem mapComp'_inv_app {X₀ X₁ Y : Scheme.{u}} (f : X₀ ⟶ X₁) (g : X�
   simp only [Scheme.Modules.pullbackCongr, eqToIso_refl, Iso.refl_hom, NatTrans.id_app, Category.comp_id]
   exact keyMC_inv g.op.toLoc f.op.toLoc L
 
+/--
+@isnad1 id=eq.2h12v.s11.9757a15c2e10 from=translated src=- shape=30637f13 vocab=cf811714
+-/
 theorem pullHom_eq {Z' Z X₁ X₂ : Scheme.{u}} (e : Z' ⟶ Z) (f₁ : Z ⟶ X₁) (f₂ : Z ⟶ X₂) (g₁ : Z' ⟶ X₁) (g₂ : Z' ⟶ X₂)
     (h₁ : e ≫ f₁ = g₁) (h₂ : e ≫ f₂ = g₂)
     (M₁ : X₁.Modules) (M₂ : X₂.Modules)
@@ -60,6 +75,9 @@ theorem pullHom_eq {Z' Z X₁ X₂ : Scheme.{u}} (e : Z' ⟶ Z) (f₁ : Z ⟶ X�
 
 set_option maxHeartbeats 1600000 in
 
+/--
+@isnad1 id=eq.3h17v.s14.0039c5914ae5 from=translated src=- shape=cfc3dc13 vocab=f6764fa5
+-/
 theorem pullHom_comp_pullHom {X₁ X₂ X₃ Z Z' : Scheme.{u}}
     {M₁ : F.obj (.mk (op X₁))} {M₂ : F.obj (.mk (op X₂))} {M₃ : F.obj (.mk (op X₃))}
     {f₁ : Z ⟶ X₁} {f₂ : Z ⟶ X₂} {f₃ : Z ⟶ X₃}
@@ -85,6 +103,9 @@ open _root_.CategoryTheory.Pseudofunctor.LocallyDiscreteOpToCat
 
 set_option maxHeartbeats 3200000 in
 
+/--
+@isnad1 id=and.3h13v.s13.5960425715db from=translated src=- shape=86205a2f vocab=9d9c8caf
+-/
 theorem chain_hom {Y : Scheme.{u}} {I : Type u} {X : I → Scheme.{u}} (ι : ∀ i, X i ⟶ Y) (M : ∀ i, (X i).Modules)
     (φ : ∀ i j : I,
       (Scheme.Modules.pullback (pullback.fst (ι i) (ι j))).obj (M i) ≅
@@ -127,6 +148,9 @@ end R3
 
 open R3 _root_.CategoryTheory.Pseudofunctor.LocallyDiscreteOpToCat in
 set_option maxHeartbeats 3200000 in
+/--
+@isnad1 id=eq.4h13v.s15.f69a226d85d5 from=translated src=- shape=85764984 vocab=72688a29
+-/
 theorem solution
     {Y : Scheme.{u}} {I : Type u} {X : I → Scheme.{u}} (ι : ∀ i, X i ⟶ Y)
     (M : ∀ i, (X i).Modules)

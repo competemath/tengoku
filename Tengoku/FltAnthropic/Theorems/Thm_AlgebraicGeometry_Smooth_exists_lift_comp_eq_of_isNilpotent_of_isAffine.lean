@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=ex.2h7v.s8.a3c9cc226560 from=translated src=- shape=f55a2ea8 vocab=43d798ba
+-/
 theorem AlgebraicGeometry.Smooth.exists_lift_comp_eq_of_isNilpotent_of_isAffine
     {X S : Scheme.{u}} [IsAffine X] [IsAffine S] (f : X ⟶ S) [Smooth f]
     {C : Type u} [CommRing C] (J : Ideal C) (hJ : IsNilpotent J)

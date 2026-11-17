@@ -7,6 +7,9 @@ namespace P2MW.S_Ideal_exists_mem_and_map_eq_span_singleton_and_mem_nonZeroDivis
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.2h4v.s8.6218e51a9a78 from=translated src=- shape=d57511ef vocab=4239ce4c
+-/
 theorem solution
     {R S : Type*} [CommRing R] [CommRing S] [Algebra R S] [IsLocalRing S]
     (I : Ideal R) (π : S) (hI : I.map (algebraMap R S) = Ideal.span {π}) (hπ : π ∈ nonZeroDivisors S) :

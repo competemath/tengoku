@@ -25,6 +25,9 @@ variable {ι : Type u} [Preorder ι] [Nonempty ι] [IsDirected ι (· ≤ ·)]
 
 include hc hcsurj in
 
+/--
+@isnad1 id=ex.2h8v.s8.30586c0f28e3 from=translated src=- shape=07965392 vocab=b9ee45b5
+-/
 theorem exists_fin_lift (i : ι) {n : ℕ} (x : Fin n → L) :
     ∃ (j : ι) (hij : i ≤ j) (y : Fin n → S j), ∀ k, c j (y k) = x k := by
   induction n with
@@ -40,6 +43,9 @@ theorem exists_fin_lift (i : ι) {n : ℕ} (x : Fin n → L) :
 
 include ht₂ hcker in
 
+/--
+@isnad1 id=ex.3h8v.s9.393db7810d0b from=translated src=- shape=c38666b2 vocab=aad3e83d
+-/
 theorem exists_fin_kill {i : ι} {n : ℕ} (y : Fin n → S i) (hy : ∀ k, c i (y k) = 0) :
     ∃ (j : ι) (hij : i ≤ j), ∀ k, t i j hij (y k) = 0 := by
   induction n with
@@ -56,6 +62,9 @@ theorem exists_fin_kill {i : ι} {n : ℕ} (y : Fin n → S i) (hy : ∀ k, c i 
 
 include ht₁ ht₂ hc hcsurj hcker in
 
+/--
+@isnad1 id=ex.7h9v.s10.72df35c24f43 from=translated src=- shape=0bb32106 vocab=7a511455
+-/
 theorem exists_ringHom_comp_eq (i : ι) {A : Type u} [CommRing A] (a : S i →+* A) (ha : a.FinitePresentation)
     (φ : A →+* L) (hφ : φ.comp a = c i) :
     ∃ (j : ι) (hij : i ≤ j) (ψ : A →+* S j), ψ.comp a = t i j hij ∧ (c j).comp ψ = φ := by
@@ -115,6 +124,9 @@ theorem exists_ringHom_comp_eq (i : ι) {A : Type u} [CommRing A] (a : S i →+*
 
 end GExists
 
+/--
+@isnad1 id=ex.6h9v.s10.402c87f79440 from=translated src=- shape=f2ad615a vocab=47fcf1b3
+-/
 theorem solution
     (ι : Type u) [Preorder ι] [Nonempty ι] [IsDirected ι (· ≤ ·)]
     (S : ι → Type u) [∀ i, CommRing (S i)]

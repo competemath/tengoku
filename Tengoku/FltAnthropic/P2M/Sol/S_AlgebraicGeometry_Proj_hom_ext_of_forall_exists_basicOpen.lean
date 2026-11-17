@@ -9,6 +9,9 @@ universe u v
 
 open CategoryTheory AlgebraicGeometry HomogeneousLocalization
 
+/--
+@isnad1 id=eq.1h6v.s13.d7df1a61453d from=translated src=- shape=2b0ff5a5 vocab=7978c97d
+-/
 theorem solution
     {A : Type u} {σ : Type v} [CommRing A] [SetLike σ A] [AddSubgroupClass σ A] (𝒜 : ℕ → σ) [GradedRing 𝒜]
     {W : Scheme.{u}} (a b : W ⟶ Proj 𝒜)

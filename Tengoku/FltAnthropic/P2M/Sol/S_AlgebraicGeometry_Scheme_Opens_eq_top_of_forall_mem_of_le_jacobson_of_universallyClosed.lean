@@ -13,6 +13,9 @@ open CategoryTheory AlgebraicGeometry
 
 namespace P2mJacNbhd
 
+/--
+@isnad1 id=eq.2h5v.s9.4bd9f94017c7 from=translated src=- shape=67f28812 vocab=0a7137f9
+-/
 theorem main {R : Type u} [CommRing R] (I : Ideal R) (hI : I ≤ (⊥ : Ideal R).jacobson)
     {X : Scheme.{u}} (f : X ⟶ Spec (.of R)) [UniversallyClosed f]
     (W : X.Opens) (hW : ∀ x : X, I ≤ (f.base x).asIdeal → x ∈ W) : W = ⊤ := by
@@ -52,6 +55,9 @@ theorem main {R : Type u} [CommRing R] (I : Ideal R) (hI : I ≤ (⊥ : Ideal R)
 
 end P2mJacNbhd
 
+/--
+@isnad1 id=eq.2h5v.s9.4bd9f94017c7 from=translated src=- shape=67f28812 vocab=0a7137f9
+-/
 theorem solution {R : Type u} [CommRing R] (I : Ideal R) (hI : I ≤ (⊥ : Ideal R).jacobson)
     {X : Scheme.{u}} (f : X ⟶ Spec (.of R)) [UniversallyClosed f]
     (W : X.Opens) (hW : ∀ x : X, I ≤ (f.base x).asIdeal → x ∈ W) : W = ⊤ :=

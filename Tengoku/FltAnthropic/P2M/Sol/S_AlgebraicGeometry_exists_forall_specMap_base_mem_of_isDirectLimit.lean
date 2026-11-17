@@ -12,6 +12,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=ex.2h7v.s10.825329bfbab2 from=translated src=- shape=513a0631 vocab=cfe13d24
+-/
 theorem solution
     {ι : Type u} [Preorder ι] [Nonempty ι] [IsDirected ι (· ≤ ·)]
     {G : ι → Type u} [∀ i, CommRing (G i)] (φ : ∀ i j : ι, i ≤ j → G i →+* G j)

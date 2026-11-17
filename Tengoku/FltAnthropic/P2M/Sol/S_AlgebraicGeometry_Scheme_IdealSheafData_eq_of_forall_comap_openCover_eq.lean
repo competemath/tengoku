@@ -39,6 +39,9 @@ theorem eq_of_forall_comap_openCover_eq_aux
 
 end AlgebraicGeometry.Scheme.IdealSheafData
 
+/--
+@isnad1 id=eq.1h4v.s6.d6ecdb4956f0 from=translated src=- shape=8c3faf64 vocab=506de0c5
+-/
 theorem solution
     {X : Scheme.{u}} (𝒰 : X.OpenCover) {I J : X.IdealSheafData}
     (h : ∀ i, I.comap (𝒰.f i) = J.comap (𝒰.f i)) : I = J :=

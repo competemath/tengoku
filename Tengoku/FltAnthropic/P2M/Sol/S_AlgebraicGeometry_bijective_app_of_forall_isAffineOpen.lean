@@ -15,6 +15,9 @@ namespace SheafGlueGC3
 
 open TopCat TopCat.Presheaf
 
+/--
+@isnad1 id=surjecti.2h6v.s10.19697de557a8 from=translated src=- shape=19c80f5e vocab=06f8c71a
+-/
 theorem stalkFunctor_map_surjective_of_isBasis {X : TopCat.{u}} {B : Set (Opens X)} (hB : Opens.IsBasis B)
     {F G : X.Presheaf CommRingCat.{u}} {α : F ⟶ G} (hα : ∀ U ∈ B, Function.Surjective (α.app (op U))) (x : X) :
     Function.Surjective ((stalkFunctor _ x).map α) := by
@@ -25,6 +28,9 @@ theorem stalkFunctor_map_surjective_of_isBasis {X : TopCat.{u}} {B : Set (Opens 
 
 end SheafGlueGC3
 
+/--
+@isnad1 id=bijectiv.1h4v.s11.43f746f2cd84 from=translated src=- shape=ac2536ef vocab=a9ddadb1
+-/
 theorem solution {X B : Scheme.{u}} (p : X ⟶ B)
     (h : ∀ U : B.Opens, IsAffineOpen U → Function.Bijective (p.app U)) (U : B.Opens) :
     Function.Bijective (p.app U) := by

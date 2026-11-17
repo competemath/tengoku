@@ -11,6 +11,9 @@ universe u
 
 namespace SolRigidityBase
 
+/--
+@isnad1 id=eq.2h3v.s9.49526f16752f from=translated src=- shape=cee02048 vocab=6891efb9
+-/
 theorem appLE_self_eq_id_of_eq_id {B : Scheme.{u}} (q : B ⟶ B) (hq : q = 𝟙 B) (U : B.Opens)
     (e : U ≤ q ⁻¹ᵁ U) : q.appLE U U e = 𝟙 _ := by
   subst hq
@@ -18,6 +21,9 @@ theorem appLE_self_eq_id_of_eq_id {B : Scheme.{u}} (q : B ⟶ B) (hq : q = 𝟙 
   erw [Category.id_comp]
   exact B.presheaf.map_id _
 
+/--
+@isnad1 id=eq.4h6v.s11.a3aad98366e8 from=translated src=- shape=ada1b1de vocab=45c0b6f5
+-/
 theorem main
     {X B Y : Scheme.{u}} (p : X ⟶ B) (ε : B ⟶ X) (hε : ε ≫ p = 𝟙 B)
     (hp : IsClosedMap p)
@@ -81,6 +87,9 @@ theorem main
 
 end SolRigidityBase
 
+/--
+@isnad1 id=eq.4h6v.s11.a3aad98366e8 from=translated src=- shape=ada1b1de vocab=45c0b6f5
+-/
 theorem solution
     {X B Y : Scheme.{u}} (p : X ⟶ B) (ε : B ⟶ X) (hε : ε ≫ p = 𝟙 B)
     (hp : IsClosedMap p)

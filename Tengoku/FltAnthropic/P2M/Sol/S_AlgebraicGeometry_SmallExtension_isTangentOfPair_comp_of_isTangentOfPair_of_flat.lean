@@ -21,12 +21,18 @@ variable {T' : Type u} [CommRing T'] [IsLocalRing T'] (I : Ideal T')
   (ι : V →ₗ[T'] T')
   (C : Type u) [CommRing C] [Algebra T' C]
 
+/--
+@isnad1 id=iff.0h4v.s7.266a231a644f from=translated src=- shape=08f08418 vocab=5d36b6c7
+-/
 theorem mem_pairRing_zero_iff (d : C) :
     ((0 : C), d) ∈ pairRing I C ↔ d ∈ I.map (algebraMap T' C) := by
   rw [mem_pairRing]
   simp only [map_zero]
   rw [eq_comm, Ideal.Quotient.eq_zero_iff_mem]
 
+/--
+@isnad1 id=eq.3h8v.s12.d780bf739aca from=translated src=- shape=8cb9f752 vocab=b7a15574
+-/
 theorem ringHom_ext_of_pairRing (hιI : LinearMap.range ι = Submodule.restrictScalars T' I)
     {S : Type u} [NonAssocSemiring S] (ϑ ϑ' : pairRing I C →+* S)
     (hdiag : ∀ (a : C) (ha : (a, a) ∈ pairRing I C), ϑ ⟨(a, a), ha⟩ = ϑ' ⟨(a, a), ha⟩)
@@ -90,6 +96,9 @@ def pairMap : pairRing I C →+* pairRing I C' where
 end T2cAux
 
 open T2cAux in
+/--
+@isnad1 id=istangen.5h11v.s12.d083c1d0e9cc from=translated src=- shape=397451c5 vocab=644f0413
+-/
 theorem solution
     {T' : Type u} [CommRing T'] [IsLocalRing T']
     (I : Ideal T') (hI : I ≤ maximalIdeal T') (hsmall : I * maximalIdeal T' = ⊥)

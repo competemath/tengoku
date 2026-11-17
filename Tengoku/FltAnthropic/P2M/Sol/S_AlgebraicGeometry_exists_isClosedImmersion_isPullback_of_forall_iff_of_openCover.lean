@@ -20,6 +20,9 @@ variable {X : Scheme.{u}} {ι : Type u} (U : ι → Scheme.{u}) (g : ∀ i, U i 
 
 noncomputable abbrev J (i : ι) : X.IdealSheafData := (z i ≫ g i).ker
 
+/--
+@isnad1 id=eq.1h10v.s12.ebf1612bd0b9 from=translated src=- shape=07e4e41c vocab=ad1df86e
+-/
 theorem vanish {T : Scheme.{u}} (q : T ⟶ X) (V : X.affineOpens) (s : Γ(X, V))
     (hcov : ∀ x : ↥(q ⁻¹ᵁ V.1), ∃ (i : ι) (W : T.Opens), x.1 ∈ W ∧ s ∈ (J U g Z z i).ideal V ∧
       ∃ Q : (W : Scheme.{u}) ⟶ Z i, W.ι ≫ q = Q ≫ z i ≫ g i) :
@@ -50,6 +53,9 @@ theorem vanish {T : Scheme.{u}} (q : T ⟶ X) (V : X.affineOpens) (s : Γ(X, V))
     rw [Scheme.Opens.ι_app] at h3
     exact h3
 
+/--
+@isnad1 id=le.2h9v.s13.79b9eda3e919 from=translated src=- shape=cf4cac4f vocab=222e9759
+-/
 theorem biInf_le (hagree : ∀ (i j : ι) {T : Scheme.{u}} (Pᵢ : T ⟶ U i) (Pⱼ : T ⟶ U j),
       Pᵢ ≫ g i = Pⱼ ≫ g j → ((∃ Q : T ⟶ Z i, Q ≫ z i = Pᵢ) ↔ (∃ Q : T ⟶ Z j, Q ≫ z j = Pⱼ)))
     (V : X.affineOpens) (c : Set ι) (hc : (V.1 : Set X) ⊆ ⋃ i ∈ c, Set.range (g i).base) (j : ι) :
@@ -75,6 +81,9 @@ theorem biInf_le (hagree : ∀ (i j : ι) {T : Scheme.{u}} (Pᵢ : T ⟶ U i) (P
   show W.ι ≫ z j ≫ g j = Q ≫ z i ≫ g i
   rw [← Category.assoc Q, hQ, hP, Category.assoc]
 
+/--
+@isnad1 id=eq.2h8v.s13.f85d2511a501 from=translated src=- shape=47f58065 vocab=222e9759
+-/
 theorem iInf_eq_biInf (hagree : ∀ (i j : ι) {T : Scheme.{u}} (Pᵢ : T ⟶ U i) (Pⱼ : T ⟶ U j),
       Pᵢ ≫ g i = Pⱼ ≫ g j → ((∃ Q : T ⟶ Z i, Q ≫ z i = Pᵢ) ↔ (∃ Q : T ⟶ Z j, Q ≫ z j = Pⱼ)))
     (V : X.affineOpens) (c : Set ι) (hc : (V.1 : Set X) ⊆ ⋃ i ∈ c, Set.range (g i).base) :
@@ -82,6 +91,9 @@ theorem iInf_eq_biInf (hagree : ∀ (i j : ι) {T : Scheme.{u}} (Pᵢ : T ⟶ U 
   le_antisymm (le_iInf₂ fun i _ => iInf_le _ i) (le_iInf fun j => biInf_le U g Z z hagree V c hc j)
 
 omit Z z in
+/--
+@isnad1 id=ex.1h5v.s9.2d87b8fb8131 from=translated src=- shape=044a4179 vocab=ff3c2150
+-/
 theorem exists_finite_cover (hcover : ∀ x : ↥X, ∃ i, x ∈ Set.range (g i).base) (V : X.affineOpens) :
     ∃ c : Set ι, c.Finite ∧ (V.1 : Set X) ⊆ ⋃ i ∈ c, Set.range (g i).base := by
   obtain ⟨t, -, htfin, ht⟩ := V.2.isCompact.elim_finite_subcover_image (b := (Set.univ : Set ι))
@@ -106,9 +118,15 @@ noncomputable def glued (hcover : ∀ x : ↥X, ∃ i, x ∈ Set.range (g i).bas
     rw [← h1, ← h2]
     exact (⨅ i ∈ c, J U g Z z i).map_ideal_basicOpen V f
 
+/--
+@isnad1 id=eq.2h7v.s11.877e4c5ef388 from=translated src=- shape=96de343d vocab=cdfaab45
+-/
 theorem glued_ideal (hcover) (hagree) (V : X.affineOpens) :
     (glued U g Z z hcover hagree).ideal V = ⨅ i, (J U g Z z i).ideal V := rfl
 
+/--
+@isnad1 id=le.2h7v.s9.d8686e1c9abc from=translated src=- shape=6205b44c vocab=ee4d41ea
+-/
 theorem glued_le (hcover) (hagree) (i : ι) : glued U g Z z hcover hagree ≤ J U g Z z i :=
   fun V => iInf_le _ i
 
@@ -117,11 +135,17 @@ variable (hcover : ∀ x : ↥X, ∃ i, x ∈ Set.range (g i).base)
   (hagree : ∀ (i j : ι) {T : Scheme.{u}} (Pᵢ : T ⟶ U i) (Pⱼ : T ⟶ U j),
       Pᵢ ≫ g i = Pⱼ ≫ g j → ((∃ Q : T ⟶ Z i, Q ≫ z i = Pᵢ) ↔ (∃ Q : T ⟶ Z j, Q ≫ z j = Pⱼ)))
 
+/--
+@isnad1 id=eq.3h8v.s10.762fc73d8024 from=translated src=- shape=fc546053 vocab=5229642a
+-/
 theorem glued_ideal_eq_of_le (i : ι) (V : X.affineOpens) (hV : (V.1 : Set X) ⊆ Set.range (g i).base) :
     (glued U g Z z hcover hagree).ideal V = (J U g Z z i).ideal V := by
   rw [glued_ideal, iInf_eq_biInf U g Z z hagree V {i} (by simpa using hV)]
   simp
 
+/--
+@isnad1 id=le.3h8v.s9.5ec1952a4722 from=translated src=- shape=014e6e13 vocab=69c53cdc
+-/
 theorem glued_le_ker {T : Scheme.{u}} (q : T ⟶ X)
     (hq : ∀ (i : ι) (W : T.Opens) (PV : (W : Scheme.{u}) ⟶ U i), W.ι ≫ q = PV ≫ g i →
       ∃ Q : (W : Scheme.{u}) ⟶ Z i, Q ≫ z i = PV) :
@@ -145,6 +169,9 @@ theorem glued_le_ker {T : Scheme.{u}} (q : T ⟶ X)
 
 omit U g Z z hcover hagree in
 
+/--
+@isnad1 id=iff.0h5v.s6.0c303992eb10 from=translated src=- shape=49349932 vocab=dba786af
+-/
 theorem exists_comp_eq_iff_ker_le {K T : Scheme.{u}} (k : K ⟶ X) [IsClosedImmersion k] (P : T ⟶ X) :
     (∃ Q : T ⟶ K, Q ≫ k = P) ↔ k.ker ≤ P.ker := by
   constructor
@@ -153,6 +180,9 @@ theorem exists_comp_eq_iff_ker_le {K T : Scheme.{u}} (k : K ⟶ X) [IsClosedImme
   · intro H
     exact ⟨IsClosedImmersion.lift k P H, IsClosedImmersion.lift_fac k P H⟩
 
+/--
+@isnad1 id=ispullba.2h7v.s9.654c6eb170a7 from=translated src=- shape=1b2cc2a5 vocab=6e0f1c4c
+-/
 theorem isPullback_chart (i : ι) :
     letI I := glued U g Z z hcover hagree
     IsPullback (z i) (IsClosedImmersion.lift I.subschemeι (z i ≫ g i)
@@ -182,6 +212,9 @@ end glue
 
 end CZG
 
+/--
+@isnad1 id=ex.2h6v.s9.55209bfd90a4 from=translated src=- shape=9497535b vocab=0fd3131d
+-/
 theorem solution
     {X : Scheme.{u}} {ι : Type u} (U : ι → Scheme.{u}) (g : ∀ i, U i ⟶ X) [∀ i, IsOpenImmersion (g i)]
     [∀ i, QuasiCompact (g i)]

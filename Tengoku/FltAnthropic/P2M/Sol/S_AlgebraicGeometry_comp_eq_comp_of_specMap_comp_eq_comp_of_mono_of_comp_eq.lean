@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=eq.4h12v.s8.6769e1e1d7f9 from=translated src=- shape=32f5c2e6 vocab=1b0a936f
+-/
 theorem solution
     {A Q : Type u} [CommRing A] [CommRing Q] (π : A →+* Q)
     {Y K : Scheme.{u}} (ι : Spec (CommRingCat.of A) ⟶ Y) [Mono ι] (k₁ : K ⟶ Y)

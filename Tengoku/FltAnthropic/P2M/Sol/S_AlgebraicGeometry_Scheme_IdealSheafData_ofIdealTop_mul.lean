@@ -10,6 +10,9 @@ open CategoryTheory AlgebraicGeometry
 open TopologicalSpace Opposite
 universe u
 
+/--
+@isnad1 id=eq.0h3v.s12.5e1337d5cd36 from=translated src=- shape=c57ea19e vocab=c01afed8
+-/
 theorem solution {X : Scheme.{u}} (I J : Ideal Γ(X, ⊤)) :
     Scheme.IdealSheafData.ofIdealTop (I * J) = Scheme.IdealSheafData.ofIdealTop I * Scheme.IdealSheafData.ofIdealTop J := by
   apply Scheme.IdealSheafData.ext

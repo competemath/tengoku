@@ -12,11 +12,17 @@ open CategoryTheory AlgebraicGeometry
 
 namespace X5P2
 
+/--
+@isnad1 id=eq.0h3v.s6.2eb02fc3a870 from=translated src=- shape=81e9ec55 vocab=09a66081
+-/
 theorem specMap_ofHom_preimage {R S : Type} [CommRing R] [CommRing S]
     (w : Spec (CommRingCat.of S) ⟶ Spec (CommRingCat.of R)) :
     Spec.map (CommRingCat.ofHom (Spec.preimage w).hom) = w := by
   rw [CommRingCat.ofHom_hom, Spec.map_preimage]
 
+/--
+@isnad1 id=eq.1h4v.s6.7a78f8aa9362 from=translated src=- shape=f12398e6 vocab=5de93eef
+-/
 theorem ringHom_eq_of_specMap_eq {R S : Type} [CommRing R] [CommRing S] (φ ψ : R →+* S)
     (h : Spec.map (CommRingCat.ofHom φ) = Spec.map (CommRingCat.ofHom ψ)) : φ = ψ := by
   have h2 := Spec.map_inj.mp h
@@ -26,6 +32,9 @@ theorem ringHom_eq_of_specMap_eq {R S : Type} [CommRing R] [CommRing S] (φ ψ :
 end X5P2
 
 open X5P2 in
+/--
+@isnad1 id=ex.1h5v.s8.71a50613a996 from=translated src=- shape=2037168b vocab=dcddf7fb
+-/
 theorem solution
     {B : Type} [CommRing B] {K : Scheme.{0}} (g : K ⟶ Spec (CommRingCat.of B)) [IsFinite g]
     (C : Type) [CommRing C] [Algebra B C] (κ : Spec (CommRingCat.of C) ⟶ K)

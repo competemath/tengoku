@@ -13,6 +13,9 @@ universe u
 
 namespace GaloisDescent
 
+/--
+@isnad1 id=isscheme.1h3v.s6.4e4f0cbffa9e from=translated src=- shape=696ebd87 vocab=2734847a
+-/
 theorem isSchemeTheoreticallyDominant_specMap_of_injective
     {R S : Type u} [CommRing R] [CommRing S] (φ : R →+* S) (hφ : Function.Injective φ) :
     IsSchemeTheoreticallyDominant (Spec.map (CommRingCat.ofHom φ)) := by
@@ -60,6 +63,9 @@ theorem eq_of_pullback_fst_comp_eq
 
 end GaloisDescent
 
+/--
+@isnad1 id=eq.3h8v.s9.8d8f1c7a15ee from=translated src=- shape=664d8787 vocab=ea4a6aef
+-/
 theorem solution
     (k K : Type u) [Field k] [Field K] [Algebra k K]
     (X Y : Scheme.{u}) (fX : X ⟶ Spec (CommRingCat.of k)) (fY : Y ⟶ Spec (CommRingCat.of k)) [IsSeparated fY]

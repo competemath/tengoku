@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=eq.3h7v.s9.5e21e0970d4a from=translated src=- shape=e142a698 vocab=61658d32
+-/
 theorem solution
     {X : Scheme.{u}} (x : X) (q : ℕ) [Fact q.Prime]
     (π : ZMod q →+* X.residueField x) (hπ : Function.Surjective π)

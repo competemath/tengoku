@@ -13,6 +13,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=eq.3h5v.s9.076f21cffc1d from=translated src=- shape=6adbddc6 vocab=c24e2023
+-/
 theorem solution
     {κ : Type u} [Field κ] [IsAlgClosed κ] {Y : Scheme.{u}} (f : Y ⟶ Spec (CommRingCat.of κ)) [LocallyOfFiniteType f]
     {Z₁ Z₂ : Set Y} (h₁ : IsClosed Z₁) (h₂ : IsClosed Z₂)

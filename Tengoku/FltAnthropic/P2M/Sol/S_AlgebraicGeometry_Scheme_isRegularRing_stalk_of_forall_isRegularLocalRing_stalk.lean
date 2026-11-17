@@ -11,6 +11,9 @@ open AlgebraicGeometry CategoryTheory TopologicalSpace Opposite
 
 universe u
 
+/--
+@isnad1 id=isregula.1h2v.s6.90b3c3ccfe5b from=translated src=- shape=9cfeb4a7 vocab=d7ddd6c8
+-/
 theorem solution
     {X : Scheme.{u}} (hX : ∀ x : X, IsRegularLocalRing (X.presheaf.stalk x)) (x : X) :
     IsRegularRing (X.presheaf.stalk x) := by

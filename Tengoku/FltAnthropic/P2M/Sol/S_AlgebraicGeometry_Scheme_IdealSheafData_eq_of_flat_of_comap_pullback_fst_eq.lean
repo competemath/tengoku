@@ -16,6 +16,9 @@ namespace FlatClosureAux
 
 open AlgebraicGeometry.Scheme
 
+/--
+@isnad1 id=le.1h6v.s8.ae539afc6c55 from=translated src=- shape=20440b92 vocab=2100c05f
+-/
 theorem le_of_flat_of_comap_le
     {R : Type u} [CommRing R] [IsDomain R] (K : Type u) [Field K] [Algebra R K] [IsFractionRing R K]
     {X : Scheme.{u}} (q : X ⟶ Spec (CommRingCat.of R)) (J₁ J₂ : X.IdealSheafData)
@@ -47,6 +50,9 @@ theorem le_of_flat_of_comap_le
 
 end FlatClosureAux
 
+/--
+@isnad1 id=eq.1h6v.s8.a5c36a6d3e99 from=translated src=- shape=3ac71593 vocab=fea2089d
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsDomain R] (K : Type u) [Field K] [Algebra R K] [IsFractionRing R K]
     {X : Scheme.{u}} (q : X ⟶ Spec (CommRingCat.of R)) (J₁ J₂ : X.IdealSheafData)

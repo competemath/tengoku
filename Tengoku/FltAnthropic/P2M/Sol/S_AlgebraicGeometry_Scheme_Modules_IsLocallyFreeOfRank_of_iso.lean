@@ -9,6 +9,9 @@ namespace P2MW.S_AlgebraicGeometry_Scheme_Modules_IsLocallyFreeOfRank_of_iso
 universe u
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=islocall.1h5v.s4.7a14efcc206f from=translated src=- shape=8e01430a vocab=3c791026
+-/
 theorem solution {X : Scheme.{u}} {n : ℕ} {M N : X.Modules} (e : M ≅ N) (h : Scheme.Modules.IsLocallyFreeOfRank n M) :
     Scheme.Modules.IsLocallyFreeOfRank n N := by
   refine ⟨fun x => ?_⟩

@@ -21,6 +21,9 @@ variable {A₀ R A : Type u} [CommRing A₀] [CommRing R] [CommRing A] [Algebra 
 abbrev Idx (s : Finset A) : Type u :=
   {S : Subalgebra A₀ A // S.FG ∧ (↑s : Set A) ⊆ S ∧ Set.range (algebraMap R A) ⊆ S}
 
+/--
+@isnad1 id=ex.0h6v.s9.f06ba0b96bd4 from=translated src=- shape=b06c4edb vocab=fcefd240
+-/
 theorem idx_directed (s : Finset A) (a b : Idx (A₀ := A₀) (R := R) s) : ∃ c : Idx (A₀ := A₀) (R := R) s, a ≤ c ∧ b ≤ c :=
   ⟨⟨a.1 ⊔ b.1, a.2.1.sup b.2.1, a.2.2.1.trans (SetLike.coe_subset_coe.mpr le_sup_left),
     a.2.2.2.trans (SetLike.coe_subset_coe.mpr le_sup_left)⟩, (le_sup_left : a.1 ≤ a.1 ⊔ b.1),
@@ -33,11 +36,17 @@ scoped instance (s : Finset A) : IsDirectedOrder (Idx (A₀ := A₀) (R := R) s)
 def stageMap (s : Finset A) (i j : Idx (A₀ := A₀) (R := R) s) (h : i ≤ j) : ↥i.1 →+* ↥j.1 :=
   (Subalgebra.inclusion h).toRingHom
 
+/--
+@isnad1 id=directed.0h4v.s11.cdbb09d3ed84 from=translated src=- shape=e05a0688 vocab=e5f640b3
+-/
 scoped instance directedSystem (s : Finset A) :
     DirectedSystem (fun i : Idx (A₀ := A₀) (R := R) s => ↥i.1) (fun i j h => ⇑(stageMap s i j h)) where
   map_self _ _ := rfl
   map_map _ _ _ _ _ _ := rfl
 
+/--
+@isnad1 id=isdirect.0h4v.s12.a180651a5a1b from=translated src=- shape=f8882ceb vocab=5fa83eb0
+-/
 theorem isDirectLimit (s : Finset A) [Nonempty (Idx (A₀ := A₀) (R := R) s)] :
     IsDirectLimit (fun (i j : Idx (A₀ := A₀) (R := R) s) h => ⇑(stageMap s i j h)) (fun i => ⇑(algebraMap (↥i.1) A)) := by
   classical
@@ -54,6 +63,9 @@ end M1b3
 open scoped _root_.P2MW.S_AlgebraicGeometry_exists_fg_subalgebra_isPullback_of_isAffine_of_locallyOfFinitePresentation.M1b3
 
 open M1b3 in
+/--
+@isnad1 id=ex.0h6v.s9.2125d4624571 from=translated src=- shape=1e98070b vocab=7a29965c
+-/
 theorem m1_main
     {A₀ R A : Type u} [CommRing A₀] [CommRing R] [CommRing A] [Algebra A₀ R] [Algebra R A] [Algebra A₀ A]
     [IsScalarTower A₀ R A] [Algebra.FiniteType A₀ R]
@@ -140,6 +152,9 @@ theorem m1_main
       rw [AlgEquiv.commutes]
       rfl
 
+/--
+@isnad1 id=ex.0h6v.s9.2125d4624571 from=translated src=- shape=1e98070b vocab=7a29965c
+-/
 theorem solution
     {A₀ R A : Type u} [CommRing A₀] [CommRing R] [CommRing A] [Algebra A₀ R] [Algebra R A] [Algebra A₀ A]
     [IsScalarTower A₀ R A] [Algebra.FiniteType A₀ R]

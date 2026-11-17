@@ -13,12 +13,18 @@ open _root_.CategoryTheory open _root_.AlgebraicGeometry
 
 namespace AlgebraicGeometry export _root_.AlgebraicGeometry (Scheme.Hom Spec Scheme) namespace Scheme export _root_.AlgebraicGeometry.Scheme (Hom Opens) namespace Hom export _root_.AlgebraicGeometry.Scheme.Hom (continuous) end AlgebraicGeometry.Scheme.Hom
 open scoped _root_.AlgebraicGeometry _root_.AlgebraicGeometry.Scheme _root_.AlgebraicGeometry.Scheme.Hom in
+/--
+@isnad1 id=le.1h4v.s9.4d89afaad2ec from=translated src=- shape=a163e300 vocab=5adf2bd4
+-/
 theorem AlgebraicGeometry.Scheme.Hom.range_subset_of_closedPoint_mem_aux {O : Type u} [CommRing O] [IsLocalRing O] {Y : Scheme.{u}}
     (W : Y.Opens) (σ : Spec (CommRingCat.of O) ⟶ Y) (hW : σ.base (IsLocalRing.closedPoint O) ∈ W) :
     Set.range σ.base ⊆ (W : Set Y) := by
   rintro _ ⟨x, rfl⟩
   exact ((IsLocalRing.specializes_closedPoint x).map σ.continuous).mem_open W.2 hW
 
+/--
+@isnad1 id=le.1h4v.s9.4d89afaad2ec from=translated src=- shape=a163e300 vocab=5adf2bd4
+-/
 theorem solution
     {O : Type u} [CommRing O] [IsLocalRing O] {Y : Scheme.{u}}
     (W : Y.Opens) (σ : Spec (CommRingCat.of O) ⟶ Y) (hW : σ.base (IsLocalRing.closedPoint O) ∈ W) :

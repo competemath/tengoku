@@ -12,6 +12,9 @@ universe v w u
 
 open CategoryTheory CategoryTheory.Limits
 
+/--
+@isnad1 id=eq.1h9v.s8.863546d5ad68 from=translated src=- shape=76044ab1 vocab=b60bfd5c
+-/
 theorem solution {X X' S T : AlgebraicGeometry.Scheme.{u}}
     (f : X ⟶ S) (f' : X' ⟶ S) (t : T ⟶ S) (π : X' ⟶ X) (hπ : π ≫ f = f')
     [AlgebraicGeometry.Flat π] [AlgebraicGeometry.IsFinite π] (y : ↑(pullback f t)) :

@@ -13,6 +13,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry TensorProduct
 
 namespace BenchQD1a
 
+/--
+@isnad1 id=flat.0h2v.s6.b8825eac1f69 from=translated src=- shape=1471da2c vocab=13d5f769
+-/
 theorem flat_specMap {S S' : Type u} [CommRing S] [CommRing S'] [Algebra S S'] [Module.Flat S S'] :
     Flat (Spec.map (CommRingCat.ofHom (algebraMap S S'))) := by
   rw [HasRingHomProperty.Spec_iff (P := @Flat)]
@@ -21,6 +24,9 @@ theorem flat_specMap {S S' : Type u} [CommRing S] [CommRing S'] [Algebra S S'] [
   unfold RingHom.Flat
   rw [h]; infer_instance
 
+/--
+@isnad1 id=existsun.5h13v.s9.529983a67cf1 from=translated src=- shape=092fa6e1 vocab=5e77b6fd
+-/
 theorem main
     {S S' : Type u} [CommRing S] [CommRing S'] [Algebra S S'] [Module.FaithfullyFlat S S']
     {T T' T'' : Scheme.{u}} (t : T ⟶ Spec (CommRingCat.of S)) (t' : T' ⟶ Spec (CommRingCat.of S'))
@@ -61,6 +67,9 @@ theorem main
 
 end BenchQD1a
 
+/--
+@isnad1 id=existsun.5h13v.s9.529983a67cf1 from=translated src=- shape=092fa6e1 vocab=5e77b6fd
+-/
 theorem solution
     {S S' : Type u} [CommRing S] [CommRing S'] [Algebra S S'] [Module.FaithfullyFlat S S']
     {T T' T'' : Scheme.{u}} (t : T ⟶ Spec (CommRingCat.of S)) (t' : T' ⟶ Spec (CommRingCat.of S'))

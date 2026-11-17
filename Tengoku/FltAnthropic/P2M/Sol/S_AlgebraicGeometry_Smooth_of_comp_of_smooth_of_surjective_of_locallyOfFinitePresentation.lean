@@ -16,6 +16,9 @@ open TensorProduct
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=smooth.0h5v.s6.6a089a3fd457 from=translated src=- shape=9589cbac vocab=2b1d5c97
+-/
 theorem solution
     {X Y Z : Scheme.{u}} (f : X ⟶ Y) (g : Y ⟶ Z) [Smooth f] [Surjective f] [QuasiCompact f]
     [Smooth (f ≫ g)] [LocallyOfFinitePresentation g] : Smooth g := by

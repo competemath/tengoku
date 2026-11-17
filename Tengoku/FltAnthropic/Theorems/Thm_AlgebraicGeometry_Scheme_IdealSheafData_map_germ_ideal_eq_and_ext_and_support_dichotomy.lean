@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry TopologicalSpace
 
+/--
+@isnad1 id=and.0h1v.s14.0b19593f76e4 from=translated src=- shape=0360ab3a vocab=e9c9af87
+-/
 theorem AlgebraicGeometry.Scheme.IdealSheafData.map_germ_ideal_eq_and_ext_and_support_dichotomy {X : Scheme.{u}} :
     (∀ (I : X.IdealSheafData) (x : X) (V W : X.affineOpens) (hV : x ∈ (V : X.Opens)) (hW : x ∈ (W : X.Opens)),
       Ideal.map (X.presheaf.germ (V : X.Opens) x hV).hom (I.ideal V) =

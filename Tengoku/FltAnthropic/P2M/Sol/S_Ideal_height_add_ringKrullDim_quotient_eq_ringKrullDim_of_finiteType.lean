@@ -42,6 +42,9 @@ private lemma exists_ltSeries_comap_eq_last {R S : Type*} [CommRing R] [CommRing
     simp only [RelSeries.last_snoc]
     exact PrimeSpectrum.ext hQcomap
 
+/--
+@isnad1 id=eq.1h2v.s6.6786ba6d8b5c from=translated src=- shape=e3a90ee3 vocab=414f0686
+-/
 theorem ringKrullDim_eq_of_isIntegral_of_injective {R S : Type*} [CommRing R] [CommRing S]
     [Algebra R S] [Algebra.IsIntegral R S] (hinj : Function.Injective (algebraMap R S)) :
     ringKrullDim R = ringKrullDim S := by
@@ -60,6 +63,9 @@ theorem ringKrullDim_eq_of_isIntegral_of_injective {R S : Type*} [CommRing R] [C
       ((PrimeSpectrum.asIdeal_le_asIdeal _ _).mpr hlt.le) ⟨hy2, hy1⟩
       (Algebra.IsIntegral.isIntegral y)
 
+/--
+@isnad1 id=le.0h3v.s6.afc5ba639efc from=translated src=- shape=1c7d1805 vocab=b053c850
+-/
 theorem height_le_height_under_of_isIntegral {R S : Type*} [CommRing R] [CommRing S]
     [Algebra R S] [Algebra.IsIntegral R S] (P : Ideal S) [P.IsPrime] :
     P.height ≤ (P.under R).height := by
@@ -77,6 +83,9 @@ theorem height_le_height_under_of_isIntegral {R S : Type*} [CommRing R] [CommRin
       (Algebra.IsIntegral.isIntegral y)
   exact Order.height_le_height_apply_of_strictMono _ hf ⟨P, ‹_›⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.e3439a8fc2e0 from=translated src=- shape=b5f3b1fa vocab=568e32c2
+-/
 theorem height_eq_height_under_of_hasGoingDown {R S : Type*} [CommRing R] [CommRing S]
     [IsNoetherianRing R] [IsNoetherianRing S] [Algebra R S] [Algebra.IsIntegral R S] [Algebra.HasGoingDown R S]
     (P : Ideal S) [P.IsPrime] : P.height = (P.under R).height := by
@@ -84,11 +93,17 @@ theorem height_eq_height_under_of_hasGoingDown {R S : Type*} [CommRing R] [CommR
   rw [Ideal.height_eq_height_add_of_liesOver_of_hasGoingDown (P.under R) P]
   exact le_self_add
 
+/--
+@isnad1 id=eq.0h2v.s5.865c771555e6 from=translated src=- shape=2769d237 vocab=51594afe
+-/
 theorem ringKrullDim_mvPolynomial_fin (k : Type u) [Field k] (s : ℕ) :
     ringKrullDim (MvPolynomial (Fin s) k) = s := by
   rw [MvPolynomial.ringKrullDim_of_isNoetherianRing, ringKrullDim_eq_zero_of_field, zero_add,
     Nat.card_eq_fintype_card, Fintype.card_fin]
 
+/--
+@isnad1 id=eq.1h3v.s6.23d888cdd3fc from=translated src=- shape=81b6d922 vocab=b413bf3b
+-/
 theorem height_eq_of_isMaximal_mvPolynomial (k : Type u) [Field k] :
     ∀ (n : ℕ) (M : Ideal (MvPolynomial (Fin n) k)), M.IsMaximal → M.height = n := by
   intro n
@@ -120,6 +135,9 @@ theorem height_eq_of_isMaximal_mvPolynomial (k : Type u) [Field k] :
     rw [← h3, h1, h2]
     norm_cast
 
+/--
+@isnad1 id=eq.0h3v.s6.c176df9a578f from=translated src=- shape=7a94061d vocab=4c3eb9b6
+-/
 theorem height_eq_ringKrullDim_of_isMaximal (k : Type u) {A : Type v} [Field k] [CommRing A]
     [IsDomain A] [Algebra k A] [Algebra.FiniteType k A] (m : Ideal A) [hm : m.IsMaximal] :
     (m.height : WithBot ℕ∞) = ringKrullDim A := by
@@ -142,10 +160,16 @@ theorem height_eq_ringKrullDim_of_isMaximal (k : Type u) {A : Type v} [Field k] 
   rw [hdim]
   exact_mod_cast h3
 
+/--
+@isnad1 id=eq.0h2v.s5.a534369e8912 from=translated src=- shape=ad435d58 vocab=685b9860
+-/
 theorem ringKrullDim_quotient_radical {A : Type v} [CommRing A] (I : Ideal A) :
     ringKrullDim (A ⧸ I.radical) = ringKrullDim (A ⧸ I) := by
   rw [ringKrullDim_quotient, ringKrullDim_quotient, PrimeSpectrum.zeroLocus_radical]
 
+/--
+@isnad1 id=eq.2h4v.s7.8b6422f51403 from=translated src=- shape=5a36ed87 vocab=7706554d
+-/
 theorem ringKrullDim_quotient_radical_span_add_one (k : Type u) {A : Type v} [Field k] [CommRing A]
     [IsDomain A] [Algebra k A] [Algebra.FiniteType k A] (m : Ideal A) [m.IsMaximal]
     {f : A} (hf : f ≠ 0) (hfm : f ∈ m) :
@@ -155,6 +179,9 @@ theorem ringKrullDim_quotient_radical_span_add_one (k : Type u) {A : Type v} [Fi
   exact Module.ringKrullDim_quotient_add_one_of_mem_nonZeroDivisors
     (mem_nonZeroDivisors_of_ne_zero hf) (height_eq_ringKrullDim_of_isMaximal k m) hfm
 
+/--
+@isnad1 id=ex.0h2v.s5.3647c3286147 from=translated src=- shape=724d0f1a vocab=89f13c98
+-/
 theorem exists_ringKrullDim_eq_natCast (k : Type u) (A : Type v) [Field k] [CommRing A]
     [Nontrivial A] [Algebra k A] [Algebra.FiniteType k A] : ∃ n : ℕ, ringKrullDim A = n := by
   obtain ⟨s, g, hinj, hfin⟩ := exists_finite_inj_algHom_of_fg k A
@@ -164,6 +191,9 @@ theorem exists_ringKrullDim_eq_natCast (k : Type u) (A : Type v) [Field k] [Comm
   rw [← ringKrullDim_mvPolynomial_fin k s]
   exact (ringKrullDim_eq_of_isIntegral_of_injective (R := MvPolynomial (Fin s) k) hinj).symm
 
+/--
+@isnad1 id=le.0h2v.s6.f833421edd71 from=translated src=- shape=eaecc596 vocab=abe89fcc
+-/
 theorem height_head_add_length_le {α : Type*} [Preorder α] (p : LTSeries α) :
     Order.height p.head + p.length ≤ Order.height p.last := by
   have key : ∀ n : ℕ, (n : ℕ∞) ≤ Order.height p.head →
@@ -185,6 +215,9 @@ theorem height_head_add_length_le {α : Type*} [Preorder α] (p : LTSeries α) :
     have := key m (by rw [hh])
     exact_mod_cast this
 
+/--
+@isnad1 id=le.1h3v.s8.b7bcde331aae from=translated src=- shape=195bd047 vocab=f6c88247
+-/
 theorem height_map_mk_add_height_le {A : Type v} [CommRing A] (P₁ P : Ideal A) [P₁.IsPrime]
     [P.IsPrime] (h : P₁ ≤ P) [hP : (P.map (Ideal.Quotient.mk P₁)).IsPrime] :
     (P.map (Ideal.Quotient.mk P₁)).height + P₁.height ≤ P.height := by
@@ -235,6 +268,9 @@ theorem height_map_mk_add_height_le {A : Type v} [CommRing A] (P₁ P : Ideal A)
     rw [this]; exact le_top
   | coe m => exact key m (by rw [hh])
 
+/--
+@isnad1 id=eq.0h2v.s6.21578495f537 from=translated src=- shape=153137aa vocab=baa7636d
+-/
 theorem ringKrullDim_quotient_eq_coheight {A : Type v} [CommRing A] (P : Ideal A) [P.IsPrime] :
     ringKrullDim (A ⧸ P) = Order.coheight (⟨P, ‹_›⟩ : PrimeSpectrum A) := by
   rw [ringKrullDim_quotient, Order.coheight_eq_krullDim_Ici]
@@ -244,6 +280,9 @@ theorem ringKrullDim_quotient_eq_coheight {A : Type v} [CommRing A] (P : Ideal A
   simp only [PrimeSpectrum.mem_zeroLocus, Set.mem_Ici, ← PrimeSpectrum.asIdeal_le_asIdeal,
     SetLike.coe_subset_coe]
 
+/--
+@isnad1 id=le.0h2v.s6.e50fb7505760 from=translated src=- shape=14cd154f vocab=bdf88815
+-/
 theorem height_add_ringKrullDim_quotient_le {A : Type v} [CommRing A] (P : Ideal A) [P.IsPrime] :
     (P.height : WithBot ℕ∞) + ringKrullDim (A ⧸ P) ≤ ringKrullDim A := by
   haveI : Nonempty (PrimeSpectrum A) := ⟨⟨P, ‹_›⟩⟩
@@ -254,6 +293,9 @@ theorem height_add_ringKrullDim_quotient_le {A : Type v} [CommRing A] (P : Ideal
   exact WithBot.coe_le_coe.mpr (le_iSup (fun a : PrimeSpectrum A =>
     Order.height a + Order.coheight a) ⟨P, ‹_›⟩)
 
+/--
+@isnad1 id=eq.1h3v.s6.a03bf5c7e572 from=translated src=- shape=5f070d18 vocab=158f8458
+-/
 theorem ringKrullDim_quotient_add_one_of_height_eq_one (k : Type u) {A : Type v} [Field k]
     [CommRing A] [IsDomain A] [Algebra k A] [Algebra.FiniteType k A]
     (P : Ideal A) [P.IsPrime] (hP : P.height = 1) :
@@ -303,6 +345,9 @@ theorem ringKrullDim_quotient_add_one_of_height_eq_one (k : Type u) {A : Type v}
       Ideal.algebraMap_quotient_injective).symm
   rw [hdimA, hdimQ, hdimB]
 
+/--
+@isnad1 id=eq.1h4v.s6.a87a507465c7 from=translated src=- shape=09639039 vocab=84515912
+-/
 theorem main (k : Type u) [Field k] : ∀ (n : ℕ) {A : Type v} [CommRing A] [IsDomain A]
     [Algebra k A] [Algebra.FiniteType k A], ringKrullDim A = n → ∀ (P : Ideal A) [P.IsPrime],
       (P.height : WithBot ℕ∞) + ringKrullDim (A ⧸ P) = ringKrullDim A := by
@@ -360,6 +405,9 @@ theorem main (k : Type u) [Field k] : ∀ (n : ℕ) {A : Type v} [CommRing A] [I
 
 end P2mDimFormula
 
+/--
+@isnad1 id=eq.0h3v.s6.16c0bf7cd504 from=translated src=- shape=59cf8c71 vocab=fec76491
+-/
 theorem solution
     (k : Type u) [Field k] {A : Type v} [CommRing A] [IsDomain A] [Algebra k A]
     [Algebra.FiniteType k A] (P : Ideal A) [P.IsPrime] :

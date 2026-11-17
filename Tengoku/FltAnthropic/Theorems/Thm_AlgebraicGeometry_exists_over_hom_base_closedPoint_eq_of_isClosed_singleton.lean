@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=ex.1h4v.s9.aa45cbe223d8 from=translated src=- shape=352d1bf7 vocab=422ddb09
+-/
 theorem AlgebraicGeometry.exists_over_hom_base_closedPoint_eq_of_isClosed_singleton
     (k : Type u) [Field k] [IsAlgClosed k] {X : Scheme.{u}} (t : X ⟶ Spec (CommRingCat.of k))
     [LocallyOfFiniteType t] (x : X) (hx : IsClosed ({x} : Set X)) :

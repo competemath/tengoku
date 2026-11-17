@@ -16,6 +16,9 @@ set_option maxHeartbeats 800000
 namespace AlgebraicGeometry export _root_.AlgebraicGeometry (Scheme.Hom.preimage_smoothLocus_eq Scheme.Hom Scheme.Hom.smoothLocus_eq_top_iff isPullback_morphismRestrict Scheme Smooth Scheme.Opens LocallyOfFinitePresentation Scheme.Opens.ι_preimage_self) namespace Scheme export _root_.AlgebraicGeometry.Scheme (Hom.preimage_smoothLocus_eq Hom Hom.smoothLocus_eq_top_iff Opens Opens.ι_preimage_self) namespace Hom export _root_.AlgebraicGeometry.Scheme.Hom (preimage_smoothLocus_eq smoothLocus_eq_top_iff smoothLocus) end AlgebraicGeometry.Scheme.Hom
 open scoped _root_.AlgebraicGeometry _root_.AlgebraicGeometry.Scheme _root_.AlgebraicGeometry.Scheme.Hom in
 
+/--
+@isnad1 id=le.1h8v.s8.9d7efbf7a4e9 from=translated src=- shape=e97e6fb8 vocab=06224305
+-/
 theorem AlgebraicGeometry.Scheme.Hom.preimage_smoothLocus_le_of_isPullback
     {X Y X' Y' : Scheme.{u}} {f : X ⟶ Y} {f' : X' ⟶ Y'} {g : Y' ⟶ Y} {g' : X' ⟶ X}
     (h : IsPullback g' f' f g) [LocallyOfFinitePresentation f] [LocallyOfFinitePresentation f'] :
@@ -40,6 +43,9 @@ theorem AlgebraicGeometry.Scheme.Hom.preimage_smoothLocus_le_of_isPullback
     rw [htop]; trivial
   exact hmem
 
+/--
+@isnad1 id=le.1h8v.s8.9d7efbf7a4e9 from=translated src=- shape=e97e6fb8 vocab=06224305
+-/
 theorem solution
     {X Y X' Y' : Scheme.{u}} {f : X ⟶ Y} {f' : X' ⟶ Y'} {g : Y' ⟶ Y} {g' : X' ⟶ X}
     (h : IsPullback g' f' f g) [LocallyOfFinitePresentation f] [LocallyOfFinitePresentation f'] :

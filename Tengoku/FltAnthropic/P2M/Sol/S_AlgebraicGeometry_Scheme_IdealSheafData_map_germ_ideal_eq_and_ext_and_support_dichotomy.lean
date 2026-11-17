@@ -15,6 +15,9 @@ namespace GermExt
 
 variable {X : Scheme.{u}}
 
+/--
+@isnad1 id=eq.2h5v.s12.a62eadd5e04a from=translated src=- shape=0f5cd10e vocab=abab2b96
+-/
 theorem map_germ_ideal_eq (I : X.IdealSheafData) {x : X} (V W : X.affineOpens)
     (hV : x ∈ (V : X.Opens)) (hW : x ∈ (W : X.Opens)) :
     Ideal.map (X.presheaf.germ (V : X.Opens) x hV).hom (I.ideal V) =
@@ -35,6 +38,9 @@ theorem map_germ_ideal_eq (I : X.IdealSheafData) {x : X} (V W : X.affineOpens)
   rw [hfg]
   exact X.basicOpen_le g
 
+/--
+@isnad1 id=le.1h4v.s12.5fd54c55699a from=translated src=- shape=631fb545 vocab=58fe5253
+-/
 theorem ideal_le_primeIdealOf_of_mem_support (U : X.affineOpens) (a : (U : X.Opens)) (K : X.IdealSheafData)
     (ha : (a : X) ∈ (K.support : Set X)) : K.ideal U ≤ (U.2.primeIdealOf a).asIdeal := by
   have hU : IsAffineOpen (U : X.Opens) := U.2
@@ -48,6 +54,9 @@ theorem ideal_le_primeIdealOf_of_mem_support (U : X.affineOpens) (a : (U : X.Ope
   intro hu
   exact hnb ((X.mem_basicOpen (U := U) f a a.2).mpr hu)
 
+/--
+@isnad1 id=eq.1h4v.s12.c85f970590c4 from=translated src=- shape=79abb622 vocab=0cb40cbe
+-/
 theorem map_germ_ideal_eq_top_of_not_mem_support (U : X.affineOpens) (a : (U : X.Opens)) (K : X.IdealSheafData)
     (ha : (a : X) ∉ (K.support : Set X)) :
     Ideal.map (algebraMap Γ(X, U) (X.presheaf.stalk (a : X))) (K.ideal U) = ⊤ := by
@@ -61,6 +70,9 @@ theorem map_germ_ideal_eq_top_of_not_mem_support (U : X.affineOpens) (a : (U : X
       Ideal.map (algebraMap Γ(X, U) (X.presheaf.stalk (a : X))) (K.ideal U) := Ideal.mem_map_of_mem _ hf
   exact Ideal.eq_top_of_isUnit_mem _ hmem hu
 
+/--
+@isnad1 id=le.2h4v.s13.e4650ae95a8b from=translated src=- shape=6bef2553 vocab=76944454
+-/
 theorem ideal_le_of_forall_map_germ_le {V : X.Opens} (hV : IsAffineOpen V) {I' J' : Ideal Γ(X, V)}
     (h : ∀ (x : X) (hx : x ∈ V),
       I'.map (X.presheaf.germ V x hx).hom ≤ J'.map (X.presheaf.germ V x hx).hom) :
@@ -100,6 +112,9 @@ theorem ideal_le_of_forall_map_germ_le {V : X.Opens} (hV : IsAffineOpen V) {I' J
   exact IsLocalization.map_units (M := (hV.primeIdealOf ⟨x, hx⟩).asIdeal.primeCompl)
     (X.presheaf.stalk x) ⟨c * s, mul_mem hc hs⟩
 
+/--
+@isnad1 id=le.1h4v.s12.08ca44fd2fb5 from=translated src=- shape=a9b28843 vocab=3195bf38
+-/
 theorem map_germ_ideal_le_maximalIdeal_of_mem_support (U : X.affineOpens) (a : (U : X.Opens)) (K : X.IdealSheafData)
     (ha : (a : X) ∈ (K.support : Set X)) :
     Ideal.map (X.presheaf.germ (U : X.Opens) (a : X) a.2).hom (K.ideal U) ≤ IsLocalRing.maximalIdeal (X.presheaf.stalk (a : X)) := by
@@ -114,6 +129,9 @@ theorem map_germ_ideal_le_maximalIdeal_of_mem_support (U : X.affineOpens) (a : (
   rw [Ideal.mem_comap]
   exact (IsLocalization.AtPrime.to_map_mem_maximal_iff (X.presheaf.stalk (a : X)) (hU.primeIdealOf a).asIdeal f).mpr hf'
 
+/--
+@isnad1 id=eq.1h3v.s12.927222ae8634 from=translated src=- shape=0cfb63c2 vocab=abab2b96
+-/
 theorem ext_of_forall_exists_map_germ_ideal_eq {I J : X.IdealSheafData}
     (h : ∀ x : X, ∃ (U : X.affineOpens) (hx : x ∈ (U : X.Opens)),
       Ideal.map (X.presheaf.germ (U : X.Opens) x hx).hom (I.ideal U) =
@@ -134,6 +152,9 @@ theorem ext_of_forall_exists_map_germ_ideal_eq {I J : X.IdealSheafData}
 end GermExt
 
 open GermExt in
+/--
+@isnad1 id=and.0h1v.s14.0b19593f76e4 from=translated src=- shape=0360ab3a vocab=e9c9af87
+-/
 theorem solution {X : Scheme.{u}} :
 
     (∀ (I : X.IdealSheafData) (x : X) (V W : X.affineOpens) (hV : x ∈ (V : X.Opens)) (hW : x ∈ (W : X.Opens)),

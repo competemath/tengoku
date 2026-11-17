@@ -25,6 +25,9 @@ namespace IsPushout
 export _root_.Algebra.IsPushout (equiv symm)
 open _root_.Algebra.IsPushout open _root_.Algebra
 
+/--
+@isnad1 id=eq.1h4v.s8.d0aafa13ee9a from=translated src=- shape=370924e3 vocab=81926f3d
+-/
 theorem ker_algebraMap_eq_map_ker
     (R B C P : Type*) [CommRing R] [CommRing B] [CommRing C] [CommRing P]
     [Algebra R B] [Algebra R C] [Algebra B P] [Algebra C P] [Algebra R P]
@@ -71,6 +74,9 @@ namespace CommRingCat
 export _root_.CommRingCat (hom_comp of Hom isPushout_iff_isPushout)
 open _root_.CommRingCat
 
+/--
+@isnad1 id=eq.2h8v.s8.534dc51546b1 from=translated src=- shape=e58c2bc1 vocab=328958c0
+-/
 theorem ker_eq_map_ker_of_isPushout {R B C P : CommRingCat.{u}} {f : R ⟶ B} {g : R ⟶ C}
     {inl : B ⟶ P} {inr : C ⟶ P} (h : IsPushout f g inl inr)
     (hg : Function.Surjective g.hom) :
@@ -96,6 +102,9 @@ open _root_.AlgebraicGeometry.Scheme.IdealSheafData
 
 variable {X Y : Scheme.{u}}
 
+/--
+@isnad1 id=eq.0h4v.s12.7db7504f9d5e from=translated src=- shape=334aa15b vocab=ed26f500
+-/
 theorem ideal_comap_top [IsAffine X] [IsAffine Y] (I : X.IdealSheafData) (f : Y ⟶ X) :
     (I.comap f).ideal ⟨⊤, isAffineOpen_top Y⟩ =
       (I.ideal ⟨⊤, isAffineOpen_top X⟩).map f.appTop.hom := by
@@ -108,6 +117,9 @@ theorem ideal_comap_top [IsAffine X] [IsAffine Y] (I : X.IdealSheafData) (f : Y 
 
 set_option backward.isDefEq.respectTransparency false in
 
+/--
+@isnad1 id=eq.1h6v.s12.5bc057259d13 from=translated src=- shape=bd63163f vocab=702ed77a
+-/
 theorem ideal_comap_of_le (I : X.IdealSheafData) (f : Y ⟶ X) (U : X.affineOpens)
     (V : Y.affineOpens) (hVU : (V : Y.Opens) ≤ f ⁻¹ᵁ (U : X.Opens)) :
     (I.comap f).ideal V = (I.ideal U).map (f.appLE U V hVU).hom := by
@@ -138,6 +150,9 @@ end AlgebraicGeometry.Scheme.IdealSheafData.ComapLocal
 
 open CategoryTheory _root_.AlgebraicGeometry _root_.P2MW.S_AlgebraicGeometry_Scheme_IdealSheafData_ideal_comap_of_le.AlgebraicGeometry in
 
+/--
+@isnad1 id=eq.1h6v.s12.5bc057259d13 from=translated src=- shape=bd63163f vocab=702ed77a
+-/
 theorem solution
     {X Y : Scheme.{u}} (I : X.IdealSheafData) (f : Y ⟶ X) (U : X.affineOpens)
     (V : Y.affineOpens) (hVU : (V : Y.Opens) ≤ f ⁻¹ᵁ (U : X.Opens)) :

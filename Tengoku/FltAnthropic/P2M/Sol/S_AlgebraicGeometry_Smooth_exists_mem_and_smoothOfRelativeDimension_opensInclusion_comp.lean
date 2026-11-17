@@ -14,6 +14,9 @@ universe u
 namespace RingHom export _root_.RingHom (Smooth IsStandardSmoothOfRelativeDimension locally_of toMorphismProperty_respectsIso_iff isStandardSmoothOfRelativeDimension_respectsIso locally_respectsIso Locally toMorphismProperty IsStandardSmooth toAlgebra) namespace IsStandardSmooth export _root_.RingHom.IsStandardSmooth (toAlgebra smooth) end RingHom.IsStandardSmooth
 open scoped _root_.RingHom _root_.RingHom.IsStandardSmooth in
 
+/--
+@isnad1 id=ex.1h3v.s5.a8158e845e60 from=translated src=- shape=0e71aa3a vocab=af860b50
+-/
 theorem RingHom.IsStandardSmooth.exists_isStandardSmoothOfRelativeDimension_gc3
     {R S : Type u} [CommRing R] [CommRing S] {φ : R →+* S} (h : φ.IsStandardSmooth) :
     ∃ n : ℕ, φ.IsStandardSmoothOfRelativeDimension n := by
@@ -21,6 +24,9 @@ theorem RingHom.IsStandardSmooth.exists_isStandardSmoothOfRelativeDimension_gc3
   obtain ⟨ι, σ, _, _, ⟨P⟩⟩ := h.out
   exact ⟨P.dimension, P.isStandardSmoothOfRelativeDimension rfl⟩
 
+/--
+@isnad1 id=ex.0h4v.s6.26bd73247c9a from=translated src=- shape=a94bc7cb vocab=62436fb5
+-/
 theorem solution
     {X Y : Scheme.{u}} (f : X ⟶ Y) [Smooth f] (x : X) :
     ∃ (V : X.Opens) (d : ℕ), x ∈ V ∧ SmoothOfRelativeDimension d (V.ι ≫ f) := by

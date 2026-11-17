@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits TopologicalSpace AlgebraicGeometry Opposite
 
+/--
+@isnad1 id=ex.1h7v.s8.70e876eca9cc from=translated src=- shape=bfa401de vocab=5d9769b8
+-/
 theorem solution
     {S G H : Scheme.{u}} (sG : G ⟶ S) (sH : H ⟶ S) [LocallyOfFiniteType sH]
     (η : G) [G.IsGermInjectiveAt η]

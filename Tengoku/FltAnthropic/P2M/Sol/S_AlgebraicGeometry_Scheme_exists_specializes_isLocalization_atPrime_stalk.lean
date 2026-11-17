@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=ex.0h3v.s9.98170e9fc635 from=translated src=- shape=e811bac6 vocab=7bf9f43b
+-/
 theorem solution
     {X : Scheme.{u}} (y : X) (P : Ideal (X.presheaf.stalk y)) [P.IsPrime] :
     ∃ (x : X) (h : x ⤳ y),

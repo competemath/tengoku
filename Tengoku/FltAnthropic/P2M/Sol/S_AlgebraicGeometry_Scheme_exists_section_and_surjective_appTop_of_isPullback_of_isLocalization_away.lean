@@ -13,15 +13,24 @@ universe u
 
 namespace AwayBC
 
+/--
+@isnad1 id=surjecti.0h3v.s12.657aaaef832f from=translated src=- shape=8bd3024c vocab=f832f3b4
+-/
 theorem surjective_appTop_hom_of_iso {X Y : Scheme.{u}} (i : X ≅ Y) : Function.Surjective (i.hom.appTop).hom := by
   intro y
   refine ⟨i.inv.appTop.hom y, ?_⟩
   rw [← CommRingCat.comp_apply, ← Scheme.Hom.comp_appTop, Iso.hom_inv_id, Scheme.Hom.id_appTop]
   rfl
 
+/--
+@isnad1 id=surjecti.0h3v.s12.50a1f056db40 from=translated src=- shape=5a4cb813 vocab=6bdac895
+-/
 theorem surjective_appTop_inv_of_iso {X Y : Scheme.{u}} (i : X ≅ Y) : Function.Surjective (i.inv.appTop).hom :=
   surjective_appTop_hom_of_iso i.symm
 
+/--
+@isnad1 id=surjecti.2h8v.s16.8524253ab245 from=translated src=- shape=c0da2469 vocab=01f3fc3b
+-/
 theorem surjective_appTop_snd {B C₁ : Type u} [CommRing B] [CommRing C₁] [Algebra B C₁] (t : B) [IsLocalization.Away t C₁]
     {A P : Scheme.{u}} (f : A ⟶ Spec (CommRingCat.of B))
     (hΓt : Function.Surjective
@@ -61,6 +70,9 @@ theorem surjective_appTop_snd {B C₁ : Type u} [CommRing B] [CommRing C₁] [Al
 end AwayBC
 
 open AwayBC in
+/--
+@isnad1 id=ex.3h9v.s17.4713aa9222da from=translated src=- shape=99adcf89 vocab=abfbfde9
+-/
 theorem solution
     {B C : Type u} [CommRing B] [CommRing C] [Algebra B C] (t₀ : B) [IsLocalization.Away t₀ C]
     {A A' : Scheme.{u}} (f : A ⟶ Spec (CommRingCat.of B)) (e : Spec (CommRingCat.of B) ⟶ A) (he : e ≫ f = 𝟙 _)

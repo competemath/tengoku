@@ -24,17 +24,26 @@ variable {X : Scheme.{u}} [IsAffine X]
 noncomputable def pointOfPrime (p : PrimeSpectrum Γ(X, ⊤)) : (⊤ : X.Opens) :=
   ⟨(isAffineOpen_top X).fromSpec.base p, trivial⟩
 
+/--
+@isnad1 id=eq.0h2v.s10.4be749474df5 from=translated src=- shape=daa79696 vocab=3dcf2460
+-/
 theorem primeIdealOf_pointOfPrime (p : PrimeSpectrum Γ(X, ⊤)) :
     (isAffineOpen_top X).primeIdealOf (pointOfPrime p) = p := by
   have h := (isAffineOpen_top X).fromSpec_primeIdealOf (pointOfPrime p)
   change (isAffineOpen_top X).fromSpec.base _ = (isAffineOpen_top X).fromSpec.base p at h
   exact (isAffineOpen_top X).fromSpec.isOpenEmbedding.injective h
 
+/--
+@isnad1 id=atprime.0h2v.s11.df3c069a1448 from=translated src=- shape=afd66ed9 vocab=0201ae30
+-/
 scoped instance isLocalization_stalk_pointOfPrime (p : PrimeSpectrum Γ(X, ⊤)) :
     IsLocalization.AtPrime (X.presheaf.stalk (pointOfPrime p).1) p.asIdeal := by
   have := (isAffineOpen_top X).isLocalization_stalk (pointOfPrime p)
   rwa [primeIdealOf_pointOfPrime] at this
 
+/--
+@isnad1 id=isintegr.1h1v.s10.8a62a07466fb from=translated src=- shape=218c9427 vocab=38d20ae3
+-/
 theorem isIntegrallyClosed_sections [IsDomain Γ(X, ⊤)]
     (h : ∀ x : X, IsIntegrallyClosed (X.presheaf.stalk x)) : IsIntegrallyClosed Γ(X, ⊤) := by
   apply IsIntegrallyClosed.of_localization_maximal

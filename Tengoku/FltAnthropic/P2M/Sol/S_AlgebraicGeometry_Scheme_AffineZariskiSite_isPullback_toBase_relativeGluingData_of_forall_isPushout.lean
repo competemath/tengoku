@@ -12,6 +12,9 @@ universe u
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry Opposite
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=ispullba.3h10v.s12.2966818cd27b from=translated src=- shape=9ec61970 vocab=6c01435b
+-/
 theorem solution
     {X : Scheme.{u}} {A : X.AffineZariskiSiteᵒᵖ ⥤ CommRingCat.{u}}
     {α : (Scheme.AffineZariskiSite.toOpensFunctor X).op ⋙ X.presheaf ⟶ A} (H : α.Coequifibered)

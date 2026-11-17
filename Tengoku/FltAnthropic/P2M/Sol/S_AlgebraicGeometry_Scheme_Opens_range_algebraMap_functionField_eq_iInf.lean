@@ -20,6 +20,9 @@ open _root_.AlgebraicGeometry
 
 variable {X : Scheme.{u}} [IsIntegral X]
 
+/--
+@isnad1 id=eq.0h5v.s12.de8776e6150f from=translated src=- shape=21c0ac48 vocab=b40ec27d
+-/
 theorem germToFunctionField_map {U V : X.Opens} [Nonempty U] [Nonempty V] (i : V ⟶ U) (s : Γ(X, U)) :
     (X.germToFunctionField V).hom ((X.presheaf.map i.op).hom s) = (X.germToFunctionField U).hom s := by
   change (X.presheaf.map i.op ≫ X.germToFunctionField V).hom s = _
@@ -28,6 +31,9 @@ theorem germToFunctionField_map {U V : X.Opens} [Nonempty U] [Nonempty V] (i : V
 end AlgebraicGeometry.EngineOpen
 
 open AlgebraicGeometry.EngineOpen in
+/--
+@isnad1 id=eq.0h2v.s10.a8942da44272 from=translated src=- shape=630d75c0 vocab=d566e19c
+-/
 theorem solution
     {X : Scheme.{u}} [IsIntegral X] (U : X.Opens) [Nonempty U] :
     (algebraMap Γ(X, U) X.functionField).range =

@@ -13,6 +13,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 namespace DenseSetAgree
 
+/--
+@isnad1 id=epi.0h3v.s5.a5d5ffb3314f from=translated src=- shape=033dcc81 vocab=2ee1f001
+-/
 theorem epi_specMap_of_field {κ k : Type u} [Field κ] [Field k] (φ : CommRingCat.of κ ⟶ CommRingCat.of k) :
     Epi (Spec.map φ) := by
   haveI : Flat (Spec.map φ) := by
@@ -25,6 +28,9 @@ theorem epi_specMap_of_field {κ k : Type u} [Field κ] [Field k] (φ : CommRing
 
 end DenseSetAgree
 
+/--
+@isnad1 id=eq.3h7v.s9.e6e7ed5aaa43 from=translated src=- shape=7d907b65 vocab=c2d37037
+-/
 theorem solution
     {X Y S : Scheme.{u}} [IsReduced X]
     (F G : X ⟶ Y) (i : Y ⟶ S) [IsSeparated i] (hFG : F ≫ i = G ≫ i)

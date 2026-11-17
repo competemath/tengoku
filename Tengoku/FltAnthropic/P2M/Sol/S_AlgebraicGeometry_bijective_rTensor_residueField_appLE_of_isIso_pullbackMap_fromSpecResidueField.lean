@@ -11,6 +11,9 @@ set_option autoImplicit false
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 open TensorProduct
 
+/--
+@isnad1 id=bijectiv.7h9v.s16.36525613fa72 from=translated src=- shape=1b74f004 vocab=0bf4b8d9
+-/
 theorem solution
     {X Y Z : Scheme.{0}} (p : Z ⟶ Y) (q : X ⟶ Y) (h : Z ⟶ X) (w : h ≫ q = p)
     (y : Y) (hy : IsIso (pullback.map p (Y.fromSpecResidueField y) q (Y.fromSpecResidueField y) h (𝟙 _) (𝟙 _)

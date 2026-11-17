@@ -12,6 +12,9 @@ universe u
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.2h6v.s7.90bd8b3dfcc6 from=translated src=- shape=c78bd6c4 vocab=bfa9b314
+-/
 theorem solution
     {X Y : Scheme.{u}} (g : X ⟶ Y) [FormallyUnramified g] [LocallyOfFiniteType g]
     (A : Type u) [CommRing A] [IsLocalRing A]

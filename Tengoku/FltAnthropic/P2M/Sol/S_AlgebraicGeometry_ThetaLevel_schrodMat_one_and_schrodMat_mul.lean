@@ -15,6 +15,9 @@ namespace HeisHom
 
 variable {g : ℕ} (δ : Fin g → ℕ) [∀ i, NeZero (δ i)] (d : ℕ) [NeZero d] (B : Type) [CommRing B] (ω : B)
 
+/--
+@isnad1 id=eq.0h8v.s9.a3cc28176846 from=translated src=- shape=b3d8218a vocab=2c6b35f0
+-/
 theorem schrod_single (z : Heis δ d) (y x : HH δ) :
     schrod δ d B ω z (Pi.single y 1) x =
       if x = y + z.h then omegaPow d B ω z.a * omegaPow d B ω (pair δ d z.k y) else 0 := by
@@ -25,6 +28,9 @@ theorem schrod_single (z : Heis δ d) (y x : HH δ) :
   · have : x - z.h ≠ y := fun h' => hx (by rw [← h']; abel)
     simp [this, hx]
 
+/--
+@isnad1 id=eq.1h8v.s11.ef9b71dc7732 from=translated src=- shape=60f3c951 vocab=e77e1eac
+-/
 theorem schrodMat_eq_submatrix (hω : ω ^ (2 * d) = 1) {n : ℕ} (e : Fin n ≃ HH δ) (z : Heis δ d) :
     schrodMat δ d B ω e z =
       (LinearMap.toMatrix (Pi.basisFun B (HH δ)) (Pi.basisFun B (HH δ)) (schrod δ d B ω z)).submatrix e e := by
@@ -38,6 +44,9 @@ theorem schrodMat_eq_submatrix (hω : ω ^ (2 * d) = 1) {n : ℕ} (e : Fin n ≃
 end K77TH3.HeisHom
 
 open K77TH3.HeisHom in
+/--
+@isnad1 id=and.1h7v.s8.d239377a20c7 from=translated src=- shape=5fff70de vocab=ebd282e7
+-/
 theorem solution
     {g : ℕ} (δ : Fin g → ℕ) [∀ i, NeZero (δ i)] (d : ℕ) [NeZero d] (B : Type) [CommRing B] (ω : B) (hω : ω ^ (2 * d) = 1)
     {n : ℕ} (e : Fin n ≃ HH δ) :

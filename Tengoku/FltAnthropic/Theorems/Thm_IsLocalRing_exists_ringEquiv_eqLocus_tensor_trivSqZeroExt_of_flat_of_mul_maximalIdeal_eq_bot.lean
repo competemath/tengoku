@@ -10,6 +10,9 @@ set_option autoImplicit false
 open TensorProduct IsLocalRing
 
 universe u
+/--
+@isnad1 id=other.4h5v.s16.8cacc5eb8951 from=translated src=- shape=2fc0965f vocab=bc55953f
+-/
 theorem IsLocalRing.exists_ringEquiv_eqLocus_tensor_trivSqZeroExt_of_flat_of_mul_maximalIdeal_eq_bot
     {T' : Type u} [CommRing T'] [IsLocalRing T'] (I : Ideal T') (hI : I ≤ maximalIdeal T') (hsmall : I * maximalIdeal T' = ⊥)
     (V : Type u) [AddCommGroup V] [Module (ResidueField T') V] [Module (ResidueField T')ᵐᵒᵖ V]

@@ -32,6 +32,9 @@ section Alg
 
 variable (k : ℕ) (g : X.functionField)
 
+/--
+@isnad1 id=isintegr.2h2v.s8.2de3bb42b6fe from=translated src=- shape=e4afdc77 vocab=1cac100d
+-/
 theorem isIntegrallyClosed_sections (V : X.Opens) [Nonempty V] (hV : IsAffineOpen V)
     (hnorm : ∀ x : X, IsIntegrallyClosed (X.presheaf.stalk x)) : IsIntegrallyClosed Γ(X, V) := by
   letI (y : PrimeSpectrum Γ(X, V)) : Algebra Γ(X, V) (X.presheaf.stalk (hV.fromSpec y)) :=

@@ -76,6 +76,9 @@ private lemma isClosed_singleton_of_ne_genericPoint {X : Scheme.{u}} [IsIntegral
 end OneDimAux
 
 open OneDimAux in
+/--
+@isnad1 id=finite.3h2v.s7.aae0aa59878b from=translated src=- shape=89c00a35 vocab=427142b7
+-/
 theorem solution {X : Scheme.{u}} [IsIntegral X]
     [IsLocallyNoetherian X] [CompactSpace X]
     (hdim : ∀ x : X, ringKrullDim (X.presheaf.stalk x) ≤ 1)

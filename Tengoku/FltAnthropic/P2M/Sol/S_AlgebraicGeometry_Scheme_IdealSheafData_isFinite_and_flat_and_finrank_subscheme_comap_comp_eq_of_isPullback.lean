@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=and.1h9v.s8.55a1d9607846 from=translated src=- shape=93eff73d vocab=8d4e0cee
+-/
 theorem solution
     {X Y S T : Scheme.{u}} (f : X ⟶ S) (g : T ⟶ S) (y : Y ⟶ T) (bc : Y ⟶ X)
     (H : IsPullback bc y f g) [IsLocallyNoetherian S] [PreconnectedSpace S]

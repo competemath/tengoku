@@ -19,6 +19,9 @@ namespace ThickAffNilExt
 
 variable {X : Scheme.{u}}
 
+/--
+@isnad1 id=eq.1h3v.s7.9b9a1d280cdc from=translated src=- shape=c3d9d9a7 vocab=9547322a
+-/
 theorem image_preimage_eq {V : X.Opens} {W : X.Opens} (hWV : W ≤ V) : V.ι ''ᵁ V.ι ⁻¹ᵁ W = W := by
   rw [Scheme.Hom.image_preimage_eq_opensRange_inf, Scheme.Opens.opensRange_ι, inf_eq_right.mpr hWV]
 

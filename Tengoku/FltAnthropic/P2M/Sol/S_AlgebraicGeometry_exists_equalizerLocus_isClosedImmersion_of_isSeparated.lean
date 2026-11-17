@@ -13,6 +13,9 @@ universe u v
 
 namespace EqLocus
 
+/--
+@isnad1 id=ex.2h7v.s8.7adb73f4e660 from=translated src=- shape=b2e87cbc vocab=c2447174
+-/
 theorem single {B X Y : Scheme.{u}} (πX : X ⟶ B) (πY : Y ⟶ B) [IsSeparated πY] (a b : X ⟶ Y)
     (ha : a ≫ πY = πX) (hb : b ≫ πY = πX) :
     ∃ (E : Scheme.{u}) (m : E ⟶ X), IsClosedImmersion m ∧ m ≫ a = m ≫ b ∧
@@ -45,6 +48,9 @@ theorem single {B X Y : Scheme.{u}} (πX : X ⟶ B) (πY : Y ⟶ B) [IsSeparated
     haveI := hΔ
     infer_instance
 
+/--
+@isnad1 id=ex.2h8v.s8.66c74b625b56 from=translated src=- shape=7238b353 vocab=eebb16dc
+-/
 theorem finN {B Y : Scheme.{u}} (πY : Y ⟶ B) [IsSeparated πY] (n : ℕ) :
     ∀ (X : Scheme.{u}) (πX : X ⟶ B) (a b : Fin n → (X ⟶ Y)) (_ : ∀ i, a i ≫ πY = πX) (_ : ∀ i, b i ≫ πY = πX),
     ∃ (E : Scheme.{u}) (m : E ⟶ X), IsClosedImmersion m ∧ (∀ i, m ≫ a i = m ≫ b i) ∧
@@ -85,6 +91,9 @@ theorem finN {B Y : Scheme.{u}} (πY : Y ⟶ B) [IsSeparated πY] (n : ℕ) :
 
 end EqLocus
 
+/--
+@isnad1 id=ex.3h8v.s8.313c50f446e1 from=translated src=- shape=56cc72e5 vocab=b9fa3acb
+-/
 theorem solution
     {B X Y : Scheme.{u}} (πX : X ⟶ B) (πY : Y ⟶ B) (hY : IsSeparated πY)
     {ι : Type v} [Fintype ι] (a b : ι → (X ⟶ Y))

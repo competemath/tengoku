@@ -15,10 +15,16 @@ namespace P2mUnramifiedRigidity
 
 variable {X Y : Scheme.{u}} (g : X ⟶ Y)
 
+/--
+@isnad1 id=isopen.0h3v.s8.2398d0fc2602 from=translated src=- shape=9b0dd15d vocab=2d0d9714
+-/
 theorem isOpen_range_diagonal [FormallyUnramified g] [LocallyOfFiniteType g] :
     IsOpen (Set.range (pullback.diagonal g).base) :=
   (pullback.diagonal g).isOpenEmbedding.isOpen_range
 
+/--
+@isnad1 id=isclosed.0h3v.s8.0b970f1a8988 from=translated src=- shape=323ea337 vocab=9a0a96a7
+-/
 theorem isClosed_range_diagonal [IsSeparated g] :
     IsClosed (Set.range (pullback.diagonal g).base) := by
   haveI : IsClosedImmersion (pullback.diagonal g) := IsSeparated.isClosedImmersion_diagonal
@@ -26,6 +32,9 @@ theorem isClosed_range_diagonal [IsSeparated g] :
 
 variable {g}
 
+/--
+@isnad1 id=eq.2h8v.s7.35b987f75289 from=translated src=- shape=b8f4c0f7 vocab=5daf7fff
+-/
 theorem comp_lift_eq_comp_diagonal {T Z : Scheme.{u}} (u₁ u₂ : T ⟶ X) (hg : u₁ ≫ g = u₂ ≫ g)
     (p : Z ⟶ T) (hp : p ≫ u₁ = p ≫ u₂) :
     p ≫ pullback.lift u₁ u₂ hg = (p ≫ u₁) ≫ pullback.diagonal g := by
@@ -75,6 +84,9 @@ theorem eq_of_comp_eq {T Z : Scheme.{u}} [FormallyUnramified g] [LocallyOfFinite
 
 end P2mUnramifiedRigidity
 
+/--
+@isnad1 id=eq.2h8v.s7.0b3c72a4bce0 from=translated src=- shape=68518071 vocab=16de8f4a
+-/
 theorem solution
     {X Y T Z : Scheme.{u}} (g : X ⟶ Y) [FormallyUnramified g] [LocallyOfFiniteType g]
     [IsSeparated g] [PreconnectedSpace T]

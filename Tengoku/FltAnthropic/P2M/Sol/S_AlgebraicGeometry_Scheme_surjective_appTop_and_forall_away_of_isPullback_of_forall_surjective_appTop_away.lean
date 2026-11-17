@@ -13,6 +13,9 @@ universe u
 
 namespace C7HG
 
+/--
+@isnad1 id=surjecti.2h8v.s16.fe95479b717a from=translated src=- shape=13c1d0a8 vocab=01f3fc3b
+-/
 theorem surj_appTop_of_isPullback_away
     {S : Type u} [CommRing S] {A : Scheme.{u}} (f : A ⟶ Spec (CommRingCat.of S))
     (hΓ : ∀ r : S, Function.Surjective
@@ -55,6 +58,9 @@ theorem surj_appTop_of_isPullback_away
 end C7HG
 
 open C7HG in
+/--
+@isnad1 id=and.2h8v.s17.fa4e54ea2cce from=translated src=- shape=2c819308 vocab=01f3fc3b
+-/
 theorem solution
     {S : Type u} [CommRing S] {A : Scheme.{u}} (f : A ⟶ Spec (CommRingCat.of S))
     (hΓ : ∀ r : S, Function.Surjective

@@ -13,6 +13,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry TopologicalSpace
 
 namespace BenchOIIIb
 
+/--
+@isnad1 id=eq.0h5v.s7.5d17b904a4ce from=translated src=- shape=b045dd31 vocab=05fefcc4
+-/
 theorem rank_kaehlerDifferential_of_isLocalization
     (A S O : Type u) [CommRing A] [CommRing S] [CommRing O] [Algebra A S] [Algebra S O] [Algebra A O]
     [IsScalarTower A S O] (M : Submonoid S) [IsLocalization M O] [Nontrivial O]
@@ -28,6 +31,9 @@ theorem rank_kaehlerDifferential_of_isLocalization
 
 end BenchOIIIb
 
+/--
+@isnad1 id=eq.5h8v.s10.6aa2a01a76d6 from=translated src=- shape=d39939d0 vocab=14c8a246
+-/
 theorem solution
     {k : Type u} [Field k] {F : Scheme.{u}} (g : F ⟶ Spec (CommRingCat.of k)) (n : ℕ)
     (hg : SmoothOfRelativeDimension n g)

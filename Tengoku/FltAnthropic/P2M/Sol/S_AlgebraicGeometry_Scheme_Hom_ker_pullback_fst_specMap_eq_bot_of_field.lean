@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=eq.0h5v.s7.8b3c6f5e8330 from=translated src=- shape=7823bcd2 vocab=229538ea
+-/
 theorem solution
     {k₀ : Type} [Field k₀] {Bb : Type} [CommRing Bb] [Nontrivial Bb] (ψ : k₀ →+* Bb)
     {T : Scheme.{0}} (t : T ⟶ Spec (CommRingCat.of k₀)) :

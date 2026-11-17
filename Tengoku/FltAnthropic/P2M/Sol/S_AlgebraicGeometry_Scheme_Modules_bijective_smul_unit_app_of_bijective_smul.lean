@@ -23,6 +23,9 @@ open _root_.AlgebraicGeometry.Scheme.Modules open _root_.AlgebraicGeometry.Schem
 
 namespace FramePullback
 
+/--
+@isnad1 id=final.0h3v.s7.e0f065c98e32 from=translated src=- shape=5f26ffc8 vocab=6d7edeab
+-/
 scoped instance opensMap_final' {X Y : Scheme.{u}} (f : X ⟶ Y) : (Opens.map f.base).Final :=
   CategoryTheory.final_of_representablyFlat _
 
@@ -33,6 +36,9 @@ section pullback
 variable {X X' : Scheme.{u}} (p : X' ⟶ X) (M : X.Modules)
 
 omit M in
+/--
+@isnad1 id=eq.1h3v.s7.034dfeaa88b9 from=translated src=- shape=99da3903 vocab=9547322a
+-/
 lemma image_preimage_eq {W V : X'.Opens} (hW : W ≤ V) : V.ι ''ᵁ (V.ι ⁻¹ᵁ W) = W :=
   (Scheme.Hom.image_preimage_eq_opensRange_inf V.ι W).trans
     (by rw [Scheme.Opens.opensRange_ι]; exact inf_eq_right.mpr hW)

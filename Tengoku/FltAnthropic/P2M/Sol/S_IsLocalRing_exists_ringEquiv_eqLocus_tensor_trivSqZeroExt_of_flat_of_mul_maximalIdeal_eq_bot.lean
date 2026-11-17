@@ -21,11 +21,17 @@ noncomputable def μ {T' : Type u} [CommRing T'] (V : Type u) [AddCommGroup V] [
     (ι : V →ₗ[T'] T') (C : Type u) [CommRing C] [Algebra T' C] : C ⊗[T'] V →ₗ[C] C :=
   (Algebra.TensorProduct.rid T' C C).toLinearEquiv.toLinearMap ∘ₗ LinearMap.baseChange C ι
 
+/--
+@isnad1 id=eq.0h6v.s9.0e0bd4d47f29 from=translated src=- shape=183a207b vocab=41e6152b
+-/
 theorem μ_tmul {T' : Type u} [CommRing T'] (V : Type u) [AddCommGroup V] [Module T' V]
     (ι : V →ₗ[T'] T') (C : Type u) [CommRing C] [Algebra T' C] (c : C) (v : V) :
     μ V ι C (c ⊗ₜ v) = c * algebraMap T' C (ι v) := by
   simp [μ, LinearMap.baseChange_tmul, Algebra.smul_def, mul_comm]
 
+/--
+@isnad1 id=injectiv.1h4v.s9.58ae650d2701 from=translated src=- shape=b31ca3b2 vocab=46ca7e31
+-/
 theorem μ_injective {T' : Type u} [CommRing T'] (V : Type u) [AddCommGroup V] [Module T' V]
     (ι : V →ₗ[T'] T') (hι : Function.Injective ι) (C : Type u) [CommRing C] [Algebra T' C] [Module.Flat T' C] :
     Function.Injective (μ V ι C) := by
@@ -37,6 +43,9 @@ theorem μ_injective {T' : Type u} [CommRing T'] (V : Type u) [AddCommGroup V] [
   rw [this]
   exact Module.Flat.lTensor_preserves_injective_linearMap ι hι
 
+/--
+@isnad1 id=eq.1h5v.s8.b0b20f46665d from=translated src=- shape=d493ceb6 vocab=6078539c
+-/
 theorem range_μ {T' : Type u} [CommRing T'] (I : Ideal T') (V : Type u) [AddCommGroup V] [Module T' V]
     (ι : V →ₗ[T'] T') (hιI : LinearMap.range ι = Submodule.restrictScalars T' I)
     (C : Type u) [CommRing C] [Algebra T' C] :
@@ -67,6 +76,9 @@ theorem range_μ {T' : Type u} [CommRing T'] (I : Ideal T') (V : Type u) [AddCom
       obtain ⟨x, rfl⟩ := hy
       exact ⟨a • x, by rw [map_smul, smul_eq_mul]⟩
 
+/--
+@isnad1 id=iff.1h6v.s9.2ecbf6b888cb from=translated src=- shape=babb2aa6 vocab=b5b946fc
+-/
 theorem mem_range_μ_iff {T' : Type u} [CommRing T'] (I : Ideal T') (V : Type u) [AddCommGroup V] [Module T' V]
     (ι : V →ₗ[T'] T') (hιI : LinearMap.range ι = Submodule.restrictScalars T' I)
     (C : Type u) [CommRing C] [Algebra T' C] (z : C) :
@@ -74,6 +86,9 @@ theorem mem_range_μ_iff {T' : Type u} [CommRing T'] (I : Ideal T') (V : Type u)
   have := range_μ I V ι hιI C
   exact ⟨fun h => by rw [← SetLike.mem_coe, ← this]; exact h, fun h => by rw [← SetLike.mem_coe, this]; exact h⟩
 
+/--
+@isnad1 id=eq.4h5v.s8.d20ca4eebeb8 from=translated src=- shape=37fc35a3 vocab=955ac535
+-/
 theorem mul_eq_zero_of_mem_map {T' : Type u} [CommRing T'] [IsLocalRing T'] (I : Ideal T') (hI : I ≤ maximalIdeal T')
     (hsmall : I * maximalIdeal T' = ⊥) (C : Type u) [CommRing C] [Algebra T' C]
     {x y : C} (hx : x ∈ I.map (algebraMap T' C)) (hy : y ∈ I.map (algebraMap T' C)) :
@@ -99,6 +114,9 @@ noncomputable def eV : (ResidueField T' ⊗[T'] C) ⊗[ResidueField T'] V ≃ₗ
     (TensorProduct.AlgebraTensorModule.cancelBaseChange T' (ResidueField T') (ResidueField T') V C)).restrictScalars T').trans
     (TensorProduct.comm T' V C)
 
+/--
+@isnad1 id=eq.0h5v.s12.21b9c434f126 from=translated src=- shape=6b00cbe0 vocab=ed1b09bc
+-/
 theorem eV_symm_tmul (c : C) (v : V) : (eV T' V C).symm (c ⊗ₜ v) = ((1 : ResidueField T') ⊗ₜ[T'] c) ⊗ₜ v := by
   apply (eV T' V C).injective
   rw [LinearEquiv.apply_symm_apply]
@@ -108,6 +126,9 @@ noncomputable def j : C ⊗[T'] V →ₗ[T'] 𝔈 :=
   ((LinearMap.lTensor (ResidueField T' ⊗[T'] C) (TrivSqZeroExt.inrHom (ResidueField T') V)).restrictScalars T') ∘ₗ
     (eV T' V C).symm.toLinearMap
 
+/--
+@isnad1 id=eq.0h5v.s12.58807e355a18 from=translated src=- shape=5320e2f1 vocab=2cda4292
+-/
 theorem j_tmul (c : C) (v : V) : j T' V C (c ⊗ₜ v) = ((1 : ResidueField T') ⊗ₜ[T'] c) ⊗ₜ TrivSqZeroExt.inr v := by
   simp only [j, LinearMap.coe_comp, Function.comp_apply, LinearEquiv.coe_toLinearMap, eV_symm_tmul,
     LinearMap.coe_restrictScalars, LinearMap.lTensor_tmul]
@@ -117,6 +138,9 @@ noncomputable def pr : 𝔈 →ₗ[T'] C ⊗[T'] V :=
   (eV T' V C).toLinearMap ∘ₗ
     ((LinearMap.lTensor (ResidueField T' ⊗[T'] C) (TrivSqZeroExt.sndHom (ResidueField T') V)).restrictScalars T')
 
+/--
+@isnad1 id=eq.0h4v.s12.853bfec539bb from=translated src=- shape=ca8acb96 vocab=e1a54f50
+-/
 theorem pr_j (x : C ⊗[T'] V) : pr T' V C (j T' V C x) = x := by
   simp only [pr, j, LinearMap.coe_comp, Function.comp_apply, LinearMap.coe_restrictScalars, LinearEquiv.coe_toLinearMap]
   rw [← LinearMap.comp_apply (LinearMap.lTensor _ _) (LinearMap.lTensor _ _), ← LinearMap.lTensor_comp]
@@ -124,9 +148,15 @@ theorem pr_j (x : C ⊗[T'] V) : pr T' V C (j T' V C x) = x := by
     ext v; rfl
   rw [this, LinearMap.lTensor_id, LinearMap.id_apply, LinearEquiv.apply_symm_apply]
 
+/--
+@isnad1 id=injectiv.0h3v.s11.6dd765df6a14 from=translated src=- shape=34ff1f1c vocab=3b76fb26
+-/
 theorem j_injective : Function.Injective (j T' V C) :=
   Function.LeftInverse.injective (g := pr T' V C) (pr_j T' V C)
 
+/--
+@isnad1 id=eq.0h5v.s13.db75400c9e2a from=translated src=- shape=9d4eaac7 vocab=c10b2683
+-/
 theorem j_smul (a : C) (x : C ⊗[T'] V) :
     j T' V C (a • x) = ((((1 : ResidueField T') ⊗ₜ[T'] a) ⊗ₜ (1 : TrivSqZeroExt (ResidueField T') V)) : 𝔈) * j T' V C x := by
   induction x using TensorProduct.induction_on with
@@ -141,6 +171,9 @@ theorem j_smul (a : C) (x : C ⊗[T'] V) :
     exact (Distrib.left_distrib ((((1 : ResidueField T') ⊗ₜ[T'] a) ⊗ₜ (1 : TrivSqZeroExt (ResidueField T') V)) : 𝔈)
       (j T' V C x) (j T' V C y)).symm
 
+/--
+@isnad1 id=eq.0h5v.s13.a0b31fcd558e from=translated src=- shape=9efd18a5 vocab=8fdb37a4
+-/
 theorem j_mul_j (x y : C ⊗[T'] V) : j T' V C x * j T' V C y = 0 := by
   induction x using TensorProduct.induction_on with
   | zero => rw [map_zero]; exact zero_mul (j T' V C y)
@@ -156,6 +189,9 @@ noncomputable def aug : 𝔈 →+* ResidueField T' ⊗[T'] C :=
     ((Algebra.ofId (ResidueField T') (ResidueField T' ⊗[T'] C)).comp
       (TrivSqZeroExt.fstHom (ResidueField T') (ResidueField T') V)) (fun _ _ => Commute.all _ _)).toRingHom
 
+/--
+@isnad1 id=eq.0h5v.s11.cb5bf318d9d4 from=translated src=- shape=79ab066a vocab=41e5dc33
+-/
 theorem aug_tmul (y : ResidueField T' ⊗[T'] C) (z : TrivSqZeroExt (ResidueField T') V) :
     aug T' V C (y ⊗ₜ z) = z.fst • y := by
   simp only [aug, AlgHom.toRingHom_eq_coe, RingHom.coe_coe, Algebra.TensorProduct.lift_tmul, AlgHom.id_apply,
@@ -163,16 +199,25 @@ theorem aug_tmul (y : ResidueField T' ⊗[T'] C) (z : TrivSqZeroExt (ResidueFiel
   rw [Algebra.ofId_apply, Algebra.smul_def, mul_comm]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.7e90f919f548 from=translated src=- shape=d785ceec vocab=a0f0eed1
+-/
 theorem aug_tmul_one (y : ResidueField T' ⊗[T'] C) :
     aug T' V C (y ⊗ₜ (1 : TrivSqZeroExt (ResidueField T') V)) = y := by
   rw [aug_tmul, TrivSqZeroExt.fst_one, one_smul]
 
+/--
+@isnad1 id=eq.0h4v.s12.aad3edf5ada3 from=translated src=- shape=dac0a29e vocab=8344fc4e
+-/
 theorem aug_j (x : C ⊗[T'] V) : aug T' V C (j T' V C x) = 0 := by
   induction x using TensorProduct.induction_on with
   | zero => rw [map_zero, map_zero]
   | tmul c v => rw [j_tmul, aug_tmul, TrivSqZeroExt.fst_inr, zero_smul]
   | add x y hx hy => rw [map_add, map_add, hx, hy, add_zero]
 
+/--
+@isnad1 id=ex.0h4v.s13.870f4ac3a9de from=translated src=- shape=42181be4 vocab=a2c0d0be
+-/
 theorem exists_eq_aug_tmul_one_add_j (e : 𝔈) :
     ∃ x : C ⊗[T'] V, e = (aug T' V C e) ⊗ₜ (1 : TrivSqZeroExt (ResidueField T') V) + j T' V C x := by
   induction e using TensorProduct.induction_on with
@@ -212,6 +257,9 @@ end Schl
 open Schl in
 set_option maxHeartbeats 6400000 in
 set_option synthInstance.maxHeartbeats 1600000 in
+/--
+@isnad1 id=other.4h5v.s16.8cacc5eb8951 from=translated src=- shape=2fc0965f vocab=bc55953f
+-/
 theorem solution
     {T' : Type u} [CommRing T'] [IsLocalRing T'] (I : Ideal T') (hI : I ≤ maximalIdeal T') (hsmall : I * maximalIdeal T' = ⊥)
     (V : Type u) [AddCommGroup V] [Module (ResidueField T') V] [Module (ResidueField T')ᵐᵒᵖ V]

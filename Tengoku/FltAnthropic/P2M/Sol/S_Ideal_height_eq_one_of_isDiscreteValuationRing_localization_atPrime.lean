@@ -7,6 +7,9 @@ namespace P2MW.S_Ideal_height_eq_one_of_isDiscreteValuationRing_localization_atP
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.1h2v.s6.b8fb73b208a8 from=translated src=- shape=b8b5a730 vocab=28e489a0
+-/
 theorem solution {R : Type*} [CommRing R] [IsDomain R] (p : Ideal R) [p.IsPrime]
     (h : IsDiscreteValuationRing (Localization.AtPrime p)) : p.height = 1 := by
   haveI := h

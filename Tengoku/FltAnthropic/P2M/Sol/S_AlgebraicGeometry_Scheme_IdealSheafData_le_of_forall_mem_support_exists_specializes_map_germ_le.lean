@@ -12,6 +12,9 @@ universe u
 
 open AlgebraicGeometry CategoryTheory
 
+/--
+@isnad1 id=le.1h3v.s12.c2f968ae11ab from=translated src=- shape=0bf03e59 vocab=9ffc6bfc
+-/
 theorem solution
     {X : Scheme.{u}} (I J : X.IdealSheafData)
     (h : ∀ x : X, x ∈ (J.support : Set X) →

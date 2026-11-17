@@ -10,6 +10,9 @@ set_option autoImplicit false
 open scoped BigOperators
 open AlgebraicGeometry AlgebraicGeometry.ThetaLevel
 
+/--
+@isnad1 id=ex.8h10v.s10.cf80fb3daa91 from=translated src=- shape=0e559446 vocab=cabff496
+-/
 theorem AlgebraicGeometry.ThetaLevel.exists_isIntertwiner_of_forall_schrod_eta_apply_eq_of_bijective
     {g : ℕ} (δ : Fin g → ℕ) [∀ i, NeZero (δ i)] (d : ℕ) [NeZero d] (hδd : ∏ i, δ i = d)
     (B : Type) [CommRing B] (hd : IsUnit ((d : ℕ) : B)) (ζ ω : B) (hζ : ζ ^ d = 1)

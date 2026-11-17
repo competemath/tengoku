@@ -25,12 +25,18 @@ namespace Modules
 export _root_.AlgebraicGeometry.Scheme.Modules (pushforward pullback Hom.comp_app Hom Hom.app Hom.isIso_iff_isIso_app pullbackPushforwardAdjunction restrict pullbackComp baseChangeHom baseChangeHom_comp_horizontal isIso_baseChangeHom_iff_of_isPullback isIso_baseChangeHom_of_isOpenImmersion Hom.isIso_of_isIso_app_of_iSup_eq_top bijective_unit_app_of_le_opensRange)
 open _root_.AlgebraicGeometry.Scheme.Modules open _root_.AlgebraicGeometry.Scheme open _root_.AlgebraicGeometry
 
+/--
+@isnad1 id=iff.3h10v.s8.2041324765bb from=translated src=- shape=9c2b336d vocab=7e647af2
+-/
 theorem n2E5_isIso_baseChangeHom_congr_bottom {X T X' T' : Scheme.{u}} {π : X ⟶ T} {π' : X' ⟶ T'} {g' : X' ⟶ X}
     {b b' : T' ⟶ T} (eb : b = b') (h : g' ≫ π = π' ≫ b) (h' : g' ≫ π = π' ≫ b') (F : X.Modules) :
     IsIso (baseChangeHom h F) ↔ IsIso (baseChangeHom h' F) := by
   subst eb
   exact Iff.rfl
 
+/--
+@isnad1 id=isiso.2h7v.s8.520ba01361ee from=translated src=- shape=8647ecc8 vocab=2e66580f
+-/
 theorem n2E5_isIso_app_of_isIso_pullback_map {T' S' : Scheme.{u}} (j : S' ⟶ T') [IsOpenImmersion j]
     {M N : T'.Modules} (β : M ⟶ N) (hβ : IsIso ((pullback j).map β)) (V : T'.Opens) (hV : V ≤ j.opensRange) :
     IsIso (β.app V) := by
@@ -48,6 +54,9 @@ theorem n2E5_isIso_app_of_isIso_pullback_map {T' S' : Scheme.{u}} (j : S' ⟶ T'
   exact @IsIso.of_isIso_fac_right _ _ _ _ _ _ _ _ i2 hc n
 
 set_option maxHeartbeats 3200000 in
+/--
+@isnad1 id=isiso.2h9v.s9.82cc2fb51bd3 from=translated src=- shape=c09a3755 vocab=ded14c78
+-/
 theorem _root_.P2MW.S_AlgebraicGeometry_Scheme_Modules_isIso_baseChangeHom_of_forall_exists_isPullback.solution
     {X T X' T' : Scheme.{u}} {π : X ⟶ T} {ψ : T' ⟶ T} {π' : X' ⟶ T'} {g' : X' ⟶ X}
     (hcart : IsPullback g' π' π ψ) (F : X.Modules)

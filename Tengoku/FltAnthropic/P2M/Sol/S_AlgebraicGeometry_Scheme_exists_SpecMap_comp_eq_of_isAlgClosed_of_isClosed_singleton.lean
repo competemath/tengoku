@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits TopologicalSpace AlgebraicGeometry Opposite
 
+/--
+@isnad1 id=ex.1h5v.s8.1c131584e155 from=translated src=- shape=e6e14966 vocab=940811d9
+-/
 theorem solution
     {k₀ : Type u} [Field k₀] {F : Scheme.{u}} (f : F ⟶ Spec (CommRingCat.of k₀)) [LocallyOfFiniteType f]
     (k : Type u) [Field k] [Algebra k₀ k] [IsAlgClosed k]

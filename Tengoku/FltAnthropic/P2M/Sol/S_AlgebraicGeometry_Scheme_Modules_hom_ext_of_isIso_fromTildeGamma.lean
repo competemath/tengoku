@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry Opposite
 
+/--
+@isnad1 id=eq.1h5v.s13.1f383a02aae1 from=translated src=- shape=2e588c67 vocab=1c61b9ad
+-/
 theorem solution {R : CommRingCat.{u}}
     {M N : (Spec (.of R)).Modules} [IsIso (Scheme.Modules.fromTildeΓ M)] (φ ψ : M ⟶ N)
     (h : ∀ m : Γ(M, ⊤), φ.app ⊤ m = ψ.app ⊤ m) : φ = ψ := by

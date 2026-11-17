@@ -16,6 +16,9 @@ namespace EtaleNhd
 
 open IsLocalRing
 
+/--
+@isnad1 id=ex.0h3v.s10.e22129be9f60 from=translated src=- shape=f7425371 vocab=3c890dca
+-/
 theorem exists_etale_of_smooth_of_algHom_residueField
     {R : Type u} [CommRing R] [IsLocalRing R] {B : Type u} [CommRing B] [Algebra R B] [Algebra.Smooth R B]
     (ψ : B →ₐ[R] ResidueField R) :
@@ -142,6 +145,9 @@ namespace EtaleNhd
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry IsLocalRing
 
+/--
+@isnad1 id=ex.1h4v.s10.a0c81ef2b671 from=translated src=- shape=8a7a4c12 vocab=8ca66268
+-/
 theorem main
     {R : Type u} [CommRing R] [IsLocalRing R]
     {U : Scheme.{u}} (f : U ⟶ Spec (CommRingCat.of R)) [Smooth f]
@@ -214,6 +220,9 @@ theorem main
 end EtaleNhd
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry in
+/--
+@isnad1 id=ex.1h4v.s10.a0c81ef2b671 from=translated src=- shape=8a7a4c12 vocab=8ca66268
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsLocalRing R]
     {U : Scheme.{u}} (f : U ⟶ Spec (CommRingCat.of R)) [Smooth f]

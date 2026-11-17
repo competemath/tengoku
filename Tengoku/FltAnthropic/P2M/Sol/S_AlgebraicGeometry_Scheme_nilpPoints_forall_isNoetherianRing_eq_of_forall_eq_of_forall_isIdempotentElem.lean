@@ -11,6 +11,9 @@ open CategoryTheory AlgebraicGeometry CerednikDrinfeld.FormalOmega Topology Topo
 
 namespace P2mExtend
 
+/--
+@isnad1 id=isopen.0h2v.s4.f7ab073973fa from=translated src=- shape=4927a877 vocab=9a12ad69
+-/
 theorem isOpen_connectedComponent_of_noetherianSpace {α : Type} [TopologicalSpace α] [NoetherianSpace α]
     (x : α) : IsOpen (connectedComponent x) := by
   classical
@@ -32,6 +35,9 @@ theorem isOpen_connectedComponent_of_noetherianSpace {α : Type} [TopologicalSpa
   rw [← isClosed_compl_iff, heq]
   exact hcl
 
+/--
+@isnad1 id=or.1h2v.s6.1294d71df5e0 from=translated src=- shape=9256402a vocab=612acb1b
+-/
 theorem isIdempotentElem_eq_zero_or_one_of_preconnectedSpace {S : Type} [CommRing S]
     [PreconnectedSpace (PrimeSpectrum S)] (f : S) (hf : IsIdempotentElem f) : f = 0 ∨ f = 1 := by
   have key : ∀ g : S, IsIdempotentElem g → (PrimeSpectrum.basicOpen g : Set (PrimeSpectrum S)) = ∅ → g = 0 := by
@@ -54,6 +60,9 @@ theorem isIdempotentElem_eq_zero_or_one_of_preconnectedSpace {S : Type} [CommRin
     have := key (1 - f) hf.one_sub h1
     exact (sub_eq_zero.mp this).symm
 
+/--
+@isnad1 id=ex.0h2v.s8.437c16b0518b from=translated src=- shape=1214eab2 vocab=63147a33
+-/
 theorem exists_idempotent_basicOpen_localization_connected {B : Type} [CommRing B] [IsNoetherianRing B]
     (p : PrimeSpectrum B) :
     ∃ e : B, IsIdempotentElem e ∧ p ∈ PrimeSpectrum.basicOpen e ∧
@@ -74,6 +83,9 @@ theorem exists_idempotent_basicOpen_localization_connected {B : Type} [CommRing 
 
 end P2mExtend
 
+/--
+@isnad1 id=eq.4h9v.s10.ea0e9576d76b from=translated src=- shape=c3b40fc9 vocab=f64aa831
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] (π : 𝒪) (F : AlgFunctor 𝒪)
     {N : Scheme.{0}} (fN : N ⟶ Spec (CommRingCat.of 𝒪))

@@ -13,6 +13,9 @@ open CategoryTheory CategoryTheory.Limits
 
 open AlgebraicGeometry
 
+/--
+@isnad1 id=existsun.2h9v.s9.c5f94a69b97f from=translated src=- shape=0728a28c vocab=682a3b0d
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsLocalRing R]
     {X Xf X' T : Scheme.{u}} (g : X ⟶ Spec (.of R))

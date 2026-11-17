@@ -11,6 +11,9 @@ universe u
 
 open _root_.CategoryTheory open _root_.AlgebraicGeometry
 
+/--
+@isnad1 id=mem.5h4v.s9.87f8e0ac44a4 from=translated src=- shape=b40bef43 vocab=c5075c0a
+-/
 theorem mem_range_algebraMap_of_prime_of_forall_prime_exists_denominator
     {S K : Type*} [CommRing S] [CommRing K] [IsDomain K] [Algebra S K]
     (hinj : Function.Injective (algebraMap S K))
@@ -73,6 +76,9 @@ export _root_.AlgebraicGeometry (Spec IsIntegral Scheme functionField_isFraction
 namespace LocalUnit
 open _root_.AlgebraicGeometry
 
+/--
+@isnad1 id=eq.2h3v.s11.4d61c5bada9e from=translated src=- shape=bb1a016b vocab=a14fbf6e
+-/
 theorem primeIdealOf_fromSpec {X : Scheme} {U : X.Opens} (hU : IsAffineOpen U)
     (y : PrimeSpectrum Γ(X, U)) (h : hU.fromSpec.base y ∈ U) :
     hU.primeIdealOf ⟨hU.fromSpec.base y, h⟩ = y := by
@@ -87,6 +93,9 @@ theorem primeIdealOf_fromSpec {X : Scheme} {U : X.Opens} (hU : IsAffineOpen U)
 
 end AlgebraicGeometry.LocalUnit
 
+/--
+@isnad1 id=mem.4h6v.s16.0408b5d219b2 from=translated src=- shape=0fac76b9 vocab=209f2c31
+-/
 theorem solution
     {R : Type u} [CommRing R] {X : Scheme.{u}} [IsIntegral X] (c : X ⟶ Spec (CommRingCat.of R)) (r : R) (x : X)
 

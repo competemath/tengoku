@@ -13,6 +13,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry TopologicalSpace
 
 namespace EqLocus2
 
+/--
+@isnad1 id=locallyo.0h5v.s5.5f2776739b9e from=translated src=- shape=07a7f26f vocab=8e26719e
+-/
 theorem locallyOfFinitePresentation_of_comp {X Y Z : Scheme.{u}} (f : X ⟶ Y) (g : Y ⟶ Z)
     [hg : LocallyOfFiniteType g] [hfg : LocallyOfFinitePresentation (f ≫ g)] : LocallyOfFinitePresentation f := by
   have hQ : RingHom.StableUnderCompositionWithLocalizationAwaySource @RingHom.FinitePresentation :=
@@ -39,6 +42,9 @@ theorem locallyOfFinitePresentation_of_comp {X Y Z : Scheme.{u}} (f : X ⟶ Y) (
   rw [← Scheme.Hom.appLE_comp_appLE f g W U V hUW hVU, CommRingCat.hom_comp] at h2
   exact RingHom.FinitePresentation.of_comp_finiteType _ h2 h1
 
+/--
+@isnad1 id=locallyo.0h3v.s5.ab1c74c1ecc0 from=translated src=- shape=620b92ff vocab=d70c04bb
+-/
 theorem locallyOfFinitePresentation_diagonal {H S : Scheme.{u}} (q : H ⟶ S) [LocallyOfFiniteType q] :
     LocallyOfFinitePresentation (pullback.diagonal q) := by
   haveI : LocallyOfFinitePresentation (pullback.diagonal q ≫ pullback.fst q q) := by
@@ -47,6 +53,9 @@ theorem locallyOfFinitePresentation_diagonal {H S : Scheme.{u}} (q : H ⟶ S) [L
 
 end EqLocus2
 
+/--
+@isnad1 id=ex.2h7v.s7.0db8890b4b29 from=translated src=- shape=904ade0f vocab=28a56ff2
+-/
 theorem solution
     {H S T : Scheme.{u}} (q : H ⟶ S) [IsSeparated q] (t : T ⟶ S) (u v : T ⟶ H) (hu : u ≫ q = t) (hv : v ≫ q = t) :
     ∃ (Z : Scheme.{u}) (j : Z ⟶ T), IsClosedImmersion j ∧ (LocallyOfFiniteType q → LocallyOfFinitePresentation j) ∧

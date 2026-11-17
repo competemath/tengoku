@@ -15,17 +15,26 @@ open TopologicalSpace
 
 namespace BenchOG1
 
+/--
+@isnad1 id=eq.0h9v.s12.a189001e03d6 from=translated src=- shape=c02ccdd2 vocab=f28c707b
+-/
 theorem map_map {X : Scheme.{u}} (M : X.Modules) {U V W : X.Opens} (f : V ⟶ U) (g : W ⟶ V) (k : W ⟶ U)
     (x : Γ(M, U)) : M.presheaf.map g.op (M.presheaf.map f.op x) = M.presheaf.map k.op x := by
   rw [← CategoryTheory.comp_apply, ← Functor.map_comp]
   congr 2
 
+/--
+@isnad1 id=eq.3h7v.s11.eb85cbfd5af5 from=translated src=- shape=cd697098 vocab=6733962d
+-/
 theorem sec_ext {X : Scheme.{u}} (M : X.Modules) {ι : Type u} (Wi : ι → X.Opens) (V : X.Opens)
     (hle : ∀ i, Wi i ≤ V) (hcover : ∀ x ∈ V, ∃ i, x ∈ Wi i) (s t : Γ(M, V))
     (h : ∀ i, M.presheaf.map (homOfLE (hle i)).op s = M.presheaf.map (homOfLE (hle i)).op t) : s = t :=
   TopCat.Sheaf.eq_of_locally_eq' ⟨M.presheaf, Scheme.Modules.isSheaf M⟩ Wi V (fun i => homOfLE (hle i))
     (fun x hx => by obtain ⟨i, hi⟩ := hcover x hx; exact Opens.mem_iSup.mpr ⟨i, hi⟩) s t h
 
+/--
+@isnad1 id=eq.1h5v.s11.15053b0ce626 from=translated src=- shape=925b2195 vocab=4613d35c
+-/
 theorem sec_ext_affine {X : Scheme.{u}} (M : X.Modules) (V : X.Opens) (s t : Γ(M, V))
     (h : ∀ (U : X.affineOpens) (hU : (U : X.Opens) ≤ V),
       M.presheaf.map (homOfLE hU).op s = M.presheaf.map (homOfLE hU).op t) : s = t := by
@@ -37,6 +46,9 @@ theorem sec_ext_affine {X : Scheme.{u}} (M : X.Modules) (V : X.Opens) (s t : Γ(
 
 end BenchOG1
 
+/--
+@isnad1 id=existsun.1h4v.s12.12e9e41e0ada from=translated src=- shape=ad0f0dfb vocab=7179ecbe
+-/
 theorem solution
     {X : Scheme.{u}} (M : X.Modules) (W : X.Opens)
     (s : ∀ U : X.affineOpens, (U : X.Opens) ≤ W → Γ(M, U))

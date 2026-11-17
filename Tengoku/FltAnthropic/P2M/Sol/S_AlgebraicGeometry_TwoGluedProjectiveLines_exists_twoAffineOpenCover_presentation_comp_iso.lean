@@ -30,13 +30,25 @@ noncomputable def coverOfIso (𝒲 : X.TwoAffineOpenCover) (φ : X ≅ X') : X'.
   sup_eq_top := by rw [← Scheme.Hom.preimage_sup, 𝒲.sup_eq_top, Scheme.Hom.preimage_top]
   isAffineOpen_inf := by rw [← Scheme.Hom.preimage_inf]; exact 𝒲.isAffineOpen_inf.preimage_of_isIso φ.inv
 
+/--
+@isnad1 id=eq.0h4v.s7.735b54ebdec2 from=translated src=- shape=eb9c84f5 vocab=b52cfcfa
+-/
 @[scoped simp] theorem coverOfIso_U0 (𝒲 : X.TwoAffineOpenCover) (φ : X ≅ X') : (coverOfIso 𝒲 φ).U0 = φ.inv ⁻¹ᵁ 𝒲.U0 := rfl
+/--
+@isnad1 id=eq.0h4v.s7.5c1bd07b7928 from=translated src=- shape=eb9c84f5 vocab=e27097c5
+-/
 @[scoped simp] theorem coverOfIso_U1 (𝒲 : X.TwoAffineOpenCover) (φ : X ≅ X') : (coverOfIso 𝒲 φ).U1 = φ.inv ⁻¹ᵁ 𝒲.U1 := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.d040b708598c from=translated src=- shape=3a537ebc vocab=6c794085
+-/
 theorem comp_preimage_inv_preimage {A : Scheme.{u}} (i : A ⟶ X) (φ : X ≅ X') (U : X.Opens) :
     (i ≫ φ.hom) ⁻¹ᵁ (φ.inv ⁻¹ᵁ U) = i ⁻¹ᵁ U := by
   rw [← Scheme.Hom.comp_preimage, Category.assoc, Iso.hom_inv_id, Category.comp_id]
 
+/--
+@isnad1 id=isreduce.0h7v.s6.0ba3c4b60765 from=translated src=- shape=204bd6fe vocab=f49a2beb
+-/
 theorem isReduced_pullback_comp_iso {A B : Scheme.{u}} (i₁ : A ⟶ X) (i₂ : B ⟶ X) (φ : X ≅ X')
     [IsReduced (pullback i₁ i₂)] : IsReduced (pullback (i₁ ≫ φ.hom) (i₂ ≫ φ.hom)) := by
   let m : pullback (i₁ ≫ φ.hom) (i₂ ≫ φ.hom) ⟶ pullback i₁ i₂ :=
@@ -45,10 +57,16 @@ theorem isReduced_pullback_comp_iso {A B : Scheme.{u}} (i₁ : A ⟶ X) (i₂ : 
     unfold m; infer_instance
   exact isReduced_of_isOpenImmersion m
 
+/--
+@isnad1 id=eq.0h5v.s9.ec1465c500ae from=translated src=- shape=3dbd2e59 vocab=4db2b3c5
+-/
 theorem range_comp_iso {A : Scheme.{u}} (i : A ⟶ X) (φ : X ≅ X') :
     Set.range (i ≫ φ.hom).base = φ.hom.base '' Set.range i.base := by
   rw [Scheme.Hom.comp_base, TopCat.coe_comp, Set.range_comp]
 
+/--
+@isnad1 id=eq.0h4v.s8.61376954ee3b from=translated src=- shape=458c7509 vocab=fcfd419b
+-/
 theorem coe_inv_preimage (φ : X ≅ X') (W : X.Opens) :
     ((φ.inv ⁻¹ᵁ W : X'.Opens) : Set X') = φ.hom.base '' (W : Set X) := by
   ext y
@@ -64,6 +82,9 @@ open scoped _root_.P2MW.S_AlgebraicGeometry_TwoGluedProjectiveLines_exists_twoAf
 open scoped _root_.P2MW.S_AlgebraicGeometry_TwoGluedProjectiveLines_exists_twoAffineOpenCover_presentation_comp_iso.AlgebraicGeometry
 
 open AlgebraicGeometry.TransportPres in
+/--
+@isnad1 id=ex.11h15v.s15.a27e2d1525e7 from=translated src=- shape=9b180ef8 vocab=119b0340
+-/
 theorem solution
     {k : Type u} [Field k] [DecidableEq (RatFunc k)] {X X' : Scheme.{u}} (x : X ⟶ Spec (CommRingCat.of k)) (x' : X' ⟶ Spec (CommRingCat.of k))
     (φ : X ≅ X') (hφ : φ.hom ≫ x' = x)

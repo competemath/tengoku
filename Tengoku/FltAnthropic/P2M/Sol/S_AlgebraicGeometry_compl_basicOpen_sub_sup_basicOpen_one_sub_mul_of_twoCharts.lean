@@ -23,12 +23,18 @@ variable {X : Scheme.{u}}
 abbrev res {U V : X.Opens} (h : V ≤ U) : Γ(X, U) →+* Γ(X, V) :=
   (X.presheaf.map (homOfLE h).op).hom
 
+/--
+@isnad1 id=eq.2h5v.s13.4c3cc5840d74 from=translated src=- shape=17fbc4cf vocab=43c1ca28
+-/
 theorem res_res {U V W : X.Opens} (h₁ : V ≤ U) (h₂ : W ≤ V) (x : Γ(X, U)) :
     res h₂ (res h₁ x) = res (h₂.trans h₁) x := by
   change (X.presheaf.map (homOfLE h₁).op ≫ X.presheaf.map (homOfLE h₂).op).hom x = _
   rw [← Functor.map_comp]
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s11.39bb34c4e720 from=translated src=- shape=b2f5f901 vocab=574ff941
+-/
 theorem basicOpen_res' {U V : X.Opens} (h : V ≤ U) (x : Γ(X, U)) :
     X.basicOpen (res h x) = V ⊓ X.basicOpen x :=
   X.basicOpen_res x (homOfLE h).op
@@ -44,6 +50,9 @@ variable (U V : X.Opens) (hU : IsAffineOpen U) (hV : IsAffineOpen V)
 
 include hfg in
 
+/--
+@isnad1 id=eq.1h6v.s15.2d6c928e9ab8 from=translated src=- shape=d95d277f vocab=08d763cb
+-/
 theorem res_one_sub_mul :
     res (inf_le_right : U ⊓ V ≤ V) (1 - res (le_top : V ≤ ⊤) s * g) =
       res (inf_le_left : U ⊓ V ≤ U) (f - res (le_top : U ≤ ⊤) s) * res (inf_le_right : U ⊓ V ≤ V) g := by
@@ -51,6 +60,9 @@ theorem res_one_sub_mul :
 
 include hg hfg in
 
+/--
+@isnad1 id=eq.2h6v.s14.00c8c4ddd84a from=translated src=- shape=c244c465 vocab=e53e905a
+-/
 theorem inf_basicOpen_eq :
     (U ⊓ V) ⊓ X.basicOpen (1 - res (le_top : V ≤ ⊤) s * g) =
       (U ⊓ V) ⊓ X.basicOpen (f - res (le_top : U ≤ ⊤) s) := by
@@ -68,6 +80,9 @@ theorem inf_basicOpen_eq :
 
 include hg hfg in
 
+/--
+@isnad1 id=eq.2h6v.s14.199771d0723e from=translated src=- shape=6e8c074e vocab=e53e905a
+-/
 theorem basicOpen_inf_basicOpen_eq :
     X.basicOpen (f - res (le_top : U ≤ ⊤) s) ⊓ X.basicOpen (1 - res (le_top : V ≤ ⊤) s * g) =
       (U ⊓ V) ⊓ X.basicOpen (f - res (le_top : U ≤ ⊤) s) := by
@@ -81,6 +96,9 @@ theorem basicOpen_inf_basicOpen_eq :
 
 include hg in
 
+/--
+@isnad1 id=mem.3h6v.s12.1505a2fc19ce from=translated src=- shape=d82063cc vocab=3780577c
+-/
 theorem mem_basicOpen_one_sub_mul {x : X} (hxV : x ∈ V) (hxU : x ∉ U) :
     x ∈ X.basicOpen (1 - res (le_top : V ≤ ⊤) s * g) := by
   rw [Scheme.mem_basicOpen _ _ _ hxV, map_sub, map_one, map_mul]
@@ -92,6 +110,9 @@ theorem mem_basicOpen_one_sub_mul {x : X} (hxV : x ∈ V) (hxU : x ∉ U) :
 
 include hg hfg hUV in
 
+/--
+@isnad1 id=eq.3h6v.s14.a6e74c3e2329 from=translated src=- shape=c16c88ae vocab=0ce06ad3
+-/
 theorem compl_sup_eq :
     ((X.basicOpen (f - res (le_top : U ≤ ⊤) s) ⊔ X.basicOpen (1 - res (le_top : V ≤ ⊤) s * g) : X.Opens) : Set X)ᶜ =
       (U : Set X) ∩ (X.basicOpen (f - res (le_top : U ≤ ⊤) s) : Set X)ᶜ := by
@@ -120,6 +141,9 @@ end AlgebraicGeometry.TwoChartsJne
 
 end
 
+/--
+@isnad1 id=eq.3h6v.s14.b8431006af26 from=translated src=- shape=9a7cb16a vocab=3a6278f5
+-/
 theorem solution
     {X : Scheme.{u}} (U V : X.Opens)
     (f : Γ(X, U)) (g : Γ(X, V))

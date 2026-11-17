@@ -15,10 +15,16 @@ namespace E160GC
 
 open TopologicalSpace Opposite
 
+/--
+@isnad1 id=eq.1h4v.s8.746f2478a962 from=translated src=- shape=6c29ac93 vocab=0fde9e0b
+-/
 theorem section_eq_of_forall_not_mem {X : Scheme.{u}} (W : X.Opens) (hW : ∀ x : X, x ∉ W)
     (s t : X.presheaf.obj (op W)) : s = t :=
   TopCat.Presheaf.section_ext X.sheaf W s t (fun x hx => absurd hx (hW x))
 
+/--
+@isnad1 id=ex.1h2v.s13.a843ade519ee from=translated src=- shape=bee08b6b vocab=419eb24b
+-/
 theorem exists_isIdempotentElem_of_isClopen {X : Scheme.{u}} {U : Set X} (hU : IsClopen U) :
     ∃ e : Γ(X, ⊤), IsIdempotentElem e ∧
       (∀ x : X, x ∈ U → X.presheaf.germ ⊤ x trivial e = 1) ∧
@@ -77,6 +83,9 @@ theorem exists_isIdempotentElem_of_isClopen {X : Scheme.{u}} {U : Set X} (hU : I
 
 end E160GC
 
+/--
+@isnad1 id=connecte.1h1v.s12.9c91f4806e26 from=translated src=- shape=e9c1e349 vocab=e9154fdc
+-/
 theorem solution
     (X : Scheme.{u}) [Nonempty X]
     (h : ∀ e : Γ(X, ⊤), IsIdempotentElem e → e = 0 ∨ e = 1) :

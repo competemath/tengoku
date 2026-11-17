@@ -15,6 +15,9 @@ namespace E160RC
 
 open TopologicalSpace Opposite
 
+/--
+@isnad1 id=eq.5h8v.s8.86297df8d71f from=translated src=- shape=61ff3a69 vocab=2ea1ed85
+-/
 theorem finrank_add_of_bijective_prod {R A A₁ A₂ : Type*} [CommRing R] [CommRing A]
     [CommRing A₁] [CommRing A₂] (φ : R →+* A) (r₁ : A →+* A₁) (r₂ : A →+* A₂)
     (hbij : Function.Bijective (RingHom.prod r₁ r₂))
@@ -44,6 +47,9 @@ theorem finrank_add_of_bijective_prod {R A A₁ A₂ : Type*} [CommRing R] [Comm
   rw [Module.rankAtStalk_eq_of_equiv e, Module.rankAtStalk_prod]
   rfl
 
+/--
+@isnad1 id=bijectiv.2h3v.s13.c6b9e99c2fed from=translated src=- shape=129474a8 vocab=7780c90f
+-/
 theorem bijective_restrict_prod {X : Scheme.{u}} (U V : X.Opens) (hUV : U ⊔ V = ⊤) (hdisj : U ⊓ V = ⊥) :
     Function.Bijective (RingHom.prod (X.presheaf.map (homOfLE (le_top : U ≤ ⊤)).op).hom
       (X.presheaf.map (homOfLE (le_top : V ≤ ⊤)).op).hom) := by
@@ -93,6 +99,9 @@ theorem bijective_restrict_prod {X : Scheme.{u}} (U V : X.Opens) (hUV : U ⊔ V 
         Subsingleton.elim _ _
       rw [this, hsV]
 
+/--
+@isnad1 id=eq.0h4v.s10.e322e9985293 from=translated src=- shape=d5e0902f vocab=a18a2673
+-/
 theorem finrank_eq_finrank_appTop {R : CommRingCat.{u}} {Z : Scheme.{u}} [IsAffine Z]
     (k : Z ⟶ Spec R) [IsFinite k] [Flat k] (x : Spec R) :
     k.finrank x = ((Scheme.ΓSpecIso R).inv ≫ k.appTop).hom.finrank x := by
@@ -110,6 +119,9 @@ theorem finrank_eq_finrank_appTop {R : CommRingCat.{u}} {Z : Scheme.{u}} [IsAffi
   conv_lhs => rw [hk]
   rw [Scheme.Hom.finrank_comp_left_of_isIso, Scheme.Hom.finrank_SpecMap_eq_finrank h1 h2]
 
+/--
+@isnad1 id=eq.2h6v.s8.1d53b4893f1d from=translated src=- shape=2b1425ec vocab=01fafcc9
+-/
 theorem finrank_add_affine {R : CommRingCat.{u}} {Y : Scheme.{u}} (h : Y ⟶ Spec R)
     [IsFinite h] [Flat h] [LocallyOfFinitePresentation h]
     (U V : Y.Opens) (hUV : U ⊔ V = ⊤) (hdisj : U ⊓ V = ⊥) (x : Spec R) :
@@ -167,6 +179,9 @@ theorem finrank_add_affine {R : CommRingCat.{u}} {Y : Scheme.{u}} (h : Y ⟶ Spe
 
 end E160RC
 
+/--
+@isnad1 id=eq.2h6v.s8.3141681c1b5c from=translated src=- shape=fc1435bc vocab=33e3b448
+-/
 theorem solution
     {Y S : Scheme.{u}} (f : Y ⟶ S) [IsFinite f] [Flat f] [LocallyOfFinitePresentation f]
     (U V : Y.Opens) (hUV : U ⊔ V = ⊤) (hdisj : U ⊓ V = ⊥) (s : S) :

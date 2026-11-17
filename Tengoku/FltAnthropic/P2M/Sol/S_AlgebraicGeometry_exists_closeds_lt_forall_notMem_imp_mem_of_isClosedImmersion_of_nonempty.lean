@@ -11,6 +11,9 @@ open CategoryTheory AlgebraicGeometry TopologicalSpace
 
 universe u
 
+/--
+@isnad1 id=ex.2h5v.s9.ea2338105a34 from=translated src=- shape=f284c3fe vocab=24fbd789
+-/
 theorem solution
     {X Z : Scheme.{u}} (i : Z ⟶ X) [IsClosedImmersion i] (T : Closeds X) (hT : Set.range i.base = (T : Set X))
     (U : Z.Opens) (hU : (U : Set Z).Nonempty) :

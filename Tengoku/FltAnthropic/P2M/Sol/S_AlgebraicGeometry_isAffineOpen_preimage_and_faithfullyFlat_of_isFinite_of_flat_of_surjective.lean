@@ -11,6 +11,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=and.2h4v.s13.c1c1500c6d20 from=translated src=- shape=ecc9f833 vocab=8004b736
+-/
 theorem solution
     {X Y : Scheme.{u}} (g : X ⟶ Y) [IsFinite g] [Flat g] (hsurj : Function.Surjective g)
     (U : Y.Opens) (hU : IsAffineOpen U) :

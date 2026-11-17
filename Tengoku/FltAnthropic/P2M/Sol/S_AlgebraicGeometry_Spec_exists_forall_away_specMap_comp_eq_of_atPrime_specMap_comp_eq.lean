@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=ex.1h6v.s8.27dd3fb97a2e from=translated src=- shape=c63e8b3e vocab=bc21a634
+-/
 theorem solution
     {A : Type} [CommRing A] [IsNoetherianRing A] (𝔭 : Ideal A) [𝔭.IsPrime]
     (L : Type) [CommRing L] [Algebra A L] [IsLocalization.AtPrime L 𝔭]

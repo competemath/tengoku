@@ -27,24 +27,42 @@ noncomputable abbrev rM {V W : X.Opens} (h : V ≤ W) : Γ(M, W) → Γ(M, V) :=
 
 noncomputable abbrev rO {V W : X.Opens} (h : V ≤ W) : Γ(X, W) → Γ(X, V) := fun g => X.presheaf.map (homOfLE h).op g
 
+/--
+@isnad1 id=eq.2h6v.s8.90c2880582da from=translated src=- shape=aa6f04f9 vocab=1a80b1e2
+-/
 theorem rM_rM {V₁ V₂ V₃ : X.Opens} (h₂₁ : V₂ ≤ V₁) (h₃₂ : V₃ ≤ V₂) (y : Γ(M, V₁)) :
     rM M h₃₂ (rM M h₂₁ y) = rM M (h₃₂.trans h₂₁) y := by
   show (M.presheaf.map (homOfLE h₂₁).op ≫ M.presheaf.map (homOfLE h₃₂).op) y = _
   rw [← Functor.map_comp]; rfl
 
 omit M in
+/--
+@isnad1 id=eq.2h5v.s8.fa7b480c24c5 from=translated src=- shape=6b0451eb vocab=25d0f108
+-/
 theorem rO_rO {V₁ V₂ V₃ : X.Opens} (h₂₁ : V₂ ≤ V₁) (h₃₂ : V₃ ≤ V₂) (g : Γ(X, V₁)) :
     rO h₃₂ (rO h₂₁ g) = rO (h₃₂.trans h₂₁) g := by
   show (X.presheaf.map (homOfLE h₂₁).op ≫ X.presheaf.map (homOfLE h₃₂).op).hom g = _
   rw [← Functor.map_comp]; rfl
 
+/--
+@isnad1 id=eq.1h6v.s13.bc27a4bfb503 from=translated src=- shape=a952f4ad vocab=a953c11f
+-/
 theorem rM_smul {V W : X.Opens} (h : V ≤ W) (g : Γ(X, W)) (y : Γ(M, W)) :
     rM M h (g • y) = rO h g • rM M h y := M.map_smul _ _ _
 
+/--
+@isnad1 id=eq.1h6v.s11.c6b6a9745915 from=translated src=- shape=4906a520 vocab=b8a337d0
+-/
 theorem rM_sub {V W : X.Opens} (h : V ≤ W) (y z : Γ(M, W)) : rM M h (y - z) = rM M h y - rM M h z := map_sub _ _ _
+/--
+@isnad1 id=eq.1h4v.s11.af324584cd58 from=translated src=- shape=2bcddd88 vocab=f7157167
+-/
 theorem rM_zero {V W : X.Opens} (h : V ≤ W) : rM M h (0 : Γ(M, W)) = 0 := map_zero _
 
 omit M in
+/--
+@isnad1 id=eq.1h5v.s11.2bb1da583424 from=translated src=- shape=33ae4bcc vocab=dcb04ff3
+-/
 theorem rO_pow {V W : X.Opens} (h : V ≤ W) (g : Γ(X, W)) (n : ℕ) : rO h (g ^ n) = rO h g ^ n := map_pow _ _ _
 
 noncomputable def F : TopCat.Sheaf Ab X.carrier := ⟨M.presheaf, M.isSheaf⟩
@@ -53,6 +71,9 @@ theorem eq_of_forall_rM_eq {ι : Type u} (W : ι → X.Opens) (V : X.Opens) (hWV
     (hcov : V ≤ iSup W) (y z : Γ(M, V)) (h : ∀ i, rM M (hWV i) y = rM M (hWV i) z) : y = z :=
   TopCat.Sheaf.eq_of_locally_eq' (F M) W V (fun i => homOfLE (hWV i)) hcov y z h
 
+/--
+@isnad1 id=ex.3h6v.s9.f6074524186f from=translated src=- shape=3e38c670 vocab=f0e41317
+-/
 theorem exists_of_compatible {ι : Type u} (W : ι → X.Opens) (V : X.Opens) (hWV : ∀ i, W i ≤ V)
     (hcov : V ≤ iSup W) (z : ∀ i, Γ(M, W i))
     (hz : ∀ i j, rM M (inf_le_left : W i ⊓ W j ≤ W i) (z i) = rM M (inf_le_right : W i ⊓ W j ≤ W j) (z j)) :
@@ -76,11 +97,17 @@ namespace LocGlue
 
 variable {X : Scheme.{u}} (M : X.Modules)
 
+/--
+@isnad1 id=eq.2h7v.s13.e3dd34f86b47 from=translated src=- shape=fd5a0855 vocab=70df54c1
+-/
 theorem pow_smul_eq_zero_of_le {V : X.Opens} (g : Γ(X, V)) (y : Γ(M, V)) {n k : ℕ} (hnk : n ≤ k)
     (h : (g ^ n : Γ(X, V)) • y = 0) : (g ^ k : Γ(X, V)) • y = 0 := by
   obtain ⟨d, rfl⟩ := Nat.exists_eq_add_of_le hnk
   rw [add_comm, pow_add, mul_smul, h, smul_zero]
 
+/--
+@isnad1 id=eq.2h8v.s14.1cfd23419020 from=translated src=- shape=c6188d26 vocab=8dcc7dba
+-/
 theorem exists_of_le {V : X.Opens} (g : Γ(X, V)) (x : Γ(M, X.basicOpen g)) {n k : ℕ} (hnk : n ≤ k)
     (y : Γ(M, V)) (h : rM M (X.basicOpen_le g) y = rO (X.basicOpen_le g) (g ^ n) • x) :
     rM M (X.basicOpen_le g) ((g ^ (k - n) : Γ(X, V)) • y) = rO (X.basicOpen_le g) (g ^ k) • x := by
@@ -89,6 +116,9 @@ theorem exists_of_le {V : X.Opens} (g : Γ(X, V)) (x : Γ(M, X.basicOpen g)) {n 
 end LocGlue
 
 open LocGlue in
+/--
+@isnad1 id=and.3h5v.s16.86658a1ead67 from=translated src=- shape=2b5e7684 vocab=b869e1f7
+-/
 theorem isLocalization_basicOpen_of_finite_basicOpen_cover'
     {X : Scheme.{u}} (M : X.Modules) (U : X.affineOpens) (s : Finset Γ(X, U.1))
     (hs : U.1 ≤ ⨆ h ∈ s, X.basicOpen h)
@@ -206,6 +236,9 @@ theorem isLocalization_basicOpen_of_finite_basicOpen_cover'
 
 end AlgebraicGeometry.Scheme.Modules
 
+/--
+@isnad1 id=and.3h5v.s16.86658a1ead67 from=translated src=- shape=2b5e7684 vocab=b869e1f7
+-/
 theorem solution
     {X : Scheme.{u}} (M : X.Modules) (U : X.affineOpens) (s : Finset Γ(X, U.1))
     (hs : U.1 ≤ ⨆ h ∈ s, X.basicOpen h)

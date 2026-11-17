@@ -13,6 +13,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=surjecti.2h4v.s13.fabf15519ab4 from=translated src=- shape=0635a3a2 vocab=40fd76cc
+-/
 theorem solution
     {Y Z : Scheme.{u}} [IsIntegral Y] (f : Y ⟶ Z) (V : Z.Opens) (hV : f (genericPoint Y) ∈ V)
     (hgen : ∀ x : Y.functionField, ∃ a b : Γ(Z, V),

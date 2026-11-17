@@ -16,6 +16,9 @@ namespace P2mIsogFactorDesc
 
 variable {S : Scheme.{u}} {A B C : Over S} [GrpObj A] [GrpObj B] [GrpObj C]
 
+/--
+@isnad1 id=eq.2h9v.s9.f6dbb2cc13aa from=translated src=- shape=294205c4 vocab=0085f32a
+-/
 theorem comp_eq_comp_of_comp_eq_comp (f : A ⟶ B) [IsMonHom f] (g : A ⟶ C) [IsMonHom g]
     (hker : ∀ (T : Over S) (a : T ⟶ A), a ≫ f = 1 → a ≫ g = 1)
     {Z : Scheme.{u}} (g₁ g₂ : Z ⟶ A.left) (h : g₁ ≫ f.left = g₂ ≫ f.left) :
@@ -38,6 +41,9 @@ noncomputable def descLeft (f : A ⟶ B) [IsMonHom f] (g : A ⟶ C) [IsMonHom g]
     (hker : ∀ (T : Over S) (a : T ⟶ A), a ≫ f = 1 → a ≫ g = 1) : B.left ⟶ C.left :=
   EffectiveEpi.desc f.left g.left (fun g₁ g₂ h => comp_eq_comp_of_comp_eq_comp f g hker g₁ g₂ h)
 
+/--
+@isnad1 id=eq.1h6v.s9.0ac7c36f3a4b from=translated src=- shape=72407891 vocab=b4d6c4b0
+-/
 theorem fac_left (f : A ⟶ B) [IsMonHom f] (g : A ⟶ C) [IsMonHom g]
     [Flat f.left] [Surjective f.left] [QuasiCompact f.left]
     (hker : ∀ (T : Over S) (a : T ⟶ A), a ≫ f = 1 → a ≫ g = 1) :

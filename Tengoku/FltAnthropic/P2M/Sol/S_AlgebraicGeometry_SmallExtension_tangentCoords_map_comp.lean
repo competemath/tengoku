@@ -13,6 +13,9 @@ open TensorProduct IsLocalRing AlgebraicGeometry.SmallExtension
 
 universe u
 
+/--
+@isnad1 id=eq.0h8v.s13.3b7fab709208 from=translated src=- shape=46d714c2 vocab=05a79fa8
+-/
 theorem solution
     {T' : Type u} [CommRing T'] [IsLocalRing T']
     (V : Type u) [AddCommGroup V] [Module (ResidueField T') V] [Module (ResidueField T')ᵐᵒᵖ V]

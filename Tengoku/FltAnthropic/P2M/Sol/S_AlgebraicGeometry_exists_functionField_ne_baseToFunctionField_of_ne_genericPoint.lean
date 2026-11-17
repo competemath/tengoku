@@ -9,6 +9,9 @@ namespace P2MW.S_AlgebraicGeometry_exists_functionField_ne_baseToFunctionField_o
 set_option autoImplicit false
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=ex.1h4v.s7.2644c9dfd01c from=translated src=- shape=fd4557d4 vocab=7d5c044c
+-/
 theorem solution
     {K : Type} [Field K] {X : Scheme.{0}} [IsIntegral X] (c : X ⟶ Spec (CommRingCat.of K))
     (x : X) (hx : x ≠ genericPoint X) :

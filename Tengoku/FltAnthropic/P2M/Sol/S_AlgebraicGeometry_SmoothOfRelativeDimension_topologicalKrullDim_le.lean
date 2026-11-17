@@ -15,6 +15,9 @@ namespace P2mSmoothOfRelativeDimensionKrullDim
 
 open TensorProduct IsLocalRing TopologicalSpace Topology
 
+/--
+@isnad1 id=le.0h2v.s7.351d63fc46cc from=translated src=- shape=74dbe63e vocab=7201dff4
+-/
 theorem spanFinrank_maximalIdeal_le_finrank_kaehler
     (L P : Type*) [CommRing L] [CommRing P] [Algebra L P] [IsLocalRing P] [IsNoetherianRing P]
     [Algebra.FormallySmooth L P] [Module.Free P Ω[P⁄L]] [Module.Finite P Ω[P⁄L]]
@@ -52,6 +55,9 @@ theorem spanFinrank_maximalIdeal_le_finrank_kaehler
   rw [h3, ← h2]
   exact h1
 
+/--
+@isnad1 id=le.0h2v.s7.8e6ed9daa724 from=translated src=- shape=3283e40d vocab=fbf34b05
+-/
 theorem ringKrullDim_le_finrank_kaehler
     (L P : Type*) [CommRing L] [CommRing P] [Algebra L P] [IsLocalRing P] [IsNoetherianRing P]
     [Algebra.FormallySmooth L P] [Module.Free P Ω[P⁄L]] [Module.Finite P Ω[P⁄L]]
@@ -64,6 +70,9 @@ section PerfectBase
 
 variable {L : Type*} [Field L] {B : Type*} [CommRing B] [Algebra L B]
 
+/--
+@isnad1 id=le.0h4v.s6.e835e86ff86c from=translated src=- shape=9c46a2b2 vocab=22b4ccf6
+-/
 theorem ringKrullDim_localization_le [PerfectField L] (n : ℕ)
     [Algebra.IsStandardSmoothOfRelativeDimension n L B] (m : Ideal B) [m.IsPrime] :
     ringKrullDim (Localization.AtPrime m) ≤ n := by
@@ -101,6 +110,9 @@ theorem ringKrullDim_localization_le [PerfectField L] (n : ℕ)
   rw [← hrank]
   exact ringKrullDim_le_finrank_kaehler L _
 
+/--
+@isnad1 id=le.0h3v.s5.96720dc6f1fd from=translated src=- shape=2bca978d vocab=0a53c79c
+-/
 theorem ringKrullDim_le_of_perfectField [PerfectField L] (n : ℕ)
     [Algebra.IsStandardSmoothOfRelativeDimension n L B] : ringKrullDim B ≤ n := by
   rw [ringKrullDim_le_iff_isMaximal_height_le]
@@ -110,6 +122,9 @@ theorem ringKrullDim_le_of_perfectField [PerfectField L] (n : ℕ)
 
 end PerfectBase
 
+/--
+@isnad1 id=le.0h2v.s5.ea92a998afe4 from=translated src=- shape=fb80efe5 vocab=0335e261
+-/
 theorem ringKrullDim_le_of_faithfullyFlat (R S : Type*) [CommRing R] [CommRing S] [Algebra R S]
     [Module.FaithfullyFlat R S] : ringKrullDim R ≤ ringKrullDim S := by
   change (⨆ p : LTSeries (PrimeSpectrum R), (p.length : WithBot ℕ∞)) ≤ _
@@ -120,6 +135,9 @@ theorem ringKrullDim_le_of_faithfullyFlat (R S : Type*) [CommRing R] [CommRing S
   calc ((l.length : WithBot ℕ∞)) = L'.length := by rw [hlen]
     _ ≤ Order.krullDim (PrimeSpectrum S) := Order.LTSeries.length_le_krullDim L'
 
+/--
+@isnad1 id=le.0h3v.s5.252d80857182 from=translated src=- shape=3c1b917e vocab=4d64e73e
+-/
 theorem ringKrullDim_le_of_isStandardSmoothOfRelativeDimension
     {K : Type*} [Field K] {B : Type*} [CommRing B] [Algebra K B] (n : ℕ)
     [Algebra.IsStandardSmoothOfRelativeDimension n K B] : ringKrullDim B ≤ n := by
@@ -130,6 +148,9 @@ theorem ringKrullDim_le_of_isStandardSmoothOfRelativeDimension
     ringKrullDim_eq_of_ringEquiv (Algebra.TensorProduct.comm K B L).toRingEquiv
   exact h2.trans (h3 ▸ h1)
 
+/--
+@isnad1 id=le.2h4v.s6.5962074c3e68 from=translated src=- shape=6357c368 vocab=1850fa94
+-/
 theorem ringKrullDim_le_of_ringHom {R S : Type*} [CommRing R] [CommRing S] (hR : IsField R)
     (φ : R →+* S) (n : ℕ) (hφ : φ.IsStandardSmoothOfRelativeDimension n) :
     ringKrullDim S ≤ n := by
@@ -142,6 +163,9 @@ section Sober
 
 attribute [local instance] specializationOrder
 
+/--
+@isnad1 id=le.1h2v.s6.0f307dc9a050 from=translated src=- shape=437ed9af vocab=191b8701
+-/
 theorem topologicalKrullDim_le_of_forall_exists_isOpenEmbedding {X : Type u} [TopologicalSpace X]
     [QuasiSober X] [T0Space X] (n : WithBot ℕ∞)
     (h : ∀ x : X, ∃ (U : Type u) (_ : TopologicalSpace U) (g : U → X),
@@ -161,6 +185,9 @@ theorem topologicalKrullDim_le_of_forall_exists_isOpenEmbedding {X : Type u} [To
 
 end Sober
 
+/--
+@isnad1 id=le.0h4v.s6.f4c5b326ecdf from=translated src=- shape=3f259e46 vocab=89e4dcbc
+-/
 theorem topologicalKrullDim_le {K : Type u} [Field K] {X : Scheme.{u}}
     (f : X ⟶ Spec (CommRingCat.of K)) (n : ℕ) [SmoothOfRelativeDimension n f] :
     topologicalKrullDim X ≤ n := by
@@ -190,6 +217,9 @@ theorem topologicalKrullDim_le {K : Type u} [Field K] {X : Scheme.{u}}
 
 end P2mSmoothOfRelativeDimensionKrullDim
 
+/--
+@isnad1 id=le.0h4v.s6.f4c5b326ecdf from=translated src=- shape=3f259e46 vocab=89e4dcbc
+-/
 theorem solution
     {K : Type u} [Field K] {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of K)) (n : ℕ)
     [SmoothOfRelativeDimension n f] :

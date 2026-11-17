@@ -16,11 +16,17 @@ namespace A2b6
 
 variable {X Y : Scheme.{u}} (f : X ⟶ Y)
 
+/--
+@isnad1 id=eq.1h6v.s12.8f452165cbf6 from=translated src=- shape=1c186b95 vocab=f3758c3f
+-/
 lemma appLE_comp_algebraMap_basicOpen {U : Y.Opens} {V : X.Opens} (e : V ≤ f ⁻¹ᵁ U) (r : Γ(X, V)) :
     (algebraMap Γ(X, V) Γ(X, X.basicOpen r)).comp (f.appLE U V e).hom =
       (f.appLE U (X.basicOpen r) ((X.basicOpen_le r).trans e)).hom := by
   rw [RingHom.algebraMap_toAlgebra, ← CommRingCat.hom_comp, Scheme.Hom.appLE_map]
 
+/--
+@isnad1 id=mem.3h4v.s11.8dba672384be from=translated src=- shape=a8f50b1d vocab=9f0fc97d
+-/
 lemma mem_basicOpen_of_not_mem {V : X.Opens} (hV : IsAffineOpen V) {x : X} (hx : x ∈ V)
     (r : Γ(X, V)) (hr : r ∉ (hV.primeIdealOf ⟨x, hx⟩).asIdeal) : x ∈ X.basicOpen r := by
   set_option backward.isDefEq.respectTransparency false in
@@ -30,6 +36,9 @@ lemma mem_basicOpen_of_not_mem {V : X.Opens} (hV : IsAffineOpen V) {x : X} (hx :
 
 set_option backward.isDefEq.respectTransparency false in
 
+/--
+@isnad1 id=isunrami.5h6v.s11.1211617f7fdb from=translated src=- shape=261790c6 vocab=347954e4
+-/
 lemma isUnramifiedAt_of_formallyUnramified_stalkMap {x : X} (U : Y.Opens)
     (hU : IsAffineOpen U) (V : X.Opens) (hV : IsAffineOpen V) (hVU : V ≤ f ⁻¹ᵁ U) (hx : x ∈ V)
     (H : (f.stalkMap x).hom.FormallyUnramified) :
@@ -51,6 +60,9 @@ lemma isUnramifiedAt_of_formallyUnramified_stalkMap {x : X} (U : Y.Opens)
 
 set_option backward.isDefEq.respectTransparency false in
 
+/--
+@isnad1 id=ex.5h6v.s10.8e70e59d128e from=translated src=- shape=7b55cd92 vocab=3af28ebd
+-/
 lemma exists_basicOpen_formallyUnramified_appLE [LocallyOfFiniteType f] {x : X} (U : Y.Opens)
     (hU : IsAffineOpen U) (V : X.Opens) (hV : IsAffineOpen V) (hVU : V ≤ f ⁻¹ᵁ U) (hx : x ∈ V)
     (H : (f.stalkMap x).hom.FormallyUnramified) :
@@ -76,6 +88,9 @@ lemma exists_basicOpen_formallyUnramified_appLE [LocallyOfFiniteType f] {x : X} 
 end A2b6
 
 open A2b6 in
+/--
+@isnad1 id=ex.2h8v.s9.b79edbe708ea from=translated src=- shape=5c6efbea vocab=5df00131
+-/
 theorem solution
     {k : Type u} [Field k] {X Y : Scheme.{u}} (n : ℕ)
     (fX : X ⟶ Spec (CommRingCat.of k)) (fY : Y ⟶ Spec (CommRingCat.of k))

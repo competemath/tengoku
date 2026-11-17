@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=ex.1h4v.s8.9e7b59702c46 from=translated src=- shape=d88216ed vocab=e4c21a06
+-/
 theorem solution
     {X Y : Scheme.{u}} (I : X.IdealSheafData) (ψ : Y ⟶ X) [IsOpenImmersion ψ]
     (h : (I.support : Set X) ⊆ Set.range ψ) :

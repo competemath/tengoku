@@ -15,6 +15,9 @@ namespace ValuativePartialMap
 
 variable {X Y S : Scheme.{u}}
 
+/--
+@isnad1 id=eq.3h4v.s8.6f716629feb2 from=translated src=- shape=9509a4a1 vocab=07f09e15
+-/
 theorem fromSpecStalkOfMem_eq_of_specializes (U : X.Opens) {ξ x : X} (h : ξ ⤳ x)
     (hx : x ∈ U) (hξ : ξ ∈ U) :
     U.fromSpecStalkOfMem ξ hξ =
@@ -22,6 +25,9 @@ theorem fromSpecStalkOfMem_eq_of_specializes (U : X.Opens) {ξ x : X} (h : ξ �
   rw [← cancel_mono U.ι, Category.assoc, Scheme.Opens.fromSpecStalkOfMem_ι,
     Scheme.Opens.fromSpecStalkOfMem_ι, Scheme.SpecMap_stalkSpecializes_fromSpecStalk]
 
+/--
+@isnad1 id=eq.3h5v.s8.06bb4ab6ed98 from=translated src=- shape=004aeeac vocab=09b25a7f
+-/
 theorem partialMap_fromSpecStalkOfMem_eq_of_specializes (f : X.PartialMap Y) {ξ x : X}
     (h : ξ ⤳ x) (hx : x ∈ f.domain) (hξ : ξ ∈ f.domain) :
     f.fromSpecStalkOfMem hξ =
@@ -30,6 +36,9 @@ theorem partialMap_fromSpecStalkOfMem_eq_of_specializes (f : X.PartialMap Y) {ξ
     Spec.map (X.presheaf.stalkSpecializes h) ≫ f.domain.fromSpecStalkOfMem x hx ≫ f.hom
   rw [fromSpecStalkOfMem_eq_of_specializes f.domain h hx hξ, Category.assoc]
 
+/--
+@isnad1 id=eq.1h4v.s8.330959f21113 from=translated src=- shape=9c27422b vocab=0134a6e7
+-/
 theorem partialMap_fromFunctionField_eq_of_mem [IrreducibleSpace X] (f : X.PartialMap Y)
     {x : X} (hx : x ∈ f.domain) :
     f.fromFunctionField =
@@ -38,6 +47,9 @@ theorem partialMap_fromFunctionField_eq_of_mem [IrreducibleSpace X] (f : X.Parti
   partialMap_fromSpecStalkOfMem_eq_of_specializes f (genericPoint_specializes x) hx
     ((genericPoint_specializes _).mem_open f.domain.2 f.dense_domain.nonempty.choose_spec)
 
+/--
+@isnad1 id=eq.0h2v.s8.72283ab4051d from=translated src=- shape=25eb15d4 vocab=b66501ca
+-/
 theorem ofHom_algebraMap_stalk_functionField [IrreducibleSpace X] (x : X) :
     CommRingCat.ofHom (algebraMap (X.presheaf.stalk x) X.functionField) =
       X.presheaf.stalkSpecializes ((genericPoint_spec X).specializes trivial) := by
@@ -49,6 +61,9 @@ end ValuativePartialMap
 open ValuativePartialMap in
 set_option maxHeartbeats 6400000 in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=mem.2h8v.s7.b292f61e4db5 from=translated src=- shape=a1e0ed9f vocab=93eb4f53
+-/
 theorem solution {X Y S : Scheme.{u}} (sX : X ⟶ S) (sY : Y ⟶ S) [IsIntegral X]
     [LocallyOfFiniteType sY] (hY : ValuativeCriterion.Existence sY) (f : X.PartialMap Y)
     (hf : f.hom ≫ sY = f.domain.ι ≫ sX) (x : X) (hx : ValuationRing (X.presheaf.stalk x)) :

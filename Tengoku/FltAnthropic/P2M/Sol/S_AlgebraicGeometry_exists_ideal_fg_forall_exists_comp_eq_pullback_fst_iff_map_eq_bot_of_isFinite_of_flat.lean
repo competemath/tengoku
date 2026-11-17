@@ -14,6 +14,9 @@ universe u
 
 namespace EngineW
 
+/--
+@isnad1 id=ex.1h3v.s8.6cc6bafa845a from=translated src=- shape=06d26ba9 vocab=f32df325
+-/
 theorem exists_fg_ideal_forall_tmul_eq_zero_iff_map_eq_bot
     {R : Type u} [CommRing R] {M : Type u} [AddCommGroup M] [Module R M] [Module.Projective R M]
     (N : Submodule R M) (hN : N.FG) :
@@ -67,6 +70,9 @@ theorem exists_fg_ideal_forall_tmul_eq_zero_iff_map_eq_bot
     · intro r x _ hx
       rw [tmul_smul, hx, smul_zero]
 
+/--
+@isnad1 id=iff.2h11v.s8.7d0f887f7bc7 from=translated src=- shape=e15ccb86 vocab=9748aa1f
+-/
 theorem exists_comp_eq_fst_iff {X X' Y Z V : Scheme.{u}} (f : X ⟶ Z) (f' : X' ⟶ Z) (g g' : Y ⟶ Z)
     (e : X ≅ X') (he : f = e.hom ≫ f') (hg : g = g') (w : V ⟶ X) :
     (∃ ℓ : pullback f g ⟶ V, ℓ ≫ w = pullback.fst f g) ↔
@@ -87,6 +93,9 @@ theorem exists_comp_eq_fst_iff {X X' Y Z V : Scheme.{u}} (f : X ⟶ Z) (f' : X' 
     rw [Category.assoc, hℓ'', ← Category.assoc, pullback.lift_fst, Category.assoc, Iso.hom_inv_id,
       Category.comp_id]
 
+/--
+@isnad1 id=iff.1h8v.s7.4fb9d0c97d89 from=translated src=- shape=c01f3d9b vocab=df2b226d
+-/
 theorem exists_comp_eq_iff_of_iso {P Q V X : Scheme.{u}} (i : P ≅ Q) (p : P ⟶ X) (q : Q ⟶ X) (hi : i.inv ≫ p = q)
     (v : V ⟶ X) :
     (∃ ℓ : P ⟶ V, ℓ ≫ v = p) ↔ (∃ y : Q ⟶ V, y ≫ v = q) := by
@@ -96,6 +105,9 @@ theorem exists_comp_eq_iff_of_iso {P Q V X : Scheme.{u}} (i : P ≅ Q) (p : P �
 
 end EngineW
 
+/--
+@isnad1 id=ex.0h5v.s8.ce0378ed9575 from=translated src=- shape=25e1f7d3 vocab=276fb28b
+-/
 theorem solution
     (S : Type u) [CommRing S] (C W : Scheme.{u}) (c : C ⟶ Spec (CommRingCat.of S))
     [IsFinite c] [Flat c] [LocallyOfFinitePresentation c]

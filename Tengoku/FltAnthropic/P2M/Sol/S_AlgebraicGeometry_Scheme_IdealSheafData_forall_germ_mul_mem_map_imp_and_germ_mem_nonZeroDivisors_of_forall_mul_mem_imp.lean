@@ -13,6 +13,9 @@ universe u
 
 namespace StalkifyKit
 
+/--
+@isnad1 id=mem.2h6v.s8.44f16c150641 from=translated src=- shape=ffe862f8 vocab=4869ade4
+-/
 theorem forall_mul_mem_map_imp {R S : Type*} [CommRing R] [CommRing S] [Algebra R S] (M : Submonoid R) [IsLocalization M S]
     (I : Ideal R) (t : R) (hsat : ∀ s : R, t * s ∈ I → s ∈ I) :
     ∀ r : S, algebraMap R S t * r ∈ I.map (algebraMap R S) → r ∈ I.map (algebraMap R S) := by
@@ -44,6 +47,9 @@ theorem forall_mul_mem_map_imp {R S : Type*} [CommRing R] [CommRing S] [Algebra 
 
 end StalkifyKit
 
+/--
+@isnad1 id=and.3h5v.s14.748987e3e3a5 from=translated src=- shape=88696abf vocab=1e6026e3
+-/
 theorem solution
     {X : Scheme.{u}} (I : X.IdealSheafData) (U : X.affineOpens) (x : ↥X) (hx : x ∈ (U : X.Opens)) (t : Γ(X, U))
     (hsat : ∀ s : Γ(X, U), t * s ∈ I.ideal U → s ∈ I.ideal U) (ht : t ∈ nonZeroDivisors Γ(X, U)) :

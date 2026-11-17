@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace
 
+/--
+@isnad1 id=eq.3h4v.s8.07ea8469f44e from=translated src=- shape=12bcb891 vocab=2d7a7173
+-/
 theorem solution
     {Y : Scheme.{u}} {ι : Type*} [Fintype ι] (Z : ι → Closeds Y)
     (hdisj : Pairwise fun i j => Disjoint (Z i) (Z j))

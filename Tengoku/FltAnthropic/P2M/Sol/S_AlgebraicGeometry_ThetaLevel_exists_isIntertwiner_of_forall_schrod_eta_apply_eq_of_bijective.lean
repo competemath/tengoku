@@ -16,9 +16,15 @@ variable {g : ℕ} (δ : Fin g → ℕ) [∀ i, NeZero (δ i)] (d : ℕ) [NeZero
 
 noncomputable def bE {n : ℕ} (e : Fin n ≃ HH δ) : Module.Basis (Fin n) B (HH δ → B) := (Pi.basisFun B (HH δ)).reindex e.symm
 
+/--
+@isnad1 id=eq.0h6v.s8.f3db0312b666 from=translated src=- shape=ffc00c6a vocab=7db8df49
+-/
 theorem bE_apply {n : ℕ} (e : Fin n ≃ HH δ) (j : Fin n) : bE δ B e j = Pi.single (e j) 1 := by
   rw [bE, Module.Basis.reindex_apply, Equiv.symm_symm, Pi.basisFun_apply]
 
+/--
+@isnad1 id=eq.0h7v.s9.53de84f2f5f4 from=translated src=- shape=eb397e8c vocab=2b5b17f7
+-/
 theorem bE_repr {n : ℕ} (e : Fin n ≃ HH δ) (x : HH δ → B) (i : Fin n) : (bE δ B e).repr x i = x (e i) := by
   first
     | (all_goals grind; done)
@@ -31,6 +37,9 @@ theorem bE_repr {n : ℕ} (e : Fin n ≃ HH δ) (x : HH δ → B) (i : Fin n) : 
     | (all_goals decide; done)
     | (all_goals tauto; done)
 
+/--
+@isnad1 id=eq.1h7v.s9.720ed7b77e6f from=translated src=- shape=8bb2d9f7 vocab=f66e6bdc
+-/
 theorem schrod_single (hω2d : ω ^ (2 * d) = 1) (z : Heis δ d) (y : HH δ) :
     schrod δ d B ω z (Pi.single y 1) = omegaPow d B ω (z.a + pair δ d z.k y) • Pi.single (y + z.h) 1 := by
   classical
@@ -42,6 +51,9 @@ theorem schrod_single (hω2d : ω ^ (2 * d) = 1) (z : Heis δ d) (y : HH δ) :
   · have hx' : x - z.h ≠ y := fun h' => hx (by rw [← h', sub_add_cancel])
     rw [Pi.single_eq_of_ne hx', Pi.single_eq_of_ne hx, mul_zero, mul_zero, mul_zero]
 
+/--
+@isnad1 id=eq.1h8v.s11.42ae298371dc from=translated src=- shape=d79b3d8d vocab=d03aff60
+-/
 theorem toMatrix_schrod (hω2d : ω ^ (2 * d) = 1) {n : ℕ} (e : Fin n ≃ HH δ) (z : Heis δ d) :
     LinearMap.toMatrix (bE δ B e) (bE δ B e) (schrod δ d B ω z) = schrodMat δ d B ω e z := by
   classical
@@ -52,11 +64,17 @@ theorem toMatrix_schrod (hω2d : ω ^ (2 * d) = 1) {n : ℕ} (e : Fin n ≃ HH �
   · rw [ite_eq_left hij, hij, Pi.single_eq_same, mul_one]
   · rw [ite_eq_right hij, Pi.single_eq_of_ne hij, mul_zero]
 
+/--
+@isnad1 id=eq.0h7v.s8.221ec9fbb9fa from=translated src=- shape=8b77a7c4 vocab=06ceec1d
+-/
 theorem schrod_cen (c : ZMod (2 * d)) (u : HH δ → B) : schrod δ d B ω (Heis.cen c) u = omegaPow d B ω c • u := by
   funext x
   rw [schrod_apply, Pi.smul_apply, smul_eq_mul, Heis.cen_a, Heis.cen_h, Heis.cen_k, sub_zero, thetaChar, pair_zero_left,
     omegaPow_zero, one_mul]
 
+/--
+@isnad1 id=eq.0h5v.s8.26e67e5ac4bf from=translated src=- shape=260aab55 vocab=51e2751e
+-/
 theorem mul_theta_eq (z : Heis δ d) (y : HH δ) :
     z * Heis.theta y = Heis.cen (z.a + pair δ d z.k y) * Heis.theta (z.h + y) * Heis.eta z.k := by
   refine Heis.ext ?_ ?_ ?_ <;> simp [Heis.theta, Heis.eta, Heis.cen, pair_zero_left, pair_zero_right]
@@ -66,9 +84,15 @@ noncomputable def Tlin (γ : MulAut (Heis δ d)) (v : HH δ → B) : (HH δ → 
   map_add' c c' := by simp only [Pi.add_apply, add_smul, Finset.sum_add_distrib]
   map_smul' r c := by simp only [Pi.smul_apply, smul_eq_mul, RingHom.id_apply, Finset.smul_sum, smul_smul]
 
+/--
+@isnad1 id=eq.0h8v.s9.0c372f2348d6 from=translated src=- shape=012b259b vocab=3e30b99c
+-/
 theorem Tlin_apply (γ : MulAut (Heis δ d)) (v : HH δ → B) (c : HH δ → B) :
     Tlin δ d B ω γ v c = ∑ x : HH δ, c x • schrod δ d B ω (γ (Heis.theta x)) v := rfl
 
+/--
+@isnad1 id=eq.0h8v.s9.9bbf59b0bb7a from=translated src=- shape=be9e8a23 vocab=ad7724b9
+-/
 theorem Tlin_single (γ : MulAut (Heis δ d)) (v : HH δ → B) (y : HH δ) :
     Tlin δ d B ω γ v (Pi.single y 1) = schrod δ d B ω (γ (Heis.theta y)) v := by
   classical
@@ -77,6 +101,9 @@ theorem Tlin_single (γ : MulAut (Heis δ d)) (v : HH δ → B) (y : HH δ) :
   · intro x _ hx; rw [Pi.single_eq_of_ne hx, zero_smul]
   · intro hy; exact absurd (Finset.mem_univ y) hy
 
+/--
+@isnad1 id=eq.3h8v.s10.36dc656927f9 from=translated src=- shape=d7305d7e vocab=48d34971
+-/
 theorem Tlin_comp_schrod (hω2d : ω ^ (2 * d) = 1) (γ : MulAut (Heis δ d)) (hγ : ∀ a, γ (Heis.cen a) = Heis.cen a)
     (v : HH δ → B) (hv : ∀ k : HH δ, schrod δ d B ω (γ (Heis.eta k)) v = v) (z : Heis δ d) :
     Tlin δ d B ω γ v ∘ₗ schrod δ d B ω z = schrod δ d B ω (γ z) ∘ₗ Tlin δ d B ω γ v := by
@@ -90,6 +117,9 @@ theorem Tlin_comp_schrod (hω2d : ω ^ (2 * d) = 1) (γ : MulAut (Heis δ d)) (h
   rw [hmul, mul_theta_eq, map_mul, map_mul, hγ, schrod_mul δ d B ω hω2d, schrod_mul δ d B ω hω2d,
     LinearMap.comp_apply, LinearMap.comp_apply, hv, schrod_cen, add_comm z.h y]
 
+/--
+@isnad1 id=ex.6h10v.s10.29c863bd2858 from=translated src=- shape=ea30e7c2 vocab=4f29cc3c
+-/
 theorem main (hδd : ∏ i, δ i = d) (ζ : B) (hζ : ζ ^ d = 1) (hω : ω ^ 2 = ζ) {n : ℕ} (e : Fin n ≃ HH δ)
     (γ : MulAut (Heis δ d)) (hγ : γ ∈ Heis.Gam δ d)
     (v : HH δ → B) (hv : ∀ k : HH δ, schrod δ d B ω (γ (Heis.eta k)) v = v)
@@ -115,6 +145,9 @@ theorem main (hδd : ∏ i, δ i = d) (ζ : B) (hζ : ζ ^ d = 1) (hω : ω ^ 2 
 
 end HeisC4a
 
+/--
+@isnad1 id=ex.8h10v.s10.cf80fb3daa91 from=translated src=- shape=0e559446 vocab=cabff496
+-/
 theorem solution
     {g : ℕ} (δ : Fin g → ℕ) [∀ i, NeZero (δ i)] (d : ℕ) [NeZero d] (hδd : ∏ i, δ i = d)
     (B : Type) [CommRing B] (hd : IsUnit ((d : ℕ) : B)) (ζ ω : B) (hζ : ζ ^ d = 1)

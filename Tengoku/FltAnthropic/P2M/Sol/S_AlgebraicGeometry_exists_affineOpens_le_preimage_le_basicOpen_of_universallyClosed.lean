@@ -15,6 +15,9 @@ namespace Ws23C2cD
 
 open TopologicalSpace
 
+/--
+@isnad1 id=ex.2h6v.s10.a2cde858caf6 from=translated src=- shape=7eeb1a02 vocab=fa3300a1
+-/
 theorem main {X Y : Scheme.{u}} (p : X ⟶ Y) [UniversallyClosed p] (U : Y.Opens) (y : Y) (hy : y ∈ U)
     (s : Γ(X, p ⁻¹ᵁ U)) (hs : ∀ x : X, p.base x = y → x ∈ X.basicOpen s) :
     ∃ V : Y.affineOpens, y ∈ V.1 ∧ V.1 ≤ U ∧ p ⁻¹ᵁ V.1 ≤ X.basicOpen s := by
@@ -32,6 +35,9 @@ theorem main {X Y : Scheme.{u}} (p : X ⟶ Y) [UniversallyClosed p] (U : Y.Opens
 
 end Ws23C2cD
 
+/--
+@isnad1 id=ex.2h6v.s10.a2cde858caf6 from=translated src=- shape=7eeb1a02 vocab=fa3300a1
+-/
 theorem solution
     {X Y : Scheme.{u}} (p : X ⟶ Y) [UniversallyClosed p] (U : Y.Opens) (y : Y) (hy : y ∈ U)
     (s : Γ(X, p ⁻¹ᵁ U)) (hs : ∀ x : X, p.base x = y → x ∈ X.basicOpen s) :

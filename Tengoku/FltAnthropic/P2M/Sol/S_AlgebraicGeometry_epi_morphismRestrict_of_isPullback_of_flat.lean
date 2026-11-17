@@ -13,30 +13,45 @@ namespace DominanceBC13
 
 open TopologicalSpace Opposite
 
+/--
+@isnad1 id=injectiv.2h5v.s9.cc4901789b35 from=translated src=- shape=e91745a2 vocab=ce45cf46
+-/
 theorem injective_comp {R S T : CommRingCat.{0}} (f : R ⟶ S) (g : S ⟶ T)
     (hf : Function.Injective f) (hg : Function.Injective g) : Function.Injective (f ≫ g) := by
   intro a b h
   simp only [CommRingCat.comp_apply] at h
   exact hf (hg h)
 
+/--
+@isnad1 id=injectiv.1h5v.s8.b22c85841faf from=translated src=- shape=8247b219 vocab=ce45cf46
+-/
 theorem injective_of_injective_comp {R S T : CommRingCat.{0}} (f : R ⟶ S) (g : S ⟶ T)
     (h : Function.Injective (f ≫ g)) : Function.Injective f := by
   intro a b hab
   apply h
   simp only [CommRingCat.comp_apply, hab]
 
+/--
+@isnad1 id=injectiv.1h3v.s10.c9c9f8579b00 from=translated src=- shape=eb923ffd vocab=3573c482
+-/
 theorem injective_map_eqToHom_op {X : Scheme.{0}} {W₁ W₂ : X.Opens} (h : W₁ = W₂) :
     Function.Injective (X.presheaf.map (eqToHom h).op) := by
   subst h
   intro a b hab
   simpa using hab
 
+/--
+@isnad1 id=eq.1h5v.s8.a12f66b4a081 from=translated src=- shape=3066e841 vocab=d0b4d1b5
+-/
 theorem c_eq_of_mk_eq_mk {X Y : PresheafedSpace CommRingCat.{0}} {b : (X : TopCat) ⟶ (Y : TopCat)}
     {c₁ c₂ : Y.presheaf ⟶ b _* X.presheaf}
     (e : (⟨b, c₁⟩ : X ⟶ Y) = ⟨b, c₂⟩) : c₁ = c₂ := by
   cases e
   rfl
 
+/--
+@isnad1 id=epi.2h3v.s8.13af7f8741af from=translated src=- shape=43a27a98 vocab=d958b945
+-/
 theorem epi_of_base_surjective_of_mono_c_app
     {X Y : PresheafedSpace CommRingCat.{0}} (f : X ⟶ Y)
     (h₁ : Function.Surjective f.base) (h₂ : ∀ U, Mono (f.c.app U)) : Epi f := by
@@ -56,6 +71,9 @@ theorem epi_of_base_surjective_of_mono_c_app
   obtain rfl : gc = hc := (cancel_mono _).mp ec
   rfl
 
+/--
+@isnad1 id=epi.1h3v.s10.3eef4b0841bf from=translated src=- shape=ee866e4a vocab=23a77aa7
+-/
 theorem epi_of_surjective_of_injective_app {X Y : Scheme.{0}} (f : X ⟶ Y) [Surjective f]
     (hinj : ∀ V : Y.Opens, Function.Injective (f.app V)) : Epi f := by
   apply Functor.epi_of_epi_map Scheme.forgetToLocallyRingedSpace
@@ -65,6 +83,9 @@ theorem epi_of_surjective_of_injective_app {X Y : Scheme.{0}} (f : X ⟶ Y) [Sur
   intro U
   exact ConcreteCategory.mono_of_injective _ (hinj U.unop)
 
+/--
+@isnad1 id=epi.1h4v.s11.d6873d61ce14 from=translated src=- shape=86065fc1 vocab=f673f2f0
+-/
 theorem epi_morphismRestrict_of_surjective_of_injective_app
     {X Y : Scheme.{0}} (f : X ⟶ Y) [Surjective f]
     (hinj : ∀ V : Y.Opens, Function.Injective (f.app V)) (U : Y.Opens) : Epi (f ∣_ U) := by
@@ -73,6 +94,9 @@ theorem epi_morphismRestrict_of_surjective_of_injective_app
   rw [morphismRestrict_app]
   exact injective_comp _ _ (hinj _) (injective_map_eqToHom_op (image_morphismRestrict_preimage f U V))
 
+/--
+@isnad1 id=injectiv.1h4v.s11.791dfa3d94f4 from=translated src=- shape=6119d8ec vocab=428f3877
+-/
 theorem injective_app_of_forall_epi_morphismRestrict
     {X Y : Scheme.{0}} (p : X ⟶ Y) (hp : ∀ U : Y.Opens, Epi (p ∣_ U)) (V : Y.Opens) :
     Function.Injective (p.app V) := by
@@ -88,6 +112,9 @@ theorem injective_app_of_forall_epi_morphismRestrict
   have h3 : Function.Injective (p.app (V.ι ''ᵁ ⊤)) := injective_of_injective_comp _ _ h2
   rwa [Scheme.Opens.ι_image_top] at h3
 
+/--
+@isnad1 id=injectiv.2h9v.s11.361f70b4c742 from=translated src=- shape=99f37060 vocab=de7e9338
+-/
 theorem injective_app_of_isPullback_of_flat
     {X Y X' Y' : Scheme.{0}} (p : X ⟶ Y) [IsAffineHom p] (f : Y' ⟶ Y) [Flat f]
     (p' : X' ⟶ Y') (q : X' ⟶ X) (sq : IsPullback q p' p f)
@@ -129,6 +156,9 @@ end DominanceBC13
 
 open DominanceBC13 in
 
+/--
+@isnad1 id=epi.2h9v.s8.19440d97fdba from=translated src=- shape=f1373350 vocab=feca885f
+-/
 theorem solution
     {X Y X' Y' : Scheme.{0}} (p : X ⟶ Y) [IsAffineHom p] [Surjective p]
     (f : Y' ⟶ Y) [Flat f] (p' : X' ⟶ Y') (q : X' ⟶ X) (sq : IsPullback q p' p f)

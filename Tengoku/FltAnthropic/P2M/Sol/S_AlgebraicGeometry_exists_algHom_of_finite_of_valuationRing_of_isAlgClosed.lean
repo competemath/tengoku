@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open TensorProduct
 
+/--
+@isnad1 id=nonempty.2h2v.s7.9a1acea24e49 from=translated src=- shape=ae742fcd vocab=b275491f
+-/
 theorem solution
     (R : Type) [CommRing R] [IsDomain R] [ValuationRing R] (hC : IsAlgClosed (FractionRing R))
     (D : Type) [CommRing D] [Algebra R D] [Module.Finite R D]

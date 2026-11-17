@@ -26,10 +26,16 @@ def IsFunctional (φ : A →+* B) (ψ : B →+ A) : Prop :=
 def contentIdeal (φ : A →+* B) (I : Ideal B) : Ideal A :=
   Ideal.span {a | ∃ b ∈ I, ∃ ψ : B →+ A, IsFunctional φ ψ ∧ ψ b = a}
 
+/--
+@isnad1 id=mem.2h6v.s7.68b5904c2d78 from=translated src=- shape=ea91168d vocab=7be411bd
+-/
 theorem mem_contentIdeal_of {φ : A →+* B} {I : Ideal B} {b : B} (hb : b ∈ I) {ψ : B →+ A}
     (hψ : IsFunctional φ ψ) : ψ b ∈ contentIdeal φ I :=
   Ideal.subset_span ⟨b, hb, ψ, hψ, rfl⟩
 
+/--
+@isnad1 id=isfuncti.0h3v.s7.32a86849882d from=translated src=- shape=e8aa80ee vocab=b39622a0
+-/
 theorem isFunctional_of_linearMap [Algebra A B] (ψ : B →ₗ[A] A) :
     IsFunctional (algebraMap A B) ψ.toAddMonoidHom := by
   intro a b
@@ -42,20 +48,32 @@ def IsFunctional.toLinearMap [Algebra A B] {ψ : B →+ A} (hψ : IsFunctional (
   map_add' := ψ.map_add
   map_smul' a b := by rw [Algebra.smul_def, hψ, RingHom.id_apply, smul_eq_mul]
 
+/--
+@isnad1 id=eq.1h4v.s8.afb2d282cf4e from=translated src=- shape=f28944bf vocab=b6f269e1
+-/
 @[scoped simp] theorem IsFunctional.toLinearMap_apply [Algebra A B] {ψ : B →+ A}
     (hψ : IsFunctional (algebraMap A B) ψ) (b : B) : hψ.toLinearMap b = ψ b := rfl
 
 
+/--
+@isnad1 id=mem.1h5v.s8.992f7d8b693e from=translated src=- shape=e28386de vocab=3c44301f
+-/
 theorem mem_contentIdeal_of_linearMap [Algebra A B] {I : Ideal B} {b : B} (hb : b ∈ I)
     (ψ : B →ₗ[A] A) : ψ b ∈ contentIdeal (algebraMap A B) I :=
   mem_contentIdeal_of hb (isFunctional_of_linearMap ψ)
 
+/--
+@isnad1 id=isfuncti.1h5v.s7.8bbe13a67d88 from=translated src=- shape=cf71c77e vocab=bfb4f7cd
+-/
 theorem IsFunctional.comp_mulLeft {φ : A →+* B} {ψ : B →+ A} (hψ : IsFunctional φ ψ) (c : B) :
     IsFunctional φ (ψ.comp (AddMonoidHom.mulLeft c)) := by
   intro a b
   simp only [AddMonoidHom.coe_comp, Function.comp_apply, AddMonoidHom.coe_mulLeft]
   rw [mul_left_comm, hψ]
 
+/--
+@isnad1 id=eq.2h6v.s8.aa078447c672 from=translated src=- shape=b17bbdb3 vocab=4d81bd08
+-/
 theorem map_eq_zero_of_forall_contentIdeal [Algebra A B] [Module.Projective A B]
     {C : Type*} [CommRing C] (χ : B →+* C) (I : Ideal B)
     (hχ : ∀ a ∈ contentIdeal (algebraMap A B) I, χ (algebraMap A B a) = 0) {b : B} (hb : b ∈ I) :
@@ -70,6 +88,9 @@ theorem map_eq_zero_of_forall_contentIdeal [Algebra A B] [Module.Projective A B]
     mem_contentIdeal_of_linearMap hb ((Finsupp.lapply p).comp s)
   rw [hχ _ hmem, zero_mul]
 
+/--
+@isnad1 id=eq.1h5v.s9.6814da17cfb1 from=translated src=- shape=d45d95aa vocab=23c1d380
+-/
 theorem algebraMap_eq_zero_of_tmul_eq_zero [Algebra A B] {A' : Type*} [CommRing A'] [Algebra A A']
     {b : B} (h : (1 : A') ⊗ₜ[A] b = 0) (ψ : B →ₗ[A] A) : algebraMap A A' (ψ b) = 0 := by
   let μ : A' ⊗[A] B →ₗ[A] A' :=
@@ -86,6 +107,9 @@ section Localization
 variable {A B Aᵣ Bᵣ : Type*} [CommRing A] [CommRing B] [CommRing Aᵣ] [CommRing Bᵣ]
   [Algebra A Aᵣ] [Algebra B Bᵣ]
 
+/--
+@isnad1 id=eq.3h8v.s8.1ef253e41c58 from=translated src=- shape=90a13be2 vocab=c0d6db28
+-/
 theorem contentIdeal_map_localization (r : A) [IsLocalization.Away r Aᵣ] (φ : A →+* B)
     [IsLocalization.Away (φ r) Bᵣ] (φᵣ : Aᵣ →+* Bᵣ)
     (hsq : φᵣ.comp (algebraMap A Aᵣ) = (algebraMap B Bᵣ).comp φ)
@@ -184,11 +208,17 @@ def contentAt (U : T.affineOpens) : Ideal Γ(T, U) :=
 
 omit [IsClosedImmersion i] in
 
+/--
+@isnad1 id=eq.2h8v.s13.422f25ce2466 from=translated src=- shape=94031edf vocab=93f0a8f6
+-/
 theorem contentIdeal_appLE_congr (U : T.Opens) {V₁ V₂ : D.Opens} (e : V₁ = V₂) (h₁ : V₁ ≤ g ⁻¹ᵁ U) :
     contentIdeal (g.appLE U V₁ h₁).hom (RingHom.ker (i.app V₁).hom) =
       contentIdeal (g.appLE U V₂ (e ▸ h₁)).hom (RingHom.ker (i.app V₂).hom) := by
   subst e; rfl
 
+/--
+@isnad1 id=eq.0h7v.s12.8d9eeb08516c from=translated src=- shape=2e9c2702 vocab=5555bc6d
+-/
 theorem contentAt_map_basicOpen [IsFinite g] [LocallyOfFinitePresentation g]
     (U : T.affineOpens) (r : Γ(T, U)) :
     (contentAt i g U).map (T.presheaf.map (homOfLE <| T.basicOpen_le r).op).hom =
@@ -230,12 +260,18 @@ theorem contentAt_map_basicOpen [IsFinite g] [LocallyOfFinitePresentation g]
 def contentSheaf [IsFinite g] [LocallyOfFinitePresentation g] : T.IdealSheafData :=
   ⟨contentAt i g, contentAt_map_basicOpen i g, _, rfl⟩
 
+/--
+@isnad1 id=iff.0h4v.s13.632ae718cb33 from=translated src=- shape=ade2d5c5 vocab=25b69de7
+-/
 theorem comap_eq_bot_iff_forall_le_ker {X Y : Scheme.{u}} (J : Y.IdealSheafData) (f : X ⟶ Y) :
     J.comap f = ⊥ ↔ ∀ U : Y.affineOpens, J.ideal U ≤ RingHom.ker (f.app U).hom := by
   rw [← le_bot_iff, ← Scheme.IdealSheafData.le_map_iff_comap_le, Scheme.IdealSheafData.map_bot,
     Scheme.Hom.ker, Scheme.IdealSheafData.le_ofIdeals_iff]
   rfl
 
+/--
+@isnad1 id=iff.0h5v.s13.becb7cb47bc5 from=translated src=- shape=8a33e319 vocab=730df1b5
+-/
 theorem ker_comap_eq_bot_iff_forall_le_ker {X : Scheme.{u}} (f : X ⟶ D) :
     i.ker.comap f = ⊥ ↔
       ∀ V : D.affineOpens, RingHom.ker (i.app V).hom ≤ RingHom.ker (f.app V).hom := by
@@ -249,6 +285,9 @@ variable [IsFinite g] [Flat g] [LocallyOfFinitePresentation g] {T' : Scheme.{u}}
 
 omit [IsClosedImmersion i] in
 
+/--
+@isnad1 id=eq.2h9v.s14.a70d1c943f58 from=translated src=- shape=4cd13fdb vocab=80dd894c
+-/
 theorem fst_app_eq_zero_of_mem_ker (hJ : ∀ U : T.affineOpens, contentAt i g U ≤ RingHom.ker (h.app U).hom)
     (U : T.affineOpens) {b : Γ(D, g ⁻¹ᵁ U)} (hb : b ∈ RingHom.ker (i.app (g ⁻¹ᵁ U)).hom) :
     (pullback.fst g h).app (g ⁻¹ᵁ U) b = 0 := by
@@ -272,6 +311,9 @@ theorem fst_app_eq_zero_of_mem_ker (hJ : ∀ U : T.affineOpens, contentAt i g U 
   change (pullback g h).presheaf.map _ ((pullback.snd g h).app _ (h.app U a)) = 0
   rw [show h.app U a = 0 from hJ U ha, map_zero, map_zero]
 
+/--
+@isnad1 id=eq.3h10v.s14.15d97cabe050 from=translated src=- shape=16c9739e vocab=41c9f709
+-/
 theorem fst_app_eq_zero_of_le (hJ : ∀ U : T.affineOpens, contentAt i g U ≤ RingHom.ker (h.app U).hom)
     (U : T.affineOpens) (W : D.affineOpens) (hW : (W : D.Opens) ≤ g ⁻¹ᵁ U)
     {c : Γ(D, W)} (hc : c ∈ RingHom.ker (i.app W).hom) :
@@ -292,6 +334,9 @@ theorem fst_app_eq_zero_of_le (hJ : ∀ U : T.affineOpens, contentAt i g U ≤ R
     rw [fst_app_eq_zero_of_mem_ker i g h hJ U ht, map_zero]
   exact hle hc
 
+/--
+@isnad1 id=le.1h8v.s14.6702cec1841b from=translated src=- shape=fb75ba06 vocab=c8c2f0cb
+-/
 theorem forall_le_ker_fst (hJ : ∀ U : T.affineOpens, contentAt i g U ≤ RingHom.ker (h.app U).hom)
     (V : D.affineOpens) : RingHom.ker (i.app V).hom ≤ RingHom.ker ((pullback.fst g h).app V).hom := by
   intro b hb
@@ -324,6 +369,9 @@ section Backward
 
 variable [IsFinite g] {T' : Scheme.{u}} (h : T' ⟶ T)
 
+/--
+@isnad1 id=eq.2h4v.s11.2f0d8ea5313b from=translated src=- shape=4fe75af8 vocab=febe81be
+-/
 theorem appLE_SpecMap_comp_fromSpec {X : Scheme.{u}} {V : X.Opens} (hV : IsAffineOpen V)
     {R : CommRingCat.{u}} (f : Γ(X, V) ⟶ R) (e : ⊤ ≤ (Spec.map f ≫ hV.fromSpec) ⁻¹ᵁ V) :
     (Spec.map f ≫ hV.fromSpec).appLE V ⊤ e = f ≫ (Scheme.ΓSpecIso R).inv := by
@@ -339,6 +387,9 @@ theorem appLE_SpecMap_comp_fromSpec {X : Scheme.{u}} {V : X.Opens} (hV : IsAffin
   have hs : (Spec.map f).appLE ⊤ ⊤ le_rfl = (Spec.map f).appTop := Scheme.Hom.appLE_eq_app _
   rw [← Scheme.Hom.appLE_comp_appLE _ _ V ⊤ ⊤ e₁ le_rfl, hf, hs, ← Scheme.ΓSpecIso_inv_naturality]
 
+/--
+@isnad1 id=eq.3h8v.s12.002c120bc81e from=translated src=- shape=abca8904 vocab=b9b88f55
+-/
 theorem apply_eq_zero_of_lift {X : Scheme.{u}} {V : X.Opens} (hV : IsAffineOpen V)
     {R : CommRingCat.{u}} (f : Γ(X, V) ⟶ R) {P : Scheme.{u}} (π : P ⟶ X) (θ : Spec R ⟶ P)
     (hθ : θ ≫ π = Spec.map f ≫ hV.fromSpec) {b : Γ(X, V)} (hb : π.app V b = 0) : f b = 0 := by
@@ -356,6 +407,9 @@ theorem apply_eq_zero_of_lift {X : Scheme.{u}} {V : X.Opens} (hV : IsAffineOpen 
   have := congrArg (Scheme.ΓSpecIso R).hom h1
   rwa [Iso.inv_hom_id_apply, map_zero] at this
 
+/--
+@isnad1 id=eq.5h8v.s15.34aadf5856b1 from=translated src=- shape=0e0d3ddb vocab=5c04c21a
+-/
 theorem tmul_eq_zero (U : T.affineOpens) (W : T'.Opens) (hW : IsAffineOpen W) (hWU : W ≤ h ⁻¹ᵁ U)
     [Algebra Γ(T, U) Γ(D, g ⁻¹ᵁ U)] [Algebra Γ(T, U) Γ(T', W)]
     (hφ : algebraMap Γ(T, U) Γ(D, g ⁻¹ᵁ U) = (g.app U).hom)
@@ -396,6 +450,9 @@ theorem tmul_eq_zero (U : T.affineOpens) (W : T'.Opens) (hW : IsAffineOpen W) (h
 
 omit [IsClosedImmersion i] in
 
+/--
+@isnad1 id=le.1h8v.s14.477367a6ec33 from=translated src=- shape=cb5c0bf8 vocab=745e0c5e
+-/
 theorem contentAt_le_ker
     (hZ : ∀ V : D.affineOpens, RingHom.ker (i.app V).hom ≤ RingHom.ker ((pullback.fst g h).app V).hom)
     (U : T.affineOpens) : contentAt i g U ≤ RingHom.ker (h.app U).hom := by
@@ -427,6 +484,9 @@ open scoped _root_.P2MW.S_AlgebraicGeometry_exists_idealSheafData_comap_eq_bot_i
 
 open _root_.AlgebraicGeometry _root_.P2MW.S_AlgebraicGeometry_exists_idealSheafData_comap_eq_bot_iff_of_isClosedImmersion_of_isFinite_of_flat.AlgebraicGeometry CategoryTheory CategoryTheory.Limits in
 
+/--
+@isnad1 id=ex.0h5v.s7.862c56a5a284 from=translated src=- shape=0cbee9ba vocab=40909f68
+-/
 theorem solution
     {Z D T : Scheme.{u}} (i : Z ⟶ D) [IsClosedImmersion i] (g : D ⟶ T) [IsFinite g] [Flat g]
     [LocallyOfFinitePresentation g] :

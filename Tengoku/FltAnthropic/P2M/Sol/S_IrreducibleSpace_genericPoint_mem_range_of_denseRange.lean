@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits TopologicalSpace AlgebraicGeometry Opposite
 
+/--
+@isnad1 id=mem.2h3v.s5.fa9ba7d63468 from=translated src=- shape=e99be96c vocab=06cc4c0c
+-/
 theorem solution
     {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
     [NoetherianSpace X] [QuasiSober X] [QuasiSober Y] [IrreducibleSpace Y] [T0Space Y]

@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=ex.3h4v.s8.d974513cedea from=translated src=- shape=3de27bb0 vocab=45d91342
+-/
 theorem solution
     {X : Scheme.{u}} (W : X.Opens) (hW : IsAffineOpen W) (O : X.Opens) (F : Finset X)
     (hFW : ∀ x ∈ F, x ∈ W) (hFO : ∀ x ∈ F, x ∈ O) :

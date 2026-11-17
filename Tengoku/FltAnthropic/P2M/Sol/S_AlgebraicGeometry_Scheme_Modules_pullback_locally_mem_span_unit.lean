@@ -29,6 +29,9 @@ noncomputable abbrev res (M : X.Modules) {W' W : X.Opens} (h : W' ≤ W) : Γ(M,
   fun y => M.presheaf.map (homOfLE h).op y
 
 omit E in
+/--
+@isnad1 id=eq.2h6v.s8.f3438c26bc5d from=translated src=- shape=aa6f04f9 vocab=b1e6eb5f
+-/
 lemma res_res (M : X.Modules) {W₁ W₂ W₃ : X.Opens} (h₂₁ : W₂ ≤ W₁) (h₃₂ : W₃ ≤ W₂) (y : Γ(M, W₁)) :
     res M h₃₂ (res M h₂₁ y) = res M (h₃₂.trans h₂₁) y := by
   change (M.presheaf.map (homOfLE h₂₁).op ≫ M.presheaf.map (homOfLE h₃₂).op) y = _
@@ -36,25 +39,40 @@ lemma res_res (M : X.Modules) {W₁ W₂ W₃ : X.Opens} (h₂₁ : W₂ ≤ W�
   rfl
 
 omit E in
+/--
+@isnad1 id=eq.0h6v.s10.021ac70c1f43 from=translated src=- shape=10fd2024 vocab=39306e82
+-/
 lemma res_eq_map (M : X.Modules) {W' W : X.Opens} (f : W' ⟶ W) (y : Γ(M, W)) :
     M.presheaf.map f.op y = res M f.le y := by
   rw [Subsingleton.elim f (homOfLE f.le)]
 
 omit E in
+/--
+@isnad1 id=eq.1h6v.s13.deae482d9fda from=translated src=- shape=36ba1779 vocab=aefa1a9f
+-/
 lemma res_smul (M : X.Modules) {W' W : X.Opens} (h : W' ≤ W) (r : Γ(X, W)) (y : Γ(M, W)) :
     res M h (r • y) = X.presheaf.map (homOfLE h).op r • res M h y :=
   Modules.map_smul M (homOfLE h) r y
 
 omit E in
+/--
+@isnad1 id=eq.1h6v.s11.6f0ac9958010 from=translated src=- shape=4906a520 vocab=4dbe26ab
+-/
 lemma res_add (M : X.Modules) {W' W : X.Opens} (h : W' ≤ W) (y z : Γ(M, W)) :
     res M h (y + z) = res M h y + res M h z := map_add _ y z
 
 omit E in
+/--
+@isnad1 id=eq.1h4v.s11.ef0a9ecbaef1 from=translated src=- shape=2bcddd88 vocab=90abfa10
+-/
 lemma res_zero (M : X.Modules) {W' W : X.Opens} (h : W' ≤ W) : res M h (0 : Γ(M, W)) = 0 := map_zero _
 
 noncomputable def eta (U : Y.Opens) (e : Γ(E, U)) : Γ(F ψ E, ψ ⁻¹ᵁ U) :=
   ((pullbackPushforwardAdjunction ψ).unit.app E).app U e
 
+/--
+@isnad1 id=eq.1h7v.s11.09421a177b0e from=translated src=- shape=1bc0fc16 vocab=b8f7dba3
+-/
 lemma res_eta {U U' : Y.Opens} (h : U' ≤ U) (e : Γ(E, U)) :
     res (F ψ E) (ψ.preimage_mono h) (eta ψ E U e) = eta ψ E U' (E.presheaf.map (homOfLE h).op e) := by
   have hnat := ((pullbackPushforwardAdjunction ψ).unit.app E).mapPresheaf.naturality (homOfLE h).op
@@ -70,10 +88,16 @@ noncomputable def spanAll (W : X.Opens) : Submodule Γ(X, W) Γ(F ψ E, W) :=
   Submodule.span Γ(X, W)
     {y | ∃ (U : Y.Opens) (j : W ≤ ψ ⁻¹ᵁ U) (e : Γ(E, U)), y = res (F ψ E) j (eta ψ E U e)}
 
+/--
+@isnad1 id=mem.1h7v.s11.2583cacc892b from=translated src=- shape=7a9fd610 vocab=d11cef1b
+-/
 lemma eta_res_mem_spanAll {U : Y.Opens} {W : X.Opens} (j : W ≤ ψ ⁻¹ᵁ U) (e : Γ(E, U)) :
     res (F ψ E) j (eta ψ E U e) ∈ spanAll ψ E W :=
   Submodule.subset_span ⟨U, j, e, rfl⟩
 
+/--
+@isnad1 id=mem.2h7v.s12.477fdca81969 from=translated src=- shape=95e6813d vocab=d3161f3d
+-/
 lemma res_mem_spanAll {W' W : X.Opens} (h : W' ≤ W) {y : Γ(F ψ E, W)} (hy : y ∈ spanAll ψ E W) :
     res (F ψ E) h y ∈ spanAll ψ E W' := by
   induction hy using Submodule.span_induction with
@@ -85,6 +109,9 @@ lemma res_mem_spanAll {W' W : X.Opens} (h : W' ≤ W) {y : Γ(F ψ E, W)} (hy : 
   | add z₁ z₂ _ _ h₁ h₂ => rw [res_add]; exact add_mem h₁ h₂
   | smul r z _ hz => rw [res_smul]; exact Submodule.smul_mem _ _ hz
 
+/--
+@isnad1 id=mem.5h9v.s12.1d961e483798 from=translated src=- shape=6dd81352 vocab=2dae07d9
+-/
 lemma res_mem_span₁ {U U₁ : Y.Opens} {W W₁ : X.Opens} (hU : U ≤ U₁) (hW : W ≤ W₁) (j₁ : W₁ ≤ ψ ⁻¹ᵁ U₁)
     (j : W ≤ ψ ⁻¹ᵁ U) {y : Γ(F ψ E, W₁)} (hy : y ∈ span₁ ψ E U₁ W₁ j₁) :
     res (F ψ E) hW y ∈ span₁ ψ E U W j := by
@@ -120,6 +147,9 @@ noncomputable def locSpan (W : X.Opens) : Submodule Γ(X, W) Γ(F ψ E, W) where
     rw [res_smul]
     exact Submodule.smul_mem _ _ h₁
 
+/--
+@isnad1 id=mem.2h7v.s12.d9489401398a from=translated src=- shape=95e6813d vocab=8f94948c
+-/
 lemma res_mem_locSpan {W' W : X.Opens} (h : W' ≤ W) {y : Γ(F ψ E, W)} (hy : y ∈ locSpan ψ E W) :
     res (F ψ E) h y ∈ locSpan ψ E W' := by
   intro x hx
@@ -128,6 +158,9 @@ lemma res_mem_locSpan {W' W : X.Opens} (h : W' ≤ W) {y : Γ(F ψ E, W)} (hy : 
   rw [res_res, ← res_res (F ψ E) i₁ inf_le_left]
   exact res_mem_spanAll ψ E _ h₁
 
+/--
+@isnad1 id=mem.0h6v.s12.32a9e7439969 from=translated src=- shape=d52138b6 vocab=231af07b
+-/
 lemma eta_mem_locSpan (U : Y.Opens) (e : Γ(E, U)) : eta ψ E U e ∈ locSpan ψ E (ψ ⁻¹ᵁ U) := by
   intro x hx
   refine ⟨ψ ⁻¹ᵁ U, le_rfl, hx, ?_⟩
@@ -150,6 +183,9 @@ namespace PullbackGen
 variable {X Y : Scheme.{u}} (ψ : X ⟶ Y) (E : Y.Modules)
 
 omit E in
+/--
+@isnad1 id=eq.0h6v.s10.fd1ade474545 from=translated src=- shape=193deb46 vocab=911eaec6
+-/
 lemma map_eq_res (M : X.Modules) {W W' : (X.Opens)ᵒᵖ} (f : W ⟶ W') (y : Γ(M, W.unop)) :
     M.presheaf.map f y = res M f.unop.le y :=
   res_eq_map M f.unop y
@@ -176,6 +212,9 @@ noncomputable scoped instance instModuleLocSpanAb (W : (X.Opens)ᵒᵖ) :
     Module (X.ringCatSheaf.obj.obj W) ((locSpanAb ψ E).obj W) :=
   inferInstanceAs (Module Γ(X, W.unop) (locSpan ψ E W.unop))
 
+/--
+@isnad1 id=issheaf.0h4v.s5.73800c207635 from=translated src=- shape=eafe8a6a vocab=bf98def6
+-/
 lemma isSheaf_locSpanAb : TopCat.Presheaf.IsSheaf (locSpanAb ψ E) := by
   rw [TopCat.Presheaf.isSheaf_iff_isSheafUniqueGluing]
   intro ι U sf hsf
@@ -238,11 +277,17 @@ scoped instance : Epi (incl ψ E) := by
 
 scoped instance : IsIso (incl ψ E) := isIso_of_mono_of_epi _
 
+/--
+@isnad1 id=mem.0h6v.s11.c8b8e95daec8 from=translated src=- shape=07e71ee2 vocab=bb5a87e2
+-/
 lemma mem_locSpan (W : X.Opens) (y : Γ(F ψ E, W)) : y ∈ locSpan ψ E W := by
   obtain ⟨z, hz⟩ := (ConcreteCategory.bijective_of_isIso ((incl ψ E).app W)).2 y
   rw [← hz]
   exact (show locSpan ψ E W from z).2
 
+/--
+@isnad1 id=ex.2h8v.s12.96bcb65aa1b7 from=translated src=- shape=de92376e vocab=91a945cf
+-/
 theorem main {W : X.Opens} (y : Γ(F ψ E, W)) {x : X} (hx : x ∈ W) {U₀ : Y.Opens} (hU₀ : ψ.base x ∈ U₀) :
     ∃ (U : Y.Opens) (W' : X.Opens) (i : W' ≤ W) (j : W' ≤ ψ ⁻¹ᵁ U), U ≤ U₀ ∧ x ∈ W' ∧
       res (F ψ E) i y ∈ span₁ ψ E U W' j := by
@@ -284,6 +329,9 @@ open scoped _root_.P2MW.S_AlgebraicGeometry_Scheme_Modules_pullback_locally_mem_
 open scoped _root_.P2MW.S_AlgebraicGeometry_Scheme_Modules_pullback_locally_mem_span_unit.AlgebraicGeometry.Scheme.Modules.PullbackGen _root_.P2MW.S_AlgebraicGeometry_Scheme_Modules_pullback_locally_mem_span_unit.AlgebraicGeometry _root_.P2MW.S_AlgebraicGeometry_Scheme_Modules_pullback_locally_mem_span_unit.AlgebraicGeometry.Scheme
 open scoped _root_.P2MW.S_AlgebraicGeometry_Scheme_Modules_pullback_locally_mem_span_unit.AlgebraicGeometry.Scheme.Modules.PullbackGen _root_.P2MW.S_AlgebraicGeometry_Scheme_Modules_pullback_locally_mem_span_unit.AlgebraicGeometry
 
+/--
+@isnad1 id=ex.2h8v.s13.84cb0fde70f6 from=translated src=- shape=2d6f70c4 vocab=2f6a96a3
+-/
 theorem solution
     {X Y : Scheme.{u}} (ψ : X ⟶ Y) (E : Y.Modules) {W : X.Opens}
     (y : Γ((Scheme.Modules.pullback ψ).obj E, W)) {x : X} (hx : x ∈ W)

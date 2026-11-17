@@ -20,18 +20,27 @@ variable {X : Scheme.{u}} {ι : Type u} (U : ι → X.affineOpens) (g : ∀ i, �
 noncomputable abbrev res {V W : X.Opens} (h : V ≤ W) : Γ(X, W) →+* Γ(X, V) := (X.presheaf.map (homOfLE h).op).hom
 
 omit U g in
+/--
+@isnad1 id=eq.2h5v.s13.7d5a85ff78a5 from=translated src=- shape=a5732438 vocab=2f8c32a3
+-/
 theorem res_res {V W Y : X.Opens} (h : V ≤ W) (h' : W ≤ Y) (s : Γ(X, Y)) : res h (res h' s) = res (h.trans h') s := by
   change (X.presheaf.map (homOfLE h').op ≫ X.presheaf.map (homOfLE h).op) s = _
   rw [← X.presheaf.map_comp]
   rfl
 
 omit U g in
+/--
+@isnad1 id=eq.0h3v.s11.813760a8cf3b from=translated src=- shape=dd0705d4 vocab=e11c878a
+-/
 theorem res_self {V : X.Opens} (s : Γ(X, V)) : res (le_refl V) s = s := by
   change (X.presheaf.map (homOfLE (le_refl V)).op) s = s
   have : (homOfLE (le_refl V)).op = 𝟙 _ := rfl
   rw [this, X.presheaf.map_id]
   rfl
 
+/--
+@isnad1 id=mem.3h6v.s14.d4b9599fa5af from=translated src=- shape=73925b50 vocab=5ef001f4
+-/
 theorem res_mem_span {V W : X.Opens} (h : V ≤ W) {Y : X.Opens} (hW : W ≤ Y) (t : Γ(X, Y)) (s : Γ(X, W))
     (hs : s ∈ Ideal.span {res hW t}) : res h s ∈ Ideal.span {res (h.trans hW) t} := by
   rw [Ideal.mem_span_singleton'] at hs ⊢
@@ -50,6 +59,9 @@ variable (hU : ⨆ i, (U i : X.Opens) = ⊤)
 include hU in
 omit g in
 
+/--
+@isnad1 id=ex.2h5v.s8.773e48d9889d from=translated src=- shape=b45e6cc3 vocab=5becc66c
+-/
 theorem exists_affine_nhd (W : X.Opens) (x : X) (hx : x ∈ W) :
     ∃ (V : X.affineOpens) (i : ι), x ∈ (V : X.Opens) ∧ (V : X.Opens) ≤ W ∧ (V : X.Opens) ≤ U i := by
   have hx' : x ∈ (⨆ i, (U i : X.Opens)) := by rw [hU]; trivial
@@ -59,6 +71,9 @@ theorem exists_affine_nhd (W : X.Opens) (x : X) (hx : x ∈ W) :
 
 include hcomp in
 
+/--
+@isnad1 id=ex.6h9v.s14.962e953076a7 from=translated src=- shape=87c14412 vocab=bb6aefb7
+-/
 theorem LocMem.restrict {W : X.Opens} {s : Γ(X, W)} {x : X} (h : LocMem U g W s x)
     (V' : X.affineOpens) (j : ι) (hxV' : x ∈ (V' : X.Opens)) (hV'W : (V' : X.Opens) ≤ W) (hV'U : (V' : X.Opens) ≤ U j)
     (hsmall : ∀ (V : X.affineOpens), x ∈ (V : X.Opens) → ∃ (V'' : X.affineOpens), x ∈ (V'' : X.Opens) ∧ (V'' : X.Opens) ≤ V ∧ (V'' : X.Opens) ≤ V') :
@@ -74,6 +89,9 @@ theorem LocMem.restrict {W : X.Opens} {s : Γ(X, W)} {x : X} (h : LocMem U g W s
 
 include hg in
 
+/--
+@isnad1 id=eq.3h8v.s14.8bebf751b4e6 from=translated src=- shape=1b8c8879 vocab=5be33b65
+-/
 theorem mul_res_g_injective (i : ι) (O : X.Opens) (hO : O ≤ U i) (c₁ c₂ : Γ(X, O))
     (h : c₁ * res hO (g i) = c₂ * res hO (g i)) : c₁ = c₂ := by
 
@@ -92,6 +110,9 @@ theorem mul_res_g_injective (i : ι) (O : X.Opens) (hO : O ≤ U i) (c₁ c₂ :
 
 include hg hcomp in
 
+/--
+@isnad1 id=mem.5h8v.s14.c75e35ed0ba4 from=translated src=- shape=8b25254a vocab=3e29f9a0
+-/
 theorem mem_span_of_locMem (W₀ : X.Opens) (s : Γ(X, W₀)) (i : ι) (V : X.affineOpens)
     (hVW : (V : X.Opens) ≤ W₀) (hVU : (V : X.Opens) ≤ U i)
     (hloc : ∀ x ∈ (V : X.Opens), LocMem U g W₀ s x) :
@@ -134,6 +155,9 @@ theorem mem_span_of_locMem (W₀ : X.Opens) (s : Γ(X, W₀)) (i : ι) (V : X.af
 
 omit g in
 
+/--
+@isnad1 id=ex.2h4v.s8.45ccaa51833b from=translated src=- shape=a327ef42 vocab=9f54fc34
+-/
 theorem exists_affine_le_inf (V₁ V₂ : X.affineOpens) (x : X) (h₁ : x ∈ (V₁ : X.Opens)) (h₂ : x ∈ (V₂ : X.Opens)) :
     ∃ (V : X.affineOpens), x ∈ (V : X.Opens) ∧ (V : X.Opens) ≤ V₁ ∧ (V : X.Opens) ≤ V₂ := by
   obtain ⟨_, ⟨V, hV, rfl⟩, hxV, hle⟩ := X.isBasis_affineOpens.exists_subset_of_mem_open
@@ -169,6 +193,9 @@ open TopologicalSpace
 
 variable {X : Scheme.{u}}
 
+/--
+@isnad1 id=ex.2h5v.s13.3f153278059e from=translated src=- shape=1f46a3e2 vocab=84d1f707
+-/
 theorem exists_affine_res_mem_span_of_germ {W : X.Opens} (a b : Γ(X, W)) (x : X) (hx : x ∈ W)
     (h : ∃ u : X.presheaf.stalk x, X.presheaf.germ W x hx a = u * X.presheaf.germ W x hx b) :
     ∃ (V : X.affineOpens) (_ : x ∈ (V : X.Opens)) (hVW : (V : X.Opens) ≤ W), res hVW a ∈ Ideal.span {res hVW b} := by
@@ -195,6 +222,9 @@ theorem exists_affine_res_mem_span_of_germ {W : X.Opens} (a b : Γ(X, W)) (x : X
   rw [res_res]
   exact this.symm
 
+/--
+@isnad1 id=le.2h4v.s13.19c227638829 from=translated src=- shape=7d9b4997 vocab=2e585937
+-/
 theorem span_le_span_of_forall_germ (W : X.affineOpens) (a b : Γ(X, (W : X.Opens)))
     (hb : ∀ (V : X.affineOpens) (h : (V : X.Opens) ≤ W), res h b ∈ nonZeroDivisors Γ(X, V))
     (h : ∀ x (hx : x ∈ (W : X.Opens)), ∃ u : X.presheaf.stalk x, X.presheaf.germ W x hx a = u * X.presheaf.germ W x hx b) :
@@ -208,6 +238,9 @@ theorem span_le_span_of_forall_germ (W : X.affineOpens) (a b : Γ(X, (W : X.Open
 
 end LocPrinc
 
+/--
+@isnad1 id=le.2h4v.s14.0d5614df42e2 from=translated src=- shape=65269994 vocab=d53d897b
+-/
 theorem solution
     {X : Scheme.{u}} (W : X.affineOpens) (a b : Γ(X, (W : X.Opens)))
     (hb : ∀ (V : X.affineOpens) (h : (V : X.Opens) ≤ W), (X.presheaf.map (homOfLE h).op).hom b ∈ nonZeroDivisors Γ(X, V))

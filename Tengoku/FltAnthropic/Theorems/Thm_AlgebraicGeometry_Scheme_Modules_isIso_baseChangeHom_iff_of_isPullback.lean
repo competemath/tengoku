@@ -12,6 +12,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=iff.2h12v.s7.3f9e6806bf98 from=translated src=- shape=46ad6603 vocab=78f1eb4f
+-/
 theorem AlgebraicGeometry.Scheme.Modules.isIso_baseChangeHom_iff_of_isPullback
     {X T T' X₁ X₂ : Scheme.{u}} {π : X ⟶ T} {ψ : T' ⟶ T}
     {π₁ : X₁ ⟶ T'} {g₁ : X₁ ⟶ X} {π₂ : X₂ ⟶ T'} {g₂ : X₂ ⟶ X}

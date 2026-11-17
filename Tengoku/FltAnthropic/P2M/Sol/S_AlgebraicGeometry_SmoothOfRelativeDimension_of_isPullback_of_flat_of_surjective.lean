@@ -15,6 +15,9 @@ open TensorProduct
 
 namespace RelDimDescent
 
+/--
+@isnad1 id=eq.0h3v.s7.c6f91216e3e5 from=translated src=- shape=48da1647 vocab=1e1596a9
+-/
 theorem rank_baseChange_eq {A : Type u} (B : Type u) [CommRing A] [CommRing B] [Algebra A B]
     [Nontrivial B] (N : Type u) [AddCommGroup N] [Module A N] [Module.Free A N] :
     Module.rank B (B ⊗[A] N) = Module.rank A N := by
@@ -35,6 +38,9 @@ noncomputable def omegaLocEquiv (T' : Type u) [CommRing T'] [Algebra T T'] [Alge
 
 end Key
 
+/--
+@isnad1 id=isstanda.1h6v.s8.d8658dac784d from=translated src=- shape=0333b5ee vocab=2e3b29c0
+-/
 theorem isStandardSmoothOfRelativeDimension_of_faithfullyFlat
     {R S T : Type u} [CommRing R] [CommRing S] [CommRing T] [Algebra R S] [Algebra R T]
     [Module.FaithfullyFlat R S] (n : ℕ)
@@ -115,6 +121,9 @@ theorem isStandardSmoothOfRelativeDimension_of_faithfullyFlat
   have h3 : Module.rank Au Ω[Au⁄S] = n := Algebra.IsStandardSmoothOfRelativeDimension.rank_kaehlerDifferential n
   rw [← h1, ← e1.rank_eq, e2.rank_eq, h2, h3]
 
+/--
+@isnad1 id=nontrivi.1h2v.s5.fff21ed56eff from=translated src=- shape=8dc0986f vocab=d4a0ce18
+-/
 theorem nontrivial_localization_away {T : Type u} [CommRing T] {t : T} (ht : ¬ IsNilpotent t) :
     Nontrivial (Localization.Away t) := by
   by_contra h
@@ -128,6 +137,9 @@ theorem nontrivial_localization_away {T : Type u} [CommRing T] {t : T} (ht : ¬ 
   rw [hm']
   simpa using hc
 
+/--
+@isnad1 id=eq.1h2v.s7.a02a83adac24 from=translated src=- shape=ea987833 vocab=656a0d3f
+-/
 theorem span_not_isNilpotent_eq_top {T : Type u} [CommRing T] {s : Set T} (hs : Ideal.span s = ⊤) :
     Ideal.span {t ∈ s | ¬ IsNilpotent t} = ⊤ := by
   rw [← Ideal.radical_eq_top, eq_top_iff, ← hs]
@@ -137,6 +149,9 @@ theorem span_not_isNilpotent_eq_top {T : Type u} [CommRing T] {s : Set T} (hs : 
     exact ⟨m, by rw [hm]; exact Ideal.zero_mem _⟩
   · exact Ideal.le_radical (Ideal.subset_span ⟨ht, hn⟩)
 
+/--
+@isnad1 id=codescen.0h1v.s6.50d4ded44b3e from=translated src=- shape=2e3590ec vocab=5a029efa
+-/
 theorem codescendsAlong (n : ℕ) :
     RingHom.CodescendsAlong (fun {R S : Type u} [CommRing R] [CommRing S] (f : R →+* S) =>
         RingHom.Locally (RingHom.IsStandardSmoothOfRelativeDimension n) f)
@@ -172,6 +187,9 @@ end RelDimDescent
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=smoothof.1h9v.s6.d1b633bd483a from=translated src=- shape=d05e5d00 vocab=e39c2369
+-/
 theorem solution (n : ℕ)
     {P X Y Z : Scheme.{u}} {fst : P ⟶ X} {snd : P ⟶ Y} {f : X ⟶ Z} {g : Y ⟶ Z}
     (H : IsPullback fst snd f g) [Flat f] [Surjective f] [QuasiCompact f]

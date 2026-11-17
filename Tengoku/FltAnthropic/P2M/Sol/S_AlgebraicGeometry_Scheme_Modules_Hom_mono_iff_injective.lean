@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry Opposite TopologicalSpace
 
+/--
+@isnad1 id=iff.0h4v.s10.2d5d032cae3c from=translated src=- shape=4f288d8e vocab=e4c19cba
+-/
 theorem solution
     {X : Scheme.{u}} {M N : X.Modules} (φ : M ⟶ N) :
     Mono φ ↔ ∀ U : X.Opens, Function.Injective (φ.app U) := by

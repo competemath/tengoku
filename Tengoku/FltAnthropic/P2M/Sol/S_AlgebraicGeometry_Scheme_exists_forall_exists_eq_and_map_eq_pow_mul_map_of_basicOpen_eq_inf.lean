@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Opposite
 
+/--
+@isnad1 id=ex.4h6v.s14.021f026761df from=translated src=- shape=d48fe8e9 vocab=058a051a
+-/
 theorem solution
     {Z : Scheme.{0}} {r : ℕ} (V : Fin r → Z.Opens) (hV : ∀ i, IsAffineOpen (V i))
     (w : ∀ i j : Fin r, Γ(Z, V i))

@@ -16,6 +16,9 @@ export _root_.AlgebraicGeometry (Scheme.mem_basicOpen Spec IsIntegral Scheme ger
 namespace Spread
 open _root_.AlgebraicGeometry
 
+/--
+@isnad1 id=eq.2h3v.s11.4d61c5bada9e from=translated src=- shape=bb1a016b vocab=a14fbf6e
+-/
 theorem primeIdealOf_fromSpec {X : Scheme} {U : X.Opens} (hU : IsAffineOpen U)
     (y : PrimeSpectrum Γ(X, U)) (h : hU.fromSpec.base y ∈ U) :
     hU.primeIdealOf ⟨hU.fromSpec.base y, h⟩ = y := by
@@ -30,6 +33,9 @@ theorem primeIdealOf_fromSpec {X : Scheme} {U : X.Opens} (hU : IsAffineOpen U)
 
 end AlgebraicGeometry.Spread
 
+/--
+@isnad1 id=ex.2h5v.s11.330f9ab7b0ab from=translated src=- shape=975b66b1 vocab=e1c8d30b
+-/
 theorem solution
     {X : Scheme.{u}} [IsIntegral X] (x : X) (P : Ideal (X.presheaf.stalk x)) [P.IsPrime]
     (a b : X.presheaf.stalk x) (ha : a ∉ P) (hb : b ∉ P) :
