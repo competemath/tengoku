@@ -159,6 +159,7 @@ import Tengoku.StringDiagramsLean
 import Tengoku.CaratheodoryLoewner
 import Tengoku.Cslib
 import Tengoku.FormalMath
+import Tengoku.LeanDescriptiveSetTheory
 import Tengoku.Formalslt
 import Tengoku.CkHopfFormalization
 import Tengoku.Physlib

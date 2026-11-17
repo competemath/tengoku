@@ -1,0 +1,180 @@
+/-
+Copyright (c) 2026 Lean Descriptive Set Theory contributors. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Lean Descriptive Set Theory contributors
+-/
+
+import Tengoku.LeanDescriptiveSetTheory.LeanDescriptiveSetTheory.Borel.GeneratedCode
+import Tengoku.Seed.MeasureTheory.Constructions.BorelSpace.Basic
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Borel codes
+
+This file specializes `DescriptiveSetTheory.GeneratedCode` to the family of all open sets. The
+resulting `BorelCode` API is independent of any ambient measurable-space instance.
+-/
+
+open MeasurableSpace Set
+
+universe u v
+
+namespace DescriptiveSetTheory
+
+/-- The family of all open subsets of a topological space.-/
+def openGenerator (X : Type u) [TopologicalSpace X] : {s : Set X // IsOpen s} → Set X := (↑)
+
+/-- The range of `openGenerator` is precisely the collection of open sets.
+@isnad1 id=eq.0h1v.s5.3f2f31d51bb4 from=translated src=- shape=3f5a3beb vocab=e22b5b30
+-/
+@[simp] theorem range_openGenerator (X : Type u) [TopologicalSpace X] :
+    range (openGenerator X) = {s : Set X | IsOpen s} := by
+  ext s
+  simp [openGenerator]
+
+/-- A Borel code is a generated code whose basic sets are all open subsets of `X`.-/
+abbrev BorelCode (X : Type u) [TopologicalSpace X] := GeneratedCode (openGenerator X)
+
+namespace BorelCode
+
+variable {X : Type u} [TopologicalSpace X]
+
+/-- A code for an open set.-/
+def basic (s : Set X) (hs : IsOpen s) : BorelCode X := GeneratedCode.basic ⟨s, hs⟩
+
+/-- A code for the empty set.-/
+def empty : BorelCode X := GeneratedCode.empty
+
+/-- The complement of a Borel code.-/
+def compl (c : BorelCode X) : BorelCode X := GeneratedCode.compl c
+
+/-- A countable union of Borel codes.-/
+def iUnion (c : ℕ → BorelCode X) : BorelCode X := GeneratedCode.iUnion c
+
+/-- Interpret a Borel code as a subset of its topological space.-/
+def eval (c : BorelCode X) : Set X := GeneratedCode.eval c
+
+/-- The interpretation of a basic Borel code is its open set.
+@isnad1 id=eq.1h2v.s4.25192679cae2 from=translated src=- shape=5ef3cc44 vocab=9ba9b7db
+-/
+@[simp] theorem eval_basic (s : Set X) (hs : IsOpen s) : eval (basic s hs) = s := rfl
+
+/-- The interpretation of the empty Borel code is the empty set.
+@isnad1 id=eq.0h1v.s4.0126975aa5c6 from=translated src=- shape=146920d8 vocab=92fc9e42
+-/
+@[simp] theorem eval_empty : eval (empty : BorelCode X) = ∅ := rfl
+
+/-- Interpretation commutes with complement.
+@isnad1 id=eq.0h2v.s4.a973afce919d from=translated src=- shape=ca9d3c57 vocab=6db1a5db
+-/
+@[simp] theorem eval_compl (c : BorelCode X) : eval (compl c) = (eval c)ᶜ := rfl
+
+/-- Interpretation commutes with countable union.
+@isnad1 id=eq.0h2v.s5.e60681012a0d from=translated src=- shape=15921471 vocab=ce991172
+-/
+@[simp] theorem eval_iUnion (c : ℕ → BorelCode X) : eval (iUnion c) = ⋃ n, eval (c n) := rfl
+
+/-- A code for the union of two Borel sets.-/
+def union (c d : BorelCode X) : BorelCode X := GeneratedCode.union c d
+
+/-- Interpretation commutes with binary union.
+@isnad1 id=eq.0h3v.s5.e2f6252762ea from=translated src=- shape=cf476cc9 vocab=f44a3dca
+-/
+@[simp] theorem eval_union (c d : BorelCode X) : eval (union c d) = eval c ∪ eval d := by
+  change GeneratedCode.eval (GeneratedCode.union c d) =
+    GeneratedCode.eval c ∪ GeneratedCode.eval d
+  exact GeneratedCode.eval_union c d
+
+/-- A code for the intersection of two Borel sets.-/
+def inter (c d : BorelCode X) : BorelCode X := GeneratedCode.inter c d
+
+/-- Interpretation commutes with binary intersection.
+@isnad1 id=eq.0h3v.s5.44e68fbbdcc6 from=translated src=- shape=cf476cc9 vocab=d0ba14da
+-/
+@[simp] theorem eval_inter (c d : BorelCode X) : eval (inter c d) = eval c ∩ eval d := by
+  change GeneratedCode.eval (GeneratedCode.inter c d) =
+    GeneratedCode.eval c ∩ GeneratedCode.eval d
+  exact GeneratedCode.eval_inter c d
+
+/-- A code for the difference of two Borel sets.-/
+def diff (c d : BorelCode X) : BorelCode X := GeneratedCode.diff c d
+
+/-- Interpretation commutes with set difference.
+@isnad1 id=eq.0h3v.s5.72961f196f42 from=translated src=- shape=cf476cc9 vocab=d73b58a7
+-/
+@[simp] theorem eval_diff (c d : BorelCode X) : eval (diff c d) = eval c \ eval d := by
+  change GeneratedCode.eval (GeneratedCode.diff c d) =
+    GeneratedCode.eval c \ GeneratedCode.eval d
+  exact GeneratedCode.eval_diff c d
+
+/-- A code for a countable intersection of Borel sets.-/
+def iInter (c : ℕ → BorelCode X) : BorelCode X := GeneratedCode.iInter c
+
+/-- Interpretation commutes with countable intersection.
+@isnad1 id=eq.0h2v.s5.e10d37378567 from=translated src=- shape=15921471 vocab=8ffb8609
+-/
+@[simp] theorem eval_iInter (c : ℕ → BorelCode X) : eval (iInter c) = ⋂ n, eval (c n) := by
+  change GeneratedCode.eval (GeneratedCode.iInter c) = ⋂ n, GeneratedCode.eval (c n)
+  exact GeneratedCode.eval_iInter c
+
+/-- Semantic equivalence of Borel codes is equality of interpretations.
+@isnad1 id=iff.0h3v.s5.2018744832e4 from=translated src=- shape=eb21caaa vocab=56a8bf1a
+-/
+theorem equiv_iff (c d : BorelCode X) : c ≈ d ↔ eval c = eval d := Iff.rfl
+
+/-- Pull a Borel code back along a continuous map.-/
+def comap {Y : Type v} [TopologicalSpace Y] (f : X → Y) (hf : Continuous f) :
+    BorelCode Y → BorelCode X
+  | GeneratedCode.basic U =>
+      BorelCode.basic (X := X) (f ⁻¹' (U : Set Y)) (U.property.preimage hf)
+  | GeneratedCode.empty => BorelCode.empty
+  | GeneratedCode.compl c => BorelCode.compl (comap f hf c)
+  | GeneratedCode.iUnion c => BorelCode.iUnion fun n => comap f hf (c n)
+
+/-- Interpretation of `comap` is set-theoretic preimage.
+@isnad1 id=eq.1h4v.s5.a091f5488e5b from=translated src=- shape=bf0e40f3 vocab=e3215eb7
+-/
+@[simp] theorem eval_comap {Y : Type v} [TopologicalSpace Y] (f : X → Y) (hf : Continuous f)
+    (c : BorelCode Y) : eval (comap f hf c) = f ⁻¹' eval c := by
+  induction c with
+  | basic U => rfl
+  | empty => rfl
+  | compl c ih =>
+      change (GeneratedCode.eval (comap f hf c))ᶜ = f ⁻¹' (GeneratedCode.eval c)ᶜ
+      rw [preimage_compl]
+      exact congrArg (fun s : Set X => sᶜ) ih
+  | iUnion c ih =>
+      change (⋃ n, GeneratedCode.eval (comap f hf (c n))) =
+        f ⁻¹' ⋃ n, GeneratedCode.eval (c n)
+      rw [preimage_iUnion]
+      exact iUnion_congr ih
+
+/-- Every Borel code denotes a set measurable in the Borel measurable space.
+@isnad1 id=measurab.0h2v.s4.b8af051284ac from=translated src=- shape=ed10201d vocab=f9df654b
+-/
+theorem measurableSet_eval (c : BorelCode X) : @MeasurableSet X (borel X) c.eval := by
+  change GenerateMeasurable {s : Set X | IsOpen s} c.eval
+  rw [← range_openGenerator X]
+  exact GeneratedCode.generateMeasurable_eval c
+
+/-- A set is Borel measurable exactly when it is the interpretation of a Borel code.
+@isnad1 id=iff.0h2v.s4.c660de5a6523 from=translated src=- shape=98aa3e48 vocab=fea40d7d
+-/
+theorem borelMeasurableSet_iff_exists_code {s : Set X} :
+    @MeasurableSet X (borel X) s ↔ ∃ c : BorelCode X, c.eval = s := by
+  change GenerateMeasurable {s : Set X | IsOpen s} s ↔ _
+  rw [← range_openGenerator X]
+  exact GeneratedCode.generateMeasurable_iff_exists_code
+
+/-- In a `BorelSpace`, measurable sets are exactly the interpretations of Borel codes.
+@isnad1 id=iff.0h2v.s5.2db83cf8a1bf from=translated src=- shape=55398d47 vocab=959a9031
+-/
+theorem measurableSet_iff_exists_code [m : MeasurableSpace X] [BorelSpace X] {s : Set X} :
+    MeasurableSet s ↔ ∃ c : BorelCode X, c.eval = s := by
+  have h : m = borel X := BorelSpace.measurable_eq
+  rw [h]
+  exact borelMeasurableSet_iff_exists_code
+
+end BorelCode
+end DescriptiveSetTheory

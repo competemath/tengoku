@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "c71378940dc7b5d5287234b396e1781495d37583d6c437dda52b89761940773d",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "lean-descriptive-set-theory",
+ "lint_mode": "proposed",
+ "modules": 96,
+ "part": 1,
+ "theorems": 997
+}
