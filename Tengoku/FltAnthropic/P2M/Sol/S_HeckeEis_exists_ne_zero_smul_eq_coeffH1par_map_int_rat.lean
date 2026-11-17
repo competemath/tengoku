@@ -22,6 +22,9 @@ open _root_.HeckeEis
 
 variable {G : Type*} [Group G] {K : Type*} [CommRing K] {V : Type*} [AddCommGroup V] [Module K V]
 
+/--
+@isnad1 id=eq.1h5v.s7.2bfa05abcbdc from=translated src=- shape=470191c7 vocab=e53b9774
+-/
 theorem coeffCocycles_apply_one {ρ : Representation K G V} {z : G → V} (hz : z ∈ coeffCocycles ρ) : z 1 = 0 := by
   have h := hz 1 1
   rw [mul_one, map_one, Module.End.one_apply] at h
@@ -29,6 +32,9 @@ theorem coeffCocycles_apply_one {ρ : Representation K G V} {z : G → V} (hz : 
   have : z 1 + z 1 = z 1 + 0 := by rw [add_zero]; exact h.symm
   exact add_left_cancel this
 
+/--
+@isnad1 id=eq.1h6v.s8.b92d09e02b83 from=translated src=- shape=8245a149 vocab=24ce8911
+-/
 theorem coeffCocycles_apply_inv {ρ : Representation K G V} {z : G → V} (hz : z ∈ coeffCocycles ρ) (g : G) :
     z g⁻¹ = -(ρ g⁻¹ (z g)) := by
   have h := hz g⁻¹ g
@@ -36,6 +42,9 @@ theorem coeffCocycles_apply_inv {ρ : Representation K G V} {z : G → V} (hz : 
 
   exact eq_neg_of_add_eq_zero_left h.symm
 
+/--
+@isnad1 id=mem.4h8v.s9.1d1cd92a6b47 from=translated src=- shape=7eb8e577 vocab=cd52efdf
+-/
 theorem mem_of_mem_coeffCocycles_of_closure_eq_top {ρ : Representation K G V} {z : G → V} (hz : z ∈ coeffCocycles ρ)
     (M : AddSubgroup V) (hM : ∀ (g : G) (v : V), v ∈ M → ρ g v ∈ M) {s : Set G} (hs : Subgroup.closure s = ⊤)
     (h : ∀ g ∈ s, z g ∈ M) (g : G) : z g ∈ M := by
@@ -75,6 +84,9 @@ open scoped MatrixGroups
 
 variable {R R' : Type*} [CommRing R] [CommRing R']
 
+/--
+@isnad1 id=eq.0h4v.s10.baae53d1b001 from=translated src=- shape=bc91d65d vocab=96c9dafe
+-/
 theorem map_binarySubst_int (φ : ℤ →+* R) (M : Matrix (Fin 2) (Fin 2) ℤ) (P : MvPolynomial (Fin 2) ℤ) :
     MvPolynomial.map φ (binarySubst ℤ M P) = binarySubst R M (MvPolynomial.map φ P) := by
   have key : (MvPolynomial.map φ).comp (binarySubst ℤ M : MvPolynomial (Fin 2) ℤ →ₐ[ℤ] MvPolynomial (Fin 2) ℤ).toRingHom
@@ -85,10 +97,16 @@ theorem map_binarySubst_int (φ : ℤ →+* R) (M : Matrix (Fin 2) (Fin 2) ℤ) 
 def substCoeff (M : Matrix (Fin 2) (Fin 2) ℤ) (d d' : Fin 2 →₀ ℕ) : ℤ :=
   coeff d (binarySubst ℤ M (monomial d' 1))
 
+/--
+@isnad1 id=eq.0h3v.s10.42c0635dc614 from=translated src=- shape=4564f336 vocab=648abf1e
+-/
 theorem binarySubst_monomial_one (M : Matrix (Fin 2) (Fin 2) ℤ) (d' : Fin 2 →₀ ℕ) :
     binarySubst R M (monomial d' 1) = MvPolynomial.map (Int.castRingHom R) (binarySubst ℤ M (monomial d' 1)) := by
   rw [map_binarySubst_int, map_monomial, (Int.castRingHom R).map_one]
 
+/--
+@isnad1 id=eq.0h4v.s8.965858b9ec49 from=translated src=- shape=8a030645 vocab=a1531d59
+-/
 theorem coeff_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (P : MvPolynomial (Fin 2) R) (d : Fin 2 →₀ ℕ) :
     coeff d (binarySubst R M P) = ∑ d' ∈ P.support, (substCoeff M d d' : R) * coeff d' P := by
   conv_lhs => rw [P.as_sum, map_sum, coeff_sum]
@@ -102,6 +120,9 @@ variable (f : R →+ R')
 def pushCoeff (P : MvPolynomial (Fin 2) R) : MvPolynomial (Fin 2) R' :=
   ∑ d ∈ P.support, monomial d (f (coeff d P))
 
+/--
+@isnad1 id=eq.0h5v.s7.71d363ce3a82 from=translated src=- shape=915676e7 vocab=d43986fa
+-/
 @[scoped simp] theorem coeff_pushCoeff (P : MvPolynomial (Fin 2) R) (d : Fin 2 →₀ ℕ) : coeff d (pushCoeff f P) = f (coeff d P) := by
   classical
   rw [pushCoeff, coeff_sum]
@@ -111,26 +132,44 @@ def pushCoeff (P : MvPolynomial (Fin 2) R) : MvPolynomial (Fin 2) R' :=
   · rfl
   · rw [notMem_support_iff.mp h, map_zero]
 
+/--
+@isnad1 id=le.0h4v.s7.31c4d7788ae7 from=translated src=- shape=93418c0c vocab=073150a4
+-/
 theorem support_pushCoeff (P : MvPolynomial (Fin 2) R) : (pushCoeff f P).support ⊆ P.support := by
   intro d hd
   rw [mem_support_iff, coeff_pushCoeff] at hd
   rw [mem_support_iff]
   intro h; exact hd (by rw [h, map_zero])
 
+/--
+@isnad1 id=mem.1h5v.s8.3affd173e80c from=translated src=- shape=e3115334 vocab=6f0ae193
+-/
 theorem pushCoeff_mem (n : ℕ) {P : MvPolynomial (Fin 2) R} (hP : P ∈ BinaryForm R n) : pushCoeff f P ∈ BinaryForm R' n := by
   rw [mem_homogeneousSubmodule] at hP ⊢
   intro d hd
   exact hP (mem_support_iff.mp (support_pushCoeff f P (mem_support_iff.mpr hd)))
 
+/--
+@isnad1 id=eq.0h5v.s8.97587ee83b14 from=translated src=- shape=bbada809 vocab=20698db9
+-/
 theorem pushCoeff_add (P Q : MvPolynomial (Fin 2) R) : pushCoeff f (P + Q) = pushCoeff f P + pushCoeff f Q := by
   ext d; simp
 
+/--
+@isnad1 id=eq.0h5v.s8.a223e8e18ad2 from=translated src=- shape=bbada809 vocab=e180bcd2
+-/
 theorem pushCoeff_sub (P Q : MvPolynomial (Fin 2) R) : pushCoeff f (P - Q) = pushCoeff f P - pushCoeff f Q := by
   ext d; simp
 
+/--
+@isnad1 id=eq.0h3v.s7.05e3817dffd1 from=translated src=- shape=82b20d11 vocab=10d3e464
+-/
 theorem pushCoeff_zero : pushCoeff f (0 : MvPolynomial (Fin 2) R) = 0 := by
   ext d; simp
 
+/--
+@isnad1 id=eq.0h5v.s9.940f8f64ba0f from=translated src=- shape=06264b0f vocab=e5af2755
+-/
 theorem pushCoeff_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (P : MvPolynomial (Fin 2) R) :
     pushCoeff f (binarySubst R M P) = binarySubst R' M (pushCoeff f P) := by
   classical
@@ -145,17 +184,32 @@ theorem pushCoeff_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (P : MvPolynomial
 
 def pushForm (n : ℕ) (P : ↥(BinaryForm R n)) : ↥(BinaryForm R' n) := ⟨pushCoeff f P, pushCoeff_mem f n P.2⟩
 
+/--
+@isnad1 id=eq.0h5v.s9.c4ad99c9e549 from=translated src=- shape=67a236c8 vocab=8ccf80eb
+-/
 @[scoped simp] theorem coe_pushForm (n : ℕ) (P : ↥(BinaryForm R n)) :
     ((pushForm f n P : ↥(BinaryForm R' n)) : MvPolynomial (Fin 2) R') = pushCoeff f P := rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.12f53086b756 from=translated src=- shape=eddbe453 vocab=abcc1efa
+-/
 theorem pushForm_add (n : ℕ) (P Q : ↥(BinaryForm R n)) : pushForm f n (P + Q) = pushForm f n P + pushForm f n Q :=
   Subtype.ext (by simp [pushCoeff_add])
 
+/--
+@isnad1 id=eq.0h6v.s11.155e30072278 from=translated src=- shape=eddbe453 vocab=7f04287b
+-/
 theorem pushForm_sub (n : ℕ) (P Q : ↥(BinaryForm R n)) : pushForm f n (P - Q) = pushForm f n P - pushForm f n Q :=
   Subtype.ext (by simp [pushCoeff_sub])
 
+/--
+@isnad1 id=eq.0h4v.s10.cfe0be3ce77b from=translated src=- shape=5892d76a vocab=3de7b210
+-/
 theorem pushForm_zero (n : ℕ) : pushForm f n (0 : ↥(BinaryForm R n)) = 0 := Subtype.ext (by simp [pushCoeff_zero])
 
+/--
+@isnad1 id=eq.0h6v.s13.d5fdc9569a87 from=translated src=- shape=341f1cdc vocab=1bf05e59
+-/
 theorem pushForm_binaryFormRepSL (n : ℕ) (g : SL(2, ℤ)) (P : ↥(BinaryForm R n)) :
     pushForm f n (binaryFormRepSL R n g P) = binaryFormRepSL R' n g (pushForm f n P) :=
   Subtype.ext (by simp [pushCoeff_binarySubst])
@@ -164,6 +218,9 @@ section Cocycles
 
 variable {Γ : Subgroup SL(2, ℤ)} (n : ℕ)
 
+/--
+@isnad1 id=mem.1h6v.s14.4399de6f219c from=translated src=- shape=f6862a2f vocab=9347ddb7
+-/
 theorem pushForm_comp_mem_coeffCocycles {z : Γ → ↥(BinaryForm R n)}
     (hz : z ∈ coeffCocycles ((binaryFormRepSL R n).comp Γ.subtype)) :
     (fun g => pushForm f n (z g)) ∈ coeffCocycles ((binaryFormRepSL R' n).comp Γ.subtype) := by
@@ -172,6 +229,9 @@ theorem pushForm_comp_mem_coeffCocycles {z : Γ → ↥(BinaryForm R n)}
   rw [hz g h, pushForm_add, ← pushForm_binaryFormRepSL]
   rfl
 
+/--
+@isnad1 id=isparabo.1h6v.s13.72497eb463f9 from=translated src=- shape=f4a9af83 vocab=37c521a5
+-/
 theorem isParabolicCocycle_pushForm_comp {z : Γ → ↥(BinaryForm R n)}
     (hz : IsParabolicCocycle ((binaryFormRepSL R n).comp Γ.subtype) z) :
     IsParabolicCocycle ((binaryFormRepSL R' n).comp Γ.subtype) (fun g => pushForm f n (z g)) := by
@@ -183,11 +243,17 @@ theorem isParabolicCocycle_pushForm_comp {z : Γ → ↥(BinaryForm R n)}
   show binaryFormRepSL R' n (γ : SL(2, ℤ)) (pushForm f n u) - pushForm f n u = pushForm f n (z γ)
   rw [← hu, pushForm_sub, pushForm_binaryFormRepSL]
 
+/--
+@isnad1 id=mem.1h6v.s14.e6998cc5031b from=translated src=- shape=c9207529 vocab=f1ad865d
+-/
 theorem pushForm_comp_mem_coeffParabolicCocycles {z : Γ → ↥(BinaryForm R n)}
     (hz : z ∈ coeffParabolicCocycles ((binaryFormRepSL R n).comp Γ.subtype)) :
     (fun g => pushForm f n (z g)) ∈ coeffParabolicCocycles ((binaryFormRepSL R' n).comp Γ.subtype) :=
   ⟨pushForm_comp_mem_coeffCocycles f n hz.1, isParabolicCocycle_pushForm_comp f n hz.2⟩
 
+/--
+@isnad1 id=mem.1h6v.s14.b01dc6b9960e from=translated src=- shape=f6862a2f vocab=78a870ba
+-/
 theorem pushForm_comp_mem_coeffCoboundaries {z : Γ → ↥(BinaryForm R n)}
     (hz : z ∈ coeffCoboundaries ((binaryFormRepSL R n).comp Γ.subtype)) :
     (fun g => pushForm f n (z g)) ∈ coeffCoboundaries ((binaryFormRepSL R' n).comp Γ.subtype) := by
@@ -211,16 +277,25 @@ def pushPar : ↥(coeffParabolicCocycles ((binaryFormRepSL R n).comp Γ.subtype)
     show pushForm f n (z.1 g + w.1 g) = pushForm f n (z.1 g) + pushForm f n (w.1 g)
     rw [pushForm_add]
 
+/--
+@isnad1 id=iff.0h5v.s18.5802f2a4eaff from=translated src=- shape=e9c95d3a vocab=d3b58aa4
+-/
 theorem mk_eq_mk_iff {S : Type*} [CommRing S] (a b : ↥(coeffParabolicCocycles ((binaryFormRepSL S n).comp Γ.subtype))) :
     coeffH1parMk _ a = coeffH1parMk _ b ↔
       ((a - b : ↥(coeffParabolicCocycles ((binaryFormRepSL S n).comp Γ.subtype))).1
         ∈ coeffCoboundaries ((binaryFormRepSL S n).comp Γ.subtype)) := by
   rw [← sub_eq_zero, ← map_sub, coeffH1parMk_eq_zero_iff]
 
+/--
+@isnad1 id=eq.0h7v.s20.f80c5e652f22 from=translated src=- shape=a9ffc37a vocab=6f04b704
+-/
 theorem pushPar_sub (a b : ↥(coeffParabolicCocycles ((binaryFormRepSL R n).comp Γ.subtype))) :
     pushPar f n (a - b) = pushPar f n a - pushPar f n b :=
   map_sub (pushPar f n) a b
 
+/--
+@isnad1 id=eq.1h7v.s20.2bcc5482b54c from=translated src=- shape=85491e7a vocab=142da4f0
+-/
 theorem mk_pushPar_congr {a b : ↥(coeffParabolicCocycles ((binaryFormRepSL R n).comp Γ.subtype))}
     (h : coeffH1parMk _ a = coeffH1parMk _ b) :
     coeffH1parMk _ (pushPar f n a) = coeffH1parMk _ (pushPar f n b) := by
@@ -262,6 +337,9 @@ open _root_.HeckeEis
 open MvPolynomial
 open scoped MatrixGroups
 
+/--
+@isnad1 id=eq.0h4v.s8.eb2cc528c79e from=translated src=- shape=c965affc vocab=a5e259c3
+-/
 theorem pushCoeff_ringHom_eq_map {R R' : Type*} [CommRing R] [CommRing R'] (φ : R →+* R') (P : MvPolynomial (Fin 2) R) :
     pushCoeff φ.toAddMonoidHom P = MvPolynomial.map φ P := by
   ext d
@@ -282,6 +360,9 @@ open _root_.HeckeEis
 open MvPolynomial HeckeEis.CoeffMapAux
 open scoped MatrixGroups
 
+/--
+@isnad1 id=ex.0h1v.s5.4283b24fa3e3 from=translated src=- shape=859b7d79 vocab=42301028
+-/
 theorem exists_common_den (s : Finset ℚ) : ∃ D : ℤ, D ≠ 0 ∧ ∀ x ∈ s, ∃ m : ℤ, (D : ℚ) * x = m := by
   classical
   refine ⟨∏ y ∈ s, (y.den : ℤ), ?_, fun x hx => ?_⟩
@@ -293,15 +374,30 @@ theorem exists_common_den (s : Finset ℚ) : ∃ D : ℤ, D ≠ 0 ∧ ∀ x ∈ 
 
 def IsInt (P : MvPolynomial (Fin 2) ℚ) : Prop := ∀ d, ∃ m : ℤ, coeff d P = m
 
+/--
+@isnad1 id=isint.0h0v.s6.51af7a5c7a5a from=translated src=- shape=e6b057d9 vocab=ead9ce67
+-/
 theorem IsInt.zero : IsInt 0 := fun d => ⟨0, by simp⟩
+/--
+@isnad1 id=isint.2h2v.s6.2fbf6ab2774d from=translated src=- shape=d8b4e4dc vocab=6e2ed5eb
+-/
 theorem IsInt.add {P Q : MvPolynomial (Fin 2) ℚ} (hP : IsInt P) (hQ : IsInt Q) : IsInt (P + Q) := fun d => by
   obtain ⟨a, ha⟩ := hP d; obtain ⟨b, hb⟩ := hQ d; exact ⟨a + b, by rw [coeff_add, ha, hb]; push_cast; rfl⟩
+/--
+@isnad1 id=isint.1h1v.s6.4ad063ce16de from=translated src=- shape=514d4c39 vocab=2c46d67d
+-/
 theorem IsInt.neg {P : MvPolynomial (Fin 2) ℚ} (hP : IsInt P) : IsInt (-P) := fun d => by
   obtain ⟨a, ha⟩ := hP d; exact ⟨-a, by rw [coeff_neg, ha]; push_cast; rfl⟩
+/--
+@isnad1 id=isint.1h2v.s6.14973bd24c52 from=translated src=- shape=3c96bb24 vocab=9c8e9e79
+-/
 theorem IsInt.zsmul {P : MvPolynomial (Fin 2) ℚ} (hP : IsInt P) (m : ℤ) : IsInt (m • P) := fun d => by
   obtain ⟨a, ha⟩ := hP d
   exact ⟨m * a, by rw [← Int.cast_smul_eq_zsmul ℚ m P, coeff_smul, ha, smul_eq_mul]; push_cast; rfl⟩
 
+/--
+@isnad1 id=isint.1h2v.s8.10e770f1d7e9 from=translated src=- shape=152690eb vocab=fe3e772f
+-/
 theorem IsInt.binarySubst {P : MvPolynomial (Fin 2) ℚ} (hP : IsInt P) (M : Matrix (Fin 2) (Fin 2) ℤ) :
     IsInt (HeckeEis.binarySubst ℚ M P) := by
   classical
@@ -314,6 +410,9 @@ theorem IsInt.binarySubst {P : MvPolynomial (Fin 2) ℚ} (hP : IsInt P) (M : Mat
 
 def intModel (P : MvPolynomial (Fin 2) ℚ) : MvPolynomial (Fin 2) ℤ := ∑ d ∈ P.support, monomial d (coeff d P).num
 
+/--
+@isnad1 id=eq.0h2v.s5.6837c67d6add from=translated src=- shape=256db628 vocab=d6017c00
+-/
 theorem coeff_intModel (P : MvPolynomial (Fin 2) ℚ) (d : Fin 2 →₀ ℕ) : coeff d (intModel P) = (coeff d P).num := by
   classical
   rw [intModel, coeff_sum]
@@ -323,6 +422,9 @@ theorem coeff_intModel (P : MvPolynomial (Fin 2) ℚ) (d : Fin 2 →₀ ℕ) : c
   · rfl
   · rw [notMem_support_iff.mp h, Rat.num_zero]
 
+/--
+@isnad1 id=eq.1h1v.s7.eedbdc4c971f from=translated src=- shape=6a2d8dbe vocab=b3ed7afe
+-/
 theorem map_intModel {P : MvPolynomial (Fin 2) ℚ} (hP : IsInt P) : MvPolynomial.map (Int.castRingHom ℚ) (intModel P) = P := by
   ext d
   rw [coeff_map, coeff_intModel]
@@ -330,6 +432,9 @@ theorem map_intModel {P : MvPolynomial (Fin 2) ℚ} (hP : IsInt P) : MvPolynomia
   rw [hm, Rat.num_intCast]
   rfl
 
+/--
+@isnad1 id=mem.1h2v.s8.7c666b2457cd from=translated src=- shape=26f9e23c vocab=fb668f51
+-/
 theorem intModel_mem (n : ℕ) {P : MvPolynomial (Fin 2) ℚ} (hP : P ∈ BinaryForm ℚ n) : intModel P ∈ BinaryForm ℤ n := by
   rw [mem_homogeneousSubmodule] at hP ⊢
   intro d hd
@@ -338,6 +443,9 @@ theorem intModel_mem (n : ℕ) {P : MvPolynomial (Fin 2) ℚ} (hP : P ∈ Binary
   intro h
   exact hd (by rw [h, Rat.num_zero])
 
+/--
+@isnad1 id=ex.0h1v.s7.67a570f315b3 from=translated src=- shape=64539468 vocab=9c8e9e79
+-/
 theorem exists_isInt_zsmul (P : MvPolynomial (Fin 2) ℚ) : ∃ D : ℤ, D ≠ 0 ∧ IsInt (D • P) := by
   classical
   obtain ⟨D, hD, h⟩ := exists_common_den (P.support.image fun d => coeff d P)
@@ -347,6 +455,9 @@ theorem exists_isInt_zsmul (P : MvPolynomial (Fin 2) ℚ) : ∃ D : ℤ, D ≠ 0
     exact ⟨m, by rw [← Int.cast_smul_eq_zsmul ℚ D, coeff_smul, smul_eq_mul, hm]⟩
   · exact ⟨0, by rw [← Int.cast_smul_eq_zsmul ℚ D, coeff_smul, notMem_support_iff.mp hd, smul_zero]; simp⟩
 
+/--
+@isnad1 id=ex.0h3v.s7.2ef5848a1954 from=translated src=- shape=80ab7aea vocab=d838a668
+-/
 theorem exists_isInt_zsmul_family {ι : Type*} (s : Finset ι) (P : ι → MvPolynomial (Fin 2) ℚ) :
     ∃ D : ℤ, D ≠ 0 ∧ ∀ i ∈ s, IsInt (D • P i) := by
   classical
@@ -359,6 +470,9 @@ theorem exists_isInt_zsmul_family {ι : Type*} (s : Finset ι) (P : ι → MvPol
 
 abbrev ιZQ : ℤ →+ ℚ := (Int.castRingHom ℚ).toAddMonoidHom
 
+/--
+@isnad1 id=injectiv.0h1v.s8.6d002eae140f from=translated src=- shape=ca6994f9 vocab=ceadfb9f
+-/
 theorem pushForm_ι_injective (n : ℕ) : Function.Injective (pushForm ιZQ n : ↥(BinaryForm ℤ n) → ↥(BinaryForm ℚ n)) := by
   intro P Q h
   apply Subtype.ext
@@ -367,16 +481,25 @@ theorem pushForm_ι_injective (n : ℕ) : Function.Injective (pushForm ιZQ n : 
   simp only [coe_pushForm, coeff_pushCoeff] at this
   exact Int.cast_injective this
 
+/--
+@isnad1 id=eq.0h2v.s9.0afb20f17acd from=translated src=- shape=d4e5bbec vocab=f03977f1
+-/
 theorem coe_pushForm_ι (n : ℕ) (P : ↥(BinaryForm ℤ n)) :
     ((pushForm ιZQ n P : ↥(BinaryForm ℚ n)) : MvPolynomial (Fin 2) ℚ) = MvPolynomial.map (Int.castRingHom ℚ) P := by
   rw [coe_pushForm]; exact pushCoeff_ringHom_eq_map _ _
 
+/--
+@isnad1 id=ex.1h2v.s9.10b1eb8dcac8 from=translated src=- shape=eeab3051 vocab=843365fc
+-/
 theorem exists_eq_pushForm_of_isInt (n : ℕ) {Q : ↥(BinaryForm ℚ n)} (hQ : IsInt (Q : MvPolynomial (Fin 2) ℚ)) :
     ∃ P : ↥(BinaryForm ℤ n), pushForm ιZQ n P = Q := by
   refine ⟨⟨intModel Q, intModel_mem n Q.2⟩, Subtype.ext ?_⟩
   rw [coe_pushForm_ι]
   exact map_intModel hQ
 
+/--
+@isnad1 id=eq.0h6v.s10.36a1ba183c65 from=translated src=- shape=49b98857 vocab=2a25b7c8
+-/
 theorem pushForm_zsmul {R R' : Type*} [CommRing R] [CommRing R'] (f : R →+ R') (n : ℕ) (m : ℤ) (P : ↥(BinaryForm R n)) :
     pushForm f n (m • P) = m • pushForm f n P :=
   map_zsmul (⟨⟨pushForm f n, pushForm_zero f n⟩, pushForm_add f n⟩ : ↥(BinaryForm R n) →+ ↥(BinaryForm R' n)) m P
@@ -398,24 +521,42 @@ open _root_.HeckeEis
 open MvPolynomial HeckeEis.CoeffMapAux HeckeEis.RatAux HeckeEis.GenAux CongruenceSubgroup
 open scoped MatrixGroups
 
+/--
+@isnad1 id=le.0h1v.s7.55f2af3db999 from=translated src=- shape=7aabf878 vocab=b31fe6e8
+-/
 theorem Gamma_le_Gamma0 (N : ℕ) : Gamma N ≤ Gamma0 N := fun _ hA => Gamma0_mem.mpr (Gamma_mem.mp hA).2.2.1
 
+/--
+@isnad1 id=mem.0h1v.s8.dd309ee66a53 from=translated src=- shape=47a2a55e vocab=3a18f723
+-/
 theorem neg_one_mem_Gamma0 (N : ℕ) : (-1 : SL(2, ℤ)) ∈ Gamma0 N := by rw [Gamma0_mem]; simp
 
+/--
+@isnad1 id=mem.0h2v.s9.5769fbf0a892 from=translated src=- shape=372adeee vocab=19dce87c
+-/
 theorem conj_T_zpow_mem_Gamma0 (N : ℕ) (δ : SL(2, ℤ)) : δ * ModularGroup.T ^ (N : ℤ) * δ⁻¹ ∈ Gamma0 N := by
   have hTN : ModularGroup.T ^ (N : ℤ) ∈ Gamma N := by
     simpa using CongruenceSubgroup.ModularGroup_T_pow_mem_Gamma (N : ℤ) (N : ℤ) dvd_rfl
   exact Gamma_le_Gamma0 N ((CongruenceSubgroup.Gamma_normal N).conj_mem _ hTN δ)
 
+/--
+@isnad1 id=fg.0h1v.s8.bd16c0e622bc from=translated src=- shape=f3606c04 vocab=3ffbef6d
+-/
 scoped instance instGroupFG_Gamma0 (N : ℕ) [NeZero N] : Group.FG (Gamma0 N) := by
   haveI : (Gamma0 N).FiniteIndex := Subgroup.finiteIndex_of_le (Gamma_le_Gamma0 N)
   haveI : Group.FG SL(2, ℤ) := ⟨⟨{ModularGroup.S, ModularGroup.T}, by simpa using SpecialLinearGroup.SL2Z_generators⟩⟩
   exact Subgroup.fg_of_index_ne_zero _
 
+/--
+@isnad1 id=eq.0h3v.s10.b03a22055ec5 from=translated src=- shape=1236f462 vocab=c0cab6c6
+-/
 theorem conj_T_zpow_add (δ : SL(2, ℤ)) (x y : ℤ) :
     δ * ModularGroup.T ^ (x + y) * δ⁻¹ = (δ * ModularGroup.T ^ x * δ⁻¹) * (δ * ModularGroup.T ^ y * δ⁻¹) := by
   rw [zpow_add]; group
 
+/--
+@isnad1 id=eq.0h3v.s10.dbf7957483cb from=translated src=- shape=1d1debf3 vocab=e1110fd6
+-/
 theorem conj_T_zpow_mul (δ : SL(2, ℤ)) (a k : ℤ) :
     δ * ModularGroup.T ^ (a * k) * δ⁻¹ = (δ * ModularGroup.T ^ a * δ⁻¹) ^ k := by
   rw [zpow_mul]
@@ -423,6 +564,9 @@ theorem conj_T_zpow_mul (δ : SL(2, ℤ)) (a k : ℤ) :
   simp only [MulAut.conj_apply] at h
   exact h
 
+/--
+@isnad1 id=eq.0h2v.s9.68ada0bd0edf from=translated src=- shape=677217c3 vocab=31799855
+-/
 theorem trace_conj_T_zpow (δ : SL(2, ℤ)) (h : ℤ) :
     ((δ * ModularGroup.T ^ h * δ⁻¹ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace = 2 := by
   rw [Matrix.SpecialLinearGroup.coe_mul, Matrix.SpecialLinearGroup.coe_mul, Matrix.trace_mul_cycle,
@@ -434,6 +578,9 @@ section CuspWidth
 
 variable (N : ℕ) [NeZero N]
 
+/--
+@isnad1 id=ex.0h2v.s9.08532fab1c67 from=translated src=- shape=66b22b4f vocab=37640a02
+-/
 theorem exists_pos_conj_T_pow_mem (δ : SL(2, ℤ)) : ∃ a : ℕ, 0 < a ∧ δ * ModularGroup.T ^ (a : ℤ) * δ⁻¹ ∈ Gamma0 N :=
   ⟨N, Nat.pos_of_ne_zero (NeZero.ne N), conj_T_zpow_mem_Gamma0 N δ⟩
 
@@ -442,15 +589,24 @@ open Classical in
 def cuspWidth (δ : SL(2, ℤ)) : ℕ := Nat.find (exists_pos_conj_T_pow_mem N δ)
 
 open Classical in
+/--
+@isnad1 id=and.0h2v.s9.db88773f55cc from=translated src=- shape=b7f857b4 vocab=4c7e7465
+-/
 theorem cuspWidth_spec (δ : SL(2, ℤ)) :
     0 < cuspWidth N δ ∧ δ * ModularGroup.T ^ (cuspWidth N δ : ℤ) * δ⁻¹ ∈ Gamma0 N :=
   Nat.find_spec (exists_pos_conj_T_pow_mem N δ)
 
 open Classical in
+/--
+@isnad1 id=le.2h3v.s9.de8041d409a8 from=translated src=- shape=f33fb8fd vocab=04166b35
+-/
 theorem cuspWidth_min (δ : SL(2, ℤ)) {r : ℕ} (hr : 0 < r) (hmem : δ * ModularGroup.T ^ (r : ℤ) * δ⁻¹ ∈ Gamma0 N) :
     cuspWidth N δ ≤ r :=
   Nat.find_min' (exists_pos_conj_T_pow_mem N δ) ⟨hr, hmem⟩
 
+/--
+@isnad1 id=dvd.1h3v.s9.f36a604bbc32 from=translated src=- shape=f4f3f0eb vocab=3410dc32
+-/
 theorem cuspWidth_dvd (δ : SL(2, ℤ)) {h : ℤ} (hh : δ * ModularGroup.T ^ h * δ⁻¹ ∈ Gamma0 N) :
     (cuspWidth N δ : ℤ) ∣ h := by
   obtain ⟨ha, hmem⟩ := cuspWidth_spec N δ
@@ -480,6 +636,9 @@ variable (N : ℕ) [NeZero N]
 
 def cuspRep (q : SL(2, ℤ) ⧸ Gamma0 N) : SL(2, ℤ) := (Quotient.out q)⁻¹
 
+/--
+@isnad1 id=mem.0h2v.s8.fb4be0543476 from=translated src=- shape=42e534b0 vocab=5504ac96
+-/
 theorem mul_cuspRep_inv_mem (σ : SL(2, ℤ)) : σ * (cuspRep N (QuotientGroup.mk σ⁻¹ : SL(2, ℤ) ⧸ Gamma0 N))⁻¹ ∈ Gamma0 N := by
   set q : SL(2, ℤ) ⧸ Gamma0 N := QuotientGroup.mk σ⁻¹ with hq
   have hmk : (QuotientGroup.mk (Quotient.out q) : SL(2, ℤ) ⧸ Gamma0 N) = QuotientGroup.mk σ⁻¹ := by
@@ -492,9 +651,15 @@ theorem mul_cuspRep_inv_mem (σ : SL(2, ℤ)) : σ * (cuspRep N (QuotientGroup.m
 def cuspGen (q : SL(2, ℤ) ⧸ Gamma0 N) : Gamma0 N :=
   ⟨cuspRep N q * ModularGroup.T ^ (cuspWidth N (cuspRep N q) : ℤ) * (cuspRep N q)⁻¹, (cuspWidth_spec N (cuspRep N q)).2⟩
 
+/--
+@isnad1 id=eq.0h2v.s9.e3c88b0a2bbe from=translated src=- shape=8f8a8647 vocab=29c0cae6
+-/
 theorem coe_cuspGen (q : SL(2, ℤ) ⧸ Gamma0 N) :
     ((cuspGen N q : Gamma0 N) : SL(2, ℤ)) = cuspRep N q * ModularGroup.T ^ (cuspWidth N (cuspRep N q) : ℤ) * (cuspRep N q)⁻¹ := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.391032023417 from=translated src=- shape=d1a111d5 vocab=17f0a4b8
+-/
 theorem trace_cuspGen_sq (q : SL(2, ℤ) ⧸ Gamma0 N) :
     (((cuspGen N q : Gamma0 N) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace ^ 2 = 4 := by
   rw [coe_cuspGen, trace_conj_T_zpow]; norm_num
@@ -507,6 +672,9 @@ section CocycleAlgebra
 variable {G : Type*} [Group G] {K : Type*} [CommRing K] {V : Type*} [AddCommGroup V] [Module K V]
   {ρ : Representation K G V} {y : G → V}
 
+/--
+@isnad1 id=eq.3h8v.s9.012cc74fb9cc from=translated src=- shape=dac90c37 vocab=03f050a5
+-/
 theorem mem_range_of_mem_closure (hy : y ∈ coeffCocycles ρ) (w : V) {s : Set G} (hs : ∀ v ∈ s, y v = ρ v w - w)
     {g : G} (hg : g ∈ Subgroup.closure s) : y g = ρ g w - w := by
   induction hg using Subgroup.closure_induction with
@@ -520,6 +688,9 @@ theorem mem_range_of_mem_closure (hy : y ∈ coeffCocycles ρ) (w : V) {s : Set 
       Module.End.one_apply]
     abel
 
+/--
+@isnad1 id=eq.1h7v.s9.410a3d625ce1 from=translated src=- shape=d7925af6 vocab=5af5dcca
+-/
 theorem apply_conj (hy : y ∈ coeffCocycles ρ) (g v : G) :
     y (g * v * g⁻¹) = ρ g (y v) - (ρ (g * v * g⁻¹) (y g) - y g) := by
   have h3 : ρ (g * v) (ρ g⁻¹ (y g)) = ρ (g * v * g⁻¹) (y g) := by
@@ -527,6 +698,9 @@ theorem apply_conj (hy : y ∈ coeffCocycles ρ) (g v : G) :
   rw [hy (g * v) g⁻¹, hy g v, coeffCocycles_apply_inv hy, map_neg, h3]
   abel
 
+/--
+@isnad1 id=mem.2h8v.s10.c49bd48b6be4 from=translated src=- shape=ab65fcf0 vocab=1a271f7b
+-/
 theorem apply_conj_mem_range (hy : y ∈ coeffCocycles ρ) {v : G} {w : V} (hv : y v = ρ v w - w) (g : G) :
     y (g * v * g⁻¹) ∈ LinearMap.range (ρ (g * v * g⁻¹) - 1) := by
   refine ⟨ρ g w - y g, ?_⟩
@@ -540,6 +714,9 @@ end CocycleAlgebra
 open scoped _root_.P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis
 
 set_option maxHeartbeats 800000 in
+/--
+@isnad1 id=isparabo.3h3v.s14.421bd26c4636 from=translated src=- shape=d2e5f585 vocab=d9b3a425
+-/
 theorem isParabolicCocycle_of_cuspWitnesses (n N : ℕ) [NeZero N] (hρm1 : binaryFormRepSL ℤ n (-1) = 1)
     {y : Gamma0 N → ↥(BinaryForm ℤ n)} (hycoc : y ∈ coeffCocycles ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype))
     (hWq : ∀ q : SL(2, ℤ) ⧸ Gamma0 N, ∃ W : ↥(BinaryForm ℤ n),
@@ -599,6 +776,9 @@ theorem isParabolicCocycle_of_cuspWitnesses (n N : ℕ) [NeZero N] (hρm1 : bina
     exact hpar'
 
 set_option maxHeartbeats 800000 in
+/--
+@isnad1 id=eq.1h3v.s17.0ac9ebaccce9 from=translated src=- shape=ae7efdda vocab=07d0e2a7
+-/
 theorem mk_eq_zero_of_odd (n N : ℕ) (hodd : Odd n)
     (z : ↥(coeffParabolicCocycles ((binaryFormRepSL ℚ n).comp (Gamma0 N).subtype))) : coeffH1parMk _ z = 0 := by
   have hρQ' : ∀ g : Gamma0 N, ((binaryFormRepSL ℚ n).comp (Gamma0 N).subtype) g = binaryFormRepSL ℚ n (g : SL(2, ℤ)) :=
@@ -633,6 +813,9 @@ theorem mk_eq_zero_of_odd (n N : ℕ) (hodd : Odd n)
 variable (n N : ℕ) [NeZero N]
 
 set_option maxHeartbeats 800000 in
+/--
+@isnad1 id=ex.1h4v.s19.47dfcba9842a from=translated src=- shape=6dab8ca2 vocab=d6a5afd2
+-/
 theorem main
     (Φ : coeffH1par ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype) →+ coeffH1par ((binaryFormRepSL ℚ n).comp (Gamma0 N).subtype))
     (hΦ : ∀ z : ↥(coeffParabolicCocycles ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype)),
@@ -739,6 +922,9 @@ open scoped _root_.P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat
 
 open scoped MatrixGroups in
 
+/--
+@isnad1 id=ex.1h4v.s19.47dfcba9842a from=translated src=- shape=6dab8ca2 vocab=d6a5afd2
+-/
 theorem solution (n N : ℕ) [NeZero N]
     (Φ : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℤ n).comp (CongruenceSubgroup.Gamma0 N).subtype)
         →+ HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℚ n).comp (CongruenceSubgroup.Gamma0 N).subtype))

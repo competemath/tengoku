@@ -24,22 +24,40 @@ namespace TorsionFreeAux
 
 def gammaT (N : ℕ) : Gamma0 N := ⟨ModularGroup.T, by rw [Gamma0_mem]; simp [ModularGroup.coe_T]⟩
 
+/--
+@isnad1 id=eq.0h1v.s7.5a96219af718 from=translated src=- shape=cd824c36 vocab=83d81f8f
+-/
 @[scoped simp] theorem coe_gammaT (N : ℕ) : ((gammaT N : Gamma0 N) : SL(2, ℤ)) = ModularGroup.T := rfl
 
 def lowerSL (N : ℕ) : SL(2, ℤ) := ⟨!![1, 0; (N : ℤ), 1], by rw [Matrix.det_fin_two_of]; ring⟩
 
+/--
+@isnad1 id=eq.0h1v.s8.e248453a2d99 from=translated src=- shape=d7f42a3d vocab=56fe49b1
+-/
 @[scoped simp] theorem coe_lowerSL (N : ℕ) : ((lowerSL N : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) = !![1, 0; (N : ℤ), 1] := rfl
 
 def gammaL (N : ℕ) : Gamma0 N := ⟨lowerSL N, by rw [Gamma0_mem]; simp [lowerSL]⟩
 
+/--
+@isnad1 id=eq.0h1v.s7.7a550079950a from=translated src=- shape=97eb615b vocab=4931f218
+-/
 @[scoped simp] theorem coe_gammaL (N : ℕ) : ((gammaL N : Gamma0 N) : SL(2, ℤ)) = lowerSL N := rfl
 
+/--
+@isnad1 id=eq.0h1v.s8.ac8fd548e41b from=translated src=- shape=17f74666 vocab=2084a4d7
+-/
 theorem trace_sq_gammaT (N : ℕ) : (((gammaT N : Gamma0 N) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace ^ 2 = 4 := by
   rw [coe_gammaT, ModularGroup.coe_T, Matrix.trace_fin_two_of]; norm_num
 
+/--
+@isnad1 id=eq.0h1v.s8.0f15c42d9e0c from=translated src=- shape=17f74666 vocab=157a6e33
+-/
 theorem trace_sq_gammaL (N : ℕ) : (((gammaL N : Gamma0 N) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace ^ 2 = 4 := by
   rw [coe_gammaL, coe_lowerSL, Matrix.trace_fin_two_of]; norm_num
 
+/--
+@isnad1 id=eq.0h3v.s12.3941df5e0bfd from=translated src=- shape=d046912e vocab=554d3788
+-/
 theorem binaryFormRepSL_apply_of_zero {R : Type*} [CommRing R] (g : SL(2, ℤ)) (P : ↥(BinaryForm R 0)) :
     binaryFormRepSL R 0 g P = P := by
   apply Subtype.ext
@@ -50,11 +68,17 @@ theorem binaryFormRepSL_apply_of_zero {R : Type*} [CommRing R] (g : SL(2, ℤ)) 
     exact (MvPolynomial.totalDegree_eq_zero_iff_eq_C.mp h)
   rw [hP, binarySubst_C]
 
+/--
+@isnad1 id=eq.2h6v.s8.6048e2865014 from=translated src=- shape=ee02ba35 vocab=80e7a2e2
+-/
 theorem aux_fix {M : Type*} [AddCommGroup M] (f : M →+ M) (m : ℤ) (v w z : M)
     (hv : f v - v = m • z) (hw : f w - w = z) : f (v - m • w) = v - m • w := by
   rw [map_sub, map_zsmul, sub_eq_iff_eq_add.mp hv, ← hw, zsmul_sub]
   abel
 
+/--
+@isnad1 id=eq.3h8v.s8.804c7d6bc45d from=translated src=- shape=6cbffef1 vocab=7c3adbb6
+-/
 theorem aux_div {M : Type*} [AddCommGroup M] (cf : M →+ ℤ) (m c₁ : ℤ) (v w₁ w₂ e : M)
     (he : cf e = 1) (h1 : v - m • w₁ = c₁ • e) (h2 : cf (v - m • w₂) = 0) :
     v = m • (w₁ + (cf w₂ - cf w₁) • e) := by
@@ -65,6 +89,9 @@ theorem aux_div {M : Type*} [AddCommGroup M] (cf : M →+ ℤ) (m c₁ : ℤ) (v
   have hc : c₁ = m * (cf w₂ - cf w₁) := by linear_combination -k1 + k2
   rw [sub_eq_iff_eq_add'.mp h1, hc, zsmul_add, mul_zsmul]
 
+/--
+@isnad1 id=eq.2h5v.s8.1ac8d348248e from=translated src=- shape=0a07cae6 vocab=80e7a2e2
+-/
 theorem aux_cancel {M : Type*} [AddCommGroup M] (f : M →+ M) (m : ℤ) (hinj : ∀ x : M, m • x = 0 → x = 0)
     (v' z : M) (h : f (m • v') - m • v' = m • z) : f v' - v' = z := by
   rw [map_zsmul, ← zsmul_sub] at h
@@ -76,6 +103,9 @@ open scoped _root_.P2MW.S_HeckeEis_coeffH1par_binaryFormRepSL_int_eq_zero_of_smu
 
 open TorsionFreeAux in
 
+/--
+@isnad1 id=eq.2h4v.s16.9bb79db49015 from=translated src=- shape=46ecc8c9 vocab=fdaf032e
+-/
 theorem SolMain.A4 (n N : ℕ) [NeZero N] (m : ℤ) (hm : m ≠ 0)
     (x : coeffH1par ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype)) (hx : m • x = 0) : x = 0 := by
   classical
@@ -135,6 +165,9 @@ end HeckeEis
 open scoped _root_.P2MW.S_HeckeEis_coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero.HeckeEis.TorsionFreeAux _root_.P2MW.S_HeckeEis_coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero.HeckeEis
 
 open scoped MatrixGroups in
+/--
+@isnad1 id=eq.2h4v.s16.9bb79db49015 from=translated src=- shape=46ecc8c9 vocab=fdaf032e
+-/
 theorem solution (n N : ℕ) [NeZero N] (m : ℤ) (hm : m ≠ 0)
     (x : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℤ n).comp (CongruenceSubgroup.Gamma0 N).subtype))
     (hx : m • x = 0) : x = 0 :=

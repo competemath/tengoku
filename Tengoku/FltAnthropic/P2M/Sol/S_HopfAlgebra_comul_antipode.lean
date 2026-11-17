@@ -22,6 +22,9 @@ noncomputable section
 variable {R : Type u} [CommSemiring R]
 variable {A : Type v} [Semiring A] [HopfAlgebra R A]
 
+/--
+@isnad1 id=eq.0h2v.s12.eff0884bfb82 from=translated src=- shape=34fe2964 vocab=41fed245
+-/
 theorem toConv_includeLeft_comp_antipode_mul_toConv_includeLeft :
     toConv ((Algebra.TensorProduct.includeLeft : A →ₐ[R] A ⊗[R] A).toLinearMap ∘ₗ antipode R)
         * toConv (Algebra.TensorProduct.includeLeft : A →ₐ[R] A ⊗[R] A).toLinearMap
@@ -36,6 +39,9 @@ theorem toConv_includeLeft_comp_antipode_mul_toConv_includeLeft :
   rw [Algebra.TensorProduct.algebraMap_apply, ← sum_antipode_mul_eq_algebraMap_counit (ℛ R a)]
   exact (TensorProduct.sum_tmul _ _ _).symm
 
+/--
+@isnad1 id=eq.0h2v.s11.1f4c8646dcc7 from=translated src=- shape=796bd86a vocab=24e74465
+-/
 theorem toConv_includeRight_comp_antipode_mul_toConv_includeRight :
     toConv ((Algebra.TensorProduct.includeRight : A →ₐ[R] A ⊗[R] A).toLinearMap ∘ₗ antipode R)
         * toConv (Algebra.TensorProduct.includeRight : A →ₐ[R] A ⊗[R] A).toLinearMap
@@ -50,6 +56,9 @@ theorem toConv_includeRight_comp_antipode_mul_toConv_includeRight :
   rw [Algebra.TensorProduct.algebraMap_apply', ← sum_antipode_mul_eq_algebraMap_counit (ℛ R a)]
   exact (TensorProduct.tmul_sum _ _ _).symm
 
+/--
+@isnad1 id=eq.0h2v.s11.7c2436f3cb97 from=translated src=- shape=a6bcdf5c vocab=eab89f8d
+-/
 theorem toConv_includeLeft_mul_toConv_includeRight :
     toConv (Algebra.TensorProduct.includeLeft : A →ₐ[R] A ⊗[R] A).toLinearMap
         * toConv (Algebra.TensorProduct.includeRight : A →ₐ[R] A ⊗[R] A).toLinearMap
@@ -61,6 +70,9 @@ theorem toConv_includeLeft_mul_toConv_includeRight :
     Algebra.TensorProduct.includeLeft_apply, Algebra.TensorProduct.includeRight_apply,
     Algebra.TensorProduct.tmul_mul_tmul, mul_one, one_mul]
 
+/--
+@isnad1 id=eq.0h2v.s12.f5662f6d3f62 from=translated src=- shape=1ef0cbf1 vocab=fa8aaad8
+-/
 theorem toConv_includeRight_comp_antipode_mul_toConv_includeLeft_comp_antipode :
     toConv ((Algebra.TensorProduct.includeRight : A →ₐ[R] A ⊗[R] A).toLinearMap ∘ₗ antipode R)
         * toConv
@@ -75,6 +87,9 @@ theorem toConv_includeRight_comp_antipode_mul_toConv_includeLeft_comp_antipode :
     Algebra.TensorProduct.includeRight_apply, Algebra.TensorProduct.tmul_mul_tmul, mul_one,
     one_mul, LinearEquiv.coe_toLinearMap, TensorProduct.comm_tmul]
 
+/--
+@isnad1 id=eq.0h2v.s11.23903af97c20 from=translated src=- shape=114ab5a6 vocab=c892a2d6
+-/
 theorem toConv_comm_map_antipode_comul_mul_toConv_comul :
     toConv ((TensorProduct.comm R A A).toLinearMap
           ∘ₗ TensorProduct.map (antipode R) (antipode R) ∘ₗ comul)
@@ -87,6 +102,9 @@ theorem toConv_comm_map_antipode_comul_mul_toConv_comul :
     toConv_includeLeft_comp_antipode_mul_toConv_includeLeft, one_mul]
   exact toConv_includeRight_comp_antipode_mul_toConv_includeRight
 
+/--
+@isnad1 id=eq.0h2v.s11.ea35c4371ead from=translated src=- shape=57c6e21b vocab=d45795e6
+-/
 theorem toConv_comul_mul_toConv_comul_comp_antipode :
     toConv (comul : A →ₗ[R] A ⊗[R] A)
         * toConv (comul ∘ₗ antipode R : A →ₗ[R] A ⊗[R] A)
@@ -103,6 +121,9 @@ theorem toConv_comul_mul_toConv_comul_comp_antipode :
       (map_sum _ _ _).symm,
     sum_mul_antipode_eq_algebraMap_counit (ℛ R a), Bialgebra.comul_algebraMap]
 
+/--
+@isnad1 id=eq.0h2v.s10.84568e4cf0cb from=translated src=- shape=2df3efae vocab=e9623365
+-/
 theorem comul_comp_antipode :
     comul ∘ₗ antipode R
       = (TensorProduct.comm R A A).toLinearMap
@@ -116,6 +137,9 @@ end
 end HopfAlgebra
 
 open scoped _root_.TensorProduct _root_.Coalgebra.TensorProduct in
+/--
+@isnad1 id=eq.0h3v.s11.9d3c4b3b934b from=translated src=- shape=5c3ad501 vocab=66ad8fec
+-/
 theorem solution {R : Type*} [CommSemiring R]
     {A : Type*} [Semiring A] [HopfAlgebra R A] (a : A) :
     Coalgebra.comul (HopfAlgebra.antipode R a)

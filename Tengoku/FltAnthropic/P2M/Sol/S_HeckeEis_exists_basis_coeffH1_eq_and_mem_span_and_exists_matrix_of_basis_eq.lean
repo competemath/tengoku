@@ -25,9 +25,15 @@ variable (A : Type*) [CommRing A] [Algebra R A]
 
 def act (g : Γ) : (n → A) →ₗ[A] (n → A) := Matrix.mulVecLin ((M g).map (algebraMap R A))
 
+/--
+@isnad1 id=eq.0h8v.s8.d848ea68571a from=translated src=- shape=c9b0e3ae vocab=a6928c22
+-/
 theorem act_apply (g : Γ) (v : n → A) (i : n) : act M A g v i = ∑ j, M g i j • v j := by
   simp only [act, Matrix.mulVecLin_apply, Matrix.mulVec, dotProduct, Matrix.map_apply, Algebra.smul_def]
 
+/--
+@isnad1 id=eq.0h5v.s7.05c1d78a8ea3 from=translated src=- shape=c8cbd6ba vocab=93a9aeb2
+-/
 theorem act_one : act M A 1 = LinearMap.id := by
   apply LinearMap.ext; intro v; funext i
   rw [act_apply, map_one, LinearMap.id_apply]
@@ -44,6 +50,9 @@ def Z : Submodule A (Γ → n → A) where
     intro c z hz g h
     simp only [Pi.smul_apply, hz g h, smul_add, map_smul]
 
+/--
+@isnad1 id=iff.0h6v.s9.520b3c57a584 from=translated src=- shape=c4248ba4 vocab=3b9717f5
+-/
 theorem mem_Z {z : Γ → n → A} : z ∈ Z M A ↔ ∀ g h : Γ, z (g * h) = z g + act M A g (z h) := Iff.rfl
 
 def cob : (n → A) →ₗ[A] (Γ → n → A) where
@@ -51,6 +60,9 @@ def cob : (n → A) →ₗ[A] (Γ → n → A) where
   map_add' v w := by funext g; simp only [map_add, Pi.add_apply]; abel
   map_smul' c v := by funext g; simp only [map_smul, Pi.smul_apply, RingHom.id_apply, smul_sub]
 
+/--
+@isnad1 id=eq.0h7v.s9.51b54ec58db1 from=translated src=- shape=78430fc0 vocab=cbe7fc9b
+-/
 theorem cob_apply (v : n → A) (g : Γ) : cob M A v g = act M A g v - v := rfl
 
 def B : Submodule A (Γ → n → A) := LinearMap.range (cob M A)
@@ -59,22 +71,34 @@ abbrev H : Type _ := ↥(Z M A) ⧸ (B M A).comap (Z M A).subtype
 
 abbrev Hmk : ↥(Z M A) →ₗ[A] H M A := ((B M A).comap (Z M A).subtype).mkQ
 
+/--
+@isnad1 id=iff.0h6v.s13.9ddd6c428e0d from=translated src=- shape=369f78d3 vocab=5e5ec4b5
+-/
 theorem Hmk_eq_zero_iff (z : ↥(Z M A)) : Hmk M A z = 0 ↔ (z : Γ → n → A) ∈ B M A :=
   (Submodule.Quotient.mk_eq_zero _).trans Submodule.mem_comap
 
 variable {A}
 
+/--
+@isnad1 id=eq.1h6v.s8.28462bb3f299 from=translated src=- shape=8dffa19e vocab=1c64ef0a
+-/
 theorem Z_apply_one {z : Γ → n → A} (hz : z ∈ Z M A) : z 1 = 0 := by
   have h := hz 1 1
   rw [mul_one, act_one, LinearMap.id_apply] at h
   have : z 1 + z 1 = z 1 + 0 := by rw [add_zero]; exact h.symm
   exact add_left_cancel this
 
+/--
+@isnad1 id=eq.1h7v.s9.28d766efcfb1 from=translated src=- shape=77983581 vocab=dd7147e3
+-/
 theorem Z_apply_inv {z : Γ → n → A} (hz : z ∈ Z M A) (g : Γ) : z g⁻¹ = - act M A g⁻¹ (z g) := by
   have h := hz g⁻¹ g
   rw [inv_mul_cancel, Z_apply_one M hz] at h
   exact eq_neg_of_add_eq_zero_left h.symm
 
+/--
+@isnad1 id=eq.3h7v.s8.0492c3f5546d from=translated src=- shape=8bd5cc16 vocab=1a1aec1a
+-/
 theorem Z_eq_zero_of_forall_gen {S : Set Γ} (hS : Subgroup.closure S = ⊤) {z : Γ → n → A}
     (hz : z ∈ Z M A) (h0 : ∀ g ∈ S, z g = 0) : z = 0 := by
   suffices h : ∀ g, z g = 0 from funext h
@@ -86,6 +110,9 @@ theorem Z_eq_zero_of_forall_gen {S : Set Γ} (hS : Subgroup.closure S = ⊤) {z 
   | mul x y _ _ hx hy => rw [hz x y, hx, hy, map_zero, add_zero]
   | inv x _ hx => rw [Z_apply_inv M hz, hx, map_zero, neg_zero]
 
+/--
+@isnad1 id=mem.3h10v.s9.1ec8666d3db3 from=translated src=- shape=91a2c41c vocab=1a1aec1a
+-/
 theorem Z_apply_mem_of_gen {S : Set Γ} (hS : Subgroup.closure S = ⊤) (P : Submodule R A)
     {z : Γ → n → A} (hz : z ∈ Z M A) (hP : ∀ g ∈ S, ∀ i, z g i ∈ P) : ∀ g i, z g i ∈ P := by
   intro g
@@ -110,15 +137,24 @@ def push (ψ : A →ₗ[R] A') : (Γ → n → A) →ₗ[R] (Γ → n → A') wh
   map_add' z w := by funext g i; exact map_add ψ _ _
   map_smul' r z := by funext g i; exact map_smul ψ r _
 
+/--
+@isnad1 id=eq.0h9v.s9.77b81b10b80c from=translated src=- shape=3359726d vocab=e6ad17cd
+-/
 @[scoped simp] theorem push_apply (ψ : A →ₗ[R] A') (z : Γ → n → A) (g : Γ) (i : n) :
     push ψ z g i = ψ (z g i) := rfl
 
+/--
+@isnad1 id=eq.0h9v.s9.d9b598a2ce43 from=translated src=- shape=5088ac42 vocab=70eac6b5
+-/
 theorem push_act (ψ : A →ₗ[R] A') (g : Γ) (v : n → A) :
     (fun i => ψ (act M A g v i)) = act M A' g (fun i => ψ (v i)) := by
   funext i
   rw [act_apply, act_apply, map_sum]
   simp only [map_smul]
 
+/--
+@isnad1 id=mem.1h8v.s10.fd649c060a1a from=translated src=- shape=de3679ab vocab=1a4997b2
+-/
 theorem push_mem_Z (ψ : A →ₗ[R] A') {z : Γ → n → A} (hz : z ∈ Z M A) : push ψ z ∈ Z M A' := by
   intro g h
   funext i
@@ -126,6 +162,9 @@ theorem push_mem_Z (ψ : A →ₗ[R] A') {z : Γ → n → A} (hz : z ∈ Z M A)
   congr 1
   exact congrFun (push_act M ψ g (z h)) i
 
+/--
+@isnad1 id=eq.0h8v.s10.2d3976b91f0f from=translated src=- shape=b2475b20 vocab=81ebedd7
+-/
 theorem push_cob (ψ : A →ₗ[R] A') (v : n → A) :
     push ψ (cob M A v) = cob M A' (fun i => ψ (v i)) := by
   funext g i
@@ -133,10 +172,16 @@ theorem push_cob (ψ : A →ₗ[R] A') (v : n → A) :
   congr 1
   exact congrFun (push_act M ψ g v) i
 
+/--
+@isnad1 id=mem.1h8v.s10.f026272b002b from=translated src=- shape=de3679ab vocab=98df9fb1
+-/
 theorem push_mem_B (ψ : A →ₗ[R] A') {z : Γ → n → A} (hz : z ∈ B M A) : push ψ z ∈ B M A' := by
   obtain ⟨v, rfl⟩ := hz
   exact ⟨fun i => ψ (v i), (push_cob M ψ v).symm⟩
 
+/--
+@isnad1 id=eq.0h9v.s10.0f4de1d10387 from=translated src=- shape=dc2476a4 vocab=1736daa3
+-/
 theorem push_push {A'' : Type*} [CommRing A''] [Algebra R A''] (ψ : A →ₗ[R] A') (ψ' : A' →ₗ[R] A'')
     (z : Γ → n → A) : push ψ' (push ψ z) = push (ψ' ∘ₗ ψ) z := rfl
 
@@ -153,6 +198,9 @@ def pushZ : ↥(Z M R) →ₛₗ[algebraMap R K] ↥(Z M K) where
     change algebraMap R K (r * (z : Γ → n → R) g i) = algebraMap R K r * algebraMap R K ((z : Γ → n → R) g i)
     exact map_mul _ _ _
 
+/--
+@isnad1 id=eq.0h6v.s12.5ab24f53434f from=translated src=- shape=db496771 vocab=e2123e03
+-/
 @[scoped simp] theorem coe_pushZ (z : ↥(Z M R)) :
     ((pushZ M K z : ↥(Z M K)) : Γ → n → K) = push (Algebra.linearMap R K) (z : Γ → n → R) := rfl
 
@@ -161,6 +209,9 @@ def Φc : H M R →ₛₗ[algebraMap R K] H M K :=
     rw [Submodule.mem_comap] at hz ⊢
     exact push_mem_B M (Algebra.linearMap R K) hz
 
+/--
+@isnad1 id=eq.0h6v.s14.77e953c85ff8 from=translated src=- shape=8f387e9c vocab=f8a5af9a
+-/
 theorem Φc_Hmk (z : ↥(Z M R)) : Φc M K (Hmk M R z) = Hmk M K (pushZ M K z) := rfl
 
 end Framework
@@ -187,12 +238,18 @@ variable (F : Type*) [Field F] [Algebra R F] (K : Type*) [Field K] [Algebra R K]
 abbrev algFK (R : Type*) [CommRing R] (F : Type*) [Field F] [Algebra R F] (K : Type*) [Field K] [Algebra R K]
     [Algebra F K] [IsScalarTower R F K] : F →ₗ[R] K := (Algebra.linearMap F K).restrictScalars R
 
+/--
+@isnad1 id=eq.0h3v.s8.4e980e3940c0 from=translated src=- shape=e926c9d3 vocab=2d26cf2c
+-/
 theorem algFK_comp_algRF : (algFK R F K : F →ₗ[R] K) ∘ₗ Algebra.linearMap R F = Algebra.linearMap R K := by
   apply LinearMap.ext
   intro r
   change algebraMap F K (algebraMap R F r) = algebraMap R K r
   exact (IsScalarTower.algebraMap_apply R F K r).symm
 
+/--
+@isnad1 id=ex.1h7v.s10.aaa16c2b20bb from=translated src=- shape=34c069f4 vocab=1d1d6305
+-/
 theorem exists_sum_push_of_mem_Z [hΓ : Group.FG Γ] {z : Γ → n → K} (hz : z ∈ Z M K) :
     ∃ (m : ℕ) (k : Fin m → K) (w : Fin m → Γ → n → F),
       (∀ l, w l ∈ Z M F) ∧ z = ∑ l, k l • push (algFK R F K) (w l) := by
@@ -234,6 +291,9 @@ theorem exists_sum_push_of_mem_Z [hΓ : Group.FG Γ] {z : Γ → n → K} (hz : 
   rw [← Finset.sum_coe_sort]
   exact (Fintype.sum_equiv A0.equivFin.symm _ _ fun _ => rfl).symm
 
+/--
+@isnad1 id=ex.1h6v.s10.dc5c0d7e7374 from=translated src=- shape=d4b46c97 vocab=7065ff8f
+-/
 theorem exists_smul_eq_push_of_mem_Z [hΓ : Group.FG Γ] [IsDomain R] [IsFractionRing R F] {z : Γ → n → F}
     (hz : z ∈ Z M F) :
     ∃ s : R, s ≠ 0 ∧ ∃ zR : Γ → n → R, zR ∈ Z M R ∧ push (Algebra.linearMap R F) zR = algebraMap R F s • z := by
@@ -270,6 +330,9 @@ theorem exists_smul_eq_push_of_mem_Z [hΓ : Group.FG Γ] [IsDomain R] [IsFractio
     exact (congrFun (push_act M (Algebra.linearMap R F) g (zR h)) i).symm
   · funext g i; exact hzR g i
 
+/--
+@isnad1 id=ex.2h9v.s9.94f88037fcba from=translated src=- shape=1be3cf37 vocab=206153fe
+-/
 theorem exists_rel_of_rel_push {ι : Type*} [Fintype ι] (w : ι → Γ → n → F) (c : ι → K) (l₀ : ι)
     (hc : c l₀ ≠ 0) (hrel : ∑ l, c l • push (algFK R F K) (w l) = 0) :
     ∃ f : ι → F, f l₀ ≠ 0 ∧ ∑ l, f l • w l = 0 := by
@@ -303,12 +366,18 @@ variable {Γ : Type*} [Group Γ] {R : Type*} [CommRing R] {n : Type*} [Fintype n
 variable (M : Γ →* Matrix n n R)
 variable {A : Type*} [CommRing A] [Algebra R A] {A' : Type*} [CommRing A'] [Algebra R A']
 
+/--
+@isnad1 id=injectiv.1h6v.s9.a80bed0a5c82 from=translated src=- shape=fb8ba8a5 vocab=a79277f8
+-/
 theorem push_injective (ψ : A →ₗ[R] A') (hψ : Function.Injective ψ) :
     Function.Injective (push (Γ := Γ) (n := n) ψ) := by
   intro z w h
   funext g i
   exact hψ (congrFun (congrFun h g) i)
 
+/--
+@isnad1 id=eq.1h6v.s8.37ee2d1a20cf from=translated src=- shape=bc58eb1d vocab=0fde46c5
+-/
 theorem map_single_one (ψ : A →ₗ[R] A') (hψ1 : ψ 1 = 1) (j : n) :
     (fun i => ψ (Pi.single (M := fun _ => A) j (1 : A) i)) = Pi.single (M := fun _ => A') j (1 : A') := by
   funext i
@@ -316,11 +385,17 @@ theorem map_single_one (ψ : A →ₗ[R] A') (hψ1 : ψ 1 = 1) (j : n) :
   · subst h; rw [Pi.single_eq_same, Pi.single_eq_same, hψ1]
   · rw [Pi.single_eq_of_ne h, Pi.single_eq_of_ne h, map_zero]
 
+/--
+@isnad1 id=eq.1h8v.s10.5cb528ea2273 from=translated src=- shape=bd200e5e vocab=6b4f6348
+-/
 theorem push_cob_single (ψ : A →ₗ[R] A') (hψ1 : ψ 1 = 1) (j : n) :
     push ψ (cob M A (Pi.single j 1)) = cob M A' (Pi.single j 1) := by
   rw [push_cob, map_single_one ψ hψ1]
 
 variable (A) in
+/--
+@isnad1 id=eq.0h6v.s9.a210e5587337 from=translated src=- shape=ba3e4986 vocab=e041adf1
+-/
 theorem cob_eq_sum_single (v : n → A) : cob M A v = ∑ j, v j • cob M A (Pi.single j 1) := by
   have hv : v = ∑ j, v j • (Pi.single j (1 : A) : n → A) := by
     funext i
@@ -340,11 +415,17 @@ variable {Γ : Type*} [Group Γ] [hΓ : Group.FG Γ] {R : Type*} [CommRing R] [I
 variable {K : Type*} [Field K] [Algebra R K]
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
+/--
+@isnad1 id=eq.0h6v.s10.cca1c55cbbae from=translated src=- shape=20349a5f vocab=5d028cfb
+-/
 theorem pushFK_pushRF (F : Type*) [Field F] [Algebra R F] [Algebra F K] [IsScalarTower R F K]
     (x : Γ → n → R) :
     push (algFK R F K) (push (Algebra.linearMap R F) x) = push (Algebra.linearMap R K) x := by
   rw [push_push, algFK_comp_algRF]
 
+/--
+@isnad1 id=ex.2h6v.s10.830fff172f49 from=translated src=- shape=5d5d9040 vocab=bf5dfbd3
+-/
 theorem exists_sum_pushRK_of_mem_Z (hRK : Function.Injective (algebraMap R K)) (M : Γ →* Matrix n n R)
     {z : Γ → n → K} (hz : z ∈ Z M K) :
     ∃ (m : ℕ) (k : Fin m → K) (zR : Fin m → ↥(Z M R)),
@@ -371,6 +452,9 @@ theorem exists_sum_pushRK_of_mem_Z (hRK : Function.Injective (algebraMap R K)) (
   rw [mul_smul, ← pushFK_pushRF F, hpush, h1, smul_smul ((algebraMap R K) (s l))⁻¹, inv_mul_cancel₀ hsK,
     one_smul]
 
+/--
+@isnad1 id=ex.1h5v.s15.e89e76a64a4b from=translated src=- shape=f30a93a6 vocab=887c6c3a
+-/
 theorem main (hRK : Function.Injective (algebraMap R K)) (M : Γ →* Matrix n n R) :
     ∃ (t : ℕ) (b : Fin t → H M R) (c : Module.Basis (Fin t) K (H M K)),
       (∀ i, c i = Φc M K (b i)) ∧
@@ -560,8 +644,14 @@ noncomputable def matrixRep : Γ →* Matrix n n A where
   map_one' := by rw [map_one]; exact LinearMap.toMatrix_one b
   map_mul' g h := by rw [map_mul]; exact LinearMap.toMatrix_mul b (σ g) (σ h)
 
+/--
+@isnad1 id=eq.0h7v.s10.fe12d8fb77e1 from=translated src=- shape=257fe317 vocab=49ac5f8c
+-/
 theorem matrixRep_apply (g : Γ) : matrixRep σ b g = LinearMap.toMatrix b b (σ g) := rfl
 
+/--
+@isnad1 id=eq.0h9v.s10.fe7544c857d4 from=translated src=- shape=bd9ede9b vocab=e199d68e
+-/
 theorem repr_rep_apply (g : Γ) (v : W) (i : n) :
     b.repr (σ g v) i = ∑ j, LinearMap.toMatrix b b (σ g) i j * b.repr v j := by
   have h := LinearMap.toMatrix_mulVec_repr b b (σ g) v
@@ -572,6 +662,9 @@ def IsMatrixOf : Prop := ∀ g : Γ, LinearMap.toMatrix b b (σ g) = (M g).map (
 
 variable {M σ b}
 
+/--
+@isnad1 id=eq.1h10v.s10.107f49066c3a from=translated src=- shape=4fdf8e6a vocab=50a37b61
+-/
 theorem IsMatrixOf.equivFun_rep (hM : IsMatrixOf M σ b) (g : Γ) (v : W) :
     b.equivFun (σ g v) = act M A g (b.equivFun v) := by
   funext i
@@ -579,6 +672,9 @@ theorem IsMatrixOf.equivFun_rep (hM : IsMatrixOf M σ b) (g : Γ) (v : W) :
   refine Finset.sum_congr rfl fun j _ => ?_
   rw [Matrix.map_apply, Algebra.smul_def, Module.Basis.equivFun_apply]
 
+/--
+@isnad1 id=iff.1h9v.s9.2354c858817a from=translated src=- shape=ec898f51 vocab=dfec9bcf
+-/
 theorem IsMatrixOf.coord_mem_Z_iff (hM : IsMatrixOf M σ b) (z : Γ → W) :
     coord Γ b z ∈ Z M A ↔ z ∈ coeffCocycles σ := by
   rw [mem_Z, mem_coeffCocycles_iff]
@@ -586,16 +682,25 @@ theorem IsMatrixOf.coord_mem_Z_iff (hM : IsMatrixOf M σ b) (z : Γ → W) :
   rw [coord_apply, coord_apply, coord_apply, ← hM.equivFun_rep, ← map_add]
   exact b.equivFun.injective.eq_iff
 
+/--
+@isnad1 id=eq.1h8v.s9.e8538afc7e03 from=translated src=- shape=19bae95d vocab=2b57257b
+-/
 theorem IsMatrixOf.map_coeffCocycles (hM : IsMatrixOf M σ b) :
     (coeffCocycles σ).map (coord Γ b : (Γ → W) →ₗ[A] (Γ → n → A)) = Z M A := by
   ext x
   rw [Submodule.mem_map_equiv, ← hM.coord_mem_Z_iff, LinearEquiv.apply_symm_apply]
 
+/--
+@isnad1 id=eq.1h9v.s10.080db3451e4f from=translated src=- shape=932cfb3b vocab=e2a901ef
+-/
 theorem IsMatrixOf.coord_coeffCoboundaryMap (hM : IsMatrixOf M σ b) (v : W) :
     coord Γ b (coeffCoboundaryMap σ v) = cob M A (b.equivFun v) := by
   funext g
   rw [coord_apply, coeffCoboundaryMap_apply, cob_apply, map_sub, hM.equivFun_rep]
 
+/--
+@isnad1 id=eq.1h8v.s9.1bf23e68461c from=translated src=- shape=19bae95d vocab=40c27fbc
+-/
 theorem IsMatrixOf.map_coeffCoboundaries (hM : IsMatrixOf M σ b) :
     (coeffCoboundaries σ).map (coord Γ b : (Γ → W) →ₗ[A] (Γ → n → A)) = B M A := by
   apply le_antisymm
@@ -609,14 +714,23 @@ theorem IsMatrixOf.map_coeffCoboundaries (hM : IsMatrixOf M σ b) :
 noncomputable def IsMatrixOf.coordZ (hM : IsMatrixOf M σ b) : ↥(coeffCocycles σ) ≃ₗ[A] ↥(Z M A) :=
   LinearEquiv.ofSubmodules (coord Γ b) _ _ hM.map_coeffCocycles
 
+/--
+@isnad1 id=eq.1h9v.s12.24efca9577c0 from=translated src=- shape=9cf41b47 vocab=3a53d997
+-/
 theorem IsMatrixOf.coe_coordZ (hM : IsMatrixOf M σ b) (z : ↥(coeffCocycles σ)) :
     ((hM.coordZ z : ↥(Z M A)) : Γ → n → A) = coord Γ b z :=
   LinearEquiv.ofSubmodules_apply (coord Γ b) hM.map_coeffCocycles z
 
+/--
+@isnad1 id=eq.1h11v.s12.6598a63fd7da from=translated src=- shape=6cfbc684 vocab=cf520420
+-/
 theorem IsMatrixOf.coordZ_apply (hM : IsMatrixOf M σ b) (z : ↥(coeffCocycles σ)) (g : Γ) (i : n) :
     ((hM.coordZ z : ↥(Z M A)) : Γ → n → A) g i = b.repr ((z : Γ → W) g) i := by
   rw [hM.coe_coordZ]; rfl
 
+/--
+@isnad1 id=eq.1h8v.s11.652e1d964c8e from=translated src=- shape=5dd32bcd vocab=7e0b366d
+-/
 theorem IsMatrixOf.map_comap_coeffCoboundaries (hM : IsMatrixOf M σ b) :
     ((coeffCoboundaries σ).comap (coeffCocycles σ).subtype).map
         (hM.coordZ : ↥(coeffCocycles σ) →ₗ[A] ↥(Z M A)) =
@@ -629,11 +743,17 @@ theorem IsMatrixOf.map_comap_coeffCoboundaries (hM : IsMatrixOf M σ b) :
 noncomputable def IsMatrixOf.coordH (hM : IsMatrixOf M σ b) : coeffH1 σ ≃ₗ[A] H M A :=
   Submodule.Quotient.equiv _ _ hM.coordZ hM.map_comap_coeffCoboundaries
 
+/--
+@isnad1 id=eq.1h9v.s14.a329a4fded8e from=translated src=- shape=4164f6fc vocab=73ecc834
+-/
 theorem IsMatrixOf.coordH_mk (hM : IsMatrixOf M σ b) (z : ↥(coeffCocycles σ)) :
     hM.coordH (coeffH1Mk σ z) = Hmk M A (hM.coordZ z) := rfl
 
 variable (σ b) in
 
+/--
+@isnad1 id=ismatrix.0h6v.s6.49669ac5dc17 from=translated src=- shape=13dcf658 vocab=649d6d15
+-/
 theorem isMatrixOf_matrixRep : IsMatrixOf (matrixRep σ b) σ b := by
   intro g
   ext i j
@@ -652,6 +772,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n] {bΛ : Module.Basis n R Λ} {bV
 
 omit [DecidableEq n] in
 
+/--
+@isnad1 id=eq.2h10v.s10.6c25e5b160b6 from=translated src=- shape=286d0ed9 vocab=0c06e6b5
+-/
 theorem repr_iota (hιs : ∀ (r : R) (x : Λ), ι (r • x) = algebraMap R K r • ι x)
     (hb : ∀ j : n, bV j = ι (bΛ j)) (x : Λ) (i : n) :
     bV.repr (ι x) i = algebraMap R K (bΛ.repr x i) := by
@@ -666,6 +789,9 @@ theorem repr_iota (hιs : ∀ (r : R) (x : Λ), ι (r • x) = algebraMap R K r 
   rw [hx]
   exact congrFun h i
 
+/--
+@isnad1 id=ismatrix.3h11v.s10.707c92219b40 from=translated src=- shape=64f3f7c6 vocab=86d61195
+-/
 theorem isMatrixOf_of_iota (hιs : ∀ (r : R) (x : Λ), ι (r • x) = algebraMap R K r • ι x)
     (hιρ : ∀ (γ : Γ) (x : Λ), ι (ρR γ x) = ρ γ (ι x)) (hb : ∀ j : n, bV j = ι (bΛ j)) :
     IsMatrixOf (matrixRep ρR bΛ) ρ bV := by
@@ -674,6 +800,9 @@ theorem isMatrixOf_of_iota (hιs : ∀ (r : R) (x : Λ), ι (r • x) = algebraM
   rw [LinearMap.toMatrix_apply, Matrix.map_apply, matrixRep_apply, LinearMap.toMatrix_apply, hb, ← hιρ,
     repr_iota hιs hb]
 
+/--
+@isnad1 id=eq.5h13v.s13.f259da1791a2 from=translated src=- shape=911205e8 vocab=30456028
+-/
 theorem coordZ_eq_pushZ (hιs : ∀ (r : R) (x : Λ), ι (r • x) = algebraMap R K r • ι x)
     (hb : ∀ j : n, bV j = ι (bΛ j))
     (hR : IsMatrixOf (matrixRep ρR bΛ) ρR bΛ) (hK : IsMatrixOf (matrixRep ρR bΛ) ρ bV)
@@ -685,6 +814,9 @@ theorem coordZ_eq_pushZ (hιs : ∀ (r : R) (x : Λ), ι (r • x) = algebraMap 
   rw [hK.coordZ_apply, coe_pushZ, push_apply, hR.coordZ_apply, Algebra.linearMap_apply, hw,
     repr_iota hιs hb]
 
+/--
+@isnad1 id=eq.5h13v.s14.b414929286f6 from=translated src=- shape=c4115ce4 vocab=479544ee
+-/
 theorem coordH_comp_eq_Φc (hιs : ∀ (r : R) (x : Λ), ι (r • x) = algebraMap R K r • ι x)
     (hb : ∀ j : n, bV j = ι (bΛ j))
     (hR : IsMatrixOf (matrixRep ρR bΛ) ρR bΛ) (hK : IsMatrixOf (matrixRep ρR bΛ) ρ bV)
@@ -709,6 +841,9 @@ open scoped _root_.P2MW.S_HeckeEis_exists_basis_coeffH1_eq_and_mem_span_and_exis
 
 open CongruenceSubgroup HeckeEis.Lattice HeckeEis.Lattice.Transport
 
+/--
+@isnad1 id=ex.6h15v.s17.708ca2a48ab3 from=translated src=- shape=53fe2eb0 vocab=ca175c2e
+-/
 theorem solution
     {R : Type} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R]
     {K : Type} [Field K] [Algebra R K] (hRK : Function.Injective (algebraMap R K))

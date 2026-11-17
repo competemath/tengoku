@@ -30,12 +30,21 @@ open scoped MatrixGroups
 def infty (p : ℕ) : ProjectiveLine (ZMod p) :=
   ⟦⟨((0 : ZMod p), (1 : ZMod p)), isUnimodularRow_one_right (0 : ZMod p)⟩⟧
 
+/--
+@isnad1 id=eq.0h4v.s5.21de40f93a1e from=translated src=- shape=7a20b016 vocab=fb990407
+-/
 theorem redMat_apply (p : ℕ) (M : Matrix (Fin 2) (Fin 2) ℤ) (i j : Fin 2) :
     redMat p M i j = ((M i j : ℤ) : ZMod p) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.a908a3749c0d from=translated src=- shape=3da4b8eb vocab=a773395a
+-/
 theorem redMat_det_coe (p : ℕ) (g : SL(2, ℤ)) : (redMat p (g : Matrix (Fin 2) (Fin 2) ℤ)).det = 1 := by
   rw [redMat, ← RingHom.mapMatrix_apply, ← RingHom.map_det, g.det_coe, map_one]
 
+/--
+@isnad1 id=iff.0h2v.s7.82be583d87d2 from=translated src=- shape=6f65b34d vocab=433d919e
+-/
 theorem projLineAct_infty_eq_infty_iff (p : ℕ) (g : SL(2, ℤ)) :
     projLineAct p (g : Matrix (Fin 2) (Fin 2) ℤ) (infty p) = infty p ↔ (p : ℤ) ∣ (g : Matrix (Fin 2) (Fin 2) ℤ) 1 0 := by
   have hu := isUnit_det_redMat_coe p g
@@ -60,6 +69,9 @@ theorem projLineAct_infty_eq_infty_iff (p : ℕ) (g : SL(2, ℤ)) :
     · simp only [ProjectiveLine.vecMulRow_fst, zero_mul, one_mul, zero_add, h10, mul_zero]
     · simp only [ProjectiveLine.vecMulRow_snd, zero_mul, one_mul, zero_add, Units.val_mkOfMulEqOne, hdet]
 
+/--
+@isnad1 id=iff.1h3v.s9.36a21f9c6dde from=translated src=- shape=ea259a47 vocab=2e085442
+-/
 theorem projLineAct_infty_eq_infty_iff_mem (N p : ℕ) (hNp : Nat.Coprime N p) (g : Gamma0 N) :
     projLineAct p ((g : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) (infty p) = infty p ↔
       (g : SL(2, ℤ)) ∈ Gamma0 (N * p) := by
@@ -76,6 +88,9 @@ theorem projLineAct_infty_eq_infty_iff_mem (N p : ℕ) (hNp : Nat.Coprime N p) (
 def sl2OfCoprime (m n c d : ℤ) (h : m * c + n * d = 1) : SL(2, ℤ) :=
   ⟨!![n, -m; c, d], by rw [Matrix.det_fin_two_of]; linear_combination h⟩
 
+/--
+@isnad1 id=ex.1h3v.s9.6d4a4750fa07 from=translated src=- shape=1cf8f82a vocab=04dc145b
+-/
 theorem exists_gamma0_projLineAct_infty_eq (N p : ℕ) [NeZero p] (hNp : Nat.Coprime N p)
     (P : ProjectiveLine (ZMod p)) :
     ∃ g : Gamma0 N, projLineAct p ((g : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) (infty p) = P := by
@@ -171,30 +186,51 @@ noncomputable abbrev rho : Representation K (Gamma0 N) (ProjectiveLine (ZMod p) 
 
 noncomputable abbrev act (g : Gamma0 N) (P : (ProjectiveLine (ZMod p))) : (ProjectiveLine (ZMod p)) := projLineAct p ((g : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) P
 
+/--
+@isnad1 id=eq.0h5v.s10.98f100a236a5 from=translated src=- shape=cbbc53cd vocab=be995d54
+-/
 theorem act_mul (g h : Gamma0 N) (P : (ProjectiveLine (ZMod p))) : act N p (g * h) P = act N p h (act N p g P) := by
   show projLineAct p (((g : SL(2, ℤ)) * (h : SL(2, ℤ)) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) P = _
   exact projLineAct_coe_mul p _ _ P
 
+/--
+@isnad1 id=eq.0h3v.s9.72959e50bdb7 from=translated src=- shape=d44470de vocab=7679a750
+-/
 theorem act_one (P : (ProjectiveLine (ZMod p))) : act N p 1 P = P := by
   show projLineAct p ((1 : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) P = P
   rw [Matrix.SpecialLinearGroup.coe_one, projLineAct_one]
 
+/--
+@isnad1 id=eq.0h4v.s9.5279efff4e55 from=translated src=- shape=1f002875 vocab=913e8bc8
+-/
 theorem act_inv_act (g : Gamma0 N) (P : (ProjectiveLine (ZMod p))) : act N p g⁻¹ (act N p g P) = P := by
   rw [← act_mul, mul_inv_cancel, act_one]
 
+/--
+@isnad1 id=eq.0h6v.s11.9ae3fd16491e from=translated src=- shape=deac95f2 vocab=6f5e7aaf
+-/
 theorem rho_apply (g : Gamma0 N) (f : (ProjectiveLine (ZMod p)) → K) (P : (ProjectiveLine (ZMod p))) : (rho N p K g) f P = f (act N p g P) := rfl
 
 include hpN in
+/--
+@isnad1 id=iff.1h3v.s9.b16c7644b636 from=translated src=- shape=be88c10d vocab=4071d3f7
+-/
 theorem act_infty_eq_iff (g : Gamma0 N) : act N p g (infty p) = infty p ↔ (g : SL(2, ℤ)) ∈ Gamma0 (N * p) :=
   projLineAct_infty_eq_infty_iff_mem N p hpN.symm g
 
 include hpN in
+/--
+@isnad1 id=eq.1h3v.s12.8717021dd138 from=translated src=- shape=15473305 vocab=33bc0438
+-/
 theorem act_iota0_infty (γ : Gamma0 (N * p)) : act N p (Ihara.ι₀ N p γ) (infty p) = infty p :=
   (act_infty_eq_iff N p hpN _).mpr (by rw [Ihara.coe_iota0]; exact γ.2)
 
 variable (σ : (ProjectiveLine (ZMod p)) → Gamma0 N) (hσ : ∀ P : (ProjectiveLine (ZMod p)), act N p (σ P) (infty p) = P)
 
 include hpN hσ in
+/--
+@isnad1 id=mem.2h5v.s11.df4f09c0e476 from=translated src=- shape=df993269 vocab=e1a65fa7
+-/
 theorem kappa_mem (P : (ProjectiveLine (ZMod p))) (g : Gamma0 N) : ((σ P * g * (σ (act N p g P))⁻¹ : Gamma0 N) : SL(2, ℤ)) ∈ Gamma0 (N * p) := by
   rw [← act_infty_eq_iff N p hpN]
   rw [act_mul, act_mul, hσ]
@@ -205,10 +241,16 @@ theorem kappa_mem (P : (ProjectiveLine (ZMod p))) (g : Gamma0 N) : ((σ P * g * 
 noncomputable def kappa (P : (ProjectiveLine (ZMod p))) (g : Gamma0 N) : Gamma0 (N * p) :=
   ⟨((σ P * g * (σ (act N p g P))⁻¹ : Gamma0 N) : SL(2, ℤ)), kappa_mem N p hpN σ hσ P g⟩
 
+/--
+@isnad1 id=eq.2h5v.s13.742d17e08a58 from=translated src=- shape=214fc42f vocab=67f9c6e5
+-/
 theorem iota0_kappa (P : (ProjectiveLine (ZMod p))) (g : Gamma0 N) : Ihara.ι₀ N p (kappa N p hpN σ hσ P g) = σ P * g * (σ (act N p g P))⁻¹ :=
   rfl
 
 include hpN hσ in
+/--
+@isnad1 id=mem.4h5v.s13.a99e228dc122 from=translated src=- shape=68e4b621 vocab=b402c116
+-/
 theorem mem_coeffCoboundaries_of_forall_eq_zero {z : Gamma0 N → (ProjectiveLine (ZMod p)) → K} (hz : z ∈ coeffCocycles (rho N p K))
     (hz0 : ∀ γ : Gamma0 (N * p), z (Ihara.ι₀ N p γ) (infty p) = 0) : z ∈ coeffCoboundaries (rho N p K) := by
   refine ⟨fun P => z (σ P) (infty p), ?_⟩
@@ -233,6 +275,9 @@ end HeckeEis
 
 end
 
+/--
+@isnad1 id=mem.3h4v.s14.a59a48c800c2 from=translated src=- shape=3120175a vocab=ab3458bc
+-/
 theorem solution (N p : ℕ) [NeZero p] (hpN : Nat.Coprime p N)
     (K : Type*) [CommRing K]
     {z : CongruenceSubgroup.Gamma0 N → ModularCurve.ProjectiveLine (ZMod p) → K}

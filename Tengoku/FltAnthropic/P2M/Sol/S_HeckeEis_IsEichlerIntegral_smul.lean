@@ -21,6 +21,9 @@ open _root_.HeckeEis
 open UpperHalfPlane MvPolynomial CongruenceSubgroup
 open scoped MatrixGroups ModularForm
 
+/--
+@isnad1 id=iseichle.1h4v.s10.ee077244a2b4 from=translated src=- shape=235f9d6c vocab=6b7c70f6
+-/
 theorem SolMain.smul {n : ℕ} {f : ℍ → ℂ} {F : ℍ → ↥(BinaryForm ℂ n)}
     (hF : IsEichlerIntegral n f F) (c : ℂ) :
     IsEichlerIntegral n (c • f) (c • F) := by
@@ -35,6 +38,9 @@ end HeckeEis
 end
 
 open scoped MatrixGroups ModularForm in
+/--
+@isnad1 id=iseichle.1h4v.s10.ee077244a2b4 from=translated src=- shape=235f9d6c vocab=6b7c70f6
+-/
 theorem solution {n : ℕ} {f : UpperHalfPlane → ℂ} {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
     (hF : HeckeEis.IsEichlerIntegral n f F) (c : ℂ) :
     HeckeEis.IsEichlerIntegral n (c • f) (c • F) :=

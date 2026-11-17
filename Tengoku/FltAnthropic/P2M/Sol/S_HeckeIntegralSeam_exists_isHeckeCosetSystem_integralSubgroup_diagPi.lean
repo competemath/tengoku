@@ -14,6 +14,9 @@ open LocalGL2 HeckeIntegralSeam
 
 namespace CosetExists
 
+/--
+@isnad1 id=isheckec.1h7v.s5.0f37a3820d4c from=translated src=- shape=593b3c84 vocab=b0642f4d
+-/
 theorem isHeckeCosetSystem_comp_equiv {G : Type*} [Group G] {U : Subgroup G} {g : G} {ι κ : Type*}
     {reps : ι → G} (h : IsHeckeCosetSystem U g reps) (e : κ ≃ ι) :
     IsHeckeCosetSystem U g (reps ∘ e) := by
@@ -25,6 +28,9 @@ theorem isHeckeCosetSystem_comp_equiv {G : Type*} [Group G] {U : Subgroup G} {g 
 end CosetExists
 
 open CosetExists in
+/--
+@isnad1 id=ex.2h3v.s8.a37ad2828999 from=translated src=- shape=a7f64c61 vocab=df42e325
+-/
 theorem solution
     {R : Type} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     {K : Type} [Field K] [Algebra R K] [IsFractionRing R K]

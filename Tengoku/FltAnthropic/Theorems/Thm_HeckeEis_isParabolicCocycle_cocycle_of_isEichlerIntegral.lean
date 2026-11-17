@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open scoped Manifold MatrixGroups
 
+/--
+@isnad1 id=isparabo.2h4v.s13.a51fc5ad2e13 from=translated src=- shape=4d753921 vocab=debc53a9
+-/
 theorem HeckeEis.isParabolicCocycle_cocycle_of_isEichlerIntegral (N n : ℕ) [NeZero N]
     (f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
     (hEI : HeckeEis.IsEichlerIntegral n f F)

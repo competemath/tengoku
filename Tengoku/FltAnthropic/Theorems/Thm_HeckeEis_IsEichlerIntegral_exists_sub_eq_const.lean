@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open scoped MatrixGroups ModularForm
 
+/--
+@isnad1 id=ex.2h4v.s10.14255f5832ad from=translated src=- shape=a6f56ca2 vocab=3789bff3
+-/
 theorem HeckeEis.IsEichlerIntegral.exists_sub_eq_const {n : ℕ} {f : UpperHalfPlane → ℂ}
     {F G : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
     (hF : HeckeEis.IsEichlerIntegral n f F) (hG : HeckeEis.IsEichlerIntegral n f G) :

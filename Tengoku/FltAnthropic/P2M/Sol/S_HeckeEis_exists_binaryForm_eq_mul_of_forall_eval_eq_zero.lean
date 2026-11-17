@@ -18,10 +18,19 @@ variable (K : Type*) [Field K]
 
 noncomputable def e (i j : ℕ) : Fin 2 →₀ ℕ := Finsupp.single 0 i + Finsupp.single 1 j
 
+/--
+@isnad1 id=eq.0h2v.s5.120b5a13889a from=translated src=- shape=d13958d8 vocab=faabfa03
+-/
 @[scoped simp] theorem e_zero (i j : ℕ) : e i j 0 = i := by simp [e]
 
+/--
+@isnad1 id=eq.0h2v.s5.51233e90d947 from=translated src=- shape=63341c4e vocab=faabfa03
+-/
 @[scoped simp] theorem e_one (i j : ℕ) : e i j 1 = j := by simp [e]
 
+/--
+@isnad1 id=iff.0h4v.s5.521347e2d525 from=translated src=- shape=71ada6db vocab=e4c7b69d
+-/
 theorem e_eq_iff {i j i' j' : ℕ} : e i j = e i' j' ↔ i = i' ∧ j = j' := by
   constructor
   · intro h
@@ -34,17 +43,29 @@ theorem eq_e (d : Fin 2 →₀ ℕ) : d = e (d 0) (d 1) := by
   ext k
   fin_cases k <;> simp
 
+/--
+@isnad1 id=eq.0h2v.s7.4cd45725664e from=translated src=- shape=75677755 vocab=b0010ca5
+-/
 theorem degree_e (i j : ℕ) : Finsupp.degree (e i j) = i + j := by
   rw [e, map_add, Finsupp.degree_single, Finsupp.degree_single]
 
+/--
+@isnad1 id=eq.0h4v.s9.f79e4c60be4f from=translated src=- shape=a5c04ca7 vocab=9c9ed9b1
+-/
 theorem monomial_e (i j : ℕ) (c : K) :
     (monomial (e i j) c : MvPolynomial (Fin 2) K) = C c * X 0 ^ i * X 1 ^ j := by
   rw [e, mul_assoc, X_pow_eq_monomial, X_pow_eq_monomial, monomial_mul_monomial, C_mul_monomial, one_mul, mul_one]
 
+/--
+@isnad1 id=ishomoge.0h4v.s8.cec0bd40d625 from=translated src=- shape=9cee0aae vocab=7495d319
+-/
 theorem isHomogeneous_monomial_e (i j : ℕ) (c : K) :
     ((monomial (e i j) c : MvPolynomial (Fin 2) K)).IsHomogeneous (i + j) :=
   isHomogeneous_monomial _ (degree_e i j)
 
+/--
+@isnad1 id=eq.2h4v.s7.c35b95e05bb2 from=translated src=- shape=4b33e789 vocab=a848fe9e
+-/
 theorem deg_two {F : MvPolynomial (Fin 2) K} {n : ℕ} (hF : F.IsHomogeneous n) {d : Fin 2 →₀ ℕ}
     (hd : coeff d F ≠ 0) : d 0 + d 1 = n := by
   have hdeg := hF hd
@@ -92,34 +113,55 @@ variable (p : ℕ) [hp : Fact p.Prime] (K : Type*) [Field K] [CharP K p]
 noncomputable def ev (F : MvPolynomial (Fin 2) K) (v : Fin 2 → ZMod p) : K :=
   eval (fun i => ZMod.castHom (dvd_refl p) K (v i)) F
 
+/--
+@isnad1 id=eq.0h5v.s7.6ee8ae173b1f from=translated src=- shape=36157e1a vocab=1f62c135
+-/
 theorem ev_add (F G : MvPolynomial (Fin 2) K) (v : Fin 2 → ZMod p) :
     ev p K (F + G) v = ev p K F v + ev p K G v := by
   simp [ev]
 
+/--
+@isnad1 id=eq.0h5v.s7.6010e5240a3c from=translated src=- shape=36157e1a vocab=6661135c
+-/
 theorem ev_mul (F G : MvPolynomial (Fin 2) K) (v : Fin 2 → ZMod p) :
     ev p K (F * G) v = ev p K F v * ev p K G v := by
   simp [ev]
 
+/--
+@isnad1 id=eq.0h6v.s7.ba57476012e0 from=translated src=- shape=4dd111ab vocab=ac0f6684
+-/
 theorem ev_sum {ι : Type*} (s : Finset ι) (F : ι → MvPolynomial (Fin 2) K) (v : Fin 2 → ZMod p) :
     ev p K (∑ i ∈ s, F i) v = ∑ i ∈ s, ev p K (F i) v := by
   simp [ev, map_sum]
 
+/--
+@isnad1 id=eq.0h6v.s9.c8427521a257 from=translated src=- shape=1750b5a0 vocab=a617087b
+-/
 theorem ev_monomial (i j : ℕ) (c : K) (v : Fin 2 → ZMod p) :
     ev p K (monomial (e i j) c) v =
       c * (ZMod.castHom (dvd_refl p) K (v 0)) ^ i * (ZMod.castHom (dvd_refl p) K (v 1)) ^ j := by
   rw [monomial_e]
   simp [ev]
 
+/--
+@isnad1 id=eq.0h3v.s7.a251693bf258 from=translated src=- shape=46364875 vocab=dffe15ed
+-/
 theorem castHom_pow_card (x : ZMod p) :
     (ZMod.castHom (dvd_refl p) K x) ^ p = ZMod.castHom (dvd_refl p) K x := by
   rw [← map_pow, ZMod.pow_card]
 
 noncomputable def theta : MvPolynomial (Fin 2) K := X 0 ^ p * X 1 - X 0 * X 1 ^ p
 
+/--
+@isnad1 id=eq.0h3v.s5.71235bf83d7e from=translated src=- shape=786c0453 vocab=1016a572
+-/
 theorem ev_theta (v : Fin 2 → ZMod p) : ev p K (theta p K) v = 0 := by
   simp only [theta, ev, map_sub, map_mul, map_pow, eval_X, castHom_pow_card]
   ring
 
+/--
+@isnad1 id=eq.3h5v.s8.ddbf19bb43f1 from=translated src=- shape=841140ca vocab=511473df
+-/
 theorem coeffs_eq_zero_of_ev {n : ℕ} (c : ℕ → K)
     (hsupp : ∀ i ∈ range (n + 1), c i ≠ 0 → i = n ∨ i < p)
     (hev : ∀ x y : ZMod p, ∑ i ∈ range (n + 1),
@@ -188,6 +230,9 @@ theorem coeffs_eq_zero_of_ev {n : ℕ} (c : ℕ → K)
       · simp
     rw [← hcoeff, hq0, Polynomial.coeff_zero]
 
+/--
+@isnad1 id=eq.2h4v.s10.b66f0167434e from=translated src=- shape=c5c3df27 vocab=be3b4987
+-/
 theorem monomial_sub_monomial_step {j m : ℕ} (hj : 1 ≤ j) (hm : 1 ≤ m) :
     (monomial (e (j + (p - 1)) m) (1 : K) : MvPolynomial (Fin 2) K) - monomial (e j (m + (p - 1))) 1
       = theta p K * monomial (e (j - 1) (m - 1)) 1 := by
@@ -199,6 +244,9 @@ theorem monomial_sub_monomial_step {j m : ℕ} (hj : 1 ≤ j) (hm : 1 ≤ m) :
   simp only [map_one, one_mul, Nat.add_sub_cancel]
   ring
 
+/--
+@isnad1 id=ex.2h5v.s9.d0ac90111d84 from=translated src=- shape=dfd00dae vocab=5f57b6bf
+-/
 theorem monomial_sub_monomial_red {j : ℕ} (hj : 1 ≤ j) (k : ℕ) :
     ∀ {m : ℕ}, 1 ≤ m → ∃ H : MvPolynomial (Fin 2) K, H.IsHomogeneous (j + m + k * (p - 1) - (p + 1)) ∧
       (monomial (e (j + k * (p - 1)) m) (1 : K) : MvPolynomial (Fin 2) K)
@@ -229,24 +277,39 @@ theorem monomial_sub_monomial_red {j : ℕ} (hj : 1 ≤ j) (k : ℕ) :
 
 def rd (i : ℕ) : ℕ := 1 + (i - 1) % (p - 1)
 
+/--
+@isnad1 id=le.0h2v.s4.39970e5ce652 from=translated src=- shape=82888bae vocab=14a87ff9
+-/
 theorem one_le_rd (i : ℕ) : 1 ≤ rd p i := Nat.le_add_right _ _
 
+/--
+@isnad1 id=le.0h2v.s4.9f8ade3a3d7d from=translated src=- shape=4c2307c2 vocab=5143c93e
+-/
 theorem rd_le (i : ℕ) : rd p i ≤ p - 1 := by
   have h1 : 0 < p - 1 := by have := hp.out.two_le; omega
   have := Nat.mod_lt (i - 1) h1
   unfold rd
   omega
 
+/--
+@isnad1 id=le.1h2v.s4.1a7dda97d7ff from=translated src=- shape=2393d40e vocab=14a87ff9
+-/
 theorem rd_le_self {i : ℕ} (hi : 1 ≤ i) : rd p i ≤ i := by
   have := Nat.mod_le (i - 1) (p - 1)
   unfold rd
   omega
 
+/--
+@isnad1 id=eq.1h2v.s6.5a08bd7eae23 from=translated src=- shape=1c355347 vocab=c67b52a8
+-/
 theorem rd_spec {i : ℕ} (hi : 1 ≤ i) : i = rd p i + (i - 1) / (p - 1) * (p - 1) := by
   have := Nat.div_add_mod' (i - 1) (p - 1)
   unfold rd
   omega
 
+/--
+@isnad1 id=ex.2h4v.s8.b2f10a71c494 from=translated src=- shape=60fa143a vocab=745a40de
+-/
 theorem exists_eq_theta_mul {n : ℕ} {F : MvPolynomial (Fin 2) K} (hF : F.IsHomogeneous n)
     (hvan : ∀ v, ev p K F v = 0) :
     ∃ H : MvPolynomial (Fin 2) K, H.IsHomogeneous (n - (p + 1)) ∧ F = theta p K * H := by
@@ -358,6 +421,9 @@ end ATHRVan
 open scoped _root_.P2MW.S_HeckeEis_exists_binaryForm_eq_mul_of_forall_eval_eq_zero.ATHRVan
 
 open MvPolynomial in
+/--
+@isnad1 id=ex.2h4v.s10.41c1d21ce826 from=translated src=- shape=ec518cb9 vocab=3dd6ed04
+-/
 theorem solution (p : ℕ) [Fact p.Prime]
     (K : Type*) [Field K] [CharP K p] (n : ℕ) (F : MvPolynomial (Fin 2) K)
     (hF : F ∈ HeckeEis.BinaryForm K n)

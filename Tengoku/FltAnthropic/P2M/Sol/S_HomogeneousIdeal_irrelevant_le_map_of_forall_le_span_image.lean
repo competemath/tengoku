@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=le.2h7v.s10.fb012ef40170 from=translated src=- shape=5d5aa35f vocab=cd2d9451
+-/
 theorem solution
     {S : Type u} [CommRing S] {S' : Type u} [CommRing S']
     (R : Type u) [CommRing R] [Algebra S R] (𝓡 : ℕ → Submodule S R) [GradedAlgebra 𝓡]

@@ -24,17 +24,26 @@ open _root_.HeckeEis
 
 open CongruenceSubgroup
 
+/--
+@isnad1 id=mem.0h1v.s8.dd309ee66a53 from=translated src=- shape=47a2a55e vocab=3a18f723
+-/
 theorem neg_one_mem (N : ℕ) : (-1 : SL(2, ℤ)) ∈ Gamma0 N := by
   rw [Gamma0_mem]
   simp
 
 def m (N : ℕ) : Gamma0 N := ⟨-1, neg_one_mem N⟩
 
+/--
+@isnad1 id=eq.0h2v.s11.afeb32aab705 from=translated src=- shape=acb1d8aa vocab=450ece52
+-/
 theorem m_mul (N : ℕ) (g : Gamma0 N) : m N * g = g * m N := by
   apply Subtype.ext
   show (-1 : SL(2, ℤ)) * g = g * (-1)
   rw [neg_one_mul, mul_neg_one]
 
+/--
+@isnad1 id=eq.1h4v.s13.2aa249d71c29 from=translated src=- shape=e6fa04e9 vocab=e31ddd84
+-/
 theorem rho_m {K : Type*} [CommRing K] (N n : ℕ) (hn : Odd n) (P : ↥(BinaryForm K n)) :
     ((binaryFormRepSL K n).comp (Gamma0 N).subtype) (m N) P = -P := by
   show binaryFormRepSL K n ((m N : Gamma0 N) : SL(2, ℤ)) P = -P
@@ -43,6 +52,9 @@ theorem rho_m {K : Type*} [CommRing K] (N n : ℕ) (hn : Odd n) (P : ↥(BinaryF
 
 end HeckeEis.OddSol
 
+/--
+@isnad1 id=eq.2h4v.s15.c88d1ef47407 from=translated src=- shape=a5da28a3 vocab=1701ef8f
+-/
 theorem solution (K : Type*) [Field K] (h2 : (2 : K) ≠ 0) (N n : ℕ) (hn : Odd n)
     (x : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype)) : x = 0 := by
   obtain ⟨z, rfl⟩ := HeckeEis.coeffH1parMk_surjective _ x

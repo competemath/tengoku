@@ -25,6 +25,9 @@ namespace DetPosAux
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=eq.1h4v.s9.45b2ad246e0b from=translated src=- shape=1d44d2e5 vocab=18566ed5
+-/
 theorem slash_apply_of_det_pos (f : ℍ → ℂ) (k : ℤ) {β : GL (Fin 2) ℝ} (hβ : 0 < β.val.det) (τ : ℍ) :
     (f ∣[k] β) τ = f (β • τ) * (↑β.val.det) ^ (k - 1) * denom β ↑τ ^ (-k) := by
   have hβ' : 0 < β.det.val := by rwa [Matrix.GeneralLinearGroup.val_det_apply]
@@ -33,6 +36,9 @@ theorem slash_apply_of_det_pos (f : ℍ → ℂ) (k : ℤ) {β : GL (Fin 2) ℝ}
     rw [abs_of_pos hβ', Matrix.GeneralLinearGroup.val_det_apply]
   rw [habs]
 
+/--
+@isnad1 id=hasderiv.2h4v.s9.81acc7c80818 from=translated src=- shape=329d7fc1 vocab=0177c96c
+-/
 theorem hasDerivAt_comp_smul_of_det_pos {G : ℍ → ℂ} {g : ℂ}
     {β : GL (Fin 2) ℝ} (hβ : 0 < β.val.det) (τ : ℍ)
     (hG : HasDerivAt (G ∘ ofComplex) g ↑(β • τ)) :
@@ -51,6 +57,9 @@ theorem hasDerivAt_comp_smul_of_det_pos {G : ℍ → ℂ} {g : ℂ}
 def degExps (n : ℕ) : Finset (Fin 2 →₀ ℕ) :=
   (Finset.range (n + 1)).image fun k => Finsupp.single 0 k + Finsupp.single 1 (n - k)
 
+/--
+@isnad1 id=iff.0h2v.s7.e5ecb7513e14 from=translated src=- shape=9552f26d vocab=9b2d489e
+-/
 theorem mem_degExps_iff (d : Fin 2 →₀ ℕ) : d ∈ degExps n ↔ d.degree = n := by
   rw [Finsupp.degree_eq_sum, Fin.sum_univ_two]
   simp only [degExps, Finset.mem_image, Finset.mem_range]
@@ -76,6 +85,9 @@ theorem eq_sum_degExps {K : Type*} [CommRing K] {p : MvPolynomial (Fin 2) K} (hp
   · rw [Finset.sum_eq_zero (fun e he => ite_eq_right (fun h : e = d => hd (h ▸ he)))]
     exact ((mem_homogeneousSubmodule n p).mp hp).coeff_eq_zero (by rwa [mem_degExps_iff] at hd)
 
+/--
+@isnad1 id=eq.0h5v.s10.ec2842af39df from=translated src=- shape=43ff566c vocab=563a106a
+-/
 theorem coeff_binarySubst_eq_sum {K : Type*} [CommRing K] (M : Matrix (Fin 2) (Fin 2) ℤ) (v : ↥(BinaryForm K n))
     (d : Fin 2 →₀ ℕ) :
     coeff d (binarySubst K M (v : MvPolynomial (Fin 2) K))
@@ -86,6 +98,9 @@ theorem coeff_binarySubst_eq_sum {K : Type*} [CommRing K] (M : Matrix (Fin 2) (F
       rw [smul_monomial, smul_eq_mul, mul_one],
     map_smul, coeff_smul, smul_eq_mul]
 
+/--
+@isnad1 id=eq.2h4v.s10.ec9341f05abd from=translated src=- shape=b4fcb672 vocab=ac36f9a3
+-/
 theorem binarySubst_adjugate_linePow {M : Matrix (Fin 2) (Fin 2) ℤ} (hM : 0 < M.det) {β : GL (Fin 2) ℝ}
     (hβM : (β : Matrix (Fin 2) (Fin 2) ℝ) = M.map (algebraMap ℤ ℝ)) (τ : ℍ) :
     binarySubst ℂ M.adjugate ((linePow n ((β • τ : ℍ) : ℂ) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)
@@ -130,6 +145,9 @@ end DetPosAux
 end HeckeEis
 
 open _root_.HeckeEis _root_.P2MW.S_HeckeEis_IsEichlerIntegral_binarySubst_adjugate_comp_smul.HeckeEis HeckeEis.DetPosAux UpperHalfPlane MvPolynomial in
+/--
+@isnad1 id=iseichle.3h5v.s12.ee1ab224bda1 from=translated src=- shape=dce81680 vocab=d8dc5a26
+-/
 theorem solution {n : ℕ} {f : UpperHalfPlane → ℂ}
     {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)} (hF : HeckeEis.IsEichlerIntegral n f F)
     {M : Matrix (Fin 2) (Fin 2) ℤ} (hM : 0 < M.det) {β : GL (Fin 2) ℝ}

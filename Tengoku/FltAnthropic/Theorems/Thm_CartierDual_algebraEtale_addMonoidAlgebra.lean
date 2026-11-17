@@ -9,6 +9,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_CartierDual_algebraEtale_addMonoidAlgebra
 namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 universe u v
 
+/--
+@isnad1 id=etale.0h2v.s7.96c32d931308 from=translated src=- shape=a920673e vocab=b12ac5eb
+-/
 theorem Tengoku.FltAnthropic.CartierDual.algebraEtale_addMonoidAlgebra
     (R : Type u) [CommRing R] (M : Type v) [AddCommGroup M] [Finite M] :
     Algebra.Etale R (CartierDual R (AddMonoidAlgebra R M)) := by exact @_root_.P2MW.S_CartierDual_algebraEtale_addMonoidAlgebra.solution R _ M _ _

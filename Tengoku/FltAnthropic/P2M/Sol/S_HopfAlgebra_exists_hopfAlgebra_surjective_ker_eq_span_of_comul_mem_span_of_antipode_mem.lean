@@ -19,11 +19,17 @@ noncomputable def S : H →ₐ[k] H :=
   AlgHom.ofLinearMap (HopfAlgebra.antipode k (A := H)) HopfAlgebra.antipode_one
     (fun a b => by rw [HopfAlgebra.antipode_mul_antidistrib, mul_comm])
 
+/--
+@isnad1 id=eq.0h3v.s9.c4995cb353fd from=translated src=- shape=31de17bd vocab=ecf019c7
+-/
 theorem S_apply (a : H) : S (k := k) a = HopfAlgebra.antipode k a := rfl
 
 section
 variable {A : Type w} [CommRing A] [Algebra k A]
 
+/--
+@isnad1 id=eq.0h4v.s9.5b2fd2c83a8b from=translated src=- shape=e38eef1c vocab=67a63d91
+-/
 theorem comp_S_mul_self (x : H →ₐ[k] A) :
     WithConv.toConv (x.comp (S (k := k))) * WithConv.toConv x = 1 := by
   apply WithConv.ofConv_injective
@@ -39,6 +45,9 @@ theorem comp_S_mul_self (x : H →ₐ[k] A) :
     | add y z hy hz => rw [map_add, hy, hz, map_add, map_add, map_add]
   rw [h, HopfAlgebra.mul_antipode_rTensor_comul_apply, AlgHom.commutes]
 
+/--
+@isnad1 id=eq.0h4v.s9.f6ed5cb24030 from=translated src=- shape=11a44ea8 vocab=67a63d91
+-/
 theorem mul_comp_S_self (x : H →ₐ[k] A) :
     WithConv.toConv x * WithConv.toConv (x.comp (S (k := k))) = 1 := by
   apply WithConv.ofConv_injective
@@ -59,9 +68,15 @@ noncomputable def ee : H ⊗[k] H →ₗ[k] k :=
   (TensorProduct.lid k k).toLinearMap ∘ₗ
     TensorProduct.map (Coalgebra.counit (R := k) (A := H)) (Coalgebra.counit (R := k) (A := H))
 
+/--
+@isnad1 id=eq.0h4v.s11.ad09b6b3f1ba from=translated src=- shape=5fe7e75d vocab=b99302d3
+-/
 theorem ee_tmul (a b : H) : ee (k := k) (a ⊗ₜ[k] b) = Coalgebra.counit (R := k) a * Coalgebra.counit (R := k) b := by
   simp [ee]
 
+/--
+@isnad1 id=eq.0h3v.s11.b0d983d93fc9 from=translated src=- shape=f433cf24 vocab=daa6d022
+-/
 theorem ee_comul (a : H) : ee (k := k) (Coalgebra.comul (R := k) a) = Coalgebra.counit (R := k) a := by
   have h1 : TensorProduct.map (Coalgebra.counit (R := k) (A := H)) (Coalgebra.counit (R := k) (A := H))
       (Coalgebra.comul (R := k) a) = (1 : k) ⊗ₜ[k] Coalgebra.counit (R := k) a := by
@@ -69,6 +84,9 @@ theorem ee_comul (a : H) : ee (k := k) (Coalgebra.comul (R := k) a) = Coalgebra.
       LinearMap.lTensor_tmul]
   simp [ee, h1]
 
+/--
+@isnad1 id=eq.2h6v.s12.47fa6ec03936 from=translated src=- shape=f0e71748 vocab=e29f7cd3
+-/
 theorem map_eq_of_mem_span (K' : Subalgebra k H) {B : Type w} [CommRing B] [Algebra k B] (φ : H →ₐ[k] B)
     (hφ : ∀ x ∈ K', φ x = algebraMap k B (Coalgebra.counit (R := k) x))
     {t : H ⊗[k] H} (ht : t ∈ Submodule.span k {t : H ⊗[k] H | ∃ a ∈ K', ∃ b ∈ K', t = a ⊗ₜ[k] b}) :
@@ -85,6 +103,9 @@ theorem map_eq_of_mem_span (K' : Subalgebra k H) {B : Type w} [CommRing B] [Alge
 
 end TakQ
 
+/--
+@isnad1 id=ex.2h3v.s14.3c89dfe62d79 from=translated src=- shape=1758b1ae vocab=97154245
+-/
 theorem solution
     {k : Type u} [Field k] {H : Type v} [CommRing H] [HopfAlgebra k H]
     (K' : Subalgebra k H)

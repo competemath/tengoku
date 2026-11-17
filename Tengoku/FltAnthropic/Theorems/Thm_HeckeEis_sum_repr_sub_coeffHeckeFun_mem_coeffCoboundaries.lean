@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open scoped MatrixGroups
 
+/--
+@isnad1 id=mem.4h9v.s16.59fa6295443d from=translated src=- shape=69629e33 vocab=bfacafc1
+-/
 theorem HeckeEis.sum_repr_sub_coeffHeckeFun_mem_coeffCoboundaries (N ℓ : ℕ) [NeZero ℓ]
     {K : Type*} [CommRing K] {V : Type*} [AddCommGroup V] [Module K V]
     (ρ : Representation K (CongruenceSubgroup.Gamma0 N) V) (a : V →ₗ[K] V)

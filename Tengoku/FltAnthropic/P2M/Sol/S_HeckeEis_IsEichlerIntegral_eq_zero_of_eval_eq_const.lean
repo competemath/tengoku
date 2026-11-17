@@ -29,10 +29,16 @@ variable {n : ℕ} {g : ℍ → ℂ} {G : ℍ → ↥(BinaryForm ℂ n)}
 def rung (G : ℍ → ↥(BinaryForm ℂ n)) (j : ℕ) (τ : ℍ) : ℂ :=
   MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((MvPolynomial.pderiv 1)^[j] ((G τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ))
 
+/--
+@isnad1 id=eq.0h3v.s7.7c4ec7d89786 from=translated src=- shape=70ad559d vocab=f15a0da8
+-/
 theorem rung_succ_n (G : ℍ → ↥(BinaryForm ℂ n)) (τ : ℍ) : rung G (n + 1) τ = 0 := by
   rw [rung, MvPolynomial.IsHomogeneous.iterate_pderiv_eq_zero_of_lt ((mem_homogeneousSubmodule n _).mp (G τ).2) 1
     (Nat.lt_succ_self n), map_zero]
 
+/--
+@isnad1 id=hasderiv.2h5v.s8.93e8b65dcc6f from=translated src=- shape=f5a06dcc vocab=9a6d59f5
+-/
 theorem hasDerivAt_rung (hG : IsEichlerIntegral n g G) {j : ℕ} (hj : j ≤ n) (τ : ℍ) :
     HasDerivAt (rung G j ∘ ofComplex)
       ((if j = n then ((n.factorial : ℕ) : ℂ) * g τ else 0) - rung G (j + 1) τ) (τ : ℂ) := by
@@ -78,6 +84,9 @@ end
 
 open scoped MatrixGroups in
 
+/--
+@isnad1 id=eq.2h4v.s9.5776014c2651 from=translated src=- shape=4b12ca9e vocab=450bd9b1
+-/
 theorem solution {n : ℕ} {g : UpperHalfPlane → ℂ}
     {G : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)} (hG : HeckeEis.IsEichlerIntegral n g G) {c : ℂ}
     (hc : ∀ τ : UpperHalfPlane,

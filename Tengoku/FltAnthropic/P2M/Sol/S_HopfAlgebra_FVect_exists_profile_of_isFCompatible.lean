@@ -217,6 +217,9 @@ end NormalForm
 end RaynProfileDict
 
 open RaynProfileDict in
+/--
+@isnad1 id=ex.23h17v.s13.4173c2809741 from=translated src=- shape=ee245a33 vocab=6f2ea370
+-/
 theorem solution
     (R' : Type u) [CommRing R'] [IsLocalRing R'] [IsDomain R'] [IsDiscreteValuationRing R'] [CharZero R']
     (p r : ℕ) [Fact p.Prime] [NeZero r]

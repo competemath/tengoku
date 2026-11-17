@@ -20,10 +20,19 @@ variable (K : Type*) [Field K]
 
 noncomputable def e (i j : ℕ) : Fin 2 →₀ ℕ := Finsupp.single 0 i + Finsupp.single 1 j
 
+/--
+@isnad1 id=eq.0h2v.s5.9799de9564f5 from=translated src=- shape=d13958d8 vocab=e305bb85
+-/
 @[scoped simp] theorem e_zero (i j : ℕ) : e i j 0 = i := by simp [e]
 
+/--
+@isnad1 id=eq.0h2v.s5.e7e3c04ce206 from=translated src=- shape=63341c4e vocab=e305bb85
+-/
 @[scoped simp] theorem e_one (i j : ℕ) : e i j 1 = j := by simp [e]
 
+/--
+@isnad1 id=iff.0h4v.s5.0d1ac9569cc9 from=translated src=- shape=71ada6db vocab=b7230c11
+-/
 theorem e_eq_iff {i j i' j' : ℕ} : e i j = e i' j' ↔ i = i' ∧ j = j' := by
   constructor
   · intro h
@@ -36,24 +45,39 @@ theorem eq_e (d : Fin 2 →₀ ℕ) : d = e (d 0) (d 1) := by
   ext k
   fin_cases k <;> simp
 
+/--
+@isnad1 id=eq.0h2v.s7.bbb977f0637d from=translated src=- shape=75677755 vocab=1c321d93
+-/
 theorem degree_e (i j : ℕ) : Finsupp.degree (e i j) = i + j := by
   rw [e, map_add, Finsupp.degree_single, Finsupp.degree_single]
 
+/--
+@isnad1 id=ishomoge.0h4v.s8.cb5b67a02b42 from=translated src=- shape=9cee0aae vocab=00be7f0f
+-/
 theorem isHomogeneous_monomial_e (i j : ℕ) (c : K) :
     ((monomial (e i j) c : MvPolynomial (Fin 2) K)).IsHomogeneous (i + j) :=
   isHomogeneous_monomial _ (degree_e i j)
 
+/--
+@isnad1 id=mem.1h5v.s8.3f62f4100f81 from=translated src=- shape=0ddffe76 vocab=45554d12
+-/
 theorem monomial_e_mem {i j n : ℕ} (h : i + j = n) (c : K) :
     (monomial (e i j) c : MvPolynomial (Fin 2) K) ∈ BinaryForm K n := by
   rw [MvPolynomial.mem_homogeneousSubmodule, ← h]
   exact isHomogeneous_monomial_e K i j c
 
+/--
+@isnad1 id=eq.2h4v.s7.c35b95e05bb2 from=translated src=- shape=4b33e789 vocab=a848fe9e
+-/
 theorem deg_two {F : MvPolynomial (Fin 2) K} {n : ℕ} (hF : F.IsHomogeneous n) {d : Fin 2 →₀ ℕ}
     (hd : coeff d F ≠ 0) : d 0 + d 1 = n := by
   have hdeg := hF hd
   rw [Finsupp.weight_apply, Finsupp.sum_fintype _ _ (by simp)] at hdeg
   simpa only [Pi.one_apply, smul_eq_mul, mul_one, Fin.sum_univ_two] using hdeg
 
+/--
+@isnad1 id=ishomoge.0h3v.s8.efe80de87330 from=translated src=- shape=d984a31e vocab=ad5e8f78
+-/
 theorem isHomogeneous_coe {n : ℕ} (F : ↥(BinaryForm K n)) :
     (F : MvPolynomial (Fin 2) K).IsHomogeneous n :=
   (MvPolynomial.mem_homogeneousSubmodule _ _).mp F.2
@@ -100,12 +124,18 @@ noncomputable def remap (S : Finset ℕ) (n : ℕ) (w : ℕ → K) (g h : ℕ �
     MvPolynomial (Fin 2) K →ₗ[K] MvPolynomial (Fin 2) K :=
   ∑ i ∈ S, (lcoeff K (e i (n - i))).smulRight (monomial (e (g i) (h i)) (w i))
 
+/--
+@isnad1 id=eq.0h7v.s9.98d46ee9d981 from=translated src=- shape=e95d149f vocab=b4d477b6
+-/
 theorem remap_apply (S : Finset ℕ) (n : ℕ) (w : ℕ → K) (g h : ℕ → ℕ) (F : MvPolynomial (Fin 2) K) :
     remap K S n w g h F = ∑ i ∈ S, monomial (e (g i) (h i)) (coeff (e i (n - i)) F * w i) := by
   rw [remap, LinearMap.sum_apply]
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [LinearMap.smulRight_apply, lcoeff_apply, smul_monomial, smul_eq_mul]
 
+/--
+@isnad1 id=mem.1h8v.s9.99ae01c40e16 from=translated src=- shape=e72d4174 vocab=1f462aa2
+-/
 theorem remap_mem {S : Finset ℕ} {n : ℕ} {w : ℕ → K} {g h : ℕ → ℕ} {m : ℕ}
     (hgh : ∀ i ∈ S, g i + h i = m) (F : MvPolynomial (Fin 2) K) :
     remap K S n w g h F ∈ BinaryForm K m := by
@@ -121,8 +151,14 @@ variable (p : ℕ) [hp : Fact p.Prime] (K : Type*) [Field K] [CharP K p]
 noncomputable def D (i : Fin 2) : Module.End K (MvPolynomial (Fin 2) K) :=
   (pderiv i : Derivation K (MvPolynomial (Fin 2) K) (MvPolynomial (Fin 2) K)).toLinearMap
 
+/--
+@isnad1 id=eq.0h3v.s9.ee250a4f3b64 from=translated src=- shape=6487f1f7 vocab=64cfd3ff
+-/
 theorem D_apply (i : Fin 2) (F : MvPolynomial (Fin 2) K) : D K i F = pderiv i F := rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.d4831dce3e59 from=translated src=- shape=f30ef686 vocab=1d1027b5
+-/
 theorem pderiv_comm (i j : Fin 2) (F : MvPolynomial (Fin 2) K) :
     pderiv i (pderiv j F) = pderiv j (pderiv i F) := by
   classical
@@ -139,12 +175,18 @@ theorem pderiv_comm (i j : Fin 2) (F : MvPolynomial (Fin 2) K) :
     simp only [Derivation.leibniz, pderiv_X, smul_eq_mul, map_add, h0, mul_zero, hf]
     ring
 
+/--
+@isnad1 id=commute.0h1v.s7.1977a7739346 from=translated src=- shape=a618fa6d vocab=df168069
+-/
 theorem commute_D : Commute (D K 0) (D K 1) := by
   change D K 0 * D K 1 = D K 1 * D K 0
   refine LinearMap.ext fun F => ?_
   simp only [Module.End.mul_apply, D_apply]
   exact pderiv_comm K 0 1 F
 
+/--
+@isnad1 id=ishomoge.1h5v.s9.2a147c48e6fe from=translated src=- shape=8cb19c5b vocab=9d77a1ec
+-/
 theorem isHomogeneous_D_pow (i : Fin 2) (t : ℕ) {F : MvPolynomial (Fin 2) K} {n : ℕ}
     (hF : F.IsHomogeneous n) : ((D K i ^ t) F).IsHomogeneous (n - t) := by
   induction t with
@@ -154,6 +196,9 @@ theorem isHomogeneous_D_pow (i : Fin 2) (t : ℕ) {F : MvPolynomial (Fin 2) K} {
     have := ih.pderiv (i := i)
     rwa [Nat.sub_sub] at this
 
+/--
+@isnad1 id=eq.0h4v.s10.fcaffae015e9 from=translated src=- shape=3c2b510b vocab=7b7dc290
+-/
 theorem D_zero_pow_monomial (t : ℕ) (s : Fin 2 →₀ ℕ) (c : K) :
     (D K 0 ^ t) (monomial s c) = monomial (s - Finsupp.single 0 t) (c * ((s 0).descFactorial t : ℕ)) := by
   induction t with
@@ -171,6 +216,9 @@ theorem D_zero_pow_monomial (t : ℕ) (s : Fin 2 →₀ ℕ) (c : K) :
       ring
     rw [hs, hc]
 
+/--
+@isnad1 id=eq.1h3v.s10.04fab8312ee7 from=translated src=- shape=57be6f34 vocab=1fd9858b
+-/
 theorem euler_p {H : MvPolynomial (Fin 2) K} (hH : H.IsHomogeneous p) :
     X 0 * pderiv 0 H + X 1 * pderiv 1 H = 0 := by
   have h := hH.sum_X_mul_pderiv
@@ -180,9 +228,15 @@ theorem euler_p {H : MvPolynomial (Fin 2) K} (hH : H.IsHomogeneous p) :
 noncomputable def dmap (a : ℕ) : MvPolynomial (Fin 2) K →ₗ[K] MvPolynomial (Fin 2) K :=
   remap K (Ico a p) (a + (p - 1)) (fun i => (i.descFactorial a : K)) (fun i => i - a) (fun i => p - 1 - i)
 
+/--
+@isnad1 id=mem.0h4v.s9.d624715f5e6a from=translated src=- shape=58e64046 vocab=799476bf
+-/
 theorem dmap_mem (a : ℕ) (F : MvPolynomial (Fin 2) K) : dmap p K a F ∈ BinaryForm K (p - 1 - a) :=
   remap_mem K (fun i hi => by simp only [mem_Ico] at hi; omega) F
 
+/--
+@isnad1 id=eq.2h4v.s6.14be78e0b9b9 from=translated src=- shape=e5682e5f vocab=748697f9
+-/
 theorem cast_descFactorial_eq_zero {a i : ℕ} (hpi : p ≤ i) (hi : i < p + a) :
     ((i.descFactorial a : ℕ) : K) = 0 := by
   apply (CharP.cast_eq_zero_iff K p _).mpr
@@ -191,6 +245,9 @@ theorem cast_descFactorial_eq_zero {a i : ℕ} (hpi : p ≤ i) (hi : i < p + a) 
   have h := Finset.dvd_prod_of_mem (fun t => i - t) hmem
   rwa [show i - (i - p) = p by omega] at h
 
+/--
+@isnad1 id=eq.1h4v.s10.001343b102f6 from=translated src=- shape=a4632993 vocab=2048e18a
+-/
 theorem D_zero_pow_eq {a : ℕ} {F : MvPolynomial (Fin 2) K} (hF : F.IsHomogeneous (a + (p - 1))) :
     (D K 0 ^ a) F = X 1 ^ a * dmap p K a F := by
   set N := a + (p - 1) with hN
@@ -220,6 +277,9 @@ theorem D_zero_pow_eq {a : ℕ} {F : MvPolynomial (Fin 2) K} (hF : F.IsHomogeneo
     fin_cases k <;> simp [e] <;> omega
   rw [X_pow_eq_monomial, monomial_mul_monomial, one_mul, hs]
 
+/--
+@isnad1 id=eq.2h5v.s11.33d6d29c0f96 from=translated src=- shape=09bfbea5 vocab=d4821019
+-/
 theorem D_pow_D_pow_eq {a : ℕ} {F : MvPolynomial (Fin 2) K} (hF : F.IsHomogeneous (a + (p - 1)))
     {k : ℕ} (hk : k ≤ a) :
     (D K 0 ^ (a - k)) ((D K 1 ^ k) F) = (-1) ^ k * X 0 ^ k * X 1 ^ (a - k) * dmap p K a F := by
@@ -252,6 +312,9 @@ theorem D_pow_D_pow_eq {a : ℕ} {F : MvPolynomial (Fin 2) K} (hF : F.IsHomogene
     rw [hx]
     ring
 
+/--
+@isnad1 id=eq.0h3v.s11.96066b83ce7a from=translated src=- shape=88cea37d vocab=3ee895b0
+-/
 theorem pderiv_zero_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (F : MvPolynomial (Fin 2) K) :
     pderiv 0 (binarySubst K M F) =
       C ((M 0 0 : ℤ) : K) * binarySubst K M (pderiv 0 F) +
@@ -268,11 +331,17 @@ theorem pderiv_zero_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (F : MvPolynomi
 noncomputable def Zop (M : Matrix (Fin 2) (Fin 2) ℤ) : Module.End K (MvPolynomial (Fin 2) K) :=
   ((M 0 0 : ℤ) : K) • D K 0 + ((M 0 1 : ℤ) : K) • D K 1
 
+/--
+@isnad1 id=eq.0h3v.s10.d2d190f43b8c from=translated src=- shape=97aff605 vocab=532997e0
+-/
 theorem Zop_apply (M : Matrix (Fin 2) (Fin 2) ℤ) (G : MvPolynomial (Fin 2) K) :
     Zop K M G = C ((M 0 0 : ℤ) : K) * pderiv 0 G + C ((M 0 1 : ℤ) : K) * pderiv 1 G := by
   rw [Zop, LinearMap.add_apply, LinearMap.smul_apply, LinearMap.smul_apply, D_apply, D_apply,
     smul_eq_C_mul, smul_eq_C_mul]
 
+/--
+@isnad1 id=eq.0h4v.s10.55cf85c77859 from=translated src=- shape=18196a42 vocab=cf1c7d1f
+-/
 theorem D_zero_pow_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (t : ℕ) (F : MvPolynomial (Fin 2) K) :
     (D K 0 ^ t) (binarySubst K M F) = binarySubst K M ((Zop K M ^ t) F) := by
   induction t with
@@ -281,6 +350,9 @@ theorem D_zero_pow_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (t : ℕ) (F : M
     rw [pow_succ', Module.End.mul_apply, ih, D_apply, pderiv_zero_binarySubst, pow_succ',
       Module.End.mul_apply, Zop_apply, map_add, map_mul, map_mul, binarySubst_C, binarySubst_C]
 
+/--
+@isnad1 id=eq.0h4v.s11.6c09a2987708 from=translated src=- shape=51d63c0c vocab=cdf9cf79
+-/
 theorem Zop_pow_apply (M : Matrix (Fin 2) (Fin 2) ℤ) (a : ℕ) (F : MvPolynomial (Fin 2) K) :
     (Zop K M ^ a) F = ∑ k ∈ range (a + 1),
       (((M 0 0 : ℤ) : K) ^ k * ((M 0 1 : ℤ) : K) ^ (a - k) * (a.choose k : ℕ)) •
@@ -295,6 +367,9 @@ theorem Zop_pow_apply (M : Matrix (Fin 2) (Fin 2) ℤ) (a : ℕ) (F : MvPolynomi
   congr 1
   ring
 
+/--
+@isnad1 id=eq.1h5v.s10.53766afc02d0 from=translated src=- shape=17c81b21 vocab=9c1c41cd
+-/
 theorem dmap_binarySubst {a : ℕ} (M : Matrix (Fin 2) (Fin 2) ℤ) {F : MvPolynomial (Fin 2) K}
     (hF : F.IsHomogeneous (a + (p - 1))) :
     dmap p K a (binarySubst K M F) = (((M.det : ℤ) : K) ^ a) • binarySubst K M (dmap p K a F) := by
@@ -330,10 +405,16 @@ noncomputable def Dlin (a : ℕ) : ↥(BinaryForm K (a + (p - 1))) →ₗ[K] ↥
   LinearMap.codRestrict (BinaryForm K (p - 1 - a)) ((dmap p K a).comp (BinaryForm K _).subtype)
     fun F => dmap_mem p K a _
 
+/--
+@isnad1 id=eq.0h4v.s11.cf42c4ad3424 from=translated src=- shape=4c1bd5ed vocab=0934951e
+-/
 @[scoped simp] theorem coe_Dlin (a : ℕ) (F : ↥(BinaryForm K (a + (p - 1)))) :
     ((Dlin p K a F : ↥(BinaryForm K (p - 1 - a))) : MvPolynomial (Fin 2) K) = dmap p K a F :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s14.94e2bb65010c from=translated src=- shape=8b824b66 vocab=fc0fd29f
+-/
 theorem Dlin_equivar (a : ℕ) (M : Matrix (Fin 2) (Fin 2) ℤ) (F : ↥(BinaryForm K (a + (p - 1)))) :
     Dlin p K a (binaryFormRep K _ M F) = (((M.det : ℤ) : K) ^ a) • binaryFormRep K _ M (Dlin p K a F) := by
   refine Subtype.ext ?_
@@ -346,6 +427,9 @@ end ATHRDeriv
 open scoped _root_.P2MW.S_HeckeEis_exists_dividedDeriv_binaryFormRep_eq_det_pow_smul.ATHRDeriv
 
 open MvPolynomial in
+/--
+@isnad1 id=ex.0h3v.s15.a5e0620db353 from=translated src=- shape=ce9b9567 vocab=091fa285
+-/
 theorem solution (p : ℕ) [Fact p.Prime]
     (K : Type*) [Field K] [CharP K p] (a : ℕ) :
     ∃ D : ↥(HeckeEis.BinaryForm K (a + (p - 1))) →ₗ[K] ↥(HeckeEis.BinaryForm K (p - 1 - a)),

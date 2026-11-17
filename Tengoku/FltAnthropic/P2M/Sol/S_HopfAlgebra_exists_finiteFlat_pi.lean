@@ -172,6 +172,9 @@ private theorem hasModel_pi (ι : Type) [Finite ι] :
 end EFlatPi
 
 open EFlatPi in
+/--
+@isnad1 id=ex.1h7v.s12.d642664da938 from=translated src=- shape=4a76ceb0 vocab=175cf5a7
+-/
 theorem solution {R L Γ ι : Type} [CommRing R] [CommRing L] [Algebra R L]
     [Finite ι] (π : Γ → L → L) (M : ι → Type) [∀ i, Add (M i)] (act : ∀ i, Γ → M i → M i)
     (h : ∀ i, ∃ (H : Type) (_ : CommRing H) (_ : HopfAlgebra R H),

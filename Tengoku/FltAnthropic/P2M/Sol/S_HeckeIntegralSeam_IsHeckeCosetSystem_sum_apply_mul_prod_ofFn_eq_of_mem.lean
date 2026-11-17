@@ -17,6 +17,9 @@ namespace KcWordR1
 
 variable {G : Type*} [Group G] {U : Subgroup G} {g : G} {ι₀ : Type*} {reps : ι₀ → G}
 
+/--
+@isnad1 id=ex.2h7v.s6.35a260b31c90 from=translated src=- shape=5d194345 vocab=f1489390
+-/
 theorem exists_mk_mul_eq_mk (hsys : IsHeckeCosetSystem U g reps) {u : G} (hu : u ∈ U) (i : ι₀) :
     ∃ j, (QuotientGroup.mk (u * reps i) : G ⧸ U) = QuotientGroup.mk (reps j) :=
   hsys.covers _ (HeckePair.mul_mem_doubleCoset (hsys.mem_doubleCoset i) hu)
@@ -24,10 +27,16 @@ theorem exists_mk_mul_eq_mk (hsys : IsHeckeCosetSystem U g reps) {u : G} (hu : u
 noncomputable def leftPerm (hsys : IsHeckeCosetSystem U g reps) {u : G} (hu : u ∈ U) : ι₀ → ι₀ :=
   fun i => Classical.choose (exists_mk_mul_eq_mk hsys hu i)
 
+/--
+@isnad1 id=eq.2h7v.s6.b9dfbd81b7e5 from=translated src=- shape=7e9f740a vocab=6375a75d
+-/
 theorem mk_mul_eq_mk_leftPerm (hsys : IsHeckeCosetSystem U g reps) {u : G} (hu : u ∈ U) (i : ι₀) :
     (QuotientGroup.mk (u * reps i) : G ⧸ U) = QuotientGroup.mk (reps (leftPerm hsys hu i)) :=
   Classical.choose_spec (exists_mk_mul_eq_mk hsys hu i)
 
+/--
+@isnad1 id=ex.2h7v.s6.a91c2fa3e8b8 from=translated src=- shape=64bf0c45 vocab=a5130771
+-/
 theorem exists_mul_reps_eq (hsys : IsHeckeCosetSystem U g reps) {u : G} (hu : u ∈ U) (i : ι₀) :
     ∃ u' ∈ U, u * reps i = reps (leftPerm hsys hu i) * u' := by
   have h := mk_mul_eq_mk_leftPerm hsys hu i
@@ -36,6 +45,9 @@ theorem exists_mul_reps_eq (hsys : IsHeckeCosetSystem U g reps) {u : G} (hu : u 
   have := U.inv_mem h
   simpa [mul_inv_rev] using this
 
+/--
+@isnad1 id=injectiv.2h6v.s5.f212b244eb8c from=translated src=- shape=f5fd8f0c vocab=6ac381f2
+-/
 theorem leftPerm_injective (hsys : IsHeckeCosetSystem U g reps) {u : G} (hu : u ∈ U) :
     Function.Injective (leftPerm hsys hu) := by
   intro i j hij
@@ -49,6 +61,9 @@ theorem leftPerm_injective (hsys : IsHeckeCosetSystem U g reps) {u : G} (hu : u 
   rw [QuotientGroup.eq] at hmk ⊢
   simpa [mul_inv_rev, mul_assoc] using hmk
 
+/--
+@isnad1 id=surjecti.2h6v.s5.7c67860a6f14 from=translated src=- shape=f5fd8f0c vocab=7bae3858
+-/
 theorem leftPerm_surjective (hsys : IsHeckeCosetSystem U g reps) {u : G} (hu : u ∈ U) :
     Function.Surjective (leftPerm hsys hu) := by
   intro j
@@ -61,10 +76,16 @@ theorem leftPerm_surjective (hsys : IsHeckeCosetSystem U g reps) {u : G} (hu : u
   have := U.inv_mem hi
   simpa [mul_inv_rev, mul_assoc] using this
 
+/--
+@isnad1 id=bijectiv.2h6v.s5.9e763a652b45 from=translated src=- shape=f5fd8f0c vocab=5f57480f
+-/
 theorem leftPerm_bijective (hsys : IsHeckeCosetSystem U g reps) {u : G} (hu : u ∈ U) :
     Function.Bijective (leftPerm hsys hu) :=
   ⟨leftPerm_injective hsys hu, leftPerm_surjective hsys hu⟩
 
+/--
+@isnad1 id=eq.3h9v.s7.61f7b59b633c from=translated src=- shape=4414b734 vocab=e33dec3c
+-/
 theorem sum_apply_mul_mul_reps_eq [Fintype ι₀] (hsys : IsHeckeCosetSystem U g reps)
     {M : Type*} [AddCommMonoid M] {ψ : G → M} (hψ : ∀ x : G, ∀ u ∈ U, ψ (x * u) = ψ x)
     (x u : G) (hu : u ∈ U) :
@@ -76,6 +97,9 @@ theorem sum_apply_mul_mul_reps_eq [Fintype ι₀] (hsys : IsHeckeCosetSystem U g
   simp_rw [key]
   exact (leftPerm_bijective hsys hu).sum_comp (fun j => ψ (x * reps j))
 
+/--
+@isnad1 id=eq.0h7v.s8.bc8841689f32 from=translated src=- shape=5efe89d8 vocab=587a9e44
+-/
 theorem sum_word_succ [Fintype ι₀] {M : Type*} [AddCommMonoid M] (φ : G → M) (k : ℕ) (x : G) :
     ∑ ι : Fin (k + 1) → ι₀, φ (x * (List.ofFn fun m => reps (ι m)).prod) =
       ∑ i : ι₀, ∑ ι : Fin k → ι₀, φ (x * reps i * (List.ofFn fun m => reps (ι m)).prod) := by
@@ -85,6 +109,9 @@ theorem sum_word_succ [Fintype ι₀] {M : Type*} [AddCommMonoid M] (φ : G → 
   simp only [Fin.consEquiv_apply, List.ofFn_succ, Fin.cons_zero, Fin.cons_succ, List.prod_cons,
     mul_assoc]
 
+/--
+@isnad1 id=eq.3h10v.s8.6dc5fc3d469c from=translated src=- shape=7be02951 vocab=6fdf4925
+-/
 theorem sum_apply_mul_mul_prod_ofFn_eq [Fintype ι₀] (hsys : IsHeckeCosetSystem U g reps)
     {M : Type*} [AddCommMonoid M] {φ : G → M} (hφ : ∀ x : G, ∀ u ∈ U, φ (x * u) = φ x)
     (k : ℕ) (x u : G) (hu : u ∈ U) :
@@ -104,6 +131,9 @@ end KcWordR1
 end IsHeckeCosetSystem
 end HeckeIntegralSeam
 
+/--
+@isnad1 id=eq.3h10v.s8.5cae18dab4d7 from=translated src=- shape=63966748 vocab=6fdf4925
+-/
 theorem solution
     {G : Type*} [Group G] {U : Subgroup G} {g : G} {ι₀ : Type*} [Fintype ι₀] {reps : ι₀ → G}
     (hsys : HeckeIntegralSeam.IsHeckeCosetSystem U g reps)

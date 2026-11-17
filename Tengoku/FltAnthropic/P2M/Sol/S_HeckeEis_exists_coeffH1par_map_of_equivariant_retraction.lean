@@ -32,16 +32,25 @@ def post (i : V →ₗ[K] V') : (Γ → V) →ₗ[K] (Γ → V') where
   map_smul' c z := by funext g; simp
 
 include hi in
+/--
+@isnad1 id=eq.1h9v.s13.cf8a002722e1 from=translated src=- shape=af7ee6ce vocab=84e90edb
+-/
 theorem hi_apply (g : Γ) (v : V) : i (ρ g v) = ρ' g (i v) := by
   have := LinearMap.congr_fun (hi g) v
   simpa using this
 
 include hi in
+/--
+@isnad1 id=mem.2h8v.s13.37104eb4141a from=translated src=- shape=3ed457d7 vocab=d0cb31c0
+-/
 theorem post_mem_coeffCocycles {z : Γ → V} (hz : z ∈ coeffCocycles ρ) : i ∘ z ∈ coeffCocycles ρ' := by
   intro g h
   simp only [Function.comp_apply, hz g h, map_add, hi_apply ρ ρ' i hi]
 
 include hi in
+/--
+@isnad1 id=mem.2h9v.s13.c83ee6701bb2 from=translated src=- shape=05a7c5fd vocab=c778ffcc
+-/
 theorem post_mem_range {γ : Γ} {v : V} (hv : v ∈ LinearMap.range (ρ γ - 1)) :
     i v ∈ LinearMap.range (ρ' γ - 1) := by
   obtain ⟨u, rfl⟩ := hv
@@ -49,11 +58,17 @@ theorem post_mem_range {γ : Γ} {v : V} (hv : v ∈ LinearMap.range (ρ γ - 1)
   simp only [LinearMap.sub_apply, Module.End.one_apply, map_sub, hi_apply ρ ρ' i hi]
 
 include hi in
+/--
+@isnad1 id=mem.2h8v.s13.934c47c01e87 from=translated src=- shape=dbedb95f vocab=015f84b7
+-/
 theorem post_mem_coeffParabolicCocycles {z : Γ → V} (hz : z ∈ coeffParabolicCocycles ρ) :
     i ∘ z ∈ coeffParabolicCocycles ρ' :=
   ⟨post_mem_coeffCocycles ρ ρ' i hi hz.1, fun γ hγ => post_mem_range ρ ρ' i hi (hz.2 γ hγ)⟩
 
 include hi in
+/--
+@isnad1 id=mem.2h8v.s13.464d4d6a99e5 from=translated src=- shape=3ed457d7 vocab=ea10c434
+-/
 theorem post_mem_coeffCoboundaries {z : Γ → V} (hz : z ∈ coeffCoboundaries ρ) :
     i ∘ z ∈ coeffCoboundaries ρ' := by
   obtain ⟨v, rfl⟩ := hz
@@ -65,9 +80,15 @@ def push : ↥(coeffParabolicCocycles ρ) →ₗ[K] ↥(coeffParabolicCocycles �
   ((post i).comp (coeffParabolicCocycles ρ).subtype).codRestrict (coeffParabolicCocycles ρ')
     (fun z => post_mem_coeffParabolicCocycles ρ ρ' i hi z.2)
 
+/--
+@isnad1 id=eq.1h8v.s15.ede36bb7f401 from=translated src=- shape=d686640c vocab=3d9f71b0
+-/
 theorem coe_push (z : ↥(coeffParabolicCocycles ρ)) :
     ((push ρ ρ' i hi z : ↥(coeffParabolicCocycles ρ')) : Γ → V') = i ∘ (z : Γ → V) := rfl
 
+/--
+@isnad1 id=le.1h7v.s15.a51458c8914b from=translated src=- shape=2f76fc4e vocab=2f3645da
+-/
 theorem push_le :
     (coeffCoboundaries ρ).comap (coeffParabolicCocycles ρ).subtype ≤
       ((coeffCoboundaries ρ').comap (coeffParabolicCocycles ρ').subtype).comap (push ρ ρ' i hi) := by
@@ -79,6 +100,9 @@ theorem push_le :
 def mapH1par : coeffH1par ρ →ₗ[K] coeffH1par ρ' :=
   Submodule.mapQ _ _ (push ρ ρ' i hi) (push_le ρ ρ' i hi)
 
+/--
+@isnad1 id=eq.1h8v.s16.d334013acdc4 from=translated src=- shape=c1235e66 vocab=86e120cb
+-/
 theorem mapH1par_mk (z : ↥(coeffParabolicCocycles ρ)) :
     mapH1par ρ ρ' i hi (coeffH1parMk ρ z) = coeffH1parMk ρ' (push ρ ρ' i hi z) := rfl
 
@@ -92,6 +116,9 @@ variable (N : ℕ) {K : Type*} [CommRing K]
 
 include hi in
 
+/--
+@isnad1 id=eq.2h11v.s12.dbbbb68bcd5f from=translated src=- shape=82791dfe vocab=c7ff0e1b
+-/
 theorem comp_coeffHeckeFun (ℓ : ℕ) [NeZero ℓ] (a : V →ₗ[K] V) (a' : V' →ₗ[K] V') (hia : i ∘ₗ a = a' ∘ₗ i)
     (z : Gamma0 N → V) :
     i ∘ coeffHeckeFun N ℓ ρ a z = coeffHeckeFun N ℓ ρ' a' (i ∘ z) := by
@@ -112,6 +139,9 @@ end
 open scoped _root_.P2MW.S_HeckeEis_exists_coeffH1par_map_of_equivariant_retraction.HeckeEis.C2b _root_.P2MW.S_HeckeEis_exists_coeffH1par_map_of_equivariant_retraction.HeckeEis
 
 open _root_.HeckeEis _root_.P2MW.S_HeckeEis_exists_coeffH1par_map_of_equivariant_retraction.HeckeEis HeckeEis.C2b CongruenceSubgroup in
+/--
+@isnad1 id=ex.3h8v.s18.1a971a88620e from=translated src=- shape=3cc8e36d vocab=017b6583
+-/
 theorem solution
     (N : ℕ) (K : Type*) [CommRing K]
     {V V' : Type*} [AddCommGroup V] [Module K V] [AddCommGroup V'] [Module K V']

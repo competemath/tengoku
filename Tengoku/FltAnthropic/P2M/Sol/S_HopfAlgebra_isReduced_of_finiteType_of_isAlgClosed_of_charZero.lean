@@ -9,6 +9,9 @@ namespace P2MW.S_HopfAlgebra_isReduced_of_finiteType_of_isAlgClosed_of_charZero
 set_option maxHeartbeats 6400000
 noncomputable section
 
+/--
+@isnad1 id=isreduce.0h2v.s6.7b805ec31840 from=translated src=- shape=1b367238 vocab=2148d0d5
+-/
 theorem solution
     (K : Type*) [Field K] [CharZero K] [IsAlgClosed K]
     (A : Type*) [CommRing A] [HopfAlgebra K A] [Algebra.FiniteType K A] :

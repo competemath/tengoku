@@ -12,6 +12,9 @@ set_option maxHeartbeats 3200000
 
 attribute [local instance] Ideal.Quotient.field
 
+/--
+@isnad1 id=etale.0h2v.s7.c7a48a87e1ec from=translated src=- shape=44d74c9d vocab=1d4ab7c7
+-/
 theorem solution
     (K : Type*) [Field K] [CharZero K]
     (A : Type*) [CommRing A] [HopfAlgebra K A] [Module.Finite K A] :

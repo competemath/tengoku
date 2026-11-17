@@ -11,6 +11,9 @@ open scoped TensorProduct
 
 universe u v
 
+/--
+@isnad1 id=ex.2h4v.s10.f1c357be6e0e from=translated src=- shape=2bc112fb vocab=e59bea3d
+-/
 theorem Coalgebra.exists_finiteDimensional_le_comul_mem_span
     {k : Type u} [Field k] {C : Type v} [AddCommGroup C] [Module k C] [Coalgebra k C]
     (K : Submodule k C)

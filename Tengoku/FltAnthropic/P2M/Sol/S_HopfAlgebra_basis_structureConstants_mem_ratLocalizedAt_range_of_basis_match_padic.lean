@@ -11,6 +11,9 @@ namespace P2MW.S_HopfAlgebra_basis_structureConstants_mem_ratLocalizedAt_range_o
 
 open scoped NNReal TensorProduct
 
+/--
+@isnad1 id=and.2h7v.s15.572c37f0683c from=translated src=- shape=fac7cb1a vocab=c6109694
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime]
     (A : Type) [CommRing A] [HopfAlgebra ℚ A]

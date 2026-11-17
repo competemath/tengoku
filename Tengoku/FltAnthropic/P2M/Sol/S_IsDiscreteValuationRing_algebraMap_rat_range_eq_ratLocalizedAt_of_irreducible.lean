@@ -8,6 +8,9 @@ namespace P2MW.S_IsDiscreteValuationRing_algebraMap_rat_range_eq_ratLocalizedAt_
 
 set_option maxHeartbeats 4800000
 
+/--
+@isnad1 id=eq.1h2v.s6.734990b727b2 from=translated src=- shape=62a6738c vocab=d7976cf3
+-/
 theorem solution
     (R : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     [Algebra R ℚ] [IsFractionRing R ℚ]

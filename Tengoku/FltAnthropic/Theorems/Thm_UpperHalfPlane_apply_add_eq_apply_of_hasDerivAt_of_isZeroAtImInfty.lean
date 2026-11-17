@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped Manifold Topology
 
+/--
+@isnad1 id=eq.5h4v.s7.4a8c984f0218 from=translated src=- shape=391a96b4 vocab=4fe0d8ac
+-/
 theorem UpperHalfPlane.apply_add_eq_apply_of_hasDerivAt_of_isZeroAtImInfty {h : ℝ} (hh : 0 < h)
     {g : UpperHalfPlane → ℂ} (hper : Function.Periodic (g ∘ UpperHalfPlane.ofComplex) h)
     (hhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) g) (hzero : UpperHalfPlane.IsZeroAtImInfty g)

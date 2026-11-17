@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped Manifold
 
+/--
+@isnad1 id=eq.2h6v.s8.95981503ebca from=translated src=- shape=74d7750f vocab=d533e0ba
+-/
 theorem MvPolynomial.IsHomogeneous.iterate_pderiv_eq_zero_of_lt {σ R : Type*} [CommSemiring R] {φ : MvPolynomial σ R}
     {n : ℕ} (hφ : φ.IsHomogeneous n) (k : σ) {i : ℕ} (hi : n < i) :
     (MvPolynomial.pderiv k)^[i] φ = 0 := by exact @_root_.P2MW.S_MvPolynomial_IsHomogeneous_iterate_pderiv_eq_zero_of_lt.solution σ R _ φ n hφ k i hi

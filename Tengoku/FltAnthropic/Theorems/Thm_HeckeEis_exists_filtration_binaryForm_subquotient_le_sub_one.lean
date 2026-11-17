@@ -10,6 +10,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_HeckeEis_exists_filtration_binaryForm_subq
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.0h3v.s15.b264ec875c6a from=translated src=- shape=ddf6b21a vocab=e0d599bb
+-/
 theorem HeckeEis.exists_filtration_binaryForm_subquotient_le_sub_one (p : ℕ) [Fact p.Prime]
     (K : Type*) [Field K] [CharP K p] (n : ℕ) :
     ∃ (r : ℕ) (W : Fin (r + 1) → Submodule K ↥(HeckeEis.BinaryForm K n)),

@@ -24,19 +24,31 @@ variable (π : A →ₐc[R] B)
 noncomputable def act (ψ : A →ₐ[R] k) (χ : B →ₐ[R] k) : A →ₐ[R] k :=
   (Algebra.TensorProduct.lift ψ χ (fun _ _ => Commute.all _ _)).comp (coaction π)
 
+/--
+@isnad1 id=eq.0h8v.s10.5d921424c9cc from=translated src=- shape=ab8f5cc8 vocab=4bdbfd60
+-/
 theorem act_apply (ψ : A →ₐ[R] k) (χ : B →ₐ[R] k) (a : A) :
     act π ψ χ a = Algebra.TensorProduct.lift ψ χ (fun _ _ => Commute.all _ _) (coaction π a) := rfl
 
+/--
+@isnad1 id=eq.1h8v.s8.9988138bcec5 from=translated src=- shape=92a915ea vocab=b0c3bc9e
+-/
 theorem act_apply_of_mem (ψ : A →ₐ[R] k) (χ : B →ₐ[R] k) {h : A} (hh : h ∈ hopfKer π) :
     act π ψ χ h = ψ h := by
   rw [act_apply, coaction_eq_of_mem π hh, Algebra.TensorProduct.lift_tmul, map_one, mul_one]
 
 noncomputable def res (ψ : A →ₐ[R] k) : ↥(hopfKer π) →ₐ[R] k := ψ.comp (hopfKer π).val
 
+/--
+@isnad1 id=eq.0h7v.s8.a73f9c6005cd from=translated src=- shape=efa9699f vocab=3447f4f1
+-/
 theorem res_act (ψ : A →ₐ[R] k) (χ : B →ₐ[R] k) : res π (act π ψ χ) = res π ψ := by
   apply AlgHom.ext; intro h
   exact act_apply_of_mem π ψ χ h.2
 
+/--
+@isnad1 id=eq.0h7v.s9.86c4fc1b6d7e from=translated src=- shape=49dee0dd vocab=c8b89cd4
+-/
 theorem lift_comp_canAlgHom (ψ : A →ₐ[R] k) (χ : B →ₐ[R] k) :
     (Algebra.TensorProduct.lift ψ χ (fun _ _ => Commute.all _ _)).comp (canAlgHom π) =
       Algebra.TensorProduct.lift ψ (act π ψ χ) (fun _ _ => Commute.all _ _) := by
@@ -45,6 +57,9 @@ theorem lift_comp_canAlgHom (ψ : A →ₐ[R] k) (χ : B →ₐ[R] k) :
   rw [AlgHom.comp_apply, canAlgHom_tmul, map_mul, Algebra.TensorProduct.lift_tmul, Algebra.TensorProduct.lift_tmul,
     map_one, mul_one, act_apply]
 
+/--
+@isnad1 id=injectiv.1h6v.s10.acca65424eb2 from=translated src=- shape=261cec01 vocab=d39ebab4
+-/
 theorem act_injective (hsurj : Function.Surjective (canMap π)) (ψ : A →ₐ[R] k) :
     Function.Injective (act π ψ) := by
   intro χ χ' h
@@ -60,6 +75,9 @@ theorem act_injective (hsurj : Function.Surjective (canMap π)) (ψ : A →ₐ[R
   have := congrArg (fun F : A ⊗[R] B →ₐ[R] k => F (1 ⊗ₜ[R] b)) hl
   simpa [Algebra.TensorProduct.lift_tmul] using this
 
+/--
+@isnad1 id=ex.2h7v.s9.63856350d5c6 from=translated src=- shape=a9d7cfdb vocab=ee8778f6
+-/
 theorem exists_act_eq (hHG : IsHopfGalois π) (ψ ψ' : A →ₐ[R] k) (hres : res π ψ = res π ψ') :
     ∃ χ : B →ₐ[R] k, act π ψ χ = ψ' := by
 
@@ -114,6 +132,9 @@ theorem exists_act_eq (hHG : IsHopfGalois π) (ψ ψ' : A →ₐ[R] k) (hres : r
 end S17KT5d
 
 open S17KT5d in
+/--
+@isnad1 id=iff.1h7v.s10.071b8f36434b from=translated src=- shape=9784ca18 vocab=9a7ab05a
+-/
 theorem solution {R : Type u} [CommRing R] {A : Type v} [CommRing A] [Bialgebra R A]
     {B : Type w} [CommRing B] [Bialgebra R B] (π : A →ₐc[R] B) (hπ : HopfAlgebra.IsHopfGalois π)
     {k : Type x} [CommRing k] [Algebra R k] (ψ ψ' : A →ₐ[R] k) :

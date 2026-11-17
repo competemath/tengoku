@@ -23,6 +23,9 @@ def U : B₀ K c := Ideal.Quotient.mk _ (MvPolynomial.X 0)
 def V : B₀ K c := Ideal.Quotient.mk _ (MvPolynomial.X 1)
 abbrev C₀ : B₀ K c := algebraMap K (B₀ K c) c
 
+/--
+@isnad1 id=eq.0h2v.s7.dc7f5adb58b7 from=translated src=- shape=a6781dac vocab=1958849c
+-/
 lemma UVrel₀ : (U K c) ^ 2 - (C₀ K c) * (V K c) ^ 2 = 1 := by
   let mkB : MvPolynomial (Fin 2) K →ₐ[K] B₀ K c := Ideal.Quotient.mkₐ K _
   have hU : U K c = mkB (MvPolynomial.X 0) := rfl
@@ -46,16 +49,25 @@ def B₀.lift {R : Type} [CommRing R] [Algebra K R] (u v : R)
       rw [show u^2 - algebraMap K R c * v^2 - 1 = 0 from by linear_combination huv]
       ring)
 
+/--
+@isnad1 id=eq.1h5v.s8.5270b5200d08 from=translated src=- shape=55025be8 vocab=a4f27a01
+-/
 lemma B₀.lift_U {R : Type} [CommRing R] [Algebra K R] (u v : R) (huv) :
     B₀.lift K c u v huv (U K c) = u := by
   show (MvPolynomial.aeval ![u, v] : MvPolynomial (Fin 2) K →ₐ[K] R) (MvPolynomial.X 0) = u
   rw [MvPolynomial.aeval_X]; rfl
 
+/--
+@isnad1 id=eq.1h5v.s8.e9af714b42d4 from=translated src=- shape=c367e6a7 vocab=5a2ef919
+-/
 lemma B₀.lift_V {R : Type} [CommRing R] [Algebra K R] (u v : R) (huv) :
     B₀.lift K c u v huv (V K c) = v := by
   show (MvPolynomial.aeval ![u, v] : MvPolynomial (Fin 2) K →ₐ[K] R) (MvPolynomial.X 1) = v
   rw [MvPolynomial.aeval_X]; rfl
 
+/--
+@isnad1 id=eq.2h5v.s8.8230c2e2eb8d from=translated src=- shape=813066d5 vocab=c62ba2ad
+-/
 lemma B₀.algHom_ext {R : Type} [CommRing R] [Algebra K R] {f g : B₀ K c →ₐ[K] R}
     (hU : f (U K c) = g (U K c)) (hV : f (V K c) = g (V K c)) : f = g := by
   apply Ideal.Quotient.algHom_ext
@@ -64,6 +76,9 @@ lemma B₀.algHom_ext {R : Type} [CommRing R] [Algebra K R] {f g : B₀ K c →�
   · exact hU
   · exact hV
 
+/--
+@isnad1 id=eq.0h2v.s12.569e9e3162a7 from=translated src=- shape=809eb0c0 vocab=58085bf2
+-/
 lemma comulB_welldef :
     ((U K c)⊗ₜ[K](U K c) + ((C₀ K c)⊗ₜ[K](1:B₀ K c))*((V K c)⊗ₜ[K](V K c)))^2
     - ((C₀ K c) ⊗ₜ[K] (1 : B₀ K c))
@@ -121,31 +136,61 @@ def counitB : B₀ K c →ₐ[K] K := B₀.lift K c 1 0 (by ring)
 def antipodeB : B₀ K c →ₐ[K] B₀ K c :=
   B₀.lift K c (U K c) (-(V K c)) (by linear_combination UVrel₀ K c)
 
+/--
+@isnad1 id=eq.0h2v.s11.3722343eea8d from=translated src=- shape=4b34109c vocab=dd9ea57c
+-/
 lemma comulB_U : comulB K c (U K c)
     = ((U K c) ⊗ₜ[K] (U K c) + ((C₀ K c) ⊗ₜ[K] (1:B₀ K c)) * ((V K c) ⊗ₜ[K] (V K c))) :=
   B₀.lift_U K c ((U K c) ⊗ₜ[K] (U K c) + ((C₀ K c) ⊗ₜ[K] (1:B₀ K c)) * ((V K c) ⊗ₜ[K] (V K c))) ((U K c) ⊗ₜ[K] (V K c) + (V K c) ⊗ₜ[K] (U K c)) (comulB_welldef K c)
+/--
+@isnad1 id=eq.0h2v.s10.50045db8696d from=translated src=- shape=1ada70ae vocab=a99cda7f
+-/
 lemma comulB_V : comulB K c (V K c) = ((U K c) ⊗ₜ[K] (V K c) + (V K c) ⊗ₜ[K] (U K c)) :=
   B₀.lift_V K c ((U K c) ⊗ₜ[K] (U K c) + ((C₀ K c) ⊗ₜ[K] (1:B₀ K c)) * ((V K c) ⊗ₜ[K] (V K c))) ((U K c) ⊗ₜ[K] (V K c) + (V K c) ⊗ₜ[K] (U K c)) (comulB_welldef K c)
+/--
+@isnad1 id=eq.0h2v.s7.a126bfa35348 from=translated src=- shape=8414e4b4 vocab=eb748ced
+-/
 lemma counitB_U : counitB K c (U K c) = 1 := B₀.lift_U K c _ _ _
+/--
+@isnad1 id=eq.0h2v.s7.c85560b7eb88 from=translated src=- shape=8414e4b4 vocab=8bdd72c9
+-/
 lemma counitB_V : counitB K c (V K c) = 0 := B₀.lift_V K c _ _ _
+/--
+@isnad1 id=eq.0h2v.s7.1d57bd95e222 from=translated src=- shape=1785d281 vocab=d8df5483
+-/
 lemma antipodeB_U : antipodeB K c (U K c) = U K c :=
   B₀.lift_U K c (U K c) (-(V K c)) (by linear_combination UVrel₀ K c)
+/--
+@isnad1 id=eq.0h2v.s7.8778482bffdc from=translated src=- shape=0d1315b7 vocab=c145c618
+-/
 lemma antipodeB_V : antipodeB K c (V K c) = -(V K c) :=
   B₀.lift_V K c (U K c) (-(V K c)) (by linear_combination UVrel₀ K c)
 
+/--
+@isnad1 id=eq.0h2v.s10.fc6149716344 from=translated src=- shape=b61015b2 vocab=4ce496bd
+-/
 lemma CT_eq_smul_one : (C₀ K c) ⊗ₜ[K] (1:B₀ K c) = c • (1 : B₀ K c ⊗[K] B₀ K c) := by
   rw [show (C₀ K c : B₀ K c) = c • (1:B₀ K c) from Algebra.algebraMap_eq_smul_one c]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.715869934180 from=translated src=- shape=c5492ae6 vocab=63d0794d
+-/
 lemma CT_mul_eq_smul (p : B₀ K c ⊗[K] B₀ K c) :
     ((C₀ K c) ⊗ₜ[K] (1:B₀ K c)) * p = c • p := by
   rw [CT_eq_smul_one]
   exact smul_one_mul c p
 
+/--
+@isnad1 id=eq.0h2v.s10.cdebc8450112 from=translated src=- shape=562fc2ef vocab=6a87a0ef
+-/
 lemma comulB_U' : comulB K c (U K c)
     = (U K c) ⊗ₜ[K] (U K c) + c • ((V K c) ⊗ₜ[K] (V K c)) := by
   rw [comulB_U, CT_mul_eq_smul]
 
+/--
+@isnad1 id=existsun.1h4v.s9.2cfd128b3cb9 from=translated src=- shape=4ea3b480 vocab=df27ee5d
+-/
 lemma hliftB₀ (w z : AlgebraicClosure K)
     (hwz : w ^ 2 - algebraMap K (AlgebraicClosure K) c * z ^ 2 = 1) :
     ∃! f : B₀ K c →ₐ[K] AlgebraicClosure K, f (U K c) = w ∧ f (V K c) = z := by
@@ -163,6 +208,9 @@ scoped instance instCoalgStruct : CoalgebraStruct K (B₀ K c) where
 section helpers
 variable {R : Type} [CommRing R] [Algebra K R]
 
+/--
+@isnad1 id=eq.0h6v.s12.d556a65155bd from=translated src=- shape=1bbfc2b5 vocab=f11a40a8
+-/
 lemma rTensor_algHom_mul (φ : B₀ K c →ₐ[K] R) (p q : B₀ K c ⊗[K] B₀ K c) :
     LinearMap.rTensor (B₀ K c) φ.toLinearMap (p * q)
     = LinearMap.rTensor (B₀ K c) φ.toLinearMap p
@@ -177,6 +225,9 @@ lemma rTensor_algHom_mul (φ : B₀ K c →ₐ[K] R) (p q : B₀ K c ⊗[K] B₀
     | add r s hr hs => simp only [mul_add, map_add, hr, hs]
   | add r s hr hs => simp only [add_mul, map_add, hr, hs]
 
+/--
+@isnad1 id=eq.0h6v.s12.da81e69d629c from=translated src=- shape=da5cec78 vocab=7b95d2c9
+-/
 lemma lTensor_algHom_mul (φ : B₀ K c →ₐ[K] R) (p q : B₀ K c ⊗[K] B₀ K c) :
     LinearMap.lTensor (B₀ K c) φ.toLinearMap (p * q)
     = LinearMap.lTensor (B₀ K c) φ.toLinearMap p
@@ -191,6 +242,9 @@ lemma lTensor_algHom_mul (φ : B₀ K c →ₐ[K] R) (p q : B₀ K c ⊗[K] B₀
     | add r s hr hs => simp only [mul_add, map_add, hr, hs]
   | add r s hr hs => simp only [add_mul, map_add, hr, hs]
 
+/--
+@isnad1 id=eq.0h4v.s13.b4f3312b5e5a from=translated src=- shape=ca3c52ed vocab=b37cb326
+-/
 lemma comm_mul (p q : B₀ K c ⊗[K] B₀ K c) :
     (TensorProduct.comm K (B₀ K c) (B₀ K c)) (p * q)
     = (TensorProduct.comm K (B₀ K c) (B₀ K c)) p
@@ -205,6 +259,9 @@ lemma comm_mul (p q : B₀ K c ⊗[K] B₀ K c) :
     | add r s hr hs => simp only [mul_add, map_add, hr, hs]
   | add r s hr hs => simp only [add_mul, map_add, hr, hs]
 
+/--
+@isnad1 id=eq.0h4v.s12.cec27d320c43 from=translated src=- shape=6c72d227 vocab=04a28ef2
+-/
 lemma mul'_mul (p q : B₀ K c ⊗[K] B₀ K c) :
     (LinearMap.mul' K (B₀ K c)) (p * q)
     = (LinearMap.mul' K (B₀ K c)) p * (LinearMap.mul' K (B₀ K c)) q := by
@@ -219,6 +276,9 @@ lemma mul'_mul (p q : B₀ K c ⊗[K] B₀ K c) :
     | add r s hr hs => simp only [mul_add, map_add, hr, hs]
   | add r s hr hs => simp only [add_mul, map_add, hr, hs]
 
+/--
+@isnad1 id=eq.0h4v.s15.811e82a07518 from=translated src=- shape=215a04e2 vocab=0ecb1b43
+-/
 lemma assoc_mul (p q : (B₀ K c ⊗[K] B₀ K c) ⊗[K] B₀ K c) :
     (TensorProduct.assoc K (B₀ K c) (B₀ K c) (B₀ K c)) (p * q)
     = (TensorProduct.assoc K (B₀ K c) (B₀ K c) (B₀ K c)) p
@@ -245,6 +305,9 @@ lemma assoc_mul (p q : (B₀ K c ⊗[K] B₀ K c) ⊗[K] B₀ K c) :
 
 end helpers
 
+/--
+@isnad1 id=eq.0h4v.s14.b995ab95376f from=translated src=- shape=43b1ff3f vocab=0a94f857
+-/
 lemma rTensor_comulB_mul (p q : B₀ K c ⊗[K] B₀ K c) :
     LinearMap.rTensor (B₀ K c) (comulB K c).toLinearMap (p * q)
     = LinearMap.rTensor (B₀ K c) (comulB K c).toLinearMap p
@@ -259,6 +322,9 @@ lemma rTensor_comulB_mul (p q : B₀ K c ⊗[K] B₀ K c) :
     | add r s hr hs => simp only [mul_add, map_add, hr, hs]
   | add r s hr hs => simp only [add_mul, map_add, hr, hs]
 
+/--
+@isnad1 id=eq.0h4v.s14.f20220d15f08 from=translated src=- shape=253d55ff vocab=7f57b8a5
+-/
 lemma lTensor_comulB_mul (p q : B₀ K c ⊗[K] B₀ K c) :
     LinearMap.lTensor (B₀ K c) (comulB K c).toLinearMap (p * q)
     = LinearMap.lTensor (B₀ K c) (comulB K c).toLinearMap p
@@ -273,6 +339,9 @@ lemma lTensor_comulB_mul (p q : B₀ K c ⊗[K] B₀ K c) :
     | add r s hr hs => simp only [mul_add, map_add, hr, hs]
   | add r s hr hs => simp only [add_mul, map_add, hr, hs]
 
+/--
+@isnad1 id=eq.6h5v.s11.f6497e3ed735 from=translated src=- shape=6d828439 vocab=a7475c78
+-/
 lemma B₀.linearMap_ext {M : Type} [CommRing M] [Algebra K M]
     {f g : B₀ K c →ₗ[K] M}
     (hf1 : f 1 = 1) (hg1 : g 1 = 1)
@@ -295,39 +364,63 @@ lemma B₀.linearMap_ext {M : Type} [CommRing M] [Algebra K M]
 def assocLM : (B₀ K c ⊗[K] B₀ K c) ⊗[K] B₀ K c →ₗ[K] B₀ K c ⊗[K] (B₀ K c ⊗[K] B₀ K c) :=
   (TensorProduct.assoc K (B₀ K c) (B₀ K c) (B₀ K c)).toLinearMap
 
+/--
+@isnad1 id=eq.0h5v.s12.3d3925720edb from=translated src=- shape=dd3e34c3 vocab=e9fdb894
+-/
 lemma assocLM_tmul (a b d : B₀ K c) :
     assocLM K c ((a ⊗ₜ[K] b) ⊗ₜ[K] d) = a ⊗ₜ[K] (b ⊗ₜ[K] d) :=
   TensorProduct.assoc_tmul a b d
 
+/--
+@isnad1 id=eq.0h4v.s14.3eaabf898d56 from=translated src=- shape=fd21db1c vocab=fdc4999f
+-/
 lemma assocLM_add (p q : (B₀ K c ⊗[K] B₀ K c) ⊗[K] B₀ K c) :
     assocLM K c (p + q) = assocLM K c p + assocLM K c q :=
   (assocLM K c).map_add p q
 
+/--
+@isnad1 id=eq.0h4v.s13.b0a1adf15530 from=translated src=- shape=aab7941b vocab=a6569b24
+-/
 lemma assocLM_smul (r : K) (p : (B₀ K c ⊗[K] B₀ K c) ⊗[K] B₀ K c) :
     assocLM K c (r • p) = r • assocLM K c p :=
   (assocLM K c).map_smul r p
 
+/--
+@isnad1 id=eq.0h4v.s14.08a724820944 from=translated src=- shape=fd21db1c vocab=6d992b55
+-/
 lemma assocLM_mul (p q : (B₀ K c ⊗[K] B₀ K c) ⊗[K] B₀ K c) :
     assocLM K c (p * q) = assocLM K c p * assocLM K c q :=
   assoc_mul K c p q
 
+/--
+@isnad1 id=eq.0h2v.s13.582c92b03ee1 from=translated src=- shape=0f6c146b vocab=c910c877
+-/
 lemma coassocB₀_lhs1 :
     assocLM K c (LinearMap.rTensor (B₀ K c) (comulB K c).toLinearMap ((comulB K c) 1)) = 1 := by
   rw [map_one, Algebra.TensorProduct.one_def, LinearMap.rTensor_tmul,
     AlgHom.toLinearMap_apply, map_one, Algebra.TensorProduct.one_def,
     assocLM_tmul, ← Algebra.TensorProduct.one_def, ← Algebra.TensorProduct.one_def]
 
+/--
+@isnad1 id=eq.0h2v.s13.d558255066c3 from=translated src=- shape=e2f4b5ae vocab=821e23ec
+-/
 lemma coassocB₀_rhs1 :
     LinearMap.lTensor (B₀ K c) (comulB K c).toLinearMap ((comulB K c) 1) = 1 := by
   rw [map_one, Algebra.TensorProduct.one_def, LinearMap.lTensor_tmul,
     AlgHom.toLinearMap_apply, map_one, ← Algebra.TensorProduct.one_def]
 
+/--
+@isnad1 id=eq.0h4v.s15.325f321566cc from=translated src=- shape=5af93a0e vocab=6d5fe3f1
+-/
 lemma coassocB₀_lhsmul (a b : B₀ K c) :
     assocLM K c (LinearMap.rTensor (B₀ K c) (comulB K c).toLinearMap ((comulB K c) (a * b)))
     = assocLM K c (LinearMap.rTensor (B₀ K c) (comulB K c).toLinearMap ((comulB K c) a))
       * assocLM K c (LinearMap.rTensor (B₀ K c) (comulB K c).toLinearMap ((comulB K c) b)) := by
   rw [map_mul, rTensor_comulB_mul, assocLM_mul]
 
+/--
+@isnad1 id=eq.0h4v.s14.abb4a79aa50a from=translated src=- shape=f73ae6c4 vocab=711dfa09
+-/
 lemma coassocB₀_rhsmul (a b : B₀ K c) :
     LinearMap.lTensor (B₀ K c) (comulB K c).toLinearMap ((comulB K c) (a * b))
     = LinearMap.lTensor (B₀ K c) (comulB K c).toLinearMap ((comulB K c) a)
@@ -339,33 +432,63 @@ abbrev rTcB : B₀ K c ⊗[K] B₀ K c →ₗ[K] (B₀ K c ⊗[K] B₀ K c) ⊗[
 abbrev lTcB : B₀ K c ⊗[K] B₀ K c →ₗ[K] B₀ K c ⊗[K] (B₀ K c ⊗[K] B₀ K c) :=
   LinearMap.lTensor (B₀ K c) (comulB K c).toLinearMap
 
+/--
+@isnad1 id=eq.0h4v.s13.08bf9b201e46 from=translated src=- shape=07b25aca vocab=c63279d2
+-/
 lemma rTcB_add (p q : B₀ K c ⊗[K] B₀ K c) : rTcB K c (p + q) = rTcB K c p + rTcB K c q :=
   (rTcB K c).map_add p q
+/--
+@isnad1 id=eq.0h4v.s13.f0fe834aa01d from=translated src=- shape=b5326296 vocab=96d4aaf4
+-/
 lemma rTcB_smul (r : K) (p : B₀ K c ⊗[K] B₀ K c) : rTcB K c (r • p) = r • rTcB K c p :=
   (rTcB K c).map_smul r p
+/--
+@isnad1 id=eq.0h4v.s12.3d01bea38f73 from=translated src=- shape=37ca449c vocab=348daf8b
+-/
 lemma rTcB_tmul (a b : B₀ K c) : rTcB K c (a ⊗ₜ[K] b) = (comulB K c a) ⊗ₜ[K] b := by
   simp only [rTcB, LinearMap.rTensor_tmul, AlgHom.toLinearMap_apply]
 
+/--
+@isnad1 id=eq.0h4v.s13.db0dd17598ee from=translated src=- shape=9a86e550 vocab=7a421264
+-/
 lemma lTcB_add (p q : B₀ K c ⊗[K] B₀ K c) : lTcB K c (p + q) = lTcB K c p + lTcB K c q :=
   (lTcB K c).map_add p q
+/--
+@isnad1 id=eq.0h4v.s13.0cd5bea2816e from=translated src=- shape=22f20cf8 vocab=904cec83
+-/
 lemma lTcB_smul (r : K) (p : B₀ K c ⊗[K] B₀ K c) : lTcB K c (r • p) = r • lTcB K c p :=
   (lTcB K c).map_smul r p
+/--
+@isnad1 id=eq.0h4v.s12.c58fc4e20290 from=translated src=- shape=b223465b vocab=4636c404
+-/
 lemma lTcB_tmul (a b : B₀ K c) : lTcB K c (a ⊗ₜ[K] b) = a ⊗ₜ[K] (comulB K c b) := by
   simp only [lTcB, LinearMap.lTensor_tmul, AlgHom.toLinearMap_apply]
 
+/--
+@isnad1 id=eq.0h5v.s11.79e8268bf3a7 from=translated src=- shape=e96b838f vocab=883d4248
+-/
 lemma smul_tmul3_l (r : K) (a : B₀ K c ⊗[K] B₀ K c) (b : B₀ K c) :
     (r • a) ⊗ₜ[K] b = r • (a ⊗ₜ[K] b : (B₀ K c ⊗[K] B₀ K c) ⊗[K] B₀ K c) :=
   TensorProduct.smul_tmul' r a b
+/--
+@isnad1 id=eq.0h5v.s11.41b3e1c1ce84 from=translated src=- shape=85877c8e vocab=883d4248
+-/
 lemma smul_tmul3_r (r : K) (a : B₀ K c) (b : B₀ K c ⊗[K] B₀ K c) :
     a ⊗ₜ[K] (r • b) = r • (a ⊗ₜ[K] b : B₀ K c ⊗[K] (B₀ K c ⊗[K] B₀ K c)) :=
   TensorProduct.tmul_smul r a b
 
 set_option synthInstance.maxHeartbeats 3200000 in
+/--
+@isnad1 id=eq.0h6v.s13.9c9c420ec506 from=translated src=- shape=5f143fec vocab=38504f21
+-/
 lemma four_reorder_B₀₃ (A B C D : B₀ K c ⊗[K] (B₀ K c ⊗[K] B₀ K c)) :
     A + D + (B + C) = A + B + (C + D) := by
   rw [add_assoc A D (B + C), add_comm D (B + C), add_assoc B C D, ← add_assoc A B (C + D)]
 
 set_option synthInstance.maxHeartbeats 1600000 in
+/--
+@isnad1 id=eq.0h2v.s14.940cfec5c6f0 from=translated src=- shape=d901683f vocab=95f294fa
+-/
 lemma coassocB₀_U :
     assocLM K c (LinearMap.rTensor (B₀ K c) (comulB K c).toLinearMap ((comulB K c) (U K c)))
     = LinearMap.lTensor (B₀ K c) (comulB K c).toLinearMap ((comulB K c) (U K c)) := by
@@ -378,6 +501,9 @@ lemma coassocB₀_U :
   exact four_reorder_B₀₃ K c _ _ _ _
 
 set_option synthInstance.maxHeartbeats 1600000 in
+/--
+@isnad1 id=eq.0h2v.s14.b3da6cb27b7d from=translated src=- shape=d901683f vocab=403580f4
+-/
 lemma coassocB₀_V :
     assocLM K c (LinearMap.rTensor (B₀ K c) (comulB K c).toLinearMap ((comulB K c) (V K c)))
     = LinearMap.lTensor (B₀ K c) (comulB K c).toLinearMap ((comulB K c) (V K c)) := by
@@ -389,6 +515,9 @@ lemma coassocB₀_V :
     assocLM_add, assocLM_smul, assocLM_tmul, smul_add]
   exact four_reorder_B₀₃ K c _ _ _ _
 
+/--
+@isnad1 id=eq.0h2v.s13.f59987653927 from=translated src=- shape=42a963d1 vocab=cc2c228c
+-/
 lemma coassocB₀ :
     ((TensorProduct.assoc K (B₀ K c) (B₀ K c) (B₀ K c)).toLinearMap
       ∘ₗ LinearMap.rTensor (B₀ K c) (comulB K c).toLinearMap
@@ -523,6 +652,9 @@ noncomputable scoped instance instHopf : HopfAlgebra K (B₀ K c) :=
           counitB_V, map_zero, mul_neg]
         ring }
 
+/--
+@isnad1 id=iscocomm.0h2v.s6.2fb6baa88c54 from=translated src=- shape=d0042f13 vocab=91077faa
+-/
 scoped instance instCocomm : Coalgebra.IsCocomm K (B₀ K c) := by
   constructor
   refine B₀.linearMap_ext K c ?_ ?_ ?_ ?_ ?_ ?_
@@ -539,6 +671,9 @@ scoped instance instCocomm : Coalgebra.IsCocomm K (B₀ K c) := by
   · show (TensorProduct.comm K (B₀ K c) (B₀ K c)) ((comulB K c) (V K c)) = (comulB K c) (V K c)
     rw [comulB_V, map_add, TensorProduct.comm_tmul, TensorProduct.comm_tmul, add_comm]
 
+/--
+@isnad1 id=eq.0h2v.s9.e67f7d3ce33a from=translated src=- shape=11e1d039 vocab=0ecc8a44
+-/
 lemma B₀_adjoin_top : Algebra.adjoin K {U K c, V K c} = (⊤ : Subalgebra K (B₀ K c)) := by
   let mkB : MvPolynomial (Fin 2) K →ₐ[K] B₀ K c := Ideal.Quotient.mkₐ K _
   have hsurj : Function.Surjective mkB := Ideal.Quotient.mkₐ_surjective K _
@@ -560,6 +695,9 @@ lemma B₀_adjoin_top : Algebra.adjoin K {U K c, V K c} = (⊤ : Subalgebra K (B
 end NormOneTorus
 
 open scoped TensorProduct in
+/--
+@isnad1 id=ex.6h5v.s13.dd6e429569a5 from=translated src=- shape=06f30c10 vocab=88373d08
+-/
 theorem solution
     (K : Type) [Field K] [CharZero K] (c : K) (hc : c ≠ 0) (hnsq : ¬ IsSquare c)
     (B : Type) [CommRing B] [HopfAlgebra K B] (u v : B)

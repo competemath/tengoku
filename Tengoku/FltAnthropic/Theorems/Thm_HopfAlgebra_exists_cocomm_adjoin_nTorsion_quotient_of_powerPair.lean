@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_HopfAlgebra_exists_cocomm_adjoin_nTorsion_
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_HopfAlgebra_exists_cocomm_adjoin_nTorsion_quotient_of_powerPair.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
 open scoped TensorProduct in
+/--
+@isnad1 id=ex.15h9v.s14.1144b908697c from=translated src=- shape=3a35b6cd vocab=e68371b7
+-/
 theorem HopfAlgebra.exists_cocomm_adjoin_nTorsion_quotient_of_powerPair
     (K : Type) [Field K] [CharZero K] (c : K) (hc : c ≠ 0) (hnsq : ¬ IsSquare c)
     (n : ℕ) [Fact n.Prime]

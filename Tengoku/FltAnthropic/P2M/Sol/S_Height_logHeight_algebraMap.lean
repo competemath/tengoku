@@ -302,6 +302,9 @@ private lemma mwabs_core [Algebra K L] {ι : Type*} [Finite ι] (x : ι → K) :
 
 end helpers
 
+/--
+@isnad1 id=eq.0h4v.s7.4001183ffd02 from=translated src=- shape=1d38e416 vocab=aa60c161
+-/
 theorem solution {K L : Type*} [Field K] [NumberField K]
     [Field L] [NumberField L] [Algebra K L] {ι : Type*} [Finite ι] (x : ι → K) :
     logHeight (fun i => algebraMap K L (x i))

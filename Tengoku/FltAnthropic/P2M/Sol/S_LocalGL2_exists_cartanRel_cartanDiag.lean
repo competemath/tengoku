@@ -103,6 +103,9 @@ private theorem cartanRel_of_corner_dvd {ϖ : R} (hϖ : Irreducible ϖ)
 end LocalGL2Exists
 
 open LocalGL2Exists in
+/--
+@isnad1 id=ex.2h3v.s6.2f948de5b7a4 from=translated src=- shape=7b4b8bf5 vocab=b0187e71
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     {ϖ : R} (hϖ : Irreducible ϖ)

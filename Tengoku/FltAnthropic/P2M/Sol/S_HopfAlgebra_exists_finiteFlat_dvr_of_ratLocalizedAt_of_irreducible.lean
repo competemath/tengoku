@@ -10,6 +10,9 @@ namespace P2MW.S_HopfAlgebra_exists_finiteFlat_dvr_of_ratLocalizedAt_of_irreduci
 
 set_option maxHeartbeats 3200000
 
+/--
+@isnad1 id=ex.6h5v.s14.65b8012c5cd2 from=translated src=- shape=36b54798 vocab=3c1b0ecd
+-/
 theorem solution
     (R : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     [Algebra R ℚ] [IsFractionRing R ℚ]

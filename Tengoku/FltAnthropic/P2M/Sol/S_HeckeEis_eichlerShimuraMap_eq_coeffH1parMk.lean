@@ -23,6 +23,9 @@ open _root_.HeckeEis
 open UpperHalfPlane MvPolynomial ModularForm CongruenceSubgroup
 open scoped MatrixGroups ModularForm
 
+/--
+@isnad1 id=eq.3h4v.s17.72a0087106aa from=translated src=- shape=addaf67e vocab=11e6bdc4
+-/
 theorem SolMain.eqmk (n N : ℕ) (f : ℍ → ℂ) {F : ℍ → ↥(BinaryForm ℂ n)}
     (hEI : IsEichlerIntegral n f F)
     (hF : IsEquivariantPrimitiveWith ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) F)
@@ -39,6 +42,9 @@ end HeckeEis
 end
 
 open scoped MatrixGroups ModularForm in
+/--
+@isnad1 id=eq.3h4v.s17.72a0087106aa from=translated src=- shape=addaf67e vocab=11e6bdc4
+-/
 theorem solution (n N : ℕ) (f : UpperHalfPlane → ℂ)
     {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
     (hEI : HeckeEis.IsEichlerIntegral n f F)

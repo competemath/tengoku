@@ -13,6 +13,9 @@ open scoped TensorProduct
 
 namespace FunctConn
 
+/--
+@isnad1 id=ex.0h2v.s7.b2b2439a2408 from=translated src=- shape=9a8737b0 vocab=0bed6e7a
+-/
 theorem exists_pow_pow_eq (p : ℕ) [Fact p.Prime] (E : Type) [CommRing E] [Algebra (ZMod p) E] [Module.Finite (ZMod p) E]
     [IsReduced E] [Nontrivial E] : ∃ R : ℕ, 0 < R ∧ ∀ y : E, y ^ p ^ R = y := by
   haveI : CharP E p := charP_of_injective_algebraMap (algebraMap (ZMod p) E).injective p
@@ -45,6 +48,9 @@ theorem eq_zero_of_pow_eq_of_isNilpotent {A : Type} [CommRing A] {n : A} (hn : I
     rw [hd, pow_add, hm, zero_mul]
   rw [← hiter m, this]
 
+/--
+@isnad1 id=eq.2h5v.s11.47e5c06cdfdc from=translated src=- shape=ad752d43 vocab=8aafc8eb
+-/
 theorem bialgHom_eq_counit (p : ℕ) [Fact p.Prime]
     (Ge : Type) [CommRing Ge] [HopfAlgebra (ZMod p) Ge] [Module.Finite (ZMod p) Ge]
     (Gc : Type) [CommRing Gc] [HopfAlgebra (ZMod p) Gc] [Module.Finite (ZMod p) Gc]
@@ -99,6 +105,9 @@ theorem bialgHom_eq_counit (p : ℕ) [Fact p.Prime]
 end FunctConn
 
 open FunctConn in
+/--
+@isnad1 id=existsun.4h7v.s12.fe602244e9b9 from=translated src=- shape=6823f0a5 vocab=a593def2
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime]
     (B : Type) [CommRing B] [HopfAlgebra (ZMod p) B] [Coalgebra.IsCocomm (ZMod p) B] [Module.Finite (ZMod p) B]

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsLocalRing Polynomial
 
+/--
+@isnad1 id=ex.3h2v.s7.258ec1dc6a2d from=translated src=- shape=4c353043 vocab=b21bd241
+-/
 theorem solution
     {A : Type*} [CommRing A] [IsLocalRing A] [HenselianLocalRing A]
     (n : ℕ) (hn : 0 < n) (hnA : IsUnit (n : A))

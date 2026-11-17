@@ -15,10 +15,16 @@ namespace HenselSections
 variable {A : Type} [CommRing A]
 variable {S : Type} [CommRing S] [Algebra A[X] S]
 
+/--
+@isnad1 id=eq.0h3v.s8.50801b2e45d7 from=translated src=- shape=a60afc48 vocab=ff33c266
+-/
 theorem algebraMap_A [Algebra A S] [IsScalarTower A A[X] S] (a : A) :
     algebraMap A S a = algebraMap A[X] S (C a) := by
   rw [IsScalarTower.algebraMap_apply A A[X] S, ← Polynomial.C_eq_algebraMap]
 
+/--
+@isnad1 id=eq.0h4v.s12.67dda3645bc1 from=translated src=- shape=6c898e2c vocab=2f8659c0
+-/
 theorem mk_algebraMap_eq [Algebra A S] [IsScalarTower A A[X] S] (c : A) (p : A[X]) :
     (Ideal.Quotient.mk (Ideal.span {algebraMap A[X] S X - algebraMap A[X] S (C c)})
         (algebraMap A[X] S p))
@@ -29,6 +35,9 @@ theorem mk_algebraMap_eq [Algebra A S] [IsScalarTower A A[X] S] (c : A) (p : A[X
   rw [hq, map_mul]
   exact Ideal.mul_mem_right _ _ (Ideal.subset_span rfl)
 
+/--
+@isnad1 id=eq.1h3v.s9.6059f24d4061 from=translated src=- shape=dcacf141 vocab=d113676b
+-/
 theorem ker_eq_span [IsLocalRing A] [IsNoetherianRing A] [IsLocalRing S]
     [Algebra A S] [IsScalarTower A A[X] S]
     [Algebra.EssFiniteType A[X] S] [Algebra.FormallyUnramified A[X] S]
@@ -118,6 +127,9 @@ theorem ker_eq_span [IsLocalRing A] [IsNoetherianRing A] [IsLocalRing S]
   rw [hJbot, Ideal.mem_bot] at hsJ
   exact Ideal.Quotient.eq_zero_iff_mem.mp hsJ
 
+/--
+@isnad1 id=eq.3h4v.s10.fe64e97af921 from=translated src=- shape=3e105729 vocab=d123b736
+-/
 theorem section_unique [IsLocalRing A] [IsNoetherianRing A] [IsLocalRing S]
     [Algebra A S] [IsScalarTower A A[X] S]
     [Algebra.EssFiniteType A[X] S] [Algebra.FormallyUnramified A[X] S]
@@ -135,6 +147,9 @@ theorem section_unique [IsLocalRing A] [IsNoetherianRing A] [IsLocalRing S]
   rw [map_sub, hC₂, sub_eq_zero] at h2
   exact h2.symm
 
+/--
+@isnad1 id=ex.4h4v.s10.efc0f8b2151c from=translated src=- shape=b5334c83 vocab=14d9360c
+-/
 theorem exists_section [IsNoetherianRing A] [HenselianLocalRing A] [IsLocalRing S]
     [Algebra A S] [IsScalarTower A A[X] S]
     [Algebra.EssFiniteType A[X] S] [Algebra.FormallySmooth A[X] S]
@@ -285,6 +300,9 @@ theorem exists_section [IsNoetherianRing A] [HenselianLocalRing A] [IsLocalRing 
 
 end HenselSections
 
+/--
+@isnad1 id=and.6h4v.s11.c9729fa0d8bd from=translated src=- shape=7be54daa vocab=190e674b
+-/
 theorem solution
     {A : Type} [CommRing A] [IsLocalRing A] [IsNoetherianRing A] [HenselianLocalRing A]
     {S : Type} [CommRing S] [IsLocalRing S]

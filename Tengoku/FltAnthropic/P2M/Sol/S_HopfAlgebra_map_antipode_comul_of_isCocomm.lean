@@ -9,6 +9,9 @@ namespace P2MW.S_HopfAlgebra_map_antipode_comul_of_isCocomm
 open scoped TensorProduct
 open Coalgebra HopfAlgebra
 
+/--
+@isnad1 id=eq.1h3v.s11.69a220fcffc4 from=translated src=- shape=cf343f07 vocab=eeb2811a
+-/
 theorem solution {R : Type*} [CommSemiring R]
     {A : Type*} [Semiring A] [HopfAlgebra R A] (hcocomm : Coalgebra.IsCocomm R A) (a : A) :
     TensorProduct.map (antipode R) (antipode R) (comul a)

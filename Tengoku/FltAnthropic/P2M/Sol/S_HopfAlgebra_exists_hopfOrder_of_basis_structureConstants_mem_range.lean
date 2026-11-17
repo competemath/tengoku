@@ -11,6 +11,9 @@ open scoped TensorProduct
 set_option maxHeartbeats 32000000
 set_option synthInstance.maxHeartbeats 1600000
 
+/--
+@isnad1 id=ex.7h5v.s14.a941ab4b7a73 from=translated src=- shape=4049f5f4 vocab=6468cc5b
+-/
 theorem solution
     (R : Type) [CommRing R] (K : Type) [Field K] [Algebra R K]
     (hinj : Function.Injective (algebraMap R K))

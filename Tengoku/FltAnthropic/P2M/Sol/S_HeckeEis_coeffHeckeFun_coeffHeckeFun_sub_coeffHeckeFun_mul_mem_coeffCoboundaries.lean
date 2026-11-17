@@ -23,6 +23,9 @@ section Entries
 
 variable (N ℓ : ℕ) [NeZero ℓ]
 
+/--
+@isnad1 id=eq.0h3v.s14.0ff1229c10ab from=translated src=- shape=11df7d9a vocab=d2b9b1b9
+-/
 theorem conj_apply01 (u : ↥(heckeUpper N ℓ)) :
     ((heckeConj N ℓ u : Gamma0 N) : SL(2, ℤ)) 0 1 = ((u : Gamma0 N) : SL(2, ℤ)) 0 1 / (ℓ : ℤ) := rfl
 
@@ -33,12 +36,18 @@ section Levels
 variable (N ℓ ℓ' m : ℕ) [NeZero ℓ] [NeZero ℓ'] [NeZero m]
 
 omit [NeZero ℓ] [NeZero ℓ'] [NeZero m] in
+/--
+@isnad1 id=le.1h4v.s10.890545591c2b from=translated src=- shape=a6c2da2d vocab=4a3de591
+-/
 theorem heckeUpper_le_left (hm : m = ℓ * ℓ') : heckeUpper N m ≤ heckeUpper N ℓ := by
   intro w hw
   rw [mem_heckeUpper] at hw ⊢
   have h : (ℓ : ℤ) ∣ (m : ℤ) := ⟨(ℓ' : ℤ), by rw [hm]; push_cast; ring⟩
   exact h.trans hw
 
+/--
+@isnad1 id=iff.1h5v.s14.b62c7288ea43 from=translated src=- shape=e25a2bea vocab=422712ab
+-/
 theorem mem_heckeUpper_mul_iff (hm : m = ℓ * ℓ') (u : ↥(heckeUpper N ℓ)) :
     (u : Gamma0 N) ∈ heckeUpper N m ↔ heckeConj N ℓ u ∈ heckeUpper N ℓ' := by
   rw [mem_heckeUpper, mem_heckeUpper, conj_apply01]
@@ -50,10 +59,16 @@ theorem mem_heckeUpper_mul_iff (hm : m = ℓ * ℓ') (u : ↥(heckeUpper N ℓ))
 def toLeft (hm : m = ℓ * ℓ') (w : ↥(heckeUpper N m)) : ↥(heckeUpper N ℓ) :=
   ⟨w, heckeUpper_le_left N ℓ ℓ' m hm w.2⟩
 
+/--
+@isnad1 id=mem.1h5v.s14.3662ccb7914f from=translated src=- shape=bec4b83f vocab=940572e1
+-/
 theorem conj_toLeft_mem (hm : m = ℓ * ℓ') (w : ↥(heckeUpper N m)) :
     heckeConj N ℓ (toLeft N ℓ ℓ' m hm w) ∈ heckeUpper N ℓ' :=
   (mem_heckeUpper_mul_iff N ℓ ℓ' m hm _).mp w.2
 
+/--
+@isnad1 id=eq.1h5v.s16.e426a9b09691 from=translated src=- shape=7ef784fb vocab=a7df2179
+-/
 theorem heckeConj_mul (hm : m = ℓ * ℓ') (w : ↥(heckeUpper N m)) :
     heckeConj N m w =
       heckeConj N ℓ' ⟨heckeConj N ℓ (toLeft N ℓ ℓ' m hm w), conj_toLeft_mem N ℓ ℓ' m hm w⟩ := by
@@ -71,6 +86,9 @@ theorem heckeConj_mul (hm : m = ℓ * ℓ') (w : ↥(heckeUpper N m)) :
     rw [hm', mul_assoc]
   · rfl
 
+/--
+@isnad1 id=eq.3h7v.s16.b4a5cbc2f257 from=translated src=- shape=ecc50230 vocab=422712ab
+-/
 theorem heckeConj_mul_eq (hm : m = ℓ * ℓ') (w : ↥(heckeUpper N m)) (u : ↥(heckeUpper N ℓ))
     (u' : ↥(heckeUpper N ℓ')) (hwu : (w : Gamma0 N) = u) (huu' : heckeConj N ℓ u = (u' : Gamma0 N)) :
     heckeConj N m w = heckeConj N ℓ' u' := by
@@ -88,6 +106,9 @@ section Coset
 
 variable (N ℓ ℓ' : ℕ) [NeZero ℓ] [NeZero ℓ']
 
+/--
+@isnad1 id=ex.3h3v.s14.4747c7595785 from=translated src=- shape=7606c430 vocab=a58d1d7c
+-/
 theorem exists_heckeConj_eq (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N) (x : Gamma0 N)
     (hx : (ℓ : ℤ) ∣ (x : SL(2, ℤ)) 1 0) : ∃ u : ↥(heckeUpper N ℓ), heckeConj N ℓ u = x := by
   obtain ⟨c', hc'⟩ := hx
@@ -132,6 +153,9 @@ theorem exists_heckeConj_eq (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N) (x : Gamma
     ring
   · rfl
 
+/--
+@isnad1 id=ex.3h5v.s12.ce0c6d1f604f from=translated src=- shape=4dc5c2a2 vocab=08a0da1c
+-/
 theorem exists_mul_mem_dvd (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N) (γ : Gamma0 N) (k : ℤ)
     (he : ¬ (ℓ : ℤ) ∣ (γ : SL(2, ℤ)) 1 0 * k * (ℓ' : ℤ) + (γ : SL(2, ℤ)) 1 1) :
     ∃ u'' : ↥(heckeUpper N ℓ'), (ℓ : ℤ) ∣ ((γ : Gamma0 N) * u'' : SL(2, ℤ)) 1 0 := by
@@ -185,6 +209,9 @@ theorem exists_mul_mem_dvd (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N) (γ : Gamma
     rw [he_def, Int.cast_add, Int.cast_mul, Int.cast_mul]
   linear_combination hX - (((N : ℤ) : ZMod ℓ) * Y) * he'
 
+/--
+@isnad1 id=ex.3h4v.s15.c77c4ac7455c from=translated src=- shape=7aaebc26 vocab=cb76f337
+-/
 theorem exists_conj_mul_eq (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N) (hℓℓ' : ¬ ℓ ∣ ℓ') (γ : Gamma0 N) :
     ∃ (u : ↥(heckeUpper N ℓ)) (u' : ↥(heckeUpper N ℓ')),
       (heckeConj N ℓ u : Gamma0 N) * u' = γ := by
@@ -211,6 +238,9 @@ theorem exists_conj_mul_eq (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N) (hℓℓ' :
   refine ⟨u, u''⁻¹, ?_⟩
   rw [hu, Subgroup.coe_inv, mul_inv_cancel_right]
 
+/--
+@isnad1 id=ex.3h3v.s14.174a2d3d51ca from=translated src=- shape=8e65ba56 vocab=b53936ce
+-/
 theorem exists_section (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N) (hℓℓ' : ¬ ℓ ∣ ℓ') :
     ∃ σ : Gamma0 N ⧸ heckeUpper N ℓ' → ↥(heckeUpper N ℓ),
       ∀ q', ((heckeConj N ℓ (σ q') : Gamma0 N) : Gamma0 N ⧸ heckeUpper N ℓ') = q' := by
@@ -239,6 +269,9 @@ variable (hσ : ∀ q', ((heckeConj N ℓ (σ q') : Gamma0 N) : Gamma0 N ⧸ hec
 def sP (q' : Gamma0 N ⧸ heckeUpper N ℓ') : Gamma0 N := heckeConj N ℓ (σ q')
 
 include hσ in
+/--
+@isnad1 id=eq.1h5v.s14.125ae645e8a1 from=translated src=- shape=c729be31 vocab=8b714901
+-/
 theorem sP_coe (q' : Gamma0 N ⧸ heckeUpper N ℓ') :
     ((sP σ q' : Gamma0 N) : Gamma0 N ⧸ heckeUpper N ℓ') = q' := hσ q'
 
@@ -249,9 +282,15 @@ def tP (h : Gamma0 N) (q' : Gamma0 N ⧸ heckeUpper N ℓ') : ↥(heckeUpper N �
     change h • q' = h • ((sP σ q' : Gamma0 N) : Gamma0 N ⧸ heckeUpper N ℓ')
     rw [sP_coe σ hσ]⟩
 
+/--
+@isnad1 id=eq.1h6v.s15.25691268d321 from=translated src=- shape=6e8d7ab5 vocab=3a82aa19
+-/
 @[scoped simp] theorem coe_tP (h : Gamma0 N) (q' : Gamma0 N ⧸ heckeUpper N ℓ') :
     ((tP σ hσ h q' : ↥(heckeUpper N ℓ')) : Gamma0 N) = (sP σ (h • q'))⁻¹ * (h * sP σ q') := rfl
 
+/--
+@isnad1 id=eq.1h6v.s15.d01d0cdb3de4 from=translated src=- shape=067eb01b vocab=0ec533c5
+-/
 theorem sP_mul_tP (h : Gamma0 N) (q' : Gamma0 N ⧸ heckeUpper N ℓ') :
     sP σ (h • q') * (tP σ hσ h q' : Gamma0 N) = h * sP σ q' := by
   rw [coe_tP, mul_inv_cancel_left]
@@ -260,6 +299,9 @@ noncomputable def Ty (z : Gamma0 N → V) : Gamma0 N → V := fun h =>
   letI := (heckeUpper N ℓ').fintypeQuotientOfFiniteIndex
   ∑ q' : Gamma0 N ⧸ heckeUpper N ℓ', ρ (sP σ (h • q')) (a' (z (heckeConj N ℓ' (tP σ hσ h q'))))
 
+/--
+@isnad1 id=mem.3h9v.s16.822d805b4d7f from=translated src=- shape=bf1b92bc vocab=f1039774
+-/
 theorem Ty_sub_mem
     (ha' : ∀ u : ↥(heckeUpper N ℓ'), a' ∘ₗ ρ (heckeConj N ℓ' u) = ρ (u : Gamma0 N) ∘ₗ a')
     {z : Gamma0 N → V} (hz : z ∈ coeffCocycles ρ) :
@@ -274,6 +316,9 @@ noncomputable def PsiFun (x : (Gamma0 N ⧸ heckeUpper N ℓ) × (Gamma0 N ⧸ h
 variable (hm : m = ℓ * ℓ')
 
 include hσ hm in
+/--
+@isnad1 id=injectiv.2h5v.s14.e50bd95c2d13 from=translated src=- shape=56884b22 vocab=7da9aac7
+-/
 theorem PsiFun_injective : Function.Injective (PsiFun (m := m) σ) := by
   rintro ⟨q₁, q₁'⟩ ⟨q₂, q₂'⟩ h
   have hW : (q₁.out * ((σ q₁' : ↥(heckeUpper N ℓ)) : Gamma0 N))⁻¹
@@ -306,6 +351,9 @@ theorem PsiFun_injective : Function.Injective (PsiFun (m := m) σ) := by
   rw [hq']
 
 include hσ hm in
+/--
+@isnad1 id=surjecti.2h5v.s14.054272232525 from=translated src=- shape=56884b22 vocab=3d30e2c1
+-/
 theorem PsiFun_surjective : Function.Surjective (PsiFun (m := m) σ) := by
   intro Q
   induction Q using QuotientGroup.induction_on with
@@ -334,6 +382,9 @@ noncomputable def Psi : (Gamma0 N ⧸ heckeUpper N ℓ) × (Gamma0 N ⧸ heckeUp
     Gamma0 N ⧸ heckeUpper N m :=
   Equiv.ofBijective (PsiFun σ) ⟨PsiFun_injective σ hσ hm, PsiFun_surjective σ hσ hm⟩
 
+/--
+@isnad1 id=eq.2h6v.s15.5912dd5ffba1 from=translated src=- shape=df87d1ac vocab=6d53bbed
+-/
 theorem Psi_apply (x : (Gamma0 N ⧸ heckeUpper N ℓ) × (Gamma0 N ⧸ heckeUpper N ℓ')) :
     Psi σ hσ hm x =
       ((x.1.out * ((σ x.2 : ↥(heckeUpper N ℓ)) : Gamma0 N) : Gamma0 N) : Gamma0 N ⧸ heckeUpper N m) :=
@@ -344,6 +395,9 @@ noncomputable def wU (g : Gamma0 N) (q : Gamma0 N ⧸ heckeUpper N ℓ) (q' : Ga
   (σ ((heckeConj N ℓ (transferAux (heckeUpper N ℓ) g q) : Gamma0 N) • q'))⁻¹
     * transferAux (heckeUpper N ℓ) g q * σ q'
 
+/--
+@isnad1 id=eq.1h7v.s16.4700c5951415 from=translated src=- shape=b62830e7 vocab=e04bc3cf
+-/
 theorem heckeConj_wU (g : Gamma0 N) (q : Gamma0 N ⧸ heckeUpper N ℓ)
     (q' : Gamma0 N ⧸ heckeUpper N ℓ') :
     heckeConj N ℓ (wU σ g q q') =
@@ -352,18 +406,27 @@ theorem heckeConj_wU (g : Gamma0 N) (q : Gamma0 N ⧸ heckeUpper N ℓ)
   rfl
 
 include hσ hm in
+/--
+@isnad1 id=mem.2h8v.s14.46b1c803a4e9 from=translated src=- shape=667de4f6 vocab=7ead5cfd
+-/
 theorem wU_mem (g : Gamma0 N) (q : Gamma0 N ⧸ heckeUpper N ℓ) (q' : Gamma0 N ⧸ heckeUpper N ℓ') :
     ((wU σ g q q' : ↥(heckeUpper N ℓ)) : Gamma0 N) ∈ heckeUpper N m := by
   refine (mem_heckeUpper_mul_iff N ℓ ℓ' m hm _).mpr ?_
   rw [heckeConj_wU σ hσ]
   exact (tP σ hσ _ q').2
 
+/--
+@isnad1 id=eq.0h7v.s15.f03bd28c407f from=translated src=- shape=6743096a vocab=af6330fc
+-/
 theorem coe_wU (g : Gamma0 N) (q : Gamma0 N ⧸ heckeUpper N ℓ) (q' : Gamma0 N ⧸ heckeUpper N ℓ') :
     ((wU σ g q q' : ↥(heckeUpper N ℓ)) : Gamma0 N) =
       ((σ ((heckeConj N ℓ (transferAux (heckeUpper N ℓ) g q) : Gamma0 N) • q') :
           ↥(heckeUpper N ℓ)) : Gamma0 N)⁻¹
         * ((g • q).out⁻¹ * (g * q.out)) * ((σ q' : ↥(heckeUpper N ℓ)) : Gamma0 N) := rfl
 
+/--
+@isnad1 id=eq.2h8v.s16.ee87b5140abf from=translated src=- shape=fd052bd3 vocab=cbf52069
+-/
 theorem smul_Psi (g : Gamma0 N) (q : Gamma0 N ⧸ heckeUpper N ℓ) (q' : Gamma0 N ⧸ heckeUpper N ℓ') :
     g • Psi σ hσ hm (q, q') =
       Psi σ hσ hm (g • q, (heckeConj N ℓ (transferAux (heckeUpper N ℓ) g q) : Gamma0 N) • q') := by
@@ -383,10 +446,16 @@ theorem smul_Psi (g : Gamma0 N) (q : Gamma0 N ⧸ heckeUpper N ℓ) (q' : Gamma0
 noncomputable def SS (Q : Gamma0 N ⧸ heckeUpper N m) : Gamma0 N :=
   ((Psi σ hσ hm).symm Q).1.out * (((σ ((Psi σ hσ hm).symm Q).2) : ↥(heckeUpper N ℓ)) : Gamma0 N)
 
+/--
+@isnad1 id=eq.2h7v.s15.0e1827f3f349 from=translated src=- shape=2145958e vocab=ba2e5354
+-/
 theorem SS_Psi (q : Gamma0 N ⧸ heckeUpper N ℓ) (q' : Gamma0 N ⧸ heckeUpper N ℓ') :
     SS σ hσ hm (Psi σ hσ hm (q, q')) = q.out * ((σ q' : ↥(heckeUpper N ℓ)) : Gamma0 N) := by
   rw [SS, Equiv.symm_apply_apply]
 
+/--
+@isnad1 id=eq.2h6v.s14.aa09374ae69d from=translated src=- shape=70c5bcee vocab=94bd58c0
+-/
 theorem SS_coe (Q : Gamma0 N ⧸ heckeUpper N m) :
     ((SS σ hσ hm Q : Gamma0 N) : Gamma0 N ⧸ heckeUpper N m) = Q := by
   conv_rhs => rw [← (Psi σ hσ hm).apply_symm_apply Q]
@@ -400,20 +469,32 @@ noncomputable def TT (g : Gamma0 N) (Q : Gamma0 N ⧸ heckeUpper N m) : ↥(heck
     change g • Q = g • ((SS σ hσ hm Q : Gamma0 N) : Gamma0 N ⧸ heckeUpper N m)
     rw [SS_coe]⟩
 
+/--
+@isnad1 id=eq.2h7v.s15.cf43f6bf43a6 from=translated src=- shape=65717d67 vocab=003c635c
+-/
 @[scoped simp] theorem coe_TT (g : Gamma0 N) (Q : Gamma0 N ⧸ heckeUpper N m) :
     ((TT σ hσ hm g Q : ↥(heckeUpper N m)) : Gamma0 N) = (SS σ hσ hm (g • Q))⁻¹ * (g * SS σ hσ hm Q) :=
   rfl
 
+/--
+@isnad1 id=eq.2h7v.s15.05416316c4b9 from=translated src=- shape=8c28b2e9 vocab=9fa9f60c
+-/
 theorem SS_mul_TT (g : Gamma0 N) (Q : Gamma0 N ⧸ heckeUpper N m) :
     SS σ hσ hm (g • Q) * (TT σ hσ hm g Q : Gamma0 N) = g * SS σ hσ hm Q := by
   rw [coe_TT, mul_inv_cancel_left]
 
+/--
+@isnad1 id=eq.2h8v.s15.e4f904ec10eb from=translated src=- shape=fe570ccd vocab=01f28744
+-/
 theorem coe_TT_Psi (g : Gamma0 N) (q : Gamma0 N ⧸ heckeUpper N ℓ) (q' : Gamma0 N ⧸ heckeUpper N ℓ') :
     ((TT σ hσ hm g (Psi σ hσ hm (q, q')) : ↥(heckeUpper N m)) : Gamma0 N)
       = ((wU σ g q q' : ↥(heckeUpper N ℓ)) : Gamma0 N) := by
   rw [coe_TT, smul_Psi, SS_Psi, SS_Psi, coe_wU]
   group
 
+/--
+@isnad1 id=eq.2h8v.s16.d6fe7e1d08c8 from=translated src=- shape=42613a36 vocab=7d4ea17a
+-/
 theorem heckeConj_TT_Psi (g : Gamma0 N) (q : Gamma0 N ⧸ heckeUpper N ℓ)
     (q' : Gamma0 N ⧸ heckeUpper N ℓ') :
     heckeConj N m (TT σ hσ hm g (Psi σ hσ hm (q, q'))) =
@@ -426,6 +507,9 @@ noncomputable def TmS (z : Gamma0 N → V) : Gamma0 N → V := fun g =>
 
 include hm in
 
+/--
+@isnad1 id=eq.3h10v.s16.38b0935908f8 from=translated src=- shape=b958877c vocab=92a16965
+-/
 theorem compat_mul
     (ha : ∀ u : ↥(heckeUpper N ℓ), a ∘ₗ ρ (heckeConj N ℓ u) = ρ (u : Gamma0 N) ∘ₗ a)
     (ha' : ∀ u : ↥(heckeUpper N ℓ'), a' ∘ₗ ρ (heckeConj N ℓ' u) = ρ (u : Gamma0 N) ∘ₗ a')
@@ -436,6 +520,9 @@ theorem compat_mul
   rw [ha, LinearMap.comp_assoc]
   rfl
 
+/--
+@isnad1 id=mem.5h11v.s16.a8ade33aa75f from=translated src=- shape=03e472c4 vocab=baa21196
+-/
 theorem TmS_sub_mem
     (ha : ∀ u : ↥(heckeUpper N ℓ), a ∘ₗ ρ (heckeConj N ℓ u) = ρ (u : Gamma0 N) ∘ₗ a)
     (ha' : ∀ u : ↥(heckeUpper N ℓ'), a' ∘ₗ ρ (heckeConj N ℓ' u) = ρ (u : Gamma0 N) ∘ₗ a')
@@ -444,6 +531,9 @@ theorem TmS_sub_mem
   sum_repr_sub_coeffHeckeFun_mem_coeffCoboundaries N m ρ (a ∘ₗ a') (compat_mul ρ a a' hm ha ha')
     (SS σ hσ hm) (TT σ hσ hm) (SS_coe σ hσ hm) (SS_mul_TT σ hσ hm) hz
 
+/--
+@isnad1 id=eq.3h11v.s15.02b319270aa2 from=translated src=- shape=0337766f vocab=a1643af9
+-/
 theorem coeffHeckeFun_Ty
     (ha : ∀ u : ↥(heckeUpper N ℓ), a ∘ₗ ρ (heckeConj N ℓ u) = ρ (u : Gamma0 N) ∘ₗ a)
     (z : Gamma0 N → V) :
@@ -473,6 +563,9 @@ theorem coeffHeckeFun_Ty
     LinearMap.congr_fun (ha _) _
   rw [hpush, smul_Psi, SS_Psi, heckeConj_TT_Psi, map_mul, Module.End.mul_apply, LinearMap.comp_apply]
 
+/--
+@isnad1 id=eq.0h8v.s12.54efebc8151f from=translated src=- shape=661f4ca3 vocab=04390d93
+-/
 theorem coeffHeckeFun_sub (ℓ₀ : ℕ) [NeZero ℓ₀] (b : V →ₗ[K] V) (z w : Gamma0 N → V) :
     coeffHeckeFun N ℓ₀ ρ b (z - w) = coeffHeckeFun N ℓ₀ ρ b z - coeffHeckeFun N ℓ₀ ρ b w := by
   letI := (heckeUpper N ℓ₀).fintypeQuotientOfFiniteIndex
@@ -487,6 +580,9 @@ end HeckeEis
 open scoped _root_.P2MW.S_HeckeEis_coeffHeckeFun_coeffHeckeFun_sub_coeffHeckeFun_mul_mem_coeffCoboundaries.HeckeEis.R2CompTT _root_.P2MW.S_HeckeEis_coeffHeckeFun_coeffHeckeFun_sub_coeffHeckeFun_mul_mem_coeffCoboundaries.HeckeEis
 
 open scoped MatrixGroups in
+/--
+@isnad1 id=mem.7h10v.s16.60ae3f1f29f4 from=translated src=- shape=2afceba2 vocab=217ae6e1
+-/
 theorem solution
     (N ℓ ℓ' m : ℕ) [NeZero ℓ] [NeZero ℓ'] [NeZero m] (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N)
     (hℓℓ' : ¬ ℓ ∣ ℓ') (hm : m = ℓ * ℓ')

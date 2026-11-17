@@ -23,6 +23,9 @@ open _root_.HeckeEis
 open UpperHalfPlane MvPolynomial ModularForm CongruenceSubgroup
 open scoped MatrixGroups ModularForm
 
+/--
+@isnad1 id=isequiva.2h4v.s12.c051f078f093 from=translated src=- shape=cb506931 vocab=4287cb82
+-/
 theorem SolMain.p1b
     {n : ℕ} {Γ : Subgroup SL(2, ℤ)} {f : ℍ → ℂ} {F : ℍ → ↥(BinaryForm ℂ n)}
     (hF : IsEichlerIntegral n f F)
@@ -41,6 +44,9 @@ end HeckeEis
 end
 
 open scoped MatrixGroups ModularForm in
+/--
+@isnad1 id=isequiva.2h4v.s12.c051f078f093 from=translated src=- shape=cb506931 vocab=4287cb82
+-/
 theorem solution
     {n : ℕ} {Γ : Subgroup SL(2, ℤ)} {f : UpperHalfPlane → ℂ} {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
     (hF : HeckeEis.IsEichlerIntegral n f F)

@@ -10,6 +10,9 @@ open scoped TensorProduct
 
 set_option maxHeartbeats 12000000
 
+/--
+@isnad1 id=eq.1h5v.s12.723575cd9a34 from=translated src=- shape=e9fd88e5 vocab=c27f5b64
+-/
 theorem solution
     (K : Type*) [CommRing K]
     (H₁ : Type*) [CommRing H₁] [HopfAlgebra K H₁]

@@ -27,6 +27,9 @@ open _root_.HopfAlgebra
 variable {k : Type u} [Field k] {p : ℕ} [hp : Fact p.Prime] [CharP k p]
 variable {A : Type v} [CommRing A] [HopfAlgebra k A] [Module.Finite k A] [Coalgebra.IsCocomm k A]
 
+/--
+@isnad1 id=eq.0h4v.s12.7c621f00eb92 from=translated src=- shape=6f1f6778 vocab=9b4357ee
+-/
 theorem toDual_pow (φ : CartierDual k A) (m : ℕ) :
     CartierDual.toDual k A (φ ^ m) = (WithConv.toConv (CartierDual.toDual k A φ) ^ m).ofConv := by
   induction m with
@@ -37,12 +40,18 @@ theorem toDual_pow (φ : CartierDual k A) (m : ℕ) :
   | succ m ih =>
     rw [pow_succ, CartierDual.toDual_mul, ih, WithConv.toConv_ofConv, ← pow_succ]
 
+/--
+@isnad1 id=eq.0h5v.s11.1234a1cb3146 from=translated src=- shape=2cc42d3e vocab=2fb316d6
+-/
 theorem convPow_apply (β : WithConv (A →ₗ[k] k)) (m : ℕ) (x : A) :
     (β ^ m).ofConv x = ((CartierDual.ofDual k A β.ofConv) ^ m) x := by
   have : (β ^ m).ofConv = CartierDual.toDual k A ((CartierDual.ofDual k A β.ofConv) ^ m) := by
     rw [toDual_pow, CartierDual.toDual_ofDual, WithConv.toConv_ofConv]
   rw [this]; rfl
 
+/--
+@isnad1 id=eq.0h6v.s12.901641eca639 from=translated src=- shape=dc032c48 vocab=044cdef0
+-/
 theorem convPow_mul_convPow_apply (β γ : WithConv (A →ₗ[k] k)) (m : ℕ) (x : A) :
     (β ^ m * γ ^ m).ofConv x =
       ((CartierDual.ofDual k A β.ofConv) ^ m * (CartierDual.ofDual k A γ.ofConv) ^ m) x := by
@@ -53,28 +62,49 @@ theorem convPow_mul_convPow_apply (β γ : WithConv (A →ₗ[k] k)) (m : ℕ) (
       WithConv.toConv_ofConv]
   rw [this]; rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.8b20bbe8b729 from=translated src=- shape=2f2d8564 vocab=60d1b816
+-/
 theorem mul_apply_one (φ ψ : CartierDual k A) : (φ * ψ) 1 = φ 1 * ψ 1 := by
   rw [CartierDual.mul_apply, Bialgebra.comul_one, Algebra.TensorProduct.one_def,
     TensorProduct.dualDistrib_apply]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.7cfd5af8135a from=translated src=- shape=c73e2f02 vocab=c5abb4ed
+-/
 theorem pow_apply_one (φ : CartierDual k A) (m : ℕ) : (φ ^ m) 1 = (φ 1) ^ m := by
   induction m with
   | zero => rw [pow_zero, pow_zero, CartierDual.one_apply, Bialgebra.counit_one]
   | succ m ih => rw [pow_succ, mul_apply_one, ih, pow_succ]
 
+/--
+@isnad1 id=eq.0h5v.s9.a34a38020c46 from=translated src=- shape=30c9c7fe vocab=65e1b8e8
+-/
 theorem smul_apply' (c : k) (φ : CartierDual k A) (x : A) : (c • φ) x = c * φ x := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.22837abf8735 from=translated src=- shape=03625dd4 vocab=27dde2ac
+-/
 theorem add_apply' (φ ψ : CartierDual k A) (x : A) : (φ + ψ) x = φ x + ψ x := rfl
 
+/--
+@isnad1 id=injectiv.0h2v.s9.4a8c7faee3d3 from=translated src=- shape=497db901 vocab=729f7a8a
+-/
 theorem algebraMap_injective : Injective (algebraMap k (CartierDual k A)) := by
   intro r s h
   have := congrArg (fun φ : CartierDual k A => φ 1) h
   simpa only [CartierDual.algebraMap_apply, Bialgebra.counit_one, one_mul] using this
 
+/--
+@isnad1 id=charp.0h3v.s8.99f9d6adde81 from=translated src=- shape=78092e0a vocab=46f185b9
+-/
 scoped instance instCharP : CharP (CartierDual k A) p :=
   charP_of_injective_algebraMap algebraMap_injective p
 
+/--
+@isnad1 id=eq.1h3v.s13.36bb57a310f1 from=translated src=- shape=7434b639 vocab=77bed6b2
+-/
 theorem tmul_ext {z : A ⊗[k] A}
     (h : ∀ φ ψ : Module.Dual k A, TensorProduct.dualDistrib k A A (φ ⊗ₜ[k] ψ) z = 0) : z = 0 := by
   rw [← Module.forall_dual_apply_eq_zero_iff k]
@@ -94,6 +124,9 @@ variable (ha : ∀ φ ψ : CartierDual k A,
 
 abbrev Fr : k ≃+* k := iterateFrobeniusEquiv k p n
 
+/--
+@isnad1 id=eq.0h4v.s7.402b71f5adac from=translated src=- shape=b9c0279d vocab=05bb03d7
+-/
 theorem Fr_apply (c : k) : Fr (k := k) (p := p) n c = c ^ p ^ n :=
   iterateFrobeniusEquiv_def k p n c
 
@@ -111,18 +144,27 @@ def L : CartierDual k A →ₗ[k] k where
 def xx : A :=
   (Module.evalEquiv k A).symm (L (k := k) (p := p) n a ∘ₗ (CartierDual.ofDual k A).toLinearMap)
 
+/--
+@isnad1 id=eq.0h6v.s9.02971756fcc0 from=translated src=- shape=547ac1d6 vocab=f4fe170e
+-/
 theorem apply_xx (φ : CartierDual k A) :
     φ (xx (k := k) (p := p) n a) = (Fr (k := k) (p := p) n).symm ((φ ^ p ^ n) a) := by
   have := Module.apply_evalEquiv_symm_apply k A (CartierDual.toDual k A φ)
     (L (k := k) (p := p) n a ∘ₗ (CartierDual.ofDual k A).toLinearMap)
   exact this
 
+/--
+@isnad1 id=eq.0h6v.s9.f9c85403b1ee from=translated src=- shape=fad2a754 vocab=d3ff7f56
+-/
 theorem apply_xx_pow (φ : CartierDual k A) :
     (φ (xx (k := k) (p := p) n a)) ^ p ^ n = (φ ^ p ^ n) a := by
   rw [apply_xx, ← Fr_apply (k := k) (p := p) n, RingEquiv.apply_symm_apply]
 
 include ha in
 
+/--
+@isnad1 id=eq.1h7v.s11.3e8ddf5ed058 from=translated src=- shape=a5969eeb vocab=9cfa95f1
+-/
 theorem mul_apply_xx (φ ψ : CartierDual k A) :
     (φ * ψ) (xx (k := k) (p := p) n a) =
       φ (xx (k := k) (p := p) n a) * ψ 1 + φ 1 * ψ (xx (k := k) (p := p) n a) := by
@@ -132,6 +174,9 @@ theorem mul_apply_xx (φ ψ : CartierDual k A) :
   exact ha φ ψ
 
 include ha in
+/--
+@isnad1 id=mem.1h5v.s11.2d5e2ef9dd4e from=translated src=- shape=b73161b6 vocab=b8141d7e
+-/
 theorem xx_mem_primitives : xx (k := k) (p := p) n a ∈ primitives k A := by
   change Coalgebra.comul (R := k) (xx (k := k) (p := p) n a) - (xx (k := k) (p := p) n a) ⊗ₜ[k] 1
     - 1 ⊗ₜ[k] (xx (k := k) (p := p) n a) = 0
@@ -145,6 +190,9 @@ theorem xx_mem_primitives : xx (k := k) (p := p) n a ∈ primitives k A := by
   ring
 
 include ha in
+/--
+@isnad1 id=ex.1h5v.s12.874214171751 from=translated src=- shape=909b4116 vocab=f27d368f
+-/
 theorem main : ∃ x ∈ primitives k A, ∀ β : WithConv (A →ₗ[k] k),
     (β.ofConv x) ^ p ^ n = (β ^ p ^ n).ofConv a :=
   ⟨xx (k := k) (p := p) n a, xx_mem_primitives n a ha, fun β => by
@@ -157,6 +205,9 @@ end HopfAlgebra.FrobeniusUntwist
 open scoped _root_.P2MW.S_HopfAlgebra_exists_mem_primitives_forall_apply_pow_eq_convPow_apply.HopfAlgebra _root_.P2MW.S_HopfAlgebra_exists_mem_primitives_forall_apply_pow_eq_convPow_apply.HopfAlgebra.FrobeniusUntwist
 open scoped _root_.P2MW.S_HopfAlgebra_exists_mem_primitives_forall_apply_pow_eq_convPow_apply.HopfAlgebra
 
+/--
+@isnad1 id=ex.1h5v.s13.bf133cb0fe5b from=translated src=- shape=d18210f8 vocab=1dd159cb
+-/
 theorem solution
     (k : Type u) [Field k] [PerfectField k] (p : ℕ) [Fact p.Prime] [CharP k p] (n : ℕ)
     (A : Type v) [CommRing A] [HopfAlgebra k A] [Module.Finite k A] [Coalgebra.IsCocomm k A]

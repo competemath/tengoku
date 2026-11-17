@@ -15,9 +15,15 @@ noncomputable def antipodeAlgHom' (K : Type*) [CommRing K] (A : Type*) [CommRing
     (HopfAlgebra.antipode_one (R := K) (A := A))
     (fun a b => by rw [HopfAlgebra.antipode_mul_antidistrib, mul_comm])
 
+/--
+@isnad1 id=eq.0h3v.s8.d03ad1333192 from=translated src=- shape=714eb64c vocab=89e9fe21
+-/
 theorem antipodeAlgHom'_apply {K : Type*} [CommRing K] {A : Type*} [CommRing A] [HopfAlgebra K A]
     (a : A) : antipodeAlgHom' K A a = HopfAlgebraStruct.antipode (R := K) a := rfl
 
+/--
+@isnad1 id=ex.0h4v.s10.480771e3ce84 from=translated src=- shape=cee483f2 vocab=a30e4df5
+-/
 theorem exists_inv_point'
     {K : Type*} [CommRing K] {A : Type*} [CommRing A] [HopfAlgebra K A]
     {L : Type*} [CommRing L] [Algebra K L] (ν : A →ₐ[K] L) :
@@ -60,6 +66,9 @@ theorem exists_inv_point'
 
 end ConvInverse
 
+/--
+@isnad1 id=ex.0h4v.s10.480771e3ce84 from=translated src=- shape=cee483f2 vocab=a30e4df5
+-/
 theorem solution
     {K : Type*} [CommRing K] {A : Type*} [CommRing A] [HopfAlgebra K A]
     {L : Type*} [CommRing L] [Algebra K L] (ν : A →ₐ[K] L) :

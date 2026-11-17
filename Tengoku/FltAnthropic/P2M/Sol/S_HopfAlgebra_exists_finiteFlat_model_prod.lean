@@ -11,6 +11,9 @@ open scoped TensorProduct
 set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 3200000
 
+/--
+@isnad1 id=ex.4h9v.s13.69f3487adab3 from=translated src=- shape=d2005c28 vocab=4e6c980f
+-/
 theorem solution
     {R : Type} [CommRing R] {L : Type} [CommRing L] [Algebra R L]
     {Γ : Type} [Group Γ] [MulSemiringAction Γ L] [SMulCommClass Γ R L]

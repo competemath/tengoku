@@ -22,6 +22,9 @@ variable (k : Type u) [Field k] (A : Type v) [CommRing A] [HopfAlgebra k A] [Coa
 
 local notation "ε" => Coalgebra.counit (R := k) (A := A)
 
+/--
+@isnad1 id=iff.0h3v.s11.ccacdff0acd5 from=translated src=- shape=c7084a9b vocab=403636bd
+-/
 theorem mem_primitives_iff (φ : CartierDual k A) :
     φ ∈ primitives k (CartierDual k A) ↔ ∀ a b : A, φ (a * b) = φ a * ε b + ε a * φ b := by
   have hmem : φ ∈ primitives k (CartierDual k A) ↔
@@ -45,6 +48,9 @@ theorem mem_primitives_iff (φ : CartierDual k A) :
 
 variable {k A}
 
+/--
+@isnad1 id=eq.1h3v.s11.1bbd92726b55 from=translated src=- shape=da72889b vocab=def62ce0
+-/
 theorem apply_one_eq_zero {φ : CartierDual k A} (hφ : φ ∈ primitives k (CartierDual k A)) : φ 1 = 0 := by
   have h := (mem_primitives_iff k A φ).1 hφ 1 1
   rw [mul_one, Bialgebra.counit_one, mul_one, one_mul] at h
@@ -52,10 +58,16 @@ theorem apply_one_eq_zero {φ : CartierDual k A} (hφ : φ ∈ primitives k (Car
   have : φ 1 + φ 1 = φ 1 + 0 := by rw [add_zero]; exact h.symm
   exact add_left_cancel this
 
+/--
+@isnad1 id=eq.2h5v.s11.495744714aa9 from=translated src=- shape=05c6e9ac vocab=615a17ea
+-/
 theorem apply_mul_of_counit_eq_zero {φ : CartierDual k A} (hφ : φ ∈ primitives k (CartierDual k A)) (a x : A)
     (hx : ε x = 0) : φ (a * x) = ε a * φ x := by
   rw [(mem_primitives_iff k A φ).1 hφ, hx, mul_zero, zero_add]
 
+/--
+@isnad1 id=eq.3h5v.s11.43e589342274 from=translated src=- shape=b3e49d4a vocab=615a17ea
+-/
 theorem apply_mul_eq_zero {φ : CartierDual k A} (hφ : φ ∈ primitives k (CartierDual k A)) (x y : A)
     (hx : ε x = 0) (hy : ε y = 0) : φ (x * y) = 0 := by
   rw [apply_mul_of_counit_eq_zero hφ x y hy, hx, zero_mul]
@@ -65,9 +77,15 @@ variable (k A)
 abbrev I : Ideal A := RingHom.ker (Bialgebra.counitAlgHom k A)
 
 omit [Coalgebra.IsCocomm k A] [Module.Finite k A] in
+/--
+@isnad1 id=iff.0h3v.s8.8d11457b3970 from=translated src=- shape=8617e384 vocab=0dd10f69
+-/
 theorem mem_I {x : A} : x ∈ I k A ↔ ε x = 0 := RingHom.mem_ker
 
 omit [Coalgebra.IsCocomm k A] [Module.Finite k A] in
+/--
+@isnad1 id=mem.0h3v.s9.ef93aede0bdb from=translated src=- shape=68d2456e vocab=e5702acc
+-/
 theorem sub_algebraMap_counit_mem (a : A) : a - algebraMap k A (ε a) ∈ I k A := by
   rw [mem_I, map_sub]
   change ε a - Bialgebra.counitAlgHom k A (algebraMap k A (ε a)) = 0
@@ -77,8 +95,14 @@ noncomputable def restrictI (φ : CartierDual k A) : ↥(I k A) →ₗ[k] k :=
   (CartierDual.toDual k A φ).comp ((I k A).subtype.restrictScalars k)
 
 omit [Coalgebra.IsCocomm k A] [Module.Finite k A] in
+/--
+@isnad1 id=eq.0h4v.s9.c2d005ef8754 from=translated src=- shape=223b658d vocab=9ca78bda
+-/
 @[scoped simp] theorem restrictI_apply (φ : CartierDual k A) (x : ↥(I k A)) : restrictI k A φ x = φ x := rfl
 
+/--
+@isnad1 id=le.1h3v.s12.2ae53b2fdc48 from=translated src=- shape=669a420a vocab=b4d02340
+-/
 theorem restrictI_vanishes {φ : CartierDual k A} (hφ : φ ∈ primitives k (CartierDual k A)) :
     ((I k A) • ⊤ : Submodule A ↥(I k A)).restrictScalars k ≤ LinearMap.ker (restrictI k A φ) := by
   intro x hx
@@ -100,6 +124,9 @@ noncomputable def toCotDual {φ : CartierDual k A} (hφ : φ ∈ primitives k (C
   ((((I k A) • ⊤ : Submodule A ↥(I k A)).restrictScalars k).liftQ (restrictI k A φ) (restrictI_vanishes k A hφ)).comp
     (Submodule.Quotient.restrictScalarsEquiv k ((I k A) • ⊤ : Submodule A ↥(I k A))).symm.toLinearMap
 
+/--
+@isnad1 id=eq.1h4v.s12.904cab80137c from=translated src=- shape=faffe721 vocab=35e63fe6
+-/
 theorem toCotDual_toCotangent {φ : CartierDual k A} (hφ : φ ∈ primitives k (CartierDual k A)) (x : ↥(I k A)) :
     toCotDual k A hφ ((I k A).toCotangent x) = φ x := by
   change ((((I k A) • ⊤ : Submodule A ↥(I k A)).restrictScalars k).liftQ (restrictI k A φ) (restrictI_vanishes k A hφ))
@@ -122,6 +149,9 @@ noncomputable def ofCotDualFun (ψ : Module.Dual k (cotangentSpace k A)) : A →
     change c • a - algebraMap k A (ε (c • a)) = c • (a - algebraMap k A (ε a))
     rw [map_smul, smul_eq_mul, smul_sub, Algebra.smul_def, Algebra.smul_def, map_mul]
 
+/--
+@isnad1 id=mem.0h3v.s12.c0fb3968b3b6 from=translated src=- shape=b1fd5adc vocab=ae164ab8
+-/
 theorem ofCotDualFun_mem (ψ : Module.Dual k (cotangentSpace k A)) :
     CartierDual.ofDual k A (ofCotDualFun k A ψ) ∈ primitives k (CartierDual k A) := by
   rw [mem_primitives_iff]
@@ -146,6 +176,9 @@ theorem ofCotDualFun_mem (ψ : Module.Dual k (cotangentSpace k A)) :
   rw [key, pow_two]
   exact Ideal.mul_mem_mul (sub_algebraMap_counit_mem k A a) (sub_algebraMap_counit_mem k A b)
 
+/--
+@isnad1 id=finite.0h2v.s9.dc7a522e9a68 from=translated src=- shape=25ad0757 vocab=e4d32d29
+-/
 scoped instance finite_cotangent : Module.Finite k (cotangentSpace k A) := by
   haveI : IsNoetherian k A := IsNoetherian.iff_fg.2 inferInstance
   haveI : Module.Finite k ↥(I k A) := Module.IsNoetherian.finite k _
@@ -187,6 +220,9 @@ noncomputable def primEquiv : ↥(primitives k (CartierDual k A)) ≃ₗ[k] Modu
 end PRIMCOUNT
 open scoped _root_.P2MW.S_HopfAlgebra_finrank_primitives_cartierDual_eq_finrank_cotangentSpace.PRIMCOUNT
 
+/--
+@isnad1 id=eq.0h2v.s12.4a7b688cd4ce from=translated src=- shape=f8533865 vocab=b65e7d2e
+-/
 theorem solution
     (k : Type u) [Field k] (A : Type v) [CommRing A] [HopfAlgebra k A] [Coalgebra.IsCocomm k A]
     [Module.Finite k A] :

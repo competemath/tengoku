@@ -11,6 +11,9 @@ set_option maxHeartbeats 8000000
 open scoped NNReal TensorProduct
 open TensorProduct
 
+/--
+@isnad1 id=ex.3h6v.s16.14dcad0caeb6 from=translated src=- shape=3a854824 vocab=e9bf4a5d
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime]
     {N : Type} [AddCommGroup N]

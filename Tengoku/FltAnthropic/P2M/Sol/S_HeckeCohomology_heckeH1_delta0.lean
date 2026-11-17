@@ -16,6 +16,9 @@ attribute [local instance] Subgroup.fintypeQuotientOfFiniteIndex
 
 variable {k Γ : Type} [CommRing k] [Group Γ] (S₁ S₂ : Subgroup Γ) (c : S₂ →* S₁)
 
+/--
+@isnad1 id=eq.0h5v.s11.52b134098a28 from=translated src=- shape=9e137295 vocab=a29b4098
+-/
 theorem d₀₁_apply_apply' (A : Rep k Γ) (a : A) (g : Γ) :
     (d₀₁ A) a g = A.ρ g a - a := rfl
 
@@ -29,6 +32,9 @@ variable [S₂.FiniteIndex]
 
 include hφ₂ hf hg in
 
+/--
+@isnad1 id=eq.8h12v.s16.7f9fe343be09 from=translated src=- shape=d5429dcf vocab=b462f077
+-/
 theorem heckeH1_δ₀_apply (z : X.X₃.ρ.invariants) (y : X.X₂) (hy : X.g.hom y = z)
     (x : Γ → X.X₁) (hx : X.f.hom ∘ x = d₀₁ X.X₂ y) :
     heckeH1 S₁ S₂ c X.X₁ φ₁ hφ₁ (δ hX 0 1 rfl ((H0Iso X.X₃).inv z)) =
@@ -53,6 +59,9 @@ theorem heckeH1_δ₀_apply (z : X.X₃.ρ.invariants) (y : X.X₂) (hy : X.g.ho
 end TWDeltaAux
 
 open CategoryTheory groupCohomology HeckeCohomology in
+/--
+@isnad1 id=eq.6h10v.s16.7071477d8e8c from=translated src=- shape=5dfd44f1 vocab=eca73b07
+-/
 theorem solution {k Γ : Type} [CommRing k] [Group Γ]
     (S₁ S₂ : Subgroup Γ) (c : S₂ →* S₁) [S₂.FiniteIndex]
     {X : ShortComplex (Rep k Γ)} (hX : X.ShortExact)

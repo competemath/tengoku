@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_HopfAlgebra_exists_withConv_equiv_ratLocal
 
 open scoped NNReal TensorProduct
 open scoped TensorProduct in
+/--
+@isnad1 id=ex.3h6v.s16.14dcad0caeb6 from=translated src=- shape=3a854824 vocab=e9bf4a5d
+-/
 theorem HopfAlgebra.exists_withConv_equiv_ratLocalizedAt_of_algEquiv_baseChange_rat
     (p : ℕ) [Fact p.Prime]
     {N : Type} [AddCommGroup N]

@@ -13,6 +13,9 @@ set_option maxHeartbeats 4800000
 
 noncomputable section
 
+/--
+@isnad1 id=isdomain.0h2v.s9.5a9370b6d96e from=translated src=- shape=55ef8a3b vocab=42523b99
+-/
 theorem solution
     (K : Type*) [Field K] [CharZero K]
     (A : Type*) [CommRing A] [HopfAlgebra K A] [Algebra.FiniteType K A] :

@@ -13,6 +13,9 @@ open CategoryTheory Rep
 
 set_option maxHeartbeats 3200000
 
+/--
+@isnad1 id=nonempty.0h4v.s12.5d5709e1bfc8 from=translated src=- shape=a684f593 vocab=67d36daa
+-/
 theorem solution {k G ι : Type u} [CommRing k] [Group G] [Fintype G]
     (F : ι → Rep.{u} k G) :
     Nonempty ((GroupCohomology.RepPi.obj F).tateHneg1 ≃ₗ[k] ((i : ι) → (F i).tateHneg1)) := by

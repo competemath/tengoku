@@ -21,12 +21,18 @@ variable (N : ℕ) {R : Type} [CommRing R] {κ : Type} [CommRing κ] (f : R →+
     (hredρ : ∀ (g : Gamma0 N) (x : Λ), red (ρR g x) = ρ' g (red x))
 
 include hredρ in
+/--
+@isnad1 id=mem.2h9v.s13.594798e04932 from=translated src=- shape=a3cbc160 vocab=080fd93b
+-/
 theorem carry_mem_coeffCocycles {z : Gamma0 N → Λ} (hz : z ∈ coeffCocycles ρR) : (fun g => red (z g)) ∈ coeffCocycles ρ' := by
   rw [mem_coeffCocycles_iff] at hz ⊢
   intro g h
   rw [hz g h, map_add, hredρ]
 
 include hredρ in
+/--
+@isnad1 id=mem.2h9v.s13.bf37ffc86434 from=translated src=- shape=a3cbc160 vocab=0203f5b1
+-/
 theorem carry_mem_coeffCoboundaries {z : Gamma0 N → Λ} (hz : z ∈ coeffCoboundaries ρR) :
     (fun g => red (z g)) ∈ coeffCoboundaries ρ' := by
   rw [mem_coeffCoboundaries_iff] at hz ⊢
@@ -38,9 +44,15 @@ def carryZ : ↥(coeffCocycles ρR) →+ ↥(coeffCocycles ρ') where
   map_zero' := by ext g; simp
   map_add' z w := by ext g; simp
 
+/--
+@isnad1 id=eq.1h10v.s17.5cf051255a1e from=translated src=- shape=447010b0 vocab=35f062ea
+-/
 @[scoped simp] theorem coe_carryZ (z : ↥(coeffCocycles ρR)) (g : Gamma0 N) :
     (carryZ N ρR ρ' red hredρ z : Gamma0 N → Λ') g = red ((z : Gamma0 N → Λ) g) := rfl
 
+/--
+@isnad1 id=ex.1h8v.s17.231a472775d6 from=translated src=- shape=945c1c77 vocab=a8c3e20f
+-/
 theorem exists_push : ∃ Φ : coeffH1 ρR →+ coeffH1 ρ', ∀ z, Φ (coeffH1Mk ρR z) = coeffH1Mk ρ' (carryZ N ρR ρ' red hredρ z) := by
 
   let F : ↥(coeffCocycles ρR) →+ coeffH1 ρ' := (coeffH1Mk ρ').toAddMonoidHom.comp (carryZ N ρR ρ' red hredρ)
@@ -64,6 +76,9 @@ theorem exists_push : ∃ Φ : coeffH1 ρR →+ coeffH1 ρ', ∀ z, Φ (coeffH1M
 
 include hredρ in
 
+/--
+@isnad1 id=eq.2h13v.s12.318c139fc156 from=translated src=- shape=11328549 vocab=ee72134d
+-/
 theorem carry_coeffHeckeFun (ℓ : ℕ) [NeZero ℓ] (a : Λ →ₗ[R] Λ) (a' : Λ' →ₗ[κ] Λ')
     (hreda : ∀ x, red (a x) = a' (red x)) (z : Gamma0 N → Λ) (g : Gamma0 N) :
     red (coeffHeckeFun N ℓ ρR a z g) = coeffHeckeFun N ℓ ρ' a' (fun g => red (z g)) g := by
@@ -74,6 +89,9 @@ theorem carry_coeffHeckeFun (ℓ : ℕ) [NeZero ℓ] (a : Λ →ₗ[R] Λ) (a' :
 
 end
 
+/--
+@isnad1 id=ex.3h11v.s17.55f7f68e9467 from=translated src=- shape=6ea9aa58 vocab=9ac0ee77
+-/
 theorem main
     (N : ℕ) {R : Type} [CommRing R] {κ : Type} [CommRing κ] (f : R →+* κ)
     {Λ : Type} [AddCommGroup Λ] [Module R Λ] {Λ' : Type} [AddCommGroup Λ'] [Module κ Λ']
@@ -159,6 +177,9 @@ theorem main
 end CCChi
 open scoped _root_.P2MW.S_HeckeEis_exists_addMonoidHom_coeffH1_of_equivariant_addMonoidHom.CCChi
 
+/--
+@isnad1 id=ex.3h11v.s17.55f7f68e9467 from=translated src=- shape=6ea9aa58 vocab=9ac0ee77
+-/
 theorem solution
     (N : ℕ) {R : Type} [CommRing R] {κ : Type} [CommRing κ] (f : R →+* κ)
     {Λ : Type} [AddCommGroup Λ] [Module R Λ] {Λ' : Type} [AddCommGroup Λ'] [Module κ Λ']

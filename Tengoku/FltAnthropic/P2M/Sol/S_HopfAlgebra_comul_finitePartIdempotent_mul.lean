@@ -15,12 +15,18 @@ namespace FinitePart
 section Away
 variable {H : Type*} [CommRing H]
 
+/--
+@isnad1 id=eq.1h3v.s6.a96e4603efab from=translated src=- shape=d3ab5d3e vocab=0e59c9ec
+-/
 theorem algebraMap_eq_one_of_isIdempotentElem {e : H} (he : IsIdempotentElem e)
     (L : Type*) [CommRing L] [Algebra H L] [IsLocalization.Away e L] : algebraMap H L e = 1 := by
   have hu : IsUnit (algebraMap H L e) := IsLocalization.Away.algebraMap_isUnit e
   apply hu.mul_left_cancel
   rw [← map_mul, he.eq, mul_one]
 
+/--
+@isnad1 id=surjecti.1h3v.s6.e7a18ec3bb33 from=translated src=- shape=d5d878fd vocab=9a355ff1
+-/
 theorem algebraMap_surjective_of_isIdempotentElem {e : H} (he : IsIdempotentElem e)
     (L : Type*) [CommRing L] [Algebra H L] [IsLocalization.Away e L] : Function.Surjective (algebraMap H L) := by
   intro x
@@ -46,6 +52,9 @@ end Away
 section Local
 variable {R : Type*} [CommRing R] [IsLocalRing R] {H : Type*} [CommRing H] [Algebra R H]
 
+/--
+@isnad1 id=eq.4h4v.s9.155afee340d6 from=translated src=- shape=79b8f837 vocab=df7ff5d2
+-/
 theorem mul_eq_zero_of_finite_away_of_map_maximalIdeal_eq_top {e f : H}
     (he : IsIdempotentElem e) (hf : IsIdempotentElem f)
     (hfin : Module.Finite R (Localization.Away e))
@@ -126,15 +135,24 @@ noncomputable def FinitePart.awayMapAlong (φ : H →ₐ[R] H') (g : H) :
       rw [RingHom.comp_apply]
       exact IsLocalization.Away.algebraMap_isUnit (φ g))
 
+/--
+@isnad1 id=eq.0h6v.s10.d32fc86607df from=translated src=- shape=0f432040 vocab=e07e722d
+-/
 theorem FinitePart.awayMapAlong_algebraMap (φ : H →ₐ[R] H') (g : H) (h : H) :
     FinitePart.awayMapAlong φ g (algebraMap H _ h) = algebraMap H' _ (φ h) :=
   IsLocalization.Away.lift_eq g _ h
 
+/--
+@isnad1 id=eq.0h6v.s10.0454865dcfec from=translated src=- shape=ef9cc920 vocab=e07e722d
+-/
 theorem FinitePart.awayMapAlong_algebraMap_base (φ : H →ₐ[R] H') (g : H) (r : R) :
     FinitePart.awayMapAlong φ g (algebraMap R _ r) = algebraMap R _ r := by
   rw [IsScalarTower.algebraMap_apply R H (Localization.Away g), FinitePart.awayMapAlong_algebraMap, AlgHom.commutes,
     ← IsScalarTower.algebraMap_apply]
 
+/--
+@isnad1 id=finite.3h5v.s9.9c66e5b37dd7 from=translated src=- shape=9d37861c vocab=e3a25d88
+-/
 theorem FinitePart.finite_away_map (φ : H →ₐ[R] H') (hφ : Function.Surjective φ) {g : H}
     (hg : IsIdempotentElem g) (hfin : Module.Finite R (Localization.Away g)) :
     Module.Finite R (Localization.Away (φ g)) := by
@@ -148,6 +166,9 @@ theorem FinitePart.finite_away_map (φ : H →ₐ[R] H') (hφ : Function.Surject
   obtain ⟨h, rfl⟩ := hφ h'
   exact ⟨algebraMap H _ h, FinitePart.awayMapAlong_algebraMap φ g h⟩
 
+/--
+@isnad1 id=eq.1h5v.s11.3fc6fba96bbd from=translated src=- shape=858dbac9 vocab=d75bed1a
+-/
 theorem FinitePart.map_maximalIdeal_away_map [IsLocalRing R] (φ : H →ₐ[R] H') (g : H)
     (hgen : Ideal.map (algebraMap R (Localization.Away g)) (maximalIdeal R) = ⊤) :
     Ideal.map (algebraMap R (Localization.Away (φ g))) (maximalIdeal R) = ⊤ := by
@@ -166,6 +187,9 @@ variable {R : Type*} [CommRing R] {H : Type*} [CommRing H] [HopfAlgebra R H]
 noncomputable def FinitePart.antipodeAlgHom : H →ₐ[R] H :=
   AlgHom.ofLinearMap (HopfAlgebraStruct.antipode R) antipode_one (fun a b => by rw [antipode_mul_antidistrib, mul_comm])
 
+/--
+@isnad1 id=eq.0h5v.s12.b9003853cd4a from=translated src=- shape=5e2ae05c vocab=67ee941d
+-/
 theorem FinitePart.lift_eq_mul'_map (f g : H →ₐ[R] H) (z : H ⊗[R] H) :
     Algebra.TensorProduct.lift f g (fun _ _ => Commute.all _ _) z
       = LinearMap.mul' R H (TensorProduct.map f.toLinearMap g.toLinearMap z) := by
@@ -174,6 +198,9 @@ theorem FinitePart.lift_eq_mul'_map (f g : H →ₐ[R] H) (z : H ⊗[R] H) :
   | tmul x y => rw [Algebra.TensorProduct.lift_tmul, TensorProduct.map_tmul, LinearMap.mul'_apply]; rfl
   | add x y hx hy => rw [map_add, map_add, map_add, hx, hy]
 
+/--
+@isnad1 id=eq.0h2v.s9.05d3f7bfca87 from=translated src=- shape=7f9d22f0 vocab=9efe374a
+-/
 theorem FinitePart.toConv_id_mul_toConv_antipode :
     WithConv.toConv (AlgHom.id R H) * WithConv.toConv (FinitePart.antipodeAlgHom (R := R) (H := H)) = 1 := by
   apply WithConv.ext
@@ -201,6 +228,9 @@ variable {R : Type*} [CommRing R] {H : Type*} [CommRing H] [HopfAlgebra R H]
 
 namespace FinitePart
 
+/--
+@isnad1 id=eq.0h7v.s9.9bb14a061c07 from=translated src=- shape=18bfdd97 vocab=eedd7218
+-/
 theorem comp_convMul_ofConv {C A B : Type*} [CommRing C] [Bialgebra R C] [CommRing A] [Algebra R A]
     [CommRing B] [Algebra R B] (ψ : A →ₐ[R] B) (f g : WithConv (C →ₐ[R] A)) :
     ψ.comp (f * g).ofConv = (WithConv.toConv (ψ.comp f.ofConv) * WithConv.toConv (ψ.comp g.ofConv)).ofConv := by
@@ -214,6 +244,9 @@ theorem comp_convMul_ofConv {C A B : Type*} [CommRing C] [Bialgebra R C] [CommRi
   | tmul x y => simp only [Algebra.TensorProduct.lift_tmul, map_mul, AlgHom.comp_apply]
   | add a b ha hb => simp only [map_add, ha, hb]
 
+/--
+@isnad1 id=eq.0h5v.s8.82cba230bad9 from=translated src=- shape=6230e961 vocab=411b5c45
+-/
 theorem comp_convOne_ofConv {C A B : Type*} [CommRing C] [Bialgebra R C] [CommRing A] [Algebra R A]
     [CommRing B] [Algebra R B] (ψ : A →ₐ[R] B) :
     ψ.comp (1 : WithConv (C →ₐ[R] A)).ofConv = (1 : WithConv (C →ₐ[R] B)).ofConv := by
@@ -221,6 +254,9 @@ theorem comp_convOne_ofConv {C A B : Type*} [CommRing C] [Bialgebra R C] [CommRi
   intro c
   rw [AlgHom.comp_apply, AlgHom.convOne_apply, AlgHom.convOne_apply, AlgHom.commutes]
 
+/--
+@isnad1 id=eq.0h2v.s9.13ea545a57d9 from=translated src=- shape=7f9d22f0 vocab=9efe374a
+-/
 theorem toConv_antipode_mul_toConv_id :
     WithConv.toConv (FinitePart.antipodeAlgHom (R := R) (H := H)) * WithConv.toConv (AlgHom.id R H) = 1 := by
   apply WithConv.ext
@@ -240,6 +276,9 @@ local notation "L" => (Algebra.TensorProduct.includeLeft : H →ₐ[R] H ⊗[R] 
 local notation "Rg" => (Algebra.TensorProduct.includeRight : H →ₐ[R] H ⊗[R] H)
 local notation "Sₐ" => (FinitePart.antipodeAlgHom (R := R) (H := H))
 
+/--
+@isnad1 id=eq.0h2v.s11.98250a4599f8 from=translated src=- shape=bad55137 vocab=b63c9899
+-/
 theorem toConv_comulAlgHom_eq :
     WithConv.toConv (Bialgebra.comulAlgHom R H) = WithConv.toConv L * WithConv.toConv Rg := by
   apply WithConv.ext
@@ -255,6 +294,9 @@ theorem toConv_comulAlgHom_eq :
         Algebra.TensorProduct.includeRight_apply, Algebra.TensorProduct.tmul_mul_tmul, mul_one, one_mul]
   | add a b ha hb => rw [map_add, ← ha, ← hb]
 
+/--
+@isnad1 id=eq.0h2v.s12.cfeee32ae22f from=translated src=- shape=492b9ee2 vocab=59e0f792
+-/
 theorem toConv_includeLeft_comp_antipode_mul :
     WithConv.toConv ((L).comp Sₐ) * WithConv.toConv L = 1 := by
   have h := congrArg (fun φ : WithConv (H →ₐ[R] H) => WithConv.toConv ((L).comp φ.ofConv))
@@ -263,6 +305,9 @@ theorem toConv_includeLeft_comp_antipode_mul :
     comp_convOne_ofConv, WithConv.toConv_ofConv] at h
   simpa using h
 
+/--
+@isnad1 id=eq.0h2v.s12.9964c43046f1 from=translated src=- shape=30e5e481 vocab=e084f246
+-/
 theorem toConv_includeRight_mul_comp_antipode :
     WithConv.toConv Rg * WithConv.toConv ((Rg).comp Sₐ) = 1 := by
   have h := congrArg (fun φ : WithConv (H →ₐ[R] H) => WithConv.toConv ((Rg).comp φ.ofConv))
@@ -277,12 +322,21 @@ noncomputable def gal₁ : H ⊗[R] H →ₐ[R] H ⊗[R] H :=
 noncomputable def gal₂ : H ⊗[R] H →ₐ[R] H ⊗[R] H :=
   Algebra.TensorProduct.lift (Bialgebra.comulAlgHom R H) Rg (fun _ _ => Commute.all _ _)
 
+/--
+@isnad1 id=eq.0h4v.s11.1431e79379c9 from=translated src=- shape=0b558100 vocab=159c5fee
+-/
 theorem gal₁_tmul (a b : H) : gal₁ (R := R) (a ⊗ₜ[R] b) = (a ⊗ₜ[R] 1) * CoalgebraStruct.comul (R := R) b :=
   Algebra.TensorProduct.lift_tmul _ _ _ a b
 
+/--
+@isnad1 id=eq.0h4v.s11.cc95eee2e590 from=translated src=- shape=d49f064f vocab=6e0962d9
+-/
 theorem gal₂_tmul (a b : H) : gal₂ (R := R) (a ⊗ₜ[R] b) = CoalgebraStruct.comul (R := R) a * (1 ⊗ₜ[R] b) :=
   Algebra.TensorProduct.lift_tmul _ _ _ a b
 
+/--
+@isnad1 id=eq.0h3v.s12.3931be9edad6 from=translated src=- shape=99d57fcb vocab=2444b23e
+-/
 theorem gal₁_map_antipode_comul (b : H) :
     gal₁ (R := R) (TensorProduct.map (Sₐ).toLinearMap LinearMap.id (CoalgebraStruct.comul (R := R) b)) = 1 ⊗ₜ[R] b := by
   have key : ∀ z : H ⊗[R] H, gal₁ (R := R) (TensorProduct.map (Sₐ).toLinearMap LinearMap.id z)
@@ -300,6 +354,9 @@ theorem gal₁_map_antipode_comul (b : H) :
   rw [AlgHom.convMul_apply, WithConv.ofConv_toConv, WithConv.ofConv_toConv] at h'
   rw [h', Algebra.TensorProduct.includeRight_apply]
 
+/--
+@isnad1 id=eq.0h3v.s12.17b22332b006 from=translated src=- shape=feb0432d vocab=bedc8c7e
+-/
 theorem gal₂_map_comul_antipode (a : H) :
     gal₂ (R := R) (TensorProduct.map LinearMap.id (Sₐ).toLinearMap (CoalgebraStruct.comul (R := R) a)) = a ⊗ₜ[R] 1 := by
   have key : ∀ z : H ⊗[R] H, gal₂ (R := R) (TensorProduct.map LinearMap.id (Sₐ).toLinearMap z)
@@ -317,6 +374,9 @@ theorem gal₂_map_comul_antipode (a : H) :
   rw [AlgHom.convMul_apply, WithConv.ofConv_toConv, WithConv.ofConv_toConv] at h'
   rw [h', Algebra.TensorProduct.includeLeft_apply]
 
+/--
+@isnad1 id=surjecti.0h2v.s10.83d631227441 from=translated src=- shape=96a19a55 vocab=4339e51f
+-/
 theorem gal₁_surjective : Function.Surjective (gal₁ (R := R) (H := H)) := by
   have h1 : ∀ a : H, a ⊗ₜ[R] (1 : H) ∈ (gal₁ (R := R) (H := H)).range := fun a =>
     ⟨a ⊗ₜ[R] 1, show gal₁ (a ⊗ₜ[R] 1) = a ⊗ₜ[R] 1 by
@@ -336,6 +396,9 @@ theorem gal₁_surjective : Function.Surjective (gal₁ (R := R) (H := H)) := by
       obtain ⟨y', rfl⟩ := hy
       exact ⟨x' + y', show _ = _ from map_add _ _ _⟩
 
+/--
+@isnad1 id=surjecti.0h2v.s10.38284dfbb7a8 from=translated src=- shape=96a19a55 vocab=6a32c448
+-/
 theorem gal₂_surjective : Function.Surjective (gal₂ (R := R) (H := H)) := by
   have h1 : ∀ a : H, a ⊗ₜ[R] (1 : H) ∈ (gal₂ (R := R) (H := H)).range := fun a =>
     ⟨_, show gal₂ _ = _ from gal₂_map_comul_antipode a⟩
@@ -367,6 +430,9 @@ namespace FinitePart
 
 variable {R : Type*} [CommRing R]
 
+/--
+@isnad1 id=eq.2h4v.s8.530e9620c702 from=translated src=- shape=a52bf38d vocab=62f2eebc
+-/
 theorem map_maximalIdeal_eq_top_of_ringHom [IsLocalRing R] {L₁ L₂ : Type*} [CommRing L₁] [CommRing L₂]
     [Algebra R L₁] [Algebra R L₂] (φ : L₁ →+* L₂) (hφ : ∀ r, φ (algebraMap R L₁ r) = algebraMap R L₂ r)
     (h : Ideal.map (algebraMap R L₁) (maximalIdeal R) = ⊤) : Ideal.map (algebraMap R L₂) (maximalIdeal R) = ⊤ := by
@@ -375,6 +441,9 @@ theorem map_maximalIdeal_eq_top_of_ringHom [IsLocalRing R] {L₁ L₂ : Type*} [
 
 variable {H : Type*} [CommRing H]
 
+/--
+@isnad1 id=eq.2h6v.s9.7af7a2b4c6ab from=translated src=- shape=30729ee4 vocab=4c4345ab
+-/
 theorem map_maximalIdeal_away_of_dvd [IsLocalRing R] [Algebra R H] {A : Type*} [CommRing A] [Algebra R A]
     (ψ : H →ₐ[R] A) (g : H) (F : A) (hdiv : ψ g ∣ F)
     (hgen : Ideal.map (algebraMap R (Localization.Away g)) (maximalIdeal R) = ⊤) :
@@ -392,6 +461,9 @@ theorem map_maximalIdeal_away_of_dvd [IsLocalRing R] [Algebra R H] {A : Type*} [
   rw [IsScalarTower.algebraMap_apply R H (Localization.Away g), IsLocalization.Away.lift_eq, RingHom.comp_apply,
     AlgHom.coe_toRingHom, AlgHom.commutes, ← IsScalarTower.algebraMap_apply]
 
+/--
+@isnad1 id=finite.2h3v.s11.76f0e8703a5b from=translated src=- shape=38b2e594 vocab=33dfd0a9
+-/
 theorem finite_away_tmul [Algebra R H] {e : H} (he : IsIdempotentElem e)
     (hfin : Module.Finite R (Localization.Away e)) :
     Module.Finite R (Localization.Away (e ⊗ₜ[R] e : H ⊗[R] H)) := by
@@ -456,12 +528,18 @@ local notation "L" => (Algebra.TensorProduct.includeLeft : H →ₐ[R] H ⊗[R] 
 local notation "Rg" => (Algebra.TensorProduct.includeRight : H →ₐ[R] H ⊗[R] H)
 
 omit [IsLocalRing R] in
+/--
+@isnad1 id=isidempo.2h4v.s8.d9352aff472a from=translated src=- shape=708c7fb6 vocab=1de49e41
+-/
 theorem isIdempotentElem_tmul {a b : H} (ha : IsIdempotentElem a) (hb : IsIdempotentElem b) :
     IsIdempotentElem (a ⊗ₜ[R] b : H ⊗[R] H) := by
   change (a ⊗ₜ[R] b) * (a ⊗ₜ[R] b) = a ⊗ₜ[R] b
   rw [Algebra.TensorProduct.tmul_mul_tmul, ha.eq, hb.eq]
 
 set_option maxHeartbeats 3200000 in
+/--
+@isnad1 id=and.3h3v.s12.6c5a90c05501 from=translated src=- shape=21a703dd vocab=1852c759
+-/
 theorem comul_mul_tmul_of_finitePart {e : H} (he : IsIdempotentElem e)
     (hfin : Module.Finite R (Localization.Away e))
     (hgen : Ideal.map (algebraMap R (Localization.Away (1 - e))) (maximalIdeal R) = ⊤) :
@@ -522,6 +600,9 @@ open scoped _root_.P2MW.S_HopfAlgebra_comul_finitePartIdempotent_mul.FinitePart
 end DeltaCard
 open scoped _root_.P2MW.S_HopfAlgebra_comul_finitePartIdempotent_mul.FinitePart
 
+/--
+@isnad1 id=and.3h3v.s12.6c5a90c05501 from=translated src=- shape=21a703dd vocab=1852c759
+-/
 theorem solution
     (R : Type*) [CommRing R] [IsLocalRing R] (H : Type*) [CommRing H] [HopfAlgebra R H]
     (e : H) (he : IsIdempotentElem e)

@@ -21,6 +21,9 @@ variable {F : Type w'} [Field F] {R : Type u'} [CommRing R]
 noncomputable def conj (e : H ≃ₐc[R] H') (f : H →ₐc[R] H) : H' →ₐc[R] H' :=
   (e : H →ₐc[R] H').comp (f.comp (e.symm : H' →ₐc[R] H))
 
+/--
+@isnad1 id=eq.0h5v.s10.b4c905049890 from=translated src=- shape=43f93625 vocab=015fc08c
+-/
 theorem toAlgHom_conj (e : H ≃ₐc[R] H') (f : H →ₐc[R] H) :
     (conj e f : H' →ₐ[R] H') =
       ((e : H →ₐc[R] H') : H →ₐ[R] H').comp ((f : H →ₐ[R] H).comp ((e.symm : H' →ₐc[R] H) : H' →ₐ[R] H)) :=
@@ -66,9 +69,15 @@ noncomputable def transport (fv : FVectStructure F R H) (e : H ≃ₐc[R] H') : 
     rw [WithConv.ofConv_toConv, h2, AlgHom.convMul_comp_bialgHom_distrib, WithConv.ofConv_toConv,
       WithConv.ofConv_toConv, AlgHom.comp_convMul_distrib, WithConv.ofConv_toConv, WithConv.ofConv_toConv]
 
+/--
+@isnad1 id=eq.0h7v.s10.069ab7421a86 from=translated src=- shape=d018cd11 vocab=6f72440a
+-/
 theorem transport_act (fv : FVectStructure F R H) (e : H ≃ₐc[R] H') (a : F) :
     (transport fv e).act a = (e : H →ₐc[R] H').comp ((fv.act a).comp (e.symm : H' →ₐc[R] H)) := rfl
 
+/--
+@isnad1 id=isfcompa.0h6v.s9.2e10e9a8f007 from=translated src=- shape=a8c66ac2 vocab=e41f4b30
+-/
 theorem isFCompatible_transport (fv : FVectStructure F R H) (e : H ≃ₐc[R] H') :
     IsFCompatible fv (transport fv e) (e : H →ₐc[R] H') := by
   intro a
@@ -78,6 +87,9 @@ theorem isFCompatible_transport (fv : FVectStructure F R H) (e : H ≃ₐc[R] H'
   show e (fv.act a x) = e (fv.act a (e.symm (e x)))
   rw [e.symm_apply_apply]
 
+/--
+@isnad1 id=ex.0h6v.s11.53c38e01a092 from=translated src=- shape=1fb57bf6 vocab=df3f11b2
+-/
 theorem main (fv : FVectStructure F R H) (e : H ≃ₐc[R] H') :
     ∃ fv' : FVectStructure F R H',
       (∀ a : F, fv'.act a = (e : H →ₐc[R] H').comp ((fv.act a).comp (e.symm : H' →ₐc[R] H))) ∧
@@ -86,6 +98,9 @@ theorem main (fv : FVectStructure F R H) (e : H ≃ₐc[R] H') :
 
 end FVTransE72
 
+/--
+@isnad1 id=ex.0h6v.s11.53c38e01a092 from=translated src=- shape=1fb57bf6 vocab=df3f11b2
+-/
 theorem solution
     {F : Type w} [Field F] {R : Type u} [CommRing R]
     {H : Type v} [CommRing H] [Bialgebra R H] {H' : Type x} [CommRing H'] [Bialgebra R H']

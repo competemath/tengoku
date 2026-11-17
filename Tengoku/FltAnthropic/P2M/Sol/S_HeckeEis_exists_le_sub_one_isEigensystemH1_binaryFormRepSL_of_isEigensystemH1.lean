@@ -45,6 +45,9 @@ variable {N ℓ ρ a}
 noncomputable def heckeZ1 (ha : IsCompat N ℓ ρ a) : ↥(coeffCocycles ρ) →ₗ[K] ↥(coeffCocycles ρ) :=
   (heckeLin N ℓ ρ a).restrict fun _ hz => coeffHeckeFun_mem_coeffCocycles N ℓ ρ a ha hz
 
+/--
+@isnad1 id=eq.1h7v.s15.2d573600b6fb from=translated src=- shape=250c4951 vocab=5a5ec754
+-/
 @[scoped simp] theorem coe_heckeZ1 (ha : IsCompat N ℓ ρ a) (z : ↥(coeffCocycles ρ)) :
     (heckeZ1 ha z : Gamma0 N → V) = coeffHeckeFun N ℓ ρ a z := rfl
 
@@ -53,12 +56,21 @@ noncomputable def heckeH1 (ha : IsCompat N ℓ ρ a) : coeffH1 ρ →ₗ[K] coef
     ((coeffCoboundaries ρ).comap (coeffCocycles ρ).subtype) (heckeZ1 ha)
     fun _ hz => coeffHeckeFun_mem_coeffCoboundaries N ℓ ρ a ha hz
 
+/--
+@isnad1 id=eq.1h7v.s16.352312a50622 from=translated src=- shape=aa68d3a3 vocab=a061bb9a
+-/
 theorem heckeH1_mk (ha : IsCompat N ℓ ρ a) (z : ↥(coeffCocycles ρ)) :
     heckeH1 ha (coeffH1Mk ρ z) = coeffH1Mk ρ (heckeZ1 ha z) := rfl
 
+/--
+@isnad1 id=iscoeffh.1h6v.s9.3abe9ec2b441 from=translated src=- shape=a6aab16c vocab=9533317a
+-/
 theorem isCoeffHeckeOnH1_heckeH1 (ha : IsCompat N ℓ ρ a) : IsCoeffHeckeOnH1 N ℓ ρ a (heckeH1 ha) :=
   fun z => ⟨heckeZ1 ha z, rfl, rfl⟩
 
+/--
+@isnad1 id=eq.2h8v.s12.7bc8b8f33f37 from=translated src=- shape=3f0f69dc vocab=77bb7152
+-/
 theorem unique_of_isCoeffHeckeOnH1 {T T' : coeffH1 ρ →ₗ[K] coeffH1 ρ} (hT : IsCoeffHeckeOnH1 N ℓ ρ a T)
     (hT' : IsCoeffHeckeOnH1 N ℓ ρ a T') : T = T' := by
   refine LinearMap.ext fun x => ?_
@@ -73,6 +85,9 @@ theorem eq_heckeH1_of_isCoeffHeckeOnH1 (ha : IsCompat N ℓ ρ a) {T : coeffH1 �
     (hT : IsCoeffHeckeOnH1 N ℓ ρ a T) : T = heckeH1 ha :=
   unique_of_isCoeffHeckeOnH1 hT (isCoeffHeckeOnH1_heckeH1 ha)
 
+/--
+@isnad1 id=iff.0h6v.s16.24975f9bdcd4 from=translated src=- shape=7ea0ec33 vocab=3b67d255
+-/
 theorem coeffH1Mk_eq_iff (z w : ↥(coeffCocycles ρ)) :
     coeffH1Mk ρ z = coeffH1Mk ρ w ↔ (z : Gamma0 N → V) - w ∈ coeffCoboundaries ρ :=
   (Submodule.Quotient.eq _).trans Submodule.mem_comap
@@ -84,6 +99,9 @@ section Comm
 variable {K : Type*} [CommRing K] {V : Type*} [AddCommGroup V] [Module K V]
 variable {N : ℕ} {ρ : Representation K (Gamma0 N) V}
 
+/--
+@isnad1 id=eq.8h9v.s14.1f73f5a6868f from=translated src=- shape=488dbb30 vocab=5844ca81
+-/
 theorem heckeH1_comm {ℓ ℓ' : ℕ} [NeZero ℓ] [NeZero ℓ'] (hℓ : ℓ.Prime) (hℓ' : ℓ'.Prime)
     (hℓN : ¬ ℓ ∣ N) (hℓ'N : ¬ ℓ' ∣ N) (hne : ℓ ≠ ℓ') {a a' : V →ₗ[K] V}
     (ha : IsCompat N ℓ ρ a) (ha' : IsCompat N ℓ' ρ a') (hcomm : a ∘ₗ a' = a' ∘ₗ a) (x : coeffH1 ρ) :
@@ -110,12 +128,18 @@ section Twist
 variable {K : Type*} [CommRing K] {V : Type*} [AddCommGroup V] [Module K V]
 variable (N : ℕ) (ρ : Representation K (Gamma0 N) V)
 
+/--
+@isnad1 id=eq.0h8v.s11.61e7101b0d0c from=translated src=- shape=49ac20de vocab=73c230cb
+-/
 theorem coeffHeckeFun_smul (ℓ : ℕ) [NeZero ℓ] (c : K) (a : V →ₗ[K] V) (z : Gamma0 N → V) :
     coeffHeckeFun N ℓ ρ (c • a) z = c • coeffHeckeFun N ℓ ρ a z := by
   letI := (heckeUpper N ℓ).fintypeQuotientOfFiniteIndex
   ext g
   simp only [coeffHeckeFun_apply, Pi.smul_apply, LinearMap.smul_apply, map_smul, Finset.smul_sum]
 
+/--
+@isnad1 id=iscoeffh.1h8v.s13.73d827aee343 from=translated src=- shape=a946e746 vocab=b40c3112
+-/
 theorem smul_isCoeffHeckeOnH1 (ℓ : ℕ) [NeZero ℓ] (c : K) (a : V →ₗ[K] V)
     {T : coeffH1 ρ →ₗ[K] coeffH1 ρ} (hT : IsCoeffHeckeOnH1 N ℓ ρ a T) :
     IsCoeffHeckeOnH1 N ℓ ρ (c • a) (c • T) := by
@@ -125,6 +149,9 @@ theorem smul_isCoeffHeckeOnH1 (ℓ : ℕ) [NeZero ℓ] (c : K) (a : V →ₗ[K] 
   · rw [Submodule.coe_smul, hw, coeffHeckeFun_smul]
   · rw [LinearMap.smul_apply, hTw, map_smul]
 
+/--
+@isnad1 id=iseigens.2h9v.s10.8cbf5e07d511 from=translated src=- shape=b98cae9e vocab=f957aa2b
+-/
 theorem isEigensystemH1_of_smul (a a' : ℕ → (V →ₗ[K] V)) (χ : ℕ → K) (S₀ : Set ℕ) (lam : ℕ → K)
     (haa' : ∀ ℓ : ℕ, ℓ.Prime → ¬ ℓ ∣ N → ℓ ∉ S₀ → a' ℓ = χ ℓ • a ℓ)
     (h : IsEigensystemH1 N ρ a S₀ lam) :
@@ -139,6 +166,9 @@ theorem isEigensystemH1_of_smul (a a' : ℕ → (V →ₗ[K] V)) (χ : ℕ → K
     exact this
   · rw [LinearMap.smul_apply, hTx, smul_smul]
 
+/--
+@isnad1 id=iseigens.3h10v.s10.4c93d8755714 from=translated src=- shape=f003c36d vocab=f957aa2b
+-/
 theorem isEigensystemH1_of_smul_of_mul_eq_one (a a' : ℕ → (V →ₗ[K] V)) (χ χ' : ℕ → K) (S₀ : Set ℕ)
     (lam : ℕ → K) (haa' : ∀ ℓ : ℕ, ℓ.Prime → ¬ ℓ ∣ N → ℓ ∉ S₀ → a' ℓ = χ ℓ • a ℓ)
     (hunit : ∀ ℓ : ℕ, ℓ.Prime → ¬ ℓ ∣ N → ℓ ∉ S₀ → χ' ℓ * χ ℓ = 1)
@@ -157,10 +187,16 @@ variable (N : ℕ) (ρV : Representation K (Gamma0 N) V) (ρW : Representation K
 variable (f : V →ₗ[K] W) (hf : ∀ g : Gamma0 N, f ∘ₗ ρV g = ρW g ∘ₗ f)
 
 include hf in
+/--
+@isnad1 id=eq.1h9v.s13.18bd19139388 from=translated src=- shape=010be3fa vocab=f10ef866
+-/
 theorem f_ρ (g : Gamma0 N) (v : V) : f (ρV g v) = ρW g (f v) :=
   LinearMap.congr_fun (hf g) v
 
 include hf in
+/--
+@isnad1 id=mem.2h8v.s13.c103dc4d2341 from=translated src=- shape=ea847a71 vocab=481e6098
+-/
 theorem comp_mem_coeffCocycles {z : Gamma0 N → V} (hz : z ∈ coeffCocycles ρV) :
     (f ∘ z) ∈ coeffCocycles ρW := by
   intro g h
@@ -171,9 +207,15 @@ def Z1map : ↥(coeffCocycles ρV) →ₗ[K] ↥(coeffCocycles ρW) where
   map_add' z w := by ext g; simp
   map_smul' c z := by ext g; simp
 
+/--
+@isnad1 id=eq.1h8v.s15.e8a1f6ad3d20 from=translated src=- shape=a30a7c36 vocab=909fb8cd
+-/
 @[scoped simp] theorem coe_Z1map (z : ↥(coeffCocycles ρV)) :
     (Z1map N ρV ρW f hf z : Gamma0 N → W) = f ∘ (z : Gamma0 N → V) := rfl
 
+/--
+@isnad1 id=le.1h7v.s16.9ad0cf9d302d from=translated src=- shape=1fa0c54c vocab=dbfeb918
+-/
 theorem comap_le_comap_Z1map :
     (coeffCoboundaries ρV).comap (coeffCocycles ρV).subtype ≤
       ((coeffCoboundaries ρW).comap (coeffCocycles ρW).subtype).comap (Z1map N ρV ρW f hf) := by
@@ -192,6 +234,9 @@ def H1map : coeffH1 ρV →ₗ[K] coeffH1 ρW :=
     ((coeffCoboundaries ρW).comap (coeffCocycles ρW).subtype) (Z1map N ρV ρW f hf)
     (comap_le_comap_Z1map N ρV ρW f hf)
 
+/--
+@isnad1 id=eq.1h8v.s16.baf08b4722e8 from=translated src=- shape=8e67d6b0 vocab=2af5577b
+-/
 theorem H1map_mk (z : ↥(coeffCocycles ρV)) :
     H1map N ρV ρW f hf (coeffH1Mk ρV z) = coeffH1Mk ρW (Z1map N ρV ρW f hf z) := rfl
 
@@ -199,6 +244,9 @@ variable (aV : V →ₗ[K] V) (aW : W →ₗ[K] W) (hfa : f ∘ₗ aV = aW ∘�
 
 include hf hfa in
 
+/--
+@isnad1 id=eq.2h11v.s12.7c2814d75f5e from=translated src=- shape=3f3e615e vocab=c7ff0e1b
+-/
 theorem comp_coeffHeckeFun (ℓ : ℕ) [NeZero ℓ] (z : Gamma0 N → V) :
     f ∘ coeffHeckeFun N ℓ ρV aV z = coeffHeckeFun N ℓ ρW aW (f ∘ z) := by
   letI := (heckeUpper N ℓ).fintypeQuotientOfFiniteIndex
@@ -210,6 +258,9 @@ theorem comp_coeffHeckeFun (ℓ : ℕ) [NeZero ℓ] (z : Gamma0 N → V) :
 
 include hfa in
 
+/--
+@isnad1 id=eq.4h11v.s14.2897e46f23ef from=translated src=- shape=0009fbd9 vocab=65ac25ff
+-/
 theorem H1map_heckeH1 (ℓ : ℕ) [NeZero ℓ] (haV : IsCompat N ℓ ρV aV) (haW : IsCompat N ℓ ρW aW)
     (x : coeffH1 ρV) :
     H1map N ρV ρW f hf (heckeH1 haV x) = heckeH1 haW (H1map N ρV ρW f hf x) := by
@@ -233,6 +284,9 @@ variable (π : V →ₗ[K] V'') (hπ : ∀ g : Gamma0 N, π ∘ₗ ρ g = ρ'' g
 
 include hi hπ in
 
+/--
+@isnad1 id=ex.6h11v.s14.e13e0114791f from=translated src=- shape=dc9ddd54 vocab=68d6bcdd
+-/
 theorem exists_H1map_eq_of_H1map_eq_zero (hinj : Function.Injective i)
     (hexact : LinearMap.range i = LinearMap.ker π) (hsurj : Function.Surjective π) (x : coeffH1 ρ)
     (hx : H1map N ρ ρ'' π hπ x = 0) :
@@ -271,6 +325,9 @@ section FiniteDim
 
 variable {K : Type*} [Field K] {V : Type*} [AddCommGroup V] [Module K V]
 
+/--
+@isnad1 id=eq.2h7v.s9.67a7e60f4100 from=translated src=- shape=ed0e8ddc vocab=e6c74698
+-/
 theorem cocycle_apply_eq_zero_of_closure {G : Type*} [Group G] (ρ : Representation K G V)
     (z : ↥(coeffCocycles ρ)) (S : Set G) (hS : ∀ s ∈ S, (z : G → V) s = 0)
     (g : G) (hg : g ∈ Subgroup.closure S) : (z : G → V) g = 0 := by
@@ -296,6 +353,9 @@ theorem cocycle_apply_eq_zero_of_closure {G : Type*} [Group G] (ρ : Representat
     have h2 : ρ x⁻¹ (ρ x ((z : G → V) x⁻¹)) = 0 := by rw [← h, map_zero]
     rwa [← Module.End.mul_apply, ← map_mul, inv_mul_cancel, map_one, Module.End.one_apply] at h2
 
+/--
+@isnad1 id=finitedi.0h4v.s10.03ad37198edd from=translated src=- shape=b7579ad1 vocab=af2047d0
+-/
 theorem finiteDimensional_coeffH1 (N : ℕ) [NeZero N] [FiniteDimensional K V]
     (ρ : Representation K (Gamma0 N) V) : FiniteDimensional K (coeffH1 ρ) := by
 
@@ -324,6 +384,9 @@ section LinAlg
 
 variable {F : Type*} [Field F]
 
+/--
+@isnad1 id=eq.1h6v.s11.cfeea19d835c from=translated src=- shape=ad4f12d2 vocab=79393079
+-/
 theorem coe_restrict_pow {M : Type*} [AddCommGroup M] [Module F M] (f : M →ₗ[F] M)
     (P : Submodule F M) (h : ∀ v ∈ P, f v ∈ P) (k : ℕ) (v : ↥P) :
     (((f.restrict h) ^ k) v : M) = (f ^ k) (v : M) := by
@@ -331,6 +394,9 @@ theorem coe_restrict_pow {M : Type*} [AddCommGroup M] [Module F M] (f : M →ₗ
   | zero => rfl
   | succ k ih => rw [pow_succ, pow_succ, Module.End.mul_apply, Module.End.mul_apply, ih]; rfl
 
+/--
+@isnad1 id=ex.4h5v.s8.e8c0e0173d14 from=translated src=- shape=a40a5dce vocab=51b0c4c7
+-/
 theorem exists_common_ker_of_nilpotent : ∀ (d : ℕ) {M : Type*} [AddCommGroup M] [Module F M]
     [FiniteDimensional F M] {ι : Type*} (T : ι → M →ₗ[F] M),
     (∀ i j, Commute (T i) (T j)) → (∀ i, IsNilpotent (T i)) → Nontrivial M →
@@ -374,6 +440,9 @@ theorem exists_common_ker_of_nilpotent : ∀ (d : ℕ) {M : Type*} [AddCommGroup
   refine ⟨(v : M), fun h => hv (Subtype.ext h), fun i => ?_⟩
   exact congrArg Subtype.val (hTv i)
 
+/--
+@isnad1 id=ex.4h6v.s8.285a109167b8 from=translated src=- shape=7defd987 vocab=1bc573b6
+-/
 theorem exists_common_ker_of_range_le : ∀ (d : ℕ) {M : Type*} [AddCommGroup M] [Module F M]
     [FiniteDimensional F M] {ι : Type*} (T : ι → M →ₗ[F] M),
     (∀ i j, Commute (T i) (T j)) → ∀ (P : Submodule F M), P ≠ ⊤ → (∀ i x, T i x ∈ P) →
@@ -438,6 +507,9 @@ theorem exists_common_ker_of_range_le : ∀ (d : ℕ) {M : Type*} [AddCommGroup 
   refine ⟨(v : M), fun h => hv (Subtype.ext h), fun i => ?_⟩
   exact congrArg Subtype.val (hTv i)
 
+/--
+@isnad1 id=ex.3h6v.s9.c7cf341095a3 from=translated src=- shape=bfd765c3 vocab=d0987e92
+-/
 theorem exists_common_eigenvector {M : Type*} [AddCommGroup M] [Module F M] [FiniteDimensional F M]
     {ι : Type*} (T : ι → M →ₗ[F] M) (hT : ∀ i j, Commute (T i) (T j)) (c : ι → F)
     (P : Submodule F M) (hP : P ≠ ⊤) (hTP : ∀ i x, T i x - c i • x ∈ P) :
@@ -463,6 +535,9 @@ section Systems
 
 def Good (N : ℕ) (S₀ : Set ℕ) (ℓ : ℕ) : Prop := ℓ.Prime ∧ ¬ ℓ ∣ N ∧ ℓ ∉ S₀
 
+/--
+@isnad1 id=nezero.1h3v.s4.350e4afccb45 from=translated src=- shape=28786c0e vocab=b9d471e2
+-/
 theorem Good.neZero {N : ℕ} {S₀ : Set ℕ} {ℓ : ℕ} (h : Good N S₀ ℓ) : NeZero ℓ := ⟨h.1.ne_zero⟩
 
 variable {K : Type*} [Field K] {N : ℕ} (S₀ : Set ℕ)
@@ -483,6 +558,9 @@ def GoodCommute {ρ : Representation K (Gamma0 N) V} {a : ℕ → (V →ₗ[K] V
     (hc : GoodCompat S₀ ρ a) : Prop :=
   ∀ (ℓ ℓ' : ℕ) (h : Good N S₀ ℓ) (h' : Good N S₀ ℓ'), Commute (Tgood S₀ hc ℓ h) (Tgood S₀ hc ℓ' h')
 
+/--
+@isnad1 id=iff.1h7v.s11.1d0a5d9aae7d from=translated src=- shape=889952b7 vocab=28e7f27e
+-/
 theorem isEigensystemH1_iff {ρ : Representation K (Gamma0 N) V} {a : ℕ → (V →ₗ[K] V)}
     (hc : GoodCompat S₀ ρ a) (lam : ℕ → K) :
     IsEigensystemH1 N ρ a S₀ lam ↔ ∃ x : coeffH1 ρ, x ≠ 0 ∧ IsEigvec S₀ hc lam x := by
@@ -499,6 +577,9 @@ theorem isEigensystemH1_iff {ρ : Representation K (Gamma0 N) V} {a : ℕ → (V
     haveI : NeZero ℓ := ⟨hℓ.ne_zero⟩
     exact ⟨Tgood S₀ hc ℓ ⟨hℓ, hℓN, hℓS⟩, isCoeffHeckeOnH1_heckeH1 _, h ℓ ⟨hℓ, hℓN, hℓS⟩⟩
 
+/--
+@isnad1 id=goodcomm.2h6v.s10.5954e7fa2ad6 from=translated src=- shape=4594b86c vocab=a2c7ce27
+-/
 theorem goodCommute_of_comm {ρ : Representation K (Gamma0 N) V} {a : ℕ → (V →ₗ[K] V)}
     (hc : GoodCompat S₀ ρ a) (hcomm : ∀ ℓ ℓ', Good N S₀ ℓ → Good N S₀ ℓ' → a ℓ ∘ₗ a ℓ' = a ℓ' ∘ₗ a ℓ) :
     GoodCommute S₀ hc := by
@@ -520,12 +601,18 @@ variable (f : V →ₗ[K] W) (hf : ∀ g : Gamma0 N, f ∘ₗ ρV g = ρW g ∘�
   (hfa : ∀ ℓ, Good N S₀ ℓ → f ∘ₗ aV ℓ = aW ℓ ∘ₗ f)
 
 include hfa in
+/--
+@isnad1 id=eq.5h12v.s14.7f2f6e36073d from=translated src=- shape=48e572ce vocab=6964d6ec
+-/
 theorem H1map_Tgood (ℓ : ℕ) (h : Good N S₀ ℓ) (x : coeffH1 ρV) :
     H1map N ρV ρW f hf (Tgood S₀ hcV ℓ h x) = Tgood S₀ hcW ℓ h (H1map N ρV ρW f hf x) := by
   haveI := h.neZero
   exact H1map_heckeH1 N ρV ρW f hf (aV ℓ) (aW ℓ) (hfa ℓ h) ℓ (hcV ℓ h) (hcW ℓ h) x
 
 include hfa in
+/--
+@isnad1 id=iseigvec.5h12v.s13.0fa45c3ab952 from=translated src=- shape=2c00dff0 vocab=f5a93440
+-/
 theorem isEigvec_H1map {lam : ℕ → K} {x : coeffH1 ρV} (hx : IsEigvec S₀ hcV lam x) :
     IsEigvec S₀ hcW lam (H1map N ρV ρW f hf x) := by
   intro ℓ h
@@ -546,6 +633,9 @@ variable (π : V →ₗ[K] V'') (hπ : ∀ g : Gamma0 N, π ∘ₗ ρ g = ρ'' g
 
 include hi hia hπ hπa in
 
+/--
+@isnad1 id=or.13h16v.s14.e4cafaceda60 from=translated src=- shape=23fe45ec vocab=1e2665bd
+-/
 theorem step [FiniteDimensional K (coeffH1 ρ')] (hcomm' : GoodCommute S₀ hc')
     (hinj : Function.Injective i) (hexact : LinearMap.range i = LinearMap.ker π)
     (hsurj : Function.Surjective π) (lam : ℕ → K) (x : coeffH1 ρ) (hx : x ≠ 0)
@@ -604,6 +694,9 @@ def subRep : Representation K (Gamma0 N) ↥W where
   map_one' := LinearMap.ext fun v => Subtype.ext (by simp)
   map_mul' g h := LinearMap.ext fun v => Subtype.ext (by simp)
 
+/--
+@isnad1 id=eq.1h7v.s13.8062699c1d93 from=translated src=- shape=8d1caf38 vocab=54f5ece2
+-/
 @[scoped simp] theorem coe_subRep_apply (g : Gamma0 N) (v : ↥W) :
     ((subRep ρ W hρW g v : ↥W) : V) = ρ g v := rfl
 
@@ -612,14 +705,23 @@ open Classical in
 noncomputable def subFam : ℕ → (↥W →ₗ[K] ↥W) := fun ℓ =>
   if h : Good N S₀ ℓ then (a ℓ).restrict (haW ℓ h) else 0
 
+/--
+@isnad1 id=eq.2h7v.s9.962c006aaded from=translated src=- shape=205d34d0 vocab=14c319c1
+-/
 theorem subFam_of_good {ℓ : ℕ} (h : Good N S₀ ℓ) :
     subFam S₀ a W haW ℓ = (a ℓ).restrict (haW ℓ h) := by
   simp [subFam, h]
 
+/--
+@isnad1 id=eq.2h8v.s10.49029a1e3d29 from=translated src=- shape=5da6f001 vocab=4e641c2c
+-/
 @[scoped simp] theorem coe_subFam_apply {ℓ : ℕ} (h : Good N S₀ ℓ) (v : ↥W) :
     ((subFam S₀ a W haW ℓ v : ↥W) : V) = a ℓ v := by
   rw [subFam_of_good S₀ a W haW h]; rfl
 
+/--
+@isnad1 id=goodcomp.3h7v.s11.9deaf188b370 from=translated src=- shape=8926fc11 vocab=e4f4c8b5
+-/
 theorem goodCompat_sub (hc : GoodCompat S₀ ρ a) : GoodCompat S₀ (subRep ρ W hρW) (subFam S₀ a W haW) := by
   intro ℓ h u
   refine LinearMap.ext fun v => Subtype.ext ?_
@@ -628,6 +730,9 @@ theorem goodCompat_sub (hc : GoodCompat S₀ ρ a) : GoodCompat S₀ (subRep ρ 
   rw [coe_subFam_apply S₀ a W haW h, coe_subRep_apply, coe_subRep_apply, coe_subFam_apply S₀ a W haW h]
   exact LinearMap.congr_fun (hc ℓ h u) (v : V)
 
+/--
+@isnad1 id=eq.4h8v.s10.b48056e4bd01 from=translated src=- shape=1b052406 vocab=ec7ad74f
+-/
 theorem sub_comm (hcomm : ∀ ℓ ℓ', Good N S₀ ℓ → Good N S₀ ℓ' → a ℓ ∘ₗ a ℓ' = a ℓ' ∘ₗ a ℓ)
     (ℓ ℓ' : ℕ) (h : Good N S₀ ℓ) (h' : Good N S₀ ℓ') :
     subFam S₀ a W haW ℓ ∘ₗ subFam S₀ a W haW ℓ' = subFam S₀ a W haW ℓ' ∘ₗ subFam S₀ a W haW ℓ := by
@@ -646,6 +751,9 @@ section Tower
 
 variable (p : ℕ) [Fact p.Prime] (F : Type) [Field F] [CharP F p] (N : ℕ) [NeZero N] (S₀ : Set ℕ)
 
+/--
+@isnad1 id=eq.2h3v.s6.add72c006c7b from=translated src=- shape=cb20e23d vocab=1834d1ce
+-/
 theorem natCast_pow_sub_one_eq_one {ℓ : ℕ} (hℓ : ℓ.Prime) (hℓp : ℓ ≠ p) : (ℓ : F) ^ (p - 1) = 1 := by
   have hne : (ℓ : ZMod p) ≠ 0 := by
     rw [Ne, ZMod.natCast_eq_zero_iff]
@@ -657,16 +765,28 @@ theorem natCast_pow_sub_one_eq_one {ℓ : ℕ} (hℓ : ℓ.Prime) (hℓp : ℓ �
 
 def dMat (ℓ : ℕ) : Matrix (Fin 2) (Fin 2) ℤ := !![(ℓ : ℤ), 0; 0, 1]
 
+/--
+@isnad1 id=eq.0h1v.s4.9fd91ee1751b from=translated src=- shape=462718b0 vocab=ba0f92fa
+-/
 theorem det_dMat (ℓ : ℕ) : (dMat ℓ).det = (ℓ : ℤ) := by
   rw [dMat, Matrix.det_fin_two_of]; ring
 
+/--
+@isnad1 id=eq.0h2v.s7.c37349a26283 from=translated src=- shape=e011af2d vocab=9d05a179
+-/
 theorem dMat_comm (ℓ ℓ' : ℕ) : dMat ℓ * dMat ℓ' = dMat ℓ' * dMat ℓ := by
   simp only [dMat, Matrix.mul_fin_two]
   congr 1 <;> ring
 
+/--
+@isnad1 id=eq.0h3v.s12.708fb36bfae9 from=translated src=- shape=920c3da7 vocab=e7f7cfa7
+-/
 theorem binaryFormAlphaAdj_eq (n ℓ : ℕ) : binaryFormAlphaAdj F n ℓ = binaryFormRep F n (dMat ℓ) := rfl
 
 variable {p S₀} in
+/--
+@isnad1 id=not.2h4v.s6.7ed61b1da290 from=translated src=- shape=fe0cea14 vocab=63ccc1b7
+-/
 theorem not_dvd_det_dMat_of_good (hS₀p : p ∈ S₀) {ℓ : ℕ} (h : Good N S₀ ℓ) : ¬ (p : ℤ) ∣ (dMat ℓ).det := by
   rw [det_dMat]
   intro hd
@@ -674,6 +794,9 @@ theorem not_dvd_det_dMat_of_good (hS₀p : p ∈ S₀) {ℓ : ℕ} (h : Good N S
   have : p = ℓ := (Nat.prime_dvd_prime_iff_eq (Fact.out) h.1).mp hd'
   exact h.2.2 (this ▸ hS₀p)
 
+/--
+@isnad1 id=not.0h3v.s9.87aa5cc68dc3 from=translated src=- shape=1695f3da vocab=f9d2c684
+-/
 theorem not_dvd_det_gamma (γ : Gamma0 N) :
     ¬ (p : ℤ) ∣ (((γ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ)).det := by
   rw [(γ : SL(2, ℤ)).2]
@@ -686,23 +809,38 @@ variable (n : ℕ)
 noncomputable abbrev ρSym : Representation F (Gamma0 N) ↥(BinaryForm F n) :=
   (binaryFormRepSL F n).comp (Gamma0 N).subtype
 
+/--
+@isnad1 id=eq.0h4v.s13.2fcfaa102309 from=translated src=- shape=68028130 vocab=ce7c61dd
+-/
 theorem ρSym_apply (γ : Gamma0 N) :
     ρSym F N n γ = binaryFormRep F n (((γ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ)) := rfl
 
+/--
+@isnad1 id=iscompat.0h4v.s8.da93ee0794aa from=translated src=- shape=e535279d vocab=6f59a221
+-/
 theorem isCompat_sym (ℓ : ℕ) [NeZero ℓ] : IsCompat N ℓ (ρSym F N n) (binaryFormAlphaAdj F n ℓ) :=
   fun u => binaryFormAlphaAdj_comp_binaryFormRepSL_heckeConj F n N ℓ u
 
+/--
+@isnad1 id=goodcomp.0h5v.s12.c1d0a9e9e3af from=translated src=- shape=37db788e vocab=4f7b45af
+-/
 theorem goodCompat_sym_smul (c : ℕ → F) :
     GoodCompat S₀ (ρSym F N n) (fun ℓ => c ℓ • binaryFormAlphaAdj F n ℓ) := by
   intro ℓ h u
   haveI := h.neZero
   rw [LinearMap.smul_comp, LinearMap.comp_smul, isCompat_sym F N n ℓ u]
 
+/--
+@isnad1 id=goodcomp.0h4v.s8.240f7d1d9b76 from=translated src=- shape=e37c1977 vocab=705f5622
+-/
 theorem goodCompat_sym : GoodCompat S₀ (ρSym F N n) (fun ℓ => binaryFormAlphaAdj F n ℓ) := by
   intro ℓ h u
   haveI := h.neZero
   exact isCompat_sym F N n ℓ u
 
+/--
+@isnad1 id=eq.0h4v.s11.d00d1abc674c from=translated src=- shape=438657ad vocab=1fcbfc33
+-/
 theorem alpha_comm (ℓ ℓ' : ℕ) :
     binaryFormAlphaAdj F n ℓ ∘ₗ binaryFormAlphaAdj F n ℓ' = binaryFormAlphaAdj F n ℓ' ∘ₗ binaryFormAlphaAdj F n ℓ := by
   rw [binaryFormAlphaAdj_eq, binaryFormAlphaAdj_eq]
@@ -710,6 +848,9 @@ theorem alpha_comm (ℓ ℓ' : ℕ) :
     binaryFormRep F n (dMat ℓ') * binaryFormRep F n (dMat ℓ)
   rw [← map_mul, ← map_mul, dMat_comm]
 
+/--
+@isnad1 id=finitedi.0h2v.s8.2f74ad819be8 from=translated src=- shape=d4ac30cc vocab=98e40443
+-/
 scoped instance finiteDimensional_binaryForm : FiniteDimensional F ↥(BinaryForm F n) := by
   have hle : BinaryForm F n ≤ MvPolynomial.restrictTotalDegree (Fin 2) F n := fun φ hφ =>
     (MvPolynomial.mem_restrictTotalDegree _ _ _).mpr
@@ -723,11 +864,17 @@ variable {r : ℕ} (W : Fin (r + 1) → Submodule F ↥(BinaryForm F n))
   (hS₀p : p ∈ S₀)
 
 include hstab in
+/--
+@isnad1 id=mem.2h9v.s14.0f08e8fe9407 from=translated src=- shape=456f55ad vocab=c237991c
+-/
 theorem stab_gamma (i : Fin (r + 1)) (g : Gamma0 N) (v : ↥(BinaryForm F n)) (hv : v ∈ W i) :
     ρSym F N n g v ∈ W i :=
   hstab i _ (not_dvd_det_gamma p N g) ⟨v, hv, rfl⟩
 
 include hstab hS₀p in
+/--
+@isnad1 id=mem.4h10v.s13.c8dfb0eca877 from=translated src=- shape=b1b90629 vocab=134810f7
+-/
 theorem stab_alpha (i : Fin (r + 1)) (ℓ : ℕ) (h : Good N S₀ ℓ) (v : ↥(BinaryForm F n)) (hv : v ∈ W i) :
     binaryFormAlphaAdj F n ℓ v ∈ W i :=
   hstab i _ (not_dvd_det_dMat_of_good N hS₀p h) ⟨v, hv, rfl⟩
@@ -739,15 +886,24 @@ noncomputable def aW (i : Fin (r + 1)) : ℕ → (↥(W i) →ₗ[F] ↥(W i)) :
   subFam S₀ (fun ℓ => binaryFormAlphaAdj F n ℓ) (W i)
     (fun ℓ h v hv => stab_alpha p F N S₀ W hstab hS₀p i ℓ h v hv)
 
+/--
+@isnad1 id=goodcomp.2h8v.s13.ae244f06fbd8 from=translated src=- shape=cbfc7799 vocab=d000237d
+-/
 theorem goodCompat_W (i : Fin (r + 1)) :
     GoodCompat (V := ↥(W i)) S₀ (ρW p F N W hstab i) (aW p F N S₀ W hstab hS₀p i) :=
   goodCompat_sub S₀ _ _ (W i) _ _ (goodCompat_sym F N S₀ n)
 
+/--
+@isnad1 id=goodcomm.2h8v.s13.8cfc9d86cd58 from=translated src=- shape=485ad815 vocab=3813fd6c
+-/
 theorem goodCommute_W (i : Fin (r + 1)) : GoodCommute S₀ (goodCompat_W p F N S₀ W hstab hS₀p i) :=
   goodCommute_of_comm S₀ _ (sub_comm S₀ _ (W i) _ (fun ℓ ℓ' _ _ => alpha_comm F n ℓ ℓ'))
 
 abbrev H1W (i : Fin (r + 1)) : Type := coeffH1 (V := ↥(W i)) (ρW p F N W hstab i)
 
+/--
+@isnad1 id=finitedi.1h7v.s13.0349365f73a8 from=translated src=- shape=48ef9fc5 vocab=d3f79a8e
+-/
 scoped instance finiteDimensional_coeffH1_W (i : Fin (r + 1)) : FiniteDimensional F (H1W p F N W hstab i) :=
   finiteDimensional_coeffH1 (V := ↥(W i)) N _
 
@@ -757,6 +913,9 @@ def Goal (lam : ℕ → F) : Prop :=
 
 include hS₀p in
 
+/--
+@isnad1 id=goal.4h8v.s13.a6ec78f33388 from=translated src=- shape=2b9d2f08 vocab=3c8e5d64
+-/
 theorem goal_of_twisted (lam : ℕ → F) (a b : ℕ) (ha : a ≤ p - 1) (y : coeffH1 (ρSym F N a)) (hy : y ≠ 0)
     (heig : IsEigvec S₀ (goodCompat_sym_smul F N S₀ a (fun ℓ => (ℓ : F) ^ b)) lam y) :
     Goal p F N S₀ lam := by
@@ -782,6 +941,9 @@ variable (hstep : ∀ i : Fin r, ∃ (a b : ℕ) (π : ↥(BinaryForm F n) →�
 
 include hstep hW0 in
 
+/--
+@isnad1 id=goal.6h9v.s15.1f1880eaa380 from=translated src=- shape=e5776bac vocab=375858cf
+-/
 theorem descend (lam : ℕ → F) : ∀ (k : ℕ) (hk : k < r + 1),
     (∃ x : H1W p F N W hstab ⟨k, hk⟩, x ≠ 0 ∧
       IsEigvec S₀ (goodCompat_W p F N S₀ W hstab hS₀p ⟨k, hk⟩) lam x) → Goal p F N S₀ lam := by
@@ -856,6 +1018,9 @@ theorem descend (lam : ℕ → F) : ∀ (k : ℕ) (hk : k < r + 1),
     · exact goal_of_twisted p F N S₀ hS₀p lam a b ha y hy hyeig
     · exact ih hk' ⟨y, hy, hyeig⟩
 
+/--
+@isnad1 id=ex.5h9v.s14.ab7ef6492888 from=translated src=- shape=fc606d8f vocab=aba01e16
+-/
 theorem top (hWr : W (Fin.last r) = ⊤) (lam : ℕ → F) (x : coeffH1 (ρSym F N n)) (hx : x ≠ 0)
     (heig : IsEigvec S₀ (goodCompat_sym F N S₀ n) lam x) :
     ∃ y : H1W p F N W hstab (Fin.last r), y ≠ 0 ∧
@@ -897,6 +1062,9 @@ end R2WT
 open scoped _root_.P2MW.S_HeckeEis_exists_le_sub_one_isEigensystemH1_binaryFormRepSL_of_isEigensystemH1.R2WT
 
 open scoped MatrixGroups in
+/--
+@isnad1 id=ex.3h6v.s13.1ed9837d14d5 from=translated src=- shape=4d349580 vocab=47804e89
+-/
 theorem solution
     (p : ℕ) (hp : p.Prime) (N : ℕ) [NeZero N] (S₀ : Set ℕ) (hS₀p : p ∈ S₀)
     (F : Type) [Field F] [CharP F p] (n : ℕ) (lam : ℕ → F)

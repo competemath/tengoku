@@ -17,6 +17,9 @@ section StandardEtalePairSections
 
 variable {R : Type u} [CommRing R] [HenselianLocalRing R]
 
+/--
+@isnad1 id=ex.0h3v.s8.54d8da2089e2 from=translated src=- shape=34bbd38a vocab=7ab838d8
+-/
 theorem standardEtalePair_residueSection_exists
     (P : StandardEtalePair R) (φ : P.Ring →ₐ[R] ResidueField R) :
     ∃ ret : P.Ring →ₐ[R] R,
@@ -61,6 +64,9 @@ section IsStandardEtaleSections
 
 variable {R : Type u} [CommRing R] [HenselianLocalRing R]
 
+/--
+@isnad1 id=ex.0h3v.s8.090d48c2f7b2 from=translated src=- shape=4fa6c7e3 vocab=b875ef8f
+-/
 theorem isStandardEtale_residueSection_exists
     (S : Type u) [CommRing S] [Algebra R S] [Algebra.IsStandardEtale R S]
     (φ : S →ₐ[R] ResidueField R) :
@@ -78,6 +84,9 @@ section Gluing
 
 variable {R : Type u} [CommRing R] [HenselianLocalRing R]
 
+/--
+@isnad1 id=ex.0h3v.s8.95f570593b75 from=translated src=- shape=4fa6c7e3 vocab=287acd46
+-/
 theorem etale_residueSection_exists_of_henselianLocalRing
     (S : Type u) [CommRing S] [Algebra R S] [Algebra.Etale R S]
     (φ : S →ₐ[R] ResidueField R) :
@@ -110,6 +119,9 @@ end Gluing
 
 end W2Port
 
+/--
+@isnad1 id=ex.0h3v.s8.95f570593b75 from=translated src=- shape=4fa6c7e3 vocab=287acd46
+-/
 theorem solution
     {R : Type u} [CommRing R] [HenselianLocalRing R]
     (S : Type u) [CommRing S] [Algebra R S] [Algebra.Etale R S]

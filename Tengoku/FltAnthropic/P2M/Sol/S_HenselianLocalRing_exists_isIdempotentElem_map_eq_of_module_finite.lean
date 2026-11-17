@@ -42,6 +42,9 @@ private theorem aeval_eq_zero_of_forall_coeff_mem {R A : Type*} [CommRing R] [Co
 end F1aSol
 
 open F1aSol in
+/--
+@isnad1 id=ex.1h3v.s10.f3377dcee738 from=translated src=- shape=4f41710b vocab=2799d625
+-/
 theorem solution
     {R : Type u} [CommRing R] [HenselianLocalRing R]
     {B : Type v} [CommRing B] [Algebra R B] [Module.Finite R B]

@@ -32,6 +32,9 @@ private theorem inv_entries (A : SL(2, ℤ)) :
     rw [Matrix.SpecialLinearGroup.coe_inv, Matrix.adjugate_fin_two]
   refine ⟨?_, ?_, ?_, ?_⟩ <;> simp [h]
 
+/--
+@isnad1 id=ex.1h2v.s8.a4def562dea6 from=translated src=- shape=9560ecd2 vocab=ea6bbc30
+-/
 theorem exists_col_eq {p r : ℤ} (h : IsCoprime p r) :
     ∃ δ : SL(2, ℤ), δ 0 0 = p ∧ δ 1 0 = r := by
   obtain ⟨u, v, huv⟩ := h
@@ -47,6 +50,9 @@ theorem eq_T_zpow_of_col {M : SL(2, ℤ)} (h00 : M 0 0 = 1) (h10 : M 1 0 = 0) :
   fin_cases i <;> fin_cases j <;>
     simp_all [ModularGroup.coe_T_zpow]
 
+/--
+@isnad1 id=ex.2h1v.s9.c1d3c8175d10 from=translated src=- shape=b9394b07 vocab=d295af15
+-/
 theorem exists_isCoprime_fixed {γ : SL(2, ℤ)}
     (htr : (γ : Matrix (Fin 2) (Fin 2) ℤ).trace = 2) (hc : γ 1 0 ≠ 0) :
     ∃ p r : ℤ, IsCoprime p r ∧
@@ -75,6 +81,9 @@ theorem exists_isCoprime_fixed {γ : SL(2, ℤ)}
     have h0 := (mul_eq_zero.mp key).resolve_left hgne
     linarith
 
+/--
+@isnad1 id=ex.1h1v.s9.228270919c8f from=translated src=- shape=9b8c6177 vocab=31799855
+-/
 theorem exists_conj_T_zpow_of_trace_eq_two {γ : SL(2, ℤ)}
     (htr : (γ : Matrix (Fin 2) (Fin 2) ℤ).trace = 2) :
     ∃ (δ : SL(2, ℤ)) (n : ℤ), γ = δ * ModularGroup.T ^ n * δ⁻¹ := by
@@ -113,6 +122,9 @@ theorem exists_conj_T_zpow_of_trace_eq_two {γ : SL(2, ℤ)}
     rw [← eq_T_zpow_of_col hM00 hM10]
     group
 
+/--
+@isnad1 id=ex.1h1v.s9.00462e339831 from=translated src=- shape=a7ad9cae vocab=7f12adf6
+-/
 theorem classification (γ : SL(2, ℤ)) (hγ : ((γ : Matrix (Fin 2) (Fin 2) ℤ).trace) ^ 2 = 4) :
     ∃ (ε δ : SL(2, ℤ)) (n : ℤ), (ε = 1 ∨ ε = -1) ∧ γ = ε * (δ * ModularGroup.T ^ n * δ⁻¹) := by
 
@@ -133,6 +145,9 @@ theorem classification (γ : SL(2, ℤ)) (hγ : ((γ : Matrix (Fin 2) (Fin 2) �
 
 end ModularGroup.ParabolicClassificationSol
 
+/--
+@isnad1 id=ex.1h1v.s9.00462e339831 from=translated src=- shape=a7ad9cae vocab=7f12adf6
+-/
 theorem solution (γ : SL(2, ℤ)) (hγ : ((γ : Matrix (Fin 2) (Fin 2) ℤ).trace) ^ 2 = 4) :
     ∃ (ε δ : SL(2, ℤ)) (h : ℤ), (ε = 1 ∨ ε = -1) ∧ γ = ε * (δ * ModularGroup.T ^ h * δ⁻¹) :=
   ModularGroup.ParabolicClassificationSol.classification γ hγ

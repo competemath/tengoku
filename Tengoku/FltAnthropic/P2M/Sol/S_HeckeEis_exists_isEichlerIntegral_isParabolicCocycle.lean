@@ -15,6 +15,9 @@ set_option autoImplicit false
 
 open scoped Manifold MatrixGroups ModularForm
 
+/--
+@isnad1 id=ex.0h3v.s14.e746571776c6 from=translated src=- shape=bbe84c03 vocab=debc53a9
+-/
 theorem solution (N n : ℕ) [NeZero N]
     (f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) :
     ∃ F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n), HeckeEis.IsEichlerIntegral n f F ∧

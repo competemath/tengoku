@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open scoped Manifold MatrixGroups
 
+/--
+@isnad1 id=mem.5h5v.s14.e83a469a1f5f from=translated src=- shape=44ae6b2c vocab=67d46fb7
+-/
 theorem HeckeEis.IsEichlerIntegral.vadd_sub_T_zpow_apply_mem_range {n : ℕ} {h : ℤ} (hh : h ≠ 0)
     {g : UpperHalfPlane → ℂ} {G : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)} (hG : HeckeEis.IsEichlerIntegral n g G)
     (hper : Function.Periodic (g ∘ UpperHalfPlane.ofComplex) ((h : ℝ) : ℂ))

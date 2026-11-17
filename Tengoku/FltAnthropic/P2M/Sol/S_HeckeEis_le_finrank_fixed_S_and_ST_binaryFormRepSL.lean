@@ -22,12 +22,21 @@ noncomputable def tauInv (c₁ c₂ : ℂ) : MvPolynomial (Fin 2) ℂ →ₐ[ℂ
   MvPolynomial.aeval fun j : Fin 2 =>
     if j = 0 then C ((c₂ - c₁)⁻¹) * (C c₂ * X 0 - C c₁ * X 1) else C ((c₂ - c₁)⁻¹) * (X 1 - X 0)
 
+/--
+@isnad1 id=eq.0h2v.s9.cf0da7db9ccf from=translated src=- shape=41d4be3c vocab=5d153928
+-/
 theorem tau_X0 (c₁ c₂ : ℂ) : tau c₁ c₂ (X 0) = X 0 + C c₁ * X 1 := by
   simp [tau]
 
+/--
+@isnad1 id=eq.0h2v.s9.5c5545bbd573 from=translated src=- shape=97736017 vocab=5d153928
+-/
 theorem tau_X1 (c₁ c₂ : ℂ) : tau c₁ c₂ (X 1) = X 0 + C c₂ * X 1 := by
   simp [tau]
 
+/--
+@isnad1 id=eq.1h2v.s8.aaf381c8a729 from=translated src=- shape=ffaa083b vocab=83eaf5e3
+-/
 theorem tauInv_comp_tau (c₁ c₂ : ℂ) (hc : c₁ ≠ c₂) : (tauInv c₁ c₂).comp (tau c₁ c₂) = AlgHom.id ℂ _ := by
   have hne : (c₂ - c₁) ≠ 0 := sub_ne_zero.mpr (Ne.symm hc)
   refine MvPolynomial.algHom_ext fun j => ?_
@@ -52,6 +61,9 @@ theorem tauInv_comp_tau (c₁ c₂ : ℂ) (hc : c₁ ≠ c₂) : (tauInv c₁ c�
       ring
     rw [key, inv_mul_cancel₀ hne, C_1, one_mul]
 
+/--
+@isnad1 id=injectiv.1h2v.s8.29a75aabde21 from=translated src=- shape=0ab7a28f vocab=f1b4b8c3
+-/
 theorem tau_injective (c₁ c₂ : ℂ) (hc : c₁ ≠ c₂) : Function.Injective (tau c₁ c₂) := by
   intro p q h
   have := congrArg (tauInv c₁ c₂) h
@@ -60,18 +72,30 @@ theorem tau_injective (c₁ c₂ : ℂ) (hc : c₁ ≠ c₂) : Function.Injectiv
 noncomputable def bvec (c₁ c₂ : ℂ) (n a : ℕ) : MvPolynomial (Fin 2) ℂ :=
   (X 0 + C c₁ * X 1) ^ a * (X 0 + C c₂ * X 1) ^ (n - a)
 
+/--
+@isnad1 id=eq.0h4v.s9.007c36e12612 from=translated src=- shape=feff7d55 vocab=0b9a2cbf
+-/
 theorem bvec_eq_tau (c₁ c₂ : ℂ) (n a : ℕ) :
     bvec c₁ c₂ n a = tau c₁ c₂ (X 0 ^ a * X 1 ^ (n - a)) := by
   rw [map_mul, map_pow, map_pow, tau_X0, tau_X1, bvec]
 
+/--
+@isnad1 id=ishomoge.0h1v.s8.8a8e871f1ce5 from=translated src=- shape=22059051 vocab=c8e2afc1
+-/
 theorem isHomogeneous_lin (c : ℂ) : (X 0 + C c * X 1 : MvPolynomial (Fin 2) ℂ).IsHomogeneous 1 :=
   (MvPolynomial.isHomogeneous_X ℂ 0).add ((MvPolynomial.isHomogeneous_X ℂ 1).C_mul c)
 
+/--
+@isnad1 id=mem.1h4v.s7.c4acf6a6fad4 from=translated src=- shape=230f23bd vocab=f82af706
+-/
 theorem bvec_mem (c₁ c₂ : ℂ) (n a : ℕ) (ha : a ≤ n) : bvec c₁ c₂ n a ∈ HeckeEis.BinaryForm ℂ n := by
   rw [MvPolynomial.mem_homogeneousSubmodule, bvec]
   have h := ((isHomogeneous_lin c₁).pow a).mul ((isHomogeneous_lin c₂).pow (n - a))
   rwa [one_mul, one_mul, Nat.add_sub_cancel' ha] at h
 
+/--
+@isnad1 id=linearin.1h3v.s8.341f22782a5f from=translated src=- shape=2a2d1980 vocab=566c89e3
+-/
 theorem linearIndependent_monomials {ι : Type*} (n : ℕ) (a : ι → ℕ) (ha : Function.Injective a) :
     LinearIndependent ℂ (fun t => (X 0 ^ a t * X 1 ^ (n - a t) : MvPolynomial (Fin 2) ℂ)) := by
   classical
@@ -92,6 +116,9 @@ theorem linearIndependent_monomials {ι : Type*} (n : ℕ) (a : ι → ℕ) (ha 
   rfl
   rfl
 
+/--
+@isnad1 id=linearin.2h5v.s6.78ecf9ee7670 from=translated src=- shape=0f24ef34 vocab=b4581d8a
+-/
 theorem linearIndependent_bvec {ι : Type*} (c₁ c₂ : ℂ) (hc : c₁ ≠ c₂) (n : ℕ) (a : ι → ℕ) (ha : Function.Injective a) :
     LinearIndependent ℂ (fun t => bvec c₁ c₂ n (a t)) := by
   have h := (linearIndependent_monomials n a ha).map' (tau c₁ c₂).toLinearMap
@@ -103,6 +130,9 @@ theorem linearIndependent_bvec {ι : Type*} (c₁ c₂ : ℂ) (hc : c₁ ≠ c�
   rfl
   rfl
 
+/--
+@isnad1 id=finite.0h1v.s8.62c662872058 from=translated src=- shape=3d7e120e vocab=7c6d9082
+-/
 theorem finite_binaryForm (n : ℕ) : Module.Finite ℂ ↥(HeckeEis.BinaryForm ℂ n) := by
   classical
   have hsub : (HeckeEis.BinaryForm ℂ n : Submodule ℂ (MvPolynomial (Fin 2) ℂ)) ≤
@@ -144,6 +174,9 @@ namespace UH1
 
 open HeckeEis
 
+/--
+@isnad1 id=eq.2h3v.s10.8f2d4d469243 from=translated src=- shape=4c9381ca vocab=31dba8bf
+-/
 theorem subst_lin (M : Matrix (Fin 2) (Fin 2) ℤ) (c μ : ℂ)
     (h1 : ((M 0 0 : ℤ) : ℂ) + c * ((M 0 1 : ℤ) : ℂ) = μ) (h2 : ((M 1 0 : ℤ) : ℂ) + c * ((M 1 1 : ℤ) : ℂ) = μ * c) :
     binarySubst ℂ M (X 0 + C c * X 1) = C μ * (X 0 + C c * X 1) := by
@@ -156,6 +189,9 @@ theorem subst_lin (M : Matrix (Fin 2) (Fin 2) ℤ) (c μ : ℂ)
     Fin.sum_univ_two, Fin.sum_univ_two, map_add, map_mul]
   linear_combination (X 1 : MvPolynomial (Fin 2) ℂ) * h2'
 
+/--
+@isnad1 id=eq.4h7v.s9.d563efeef931 from=translated src=- shape=fdb469f7 vocab=0b5f2110
+-/
 theorem subst_bvec (M : Matrix (Fin 2) (Fin 2) ℤ) (c₁ c₂ μ₁ μ₂ : ℂ)
     (h11 : ((M 0 0 : ℤ) : ℂ) + c₁ * ((M 0 1 : ℤ) : ℂ) = μ₁) (h12 : ((M 1 0 : ℤ) : ℂ) + c₁ * ((M 1 1 : ℤ) : ℂ) = μ₁ * c₁)
     (h21 : ((M 0 0 : ℤ) : ℂ) + c₂ * ((M 0 1 : ℤ) : ℂ) = μ₂) (h22 : ((M 1 0 : ℤ) : ℂ) + c₂ * ((M 1 1 : ℤ) : ℂ) = μ₂ * c₂)
@@ -165,6 +201,9 @@ theorem subst_bvec (M : Matrix (Fin 2) (Fin 2) ℤ) (c₁ c₂ μ₁ μ₂ : ℂ
     map_mul, map_pow, map_pow]
   exact mul_mul_mul_comm _ _ _ _
 
+/--
+@isnad1 id=le.8h8v.s14.d0d769c1a089 from=translated src=- shape=9d0365bd vocab=b354a88d
+-/
 theorem le_finrank_ker (n : ℕ) (g : SL(2, ℤ)) (c₁ c₂ μ₁ μ₂ : ℂ) (hc : c₁ ≠ c₂)
     (h11 : (((g : Matrix (Fin 2) (Fin 2) ℤ) 0 0 : ℤ) : ℂ) + c₁ * (((g : Matrix (Fin 2) (Fin 2) ℤ) 0 1 : ℤ) : ℂ) = μ₁)
     (h12 : (((g : Matrix (Fin 2) (Fin 2) ℤ) 1 0 : ℤ) : ℂ) + c₁ * (((g : Matrix (Fin 2) (Fin 2) ℤ) 1 1 : ℤ) : ℂ) = μ₁ * c₁)
@@ -188,11 +227,17 @@ theorem le_finrank_ker (n : ℕ) (g : SL(2, ℤ)) (c₁ c₂ μ₁ μ₂ : ℂ) 
   have h := hli.fintype_card_le_finrank
   rwa [Fintype.card_fin] at h
 
+/--
+@isnad1 id=and.0h0v.s8.1db0e6088ed3 from=translated src=- shape=4f54c1cf vocab=fb0e6244
+-/
 theorem S_entries :
     ((ModularGroup.S : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) 0 0 = 0 ∧ ((ModularGroup.S : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) 0 1 = -1 ∧
     ((ModularGroup.S : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) 1 0 = 1 ∧ ((ModularGroup.S : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) 1 1 = 0 := by
   simp [ModularGroup.coe_S]
 
+/--
+@isnad1 id=and.0h0v.s9.67ccf6076241 from=translated src=- shape=c1a7dc12 vocab=486dc933
+-/
 theorem ST_entries :
     ((ModularGroup.S * ModularGroup.T : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) 0 0 = 0 ∧
     ((ModularGroup.S * ModularGroup.T : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) 0 1 = -1 ∧
@@ -200,6 +245,9 @@ theorem ST_entries :
     ((ModularGroup.S * ModularGroup.T : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) 1 1 = 1 := by
   simp [Matrix.SpecialLinearGroup.coe_mul, ModularGroup.coe_S, ModularGroup.coe_T, Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=and.1h1v.s15.6108cb5edb84 from=translated src=- shape=c44ee856 vocab=93451c42
+-/
 theorem main (n : ℕ) (hn : Even n) :
     n + 1 - 2 * ((n + 2) / 4) ≤ Module.finrank ℂ ↥(LinearMap.ker (binaryFormRepSL ℂ n ModularGroup.S - 1)) ∧
     n + 1 - 2 * ((n + 2) / 3)
@@ -279,6 +327,9 @@ theorem main (n : ℕ) (hn : Even n) :
 
 end UH1
 
+/--
+@isnad1 id=and.1h1v.s15.6108cb5edb84 from=translated src=- shape=c44ee856 vocab=93451c42
+-/
 theorem solution (n : ℕ) (hn : Even n) :
     n + 1 - 2 * ((n + 2) / 4) ≤ Module.finrank ℂ ↥(LinearMap.ker (HeckeEis.binaryFormRepSL ℂ n ModularGroup.S - 1)) ∧
     n + 1 - 2 * ((n + 2) / 3)

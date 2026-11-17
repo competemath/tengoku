@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open scoped Manifold MatrixGroups ModularForm
 
+/--
+@isnad1 id=eq.0h4v.s12.dc973586fef8 from=translated src=- shape=c069af9f vocab=01b5ad12
+-/
 theorem HeckeEis.jFactor_pow_mul_eval_binaryFormRepSL (n : ℕ) (g : SL(2, ℤ)) (τ : UpperHalfPlane)
     (P : ↥(HeckeEis.BinaryForm ℂ n)) :
     HeckeEis.jFactor g τ ^ n * MvPolynomial.eval ![(1 : ℂ), -(((g • τ : UpperHalfPlane)) : ℂ)]

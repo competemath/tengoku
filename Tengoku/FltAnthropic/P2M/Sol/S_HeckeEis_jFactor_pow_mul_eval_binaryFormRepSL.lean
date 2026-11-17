@@ -20,6 +20,9 @@ open _root_.HeckeEis
 open UpperHalfPlane MvPolynomial
 open scoped MatrixGroups
 
+/--
+@isnad1 id=eq.0h4v.s9.d8f733be4364 from=translated src=- shape=ab4c0eae vocab=e0886b89
+-/
 theorem eval_binarySubst {K : Type*} [CommRing K] (M : Matrix (Fin 2) (Fin 2) ℤ) (v : Fin 2 → K)
     (P : MvPolynomial (Fin 2) K) :
     MvPolynomial.eval v (binarySubst K M P)
@@ -29,6 +32,9 @@ theorem eval_binarySubst {K : Type*} [CommRing K] (M : Matrix (Fin 2) (Fin 2) �
     MvPolynomial.ringHom_ext (fun a => by simp) (fun j => by simp [binarySubst_X])
   exact RingHom.congr_fun key P
 
+/--
+@isnad1 id=eq.0h1v.s8.22f991ebcb94 from=translated src=- shape=b760eac4 vocab=e383e1bc
+-/
 theorem det_entries (g : SL(2, ℤ)) :
     ((g : Matrix (Fin 2) (Fin 2) ℤ) 0 0 : ℂ) * ((g : Matrix (Fin 2) (Fin 2) ℤ) 1 1 : ℂ)
       - ((g : Matrix (Fin 2) (Fin 2) ℤ) 0 1 : ℂ) * ((g : Matrix (Fin 2) (Fin 2) ℤ) 1 0 : ℂ) = 1 := by
@@ -36,6 +42,9 @@ theorem det_entries (g : SL(2, ℤ)) :
   rw [Matrix.det_fin_two] at h
   exact_mod_cast h
 
+/--
+@isnad1 id=eq.0h4v.s12.dc973586fef8 from=translated src=- shape=c069af9f vocab=01b5ad12
+-/
 theorem jFactor_pow_mul_eval_binaryFormRepSL (n : ℕ) (g : SL(2, ℤ)) (τ : ℍ) (P : ↥(BinaryForm ℂ n)) :
     jFactor g τ ^ n * MvPolynomial.eval ![(1 : ℂ), -(((g • τ : ℍ)) : ℂ)]
         ((binaryFormRepSL ℂ n g P : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)
@@ -69,6 +78,9 @@ end HeckeEis.PeriodFnAux
 
 open scoped MatrixGroups in
 
+/--
+@isnad1 id=eq.0h4v.s12.dc973586fef8 from=translated src=- shape=c069af9f vocab=01b5ad12
+-/
 theorem solution (n : ℕ) (g : SL(2, ℤ)) (τ : UpperHalfPlane)
     (P : ↥(HeckeEis.BinaryForm ℂ n)) :
     HeckeEis.jFactor g τ ^ n * MvPolynomial.eval ![(1 : ℂ), -(((g • τ : UpperHalfPlane)) : ℂ)]

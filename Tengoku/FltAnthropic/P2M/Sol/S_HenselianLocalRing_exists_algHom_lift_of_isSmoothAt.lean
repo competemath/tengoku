@@ -16,6 +16,9 @@ namespace HenselSmoothLift
 
 variable {R : Type u} [CommRing R] [HenselianLocalRing R]
 
+/--
+@isnad1 id=ex.0h4v.s9.13a2090b405c from=translated src=- shape=d032499f vocab=969748c2
+-/
 theorem exists_lift_of_isStandardEtale_mvPolynomial
     {n : ℕ} (A : Type u) [CommRing A] [Algebra R A]
     [Algebra (MvPolynomial (Fin n) R) A] [IsScalarTower R (MvPolynomial (Fin n) R) A]
@@ -80,6 +83,9 @@ theorem exists_lift_of_isStandardEtale_mvPolynomial
   rw [Algebra.TensorProduct.lift_tmul]
   simp [φ']
 
+/--
+@isnad1 id=ex.0h3v.s9.8deacfcbf5eb from=translated src=- shape=5ca85ca5 vocab=67a702ea
+-/
 theorem exists_lift_of_isSmoothAt
     (S : Type u) [CommRing S] [Algebra R S] [Algebra.FinitePresentation R S]
     (φ : S →ₐ[R] ResidueField R)
@@ -103,6 +109,9 @@ theorem exists_lift_of_isSmoothAt
 
 end HenselSmoothLift
 
+/--
+@isnad1 id=ex.0h3v.s9.8deacfcbf5eb from=translated src=- shape=5ca85ca5 vocab=67a702ea
+-/
 theorem solution
     {R : Type u} [CommRing R] [HenselianLocalRing R]
     (S : Type u) [CommRing S] [Algebra R S] [Algebra.FinitePresentation R S]

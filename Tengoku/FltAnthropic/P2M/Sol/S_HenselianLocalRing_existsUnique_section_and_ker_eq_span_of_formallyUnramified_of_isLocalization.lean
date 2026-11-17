@@ -17,10 +17,16 @@ namespace HenselSectionsFP
 variable {A : Type u} [CommRing A]
 variable {S : Type u} [CommRing S] [Algebra A[X] S]
 
+/--
+@isnad1 id=eq.0h3v.s8.eb58ddc2c30e from=translated src=- shape=4f7338e6 vocab=ff33c266
+-/
 theorem algebraMap_A [Algebra A S] [IsScalarTower A A[X] S] (a : A) :
     algebraMap A S a = algebraMap A[X] S (C a) := by
   rw [IsScalarTower.algebraMap_apply A A[X] S, ← Polynomial.C_eq_algebraMap]
 
+/--
+@isnad1 id=eq.1h5v.s9.0191fc0e6dfc from=translated src=- shape=81a0fab6 vocab=912ac195
+-/
 theorem mk_algebraMap_eq [Algebra A S] [IsScalarTower A A[X] S] (J₀ : Ideal S) (c : A)
     (hJ₀ : algebraMap A[X] S X - algebraMap A[X] S (C c) ∈ J₀) (p : A[X]) :
     (Ideal.Quotient.mk J₀ (algebraMap A[X] S p))
@@ -40,6 +46,9 @@ variable [Algebra P S] [IsLocalization M S] [IsScalarTower A P S]
 include M in
 omit [Algebra A[X] S] [IsScalarTower A A[X] S] in
 
+/--
+@isnad1 id=fg.1h5v.s8.152fc6b24d67 from=translated src=- shape=298ebb5c vocab=2f22d5f0
+-/
 theorem ker_fg (χ : S →+* A) (hC : ∀ a, χ (algebraMap A S a) = a) : (RingHom.ker χ).FG := by
   classical
   let χP : P →ₐ[A] A :=
@@ -77,6 +86,9 @@ theorem ker_fg (χ : S →+* A) (hC : ∀ a, χ (algebraMap A S a) = a) : (RingH
 
 end KerFG
 
+/--
+@isnad1 id=eq.2h3v.s9.6052a6225948 from=translated src=- shape=7de41a4c vocab=054a2bd6
+-/
 theorem ker_eq_span [IsLocalRing A] [IsLocalRing S]
     [Algebra A S] [IsScalarTower A A[X] S] [Algebra.FormallyUnramified A[X] S]
     (χ : S →+* A) (hC : ∀ a, χ (algebraMap A[X] S (C a)) = a) (hfg : (RingHom.ker χ).FG) :
@@ -187,6 +199,9 @@ theorem ker_eq_span [IsLocalRing A] [IsLocalRing S]
   rw [hJbot, Ideal.mem_bot] at hsJ
   exact Ideal.Quotient.eq_zero_iff_mem.mp hsJ
 
+/--
+@isnad1 id=eq.4h4v.s10.0097c4d86e5d from=translated src=- shape=5d2c4820 vocab=f55d1c8e
+-/
 theorem section_unique [IsLocalRing A] [IsLocalRing S]
     [Algebra A S] [IsScalarTower A A[X] S] [Algebra.FormallyUnramified A[X] S]
     (χ₁ χ₂ : S →+* A) (hC₁ : ∀ a, χ₁ (algebraMap A[X] S (C a)) = a)
@@ -204,6 +219,9 @@ theorem section_unique [IsLocalRing A] [IsLocalRing S]
   rw [map_sub, hC₂, sub_eq_zero] at h2
   exact h2.symm
 
+/--
+@isnad1 id=ex.3h6v.s10.2b76490f3f50 from=translated src=- shape=4f5b371c vocab=f396d8f5
+-/
 theorem exists_section [HenselianLocalRing A] [IsLocalRing S]
     [Algebra A S] [IsScalarTower A A[X] S] [Algebra.FormallySmooth A[X] S]
     {P : Type u} [CommRing P] [Algebra A P] [Algebra.FinitePresentation A P] (M : Submonoid P)
@@ -366,6 +384,9 @@ theorem exists_section [HenselianLocalRing A] [IsLocalRing S]
 
 end HenselSectionsFP
 
+/--
+@isnad1 id=and.6h6v.s11.bf7361145c01 from=translated src=- shape=b6a4f106 vocab=c11cca8a
+-/
 theorem solution
     {A : Type u} [CommRing A] [HenselianLocalRing A]
     {S : Type u} [CommRing S] [IsLocalRing S]

@@ -16,6 +16,9 @@ open scoped TensorProduct
 
 namespace IdInFV
 
+/--
+@isnad1 id=charp.0h2v.s5.a1505babda9d from=translated src=- shape=0e85ccd5 vocab=7986bc17
+-/
 theorem charP_of_nontrivial (p : ℕ) [Fact p.Prime] (A : Type) [CommRing A] [Algebra (ZMod p) A] [Nontrivial A] :
     CharP A p :=
   charP_of_injective_algebraMap (algebraMap (ZMod p) A).injective p
@@ -28,12 +31,21 @@ noncomputable def frobAlgHom (p : ℕ) [Fact p.Prime] (A : Type) [CommRing A] [A
       show (frobenius A p) (algebraMap (ZMod p) A r) = algebraMap (ZMod p) A r
       rw [frobenius_def, ← map_pow, ZMod.pow_card] }
 
+/--
+@isnad1 id=eq.0h3v.s6.a0a975a41e1a from=translated src=- shape=665f0041 vocab=301f3f0b
+-/
 theorem frobAlgHom_apply (p : ℕ) [Fact p.Prime] (A : Type) [CommRing A] [Algebra (ZMod p) A] [Nontrivial A] (x : A) :
     frobAlgHom p A x = x ^ p := rfl
 
+/--
+@isnad1 id=nontrivi.0h2v.s5.0890c99616a3 from=translated src=- shape=ecea087a vocab=9884cbf8
+-/
 theorem nontrivial_of_bialgebra (p : ℕ) [Fact p.Prime] (B : Type) [CommRing B] [Bialgebra (ZMod p) B] : Nontrivial B :=
   (Bialgebra.counitAlgHom (ZMod p) B : B →+* ZMod p).domain_nontrivial
 
+/--
+@isnad1 id=eq.0h3v.s11.da7e803c4eb2 from=translated src=- shape=9bdc9c10 vocab=2f5fd717
+-/
 theorem map_frob_frob_apply (p : ℕ) [Fact p.Prime] (B : Type) [CommRing B] [Bialgebra (ZMod p) B] [Nontrivial B]
     (z : B ⊗[ZMod p] B) :
     Algebra.TensorProduct.map (frobAlgHom p B) (frobAlgHom p B) z = z ^ p := by
@@ -67,12 +79,24 @@ def itL (w : B →ₐc[R] B) : ℕ → (B →ₐc[R] B)
   | 0 => BialgHom.id R B
   | n + 1 => w.comp (itL w n)
 
+/--
+@isnad1 id=eq.0h3v.s8.1010c8f8212e from=translated src=- shape=09c15ef0 vocab=802aaa6d
+-/
 theorem itR_zero (u : B →ₐc[R] B) : itR u 0 = BialgHom.id R B := rfl
+/--
+@isnad1 id=eq.0h4v.s9.95825bd4ff12 from=translated src=- shape=a609de52 vocab=13c6bb50
+-/
 theorem itR_succ (u : B →ₐc[R] B) (n : ℕ) : itR u (n + 1) = (itR u n).comp u := rfl
+/--
+@isnad1 id=eq.0h4v.s9.6920c957dc1b from=translated src=- shape=fbc7c028 vocab=a5682dca
+-/
 theorem itL_succ (w : B →ₐc[R] B) (n : ℕ) : itL w (n + 1) = w.comp (itL w n) := rfl
 
 variable [Module.Finite R B] [Module.Free R B]
 
+/--
+@isnad1 id=eq.0h4v.s11.89380af03a48 from=translated src=- shape=781514ea vocab=7a41ffda
+-/
 theorem map_pow_eq (u : B →ₐc[R] B) (n : ℕ) :
     (CartierDual.map u : CartierDual R B →ₗ[R] CartierDual R B) ^ n =
       (CartierDual.map (itR u n) : CartierDual R B →ₗ[R] CartierDual R B) := by
@@ -84,6 +108,9 @@ theorem map_pow_eq (u : B →ₐc[R] B) (n : ℕ) :
     rw [pow_succ', ih, itR_succ, CartierDual.map_comp]
     rfl
 
+/--
+@isnad1 id=eq.2h6v.s11.35ad03a14cc6 from=translated src=- shape=69aa243d vocab=f4ad99d0
+-/
 theorem itL_comp_itR_comp_eq (u ε w : B →ₐc[R] B) (hεu : ε.comp u = u.comp ε) (hwuε : w.comp (u.comp ε) = ε) (n : ℕ) :
     (itL w n).comp ((itR u n).comp ε) = ε := by
   induction n with
@@ -102,6 +129,9 @@ end Iterates
 end IdInFV
 
 open IdInFV in
+/--
+@isnad1 id=ex.12h10v.s16.905411a08fc0 from=translated src=- shape=f8f5968a vocab=759fedb2
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime]
     (B : Type) [CommRing B] [HopfAlgebra (ZMod p) B] [Coalgebra.IsCocomm (ZMod p) B]

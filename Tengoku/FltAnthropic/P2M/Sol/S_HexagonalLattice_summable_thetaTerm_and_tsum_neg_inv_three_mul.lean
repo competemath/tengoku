@@ -23,6 +23,9 @@ def hexThetaTerm (σ : ℂ) (p : ℤ × ℤ) : ℂ :=
 def hexTheta (σ : ℂ) : ℂ :=
   ∑' p : ℤ × ℤ, hexThetaTerm σ p
 
+/--
+@isnad1 id=eq.0h3v.s4.2b7ccedf644e from=translated src=- shape=f6ae3939 vocab=a2740bb7
+-/
 lemma hexThetaTerm_swap (σ : ℂ) (x y : ℤ) :
     hexThetaTerm σ (x, y) = hexThetaTerm σ (y, x) := by
   unfold hexThetaTerm
@@ -30,6 +33,9 @@ lemma hexThetaTerm_swap (σ : ℂ) (x y : ℤ) :
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h2v.s7.874588abf793 from=translated src=- shape=8d8df624 vocab=20cba5d3
+-/
 lemma norm_hexThetaTerm (σ : ℂ) (p : ℤ × ℤ) :
     ‖hexThetaTerm σ p‖ =
       rexp (-(2 * π * σ.im) * ((p.1 : ℝ) ^ 2 + (p.1 : ℝ) * (p.2 : ℝ) + (p.2 : ℝ) ^ 2)) := by
@@ -41,10 +47,16 @@ lemma norm_hexThetaTerm (σ : ℂ) (p : ℤ × ℤ) :
   rw [Complex.re_ofReal_mul, Complex.mul_I_re]
   ring
 
+/--
+@isnad1 id=le.0h2v.s6.75667d9ee366 from=translated src=- shape=86f79774 vocab=cef4cf1d
+-/
 lemma sq_add_sq_le_two_mul_form (x y : ℝ) :
     x ^ 2 + y ^ 2 ≤ 2 * (x ^ 2 + x * y + y ^ 2) := by
   nlinarith [sq_nonneg (x + y)]
 
+/--
+@isnad1 id=summable.1h2v.s6.23947a574d2f from=translated src=- shape=340fcc67 vocab=3647cd27
+-/
 lemma summable_norm_cexp_neg_quadratic {a : ℂ} (ha : 0 < a.re) (b : ℂ) :
     Summable fun n : ℤ => ‖cexp (-π * a * (n : ℂ) ^ 2 + 2 * π * b * (n : ℂ))‖ := by
   rw [summable_norm_iff]
@@ -58,6 +70,9 @@ lemma summable_norm_cexp_neg_quadratic {a : ℂ} (ha : 0 < a.re) (b : ℂ) :
   simp only [Function.comp_def, Complex.ofReal_intCast] at hZ
   exact summable_of_isBigO (Real.summable_abs_int_rpow one_lt_two) hZ
 
+/--
+@isnad1 id=summable.1h1v.s5.5b8573b29b41 from=translated src=- shape=f3594e1b vocab=0137c2a1
+-/
 lemma summable_rexp_neg_mul_int_sq {c : ℝ} (hc : 0 < c) :
     Summable fun n : ℤ => rexp (-(c * (n : ℝ) ^ 2)) := by
   have h0 : (0 : ℝ) < ((c / π : ℝ) : ℂ).re := by
@@ -71,6 +86,9 @@ lemma summable_rexp_neg_mul_int_sq {c : ℝ} (hc : 0 < c) :
     field_simp]
   exact Complex.ofReal_re _
 
+/--
+@isnad1 id=summable.1h1v.s5.1aaee711cdde from=translated src=- shape=d2cf2fee vocab=c00fecf3
+-/
 lemma summable_hexThetaTerm {σ : ℂ} (hσ : 0 < σ.im) : Summable (hexThetaTerm σ) := by
   apply Summable.of_norm
   have hbound : ∀ p : ℤ × ℤ, ‖hexThetaTerm σ p‖ ≤
@@ -84,20 +102,32 @@ lemma summable_hexThetaTerm {σ : ℂ} (hσ : 0 < σ.im) : Summable (hexThetaTer
       (summable_rexp_neg_mul_int_sq (mul_pos pi_pos hσ))
       (fun n => (Real.exp_pos _).le) (fun n => (Real.exp_pos _).le))
 
+/--
+@isnad1 id=ne.1h1v.s4.b6cf537274cc from=translated src=- shape=2154ac66 vocab=3c72e7c9
+-/
 lemma ne_zero_of_im_pos {σ : ℂ} (hσ : 0 < σ.im) : σ ≠ 0 := by
   rintro rfl
   simp at hσ
 
+/--
+@isnad1 id=lt.1h1v.s5.42944671f302 from=translated src=- shape=88db4cda vocab=20df8abe
+-/
 lemma re_neg_two_I_mul {σ : ℂ} (hσ : 0 < σ.im) : 0 < (-2 * I * σ).re := by
   rw [show (-2 * I * σ : ℂ) = ((-2 : ℝ) : ℂ) * (σ * I) by push_cast; ring,
     Complex.re_ofReal_mul, Complex.mul_I_re]
   linarith
 
+/--
+@isnad1 id=lt.1h1v.s6.48809229a9c5 from=translated src=- shape=b7f1ff54 vocab=44219891
+-/
 lemma re_neg_three_I_mul_div_two {σ : ℂ} (hσ : 0 < σ.im) : 0 < (-3 * I * σ / 2).re := by
   rw [show (-3 * I * σ / 2 : ℂ) = ((-3 / 2 : ℝ) : ℂ) * (σ * I) by push_cast; ring,
     Complex.re_ofReal_mul, Complex.mul_I_re]
   linarith
 
+/--
+@isnad1 id=lt.1h1v.s5.7327e937ddcc from=translated src=- shape=3766181f vocab=2c79fcc4
+-/
 lemma im_neg_one_div_three_mul_pos {σ : ℂ} (hσ : 0 < σ.im) : 0 < (-1 / (3 * σ)).im := by
   have h3σ : (3 : ℂ) * σ ≠ 0 := mul_ne_zero (by norm_num) (ne_zero_of_im_pos hσ)
   have him : ((3 : ℂ) * σ).im = 3 * σ.im := by
@@ -106,12 +136,18 @@ lemma im_neg_one_div_three_mul_pos {σ : ℂ} (hσ : 0 < σ.im) : 0 < (-1 / (3 *
   rw [Complex.neg_im, Complex.inv_im, neg_div, neg_neg, him]
   exact div_pos (by linarith) (Complex.normSq_pos.mpr h3σ)
 
+/--
+@isnad1 id=eq.1h1v.s6.fa3b8c512d4c from=translated src=- shape=d0e70757 vocab=556b818f
+-/
 lemma neg_pi_div_neg_two_I_mul {σ : ℂ} (hσ : σ ≠ 0) :
     -(π : ℂ) / (-2 * I * σ) = -((π : ℂ) * I) / (2 * σ) := by
   rw [div_eq_div_iff (mul_ne_zero (mul_ne_zero (by norm_num) Complex.I_ne_zero) hσ)
     (mul_ne_zero (by norm_num) hσ)]
   linear_combination (-2 * (π : ℂ) * σ) * Complex.I_sq
 
+/--
+@isnad1 id=eq.1h1v.s6.32cb9a9da8b0 from=translated src=- shape=1de98fb6 vocab=556b818f
+-/
 lemma neg_pi_div_neg_three_I_mul_div_two {σ : ℂ} (hσ : σ ≠ 0) :
     -(π : ℂ) / (-3 * I * σ / 2) = -(2 * (π : ℂ) * I) / (3 * σ) := by
   rw [div_eq_div_iff
@@ -119,12 +155,18 @@ lemma neg_pi_div_neg_three_I_mul_div_two {σ : ℂ} (hσ : σ ≠ 0) :
     (mul_ne_zero (by norm_num) hσ)]
   linear_combination (-3 * (π : ℂ) * σ) * Complex.I_sq
 
+/--
+@isnad1 id=eq.0h3v.s8.bc2fb63e3713 from=translated src=- shape=a5b6f997 vocab=63d32d8e
+-/
 lemma exponent_initial (σ : ℂ) (x y : ℤ) :
     2 * π * I * σ * ((x : ℂ) ^ 2 + (x : ℂ) * (y : ℂ) + (y : ℂ) ^ 2) =
       2 * π * I * σ * (x : ℂ) ^ 2 +
         (-π * (-2 * I * σ) * (y : ℂ) ^ 2 + 2 * π * (I * σ * (x : ℂ)) * (y : ℂ)) := by
   ring
 
+/--
+@isnad1 id=eq.1h3v.s8.41c0b874dd03 from=translated src=- shape=06447903 vocab=789ed919
+-/
 lemma exponent_split {σ : ℂ} (hσ : σ ≠ 0) (x m : ℤ) :
     2 * π * I * σ * (x : ℂ) ^ 2 +
         -π / (-2 * I * σ) * ((m : ℂ) + I * (I * σ * (x : ℂ))) ^ 2 =
@@ -135,6 +177,9 @@ lemma exponent_split {σ : ℂ} (hσ : σ ≠ 0) (x m : ℤ) :
   field_simp
   ring
 
+/--
+@isnad1 id=eq.1h3v.s8.ed7446489010 from=translated src=- shape=289efa10 vocab=789ed919
+-/
 lemma exponent_total {σ : ℂ} (hσ : σ ≠ 0) (m k : ℤ) :
     -π / (-2 * I * σ) * (m : ℂ) ^ 2 +
         -π / (-3 * I * σ / 2) * ((k : ℂ) + I * (I * (m : ℂ) / 2)) ^ 2 =
@@ -146,6 +191,9 @@ lemma exponent_total {σ : ℂ} (hσ : σ ≠ 0) (m k : ℤ) :
   field_simp
   ring
 
+/--
+@isnad1 id=eq.1h2v.s8.bd4998e3e32f from=translated src=- shape=18e34358 vocab=da88d487
+-/
 lemma inner_poisson {σ : ℂ} (hσ : 0 < σ.im) (x : ℤ) :
     (∑' y : ℤ, hexThetaTerm σ (x, y)) =
       1 / (-2 * I * σ) ^ (1 / 2 : ℂ) *
@@ -182,6 +230,9 @@ lemma inner_poisson {σ : ℂ} (hσ : 0 < σ.im) (x : ℤ) :
       rw [← Complex.exp_add, ← Complex.exp_add]
       exact congrArg cexp (exponent_split hσ0 x m)
 
+/--
+@isnad1 id=eq.1h2v.s8.d2bb32a3875b from=translated src=- shape=dd36b7f0 vocab=da88d487
+-/
 lemma outer_poisson {σ : ℂ} (hσ : 0 < σ.im) (m : ℤ) :
     (∑' x : ℤ,
         (cexp (-π * (-3 * I * σ / 2) * (x : ℂ) ^ 2 + 2 * π * (I * (m : ℂ) / 2) * (x : ℂ)) *
@@ -216,6 +267,9 @@ lemma outer_poisson {σ : ℂ} (hσ : 0 < σ.im) (m : ℤ) :
       push_cast
       exact exponent_total hσ0 m k
 
+/--
+@isnad1 id=summable.1h1v.s8.7a0e82780397 from=translated src=- shape=7d51eed5 vocab=70eab4a8
+-/
 lemma summable_middle {σ : ℂ} (hσ : 0 < σ.im) :
     Summable (Function.uncurry fun x m : ℤ =>
       cexp (-π * (-3 * I * σ / 2) * (x : ℂ) ^ 2 + 2 * π * (I * (m : ℂ) / 2) * (x : ℂ)) *
@@ -246,6 +300,9 @@ lemma summable_middle {σ : ℂ} (hσ : 0 < σ.im) :
     refine congrArg norm (congrArg cexp ?_)
     rw [mul_zero, zero_mul, add_zero, div_eq_mul_inv]
 
+/--
+@isnad1 id=eq.1h1v.s7.7a627a355c8c from=translated src=- shape=c2f4de0a vocab=8d6d99d5
+-/
 theorem hexTheta_eq_mul_self_neg_inv {σ : ℂ} (hσ : 0 < σ.im) :
     hexTheta σ =
       1 / (-2 * I * σ) ^ (1 / 2 : ℂ) * (1 / (-3 * I * σ / 2) ^ (1 / 2 : ℂ)) *
@@ -292,6 +349,9 @@ theorem hexTheta_eq_mul_self_neg_inv {σ : ℂ} (hσ : 0 < σ.im) :
       rw [hS]
       ring
 
+/--
+@isnad1 id=lt.2h2v.s6.d83fe3f452de from=translated src=- shape=23638374 vocab=9de3e924
+-/
 lemma re_cpow_half_mul_cpow_half_pos {a b : ℂ} (ha : 0 < a.re) (hb : 0 < b.re) :
     0 < (a ^ (1 / 2 : ℂ) * b ^ (1 / 2 : ℂ)).re := by
   have ha0 : a ≠ 0 := fun h => by simp [h] at ha
@@ -318,10 +378,16 @@ lemma eq_of_sq_eq_sq_of_re_pos {a b : ℂ} (h : a ^ 2 = b ^ 2) (ha : 0 < a.re)
     rw [h', Complex.neg_re] at ha
     linarith
 
+/--
+@isnad1 id=eq.1h1v.s6.59a49df5b123 from=translated src=- shape=73871a8e vocab=83137b25
+-/
 lemma sq_cpow_half {z : ℂ} (hz : z ≠ 0) : (z ^ (1 / 2 : ℂ)) ^ 2 = z := by
   rw [sq, ← Complex.cpow_add _ _ hz]
   norm_num
 
+/--
+@isnad1 id=eq.1h1v.s7.29d020f996d5 from=translated src=- shape=73a6d55e vocab=4f1cc2a8
+-/
 lemma cpow_half_mul_cpow_half {σ : ℂ} (hσ : 0 < σ.im) :
     (-2 * I * σ) ^ (1 / 2 : ℂ) * (-3 * I * σ / 2) ^ (1 / 2 : ℂ) =
       -I * (Real.sqrt 3 : ℂ) * σ := by
@@ -346,9 +412,15 @@ lemma cpow_half_mul_cpow_half {σ : ℂ} (hσ : 0 < σ.im) :
       Complex.re_ofReal_mul, mul_neg, Complex.neg_re, Complex.mul_I_re, neg_neg]
     exact mul_pos (Real.sqrt_pos.mpr (by norm_num)) hσ
 
+/--
+@isnad1 id=ne.1h1v.s5.b7807f9b282c from=translated src=- shape=050bcab7 vocab=83137b25
+-/
 lemma cpow_half_ne_zero {z : ℂ} (hz : z ≠ 0) : z ^ (1 / 2 : ℂ) ≠ 0 := fun h =>
   hz ((Complex.cpow_eq_zero_iff _ _).mp h).1
 
+/--
+@isnad1 id=eq.1h1v.s6.7aa41fc26fdd from=translated src=- shape=703e8aea vocab=ece98043
+-/
 theorem hexTheta_fricke {σ : ℂ} (hσ : 0 < σ.im) :
     hexTheta (-1 / (3 * σ)) = -I * (Real.sqrt 3 : ℂ) * σ * hexTheta σ := by
   have hσ0 : σ ≠ 0 := ne_zero_of_im_pos hσ
@@ -368,6 +440,9 @@ end
 
 end A2HexPoisson
 
+/--
+@isnad1 id=and.1h1v.s9.eb10663e67f8 from=translated src=- shape=0f23317e vocab=3b5f28e8
+-/
 theorem solution (σ : ℂ) (hσ : 0 < σ.im) :
     Summable (fun p : ℤ × ℤ =>
       Complex.exp (2 * (Real.pi : ℂ) * Complex.I * σ *

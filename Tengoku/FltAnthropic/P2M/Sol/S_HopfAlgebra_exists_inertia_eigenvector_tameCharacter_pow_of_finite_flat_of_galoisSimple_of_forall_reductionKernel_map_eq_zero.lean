@@ -16,6 +16,9 @@ set_option autoImplicit false
 set_option maxHeartbeats 4800000
 
 open GaloisRep in
+/--
+@isnad1 id=ex.9h6v.s15.bd6e018a1250 from=translated src=- shape=381dce78 vocab=e83ae659
+-/
 theorem solution
     {p : ℕ} (hp : p.Prime) (hp2 : p ≠ 2)
     {H : Type} [CommRing H] [HopfAlgebra (GaloisRep.ratLocalizedAt p) H]

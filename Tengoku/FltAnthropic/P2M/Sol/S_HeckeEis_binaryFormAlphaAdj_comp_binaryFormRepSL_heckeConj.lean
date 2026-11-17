@@ -18,12 +18,18 @@ open _root_.HeckeEis
 open CongruenceSubgroup
 open scoped MatrixGroups
 
+/--
+@isnad1 id=eq.1h2v.s9.b62d7378b2f4 from=translated src=- shape=7f9b8422 vocab=71ed202d
+-/
 theorem alphaAdjMat_mul_heckeConjMat {ℓ : ℕ} {g : Matrix (Fin 2) (Fin 2) ℤ} (hg : (ℓ : ℤ) ∣ g 0 1) :
     !![(ℓ : ℤ), 0; 0, 1] * heckeConjMat ℓ g = g * !![(ℓ : ℤ), 0; 0, 1] := by
   ext i j
   fin_cases i <;> fin_cases j <;>
     simp [Matrix.mul_apply, Fin.sum_univ_two, heckeConjMat, Int.mul_ediv_cancel' hg, mul_comm]
 
+/--
+@isnad1 id=eq.0h5v.s15.83f6fc61f043 from=translated src=- shape=1bcf6acd vocab=2dc4d323
+-/
 theorem SolMain.A1 (K : Type*) [CommRing K] (n N ℓ : ℕ) [NeZero ℓ]
     (u : ↥(heckeUpper N ℓ)) :
     binaryFormAlphaAdj K n ℓ ∘ₗ ((binaryFormRepSL K n).comp (Gamma0 N).subtype) (heckeConj N ℓ u)
@@ -39,6 +45,9 @@ theorem SolMain.A1 (K : Type*) [CommRing K] (n N ℓ : ℕ) [NeZero ℓ]
 end HeckeEis
 
 open scoped MatrixGroups in
+/--
+@isnad1 id=eq.0h5v.s15.83f6fc61f043 from=translated src=- shape=1bcf6acd vocab=2dc4d323
+-/
 theorem solution (K : Type*) [CommRing K] (n N ℓ : ℕ) [NeZero ℓ]
     (u : ↥(HeckeEis.heckeUpper N ℓ)) :
     HeckeEis.binaryFormAlphaAdj K n ℓ ∘ₗ ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype) (HeckeEis.heckeConj N ℓ u)

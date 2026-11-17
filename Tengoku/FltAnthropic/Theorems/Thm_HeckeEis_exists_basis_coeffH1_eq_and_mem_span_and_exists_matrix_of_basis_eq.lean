@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open CongruenceSubgroup
 
+/--
+@isnad1 id=ex.6h15v.s17.708ca2a48ab3 from=translated src=- shape=53fe2eb0 vocab=ca175c2e
+-/
 theorem HeckeEis.exists_basis_coeffH1_eq_and_mem_span_and_exists_matrix_of_basis_eq
     {R : Type} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R]
     {K : Type} [Field K] [Algebra R K] (hRK : Function.Injective (algebraMap R K))

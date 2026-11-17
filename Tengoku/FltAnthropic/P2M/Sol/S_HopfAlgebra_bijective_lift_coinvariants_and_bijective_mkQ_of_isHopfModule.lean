@@ -17,6 +17,9 @@ section ComulAntipode
 
 variable {R : Type*} [CommSemiring R] {A : Type*} [Semiring A] [HopfAlgebra R A]
 
+/--
+@isnad1 id=eq.0h2v.s10.1630620a6d95 from=translated src=- shape=3fd4a3e4 vocab=e9623365
+-/
 theorem comul_comp_antipode :
     (comul : A →ₗ[R] A ⊗[R] A) ∘ₗ antipode R =
       TensorProduct.map (antipode R) (antipode R) ∘ₗ (TensorProduct.comm R A A).toLinearMap ∘ₗ
@@ -148,6 +151,9 @@ theorem comul_comp_antipode :
     rw [Finset.sum_congr rfl step2, ← TensorProduct.sum_tmul, sum_mul_antipode_eq_algebraMap_counit]
     rfl
 
+/--
+@isnad1 id=eq.0h3v.s11.4bdf4f88374a from=translated src=- shape=e23624e0 vocab=66ad8fec
+-/
 theorem comul_antipode (a : A) :
     comul (antipode R a) =
       TensorProduct.map (antipode R) (antipode R) (TensorProduct.comm R A A (comul a)) :=
@@ -178,6 +184,9 @@ noncomputable def act : M ⊗[R] L →ₗ[R] M :=
   TensorProduct.lift ((Algebra.lsmul R R M : L →ₐ[R] Module.End R M).toLinearMap.flip)
 
 omit ρ in
+/--
+@isnad1 id=eq.0h5v.s9.3e3a503c9ac0 from=translated src=- shape=c81fff48 vocab=8eba8175
+-/
 @[scoped simp] theorem act_tmul (m : M) (c : L) : act (R := R) (m ⊗ₜ[R] c) = c • m := by
   simp [act]
 
@@ -188,6 +197,9 @@ noncomputable def Hmap : (L ⊗[R] L) ⊗[R] (M ⊗[R] L) →ₗ[R] M ⊗[R] L :
 
 noncomputable def P : M →ₗ[R] M := act ∘ₗ (antipode R (A := L)).lTensor M ∘ₗ ρ
 
+/--
+@isnad1 id=eq.0h6v.s9.2681f7377535 from=translated src=- shape=b5ecc37a vocab=90e3dea2
+-/
 theorem P_eq_sum {m : M} (𝓡 : CoRepr ρ m) :
     P ρ m = ∑ i ∈ 𝓡.index, antipode R (𝓡.right i) • 𝓡.left i := by
   simp only [P, LinearMap.comp_apply, ← 𝓡.eq, map_sum, LinearMap.lTensor_tmul, act_tmul]
@@ -201,6 +213,9 @@ variable (hcoassoc : (TensorProduct.assoc R M L L).toLinearMap ∘ₗ ρ.rTensor
         (TensorProduct.tensorTensorTensorComm R L L M L (Coalgebra.comul (R := R) c ⊗ₜ[R] ρ m)))
 
 include hcounit in
+/--
+@isnad1 id=eq.1h6v.s11.1e6983a685cf from=translated src=- shape=90e0960c vocab=b21caa3f
+-/
 theorem sum_counit_smul' {m : M} (𝓡 : CoRepr ρ m) :
     ∑ i ∈ 𝓡.index, counit (R := R) (𝓡.right i) • 𝓡.left i = m := by
   have h := congrArg (fun f : M →ₗ[R] M ⊗[R] R => TensorProduct.rid R M (f m)) hcounit
@@ -209,6 +224,9 @@ theorem sum_counit_smul' {m : M} (𝓡 : CoRepr ρ m) :
   exact h
 
 include hcoassoc in
+/--
+@isnad1 id=eq.1h9v.s13.bbba67e60fd7 from=translated src=- shape=fcdd4b8e vocab=fa6a9838
+-/
 theorem sum_tmul_tmul_eq' {m : M} (𝓡 : CoRepr ρ m) (a₁ : (i : 𝓡.ι) → CoRepr ρ (𝓡.left i))
     {κa₂ : 𝓡.ι → Type*} (a₂ : (i : 𝓡.ι) → Coalgebra.Repr R (𝓡.right i) (κa₂ i)) :
     ∑ i ∈ 𝓡.index, ∑ j ∈ (a₁ i).index,
@@ -224,6 +242,9 @@ theorem sum_tmul_tmul_eq' {m : M} (𝓡 : CoRepr ρ m) (a₁ : (i : 𝓡.ι) →
 
 include hcoassoc hcounit in
 
+/--
+@isnad1 id=eq.2h5v.s13.1e2a1acba5f5 from=translated src=- shape=683b59d7 vocab=57f4767d
+-/
 theorem act_rTensor_P (m : M) : act ((P ρ).rTensor L (ρ m)) = m := by
   classical
   let 𝓡 := CoRepr.arb ρ m
@@ -256,6 +277,9 @@ theorem act_rTensor_P (m : M) : act ((P ρ).rTensor L (ρ m)) = m := by
 
 include hmod in
 
+/--
+@isnad1 id=eq.2h6v.s14.f4ba8f392a28 from=translated src=- shape=6308dfef vocab=d810ed68
+-/
 theorem P_smul_of_coinv {n : M} (hn : ρ n = n ⊗ₜ[R] 1) (c : L) :
     P ρ (c • n) = counit (R := R) c • n := by
   classical
@@ -270,6 +294,9 @@ theorem P_smul_of_coinv {n : M} (hn : ρ n = n ⊗ₜ[R] 1) (c : L) :
 
 include hcoassoc hmod in
 
+/--
+@isnad1 id=eq.2h5v.s14.09e0689656cf from=translated src=- shape=2ab13dbe vocab=b8b9e73b
+-/
 theorem ρ_P (m : M) : ρ (P ρ m) = P ρ m ⊗ₜ[R] (1 : L) := by
   classical
   let 𝓡 := CoRepr.arb ρ m
@@ -351,6 +378,9 @@ theorem ρ_P (m : M) : ρ (P ρ m) = P ρ m ⊗ₜ[R] (1 : L) := by
   rw [h1, Finset.sum_congr rfl h2, ← TensorProduct.sum_tmul, ← P_eq_sum ρ 𝓡]
 
 include hmod in
+/--
+@isnad1 id=eq.2h6v.s14.6e6574412873 from=translated src=- shape=57a096dc vocab=00a25a02
+-/
 theorem ρ_smul_coinv {n : M} (hn : ρ n = n ⊗ₜ[R] 1) (c : L) :
     ρ (c • n) = ∑ k ∈ (ℛ R c).index, ((ℛ R c).left k • n) ⊗ₜ[R] (ℛ R c).right k := by
   rw [hmod, hn, ← (ℛ R c).eq, TensorProduct.sum_tmul, map_sum, map_sum]
@@ -363,6 +393,9 @@ end H1
 open scoped _root_.P2MW.S_HopfAlgebra_bijective_lift_coinvariants_and_bijective_mkQ_of_isHopfModule.H1
 
 open H1 Coalgebra HopfAlgebra in
+/--
+@isnad1 id=other.3h4v.s15.7783eb2df2c4 from=translated src=- shape=463c0a8b vocab=db453e37
+-/
 theorem solution
     {R : Type} [CommRing R] {L : Type} [CommRing L] [HopfAlgebra R L]
     {M : Type} [AddCommGroup M] [Module R M] [Module L M] [IsScalarTower R L M]

@@ -9,6 +9,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_HeckeCohomology_heckeH1_natural
 set_option autoImplicit false
 open groupCohomology in
 
+/--
+@isnad1 id=eq.3h11v.s11.00c78deca609 from=translated src=- shape=b57b2558 vocab=33abbb4a
+-/
 theorem HeckeCohomology.heckeH1_natural {k Γ : Type} [CommRing k] [Group Γ]
     (S₁ S₂ : Subgroup Γ) (c : S₂ →* S₁) {A B : Rep k Γ} [S₂.FiniteIndex] (f : A ⟶ B)
     (φA : A →ₗ[k] A) (hφA : IsTwist S₁ S₂ c A φA)

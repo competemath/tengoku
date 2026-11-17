@@ -12,6 +12,9 @@ universe u v w x
 
 namespace C5C
 
+/--
+@isnad1 id=ex.0h5v.s8.4c3e33a16623 from=translated src=- shape=1d0632ad vocab=8bd7e921
+-/
 theorem extend {K : Type u} [Field K] {A : Type v} [CommRing A] [Algebra K A] [Module.Finite K A]
     (C : Subalgebra K A) (Ω : Type x) [Field Ω] [Algebra K Ω] [IsAlgClosed Ω]
     (h : ↥C →ₐ[K] Ω) : ∃ ν : A →ₐ[K] Ω, ν.comp C.val = h := by
@@ -93,6 +96,9 @@ theorem extend {K : Type u} [Field K] {A : Type v} [CommRing A] [Algebra K A] [M
 
 end C5C
 
+/--
+@isnad1 id=ex.1h6v.s11.f5b4e2aa681e from=translated src=- shape=714eb949 vocab=54571cdb
+-/
 theorem solution
     {K : Type u} [Field K] {A : Type v} [CommRing A] [HopfAlgebra K A] [Module.Finite K A]
     [Coalgebra.IsCocomm K A]

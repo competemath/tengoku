@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open MvPolynomial in
 
+/--
+@isnad1 id=ex.0h3v.s15.a5e0620db353 from=translated src=- shape=ce9b9567 vocab=091fa285
+-/
 theorem HeckeEis.exists_dividedDeriv_binaryFormRep_eq_det_pow_smul (p : ℕ) [Fact p.Prime]
     (K : Type*) [Field K] [CharP K p] (a : ℕ) :
     ∃ D : ↥(HeckeEis.BinaryForm K (a + (p - 1))) →ₗ[K] ↥(HeckeEis.BinaryForm K (p - 1 - a)),

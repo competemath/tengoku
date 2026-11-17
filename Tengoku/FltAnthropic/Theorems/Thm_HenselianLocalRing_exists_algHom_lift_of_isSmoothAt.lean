@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_HenselianLocalRing_exists_algHom_lift_of_i
 
 universe u
 
+/--
+@isnad1 id=ex.0h3v.s9.8deacfcbf5eb from=translated src=- shape=5ca85ca5 vocab=67a702ea
+-/
 theorem HenselianLocalRing.exists_algHom_lift_of_isSmoothAt
     {R : Type u} [CommRing R] [HenselianLocalRing R]
     (S : Type u) [CommRing S] [Algebra R S] [Algebra.FinitePresentation R S]

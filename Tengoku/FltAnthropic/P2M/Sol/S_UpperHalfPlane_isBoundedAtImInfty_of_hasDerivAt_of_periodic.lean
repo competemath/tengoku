@@ -19,6 +19,9 @@ open scoped Real Manifold
 
 local notation "𝕢" => Function.Periodic.qParam
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.918a6ae87297 from=translated src=- shape=1762a6c8 vocab=225ab841
+-/
 theorem hasDerivAt_qParam (h : ℝ) (z : ℂ) :
     HasDerivAt (𝕢 h) (2 * π * Complex.I / h * 𝕢 h z) z := by
   have h1 : HasDerivAt (fun w : ℂ => 2 * ↑π * Complex.I * w / ↑h)
@@ -32,12 +35,18 @@ theorem hasDerivAt_qParam (h : ℝ) (z : ℂ) :
   rw [hval]
   exact h2
 
+/--
+@isnad1 id=eq.1h2v.s4.e627587e0f01 from=translated src=- shape=3a0c6071 vocab=46876471
+-/
 theorem qParam_add_period (h : ℝ) (hh : h ≠ 0) (z : ℂ) : 𝕢 h (z + h) = 𝕢 h z := by
   simp only [Function.Periodic.qParam]
   have hne : (h : ℂ) ≠ 0 := ofReal_ne_zero.mpr hh
   rw [show 2 * ↑π * Complex.I * (z + ↑h) / ↑h = 2 * ↑π * Complex.I * z / ↑h + 2 * ↑π * Complex.I by field_simp,
     Complex.exp_add, Complex.exp_two_pi_mul_I, mul_one]
 
+/--
+@isnad1 id=eq.1h3v.s6.eb87b508247f from=translated src=- shape=8e7b93cf vocab=d548af94
+-/
 theorem apply_eq_apply_of_hasDerivAt_zero {D : ℂ → ℂ}
     (hD : ∀ τ : ℍ, HasDerivAt D 0 ↑τ) (z w : ℍ) : D ↑z = D ↑w := by
   have hmem : ∀ σ : ℍ, (↑σ : ℂ) ∈ {c : ℂ | 0 < c.im} := fun σ => σ.2
@@ -50,12 +59,18 @@ theorem apply_eq_apply_of_hasDerivAt_zero {D : ℂ → ℂ}
   ext1
   simp
 
+/--
+@isnad1 id=eq.0h2v.s5.2d7e7105188e from=translated src=- shape=150d07b6 vocab=ddec7705
+-/
 theorem ofComplex_coe_add_real (τ : ℍ) (p : ℝ) : ofComplex ((τ : ℂ) + (p : ℂ)) = (p +ᵥ τ) := by
   have him : 0 < ((τ : ℂ) + (p : ℂ)).im := by simpa using τ.im_pos
   rw [ofComplex_apply_of_im_pos him]
   apply UpperHalfPlane.ext
   simp [UpperHalfPlane.coe_vadd, add_comm]
 
+/--
+@isnad1 id=isbounde.6h3v.s8.192ea0a80f7b from=translated src=- shape=968ed4cb vocab=2f963400
+-/
 theorem isBoundedAtImInfty_of_hasDerivAt_of_periodic {h : ℝ} (hh : 0 < h) {u v : ℍ → ℂ}
     (hu_per : Periodic (u ∘ ofComplex) h) (hu_hol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) u)
     (hu_bdd : IsBoundedAtImInfty u)
@@ -169,6 +184,9 @@ end UpperHalfPlane.PrimBddAux
 
 open scoped Manifold in
 
+/--
+@isnad1 id=isbounde.6h3v.s8.192ea0a80f7b from=translated src=- shape=968ed4cb vocab=2f963400
+-/
 theorem solution {h : ℝ} (hh : 0 < h) {u v : UpperHalfPlane → ℂ}
     (hu_per : Function.Periodic (u ∘ UpperHalfPlane.ofComplex) h) (hu_hol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) u)
     (hu_bdd : UpperHalfPlane.IsBoundedAtImInfty u)

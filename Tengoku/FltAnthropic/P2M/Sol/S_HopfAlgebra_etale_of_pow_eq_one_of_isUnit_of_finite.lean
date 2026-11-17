@@ -11,6 +11,9 @@ universe u v
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=etale.2h3v.s9.6307de8e7909 from=translated src=- shape=51158a48 vocab=a8b7e480
+-/
 theorem solution
     {R : Type u} [CommRing R] {H : Type v} [CommRing H] [HopfAlgebra R H]
     [IsNoetherianRing R] [Module.Finite R H] [Module.Flat R H]

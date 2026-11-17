@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_HopfAlgebra_exists_cocomm_adjoin_normOneTo
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_HopfAlgebra_exists_cocomm_adjoin_normOneTorus_of_generators_and_points.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
 open scoped TensorProduct in
+/--
+@isnad1 id=ex.6h5v.s13.dd6e429569a5 from=translated src=- shape=06f30c10 vocab=88373d08
+-/
 theorem HopfAlgebra.exists_cocomm_adjoin_normOneTorus_of_generators_and_points
     (K : Type) [Field K] [CharZero K] (c : K) (hc : c ≠ 0) (hnsq : ¬ IsSquare c)
     (B : Type) [CommRing B] [HopfAlgebra K B] (u v : B)

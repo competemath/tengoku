@@ -8,6 +8,9 @@ namespace P2MW.S_Matrix_isUnit_det_padicInt_of_norm_sub_one_lt_one
 set_option maxHeartbeats 8000000
 open Matrix
 
+/--
+@isnad1 id=isunit.1h3v.s7.ec5d4016d9a1 from=translated src=- shape=88e00d0f vocab=bcad3576
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] (n : ℕ) (P : Matrix (Fin n) (Fin n) ℤ_[p])
     (h : ∀ i j, ‖P i j - (1 : Matrix (Fin n) (Fin n) ℤ_[p]) i j‖ < 1) :

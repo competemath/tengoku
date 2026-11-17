@@ -8,6 +8,9 @@ set_option autoImplicit false
 universe u v
 open scoped TensorProduct
 
+/--
+@isnad1 id=ex.3h3v.s13.dba2f0321c20 from=translated src=- shape=3ca47613 vocab=b50c73b2
+-/
 theorem HopfAlgebra.exists_hopfAlgebra_bialgHom_surjective_ker_eq_of_hopfIdeal_of_commRing
     {R : Type u} [CommRing R] {A : Type v} [CommRing A] [HopfAlgebra R A] (I : Ideal A)
     (hcomul : ∀ a ∈ I, Algebra.TensorProduct.map (Ideal.Quotient.mkₐ R I) (Ideal.Quotient.mkₐ R I)

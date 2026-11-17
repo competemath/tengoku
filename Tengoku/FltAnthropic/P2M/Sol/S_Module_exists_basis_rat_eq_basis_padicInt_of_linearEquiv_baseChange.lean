@@ -9,6 +9,9 @@ namespace P2MW.S_Module_exists_basis_rat_eq_basis_padicInt_of_linearEquiv_baseCh
 open scoped TensorProduct
 set_option maxHeartbeats 6400000
 
+/--
+@isnad1 id=ex.0h4v.s11.aedcf10c7caa from=translated src=- shape=b1329007 vocab=8d1aae5d
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime]
     (A : Type*) [AddCommGroup A] [Module ℚ A] [Module.Finite ℚ A]

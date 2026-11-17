@@ -9,6 +9,9 @@ namespace P2MW.S_Matrix_exists_rat_mul_eq_map_padicInt_of_isUnit_det
 set_option maxHeartbeats 12000000
 open Matrix
 
+/--
+@isnad1 id=ex.1h3v.s8.5f451fbcf5d5 from=translated src=- shape=744e20e1 vocab=d15f5876
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] (n : ℕ)
     (M : Matrix (Fin n) (Fin n) ℚ_[p]) (hM : IsUnit M.det) :

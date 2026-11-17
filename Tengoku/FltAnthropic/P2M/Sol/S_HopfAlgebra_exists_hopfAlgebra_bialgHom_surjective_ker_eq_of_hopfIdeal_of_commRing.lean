@@ -31,11 +31,17 @@ noncomputable def comulQ : (A ⧸ I) →ₐ[F] (A ⧸ I) ⊗[F] (A ⧸ I) :=
       (Bialgebra.comulAlgHom F A))
     (fun a ha => by simpa [Bialgebra.comulAlgHom_apply] using hcomul a ha)
 
+/--
+@isnad1 id=eq.1h4v.s13.635915f9e121 from=translated src=- shape=4fae72ba vocab=e4dfc414
+-/
 lemma comulQ_mk (a : A) :
     comulQ I hcomul (Ideal.Quotient.mk I a) =
       Algebra.TensorProduct.map (Ideal.Quotient.mkₐ F I) (Ideal.Quotient.mkₐ F I)
         (Coalgebra.comul (R := F) a) := rfl
 
+/--
+@isnad1 id=eq.1h3v.s12.a74b51ebc0c4 from=translated src=- shape=ea7bca3f vocab=cafcee3c
+-/
 lemma comulQ_comp_mk :
     (comulQ I hcomul).comp (Ideal.Quotient.mkₐ F I) =
       (Algebra.TensorProduct.map (Ideal.Quotient.mkₐ F I) (Ideal.Quotient.mkₐ F I)).comp
@@ -45,8 +51,14 @@ lemma comulQ_comp_mk :
 noncomputable def counitQ : (A ⧸ I) →ₐ[F] F :=
   Ideal.Quotient.liftₐ I (Bialgebra.counitAlgHom F A) (fun a ha => by simpa using hcounit a ha)
 
+/--
+@isnad1 id=eq.1h4v.s10.9a9533004bbe from=translated src=- shape=14cba784 vocab=4c9d6bab
+-/
 lemma counitQ_mk (a : A) : counitQ I hcounit (Ideal.Quotient.mk I a) = Coalgebra.counit (R := F) a := rfl
 
+/--
+@isnad1 id=eq.1h3v.s9.6fd202922750 from=translated src=- shape=7e86ea16 vocab=66e8c057
+-/
 lemma counitQ_comp_mk : (counitQ I hcounit).comp (Ideal.Quotient.mkₐ F I) = Bialgebra.counitAlgHom F A := by
   ext a; rfl
 
@@ -55,6 +67,9 @@ noncomputable def antipodeAlgHom : A →ₐ[F] A :=
     (HopfAlgebra.antipode_one (R := F) (A := A))
     (fun a b => by rw [HopfAlgebra.antipode_mul_antidistrib, mul_comm])
 
+/--
+@isnad1 id=eq.0h3v.s8.a36a25a5cefe from=translated src=- shape=714eb64c vocab=2de4e1d7
+-/
 lemma antipodeAlgHom_apply (a : A) : antipodeAlgHom (F := F) a = HopfAlgebraStruct.antipode (R := F) a := rfl
 
 noncomputable def antipodeQ : (A ⧸ I) →ₐ[F] (A ⧸ I) :=
@@ -63,11 +78,17 @@ noncomputable def antipodeQ : (A ⧸ I) →ₐ[F] (A ⧸ I) :=
       simpa [antipodeAlgHom_apply] using (Ideal.Quotient.eq_zero_iff_mem).mpr (hanti a ha))
 
 omit hcomul hcounit hanti in
+/--
+@isnad1 id=eq.0h8v.s10.e91559e8b3d1 from=translated src=- shape=fddb02ca vocab=3e6a6713
+-/
 lemma algMap_apply {B C B' C' : Type*} [CommRing B] [CommRing C] [CommRing B'] [CommRing C']
     [Algebra F B] [Algebra F C] [Algebra F B'] [Algebra F C'] (f : B →ₐ[F] B') (g : C →ₐ[F] C')
     (z : B ⊗[F] C) :
     Algebra.TensorProduct.map f g z = TensorProduct.map f.toLinearMap g.toLinearMap z := rfl
 
+/--
+@isnad1 id=eq.2h3v.s12.a3a98ee0f1aa from=translated src=- shape=3cbcb55f vocab=c15c8ae9
+-/
 lemma law_rTensor :
     (Algebra.TensorProduct.map (counitQ I hcounit) (AlgHom.id F (A ⧸ I))).comp (comulQ I hcomul) =
       ↑(Algebra.TensorProduct.lid F (A ⧸ I)).symm := by
@@ -84,6 +105,9 @@ lemma law_rTensor :
   rw [h1, LinearMap.comp_apply, Coalgebra.rTensor_counit_comul, TensorProduct.map_tmul]
   simp
 
+/--
+@isnad1 id=eq.2h3v.s12.ae80e913d9d6 from=translated src=- shape=f4748b92 vocab=0264e624
+-/
 lemma law_lTensor :
     (Algebra.TensorProduct.map (AlgHom.id F (A ⧸ I)) (counitQ I hcounit)).comp (comulQ I hcomul) =
       ↑(Algebra.TensorProduct.rid F F (A ⧸ I)).symm := by
@@ -99,6 +123,9 @@ lemma law_lTensor :
   rw [h1, LinearMap.comp_apply, Coalgebra.lTensor_counit_comul, TensorProduct.map_tmul]
   simp
 
+/--
+@isnad1 id=eq.1h3v.s14.b1fee9c655b3 from=translated src=- shape=e4471d7e vocab=47aeef16
+-/
 lemma law_coassoc :
     ((Algebra.TensorProduct.assoc F F F (A ⧸ I) (A ⧸ I) (A ⧸ I) :
         ((A ⧸ I) ⊗[F] (A ⧸ I)) ⊗[F] (A ⧸ I) ≃ₐ[F] (A ⧸ I) ⊗[F] ((A ⧸ I) ⊗[F] (A ⧸ I))) :
@@ -152,12 +179,18 @@ lemma law_coassoc :
   Bialgebra.ofAlgHom (comulQ I hcomul) (counitQ I hcounit)
     (law_coassoc I hcomul) (law_rTensor I hcomul hcounit) (law_lTensor I hcomul hcounit)
 
+/--
+@isnad1 id=eq.1h3v.s10.b3b99189834d from=translated src=- shape=7c02f8c9 vocab=22ca8ef5
+-/
 lemma antipodeQ_comp_mk_linear :
     (antipodeQ I hanti).toLinearMap ∘ₗ (Ideal.Quotient.mkₐ F I).toLinearMap =
       (Ideal.Quotient.mkₐ F I).toLinearMap ∘ₗ HopfAlgebraStruct.antipode (R := F) := by
   ext a; rfl
 
 omit hcomul hcounit hanti in
+/--
+@isnad1 id=eq.0h3v.s12.acec24a0794f from=translated src=- shape=13c5d1ea vocab=ff4ed0f1
+-/
 lemma mul'_comp_map_mk :
     LinearMap.mul' F (A ⧸ I) ∘ₗ
         TensorProduct.map (Ideal.Quotient.mkₐ F I).toLinearMap (Ideal.Quotient.mkₐ F I).toLinearMap =
@@ -220,6 +253,9 @@ end HopfIdealQuotient
 end HopfAlgebra
 
 open HopfAlgebra.HopfIdealQuotient in
+/--
+@isnad1 id=ex.3h3v.s13.dba2f0321c20 from=translated src=- shape=3ca47613 vocab=b50c73b2
+-/
 theorem solution
     {R : Type u} [CommRing R] {A : Type v} [CommRing A] [HopfAlgebra R A] (I : Ideal A)
     (hcomul : ∀ a ∈ I, Algebra.TensorProduct.map (Ideal.Quotient.mkₐ R I) (Ideal.Quotient.mkₐ R I)

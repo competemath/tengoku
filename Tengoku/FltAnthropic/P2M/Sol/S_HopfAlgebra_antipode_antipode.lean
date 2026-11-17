@@ -68,6 +68,9 @@ private theorem antipode_comp_antipode' :
 end CommutativeHopf
 end HopfAlgebra
 
+/--
+@isnad1 id=eq.0h3v.s8.026f54f755d9 from=translated src=- shape=c02c381d vocab=c9e9d17f
+-/
 theorem solution {R : Type*} [CommSemiring R]
     {A : Type*} [CommSemiring A] [HopfAlgebra R A] (a : A) :
     HopfAlgebra.antipode R (HopfAlgebra.antipode R a) = a := by

@@ -48,11 +48,17 @@ noncomputable def dualMap (φ : H' →ₐc[R] H) : CartierDual R H →ₐ[R] Car
     ext a
     simp [CartierDual.algebraMap_apply]
 
+/--
+@isnad1 id=eq.0h6v.s9.fce14f69f224 from=translated src=- shape=fc249538 vocab=c5ca14f7
+-/
 @[scoped simp] theorem dualMap_apply (φ : H' →ₐc[R] H) (ψ : CartierDual R H) (a : H') :
     dualMap φ ψ a = ψ (φ a) := rfl
 
 end CartierPullback
 
+/--
+@isnad1 id=mem.1h4v.s9.59f558e4323a from=translated src=- shape=7b069f89 vocab=745823c9
+-/
 theorem dual_mem_map_of_forall_apply_mem
     {R : Type u} [CommRing R] (I : Ideal R)
     {H' : Type w} [CommRing H'] [Bialgebra R H'] [Coalgebra.IsCocomm R H']
@@ -71,6 +77,9 @@ theorem dual_mem_map_of_forall_apply_mem
   rw [Algebra.smul_def]
   exact Ideal.mul_mem_right _ _ (Ideal.mem_map_of_mem _ (hδ (b i)))
 
+/--
+@isnad1 id=le.0h2v.s7.b74b5072b3c7 from=translated src=- shape=6f1cfd28 vocab=72f65208
+-/
 theorem map_maximalIdeal_le_jacobson
     {R : Type*} [CommRing R] [IsLocalRing R] {B : Type*} [CommRing B] [Algebra R B] [Module.Finite R B] :
     (IsLocalRing.maximalIdeal R).map (algebraMap R B) ≤ Ideal.jacobson ⊥ := by
@@ -81,6 +90,9 @@ theorem map_maximalIdeal_le_jacobson
   have hmax : (J.comap (algebraMap R B)).IsMaximal := Ideal.isMaximal_comap_of_isIntegral_of_isMaximal J
   rw [IsLocalRing.eq_maximalIdeal hmax]
 
+/--
+@isnad1 id=eq.1h5v.s10.4f2d8d281788 from=translated src=- shape=1c563807 vocab=c47de2df
+-/
 theorem bialgHom_eq
     {R : Type u} [CommRing R] [IsLocalRing R]
     (H : Type v) [CommRing H] [Bialgebra R H] [Coalgebra.IsCocomm R H]
@@ -120,6 +132,9 @@ theorem bialgHom_eq
   rw [map_sub, sub_eq_zero]
   exact this
 
+/--
+@isnad1 id=mem.1h4v.s8.31ebe040520d from=translated src=- shape=35d02a15 vocab=d1f85c1e
+-/
 theorem mem_map_of_forall_apply_mem {S : Type u} [CommRing S] (I : Ideal S) {M : Type v} [AddCommMonoid M]
     (x : AddMonoidAlgebra S M) (hx : ∀ j : M, x.coeff j ∈ I) :
     x ∈ I.map (algebraMap S (AddMonoidAlgebra S M)) := by
@@ -138,6 +153,9 @@ open scoped _root_.P2MW.S_HopfAlgebra_bialgHom_addMonoidAlgebra_eq_of_mapAlgHom_
 
 open RigidMult2 in
 
+/--
+@isnad1 id=eq.1h5v.s11.ad829bf3f080 from=translated src=- shape=fb8cd40d vocab=ac872bad
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsLocalRing R]
     {H : Type u} [CommRing H] [HopfAlgebra R H] [Module.Finite R H] [Module.Flat R H] [Coalgebra.IsCocomm R H]

@@ -12,6 +12,9 @@ set_option autoImplicit false
 universe u
 open CategoryTheory Rep
 
+/--
+@isnad1 id=eq.1h5v.s6.348b767a94aa from=translated src=- shape=c67a02d7 vocab=49645fa4
+-/
 theorem solution {k G ι : Type u} [CommRing k] [Group G] [Fintype G]
     (F : ι → Rep.{u} k G) (s : Finset ι) (h : ∀ i, i ∉ s → Subsingleton (F i).tateH0) :
     Nat.card (GroupCohomology.RepPi.obj F).tateH0 = ∏ i ∈ s, Nat.card (F i).tateH0 := by

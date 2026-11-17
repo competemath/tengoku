@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open scoped MatrixGroups
 
+/--
+@isnad1 id=mem.2h4v.s13.77de947584ce from=translated src=- shape=2a33427d vocab=53bae7ab
+-/
 theorem HeckeEis.mem_range_binaryFormRepSL_T_zpow_sub_one {K : Type*} [Field K] [CharZero K] (n : ℕ) {h : ℤ}
     (hh : h ≠ 0) (P : ↥(HeckeEis.BinaryForm K n))
     (hP : MvPolynomial.coeff (Finsupp.single 1 n) (P : MvPolynomial (Fin 2) K) = 0) :

@@ -11,6 +11,9 @@ set_option autoImplicit false
 open scoped MatrixGroups
 
 open HeckeEis MvPolynomial in
+/--
+@isnad1 id=eq.1h3v.s8.aced9140a8ed from=translated src=- shape=20d5237c vocab=fae6b8ac
+-/
 theorem solution {K : Type*} [CommRing K] {n : ℕ}
     {P : MvPolynomial (Fin 2) K} (hP : P ∈ HeckeEis.BinaryForm K n) :
     MvPolynomial.coeff (Finsupp.single 1 n) P = MvPolynomial.eval ![0, 1] P := by

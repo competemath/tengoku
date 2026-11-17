@@ -9,6 +9,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_HeckeCohomology_heckeH1_delta0
 set_option autoImplicit false
 open CategoryTheory groupCohomology in
 
+/--
+@isnad1 id=eq.6h10v.s16.7071477d8e8c from=translated src=- shape=5dfd44f1 vocab=eca73b07
+-/
 theorem HeckeCohomology.heckeH1_delta0 {k Γ : Type} [CommRing k] [Group Γ]
     (S₁ S₂ : Subgroup Γ) (c : S₂ →* S₁) [S₂.FiniteIndex]
     {X : ShortComplex (Rep k Γ)} (hX : X.ShortExact)

@@ -20,18 +20,27 @@ variable {A : Type*} [AddCommGroup A]
 
 omit [H.FiniteIndex] in
 
+/--
+@isnad1 id=eq.0h3v.s8.9f73c3d98d88 from=translated src=- shape=5bfa2f83 vocab=3f0125fd
+-/
 theorem default_leftQuotientEquiv_apply (q : G ⧸ H) :
     ((default : H.LeftTransversal).2.leftQuotientEquiv q : G) = q.out :=
   IsComplement.leftQuotientEquiv_apply Quotient.out_eq' q
 
 omit [H.FiniteIndex] in
 
+/--
+@isnad1 id=eq.0h4v.s9.99d4b7f616a2 from=translated src=- shape=32831ddb vocab=6f8c6530
+-/
 theorem smul_default_leftQuotientEquiv_apply (g : G) (q : G ⧸ H) :
     ((g • (default : H.LeftTransversal)).2.leftQuotientEquiv q : G) = g * (g⁻¹ • q).out := by
   rw [smul_apply_eq_smul_apply_inv_smul, smul_eq_mul]
   congr 1
   exact default_leftQuotientEquiv_apply H (g⁻¹ • q)
 
+/--
+@isnad1 id=eq.0h4v.s12.89c41dc44d84 from=translated src=- shape=09266dbc vocab=73138b88
+-/
 theorem solution_aux (φ : Additive ↥H →+ A) :
     HeckeEis.coresHom (H := H) φ
       = MonoidHom.toAdditiveLeft
@@ -54,6 +63,9 @@ theorem solution_aux (φ : Additive ↥H →+ A) :
 
 end INH.SolB0
 
+/--
+@isnad1 id=eq.0h4v.s12.89c41dc44d84 from=translated src=- shape=09266dbc vocab=73138b88
+-/
 theorem solution {G : Type*} [Group G] (H : Subgroup G) [H.FiniteIndex]
     {A : Type*} [AddCommGroup A] (φ : Additive ↥H →+ A) :
     HeckeEis.coresHom (H := H) φ

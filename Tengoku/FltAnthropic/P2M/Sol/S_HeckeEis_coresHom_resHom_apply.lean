@@ -7,6 +7,9 @@ namespace P2MW.S_HeckeEis_coresHom_resHom_apply
 
 open Subgroup
 
+/--
+@isnad1 id=eq.0h5v.s12.73700adb306b from=translated src=- shape=238fc22e vocab=93837408
+-/
 theorem solution {G : Type*} [Group G] (H : Subgroup G) {A : Type*}
     [AddCommGroup A] [H.FiniteIndex] (φ : Additive G →+ A) (g : G) :
     HeckeEis.coresHom H (HeckeEis.resHom H φ) (Additive.ofMul g) =

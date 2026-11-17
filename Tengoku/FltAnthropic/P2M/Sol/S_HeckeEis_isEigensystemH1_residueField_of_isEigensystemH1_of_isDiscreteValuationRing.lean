@@ -17,6 +17,9 @@ set_option autoImplicit false
 namespace Module export _root_.Module (Injective Free free_of_finite_type_torsion_free' End Projective.exists_dual_eq_one Projective projective_lifting_property Basis.reindex_apply Basis) end Module
 open scoped _root_.Module in
 
+/--
+@isnad1 id=ex.2h6v.s9.e9f3c1b41f86 from=translated src=- shape=6d3e2bec vocab=b3dacdaa
+-/
 theorem Module.exists_not_mem_maximalIdeal_smul_top_and_forall_eq_smul_of_forall_eq_smul
     {O : Type*} [CommRing O] [IsDomain O] [IsPrincipalIdealRing O] [IsLocalRing O]
     {M : Type*} [AddCommGroup M] [Module O M] [Module.Finite O M] [NoZeroSMulDivisors O M]
@@ -84,6 +87,9 @@ theorem Module.exists_not_mem_maximalIdeal_smul_top_and_forall_eq_smul_of_forall
   obtain ⟨m', hm'E, hm'⟩ := Set.not_subset.mp key
   exact ⟨m', hm', (hmemE m').mp hm'E⟩
 
+/--
+@isnad1 id=ex.4h13v.s10.eaaa0e6a7a96 from=translated src=- shape=4b786cbc vocab=84f9d136
+-/
 theorem GD.exists_smul_eq_rho_sub_of_jL
     {O L : Type*} [CommRing O] [IsDomain O] [Field L] [Algebra O L]
     (hOL : Function.Injective (algebraMap O L))
@@ -177,6 +183,9 @@ theorem GD.exists_smul_eq_rho_sub_of_jL
   refine ⟨d, w, nonZeroDivisors.ne_zero d.2, fun g => hjinj ?_⟩
   rw [LinearMap.map_smulₛₗ, map_sub, hj, hw, hv' g, smul_sub, map_smul]
 
+/--
+@isnad1 id=and.2h8v.s9.aaed6951147e from=translated src=- shape=b2c77056 vocab=1b152d47
+-/
 theorem GD.jk_surjective_and_ker {O : Type*} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     {Λ W : Type*} [AddCommGroup Λ] [Module O Λ] [AddCommGroup W] [Module (IsLocalRing.ResidueField O) W]
     (jk : Λ →ₛₗ[IsLocalRing.residue O] W) {ι : Type*} [Fintype ι] (b : Module.Basis ι O Λ)
@@ -224,6 +233,9 @@ theorem GD.jk_surjective_and_ker {O : Type*} [CommRing O] [IsDomain O] [IsDiscre
       rw [LinearMap.map_smulₛₗ, (IsLocalRing.residue_eq_zero_iff _).mpr (hϖ.maximalIdeal_eq ▸ Ideal.mem_span_singleton_self ϖ),
         zero_smul]
 
+/--
+@isnad1 id=ex.3h7v.s8.9fd17d4de5ef from=translated src=- shape=384f74a8 vocab=5abfe49f
+-/
 theorem GD.exists_int_eigvec_of_field_eigvec
     {O L : Type*} [CommRing O] [IsDomain O] [Field L] [Algebra O L]
     (hOL : Function.Injective (algebraMap O L))
@@ -303,6 +315,9 @@ noncomputable def heckeH1 (ha : IsCompat N ℓ ρ a) : coeffH1 ρ →ₗ[K] coef
     ((coeffCoboundaries ρ).comap (coeffCocycles ρ).subtype) (heckeZ1 ha)
     fun _ hz => coeffHeckeFun_mem_coeffCoboundaries N ℓ ρ a ha hz
 
+/--
+@isnad1 id=iscoeffh.1h6v.s9.d80cb5fe918e from=translated src=- shape=a6aab16c vocab=2900bc7b
+-/
 theorem isCoeffHeckeOnH1_heckeH1 (ha : IsCompat N ℓ ρ a) : IsCoeffHeckeOnH1 N ℓ ρ a (heckeH1 ha) :=
   fun z => ⟨heckeZ1 ha z, rfl, rfl⟩
 
@@ -317,14 +332,23 @@ variable {K : Type*} [CommRing K] {V : Type*} [AddCommGroup V] [Module K V]
 noncomputable def trunc (N : ℕ) (S₀ : Set ℕ) (a : ℕ → (V →ₗ[K] V)) (ℓ : ℕ) : V →ₗ[K] V :=
   @ite _ (Good N S₀ ℓ) (Classical.propDecidable _) (a ℓ) 0
 
+/--
+@isnad1 id=eq.1h6v.s6.402e26d987e2 from=translated src=- shape=ef182bf7 vocab=4bb245cf
+-/
 theorem trunc_of_good {N : ℕ} {S₀ : Set ℕ} (a : ℕ → (V →ₗ[K] V)) {ℓ : ℕ} (h : Good N S₀ ℓ) :
     trunc N S₀ a ℓ = a ℓ := by
   unfold trunc; exact ite_eq_left h
 
+/--
+@isnad1 id=eq.1h6v.s7.47a994e8254d from=translated src=- shape=04bebe82 vocab=4bb245cf
+-/
 theorem trunc_of_not_good {N : ℕ} {S₀ : Set ℕ} (a : ℕ → (V →ₗ[K] V)) {ℓ : ℕ} (h : ¬ Good N S₀ ℓ) :
     trunc N S₀ a ℓ = 0 := by
   unfold trunc; exact ite_eq_right h
 
+/--
+@isnad1 id=eq.1h12v.s9.d15a0d892285 from=translated src=- shape=2b39b017 vocab=4b7dc287
+-/
 theorem trunc_comm {N : ℕ} {S₀ : Set ℕ} {K' : Type*} [CommRing K'] {V' : Type*} [AddCommGroup V'] [Module K' V']
     {τ : K →+* K'} (j : V →ₛₗ[τ] V') (a : ℕ → (V →ₗ[K] V)) (a' : ℕ → (V' →ₗ[K'] V'))
     (h : ∀ (ℓ : ℕ) (x : V), ℓ.Prime → ¬ ℓ ∣ N → ℓ ∉ S₀ → j (a ℓ x) = a' ℓ (j x)) (ℓ : ℕ) (x : V) :
@@ -348,10 +372,16 @@ variable {N S₀ ρ a}
 noncomputable def Top (ha : IsCompatFamily N S₀ ρ a) (l : {ℓ : ℕ // Good N S₀ ℓ}) : coeffH1 ρ →ₗ[K] coeffH1 ρ :=
   @heckeH1 K _ V _ _ N l.1 ⟨l.2.1.ne_zero⟩ ρ (a l.1) (@ha l.1 ⟨l.2.1.ne_zero⟩ l.2.1 l.2.2.1 l.2.2.2)
 
+/--
+@isnad1 id=iscoeffh.1h7v.s9.b664245beeac from=translated src=- shape=4334ecbc vocab=ed468704
+-/
 theorem isCoeffHeckeOnH1_Top (ha : IsCompatFamily N S₀ ρ a) (l : {ℓ : ℕ // Good N S₀ ℓ}) :
     @IsCoeffHeckeOnH1 N l.1 ⟨l.2.1.ne_zero⟩ K _ V _ _ ρ (a l.1) (Top ha l) :=
   @isCoeffHeckeOnH1_heckeH1 K _ V _ _ N l.1 ⟨l.2.1.ne_zero⟩ ρ (a l.1) _
 
+/--
+@isnad1 id=iscoeffh.1h7v.s9.59b5ecdf76ff from=translated src=- shape=2dfc8bec vocab=66584c0a
+-/
 theorem isCoeffHeckeOnH1_Top_trunc (ha : IsCompatFamily N S₀ ρ a) (l : {ℓ : ℕ // Good N S₀ ℓ}) :
     @IsCoeffHeckeOnH1 N l.1 ⟨l.2.1.ne_zero⟩ K _ V _ _ ρ (trunc N S₀ a l.1) (Top ha l) := by
   rw [trunc_of_good a l.2]; exact isCoeffHeckeOnH1_Top ha l
@@ -363,6 +393,9 @@ section Transport
 variable {R : Type*} [CommRing R] {R' : Type*} [CommRing R'] {τ : R →+* R'}
 variable {M : Type*} [AddCommGroup M] [Module R M] {M' : Type*} [AddCommGroup M'] [Module R' M']
 
+/--
+@isnad1 id=eq.6h17v.s10.b9ead0d4f7e0 from=translated src=- shape=c9923258 vocab=e56b468c
+-/
 theorem comp_eq_comp_of_basis (j : M →ₛₗ[τ] M') {ι : Type*} (b : Module.Basis ι R M) (b' : Module.Basis ι R' M')
     (hb : ∀ i, b' i = j (b i)) (p q r s : M →ₗ[R] M) (P Q R₁ S : M' →ₗ[R'] M')
     (hp : ∀ x, j (p x) = P (j x)) (hq : ∀ x, j (q x) = Q (j x)) (hr : ∀ x, j (r x) = R₁ (j x))
@@ -375,6 +408,9 @@ end Transport
 
 section Lattice
 
+/--
+@isnad1 id=and.9h17v.s17.59f78b5e0757 from=translated src=- shape=40a30cc2 vocab=4e96bc36
+-/
 theorem exists_lattice_eigenclass
     (N : ℕ) [Group.FG (Gamma0 N)]
     {O : Type} [CommRing O] [IsDomain O] [IsPrincipalIdealRing O]
@@ -490,6 +526,9 @@ end GoingDownH1
 open scoped _root_.P2MW.S_HeckeEis_isEigensystemH1_residueField_of_isEigensystemH1_of_isDiscreteValuationRing.GoingDownH1
 
 open GoingDownH1 CongruenceSubgroup HeckeEis in
+/--
+@isnad1 id=iseigens.9h16v.s15.681a16cc1bfb from=translated src=- shape=56ac0beb vocab=b0f21fe5
+-/
 theorem solution
     (N : ℕ) [Group.FG (Gamma0 N)]
     {O : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]

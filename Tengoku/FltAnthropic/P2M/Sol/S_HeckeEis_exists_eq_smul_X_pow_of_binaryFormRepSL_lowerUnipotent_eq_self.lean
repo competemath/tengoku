@@ -27,6 +27,9 @@ theorem UnipotentFixedAux.eq_S_mul_T_zpow_neg_mul_S_inv {h : ℤ} (g : SL(2, ℤ
   ext i j
   fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h2v.s9.f59169d86b3c from=translated src=- shape=c6edfdaf vocab=dc39d1dd
+-/
 theorem UnipotentFixedAux.binarySubst_S_X_zero_pow (R : Type*) [CommRing R] (n : ℕ) :
     binarySubst R ((ModularGroup.S : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) (MvPolynomial.X 0 ^ n)
       = (MvPolynomial.X 1 ^ n : MvPolynomial (Fin 2) R) := by
@@ -35,6 +38,9 @@ theorem UnipotentFixedAux.binarySubst_S_X_zero_pow (R : Type*) [CommRing R] (n :
 
 open UnipotentFixedAux in
 
+/--
+@isnad1 id=ex.4h5v.s12.8094864e1ab6 from=translated src=- shape=4e5afc0d vocab=0bb5f9ec
+-/
 theorem SolMain.A3 {R : Type*} [CommRing R] [IsDomain R] (n : ℕ)
     {h : ℤ} (hh : (h : R) ≠ 0) (hn : ∀ j : ℕ, 1 ≤ j → j ≤ n → (j : R) ≠ 0)
     (g : SL(2, ℤ)) (hg : (g : Matrix (Fin 2) (Fin 2) ℤ) = !![1, 0; h, 1])
@@ -56,6 +62,9 @@ theorem SolMain.A3 {R : Type*} [CommRing R] [IsDomain R] (n : ℕ)
 end HeckeEis
 
 open scoped MatrixGroups in
+/--
+@isnad1 id=ex.4h5v.s12.8094864e1ab6 from=translated src=- shape=4e5afc0d vocab=0bb5f9ec
+-/
 theorem solution {R : Type*} [CommRing R] [IsDomain R] (n : ℕ)
     {h : ℤ} (hh : (h : R) ≠ 0) (hn : ∀ j : ℕ, 1 ≤ j → j ≤ n → (j : R) ≠ 0)
     (g : SL(2, ℤ)) (hg : (g : Matrix (Fin 2) (Fin 2) ℤ) = !![1, 0; h, 1])

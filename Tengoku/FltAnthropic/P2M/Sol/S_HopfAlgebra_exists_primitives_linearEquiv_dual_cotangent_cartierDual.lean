@@ -24,11 +24,17 @@ open _root_.HopfAlgebra
 section general
 variable (k : Type u) [Field k] {A : Type v} [CommRing A] [HopfAlgebra k A]
 
+/--
+@isnad1 id=iff.0h3v.s11.aba1f50a15d6 from=translated src=- shape=6d03f422 vocab=6336a598
+-/
 theorem mem_primitives_iff (x : A) :
     x ∈ primitives k A ↔ Coalgebra.comul (R := k) x = x ⊗ₜ[k] (1 : A) + (1 : A) ⊗ₜ[k] x := by
   simp only [primitives, LinearMap.mem_ker, LinearMap.sub_apply, LinearMap.add_apply, LinearMap.flip_apply,
     TensorProduct.mk_apply, sub_sub, sub_eq_zero]
 
+/--
+@isnad1 id=eq.1h3v.s9.5561fe921aff from=translated src=- shape=5715ce17 vocab=9e2ba2a9
+-/
 theorem counit_eq_zero_of_mem [Nontrivial A] {x : A} (hx : x ∈ primitives k A) : Coalgebra.counit (R := k) x = 0 := by
   have h := Coalgebra.rTensor_counit_comul (R := k) x
   rw [(mem_primitives_iff k x).mp hx, map_add, LinearMap.rTensor_tmul, LinearMap.rTensor_tmul,
@@ -46,16 +52,25 @@ local notation "D" => CartierDual k H
 local notation "I" => RingHom.ker (Bialgebra.counitAlgHom k (CartierDual k H))
 
 omit H in
+/--
+@isnad1 id=nontrivi.0h2v.s4.6563b59ef9ff from=translated src=- shape=c221ff1f vocab=ff342a40
+-/
 theorem nontrivial_of_bialgebra (A : Type v) [CommRing A] [Bialgebra k A] : Nontrivial A :=
   ⟨⟨0, 1, fun h => by
     have := congrArg (Coalgebra.counit (R := k) (A := A)) h
     rw [map_zero, Bialgebra.counit_one] at this
     exact zero_ne_one this⟩⟩
 
+/--
+@isnad1 id=iff.0h3v.s11.abef87f888c9 from=translated src=- shape=768cc8ef vocab=66c592e6
+-/
 theorem mem_I_iff (φ : D) : φ ∈ I ↔ φ 1 = 0 := by
   rw [RingHom.mem_ker, Bialgebra.counitAlgHom_apply]
   exact Eq.congr_left (CartierDual.counit_apply φ)
 
+/--
+@isnad1 id=eq.3h5v.s12.f91005041635 from=translated src=- shape=a0559725 vocab=cb33d059
+-/
 theorem mul_apply_eq_zero {x : H} (hx : x ∈ primitives k H) {ψ φ : D} (hψ : ψ ∈ I) (hφ : φ ∈ I) : (ψ * φ) x = 0 := by
   rw [mem_I_iff] at hψ hφ
   rw [CartierDual.mul_apply, (mem_primitives_iff k x).mp hx, map_add, TensorProduct.dualDistrib_apply,
@@ -73,8 +88,14 @@ noncomputable def pair : H →ₗ[k] (↥I →ₗ[k] k) :=
       show CartierDual.toDual k H ((c • φ : ↥I) : D) x = c • CartierDual.toDual k H (φ : D) x
       rw [Submodule.coe_smul_of_tower, map_smul, LinearMap.smul_apply])
 
+/--
+@isnad1 id=eq.0h4v.s15.c8d37336ebd0 from=translated src=- shape=974da77a vocab=e7a36f89
+-/
 theorem pair_apply (x : H) (φ : ↥I) : pair k H x φ = (φ : D) x := rfl
 
+/--
+@isnad1 id=le.1h3v.s16.457078ef13af from=translated src=- shape=051aa283 vocab=9f27364c
+-/
 theorem le_ker_pair {x : H} (hx : x ∈ primitives k H) :
     ((I : Ideal D) • (⊤ : Submodule D ↥I)).restrictScalars k ≤ LinearMap.ker (pair k H x) := by
   intro y hy
@@ -91,6 +112,9 @@ noncomputable def desc (x : ↥(primitives k H)) : (I).Cotangent →ₗ[k] k :=
   ((((I : Ideal D) • (⊤ : Submodule D ↥I)).restrictScalars k).liftQ (pair k H x.1) (le_ker_pair k H x.2)).comp
     (Submodule.Quotient.restrictScalarsEquiv k ((I : Ideal D) • (⊤ : Submodule D ↥I))).symm.toLinearMap
 
+/--
+@isnad1 id=eq.0h4v.s15.18c63114340d from=translated src=- shape=0498d41d vocab=e1442825
+-/
 theorem desc_toCotangent (x : ↥(primitives k H)) (φ : ↥I) : desc k H x ((I).toCotangent φ) = (φ : D) (x : H) := by
   show (((((I : Ideal D) • (⊤ : Submodule D ↥I)).restrictScalars k).liftQ (pair k H x.1) (le_ker_pair k H x.2))
     ((Submodule.Quotient.restrictScalarsEquiv k ((I : Ideal D) • (⊤ : Submodule D ↥I))).symm (Submodule.Quotient.mk φ))) = _
@@ -109,8 +133,14 @@ noncomputable def L : ↥(primitives k H) →ₗ[k] Module.Dual k (I).Cotangent 
     obtain ⟨φ, rfl⟩ := (I).toCotangent_surjective q
     rw [LinearMap.smul_apply, desc_toCotangent, desc_toCotangent, Submodule.coe_smul, map_smul, RingHom.id_apply]
 
+/--
+@isnad1 id=eq.0h4v.s16.6758b9e30802 from=translated src=- shape=e05cc6ce vocab=0c1fd189
+-/
 theorem L_apply (x : ↥(primitives k H)) (φ : ↥I) : L k H x ((I).toCotangent φ) = (φ : D) (x : H) := desc_toCotangent k H x φ
 
+/--
+@isnad1 id=injectiv.0h2v.s15.2210debda8f7 from=translated src=- shape=3a3021ec vocab=66e95cbd
+-/
 theorem L_injective : Function.Injective (L k H) := by
   haveI : Nontrivial H := nontrivial_of_bialgebra k H
   rw [← LinearMap.ker_eq_bot, Submodule.eq_bot_iff]
@@ -131,6 +161,9 @@ theorem L_injective : Function.Injective (L k H) := by
     rw [← h2, ← this]
   exact Subtype.ext ((Module.forall_dual_apply_eq_zero_iff k (x : H)).mp hall)
 
+/--
+@isnad1 id=le.0h4v.s10.063874e1b62c from=translated src=- shape=4865f7f7 vocab=4a47646e
+-/
 theorem map_primitives_le {A : Type*} {B : Type*} [CommRing A] [HopfAlgebra k A] [CommRing B] [HopfAlgebra k B]
     (e : A ≃ₐc[k] B) : (primitives k A).map (e : A →ₗ[k] B) ≤ primitives k B := by
   rintro _ ⟨x, hx, rfl⟩
@@ -141,6 +174,9 @@ theorem map_primitives_le {A : Type*} {B : Type*} [CommRing A] [HopfAlgebra k A]
   show e x ⊗ₜ[k] e 1 + e 1 ⊗ₜ[k] e x = _
   rw [map_one]
 
+/--
+@isnad1 id=eq.0h4v.s10.e8bdadb3ccf7 from=translated src=- shape=4865f7f7 vocab=aefa7394
+-/
 theorem map_primitives_eq {A : Type*} {B : Type*} [CommRing A] [HopfAlgebra k A] [CommRing B] [HopfAlgebra k B]
     (e : A ≃ₐc[k] B) : (primitives k A).map (e : A →ₗ[k] B) = primitives k B := by
   refine le_antisymm (map_primitives_le k e) fun y hy => ?_
@@ -148,6 +184,9 @@ theorem map_primitives_eq {A : Type*} {B : Type*} [CommRing A] [HopfAlgebra k A]
   have := map_primitives_le k e.symm ⟨y, hy, rfl⟩
   exact this
 
+/--
+@isnad1 id=eq.0h2v.s12.0c4bee0ecc97 from=translated src=- shape=af5d4dc3 vocab=a136219a
+-/
 theorem finrank_primitives_eq : Module.finrank k ↥(primitives k H) = Module.finrank k (I).Cotangent := by
   obtain ⟨e, -⟩ := CartierDual.exists_bialgEquiv_bidual k H
   have h1 : Module.finrank k ↥(primitives k (CartierDual k D)) = Module.finrank k ↥(primitives k H) := by
@@ -159,6 +198,9 @@ theorem finrank_primitives_eq : Module.finrank k ↥(primitives k H) = Module.fi
 end HopfAlgebra.PrimCotAux
 
 open HopfAlgebra.PrimCotAux in
+/--
+@isnad1 id=ex.0h2v.s16.fa22369caa08 from=translated src=- shape=cf41754b vocab=a7d1245a
+-/
 theorem solution
     (k : Type u) [Field k] (H : Type v) [CommRing H] [HopfAlgebra k H] [Coalgebra.IsCocomm k H]
     [Module.Finite k H] :

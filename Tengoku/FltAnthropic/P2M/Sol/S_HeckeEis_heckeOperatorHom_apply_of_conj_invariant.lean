@@ -8,6 +8,9 @@ namespace P2MW.S_HeckeEis_heckeOperatorHom_apply_of_conj_invariant
 
 open CongruenceSubgroup Subgroup
 
+/--
+@isnad1 id=eq.1h5v.s16.16b9eea597af from=translated src=- shape=6022d8cb vocab=9086bf82
+-/
 theorem solution (N ℓ : ℕ) [NeZero ℓ] {A : Type*}
     [AddCommGroup A] (φ : Additive ↥(Gamma0 N) →+ A)
     (hφ : ∀ γ : ↥(HeckeEis.heckeUpper N ℓ),

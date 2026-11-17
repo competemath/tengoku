@@ -24,6 +24,9 @@ open scoped MatrixGroups
 
 variable {K : Type*} [CommRing K]
 
+/--
+@isnad1 id=eq.0h3v.s9.e3c4ca2aba90 from=translated src=- shape=970d5d57 vocab=fd58309f
+-/
 theorem coeff_pderiv_one (P : MvPolynomial (Fin 2) K) (d : Fin 2 →₀ ℕ) :
     coeff d (pderiv 1 P) = ((d 1 + 1 : ℕ) : K) * coeff (d + Finsupp.single 1 1) P := by
   induction P using MvPolynomial.induction_on' with
@@ -52,6 +55,9 @@ theorem coeff_pderiv_one (P : MvPolynomial (Fin 2) K) (d : Fin 2 →₀ ℕ) :
   | add p q hp hq =>
     rw [map_add, coeff_add, coeff_add, hp, hq, mul_add]
 
+/--
+@isnad1 id=eq.0h4v.s9.adb3e6a9e7db from=translated src=- shape=168fe960 vocab=de888f4a
+-/
 theorem coeff_iterate_pderiv_one (P : MvPolynomial (Fin 2) K) (j : ℕ) (d : Fin 2 →₀ ℕ) :
     coeff d ((pderiv 1)^[j] P) = ((d 1 + j).descFactorial j : K) * coeff (d + Finsupp.single 1 j) P := by
   induction j generalizing d with
@@ -68,6 +74,9 @@ theorem coeff_iterate_pderiv_one (P : MvPolynomial (Fin 2) K) (j : ℕ) (d : Fin
       rw [show d 1 + (j + 1) = d 1 + 1 + j by ring, Nat.descFactorial_succ, Nat.add_sub_cancel]
     rw [e1, ← mul_assoc, e2]
 
+/--
+@isnad1 id=ishomoge.1h6v.s8.a262b46aa692 from=translated src=- shape=bf28157d vocab=6c400e71
+-/
 theorem isHomogeneous_iterate_pderiv {σ : Type*} {P : MvPolynomial σ K} {n : ℕ} (i : σ) (hP : P.IsHomogeneous n) (j : ℕ) :
     ((pderiv i)^[j] P).IsHomogeneous (n - j) := by
   induction j with
@@ -76,6 +85,9 @@ theorem isHomogeneous_iterate_pderiv {σ : Type*} {P : MvPolynomial σ K} {n : �
     rw [Function.iterate_succ_apply']
     simpa [Nat.sub_sub] using ih.pderiv
 
+/--
+@isnad1 id=eq.2h4v.s9.25d44380aa85 from=translated src=- shape=ed3c5bbc vocab=38db4752
+-/
 theorem iterate_pderiv_one_eq_zero_of_lt {n : ℕ} {P : MvPolynomial (Fin 2) K} (hP : P.IsHomogeneous n) {i : ℕ}
     (hi : n < i) : (pderiv 1)^[i] P = 0 := by
   ext d
@@ -90,7 +102,13 @@ theorem iterate_pderiv_one_eq_zero_of_lt {n : ℕ} {P : MvPolynomial (Fin 2) K} 
 
 abbrev ex (n m : ℕ) : Fin 2 →₀ ℕ := Finsupp.single 0 (n - m) + Finsupp.single 1 m
 
+/--
+@isnad1 id=eq.0h2v.s6.afab26cff387 from=translated src=- shape=49a32e5b vocab=cd0a5a83
+-/
 @[scoped simp] theorem ex_zero (n m : ℕ) : ex n m 0 = n - m := by simp [ex, Finsupp.single_apply]
+/--
+@isnad1 id=eq.0h2v.s5.220e7ec159a3 from=translated src=- shape=63341c4e vocab=c05a4c2f
+-/
 @[scoped simp] theorem ex_one (n m : ℕ) : ex n m 1 = m := by simp [ex, Finsupp.single_apply]
 
 theorem eq_ex_of_degree {m : ℕ} {d : Fin 2 →₀ ℕ} (hd : d.degree = m) : d = ex m (d 1) := by
@@ -100,6 +118,9 @@ theorem eq_ex_of_degree {m : ℕ} {d : Fin 2 →₀ ℕ} (hd : d.degree = m) : d
   · simp; omega
   · simp
 
+/--
+@isnad1 id=eq.1h4v.s8.976dcac3a211 from=translated src=- shape=54c9a3da vocab=908f942d
+-/
 theorem eval_one_eq_sum {m : ℕ} {Q : MvPolynomial (Fin 2) K} (hQ : Q.IsHomogeneous m) (w : K) :
     eval ![1, w] Q = ∑ k ∈ Finset.range (m + 1), coeff (ex m k) Q * w ^ k := by
   classical
@@ -127,6 +148,9 @@ theorem eval_one_eq_sum {m : ℕ} {Q : MvPolynomial (Fin 2) K} (hQ : Q.IsHomogen
   · intro d _ hd
     rw [notMem_support_iff.mp hd, zero_mul]
 
+/--
+@isnad1 id=eq.1h5v.s9.99ca5a594ba6 from=translated src=- shape=9ce01cbf vocab=656cc6fe
+-/
 theorem eval_iterate_pderiv_eq_sum {n : ℕ} {P : MvPolynomial (Fin 2) K} (hP : P.IsHomogeneous n) (i : ℕ) (w : K) :
     eval ![1, w] ((pderiv 1)^[i] P)
       = ∑ k ∈ Finset.range (n + 1 - i), ((k + i).descFactorial i : K) * coeff (ex n (k + i)) P * w ^ k := by
@@ -145,6 +169,9 @@ theorem eval_iterate_pderiv_eq_sum {n : ℕ} {P : MvPolynomial (Fin 2) K} (hP : 
   · rw [iterate_pderiv_one_eq_zero_of_lt hP hi, map_zero, show n + 1 - i = 0 by omega, Finset.range_zero,
       Finset.sum_empty]
 
+/--
+@isnad1 id=eq.1h4v.s9.c52dc5153d91 from=translated src=- shape=aa8f003f vocab=96287ded
+-/
 theorem coeff_ex_linePow (n m : ℕ) (hm : m ≤ n) (t : K) :
     coeff (ex n m) ((C t * X 0 + X 1) ^ n) = (n.choose m : K) * t ^ (n - m) := by
   classical
@@ -173,6 +200,9 @@ theorem coeff_ex_linePow (n m : ℕ) (hm : m ≤ n) (t : K) :
   rw [Finset.sum_congr rfl hterm, Finset.sum_ite_eq' (Finset.range (n + 1)) (n - m),
     ite_eq_left (Finset.mem_range.mpr (by omega))]
 
+/--
+@isnad1 id=eq.1h3v.s7.b4c952f23904 from=translated src=- shape=da20810b vocab=828ae914
+-/
 theorem sum_descFactorial_mul_choose_mul_neg_one_pow (n j : ℕ) (hj : j ≤ n) :
     ∑ k ∈ Finset.range (n + 1 - j), ((k + j).descFactorial j : K) * (n.choose (k + j) : K) * (-1 : K) ^ k
       = if j = n then (n.factorial : K) else 0 := by
@@ -201,6 +231,9 @@ theorem sum_descFactorial_mul_choose_mul_neg_one_pow (n j : ℕ) (hj : j ≤ n) 
   · subst hjn; simp [Nat.descFactorial_self]
   · rw [ite_eq_right (by omega), ite_eq_right hjn, mul_zero]
 
+/--
+@isnad1 id=hasderiv.2h5v.s10.00e0479be47b from=translated src=- shape=837f6c66 vocab=731bdcc1
+-/
 theorem hasDerivAt_eval_iterate_pderiv {n : ℕ} {g : ℍ → ℂ} {G : ℍ → ↥(BinaryForm ℂ n)}
     (hG : IsEichlerIntegral n g G) {j : ℕ} (hj : j ≤ n) (τ : ℍ) :
     HasDerivAt (fun z : ℂ => MvPolynomial.eval ![(1 : ℂ), -z]
@@ -295,6 +328,9 @@ open scoped _root_.P2MW.S_HeckeEis_IsEichlerIntegral_hasDerivAt_eval_iterate_pde
 
 open scoped MatrixGroups in
 
+/--
+@isnad1 id=hasderiv.2h5v.s10.00e0479be47b from=translated src=- shape=837f6c66 vocab=731bdcc1
+-/
 theorem solution {n : ℕ} {g : UpperHalfPlane → ℂ}
     {G : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)} (hG : HeckeEis.IsEichlerIntegral n g G) {j : ℕ} (hj : j ≤ n)
     (τ : UpperHalfPlane) :

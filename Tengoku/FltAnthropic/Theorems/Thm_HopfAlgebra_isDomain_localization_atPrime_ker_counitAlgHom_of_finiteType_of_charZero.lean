@@ -5,6 +5,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_HopfAlgebra_isDomain_localization_atPrime_
 
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_HopfAlgebra_isDomain_localization_atPrime_ker_counitAlgHom_of_finiteType_of_charZero.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
+/--
+@isnad1 id=isdomain.0h2v.s9.5a9370b6d96e from=translated src=- shape=55ef8a3b vocab=42523b99
+-/
 theorem HopfAlgebra.isDomain_localization_atPrime_ker_counitAlgHom_of_finiteType_of_charZero
     (K : Type*) [Field K] [CharZero K]
     (A : Type*) [CommRing A] [HopfAlgebra K A] [Algebra.FiniteType K A] :

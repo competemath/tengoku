@@ -8,6 +8,9 @@ namespace P2MW.S_LocalGL2_cartanDiag_cartanRel_iff
 
 open Matrix LocalGL2
 
+/--
+@isnad1 id=iff.3h6v.s6.6648136930b3 from=translated src=- shape=1128ff98 vocab=02f758cc
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     {ϖ : R} (hϖ : Irreducible ϖ) {a b a' b' : ℕ}

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=henselia.0h1v.s5.edcef868018c from=translated src=- shape=87ff805b vocab=70266713
+-/
 theorem solution (R : Type u) [CommRing R] [IsLocalRing R]
     [IsAdicComplete (IsLocalRing.maximalIdeal R) R] : HenselianLocalRing R := by
   refine { is_henselian := fun f hf a₀ h₁ h₂ => ?_ }

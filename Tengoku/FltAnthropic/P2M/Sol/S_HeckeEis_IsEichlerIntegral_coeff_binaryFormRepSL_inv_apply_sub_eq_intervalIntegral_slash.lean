@@ -23,6 +23,9 @@ abbrev V : Type := ↥(BinaryForm ℂ n)
 
 noncomputable abbrev R : SL(2, ℤ) →* (V n →ₗ[ℂ] V n) := binaryFormRepSL ℂ n
 
+/--
+@isnad1 id=eq.0h3v.s9.c722402407ac from=translated src=- shape=b6ed4a97 vocab=c9aacc01
+-/
 theorem eval_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (x : Fin 2 → ℂ) (P : MvPolynomial (Fin 2) ℂ) :
     MvPolynomial.eval x (binarySubst ℂ M P)
       = MvPolynomial.eval (fun j => ∑ i : Fin 2, x i * ((M i j : ℤ) : ℂ)) P := by
@@ -37,11 +40,20 @@ theorem eval_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (x : Fin 2 → ℂ) (P
 
 noncomputable def top (P : V n) : ℂ := MvPolynomial.coeff (Finsupp.single 1 n) (P : MvPolynomial (Fin 2) ℂ)
 
+/--
+@isnad1 id=eq.0h2v.s8.5728fbd81f6c from=translated src=- shape=3d0ae5bf vocab=b1c6e802
+-/
 theorem top_eq_eval (P : V n) : top n P = MvPolynomial.eval ![0, 1] (P : MvPolynomial (Fin 2) ℂ) :=
   coeff_single_one_eq_eval_of_mem_binaryForm P.2
 
+/--
+@isnad1 id=eq.0h3v.s7.bcab670d356d from=translated src=- shape=e4bc9e79 vocab=acd7e24d
+-/
 theorem top_sub (P Q : V n) : top n (P - Q) = top n P - top n Q := by simp [top]
 
+/--
+@isnad1 id=eq.0h3v.s11.f4baf691c2da from=translated src=- shape=3ce1ef10 vocab=072b8402
+-/
 theorem top_T_zpow (m : ℤ) (P : V n) : top n (R n (ModularGroup.T ^ m) P) = top n P := by
   rw [top_eq_eval, top_eq_eval, binaryFormRepSL_apply_coe, eval_binarySubst, ModularGroup.coe_T_zpow]
   have h : (fun j : Fin 2 => ∑ i : Fin 2, (![0, 1] : Fin 2 → ℂ) i * (((!![1, m; 0, 1] : Matrix (Fin 2) (Fin 2) ℤ) i j : ℤ) : ℂ))
@@ -50,10 +62,16 @@ theorem top_T_zpow (m : ℤ) (P : V n) : top n (R n (ModularGroup.T ^ m) P) = to
     fin_cases j <;> simp [Fin.sum_univ_two]
   rw [h]
 
+/--
+@isnad1 id=eq.0h2v.s4.4c4f40c7e5af from=translated src=- shape=418a28e2 vocab=7f91fb44
+-/
 theorem top_linePow (τ : ℂ) : top n (linePow n τ) = 1 := by
   rw [top_eq_eval, coe_linePow]
   simp
 
+/--
+@isnad1 id=eq.2h6v.s12.022b86ab51f8 from=translated src=- shape=a09a8474 vocab=6c1e24c2
+-/
 theorem main {f : ℍ → ℂ} (hf : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) f) {F : ℍ → V n} (hF : IsEichlerIntegral n f F) (σ : SL(2, ℤ))
     (h : ℤ) (τ : ℍ) :
     top n (R n σ⁻¹ (F ((σ * ModularGroup.T ^ h * σ⁻¹) • τ) - R n (σ * ModularGroup.T ^ h * σ⁻¹) (F τ)))
@@ -120,6 +138,9 @@ theorem main {f : ℍ → ℂ} (hf : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) f) {F :
 
 end A2PER
 
+/--
+@isnad1 id=eq.2h6v.s13.8ed6a222e19e from=translated src=- shape=2546cd13 vocab=5f6e052c
+-/
 theorem solution {n : ℕ}
     {f : UpperHalfPlane → ℂ} (hf : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) f) {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
     (hF : HeckeEis.IsEichlerIntegral n f F) (σ : SL(2, ℤ)) (h : ℤ) (τ : UpperHalfPlane) :

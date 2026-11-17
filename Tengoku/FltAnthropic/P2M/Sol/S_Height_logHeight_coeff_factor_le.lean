@@ -170,6 +170,9 @@ private lemma mwfac_mulHeight_coeff_le_of_monic {n : ℕ} {p q : Polynomial K}
 
 end helpers
 
+/--
+@isnad1 id=ex.0h2v.s8.881f9cad1168 from=translated src=- shape=4da1a4e2 vocab=c31bb090
+-/
 theorem solution (K : Type*) [Field K] [NumberField K] (n : ℕ) :
     ∃ c : ℝ, ∀ p q : Polynomial K, p ≠ 0 → p.natDegree ≤ n → q.Monic → q ∣ p →
       Height.logHeight (fun k : Fin (n + 1) => q.coeff k)

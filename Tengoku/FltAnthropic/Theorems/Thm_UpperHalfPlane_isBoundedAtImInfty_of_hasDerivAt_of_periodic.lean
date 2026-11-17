@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped Manifold
 
+/--
+@isnad1 id=isbounde.6h3v.s8.192ea0a80f7b from=translated src=- shape=968ed4cb vocab=2f963400
+-/
 theorem UpperHalfPlane.isBoundedAtImInfty_of_hasDerivAt_of_periodic {h : ℝ} (hh : 0 < h) {u v : UpperHalfPlane → ℂ}
     (hu_per : Function.Periodic (u ∘ UpperHalfPlane.ofComplex) h) (hu_hol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) u)
     (hu_bdd : UpperHalfPlane.IsBoundedAtImInfty u)

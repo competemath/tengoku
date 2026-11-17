@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_LocalGL2_finite_image_integralSubgroup_mul
 
 open scoped Pointwise
 open LocalGL2
+/--
+@isnad1 id=finite.1h4v.s10.a957c4c59ec5 from=translated src=- shape=c4c6ea2e vocab=ebd8cf3c
+-/
 theorem LocalGL2.finite_image_integralSubgroup_mul_singleton
     {R : Type*} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]

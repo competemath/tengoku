@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 namespace HeckeTreeWalkAux
 
+/--
+@isnad1 id=eq.3h4v.s7.f63ce019e350 from=translated src=- shape=d630fc4d vocab=304a85f3
+-/
 theorem walk_eq_zero_of_lt (q : ℕ) (W : ℕ → ℕ → ℕ) (h0s : ∀ d : ℕ, W 0 (d + 1) = 0)
     (hstep : ∀ k d : ℕ, W (k + 1) (d + 1) = W k d + q * W k (d + 2)) :
     ∀ k d : ℕ, k < d → W k d = 0 := by
@@ -23,6 +26,9 @@ theorem walk_eq_zero_of_lt (q : ℕ) (W : ℕ → ℕ → ℕ) (h0s : ∀ d : �
     obtain ⟨d', rfl⟩ := Nat.exists_eq_succ_of_ne_zero (by omega : d ≠ 0)
     rw [hstep, ih d' (by omega), ih (d' + 2) (by omega), mul_zero, add_zero]
 
+/--
+@isnad1 id=eq.0h3v.s8.d196540c7393 from=translated src=- shape=b37b8b30 vocab=5ee53e1e
+-/
 theorem telescope (q : ℤ) (A : ℕ → ℤ) : ∀ n : ℕ,
     (q + 1) * A 0 + ∑ r ∈ Finset.range (n + 1), (A r + q * A (r + 1)) * (q ^ (r + 1) - q ^ r) =
       2 * q * (A 0 + ∑ r ∈ Finset.range n, A (r + 1) * (q ^ (r + 1) - q ^ r)) +
@@ -34,6 +40,9 @@ theorem telescope (q : ℤ) (A : ℕ → ℤ) : ∀ n : ℕ,
     rw [Finset.sum_range_succ, ← add_assoc, ih, Finset.sum_range_succ]
     ring
 
+/--
+@isnad1 id=eq.0h4v.s7.7686b5bc9f67 from=translated src=- shape=22c6f160 vocab=5ee53e1e
+-/
 theorem sum_shift_split (q : ℤ) (B C : ℕ → ℤ) (μ : ℕ) :
     ∑ r ∈ Finset.range μ, (B r + q * C r) * (q ^ (r + 1) - q ^ r) =
       ∑ r ∈ Finset.range μ, B r * (q ^ (r + 1) - q ^ r) + q * ∑ r ∈ Finset.range μ, C r * (q ^ (r + 1) - q ^ r) := by
@@ -41,6 +50,9 @@ theorem sum_shift_split (q : ℤ) (B C : ℕ → ℤ) (μ : ℕ) :
   refine Finset.sum_congr rfl fun r _ => ?_
   ring
 
+/--
+@isnad1 id=eq.5h5v.s8.3d9b2927f4bb from=translated src=- shape=1b012b83 vocab=73e27d92
+-/
 theorem main (q : ℕ) (W : ℕ → ℕ → ℕ) (h00 : W 0 0 = 1) (h0s : ∀ d : ℕ, W 0 (d + 1) = 0)
     (hroot : ∀ k : ℕ, W (k + 1) 0 = (q + 1) * W k 1)
     (hstep : ∀ k d : ℕ, W (k + 1) (d + 1) = W k d + q * W k (d + 2)) :
@@ -115,6 +127,9 @@ theorem main (q : ℕ) (W : ℕ → ℕ → ℕ) (h00 : W 0 0 = 1) (h0s : ∀ d 
 
 end HeckeTreeWalkAux
 
+/--
+@isnad1 id=eq.4h4v.s8.d237260997c1 from=translated src=- shape=ba6740e5 vocab=73e27d92
+-/
 theorem solution
     (q : ℕ) (W : ℕ → ℕ → ℕ) (h00 : W 0 0 = 1) (h0s : ∀ d : ℕ, W 0 (d + 1) = 0)
     (hroot : ∀ k : ℕ, W (k + 1) 0 = (q + 1) * W k 1)

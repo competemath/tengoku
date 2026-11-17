@@ -38,6 +38,9 @@ def toGen (πK : K ⊗[𝒪] A →ₐc[K] C) : A →ₐ[𝒪] C :=
 
 abbrev closureIdeal (πK : K ⊗[𝒪] A →ₐc[K] C) : Ideal A := RingHom.ker (toGen πK)
 
+/--
+@isnad1 id=iff.0h6v.s11.cbfcd066b0b0 from=translated src=- shape=0204368e vocab=9d70d151
+-/
 theorem mem_closureIdeal_iff (πK : K ⊗[𝒪] A →ₐc[K] C) (a : A) :
     a ∈ closureIdeal πK ↔ πK ((1 : K) ⊗ₜ[𝒪] a) = 0 := RingHom.mem_ker
 
@@ -45,16 +48,25 @@ abbrev Closure (πK : K ⊗[𝒪] A →ₐc[K] C) : Type := A ⧸ closureIdeal �
 
 def ι (πK : K ⊗[𝒪] A →ₐc[K] C) : Closure πK →ₐ[𝒪] C := Ideal.kerLiftAlg (toGen πK)
 
+/--
+@isnad1 id=eq.0h6v.s11.449f692c5186 from=translated src=- shape=4ac95e93 vocab=4ef65f7a
+-/
 @[scoped simp] theorem ι_mk (πK : K ⊗[𝒪] A →ₐc[K] C) (a : A) :
     ι πK (Ideal.Quotient.mk (closureIdeal πK) a) = πK ((1 : K) ⊗ₜ[𝒪] a) :=
   Ideal.kerLiftAlg_mk _ _
 
+/--
+@isnad1 id=injectiv.0h5v.s10.5239408f17c2 from=translated src=- shape=2065db14 vocab=8996555d
+-/
 theorem ι_injective (πK : K ⊗[𝒪] A →ₐc[K] C) : Function.Injective (ι πK) :=
   Ideal.kerLiftAlg_injective _
 
 def genericFibreHom (πK : K ⊗[𝒪] A →ₐc[K] C) : K ⊗[𝒪] Closure πK →ₐ[K] C :=
   Algebra.TensorProduct.lift (Algebra.ofId K C) (ι πK) (fun _ _ => .all _ _)
 
+/--
+@isnad1 id=eq.0h7v.s11.8f062c8ee246 from=translated src=- shape=d8d81672 vocab=953daff6
+-/
 @[scoped simp] theorem genericFibreHom_tmul (πK : K ⊗[𝒪] A →ₐc[K] C) (k : K) (x : Closure πK) :
     genericFibreHom πK (k ⊗ₜ[𝒪] x) = k • ι πK x := by
   rw [genericFibreHom, Algebra.TensorProduct.lift_tmul, Algebra.ofId_apply, Algebra.smul_def]
@@ -65,6 +77,9 @@ def tensorToGen (πK : K ⊗[𝒪] A →ₐc[K] C) : Closure πK ⊗[𝒪] Closu
     (((Algebra.TensorProduct.includeRight : C →ₐ[K] C ⊗[K] C).restrictScalars 𝒪).comp (ι πK))
     (fun _ _ => .all _ _)
 
+/--
+@isnad1 id=eq.0h7v.s12.161882e5ec7c from=translated src=- shape=c5a22419 vocab=635dc170
+-/
 @[scoped simp] theorem tensorToGen_tmul (πK : K ⊗[𝒪] A →ₐc[K] C) (x y : Closure πK) :
     tensorToGen πK (x ⊗ₜ[𝒪] y) = ι πK x ⊗ₜ[K] ι πK y := by
   rw [tensorToGen, Algebra.TensorProduct.lift_tmul]
@@ -79,18 +94,30 @@ variable {K : Type} [Field K] [Algebra 𝒪 K] [IsFractionRing 𝒪 K]
 variable {A : Type} [CommRing A] [HopfAlgebra 𝒪 A] [Module.Finite 𝒪 A] [Module.Free 𝒪 A]
 variable {C : Type} [CommRing C] [HopfAlgebra K C] [Algebra 𝒪 C] [IsScalarTower 𝒪 K C]
 
+/--
+@isnad1 id=finite.0h5v.s10.fdccfbce9fab from=translated src=- shape=2a276772 vocab=8a4dad6d
+-/
 scoped instance closure_finite (πK : K ⊗[𝒪] A →ₐc[K] C) : Module.Finite 𝒪 (Closure πK) :=
   Module.Finite.of_surjective (Ideal.Quotient.mkₐ 𝒪 (closureIdeal πK)).toLinearMap
     (Ideal.Quotient.mkₐ_surjective 𝒪 _)
 
+/--
+@isnad1 id=istorsio.0h5v.s9.21a40e4d365f from=translated src=- shape=bea7c784 vocab=dae0a8d1
+-/
 scoped instance closure_isTorsionFree (πK : K ⊗[𝒪] A →ₐc[K] C) : Module.IsTorsionFree 𝒪 (Closure πK) := by
   haveI : FaithfulSMul 𝒪 K := (faithfulSMul_iff_algebraMap_injective 𝒪 K).2 (IsFractionRing.injective 𝒪 K)
   haveI : Module.IsTorsionFree 𝒪 C := Module.IsTorsionFree.trans_faithfulSMul 𝒪 K C
   exact (ι_injective πK).moduleIsTorsionFree (ι πK) (fun r m => map_smul (ι πK) r m)
 
+/--
+@isnad1 id=free.0h5v.s10.4685011073ad from=translated src=- shape=86c8ecf6 vocab=90aa279c
+-/
 scoped instance closure_free (πK : K ⊗[𝒪] A →ₐc[K] C) : Module.Free 𝒪 (Closure πK) :=
   Module.free_of_finite_type_torsion_free'
 
+/--
+@isnad1 id=injectiv.0h5v.s11.2bb930a6ee12 from=translated src=- shape=c659f546 vocab=3b254e32
+-/
 theorem genericFibreHom_injective (πK : K ⊗[𝒪] A →ₐc[K] C) :
     Function.Injective (genericFibreHom πK) := by
   classical
@@ -116,6 +143,9 @@ theorem genericFibreHom_injective (πK : K ⊗[𝒪] A →ₐc[K] C) :
   rw [hrepr x, hrepr y] at hxy'
   exact bK.repr.injective (hliK hxy')
 
+/--
+@isnad1 id=surjecti.1h5v.s11.2deb7e3c43c4 from=translated src=- shape=8842ae5c vocab=201fe578
+-/
 theorem genericFibreHom_surjective (πK : K ⊗[𝒪] A →ₐc[K] C) (hπK : Function.Surjective πK) :
     Function.Surjective (genericFibreHom πK) := by
   intro c
@@ -130,6 +160,9 @@ theorem genericFibreHom_surjective (πK : K ⊗[𝒪] A →ₐc[K] C) (hπK : Fu
     obtain ⟨y', hy'⟩ := hy
     exact ⟨x' + y', by rw [map_add, map_add, hx', hy']⟩
 
+/--
+@isnad1 id=injectiv.0h5v.s12.bde20d34e16b from=translated src=- shape=1a105613 vocab=e5cd5905
+-/
 theorem tensorToGen_injective (πK : K ⊗[𝒪] A →ₐc[K] C) :
     Function.Injective (tensorToGen πK) := by
 
@@ -154,6 +187,9 @@ def genericFibreEquiv (πK : K ⊗[𝒪] A →ₐc[K] C) (hπK : Function.Surjec
     K ⊗[𝒪] Closure πK ≃ₐ[K] C :=
   AlgEquiv.ofBijective (genericFibreHom πK) ⟨genericFibreHom_injective πK, genericFibreHom_surjective πK hπK⟩
 
+/--
+@isnad1 id=eq.1h6v.s12.e019c26c7022 from=translated src=- shape=8e24d412 vocab=78c8ed48
+-/
 @[scoped simp] theorem genericFibreEquiv_apply (πK : K ⊗[𝒪] A →ₐc[K] C) (hπK : Function.Surjective πK)
     (z : K ⊗[𝒪] Closure πK) : genericFibreEquiv πK hπK z = genericFibreHom πK z := rfl
 
@@ -166,6 +202,9 @@ variable {K : Type} [Field K] [Algebra 𝒪 K] [IsFractionRing 𝒪 K]
 variable {A : Type} [CommRing A] [HopfAlgebra 𝒪 A] [Module.Finite 𝒪 A] [Module.Free 𝒪 A]
 variable {C : Type} [CommRing C] [HopfAlgebra K C] [Algebra 𝒪 C] [IsScalarTower 𝒪 K C]
 
+/--
+@isnad1 id=eq.0h6v.s13.4f8011fb313a from=translated src=- shape=a6d381f9 vocab=aed6de3a
+-/
 theorem tensorToGen_map_comul (πK : K ⊗[𝒪] A →ₐc[K] C) (a : A) :
     tensorToGen πK (Algebra.TensorProduct.map (Ideal.Quotient.mkₐ 𝒪 (closureIdeal πK))
         (Ideal.Quotient.mkₐ 𝒪 (closureIdeal πK)) (comul (R := 𝒪) a)) =
@@ -179,6 +218,9 @@ theorem tensorToGen_map_comul (πK : K ⊗[𝒪] A →ₐc[K] C) (a : A) :
     simp [Ideal.Quotient.mkₐ_eq_mk, TensorProduct.AlgebraTensorModule.tensorTensorTensorComm_tmul]
   | add x y hx hy => simp only [map_add, TensorProduct.tmul_add, hx, hy]
 
+/--
+@isnad1 id=ishopfid.0h5v.s9.4024c423b493 from=translated src=- shape=8f9c6062 vocab=bae21d9c
+-/
 scoped instance closureIdeal_isHopfIdeal (πK : K ⊗[𝒪] A →ₐc[K] C) : (closureIdeal πK).IsHopfIdeal' 𝒪 where
   map_mkₐ_comul_eq_zero x hx := by
     apply tensorToGen_injective πK
@@ -198,6 +240,9 @@ scoped instance closureIdeal_isHopfIdeal (πK : K ⊗[𝒪] A →ₐc[K] C) : (c
       rw [TensorProduct.AlgebraTensorModule.map_tmul, CommSemiring.antipode_eq_id, LinearMap.id_apply]
     rw [h1, HopfAlgebra.HopfKerHopf.map_antipode πK, hx, map_zero]
 
+/--
+@isnad1 id=iff.1h7v.s12.e3983e9e7d30 from=translated src=- shape=d729d465 vocab=21cba87e
+-/
 theorem points_iff (πK : K ⊗[𝒪] A →ₐc[K] C) (hπK : Function.Surjective πK)
     (Ω : Type) [CommRing Ω] [Algebra 𝒪 Ω] [Algebra K Ω] [IsScalarTower 𝒪 K Ω] (g : A →ₐ[𝒪] Ω) :
     (∃ g' : Closure πK →ₐ[𝒪] Ω,
@@ -228,6 +273,9 @@ section Final
 
 open HopfAlgebra.GenericQuotClosure
 
+/--
+@isnad1 id=ex.1h5v.s13.ffe983a24acf from=translated src=- shape=d919fb3f vocab=3b24ba91
+-/
 theorem solution
     (𝒪 : Type) [CommRing 𝒪] [IsDomain 𝒪] [IsPrincipalIdealRing 𝒪]
     (K : Type) [Field K] [Algebra 𝒪 K] [IsFractionRing 𝒪 K]

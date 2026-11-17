@@ -10,6 +10,9 @@ set_option autoImplicit false
 open IsLocalRing
 
 open Finset in
+/--
+@isnad1 id=ex.3h3v.s7.afce9db628ae from=translated src=- shape=855f8fb2 vocab=b96eda95
+-/
 theorem solution
     (q : ℕ) [hq : Fact q.Prime]
     (A : Type*) [CommRing A] [IsDomain A] [IsLocalRing A] [HenselianLocalRing A]

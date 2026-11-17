@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open scoped MatrixGroups
 
+/--
+@isnad1 id=ex.0h5v.s21.178cb8f04f4a from=translated src=- shape=23ade5ad vocab=67b2b28f
+-/
 theorem HeckeEis.exists_coeffH1_map_ringHom_binaryFormRepSL {R R' : Type*} [CommRing R] [CommRing R']
     (φ : R →+* R') (n N : ℕ) :
     ∃ Φ : HeckeEis.coeffH1 ((HeckeEis.binaryFormRepSL R n).comp (CongruenceSubgroup.Gamma0 N).subtype) →+

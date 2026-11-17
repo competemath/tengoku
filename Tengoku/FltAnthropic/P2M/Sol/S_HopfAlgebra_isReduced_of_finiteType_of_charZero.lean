@@ -12,6 +12,9 @@ namespace P2MW.S_HopfAlgebra_isReduced_of_finiteType_of_charZero
 set_option maxHeartbeats 3200000
 open scoped TensorProduct
 
+/--
+@isnad1 id=isreduce.0h2v.s6.d3bd25330461 from=translated src=- shape=59cf33f6 vocab=71371ff9
+-/
 theorem solution
     (K : Type*) [Field K] [CharZero K]
     (A : Type*) [CommRing A] [HopfAlgebra K A] [Algebra.FiniteType K A] :

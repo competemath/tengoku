@@ -210,6 +210,9 @@ private theorem mhb_arch [Algebra K L] {ι ι' : Type*} (p : ι' → MvPolynomia
 end scale
 
 open scoped Classical in
+/--
+@isnad1 id=le.0h5v.s8.ba0bd38b1191 from=translated src=- shape=7d7ae1c6 vocab=4d7fae52
+-/
 theorem solution {K L : Type*} [Field K] [NumberField K] [Field L] [NumberField L]
     [Algebra K L] {ι ι' : Type*} [Finite ι] [Finite ι'] (p : ι' → MvPolynomial ι K) :
     Height.mulHeightBound (fun j => MvPolynomial.map (algebraMap K L) (p j))

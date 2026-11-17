@@ -39,6 +39,9 @@ end HeckeEis
 end
 
 open scoped MatrixGroups ModularForm in
+/--
+@isnad1 id=iseichle.2h5v.s10.c59cfdcb37bc from=translated src=- shape=b1377e6f vocab=3cd50508
+-/
 theorem solution {n : ℕ} {f g : UpperHalfPlane → ℂ} {F G : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
     (hF : HeckeEis.IsEichlerIntegral n f F) (hG : HeckeEis.IsEichlerIntegral n g G) :
     HeckeEis.IsEichlerIntegral n (f + g) (F + G) :=

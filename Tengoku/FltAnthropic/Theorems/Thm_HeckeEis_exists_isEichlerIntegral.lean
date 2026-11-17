@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open scoped Manifold MatrixGroups
 
+/--
+@isnad1 id=ex.1h2v.s8.647f7a03131d from=translated src=- shape=4d86a89c vocab=da24402d
+-/
 theorem HeckeEis.exists_isEichlerIntegral (n : ℕ) {f : UpperHalfPlane → ℂ}
     (hf : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) f) :
     ∃ F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n), HeckeEis.IsEichlerIntegral n f F := by exact @_root_.P2MW.S_HeckeEis_exists_isEichlerIntegral.solution n f hf

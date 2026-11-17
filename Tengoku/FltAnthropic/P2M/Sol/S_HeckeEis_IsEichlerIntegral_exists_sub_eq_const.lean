@@ -36,6 +36,9 @@ end Expansion
 
 section Calculus
 
+/--
+@isnad1 id=eq.1h3v.s6.eb87b508247f from=translated src=- shape=8e7b93cf vocab=d548af94
+-/
 theorem apply_eq_apply_of_hasDerivAt_zero {D : ℂ → ℂ}
     (hD : ∀ τ : ℍ, HasDerivAt D 0 ↑τ) (z w : ℍ) : D ↑z = D ↑w := by
   have hmem : ∀ σ : ℍ, (↑σ : ℂ) ∈ {c : ℂ | 0 < c.im} := fun σ => σ.2
@@ -60,6 +63,9 @@ end EichlerIntegralAux
 
 open EichlerIntegralAux in
 
+/--
+@isnad1 id=ex.2h4v.s10.14255f5832ad from=translated src=- shape=a6f56ca2 vocab=3789bff3
+-/
 theorem SolMain.const {n : ℕ} {f : ℍ → ℂ} {F G : ℍ → ↥(BinaryForm ℂ n)}
     (hF : IsEichlerIntegral n f F) (hG : IsEichlerIntegral n f G) :
     ∃ v : ↥(BinaryForm ℂ n), ∀ τ : ℍ, F τ - G τ = v := by
@@ -80,6 +86,9 @@ end HeckeEis
 end
 
 open scoped MatrixGroups ModularForm in
+/--
+@isnad1 id=ex.2h4v.s10.14255f5832ad from=translated src=- shape=a6f56ca2 vocab=3789bff3
+-/
 theorem solution {n : ℕ} {f : UpperHalfPlane → ℂ}
     {F G : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
     (hF : HeckeEis.IsEichlerIntegral n f F) (hG : HeckeEis.IsEichlerIntegral n f G) :

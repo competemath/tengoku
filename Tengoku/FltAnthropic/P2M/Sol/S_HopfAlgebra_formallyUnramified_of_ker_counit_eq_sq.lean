@@ -20,12 +20,18 @@ variable {R : Type u} [CommRing R] {H : Type v} [CommRing H] [HopfAlgebra R H]
 noncomputable def antipodeAlgHom : H →ₐ[R] H :=
   AlgHom.ofLinearMap (antipode R (A := H)) antipode_one (fun a b => by rw [antipode_mul_antidistrib, mul_comm])
 
+/--
+@isnad1 id=eq.0h3v.s8.2f9095497dc0 from=translated src=- shape=714eb64c vocab=5598dd63
+-/
 @[scoped simp] theorem antipodeAlgHom_apply (a : H) : antipodeAlgHom (R := R) a = antipode R a := rfl
 
 noncomputable def shearRight : H →ₐ[R] H ⊗[R] H :=
   (Algebra.TensorProduct.map (antipodeAlgHom (R := R) (H := H)) (AlgHom.id R H)).comp
     (Bialgebra.comulAlgHom R H)
 
+/--
+@isnad1 id=eq.0h5v.s11.825cfd580141 from=translated src=- shape=13df4155 vocab=2130c378
+-/
 theorem shearRight_apply (b : H) {ιr : Type*} (r : Coalgebra.Repr R b ιr) :
     shearRight (R := R) b = ∑ i ∈ r.index, antipode R (r.left i) ⊗ₜ[R] r.right i := by
   change Algebra.TensorProduct.map (antipodeAlgHom (R := R) (H := H)) (AlgHom.id R H)
@@ -37,12 +43,18 @@ noncomputable def shear : H ⊗[R] H →ₐ[R] H ⊗[R] H :=
   Algebra.TensorProduct.lift (Algebra.TensorProduct.includeLeft (S := R)) (shearRight (R := R))
     (fun _ _ => .all _ _)
 
+/--
+@isnad1 id=eq.0h6v.s11.fb0671a31be5 from=translated src=- shape=33f4ec9c vocab=81ca7bfc
+-/
 theorem shear_tmul (a b : H) {ιr : Type*} (r : Coalgebra.Repr R b ιr) :
     shear (R := R) (a ⊗ₜ[R] b) = ∑ i ∈ r.index, (a * antipode R (r.left i)) ⊗ₜ[R] r.right i := by
   rw [shear, Algebra.TensorProduct.lift_tmul, shearRight_apply b r, Finset.mul_sum]
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [Algebra.TensorProduct.includeLeft_apply, Algebra.TensorProduct.tmul_mul_tmul, one_mul]
 
+/--
+@isnad1 id=eq.0h3v.s11.b9332b22715d from=translated src=- shape=975fa9b2 vocab=61f40949
+-/
 theorem lmul'_shear_one_tmul (b : H) :
     Algebra.TensorProduct.lmul' (S := H) R (shear (R := R) ((1 : H) ⊗ₜ[R] b)) =
       algebraMap R H (Coalgebra.counit b) := by
@@ -50,6 +62,9 @@ theorem lmul'_shear_one_tmul (b : H) :
   simp only [one_mul, Algebra.TensorProduct.lmul'_apply_tmul]
   exact sum_antipode_mul_eq_algebraMap_counit _
 
+/--
+@isnad1 id=eq.0h5v.s11.8b89b378ef0f from=translated src=- shape=94a5253b vocab=7730b420
+-/
 theorem shear_comul (b : H) {ιr : Type*} (r : Coalgebra.Repr R b ιr) :
     ∑ i ∈ r.index, shear (R := R) (r.left i ⊗ₜ[R] r.right i) = (1 : H) ⊗ₜ[R] b := by
 
@@ -81,6 +96,9 @@ theorem shear_comul (b : H) {ιr : Type*} (r : Coalgebra.Repr R b ιr) :
     rw [shear_tmul (r.left i) (r.right i) (a₂ i)]
   rw [← hright, ← hco, hleft]
 
+/--
+@isnad1 id=le.1h2v.s11.a12c653ee46c from=translated src=- shape=b0e4fcd0 vocab=bd6dd45a
+-/
 theorem kaehlerDifferential_ideal_le_sq
     (hI : RingHom.ker (Bialgebra.counitAlgHom R H) = RingHom.ker (Bialgebra.counitAlgHom R H) ^ 2) :
     KaehlerDifferential.ideal R H ≤ KaehlerDifferential.ideal R H ^ 2 := by
@@ -137,6 +155,9 @@ theorem kaehlerDifferential_ideal_le_sq
     _ = (K.map (shear (R := R) (H := H))) ^ 2 := by rw [← Ideal.map_pow, ← hKsq]
     _ ≤ KaehlerDifferential.ideal R H ^ 2 := Ideal.pow_right_mono hKJ 2
 
+/--
+@isnad1 id=subsingl.1h2v.s8.3767b129d206 from=translated src=- shape=d2709bc3 vocab=fd89ca11
+-/
 theorem subsingleton_kaehlerDifferential
     (hI : RingHom.ker (Bialgebra.counitAlgHom R H) = RingHom.ker (Bialgebra.counitAlgHom R H) ^ 2) :
     Subsingleton (Ω[H⁄R]) := by
@@ -149,6 +170,9 @@ theorem subsingleton_kaehlerDifferential
 end HopfAlgebra
 open scoped _root_.P2MW.S_HopfAlgebra_formallyUnramified_of_ker_counit_eq_sq.HopfAlgebra
 
+/--
+@isnad1 id=formally.1h2v.s8.a3ed1f978c02 from=translated src=- shape=dc223f09 vocab=06a5c3fd
+-/
 theorem solution
     {R : Type u} [CommRing R] {H : Type v} [CommRing H] [HopfAlgebra R H]
     (hI : RingHom.ker (Bialgebra.counitAlgHom R H) = RingHom.ker (Bialgebra.counitAlgHom R H) ^ 2) :

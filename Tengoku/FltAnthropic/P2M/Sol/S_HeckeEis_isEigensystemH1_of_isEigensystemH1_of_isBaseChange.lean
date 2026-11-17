@@ -45,9 +45,15 @@ noncomputable def heckeH1 (ha : IsCompat N ℓ ρ a) : coeffH1 ρ →ₗ[K] coef
     ((coeffCoboundaries ρ).comap (coeffCocycles ρ).subtype) (heckeZ1 ha)
     fun _ hz => coeffHeckeFun_mem_coeffCoboundaries N ℓ ρ a ha hz
 
+/--
+@isnad1 id=eq.1h7v.s16.0b53f275464f from=translated src=- shape=82364237 vocab=3d66464a
+-/
 theorem heckeH1_mk (ha : IsCompat N ℓ ρ a) (z : ↥(coeffCocycles ρ)) :
     heckeH1 ha (coeffH1Mk ρ z) = coeffH1Mk ρ (heckeZ1 ha z) := rfl
 
+/--
+@isnad1 id=iscoeffh.1h6v.s9.2f853a6e8826 from=translated src=- shape=9dc56f18 vocab=cff0fbfc
+-/
 theorem isCoeffHeckeOnH1_heckeH1 (ha : IsCompat N ℓ ρ a) : IsCoeffHeckeOnH1 N ℓ ρ a (heckeH1 ha) :=
   fun z => ⟨heckeZ1 ha z, rfl, rfl⟩
 
@@ -61,6 +67,9 @@ variable (ρ₀ : Representation K₀ (Gamma0 N) V₀) (ρ : Representation K (G
 variable (j : V₀ →ₛₗ[i] V) (hj : ∀ (g : Gamma0 N) (v : V₀), j (ρ₀ g v) = ρ g (j v))
 
 include hj in
+/--
+@isnad1 id=mem.1h10v.s14.16af26464b1c from=translated src=- shape=2a918994 vocab=bcf19b14
+-/
 theorem carry_mem_coeffCocycles (z : ↥(coeffCocycles ρ₀)) : (fun g => j ((z : Gamma0 N → V₀) g)) ∈ coeffCocycles ρ := by
   rw [mem_coeffCocycles_iff]
   intro g h
@@ -69,6 +78,9 @@ theorem carry_mem_coeffCocycles (z : ↥(coeffCocycles ρ₀)) : (fun g => j ((z
 def carry (z : ↥(coeffCocycles ρ₀)) : ↥(coeffCocycles ρ) := ⟨_, carry_mem_coeffCocycles i N ρ₀ ρ j hj z⟩
 
 include hj in
+/--
+@isnad1 id=eq.2h14v.s13.44143d181a50 from=translated src=- shape=cb1f9bc2 vocab=3772291c
+-/
 theorem carry_coeffHeckeFun (ℓ : ℕ) [NeZero ℓ] (a₀ : V₀ →ₗ[K₀] V₀) (a : V →ₗ[K] V)
     (hja : ∀ v : V₀, j (a₀ v) = a (j v)) (z : Gamma0 N → V₀) (g : Gamma0 N) :
     j (coeffHeckeFun N ℓ ρ₀ a₀ z g) = coeffHeckeFun N ℓ ρ a (fun g => j (z g)) g := by
@@ -87,6 +99,9 @@ variable (ρ₀ : Representation K₀ (Gamma0 N) V₀) (ρ : Representation K (G
 variable (j : V₀ →ₛₗ[i] V) (hj : ∀ (g : Gamma0 N) (v : V₀), j (ρ₀ g v) = ρ g (j v))
 variable {ι : Type} (b₀ : Module.Basis ι K₀ V₀) (b : Module.Basis ι K V) (hb : ∀ s : ι, b s = j (b₀ s))
 
+/--
+@isnad1 id=ex.0h3v.s8.4daeed705f76 from=translated src=- shape=4f6560c6 vocab=6e1e3d2c
+-/
 theorem exists_retraction : ∃ r : K →+ K₀, (∀ c : K₀, r (i c) = c) ∧ ∀ (m : K₀) (c : K), r (i m * c) = m * r c := by
   letI : Module K₀ K := Module.compHom K i
   let iₗ : K₀ →ₗ[K₀] K :=
@@ -101,6 +116,9 @@ theorem exists_retraction : ∃ r : K →+ K₀, (∀ c : K₀, r (i c) = c) ∧
 
 include hb in
 
+/--
+@isnad1 id=eq.1h10v.s9.2290659ae687 from=translated src=- shape=cf381765 vocab=3f9ce54a
+-/
 theorem j_linearCombination (f : ι →₀ K₀) :
     j (Finsupp.linearCombination K₀ b₀ f) = Finsupp.linearCombination K b (Finsupp.mapRange i (map_zero i) f) := by
   rw [Finsupp.linearCombination_apply, Finsupp.linearCombination_apply,
@@ -109,12 +127,18 @@ theorem j_linearCombination (f : ι →₀ K₀) :
   rw [LinearMap.map_smulₛₗ, hb]
 
 include hb in
+/--
+@isnad1 id=eq.1h10v.s10.83d1300cb046 from=translated src=- shape=8e267ea4 vocab=6f6cc589
+-/
 theorem repr_j (v₀ : V₀) : b.repr (j v₀) = Finsupp.mapRange i (map_zero i) (b₀.repr v₀) := by
   conv_lhs => rw [← b₀.linearCombination_repr v₀, j_linearCombination i j b₀ b hb]
   rw [b.repr_linearCombination]
 
 include hb hj in
 
+/--
+@isnad1 id=mem.3h13v.s13.0d645832eb9f from=translated src=- shape=7f1bc45e vocab=c480160c
+-/
 theorem mem_coeffCoboundaries_of_carry (z₀ : Gamma0 N → V₀)
     (h : (fun g => j (z₀ g)) ∈ coeffCoboundaries ρ) : z₀ ∈ coeffCoboundaries ρ₀ := by
   classical
@@ -169,6 +193,9 @@ end Retract
 
 section Main
 
+/--
+@isnad1 id=iseigens.5h13v.s15.de09b2b2b0d9 from=translated src=- shape=d03a7827 vocab=ba950fde
+-/
 theorem main (N : ℕ) {K₀ K : Type} [Field K₀] [Field K] (i : K₀ →+* K) (S₀ : Set ℕ)
     {V₀ V : Type} [AddCommGroup V₀] [Module K₀ V₀] [AddCommGroup V] [Module K V]
     (ρ₀ : Representation K₀ (CongruenceSubgroup.Gamma0 N) V₀) (ρ : Representation K (CongruenceSubgroup.Gamma0 N) V)
@@ -219,6 +246,9 @@ end Main
 end BCChi
 open scoped _root_.P2MW.S_HeckeEis_isEigensystemH1_of_isEigensystemH1_of_isBaseChange.BCChi
 
+/--
+@isnad1 id=iseigens.5h13v.s15.de09b2b2b0d9 from=translated src=- shape=d03a7827 vocab=ba950fde
+-/
 theorem solution
     (N : ℕ) {K₀ K : Type} [Field K₀] [Field K] (i : K₀ →+* K) (S₀ : Set ℕ)
     {V₀ V : Type} [AddCommGroup V₀] [Module K₀ V₀] [AddCommGroup V] [Module K V]

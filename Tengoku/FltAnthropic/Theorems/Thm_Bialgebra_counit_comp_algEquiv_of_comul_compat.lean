@@ -6,6 +6,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Bialgebra_counit_comp_algEquiv_of_comul_co
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_Bialgebra_counit_comp_algEquiv_of_comul_compat.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
 open scoped TensorProduct in
+/--
+@isnad1 id=eq.1h5v.s11.5d19b0c2c13f from=translated src=- shape=f5e64c62 vocab=4a5f8b3e
+-/
 theorem Bialgebra.counit_comp_algEquiv_of_comul_compat
     (K : Type*) [CommRing K]
     (B₁ : Type*) [CommRing B₁] [Bialgebra K B₁]

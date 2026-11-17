@@ -20,6 +20,9 @@ def antipodeAlgHom : K →ₐ[R] K :=
   AlgHom.ofLinearMap (HopfAlgebra.antipode R) HopfAlgebra.antipode_one
     (fun a b => by rw [HopfAlgebra.antipode_mul_antidistrib, mul_comm])
 
+/--
+@isnad1 id=eq.0h6v.s10.09ebe99fe239 from=translated src=- shape=49c95522 vocab=349dc7c5
+-/
 theorem lift_comp_comp (ψ : K →ₐ[R] T) (X Y : K →ₐ[R] K) :
     Algebra.TensorProduct.lift (ψ.comp X) (ψ.comp Y) (fun _ _ => Commute.all _ _)
       = ψ.comp (Algebra.TensorProduct.lift X Y (fun _ _ => Commute.all _ _)) := by
@@ -27,6 +30,9 @@ theorem lift_comp_comp (ψ : K →ₐ[R] T) (X Y : K →ₐ[R] K) :
   · apply AlgHom.ext; intro a; simp
   · apply AlgHom.ext; intro b; simp
 
+/--
+@isnad1 id=eq.0h4v.s9.53988d9ad63f from=translated src=- shape=63538810 vocab=f59ed1bf
+-/
 theorem toConv_mul_toConv_comp_antipode (ψ : K →ₐ[R] T) :
     WithConv.toConv ψ * WithConv.toConv (ψ.comp (antipodeAlgHom (R := R))) = 1 := by
   apply WithConv.ofConv_injective
@@ -50,6 +56,9 @@ theorem toConv_mul_toConv_comp_antipode (ψ : K →ₐ[R] T) :
   rw [WithConv.ofConv_toConv, WithConv.ofConv_toConv, hlift, AlgHom.comp_apply, hx,
     AlgHom.commutes]
 
+/--
+@isnad1 id=eq.0h4v.s9.45dc7463043a from=translated src=- shape=d888c528 vocab=f59ed1bf
+-/
 theorem toConv_comp_antipode_mul_toConv (ψ : K →ₐ[R] T) :
     WithConv.toConv (ψ.comp (antipodeAlgHom (R := R))) * WithConv.toConv ψ = 1 := by
   apply WithConv.ofConv_injective
@@ -73,12 +82,18 @@ theorem toConv_comp_antipode_mul_toConv (ψ : K →ₐ[R] T) :
   rw [WithConv.ofConv_toConv, WithConv.ofConv_toConv, hlift, AlgHom.comp_apply, hx,
     AlgHom.commutes]
 
+/--
+@isnad1 id=isunit.0h4v.s7.10b6563ad638 from=translated src=- shape=16f2f1a5 vocab=3a8cbc0a
+-/
 theorem isUnit_toConv (ψ : K →ₐ[R] T) : IsUnit (WithConv.toConv ψ) :=
   ⟨⟨WithConv.toConv ψ, WithConv.toConv (ψ.comp (antipodeAlgHom (R := R))),
     toConv_mul_toConv_comp_antipode ψ, toConv_comp_antipode_mul_toConv ψ⟩, rfl⟩
 
 end Units
 
+/--
+@isnad1 id=eq.0h4v.s9.1934fbcbb92b from=translated src=- shape=164222e3 vocab=ec989668
+-/
 theorem convPow_natCard_eq_one_point {R K L : Type*} [CommRing R] [CommRing K] [HopfAlgebra R K]
     [CommRing L] [Algebra R L] (ψ : WithConv (K →ₐ[R] L)) : ψ ^ Nat.card (K →ₐ[R] L) = 1 := by
   letI : Group (WithConv (K →ₐ[R] L)) :=
@@ -87,6 +102,9 @@ theorem convPow_natCard_eq_one_point {R K L : Type*} [CommRing R] [CommRing K] [
   rw [Nat.card_congr (WithConv.equiv (K →ₐ[R] L))] at h
   exact h
 
+/--
+@isnad1 id=ex.0h3v.s7.43030e41b24e from=translated src=- shape=2b3db6d8 vocab=ae3ecf0e
+-/
 theorem exists_algHom_forall_mem_iff {L B : Type*} [Field L] [IsAlgClosed L] [CommRing B] [Algebra L B]
     [Algebra.FiniteType L B] (𝔪 : Ideal B) [𝔪.IsMaximal] :
     ∃ Ψ : B →ₐ[L] L, ∀ x, Ψ x = 0 ↔ x ∈ 𝔪 := by
@@ -140,6 +158,9 @@ theorem eq_of_forall_algHom_apply_eq {R K : Type*} [CommRing R] [CommRing K] [Ho
   simp only [AlgHom.comp_apply, AlgHom.restrictScalars_apply] at h1
   rw [map_sub, map_sub, h1, sub_self]
 
+/--
+@isnad1 id=eq.0h7v.s9.6c722d7960fe from=translated src=- shape=b8ebc261 vocab=c0750a83
+-/
 theorem comp_convPow {R A B C : Type*} [CommRing R] [CommRing A] [CommRing B] [CommRing C] [Bialgebra R C]
     [Algebra R A] [Algebra R B] (h : A →ₐ[R] B) (f : WithConv (C →ₐ[R] A)) (n : ℕ) :
     h.comp (f ^ n).ofConv = (WithConv.toConv (h.comp f.ofConv) ^ n).ofConv := by
@@ -155,6 +176,9 @@ theorem comp_convPow {R A B C : Type*} [CommRing R] [CommRing A] [CommRing B] [C
   | succ n ih =>
       rw [pow_succ, pow_succ, AlgHom.comp_convMul_distrib, ih, WithConv.toConv_ofConv]
 
+/--
+@isnad1 id=eq.1h5v.s9.aabb810ddcd6 from=translated src=- shape=d8055ba2 vocab=91e4f14f
+-/
 theorem convPow_natCard_algHom_eq_one {R K : Type*} [CommRing R] [CommRing K] [HopfAlgebra R K]
     [Algebra.FiniteType R K] [Module.Flat R K] (L : Type*) [Field L] [IsAlgClosed L] [CharZero L] [Algebra R L]
     (hRL : Function.Injective (algebraMap R L))
@@ -186,12 +210,18 @@ theorem convPow_natCard_algHom_eq_one {R K : Type*} [CommRing R] [CommRing K] [H
 
 end S17KillQ
 
+/--
+@isnad1 id=flat.1h3v.s5.9c06ea9967b5 from=translated src=- shape=7d99643f vocab=9a4ae9db
+-/
 theorem S17KillQ.flat_of_flat' {M : Type*} [AddCommGroup M] {m₁ m₂ : Module ℤ M}
     (h : @Module.Flat ℤ M _ _ m₁) : @Module.Flat ℤ M _ _ m₂ := by
   obtain rfl : m₁ = m₂ := Subsingleton.elim _ _
   exact h
 
 open S17KillQ in
+/--
+@isnad1 id=eq.0h3v.s9.115fe0aff3b2 from=translated src=- shape=324246b7 vocab=f06af8bd
+-/
 theorem solution
     (K : Type) [CommRing K] [HopfAlgebra ℤ K] [Algebra.FiniteType ℤ K] [Module.Flat ℤ K]
     (T : Type v) [CommRing T] (f : WithConv (K →ₐ[ℤ] T)) :

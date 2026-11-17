@@ -39,6 +39,9 @@ private theorem map_antipode {R : Type u} [CommRing R] {A : Type v} [CommRing A]
 end Pen5K9a
 
 open Coalgebra in
+/--
+@isnad1 id=ex.0h4v.s11.01f5459cbd0f from=translated src=- shape=bbc01483 vocab=58fa5d16
+-/
 theorem solution
     {R : Type u} [CommRing R] {A : Type v} [CommRing A] [HopfAlgebra R A]
     {B : Type w} [CommRing B] [HopfAlgebra R B] (φ : A →ₐc[R] B) :

@@ -26,6 +26,9 @@ open _root_.HeckeEis
 open _root_.UpperHalfPlane open _root_.MvPolynomial open _root_.CongruenceSubgroup open _root_.HeckeEis open _root_.P2MW.S_HeckeEis_isParabolicCocycle_cocycle_of_isEichlerIntegral.HeckeEis
 open scoped Manifold MatrixGroups ModularForm Pointwise
 
+/--
+@isnad1 id=periodic.1h6v.s9.f0c4412c0433 from=translated src=- shape=17f83d69 vocab=13ce7f15
+-/
 theorem periodic_slash_comp_ofComplex_of_conj_T_zpow_mem {k : ℤ} {Γ : Subgroup SL(2, ℤ)} {F' : Type*}
     [FunLike F' ℍ ℂ] [SlashInvariantFormClass F' (Γ : Subgroup (GL (Fin 2) ℝ)) k] (f : F') (δ : SL(2, ℤ)) {h : ℤ}
     (hmem : δ * ModularGroup.T ^ h * δ⁻¹ ∈ Γ) :
@@ -42,6 +45,9 @@ theorem periodic_slash_comp_ofComplex_of_conj_T_zpow_mem {k : ℤ} {Γ : Subgrou
   rw [← hTh, ← map_mul, ← map_inv, ← map_mul]
   exact Subgroup.mem_map_of_mem _ hmem
 
+/--
+@isnad1 id=le.0h1v.s7.55f2af3db999 from=translated src=- shape=7aabf878 vocab=b31fe6e8
+-/
 theorem Gamma_le_Gamma0 (N : ℕ) : Gamma N ≤ Gamma0 N := fun _ hA =>
   Gamma0_mem.mpr (Gamma_mem.mp hA).2.2.1
 
@@ -49,6 +55,9 @@ end HeckeEis.ParabolicSol
 
 open _root_.HeckeEis _root_.P2MW.S_HeckeEis_isParabolicCocycle_cocycle_of_isEichlerIntegral.HeckeEis HeckeEis.ParabolicSol UpperHalfPlane CongruenceSubgroup in
 open scoped ModularForm Pointwise in
+/--
+@isnad1 id=isparabo.2h4v.s13.a51fc5ad2e13 from=translated src=- shape=4d753921 vocab=debc53a9
+-/
 theorem solution (N n : ℕ) [NeZero N]
     (f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
     (hEI : HeckeEis.IsEichlerIntegral n f F)

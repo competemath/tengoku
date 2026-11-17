@@ -15,6 +15,9 @@ open groupCohomology HeckeCohomology CategoryTheory
 variable {k Γ : Type} [CommRing k] [Group Γ] (S₁ S₂ : Subgroup Γ) (c : S₂ →* S₁)
   {A B : Rep k Γ} (f : A ⟶ B)
 
+/--
+@isnad1 id=eq.0h7v.s13.f3434278488c from=translated src=- shape=69751ea8 vocab=dec87afc
+-/
 theorem mapCocycles₁_id_apply (y : cocycles₁ A) (g : Γ) :
     (mapCocycles₁ (MonoidHom.id Γ) f y) g = f.hom (y g) := rfl
 
@@ -24,6 +27,9 @@ variable [S₂.FiniteIndex] (φA : A →ₗ[k] A) (hφA : IsTwist S₁ S₂ c A 
 
 include hcomm in
 
+/--
+@isnad1 id=eq.3h11v.s14.0de5e6427061 from=translated src=- shape=623fde3b vocab=0f989212
+-/
 theorem heckeZ1_natural (y : cocycles₁ A) :
     heckeZ1 S₁ S₂ c B φB hφB (mapCocycles₁ (MonoidHom.id Γ) f y) =
       mapCocycles₁ (MonoidHom.id Γ) f (heckeZ1 S₁ S₂ c A φA hφA y) := by
@@ -36,6 +42,9 @@ theorem heckeZ1_natural (y : cocycles₁ A) :
 end TWNatAux
 
 open groupCohomology HeckeCohomology in
+/--
+@isnad1 id=eq.3h11v.s11.00c78deca609 from=translated src=- shape=b57b2558 vocab=33abbb4a
+-/
 theorem solution {k Γ : Type} [CommRing k] [Group Γ]
     (S₁ S₂ : Subgroup Γ) (c : S₂ →* S₁) {A B : Rep k Γ} [S₂.FiniteIndex] (f : A ⟶ B)
     (φA : A →ₗ[k] A) (hφA : IsTwist S₁ S₂ c A φA)

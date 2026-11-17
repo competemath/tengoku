@@ -26,6 +26,9 @@ open _root_.HeckeEis
 open _root_.UpperHalfPlane open _root_.MvPolynomial open _root_.HeckeEis open _root_.P2MW.S_HeckeEis_IsEichlerIntegral_vadd_sub_T_zpow_apply_mem_range.HeckeEis
 open scoped Manifold MatrixGroups
 
+/--
+@isnad1 id=eq.0h2v.s9.d5f78657b225 from=translated src=- shape=1258fe1f vocab=dc4dce70
+-/
 theorem eval_binarySubst_T_zpow (h : ℤ) (P : MvPolynomial (Fin 2) ℂ) :
     MvPolynomial.eval ![0, 1] (binarySubst ℂ ((ModularGroup.T ^ h : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) P)
       = MvPolynomial.eval ![0, 1] P := by
@@ -36,6 +39,9 @@ theorem eval_binarySubst_T_zpow (h : ℤ) (P : MvPolynomial (Fin 2) ℂ) :
     fin_cases j <;> simp [ModularGroup.coe_T_zpow, Fin.sum_univ_two]
   rw [binarySubst, MvPolynomial.aeval_eq_bind₁, MvPolynomial.eval, MvPolynomial.eval₂Hom_bind₁, key]
 
+/--
+@isnad1 id=eq.0h3v.s12.a2a6b7423f6f from=translated src=- shape=65c63a6a vocab=221e3bfc
+-/
 theorem coeff_single_one_binaryFormRepSL_T_zpow (n : ℕ) (h : ℤ) (P : ↥(BinaryForm ℂ n)) :
     MvPolynomial.coeff (Finsupp.single 1 n)
         ((binaryFormRepSL ℂ n (ModularGroup.T ^ h) P : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)
@@ -43,6 +49,9 @@ theorem coeff_single_one_binaryFormRepSL_T_zpow (n : ℕ) (h : ℤ) (P : ↥(Bin
   rw [coeff_single_one_eq_eval_of_mem_binaryForm (binaryFormRepSL ℂ n _ P).2,
     coeff_single_one_eq_eval_of_mem_binaryForm P.2, binaryFormRepSL_apply_coe, eval_binarySubst_T_zpow]
 
+/--
+@isnad1 id=eq.0h2v.s7.9e65a560b53e from=translated src=- shape=57254d94 vocab=622e7c6c
+-/
 theorem coeff_single_one_linePow (n : ℕ) (z : ℂ) :
     MvPolynomial.coeff (Finsupp.single 1 n) ((linePow n z : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) = 1 := by
   rw [coeff_single_one_eq_eval_of_mem_binaryForm (linePow n z).2, coe_linePow]
@@ -51,6 +60,9 @@ theorem coeff_single_one_linePow (n : ℕ) (z : ℂ) :
 end HeckeEis.CuspInftySol
 
 open _root_.HeckeEis _root_.P2MW.S_HeckeEis_IsEichlerIntegral_vadd_sub_T_zpow_apply_mem_range.HeckeEis HeckeEis.CuspInftySol UpperHalfPlane MvPolynomial in
+/--
+@isnad1 id=mem.5h5v.s14.e83a469a1f5f from=translated src=- shape=44ae6b2c vocab=67d46fb7
+-/
 theorem solution {n : ℕ} {h : ℤ} (hh : h ≠ 0)
     {g : UpperHalfPlane → ℂ} {G : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)} (hG : HeckeEis.IsEichlerIntegral n g G)
     (hper : Function.Periodic (g ∘ UpperHalfPlane.ofComplex) ((h : ℝ) : ℂ))

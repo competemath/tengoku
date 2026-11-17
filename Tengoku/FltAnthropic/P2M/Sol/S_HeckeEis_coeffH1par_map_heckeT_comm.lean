@@ -23,6 +23,9 @@ namespace CoeffChangeAux
 
 variable {R R' : Type*} [CommRing R] [CommRing R'] (φ : R →+* R')
 
+/--
+@isnad1 id=eq.0h5v.s10.308397182d7f from=translated src=- shape=133141e1 vocab=96c9dafe
+-/
 theorem map_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (p : MvPolynomial (Fin 2) R) :
     MvPolynomial.map φ (binarySubst R M p) = binarySubst R' M (MvPolynomial.map φ p) := by
   have h : (MvPolynomial.map φ).comp (binarySubst R M : MvPolynomial (Fin 2) R →ₐ[R] MvPolynomial (Fin 2) R).toRingHom
@@ -32,11 +35,17 @@ theorem map_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (p : MvPolynomial (Fin 
     · simp [binarySubst_X, Fin.sum_univ_two, map_add, map_mul]
   exact RingHom.congr_fun h p
 
+/--
+@isnad1 id=eq.0h6v.s11.0d6d8344fc7c from=translated src=- shape=8064a858 vocab=5cc49f0a
+-/
 theorem map_binaryFormAlphaAdj (n ℓ : ℕ) (v : ↥(BinaryForm R n)) :
     MvPolynomial.map φ ((binaryFormAlphaAdj R n ℓ v : ↥(BinaryForm R n)) : MvPolynomial (Fin 2) R)
       = binarySubst R' !![(ℓ : ℤ), 0; 0, 1] (MvPolynomial.map φ (v : MvPolynomial (Fin 2) R)) := by
   rw [binaryFormAlphaAdj_apply_coe, map_binarySubst]
 
+/--
+@isnad1 id=eq.1h9v.s13.ddf1583480dc from=translated src=- shape=5ad66a4c vocab=4fbd79a9
+-/
 theorem map_coeffHeckeFun (n N ℓ : ℕ) [NeZero ℓ]
     (z : Gamma0 N → ↥(BinaryForm R n)) (z' : Gamma0 N → ↥(BinaryForm R' n))
     (hz : ∀ g : Gamma0 N, ((z' g : ↥(BinaryForm R' n)) : MvPolynomial (Fin 2) R') = MvPolynomial.map φ ((z g : ↥(BinaryForm R n)) : MvPolynomial (Fin 2) R))
@@ -55,6 +64,9 @@ end CoeffChangeAux
 
 open CoeffChangeAux in
 
+/--
+@isnad1 id=eq.3h10v.s20.8235b662b552 from=translated src=- shape=52e68242 vocab=482fbafb
+-/
 theorem SolMain.C1 {R R' : Type*} [CommRing R] [CommRing R'] (φ : R →+* R') (n N ℓ : ℕ) [NeZero ℓ]
     (Φ : coeffH1par ((binaryFormRepSL R n).comp (Gamma0 N).subtype) →+ coeffH1par ((binaryFormRepSL R' n).comp (Gamma0 N).subtype))
     (hΦ : ∀ z : ↥(coeffParabolicCocycles ((binaryFormRepSL R n).comp (Gamma0 N).subtype)),
@@ -89,6 +101,9 @@ theorem SolMain.C1 {R R' : Type*} [CommRing R] [CommRing R'] (φ : R →+* R') (
 end HeckeEis
 
 open scoped MatrixGroups in
+/--
+@isnad1 id=eq.3h10v.s20.8235b662b552 from=translated src=- shape=52e68242 vocab=482fbafb
+-/
 theorem solution {R R' : Type*} [CommRing R] [CommRing R'] (φ : R →+* R') (n N ℓ : ℕ) [NeZero ℓ]
     (Φ : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL R n).comp (CongruenceSubgroup.Gamma0 N).subtype) →+ HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL R' n).comp (CongruenceSubgroup.Gamma0 N).subtype))
     (hΦ : ∀ z : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL R n).comp (CongruenceSubgroup.Gamma0 N).subtype)),

@@ -29,6 +29,9 @@ variable (n : ℕ)
 def degExps : Finset (Fin 2 →₀ ℕ) :=
   (Finset.range (n + 1)).image fun k => Finsupp.single 0 k + Finsupp.single 1 (n - k)
 
+/--
+@isnad1 id=iff.0h2v.s7.573149af04e2 from=translated src=- shape=9552f26d vocab=2b90cab7
+-/
 theorem mem_degExps_iff (d : Fin 2 →₀ ℕ) : d ∈ degExps n ↔ d.degree = n := by
   rw [Finsupp.degree_eq_sum, Fin.sum_univ_two]
   simp only [degExps, Finset.mem_image, Finset.mem_range]
@@ -47,6 +50,9 @@ theorem mem_degExps_iff (d : Fin 2 →₀ ℕ) : d ∈ degExps n ↔ d.degree = 
 def linePowPoly : MvPolynomial (Fin 2) ℂ[X] :=
   (C Polynomial.X * X 0 + X 1) ^ n
 
+/--
+@isnad1 id=eq.0h3v.s8.65705e886425 from=translated src=- shape=da057258 vocab=bddd4d0d
+-/
 theorem coeff_linePow_eq_eval (d : Fin 2 →₀ ℕ) (z : ℂ) :
     MvPolynomial.coeff d ((C z * X 0 + X 1 : MvPolynomial (Fin 2) ℂ) ^ n)
       = Polynomial.eval z (MvPolynomial.coeff d (linePowPoly n)) := by
@@ -60,6 +66,9 @@ def assemble (g : (Fin 2 →₀ ℕ) → ℂ → ℂ) (τ : ℍ) : ↥(BinaryFor
   ⟨∑ d ∈ degExps n, monomial d (g d (τ : ℂ)), Submodule.sum_mem _ fun d hd =>
     (mem_homogeneousSubmodule n _).mpr (isHomogeneous_monomial _ ((mem_degExps_iff n d).mp hd))⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.96507f70da72 from=translated src=- shape=0085f8b1 vocab=23dc1ecf
+-/
 theorem coeff_assemble (g : (Fin 2 →₀ ℕ) → ℂ → ℂ) (τ : ℍ) (d : Fin 2 →₀ ℕ) :
     MvPolynomial.coeff d (assemble n g τ : MvPolynomial (Fin 2) ℂ) = if d ∈ degExps n then g d (τ : ℂ) else 0 := by
   show MvPolynomial.coeff d (∑ e ∈ degExps n, monomial e (g e (τ : ℂ))) = _
@@ -70,6 +79,9 @@ end EichlerIntegralExistence
 end HeckeEis
 
 open _root_.HeckeEis _root_.P2MW.S_HeckeEis_exists_isEichlerIntegral.HeckeEis HeckeEis.EichlerIntegralExistence UpperHalfPlane MvPolynomial in
+/--
+@isnad1 id=ex.1h2v.s8.647f7a03131d from=translated src=- shape=4d86a89c vocab=da24402d
+-/
 theorem solution (n : ℕ) {f : UpperHalfPlane → ℂ}
     (hf : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) f) :
     ∃ F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n), HeckeEis.IsEichlerIntegral n f F := by

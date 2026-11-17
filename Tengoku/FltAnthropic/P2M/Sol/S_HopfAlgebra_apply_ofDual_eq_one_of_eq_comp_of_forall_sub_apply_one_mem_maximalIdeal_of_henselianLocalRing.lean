@@ -15,6 +15,9 @@ open scoped TensorProduct
 
 universe u v
 
+/--
+@isnad1 id=eq.3h7v.s11.7d4ab28e8d5e from=translated src=- shape=c5e939f5 vocab=facf1fdc
+-/
 theorem solution
     (R : Type u) [CommRing R] [HenselianLocalRing R]
     (A : Type v) [CommRing A] [HopfAlgebra R A] [Coalgebra.IsCocomm R A]

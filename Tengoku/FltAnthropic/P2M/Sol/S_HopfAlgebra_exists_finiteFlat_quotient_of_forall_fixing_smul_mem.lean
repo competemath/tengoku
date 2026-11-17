@@ -31,6 +31,9 @@ noncomputable def antipodeAlgHom : A →ₐ[R] A where
   commutes' r := by
     rw [Algebra.algebraMap_eq_smul_one, map_smul, HopfAlgebra.antipode_one]
 
+/--
+@isnad1 id=eq.0h3v.s8.3c58fb152514 from=translated src=- shape=ec752e5f vocab=e972a80e
+-/
 @[scoped simp]
 lemma antipodeAlgHom_apply (a : A) :
     antipodeAlgHom R A a = HopfAlgebra.antipode R a := rfl
@@ -55,6 +58,9 @@ private lemma lmul_map_eq (φ : A →ₐ[R] L) (z : A ⊗[R] A) :
   | add y z ihy ihz =>
       simp only [map_add, ihy, ihz]
 
+/--
+@isnad1 id=eq.0h4v.s9.843f0722e940 from=translated src=- shape=f7b8fee7 vocab=a8fc18a5
+-/
 theorem toConv_mul_toConv_comp_antipodeAlgHom (φ : A →ₐ[R] L) :
     WithConv.toConv φ * WithConv.toConv (φ.comp (antipodeAlgHom R A)) = 1 := by
   apply WithConv.ofConv_injective
@@ -79,6 +85,9 @@ section Descent
 
 open IntermediateField
 
+/--
+@isnad1 id=ex.1h2v.s10.4fece520112c from=translated src=- shape=ddb03a30 vocab=ba7a1fcb
+-/
 theorem exists_mul_eq_of_forall_fixing (O : Subring (AlgebraicClosure ℚ))
     (x : AlgebraicClosure ℚ)
     (hx : ∀ σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ,
@@ -177,6 +186,9 @@ def fixingLinearMap (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ)
 
 variable {O}
 
+/--
+@isnad1 id=ex.1h3v.s13.6e1b3a6ef261 from=translated src=- shape=60d58997 vocab=e16e76f4
+-/
 theorem exists_smul_eq_one_tmul_of_forall_fixing {G : Type} [AddCommGroup G]
     [Module ↥O G] [Module.Free ↥O G] [Module.Finite ↥O G]
     (z : (AlgebraicClosure ℚ) ⊗[↥O] G)
@@ -302,6 +314,9 @@ def permPoint (σ : Qb ≃ₐ[ℚ] Qb) (hσ : ∀ a ∈ O, σ a = a)
   map_add' x y := by rw [map_add, map_add]
   commutes' r := by rw [k.commutes]; exact hσ r r.2
 
+/--
+@isnad1 id=injectiv.1h3v.s9.b962626bf75a from=translated src=- shape=4418ec8f vocab=bff7a3d8
+-/
 lemma permPoint_injective (σ : Qb ≃ₐ[ℚ] Qb) (hσ : ∀ a ∈ O, σ a = a)
     {G : Type} [CommRing G] [Algebra ↥O G] :
     Function.Injective (permPoint O σ hσ (G := G)) := by
@@ -309,6 +324,9 @@ lemma permPoint_injective (σ : Qb ≃ₐ[ℚ] Qb) (hσ : ∀ a ∈ O, σ a = a)
   ext x
   exact σ.injective (DFunLike.congr_fun hkk' x)
 
+/--
+@isnad1 id=eq.1h5v.s14.73086192c650 from=translated src=- shape=318cf999 vocab=43b86ad6
+-/
 lemma rTensor_fixingLinearMap_lTrans (σ : Qb ≃ₐ[ℚ] Qb) (hσ : ∀ a ∈ O, σ a = a)
     {G : Type} [CommRing G] [Bialgebra ↥O G] (k : G →ₐ[↥O] Qb) (g : G) :
     LinearMap.rTensor G (fixingLinearMap O σ hσ)
@@ -336,6 +354,9 @@ variable {R : Type} [CommRing R] {L : Type} [CommRing L] [Algebra R L]
 variable {G : Type} [CommRing G] [Bialgebra R G] {H : Type} [CommRing H] [Bialgebra R H]
 variable {N : Type} [AddCommGroup N]
 
+/--
+@isnad1 id=ex.4h9v.s12.743fe533aa2f from=translated src=- shape=6feb71bd vocab=0418a030
+-/
 theorem exists_equiv_quotient_of_fibre (D' : AddSubgroup N)
     (e : WithConv (G →ₐ[R] L) ≃ N) (he_add : ∀ f g, e (f * g) = e f + e g)
     (K : Finset (G →ₐ[R] L)) (hK : ∀ k, k ∈ K ↔ e (toConv k) ∈ D')
@@ -413,6 +434,9 @@ open scoped _root_.P2MW.S_HopfAlgebra_exists_finiteFlat_quotient_of_forall_fixin
 
 open DESCKDN WithConv
 
+/--
+@isnad1 id=ex.3h6v.s16.d9d51ae54ca2 from=translated src=- shape=50cd0cdc vocab=a08addc3
+-/
 theorem solution
     (O : Subring (AlgebraicClosure ℚ)) [IsPrincipalIdealRing ↥O]
     (G : Type) [CommRing G] [HopfAlgebra ↥O G]

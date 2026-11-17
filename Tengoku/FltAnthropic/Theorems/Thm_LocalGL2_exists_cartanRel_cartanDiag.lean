@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_LocalGL2_exists_cartanRel_cartanDiag
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_LocalGL2_exists_cartanRel_cartanDiag.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
 open Matrix LocalGL2
+/--
+@isnad1 id=ex.2h3v.s6.2f948de5b7a4 from=translated src=- shape=7b4b8bf5 vocab=b0187e71
+-/
 theorem LocalGL2.exists_cartanRel_cartanDiag
     {R : Type*} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     {ϖ : R} (hϖ : Irreducible ϖ)

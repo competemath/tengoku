@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open MvPolynomial in
 
+/--
+@isnad1 id=ex.2h4v.s10.41c1d21ce826 from=translated src=- shape=ec518cb9 vocab=3dd6ed04
+-/
 theorem HeckeEis.exists_binaryForm_eq_mul_of_forall_eval_eq_zero (p : ℕ) [Fact p.Prime]
     (K : Type*) [Field K] [CharP K p] (n : ℕ) (F : MvPolynomial (Fin 2) K)
     (hF : F ∈ HeckeEis.BinaryForm K n)

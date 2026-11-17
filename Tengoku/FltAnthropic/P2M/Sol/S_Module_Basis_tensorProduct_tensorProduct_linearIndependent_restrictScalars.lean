@@ -10,6 +10,9 @@ namespace P2MW.S_Module_Basis_tensorProduct_tensorProduct_linearIndependent_rest
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=linearin.1h5v.s11.d5d6a4c5e73b from=translated src=- shape=35e9e68c vocab=708a96de
+-/
 theorem solution
     (R : Type) (K : Type) (A : Type) [CommRing R] [CommRing K] [Algebra R K] [CommRing A]
     [Algebra K A] [Algebra R A] [IsScalarTower R K A]

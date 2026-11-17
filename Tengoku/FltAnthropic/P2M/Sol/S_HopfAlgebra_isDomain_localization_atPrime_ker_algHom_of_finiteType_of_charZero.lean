@@ -9,6 +9,9 @@ namespace P2MW.S_HopfAlgebra_isDomain_localization_atPrime_ker_algHom_of_finiteT
 
 open Bialgebra
 
+/--
+@isnad1 id=isdomain.0h3v.s9.40a80373c030 from=translated src=- shape=44439306 vocab=d0becddf
+-/
 theorem solution
     (K : Type*) [Field K] [CharZero K]
     (A : Type*) [CommRing A] [HopfAlgebra K A] [Algebra.FiniteType K A]

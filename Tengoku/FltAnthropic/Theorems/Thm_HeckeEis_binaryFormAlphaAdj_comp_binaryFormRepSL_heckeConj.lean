@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open scoped MatrixGroups
 
+/--
+@isnad1 id=eq.0h5v.s15.83f6fc61f043 from=translated src=- shape=1bcf6acd vocab=2dc4d323
+-/
 theorem HeckeEis.binaryFormAlphaAdj_comp_binaryFormRepSL_heckeConj (K : Type*) [CommRing K] (n N ℓ : ℕ) [NeZero ℓ]
     (u : ↥(HeckeEis.heckeUpper N ℓ)) :
     HeckeEis.binaryFormAlphaAdj K n ℓ ∘ₗ ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype) (HeckeEis.heckeConj N ℓ u)

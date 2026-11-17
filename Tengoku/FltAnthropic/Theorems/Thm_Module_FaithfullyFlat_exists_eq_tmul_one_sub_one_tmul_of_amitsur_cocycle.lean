@@ -11,6 +11,9 @@ universe u v
 
 open TensorProduct
 
+/--
+@isnad1 id=ex.1h3v.s12.a4ef166d96d3 from=translated src=- shape=29c933f9 vocab=6f9bb497
+-/
 theorem Module.FaithfullyFlat.exists_eq_tmul_one_sub_one_tmul_of_amitsur_cocycle
     {R : Type u} [CommRing R] {S : Type v} [CommRing S] [Algebra R S] [Module.FaithfullyFlat R S]
     (c : S ⊗[R] S)

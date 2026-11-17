@@ -14,6 +14,9 @@ namespace UnipotentPrimitive
 
 variable {k : Type*} [Field k] {A : Type*} [CommRing A] [Bialgebra k A] [Coalgebra.IsCocomm k A]
 
+/--
+@isnad1 id=mem.2h3v.s8.eab4404d2c95 from=translated src=- shape=90b564a1 vocab=22c13769
+-/
 lemma mem_maximalIdeal_of_apply_one_eq_zero
     (hloc : IsLocalRing (CartierDual k A)) (φ : CartierDual k A) (hφ : φ 1 = 0) :
     φ ∈ IsLocalRing.maximalIdeal (CartierDual k A) := by
@@ -27,6 +30,9 @@ lemma mem_maximalIdeal_of_apply_one_eq_zero
     CartierDual.toDual_apply, hφ, zero_mul] at h1
   exact zero_ne_one h1
 
+/--
+@isnad1 id=eq.2h3v.s8.3237539f94c3 from=translated src=- shape=b7d7b143 vocab=22c13769
+-/
 lemma apply_one_eq_zero_of_mem_maximalIdeal
     (hloc : IsLocalRing (CartierDual k A)) (φ : CartierDual k A)
     (hφ : φ ∈ IsLocalRing.maximalIdeal (CartierDual k A)) : φ 1 = 0 := by
@@ -45,6 +51,9 @@ lemma apply_one_eq_zero_of_mem_maximalIdeal
 
 variable [Module.Finite k A]
 
+/--
+@isnad1 id=isnilpot.1h2v.s8.12c81b33f05f from=translated src=- shape=3e6fc2fd vocab=e3ff0d19
+-/
 lemma isNilpotent_maximalIdeal (hloc : IsLocalRing (CartierDual k A)) :
     IsNilpotent (IsLocalRing.maximalIdeal (CartierDual k A)) := by
   haveI := hloc
@@ -52,6 +61,9 @@ lemma isNilpotent_maximalIdeal (hloc : IsLocalRing (CartierDual k A)) :
   have h := IsArtinianRing.isNilpotent_jacobson_bot (R := CartierDual k A)
   rwa [IsLocalRing.jacobson_eq_maximalIdeal ⊥ bot_ne_top] at h
 
+/--
+@isnad1 id=ex.2h2v.s9.7c4418926bef from=translated src=- shape=beb43eb5 vocab=f215f315
+-/
 lemma exists_mem_maximalIdeal_ne_zero (hloc : IsLocalRing (CartierDual k A))
     (hrank : Module.finrank k A ≠ 1) :
     ∃ φ ∈ IsLocalRing.maximalIdeal (CartierDual k A), φ ≠ 0 := by
@@ -82,6 +94,9 @@ lemma exists_mem_maximalIdeal_ne_zero (hloc : IsLocalRing (CartierDual k A))
     simp at this
     exact this
 
+/--
+@isnad1 id=ex.2h2v.s10.74c1d9b561dc from=translated src=- shape=1c7bc344 vocab=638c9a49
+-/
 theorem exists_primitive (hloc : IsLocalRing (CartierDual k A)) (hrank : Module.finrank k A ≠ 1) :
     ∃ a : A, a ≠ 0 ∧ Coalgebra.comul (R := k) a = a ⊗ₜ[k] 1 + 1 ⊗ₜ[k] a := by
   classical
@@ -187,6 +202,9 @@ end UnipotentPrimitive
 
 universe u v
 
+/--
+@isnad1 id=ex.2h2v.s10.74c1d9b561dc from=translated src=- shape=1c7bc344 vocab=638c9a49
+-/
 theorem solution
     (k : Type u) [Field k] (A : Type v) [CommRing A] [Bialgebra k A] [Coalgebra.IsCocomm k A]
     [Module.Finite k A] (hA : IsLocalRing (CartierDual k A)) (hrank : Module.finrank k A ≠ 1) :

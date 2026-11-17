@@ -25,16 +25,28 @@ local notation "vv" => (Valued.v : Valuation (PadicAlgCl p) ℝ≥0)
 abbrev Conn (f : Pt) : Prop :=
   ∀ h : H, vv (f h - algebraMap ℤ_[p] Kp (counit h)) < 1
 
+/--
+@isnad1 id=lt.2h3v.s7.c821466cbf0e from=translated src=- shape=86a2aefa vocab=f73bff2c
+-/
 theorem mul_lt_one_aux {Γ₀ : Type*} [LinearOrderedCommGroupWithZero Γ₀] {a b : Γ₀}
     (ha : a < 1) (hb : b ≤ 1) : a * b < 1 :=
   lt_of_le_of_lt (mul_le_mul_right hb a) (by rwa [mul_one])
 
+/--
+@isnad1 id=lt.2h3v.s7.3ebbd8df1be4 from=translated src=- shape=bd81da49 vocab=f73bff2c
+-/
 theorem mul_lt_one_aux' {Γ₀ : Type*} [LinearOrderedCommGroupWithZero Γ₀] {a b : Γ₀}
     (ha : a ≤ 1) (hb : b < 1) : a * b < 1 := by
   rw [mul_comm]; exact mul_lt_one_aux hb ha
 
+/--
+@isnad1 id=eq.0h2v.s7.e0c0c04e9fa3 from=translated src=- shape=dde34a5b vocab=683b7b7a
+-/
 theorem v_eq_nnnorm (x : Kp) : vv x = ‖x‖₊ := rfl
 
+/--
+@isnad1 id=le.0h2v.s8.b9c9d0808d45 from=translated src=- shape=858d6da0 vocab=116b0d69
+-/
 theorem v_algebraMap_le_one (r : ℤ_[p]) : vv (algebraMap ℤ_[p] Kp r) ≤ 1 := by
   have h : ‖algebraMap ℤ_[p] Kp r‖ ≤ 1 := by
     rw [IsScalarTower.algebraMap_apply ℤ_[p] ℚ_[p] Kp]
@@ -44,6 +56,9 @@ theorem v_algebraMap_le_one (r : ℤ_[p]) : vv (algebraMap ℤ_[p] Kp r) ≤ 1 :
   have h2 : ‖algebraMap ℤ_[p] Kp r‖₊ ≤ 1 := h
   exact h2
 
+/--
+@isnad1 id=le.0h4v.s9.3a9562a11b9a from=translated src=- shape=12fff006 vocab=d4b81708
+-/
 theorem v_apply_le_one (f : Pt) (h : H) : vv (f h) ≤ 1 := by
   classical
   have hint : IsIntegral ℤ_[p] ((WithConv.ofConv f : H →ₐ[ℤ_[p]] Kp) h) :=
@@ -78,11 +93,17 @@ theorem v_apply_le_one (f : Pt) (h : H) : vv (f h) ≤ 1 := by
   rw [Valuation.map_pow] at hcontra
   exact lt_irrefl _ hcontra
 
+/--
+@isnad1 id=conn.0h2v.s8.98141b8dc0be from=translated src=- shape=0aacd6df vocab=4e8fe835
+-/
 theorem conn_one : Conn (1 : Pt) := by
   intro h
   rw [AlgHom.convOne_apply, sub_self, map_zero]
   exact zero_lt_one
 
+/--
+@isnad1 id=eq.0h7v.s11.5049aed056b0 from=translated src=- shape=b0e79f5a vocab=9916e245
+-/
 theorem convMul_apply_repr (f g : Pt) {h : H} {ι𝓡 : Type*} (𝓡 : Coalgebra.Repr ℤ_[p] h ι𝓡) :
     (f * g) h = ∑ i ∈ 𝓡.index, f (𝓡.left i) * g (𝓡.right i) := by
   have := congrArg (fun (φ : WithConv (H →ₗ[ℤ_[p]] Kp)) => (WithConv.ofConv φ) h)
@@ -91,6 +112,9 @@ theorem convMul_apply_repr (f g : Pt) {h : H} {ι𝓡 : Type*} (𝓡 : Coalgebra
   rw [this, Coalgebra.Repr.convMul_apply 𝓡]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.1b60a932b589 from=translated src=- shape=9d552aa0 vocab=a218fa22
+-/
 theorem counit_repr {h : H} {ι𝓡 : Type*} (𝓡 : Coalgebra.Repr ℤ_[p] h ι𝓡) :
     algebraMap ℤ_[p] Kp (counit h) =
       ∑ i ∈ 𝓡.index, algebraMap ℤ_[p] Kp (counit (𝓡.left i)) *
@@ -102,12 +126,18 @@ theorem counit_repr {h : H} {ι𝓡 : Type*} (𝓡 : Coalgebra.Repr ℤ_[p] h ι
   rw [h2, map_sum]
   simp [map_mul]
 
+/--
+@isnad1 id=eq.0h6v.s11.222feaedacd2 from=translated src=- shape=338a87a5 vocab=137c15c1
+-/
 theorem apply_repr (g : Pt) {h : H} {ι𝓡 : Type*} (𝓡 : Coalgebra.Repr ℤ_[p] h ι𝓡) :
     (g h : Kp) = ∑ i ∈ 𝓡.index, algebraMap ℤ_[p] Kp (counit (𝓡.left i)) * g (𝓡.right i) := by
   have h1 := Coalgebra.sum_counit_smul 𝓡
   conv_lhs => rw [← h1]
   simp [map_sum, map_smul, Algebra.smul_def]
 
+/--
+@isnad1 id=conn.2h4v.s9.2f5162ccf690 from=translated src=- shape=d68d160e vocab=ca70de10
+-/
 theorem conn_mul {f g : Pt} (hf : Conn f) (hg : Conn g) : Conn (f * g) := by
   classical
   intro h
@@ -126,6 +156,9 @@ theorem conn_mul {f g : Pt} (hf : Conn f) (hg : Conn g) : Conn (f * g) := by
   · rw [map_mul]
     exact mul_lt_one_aux' (v_algebraMap_le_one _) (hg _)
 
+/--
+@isnad1 id=conn.2h4v.s10.94ebd9b1e482 from=translated src=- shape=b6e4c0a8 vocab=ca70de10
+-/
 theorem conn_inv {f f' : Pt} (hf : Conn f) (hff' : f * f' = 1) : Conn f' := by
   classical
   intro h
@@ -145,13 +178,22 @@ noncomputable def translate (σ : Kp ≃ₐ[ℚ_[p]] Kp) (f : Pt) : Pt :=
         rw [AlgHom.commutes, IsScalarTower.algebraMap_apply ℤ_[p] ℚ_[p] Kp]
         exact σ.commutes (r : ℚ_[p]) }
 
+/--
+@isnad1 id=eq.0h5v.s10.125a55b92035 from=translated src=- shape=9d4cf215 vocab=076a537e
+-/
 theorem translate_apply (σ : Kp ≃ₐ[ℚ_[p]] Kp) (f : Pt) (h : H) : translate σ f h = σ (f h) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.1872326f9fb5 from=translated src=- shape=cded4389 vocab=832904d5
+-/
 theorem v_algEquiv (σ : Kp ≃ₐ[ℚ_[p]] Kp) (y : Kp) : vv (σ y) = vv y := by
   rw [v_eq_nnnorm, v_eq_nnnorm]
   ext
   exact (spectralNorm_eq_of_equiv σ y).symm
 
+/--
+@isnad1 id=conn.1h4v.s8.c688006d16ce from=translated src=- shape=2eea6ee5 vocab=1a412f34
+-/
 theorem conn_translate (σ : Kp ≃ₐ[ℚ_[p]] Kp) {f : Pt} (hf : Conn f) : Conn (translate σ f) := by
   intro h
   rw [translate_apply]
@@ -160,6 +202,9 @@ theorem conn_translate (σ : Kp ≃ₐ[ℚ_[p]] Kp) {f : Pt} (hf : Conn f) : Con
   rw [this, v_algEquiv]
   exact hf h
 
+/--
+@isnad1 id=lt.2h3v.s10.8b4927b3da07 from=translated src=- shape=88bf3f7b vocab=8b052e72
+-/
 theorem v_sub_lt_one_of_inertia {σ : Kp ≃ₐ[ℚ_[p]] Kp}
     (hσ : σ ∈ (padicIntegers p).inertiaSubgroupIn ℚ_[p]) {a : Kp} (ha : vv a ≤ 1) :
     vv (σ a - a) < 1 := by
@@ -168,6 +213,9 @@ theorem v_sub_lt_one_of_inertia {σ : Kp ≃ₐ[ℚ_[p]] Kp}
   have hiso := Valuation.isEquiv_valuation_valuationSubring vv
   exact (hiso.lt_one_iff_lt_one).mpr h
 
+/--
+@isnad1 id=conn.2h5v.s11.c88d62ad49b7 from=translated src=- shape=36093ddf vocab=36e82f4c
+-/
 theorem conn_displacement {σ : Kp ≃ₐ[ℚ_[p]] Kp} (hσ : σ ∈ (padicIntegers p).inertiaSubgroupIn ℚ_[p])
     {f f' : Pt} (hff' : f * f' = 1) : Conn (translate σ f * f') := by
   classical
@@ -184,6 +232,9 @@ end S17RedSubgroup
 
 open S17RedSubgroup in
 
+/--
+@isnad1 id=ex.2h5v.s13.2d57095476e8 from=translated src=- shape=97fb57ea vocab=d727a4fc
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime]
     (H : Type) [CommRing H] [HopfAlgebra ℤ_[p] H] [Module.Finite ℤ_[p] H] [Module.Flat ℤ_[p] H]

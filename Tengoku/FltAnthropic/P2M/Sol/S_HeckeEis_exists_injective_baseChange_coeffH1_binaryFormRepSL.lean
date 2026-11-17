@@ -23,23 +23,38 @@ variable {R R' : Type*} [CommRing R] [CommRing R']
 noncomputable def mapA (c : R →+ R') (P : MvPolynomial (Fin 2) R) : MvPolynomial (Fin 2) R' :=
   AddMonoidAlgebra.map c P
 
+/--
+@isnad1 id=eq.0h5v.s7.33f81b8741f9 from=translated src=- shape=915676e7 vocab=30459f41
+-/
 @[scoped simp] theorem coeff_mapA (c : R →+ R') (P : MvPolynomial (Fin 2) R) (m : Fin 2 →₀ ℕ) :
     coeff m (mapA c P) = c (coeff m P) :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.1bf78ffa4985 from=translated src=- shape=bbada809 vocab=a8aedbe8
+-/
 theorem mapA_add (c : R →+ R') (P Q : MvPolynomial (Fin 2) R) : mapA c (P + Q) = mapA c P + mapA c Q := by
   refine MvPolynomial.ext _ _ fun m => ?_
   simp only [coeff_mapA, coeff_add, map_add]
 
+/--
+@isnad1 id=eq.0h5v.s8.bf0d28b03819 from=translated src=- shape=bbada809 vocab=beb91263
+-/
 theorem mapA_sub (c : R →+ R') (P Q : MvPolynomial (Fin 2) R) : mapA c (P - Q) = mapA c P - mapA c Q := by
   refine MvPolynomial.ext _ _ fun m => ?_
   simp only [coeff_mapA, coeff_sub, map_sub]
 
+/--
+@isnad1 id=eq.0h4v.s8.41bc7841157c from=translated src=- shape=c965affc vocab=a2583f48
+-/
 theorem mapA_ringHom (φ : R →+* R') (P : MvPolynomial (Fin 2) R) : mapA φ.toAddMonoidHom P = map φ P := by
   refine MvPolynomial.ext _ _ fun m => ?_
   rw [coeff_mapA, coeff_map]
   rfl
 
+/--
+@isnad1 id=ishomoge.1h5v.s6.9512da1d4e4d from=translated src=- shape=d4514d87 vocab=7de2cf1a
+-/
 theorem isHomogeneous_mapA (c : R →+ R') {P : MvPolynomial (Fin 2) R} {n : ℕ} (hP : P.IsHomogeneous n) :
     (mapA c P).IsHomogeneous n := by
   intro m hm
@@ -48,11 +63,17 @@ theorem isHomogeneous_mapA (c : R →+ R') {P : MvPolynomial (Fin 2) R} {n : ℕ
   apply hm
   rw [coeff_mapA, h0, map_zero]
 
+/--
+@isnad1 id=mem.1h5v.s8.02925cea4ab4 from=translated src=- shape=e3115334 vocab=d3f5c8e6
+-/
 theorem mapA_mem (c : R →+ R') {n : ℕ} {P : MvPolynomial (Fin 2) R} (hP : P ∈ BinaryForm R n) :
     mapA c P ∈ BinaryForm R' n := by
   rw [mem_homogeneousSubmodule] at hP ⊢
   exact isHomogeneous_mapA c hP
 
+/--
+@isnad1 id=eq.0h5v.s10.308397182d7f from=translated src=- shape=133141e1 vocab=96c9dafe
+-/
 theorem map_binarySubst (φ : R →+* R') (M : Matrix (Fin 2) (Fin 2) ℤ) (P : MvPolynomial (Fin 2) R) :
     map φ (binarySubst R M P) = binarySubst R' M (map φ P) := by
   have h : (map φ).comp (binarySubst R M : MvPolynomial (Fin 2) R →+* MvPolynomial (Fin 2) R) =
@@ -65,12 +86,18 @@ theorem map_binarySubst (φ : R →+* R') (M : Matrix (Fin 2) (Fin 2) ℤ) (P : 
 noncomputable def Nz (M : Matrix (Fin 2) (Fin 2) ℤ) (e d : Fin 2 →₀ ℕ) : ℤ :=
   coeff d (binarySubst ℤ M (monomial e 1))
 
+/--
+@isnad1 id=eq.0h4v.s9.810ad70f992e from=translated src=- shape=ae66ff28 vocab=559ac665
+-/
 theorem coeff_binarySubst_monomial_one (M : Matrix (Fin 2) (Fin 2) ℤ) (e d : Fin 2 →₀ ℕ) :
     coeff d (binarySubst R M (monomial e 1)) = (Nz M e d : R) := by
   have h : binarySubst R M (monomial e 1) = map (Int.castRingHom R) (binarySubst ℤ M (monomial e 1)) := by
     rw [map_binarySubst, MvPolynomial.map_monomial, (Int.castRingHom R).map_one]
   rw [h, coeff_map, Nz, eq_intCast]
 
+/--
+@isnad1 id=eq.0h4v.s8.3b9ab5f57478 from=translated src=- shape=7e559b03 vocab=d6ca5a63
+-/
 theorem coeff_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (P : MvPolynomial (Fin 2) R) (d : Fin 2 →₀ ℕ) :
     coeff d (binarySubst R M P) = ∑ e ∈ P.support, coeff e P * (Nz M e d : R) := by
   conv_lhs => rw [P.as_sum, map_sum]
@@ -79,6 +106,9 @@ theorem coeff_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (P : MvPolynomial (Fi
   rw [show monomial e (coeff e P) = coeff e P • monomial e (1 : R) by rw [smul_monomial, smul_eq_mul, mul_one],
     map_smul, coeff_smul, coeff_binarySubst_monomial_one, smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h5v.s9.5a131dc1c05f from=translated src=- shape=06264b0f vocab=ecf5a375
+-/
 theorem mapA_binarySubst (c : R →+ R') (M : Matrix (Fin 2) (Fin 2) ℤ) (P : MvPolynomial (Fin 2) R) :
     mapA c (binarySubst R M P) = binarySubst R' M (mapA c P) := by
   refine MvPolynomial.ext _ _ fun d => ?_
@@ -106,13 +136,22 @@ variable {N n}
 noncomputable def cmap (c : R →+ R') (z : Gamma0 N → ↥(BinaryForm R n)) : Gamma0 N → ↥(BinaryForm R' n) :=
   fun g => ⟨mapA c ((z g : ↥(BinaryForm R n)) : MvPolynomial (Fin 2) R), mapA_mem c (z g).2⟩
 
+/--
+@isnad1 id=eq.0h7v.s10.947af90e1ece from=translated src=- shape=4f95ee5f vocab=da71af14
+-/
 @[scoped simp] theorem coe_cmap (c : R →+ R') (z : Gamma0 N → ↥(BinaryForm R n)) (g : Gamma0 N) :
     ((cmap c z g : ↥(BinaryForm R' n)) : MvPolynomial (Fin 2) R') = mapA c (z g : MvPolynomial (Fin 2) R) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s13.51adc5e7b14d from=translated src=- shape=c2004f49 vocab=65212ca7
+-/
 theorem coe_ρSym_apply (R : Type*) [CommRing R] (g : Gamma0 N) (v : ↥(BinaryForm R n)) :
     ((ρSym R N n g v : ↥(BinaryForm R n)) : MvPolynomial (Fin 2) R) =
       binarySubst R ((g : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) v := rfl
 
+/--
+@isnad1 id=mem.1h6v.s14.334813f2a39e from=translated src=- shape=a7d4a9b6 vocab=7a54a6b1
+-/
 theorem cmap_mem_coeffCocycles (c : R →+ R') {z : Gamma0 N → ↥(BinaryForm R n)}
     (hz : z ∈ coeffCocycles (ρSym R N n)) : cmap c z ∈ coeffCocycles (ρSym R' N n) := by
   intro g h
@@ -120,6 +159,9 @@ theorem cmap_mem_coeffCocycles (c : R →+ R') {z : Gamma0 N → ↥(BinaryForm 
   rw [Submodule.coe_add, coe_cmap, coe_cmap, coe_ρSym_apply, coe_cmap, hz g h, Submodule.coe_add, mapA_add,
     coe_ρSym_apply, mapA_binarySubst]
 
+/--
+@isnad1 id=mem.1h6v.s14.4b281905c807 from=translated src=- shape=a7d4a9b6 vocab=8d4fd5a5
+-/
 theorem cmap_mem_coeffCoboundaries (c : R →+ R') {z : Gamma0 N → ↥(BinaryForm R n)}
     (hz : z ∈ coeffCoboundaries (ρSym R N n)) : cmap c z ∈ coeffCoboundaries (ρSym R' N n) := by
   rw [mem_coeffCoboundaries_iff] at hz ⊢
@@ -127,6 +169,9 @@ theorem cmap_mem_coeffCoboundaries (c : R →+ R') {z : Gamma0 N → ↥(BinaryF
   refine ⟨⟨mapA c (v : MvPolynomial (Fin 2) R), mapA_mem c v.2⟩, funext fun g => Subtype.ext ?_⟩
   rw [coe_cmap, Submodule.coe_sub, Submodule.coe_sub, coe_ρSym_apply, coe_ρSym_apply, mapA_sub, mapA_binarySubst]
 
+/--
+@isnad1 id=eq.0h7v.s10.262e0a11a4d4 from=translated src=- shape=f508736a vocab=c019856d
+-/
 theorem coe_cmap_ringHom (φ : R →+* R') (z : Gamma0 N → ↥(BinaryForm R n)) (g : Gamma0 N) :
     ((cmap φ.toAddMonoidHom z g : ↥(BinaryForm R' n)) : MvPolynomial (Fin 2) R') = map φ (z g : MvPolynomial (Fin 2) R) := by
   rw [coe_cmap, mapA_ringHom]
@@ -148,24 +193,39 @@ noncomputable def crd (j : JF p F) : F →+ ZMod p where
   map_zero' := by simp
   map_add' x y := by simp
 
+/--
+@isnad1 id=eq.0h4v.s9.dc4df0e32bd8 from=translated src=- shape=0ddc2377 vocab=e0c045d2
+-/
 theorem crd_apply (j : JF p F) (x : F) : crd p F j x = (eF p F).repr x j := rfl
 
 open Classical in
+/--
+@isnad1 id=eq.0h5v.s8.bc53b5747093 from=translated src=- shape=72dc2233 vocab=19a7c56d
+-/
 theorem crd_smul_basis (i j : JF p F) (a : ZMod p) : crd p F j (a • eF p F i) = if i = j then a else 0 := by
   rw [crd_apply, map_smul, Module.Basis.repr_self, Finsupp.smul_apply, Finsupp.single_apply, smul_eq_mul]
   split_ifs <;> simp
 
 open Classical in
 
+/--
+@isnad1 id=eq.0h5v.s8.922414487a83 from=translated src=- shape=a71a6a3c vocab=b401125e
+-/
 theorem crd_basis_mul_intCast (i j : JF p F) (a : ℤ) :
     crd p F j (eF p F i * (a : F)) = if i = j then (a : ZMod p) else 0 := by
   have h : eF p F i * (a : F) = (a : ZMod p) • eF p F i := by
     rw [Algebra.smul_def, map_intCast, mul_comm]
   rw [h, crd_smul_basis]
 
+/--
+@isnad1 id=eq.0h3v.s6.891fcaf943c4 from=translated src=- shape=f1f79c28 vocab=53a09514
+-/
 theorem natCast_p_smul_eq_zero (x : F) : (p : ℤ) • x = 0 := by
   rw [zsmul_eq_mul, Int.cast_natCast, CharP.cast_eq_zero, zero_mul]
 
+/--
+@isnad1 id=eq.0h4v.s6.426d6f11ade3 from=translated src=- shape=3515e710 vocab=d23c2665
+-/
 theorem zmod_smul_eq (a : ZMod p) (x : F) : a • x = ((a.val : ℤ)) • x := by
   rw [Algebra.smul_def, zsmul_eq_mul, Int.cast_natCast, ZMod.natCast_val]
   rfl
@@ -181,11 +241,17 @@ abbrev H1 (R : Type) [CommRing R] : Type := coeffH1 (ρSym R N n)
 noncomputable def extF (z : ↥(coeffCocycles (ρSym ℤ N n))) : ↥(coeffCocycles (ρSym F N n)) :=
   ⟨cmap (Int.castRingHom F).toAddMonoidHom z, cmap_mem_coeffCocycles _ z.2⟩
 
+/--
+@isnad1 id=eq.0h4v.s7.3d513068287a from=translated src=- shape=1f621292 vocab=7fc43768
+-/
 theorem toAddMonoidHom_apply' {R R' : Type*} [CommRing R] [CommRing R'] (φ : R →+* R') (x : R) :
     φ.toAddMonoidHom x = φ x := rfl
 
 open Classical in
 
+/--
+@isnad1 id=eq.0h9v.s16.d96543ebe24d from=translated src=- shape=bebc6797 vocab=7d92b0f2
+-/
 theorem crd_coeff_sum (s : Finset (JF p F)) (z : JF p F → ↥(coeffCocycles (ρSym ℤ N n))) (j₀ : JF p F)
     (g : Gamma0 N) (m : Fin 2 →₀ ℕ) :
     crd p F j₀ (coeff m (((∑ j ∈ s, eF p F j • extF F n N (z j) : ↥(coeffCocycles (ρSym F N n))) :
@@ -204,6 +270,9 @@ theorem crd_coeff_sum (s : Finset (JF p F)) (z : JF p F → ↥(coeffCocycles (�
   simp only [hterm]
   rw [Finset.sum_ite_eq' s j₀]
 
+/--
+@isnad1 id=ex.0h5v.s12.257f72744bcc from=translated src=- shape=4d76d2c4 vocab=792fad71
+-/
 theorem exists_finsupp_eq_sum (y : F ⊗[ℤ] H1 n N ℤ) :
     ∃ f : JF p F →₀ H1 n N ℤ, y = f.sum fun j m => eF p F j ⊗ₜ[ℤ] m := by
   induction y using TensorProduct.induction_on with
@@ -226,6 +295,9 @@ theorem exists_finsupp_eq_sum (y : F ⊗[ℤ] H1 n N ℤ) :
     · intro j; rw [TensorProduct.tmul_zero]
     · intro j m₁ m₂; rw [TensorProduct.tmul_add]
 
+/--
+@isnad1 id=injectiv.4h7v.s18.23371248f781 from=translated src=- shape=f498323e vocab=ec9abe7d
+-/
 theorem injective_core
     (ΦF : H1 n N ℤ →+ H1 n N F)
     (hFmk : ∀ z : ↥(coeffCocycles (ρSym ℤ N n)), ΦF (coeffH1Mk _ z) = coeffH1Mk _ (extF F n N z))
@@ -277,6 +349,9 @@ theorem injective_core
 
 include p in
 
+/--
+@isnad1 id=ex.0h4v.s17.63a5e69d6314 from=translated src=- shape=0968354d vocab=e8cba8d9
+-/
 theorem main :
     ∃ Φ : F ⊗[ℤ] H1 n N ℤ →ₗ[F] H1 n N F,
       Function.Injective Φ ∧
@@ -332,6 +407,9 @@ open scoped _root_.P2MW.S_HeckeEis_exists_injective_baseChange_coeffH1_binaryFor
 
 open scoped TensorProduct in
 
+/--
+@isnad1 id=ex.0h4v.s19.888097f23620 from=translated src=- shape=13dd203b vocab=f29ca34a
+-/
 theorem solution (p : ℕ) [Fact p.Prime]
     (F : Type) [Field F] [CharP F p] (n N : ℕ) :
     ∃ Φ : F ⊗[ℤ] HeckeEis.coeffH1 ((HeckeEis.binaryFormRepSL ℤ n).comp (CongruenceSubgroup.Gamma0 N).subtype) →ₗ[F]

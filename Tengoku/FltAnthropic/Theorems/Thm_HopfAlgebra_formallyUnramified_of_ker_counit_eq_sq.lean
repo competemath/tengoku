@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u v
 
+/--
+@isnad1 id=formally.1h2v.s8.a3ed1f978c02 from=translated src=- shape=dc223f09 vocab=06a5c3fd
+-/
 theorem HopfAlgebra.formallyUnramified_of_ker_counit_eq_sq
     {R : Type u} [CommRing R] {H : Type v} [CommRing H] [HopfAlgebra R H]
     (hI : RingHom.ker (Bialgebra.counitAlgHom R H) = RingHom.ker (Bialgebra.counitAlgHom R H) ^ 2) :

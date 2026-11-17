@@ -10,6 +10,9 @@ namespace P2MW.S_HopfAlgebra_exists_cocomm_adjoin_nTorsion_quotient_of_powerPair
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=ex.15h9v.s14.1144b908697c from=translated src=- shape=3a35b6cd vocab=e68371b7
+-/
 theorem solution
     (K : Type) [Field K] [CharZero K] (c : K) (hc : c ≠ 0) (hnsq : ¬ IsSquare c)
     (n : ℕ) [Fact n.Prime]

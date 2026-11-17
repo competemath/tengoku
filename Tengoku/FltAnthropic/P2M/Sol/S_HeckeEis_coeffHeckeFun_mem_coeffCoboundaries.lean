@@ -29,16 +29,25 @@ local notation "U" => heckeUpper N ℓ
 local notation "c" => heckeConj N ℓ
 
 include ha in
+/--
+@isnad1 id=eq.1h8v.s15.5e32dbafaf98 from=translated src=- shape=b2bacfc7 vocab=da90c168
+-/
 theorem ha_apply (u : ↥U) (v : V) : a (ρ (c u) v) = ρ (u : Gamma0 N) (a v) := by
   have := LinearMap.congr_fun (ha u) v
   simpa using this
 
+/--
+@isnad1 id=eq.0h4v.s13.91ddf92035ae from=translated src=- shape=d59dc66c vocab=219bf6ed
+-/
 theorem out_mul_transferAux (g : Gamma0 N) (q : Gamma0 N ⧸ U) :
     (g • q).out * (transferAux U g q : Gamma0 N) = g * q.out := by
   rw [coe_transferAux, mul_inv_cancel_left]
 
 include ha in
 
+/--
+@isnad1 id=mem.2h7v.s15.ccb2afe662a1 from=translated src=- shape=b74d68b2 vocab=ca6ee3f8
+-/
 theorem mem_coeffCoboundaries {z : Gamma0 N → V} (hz : z ∈ coeffCoboundaries ρ) :
     coeffHeckeFun N ℓ ρ a z ∈ coeffCoboundaries ρ := by
   letI := (heckeUpper N ℓ).fintypeQuotientOfFiniteIndex
@@ -56,6 +65,9 @@ theorem mem_coeffCoboundaries {z : Gamma0 N → V} (hz : z ∈ coeffCoboundaries
 end Sh2
 end HeckeEis
 
+/--
+@isnad1 id=mem.2h7v.s15.ccb2afe662a1 from=translated src=- shape=b74d68b2 vocab=ca6ee3f8
+-/
 theorem solution (N ℓ : ℕ) [NeZero ℓ]
     {K : Type*} [CommRing K] {V : Type*} [AddCommGroup V] [Module K V]
     (ρ : Representation K (CongruenceSubgroup.Gamma0 N) V) (a : V →ₗ[K] V)

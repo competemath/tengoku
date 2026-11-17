@@ -29,10 +29,16 @@ local notation "U" => heckeUpper N ℓ
 local notation "c" => heckeConj N ℓ
 
 include ha in
+/--
+@isnad1 id=eq.1h8v.s15.5e32dbafaf98 from=translated src=- shape=b2bacfc7 vocab=da90c168
+-/
 theorem ha_apply (u : ↥U) (v : V) : a (ρ (c u) v) = ρ (u : Gamma0 N) (a v) := by
   have := LinearMap.congr_fun (ha u) v
   simpa using this
 
+/--
+@isnad1 id=eq.1h5v.s12.8e8cd475d64e from=translated src=- shape=b17f6ca1 vocab=b426f7cd
+-/
 theorem cocycle_one {z : Gamma0 N → V} (hz : z ∈ coeffCocycles ρ) : z 1 = 0 := by
   have h := hz 1 1
   rw [mul_one, map_one, Module.End.one_apply] at h
@@ -40,18 +46,27 @@ theorem cocycle_one {z : Gamma0 N → V} (hz : z ∈ coeffCocycles ρ) : z 1 = 0
   have : z 1 + z 1 = z 1 + 0 := by rw [add_zero]; exact h.symm
   exact add_left_cancel this
 
+/--
+@isnad1 id=eq.1h7v.s16.7e7cc05a28ef from=translated src=- shape=d441b99e vocab=37170b18
+-/
 theorem cocycle_map_inv {z : Gamma0 N → V} (hz : z ∈ coeffCocycles ρ) (x : ↥U) :
     z (c x⁻¹) = -(ρ (c x⁻¹) (z (c x))) := by
   have h1 : z (c x⁻¹ * c x) = z (c x⁻¹) + ρ (c x⁻¹) (z (c x)) := hz _ _
   rw [← map_mul, inv_mul_cancel, map_one, cocycle_one N ρ hz] at h1
   exact eq_neg_of_add_eq_zero_left h1.symm
 
+/--
+@isnad1 id=eq.0h4v.s13.91ddf92035ae from=translated src=- shape=d59dc66c vocab=219bf6ed
+-/
 theorem out_mul_transferAux (g : Gamma0 N) (q : Gamma0 N ⧸ U) :
     (g • q).out * (transferAux U g q : Gamma0 N) = g * q.out := by
   rw [coe_transferAux, mul_inv_cancel_left]
 
 include ha in
 
+/--
+@isnad1 id=mem.4h9v.s16.59fa6295443d from=translated src=- shape=69629e33 vocab=bfacafc1
+-/
 theorem sum_repr_sub_mem_coeffCoboundaries
     (s : Gamma0 N ⧸ U → Gamma0 N) (t : Gamma0 N → Gamma0 N ⧸ U → ↥U)
     (hs : ∀ q, (s q : Gamma0 N ⧸ U) = q)
@@ -115,6 +130,9 @@ theorem sum_repr_sub_mem_coeffCoboundaries
 end Sh2
 end HeckeEis
 
+/--
+@isnad1 id=mem.4h9v.s16.59fa6295443d from=translated src=- shape=69629e33 vocab=bfacafc1
+-/
 theorem solution (N ℓ : ℕ) [NeZero ℓ]
     {K : Type*} [CommRing K] {V : Type*} [AddCommGroup V] [Module K V]
     (ρ : Representation K (CongruenceSubgroup.Gamma0 N) V) (a : V →ₗ[K] V)

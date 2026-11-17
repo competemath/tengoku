@@ -20,6 +20,9 @@ def newtonInitialForm (f : (HahnSeries ℚ K)[X]) (γ : ℚ) : K[X] :=
   ∑ i ∈ Finset.range (f.natDegree + 1),
     Polynomial.C ((f.coeff i).coeff ((f.natDegree - i : ℕ) • γ)) * Polynomial.X ^ i
 
+/--
+@isnad1 id=eq.0h5v.s8.4de0fb824dd0 from=translated src=- shape=6937b4a8 vocab=15c4cc2f
+-/
 theorem coeff_eval_single (f : (HahnSeries ℚ K)[X]) (γ : ℚ) (c : K) (g : ℚ) :
     (f.eval (HahnSeries.single γ c)).coeff g =
       ∑ i ∈ Finset.range (f.natDegree + 1), (f.coeff i).coeff (g - i • γ) * c ^ i := by
@@ -58,6 +61,9 @@ private theorem mem_evalSlopeSupport {f : (HahnSeries ℚ K)[X]} {j : ℕ} :
     j ∈ evalSlopeSupport f ↔ j ≤ f.natDegree ∧ 1 ≤ j ∧ f.coeff j ≠ 0 := by
   simp only [evalSlopeSupport, Finset.mem_filter, Finset.mem_range, Nat.lt_succ_iff]
 
+/--
+@isnad1 id=ex.2h2v.s9.555665f762b7 from=translated src=- shape=498e3cdb vocab=ebc4b75b
+-/
 theorem exists_evalNewtonSlope {f : (HahnSeries ℚ K)[X]} (hf : f.Monic)
     (hdeg : 1 ≤ f.natDegree) :
     ∃ γ : ℚ,
@@ -95,6 +101,9 @@ def evalEdgeForm (f : (HahnSeries ℚ K)[X]) (γ : ℚ) : K[X] :=
   ∑ j ∈ Finset.range (f.natDegree + 1),
     Polynomial.C ((f.coeff j).coeff ((f.coeff 0).order - j • γ)) * Polynomial.X ^ j
 
+/--
+@isnad1 id=eq.1h4v.s7.38d3678618d2 from=translated src=- shape=ad630f56 vocab=df423900
+-/
 theorem evalEdgeForm_coeff (f : (HahnSeries ℚ K)[X]) (γ : ℚ) (k : ℕ) (hk : k ≤ f.natDegree) :
     (evalEdgeForm f γ).coeff k = (f.coeff k).coeff ((f.coeff 0).order - k • γ) := by
   unfold evalEdgeForm
@@ -106,16 +115,25 @@ theorem evalEdgeForm_coeff (f : (HahnSeries ℚ K)[X]) (γ : ℚ) (k : ℕ) (hk 
   · intro h
     exact absurd (Finset.mem_range.mpr (Nat.lt_succ_of_le hk)) h
 
+/--
+@isnad1 id=eq.0h3v.s6.3fcc75ca88e8 from=translated src=- shape=29cb67d1 vocab=a0c84910
+-/
 theorem evalEdgeForm_coeff_zero (f : (HahnSeries ℚ K)[X]) (γ : ℚ) :
     (evalEdgeForm f γ).coeff 0 = (f.coeff 0).leadingCoeff := by
   rw [evalEdgeForm_coeff f γ 0 (Nat.zero_le _), zero_smul, sub_zero,
     ← HahnSeries.leadingCoeff_eq]
 
+/--
+@isnad1 id=eq.2h4v.s8.f114133966b5 from=translated src=- shape=2a74eee0 vocab=13b537e4
+-/
 theorem evalEdgeForm_coeff_of_eq {f : (HahnSeries ℚ K)[X]} {γ : ℚ} {j₀ : ℕ}
     (hj₀le : j₀ ≤ f.natDegree) (heq : (f.coeff 0).order = (f.coeff j₀).order + j₀ • γ) :
     (evalEdgeForm f γ).coeff j₀ = (f.coeff j₀).leadingCoeff := by
   rw [evalEdgeForm_coeff f γ j₀ hj₀le, heq, add_sub_cancel_right, ← HahnSeries.leadingCoeff_eq]
 
+/--
+@isnad1 id=eq.0h4v.s8.198adff7722f from=translated src=- shape=4cb0c67d vocab=5e0276c4
+-/
 theorem coeff_eval_single_order_zero (f : (HahnSeries ℚ K)[X]) (γ : ℚ) (c : K) :
     (f.eval (HahnSeries.single γ c)).coeff (f.coeff 0).order =
       (evalEdgeForm f γ).eval c := by
@@ -123,6 +141,9 @@ theorem coeff_eval_single_order_zero (f : (HahnSeries ℚ K)[X]) (γ : ℚ) (c :
   refine Finset.sum_congr rfl fun j _ => ?_
   rw [Polynomial.eval_mul, Polynomial.eval_C, Polynomial.eval_pow, Polynomial.eval_X]
 
+/--
+@isnad1 id=eq.2h5v.s9.1d5fc194df7a from=translated src=- shape=4436b812 vocab=9915f455
+-/
 theorem coeff_eval_single_of_lt_order_zero {f : (HahnSeries ℚ K)[X]} {γ : ℚ}
     (hslope : ∀ j, 1 ≤ j → j ≤ f.natDegree → f.coeff j ≠ 0 →
       (f.coeff 0).order ≤ (f.coeff j).order + j • γ)
@@ -155,6 +176,9 @@ def pseudoLimitCoeff {ι : Type*} [LinearOrder ι]
     (r : ι → HahnSeries Γ K) (δ : ι → WithTop Γ) (g : Γ) : K :=
   if h : ∃ i, (g : WithTop Γ) < δ i then (r h.choose).coeff g else 0
 
+/--
+@isnad1 id=eq.3h8v.s7.bc732d1db2d6 from=translated src=- shape=b20f0245 vocab=a56eba8c
+-/
 theorem IsBallChain.coeff_eq_of_lt {ι : Type*} [LinearOrder ι]
     {r : ι → HahnSeries Γ K} {δ : ι → WithTop Γ} (h : IsBallChain r δ)
     {i j : ι} {g : Γ} (hgi : (g : WithTop Γ) < δ i) (hgj : (g : WithTop Γ) < δ j) :
@@ -167,6 +191,9 @@ theorem IsBallChain.coeff_eq_of_lt {ι : Type*} [LinearOrder ι]
   rw [HahnSeries.coeff_sub, sub_eq_zero] at hdiff
   exact hdiff.symm
 
+/--
+@isnad1 id=eq.2h7v.s6.12257b1f679b from=translated src=- shape=b23e36d3 vocab=64ed6e48
+-/
 theorem IsBallChain.pseudoLimitCoeff_eq {ι : Type*} [LinearOrder ι]
     {r : ι → HahnSeries Γ K} {δ : ι → WithTop Γ} (h : IsBallChain r δ)
     {g : Γ} {i : ι} (hgi : (g : WithTop Γ) < δ i) :
@@ -175,6 +202,9 @@ theorem IsBallChain.pseudoLimitCoeff_eq {ι : Type*} [LinearOrder ι]
   rw [dite_eq_left ⟨i, hgi⟩]
   exact h.coeff_eq_of_lt (Exists.choose_spec (p := fun i => (g : WithTop Γ) < δ i) ⟨i, hgi⟩) hgi
 
+/--
+@isnad1 id=ispwo.1h5v.s6.2d439369ef5f from=translated src=- shape=97108f7d vocab=e716bf3a
+-/
 theorem IsBallChain.isPWO_support_pseudoLimitCoeff {ι : Type*} [LinearOrder ι]
     {r : ι → HahnSeries Γ K} {δ : ι → WithTop Γ} (h : IsBallChain r δ) :
     (Function.support (pseudoLimitCoeff r δ)).IsPWO := by
@@ -208,6 +238,9 @@ def IsBallChain.pseudoLimit {ι : Type*} [LinearOrder ι]
   coeff := pseudoLimitCoeff r δ
   isPWO_support' := h.isPWO_support_pseudoLimitCoeff
 
+/--
+@isnad1 id=monic.1h3v.s10.df26e111dcab from=translated src=- shape=c3c58f24 vocab=53b50bef
+-/
 theorem monic_taylor {f : (HahnSeries ℚ K)[X]} (hf : f.Monic) (r : HahnSeries ℚ K) :
     (Polynomial.taylor r f).Monic := by
   rw [Polynomial.taylor_apply]
@@ -270,6 +303,9 @@ private theorem withTop_add_lt_add_left {a : WithTop ℚ} (ha : a ≠ ⊤) {b c 
         rw [← WithTop.coe_add, ← WithTop.coe_add, WithTop.coe_lt_coe] at h
         exact WithTop.coe_lt_coe.mpr (lt_of_add_lt_add_left h)
 
+/--
+@isnad1 id=eq.0h4v.s10.a86c591db955 from=translated src=- shape=acc32d2f vocab=3ae791f2
+-/
 theorem eval_sub_eval_eq_sum_taylor (f : (HahnSeries ℚ K)[X]) (r h : HahnSeries ℚ K) :
     f.eval (r + h) - f.eval r =
       ∑ j ∈ Finset.range (f.natDegree + 1),
@@ -292,6 +328,9 @@ def KaplanskySlope (f : (HahnSeries ℚ K)[X]) (r r' : HahnSeries ℚ K) : Prop 
       HahnSeries.addVal ℚ K ((Polynomial.taylor r f).coeff j) +
         j • HahnSeries.addVal ℚ K (r' - r)
 
+/--
+@isnad1 id=le.1h4v.s9.20977bf1181d from=translated src=- shape=6a9bf431 vocab=a1d634bc
+-/
 theorem KaplanskySlope.addVal_eval_le {f : (HahnSeries ℚ K)[X]} {r r' : HahnSeries ℚ K}
     (h : KaplanskySlope f r r') :
     HahnSeries.addVal ℚ K (f.eval r) ≤ HahnSeries.addVal ℚ K (f.eval r') := by
@@ -311,6 +350,9 @@ theorem KaplanskySlope.addVal_eval_le {f : (HahnSeries ℚ K)[X]} {r r' : HahnSe
         (HahnSeries.addVal ℚ K).map_add _ _
     _ = HahnSeries.addVal ℚ K (f.eval r') := by ring_nf
 
+/--
+@isnad1 id=kaplansk.2h5v.s9.cd25289e9082 from=translated src=- shape=4e5a3599 vocab=17be27b0
+-/
 theorem KaplanskySlope.mono {f : (HahnSeries ℚ K)[X]} {r r' r'' : HahnSeries ℚ K}
     (h : KaplanskySlope f r r')
     (hle : HahnSeries.addVal ℚ K (r' - r) ≤ HahnSeries.addVal ℚ K (r'' - r)) :
@@ -319,6 +361,9 @@ theorem KaplanskySlope.mono {f : (HahnSeries ℚ K)[X]} {r r' r'' : HahnSeries �
   exact (h j hj hjle).trans
     (add_le_add le_rfl ((nsmul_le_nsmul_iff_withTop hj).mpr hle))
 
+/--
+@isnad1 id=ex.1h4v.s11.944f5dbf9840 from=translated src=- shape=9d17b2ed vocab=d4a35f27
+-/
 theorem exists_addVal_taylor_coeff_of_addVal_eval_lt {f : (HahnSeries ℚ K)[X]}
     {r r' : HahnSeries ℚ K}
     (hlt : HahnSeries.addVal ℚ K (f.eval r) < HahnSeries.addVal ℚ K (f.eval r')) :
@@ -347,11 +392,17 @@ def KaplanskyLE (f : (HahnSeries ℚ K)[X]) (r r' : HahnSeries ℚ K) : Prop :=
   r = r' ∨ (HahnSeries.addVal ℚ K (f.eval r) < HahnSeries.addVal ℚ K (f.eval r') ∧
     KaplanskySlope f r r')
 
+/--
+@isnad1 id=kaplansk.0h3v.s5.db8024730464 from=translated src=- shape=de086fcc vocab=22d4ceab
+-/
 theorem KaplanskyLE.refl (f : (HahnSeries ℚ K)[X]) (r : HahnSeries ℚ K) :
     KaplanskyLE f r r := Or.inl rfl
 
 scoped instance (f : (HahnSeries ℚ K)[X]) : Std.Refl (KaplanskyLE f) := ⟨KaplanskyLE.refl f⟩
 
+/--
+@isnad1 id=le.1h4v.s9.dcd0759e55f9 from=translated src=- shape=6a9bf431 vocab=99a3a7e0
+-/
 theorem KaplanskyLE.addVal_eval_le {f : (HahnSeries ℚ K)[X]} {r r' : HahnSeries ℚ K}
     (h : KaplanskyLE f r r') :
     HahnSeries.addVal ℚ K (f.eval r) ≤ HahnSeries.addVal ℚ K (f.eval r') := by
@@ -359,6 +410,9 @@ theorem KaplanskyLE.addVal_eval_le {f : (HahnSeries ℚ K)[X]} {r r' : HahnSerie
   · exact le_rfl
   · exact hlt.le
 
+/--
+@isnad1 id=kaplansk.3h5v.s9.718101717ccf from=translated src=- shape=d65c07f9 vocab=d1e7bbd1
+-/
 theorem KaplanskySlope.of_kaplanskyLE_of_lt {f : (HahnSeries ℚ K)[X]}
     {r r' r'' : HahnSeries ℚ K}
     (hlt : HahnSeries.addVal ℚ K (f.eval r) < HahnSeries.addVal ℚ K (f.eval r'))
@@ -384,12 +438,18 @@ theorem KaplanskySlope.of_kaplanskyLE_of_lt {f : (HahnSeries ℚ K)[X]}
     _ ≤ HahnSeries.addVal ℚ K ((r' - r) + (r'' - r')) := (HahnSeries.addVal ℚ K).map_add _ _
     _ = HahnSeries.addVal ℚ K (r'' - r) := by ring_nf
 
+/--
+@isnad1 id=kaplansk.2h5v.s6.fd20d6c9d536 from=translated src=- shape=6969316e vocab=22d4ceab
+-/
 theorem KaplanskyLE.trans {f : (HahnSeries ℚ K)[X]} {r r' r'' : HahnSeries ℚ K}
     (h : KaplanskyLE f r r') (h' : KaplanskyLE f r' r'') : KaplanskyLE f r r'' := by
   rcases h with rfl | ⟨hlt, hslope⟩
   · exact h'
   exact Or.inr ⟨lt_of_lt_of_le hlt h'.addVal_eval_le, hslope.of_kaplanskyLE_of_lt hlt h'⟩
 
+/--
+@isnad1 id=eq.2h4v.s6.a5e8cb14fe90 from=translated src=- shape=7c3ffe5b vocab=22d4ceab
+-/
 theorem KaplanskyLE.antisymm {f : (HahnSeries ℚ K)[X]} {r r' : HahnSeries ℚ K}
     (h : KaplanskyLE f r r') (h' : KaplanskyLE f r' r) : r = r' := by
   rcases h with rfl | ⟨hlt, _⟩
@@ -398,6 +458,9 @@ theorem KaplanskyLE.antisymm {f : (HahnSeries ℚ K)[X]} {r r' : HahnSeries ℚ 
   · rfl
   exact absurd hlt (not_lt.mpr hlt'.le)
 
+/--
+@isnad1 id=ex.3h3v.s8.da18c6bb2f67 from=translated src=- shape=bf0b8362 vocab=e260ac21
+-/
 theorem exists_kaplanskyLE_of_eval_ne_zero [IsAlgClosed K] {f : (HahnSeries ℚ K)[X]}
     (hf : f.Monic) (hdeg : 1 ≤ f.natDegree)
     {r : HahnSeries ℚ K} (hr : f.eval r ≠ 0) :
@@ -454,6 +517,9 @@ theorem exists_kaplanskyLE_of_eval_ne_zero [IsAlgClosed K] {f : (HahnSeries ℚ 
         HahnSeries.orderTop_single hcne, ← hg, nsmul_coe_withTop]
       exact_mod_cast hslope j hj hjle' hne
 
+/--
+@isnad1 id=eq.3h3v.s7.f1c69ee7c862 from=translated src=- shape=c4dcf3ca vocab=e260ac21
+-/
 theorem eval_eq_zero_of_kaplanskyLE_max [IsAlgClosed K] {f : (HahnSeries ℚ K)[X]}
     (hf : f.Monic) (hdeg : 1 ≤ f.natDegree)
     {m : HahnSeries ℚ K} (hmax : ∀ r, KaplanskyLE f m r → KaplanskyLE f r m) :
@@ -466,6 +532,9 @@ section ChainUpperBound
 
 variable {f : (HahnSeries ℚ K)[X]}
 
+/--
+@isnad1 id=injon.1h3v.s8.97f172ff2d58 from=translated src=- shape=52201aa7 vocab=f54764f9
+-/
 theorem kaplanskyChain_addVal_injOn {C : Set (HahnSeries ℚ K)}
     (hC : IsChain (KaplanskyLE f) C) :
     Set.InjOn (fun a => HahnSeries.addVal ℚ K (f.eval a)) C := by
@@ -492,6 +561,9 @@ private theorem nsmul_lt_nsmul_iff_withTop {j : ℕ} (hj : 1 ≤ j) {a b : WithT
   rw [lt_iff_le_not_ge, lt_iff_le_not_ge, nsmul_le_nsmul_iff_withTop hj,
     nsmul_le_nsmul_iff_withTop hj]
 
+/--
+@isnad1 id=lt.2h5v.s8.a39af613cf01 from=translated src=- shape=a186d522 vocab=e2662d13
+-/
 theorem KaplanskyBelowSlope.lt_addVal_sub {a b : HahnSeries ℚ K} {g : ℚ}
     (hbelow : KaplanskyBelowSlope f a g) (hslope : KaplanskySlope f a b) :
     (g : WithTop ℚ) < HahnSeries.addVal ℚ K (b - a) := by
@@ -505,6 +577,9 @@ theorem KaplanskyBelowSlope.lt_addVal_sub {a b : HahnSeries ℚ K} {g : ℚ}
   rw [← nsmul_coe_withTop] at hlt
   exact (nsmul_lt_nsmul_iff_withTop hj1).mp hlt
 
+/--
+@isnad1 id=eq.5h6v.s8.da52a6906dce from=translated src=- shape=13d010bc vocab=f21ad03b
+-/
 theorem kaplanskyChain_coeff_eq {C : Set (HahnSeries ℚ K)}
     (hC : IsChain (KaplanskyLE f) C) {a b : HahnSeries ℚ K} (ha : a ∈ C) (hb : b ∈ C)
     {g : ℚ} (hga : KaplanskyBelowSlope f a g) (hgb : KaplanskyBelowSlope f b g) :
@@ -528,6 +603,9 @@ theorem kaplanskyChain_coeff_eq {C : Set (HahnSeries ℚ K)}
 def kaplanskyLimitCoeff (C : Set (HahnSeries ℚ K)) (g : ℚ) : K :=
   if h : ∃ a ∈ C, KaplanskyBelowSlope f a g then h.choose.coeff g else 0
 
+/--
+@isnad1 id=eq.3h5v.s7.519898e0b8f8 from=translated src=- shape=499b81f7 vocab=81714c46
+-/
 theorem kaplanskyLimitCoeff_eq {C : Set (HahnSeries ℚ K)} (hC : IsChain (KaplanskyLE f) C)
     {a : HahnSeries ℚ K} (ha : a ∈ C) {g : ℚ} (hga : KaplanskyBelowSlope f a g) :
     kaplanskyLimitCoeff (f := f) C g = a.coeff g := by
@@ -536,6 +614,9 @@ theorem kaplanskyLimitCoeff_eq {C : Set (HahnSeries ℚ K)} (hC : IsChain (Kapla
   obtain ⟨hb, hgb⟩ := (⟨a, ha, hga⟩ : ∃ a ∈ C, KaplanskyBelowSlope f a g).choose_spec
   exact kaplanskyChain_coeff_eq hC hb ha hgb hga
 
+/--
+@isnad1 id=ispwo.1h3v.s6.6e1e6b65d4b8 from=translated src=- shape=c3d673d3 vocab=c82ae253
+-/
 theorem kaplanskyLimitCoeff_isPWO_support {C : Set (HahnSeries ℚ K)}
     (hC : IsChain (KaplanskyLE f) C) :
     (Function.support (kaplanskyLimitCoeff (f := f) C)).IsPWO := by
@@ -568,6 +649,9 @@ def kaplanskyLimit {C : Set (HahnSeries ℚ K)} (hC : IsChain (KaplanskyLE f) C)
   coeff := kaplanskyLimitCoeff (f := f) C
   isPWO_support' := kaplanskyLimitCoeff_isPWO_support hC
 
+/--
+@isnad1 id=kaplansk.2h4v.s7.1a5c95c66680 from=translated src=- shape=cc82281f vocab=80c349d1
+-/
 theorem kaplanskySlope_kaplanskyLimit {C : Set (HahnSeries ℚ K)}
     (hC : IsChain (KaplanskyLE f) C) {a : HahnSeries ℚ K} (ha : a ∈ C) :
     KaplanskySlope f a (kaplanskyLimit hC) := by
@@ -595,6 +679,9 @@ theorem kaplanskySlope_kaplanskyLimit {C : Set (HahnSeries ℚ K)}
   rw [hq, ← HahnSeries.leadingCoeff_eq] at hcoeff
   exact (HahnSeries.leadingCoeff_ne_zero.mpr hne) hcoeff
 
+/--
+@isnad1 id=ex.1h3v.s7.2111123431c0 from=translated src=- shape=9b74ecba vocab=0dabf2c0
+-/
 theorem exists_kaplanskyLE_upperBound {C : Set (HahnSeries ℚ K)}
     (hC : IsChain (KaplanskyLE f) C) :
     ∃ ub, ∀ a ∈ C, KaplanskyLE f a ub := by
@@ -621,6 +708,9 @@ theorem exists_kaplanskyLE_upperBound {C : Set (HahnSeries ℚ K)}
 
 end ChainUpperBound
 
+/--
+@isnad1 id=ex.2h2v.s7.f7fc7155f550 from=translated src=- shape=0b507f02 vocab=93d32f26
+-/
 theorem exists_isRoot_hahnSeries [IsAlgClosed K] {f : (HahnSeries ℚ K)[X]}
     (hf : f.Monic) (hdeg : 1 ≤ f.natDegree) :
     ∃ r : HahnSeries ℚ K, f.IsRoot r := by
@@ -629,6 +719,9 @@ theorem exists_isRoot_hahnSeries [IsAlgClosed K] {f : (HahnSeries ℚ K)[X]}
     (fun {a b c} => KaplanskyLE.trans)
   exact ⟨m, eval_eq_zero_of_kaplanskyLE_max hf hdeg hmax⟩
 
+/--
+@isnad1 id=isalgclo.0h1v.s5.bf68b58599c0 from=translated src=- shape=72288e2b vocab=ae2255a3
+-/
 theorem isAlgClosed_hahnSeries_rat [IsAlgClosed K] : IsAlgClosed (HahnSeries ℚ K) := by
   refine IsAlgClosed.of_exists_root _ fun f hf hirr => ?_
   have hdeg : 1 ≤ f.natDegree := by
@@ -643,6 +736,9 @@ open scoped _root_.P2MW.S_HahnSeries_isAlgClosed_rat.DorgePuiseux
 end
 open scoped _root_.P2MW.S_HahnSeries_isAlgClosed_rat.DorgePuiseux
 
+/--
+@isnad1 id=isalgclo.0h1v.s5.bf68b58599c0 from=translated src=- shape=72288e2b vocab=ae2255a3
+-/
 theorem solution {K : Type*} [Field K] [IsAlgClosed K] :
     IsAlgClosed (HahnSeries ℚ K) :=
   DorgePuiseux.isAlgClosed_hahnSeries_rat

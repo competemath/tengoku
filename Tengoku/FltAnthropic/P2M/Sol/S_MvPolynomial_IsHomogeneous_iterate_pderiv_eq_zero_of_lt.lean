@@ -16,6 +16,9 @@ open _root_.MvPolynomial
 
 open _root_.MvPolynomial open _root_.P2MW.S_MvPolynomial_IsHomogeneous_iterate_pderiv_eq_zero_of_lt.MvPolynomial
 
+/--
+@isnad1 id=ishomoge.1h6v.s8.74665e51d68d from=translated src=- shape=debd18c4 vocab=f067baea
+-/
 theorem isHomogeneous_iterate_pderiv {σ R : Type*} [CommSemiring R] {φ : MvPolynomial σ R} {n : ℕ} (k : σ)
     (hφ : φ.IsHomogeneous n) (j : ℕ) : ((pderiv k)^[j] φ).IsHomogeneous (n - j) := by
   induction j with
@@ -24,6 +27,9 @@ theorem isHomogeneous_iterate_pderiv {σ R : Type*} [CommSemiring R] {φ : MvPol
     rw [Function.iterate_succ_apply']
     simpa [Nat.sub_sub] using ih.pderiv
 
+/--
+@isnad1 id=eq.2h6v.s8.95981503ebca from=translated src=- shape=74d7750f vocab=d533e0ba
+-/
 theorem iterate_pderiv_eq_zero_of_lt {σ R : Type*} [CommSemiring R] {φ : MvPolynomial σ R} {n : ℕ}
     (hφ : φ.IsHomogeneous n) (k : σ) {i : ℕ} (hi : n < i) : (pderiv k)^[i] φ = 0 := by
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_lt hi
@@ -37,6 +43,9 @@ theorem iterate_pderiv_eq_zero_of_lt {σ R : Type*} [CommSemiring R] {φ : MvPol
 
 end MvPolynomial.DegAux
 
+/--
+@isnad1 id=eq.2h6v.s8.95981503ebca from=translated src=- shape=74d7750f vocab=d533e0ba
+-/
 theorem solution {σ R : Type*} [CommSemiring R] {φ : MvPolynomial σ R}
     {n : ℕ} (hφ : φ.IsHomogeneous n) (k : σ) {i : ℕ} (hi : n < i) :
     (MvPolynomial.pderiv k)^[i] φ = 0 :=

@@ -7,6 +7,9 @@ namespace P2MW.S_HeckeEis_heckeOperatorHom_smul
 
 open CongruenceSubgroup Subgroup
 
+/--
+@isnad1 id=eq.0h6v.s16.8cf64df6875a from=translated src=- shape=ac39427a vocab=a8fc7985
+-/
 theorem solution (N ℓ : ℕ) [NeZero ℓ] {A : Type*} [AddCommGroup A]
     {R : Type*} [Monoid R] [DistribMulAction R A] (r : R)
     (φ : Additive ↥(Gamma0 N) →+ A) :

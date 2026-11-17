@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open scoped MatrixGroups
 
+/--
+@isnad1 id=eq.1h3v.s8.aced9140a8ed from=translated src=- shape=20d5237c vocab=fae6b8ac
+-/
 theorem HeckeEis.coeff_single_one_eq_eval_of_mem_binaryForm {K : Type*} [CommRing K] {n : ℕ}
     {P : MvPolynomial (Fin 2) K} (hP : P ∈ HeckeEis.BinaryForm K n) :
     MvPolynomial.coeff (Finsupp.single 1 n) P = MvPolynomial.eval ![0, 1] P := by exact @_root_.P2MW.S_HeckeEis_coeff_single_one_eq_eval_of_mem_binaryForm.solution K _ n P hP

@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open scoped MatrixGroups ModularForm
 
+/--
+@isnad1 id=isequiva.2h4v.s12.c051f078f093 from=translated src=- shape=cb506931 vocab=4287cb82
+-/
 theorem HeckeEis.isEquivariantPrimitiveWith_of_isEichlerIntegral
     {n : ℕ} {Γ : Subgroup SL(2, ℤ)} {f : UpperHalfPlane → ℂ} {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
     (hF : HeckeEis.IsEichlerIntegral n f F)

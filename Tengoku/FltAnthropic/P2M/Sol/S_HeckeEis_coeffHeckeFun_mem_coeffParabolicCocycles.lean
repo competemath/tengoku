@@ -24,6 +24,9 @@ open _root_.HeckeEis
 open CongruenceSubgroup Function
 open scoped MatrixGroups
 
+/--
+@isnad1 id=eq.0h2v.s5.f0c4308ca71e from=translated src=- shape=4be0eebd vocab=55c6daff
+-/
 theorem trace_heckeConjMat (ℓ : ℕ) (g : Matrix (Fin 2) (Fin 2) ℤ) : (heckeConjMat ℓ g).trace = g.trace := by
   simp [heckeConjMat, Matrix.trace_fin_two]
 

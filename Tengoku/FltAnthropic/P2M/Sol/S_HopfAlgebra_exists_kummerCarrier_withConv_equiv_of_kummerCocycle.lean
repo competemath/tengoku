@@ -33,6 +33,9 @@ namespace KummerDatum
 variable {O : Type u} [CommRing O] {n : ℕ} {Λ : Type v} [AddCommGroup Λ]
 variable (D : KummerDatum O n Λ)
 
+/--
+@isnad1 id=eq.0h5v.s5.d15787189ba7 from=translated src=- shape=b3dee40e vocab=f2e00e37
+-/
 theorem c_zero_right (l : Λ) : D.c l 0 = 1 := by rw [D.c_comm, D.c_zero_left]
 
 variable [Fintype Λ] [DecidableEq Λ]

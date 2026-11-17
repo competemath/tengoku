@@ -7,6 +7,9 @@ namespace P2MW.S_HopfAlgebra_exists_forall_pow_pow_eq_algebraMap_counit_of_isLoc
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.1h2v.s9.87d891878501 from=translated src=- shape=eec32dc5 vocab=6cb3af3f
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime]
     (B : Type) [CommRing B] [HopfAlgebra (ZMod p) B] [Module.Finite (ZMod p) B]

@@ -18,6 +18,9 @@ namespace S17OT2
 
 variable {R : Type u} [CommRing R] {H : Type v} [CommRing H] [HopfAlgebra R H]
 
+/--
+@isnad1 id=ex.1h2v.s10.4d44e3fd8b26 from=translated src=- shape=f37d9fed vocab=9999f9c2
+-/
 theorem exists_basis_one_counit_zero [Module.Finite R H] [Module.Free R H]
     (hrank : Module.finrank R H = 2) :
     ∃ e : Module.Basis (Fin 2) R H, e 0 = 1 ∧ counit (R := R) (e 1) = 0 := by
@@ -77,6 +80,9 @@ theorem exists_basis_one_counit_zero [Module.Finite R H] [Module.Free R H]
   · simp [Module.Basis.mk_apply]
   · simpa [Module.Basis.mk_apply] using hx
 
+/--
+@isnad1 id=ex.1h2v.s12.2924c9b74997 from=translated src=- shape=5a28cca0 vocab=5457276b
+-/
 theorem exists_tateOort [Module.Finite R H] [Module.Free R H] (hrank : Module.finrank R H = 2) :
     ∃ (e : Module.Basis (Fin 2) R H) (a b : R),
       e 0 = 1 ∧ a * b = 2 ∧ counit (R := R) (e 1) = 0 ∧ e 1 * e 1 = a • e 1 ∧
@@ -182,6 +188,9 @@ theorem exists_tateOort [Module.Finite R H] [Module.Free R H] (hrank : Module.fi
 
 end S17OT2
 
+/--
+@isnad1 id=ex.1h2v.s12.2924c9b74997 from=translated src=- shape=5a28cca0 vocab=5457276b
+-/
 theorem solution {R : Type u} [CommRing R] {H : Type v} [CommRing H] [HopfAlgebra R H]
     [Module.Finite R H] [Module.Free R H] (hrank : Module.finrank R H = 2) :
     ∃ (e : Module.Basis (Fin 2) R H) (a b : R),

@@ -29,6 +29,9 @@ def eT : ↥Gt := ⟨T, Subgroup.mem_top _⟩
 def eU : ↥Gt := ⟨S * T, Subgroup.mem_top _⟩
 def eN : ↥Gt := ⟨-1, Subgroup.mem_top _⟩
 
+/--
+@isnad1 id=eq.0h0v.s7.815fc50b5d53 from=translated src=- shape=a53186dd vocab=af08e0cc
+-/
 theorem S_mul_S : S * S = -1 := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [ModularGroup.S]
   first
@@ -42,6 +45,9 @@ theorem S_mul_S : S * S = -1 := by
     | (all_goals decide; done)
     | (all_goals tauto; done)
 
+/--
+@isnad1 id=eq.0h0v.s9.5bd08a6a3fa8 from=translated src=- shape=d2d4033a vocab=61b891dc
+-/
 theorem ST_pow_three : S * T * (S * T) * (S * T) = -1 := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [ModularGroup.S, ModularGroup.T, Matrix.mul_apply, Fin.sum_univ_two]
   first
@@ -55,18 +61,39 @@ theorem ST_pow_three : S * T * (S * T) * (S * T) = -1 := by
     | (all_goals decide; done)
     | (all_goals tauto; done)
 
+/--
+@isnad1 id=eq.0h0v.s10.d616843cdabd from=translated src=- shape=c18508e7 vocab=f3ffb305
+-/
 theorem eS_mul_eS : eS * eS = eN := Subtype.ext S_mul_S
+/--
+@isnad1 id=eq.0h0v.s11.e754c6a43f7d from=translated src=- shape=86df1da5 vocab=b7518102
+-/
 theorem eU_mul_eU_mul_eU : eU * eU * eU = eN := Subtype.ext ST_pow_three
+/--
+@isnad1 id=eq.0h0v.s10.c335ea368227 from=translated src=- shape=fd8f1db1 vocab=8cea374b
+-/
 theorem eN_mul_eN : eN * eN = 1 := Subtype.ext (by show (-1 : SL(2, ℤ)) * -1 = 1; rw [neg_mul_neg, one_mul])
+/--
+@isnad1 id=eq.0h1v.s11.a268129e02e7 from=translated src=- shape=b583436e vocab=8cea374b
+-/
 theorem eN_mul_comm (g : ↥Gt) : eN * g = g * eN := Subtype.ext (by show (-1 : SL(2, ℤ)) * g = g * -1; rw [neg_one_mul, mul_neg_one])
 
+/--
+@isnad1 id=eq.0h0v.s10.ec26d63e119e from=translated src=- shape=6575dbe7 vocab=649dee5c
+-/
 theorem eS_inv : eS⁻¹ = eN * eS := by
   rw [inv_eq_iff_mul_eq_one, eN_mul_comm, ← mul_assoc, eS_mul_eS, eN_mul_eN]
+/--
+@isnad1 id=eq.0h0v.s10.40d5a8af60d7 from=translated src=- shape=b4fea5eb vocab=af27c7a8
+-/
 theorem eT_eq : eT = eS⁻¹ * eU := by
   apply Subtype.ext
   show T = S⁻¹ * (S * T)
   rw [← mul_assoc, inv_mul_cancel, one_mul]
 
+/--
+@isnad1 id=eq.0h0v.s6.4f3fd944705d from=translated src=- shape=88193fd7 vocab=a4d21fcd
+-/
 theorem trace_T_sq : ((T : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace ^ 2 = 4 := by
   simp [ModularGroup.T, Matrix.trace, Fin.sum_univ_two]
 
@@ -77,6 +104,9 @@ section CocycleFacts
 variable (W : Representation ℂ ↥Gt V) (hneg : W eN = LinearMap.id)
 include hneg
 
+/--
+@isnad1 id=eq.1h2v.s13.5313f4d020f5 from=translated src=- shape=8e6ba874 vocab=16517032
+-/
 theorem W_eS_inv : W eS⁻¹ = W eS := by rw [eS_inv, map_mul, hneg]; rfl
 
 variable {W}
@@ -84,17 +114,26 @@ variable {z : ↥Gt → V} (hz : z ∈ coeffCocycles W)
 include hz
 
 omit hneg in
+/--
+@isnad1 id=eq.1h3v.s12.fbc7359ef275 from=translated src=- shape=629c5898 vocab=3f8ee98d
+-/
 theorem z_one : z 1 = 0 := by
   have h := hz 1 1
   rw [mul_one, map_one, Module.End.one_apply] at h
   simpa using h
 
 omit hneg in
+/--
+@isnad1 id=eq.1h4v.s13.c675a60445a0 from=translated src=- shape=6751c991 vocab=d3a00637
+-/
 theorem z_inv (g : ↥Gt) : z g⁻¹ = -(W g⁻¹ (z g)) := by
   have h := hz g⁻¹ g
   rw [inv_mul_cancel, z_one hz] at h
   exact eq_neg_of_add_eq_zero_left h.symm
 
+/--
+@isnad1 id=eq.2h3v.s12.7171f7294584 from=translated src=- shape=ebbafded vocab=96fa5f18
+-/
 theorem z_eN : z eN = 0 := by
   have h := hz eN eN
   rw [eN_mul_eN, z_one hz, hneg, LinearMap.id_apply] at h
@@ -102,20 +141,32 @@ theorem z_eN : z eN = 0 := by
   have h2 : (2 : ℂ) • z eN = 0 := by rw [two_smul]; exact h.symm
   exact (smul_eq_zero.mp h2).resolve_left two_ne_zero
 
+/--
+@isnad1 id=eq.2h3v.s13.fef3a439c5ac from=translated src=- shape=8b605f89 vocab=898fee70
+-/
 theorem z_eS_rel : z eS + W eS (z eS) = 0 := by
   have h := hz eS eS
   rwa [eS_mul_eS, z_eN hneg hz, eq_comm] at h
 
+/--
+@isnad1 id=eq.2h3v.s13.a04ef71dc822 from=translated src=- shape=75d3e422 vocab=2b6de29c
+-/
 theorem z_eU_rel : z eU + W eU (z eU) + W eU (W eU (z eU)) = 0 := by
   have h2 := hz eU eU
   have h3 := hz (eU * eU) eU
   rw [eU_mul_eU_mul_eU, z_eN hneg hz, h2, map_mul, Module.End.mul_apply] at h3
   exact h3.symm
 
+/--
+@isnad1 id=eq.2h3v.s13.e86b6b7b8b39 from=translated src=- shape=225f6b04 vocab=cfe0a922
+-/
 theorem z_eT : z eT = W eS (z eU - z eS) := by
   rw [eT_eq, hz, z_inv hz, W_eS_inv W hneg, map_sub]
   abel
 
+/--
+@isnad1 id=eq.4h3v.s13.371c8e5e1b14 from=translated src=- shape=a3cd4a23 vocab=515eda1e
+-/
 theorem z_eq_zero (hS : z eS = 0) (hU : z eU = 0) : z = 0 := by
   have hT : z eT = 0 := by rw [z_eT hneg hz, hS, hU, sub_zero, map_zero]
   funext g
@@ -145,6 +196,9 @@ section LinAlg
 
 variable [FiniteDimensional ℂ V]
 
+/--
+@isnad1 id=eq.1h2v.s9.13eabac116e6 from=translated src=- shape=64ba77a5 vocab=9f493da3
+-/
 theorem finrank_ker_add_of_sq_eq_one (s : Module.End ℂ V) (hs : s * s = 1) :
     Module.finrank ℂ ↥(LinearMap.ker (s + 1)) + Module.finrank ℂ ↥(LinearMap.ker (s - 1)) = Module.finrank ℂ V := by
   have hinf : LinearMap.ker (s + 1) ⊓ LinearMap.ker (s - 1) = ⊥ := by
@@ -179,6 +233,9 @@ theorem finrank_ker_add_of_sq_eq_one (s : Module.End ℂ V) (hs : s * s = 1) :
   rw [hinf, hsup, finrank_bot, add_zero, finrank_top] at h
   exact h.symm
 
+/--
+@isnad1 id=eq.1h2v.s10.9012dda3b9ea from=translated src=- shape=478f3d12 vocab=9f493da3
+-/
 theorem finrank_ker_add_of_cube_eq_one (u : Module.End ℂ V) (hu : u * u * u = 1) :
     Module.finrank ℂ ↥(LinearMap.ker (1 + u + u * u)) + Module.finrank ℂ ↥(LinearMap.ker (u - 1)) = Module.finrank ℂ V := by
   have hu3 : ∀ v, u (u (u v)) = v := fun v => by
@@ -229,6 +286,9 @@ def E : ↥(coeffParabolicCocycles W) →ₗ[ℂ] V × V where
   map_smul' _ _ := rfl
 
 omit hinv hcoinv in
+/--
+@isnad1 id=injectiv.1h2v.s14.de73ad7ad901 from=translated src=- shape=6fcd0d9a vocab=8889eca4
+-/
 theorem E_injective : Function.Injective (E W) := by
   intro z w h
   rw [← sub_eq_zero]
@@ -246,6 +306,9 @@ def K : Submodule ℂ (V × V) :=
         (LinearMap.snd ℂ V V - LinearMap.fst ℂ V V))
 
 omit hinv hcoinv in
+/--
+@isnad1 id=mem.1h3v.s14.230684dce596 from=translated src=- shape=5081b86c vocab=a26ff9dd
+-/
 theorem E_mem_K (z : ↥(coeffParabolicCocycles W)) : E W z ∈ K W := by
   have hz := z.2.1
   refine Submodule.mem_inf.mpr ⟨Submodule.mem_prod.mpr ⟨?_, ?_⟩, LinearMap.mem_ker.mpr ?_⟩
@@ -265,6 +328,9 @@ theorem E_mem_K (z : ↥(coeffParabolicCocycles W)) : E W z ∈ K W := by
       rw [← Module.End.mul_apply, ← map_mul, eS_mul_eS, hneg, LinearMap.id_apply]
 
 omit hinv in
+/--
+@isnad1 id=eq.2h2v.s15.1347dd69ae34 from=translated src=- shape=330b3289 vocab=1f4d9017
+-/
 theorem finrank_K_add :
     Module.finrank ℂ ↥(K W) + Module.finrank ℂ ↥(LinearMap.ker (W eT - 1))
       = Module.finrank ℂ ↥(LinearMap.ker (W eS + 1)) + Module.finrank ℂ ↥(LinearMap.ker (1 + W eU + W eU * W eU)) := by
@@ -349,6 +415,9 @@ variable {V : Type} [AddCommGroup V] [Module ℂ V] [FiniteDimensional ℂ V] (W
   (hcoinv : ∀ v : V, ∃ a b : V, v = (W eS a - a) + (W eU b - b))
 include hneg hinv hcoinv
 
+/--
+@isnad1 id=le.3h2v.s15.c197c9a75dc4 from=translated src=- shape=24457c94 vocab=a7740145
+-/
 theorem main :
     Module.finrank ℂ (coeffH1par W)
       + Module.finrank ℂ ↥(LinearMap.ker (W eS - 1))
@@ -402,6 +471,9 @@ end HeckeEis.UASol
 end
 
 open scoped MatrixGroups in
+/--
+@isnad1 id=le.3h2v.s15.5167a229f7fb from=translated src=- shape=0d7edcfc vocab=f43d1231
+-/
 theorem solution {V : Type} [AddCommGroup V] [Module ℂ V] [FiniteDimensional ℂ V]
     (W : Representation ℂ (⊤ : Subgroup SL(2, ℤ)) V)
     (hneg : W ⟨-1, Subgroup.mem_top _⟩ = LinearMap.id)

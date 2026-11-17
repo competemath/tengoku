@@ -12,6 +12,9 @@ open scoped TensorProduct
 universe u
 
 open Algebra.TensorProduct in
+/--
+@isnad1 id=ex.6h5v.s10.2cce376565f0 from=translated src=- shape=0dde3e9c vocab=91d753a4
+-/
 theorem solution
     (A : Type u) [CommRing A] (W : Type u) [CommRing W] [Algebra A W]
     (mul : ∀ (T : Type u) [CommRing T] [Algebra A T], (W →ₐ[A] T) → (W →ₐ[A] T) → (W →ₐ[A] T))

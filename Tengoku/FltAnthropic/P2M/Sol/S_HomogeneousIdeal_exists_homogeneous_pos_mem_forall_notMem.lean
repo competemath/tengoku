@@ -118,6 +118,9 @@ private theorem _root_.Ideal.IsHomogeneous.exists_homogeneous_pos_mem_forall_not
 export _root_.Ideal.IsHomogeneous (exists_homogeneous_pos_mem_forall_notMem)
 end Ideal.IsHomogeneous
 
+/--
+@isnad1 id=ex.3h5v.s9.a0bf8594341d from=translated src=- shape=f5fed249 vocab=c4d5a047
+-/
 theorem solution
     {A : Type u} {σ : Type v} [CommRing A] [SetLike σ A] [AddSubgroupClass σ A] {𝒜 : ℕ → σ} [GradedRing 𝒜]
     (I : HomogeneousIdeal 𝒜) (hirr : I ≤ HomogeneousIdeal.irrelevant 𝒜)

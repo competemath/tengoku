@@ -12,6 +12,9 @@ open scoped NNReal TensorProduct
 set_option maxHeartbeats 24000000
 set_option synthInstance.maxHeartbeats 1600000
 
+/--
+@isnad1 id=and.4h7v.s16.7ba2569fadbe from=translated src=- shape=64da6006 vocab=c6109694
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime]
     (A : Type) [CommRing A] [HopfAlgebra ℚ A]

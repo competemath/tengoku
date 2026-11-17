@@ -14,6 +14,9 @@ open HeckeIntegralSeam
 
 variable {G : Type*} [Group G] {U : Subgroup G} {g w z : G}
 
+/--
+@isnad1 id=mem.4h6v.s7.2cef63f1c14f from=translated src=- shape=e84c8b7d vocab=e4346421
+-/
 theorem mul_inv_mem_doubleCoset (hw : w ∈ U) (hz : z ∈ Subgroup.center G)
     (hconj : w * g * w⁻¹ = z * g⁻¹) {x : G} (hx : x ∈ HeckePair.doubleCoset U g) :
     z * x⁻¹ ∈ HeckePair.doubleCoset U g := by
@@ -27,6 +30,9 @@ theorem mul_inv_mem_doubleCoset (hw : w ∈ U) (hz : z ∈ Subgroup.center G)
     _ = (z * b⁻¹) * g⁻¹ * a⁻¹ := by rw [hzc]
     _ = z * (a * g * b)⁻¹ := by simp only [mul_inv_rev, mul_assoc]
 
+/--
+@isnad1 id=ex.2h5v.s6.7b2c30c8282d from=translated src=- shape=22a56748 vocab=180c1a6b
+-/
 theorem exists_eq_mul_mul_of_mem_doubleCoset {r t : G}
     (hr : r ∈ HeckePair.doubleCoset U g) (ht : t ∈ HeckePair.doubleCoset U g) :
     ∃ u₁ ∈ U, ∃ u₂ ∈ U, u₁ * t * u₂ = r := by
@@ -39,6 +45,9 @@ theorem exists_eq_mul_mul_of_mem_doubleCoset {r t : G}
 
 variable {ι : Type*} {reps : ι → G}
 
+/--
+@isnad1 id=ex.4h7v.s7.b8c86e6143d2 from=translated src=- shape=d0c317e4 vocab=9ee2a940
+-/
 theorem exists_isHeckeCosetSystem_and_isHeckeCosetSystem_mul_inv
     (hsys : IsHeckeCosetSystem U g reps) (hw : w ∈ U) (hz : z ∈ Subgroup.center G)
     (hconj : w * g * w⁻¹ = z * g⁻¹) :
@@ -130,6 +139,9 @@ theorem exists_isHeckeCosetSystem_and_isHeckeCosetSystem_mul_inv
 end R1LtCommonTransversal
 
 open R1LtCommonTransversal HeckeIntegralSeam in
+/--
+@isnad1 id=ex.4h7v.s7.b8c86e6143d2 from=translated src=- shape=d0c317e4 vocab=9ee2a940
+-/
 theorem solution
     {G : Type*} [Group G] {U : Subgroup G} {g w z : G} {ι : Type*} {reps : ι → G}
     (hsys : HeckeIntegralSeam.IsHeckeCosetSystem U g reps) (hw : w ∈ U)

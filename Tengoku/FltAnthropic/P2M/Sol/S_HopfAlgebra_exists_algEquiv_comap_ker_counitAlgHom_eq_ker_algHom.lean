@@ -25,8 +25,14 @@ def antipodeAlgHom : A →ₐ[K] A :=
 
 variable {K A}
 
+/--
+@isnad1 id=eq.0h3v.s9.2815569f538c from=translated src=- shape=31de17bd vocab=2e2350ec
+-/
 theorem antipodeAlgHom_apply (a : A) : antipodeAlgHom K A a = HopfAlgebra.antipode K a := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.0ec6a1625e4a from=translated src=- shape=342fbaca vocab=8e34b116
+-/
 theorem rightTranslate_apply_repr (χ : A →ₐ[K] K) (a : A) {ιrepr : Type*} (repr : Coalgebra.Repr K a ιrepr) :
     rightTranslate K A χ a = ∑ i ∈ repr.index, χ (repr.right i) • repr.left i := by
   show (Algebra.TensorProduct.rid K K A)
@@ -36,6 +42,9 @@ theorem rightTranslate_apply_repr (χ : A →ₐ[K] K) (a : A) {ιrepr : Type*} 
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [Algebra.TensorProduct.map_tmul, AlgHom.id_apply, Algebra.TensorProduct.rid_tmul]
 
+/--
+@isnad1 id=eq.0h5v.s10.5769d1a15bcd from=translated src=- shape=46547faa vocab=4d78dbea
+-/
 theorem sum_counit_right_smul {a : A} {ιrepr : Type*} (repr : Coalgebra.Repr K a ιrepr) :
     ∑ i ∈ repr.index, Coalgebra.counit (R := K) (repr.right i) • repr.left i = a := by
   have h := Coalgebra.sum_tmul_counit_eq (R := K) repr
@@ -43,6 +52,9 @@ theorem sum_counit_right_smul {a : A} {ιrepr : Type*} (repr : Coalgebra.Repr K 
   simp only [map_sum, TensorProduct.rid_tmul, one_smul] at h2
   exact h2
 
+/--
+@isnad1 id=eq.0h3v.s8.2162f9e78048 from=translated src=- shape=2db7c1da vocab=65cf853e
+-/
 theorem counitAlgHom_comp_rightTranslate (χ : A →ₐ[K] K) :
     (counitAlgHom K A).comp (rightTranslate K A χ) = χ := by
   ext x
@@ -63,6 +75,9 @@ theorem counitAlgHom_comp_rightTranslate (χ : A →ₐ[K] K) :
     TensorProduct.lid_tmul, one_smul] at h2
   exact h2
 
+/--
+@isnad1 id=leftinve.0h3v.s9.87b0ab4fd4ad from=translated src=- shape=f1c68b90 vocab=8fa6658e
+-/
 theorem rightTranslate_leftInverse (χ : A →ₐ[K] K) :
     Function.LeftInverse (rightTranslate K A (χ.comp (antipodeAlgHom K A)))
       (rightTranslate K A χ) := by
@@ -108,6 +123,9 @@ theorem rightTranslate_leftInverse (χ : A →ₐ[K] K) :
           mul_one]
     _ = a := sum_counit_right_smul R0
 
+/--
+@isnad1 id=rightinv.0h3v.s9.093b016dc2f1 from=translated src=- shape=f1c68b90 vocab=e5ab67d8
+-/
 theorem rightTranslate_rightInverse (χ : A →ₐ[K] K) :
     Function.RightInverse (rightTranslate K A (χ.comp (antipodeAlgHom K A)))
       (rightTranslate K A χ) := by
@@ -159,6 +177,9 @@ def rightTranslateEquiv (χ : A →ₐ[K] K) : A ≃ₐ[K] A :=
     (AlgHom.ext (rightTranslate_rightInverse χ))
     (AlgHom.ext (rightTranslate_leftInverse χ))
 
+/--
+@isnad1 id=eq.0h3v.s9.bdad40083338 from=translated src=- shape=4a2d7d4d vocab=84a6ac1c
+-/
 theorem comap_ker_counitAlgHom_rightTranslate (χ : A →ₐ[K] K) :
     (RingHom.ker (counitAlgHom K A).toRingHom).comap (rightTranslate K A χ).toRingHom
       = RingHom.ker χ.toRingHom := by
@@ -172,6 +193,9 @@ end HopfRightTranslate
 
 end
 
+/--
+@isnad1 id=ex.0h3v.s9.864b416a8260 from=translated src=- shape=e721e93b vocab=bddce3ce
+-/
 theorem solution
     (K : Type*) [Field K]
     (A : Type*) [CommRing A] [HopfAlgebra K A] (χ : A →ₐ[K] K) :

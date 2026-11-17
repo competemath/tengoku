@@ -10,6 +10,9 @@ namespace P2MW.S_HopfAlgebra_exists_cocomm_adjoin_nTorsion_quotient_of_normOneTo
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=ex.7h7v.s13.fc0d8e240073 from=translated src=- shape=d329f74b vocab=b91a5184
+-/
 theorem solution
     (K : Type) [Field K] [CharZero K] (c : K) (hc : c ≠ 0) (hnsq : ¬ IsSquare c)
     (n : ℕ) [Fact n.Prime]

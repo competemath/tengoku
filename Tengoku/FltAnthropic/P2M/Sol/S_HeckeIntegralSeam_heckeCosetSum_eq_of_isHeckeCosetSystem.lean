@@ -7,6 +7,9 @@ namespace P2MW.S_HeckeIntegralSeam_heckeCosetSum_eq_of_isHeckeCosetSystem
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.3h8v.s7.2774bf009939 from=translated src=- shape=8708ce77 vocab=46acc293
+-/
 theorem P1RepIndep.heckeCosetSum_eq_of_isHeckeCosetSystem_impl
     {G : Type*} [Group G] {n : ℕ} {U : Subgroup G} {gv : G}
     {reps reps' : Fin n → G}
@@ -32,6 +35,9 @@ theorem P1RepIndep.heckeCosetSum_eq_of_isHeckeCosetSystem_impl
   exact (Fintype.sum_bijective e hbij (fun i => φ (g * reps i))
     (fun j => φ (g * reps' j)) (fun i => (hpt i).symm)).symm
 
+/--
+@isnad1 id=eq.3h8v.s7.2774bf009939 from=translated src=- shape=8708ce77 vocab=46acc293
+-/
 theorem solution
     {G : Type*} [Group G] {n : ℕ} {U : Subgroup G} {gv : G}
     {reps reps' : Fin n → G}

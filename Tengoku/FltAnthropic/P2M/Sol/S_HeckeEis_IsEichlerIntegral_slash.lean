@@ -33,6 +33,9 @@ def degExps : Finset (Fin 2 →₀ ℕ) :=
   (Finset.range (n + 1)).image fun k => Finsupp.single 0 k + Finsupp.single 1 (n - k)
 
 variable (n) in
+/--
+@isnad1 id=iff.0h2v.s7.ab243cdaa4d5 from=translated src=- shape=9552f26d vocab=338e06f0
+-/
 theorem mem_degExps_iff (d : Fin 2 →₀ ℕ) : d ∈ degExps n ↔ d.degree = n := by
   rw [Finsupp.degree_eq_sum, Fin.sum_univ_two]
   simp only [degExps, Finset.mem_image, Finset.mem_range]
@@ -45,6 +48,9 @@ theorem mem_degExps_iff (d : Fin 2 →₀ ℕ) : d ∈ degExps n ↔ d.degree = 
     ext i
     fin_cases i <;> simp <;> omega
 
+/--
+@isnad1 id=eq.2h4v.s8.6c8f59208978 from=translated src=- shape=3ba52479 vocab=5b5c970a
+-/
 theorem coeff_eq_zero_of_not_mem_degExps {p : MvPolynomial (Fin 2) K} (hp : p ∈ BinaryForm K n)
     {d : Fin 2 →₀ ℕ} (hd : d ∉ degExps n) : coeff d p = 0 :=
   ((mem_homogeneousSubmodule n p).mp hp).coeff_eq_zero (by rwa [mem_degExps_iff] at hd)
@@ -59,6 +65,9 @@ theorem eq_sum_degExps {p : MvPolynomial (Fin 2) K} (hp : p ∈ BinaryForm K n) 
   · rw [Finset.sum_eq_zero (fun e he => ite_eq_right (fun h : e = d => hd (h ▸ he))),
       coeff_eq_zero_of_not_mem_degExps hp hd]
 
+/--
+@isnad1 id=eq.0h5v.s12.4377d2b421ab from=translated src=- shape=1775eaa8 vocab=520c5519
+-/
 theorem coeff_binaryFormRepSL_eq_sum (g : SL(2, ℤ)) (v : ↥(BinaryForm K n)) (d : Fin 2 →₀ ℕ) :
     coeff d ((binaryFormRepSL K n g v : ↥(BinaryForm K n)) : MvPolynomial (Fin 2) K)
       = ∑ e ∈ degExps n, coeff e (v : MvPolynomial (Fin 2) K)
@@ -74,6 +83,9 @@ end Expansion
 
 section Calculus
 
+/--
+@isnad1 id=hasderiv.0h2v.s9.c3774eefdf2c from=translated src=- shape=c1929f93 vocab=7e3a74bb
+-/
 theorem hasDerivAt_smul_ofComplex (γ : SL(2, ℤ)) (τ : ℍ) :
     HasDerivAt (fun z : ℂ => ((γ • ofComplex z : ℍ) : ℂ))
       (denom (Matrix.SpecialLinearGroup.mapGL ℝ γ) ↑τ ^ (-2 : ℤ)) ↑τ := by
@@ -94,6 +106,9 @@ theorem hasDerivAt_smul_ofComplex (γ : SL(2, ℤ)) (τ : ℍ) :
   rw [zpow_neg, one_div]
   norm_cast
 
+/--
+@isnad1 id=hasderiv.1h4v.s9.fdd325c12de0 from=translated src=- shape=ff059be4 vocab=0fcab145
+-/
 theorem hasDerivAt_comp_smul {G : ℍ → ℂ} {g : ℍ → ℂ}
     (hG : ∀ τ : ℍ, HasDerivAt (G ∘ ofComplex) (g τ) ↑τ) (γ : SL(2, ℤ)) (τ : ℍ) :
     HasDerivAt (fun z : ℂ => G (γ • ofComplex z))
@@ -114,6 +129,9 @@ section RepDeriv
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=hasderiv.1h6v.s13.c7afa1e49479 from=translated src=- shape=3fe82683 vocab=3327de7e
+-/
 theorem hasDerivAt_coeff_binaryFormRepSL {H : ℂ → ↥(BinaryForm ℂ n)} {w : ↥(BinaryForm ℂ n)} {z₀ : ℂ}
     (hH : ∀ e : Fin 2 →₀ ℕ, HasDerivAt (fun z : ℂ => coeff e ((H z : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ))
       (coeff e ((w : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)) z₀)
@@ -136,6 +154,9 @@ end EichlerIntegralAux
 
 open EichlerIntegralAux in
 
+/--
+@isnad1 id=iseichle.1h4v.s12.41c9a56667d9 from=translated src=- shape=caf969fb vocab=4a8654cb
+-/
 theorem SolMain.slash {n : ℕ} {f : ℍ → ℂ} {F : ℍ → ↥(BinaryForm ℂ n)}
     (hF : IsEichlerIntegral n f F) (δ : SL(2, ℤ)) :
     IsEichlerIntegral n (f ∣[((n : ℤ) + 2)] δ) (fun τ => binaryFormRepSL ℂ n δ⁻¹ (F (δ • τ))) := by
@@ -176,6 +197,9 @@ end HeckeEis
 end
 
 open scoped MatrixGroups ModularForm in
+/--
+@isnad1 id=iseichle.1h4v.s12.41c9a56667d9 from=translated src=- shape=caf969fb vocab=4a8654cb
+-/
 theorem solution {n : ℕ} {f : UpperHalfPlane → ℂ} {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
     (hF : HeckeEis.IsEichlerIntegral n f F) (δ : SL(2, ℤ)) :
     HeckeEis.IsEichlerIntegral n (f ∣[((n : ℤ) + 2)] δ) (fun τ => HeckeEis.binaryFormRepSL ℂ n δ⁻¹ (F (δ • τ))) :=

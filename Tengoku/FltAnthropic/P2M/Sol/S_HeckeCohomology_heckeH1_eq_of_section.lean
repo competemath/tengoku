@@ -16,6 +16,9 @@ attribute [local instance] Subgroup.fintypeQuotientOfFiniteIndex
 variable {k Γ : Type} [CommRing k] [Group Γ] (S₁ S₂ : Subgroup Γ) (c : S₂ →* S₁)
   (A : Rep k Γ) (φ : A →ₗ[k] A) (hφ : IsTwist S₁ S₂ c A φ)
 
+/--
+@isnad1 id=eq.0h4v.s10.2f4fae3273f3 from=translated src=- shape=7ccd5324 vocab=4f53fc76
+-/
 theorem cocycle_apply_one (f : cocycles₁ A) : f (1 : Γ) = 0 := by
   have h := ((mem_cocycles₁_iff f).1 f.2) 1 1
   simp only [mul_one, map_one, Module.End.one_apply] at h
@@ -24,6 +27,9 @@ theorem cocycle_apply_one (f : cocycles₁ A) : f (1 : Γ) = 0 := by
 
 include hφ in
 
+/--
+@isnad1 id=eq.1h9v.s12.78091b01f9c2 from=translated src=- shape=1022a98c vocab=042fa4fa
+-/
 theorem twist_inv (f : cocycles₁ A) (s : S₂) :
     φ (f ((c s⁻¹ : S₁) : Γ)) = -(A.ρ ((s : Γ))⁻¹ (φ (f ((c s : S₁) : Γ)))) := by
   have h := transport_cocycle S₁ S₂ c A φ hφ f s⁻¹ s
@@ -35,9 +41,15 @@ theorem twist_inv (f : cocycles₁ A) (s : S₂) :
   have h2 := eq_neg_of_add_eq_zero_right h.symm
   rw [h2, InvMemClass.coe_inv]
 
+/--
+@isnad1 id=eq.0h3v.s5.35c0239c4618 from=translated src=- shape=647da59b vocab=24868ef9
+-/
 theorem cls_rep (q : Quotient (QuotientGroup.rightRel S₂)) : cls S₂ (rep S₂ q) = q := by
   simp [HeckeCohomology.rep, HeckeCohomology.cls]
 
+/--
+@isnad1 id=eq.0h4v.s6.9654480e83d9 from=translated src=- shape=8aa2d23f vocab=09d296b4
+-/
 theorem slip_coe (q : Quotient (QuotientGroup.rightRel S₂)) (γ : Γ) :
     ((slip S₂ q γ : S₂) : Γ) = rep S₂ q * γ * (rep S₂ (cls S₂ (rep S₂ q * γ)))⁻¹ := rfl
 
@@ -45,6 +57,9 @@ variable (r : Quotient (QuotientGroup.rightRel S₂) → Γ) (hr : ∀ q, cls S�
 
 include hr in
 
+/--
+@isnad1 id=mem.1h4v.s6.b7b7dc2e61e1 from=translated src=- shape=7946f78f vocab=d8d599c6
+-/
 theorem shift_mem (q : Quotient (QuotientGroup.rightRel S₂)) : r q * (rep S₂ q)⁻¹ ∈ S₂ := by
   have h2 : cls S₂ (r q) = cls S₂ (rep S₂ q) := by rw [hr q, cls_rep]
   have h3 := Quotient.exact' h2
@@ -54,15 +69,24 @@ theorem shift_mem (q : Quotient (QuotientGroup.rightRel S₂)) : r q * (rep S₂
 noncomputable def sElt (q : Quotient (QuotientGroup.rightRel S₂)) : S₂ :=
   ⟨r q * (rep S₂ q)⁻¹, shift_mem S₂ r hr q⟩
 
+/--
+@isnad1 id=eq.1h4v.s6.d0f9da731824 from=translated src=- shape=a5225dbb vocab=9da43cba
+-/
 theorem sElt_coe (q : Quotient (QuotientGroup.rightRel S₂)) :
     ((sElt S₂ r hr q : S₂) : Γ) = r q * (rep S₂ q)⁻¹ := rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.4a2da2a06dc2 from=translated src=- shape=862b3f97 vocab=9da43cba
+-/
 theorem inv_r_mul_sElt (q : Quotient (QuotientGroup.rightRel S₂)) :
     (r q)⁻¹ * ((sElt S₂ r hr q : S₂) : Γ) = (rep S₂ q)⁻¹ := by
   rw [sElt_coe, inv_mul_cancel_left]
 
 include hr in
 
+/--
+@isnad1 id=eq.2h6v.s8.b89dfc1479b6 from=translated src=- shape=6e13352a vocab=34bd3777
+-/
 theorem sigma_decomp (σ : Quotient (QuotientGroup.rightRel S₂) → Γ → S₂)
     (hσ : ∀ q γ, (σ q γ : Γ) = r q * γ * (r (cls S₂ (r q * γ)))⁻¹)
     (q : Quotient (QuotientGroup.rightRel S₂)) (γ : Γ) :
@@ -76,6 +100,9 @@ theorem sigma_decomp (σ : Quotient (QuotientGroup.rightRel S₂) → Γ → S�
     slip_coe]
   simp [mul_assoc, mul_inv_rev, inv_inv, inv_mul_cancel_left]
 
+/--
+@isnad1 id=eq.1h5v.s7.d70e3bdaeb55 from=translated src=- shape=28eb8669 vocab=6395d5d0
+-/
 theorem cls_r_eq_of_slip (σ : Quotient (QuotientGroup.rightRel S₂) → Γ → S₂)
     (hσ : ∀ q γ, (σ q γ : Γ) = r q * γ * (r (cls S₂ (r q * γ)))⁻¹)
     (q : Quotient (QuotientGroup.rightRel S₂)) : cls S₂ (r q) = q := by
@@ -91,6 +118,9 @@ end TWIndepAux
 
 attribute [local instance] Subgroup.fintypeQuotientOfFiniteIndex in
 open groupCohomology HeckeCohomology TWIndepAux in
+/--
+@isnad1 id=eq.3h11v.s13.44851bf461ec from=translated src=- shape=2453f374 vocab=3dc77b02
+-/
 theorem solution {k Γ : Type} [CommRing k] [Group Γ]
     (S₁ S₂ : Subgroup Γ) (c : S₂ →* S₁) (A : Rep k Γ) [S₂.FiniteIndex]
     (φ : A →ₗ[k] A) (hφ : IsTwist S₁ S₂ c A φ)

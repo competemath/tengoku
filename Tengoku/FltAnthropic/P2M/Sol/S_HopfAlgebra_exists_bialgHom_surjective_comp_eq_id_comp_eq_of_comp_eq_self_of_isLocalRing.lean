@@ -24,8 +24,14 @@ structure Datum : Prop where
 variable {q i ε} (H : Datum q i ε)
 include H
 
+/--
+@isnad1 id=eq.1h7v.s10.cc99b6e3698e from=translated src=- shape=22ebf8b2 vocab=74ecf93a
+-/
 theorem q_ε (a : A) : q (ε a) = q a := by rw [← H.hiq, H.hqi]
 
+/--
+@isnad1 id=eq.1h7v.s10.5a4f20f0b8c6 from=translated src=- shape=c3921c92 vocab=74ecf93a
+-/
 theorem ε_i (c : C) : ε (i c) = i c := by rw [← H.hiq, H.hqi]
 
 noncomputable def reprE (x : A) (hx : ε x = x) : Coalgebra.Repr R x (A × A) where
@@ -50,15 +56,24 @@ private noncomputable def _root_.HopfRetract.counitAlgHom (i : C →ₐ[R] A) : 
 
 export _root_.HopfRetract (counitAlgHom)
 omit H in
+/--
+@isnad1 id=eq.0h5v.s9.8c7e412fd4c0 from=translated src=- shape=b2c9c81e vocab=83ea305a
+-/
 theorem counitAlgHom_apply (c : C) : counitAlgHom (R := R) i c = Coalgebra.counit (R := R) (i c) := rfl
 
 omit H in
+/--
+@isnad1 id=eq.0h8v.s10.aa8fa17301cb from=translated src=- shape=ce70d02a vocab=2ee5e5b8
+-/
 theorem comulAlgHom_eq_sum' (c : C) {ιrepr : Type*} (repr : Coalgebra.Repr R (i c) ιrepr) :
     comulAlgHom q i c = ∑ j ∈ repr.index, q (repr.left j) ⊗ₜ[R] q (repr.right j) := by
   change Algebra.TensorProduct.map q q (Coalgebra.comul (R := R) (i c)) = _
   rw [← repr.eq, map_sum]
   simp only [Algebra.TensorProduct.map_tmul]
 
+/--
+@isnad1 id=eq.1h9v.s10.931311367841 from=translated src=- shape=71653124 vocab=83c0bf42
+-/
 theorem comulAlgHom_q_eq_sum (x : A) {ιrepr : Type*} (repr : Coalgebra.Repr R x ιrepr) :
     comulAlgHom q i (q x) = ∑ j ∈ repr.index, q (repr.left j) ⊗ₜ[R] q (repr.right j) := by
   change Algebra.TensorProduct.map q q (Coalgebra.comul (R := R) (i (q x))) = _
@@ -70,12 +85,21 @@ theorem comulAlgHom_q_eq_sum (x : A) {ιrepr : Type*} (repr : Coalgebra.Repr R x
 
 noncomputable def reprI (c : C) : Coalgebra.Repr R (i c) (A × A) := reprE (ε := ε) (i c) (ε_i H c)
 
+/--
+@isnad1 id=eq.1h8v.s10.2bac41ab8448 from=translated src=- shape=5a6766f1 vocab=1b14be97
+-/
 theorem i_q_left (c : C) (j) : i (q ((reprI H c).left j)) = (reprI H c).left j := by
   rw [H.hiq]; exact H.hε _
 
+/--
+@isnad1 id=eq.1h8v.s10.f67a9ade0002 from=translated src=- shape=5a6766f1 vocab=2a5a6924
+-/
 theorem i_q_right (c : C) (j) : i (q ((reprI H c).right j)) = (reprI H c).right j := by
   rw [H.hiq]; exact H.hε _
 
+/--
+@isnad1 id=eq.1h6v.s10.4fdde2a37b58 from=translated src=- shape=28f4f700 vocab=004b1836
+-/
 theorem h_rTensor :
     (Algebra.TensorProduct.map (counitAlgHom (R := R) i) (.id R C)).comp (comulAlgHom q i) =
       (Algebra.TensorProduct.lid R C).symm := by
@@ -89,6 +113,9 @@ theorem h_rTensor :
   rw [key]
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s10.148a80a87f65 from=translated src=- shape=78891fbd vocab=c1db2af8
+-/
 theorem h_lTensor :
     (Algebra.TensorProduct.map (.id R C) (counitAlgHom (R := R) i)).comp (comulAlgHom q i) =
       (Algebra.TensorProduct.rid R R C).symm := by
@@ -102,6 +129,9 @@ theorem h_lTensor :
   rw [key]
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s11.a102179bddcc from=translated src=- shape=0fea3bff vocab=7fa01c68
+-/
 theorem h_coassoc :
     (Algebra.TensorProduct.assoc R R R C C C).toAlgHom.comp
         ((Algebra.TensorProduct.map (comulAlgHom q i) (.id R C)).comp (comulAlgHom q i)) =
@@ -127,6 +157,9 @@ private noncomputable def _root_.HopfRetract.antipode (q : A →ₐ[R] C) (i : C
 
 export _root_.HopfRetract (antipode)
 omit H in
+/--
+@isnad1 id=eq.0h6v.s9.e455c3ee193d from=translated src=- shape=e7a3f622 vocab=3a2856f2
+-/
 theorem antipode_apply (c : C) : antipode (R := R) q i c = q (HopfAlgebraStruct.antipode R (i c)) := rfl
 
 @[reducible] noncomputable def hopfAlgebra : HopfAlgebra R C :=
@@ -149,6 +182,9 @@ theorem antipode_apply (c : C) : antipode (R := R) q i c = q (HopfAlgebraStruct.
       simp only [LinearMap.lTensor_tmul, LinearMap.mul'_apply, antipode_apply, i_q_right H, ← map_mul,
         ← map_sum, HopfAlgebra.sum_mul_antipode_eq_algebraMap_counit, AlgHom.commutes] }
 
+/--
+@isnad1 id=iscocomm.1h6v.s9.c47a9c403c10 from=translated src=- shape=4877bfbe vocab=e47e1783
+-/
 theorem isCocomm [Coalgebra.IsCocomm R A] : letI := bialgebra H; Coalgebra.IsCocomm R C := by
   letI := bialgebra H
   refine ⟨?_⟩
@@ -191,6 +227,9 @@ noncomputable def iBialgHom : letI := bialgebra H; C →ₐc[R] A :=
 
 end HopfRetract
 
+/--
+@isnad1 id=ex.1h3v.s12.7ff84aec5c3e from=translated src=- shape=e822175d vocab=5b58582b
+-/
 theorem solution
     (R : Type) [CommRing R] [IsLocalRing R]
     (A : Type) [CommRing A] [HopfAlgebra R A] [Coalgebra.IsCocomm R A]

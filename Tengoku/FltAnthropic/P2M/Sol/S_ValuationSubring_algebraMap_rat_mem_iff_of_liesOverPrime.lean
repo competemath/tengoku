@@ -18,6 +18,9 @@ section PlaceOverQ
 
 variable {L : Type*} [Field L] (A : ValuationSubring L) {q : ℕ}
 
+/--
+@isnad1 id=eq.3h4v.s7.04a44762cc28 from=translated src=- shape=46db0ff8 vocab=f3205c48
+-/
 theorem valuation_intCast_eq_one (hq : q.Prime) (hA : (q : L) ∈ A.nonunits) {n : ℤ}
     (hn : ¬ (q : ℤ) ∣ n) : A.valuation (n : L) = 1 := by
   have hle : A.valuation (n : L) ≤ 1 := (A.valuation_le_one_iff _).mpr (intCast_mem A n)
@@ -49,6 +52,9 @@ theorem valuation_intCast_eq_one (hq : q.Prime) (hA : (q : L) ∈ A.nonunits) {n
 
 variable [CharZero L] [Algebra ℚ L]
 
+/--
+@isnad1 id=iff.1h4v.s7.aa7597e97dde from=translated src=- shape=748e334c vocab=374bcd3c
+-/
 theorem algebraMap_rat_mem_iff [Fact q.Prime] (hA : (q : L) ∈ A.nonunits) (x : ℚ) :
     algebraMap ℚ L x ∈ A ↔ x ∈ (Rat.padicValuation q).valuationSubring := by
   have hq : q.Prime := Fact.out
@@ -101,6 +107,9 @@ end S12B
 
 end
 
+/--
+@isnad1 id=iff.1h3v.s7.a25c391fe39e from=translated src=- shape=5df1ca56 vocab=a2755ec1
+-/
 theorem solution
     (A : ValuationSubring (AlgebraicClosure ℚ)) {q : ℕ} [Fact q.Prime] (hA : A.LiesOverPrime q) (x : ℚ) :
     algebraMap ℚ (AlgebraicClosure ℚ) x ∈ A ↔ x ∈ (Rat.padicValuation q).valuationSubring := by

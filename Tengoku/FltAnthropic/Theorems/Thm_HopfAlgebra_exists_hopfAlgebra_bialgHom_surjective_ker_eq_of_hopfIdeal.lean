@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_HopfAlgebra_exists_hopfAlgebra_bialgHom_su
 set_option autoImplicit false
 universe u v
 open scoped TensorProduct
+/--
+@isnad1 id=ex.3h3v.s13.556411bce810 from=translated src=- shape=e075a8d7 vocab=3858966e
+-/
 theorem HopfAlgebra.exists_hopfAlgebra_bialgHom_surjective_ker_eq_of_hopfIdeal
     {F : Type u} [Field F] {A : Type v} [CommRing A] [HopfAlgebra F A] (I : Ideal A)
     (hcomul : ∀ a ∈ I, Algebra.TensorProduct.map (Ideal.Quotient.mkₐ F I) (Ideal.Quotient.mkₐ F I)

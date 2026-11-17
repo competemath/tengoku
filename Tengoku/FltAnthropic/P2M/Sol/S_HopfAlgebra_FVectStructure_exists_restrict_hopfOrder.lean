@@ -18,6 +18,9 @@ variable {R : Type*} [CommRing R]
     {K : Type*} [Field K] [Algebra R K]
     {A : Type*} [CommRing A] [HopfAlgebra K A] [Algebra R A] [IsScalarTower R K A]
 
+/--
+@isnad1 id=eq.0h5v.s10.e8b6e20125fa from=translated src=- shape=fcfdaab5 vocab=72136dd8
+-/
 theorem act_zero_apply {F : Type*} [Field F] (σ : HopfAlgebra.FVectStructure F K A) (x : A) :
     σ.act 0 x = algebraMap K A (Coalgebra.counit (R := K) x) := by
   have h := congrArg WithConv.ofConv σ.act_zero
@@ -25,6 +28,9 @@ theorem act_zero_apply {F : Type*} [Field F] (σ : HopfAlgebra.FVectStructure F 
     WithConv.ofConv_toConv] at h
   exact AlgHom.congr_fun h x
 
+/--
+@isnad1 id=mem.3h8v.s11.086d160c5b78 from=translated src=- shape=27ece85a vocab=ad93a12e
+-/
 theorem act_mem {F : Type*} [Field F] (σ : HopfAlgebra.FVectStructure F K A) (S : Subalgebra R A)
     (hcounit : ∀ x ∈ S, Coalgebra.counit (R := K) (A := A) x ∈ (algebraMap R K).range)
     (hstab : ∀ (a : Fˣ), ∀ x ∈ S, σ.act (a : F) x ∈ S) (a : F) : ∀ x ∈ S, σ.act a x ∈ S := by
@@ -37,6 +43,9 @@ theorem act_mem {F : Type*} [Field F] (σ : HopfAlgebra.FVectStructure F K A) (S
     exact S.algebraMap_mem r
   · exact hstab (Units.mk0 a ha) x hx
 
+/--
+@isnad1 id=eq.2h9v.s13.dcbb89555ede from=translated src=- shape=c21e410a vocab=19943cf4
+-/
 theorem val_lift_eq {S : Subalgebra R A} (f' g' : ↥S →ₐ[R] ↥S) (f g : A →ₐ[K] A)
     (hf : ∀ s : ↥S, ((f' s : ↥S) : A) = f (s : A)) (hg : ∀ s : ↥S, ((g' s : ↥S) : A) = g (s : A))
     (z : ↥S ⊗[R] ↥S) :
@@ -53,6 +62,9 @@ theorem val_lift_eq {S : Subalgebra R A} (f' g' : ↥S →ₐ[R] ↥S) (f g : A 
 end S17LLat
 
 open S17LLat in
+/--
+@isnad1 id=ex.6h6v.s13.23e902a17430 from=translated src=- shape=d2eed797 vocab=34fc8078
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R]
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]

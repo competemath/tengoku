@@ -22,6 +22,9 @@ open scoped MatrixGroups
 
 variable (K : Type*) [CommRing K] (n : ℕ)
 
+/--
+@isnad1 id=mem.1h4v.s9.8fca4354422d from=translated src=- shape=fc8e2782 vocab=ae0d2947
+-/
 theorem X_pow_mul_X_pow_mem {a b : ℕ} (h : a + b = n) :
     (X 0 ^ a * X 1 ^ b : MvPolynomial (Fin 2) K) ∈ BinaryForm K n := by
   rw [mem_homogeneousSubmodule]
@@ -32,9 +35,15 @@ theorem X_pow_mul_X_pow_mem {a b : ℕ} (h : a + b = n) :
 noncomputable def mono (b : ℕ) : ↥(BinaryForm K n) :=
   if hb : b ≤ n then ⟨X 0 ^ (n - b) * X 1 ^ b, X_pow_mul_X_pow_mem K n (by omega)⟩ else 0
 
+/--
+@isnad1 id=eq.1h3v.s9.22ad91192fe7 from=translated src=- shape=0b6dbc99 vocab=e083fcba
+-/
 theorem coe_mono {b : ℕ} (hb : b ≤ n) : (mono K n b : MvPolynomial (Fin 2) K) = X 0 ^ (n - b) * X 1 ^ b := by
   rw [mono, dite_eq_left hb]
 
+/--
+@isnad1 id=eq.1h4v.s12.8b7644a50297 from=translated src=- shape=785f8155 vocab=f2a5e0f8
+-/
 theorem binaryFormRepSL_T_zpow_mono (h : ℤ) {b : ℕ} (hb : b ≤ n) :
     binaryFormRepSL K n (ModularGroup.T ^ h) (mono K n b)
       = ∑ i ∈ Finset.range (b + 1), ((b.choose i : K) * (h : K) ^ (b - i)) • mono K n i := by
@@ -53,6 +62,9 @@ theorem binaryFormRepSL_T_zpow_mono (h : ℤ) {b : ℕ} (hb : b ≤ n) :
 
 variable {K : Type*} [Field K] [CharZero K]
 
+/--
+@isnad1 id=mem.2h4v.s13.2b4e90e93607 from=translated src=- shape=65b31346 vocab=64fb070a
+-/
 theorem mono_mem_range_T_zpow_sub_one (n : ℕ) {h : ℤ} (hh : h ≠ 0) :
     ∀ b < n, mono K n b ∈ LinearMap.range (binaryFormRepSL K n (ModularGroup.T ^ h) - 1) := by
   intro b
@@ -79,6 +91,9 @@ theorem mono_mem_range_T_zpow_sub_one (n : ℕ) {h : ℤ} (hh : h ≠ 0) :
 end HeckeEis.RangeTzpowSol
 
 open _root_.HeckeEis _root_.P2MW.S_HeckeEis_mem_range_binaryFormRepSL_T_zpow_sub_one.HeckeEis HeckeEis.RangeTzpowSol MvPolynomial in
+/--
+@isnad1 id=mem.2h4v.s13.77de947584ce from=translated src=- shape=2a33427d vocab=53bae7ab
+-/
 theorem solution {K : Type*} [Field K] [CharZero K] (n : ℕ) {h : ℤ}
     (hh : h ≠ 0) (P : ↥(HeckeEis.BinaryForm K n))
     (hP : MvPolynomial.coeff (Finsupp.single 1 n) (P : MvPolynomial (Fin 2) K) = 0) :

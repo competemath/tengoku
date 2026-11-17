@@ -17,6 +17,9 @@ theorem eq_zero_of_forall_cartierDual_apply_eq_zero (p : ℕ) [Fact p.Prime]
     (c : C) (h : ∀ φ : CartierDual (ZMod p) C, φ c = 0) : c = 0 := by
   exact (Module.forall_dual_apply_eq_zero_iff (ZMod p) c).1 fun f => h (CartierDual.ofDual (ZMod p) C f)
 
+/--
+@isnad1 id=eq.2h6v.s12.1f528a743a20 from=translated src=- shape=a41ebbbc vocab=47d52835
+-/
 theorem main (p : ℕ) [Fact p.Prime]
     {B : Type} [CommRing B] [HopfAlgebra (ZMod p) B] [Coalgebra.IsCocomm (ZMod p) B] [Module.Finite (ZMod p) B]
     {C : Type} [CommRing C] [HopfAlgebra (ZMod p) C] [Coalgebra.IsCocomm (ZMod p) C] [Module.Finite (ZMod p) C]
@@ -39,6 +42,9 @@ theorem main (p : ℕ) [Fact p.Prime]
 
 end Ws23.VComm
 
+/--
+@isnad1 id=eq.2h6v.s12.1f528a743a20 from=translated src=- shape=a41ebbbc vocab=47d52835
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime]
     {B : Type} [CommRing B] [HopfAlgebra (ZMod p) B] [Coalgebra.IsCocomm (ZMod p) B] [Module.Finite (ZMod p) B]

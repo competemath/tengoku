@@ -24,9 +24,15 @@ def twist (χ : Multiplicative ℚ →* Kˣ) (x : HahnSeries ℚ K) : HahnSeries
     intro h
     exact hq (by rw [h, mul_zero]))
 
+/--
+@isnad1 id=eq.0h4v.s8.d9e43f60e64b from=translated src=- shape=7111beed vocab=0510ebc3
+-/
 @[scoped simp] theorem coeff_twist (χ : Multiplicative ℚ →* Kˣ) (x : HahnSeries ℚ K) (q : ℚ) :
     (twist χ x).coeff q = (χ (Multiplicative.ofAdd q) : K) * x.coeff q := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.d45d0dd2b780 from=translated src=- shape=d7d8499a vocab=f4b43d67
+-/
 theorem support_twist (χ : Multiplicative ℚ →* Kˣ) (x : HahnSeries ℚ K) :
     (twist χ x).support = x.support := by
   ext q
@@ -37,11 +43,17 @@ theorem support_twist (χ : Multiplicative ℚ →* Kˣ) (x : HahnSeries ℚ K) 
   · intro h hx
     exact h ((mul_eq_zero.mp hx).resolve_left (Units.ne_zero _))
 
+/--
+@isnad1 id=eq.0h4v.s8.4eb2b773538b from=translated src=- shape=fe67b309 vocab=c8d33c5e
+-/
 theorem twist_add (χ : Multiplicative ℚ →* Kˣ) (x y : HahnSeries ℚ K) :
     twist χ (x + y) = twist χ x + twist χ y := by
   ext q
   simp only [coeff_twist, HahnSeries.coeff_add, mul_add]
 
+/--
+@isnad1 id=eq.0h2v.s7.6790e8db395e from=translated src=- shape=1c8b2f08 vocab=1c6aa64c
+-/
 theorem twist_one (χ : Multiplicative ℚ →* Kˣ) : twist χ (1 : HahnSeries ℚ K) = 1 := by
   ext q
   simp only [coeff_twist, HahnSeries.coeff_one]
@@ -51,6 +63,9 @@ theorem twist_one (χ : Multiplicative ℚ →* Kˣ) : twist χ (1 : HahnSeries 
   · rw [mul_zero]
 
 open Finset in
+/--
+@isnad1 id=eq.0h4v.s8.1972bbc2e434 from=translated src=- shape=fe67b309 vocab=aab9105a
+-/
 theorem twist_mul (χ : Multiplicative ℚ →* Kˣ) (x y : HahnSeries ℚ K) :
     twist χ (x * y) = twist χ x * twist χ y := by
   ext a
@@ -74,6 +89,9 @@ def twistRingHom (χ : Multiplicative ℚ →* Kˣ) : HahnSeries ℚ K →+* Hah
   map_zero' := by ext q; simp only [coeff_twist, HahnSeries.coeff_zero, mul_zero]
   map_add' := twist_add χ
 
+/--
+@isnad1 id=eq.2h3v.s8.e8f2e0603586 from=translated src=- shape=8b3400c5 vocab=7970761e
+-/
 theorem twist_eq_self_of_hasRamBound_one {χ : Multiplicative ℚ →* Kˣ}
     (hχ : ∀ k : ℤ, χ (Multiplicative.ofAdd (k : ℚ)) = 1) {z : HahnSeries ℚ K}
     (hz : HahnSeries.HasRamBound 1 z) : twist χ z = z := by
@@ -100,14 +118,23 @@ noncomputable def rootSeq : ℕ → Kˣ
         rw [h0, zero_pow (Nat.succ_ne_zero m)] at h
         exact (rootSeq m).ne_zero h.symm)
 
+/--
+@isnad1 id=eq.0h2v.s5.e342b8614b95 from=translated src=- shape=cf7c878d vocab=8256e341
+-/
 theorem rootSeq_zero : rootSeq ζ 0 = ζ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.e232372224ca from=translated src=- shape=7220e300 vocab=4cc49abf
+-/
 theorem rootSeq_succ_pow (m : ℕ) : (rootSeq ζ (m + 1)) ^ (m + 1) = rootSeq ζ m := by
   apply Units.ext
   rw [Units.val_pow_eq_pow_val]
   show (Classical.choose (IsAlgClosed.exists_pow_nat_eq ((rootSeq ζ m : Kˣ) : K) m.succ_pos)) ^ (m+1) = _
   exact Classical.choose_spec (IsAlgClosed.exists_pow_nat_eq ((rootSeq ζ m : Kˣ) : K) m.succ_pos)
 
+/--
+@isnad1 id=eq.0h4v.s7.2eeb737db476 from=translated src=- shape=5598159f vocab=20bb5b6d
+-/
 theorem rootSeq_add_pow (m j : ℕ) :
     (rootSeq ζ (m + j)) ^ ((m + j).factorial / m.factorial) = rootSeq ζ m := by
   induction j with
@@ -116,6 +143,9 @@ theorem rootSeq_add_pow (m j : ℕ) :
     rw [← add_assoc, Nat.factorial_succ, Nat.mul_div_assoc _ (Nat.factorial_dvd_factorial (Nat.le_add_right m j)),
       pow_mul, rootSeq_succ_pow, ih]
 
+/--
+@isnad1 id=eq.1h4v.s7.b0dd89d727e3 from=translated src=- shape=92804ee3 vocab=b07532e4
+-/
 theorem rootSeq_pow_of_le {m M : ℕ} (h : m ≤ M) :
     (rootSeq ζ M) ^ (M.factorial / m.factorial) = rootSeq ζ m := by
   obtain ⟨j, rfl⟩ := Nat.exists_eq_add_of_le h
@@ -128,6 +158,9 @@ noncomputable def charFun (x : ℚ) : Kˣ :=
 
 variable {b}
 
+/--
+@isnad1 id=eq.1h6v.s7.fa70571e1fa8 from=translated src=- shape=44513b78 vocab=d94ff986
+-/
 theorem charFun_eq (x : ℚ) (m : ℕ) (k : ℤ) (hk : x * ((b * m.factorial : ℕ) : ℚ) = k) :
     charFun ζ b x = (rootSeq ζ m) ^ k := by
   have hd0 : x.den ≠ 0 := x.den_nz
@@ -164,6 +197,9 @@ theorem charFun_eq (x : ℚ) (m : ℕ) (k : ℤ) (hk : x * ((b * m.factorial : �
     _ = (k * x.den) * (((x.den + m).factorial / m.factorial : ℕ) : ℤ) := by rw [e4]
     _ = (x.den : ℤ) * ((((x.den + m).factorial / m.factorial : ℕ) : ℤ) * k) := by ring
 
+/--
+@isnad1 id=ex.1h3v.s5.b60341166f42 from=translated src=- shape=0e22853c vocab=defed4c6
+-/
 theorem exists_int_eq (b : ℕ) (x : ℚ) (m : ℕ) (hm : x.den ∣ m.factorial) :
     ∃ k : ℤ, x * ((b * m.factorial : ℕ) : ℚ) = k := by
   obtain ⟨c, hc⟩ := Dvd.dvd.mul_left hm b
@@ -206,15 +242,24 @@ noncomputable def char : Multiplicative ℚ →* Kˣ where
       ring
     rw [charFun_eq ζ _ _ _ hkuv, charFun_eq ζ _ _ _ hku, charFun_eq ζ _ _ _ hkv, zpow_add]
 
+/--
+@isnad1 id=eq.0h4v.s7.9cac64559aa4 from=translated src=- shape=1a763adc vocab=211b62e3
+-/
 theorem char_apply (x : ℚ) : char ζ b (Multiplicative.ofAdd x) = charFun ζ b x := rfl
 
 variable {b}
 
+/--
+@isnad1 id=eq.1h4v.s8.e0cf5d78d03a from=translated src=- shape=4d52b7e2 vocab=e5787fd1
+-/
 theorem char_intCast (hζ : ζ ^ b = 1) (k : ℤ) :
     char ζ b (Multiplicative.ofAdd (k : ℚ)) = 1 := by
   rw [char_apply, charFun_eq ζ (k : ℚ) 0 (k * b) (by push_cast; simp), rootSeq_zero,
     mul_comm, zpow_mul, zpow_natCast, hζ, one_zpow]
 
+/--
+@isnad1 id=eq.1h4v.s8.a638bc23bd53 from=translated src=- shape=9b28a1c4 vocab=1049fdc4
+-/
 theorem char_div (hb : 0 < b) (a : ℤ) :
     char ζ b (Multiplicative.ofAdd ((a : ℚ) / b)) = ζ ^ a := by
   have hb' : (b : ℚ) ≠ 0 := by exact_mod_cast hb.ne'
@@ -234,12 +279,21 @@ def twistRingEquiv (χ : Multiplicative ℚ →* Kˣ) : HahnSeries ℚ K ≃+* H
   map_mul' := twist_mul χ
   map_add' := twist_add χ
 
+/--
+@isnad1 id=eq.0h3v.s8.bc8403ecae1b from=translated src=- shape=bc72ba69 vocab=84726da2
+-/
 @[scoped simp] theorem twistRingEquiv_apply (χ : Multiplicative ℚ →* Kˣ) (x : HahnSeries ℚ K) :
     twistRingEquiv χ x = twist χ x := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.185ba783d59e from=translated src=- shape=1c8b2f08 vocab=1c6aa64c
+-/
 theorem twist_zero (χ : Multiplicative ℚ →* Kˣ) : twist χ (0 : HahnSeries ℚ K) = 0 :=
   map_zero (twistRingHom χ)
 
+/--
+@isnad1 id=eq.0h3v.s6.95a3732e311a from=translated src=- shape=d7d8499a vocab=633c5f56
+-/
 theorem orderTop_twist (χ : Multiplicative ℚ →* Kˣ) (z : HahnSeries ℚ K) :
     (twist χ z).orderTop = z.orderTop := by
   by_cases hz : z = 0
@@ -263,6 +317,9 @@ open scoped _root_.P2MW.S_HahnSeries_hasRamBound_one_of_forall_ringEquiv_apply_e
 open scoped _root_.P2MW.S_HahnSeries_hasRamBound_one_of_forall_ringEquiv_apply_eq.HahnSeries
 
 open HahnSeries.PuiseuxTwist in
+/--
+@isnad1 id=hasrambo.1h2v.s10.6de34c1a145a from=translated src=- shape=9eacb36c vocab=e3006c25
+-/
 theorem solution
     {K : Type*} [Field K] [IsAlgClosed K] [CharZero K] {x : HahnSeries ℚ K}
     (hx : ∀ σ : HahnSeries ℚ K ≃+* HahnSeries ℚ K,

@@ -21,12 +21,21 @@ variable {k : Type u} [Field k] {H : Type v} [CommRing H] [HopfAlgebra k H]
 def spanTmul (A B : Submodule k H) : Submodule k (H ⊗[k] H) :=
   Submodule.span k {t : H ⊗[k] H | ∃ a ∈ A, ∃ b ∈ B, t = a ⊗ₜ[k] b}
 
+/--
+@isnad1 id=le.2h6v.s11.9a7d00fce912 from=translated src=- shape=d57d8139 vocab=a4dfec2b
+-/
 theorem spanTmul_mono {A A' B B' : Submodule k H} (hA : A ≤ A') (hB : B ≤ B') : spanTmul A B ≤ spanTmul A' B' :=
   Submodule.span_mono fun s ⟨a, ha, b, hb, hs⟩ => ⟨a, hA ha, b, hB hb, hs⟩
 
+/--
+@isnad1 id=mem.2h6v.s11.bcd753ff0175 from=translated src=- shape=93bb23f6 vocab=aa4147c9
+-/
 theorem tmul_mem_spanTmul {A B : Submodule k H} {a b : H} (ha : a ∈ A) (hb : b ∈ B) : a ⊗ₜ[k] b ∈ spanTmul A B :=
   Submodule.subset_span ⟨a, ha, b, hb, rfl⟩
 
+/--
+@isnad1 id=mem.1h5v.s13.3194ea64233a from=translated src=- shape=2d8b046e vocab=3eb46830
+-/
 theorem map_comm_mem_spanTmul (A B : Submodule k H) (t : H ⊗[k] H) (ht : t ∈ spanTmul A B) :
     TensorProduct.comm k H H (TensorProduct.map (HopfAlgebra.antipode k) (HopfAlgebra.antipode k) t)
       ∈ spanTmul (B.map (HopfAlgebra.antipode k (A := H))) (A.map (HopfAlgebra.antipode k (A := H))) := by
@@ -39,6 +48,9 @@ theorem map_comm_mem_spanTmul (A B : Submodule k H) (t : H ⊗[k] H) (ht : t ∈
   | add s t _ _ hs ht => rw [map_add, map_add]; exact Submodule.add_mem _ hs ht
   | smul r s _ hs => rw [map_smul, map_smul]; exact Submodule.smul_mem _ _ hs
 
+/--
+@isnad1 id=mem.2h5v.s13.245a17fb7114 from=translated src=- shape=e29bcb25 vocab=6872669f
+-/
 theorem mul_mem_spanTmul (A : Subalgebra k H) {x y : H ⊗[k] H}
     (hx : x ∈ spanTmul A.toSubmodule A.toSubmodule) (hy : y ∈ spanTmul A.toSubmodule A.toSubmodule) :
     x * y ∈ spanTmul A.toSubmodule A.toSubmodule := by
@@ -60,6 +72,9 @@ theorem mul_mem_spanTmul (A : Subalgebra k H) {x y : H ⊗[k] H}
 end S17Tb2
 
 open S17Tb2 in
+/--
+@isnad1 id=ex.3h4v.s13.545b8eae56a1 from=translated src=- shape=1a43edc0 vocab=7146de91
+-/
 theorem solution
     {k : Type u} [Field k] {H : Type v} [CommRing H] [HopfAlgebra k H]
     (K : Subalgebra k H)

@@ -15,6 +15,9 @@ private theorem convMul_apply_repr' {K L : Type} [CommRing K] [CommRing L] [Alge
   rw [LinearMap.convMul_apply] at h
   exact h
 
+/--
+@isnad1 id=and.1h5v.s10.d48fdf2ddfaa from=translated src=- shape=e5fc1166 vocab=07ae02f5
+-/
 theorem solution
     (K : Type) [Field K]
     (L₁ : Type) [Field L₁] [Algebra K L₁] [IsAlgClosed L₁]

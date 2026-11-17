@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open scoped MatrixGroups
 
+/--
+@isnad1 id=ex.0h1v.s15.dfeed910b395 from=translated src=- shape=c5d415a5 vocab=4c0f6fc2
+-/
 theorem HeckeEis.exists_pairing_binaryForm_linePow (n : ℕ) :
     ∃ B : ↥(HeckeEis.BinaryForm ℂ n) →ₗ[ℂ] ↥(HeckeEis.BinaryForm ℂ n) →ₗ[ℂ] ℂ,
       (∀ (g : SL(2, ℤ)) (P Q : ↥(HeckeEis.BinaryForm ℂ n)),

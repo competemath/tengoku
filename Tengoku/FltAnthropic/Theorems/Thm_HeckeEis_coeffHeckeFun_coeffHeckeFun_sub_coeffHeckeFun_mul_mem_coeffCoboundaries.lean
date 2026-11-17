@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open scoped MatrixGroups
 
+/--
+@isnad1 id=mem.7h10v.s16.60ae3f1f29f4 from=translated src=- shape=2afceba2 vocab=217ae6e1
+-/
 theorem HeckeEis.coeffHeckeFun_coeffHeckeFun_sub_coeffHeckeFun_mul_mem_coeffCoboundaries
     (N ℓ ℓ' m : ℕ) [NeZero ℓ] [NeZero ℓ'] [NeZero m] (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N)
     (hℓℓ' : ¬ ℓ ∣ ℓ') (hm : m = ℓ * ℓ')

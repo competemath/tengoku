@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u v
 
+/--
+@isnad1 id=eq.2h3v.s9.422cb48f1a1f from=translated src=- shape=ff261760 vocab=16bbcd21
+-/
 theorem HopfAlgebra.ker_counit_eq_sq_of_pow_eq_one_of_isUnit
     {R : Type u} [CommRing R] {H : Type v} [CommRing H] [HopfAlgebra R H]
     (n : ℕ) (hn : IsUnit (n : R))

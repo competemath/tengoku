@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open scoped MatrixGroups ModularForm
 
+/--
+@isnad1 id=mem.3h7v.s12.4149b108a96d from=translated src=- shape=cc7cc09e vocab=4e1b9a15
+-/
 theorem HeckeEis.IsEquivariantPrimitiveWith.cocycle_sub_cocycle_mem_coeffCoboundaries
     {K : Type*} [CommRing K] {Γ : Subgroup SL(2, ℤ)} {V : Type*} [AddCommGroup V] [Module K V]
     {ρ : Representation K Γ V} {F G : UpperHalfPlane → V}

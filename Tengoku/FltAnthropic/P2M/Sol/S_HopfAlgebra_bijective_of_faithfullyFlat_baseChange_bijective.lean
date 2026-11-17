@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u v
 
+/--
+@isnad1 id=bijectiv.1h5v.s11.dd7e85a3ba91 from=translated src=- shape=5510b199 vocab=2879efff
+-/
 theorem solution
     {R : Type u} [CommRing R] (R' : Type u) [CommRing R'] [Algebra R R'] [Module.FaithfullyFlat R R']
     {H : Type v} [CommRing H] [HopfAlgebra R H]

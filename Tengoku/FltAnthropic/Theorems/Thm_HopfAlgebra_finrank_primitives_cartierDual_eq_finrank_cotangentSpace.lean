@@ -14,6 +14,9 @@ set_option synthInstance.maxHeartbeats 400000
 
 universe u v
 
+/--
+@isnad1 id=eq.0h2v.s12.4a7b688cd4ce from=translated src=- shape=f8533865 vocab=b65e7d2e
+-/
 theorem HopfAlgebra.finrank_primitives_cartierDual_eq_finrank_cotangentSpace
     (k : Type u) [Field k] (A : Type v) [CommRing A] [HopfAlgebra k A] [Coalgebra.IsCocomm k A]
     [Module.Finite k A] :

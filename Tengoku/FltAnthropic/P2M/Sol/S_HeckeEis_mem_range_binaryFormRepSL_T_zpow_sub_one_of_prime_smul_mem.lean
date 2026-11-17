@@ -25,11 +25,17 @@ variable (n) in
 
 noncomputable def expo (j : ℕ) : Fin 2 →₀ ℕ := Finsupp.single 0 (n - j) + Finsupp.single 1 j
 
+/--
+@isnad1 id=injon.0h1v.s5.eb3e5384fa5b from=translated src=- shape=696d3529 vocab=58006e17
+-/
 theorem expo_injOn : Set.InjOn (expo n) (Finset.range (n + 1) : Set ℕ) := by
   intro i _ j _ h
   have := congrArg (fun d : Fin 2 →₀ ℕ => d 1) h
   simpa [expo, Finsupp.single_apply] using this
 
+/--
+@isnad1 id=iff.0h2v.s7.fa93cd2a964d from=translated src=- shape=f4d6a2d0 vocab=80120637
+-/
 theorem degree_eq_iff (d : Fin 2 →₀ ℕ) : d.degree = n ↔ ∃ j ∈ Finset.range (n + 1), expo n j = d := by
   rw [Finsupp.degree_eq_sum, Fin.sum_univ_two]
   constructor
@@ -57,17 +63,26 @@ theorem eq_sum_range {P : MvPolynomial (Fin 2) R} (hP : P ∈ BinaryForm R n) :
 
 noncomputable def dehom : MvPolynomial (Fin 2) R →ₐ[R] R[X] := MvPolynomial.aeval ![1, Polynomial.X]
 
+/--
+@isnad1 id=eq.0h4v.s9.5a0f6e02c159 from=translated src=- shape=ad334887 vocab=8cff7688
+-/
 theorem dehom_monomial (j : ℕ) (c : R) :
     dehom (MvPolynomial.monomial (expo n j) c) = Polynomial.C c * Polynomial.X ^ j := by
   rw [expo, MvPolynomial.monomial_eq, Finsupp.prod_add_index' (by simp) (by simp [pow_add]),
     Finsupp.prod_single_index (by simp), Finsupp.prod_single_index (by simp)]
   simp [dehom, Polynomial.C_mul']
 
+/--
+@isnad1 id=eq.1h3v.s9.7926b1da9569 from=translated src=- shape=0e5ca05e vocab=1b7bc708
+-/
 theorem dehom_eq_sum {P : MvPolynomial (Fin 2) R} (hP : P ∈ BinaryForm R n) :
     dehom P = ∑ j ∈ Finset.range (n + 1), Polynomial.C (MvPolynomial.coeff (expo n j) P) * Polynomial.X ^ j := by
   conv_lhs => rw [eq_sum_range hP, map_sum]
   exact Finset.sum_congr rfl fun j _ => dehom_monomial j _
 
+/--
+@isnad1 id=eq.1h4v.s9.f7e978d88b89 from=translated src=- shape=96d9aa2e vocab=d95f7443
+-/
 theorem coeff_dehom {P : MvPolynomial (Fin 2) R} (hP : P ∈ BinaryForm R n) (j : ℕ) :
     (dehom P).coeff j = if j ∈ Finset.range (n + 1) then MvPolynomial.coeff (expo n j) P else 0 := by
   rw [dehom_eq_sum hP, Polynomial.finsetSum_coeff]
@@ -76,12 +91,18 @@ theorem coeff_dehom {P : MvPolynomial (Fin 2) R} (hP : P ∈ BinaryForm R n) (j 
   · rw [Finset.sum_eq_single j (fun i _ hne => ite_eq_right hne.symm) (fun h' => (h' h).elim), ite_eq_left rfl]
   · exact Finset.sum_eq_zero fun i hi => ite_eq_right fun h' => h (by rw [h']; exact hi)
 
+/--
+@isnad1 id=le.1h3v.s8.c096319c9ce8 from=translated src=- shape=ffce0928 vocab=c85e59a6
+-/
 theorem natDegree_dehom_le {P : MvPolynomial (Fin 2) R} (hP : P ∈ BinaryForm R n) : (dehom P).natDegree ≤ n := by
   rw [Polynomial.natDegree_le_iff_coeff_eq_zero]
   intro j hj
   rw [coeff_dehom hP, ite_eq_right]
   rw [Finset.mem_range]; omega
 
+/--
+@isnad1 id=eq.0h3v.s10.2d5331bb43d5 from=translated src=- shape=2a1f86b6 vocab=5fbf5134
+-/
 theorem dehom_binarySubst_T_zpow (h : ℤ) (P : MvPolynomial (Fin 2) R) :
     dehom (binarySubst R ((ModularGroup.T ^ h : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) P)
       = (dehom P).comp (Polynomial.X + Polynomial.C (h : R)) := by
@@ -110,24 +131,42 @@ namespace SaturationAux
 
 noncomputable def delta (h : ℤ) (q : ℤ[X]) : ℤ[X] := q.comp (X + C h) - q
 
+/--
+@isnad1 id=eq.0h3v.s5.a5b4bdca27e1 from=translated src=- shape=35a5627c vocab=e5ee8e47
+-/
 theorem delta_add (h : ℤ) (a b : ℤ[X]) : delta h (a + b) = delta h a + delta h b := by
   simp only [delta, add_comp]; ring
 
+/--
+@isnad1 id=eq.0h3v.s5.8cc7f51bd4af from=translated src=- shape=35a5627c vocab=17b3e002
+-/
 theorem delta_sub (h : ℤ) (a b : ℤ[X]) : delta h (a - b) = delta h a - delta h b := by
   simp only [delta, sub_comp]; ring
 
+/--
+@isnad1 id=eq.0h3v.s7.192e68e98180 from=translated src=- shape=a3e7d8b6 vocab=5b3d8e80
+-/
 theorem delta_C_mul (h c : ℤ) (a : ℤ[X]) : delta h (C c * a) = C c * delta h a := by
   simp only [delta, mul_comp, C_comp]; ring
 
+/--
+@isnad1 id=eq.0h4v.s5.6c5718598254 from=translated src=- shape=69431049 vocab=0ceef056
+-/
 theorem delta_sum (h : ℤ) {ι : Type*} (s : Finset ι) (f : ι → ℤ[X]) : delta h (∑ i ∈ s, f i) = ∑ i ∈ s, delta h (f i) := by
   classical
   induction s using Finset.induction_on with
   | empty => simp [delta]
   | insert a s ha ih => rw [Finset.sum_insert ha, Finset.sum_insert ha, delta_add, ih]
 
+/--
+@isnad1 id=le.0h2v.s6.33b86f4b7592 from=translated src=- shape=be481158 vocab=b49630ba
+-/
 theorem natDegree_comp_le (h : ℤ) (q : ℤ[X]) : (q.comp (X + C h)).natDegree ≤ q.natDegree := by
   rw [natDegree_comp, natDegree_X_add_C, mul_one]
 
+/--
+@isnad1 id=eq.1h3v.s4.18a250511549 from=translated src=- shape=4499b0e5 vocab=c89f999c
+-/
 theorem coeff_delta_eq_zero (h : ℤ) {n : ℕ} {q : ℤ[X]} (hq : q.natDegree ≤ n) : (delta h q).coeff n = 0 := by
   rw [delta, coeff_sub, sub_eq_zero]
   rcases hq.lt_or_eq with hlt | heq
@@ -140,6 +179,9 @@ theorem coeff_delta_eq_zero (h : ℤ) {n : ℕ} {q : ℤ[X]} (hq : q.natDegree �
     rw [Polynomial.leadingCoeff, Polynomial.leadingCoeff, h2] at h1
     exact h1
 
+/--
+@isnad1 id=eq.0h2v.s7.0d859de2f0fc from=translated src=- shape=621086a6 vocab=67346d00
+-/
 theorem delta_X_pow_succ (h : ℤ) (j : ℕ) :
     delta h (X ^ (j + 1)) = ∑ i ∈ Finset.range (j + 1), C (h ^ (j + 1 - i) * ((j + 1).choose i : ℤ)) * X ^ i := by
   rw [delta, X_pow_comp, add_pow, Finset.sum_range_succ, Nat.choose_self, Nat.sub_self, pow_zero]
@@ -148,6 +190,9 @@ theorem delta_X_pow_succ (h : ℤ) (j : ℕ) :
   rw [C_mul, C_pow, ← C_eq_natCast]
   ring
 
+/--
+@isnad1 id=ex.0h2v.s7.f9e454614b5e from=translated src=- shape=98cee3fb vocab=bb3714d8
+-/
 theorem exists_delta_eq_C_mul_X_pow (h : ℤ) :
     ∀ j : ℕ, ∃ u : ℤ[X], u.natDegree ≤ j + 1 ∧ delta h u = C (((j + 1).factorial : ℤ) * h ^ (j + 1)) * X ^ j := by
   intro j
@@ -177,6 +222,9 @@ theorem exists_delta_eq_C_mul_X_pow (h : ℤ) :
       push_cast [Nat.factorial_succ]
       ring
 
+/--
+@isnad1 id=ex.1h3v.s6.01fc7fd32a26 from=translated src=- shape=c814a2d3 vocab=e7c48e74
+-/
 theorem exists_delta_eq_C_mul (h : ℤ) (n : ℕ) (w : ℤ[X]) (hw : w.natDegree < n) :
     ∃ u : ℤ[X], u.natDegree ≤ n ∧ delta h u = C ((n.factorial : ℤ) * h ^ n) * w := by
   classical
@@ -196,6 +244,9 @@ theorem exists_delta_eq_C_mul (h : ℤ) (n : ℕ) (w : ℤ[X]) (hw : w.natDegree
     have hpow : (h : ℤ) ^ (n - (j + 1)) * h ^ (j + 1) = h ^ n := by rw [← pow_add, Nat.sub_add_cancel hjn]
     linear_combination (w.coeff j * h ^ (n - (j + 1)) * h ^ (j + 1)) * hfac + (w.coeff j * (n.factorial : ℤ)) * hpow
 
+/--
+@isnad1 id=ex.6h5v.s7.fb22c29b63f7 from=translated src=- shape=c191213d vocab=25632b0a
+-/
 theorem exists_delta_eq_of_prime_mul (h : ℤ) (n : ℕ) {p : ℕ} (hp : p.Prime) (hn : n < p) (hph : ¬ (p : ℤ) ∣ h)
     (v u : ℤ[X]) (hv : v.natDegree ≤ n) (hu : u.natDegree ≤ n) (he : delta h u = C (p : ℤ) * v) :
     ∃ u' : ℤ[X], u'.natDegree ≤ n ∧ delta h u' = v := by
@@ -239,15 +290,24 @@ variable {n : ℕ}
 noncomputable def rehom (n : ℕ) (U : ℤ[X]) : MvPolynomial (Fin 2) ℤ :=
   ∑ j ∈ Finset.range (n + 1), MvPolynomial.monomial (expo n j) (U.coeff j)
 
+/--
+@isnad1 id=mem.0h2v.s7.8740d177b0ff from=translated src=- shape=9b957c39 vocab=cb4c5a4a
+-/
 theorem rehom_mem (n : ℕ) (U : ℤ[X]) : rehom n U ∈ BinaryForm ℤ n := by
   refine Submodule.sum_mem _ fun j hj => (MvPolynomial.mem_homogeneousSubmodule n _).mpr ?_
   exact MvPolynomial.isHomogeneous_monomial _ ((degree_eq_iff _).mpr ⟨j, hj, rfl⟩)
 
+/--
+@isnad1 id=eq.1h2v.s8.66e24773ad47 from=translated src=- shape=1f88a13a vocab=a1e1ecf6
+-/
 theorem dehom_rehom (n : ℕ) {U : ℤ[X]} (hU : U.natDegree ≤ n) : dehom (rehom n U) = U := by
   rw [rehom, map_sum]
   conv_rhs => rw [U.as_sum_range_C_mul_X_pow' (Nat.lt_succ_of_le hU)]
   exact Finset.sum_congr rfl fun j _ => dehom_monomial j _
 
+/--
+@isnad1 id=eq.3h3v.s9.6e2cf1d154e6 from=translated src=- shape=befbecff vocab=fa8b5aa9
+-/
 theorem dehom_injOn {P Q : MvPolynomial (Fin 2) ℤ} (hP : P ∈ BinaryForm ℤ n) (hQ : Q ∈ BinaryForm ℤ n)
     (h : dehom P = dehom Q) : P = Q := by
   rw [eq_sum_range hP, eq_sum_range hQ]
@@ -256,6 +316,9 @@ theorem dehom_injOn {P Q : MvPolynomial (Fin 2) ℤ} (hP : P ∈ BinaryForm ℤ 
   simp only [coeff_dehom hP, coeff_dehom hQ, ite_eq_left hj] at this
   rw [this]
 
+/--
+@isnad1 id=eq.0h3v.s13.2de58c05aa4b from=translated src=- shape=4ae81bd7 vocab=963e7143
+-/
 theorem dehom_sub_eq_delta (h : ℤ) (u : ↥(BinaryForm ℤ n)) :
     dehom (((binaryFormRepSL ℤ n (ModularGroup.T ^ h) - 1) u : ↥(BinaryForm ℤ n)) : MvPolynomial (Fin 2) ℤ)
       = delta h (dehom (u : MvPolynomial (Fin 2) ℤ)) := by
@@ -264,6 +327,9 @@ theorem dehom_sub_eq_delta (h : ℤ) (u : ↥(BinaryForm ℤ n)) :
 
 end SaturationAux
 
+/--
+@isnad1 id=mem.4h4v.s14.ba6af366356f from=translated src=- shape=0ee54e53 vocab=21800f9f
+-/
 theorem SolMain.G2 (n : ℕ) {p : ℕ} (hp : p.Prime) (hn : n < p)
     {h : ℤ} (hph : ¬ (p : ℤ) ∣ h) (v : ↥(BinaryForm ℤ n))
     (hv : (p : ℤ) • v ∈ LinearMap.range (binaryFormRepSL ℤ n (ModularGroup.T ^ h) - 1)) :
@@ -289,6 +355,9 @@ theorem SolMain.G2 (n : ℕ) {p : ℕ} (hp : p.Prime) (hn : n < p)
 end HeckeEis
 
 open scoped MatrixGroups in
+/--
+@isnad1 id=mem.4h4v.s14.ba6af366356f from=translated src=- shape=0ee54e53 vocab=21800f9f
+-/
 theorem solution (n : ℕ) {p : ℕ} (hp : p.Prime) (hn : n < p)
     {h : ℤ} (hph : ¬ (p : ℤ) ∣ h) (v : ↥(HeckeEis.BinaryForm ℤ n))
     (hv : (p : ℤ) • v ∈ LinearMap.range (HeckeEis.binaryFormRepSL ℤ n (ModularGroup.T ^ h) - 1)) :

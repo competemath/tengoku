@@ -19,6 +19,9 @@ open scoped MatrixGroups ModularForm Manifold
 
 namespace R1TP
 
+/--
+@isnad1 id=eq.0h3v.s9.c722402407ac from=translated src=- shape=b6ed4a97 vocab=c9aacc01
+-/
 theorem eval_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (x : Fin 2 → ℂ) (P : MvPolynomial (Fin 2) ℂ) :
     MvPolynomial.eval x (HeckeEis.binarySubst ℂ M P)
       = MvPolynomial.eval (fun j => ∑ i : Fin 2, x i * ((M i j : ℤ) : ℂ)) P := by
@@ -31,6 +34,9 @@ theorem eval_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (x : Fin 2 → ℂ) (P
   funext j
   simp [Fin.sum_univ_two, mul_comm]
 
+/--
+@isnad1 id=eq.0h2v.s8.46704c15c94f from=translated src=- shape=7d4abcaf vocab=eaad39f4
+-/
 theorem row_vecMul_inv (γ : SL(2, ℤ)) (τ : ℍ) :
     (fun j => ∑ i : Fin 2, (![(1 : ℂ), -(τ : ℂ)] i) * ((((γ⁻¹ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) i j : ℤ) : ℂ))
       = HeckeEis.jFactor γ τ • ![(1 : ℂ), -(((γ • τ : ℍ)) : ℂ)] := by
@@ -47,6 +53,9 @@ theorem row_vecMul_inv (γ : SL(2, ℤ)) (τ : ℍ) :
     push_cast
     ring
 
+/--
+@isnad1 id=eq.0h4v.s10.480655dd9ccb from=translated src=- shape=ac1be736 vocab=eb869870
+-/
 theorem eval_binarySubst_inv (n : ℕ) (γ : SL(2, ℤ)) (τ : ℍ) (P : ↥(HeckeEis.BinaryForm ℂ n)) :
     MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)]
         (HeckeEis.binarySubst ℂ ((γ⁻¹ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) (P : MvPolynomial (Fin 2) ℂ))
@@ -54,16 +63,25 @@ theorem eval_binarySubst_inv (n : ℕ) (γ : SL(2, ℤ)) (τ : ℍ) (P : ↥(Hec
   rw [eval_binarySubst, row_vecMul_inv,
     HeckeEis.eval_smul_of_isHomogeneous ((MvPolynomial.mem_homogeneousSubmodule n _).mp P.2)]
 
+/--
+@isnad1 id=eq.0h2v.s9.32f7ec5907bf from=translated src=- shape=6bad983f vocab=a60cb641
+-/
 theorem jFactor_eq_denom' (γ : SL(2, ℤ)) (τ : ℍ) : HeckeEis.jFactor γ τ = denom (γ : GL (Fin 2) ℝ) τ := by
   rw [HeckeEis.jFactor_eq_denom]; rfl
 
 noncomputable def perFun {n : ℕ} (G : ℍ → ↥(HeckeEis.BinaryForm ℂ n)) : ℍ → ℂ :=
   fun τ => MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((G τ : ↥(HeckeEis.BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)
 
+/--
+@isnad1 id=eq.0h3v.s9.ff13f68e9844 from=translated src=- shape=d39f85a2 vocab=f1a5d3f2
+-/
 theorem perFun_apply {n : ℕ} (G : ℍ → ↥(HeckeEis.BinaryForm ℂ n)) (τ : ℍ) :
     perFun G τ = MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((G τ : ↥(HeckeEis.BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s12.ac4151950d57 from=translated src=- shape=7017c2fa vocab=7e418b7b
+-/
 theorem perFun_slash {n : ℕ} (G : ℍ → ↥(HeckeEis.BinaryForm ℂ n)) (δ : SL(2, ℤ)) :
     (perFun G) ∣[-(n : ℤ)] δ = perFun (fun τ => HeckeEis.binaryFormRepSL ℂ n δ⁻¹ (G (δ • τ))) := by
   funext τ
@@ -73,6 +91,9 @@ theorem perFun_slash {n : ℕ} (G : ℍ → ↥(HeckeEis.BinaryForm ℂ n)) (δ 
 noncomputable def expn (n : ℕ) : Finset (Fin 2 →₀ ℕ) := by
   classical exact Finset.finsuppAntidiag (Finset.univ : Finset (Fin 2)) n
 
+/--
+@isnad1 id=le.0h2v.s8.f516b5c05010 from=translated src=- shape=d5b94b13 vocab=f297eb35
+-/
 theorem support_subset_expn {n : ℕ} (P : ↥(HeckeEis.BinaryForm ℂ n)) :
     (P : MvPolynomial (Fin 2) ℂ).support ⊆ expn n := by
   classical
@@ -84,6 +105,9 @@ theorem support_subset_expn {n : ℕ} (P : ↥(HeckeEis.BinaryForm ℂ n)) :
   rw [← Finsupp.degree_eq_sum]
   exact hdeg
 
+/--
+@isnad1 id=eq.0h3v.s9.95adab1f75b9 from=translated src=- shape=5ac8debc vocab=58b033ac
+-/
 theorem eval_eq_sum_expn {n : ℕ} (P : ↥(HeckeEis.BinaryForm ℂ n)) (x : Fin 2 → ℂ) :
     MvPolynomial.eval x (P : MvPolynomial (Fin 2) ℂ)
       = ∑ d ∈ expn n, MvPolynomial.coeff d (P : MvPolynomial (Fin 2) ℂ) * ∏ i, x i ^ d i := by
@@ -91,6 +115,9 @@ theorem eval_eq_sum_expn {n : ℕ} (P : ↥(HeckeEis.BinaryForm ℂ n)) (x : Fin
   exact Finset.sum_subset (support_subset_expn P) fun d _ hd => by
     rw [MvPolynomial.notMem_support_iff.mp hd, zero_mul]
 
+/--
+@isnad1 id=mdiffere.1h3v.s8.563b461a0efd from=translated src=- shape=ac7c5280 vocab=ac2ace05
+-/
 theorem mdifferentiable_perFun {n : ℕ} {g : ℍ → ℂ} {G : ℍ → ↥(HeckeEis.BinaryForm ℂ n)}
     (hG : HeckeEis.IsEichlerIntegral n g G) :
     MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (perFun G) := by
@@ -122,12 +149,18 @@ section Cusps
 
 variable {Γ : Subgroup SL(2, ℤ)} [Γ.FiniteIndex] {n : ℕ}
 
+/--
+@isnad1 id=ex.0h2v.s9.764e0d48ec4c from=translated src=- shape=37243e40 vocab=017a2bca
+-/
 theorem exists_conj_T_pow_mem (δ : SL(2, ℤ)) :
     ∃ m : ℕ, 0 < m ∧ δ * ModularGroup.T ^ m * δ⁻¹ ∈ Γ := by
   obtain ⟨m, hm, -, hmem⟩ :=
     Subgroup.exists_pow_mem_of_index_ne_zero Subgroup.FiniteIndex.index_ne_zero (δ * ModularGroup.T * δ⁻¹) (H := Γ)
   exact ⟨m, hm, by simpa only [conj_pow] using hmem⟩
 
+/--
+@isnad1 id=eq.0h2v.s9.010128031aaf from=translated src=- shape=12e6b479 vocab=e49434fc
+-/
 theorem denom_T_pow (m : ℕ) (τ : ℍ) : denom ((ModularGroup.T ^ m : SL(2, ℤ)) : GL (Fin 2) ℝ) τ = 1 := by
   rw [ModularGroup.denom_apply, ← zpow_natCast, ModularGroup.coe_T_zpow]
   simp
@@ -136,6 +169,9 @@ variable (f : ModularForm Γ ((n : ℤ) + 2))
 
 omit [Γ.FiniteIndex] in
 
+/--
+@isnad1 id=periodic.1h5v.s10.81be2ed56e34 from=translated src=- shape=c101300e vocab=2cb77e14
+-/
 theorem periodic_slash (δ : SL(2, ℤ)) {m : ℕ} (hmem : δ * ModularGroup.T ^ m * δ⁻¹ ∈ Γ) :
     Function.Periodic ((⇑f ∣[((n : ℤ) + 2)] δ) ∘ ofComplex) (((m : ℤ) : ℝ) : ℂ) := by
 
@@ -165,6 +201,9 @@ theorem periodic_slash (δ : SL(2, ℤ)) {m : ℕ} (hmem : δ * ModularGroup.T ^
 
 variable {G : ℍ → ↥(HeckeEis.BinaryForm ℂ n)}
 
+/--
+@isnad1 id=isbounde.2h5v.s12.df76b1ea4b2e from=translated src=- shape=c4dc1e1c vocab=db1a324d
+-/
 theorem isBoundedAtImInfty_perFun_slash (hG : HeckeEis.IsEichlerIntegral n f G)
     (hGeq : ∀ γ ∈ Γ, ∀ τ : ℍ, G (γ • τ) = HeckeEis.binaryFormRepSL ℂ n γ (G τ)) (δ : SL(2, ℤ)) :
     IsBoundedAtImInfty ((perFun G) ∣[-(n : ℤ)] δ) := by
@@ -182,6 +221,9 @@ theorem isBoundedAtImInfty_perFun_slash (hG : HeckeEis.IsEichlerIntegral n f G)
 
 omit [Γ.FiniteIndex] in
 
+/--
+@isnad1 id=eq.2h4v.s12.849ea0ce55c0 from=translated src=- shape=296e84e1 vocab=06e4d153
+-/
 theorem perFun_slash_eq_self (hGeq : ∀ γ ∈ Γ, ∀ τ : ℍ, G (γ • τ) = HeckeEis.binaryFormRepSL ℂ n γ (G τ))
     (γ : SL(2, ℤ)) (hγ : γ ∈ Γ) : (perFun G) ∣[-(n : ℤ)] γ = perFun G := by
   rw [perFun_slash]
@@ -205,10 +247,16 @@ noncomputable def perForm (hG : HeckeEis.IsEichlerIntegral n f G)
     intro δ _
     exact isBoundedAtImInfty_perFun_slash f hG hGeq δ
 
+/--
+@isnad1 id=eq.2h5v.s12.06e6632ecab7 from=translated src=- shape=5c34c8c3 vocab=10cd4e2f
+-/
 theorem perForm_apply (hG : HeckeEis.IsEichlerIntegral n f G)
     (hGeq : ∀ γ ∈ Γ, ∀ τ : ℍ, G (γ • τ) = HeckeEis.binaryFormRepSL ℂ n γ (G τ)) (τ : ℍ) :
     perForm f hG hGeq τ = perFun G τ := rfl
 
+/--
+@isnad1 id=ex.2h4v.s12.5fce56f1439b from=translated src=- shape=7da76a22 vocab=5fd7f703
+-/
 theorem exists_perFun_eq_const (hG : HeckeEis.IsEichlerIntegral n f G)
     (hGeq : ∀ γ ∈ Γ, ∀ τ : ℍ, G (γ • τ) = HeckeEis.binaryFormRepSL ℂ n γ (G τ)) :
     ∃ c : ℂ, ∀ τ : ℍ, perFun G τ = c := by
@@ -225,6 +273,9 @@ section Main
 
 variable {Γ : Subgroup SL(2, ℤ)} [Γ.FiniteIndex] {n : ℕ}
 
+/--
+@isnad1 id=iseichle.1h4v.s10.54bd72c21fa1 from=translated src=- shape=cf5e5d8b vocab=3cd50508
+-/
 theorem isEichlerIntegral_add_const {g : ℍ → ℂ} {F : ℍ → ↥(HeckeEis.BinaryForm ℂ n)}
     (hF : HeckeEis.IsEichlerIntegral n g F) (v : ↥(HeckeEis.BinaryForm ℂ n)) :
     HeckeEis.IsEichlerIntegral n g (fun τ => F τ + v) := by
@@ -232,6 +283,9 @@ theorem isEichlerIntegral_add_const {g : ℍ → ℂ} {F : ℍ → ↥(HeckeEis.
   have h := (hF d τ).add_const (MvPolynomial.coeff d ((v : ↥(HeckeEis.BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ))
   simpa only [Submodule.coe_add, MvPolynomial.coeff_add] using h
 
+/--
+@isnad1 id=eq.3h4v.s14.f175306c6290 from=translated src=- shape=49ba5496 vocab=ec20c210
+-/
 theorem modularForm_eq_zero_of_cocycle_mem_coeffCoboundaries (f : ModularForm Γ ((n : ℤ) + 2))
     {F : ℍ → ↥(HeckeEis.BinaryForm ℂ n)} (hEI : HeckeEis.IsEichlerIntegral n f F)
     (hF : HeckeEis.IsEquivariantPrimitiveWith ((HeckeEis.binaryFormRepSL ℂ n).comp Γ.subtype) F)
@@ -258,6 +312,9 @@ end Main
 
 end R1TP
 
+/--
+@isnad1 id=eq.3h4v.s17.a90959853817 from=translated src=- shape=90771c37 vocab=b77d825f
+-/
 theorem solution (N : ℕ) [NeZero N] (n : ℕ)
     (f : ModularForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2))
     (F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)) (hEI : HeckeEis.IsEichlerIntegral n f F)

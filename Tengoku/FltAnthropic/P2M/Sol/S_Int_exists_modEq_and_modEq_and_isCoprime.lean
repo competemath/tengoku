@@ -14,6 +14,9 @@ namespace P2MW.S_Int_exists_modEq_and_modEq_and_isCoprime
 namespace M4aP1R
 namespace UnimodularLift
 
+/--
+@isnad1 id=ex.2h4v.s7.0d75897af4b5 from=translated src=- shape=808dc50a vocab=b88bbc85
+-/
 theorem triple_of_modEq {n c d d' : ℤ} (h : ∃ x y z : ℤ, x * c + y * d + z * n = 1)
     (hd : d' ≡ d [ZMOD n]) : ∃ x y z : ℤ, x * c + y * d' + z * n = 1 := by
   obtain ⟨x, y, z, hxyz⟩ := h
@@ -21,6 +24,9 @@ theorem triple_of_modEq {n c d d' : ℤ} (h : ∃ x y z : ℤ, x * c + y * d + z
   obtain ⟨t, ht⟩ := (Int.modEq_iff_dvd.mp hd.symm)
   exact ⟨x, y, z - y * t, by linear_combination hxyz + y * ht⟩
 
+/--
+@isnad1 id=not.4h4v.s6.8947c5d7f461 from=translated src=- shape=e4b760a2 vocab=d49482b1
+-/
 theorem not_dvd_n_of_dvd {n c d p : ℤ} (hp : Prime p) (h : ∃ x y z : ℤ, x * c + y * d + z * n = 1)
     (hpc : p ∣ c) (hpd : p ∣ d) : ¬ p ∣ n := by
   rintro hpn
@@ -31,6 +37,9 @@ theorem not_dvd_n_of_dvd {n c d p : ℤ} (hp : Prime p) (h : ∃ x y z : ℤ, x 
       (dvd_mul_of_dvd_right hpn z)
   exact hp.not_isUnit (isUnit_of_dvd_one h1)
 
+/--
+@isnad1 id=ex.2h3v.s6.8e8ec55578ca from=translated src=- shape=8899fba9 vocab=2a6933ce
+-/
 theorem exists_of_ne_zero {n c d : ℤ} (hd : d ≠ 0) (h : ∃ x y z : ℤ, x * c + y * d + z * n = 1) :
     ∃ c' : ℤ, c' ≡ c [ZMOD n] ∧ IsCoprime c' d := by
   classical
@@ -73,6 +82,9 @@ theorem exists_of_ne_zero {n c d : ℤ} (hd : d ≠ 0) (h : ∃ x y z : ℤ, x *
         rwa [add_sub_cancel_right] at h3
       exact hpc this
 
+/--
+@isnad1 id=ex.1h3v.s6.521ccb0d48df from=translated src=- shape=28bfe8bd vocab=2a6933ce
+-/
 theorem exists_modEq_and_modEq_and_isCoprime_impl {n c d : ℤ}
     (h : ∃ x y z : ℤ, x * c + y * d + z * n = 1) :
     ∃ c' d' : ℤ, c' ≡ c [ZMOD n] ∧ d' ≡ d [ZMOD n] ∧ IsCoprime c' d' := by
@@ -90,6 +102,9 @@ theorem exists_modEq_and_modEq_and_isCoprime_impl {n c d : ℤ}
 
 end M4aP1R.UnimodularLift
 
+/--
+@isnad1 id=ex.1h3v.s6.521ccb0d48df from=translated src=- shape=28bfe8bd vocab=2a6933ce
+-/
 theorem solution {n c d : ℤ}
     (h : ∃ x y z : ℤ, x * c + y * d + z * n = 1) :
     ∃ c' d' : ℤ, c' ≡ c [ZMOD n] ∧ d' ≡ d [ZMOD n] ∧ IsCoprime c' d' := by

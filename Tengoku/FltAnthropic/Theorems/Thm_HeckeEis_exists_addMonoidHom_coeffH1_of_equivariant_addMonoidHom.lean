@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open CongruenceSubgroup
 
+/--
+@isnad1 id=ex.3h11v.s17.55f7f68e9467 from=translated src=- shape=6ea9aa58 vocab=9ac0ee77
+-/
 theorem HeckeEis.exists_addMonoidHom_coeffH1_of_equivariant_addMonoidHom
     (N : ℕ) {R : Type} [CommRing R] {κ : Type} [CommRing κ] (f : R →+* κ)
     {Λ : Type} [AddCommGroup Λ] [Module R Λ] {Λ' : Type} [AddCommGroup Λ'] [Module κ Λ']

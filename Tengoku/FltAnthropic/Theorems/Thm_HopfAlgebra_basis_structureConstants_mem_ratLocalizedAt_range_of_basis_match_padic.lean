@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_HopfAlgebra_basis_structureConstants_mem_r
 
 open scoped NNReal TensorProduct
 open scoped TensorProduct in
+/--
+@isnad1 id=and.2h7v.s15.572c37f0683c from=translated src=- shape=fac7cb1a vocab=c6109694
+-/
 theorem HopfAlgebra.basis_structureConstants_mem_ratLocalizedAt_range_of_basis_match_padic
     (p : ℕ) [Fact p.Prime]
     (A : Type) [CommRing A] [HopfAlgebra ℚ A]

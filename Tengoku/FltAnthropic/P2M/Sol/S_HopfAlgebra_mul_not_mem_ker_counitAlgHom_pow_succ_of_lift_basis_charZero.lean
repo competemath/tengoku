@@ -24,6 +24,9 @@ abbrev kwCartier68a_augIdeal : Ideal A := RingHom.ker (counitAlgHom k A).toRingH
 
 variable {k A}
 
+/--
+@isnad1 id=eq.1h3v.s12.6ef84e21625f from=translated src=- shape=67245f2c vocab=ab3d7f22
+-/
 theorem kwCartier68a_rTensor_counit_comulDefect
     {x : A} (hx : x ∈ kwCartier68a_augIdeal k A) :
     ((Coalgebra.counit (R := k)).rTensor A)
@@ -32,6 +35,9 @@ theorem kwCartier68a_rTensor_counit_comulDefect
   simp only [map_sub, LinearMap.rTensor_tmul, Coalgebra.rTensor_counit_comul, hεx,
     Bialgebra.counit_one, TensorProduct.zero_tmul, sub_zero, sub_self]
 
+/--
+@isnad1 id=eq.1h3v.s12.9bf4b9835cfc from=translated src=- shape=420082b4 vocab=d6ddb4c8
+-/
 theorem kwCartier68a_lTensor_counit_comulDefect
     {x : A} (hx : x ∈ kwCartier68a_augIdeal k A) :
     ((Coalgebra.counit (R := k)).lTensor A)
@@ -50,12 +56,18 @@ def kwCartier68c_augProj : A →ₗ[k] A :=
 
 variable {k A}
 
+/--
+@isnad1 id=mem.0h3v.s8.d019e08f6671 from=translated src=- shape=c04ee59c vocab=c42833bc
+-/
 theorem kwCartier68c_augProj_mem_augIdeal (a : A) :
     kwCartier68c_augProj k A a ∈ kwCartier68a_augIdeal k A := by
   show (counitAlgHom k A) (a - algebraMap k A (Coalgebra.counit (R := k) a)) = 0
   rw [map_sub, AlgHom.commutes]
   exact sub_self _
 
+/--
+@isnad1 id=eq.1h3v.s13.dad7f545987f from=translated src=- shape=96f03a89 vocab=e3cda341
+-/
 theorem kwCartier68c_augProj_lTensor_comulDefect
     {x : A} (hx : x ∈ kwCartier68a_augIdeal k A) :
     (kwCartier68c_augProj k A).lTensor A
@@ -69,6 +81,9 @@ theorem kwCartier68c_augProj_lTensor_comulDefect
     LinearMap.lTensor_id, LinearMap.id_apply, LinearMap.lTensor_comp,
     LinearMap.comp_apply, hL, map_zero, sub_zero]
 
+/--
+@isnad1 id=eq.1h3v.s13.bc7c1dd3bbcd from=translated src=- shape=96f03a89 vocab=fec58c8b
+-/
 theorem kwCartier68c_augProj_rTensor_comulDefect
     {x : A} (hx : x ∈ kwCartier68a_augIdeal k A) :
     (kwCartier68c_augProj k A).rTensor A
@@ -82,6 +97,9 @@ theorem kwCartier68c_augProj_rTensor_comulDefect
     LinearMap.rTensor_id, LinearMap.id_apply, LinearMap.rTensor_comp,
     LinearMap.comp_apply, hR, map_zero, sub_zero]
 
+/--
+@isnad1 id=eq.1h3v.s13.6d94f33673d5 from=translated src=- shape=ff8932b9 vocab=8a6c424f
+-/
 theorem kwCartier68c_augProj_tmul_augProj_comulDefect
     {x : A} (hx : x ∈ kwCartier68a_augIdeal k A) :
     (TensorProduct.map (kwCartier68c_augProj k A) (kwCartier68c_augProj k A))
@@ -96,6 +114,9 @@ section ComulDefectMap
 
 variable {k : Type u} [Field k] {A : Type v} [CommRing A] [HopfAlgebra k A]
 
+/--
+@isnad1 id=mem.1h3v.s12.c1362a287435 from=translated src=- shape=642f1f91 vocab=e2337fdc
+-/
 theorem kwCartier68c_comulDefect_mem_map_includeRight
     {x : A} (hx : x ∈ kwCartier68a_augIdeal k A) :
     (Coalgebra.comul (R := k) x) - x ⊗ₜ[k] 1 - 1 ⊗ₜ[k] x ∈
@@ -118,6 +139,9 @@ theorem kwCartier68c_comulDefect_mem_map_includeRight
     by rw [Algebra.TensorProduct.tmul_mul_tmul, mul_one, one_mul]]
   exact Ideal.mul_mem_left K _ (Ideal.mem_map_of_mem _ hσb)
 
+/--
+@isnad1 id=mem.1h3v.s12.c09866963e57 from=translated src=- shape=d34de238 vocab=9d5e7392
+-/
 theorem kwCartier68c_comulDefect_mem_map_includeLeft
     {x : A} (hx : x ∈ kwCartier68a_augIdeal k A) :
     (Coalgebra.comul (R := k) x) - x ⊗ₜ[k] 1 - 1 ⊗ₜ[k] x ∈
@@ -145,6 +169,9 @@ section ComulFiltered
 
 variable {k : Type u} [Field k] {A : Type v} [CommRing A] [HopfAlgebra k A]
 
+/--
+@isnad1 id=mem.1h3v.s12.308a07736bcb from=translated src=- shape=8c623dfe vocab=9806d37b
+-/
 theorem kwCartier68e_comul_mem_sup_map
     {x : A} (hx : x ∈ kwCartier68a_augIdeal k A) :
     (comulAlgHom k A) x ∈
@@ -166,6 +193,9 @@ section NilpotentSup
 
 variable {S : Type v} [CommRing S]
 
+/--
+@isnad1 id=le.1h4v.s8.97239ea6779c from=translated src=- shape=07b1f172 vocab=c86725da
+-/
 theorem kwCartier68e_sup_pow_succ_le_of_sq_eq_bot
     {L R : Ideal S} (hR : R ^ 2 = ⊥) (m : ℕ) :
     (L ⊔ R) ^ (m + 1) ≤ L ^ (m + 1) ⊔ L ^ m * R := by
@@ -202,6 +232,9 @@ def kwCartier68e_Ψ : A →ₐ[k]
 
 variable {k A n}
 
+/--
+@isnad1 id=eq.1h4v.s12.cd293ba5745e from=translated src=- shape=de54114e vocab=f61ec576
+-/
 theorem kwCartier68e_Ψ_apply_eq_zero_of_mem_pow_succ
     {z : A} (hz : z ∈ (kwCartier68a_augIdeal k A) ^ (n + 1)) :
     kwCartier68e_Ψ k A n z = 0 := by
@@ -273,6 +306,9 @@ section SqZeroTaylor
 variable {k : Type u} [CommRing k] {S : Type v} [CommRing S] [Algebra k S]
 variable {ι : Type w} [Fintype ι]
 
+/--
+@isnad1 id=eq.2h7v.s10.d8cb29ba22fd from=translated src=- shape=6214afbf vocab=df9d0df8
+-/
 theorem kwCartier68e_aeval_add_of_sq_eq_zero
     {K : Ideal S} (hK : K ^ 2 = ⊥) (a b : ι → S) (hb : ∀ i, b i ∈ K)
     (p : MvPolynomial ι k) :
@@ -313,6 +349,9 @@ section TmulLinIndep
 variable {k : Type u} [Field k] {V : Type v} [AddCommGroup V] [Module k V]
 variable {W : Type w} [AddCommGroup W] [Module k W] {ι : Type*} [Fintype ι]
 
+/--
+@isnad1 id=eq.2h7v.s7.089655965e53 from=translated src=- shape=35f1b2f5 vocab=e50b3307
+-/
 theorem kwCartier68e_eq_zero_of_sum_tmul_linearIndependent
     {w : ι → W} (hw : LinearIndependent k w) {m : ι → V}
     (h0 : ∑ i, m i ⊗ₜ[k] w i = 0) (j : ι) : m j = 0 := by
@@ -346,6 +385,9 @@ section Main
 variable {k : Type u} [Field k] {A : Type v} [CommRing A] [HopfAlgebra k A]
 variable {ι : Type w}
 
+/--
+@isnad1 id=mem.2h6v.s8.98dc31787ec7 from=translated src=- shape=93bce834 vocab=4ae1f4dd
+-/
 theorem kwCartier68e_aeval_homogeneous_mem_augIdeal_pow
     {ξ : ι → A} (hξI : ∀ i, ξ i ∈ kwCartier68a_augIdeal k A)
     {n : ℕ} {p : MvPolynomial ι k} (hp : p.IsHomogeneous n) :
@@ -364,6 +406,9 @@ theorem kwCartier68e_aeval_homogeneous_mem_augIdeal_pow
 
 variable [Fintype ι] [CharZero k]
 
+/--
+@isnad1 id=not.4h6v.s10.a1482d4ea532 from=translated src=- shape=1120902d vocab=14d99ea8
+-/
 theorem kwCartier68e_aeval_homogeneous_not_mem_augIdeal_pow_succ
     {ξ : ι → A} (hξI : ∀ i, ξ i ∈ kwCartier68a_augIdeal k A)
     (hξli : LinearIndependent k
@@ -532,6 +577,9 @@ section Surj
 variable {k : Type u} [Field k] {A : Type v} [CommRing A] [HopfAlgebra k A]
 variable {ι : Type w} [Fintype ι]
 
+/--
+@isnad1 id=ex.3h6v.s9.5b8adf9a8be1 from=translated src=- shape=7d7f6940 vocab=05660efd
+-/
 theorem kwCartier68e_exists_homogeneous_aeval_congr_of_mem_pow
     {ξ : ι → A} (hξI : ∀ i, ξ i ∈ kwCartier68a_augIdeal k A)
     (hξspan : ∀ a ∈ kwCartier68a_augIdeal k A,
@@ -577,6 +625,9 @@ theorem kwCartier68e_exists_homogeneous_aeval_congr_of_mem_pow
 
 variable [CharZero k]
 
+/--
+@isnad1 id=not.7h8v.s11.9ba24cae6eac from=translated src=- shape=c0d9d44e vocab=778c38e4
+-/
 theorem kwCartier68e_mul_not_mem_pow_of_not_mem_pow
     {ξ : ι → A} (hξI : ∀ i, ξ i ∈ kwCartier68a_augIdeal k A)
     (hξli : LinearIndependent k
@@ -618,6 +669,9 @@ end Surj
 end CartierHopf
 
 open CartierHopf in
+/--
+@isnad1 id=not.7h8v.s12.fc50718b6326 from=translated src=- shape=107aabb0 vocab=4630ae6a
+-/
 theorem solution
     (K : Type*) [Field K] [CharZero K]
     (A : Type*) [CommRing A] [HopfAlgebra K A]

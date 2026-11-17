@@ -10,6 +10,9 @@ namespace P2MW.S_HopfAlgebra_exists_finiteFlat_ratLocalizedAt_of_algEquiv_baseCh
 
 open scoped NNReal TensorProduct
 
+/--
+@isnad1 id=ex.8h6v.s16.55ac1005c9ec from=translated src=- shape=2b42bd1a vocab=7e51fc61
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime]
     (A : Type) [CommRing A] [HopfAlgebra ℚ A]

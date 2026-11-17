@@ -7,6 +7,9 @@ namespace P2MW.S_HopfAlgebra_finiteFlat_tensorProduct
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=and.0h3v.s9.3cb0f4e200e2 from=translated src=- shape=347310d6 vocab=8b16279a
+-/
 theorem solution {R A B : Type*} [CommRing R] [CommRing A] [CommRing B]
     [HopfAlgebra R A] [HopfAlgebra R B]
     [Module.Finite R A] [Module.Flat R A] [Module.Finite R B] [Module.Flat R B] :

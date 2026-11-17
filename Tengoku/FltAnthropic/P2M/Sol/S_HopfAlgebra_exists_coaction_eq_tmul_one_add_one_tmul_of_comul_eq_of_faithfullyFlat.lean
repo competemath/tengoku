@@ -18,6 +18,9 @@ namespace P2mPrimDescent
 variable {K : Type u} [Field K] {R S H : Type u} [CommRing R] [CommRing S] [CommRing H]
     [Algebra K R] [Algebra K S] [Algebra R S] [IsScalarTower K R S] [HopfAlgebra K H]
 
+/--
+@isnad1 id=eq.0h6v.s10.e3b6a35d1323 from=translated src=- shape=dc1ad47b vocab=cd43b75c
+-/
 theorem smul_eq_tmul_one_mul (r : R) (y : S ⊗[K] H) : r • y = (algebraMap R S r ⊗ₜ[K] (1 : H)) * y := by
   induction y using TensorProduct.induction_on with
   | zero => simp
@@ -33,6 +36,9 @@ noncomputable def shearEquiv (σ : S ⊗[R] S →+* S ⊗[K] H) (hσ : Function.
         rw [RingHom.id_apply, Algebra.smul_def, Algebra.TensorProduct.algebraMap_apply, map_mul, hσ_left,
           smul_eq_tmul_one_mul] } hσ
 
+/--
+@isnad1 id=eq.2h6v.s12.80babd0a43d7 from=translated src=- shape=878ba746 vocab=3f7bc746
+-/
 @[scoped simp] theorem shearEquiv_apply (σ : S ⊗[R] S →+* S ⊗[K] H) (hσ : Function.Bijective σ)
     (hσ_left : ∀ s : S, σ (s ⊗ₜ[R] 1) = s ⊗ₜ[K] 1) (x : S ⊗[R] S) : shearEquiv σ hσ hσ_left x = σ x := rfl
 
@@ -43,6 +49,9 @@ noncomputable def doubleShear (σ : S ⊗[R] S →+* S ⊗[K] H) (hσ : Function
       ((TensorProduct.AlgebraTensorModule.assoc K R R S S H).symm
         (TensorProduct.congr (LinearEquiv.refl R S) (shearEquiv σ hσ hσ_left) t)))
 
+/--
+@isnad1 id=injectiv.2h5v.s11.089e7479ab7d from=translated src=- shape=21fdcc15 vocab=d6ad2269
+-/
 theorem doubleShear_injective (σ : S ⊗[R] S →+* S ⊗[K] H) (hσ : Function.Bijective σ)
     (hσ_left : ∀ s : S, σ (s ⊗ₜ[R] 1) = s ⊗ₜ[K] 1) : Function.Injective (doubleShear σ hσ hσ_left) :=
   (Algebra.TensorProduct.assoc K K K S H H).injective.comp <|
@@ -50,11 +59,17 @@ theorem doubleShear_injective (σ : S ⊗[R] S →+* S ⊗[K] H) (hσ : Function
       (TensorProduct.AlgebraTensorModule.assoc K R R S S H).symm.injective.comp
         (TensorProduct.congr (LinearEquiv.refl R S) (shearEquiv σ hσ hσ_left)).injective
 
+/--
+@isnad1 id=eq.2h7v.s12.0020ba3fe1e2 from=translated src=- shape=bf02e2c3 vocab=6e40d19e
+-/
 theorem doubleShear_add (σ : S ⊗[R] S →+* S ⊗[K] H) (hσ : Function.Bijective σ)
     (hσ_left : ∀ s : S, σ (s ⊗ₜ[R] 1) = s ⊗ₜ[K] 1) (t t' : S ⊗[R] (S ⊗[R] S)) :
     doubleShear σ hσ hσ_left (t + t') = doubleShear σ hσ hσ_left t + doubleShear σ hσ hσ_left t' := by
   simp only [doubleShear, map_add]
 
+/--
+@isnad1 id=eq.3h9v.s13.4ff741596e89 from=translated src=- shape=cf585b88 vocab=f03d0232
+-/
 theorem doubleShear_tmul (σ : S ⊗[R] S →+* S ⊗[K] H) (hσ : Function.Bijective σ)
     (hσ_left : ∀ s : S, σ (s ⊗ₜ[R] 1) = s ⊗ₜ[K] 1) (a x : S) (y : H) (z : S ⊗[R] S)
     (hz : σ z = x ⊗ₜ[K] y) :
@@ -73,6 +88,9 @@ namespace P2mPrimDescent
 variable {K : Type u} [Field K] {R S H : Type u} [CommRing R] [CommRing S] [CommRing H]
     [Algebra K R] [Algebra K S] [Algebra R S] [IsScalarTower K R S] [HopfAlgebra K H]
 
+/--
+@isnad1 id=eq.3h8v.s14.f8c3560b6e12 from=translated src=- shape=fb7b1196 vocab=d1a34ae6
+-/
 theorem doubleShear_tmul' (ρ : S →ₐ[K] S ⊗[K] H) (σ : S ⊗[R] S →+* S ⊗[K] H) (hσ : Function.Bijective σ)
     (hσ_left : ∀ s : S, σ (s ⊗ₜ[R] 1) = s ⊗ₜ[K] 1) (hσ_right : ∀ s : S, σ (1 ⊗ₜ[R] s) = ρ s)
     (a : S) (z : S ⊗[R] S) :
@@ -100,6 +118,9 @@ end P2mPrimDescent
 open scoped _root_.P2MW.S_HopfAlgebra_exists_coaction_eq_tmul_one_add_one_tmul_of_comul_eq_of_faithfullyFlat.P2mPrimDescent
 
 open P2mPrimDescent in
+/--
+@isnad1 id=and.7h7v.s14.a737200218f2 from=translated src=- shape=a9e360dd vocab=f40fca76
+-/
 theorem solution
     {K : Type u} [Field K] {R S H : Type u} [CommRing R] [CommRing S] [CommRing H]
     [Algebra K R] [Algebra K S] [Algebra R S] [IsScalarTower K R S] [Module.FaithfullyFlat R S]

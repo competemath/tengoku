@@ -45,6 +45,9 @@ variable {N ℓ ρ a}
 noncomputable def heckeZ1 (ha : IsCompat N ℓ ρ a) : ↥(coeffCocycles ρ) →ₗ[K] ↥(coeffCocycles ρ) :=
   (heckeLin N ℓ ρ a).restrict fun _ hz => coeffHeckeFun_mem_coeffCocycles N ℓ ρ a ha hz
 
+/--
+@isnad1 id=eq.1h7v.s15.cb39d802ea49 from=translated src=- shape=250c4951 vocab=f38a3c44
+-/
 @[scoped simp] theorem coe_heckeZ1 (ha : IsCompat N ℓ ρ a) (z : ↥(coeffCocycles ρ)) :
     (heckeZ1 ha z : Gamma0 N → V) = coeffHeckeFun N ℓ ρ a z := rfl
 
@@ -53,12 +56,21 @@ noncomputable def heckeH1 (ha : IsCompat N ℓ ρ a) : coeffH1 ρ →ₗ[K] coef
     ((coeffCoboundaries ρ).comap (coeffCocycles ρ).subtype) (heckeZ1 ha)
     fun _ hz => coeffHeckeFun_mem_coeffCoboundaries N ℓ ρ a ha hz
 
+/--
+@isnad1 id=eq.1h7v.s16.5d226c41cd8b from=translated src=- shape=aa68d3a3 vocab=b60daf9b
+-/
 theorem heckeH1_mk (ha : IsCompat N ℓ ρ a) (z : ↥(coeffCocycles ρ)) :
     heckeH1 ha (coeffH1Mk ρ z) = coeffH1Mk ρ (heckeZ1 ha z) := rfl
 
+/--
+@isnad1 id=iscoeffh.1h6v.s9.d541ec2b97a8 from=translated src=- shape=a6aab16c vocab=9d52fd71
+-/
 theorem isCoeffHeckeOnH1_heckeH1 (ha : IsCompat N ℓ ρ a) : IsCoeffHeckeOnH1 N ℓ ρ a (heckeH1 ha) :=
   fun z => ⟨heckeZ1 ha z, rfl, rfl⟩
 
+/--
+@isnad1 id=eq.2h8v.s12.7bc8b8f33f37 from=translated src=- shape=3f0f69dc vocab=77bb7152
+-/
 theorem unique_of_isCoeffHeckeOnH1 {T T' : coeffH1 ρ →ₗ[K] coeffH1 ρ} (hT : IsCoeffHeckeOnH1 N ℓ ρ a T)
     (hT' : IsCoeffHeckeOnH1 N ℓ ρ a T') : T = T' := by
   refine LinearMap.ext fun x => ?_
@@ -69,10 +81,16 @@ theorem unique_of_isCoeffHeckeOnH1 {T T' : coeffH1 ρ →ₗ[K] coeffH1 ρ} (hT 
   congr 1
   exact Subtype.ext (hw.trans hw'.symm)
 
+/--
+@isnad1 id=iff.0h6v.s16.24975f9bdcd4 from=translated src=- shape=7ea0ec33 vocab=3b67d255
+-/
 theorem coeffH1Mk_eq_iff (z w : ↥(coeffCocycles ρ)) :
     coeffH1Mk ρ z = coeffH1Mk ρ w ↔ (z : Gamma0 N → V) - w ∈ coeffCoboundaries ρ :=
   (Submodule.Quotient.eq _).trans Submodule.mem_comap
 
+/--
+@isnad1 id=eq.8h9v.s14.062c3e9b4aa8 from=translated src=- shape=488dbb30 vocab=896d7f00
+-/
 theorem heckeH1_comm {ℓ ℓ' : ℕ} [NeZero ℓ] [NeZero ℓ'] (hℓ : ℓ.Prime) (hℓ' : ℓ'.Prime)
     (hℓN : ¬ ℓ ∣ N) (hℓ'N : ¬ ℓ' ∣ N) (hne : ℓ ≠ ℓ') {a a' : V →ₗ[K] V}
     (ha : IsCompat N ℓ ρ a) (ha' : IsCompat N ℓ' ρ a') (hcomm : a ∘ₗ a' = a' ∘ₗ a) (x : coeffH1 ρ) :
@@ -103,14 +121,26 @@ noncomputable abbrev ρSym : Representation R (Gamma0 N) ↥(BinaryForm R n) :=
 
 def dMat (ℓ : ℕ) : Matrix (Fin 2) (Fin 2) ℤ := !![(ℓ : ℤ), 0; 0, 1]
 
+/--
+@isnad1 id=eq.0h2v.s7.45620252ec1d from=translated src=- shape=e011af2d vocab=a54625c7
+-/
 theorem dMat_comm (ℓ ℓ' : ℕ) : dMat ℓ * dMat ℓ' = dMat ℓ' * dMat ℓ := by
   simp only [dMat, Matrix.mul_fin_two, mul_zero, add_zero, zero_add, mul_one, mul_comm]
 
+/--
+@isnad1 id=eq.0h3v.s12.082b16658010 from=translated src=- shape=920c3da7 vocab=1ce10d64
+-/
 theorem binaryFormAlphaAdj_eq (ℓ : ℕ) : binaryFormAlphaAdj R n ℓ = binaryFormRep R n (dMat ℓ) := rfl
 
+/--
+@isnad1 id=iscompat.0h4v.s8.44cb51801062 from=translated src=- shape=290dfe6e vocab=b705034f
+-/
 theorem isCompat_sym (ℓ : ℕ) [NeZero ℓ] : IsCompat N ℓ (ρSym R N n) (binaryFormAlphaAdj R n ℓ) :=
   fun u => binaryFormAlphaAdj_comp_binaryFormRepSL_heckeConj R n N ℓ u
 
+/--
+@isnad1 id=eq.0h4v.s11.b2a7146fc0d7 from=translated src=- shape=438657ad vocab=271d639a
+-/
 theorem alpha_comm (ℓ ℓ' : ℕ) :
     binaryFormAlphaAdj R n ℓ ∘ₗ binaryFormAlphaAdj R n ℓ' =
       binaryFormAlphaAdj R n ℓ' ∘ₗ binaryFormAlphaAdj R n ℓ := by
@@ -124,10 +154,16 @@ abbrev H1 : Type := coeffH1 (ρSym R N n)
 noncomputable def TH (ℓ : ℕ) [NeZero ℓ] : H1 R N n →ₗ[R] H1 R N n :=
   heckeH1 (isCompat_sym R N n ℓ)
 
+/--
+@isnad1 id=iscoeffh.0h4v.s8.ca754a11f3be from=translated src=- shape=5ce5116d vocab=8e1292d7
+-/
 theorem isCoeffHeckeOnH1_TH (ℓ : ℕ) [NeZero ℓ] :
     IsCoeffHeckeOnH1 N ℓ (ρSym R N n) (binaryFormAlphaAdj R n ℓ) (TH R N n ℓ) :=
   isCoeffHeckeOnH1_heckeH1 _
 
+/--
+@isnad1 id=commute.4h5v.s11.033c8e297b58 from=translated src=- shape=74387ee0 vocab=bb8ac6d9
+-/
 theorem TH_comm {ℓ ℓ' : ℕ} [NeZero ℓ] [NeZero ℓ'] (hℓ : ℓ.Prime) (hℓ' : ℓ'.Prime)
     (hℓN : ¬ ℓ ∣ N) (hℓ'N : ¬ ℓ' ∣ N) : Commute (TH R N n ℓ) (TH R N n ℓ') := by
   by_cases hne : ℓ = ℓ'
@@ -142,6 +178,9 @@ section FiniteGen
 
 variable {K : Type*} [CommRing K] {V : Type*} [AddCommGroup V] [Module K V]
 
+/--
+@isnad1 id=eq.2h7v.s8.a5f705102562 from=translated src=- shape=ed0e8ddc vocab=45a429c2
+-/
 theorem cocycle_apply_eq_zero_of_closure {G : Type*} [Group G] (ρ : Representation K G V)
     (z : ↥(coeffCocycles ρ)) (S : Set G) (hS : ∀ s ∈ S, (z : G → V) s = 0)
     (g : G) (hg : g ∈ Subgroup.closure S) : (z : G → V) g = 0 := by
@@ -161,6 +200,9 @@ theorem cocycle_apply_eq_zero_of_closure {G : Type*} [Group G] (ρ : Representat
     have h2 : ρ x⁻¹ (ρ x ((z : G → V) x⁻¹)) = 0 := by rw [← h, map_zero]
     rwa [← Module.End.mul_apply, ← map_mul, inv_mul_cancel, map_one, Module.End.one_apply] at h2
 
+/--
+@isnad1 id=ex.0h1v.s11.fee7c899be20 from=translated src=- shape=1c3d2e8e vocab=9f6cb5bb
+-/
 theorem exists_finset_closure_eq_top (N : ℕ) [NeZero N] :
     ∃ S : Finset (Gamma0 N), Subgroup.closure (S : Set (Gamma0 N)) = ⊤ := by
   haveI hSL : Group.FG SL(2, ℤ) :=
@@ -169,6 +211,9 @@ theorem exists_finset_closure_eq_top (N : ℕ) [NeZero N] :
   have hΓ : Group.FG (Gamma0 N) := inferInstance
   exact hΓ.out
 
+/--
+@isnad1 id=finite.0h4v.s10.5b8597effec7 from=translated src=- shape=52a4d820 vocab=0de6eae5
+-/
 theorem moduleFinite_coeffH1 (N : ℕ) [NeZero N] [IsNoetherianRing K] [Module.Finite K V]
     (ρ : Representation K (Gamma0 N) V) : Module.Finite K (coeffH1 ρ) := by
   obtain ⟨S, hS⟩ := exists_finset_closure_eq_top N
@@ -185,6 +230,9 @@ theorem moduleFinite_coeffH1 (N : ℕ) [NeZero N] [IsNoetherianRing K] [Module.F
   haveI : Module.Finite K ↥(coeffCocycles ρ) := Module.Finite.of_injective ev hev
   exact Module.Finite.of_surjective (coeffH1Mk ρ) (coeffH1Mk_surjective ρ)
 
+/--
+@isnad1 id=finite.0h2v.s8.fd6cb195f205 from=translated src=- shape=4abe9af8 vocab=903117fa
+-/
 scoped instance moduleFinite_binaryForm [IsNoetherianRing K] (n : ℕ) : Module.Finite K ↥(BinaryForm K n) := by
   have hle : BinaryForm K n ≤ MvPolynomial.restrictTotalDegree (Fin 2) K n := fun φ hφ =>
     (MvPolynomial.mem_restrictTotalDegree _ _ _).mpr
@@ -195,6 +243,9 @@ end FiniteGen
 
 section Substitution
 
+/--
+@isnad1 id=eq.0h5v.s10.308397182d7f from=translated src=- shape=133141e1 vocab=96c9dafe
+-/
 theorem map_binarySubst {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S)
     (M : Matrix (Fin 2) (Fin 2) ℤ) (F : MvPolynomial (Fin 2) R) :
     MvPolynomial.map f (binarySubst R M F) = binarySubst S M (MvPolynomial.map f F) := by
@@ -219,10 +270,16 @@ noncomputable def cmap (l : κ →+ ZMod p) : MvPolynomial (Fin 2) κ →+ MvPol
 
 variable {p κ}
 
+/--
+@isnad1 id=eq.0h5v.s9.b407310acdaf from=translated src=- shape=d936e144 vocab=314e34ee
+-/
 @[scoped simp] theorem coeff_cmap (l : κ →+ ZMod p) (F : MvPolynomial (Fin 2) κ) (m : Fin 2 →₀ ℕ) :
     MvPolynomial.coeff m (cmap p κ l F) = l (MvPolynomial.coeff m F) :=
   rfl
 
+/--
+@isnad1 id=mem.1h5v.s9.a6631a1ee070 from=translated src=- shape=6f28459a vocab=484c1868
+-/
 theorem cmap_mem {n : ℕ} (l : κ →+ ZMod p) {F : MvPolynomial (Fin 2) κ} (hF : F ∈ BinaryForm κ n) :
     cmap p κ l F ∈ BinaryForm (ZMod p) n := by
   rw [MvPolynomial.mem_homogeneousSubmodule] at hF ⊢
@@ -230,6 +287,9 @@ theorem cmap_mem {n : ℕ} (l : κ →+ ZMod p) {F : MvPolynomial (Fin 2) κ} (h
   refine hF fun h0 => hd ?_
   rw [coeff_cmap, h0, map_zero]
 
+/--
+@isnad1 id=eq.0h5v.s10.2dfc8ac8cccd from=translated src=- shape=fe80ef00 vocab=44d36445
+-/
 theorem cmap_C_mul_map (l : κ →+ ZMod p) (c : κ) (G : MvPolynomial (Fin 2) ℤ) :
     cmap p κ l (MvPolynomial.C c * MvPolynomial.map (Int.castRingHom κ) G) =
       MvPolynomial.C (l c) * MvPolynomial.map (Int.castRingHom (ZMod p)) G := by
@@ -238,6 +298,9 @@ theorem cmap_C_mul_map (l : κ →+ ZMod p) (c : κ) (G : MvPolynomial (Fin 2) �
     MvPolynomial.coeff_map, eq_intCast, eq_intCast, mul_comm c, ← zsmul_eq_mul, map_zsmul, zsmul_eq_mul,
     mul_comm]
 
+/--
+@isnad1 id=eq.0h5v.s10.3b8264cedb84 from=translated src=- shape=66a529cb vocab=db72ca41
+-/
 theorem cmap_monomial (l : κ →+ ZMod p) (d : Fin 2 →₀ ℕ) (c : κ) :
     cmap p κ l (MvPolynomial.monomial d c) = MvPolynomial.monomial d (l c) := by
   refine MvPolynomial.ext _ _ fun m => ?_
@@ -247,6 +310,9 @@ theorem cmap_monomial (l : κ →+ ZMod p) (d : Fin 2 →₀ ℕ) (c : κ) :
   · rfl
   · exact map_zero l
 
+/--
+@isnad1 id=eq.0h4v.s10.ad293820ab04 from=translated src=- shape=9a2aef0d vocab=57fa89e6
+-/
 theorem binarySubst_monomial_eq (R : Type*) [CommRing R] (M : Matrix (Fin 2) (Fin 2) ℤ)
     (d : Fin 2 →₀ ℕ) (c : R) :
     binarySubst R M (MvPolynomial.monomial d c) =
@@ -254,6 +320,9 @@ theorem binarySubst_monomial_eq (R : Type*) [CommRing R] (M : Matrix (Fin 2) (Fi
   rw [map_binarySubst, MvPolynomial.map_monomial, map_one]
   conv_lhs => rw [← mul_one c, ← MvPolynomial.C_mul_monomial, map_mul, binarySubst_C]
 
+/--
+@isnad1 id=eq.0h5v.s10.e308cc09a9f7 from=translated src=- shape=92bbd530 vocab=30aa4547
+-/
 theorem cmap_binarySubst (l : κ →+ ZMod p) (M : Matrix (Fin 2) (Fin 2) ℤ) (F : MvPolynomial (Fin 2) κ) :
     cmap p κ l (binarySubst κ M F) = binarySubst (ZMod p) M (cmap p κ l F) := by
   conv_lhs => rw [F.as_sum]
@@ -282,6 +351,9 @@ noncomputable def cocycleCmap (l : κ →+ ZMod p) (z : ↥(coeffCocycles (ρSym
           (cmap p κ l ((z : Gamma0 N → ↥(BinaryForm κ n)) h : MvPolynomial (Fin 2) κ))
     rw [hz, map_add, cmap_binarySubst]⟩
 
+/--
+@isnad1 id=eq.0h7v.s14.dd2ead8fa148 from=translated src=- shape=85384cd7 vocab=4ef7c20c
+-/
 theorem coe_cocycleCmap_apply (l : κ →+ ZMod p) (z : ↥(coeffCocycles (ρSym κ N n))) (g : Gamma0 N) :
     (((cocycleCmap N n l z : Gamma0 N → ↥(BinaryForm (ZMod p) n)) g : ↥(BinaryForm (ZMod p) n)) :
       MvPolynomial (Fin 2) (ZMod p)) =
@@ -297,6 +369,9 @@ structure IsCoeffMap {R R' : Type} [CommRing R] [CommRing R'] (φ : R →+* R')
   smul : ∀ (c : R) (x : H1 R N n), Φ (c • x) = φ c • Φ x
   hecke : ∀ (ℓ : ℕ) [NeZero ℓ] (x : H1 R N n), Φ (TH R N n ℓ x) = TH R' N n ℓ (Φ x)
 
+/--
+@isnad1 id=ex.0h5v.s11.f426e7c84060 from=translated src=- shape=d08ef458 vocab=b5d9550a
+-/
 theorem exists_isCoeffMap {R R' : Type} [CommRing R] [CommRing R'] (φ : R →+* R') :
     ∃ Φ : H1 R N n →+ H1 R' N n, IsCoeffMap N n φ Φ := by
   obtain ⟨Φ, h1, h2, h3, -, -⟩ := exists_coeffH1_map_ringHom_binaryFormRepSL φ n N
@@ -305,6 +380,9 @@ theorem exists_isCoeffMap {R R' : Type} [CommRing R] [CommRing R'] (φ : R →+*
 
 variable {N n}
 
+/--
+@isnad1 id=mem.1h6v.s13.8a0a1df1edc0 from=translated src=- shape=a39b820b vocab=c6ef53e0
+-/
 theorem mem_span_range [NeZero N] [Algebra (ZMod p) κ] {Φ : H1 (ZMod p) N n →+ H1 κ N n}
     (hΦ : IsCoeffMap N n (algebraMap (ZMod p) κ) Φ) (x : H1 κ N n) :
     x ∈ Submodule.span κ (Set.range Φ) := by
@@ -385,6 +463,9 @@ end FpStructure
 
 section Splitting
 
+/--
+@isnad1 id=mem.2h2v.s6.3d4e9646c40b from=translated src=- shape=71946ae3 vocab=6a8dddfb
+-/
 theorem mem_integralClosure_of_mem_roots {g : ℤ[X]} (hg : g.Monic) {z : ℂ}
     (hz : z ∈ (g.map (algebraMap ℤ ℂ)).roots) : z ∈ integralClosure ℤ ℂ := by
   rw [mem_integralClosure_iff]
@@ -393,6 +474,9 @@ theorem mem_integralClosure_of_mem_roots {g : ℤ[X]} (hg : g.Monic) {z : ℂ}
   have := (mem_roots hne).mp hz
   rwa [IsRoot.def, eval_map, ← aeval_def] at this
 
+/--
+@isnad1 id=splits.1h1v.s8.a131703acaa8 from=translated src=- shape=dcb81fcf vocab=c8e72db2
+-/
 theorem splits_map_integralClosure {g : ℤ[X]} (hg : g.Monic) :
     Splits (g.map (algebraMap ℤ (integralClosure ℤ ℂ))) := by
   let i : integralClosure ℤ ℂ →+* ℂ := (integralClosure ℤ ℂ).val.toRingHom
@@ -407,6 +491,9 @@ theorem splits_map_integralClosure {g : ℤ[X]} (hg : g.Monic) :
     rw [hmap] at ha
     exact ⟨⟨a, mem_integralClosure_of_mem_roots hg ha⟩, rfl⟩
 
+/--
+@isnad1 id=splits.1h3v.s7.2a798dd14973 from=translated src=- shape=1ba9a2a4 vocab=1c3b388d
+-/
 theorem splits_map_intCast_of_ringHom_integralClosure {κ : Type*} [Field κ]
     (φ : integralClosure ℤ ℂ →+* κ) {g : ℤ[X]} (hg : g.Monic) :
     Splits (g.map (Int.castRingHom κ)) := by
@@ -415,6 +502,9 @@ theorem splits_map_intCast_of_ringHom_integralClosure {κ : Type*} [Field κ]
   convert h using 2
   exact RingHom.ext_int _ _
 
+/--
+@isnad1 id=splits.1h5v.s8.093254b4c66e from=translated src=- shape=79f90c34 vocab=d9b3e187
+-/
 theorem splits_map_of_monic_zmod {p : ℕ} [Fact p.Prime] {κ : Type*} [Field κ]
     (φ : integralClosure ℤ ℂ →+* κ) (ι : ZMod p →+* κ) {P : (ZMod p)[X]} (hP : P.Monic) :
     Splits (P.map ι) := by
@@ -433,6 +523,9 @@ section Annihilator
 
 variable {p : ℕ} [Fact p.Prime] {κ : Type} [Field κ] [Algebra (ZMod p) κ] {N n : ℕ}
 
+/--
+@isnad1 id=eq.1h8v.s15.09f07e11621f from=translated src=- shape=982252bb vocab=46da12e8
+-/
 theorem IsCoeffMap.apply_aeval {Φ : H1 (ZMod p) N n →+ H1 κ N n}
     (hΦ : IsCoeffMap N n (algebraMap (ZMod p) κ) Φ) (ℓ : ℕ) [NeZero ℓ] (Q : (ZMod p)[X])
     (y : H1 (ZMod p) N n) :
@@ -448,6 +541,9 @@ theorem IsCoeffMap.apply_aeval {Φ : H1 (ZMod p) N n →+ H1 κ N n}
     | zero => rfl
     | succ i ih => rw [pow_succ, pow_succ, Module.End.mul_apply, Module.End.mul_apply, ih, hΦ.hecke]
 
+/--
+@isnad1 id=ex.0h6v.s14.1d28117e5f81 from=translated src=- shape=3aa50630 vocab=83db26ba
+-/
 theorem exists_monic_splits_aeval_TH_eq_zero [NeZero N] [CharP κ p] (φ : integralClosure ℤ ℂ →+* κ)
     (ℓ : ℕ) [NeZero ℓ] :
     ∃ P : κ[X], P.Monic ∧ P.Splits ∧ aeval (TH κ N n ℓ) P = 0 := by
@@ -473,6 +569,9 @@ section LinAlg
 
 variable {K : Type*} [Field K] {V : Type*} [AddCommGroup V] [Module K V]
 
+/--
+@isnad1 id=mem.2h6v.s9.42ae0b83aeb4 from=translated src=- shape=5e162451 vocab=63d31820
+-/
 theorem aeval_apply_mem (T : V →ₗ[K] V) (W : Submodule K V) (hW : ∀ w ∈ W, T w ∈ W) (Q : K[X])
     {w : V} (hw : w ∈ W) : aeval T Q w ∈ W := by
   induction Q using Polynomial.induction_on' with
@@ -499,6 +598,9 @@ theorem eq_zero_of_aeval_prod_eq_zero (T : V →ₗ[K] V) (W : Submodule K V) (h
     have h0 := hs a (Multiset.mem_cons_self a s) _ hmem h
     exact ih (fun b hb => hs b (Multiset.mem_cons_of_mem hb)) w hw h0
 
+/--
+@isnad1 id=ex.5h6v.s10.41598101daf8 from=translated src=- shape=49893540 vocab=b8aa2c46
+-/
 theorem exists_common_eigenvector_of_splits [FiniteDimensional K V] {ι : Type*} (T : ι → V →ₗ[K] V)
     (hT : ∀ i j, Commute (T i) (T j))
     (hann : ∀ i, ∃ P : K[X], P.Monic ∧ P.Splits ∧ aeval (T i) P = 0) :
@@ -563,6 +665,9 @@ variable (N : ℕ)
 
 abbrev PrimeAway : Type := {ℓ : ℕ // ℓ.Prime ∧ ¬ ℓ ∣ N}
 
+/--
+@isnad1 id=nezero.0h2v.s4.5623a2b4ffab from=translated src=- shape=c2823282 vocab=d1f9b134
+-/
 scoped instance neZero_primeAway (i : PrimeAway N) : NeZero (i : ℕ) := ⟨i.2.1.ne_zero⟩
 
 end Main
@@ -571,6 +676,9 @@ end EigenCompletion
 open scoped _root_.P2MW.S_HeckeEis_exists_isEigensystemH1_binaryFormRepSL_empty_of_isEigensystemH1_of_ringHom.EigenCompletion
 
 open EigenCompletion CongruenceSubgroup HeckeEis Polynomial in
+/--
+@isnad1 id=ex.1h7v.s13.aa78e34d0771 from=translated src=- shape=a121fc5e vocab=f8bcaf9d
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] (N : ℕ) [NeZero N] (S₀ : Set ℕ) (n : ℕ)
     (κ : Type) [Field κ] [CharP κ p] (φ : integralClosure ℤ ℂ →+* κ) (lam : ℕ → κ)

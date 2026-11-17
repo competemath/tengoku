@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open scoped Manifold MatrixGroups ModularForm
 
+/--
+@isnad1 id=hasderiv.2h5v.s10.00e0479be47b from=translated src=- shape=837f6c66 vocab=731bdcc1
+-/
 theorem HeckeEis.IsEichlerIntegral.hasDerivAt_eval_iterate_pderiv {n : ℕ} {g : UpperHalfPlane → ℂ}
     {G : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)} (hG : HeckeEis.IsEichlerIntegral n g G) {j : ℕ} (hj : j ≤ n)
     (τ : UpperHalfPlane) :

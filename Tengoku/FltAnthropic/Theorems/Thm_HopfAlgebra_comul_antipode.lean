@@ -6,6 +6,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_HopfAlgebra_comul_antipode
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_HopfAlgebra_comul_antipode.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
 open scoped TensorProduct in
+/--
+@isnad1 id=eq.0h3v.s11.9d3c4b3b934b from=translated src=- shape=5c3ad501 vocab=66ad8fec
+-/
 theorem HopfAlgebra.comul_antipode {R : Type*} [CommSemiring R]
     {A : Type*} [Semiring A] [HopfAlgebra R A] (a : A) :
     Coalgebra.comul (HopfAlgebra.antipode R a)

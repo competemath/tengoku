@@ -11,6 +11,9 @@ namespace P2MW.S_HopfAlgebra_exists_finiteFlat_hopfOrder_ratLocalizedAt_of_algEq
 open scoped NNReal TensorProduct
 
 open scoped TensorProduct in
+/--
+@isnad1 id=ex.6h4v.s16.0c9e93d6c9e3 from=translated src=- shape=0905b312 vocab=69ab5c21
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime]
     (A : Type) [CommRing A] [HopfAlgebra ℚ A]

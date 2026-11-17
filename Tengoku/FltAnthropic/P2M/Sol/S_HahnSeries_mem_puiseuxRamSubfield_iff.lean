@@ -15,6 +15,9 @@ namespace Puiseux
 
 variable {K : Type*} [Field K]
 
+/--
+@isnad1 id=hasrambo.1h3v.s8.51db8b93c2d2 from=translated src=- shape=57536f5a vocab=ca6cd715
+-/
 theorem hasRamBound_puiseuxRamEmb {e : ℕ} (he : 0 < e) (x : HahnSeries ℤ K) :
     HasRamBound e (puiseuxRamEmb he x) := by
   intro q hq
@@ -25,6 +28,9 @@ theorem hasRamBound_puiseuxRamEmb {e : ℕ} (he : 0 < e) (x : HahnSeries ℤ K) 
   obtain ⟨k, _, rfl⟩ := hsub hq
   exact ⟨k, rfl⟩
 
+/--
+@isnad1 id=ispwo.1h3v.s6.98c8e47d939b from=translated src=- shape=ecb3f1ff vocab=b7b319a6
+-/
 theorem isPWO_ramScale_preimage_support {e : ℕ} (he : 0 < e) (y : HahnSeries ℚ K) :
     {k : ℤ | y.coeff ((k : ℚ) / e) ≠ 0}.IsPWO := by
   have hmono : StrictMono (fun k : ℤ => (k : ℚ) / e) :=
@@ -41,6 +47,9 @@ def puiseuxRamSection {e : ℕ} (he : 0 < e) (y : HahnSeries ℚ K) : HahnSeries
   coeff k := y.coeff ((k : ℚ) / e)
   isPWO_support' := isPWO_ramScale_preimage_support he y
 
+/--
+@isnad1 id=eq.2h3v.s8.4193362ccdea from=translated src=- shape=569b2bc6 vocab=23a35976
+-/
 theorem puiseuxRamEmb_section {e : ℕ} (he : 0 < e) {y : HahnSeries ℚ K}
     (hy : HasRamBound e y) : puiseuxRamEmb he (puiseuxRamSection he y) = y := by
   ext q
@@ -57,6 +66,9 @@ theorem puiseuxRamEmb_section {e : ℕ} (he : 0 < e) {y : HahnSeries ℚ K}
       exact hq (hy hne)
     rw [hL, hR]
 
+/--
+@isnad1 id=iff.1h3v.s8.3893dda6beb1 from=translated src=- shape=98728770 vocab=f3f9b306
+-/
 theorem mem_range_puiseuxRamEmb_iff {e : ℕ} (he : 0 < e) {y : HahnSeries ℚ K} :
     y ∈ Set.range (puiseuxRamEmb (K := K) he) ↔ HasRamBound e y :=
   ⟨fun ⟨x, hx⟩ => hx ▸ hasRamBound_puiseuxRamEmb he x,
@@ -65,6 +77,9 @@ theorem mem_range_puiseuxRamEmb_iff {e : ℕ} (he : 0 < e) {y : HahnSeries ℚ K
 end P2MWs13.Puiseux
 
 open P2MWs13.Puiseux in
+/--
+@isnad1 id=iff.1h3v.s7.b5dace6e5ff4 from=translated src=- shape=300803e1 vocab=f26c86b7
+-/
 theorem solution {K : Type*} [Field K] {e : ℕ} (he : 0 < e)
     {y : HahnSeries ℚ K} :
     y ∈ HahnSeries.puiseuxRamSubfield K he ↔ HahnSeries.HasRamBound e y := by

@@ -27,13 +27,25 @@ variable (n : ℕ)
 
 def ex (i : ℕ) : Fin 2 →₀ ℕ := Finsupp.single 0 i + Finsupp.single 1 (n - i)
 
+/--
+@isnad1 id=eq.0h2v.s5.6cdafa30e9bb from=translated src=- shape=63341c4e vocab=dea80766
+-/
 @[scoped simp] theorem ex_apply_zero (i : ℕ) : ex n i 0 = i := by simp [ex]
+/--
+@isnad1 id=eq.0h2v.s6.8171d8ba4fba from=translated src=- shape=49a32e5b vocab=0f7a7d6d
+-/
 @[scoped simp] theorem ex_apply_one (i : ℕ) : ex n i 1 = n - i := by simp [ex]
 
+/--
+@isnad1 id=eq.1h3v.s4.6daa713f8437 from=translated src=- shape=97295d78 vocab=46b8865a
+-/
 theorem ex_inj {i j : ℕ} (h : ex n i = ex n j) : i = j := by
   have := congrArg (fun d => d 0) h
   simpa using this
 
+/--
+@isnad1 id=eq.1h2v.s7.b8e008f9a303 from=translated src=- shape=48540b90 vocab=6d4390c7
+-/
 theorem degree_ex {i : ℕ} (hi : i ≤ n) : (ex n i).degree = n := by
   rw [ex, (map_add Finsupp.degree), Finsupp.degree_single, Finsupp.degree_single]
   omega
@@ -49,12 +61,21 @@ theorem eq_ex_of_degree {d : Fin 2 →₀ ℕ} (hd : d.degree = n) : d = ex n (d
 
 def wt (i : ℕ) : ℂ := (-1) ^ (n - i) / (n.choose i : ℂ)
 
+/--
+@isnad1 id=ne.1h2v.s4.d71ce43aa884 from=translated src=- shape=8425c428 vocab=8ff24a01
+-/
 theorem choose_ne_zero {i : ℕ} (hi : i ≤ n) : (n.choose i : ℂ) ≠ 0 := by
   exact_mod_cast (Nat.choose_pos hi).ne'
 
+/--
+@isnad1 id=ne.1h2v.s4.fa81a08a9a85 from=translated src=- shape=24220606 vocab=3ba20bff
+-/
 theorem wt_ne_zero {i : ℕ} (hi : i ≤ n) : wt n i ≠ 0 :=
   div_ne_zero (pow_ne_zero _ (by norm_num)) (choose_ne_zero n hi)
 
+/--
+@isnad1 id=eq.1h2v.s5.3951cc017862 from=translated src=- shape=5cc442f3 vocab=62a60221
+-/
 theorem wt_mul_choose {i : ℕ} (hi : i ≤ n) : wt n i * (n.choose i : ℂ) = (-1) ^ (n - i) := by
   rw [wt, div_mul_cancel₀ _ (choose_ne_zero n hi)]
 
@@ -77,10 +98,16 @@ def rawPairing : MvPolynomial (Fin 2) ℂ →ₗ[ℂ] MvPolynomial (Fin 2) ℂ �
 def pairing : ↥(BinaryForm ℂ n) →ₗ[ℂ] ↥(BinaryForm ℂ n) →ₗ[ℂ] ℂ :=
   (rawPairing n).compl₁₂ (BinaryForm ℂ n).subtype (BinaryForm ℂ n).subtype
 
+/--
+@isnad1 id=eq.0h3v.s12.9643bd4bd115 from=translated src=- shape=42819e70 vocab=41250f62
+-/
 theorem pairing_apply (P Q : ↥(BinaryForm ℂ n)) :
     pairing n P Q = ∑ i ∈ range (n + 1),
       wt n i * coeff (ex n i) (P : MvPolynomial (Fin 2) ℂ) * coeff (ex n (n - i)) (Q : MvPolynomial (Fin 2) ℂ) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.b3148a2b1d7c from=translated src=- shape=c39b2e7f vocab=615286f2
+-/
 theorem linePow_expand (τ : ℂ) :
     ((C τ * X 0 + X 1 : MvPolynomial (Fin 2) ℂ)) ^ n
       = ∑ m ∈ range (n + 1), monomial (ex n m) ((n.choose m : ℂ) * τ ^ m) := by
@@ -90,6 +117,9 @@ theorem linePow_expand (τ : ℂ) :
   rw [mul_comm (monomial _ _) ((n.choose m : MvPolynomial (Fin 2) ℂ)), ← C_eq_coe_nat, C_mul_monomial]
   simp only [mul_one]
 
+/--
+@isnad1 id=eq.1h3v.s7.9335bf251600 from=translated src=- shape=afef3a98 vocab=b7085563
+-/
 theorem coeff_linePow {i : ℕ} (hi : i ≤ n) (τ : ℂ) :
     coeff (ex n i) ((linePow n τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) = (n.choose i : ℂ) * τ ^ i := by
   rw [coe_linePow, linePow_expand, coeff_sum]
@@ -99,6 +129,9 @@ theorem coeff_linePow {i : ℕ} (hi : i ≤ n) (τ : ℂ) :
     rw [coeff_monomial, ite_eq_right (fun h => hmi (ex_inj n h))]
   · intro h; exact absurd (mem_range.mpr (Nat.lt_succ_of_le hi)) h
 
+/--
+@isnad1 id=eq.0h3v.s12.9c4d1601ceb9 from=translated src=- shape=c2e2516a vocab=4a3ebb0c
+-/
 theorem pairing_linePow (τ σ : ℂ) : pairing n (linePow n τ) (linePow n σ) = (τ - σ) ^ n := by
   rw [pairing_apply, sub_eq_add_neg, (Commute.all τ (-σ)).add_pow]
   refine sum_congr rfl fun i hi => ?_
@@ -110,6 +143,9 @@ theorem pairing_linePow (τ σ : ℂ) : pairing n (linePow n τ) (linePow n σ) 
         = (wt n i * (n.choose i : ℂ)) * τ ^ i * σ ^ (n - i) * (n.choose i : ℂ) := by ring
     _ = τ ^ i * ((-1) ^ (n - i) * σ ^ (n - i)) * (n.choose i : ℂ) := by rw [this]; ring
 
+/--
+@isnad1 id=eq.0h3v.s13.d19fb077c63a from=translated src=- shape=1b9bbaf8 vocab=c7e7b0b9
+-/
 theorem pairing_swap (P Q : ↥(BinaryForm ℂ n)) : pairing n Q P = (-1) ^ n * pairing n P Q := by
   rw [pairing_apply, pairing_apply, mul_sum, ← sum_range_reflect]
   refine sum_congr rfl fun i hi => ?_
@@ -121,9 +157,15 @@ theorem pairing_swap (P Q : ↥(BinaryForm ℂ n)) : pairing n Q P = (-1) ^ n * 
     norm_num
   rw [hw]; ring
 
+/--
+@isnad1 id=mem.1h2v.s8.22e2a8dac6c2 from=translated src=- shape=408a8150 vocab=8c6d7b0b
+-/
 theorem monomial_ex_mem {i : ℕ} (hi : i ≤ n) : monomial (ex n i) (1 : ℂ) ∈ BinaryForm ℂ n :=
   (mem_homogeneousSubmodule n _).mpr (isHomogeneous_monomial _ (degree_ex n hi))
 
+/--
+@isnad1 id=eq.1h3v.s12.6c337f7a1eb8 from=translated src=- shape=ee52d798 vocab=b3bf694a
+-/
 theorem pairing_monomial (P : ↥(BinaryForm ℂ n)) {i : ℕ} (hi : i ≤ n) :
     pairing n P ⟨monomial (ex n (n - i)) 1, monomial_ex_mem n (Nat.sub_le n i)⟩
       = wt n i * coeff (ex n i) (P : MvPolynomial (Fin 2) ℂ) := by
@@ -175,6 +217,9 @@ open scoped MatrixGroups
 
 variable (n : ℕ)
 
+/--
+@isnad1 id=eq.0h1v.s8.22f991ebcb94 from=translated src=- shape=b760eac4 vocab=e383e1bc
+-/
 theorem det_coe_complex (g : SL(2, ℤ)) :
     ((g : Matrix (Fin 2) (Fin 2) ℤ) 0 0 : ℂ) * ((g : Matrix (Fin 2) (Fin 2) ℤ) 1 1 : ℂ)
       - ((g : Matrix (Fin 2) (Fin 2) ℤ) 0 1 : ℂ) * ((g : Matrix (Fin 2) (Fin 2) ℤ) 1 0 : ℂ) = 1 := by
@@ -182,6 +227,9 @@ theorem det_coe_complex (g : SL(2, ℤ)) :
   rw [Matrix.det_fin_two] at h
   exact_mod_cast h
 
+/--
+@isnad1 id=eq.0h3v.s8.2200cfe9f34f from=translated src=- shape=60377764 vocab=c0471366
+-/
 theorem jFactor_mul_jFactor_mul_sub (g : SL(2, ℤ)) (τ σ : ℍ) :
     jFactor g τ * jFactor g σ * (((g • τ : ℍ) : ℂ) - ((g • σ : ℍ) : ℂ)) = (τ : ℂ) - (σ : ℂ) := by
   have hτ := coe_smul_mul_jFactor g τ
@@ -192,6 +240,9 @@ theorem jFactor_mul_jFactor_mul_sub (g : SL(2, ℤ)) (τ σ : ℍ) :
   rw [e, hτ, hσ, jFactor, jFactor]
   linear_combination ((τ : ℂ) - (σ : ℂ)) * hdet
 
+/--
+@isnad1 id=eq.0h4v.s14.21fa45577734 from=translated src=- shape=214886d4 vocab=6af4bed2
+-/
 theorem pairing_rep_linePow (g : SL(2, ℤ)) (τ σ : ℍ) :
     pairing n (binaryFormRepSL ℂ n g (linePow n (τ : ℂ))) (binaryFormRepSL ℂ n g (linePow n (σ : ℂ)))
       = pairing n (linePow n (τ : ℂ)) (linePow n (σ : ℂ)) := by
@@ -200,8 +251,14 @@ theorem pairing_rep_linePow (g : SL(2, ℤ)) (τ σ : ℍ) :
 
 def node (j : Fin (n + 1)) : ℍ := ⟨(j : ℂ) + Complex.I, by simp⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.6095aa8fe3ef from=translated src=- shape=074f117e vocab=e22bf76f
+-/
 @[scoped simp] theorem coe_node (j : Fin (n + 1)) : ((node n j : ℍ) : ℂ) = (j : ℂ) + Complex.I := rfl
 
+/--
+@isnad1 id=injectiv.0h1v.s5.f168080e769f from=translated src=- shape=4ed545fd vocab=84109833
+-/
 theorem node_injective : Function.Injective (fun j : Fin (n + 1) => ((node n j : ℍ) : ℂ)) := by
   intro j j' h
   simp only [coe_node, add_left_inj, Nat.cast_inj] at h
@@ -210,8 +267,14 @@ theorem node_injective : Function.Injective (fun j : Fin (n + 1) => ((node n j :
 def lineSpan : Submodule ℂ ↥(BinaryForm ℂ n) :=
   Submodule.span ℂ (Set.range fun τ : ℍ => linePow n (τ : ℂ))
 
+/--
+@isnad1 id=mem.0h2v.s10.b4cbb4f3db81 from=translated src=- shape=7fdda805 vocab=5f12116b
+-/
 theorem linePow_mem_lineSpan (τ : ℍ) : linePow n (τ : ℂ) ∈ lineSpan n := Submodule.subset_span ⟨τ, rfl⟩
 
+/--
+@isnad1 id=mem.1h2v.s10.b6b98bc5431d from=translated src=- shape=327ee120 vocab=af61c17e
+-/
 theorem monomial_mem_lineSpan {k : ℕ} (hk : k ≤ n) :
     (⟨monomial (ex n k) 1, monomial_ex_mem n hk⟩ : ↥(BinaryForm ℂ n)) ∈ lineSpan n := by
   classical
@@ -276,6 +339,9 @@ theorem monomial_mem_lineSpan {k : ℕ} (hk : k ≤ n) :
   rw [this]
   exact Submodule.smul_mem _ _ hmem
 
+/--
+@isnad1 id=eq.0h1v.s9.dd40a62c7e48 from=translated src=- shape=e846771f vocab=8e586dac
+-/
 theorem lineSpan_eq_top : lineSpan n = ⊤ := by
   classical
 
@@ -320,6 +386,9 @@ open scoped MatrixGroups
 
 variable (n : ℕ)
 
+/--
+@isnad1 id=eq.0h4v.s14.d49dbf464c1b from=translated src=- shape=74b95e67 vocab=ef977467
+-/
 theorem pairing_rep (g : SL(2, ℤ)) (P Q : ↥(BinaryForm ℂ n)) :
     pairing n (binaryFormRepSL ℂ n g P) (binaryFormRepSL ℂ n g Q) = pairing n P Q := by
   set B₁ : ↥(BinaryForm ℂ n) →ₗ[ℂ] ↥(BinaryForm ℂ n) →ₗ[ℂ] ℂ :=
@@ -345,6 +414,9 @@ end
 open scoped _root_.P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow.HeckeEis _root_.P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow.HeckeEis.PairingSol
 
 open scoped MatrixGroups in
+/--
+@isnad1 id=ex.0h1v.s15.dfeed910b395 from=translated src=- shape=c5d415a5 vocab=4c0f6fc2
+-/
 theorem solution (n : ℕ) :
     ∃ B : ↥(HeckeEis.BinaryForm ℂ n) →ₗ[ℂ] ↥(HeckeEis.BinaryForm ℂ n) →ₗ[ℂ] ℂ,
       (∀ (g : SL(2, ℤ)) (P Q : ↥(HeckeEis.BinaryForm ℂ n)),

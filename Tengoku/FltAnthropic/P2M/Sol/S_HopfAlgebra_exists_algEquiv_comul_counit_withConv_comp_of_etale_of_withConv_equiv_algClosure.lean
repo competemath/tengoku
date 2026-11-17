@@ -26,6 +26,9 @@ section Points
 variable {K : Type*} [Field K] {Ω : Type*} [Field Ω] [Algebra K Ω]
 variable {A : Type*} [CommRing A] [Algebra K A]
 
+/--
+@isnad1 id=le.0h3v.s7.5f54b71bae4b from=translated src=- shape=ed35a4a3 vocab=a70dcad0
+-/
 theorem card_algHom_le_finrank [Module.Finite K A] [Fintype (A →ₐ[K] Ω)] :
     Fintype.card (A →ₐ[K] Ω) ≤ Module.finrank K A := by
   have h := (linearIndependent_toLinearMap K A Ω).fintype_card_le_finrank

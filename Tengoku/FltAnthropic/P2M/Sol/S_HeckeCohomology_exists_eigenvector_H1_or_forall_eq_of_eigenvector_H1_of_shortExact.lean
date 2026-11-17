@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open groupCohomology CategoryTheory in
 
+/--
+@isnad1 id=or.8h12v.s15.53d3130dfff9 from=translated src=- shape=08ba3a92 vocab=070208ab
+-/
 theorem solution
     {κ Γ : Type} [Field κ] [Group Γ]
     {X : CategoryTheory.ShortComplex (Rep κ Γ)} (hX : X.ShortExact)

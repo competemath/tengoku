@@ -31,13 +31,22 @@ variable {n : ℕ} {g : ℍ → ℂ} {G : ℍ → ↥(BinaryForm ℂ n)}
 def rung (G : ℍ → ↥(BinaryForm ℂ n)) (j : ℕ) (τ : ℍ) : ℂ :=
   MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((MvPolynomial.pderiv 1)^[j] ((G τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ))
 
+/--
+@isnad1 id=eq.0h3v.s9.5c7639f8e14e from=translated src=- shape=10bd5a35 vocab=37a009c7
+-/
 theorem rung_zero (G : ℍ → ↥(BinaryForm ℂ n)) (τ : ℍ) :
     rung G 0 τ = MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((G τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.dc72573d407a from=translated src=- shape=70ad559d vocab=31f47573
+-/
 theorem rung_succ_n (G : ℍ → ↥(BinaryForm ℂ n)) (τ : ℍ) : rung G (n + 1) τ = 0 := by
   rw [rung, MvPolynomial.IsHomogeneous.iterate_pderiv_eq_zero_of_lt ((mem_homogeneousSubmodule n _).mp (G τ).2) 1
     (Nat.lt_succ_self n), map_zero]
 
+/--
+@isnad1 id=hasderiv.2h5v.s8.2ee1f52d2086 from=translated src=- shape=f5a06dcc vocab=d714d23f
+-/
 theorem hasDerivAt_rung (hG : IsEichlerIntegral n g G) {j : ℕ} (hj : j ≤ n) (τ : ℍ) :
     HasDerivAt (rung G j ∘ ofComplex)
       ((if j = n then ((n.factorial : ℕ) : ℂ) * g τ else 0) - rung G (j + 1) τ) (τ : ℂ) := by
@@ -47,12 +56,18 @@ theorem hasDerivAt_rung (hG : IsEichlerIntegral n g G) {j : ℕ} (hj : j ≤ n) 
   simp only [Function.comp_apply, rung]
   rw [ofComplex_apply_of_im_pos hz]
 
+/--
+@isnad1 id=mdiffere.2h4v.s8.7414f902ad34 from=translated src=- shape=46cc7d58 vocab=a5b8c798
+-/
 theorem mdifferentiable_rung (hG : IsEichlerIntegral n g G) {j : ℕ} (hj : j ≤ n) :
     MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (rung G j) := by
   rw [UpperHalfPlane.mdifferentiable_iff]
   intro z hz
   exact (hasDerivAt_rung hG hj ⟨z, hz⟩).differentiableAt.differentiableWithinAt
 
+/--
+@isnad1 id=eq.0h2v.s5.2d7e7105188e from=translated src=- shape=150d07b6 vocab=ddec7705
+-/
 theorem ofComplex_coe_add_real (τ : ℍ) (p : ℝ) : ofComplex ((τ : ℂ) + (p : ℂ)) = (p +ᵥ τ) := by
   have him : 0 < ((τ : ℂ) + (p : ℂ)).im := by simpa using τ.im_pos
   rw [ofComplex_apply_of_im_pos him]
@@ -63,6 +78,9 @@ section Periodic
 
 variable {h : ℤ}
 
+/--
+@isnad1 id=periodic.1h2v.s6.af71678ba0ca from=translated src=- shape=aa996c24 vocab=96040df3
+-/
 theorem periodic_comp_ofComplex {φ : ℍ → ℂ} {p : ℝ} (hφ : ∀ τ : ℍ, φ (p +ᵥ τ) = φ τ) :
     Periodic (φ ∘ ofComplex) (p : ℂ) := by
   intro z
@@ -73,6 +91,9 @@ theorem periodic_comp_ofComplex {φ : ℍ → ℂ} {p : ℝ} (hφ : ∀ τ : ℍ
   · have hz' : (z + (p : ℂ)).im ≤ 0 := by simpa using hz
     rw [ofComplex_apply_of_im_nonpos hz', ofComplex_apply_of_im_nonpos hz]
 
+/--
+@isnad1 id=eq.1h4v.s12.73e075298f4d from=translated src=- shape=3496369c vocab=1a706e3d
+-/
 theorem rung_zero_vadd (hT : ∀ τ : ℍ, G ((h : ℝ) +ᵥ τ) = binaryFormRepSL ℂ n (ModularGroup.T ^ h) (G τ)) (τ : ℍ) :
     rung G 0 ((h : ℝ) +ᵥ τ) = rung G 0 τ := by
   rw [rung_zero, rung_zero, hT]
@@ -82,6 +103,9 @@ theorem rung_zero_vadd (hT : ∀ τ : ℍ, G ((h : ℝ) +ᵥ τ) = binaryFormRep
   rw [hj, one_pow, one_mul, UpperHalfPlane.modular_T_zpow_smul] at key
   simpa using key
 
+/--
+@isnad1 id=eq.4h6v.s12.9b8a15db1e79 from=translated src=- shape=5ed9b23d vocab=788db8d7
+-/
 theorem rung_vadd (hG : IsEichlerIntegral n g G) (hper : ∀ τ : ℍ, g ((h : ℝ) +ᵥ τ) = g τ)
     (hT : ∀ τ : ℍ, G ((h : ℝ) +ᵥ τ) = binaryFormRepSL ℂ n (ModularGroup.T ^ h) (G τ)) :
     ∀ j : ℕ, j ≤ n + 1 → ∀ τ : ℍ, rung G j ((h : ℝ) +ᵥ τ) = rung G j τ := by
@@ -109,6 +133,9 @@ theorem rung_vadd (hG : IsEichlerIntegral n g G) (hper : ∀ τ : ℍ, g ((h : �
 
 end Periodic
 
+/--
+@isnad1 id=isbounde.6h4v.s12.6c61d0b8ef27 from=translated src=- shape=4565fb51 vocab=6a8b9b20
+-/
 theorem isBoundedAtImInfty_rung_zero (hG : IsEichlerIntegral n g G) {h : ℤ} (hh : 0 < h)
     (hper : Periodic (g ∘ ofComplex) ((h : ℝ) : ℂ)) (hhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) g)
     (hbdd : IsBoundedAtImInfty g)
@@ -171,6 +198,9 @@ end
 
 open scoped MatrixGroups Manifold in
 
+/--
+@isnad1 id=isbounde.6h4v.s12.3c96ea02002f from=translated src=- shape=31ac93e5 vocab=1116fcba
+-/
 theorem solution {n : ℕ} {g : UpperHalfPlane → ℂ}
     {G : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)} (hG : HeckeEis.IsEichlerIntegral n g G) {h : ℤ} (hh : 0 < h)
     (hper : Function.Periodic (g ∘ UpperHalfPlane.ofComplex) ((h : ℝ) : ℂ))

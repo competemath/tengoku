@@ -64,6 +64,9 @@ noncomputable def sheet (hpre : IsOpen Ω) (H : Ω ≃ₜ U × I)
   (hpre.isOpenEmbedding_subtypeVal.toOpenPartialHomeomorph Subtype.val).symm.trans
     (subtypeSheet H hV hVU i)
 
+/--
+@isnad1 id=ex.4h8v.s9.d9667ce6a02b from=translated src=- shape=5d30dd73 vocab=a48bc278
+-/
 theorem sheet_decomposition (hpre : IsOpen Ω) (H : Ω ≃ₜ U × I)
     (hH : ∀ x, ((H x).1 : X) = f x)
     {V : Set X} (hV : IsOpen V) (hVU : V ⊆ U) [Nonempty Ω] :
@@ -132,6 +135,9 @@ theorem sheet_decomposition (hpre : IsOpen Ω) (H : Ω ≃ₜ U × I)
 
 end SheetDecomposition
 
+/--
+@isnad1 id=ex.4h8v.s9.d9667ce6a02b from=translated src=- shape=5d30dd73 vocab=a48bc278
+-/
 theorem solution {E X I : Type*} [TopologicalSpace E]
     [TopologicalSpace X] [TopologicalSpace I] [DiscreteTopology I] {f : E → X} {U : Set X}
     {Ω : Set E} (hpre : IsOpen Ω) (H : Ω ≃ₜ U × I) (hH : ∀ x, ((H x).1 : X) = f x)

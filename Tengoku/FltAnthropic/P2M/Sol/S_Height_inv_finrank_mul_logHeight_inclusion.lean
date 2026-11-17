@@ -328,6 +328,9 @@ private theorem mwabs_comp {K L : Type*} [Field K] [NumberField K]
   push_cast
   field_simp
 
+/--
+@isnad1 id=eq.1h4v.s11.9e9063e59670 from=translated src=- shape=e57af944 vocab=bd1cfe7e
+-/
 theorem solution
     {K L : IntermediateField ℚ (AlgebraicClosure ℚ)} [NumberField ↥K] [NumberField ↥L]
     (h : K ≤ L) {ι : Type*} [Finite ι] (x : ι → ↥K) :

@@ -15,6 +15,9 @@ namespace HopfAlgebra
 namespace EqOfBaseChange
 open _root_.HopfAlgebra
 
+/--
+@isnad1 id=injectiv.0h3v.s7.3cd8007c24e0 from=translated src=- shape=8a492f9e vocab=854946fa
+-/
 theorem tmul_one_injective
     {R : Type u} [CommRing R] [IsDomain R]
     (K : Type u) [Field K] [Algebra R K] [IsFractionRing R K]
@@ -31,6 +34,9 @@ theorem tmul_one_injective
 end HopfAlgebra.EqOfBaseChange
 
 open HopfAlgebra.EqOfBaseChange in
+/--
+@isnad1 id=eq.1h6v.s11.4704237389c3 from=translated src=- shape=d6f277a1 vocab=ed93383c
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsDomain R]
     (K : Type u) [Field K] [Algebra R K] [IsFractionRing R K]

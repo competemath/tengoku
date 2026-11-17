@@ -33,6 +33,9 @@ def torsIdeal : Ideal A where
     rintro c a ⟨r, hr, hra⟩
     exact ⟨r, hr, by rw [smul_eq_mul, ← mul_smul_comm, hra, mul_zero]⟩
 
+/--
+@isnad1 id=iff.0h3v.s7.eca6e9783e81 from=translated src=- shape=b3997139 vocab=a80c3f64
+-/
 lemma mem_torsIdeal_iff {a : A} : a ∈ torsIdeal R A ↔ ∃ r : R, r ≠ 0 ∧ r • a = 0 := Iff.rfl
 
 scoped instance : Module.IsTorsionFree R (A ⧸ torsIdeal R A) := by
@@ -53,6 +56,9 @@ scoped instance [Module.Finite R A] : Module.Finite R (A ⧸ torsIdeal R A) :=
   Module.Finite.of_surjective (IsScalarTower.toAlgHom R A (A ⧸ torsIdeal R A)).toLinearMap
     Ideal.Quotient.mk_surjective
 
+/--
+@isnad1 id=eq.1h6v.s7.102023076639 from=translated src=- shape=acb7bb8e vocab=df11c5f2
+-/
 lemma apply_eq_zero_of_mem_torsIdeal {L : Type*} [AddCommGroup L] [Module R L]
     [Module.IsTorsionFree R L] {F : Type*} [FunLike F A L] [LinearMapClass F R A L] (f : F)
     (a : A) (ha : a ∈ torsIdeal R A) : f a = 0 := by
@@ -60,10 +66,16 @@ lemma apply_eq_zero_of_mem_torsIdeal {L : Type*} [AddCommGroup L] [Module R L]
   have h : r • f a = 0 := by rw [← map_smul, hra, map_zero]
   exact (smul_eq_zero.mp h).resolve_left hr
 
+/--
+@isnad1 id=eq.1h5v.s7.76bd74a2802f from=translated src=- shape=bbd504c0 vocab=fdc60de1
+-/
 lemma torsIdeal_le_ker {L : Type*} [CommRing L] [Algebra R L] [Module.IsTorsionFree R L]
     (f : A →ₐ[R] L) : ∀ a ∈ torsIdeal R A, f a = 0 :=
   fun a ha => apply_eq_zero_of_mem_torsIdeal R A f a ha
 
+/--
+@isnad1 id=bijectiv.0h3v.s8.2e8955d9c8ba from=translated src=- shape=b60dc68b vocab=d34dc32a
+-/
 lemma bijective_comp_mk {L : Type*} [CommRing L] [Algebra R L] [Module.IsTorsionFree R L] :
     Function.Bijective
       (fun (f : (A ⧸ torsIdeal R A) →ₐ[R] L) ↦ f.comp (Ideal.Quotient.mkₐ R (torsIdeal R A))) := by
@@ -76,6 +88,9 @@ lemma bijective_comp_mk {L : Type*} [CommRing L] [Algebra R L] [Module.IsTorsion
 
 def mkL : A →ₗ[R] A ⧸ torsIdeal R A := (Ideal.Quotient.mkₐ R (torsIdeal R A)).toLinearMap
 
+/--
+@isnad1 id=eq.0h3v.s9.0c3112a5245f from=translated src=- shape=184e973d vocab=ea848688
+-/
 @[scoped simp] lemma mkL_apply (a : A) : mkL R A a = Ideal.Quotient.mk (torsIdeal R A) a := rfl
 
 end Carrier
@@ -99,10 +114,16 @@ noncomputable def antipodeQ : (A ⧸ torsIdeal R A) →ₐ[R] (A ⧸ torsIdeal R
     ((Ideal.Quotient.mkₐ R (torsIdeal R A)).comp (antipodeAlgHom R A))
     (fun a ha => apply_eq_zero_of_mem_torsIdeal R A _ a ha)
 
+/--
+@isnad1 id=eq.0h3v.s11.6cfb20096715 from=translated src=- shape=bf2cc0e3 vocab=d5ad5b22
+-/
 @[scoped simp] lemma antipodeQ_mk (a : A) :
     antipodeQ R A (Ideal.Quotient.mk (torsIdeal R A) a)
       = Ideal.Quotient.mk (torsIdeal R A) (HopfAlgebra.antipode R a) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s14.61ec2dcf0f2c from=translated src=- shape=eec12c63 vocab=4bcb9c87
+-/
 lemma mul'_rTensor_antipode_map (z : A ⊗[R] A) :
     LinearMap.mul' R (A ⧸ torsIdeal R A)
         ((antipodeQ R A).toLinearMap.rTensor (A ⧸ torsIdeal R A)
@@ -116,6 +137,9 @@ lemma mul'_rTensor_antipode_map (z : A ⊗[R] A) :
     simp only [TensorProduct.map_tmul, LinearMap.rTensor_tmul, LinearMap.mul'_apply, mkL_apply,
       AlgHom.toLinearMap_apply, antipodeQ_mk, map_mul]
 
+/--
+@isnad1 id=eq.0h3v.s14.dabb4a7d9771 from=translated src=- shape=eec12c63 vocab=39be9239
+-/
 lemma mul'_lTensor_antipode_map (z : A ⊗[R] A) :
     LinearMap.mul' R (A ⧸ torsIdeal R A)
         ((antipodeQ R A).toLinearMap.lTensor (A ⧸ torsIdeal R A)
@@ -141,18 +165,30 @@ noncomputable scoped instance instCoalgebraStruct : CoalgebraStruct R (A ⧸ tor
   comul := (comulQ R A).toLinearMap
   counit := (counitQ R A).toLinearMap
 
+/--
+@isnad1 id=eq.0h3v.s13.1d54383e2d42 from=translated src=- shape=7ae5e814 vocab=b1871ce9
+-/
 @[scoped simp] lemma comul_mk (a : A) :
     Coalgebra.comul (R := R) (Ideal.Quotient.mk (torsIdeal R A) a)
       = TensorProduct.map (mkL R A) (mkL R A) (Coalgebra.comul (R := R) a) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.5ac2cdd40d17 from=translated src=- shape=6a6b32ad vocab=7e9e5c15
+-/
 @[scoped simp] lemma counit_mk (a : A) :
     Coalgebra.counit (R := R) (Ideal.Quotient.mk (torsIdeal R A) a) = Coalgebra.counit (R := R) a :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s12.df33412f5558 from=translated src=- shape=71d2ca5d vocab=8408df50
+-/
 lemma comul_comp_mkL :
     Coalgebra.comul (R := R) (A := A ⧸ torsIdeal R A) ∘ₗ mkL R A
       = TensorProduct.map (mkL R A) (mkL R A) ∘ₗ Coalgebra.comul := rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.da661abfe466 from=translated src=- shape=97e51eff vocab=15b1b40b
+-/
 lemma counit_comp_mkL :
     Coalgebra.counit (R := R) (A := A ⧸ torsIdeal R A) ∘ₗ mkL R A = Coalgebra.counit := rfl
 
@@ -208,6 +244,9 @@ noncomputable scoped instance instHopfAlgebra : HopfAlgebra R (A ⧸ torsIdeal R
     simpa only [LinearMap.comp_apply, comul_mk, mul'_lTensor_antipode_map, counit_mk,
       Algebra.linearMap_apply] using key
 
+/--
+@isnad1 id=iscocomm.0h2v.s8.f02d16c3853c from=translated src=- shape=a733b655 vocab=94c640a3
+-/
 lemma isCocomm [Coalgebra.IsCocomm R A] : Coalgebra.IsCocomm R (A ⧸ torsIdeal R A) where
   comm_comp_comul := by
     refine LinearMap.ext fun x => ?_
@@ -220,6 +259,9 @@ noncomputable def mkBialgHom : A →ₐc[R] (A ⧸ torsIdeal R A) :=
   BialgHom.ofAlgHom (Ideal.Quotient.mkₐ R (torsIdeal R A))
     (AlgHom.ext fun _ => rfl) (AlgHom.ext fun _ => rfl)
 
+/--
+@isnad1 id=surjecti.0h2v.s9.4b6f78e20b40 from=translated src=- shape=0e0a6364 vocab=2df016eb
+-/
 lemma mkBialgHom_surjective : Function.Surjective (mkBialgHom R A) := fun x => by
   obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective x
   exact ⟨a, rfl⟩
@@ -231,6 +273,9 @@ open scoped _root_.P2MW.S_HopfAlgebra_exists_finite_free_quotient_bialgHom.A3F
 
 universe u v w
 
+/--
+@isnad1 id=ex.0h2v.s11.5bd214ab5121 from=translated src=- shape=ed24f426 vocab=6e6f8850
+-/
 theorem solution
     (R : Type u) (A : Type v) [CommRing R] [IsDomain R] [IsPrincipalIdealRing R]
     [CommRing A] [HopfAlgebra R A] [Module.Finite R A] :

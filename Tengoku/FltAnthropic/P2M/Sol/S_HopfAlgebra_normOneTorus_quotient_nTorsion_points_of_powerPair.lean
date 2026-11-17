@@ -9,6 +9,9 @@ namespace P2MW.S_HopfAlgebra_normOneTorus_quotient_nTorsion_points_of_powerPair
 open scoped TensorProduct
 
 set_option maxHeartbeats 4800000 in
+/--
+@isnad1 id=and.10h13v.s12.b88656dbd326 from=translated src=- shape=9a369637 vocab=9b3ad7a8
+-/
 theorem solution
     (K : Type) [Field K] [CharZero K] (c : K) (hc : c ≠ 0)
     (n : ℕ) [Fact n.Prime]

@@ -46,14 +46,23 @@ def indRep : Representation ℂ ↥Gt (X0 N → Vn n) where
       ρ n (g : SL(2, ℤ)) (ρ n (h : SL(2, ℤ)) (f (((h : SL(2, ℤ))⁻¹) • ((g : SL(2, ℤ))⁻¹) • x)))
     rw [map_mul, Module.End.mul_apply, mul_inv_rev, mul_smul]
 
+/--
+@isnad1 id=eq.0h5v.s12.3fc6dee58fd5 from=translated src=- shape=272f38ff vocab=d642ea61
+-/
 @[scoped simp] theorem indRep_apply (g : ↥Gt) (f : X0 N → Vn n) (x : X0 N) :
     indRep N n g f x = ρ n (g : SL(2, ℤ)) (f (((g : SL(2, ℤ))⁻¹) • x)) := rfl
 
 variable {N n}
 
+/--
+@isnad1 id=mem.0h1v.s8.dd309ee66a53 from=translated src=- shape=47a2a55e vocab=3a18f723
+-/
 theorem neg_one_mem : (-1 : SL(2, ℤ)) ∈ CongruenceSubgroup.Gamma0 N := by
   rw [CongruenceSubgroup.Gamma0_mem]; simp
 
+/--
+@isnad1 id=eq.0h2v.s8.2f374c8011b8 from=translated src=- shape=a4cfe586 vocab=731cfc07
+-/
 theorem neg_one_smul_coset (x : X0 N) : (-1 : SL(2, ℤ)) • x = x := by
   induction x using QuotientGroup.induction_on with
   | H g =>
@@ -64,6 +73,9 @@ theorem neg_one_smul_coset (x : X0 N) : (-1 : SL(2, ℤ)) • x = x := by
     rw [this]
     exact neg_one_mem
 
+/--
+@isnad1 id=eq.1h2v.s12.6fb0df03190e from=translated src=- shape=3dfb26d2 vocab=3f036fed
+-/
 theorem indRep_neg_one (hn : Even n) : indRep N n ⟨-1, Subgroup.mem_top _⟩ = LinearMap.id := by
   apply LinearMap.ext; intro f; funext x
   rw [indRep_apply, LinearMap.id_apply]
@@ -89,6 +101,9 @@ open MvPolynomial Finset
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=eq.0h3v.s9.53d5e6407d73 from=translated src=- shape=67a65914 vocab=c9aacc01
+-/
 theorem eval_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (v : Fin 2 → ℂ) (P : MvPolynomial (Fin 2) ℂ) :
     eval v (binarySubst ℂ M P) = eval (fun j => ∑ i : Fin 2, ((M i j : ℤ) : ℂ) * v i) P := by
   have key : (eval v).comp (binarySubst ℂ M : MvPolynomial (Fin 2) ℂ →ₐ[ℂ] MvPolynomial (Fin 2) ℂ).toRingHom
@@ -96,6 +111,9 @@ theorem eval_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (v : Fin 2 → ℂ) (P
     MvPolynomial.ringHom_ext (fun r => by simp [binarySubst_C]) (fun j => by simp [binarySubst_X, map_sum])
   exact RingHom.congr_fun key P
 
+/--
+@isnad1 id=eq.1h4v.s11.4e3ebd43e875 from=translated src=- shape=af893a56 vocab=33922853
+-/
 theorem eval_one_eq_of_T_zpow_fixed (m : ℤ) (P : Vn n) (hP : ρ n (ModularGroup.T ^ m) P = P) (k : ℕ) :
     eval ![(1 : ℂ), (m : ℂ) * k] (P : MvPolynomial (Fin 2) ℂ) = eval ![(1 : ℂ), 0] (P : MvPolynomial (Fin 2) ℂ) := by
   have hk : ρ n ((ModularGroup.T ^ m) ^ k) P = P := by
@@ -113,6 +131,9 @@ theorem eval_one_eq_of_T_zpow_fixed (m : ℤ) (P : Vn n) (hP : ρ n (ModularGrou
 
 def dehom (P : MvPolynomial (Fin 2) ℂ) : Polynomial ℂ := aeval ![(1 : Polynomial ℂ), Polynomial.X] P
 
+/--
+@isnad1 id=eq.0h2v.s7.dfaba91bc1ce from=translated src=- shape=4d4e3815 vocab=cff14a50
+-/
 theorem eval_dehom (P : MvPolynomial (Fin 2) ℂ) (t : ℂ) : (dehom P).eval t = eval ![(1 : ℂ), t] P := by
   rw [dehom, ← Polynomial.coe_aeval_eq_eval, ← AlgHom.comp_apply, MvPolynomial.comp_aeval]
   show aeval (fun i => Polynomial.aeval t ((![(1 : Polynomial ℂ), Polynomial.X] : Fin 2 → Polynomial ℂ) i)) P = aeval ![(1 : ℂ), t] P
@@ -120,10 +141,16 @@ theorem eval_dehom (P : MvPolynomial (Fin 2) ℂ) (t : ℂ) : (dehom P).eval t =
   funext j
   fin_cases j <;> simp
 
+/--
+@isnad1 id=eq.0h2v.s8.83d293f2d09e from=translated src=- shape=c456b444 vocab=c1f85a81
+-/
 theorem dehom_monomial (d : Fin 2 →₀ ℕ) (c : ℂ) : dehom (monomial d c) = Polynomial.C c * Polynomial.X ^ (d 1) := by
   rw [dehom, MvPolynomial.aeval_monomial, Finsupp.prod_fintype _ _ (by simp), Fin.prod_univ_two]
   simp [Polynomial.C_eq_algebraMap]
 
+/--
+@isnad1 id=eq.2h3v.s7.9a84d9d20391 from=translated src=- shape=00e7af75 vocab=6088531e
+-/
 theorem coeff_dehom_of_isHomogeneous {P : MvPolynomial (Fin 2) ℂ} (hP : P.IsHomogeneous n) (a : ℕ) (ha : a ≤ n) :
     (dehom P).coeff a = coeff (Finsupp.single 0 (n - a) + Finsupp.single 1 a) P := by
   classical
@@ -184,9 +211,18 @@ variable {n : ℕ}
 
 def dv (n a : ℕ) : Fin 2 →₀ ℕ := Finsupp.single 0 (n - a) + Finsupp.single 1 a
 
+/--
+@isnad1 id=eq.0h2v.s6.2d2130b56dc0 from=translated src=- shape=49a32e5b vocab=dad304b3
+-/
 @[scoped simp] theorem dv_zero' (n a : ℕ) : dv n a 0 = n - a := by simp [dv]
+/--
+@isnad1 id=eq.0h2v.s5.a7aa27f91e5b from=translated src=- shape=63341c4e vocab=5c7547a8
+-/
 @[scoped simp] theorem dv_one' (n a : ℕ) : dv n a 1 = a := by simp [dv]
 
+/--
+@isnad1 id=eq.3h4v.s11.8c7f2ebf4d3d from=translated src=- shape=c8aedf36 vocab=767fb708
+-/
 theorem coeff_eq_zero_of_T_zpow_fixed {m : ℤ} (hm : m ≠ 0) (P : Vn n) (hP : ρ n (ModularGroup.T ^ m) P = P)
     (d : Fin 2 →₀ ℕ) (hd : d 1 ≠ 0) : coeff d (P : MvPolynomial (Fin 2) ℂ) = 0 := by
   classical
@@ -287,9 +323,15 @@ open MvPolynomial Finset
 
 variable {N n : ℕ} [NeZero N]
 
+/--
+@isnad1 id=mem.0h1v.s7.9a70ef1333ef from=translated src=- shape=8bab52d5 vocab=24a364aa
+-/
 theorem T_mem_Gamma0 : (ModularGroup.T : SL(2, ℤ)) ∈ CongruenceSubgroup.Gamma0 N := by
   rw [CongruenceSubgroup.Gamma0_mem]; simp [ModularGroup.T]
 
+/--
+@isnad1 id=mem.0h1v.s9.5abc33697df6 from=translated src=- shape=e62e5f01 vocab=78aced78
+-/
 theorem Sinv_TN_S_mem : (ModularGroup.S : SL(2, ℤ))⁻¹ * ModularGroup.T ^ (N : ℤ) * ModularGroup.S ∈ CongruenceSubgroup.Gamma0 N := by
   rw [CongruenceSubgroup.Gamma0_mem]
   have hS : ((ModularGroup.S : SL(2, ℤ))⁻¹ : SL(2, ℤ)) = ⟨!![0, 1; -1, 0], by norm_num [Matrix.det_fin_two_of]⟩ := by
@@ -299,6 +341,9 @@ theorem Sinv_TN_S_mem : (ModularGroup.S : SL(2, ℤ))⁻¹ * ModularGroup.T ^ (N
   rw [Matrix.SpecialLinearGroup.coe_mul, Matrix.SpecialLinearGroup.coe_mul, hS, ModularGroup.coe_T_zpow]
   simp [ModularGroup.S, Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.2h3v.s12.2cbf161d7740 from=translated src=- shape=dee96a45 vocab=537dabed
+-/
 theorem indRep_invariants (hn0 : n ≠ 0) (f : X0 N → Vn n) (hf : ∀ g : ↥Gt, indRep N n g f = f) : f = 0 := by
   set x0 : X0 N := ((1 : SL(2, ℤ)) : X0 N) with hx0
 
@@ -366,17 +411,26 @@ variable (B : Vn n →ₗ[ℂ] Vn n →ₗ[ℂ] ℂ)
 
 def BW : BilinForm ℂ (X0 N → Vn n) := ∑ x : X0 N, B.compl₁₂ (LinearMap.proj x) (LinearMap.proj x)
 
+/--
+@isnad1 id=eq.0h5v.s11.6837325ddc1b from=translated src=- shape=48e9302c vocab=3ff3093b
+-/
 @[scoped simp] theorem BW_apply (f f' : X0 N → Vn n) : BW (N := N) B f f' = ∑ x : X0 N, B (f x) (f' x) := by
   rw [BW, LinearMap.sum_apply, LinearMap.sum_apply]
   rfl
 
 include hBinv in
+/--
+@isnad1 id=eq.1h6v.s14.840606fa6b8e from=translated src=- shape=fccc681b vocab=6d98adb7
+-/
 theorem BW_inv (g : ↥Gt) (f f' : X0 N → Vn n) : BW (N := N) B (indRep N n g f) (indRep N n g f') = BW (N := N) B f f' := by
   rw [BW_apply, BW_apply]
   simp only [indRep_apply, hBinv]
   exact Fintype.sum_equiv (MulAction.toPerm ((g : SL(2, ℤ))⁻¹)) _ _ fun x => rfl
 
 include hBsymm in
+/--
+@isnad1 id=isrefl.1h3v.s11.d017ed4cfcca from=translated src=- shape=c532c530 vocab=7e17cf11
+-/
 theorem BW_isRefl : (BW (N := N) B).IsRefl := by
   intro f f' h
   rw [BW_apply] at h ⊢
@@ -384,6 +438,9 @@ theorem BW_isRefl : (BW (N := N) B).IsRefl := by
     rw [Finset.mul_sum]; exact Finset.sum_congr rfl fun x _ => hBsymm _ _, h, mul_zero]
 
 include hBnd hBsymm in
+/--
+@isnad1 id=nondegen.2h3v.s12.ed806aad24c3 from=translated src=- shape=5bd4e220 vocab=899d8c37
+-/
 theorem BW_nondegenerate : (BW (N := N) B).Nondegenerate := by
   classical
   refine ⟨fun f hf => ?_, fun f hf => ?_⟩
@@ -410,6 +467,9 @@ theorem BW_nondegenerate : (BW (N := N) B).Nondegenerate := by
     · intro y _ hyx; rw [Pi.single_eq_of_ne hyx, LinearMap.map_zero₂]
     · intro h; exact absurd (Finset.mem_univ x) h
 
+/--
+@isnad1 id=finite.0h1v.s6.20e7872d41fb from=translated src=- shape=1a6c1393 vocab=3fe729a3
+-/
 theorem finite_binaryForm : Module.Finite ℂ (Vn n) := by
   classical
   rw [Module.Finite.iff_fg, show (BinaryForm ℂ n : Submodule ℂ (MvPolynomial (Fin 2) ℂ)) = MvPolynomial.homogeneousSubmodule (Fin 2) ℂ n from rfl,
@@ -427,6 +487,9 @@ theorem finite_binaryForm : Module.Finite ℂ (Vn n) := by
 
 include hBinv hBsymm hBnd in
 
+/--
+@isnad1 id=eq.4h3v.s14.52ef3683c336 from=translated src=- shape=c759fba2 vocab=48692d28
+-/
 theorem sup_range_eq_top (hn0 : n ≠ 0) :
     LinearMap.range (indRep N n ⟨ModularGroup.S, Subgroup.mem_top _⟩ - 1)
       ⊔ LinearMap.range (indRep N n ⟨ModularGroup.S * ModularGroup.T, Subgroup.mem_top _⟩ - 1) = ⊤ := by
@@ -508,6 +571,9 @@ end
 open scoped _root_.P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis _root_.P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis.UH3Sol
 
 open scoped MatrixGroups in
+/--
+@isnad1 id=ex.2h2v.s17.b9c99f6ac397 from=translated src=- shape=e1449277 vocab=34c9b1a2
+-/
 theorem solution (N : ℕ) [NeZero N] (n : ℕ) (hn : Even n) (hn0 : n ≠ 0) :
     ∃ W : Representation ℂ (⊤ : Subgroup SL(2, ℤ)) (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n)),
       (∀ (g : (⊤ : Subgroup SL(2, ℤ))) (f : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n)) (x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N),

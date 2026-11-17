@@ -42,6 +42,9 @@ private theorem noZeroSMulDivisors_of_flat (p : ℕ) (H : Type) [CommRing H]
 end HopfAlgebra.SepPoints
 
 open HopfAlgebra.SepPoints in
+/--
+@isnad1 id=eq.1h4v.s11.adabb70580db from=translated src=- shape=a8648ca4 vocab=1d13c998
+-/
 theorem solution
     (p : ℕ) (H : Type) [CommRing H] [HopfAlgebra (GaloisRep.ratLocalizedAt p) H]
     [Module.Finite (GaloisRep.ratLocalizedAt p) H] [Module.Flat (GaloisRep.ratLocalizedAt p) H]

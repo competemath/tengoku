@@ -16,6 +16,9 @@ open _root_.HopfAlgebra
 
 variable {R : Type u} [CommRing R] {H : Type v} [CommRing H] [HopfAlgebra R H]
 
+/--
+@isnad1 id=eq.1h5v.s12.8f9c82111701 from=translated src=- shape=61b516c8 vocab=9dad20a8
+-/
 theorem comul_eq_tmul_one_add_one_tmul_add_sum (x : H) {ιr : Type*} (r : Coalgebra.Repr R x ιr)
     (hx : Coalgebra.counit (R := R) x = 0) :
     Coalgebra.comul (R := R) x = x ⊗ₜ[R] 1 + 1 ⊗ₜ[R] x +
@@ -47,6 +50,9 @@ theorem comul_eq_tmul_one_add_one_tmul_add_sum (x : H) {ιr : Type*} (r : Coalge
   simp only [sub_tmul, tmul_sub, Finset.sum_sub_distrib, h1, h2, h3, h4]
   abel
 
+/--
+@isnad1 id=eq.2h6v.s10.1549279ecc4a from=translated src=- shape=b60f5957 vocab=31c9343c
+-/
 theorem ofConv_toConv_pow_apply_of_counit_eq_zero
     {T : Type v} [CommRing T] [Algebra R T] (π : H →ₐ[R] T)
     (hprod : ∀ a b : H, Coalgebra.counit (R := R) a = 0 → Coalgebra.counit (R := R) b = 0 →
@@ -81,6 +87,9 @@ end HopfAlgebra
 
 open TensorProduct in
 
+/--
+@isnad1 id=eq.2h3v.s9.422cb48f1a1f from=translated src=- shape=ff261760 vocab=16bbcd21
+-/
 theorem solution
     {R : Type u} [CommRing R] {H : Type v} [CommRing H] [HopfAlgebra R H]
     (n : ℕ) (hn : IsUnit (n : R))

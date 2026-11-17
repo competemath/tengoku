@@ -7,6 +7,9 @@ namespace P2MW.S_HeckeEis_postcomp_heckeOperatorHom
 
 open CongruenceSubgroup Subgroup
 
+/--
+@isnad1 id=eq.0h6v.s16.56690a1a16c2 from=translated src=- shape=e6bc3762 vocab=fef0d9af
+-/
 theorem solution (N ℓ : ℕ) [NeZero ℓ] {A B : Type*} [AddCommGroup A]
     [AddCommGroup B] (f : A →+ B) (φ : Additive ↥(Gamma0 N) →+ A) :
     f.comp (HeckeEis.heckeOperatorHom N ℓ A φ) =

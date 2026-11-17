@@ -6,6 +6,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_AlgHom_liftEquiv_symm_withConv_mul
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_AlgHom_liftEquiv_symm_withConv_mul.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
 open TensorProduct in
+/--
+@isnad1 id=eq.0h6v.s12.4037fcd82076 from=translated src=- shape=c247e804 vocab=3159136a
+-/
 theorem AlgHom.liftEquiv_symm_withConv_mul
     (R : Type*) [CommRing R] (S : Type*) [CommRing S] [Algebra R S]
     (A : Type*) [CommRing A] [Bialgebra R A]

@@ -38,6 +38,9 @@ noncomputable def tensorInclusion3 (B : Subalgebra F (F ⊗[R] G)) :
   ((flatClosure B).val.toLinearMap.rTensor (G ⊗[R] G)).comp
     ((tensorInclusion B).lTensor (flatClosure B))
 
+/--
+@isnad1 id=eq.0h6v.s13.9cd274723a2f from=translated src=- shape=7af374d2 vocab=428998a5
+-/
 @[scoped simp]
 lemma tensorInclusion3_tmul {B : Subalgebra F (F ⊗[R] G)} (x : flatClosure B)
     (w : (flatClosure B) ⊗[R] (flatClosure B)) :
@@ -49,12 +52,18 @@ noncomputable def tensorInclusion3' (B : Subalgebra F (F ⊗[R] G)) :
   ((tensorInclusion B).rTensor G).comp
     ((flatClosure B).val.toLinearMap.lTensor ((flatClosure B) ⊗[R] (flatClosure B)))
 
+/--
+@isnad1 id=eq.0h6v.s13.85bca44024b8 from=translated src=- shape=1ecb9ca8 vocab=c318ecc7
+-/
 @[scoped simp]
 lemma tensorInclusion3'_tmul {B : Subalgebra F (F ⊗[R] G)}
     (w : (flatClosure B) ⊗[R] (flatClosure B)) (z : flatClosure B) :
     tensorInclusion3' B (w ⊗ₜ[R] z) = (tensorInclusion B w) ⊗ₜ[R] (z : G) := by
   simp [tensorInclusion3']
 
+/--
+@isnad1 id=injectiv.0h4v.s13.1c76391240ee from=translated src=- shape=0ce4debf vocab=e8444d99
+-/
 theorem tensorInclusion3_injective [IsDomain R] [IsPrincipalIdealRing R] [IsNoetherianRing R]
     [IsFractionRing R F] [Module.Finite R G] [Module.IsTorsionFree R G]
     (B : Subalgebra F (F ⊗[R] G)) : Function.Injective (tensorInclusion3 B) := by
@@ -65,6 +74,9 @@ theorem tensorInclusion3_injective [IsDomain R] [IsPrincipalIdealRing R] [IsNoet
   exact (Module.Flat.rTensor_preserves_injective_linearMap _ Subtype.val_injective).comp
     (Module.Flat.lTensor_preserves_injective_linearMap _ (tensorInclusion_injective B))
 
+/--
+@isnad1 id=eq.0h5v.s15.7acf7f578791 from=translated src=- shape=292dfc56 vocab=baa7cf46
+-/
 theorem tensorInclusion3_assoc_apply {B : Subalgebra F (F ⊗[R] G)}
     (w : ((flatClosure B) ⊗[R] (flatClosure B)) ⊗[R] (flatClosure B)) :
     tensorInclusion3 B
@@ -80,6 +92,9 @@ theorem tensorInclusion3_assoc_apply {B : Subalgebra F (F ⊗[R] G)}
           simp only [TensorProduct.add_tmul, map_add, h₁, h₂]
   | add w₁ w₂ h₁ h₂ => simp [map_add, h₁, h₂]
 
+/--
+@isnad1 id=eq.0h6v.s13.7fec5805e920 from=translated src=- shape=93a8fc45 vocab=3c3ac188
+-/
 theorem tensorInclusion_mul {B : Subalgebra F (F ⊗[R] G)}
     (z w : (flatClosure B) ⊗[R] (flatClosure B)) :
     tensorInclusion B (z * w) = tensorInclusion B z * tensorInclusion B w := by
@@ -93,11 +108,17 @@ theorem tensorInclusion_mul {B : Subalgebra F (F ⊗[R] G)}
       | add b₁ b₂ h₁ h₂ => simp [mul_add, h₁, h₂]
   | add a₁ a₂ h₁ h₂ => simp [add_mul, h₁, h₂]
 
+/--
+@isnad1 id=eq.0h4v.s12.7c03bfd72837 from=translated src=- shape=1adf7c24 vocab=8ebf7f74
+-/
 theorem tensorInclusion_one {B : Subalgebra F (F ⊗[R] G)} :
     tensorInclusion B (1 : (flatClosure B) ⊗[R] (flatClosure B)) = 1 := by
   rw [Algebra.TensorProduct.one_def, Algebra.TensorProduct.one_def, tensorInclusion_tmul]
   simp
 
+/--
+@isnad1 id=eq.0h5v.s13.110875c00720 from=translated src=- shape=cf1b74ca vocab=a65e82fe
+-/
 theorem val_mul'_tensorInclusion {B : Subalgebra F (F ⊗[R] G)}
     (z : (flatClosure B) ⊗[R] (flatClosure B)) :
     ((LinearMap.mul' R (flatClosure B) z : flatClosure B) : G)
@@ -113,6 +134,9 @@ section CoalgebraBialgebra
 
 variable [Bialgebra R G]
 
+/--
+@isnad1 id=eq.1h5v.s15.6cdade58e890 from=translated src=- shape=8606c71e vocab=0d6036af
+-/
 theorem tensorInclusion3'_rTensor_closureComul [IsDomain R] [IsPrincipalIdealRing R]
     [IsNoetherianRing R] [IsFractionRing R F] [Module.Finite R G] [Module.IsTorsionFree R G]
     {B : Subalgebra F (F ⊗[R] G)} (hB : IsComulStable R F B)
@@ -124,6 +148,9 @@ theorem tensorInclusion3'_rTensor_closureComul [IsDomain R] [IsPrincipalIdealRin
   | tmul x y => simp [LinearMap.rTensor_tmul]
   | add a₁ a₂ h₁ h₂ => simp [map_add, h₁, h₂]
 
+/--
+@isnad1 id=eq.1h5v.s15.791139d2b928 from=translated src=- shape=23896837 vocab=ab7fbb78
+-/
 theorem tensorInclusion3_lTensor_closureComul [IsDomain R] [IsPrincipalIdealRing R]
     [IsNoetherianRing R] [IsFractionRing R F] [Module.Finite R G] [Module.IsTorsionFree R G]
     {B : Subalgebra F (F ⊗[R] G)} (hB : IsComulStable R F B)
@@ -135,6 +162,9 @@ theorem tensorInclusion3_lTensor_closureComul [IsDomain R] [IsPrincipalIdealRing
   | tmul x y => simp [LinearMap.lTensor_tmul]
   | add a₁ a₂ h₁ h₂ => simp [map_add, h₁, h₂]
 
+/--
+@isnad1 id=eq.0h5v.s14.7313de9bfa5b from=translated src=- shape=68118867 vocab=2544c999
+-/
 theorem lTensor_val_rTensor_closureCounit {B : Subalgebra F (F ⊗[R] G)}
     (z : (flatClosure B) ⊗[R] (flatClosure B)) :
     ((flatClosure B).val.toLinearMap.lTensor R)
@@ -145,6 +175,9 @@ theorem lTensor_val_rTensor_closureCounit {B : Subalgebra F (F ⊗[R] G)}
   | tmul x y => simp [LinearMap.rTensor_tmul, LinearMap.lTensor_tmul]
   | add a₁ a₂ h₁ h₂ => simp [map_add, h₁, h₂]
 
+/--
+@isnad1 id=eq.0h5v.s14.3d9ab6a15e45 from=translated src=- shape=baaf709e vocab=2544c999
+-/
 theorem rTensor_val_lTensor_closureCounit {B : Subalgebra F (F ⊗[R] G)}
     (z : (flatClosure B) ⊗[R] (flatClosure B)) :
     ((flatClosure B).val.toLinearMap.rTensor R)
@@ -155,6 +188,9 @@ theorem rTensor_val_lTensor_closureCounit {B : Subalgebra F (F ⊗[R] G)}
   | tmul x y => simp [LinearMap.rTensor_tmul, LinearMap.lTensor_tmul]
   | add a₁ a₂ h₁ h₂ => simp [map_add, h₁, h₂]
 
+/--
+@isnad1 id=eq.1h4v.s15.1a266ac548bc from=translated src=- shape=e7d5cf77 vocab=7e5978cf
+-/
 theorem closureComul_coassoc [IsDomain R] [IsPrincipalIdealRing R] [IsNoetherianRing R]
     [IsFractionRing R F] [Module.Finite R G] [Module.IsTorsionFree R G]
     {B : Subalgebra F (F ⊗[R] G)} (hB : IsComulStable R F B) :
@@ -170,6 +206,9 @@ theorem closureComul_coassoc [IsDomain R] [IsPrincipalIdealRing R] [IsNoetherian
     tensorInclusion_closureComul]
   exact Coalgebra.coassoc_apply (h : G)
 
+/--
+@isnad1 id=eq.1h4v.s13.92f34edf1320 from=translated src=- shape=c6a399c3 vocab=40a5474b
+-/
 theorem closureCounit_rTensor_comp_closureComul [IsDomain R] [IsPrincipalIdealRing R]
     [IsNoetherianRing R] [IsFractionRing R F] [Module.Finite R G] [Module.IsTorsionFree R G]
     {B : Subalgebra F (F ⊗[R] G)} (hB : IsComulStable R F B) :
@@ -184,6 +223,9 @@ theorem closureCounit_rTensor_comp_closureComul [IsDomain R] [IsPrincipalIdealRi
     Coalgebra.rTensor_counit_comul]
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s13.920dc9458bc1 from=translated src=- shape=2528f93f vocab=09681017
+-/
 theorem closureCounit_lTensor_comp_closureComul [IsDomain R] [IsPrincipalIdealRing R]
     [IsNoetherianRing R] [IsFractionRing R F] [Module.Finite R G] [Module.IsTorsionFree R G]
     {B : Subalgebra F (F ⊗[R] G)} (hB : IsComulStable R F B) :
@@ -199,15 +241,24 @@ theorem closureCounit_lTensor_comp_closureComul [IsDomain R] [IsPrincipalIdealRi
     Coalgebra.lTensor_counit_comul]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.39a6ca209d96 from=translated src=- shape=07065616 vocab=ade48ae1
+-/
 theorem closureCounit_one (B : Subalgebra F (F ⊗[R] G)) :
     closureCounit (R := R) (F := F) B 1 = 1 := by
   simp [Bialgebra.counit_one]
 
+/--
+@isnad1 id=eq.0h6v.s11.1e64ddd677ae from=translated src=- shape=5fd57113 vocab=4c0c6840
+-/
 theorem closureCounit_mul {B : Subalgebra F (F ⊗[R] G)} (x y : flatClosure B) :
     closureCounit (R := R) (F := F) B (x * y)
       = closureCounit (R := R) (F := F) B x * closureCounit (R := R) (F := F) B y := by
   simp [Bialgebra.counit_mul]
 
+/--
+@isnad1 id=eq.1h4v.s12.8c139d7221f9 from=translated src=- shape=fed910fb vocab=009ec68a
+-/
 theorem closureComul_one [IsDomain R] [IsPrincipalIdealRing R] [IsNoetherianRing R]
     [IsFractionRing R F] [Module.Finite R G] [Module.IsTorsionFree R G]
     {B : Subalgebra F (F ⊗[R] G)} (hB : IsComulStable R F B) :
@@ -216,6 +267,9 @@ theorem closureComul_one [IsDomain R] [IsPrincipalIdealRing R] [IsNoetherianRing
   rw [tensorInclusion_closureComul, tensorInclusion_one]
   simp [Bialgebra.comul_one]
 
+/--
+@isnad1 id=eq.1h6v.s14.41a144b583c6 from=translated src=- shape=91a48768 vocab=fe966ea0
+-/
 theorem closureComul_mul [IsDomain R] [IsPrincipalIdealRing R] [IsNoetherianRing R]
     [IsFractionRing R F] [Module.Finite R G] [Module.IsTorsionFree R G]
     {B : Subalgebra F (F ⊗[R] G)} (hB : IsComulStable R F B) (x y : flatClosure B) :
@@ -258,6 +312,9 @@ section Hopf
 
 variable [HopfAlgebra R G]
 
+/--
+@isnad1 id=eq.1h5v.s15.b8df8f5d1af1 from=translated src=- shape=5133a407 vocab=3f579221
+-/
 theorem tensorInclusion_rTensor_closureAntipode {B : Subalgebra F (F ⊗[R] G)}
     (hB' : IsAntipodeStable R F B) (z : (flatClosure B) ⊗[R] (flatClosure B)) :
     tensorInclusion B ((closureAntipode hB').rTensor (flatClosure B) z)
@@ -267,6 +324,9 @@ theorem tensorInclusion_rTensor_closureAntipode {B : Subalgebra F (F ⊗[R] G)}
   | tmul x y => simp [LinearMap.rTensor_tmul]
   | add a₁ a₂ h₁ h₂ => simp [map_add, h₁, h₂]
 
+/--
+@isnad1 id=eq.1h5v.s15.b0cb86ee0955 from=translated src=- shape=5133a407 vocab=cb6c0f0b
+-/
 theorem tensorInclusion_lTensor_closureAntipode {B : Subalgebra F (F ⊗[R] G)}
     (hB' : IsAntipodeStable R F B) (z : (flatClosure B) ⊗[R] (flatClosure B)) :
     tensorInclusion B ((closureAntipode hB').lTensor (flatClosure B) z)
@@ -276,6 +336,9 @@ theorem tensorInclusion_lTensor_closureAntipode {B : Subalgebra F (F ⊗[R] G)}
   | tmul x y => simp [LinearMap.lTensor_tmul]
   | add a₁ a₂ h₁ h₂ => simp [map_add, h₁, h₂]
 
+/--
+@isnad1 id=eq.2h4v.s14.716f49aea4f1 from=translated src=- shape=5fa78c1c vocab=22c43bb6
+-/
 theorem closure_mul_antipode_rTensor_comul [IsDomain R] [IsPrincipalIdealRing R]
     [IsNoetherianRing R] [IsFractionRing R F] [Module.Finite R G] [Module.IsTorsionFree R G]
     {B : Subalgebra F (F ⊗[R] G)} (hB : IsComulStable R F B) (hB' : IsAntipodeStable R F B) :
@@ -290,6 +353,9 @@ theorem closure_mul_antipode_rTensor_comul [IsDomain R] [IsPrincipalIdealRing R]
     tensorInclusion_closureComul, HopfAlgebra.mul_antipode_rTensor_comul_apply]
   simp [Algebra.linearMap_apply]
 
+/--
+@isnad1 id=eq.2h4v.s14.edefd0aa9a74 from=translated src=- shape=5fa78c1c vocab=334e1755
+-/
 theorem closure_mul_antipode_lTensor_comul [IsDomain R] [IsPrincipalIdealRing R]
     [IsNoetherianRing R] [IsFractionRing R F] [Module.Finite R G] [Module.IsTorsionFree R G]
     {B : Subalgebra F (F ⊗[R] G)} (hB : IsComulStable R F B) (hB' : IsAntipodeStable R F B) :
@@ -336,6 +402,9 @@ variable {G : Type w} [CommRing G]
 section ModuleLevel
 variable [Algebra R G]
 
+/--
+@isnad1 id=eq.0h5v.s13.de20cea5a901 from=translated src=- shape=71397157 vocab=a9c2f7d2
+-/
 theorem tensorInclusion_comm (B : Subalgebra F (F ⊗[R] G))
     (z : (flatClosure B) ⊗[R] (flatClosure B)) :
     tensorInclusion B (TensorProduct.comm R (flatClosure B) (flatClosure B) z)
@@ -351,6 +420,9 @@ open scoped _root_.P2MW.S_HopfAlgebra_exists_finiteFlat_bialgHom_surjective_comp
 section Bialgebra
 variable [Bialgebra R G]
 
+/--
+@isnad1 id=eq.1h5v.s14.b8403a9edb25 from=translated src=- shape=1239e3dd vocab=e69fe453
+-/
 theorem comm_closureComul [IsDomain R] [IsPrincipalIdealRing R] [IsNoetherianRing R]
     [IsFractionRing R F] [Module.Finite R G] [Module.IsTorsionFree R G]
     [Coalgebra.IsCocomm R G]
@@ -387,11 +459,17 @@ variable [Bialgebra R G]
 noncomputable def lTrans (k : G →ₐ[R] L) : G →ₐ[R] L ⊗[R] G :=
   (Algebra.TensorProduct.map k (AlgHom.id R G)).comp (Bialgebra.comulAlgHom R G)
 
+/--
+@isnad1 id=eq.0h7v.s10.1d80bf0d08ca from=translated src=- shape=3958850c vocab=3569e3e5
+-/
 lemma lTrans_eq_sum (k : G →ₐ[R] L) {g : G} {ι𝓡 : Type*} (𝓡 : Coalgebra.Repr R g ι𝓡) :
     lTrans k g = ∑ i ∈ 𝓡.index, k (𝓡.left i) ⊗ₜ[R] 𝓡.right i := by
   simp only [lTrans, AlgHom.comp_apply, Bialgebra.comulAlgHom_apply, ← 𝓡.eq, map_sum,
     Algebra.TensorProduct.map_tmul, AlgHom.id_apply]
 
+/--
+@isnad1 id=eq.0h5v.s11.2583ba4b8e6d from=translated src=- shape=ba33cd7d vocab=43012638
+-/
 lemma lTrans_toLinearMap_apply (k : G →ₐ[R] L) (g : G) :
     lTrans k g = TensorProduct.map k.toLinearMap LinearMap.id (Coalgebra.comul (R := R) g) := by
   rw [lTrans_eq_sum k (Coalgebra.Repr.arbitrary R g), ← (Coalgebra.Repr.arbitrary R g).eq,
@@ -402,11 +480,17 @@ noncomputable def invSubalgebra (K : Set (G →ₐ[R] L)) : Subalgebra R G :=
   ⨅ k ∈ K, AlgHom.equalizer (lTrans k)
     (Algebra.TensorProduct.includeRight : G →ₐ[R] L ⊗[R] G)
 
+/--
+@isnad1 id=iff.0h5v.s9.44e78659a62c from=translated src=- shape=53ad0a16 vocab=cc2b6b52
+-/
 lemma mem_invSubalgebra_iff {K : Set (G →ₐ[R] L)} {g : G} :
     g ∈ invSubalgebra K ↔ ∀ k ∈ K, lTrans k g = (1 : L) ⊗ₜ[R] g := by
   simp only [invSubalgebra, Algebra.mem_iInf, AlgHom.mem_equalizer,
     Algebra.TensorProduct.includeRight_apply]
 
+/--
+@isnad1 id=eq.2h6v.s9.3561df22a919 from=translated src=- shape=4edb7365 vocab=cc2b6b52
+-/
 lemma lTrans_eq_of_mem {K : Set (G →ₐ[R] L)} {g : G} (hg : g ∈ invSubalgebra K)
     {k : G →ₐ[R] L} (hk : k ∈ K) : lTrans k g = (1 : L) ⊗ₜ[R] g :=
   mem_invSubalgebra_iff.mp hg k hk
@@ -419,6 +503,9 @@ section Saturation
 variable {L : Type x} [Field L] [Algebra R L]
 variable [Bialgebra R G]
 
+/--
+@isnad1 id=iff.2h5v.s9.f71fea258749 from=translated src=- shape=9bceabd0 vocab=28567fb3
+-/
 lemma smul_eq_zero_iff_of_injective (hRL : Function.Injective (algebraMap R L))
     {r : R} (hr : r ≠ 0) {x : L ⊗[R] G} : r • x = 0 ↔ x = 0 := by
   constructor
@@ -431,6 +518,9 @@ lemma smul_eq_zero_iff_of_injective (hRL : Function.Injective (algebraMap R L))
   · intro h
     rw [h, smul_zero]
 
+/--
+@isnad1 id=mem.3h6v.s8.30381bd4d12d from=translated src=- shape=7114b9cd vocab=47e00de8
+-/
 theorem mem_invSubalgebra_of_smul_mem (hRL : Function.Injective (algebraMap R L))
     {K : Set (G →ₐ[R] L)} {g : G} {r : R} (hr : r ≠ 0) (hrg : r • g ∈ invSubalgebra K) :
     g ∈ invSubalgebra K := by
@@ -454,14 +544,23 @@ variable (F) in
 noncomputable def genB (K : Set (G →ₐ[R] L)) : Subalgebra F (F ⊗[R] G) :=
   Algebra.adjoin F ((fun g : G => (1 : F) ⊗ₜ[R] g) '' (invSubalgebra K : Set G))
 
+/--
+@isnad1 id=mem.1h6v.s9.d76012303cbd from=translated src=- shape=4c68d7fc vocab=99376990
+-/
 lemma one_tmul_mem_genB {K : Set (G →ₐ[R] L)} {g : G} (hg : g ∈ invSubalgebra K) :
     (1 : F) ⊗ₜ[R] g ∈ genB F K :=
   Algebra.subset_adjoin ⟨g, hg, rfl⟩
 
+/--
+@isnad1 id=le.0h5v.s7.de6bc9bf457e from=translated src=- shape=b8c70d7d vocab=d6722f47
+-/
 lemma invSubalgebra_le_flatClosure_genB (K : Set (G →ₐ[R] L)) :
     invSubalgebra K ≤ flatClosure (genB F K) := fun _ hg =>
   mem_flatClosure_iff.mpr (one_tmul_mem_genB hg)
 
+/--
+@isnad1 id=ex.1h6v.s10.82f3d70fd666 from=translated src=- shape=5ca1cd08 vocab=be69bdfc
+-/
 theorem exists_smul_eq_one_tmul_of_mem_genB [IsDomain R] [IsFractionRing R F]
     {K : Set (G →ₐ[R] L)} {x : F ⊗[R] G} (hx : x ∈ genB F K) :
     ∃ r : R, r ≠ 0 ∧ ∃ h ∈ invSubalgebra K, (algebraMap R F r) • x = (1 : F) ⊗ₜ[R] h := by
@@ -495,6 +594,9 @@ theorem exists_smul_eq_one_tmul_of_mem_genB [IsDomain R] [IsFractionRing R F]
       refine ⟨r₁ * r₂, mul_ne_zero hr₁ hr₂, h₁ * h₂, mul_mem hh₁ hh₂, ?_⟩
       rw [map_mul, ← smul_mul_smul_comm, e₁, e₂, Algebra.TensorProduct.tmul_mul_tmul, one_mul]
 
+/--
+@isnad1 id=eq.1h5v.s8.64278485777e from=translated src=- shape=8bf44d16 vocab=5c636cfc
+-/
 theorem flatClosure_genB [IsDomain R] [IsFractionRing R F] [Module.Flat R G]
     (hRL : Function.Injective (algebraMap R L)) (K : Set (G →ₐ[R] L)) :
     flatClosure (genB F K) = invSubalgebra K := by
@@ -548,6 +650,9 @@ lemma eq_sum_tmul_coord [Fintype ι] (b : Module.Basis ι R P) (z : P ⊗[R] N) 
       simp only [map_add, TensorProduct.tmul_add, Finset.sum_add_distrib]
       rw [← hx, ← hy]
 
+/--
+@isnad1 id=eq.0h9v.s11.4eebeb52632c from=translated src=- shape=f884f5d4 vocab=b971603d
+-/
 lemma apply_rid_lTensor_coord (b : Module.Basis ι R P) (j : ι) (f : N →ₗ[R] M) (z : N ⊗[R] P) :
     f (TensorProduct.rid R N ((b.coord j).lTensor N z))
       = TensorProduct.rid R M ((b.coord j).lTensor M (f.rTensor P z)) := by
@@ -557,6 +662,9 @@ lemma apply_rid_lTensor_coord (b : Module.Basis ι R P) (j : ι) (f : N →ₗ[R
       simp only [LinearMap.lTensor_tmul, LinearMap.rTensor_tmul, TensorProduct.rid_tmul, map_smul]
   | add x y hx hy => simp only [map_add, hx, hy]
 
+/--
+@isnad1 id=eq.0h9v.s11.00e1866f9b5d from=translated src=- shape=326a4f37 vocab=61a84cd8
+-/
 lemma apply_lid_rTensor_coord (b : Module.Basis ι R P) (j : ι) (f : N →ₗ[R] M) (z : P ⊗[R] N) :
     f (TensorProduct.lid R N ((b.coord j).rTensor N z))
       = TensorProduct.lid R M ((b.coord j).rTensor M (f.lTensor P z)) := by
@@ -574,6 +682,9 @@ section Calculus
 variable {L : Type x} [CommRing L] [Algebra R L]
 variable [Bialgebra R G]
 
+/--
+@isnad1 id=eq.0h9v.s12.fd9377589155 from=translated src=- shape=4c29eaca vocab=2adc8843
+-/
 lemma rTensor_lTrans_comul_eq_sum (k : G →ₐ[R] L) {g : G} {ι𝓡 : Type*} (𝓡 : Coalgebra.Repr R g ι𝓡)
     {κ𝓛 : _ → Type*} (𝓛 : ∀ i, Coalgebra.Repr R (𝓡.left i) (κ𝓛 i)) :
     (lTrans k).toLinearMap.rTensor G (Coalgebra.comul (R := R) g)
@@ -584,6 +695,9 @@ lemma rTensor_lTrans_comul_eq_sum (k : G →ₐ[R] L) {g : G} {ι𝓡 : Type*} (
   rw [LinearMap.rTensor_tmul, AlgHom.toLinearMap_apply, lTrans_eq_sum k (𝓛 i),
     TensorProduct.sum_tmul]
 
+/--
+@isnad1 id=eq.0h5v.s13.f7cca0029be3 from=translated src=- shape=0ae84cf8 vocab=5808a37e
+-/
 lemma rTensor_lTrans_comul (k : G →ₐ[R] L) (g : G) :
     (lTrans k).toLinearMap.rTensor G (Coalgebra.comul (R := R) g)
       = (TensorProduct.assoc R L G G).symm
@@ -601,6 +715,9 @@ lemma rTensor_lTrans_comul (k : G →ₐ[R] L) (g : G) :
   rw [LinearMap.lTensor_tmul, ← (𝓜 i).eq, TensorProduct.tmul_sum, map_sum]
   simp only [TensorProduct.assoc_symm_tmul]
 
+/--
+@isnad1 id=eq.0h4v.s13.922b482fb5f2 from=translated src=- shape=b32f3dcd vocab=d40cca6c
+-/
 lemma rTensor_includeRight_eq (w : G ⊗[R] G) :
     (Algebra.TensorProduct.includeRight : G →ₐ[R] L ⊗[R] G).toLinearMap.rTensor G w
       = (TensorProduct.assoc R L G G).symm ((1 : L) ⊗ₜ[R] w) := by
@@ -611,6 +728,9 @@ lemma rTensor_includeRight_eq (w : G ⊗[R] G) :
         Algebra.TensorProduct.includeRight_apply, TensorProduct.assoc_symm_tmul]
   | add x y hx hy => rw [map_add, hx, hy, TensorProduct.tmul_add, map_add]
 
+/--
+@isnad1 id=eq.0h4v.s13.cbcda420b159 from=translated src=- shape=6a7a91d0 vocab=2927c9e8
+-/
 lemma lTensor_includeRight_eq (w : G ⊗[R] G) :
     (Algebra.TensorProduct.includeRight : G →ₐ[R] L ⊗[R] G).toLinearMap.lTensor G w
       = TensorProduct.assoc R G L G
@@ -625,6 +745,9 @@ lemma lTensor_includeRight_eq (w : G ⊗[R] G) :
         TensorProduct.comm_tmul, LinearMap.id_coe, id_eq, TensorProduct.assoc_tmul]
   | add x y hx hy => simp only [map_add, hx, hy]
 
+/--
+@isnad1 id=eq.2h6v.s13.bd7f9c5d2c71 from=translated src=- shape=16c645bb vocab=8da6f2fa
+-/
 theorem rTensor_lTrans_comul_of_mem {K : Set (G →ₐ[R] L)} {g : G} (hg : g ∈ invSubalgebra K)
     {k : G →ₐ[R] L} (hk : k ∈ K) :
     (lTrans k).toLinearMap.rTensor G (Coalgebra.comul (R := R) g)
@@ -633,6 +756,9 @@ theorem rTensor_lTrans_comul_of_mem {K : Set (G →ₐ[R] L)} {g : G} (hg : g �
   rw [rTensor_lTrans_comul, lTrans_eq_of_mem hg hk, LinearMap.lTensor_tmul,
     rTensor_includeRight_eq]
 
+/--
+@isnad1 id=eq.0h7v.s11.a06f4c9fbbab from=translated src=- shape=21d6775c vocab=879308e5
+-/
 lemma sum_apply_tmul_comm [Coalgebra.IsCocomm R G] {M : Type*} [AddCommMonoid M] [Module R M]
     (ψ : G ⊗[R] G →ₗ[R] M) {a : G} {ι𝓐 : Type*} (𝓐 : Coalgebra.Repr R a ι𝓐) :
     ∑ j ∈ 𝓐.index, ψ (𝓐.right j ⊗ₜ[R] 𝓐.left j)
@@ -642,6 +768,9 @@ lemma sum_apply_tmul_comm [Coalgebra.IsCocomm R G] {M : Type*} [AddCommMonoid M]
     simp only [TensorProduct.comm_tmul]
   rw [← map_sum, ← map_sum, h, 𝓐.eq]
 
+/--
+@isnad1 id=eq.0h5v.s14.ca345eed09fe from=translated src=- shape=e0d2b0b1 vocab=63f98ac9
+-/
 lemma lTensor_lTrans_comul [Coalgebra.IsCocomm R G] (k : G →ₐ[R] L) (g : G) :
     (lTrans k).toLinearMap.lTensor G (Coalgebra.comul (R := R) g)
       = TensorProduct.assoc R G L G
@@ -673,6 +802,9 @@ lemma lTensor_lTrans_comul [Coalgebra.IsCocomm R G] (k : G →ₐ[R] L) (g : G) 
   simp only [hψ]
   exact (sum_apply_tmul_comm ψ (𝓛 i)).symm
 
+/--
+@isnad1 id=eq.2h6v.s13.8eea1bb0d5b2 from=translated src=- shape=2bb07a8a vocab=8f1f06d5
+-/
 theorem lTensor_lTrans_comul_of_mem [Coalgebra.IsCocomm R G] {K : Set (G →ₐ[R] L)} {g : G}
     (hg : g ∈ invSubalgebra K) {k : G →ₐ[R] L} (hk : k ∈ K) :
     (lTrans k).toLinearMap.lTensor G (Coalgebra.comul (R := R) g)
@@ -688,6 +820,9 @@ section ComulStable
 variable {L : Type x} [Field L] [Algebra R L]
 variable [Bialgebra R G]
 
+/--
+@isnad1 id=ex.1h4v.s10.fdf79fa92b6d from=translated src=- shape=3ea71c77 vocab=f1d082e8
+-/
 theorem exists_isCompl_invSubalgebra [IsDomain R] [IsPrincipalIdealRing R] [Module.Finite R G]
     [Module.Flat R G] (hRL : Function.Injective (algebraMap R L)) (K : Set (G →ₐ[R] L)) :
     ∃ C : Submodule R G, IsCompl (Subalgebra.toSubmodule (invSubalgebra K)) C := by
@@ -696,6 +831,9 @@ theorem exists_isCompl_invSubalgebra [IsDomain R] [IsPrincipalIdealRing R] [Modu
   rw [flatClosure_genB hRL K] at hC
   exact ⟨C, hC⟩
 
+/--
+@isnad1 id=mem.2h5v.s11.10e5b65fcee1 from=translated src=- shape=312fc0a7 vocab=5b79acbe
+-/
 theorem comul_mem_span_of_mem_invSubalgebra [IsDomain R] [IsPrincipalIdealRing R]
     [Module.Finite R G] [Module.Flat R G] [Coalgebra.IsCocomm R G]
     (hRL : Function.Injective (algebraMap R L)) {K : Set (G →ₐ[R] L)} {g : G}
@@ -748,6 +886,9 @@ theorem comul_mem_span_of_mem_invSubalgebra [IsDomain R] [IsPrincipalIdealRing R
   exact Submodule.sum_mem _ fun j _ =>
     Submodule.subset_span (Set.mem_image2_of_mem (hu j) (hq_mem _))
 
+/--
+@isnad1 id=iscomuls.1h5v.s8.100a05170727 from=translated src=- shape=60cf9ef5 vocab=35998a52
+-/
 theorem isComulStable_genB [IsDomain R] [IsPrincipalIdealRing R] [IsFractionRing R F]
     [Module.Finite R G] [Module.Flat R G] [Coalgebra.IsCocomm R G]
     (hRL : Function.Injective (algebraMap R L)) (K : Set (G →ₐ[R] L)) :
@@ -782,6 +923,9 @@ section Antipode
 variable {L : Type x} [CommRing L] [Algebra R L]
 variable [HopfAlgebra R G]
 
+/--
+@isnad1 id=mem.3h5v.s12.2a9d69908698 from=translated src=- shape=40bbd18d vocab=62b474dc
+-/
 theorem antipode_mem_invSubalgebra
     (hSΔ : ∀ a : G, TensorProduct.map (HopfAlgebra.antipode R (A := G))
       (HopfAlgebra.antipode R (A := G)) (Coalgebra.comul (R := R) a)
@@ -810,6 +954,9 @@ section AntipodeGenB
 variable {L : Type x} [Field L] [Algebra R L]
 variable [HopfAlgebra R G]
 
+/--
+@isnad1 id=isantipo.3h5v.s12.9acdbe90b8e5 from=translated src=- shape=d1d4fadd vocab=35e5315a
+-/
 theorem isAntipodeStable_genB [IsDomain R] [IsFractionRing R F] [Module.Flat R G]
     (hRL : Function.Injective (algebraMap R L))
     (hSΔ : ∀ a : G, TensorProduct.map (HopfAlgebra.antipode R (A := G))
@@ -836,16 +983,25 @@ open WithConv
 noncomputable def mulφ (φ : G →ₐ[R] L) : L ⊗[R] G →ₐ[R] L :=
   Algebra.TensorProduct.lift (AlgHom.id R L) φ (fun _ _ => Commute.all _ _)
 
+/--
+@isnad1 id=eq.0h6v.s9.76943e655ef0 from=translated src=- shape=b250f370 vocab=e34144df
+-/
 @[scoped simp]
 lemma mulφ_tmul (φ : G →ₐ[R] L) (c : L) (y : G) : mulφ φ (c ⊗ₜ[R] y) = c * φ y := by
   simp [mulφ, Algebra.TensorProduct.lift_tmul]
 
+/--
+@isnad1 id=eq.0h6v.s10.c6024f0542f8 from=translated src=- shape=34ad9b01 vocab=653cb266
+-/
 theorem convMul_apply_eq (k φ : G →ₐ[R] L) (g : G) :
     (toConv k * toConv φ) g = mulφ φ (lTrans k g) := by
   rw [AlgHom.convMul_apply, lTrans_eq_sum k (Coalgebra.Repr.arbitrary R g),
     ← (Coalgebra.Repr.arbitrary R g).eq, map_sum, map_sum]
   simp only [Algebra.TensorProduct.lift_tmul, mulφ_tmul]
 
+/--
+@isnad1 id=eq.2h7v.s9.3a3decf05a5c from=translated src=- shape=452f99cd vocab=4d552a57
+-/
 theorem convMul_apply_of_mem {K : Set (G →ₐ[R] L)} {g : G} (hg : g ∈ invSubalgebra K)
     {k : G →ₐ[R] L} (hk : k ∈ K) (φ : G →ₐ[R] L) :
     (toConv k * toConv φ) g = φ g := by
@@ -856,6 +1012,9 @@ noncomputable def transL (k' : G →ₐ[R] L) : L ⊗[R] G →ₐ[R] L ⊗[R] G 
     (fun _ _ => Commute.all _ _)
 
 omit [Bialgebra R G] in
+/--
+@isnad1 id=eq.0h5v.s9.4146813b915f from=translated src=- shape=248311d0 vocab=5d53c5f1
+-/
 lemma tmul_one_mul [Algebra R G] (c : L) (x : L ⊗[R] G) : (c ⊗ₜ[R] (1 : G)) * x = c • x := by
   induction x with
   | zero => rw [mul_zero, smul_zero]
@@ -863,11 +1022,17 @@ lemma tmul_one_mul [Algebra R G] (c : L) (x : L ⊗[R] G) : (c ⊗ₜ[R] (1 : G)
       rw [Algebra.TensorProduct.tmul_mul_tmul, one_mul, TensorProduct.smul_tmul', smul_eq_mul]
   | add x y hx hy => rw [mul_add, hx, hy, smul_add]
 
+/--
+@isnad1 id=eq.0h6v.s10.6baa65d27abf from=translated src=- shape=cf023182 vocab=9ce8400f
+-/
 lemma transL_tmul (k' : G →ₐ[R] L) (c : L) (y : G) :
     transL k' (c ⊗ₜ[R] y) = c • lTrans k' y := by
   rw [transL, Algebra.TensorProduct.lift_tmul, Algebra.TensorProduct.includeLeft_apply,
     tmul_one_mul]
 
+/--
+@isnad1 id=eq.0h6v.s10.35467a9c5dc9 from=translated src=- shape=589e069a vocab=aed76cea
+-/
 theorem transL_lTrans (k k' : G →ₐ[R] L) (g : G) :
     transL k' (lTrans k g) = lTrans (toConv k * toConv k').ofConv g := by
   let 𝓡 := Coalgebra.Repr.arbitrary R g
@@ -908,8 +1073,14 @@ theorem transL_lTrans (k k' : G →ₐ[R] L) (g : G) :
 noncomputable def avg (Kf : Finset (G →ₐ[R] L)) (g : G) : L ⊗[R] G :=
   ∑ k ∈ Kf, lTrans k g
 
+/--
+@isnad1 id=eq.0h5v.s9.176c63d63bfb from=translated src=- shape=68cb1c57 vocab=bce7b3b5
+-/
 lemma avg_def (Kf : Finset (G →ₐ[R] L)) (g : G) : avg Kf g = ∑ k ∈ Kf, lTrans k g := rfl
 
+/--
+@isnad1 id=eq.2h5v.s6.7f7693fdc920 from=translated src=- shape=1b82a04c vocab=a4570c59
+-/
 lemma sum_comp_eq_of_injOn {α M : Type*} [DecidableEq α] [AddCommMonoid M] (s : Finset α)
     (e : α → α) (he : ∀ a ∈ s, e a ∈ s) (hinj : Set.InjOn e s) (f : α → M) :
     ∑ a ∈ s, f (e a) = ∑ a ∈ s, f a := by
@@ -922,6 +1093,9 @@ lemma sum_comp_eq_of_injOn {α M : Type*} [DecidableEq α] [AddCommMonoid M] (s 
   conv_rhs => rw [← himg]
   rw [Finset.sum_image hinj]
 
+/--
+@isnad1 id=eq.2h6v.s10.55082391e17f from=translated src=- shape=eef09c08 vocab=016e0dcd
+-/
 theorem transL_avg (k' : G →ₐ[R] L) {Kf : Finset (G →ₐ[R] L)}
     (hK : ∀ k ∈ Kf, (toConv k * toConv k').ofConv ∈ Kf)
     (hinj : Set.InjOn (fun k : G →ₐ[R] L => (toConv k * toConv k').ofConv) Kf) (g : G) :
@@ -932,6 +1106,9 @@ theorem transL_avg (k' : G →ₐ[R] L) {Kf : Finset (G →ₐ[R] L)}
   exact sum_comp_eq_of_injOn Kf (fun k => (toConv k * toConv k').ofConv) hK hinj
     (fun k => lTrans k g)
 
+/--
+@isnad1 id=mem.3h7v.s10.819911587ae1 from=translated src=- shape=34670ea4 vocab=8391dc69
+-/
 theorem mem_invSubalgebra_of_smul_avg_eq {Kf : Finset (G →ₐ[R] L)}
     (hK : ∀ k' ∈ Kf, ∀ k ∈ Kf, (toConv k * toConv k').ofConv ∈ Kf)
     (hinj : ∀ k' ∈ Kf, Set.InjOn (fun k : G →ₐ[R] L => (toConv k * toConv k').ofConv) Kf)
@@ -943,6 +1120,9 @@ theorem mem_invSubalgebra_of_smul_avg_eq {Kf : Finset (G →ₐ[R] L)}
   have h1 : transL k' ((1 : L) ⊗ₜ[R] g') = lTrans k' g' := by rw [transL_tmul, one_smul]
   rw [← h1, ← h, map_smul, transL_avg k' (hK k' hk'f) (hinj k' hk'f)]
 
+/--
+@isnad1 id=eq.1h8v.s9.5991edceecb5 from=translated src=- shape=7fe5f347 vocab=c35cfa8c
+-/
 theorem apply_of_smul_avg_eq (φ : G →ₐ[R] L) {Kf : Finset (G →ₐ[R] L)} {g g' : G} {r : R}
     (h : r • avg Kf g = (1 : L) ⊗ₜ[R] g') :
     φ g' = r • ∑ k ∈ Kf, (toConv k * toConv φ) g := by
@@ -964,6 +1144,9 @@ variable {R A B L : Type} [CommRing R] [CommRing A] [CommRing B]
   [Algebra R A] [Algebra R B] [Algebra A B] [IsScalarTower R A B]
   [Field L] [IsAlgClosed L] [Algebra R L]
 
+/--
+@isnad1 id=ex.1h5v.s8.33a54bf1c1f0 from=translated src=- shape=1db6d360 vocab=6302e897
+-/
 theorem exists_algHom_extension [Algebra.IsIntegral A B]
     (hinj : Function.Injective (algebraMap A B)) (φ' : A →ₐ[R] L) :
     ∃ φ : B →ₐ[R] L, ∀ a : A, φ (algebraMap A B a) = φ' a := by
@@ -1079,6 +1262,9 @@ section Dedekind
 variable {R G L : Type} [CommSemiring R] [CommSemiring G] [Algebra R G]
   [CommRing L] [IsDomain L] [Algebra R L]
 
+/--
+@isnad1 id=eq.1h5v.s7.f6e134aded6c from=translated src=- shape=a15c2eeb vocab=deebe093
+-/
 theorem finset_eq_of_sum_apply_eq (S T : Finset (G →ₐ[R] L))
     (h : ∀ g : G, ∑ χ ∈ S, χ g = ∑ χ ∈ T, χ g) : S = T := by
   classical
@@ -1178,6 +1364,9 @@ noncomputable def antipodeAlgHom : A →ₐ[R] A where
   commutes' r := by
     rw [Algebra.algebraMap_eq_smul_one, map_smul, HopfAlgebra.antipode_one]
 
+/--
+@isnad1 id=eq.0h3v.s8.9702303bfe33 from=translated src=- shape=ec752e5f vocab=1e6ed222
+-/
 @[scoped simp]
 lemma antipodeAlgHom_apply (a : A) :
     antipodeAlgHom R A a = HopfAlgebra.antipode R a := rfl
@@ -1203,6 +1392,9 @@ private lemma lmul_map_eq (φ : A →ₐ[R] L) (z : A ⊗[R] A) :
   | add y z ihy ihz =>
       simp only [map_add, ihy, ihz]
 
+/--
+@isnad1 id=eq.0h4v.s9.692ba32032a8 from=translated src=- shape=f7b8fee7 vocab=9969d525
+-/
 theorem toConv_mul_toConv_comp_antipodeAlgHom (φ : A →ₐ[R] L) :
     WithConv.toConv φ * WithConv.toConv (φ.comp (antipodeAlgHom R A)) = 1 := by
   apply WithConv.ofConv_injective
@@ -1231,6 +1423,9 @@ open WithConv
 variable {R : Type} [CommRing R]
 variable {L : Type} [Field L] [Algebra R L]
 
+/--
+@isnad1 id=eq.0h5v.s12.39b8b989f918 from=translated src=- shape=9f785e28 vocab=d71d0ff2
+-/
 lemma map_val_val_eq_tensorInclusion {F : Type} [Field F] [Algebra R F]
     {G : Type} [CommRing G] [Algebra R G]
     (B : Subalgebra F (F ⊗[R] G)) (x : (flatClosure B) ⊗[R] (flatClosure B)) :
@@ -1240,6 +1435,9 @@ lemma map_val_val_eq_tensorInclusion {F : Type} [Field F] [Algebra R F]
   | tmul a b => rfl
   | add a b ha hb => simp only [map_add, ha, hb]
 
+/--
+@isnad1 id=eq.1h6v.s10.523c176ea5b0 from=translated src=- shape=2cf70d13 vocab=b96673cf
+-/
 lemma conv_right_cancel {G : Type} [CommRing G] [HopfAlgebra R G] (a b x : G →ₐ[R] L)
     (h : toConv a * toConv x = toConv b * toConv x) : a = b := by
   have hx := toConv_mul_toConv_comp_antipodeAlgHom (R := R) (A := G) (L := L) x
@@ -1247,6 +1445,9 @@ lemma conv_right_cancel {G : Type} [CommRing G] [HopfAlgebra R G] (a b x : G →
   simp only [mul_assoc, hx, mul_one] at h2
   exact WithConv.toConv_injective h2
 
+/--
+@isnad1 id=ex.5h4v.s13.ffd04ee741af from=translated src=- shape=0021c8fc vocab=21b7c1d3
+-/
 theorem aMain [IsDomain R] [IsPrincipalIdealRing R] [IsAlgClosed L]
     (hRL : Function.Injective (algebraMap R L))
     (G : Type) [CommRing G] [HopfAlgebra R G]
@@ -1346,6 +1547,9 @@ open scoped _root_.P2MW.S_HopfAlgebra_exists_finiteFlat_bialgHom_surjective_comp
 end DESCKDN
 open scoped _root_.P2MW.S_HopfAlgebra_exists_finiteFlat_bialgHom_surjective_comp_of_avg_descent.DESCKDN
 
+/--
+@isnad1 id=ex.5h4v.s13.ce5720bc89f6 from=translated src=- shape=c7d003f8 vocab=21b7c1d3
+-/
 theorem solution
     {R : Type} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R]
     {L : Type} [Field L] [Algebra R L] [IsAlgClosed L]

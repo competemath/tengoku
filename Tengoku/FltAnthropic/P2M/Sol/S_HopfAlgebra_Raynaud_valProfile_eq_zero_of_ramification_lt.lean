@@ -12,6 +12,9 @@ namespace Raynaud
 namespace ValProfile
 open _root_.HopfAlgebra
 
+/--
+@isnad1 id=ex.4h5v.s8.507a48e57b3d from=translated src=- shape=f17f61dd vocab=289b7dd1
+-/
 theorem exists_pred_le_of_nonneg_of_ne_zero {r p : ℕ} (hp : 1 ≤ p)
     {n n' : Fin (r + 1) → ℕ} {a : Fin (r + 1) → ℤ}
     (hprof : ∀ i : Fin (r + 1), (n' i : ℤ) = p * a i + (n i : ℤ) - a (i + 1))
@@ -37,6 +40,9 @@ theorem exists_pred_le_of_nonneg_of_ne_zero {r p : ℕ} (hp : 1 ≤ p)
 end HopfAlgebra.Raynaud.ValProfile
 
 open HopfAlgebra.Raynaud.ValProfile in
+/--
+@isnad1 id=eq.4h7v.s8.c3bcd70f63c9 from=translated src=- shape=98cdc6cd vocab=916acf07
+-/
 theorem solution
     {r p e : ℕ} (hpe : e + 1 < p)
     {n n' : Fin (r + 1) → ℕ} {a : Fin (r + 1) → ℤ}

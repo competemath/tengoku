@@ -6,6 +6,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Module_exists_basis_rat_eq_basis_padicInt_
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_Module_exists_basis_rat_eq_basis_padicInt_of_linearEquiv_baseChange.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
 open scoped TensorProduct
+/--
+@isnad1 id=ex.0h4v.s11.aedcf10c7caa from=translated src=- shape=b1329007 vocab=8d1aae5d
+-/
 theorem Module.exists_basis_rat_eq_basis_padicInt_of_linearEquiv_baseChange
     (p : ℕ) [Fact p.Prime]
     (A : Type*) [AddCommGroup A] [Module ℚ A] [Module.Finite ℚ A]

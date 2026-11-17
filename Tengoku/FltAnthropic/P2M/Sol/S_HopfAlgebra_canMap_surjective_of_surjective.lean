@@ -20,9 +20,15 @@ variable {R : Type u} [CommRing R] {A : Type v} [CommRing A] [HopfAlgebra R A]
 variable {B : Type w} [CommRing B] [Bialgebra R B]
 variable (π : A →ₐc[R] B)
 
+/--
+@isnad1 id=eq.0h5v.s10.01ed83dc610b from=translated src=- shape=120aafc4 vocab=73b2fc7e
+-/
 theorem canAlgHom_tmul_one (a : A) : canAlgHom π (a ⊗ₜ[R] 1) = a ⊗ₜ[R] 1 := by
   rw [canAlgHom_tmul, map_one, mul_one]
 
+/--
+@isnad1 id=eq.0h5v.s12.f7001b99c5ff from=translated src=- shape=d6edd67d vocab=2a6e9a15
+-/
 theorem canAlgHom_antipode_comul (a' : A) :
     canAlgHom π ((HopfAlgebra.antipode R).rTensor A (Coalgebra.comul a')) = (1 : A) ⊗ₜ[R] π a' := by
 
@@ -69,6 +75,9 @@ theorem canAlgHom_antipode_comul (a' : A) :
     LinearMap.rTensor_tmul, LinearMap.lTensor_tmul]
   simp
 
+/--
+@isnad1 id=surjecti.1h4v.s11.466884525820 from=translated src=- shape=564ba5cc vocab=347dc2b5
+-/
 theorem canAlgHom_surjective (hπ : Function.Surjective π) : Function.Surjective (canAlgHom π) := fun z => by
   induction z with
   | zero => exact ⟨0, map_zero _⟩
@@ -85,6 +94,9 @@ theorem canAlgHom_surjective (hπ : Function.Surjective π) : Function.Surjectiv
 end P2mS17CS
 
 open P2mS17CS in
+/--
+@isnad1 id=surjecti.1h4v.s11.4920b9c7eeb4 from=translated src=- shape=edcfc0b9 vocab=7448b86f
+-/
 theorem solution {R : Type*} [CommRing R] {A : Type*} [CommRing A] [HopfAlgebra R A]
     {B : Type*} [CommRing B] [Bialgebra R B] (π : A →ₐc[R] B) (hπ : Function.Surjective π) :
     Function.Surjective (HopfAlgebra.canMap π) :=

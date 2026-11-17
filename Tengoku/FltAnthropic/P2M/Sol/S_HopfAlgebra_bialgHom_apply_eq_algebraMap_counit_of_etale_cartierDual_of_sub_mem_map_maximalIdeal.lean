@@ -17,6 +17,9 @@ open scoped TensorProduct
 
 namespace RigidMult
 
+/--
+@isnad1 id=eq.2h6v.s8.36aa01b1ac64 from=translated src=- shape=fe9d9e54 vocab=1685678e
+-/
 theorem algHom_eq_of_forall_sub_mem_of_le_jacobson
     {R : Type*} [CommRing R] {A : Type*} [CommRing A] [Algebra R A]
     [Algebra.EssFiniteType R A] [Algebra.FormallyUnramified R A]
@@ -83,6 +86,9 @@ noncomputable def dualMap (φ : H' →ₐc[R] H) : CartierDual R H →ₐ[R] Car
     ext a
     simp [CartierDual.algebraMap_apply]
 
+/--
+@isnad1 id=eq.0h6v.s9.cc5ab3aa69ae from=translated src=- shape=fc249538 vocab=bf90d58c
+-/
 @[scoped simp] theorem dualMap_apply (φ : H' →ₐc[R] H) (ψ : CartierDual R H) (a : H') :
     dualMap φ ψ a = ψ (φ a) := rfl
 
@@ -90,6 +96,9 @@ noncomputable def trivDual [Module.Finite R H] [Module.Free R H] :
     CartierDual R H →ₐ[R] CartierDual R H' :=
   (Algebra.ofId R (CartierDual R H')).comp (Bialgebra.counitAlgHom R (CartierDual R H))
 
+/--
+@isnad1 id=eq.0h5v.s9.493ab374a1ce from=translated src=- shape=e15fdefd vocab=b6ff834b
+-/
 @[scoped simp] theorem trivDual_apply [Module.Finite R H] [Module.Free R H] (ψ : CartierDual R H) (a : H') :
     (trivDual (H' := H') ψ) a = Coalgebra.counit (R := R) a * ψ 1 := by
   simp only [trivDual, AlgHom.comp_apply, Bialgebra.counitAlgHom_apply, Algebra.ofId_apply,
@@ -99,6 +108,9 @@ noncomputable def trivDual [Module.Finite R H] [Module.Free R H] :
 
 end CartierPullback
 
+/--
+@isnad1 id=mem.1h4v.s9.59f558e4323a from=translated src=- shape=7b069f89 vocab=745823c9
+-/
 theorem dual_mem_map_of_forall_apply_mem
     {R : Type u} [CommRing R] (I : Ideal R)
     {H' : Type w} [CommRing H'] [Bialgebra R H'] [Coalgebra.IsCocomm R H']
@@ -117,6 +129,9 @@ theorem dual_mem_map_of_forall_apply_mem
   rw [Algebra.smul_def]
   exact Ideal.mul_mem_right _ _ (Ideal.mem_map_of_mem _ (hδ (b i)))
 
+/--
+@isnad1 id=le.0h2v.s7.b74b5072b3c7 from=translated src=- shape=6f1cfd28 vocab=72f65208
+-/
 theorem map_maximalIdeal_le_jacobson
     {R : Type*} [CommRing R] [IsLocalRing R] {B : Type*} [CommRing B] [Algebra R B] [Module.Finite R B] :
     (IsLocalRing.maximalIdeal R).map (algebraMap R B) ≤ Ideal.jacobson ⊥ := by
@@ -127,6 +142,9 @@ theorem map_maximalIdeal_le_jacobson
   have hmax : (J.comap (algebraMap R B)).IsMaximal := Ideal.isMaximal_comap_of_isIntegral_of_isMaximal J
   rw [IsLocalRing.eq_maximalIdeal hmax]
 
+/--
+@isnad1 id=eq.1h5v.s10.925a5f94033b from=translated src=- shape=e872396f vocab=21460ab0
+-/
 theorem main
     {R : Type u} [CommRing R] [IsLocalRing R]
     (H : Type v) [CommRing H] [Bialgebra R H] [Coalgebra.IsCocomm R H]
@@ -168,6 +186,9 @@ theorem main
 end RigidMult
 open scoped _root_.P2MW.S_HopfAlgebra_bialgHom_apply_eq_algebraMap_counit_of_etale_cartierDual_of_sub_mem_map_maximalIdeal.RigidMult
 
+/--
+@isnad1 id=eq.1h5v.s10.925a5f94033b from=translated src=- shape=e872396f vocab=21460ab0
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsLocalRing R]
     (H : Type v) [CommRing H] [Bialgebra R H] [Coalgebra.IsCocomm R H]

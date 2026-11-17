@@ -10,5 +10,8 @@ set_option autoImplicit false
 
 open scoped MatrixGroups
 
+/--
+@isnad1 id=eq.0h3v.s12.ec0c156f4bd9 from=translated src=- shape=e57903e6 vocab=db68f359
+-/
 theorem HeckeEis.binaryFormRepSL_neg_one_apply (K : Type*) [CommRing K] (n : ℕ) (P : ↥(HeckeEis.BinaryForm K n)) :
     HeckeEis.binaryFormRepSL K n (-1) P = ((-1 : K) ^ n) • P := by exact @_root_.P2MW.S_HeckeEis_binaryFormRepSL_neg_one_apply.solution K _ n P

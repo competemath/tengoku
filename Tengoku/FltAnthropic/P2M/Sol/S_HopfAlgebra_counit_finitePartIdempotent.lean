@@ -15,12 +15,18 @@ namespace FinitePart
 section Away
 variable {H : Type*} [CommRing H]
 
+/--
+@isnad1 id=eq.1h3v.s6.a96e4603efab from=translated src=- shape=d3ab5d3e vocab=0e59c9ec
+-/
 theorem algebraMap_eq_one_of_isIdempotentElem {e : H} (he : IsIdempotentElem e)
     (L : Type*) [CommRing L] [Algebra H L] [IsLocalization.Away e L] : algebraMap H L e = 1 := by
   have hu : IsUnit (algebraMap H L e) := IsLocalization.Away.algebraMap_isUnit e
   apply hu.mul_left_cancel
   rw [← map_mul, he.eq, mul_one]
 
+/--
+@isnad1 id=surjecti.1h3v.s6.e7a18ec3bb33 from=translated src=- shape=d5d878fd vocab=9a355ff1
+-/
 theorem algebraMap_surjective_of_isIdempotentElem {e : H} (he : IsIdempotentElem e)
     (L : Type*) [CommRing L] [Algebra H L] [IsLocalization.Away e L] : Function.Surjective (algebraMap H L) := by
   intro x

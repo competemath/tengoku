@@ -9,6 +9,9 @@ namespace P2MW.S_HopfAlgebra_exists_normOneTorus_hopfIdeal_quotient_of_powerPair
 set_option maxHeartbeats 24000000
 open scoped TensorProduct
 
+/--
+@isnad1 id=ex.10h7v.s14.0dd2c7d291d8 from=translated src=- shape=64623a1f vocab=2bc1bed1
+-/
 theorem solution
     (K : Type) [Field K] (c : K)
     (B₀ : Type) [CommRing B₀] [HopfAlgebra K B₀] (hcc₀ : Coalgebra.IsCocomm K B₀)

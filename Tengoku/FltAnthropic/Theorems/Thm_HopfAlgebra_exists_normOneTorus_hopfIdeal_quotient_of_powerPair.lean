@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_HopfAlgebra_exists_normOneTorus_hopfIdeal_
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_HopfAlgebra_exists_normOneTorus_hopfIdeal_quotient_of_powerPair.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
 open scoped TensorProduct in
+/--
+@isnad1 id=ex.10h7v.s14.0dd2c7d291d8 from=translated src=- shape=64623a1f vocab=2bc1bed1
+-/
 theorem HopfAlgebra.exists_normOneTorus_hopfIdeal_quotient_of_powerPair
     (K : Type) [Field K] (c : K)
     (B₀ : Type) [CommRing B₀] [HopfAlgebra K B₀] (hcc₀ : Coalgebra.IsCocomm K B₀)

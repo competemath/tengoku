@@ -10,6 +10,9 @@ set_option maxHeartbeats 8000000
 
 open TensorProduct
 
+/--
+@isnad1 id=ex.6h6v.s13.cb8fddd9cab0 from=translated src=- shape=9c607860 vocab=00ee1744
+-/
 theorem solution
     (R : Type) [CommRing R] (S : Type) [CommRing S] (φ : R ≃+* S)
     [Algebra R (AlgebraicClosure ℚ)] [Algebra S (AlgebraicClosure ℚ)]

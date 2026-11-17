@@ -397,6 +397,9 @@ end OuterMeasurability
 
 end HaarDisM65
 
+/--
+@isnad1 id=eq.2h5v.s8.e630e1102bd8 from=translated src=- shape=a03f20ab vocab=20149322
+-/
 theorem solution
     {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [LocallyCompactSpace G]
     [SecondCountableTopology G] [MeasurableSpace G] [BorelSpace G]

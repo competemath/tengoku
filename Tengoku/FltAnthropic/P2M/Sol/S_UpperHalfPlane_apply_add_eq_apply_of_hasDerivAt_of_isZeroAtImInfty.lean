@@ -19,6 +19,9 @@ open scoped Real Manifold
 
 local notation "𝕢" => Function.Periodic.qParam
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.918a6ae87297 from=translated src=- shape=1762a6c8 vocab=225ab841
+-/
 theorem hasDerivAt_qParam (h : ℝ) (z : ℂ) :
     HasDerivAt (𝕢 h) (2 * π * Complex.I / h * 𝕢 h z) z := by
   have h1 : HasDerivAt (fun w : ℂ => 2 * ↑π * Complex.I * w / ↑h)
@@ -32,12 +35,18 @@ theorem hasDerivAt_qParam (h : ℝ) (z : ℂ) :
   rw [hval]
   exact h2
 
+/--
+@isnad1 id=eq.1h2v.s4.e627587e0f01 from=translated src=- shape=3a0c6071 vocab=46876471
+-/
 theorem qParam_add_period (h : ℝ) (hh : h ≠ 0) (z : ℂ) : 𝕢 h (z + h) = 𝕢 h z := by
   simp only [Function.Periodic.qParam]
   have hne : (h : ℂ) ≠ 0 := ofReal_ne_zero.mpr hh
   rw [show 2 * ↑π * Complex.I * (z + ↑h) / ↑h = 2 * ↑π * Complex.I * z / ↑h + 2 * ↑π * Complex.I by field_simp,
     Complex.exp_add, Complex.exp_two_pi_mul_I, mul_one]
 
+/--
+@isnad1 id=ex.4h2v.s7.701b4a6e9e5e from=translated src=- shape=19e0e113 vocab=527f4e93
+-/
 theorem exists_periodic_primitive {h : ℝ} {g : ℍ → ℂ} (hh : 0 < h) (hper : Periodic (g ∘ ofComplex) h)
     (hhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) g) (hzero : IsZeroAtImInfty g) :
     ∃ G : ℂ → ℂ, (∀ τ : ℍ, HasDerivAt G (g τ) ↑τ) ∧ Periodic G h := by
@@ -81,6 +90,9 @@ theorem exists_periodic_primitive {h : ℝ} {g : ℍ → ℂ} (hh : 0 < h) (hper
   · show ↑h / (2 * π * Complex.I) * Ψ (𝕢 h (z + h)) = ↑h / (2 * π * Complex.I) * Ψ (𝕢 h z)
     rw [qParam_add_period h hh.ne' z]
 
+/--
+@isnad1 id=eq.1h3v.s6.eb87b508247f from=translated src=- shape=8e7b93cf vocab=d548af94
+-/
 theorem apply_eq_apply_of_hasDerivAt_zero {D : ℂ → ℂ}
     (hD : ∀ τ : ℍ, HasDerivAt D 0 ↑τ) (z w : ℍ) : D ↑z = D ↑w := by
   have hmem : ∀ σ : ℍ, (↑σ : ℂ) ∈ {c : ℂ | 0 < c.im} := fun σ => σ.2
@@ -96,6 +108,9 @@ theorem apply_eq_apply_of_hasDerivAt_zero {D : ℂ → ℂ}
 end UpperHalfPlane.PeriodicPrimitiveSol
 
 open _root_.UpperHalfPlane _root_.P2MW.S_UpperHalfPlane_apply_add_eq_apply_of_hasDerivAt_of_isZeroAtImInfty.UpperHalfPlane UpperHalfPlane.PeriodicPrimitiveSol in
+/--
+@isnad1 id=eq.5h4v.s7.4a8c984f0218 from=translated src=- shape=391a96b4 vocab=4fe0d8ac
+-/
 theorem solution {h : ℝ} (hh : 0 < h) {g : UpperHalfPlane → ℂ}
     (hper : Function.Periodic (g ∘ UpperHalfPlane.ofComplex) h)
     (hhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) g) (hzero : UpperHalfPlane.IsZeroAtImInfty g)

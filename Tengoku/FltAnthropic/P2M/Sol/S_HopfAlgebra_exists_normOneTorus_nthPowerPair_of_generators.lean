@@ -9,6 +9,9 @@ namespace P2MW.S_HopfAlgebra_exists_normOneTorus_nthPowerPair_of_generators
 open scoped TensorProduct
 
 set_option maxHeartbeats 12000000 in
+/--
+@isnad1 id=ex.9h7v.s13.3792be9604a7 from=translated src=- shape=9220c679 vocab=e68371b7
+-/
 theorem solution
     (K : Type) [Field K] [CharZero K] (c : K) (hc : c ≠ 0) (hnsq : ¬ IsSquare c)
     (n : ℕ) [Fact n.Prime]
