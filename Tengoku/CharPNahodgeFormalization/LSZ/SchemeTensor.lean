@@ -59,6 +59,9 @@ noncomputable def homFromTopOver
     (f : M.over (⊤ : Opens T) ⟶ N.over (⊤ : Opens T)) : M ⟶ N where
   val := homFromTopOverVal A M N f
 
+/--
+@isnad1 id=eq.0h5v.s8.0b9c09f323e5 from=translated src=- shape=471d3ecc vocab=909de865
+-/
 lemma homFromTopOver_over (f : M ⟶ N) :
     homFromTopOver A M N (f.over (⊤ : Opens T)) = f := by
   apply SheafOfModules.hom_ext
@@ -66,6 +69,9 @@ lemma homFromTopOver_over (f : M ⟶ N) :
   change f.val.app U x = f.val.app U x
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.14d5c390b4a4 from=translated src=- shape=864d312e vocab=199e6e89
+-/
 lemma over_homFromTopOver
     (f : M.over (⊤ : Opens T) ⟶ N.over (⊤ : Opens T)) :
     (homFromTopOver A M N f).over (⊤ : Opens T) = f := by
@@ -146,6 +152,9 @@ private lemma affineInternalHomTo_apply (s : affineInternalHomSource N P) :
     affineInternalHomTo N P s = affineInternalHomToFun N P s := by
   rfl
 
+/--
+@isnad1 id=bijectiv.0h3v.s10.feb75a131643 from=translated src=- shape=52331dcd vocab=0dad599c
+-/
 lemma affineInternalHomTo_bijective :
     Function.Bijective (affineInternalHomTo N P) := by
   constructor
@@ -168,11 +177,17 @@ noncomputable def affineInternalHomIso :
   (LinearEquiv.ofBijective (affineInternalHomTo N P).hom
     (affineInternalHomTo_bijective N P)).toModuleIso
 
+/--
+@isnad1 id=eq.0h3v.s8.53f1955b2c93 from=translated src=- shape=af2abf87 vocab=d0ae95dc
+-/
 @[simp]
 lemma affineInternalHomIso_hom :
     (affineInternalHomIso N P).hom = affineInternalHomTo N P := by
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.a285f3932169 from=translated src=- shape=05a095ed vocab=bb263dc2
+-/
 lemma affineInternalHomTo_naturality {Q : (Spec R).Modules} (g : P ⟶ Q) :
     moduleSpecΓFunctor.map
         (CommRingSheaf.internalHomMap (Spec R).sheaf
@@ -204,6 +219,9 @@ noncomputable def affineTensorHomEquiv :
     ((((β_ M N).homFromEquiv).symm).trans
       ((AlgebraicGeometry.tilde.adjunction (R := R)).homEquiv (M ⊗ N) P).symm))))
 
+/--
+@isnad1 id=eq.0h5v.s13.f195845606a9 from=translated src=- shape=9e2ede5a vocab=eca4510c
+-/
 lemma affineTensorHomEquiv_apply
     (f : tensor (Spec R) (AlgebraicGeometry.tilde M)
       (AlgebraicGeometry.tilde N) ⟶ P) :
@@ -220,6 +238,9 @@ lemma affineTensorHomEquiv_apply
               (affineInternalHomIso N P).hom)) := by
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.81365c2e4d8f from=translated src=- shape=469782ea vocab=ad093af8
+-/
 lemma affineTensorHomEquiv_naturality {Q : (Spec R).Modules}
     (f : tensor (Spec R) (AlgebraicGeometry.tilde M)
       (AlgebraicGeometry.tilde N) ⟶ P) (g : P ⟶ Q) :

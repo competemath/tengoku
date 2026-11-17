@@ -98,6 +98,9 @@ structure IntegrableHiggsHom {T : RestrictedTangentSheaf X p}
   commutes (U : X.Opens) (D : Γ(T.tangent, U)) (m : Γ(E.carrier, U)) :
     hom.app U (E.theta U D m) = F.theta U D (hom.app U m)
 
+/--
+@isnad1 id=eq.1h7v.s6.b8bebe6d13ee from=translated src=- shape=fbb8a32c vocab=f4ebd3f7
+-/
 @[ext]
 lemma IntegrableHiggsHom.ext {T : RestrictedTangentSheaf X p}
     {E F : IntegrableHiggs T} (f g : IntegrableHiggsHom E F)
@@ -134,11 +137,17 @@ instance (T : RestrictedTangentSheaf X p) : Category (IntegrableHiggs T) where
     apply IntegrableHiggsHom.ext
     exact Category.assoc f.hom g.hom h.hom
 
+/--
+@isnad1 id=eq.0h4v.s6.c5b8d29f037d from=translated src=- shape=4a239935 vocab=418380e1
+-/
 @[simp]
 lemma IntegrableHiggsHom.id_hom {T : RestrictedTangentSheaf X p}
     (E : IntegrableHiggs T) :
     (𝟙 E : E ⟶ E).hom = 𝟙 E.carrier := rfl
 
+/--
+@isnad1 id=eq.0h8v.s7.43492bfe3949 from=translated src=- shape=c604c59d vocab=794e945c
+-/
 @[simp]
 lemma IntegrableHiggsHom.comp_hom {T : RestrictedTangentSheaf X p}
     {E F G : IntegrableHiggs T} (f : E ⟶ F) (g : F ⟶ G) :
@@ -172,6 +181,9 @@ structure HiggsHom {T : RestrictedTangentSheaf X p}
   commutes (U : X.Opens) (D : Γ(T.tangent, U)) (m : Γ(E.carrier, U)) :
     hom.app U (E.theta U D m) = F.theta U D (hom.app U m)
 
+/--
+@isnad1 id=eq.1h7v.s6.68e0c5d8b782 from=translated src=- shape=fbb8a32c vocab=04649caf
+-/
 @[ext]
 lemma HiggsHom.ext {T : RestrictedTangentSheaf X p}
     {E F : NilpotentHiggs T} (f g : HiggsHom E F) (h : f.hom = g.hom) : f = g := by
@@ -207,10 +219,16 @@ instance (T : RestrictedTangentSheaf X p) : Category (NilpotentHiggs T) where
     apply HiggsHom.ext
     exact Category.assoc f.hom g.hom h.hom
 
+/--
+@isnad1 id=eq.0h4v.s6.a675b70ae9d2 from=translated src=- shape=4a239935 vocab=18c6f53b
+-/
 @[simp]
 lemma HiggsHom.id_hom {T : RestrictedTangentSheaf X p} (E : NilpotentHiggs T) :
     (𝟙 E : E ⟶ E).hom = 𝟙 E.carrier := rfl
 
+/--
+@isnad1 id=eq.0h8v.s7.27f90a6bba67 from=translated src=- shape=c604c59d vocab=81598aac
+-/
 @[simp]
 lemma HiggsHom.comp_hom {T : RestrictedTangentSheaf X p}
     {E F G : NilpotentHiggs T} (f : E ⟶ F) (g : F ⟶ G) :
@@ -237,11 +255,17 @@ def nilpotentHiggsForget (T : RestrictedTangentSheaf X p) :
     apply IntegrableHiggsHom.ext
     rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.45bb6a8aa2d3 from=translated src=- shape=e8709c1b vocab=9df9976c
+-/
 @[simp]
 lemma nilpotentHiggsForget_obj_carrier (T : RestrictedTangentSheaf X p)
     (E : NilpotentHiggs T) :
     ((nilpotentHiggsForget T).obj E).carrier = E.carrier := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.1d24ec05d2c6 from=translated src=- shape=2f0c0663 vocab=8d8d1924
+-/
 @[simp]
 lemma nilpotentHiggsForget_map_hom (T : RestrictedTangentSheaf X p)
     {E F : NilpotentHiggs T} (f : E ⟶ F) :
@@ -279,6 +303,9 @@ structure ConnectionHom {T : RestrictedTangentSheaf X p}
   horizontal (U : X.Opens) (D : Γ(T.tangent, U)) (m : Γ(E.carrier, U)) :
     hom.app U (E.nabla U D m) = F.nabla U D (hom.app U m)
 
+/--
+@isnad1 id=eq.1h7v.s6.b13af6808cd7 from=translated src=- shape=fbb8a32c vocab=b1628648
+-/
 @[ext]
 lemma ConnectionHom.ext {T : RestrictedTangentSheaf X p}
     {E F : IntegrableConnection T} (f g : ConnectionHom E F)
@@ -315,11 +342,17 @@ instance (T : RestrictedTangentSheaf X p) : Category (IntegrableConnection T) wh
     apply ConnectionHom.ext
     exact Category.assoc f.hom g.hom h.hom
 
+/--
+@isnad1 id=eq.0h4v.s6.35e9f300d28e from=translated src=- shape=4a239935 vocab=4fbd9d3f
+-/
 @[simp]
 lemma ConnectionHom.id_hom {T : RestrictedTangentSheaf X p}
     (E : IntegrableConnection T) :
     (𝟙 E : E ⟶ E).hom = 𝟙 E.carrier := rfl
 
+/--
+@isnad1 id=eq.0h8v.s7.683d595b76c9 from=translated src=- shape=c604c59d vocab=c502b366
+-/
 @[simp]
 lemma ConnectionHom.comp_hom {T : RestrictedTangentSheaf X p}
     {E F G : IntegrableConnection T} (f : E ⟶ F) (g : F ⟶ G) :
@@ -348,6 +381,9 @@ structure FlatHom {T : RestrictedTangentSheaf X p}
   horizontal (U : X.Opens) (D : Γ(T.tangent, U)) (m : Γ(E.carrier, U)) :
     hom.app U (E.nabla U D m) = F.nabla U D (hom.app U m)
 
+/--
+@isnad1 id=eq.1h7v.s6.4fe28fc72bbd from=translated src=- shape=390ba5b8 vocab=6f7ad010
+-/
 @[ext]
 lemma FlatHom.ext {T : RestrictedTangentSheaf X p}
     {E F : NilpotentFlat T} (f g : FlatHom E F) (h : f.hom = g.hom) : f = g := by
@@ -383,10 +419,16 @@ instance (T : RestrictedTangentSheaf X p) : Category (NilpotentFlat T) where
     apply FlatHom.ext
     exact Category.assoc f.hom g.hom h.hom
 
+/--
+@isnad1 id=eq.0h4v.s6.1906aa41593b from=translated src=- shape=31f76a32 vocab=3c90228b
+-/
 @[simp]
 lemma FlatHom.id_hom {T : RestrictedTangentSheaf X p} (E : NilpotentFlat T) :
     (𝟙 E : E ⟶ E).hom = 𝟙 E.carrier := rfl
 
+/--
+@isnad1 id=eq.0h8v.s7.63c739221a1d from=translated src=- shape=9103f5a1 vocab=b2b99b28
+-/
 @[simp]
 lemma FlatHom.comp_hom {T : RestrictedTangentSheaf X p}
     {E F G : NilpotentFlat T} (f : E ⟶ F) (g : F ⟶ G) :
@@ -408,11 +450,17 @@ def nilpotentFlatForget (T : RestrictedTangentSheaf X p) :
     apply ConnectionHom.ext
     rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.58c55a0b0445 from=translated src=- shape=89294e2a vocab=960b29ec
+-/
 @[simp]
 lemma nilpotentFlatForget_obj_carrier (T : RestrictedTangentSheaf X p)
     (E : NilpotentFlat T) :
     ((nilpotentFlatForget T).obj E).carrier = E.carrier := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.62fcb8276b6a from=translated src=- shape=2f0c0663 vocab=76fbb548
+-/
 @[simp]
 lemma nilpotentFlatForget_map_hom (T : RestrictedTangentSheaf X p)
     {E F : NilpotentFlat T} (f : E ⟶ F) :

@@ -16,7 +16,9 @@ namespace LSZ
 
 universe u₁ u₂ u₃
 
-/-- `wordApply` is right-folding the corresponding finite list.-/
+/-- `wordApply` is right-folding the corresponding finite list.
+@isnad1 id=eq.0h5v.s5.d44b7c45731e from=translated src=- shape=66554e51 vocab=908a4974
+-/
 lemma wordApply_list {T : Type u₁} {M : Type u₂}
     (act : T → M → M) (l : List T) (m : M) :
     wordApply act l.length (fun i ↦ l.get i) m = l.foldr act m := by
@@ -28,7 +30,9 @@ lemma wordApply_list {T : Type u₁} {M : Type u₂}
         act x (l.foldr act m)
       rw [ih]
 
-/-- The defining length-`n` vanishing applies to any list of that length.-/
+/-- The defining length-`n` vanishing applies to any list of that length.
+@isnad1 id=eq.2h6v.s5.c4c3dd7e53ba from=translated src=- shape=7dd1621e vocab=4af56321
+-/
 lemma IsWordNilpotent.foldr_eq_zero {T : Type u₁} {M : Type u₂} [Zero M]
     {n : ℕ} {act : T → M → M} (h : IsWordNilpotent n act)
     (l : List T) (hl : l.length = n) (m : M) :
@@ -37,7 +41,9 @@ lemma IsWordNilpotent.foldr_eq_zero {T : Type u₁} {M : Type u₂} [Zero M]
   rw [← wordApply_list]
   exact h (fun i ↦ l.get i) m
 
-/-- Folding a constant block is iteration of its operator.-/
+/-- Folding a constant block is iteration of its operator.
+@isnad1 id=eq.0h6v.s5.a4ab9df93540 from=translated src=- shape=079562f0 vocab=9e346199
+-/
 lemma foldr_replicate {T : Type u₁} {M : Type u₂}
     (act : T → M → M) (t : T) (n : ℕ) (m : M) :
     (List.replicate n t).foldr act m = (act t)^[n] m := by
@@ -48,7 +54,9 @@ lemma foldr_replicate {T : Type u₁} {M : Type u₂}
         Function.iterate_succ_apply']
 
 /-- A word consisting of `i` copies of `x` followed by `j` copies of `y`
-is zero whenever its total length is exactly the nilpotence level.-/
+is zero whenever its total length is exactly the nilpotence level.
+@isnad1 id=eq.2h9v.s8.d1ea5ec0e3c7 from=translated src=- shape=34247802 vocab=67360e8c
+-/
 lemma IsWordNilpotent.twoBlock_exact
     {R : Type u₁} {T : Type u₂} {M : Type u₃}
     [Semiring R] [AddCommMonoid M] [Module R M]
@@ -65,7 +73,9 @@ lemma IsWordNilpotent.twoBlock_exact
   simpa only [Module.End.mul_apply, Module.End.pow_apply] using hz
 
 /-- The exact length-`n` convention implies vanishing of every two-block
-mixed monomial of total degree at least `n`.-/
+mixed monomial of total degree at least `n`.
+@isnad1 id=eq.2h9v.s8.ecb81ff746e3 from=translated src=- shape=6d3d97a7 vocab=ce0264af
+-/
 lemma IsWordNilpotent.twoBlock_of_le
     {R : Type u₁} {T : Type u₂} {M : Type u₃}
     [Semiring R] [AddCommMonoid M] [Module R M]
@@ -88,7 +98,9 @@ lemma IsWordNilpotent.twoBlock_of_le
     rw [← mul_assoc, hexact, zero_mul]
 
 /-- For a linear Higgs-contraction map, word nilpotence supplies the first
-mixed inverse hypothesis for `exp_p(a)`.-/
+mixed inverse hypothesis for `exp_p(a)`.
+@isnad1 id=eq.2h8v.s10.0eddb61aa026 from=translated src=- shape=adf863e8 vocab=e1802417
+-/
 lemma IsWordNilpotent.linear_positive_negative
     {R : Type u₁} {T : Type u₂} {M : Type u₃}
     [CommRing R] [AddCommGroup T] [Module R T]
@@ -99,7 +111,9 @@ lemma IsWordNilpotent.linear_positive_negative
     (A x) ^ i * (-(A x)) ^ j = 0 := by
   simpa using h.twoBlock_of_le (fun t ↦ A t) x (-x) i j hij
 
-/-- The second mixed inverse hypothesis, with the negative block first.-/
+/-- The second mixed inverse hypothesis, with the negative block first.
+@isnad1 id=eq.2h8v.s10.8f41ff89658b from=translated src=- shape=6e23b481 vocab=e1802417
+-/
 lemma IsWordNilpotent.linear_negative_positive
     {R : Type u₁} {T : Type u₂} {M : Type u₃}
     [CommRing R] [AddCommGroup T] [Module R T]
@@ -111,7 +125,9 @@ lemma IsWordNilpotent.linear_negative_positive
   simpa using h.twoBlock_of_le (fun t ↦ A t) (-x) x i j hij
 
 /-- Two arbitrary contractions satisfy the joint nilpotence hypothesis in
-the truncated exponential addition formula.-/
+the truncated exponential addition formula.
+@isnad1 id=eq.2h9v.s10.b46796b3aa91 from=translated src=- shape=7299bb84 vocab=ead9f7d0
+-/
 lemma IsWordNilpotent.linear_joint
     {R : Type u₁} {T : Type u₂} {M : Type u₃}
     [CommRing R] [AddCommGroup T] [Module R T]

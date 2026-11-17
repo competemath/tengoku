@@ -34,6 +34,9 @@ variable [Ring A] [Fact p.Prime] [Algebra (ZMod p) A]
 noncomputable def exp (a : A) : A :=
   ∑ i ∈ range p, ((i.factorial : ZMod p)⁻¹) • a ^ i
 
+/--
+@isnad1 id=eq.0h2v.s5.164603e9437d from=translated src=- shape=447ddde2 vocab=3bf778b3
+-/
 @[simp]
 lemma exp_zero : exp p (0 : A) = 1 := by
   have hp : p.Prime := Fact.out
@@ -43,6 +46,9 @@ lemma exp_zero : exp p (0 : A) = 1 := by
     simp [hi0]
   · simp [hp.pos]
 
+/--
+@isnad1 id=eq.0h2v.s6.260a78a93d41 from=translated src=- shape=481ee336 vocab=cd6045f5
+-/
 @[simp]
 lemma exp_neg_zero : exp p (-(0 : A)) = 1 := by
   simp
@@ -71,7 +77,9 @@ private lemma invFactorial_mul_choose {n i : ℕ} (hn : n < p) (hi : i ≤ n) :
 
 /-- The truncated exponential turns addition into multiplication when the
 two elements commute and all mixed monomials of total degree at least `p`
-vanish.-/
+vanish.
+@isnad1 id=eq.2h4v.s7.427c3d34b749 from=translated src=- shape=edc68d30 vocab=83a8e85a
+-/
 theorem exp_add_of_commute_of_jointNilpotent {a b : A}
     (hcomm : Commute a b)
     (hzero : ∀ i j : ℕ, p ≤ i + j → a ^ i * b ^ j = 0) :
@@ -166,14 +174,18 @@ theorem exp_add_of_commute_of_jointNilpotent {a b : A}
   exact hproduct.symm
 
 /-- A convenient consequence: the inverse candidate is the exponential of
-the negative whenever the corresponding mixed words vanish.-/
+the negative whenever the corresponding mixed words vanish.
+@isnad1 id=eq.1h3v.s7.b8dd82342b67 from=translated src=- shape=2ad48fe3 vocab=a1fa67ac
+-/
 theorem exp_mul_exp_neg_eq_one {a : A}
     (hzero : ∀ i j : ℕ, p ≤ i + j → a ^ i * (-a) ^ j = 0) :
     exp p a * exp p (-a) = 1 := by
   rw [← exp_add_of_commute_of_jointNilpotent p (Commute.neg_right rfl) hzero]
   simp
 
-/-- The other inverse identity.-/
+/-- The other inverse identity.
+@isnad1 id=eq.1h3v.s7.8d03cf0e022f from=translated src=- shape=8cd48e3c vocab=a1fa67ac
+-/
 theorem exp_neg_mul_exp_eq_one {a : A}
     (hzero : ∀ i j : ℕ, p ≤ i + j → (-a) ^ i * a ^ j = 0) :
     exp p (-a) * exp p a = 1 := by
@@ -190,6 +202,9 @@ noncomputable def unit (a : A)
   val_inv := exp_mul_exp_neg_eq_one p h₁
   inv_val := exp_neg_mul_exp_eq_one p h₂
 
+/--
+@isnad1 id=eq.2h3v.s7.157f5e89b791 from=translated src=- shape=1e1e08ec vocab=d629ee43
+-/
 @[simp]
 lemma coe_unit (a : A)
     (h₁ : ∀ i j : ℕ, p ≤ i + j → a ^ i * (-a) ^ j = 0)
@@ -216,6 +231,9 @@ noncomputable def moduleEndExp (a : Module.End R M) : Module.End R M := by
       simp only [smul_smul, mul_comm]⟩
   exact exp p a
 
+/--
+@isnad1 id=eq.2h5v.s9.2bef4fe71637 from=translated src=- shape=433205ec vocab=e0789f7f
+-/
 theorem moduleEndExp_add_of_commute_of_jointNilpotent {a b : Module.End R M}
     (hcomm : Commute a b)
     (hzero : ∀ i j : ℕ, p ≤ i + j → a ^ i * b ^ j = 0) :
@@ -230,6 +248,9 @@ theorem moduleEndExp_add_of_commute_of_jointNilpotent {a b : Module.End R M}
       simp only [smul_smul, mul_comm]⟩
   exact exp_add_of_commute_of_jointNilpotent p hcomm hzero
 
+/--
+@isnad1 id=eq.1h4v.s9.90934c6f3d3f from=translated src=- shape=cf6fe97b vocab=a02fb59e
+-/
 theorem moduleEndExp_mul_neg_eq_one {a : Module.End R M}
     (hzero : ∀ i j : ℕ, p ≤ i + j → a ^ i * (-a) ^ j = 0) :
     moduleEndExp p a * moduleEndExp p (-a) = 1 := by
@@ -243,6 +264,9 @@ theorem moduleEndExp_mul_neg_eq_one {a : Module.End R M}
       simp only [smul_smul, mul_comm]⟩
   exact exp_mul_exp_neg_eq_one p hzero
 
+/--
+@isnad1 id=eq.1h4v.s9.629447cb46cf from=translated src=- shape=d70d47e4 vocab=a02fb59e
+-/
 theorem moduleEndExp_neg_mul_eq_one {a : Module.End R M}
     (hzero : ∀ i j : ℕ, p ≤ i + j → (-a) ^ i * a ^ j = 0) :
     moduleEndExp p (-a) * moduleEndExp p a = 1 := by
@@ -268,6 +292,9 @@ noncomputable def moduleEndLinearEquiv (a : Module.End R M)
       change moduleEndExp p (-a) * moduleEndExp p a = 1
       exact moduleEndExp_neg_mul_eq_one p h₂)
 
+/--
+@isnad1 id=eq.2h5v.s9.04d2cd9f504d from=translated src=- shape=cfead131 vocab=7d0dd81a
+-/
 @[simp]
 lemma moduleEndLinearEquiv_apply (a : Module.End R M)
     (h₁ : ∀ i j : ℕ, p ≤ i + j → a ^ i * (-a) ^ j = 0)

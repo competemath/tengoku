@@ -52,6 +52,9 @@ def restrict (D : X.VectorField U) (hVU : V ≤ U) : X.VectorField V where
   deriv W hW := D.deriv W (hW.trans hVU)
   compatible hW hZW a := D.compatible (hW.trans hVU) hZW a
 
+/--
+@isnad1 id=eq.2h6v.s11.f649a78b4106 from=translated src=- shape=f5d58485 vocab=f6ed74b6
+-/
 @[simp]
 lemma restrict_deriv (D : X.VectorField U) (hVU : V ≤ U)
     (W : X.scheme.Opens) (hWV : W ≤ V) :
@@ -66,6 +69,9 @@ instance : Zero (X.VectorField U) where
     { deriv := fun _ _ => 0
       compatible := by simp }
 
+/--
+@isnad1 id=eq.1h4v.s13.bb68b60a6f94 from=translated src=- shape=2f1f4c05 vocab=d18ce2dc
+-/
 @[simp]
 lemma zero_deriv (V : X.scheme.Opens) (hV : V ≤ U) :
     (0 : X.VectorField U).deriv V hV = 0 := rfl
@@ -78,6 +84,9 @@ instance : Add (X.VectorField U) where
         simp only [Derivation.add_apply, map_add]
         rw [D.compatible hV hWV a, E.compatible hV hWV a] }
 
+/--
+@isnad1 id=eq.1h6v.s13.d0b134bdaf32 from=translated src=- shape=e8401ab3 vocab=8632b63a
+-/
 @[simp]
 lemma add_deriv (D E : X.VectorField U) (V : X.scheme.Opens) (hV : V ≤ U) :
     (D + E).deriv V hV = D.deriv V hV + E.deriv V hV := rfl
@@ -90,6 +99,9 @@ instance : Neg (X.VectorField U) where
         simp only [Derivation.neg_apply, map_neg]
         rw [D.compatible hV hWV a] }
 
+/--
+@isnad1 id=eq.1h5v.s12.1c71a085f375 from=translated src=- shape=53558a2b vocab=030b6d7d
+-/
 @[simp]
 lemma neg_deriv (D : X.VectorField U) (V : X.scheme.Opens) (hV : V ≤ U) :
     (-D).deriv V hV = -D.deriv V hV := rfl
@@ -120,6 +132,9 @@ instance : SMul Γ(X.scheme, U) (X.VectorField U) where
         rw [← CommRingCat.comp_apply, ← Functor.map_comp]
         rfl }
 
+/--
+@isnad1 id=eq.1h6v.s14.4d7dd155e5d3 from=translated src=- shape=78028a78 vocab=2c45c540
+-/
 @[simp]
 lemma smul_deriv (a : Γ(X.scheme, U)) (D : X.VectorField U)
     (V : X.scheme.Opens) (hV : V ≤ U) :
@@ -145,6 +160,9 @@ instance : Bracket (X.VectorField U) (X.VectorField U) where
           E.compatible hV hWV (D.deriv V hV a),
           E.compatible hV hWV a, D.compatible hV hWV a] }
 
+/--
+@isnad1 id=eq.1h6v.s13.3e483679f56d from=translated src=- shape=0558c128 vocab=03dd7b64
+-/
 @[simp]
 lemma bracket_deriv (D E : X.VectorField U) (V : X.scheme.Opens) (hV : V ≤ U) :
     ⁅D, E⁆.deriv V hV = ⁅D.deriv V hV, E.deriv V hV⁆ := rfl

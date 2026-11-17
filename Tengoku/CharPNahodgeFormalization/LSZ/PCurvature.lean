@@ -24,7 +24,9 @@ variable [CommRing R] [CommRing A] [Algebra R A]
 variable [AddCommGroup M] [Module A M]
 
 /-- Generalized Leibniz formula for repeated application of an additive
-connection operator.-/
+connection operator.
+@isnad1 id=eq.1h8v.s9.3a1603babd1c from=translated src=- shape=61cb8dcf vocab=ce84023e
+-/
 theorem connection_iterate_smul (D : Derivation R A A)
     (N : Module.End ℤ M)
     (hN : ∀ (a : A) (m : M), N (a • m) = a • N m + D a • m)
@@ -43,7 +45,9 @@ theorem connection_iterate_smul (D : Derivation R A A)
     refine sum_congr rfl fun ⟨i, j⟩ hij ↦ ?_
     rw [n.choose_symm_of_eq_add (mem_antidiagonal.1 hij).symm]
 
-/-- Range-indexed generalized Leibniz formula for a connection operator.-/
+/-- Range-indexed generalized Leibniz formula for a connection operator.
+@isnad1 id=eq.1h8v.s9.a4f2bf2542dc from=translated src=- shape=ba4702e7 vocab=d41aee13
+-/
 theorem connection_iterate_smul' (D : Derivation R A A)
     (N : Module.End ℤ M)
     (hN : ∀ (a : A) (m : M), N (a • m) = a • N m + D a • m)
@@ -56,7 +60,9 @@ theorem connection_iterate_smul' (D : Derivation R A A)
     (fun i j => n.choose i • ((D^[i] a) • (N^[j] m))) n
 
 /-- At a prime characteristic, all mixed terms in the generalized Leibniz
-formula vanish.-/
+formula vanish.
+@isnad1 id=eq.2h8v.s9.070a9899eb8f from=translated src=- shape=a9340c75 vocab=04356770
+-/
 theorem connection_prime_smul (D : Derivation R A A)
     (N : Module.End ℤ M)
     (hN : ∀ (a : A) (m : M), N (a • m) = a • N m + D a • m)
@@ -96,7 +102,9 @@ theorem connection_prime_smul (D : Derivation R A A)
       simp [f]
 
 /-- Field-base version of `connection_prime_smul`, including the case in
-which the coefficient algebra is the zero ring.-/
+which the coefficient algebra is the zero ring.
+@isnad1 id=eq.2h8v.s9.a00cf3d03944 from=translated src=- shape=c2e0b749 vocab=4dd7de43
+-/
 theorem connection_prime_smul_field {K : Type u} [Field K] [Algebra K A]
     (D : Derivation K A A) (N : Module.End ℤ M)
     (hN : ∀ (a : A) (m : M), N (a • m) = a • N m + D a • m)
@@ -121,6 +129,9 @@ noncomputable section
 variable {k : Type u} [Field k] [NeZero (ringChar k)]
 variable {X : LSZ.SmoothScheme k} (C : X.IntegrableConnection)
 
+/--
+@isnad1 id=fact.0h1v.s5.acafef3e1e50 from=translated src=- shape=c578b8bd vocab=d0668f19
+-/
 local instance characteristicPrime : Fact (ringChar k).Prime :=
   CharP.char_is_prime_of_pos k (ringChar k)
 
@@ -131,6 +142,9 @@ def pCurvatureAdditive (U : X.scheme.Opens) (D : X.VectorField U) :
     Module.End ℤ Γ(C.carrier, U) :=
   C.nabla U D ^ ringChar k - C.nabla U D.pPower
 
+/--
+@isnad1 id=eq.0h6v.s15.99fb5796ffd6 from=translated src=- shape=f9ab95fd vocab=522de594
+-/
 @[simp]
 lemma pCurvatureAdditive_apply (U : X.scheme.Opens) (D : X.VectorField U)
     (m : Γ(C.carrier, U)) :
@@ -138,7 +152,9 @@ lemma pCurvatureAdditive_apply (U : X.scheme.Opens) (D : X.VectorField U)
       (C.nabla U D)^[ringChar k] m - C.nabla U D.pPower m := by
   simp [pCurvatureAdditive, Module.End.pow_apply]
 
-/-- For fixed `D`, p-curvature is additive in the module section.-/
+/-- For fixed `D`, p-curvature is additive in the module section.
+@isnad1 id=eq.0h7v.s13.986699258273 from=translated src=- shape=f101f4ac vocab=8a62c478
+-/
 lemma pCurvatureAdditive_add (U : X.scheme.Opens) (D : X.VectorField U)
     (m n : Γ(C.carrier, U)) :
     C.pCurvatureAdditive U D (m + n) =
@@ -146,7 +162,9 @@ lemma pCurvatureAdditive_add (U : X.scheme.Opens) (D : X.VectorField U)
   map_add _ _ _
 
 /-- First linearity assertion: for fixed `D`, p-curvature is linear in the
-module section.-/
+module section.
+@isnad1 id=eq.0h7v.s14.326ce989de72 from=translated src=- shape=967fd99b vocab=afe0cdb0
+-/
 lemma pCurvatureAdditive_smul (U : X.scheme.Opens) (D : X.VectorField U)
     (a : Γ(X.scheme, U)) (m : Γ(C.carrier, U)) :
     C.pCurvatureAdditive U D (a • m) =
@@ -166,6 +184,9 @@ def pCurvature (U : X.scheme.Opens) (D : X.VectorField U) :
   map_add' := map_add _
   map_smul' := C.pCurvatureAdditive_smul U D
 
+/--
+@isnad1 id=eq.0h6v.s15.507bc8874a1e from=translated src=- shape=4144eb25 vocab=24237cbd
+-/
 @[simp]
 lemma pCurvature_apply (U : X.scheme.Opens) (D : X.VectorField U)
     (m : Γ(C.carrier, U)) :
@@ -174,7 +195,9 @@ lemma pCurvature_apply (U : X.scheme.Opens) (D : X.VectorField U)
   C.pCurvatureAdditive_apply U D m
 
 /-- P-curvature commutes with restriction of both the vector field and the
-module section.-/
+module section.
+@isnad1 id=eq.1h7v.s13.091a1a2d787c from=translated src=- shape=c871aae9 vocab=8f66072d
+-/
 lemma pCurvature_restrict {U V : X.scheme.Opens} (hVU : V ≤ U)
     (D : X.VectorField U) (m : Γ(C.carrier, U)) :
     C.carrier.presheaf.map (homOfLE hVU).op (C.pCurvature U D m) =
@@ -229,6 +252,9 @@ def pCurvatureEndomorphismOn (U : X.scheme.Opens) (D : X.VectorField U) :
         exact (C.pCurvature_restrict hWV
           (D.restrict (leOfHom V.unop.hom)) m).symm }
 
+/--
+@isnad1 id=eq.0h7v.s17.be311e132420 from=translated src=- shape=f3289104 vocab=e8c5637b
+-/
 @[simp]
 lemma pCurvatureEndomorphismOn_app (U : X.scheme.Opens)
     (D : X.VectorField U) (V : (Over U)ᵒᵖ)
@@ -238,7 +264,9 @@ lemma pCurvatureEndomorphismOn_app (U : X.scheme.Opens)
         (D.restrict (leOfHom V.unop.hom)) m := rfl
 
 /-- Second linearity assertion: every component of the p-curvature sheaf
-morphism is linear over the corresponding ring of functions.-/
+morphism is linear over the corresponding ring of functions.
+@isnad1 id=eq.0h8v.s19.0ef09e16afeb from=translated src=- shape=e9c13db0 vocab=e8210bb5
+-/
 lemma pCurvatureEndomorphismOn_smul (U : X.scheme.Opens)
     (D : X.VectorField U) (V : (Over U)ᵒᵖ)
     (a : (X.scheme.ringCatSheaf.over U).obj.obj V)
@@ -272,6 +300,9 @@ def pCurvatureEndomorphism (D : X.VectorField ⊤) :
         exact (C.pCurvature_restrict hVU
           (D.restrict (show U.unop ≤ ⊤ from le_top)) m).symm }
 
+/--
+@isnad1 id=eq.0h6v.s12.88cc062ddc1a from=translated src=- shape=544157f0 vocab=753d7dbf
+-/
 @[simp]
 lemma pCurvatureEndomorphism_app (D : X.VectorField ⊤)
     (U : X.scheme.Opens) (m : Γ(C.carrier, U)) :

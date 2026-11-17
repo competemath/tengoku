@@ -65,18 +65,27 @@ def tensorPure (M N : Modules R) (U : Cᵒᵖ)
     (tensorPresheaf R M N).obj U :=
   m ⊗ₜ[R.obj.obj U] n
 
+/--
+@isnad1 id=eq.0h7v.s11.bbe7bf70fec5 from=translated src=- shape=25c7c14c vocab=0e012237
+-/
 @[simp]
 lemma tensorPure_zero_left (M N : Modules R) (U : Cᵒᵖ)
     (n : N.val.obj U) : tensorPure R M N U 0 n = 0 := by
   simp [tensorPure]
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s11.a1d9c2061f04 from=translated src=- shape=a5ba36e7 vocab=0e012237
+-/
 @[simp]
 lemma tensorPure_zero_right (M N : Modules R) (U : Cᵒᵖ)
     (m : M.val.obj U) : tensorPure R M N U m 0 = 0 := by
   simp [tensorPure]
   rfl
 
+/--
+@isnad1 id=eq.0h9v.s11.2bed58835038 from=translated src=- shape=25764202 vocab=9e1ee73c
+-/
 lemma tensorPure_add_left (M N : Modules R) (U : Cᵒᵖ)
     (m m' : M.val.obj U) (n : N.val.obj U) :
     tensorPure R M N U (m + m') n =
@@ -84,6 +93,9 @@ lemma tensorPure_add_left (M N : Modules R) (U : Cᵒᵖ)
   simp only [tensorPure, TensorProduct.add_tmul]
   rfl
 
+/--
+@isnad1 id=eq.0h9v.s11.a9110e2020d3 from=translated src=- shape=9a8e372c vocab=9e1ee73c
+-/
 lemma tensorPure_add_right (M N : Modules R) (U : Cᵒᵖ)
     (m : M.val.obj U) (n n' : N.val.obj U) :
     tensorPure R M N U m (n + n') =
@@ -91,6 +103,9 @@ lemma tensorPure_add_right (M N : Modules R) (U : Cᵒᵖ)
   simp only [tensorPure, TensorProduct.tmul_add]
   rfl
 
+/--
+@isnad1 id=eq.0h9v.s12.f63a363dcaf0 from=translated src=- shape=1ffca3a7 vocab=2324920a
+-/
 lemma tensorPure_smul_left (M N : Modules R) (U : Cᵒᵖ)
     (a : (ringSheaf R).obj.obj U) (m : M.val.obj U) (n : N.val.obj U) :
     tensorPure R M N U (a • m) n = a • tensorPure R M N U m n := by
@@ -103,6 +118,9 @@ lemma tensorPure_smul_left (M N : Modules R) (U : Cᵒᵖ)
         (show (directPresheaf R N).obj U from n))
   rw [← TensorProduct.smul_tmul']
 
+/--
+@isnad1 id=eq.0h9v.s12.f7f9657be3b3 from=translated src=- shape=2d98fe65 vocab=2324920a
+-/
 lemma tensorPure_smul_right (M N : Modules R) (U : Cᵒᵖ)
     (a : (ringSheaf R).obj.obj U) (m : M.val.obj U) (n : N.val.obj U) :
     tensorPure R M N U m (a • n) = a • tensorPure R M N U m n := by
@@ -115,6 +133,9 @@ lemma tensorPure_smul_right (M N : Modules R) (U : Cᵒᵖ)
         (show (directPresheaf R N).obj U from n))
   rw [TensorProduct.tmul_smul]
 
+/--
+@isnad1 id=eq.0h11v.s14.7700930a5632 from=translated src=- shape=9c23976e vocab=fdbf25fd
+-/
 lemma map_tensorPure_add_left {P : PresheafOfModules (ringSheaf R).obj}
     (f : tensorPresheaf R M N ⟶ P) (U : Cᵒᵖ)
     (m m' : M.val.obj U) (n : N.val.obj U) :
@@ -124,6 +145,9 @@ lemma map_tensorPure_add_left {P : PresheafOfModules (ringSheaf R).obj}
   rw [tensorPure_add_left]
   exact map_add (f.app U).hom _ _
 
+/--
+@isnad1 id=eq.0h11v.s14.bead83f30600 from=translated src=- shape=0e517421 vocab=fdbf25fd
+-/
 lemma map_tensorPure_add_right {P : PresheafOfModules (ringSheaf R).obj}
     (f : tensorPresheaf R M N ⟶ P) (U : Cᵒᵖ)
     (m : M.val.obj U) (n n' : N.val.obj U) :
@@ -133,6 +157,9 @@ lemma map_tensorPure_add_right {P : PresheafOfModules (ringSheaf R).obj}
   rw [tensorPure_add_right]
   exact map_add (f.app U).hom _ _
 
+/--
+@isnad1 id=eq.0h11v.s14.ea117fee899c from=translated src=- shape=41ddb821 vocab=12afb013
+-/
 lemma map_tensorPure_smul_left {P : PresheafOfModules (ringSheaf R).obj}
     (f : tensorPresheaf R M N ⟶ P) (U : Cᵒᵖ)
     (a : (ringSheaf R).obj.obj U) (m : M.val.obj U) (n : N.val.obj U) :
@@ -141,6 +168,9 @@ lemma map_tensorPure_smul_left {P : PresheafOfModules (ringSheaf R).obj}
   rw [tensorPure_smul_left]
   exact map_smul (f.app U).hom a _
 
+/--
+@isnad1 id=eq.0h11v.s14.b8b70d19ec2f from=translated src=- shape=2d90a12c vocab=12afb013
+-/
 lemma map_tensorPure_smul_right {P : PresheafOfModules (ringSheaf R).obj}
     (f : tensorPresheaf R M N ⟶ P) (U : Cᵒᵖ)
     (a : (ringSheaf R).obj.obj U) (m : M.val.obj U) (n : N.val.obj U) :
@@ -374,6 +404,9 @@ noncomputable def tensorLift {M N P : Modules R}
     (f : tensorPresheaf R M N ⟶ P.val) : tensorObj R M N ⟶ P :=
   (tensorHomEquiv R M N P).symm f
 
+/--
+@isnad1 id=eq.0h7v.s11.ca06665bcae7 from=translated src=- shape=5be94668 vocab=e7fc63d4
+-/
 @[simp]
 lemma tensorHomEquiv_tensorLift {M N P : Modules R}
     (f : tensorPresheaf R M N ⟶ P.val) :
@@ -385,6 +418,9 @@ noncomputable def tmul (M N : Modules R) (U : Cᵒᵖ)
     (m : M.val.obj U) (n : N.val.obj U) : (tensorObj R M N).val.obj U :=
   (tensorUnit R M N).app U (tensorPure R M N U m n)
 
+/--
+@isnad1 id=eq.0h7v.s11.41da89f19e30 from=translated src=- shape=4ce2d69a vocab=fcce44e6
+-/
 @[simp]
 lemma zero_tmul (M N : Modules R) (U : Cᵒᵖ) (n : N.val.obj U) :
     tmul R M N U 0 n = 0 := by
@@ -392,6 +428,9 @@ lemma zero_tmul (M N : Modules R) (U : Cᵒᵖ) (n : N.val.obj U) :
   rw [tensorPure_zero_left]
   exact map_zero ((tensorUnit R M N).app U).hom
 
+/--
+@isnad1 id=eq.0h7v.s11.c393543b6bfa from=translated src=- shape=89502271 vocab=fcce44e6
+-/
 @[simp]
 lemma tmul_zero (M N : Modules R) (U : Cᵒᵖ) (m : M.val.obj U) :
     tmul R M N U m 0 = 0 := by
@@ -399,6 +438,9 @@ lemma tmul_zero (M N : Modules R) (U : Cᵒᵖ) (m : M.val.obj U) :
   rw [tensorPure_zero_right]
   exact map_zero ((tensorUnit R M N).app U).hom
 
+/--
+@isnad1 id=eq.0h9v.s11.16565aab4b4e from=translated src=- shape=f1a3f9f1 vocab=8d9395ab
+-/
 lemma add_tmul (M N : Modules R) (U : Cᵒᵖ)
     (m m' : M.val.obj U) (n : N.val.obj U) :
     tmul R M N U (m + m') n = tmul R M N U m n + tmul R M N U m' n := by
@@ -406,6 +448,9 @@ lemma add_tmul (M N : Modules R) (U : Cᵒᵖ)
   rw [tensorPure_add_left]
   exact map_add ((tensorUnit R M N).app U).hom _ _
 
+/--
+@isnad1 id=eq.0h9v.s11.f9a883c953ad from=translated src=- shape=c2174d4d vocab=8d9395ab
+-/
 lemma tmul_add (M N : Modules R) (U : Cᵒᵖ)
     (m : M.val.obj U) (n n' : N.val.obj U) :
     tmul R M N U m (n + n') = tmul R M N U m n + tmul R M N U m n' := by
@@ -413,6 +458,9 @@ lemma tmul_add (M N : Modules R) (U : Cᵒᵖ)
   rw [tensorPure_add_right]
   exact map_add ((tensorUnit R M N).app U).hom _ _
 
+/--
+@isnad1 id=eq.0h9v.s13.2794e2ffcdff from=translated src=- shape=33ebb900 vocab=b46118ec
+-/
 lemma smul_tmul (M N : Modules R) (U : Cᵒᵖ)
     (a : (ringSheaf R).obj.obj U) (m : M.val.obj U) (n : N.val.obj U) :
     tmul R M N U (a • m) n = a • tmul R M N U m n := by
@@ -427,6 +475,9 @@ lemma smul_tmul (M N : Modules R) (U : Cᵒᵖ)
   rw [← TensorProduct.smul_tmul']
   exact map_smul ((tensorUnit R M N).app U).hom a _
 
+/--
+@isnad1 id=eq.0h9v.s13.17208a0da13b from=translated src=- shape=f1485fb9 vocab=b46118ec
+-/
 lemma tmul_smul (M N : Modules R) (U : Cᵒᵖ)
     (a : (ringSheaf R).obj.obj U) (m : M.val.obj U) (n : N.val.obj U) :
     tmul R M N U m (a • n) = a • tmul R M N U m n := by
@@ -444,14 +495,18 @@ lemma tmul_smul (M N : Modules R) (U : Cᵒᵖ)
 omit [HasWeakSheafify J AddCommGrpCat.{u}]
   [J.WEqualsLocallyBijective AddCommGrpCat.{u}] in
 /-- Objectwise restriction sends a pure tensor to the tensor of the two
-restricted sections.-/
+restricted sections.
+@isnad1 id=eq.0h10v.s14.b137b49c3111 from=translated src=- shape=02497478 vocab=8bf621fb
+-/
 lemma tensorPure_map (M N : Modules R) {U V : Cᵒᵖ} (f : U ⟶ V)
     (m : M.val.obj U) (n : N.val.obj U) :
     (tensorPresheaf R M N).map f (tensorPure R M N U m n) =
       tensorPure R M N V (M.val.map f m) (N.val.map f n) := by
   rfl
 
-/-- Pure tensors commute with restriction maps.-/
+/-- Pure tensors commute with restriction maps.
+@isnad1 id=eq.0h10v.s14.cc849bcdc983 from=translated src=- shape=c26a545b vocab=00ed960a
+-/
 lemma tmul_map (M N : Modules R) {U V : Cᵒᵖ} (f : U ⟶ V)
     (m : M.val.obj U) (n : N.val.obj U) :
     (show (tensorObj R M N).val.obj V from
@@ -479,6 +534,9 @@ noncomputable def tensorPresheafHom {M M' N N' : Modules R}
 
 omit [HasWeakSheafify J AddCommGrpCat.{u}]
   [J.WEqualsLocallyBijective AddCommGrpCat.{u}] in
+/--
+@isnad1 id=eq.0h12v.s14.44f30a05ffcf from=translated src=- shape=4a27c0d9 vocab=7aa79795
+-/
 lemma tensorPresheafHom_tensorPure {M M' N N' : Modules R}
     (f : M ⟶ M') (g : N ⟶ N') (U : Cᵒᵖ)
     (m : M.val.obj U) (n : N.val.obj U) :
@@ -493,7 +551,9 @@ noncomputable def tensorHom {M M' N N' : Modules R}
   (PresheafOfModules.sheafification (𝟙 (ringSheaf R).obj)).map
     (tensorPresheafHom R f g)
 
-/-- Tensor products of morphisms act on pure tensors in the expected way.-/
+/-- Tensor products of morphisms act on pure tensors in the expected way.
+@isnad1 id=eq.0h12v.s14.98baad176134 from=translated src=- shape=b56bea14 vocab=2c3a7ce1
+-/
 lemma tensorHom_tmul {M M' N N' : Modules R}
     (f : M ⟶ M') (g : N ⟶ N') (U : Cᵒᵖ)
     (m : M.val.obj U) (n : N.val.obj U) :
@@ -519,6 +579,9 @@ lemma tensorHom_tmul {M M' N N' : Modules R}
 
 omit [HasWeakSheafify J AddCommGrpCat.{u}]
   [J.WEqualsLocallyBijective AddCommGrpCat.{u}] in
+/--
+@isnad1 id=eq.0h4v.s10.c8af0019ce5e from=translated src=- shape=f7cf32e9 vocab=4350c074
+-/
 @[simp]
 lemma directHom_id (M : Modules R) :
     directHom R (𝟙 M) = 𝟙 (directPresheaf R M) := by
@@ -526,6 +589,9 @@ lemma directHom_id (M : Modules R) :
 
 omit [HasWeakSheafify J AddCommGrpCat.{u}]
   [J.WEqualsLocallyBijective AddCommGrpCat.{u}] in
+/--
+@isnad1 id=eq.0h8v.s10.a57ac2b34bee from=translated src=- shape=8b3b06c5 vocab=1dd89e1f
+-/
 @[simp]
 lemma directHom_comp {M N P : Modules R} (f : M ⟶ N) (g : N ⟶ P) :
     directHom R (f ≫ g) = directHom R f ≫ directHom R g := by
@@ -533,6 +599,9 @@ lemma directHom_comp {M N P : Modules R} (f : M ⟶ N) (g : N ⟶ P) :
 
 omit [HasWeakSheafify J AddCommGrpCat.{u}]
   [J.WEqualsLocallyBijective AddCommGrpCat.{u}] in
+/--
+@isnad1 id=eq.0h5v.s8.b876d938635b from=translated src=- shape=fab72c13 vocab=419edafa
+-/
 @[simp]
 lemma tensorPresheafHom_id (M N : Modules R) :
     tensorPresheafHom R (𝟙 M) (𝟙 N) = 𝟙 (tensorPresheaf R M N) := by
@@ -542,6 +611,9 @@ lemma tensorPresheafHom_id (M N : Modules R) :
 
 omit [HasWeakSheafify J AddCommGrpCat.{u}]
   [J.WEqualsLocallyBijective AddCommGrpCat.{u}] in
+/--
+@isnad1 id=eq.0h13v.s9.687a81ee015f from=translated src=- shape=9c4e7352 vocab=ec29f530
+-/
 @[simp]
 lemma tensorPresheafHom_comp {M M' M'' N N' N'' : Modules R}
     (f : M ⟶ M') (f' : M' ⟶ M'') (g : N ⟶ N') (g' : N' ⟶ N'') :
@@ -553,6 +625,9 @@ lemma tensorPresheafHom_comp {M M' M'' N N' N'' : Modules R}
   rw [directHom_comp, directHom_comp,
     MonoidalCategory.tensorHom_comp_tensorHom]
 
+/--
+@isnad1 id=eq.0h5v.s8.a7c0e35b2322 from=translated src=- shape=88b78db0 vocab=45847052
+-/
 @[simp]
 lemma tensorHom_id (M N : Modules R) :
     tensorHom R (𝟙 M) (𝟙 N) = 𝟙 (tensorObj R M N) := by
@@ -564,6 +639,9 @@ lemma tensorHom_id (M N : Modules R) :
       F.obj (tensorPresheaf R M N) ⟶ F.obj (tensorPresheaf R M N))
   exact F.map_id _
 
+/--
+@isnad1 id=eq.0h13v.s9.29c205ebb721 from=translated src=- shape=9d386a98 vocab=8a757ee9
+-/
 @[simp]
 lemma tensorHom_comp {M M' M'' N N' N'' : Modules R}
     (f : M ⟶ M') (f' : M' ⟶ M'') (g : N ⟶ N') (g' : N' ⟶ N'') :
@@ -591,7 +669,9 @@ noncomputable def tensorBifunctor : Modules R × Modules R ⥤ Modules R where
   map_comp f g := tensorHom_comp R f.1 g.1 f.2 g.2
 
 /-- The tensor bifunctor acts on a pair of morphisms by the previously
-constructed tensor morphism.-/
+constructed tensor morphism.
+@isnad1 id=eq.0h6v.s9.928c8e5c5210 from=translated src=- shape=c07802db vocab=ea744b33
+-/
 @[simp]
 lemma tensorBifunctor_map {MN MN' : Modules R × Modules R}
     (f : MN ⟶ MN') :

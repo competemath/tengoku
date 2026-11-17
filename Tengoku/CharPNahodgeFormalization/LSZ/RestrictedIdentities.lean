@@ -18,6 +18,9 @@ open scoped Polynomial
 
 namespace LSZ
 
+/--
+@isnad1 id=eq.2h3v.s7.b5106d7d6a21 from=translated src=- shape=911be28d vocab=fb8be899
+-/
 theorem signed_choose_pred_cast {K : Type*} [Field K]
     (p : ℕ) [CharP K p] (hp : p.Prime) (j : ℕ) (hj : j < p) :
     ((-1 : K) ^ j) * (Nat.choose (p - 1) j : K) = 1 := by
@@ -78,6 +81,9 @@ variable {K L M : Type*} [Field K]
 variable [AddCommGroup L] [Module K L] [Bracket L L]
 variable [AddCommGroup M] [Module K M] [Bracket M M]
 
+/--
+@isnad1 id=eq.1h8v.s9.ecabda248630 from=translated src=- shape=e5d1a222 vocab=7d3a1ad0
+-/
 theorem jacobsonCoeff_map_linear (f : L →ₗ[K] M)
     (hbracket : ∀ x y, f ⁅x, y⁆ = ⁅f x, f y⁆)
     (x y : L) (n i : ℕ) :
@@ -90,6 +96,9 @@ theorem jacobsonCoeff_map_linear (f : L →ₗ[K] M)
       | zero => simp [jacobsonCoeff, ih, hbracket]
       | succ i => simp [jacobsonCoeff, ih, hbracket]
 
+/--
+@isnad1 id=eq.1h7v.s9.e9b8a7dfc2f8 from=translated src=- shape=1505a81c vocab=e1964594
+-/
 theorem jacobsonCorrection_map_linear (f : L →ₗ[K] M)
     (hbracket : ∀ x y, f ⁅x, y⁆ = ⁅f x, f y⁆)
     (p : ℕ) (x y : L) :
@@ -105,10 +114,16 @@ variable {K L M : Type*} [Field K]
 variable [LieRing L] [LieAlgebra K L]
 variable [LieRing M] [LieAlgebra K M]
 
+/--
+@isnad1 id=eq.0h8v.s7.7f9d656c9bfc from=translated src=- shape=a6d5871d vocab=8197e75a
+-/
 theorem jacobsonCoeff_map (f : L →ₗ⁅K⁆ M) (x y : L) (n i : ℕ) :
     f (jacobsonCoeff x y n i) = jacobsonCoeff (f x) (f y) n i := by
   exact jacobsonCoeff_map_linear f.toLinearMap f.map_lie x y n i
 
+/--
+@isnad1 id=eq.0h7v.s7.eb4f9f770250 from=translated src=- shape=8a0ce695 vocab=33e5ae99
+-/
 theorem jacobsonCorrection_map (f : L →ₗ⁅K⁆ M)
     (p : ℕ) (x y : L) :
     f (jacobsonCorrection K p x y) =
@@ -127,6 +142,9 @@ noncomputable def adPolynomial (x y : B) : ℕ → B[X]
       let z := Polynomial.X * Polynomial.C x + Polynomial.C y
       z * adPolynomial x y n - adPolynomial x y n * z
 
+/--
+@isnad1 id=eq.0h5v.s5.931a2170eeb4 from=translated src=- shape=8bb66c51 vocab=23851223
+-/
 theorem coeff_adPolynomial (x y : B) (n i : ℕ) :
     (adPolynomial x y n).coeff i = jacobsonCoeff x y n i := by
   induction n generalizing i with
@@ -148,7 +166,9 @@ theorem coeff_adPolynomial (x y : B) (n i : ℕ) :
           abel
 
 /-- Leibniz's formula for the derivative of a power, without assuming that
-the coefficient ring is commutative.-/
+the coefficient ring is commutative.
+@isnad1 id=eq.0h3v.s9.56d4b38d8dfb from=translated src=- shape=96b7fb71 vocab=d6ca86bb
+-/
 theorem derivative_pow_noncomm (q : B[X]) (n : ℕ) :
     Polynomial.derivative (q ^ n) =
       ∑ i ∈ range n,
@@ -175,6 +195,9 @@ variable {K B : Type*} [Field K] [Ring B] [Algebra K B]
 
 local instance : LieRing B := LieRing.ofAssociativeRing
 
+/--
+@isnad1 id=eq.1h5v.s10.68c882de3bee from=translated src=- shape=e20c1f86 vocab=d14d5ff1
+-/
 theorem ad_pow_pred_eq_sum (p : ℕ) [CharP K p] (hp : p.Prime)
     (z w : B) :
     (LieAlgebra.ad K B z ^ (p - 1)) w =
@@ -215,7 +238,9 @@ theorem ad_pow_pred_eq_sum (p : ℕ) [CharP K p] (hp : p.Prime)
   rw [mul_assoc]
 
 /-- The polynomial encoding the iterated adjoint is the derivative of the
-`p`-th power of the generic affine line `t x + y`.-/
+`p`-th power of the generic affine line `t x + y`.
+@isnad1 id=eq.1h5v.s8.6c33482c6aaa from=translated src=- shape=d961daf4 vocab=010cb53b
+-/
 theorem adPolynomial_pred_eq_derivative_pow (p : ℕ) [CharP K p]
     (hp : p.Prime) (x y : B) :
     adPolynomial x y (p - 1) =
@@ -250,7 +275,9 @@ private theorem natCast_succ_ne_zero (p : ℕ) [CharP K p]
   omega
 
 /-- Every middle coefficient in the generic noncommutative binomial is the
-corresponding Jacobson coefficient divided by its degree.-/
+corresponding Jacobson coefficient divided by its degree.
+@isnad1 id=eq.2h6v.s8.a067b0492ec2 from=translated src=- shape=e866225f vocab=2234ad32
+-/
 theorem coeff_generic_pow_eq_jacobson (p : ℕ) [CharP K p]
     (hp : p.Prime) (x y : B) (j : ℕ) (hj : j < p - 1) :
     ((Polynomial.X * Polynomial.C x + Polynomial.C y) ^ p).coeff (j + 1) =
@@ -284,7 +311,9 @@ theorem coeff_generic_pow_eq_jacobson (p : ℕ) [CharP K p]
             rw [← hcoeff]
   simpa [z, Nat.cast_add] using hzresult
 
-/-- Jacobson's formula in an associative algebra of prime characteristic.-/
+/-- Jacobson's formula in an associative algebra of prime characteristic.
+@isnad1 id=eq.1h5v.s7.d0497ff13886 from=translated src=- shape=9530b05f vocab=b640fb44
+-/
 theorem add_pow_eq_add_pow_add_jacobson (p : ℕ) [CharP K p]
     (hp : p.Prime) (x y : B) :
     (x + y) ^ p = x ^ p + y ^ p + jacobsonCorrection K p x y := by
@@ -356,12 +385,18 @@ def derivationToEndLieHom :
   map_smul' _ _ := rfl
   map_lie' := Derivation.commutator_coe_linear_map
 
+/--
+@isnad1 id=injectiv.0h2v.s9.1377f99ea488 from=translated src=- shape=2481082f vocab=443b1bd2
+-/
 theorem derivationToEndLieHom_injective :
     Function.Injective (derivationToEndLieHom (K := K) (A := A)) := by
   intro D E h
   ext a
   exact LinearMap.congr_fun h a
 
+/--
+@isnad1 id=eq.0h4v.s10.e27e3b0c8e09 from=translated src=- shape=76e36d81 vocab=4786ca27
+-/
 theorem restrictedPowerField_toEnd (p : ℕ) [CharP K p] [Fact p.Prime]
     (D : Derivation K A A) :
     derivationToEndLieHom (Derivation.restrictedPowerField D p) =
@@ -370,6 +405,9 @@ theorem restrictedPowerField_toEnd (p : ℕ) [CharP K p] [Fact p.Prime]
   simp [derivationToEndLieHom, Derivation.restrictedPowerField_apply,
     Module.End.pow_apply]
 
+/--
+@isnad1 id=eq.0h5v.s9.f505bd796bf9 from=translated src=- shape=52b216da vocab=b5965451
+-/
 theorem restrictedPowerField_add (p : ℕ) [CharP K p] [hp : Fact p.Prime]
     (D E : Derivation K A A) :
     Derivation.restrictedPowerField (D + E) p =
@@ -417,6 +455,9 @@ noncomputable def vectorFieldDerivLinearMap
       rfl
     exact congrArg (fun f => f c) hn
 
+/--
+@isnad1 id=eq.0h5v.s7.0173277d6ae4 from=translated src=- shape=6db5d328 vocab=2a6f3ac5
+-/
 theorem vectorField_pPower_add (D E : X.VectorField U) :
     (D + E).pPower = D.pPower + E.pPower +
       jacobsonCorrection k (ringChar k) D E := by
@@ -469,6 +510,9 @@ def fieldAlgebraFrobenius (k A : Type*) [Field k] [CommRing A]
     · haveI : Subsingleton A := not_nontrivial_iff_subsingleton.mp hA
       exact Subsingleton.elim _ _
 
+/--
+@isnad1 id=eq.0h3v.s6.a8f7a9f3df4c from=translated src=- shape=23ac3fb6 vocab=d5762a96
+-/
 @[simp]
 theorem fieldAlgebraFrobenius_apply (k A : Type*) [Field k] [CommRing A]
     [Algebra k A] [NeZero (ringChar k)] (a : A) :
@@ -493,10 +537,16 @@ noncomputable def nablaBaseEnd (D : X.VectorField U) :
     rw [C.leibniz]
     simp
 
+/--
+@isnad1 id=eq.0h6v.s14.9f77974bceda from=translated src=- shape=305a116a vocab=94431b86
+-/
 @[simp]
 theorem nablaBaseEnd_apply (D : X.VectorField U) (m : Γ(C.carrier, U)) :
     nablaBaseEnd C D m = C.nabla U D m := rfl
 
+/--
+@isnad1 id=eq.0h7v.s14.23e429817b62 from=translated src=- shape=9bbd021b vocab=ff3eb5ed
+-/
 @[simp]
 theorem nablaBaseEnd_pow_apply (D : X.VectorField U) (n : ℕ)
     (m : Γ(C.carrier, U)) :
@@ -517,6 +567,9 @@ noncomputable def nablaBaseLinearMap :
     simpa using congrArg (fun N => N m) ((C.nabla U).map_smul
       (algebraMap k Γ(X.scheme, U) c) D)
 
+/--
+@isnad1 id=eq.0h6v.s14.286b95df5c39 from=translated src=- shape=9d66002c vocab=210c3d29
+-/
 @[simp]
 theorem nablaBaseLinearMap_apply (D : X.VectorField U)
     (m : Γ(C.carrier, U)) :
@@ -525,12 +578,18 @@ theorem nablaBaseLinearMap_apply (D : X.VectorField U)
 local instance connectionEndLieRing :
     LieRing (Module.End k Γ(C.carrier, U)) := LieRing.ofAssociativeRing
 
+/--
+@isnad1 id=eq.0h6v.s14.1f72c0fff3a8 from=translated src=- shape=c85ba760 vocab=87a774d8
+-/
 theorem nablaBaseLinearMap_bracket (D E : X.VectorField U) :
     nablaBaseLinearMap C ⁅D, E⁆ =
       ⁅nablaBaseLinearMap C D, nablaBaseLinearMap C E⁆ := by
   ext m
   exact C.flat U D E m
 
+/--
+@isnad1 id=eq.0h6v.s14.3340b0e5ae79 from=translated src=- shape=3409c373 vocab=64980115
+-/
 theorem nablaBaseEnd_add_pow (D E : X.VectorField U) :
     (nablaBaseEnd C (D + E)) ^ ringChar k =
       (nablaBaseEnd C D) ^ ringChar k +
@@ -555,6 +614,9 @@ theorem nablaBaseEnd_add_pow (D E : X.VectorField U) :
   rw [← jacobsonCorrection_map_linear (nablaBaseLinearMap C)
     (nablaBaseLinearMap_bracket C)]
 
+/--
+@isnad1 id=eq.0h6v.s12.670ab4340f97 from=translated src=- shape=c9cf3e89 vocab=4e43730c
+-/
 theorem pCurvatureAdditive_add_vectorField (D E : X.VectorField U) :
     C.pCurvatureAdditive U (D + E) =
       C.pCurvatureAdditive U D + C.pCurvatureAdditive U E := by
@@ -592,6 +654,9 @@ def hochschildCoeff (D : Derivation K A A) (a : A) : ℕ → ℕ → A
       a * D (hochschildCoeff D a n (j + 1)) +
         a * hochschildCoeff D a n j
 
+/--
+@isnad1 id=eq.1h6v.s6.0d01acccfa3c from=translated src=- shape=502a7e48 vocab=7b0151cd
+-/
 @[simp]
 theorem hochschildCoeff_eq_zero_of_lt (D : Derivation K A A) (a : A)
     {n j : ℕ} (h : n < j) : hochschildCoeff D a n j = 0 := by
@@ -605,22 +670,34 @@ theorem hochschildCoeff_eq_zero_of_lt (D : Derivation K A A) (a : A)
       rw [ih (by omega), ih (by omega)]
       simp
 
+/--
+@isnad1 id=eq.0h5v.s7.a1c1d9c9fdf9 from=translated src=- shape=dc9984ca vocab=ab063979
+-/
 @[simp]
 theorem hochschildCoeff_zero (D : Derivation K A A) (a : A) (n : ℕ) :
     hochschildCoeff D a n 0 = if n = 0 then 1 else 0 := by
   cases n <;> simp [hochschildCoeff]
 
+/--
+@isnad1 id=eq.0h5v.s7.3d56040d2ed3 from=translated src=- shape=60e2fc63 vocab=cbaba861
+-/
 @[simp]
 theorem derivation_hochschildCoeff_zero (D : Derivation K A A)
     (a : A) (n : ℕ) : D (hochschildCoeff D a n 0) = 0 := by
   cases n <;> simp [hochschildCoeff]
 
+/--
+@isnad1 id=eq.2h3v.s6.f379d8a32de8 from=translated src=- shape=aa256b7b vocab=715008ea
+-/
 theorem sum_range_shift_of_boundary_zero {M : Type*} [AddCommMonoid M]
     (f : ℕ → M) (n : ℕ) (hzero : f 0 = 0) (hlast : f (n + 1) = 0) :
     ∑ j ∈ range (n + 1), f (j + 1) = ∑ j ∈ range (n + 1), f j := by
   rw [sum_range_succ, sum_range_succ']
   simp [hzero, hlast]
 
+/--
+@isnad1 id=eq.0h7v.s8.03242f42d4f3 from=translated src=- shape=d330f0c7 vocab=fec9a1a9
+-/
 theorem hochschildCoeff_sum_succ {M : Type*} [AddCommMonoid M]
     [Module A M] (D : Derivation K A A) (a : A) (F : ℕ → M) (n : ℕ) :
     ∑ j ∈ range (n + 2), hochschildCoeff D a (n + 1) j • F j =
@@ -639,6 +716,9 @@ section OperatorExpansion
 
 variable {M : Type*} [AddCommGroup M] [Module A M]
 
+/--
+@isnad1 id=eq.1h8v.s10.466d4b2922c9 from=translated src=- shape=2eb56f9b vocab=e71c4b76
+-/
 theorem smul_operator_mul_smul_pow (D : Derivation K A A)
     (N : Module.End ℤ M)
     (hN : ∀ (b : A) (m : M), N (b • m) = b • N m + D b • m)
@@ -652,7 +732,9 @@ theorem smul_operator_mul_smul_pow (D : Derivation K A A)
   ac_rfl
 
 /-- Normal-ordering expansion for an iterated scalar multiple of a
-connection-like additive operator.-/
+connection-like additive operator.
+@isnad1 id=eq.1h7v.s9.307a993fc557 from=translated src=- shape=2d6119d3 vocab=ed1915f4
+-/
 theorem smul_operator_pow_eq_sum (D : Derivation K A A)
     (N : Module.End ℤ M)
     (hN : ∀ (b : A) (m : M), N (b • m) = b • N m + D b • m)
@@ -668,6 +750,9 @@ theorem smul_operator_pow_eq_sum (D : Derivation K A A)
 
 end OperatorExpansion
 
+/--
+@isnad1 id=eq.0h5v.s6.bdddd37c64c8 from=translated src=- shape=50f66e02 vocab=d06b06bc
+-/
 @[simp]
 theorem hochschildCoeff_diagonal (D : Derivation K A A) (a : A) (n : ℕ) :
     hochschildCoeff D a n n = a ^ n := by
@@ -676,6 +761,9 @@ theorem hochschildCoeff_diagonal (D : Derivation K A A) (a : A) (n : ℕ) :
   | succ n ih =>
       simp [hochschildCoeff, ih, pow_succ, mul_comm]
 
+/--
+@isnad1 id=eq.0h5v.s7.5de397b6040f from=translated src=- shape=12c76056 vocab=37be69f8
+-/
 @[simp]
 theorem hochschildCoeff_one (D : Derivation K A A) (a : A) (n : ℕ) :
     hochschildCoeff D a (n + 1) 1 = (a • D : A → A)^[n] a := by
@@ -690,7 +778,9 @@ theorem hochschildCoeff_one (D : Derivation K A A) (a : A) (n : ℕ) :
       rfl
 
 /-- Function-valued form of the normal-ordering expansion, specialized to
-a derivation.-/
+a derivation.
+@isnad1 id=eq.0h6v.s8.a293ac3f7749 from=translated src=- shape=c3a8ea5d vocab=33e5afb3
+-/
 theorem smul_derivation_iterate_eq_sum (D : Derivation K A A)
     (a x : A) (n : ℕ) :
     (a • D : A → A)^[n] x =
@@ -716,6 +806,9 @@ section CoefficientNaturality
 
 variable {B : Type*} [CommRing B] [Algebra K B]
 
+/--
+@isnad1 id=eq.1h9v.s9.0aeffef48756 from=translated src=- shape=4a54bc8d vocab=f4980179
+-/
 theorem hochschildCoeff_map (f : A →ₐ[K] B)
     (D : Derivation K A A) (E : Derivation K B B)
     (hDE : ∀ x, f (D x) = E (f x)) (a : A) (n j : ℕ) :
@@ -736,16 +829,25 @@ noncomputable def polynomialExtension (D : Derivation K A A) :
   PolynomialModule.equivPolynomialSelf.compDer D.mapCoeffs +
     Polynomial.derivative'.restrictScalars K
 
+/--
+@isnad1 id=eq.0h4v.s9.0b7e8e3cd90a from=translated src=- shape=9f9ec0f8 vocab=f97ef15a
+-/
 @[simp]
 theorem polynomialExtension_C (D : Derivation K A A) (a : A) :
     polynomialExtension D (Polynomial.C a) = Polynomial.C (D a) := by
   simp [polynomialExtension, PolynomialModule.equivPolynomialSelf_apply_eq]
 
+/--
+@isnad1 id=eq.0h3v.s8.927131867fcf from=translated src=- shape=4a1ec60e vocab=18c41455
+-/
 @[simp]
 theorem polynomialExtension_X (D : Derivation K A A) :
     polynomialExtension D Polynomial.X = 1 := by
   simp [polynomialExtension]
 
+/--
+@isnad1 id=eq.0h4v.s9.162c568e468d from=translated src=- shape=18f475aa vocab=e5e012d7
+-/
 @[simp]
 theorem polynomialExtension_X_pow (D : Derivation K A A) (n : ℕ) :
     polynomialExtension D (Polynomial.X ^ n) =
@@ -754,6 +856,9 @@ theorem polynomialExtension_X_pow (D : Derivation K A A) (n : ℕ) :
     Polynomial.derivative_X_pow]
   simp [nsmul_eq_mul]
 
+/--
+@isnad1 id=eq.0h5v.s9.d34794e23237 from=translated src=- shape=225245ad vocab=75a22727
+-/
 theorem polynomialExtension_iterate_X_pow (D : Derivation K A A)
     (n j : ℕ) :
     (polynomialExtension D)^[j] (Polynomial.X ^ n) =
@@ -765,6 +870,9 @@ theorem polynomialExtension_iterate_X_pow (D : Derivation K A A)
       rw [Polynomial.iterate_derivative_X_pow_eq_C_mul]
       simp [Polynomial.derivative_X_pow]
 
+/--
+@isnad1 id=eq.0h6v.s8.5357e00a9b65 from=translated src=- shape=37b9f97e vocab=2d10397b
+-/
 @[simp]
 theorem hochschildCoeff_polynomialExtension (D : Derivation K A A)
     (a : A) (n j : ℕ) :
@@ -778,6 +886,9 @@ theorem hochschildCoeff_polynomialExtension (D : Derivation K A A)
     hochschildCoeff (polynomialExtension D) (Polynomial.C a) n j at h
   exact h.symm
 
+/--
+@isnad1 id=eq.0h7v.s9.58c6a7a88ee6 from=translated src=- shape=349af50a vocab=ab91aa10
+-/
 theorem coeff_zero_hochschild_extension_term (D : Derivation K A A)
     (a : A) (r n j : ℕ) :
     (hochschildCoeff (polynomialExtension D) (Polynomial.C a) r j *
@@ -792,7 +903,9 @@ theorem coeff_zero_hochschild_extension_term (D : Derivation K A A)
   · simp [h]
 
 /-- In prime characteristic, every genuinely intermediate coefficient in
-the normal-ordering expansion of `(a D)^p` vanishes.-/
+the normal-ordering expansion of `(a D)^p` vanishes.
+@isnad1 id=eq.2h6v.s7.167a587c396c from=translated src=- shape=5ec12f59 vocab=66dd8cf7
+-/
 theorem hochschildCoeff_middle_eq_zero (p : ℕ) [CharP K p]
     [hp : Fact p.Prime] (D : Derivation K A A) (a : A) (n : ℕ)
     (hn2 : 2 ≤ n) (hnp : n < p) : hochschildCoeff D a p n = 0 := by
@@ -837,7 +950,9 @@ theorem hochschildCoeff_middle_eq_zero (p : ℕ) [CharP K p]
     exact Subsingleton.elim _ _
 
 /-- Hochschild's formula for a connection-like operator in prime
-characteristic.-/
+characteristic.
+@isnad1 id=eq.1h7v.s10.46d36c881363 from=translated src=- shape=b94bb597 vocab=da40a609
+-/
 theorem smul_operator_pow_prime (p : ℕ) [CharP K p]
     [hp : Fact p.Prime] {M : Type*} [AddCommGroup M] [Module A M]
     (D : Derivation K A A) (N : Module.End ℤ M)
@@ -880,6 +995,9 @@ theorem smul_operator_pow_prime (p : ℕ) [CharP K p]
       rw [sum_insert (by simpa using hp.out.ne_one.symm), sum_singleton]
       simp [f, hc, add_comm]
 
+/--
+@isnad1 id=eq.0h6v.s9.cad5f493ce32 from=translated src=- shape=e849de36 vocab=e20bd616
+-/
 theorem smul_derivation_iterate_prime (p : ℕ) [CharP K p]
     [Fact p.Prime] (D : Derivation K A A) (a x : A) :
     (a • D : A → A)^[p] x =
@@ -898,7 +1016,9 @@ theorem smul_derivation_iterate_prime (p : ℕ) [CharP K p]
     a ^ p * D^[p] x + ((fun y => a * D y)^[p - 1] a) * D x
   exact h
 
-/-- Hochschild's scalar formula for the restricted power of a derivation.-/
+/-- Hochschild's scalar formula for the restricted power of a derivation.
+@isnad1 id=eq.0h5v.s10.63305473a6c2 from=translated src=- shape=b582cb7b vocab=cde4f86b
+-/
 theorem restrictedPowerField_smul (p : ℕ) [CharP K p]
     [Fact p.Prime] (D : Derivation K A A) (a : A) :
     Derivation.restrictedPowerField (a • D) p =
@@ -919,6 +1039,9 @@ open scoped AlgebraicGeometry
 variable {k : Type*} [Field k] [NeZero (ringChar k)]
 variable {X : LSZ.SmoothScheme k} {U : X.scheme.Opens}
 
+/--
+@isnad1 id=eq.1h8v.s14.f4050e7cb94e from=translated src=- shape=c132b61d vocab=c79dc71a
+-/
 theorem vectorField_restrict_smul_act_iterate (D : X.VectorField U)
     (V : X.scheme.Opens) (hV : V ≤ U) (a b : Γ(X.scheme, U)) (n : ℕ) :
     X.scheme.presheaf.map (homOfLE hV).op
@@ -934,7 +1057,9 @@ theorem vectorField_restrict_smul_act_iterate (D : X.VectorField U)
   rw [map_mul, D.compatible le_rfl hV c]
 
 /-- Hochschild's scalar formula for the restricted power of a vector
-field.-/
+field.
+@isnad1 id=eq.0h5v.s13.31c86a0f6ed7 from=translated src=- shape=96deff21 vocab=5fb3d162
+-/
 theorem vectorField_pPower_smul (a : Γ(X.scheme, U))
     (D : X.VectorField U) :
     (a • D).pPower = a ^ ringChar k • D.pPower +
@@ -966,6 +1091,9 @@ variable {k : Type*} [Field k] [NeZero (ringChar k)]
 variable {X : LSZ.SmoothScheme k} (C : X.IntegrableConnection)
 variable {U : X.scheme.Opens}
 
+/--
+@isnad1 id=eq.0h6v.s16.926e7bda7e8a from=translated src=- shape=f57ae038 vocab=6fe79735
+-/
 theorem connection_smul_pow (a : Γ(X.scheme, U))
     (D : X.VectorField U) :
     (C.nabla U (a • D)) ^ ringChar k =
@@ -978,7 +1106,9 @@ theorem connection_smul_pow (a : Γ(X.scheme, U))
   exact smul_operator_pow_prime (ringChar k) D.act (C.nabla U D)
     (C.leibniz U D) a
 
-/-- Scalar half of Frobenius semilinearity of p-curvature.-/
+/-- Scalar half of Frobenius semilinearity of p-curvature.
+@isnad1 id=eq.0h6v.s13.d91fc289308a from=translated src=- shape=a9003bb2 vocab=f90a9575
+-/
 theorem pCurvatureAdditive_smul_vectorField (a : Γ(X.scheme, U))
     (D : X.VectorField U) :
     C.pCurvatureAdditive U (a • D) =
@@ -989,7 +1119,9 @@ theorem pCurvatureAdditive_smul_vectorField (a : Γ(X.scheme, U))
   module
 
 /-- P-curvature is Frobenius-semilinear in its vector-field argument,
-expressed as an equality of `O(U)`-linear endomorphisms.-/
+expressed as an equality of `O(U)`-linear endomorphisms.
+@isnad1 id=eq.0h6v.s13.147b92dabc1d from=translated src=- shape=ff9e7e1f vocab=389df02e
+-/
 theorem pCurvature_smul_vectorField (a : Γ(X.scheme, U))
     (D : X.VectorField U) :
     C.pCurvature U (a • D) =
@@ -998,6 +1130,9 @@ theorem pCurvature_smul_vectorField (a : Γ(X.scheme, U))
   exact congrArg (fun F : Module.End ℤ Γ(C.carrier, U) => F m)
     (pCurvatureAdditive_smul_vectorField C a D)
 
+/--
+@isnad1 id=eq.0h6v.s13.539db965592e from=translated src=- shape=3d1900b2 vocab=b2a03ef7
+-/
 theorem pCurvature_add_vectorField (D E : X.VectorField U) :
     C.pCurvature U (D + E) = C.pCurvature U D + C.pCurvature U E := by
   ext m
@@ -1014,6 +1149,9 @@ def pCurvatureFrobeniusSemilinear (U : X.scheme.Opens) :
   map_add' := pCurvature_add_vectorField C
   map_smul' := pCurvature_smul_vectorField C
 
+/--
+@isnad1 id=eq.0h5v.s14.4aa596497904 from=translated src=- shape=d6d9a278 vocab=51dfe70a
+-/
 @[simp]
 theorem pCurvatureFrobeniusSemilinear_apply (U : X.scheme.Opens)
     (D : X.VectorField U) :

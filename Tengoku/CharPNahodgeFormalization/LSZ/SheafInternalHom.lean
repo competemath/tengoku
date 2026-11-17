@@ -101,30 +101,45 @@ def overScalar (U : Opens X) (V : (Over U)ᵒᵖ)
   change (topRingSheaf R).obj.obj (op V.unop.left)
   exact (topRingSheaf R).obj.map V.unop.hom.op a
 
+/--
+@isnad1 id=eq.0h4v.s11.0f07a9a13e8b from=translated src=- shape=95601e6f vocab=7ece6845
+-/
 @[simp]
 lemma overScalar_one (U : Opens X) (V : (Over U)ᵒᵖ) :
     overScalar R U V 1 = 1 := by
   change (topRingSheaf R).obj.map V.unop.hom.op 1 = 1
   exact map_one _
 
+/--
+@isnad1 id=eq.0h4v.s11.ace373540805 from=translated src=- shape=95601e6f vocab=7ece6845
+-/
 @[simp]
 lemma overScalar_zero (U : Opens X) (V : (Over U)ᵒᵖ) :
     overScalar R U V 0 = 0 := by
   change (topRingSheaf R).obj.map V.unop.hom.op 0 = 0
   exact map_zero _
 
+/--
+@isnad1 id=eq.0h6v.s12.79489bd131e7 from=translated src=- shape=146e708d vocab=429817b1
+-/
 lemma overScalar_add (U : Opens X) (V : (Over U)ᵒᵖ)
     (a b : (topRingSheaf R).obj.obj (op U)) :
     overScalar R U V (a + b) = overScalar R U V a + overScalar R U V b := by
   change (topRingSheaf R).obj.map V.unop.hom.op (a + b) = _
   exact map_add _ _ _
 
+/--
+@isnad1 id=eq.0h6v.s12.313dc476a9fb from=translated src=- shape=146e708d vocab=d5a21e77
+-/
 lemma overScalar_mul (U : Opens X) (V : (Over U)ᵒᵖ)
     (a b : (topRingSheaf R).obj.obj (op U)) :
     overScalar R U V (a * b) = overScalar R U V a * overScalar R U V b := by
   change (topRingSheaf R).obj.map V.unop.hom.op (a * b) = _
   exact map_mul _ _ _
 
+/--
+@isnad1 id=eq.0h7v.s12.be2fb5e791bf from=translated src=- shape=c329a3ce vocab=5c614534
+-/
 lemma overScalar_map (U : Opens X) {V W : (Over U)ᵒᵖ} (f : V ⟶ W)
     (a : (topRingSheaf R).obj.obj (op U)) :
     ((topRingSheaf R).over U).obj.map f (overScalar R U V a) =
@@ -135,6 +150,9 @@ lemma overScalar_map (U : Opens X) {V W : (Over U)ᵒᵖ} (f : V ⟶ W)
   rw [← ConcreteCategory.comp_apply, ← (topRingSheaf R).obj.map_comp]
   rw [← op_comp, Over.w f.unop]
 
+/--
+@isnad1 id=eq.0h9v.s18.9a3587f7ce6a from=translated src=- shape=990f0ae3 vocab=8c7df8c7
+-/
 lemma map_overScalar_smul (P : RingedModules R) (U : Opens X)
     {V W : (Over U)ᵒᵖ} (f : V ⟶ W)
     (a : (topRingSheaf R).obj.obj (op U)) (m : (P.over U).val.obj V) :
@@ -143,6 +161,9 @@ lemma map_overScalar_smul (P : RingedModules R) (U : Opens X)
   simpa only [overScalar_map] using
     (P.over U).val.map_smul f (overScalar R U V a) m
 
+/--
+@isnad1 id=eq.0h9v.s17.0fc9fdaf2271 from=translated src=- shape=ae92ae5d vocab=48b8b709
+-/
 lemma map_overSection_smul (P : RingedModules R) (U : Opens X)
     (W : (Over U)ᵒᵖ) {Z : Opens X} (g : Z ⟶ W.unop.left)
     (a : ((topRingSheaf R).over U).obj.obj W)
@@ -157,6 +178,9 @@ def restrictSection (P : RingedModules R) {U V : (Opens X)ᵒᵖ}
     (f : U ⟶ V) (m : P.val.obj U) : P.val.obj V :=
   P.val.map f m
 
+/--
+@isnad1 id=eq.0h8v.s13.4b25b68d3dd2 from=translated src=- shape=b709a5f5 vocab=3071f1eb
+-/
 @[simp]
 lemma restrictSection_add (P : RingedModules R) {U V : (Opens X)ᵒᵖ}
     (f : U ⟶ V) (m n : P.val.obj U) :
@@ -164,6 +188,9 @@ lemma restrictSection_add (P : RingedModules R) {U V : (Opens X)ᵒᵖ}
       restrictSection R P f m + restrictSection R P f n := by
   exact map_add (P.val.map f).hom m n
 
+/--
+@isnad1 id=eq.0h8v.s15.3413b36b1eea from=translated src=- shape=fee4b9d9 vocab=24039aa6
+-/
 lemma restrictSection_smul (P : RingedModules R) {U V : (Opens X)ᵒᵖ}
     (f : U ⟶ V) (a : (topRingSheaf R).obj.obj U) (m : P.val.obj U) :
     restrictSection R P f (a • m) =
@@ -172,6 +199,9 @@ lemma restrictSection_smul (P : RingedModules R) {U V : (Opens X)ᵒᵖ}
     (ringSheaf R).obj.map f a • P.val.map f m
   exact P.val.map_smul f a m
 
+/--
+@isnad1 id=eq.0h9v.s10.3a3b3ee9c56e from=translated src=- shape=c86543fc vocab=2a03e22e
+-/
 lemma restrictSection_comp (P : RingedModules R) {U V W : (Opens X)ᵒᵖ}
     (f : U ⟶ V) (g : V ⟶ W) (m : P.val.obj U) :
     restrictSection R P (f ≫ g) m =
@@ -182,6 +212,9 @@ def overSection (P : RingedModules R) (U : Opens X) (V : (Over U)ᵒᵖ)
     (m : (P.over U).val.obj V) : P.val.obj (op V.unop.left) :=
   m
 
+/--
+@isnad1 id=injectiv.0h5v.s11.54d2432da199 from=translated src=- shape=47b7253f vocab=eb8e37ed
+-/
 lemma overSection_injective (P : RingedModules R) (U : Opens X)
     (V : (Over U)ᵒᵖ) : Function.Injective (overSection R P U V) := by
   intro m n h
@@ -198,6 +231,9 @@ def rebaseOverSection (P : RingedModules R) {U V : (Opens X)ᵒᵖ}
     (P.over U.unop).val.obj ((Over.map f.unop).op.obj W) :=
   m
 
+/--
+@isnad1 id=eq.0h8v.s11.d2b78b86d9b2 from=translated src=- shape=63a55fcc vocab=bb212c1a
+-/
 @[simp]
 lemma overSection_rebase (P : RingedModules R) {U V : (Opens X)ᵒᵖ}
     (f : U ⟶ V) (W : (Over V.unop)ᵒᵖ)
@@ -206,12 +242,18 @@ lemma overSection_rebase (P : RingedModules R) {U V : (Opens X)ᵒᵖ}
       (rebaseOverSection R P f W m) = overSection R P V.unop W m :=
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s11.0ccd6c99bad2 from=translated src=- shape=29df6838 vocab=49198926
+-/
 lemma overSection_restrict (P : RingedModules R) (U : Opens X)
     {V W : (Over U)ᵒᵖ} (f : V ⟶ W) (m : (P.over U).val.obj V) :
     overSection R P U W (overRestrictSection R P U f m) =
       restrictSection R P f.unop.left.op (overSection R P U V m) :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s14.a1b0f4fdec6e from=translated src=- shape=5fdc1d0c vocab=aeeb3a98
+-/
 @[simp]
 lemma overSection_add (P : RingedModules R) (U : Opens X) (V : (Over U)ᵒᵖ)
     (m n : (P.over U).val.obj V) :
@@ -219,6 +261,9 @@ lemma overSection_add (P : RingedModules R) (U : Opens X) (V : (Over U)ᵒᵖ)
       overSection R P U V m + overSection R P U V n :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s15.7f09736d09cd from=translated src=- shape=0404a6fa vocab=1b4027d5
+-/
 lemma overSection_smul (P : RingedModules R) (U : Opens X) (V : (Over U)ᵒᵖ)
     (a : ((topRingSheaf R).over U).obj.obj V)
     (m : (P.over U).val.obj V) :
@@ -227,6 +272,9 @@ lemma overSection_smul (P : RingedModules R) (U : Opens X) (V : (Over U)ᵒᵖ)
         overSection R P U V m :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s11.5bd1b5649e1f from=translated src=- shape=aa491091 vocab=102765db
+-/
 lemma overScalar_map_base {U V : (Opens X)ᵒᵖ} (f : U ⟶ V)
     (W : (Over V.unop)ᵒᵖ) (a : (topRingSheaf R).obj.obj U) :
     overScalar R U.unop ((Over.map f.unop).op.obj W) a =
@@ -239,6 +287,9 @@ lemma overScalar_map_base {U V : (Opens X)ᵒᵖ} (f : U ⟶ V)
     ConcreteCategory.comp_apply]
   simpa
 
+/--
+@isnad1 id=smulcomm.0h5v.s16.69a8ca350888 from=translated src=- shape=e67a0978 vocab=08de58fe
+-/
 theorem overSMulCommClass (P : RingedModules R) (U : Opens X)
     (V : (Over U)ᵒᵖ) :
     SMulCommClass (((topRingSheaf R).over U).obj.obj V)
@@ -357,6 +408,9 @@ noncomputable instance homModule (U : (Opens X)ᵒᵖ) :
   add_smul := homModule_add_smul R M N U
   zero_smul := homModule_zero_smul R M N U
 
+/--
+@isnad1 id=eq.0h9v.s15.cfa9c6d0e2b2 from=translated src=- shape=182235b3 vocab=547ff628
+-/
 lemma homRestrict_smul {U V : (Opens X)ᵒᵖ} (f : U ⟶ V)
     (a : (topRingSheaf R).obj.obj U)
     (φ : M.over U.unop ⟶ N.over U.unop) :
@@ -434,6 +488,9 @@ def homToSheafHom :
   naturality := fun {U V} f =>
     homToSheafHom_naturality R M N (U := U) (V := V) f
 
+/--
+@isnad1 id=injectiv.0h5v.s9.631d0301ac6f from=translated src=- shape=95481b06 vocab=bec62cc8
+-/
 lemma homToSheafHomApp_injective (U : (Opens X)ᵒᵖ) :
     Function.Injective (homToSheafHomApp R M N U) := by
   intro φ ψ h
@@ -443,6 +500,9 @@ abbrev linearHomRange : Subfunctor
     (CategoryTheory.sheafHom (additiveSheaf R M) (additiveSheaf R N)).obj :=
   Subfunctor.range (homToSheafHom R M N)
 
+/--
+@isnad1 id=issheaf.0h4v.s7.136b8c0e0976 from=translated src=- shape=b79fd663 vocab=7c993ef4
+-/
 lemma linearHomRange_isSheaf :
     Presheaf.IsSheaf (Opens.grothendieckTopology X)
       (linearHomRange R M N).toFunctor := by
@@ -494,6 +554,9 @@ lemma linearHomRange_isSheaf :
     ⟨PresheafOfModules.homMk s.hom hlinear⟩
   exact ⟨φ, rfl⟩
 
+/--
+@isnad1 id=issheaf.0h4v.s6.510f43c7374c from=translated src=- shape=08defe99 vocab=23a92384
+-/
 lemma homAbPresheaf_isSheaf :
     Presheaf.IsSheaf (Opens.grothendieckTopology X)
       (homAbPresheaf R M N) := by
@@ -605,6 +668,9 @@ noncomputable def currySection {P : RingedModules R}
     (m : M.val.obj U) : N.over U.unop ⟶ P.over U.unop where
   val := currySectionVal R M N f U m
 
+/--
+@isnad1 id=eq.0h10v.s16.fe283b3cf98f from=translated src=- shape=a7e62409 vocab=a0f40f7d
+-/
 @[simp]
 lemma currySection_apply {P : RingedModules R}
     (f : tensorPresheaf R M N ⟶ P.val) (U : (Opens X)ᵒᵖ)
@@ -617,6 +683,9 @@ lemma currySection_apply {P : RingedModules R}
           (overSection R N U.unop V n)) :=
   rfl
 
+/--
+@isnad1 id=eq.0h10v.s16.f43b9a3677d3 from=translated src=- shape=d76f6413 vocab=a0f40f7d
+-/
 @[simp]
 lemma overSection_currySection_apply {P : RingedModules R}
     (f : tensorPresheaf R M N ⟶ P.val) (U : (Opens X)ᵒᵖ)
@@ -715,6 +784,9 @@ def nativeScalar (U : (Opens X)ᵒᵖ) (a : R.obj.obj U) :
     (topRingSheaf R).obj.obj U :=
   a
 
+/--
+@isnad1 id=eq.0h6v.s16.91efd4b97d46 from=translated src=- shape=5ad14751 vocab=12f99c73
+-/
 lemma nativeSection_smul_top (P : RingedModules R) (U : (Opens X)ᵒᵖ)
     (a : R.obj.obj U) (m : (directPresheaf R P).obj U) :
     (show (P.over U.unop).val.obj (op (Over.mk (𝟙 U.unop))) from
@@ -747,6 +819,9 @@ def directInternalHomEval (N P : RingedModules R) (U : (Opens X)ᵒᵖ)
         (show (N.over U.unop).val.obj (op (Over.mk (𝟙 U.unop))) from
           nativeSection R N U n))
 
+/--
+@isnad1 id=eq.0h8v.s14.5e7fbfb1b686 from=translated src=- shape=a634d6e1 vocab=89607e81
+-/
 lemma directInternalHomEval_add_left (P : RingedModules R) (U : (Opens X)ᵒᵖ)
     (φ ψ : (directPresheaf R (internalHom R N P)).obj U)
     (n : (directPresheaf R N).obj U) :
@@ -754,6 +829,9 @@ lemma directInternalHomEval_add_left (P : RingedModules R) (U : (Opens X)ᵒᵖ)
       directInternalHomEval R N P U φ n + directInternalHomEval R N P U ψ n :=
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s15.2f45399263c8 from=translated src=- shape=2c6bcfeb vocab=96ec4542
+-/
 lemma directInternalHomEval_smul_left (P : RingedModules R) (U : (Opens X)ᵒᵖ)
     (a : R.obj.obj U) (φ : (directPresheaf R (internalHom R N P)).obj U)
     (n : (directPresheaf R N).obj U) :
@@ -779,6 +857,9 @@ lemma directInternalHomEval_smul_left (P : RingedModules R) (U : (Opens X)ᵒᵖ
   change nativeScalar R U a • _ = nativeScalar R U a • _
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s14.051244131f9f from=translated src=- shape=484e390e vocab=89607e81
+-/
 lemma directInternalHomEval_add_right (P : RingedModules R) (U : (Opens X)ᵒᵖ)
     (φ : (directPresheaf R (internalHom R N P)).obj U)
     (n n' : (directPresheaf R N).obj U) :
@@ -788,6 +869,9 @@ lemma directInternalHomEval_add_right (P : RingedModules R) (U : (Opens X)ᵒᵖ
     ((nativeHomSection R N P U φ).val.app
       (op (Over.mk (𝟙 U.unop)))).hom _ _
 
+/--
+@isnad1 id=eq.0h8v.s15.a6ce3e7772a2 from=translated src=- shape=fd5e75b0 vocab=96ec4542
+-/
 lemma directInternalHomEval_smul_right (P : RingedModules R) (U : (Opens X)ᵒᵖ)
     (a : R.obj.obj U) (φ : (directPresheaf R (internalHom R N P)).obj U)
     (n : (directPresheaf R N).obj U) :
@@ -815,6 +899,9 @@ lemma directInternalHomEval_smul_right (P : RingedModules R) (U : (Opens X)ᵒ�
   change nativeScalar R U a • _ = nativeScalar R U a • _
   rfl
 
+/--
+@isnad1 id=eq.0h9v.s17.f89418fb1154 from=translated src=- shape=5939e58a vocab=b91015c7
+-/
 lemma directInternalHomEval_map (P : RingedModules R) {U V : (Opens X)ᵒᵖ}
     (q : U ⟶ V) (φ : (directPresheaf R (internalHom R N P)).obj U)
     (n : (directPresheaf R N).obj U) :
@@ -1023,6 +1110,9 @@ noncomputable def internalHomMap {P Q : RingedModules R} (h : P ⟶ Q) :
     internalHom R N P ⟶ internalHom R N Q where
   val := internalHomMapVal R N h
 
+/--
+@isnad1 id=eq.0h4v.s8.8964c403c1c0 from=translated src=- shape=d2c0840a vocab=0530d178
+-/
 @[simp]
 lemma internalHomMap_id (P : RingedModules R) :
     internalHomMap R N (𝟙 P) = 𝟙 (internalHom R N P) := by
@@ -1030,6 +1120,9 @@ lemma internalHomMap_id (P : RingedModules R) :
   ext U φ V n
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s8.de0c11f723c1 from=translated src=- shape=00a59567 vocab=aba068ce
+-/
 @[simp]
 lemma internalHomMap_comp {P Q S : RingedModules R} (f : P ⟶ Q) (g : Q ⟶ S) :
     internalHomMap R N (f ≫ g) =
@@ -1068,11 +1161,17 @@ noncomputable def internalHomFunctor : RingedModules R ⥤ RingedModules R where
   map_id := internalHomMap_id R N
   map_comp := internalHomMap_comp R N
 
+/--
+@isnad1 id=eq.0h6v.s13.b0758d89b6f0 from=translated src=- shape=60051380 vocab=766123b2
+-/
 lemma tensorHomEquiv_apply {P : RingedModules R}
     (f : tensorObj R M N ⟶ P) :
     tensorHomEquiv R M N P f = tensorUnit R M N ≫ f.val := by
   rfl
 
+/--
+@isnad1 id=eq.0h9v.s15.85017593eac6 from=translated src=- shape=f4d5aaef vocab=d079b487
+-/
 lemma tensorLift_tmul {P : RingedModules R}
     (f : tensorPresheaf R M N ⟶ P.val) (U : (Opens X)ᵒᵖ)
     (m : M.val.obj U) (n : N.val.obj U) :
@@ -1083,6 +1182,9 @@ lemma tensorLift_tmul {P : RingedModules R}
   have hU := congrArg (fun q => q.app U) h
   exact CategoryTheory.congr_fun hU (tensorPure R M N U m n)
 
+/--
+@isnad1 id=eq.0h8v.s11.2faf0319eded from=translated src=- shape=1163b88d vocab=4ac7180e
+-/
 lemma tensorInternalHomEquiv_naturality_right {P Q : RingedModules R}
     (f : tensorObj R M N ⟶ P) (g : P ⟶ Q) :
     tensorInternalHomEquiv R M N Q (f ≫ g) =
@@ -1110,6 +1212,9 @@ lemma tensorInternalHomEquiv_naturality_right {P Q : RingedModules R}
           (overSection R N U.unop V n)))
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s11.43e565f9bfa0 from=translated src=- shape=d0872d11 vocab=70476113
+-/
 lemma tensorInternalHomEquiv_naturality_left_symm {L P : RingedModules R}
     (a : L ⟶ M) (g : M ⟶ internalHom R N P) :
     (tensorInternalHomEquiv R L N P).symm (a ≫ g) =

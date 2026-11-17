@@ -35,6 +35,9 @@ variable [Field k] [CharP k p] [Fact p.Prime]
 noncomputable instance residueAlgebra : Algebra (W₂ p k) k :=
   (w₂Reduction p k).toAlgebra
 
+/--
+@isnad1 id=eq.0h3v.s7.d0385367852c from=translated src=- shape=ffb1906b vocab=a0d94bc5
+-/
 @[simp]
 lemma algebraMap_residue_apply (x : W₂ p k) :
     algebraMap (W₂ p k) k x = w₂Reduction p k x := rfl
@@ -47,6 +50,9 @@ def mulP : W₂ p k →ₗ[W₂ p k] W₂ p k where
     change (a * x) * p = a * (x * p)
     rw [mul_assoc]
 
+/--
+@isnad1 id=eq.0h3v.s8.a96f0bd15753 from=translated src=- shape=75e4f64b vocab=3a811778
+-/
 @[simp]
 lemma mulP_apply (x : W₂ p k) : mulP p k x = x * p := rfl
 
@@ -54,11 +60,16 @@ lemma mulP_apply (x : W₂ p k) : mulP p k x = x * p := rfl
 def reductionLinear : W₂ p k →ₗ[W₂ p k] k :=
   Algebra.linearMap (W₂ p k) k
 
+/--
+@isnad1 id=eq.0h3v.s8.86a10668c2be from=translated src=- shape=5680b8f3 vocab=d2325226
+-/
 @[simp]
 lemma reductionLinear_apply (x : W₂ p k) :
     reductionLinear p k x = w₂Reduction p k x := rfl
 
-/-- Exactness of `W₂(k) --(* p)--> W₂(k) --> k` at the middle term.-/
+/-- Exactness of `W₂(k) --(* p)--> W₂(k) --> k` at the middle term.
+@isnad1 id=exact.0h2v.s9.1debd84fe65c from=translated src=- shape=d00a47e1 vocab=73c8b7ef
+-/
 lemma exact_mulP_reduction [PerfectField k] :
     Exact (mulP p k) (reductionLinear p k) := by
   rw [LinearMap.exact_iff]
@@ -68,7 +79,9 @@ lemma exact_mulP_reduction [PerfectField k] :
   constructor <;> rintro ⟨y, rfl⟩ <;> exact ⟨y, rfl⟩
 
 /-- Exactness of multiplication by `p` followed by multiplication by `p`.
-For length two this is the equality `ann(p) = (p)`.-/
+For length two this is the equality `ann(p) = (p)`.
+@isnad1 id=exact.0h2v.s9.292264b7baf5 from=translated src=- shape=d0f64207 vocab=997ab4bc
+-/
 lemma exact_mulP_mulP [PerfectField k] :
     Exact (mulP p k) (mulP p k) := by
   rw [LinearMap.exact_iff]
@@ -86,6 +99,9 @@ def toSpecialFiber : M →ₗ[W₂ p k] k ⊗[W₂ p k] M :=
   ((reductionLinear p k).rTensor M).comp
     (TensorProduct.lid (W₂ p k) M).symm.toLinearMap
 
+/--
+@isnad1 id=eq.0h4v.s9.aa7e4d51a0c7 from=translated src=- shape=4295a6d7 vocab=e2015701
+-/
 @[simp]
 lemma toSpecialFiber_apply (m : M) :
     toSpecialFiber p k m = (1 : k) ⊗ₜ[W₂ p k] m := by
@@ -113,7 +129,9 @@ private lemma lid_rTensor_mulP (z : W₂ p k ⊗[W₂ p k] M) :
 
 /-- Flatness preserves the elementary division-by-`p` statement: if the
 canonical image of `b` in `k ⊗_{W₂(k)} B` vanishes, then `b = p b'` for
-some `b'`.-/
+some `b'`.
+@isnad1 id=ex.1h4v.s10.939bf74eeb85 from=translated src=- shape=effdb77d vocab=e84970e3
+-/
 lemma exists_eq_p_smul_of_toSpecialFiber_eq_zero [PerfectField k]
     [Module.Flat (W₂ p k) M] (m : M)
     (hm : toSpecialFiber p k m = 0) :
@@ -138,7 +156,9 @@ lemma exists_eq_p_smul_of_toSpecialFiber_eq_zero [PerfectField k]
   rw [hx_lid] at hz'
   exact hz'.symm
 
-/-- Multiplication by `p` remains exact after tensoring with a flat module.-/
+/-- Multiplication by `p` remains exact after tensoring with a flat module.
+@isnad1 id=ex.1h4v.s8.b1442c83f768 from=translated src=- shape=a4997f48 vocab=73b2f39d
+-/
 lemma exists_eq_p_smul_of_p_smul_eq_zero [PerfectField k]
     [Module.Flat (W₂ p k) M] (m : M)
     (hm : (p : W₂ p k) • m = 0) :
@@ -164,7 +184,9 @@ lemma exists_eq_p_smul_of_p_smul_eq_zero [PerfectField k]
   rw [hx_lid] at hz'
   exact hz'.symm
 
-/-- A `p`-multiple has zero image on the special fibre.-/
+/-- A `p`-multiple has zero image on the special fibre.
+@isnad1 id=eq.0h4v.s10.985a554206d3 from=translated src=- shape=acf66f43 vocab=6ca1fa9c
+-/
 lemma toSpecialFiber_p_smul (m : M) :
     toSpecialFiber p k ((p : W₂ p k) • m) = 0 := by
   rw [toSpecialFiber_apply, TensorProduct.tmul_smul]
@@ -172,7 +194,9 @@ lemma toSpecialFiber_p_smul (m : M) :
   rw [map_natCast, CharP.cast_eq_zero, zero_smul,
     TensorProduct.zero_tmul]
 
-/-- Division by `p`, followed by reduction, is unique on a flat module.-/
+/-- Division by `p`, followed by reduction, is unique on a flat module.
+@isnad1 id=eq.1h5v.s10.436fd0f36a8c from=translated src=- shape=25dce034 vocab=e84970e3
+-/
 lemma toSpecialFiber_eq_of_p_smul_eq [PerfectField k]
     [Module.Flat (W₂ p k) M] {x y : M}
     (h : (p : W₂ p k) • x = (p : W₂ p k) • y) :
@@ -230,7 +254,9 @@ noncomputable def divideByP [PerfectField k]
         rw [smul_comm]
 
 /-- Characterizing formula for `divideByP`, independent of the internal
-choice of a quotient.-/
+choice of a quotient.
+@isnad1 id=eq.1h5v.s12.551f835106ec from=translated src=- shape=2948c4aa vocab=bbf6b55f
+-/
 lemma divideByP_eq_of_eq_p_smul [PerfectField k]
     [Module.Flat (W₂ p k) M]
     (x : LinearMap.ker (toSpecialFiber (M := M) p k)) (m : M)

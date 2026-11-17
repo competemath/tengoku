@@ -48,6 +48,9 @@ noncomputable def toTotalSpecialFiber
       exact pullback.condition)
 
 omit [CharP k p] in
+/--
+@isnad1 id=eq.0h6v.s8.24e2b6165d9a from=translated src=- shape=8a4fcd43 vocab=3c4b64de
+-/
 @[reassoc (attr := simp)]
 lemma toTotalSpecialFiber_fst
     (L : W₂Lift (p := p) (k := k) X)
@@ -58,6 +61,9 @@ lemma toTotalSpecialFiber_fst
   exact pullback.lift_fst _ _ _
 
 omit [CharP k p] in
+/--
+@isnad1 id=eq.0h6v.s7.bec5eb22c68d from=translated src=- shape=13392d25 vocab=e5496702
+-/
 @[reassoc (attr := simp)]
 lemma toTotalSpecialFiber_snd
     (L : W₂Lift (p := p) (k := k) X)
@@ -185,6 +191,9 @@ noncomputable abbrev chart (A : AffineFrobeniusAtlas L) (i : A.cover.I₀) :
     AlgebraicGeometry.Scheme.{u} :=
   AlgebraicGeometry.Spec (A.cover.X i)
 
+/--
+@isnad1 id=eq.0h6v.s7.c68dab1c0e30 from=translated src=- shape=be6e4758 vocab=db024a56
+-/
 @[reassoc]
 lemma local_frobenius_commutes (A : AffineFrobeniusAtlas L)
     (i : A.cover.I₀) :

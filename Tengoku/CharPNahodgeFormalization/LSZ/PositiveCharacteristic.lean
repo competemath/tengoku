@@ -19,7 +19,9 @@ universe u v
 
 variable {R : Type u} {A : Type v} [CommRing R] [CommRing A] [Algebra R A]
 
-/-- The generalized Leibniz formula for an iterated ring derivation.-/
+/-- The generalized Leibniz formula for an iterated ring derivation.
+@isnad1 id=eq.0h6v.s8.fe281b9616d9 from=translated src=- shape=0a1a7810 vocab=ee162fcc
+-/
 theorem iterate_apply_mul (D : Derivation R A A) (n : ℕ) (a b : A) :
     D^[n] (a * b) =
       ∑ ij ∈ antidiagonal n, choose n ij.1 • (D^[ij.1] a * D^[ij.2] b) := by
@@ -34,7 +36,9 @@ theorem iterate_apply_mul (D : Derivation R A A) (n : ℕ) (a b : A) :
     refine sum_congr rfl fun ⟨i, j⟩ hij ↦ ?_
     rw [n.choose_symm_of_eq_add (mem_antidiagonal.1 hij).symm, mul_comm]
 
-/-- Range-indexed form of the generalized Leibniz formula.-/
+/-- Range-indexed form of the generalized Leibniz formula.
+@isnad1 id=eq.0h6v.s8.49223f5d0a74 from=translated src=- shape=826af4d7 vocab=3f0a3ff9
+-/
 theorem iterate_apply_mul' (D : Derivation R A A) (n : ℕ) (a b : A) :
     D^[n] (a * b) =
       ∑ i ∈ range (n + 1), choose n i • (D^[i] a * D^[n - i] b) := by
@@ -43,7 +47,9 @@ theorem iterate_apply_mul' (D : Derivation R A A) (n : ℕ) (a b : A) :
     (fun i j => n.choose i • (D^[i] a * D^[j] b)) n
 
 /-- In characteristic `p`, for prime `p`, the `p`-fold iterate of a
-derivation satisfies the Leibniz rule.-/
+derivation satisfies the Leibniz rule.
+@isnad1 id=eq.1h6v.s8.fb7ea583d47e from=translated src=- shape=b878f207 vocab=ae3ba925
+-/
 theorem iterate_prime_leibniz (D : Derivation R A A) (p : ℕ)
     [CharP A p] (hp : p.Prime) (a b : A) :
     D^[p] (a * b) = a * D^[p] b + b * D^[p] a := by
@@ -85,6 +91,9 @@ def restrictedPower (D : Derivation R A A) (p : ℕ)
     simp only [Module.End.pow_apply, smul_eq_mul]
     exact iterate_prime_leibniz D p hp.out a b)
 
+/--
+@isnad1 id=eq.0h5v.s7.5b3fa6142dcb from=translated src=- shape=68354612 vocab=2acc5ce9
+-/
 @[simp]
 theorem restrictedPower_apply (D : Derivation R A A) (p : ℕ)
     [CharP A p] [Fact p.Prime] (a : A) :
@@ -114,6 +123,9 @@ noncomputable def restrictedPowerField (D : Derivation K B B) (p : ℕ)
     exact restrictedPower D p
   · exact 0
 
+/--
+@isnad1 id=eq.0h5v.s8.79bc66062fef from=translated src=- shape=dfaef8bb vocab=e4ab94d4
+-/
 @[simp]
 theorem restrictedPowerField_apply (D : Derivation K B B) (p : ℕ)
     [CharP K p] [Fact p.Prime] (b : B) :
@@ -136,7 +148,9 @@ namespace LSZ
 universe u v
 
 /-- A map intertwining two endomorphisms also intertwines all their
-iterates.-/
+iterates.
+@isnad1 id=eq.1h7v.s5.d7706215ad0f from=translated src=- shape=bf7f0b49 vocab=5a144dcf
+-/
 lemma map_iterate {A : Type u} {B : Type v} (r : A → B) (f : A → A) (g : B → B)
     (h : ∀ x, r (f x) = g (r x)) (n : ℕ) (x : A) :
     r (f^[n] x) = g^[n] (r x) := by
@@ -153,6 +167,9 @@ open scoped AlgebraicGeometry
 variable {k : Type u} [Field k] [NeZero (ringChar k)]
 variable {X : LSZ.SmoothScheme k} {U V : X.scheme.Opens}
 
+/--
+@isnad1 id=fact.0h1v.s5.acafef3e1e50 from=translated src=- shape=c578b8bd vocab=d0668f19
+-/
 local instance characteristicPrime : Fact (ringChar k).Prime :=
   CharP.char_is_prime_of_pos k (ringChar k)
 
@@ -166,16 +183,25 @@ noncomputable def pPower (D : X.VectorField U) : X.VectorField U where
       (D.deriv _ hV) (D.deriv _ (hWV.trans hV))
       (D.compatible hV hWV) (ringChar k) a
 
+/--
+@isnad1 id=eq.1h5v.s11.abab16d00f5a from=translated src=- shape=31a585f8 vocab=2012b7b4
+-/
 @[simp]
 lemma pPower_deriv (D : X.VectorField U) (V : X.scheme.Opens) (hV : V ≤ U) :
     D.pPower.deriv V hV =
       Derivation.restrictedPowerField (D.deriv V hV) (ringChar k) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s13.49e2b70fc032 from=translated src=- shape=2772d0c3 vocab=72ad963e
+-/
 @[simp]
 lemma pPower_act (D : X.VectorField U) (a : Γ(X.scheme, U)) :
     D.pPower.act a = D.act^[ringChar k] a :=
   Derivation.restrictedPowerField_apply _ _ _
 
+/--
+@isnad1 id=eq.1h5v.s6.fe29e6be07df from=translated src=- shape=6191ad5d vocab=3005708b
+-/
 @[simp]
 lemma pPower_restrict (D : X.VectorField U) (hVU : V ≤ U) :
     D.pPower.restrict hVU = (D.restrict hVU).pPower := by

@@ -37,6 +37,9 @@ def extensionTensorEquiv :
   let eL : L ≃ₗ[S] S := LinearEquiv.refl S S
   exact AlgebraTensorModule.congr eL (LinearEquiv.refl R M)
 
+/--
+@isnad1 id=eq.0h5v.s10.51f09c339432 from=translated src=- shape=7793f9da vocab=1b2c7bae
+-/
 @[simp]
 lemma extensionTensorEquiv_tmul (s : S) (m : M) :
     extensionTensorEquiv (R := R) (S := S) (M := M)
@@ -49,6 +52,9 @@ def hom : S ⊗[R] Module.Dual R M →ₗ[S] Module.Dual S (S ⊗[R] M) :=
   (Module.Dual.baseChange S :
     Module.Dual R M →ₗ[R] Module.Dual S (S ⊗[R] M)).liftBaseChange S
 
+/--
+@isnad1 id=eq.0h7v.s11.a030f61ea5f4 from=translated src=- shape=7ff91326 vocab=92dce648
+-/
 @[simp]
 lemma hom_tmul_apply (s t : S) (phi : Module.Dual R M) (m : M) :
     hom (R := R) (S := S) (M := M) (s ⊗ₜ[R] phi) (t ⊗ₜ[R] m) =
@@ -58,7 +64,9 @@ lemma hom_tmul_apply (s t : S) (phi : Module.Dual R M) (m : M) :
 
 variable {N : Type x} [AddCommGroup N] [Module R N]
 
-/-- Naturality of the canonical dual base-change map.-/
+/-- Naturality of the canonical dual base-change map.
+@isnad1 id=eq.0h5v.s11.4eae0ed2eacc from=translated src=- shape=68f5b3a6 vocab=3513321a
+-/
 lemma hom_naturality (f : M →ₗ[R] N) :
     (LinearMap.baseChange S f).dualMap.comp
         (hom (R := R) (S := S) (M := N)) =
@@ -119,7 +127,9 @@ private lemma freeEquiv_apply_eq_hom (n : ℕ)
             _ = _ := by rw [hom_tmul_apply, mul_one]
 
 /-- For a finite projective module, the canonical dual base-change map is
-bijective.-/
+bijective.
+@isnad1 id=bijectiv.0h3v.s11.76fa768f4d24 from=translated src=- shape=ab268825 vocab=21bfd604
+-/
 theorem hom_bijective [Module.Finite R M] [Module.Projective R M] :
     Function.Bijective (hom (R := R) (S := S) (M := M)) := by
   obtain ⟨n, f, g, -, -, hfg⟩ :=
@@ -189,6 +199,9 @@ def equiv [Module.Finite R M] [Module.Projective R M] :
     S ⊗[R] Module.Dual R M ≃ₗ[S] Module.Dual S (S ⊗[R] M) :=
   LinearEquiv.ofBijective (hom (R := R) (S := S) (M := M)) hom_bijective
 
+/--
+@isnad1 id=eq.0h4v.s12.b00e38158da8 from=translated src=- shape=73e1549a vocab=a3ce8c6b
+-/
 @[simp]
 lemma equiv_apply [Module.Finite R M] [Module.Projective R M]
     (z : S ⊗[R] Module.Dual R M) :

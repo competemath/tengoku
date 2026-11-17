@@ -33,11 +33,17 @@ noncomputable def appLinear {M N : X.Modules} (f : M ⟶ N) (U : X.Opens) :
   map_add' := (f.val.app (.op U)).hom.map_add
   map_smul' := (f.val.app (.op U)).hom.map_smul
 
+/--
+@isnad1 id=eq.0h6v.s12.45333ce334a7 from=translated src=- shape=f59b2bdc vocab=090dc51a
+-/
 @[simp]
 lemma appLinear_apply {M N : X.Modules} (f : M ⟶ N)
     (U : X.Opens) (m : Γ(M, U)) :
     appLinear f U m = f.app U m := rfl
 
+/--
+@isnad1 id=eq.0h6v.s13.92ed955b015a from=translated src=- shape=85081aee vocab=a373e75f
+-/
 @[simp]
 lemma appLinear_add {M N : X.Modules} (f g : M ⟶ N) (U : X.Opens) :
     appLinear (f + g) U = appLinear f U + appLinear g U := rfl
@@ -74,6 +80,9 @@ namespace Exponential
 
 variable {T : RestrictedTangentSheaf X p} {M : X.Modules}
 
+/--
+@isnad1 id=eq.0h5v.s6.192efa5ebc7a from=translated src=- shape=019ae378 vocab=935a3349
+-/
 lemma hom_inv_id (G : Exponential T M) :
     G.expHom ≫ G.expNegHom = 𝟙 M := by
   apply AlgebraicGeometry.Scheme.Modules.hom_ext
@@ -87,6 +96,9 @@ lemma hom_inv_id (G : Exponential T M) :
   have hm := congrArg (fun f : Module.End Γ(X, U) Γ(M, U) ↦ f m) h
   exact hm
 
+/--
+@isnad1 id=eq.0h5v.s6.27728690797e from=translated src=- shape=019ae378 vocab=935a3349
+-/
 lemma inv_hom_id (G : Exponential T M) :
     G.expNegHom ≫ G.expHom = 𝟙 M := by
   apply AlgebraicGeometry.Scheme.Modules.hom_ext
@@ -108,9 +120,15 @@ noncomputable def iso (G : Exponential T M) : M ≅ M where
   hom_inv_id := G.hom_inv_id
   inv_hom_id := G.inv_hom_id
 
+/--
+@isnad1 id=eq.0h5v.s5.d731013e8bf7 from=translated src=- shape=cc37868f vocab=d5a20b5a
+-/
 @[simp]
 lemma iso_hom (G : Exponential T M) : G.iso.hom = G.expHom := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.d954cf4c8fd9 from=translated src=- shape=cc37868f vocab=ec2e63da
+-/
 @[simp]
 lemma iso_inv (G : Exponential T M) : G.iso.inv = G.expNegHom := rfl
 
@@ -129,7 +147,9 @@ structure AdditiveCocycle
         (appLinear G₁₂.exponent U) ^ j = 0
 
 /-- The exponential transition maps satisfy the cocycle equation.  The
-categorical order says: first apply `G₁₂`, then apply `G₀₁`.-/
+categorical order says: first apply `G₁₂`, then apply `G₀₁`.
+@isnad1 id=eq.1h7v.s6.c4f1e3952076 from=translated src=- shape=f188ff1a vocab=61cb646e
+-/
 lemma AdditiveCocycle.expHom_cocycle
     {G₀₁ G₁₂ G₀₂ : Exponential T M}
     (C : AdditiveCocycle G₀₁ G₁₂ G₀₂) :

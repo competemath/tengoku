@@ -53,6 +53,9 @@ noncomputable def extensionTensorSectionIso (U : Cᵒᵖ) :
   exact (TensorProduct.AlgebraTensorModule.distribBaseChange
     (A.obj U) (B.obj U) (M.obj U) (N.obj U)).toModuleIso
 
+/--
+@isnad1 id=eq.0h9v.s13.a090ad79eabb from=translated src=- shape=b2d0baaf vocab=d8b68c63
+-/
 @[simp]
 lemma extensionTensorSectionIso_hom_unit_tmul
     (U : Cᵒᵖ) (m : M.obj U) (n : N.obj U) :
@@ -208,6 +211,9 @@ noncomputable def extensionTensorPresheafIso :
       extensionTensorSectionIso_naturality alpha M N (U := U) (V := V) i)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h10v.s13.6c60f91b8e8e from=translated src=- shape=143f5c75 vocab=95d7dfba
+-/
 lemma extensionTensorPresheafIso_naturality
     {M M' N N' :
       PresheafOfModules.{u} (A ⋙ forget₂ CommRingCat RingCat)}

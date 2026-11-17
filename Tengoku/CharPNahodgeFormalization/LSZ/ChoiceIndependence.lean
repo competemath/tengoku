@@ -107,7 +107,9 @@ variable {D₀ : DescentData A₀ T} {D₁ : DescentData A₁ T}
 
 /-- The descended forward and backward comparison maps are inverse.  The
 proof is local on the common refinement and uses the already proved
-truncated-exponential inverse identity.-/
+truncated-exponential inverse identity.
+@isnad1 id=eq.0h11v.s8.03819923fb15 from=translated src=- shape=5255685e vocab=3236bf7c
+-/
 lemma comparison_hom_inv_id (C : ComparisonData D₀ D₁)
     (E : SchemeObject.NilpotentHiggs T) :
     C.comparisonHom E ≫ C.comparisonInv E = 𝟙 (D₀.carrier.obj E) := by
@@ -124,6 +126,9 @@ lemma comparison_hom_inv_id (C : ComparisonData D₀ D₁)
   exact ((AlgebraicGeometry.Scheme.Modules.restrictFunctor
     (C.refinement.f r)).map_id (D₀.carrier.obj E)).symm
 
+/--
+@isnad1 id=eq.0h11v.s8.4a0e380764db from=translated src=- shape=af728bfc vocab=3236bf7c
+-/
 lemma comparison_inv_hom_id (C : ComparisonData D₀ D₁)
     (E : SchemeObject.NilpotentHiggs T) :
     C.comparisonInv E ≫ C.comparisonHom E = 𝟙 (D₁.carrier.obj E) := by
@@ -152,7 +157,9 @@ noncomputable def moduleIso (C : ComparisonData D₀ D₁)
 
 /-- The inverse of the exponential comparison is horizontal.  This is
 deduced from horizontality of the forward comparison and the two inverse
-identities; it is not an additional field of `ComparisonData`.-/
+identities; it is not an additional field of `ComparisonData`.
+@isnad1 id=eq.0h14v.s15.5ece4aeaf146 from=translated src=- shape=ec6cc096 vocab=b1bf36cf
+-/
 lemma inverse_horizontal (C : ComparisonData D₀ D₁)
     (E : SchemeObject.NilpotentHiggs T) (U : X.Opens)
     (v : Γ(T.tangent, U)) (m : Γ(D₁.carrier.obj E, U)) :
@@ -218,7 +225,9 @@ noncomputable def choiceIso (C : ComparisonData D₀ D₁) :
 
 Once the LSZ local divided-difference calculation and descent identities
 are supplied by `ComparisonData`, the two cover-dependent LSZ functors are
-naturally isomorphic.-/
+naturally isomorphic.
+@isnad1 id=nonempty.0h10v.s7.2c0dbbd5b85f from=translated src=- shape=39daec87 vocab=ede0baca
+-/
 theorem lszFunctor_choice_independent (C : ComparisonData D₀ D₁) :
     Nonempty (D₀.lszFunctor ≅ D₁.lszFunctor) :=
   ⟨C.choiceIso⟩

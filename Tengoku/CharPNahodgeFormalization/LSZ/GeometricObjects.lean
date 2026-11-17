@@ -88,19 +88,26 @@ noncomputable def theta (E : X.IntegrableHiggs) (U : X.scheme.Opens) :
         (E.thetaHom.val.app (.op U) (higgsTmul X E.carrier U D m))
     exact map_smul (E.thetaHom.val.app (.op U)).hom a' _
 
+/--
+@isnad1 id=eq.0h6v.s14.1fc8388a098b from=translated src=- shape=526fde8f vocab=5eebe3f5
+-/
 @[simp]
 lemma theta_apply (E : X.IntegrableHiggs) (U : X.scheme.Opens)
     (D : X.VectorField U) (m : Γ(E.carrier, U)) :
     E.theta U D m = E.thetaHom.app U (higgsTmul X E.carrier U D m) := rfl
 
-/-- Sectionwise integrability, derived from the sheaf-morphism field.-/
+/-- Sectionwise integrability, derived from the sheaf-morphism field.
+@isnad1 id=eq.0h7v.s16.1d5c7db843a2 from=translated src=- shape=e49cd712 vocab=7f3c5933
+-/
 lemma integrable (E : X.IntegrableHiggs) (U : X.scheme.Opens)
     (D F : X.VectorField U) (m : Γ(E.carrier, U)) :
     E.theta U D (E.theta U F m) = E.theta U F (E.theta U D m) :=
   E.integrable_tmul U D F m
 
 /-- Restriction compatibility follows from naturality of the Higgs-field
-sheaf morphism.-/
+sheaf morphism.
+@isnad1 id=eq.1h7v.s15.9c42940d96a8 from=translated src=- shape=947d97cd vocab=7cf17018
+-/
 lemma theta_restrict (E : X.IntegrableHiggs)
     {U V : X.scheme.Opens} (hVU : V ≤ U)
     (D : X.VectorField U) (m : Γ(E.carrier, U)) :
@@ -130,7 +137,9 @@ namespace HiggsHom
 
 variable {X} {E F G : X.IntegrableHiggs}
 
-/-- Sectionwise form of `commutes_hom`.-/
+/-- Sectionwise form of `commutes_hom`.
+@isnad1 id=eq.0h8v.s15.4f7611c354df from=translated src=- shape=ef880d04 vocab=477fb4a8
+-/
 lemma commutes (f : X.HiggsHom E F) (U : X.scheme.Opens)
     (D : X.VectorField U) (m : Γ(E.carrier, U)) :
     f.hom.app U (E.theta U D m) = F.theta U D (f.hom.app U m) := by
@@ -144,6 +153,9 @@ lemma commutes (f : X.HiggsHom E F) (U : X.scheme.Opens)
 
 end HiggsHom
 
+/--
+@isnad1 id=eq.1h6v.s6.4453dd73ff9a from=translated src=- shape=2b15aef5 vocab=bef63205
+-/
 @[ext]
 lemma HiggsHom.ext {E F : X.IntegrableHiggs} (f g : X.HiggsHom E F)
     (h : f.hom = g.hom) : f = g := by
@@ -167,10 +179,16 @@ instance : Category X.IntegrableHiggs where
   comp_id f := by apply HiggsHom.ext; exact Category.comp_id f.hom
   assoc f g h := by apply HiggsHom.ext; exact Category.assoc f.hom g.hom h.hom
 
+/--
+@isnad1 id=eq.0h3v.s6.f767e5f3900f from=translated src=- shape=ab6d699f vocab=0a9d4444
+-/
 @[simp]
 lemma HiggsHom.id_hom (E : X.IntegrableHiggs) :
     (𝟙 E : E ⟶ E).hom = 𝟙 E.carrier := rfl
 
+/--
+@isnad1 id=eq.0h7v.s7.e1d42a7de219 from=translated src=- shape=94a9c7fd vocab=73560c7d
+-/
 @[simp]
 lemma HiggsHom.comp_hom {E F G : X.IntegrableHiggs}
     (f : E ⟶ F) (g : F ⟶ G) :
@@ -240,20 +258,27 @@ noncomputable def nabla (C : X.IntegrableConnection) (U : X.scheme.Opens) :
     ext m
     exact C.nabla_smul_vectorField U a D m
 
+/--
+@isnad1 id=eq.0h6v.s15.2f70c313fe50 from=translated src=- shape=8ac436e7 vocab=de55b357
+-/
 @[simp]
 lemma nabla_apply (C : X.IntegrableConnection) (U : X.scheme.Opens)
     (D : X.VectorField U) (m : Γ(C.carrier, U)) :
     C.nabla U D m =
       C.nablaHom.hom.app (.op U) (connectionTmul X C.carrier U D m) := rfl
 
-/-- The usual sectionwise Leibniz rule, derived from `leibniz_tmul`.-/
+/-- The usual sectionwise Leibniz rule, derived from `leibniz_tmul`.
+@isnad1 id=eq.0h7v.s16.8bd158d90ce4 from=translated src=- shape=3f4cb099 vocab=6f539220
+-/
 lemma leibniz (C : X.IntegrableConnection) (U : X.scheme.Opens)
     (D : X.VectorField U) (a : Γ(X.scheme, U))
     (m : Γ(C.carrier, U)) :
     C.nabla U D (a • m) = a • C.nabla U D m + D.act a • m :=
   C.leibniz_tmul U D a m
 
-/-- The usual sectionwise flatness identity, derived from `flat_tmul`.-/
+/-- The usual sectionwise flatness identity, derived from `flat_tmul`.
+@isnad1 id=eq.0h7v.s16.088d62744b17 from=translated src=- shape=d07ad79b vocab=8ed08231
+-/
 lemma flat (C : X.IntegrableConnection) (U : X.scheme.Opens)
     (D E : X.VectorField U) (m : Γ(C.carrier, U)) :
     C.nabla U ⁅D, E⁆ m =
@@ -261,7 +286,9 @@ lemma flat (C : X.IntegrableConnection) (U : X.scheme.Opens)
   C.flat_tmul U D E m
 
 /-- Restriction compatibility follows from naturality of the connection
-sheaf morphism.-/
+sheaf morphism.
+@isnad1 id=eq.1h7v.s15.8731fd728239 from=translated src=- shape=39c62176 vocab=f0d5d594
+-/
 lemma nabla_restrict (C : X.IntegrableConnection)
     {U V : X.scheme.Opens} (hVU : V ≤ U)
     (D : X.VectorField U) (m : Γ(C.carrier, U)) :
@@ -299,7 +326,9 @@ namespace ConnectionHom
 
 variable {X} {M N P : X.IntegrableConnection}
 
-/-- Sectionwise form of `horizontal_hom`.-/
+/-- Sectionwise form of `horizontal_hom`.
+@isnad1 id=eq.0h8v.s15.124923f7b28f from=translated src=- shape=ff70abd0 vocab=daf64954
+-/
 lemma horizontal (f : X.ConnectionHom M N) (U : X.scheme.Opens)
     (D : X.VectorField U) (m : Γ(M.carrier, U)) :
     f.hom.app U (M.nabla U D m) = N.nabla U D (f.hom.app U m) := by
@@ -315,6 +344,9 @@ lemma horizontal (f : X.ConnectionHom M N) (U : X.scheme.Opens)
 
 end ConnectionHom
 
+/--
+@isnad1 id=eq.1h6v.s6.d2bdae512401 from=translated src=- shape=2b15aef5 vocab=c3c3b07c
+-/
 @[ext]
 lemma ConnectionHom.ext {M N : X.IntegrableConnection}
     (f g : X.ConnectionHom M N) (h : f.hom = g.hom) : f = g := by
@@ -356,10 +388,16 @@ instance : Category X.IntegrableConnection where
   comp_id f := by apply ConnectionHom.ext; exact Category.comp_id f.hom
   assoc f g h := by apply ConnectionHom.ext; exact Category.assoc f.hom g.hom h.hom
 
+/--
+@isnad1 id=eq.0h3v.s6.2e974b4f4d4f from=translated src=- shape=ab6d699f vocab=9834059d
+-/
 @[simp]
 lemma ConnectionHom.id_hom (M : X.IntegrableConnection) :
     (𝟙 M : M ⟶ M).hom = 𝟙 M.carrier := rfl
 
+/--
+@isnad1 id=eq.0h7v.s7.a944f53ae73e from=translated src=- shape=94a9c7fd vocab=7f753728
+-/
 @[simp]
 lemma ConnectionHom.comp_hom {M N P : X.IntegrableConnection}
     (f : M ⟶ N) (g : N ⟶ P) :

@@ -157,7 +157,9 @@ noncomputable def connectionTensorPureOf
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Functoriality of pure connection tensors in the coefficient
-presheaf.-/
+presheaf.
+@isnad1 id=eq.0h8v.s11.ce1e91b12a74 from=translated src=- shape=f99ca05d vocab=cdff62ef
+-/
 @[simp]
 lemma connectionTensorPresheafMap_pure
     {P Q : X.scheme.Opensᵒᵖ ⥤ AddCommGrpCat.{u}} (f : P ⟶ Q)
@@ -179,6 +181,9 @@ noncomputable def connectionTmul (M : X.scheme.Modules) (U : X.scheme.Opens)
     (connectionTensor X M).obj.obj (.op U) :=
   (connectionTensorUnit X M).app (.op U) (connectionTensorPure X M U D m)
 
+/--
+@isnad1 id=eq.0h5v.s12.226289253c81 from=translated src=- shape=bd88d268 vocab=0138bc05
+-/
 @[simp]
 lemma connectionTensorPure_zero_left (M : X.scheme.Modules)
     (U : X.scheme.Opens) (m : Γ(M, U)) :
@@ -194,6 +199,9 @@ lemma connectionTensorPure_zero_left (M : X.scheme.Modules)
   exact TensorProduct.zero_tmul (R := (liftedIntegerPresheaf X).obj (.op U))
     (VF.obj (.op U)) (show MF.obj (.op U) from m)
 
+/--
+@isnad1 id=eq.0h7v.s12.e5899ddcd690 from=translated src=- shape=472e15f4 vocab=6b31f2f0
+-/
 lemma connectionTensorPure_add_left (M : X.scheme.Modules)
     (U : X.scheme.Opens) (D E : X.VectorField U) (m : Γ(M, U)) :
     connectionTensorPure X M U (D + E) m =
@@ -211,6 +219,9 @@ lemma connectionTensorPure_add_left (M : X.scheme.Modules)
     (show VF.obj (.op U) from D) (show VF.obj (.op U) from E)
     (show MF.obj (.op U) from m)
 
+/--
+@isnad1 id=eq.0h5v.s12.6446ff5c0f82 from=translated src=- shape=1ab81602 vocab=0138bc05
+-/
 @[simp]
 lemma connectionTensorPure_zero_right (M : X.scheme.Modules)
     (U : X.scheme.Opens) (D : X.VectorField U) :
@@ -226,6 +237,9 @@ lemma connectionTensorPure_zero_right (M : X.scheme.Modules)
   exact TensorProduct.tmul_zero (R := (liftedIntegerPresheaf X).obj (.op U))
     (MF.obj (.op U)) (show VF.obj (.op U) from D)
 
+/--
+@isnad1 id=eq.0h7v.s13.d1348e767aff from=translated src=- shape=7e51f16b vocab=6b31f2f0
+-/
 lemma connectionTensorPure_add_right (M : X.scheme.Modules)
     (U : X.scheme.Opens) (D : X.VectorField U) (m n : Γ(M, U)) :
     connectionTensorPure X M U D (m + n) =
@@ -243,6 +257,9 @@ lemma connectionTensorPure_add_right (M : X.scheme.Modules)
     (show VF.obj (.op U) from D) (show MF.obj (.op U) from m)
     (show MF.obj (.op U) from n)
 
+/--
+@isnad1 id=eq.0h5v.s12.1aa4650a139e from=translated src=- shape=2f2f8599 vocab=0dbe91ab
+-/
 @[simp]
 lemma connectionTmul_zero_left (M : X.scheme.Modules)
     (U : X.scheme.Opens) (m : Γ(M, U)) :
@@ -251,6 +268,9 @@ lemma connectionTmul_zero_left (M : X.scheme.Modules)
   rw [connectionTensorPure_zero_left]
   exact map_zero ((connectionTensorUnit X M).app (.op U)).hom
 
+/--
+@isnad1 id=eq.0h7v.s12.84617ac8edab from=translated src=- shape=04102b33 vocab=2bee9fa4
+-/
 lemma connectionTmul_add_left (M : X.scheme.Modules)
     (U : X.scheme.Opens) (D E : X.VectorField U) (m : Γ(M, U)) :
     connectionTmul X M U (D + E) m =
@@ -259,6 +279,9 @@ lemma connectionTmul_add_left (M : X.scheme.Modules)
   rw [connectionTensorPure_add_left]
   exact map_add ((connectionTensorUnit X M).app (.op U)).hom _ _
 
+/--
+@isnad1 id=eq.0h5v.s12.6d1ddb1cef6a from=translated src=- shape=80978f94 vocab=0dbe91ab
+-/
 @[simp]
 lemma connectionTmul_zero_right (M : X.scheme.Modules)
     (U : X.scheme.Opens) (D : X.VectorField U) :
@@ -267,6 +290,9 @@ lemma connectionTmul_zero_right (M : X.scheme.Modules)
   rw [connectionTensorPure_zero_right]
   exact map_zero ((connectionTensorUnit X M).app (.op U)).hom
 
+/--
+@isnad1 id=eq.0h7v.s12.88a1fcf187f6 from=translated src=- shape=94159103 vocab=2bee9fa4
+-/
 lemma connectionTmul_add_right (M : X.scheme.Modules)
     (U : X.scheme.Opens) (D : X.VectorField U) (m n : Γ(M, U)) :
     connectionTmul X M U D (m + n) =
@@ -275,6 +301,9 @@ lemma connectionTmul_add_right (M : X.scheme.Modules)
   rw [connectionTensorPure_add_right]
   exact map_add ((connectionTensorUnit X M).app (.op U)).hom _ _
 
+/--
+@isnad1 id=eq.1h7v.s17.3ed77ac8b463 from=translated src=- shape=c7b698a7 vocab=b50b1deb
+-/
 lemma connectionTensorPure_restrict (M : X.scheme.Modules)
     {U V : X.scheme.Opens} (hVU : V ≤ U)
     (D : X.VectorField U) (m : Γ(M, U)) :
@@ -287,6 +316,9 @@ lemma connectionTensorPure_restrict (M : X.scheme.Modules)
     (M₂ := asIntegerModulePresheaf X M.presheaf)
     (homOfLE hVU).op D m
 
+/--
+@isnad1 id=eq.1h7v.s16.fd46818821b5 from=translated src=- shape=7305dcf3 vocab=2845f328
+-/
 @[simp]
 lemma connectionTmul_restrict (M : X.scheme.Modules)
     {U V : X.scheme.Opens} (hVU : V ≤ U)
@@ -307,6 +339,9 @@ lemma connectionTmul_restrict (M : X.scheme.Modules)
   exact hn.symm.trans (congrArg ((connectionTensorUnit X M).app (.op V))
     (connectionTensorPure_restrict X M hVU D m))
 
+/--
+@isnad1 id=eq.0h3v.s10.228a895be94e from=translated src=- shape=34223f77 vocab=5739910e
+-/
 lemma connectionTensorModulePresheafMap_id
     (P : Functor X.scheme.Opensᵒᵖ AddCommGrpCat.{u}) :
     connectionTensorModulePresheafMap X (𝟙 P) =
@@ -317,6 +352,9 @@ lemma connectionTensorModulePresheafMap_id
   intro D m
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s11.c01071796572 from=translated src=- shape=695f0b56 vocab=702da721
+-/
 lemma connectionTensorModulePresheafMap_comp
     {P Q S : Functor X.scheme.Opensᵒᵖ AddCommGrpCat.{u}}
     (f : P ⟶ Q) (g : Q ⟶ S) :
@@ -329,6 +367,9 @@ lemma connectionTensorModulePresheafMap_comp
   intro D m
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.136f43ac5256 from=translated src=- shape=01c72939 vocab=ad1230f0
+-/
 lemma connectionTensorPresheafMap_id
     (P : Functor X.scheme.Opensᵒᵖ AddCommGrpCat.{u}) :
     connectionTensorPresheafMap X (𝟙 P) =
@@ -339,6 +380,9 @@ lemma connectionTensorPresheafMap_id
     (connectionTensorModulePresheafMap_id X P)).trans
       (F.map_id (connectionTensorModulePresheafOf X P))
 
+/--
+@isnad1 id=eq.0h7v.s10.431e88138f20 from=translated src=- shape=15c2dd7b vocab=cea5416c
+-/
 lemma connectionTensorPresheafMap_comp
     {P Q S : Functor X.scheme.Opensᵒᵖ AddCommGrpCat.{u}}
     (f : P ⟶ Q) (g : Q ⟶ S) :
@@ -358,6 +402,9 @@ noncomputable def connectionTensorMap {M N : X.scheme.Modules} (f : M ⟶ N) :
   connectionTensorSheafMap X
     ((PresheafOfModules.toPresheaf X.scheme.ringCatSheaf.obj).map f.val)
 
+/--
+@isnad1 id=eq.0h8v.s13.71d546997d37 from=translated src=- shape=c5699cd1 vocab=bf241f30
+-/
 @[simp]
 lemma connectionTensorMap_tmul {M N : X.scheme.Modules} (f : M ⟶ N)
     (U : X.scheme.Opens) (D : X.VectorField U) (m : Γ(M, U)) :
@@ -385,6 +432,9 @@ lemma connectionTensorMap_tmul {M N : X.scheme.Modules} (f : M ⟶ N)
   exact hnt.symm.trans (congrArg ((connectionTensorUnit X N).app (.op U))
     (connectionTensorPresheafMap_pure X g U D m))
 
+/--
+@isnad1 id=eq.0h3v.s7.2d4e25c52d3b from=translated src=- shape=9791f34c vocab=3165e4bd
+-/
 @[simp]
 lemma connectionTensorMap_id (M : X.scheme.Modules) :
     connectionTensorMap X (𝟙 M) = 𝟙 (connectionTensor X M) := by
@@ -407,6 +457,9 @@ lemma connectionTensorMap_id (M : X.scheme.Modules) :
   exact (congrArg F.map hp).trans
     (F.map_id (connectionTensorPresheafOf X M.presheaf))
 
+/--
+@isnad1 id=eq.0h7v.s8.4856d3edb505 from=translated src=- shape=2fe090d8 vocab=f6cfcf78
+-/
 @[simp]
 lemma connectionTensorMap_comp {M N P : X.scheme.Modules}
     (f : M ⟶ N) (g : N ⟶ P) :

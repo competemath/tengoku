@@ -177,6 +177,9 @@ noncomputable def connection (D : DescentData A T)
   leibniz := D.nabla_leibniz E
   flat := D.nabla_flat E
 
+/--
+@isnad1 id=eq.0h10v.s9.87ba6dff0119 from=translated src=- shape=5b7797c7 vocab=c843b3bf
+-/
 lemma connection_pCurvature (D : DescentData A T)
     (E : SchemeObject.NilpotentHiggs T) (U : X.Opens)
     (v : Γ(T.tangent, U)) :

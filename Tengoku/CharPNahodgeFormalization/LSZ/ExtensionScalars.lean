@@ -21,11 +21,17 @@ variable {C : Type u₁} [Category.{v₁} C]
 def mappedSection {U V : Cᵒᵖ} (i : U ⟶ V) (m : M.obj U) : M.obj V := by
   exact M.map i m
 
+/--
+@isnad1 id=eq.0h8v.s13.292c2bf34933 from=translated src=- shape=a9223985 vocab=c73865cf
+-/
 @[simp]
 lemma mappedSection_add {U V : Cᵒᵖ} (i : U ⟶ V) (m n : M.obj U) :
     mappedSection M i (m + n) = mappedSection M i m + mappedSection M i n := by
   exact map_add (M.map i).hom m n
 
+/--
+@isnad1 id=eq.0h8v.s14.52b74340f9b0 from=translated src=- shape=0da190d3 vocab=379d0ce7
+-/
 lemma mappedSection_smul {U V : Cᵒᵖ} (i : U ⟶ V)
     (r : A.obj U) (m : M.obj U) :
     mappedSection M i (r • m) = A.map i r • mappedSection M i m := by
@@ -36,6 +42,9 @@ def extensionUnit (U : Cᵒᵖ) (m : M.obj U) :
   exact (ModuleCat.extendRestrictScalarsAdj
     (alpha.app U).hom).unit.app (M.obj U) m
 
+/--
+@isnad1 id=eq.0h8v.s13.adb5d3e86073 from=translated src=- shape=b8b3450d vocab=16cf6e80
+-/
 @[simp]
 lemma extensionUnit_add (U : Cᵒᵖ) (m n : M.obj U) :
     extensionUnit alpha M U (m + n) =
@@ -43,6 +52,9 @@ lemma extensionUnit_add (U : Cᵒᵖ) (m n : M.obj U) :
   exact map_add ((ModuleCat.extendRestrictScalarsAdj
     (alpha.app U).hom).unit.app (M.obj U)).hom m n
 
+/--
+@isnad1 id=eq.0h8v.s14.090d8c08ef22 from=translated src=- shape=230873d3 vocab=db74efe1
+-/
 lemma extensionUnit_smul (U : Cᵒᵖ) (r : A.obj U) (m : M.obj U) :
     extensionUnit alpha M U (r • m) =
       alpha.app U r • extensionUnit alpha M U m := by
@@ -91,6 +103,9 @@ noncomputable def extensionAdjointMap {U V : Cᵒᵖ} (i : U ⟶ V) :
       map_add' := extensionAdjointMapToFun_add alpha M i
       map_smul' := extensionAdjointMapToFun_smul alpha M i }
 
+/--
+@isnad1 id=eq.0h9v.s14.0279ca35a092 from=translated src=- shape=0bf39455 vocab=3ef11ead
+-/
 @[simp]
 lemma extensionAdjointMap_apply {U V : Cᵒᵖ} (i : U ⟶ V) (m : M.obj U) :
     extensionAdjointMap alpha M i m =
@@ -104,6 +119,9 @@ noncomputable def extensionPresheafMap {U V : Cᵒᵖ} (i : U ⟶ V) :
   ((ModuleCat.extendRestrictScalarsAdj (alpha.app U).hom).homEquiv _ _).symm
     (extensionAdjointMap alpha M i)
 
+/--
+@isnad1 id=eq.0h9v.s12.2f78b0a14cc0 from=translated src=- shape=da3db4f7 vocab=29f89cc2
+-/
 @[simp]
 lemma extensionPresheafMap_unit {U V : Cᵒᵖ} (i : U ⟶ V)
     (m : M.obj U) :
@@ -123,6 +141,9 @@ lemma extensionPresheafMap_unit {U V : Cᵒᵖ} (i : U ⟶ V)
     extensionUnit alpha M V (mappedSection M i m)
   exact he
 
+/--
+@isnad1 id=eq.1h9v.s13.9a26bc1b3f45 from=translated src=- shape=272830a7 vocab=7e5960a5
+-/
 lemma extensionHom_ext (U : Cᵒᵖ)
     {N : ModuleCat.{u} (B.obj U)}
     {f g : (ModuleCat.extendScalars (alpha.app U).hom).obj (M.obj U) ⟶ N}
@@ -182,6 +203,9 @@ noncomputable def extensionPresheaf :
   map_id := extensionPresheaf_map_id alpha M
   map_comp := extensionPresheaf_map_comp alpha M
 
+/--
+@isnad1 id=eq.0h9v.s14.5b66e21ce0a8 from=translated src=- shape=585e1619 vocab=adbbe7b0
+-/
 lemma extensionUnit_naturality
     {M N : PresheafOfModules.{u} (A ⋙ forget₂ CommRingCat RingCat)}
     (f : M ⟶ N) (U : Cᵒᵖ) (m : M.obj U) :
@@ -267,6 +291,9 @@ abbrev ringMap :
       (B ⋙ forget₂ CommRingCat RingCat) :=
   Functor.whiskerRight alpha (forget₂ CommRingCat RingCat)
 
+/--
+@isnad1 id=eq.0h9v.s13.31dd6cbd336d from=translated src=- shape=ff49b8ac vocab=67dad005
+-/
 lemma extensionHomEquiv_apply
     (N : ModuleCat.{u} (B.obj U))
     (f : (ModuleCat.extendScalars (alpha.app U).hom).obj (M.obj U) ⟶ N)
@@ -276,6 +303,9 @@ lemma extensionHomEquiv_apply
   rw [Adjunction.homEquiv_unit]
   rfl
 
+/--
+@isnad1 id=eq.0h9v.s15.bb9076cd78a3 from=translated src=- shape=a0d23dac vocab=9253ea55
+-/
 lemma extensionHomEquiv_symm_unit
     (N : ModuleCat.{u} (B.obj U))
     (g : M.obj U ⟶ (ModuleCat.restrictScalars (alpha.app U).hom).obj N)
@@ -296,6 +326,9 @@ noncomputable def extensionToRestrictionApp
   (ModuleCat.extendRestrictScalarsAdj
     (alpha.app U).hom).homEquiv (M.obj U) (N.obj U) (f.app U)
 
+/--
+@isnad1 id=eq.0h9v.s15.ade72307111f from=translated src=- shape=659704f2 vocab=358d0eb6
+-/
 @[simp]
 lemma extensionToRestrictionApp_apply
     (N : PresheafOfModules.{u} (B ⋙ forget₂ CommRingCat RingCat))
@@ -339,6 +372,9 @@ noncomputable def restrictionToExtensionApp
   ((ModuleCat.extendRestrictScalarsAdj
     (alpha.app U).hom).homEquiv (M.obj U) (N.obj U)).symm (g.app U)
 
+/--
+@isnad1 id=eq.0h9v.s15.247bebcf1b61 from=translated src=- shape=25475d0b vocab=0d921100
+-/
 @[simp]
 lemma restrictionToExtensionApp_unit
     (N : PresheafOfModules.{u} (B ⋙ forget₂ CommRingCat RingCat))
@@ -449,12 +485,18 @@ variable {C : Type u₁} [Category.{v₁} C] {J : GrothendieckTopology C}
   [J.WEqualsLocallyBijective AddCommGrpCat.{u}]
   {A B : Sheaf J CommRingCat.{u}} (alpha : A ⟶ B)
 
+/--
+@isnad1 id=islocall.0h3v.s6.498d56f22062 from=translated src=- shape=3a1a5095 vocab=6b60b42e
+-/
 local instance locallyInjectiveId
     (P : Functor Cᵒᵖ RingCat.{u}) :
     Presheaf.IsLocallyInjective J (𝟙 P) :=
   Presheaf.isLocallyInjective_of_injective J (𝟙 P)
     (fun _ ↦ Function.injective_id)
 
+/--
+@isnad1 id=islocall.0h3v.s6.6e162848a1a7 from=translated src=- shape=275a22f9 vocab=ccbd8c7e
+-/
 local instance locallySurjectiveId
     (P : Functor Cᵒᵖ RingCat.{u}) :
     Presheaf.IsLocallySurjective J (𝟙 P) :=
@@ -470,12 +512,18 @@ abbrev directRingMap (B : Sheaf J CommRingCat.{u}) :
     (B.obj ⋙ forget₂ CommRingCat RingCat)
   exact 𝟙 _
 
+/--
+@isnad1 id=islocall.0h3v.s8.b80c5ca7da8c from=translated src=- shape=43b00aae vocab=c303ce5b
+-/
 local instance locallyInjectiveDirectRingMap (B : Sheaf J CommRingCat.{u}) :
     Presheaf.IsLocallyInjective J (directRingMap B) := by
   change Presheaf.IsLocallyInjective J
     (𝟙 (B.obj ⋙ forget₂ CommRingCat RingCat))
   infer_instance
 
+/--
+@isnad1 id=islocall.0h3v.s8.9e471ed73c31 from=translated src=- shape=e29a628b vocab=2dc66525
+-/
 local instance locallySurjectiveDirectRingMap (B : Sheaf J CommRingCat.{u}) :
     Presheaf.IsLocallySurjective J (directRingMap B) := by
   change Presheaf.IsLocallySurjective J
@@ -503,6 +551,9 @@ noncomputable def directSheafificationUnit (B : Sheaf J CommRingCat.{u})
   (directSheafificationAdjunction B).unit.app P ≫
     unrestrictId B ((directSheafificationFunctor B).obj P).val
 
+/--
+@isnad1 id=eq.0h6v.s14.56095328e5a6 from=translated src=- shape=3c75785d vocab=cffd5f9e
+-/
 @[simp]
 lemma directSheafificationUnit_app_apply
     (B : Sheaf J CommRingCat.{u})
@@ -511,6 +562,9 @@ lemma directSheafificationUnit_app_apply
     (directSheafificationUnit B P).app U x =
       (CategoryTheory.toSheafify J P.presheaf).app U x := rfl
 
+/--
+@isnad1 id=eq.0h7v.s16.82129f19a4f1 from=translated src=- shape=baac81e1 vocab=a0f3894a
+-/
 lemma directSheafificationUnit_map_smul
     (B : Sheaf J CommRingCat.{u})
     (P : PresheafOfModules (B.obj ⋙ forget₂ CommRingCat RingCat))
@@ -716,11 +770,17 @@ noncomputable def pushforwardRestrictionIso :
     (pushforwardRestrictionObjIso alpha)
     (pushforwardRestrictionObjIso_naturality alpha)
 
+/--
+@isnad1 id=isrighta.0h5v.s8.4f992146a095 from=translated src=- shape=780a63c7 vocab=e805a5d6
+-/
 local instance restrictionIsRightAdjoint :
     (SheafOfModules.restrictScalars.{u}
       (sheafRingMap alpha)).IsRightAdjoint :=
   (extensionRestrictionAdjunction alpha).isRightAdjoint
 
+/--
+@isnad1 id=isrighta.0h5v.s8.cd9349a0354a from=translated src=- shape=f11acb43 vocab=be02b6bf
+-/
 local instance pushforwardIsRightAdjoint :
     (SheafOfModules.pushforward.{u} (J := J) (K := J) (F := 𝟭 C)
       (S := ringSheaf A) (R := ringSheaf B)

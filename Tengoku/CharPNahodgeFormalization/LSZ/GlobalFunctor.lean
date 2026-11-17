@@ -127,12 +127,18 @@ noncomputable def correction (D : GlobalCartierData T F)
     Γ(T.tangent, U) →ₗ[Γ(X, U)] Module.End ℤ Γ(pulledBackCarrier F E, U) :=
   (D.pullbackTheta E U).comp (D.zeta U)
 
+/--
+@isnad1 id=eq.0h9v.s15.2b4e7d394e3f from=translated src=- shape=6061d7fc vocab=aaf47d27
+-/
 @[simp]
 lemma correction_apply (D : GlobalCartierData T F)
     (E : SchemeObject.IntegrableHiggs T)
     (U : X.Opens) (v : Γ(T.tangent, U)) (m : Γ(pulledBackCarrier F E, U)) :
     D.correction E U v m = D.pullbackTheta E U (D.zeta U v) m := rfl
 
+/--
+@isnad1 id=eq.0h11v.s15.93a3c20db3db from=translated src=- shape=826b1e4a vocab=3be7eb3a
+-/
 lemma correction_restrict (D : GlobalCartierData T F)
     (E : SchemeObject.IntegrableHiggs T)
     {U V : X.Opens} (i : U ⟶ V) (v : Γ(T.tangent, V))
@@ -143,6 +149,9 @@ lemma correction_restrict (D : GlobalCartierData T F)
   rw [correction_apply, D.pullbackTheta_restrict, D.zeta_restrict]
   rfl
 
+/--
+@isnad1 id=eq.0h10v.s15.790b296fd317 from=translated src=- shape=df9a52fc vocab=b79acd7c
+-/
 lemma correction_smul (D : GlobalCartierData T F)
     (E : SchemeObject.IntegrableHiggs T)
     (U : X.Opens) (v : Γ(T.tangent, U))
@@ -150,6 +159,9 @@ lemma correction_smul (D : GlobalCartierData T F)
     D.correction E U v (a • m) = a • D.correction E U v m :=
   D.pullbackTheta_smul E U (D.zeta U v) a m
 
+/--
+@isnad1 id=eq.0h10v.s15.8fc59007d6be from=translated src=- shape=c0afef22 vocab=3d380360
+-/
 lemma correction_commutes (D : GlobalCartierData T F)
     (E : SchemeObject.IntegrableHiggs T)
     (U : X.Opens) (v w : Γ(T.tangent, U))
@@ -158,6 +170,9 @@ lemma correction_commutes (D : GlobalCartierData T F)
       D.correction E U w (D.correction E U v m) :=
   D.pullbackTheta_commutes E U (D.zeta U v) (D.zeta U w) m
 
+/--
+@isnad1 id=eq.0h11v.s15.0048c36106bf from=translated src=- shape=36b5471b vocab=1dde6b2b
+-/
 lemma correction_natural (D : GlobalCartierData T F)
     {E G : SchemeObject.IntegrableHiggs T} (f : E ⟶ G)
     (U : X.Opens) (v : Γ(T.tangent, U)) (m : Γ(pulledBackCarrier F E, U)) :
@@ -199,6 +214,9 @@ noncomputable def nabla (D : GlobalDividedFrobeniusData T F)
     Γ(T.tangent, U) →ₗ[Γ(X, U)] Module.End ℤ Γ(pulledBackCarrier F E, U) :=
   D.canonicalNabla E U + D.toGlobalCartierData.correction E U
 
+/--
+@isnad1 id=eq.0h9v.s15.ab25c26e896a from=translated src=- shape=d78aae2b vocab=f8b1f866
+-/
 @[simp]
 lemma nabla_apply (D : GlobalDividedFrobeniusData T F)
     (E : SchemeObject.IntegrableHiggs T)
@@ -206,6 +224,9 @@ lemma nabla_apply (D : GlobalDividedFrobeniusData T F)
     D.nabla E U v m =
       D.canonicalNabla E U v m + D.toGlobalCartierData.correction E U v m := rfl
 
+/--
+@isnad1 id=eq.0h11v.s15.d482d12101b0 from=translated src=- shape=826b1e4a vocab=016551b0
+-/
 lemma nabla_restrict (D : GlobalDividedFrobeniusData T F)
     (E : SchemeObject.IntegrableHiggs T)
     {U V : X.Opens} (i : U ⟶ V) (v : Γ(T.tangent, V))
@@ -217,6 +238,9 @@ lemma nabla_restrict (D : GlobalDividedFrobeniusData T F)
     D.toGlobalCartierData.correction_restrict]
   rfl
 
+/--
+@isnad1 id=eq.0h10v.s16.bd1dc03f4939 from=translated src=- shape=924d7dd0 vocab=b0aa7a7f
+-/
 lemma nabla_leibniz (D : GlobalDividedFrobeniusData T F)
     (E : SchemeObject.IntegrableHiggs T)
     (U : X.Opens) (v : Γ(T.tangent, U))
@@ -227,6 +251,9 @@ lemma nabla_leibniz (D : GlobalDividedFrobeniusData T F)
     D.toGlobalCartierData.correction_smul, nabla_apply, smul_add]
   abel
 
+/--
+@isnad1 id=eq.0h10v.s16.6be56f939fc4 from=translated src=- shape=38691db6 vocab=5870a439
+-/
 lemma nabla_flat (D : GlobalDividedFrobeniusData T F)
     (E : SchemeObject.IntegrableHiggs T)
     (U : X.Opens) (v w : Γ(T.tangent, U))
@@ -239,6 +266,9 @@ lemma nabla_flat (D : GlobalDividedFrobeniusData T F)
     D.toGlobalCartierData.correction_commutes E U v w m]
   abel
 
+/--
+@isnad1 id=eq.0h11v.s15.33b872a7d724 from=translated src=- shape=36b5471b vocab=ad5fab99
+-/
 lemma nabla_natural (D : GlobalDividedFrobeniusData T F)
     {E G : SchemeObject.IntegrableHiggs T} (f : E ⟶ G)
     (U : X.Opens) (v : Γ(T.tangent, U))
