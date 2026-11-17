@@ -1,0 +1,1 @@
+-- FormalizeTubalDemystPaper: a factory bundle (data/intake/formalize-tubal-demyst-paper). This file only marks the library for Tengoku/All.lean.

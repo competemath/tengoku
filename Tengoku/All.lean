@@ -37,6 +37,7 @@ import Tengoku.LanaFormalSchemes
 import Tengoku.FltAnthropic
 import Tengoku.DescriptiveComplexity
 import Tengoku.TenProofs
+import Tengoku.FormalizeTubalDemystPaper
 import Tengoku.Leanmodularforms
 import Tengoku.Foundation
 import Tengoku.Erdos1196
