@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "f7b315dbcd46bb95c44cb7fd6d34d921b02e16efc7b0f99fa3f94481ed2ef6ec",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "mobius-cpt",
+ "lint_mode": "proposed",
+ "modules": 88,
+ "part": 1,
+ "theorems": 639
+}
