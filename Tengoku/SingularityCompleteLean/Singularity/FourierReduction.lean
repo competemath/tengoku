@@ -1,0 +1,114 @@
+import Tengoku.Seed.Analysis.Fourier.LpSpace
+import Tengoku.Seed.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Tengoku.Seed.LinearAlgebra.FiniteDimensional.Lemmas
+import Tengoku.Seed.Tactic.Positivity
+import Tengoku.Seed.Tactic.NormNum
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Verified pieces of the Fourier contradiction
+
+The finite-dimensional kernel lemma in this module is pointwise.
+`FrequencyKernel.lean` now proves measurable unit-vector selection for the actual
+frequency matrix. `LatticeObstruction.lean` completes the finite-band/translation
+argument. The abstract multiplier lemma here takes a multiplier identity as input;
+`LiouvilleFourier.lean` and `LiouvilleOperator.lean` now prove that identity for the
+actual Liouville convolution. The geometric current factorization is still missing.
+-/
+
+noncomputable section
+
+open MeasureTheory Filter
+open scoped ENNReal
+
+namespace Singularity
+
+/-- Rank-nullity, applied to the `N × (N+1)` frequency matrix.
+@isnad1 id=ex.0h2v.s9.73261379fffa from=translated src=- shape=484703b6 vocab=47b1d430
+-/
+theorem frequency_matrix_has_kernel {N : ℕ}
+    (B : (Fin (N + 1) → ℂ) →ₗ[ℂ] (Fin N → ℂ)) :
+    ∃ v, v ≠ 0 ∧ B v = 0 := by
+  have hdim : Module.finrank ℂ (Fin N → ℂ) <
+      Module.finrank ℂ (Fin (N + 1) → ℂ) := by
+    simp only [Module.finrank_pi, Fintype.card_fin]
+    exact Nat.lt_succ_self N
+  obtain ⟨v, hv, hn⟩ := B.ker.ne_bot_iff.mp
+    (LinearMap.ker_ne_bot_of_finrank_lt hdim)
+  exact ⟨v, hn, hv⟩
+
+/-- The continuous extension at zero of the expected (angular-frequency)
+convolution multiplier, without its positive scalar prefactor.-/
+def liouvilleMultiplier (ω : ℝ) : ℝ :=
+  if ω = 0 then 1 else Real.pi * ω / Real.sinh (Real.pi * ω)
+
+/-- This establishes positivity of the expression, not its identification
+with a Fourier transform.
+@isnad1 id=lt.0h1v.s3.b79a31049fdb from=translated src=- shape=8a62b088 vocab=e9af1c47
+-/
+theorem liouvilleMultiplier_pos (ω : ℝ) : 0 < liouvilleMultiplier ω := by
+  unfold liouvilleMultiplier
+  split_ifs with h
+  · norm_num
+  · rcases lt_or_gt_of_ne h with hneg | hpos
+    · apply div_pos_of_neg_of_neg
+      · exact mul_neg_of_pos_of_neg Real.pi_pos hneg
+      · exact Real.sinh_neg_iff.mpr (mul_neg_of_pos_of_neg Real.pi_pos hneg)
+    · apply div_pos
+      · exact mul_pos Real.pi_pos hpos
+      · exact Real.sinh_pos_iff.mpr (mul_pos Real.pi_pos hpos)
+
+abbrev RealLineL2 := Lp ℂ 2 (volume : Measure ℝ)
+
+/-- Injectivity of an `L²` operator follows from an a.e. nonzero multiplier.
+Mathlib's Fourier transform uses the `exp(-2π i x ξ)` convention.
+@isnad1 id=injectiv.2h2v.s14.3d86e8ed970b from=translated src=- shape=b4644a03 vocab=83896434
+-/
+theorem injective_of_fourier_multiplier
+    (C : RealLineL2 →L[ℂ] RealLineL2) (m : ℝ → ℂ)
+    (hm : ∀ᵐ ξ ∂volume, m ξ ≠ 0)
+    (hdiag : ∀ f : RealLineL2,
+      (Lp.fourierTransformₗᵢ ℝ ℂ (C f) : ℝ → ℂ) =ᵐ[volume]
+        fun ξ => m ξ * (Lp.fourierTransformₗᵢ ℝ ℂ f : ℝ → ℂ) ξ) :
+    Function.Injective C := by
+  intro f g hfg
+  apply (Lp.fourierTransformₗᵢ ℝ ℂ).injective
+  apply Lp.ext
+  filter_upwards [hdiag f, hdiag g, hm] with ξ hf hg hmξ
+  have hsame : (Lp.fourierTransformₗᵢ ℝ ℂ (C f) : ℝ → ℂ) ξ =
+      (Lp.fourierTransformₗᵢ ℝ ℂ (C g) : ℝ → ℂ) ξ := by rw [hfg]
+  rw [hf, hg] at hsame
+  exact mul_left_cancel₀ hmξ hsame
+
+/-- The sign check for the multiplier in Mathlib's frequency convention.
+The factor `2π` converts angular frequency to cycles per unit length.
+@isnad1 id=ne.1h2v.s5.600e9b883715 from=translated src=- shape=7bdf0a8e vocab=9f310035
+-/
+theorem liouvilleMultiplier_scaled_ne_zero {c : ℝ} (hc : 0 < c) (ξ : ℝ) :
+    (↑(c * liouvilleMultiplier (2 * Real.pi * ξ)) : ℂ) ≠ 0 := by
+  exact_mod_cast (mul_pos hc (liouvilleMultiplier_pos _)).ne'
+
+section Factorization
+
+variable {𝕜 E F : Type*} [NontriviallyNormedField 𝕜]
+  [NormedAddCommGroup E] [NormedSpace 𝕜 E]
+  [NormedAddCommGroup F] [NormedSpace 𝕜 F]
+
+/-- The final algebraic contradiction. Its hypotheses must be established
+for the actual boundary analysis operators before singularity follows.
+@isnad1 id=false.3h7v.s10.e130243ceee6 from=translated src=- shape=50c3c385 vocab=db5f0077
+-/
+theorem impossible_factorization
+    (C : E →L[𝕜] E) (H : E →L[𝕜] F)
+    (M : F →L[𝕜] F) (L : F →L[𝕜] E)
+    (hfactor : C = L.comp (M.comp H))
+    (hC : Function.Injective C)
+    (hH : ∃ v, v ≠ 0 ∧ H v = 0) : False := by
+  obtain ⟨v, hv, hHv⟩ := hH
+  apply hv
+  apply hC
+  simp [hfactor, hHv]
+
+end Factorization
+end Singularity

@@ -1,0 +1,1 @@
+-- SingularityCompleteLean: a factory bundle (data/intake/singularity-complete-lean). This file only marks the library for Tengoku/All.lean.
