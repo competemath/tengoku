@@ -504,6 +504,13 @@ def fixture_deps(d: Path, exe: str | None) -> dict[str, list[str]]:
     return {n: got.get(n, []) for n in FIXTURE_DEPS}
 
 
+def core_deps_ok(exe: str | None) -> bool:
+    """A structural-recursion proof of Lean's core, whose lemma uses sit behind the elaborator's auxiliary `_f` definition: `Nat.add_comm` must depend on `Nat.succ_add` and `Nat.zero_add`."""
+    lines = run_exe_lines(["--deps", "--import", "Init.Data.Nat.Basic", "--module", "Init.Data.Nat.Basic", "--name", "Nat.add_comm"], exe)
+    got = {n: ds for n, _, ds in map(parse_deps_line, lines)}
+    return {"Nat.succ_add", "Nat.zero_add"} <= set(got.get("Nat.add_comm", []))
+
+
 def identities(recs: list[Record]) -> dict[str, tuple[str, str, str]]:
     return {r.name: (r.id, r.shape, r.vocab) for r in recs}
 
@@ -559,6 +566,10 @@ def tagtest(exe: str | None = None) -> int:
         if fixture_deps(d, exe) != FIXTURE_DEPS:
             problems.append(
                 f"the direct dependencies of the fixture's `where` theorems are not exactly their lemmas: {fixture_deps(d, exe)}"
+            )
+        if not core_deps_ok(exe):
+            problems.append(
+                "the dependencies of Nat.add_comm (structural recursion) do not name the lemmas behind its auxiliary definition"
             )
         if identities(recs2) != before:
             problems.append("tagging changed the identity of a theorem")
