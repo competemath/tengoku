@@ -50,6 +50,7 @@ import Tengoku.QrcpBoundedCoherence
 import Tengoku.Quantumoptimization
 import Tengoku.TheoremAFpGroups
 import Tengoku.FourierJacobiCoreEvaluation
+import Tengoku.JacobianTwo
 import Tengoku.Statsmllib
 import Tengoku.Leancamcombi
 import Tengoku.EvmAsm
