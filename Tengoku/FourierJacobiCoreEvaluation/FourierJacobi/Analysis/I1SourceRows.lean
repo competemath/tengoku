@@ -10,6 +10,9 @@ noncomputable section
 namespace FourierJacobi.Analysis
 open FourierJacobi.Algebra
 
+/--
+@isnad1 id=hassum.6h6v.s8.0f9074c39302 from=translated src=- shape=66354329 vocab=6b434339
+-/
 theorem hasSum_i1_source_case1 (q t d U V T : ℂ)
     (ht : t ≠ 0) (hd : d ≠ 0) (hq0 : q ≠ 0) (hq1 : q-1 ≠ 0)
     (hqt : q*t^2=1) (h : GeometricRange t d U V T) :
@@ -19,6 +22,9 @@ theorem hasSum_i1_source_case1 (q t d U V T : ℂ)
   rw [i1r1_value_eq q t d U V T ht hd hqt h] at hs
   exact hs
 
+/--
+@isnad1 id=hassum.6h6v.s8.22e1e756c61a from=translated src=- shape=66354329 vocab=6b434339
+-/
 theorem hasSum_i1_source_case2 (q t d U V T : ℂ)
     (ht : t ≠ 0) (hd : d ≠ 0) (hq0 : q ≠ 0) (hq1 : q-1 ≠ 0)
     (hqt : q*t^2=1) (h : GeometricRange t d U V T) :
@@ -28,6 +34,9 @@ theorem hasSum_i1_source_case2 (q t d U V T : ℂ)
   rw [i1r2_value_eq q t d U V T ht hd hqt h] at hs
   exact hs
 
+/--
+@isnad1 id=hassum.6h6v.s8.cc03c11c1dc8 from=translated src=- shape=1a4cc8ea vocab=c0e44eb1
+-/
 theorem hasSum_i1_source_case3a (q t d U V T : ℂ)
     (ht : t ≠ 0) (hd : d ≠ 0) (hq0 : q ≠ 0) (hq1 : q-1 ≠ 0)
     (hqt : q*t^2=1) (h : GeometricRange t d U V T) :
@@ -46,6 +55,9 @@ theorem hasSum_i1_source_case3a (q t d U V T : ℂ)
   simp only [pow_one]
   ring
 
+/--
+@isnad1 id=hassum.6h6v.s8.1c756777d905 from=translated src=- shape=66354329 vocab=6b434339
+-/
 theorem hasSum_i1_source_case3b (q t d U V T : ℂ)
     (ht : t ≠ 0) (hd : d ≠ 0) (hq0 : q ≠ 0) (hq1 : q-1 ≠ 0)
     (hqt : q*t^2=1) (h : GeometricRange t d U V T) :
@@ -55,6 +67,9 @@ theorem hasSum_i1_source_case3b (q t d U V T : ℂ)
   rw [i1r3b_value_eq q t d U V T ht hd hqt h] at hs
   exact hs
 
+/--
+@isnad1 id=hassum.6h6v.s8.1d93c690dd15 from=translated src=- shape=66354329 vocab=6b434339
+-/
 theorem hasSum_i1_source_case3c (q t d U V T : ℂ)
     (ht : t ≠ 0) (hd : d ≠ 0) (hq0 : q ≠ 0) (hq1 : q-1 ≠ 0)
     (hqt : q*t^2=1) (h : GeometricRange t d U V T) :
@@ -64,6 +79,9 @@ theorem hasSum_i1_source_case3c (q t d U V T : ℂ)
   rw [i1r3c_value_eq q t d U V T ht hd hqt h] at hs
   exact hs
 
+/--
+@isnad1 id=hassum.6h6v.s8.771bf510bbf1 from=translated src=- shape=66354329 vocab=6b434339
+-/
 theorem hasSum_i1_source_case4 (q t d U V T : ℂ)
     (ht : t ≠ 0) (hd : d ≠ 0) (hq0 : q ≠ 0) (hq1 : q-1 ≠ 0)
     (hqt : q*t^2=1) (h : GeometricRange t d U V T) :
@@ -73,6 +91,9 @@ theorem hasSum_i1_source_case4 (q t d U V T : ℂ)
   rw [i1r4_value_eq q t d U V T ht hd hqt h] at hs
   exact hs
 
+/--
+@isnad1 id=hassum.6h6v.s8.2da10c3e362f from=translated src=- shape=66354329 vocab=6b434339
+-/
 theorem hasSum_i1_source_case5 (q t d U V T : ℂ)
     (ht : t ≠ 0) (hd : d ≠ 0) (hq0 : q ≠ 0) (hq1 : q-1 ≠ 0)
     (hqt : q*t^2=1) (h : GeometricRange t d U V T) :
@@ -82,6 +103,9 @@ theorem hasSum_i1_source_case5 (q t d U V T : ℂ)
   rw [i1r5_value_eq q t d U V T ht hd hqt h] at hs
   exact hs
 
+/--
+@isnad1 id=hassum.6h6v.s8.3e7438409945 from=translated src=- shape=66354329 vocab=6b434339
+-/
 theorem hasSum_i1_source_case6a (q t d U V T : ℂ)
     (ht : t ≠ 0) (hd : d ≠ 0) (hq0 : q ≠ 0) (hq1 : q-1 ≠ 0)
     (hqt : q*t^2=1) (h : GeometricRange t d U V T) :
@@ -91,6 +115,9 @@ theorem hasSum_i1_source_case6a (q t d U V T : ℂ)
   rw [i1r6a_value_eq q t d U V T ht hd hqt h] at hs
   exact hs
 
+/--
+@isnad1 id=hassum.6h6v.s8.254f0230791f from=translated src=- shape=66354329 vocab=6b434339
+-/
 theorem hasSum_i1_source_case6b (q t d U V T : ℂ)
     (ht : t ≠ 0) (hd : d ≠ 0) (hq0 : q ≠ 0) (hq1 : q-1 ≠ 0)
     (hqt : q*t^2=1) (h : GeometricRange t d U V T) :
@@ -100,6 +127,9 @@ theorem hasSum_i1_source_case6b (q t d U V T : ℂ)
   rw [i1r6b_value_eq q t d U V T ht hd hqt h] at hs
   exact hs
 
+/--
+@isnad1 id=hassum.6h6v.s8.b8fda735e2fb from=translated src=- shape=66354329 vocab=6b434339
+-/
 theorem hasSum_i1_source_case7 (q t d U V T : ℂ)
     (ht : t ≠ 0) (hd : d ≠ 0) (hq0 : q ≠ 0) (hq1 : q-1 ≠ 0)
     (hqt : q*t^2=1) (h : GeometricRange t d U V T) :
@@ -109,6 +139,9 @@ theorem hasSum_i1_source_case7 (q t d U V T : ℂ)
   rw [i1r7_value_eq q t d U V T ht hd hqt h] at hs
   exact hs
 
+/--
+@isnad1 id=hassum.6h6v.s8.50b6ebbbf963 from=translated src=- shape=1a4cc8ea vocab=c0e44eb1
+-/
 theorem hasSum_i1_source_case8a (q t d U V T : ℂ)
     (ht : t ≠ 0) (hd : d ≠ 0) (hq0 : q ≠ 0) (hq1 : q-1 ≠ 0)
     (hqt : q*t^2=1) (h : GeometricRange t d U V T) :
@@ -127,6 +160,9 @@ theorem hasSum_i1_source_case8a (q t d U V T : ℂ)
   simp only [pow_one]
   ring
 
+/--
+@isnad1 id=hassum.6h6v.s8.b7598f3d388d from=translated src=- shape=66354329 vocab=6b434339
+-/
 theorem hasSum_i1_source_case8b (q t d U V T : ℂ)
     (ht : t ≠ 0) (hd : d ≠ 0) (hq0 : q ≠ 0) (hq1 : q-1 ≠ 0)
     (hqt : q*t^2=1) (h : GeometricRange t d U V T) :
@@ -136,6 +172,9 @@ theorem hasSum_i1_source_case8b (q t d U V T : ℂ)
   rw [i1r8b_value_eq q t d U V T ht hd hqt h] at hs
   exact hs
 
+/--
+@isnad1 id=hassum.6h6v.s8.c0498bb7b1af from=translated src=- shape=66354329 vocab=6b434339
+-/
 theorem hasSum_i1_source_case8c (q t d U V T : ℂ)
     (ht : t ≠ 0) (hd : d ≠ 0) (hq0 : q ≠ 0) (hq1 : q-1 ≠ 0)
     (hqt : q*t^2=1) (h : GeometricRange t d U V T) :
@@ -145,6 +184,9 @@ theorem hasSum_i1_source_case8c (q t d U V T : ℂ)
   rw [i1r8c_value_eq q t d U V T ht hd hqt h] at hs
   exact hs
 
+/--
+@isnad1 id=hassum.6h6v.s8.839b65069829 from=translated src=- shape=66354329 vocab=6b434339
+-/
 theorem hasSum_i1_source_case9 (q t d U V T : ℂ)
     (ht : t ≠ 0) (hd : d ≠ 0) (hq0 : q ≠ 0) (hq1 : q-1 ≠ 0)
     (hqt : q*t^2=1) (h : GeometricRange t d U V T) :
@@ -154,6 +196,9 @@ theorem hasSum_i1_source_case9 (q t d U V T : ℂ)
   rw [i1r9_value_eq q t d U V T ht hd hqt h] at hs
   exact hs
 
+/--
+@isnad1 id=hassum.6h6v.s8.172087b39a10 from=translated src=- shape=66354329 vocab=6b434339
+-/
 theorem hasSum_i1_source_case10 (q t d U V T : ℂ)
     (ht : t ≠ 0) (hd : d ≠ 0) (hq0 : q ≠ 0) (hq1 : q-1 ≠ 0)
     (hqt : q*t^2=1) (h : GeometricRange t d U V T) :

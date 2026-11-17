@@ -38,6 +38,9 @@ def finiteCore (t a b d : K) : K :=
   (∑ i : Fin 8, weylWeights t a b i *
     (∑ j : Fin 50, regionTerms t d (weylU a b i) (weylV a b i) j)) / poincare t
 
+/--
+@isnad1 id=eq.1h5v.s5.2f38efe1044f from=translated src=- shape=ab816f75 vocab=14046ec3
+-/
 theorem finiteCore_eq_closedCore (t a b d : K) (h : FiniteRegular t a b d) :
     finiteCore t a b d = closedCore t a b d := by
   have hterm (i : Fin 8) :
@@ -59,6 +62,9 @@ theorem finiteCore_eq_closedCore (t a b d : K) (h : FiniteRegular t a b d) :
         h.a_ne_one h.b_ne_one h.a_ne_b h.ab_ne_one hD h.common]
       exact weylClosed_div_poincare t a b d
 
+/--
+@isnad1 id=eq.11h6v.s9.11f74578ba12 from=translated src=- shape=cb83c7ae vocab=cf5497a0
+-/
 theorem finite_sum_principal_formula (q t a b d : K)
     (h : FiniteRegular t a b d)
     (hc : poincare t ≠ 0) (hn₁ : n₁ t a b ≠ 0) (hn₂ : n₂ t a b ≠ 0)
@@ -74,6 +80,9 @@ theorem finite_sum_principal_formula (q t a b d : K)
     satakeNumerator_eq a b h.a_ne_zero h.b_ne_zero]
   ring
 
+/--
+@isnad1 id=eq.9h5v.s9.7db3b9d2e274 from=translated src=- shape=790c94f1 vocab=1effbd96
+-/
 theorem finite_sum_special_negative_formula (q t a b : K)
     (h : FiniteRegular t a b (-t))
     (ht₀ : t ≠ 0) (hc : poincare t ≠ 0) (hp : satakeNumerator a b ≠ 0)
@@ -86,6 +95,9 @@ theorem finite_sum_special_negative_formula (q t a b : K)
     normalized_closedCore_special_negative t a b ht₀ h.a_ne_zero h.b_ne_zero
       hc hp hn₁ hn₂ hf ht ht₄, mul_one]
 
+/--
+@isnad1 id=eq.0h5v.s7.d9004cd87445 from=translated src=- shape=b59c0348 vocab=2a7c0d96
+-/
 theorem finite_sum_special_positive_formula (q t a b : K) :
     ((1 - (1 : K)) / (q + 1) * finiteCore t a b t) * specialNormalizer t a b 1 = 0 := by
   simp

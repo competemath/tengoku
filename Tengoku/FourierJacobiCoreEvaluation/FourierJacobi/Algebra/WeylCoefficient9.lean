@@ -13,6 +13,9 @@ set_option maxHeartbeats 4000000
 set_option maxRecDepth 4096
 -- Generated coefficient interfaces deliberately have uniform argument lists.
 
+/--
+@isnad1 id=eq.0h4v.s7.bc020ce96624 from=translated src=- shape=c685bbce vocab=b53d7f12
+-/
 theorem coefficientIdentity9 (t a b : K) : wc0_9 t a b + wc1_9 t a b + wc2_9 t a b + wc3_9 t a b + wc4_9 t a b + wc5_9 t a b + wc6_9 t a b + wc7_9 t a b = 0 := by
   unfold wc0_9 wc1_9 wc2_9 wc3_9 wc4_9 wc5_9 wc6_9 wc7_9
   simp only [weylWeightNumerators, Matrix.cons_val_zero, Matrix.cons_val_succ, Matrix.cons_val, Fin.reduceFinMk]

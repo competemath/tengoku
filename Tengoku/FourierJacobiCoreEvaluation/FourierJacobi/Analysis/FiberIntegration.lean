@@ -11,6 +11,9 @@ noncomputable section
 namespace FourierJacobi.Analysis
 open MeasureTheory
 
+/--
+@isnad1 id=and.6h6v.s8.d548be7ca8bc from=translated src=- shape=b42a107a vocab=1484d9a1
+-/
 theorem integrable_hasSum_of_countable_fibers {X ι : Type*}
     [MeasurableSpace X] [Countable ι] (μ : Measure X)
     (s : ι → Set X) (f : X → ℂ) (F : ι → ℂ)

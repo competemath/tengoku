@@ -19,12 +19,18 @@ namespace Analysis
 noncomputable def inducingPower (q s : ℝ) : ℝ :=
   Real.exp ((-2 * Real.log q) * s)
 
+/--
+@isnad1 id=eq.1h1v.s5.59a6bffbf3ee from=translated src=- shape=b3834713 vocab=7c35a219
+-/
 theorem inducingPower_endpoint (q : ℝ) (hq : 0 < q) :
     inducingPower q (1 / 2) = q⁻¹ := by
   unfold inducingPower
   rw [show (-2 * Real.log q) * (1 / 2) = -Real.log q by ring,
     Real.exp_neg, Real.exp_log hq]
 
+/--
+@isnad1 id=hasderiv.1h1v.s6.11ea11e958a6 from=translated src=- shape=04a03ce5 vocab=a5d1956d
+-/
 theorem hasDerivAt_inducingPower (q : ℝ) (hq : 0 < q) :
     HasDerivAt (inducingPower q) (-2 * Real.log q / q) (1 / 2) := by
   have h := ((hasDerivAt_id (1 / 2 : ℝ)).const_mul (-2 * Real.log q)).exp
@@ -38,6 +44,9 @@ theorem hasDerivAt_inducingPower (q : ℝ) (hq : 0 < q) :
 noncomputable def intertwinerFamily (q s : ℝ) :=
   intertwinerMatrix q (inducingPower q s)
 
+/--
+@isnad1 id=hasderiv.1h3v.s7.cb99e306d751 from=translated src=- shape=68791b16 vocab=c901a6b6
+-/
 theorem intertwiner_entry_derivative (q : ℝ) (hq : 1 < q) (i j : Fin 2) :
     HasDerivAt (fun s => intertwinerFamily q s i j)
       ((-2 * Real.log q / (q - 1)) * (1 : Matrix (Fin 2) (Fin 2) ℝ) i j) (1 / 2) := by
@@ -61,6 +70,9 @@ theorem intertwiner_entry_derivative (q : ℝ) (hq : 1 < q) (i j : Fin 2) :
   · simpa [intertwinerFamily, intertwinerMatrix] using hasDerivAt_const (1 / 2 : ℝ) q⁻¹
   · convert h11 using 1 <;> first | rfl | (norm_num; field_simp)
 
+/--
+@isnad1 id=eq.1h1v.s7.5755d25547d3 from=translated src=- shape=336ae559 vocab=8d464b16
+-/
 theorem normalized_intertwiner_derivative (q : ℝ) (hq : 1 < q) :
     (fun i j => -(q - 1) / (2 * Real.log q) *
       deriv (fun s => intertwinerFamily q s i j) (1 / 2)) =

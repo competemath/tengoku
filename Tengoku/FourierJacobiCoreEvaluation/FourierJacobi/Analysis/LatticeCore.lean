@@ -32,6 +32,9 @@ def weightedLatticeTerm (q : ℝ) (a b d : ℂ) (T : ℝ)
     masterTerm (q : ℂ) (inverseSqrt q : ℂ) d (weylU a b p.1) (weylV a b p.1)
       (T : ℂ) (p.2.1.val : ℤ) p.2.2
 
+/--
+@isnad1 id=eq.0h1v.s7.70e5760e4462 from=translated src=- shape=3fd418be vocab=ced901d9
+-/
 theorem fifty_rows_split (f : Fin 50 → ℂ) :
     (∑ i : Fin 10, f (i.castLE (by decide))) +
     (∑ i : Fin 15, f ⟨10 + i.val, by omega⟩) +
@@ -41,6 +44,9 @@ theorem fifty_rows_split (f : Fin 50 → ℂ) :
   simp only [Fin.castLE, Fin.castAdd, Fin.natAdd, ← Nat.add_assoc]
   abel
 
+/--
+@isnad1 id=summable.7h7v.s7.6827c2d83d7d from=translated src=- shape=ff255e59 vocab=d510c4c7
+-/
 theorem summable_norm_central_master (q t d U V T : ℂ)
     (ht : t ≠ 0) (hd : d ≠ 0) (hq0 : q ≠ 0) (hq1 : q - 1 ≠ 0)
     (hq2 : q - 2 ≠ 0) (hqt : q * t ^ 2 = 1) (h : GeometricRange t d U V T)
@@ -50,6 +56,9 @@ theorem summable_norm_central_master (q t d U V T : ℂ)
   · exact summable_norm_i1_master q t d U V T ht hqt h
   · exact summable_norm_i2_master q t d U V T ht hd hq0 hq1 hq2 hqt h
 
+/--
+@isnad1 id=eq.7h6v.s8.2ac3ae633ea3 from=translated src=- shape=84c04661 vocab=648efbab
+-/
 theorem central_master_sum_eq_rows (q t d U V T : ℂ)
     (ht : t ≠ 0) (hd : d ≠ 0) (hq0 : q ≠ 0) (hq1 : q - 1 ≠ 0)
     (hq2 : q - 2 ≠ 0) (hqt : q * t ^ 2 = 1) (h : GeometricRange t d U V T) :
@@ -65,6 +74,9 @@ theorem central_master_sum_eq_rows (q t d U V T : ℂ)
   simpa only [add_zero, add_assoc, i2Offset] using
     fifty_rows_split (regionTerms t d (T * U) (T * V))
 
+/--
+@isnad1 id=and.1h1v.s6.6e9158faac01 from=translated src=- shape=52eeda6d vocab=d547f753
+-/
 theorem natural_master_parameters {q : ℝ} (hq : 2 < q) :
     (inverseSqrt q : ℂ) ≠ 0 ∧ (q : ℂ) ≠ 0 ∧
       (q : ℂ) - 1 ≠ 0 ∧ (q : ℂ) - 2 ≠ 0 ∧
@@ -76,6 +88,9 @@ theorem natural_master_parameters {q : ℝ} (hq : 2 < q) :
   · exact_mod_cast (ne_of_gt (show 0 < q - 1 by linarith))
   · exact_mod_cast (ne_of_gt (show 0 < q - 2 by linarith))
 
+/--
+@isnad1 id=summable.8h5v.s7.917d7e6d61d9 from=translated src=- shape=2ef7390d vocab=3276e56b
+-/
 theorem summable_norm_weightedLatticeTerm (q T : ℝ) (a b d : ℂ) (hq : 2 < q)
     (ha : ‖a‖ = 1) (hb : ‖b‖ = 1)
     (hT₀ : 0 ≤ T) (hT₁ : T ≤ 1)
@@ -98,6 +113,9 @@ theorem summable_norm_weightedLatticeTerm (q T : ℝ) (a b d : ℂ) (hq : 2 < q)
   simpa only [weightedLatticeTerm, norm_mul] using
     hs.mul_left ‖weylWeights (inverseSqrt q : ℂ) a b i / paperC q‖
 
+/--
+@isnad1 id=eq.8h5v.s7.d440dcae0435 from=translated src=- shape=63915273 vocab=83a25e1a
+-/
 theorem latticeCore_eq_dampedRational (q T : ℝ) (a b d : ℂ) (hq : 2 < q)
     (ha : ‖a‖ = 1) (hb : ‖b‖ = 1)
     (hT₀ : 0 ≤ T) (hT₁ : T ≤ 1)
@@ -120,7 +138,9 @@ theorem latticeCore_eq_dampedRational (q T : ℝ) (a b d : ℂ) (hq : 2 < q)
 
 /-- The full unordered family has the independently defined core as its sum.
 The hypothesis is absolute summability of this family, proved above from the
-natural parameter bounds; no rearrangement is made before that proof.-/
+natural parameter bounds; no rearrangement is made before that proof.
+@isnad1 id=hassum.1h5v.s7.fd256b5a75e0 from=translated src=- shape=6bd64b5d vocab=c4623888
+-/
 theorem hasSum_weightedLatticeTerm_of_norm (q T : ℝ) (a b d : ℂ)
     (hn : Summable (fun p : Fin 8 × Fin 3 × LatticeIndex =>
       ‖weightedLatticeTerm q a b d T p‖)) :
@@ -138,6 +158,9 @@ theorem hasSum_weightedLatticeTerm_of_norm (q T : ℝ) (a b d : ℂ)
     ring
   exact he ▸ hs.hasSum
 
+/--
+@isnad1 id=hassum.8h5v.s7.047a99e2b4b5 from=translated src=- shape=aea59eb3 vocab=1089b113
+-/
 theorem hasSum_weightedLatticeTerm (q T : ℝ) (a b d : ℂ) (hq : 2 < q)
     (ha : ‖a‖ = 1) (hb : ‖b‖ = 1)
     (hT₀ : 0 ≤ T) (hT₁ : T ≤ 1)

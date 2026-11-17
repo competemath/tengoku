@@ -27,6 +27,9 @@ set_option maxRecDepth 4096
 
 def regionTerm0 (t d U V P N E F G : K) : K := ((P ^ 1)⁻¹)
 def regionNumerator0 (t d U V P N E F G : K) : K := (E * F * G * N * (d ^ 2))
+/--
+@isnad1 id=eq.6h10v.s8.5cc4a6099b7c from=translated src=- shape=ddb3bb3d vocab=42e7760e
+-/
 theorem regionCleared0 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -38,6 +41,9 @@ theorem regionCleared0 (t d U V P N E F G : K)
 
 def regionTerm1 (t d U V P N E F G : K) : K := (U * ((G ^ 1)⁻¹) * ((P ^ 1)⁻¹) * (t ^ 4) * (1 + ((-1) * (t ^ 2))))
 def regionNumerator1 (t d U V P N E F G : K) : K := ((-1) * E * F * N * U * (d ^ 2) * (t ^ 4) * (1 + t) * ((-1) + t))
+/--
+@isnad1 id=eq.6h10v.s8.d42e5b436b5f from=translated src=- shape=ddb3bb3d vocab=5bc5ba43
+-/
 theorem regionCleared1 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -49,6 +55,9 @@ theorem regionCleared1 (t d U V P N E F G : K)
 
 def regionTerm2 (t d U V P N E F G : K) : K := (V * ((E ^ 1)⁻¹) * ((P ^ 1)⁻¹) * (t ^ 2) * (1 + V) * (1 + ((-1) * (t ^ 2))))
 def regionNumerator2 (t d U V P N E F G : K) : K := ((-1) * F * G * N * V * (d ^ 2) * (t ^ 2) * (1 + V) * (1 + t) * ((-1) + t))
+/--
+@isnad1 id=eq.6h10v.s8.177af181ac0f from=translated src=- shape=ddb3bb3d vocab=b6b99f81
+-/
 theorem regionCleared2 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -60,6 +69,9 @@ theorem regionCleared2 (t d U V P N E F G : K)
 
 def regionTerm3 (t d U V P N E F G : K) : K := (U * ((E ^ 1)⁻¹) * ((F ^ 1)⁻¹) * ((P ^ 1)⁻¹) * (t ^ 2) * ((1 + ((-1) * (t ^ 2))) ^ 2))
 def regionNumerator3 (t d U V P N E F G : K) : K := (G * N * U * (d ^ 2) * (t ^ 2) * ((1 + t) ^ 2) * (((-1) + t) ^ 2))
+/--
+@isnad1 id=eq.6h10v.s8.f32cf239701c from=translated src=- shape=ddb3bb3d vocab=45c90f7f
+-/
 theorem regionCleared3 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -71,6 +83,9 @@ theorem regionCleared3 (t d U V P N E F G : K)
 
 def regionTerm4 (t d U V P N E F G : K) : K := (((F ^ 1)⁻¹) * ((G ^ 1)⁻¹) * ((P ^ 1)⁻¹) * (U ^ 2) * (t ^ 6) * ((1 + ((-1) * (t ^ 2))) ^ 2))
 def regionNumerator4 (t d U V P N E F G : K) : K := (E * N * (U ^ 2) * (d ^ 2) * (t ^ 6) * ((1 + t) ^ 2) * (((-1) + t) ^ 2))
+/--
+@isnad1 id=eq.6h10v.s8.e5e1c8dae5aa from=translated src=- shape=ddb3bb3d vocab=a4420ab2
+-/
 theorem regionCleared4 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -82,6 +97,9 @@ theorem regionCleared4 (t d U V P N E F G : K)
 
 def regionTerm5 (t d U V P N E F G : K) : K := (V * t * ((N ^ 1)⁻¹) * ((d ^ 1)⁻¹))
 def regionNumerator5 (t d U V P N E F G : K) : K := (E * F * G * P * V * d * t)
+/--
+@isnad1 id=eq.6h10v.s8.6a3b9da02e74 from=translated src=- shape=ddb3bb3d vocab=31d83038
+-/
 theorem regionCleared5 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -93,6 +111,9 @@ theorem regionCleared5 (t d U V P N E F G : K)
 
 def regionTerm6 (t d U V P N E F G : K) : K := (U * V * ((G ^ 1)⁻¹) * ((N ^ 1)⁻¹) * ((d ^ 1)⁻¹) * (t ^ 5) * (1 + ((-1) * (t ^ 2))))
 def regionNumerator6 (t d U V P N E F G : K) : K := ((-1) * E * F * P * U * V * d * (t ^ 5) * (1 + t) * ((-1) + t))
+/--
+@isnad1 id=eq.6h10v.s8.c4215153b0c7 from=translated src=- shape=ddb3bb3d vocab=a4951759
+-/
 theorem regionCleared6 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -104,6 +125,9 @@ theorem regionCleared6 (t d U V P N E F G : K)
 
 def regionTerm7 (t d U V P N E F G : K) : K := (((E ^ 1)⁻¹) * ((N ^ 1)⁻¹) * (V ^ 2) * ((d ^ 1)⁻¹) * (t ^ 3) * (1 + V) * (1 + ((-1) * (t ^ 2))))
 def regionNumerator7 (t d U V P N E F G : K) : K := ((-1) * F * G * P * d * (V ^ 2) * (t ^ 3) * (1 + V) * (1 + t) * ((-1) + t))
+/--
+@isnad1 id=eq.6h10v.s8.10092a846311 from=translated src=- shape=ddb3bb3d vocab=7844458f
+-/
 theorem regionCleared7 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -115,6 +139,9 @@ theorem regionCleared7 (t d U V P N E F G : K)
 
 def regionTerm8 (t d U V P N E F G : K) : K := (U * V * ((E ^ 1)⁻¹) * ((F ^ 1)⁻¹) * ((N ^ 1)⁻¹) * ((d ^ 1)⁻¹) * (t ^ 3) * ((1 + ((-1) * (t ^ 2))) ^ 2))
 def regionNumerator8 (t d U V P N E F G : K) : K := (G * P * U * V * d * (t ^ 3) * ((1 + t) ^ 2) * (((-1) + t) ^ 2))
+/--
+@isnad1 id=eq.6h10v.s8.604faf7c347e from=translated src=- shape=ddb3bb3d vocab=491c5501
+-/
 theorem regionCleared8 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -126,6 +153,9 @@ theorem regionCleared8 (t d U V P N E F G : K)
 
 def regionTerm9 (t d U V P N E F G : K) : K := (V * ((F ^ 1)⁻¹) * ((G ^ 1)⁻¹) * ((N ^ 1)⁻¹) * (U ^ 2) * ((d ^ 1)⁻¹) * (t ^ 7) * ((1 + ((-1) * (t ^ 2))) ^ 2))
 def regionNumerator9 (t d U V P N E F G : K) : K := (E * P * V * d * (U ^ 2) * (t ^ 7) * ((1 + t) ^ 2) * (((-1) + t) ^ 2))
+/--
+@isnad1 id=eq.6h10v.s8.d0d8f2fc79b8 from=translated src=- shape=ddb3bb3d vocab=b8633c00
+-/
 theorem regionCleared9 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -137,6 +167,9 @@ theorem regionCleared9 (t d U V P N E F G : K)
 
 def regionTerm10 (t d U V P N E F G : K) : K := (U * d * t * ((P ^ 1)⁻¹) * (1 + ((-1) * (t ^ 2))))
 def regionNumerator10 (t d U V P N E F G : K) : K := ((-1) * E * F * G * N * U * t * (d ^ 3) * (1 + t) * ((-1) + t))
+/--
+@isnad1 id=eq.6h10v.s8.887da65519f1 from=translated src=- shape=ddb3bb3d vocab=3f3164b1
+-/
 theorem regionCleared10 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -148,6 +181,9 @@ theorem regionCleared10 (t d U V P N E F G : K)
 
 def regionTerm11 (t d U V P N E F G : K) : K := (U * V * d * ((G ^ 1)⁻¹) * ((P ^ 1)⁻¹) * (t ^ 3) * ((1 + ((-1) * (t ^ 2))) ^ 2))
 def regionNumerator11 (t d U V P N E F G : K) : K := (E * F * N * U * V * (d ^ 3) * (t ^ 3) * ((1 + t) ^ 2) * (((-1) + t) ^ 2))
+/--
+@isnad1 id=eq.6h10v.s8.f14c091b4ff4 from=translated src=- shape=ddb3bb3d vocab=be3b51cd
+-/
 theorem regionCleared11 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -159,6 +195,9 @@ theorem regionCleared11 (t d U V P N E F G : K)
 
 def regionTerm12 (t d U V P N E F G : K) : K := (U * V * d * ((E ^ 1)⁻¹) * ((P ^ 1)⁻¹) * (t ^ 3) * ((1 + ((-1) * (t ^ 2))) ^ 2) * (1 + V))
 def regionNumerator12 (t d U V P N E F G : K) : K := (F * G * N * U * V * (d ^ 3) * (t ^ 3) * ((1 + t) ^ 2) * (((-1) + t) ^ 2) * (1 + V))
+/--
+@isnad1 id=eq.6h10v.s8.217860622fe7 from=translated src=- shape=ddb3bb3d vocab=07fcdbb9
+-/
 theorem regionCleared12 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -170,6 +209,9 @@ theorem regionCleared12 (t d U V P N E F G : K)
 
 def regionTerm13 (t d U V P N E F G : K) : K := (U * V * d * t * ((E ^ 1)⁻¹) * ((P ^ 1)⁻¹) * ((1 + ((-1) * (t ^ 2))) ^ 2) * (1 + ((-2) * (t ^ 2))))
 def regionNumerator13 (t d U V P N E F G : K) : K := ((-1) * F * G * N * U * V * t * (d ^ 3) * ((1 + t) ^ 2) * (((-1) + t) ^ 2) * ((-1) + (2 * (t ^ 2))))
+/--
+@isnad1 id=eq.6h10v.s8.b90633d062ac from=translated src=- shape=ddb3bb3d vocab=ed5e4edf
+-/
 theorem regionCleared13 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -181,6 +223,9 @@ theorem regionCleared13 (t d U V P N E F G : K)
 
 def regionTerm14 (t d U V P N E F G : K) : K := (d * t * ((E ^ 1)⁻¹) * ((P ^ 1)⁻¹) * (V ^ 2) * ((1 + ((-1) * (t ^ 2))) ^ 2))
 def regionNumerator14 (t d U V P N E F G : K) : K := (F * G * N * t * (V ^ 2) * (d ^ 3) * ((1 + t) ^ 2) * (((-1) + t) ^ 2))
+/--
+@isnad1 id=eq.6h10v.s8.4d75cfa4de52 from=translated src=- shape=ddb3bb3d vocab=04593d44
+-/
 theorem regionCleared14 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -192,6 +237,9 @@ theorem regionCleared14 (t d U V P N E F G : K)
 
 def regionTerm15 (t d U V P N E F G : K) : K := (V * d * ((E ^ 1)⁻¹) * ((F ^ 1)⁻¹) * ((P ^ 1)⁻¹) * (U ^ 2) * (t ^ 3) * ((1 + ((-1) * (t ^ 2))) ^ 3))
 def regionNumerator15 (t d U V P N E F G : K) : K := ((-1) * G * N * V * (U ^ 2) * (d ^ 3) * (t ^ 3) * ((1 + t) ^ 3) * (((-1) + t) ^ 3))
+/--
+@isnad1 id=eq.6h10v.s8.cfbc1bd16a00 from=translated src=- shape=ddb3bb3d vocab=c6ff2e9d
+-/
 theorem regionCleared15 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -203,6 +251,9 @@ theorem regionCleared15 (t d U V P N E F G : K)
 
 def regionTerm16 (t d U V P N E F G : K) : K := (V * d * ((F ^ 1)⁻¹) * ((G ^ 1)⁻¹) * ((P ^ 1)⁻¹) * (U ^ 2) * (t ^ 5) * ((1 + ((-1) * (t ^ 2))) ^ 3))
 def regionNumerator16 (t d U V P N E F G : K) : K := ((-1) * E * N * V * (U ^ 2) * (d ^ 3) * (t ^ 5) * ((1 + t) ^ 3) * (((-1) + t) ^ 3))
+/--
+@isnad1 id=eq.6h10v.s8.f3d34c4dc313 from=translated src=- shape=ddb3bb3d vocab=4dfa6151
+-/
 theorem regionCleared16 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -214,6 +265,9 @@ theorem regionCleared16 (t d U V P N E F G : K)
 
 def regionTerm17 (t d U V P N E F G : K) : K := (V * (t ^ 2) * (1 + ((-1) * (t ^ 2))))
 def regionNumerator17 (t d U V P N E F G : K) : K := ((-1) * E * F * G * N * P * V * (d ^ 2) * (t ^ 2) * (1 + t) * ((-1) + t))
+/--
+@isnad1 id=eq.6h10v.s8.8311ae2795db from=translated src=- shape=ddb3bb3d vocab=db644b8d
+-/
 theorem regionCleared17 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -225,6 +279,9 @@ theorem regionCleared17 (t d U V P N E F G : K)
 
 def regionTerm18 (t d U V P N E F G : K) : K := (U * t * ((N ^ 1)⁻¹) * ((d ^ 1)⁻¹) * (1 + ((-1) * (t ^ 2))))
 def regionNumerator18 (t d U V P N E F G : K) : K := ((-1) * E * F * G * P * U * d * t * (1 + t) * ((-1) + t))
+/--
+@isnad1 id=eq.6h10v.s8.f3f69d9f3225 from=translated src=- shape=ddb3bb3d vocab=f10fac46
+-/
 theorem regionCleared18 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -236,6 +293,9 @@ theorem regionCleared18 (t d U V P N E F G : K)
 
 def regionTerm19 (t d U V P N E F G : K) : K := (U * ((G ^ 1)⁻¹) * ((N ^ 1)⁻¹) * (t ^ 2) * ((1 + ((-1) * (t ^ 2))) ^ 2))
 def regionNumerator19 (t d U V P N E F G : K) : K := (E * F * P * U * (d ^ 2) * (t ^ 2) * ((1 + t) ^ 2) * (((-1) + t) ^ 2))
+/--
+@isnad1 id=eq.6h10v.s8.a307f38c6363 from=translated src=- shape=ddb3bb3d vocab=87a0f698
+-/
 theorem regionCleared19 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -247,6 +307,9 @@ theorem regionCleared19 (t d U V P N E F G : K)
 
 def regionTerm20 (t d U V P N E F G : K) : K := (U * ((E ^ 1)⁻¹) * ((N ^ 1)⁻¹) * (t ^ 2) * ((1 + ((-1) * (t ^ 2))) ^ 2) * (1 + V))
 def regionNumerator20 (t d U V P N E F G : K) : K := (F * G * P * U * (d ^ 2) * (t ^ 2) * ((1 + t) ^ 2) * (((-1) + t) ^ 2) * (1 + V))
+/--
+@isnad1 id=eq.6h10v.s8.d68073e616e1 from=translated src=- shape=ddb3bb3d vocab=868df2a3
+-/
 theorem regionCleared20 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -258,6 +321,9 @@ theorem regionCleared20 (t d U V P N E F G : K)
 
 def regionTerm21 (t d U V P N E F G : K) : K := (U * ((E ^ 1)⁻¹) * ((N ^ 1)⁻¹) * ((1 + ((-1) * (t ^ 2))) ^ 2) * (1 + ((-2) * (t ^ 2))))
 def regionNumerator21 (t d U V P N E F G : K) : K := ((-1) * F * G * P * U * (d ^ 2) * ((1 + t) ^ 2) * (((-1) + t) ^ 2) * ((-1) + (2 * (t ^ 2))))
+/--
+@isnad1 id=eq.6h10v.s8.f30180a5d0c7 from=translated src=- shape=ddb3bb3d vocab=f0c58bf0
+-/
 theorem regionCleared21 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -269,6 +335,9 @@ theorem regionCleared21 (t d U V P N E F G : K)
 
 def regionTerm22 (t d U V P N E F G : K) : K := (V * ((E ^ 1)⁻¹) * ((N ^ 1)⁻¹) * ((1 + ((-1) * (t ^ 2))) ^ 2))
 def regionNumerator22 (t d U V P N E F G : K) : K := (F * G * P * V * (d ^ 2) * ((1 + t) ^ 2) * (((-1) + t) ^ 2))
+/--
+@isnad1 id=eq.6h10v.s8.77de41ca80ea from=translated src=- shape=ddb3bb3d vocab=1253045b
+-/
 theorem regionCleared22 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -280,6 +349,9 @@ theorem regionCleared22 (t d U V P N E F G : K)
 
 def regionTerm23 (t d U V P N E F G : K) : K := (((E ^ 1)⁻¹) * ((F ^ 1)⁻¹) * ((N ^ 1)⁻¹) * (U ^ 2) * (t ^ 2) * ((1 + ((-1) * (t ^ 2))) ^ 3))
 def regionNumerator23 (t d U V P N E F G : K) : K := ((-1) * G * P * (U ^ 2) * (d ^ 2) * (t ^ 2) * ((1 + t) ^ 3) * (((-1) + t) ^ 3))
+/--
+@isnad1 id=eq.6h10v.s8.da34ace617ef from=translated src=- shape=ddb3bb3d vocab=5a44f803
+-/
 theorem regionCleared23 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -291,6 +363,9 @@ theorem regionCleared23 (t d U V P N E F G : K)
 
 def regionTerm24 (t d U V P N E F G : K) : K := (((F ^ 1)⁻¹) * ((G ^ 1)⁻¹) * ((N ^ 1)⁻¹) * (U ^ 2) * (t ^ 4) * ((1 + ((-1) * (t ^ 2))) ^ 3))
 def regionNumerator24 (t d U V P N E F G : K) : K := ((-1) * E * P * (U ^ 2) * (d ^ 2) * (t ^ 4) * ((1 + t) ^ 3) * (((-1) + t) ^ 3))
+/--
+@isnad1 id=eq.6h10v.s8.d40138da4330 from=translated src=- shape=ddb3bb3d vocab=3425ecb1
+-/
 theorem regionCleared24 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -302,6 +377,9 @@ theorem regionCleared24 (t d U V P N E F G : K)
 
 def regionTerm25 (t d U V P N E F G : K) : K := ((-1) * ((P ^ 1)⁻¹) * (U ^ 2) * (d ^ 2) * (t ^ 4))
 def regionNumerator25 (t d U V P N E F G : K) : K := ((-1) * E * F * G * N * (U ^ 2) * (d ^ 4) * (t ^ 4))
+/--
+@isnad1 id=eq.6h10v.s8.c76a684758d9 from=translated src=- shape=ddb3bb3d vocab=c322a10d
+-/
 theorem regionCleared25 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -313,6 +391,9 @@ theorem regionCleared25 (t d U V P N E F G : K)
 
 def regionTerm26 (t d U V P N E F G : K) : K := ((-1) * U * V * d * (t ^ 5))
 def regionNumerator26 (t d U V P N E F G : K) : K := ((-1) * E * F * G * N * P * U * V * (d ^ 3) * (t ^ 5))
+/--
+@isnad1 id=eq.6h10v.s8.af3085706820 from=translated src=- shape=ddb3bb3d vocab=ba8b2073
+-/
 theorem regionCleared26 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -324,6 +405,9 @@ theorem regionCleared26 (t d U V P N E F G : K)
 
 def regionTerm27 (t d U V P N E F G : K) : K := ((-1) * U * V * d * ((G ^ 1)⁻¹) * ((P ^ 1)⁻¹) * (t ^ 3) * (1 + ((-1) * (t ^ 2))))
 def regionNumerator27 (t d U V P N E F G : K) : K := (E * F * N * U * V * (d ^ 3) * (t ^ 3) * (1 + t) * ((-1) + t))
+/--
+@isnad1 id=eq.6h10v.s8.a876b02cd2ca from=translated src=- shape=ddb3bb3d vocab=cde6e48a
+-/
 theorem regionCleared27 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -335,6 +419,9 @@ theorem regionCleared27 (t d U V P N E F G : K)
 
 def regionTerm28 (t d U V P N E F G : K) : K := ((-1) * d * ((E ^ 1)⁻¹) * ((P ^ 1)⁻¹) * (U ^ 2) * (t ^ 3) * (1 + ((-1) * (t ^ 2))) * (1 + (V * (t ^ 2))))
 def regionNumerator28 (t d U V P N E F G : K) : K := (F * G * N * (U ^ 2) * (d ^ 3) * (t ^ 3) * (1 + t) * (1 + (V * (t ^ 2))) * ((-1) + t))
+/--
+@isnad1 id=eq.6h10v.s8.cc37d91c5546 from=translated src=- shape=ddb3bb3d vocab=52eb02f9
+-/
 theorem regionCleared28 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -346,6 +433,9 @@ theorem regionCleared28 (t d U V P N E F G : K)
 
 def regionTerm29 (t d U V P N E F G : K) : K := (V * d * ((E ^ 1)⁻¹) * ((P ^ 1)⁻¹) * (U ^ 2) * (t ^ 3) * (1 + ((-2) * (t ^ 2))) * ((-1) + (t ^ 2)))
 def regionNumerator29 (t d U V P N E F G : K) : K := ((-1) * F * G * N * V * (U ^ 2) * (d ^ 3) * (t ^ 3) * (1 + t) * ((-1) + t) * ((-1) + (2 * (t ^ 2))))
+/--
+@isnad1 id=eq.6h10v.s8.f02e30a703f6 from=translated src=- shape=ddb3bb3d vocab=71865a48
+-/
 theorem regionCleared29 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -357,6 +447,9 @@ theorem regionCleared29 (t d U V P N E F G : K)
 
 def regionTerm30 (t d U V P N E F G : K) : K := ((-1) * U * d * ((E ^ 1)⁻¹) * ((P ^ 1)⁻¹) * (V ^ 2) * (t ^ 3) * (((-1) + (t ^ 2)) ^ 2))
 def regionNumerator30 (t d U V P N E F G : K) : K := ((-1) * F * G * N * U * (V ^ 2) * (d ^ 3) * (t ^ 3) * ((1 + t) ^ 2) * (((-1) + t) ^ 2))
+/--
+@isnad1 id=eq.6h10v.s8.70765aa0cb2c from=translated src=- shape=ddb3bb3d vocab=bfd9d42b
+-/
 theorem regionCleared30 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -368,6 +461,9 @@ theorem regionCleared30 (t d U V P N E F G : K)
 
 def regionTerm31 (t d U V P N E F G : K) : K := (d * ((E ^ 1)⁻¹) * ((P ^ 1)⁻¹) * (V ^ 3) * (t ^ 3) * ((-1) + (t ^ 2)))
 def regionNumerator31 (t d U V P N E F G : K) : K := (F * G * N * (V ^ 3) * (d ^ 3) * (t ^ 3) * (1 + t) * ((-1) + t))
+/--
+@isnad1 id=eq.6h10v.s8.88e2a504a527 from=translated src=- shape=ddb3bb3d vocab=76681112
+-/
 theorem regionCleared31 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -379,6 +475,9 @@ theorem regionCleared31 (t d U V P N E F G : K)
 
 def regionTerm32 (t d U V P N E F G : K) : K := ((-1) * V * d * ((E ^ 1)⁻¹) * ((F ^ 1)⁻¹) * ((P ^ 1)⁻¹) * (U ^ 3) * (t ^ 5) * ((1 + ((-1) * (t ^ 2))) ^ 2))
 def regionNumerator32 (t d U V P N E F G : K) : K := ((-1) * G * N * V * (U ^ 3) * (d ^ 3) * (t ^ 5) * ((1 + t) ^ 2) * (((-1) + t) ^ 2))
+/--
+@isnad1 id=eq.6h10v.s8.0a71d7a86d88 from=translated src=- shape=ddb3bb3d vocab=daf220f1
+-/
 theorem regionCleared32 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -390,6 +489,9 @@ theorem regionCleared32 (t d U V P N E F G : K)
 
 def regionTerm33 (t d U V P N E F G : K) : K := ((-1) * V * d * ((F ^ 1)⁻¹) * ((G ^ 1)⁻¹) * ((P ^ 1)⁻¹) * (U ^ 2) * (t ^ 5) * (((-1) + (t ^ 2)) ^ 2))
 def regionNumerator33 (t d U V P N E F G : K) : K := ((-1) * E * N * V * (U ^ 2) * (d ^ 3) * (t ^ 5) * ((1 + t) ^ 2) * (((-1) + t) ^ 2))
+/--
+@isnad1 id=eq.6h10v.s8.98e2b99d5f66 from=translated src=- shape=ddb3bb3d vocab=e4426e3e
+-/
 theorem regionCleared33 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -401,6 +503,9 @@ theorem regionCleared33 (t d U V P N E F G : K)
 
 def regionTerm34 (t d U V P N E F G : K) : K := ((-1) * (V ^ 2) * (t ^ 4))
 def regionNumerator34 (t d U V P N E F G : K) : K := ((-1) * E * F * G * N * P * (V ^ 2) * (d ^ 2) * (t ^ 4))
+/--
+@isnad1 id=eq.6h10v.s8.801af9d65118 from=translated src=- shape=ddb3bb3d vocab=95c2e6db
+-/
 theorem regionCleared34 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -412,6 +517,9 @@ theorem regionCleared34 (t d U V P N E F G : K)
 
 def regionTerm35 (t d U V P N E F G : K) : K := (U * V * (t ^ 4) * ((-1) + (t ^ 2)))
 def regionNumerator35 (t d U V P N E F G : K) : K := (E * F * G * N * P * U * V * (d ^ 2) * (t ^ 4) * (1 + t) * ((-1) + t))
+/--
+@isnad1 id=eq.6h10v.s8.15a5d783155d from=translated src=- shape=ddb3bb3d vocab=9f874ccc
+-/
 theorem regionCleared35 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -423,6 +531,9 @@ theorem regionCleared35 (t d U V P N E F G : K)
 
 def regionTerm36 (t d U V P N E F G : K) : K := (((G ^ 1)⁻¹) * (U ^ 2) * (t ^ 4) * ((-1) + (t ^ 2)))
 def regionNumerator36 (t d U V P N E F G : K) : K := (E * F * N * P * (U ^ 2) * (d ^ 2) * (t ^ 4) * (1 + t) * ((-1) + t))
+/--
+@isnad1 id=eq.6h10v.s8.91d070c022b1 from=translated src=- shape=ddb3bb3d vocab=16bb5061
+-/
 theorem regionCleared36 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -434,6 +545,9 @@ theorem regionCleared36 (t d U V P N E F G : K)
 
 def regionTerm37 (t d U V P N E F G : K) : K := ((-1) * U * V * ((d ^ 1)⁻¹) * (t ^ 5))
 def regionNumerator37 (t d U V P N E F G : K) : K := ((-1) * E * F * G * N * P * U * V * d * (t ^ 5))
+/--
+@isnad1 id=eq.6h10v.s8.516bf91eccb7 from=translated src=- shape=ddb3bb3d vocab=ff878b77
+-/
 theorem regionCleared37 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -445,6 +559,9 @@ theorem regionCleared37 (t d U V P N E F G : K)
 
 def regionTerm38 (t d U V P N E F G : K) : K := ((U ^ 2) * ((d ^ 1)⁻¹) * (t ^ 3) * ((-1) + (t ^ 2)))
 def regionNumerator38 (t d U V P N E F G : K) : K := (E * F * G * N * P * d * (U ^ 2) * (t ^ 3) * (1 + t) * ((-1) + t))
+/--
+@isnad1 id=eq.6h10v.s8.76fd32982737 from=translated src=- shape=ddb3bb3d vocab=8ff86ef6
+-/
 theorem regionCleared38 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -456,6 +573,9 @@ theorem regionCleared38 (t d U V P N E F G : K)
 
 def regionTerm39 (t d U V P N E F G : K) : K := ((-1) * V * ((G ^ 1)⁻¹) * (U ^ 2) * ((d ^ 1)⁻¹) * (t ^ 5) * ((1 + ((-1) * (t ^ 2))) ^ 2))
 def regionNumerator39 (t d U V P N E F G : K) : K := ((-1) * E * F * N * P * V * d * (U ^ 2) * (t ^ 5) * ((1 + t) ^ 2) * (((-1) + t) ^ 2))
+/--
+@isnad1 id=eq.6h10v.s8.f16030e49ecb from=translated src=- shape=ddb3bb3d vocab=f4915059
+-/
 theorem regionCleared39 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -467,6 +587,9 @@ theorem regionCleared39 (t d U V P N E F G : K)
 
 def regionTerm40 (t d U V P N E F G : K) : K := ((-1) * ((N ^ 1)⁻¹) * (U ^ 2) * ((d ^ 2)⁻¹) * (t ^ 4))
 def regionNumerator40 (t d U V P N E F G : K) : K := ((-1) * E * F * G * P * (U ^ 2) * (t ^ 4))
+/--
+@isnad1 id=eq.6h10v.s8.5a2eb93ae54f from=translated src=- shape=ddb3bb3d vocab=9dbe12d1
+-/
 theorem regionCleared40 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -478,6 +601,9 @@ theorem regionCleared40 (t d U V P N E F G : K)
 
 def regionTerm41 (t d U V P N E F G : K) : K := (V * ((N ^ 1)⁻¹) * (U ^ 2) * ((d ^ 2)⁻¹) * (t ^ 4) * ((-1) + (t ^ 2)))
 def regionNumerator41 (t d U V P N E F G : K) : K := (E * F * G * P * V * (U ^ 2) * (t ^ 4) * (1 + t) * ((-1) + t))
+/--
+@isnad1 id=eq.6h10v.s8.bd4e9fd5db6e from=translated src=- shape=ddb3bb3d vocab=80dbed3d
+-/
 theorem regionCleared41 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -489,6 +615,9 @@ theorem regionCleared41 (t d U V P N E F G : K)
 
 def regionTerm42 (t d U V P N E F G : K) : K := ((-1) * ((G ^ 1)⁻¹) * ((N ^ 1)⁻¹) * (U ^ 2) * (V ^ 2) * ((d ^ 2)⁻¹) * (t ^ 6) * (((-1) + (t ^ 2)) ^ 2))
 def regionNumerator42 (t d U V P N E F G : K) : K := ((-1) * E * F * P * (U ^ 2) * (V ^ 2) * (t ^ 6) * ((1 + t) ^ 2) * (((-1) + t) ^ 2))
+/--
+@isnad1 id=eq.6h10v.s8.c0fa30bfc9b6 from=translated src=- shape=ddb3bb3d vocab=a7885e5c
+-/
 theorem regionCleared42 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -500,6 +629,9 @@ theorem regionCleared42 (t d U V P N E F G : K)
 
 def regionTerm43 (t d U V P N E F G : K) : K := (U * V * ((G ^ 1)⁻¹) * ((N ^ 1)⁻¹) * ((d ^ 1)⁻¹) * (t ^ 3) * ((-1) + (t ^ 2)))
 def regionNumerator43 (t d U V P N E F G : K) : K := (E * F * P * U * V * d * (t ^ 3) * (1 + t) * ((-1) + t))
+/--
+@isnad1 id=eq.6h10v.s8.5098959fb5e0 from=translated src=- shape=ddb3bb3d vocab=cd0d0cd9
+-/
 theorem regionCleared43 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -511,6 +643,9 @@ theorem regionCleared43 (t d U V P N E F G : K)
 
 def regionTerm44 (t d U V P N E F G : K) : K := (((E ^ 1)⁻¹) * ((N ^ 1)⁻¹) * (U ^ 2) * (t ^ 4) * (1 + V) * ((-1) + (t ^ 2)))
 def regionNumerator44 (t d U V P N E F G : K) : K := (F * G * P * (U ^ 2) * (d ^ 2) * (t ^ 4) * (1 + V) * (1 + t) * ((-1) + t))
+/--
+@isnad1 id=eq.6h10v.s8.fbeecb7183ce from=translated src=- shape=ddb3bb3d vocab=dac0e9b0
+-/
 theorem regionCleared44 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -522,6 +657,9 @@ theorem regionCleared44 (t d U V P N E F G : K)
 
 def regionTerm45 (t d U V P N E F G : K) : K := (((E ^ 1)⁻¹) * ((N ^ 1)⁻¹) * (U ^ 2) * (t ^ 2) * (1 + ((-2) * (t ^ 2))) * ((-1) + (t ^ 2)))
 def regionNumerator45 (t d U V P N E F G : K) : K := ((-1) * F * G * P * (U ^ 2) * (d ^ 2) * (t ^ 2) * (1 + t) * ((-1) + t) * ((-1) + (2 * (t ^ 2))))
+/--
+@isnad1 id=eq.6h10v.s8.aa2923b7c36f from=translated src=- shape=ddb3bb3d vocab=901b0579
+-/
 theorem regionCleared45 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -533,6 +671,9 @@ theorem regionCleared45 (t d U V P N E F G : K)
 
 def regionTerm46 (t d U V P N E F G : K) : K := ((-1) * U * V * ((E ^ 1)⁻¹) * ((N ^ 1)⁻¹) * (t ^ 2) * (((-1) + (t ^ 2)) ^ 2))
 def regionNumerator46 (t d U V P N E F G : K) : K := ((-1) * F * G * P * U * V * (d ^ 2) * (t ^ 2) * ((1 + t) ^ 2) * (((-1) + t) ^ 2))
+/--
+@isnad1 id=eq.6h10v.s8.4444c7e8d5b6 from=translated src=- shape=ddb3bb3d vocab=29860b28
+-/
 theorem regionCleared46 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -544,6 +685,9 @@ theorem regionCleared46 (t d U V P N E F G : K)
 
 def regionTerm47 (t d U V P N E F G : K) : K := (((E ^ 1)⁻¹) * ((N ^ 1)⁻¹) * (V ^ 2) * (t ^ 2) * ((-1) + (t ^ 2)))
 def regionNumerator47 (t d U V P N E F G : K) : K := (F * G * P * (V ^ 2) * (d ^ 2) * (t ^ 2) * (1 + t) * ((-1) + t))
+/--
+@isnad1 id=eq.6h10v.s8.1a6d8d106814 from=translated src=- shape=ddb3bb3d vocab=a10deb55
+-/
 theorem regionCleared47 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -555,6 +699,9 @@ theorem regionCleared47 (t d U V P N E F G : K)
 
 def regionTerm48 (t d U V P N E F G : K) : K := ((-1) * ((E ^ 1)⁻¹) * ((F ^ 1)⁻¹) * ((N ^ 1)⁻¹) * (U ^ 3) * (t ^ 4) * (((-1) + (t ^ 2)) ^ 2))
 def regionNumerator48 (t d U V P N E F G : K) : K := ((-1) * G * P * (U ^ 3) * (d ^ 2) * (t ^ 4) * ((1 + t) ^ 2) * (((-1) + t) ^ 2))
+/--
+@isnad1 id=eq.6h10v.s8.42f2a2fd7cdb from=translated src=- shape=ddb3bb3d vocab=99b60d92
+-/
 theorem regionCleared48 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -566,6 +713,9 @@ theorem regionCleared48 (t d U V P N E F G : K)
 
 def regionTerm49 (t d U V P N E F G : K) : K := ((-1) * ((F ^ 1)⁻¹) * ((G ^ 1)⁻¹) * ((N ^ 1)⁻¹) * (U ^ 3) * (t ^ 6) * (((-1) + (t ^ 2)) ^ 2))
 def regionNumerator49 (t d U V P N E F G : K) : K := ((-1) * E * P * (U ^ 3) * (d ^ 2) * (t ^ 6) * ((1 + t) ^ 2) * (((-1) + t) ^ 2))
+/--
+@isnad1 id=eq.6h10v.s8.9b1fed491b79 from=translated src=- shape=ddb3bb3d vocab=450f3e61
+-/
 theorem regionCleared49 (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) :
@@ -586,7 +736,9 @@ def kernelNumerator (t d U V : K) : K :=
   ((d ^ 2) + ((U ^ 2) * (t ^ 3) * (((-1) * d) + ((-1) * t) + ((-1) * (d ^ 3)) + (d * (t ^ 2)) + ((d ^ 3) * (t ^ 2)) + ((-1) * t * (d ^ 4)))) + ((-1) * (V ^ 4) * (d ^ 2) * (t ^ 6)) + (d * (V ^ 2) * (t ^ 2) * ((t ^ 3) + ((-1) * d) + ((-1) * t) + ((d ^ 2) * (t ^ 3)) + ((-1) * d * (t ^ 2)) + ((-1) * t * (d ^ 2)))) + ((-1) * U * (V ^ 2) * (t ^ 4) * (((-1) * (d ^ 2)) + ((-1) * (t ^ 2)) + (d * (t ^ 3)) + ((d ^ 3) * (t ^ 3)) + ((-1) * d * t) + ((-1) * t * (d ^ 3)) + ((-1) * (d ^ 2) * (t ^ 2)) + ((-1) * (d ^ 4) * (t ^ 2)))) + ((-1) * d * (V ^ 3) * (t ^ 4) * (((-1) * d) + ((-1) * t) + (d * (t ^ 2)) + ((-1) * t * (d ^ 2)))) + (U * V * d * (t ^ 2) * (((-1) * t) + ((-2) * d) + (d * (t ^ 2)) + (d * (t ^ 4)) + ((-1) * t * (d ^ 2)))) + (U * d * (V ^ 3) * (t ^ 6) * (((-1) * d) + ((-1) * t) + (d * (t ^ 2)) + ((-1) * t * (d ^ 2)))) + ((-1) * U * d * (1 + t) * ((-1) + t) * (d + t + (t * (d ^ 2)))) + ((-1) * V * d * (U ^ 2) * (t ^ 4) * (((-1) * d) + ((-1) * t) + (d * (t ^ 2)) + ((-1) * t * (d ^ 2)))) + ((-1) * V * (d ^ 2) * (1 + t) * (1 + (t ^ 2)) * ((-1) + t)))
 
 set_option maxHeartbeats 4000000 in
-/-- Denominators are explicit hypotheses, never silently cancelled at zero.-/
+/-- Denominators are explicit hypotheses, never silently cancelled at zero.
+@isnad1 id=eq.6h11v.s8.bb3979cef776 from=translated src=- shape=cc959433 vocab=f64429dd
+-/
 theorem region_term_cleared (t d U V P N E F G : K)
     (hd : d ≠ 0) (hP : P ≠ 0) (hN : N ≠ 0) (hE : E ≠ 0)
     (hF : F ≠ 0) (hG : G ≠ 0) (i : Fin 50) :
@@ -654,6 +806,9 @@ def regionKernel (t d U V : K) : K :=
 def rawNumeratorSum (t d U V P N E F G : K) : K := ((E * F * G * N * (d ^ 2)) + (E * N * (U ^ 2) * (d ^ 2) * (t ^ 6)) + (E * N * (U ^ 2) * (d ^ 2) * (t ^ 10)) + (E * P * (U ^ 2) * (d ^ 2) * (t ^ 4)) + (F * G * P * U * (d ^ 2)) + (F * G * P * V * (d ^ 2)) + (G * N * U * (d ^ 2) * (t ^ 2)) + (G * N * U * (d ^ 2) * (t ^ 6)) + (G * P * (U ^ 2) * (d ^ 2) * (t ^ 2)) + ((-1) * E * P * (U ^ 2) * (d ^ 2) * (t ^ 10)) + ((-1) * E * P * (U ^ 3) * (d ^ 2) * (t ^ 6)) + ((-1) * E * P * (U ^ 3) * (d ^ 2) * (t ^ 10)) + ((-1) * G * P * (U ^ 2) * (d ^ 2) * (t ^ 8)) + ((-1) * G * P * (U ^ 3) * (d ^ 2) * (t ^ 4)) + ((-1) * G * P * (U ^ 3) * (d ^ 2) * (t ^ 8)) + ((-3) * E * P * (U ^ 2) * (d ^ 2) * (t ^ 6)) + ((-3) * G * P * (U ^ 2) * (d ^ 2) * (t ^ 4)) + ((-2) * E * N * (U ^ 2) * (d ^ 2) * (t ^ 8)) + ((-2) * G * N * U * (d ^ 2) * (t ^ 4)) + (2 * E * P * (U ^ 3) * (d ^ 2) * (t ^ 8)) + (2 * G * P * (U ^ 3) * (d ^ 2) * (t ^ 6)) + (3 * E * P * (U ^ 2) * (d ^ 2) * (t ^ 8)) + (3 * G * P * (U ^ 2) * (d ^ 2) * (t ^ 6)) + (E * F * N * U * (d ^ 2) * (t ^ 4)) + (E * F * P * U * (d ^ 2) * (t ^ 2)) + (E * F * P * U * (d ^ 2) * (t ^ 6)) + (E * P * V * d * (U ^ 2) * (t ^ 7)) + (E * P * V * d * (U ^ 2) * (t ^ 11)) + (F * G * N * V * (d ^ 2) * (t ^ 2)) + (F * G * N * t * (V ^ 2) * (d ^ 3)) + (F * G * N * (U ^ 2) * (d ^ 3) * (t ^ 5)) + (F * G * N * (V ^ 2) * (d ^ 2) * (t ^ 2)) + (F * G * N * (V ^ 2) * (d ^ 3) * (t ^ 5)) + (F * G * N * (V ^ 3) * (d ^ 3) * (t ^ 5)) + (F * G * P * V * (d ^ 2) * (t ^ 4)) + (F * G * P * d * (V ^ 2) * (t ^ 3)) + (F * G * P * d * (V ^ 3) * (t ^ 3)) + (F * G * P * (V ^ 2) * (d ^ 2) * (t ^ 4)) + (G * N * V * (U ^ 2) * (d ^ 3) * (t ^ 3)) + (G * P * U * V * d * (t ^ 3)) + (G * P * U * V * d * (t ^ 7)) + ((-1) * E * F * G * P * (U ^ 2) * (t ^ 4)) + ((-1) * E * F * N * U * (d ^ 2) * (t ^ 6)) + ((-1) * E * F * P * (U ^ 2) * (V ^ 2) * (t ^ 6)) + ((-1) * E * F * P * (U ^ 2) * (V ^ 2) * (t ^ 10)) + ((-1) * E * N * V * (U ^ 2) * (d ^ 3) * (t ^ 7)) + ((-1) * E * N * V * (U ^ 2) * (d ^ 3) * (t ^ 11)) + ((-1) * F * G * N * V * (d ^ 2) * (t ^ 4)) + ((-1) * F * G * N * (U ^ 2) * (d ^ 3) * (t ^ 3)) + ((-1) * F * G * N * (V ^ 2) * (d ^ 2) * (t ^ 4)) + ((-1) * F * G * N * (V ^ 3) * (d ^ 3) * (t ^ 3)) + ((-1) * F * G * P * U * (d ^ 2) * (t ^ 6)) + ((-1) * F * G * P * d * (V ^ 2) * (t ^ 5)) + ((-1) * F * G * P * d * (V ^ 3) * (t ^ 5)) + ((-1) * F * G * P * (U ^ 2) * (d ^ 2) * (t ^ 2)) + ((-1) * F * G * P * (U ^ 2) * (d ^ 2) * (t ^ 6)) + ((-1) * F * G * P * (V ^ 2) * (d ^ 2) * (t ^ 2)) + ((-1) * G * N * V * (U ^ 2) * (d ^ 3) * (t ^ 9)) + ((-1) * G * N * V * (U ^ 3) * (d ^ 3) * (t ^ 5)) + ((-1) * G * N * V * (U ^ 3) * (d ^ 3) * (t ^ 9)) + ((-3) * F * G * P * U * (d ^ 2) * (t ^ 2)) + ((-3) * G * N * V * (U ^ 2) * (d ^ 3) * (t ^ 5)) + ((-2) * E * F * P * U * (d ^ 2) * (t ^ 4)) + ((-2) * E * P * V * d * (U ^ 2) * (t ^ 9)) + ((-2) * F * G * N * (V ^ 2) * (d ^ 3) * (t ^ 3)) + ((-2) * F * G * P * V * (d ^ 2) * (t ^ 2)) + ((-2) * G * P * U * V * d * (t ^ 5)) + (2 * E * F * P * (U ^ 2) * (V ^ 2) * (t ^ 8)) + (2 * E * N * V * (U ^ 2) * (d ^ 3) * (t ^ 9)) + (2 * F * G * P * (U ^ 2) * (d ^ 2) * (t ^ 4)) + (2 * G * N * V * (U ^ 3) * (d ^ 3) * (t ^ 7)) + (3 * F * G * P * U * (d ^ 2) * (t ^ 4)) + (3 * G * N * V * (U ^ 2) * (d ^ 3) * (t ^ 7)) + (E * F * G * N * U * t * (d ^ 3)) + (E * F * G * P * U * d * t) + (E * F * G * P * V * d * t) + (E * F * G * P * V * (U ^ 2) * (t ^ 6)) + (E * F * N * P * (U ^ 2) * (d ^ 2) * (t ^ 6)) + (E * F * N * U * V * (d ^ 3) * (t ^ 7)) + (F * G * N * U * V * t * (d ^ 3)) + (F * G * P * V * (U ^ 2) * (d ^ 2) * (t ^ 6)) + ((-1) * E * F * G * N * U * (d ^ 3) * (t ^ 3)) + ((-1) * E * F * G * N * (U ^ 2) * (d ^ 4) * (t ^ 4)) + ((-1) * E * F * G * P * U * d * (t ^ 3)) + ((-1) * E * F * G * P * V * (U ^ 2) * (t ^ 4)) + ((-1) * E * F * N * P * (U ^ 2) * (d ^ 2) * (t ^ 4)) + ((-1) * E * F * N * U * V * (d ^ 3) * (t ^ 5)) + ((-1) * E * F * P * U * V * d * (t ^ 3)) + ((-1) * E * F * P * U * V * d * (t ^ 7)) + ((-1) * F * G * N * U * V * (d ^ 3) * (t ^ 7)) + ((-1) * F * G * N * V * (U ^ 2) * (d ^ 3) * (t ^ 3)) + ((-1) * F * G * N * V * (U ^ 2) * (d ^ 3) * (t ^ 7)) + ((-1) * F * G * P * V * (U ^ 2) * (d ^ 2) * (t ^ 4)) + ((-3) * F * G * N * U * V * (d ^ 3) * (t ^ 3)) + (2 * E * F * P * U * V * d * (t ^ 5)) + (2 * F * G * N * V * (U ^ 2) * (d ^ 3) * (t ^ 5)) + (3 * F * G * N * U * V * (d ^ 3) * (t ^ 5)) + (E * F * G * N * P * V * (d ^ 2) * (t ^ 2)) + (E * F * G * N * P * d * (U ^ 2) * (t ^ 5)) + ((-1) * E * F * G * N * P * V * (d ^ 2) * (t ^ 4)) + ((-1) * E * F * G * N * P * d * (U ^ 2) * (t ^ 3)) + ((-1) * E * F * G * N * P * (V ^ 2) * (d ^ 2) * (t ^ 4)) + ((-1) * E * F * N * P * V * d * (U ^ 2) * (t ^ 5)) + ((-1) * E * F * N * P * V * d * (U ^ 2) * (t ^ 9)) + (2 * E * F * N * P * V * d * (U ^ 2) * (t ^ 7)) + (E * F * G * N * P * U * V * (d ^ 2) * (t ^ 6)) + ((-1) * E * F * G * N * P * U * V * d * (t ^ 5)) + ((-1) * E * F * G * N * P * U * V * (d ^ 2) * (t ^ 4)) + ((-1) * E * F * G * N * P * U * V * (d ^ 3) * (t ^ 5)))
 
 set_option maxHeartbeats 8000000 in
+/--
+@isnad1 id=eq.0h10v.s6.818034d5ec25 from=translated src=- shape=56726446 vocab=00178846
+-/
 theorem raw_numerators_sum (t d U V P N E F G : K) :
     (∑ i : Fin 50, rawRegionNumerators t d U V P N E F G i) =
       rawNumeratorSum t d U V P N E F G := by
@@ -663,6 +818,9 @@ theorem raw_numerators_sum (t d U V P N E F G : K) :
   ring
 
 set_option maxHeartbeats 8000000 in
+/--
+@isnad1 id=eq.1h5v.s9.242f5332725c from=translated src=- shape=09039ccd vocab=c11cc6dc
+-/
 theorem region_numerators_sum (t d U V : K) (hd : d ≠ 0) :
     (∑ i : Fin 50, rawRegionNumerators t d U V
       (1 - d * V * t) (1 - V * t / d)
@@ -674,6 +832,9 @@ theorem region_numerators_sum (t d U V : K) (hd : d ≠ 0) :
   field_simp
   ring
 
+/--
+@isnad1 id=eq.6h5v.s9.87e39426d417 from=translated src=- shape=8019cf50 vocab=4795ee90
+-/
 theorem fifty_region_sum (t d U V : K) (hd : d ≠ 0)
     (hP : 1 - d * V * t ≠ 0) (hN : 1 - V * t / d ≠ 0)
     (hE : 1 - V ^ 2 * t ^ 2 ≠ 0) (hF : 1 - U * t ^ 2 ≠ 0)

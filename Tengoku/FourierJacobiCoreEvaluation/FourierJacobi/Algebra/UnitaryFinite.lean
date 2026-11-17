@@ -14,7 +14,9 @@ the finite algebraic expression, rather than the Fourier--Jacobi period.
 namespace FourierJacobi
 namespace Algebra
 
-/-- The squared expression in the paper is independent of the chosen square root.-/
+/-- The squared expression in the paper is independent of the chosen square root.
+@isnad1 id=eq.2h3v.s7.c1501133572a from=translated src=- shape=b0aeb232 vocab=f296a33c
+-/
 theorem square_root_satake {K : Type*} [Field K] (a z : K)
     (ha : a ≠ 0) (hz : z ^ 2 = a) :
     (z⁻¹ + z) ^ 2 = a + 2 + a⁻¹ := by
@@ -27,11 +29,17 @@ theorem square_root_satake {K : Type*} [Field K] (a z : K)
   field_simp
   ring
 
+/--
+@isnad1 id=lt.3h2v.s6.4e93b7afe911 from=translated src=- shape=d2c6e344 vocab=ac342423
+-/
 theorem coe_pow_norm_lt_one {t : ℝ} (ht₀ : 0 ≤ t) (ht₁ : t < 1)
     {n : ℕ} (hn : n ≠ 0) : ‖(t : ℂ) ^ n‖ < 1 := by
   rw [norm_pow]
   exact pow_lt_one₀ (norm_nonneg _) (coe_norm_lt_one ht₀ ht₁) hn
 
+/--
+@isnad1 id=ne.0h1v.s3.ad48564c3998 from=translated src=- shape=562e4a6d vocab=dc68a5d6
+-/
 theorem poincare_coe_ne_zero (t : ℝ) : poincare (t : ℂ) ≠ 0 := by
   have hp : 0 < poincare t := by unfold poincare; positivity
   have hc : poincare (t : ℂ) = ((poincare t : ℝ) : ℂ) := by
@@ -39,6 +47,9 @@ theorem poincare_coe_ne_zero (t : ℝ) : poincare (t : ℂ) ≠ 0 := by
   rw [hc]
   exact_mod_cast ne_of_gt hp
 
+/--
+@isnad1 id=ne.4h3v.s6.7a62284194f2 from=translated src=- shape=b4705c23 vocab=d980e235
+-/
 theorem n₂_unitary_ne_zero {t : ℝ} {a b : ℂ}
     (ht₀ : 0 ≤ t) (ht₁ : t < 1) (ha : ‖a‖ = 1) (hb : ‖b‖ = 1) :
     n₂ (t : ℂ) a b ≠ 0 := by
@@ -53,14 +64,23 @@ theorem n₂_unitary_ne_zero {t : ℝ} {a b : ℂ}
     (one_sub_mul_ne_zero_of_norm_lt_one hba hx))
     (one_sub_mul_ne_zero_of_norm_lt_one hi hx)
 
+/--
+@isnad1 id=eq.2h3v.s5.bbb22b8e0fc5 from=translated src=- shape=2a25f344 vocab=0f4983fa
+-/
 theorem weylU_unitary {a b : ℂ} (ha : ‖a‖ = 1) (hb : ‖b‖ = 1) (i : Fin 8) :
     ‖weylU a b i‖ = 1 := by
   fin_cases i <;> simp [weylU, ha, hb]
 
+/--
+@isnad1 id=eq.2h3v.s5.10382e11842a from=translated src=- shape=2a25f344 vocab=394a07a8
+-/
 theorem weylV_unitary {a b : ℂ} (ha : ‖a‖ = 1) (hb : ‖b‖ = 1) (i : Fin 8) :
     ‖weylV a b i‖ = 1 := by
   fin_cases i <;> simp [weylV, ha, hb]
 
+/--
+@isnad1 id=regionre.5h4v.s6.8866c7df8018 from=translated src=- shape=246c3430 vocab=f9b90b73
+-/
 theorem regionRegular_unitary {t : ℝ} {d U V : ℂ}
     (ht₀ : 0 ≤ t) (ht₁ : t < 1) (hd : ‖d‖ = 1)
     (hU : ‖U‖ = 1) (hV : ‖V‖ = 1) : RegionRegular (t : ℂ) d U V := by
@@ -78,6 +98,9 @@ theorem regionRegular_unitary {t : ℝ} {d U V : ℂ}
   · exact one_sub_mul_ne_zero_of_norm_lt_one hU hx₂
   · exact one_sub_mul_ne_zero_of_norm_lt_one hU hx₄
 
+/--
+@isnad1 id=finitere.9h4v.s7.1ee031a7bf1b from=translated src=- shape=fcfe630a vocab=512e1f05
+-/
 theorem finiteRegular_unitary {t : ℝ} {a b d : ℂ}
     (ht₀ : 0 ≤ t) (ht₁ : t < 1) (ha : ‖a‖ = 1) (hb : ‖b‖ = 1) (hd : ‖d‖ = 1)
     (ha₁ : a - 1 ≠ 0) (hb₁ : b - 1 ≠ 0) (hab : a - b ≠ 0)
@@ -103,7 +126,9 @@ theorem finiteRegular_unitary {t : ℝ} {a b d : ℂ}
   · intro i
     exact regionRegular_unitary ht₀ ht₁ hd (weylU_unitary ha hb i) (weylV_unitary ha hb i)
 
-/-- The finite principal formula, with no auxiliary denominator assumptions.-/
+/-- The finite principal formula, with no auxiliary denominator assumptions.
+@isnad1 id=eq.9h5v.s8.9f7e59727910 from=translated src=- shape=be095f03 vocab=7f9f6ec3
+-/
 theorem finite_principal_unitary (q t : ℝ) (a b d : ℂ)
     (ht₀ : 0 ≤ t) (ht₁ : t < 1) (ha : ‖a‖ = 1) (hb : ‖b‖ = 1) (hd : ‖d‖ = 1)
     (ha₁ : a - 1 ≠ 0) (hb₁ : b - 1 ≠ 0) (hab : a - b ≠ 0)
@@ -128,7 +153,9 @@ theorem finite_principal_unitary (q t : ℝ) (a b d : ℂ)
   · simpa [div_eq_mul_inv, mul_comm] using one_sub_mul_ne_zero_of_norm_lt_one hdi hx
   · simpa [div_eq_mul_inv, mul_comm] using one_add_mul_ne_zero_of_norm_lt_one hdi hx
 
-/-- Substitute the positive square-root branch required by the paper.-/
+/-- Substitute the positive square-root branch required by the paper.
+@isnad1 id=eq.8h4v.s8.a1bfc269ff1d from=translated src=- shape=5d42c66f vocab=b52e962e
+-/
 theorem finite_principal_inverseSqrt (q : ℝ) (hq : 1 < q) (a b d : ℂ)
     (ha : ‖a‖ = 1) (hb : ‖b‖ = 1) (hd : ‖d‖ = 1)
     (ha₁ : a - 1 ≠ 0) (hb₁ : b - 1 ≠ 0) (hab : a - b ≠ 0)
@@ -140,7 +167,9 @@ theorem finite_principal_inverseSqrt (q : ℝ) (hq : 1 < q) (a b d : ℂ)
   finite_principal_unitary q (inverseSqrt q) a b d
     (le_of_lt (inverseSqrt_pos hq)) (inverseSqrt_lt_one hq) ha hb hd ha₁ hb₁ hab hab₁
 
-/-- The paper's square-root notation, for the finite input on the regular locus.-/
+/-- The paper's square-root notation, for the finite input on the regular locus.
+@isnad1 id=eq.10h6v.s8.41ff8cd001fe from=translated src=- shape=332fc9e6 vocab=2c673cc9
+-/
 theorem finite_principal_square_roots (q : ℝ) (hq : 1 < q) (a b d A B : ℂ)
     (ha : ‖a‖ = 1) (hb : ‖b‖ = 1) (hd : ‖d‖ = 1)
     (hA : A ^ 2 = a) (hB : B ^ 2 = b)
@@ -154,6 +183,9 @@ theorem finite_principal_square_roots (q : ℝ) (hq : 1 < q) (a b d A B : ℂ)
     square_root_satake b B (unit_ne_zero hb) hB]
   exact finite_principal_inverseSqrt q hq a b d ha hb hd ha₁ hb₁ hab hab₁
 
+/--
+@isnad1 id=ne.2h1v.s5.1667d9bcee37 from=translated src=- shape=f5f39fa1 vocab=5e059426
+-/
 theorem one_add_inv_ne_zero {z : ℂ} (hz : z ≠ 0) (h : 1 + z ≠ 0) :
     1 + z⁻¹ ≠ 0 := by
   intro he
@@ -161,6 +193,9 @@ theorem one_add_inv_ne_zero {z : ℂ} (hz : z ≠ 0) (h : 1 + z ≠ 0) :
   apply h
   simpa [add_mul, hz, add_comm] using he'
 
+/--
+@isnad1 id=ne.4h3v.s6.4f7c9750111f from=translated src=- shape=e894d9db vocab=9a5a81aa
+-/
 theorem weylV_one_add_ne_zero {a b : ℂ} (ha : a ≠ 0) (hb : b ≠ 0)
     (hA : 1 + a ≠ 0) (hB : 1 + b ≠ 0) (i : Fin 8) :
     1 + weylV a b i ≠ 0 := by
@@ -176,11 +211,17 @@ theorem weylV_one_add_ne_zero {a b : ℂ} (ha : a ≠ 0) (hb : b ≠ 0)
   · simpa [weylV] using hBi
   · simpa [weylV] using hAi
 
+/--
+@isnad1 id=ne.4h2v.s6.b36c876d655f from=translated src=- shape=7a9dc39b vocab=2d50d5c5
+-/
 theorem satakeNumerator_unitary_ne_zero {a b : ℂ} (ha : ‖a‖ = 1) (hb : ‖b‖ = 1)
     (hA : 1 + a ≠ 0) (hB : 1 + b ≠ 0) : satakeNumerator a b ≠ 0 :=
   div_ne_zero (mul_ne_zero (pow_ne_zero 2 hA) (pow_ne_zero 2 hB))
     (mul_ne_zero (unit_ne_zero ha) (unit_ne_zero hb))
 
+/--
+@isnad1 id=regionre.5h3v.s6.9b814282c0b1 from=translated src=- shape=f52009b8 vocab=4d9a0f8e
+-/
 theorem regionRegular_special_negative {t : ℝ} {U V : ℂ}
     (ht₀ : 0 < t) (ht₁ : t < 1) (hU : ‖U‖ = 1) (hV : ‖V‖ = 1)
     (hV₁ : 1 + V ≠ 0) : RegionRegular (t : ℂ) (-(t : ℂ)) U V := by
@@ -195,6 +236,9 @@ theorem regionRegular_special_negative {t : ℝ} {U V : ℂ}
       rw [div_neg, mul_div_cancel_right₀ V htne]
     simpa [he] using hV₁
 
+/--
+@isnad1 id=finitere.10h3v.s7.9e7eda5b7b6d from=translated src=- shape=1a2ac16e vocab=45ba0d3d
+-/
 theorem finiteRegular_special_negative {t : ℝ} {a b : ℂ}
     (ht₀ : 0 < t) (ht₁ : t < 1) (ha : ‖a‖ = 1) (hb : ‖b‖ = 1)
     (ha₁ : a - 1 ≠ 0) (hb₁ : b - 1 ≠ 0) (hab : a - b ≠ 0)
@@ -226,7 +270,9 @@ theorem finiteRegular_special_negative {t : ℝ} {a b : ℂ}
     exact regionRegular_special_negative ht₀ ht₁ (weylU_unitary ha hb i)
       (weylV_unitary ha hb i) (weylV_one_add_ne_zero ha₀ hb₀ hA hB i)
 
-/-- The finite negative-special formula on the regular unitary Satake locus.-/
+/-- The finite negative-special formula on the regular unitary Satake locus.
+@isnad1 id=eq.10h4v.s8.4a83282f0d90 from=translated src=- shape=fabfb91f vocab=e39d4999
+-/
 theorem finite_special_negative_unitary (q t : ℝ) (a b : ℂ)
     (ht₀ : 0 < t) (ht₁ : t < 1) (ha : ‖a‖ = 1) (hb : ‖b‖ = 1)
     (ha₁ : a - 1 ≠ 0) (hb₁ : b - 1 ≠ 0) (hab : a - b ≠ 0)
@@ -244,6 +290,9 @@ theorem finite_special_negative_unitary (q t : ℝ) (a b : ℂ)
   · simpa using one_sub_mul_ne_zero_of_norm_lt_one (norm_one : ‖(1 : ℂ)‖ = 1) hx₂
   · simpa using one_sub_mul_ne_zero_of_norm_lt_one (norm_one : ‖(1 : ℂ)‖ = 1) hx₄
 
+/--
+@isnad1 id=eq.9h3v.s8.06485c6ebe79 from=translated src=- shape=87719c88 vocab=8b1783b2
+-/
 theorem finite_special_negative_inverseSqrt (q : ℝ) (hq : 1 < q) (a b : ℂ)
     (ha : ‖a‖ = 1) (hb : ‖b‖ = 1)
     (ha₁ : a - 1 ≠ 0) (hb₁ : b - 1 ≠ 0) (hab : a - b ≠ 0)

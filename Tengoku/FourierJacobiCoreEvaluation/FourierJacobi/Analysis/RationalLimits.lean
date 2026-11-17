@@ -22,10 +22,16 @@ def dampedRational (t : ℝ) (a b d : ℂ) (T : ℝ) : ℂ :=
       ((T : ℂ) * weylU a b i) ((T : ℂ) * weylV a b i) ν) /
     poincare (t : ℂ)
 
+/--
+@isnad1 id=eq.0h4v.s4.0ae094f00d9d from=translated src=- shape=df239c27 vocab=12a4b866
+-/
 @[simp] theorem dampedRational_one (t : ℝ) (a b d : ℂ) :
     dampedRational t a b d 1 = finiteCore (t : ℂ) a b d := by
   simp only [dampedRational, finiteCore, Complex.ofReal_one, one_mul]
 
+/--
+@isnad1 id=continuo.2h5v.s6.3595b68bb234 from=translated src=- shape=73f31715 vocab=bdb7754e
+-/
 theorem continuousAt_damped_regionTerm (t d U V : ℂ) (hd : d ≠ 0)
     (h : RegionRegular t d U V) (i : Fin 50) :
     ContinuousAt (fun T : ℝ => regionTerms t d ((T : ℂ) * U) ((T : ℂ) * V) i) 1 := by
@@ -338,6 +344,9 @@ theorem continuousAt_damped_regionTerm (t d U V : ℂ) (hd : d ≠ 0)
     unfold regionTerm49
     fun_prop (disch := simp_all)
 
+/--
+@isnad1 id=continuo.1h4v.s5.cbc716b24f7a from=translated src=- shape=cf735230 vocab=8f647743
+-/
 theorem continuousAt_dampedRational (t : ℝ) (a b d : ℂ)
     (h : FiniteRegular (t : ℂ) a b d) :
     ContinuousAt (dampedRational t a b d) 1 := by
@@ -351,6 +360,9 @@ theorem continuousAt_dampedRational (t : ℝ) (a b d : ℂ)
   exact (continuousAt_damped_regionTerm (t : ℂ) d (weylU a b i) (weylV a b i)
     h.d_ne_zero (h.rows i) j).tendsto
 
+/--
+@isnad1 id=tendsto.1h4v.s6.d4bf4e95d59c from=translated src=- shape=dd7d3060 vocab=3d6791b5
+-/
 theorem tendsto_dampedRational (t : ℝ) (a b d : ℂ)
     (h : FiniteRegular (t : ℂ) a b d) :
     Tendsto (dampedRational t a b d) (𝓝[Set.Ioo 0 1] 1)
@@ -359,13 +371,18 @@ theorem tendsto_dampedRational (t : ℝ) (a b d : ℂ)
     (nhdsWithin_le_nhds (s := Set.Ioo (0 : ℝ) 1))
   simpa only [dampedRational_one, finiteCore_eq_closedCore _ _ _ _ h] using hc
 
-/-- Whole-product zero limit. No convergence of f itself is asserted.-/
+/-- Whole-product zero limit. No convergence of f itself is asserted.
+@isnad1 id=tendsto.0h2v.s6.9c3d36661035 from=translated src=- shape=05fb0166 vocab=54fc9a24
+-/
 theorem tendsto_positive_zero_product (q : ℝ) (f : ℝ → ℂ) :
     Tendsto (fun T => ((1 - (1 : ℂ)) / ((q : ℂ) + 1)) * f T)
       (𝓝[Set.Ioo 0 1] 1) (𝓝 0) := by
   simpa only [sub_self, zero_div, zero_mul] using
     (tendsto_const_nhds : Tendsto (fun _ : ℝ => (0 : ℂ)) (𝓝[Set.Ioo 0 1] 1) (𝓝 0))
 
+/--
+@isnad1 id=tendsto.8h4v.s7.211f981adf07 from=translated src=- shape=f3bb2049 vocab=20003e87
+-/
 theorem tendsto_dampedRational_principal (q : ℝ) (hq : 1 < q) (a b d : ℂ)
     (ha : ‖a‖ = 1) (hb : ‖b‖ = 1) (hd : ‖d‖ = 1)
     (ha₁ : a ≠ 1) (hb₁ : b ≠ 1) (hab : a ≠ b) (hab₁ : a * b ≠ 1) :
@@ -377,6 +394,9 @@ theorem tendsto_dampedRational_principal (q : ℝ) (hq : 1 < q) (a b d : ℂ)
       ha hb hd (sub_ne_zero.mpr ha₁) (sub_ne_zero.mpr hb₁)
       (sub_ne_zero.mpr hab) (sub_ne_zero.mpr hab₁))).const_mul _
 
+/--
+@isnad1 id=tendsto.9h3v.s8.f0199fbb26e9 from=translated src=- shape=197ffd83 vocab=14cae2b5
+-/
 theorem tendsto_dampedRational_special_negative (q : ℝ) (hq : 1 < q) (a b : ℂ)
     (ha : ‖a‖ = 1) (hb : ‖b‖ = 1)
     (ha₁ : a ≠ 1) (hb₁ : b ≠ 1) (hab : a ≠ b) (hab₁ : a * b ≠ 1)

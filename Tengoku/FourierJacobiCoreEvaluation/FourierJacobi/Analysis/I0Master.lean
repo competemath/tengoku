@@ -15,6 +15,9 @@ def latticeDepthEquiv : ((ℤ × ℤ × ℤ) × ℕ) ≃ LatticeIndex where
   left_inv _ := rfl
   right_inv _ := rfl
 
+/--
+@isnad1 id=summable.1h6v.s5.2e4d5489ecbb from=translated src=- shape=f0aead48 vocab=50346590
+-/
 theorem summable_norm_i0_master (q t d U V T : ℂ) (h : GeometricRange t d U V T) :
     Summable (fun p : LatticeIndex => ‖masterTerm q t d U V T 0 p‖) := by
   apply latticeDepthEquiv.summable_iff.mp
@@ -27,6 +30,9 @@ theorem summable_norm_i0_master (q t d U V T : ℂ) (h : GeometricRange t d U V 
   simp only [masterTerm_zero, latticeDepthEquiv, Equiv.coe_fn_mk]
   split_ifs with hp <;> simp [hp]
 
+/--
+@isnad1 id=hassum.1h6v.s6.ff46bed0f974 from=translated src=- shape=3d2d6505 vocab=17cc3433
+-/
 theorem hasSum_i0_master (q t d U V T : ℂ) (h : GeometricRange t d U V T) :
     HasSum (masterTerm q t d U V T 0)
       (∑ i : Fin 10, Algebra.regionTerms t d (T * U) (T * V) (i.castLE (by decide))) := by

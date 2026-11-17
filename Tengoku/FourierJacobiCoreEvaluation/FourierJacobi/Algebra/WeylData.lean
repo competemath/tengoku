@@ -118,18 +118,27 @@ def wc0_10 (t a b : K) : K := weylWeightNumerators t a b 0 * ((wh0_4 t a b * wr0
 def whCoeffs0 (t a b : K) : Fin 5 → K := ![wh0_0 t a b, wh0_1 t a b, wh0_2 t a b, wh0_3 t a b, wh0_4 t a b]
 def wrCoeffs0 (t a b : K) : Fin 7 → K := ![wr0_0 t a b, wr0_1 t a b, wr0_2 t a b, wr0_3 t a b, wr0_4 t a b, wr0_5 t a b, wr0_6 t a b]
 def wcCoeffs0 (t a b : K) : Fin 11 → K := ![wc0_0 t a b, wc0_1 t a b, wc0_2 t a b, wc0_3 t a b, wc0_4 t a b, wc0_5 t a b, wc0_6 t a b, wc0_7 t a b, wc0_8 t a b, wc0_9 t a b, wc0_10 t a b]
+/--
+@isnad1 id=eq.0h5v.s5.7657dff20a74 from=translated src=- shape=0c631ccf vocab=69836858
+-/
 theorem heightExpansion0 (t a b d : K) :
     weylHeight0 t a b d = evalCoefficients d (whCoeffs0 t a b) := by
   simp only [evalCoefficients, whCoeffs0, Fin.sum_univ_succ, Fin.sum_univ_zero, Matrix.cons_val_zero, Matrix.cons_val_succ, Matrix.cons_val, Fin.reduceFinMk, Fin.val_zero, Fin.val_succ]
   unfold weylHeight0 wh0_0 wh0_1 wh0_2 wh0_3 wh0_4
   norm_num
   all_goals grind only
+/--
+@isnad1 id=eq.0h5v.s5.7d39dfa2176d from=translated src=- shape=161bb9f7 vocab=03603cea
+-/
 theorem remainingExpansion0 (t a b d : K) :
     weylRemainingFactors t a b d 0 = evalCoefficients d (wrCoeffs0 t a b) := by
   simp only [weylRemainingFactors, evalCoefficients, wrCoeffs0, Fin.sum_univ_succ, Fin.sum_univ_zero, Matrix.cons_val_zero, Matrix.cons_val_succ, Matrix.cons_val, Fin.reduceFinMk, Fin.val_zero, Fin.val_succ]
   unfold wr0_0 wr0_1 wr0_2 wr0_3 wr0_4 wr0_5 wr0_6
   norm_num
   all_goals grind only
+/--
+@isnad1 id=eq.0h5v.s5.e0d24d39016b from=translated src=- shape=161bb9f7 vocab=effbe4f9
+-/
 theorem clearedExpansion0 (t a b d : K) :
     weylClearedTerms t a b d 0 = evalCoefficients d (wcCoeffs0 t a b) := by
   unfold weylClearedTerms
@@ -166,18 +175,27 @@ def wc1_10 (t a b : K) : K := weylWeightNumerators t a b 1 * ((wh1_4 t a b * wr1
 def whCoeffs1 (t a b : K) : Fin 5 → K := ![wh1_0 t a b, wh1_1 t a b, wh1_2 t a b, wh1_3 t a b, wh1_4 t a b]
 def wrCoeffs1 (t a b : K) : Fin 7 → K := ![wr1_0 t a b, wr1_1 t a b, wr1_2 t a b, wr1_3 t a b, wr1_4 t a b, wr1_5 t a b, wr1_6 t a b]
 def wcCoeffs1 (t a b : K) : Fin 11 → K := ![wc1_0 t a b, wc1_1 t a b, wc1_2 t a b, wc1_3 t a b, wc1_4 t a b, wc1_5 t a b, wc1_6 t a b, wc1_7 t a b, wc1_8 t a b, wc1_9 t a b, wc1_10 t a b]
+/--
+@isnad1 id=eq.0h5v.s5.1057f28c121d from=translated src=- shape=0c631ccf vocab=9e3bfb06
+-/
 theorem heightExpansion1 (t a b d : K) :
     weylHeight1 t a b d = evalCoefficients d (whCoeffs1 t a b) := by
   simp only [evalCoefficients, whCoeffs1, Fin.sum_univ_succ, Fin.sum_univ_zero, Matrix.cons_val_zero, Matrix.cons_val_succ, Matrix.cons_val, Fin.reduceFinMk, Fin.val_zero, Fin.val_succ]
   unfold weylHeight1 wh1_0 wh1_1 wh1_2 wh1_3 wh1_4
   norm_num
   all_goals grind only
+/--
+@isnad1 id=eq.0h5v.s5.78006b00416b from=translated src=- shape=161bb9f7 vocab=52aa5e44
+-/
 theorem remainingExpansion1 (t a b d : K) :
     weylRemainingFactors t a b d 1 = evalCoefficients d (wrCoeffs1 t a b) := by
   simp only [weylRemainingFactors, evalCoefficients, wrCoeffs1, Fin.sum_univ_succ, Fin.sum_univ_zero, Matrix.cons_val_zero, Matrix.cons_val_succ, Matrix.cons_val, Fin.reduceFinMk, Fin.val_zero, Fin.val_succ]
   unfold wr1_0 wr1_1 wr1_2 wr1_3 wr1_4 wr1_5 wr1_6
   norm_num
   all_goals grind only
+/--
+@isnad1 id=eq.0h5v.s5.9db0d6a1d822 from=translated src=- shape=161bb9f7 vocab=f0cb5dc0
+-/
 theorem clearedExpansion1 (t a b d : K) :
     weylClearedTerms t a b d 1 = evalCoefficients d (wcCoeffs1 t a b) := by
   unfold weylClearedTerms
@@ -214,18 +232,27 @@ def wc2_10 (t a b : K) : K := weylWeightNumerators t a b 2 * ((wh2_4 t a b * wr2
 def whCoeffs2 (t a b : K) : Fin 5 → K := ![wh2_0 t a b, wh2_1 t a b, wh2_2 t a b, wh2_3 t a b, wh2_4 t a b]
 def wrCoeffs2 (t a b : K) : Fin 7 → K := ![wr2_0 t a b, wr2_1 t a b, wr2_2 t a b, wr2_3 t a b, wr2_4 t a b, wr2_5 t a b, wr2_6 t a b]
 def wcCoeffs2 (t a b : K) : Fin 11 → K := ![wc2_0 t a b, wc2_1 t a b, wc2_2 t a b, wc2_3 t a b, wc2_4 t a b, wc2_5 t a b, wc2_6 t a b, wc2_7 t a b, wc2_8 t a b, wc2_9 t a b, wc2_10 t a b]
+/--
+@isnad1 id=eq.0h5v.s5.914240ea464d from=translated src=- shape=0c631ccf vocab=da8d375d
+-/
 theorem heightExpansion2 (t a b d : K) :
     weylHeight2 t a b d = evalCoefficients d (whCoeffs2 t a b) := by
   simp only [evalCoefficients, whCoeffs2, Fin.sum_univ_succ, Fin.sum_univ_zero, Matrix.cons_val_zero, Matrix.cons_val_succ, Matrix.cons_val, Fin.reduceFinMk, Fin.val_zero, Fin.val_succ]
   unfold weylHeight2 wh2_0 wh2_1 wh2_2 wh2_3 wh2_4
   norm_num
   all_goals grind only
+/--
+@isnad1 id=eq.0h5v.s5.fdd7648d67cd from=translated src=- shape=161bb9f7 vocab=f3a34e15
+-/
 theorem remainingExpansion2 (t a b d : K) :
     weylRemainingFactors t a b d 2 = evalCoefficients d (wrCoeffs2 t a b) := by
   simp only [weylRemainingFactors, evalCoefficients, wrCoeffs2, Fin.sum_univ_succ, Fin.sum_univ_zero, Matrix.cons_val_zero, Matrix.cons_val_succ, Matrix.cons_val, Fin.reduceFinMk, Fin.val_zero, Fin.val_succ]
   unfold wr2_0 wr2_1 wr2_2 wr2_3 wr2_4 wr2_5 wr2_6
   norm_num
   all_goals grind only
+/--
+@isnad1 id=eq.0h5v.s5.d5399df9a4d5 from=translated src=- shape=161bb9f7 vocab=530f10a6
+-/
 theorem clearedExpansion2 (t a b d : K) :
     weylClearedTerms t a b d 2 = evalCoefficients d (wcCoeffs2 t a b) := by
   unfold weylClearedTerms
@@ -262,18 +289,27 @@ def wc3_10 (t a b : K) : K := weylWeightNumerators t a b 3 * ((wh3_4 t a b * wr3
 def whCoeffs3 (t a b : K) : Fin 5 → K := ![wh3_0 t a b, wh3_1 t a b, wh3_2 t a b, wh3_3 t a b, wh3_4 t a b]
 def wrCoeffs3 (t a b : K) : Fin 7 → K := ![wr3_0 t a b, wr3_1 t a b, wr3_2 t a b, wr3_3 t a b, wr3_4 t a b, wr3_5 t a b, wr3_6 t a b]
 def wcCoeffs3 (t a b : K) : Fin 11 → K := ![wc3_0 t a b, wc3_1 t a b, wc3_2 t a b, wc3_3 t a b, wc3_4 t a b, wc3_5 t a b, wc3_6 t a b, wc3_7 t a b, wc3_8 t a b, wc3_9 t a b, wc3_10 t a b]
+/--
+@isnad1 id=eq.0h5v.s5.f59066acdc75 from=translated src=- shape=0c631ccf vocab=8c22e4e4
+-/
 theorem heightExpansion3 (t a b d : K) :
     weylHeight3 t a b d = evalCoefficients d (whCoeffs3 t a b) := by
   simp only [evalCoefficients, whCoeffs3, Fin.sum_univ_succ, Fin.sum_univ_zero, Matrix.cons_val_zero, Matrix.cons_val_succ, Matrix.cons_val, Fin.reduceFinMk, Fin.val_zero, Fin.val_succ]
   unfold weylHeight3 wh3_0 wh3_1 wh3_2 wh3_3 wh3_4
   norm_num
   all_goals grind only
+/--
+@isnad1 id=eq.0h5v.s5.95bb3d2bead1 from=translated src=- shape=161bb9f7 vocab=4eee7a45
+-/
 theorem remainingExpansion3 (t a b d : K) :
     weylRemainingFactors t a b d 3 = evalCoefficients d (wrCoeffs3 t a b) := by
   simp only [weylRemainingFactors, evalCoefficients, wrCoeffs3, Fin.sum_univ_succ, Fin.sum_univ_zero, Matrix.cons_val_zero, Matrix.cons_val_succ, Matrix.cons_val, Fin.reduceFinMk, Fin.val_zero, Fin.val_succ]
   unfold wr3_0 wr3_1 wr3_2 wr3_3 wr3_4 wr3_5 wr3_6
   norm_num
   all_goals grind only
+/--
+@isnad1 id=eq.0h5v.s5.280ed4963fe5 from=translated src=- shape=161bb9f7 vocab=bb8ec53a
+-/
 theorem clearedExpansion3 (t a b d : K) :
     weylClearedTerms t a b d 3 = evalCoefficients d (wcCoeffs3 t a b) := by
   unfold weylClearedTerms
@@ -310,18 +346,27 @@ def wc4_10 (t a b : K) : K := weylWeightNumerators t a b 4 * ((wh4_4 t a b * wr4
 def whCoeffs4 (t a b : K) : Fin 5 → K := ![wh4_0 t a b, wh4_1 t a b, wh4_2 t a b, wh4_3 t a b, wh4_4 t a b]
 def wrCoeffs4 (t a b : K) : Fin 7 → K := ![wr4_0 t a b, wr4_1 t a b, wr4_2 t a b, wr4_3 t a b, wr4_4 t a b, wr4_5 t a b, wr4_6 t a b]
 def wcCoeffs4 (t a b : K) : Fin 11 → K := ![wc4_0 t a b, wc4_1 t a b, wc4_2 t a b, wc4_3 t a b, wc4_4 t a b, wc4_5 t a b, wc4_6 t a b, wc4_7 t a b, wc4_8 t a b, wc4_9 t a b, wc4_10 t a b]
+/--
+@isnad1 id=eq.0h5v.s5.c24d20af26b5 from=translated src=- shape=0c631ccf vocab=c080516c
+-/
 theorem heightExpansion4 (t a b d : K) :
     weylHeight4 t a b d = evalCoefficients d (whCoeffs4 t a b) := by
   simp only [evalCoefficients, whCoeffs4, Fin.sum_univ_succ, Fin.sum_univ_zero, Matrix.cons_val_zero, Matrix.cons_val_succ, Matrix.cons_val, Fin.reduceFinMk, Fin.val_zero, Fin.val_succ]
   unfold weylHeight4 wh4_0 wh4_1 wh4_2 wh4_3 wh4_4
   norm_num
   all_goals grind only
+/--
+@isnad1 id=eq.0h5v.s5.31ee5d722dc2 from=translated src=- shape=161bb9f7 vocab=92c84f45
+-/
 theorem remainingExpansion4 (t a b d : K) :
     weylRemainingFactors t a b d 4 = evalCoefficients d (wrCoeffs4 t a b) := by
   simp only [weylRemainingFactors, evalCoefficients, wrCoeffs4, Fin.sum_univ_succ, Fin.sum_univ_zero, Matrix.cons_val_zero, Matrix.cons_val_succ, Matrix.cons_val, Fin.reduceFinMk, Fin.val_zero, Fin.val_succ]
   unfold wr4_0 wr4_1 wr4_2 wr4_3 wr4_4 wr4_5 wr4_6
   norm_num
   all_goals grind only
+/--
+@isnad1 id=eq.0h5v.s5.12d11e81f1b3 from=translated src=- shape=161bb9f7 vocab=caee20cd
+-/
 theorem clearedExpansion4 (t a b d : K) :
     weylClearedTerms t a b d 4 = evalCoefficients d (wcCoeffs4 t a b) := by
   unfold weylClearedTerms
@@ -358,18 +403,27 @@ def wc5_10 (t a b : K) : K := weylWeightNumerators t a b 5 * ((wh5_4 t a b * wr5
 def whCoeffs5 (t a b : K) : Fin 5 → K := ![wh5_0 t a b, wh5_1 t a b, wh5_2 t a b, wh5_3 t a b, wh5_4 t a b]
 def wrCoeffs5 (t a b : K) : Fin 7 → K := ![wr5_0 t a b, wr5_1 t a b, wr5_2 t a b, wr5_3 t a b, wr5_4 t a b, wr5_5 t a b, wr5_6 t a b]
 def wcCoeffs5 (t a b : K) : Fin 11 → K := ![wc5_0 t a b, wc5_1 t a b, wc5_2 t a b, wc5_3 t a b, wc5_4 t a b, wc5_5 t a b, wc5_6 t a b, wc5_7 t a b, wc5_8 t a b, wc5_9 t a b, wc5_10 t a b]
+/--
+@isnad1 id=eq.0h5v.s5.58f47082934b from=translated src=- shape=0c631ccf vocab=6a8b74e9
+-/
 theorem heightExpansion5 (t a b d : K) :
     weylHeight5 t a b d = evalCoefficients d (whCoeffs5 t a b) := by
   simp only [evalCoefficients, whCoeffs5, Fin.sum_univ_succ, Fin.sum_univ_zero, Matrix.cons_val_zero, Matrix.cons_val_succ, Matrix.cons_val, Fin.reduceFinMk, Fin.val_zero, Fin.val_succ]
   unfold weylHeight5 wh5_0 wh5_1 wh5_2 wh5_3 wh5_4
   norm_num
   all_goals grind only
+/--
+@isnad1 id=eq.0h5v.s5.8d340d9ca4c7 from=translated src=- shape=161bb9f7 vocab=00d9fc7b
+-/
 theorem remainingExpansion5 (t a b d : K) :
     weylRemainingFactors t a b d 5 = evalCoefficients d (wrCoeffs5 t a b) := by
   simp only [weylRemainingFactors, evalCoefficients, wrCoeffs5, Fin.sum_univ_succ, Fin.sum_univ_zero, Matrix.cons_val_zero, Matrix.cons_val_succ, Matrix.cons_val, Fin.reduceFinMk, Fin.val_zero, Fin.val_succ]
   unfold wr5_0 wr5_1 wr5_2 wr5_3 wr5_4 wr5_5 wr5_6
   norm_num
   all_goals grind only
+/--
+@isnad1 id=eq.0h5v.s5.03c876a0e596 from=translated src=- shape=161bb9f7 vocab=8ae1b3bd
+-/
 theorem clearedExpansion5 (t a b d : K) :
     weylClearedTerms t a b d 5 = evalCoefficients d (wcCoeffs5 t a b) := by
   unfold weylClearedTerms
@@ -406,18 +460,27 @@ def wc6_10 (t a b : K) : K := weylWeightNumerators t a b 6 * ((wh6_4 t a b * wr6
 def whCoeffs6 (t a b : K) : Fin 5 → K := ![wh6_0 t a b, wh6_1 t a b, wh6_2 t a b, wh6_3 t a b, wh6_4 t a b]
 def wrCoeffs6 (t a b : K) : Fin 7 → K := ![wr6_0 t a b, wr6_1 t a b, wr6_2 t a b, wr6_3 t a b, wr6_4 t a b, wr6_5 t a b, wr6_6 t a b]
 def wcCoeffs6 (t a b : K) : Fin 11 → K := ![wc6_0 t a b, wc6_1 t a b, wc6_2 t a b, wc6_3 t a b, wc6_4 t a b, wc6_5 t a b, wc6_6 t a b, wc6_7 t a b, wc6_8 t a b, wc6_9 t a b, wc6_10 t a b]
+/--
+@isnad1 id=eq.0h5v.s5.116fc9177d93 from=translated src=- shape=0c631ccf vocab=0d596c98
+-/
 theorem heightExpansion6 (t a b d : K) :
     weylHeight6 t a b d = evalCoefficients d (whCoeffs6 t a b) := by
   simp only [evalCoefficients, whCoeffs6, Fin.sum_univ_succ, Fin.sum_univ_zero, Matrix.cons_val_zero, Matrix.cons_val_succ, Matrix.cons_val, Fin.reduceFinMk, Fin.val_zero, Fin.val_succ]
   unfold weylHeight6 wh6_0 wh6_1 wh6_2 wh6_3 wh6_4
   norm_num
   all_goals grind only
+/--
+@isnad1 id=eq.0h5v.s5.9616a94fb129 from=translated src=- shape=161bb9f7 vocab=84e8e772
+-/
 theorem remainingExpansion6 (t a b d : K) :
     weylRemainingFactors t a b d 6 = evalCoefficients d (wrCoeffs6 t a b) := by
   simp only [weylRemainingFactors, evalCoefficients, wrCoeffs6, Fin.sum_univ_succ, Fin.sum_univ_zero, Matrix.cons_val_zero, Matrix.cons_val_succ, Matrix.cons_val, Fin.reduceFinMk, Fin.val_zero, Fin.val_succ]
   unfold wr6_0 wr6_1 wr6_2 wr6_3 wr6_4 wr6_5 wr6_6
   norm_num
   all_goals grind only
+/--
+@isnad1 id=eq.0h5v.s5.97474de1567f from=translated src=- shape=161bb9f7 vocab=437bb0a1
+-/
 theorem clearedExpansion6 (t a b d : K) :
     weylClearedTerms t a b d 6 = evalCoefficients d (wcCoeffs6 t a b) := by
   unfold weylClearedTerms
@@ -454,18 +517,27 @@ def wc7_10 (t a b : K) : K := weylWeightNumerators t a b 7 * ((wh7_4 t a b * wr7
 def whCoeffs7 (t a b : K) : Fin 5 → K := ![wh7_0 t a b, wh7_1 t a b, wh7_2 t a b, wh7_3 t a b, wh7_4 t a b]
 def wrCoeffs7 (t a b : K) : Fin 7 → K := ![wr7_0 t a b, wr7_1 t a b, wr7_2 t a b, wr7_3 t a b, wr7_4 t a b, wr7_5 t a b, wr7_6 t a b]
 def wcCoeffs7 (t a b : K) : Fin 11 → K := ![wc7_0 t a b, wc7_1 t a b, wc7_2 t a b, wc7_3 t a b, wc7_4 t a b, wc7_5 t a b, wc7_6 t a b, wc7_7 t a b, wc7_8 t a b, wc7_9 t a b, wc7_10 t a b]
+/--
+@isnad1 id=eq.0h5v.s5.64d37730f177 from=translated src=- shape=0c631ccf vocab=dfea490a
+-/
 theorem heightExpansion7 (t a b d : K) :
     weylHeight7 t a b d = evalCoefficients d (whCoeffs7 t a b) := by
   simp only [evalCoefficients, whCoeffs7, Fin.sum_univ_succ, Fin.sum_univ_zero, Matrix.cons_val_zero, Matrix.cons_val_succ, Matrix.cons_val, Fin.reduceFinMk, Fin.val_zero, Fin.val_succ]
   unfold weylHeight7 wh7_0 wh7_1 wh7_2 wh7_3 wh7_4
   norm_num
   all_goals grind only
+/--
+@isnad1 id=eq.0h5v.s5.383e2d0fe98d from=translated src=- shape=161bb9f7 vocab=215f1599
+-/
 theorem remainingExpansion7 (t a b d : K) :
     weylRemainingFactors t a b d 7 = evalCoefficients d (wrCoeffs7 t a b) := by
   simp only [weylRemainingFactors, evalCoefficients, wrCoeffs7, Fin.sum_univ_succ, Fin.sum_univ_zero, Matrix.cons_val_zero, Matrix.cons_val_succ, Matrix.cons_val, Fin.reduceFinMk, Fin.val_zero, Fin.val_succ]
   unfold wr7_0 wr7_1 wr7_2 wr7_3 wr7_4 wr7_5 wr7_6
   norm_num
   all_goals grind only
+/--
+@isnad1 id=eq.0h5v.s5.711265f5eb4f from=translated src=- shape=161bb9f7 vocab=1ea43878
+-/
 theorem clearedExpansion7 (t a b d : K) :
     weylClearedTerms t a b d 7 = evalCoefficients d (wcCoeffs7 t a b) := by
   unfold weylClearedTerms

@@ -30,7 +30,9 @@ variable (K : Type*) [Field K] [ValuativeRel K] [TopologicalSpace K]
 
 /-- Every neighbourhood of zero in a nonarchimedean local field contains a
 nonzero point. No residue characteristic or characteristic-zero restriction
-is needed for this topological fact.-/
+is needed for this topological fact.
+@isnad1 id=nebot.0h1v.s6.142ac00bc87c from=translated src=- shape=e6051ef4 vocab=0317cf3c
+-/
 theorem localField_punctured_nhds : (𝓝[≠] (0 : K)).NeBot := by
   rw [nhdsWithin_neBot]
   intro s hs
@@ -54,14 +56,18 @@ variable {K : Type*} [Field K] [TopologicalSpace K] [IsTopologicalRing K]
   [T2Space K] [MeasurableSpace K] [BorelSpace K]
   (μ ν : MeasureTheory.Measure K) [NullSingletonClass ν]
 
-/-- The determinant polynomial's zero set is Borel, including z = 0.-/
+/-- The determinant polynomial's zero set is Borel, including z = 0.
+@isnad1 id=measurab.0h2v.s7.3287d28a5132 from=translated src=- shape=cf7e704d vocab=62b379da
+-/
 theorem measurableSet_determinant_zero (z : K) :
     MeasurableSet {p : K × K | p.2 ^ 2 - p.1 * z = 0} := by
   exact (isClosed_eq (by fun_prop) continuous_const).measurableSet
 
 omit [TopologicalSpace K] [IsTopologicalRing K] [SecondCountableTopology K]
   [T2Space K] [MeasurableSpace K] [BorelSpace K] in
-/-- For fixed y and nonzero z, the exceptional x section is a singleton.-/
+/-- For fixed y and nonzero z, the exceptional x section is a singleton.
+@isnad1 id=eq.1h3v.s7.b816551e4caf from=translated src=- shape=9a56fd9d vocab=9ed3a58a
+-/
 theorem determinant_zero_section (y z : K) (hz : z ≠ 0) :
     {x : K | y ^ 2 - x * z = 0} = {y ^ 2 / z} := by
   ext x
@@ -69,7 +75,9 @@ theorem determinant_zero_section (y z : K) (hz : z ≠ 0) :
   exact ⟨fun h => (eq_div_iff hz).mpr h.symm, fun h => ((eq_div_iff hz).mp h).symm⟩
 
 /-- Nullity of y²-xz=0 under actual product measures; unlike the original
-integer tables this theorem covers z=0 as well.-/
+integer tables this theorem covers z=0 as well.
+@isnad1 id=eq.0h4v.s7.37225d783df8 from=translated src=- shape=a5a662f3 vocab=60e0f12a
+-/
 theorem determinant_zero_null (z : K) :
     (μ.prod ν) {p : K × K | p.2 ^ 2 - p.1 * z = 0} = 0 := by
   apply MeasureTheory.Measure.measure_prod_null_of_ae_null (measurableSet_determinant_zero z)
@@ -88,7 +96,9 @@ theorem determinant_zero_null (z : K) :
 variable [NullSingletonClass μ]
 
 /-- Both additive coordinates and the determinant are nonzero almost
-everywhere. This is the precise finite-coordinate locus of the tables.-/
+everywhere. This is the precise finite-coordinate locus of the tables.
+@isnad1 id=eventual.0h4v.s7.604f23de736c from=translated src=- shape=f21148c3 vocab=1e331d95
+-/
 theorem coordinates_determinant_ae (z : K) :
     ∀ᵐ p : K × K ∂μ.prod ν, p.1 ≠ 0 ∧ p.2 ≠ 0 ∧ p.2 ^ 2 - p.1 * z ≠ 0 := by
   have hx : (μ.prod ν) {p : K × K | p.1 = 0} = 0 := by
@@ -109,14 +119,18 @@ theorem coordinates_determinant_ae (z : K) :
   exact ⟨hp, hq, hd⟩
 
 /-- Removing the exceptional set preserves the measure itself, hence every
-Bochner integral and every integrability assertion for this product measure.-/
+Bochner integral and every integrability assertion for this product measure.
+@isnad1 id=eq.0h4v.s7.cd298fa3fbe2 from=translated src=- shape=71b1696a vocab=a54088dc
+-/
 theorem restrict_goodCoordinates (z : K) :
     (μ.prod ν).restrict {p : K × K |
       p.1 ≠ 0 ∧ p.2 ≠ 0 ∧ p.2 ^ 2 - p.1 * z ≠ 0} = μ.prod ν :=
   MeasureTheory.Measure.restrict_eq_self_of_ae_mem (coordinates_determinant_ae μ ν z)
 
 /-- Extra, possibly unbounded coordinates do not spoil null-set removal.
-No finiteness hypothesis on their measure is required.-/
+No finiteness hypothesis on their measure is required.
+@isnad1 id=eventual.0h6v.s8.c318b70dca1e from=translated src=- shape=4325a783 vocab=1e331d95
+-/
 theorem coordinates_determinant_ae_with_parameter {A : Type*} [MeasurableSpace A]
     (ρ : MeasureTheory.Measure A) (z : K) :
     ∀ᵐ p : A × (K × K) ∂ρ.prod (μ.prod ν),
@@ -139,7 +153,9 @@ variable (K : Type*) [Field K] [ValuativeRel K] [TopologicalSpace K]
   (μ : MeasureTheory.Measure K) [μ.IsAddHaarMeasure]
 
 /-- Atomlessness is proved from the general local-field and Haar hypotheses,
-not added as an assumption of the local-field application.-/
+not added as an assumption of the local-field application.
+@isnad1 id=nullsing.0h2v.s5.a39041c4ba9a from=translated src=- shape=c80f2a50 vocab=05f4801d
+-/
 theorem localField_haar_nullSingletonClass : NullSingletonClass μ := by
   let := IsTopologicalAddGroup.rightUniformSpace K
   let := isUniformAddGroup_of_addCommGroup (G := K)
@@ -147,7 +163,9 @@ theorem localField_haar_nullSingletonClass : NullSingletonClass μ := by
   infer_instance
 
 /-- The exceptional sets in expanded:null are null for additive Haar on
-every nonarchimedean local field, including every field in Theorem 2.2.-/
+every nonarchimedean local field, including every field in Theorem 2.2.
+@isnad1 id=eventual.0h3v.s7.b4034d8971f0 from=translated src=- shape=1c835217 vocab=e04df792
+-/
 theorem localField_coordinates_determinant_ae (z : K) :
     ∀ᵐ p : K × K ∂μ.prod μ,
       p.1 ≠ 0 ∧ p.2 ≠ 0 ∧ p.2 ^ 2 - p.1 * z ≠ 0 := by
@@ -165,7 +183,9 @@ theorem localField_coordinates_determinant_ae (z : K) :
   exact coordinates_determinant_ae μ μ z
 
 /-- Integer coordinates become legitimate only after null-set removal. The
-valuation here is constructed from the field's actual valuative relation.-/
+valuation here is constructed from the field's actual valuative relation.
+@isnad1 id=eventual.0h3v.s8.230decf93039 from=translated src=- shape=0e866e6b vocab=2751ca65
+-/
 theorem localField_finite_valuations_ae (z : K) :
     ∀ᵐ p : K × K ∂μ.prod μ, ∃ j h c : ℤ,
       Valuations.localFieldValuation K p.1 = (j : WithTop ℤ) ∧

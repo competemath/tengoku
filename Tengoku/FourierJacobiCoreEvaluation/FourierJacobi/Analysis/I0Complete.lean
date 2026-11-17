@@ -160,6 +160,9 @@ def i0UpperRowEquiv (neg : Bool) : (Fin 2 × ℕ × ℕ × ℕ) ≃ I0UpperRow n
       dsimp [s]
       omega
 
+/--
+@isnad1 id=eq.0h2v.s9.fa07d6afa4ad from=translated src=- shape=6d6316be vocab=ffa95425
+-/
 theorem i0MiddleRow_cartan (neg : Bool) (n : ℕ × ℕ × ℕ) :
     cartanIndices 0 (i0MiddleRowEquiv neg n).val.1
       (i0MiddleRowEquiv neg n).val.2.1 (i0MiddleRowEquiv neg n).val.2.2 0 =
@@ -168,6 +171,9 @@ theorem i0MiddleRow_cartan (neg : Bool) (n : ℕ × ℕ × ℕ) :
   cases neg <;> simp only [i0MiddleRowEquiv, Equiv.coe_fn_mk, Bool.false_eq_true, ↓reduceIte]
   all_goals unfold tableZero; split_ifs <;> simp only [Prod.mk.injEq, and_true, true_and] <;> omega
 
+/--
+@isnad1 id=eq.0h2v.s9.38103783a0a5 from=translated src=- shape=4bc78151 vocab=562aa978
+-/
 theorem i0LowerRow_cartan (neg : Bool) (n : ℕ × ℕ × ℕ) :
     cartanIndices 0 (i0LowerRowEquiv neg n).val.1
       (i0LowerRowEquiv neg n).val.2.1 (i0LowerRowEquiv neg n).val.2.2 0 =
@@ -176,6 +182,9 @@ theorem i0LowerRow_cartan (neg : Bool) (n : ℕ × ℕ × ℕ) :
   cases neg <;> simp only [i0LowerRowEquiv, Equiv.coe_fn_mk, Bool.false_eq_true, ↓reduceIte]
   all_goals unfold tableZero; split_ifs <;> simp only [Prod.mk.injEq, and_true, true_and] <;> omega
 
+/--
+@isnad1 id=eq.0h3v.s9.e0393d9e9d70 from=translated src=- shape=20f585da vocab=4c6bc1f7
+-/
 theorem i0UpperRow_cartan (neg : Bool) (e : Fin 2) (n : ℕ × ℕ × ℕ) :
     cartanIndices 0 (i0UpperRowEquiv neg (e, n)).val.1
       (i0UpperRowEquiv neg (e, n)).val.2.1 (i0UpperRowEquiv neg (e, n)).val.2.2 0 =
@@ -193,6 +202,9 @@ def i0KRatio (neg : Bool) (t d V T : ℂ) : ℂ :=
 def i0KInitial (neg : Bool) (t d V T : ℂ) : ℂ :=
   if neg then T * V * t / d else 1
 
+/--
+@isnad1 id=eq.0h7v.s9.639a22d5f2c2 from=translated src=- shape=d5bb5839 vocab=80b7f0a1
+-/
 theorem i0_middle_reindexed (neg : Bool) (t d U V T : ℂ) (n : ℕ × ℕ × ℕ) :
     i0Shell t d U V T (i0MiddleRowEquiv neg n).val =
       ((1 - t ^ 2) ^ 2 * i0KInitial neg t d V T * (T * U * t ^ 2)) *
@@ -221,6 +233,9 @@ theorem i0_middle_reindexed (neg : Bool) (t d U V T : ℂ) (n : ℕ × ℕ × �
       mul_inv_rev, div_eq_mul_inv, inv_pow]
     ring
 
+/--
+@isnad1 id=eq.0h7v.s9.5438aa167a4f from=translated src=- shape=4d664b27 vocab=d8ef69c8
+-/
 theorem i0_lower_reindexed (neg : Bool) (t d U V T : ℂ) (n : ℕ × ℕ × ℕ) :
     i0Shell t d U V T (i0LowerRowEquiv neg n).val =
       ((1 - t ^ 2) ^ 2 * i0KInitial neg t d V T * (T * U * t ^ 2) *
@@ -252,6 +267,9 @@ theorem i0_lower_reindexed (neg : Bool) (t d U V T : ℂ) (n : ℕ × ℕ × ℕ
       mul_inv_rev, div_eq_mul_inv, inv_pow]
     ring
 
+/--
+@isnad1 id=eq.0h8v.s9.3b021b7c03f0 from=translated src=- shape=08f528ce vocab=fa04b83b
+-/
 theorem i0_upper_reindexed (neg : Bool) (t d U V T : ℂ) (e : Fin 2) (n : ℕ × ℕ × ℕ) :
     i0Shell t d U V T (i0UpperRowEquiv neg (e, n)).val =
       ((1 - t ^ 2) ^ 2 * i0KInitial neg t d V T * (T * V) ^ (e.val + 1) * t ^ 2) *
@@ -284,12 +302,17 @@ theorem i0_upper_reindexed (neg : Bool) (t d U V T : ℂ) (e : Fin 2) (n : ℕ �
       pow_mul, mul_pow, pow_one, mul_inv_rev, div_eq_mul_inv, inv_pow]
     ring
 
-/-- A norm bound implies a genuine geometric denominator is nonzero.-/
+/-- A norm bound implies a genuine geometric denominator is nonzero.
+@isnad1 id=ne.1h1v.s5.66695d3f34f3 from=translated src=- shape=e0aee735 vocab=0fcc4b44
+-/
 theorem i0_one_sub_ne_zero {z : ℂ} (hz : ‖z‖ < 1) : 1 - z ≠ 0 := by
   intro he
   have hz1 : z = 1 := (sub_eq_zero.mp he).symm
   simp [hz1] at hz
 
+/--
+@isnad1 id=summable.3h6v.s8.c7b8f1c17d5d from=translated src=- shape=0a18ef0c vocab=cc73d12f
+-/
 theorem summable_norm_i0_middle (neg : Bool) (t d U V T : ℂ)
     (hK : ‖i0KRatio neg t d V T‖ < 1)
     (hE : ‖(T * V) ^ 2 * t ^ 2‖ < 1) (hF : ‖T * U * t ^ 2‖ < 1) :
@@ -300,6 +323,9 @@ theorem summable_norm_i0_middle (neg : Bool) (t d U V T : ℂ)
     (i0KRatio neg t d V T) ((T * V) ^ 2 * t ^ 2) (T * U * t ^ 2) hK hE hF using 1
   exact funext fun n => congrArg norm (i0_middle_reindexed neg t d U V T n)
 
+/--
+@isnad1 id=hassum.3h6v.s9.9c6ec945b85a from=translated src=- shape=b515af20 vocab=ea96f4c2
+-/
 theorem hasSum_i0_middle (neg : Bool) (t d U V T : ℂ)
     (hK : ‖i0KRatio neg t d V T‖ < 1)
     (hE : ‖(T * V) ^ 2 * t ^ 2‖ < 1) (hF : ‖T * U * t ^ 2‖ < 1) :
@@ -313,6 +339,9 @@ theorem hasSum_i0_middle (neg : Bool) (t d U V T : ℂ)
     (i0KRatio neg t d V T) ((T * V) ^ 2 * t ^ 2) (T * U * t ^ 2) hK hE hF using 1
   exact funext fun n => i0_middle_reindexed neg t d U V T n
 
+/--
+@isnad1 id=summable.3h6v.s8.7f514ae0aa59 from=translated src=- shape=3153ec12 vocab=b886215a
+-/
 theorem summable_norm_i0_lower (neg : Bool) (t d U V T : ℂ)
     (hK : ‖i0KRatio neg t d V T‖ < 1)
     (hF : ‖T * U * t ^ 2‖ < 1) (hG : ‖T * U * t ^ 4‖ < 1) :
@@ -323,6 +352,9 @@ theorem summable_norm_i0_lower (neg : Bool) (t d U V T : ℂ)
     (i0KRatio neg t d V T) (T * U * t ^ 2) (T * U * t ^ 4) hK hF hG using 1
   exact funext fun n => congrArg norm (i0_lower_reindexed neg t d U V T n)
 
+/--
+@isnad1 id=hassum.3h6v.s9.30c753ffa535 from=translated src=- shape=f5ce7d83 vocab=5558a873
+-/
 theorem hasSum_i0_lower (neg : Bool) (t d U V T : ℂ)
     (hK : ‖i0KRatio neg t d V T‖ < 1)
     (hF : ‖T * U * t ^ 2‖ < 1) (hG : ‖T * U * t ^ 4‖ < 1) :
@@ -335,6 +367,9 @@ theorem hasSum_i0_lower (neg : Bool) (t d U V T : ℂ)
     (i0KRatio neg t d V T) (T * U * t ^ 2) (T * U * t ^ 4) hK hF hG using 1
   exact funext fun n => i0_lower_reindexed neg t d U V T n
 
+/--
+@isnad1 id=summable.3h6v.s8.b21750b46d0c from=translated src=- shape=54c4b078 vocab=7c81227a
+-/
 theorem summable_norm_i0_upper_reindexed (neg : Bool) (t d U V T : ℂ)
     (ht : ‖t ^ 2‖ < 1) (hK : ‖i0KRatio neg t d V T‖ < 1)
     (hE : ‖(T * V) ^ 2 * t ^ 2‖ < 1) :
@@ -348,6 +383,9 @@ theorem summable_norm_i0_upper_reindexed (neg : Bool) (t d U V T : ℂ)
     (i0KRatio neg t d V T) ((T * V) ^ 2 * t ^ 2) (t ^ 2) hK hE ht using 1
   exact funext fun n => congrArg norm (i0_upper_reindexed neg t d U V T e n)
 
+/--
+@isnad1 id=summable.3h6v.s8.dcd459258e48 from=translated src=- shape=00b5f945 vocab=59f7fb13
+-/
 theorem summable_norm_i0_upper (neg : Bool) (t d U V T : ℂ)
     (ht : ‖t ^ 2‖ < 1) (hK : ‖i0KRatio neg t d V T‖ < 1)
     (hE : ‖(T * V) ^ 2 * t ^ 2‖ < 1) :
@@ -355,6 +393,9 @@ theorem summable_norm_i0_upper (neg : Bool) (t d U V T : ℂ)
   (i0UpperRowEquiv neg).summable_iff.mp
     (summable_norm_i0_upper_reindexed neg t d U V T ht hK hE)
 
+/--
+@isnad1 id=hassum.3h6v.s9.8ba4da46d3e5 from=translated src=- shape=44c2079e vocab=62ba4784
+-/
 theorem hasSum_i0_upper (neg : Bool) (t d U V T : ℂ)
     (ht : ‖t ^ 2‖ < 1) (hK : ‖i0KRatio neg t d V T‖ < 1)
     (hE : ‖(T * V) ^ 2 * t ^ 2‖ < 1) :
@@ -382,6 +423,9 @@ theorem hasSum_i0_upper (neg : Bool) (t d U V T : ℂ)
   apply (i0UpperRowEquiv neg).hasSum_iff.mp
   exact he ▸ hs.hasSum
 
+/--
+@isnad1 id=hassum.3h5v.s8.8a05e5f973ca from=translated src=- shape=fb159bb0 vocab=c8d4306f
+-/
 theorem hasSum_i0_case3_regionTerm (t d U V T : ℂ)
     (ht : ‖t ^ 2‖ < 1) (hP : ‖d * T * V * t‖ < 1)
     (hE : ‖(T * V) ^ 2 * t ^ 2‖ < 1) :
@@ -397,6 +441,9 @@ theorem hasSum_i0_case3_regionTerm (t d U V T : ℂ)
     Bool.false_eq_true, ↓reduceIte, pow_one, div_eq_mul_inv, mul_inv_rev, mul_assoc]
   ring
 
+/--
+@isnad1 id=hassum.3h5v.s8.9a880e4ef331 from=translated src=- shape=d65b348e vocab=1ddbf1c7
+-/
 theorem hasSum_i0_case4_regionTerm (t d U V T : ℂ)
     (hP : ‖d * T * V * t‖ < 1) (hE : ‖(T * V) ^ 2 * t ^ 2‖ < 1)
     (hF : ‖T * U * t ^ 2‖ < 1) :
@@ -412,6 +459,9 @@ theorem hasSum_i0_case4_regionTerm (t d U V T : ℂ)
     Bool.false_eq_true, ↓reduceIte, pow_one, div_eq_mul_inv, mul_inv_rev, mul_assoc]
   ring
 
+/--
+@isnad1 id=hassum.3h5v.s8.e46450615387 from=translated src=- shape=ed8fcffa vocab=c9907e6b
+-/
 theorem hasSum_i0_case5_regionTerm (t d U V T : ℂ)
     (hP : ‖d * T * V * t‖ < 1) (hF : ‖T * U * t ^ 2‖ < 1)
     (hG : ‖T * U * t ^ 4‖ < 1) :
@@ -427,6 +477,9 @@ theorem hasSum_i0_case5_regionTerm (t d U V T : ℂ)
     Bool.false_eq_true, ↓reduceIte, pow_one, div_eq_mul_inv, mul_inv_rev, mul_assoc]
   ring
 
+/--
+@isnad1 id=hassum.3h5v.s8.ce00f4b3f494 from=translated src=- shape=57516e9f vocab=149f1f9b
+-/
 theorem hasSum_i0_case8_regionTerm (t d U V T : ℂ)
     (ht : ‖t ^ 2‖ < 1) (hN : ‖T * V * t / d‖ < 1)
     (hE : ‖(T * V) ^ 2 * t ^ 2‖ < 1) :
@@ -442,6 +495,9 @@ theorem hasSum_i0_case8_regionTerm (t d U V T : ℂ)
     ↓reduceIte, pow_one, div_eq_mul_inv, mul_inv_rev, mul_assoc]
   ring
 
+/--
+@isnad1 id=hassum.3h5v.s8.c4cceaf3b003 from=translated src=- shape=f561b798 vocab=f5119458
+-/
 theorem hasSum_i0_case9_regionTerm (t d U V T : ℂ)
     (hN : ‖T * V * t / d‖ < 1) (hE : ‖(T * V) ^ 2 * t ^ 2‖ < 1)
     (hF : ‖T * U * t ^ 2‖ < 1) :
@@ -457,6 +513,9 @@ theorem hasSum_i0_case9_regionTerm (t d U V T : ℂ)
     ↓reduceIte, pow_one, div_eq_mul_inv, mul_inv_rev, mul_assoc]
   ring
 
+/--
+@isnad1 id=hassum.3h5v.s8.184cb278c5dd from=translated src=- shape=a6fc58ac vocab=541cfabd
+-/
 theorem hasSum_i0_case10_regionTerm (t d U V T : ℂ)
     (hN : ‖T * V * t / d‖ < 1) (hF : ‖T * U * t ^ 2‖ < 1)
     (hG : ‖T * U * t ^ 4‖ < 1) :
@@ -499,22 +558,33 @@ def i0RegionIndex (p : ℤ × ℤ × ℤ) : Fin 10 :=
     else if p.2.2 < p.2.1 then 9
     else if p.2.1 ≤ 2 * p.2.2 then 7 else 8
 
+/--
+@isnad1 id=mem.0h1v.s4.59da522363a1 from=translated src=- shape=4e22884d vocab=90ee100b
+-/
 theorem i0RegionIndex_mem (p : ℤ × ℤ × ℤ) : p ∈ i0Region (i0RegionIndex p) := by
   unfold i0RegionIndex
   split_ifs <;> norm_num [i0Region] <;> omega
 
+/--
+@isnad1 id=eq.2h3v.s6.11ecbf162d42 from=translated src=- shape=7c13f4e5 vocab=5dcdfb3d
+-/
 theorem i0Region_unique (p : ℤ × ℤ × ℤ) (i j : Fin 10)
     (hi : p ∈ i0Region i) (hj : p ∈ i0Region j) : i = j := by
   fin_cases i <;> fin_cases j <;>
     simp only [i0Region, Matrix.cons_val_zero, Matrix.cons_val_succ, Set.mem_ofPred_eq] at hi hj
   all_goals first | rfl | omega
 
+/--
+@isnad1 id=existsun.0h1v.s5.225736e3922d from=translated src=- shape=b1375ec6 vocab=6cd0cf29
+-/
 theorem i0Region_partition (p : ℤ × ℤ × ℤ) : ∃! i : Fin 10, p ∈ i0Region i :=
   ⟨i0RegionIndex p, i0RegionIndex_mem p, fun i hi =>
     i0Region_unique p i (i0RegionIndex p) hi (i0RegionIndex_mem p)⟩
 
 /-- Every source row equals its already-restored stored fraction. The inherited
-four rows are reused verbatim, and the six others are proved above.-/
+four rows are reused verbatim, and the six others are proved above.
+@isnad1 id=hassum.6h6v.s8.3e6bc91abaad from=translated src=- shape=3b3be7a2 vocab=c8c9ae0c
+-/
 theorem hasSum_i0_region (t d U V T : ℂ)
     (ht : ‖t ^ 2‖ < 1) (hP : ‖d * T * V * t‖ < 1)
     (hN : ‖T * V * t / d‖ < 1) (hE : ‖(T * V) ^ 2 * t ^ 2‖ < 1)
@@ -535,7 +605,9 @@ theorem hasSum_i0_region (t d U V T : ℂ)
 
 /-- Absolute convergence is established on the full independent lattice
 before the regions are combined. This statement is stronger than existence
-of an iterated sum.-/
+of an iterated sum.
+@isnad1 id=summable.6h5v.s8.358dce8e01f5 from=translated src=- shape=e7ba8163 vocab=7cd87760
+-/
 theorem summable_norm_i0_full (t d U V T : ℂ)
     (ht : ‖t ^ 2‖ < 1) (hP : ‖d * T * V * t‖ < 1)
     (hN : ‖T * V * t / d‖ < 1) (hE : ‖(T * V) ^ 2 * t ^ 2‖ < 1)
@@ -559,7 +631,9 @@ theorem summable_norm_i0_full (t d U V T : ℂ)
 
 /-- Complete evaluation of the independently defined zero-central-coordinate
 valuation series. The sum on the right is exactly rows 0--9 of the stored
-fifty-row expression, with damping inserted in the unsummed monomial.-/
+fifty-row expression, with damping inserted in the unsummed monomial.
+@isnad1 id=hassum.6h5v.s8.64a6ce4f9400 from=translated src=- shape=9548642b vocab=1912d607
+-/
 theorem hasSum_i0_full (t d U V T : ℂ)
     (ht : ‖t ^ 2‖ < 1) (hP : ‖d * T * V * t‖ < 1)
     (hN : ‖T * V * t / d‖ < 1) (hE : ‖(T * V) ^ 2 * t ^ 2‖ < 1)
@@ -574,6 +648,9 @@ theorem hasSum_i0_full (t d U V T : ℂ)
   exact (hasSum_fintype _).sigma_of_hasSum
     (hasSum_i0_region t d U V T ht hP hN hE hF hG) hs'
 
+/--
+@isnad1 id=eq.6h5v.s8.0a0d170401bb from=translated src=- shape=5252652f vocab=16c0153f
+-/
 theorem tsum_i0_full (t d U V T : ℂ)
     (ht : ‖t ^ 2‖ < 1) (hP : ‖d * T * V * t‖ < 1)
     (hN : ‖T * V * t / d‖ < 1) (hE : ‖(T * V) ^ 2 * t ^ 2‖ < 1)

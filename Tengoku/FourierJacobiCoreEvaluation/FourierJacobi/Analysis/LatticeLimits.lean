@@ -16,6 +16,9 @@ open FourierJacobi.Algebra Filter
 open scoped Topology
 set_option maxHeartbeats 4000000
 
+/--
+@isnad1 id=summable.7h5v.s7.5462efaf30a6 from=translated src=- shape=a915d919 vocab=c7338269
+-/
 theorem summable_norm_lattice_damped (q T : ℝ) (a b d : ℂ) (hq : 2 < q)
     (ha : ‖a‖ = 1) (hb : ‖b‖ = 1) (hT₀ : 0 < T) (hT₁ : T < 1)
     (hd₀ : inverseSqrt q ≤ ‖d‖) (hd₁ : ‖d‖ ≤ 1) :
@@ -25,6 +28,9 @@ theorem summable_norm_lattice_damped (q T : ℝ) (a b d : ℂ) (hq : 2 < q)
   have ht := inverseSqrt_pos (show 1 < q by linarith)
   nlinarith
 
+/--
+@isnad1 id=summable.5h4v.s7.d3ca9abb6206 from=translated src=- shape=64429411 vocab=c7338269
+-/
 theorem summable_norm_lattice_undamped (q : ℝ) (a b d : ℂ) (hq : 2 < q)
     (ha : ‖a‖ = 1) (hb : ‖b‖ = 1)
     (hd₀ : inverseSqrt q < ‖d‖) (hd₁ : ‖d‖ ≤ 1) :
@@ -35,7 +41,9 @@ theorem summable_norm_lattice_undamped (q : ℝ) (a b d : ℂ) (hq : 2 < q)
   simpa only [one_mul] using hd₀
 
 /-- The principal core evaluation, with no prefactor. This is a theorem
-about the infinite lattice definition, not a definition by a rational value.-/
+about the infinite lattice definition, not a definition by a rational value.
+@isnad1 id=eq.9h4v.s7.c6e018e4b627 from=translated src=- shape=f24a9f78 vocab=0fac3753
+-/
 theorem latticeCore_eq_paperE (q : ℝ) (a b d : ℂ) (hq : 2 < q)
     (ha : ‖a‖ = 1) (hb : ‖b‖ = 1)
     (hd₀ : inverseSqrt q < ‖d‖) (hd₁ : ‖d‖ ≤ 1)
@@ -50,7 +58,9 @@ theorem latticeCore_eq_paperE (q : ℝ) (a b d : ℂ) (hq : 2 < q)
       ha hb hd₀ hd₁ ha₁ hb₁ hab hab₁)
 
 /-- Abel convergence is proved by domination of the actual master summand
-by its summable undamped norm, independently of finite rational continuity.-/
+by its summable undamped norm, independently of finite rational continuity.
+@isnad1 id=tendsto.5h4v.s7.3a498b9d940f from=translated src=- shape=41381233 vocab=2b9ebec6
+-/
 theorem tendsto_latticeCore_undamped (q : ℝ) (a b d : ℂ) (hq : 2 < q)
     (ha : ‖a‖ = 1) (hb : ‖b‖ = 1)
     (hd₀ : inverseSqrt q < ‖d‖) (hd₁ : ‖d‖ ≤ 1) :
@@ -74,6 +84,9 @@ theorem tendsto_latticeCore_undamped (q : ℝ) (a b d : ℂ) (hq : 2 < q)
       (summable_norm_central_master (q : ℂ) (inverseSqrt q : ℂ) d
         (weylU a b i) (weylV a b i) 1 ht hd hq0 hq1 hq2 hqt h r)
 
+/--
+@isnad1 id=tendsto.9h4v.s7.c7fdec6da14d from=translated src=- shape=e0bf48bb vocab=67991153
+-/
 theorem tendsto_latticeCore_paperE (q : ℝ) (a b d : ℂ) (hq : 2 < q)
     (ha : ‖a‖ = 1) (hb : ‖b‖ = 1)
     (hd₀ : inverseSqrt q < ‖d‖) (hd₁ : ‖d‖ ≤ 1)
@@ -84,7 +97,9 @@ theorem tendsto_latticeCore_paperE (q : ℝ) (a b d : ℂ) (hq : 2 < q)
   exact tendsto_latticeCore_undamped q a b d hq ha hb hd₀ hd₁
 
 /-- Corrected principal comparison at the series scope. The required
-factor 2/(q+1) multiplies both the Abel limit and E_q.-/
+factor 2/(q+1) multiplies both the Abel limit and E_q.
+@isnad1 id=and.9h4v.s8.b6c435c22eec from=translated src=- shape=59fa270c vocab=b11a8c0f
+-/
 theorem corrected_principal_lattice_comparison (q : ℝ) (a b d : ℂ) (hq : 2 < q)
     (ha : ‖a‖ = 1) (hb : ‖b‖ = 1)
     (hd₀ : inverseSqrt q < ‖d‖) (hd₁ : ‖d‖ ≤ 1)
@@ -97,6 +112,9 @@ theorem corrected_principal_lattice_comparison (q : ℝ) (a b d : ℂ) (hq : 2 <
     (latticeCore_eq_paperE q a b d hq ha hb hd₀ hd₁ ha₁ hb₁ hab hab₁),
     (tendsto_latticeCore_paperE q a b d hq ha hb hd₀ hd₁ ha₁ hb₁ hab hab₁).const_mul _⟩
 
+/--
+@isnad1 id=tendsto.9h3v.s8.e898f8ca3e6e from=translated src=- shape=d758a482 vocab=a86438e8
+-/
 theorem tendsto_lattice_special_negative (q : ℝ) (a b : ℂ) (hq : 2 < q)
     (ha : ‖a‖ = 1) (hb : ‖b‖ = 1)
     (ha₁ : a ≠ 1) (hb₁ : b ≠ 1) (hab : a ≠ b) (hab₁ : a * b ≠ 1)
@@ -118,7 +136,9 @@ theorem tendsto_lattice_special_negative (q : ℝ) (a b : ℂ) (hq : 2 < q)
     (by rw [hn]; nlinarith [hT.2])]
 
 /-- At epsilon=1 the signed product is identically zero. This proof makes
-no claim that the undamped endpoint core exists.-/
+no claim that the undamped endpoint core exists.
+@isnad1 id=tendsto.0h3v.s6.3b65dfcf2807 from=translated src=- shape=271d32ef vocab=9cacd83a
+-/
 theorem tendsto_lattice_special_positive (q : ℝ) (a b : ℂ) :
     Tendsto (fun T => ((1 - (1 : ℂ)) / ((q : ℂ) + 1)) *
       latticeCore q a b (inverseSqrt q : ℂ) T)
@@ -126,7 +146,9 @@ theorem tendsto_lattice_special_positive (q : ℝ) (a b : ℂ) :
   tendsto_positive_zero_product q (latticeCore q a b (inverseSqrt q : ℂ))
 
 /-- Corrected special comparison for the whole product, on the literal
-endpoint quotient's regular locus. There is no extra normalization factor.-/
+endpoint quotient's regular locus. There is no extra normalization factor.
+@isnad1 id=tendsto.10h4v.s8.85e788089328 from=translated src=- shape=fb910535 vocab=a86438e8
+-/
 theorem corrected_special_lattice_comparison (q : ℝ) (a b ε : ℂ) (hq : 2 < q)
     (hε : ε = 1 ∨ ε = -1) (ha : ‖a‖ = 1) (hb : ‖b‖ = 1)
     (ha₁ : a ≠ 1) (hb₁ : b ≠ 1) (hab : a ≠ b) (hab₁ : a * b ≠ 1)
@@ -143,7 +165,9 @@ theorem corrected_special_lattice_comparison (q : ℝ) (a b ε : ℂ) (hq : 2 < 
       tendsto_lattice_special_negative q a b hq ha hb ha₁ hb₁ hab hab₁ haε hbε
 
 /-- Complete undamped infinite-series evaluation and its Abel convergence,
-including norm summability and validity of the literal closed quotient.-/
+including norm summability and validity of the literal closed quotient.
+@isnad1 id=and.9h4v.s8.5363056c867e from=translated src=- shape=a92306fc vocab=ffc2fd57
+-/
 theorem infinite_lattice_core_evaluation (q : ℝ) (a b d : ℂ) (hq : 2 < q)
     (ha : ‖a‖ = 1) (hb : ‖b‖ = 1)
     (hd₀ : inverseSqrt q < ‖d‖) (hd₁ : ‖d‖ ≤ 1)
@@ -163,7 +187,9 @@ theorem infinite_lattice_core_evaluation (q : ℝ) (a b d : ℂ) (hq : 2 < q)
 
 /-- The special Abel theorem packages convergence of every damped family,
 the literal quotient's nonzero denominator, and the whole signed limit.
-It contains no assertion about an ordinary undamped endpoint family.-/
+It contains no assertion about an ordinary undamped endpoint family.
+@isnad1 id=and.10h4v.s9.ee0abf6e14f5 from=translated src=- shape=559d2d3c vocab=62c95434
+-/
 theorem infinite_lattice_special_abel (q : ℝ) (a b ε : ℂ) (hq : 2 < q)
     (hε : ε = 1 ∨ ε = -1) (ha : ‖a‖ = 1) (hb : ‖b‖ = 1)
     (ha₁ : a ≠ 1) (hb₁ : b ≠ 1) (hab : a ≠ b) (hab₁ : a * b ≠ 1)

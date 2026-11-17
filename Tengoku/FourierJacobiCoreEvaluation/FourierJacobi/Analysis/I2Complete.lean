@@ -68,181 +68,409 @@ def i2RegionTerm (ν : Fin 25) (t d U V : ℂ) : ℂ :=
   | 23 => Algebra.regionTerm48 t d U V P N E F G
   | _ => Algebra.regionTerm49 t d U V P N E F G
 
+/--
+@isnad1 id=eq.0h0v.s4.089e65b79836 from=translated src=- shape=3ffd5d8e vocab=063780f5
+-/
 @[simp] theorem i2DepthAt_row0 : i2DepthAt 0 = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.700e127ee68a from=translated src=- shape=906f1a61 vocab=1071e2cd
+-/
 @[simp] theorem i2DepthMass_row0 (q : ℂ) : i2DepthMass q 0 = 1 := rfl
+/--
+@isnad1 id=eq.0h4v.s7.01170ec54fe2 from=translated src=- shape=b028fd36 vocab=be110b0e
+-/
 @[simp] theorem i2RegionTerm_row0 (t d U V : ℂ) :
     i2RegionTerm 0 t d U V = Algebra.regionTerm25 t d U V
       (1 - d * V * t) (1 - V * t / d) (1 - V ^ 2 * t ^ 2)
       (1 - U * t ^ 2) (1 - U * t ^ 4) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.876ae4de2e1c from=translated src=- shape=3ffd5d8e vocab=063780f5
+-/
 @[simp] theorem i2DepthAt_row1 : i2DepthAt 1 = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.7f978c91a9c6 from=translated src=- shape=906f1a61 vocab=1071e2cd
+-/
 @[simp] theorem i2DepthMass_row1 (q : ℂ) : i2DepthMass q 1 = 1 := rfl
+/--
+@isnad1 id=eq.0h4v.s7.e20be5655e28 from=translated src=- shape=b028fd36 vocab=8c75e81b
+-/
 @[simp] theorem i2RegionTerm_row1 (t d U V : ℂ) :
     i2RegionTerm 1 t d U V = Algebra.regionTerm26 t d U V
       (1 - d * V * t) (1 - V * t / d) (1 - V ^ 2 * t ^ 2)
       (1 - U * t ^ 2) (1 - U * t ^ 4) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.89a089fd7ea2 from=translated src=- shape=3ffd5d8e vocab=063780f5
+-/
 @[simp] theorem i2DepthAt_row2 : i2DepthAt 2 = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.f9e05475b1a8 from=translated src=- shape=906f1a61 vocab=1071e2cd
+-/
 @[simp] theorem i2DepthMass_row2 (q : ℂ) : i2DepthMass q 2 = 1 := rfl
+/--
+@isnad1 id=eq.0h4v.s7.b2b5d64117ff from=translated src=- shape=b028fd36 vocab=eeb42ede
+-/
 @[simp] theorem i2RegionTerm_row2 (t d U V : ℂ) :
     i2RegionTerm 2 t d U V = Algebra.regionTerm27 t d U V
       (1 - d * V * t) (1 - V * t / d) (1 - V ^ 2 * t ^ 2)
       (1 - U * t ^ 2) (1 - U * t ^ 4) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.12387d0476f2 from=translated src=- shape=3ffd5d8e vocab=063780f5
+-/
 @[simp] theorem i2DepthAt_row3 : i2DepthAt 3 = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.2b4f58adc12d from=translated src=- shape=906f1a61 vocab=1071e2cd
+-/
 @[simp] theorem i2DepthMass_row3 (q : ℂ) : i2DepthMass q 3 = 1 := rfl
+/--
+@isnad1 id=eq.0h4v.s7.8a1b7f7187fa from=translated src=- shape=b028fd36 vocab=fbb2fdc9
+-/
 @[simp] theorem i2RegionTerm_row3 (t d U V : ℂ) :
     i2RegionTerm 3 t d U V = Algebra.regionTerm28 t d U V
       (1 - d * V * t) (1 - V * t / d) (1 - V ^ 2 * t ^ 2)
       (1 - U * t ^ 2) (1 - U * t ^ 4) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.f06fa1caba2d from=translated src=- shape=3ffd5d8e vocab=063780f5
+-/
 @[simp] theorem i2DepthAt_row4 : i2DepthAt 4 = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s5.1bab97ba6d0b from=translated src=- shape=23815885 vocab=581e2e53
+-/
 @[simp] theorem i2DepthMass_row4 (q : ℂ) : i2DepthMass q 4 = (q - 2) / (q - 1) := rfl
+/--
+@isnad1 id=eq.0h4v.s7.c615bb1245a1 from=translated src=- shape=b028fd36 vocab=e2dec640
+-/
 @[simp] theorem i2RegionTerm_row4 (t d U V : ℂ) :
     i2RegionTerm 4 t d U V = Algebra.regionTerm29 t d U V
       (1 - d * V * t) (1 - V * t / d) (1 - V ^ 2 * t ^ 2)
       (1 - U * t ^ 2) (1 - U * t ^ 4) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.abc28fcf5568 from=translated src=- shape=3ffd5d8e vocab=063780f5
+-/
 @[simp] theorem i2DepthAt_row5 : i2DepthAt 5 = 1 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.bdef885328d8 from=translated src=- shape=4ab22c5e vocab=d300b0ef
+-/
 @[simp] theorem i2DepthMass_row5 (q : ℂ) : i2DepthMass q 5 = q⁻¹ := rfl
+/--
+@isnad1 id=eq.0h4v.s7.4297c0185196 from=translated src=- shape=b028fd36 vocab=e699e3b8
+-/
 @[simp] theorem i2RegionTerm_row5 (t d U V : ℂ) :
     i2RegionTerm 5 t d U V = Algebra.regionTerm30 t d U V
       (1 - d * V * t) (1 - V * t / d) (1 - V ^ 2 * t ^ 2)
       (1 - U * t ^ 2) (1 - U * t ^ 4) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.755220aebda7 from=translated src=- shape=3ffd5d8e vocab=063780f5
+-/
 @[simp] theorem i2DepthAt_row6 : i2DepthAt 6 = 2 := rfl
+/--
+@isnad1 id=eq.0h1v.s6.cb1e426171b4 from=translated src=- shape=3a6a341b vocab=99ab8c62
+-/
 @[simp] theorem i2DepthMass_row6 (q : ℂ) : i2DepthMass q 6 = q⁻¹ ^ 2 / (1 - q⁻¹) := rfl
+/--
+@isnad1 id=eq.0h4v.s7.587b5b040a28 from=translated src=- shape=b028fd36 vocab=a6653f64
+-/
 @[simp] theorem i2RegionTerm_row6 (t d U V : ℂ) :
     i2RegionTerm 6 t d U V = Algebra.regionTerm31 t d U V
       (1 - d * V * t) (1 - V * t / d) (1 - V ^ 2 * t ^ 2)
       (1 - U * t ^ 2) (1 - U * t ^ 4) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.3c7253a5a0fe from=translated src=- shape=3ffd5d8e vocab=063780f5
+-/
 @[simp] theorem i2DepthAt_row7 : i2DepthAt 7 = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.c60afbfec4dd from=translated src=- shape=906f1a61 vocab=1071e2cd
+-/
 @[simp] theorem i2DepthMass_row7 (q : ℂ) : i2DepthMass q 7 = 1 := rfl
+/--
+@isnad1 id=eq.0h4v.s7.5b5cd9d1cb3c from=translated src=- shape=b028fd36 vocab=7739cd17
+-/
 @[simp] theorem i2RegionTerm_row7 (t d U V : ℂ) :
     i2RegionTerm 7 t d U V = Algebra.regionTerm32 t d U V
       (1 - d * V * t) (1 - V * t / d) (1 - V ^ 2 * t ^ 2)
       (1 - U * t ^ 2) (1 - U * t ^ 4) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.6a876ed12bb7 from=translated src=- shape=3ffd5d8e vocab=063780f5
+-/
 @[simp] theorem i2DepthAt_row8 : i2DepthAt 8 = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.31cf0292a140 from=translated src=- shape=906f1a61 vocab=1071e2cd
+-/
 @[simp] theorem i2DepthMass_row8 (q : ℂ) : i2DepthMass q 8 = 1 := rfl
+/--
+@isnad1 id=eq.0h4v.s7.20dc3a1326a8 from=translated src=- shape=b028fd36 vocab=531cd147
+-/
 @[simp] theorem i2RegionTerm_row8 (t d U V : ℂ) :
     i2RegionTerm 8 t d U V = Algebra.regionTerm33 t d U V
       (1 - d * V * t) (1 - V * t / d) (1 - V ^ 2 * t ^ 2)
       (1 - U * t ^ 2) (1 - U * t ^ 4) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.dd3bbfa0c9a3 from=translated src=- shape=3ffd5d8e vocab=063780f5
+-/
 @[simp] theorem i2DepthAt_row9 : i2DepthAt 9 = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.c7884892f53b from=translated src=- shape=906f1a61 vocab=1071e2cd
+-/
 @[simp] theorem i2DepthMass_row9 (q : ℂ) : i2DepthMass q 9 = 1 := rfl
+/--
+@isnad1 id=eq.0h4v.s7.e9df8049cd3c from=translated src=- shape=b028fd36 vocab=42090221
+-/
 @[simp] theorem i2RegionTerm_row9 (t d U V : ℂ) :
     i2RegionTerm 9 t d U V = Algebra.regionTerm34 t d U V
       (1 - d * V * t) (1 - V * t / d) (1 - V ^ 2 * t ^ 2)
       (1 - U * t ^ 2) (1 - U * t ^ 4) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.1edf51b4e0ab from=translated src=- shape=3ffd5d8e vocab=063780f5
+-/
 @[simp] theorem i2DepthAt_row10 : i2DepthAt 10 = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.395d0e4e3cb0 from=translated src=- shape=906f1a61 vocab=1071e2cd
+-/
 @[simp] theorem i2DepthMass_row10 (q : ℂ) : i2DepthMass q 10 = 1 := rfl
+/--
+@isnad1 id=eq.0h4v.s7.fc2798092561 from=translated src=- shape=b028fd36 vocab=be9bac6b
+-/
 @[simp] theorem i2RegionTerm_row10 (t d U V : ℂ) :
     i2RegionTerm 10 t d U V = Algebra.regionTerm35 t d U V
       (1 - d * V * t) (1 - V * t / d) (1 - V ^ 2 * t ^ 2)
       (1 - U * t ^ 2) (1 - U * t ^ 4) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.f8df7ee99f75 from=translated src=- shape=3ffd5d8e vocab=063780f5
+-/
 @[simp] theorem i2DepthAt_row11 : i2DepthAt 11 = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.d28541455780 from=translated src=- shape=906f1a61 vocab=1071e2cd
+-/
 @[simp] theorem i2DepthMass_row11 (q : ℂ) : i2DepthMass q 11 = 1 := rfl
+/--
+@isnad1 id=eq.0h4v.s7.29352a4a03d7 from=translated src=- shape=b028fd36 vocab=de065fc3
+-/
 @[simp] theorem i2RegionTerm_row11 (t d U V : ℂ) :
     i2RegionTerm 11 t d U V = Algebra.regionTerm36 t d U V
       (1 - d * V * t) (1 - V * t / d) (1 - V ^ 2 * t ^ 2)
       (1 - U * t ^ 2) (1 - U * t ^ 4) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.c7f2ba4d2730 from=translated src=- shape=3ffd5d8e vocab=063780f5
+-/
 @[simp] theorem i2DepthAt_row12 : i2DepthAt 12 = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.ba5fae752d7e from=translated src=- shape=906f1a61 vocab=1071e2cd
+-/
 @[simp] theorem i2DepthMass_row12 (q : ℂ) : i2DepthMass q 12 = 1 := rfl
+/--
+@isnad1 id=eq.0h4v.s7.419e32d29ba1 from=translated src=- shape=b028fd36 vocab=fc2658dd
+-/
 @[simp] theorem i2RegionTerm_row12 (t d U V : ℂ) :
     i2RegionTerm 12 t d U V = Algebra.regionTerm37 t d U V
       (1 - d * V * t) (1 - V * t / d) (1 - V ^ 2 * t ^ 2)
       (1 - U * t ^ 2) (1 - U * t ^ 4) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.23dd387a56c0 from=translated src=- shape=3ffd5d8e vocab=063780f5
+-/
 @[simp] theorem i2DepthAt_row13 : i2DepthAt 13 = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.5e33b7e78a66 from=translated src=- shape=906f1a61 vocab=1071e2cd
+-/
 @[simp] theorem i2DepthMass_row13 (q : ℂ) : i2DepthMass q 13 = 1 := rfl
+/--
+@isnad1 id=eq.0h4v.s7.1ffbfda50938 from=translated src=- shape=b028fd36 vocab=a65dd581
+-/
 @[simp] theorem i2RegionTerm_row13 (t d U V : ℂ) :
     i2RegionTerm 13 t d U V = Algebra.regionTerm38 t d U V
       (1 - d * V * t) (1 - V * t / d) (1 - V ^ 2 * t ^ 2)
       (1 - U * t ^ 2) (1 - U * t ^ 4) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.2b54939244e2 from=translated src=- shape=3ffd5d8e vocab=063780f5
+-/
 @[simp] theorem i2DepthAt_row14 : i2DepthAt 14 = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.235a36764b1a from=translated src=- shape=906f1a61 vocab=1071e2cd
+-/
 @[simp] theorem i2DepthMass_row14 (q : ℂ) : i2DepthMass q 14 = 1 := rfl
+/--
+@isnad1 id=eq.0h4v.s7.4d5bc741c313 from=translated src=- shape=b028fd36 vocab=35282664
+-/
 @[simp] theorem i2RegionTerm_row14 (t d U V : ℂ) :
     i2RegionTerm 14 t d U V = Algebra.regionTerm39 t d U V
       (1 - d * V * t) (1 - V * t / d) (1 - V ^ 2 * t ^ 2)
       (1 - U * t ^ 2) (1 - U * t ^ 4) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.58f61be61070 from=translated src=- shape=3ffd5d8e vocab=063780f5
+-/
 @[simp] theorem i2DepthAt_row15 : i2DepthAt 15 = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.4ecef1a5fd6b from=translated src=- shape=906f1a61 vocab=1071e2cd
+-/
 @[simp] theorem i2DepthMass_row15 (q : ℂ) : i2DepthMass q 15 = 1 := rfl
+/--
+@isnad1 id=eq.0h4v.s7.73196d48a421 from=translated src=- shape=b028fd36 vocab=786d7d90
+-/
 @[simp] theorem i2RegionTerm_row15 (t d U V : ℂ) :
     i2RegionTerm 15 t d U V = Algebra.regionTerm40 t d U V
       (1 - d * V * t) (1 - V * t / d) (1 - V ^ 2 * t ^ 2)
       (1 - U * t ^ 2) (1 - U * t ^ 4) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.abed4a97e129 from=translated src=- shape=3ffd5d8e vocab=063780f5
+-/
 @[simp] theorem i2DepthAt_row16 : i2DepthAt 16 = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.4c4575e0077c from=translated src=- shape=906f1a61 vocab=1071e2cd
+-/
 @[simp] theorem i2DepthMass_row16 (q : ℂ) : i2DepthMass q 16 = 1 := rfl
+/--
+@isnad1 id=eq.0h4v.s7.9fa9e2b8c3bb from=translated src=- shape=b028fd36 vocab=5790bd9b
+-/
 @[simp] theorem i2RegionTerm_row16 (t d U V : ℂ) :
     i2RegionTerm 16 t d U V = Algebra.regionTerm41 t d U V
       (1 - d * V * t) (1 - V * t / d) (1 - V ^ 2 * t ^ 2)
       (1 - U * t ^ 2) (1 - U * t ^ 4) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.0e0c49579d85 from=translated src=- shape=3ffd5d8e vocab=063780f5
+-/
 @[simp] theorem i2DepthAt_row17 : i2DepthAt 17 = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.993bfe7f7fbc from=translated src=- shape=906f1a61 vocab=1071e2cd
+-/
 @[simp] theorem i2DepthMass_row17 (q : ℂ) : i2DepthMass q 17 = 1 := rfl
+/--
+@isnad1 id=eq.0h4v.s7.b3be3225bd86 from=translated src=- shape=b028fd36 vocab=0ac3f46e
+-/
 @[simp] theorem i2RegionTerm_row17 (t d U V : ℂ) :
     i2RegionTerm 17 t d U V = Algebra.regionTerm42 t d U V
       (1 - d * V * t) (1 - V * t / d) (1 - V ^ 2 * t ^ 2)
       (1 - U * t ^ 2) (1 - U * t ^ 4) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.83a8ebda007e from=translated src=- shape=3ffd5d8e vocab=063780f5
+-/
 @[simp] theorem i2DepthAt_row18 : i2DepthAt 18 = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.3b2e639770c1 from=translated src=- shape=906f1a61 vocab=1071e2cd
+-/
 @[simp] theorem i2DepthMass_row18 (q : ℂ) : i2DepthMass q 18 = 1 := rfl
+/--
+@isnad1 id=eq.0h4v.s7.0bc9ea44a675 from=translated src=- shape=b028fd36 vocab=50f89acf
+-/
 @[simp] theorem i2RegionTerm_row18 (t d U V : ℂ) :
     i2RegionTerm 18 t d U V = Algebra.regionTerm43 t d U V
       (1 - d * V * t) (1 - V * t / d) (1 - V ^ 2 * t ^ 2)
       (1 - U * t ^ 2) (1 - U * t ^ 4) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.85852ec76c52 from=translated src=- shape=3ffd5d8e vocab=063780f5
+-/
 @[simp] theorem i2DepthAt_row19 : i2DepthAt 19 = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.d430d6261ebd from=translated src=- shape=906f1a61 vocab=1071e2cd
+-/
 @[simp] theorem i2DepthMass_row19 (q : ℂ) : i2DepthMass q 19 = 1 := rfl
+/--
+@isnad1 id=eq.0h4v.s7.4fe5aaf95497 from=translated src=- shape=b028fd36 vocab=c34fcd78
+-/
 @[simp] theorem i2RegionTerm_row19 (t d U V : ℂ) :
     i2RegionTerm 19 t d U V = Algebra.regionTerm44 t d U V
       (1 - d * V * t) (1 - V * t / d) (1 - V ^ 2 * t ^ 2)
       (1 - U * t ^ 2) (1 - U * t ^ 4) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.acb31434b8fa from=translated src=- shape=3ffd5d8e vocab=063780f5
+-/
 @[simp] theorem i2DepthAt_row20 : i2DepthAt 20 = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s5.0616465e1ac6 from=translated src=- shape=23815885 vocab=581e2e53
+-/
 @[simp] theorem i2DepthMass_row20 (q : ℂ) : i2DepthMass q 20 = (q - 2) / (q - 1) := rfl
+/--
+@isnad1 id=eq.0h4v.s7.08e30bc20fab from=translated src=- shape=b028fd36 vocab=4399b419
+-/
 @[simp] theorem i2RegionTerm_row20 (t d U V : ℂ) :
     i2RegionTerm 20 t d U V = Algebra.regionTerm45 t d U V
       (1 - d * V * t) (1 - V * t / d) (1 - V ^ 2 * t ^ 2)
       (1 - U * t ^ 2) (1 - U * t ^ 4) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.6a84611da824 from=translated src=- shape=3ffd5d8e vocab=063780f5
+-/
 @[simp] theorem i2DepthAt_row21 : i2DepthAt 21 = 1 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.410de1f8e890 from=translated src=- shape=4ab22c5e vocab=d300b0ef
+-/
 @[simp] theorem i2DepthMass_row21 (q : ℂ) : i2DepthMass q 21 = q⁻¹ := rfl
+/--
+@isnad1 id=eq.0h4v.s7.c7a5c62bd711 from=translated src=- shape=b028fd36 vocab=745d134e
+-/
 @[simp] theorem i2RegionTerm_row21 (t d U V : ℂ) :
     i2RegionTerm 21 t d U V = Algebra.regionTerm46 t d U V
       (1 - d * V * t) (1 - V * t / d) (1 - V ^ 2 * t ^ 2)
       (1 - U * t ^ 2) (1 - U * t ^ 4) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.352dcc467a59 from=translated src=- shape=3ffd5d8e vocab=063780f5
+-/
 @[simp] theorem i2DepthAt_row22 : i2DepthAt 22 = 2 := rfl
+/--
+@isnad1 id=eq.0h1v.s6.38c562aefbf4 from=translated src=- shape=3a6a341b vocab=99ab8c62
+-/
 @[simp] theorem i2DepthMass_row22 (q : ℂ) : i2DepthMass q 22 = q⁻¹ ^ 2 / (1 - q⁻¹) := rfl
+/--
+@isnad1 id=eq.0h4v.s7.d3085eae50cc from=translated src=- shape=b028fd36 vocab=e6a3adc6
+-/
 @[simp] theorem i2RegionTerm_row22 (t d U V : ℂ) :
     i2RegionTerm 22 t d U V = Algebra.regionTerm47 t d U V
       (1 - d * V * t) (1 - V * t / d) (1 - V ^ 2 * t ^ 2)
       (1 - U * t ^ 2) (1 - U * t ^ 4) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.86301e998cec from=translated src=- shape=3ffd5d8e vocab=063780f5
+-/
 @[simp] theorem i2DepthAt_row23 : i2DepthAt 23 = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.4d41f25963b3 from=translated src=- shape=906f1a61 vocab=1071e2cd
+-/
 @[simp] theorem i2DepthMass_row23 (q : ℂ) : i2DepthMass q 23 = 1 := rfl
+/--
+@isnad1 id=eq.0h4v.s7.374d1c39888f from=translated src=- shape=b028fd36 vocab=55dd9de3
+-/
 @[simp] theorem i2RegionTerm_row23 (t d U V : ℂ) :
     i2RegionTerm 23 t d U V = Algebra.regionTerm48 t d U V
       (1 - d * V * t) (1 - V * t / d) (1 - V ^ 2 * t ^ 2)
       (1 - U * t ^ 2) (1 - U * t ^ 4) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.34ea188b2758 from=translated src=- shape=3ffd5d8e vocab=063780f5
+-/
 @[simp] theorem i2DepthAt_row24 : i2DepthAt 24 = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.c4e8bd1eb038 from=translated src=- shape=906f1a61 vocab=1071e2cd
+-/
 @[simp] theorem i2DepthMass_row24 (q : ℂ) : i2DepthMass q 24 = 1 := rfl
+/--
+@isnad1 id=eq.0h4v.s7.0c8033e4c53d from=translated src=- shape=b028fd36 vocab=e707dc10
+-/
 @[simp] theorem i2RegionTerm_row24 (t d U V : ℂ) :
     i2RegionTerm 24 t d U V = Algebra.regionTerm49 t d U V
       (1 - d * V * t) (1 - V * t / d) (1 - V ^ 2 * t ^ 2)
       (1 - U * t ^ 2) (1 - U * t ^ 4) := rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.d7b69ba5a53c from=translated src=- shape=e9cbb065 vocab=2cc4118d
+-/
 theorem i2_case1a_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ × ℕ) :
     i2SpatialTerm q t d U V T 0 (i2Case1aEquiv n).val =
       (-q * (1 - t ^ 2) ^ 2 * (d ^ 2) * t ^ 6 * (T * U) ^ 2 * (T * V) ^ 0 * i2DepthMass q 0) * (d * T * V * t) ^ n.1 * (t ^ 2) ^ n.2.1 * (t ^ 2) ^ n.2.2 := by
@@ -262,6 +490,9 @@ theorem i2_case1a_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ × ℕ) :
   simp only [zpow_neg, zpow_natCast, pow_add, pow_mul, mul_pow, pow_zero, pow_one, inv_pow, div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=summable.2h6v.s7.fefb289aebb5 from=translated src=- shape=8089162b vocab=241e8813
+-/
 theorem summable_norm_i2_case1a (q t d U V T : ℂ)
     (hQ : ‖t ^ 2‖ < 1)
     (hP : ‖d * T * V * t‖ < 1) :
@@ -270,6 +501,9 @@ theorem summable_norm_i2_case1a (q t d U V T : ℂ)
   convert summable_norm_three_geometric (-q * (1 - t ^ 2) ^ 2 * (d ^ 2) * t ^ 6 * (T * U) ^ 2 * (T * V) ^ 0 * i2DepthMass q 0) (d * T * V * t) (t ^ 2) (t ^ 2) hP hQ hQ using 1
   exact funext fun n => congrArg norm (i2_case1a_reindexed q t d U V T n)
 
+/--
+@isnad1 id=hassum.4h6v.s8.e77de9acc29b from=translated src=- shape=af14171f vocab=20562a57
+-/
 theorem hasSum_i2_case1a_regionTerm (q t d U V T : ℂ)
     (hq : q * t ^ 2 = 1) (hd : d ≠ 0)
     (hQ : ‖t ^ 2‖ < 1)
@@ -295,6 +529,9 @@ theorem hasSum_i2_case1a_regionTerm (q t d U V T : ℂ)
     field_simp
     <;> ring
 
+/--
+@isnad1 id=eq.0h7v.s8.216dc0ac34a1 from=translated src=- shape=eb3baaf5 vocab=c4a76370
+-/
 theorem i2_case1b_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ) :
     i2SpatialTerm q t d U V T 1 (i2Case1bEquiv n).val =
       (-q * (1 - t ^ 2) ^ 2 * (d ^ 1) * t ^ 7 * (T * U) ^ 1 * (T * V) ^ 1 * i2DepthMass q 1) * (t ^ 2) ^ n.1 * (t ^ 2) ^ n.2 := by
@@ -314,6 +551,9 @@ theorem i2_case1b_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ) :
   simp only [zpow_neg, zpow_natCast, pow_add, pow_mul, mul_pow, pow_zero, pow_one, inv_pow, div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=summable.1h6v.s7.30f7c24405a7 from=translated src=- shape=a8ddcb8e vocab=718f0eeb
+-/
 theorem summable_norm_i2_case1b (q t d U V T : ℂ)
     (hQ : ‖t ^ 2‖ < 1) :
     Summable (fun p : I2SpatialRow 1 => ‖i2SpatialTerm q t d U V T 1 p.val‖) := by
@@ -321,6 +561,9 @@ theorem summable_norm_i2_case1b (q t d U V T : ℂ)
   convert i2_summable_norm_two_geometric (-q * (1 - t ^ 2) ^ 2 * (d ^ 1) * t ^ 7 * (T * U) ^ 1 * (T * V) ^ 1 * i2DepthMass q 1) (t ^ 2) (t ^ 2) hQ hQ using 1
   exact funext fun n => congrArg norm (i2_case1b_reindexed q t d U V T n)
 
+/--
+@isnad1 id=hassum.3h6v.s7.15c5f200a26a from=translated src=- shape=c04012c7 vocab=20562a57
+-/
 theorem hasSum_i2_case1b_regionTerm (q t d U V T : ℂ)
     (hq : q * t ^ 2 = 1) (hd : d ≠ 0)
     (hQ : ‖t ^ 2‖ < 1)
@@ -344,6 +587,9 @@ theorem hasSum_i2_case1b_regionTerm (q t d U V T : ℂ)
     field_simp
     <;> ring
 
+/--
+@isnad1 id=eq.0h7v.s9.668c2491681c from=translated src=- shape=0b38d9f5 vocab=51ad2db5
+-/
 theorem i2_case2_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ × ℕ) :
     i2SpatialTerm q t d U V T 2 (i2Case2Equiv n).val =
       (-q * (1 - t ^ 2) ^ 2 * (d ^ 1) * t ^ 5 * (T * U) ^ 1 * (T * V) ^ 1 * i2DepthMass q 2) * (d * T * V * t) ^ n.1 * (t ^ 2) ^ n.2.1 * (T * U * t ^ 4) ^ n.2.2 := by
@@ -363,6 +609,9 @@ theorem i2_case2_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ × ℕ) :
   simp only [zpow_neg, zpow_natCast, pow_add, pow_mul, mul_pow, pow_zero, pow_one, inv_pow, div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=summable.3h6v.s7.7620c2189eb8 from=translated src=- shape=a21b5390 vocab=241e8813
+-/
 theorem summable_norm_i2_case2 (q t d U V T : ℂ)
     (hQ : ‖t ^ 2‖ < 1)
     (hP : ‖d * T * V * t‖ < 1)
@@ -372,6 +621,9 @@ theorem summable_norm_i2_case2 (q t d U V T : ℂ)
   convert summable_norm_three_geometric (-q * (1 - t ^ 2) ^ 2 * (d ^ 1) * t ^ 5 * (T * U) ^ 1 * (T * V) ^ 1 * i2DepthMass q 2) (d * T * V * t) (t ^ 2) (T * U * t ^ 4) hP hQ hG using 1
   exact funext fun n => congrArg norm (i2_case2_reindexed q t d U V T n)
 
+/--
+@isnad1 id=hassum.5h6v.s8.fecea4f42c66 from=translated src=- shape=2b62eb15 vocab=20562a57
+-/
 theorem hasSum_i2_case2_regionTerm (q t d U V T : ℂ)
     (hq : q * t ^ 2 = 1) (hd : d ≠ 0)
     (hQ : ‖t ^ 2‖ < 1)
@@ -399,6 +651,9 @@ theorem hasSum_i2_case2_regionTerm (q t d U V T : ℂ)
     field_simp
     <;> ring
 
+/--
+@isnad1 id=eq.0h7v.s9.5eff3aa98e19 from=translated src=- shape=444deb9e vocab=b305682a
+-/
 theorem i2_case3a_reindexed (q t d U V T : ℂ) (n : Fin 2 × ℕ × ℕ × ℕ) :
     i2SpatialTerm q t d U V T 3 (i2Case3aEquiv n).val =
       (-q * (1 - t ^ 2) ^ 2 * (d ^ 1) * t ^ 5 * (T * U) ^ 2 * (T * V) ^ 0 * i2DepthMass q 3) * (T * V * t ^ 2) ^ n.1.val * (d * T * V * t) ^ n.2.1 * ((T * V) ^ 2 * t ^ 2) ^ n.2.2.1 * (t ^ 2) ^ n.2.2.2 := by
@@ -418,6 +673,9 @@ theorem i2_case3a_reindexed (q t d U V T : ℂ) (n : Fin 2 × ℕ × ℕ × ℕ)
   simp only [zpow_neg, zpow_natCast, pow_add, pow_mul, mul_pow, pow_zero, pow_one, inv_pow, div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=summable.3h6v.s8.4aa7fa8dbd43 from=translated src=- shape=454af07c vocab=241e8813
+-/
 theorem summable_norm_i2_case3a (q t d U V T : ℂ)
     (hQ : ‖t ^ 2‖ < 1)
     (hP : ‖d * T * V * t‖ < 1)
@@ -427,6 +685,9 @@ theorem summable_norm_i2_case3a (q t d U V T : ℂ)
   convert i2_summable_norm_parity_geometric (-q * (1 - t ^ 2) ^ 2 * (d ^ 1) * t ^ 5 * (T * U) ^ 2 * (T * V) ^ 0 * i2DepthMass q 3) (T * V * t ^ 2) (d * T * V * t) ((T * V) ^ 2 * t ^ 2) (t ^ 2) hP hE hQ using 1
   exact funext fun n => congrArg norm (i2_case3a_reindexed q t d U V T n)
 
+/--
+@isnad1 id=hassum.5h6v.s8.93bf165eb88a from=translated src=- shape=c098b522 vocab=20562a57
+-/
 theorem hasSum_i2_case3a_regionTerm (q t d U V T : ℂ)
     (hq : q * t ^ 2 = 1) (hd : d ≠ 0)
     (hQ : ‖t ^ 2‖ < 1)
@@ -454,6 +715,9 @@ theorem hasSum_i2_case3a_regionTerm (q t d U V T : ℂ)
     field_simp
     <;> ring
 
+/--
+@isnad1 id=eq.0h7v.s9.4ecf76cea457 from=translated src=- shape=328bc7bf vocab=ceaab3c0
+-/
 theorem i2_case3b_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ) :
     i2SpatialTerm q t d U V T 4 (i2Case3bEquiv n).val =
       (-q * (1 - t ^ 2) ^ 2 * (d ^ 1) * t ^ 5 * (T * U) ^ 2 * (T * V) ^ 1 * i2DepthMass q 4) * (d * T * V * t) ^ n.1 * ((T * V) ^ 2 * t ^ 2) ^ n.2 := by
@@ -473,6 +737,9 @@ theorem i2_case3b_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ) :
   simp only [zpow_neg, zpow_natCast, pow_add, pow_mul, mul_pow, pow_zero, pow_one, inv_pow, div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=summable.2h6v.s7.5301e9ae8d14 from=translated src=- shape=cf36f98d vocab=241e8813
+-/
 theorem summable_norm_i2_case3b (q t d U V T : ℂ)
     (hP : ‖d * T * V * t‖ < 1)
     (hE : ‖(T * V) ^ 2 * t ^ 2‖ < 1) :
@@ -481,6 +748,9 @@ theorem summable_norm_i2_case3b (q t d U V T : ℂ)
   convert i2_summable_norm_two_geometric (-q * (1 - t ^ 2) ^ 2 * (d ^ 1) * t ^ 5 * (T * U) ^ 2 * (T * V) ^ 1 * i2DepthMass q 4) (d * T * V * t) ((T * V) ^ 2 * t ^ 2) hP hE using 1
   exact funext fun n => congrArg norm (i2_case3b_reindexed q t d U V T n)
 
+/--
+@isnad1 id=hassum.5h6v.s8.6b4c78da8179 from=translated src=- shape=c098b522 vocab=20562a57
+-/
 theorem hasSum_i2_case3b_regionTerm (q t d U V T : ℂ)
     (hq : q * t ^ 2 = 1) (hd : d ≠ 0)
     (hQ : ‖t ^ 2‖ < 1)
@@ -508,6 +778,9 @@ theorem hasSum_i2_case3b_regionTerm (q t d U V T : ℂ)
     field_simp
     <;> ring
 
+/--
+@isnad1 id=eq.0h7v.s9.1a4443341280 from=translated src=- shape=328bc7bf vocab=8100c567
+-/
 theorem i2_case3c_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ) :
     i2SpatialTerm q t d U V T 5 (i2Case3cEquiv n).val =
       (-q * (1 - t ^ 2) ^ 2 * (d ^ 1) * t ^ 3 * (T * U) ^ 1 * (T * V) ^ 2 * i2DepthMass q 5) * (d * T * V * t) ^ n.1 * ((T * V) ^ 2 * t ^ 2) ^ n.2 := by
@@ -527,6 +800,9 @@ theorem i2_case3c_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ) :
   simp only [zpow_neg, zpow_natCast, pow_add, pow_mul, mul_pow, pow_zero, pow_one, inv_pow, div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=summable.2h6v.s7.b55cabfe5712 from=translated src=- shape=cf36f98d vocab=241e8813
+-/
 theorem summable_norm_i2_case3c (q t d U V T : ℂ)
     (hP : ‖d * T * V * t‖ < 1)
     (hE : ‖(T * V) ^ 2 * t ^ 2‖ < 1) :
@@ -535,6 +811,9 @@ theorem summable_norm_i2_case3c (q t d U V T : ℂ)
   convert i2_summable_norm_two_geometric (-q * (1 - t ^ 2) ^ 2 * (d ^ 1) * t ^ 3 * (T * U) ^ 1 * (T * V) ^ 2 * i2DepthMass q 5) (d * T * V * t) ((T * V) ^ 2 * t ^ 2) hP hE using 1
   exact funext fun n => congrArg norm (i2_case3c_reindexed q t d U V T n)
 
+/--
+@isnad1 id=hassum.5h6v.s8.1c51a726b432 from=translated src=- shape=c098b522 vocab=20562a57
+-/
 theorem hasSum_i2_case3c_regionTerm (q t d U V T : ℂ)
     (hq : q * t ^ 2 = 1) (hd : d ≠ 0)
     (hQ : ‖t ^ 2‖ < 1)
@@ -562,6 +841,9 @@ theorem hasSum_i2_case3c_regionTerm (q t d U V T : ℂ)
     field_simp
     <;> ring
 
+/--
+@isnad1 id=eq.0h7v.s9.8c04cbdefaae from=translated src=- shape=328bc7bf vocab=91762191
+-/
 theorem i2_case3d_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ) :
     i2SpatialTerm q t d U V T 6 (i2Case3dEquiv n).val =
       (-q * (1 - t ^ 2) ^ 2 * (d ^ 1) * t ^ 1 * (T * U) ^ 0 * (T * V) ^ 3 * i2DepthMass q 6) * (d * T * V * t) ^ n.1 * ((T * V) ^ 2 * t ^ 2) ^ n.2 := by
@@ -581,6 +863,9 @@ theorem i2_case3d_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ) :
   simp only [zpow_neg, zpow_natCast, pow_add, pow_mul, mul_pow, pow_zero, pow_one, inv_pow, div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=summable.2h6v.s7.ba3acf2c93c8 from=translated src=- shape=cf36f98d vocab=241e8813
+-/
 theorem summable_norm_i2_case3d (q t d U V T : ℂ)
     (hP : ‖d * T * V * t‖ < 1)
     (hE : ‖(T * V) ^ 2 * t ^ 2‖ < 1) :
@@ -589,6 +874,9 @@ theorem summable_norm_i2_case3d (q t d U V T : ℂ)
   convert i2_summable_norm_two_geometric (-q * (1 - t ^ 2) ^ 2 * (d ^ 1) * t ^ 1 * (T * U) ^ 0 * (T * V) ^ 3 * i2DepthMass q 6) (d * T * V * t) ((T * V) ^ 2 * t ^ 2) hP hE using 1
   exact funext fun n => congrArg norm (i2_case3d_reindexed q t d U V T n)
 
+/--
+@isnad1 id=hassum.5h6v.s8.d0f1a423e9b2 from=translated src=- shape=c098b522 vocab=20562a57
+-/
 theorem hasSum_i2_case3d_regionTerm (q t d U V T : ℂ)
     (hq : q * t ^ 2 = 1) (hd : d ≠ 0)
     (hQ : ‖t ^ 2‖ < 1)
@@ -616,6 +904,9 @@ theorem hasSum_i2_case3d_regionTerm (q t d U V T : ℂ)
     field_simp
     <;> ring
 
+/--
+@isnad1 id=eq.0h7v.s9.1238edce7947 from=translated src=- shape=47ea8b53 vocab=3a502d54
+-/
 theorem i2_case4_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ × ℕ) :
     i2SpatialTerm q t d U V T 7 (i2Case4Equiv n).val =
       (-q * (1 - t ^ 2) ^ 2 * (d ^ 1) * t ^ 7 * (T * U) ^ 3 * (T * V) ^ 1 * i2DepthMass q 7) * (d * T * V * t) ^ n.1 * ((T * V) ^ 2 * t ^ 2) ^ n.2.1 * (T * U * t ^ 2) ^ n.2.2 := by
@@ -635,6 +926,9 @@ theorem i2_case4_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ × ℕ) :
   simp only [zpow_neg, zpow_natCast, pow_add, pow_mul, mul_pow, pow_zero, pow_one, inv_pow, div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=summable.3h6v.s8.91c8cd373e5f from=translated src=- shape=87913498 vocab=241e8813
+-/
 theorem summable_norm_i2_case4 (q t d U V T : ℂ)
     (hP : ‖d * T * V * t‖ < 1)
     (hE : ‖(T * V) ^ 2 * t ^ 2‖ < 1)
@@ -644,6 +938,9 @@ theorem summable_norm_i2_case4 (q t d U V T : ℂ)
   convert summable_norm_three_geometric (-q * (1 - t ^ 2) ^ 2 * (d ^ 1) * t ^ 7 * (T * U) ^ 3 * (T * V) ^ 1 * i2DepthMass q 7) (d * T * V * t) ((T * V) ^ 2 * t ^ 2) (T * U * t ^ 2) hP hE hF using 1
   exact funext fun n => congrArg norm (i2_case4_reindexed q t d U V T n)
 
+/--
+@isnad1 id=hassum.6h6v.s8.8210f4259785 from=translated src=- shape=d2e1d035 vocab=20562a57
+-/
 theorem hasSum_i2_case4_regionTerm (q t d U V T : ℂ)
     (hq : q * t ^ 2 = 1) (hd : d ≠ 0)
     (hQ : ‖t ^ 2‖ < 1)
@@ -673,6 +970,9 @@ theorem hasSum_i2_case4_regionTerm (q t d U V T : ℂ)
     field_simp
     <;> ring
 
+/--
+@isnad1 id=eq.0h7v.s9.39e4566e0626 from=translated src=- shape=1bb874d1 vocab=c1d24433
+-/
 theorem i2_case5_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ × ℕ) :
     i2SpatialTerm q t d U V T 8 (i2Case5Equiv n).val =
       (-q * (1 - t ^ 2) ^ 2 * (d ^ 1) * t ^ 7 * (T * U) ^ 2 * (T * V) ^ 1 * i2DepthMass q 8) * (d * T * V * t) ^ n.1 * (T * U * t ^ 2) ^ n.2.1 * (T * U * t ^ 4) ^ n.2.2 := by
@@ -692,6 +992,9 @@ theorem i2_case5_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ × ℕ) :
   simp only [zpow_neg, zpow_natCast, pow_add, pow_mul, mul_pow, pow_zero, pow_one, inv_pow, div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=summable.3h6v.s8.d9b97163b8fa from=translated src=- shape=3cb6d624 vocab=241e8813
+-/
 theorem summable_norm_i2_case5 (q t d U V T : ℂ)
     (hP : ‖d * T * V * t‖ < 1)
     (hF : ‖T * U * t ^ 2‖ < 1)
@@ -701,6 +1004,9 @@ theorem summable_norm_i2_case5 (q t d U V T : ℂ)
   convert summable_norm_three_geometric (-q * (1 - t ^ 2) ^ 2 * (d ^ 1) * t ^ 7 * (T * U) ^ 2 * (T * V) ^ 1 * i2DepthMass q 8) (d * T * V * t) (T * U * t ^ 2) (T * U * t ^ 4) hP hF hG using 1
   exact funext fun n => congrArg norm (i2_case5_reindexed q t d U V T n)
 
+/--
+@isnad1 id=hassum.6h6v.s8.086d5a70e17e from=translated src=- shape=fb3c8331 vocab=20562a57
+-/
 theorem hasSum_i2_case5_regionTerm (q t d U V T : ℂ)
     (hq : q * t ^ 2 = 1) (hd : d ≠ 0)
     (hQ : ‖t ^ 2‖ < 1)
@@ -730,6 +1036,9 @@ theorem hasSum_i2_case5_regionTerm (q t d U V T : ℂ)
     field_simp
     <;> ring
 
+/--
+@isnad1 id=eq.0h7v.s8.8a340b0140b3 from=translated src=- shape=eb3baaf5 vocab=1afdd377
+-/
 theorem i2_case6a_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ) :
     i2SpatialTerm q t d U V T 9 (i2Case6aEquiv n).val =
       (-q * (1 - t ^ 2) ^ 2 * (d ^ 0) * t ^ 6 * (T * U) ^ 0 * (T * V) ^ 2 * i2DepthMass q 9) * (t ^ 2) ^ n.1 * (t ^ 2) ^ n.2 := by
@@ -749,6 +1058,9 @@ theorem i2_case6a_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ) :
   simp only [zpow_neg, zpow_natCast, pow_add, pow_mul, mul_pow, pow_zero, pow_one, inv_pow, div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=summable.1h6v.s7.b083b93835f6 from=translated src=- shape=a8ddcb8e vocab=718f0eeb
+-/
 theorem summable_norm_i2_case6a (q t d U V T : ℂ)
     (hQ : ‖t ^ 2‖ < 1) :
     Summable (fun p : I2SpatialRow 9 => ‖i2SpatialTerm q t d U V T 9 p.val‖) := by
@@ -756,6 +1068,9 @@ theorem summable_norm_i2_case6a (q t d U V T : ℂ)
   convert i2_summable_norm_two_geometric (-q * (1 - t ^ 2) ^ 2 * (d ^ 0) * t ^ 6 * (T * U) ^ 0 * (T * V) ^ 2 * i2DepthMass q 9) (t ^ 2) (t ^ 2) hQ hQ using 1
   exact funext fun n => congrArg norm (i2_case6a_reindexed q t d U V T n)
 
+/--
+@isnad1 id=hassum.3h6v.s7.6becf1cbdb35 from=translated src=- shape=c04012c7 vocab=20562a57
+-/
 theorem hasSum_i2_case6a_regionTerm (q t d U V T : ℂ)
     (hq : q * t ^ 2 = 1) (hd : d ≠ 0)
     (hQ : ‖t ^ 2‖ < 1)
@@ -779,6 +1094,9 @@ theorem hasSum_i2_case6a_regionTerm (q t d U V T : ℂ)
     field_simp
     <;> ring
 
+/--
+@isnad1 id=eq.0h7v.s8.3de526606138 from=translated src=- shape=3ce92c0a vocab=208cac19
+-/
 theorem i2_case6aa_reindexed (q t d U V T : ℂ) (n : ℕ) :
     i2SpatialTerm q t d U V T 10 (i2Case6aaEquiv n).val =
       (-q * (1 - t ^ 2) ^ 2 * (d ^ 0) * t ^ 6 * (T * U) ^ 1 * (T * V) ^ 1 * i2DepthMass q 10) * (t ^ 2) ^ n := by
@@ -798,6 +1116,9 @@ theorem i2_case6aa_reindexed (q t d U V T : ℂ) (n : ℕ) :
   simp only [zpow_neg, zpow_natCast, pow_add, pow_mul, mul_pow, pow_zero, pow_one, inv_pow, div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=summable.1h6v.s7.8a6f006f22f2 from=translated src=- shape=a8ddcb8e vocab=718f0eeb
+-/
 theorem summable_norm_i2_case6aa (q t d U V T : ℂ)
     (hQ : ‖t ^ 2‖ < 1) :
     Summable (fun p : I2SpatialRow 10 => ‖i2SpatialTerm q t d U V T 10 p.val‖) := by
@@ -805,6 +1126,9 @@ theorem summable_norm_i2_case6aa (q t d U V T : ℂ)
   convert i2_summable_norm_one_geometric (-q * (1 - t ^ 2) ^ 2 * (d ^ 0) * t ^ 6 * (T * U) ^ 1 * (T * V) ^ 1 * i2DepthMass q 10) (t ^ 2) hQ using 1
   exact funext fun n => congrArg norm (i2_case6aa_reindexed q t d U V T n)
 
+/--
+@isnad1 id=hassum.3h6v.s7.e29554786a9b from=translated src=- shape=c04012c7 vocab=20562a57
+-/
 theorem hasSum_i2_case6aa_regionTerm (q t d U V T : ℂ)
     (hq : q * t ^ 2 = 1) (hd : d ≠ 0)
     (hQ : ‖t ^ 2‖ < 1)
@@ -828,6 +1152,9 @@ theorem hasSum_i2_case6aa_regionTerm (q t d U V T : ℂ)
     field_simp
     <;> ring
 
+/--
+@isnad1 id=eq.0h7v.s8.ffbcf704fee8 from=translated src=- shape=3bf6edbc vocab=7b2ad64f
+-/
 theorem i2_case6aaa_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ) :
     i2SpatialTerm q t d U V T 11 (i2Case6aaaEquiv n).val =
       (-q * (1 - t ^ 2) ^ 2 * (d ^ 0) * t ^ 6 * (T * U) ^ 2 * (T * V) ^ 0 * i2DepthMass q 11) * (t ^ 2) ^ n.1 * (T * U * t ^ 4) ^ n.2 := by
@@ -847,6 +1174,9 @@ theorem i2_case6aaa_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ) :
   simp only [zpow_neg, zpow_natCast, pow_add, pow_mul, mul_pow, pow_zero, pow_one, inv_pow, div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=summable.2h6v.s7.6fa32ed50d65 from=translated src=- shape=b2ef9167 vocab=241e8813
+-/
 theorem summable_norm_i2_case6aaa (q t d U V T : ℂ)
     (hQ : ‖t ^ 2‖ < 1)
     (hG : ‖T * U * t ^ 4‖ < 1) :
@@ -855,6 +1185,9 @@ theorem summable_norm_i2_case6aaa (q t d U V T : ℂ)
   convert i2_summable_norm_two_geometric (-q * (1 - t ^ 2) ^ 2 * (d ^ 0) * t ^ 6 * (T * U) ^ 2 * (T * V) ^ 0 * i2DepthMass q 11) (t ^ 2) (T * U * t ^ 4) hQ hG using 1
   exact funext fun n => congrArg norm (i2_case6aaa_reindexed q t d U V T n)
 
+/--
+@isnad1 id=hassum.4h6v.s8.572cd52db676 from=translated src=- shape=99cbba77 vocab=20562a57
+-/
 theorem hasSum_i2_case6aaa_regionTerm (q t d U V T : ℂ)
     (hq : q * t ^ 2 = 1) (hd : d ≠ 0)
     (hQ : ‖t ^ 2‖ < 1)
@@ -880,6 +1213,9 @@ theorem hasSum_i2_case6aaa_regionTerm (q t d U V T : ℂ)
     field_simp
     <;> ring
 
+/--
+@isnad1 id=eq.0h7v.s8.b7f1f9af408d from=translated src=- shape=9df8602e vocab=482bb084
+-/
 theorem i2_case6b_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ) :
     i2SpatialTerm q t d U V T 12 (i2Case6bEquiv n).val =
       (-q * (1 - t ^ 2) ^ 2 * ((d⁻¹) ^ 1) * t ^ 7 * (T * U) ^ 1 * (T * V) ^ 1 * i2DepthMass q 12) * (t ^ 2) ^ n.1 * (t ^ 2) ^ n.2 := by
@@ -899,6 +1235,9 @@ theorem i2_case6b_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ) :
   simp only [zpow_neg, zpow_natCast, pow_add, pow_mul, mul_pow, pow_zero, pow_one, inv_pow, div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=summable.1h6v.s7.9ec75ea444eb from=translated src=- shape=a8ddcb8e vocab=718f0eeb
+-/
 theorem summable_norm_i2_case6b (q t d U V T : ℂ)
     (hQ : ‖t ^ 2‖ < 1) :
     Summable (fun p : I2SpatialRow 12 => ‖i2SpatialTerm q t d U V T 12 p.val‖) := by
@@ -906,6 +1245,9 @@ theorem summable_norm_i2_case6b (q t d U V T : ℂ)
   convert i2_summable_norm_two_geometric (-q * (1 - t ^ 2) ^ 2 * ((d⁻¹) ^ 1) * t ^ 7 * (T * U) ^ 1 * (T * V) ^ 1 * i2DepthMass q 12) (t ^ 2) (t ^ 2) hQ hQ using 1
   exact funext fun n => congrArg norm (i2_case6b_reindexed q t d U V T n)
 
+/--
+@isnad1 id=hassum.3h6v.s7.b5bad5e4891a from=translated src=- shape=c04012c7 vocab=20562a57
+-/
 theorem hasSum_i2_case6b_regionTerm (q t d U V T : ℂ)
     (hq : q * t ^ 2 = 1) (hd : d ≠ 0)
     (hQ : ‖t ^ 2‖ < 1)
@@ -929,6 +1271,9 @@ theorem hasSum_i2_case6b_regionTerm (q t d U V T : ℂ)
     field_simp
     <;> ring
 
+/--
+@isnad1 id=eq.0h7v.s8.6370d567ac8c from=translated src=- shape=fb34ace2 vocab=94d3aa37
+-/
 theorem i2_case6bb_reindexed (q t d U V T : ℂ) (n : ℕ) :
     i2SpatialTerm q t d U V T 13 (i2Case6bbEquiv n).val =
       (-q * (1 - t ^ 2) ^ 2 * ((d⁻¹) ^ 1) * t ^ 5 * (T * U) ^ 2 * (T * V) ^ 0 * i2DepthMass q 13) * (t ^ 2) ^ n := by
@@ -948,6 +1293,9 @@ theorem i2_case6bb_reindexed (q t d U V T : ℂ) (n : ℕ) :
   simp only [zpow_neg, zpow_natCast, pow_add, pow_mul, mul_pow, pow_zero, pow_one, inv_pow, div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=summable.1h6v.s7.467aa3ecb654 from=translated src=- shape=a8ddcb8e vocab=718f0eeb
+-/
 theorem summable_norm_i2_case6bb (q t d U V T : ℂ)
     (hQ : ‖t ^ 2‖ < 1) :
     Summable (fun p : I2SpatialRow 13 => ‖i2SpatialTerm q t d U V T 13 p.val‖) := by
@@ -955,6 +1303,9 @@ theorem summable_norm_i2_case6bb (q t d U V T : ℂ)
   convert i2_summable_norm_one_geometric (-q * (1 - t ^ 2) ^ 2 * ((d⁻¹) ^ 1) * t ^ 5 * (T * U) ^ 2 * (T * V) ^ 0 * i2DepthMass q 13) (t ^ 2) hQ using 1
   exact funext fun n => congrArg norm (i2_case6bb_reindexed q t d U V T n)
 
+/--
+@isnad1 id=hassum.3h6v.s7.5d8b4cfbd47e from=translated src=- shape=c04012c7 vocab=20562a57
+-/
 theorem hasSum_i2_case6bb_regionTerm (q t d U V T : ℂ)
     (hq : q * t ^ 2 = 1) (hd : d ≠ 0)
     (hQ : ‖t ^ 2‖ < 1)
@@ -978,6 +1329,9 @@ theorem hasSum_i2_case6bb_regionTerm (q t d U V T : ℂ)
     field_simp
     <;> ring
 
+/--
+@isnad1 id=eq.0h7v.s8.0d58f103b6a3 from=translated src=- shape=52801744 vocab=8b02ca35
+-/
 theorem i2_case6bbb_reindexed (q t d U V T : ℂ) (n : ℕ) :
     i2SpatialTerm q t d U V T 14 (i2Case6bbbEquiv n).val =
       (-q * (1 - t ^ 2) ^ 2 * ((d⁻¹) ^ 1) * t ^ 7 * (T * U) ^ 2 * (T * V) ^ 1 * i2DepthMass q 14) * (T * U * t ^ 4) ^ n := by
@@ -997,6 +1351,9 @@ theorem i2_case6bbb_reindexed (q t d U V T : ℂ) (n : ℕ) :
   simp only [zpow_neg, zpow_natCast, pow_add, pow_mul, mul_pow, pow_zero, pow_one, inv_pow, div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=summable.1h6v.s7.552aaea6d3fa from=translated src=- shape=f4ccb1df vocab=241e8813
+-/
 theorem summable_norm_i2_case6bbb (q t d U V T : ℂ)
     (hG : ‖T * U * t ^ 4‖ < 1) :
     Summable (fun p : I2SpatialRow 14 => ‖i2SpatialTerm q t d U V T 14 p.val‖) := by
@@ -1004,6 +1361,9 @@ theorem summable_norm_i2_case6bbb (q t d U V T : ℂ)
   convert i2_summable_norm_one_geometric (-q * (1 - t ^ 2) ^ 2 * ((d⁻¹) ^ 1) * t ^ 7 * (T * U) ^ 2 * (T * V) ^ 1 * i2DepthMass q 14) (T * U * t ^ 4) hG using 1
   exact funext fun n => congrArg norm (i2_case6bbb_reindexed q t d U V T n)
 
+/--
+@isnad1 id=hassum.4h6v.s8.69e05db69b71 from=translated src=- shape=99cbba77 vocab=20562a57
+-/
 theorem hasSum_i2_case6bbb_regionTerm (q t d U V T : ℂ)
     (hq : q * t ^ 2 = 1) (hd : d ≠ 0)
     (hQ : ‖t ^ 2‖ < 1)
@@ -1029,6 +1389,9 @@ theorem hasSum_i2_case6bbb_regionTerm (q t d U V T : ℂ)
     field_simp
     <;> ring
 
+/--
+@isnad1 id=eq.0h7v.s9.a4c7ac625701 from=translated src=- shape=1addb5da vocab=286c0f77
+-/
 theorem i2_case6c_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ × ℕ) :
     i2SpatialTerm q t d U V T 15 (i2Case6cEquiv n).val =
       (-q * (1 - t ^ 2) ^ 2 * ((d⁻¹) ^ 2) * t ^ 6 * (T * U) ^ 2 * (T * V) ^ 0 * i2DepthMass q 15) * (T * V * t / d) ^ n.1 * (t ^ 2) ^ n.2.1 * (t ^ 2) ^ n.2.2 := by
@@ -1048,6 +1411,9 @@ theorem i2_case6c_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ × ℕ) :
   simp only [zpow_neg, zpow_natCast, pow_add, pow_mul, mul_pow, pow_zero, pow_one, inv_pow, div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=summable.2h6v.s7.75395d449f8e from=translated src=- shape=e10106bf vocab=3a0053ba
+-/
 theorem summable_norm_i2_case6c (q t d U V T : ℂ)
     (hQ : ‖t ^ 2‖ < 1)
     (hN : ‖T * V * t / d‖ < 1) :
@@ -1056,6 +1422,9 @@ theorem summable_norm_i2_case6c (q t d U V T : ℂ)
   convert summable_norm_three_geometric (-q * (1 - t ^ 2) ^ 2 * ((d⁻¹) ^ 2) * t ^ 6 * (T * U) ^ 2 * (T * V) ^ 0 * i2DepthMass q 15) (T * V * t / d) (t ^ 2) (t ^ 2) hN hQ hQ using 1
   exact funext fun n => congrArg norm (i2_case6c_reindexed q t d U V T n)
 
+/--
+@isnad1 id=hassum.4h6v.s8.99d5da55bb26 from=translated src=- shape=857255d4 vocab=8323a5f9
+-/
 theorem hasSum_i2_case6c_regionTerm (q t d U V T : ℂ)
     (hq : q * t ^ 2 = 1) (hd : d ≠ 0)
     (hQ : ‖t ^ 2‖ < 1)
@@ -1081,6 +1450,9 @@ theorem hasSum_i2_case6c_regionTerm (q t d U V T : ℂ)
     field_simp
     <;> ring
 
+/--
+@isnad1 id=eq.0h7v.s8.1dc36c5c9bc9 from=translated src=- shape=2b1e0a50 vocab=d3aefd44
+-/
 theorem i2_case6cc_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ) :
     i2SpatialTerm q t d U V T 16 (i2Case6ccEquiv n).val =
       (-q * (1 - t ^ 2) ^ 2 * ((d⁻¹) ^ 2) * t ^ 6 * (T * U) ^ 2 * (T * V) ^ 1 * i2DepthMass q 16) * (T * V * t / d) ^ n.1 * (t ^ 2) ^ n.2 := by
@@ -1100,6 +1472,9 @@ theorem i2_case6cc_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ) :
   simp only [zpow_neg, zpow_natCast, pow_add, pow_mul, mul_pow, pow_zero, pow_one, inv_pow, div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=summable.2h6v.s7.3b4de224ec0a from=translated src=- shape=e10106bf vocab=3a0053ba
+-/
 theorem summable_norm_i2_case6cc (q t d U V T : ℂ)
     (hQ : ‖t ^ 2‖ < 1)
     (hN : ‖T * V * t / d‖ < 1) :
@@ -1108,6 +1483,9 @@ theorem summable_norm_i2_case6cc (q t d U V T : ℂ)
   convert i2_summable_norm_two_geometric (-q * (1 - t ^ 2) ^ 2 * ((d⁻¹) ^ 2) * t ^ 6 * (T * U) ^ 2 * (T * V) ^ 1 * i2DepthMass q 16) (T * V * t / d) (t ^ 2) hN hQ using 1
   exact funext fun n => congrArg norm (i2_case6cc_reindexed q t d U V T n)
 
+/--
+@isnad1 id=hassum.4h6v.s8.f2d55e70ae4f from=translated src=- shape=857255d4 vocab=8323a5f9
+-/
 theorem hasSum_i2_case6cc_regionTerm (q t d U V T : ℂ)
     (hq : q * t ^ 2 = 1) (hd : d ≠ 0)
     (hQ : ‖t ^ 2‖ < 1)
@@ -1133,6 +1511,9 @@ theorem hasSum_i2_case6cc_regionTerm (q t d U V T : ℂ)
     field_simp
     <;> ring
 
+/--
+@isnad1 id=eq.0h7v.s8.b40129ed0e8e from=translated src=- shape=76a29cdb vocab=17b121dd
+-/
 theorem i2_case6ccc_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ) :
     i2SpatialTerm q t d U V T 17 (i2Case6cccEquiv n).val =
       (-q * (1 - t ^ 2) ^ 2 * ((d⁻¹) ^ 2) * t ^ 8 * (T * U) ^ 2 * (T * V) ^ 2 * i2DepthMass q 17) * (T * V * t / d) ^ n.1 * (T * U * t ^ 4) ^ n.2 := by
@@ -1152,6 +1533,9 @@ theorem i2_case6ccc_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ) :
   simp only [zpow_neg, zpow_natCast, pow_add, pow_mul, mul_pow, pow_zero, pow_one, inv_pow, div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=summable.2h6v.s7.002df5dce28c from=translated src=- shape=816187fe vocab=3a0053ba
+-/
 theorem summable_norm_i2_case6ccc (q t d U V T : ℂ)
     (hN : ‖T * V * t / d‖ < 1)
     (hG : ‖T * U * t ^ 4‖ < 1) :
@@ -1160,6 +1544,9 @@ theorem summable_norm_i2_case6ccc (q t d U V T : ℂ)
   convert i2_summable_norm_two_geometric (-q * (1 - t ^ 2) ^ 2 * ((d⁻¹) ^ 2) * t ^ 8 * (T * U) ^ 2 * (T * V) ^ 2 * i2DepthMass q 17) (T * V * t / d) (T * U * t ^ 4) hN hG using 1
   exact funext fun n => congrArg norm (i2_case6ccc_reindexed q t d U V T n)
 
+/--
+@isnad1 id=hassum.5h6v.s8.d00d2ae418c8 from=translated src=- shape=d2b63ce7 vocab=8323a5f9
+-/
 theorem hasSum_i2_case6ccc_regionTerm (q t d U V T : ℂ)
     (hq : q * t ^ 2 = 1) (hd : d ≠ 0)
     (hQ : ‖t ^ 2‖ < 1)
@@ -1187,6 +1574,9 @@ theorem hasSum_i2_case6ccc_regionTerm (q t d U V T : ℂ)
     field_simp
     <;> ring
 
+/--
+@isnad1 id=eq.0h7v.s9.d298fef85bc7 from=translated src=- shape=430d0e7a vocab=db243517
+-/
 theorem i2_case7_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ × ℕ) :
     i2SpatialTerm q t d U V T 18 (i2Case7Equiv n).val =
       (-q * (1 - t ^ 2) ^ 2 * ((d⁻¹) ^ 1) * t ^ 5 * (T * U) ^ 1 * (T * V) ^ 1 * i2DepthMass q 18) * (T * V * t / d) ^ n.1 * (t ^ 2) ^ n.2.1 * (T * U * t ^ 4) ^ n.2.2 := by
@@ -1206,6 +1596,9 @@ theorem i2_case7_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ × ℕ) :
   simp only [zpow_neg, zpow_natCast, pow_add, pow_mul, mul_pow, pow_zero, pow_one, inv_pow, div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=summable.3h6v.s7.701d3fdefe12 from=translated src=- shape=0fc5ef59 vocab=3a0053ba
+-/
 theorem summable_norm_i2_case7 (q t d U V T : ℂ)
     (hQ : ‖t ^ 2‖ < 1)
     (hN : ‖T * V * t / d‖ < 1)
@@ -1215,6 +1608,9 @@ theorem summable_norm_i2_case7 (q t d U V T : ℂ)
   convert summable_norm_three_geometric (-q * (1 - t ^ 2) ^ 2 * ((d⁻¹) ^ 1) * t ^ 5 * (T * U) ^ 1 * (T * V) ^ 1 * i2DepthMass q 18) (T * V * t / d) (t ^ 2) (T * U * t ^ 4) hN hQ hG using 1
   exact funext fun n => congrArg norm (i2_case7_reindexed q t d U V T n)
 
+/--
+@isnad1 id=hassum.5h6v.s8.5765ba8b614e from=translated src=- shape=d2b63ce7 vocab=8323a5f9
+-/
 theorem hasSum_i2_case7_regionTerm (q t d U V T : ℂ)
     (hq : q * t ^ 2 = 1) (hd : d ≠ 0)
     (hQ : ‖t ^ 2‖ < 1)
@@ -1242,6 +1638,9 @@ theorem hasSum_i2_case7_regionTerm (q t d U V T : ℂ)
     field_simp
     <;> ring
 
+/--
+@isnad1 id=eq.0h7v.s9.7748df7d85df from=translated src=- shape=235a6120 vocab=1c87f31a
+-/
 theorem i2_case8a_reindexed (q t d U V T : ℂ) (n : Fin 2 × ℕ × ℕ × ℕ) :
     i2SpatialTerm q t d U V T 19 (i2Case8aEquiv n).val =
       (-q * (1 - t ^ 2) ^ 2 * (d ^ 0) * t ^ 6 * (T * U) ^ 2 * (T * V) ^ 0 * i2DepthMass q 19) * (T * V) ^ n.1.val * (T * V * t / d) ^ n.2.1 * ((T * V) ^ 2 * t ^ 2) ^ n.2.2.1 * (t ^ 2) ^ n.2.2.2 := by
@@ -1261,6 +1660,9 @@ theorem i2_case8a_reindexed (q t d U V T : ℂ) (n : Fin 2 × ℕ × ℕ × ℕ)
   simp only [zpow_neg, zpow_natCast, pow_add, pow_mul, mul_pow, pow_zero, pow_one, inv_pow, div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=summable.3h6v.s8.897e552c8123 from=translated src=- shape=bcd2d917 vocab=3a0053ba
+-/
 theorem summable_norm_i2_case8a (q t d U V T : ℂ)
     (hQ : ‖t ^ 2‖ < 1)
     (hN : ‖T * V * t / d‖ < 1)
@@ -1270,6 +1672,9 @@ theorem summable_norm_i2_case8a (q t d U V T : ℂ)
   convert i2_summable_norm_parity_geometric (-q * (1 - t ^ 2) ^ 2 * (d ^ 0) * t ^ 6 * (T * U) ^ 2 * (T * V) ^ 0 * i2DepthMass q 19) (T * V) (T * V * t / d) ((T * V) ^ 2 * t ^ 2) (t ^ 2) hN hE hQ using 1
   exact funext fun n => congrArg norm (i2_case8a_reindexed q t d U V T n)
 
+/--
+@isnad1 id=hassum.5h6v.s8.43afffbabcc9 from=translated src=- shape=eca824e9 vocab=8323a5f9
+-/
 theorem hasSum_i2_case8a_regionTerm (q t d U V T : ℂ)
     (hq : q * t ^ 2 = 1) (hd : d ≠ 0)
     (hQ : ‖t ^ 2‖ < 1)
@@ -1297,6 +1702,9 @@ theorem hasSum_i2_case8a_regionTerm (q t d U V T : ℂ)
     field_simp
     <;> ring
 
+/--
+@isnad1 id=eq.0h7v.s9.7b0d423f77fc from=translated src=- shape=1c386a4b vocab=67fa2f74
+-/
 theorem i2_case8b_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ) :
     i2SpatialTerm q t d U V T 20 (i2Case8bEquiv n).val =
       (-q * (1 - t ^ 2) ^ 2 * (d ^ 0) * t ^ 4 * (T * U) ^ 2 * (T * V) ^ 0 * i2DepthMass q 20) * (T * V * t / d) ^ n.1 * ((T * V) ^ 2 * t ^ 2) ^ n.2 := by
@@ -1316,6 +1724,9 @@ theorem i2_case8b_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ) :
   simp only [zpow_neg, zpow_natCast, pow_add, pow_mul, mul_pow, pow_zero, pow_one, inv_pow, div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=summable.2h6v.s7.27c84ff08a32 from=translated src=- shape=9c01e3bf vocab=3a0053ba
+-/
 theorem summable_norm_i2_case8b (q t d U V T : ℂ)
     (hN : ‖T * V * t / d‖ < 1)
     (hE : ‖(T * V) ^ 2 * t ^ 2‖ < 1) :
@@ -1324,6 +1735,9 @@ theorem summable_norm_i2_case8b (q t d U V T : ℂ)
   convert i2_summable_norm_two_geometric (-q * (1 - t ^ 2) ^ 2 * (d ^ 0) * t ^ 4 * (T * U) ^ 2 * (T * V) ^ 0 * i2DepthMass q 20) (T * V * t / d) ((T * V) ^ 2 * t ^ 2) hN hE using 1
   exact funext fun n => congrArg norm (i2_case8b_reindexed q t d U V T n)
 
+/--
+@isnad1 id=hassum.5h6v.s8.ecf2caf6d4c2 from=translated src=- shape=eca824e9 vocab=8323a5f9
+-/
 theorem hasSum_i2_case8b_regionTerm (q t d U V T : ℂ)
     (hq : q * t ^ 2 = 1) (hd : d ≠ 0)
     (hQ : ‖t ^ 2‖ < 1)
@@ -1351,6 +1765,9 @@ theorem hasSum_i2_case8b_regionTerm (q t d U V T : ℂ)
     field_simp
     <;> ring
 
+/--
+@isnad1 id=eq.0h7v.s9.eff70732f832 from=translated src=- shape=1c386a4b vocab=1166a433
+-/
 theorem i2_case8c_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ) :
     i2SpatialTerm q t d U V T 21 (i2Case8cEquiv n).val =
       (-q * (1 - t ^ 2) ^ 2 * (d ^ 0) * t ^ 2 * (T * U) ^ 1 * (T * V) ^ 1 * i2DepthMass q 21) * (T * V * t / d) ^ n.1 * ((T * V) ^ 2 * t ^ 2) ^ n.2 := by
@@ -1370,6 +1787,9 @@ theorem i2_case8c_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ) :
   simp only [zpow_neg, zpow_natCast, pow_add, pow_mul, mul_pow, pow_zero, pow_one, inv_pow, div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=summable.2h6v.s7.1cb728b8b275 from=translated src=- shape=9c01e3bf vocab=3a0053ba
+-/
 theorem summable_norm_i2_case8c (q t d U V T : ℂ)
     (hN : ‖T * V * t / d‖ < 1)
     (hE : ‖(T * V) ^ 2 * t ^ 2‖ < 1) :
@@ -1378,6 +1798,9 @@ theorem summable_norm_i2_case8c (q t d U V T : ℂ)
   convert i2_summable_norm_two_geometric (-q * (1 - t ^ 2) ^ 2 * (d ^ 0) * t ^ 2 * (T * U) ^ 1 * (T * V) ^ 1 * i2DepthMass q 21) (T * V * t / d) ((T * V) ^ 2 * t ^ 2) hN hE using 1
   exact funext fun n => congrArg norm (i2_case8c_reindexed q t d U V T n)
 
+/--
+@isnad1 id=hassum.5h6v.s8.9334f27d582f from=translated src=- shape=eca824e9 vocab=8323a5f9
+-/
 theorem hasSum_i2_case8c_regionTerm (q t d U V T : ℂ)
     (hq : q * t ^ 2 = 1) (hd : d ≠ 0)
     (hQ : ‖t ^ 2‖ < 1)
@@ -1405,6 +1828,9 @@ theorem hasSum_i2_case8c_regionTerm (q t d U V T : ℂ)
     field_simp
     <;> ring
 
+/--
+@isnad1 id=eq.0h7v.s9.f96b7948d5ce from=translated src=- shape=1c386a4b vocab=211c9b56
+-/
 theorem i2_case8d_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ) :
     i2SpatialTerm q t d U V T 22 (i2Case8dEquiv n).val =
       (-q * (1 - t ^ 2) ^ 2 * (d ^ 0) * t ^ 0 * (T * U) ^ 0 * (T * V) ^ 2 * i2DepthMass q 22) * (T * V * t / d) ^ n.1 * ((T * V) ^ 2 * t ^ 2) ^ n.2 := by
@@ -1424,6 +1850,9 @@ theorem i2_case8d_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ) :
   simp only [zpow_neg, zpow_natCast, pow_add, pow_mul, mul_pow, pow_zero, pow_one, inv_pow, div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=summable.2h6v.s7.5a0ad76fe564 from=translated src=- shape=9c01e3bf vocab=3a0053ba
+-/
 theorem summable_norm_i2_case8d (q t d U V T : ℂ)
     (hN : ‖T * V * t / d‖ < 1)
     (hE : ‖(T * V) ^ 2 * t ^ 2‖ < 1) :
@@ -1432,6 +1861,9 @@ theorem summable_norm_i2_case8d (q t d U V T : ℂ)
   convert i2_summable_norm_two_geometric (-q * (1 - t ^ 2) ^ 2 * (d ^ 0) * t ^ 0 * (T * U) ^ 0 * (T * V) ^ 2 * i2DepthMass q 22) (T * V * t / d) ((T * V) ^ 2 * t ^ 2) hN hE using 1
   exact funext fun n => congrArg norm (i2_case8d_reindexed q t d U V T n)
 
+/--
+@isnad1 id=hassum.5h6v.s8.c045b139b32a from=translated src=- shape=eca824e9 vocab=8323a5f9
+-/
 theorem hasSum_i2_case8d_regionTerm (q t d U V T : ℂ)
     (hq : q * t ^ 2 = 1) (hd : d ≠ 0)
     (hQ : ‖t ^ 2‖ < 1)
@@ -1459,6 +1891,9 @@ theorem hasSum_i2_case8d_regionTerm (q t d U V T : ℂ)
     field_simp
     <;> ring
 
+/--
+@isnad1 id=eq.0h7v.s9.c4718153e2c0 from=translated src=- shape=e9bd9e3c vocab=9607f19b
+-/
 theorem i2_case9_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ × ℕ) :
     i2SpatialTerm q t d U V T 23 (i2Case9Equiv n).val =
       (-q * (1 - t ^ 2) ^ 2 * (d ^ 0) * t ^ 6 * (T * U) ^ 3 * (T * V) ^ 0 * i2DepthMass q 23) * (T * V * t / d) ^ n.1 * ((T * V) ^ 2 * t ^ 2) ^ n.2.1 * (T * U * t ^ 2) ^ n.2.2 := by
@@ -1478,6 +1913,9 @@ theorem i2_case9_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ × ℕ) :
   simp only [zpow_neg, zpow_natCast, pow_add, pow_mul, mul_pow, pow_zero, pow_one, inv_pow, div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=summable.3h6v.s8.1869755ace68 from=translated src=- shape=9a0379b3 vocab=3a0053ba
+-/
 theorem summable_norm_i2_case9 (q t d U V T : ℂ)
     (hN : ‖T * V * t / d‖ < 1)
     (hE : ‖(T * V) ^ 2 * t ^ 2‖ < 1)
@@ -1487,6 +1925,9 @@ theorem summable_norm_i2_case9 (q t d U V T : ℂ)
   convert summable_norm_three_geometric (-q * (1 - t ^ 2) ^ 2 * (d ^ 0) * t ^ 6 * (T * U) ^ 3 * (T * V) ^ 0 * i2DepthMass q 23) (T * V * t / d) ((T * V) ^ 2 * t ^ 2) (T * U * t ^ 2) hN hE hF using 1
   exact funext fun n => congrArg norm (i2_case9_reindexed q t d U V T n)
 
+/--
+@isnad1 id=hassum.6h6v.s8.acf6067b3679 from=translated src=- shape=eef3e64e vocab=8323a5f9
+-/
 theorem hasSum_i2_case9_regionTerm (q t d U V T : ℂ)
     (hq : q * t ^ 2 = 1) (hd : d ≠ 0)
     (hQ : ‖t ^ 2‖ < 1)
@@ -1516,6 +1957,9 @@ theorem hasSum_i2_case9_regionTerm (q t d U V T : ℂ)
     field_simp
     <;> ring
 
+/--
+@isnad1 id=eq.0h7v.s9.e5f0b6a9c220 from=translated src=- shape=7672e74f vocab=6bda9301
+-/
 theorem i2_case10_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ × ℕ) :
     i2SpatialTerm q t d U V T 24 (i2Case10Equiv n).val =
       (-q * (1 - t ^ 2) ^ 2 * (d ^ 0) * t ^ 8 * (T * U) ^ 3 * (T * V) ^ 0 * i2DepthMass q 24) * (T * V * t / d) ^ n.1 * (T * U * t ^ 2) ^ n.2.1 * (T * U * t ^ 4) ^ n.2.2 := by
@@ -1535,6 +1979,9 @@ theorem i2_case10_reindexed (q t d U V T : ℂ) (n : ℕ × ℕ × ℕ) :
   simp only [zpow_neg, zpow_natCast, pow_add, pow_mul, mul_pow, pow_zero, pow_one, inv_pow, div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=summable.3h6v.s8.f7160a9c9c50 from=translated src=- shape=03635e59 vocab=3a0053ba
+-/
 theorem summable_norm_i2_case10 (q t d U V T : ℂ)
     (hN : ‖T * V * t / d‖ < 1)
     (hF : ‖T * U * t ^ 2‖ < 1)
@@ -1544,6 +1991,9 @@ theorem summable_norm_i2_case10 (q t d U V T : ℂ)
   convert summable_norm_three_geometric (-q * (1 - t ^ 2) ^ 2 * (d ^ 0) * t ^ 8 * (T * U) ^ 3 * (T * V) ^ 0 * i2DepthMass q 24) (T * V * t / d) (T * U * t ^ 2) (T * U * t ^ 4) hN hF hG using 1
   exact funext fun n => congrArg norm (i2_case10_reindexed q t d U V T n)
 
+/--
+@isnad1 id=hassum.6h6v.s8.c451dbbcf679 from=translated src=- shape=76bca92d vocab=8323a5f9
+-/
 theorem hasSum_i2_case10_regionTerm (q t d U V T : ℂ)
     (hq : q * t ^ 2 = 1) (hd : d ≠ 0)
     (hQ : ‖t ^ 2‖ < 1)

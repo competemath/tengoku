@@ -17,6 +17,9 @@ open FourierJacobi.Valuations
 set_option maxHeartbeats 8000000
 set_option maxRecDepth 4096
 
+/--
+@isnad1 id=eq.1h3v.s7.2a24bb4b6dd4 from=translated src=- shape=a622f6f1 vocab=95cb70fe
+-/
 theorem i2_cartan_depth_constant (ν : Fin 25) (p : I2SpatialRow ν) (c : ℕ)
     (hc : i2DepthPredicate ν c) :
     cartanIndices 2 p.val.1 p.val.2.1 p.val.2.2 c =
@@ -98,6 +101,9 @@ theorem i2_cartan_depth_constant (ν : Fin 25) (p : I2SpatialRow ν) (c : ℕ)
     change i2DepthPredicate 24 c at hc
     rw [i2Case10_cartan p c, i2Case10_cartan p (i2DepthAt 24)]
 
+/--
+@isnad1 id=hassum.3h7v.s7.1a0e21ca7db8 from=translated src=- shape=2f6a7a02 vocab=74dd1db6
+-/
 theorem hasSum_i2_spatial (q t d U V T : ℂ) (ν : Fin 25)
     (hq : q * t ^ 2 = 1) (hd : d ≠ 0) (h : GeometricRange t d U V T) :
     HasSum (fun p : I2SpatialRow ν => i2SpatialTerm q t d U V T ν p.val)
@@ -129,6 +135,9 @@ theorem hasSum_i2_spatial (q t d U V T : ℂ) (ν : Fin 25)
   · exact hasSum_i2_case9_regionTerm q t d U V T hq hd h.t2 h.n h.e h.f
   · exact hasSum_i2_case10_regionTerm q t d U V T hq hd h.t2 h.n h.f h.g
 
+/--
+@isnad1 id=summable.1h7v.s6.a03189eaee86 from=translated src=- shape=ea2f0901 vocab=d84082f9
+-/
 theorem summable_norm_i2_spatial (q t d U V T : ℂ) (ν : Fin 25)
     (h : GeometricRange t d U V T) :
     Summable (fun p : I2SpatialRow ν => ‖i2SpatialTerm q t d U V T ν p.val‖) := by
@@ -163,6 +172,9 @@ def i2DepthWeight (q : ℂ) (ν : Fin 25) (p : I2SpatialRow ν) (c : ℕ) : ℂ 
   classical
   exact if i2DepthPredicate ν c then collisionWeight q 2 p.val.2.1 p.val.2.2 c else 0
 
+/--
+@isnad1 id=hassum.1h1v.s6.9de1374b318b from=translated src=- shape=60540bbd vocab=e037638d
+-/
 theorem hasSum_i2_probability_ge_two (q : ℂ) (hq : ‖q⁻¹‖ < 1) :
     HasSum (fun c : ℕ => if 2 ≤ c then collisionProbability q c else 0)
       (q⁻¹ ^ 2 / (1 - q⁻¹)) := by
@@ -170,6 +182,9 @@ theorem hasSum_i2_probability_ge_two (q : ℂ) (hq : ‖q⁻¹‖ < 1) :
   simpa [Finset.sum_range_succ, div_eq_mul_inv, Nat.add_assoc]
     using hasSum_collisionProbability_tail q 1 hq
 
+/--
+@isnad1 id=hassum.3h3v.s6.45764cfec766 from=translated src=- shape=b8d2916c vocab=e0430c6d
+-/
 theorem hasSum_i2_depthWeight (q : ℂ) (ν : Fin 25) (p : I2SpatialRow ν)
     (hq₀ : q ≠ 0) (hq₁ : q - 1 ≠ 0) (hq : ‖q⁻¹‖ < 1) :
     HasSum (i2DepthWeight q ν p) (i2DepthMass q ν) := by
@@ -310,6 +325,9 @@ theorem hasSum_i2_depthWeight (q : ℂ) (ν : Fin 25) (p : I2SpatialRow ν)
 def i2BareTerm (q t d U V T : ℂ) (ν : Fin 25) (p : I2SpatialRow ν) : ℂ :=
   -q * shellMonomial t d U V T 2 p.val (i2DepthAt ν)
 
+/--
+@isnad1 id=ne.4h2v.s6.242b56dad711 from=translated src=- shape=168eb656 vocab=54c7abf2
+-/
 theorem i2DepthMass_ne (q : ℂ) (ν : Fin 25)
     (hq₀ : q ≠ 0) (hq₁ : q - 1 ≠ 0) (hq₂ : q - 2 ≠ 0) (hq : ‖q⁻¹‖ < 1) :
     i2DepthMass q ν ≠ 0 := by
@@ -320,6 +338,9 @@ theorem i2DepthMass_ne (q : ℂ) (ν : Fin 25)
   · exact div_ne_zero (pow_ne_zero 2 (inv_ne_zero hq₀)) (i2_geometric_denominator_ne _ hq)
   · exact one_ne_zero
 
+/--
+@isnad1 id=summable.5h7v.s7.447d79b9abd2 from=translated src=- shape=a5e183b0 vocab=2849b8d0
+-/
 theorem summable_norm_i2_bare (q t d U V T : ℂ) (ν : Fin 25)
     (hq₀ : q ≠ 0) (hq₁ : q - 1 ≠ 0) (hq₂ : q - 2 ≠ 0) (hq : ‖q⁻¹‖ < 1)
     (h : GeometricRange t d U V T) :
@@ -337,6 +358,9 @@ def i2RowFamily (q t d U V T : ℂ) (ν : Fin 25) (p : I2SpatialRow ν × ℕ) :
   exact if i2DepthPredicate ν p.2 then
     masterTerm q t d U V T 2 (p.1.val.1, p.1.val.2.1, p.1.val.2.2, p.2) else 0
 
+/--
+@isnad1 id=eq.0h8v.s6.0695b19bc655 from=translated src=- shape=f3d966de vocab=aa827d24
+-/
 theorem i2RowFamily_eq (q t d U V T : ℂ) (ν : Fin 25) (p : I2SpatialRow ν × ℕ) :
     i2RowFamily q t d U V T ν p = i2BareTerm q t d U V T ν p.1 * i2DepthWeight q ν p.1 p.2 := by
   classical
@@ -349,6 +373,9 @@ theorem i2RowFamily_eq (q t d U V T : ℂ) (ν : Fin 25) (p : I2SpatialRow ν ×
     rw [i2_cartan_depth_constant ν p.1 p.2 hc]
   · simp
 
+/--
+@isnad1 id=summable.5h7v.s7.aae5300cb485 from=translated src=- shape=820d3d4c vocab=9724d615
+-/
 theorem summable_norm_i2_rowFamily (q t d U V T : ℂ) (ν : Fin 25)
     (hq₀ : q ≠ 0) (hq₁ : q - 1 ≠ 0) (hq₂ : q - 2 ≠ 0) (hq : ‖q⁻¹‖ < 1)
     (h : GeometricRange t d U V T) :
@@ -363,6 +390,9 @@ theorem summable_norm_i2_rowFamily (q t d U V T : ℂ) (ν : Fin 25)
   unfold i2DepthWeight
   split_ifs <;> simp <;> positivity
 
+/--
+@isnad1 id=hassum.7h7v.s7.1917ed26a6f2 from=translated src=- shape=9f6bdf50 vocab=8645cf52
+-/
 theorem hasSum_i2_rowFamily (q t d U V T : ℂ) (ν : Fin 25)
     (hq₀ : q ≠ 0) (hq₁ : q - 1 ≠ 0) (hq₂ : q - 2 ≠ 0) (hq : ‖q⁻¹‖ < 1)
     (hqt : q * t ^ 2 = 1) (hd : d ≠ 0) (h : GeometricRange t d U V T) :

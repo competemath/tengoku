@@ -18,6 +18,9 @@ set_option maxRecDepth 4096
 
 def i2Offset (ν : Fin 25) : Fin 50 := ⟨25 + ν.val, by omega⟩
 
+/--
+@isnad1 id=eq.0h5v.s5.65f0139aa6cf from=translated src=- shape=5c52399f vocab=974027ee
+-/
 theorem i2RegionTerm_eq_regionTerms (t d U V : ℂ) (ν : Fin 25) :
     i2RegionTerm ν t d U V = Algebra.regionTerms t d U V (i2Offset ν) := by
   fin_cases ν <;> rfl
@@ -38,6 +41,9 @@ def i2RowTerm (q t d U V T : ℂ) (ν : Fin 25) (p : LatticeIndex) : ℂ := by
   exact if i2SpatialPredicate ν (p.1,p.2.1,p.2.2.1) ∧ i2DepthPredicate ν p.2.2.2
     then masterTerm q t d U V T 2 p else 0
 
+/--
+@isnad1 id=hassum.7h7v.s7.041b0ac94446 from=translated src=- shape=b5c816bd vocab=ad405607
+-/
 theorem hasSum_i2_rowTerm (q t d U V T : ℂ) (ν : Fin 25)
     (hq₀ : q ≠ 0) (hq₁ : q - 1 ≠ 0) (hq₂ : q - 2 ≠ 0) (hq : ‖q⁻¹‖ < 1)
     (hqt : q * t ^ 2 = 1) (hd : d ≠ 0) (h : GeometricRange t d U V T) :
@@ -55,6 +61,9 @@ theorem hasSum_i2_rowTerm (q t d U V T : ℂ) (ν : Fin 25)
   simp only [i2RowTerm, Set.indicator, Set.mem_ofPred_eq, s, f]
   split_ifs <;> simp_all
 
+/--
+@isnad1 id=summable.5h7v.s6.055dad1ea03e from=translated src=- shape=0dc71c8d vocab=f03857b6
+-/
 theorem summable_norm_i2_rowTerm (q t d U V T : ℂ) (ν : Fin 25)
     (hq₀ : q ≠ 0) (hq₁ : q - 1 ≠ 0) (hq₂ : q - 2 ≠ 0) (hq : ‖q⁻¹‖ < 1)
     (h : GeometricRange t d U V T) :

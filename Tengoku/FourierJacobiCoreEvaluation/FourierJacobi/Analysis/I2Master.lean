@@ -14,6 +14,9 @@ open scoped Classical
 set_option maxHeartbeats 8000000
 set_option maxRecDepth 4096
 
+/--
+@isnad1 id=eq.0h6v.s6.dd8ad8d6d444 from=translated src=- shape=292618ff vocab=7c6a2e19
+-/
 theorem i2_partition_sum {M : Type*} [AddCommMonoid M] (k j h : ℤ) (c : ℕ) (v : M) :
     (∑ ν : Fin 25, if i2SpatialPredicate ν (k,j,h) ∧ i2DepthPredicate ν c then v else 0) = v := by
   classical
@@ -28,17 +31,26 @@ theorem i2_partition_sum {M : Type*} [AddCommMonoid M] (k j h : ℤ) (c : ℕ) (
   · intro hνnot
     exact False.elim (hνnot (Finset.mem_univ ν))
 
+/--
+@isnad1 id=eq.0h7v.s6.244a48fcb169 from=translated src=- shape=5d4fe18d vocab=cb33ac28
+-/
 theorem i2RowTerm_sum (q t d U V T : ℂ) (p : LatticeIndex) :
     (∑ ν : Fin 25, i2RowTerm q t d U V T ν p) = masterTerm q t d U V T 2 p := by
   classical
   exact i2_partition_sum p.1 p.2.1 p.2.2.1 p.2.2.2 (masterTerm q t d U V T 2 p)
 
+/--
+@isnad1 id=eq.0h7v.s6.456994f1e192 from=translated src=- shape=208ffc48 vocab=aa96ccc9
+-/
 theorem i2RowTerm_norm_sum (q t d U V T : ℂ) (p : LatticeIndex) :
     (∑ ν : Fin 25, ‖i2RowTerm q t d U V T ν p‖) = ‖masterTerm q t d U V T 2 p‖ := by
   classical
   simpa only [i2RowTerm, apply_ite, norm_zero] using
     i2_partition_sum p.1 p.2.1 p.2.2.1 p.2.2.2 ‖masterTerm q t d U V T 2 p‖
 
+/--
+@isnad1 id=lt.3h2v.s6.baa55f002ffa from=translated src=- shape=40d227b3 vocab=ca208e7d
+-/
 theorem i2_inv_norm_bound (q t : ℂ) (ht : t ≠ 0) (hqt : q * t ^ 2 = 1)
     (h : ‖t ^ 2‖ < 1) : ‖q⁻¹‖ < 1 := by
   have he : q = (t ^ 2)⁻¹ := by
@@ -47,7 +59,9 @@ theorem i2_inv_norm_bound (q t : ℂ) (ht : t ≠ 0) (hqt : q * t ^ 2 = 1)
       _ = (t ^ 2)⁻¹ := by rw [← mul_assoc,hqt,one_mul]
   simpa [he] using h
 
-/-- Absolute summability of the actual original four-coordinate I2 family.-/
+/-- Absolute summability of the actual original four-coordinate I2 family.
+@isnad1 id=summable.7h6v.s7.6b9d8ec2f212 from=translated src=- shape=203ae441 vocab=d5430db5
+-/
 theorem summable_norm_i2_master (q t d U V T : ℂ)
     (ht : t ≠ 0) (hd : d ≠ 0) (hq₀ : q ≠ 0) (hq₁ : q - 1 ≠ 0) (hq₂ : q - 2 ≠ 0)
     (hqt : q * t ^ 2 = 1) (h : GeometricRange t d U V T) :
@@ -57,7 +71,9 @@ theorem summable_norm_i2_master (q t d U V T : ℂ)
     summable_norm_i2_rowTerm q t d U V T ν hq₀ hq₁ hq₂ hq h)
   simpa only [i2RowTerm_norm_sum] using hs
 
-/-- All twenty-five actual I2 lattice rows, with cancellation depths restored once.-/
+/-- All twenty-five actual I2 lattice rows, with cancellation depths restored once.
+@isnad1 id=hassum.7h6v.s7.78dd655c788f from=translated src=- shape=9a0200a8 vocab=974e08b7
+-/
 theorem hasSum_i2_master (q t d U V T : ℂ)
     (ht : t ≠ 0) (hd : d ≠ 0) (hq₀ : q ≠ 0) (hq₁ : q - 1 ≠ 0) (hq₂ : q - 2 ≠ 0)
     (hqt : q * t ^ 2 = 1) (h : GeometricRange t d U V T) :

@@ -19,11 +19,17 @@ namespace Analysis
 open MeasureTheory Filter
 open scoped Topology
 
+/--
+@isnad1 id=summable.2h2v.s6.9f0675244807 from=translated src=- shape=58d37ff9 vocab=f82de1eb
+-/
 theorem polynomial_geometric_summable (k : ℕ) {r : ℝ} (hr₀ : 0 ≤ r) (hr₁ : r < 1) :
     Summable (fun n : ℕ => (n : ℝ) ^ k * r ^ n) := by
   exact summable_pow_mul_geometric_of_norm_lt_one k
     (by simpa [Real.norm_eq_abs, abs_of_nonneg hr₀] using hr₁)
 
+/--
+@isnad1 id=tendsto.5h5v.s7.1337614faeab from=translated src=- shape=fe865194 vocab=6c4d7d42
+-/
 theorem height_damping_tendsto_integral
     {X : Type*} [MeasurableSpace X] {μ : Measure X}
     {f : X → ℂ} (hf : Integrable f μ)

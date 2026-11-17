@@ -14,6 +14,9 @@ set_option maxRecDepth 4096
 -- Generated coefficient interfaces deliberately have uniform argument lists.
 
 def allWeylCoefficients (t a b : K) : Fin 8 → Fin 11 → K := ![wcCoeffs0 t a b, wcCoeffs1 t a b, wcCoeffs2 t a b, wcCoeffs3 t a b, wcCoeffs4 t a b, wcCoeffs5 t a b, wcCoeffs6 t a b, wcCoeffs7 t a b]
+/--
+@isnad1 id=eq.0h6v.s5.755d9822b3b7 from=translated src=- shape=ae379734 vocab=36fb204a
+-/
 theorem clearedExpansion (t a b d : K) (i : Fin 8) :
     weylClearedTerms t a b d i = evalCoefficients d (allWeylCoefficients t a b i) := by
   fin_cases i
@@ -25,6 +28,9 @@ theorem clearedExpansion (t a b d : K) (i : Fin 8) :
   · exact clearedExpansion5 t a b d
   · exact clearedExpansion6 t a b d
   · exact clearedExpansion7 t a b d
+/--
+@isnad1 id=eq.0h5v.s7.da500ba2e9b3 from=translated src=- shape=b3118c7c vocab=2db38e49
+-/
 theorem coefficientIdentity (t a b : K) (k : Fin 11) :
     (∑ i : Fin 8, allWeylCoefficients t a b i k) =
       if k = 5 then weylTargetCoefficient t a b else 0 := by
@@ -40,6 +46,9 @@ theorem coefficientIdentity (t a b : K) (k : Fin 11) :
   · simpa only [allWeylCoefficients, Fin.sum_univ_succ, Fin.sum_univ_zero, Matrix.cons_val_zero, Matrix.cons_val_succ, Matrix.cons_val, Fin.reduceFinMk, Fin.val_zero, Fin.val_succ, wcCoeffs0, wcCoeffs1, wcCoeffs2, wcCoeffs3, wcCoeffs4, wcCoeffs5, wcCoeffs6, wcCoeffs7, ite_true, ite_false, Fin.reduceEq, add_zero, add_assoc] using coefficientIdentity8 t a b
   · simpa only [allWeylCoefficients, Fin.sum_univ_succ, Fin.sum_univ_zero, Matrix.cons_val_zero, Matrix.cons_val_succ, Matrix.cons_val, Fin.reduceFinMk, Fin.val_zero, Fin.val_succ, wcCoeffs0, wcCoeffs1, wcCoeffs2, wcCoeffs3, wcCoeffs4, wcCoeffs5, wcCoeffs6, wcCoeffs7, ite_true, ite_false, Fin.reduceEq, add_zero, add_assoc] using coefficientIdentity9 t a b
   · simpa only [allWeylCoefficients, Fin.sum_univ_succ, Fin.sum_univ_zero, Matrix.cons_val_zero, Matrix.cons_val_succ, Matrix.cons_val, Fin.reduceFinMk, Fin.val_zero, Fin.val_succ, wcCoeffs0, wcCoeffs1, wcCoeffs2, wcCoeffs3, wcCoeffs4, wcCoeffs5, wcCoeffs6, wcCoeffs7, ite_true, ite_false, Fin.reduceEq, add_zero, add_assoc] using coefficientIdentity10 t a b
+/--
+@isnad1 id=eq.0h5v.s6.8131fefb7770 from=translated src=- shape=4f658326 vocab=31414707
+-/
 theorem weyl_polynomial_identity (t a b d : K) :
     (∑ i : Fin 8, weylClearedTerms t a b d i) = weylTargetNumerator t a b d := by
   simp_rw [clearedExpansion, evalCoefficients]

@@ -36,12 +36,18 @@ def i2Classify (k j h : ℤ) (c : ℕ) : Fin 25 :=
     else (if k = -1 then 13 else 16)
   else if h < j then 24 else i2TailClassify false j h c
 
+/--
+@isnad1 id=and.0h4v.s5.27aa19acb1d7 from=translated src=- shape=91adf806 vocab=7ff827d1
+-/
 theorem i2Classify_mem (k j h : ℤ) (c : ℕ) :
     i2SpatialPredicate (i2Classify k j h c) (k,j,h) ∧
       i2DepthPredicate (i2Classify k j h c) c := by
   unfold i2Classify i2TailClassify
   split_ifs <;> norm_num at * <;> omega
 
+/--
+@isnad1 id=eq.2h5v.s5.0cdf19a1849f from=translated src=- shape=bd2ceb8a vocab=29bf0c2d
+-/
 theorem i2Classify_eq_of_mem (ν : Fin 25) (k j h : ℤ) (c : ℕ)
     (hp : i2SpatialPredicate ν (k,j,h)) (hc : i2DepthPredicate ν c) :
     i2Classify k j h c = ν := by
@@ -311,6 +317,9 @@ theorem i2Classify_eq_of_mem (ν : Fin 25) (k j h : ℤ) (c : ℕ)
       ite_eq_left (rfl : true = true), ite_eq_right (by decide : ¬ false = true), ite_self]
     rfl
 
+/--
+@isnad1 id=existsun.0h4v.s5.d94324545009 from=translated src=- shape=51a10bc9 vocab=8d0dcaef
+-/
 theorem i2_rows_partition (k j h : ℤ) (c : ℕ) :
     ∃! ν : Fin 25, i2SpatialPredicate ν (k,j,h) ∧ i2DepthPredicate ν c := by
   refine ⟨i2Classify k j h c, i2Classify_mem k j h c, ?_⟩

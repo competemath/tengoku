@@ -22,6 +22,9 @@ namespace FourierJacobi.Measure
 
 set_option maxHeartbeats 2000000
 
+/--
+@isnad1 id=iff.0h2v.s4.9e0d7f8e3259 from=translated src=- shape=e008c95b vocab=1611e1ca
+-/
 theorem extendedNegLog_eq_coe_iff (z : ℤᵐ⁰) (n : ℤ) :
     extendedNegLog z = (n : WithTop ℤ) ↔ z = WithZero.exp (-n) := by
   induction z using WithZero.expRecOn with
@@ -35,6 +38,9 @@ theorem extendedNegLog_eq_coe_iff (z : ℤᵐ⁰) (n : ℤ) :
     simp only [extendedNegLog_exp, WithTop.coe_inj, WithZero.exp_inj]
     omega
 
+/--
+@isnad1 id=iff.0h1v.s6.68090fca92ce from=translated src=- shape=f06347ab vocab=6b2015c6
+-/
 theorem intValue_lt_one_iff_le_exp_neg_one (z : ℤᵐ⁰) :
     z < 1 ↔ z ≤ WithZero.exp (-1 : ℤ) := by
   induction z using WithZero.expRecOn with
@@ -48,22 +54,34 @@ theorem intValue_lt_one_iff_le_exp_neg_one (z : ℤᵐ⁰) :
 variable (K : Type*) [Field K] [ValuativeRel K] [TopologicalSpace K]
   [IsNonarchimedeanLocalField K]
 
+/--
+@isnad1 id=t2space.0h1v.s4.7e1ccb55d0cf from=translated src=- shape=7ddc04c7 vocab=d124730f
+-/
 local instance integerShells_t2Space : T2Space K := by
   let := IsTopologicalAddGroup.rightUniformSpace K
   let := isUniformAddGroup_of_addCommGroup (G := K)
   infer_instance
 
+/--
+@isnad1 id=iff.0h3v.s7.79c7033f4b55 from=translated src=- shape=3dfd60ed vocab=31ffff0e
+-/
 theorem canonicalValuation_eq_coe_iff (x : K) (n : ℤ) :
     localFieldValuation K x = (n : WithTop ℤ) ↔
       discreteValuation K x = WithZero.exp (-n) :=
   extendedNegLog_eq_coe_iff (discreteValuation K x) n
 
+/--
+@isnad1 id=ex.0h1v.s8.5b1c8297747d from=translated src=- shape=245715c7 vocab=3ea3d758
+-/
 theorem exists_integral_canonical_uniformizer :
     ∃ π : 𝒪[K], localFieldValuation K (π : K) = 1 := by
   obtain ⟨x, hx⟩ := localFieldValuation_surjective K (1 : WithTop ℤ)
   have hint : x ∈ 𝒪[K] := (localFieldValuation_nonnegative_iff K x).mp (by rw [hx]; norm_num)
   exact ⟨⟨x, hint⟩, hx⟩
 
+/--
+@isnad1 id=ne.1h2v.s8.3b5fbfe2dd68 from=translated src=- shape=754eab8a vocab=3ea3d758
+-/
 theorem canonical_uniformizer_ne_zero (π : 𝒪[K])
     (hπ : localFieldValuation K (π : K) = 1) : (π : K) ≠ 0 := by
   intro he
@@ -71,7 +89,9 @@ theorem canonical_uniformizer_ne_zero (π : 𝒪[K])
   exact WithTop.top_ne_coe hπ
 
 /-- Canonical additive valuation one implies generation of the actual maximal
-ideal. Generation is proved here, not assumed as an extra local-field datum.-/
+ideal. Generation is proved here, not assumed as an extra local-field datum.
+@isnad1 id=eq.1h2v.s9.7b43edcfb60f from=translated src=- shape=98ccfe45 vocab=5bff7ba5
+-/
 theorem canonical_uniformizer_generates (π : 𝒪[K])
     (hπ : localFieldValuation K (π : K) = 1) : 𝓂[K] = Ideal.span {π} := by
   have hdπ : discreteValuation K (π : K) = WithZero.exp (-1 : ℤ) :=
@@ -93,6 +113,9 @@ theorem canonical_uniformizer_generates (π : 𝒪[K])
   rw [hlt, hle, hdπ]
   exact intValue_lt_one_iff_le_exp_neg_one _
 
+/--
+@isnad1 id=eq.1h3v.s8.e7c03bb3b258 from=translated src=- shape=f91674ac vocab=b631b3ae
+-/
 theorem canonical_uniformizer_zpow (π : 𝒪[K])
     (hπ : localFieldValuation K (π : K) = 1) (n : ℤ) :
     localFieldValuation K ((π : K) ^ n) = (n : WithTop ℤ) := by
@@ -107,6 +130,9 @@ def integerBall (n : ℤ) : Set K := {x | (n : WithTop ℤ) ≤ localFieldValuat
 /-- Finite-valuation shells; zero belongs to none of them.-/
 def integerShell (n : ℤ) : Set K := {x | localFieldValuation K x = (n : WithTop ℤ)}
 
+/--
+@isnad1 id=eq.0h2v.s6.f5f343257945 from=translated src=- shape=f4ca7eb5 vocab=889e5663
+-/
 theorem integerShell_eq_sdiff (n : ℤ) :
     integerShell K n = integerBall K n \ integerBall K (n + 1) := by
   ext x
@@ -118,16 +144,25 @@ theorem integerShell_eq_sdiff (n : ℤ) :
     simp only [WithTop.coe_inj, WithTop.coe_le_coe]
     omega
 
+/--
+@isnad1 id=le.0h2v.s5.00c8dd72cf7f from=translated src=- shape=b9114d9b vocab=f5d3cc09
+-/
 theorem integerBall_succ_subset (n : ℤ) : integerBall K (n + 1) ⊆ integerBall K n := by
   intro x hx
   change ((n + 1 : ℤ) : WithTop ℤ) ≤ localFieldValuation K x at hx
   change (n : WithTop ℤ) ≤ localFieldValuation K x
   exact le_trans (by exact_mod_cast (show n ≤ n + 1 by omega)) hx
 
+/--
+@isnad1 id=eq.2h4v.s6.70ebcb7d2d6b from=translated src=- shape=f76bed72 vocab=1b8cb135
+-/
 theorem integerShell_unique (x : K) (m n : ℤ)
     (hm : x ∈ integerShell K m) (hn : x ∈ integerShell K n) : m = n :=
   WithTop.coe_injective (hm.symm.trans hn)
 
+/--
+@isnad1 id=iff.0h2v.s6.48fe9dfe36ad from=translated src=- shape=5f46a6eb vocab=1b8cb135
+-/
 theorem exists_integerShell_iff_ne_zero (x : K) :
     (∃ n : ℤ, x ∈ integerShell K n) ↔ x ≠ 0 := by
   have hfinite (v : WithTop ℤ) : (∃ n : ℤ, v = (n : WithTop ℤ)) ↔ v ≠ ⊤ := by
@@ -136,11 +171,17 @@ theorem exists_integerShell_iff_ne_zero (x : K) :
     | coe m => simp
   exact (hfinite (localFieldValuation K x)).trans (localFieldValuation_ne_top K x)
 
+/--
+@isnad1 id=existsun.1h2v.s6.1e6ba29ceca3 from=translated src=- shape=23c87c87 vocab=e1eab946
+-/
 theorem existsUnique_integerShell (x : K) (hx : x ≠ 0) :
     ∃! n : ℤ, x ∈ integerShell K n := by
   obtain ⟨n, hn⟩ := (exists_integerShell_iff_ne_zero K x).mpr hx
   exact ⟨n, hn, fun m hm => integerShell_unique K x m n hm hn⟩
 
+/--
+@isnad1 id=pairwise.0h1v.s6.0d4f30281916 from=translated src=- shape=c96dc0ea vocab=7ab1e76f
+-/
 theorem integerShell_pairwiseDisjoint :
     Pairwise (fun m n : ℤ => Disjoint (integerShell K m) (integerShell K n)) := by
   intro m n hmn
@@ -148,6 +189,9 @@ theorem integerShell_pairwiseDisjoint :
   intro x hm hn
   exact hmn (integerShell_unique K x m n hm hn)
 
+/--
+@isnad1 id=eq.0h1v.s6.b145d9a05093 from=translated src=- shape=b49d2cca vocab=9e687548
+-/
 theorem iUnion_integerShell_eq : (⋃ n : ℤ, integerShell K n) = ({0} : Set K)ᶜ := by
   ext x
   simpa only [Set.mem_iUnion, Set.mem_compl_iff, Set.mem_singleton_iff] using
@@ -158,6 +202,9 @@ def canonicalUniformizerUnit (π : 𝒪[K])
     (hπ : localFieldValuation K (π : K) = 1) : Kˣ :=
   Units.mk0 (π : K) (canonical_uniformizer_ne_zero K π hπ)
 
+/--
+@isnad1 id=eq.1h4v.s8.8cf622202bd9 from=translated src=- shape=e24acf6a vocab=911771dd
+-/
 theorem canonicalValuation_uniformizer_smul (π : 𝒪[K])
     (hπ : localFieldValuation K (π : K) = 1) (n : ℤ) (x : K) :
     localFieldValuation K ((canonicalUniformizerUnit K π hπ ^ n) • x) =
@@ -167,6 +214,9 @@ theorem canonicalValuation_uniformizer_smul (π : 𝒪[K])
   change localFieldValuation K ((π : K) ^ n * x) = _
   rw [(localFieldValuation K).map_mul, canonical_uniformizer_zpow K π hπ n]
 
+/--
+@isnad1 id=iff.0h2v.s6.c465d8466589 from=translated src=- shape=5db4126c vocab=70b659f9
+-/
 theorem coe_le_iff_neg_add_nonnegative (n : ℤ) (v : WithTop ℤ) :
     (n : WithTop ℤ) ≤ v ↔ 0 ≤ ((-n : ℤ) : WithTop ℤ) + v := by
   induction v using WithTop.recTopCoe with
@@ -178,6 +228,9 @@ theorem coe_le_iff_neg_add_nonnegative (n : ℤ) (v : WithTop ℤ) :
     simp only [WithTop.coe_le_coe]
     omega
 
+/--
+@isnad1 id=eq.1h3v.s8.1fdf6b59490c from=translated src=- shape=0d4b05dd vocab=bb0601cf
+-/
 theorem integerBall_eq_uniformizer_smul (π : 𝒪[K])
     (hπ : localFieldValuation K (π : K) = 1) (n : ℤ) :
     integerBall K n = (canonicalUniformizerUnit K π hπ ^ n) • (𝒪[K] : Set K) := by
@@ -189,6 +242,9 @@ theorem integerBall_eq_uniformizer_smul (π : 𝒪[K])
     canonicalValuation_uniformizer_smul]
   exact coe_le_iff_neg_add_nonnegative n _
 
+/--
+@isnad1 id=isopen.0h2v.s5.8aa47053db52 from=translated src=- shape=77fdd9ae vocab=90d317dc
+-/
 theorem integerBall_isOpen (n : ℤ) : IsOpen (integerBall K n) := by
   obtain ⟨π, hπ⟩ := exists_integral_canonical_uniformizer K
   rw [integerBall_eq_uniformizer_smul K π hπ n]
@@ -196,19 +252,30 @@ theorem integerBall_isOpen (n : ℤ) : IsOpen (integerBall K n) := by
 
 variable [MeasurableSpace K] [BorelSpace K]
 
+/--
+@isnad1 id=regular.0h1v.s5.d16cac4bed37 from=translated src=- shape=21c02aa3 vocab=861596bc
+-/
 local instance integerShells_additiveHaar_regular : (additiveHaar K).Regular := by
   unfold additiveHaar
   infer_instance
 
+/--
+@isnad1 id=measurab.0h2v.s5.50260354d505 from=translated src=- shape=bed1339f vocab=65c34606
+-/
 theorem integerBall_measurableSet (n : ℤ) : MeasurableSet (integerBall K n) :=
   (integerBall_isOpen K n).measurableSet
 
+/--
+@isnad1 id=measurab.0h2v.s5.41cfbd6ede6d from=translated src=- shape=bed1339f vocab=28c062d0
+-/
 theorem integerShell_measurableSet (n : ℤ) : MeasurableSet (integerShell K n) := by
   rw [integerShell_eq_sdiff]
   exact (integerBall_measurableSet K n).diff (integerBall_measurableSet K (n + 1))
 
 /-- The Haar scaling factor of the canonical uniformizer is obtained from the
-actual maximal-ideal volume, which was proved by finite additive index.-/
+actual maximal-ideal volume, which was proved by finite additive index.
+@isnad1 id=eq.1h2v.s9.c18136336bc6 from=translated src=- shape=eded4ce2 vocab=7b1cdbbf
+-/
 theorem canonicalUniformizer_distribHaarChar (π : 𝒪[K])
     (hπ : localFieldValuation K (π : K) = 1) :
     distribHaarChar K (canonicalUniformizerUnit K π hπ) =
@@ -233,7 +300,9 @@ theorem canonicalUniformizer_distribHaarChar (π : 𝒪[K])
 
 /-- All integer balls have the expected finite, positive Haar measure.
 The proof includes negative integers, using the group-homomorphism law for
-the genuine Haar scaling character.-/
+the genuine Haar scaling character.
+@isnad1 id=eq.0h2v.s6.2d5e9d058d6b from=translated src=- shape=a4c896c8 vocab=d9fa44be
+-/
 theorem additiveHaar_integerBall (n : ℤ) :
     additiveHaar K (integerBall K n) =
       (((residueCardinality K : ℝ≥0)⁻¹) ^ n : ℝ≥0) := by
@@ -241,17 +310,25 @@ theorem additiveHaar_integerBall (n : ℤ) :
   rw [integerBall_eq_uniformizer_smul K π hπ n, ← distribHaarChar_mul,
     additiveHaar_integers, mul_one, map_zpow, canonicalUniformizer_distribHaarChar K π hπ]
 
+/--
+@isnad1 id=ne.0h2v.s6.fb35380c2ce5 from=translated src=- shape=c7e2e516 vocab=46276c10
+-/
 theorem additiveHaar_integerBall_ne_top (n : ℤ) :
     additiveHaar K (integerBall K n) ≠ ⊤ := by
   rw [additiveHaar_integerBall]
   exact ENNReal.coe_ne_top
 
+/--
+@isnad1 id=eq.0h2v.s6.a151a9760751 from=translated src=- shape=ce3fa350 vocab=ca04abf1
+-/
 theorem additiveHaar_real_integerBall (n : ℤ) :
     (additiveHaar K).real (integerBall K n) = (residueCardinality K : ℝ) ^ (-n) := by
   simp [measureReal_def, additiveHaar_integerBall, zpow_neg]
 
 /-- The canonical finite-valuation shell measure, for every integer depth,
-with exactly the manuscript's additive Haar normalization.-/
+with exactly the manuscript's additive Haar normalization.
+@isnad1 id=eq.0h2v.s6.d633a592d5b9 from=translated src=- shape=21c6a1ed vocab=e92adfdf
+-/
 theorem additiveHaar_real_integerShell (n : ℤ) :
     (additiveHaar K).real (integerShell K n) =
       (1 - (residueCardinality K : ℝ)⁻¹) * (residueCardinality K : ℝ) ^ (-n) := by
@@ -263,6 +340,9 @@ theorem additiveHaar_real_integerShell (n : ℤ) :
   rw [show -(n + 1) = -n + -1 by omega, zpow_add₀ hq, zpow_neg_one]
   ring
 
+/--
+@isnad1 id=lt.0h2v.s5.2e9b3c6bc93c from=translated src=- shape=af35f047 vocab=3faec226
+-/
 theorem additiveHaar_real_integerShell_pos (n : ℤ) :
     0 < (additiveHaar K).real (integerShell K n) := by
   have hq : (1 : ℝ) < residueCardinality K := by exact_mod_cast residueCardinality_one_lt K
@@ -270,13 +350,18 @@ theorem additiveHaar_real_integerShell_pos (n : ℤ) :
   rw [additiveHaar_real_integerShell]
   exact mul_pos (sub_pos.mpr ((inv_lt_one₀ hq0).mpr hq)) (zpow_pos hq0 _)
 
+/--
+@isnad1 id=ne.0h2v.s6.447ffbb5ae93 from=translated src=- shape=c7e2e516 vocab=9a06ce49
+-/
 theorem additiveHaar_integerShell_ne_top (n : ℤ) :
     additiveHaar K (integerShell K n) ≠ ⊤ := by
   rw [integerShell_eq_sdiff]
   exact measure_ne_top_of_subset Set.sdiff_subset (additiveHaar_integerBall_ne_top K n)
 
 /-- The same shell-volume formula as an equality in the measure's native
-extended nonnegative real codomain.-/
+extended nonnegative real codomain.
+@isnad1 id=eq.0h2v.s6.d61fbe696786 from=translated src=- shape=916e4554 vocab=023547cc
+-/
 theorem additiveHaar_integerShell (n : ℤ) :
     additiveHaar K (integerShell K n) =
       ENNReal.ofReal ((1 - (residueCardinality K : ℝ)⁻¹) *
@@ -287,7 +372,9 @@ theorem additiveHaar_integerShell (n : ℤ) :
     _ = _ := congrArg ENNReal.ofReal (additiveHaar_real_integerShell K n)
 
 /-- The canonical extended integer valuation is measurable, including its
-infinite value at zero. No arbitrary finite value is assigned at zero.-/
+infinite value at zero. No arbitrary finite value is assigned at zero.
+@isnad1 id=measurab.0h1v.s6.c9a72ea7dcb7 from=translated src=- shape=3308e129 vocab=0864dc8d
+-/
 theorem canonicalValuation_measurable [MeasurableSpace (WithTop ℤ)] :
     Measurable (localFieldValuation K) := by
   apply measurable_to_countable'

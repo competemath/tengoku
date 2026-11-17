@@ -37,10 +37,16 @@ def paperE (q : ℝ) (a b d : ℂ) : ℂ :=
     paperN1 q a b * paperN2 q a b) /
       (paperC q * paperD1 q a b d * paperD2 q a b d)
 
+/--
+@isnad1 id=eq.1h1v.s5.0f0d37d32842 from=translated src=- shape=2396e756 vocab=b2985c1f
+-/
 theorem inverseSqrt_coe_sq (q : ℝ) (hq : 0 ≤ q) :
     (inverseSqrt q : ℂ) ^ 2 = (q : ℂ)⁻¹ := by
   exact_mod_cast inverseSqrt_sq hq
 
+/--
+@isnad1 id=eq.1h1v.s4.ff5e58a17fb5 from=translated src=- shape=207469fe vocab=c5fe081b
+-/
 theorem paperC_eq_poincare (q : ℝ) (hq : 0 ≤ q) :
     paperC q = poincare (inverseSqrt q : ℂ) := by
   have h := inverseSqrt_coe_sq q hq
@@ -48,6 +54,9 @@ theorem paperC_eq_poincare (q : ℝ) (hq : 0 ≤ q) :
   rw [← h]
   ring
 
+/--
+@isnad1 id=eq.1h4v.s5.9c0c6c34b5db from=translated src=- shape=b3b6d197 vocab=c3fd9964
+-/
 theorem paperE_eq_closedCore (q : ℝ) (hq : 0 ≤ q) (a b d : ℂ) :
     paperE q a b d = closedCore (inverseSqrt q : ℂ) a b d := by
   unfold paperE closedCore satakeNumerator n₁ n₂ d₁ d₂ fourFactors
@@ -66,12 +75,18 @@ structure GeometricRange (t d U V T : ℂ) : Prop where
   f : ‖T * U * t ^ 2‖ < 1
   g : ‖T * U * t ^ 4‖ < 1
 
+/--
+@isnad1 id=ne.1h1v.s5.66695d3f34f3 from=translated src=- shape=e0aee735 vocab=0fcc4b44
+-/
 theorem norm_one_sub_ne_zero {z : ℂ} (h : ‖z‖ < 1) : 1 - z ≠ 0 := by
   intro he
   have hz := congrArg norm (sub_eq_zero.mp he)
   rw [norm_one] at hz
   linarith
 
+/--
+@isnad1 id=regionre.1h5v.s5.ca815b083c8b from=translated src=- shape=1c2792a0 vocab=9cbc292f
+-/
 theorem GeometricRange.regionRegular {t d U V T : ℂ}
     (h : GeometricRange t d U V T) : RegionRegular t d (T * U) (T * V) := by
   refine ⟨?_, norm_one_sub_ne_zero h.n, norm_one_sub_ne_zero h.e,
@@ -79,6 +94,9 @@ theorem GeometricRange.regionRegular {t d U V T : ℂ}
   apply norm_one_sub_ne_zero
   simpa only [mul_assoc] using h.p
 
+/--
+@isnad1 id=geometri.9h5v.s7.8b5d4312d35a from=translated src=- shape=dc94bab6 vocab=54cabf04
+-/
 theorem geometricRange_of_bounds {t T : ℝ} {d U V : ℂ}
     (ht₀ : 0 < t) (ht₁ : t < 1) (hT₀ : 0 ≤ T) (hT₁ : T ≤ 1)
     (hd₀ : t ≤ ‖d‖) (hd₁ : ‖d‖ ≤ 1) (hstrict : T * t < ‖d‖)
@@ -104,6 +122,9 @@ theorem geometricRange_of_bounds {t T : ℝ} {d U V : ℂ}
   · simp only [norm_mul, norm_pow, ht, hT, hU, mul_one]
     nlinarith [sq_nonneg (t ^ 2)]
 
+/--
+@isnad1 id=geometri.8h5v.s6.498af5edc6c2 from=translated src=- shape=2753d9b5 vocab=a2a43d95
+-/
 theorem geometricRange_damped {t T : ℝ} {d U V : ℂ}
     (ht₀ : 0 < t) (ht₁ : t < 1) (hT₀ : 0 < T) (hT₁ : T < 1)
     (hd₀ : t ≤ ‖d‖) (hd₁ : ‖d‖ ≤ 1)
@@ -112,6 +133,9 @@ theorem geometricRange_damped {t T : ℝ} {d U V : ℂ}
   apply geometricRange_of_bounds ht₀ ht₁ hT₀.le hT₁.le hd₀ hd₁ ?_ hU hV
   nlinarith
 
+/--
+@isnad1 id=geometri.6h4v.s6.b0fba9e959d6 from=translated src=- shape=83d3d679 vocab=a2a43d95
+-/
 theorem geometricRange_undamped {t : ℝ} {d U V : ℂ}
     (ht₀ : 0 < t) (ht₁ : t < 1) (hd₀ : t < ‖d‖) (hd₁ : ‖d‖ ≤ 1)
     (hU : ‖U‖ = 1) (hV : ‖V‖ = 1) :
@@ -120,12 +144,18 @@ theorem geometricRange_undamped {t : ℝ} {d U V : ℂ}
     geometricRange_of_bounds ht₀ ht₁ (by norm_num : (0 : ℝ) ≤ 1)
       (by norm_num : (1 : ℝ) ≤ 1) hd₀.le hd₁ (by simpa using hd₀) hU hV
 
+/--
+@isnad1 id=eq.1h1v.s5.e12e4e1ea647 from=translated src=- shape=22e5a4e7 vocab=cbd24c2d
+-/
 theorem inverseSqrt_coe_mul (q : ℝ) (hq : 1 < q) :
     (q : ℂ) * (inverseSqrt q : ℂ) ^ 2 = 1 := by
   rw [inverseSqrt_coe_sq q (by linarith)]
   apply mul_inv_cancel₀
   exact_mod_cast (ne_of_gt (show 0 < q by linarith))
 
+/--
+@isnad1 id=lt.1h1v.s4.70f53393af87 from=translated src=- shape=7106ef8e vocab=7f8f304f
+-/
 theorem residue_inverse_norm_lt_one (q : ℝ) (hq : 1 < q) :
     ‖(q : ℂ)⁻¹‖ < 1 := by
   rw [norm_inv]
@@ -133,6 +163,9 @@ theorem residue_inverse_norm_lt_one (q : ℝ) (hq : 1 < q) :
   rw [hqn]
   exact (inv_lt_one₀ (by linarith : 0 < q)).mpr hq
 
+/--
+@isnad1 id=finitere.10h4v.s7.b391cfd67f23 from=translated src=- shape=d3de4b56 vocab=906d6fec
+-/
 theorem finiteRegular_interior {t : ℝ} {a b d : ℂ}
     (ht₀ : 0 < t) (ht₁ : t < 1) (ha : ‖a‖ = 1) (hb : ‖b‖ = 1)
     (hdlo : t < ‖d‖) (hdhi : ‖d‖ ≤ 1)

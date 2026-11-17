@@ -51,6 +51,9 @@ def tableZero (k j h : ℤ) : ℤ × ℤ :=
     else if j ≤ 2 * h then (0, -k - j)
     else (2 * j - 4 * h, 2 * h - 2 * j - k)
 
+/--
+@isnad1 id=eq.0h4v.s4.bdd57ab11085 from=translated src=- shape=f2181c3d vocab=b1677f78
+-/
 theorem tableZero_correct (k j h c : ℤ) :
     tableZero k j h = cartanIndices 0 k j h c := by
   unfold tableZero cartanIndices entryMinimum minorMinimum baseMinimum
@@ -76,6 +79,9 @@ def tableOne (k j h c : ℤ) : ℤ × ℤ :=
     else if h < j then (-2 * h, -k)
     else collisionRows 1 k j h c
 
+/--
+@isnad1 id=eq.1h4v.s5.7d6dcaf246c5 from=translated src=- shape=7d72fec3 vocab=353ffdcc
+-/
 theorem tableOne_correct (k j h c : ℤ) (hc : 0 ≤ c) :
     tableOne k j h c = cartanIndices 1 k j h c := by
   unfold tableOne collisionRows cartanIndices entryMinimum minorMinimum
@@ -105,6 +111,9 @@ def tableTwo (k j h c : ℤ) : ℤ × ℤ :=
     else collisionRows 2 k j h c
 
 set_option maxHeartbeats 2000000 in
+/--
+@isnad1 id=eq.1h4v.s5.331bcad11d53 from=translated src=- shape=7d72fec3 vocab=34cfef08
+-/
 theorem tableTwo_correct (k j h c : ℤ) (hc : 0 ≤ c) :
     tableTwo k j h c = cartanIndices 2 k j h c := by
   unfold tableTwo collisionRows cartanIndices entryMinimum minorMinimum
@@ -112,12 +121,18 @@ theorem tableTwo_correct (k j h c : ℤ) (hc : 0 ≤ c) :
   simp only [show (2 : ℤ) ≠ 0 by decide, ite_false]
   split_ifs <;> simp only [Prod.mk.injEq] <;> omega
 
+/--
+@isnad1 id=and.1h5v.s5.8cd64b93ba3e from=translated src=- shape=7a91ac6b vocab=9db68563
+-/
 theorem entry_minor_bounds (r k j h c : ℤ) (hc : 0 ≤ c) :
     2 * entryMinimum r k j h ≤ minorMinimum r k j h c ∧
       minorMinimum r k j h c ≤ entryMinimum r k j h := by
   unfold entryMinimum minorMinimum baseMinimum determinantValuation
   split_ifs <;> omega
 
+/--
+@isnad1 id=and.1h5v.s5.322bfa8f5af9 from=translated src=- shape=f1a385d7 vocab=a605baa6
+-/
 theorem cartanIndices_nonnegative (r k j h c : ℤ) (hc : 0 ≤ c) :
     0 ≤ (cartanIndices r k j h c).1 ∧ 0 ≤ (cartanIndices r k j h c).2 := by
   have hb := entry_minor_bounds r k j h c hc
@@ -125,12 +140,17 @@ theorem cartanIndices_nonnegative (r k j h c : ℤ) (hc : 0 ≤ c) :
   simp only
   omega
 
+/--
+@isnad1 id=even.0h5v.s4.24e35ef0c951 from=translated src=- shape=9812e0ec vocab=f572bb1f
+-/
 theorem cartanIndices_even (r k j h c : ℤ) : Even (cartanIndices r k j h c).1 := by
   change Even (-2 * (minorMinimum r k j h c - entryMinimum r k j h))
   refine ⟨entryMinimum r k j h - minorMinimum r k j h c, ?_⟩
   omega
 
-/-- The elementary inequality underlying the fixed-central-coordinate majorant.-/
+/-- The elementary inequality underlying the fixed-central-coordinate majorant.
+@isnad1 id=le.0h2v.s6.85f8c91f402e from=translated src=- shape=fb4e01c3 vocab=ff1b0ec2
+-/
 theorem central_majorant (u v : ℤ) :
     2 * (u + v - max u v - max u (2 * v)) ≤ -max u v := by
   omega

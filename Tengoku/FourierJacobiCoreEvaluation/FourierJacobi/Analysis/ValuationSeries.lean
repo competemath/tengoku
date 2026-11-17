@@ -86,10 +86,16 @@ def i0PositiveRowEquiv (tail : Bool) : (ℕ × ℕ × ℕ) ≃ I0PositiveRow tai
       simp only [Prod.mk.injEq]
       omega
 
+/--
+@isnad1 id=eq.0h2v.s8.72932760a103 from=translated src=- shape=011f4ead vocab=ef634e07
+-/
 @[simp] theorem i0PositiveRowEquiv_val (tail : Bool) (n : ℕ × ℕ × ℕ) :
     (i0PositiveRowEquiv tail n).val = ((n.1 : ℤ), (n.2.1 : ℤ) - 2 * n.1,
       if tail then -(n.1 : ℤ) - n.2.2 - 1 else (n.2.2 : ℤ) - n.1) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.702397c3c9ff from=translated src=- shape=bd73e774 vocab=3282c24c
+-/
 theorem i0PositiveRow_cartan (tail : Bool) (n : ℕ × ℕ × ℕ) :
     cartanIndices 0 (i0PositiveRowEquiv tail n).val.1
       (i0PositiveRowEquiv tail n).val.2.1
@@ -110,6 +116,9 @@ theorem i0PositiveRow_cartan (tail : Bool) (n : ℕ × ℕ × ℕ) :
     simp only [Prod.mk.injEq]
     exact ⟨by ring, trivial⟩
 
+/--
+@isnad1 id=eq.0h6v.s8.fe8ca36dff45 from=translated src=- shape=db95f31c vocab=b9e0a48c
+-/
 theorem i0_case1_reindexed (t d U V T : ℂ) (n : ℕ × ℕ × ℕ) :
     i0Shell t d U V T (i0PositiveRowEquiv false n).val =
       (1 - t ^ 2) ^ 2 * (d * T * V * t) ^ n.1 *
@@ -125,6 +134,9 @@ theorem i0_case1_reindexed (t d U V T : ℂ) (n : ℕ × ℕ × ℕ) :
   simp
   ring
 
+/--
+@isnad1 id=eq.0h6v.s8.4d8c172b59fa from=translated src=- shape=fc184cad vocab=7b174d1c
+-/
 theorem i0_case2_reindexed (t d U V T : ℂ) (n : ℕ × ℕ × ℕ) :
     i0Shell t d U V T (i0PositiveRowEquiv true n).val =
       ((1 - t ^ 2) ^ 2 * (T * U * t ^ 4)) *
@@ -141,14 +153,18 @@ theorem i0_case2_reindexed (t d U V T : ℂ) (n : ℕ × ℕ × ℕ) :
   simp only [zpow_natCast, pow_add, pow_mul, mul_pow, pow_one]
   ring
 
-/-- Norm summability is proved from the real geometric series directly.-/
+/-- Norm summability is proved from the real geometric series directly.
+@isnad1 id=summable.1h1v.s5.8e552dd56776 from=translated src=- shape=dc8760f7 vocab=a9c163e5
+-/
 theorem geometric_norm_summable (z : ℂ) (hz : ‖z‖ < 1) :
     Summable (fun n : ℕ => ‖z ^ n‖) := by
   have hz' : ‖(‖z‖ : ℝ)‖ < 1 := by simpa using hz
   simpa only [norm_pow] using (hasSum_geometric_of_norm_lt_one hz').summable
 
 /-- Absolute convergence of a product indexed by three free nonnegative
-integers, proved without changing the order of conditionally convergent sums.-/
+integers, proved without changing the order of conditionally convergent sums.
+@isnad1 id=summable.3h4v.s7.c720529a5f9a from=translated src=- shape=76eed499 vocab=668390a1
+-/
 theorem summable_norm_three_geometric (C a b c : ℂ)
     (ha : ‖a‖ < 1) (hb : ‖b‖ < 1) (hc : ‖c‖ < 1) :
     Summable (fun n : ℕ × ℕ × ℕ => ‖C * a ^ n.1 * b ^ n.2.1 * c ^ n.2.2‖) := by
@@ -158,7 +174,9 @@ theorem summable_norm_three_geometric (C a b c : ℂ)
 
 /-- An absolutely convergent product of three geometric families, indexed
 by an unordered product type rather than an iterated, potentially conditional,
-sum. This is the analysis used after the explicit domain bijections.-/
+sum. This is the analysis used after the explicit domain bijections.
+@isnad1 id=hassum.3h4v.s7.3d590df6e57c from=translated src=- shape=f193ce89 vocab=916ef642
+-/
 theorem hasSum_three_geometric (C a b c : ℂ)
     (ha : ‖a‖ < 1) (hb : ‖b‖ < 1) (hc : ‖c‖ < 1) :
     HasSum (fun n : ℕ × ℕ × ℕ => C * a ^ n.1 * b ^ n.2.1 * c ^ n.2.2)
@@ -187,7 +205,9 @@ theorem hasSum_three_geometric (C a b c : ℂ)
 
 /-- The first infinite valuation sum of `I0eq3`, equal to the damped
 version of `I0eqq1`. Its hypotheses prove convergence, not merely that
-the displayed denominator is nonzero.-/
+the displayed denominator is nonzero.
+@isnad1 id=hassum.2h5v.s8.4b18193e41c2 from=translated src=- shape=147b1508 vocab=cc42279c
+-/
 theorem hasSum_i0_case1 (t d U V T : ℂ)
     (ht : ‖t ^ 2‖ < 1) (hP : ‖d * T * V * t‖ < 1) :
     HasSum (fun p : I0PositiveRow false => i0Shell t d U V T p.val)
@@ -211,7 +231,9 @@ theorem hasSum_i0_case1 (t d U V T : ℂ)
   exact funext fun n => i0_case1_reindexed t d U V T n
 
 /-- The second infinite valuation sum of `I0eq3`, equal to the damped
-version of `I0eqq2`, with both geometric-ratio bounds explicit.-/
+version of `I0eqq2`, with both geometric-ratio bounds explicit.
+@isnad1 id=hassum.3h5v.s8.5ef5ec5cc5bf from=translated src=- shape=3038d991 vocab=b1847fe8
+-/
 theorem hasSum_i0_case2 (t d U V T : ℂ)
     (ht : ‖t ^ 2‖ < 1) (hP : ‖d * T * V * t‖ < 1)
     (hG : ‖T * U * t ^ 4‖ < 1) :
@@ -272,10 +294,16 @@ def i0NegativeRowEquiv (tail : Bool) : (ℕ × ℕ × ℕ) ≃ I0NegativeRow tai
       simp only [Prod.mk.injEq]
       omega
 
+/--
+@isnad1 id=eq.0h2v.s7.a4cc194f1e63 from=translated src=- shape=731834d7 vocab=ccbf4f32
+-/
 @[simp] theorem i0NegativeRowEquiv_val (tail : Bool) (n : ℕ × ℕ × ℕ) :
     (i0NegativeRowEquiv tail n).val = (-(n.1 : ℤ) - 1, (n.2.1 : ℤ),
       if tail then -(n.2.2 : ℤ) - 1 else (n.2.2 : ℤ)) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.2d9170134ce7 from=translated src=- shape=89fd8f93 vocab=a2346d5b
+-/
 theorem i0NegativeRow_cartan (tail : Bool) (n : ℕ × ℕ × ℕ) :
     cartanIndices 0 (i0NegativeRowEquiv tail n).val.1
       (i0NegativeRowEquiv tail n).val.2.1
@@ -299,6 +327,9 @@ theorem i0NegativeRow_cartan (tail : Bool) (n : ℕ × ℕ × ℕ) :
     simp only [Prod.mk.injEq]
     omega
 
+/--
+@isnad1 id=eq.0h6v.s8.74cc790bbc2e from=translated src=- shape=e959adc0 vocab=8d4f60aa
+-/
 theorem i0_case6_reindexed (t d U V T : ℂ) (n : ℕ × ℕ × ℕ) :
     i0Shell t d U V T (i0NegativeRowEquiv false n).val =
       ((1 - t ^ 2) ^ 2 * (T * V * t / d)) *
@@ -317,6 +348,9 @@ theorem i0_case6_reindexed (t d U V T : ℂ) (n : ℕ × ℕ × ℕ) :
   simp
   ring
 
+/--
+@isnad1 id=eq.0h6v.s8.da208c3a7f61 from=translated src=- shape=5c1ea511 vocab=f8dbc1ba
+-/
 theorem i0_case7_reindexed (t d U V T : ℂ) (n : ℕ × ℕ × ℕ) :
     i0Shell t d U V T (i0NegativeRowEquiv true n).val =
       ((1 - t ^ 2) ^ 2 * (T * V * t / d) * (T * U * t ^ 4)) *
@@ -336,7 +370,9 @@ theorem i0_case7_reindexed (t d U V T : ℂ) (n : ℕ × ℕ × ℕ) :
     mul_inv_rev, div_eq_mul_inv, inv_pow]
   ring
 
-/-- Case 6, including the first strictly negative valuation shell.-/
+/-- Case 6, including the first strictly negative valuation shell.
+@isnad1 id=hassum.2h5v.s8.168eddd76cc6 from=translated src=- shape=08d64ffa vocab=9020d75b
+-/
 theorem hasSum_i0_case6 (t d U V T : ℂ)
     (ht : ‖t ^ 2‖ < 1) (hN : ‖T * V * t / d‖ < 1) :
     HasSum (fun p : I0NegativeRow false => i0Shell t d U V T p.val)
@@ -362,7 +398,9 @@ theorem hasSum_i0_case6 (t d U V T : ℂ)
   convert h using 1
   exact funext fun n => i0_case6_reindexed t d U V T n
 
-/-- Case 7, with damping present in both independent geometric ratios.-/
+/-- Case 7, with damping present in both independent geometric ratios.
+@isnad1 id=hassum.3h5v.s8.821506a9c22d from=translated src=- shape=9d4d36b6 vocab=02f88b83
+-/
 theorem hasSum_i0_case7 (t d U V T : ℂ)
     (ht : ‖t ^ 2‖ < 1) (hN : ‖T * V * t / d‖ < 1)
     (hG : ‖T * U * t ^ 4‖ < 1) :
@@ -393,7 +431,9 @@ theorem hasSum_i0_case7 (t d U V T : ℂ)
   exact funext fun n => i0_case7_reindexed t d U V T n
 
 /-- Direct identification with row 0 of the existing fifty-row expression,
-under the expansion's damping substitution `U ↦ TU`, `V ↦ TV`.-/
+under the expansion's damping substitution `U ↦ TU`, `V ↦ TV`.
+@isnad1 id=hassum.2h5v.s8.7ed5d21dde10 from=translated src=- shape=c141b83d vocab=e3b53388
+-/
 theorem hasSum_i0_case1_regionTerm (t d U V T : ℂ)
     (ht : ‖t ^ 2‖ < 1) (hP : ‖d * T * V * t‖ < 1) :
     HasSum (fun p : I0PositiveRow false => i0Shell t d U V T p.val)
@@ -404,7 +444,9 @@ theorem hasSum_i0_case1_regionTerm (t d U V T : ℂ)
   simpa only [Algebra.regionTerm0, pow_one, mul_assoc]
     using hasSum_i0_case1 t d U V T ht hP
 
-/-- Direct identification with row 1 of the existing fifty-row expression.-/
+/-- Direct identification with row 1 of the existing fifty-row expression.
+@isnad1 id=hassum.3h5v.s9.2987b2958024 from=translated src=- shape=2f3291d1 vocab=741dfe1b
+-/
 theorem hasSum_i0_case2_regionTerm (t d U V T : ℂ)
     (ht : ‖t ^ 2‖ < 1) (hP : ‖d * T * V * t‖ < 1)
     (hG : ‖T * U * t ^ 4‖ < 1) :
@@ -417,7 +459,9 @@ theorem hasSum_i0_case2_regionTerm (t d U V T : ℂ)
   simp only [Algebra.regionTerm1, pow_one, div_eq_mul_inv, mul_inv_rev, mul_assoc]
   ring
 
-/-- Direct identification with row 5 of the existing fifty-row expression.-/
+/-- Direct identification with row 5 of the existing fifty-row expression.
+@isnad1 id=hassum.2h5v.s8.ebb89a89af6f from=translated src=- shape=f8213ab8 vocab=db75e70d
+-/
 theorem hasSum_i0_case6_regionTerm (t d U V T : ℂ)
     (ht : ‖t ^ 2‖ < 1) (hN : ‖T * V * t / d‖ < 1) :
     HasSum (fun p : I0NegativeRow false => i0Shell t d U V T p.val)
@@ -429,7 +473,9 @@ theorem hasSum_i0_case6_regionTerm (t d U V T : ℂ)
   simp only [Algebra.regionTerm5, pow_one, div_eq_mul_inv, mul_assoc]
   ring
 
-/-- Direct identification with row 6 of the existing fifty-row expression.-/
+/-- Direct identification with row 6 of the existing fifty-row expression.
+@isnad1 id=hassum.3h5v.s9.ebcabb505f76 from=translated src=- shape=a78141e1 vocab=6f2286b2
+-/
 theorem hasSum_i0_case7_regionTerm (t d U V T : ℂ)
     (ht : ‖t ^ 2‖ < 1) (hN : ‖T * V * t / d‖ < 1)
     (hG : ‖T * U * t ^ 4‖ < 1) :
@@ -443,7 +489,9 @@ theorem hasSum_i0_case7_regionTerm (t d U V T : ℂ)
   ring
 
 /-- Absolute convergence of all four original-domain families. The shared
-ratio conditions are kept explicit, including the damping variable.-/
+ratio conditions are kept explicit, including the damping variable.
+@isnad1 id=and.4h5v.s9.bedb8bebfa1f from=translated src=- shape=a2716704 vocab=309ac0e2
+-/
 theorem i0_four_rows_absolutelySummable (t d U V T : ℂ)
     (ht : ‖t ^ 2‖ < 1) (hP : ‖d * T * V * t‖ < 1)
     (hN : ‖T * V * t / d‖ < 1) (hG : ‖T * U * t ^ 4‖ < 1) :
