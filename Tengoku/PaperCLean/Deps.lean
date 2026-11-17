@@ -1,0 +1,1 @@
+-- PaperCLean: a factory bundle (data/intake/paper-c-lean). This file only marks the library for Tengoku/All.lean.
