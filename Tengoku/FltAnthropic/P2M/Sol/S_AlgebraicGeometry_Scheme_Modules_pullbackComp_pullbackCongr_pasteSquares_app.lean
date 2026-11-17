@@ -1,0 +1,207 @@
+import Tengoku
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AlgebraicGeometry_Scheme_Modules_pullbackComp_pullbackCongr_pasteSquares_app.lean`: wrote out 9 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 6 `p2m_export`, 3 `p2m_open`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AlgebraicGeometry_Scheme_Modules_pullbackComp_pullbackCongr_pasteSquares_app
+
+set_option autoImplicit false
+
+universe u
+
+open _root_.CategoryTheory open _root_.CategoryTheory.Limits open _root_.AlgebraicGeometry
+
+namespace AlgebraicGeometry
+export _root_.AlgebraicGeometry (Scheme.Modules.pullback Scheme Scheme.Modules.pullbackCongr Scheme.Modules Scheme.Modules.pullbackComp)
+namespace Scheme
+export _root_.AlgebraicGeometry.Scheme (Modules.pullback Modules.pullbackCongr Modules Modules.pullbackComp)
+namespace Modules
+export _root_.AlgebraicGeometry.Scheme.Modules (pullback pseudofunctor_associativity pullbackCongr pullbackComp)
+open _root_.AlgebraicGeometry.Scheme.Modules open _root_.AlgebraicGeometry.Scheme open _root_.AlgebraicGeometry
+
+variable {X₀ X₁ X₂ X₃ : Scheme.{u}}
+
+/--
+@isnad1 id=eq.0h7v.s10.e1dc7a20a360 from=translated src=- shape=d5d38fc3 vocab=f348ac3d
+-/
+theorem pullbackComp_paste (f : X₀ ⟶ X₁) (g : X₁ ⟶ X₂) (h : X₂ ⟶ X₃) :
+    Functor.whiskerLeft (pullback h) (pullbackComp f g).hom ≫ (pullbackComp (f ≫ g) h).hom =
+      (Functor.associator _ _ _).inv ≫ Functor.whiskerRight (pullbackComp g h).hom (pullback f) ≫
+        (pullbackComp f (g ≫ h)).hom ≫ eqToHom (by rw [Category.assoc]) := by
+  have H0 := pseudofunctor_associativity f g h
+  have H1 : Functor.whiskerLeft (pullback h) (pullbackComp f g).hom ≫ (pullbackComp (f ≫ g) h).hom =
+      (Functor.associator _ _ _).inv ≫ (Functor.isoWhiskerRight (pullbackComp g h) (pullback f)).hom ≫
+        (pullbackComp f (g ≫ h)).hom ≫
+        ((pullbackComp f (g ≫ h)).inv ≫ Functor.whiskerRight (pullbackComp g h).inv (pullback f) ≫
+          (Functor.associator _ _ _).hom ≫ Functor.whiskerLeft (pullback h) (pullbackComp f g).hom ≫
+            (pullbackComp (f ≫ g) h).hom) := by
+    rw [Iso.hom_inv_id_assoc, Functor.isoWhiskerRight_hom, ← Functor.whiskerRight_comp_assoc, Iso.hom_inv_id,
+      Functor.whiskerRight_id', Category.id_comp, Iso.inv_hom_id_assoc]
+  rw [H0] at H1
+  exact H1
+
+/--
+@isnad1 id=eq.0h8v.s10.f3e9225d7e98 from=translated src=- shape=c674af89 vocab=79e4b074
+-/
+theorem pullbackComp_paste_app (f : X₀ ⟶ X₁) (g : X₁ ⟶ X₂) (h : X₂ ⟶ X₃) (M : X₃.Modules) :
+    (pullbackComp f g).hom.app ((pullback h).obj M) ≫ (pullbackComp (f ≫ g) h).hom.app M =
+      (pullback f).map ((pullbackComp g h).hom.app M) ≫ (pullbackComp f (g ≫ h)).hom.app M ≫
+        eqToHom (by rw [Category.assoc]) := by
+  have H := NatTrans.congr_app (pullbackComp_paste f g h) M
+  simp only [NatTrans.comp_app, Functor.whiskerRight_app, Functor.whiskerLeft_app, Functor.associator_inv_app,
+    eqToHom_app] at H
+  exact H
+
+noncomputable def τ (f : X₀ ⟶ X₁) (g : X₁ ⟶ X₂) (m : X₀ ⟶ X₂) (e : f ≫ g = m) : pullback g ⋙ pullback f ≅ pullback m :=
+  pullbackComp f g ≪≫ pullbackCongr e
+
+/--
+@isnad1 id=eq.1h7v.s8.b39852d9bf60 from=translated src=- shape=b89858ef vocab=acc30977
+-/
+theorem τ_hom_app (f : X₀ ⟶ X₁) (g : X₁ ⟶ X₂) (m : X₀ ⟶ X₂) (e : f ≫ g = m) (M : X₂.Modules) :
+    (τ f g m e).hom.app M = (pullbackComp f g).hom.app M ≫ eqToHom (by rw [e]) := by
+  subst e
+  simp [τ, pullbackCongr]
+
+/--
+@isnad1 id=eq.3h11v.s9.700b367667bc from=translated src=- shape=70262461 vocab=cb5b2afe
+-/
+theorem τ_paste_app (f : X₀ ⟶ X₁) (g : X₁ ⟶ X₂) (h : X₂ ⟶ X₃) (fg : X₀ ⟶ X₂) (gh : X₁ ⟶ X₃) (m : X₀ ⟶ X₃)
+    (e₁ : f ≫ g = fg) (e₂ : g ≫ h = gh) (e₃ : fg ≫ h = m) (M : X₃.Modules) :
+    (τ f g fg e₁).hom.app ((pullback h).obj M) ≫ (τ fg h m e₃).hom.app M =
+      (pullback f).map ((τ g h gh e₂).hom.app M) ≫ (τ f gh m (by rw [← e₂, ← Category.assoc, e₁, e₃])).hom.app M := by
+  subst e₁ e₂ e₃
+  simp only [τ_hom_app, eqToHom_refl, Category.comp_id]
+  rw [pullbackComp_paste_app]
+
+noncomputable def sqIso {W X Y Z : Scheme.{u}} {f : W ⟶ X} {g : X ⟶ Z} {h : W ⟶ Y} {k : Y ⟶ Z}
+    (e : f ≫ g = h ≫ k) : pullback g ⋙ pullback f ≅ pullback k ⋙ pullback h :=
+  pullbackComp f g ≪≫ pullbackCongr e ≪≫ (pullbackComp h k).symm
+
+/--
+@isnad1 id=eq.1h9v.s9.54aac9f44397 from=translated src=- shape=03d6b607 vocab=09fb4623
+-/
+theorem sqIso_hom_app {W X Y Z : Scheme.{u}} {f : W ⟶ X} {g : X ⟶ Z} {h : W ⟶ Y} {k : Y ⟶ Z}
+    (e : f ≫ g = h ≫ k) (M : Z.Modules) :
+    (sqIso e).hom.app M = (τ f g (h ≫ k) e).hom.app M ≫ (τ h k (h ≫ k) rfl).inv.app M := by
+  simp [sqIso, τ, pullbackCongr]
+
+section Route
+
+variable {X X₀' X₁' Y Y₀ Y₁ : Scheme.{u}}
+  (a : X₀' ⟶ X₁') (b : X₁' ⟶ X) (d : X₀' ⟶ X) (e : a ≫ b = d)
+  (s₀ : Y₀ ⟶ X₀') (s₁ : Y₁ ⟶ X₁') (s : Y ⟶ X)
+  (r : Y₀ ⟶ Y₁) (p : Y₁ ⟶ Y) (m : Y₀ ⟶ Y) (G : r ≫ p = m)
+  (E : s₀ ≫ a = r ≫ s₁) (F : s₁ ≫ b = p ≫ s)
+
+include e G E F in
+/--
+@isnad1 id=eq.4h15v.s7.a6943abab8b3 from=translated src=- shape=7d3307c5 vocab=d1519fa5
+-/
+theorem route_comm : s₀ ≫ d = m ≫ s := by
+  rw [← e, ← Category.assoc, E, Category.assoc, F, ← Category.assoc, G]
+
+set_option maxHeartbeats 3200000 in
+
+/--
+@isnad1 id=eq.4h16v.s10.ca1f3696538a from=translated src=- shape=2ae6cb6c vocab=73417e11
+-/
+theorem route (M : X.Modules) :
+    (sqIso E).hom.app ((pullback b).obj M) ≫ (pullback r).map ((sqIso F).hom.app M) ≫
+        (τ r p m G).hom.app ((pullback s).obj M) =
+      (pullback s₀).map ((τ a b d e).hom.app M) ≫
+        (τ s₀ d (m ≫ s) (route_comm a b d e s₀ s₁ s r p m G E F)).hom.app M ≫
+          (τ m s (m ≫ s) rfl).inv.app M := by
+  have hn : (r ≫ s₁) ≫ b = m ≫ s := by rw [Category.assoc, F, ← Category.assoc, G]
+
+  have P1 := τ_paste_app r s₁ b (r ≫ s₁) (p ≫ s) (m ≫ s) rfl F hn M
+  have P2 := τ_paste_app r p s m (p ≫ s) (m ≫ s) G rfl rfl M
+  have P3 := τ_paste_app s₀ a b (r ≫ s₁) d (m ≫ s) E e hn M
+
+  have P1' := (Iso.eq_comp_inv ((τ r (p ≫ s) (m ≫ s) (by rw [← Category.assoc, G])).app M)).mpr P1.symm
+
+  have P2i : ((τ r p m G).app ((pullback s).obj M) ≪≫ (τ m s (m ≫ s) rfl).app M).inv =
+      ((pullback r).mapIso ((τ p s (p ≫ s) rfl).app M) ≪≫
+        (τ r (p ≫ s) (m ≫ s) (by rw [← Category.assoc, G])).app M).inv :=
+    congrArg Iso.inv (Iso.ext P2)
+  simp only [Iso.trans_inv, Functor.mapIso_inv, Iso.app_inv] at P2i
+
+  have hmap : (pullback r).map ((sqIso F).hom.app M) =
+      (pullback r).map ((τ s₁ b (p ≫ s) F).hom.app M) ≫ (pullback r).map ((τ p s (p ≫ s) rfl).inv.app M) := by
+    rw [sqIso_hom_app]; exact (pullback r).map_comp _ _
+  dsimp only [Iso.app_inv] at P1'
+  erw [reassoc_of% hmap, sqIso_hom_app]
+  erw [Category.assoc]
+  erw [reassoc_of% P1']
+  erw [Iso.inv_hom_id_app_assoc]
+  have TAIL : (τ r (p ≫ s) (m ≫ s) (by rw [← Category.assoc, G])).inv.app M ≫
+      (pullback r).map ((τ p s (p ≫ s) rfl).inv.app M) ≫ (τ r p m G).hom.app ((pullback s).obj M) =
+        (τ m s (m ≫ s) rfl).inv.app M := by
+    erw [← reassoc_of% P2i, Iso.inv_hom_id_app]
+    erw [Category.comp_id]
+  exact (congrArg (fun k => (τ s₀ a (r ≫ s₁) E).hom.app ((pullback b).obj M) ≫
+      (τ (r ≫ s₁) b (m ≫ s) hn).hom.app M ≫ k) TAIL).trans
+    ((Category.assoc _ _ _).symm.trans
+      ((congrArg (· ≫ (τ m s (m ≫ s) rfl).inv.app M) P3).trans (Category.assoc _ _ _)))
+
+end Route
+
+section Head
+
+variable {X X₀' X₁' X₂' Y Y₀ Y₁ Y₂ : Scheme.{u}}
+  (a₁ : X₀' ⟶ X₁') (b₁ : X₁' ⟶ X) (a₂ : X₀' ⟶ X₂') (b₂ : X₂' ⟶ X) (d : X₀' ⟶ X)
+  (e₁ : a₁ ≫ b₁ = d) (e₂ : a₂ ≫ b₂ = d)
+  (s₀ : Y₀ ⟶ X₀') (s₁ : Y₁ ⟶ X₁') (s₂ : Y₂ ⟶ X₂') (s : Y ⟶ X)
+  (r₁ : Y₀ ⟶ Y₁) (p₁ : Y₁ ⟶ Y) (r₂ : Y₀ ⟶ Y₂) (p₂ : Y₂ ⟶ Y) (m : Y₀ ⟶ Y)
+  (G₁ : r₁ ≫ p₁ = m) (G₂ : r₂ ≫ p₂ = m)
+  (E₁ : s₀ ≫ a₁ = r₁ ≫ s₁) (F₁ : s₁ ≫ b₁ = p₁ ≫ s) (E₂ : s₀ ≫ a₂ = r₂ ≫ s₂) (F₂ : s₂ ≫ b₂ = p₂ ≫ s)
+
+end Head
+
+end AlgebraicGeometry.Scheme.Modules
+
+namespace AlgebraicGeometry
+export _root_.AlgebraicGeometry (Scheme.Modules.pullback Scheme Scheme.Modules.pullbackCongr Scheme.Modules Scheme.Modules.pullbackComp)
+namespace Scheme
+export _root_.AlgebraicGeometry.Scheme (Modules.pullback Modules.pullbackCongr Modules Modules.pullbackComp)
+namespace Modules
+export _root_.AlgebraicGeometry.Scheme.Modules (pullback pseudofunctor_associativity pullbackCongr pullbackComp)
+open _root_.AlgebraicGeometry.Scheme.Modules open _root_.AlgebraicGeometry.Scheme open _root_.AlgebraicGeometry
+
+/--
+@isnad1 id=eq.5h16v.s10.1770897b04b9 from=translated src=- shape=31a1fcf6 vocab=4d87660b
+-/
+theorem route' {X X₀' X₁' Y Y₀ Y₁ : Scheme.{u}}
+    (a : X₀' ⟶ X₁') (b : X₁' ⟶ X) (d : X₀' ⟶ X) (e : a ≫ b = d)
+    (s₀ : Y₀ ⟶ X₀') (s₁ : Y₁ ⟶ X₁') (s : Y ⟶ X)
+    (r : Y₀ ⟶ Y₁) (p : Y₁ ⟶ Y) (m : Y₀ ⟶ Y) (G : r ≫ p = m)
+    (E : s₀ ≫ a = r ≫ s₁) (F : s₁ ≫ b = p ≫ s) (H : s₀ ≫ d = m ≫ s) (M : X.Modules) :
+    (sqIso E).hom.app ((pullback b).obj M) ≫ (pullback r).map ((sqIso F).hom.app M) ≫
+        (τ r p m G).hom.app ((pullback s).obj M) =
+      (pullback s₀).map ((τ a b d e).hom.app M) ≫ (sqIso H).hom.app M := by
+  rw [sqIso_hom_app (e := H)]
+  exact route a b d e s₀ s₁ s r p m G E F M
+
+end AlgebraicGeometry.Scheme.Modules
+
+/--
+@isnad1 id=eq.5h16v.s11.80b363074917 from=translated src=- shape=ef760860 vocab=3d28e987
+-/
+theorem solution
+    {X X₀ X₁ Y Y₀ Y₁ : Scheme.{u}}
+    (a : X₀ ⟶ X₁) (b : X₁ ⟶ X) (d : X₀ ⟶ X) (e : a ≫ b = d)
+    (s₀ : Y₀ ⟶ X₀) (s₁ : Y₁ ⟶ X₁) (s : Y ⟶ X)
+    (r : Y₀ ⟶ Y₁) (p : Y₁ ⟶ Y) (m : Y₀ ⟶ Y) (G : r ≫ p = m)
+    (E : s₀ ≫ a = r ≫ s₁) (F : s₁ ≫ b = p ≫ s) (H : s₀ ≫ d = m ≫ s) (M : X.Modules) :
+    (Scheme.Modules.pullbackComp s₀ a ≪≫ Scheme.Modules.pullbackCongr E ≪≫
+          (Scheme.Modules.pullbackComp r s₁).symm).hom.app ((Scheme.Modules.pullback b).obj M) ≫
+      (Scheme.Modules.pullback r).map
+          ((Scheme.Modules.pullbackComp s₁ b ≪≫ Scheme.Modules.pullbackCongr F ≪≫
+            (Scheme.Modules.pullbackComp p s).symm).hom.app M) ≫
+        (Scheme.Modules.pullbackComp r p ≪≫ Scheme.Modules.pullbackCongr G).hom.app
+          ((Scheme.Modules.pullback s).obj M) =
+      (Scheme.Modules.pullback s₀).map
+          ((Scheme.Modules.pullbackComp a b ≪≫ Scheme.Modules.pullbackCongr e).hom.app M) ≫
+        (Scheme.Modules.pullbackComp s₀ d ≪≫ Scheme.Modules.pullbackCongr H ≪≫
+          (Scheme.Modules.pullbackComp m s).symm).hom.app M :=
+  AlgebraicGeometry.Scheme.Modules.route' a b d e s₀ s₁ s r p m G E F H M

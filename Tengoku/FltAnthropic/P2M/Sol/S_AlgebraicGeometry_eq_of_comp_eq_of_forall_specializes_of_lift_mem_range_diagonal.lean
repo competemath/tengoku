@@ -1,0 +1,38 @@
+import Tengoku
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AlgebraicGeometry_eq_of_comp_eq_of_forall_specializes_of_lift_mem_range_diagonal.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AlgebraicGeometry_eq_of_comp_eq_of_forall_specializes_of_lift_mem_range_diagonal
+
+set_option autoImplicit false
+
+open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
+
+universe u
+
+/--
+@isnad1 id=eq.3h7v.s9.8634246e7a2f from=translated src=- shape=59d66b2c vocab=9a6843a6
+-/
+theorem solution
+    {X Y T : Scheme.{u}} (f : X ⟶ Y) [FormallyUnramified f] [LocallyOfFiniteType f]
+    (s s' : T ⟶ X) (h : s ≫ f = s' ≫ f) (t₀ : ↥T) (ht₀ : ∀ t : ↥T, t ⤳ t₀)
+    (hΔ : (pullback.lift s s' h).base t₀ ∈ Set.range (pullback.diagonal f).base) :
+    s = s' := by
+
+  have hrange : Set.range (pullback.lift s s' h).base ⊆ Set.range (pullback.diagonal f).base := by
+    rintro _ ⟨t, rfl⟩
+    exact ((ht₀ t).map (pullback.lift s s' h).continuous).mem_open
+      (pullback.diagonal f).isOpenEmbedding.isOpen_range hΔ
+
+  let l := IsOpenImmersion.lift (pullback.diagonal f) (pullback.lift s s' h) hrange
+  have hl : l ≫ pullback.diagonal f = pullback.lift s s' h := IsOpenImmersion.lift_fac _ _ _
+  have hs : s = l := by
+    have := congrArg (· ≫ pullback.fst f f) hl
+    simp only [Category.assoc, pullback.diagonal_fst, Category.comp_id, pullback.lift_fst] at this
+    exact this.symm
+  have hs' : s' = l := by
+    have := congrArg (· ≫ pullback.snd f f) hl
+    simp only [Category.assoc, pullback.diagonal_snd, Category.comp_id, pullback.lift_snd] at this
+    exact this.symm
+  rw [hs, hs']

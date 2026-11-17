@@ -1,0 +1,36 @@
+import Tengoku
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AlgebraicGeometry_exists_fin_eq_of_isClosedImmersion_of_finite_pullback.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AlgebraicGeometry_exists_fin_eq_of_isClosedImmersion_of_finite_pullback
+
+set_option autoImplicit false
+
+open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
+
+universe u
+
+/--
+@isnad1 id=ex.0h5v.s9.1721d8dee47b from=translated src=- shape=12a1c8ec vocab=cb012e26
+-/
+theorem solution
+    {X Y Z : Scheme.{u}} (i₁ : Y ⟶ X) (i₂ : Z ⟶ X) [IsClosedImmersion i₂]
+    [Finite ↥(pullback i₁ i₂)] :
+    ∃ (n : ℕ) (y : Fin n → Y) (z : Fin n → Z), Function.Injective y ∧
+      (∀ r, i₁.base (y r) = i₂.base (z r)) ∧
+      ∀ (P : Y) (Q : Z), i₁.base P = i₂.base Q → ∃ r, P = y r ∧ Q = z r := by
+  classical
+  obtain ⟨n, ⟨e⟩⟩ := Finite.exists_equiv_fin ↥(pullback i₁ i₂)
+  refine ⟨n, fun r => (pullback.fst i₁ i₂).base (e.symm r), fun r => (pullback.snd i₁ i₂).base (e.symm r), ?_, ?_, ?_⟩
+  · intro r s hrs
+    have hinj := (pullback.fst i₁ i₂).isClosedEmbedding.injective
+    exact e.symm.injective (hinj hrs)
+  · intro r
+    have h := congrArg (fun φ => φ.base (e.symm r)) (pullback.condition (f := i₁) (g := i₂))
+    simpa using h
+  · intro P Q hPQ
+    obtain ⟨t, ht1, ht2⟩ := AlgebraicGeometry.Scheme.Pullback.exists_preimage_pullback (f := i₁) (g := i₂) P Q hPQ
+    refine ⟨e t, ?_, ?_⟩
+    · simp only [Equiv.symm_apply_apply]; exact ht1.symm
+    · simp only [Equiv.symm_apply_apply]; exact ht2.symm
