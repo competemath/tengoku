@@ -154,6 +154,7 @@ import Tengoku.Rankamplificationtotient
 import Tengoku.EquationalTheories
 import Tengoku.FormalConjectures
 import Tengoku.ForbiddenMatrix
+import Tengoku.FactorialHypergraphAuxiliaryErdos
 import Tengoku.StringDiagramsLean
 import Tengoku.CaratheodoryLoewner
 import Tengoku.Cslib

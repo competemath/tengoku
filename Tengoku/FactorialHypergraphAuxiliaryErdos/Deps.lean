@@ -1,0 +1,1 @@
+-- FactorialHypergraphAuxiliaryErdos: a factory bundle (data/intake/factorial-hypergraph-auxiliary-erdos). This file only marks the library for Tengoku/All.lean.

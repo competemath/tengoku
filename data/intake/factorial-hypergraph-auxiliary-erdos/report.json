@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "615a33fdefee706e0aecdd44f7a4436ab8316c63b86667536c7e6f332a0c7263",
+ "factory_changes": {
+  "modules changed": 9,
+  "print lines removed": 76
+ },
+ "gate2_unjudged": [],
+ "library": "factorial-hypergraph-auxiliary-erdos",
+ "lint_mode": "proposed",
+ "modules": 31,
+ "part": 1,
+ "theorems": 295
+}
