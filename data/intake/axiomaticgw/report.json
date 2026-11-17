@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "aaf417031b7836e3b200465966161a55bf15b56b57ada722affadb71b46800f2",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "axiomaticgw",
+ "lint_mode": "proposed",
+ "modules": 42,
+ "part": 1,
+ "theorems": 219
+}
