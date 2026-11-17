@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "e0f45abdb1e54218ebbd49526c6c831ac4c899d91ddef14710dfbc6cd96b65b7",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "riemannhypothesis-formalization",
+ "lint_mode": "proposed",
+ "modules": 67,
+ "part": 1,
+ "theorems": 506
+}
