@@ -1,0 +1,36 @@
+import Tengoku.Seed.GroupTheory.Transfer
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku repair: removed `#print axioms solution` (it only prints; the queue checks the axioms of every declaration). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_CohCarrier_transfer_restrict_eq_pow_index.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_CohCarrier_transfer_restrict_eq_pow_index
+
+open Subgroup Subgroup.leftTransversals
+
+/--
+@isnad1 id=eq.0h4v.s7.2db8e96239b5 from=translated src=- shape=8209794b vocab=cd62987b
+-/
+theorem solution {G : Type*} [Group G] (K : Subgroup G) [K.FiniteIndex]
+    {C : Type*} [CommGroup C] (φ : G →* C) :
+    MonoidHom.transfer (φ.domRestrict K) = φ ^ K.index := by
+  classical
+  ext g
+  letI := K.fintypeQuotientOfFiniteIndex
+  rw [MonoidHom.transfer_def (φ.domRestrict K) default]
+  show diff (φ.domRestrict K) default (g • default) = (φ g) ^ K.index
+  unfold Subgroup.leftTransversals.diff
+  simp only [MonoidHom.domRestrict_apply, map_mul, map_inv,
+    Subgroup.smul_apply_eq_smul_apply_inv_smul, smul_eq_mul]
+  rw [Finset.prod_mul_distrib, Finset.prod_inv_distrib, Finset.prod_mul_distrib,
+    Finset.prod_const]
+  have hreindex : (∏ q : G ⧸ K,
+        φ ((default : K.LeftTransversal).2.leftQuotientEquiv (g⁻¹ • q) : G))
+      = ∏ q : G ⧸ K, φ ((default : K.LeftTransversal).2.leftQuotientEquiv q : G) := by
+    have := Equiv.prod_comp (MulAction.toPerm (g⁻¹ : G) : Equiv.Perm (G ⧸ K))
+      (fun q => φ ((default : K.LeftTransversal).2.leftQuotientEquiv q : G))
+    simpa only [MulAction.toPerm_apply] using this
+  rw [hreindex, mul_comm ((φ g) ^ _) _, ← mul_assoc, inv_mul_cancel, one_mul,
+    Subgroup.index_eq_card, Nat.card_eq_fintype_card, ← Finset.card_univ]
+

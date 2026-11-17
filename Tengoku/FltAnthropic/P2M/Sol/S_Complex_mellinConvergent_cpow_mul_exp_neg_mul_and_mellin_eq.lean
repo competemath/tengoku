@@ -1,0 +1,43 @@
+import Tengoku.Seed.Analysis.MellinTransform
+import Tengoku.Seed.Analysis.SpecialFunctions.Gamma.Basic
+import Tengoku.Seed.Analysis.SpecialFunctions.Gamma.Beta
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_Complex_mellinConvergent_cpow_mul_exp_neg_mul_and_mellin_eq.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_Complex_mellinConvergent_cpow_mul_exp_neg_mul_and_mellin_eq
+
+set_option autoImplicit false
+
+/--
+@isnad1 id=and.2h3v.s7.b1bb353db337 from=translated src=- shape=2a7bf3d7 vocab=a39531eb
+-/
+theorem solution
+    (k r : ℝ) (hr : 0 < r) (s : ℂ) (hs : -k < s.re) :
+    MellinConvergent (fun t : ℝ => ((t : ℂ) ^ (k : ℂ)) * Complex.exp (-((r : ℂ) * (t : ℂ)))) s ∧
+    mellin (fun t : ℝ => ((t : ℂ) ^ (k : ℂ)) * Complex.exp (-((r : ℂ) * (t : ℂ)))) s =
+      (1 / (r : ℂ)) ^ (s + (k : ℂ)) * Complex.Gamma (s + (k : ℂ)) := by
+  have hre : 0 < (s + (k : ℂ)).re := by
+    simp only [Complex.add_re, Complex.ofReal_re]
+    linarith
+  have key : ∫ t : ℝ in Set.Ioi 0, (t : ℂ) ^ (s + (k : ℂ) - 1) * Complex.exp (-((r : ℂ) * (t : ℂ))) =
+      (1 / (r : ℂ)) ^ (s + (k : ℂ)) * Complex.Gamma (s + (k : ℂ)) :=
+    Complex.integral_cpow_mul_exp_neg_mul_Ioi hre hr
+  have hcongr : Set.EqOn (fun t : ℝ => (t : ℂ) ^ (s - 1) • (((t : ℂ) ^ (k : ℂ)) * Complex.exp (-((r : ℂ) * (t : ℂ)))))
+      (fun t : ℝ => (t : ℂ) ^ (s + (k : ℂ) - 1) * Complex.exp (-((r : ℂ) * (t : ℂ)))) (Set.Ioi 0) := by
+    intro t ht
+    have ht0 : (t : ℂ) ≠ 0 := Complex.ofReal_ne_zero.mpr (ne_of_gt ht)
+    simp only [smul_eq_mul]
+    rw [show s + (k : ℂ) - 1 = (s - 1) + (k : ℂ) by ring, Complex.cpow_add _ _ ht0]
+    ring
+  have hne : (1 / (r : ℂ)) ^ (s + (k : ℂ)) * Complex.Gamma (s + (k : ℂ)) ≠ 0 := by
+    refine mul_ne_zero ?_ (Complex.Gamma_ne_zero_of_re_pos hre)
+    have h1 : (1 / (r : ℂ)) ≠ 0 := one_div_ne_zero (Complex.ofReal_ne_zero.mpr (ne_of_gt hr))
+    rw [Complex.cpow_def_of_ne_zero h1]
+    exact Complex.exp_ne_zero _
+  have hint : MeasureTheory.IntegrableOn
+      (fun t : ℝ => (t : ℂ) ^ (s + (k : ℂ) - 1) * Complex.exp (-((r : ℂ) * (t : ℂ)))) (Set.Ioi 0) :=
+    MeasureTheory.Integrable.of_integral_ne_zero (by rw [key]; exact hne)
+  refine ⟨?_, ?_⟩
+  · exact hint.congr_fun hcongr.symm measurableSet_Ioi
+  · rw [mellin, MeasureTheory.setIntegral_congr_fun measurableSet_Ioi hcongr, key]
