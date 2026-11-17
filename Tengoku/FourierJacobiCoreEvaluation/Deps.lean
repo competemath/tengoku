@@ -1,0 +1,1 @@
+-- FourierJacobiCoreEvaluation: a factory bundle (data/intake/fourier-jacobi-core-evaluation). This file only marks the library for Tengoku/All.lean.
