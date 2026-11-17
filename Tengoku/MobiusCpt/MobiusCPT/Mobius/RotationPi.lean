@@ -55,14 +55,18 @@ private theorem mk_inv (g : SU11) : mk g⁻¹ = (mk g)⁻¹ := by
     (QuotientGroup.mk' signSubgroup g)⁻¹
   exact (QuotientGroup.mk' signSubgroup).map_inv g
 
-/-- Part (a): rotation by `pi` conjugates the boost flow to the oppositely parametrized flow.-/
+/-- Part (a): rotation by `pi` conjugates the boost flow to the oppositely parametrized flow.
+@isnad1 id=eq.0h1v.s5.9312afe4e213 from=translated src=- shape=5c24568f vocab=7dca4179
+-/
 theorem rot_pi_conj_boost (t : ℝ) :
     rot Real.pi * boost t * (rot Real.pi)⁻¹ = boost (-t) := by
   rw [rot, boost, boost, ← mk_inv, ← mk_mul, ← mk_mul]
   exact congrArg mk (rotMat_pi_conj_boostMat t)
 
 /-- Rotation by `pi` squares to the identity: a full `2*pi` rotation. Used repeatedly in Block L2
-to identify `(Mob.rot Real.pi)⁻¹` with `Mob.rot Real.pi` itself.-/
+to identify `(Mob.rot Real.pi)⁻¹` with `Mob.rot Real.pi` itself.
+@isnad1 id=eq.0h0v.s5.0d8f3ffbf424 from=translated src=- shape=27288b07 vocab=20096726
+-/
 theorem rot_pi_sq : rot Real.pi * rot Real.pi = 1 := by
   rw [← rot_add, show Real.pi + Real.pi = 2 * Real.pi by ring, rot_two_pi]
 
@@ -80,13 +84,17 @@ def negTestFn (f : TestFn) : TestFn :=
     rw [hrot]
     exact (ContMDiffMap.contMDiff f).comp (contMDiff_smul (rotMat Real.pi))⟩
 
-/-- Evaluation of the pullback by rotation through `pi`.-/
+/-- Evaluation of the pullback by rotation through `pi`.
+@isnad1 id=eq.0h2v.s5.77e63968e21b from=translated src=- shape=c902eef4 vocab=fe8a1fb1
+-/
 @[simp]
 theorem negTestFn_apply (f : TestFn) (z : Circle) :
     negTestFn f z = f (Mob.rot Real.pi • z) :=
   rfl
 
-/-- Rotation through `pi` is multiplication by `-1` in the ambient complex plane.-/
+/-- Rotation through `pi` is multiplication by `-1` in the ambient complex plane.
+@isnad1 id=eq.0h1v.s7.ba6045b6a641 from=translated src=- shape=efc66426 vocab=fd0b8e7b
+-/
 theorem coe_smul_rot_pi (z : Circle) :
     ((Mob.rot Real.pi • z : Circle) : ℂ) = -(z : ℂ) := by
   rw [Mob.rot_smul, Circle.coe_mul, Circle.coe_exp, Complex.exp_pi_mul_I]
@@ -96,7 +104,9 @@ private theorem circleExp_neg_pi :
     Circle.exp (-Real.pi) = Circle.exp Real.pi := by
   rw [show -Real.pi = Real.pi - 2 * Real.pi by ring, Circle.exp_sub_two_pi]
 
-/-- Part (b): for every conformal dimension, `β_d(r_pi)` is pullback by `z ↦ -z`.-/
+/-- Part (b): for every conformal dimension, `β_d(r_pi)` is pullback by `z ↦ -z`.
+@isnad1 id=eq.0h2v.s5.55fa9d608897 from=translated src=- shape=11bb5094 vocab=2c22e125
+-/
 theorem beta_rot_pi_eq_negTestFn (d : ℕ) (f : TestFn) :
     Mob.beta d (Mob.rot Real.pi) f = negTestFn f := by
   apply TestFn.ext
@@ -106,7 +116,9 @@ theorem beta_rot_pi_eq_negTestFn (d : ℕ) (f : TestFn) :
     negTestFn_apply, rotMat_smul, Mob.rot_smul]
   rw [circleExp_neg_pi]
 
-/-- Pullback by rotation through `pi` is an involution.-/
+/-- Pullback by rotation through `pi` is an involution.
+@isnad1 id=eq.0h1v.s3.8d4db168b085 from=translated src=- shape=47dcad53 vocab=29f976db
+-/
 @[simp]
 theorem negTestFn_negTestFn (f : TestFn) : negTestFn (negTestFn f) = f := by
   apply TestFn.ext
@@ -119,7 +131,9 @@ theorem negTestFn_negTestFn (f : TestFn) : negTestFn (negTestFn f) = f := by
   rw [hrot, one_smul]
 
 /-- Part (c): rotation through `pi` exchanges lower-supported and upper-supported test
-functions.-/
+functions.
+@isnad1 id=iff.0h1v.s3.4ed416916932 from=translated src=- shape=56a69fcb vocab=9b908cd6
+-/
 theorem suppLower_iff_suppUpper_negTestFn (f : TestFn) :
     SuppLower f ↔ SuppUpper (negTestFn f) := by
   constructor
@@ -143,7 +157,9 @@ theorem suppLower_iff_suppUpper_negTestFn (f : TestFn) :
     change negTestFn (negTestFn f) z = 0 at hzero
     simpa only [negTestFn_negTestFn] using hzero
 
-/-- Part (c), with the two semicircles interchanged.-/
+/-- Part (c), with the two semicircles interchanged.
+@isnad1 id=iff.0h1v.s3.1707709bc220 from=translated src=- shape=56a69fcb vocab=9b908cd6
+-/
 theorem suppUpper_iff_suppLower_negTestFn (f : TestFn) :
     SuppUpper f ↔ SuppLower (negTestFn f) := by
   simpa only [negTestFn_negTestFn] using
@@ -155,14 +171,18 @@ private theorem rot_pi_smul_inv (z : Circle) :
   rw [coe_smul_rot_pi, Circle.coe_inv, Circle.coe_inv, coe_smul_rot_pi]
   simpa only [neg_inv]
 
-/-- Part (d): pullback by rotation through `pi` commutes with circle inversion.-/
+/-- Part (d): pullback by rotation through `pi` commutes with circle inversion.
+@isnad1 id=eq.0h1v.s3.fae2be8d8fb5 from=translated src=- shape=2e76f3a7 vocab=ed8f1727
+-/
 theorem inv_negTestFn (f : TestFn) : inv (negTestFn f) = negTestFn (inv f) := by
   apply TestFn.ext
   intro z
   simp only [inv_apply, negTestFn_apply]
   rw [rot_pi_smul_inv]
 
-/-- In the angle picture, pullback by rotation through `pi` is translation by `pi`.-/
+/-- In the angle picture, pullback by rotation through `pi` is translation by `pi`.
+@isnad1 id=eq.0h1v.s4.db4bc4a194a9 from=translated src=- shape=2c620e24 vocab=7531da4f
+-/
 theorem toAngle_negTestFn (f : TestFn) :
     toAngle (negTestFn f) = fun θ => toAngle f (θ + Real.pi) := by
   funext θ
@@ -174,7 +194,9 @@ theorem toAngle_negTestFn (f : TestFn) :
     _ = f (Circle.exp (θ + Real.pi)) := by rw [add_comm]
     _ = toAngle f (θ + Real.pi) := by rfl
 
-/-- Angle derivatives are translated, without a reflection sign, by rotation through `pi`.-/
+/-- Angle derivatives are translated, without a reflection sign, by rotation through `pi`.
+@isnad1 id=eq.0h2v.s4.1427812aaee5 from=translated src=- shape=d53cbf39 vocab=e9e64c1c
+-/
 theorem angleDeriv_negTestFn (j : ℕ) (f : TestFn) :
     angleDeriv j (negTestFn f) = fun θ => angleDeriv j f (θ + Real.pi) := by
   funext θ
@@ -183,7 +205,9 @@ theorem angleDeriv_negTestFn (j : ℕ) (f : TestFn) :
   rw [toAngle_negTestFn]
   exact congrFun (iteratedDeriv_comp_add_const j (toAngle f) Real.pi) θ
 
-/-- The sup norm of every angle derivative is invariant under rotation through `pi`.-/
+/-- The sup norm of every angle derivative is invariant under rotation through `pi`.
+@isnad1 id=eq.0h2v.s6.3c3dd8c98a3b from=translated src=- shape=30624b03 vocab=25072af2
+-/
 theorem norm_angleDerivB_negTestFn (j : ℕ) (f : TestFn) :
     ‖angleDerivB j (negTestFn f)‖ = ‖angleDerivB j f‖ := by
   apply le_antisymm
@@ -202,7 +226,9 @@ theorem norm_angleDerivB_negTestFn (j : ℕ) (f : TestFn) :
     rw [angleDeriv_negTestFn] at hθ
     simpa only [sub_add_cancel] using hθ
 
-/-- Part (e): every `C^N` seminorm is invariant under rotation through `pi`.-/
+/-- Part (e): every `C^N` seminorm is invariant under rotation through `pi`.
+@isnad1 id=eq.0h2v.s3.06a095b1bbb4 from=translated src=- shape=2793bf2c vocab=a350344a
+-/
 theorem cnorm_negTestFn (N : ℕ) (f : TestFn) :
     cnorm N (negTestFn f) = cnorm N f := by
   apply NNReal.eq
@@ -221,7 +247,9 @@ def negTestFnₗ : TestFn →ₗ[ℂ] TestFn where
     intro z
     rfl
 
-/-- Part (e): pullback by rotation through `pi` is continuous in the test-function topology.-/
+/-- Part (e): pullback by rotation through `pi` is continuous in the test-function topology.
+@isnad1 id=continuo.0h0v.s2.28918a52bca2 from=translated src=- shape=e3d48bcb vocab=1bf06b8d
+-/
 theorem continuous_negTestFn : Continuous negTestFn := by
   change Continuous (negTestFnₗ : TestFn → TestFn)
   refine WithSeminorms.continuous_of_isBounded withSeminorms_cnorm

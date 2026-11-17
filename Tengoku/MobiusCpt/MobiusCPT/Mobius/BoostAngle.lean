@@ -24,7 +24,9 @@ open scoped ComplexConjugate
 
 /-! ### The elementary circle identity `z^2 + 1 = 2 Re(z) z` -/
 
-/-- Every point of the unit circle satisfies its own real quadratic: `z^2 + 1 = 2 Re(z) z`.-/
+/-- Every point of the unit circle satisfies its own real quadratic: `z^2 + 1 = 2 Re(z) z`.
+@isnad1 id=eq.0h1v.s8.1654194339a2 from=translated src=- shape=2102a19c vocab=4a51765a
+-/
 theorem sq_add_one_eq_two_mul_re (z : Circle) :
     (z : ℂ) ^ 2 + 1 = 2 * ((z : ℂ).re : ℂ) * (z : ℂ) := by
   have h1 : (z : ℂ) * conj (z : ℂ) = 1 := by
@@ -51,7 +53,9 @@ def boostPz (t : ℝ) (z : Circle) : ℝ := Real.cosh t + (z : ℂ).re * Real.si
 def boostP (t θ : ℝ) : ℝ := boostPz t (Circle.exp θ)
 
 /-- `boostPz` is strictly positive: `cosh t - |sinh t| ≤ boostPz t z` and
-`cosh t - |sinh t| = exp(-|t|) > 0`.-/
+`cosh t - |sinh t| = exp(-|t|) > 0`.
+@isnad1 id=lt.0h2v.s4.f3ca1fcb8af2 from=translated src=- shape=25b8bdde vocab=a6442530
+-/
 theorem boostPz_pos (t : ℝ) (z : Circle) : 0 < boostPz t z := by
   have hre_le : |(z : ℂ).re| ≤ 1 := by
     have hnorm : ‖(z : ℂ)‖ = 1 := Circle.norm_coe z
@@ -74,13 +78,22 @@ theorem boostPz_pos (t : ℝ) (z : Circle) : 0 < boostPz t z := by
       rw [Real.cosh_eq, Real.sinh_eq]; ring_nf
   linarith [heq2 ▸ hbound, Real.exp_pos (-|t|)]
 
+/--
+@isnad1 id=lt.0h2v.s4.59cae921ee5f from=translated src=- shape=a120b2a8 vocab=b5a19dd8
+-/
 theorem boostP_pos (t θ : ℝ) : 0 < boostP t θ := boostPz_pos t (Circle.exp θ)
 
+/--
+@isnad1 id=continuo.0h1v.s4.1707c83ed762 from=translated src=- shape=f736e2c1 vocab=67715437
+-/
 theorem continuous_boostP (t : ℝ) : Continuous (boostP t) := by
   have hre : Continuous (fun θ : ℝ => (Circle.exp θ : ℂ).re) :=
     Complex.reCLM.continuous.comp contDiff_circle_map.continuous
   exact continuous_const.add (hre.mul continuous_const)
 
+/--
+@isnad1 id=continuo.0h1v.s4.af4f2348dd5a from=translated src=- shape=8d7e139a vocab=c91c3028
+-/
 theorem continuous_boostPInv (t : ℝ) : Continuous fun θ => (boostP t θ)⁻¹ :=
   (continuous_boostP t).inv₀ (fun θ => (boostP_pos t θ).ne')
 
@@ -90,10 +103,15 @@ theorem continuous_boostPInv (t : ℝ) : Continuous fun θ => (boostP t θ)⁻¹
 `θ = 0`.-/
 def boostAngle (t θ : ℝ) : ℝ := ∫ x in (0 : ℝ)..θ, (boostP t x)⁻¹
 
+/--
+@isnad1 id=eq.0h1v.s4.f8cd695e56e8 from=translated src=- shape=1d838610 vocab=4fa9d35c
+-/
 @[simp] theorem boostAngle_zero (t : ℝ) : boostAngle t 0 = 0 :=
   intervalIntegral.integral_same
 
-/-- FTC: `boostAngle t` differentiates to `1 / boostP t`.-/
+/-- FTC: `boostAngle t` differentiates to `1 / boostP t`.
+@isnad1 id=hasderiv.0h2v.s5.93bdbf0510cd from=translated src=- shape=e010687e vocab=ad7b3a09
+-/
 theorem hasDerivAt_boostAngle (t θ : ℝ) : HasDerivAt (boostAngle t) (boostP t θ)⁻¹ θ :=
   intervalIntegral.integral_hasDerivAt_right
     ((continuous_boostPInv t).intervalIntegrable 0 θ)
@@ -105,7 +123,9 @@ theorem hasDerivAt_boostAngle (t θ : ℝ) : HasDerivAt (boostAngle t) (boostP t
 /-- [T26], eq. (3.4)-(3.5), the core algebraic identity behind the ODE match: `boostPz t z * z =
 (α z + β)(β z + α)` where `α = cosh(t/2)`, `β = sinh(t/2)` are the (real) entries of
 `boostMat (-t)`. Consequence of `sq_add_one_eq_two_mul_re` and the double-angle identities
-`cosh t = α^2+β^2`, `sinh t = 2 α β`.-/
+`cosh t = α^2+β^2`, `sinh t = 2 α β`.
+@isnad1 id=eq.0h2v.s8.ddca251f3560 from=translated src=- shape=2261fa61 vocab=2ac9ed53
+-/
 theorem boostPz_smul_eq (t : ℝ) (z : Circle) :
     ((boostPz t z : ℝ) : ℂ) * (z : ℂ) =
       ((boostMat (-t)).α * (z : ℂ) + (boostMat (-t)).β) *
@@ -136,7 +156,9 @@ theorem boostPz_smul_eq (t : ℝ) (z : Circle) :
   rw [this, hre2]
   ring
 
-/-- The negative boost fixes the basepoint `1 : Circle`, matching `boostAngle t 0 = 0`.-/
+/-- The negative boost fixes the basepoint `1 : Circle`, matching `boostAngle t 0 = 0`.
+@isnad1 id=eq.0h1v.s5.8473fd58e147 from=translated src=- shape=8694dd9a vocab=3b5c2933
+-/
 theorem boostMat_neg_smul_one (t : ℝ) : boostMat (-t) • (1 : Circle) = 1 := by
   apply Circle.ext
   rw [coe_smul, boostMat_neg_alpha, boostMat_neg_beta, j_boostMat_neg_eq, Circle.coe_one, mul_one,
@@ -152,7 +174,9 @@ theorem boostMat_neg_smul_one (t : ℝ) : boostMat (-t) • (1 : Circle) = 1 := 
 
 /-! ### The identification with the boost action -/
 
-/-- `θ ↦ (boostMat (-t) • Circle.exp θ : ℂ)` solves the linear ODE `y' = I y / boostP t`.-/
+/-- `θ ↦ (boostMat (-t) • Circle.exp θ : ℂ)` solves the linear ODE `y' = I y / boostP t`.
+@isnad1 id=hasderiv.0h2v.s8.20e7cbcc9629 from=translated src=- shape=ea13afe4 vocab=84cfa73f
+-/
 theorem hasDerivAt_boostSmulExp (t θ : ℝ) :
     HasDerivAt (fun θ' => ((boostMat (-t) • Circle.exp θ' : Circle) : ℂ))
       (Complex.I * ((boostMat (-t) • Circle.exp θ : Circle) : ℂ) / (boostP t θ : ℂ)) θ := by
@@ -173,7 +197,9 @@ theorem hasDerivAt_boostSmulExp (t θ : ℝ) :
     linear_combination (Complex.I * j (boostMat (-t)) (Circle.exp θ)) * hkey
   rwa [heq] at hraw
 
-/-- `θ ↦ (Circle.exp (boostAngle t θ) : ℂ)` solves the same linear ODE `y' = I y / boostP t`.-/
+/-- `θ ↦ (Circle.exp (boostAngle t θ) : ℂ)` solves the same linear ODE `y' = I y / boostP t`.
+@isnad1 id=hasderiv.0h2v.s8.a194bef0e615 from=translated src=- shape=c60b3752 vocab=0fb92b48
+-/
 theorem hasDerivAt_circleExp_boostAngle (t θ : ℝ) :
     HasDerivAt (fun θ' => (Circle.exp (boostAngle t θ') : ℂ))
       (Complex.I * (Circle.exp (boostAngle t θ) : ℂ) / (boostP t θ : ℂ)) θ := by
@@ -192,7 +218,9 @@ theorem hasDerivAt_circleExp_boostAngle (t θ : ℝ) :
 /-- The key identity: `boostAngle` reproduces the boost action, for every `t θ : ℝ`. Both
 `θ ↦ (boostMat (-t) • Circle.exp θ : ℂ)` and `θ ↦ (Circle.exp (boostAngle t θ) : ℂ)` solve the
 linear ODE `y' = I y / boostP t` with the same value `1` at `θ = 0`; their ratio therefore has
-derivative `0` everywhere and equals its value `1` at `θ = 0`.-/
+derivative `0` everywhere and equals its value `1` at `θ = 0`.
+@isnad1 id=eq.0h2v.s7.96ccf2ba76c0 from=translated src=- shape=c1a67b01 vocab=7852f492
+-/
 theorem circleExp_boostAngle (t θ : ℝ) :
     (Circle.exp (boostAngle t θ) : ℂ) = ((boostMat (-t) • Circle.exp θ : Circle) : ℂ) := by
   set w : ℝ → ℂ := fun θ' => ((boostMat (-t) • Circle.exp θ' : Circle) : ℂ) with hw_def
@@ -235,6 +263,9 @@ theorem circleExp_boostAngle (t θ : ℝ) :
   rw [mul_assoc, inv_mul_cancel₀ (he_ne θ), mul_one, one_mul] at hmul
   exact hmul.symm
 
+/--
+@isnad1 id=eq.0h2v.s6.f0838be6cdc0 from=translated src=- shape=d07027f8 vocab=d307f394
+-/
 theorem circleExp_boostAngle' (t θ : ℝ) :
     Circle.exp (boostAngle t θ) = boostMat (-t) • Circle.exp θ :=
   Circle.ext (circleExp_boostAngle t θ)

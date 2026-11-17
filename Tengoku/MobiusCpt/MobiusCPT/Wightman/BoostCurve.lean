@@ -18,7 +18,9 @@ variable {𝓓 𝓕 : Type*} [AddCommGroup 𝓓] [Module ℂ 𝓓]
 
 /-- Scalarised consequence of [T26], Lemma 3.6(ii); the scalar functions of [T26], Definition 3.1
 built from the complex boost are continuous on the closed strip.  This is the first clause
-`IsBoostContinuation` asks of its family.-/
+`IsBoostContinuation` asks of its family.
+@isnad1 id=continuo.0h7v.s7.8e794fb425b0 from=translated src=- shape=7a211779 vocab=512dfdd8
+-/
 theorem continuousOn_compatApply_multiSmear_betaBoost (W : WightmanStruct TestFn 𝓓 𝓕)
     (lam : W.Compat) {k : ℕ} (φs : Fin k → 𝓕) (F : Fin k → AnalyticTestFn) :
     ContinuousOn
@@ -41,7 +43,9 @@ theorem continuousOn_compatApply_multiSmear_betaBoost (W : WightmanStruct TestFn
 
 /-- Scalarised consequence of [T26], Lemma 3.6(ii); the scalar functions of [T26], Definition 3.1
 built from the complex boost are holomorphic in the interior of the strip.  The proof uses the
-multilinear chain rule for the smeared product.-/
+multilinear chain rule for the smeared product.
+@isnad1 id=differen.0h7v.s7.9e47b2feda8c from=translated src=- shape=3f9c780d vocab=2578e6e1
+-/
 theorem differentiableOn_compatApply_multiSmear_betaBoost (W : WightmanStruct TestFn 𝓓 𝓕)
     (lam : W.Compat) {k : ℕ} (φs : Fin k → 𝓕) (F : Fin k → AnalyticTestFn) :
     DifferentiableOn ℂ
@@ -93,7 +97,9 @@ theorem differentiableOn_compatApply_multiSmear_betaBoost (W : WightmanStruct Te
   simpa only [M, WightmanStruct.compatApply] using hwithin
 
 /-- Scalarised consequence of [T26], Lemma 3.6(ii), in the list shape used by the continuation
-contract.-/
+contract.
+@isnad1 id=continuo.0h5v.s7.d4c12a9b1e7a from=translated src=- shape=c9860186 vocab=11aa453a
+-/
 theorem continuousOn_compatApply_smearedProduct_betaBoost (W : WightmanStruct TestFn 𝓓 𝓕)
     (lam : W.Compat) (l : List (𝓕 × AnalyticTestFn)) :
     ContinuousOn
@@ -134,7 +140,9 @@ theorem continuousOn_compatApply_smearedProduct_betaBoost (W : WightmanStruct Te
   exact continuousOn_compatApply_multiSmear_betaBoost W lam φs F
 
 /-- Scalarised consequence of [T26], Lemma 3.6(ii), in the list shape used by the continuation
-contract; the function is holomorphic in the interior of the strip.-/
+contract; the function is holomorphic in the interior of the strip.
+@isnad1 id=differen.0h5v.s7.56bc8eaeb5e5 from=translated src=- shape=d52fc714 vocab=cb8dea7d
+-/
 theorem differentiableOn_compatApply_smearedProduct_betaBoost (W : WightmanStruct TestFn 𝓓 𝓕)
     (lam : W.Compat) (l : List (𝓕 × AnalyticTestFn)) :
     DifferentiableOn ℂ

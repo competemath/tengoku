@@ -50,7 +50,9 @@ the two semicircles.-/
 noncomputable def starTestFn (f : TestFn) : TestFn :=
   Classical.choose (exists_toAngle_eq (contDiff_starAngle f) (periodic_starAngle f))
 
-/-- The angle picture of the reflected test function.-/
+/-- The angle picture of the reflected test function.
+@isnad1 id=eq.0h1v.s5.2e82dfa1fa29 from=translated src=- shape=d4b9da6c vocab=b0f7c1d2
+-/
 theorem toAngle_starTestFn (f : TestFn) :
     toAngle (starTestFn f) =
       fun θ : ℝ => (starRingEnd ℂ) (toAngle f (-θ)) := by
@@ -59,7 +61,9 @@ theorem toAngle_starTestFn (f : TestFn) :
     fun θ : ℝ => (starRingEnd ℂ) (toAngle f (-θ))
   exact Classical.choose_spec (exists_toAngle_eq (contDiff_starAngle f) (periodic_starAngle f))
 
-/-- Reflection is an involution on smooth test functions.-/
+/-- Reflection is an involution on smooth test functions.
+@isnad1 id=eq.0h1v.s3.0b56388ed461 from=translated src=- shape=47dcad53 vocab=ab177de8
+-/
 theorem starTestFn_starTestFn (f : TestFn) : starTestFn (starTestFn f) = f := by
   apply toAngle_injective
   calc
@@ -74,7 +78,9 @@ theorem starTestFn_starTestFn (f : TestFn) : starTestFn (starTestFn f) = f := by
       funext θ
       simp
 
-/-- Reflection is additive on differences of test functions.-/
+/-- Reflection is additive on differences of test functions.
+@isnad1 id=eq.0h2v.s5.ffe156a879c0 from=translated src=- shape=a13ca989 vocab=0e8bd0dd
+-/
 theorem starTestFn_sub (f g : TestFn) :
     starTestFn (f - g) = starTestFn f - starTestFn g := by
   apply toAngle_injective
@@ -105,7 +111,9 @@ private theorem iteratedDeriv_star_comp (q : ℝ → ℂ) (j : ℕ) :
       simpa only [starRingEnd_apply, iteratedDeriv_succ] using
         (deriv.star (f := iteratedDeriv j q) (x := x))
 
-/-- The angle derivatives of reflection are reflected with the expected sign.-/
+/-- The angle derivatives of reflection are reflected with the expected sign.
+@isnad1 id=eq.0h3v.s6.c2f19748dbd5 from=translated src=- shape=e3faa9fc vocab=ed501ffc
+-/
 theorem angleDeriv_starTestFn (j : ℕ) (f : TestFn) (θ : ℝ) :
     angleDeriv j (starTestFn f) θ =
       (-1) ^ j * (starRingEnd ℂ) (angleDeriv j f (-θ)) := by
@@ -120,13 +128,17 @@ theorem angleDeriv_starTestFn (j : ℕ) (f : TestFn) (θ : ℝ) :
   rw [angleDeriv]
   simp [Complex.real_smul, smul_eq_mul, Complex.star_def]
 
-/-- Complex conjugation preserves the pointwise norms of reflected angle derivatives.-/
+/-- Complex conjugation preserves the pointwise norms of reflected angle derivatives.
+@isnad1 id=eq.0h3v.s4.78ec591466b8 from=translated src=- shape=1d5e46a3 vocab=77cc2a8e
+-/
 theorem norm_angleDeriv_starTestFn (j : ℕ) (f : TestFn) (θ : ℝ) :
     ‖angleDeriv j (starTestFn f) θ‖ = ‖angleDeriv j f (-θ)‖ := by
   rw [angleDeriv_starTestFn]
   simp
 
-/-- The `C^N` norm is invariant under reflection.-/
+/-- The `C^N` norm is invariant under reflection.
+@isnad1 id=eq.0h2v.s3.5bee94e53975 from=translated src=- shape=2793bf2c vocab=5b5e969f
+-/
 theorem cnorm_starTestFn (N : ℕ) (f : TestFn) :
     cnorm N (starTestFn f) = cnorm N f := by
   apply NNReal.eq
@@ -150,7 +162,9 @@ theorem cnorm_starTestFn (N : ℕ) (f : TestFn) :
         BoundedContinuousFunction.norm_coe_le_norm
           (angleDerivB j (starTestFn f)) (-θ)
 
-/-- Reflection sends lower-supported test functions to upper-supported ones.-/
+/-- Reflection sends lower-supported test functions to upper-supported ones.
+@isnad1 id=suppuppe.1h1v.s3.100d84548a2a from=translated src=- shape=58f8d12c vocab=9d0f005c
+-/
 theorem suppUpper_starTestFn {f : TestFn} (h : SuppLower f) :
     SuppUpper (starTestFn f) := by
   apply (suppUpper_iff_angle (starTestFn f)).2
@@ -167,7 +181,9 @@ theorem suppUpper_starTestFn {f : TestFn} (h : SuppLower f) :
   rw [congrFun (toAngle_starTestFn f) θ, harg, hzero]
   simp
 
-/-- Reflection sends upper-supported test functions to lower-supported ones.-/
+/-- Reflection sends upper-supported test functions to lower-supported ones.
+@isnad1 id=supplowe.1h1v.s3.c6ddf6de65b2 from=translated src=- shape=58f8d12c vocab=9d0f005c
+-/
 theorem suppLower_starTestFn {f : TestFn} (h : SuppUpper f) :
     SuppLower (starTestFn f) := by
   apply (suppLower_iff_angle (starTestFn f)).2
@@ -184,7 +200,9 @@ theorem suppLower_starTestFn {f : TestFn} (h : SuppUpper f) :
   rw [congrFun (toAngle_starTestFn f) θ, harg, hzero]
   simp
 
-/-- Reflection is continuous in the smooth test-function topology.-/
+/-- Reflection is continuous in the smooth test-function topology.
+@isnad1 id=tendsto.1h2v.s5.d0dee21fd190 from=translated src=- shape=578dd003 vocab=90490e84
+-/
 theorem tendsto_starTestFn {u : ℕ → TestFn} {f : TestFn}
     (h : Tendsto u atTop (nhds f)) :
     Tendsto (fun n => starTestFn (u n)) atTop (nhds (starTestFn f)) := by
@@ -213,7 +231,9 @@ private theorem conjCLE_preimage_Oexterior :
   change (1 : ℝ) ≤ ‖(Complex.conjCLE : ℂ →L[ℝ] ℂ) z‖ ↔ (1 : ℝ) ≤ ‖z‖
   simp
 
-/-- Conjugation of a complex derivative has the conjugated derivative.-/
+/-- Conjugation of a complex derivative has the conjugated derivative.
+@isnad1 id=hasderiv.1h3v.s7.02423532daee from=translated src=- shape=a23dee32 vocab=29a9fc39
+-/
 theorem hasDerivAt_conj_conj {f : ℂ → ℂ} {f' z : ℂ}
     (h : HasDerivAt f f' ((starRingEnd ℂ) z)) :
     HasDerivAt
@@ -377,7 +397,9 @@ private theorem periodize_neg_eq (g : ℝ → ℂ) (θ : ℝ) :
         periodize (2 * Real.pi) g (-θ + 2 * Real.pi) := hper.symm
     _ = periodize (2 * Real.pi) g (2 * Real.pi - θ) := by congr 1 <;> ring
 
-/-- [T26], Definition 3.2; the reflection exchanges the two semicircle restrictions.-/
+/-- [T26], Definition 3.2; the reflection exchanges the two semicircle restrictions.
+@isnad1 id=eq.0h1v.s3.1d059da6bce9 from=translated src=- shape=7367b1cd vocab=25cfd33e
+-/
 theorem xRestrictLower_conj (F : AnalyticTestFn) :
     xRestrictLower F.conj = starTestFn (xRestrictUpper F) := by
   apply toAngle_injective
@@ -458,7 +480,9 @@ theorem xRestrictLower_conj (F : AnalyticTestFn) :
         · exact hright
 
 /-- [T26], Lemma 3.4 for `I₋`; every lower-supported test function lies in the closure of the
-restrictions to `I₋` of the analytic class `𝓧`.-/
+restrictions to `I₋` of the analytic class `𝓧`.
+@isnad1 id=le.0h0v.s4.70d47423989c from=translated src=- shape=7c4370d0 vocab=537bd9c4
+-/
 theorem lemma_3_4_density_lower :
     { f : TestFn | SuppLower f } ⊆
       closure { g : TestFn | ∃ F : AnalyticTestFn, xRestrictLower F = g } := by

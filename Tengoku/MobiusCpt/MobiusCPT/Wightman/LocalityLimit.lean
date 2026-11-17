@@ -37,7 +37,9 @@ variable [TestFunctions TF] [AddCommGroup 𝓓] [Module ℂ 𝓓]
 /-- Continuity, in the second test-function slot alone, of the scalar two-field smeared product
 `g' ↦ λ(φ₁(f) φ₂(g') Ψ)`, for a compatible `λ`. This is the `k = 2` joint-continuity clause of
 `IsCompatible`, restricted along the continuous coordinate embedding that holds the first slot
-fixed at `f`.-/
+fixed at `f`.
+@isnad1 id=continuo.0h9v.s9.622756504fe7 from=translated src=- shape=064c88b6 vocab=53f5ad2c
+-/
 theorem continuous_compatApply_smear_smear_snd (W : WightmanStruct TF 𝓓 𝓕)
     (lam : W.Compat) (φ₁ φ₂ : 𝓕) (f : TF) (Ψ : 𝓓) :
     Continuous fun g' : TF =>
@@ -58,7 +60,9 @@ theorem continuous_compatApply_smear_smear_snd (W : WightmanStruct TF 𝓓 𝓕)
 
 /-- Continuity, in the first test-function slot alone, of the scalar two-field smeared product
 `g' ↦ λ(φ₂(g') φ₁(f) Ψ)`, the mirror of `continuous_compatApply_smear_smear_snd` with the two
-fields in the opposite order.-/
+fields in the opposite order.
+@isnad1 id=continuo.0h9v.s9.970abd6e6945 from=translated src=- shape=28451aed vocab=53f5ad2c
+-/
 theorem continuous_compatApply_smear_smear_fst (W : WightmanStruct TF 𝓓 𝓕)
     (lam : W.Compat) (φ₁ φ₂ : 𝓕) (f : TF) (Ψ : 𝓓) :
     Continuous fun g' : TF =>
@@ -80,7 +84,9 @@ theorem continuous_compatApply_smear_smear_fst (W : WightmanStruct TF 𝓓 𝓕)
 /-- **The (W2)-through-a-limit bridge, scalar form.** If a sequence `g_m` of test functions has
 disjoint support from `f` at every finite stage and converges to `g` in the ambient test-function
 topology, then the two orders of smearing by `f` and by `g` agree once composed with any
-compatible functional — even though `f` and `g` themselves need not have disjoint support.-/
+compatible functional — even though `f` and `g` themselves need not have disjoint support.
+@isnad1 id=eq.3h11v.s10.3ec24d667c7d from=translated src=- shape=eae95b03 vocab=d4b0b2cf
+-/
 theorem compatApply_smear_comm_of_tendsto (W : WightmanStruct TF 𝓓 𝓕) (hW2 : W.W2)
     (φ₁ φ₂ : 𝓕) (f : TF) {g : ℕ → TF} {gLim : TF} (hg : Tendsto g atTop (nhds gLim))
     (hdisj : ∀ m, TestFunctions.DisjointSupp f (g m)) (Ψ : 𝓓) (lam : W.Compat) :
@@ -98,7 +104,9 @@ theorem compatApply_smear_comm_of_tendsto (W : WightmanStruct TF 𝓓 𝓕) (hW2
   exact tendsto_nhds_unique (Tendsto.congr hEq hL) hR
 
 /-- **The (W2)-through-a-limit bridge, vector form.** Under regularity, the scalar identity
-above — holding for every compatible functional — upgrades to the vector identity in `𝓓`.-/
+above — holding for every compatible functional — upgrades to the vector identity in `𝓓`.
+@isnad1 id=eq.4h10v.s10.864329b8eef3 from=translated src=- shape=3bdfa540 vocab=e5055fc5
+-/
 theorem smear_comm_of_tendsto (W : WightmanStruct TF 𝓓 𝓕) (hW2 : W.W2) (hreg : W.ActsRegularly)
     (φ₁ φ₂ : 𝓕) (f : TF) {g : ℕ → TF} {gLim : TF} (hg : Tendsto g atTop (nhds gLim))
     (hdisj : ∀ m, TestFunctions.DisjointSupp f (g m)) (Ψ : 𝓓) :

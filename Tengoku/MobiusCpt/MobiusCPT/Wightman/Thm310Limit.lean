@@ -33,6 +33,9 @@ noncomputable def approxList (l : List (𝓕 × TestFn))
     (hl : ∀ p ∈ l, SuppUpper p.2) (n : ℕ) : List AnalyticTestFn :=
   l.pmap (fun p hp => approx p.2 hp n) hl
 
+/--
+@isnad1 id=eq.1h3v.s5.a1c68ddc43d8 from=translated src=- shape=33841e9c vocab=b461be25
+-/
 @[simp] theorem approxList_length (l : List (𝓕 × TestFn))
     (hl : ∀ p ∈ l, SuppUpper p.2) (n : ℕ) :
     (approxList l hl n).length = l.length := by
@@ -56,7 +59,9 @@ private theorem zip_map_right_pair {α β γ : Type*} (xs : List α) (ys : List 
   rw [List.zip_map_right]
   simp [Prod.map, Function.comp]
 
-/-- On the strip, `limG` is the analytic-core complex-boost expression.-/
+/-- On the strip, `limG` is the analytic-core complex-boost expression.
+@isnad1 id=eq.3h7v.s7.19be60df3023 from=translated src=- shape=ca76cca5 vocab=b399046f
+-/
 theorem limG_eq (hW : W.IsWightmanCFT) (l : List (𝓕 × TestFn))
     (hl : ∀ p ∈ l, SuppUpper p.2) (lam : W.toWightmanStruct.Compat) (n : ℕ)
     {τ : ℂ} (hτ : τ ∈ strip (Complex.I * Real.pi)) :
@@ -70,7 +75,9 @@ theorem limG_eq (hW : W.IsWightmanCFT) (l : List (𝓕 × TestFn))
     (WightmanData.lemma_3_7 hW
       ((l.map Prod.fst).zip (approxList l hl n)) τ hτ).2
 
-/-- Every approximating coefficient is continuous on the closed strip.-/
+/-- Every approximating coefficient is continuous on the closed strip.
+@isnad1 id=continuo.2h6v.s7.168ffeec60f3 from=translated src=- shape=feb45cfc vocab=57501d58
+-/
 theorem continuousOn_limG (hW : W.IsWightmanCFT) (l : List (𝓕 × TestFn))
     (hl : ∀ p ∈ l, SuppUpper p.2) (lam : W.toWightmanStruct.Compat) (n : ℕ) :
     ContinuousOn (limG l hl lam n) (strip (Complex.I * Real.pi)) := by
@@ -80,7 +87,9 @@ theorem continuousOn_limG (hW : W.IsWightmanCFT) (l : List (𝓕 × TestFn))
   intro τ hτ
   exact limG_eq hW l hl lam n hτ
 
-/-- Every approximating coefficient is holomorphic in the open strip.-/
+/-- Every approximating coefficient is holomorphic in the open strip.
+@isnad1 id=differen.2h6v.s7.8403823e269d from=translated src=- shape=43efcc19 vocab=3c83d130
+-/
 theorem differentiableOn_limG (hW : W.IsWightmanCFT) (l : List (𝓕 × TestFn))
     (hl : ∀ p ∈ l, SuppUpper p.2) (lam : W.toWightmanStruct.Compat) (n : ℕ) :
     DifferentiableOn ℂ (limG l hl lam n)
@@ -174,7 +183,9 @@ private theorem tendsto_cnorm_approxValue (l : List (𝓕 × TestFn))
 /-! ### Uniform Cauchy convergence and the pointwise limit -/
 
 /-- Lemma 3.9 turns the finite family of Lemma 3.4 approximants into a uniformly Cauchy family
-on every compact subset of the closed strip.-/
+on every compact subset of the closed strip.
+@isnad1 id=uniformc.4h6v.s7.4cb5638f49ec from=translated src=- shape=efa3e744 vocab=6e03f7c9
+-/
 theorem uniformCauchySeqOn_limG (hW : W.IsWightmanCFT)
     (l : List (𝓕 × TestFn)) (hl : ∀ p ∈ l, SuppUpper p.2)
     (lam : W.toWightmanStruct.Compat) {K : Set ℂ}
@@ -300,7 +311,9 @@ noncomputable def limitG (hW : W.IsWightmanCFT) (l : List (𝓕 × TestFn))
     (hl : ∀ p ∈ l, SuppUpper p.2) (lam : W.toWightmanStruct.Compat) (τ : ℂ) : ℂ :=
   limUnder atTop (fun n => limG l hl lam n τ)
 
-/-- The approximating coefficients converge pointwise everywhere on the closed strip.-/
+/-- The approximating coefficients converge pointwise everywhere on the closed strip.
+@isnad1 id=tendsto.3h6v.s7.e5097e96a1fd from=translated src=- shape=2356faf7 vocab=28968a33
+-/
 theorem tendsto_limG (hW : W.IsWightmanCFT) (l : List (𝓕 × TestFn))
     (hl : ∀ p ∈ l, SuppUpper p.2) (lam : W.toWightmanStruct.Compat)
     {τ : ℂ} (hτ : τ ∈ strip (Complex.I * Real.pi)) :
@@ -310,7 +323,9 @@ theorem tendsto_limG (hW : W.IsWightmanCFT) (l : List (𝓕 × TestFn))
 
 /-! ### Holomorphy of the limit -/
 
-/-- The approximants converge locally uniformly to `limitG` in the open strip.-/
+/-- The approximants converge locally uniformly to `limitG` in the open strip.
+@isnad1 id=tendstol.2h5v.s7.d8365b04ed69 from=translated src=- shape=3d665baa vocab=1011e699
+-/
 theorem tendstoLocallyUniformlyOn_limG (hW : W.IsWightmanCFT)
     (l : List (𝓕 × TestFn)) (hl : ∀ p ∈ l, SuppUpper p.2)
     (lam : W.toWightmanStruct.Compat) :
@@ -322,7 +337,9 @@ theorem tendstoLocallyUniformlyOn_limG (hW : W.IsWightmanCFT)
   exact (uniformCauchySeqOn_limG hW l hl lam hKC hKc).tendstoUniformlyOn_of_tendsto
     (fun τ hτ => tendsto_limG hW l hl lam (hKC hτ))
 
-/-- The limiting continuation family is holomorphic in the open strip.-/
+/-- The limiting continuation family is holomorphic in the open strip.
+@isnad1 id=differen.2h5v.s7.fb8288cfbeae from=translated src=- shape=6f880627 vocab=21542796
+-/
 theorem differentiableOn_limitG (hW : W.IsWightmanCFT)
     (l : List (𝓕 × TestFn)) (hl : ∀ p ∈ l, SuppUpper p.2)
     (lam : W.toWightmanStruct.Compat) :

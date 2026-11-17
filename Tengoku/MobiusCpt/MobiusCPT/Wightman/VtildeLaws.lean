@@ -20,7 +20,9 @@ private theorem add_ofReal_mem_interior_strip_iff (τ : ℂ) (t : ℝ) (z : ℂ)
     add_zero]
 
 /-- [T26], Definition 3.1; translating the parameter by a real number translates the companion
-vector by the corresponding boost, with the same continuation family: the strip does not move.-/
+vector by the corresponding boost, with the same continuation family: the strip does not move.
+@isnad1 id=isboostc.1h10v.s7.1d1b04216e97 from=translated src=- shape=883cac19 vocab=fbb25a9e
+-/
 theorem IsBoostContinuation.add_ofReal {W : WightmanData G TF 𝓓 𝓕} {τ : ℂ} {Φ Ψ : 𝓓}
     {Gf : W.toWightmanStruct.Compat → ℂ → ℂ} (t : ℝ)
     (h : W.IsBoostContinuation τ Φ Ψ Gf) :
@@ -43,7 +45,9 @@ theorem IsBoostContinuation.add_ofReal {W : WightmanData G TF 𝓓 𝓕} {τ : �
         rw [add_comm t s, W.boost_add]
 
 /-- [T26], Definition 3.1; a continuation at `τ + t` for `Φ` is a continuation at `τ` for
-`V_t Φ`, after translating the family.-/
+`V_t Φ`, after translating the family.
+@isnad1 id=isboostc.1h10v.s7.fb533b85f709 from=translated src=- shape=bb47bda6 vocab=fbb25a9e
+-/
 theorem IsBoostContinuation.precomp_boost
     {W : WightmanData G TF 𝓓 𝓕} {τ : ℂ} {Φ Ψ : 𝓓}
     {Gf : W.toWightmanStruct.Compat → ℂ → ℂ} (t : ℝ)
@@ -86,7 +90,9 @@ theorem IsBoostContinuation.precomp_boost
       _ = W.toWightmanStruct.compatApply lam (W.boost s Ψ) :=
         (h lam).2.2.2 s
 
-/-- [T26], Definition 3.1; the converse translation.-/
+/-- [T26], Definition 3.1; the converse translation.
+@isnad1 id=isboostc.1h10v.s7.b86b57549378 from=translated src=- shape=81da55c5 vocab=e87b22c1
+-/
 theorem IsBoostContinuation.postcomp_boost
     {W : WightmanData G TF 𝓓 𝓕} {τ : ℂ} {Φ Ψ : 𝓓}
     {Gf : W.toWightmanStruct.Compat → ℂ → ℂ} (t : ℝ)
@@ -135,7 +141,9 @@ theorem IsBoostContinuation.postcomp_boost
       _ = W.toWightmanStruct.compatApply lam (W.boost s Ψ) :=
         (h lam).2.2.2 s
 
-/-- [T26], Definition 3.1; the domain is unchanged by a real translation of the parameter.-/
+/-- [T26], Definition 3.1; the domain is unchanged by a real translation of the parameter.
+@isnad1 id=iff.0h8v.s6.c1ea354c4b12 from=translated src=- shape=568be196 vocab=f0a2e477
+-/
 theorem vtildeDom_add_ofReal_iff (W : WightmanData G TF 𝓓 𝓕) (τ : ℂ) (t : ℝ)
     (Φ : 𝓓) :
     W.VtildeDom (τ + (t : ℂ)) Φ ↔ W.VtildeDom τ Φ := by
@@ -148,7 +156,9 @@ theorem vtildeDom_add_ofReal_iff (W : WightmanData G TF 𝓓 𝓕) (τ : ℂ) (t
     exact ⟨W.boost t Ψ, Gf, IsBoostContinuation.add_ofReal t hGf⟩
 
 /-- [T26], Definition 3.1 and footnote 7; the domain of `Ṽ_{τ+t}` is the domain of the
-composite `Ṽ_τ V_t`.-/
+composite `Ṽ_τ V_t`.
+@isnad1 id=iff.0h8v.s7.ec5e4e0ba621 from=translated src=- shape=74ee9d6e vocab=7ed64d9c
+-/
 theorem vtildeDom_add_ofReal_iff_boost (W : WightmanData G TF 𝓓 𝓕) (τ : ℂ) (t : ℝ)
     (Φ : 𝓓) :
     W.VtildeDom (τ + (t : ℂ)) Φ ↔ W.VtildeDom τ (W.boost t Φ) := by
@@ -161,7 +171,9 @@ theorem vtildeDom_add_ofReal_iff_boost (W : WightmanData G TF 𝓓 𝓕) (τ : �
 /-- [T26], Definition 3.1 and footnote 7; the real-translation law
 `Ṽ_{τ+t} = V_t Ṽ_τ = Ṽ_τ V_t`, with the domain clauses the source's "as partially defined
 operators" requires. Regularity is the precise separation-of-points hypothesis needed to pin the
-values; `IsWightmanCFT` would be stronger than necessary.-/
+values; `IsWightmanCFT` would be stronger than necessary.
+@isnad1 id=and.1h8v.s9.497ee0886623 from=translated src=- shape=3659ce6d vocab=fe407ecd
+-/
 theorem vtilde_translation (W : WightmanData G TF 𝓓 𝓕) :
     W.toWightmanStruct.ActsRegularly →
       ∀ (τ : ℂ) (t : ℝ) (Φ : 𝓓),

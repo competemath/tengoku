@@ -46,32 +46,44 @@ instance instSMul : SMul ℂ TestFn where
 
 namespace TestFn
 
-/-- The coercion preserves addition.-/
+/-- The coercion preserves addition.
+@isnad1 id=eq.0h2v.s6.9aca7a2bdbc4 from=translated src=- shape=052a5e00 vocab=c5820b84
+-/
 @[simp] theorem coe_add (f g : TestFn) : ⇑(f + g) = f + g := by
   funext z
   rfl
 
-/-- The coercion preserves scalar multiplication by complex constants.-/
+/-- The coercion preserves scalar multiplication by complex constants.
+@isnad1 id=eq.0h2v.s5.8980336c738a from=translated src=- shape=775851c0 vocab=1b30313c
+-/
 @[simp] theorem coe_smul (c : ℂ) (f : TestFn) : ⇑(c • f) = c • (f : Circle → ℂ) := by
   funext z
   rfl
 
-/-- The coercion preserves zero.-/
+/-- The coercion preserves zero.
+@isnad1 id=eq.0h0v.s5.c5f083262b63 from=translated src=- shape=c397a401 vocab=bbcf982d
+-/
 @[simp] theorem coe_zero : ⇑(0 : TestFn) = (0 : Circle → ℂ) := by
   funext z
   rfl
 
-/-- The coercion preserves negation.-/
+/-- The coercion preserves negation.
+@isnad1 id=eq.0h1v.s5.a2d92a6208d7 from=translated src=- shape=ef237146 vocab=7c05587f
+-/
 @[simp] theorem coe_neg (f : TestFn) : ⇑(-f) = -f := by
   funext z
   rfl
 
-/-- The coercion preserves subtraction.-/
+/-- The coercion preserves subtraction.
+@isnad1 id=eq.0h2v.s6.3a5bc046a232 from=translated src=- shape=052a5e00 vocab=73af0d47
+-/
 @[simp] theorem coe_sub (f g : TestFn) : ⇑(f - g) = f - g := by
   funext z
   rfl
 
-/-- Extensionality for smooth test functions.-/
+/-- Extensionality for smooth test functions.
+@isnad1 id=eq.1h2v.s4.039e8dafa176 from=translated src=- shape=4d06d4cc vocab=bbcf982d
+-/
 @[ext] theorem ext {f g : TestFn} (h : ∀ z, f z = g z) : f = g := by
   exact DFunLike.ext f g h
 
@@ -86,17 +98,23 @@ instance testFnModule : Module ℂ TestFn :=
 /-- [T26], §3; the angle picture of a test function: `θ ↦ f(e^{iθ})`.-/
 def toAngle (f : TestFn) : ℝ → ℂ := fun θ => f (Circle.exp θ)
 
-/-- [T26], §3; angle evaluation preserves smoothness.-/
+/-- [T26], §3; angle evaluation preserves smoothness.
+@isnad1 id=contdiff.0h1v.s5.d0c785203a0e from=translated src=- shape=caa53032 vocab=240be9bd
+-/
 theorem contDiff_toAngle (f : TestFn) : ContDiff ℝ ∞ (toAngle f) := by
   change ContDiff ℝ ∞ ((f : Circle → ℂ) ∘ Circle.exp)
   exact (((ContMDiffMap.contMDiff f).comp (contMDiff_circleExp (m := ∞))).contDiff)
 
-/-- [T26], §3; the angle picture has period `2 * Real.pi`.-/
+/-- [T26], §3; the angle picture has period `2 * Real.pi`.
+@isnad1 id=periodic.0h1v.s4.9482fe1eb868 from=translated src=- shape=f3462cf1 vocab=be62e344
+-/
 theorem periodic_toAngle (f : TestFn) : Function.Periodic (toAngle f) (2 * Real.pi) := by
   intro θ
   simp only [toAngle, Circle.exp_add, Circle.exp_two_pi, mul_one]
 
-/-- [T26], §3; angle evaluation is injective because `Circle.exp` is surjective.-/
+/-- [T26], §3; angle evaluation is injective because `Circle.exp` is surjective.
+@isnad1 id=injectiv.0h0v.s2.cedde7beb0ad from=translated src=- shape=5033b664 vocab=e34a285e
+-/
 theorem toAngle_injective : Function.Injective toAngle := by
   intro f g h
   apply TestFn.ext
@@ -107,17 +125,23 @@ theorem toAngle_injective : Function.Injective toAngle := by
   rw [hθ] at hfg
   exact hfg
 
-/-- [T26], §3; angle evaluation preserves addition.-/
+/-- [T26], §3; angle evaluation preserves addition.
+@isnad1 id=eq.0h2v.s5.85a03cb80d96 from=translated src=- shape=285516c7 vocab=d56c3309
+-/
 theorem toAngle_add (f g : TestFn) : toAngle (f + g) = toAngle f + toAngle g := by
   funext θ
   rfl
 
-/-- [T26], §3; angle evaluation preserves complex scalar multiplication.-/
+/-- [T26], §3; angle evaluation preserves complex scalar multiplication.
+@isnad1 id=eq.0h2v.s5.0077c857ef75 from=translated src=- shape=1c6ee18f vocab=08e47ed9
+-/
 theorem toAngle_smul (c : ℂ) (f : TestFn) : toAngle (c • f) = c • toAngle f := by
   funext θ
   rfl
 
-/-- [T26], §3; angle evaluation preserves zero.-/
+/-- [T26], §3; angle evaluation preserves zero.
+@isnad1 id=eq.0h0v.s5.f9b7b4af8c20 from=translated src=- shape=8a79115c vocab=bf4857e5
+-/
 theorem toAngle_zero : toAngle (0 : TestFn) = 0 := by
   funext θ
   rfl
@@ -128,7 +152,9 @@ def toAngleₗ : TestFn →ₗ[ℂ] (ℝ → ℂ) where
   map_add' := toAngle_add
   map_smul' := toAngle_smul
 
-/-- [T26], §3; every smooth periodic angle function descends to the circle.-/
+/-- [T26], §3; every smooth periodic angle function descends to the circle.
+@isnad1 id=ex.2h1v.s6.ead1f499b0e1 from=translated src=- shape=1f0332cc vocab=82f4ffff
+-/
 theorem exists_toAngle_eq {g : ℝ → ℂ} (hg : ContDiff ℝ ∞ g)
     (hper : Function.Periodic g (2 * Real.pi)) :
     ∃ f : TestFn, toAngle f = g := by
@@ -211,7 +237,9 @@ theorem exists_toAngle_eq {g : ℝ → ℂ} (hg : ContDiff ℝ ∞ g)
         g (θ + m * (2 * Real.pi)) := by rw [hm]
     _ = g θ := hper.int_mul m _
 
-/-- [T26], §3; the angle bridge is a bijection onto smooth periodic functions.-/
+/-- [T26], §3; the angle bridge is a bijection onto smooth periodic functions.
+@isnad1 id=bijon.0h0v.s6.6dc5307bc76a from=translated src=- shape=2de97dfb vocab=f5291193
+-/
 theorem toAngle_bijOn :
     Set.BijOn toAngle Set.univ
       {g : ℝ → ℂ | ContDiff ℝ ∞ g ∧ Function.Periodic g (2 * Real.pi)} := by

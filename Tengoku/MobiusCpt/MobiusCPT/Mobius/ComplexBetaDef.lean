@@ -34,14 +34,18 @@ def betaBoostRatio (τ : ℂ) : ℝ → ℂ := fun θ =>
   cden (-τ) (Circle.exp θ) / cnum (-τ) (Circle.exp θ)
 
 /-- On the closed strip and closed upper semicircle, the numerator in the boost ratio is
-nonzero.-/
+nonzero.
+@isnad1 id=ne.2h2v.s7.ea71d6e51eba from=translated src=- shape=f75f501e vocab=9795d11a
+-/
 theorem cnum_neg_circleExp_ne_zero {τ : ℂ} (hτ : τ ∈ strip (Complex.I * Real.pi))
     {θ : ℝ} (hθ : θ ∈ Set.Icc 0 Real.pi) : cnum (-τ) (Circle.exp θ) ≠ 0 := by
   have hstrip := mem_strip_I_mul_pi.mp hτ
   exact cnum_neg_ne_zero_of_upper hstrip.1 hstrip.2 (im_circleExp_nonneg hθ)
 
 /-- [T26], Definition 3.5; in the angle coordinate the pointwise complex boost is the product of
-its smooth rational prefactor and the divided inverted function evaluated at the boost ratio.-/
+its smooth rational prefactor and the divided inverted function evaluated at the boost ratio.
+@isnad1 id=eq.2h4v.s6.fece6b1c8e4d from=translated src=- shape=9714be69 vocab=611bd932
+-/
 theorem betaBoostVal_circleExp_eq (d : ℕ) (F : AnalyticTestFn) {τ : ℂ}
     (hτ : τ ∈ strip (Complex.I * Real.pi)) {θ : ℝ} (hθ : θ ∈ Set.Icc 0 Real.pi) :
     betaBoostVal d τ F (Circle.exp θ) =
@@ -50,7 +54,9 @@ theorem betaBoostVal_circleExp_eq (d : ℕ) (F : AnalyticTestFn) {τ : ℂ}
     betaBoostVal_eq_mul_inv d F (cnum_neg_circleExp_ne_zero hτ hθ)
 
 /-- The rational prefactor of a fixed-strip-parameter complex boost is smooth on the closed angle
-interval.-/
+interval.
+@isnad1 id=contdiff.1h2v.s6.797e9f299b21 from=translated src=- shape=cf546dce vocab=dcc3a2a6
+-/
 theorem contDiffOn_betaBoostPre (d : ℕ) {τ : ℂ} (hτ : τ ∈ strip (Complex.I * Real.pi)) :
     ContDiffOn ℝ ∞ (betaBoostPre d τ) (Set.Icc 0 Real.pi) := by
   have hcircle : ContDiff ℝ ∞ (fun θ : ℝ => ((Circle.exp θ : Circle) : ℂ)) :=
@@ -77,7 +83,9 @@ theorem contDiffOn_betaBoostPre (d : ℕ) {τ : ℂ} (hτ : τ ∈ strip (Comple
     (hcircle.contDiffOn.mul hzpow_inv))
 
 /-- The ratio fed to the divided inverted function is smooth on the closed angle interval for a
-fixed parameter in the closed strip.-/
+fixed parameter in the closed strip.
+@isnad1 id=contdiff.1h1v.s6.3889c4603fe6 from=translated src=- shape=052d40db vocab=4ddcac8c
+-/
 theorem contDiffOn_betaBoostRatio {τ : ℂ} (hτ : τ ∈ strip (Complex.I * Real.pi)) :
     ContDiffOn ℝ ∞ (betaBoostRatio τ) (Set.Icc 0 Real.pi) := by
   have hcircle : ContDiff ℝ ∞ (fun θ : ℝ => ((Circle.exp θ : Circle) : ℂ)) :=
@@ -97,19 +105,25 @@ theorem contDiffOn_betaBoostRatio {τ : ℂ} (hτ : τ ∈ strip (Complex.I * Re
   refine hmul.congr fun θ _ => ?_
   rw [betaBoostRatio, div_eq_mul_inv]
 
-/-- The boost ratio maps the closed upper-semicircle angle interval into the closed unit disc.-/
+/-- The boost ratio maps the closed upper-semicircle angle interval into the closed unit disc.
+@isnad1 id=mapsto.1h1v.s5.7d14d34b82ae from=translated src=- shape=abb8f704 vocab=0763e2c3
+-/
 theorem mapsTo_betaBoostRatio {τ : ℂ} (hτ : τ ∈ strip (Complex.I * Real.pi)) :
     Set.MapsTo (betaBoostRatio τ) (Set.Icc 0 Real.pi) (Metric.closedBall (0 : ℂ) 1) := by
   intro θ hθ
   have hstrip := mem_strip_I_mul_pi.mp hτ
   exact cden_div_cnum_mem_closedBall hstrip.1 hstrip.2 (im_circleExp_nonneg hθ)
 
-/-- [T26], §3; the complex boost fixes the endpoint `z = 1` of `I_+`.-/
+/-- [T26], §3; the complex boost fixes the endpoint `z = 1` of `I_+`.
+@isnad1 id=eq.0h1v.s4.c3f5bfb226ae from=translated src=- shape=0e0c2bda vocab=c8634d2f
+-/
 theorem betaBoostRatio_zero (τ : ℂ) : betaBoostRatio τ 0 = 1 := by
   apply cden_div_cnum_of_coe_eq_one
   simp
 
-/-- [T26], §3; the complex boost fixes the endpoint `z = -1` of `I_+`.-/
+/-- [T26], §3; the complex boost fixes the endpoint `z = -1` of `I_+`.
+@isnad1 id=eq.0h1v.s4.259f8b1f2ed7 from=translated src=- shape=46b67df4 vocab=caf0573e
+-/
 theorem betaBoostRatio_pi (τ : ℂ) : betaBoostRatio τ Real.pi = -1 := by
   apply cden_div_cnum_of_coe_eq_neg_one
   simp [Circle.coe_exp, Complex.exp_pi_mul_I]
@@ -124,7 +138,9 @@ private theorem uniqueDiffOn_closedBall_zero_one :
 /-- [T26], Definition 3.5; the complex boost vanishes to infinite order at the endpoints of `I_+`.
 The boost fixes `±1` and `F` is flat there ([T26], Definition 3.2), so the flatness passes through
 the divided inverted function and survives multiplication by the smooth prefactor.  This is the
-statement that keeps `β_d(v_τ)F|_{I_+}` inside `C_0^∞(I_+)`.-/
+statement that keeps `β_d(v_τ)F|_{I_+}` inside `C_0^∞(I_+)`.
+@isnad1 id=eq.1h4v.s6.c19b88cc98e4 from=translated src=- shape=fdd02f10 vocab=06a9e2b4
+-/
 theorem iteratedDerivWithin_betaBoostVal_circleExp_zero (d : ℕ) (F : AnalyticTestFn) {τ : ℂ}
     (hτ : τ ∈ strip (Complex.I * Real.pi)) (j : ℕ) :
     iteratedDerivWithin j (fun θ : ℝ => betaBoostVal d τ F (Circle.exp θ))
@@ -166,7 +182,9 @@ theorem iteratedDerivWithin_betaBoostVal_circleExp_zero (d : ℕ) (F : AnalyticT
     _ = 0 := hmulflat
 
 /-- [T26], Definition 3.5; every within derivative of the angle formula vanishes at the right
-endpoint of the closed upper semicircle.-/
+endpoint of the closed upper semicircle.
+@isnad1 id=eq.1h4v.s6.d4e13674a027 from=translated src=- shape=72479e13 vocab=06a9e2b4
+-/
 theorem iteratedDerivWithin_betaBoostVal_circleExp_pi (d : ℕ) (F : AnalyticTestFn) {τ : ℂ}
     (hτ : τ ∈ strip (Complex.I * Real.pi)) (j : ℕ) :
     iteratedDerivWithin j (fun θ : ℝ => betaBoostVal d τ F (Circle.exp θ))
@@ -207,13 +225,17 @@ theorem iteratedDerivWithin_betaBoostVal_circleExp_pi (d : ℕ) (F : AnalyticTes
           (Set.Icc 0 Real.pi) Real.pi := iteratedFDerivWithin_congr heq hx j
     _ = 0 := hmulflat
 
-/-- [T26], Definition 3.5; the angle formula vanishes at the endpoint `θ = 0`.-/
+/-- [T26], Definition 3.5; the angle formula vanishes at the endpoint `θ = 0`.
+@isnad1 id=eq.1h3v.s6.d5cc100caa9d from=translated src=- shape=7c2861c8 vocab=654ed5fe
+-/
 theorem betaBoostVal_circleExp_zero (d : ℕ) (F : AnalyticTestFn) {τ : ℂ}
     (hτ : τ ∈ strip (Complex.I * Real.pi)) : betaBoostVal d τ F (Circle.exp 0) = 0 := by
   rw [betaBoostVal_circleExp_eq d F hτ ⟨le_rfl, Real.pi_pos.le⟩,
     betaBoostRatio_zero, F.invQuot_one, mul_zero]
 
-/-- [T26], Definition 3.5; the angle formula vanishes at the endpoint `θ = π`.-/
+/-- [T26], Definition 3.5; the angle formula vanishes at the endpoint `θ = π`.
+@isnad1 id=eq.1h3v.s5.8f1ff691e317 from=translated src=- shape=c658de33 vocab=654ed5fe
+-/
 theorem betaBoostVal_circleExp_pi (d : ℕ) (F : AnalyticTestFn) {τ : ℂ}
     (hτ : τ ∈ strip (Complex.I * Real.pi)) :
     betaBoostVal d τ F (Circle.exp Real.pi) = 0 := by
@@ -227,7 +249,9 @@ def betaBoostCut (d : ℕ) (τ : ℂ) (F : AnalyticTestFn) : ℝ → ℂ :=
   zeroExtendIcc 0 Real.pi (fun θ : ℝ => betaBoostVal d τ F (Circle.exp θ))
 
 /-- The zero extension of the endpoint-flat complex boost angle formula is smooth on the real
-line.-/
+line.
+@isnad1 id=contdiff.1h3v.s5.258d33ad5c8f from=translated src=- shape=d2e13187 vocab=8e591ae6
+-/
 theorem contDiff_betaBoostCut (d : ℕ) (F : AnalyticTestFn) {τ : ℂ}
     (hτ : τ ∈ strip (Complex.I * Real.pi)) : ContDiff ℝ ∞ (betaBoostCut d τ F) := by
   exact contDiff_zeroExtend_of_flat_contDiffOn Real.pi_pos
@@ -235,7 +259,9 @@ theorem contDiff_betaBoostCut (d : ℕ) (F : AnalyticTestFn) {τ : ℂ}
     (iteratedDerivWithin_betaBoostVal_circleExp_zero d F hτ)
     (iteratedDerivWithin_betaBoostVal_circleExp_pi d F hτ)
 
-/-- The zero-extended complex boost angle formula is upper-flat.-/
+/-- The zero-extended complex boost angle formula is upper-flat.
+@isnad1 id=isupperf.1h3v.s4.2de92caa21ba from=translated src=- shape=0a7fff51 vocab=50b3214c
+-/
 theorem isUpperFlat_betaBoostCut (d : ℕ) (F : AnalyticTestFn) {τ : ℂ}
     (hτ : τ ∈ strip (Complex.I * Real.pi)) : IsUpperFlat (betaBoostCut d τ F) := by
   refine ⟨contDiff_betaBoostCut d F hτ, ?_⟩
@@ -267,7 +293,9 @@ noncomputable def betaBoost (d : ℕ) (τ : ℂ) (F : AnalyticTestFn) : TestFn :
   else 0
 
 /-- On the closed strip, the angle representative of the complex boost is the periodisation of
-its zero-extended upper-semicircle formula.-/
+its zero-extended upper-semicircle formula.
+@isnad1 id=eq.1h3v.s5.e5d2080a4780 from=translated src=- shape=e2d2ec0e vocab=6774e05e
+-/
 theorem toAngle_betaBoost (d : ℕ) (F : AnalyticTestFn) {τ : ℂ}
     (hτ : τ ∈ strip (Complex.I * Real.pi)) :
     toAngle (betaBoost d τ F) = periodize (2 * Real.pi) (betaBoostCut d τ F) := by
@@ -276,7 +304,9 @@ theorem toAngle_betaBoost (d : ℕ) (F : AnalyticTestFn) {τ : ℂ}
     (exists_suppUpper_toAngle_eq_periodize (isUpperFlat_betaBoostCut d F hτ))).1
 
 /-- [T26], Definition 3.5; the complex boost is supported in the upper semicircle, so it lies in
-`C_0^∞(I_+)`.-/
+`C_0^∞(I_+)`.
+@isnad1 id=suppuppe.0h3v.s3.307b7333cb8a from=translated src=- shape=27322421 vocab=a5661f61
+-/
 theorem suppUpper_betaBoost (d : ℕ) (τ : ℂ) (F : AnalyticTestFn) :
     SuppUpper (betaBoost d τ F) := by
   by_cases hτ : τ ∈ strip (Complex.I * Real.pi)
@@ -287,7 +317,9 @@ theorem suppUpper_betaBoost (d : ℕ) (τ : ℂ) (F : AnalyticTestFn) :
     exact suppUpper_zero
 
 /-- [T26], Definition 3.5; on the closed upper semicircle the complex boost takes the value of the
-pointwise formula.-/
+pointwise formula.
+@isnad1 id=eq.2h4v.s6.de83af58c387 from=translated src=- shape=c6a870b8 vocab=2a938257
+-/
 theorem betaBoost_apply_circleExp (d : ℕ) (F : AnalyticTestFn) {τ : ℂ}
     (hτ : τ ∈ strip (Complex.I * Real.pi)) {θ : ℝ} (hθ : θ ∈ Set.Icc 0 Real.pi) :
     betaBoost d τ F (Circle.exp θ) = betaBoostVal d τ F (Circle.exp θ) := by

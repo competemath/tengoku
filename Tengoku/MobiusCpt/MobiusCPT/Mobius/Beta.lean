@@ -21,7 +21,9 @@ attribute [local instance] finrank_real_complex_fact'
 
 noncomputable section
 
-/-- [T26], §1: the Möbius action on `S¹` is smooth.-/
+/-- [T26], §1: the Möbius action on `S¹` is smooth.
+@isnad1 id=contmdif.0h1v.s9.35d2c4625590 from=translated src=- shape=f39ce398 vocab=273c36c0
+-/
 theorem contMDiff_smul (g : SU11) :
     ContMDiff (𝓡 1) (𝓡 1) ∞ (fun z : Circle => g • z) := by
   have hnum :
@@ -62,13 +64,17 @@ def betaFun (d : ℕ) (g : SU11) (f : TestFn) : Circle → ℂ :=
   fun z => ((X g (g⁻¹ • z) ^ ((d : ℤ) - 1) : ℝ) : ℂ) * f (g⁻¹ • z)
 
 /-- [T26], Definition 2.4, eq. (2.2): the conformal scalar can be computed from the
-inverse automorphy factor.-/
+inverse automorphy factor.
+@isnad1 id=eq.0h4v.s6.7601c80eec61 from=translated src=- shape=4efac970 vocab=5c749623
+-/
 theorem betaFun_eq (d : ℕ) (g : SU11) (f : TestFn) (z : Circle) :
     betaFun d g f z =
       ((Complex.normSq (j g⁻¹ z) ^ ((d : ℤ) - 1) : ℝ) : ℂ) * f (g⁻¹ • z) := by
   rw [betaFun, X_inv_smul]
 
-/-- [T26], Definition 2.4: the pointwise formula defining `β_d(γ)f` is smooth.-/
+/-- [T26], Definition 2.4: the pointwise formula defining `β_d(γ)f` is smooth.
+@isnad1 id=contmdif.0h3v.s8.33b2b380ac04 from=translated src=- shape=2ee0d5ec vocab=0a4dbf4d
+-/
 theorem contMDiff_betaFun (d : ℕ) (g : SU11) (f : TestFn) :
     ContMDiff (𝓡 1) 𝓘(ℝ, ℂ) ∞ (betaFun d g f) := by
   rw [show betaFun d g f = fun z : Circle =>
@@ -149,13 +155,17 @@ def beta (d : ℕ) (g : SU11) : TestFn →ₗ[ℂ] TestFn where
         c * (((X g (g⁻¹ • z) ^ ((d : ℤ) - 1) : ℝ) : ℂ) * f (g⁻¹ • z))
     ring
 
-/-- [T26], Definition 2.4, eq. (2.2): evaluation of the bundled conformal action.-/
+/-- [T26], Definition 2.4, eq. (2.2): evaluation of the bundled conformal action.
+@isnad1 id=eq.0h4v.s7.9136c1b3c81c from=translated src=- shape=5549ff26 vocab=a40135e7
+-/
 @[simp]
 theorem beta_apply (d : ℕ) (g : SU11) (f : TestFn) (z : Circle) :
     beta d g f z = ((X g (g⁻¹ • z) ^ ((d : ℤ) - 1) : ℝ) : ℂ) * f (g⁻¹ • z) :=
   rfl
 
-/-- [T26], Definition 2.4: the identity element acts trivially under `β_d`.-/
+/-- [T26], Definition 2.4: the identity element acts trivially under `β_d`.
+@isnad1 id=eq.0h1v.s5.8fdc1be2aa8e from=translated src=- shape=045cdb3a vocab=77a6b3c8
+-/
 theorem beta_one (d : ℕ) : beta d (1 : SU11) = LinearMap.id := by
   apply LinearMap.ext
   intro f
@@ -169,7 +179,9 @@ private theorem real_mul_zpow_sub_one (a b : ℝ) (ha : a ≠ 0) (hb : b ≠ 0) 
   simp only [zpow_natCast, mul_pow, mul_inv_rev]
   ring
 
-/-- [T26], Definition 2.4: the conformal action respects multiplication in `SU(1,1)`.-/
+/-- [T26], Definition 2.4: the conformal action respects multiplication in `SU(1,1)`.
+@isnad1 id=eq.0h3v.s6.89c7178eb0de from=translated src=- shape=d1998e59 vocab=7b8b1fc1
+-/
 theorem beta_mul (d : ℕ) (g h : SU11) :
     beta d (g * h) = (beta d g).comp (beta d h) := by
   apply LinearMap.ext
@@ -191,7 +203,9 @@ private theorem neg_inv (g : SU11) :
     (SU11.neg g)⁻¹ = SU11.neg (g⁻¹) := by
   apply SU11.ext <;> simp
 
-/-- [T26], Definition 2.4: simultaneous sign change does not change `β_d`.-/
+/-- [T26], Definition 2.4: simultaneous sign change does not change `β_d`.
+@isnad1 id=eq.0h2v.s5.1f59282d16bb from=translated src=- shape=a2971dcd vocab=7114af1b
+-/
 theorem beta_neg (d : ℕ) (g : SU11) : beta d (SU11.neg g) = beta d g := by
   apply LinearMap.ext
   intro f
@@ -213,7 +227,9 @@ def beta (d : ℕ) : Mob → (TestFn →ₗ[ℂ] TestFn) :=
       · rfl
       · exact (MobiusCPT.beta_neg d g).symm)
 
-/-- [T26], Definition 2.4: a representative computes the descended conformal action.-/
+/-- [T26], Definition 2.4: a representative computes the descended conformal action.
+@isnad1 id=eq.0h2v.s5.db1593f60c28 from=translated src=- shape=916db769 vocab=13095de7
+-/
 @[simp]
 theorem beta_mk (d : ℕ) (g : SU11) : beta d (mk g) = MobiusCPT.beta d g :=
   rfl
@@ -240,13 +256,18 @@ noncomputable instance mobiusActionMobTestFn : MobiusAction Mob TestFn where
     obtain ⟨h, rfl⟩ := Mob.mk_surjective δ
     simpa only [← Mob.mk_mul, Mob.beta_mk] using MobiusCPT.beta_mul d g h
 
+/--
+@isnad1 id=eq.0h1v.s3.76dba8edd1f4 from=translated src=- shape=32371f98 vocab=a8eb8dfc
+-/
 theorem rotMat_inv (theta : ℝ) :
     (rotMat theta)⁻¹ = rotMat (-theta) := by
   apply inv_eq_of_mul_eq_one_right
   rw [← rotMat_add, add_neg_cancel, rotMat_zero]
 
 /-- [T26], Definition 2.4 and the Issue #2 source gate:
-`β_d(r_θ) z^n = e^{-inθ} z^n`.-/
+`β_d(r_θ) z^n = e^{-inθ} z^n`.
+@isnad1 id=eq.0h3v.s6.4cf740f0f515 from=translated src=- shape=02200241 vocab=3b81e1d0
+-/
 theorem beta_rotMat_monomial (d : ℕ) (theta : ℝ) (n : ℤ) :
     beta d (rotMat theta) (monomial n) =
       Complex.exp (-(n : ℂ) * (theta : ℂ) * Complex.I) • monomial n := by
@@ -270,7 +291,9 @@ theorem beta_rotMat_monomial (d : ℕ) (theta : ℝ) (n : ℤ) :
 namespace Mob
 
 /-- [T26], Definition 2.4 and the Issue #2 source gate: the descended rotation action on an
-integer monomial is multiplication by `e^{-inθ}`.-/
+integer monomial is multiplication by `e^{-inθ}`.
+@isnad1 id=eq.0h3v.s6.712aecd2a891 from=translated src=- shape=02200241 vocab=40dfa8b3
+-/
 theorem beta_rot_monomial (d : ℕ) (theta : ℝ) (n : ℤ) :
     beta d (rot theta) (monomial n) =
       Complex.exp (-(n : ℂ) * (theta : ℂ) * Complex.I) • monomial n := by
@@ -280,7 +303,9 @@ theorem beta_rot_monomial (d : ℕ) (theta : ℝ) (n : ℤ) :
 end Mob
 
 /-- [T26], eq. (3.4)-(3.5):
-`(β_d(v_t)f)(z) = (cosh t + Re(z) sinh t)^{d-1} f(v_{-t} · z)`.-/
+`(β_d(v_t)f)(z) = (cosh t + Re(z) sinh t)^{d-1} f(v_{-t} · z)`.
+@isnad1 id=eq.0h4v.s7.ed0a80890526 from=translated src=- shape=81cf898a vocab=59641b88
+-/
 theorem beta_boostMat_apply (d : ℕ) (t : ℝ) (f : TestFn) (z : Circle) :
     beta d (boostMat t) f z =
       (((Real.cosh t + (z : ℂ).re * Real.sinh t) ^ ((d : ℤ) - 1) : ℝ) : ℂ) *
@@ -291,7 +316,9 @@ namespace Mob
 
 /-- [T26], eq. (3.4)-(3.5), at the level of `Möb = PSU(1,1)`:
 `(β_d(v_t)f)(z) = (cosh t + Re(z) sinh t)^{d-1} f(v_{-t} · z)`. This is the form the capstone
-uses, since the main theorem is stated over this instance.-/
+uses, since the main theorem is stated over this instance.
+@isnad1 id=eq.0h4v.s7.2126dcd3b577 from=translated src=- shape=81cf898a vocab=ba0e0271
+-/
 theorem beta_boost_apply (d : ℕ) (t : ℝ) (f : TestFn) (z : Circle) :
     beta d (boost t) f z =
       (((Real.cosh t + (z : ℂ).re * Real.sinh t) ^ ((d : ℤ) - 1) : ℝ) : ℂ) *

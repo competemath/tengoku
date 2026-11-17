@@ -84,7 +84,9 @@ private theorem rotate_reverse_inv_neg_list (l : List (𝓕 × TestFn)) :
       simp only [Function.comp_apply, Prod.fst, Prod.snd]
       rw [negTestFn_inv_negTestFn]
 
-/-- [T26], Theorem 3.10(iii), at the data level.-/
+/-- [T26], Theorem 3.10(iii), at the data level.
+@isnad1 id=and.2h4v.s8.7c72fbe2c12a from=translated src=- shape=aab4fb00 vocab=67b54470
+-/
 theorem thm_3_10_iii_core (hW : W.IsWightmanCFT) (l : List (𝓕 × TestFn))
     (hl : ∀ p ∈ l, SuppLower p.2) :
     W.VtildeDom (-(Complex.I * Real.pi)) (W.smearedProduct l) ∧
@@ -158,7 +160,9 @@ theorem thm_3_10_iii_core (hW : W.IsWightmanCFT) (l : List (𝓕 × TestFn))
           (l.reverse.map (fun p => (p.1, inv p.2))) := by
       rw [hdim]
 
-/-- [T26], Theorem 3.10(i), at the data level.-/
+/-- [T26], Theorem 3.10(i), at the data level.
+@isnad1 id=and.1h3v.s7.2d1cfa472061 from=translated src=- shape=3c6d95ba vocab=246d6a20
+-/
 theorem thm_3_10_i_core (hW : W.IsWightmanCFT) :
     (∀ Φ : 𝓓, W.toWightmanStruct.MemPUpperOmega Φ →
       W.VtildeDom (Complex.I * Real.pi) Φ) ∧
@@ -186,6 +190,9 @@ end WightmanData
 
 namespace WightmanBundle
 
+/--
+@isnad1 id=and.1h1v.s7.c6e7ce67d5d8 from=translated src=- shape=277eeac2 vocab=5233cece
+-/
 theorem thm_3_10_i (W : WightmanBundle) (h : W.data.IsWightmanCFT) :
     (∀ Φ : W.𝓓,
       W.data.toWightmanStruct.MemPUpperOmega Φ → W.data.VtildeDom (Complex.I * Real.pi) Φ) ∧
@@ -194,6 +201,9 @@ theorem thm_3_10_i (W : WightmanBundle) (h : W.data.IsWightmanCFT) :
           W.data.VtildeDom (-(Complex.I * Real.pi)) Φ) :=
   WightmanData.thm_3_10_i_core h
 
+/--
+@isnad1 id=and.2h2v.s8.f235096611f0 from=translated src=- shape=31472dc0 vocab=6fa0e901
+-/
 theorem thm_3_10_iii (W : WightmanBundle) (h : W.data.IsWightmanCFT)
     (l : List (W.𝓕 × TestFn)) (hl : ∀ p ∈ l, SuppLower p.2) :
     W.data.VtildeDom (-(Complex.I * Real.pi)) (W.data.toWightmanStruct.smearedProduct l) ∧

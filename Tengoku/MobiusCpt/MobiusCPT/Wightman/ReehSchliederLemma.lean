@@ -43,7 +43,9 @@ private theorem rot_inv (θ : ℝ) :
   apply inv_eq_of_mul_eq_one_right
   rw [← Mob.rot_add, add_neg_cancel, Mob.rot_zero]
 
-/-- [CRTT25], Appendix A, Lemma A.2: pullback by a rotation rotates topological support.-/
+/-- [CRTT25], Appendix A, Lemma A.2: pullback by a rotation rotates topological support.
+@isnad1 id=eq.0h2v.s5.7ebd2f8ef870 from=translated src=- shape=75d3178d vocab=3c253ff8
+-/
 theorem tsupport_rotPullback (θ : ℝ) (f : TestFn) :
     tsupport (rotPullback θ f : Circle → ℂ) =
       (Mob.rot θ) • tsupport (f : Circle → ℂ) := by
@@ -64,7 +66,9 @@ private theorem continuous_rot_smul :
   exact (Circle.exp.continuous.comp continuous_fst).mul continuous_snd
 
 /-- [CRTT25], Appendix A, Lemma A.2: a compactly supported test function whose support lies in
-an open set remains supported there under all sufficiently small rotations.-/
+an open set remains supported there under all sufficiently small rotations.
+@isnad1 id=ex.2h3v.s6.fa4c40c24d96 from=translated src=- shape=9f1563cb vocab=a7d3ade9
+-/
 theorem exists_rotStable (d : ℕ) {A : Set Circle} (hAopen : IsOpen A) {h : TestFn}
     (hh : tsupport (h : Circle → ℂ) ⊆ A) :
     ∃ ε > 0, ∀ θ : ℝ, |θ| < ε →
@@ -103,6 +107,9 @@ def bumpMul (χ : C^∞⟮𝓡 1, Circle; 𝓘(ℝ), ℝ⟯) (f : TestFn) : Test
     exact hmul.contDiffAt.comp_contMDiffAt
       (hχ.contMDiffAt.prodMk_space (ContMDiffMap.contMDiff f).contMDiffAt)⟩
 
+/--
+@isnad1 id=eq.0h3v.s10.4d33cc046007 from=translated src=- shape=edcab4dd vocab=0f83b302
+-/
 @[simp]
 theorem bumpMul_apply (χ : C^∞⟮𝓡 1, Circle; 𝓘(ℝ), ℝ⟯)
     (f : TestFn) (z : Circle) :
@@ -111,7 +118,9 @@ theorem bumpMul_apply (χ : C^∞⟮𝓡 1, Circle; 𝓘(ℝ), ℝ⟯)
 
 /-- [CRTT25], Appendix A, Lemma A.2: multiplying by a bump cannot enlarge the bump's
 topological support.  The target is exactly the support bound supplied by
-`SmoothPartitionOfUnity.IsSubordinate`.-/
+`SmoothPartitionOfUnity.IsSubordinate`.
+@isnad1 id=le.0h2v.s10.6e6dec5998b8 from=translated src=- shape=eabc350b vocab=e6cd4c56
+-/
 theorem tsupport_bumpMul_subset
     (χ : C^∞⟮𝓡 1, Circle; 𝓘(ℝ), ℝ⟯) (f : TestFn) :
     tsupport (bumpMul χ f : Circle → ℂ) ⊆
@@ -141,7 +150,9 @@ private theorem isOpen_rot_smul {A : Set Circle} (hAopen : IsOpen A) (θ : ℝ) 
   exact (rotationHomeomorph θ).isOpenMap A hAopen
 
 /-- [CRTT25], Appendix A, Lemma A.2: finitely many rotated copies of any nonempty open subset
-cover the circle.-/
+cover the circle.
+@isnad1 id=ex.2h1v.s5.1e57de0b75d8 from=translated src=- shape=60315b0c vocab=c5841c39
+-/
 theorem exists_finite_rotate_cover {A : Set Circle} (hAopen : IsOpen A)
     (hAne : A.Nonempty) :
     ∃ (n : ℕ) (θs : Fin n → ℝ),
@@ -167,7 +178,9 @@ theorem exists_finite_rotate_cover {A : Set Circle} (hAopen : IsOpen A)
   simpa [i] using hzθ
 
 /-- [CRTT25], Appendix A, Lemma A.2: every test function is a finite sum of smooth pieces,
-each supported in a rotated copy of an arbitrary nonempty open subset of the circle.-/
+each supported in a rotated copy of an arbitrary nonempty open subset of the circle.
+@isnad1 id=ex.2h2v.s6.ed17e75d554a from=translated src=- shape=500fe076 vocab=c5d1c115
+-/
 theorem exists_finite_bumpMul_decomposition {A : Set Circle} (hAopen : IsOpen A)
     (hAne : A.Nonempty) (f : TestFn) :
     ∃ (n : ℕ) (θs : Fin n → ℝ) (pieces : Fin n → TestFn),

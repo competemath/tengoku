@@ -169,6 +169,9 @@ private theorem lower_cutoff_tendsto {h : TestFn} {g₀ : ℝ → ℂ} {gSeq : �
   rw [Real.dist_eq, sub_zero, abs_of_nonneg hnonneg]
   exact lt_of_le_of_lt hcn hlt
 
+/--
+@isnad1 id=ex.1h1v.s5.f137a8066e60 from=translated src=- shape=fcf58f14 vocab=e4f5d8ab
+-/
 theorem exists_tendsto_of_suppLower {h : TestFn} (hh : SuppLower h) :
     ∃ hSeq : ℕ → TestFn,
       (∀ m, tsupport (hSeq m : Circle → ℂ) ⊆ lowerArc) ∧
@@ -195,6 +198,9 @@ theorem exists_tendsto_of_suppLower {h : TestFn} (hh : SuppLower h) :
 /-! Closed supports of opposite open arcs can meet at an endpoint.  Replacing one side by the
 strictly supported cutoff removes exactly that endpoint ambiguity. -/
 
+/--
+@isnad1 id=disjoint.2h2v.s4.5695a2bac59f from=translated src=- shape=64f672c5 vocab=92c114df
+-/
 theorem disjointSupport_of_suppUpper_of_tsupport_subset_lowerArc {f h' : TestFn}
     (hf : SuppUpper f) (hh' : tsupport (h' : Circle → ℂ) ⊆ lowerArc) :
     DisjointSupport f h' := by

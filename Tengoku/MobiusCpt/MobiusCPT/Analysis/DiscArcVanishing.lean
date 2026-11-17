@@ -198,7 +198,9 @@ theorem IsDiscBoundaryClass.eq_zero_of_eqOn_arc {F : ℂ → ℂ} (hF : IsDiscBo
   exact hEqClosed
 
 /-- R1(b): `IsDiscBoundaryClass` is closed under uniform convergence on the closed disc.
-This is the uniform-limit closure used with the vanishing-arc argument in [CRTT25], Appendix A.-/
+This is the uniform-limit closure used with the vanishing-arc argument in [CRTT25], Appendix A.
+@isnad1 id=isdiscbo.2h2v.s5.1e9559c86f79 from=translated src=- shape=5e196e6b vocab=0a7b800a
+-/
 theorem isDiscBoundaryClass_of_tendstoUniformlyOn {Fseq : ℕ → ℂ → ℂ} {F : ℂ → ℂ}
     (hFseq : ∀ n, IsDiscBoundaryClass (Fseq n))
     (htendsto : TendstoUniformlyOn Fseq F Filter.atTop (Metric.closedBall (0 : ℂ) 1)) :

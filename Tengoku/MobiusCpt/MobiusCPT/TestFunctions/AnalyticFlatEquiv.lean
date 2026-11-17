@@ -24,7 +24,9 @@ open scoped ContDiff Topology
 noncomputable section
 
 /-- On the open exterior, scalar restriction identifies the real iterated Fréchet derivative of
-a holomorphic function with its complex derivative times the product multilinear map.-/
+a holomorphic function with its complex derivative times the product multilinear map.
+@isnad1 id=eq.3h3v.s9.30e0c5473de3 from=translated src=- shape=b70e0c65 vocab=58f3e07d
+-/
 theorem iteratedFDerivWithin_eq_smul_mkPiAlgebraFin_of_contDiffOn_of_differentiableOn
     {toFun : ℂ → ℂ} (_hCD : ContDiffOn ℝ ∞ toFun Oexterior)
     (hDiff : DifferentiableOn ℂ toFun OexteriorInterior) (n : ℕ) {z : ℂ}
@@ -54,7 +56,9 @@ theorem iteratedFDerivWithin_eq_smul_mkPiAlgebraFin_of_contDiffOn_of_differentia
   simp [iteratedFDeriv_apply_eq_iteratedDeriv_mul_prod, List.prod_ofFn, mul_comm]
 
 /-- On the open interior, the real n-th Fréchet derivative of an analytic test function is the
-n-th complex derivative times the fixed product multilinear map.-/
+n-th complex derivative times the fixed product multilinear map.
+@isnad1 id=eq.1h3v.s9.9aa8aba0945c from=translated src=- shape=a300569d vocab=02c14101
+-/
 theorem AnalyticTestFn.iteratedFDerivWithin_eq_smul_mkPiAlgebraFin
     (F : AnalyticTestFn) (n : ℕ) {z : ℂ} (hz : z ∈ OexteriorInterior) :
     iteratedFDerivWithin ℝ n F.toFun Oexterior z =
@@ -63,7 +67,9 @@ theorem AnalyticTestFn.iteratedFDerivWithin_eq_smul_mkPiAlgebraFin
     F.contDiffOn F.differentiableOn n hz
 
 /-- Real-jet flatness at `1` forces every complex derivative to tend to zero from the open
-exterior.-/
+exterior.
+@isnad1 id=tendsto.0h2v.s6.15f0552b78f8 from=translated src=- shape=5b070350 vocab=c141fe5b
+-/
 theorem AnalyticTestFn.tendsto_iteratedDeriv_one (F : AnalyticTestFn) (n : ℕ) :
     Filter.Tendsto (iteratedDeriv n F.toFun) (nhdsWithin 1 OexteriorInterior) (nhds 0) := by
   let m : Fin n → ℂ := fun _ => 1
@@ -83,7 +89,9 @@ theorem AnalyticTestFn.tendsto_iteratedDeriv_one (F : AnalyticTestFn) (n : ℕ) 
   simp [m]
 
 /-- Real-jet flatness at `-1` forces every complex derivative to tend to zero from the open
-exterior.-/
+exterior.
+@isnad1 id=tendsto.0h2v.s6.56b567b67737 from=translated src=- shape=f9c84895 vocab=84b357d3
+-/
 theorem AnalyticTestFn.tendsto_iteratedDeriv_neg_one (F : AnalyticTestFn) (n : ℕ) :
     Filter.Tendsto (iteratedDeriv n F.toFun) (nhdsWithin (-1 : ℂ) OexteriorInterior) (nhds 0) := by
   let m : Fin n → ℂ := fun _ => 1
@@ -103,7 +111,9 @@ theorem AnalyticTestFn.tendsto_iteratedDeriv_neg_one (F : AnalyticTestFn) (n : �
   simp [m]
 
 /-- If all complex derivatives tend to `0` at `±1` along the open exterior, then the
-corresponding real Fréchet jets vanish there.-/
+corresponding real Fréchet jets vanish there.
+@isnad1 id=eq.4h3v.s9.f5769f69792e from=translated src=- shape=aafc7cf3 vocab=b4c50c90
+-/
 theorem AnalyticTestFn.iteratedFDerivWithin_eq_zero_of_tendsto_iteratedDeriv
     {toFun : ℂ → ℂ} (hCD : ContDiffOn ℝ ∞ toFun Oexterior)
     (hDiff : DifferentiableOn ℂ toFun OexteriorInterior)
@@ -178,6 +188,9 @@ noncomputable def AnalyticTestFn.ofComplexFlat (toFun : ℂ → ℂ)
   flat_neg_one n := AnalyticTestFn.iteratedFDerivWithin_eq_zero_of_tendsto_iteratedDeriv
     hCD hDiff (Or.inr rfl) n (hFlatNegOne n)
 
+/--
+@isnad1 id=eq.5h1v.s8.678ecf792128 from=translated src=- shape=fe25845f vocab=20fe31dc
+-/
 @[simp] theorem AnalyticTestFn.ofComplexFlat_toFun (toFun : ℂ → ℂ)
     (hCD : ContDiffOn ℝ ∞ toFun Oexterior)
     (hDiff : DifferentiableOn ℂ toFun OexteriorInterior)
@@ -190,7 +203,9 @@ noncomputable def AnalyticTestFn.ofComplexFlat (toFun : ℂ → ℂ)
   rfl
 
 /-- [T26], Definition 3.2: membership in the analytic test-function class is equivalent to the
-source-literal smoothness, holomorphy, vanishing-at-infinity, and complex-flatness conditions.-/
+source-literal smoothness, holomorphy, vanishing-at-infinity, and complex-flatness conditions.
+@isnad1 id=iff.0h1v.s8.acfba29ce031 from=translated src=- shape=39c790e8 vocab=1ce06034
+-/
 theorem AnalyticTestFn.exists_iff_complexFlat (toFun : ℂ → ℂ) :
     (∃ F : AnalyticTestFn, F.toFun = toFun) ↔
       ∃ (hCD : ContDiffOn ℝ ∞ toFun Oexterior)

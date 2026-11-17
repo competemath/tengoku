@@ -41,7 +41,9 @@ def BoostOrbitContinuous (W : WightmanData G TF 𝓓 𝓕) : Prop :=
     Continuous fun t : ℝ => W.toWightmanStruct.compatApply lam (W.boost t Φ)
 
 /-- [T26], Definition 3.1; the real-parameter case. For real `τ = t` the strip
-degenerates to the real axis, the domain is all of `𝓓`, and `Ṽ_t = V_t`.-/
+degenerates to the real axis, the domain is all of `𝓓`, and `Ṽ_t = V_t`.
+@isnad1 id=and.2h7v.s7.be758b938e97 from=translated src=- shape=117266b1 vocab=694f6fc3
+-/
 theorem vtilde_real_of_boostOrbitContinuous (W : WightmanData G TF 𝓓 𝓕)
     (h : W.IsWightmanCFT) (hcont : W.BoostOrbitContinuous) :
     ∀ (t : ℝ) (Φ : 𝓓),
@@ -68,7 +70,9 @@ theorem vtilde_real_of_boostOrbitContinuous (W : WightmanData G TF 𝓓 𝓕)
 
 /-- [T26], Definition 3.1; the real-parameter case in its unconditional-looking form is
 equivalent to the continuity input, so nothing is hidden: `Ṽ_t = V_t` on all of `𝓓`
-forces the boost orbit to be continuous under every compatible functional.-/
+forces the boost orbit to be continuous under every compatible functional.
+@isnad1 id=boostorb.1h5v.s6.3c446a14b346 from=translated src=- shape=8ee67de9 vocab=f8e239e3
+-/
 theorem boostOrbitContinuous_of_vtilde_real (W : WightmanData G TF 𝓓 𝓕)
     (h : ∀ (t : ℝ) (Φ : 𝓓), W.VtildeDom (t : ℂ) Φ) : W.BoostOrbitContinuous := by
   intro lam Φ
@@ -80,7 +84,9 @@ theorem boostOrbitContinuous_of_vtilde_real (W : WightmanData G TF 𝓓 𝓕)
   exact hGfReal.congr fun s => (hGf lam).2.2.1 s
 
 /-- [T26], Definition 2.4; covariance rewritten as
-`U(γ) φ(f) Ψ = φ(β_d(γ)f) U(γ) Ψ`.-/
+`U(γ) φ(f) Ψ = φ(β_d(γ)f) U(γ) Ψ`.
+@isnad1 id=eq.1h9v.s9.28bf51181ebd from=translated src=- shape=3c5f52e1 vocab=f25ce897
+-/
 theorem u_smear (W : WightmanData G TF 𝓓 𝓕) (h : W.W1) (γ : G) (φ : 𝓕)
     (f : TF) (Ψ : 𝓓) :
     W.U γ (W.smear φ f Ψ) =
@@ -90,7 +96,9 @@ theorem u_smear (W : WightmanData G TF 𝓓 𝓕) (h : W.W1) (γ : G) (φ : 𝓕
   exact hcov
 
 /-- [T26], Definition 2.4; covariance moves a Möbius transformation through every
-factor of a smeared product while transforming its test function.-/
+factor of a smeared product while transforming its test function.
+@isnad1 id=eq.1h8v.s8.4813428b53a1 from=translated src=- shape=2e91e734 vocab=7858efa9
+-/
 theorem u_smearedProductOn (W : WightmanData G TF 𝓓 𝓕) (h : W.W1) (γ : G)
     (l : List (𝓕 × TF)) (Ψ : 𝓓) :
     W.U γ (W.smearedProductOn l Ψ) =
@@ -104,7 +112,9 @@ theorem u_smearedProductOn (W : WightmanData G TF 𝓓 𝓕) (h : W.W1) (γ : G)
       rw [W.u_smear h, ih]
 
 /-- [T26], Definition 2.4 and axiom (W4); covariance of a vacuum smeared product,
-using Möbius invariance of the vacuum.-/
+using Möbius invariance of the vacuum.
+@isnad1 id=eq.1h7v.s8.50bbf3949774 from=translated src=- shape=9dac8648 vocab=73af9a22
+-/
 theorem u_smearedProduct (W : WightmanData G TF 𝓓 𝓕) (h : W.IsWightmanCFT)
     (γ : G) (l : List (𝓕 × TF)) :
     W.U γ (W.smearedProduct l) =
@@ -118,7 +128,9 @@ theorem u_smearedProduct (W : WightmanData G TF 𝓓 𝓕) (h : W.IsWightmanCFT)
 /-- [T26], Definition 3.1 and [CRTT25], Lemma 2.10(i); the reduction. Given (W1)
 covariance, (W4) and compatibility, boost-orbit continuity follows from continuity of the
 conformal action `t ↦ β_d(v_t) f` on test functions, a statement about the concrete Möbius
-action alone.-/
+action alone.
+@isnad1 id=boostorb.2h5v.s7.1a850a3c0529 from=translated src=- shape=571c143a vocab=0b41e49e
+-/
 theorem boostOrbitContinuous_of_beta_continuous (W : WightmanData G TF 𝓓 𝓕)
     (h : W.IsWightmanCFT)
     (hbeta : ∀ (d : ℕ) (f : TF),
@@ -204,7 +216,9 @@ namespace WightmanBundle
 `MobiusCPT.Contract`'s `theorem_wanted vtilde_real`, byte-identical statement text: for the
 concrete Möbius group and conformal action `WightmanBundle` fixes (`docs/adr/0001-fix-mobius-group-in-bundle.md`),
 boost-orbit continuity is unconditional, via `hbeta_mobiusActionMobTestFn`
-(`MobiusCPT.Mobius.BoostContinuity`), so the real-parameter case of `Ṽ_τ` holds outright.-/
+(`MobiusCPT.Mobius.BoostContinuity`), so the real-parameter case of `Ṽ_τ` holds outright.
+@isnad1 id=and.1h3v.s7.83b579197723 from=translated src=- shape=46a182f5 vocab=6a2285ac
+-/
 theorem vtilde_real (W : WightmanBundle) (h : W.data.IsWightmanCFT) :
     ∀ (t : ℝ) (Φ : W.𝓓),
       W.data.VtildeDom (t : ℂ) Φ ∧ W.data.vtildeMap (t : ℂ) Φ = W.data.boost t Φ :=

@@ -37,11 +37,15 @@ instance analyticTestFnTopologicalSpace : TopologicalSpace AnalyticTestFn :=
   TopologicalSpace.induced xRestrictS1 inferInstance
 
 /-- The restriction `F ↦ F|_{S¹}` is inducing for the relative topology, by definition of the
-latter.-/
+latter.
+@isnad1 id=isinduci.0h0v.s2.73bb5923f925 from=translated src=- shape=54c8eceb vocab=3405c5d3
+-/
 theorem isInducing_xRestrictS1 : Topology.IsInducing (xRestrictS1) :=
   ⟨rfl⟩
 
-/-- The restriction `F ↦ F|_{S¹}` is continuous for the relative topology.-/
+/-- The restriction `F ↦ F|_{S¹}` is continuous for the relative topology.
+@isnad1 id=continuo.0h0v.s2.5039505313fb from=translated src=- shape=54c8eceb vocab=7b259a83
+-/
 theorem continuous_xRestrictS1 : Continuous (xRestrictS1) :=
   isInducing_xRestrictS1.continuous
 
@@ -49,7 +53,9 @@ theorem continuous_xRestrictS1 : Continuous (xRestrictS1) :=
 restriction map identifies exactly the elements of `𝓧` that agree as functions on `𝕆 = Oexterior`,
 the domain the source's `𝓧` actually lives on. This is the injectivity Definition 3.2's
 identification asserts; it is not `Function.Injective xRestrictS1` on the raw, totalised
-structure (see the module docstring).-/
+structure (see the module docstring).
+@isnad1 id=iff.0h2v.s4.d9fbcb289d74 from=translated src=- shape=d7feebf2 vocab=48d70b35
+-/
 theorem xRestrictS1_eq_iff (F G : AnalyticTestFn) :
     xRestrictS1 F = xRestrictS1 G ↔ Set.EqOn F.toFun G.toFun Oexterior := by
   constructor

@@ -47,7 +47,9 @@ private theorem closure_im_preimage_Ioo_eq_strip :
     max_eq_right Real.pi_pos.le]
 
 /-- [T26], Lemma 3.9: the continued-boost difference is holomorphic on the open strip and
-continuous on its closure.-/
+continuous on its closure.
+@isnad1 id=diffcont.3h7v.s8.43121c592549 from=translated src=- shape=d648e8ae vocab=b281d949
+-/
 theorem lemma_3_9_diffContOnCl {W : WightmanData Mob TestFn 𝓓 𝓕} (hW : W.IsWightmanCFT)
     (φs : List 𝓕) (lam : W.toWightmanStruct.Compat)
     (Fs Gs : List AnalyticTestFn) (hFs : Fs.length = φs.length)

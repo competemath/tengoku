@@ -27,7 +27,9 @@ complex argument.-/
 noncomputable def gaussKernel (s : ℝ) (w : ℂ) : ℂ :=
   ((Real.sqrt (4 * Real.pi * s) : ℝ) : ℂ)⁻¹ * Complex.exp (-w ^ 2 / (4 * s))
 
-/-- [T26], proof of Lemma 3.4; on the real axis `gaussKernel` is the normalized real Gaussian.-/
+/-- [T26], proof of Lemma 3.4; on the real axis `gaussKernel` is the normalized real Gaussian.
+@isnad1 id=eq.0h2v.s6.601a5bab234d from=translated src=- shape=3ea95327 vocab=939c6b39
+-/
 theorem gaussKernel_ofReal (s t : ℝ) :
     gaussKernel s (t : ℂ) =
       (((Real.sqrt (4 * Real.pi * s))⁻¹ * Real.exp (-t ^ 2 / (4 * s)) : ℝ) : ℂ) := by
@@ -35,7 +37,9 @@ theorem gaussKernel_ofReal (s t : ℝ) :
     Complex.ofReal_div]
 
 /-- [T26], proof of Lemma 3.4; the norm of the complex Gaussian is explicit in its real and
-imaginary coordinates.-/
+imaginary coordinates.
+@isnad1 id=eq.1h2v.s7.4cc7f22af5b5 from=translated src=- shape=655831c5 vocab=8aeea672
+-/
 theorem norm_gaussKernel {s : ℝ} (hs : 0 < s) (w : ℂ) :
     ‖gaussKernel s w‖ =
       (Real.sqrt (4 * Real.pi * s))⁻¹ *
@@ -50,7 +54,9 @@ theorem norm_gaussKernel {s : ℝ} (hs : 0 < s) (w : ℂ) :
   rw [gaussKernel, norm_mul, norm_inv, Complex.norm_exp, Complex.norm_real,
     Real.norm_eq_abs, abs_of_pos hsqrt, hre]
 
-/-- [T26], proof of Lemma 3.4; the real Gaussian kernel written with a quadratic exponent.-/
+/-- [T26], proof of Lemma 3.4; the real Gaussian kernel written with a quadratic exponent.
+@isnad1 id=eq.0h2v.s6.3079852763ea from=translated src=- shape=5918183c vocab=939c6b39
+-/
 theorem gaussKernel_ofReal' (s : ℝ) (t : ℝ) :
     gaussKernel s (t : ℂ) =
       (((Real.sqrt (4 * Real.pi * s))⁻¹ : ℝ) : ℂ) *
@@ -64,7 +70,9 @@ theorem gaussKernel_ofReal' (s : ℝ) (t : ℝ) :
   push_cast
   ring
 
-/-- [T26], proof of Lemma 3.4; the real restriction of the Gaussian kernel is integrable.-/
+/-- [T26], proof of Lemma 3.4; the real restriction of the Gaussian kernel is integrable.
+@isnad1 id=integrab.1h1v.s5.f546d3c31b42 from=translated src=- shape=ef9410dc vocab=4e3b4e8c
+-/
 theorem integrable_gaussKernel {s : ℝ} (hs : 0 < s) :
     Integrable (fun t : ℝ => gaussKernel s (t : ℂ)) := by
   have hb : (0 : ℝ) < 1 / (4 * s) := by positivity
@@ -78,7 +86,9 @@ theorem integrable_gaussKernel {s : ℝ} (hs : 0 < s) :
   rw [hfun]
   exact (h.ofReal).const_mul _
 
-/-- [T26], proof of Lemma 3.4; the real Gaussian kernel has total mass one.-/
+/-- [T26], proof of Lemma 3.4; the real Gaussian kernel has total mass one.
+@isnad1 id=eq.1h1v.s5.6a1d0b0d4b3b from=translated src=- shape=cd879994 vocab=962204f5
+-/
 theorem integral_gaussKernel {s : ℝ} (hs : 0 < s) :
     ∫ t : ℝ, gaussKernel s (t : ℂ) = 1 := by
   have hpos : (0 : ℝ) < Real.sqrt (4 * Real.pi * s) := by positivity
@@ -95,7 +105,9 @@ theorem integral_gaussKernel {s : ℝ} (hs : 0 < s) :
     field_simp
   rw [hval, ← Complex.ofReal_mul, inv_mul_cancel₀ hpos.ne', Complex.ofReal_one]
 
-/-- [T26], proof of Lemma 3.4; the derivative of the entire Gaussian kernel.-/
+/-- [T26], proof of Lemma 3.4; the derivative of the entire Gaussian kernel.
+@isnad1 id=hasderiv.1h2v.s6.65e331fe6280 from=translated src=- shape=6b0ca3a3 vocab=61678aa8
+-/
 theorem hasDerivAt_gaussKernel {s : ℝ} (hs : s ≠ 0) (w : ℂ) :
     HasDerivAt (gaussKernel s) (-(w / (2 * s)) * gaussKernel s w) w := by
   have hs_complex : (s : ℂ) ≠ 0 := Complex.ofReal_ne_zero.mpr hs
@@ -126,12 +138,16 @@ theorem hasDerivAt_gaussKernel {s : ℝ} (hs : s ≠ 0) (w : ℂ) :
   exact hmul
 
 /-- [T26], proof of Lemma 3.4; the Gaussian kernel is complex differentiable everywhere when
-its width is nonzero.-/
+its width is nonzero.
+@isnad1 id=differen.1h1v.s6.61e0e974004f from=translated src=- shape=6c4fa23b vocab=b265a8e0
+-/
 theorem differentiable_gaussKernel {s : ℝ} (hs : s ≠ 0) :
     Differentiable ℂ (gaussKernel s) := fun w =>
   (hasDerivAt_gaussKernel hs w).differentiableAt
 
-/-- [T26], proof of Lemma 3.4; scaling a Gaussian reduces its width to one.-/
+/-- [T26], proof of Lemma 3.4; scaling a Gaussian reduces its width to one.
+@isnad1 id=eq.1h2v.s5.244cdbec2d9c from=translated src=- shape=309f8c21 vocab=1fe3b564
+-/
 theorem gaussKernel_scale {s : ℝ} (hs : 0 < s) (v : ℝ) :
     gaussKernel s ((Real.sqrt s * v : ℝ) : ℂ) =
       (((Real.sqrt s)⁻¹ : ℝ) : ℂ) * gaussKernel 1 (v : ℂ) := by
@@ -166,7 +182,9 @@ structure IsRapidlyDecaying (a : ℝ → ℂ) : Prop where
   decay : ∀ k N : ℕ, ∃ C : ℝ, ∀ x : ℝ,
     ‖iteratedDeriv k a x‖ ≤ C * Real.exp (-(N : ℝ) * |x|)
 
-/-- The iterated derivatives of a rapidly decaying function are rapidly decaying.-/
+/-- The iterated derivatives of a rapidly decaying function are rapidly decaying.
+@isnad1 id=israpidl.1h2v.s4.a11a9796c43a from=translated src=- shape=7b26c086 vocab=a3eb33cf
+-/
 theorem IsRapidlyDecaying.iteratedDeriv {a : ℝ → ℂ} (ha : IsRapidlyDecaying a) (k : ℕ) :
     IsRapidlyDecaying (iteratedDeriv k a) := by
   have hshift : ∀ j : ℕ,
@@ -192,7 +210,9 @@ theorem IsRapidlyDecaying.iteratedDeriv {a : ℝ → ℂ} (ha : IsRapidlyDecayin
     rw [hshift]
     exact hC x
 
-/-- A rapidly decaying function is bounded.-/
+/-- A rapidly decaying function is bounded.
+@isnad1 id=ex.1h1v.s5.4ee62f911ad4 from=translated src=- shape=a80f7e70 vocab=5f210b50
+-/
 theorem IsRapidlyDecaying.exists_bound {a : ℝ → ℂ} (ha : IsRapidlyDecaying a) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ x, ‖a x‖ ≤ C := by
   obtain ⟨C, hC⟩ := ha.decay 0 0
@@ -201,7 +221,9 @@ theorem IsRapidlyDecaying.exists_bound {a : ℝ → ℂ} (ha : IsRapidlyDecaying
   exact hx.trans (le_max_left _ _)
 
 /-- The exponential `exp (-|x|)` is integrable on the real line, by comparison with the
-Cauchy density.-/
+Cauchy density.
+@isnad1 id=integrab.0h0v.s5.10edc6429c6b from=translated src=- shape=0b72565c vocab=80595ee4
+-/
 theorem integrable_exp_neg_abs :
     Integrable (fun x : ℝ => Real.exp (-|x|)) := by
   have hquad : ∀ x : ℝ, 1 + x ^ 2 ≤ 4 * Real.exp |x| := by
@@ -235,7 +257,9 @@ theorem integrable_exp_neg_abs :
     linarith [h1]
   simpa [Real.norm_eq_abs, abs_of_pos hexpneg] using hkey
 
-/-- A rapidly decaying function is Bochner integrable.-/
+/-- A rapidly decaying function is Bochner integrable.
+@isnad1 id=integrab.1h1v.s5.ad9eec11889e from=translated src=- shape=ea2a134d vocab=d4104f14
+-/
 theorem IsRapidlyDecaying.integrable {a : ℝ → ℂ} (ha : IsRapidlyDecaying a) :
     Integrable a := by
   obtain ⟨C, hC⟩ := ha.decay 0 1
@@ -248,7 +272,9 @@ theorem IsRapidlyDecaying.integrable {a : ℝ → ℂ} (ha : IsRapidlyDecaying a
         rw [show -(1 : ℝ) * |x| = -|x| by ring]
         exact mul_le_mul_of_nonneg_right (le_abs_self C) (Real.exp_nonneg _)
 
-/-- Iterated derivatives compose by addition of their orders.-/
+/-- Iterated derivatives compose by addition of their orders.
+@isnad1 id=eq.0h3v.s6.5f86068718c9 from=translated src=- shape=8b4f0214 vocab=c7500b69
+-/
 theorem iteratedDeriv_iteratedDeriv (a : ℝ → ℂ) (j k : ℕ) :
     iteratedDeriv j (iteratedDeriv k a) = iteratedDeriv (j + k) a := by
   induction j with
@@ -266,7 +292,9 @@ section RealConvolution
 noncomputable def gaussConvReal (s : ℝ) (a : ℝ → ℂ) (x : ℝ) : ℂ :=
   ∫ u : ℝ, gaussKernel s (u : ℂ) * a (x - u)
 
-/-- The real convolution integrand is integrable for a positive Gaussian width.-/
+/-- The real convolution integrand is integrable for a positive Gaussian width.
+@isnad1 id=integrab.2h3v.s6.adda8fc2b00a from=translated src=- shape=0f560765 vocab=8af51fc6
+-/
 theorem integrable_gaussConvReal_integrand {s : ℝ} (hs : 0 < s)
     {a : ℝ → ℂ} (ha : IsRapidlyDecaying a) (x : ℝ) :
     Integrable (fun u : ℝ => gaussKernel s (u : ℂ) * a (x - u)) := by
@@ -278,7 +306,9 @@ theorem integrable_gaussConvReal_integrand {s : ℝ} (hs : 0 < s)
     rw [norm_mul]
     exact (mul_le_mul_of_nonneg_left (hbound (x - u)) (norm_nonneg _)).trans_eq (by ring)
 
-/-- Subtracting the input from its convolution can be put under one integral.-/
+/-- Subtracting the input from its convolution can be put under one integral.
+@isnad1 id=eq.2h3v.s6.c34ec943877a from=translated src=- shape=c2167f93 vocab=10da67f7
+-/
 theorem gaussConvReal_sub {s : ℝ} (hs : 0 < s) {a : ℝ → ℂ}
     (ha : IsRapidlyDecaying a) (x : ℝ) :
     gaussConvReal s a x - a x =
@@ -299,7 +329,9 @@ theorem gaussConvReal_sub {s : ℝ} (hs : 0 < s) {a : ℝ → ℂ}
       apply integral_congr_ae
       exact Eventually.of_forall (fun u => by ring)
 
-/-- Differentiating the real convolution differentiates the rapidly decaying factor.-/
+/-- Differentiating the real convolution differentiates the rapidly decaying factor.
+@isnad1 id=eq.2h3v.s6.419700dc4fee from=translated src=- shape=1932d30d vocab=4847ef52
+-/
 theorem iteratedDeriv_gaussConvReal {s : ℝ} (hs : 0 < s) {a : ℝ → ℂ}
     (ha : IsRapidlyDecaying a) (k : ℕ) :
     iteratedDeriv k (gaussConvReal s a) = gaussConvReal s (iteratedDeriv k a) := by
@@ -347,7 +379,9 @@ theorem iteratedDeriv_gaussConvReal {s : ℝ} (hs : 0 < s) {a : ℝ → ℂ}
         ∫ u : ℝ, gaussKernel s (u : ℂ) * iteratedDeriv (k + 1) a (x - u)
       simpa [F, F'] using hparam.2.deriv
 
-/-- The first Gaussian moment is finite.-/
+/-- The first Gaussian moment is finite.
+@isnad1 id=integrab.1h1v.s5.bfb099583ede from=translated src=- shape=e8053a0c vocab=cbd68421
+-/
 theorem integrable_norm_gaussKernel_mul_abs {s : ℝ} (hs : 0 < s) :
     Integrable (fun v : ℝ => ‖gaussKernel s (v : ℂ)‖ * |v|) := by
   have hb : 0 < (1 / (4 * s) : ℝ) := by positivity
@@ -367,7 +401,9 @@ theorem integrable_norm_gaussKernel_mul_abs {s : ℝ} (hs : 0 < s) :
     ring_nf
     exact le_rfl
 
-/-- The first Gaussian moment scales like the square root of the width.-/
+/-- The first Gaussian moment scales like the square root of the width.
+@isnad1 id=eq.1h1v.s6.b4eacb997a4d from=translated src=- shape=1ab000ac vocab=d72867a7
+-/
 theorem integral_norm_gaussKernel_mul_abs_scale {s : ℝ} (hs : 0 < s) :
     (∫ u : ℝ, ‖gaussKernel s (u : ℂ)‖ * |u|) =
       Real.sqrt s * ∫ v : ℝ, ‖gaussKernel 1 (v : ℂ)‖ * |v| := by
@@ -395,7 +431,9 @@ theorem integral_norm_gaussKernel_mul_abs_scale {s : ℝ} (hs : 0 < s) :
           rw [hchange]
           field_simp [ne_of_gt hsqrt] <;> ring
 
-/-- A Gaussian absorbs every fixed exponential weight.-/
+/-- A Gaussian absorbs every fixed exponential weight.
+@isnad1 id=integrab.1h2v.s6.2cf6e6ff8f67 from=translated src=- shape=7e43bc08 vocab=973e458d
+-/
 theorem integrable_gaussKernel_mul_exp (N : ℕ) (s : ℝ) (hs : 0 < s) :
     Integrable (fun v : ℝ =>
       ‖gaussKernel s (v : ℂ)‖ * Real.exp ((N : ℝ) * |v|)) := by
@@ -455,7 +493,9 @@ theorem integrable_gaussKernel_mul_exp (N : ℕ) (s : ℝ) (hs : 0 < s) :
           field_simp [ne_of_gt hs] <;> ring
         rw [hexp]
 
-/-- Integrable tails vanish as the radius tends to infinity.-/
+/-- Integrable tails vanish as the radius tends to infinity.
+@isnad1 id=tendsto.2h1v.s6.6376196b3edc from=translated src=- shape=acfaed4f vocab=a035ace5
+-/
 theorem tendsto_integral_abs_tail {f : ℝ → ℝ} (hf : Integrable f)
     (hf_nonneg : ∀ x, 0 ≤ f x) :
     Tendsto (fun R : ℝ => ∫ x in {x | R < |x|}, f x) atTop (𝓝 0) := by
@@ -485,7 +525,9 @@ theorem tendsto_integral_abs_tail {f : ℝ → ℝ} (hf : Integrable f)
   simpa only [integral_indicator (hmeas _), integral_zero] using h
 
 /-- The exponentially weighted Gaussian mass outside a fixed neighbourhood tends to zero with
-the width of the Gaussian.-/
+the width of the Gaussian.
+@isnad1 id=tendsto.0h1v.s7.5828b41c5981 from=translated src=- shape=0833f3be vocab=06a1d922
+-/
 theorem tendsto_gaussKernel_weighted_far (N : ℕ) :
     Tendsto
       (fun s : ℝ =>
@@ -661,7 +703,9 @@ theorem tendsto_gaussKernel_weighted_far (N : ℕ) :
         (add_le_add (Real.exp_le_exp.mpr hexp) (le_refl _)) (norm_nonneg _)
     simpa [f] using hmono
 
-/-- A rapidly decaying function has a uniform first-order estimate on every unit interval.-/
+/-- A rapidly decaying function has a uniform first-order estimate on every unit interval.
+@isnad1 id=ex.1h2v.s6.5ca55a13b83d from=translated src=- shape=51da24ce vocab=d81ef0b9
+-/
 theorem exists_norm_isRapidlyDecaying_sub_le {a : ℝ → ℂ} (ha : IsRapidlyDecaying a)
     (N : ℕ) :
     ∃ K : ℝ, 0 ≤ K ∧ ∀ x u : ℝ, |u| ≤ 1 →
@@ -732,7 +776,9 @@ theorem exists_norm_isRapidlyDecaying_sub_le {a : ℝ → ℂ} (ha : IsRapidlyDe
   simpa [Real.norm_eq_abs] using hmv
 
 /-- The difference of two values of a rapidly decaying function has the weighted far-field bound
-used in the Gaussian approximation.-/
+used in the Gaussian approximation.
+@isnad1 id=ex.1h2v.s6.4f37fc4e8061 from=translated src=- shape=a8874333 vocab=8165a4b9
+-/
 theorem exists_norm_isRapidlyDecaying_far_le {a : ℝ → ℂ} (ha : IsRapidlyDecaying a)
     (N : ℕ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ x u : ℝ,
@@ -779,7 +825,9 @@ theorem exists_norm_isRapidlyDecaying_far_le {a : ℝ → ℂ} (ha : IsRapidlyDe
    dominated convergence: the local first moment and the exponentially weighted far tail. -/
 
 /-- [T26], proof of Lemma 3.4; Gaussian convolution converges to its argument in every
-exponentially weighted sup-norm.-/
+exponentially weighted sup-norm.
+@isnad1 id=ex.2h3v.s6.2025a45253f9 from=translated src=- shape=6625371f vocab=2eb9bf66
+-/
 theorem exists_norm_gaussConvReal_sub_le {a : ℝ → ℂ} (ha : IsRapidlyDecaying a) (N : ℕ)
     {ε : ℝ} (hε : 0 < ε) :
     ∃ δ : ℝ, 0 < δ ∧ ∀ s : ℝ, 0 < s → s < δ → ∀ x : ℝ,
@@ -938,7 +986,9 @@ section ComplexConvolution
 noncomputable def gaussConv (s : ℝ) (a : ℝ → ℂ) (w : ℂ) : ℂ :=
   ∫ t : ℝ, gaussKernel s (w - (t : ℂ)) * a t
 
-/-- The Gaussian kernel remains integrable after translation by a complex parameter.-/
+/-- The Gaussian kernel remains integrable after translation by a complex parameter.
+@isnad1 id=integrab.1h2v.s6.01d9583c85bd from=translated src=- shape=43e14a3b vocab=bf0205ad
+-/
 theorem integrable_gaussKernel_sub {s : ℝ} (hs : 0 < s) (w : ℂ) :
     Integrable (fun t : ℝ => gaussKernel s (w - (t : ℂ))) := by
   let b : ℝ := 1 / (4 * s)
@@ -974,7 +1024,9 @@ theorem integrable_gaussKernel_sub {s : ℝ} (hs : 0 < s) (w : ℂ) :
   apply (integrable_norm_iff hmeas).mp
   exact hnorm
 
-/-- The complex-parameter convolution integrand is integrable for a positive Gaussian width.-/
+/-- The complex-parameter convolution integrand is integrable for a positive Gaussian width.
+@isnad1 id=integrab.2h3v.s6.4b3c966423eb from=translated src=- shape=a3d90ec6 vocab=8af51fc6
+-/
 theorem integrable_gaussConv_integrand {s : ℝ} (hs : 0 < s) {a : ℝ → ℂ}
     (ha : IsRapidlyDecaying a) (w : ℂ) :
     Integrable (fun t : ℝ => gaussKernel s (w - (t : ℂ)) * a t) := by
@@ -986,7 +1038,9 @@ theorem integrable_gaussConv_integrand {s : ℝ} (hs : 0 < s) {a : ℝ → ℂ}
     rw [norm_mul]
     exact (mul_le_mul_of_nonneg_left (hbound t) (norm_nonneg _)).trans_eq (by ring)
 
-/-- On the real axis, the complex-parameter convolution is the real Gaussian convolution.-/
+/-- On the real axis, the complex-parameter convolution is the real Gaussian convolution.
+@isnad1 id=eq.2h3v.s5.cd1fb7bf7ecb from=translated src=- shape=afb65e0a vocab=69c63e59
+-/
 theorem gaussConv_ofReal {s : ℝ} (hs : 0 < s) {a : ℝ → ℂ}
     (ha : IsRapidlyDecaying a) (x : ℝ) :
     gaussConv s a (x : ℂ) = gaussConvReal s a x := by
@@ -997,7 +1051,9 @@ theorem gaussConv_ofReal {s : ℝ} (hs : 0 < s) {a : ℝ → ℂ}
   rw [gaussConv, gaussConvReal]
   simpa [g, Complex.ofReal_sub, sub_sub_cancel] using hchange
 
-/-- The complex Gaussian convolution is complex differentiable in its parameter.-/
+/-- The complex Gaussian convolution is complex differentiable in its parameter.
+@isnad1 id=differen.2h2v.s6.fbbe9b6403d4 from=translated src=- shape=a3116c94 vocab=58e4b07e
+-/
 theorem differentiable_gaussConv {s : ℝ} (hs : 0 < s) {a : ℝ → ℂ}
     (ha : IsRapidlyDecaying a) : Differentiable ℂ (gaussConv s a) := by
   intro w₀
@@ -1156,7 +1212,9 @@ theorem differentiable_gaussConv {s : ℝ} (hs : 0 < s) {a : ℝ → ℂ}
     gaussKernel s (w - (t : ℂ)) * a t) w₀
   exact hparam.2.differentiableAt
 
-/-- Gaussian convolution has rapid exponential decay uniformly on every horizontal strip.-/
+/-- Gaussian convolution has rapid exponential decay uniformly on every horizontal strip.
+@isnad1 id=ex.2h4v.s6.46880bdf812b from=translated src=- shape=e8c99b8e vocab=0bd5ac41
+-/
 theorem exists_norm_gaussConv_le {s : ℝ} (hs : 0 < s) {a : ℝ → ℂ}
     (ha : IsRapidlyDecaying a) (N : ℕ) (B : ℝ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ w : ℂ, |w.im| ≤ B →

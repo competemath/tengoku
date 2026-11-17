@@ -33,7 +33,9 @@ variable {𝓓 𝓕 : Type*} [AddCommGroup 𝓓] [Module ℂ 𝓓]
 
 /-- A parameter in the closed strip up to `iπ` sees its own strip contained in the big one; this
 is the domain-monotonicity `IsBoostContinuation τ` needs from [T26], Lemma 3.6's statement, which
-is proved only on the fixed strip `strip (Complex.I * Real.pi)`.-/
+is proved only on the fixed strip `strip (Complex.I * Real.pi)`.
+@isnad1 id=le.1h1v.s5.ecb5740a9bed from=translated src=- shape=c7ab50e1 vocab=be3f3bac
+-/
 theorem strip_subset_strip_I_mul_pi {τ : ℂ} (hτ : τ ∈ strip (Complex.I * Real.pi)) :
     strip τ ⊆ strip (Complex.I * Real.pi) := by
   have himτ : (Complex.I * (Real.pi : ℂ)).im = Real.pi := by simp
@@ -63,7 +65,9 @@ private theorem beta_boostElt_eq_mob (d : ℕ) (t : ℝ) (f : TestFn) :
 
 /-- `G_λ` built from `betaBoost` is an `IsBoostContinuation` witness between the
 upper-restricted smeared product and the `betaBoost`-smeared product, for every `τ` in the
-closed strip up to `iπ`.-/
+closed strip up to `iπ`.
+@isnad1 id=isboostc.3h5v.s8.958652435e3e from=translated src=- shape=436e600f vocab=c75b7027
+-/
 theorem isBoostContinuation_betaBoost {W : WightmanData Mob TestFn 𝓓 𝓕} (hW4 : W.W4)
     (hcov : ∀ φ : 𝓕, W.IsCovariant φ (W.dim φ))
     (l : List (𝓕 × AnalyticTestFn)) {τ : ℂ} (hτ : τ ∈ strip (Complex.I * Real.pi)) :
@@ -119,7 +123,9 @@ theorem isBoostContinuation_betaBoost {W : WightmanData Mob TestFn 𝓓 𝓕} (h
     rw [WightmanData.boost_smearedProduct hW4 t _ hcovBeta, hlist]
 
 /-- [T26], Lemma 3.7(i); the analytic-core continued-boost formula on upper-supported analytic
-restrictions.-/
+restrictions.
+@isnad1 id=and.2h5v.s8.b3deb8a69c83 from=translated src=- shape=85151a22 vocab=4462c7d8
+-/
 theorem lemma_3_7 {W : WightmanData Mob TestFn 𝓓 𝓕} (hW : W.IsWightmanCFT)
     (l : List (𝓕 × AnalyticTestFn)) (τ : ℂ) (hτ : τ ∈ strip (Complex.I * Real.pi)) :
     W.VtildeDom τ
@@ -137,7 +143,9 @@ namespace WightmanBundle
 
 /-- [T26], Lemma 3.7(i). Issue #9 discharges `MobiusCPT.Contract`'s `theorem_wanted lemma_3_7`,
 byte-identical statement text, for the concrete Möbius group and conformal action
-`WightmanBundle` fixes (`docs/adr/0001-fix-mobius-group-in-bundle.md`).-/
+`WightmanBundle` fixes (`docs/adr/0001-fix-mobius-group-in-bundle.md`).
+@isnad1 id=and.2h3v.s8.33e83643d2d9 from=translated src=- shape=3873f9cc vocab=ccace642
+-/
 theorem lemma_3_7 (W : WightmanBundle) (h : W.data.IsWightmanCFT)
     (l : List (W.𝓕 × AnalyticTestFn)) (τ : ℂ) (hτ : τ ∈ strip (Complex.I * Real.pi)) :
     W.data.VtildeDom τ

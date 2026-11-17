@@ -24,7 +24,9 @@ open scoped ContDiff
 
 /-! ### The elementary boost factor -/
 
-/-- The iterated derivatives of cosine are its successive quarter-period translates.-/
+/-- The iterated derivatives of cosine are its successive quarter-period translates.
+@isnad1 id=eq.0h2v.s6.4c4cc60eada0 from=translated src=- shape=3c10f207 vocab=be723ab2
+-/
 theorem iteratedDeriv_cos_eq (m : ℕ) (θ : ℝ) :
     iteratedDeriv m Real.cos θ = Real.cos (θ + m * (Real.pi / 2)) := by
   induction m generalizing θ with
@@ -47,13 +49,17 @@ theorem iteratedDeriv_cos_eq (m : ℕ) (θ : ℝ) :
       push_cast
       ring
 
-/-- Every iterated derivative of cosine has norm at most one.-/
+/-- Every iterated derivative of cosine has norm at most one.
+@isnad1 id=le.0h2v.s5.1aecd434984d from=translated src=- shape=bfa24a32 vocab=1f24f10b
+-/
 theorem norm_iteratedDeriv_cos_le (m : ℕ) (θ : ℝ) :
     ‖iteratedDeriv m Real.cos θ‖ ≤ 1 := by
   rw [iteratedDeriv_cos_eq, Real.norm_eq_abs]
   exact Real.abs_cos_le_one _
 
-/-- `boostP` in ordinary trigonometric coordinates.-/
+/-- `boostP` in ordinary trigonometric coordinates.
+@isnad1 id=eq.0h2v.s4.9ffbb3ba13ee from=translated src=- shape=89470412 vocab=a2b514f5
+-/
 theorem boostP_eq (t θ : ℝ) :
     boostP t θ = Real.cosh t + Real.sinh t * Real.cos θ := by
   show Real.cosh t + (Circle.exp θ : ℂ).re * Real.sinh t = Real.cosh t + Real.sinh t * Real.cos θ
@@ -61,7 +67,9 @@ theorem boostP_eq (t θ : ℝ) :
   ring
 
 /-- Derivatives of positive order of `boostP` are the corresponding cosine derivatives,
-multiplied by `sinh t`.-/
+multiplied by `sinh t`.
+@isnad1 id=eq.0h3v.s6.7c3a7455dec9 from=translated src=- shape=0bf17777 vocab=0cf5356d
+-/
 theorem iteratedDeriv_boostP_succ_eq (t : ℝ) (m : ℕ) (θ : ℝ) :
     iteratedDeriv (m + 1) (boostP t) θ =
       Real.sinh t * iteratedDeriv (m + 1) Real.cos θ := by
@@ -72,12 +80,16 @@ theorem iteratedDeriv_boostP_succ_eq (t : ℝ) (m : ℕ) (θ : ℝ) :
   simpa using
     (iteratedDeriv_const_mul_field (n := m + 1) (x := θ) (Real.sinh t) Real.cos)
 
-/-- The elementary hyperbolic coefficient grows at most exponentially in `|t|`.-/
+/-- The elementary hyperbolic coefficient grows at most exponentially in `|t|`.
+@isnad1 id=le.0h1v.s4.9f8068e35aa9 from=translated src=- shape=d62e2955 vocab=1a2aa37f
+-/
 theorem abs_sinh_le_exp_abs (t : ℝ) : |Real.sinh t| ≤ Real.exp |t| := by
   rw [Real.abs_sinh]
   nlinarith [Real.sinh_add_cosh |t|, Real.cosh_pos |t|]
 
-/-- Uniform-in-angle exponential growth of every positive-order derivative of `boostP`.-/
+/-- Uniform-in-angle exponential growth of every positive-order derivative of `boostP`.
+@isnad1 id=le.0h3v.s5.d2a6d5898153 from=translated src=- shape=7913e67f vocab=c5c865bb
+-/
 theorem norm_iteratedDeriv_boostP_le (t : ℝ) (m : ℕ) (θ : ℝ) :
     ‖iteratedDeriv (m + 1) (boostP t) θ‖ ≤ Real.exp |t| := by
   rw [iteratedDeriv_boostP_succ_eq, norm_mul, Real.norm_eq_abs]
@@ -88,7 +100,9 @@ theorem norm_iteratedDeriv_boostP_le (t : ℝ) (m : ℕ) (θ : ℝ) :
     _ = |Real.sinh t| := mul_one _
     _ ≤ Real.exp |t| := abs_sinh_le_exp_abs t
 
-/-- The boost factor is smooth in the angle variable.-/
+/-- The boost factor is smooth in the angle variable.
+@isnad1 id=contdiff.0h1v.s5.e64aa3d1afc0 from=translated src=- shape=0fc4d29f vocab=5f2be532
+-/
 theorem contDiff_boostP (t : ℝ) : ContDiff ℝ ∞ (boostP t) := by
   rw [show boostP t = fun x : ℝ => Real.cosh t + Real.sinh t * Real.cos x by
     funext x
@@ -96,7 +110,9 @@ theorem contDiff_boostP (t : ℝ) : ContDiff ℝ ∞ (boostP t) := by
   exact contDiff_const.add (contDiff_const.mul Real.contDiff_cos)
 
 /-- The quantitative version of `boostP_pos` used to keep reciprocal derivatives away from
-their singularity.-/
+their singularity.
+@isnad1 id=le.0h2v.s4.8b097d120506 from=translated src=- shape=03306bd5 vocab=b4c8839b
+-/
 theorem exp_neg_abs_le_boostP (t θ : ℝ) :
     Real.exp (-|t|) ≤ boostP t θ := by
   have hcos : |Real.cos θ| ≤ 1 := Real.abs_cos_le_one θ
@@ -119,14 +135,18 @@ theorem exp_neg_abs_le_boostP (t θ : ℝ) :
 
 /-! ### Reciprocal derivatives -/
 
-/-- Closed form for the iterated derivatives of the reciprocal map.-/
+/-- Closed form for the iterated derivatives of the reciprocal map.
+@isnad1 id=eq.0h2v.s6.9733d1ea9988 from=translated src=- shape=686d23d4 vocab=54bcba0d
+-/
 theorem iteratedDeriv_inv_eq (m : ℕ) (y : ℝ) :
     iteratedDeriv m (Inv.inv : ℝ → ℝ) y =
       (-1) ^ m * (Nat.factorial m : ℝ) * y ^ (-1 - m : ℤ) := by
   rw [iteratedDeriv_eq_iterate]
   exact iter_deriv_inv m y
 
-/-- On `[c, ∞)`, the `m`-th reciprocal derivative is bounded by `m! / c^(m+1)`.-/
+/-- On `[c, ∞)`, the `m`-th reciprocal derivative is bounded by `m! / c^(m+1)`.
+@isnad1 id=le.2h3v.s6.bbf25ecf548a from=translated src=- shape=6e602c05 vocab=04171403
+-/
 theorem norm_iteratedDeriv_inv_le_of_ge (m : ℕ) {c y : ℝ}
     (hc : 0 < c) (hcy : c ≤ y) :
     ‖iteratedDeriv m (Inv.inv : ℝ → ℝ) y‖ ≤ (Nat.factorial m : ℝ) / c ^ (m + 1) := by
@@ -144,7 +164,9 @@ theorem norm_iteratedDeriv_inv_le_of_ge (m : ℕ) {c y : ℝ}
   exact div_le_div_of_nonneg_left (Nat.cast_nonneg _) (pow_pos hc _)
     (pow_le_pow_left₀ hc.le hcy _)
 
-/-- Specialization of the reciprocal bound to the lower bound for `boostP`.-/
+/-- Specialization of the reciprocal bound to the lower bound for `boostP`.
+@isnad1 id=le.1h3v.s6.278eb0c5ee36 from=translated src=- shape=bd64daa3 vocab=939b68b6
+-/
 theorem norm_iteratedDeriv_inv_le_exp (t : ℝ) (m : ℕ) {y : ℝ}
     (hy : Real.exp (-|t|) ≤ y) :
     ‖iteratedDeriv m (Inv.inv : ℝ → ℝ) y‖ ≤
@@ -161,7 +183,9 @@ theorem norm_iteratedDeriv_inv_le_exp (t : ℝ) (m : ℕ) {y : ℝ}
 
 /-! ### The boost angle -/
 
-/-- The boost angle is smooth because its derivative is the smooth reciprocal of `boostP`.-/
+/-- The boost angle is smooth because its derivative is the smooth reciprocal of `boostP`.
+@isnad1 id=contdiff.0h1v.s5.78f42cf3ec08 from=translated src=- shape=0fc4d29f vocab=da7f6935
+-/
 theorem contDiff_boostAngle (t : ℝ) : ContDiff ℝ ∞ (boostAngle t) := by
   have hderiv : deriv (boostAngle t) = (boostP t)⁻¹ := by
     funext θ
@@ -172,7 +196,9 @@ theorem contDiff_boostAngle (t : ℝ) : ContDiff ℝ ∞ (boostAngle t) := by
   exact (contDiff_boostP t).inv (fun θ => (boostP_pos t θ).ne')
 
 /-- Every positive-order angle derivative of `boostAngle` has exponential growth in `|t|`.
-The deliberately crude coefficient is convenient for later composition estimates.-/
+The deliberately crude coefficient is convenient for later composition estimates.
+@isnad1 id=le.0h3v.s6.9d2b1156008e from=translated src=- shape=8fe972bd vocab=85d57a5a
+-/
 theorem norm_iteratedDeriv_boostAngle_le (t : ℝ) (m : ℕ) (θ : ℝ) :
     ‖iteratedDeriv (m + 1) (boostAngle t) θ‖ ≤
       (Nat.factorial m : ℝ) ^ 2 *

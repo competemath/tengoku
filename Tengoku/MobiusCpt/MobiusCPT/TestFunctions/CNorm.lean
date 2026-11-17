@@ -27,7 +27,9 @@ noncomputable section
 
 /-! ### Periodic smooth functions -/
 
-/-- A continuous periodic function on the real line is bounded.-/
+/-- A continuous periodic function on the real line is bounded.
+@isnad1 id=ex.3h2v.s5.007a7f89ad8f from=translated src=- shape=06cb4443 vocab=4659a278
+-/
 theorem exists_norm_le_of_periodic {g : ℝ → ℂ} (hg : Continuous g) {T : ℝ} (hT : 0 < T)
     (hper : Function.Periodic g T) : ∃ C : ℝ, ∀ x : ℝ, ‖g x‖ ≤ C := by
   have hcompact : IsCompact (Set.Icc (0 : ℝ) T) := isCompact_Icc
@@ -43,12 +45,16 @@ theorem exists_norm_le_of_periodic {g : ℝ → ℂ} (hg : Continuous g) {T : �
 noncomputable def angleDeriv (j : ℕ) (f : TestFn) : ℝ → ℂ :=
   iteratedDeriv j (toAngle f)
 
-/-- [T26], §3; every angle derivative of a test function is smooth.-/
+/-- [T26], §3; every angle derivative of a test function is smooth.
+@isnad1 id=contdiff.0h2v.s5.759223779c9d from=translated src=- shape=d68ed486 vocab=a869b9fe
+-/
 theorem contDiff_angleDeriv (j : ℕ) (f : TestFn) : ContDiff ℝ ∞ (angleDeriv j f) := by
   rw [angleDeriv, iteratedDeriv_eq_iterate]
   exact ContDiff.iterate_deriv j (contDiff_toAngle f)
 
-/-- [T26], §3; every angle derivative has the period of the original angle function.-/
+/-- [T26], §3; every angle derivative has the period of the original angle function.
+@isnad1 id=periodic.0h2v.s4.16cb58ccf385 from=translated src=- shape=b2a6104a vocab=36f8a59f
+-/
 theorem periodic_angleDeriv (j : ℕ) (f : TestFn) :
     Function.Periodic (angleDeriv j f) (2 * Real.pi) := by
   intro θ
@@ -73,18 +79,24 @@ noncomputable def angleDerivB (j : ℕ) (f : TestFn) : BoundedContinuousFunction
     (contDiff_angleDeriv j f).continuous (Classical.choose hbound)
       (Classical.choose_spec hbound)
 
-/-- Evaluation of the bundled angle derivative agrees with its unbundled function.-/
+/-- Evaluation of the bundled angle derivative agrees with its unbundled function.
+@isnad1 id=eq.0h3v.s5.9ab4c7e3df95 from=translated src=- shape=e3b0c711 vocab=43835a7e
+-/
 theorem angleDerivB_apply (j : ℕ) (f : TestFn) (θ : ℝ) :
     angleDerivB j f θ = angleDeriv j f θ := by
   simp [angleDerivB]
 
-/-- The pointwise norm of an angle derivative is bounded by its sup norm.-/
+/-- The pointwise norm of an angle derivative is bounded by its sup norm.
+@isnad1 id=le.0h3v.s5.92c366a8e066 from=translated src=- shape=ab01d735 vocab=72b512c5
+-/
 theorem norm_angleDeriv_le (j : ℕ) (f : TestFn) (θ : ℝ) :
     ‖angleDeriv j f θ‖ ≤ ‖angleDerivB j f‖ := by
   rw [← angleDerivB_apply]
   exact BoundedContinuousFunction.norm_coe_le_norm _ _
 
-/-- [T26], §3; angle derivatives are additive.-/
+/-- [T26], §3; angle derivatives are additive.
+@isnad1 id=eq.0h3v.s5.a8fda34607da from=translated src=- shape=ee3b70b3 vocab=2fb5229e
+-/
 theorem angleDeriv_add (j : ℕ) (f g : TestFn) :
     angleDeriv j (f + g) = angleDeriv j f + angleDeriv j g := by
   funext θ
@@ -95,14 +107,18 @@ theorem angleDeriv_add (j : ℕ) (f g : TestFn) :
     ((contDiff_toAngle f).contDiffAt.of_le (by exact_mod_cast le_top))
     ((contDiff_toAngle g).contDiffAt.of_le (by exact_mod_cast le_top))
 
-/-- [T26], §3; angle derivatives are homogeneous for complex scalars.-/
+/-- [T26], §3; angle derivatives are homogeneous for complex scalars.
+@isnad1 id=eq.0h3v.s5.3121fccaf210 from=translated src=- shape=527a4eb2 vocab=dbe01c97
+-/
 theorem angleDeriv_smul (j : ℕ) (c : ℂ) (f : TestFn) :
     angleDeriv j (c • f) = c • angleDeriv j f := by
   funext θ
   change iteratedDeriv j (toAngle (c • f)) θ = c • iteratedDeriv j (toAngle f) θ
   rw [toAngle_smul, iteratedDeriv_const_smul_field]
 
-/-- [T26], §3; every angle derivative of the zero test function is zero.-/
+/-- [T26], §3; every angle derivative of the zero test function is zero.
+@isnad1 id=eq.0h1v.s5.d6b930a83c2e from=translated src=- shape=f07087ad vocab=911889f5
+-/
 theorem angleDeriv_zero (j : ℕ) : angleDeriv j (0 : TestFn) = 0 := by
   funext θ
   change iteratedDeriv j (toAngle (0 : TestFn)) θ = 0
@@ -158,7 +174,9 @@ noncomputable def angleDerivSupFamily :
             (φ := fun _ : ℕ => BoundedContinuousFunction ℝ ℂ) j)))
     angleDerivsₗ
 
-/-- The sup-family seminorm at an index is the sup norm of the corresponding derivative.-/
+/-- The sup-family seminorm at an index is the sup norm of the corresponding derivative.
+@isnad1 id=eq.0h2v.s7.ce257a9cb05e from=translated src=- shape=5d3b361d vocab=a297c98d
+-/
 theorem angleDerivSupFamily_apply (i : Σ _j : ℕ, Fin 1) (f : TestFn) :
     angleDerivSupFamily i f = ‖angleDerivB i.1 f‖ := by
   rcases i with ⟨j, k⟩
@@ -167,7 +185,9 @@ theorem angleDerivSupFamily_apply (i : Σ _j : ℕ, Fin 1) (f : TestFn) :
   simp [angleDerivSupFamily, angleDerivsₗ, SeminormFamily.sigma, SeminormFamily.comp_apply,
     LinearMap.proj_apply, coe_normSeminorm]
 
-/-- [T26], §2.2; the sup-family has the induced topology.-/
+/-- [T26], §2.2; the sup-family has the induced topology.
+@isnad1 id=withsemi.0h0v.s4.1f5634411f1b from=translated src=- shape=7256adce vocab=70ad1bc7
+-/
 theorem withSeminorms_angleDerivs : WithSeminorms angleDerivSupFamily := by
   unfold angleDerivSupFamily
   exact LinearMap.withSeminorms_induced
@@ -184,12 +204,16 @@ noncomputable def cnormSeminorm (N : ℕ) : Seminorm ℂ TestFn :=
   ∑ j ∈ Finset.range (N + 1), (normSeminorm ℂ (BoundedContinuousFunction ℝ ℂ)).comp
     (angleDerivBₗ j)
 
-/-- [T26], §3; the literal `C^N` seminorm evaluates as the sum of the bundled sup norms.-/
+/-- [T26], §3; the literal `C^N` seminorm evaluates as the sum of the bundled sup norms.
+@isnad1 id=eq.0h2v.s6.ec6481a074d8 from=translated src=- shape=640af782 vocab=0df42864
+-/
 theorem cnormSeminorm_apply (N : ℕ) (f : TestFn) :
     cnormSeminorm N f = ∑ j ∈ Finset.range (N + 1), ‖angleDerivB j f‖ := by
   simp [cnormSeminorm, angleDerivBₗ]
 
-/-- [T26] §2.2; the `C^N` family generates the `C^∞` topology.-/
+/-- [T26] §2.2; the `C^N` family generates the `C^∞` topology.
+@isnad1 id=withsemi.0h0v.s3.6eaa1f3a1c71 from=translated src=- shape=93eefbde vocab=8e5ab057
+-/
 theorem withSeminorms_cnorm : WithSeminorms cnormSeminorm := by
   apply withSeminorms_angleDerivs.congr
   · apply Seminorm.IsBounded.of_real
@@ -238,33 +262,45 @@ noncomputable def cnorm (N : ℕ) (f : TestFn) : NNReal :=
     rw [cnormSeminorm_apply]
     exact Finset.sum_nonneg fun j _ => norm_nonneg (angleDerivB j f)⟩
 
-/-- The real coercion of `cnorm` is the corresponding `C^N` seminorm.-/
+/-- The real coercion of `cnorm` is the corresponding `C^N` seminorm.
+@isnad1 id=eq.0h2v.s5.63f244ff9a2a from=translated src=- shape=fd7f3221 vocab=96e007cb
+-/
 theorem cnorm_coe (N : ℕ) (f : TestFn) : (cnorm N f : ℝ) = cnormSeminorm N f :=
   rfl
 
-/-- The `C^N` norm is the sum of the bundled angle-derivative sup norms.-/
+/-- The `C^N` norm is the sum of the bundled angle-derivative sup norms.
+@isnad1 id=eq.0h2v.s6.8f41f1ff6476 from=translated src=- shape=bb7c52ef vocab=961a7fc4
+-/
 theorem cnorm_eq (N : ℕ) (f : TestFn) :
     (cnorm N f : ℝ) = ∑ j ∈ Finset.range (N + 1), ‖angleDerivB j f‖ := by
   rw [cnorm_coe, cnormSeminorm_apply]
 
-/-- [T26], §3 and Lemma 3.9; the `C^N` norm is subadditive.-/
+/-- [T26], §3 and Lemma 3.9; the `C^N` norm is subadditive.
+@isnad1 id=le.0h3v.s5.b896a2aa6aeb from=translated src=- shape=b51cb01a vocab=2c6eae08
+-/
 theorem cnorm_add_le (N : ℕ) (f g : TestFn) : cnorm N (f + g) ≤ cnorm N f + cnorm N g := by
   apply NNReal.coe_le_coe.mp
   simpa only [cnorm_coe, NNReal.coe_add] using map_add_le_add (cnormSeminorm N) f g
 
-/-- [T26], §3 and Lemma 3.9; the `C^N` norm is homogeneous for complex scalars.-/
+/-- [T26], §3 and Lemma 3.9; the `C^N` norm is homogeneous for complex scalars.
+@isnad1 id=eq.0h3v.s5.fa0535ace173 from=translated src=- shape=ab822261 vocab=c5372ffa
+-/
 theorem cnorm_smul (N : ℕ) (c : ℂ) (f : TestFn) :
     cnorm N (c • f) = ‖c‖₊ * cnorm N f := by
   apply NNReal.eq
   simpa only [cnorm_coe, NNReal.coe_mul, coe_nnnorm] using
     map_smul_eq_mul (cnormSeminorm N) c f
 
-/-- [T26], §3 and Lemma 3.9; the zero test function has zero `C^N` norm.-/
+/-- [T26], §3 and Lemma 3.9; the zero test function has zero `C^N` norm.
+@isnad1 id=eq.0h1v.s4.495b82f9bdd5 from=translated src=- shape=59ae2d96 vocab=1fbb6b04
+-/
 theorem cnorm_zero (N : ℕ) : cnorm N (0 : TestFn) = 0 := by
   apply NNReal.eq
   simpa only [cnorm_coe, NNReal.coe_zero] using map_zero (cnormSeminorm N)
 
-/-- [T26], §3 and Lemma 3.9; the `C^N` norms are monotone in `N`.-/
+/-- [T26], §3 and Lemma 3.9; the `C^N` norms are monotone in `N`.
+@isnad1 id=le.1h3v.s4.0b81d61dac0e from=translated src=- shape=c0274e53 vocab=6ba43a22
+-/
 theorem cnorm_mono {M N : ℕ} (h : M ≤ N) (f : TestFn) : cnorm M f ≤ cnorm N f := by
   apply NNReal.coe_le_coe.mp
   rw [cnorm_coe, cnorm_coe, cnormSeminorm_apply, cnormSeminorm_apply]
@@ -272,7 +308,9 @@ theorem cnorm_mono {M N : ℕ} (h : M ≤ N) (f : TestFn) : cnorm M f ≤ cnorm 
   exact Finset.sum_le_sum_of_subset_of_nonneg (Finset.range_subset_range.2 hMN)
     (fun j _ _ => norm_nonneg _)
 
-/-- [T26], §3; because the sum starts at `j = 0`, `cnorm` is a genuine norm.-/
+/-- [T26], §3; because the sum starts at `j = 0`, `cnorm` is a genuine norm.
+@isnad1 id=iff.0h2v.s5.9fc74ee099c0 from=translated src=- shape=4ba43a92 vocab=1fbb6b04
+-/
 theorem cnorm_eq_zero (N : ℕ) (f : TestFn) : cnorm N f = 0 ↔ f = 0 := by
   constructor
   · intro hf
@@ -294,7 +332,9 @@ theorem cnorm_eq_zero (N : ℕ) (f : TestFn) : cnorm N f = 0 ↔ f = 0 := by
     subst f
     exact cnorm_zero N
 
-/-- [T26] §2.2; convergence in `C^∞(S¹)` is convergence in every `C^N` norm.-/
+/-- [T26] §2.2; convergence in `C^∞(S¹)` is convergence in every `C^N` norm.
+@isnad1 id=iff.0h2v.s5.d4e8e5cdbcff from=translated src=- shape=f56c57a1 vocab=7a14dfd7
+-/
 theorem tendsto_iff_cnorm (u : ℕ → TestFn) (f : TestFn) :
     Filter.Tendsto u Filter.atTop (nhds f) ↔
       ∀ N : ℕ, Filter.Tendsto (fun n => ((cnorm N (u n - f) : NNReal) : ℝ))

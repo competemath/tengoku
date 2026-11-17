@@ -78,7 +78,9 @@ variable [AddCommGroup 𝓓] [Module ℂ 𝓓]
 namespace WightmanData
 
 /-- [T26], Definition 2.5: a representation sends each group element to an
-invertible linear map, expressed in both inverse-composition directions.-/
+invertible linear map, expressed in both inverse-composition directions.
+@isnad1 id=and.0h7v.s8.08f11767c07e from=translated src=- shape=a90e6e75 vocab=d6b9144f
+-/
 theorem U_inv_apply (W : WightmanData G TF 𝓓 𝓕) (γ : G) (Φ : 𝓓) :
     W.U γ (W.U γ⁻¹ Φ) = Φ ∧ W.U γ⁻¹ (W.U γ Φ) = Φ := by
   constructor
@@ -91,7 +93,9 @@ theorem U_inv_apply (W : WightmanData G TF 𝓓 𝓕) (γ : G) (Φ : 𝓓) :
 def boost (W : WightmanData G TF 𝓓 𝓕) (t : ℝ) : 𝓓 →ₗ[ℂ] 𝓓 :=
   W.U (MobiusAction.boostElt (G := G) (TF := TF) t)
 
-/-- [T26], §2 and Definition 3.1: the boost action is linear on the domain.-/
+/-- [T26], §2 and Definition 3.1: the boost action is linear on the domain.
+@isnad1 id=and.0h8v.s9.cf76409f1485 from=translated src=- shape=93f287ff vocab=cae11c2f
+-/
 theorem boost_linear (W : WightmanData G TF 𝓓 𝓕) :
     ∀ (t : ℝ) (Φ Ψ : 𝓓),
       (W.boost t (Φ + Ψ) = W.boost t Φ + W.boost t Ψ) ∧
@@ -99,13 +103,17 @@ theorem boost_linear (W : WightmanData G TF 𝓓 𝓕) :
   intro t Φ Ψ
   exact ⟨(W.boost t).map_add Φ Ψ, fun c => (W.boost t).map_smul c Φ⟩
 
-/-- [T26], Definition 3.1: the boost at zero is the identity.-/
+/-- [T26], Definition 3.1: the boost at zero is the identity.
+@isnad1 id=eq.0h6v.s7.85655375c1cb from=translated src=- shape=ed71c199 vocab=e0a687d3
+-/
 theorem boost_zero (W : WightmanData G TF 𝓓 𝓕) :
     ∀ Φ : 𝓓, W.boost 0 Φ = Φ := by
   intro Φ
   simp [boost, MobiusAction.boostElt_zero, W.U_one]
 
-/-- [T26], §3: the boosts form a one-parameter group.-/
+/-- [T26], §3: the boosts form a one-parameter group.
+@isnad1 id=eq.0h8v.s8.3f7c82197616 from=translated src=- shape=b6ae9d23 vocab=04461f4e
+-/
 theorem boost_add (W : WightmanData G TF 𝓓 𝓕) :
     ∀ (s t : ℝ) (Φ : 𝓓),
       W.boost s (W.boost t Φ) = W.boost (s + t) Φ := by
@@ -135,14 +143,18 @@ def HasConformalDim (W : WightmanData G TF 𝓓 𝓕) (Φ : 𝓓) (d : ℤ) : Pr
   ∀ θ : ℝ, W.U (MobiusAction.rot (G := G) (TF := TF) θ) Φ =
     Complex.exp ((d : ℂ) * (θ : ℂ) * Complex.I) • Φ
 
-/-- [T26], Definition 2.4: the zero vector has every conformal dimension.-/
+/-- [T26], Definition 2.4: the zero vector has every conformal dimension.
+@isnad1 id=hasconfo.0h6v.s6.d119cf0d0e20 from=translated src=- shape=a260f549 vocab=7e5e2f76
+-/
 theorem hasConformalDim_zero (W : WightmanData G TF 𝓓 𝓕) (d : ℤ) :
     W.HasConformalDim (0 : 𝓓) d := by
   intro θ
   simp
 
 /-- [T26], Definition 2.4: vectors of the same conformal dimension are
-closed under addition.-/
+closed under addition.
+@isnad1 id=hasconfo.2h8v.s7.1a257824e9c6 from=translated src=- shape=f92eb687 vocab=7fe86c51
+-/
 theorem hasConformalDim_add (W : WightmanData G TF 𝓓 𝓕)
     (Φ Ψ : 𝓓) (d : ℤ) :
     W.HasConformalDim Φ d → W.HasConformalDim Ψ d →
@@ -151,7 +163,9 @@ theorem hasConformalDim_add (W : WightmanData G TF 𝓓 𝓕)
   simp only [map_add, hΦ θ, hΨ θ, smul_add]
 
 /-- [T26], Definition 2.4: conformal dimension is preserved by complex scalar
-multiplication.-/
+multiplication.
+@isnad1 id=hasconfo.1h8v.s7.d555479840ac from=translated src=- shape=104cc03e vocab=3823ece5
+-/
 theorem hasConformalDim_smul (W : WightmanData G TF 𝓓 𝓕)
     (c : ℂ) (Φ : 𝓓) (d : ℤ) :
     W.HasConformalDim Φ d → W.HasConformalDim (c • Φ) d := by
@@ -178,7 +192,9 @@ def W4 (W : WightmanData G TF 𝓓 𝓕) : Prop :=
       { Φ | ∃ l : List (𝓕 × TF), Φ = W.smearedProduct l }
 
 /-- [T26], Definition 2.5 (W4): Möbius invariance of the vacuum implies
-invariance under every real boost.-/
+invariance under every real boost.
+@isnad1 id=eq.1h6v.s7.679182699c7e from=translated src=- shape=c51bb538 vocab=c91ef476
+-/
 theorem w4_vacuum_invariant (W : WightmanData G TF 𝓓 𝓕) :
     W.W4 → ∀ t : ℝ, W.boost t W.vac = W.vac := by
   intro h t
@@ -186,7 +202,9 @@ theorem w4_vacuum_invariant (W : WightmanData G TF 𝓓 𝓕) :
   exact h.1 _
 
 /-- [T26], Definition 2.5 (W4): Möbius invariance of the vacuum implies
-invariance under every rotation.-/
+invariance under every rotation.
+@isnad1 id=eq.1h6v.s7.2ac677f1e731 from=translated src=- shape=c4bc5f07 vocab=abdf3a58
+-/
 theorem w4_rotation_invariant (W : WightmanData G TF 𝓓 𝓕) :
     W.W4 → ∀ θ : ℝ,
       W.U (MobiusAction.rot (G := G) (TF := TF) θ) W.vac = W.vac := by

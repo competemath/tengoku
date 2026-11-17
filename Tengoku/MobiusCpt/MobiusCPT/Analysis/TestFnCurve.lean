@@ -20,7 +20,9 @@ open scoped Topology
 noncomputable section
 
 /-- The `C^N` seminorm is bounded by a common bound on the first `N` angle derivatives.  Because
-angle derivatives are `2π`-periodic, checking the bound on one period suffices.-/
+angle derivatives are `2π`-periodic, checking the bound on one period suffices.
+@isnad1 id=le.2h3v.s6.9c529238620c from=translated src=- shape=2e15214e vocab=1de9e8e3
+-/
 theorem cnorm_le_of_forall_angleDeriv {N : ℕ} {f : TestFn} {C : ℝ} (hC : 0 ≤ C)
     (h : ∀ j ≤ N, ∀ θ : ℝ, ‖angleDeriv j f θ‖ ≤ C) :
     (cnorm N f : ℝ) ≤ (N + 1) * C := by
@@ -40,7 +42,9 @@ theorem cnorm_le_of_forall_angleDeriv {N : ℕ} {f : TestFn} {C : ℝ} (hC : 0 �
       push_cast
       ring
 
-/-- Angle differentiation preserves subtraction of test functions.-/
+/-- Angle differentiation preserves subtraction of test functions.
+@isnad1 id=eq.0h3v.s5.bdcabfd6146b from=translated src=- shape=ee3b70b3 vocab=c656fb48
+-/
 theorem angleDeriv_sub (j : ℕ) (f g : TestFn) :
     angleDeriv j (f - g) = angleDeriv j f - angleDeriv j g := by
   calc
@@ -51,7 +55,9 @@ theorem angleDeriv_sub (j : ℕ) (f g : TestFn) :
     _ = angleDeriv j f - angleDeriv j g := by rw [neg_one_smul, sub_eq_add_neg]
 
 /-- Convergence in `C^∞(S¹)` along any filter, expressed through the angle derivatives: it is
-enough that for every order the angle derivatives converge uniformly.-/
+enough that for every order the angle derivatives converge uniformly.
+@isnad1 id=tendsto.1h4v.s6.d0df60a31e44 from=translated src=- shape=fd8d8c4d vocab=420fb74c
+-/
 theorem tendsto_testFn_of_forall_eventually {ι : Type*} {l : Filter ι} {u : ι → TestFn}
     {f : TestFn}
     (h : ∀ (N : ℕ) (ε : ℝ), 0 < ε →
@@ -85,7 +91,9 @@ def HasTestFnDerivAt (a : ℂ → TestFn) (a' : TestFn) (τ : ℂ) : Prop :=
     (nhdsWithin 0 {(0 : ℂ)}ᶜ) (nhds a')
 
 /-- The increment-at-zero definition of a test-function derivative is equivalent to convergence
-of the usual punctured slope at the base point.-/
+of the usual punctured slope at the base point.
+@isnad1 id=iff.0h3v.s6.a12275cdc88e from=translated src=- shape=c737f183 vocab=1673e9a2
+-/
 theorem hasTestFnDerivAt_iff_tendsto_slope {a : ℂ → TestFn} {a' : TestFn} {τ : ℂ} :
     HasTestFnDerivAt a a' τ ↔
       Filter.Tendsto (fun t : ℂ => (t - τ)⁻¹ • (a t - a τ))
@@ -102,7 +110,9 @@ theorem hasTestFnDerivAt_iff_tendsto_slope {a : ℂ → TestFn} {a' : TestFn} {�
 into a differentiable scalar function, by the product rule.  This is how [T26], Lemma 3.6 crosses
 from the test-function curve `τ ↦ β_d(v_τ)F|_{I_+}` to the scalar functions
 `G_λ(τ) = λ(φ₁(β(v_τ)F₁)⋯φ_k(β(v_τ)F_k)Ω)`: scalar differentiability of each slot separately would
-not suffice, because `M` is multilinear rather than linear.-/
+not suffice, because `M` is multilinear rather than linear.
+@isnad1 id=hasderiv.5h5v.s8.615fd1a1501f from=translated src=- shape=8a094cca vocab=ca4e2c55
+-/
 theorem hasDerivAt_of_multilinear {k : ℕ} {M : (Fin k → TestFn) → ℂ}
     (hM : Continuous M)
     (hlin : ∀ (i : Fin k) (f : Fin k → TestFn) (g h : TestFn),

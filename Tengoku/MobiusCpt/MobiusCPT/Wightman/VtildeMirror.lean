@@ -19,7 +19,9 @@ open Set
 
 variable {𝓓 𝓕 : Type*} [AddCommGroup 𝓓] [Module ℂ 𝓓]
 
-/-- Negation identifies the interiors of the strips with opposite parameters.-/
+/-- Negation identifies the interiors of the strips with opposite parameters.
+@isnad1 id=iff.0h2v.s5.1805c912df16 from=translated src=- shape=37a02a7a vocab=54d1fff9
+-/
 theorem neg_mem_interior_strip_iff (τ z : ℂ) :
     -z ∈ interior (strip (-τ)) ↔ z ∈ interior (strip τ) := by
   rcases le_total 0 τ.im with hτ | hτ
@@ -75,7 +77,9 @@ noncomputable def compatRotPi {W : WightmanData Mob TestFn 𝓓 𝓕} (hW : W.Is
     (List.ofFn fun i => (φs i, f i))
     (fun p _ => W1.covariant W hW.w1 p.1) Φ, hlist]
 
-/-- Rotation through `pi` intertwines a boost with the boost of opposite parameter.-/
+/-- Rotation through `pi` intertwines a boost with the boost of opposite parameter.
+@isnad1 id=eq.0h5v.s8.1483cf280b3b from=translated src=- shape=b0141c36 vocab=dcad8df6
+-/
 theorem U_boost_rot_pi_comm {W : WightmanData Mob TestFn 𝓓 𝓕} (t : ℝ) (Φ : 𝓓) :
     W.U (Mob.rot Real.pi) (W.boost t Φ) =
       W.boost (-t) (W.U (Mob.rot Real.pi) Φ) := by
@@ -102,7 +106,9 @@ private theorem U_rot_pi_rot_pi {W : WightmanData Mob TestFn 𝓓 𝓕} (Φ : �
     _ = Φ := by rw [W.U_one, LinearMap.id_apply]
 
 /-- Reflecting the complex parameter and conjugating both boundary vectors by `U(r_pi)`
-turns any boost-continuation witness into another one.-/
+turns any boost-continuation witness into another one.
+@isnad1 id=isboostc.2h7v.s8.3ad5f0b6852d from=translated src=- shape=0904c0ab vocab=5d8cd9a2
+-/
 theorem isBoostContinuation_mirror {W : WightmanData Mob TestFn 𝓓 𝓕}
     (hW : W.IsWightmanCFT) {σ : ℂ} {X Y : 𝓓}
     {Gf : W.toWightmanStruct.Compat → ℂ → ℂ}
@@ -195,7 +201,9 @@ private theorem vtildeDom_and_map_mirror_to_neg
     simpa only [U_rot_pi_rot_pi] using hmirror
   exact W.vtildeDom_and_vtildeMap_eq hW.actsRegularly hmirror'
 
-/-- The domain of `Ṽ` is reflected by rotation through `pi`.-/
+/-- The domain of `Ṽ` is reflected by rotation through `pi`.
+@isnad1 id=iff.1h5v.s7.a69e5e301dd2 from=translated src=- shape=6ff68b07 vocab=18e8a28a
+-/
 theorem vtildeDom_mirror_iff {W : WightmanData Mob TestFn 𝓓 𝓕}
     (hW : W.IsWightmanCFT) (τ : ℂ) (Φ : 𝓓) :
     W.VtildeDom (-τ) Φ ↔ W.VtildeDom τ (W.U (Mob.rot Real.pi) Φ) := by
@@ -205,7 +213,9 @@ theorem vtildeDom_mirror_iff {W : WightmanData Mob TestFn 𝓓 𝓕}
   · intro hdom
     exact (vtildeDom_and_map_mirror_to_neg hW hdom).1
 
-/-- The values of `Ṽ` obey the same reflected rotation law as its domain.-/
+/-- The values of `Ṽ` obey the same reflected rotation law as its domain.
+@isnad1 id=eq.2h5v.s7.b6361212abe2 from=translated src=- shape=57c1256b vocab=74a14457
+-/
 theorem vtildeMap_mirror {W : WightmanData Mob TestFn 𝓓 𝓕}
     (hW : W.IsWightmanCFT) (τ : ℂ) (Φ : 𝓓)
     (h : W.VtildeDom (-τ) Φ) :

@@ -31,14 +31,18 @@ noncomputable section
 /-! ### Rotations -/
 
 /-- [T26], Definition 2.4; the rotation automorphy factor is trivial, so `β_d(r_θ) f` is `f`
-rotated, for every `f`, not only monomials.-/
+rotated, for every `f`, not only monomials.
+@isnad1 id=eq.0h4v.s6.5ecd2d7dc005 from=translated src=- shape=2ba77947 vocab=f30fc82a
+-/
 theorem beta_rotMat_apply (d : ℕ) (theta : ℝ) (f : TestFn) (z : Circle) :
     beta d (rotMat theta) f z = f (Circle.exp (-theta) * z) := by
   rw [beta_apply, X_rotMat, one_zpow, Complex.ofReal_one, one_mul, rotMat_inv, rotMat_smul]
 
 namespace Mob
 
-/-- [T26], Definition 2.4; the descended form of `beta_rotMat_apply`, for every `f`.-/
+/-- [T26], Definition 2.4; the descended form of `beta_rotMat_apply`, for every `f`.
+@isnad1 id=eq.0h4v.s6.3ebe99e7735d from=translated src=- shape=2ba77947 vocab=f0f47e7d
+-/
 theorem beta_rot_apply (d : ℕ) (theta : ℝ) (f : TestFn) (z : Circle) :
     beta d (rot theta) f z = f (Circle.exp (-theta) * z) := by
   rw [rot, beta_mk]
@@ -47,7 +51,9 @@ theorem beta_rot_apply (d : ℕ) (theta : ℝ) (f : TestFn) (z : Circle) :
 end Mob
 
 /-- [CRTT25], Lemma 2.10(i); the joint rotation function is a shift of the angle picture of
-`f`, hence jointly smooth.-/
+`f`, hence jointly smooth.
+@isnad1 id=contdiff.0h2v.s7.efce67112758 from=translated src=- shape=5e1e364d vocab=7df6e81f
+-/
 theorem contDiff_betaRotJoint (d : ℕ) (f : TestFn) :
     ContDiff ℝ ∞ (fun p : ℝ × ℝ => Mob.beta d (Mob.rot p.1) f (Circle.exp p.2)) := by
   have heq : (fun p : ℝ × ℝ => Mob.beta d (Mob.rot p.1) f (Circle.exp p.2)) =
@@ -61,7 +67,9 @@ theorem contDiff_betaRotJoint (d : ℕ) (f : TestFn) :
   rw [heq]
   exact (contDiff_toAngle f).comp (contDiff_snd.sub contDiff_fst)
 
-/-- [CRTT25], Lemma 2.10(i); rotations act continuously on test functions.-/
+/-- [CRTT25], Lemma 2.10(i); rotations act continuously on test functions.
+@isnad1 id=continuo.0h2v.s6.861188f099a0 from=translated src=- shape=9e121ba3 vocab=1c38fe55
+-/
 theorem continuous_beta_rot (d : ℕ) (f : TestFn) :
     Continuous fun theta : ℝ => Mob.beta d (Mob.rot theta) f := by
   apply continuous_of_jointlySmooth_periodic (contDiff_betaRotJoint d f)
@@ -70,14 +78,21 @@ theorem continuous_beta_rot (d : ℕ) (f : TestFn) :
 
 /-! ### Boosts -/
 
-/-- The negated boost matrix has real, hence self-conjugate, coordinates.-/
+/-- The negated boost matrix has real, hence self-conjugate, coordinates.
+@isnad1 id=eq.0h1v.s4.e223623aa0e9 from=translated src=- shape=86dd5581 vocab=03c16df5
+-/
 theorem boostMat_neg_alpha (t : ℝ) : (boostMat (-t)).α = (Real.cosh (t / 2) : ℂ) := by
   rw [boostMat_alpha, neg_div, Real.cosh_neg]
 
+/--
+@isnad1 id=eq.0h1v.s4.289afd8cc071 from=translated src=- shape=86dd5581 vocab=7e12919f
+-/
 theorem boostMat_neg_beta (t : ℝ) : (boostMat (-t)).β = (Real.sinh (t / 2) : ℂ) := by
   rw [boostMat_beta, neg_div, Real.sinh_neg, Complex.ofReal_neg, neg_neg]
 
-/-- The automorphy factor of a negated boost, in real coordinates.-/
+/-- The automorphy factor of a negated boost, in real coordinates.
+@isnad1 id=eq.0h2v.s7.23bee4796fa5 from=translated src=- shape=f73b9afc vocab=475df966
+-/
 theorem j_boostMat_neg_eq (t : ℝ) (z : Circle) :
     j (boostMat (-t)) z = (Real.sinh (t / 2) : ℂ) * (z : ℂ) + (Real.cosh (t / 2) : ℂ) := by
   rw [j, boostMat_neg_alpha, boostMat_neg_beta, Complex.conj_ofReal, Complex.conj_ofReal]
@@ -88,7 +103,9 @@ proves it for a single fixed group element: here the coefficients `cosh(t/2)`, `
 smoothly with `t`, `Circle.exp θ` is smooth in `θ`, and the automorphy factor is nonvanishing
 for every `t` by `j_ne_zero`. Working directly over `ℝ × ℝ` (rather than the `ℝ × Circle`
 product manifold, composed afterwards) avoids an expensive `Function.comp` defeq check through
-the product-manifold instances.-/
+the product-manifold instances.
+@isnad1 id=contmdif.0h0v.s9.0aa958ed0c2b from=translated src=- shape=10d29046 vocab=4b0b2a3b
+-/
 theorem contMDiff_boostAngleNegSmul :
     ContMDiff 𝓘(ℝ, ℝ × ℝ) (𝓡 1) ∞
       (fun p : ℝ × ℝ => boostMat (-p.1) • Circle.exp p.2) := by
@@ -150,7 +167,9 @@ theorem contMDiff_boostAngleNegSmul :
 /-- [T26], eq. (3.4)-(3.5); the joint boost function, `(t, θ) ↦ (β_d(v_t) f)(e^{iθ})`, is
 smooth for every `d` including `d = 0`. The conformal prefactor `cosh t + Re(z) sinh t` is
 strictly positive for every `t, z`, since `cosh t + Re(z) sinh t ≥ cosh t - |sinh t| = e^{-|t|}`
-because `|Re z| ≤ 1` on the circle.-/
+because `|Re z| ≤ 1` on the circle.
+@isnad1 id=contdiff.0h2v.s7.ae8aba5d124f from=translated src=- shape=5e1e364d vocab=91353c2f
+-/
 theorem contDiff_betaBoostJoint (d : ℕ) (f : TestFn) :
     ContDiff ℝ ∞ (fun p : ℝ × ℝ => Mob.beta d (Mob.boost p.1) f (Circle.exp p.2)) := by
   have heq : (fun p : ℝ × ℝ => Mob.beta d (Mob.boost p.1) f (Circle.exp p.2)) =
@@ -217,7 +236,9 @@ theorem contDiff_betaBoostJoint (d : ℕ) (f : TestFn) :
     ((ContMDiffMap.contMDiff f).comp contMDiff_boostAngleNegSmul).contDiff
   exact hprefactor.mul hf_comp
 
-/-- [CRTT25], Lemma 2.10(i); boosts act continuously on test functions.-/
+/-- [CRTT25], Lemma 2.10(i); boosts act continuously on test functions.
+@isnad1 id=continuo.0h2v.s6.4e4759279eb4 from=translated src=- shape=9e121ba3 vocab=1d1f3343
+-/
 theorem continuous_beta_boost (d : ℕ) (f : TestFn) :
     Continuous fun t : ℝ => Mob.beta d (Mob.boost t) f := by
   apply continuous_of_jointlySmooth_periodic (contDiff_betaBoostJoint d f)
@@ -227,7 +248,9 @@ theorem continuous_beta_boost (d : ℕ) (f : TestFn) :
 /-! ### The instance form used by `boostOrbitContinuous_of_beta_continuous` -/
 
 /-- [CRTT25], Lemma 2.10(i); the syntactic form `boostOrbitContinuous_of_beta_continuous`
-consumes, for the concrete instance `mobiusActionMobTestFn`.-/
+consumes, for the concrete instance `mobiusActionMobTestFn`.
+@isnad1 id=continuo.0h2v.s6.2e02189cc4ec from=translated src=- shape=6f20fab9 vocab=f34631d2
+-/
 theorem hbeta_mobiusActionMobTestFn :
     ∀ (d : ℕ) (f : TestFn),
       Continuous fun t : ℝ =>

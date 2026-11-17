@@ -23,7 +23,9 @@ cutoff-sequence existence lemmas this proof needs (`exists_tendsto_of_suppLower`
 for an arbitrary type satisfying the abstract `TestFunctions` interface — so this statement
 cannot be stated generically over `TF` the way `LocalityLimit.lean`'s lemmas are. Keep `𝓓`,
 `𝓕` generic (as `LocalityLimit.smear_comm_of_tendsto` does), fix the test-function type to
-`TestFn`.-/
+`TestFn`.
+@isnad1 id=eq.4h7v.s9.65df592e5a83 from=translated src=- shape=b57ca669 vocab=aa621553
+-/
 theorem smear_comm_smearedProductOn_of_suppLower_of_forall_suppUpper
     {𝓓 𝓕 : Type*} [AddCommGroup 𝓓] [Module ℂ 𝓓]
     (W : WightmanStruct TestFn 𝓓 𝓕) (hW2 : W.W2) (hreg : W.ActsRegularly)
@@ -79,6 +81,9 @@ private theorem smear_inv_xRestrictLower_vac_eq_neg
     (inv (xRestrictUpper F)) (inv (xRestrictLower F)) W.toWightmanStruct.vac).1] at hzero
   exact eq_neg_of_add_eq_zero_right hzero
 
+/--
+@isnad1 id=eq.1h4v.s7.4704214d4b72 from=translated src=- shape=4e4b9d7a vocab=e9e5d2ae
+-/
 theorem smearedProduct_invLower_eq_smearedProduct_invUpper_reverse
     {𝓓 𝓕 : Type*} [AddCommGroup 𝓓] [Module ℂ 𝓓]
     (W : WightmanData Mob TestFn 𝓓 𝓕) (hW : W.IsWightmanCFT)

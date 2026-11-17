@@ -20,7 +20,9 @@ open Set
 noncomputable section
 
 /-- [T26], Definition 3.5; on the closed upper semicircle the packaged complex boost agrees with
-its pointwise formula.-/
+its pointwise formula.
+@isnad1 id=eq.2h4v.s7.19d9bc620381 from=translated src=- shape=9145c7df vocab=13474ca6
+-/
 theorem betaBoost_apply_of_mem_upper (d : ℕ) (F : AnalyticTestFn) {τ : ℂ}
     (hτ : τ ∈ strip (Complex.I * Real.pi)) {z : Circle} (hz : 0 ≤ (z : ℂ).im) :
     betaBoost d τ F z = betaBoostVal d τ F z := by
@@ -121,7 +123,9 @@ private theorem xRestrictLower_apply_of_im_nonpos (F : AnalyticTestFn) {z : Circ
 
 /-- [T26], equations (3.4)-(3.5); for a real parameter the complex boost is the ordinary conformal
 action `β_d(v_t)` applied to the upper restriction `F|_{I_+}`.  This is the compatibility that
-makes the complexified expression a continuation of the real one.-/
+makes the complexified expression a continuation of the real one.
+@isnad1 id=eq.0h3v.s6.6616d78b7e25 from=translated src=- shape=727b3be7 vocab=3508ea3b
+-/
 theorem betaBoost_ofReal (d : ℕ) (t : ℝ) (F : AnalyticTestFn) :
     betaBoost d (t : ℂ) F = beta d (boostMat t) (xRestrictUpper F) := by
   apply TestFn.ext
@@ -142,14 +146,18 @@ theorem betaBoost_ofReal (d : ℕ) (t : ℝ) (F : AnalyticTestFn) :
       (xRestrictUpper_supp F) (boostMat (-t) • z)
         (boostMat_smul_mem_lowerArc (-t) hzlower), mul_zero]
 
-/-- [T26], equations (3.4)-(3.5), at the level of `Möb = PSU(1,1)`.-/
+/-- [T26], equations (3.4)-(3.5), at the level of `Möb = PSU(1,1)`.
+@isnad1 id=eq.0h3v.s6.ff7192366eb3 from=translated src=- shape=727b3be7 vocab=47fe5dc0
+-/
 theorem betaBoost_ofReal_mob (d : ℕ) (t : ℝ) (F : AnalyticTestFn) :
     betaBoost d (t : ℂ) F = Mob.beta d (Mob.boost t) (xRestrictUpper F) := by
   rw [Mob.boost, Mob.beta_mk]
   exact betaBoost_ofReal d t F
 
 /-- [T26], equation (3.5); the numerator cocycle for translating a complex boost parameter by a
-real boost.-/
+real boost.
+@isnad1 id=eq.0h3v.s8.2afee192d756 from=translated src=- shape=b3b91fbd vocab=294ff90d
+-/
 theorem cnum_neg_add_ofReal (τ : ℂ) (t : ℝ) (z : Circle) :
     cnum (-(τ + t)) z =
       cnum (-τ) ((boostMat (-t) • z : Circle) : ℂ) * cden (-(t : ℂ)) z := by
@@ -164,7 +172,9 @@ theorem cnum_neg_add_ofReal (τ : ℂ) (t : ℝ) (z : Circle) :
   ring
 
 /-- [T26], equation (3.5); the denominator cocycle for translating a complex boost parameter by a
-real boost.-/
+real boost.
+@isnad1 id=eq.0h3v.s8.acc747b0d8c5 from=translated src=- shape=cbce9bd8 vocab=9654646f
+-/
 theorem cden_neg_add_ofReal (τ : ℂ) (t : ℝ) (z : Circle) :
     cden (-(τ + t)) z =
       cden (-τ) ((boostMat (-t) • z : Circle) : ℂ) * cden (-(t : ℂ)) z := by
@@ -207,7 +217,9 @@ private theorem betaBoost_monomial_cocycle (d : ℕ) {P Q A R W z : ℂ}
   field_simp
 
 /-- [T26], equation (3.5); the pole-free pointwise complex boost obeys the real-translation
-cocycle, including the removable-singularity value when `d = 0`.-/
+cocycle, including the removable-singularity value when `d = 0`.
+@isnad1 id=eq.2h5v.s8.500378294444 from=translated src=- shape=3c578f6d vocab=c3a0054f
+-/
 theorem betaBoostVal_add_ofReal (d : ℕ) (t : ℝ) {τ : ℂ}
     (hτ : τ ∈ strip (Complex.I * Real.pi)) (F : AnalyticTestFn) {z : Circle}
     (hz : 0 ≤ (z : ℂ).im) :
@@ -259,7 +271,9 @@ theorem betaBoostVal_add_ofReal (d : ℕ) (t : ℝ) {τ : ℂ}
 
 /-- [T26], equation (3.5); a real boost composes with the complex one by translating the strip
 parameter.  Only this order is stated because it is the only one the source states and the only
-one that composes: `β_d(v_τ)` consumes an element of `𝓧`, not of `C_0^∞(I_+)`.-/
+one that composes: `β_d(v_τ)` consumes an element of `𝓧`, not of `C_0^∞(I_+)`.
+@isnad1 id=eq.1h4v.s6.063daf79577a from=translated src=- shape=fe17bcfe vocab=7419e0e1
+-/
 theorem beta_boostMat_betaBoost (d : ℕ) (t : ℝ) {τ : ℂ}
     (hτ : τ ∈ strip (Complex.I * Real.pi)) (F : AnalyticTestFn) :
     beta d (boostMat t) (betaBoost d τ F) = betaBoost d (τ + (t : ℂ)) F := by
@@ -285,7 +299,9 @@ theorem beta_boostMat_betaBoost (d : ℕ) (t : ℝ) {τ : ℂ}
 is inversion composed with the lower restriction, up to the conformal-dimension sign.  The
 restriction is the lower one because inversion exchanges the semicircles: the source uses
 `(F ∘ z⁻¹)|_{I_+} = F|_{I_-} ∘ z⁻¹`.  The source scalar `(-1)^{d-1}` is written `(-1)^{d+1}`, the
-same element of `ℂ` for `d : ℕ`.-/
+same element of `ℂ` for `d : ℕ`.
+@isnad1 id=eq.0h2v.s6.c6241d5ea281 from=translated src=- shape=c071b34f vocab=8d5504b4
+-/
 theorem betaBoost_I_mul_pi (d : ℕ) (F : AnalyticTestFn) :
     betaBoost d (Complex.I * Real.pi) F =
       (-1 : ℂ) ^ (d + 1) • inv (xRestrictLower F) := by

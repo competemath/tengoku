@@ -24,7 +24,9 @@ open scoped ContDiff Interval Topology
 
 noncomputable section
 
-/-- Positivity of the period used for the additive-circle Fourier model.-/
+/-- Positivity of the period used for the additive-circle Fourier model.
+@isnad1 id=fact.0h0v.s4.f61dd76c7f3a from=translated src=- shape=d0e17bf9 vocab=fe6d89ed
+-/
 instance fact_pos_two_mul_pi : Fact ((0 : ℝ) < 2 * Real.pi) :=
   ⟨by positivity⟩
 
@@ -32,12 +34,16 @@ instance fact_pos_two_mul_pi : Fact ((0 : ℝ) < 2 * Real.pi) :=
 def toAddCircle (f : TestFn) : AddCircle (2 * Real.pi) → ℂ :=
   (periodic_toAngle f).lift
 
-/-- Evaluation of the descended angle picture at a real representative.-/
+/-- Evaluation of the descended angle picture at a real representative.
+@isnad1 id=eq.0h2v.s5.34c515c23e24 from=translated src=- shape=1cbbed34 vocab=b0548b3e
+-/
 @[simp] theorem toAddCircle_coe (f : TestFn) (θ : ℝ) :
     toAddCircle f (θ : AddCircle (2 * Real.pi)) = toAngle f θ :=
   Function.Periodic.lift_coe _ _
 
-/-- The descended angle picture is continuous on the additive circle.-/
+/-- The descended angle picture is continuous on the additive circle.
+@isnad1 id=continuo.0h1v.s6.5c566395d2b9 from=translated src=- shape=ac2fd398 vocab=22687ea3
+-/
 theorem continuous_toAddCircle (f : TestFn) : Continuous (toAddCircle f) := by
   unfold toAddCircle Function.Periodic.lift
   exact (contDiff_toAngle f).continuous.quotient_liftOn' _
@@ -49,12 +55,16 @@ def angleDerivCircle (j : ℕ) (f : TestFn) : C(AddCircle (2 * Real.pi), ℂ) wh
     unfold Function.Periodic.lift
     exact (contDiff_angleDeriv j f).continuous.quotient_liftOn' _
 
-/-- Evaluation of a descended angle derivative at a real representative.-/
+/-- Evaluation of a descended angle derivative at a real representative.
+@isnad1 id=eq.0h3v.s7.c96e9b30e1d9 from=translated src=- shape=94484f35 vocab=03852cd3
+-/
 @[simp] theorem angleDerivCircle_coe (j : ℕ) (f : TestFn) (θ : ℝ) :
     angleDerivCircle j f (θ : AddCircle (2 * Real.pi)) = angleDeriv j f θ :=
   rfl
 
-/-- The zeroth descended angle derivative is the descended angle picture.-/
+/-- The zeroth descended angle derivative is the descended angle picture.
+@isnad1 id=eq.0h1v.s7.bd26869adf5f from=translated src=- shape=c23ca5ea vocab=37fcb07f
+-/
 theorem angleDerivCircle_zero (f : TestFn) :
     ⇑(angleDerivCircle 0 f) = toAddCircle f := by
   funext x
@@ -64,7 +74,9 @@ theorem angleDerivCircle_zero (f : TestFn) :
 
 /-- [T26], §3; the real-angle and additive-circle uniform norms agree. See also
 `norm_angleDerivB_eq_norm_angleDerivS1` for the literal `Circle`-carrier version of this
-statement, i.e. the sup norm over the space's own carrier `Circle` used by `TestFn`.-/
+statement, i.e. the sup norm over the space's own carrier `Circle` used by `TestFn`.
+@isnad1 id=eq.0h2v.s7.78aeed98d977 from=translated src=- shape=3b496a88 vocab=9a728ddc
+-/
 theorem norm_angleDerivB_eq (j : ℕ) (f : TestFn) :
     ‖angleDerivB j f‖ = ‖angleDerivCircle j f‖ := by
   apply le_antisymm
@@ -88,7 +100,9 @@ def angleDerivS1 (j : ℕ) (f : TestFn) : C(Circle, ℂ) :=
     (AddCircle.homeomorphCircle'.symm : C(Circle, AddCircle (2 * Real.pi)))
 
 /-- Evaluation of the `Circle`-carrier angle derivative at `Circle.exp θ` agrees with the
-real-angle derivative at `θ`.-/
+real-angle derivative at `θ`.
+@isnad1 id=eq.0h3v.s6.df3ed8291c25 from=translated src=- shape=dc3681f0 vocab=42be361b
+-/
 @[simp] theorem angleDerivS1_apply_exp (j : ℕ) (f : TestFn) (θ : ℝ) :
     angleDerivS1 j f (Circle.exp θ) = angleDeriv j f θ := by
   have hpt : AddCircle.homeomorphCircle'.symm (Circle.exp θ) = (θ : AddCircle (2 * Real.pi)) :=
@@ -97,7 +111,9 @@ real-angle derivative at `θ`.-/
     angleDerivCircle_coe]
 
 /-- Pre-composition with the homeomorphism `AddCircle (2 * π) ≃ₜ Circle` preserves the uniform
-norm: the `Circle`-carrier and additive-circle sup norms agree.-/
+norm: the `Circle`-carrier and additive-circle sup norms agree.
+@isnad1 id=eq.0h2v.s7.f643bf06cdcf from=translated src=- shape=40bd061d vocab=63845a01
+-/
 theorem norm_angleDerivS1_eq_norm_angleDerivCircle (j : ℕ) (f : TestFn) :
     ‖angleDerivS1 j f‖ = ‖angleDerivCircle j f‖ := by
   apply le_antisymm
@@ -114,7 +130,9 @@ theorem norm_angleDerivS1_eq_norm_angleDerivCircle (j : ℕ) (f : TestFn) :
     exact ContinuousMap.norm_coe_le_norm (angleDerivS1 j f) _
 
 /-- [T26], §2–§3; the filed item: the bounded real-angle sup norm agrees with the uniform norm
-of the `j`-th angle derivative on the literal `Circle` carrier used by `TestFn`.-/
+of the `j`-th angle derivative on the literal `Circle` carrier used by `TestFn`.
+@isnad1 id=eq.0h2v.s6.0e3908fa7f19 from=translated src=- shape=307f7270 vocab=cf725ae5
+-/
 theorem norm_angleDerivB_eq_norm_angleDerivS1 (j : ℕ) (f : TestFn) :
     ‖angleDerivB j f‖ = ‖angleDerivS1 j f‖ := by
   rw [norm_angleDerivB_eq, norm_angleDerivS1_eq_norm_angleDerivCircle]
@@ -128,12 +146,16 @@ def fourierCoef (f : TestFn) (n : ℤ) : ℂ :=
 def fourierCoefDeriv (j : ℕ) (f : TestFn) (n : ℤ) : ℂ :=
   fourierCoeff (angleDerivCircle j f) n
 
-/-- The derivative coefficient at order zero is the original Fourier coefficient.-/
+/-- The derivative coefficient at order zero is the original Fourier coefficient.
+@isnad1 id=eq.0h2v.s4.c6dc956038bb from=translated src=- shape=20477b1a vocab=a42bda91
+-/
 theorem fourierCoefDeriv_zero (f : TestFn) (n : ℤ) :
     fourierCoefDeriv 0 f n = fourierCoef f n := by
   rw [fourierCoefDeriv, fourierCoef, angleDerivCircle_zero]
 
-/-- The additive-circle Fourier character is the angle picture of the corresponding monomial.-/
+/-- The additive-circle Fourier character is the angle picture of the corresponding monomial.
+@isnad1 id=eq.0h2v.s7.9a95668c7ae4 from=translated src=- shape=6c93f148 vocab=a938fd43
+-/
 theorem fourier_eq_toAngle_monomial (n : ℤ) (θ : ℝ) :
     fourier n (θ : AddCircle (2 * Real.pi)) = toAngle (monomial n) θ := by
   rw [fourier_coe_apply, toAngle_monomial]
@@ -142,7 +164,9 @@ theorem fourier_eq_toAngle_monomial (n : ℤ) (θ : ℝ) :
   push_cast
   ring
 
-/-- Descending a monomial to the additive circle gives mathlib's Fourier character.-/
+/-- Descending a monomial to the additive circle gives mathlib's Fourier character.
+@isnad1 id=eq.0h1v.s7.0366429c0ddd from=translated src=- shape=1cde72e5 vocab=8b45eca3
+-/
 theorem toAddCircle_monomial (n : ℤ) :
     toAddCircle (monomial n) = fourier n := by
   funext x
@@ -150,12 +174,16 @@ theorem toAddCircle_monomial (n : ℤ) :
   intro θ
   rw [toAddCircle_coe, fourier_eq_toAngle_monomial]
 
-/-- The Fourier coefficient of a monomial is the corresponding Kronecker delta.-/
+/-- The Fourier coefficient of a monomial is the corresponding Kronecker delta.
+@isnad1 id=eq.0h2v.s4.0b267580815f from=translated src=- shape=eba2600a vocab=f5b5865f
+-/
 theorem fourierCoef_monomial (m n : ℤ) :
     fourierCoef (monomial m) n = if n = m then 1 else 0 := by
   rw [fourierCoef, toAddCircle_monomial, fourierCoeff_fourier, Pi.single_apply]
 
-/-- A Fourier coefficient of an angle derivative is bounded by its uniform norm.-/
+/-- A Fourier coefficient of an angle derivative is bounded by its uniform norm.
+@isnad1 id=le.0h3v.s5.b4645e9ee4ed from=translated src=- shape=6042e52b vocab=c4eac6ef
+-/
 theorem norm_fourierCoefDeriv_le (j : ℕ) (f : TestFn) (n : ℤ) :
     ‖fourierCoefDeriv j f n‖ ≤ ‖angleDerivB j f‖ := by
   unfold fourierCoefDeriv fourierCoeff
@@ -172,7 +200,9 @@ theorem norm_fourierCoefDeriv_le (j : ℕ) (f : TestFn) (n : ℤ) :
       exact norm_angleDeriv_le j f θ
     _ = ‖angleDerivB j f‖ := by simp
 
-/-- A Fourier coefficient is bounded by the uniform norm of the original angle function.-/
+/-- A Fourier coefficient is bounded by the uniform norm of the original angle function.
+@isnad1 id=le.0h2v.s5.e11a5a4e6c2a from=translated src=- shape=94459135 vocab=c2c67486
+-/
 theorem norm_fourierCoef_le (f : TestFn) (n : ℤ) :
     ‖fourierCoef f n‖ ≤ ‖angleDerivB 0 f‖ := by
   rw [← fourierCoefDeriv_zero f n]
@@ -199,7 +229,9 @@ private theorem hasDerivAt_angleDeriv (j : ℕ) (f : TestFn) (θ : ℝ) :
   exact ((contDiff_angleDeriv j f).differentiable (by simp)).differentiableAt.hasDerivAt
 
 /-- [T26], §3; differentiation multiplies the `n`-th Fourier coefficient by `n i`.
-This identity includes the zero mode.-/
+This identity includes the zero mode.
+@isnad1 id=eq.0h3v.s5.7f25f6fc3c5e from=translated src=- shape=604b9f8c vocab=942dc8e6
+-/
 theorem fourierCoefDeriv_succ (j : ℕ) (f : TestFn) (n : ℤ) :
     fourierCoefDeriv (j + 1) f n =
       (n : ℂ) * Complex.I * fourierCoefDeriv j f n := by
@@ -237,7 +269,9 @@ theorem fourierCoefDeriv_succ (j : ℕ) (f : TestFn) (n : ℤ) :
     ring
 
 /-- [T26], §3; the `j`-th derivative coefficient is `(n i)^j` times the original
-coefficient.-/
+coefficient.
+@isnad1 id=eq.0h3v.s5.dfa4e34a7de3 from=translated src=- shape=eeab47dc vocab=53b5d809
+-/
 theorem fourierCoefDeriv_eq (j : ℕ) (f : TestFn) (n : ℤ) :
     fourierCoefDeriv j f n =
       ((n : ℂ) * Complex.I) ^ j * fourierCoef f n := by
@@ -249,7 +283,9 @@ theorem fourierCoefDeriv_eq (j : ℕ) (f : TestFn) (n : ℤ) :
       rw [fourierCoefDeriv_succ, ih, pow_succ]
       ring
 
-/-- [T26], §3; Fourier coefficients decay with every prescribed polynomial weight.-/
+/-- [T26], §3; Fourier coefficients decay with every prescribed polynomial weight.
+@isnad1 id=le.0h3v.s6.e9546fc420e0 from=translated src=- shape=d0ae7e9c vocab=e501afc6
+-/
 theorem norm_fourierCoef_mul_pow_le (j : ℕ) (f : TestFn) (n : ℤ) :
     |(n : ℝ)| ^ j * ‖fourierCoef f n‖ ≤ ‖angleDerivB j f‖ := by
   have h := norm_fourierCoefDeriv_le j f n
@@ -257,14 +293,18 @@ theorem norm_fourierCoef_mul_pow_le (j : ℕ) (f : TestFn) (n : ℤ) :
     Complex.norm_intCast, Complex.norm_I, mul_one] at h
   exact h
 
-/-- [T26], §3; rapid decay bounded by the literal `C^j` seminorm.-/
+/-- [T26], §3; rapid decay bounded by the literal `C^j` seminorm.
+@isnad1 id=le.0h3v.s5.3019508bc234 from=translated src=- shape=f5c30547 vocab=4870248e
+-/
 theorem norm_fourierCoef_mul_pow_le_cnorm (j : ℕ) (f : TestFn) (n : ℤ) :
     |(n : ℝ)| ^ j * ‖fourierCoef f n‖ ≤ (cnorm j f : ℝ) := by
   refine (norm_fourierCoef_mul_pow_le j f n).trans ?_
   rw [cnorm_eq]
   exact Finset.single_le_sum (fun k _ => norm_nonneg (angleDerivB k f)) (by simp)
 
-/-- [T26], §3; every polynomially weighted sequence of Fourier coefficients is summable.-/
+/-- [T26], §3; every polynomially weighted sequence of Fourier coefficients is summable.
+@isnad1 id=summable.0h2v.s5.4dea316b8790 from=translated src=- shape=52ac3386 vocab=3df170d7
+-/
 theorem summable_norm_fourierCoef_mul_pow (j : ℕ) (f : TestFn) :
     Summable (fun n : ℤ => |(n : ℝ)| ^ j * ‖fourierCoef f n‖) := by
   let C : ℝ := ‖angleDerivB (j + 2) f‖
@@ -299,7 +339,9 @@ private theorem hasDerivAt_toAngle_monomial (n : ℤ) (θ : ℝ) :
     push_cast
     ring
 
-/-- The `j`-th angle derivative of a monomial is `(n i)^j exp(n θ i)`.-/
+/-- The `j`-th angle derivative of a monomial is `(n i)^j exp(n θ i)`.
+@isnad1 id=eq.0h3v.s6.835312cef684 from=translated src=- shape=2413f763 vocab=38b4fd06
+-/
 theorem angleDeriv_monomial (j : ℕ) (n : ℤ) (θ : ℝ) :
     angleDeriv j (monomial n) θ =
       ((n : ℂ) * Complex.I) ^ j *
@@ -319,7 +361,9 @@ theorem angleDeriv_monomial (j : ℕ) (n : ℤ) (θ : ℝ) :
       rw [h.deriv, toAngle_monomial, pow_succ]
       ring
 
-/-- Every angle derivative is the pointwise sum of its differentiated Fourier series.-/
+/-- Every angle derivative is the pointwise sum of its differentiated Fourier series.
+@isnad1 id=hassum.0h3v.s6.10eae8d747e6 from=translated src=- shape=7c1f52c7 vocab=6bf93a4b
+-/
 theorem hasSum_angleDeriv (j : ℕ) (f : TestFn) (θ : ℝ) :
     HasSum
       (fun n : ℤ => fourierCoef f n * ((n : ℂ) * Complex.I) ^ j *
@@ -400,7 +444,9 @@ private theorem hasSum_angleDerivB (j : ℕ) (f : TestFn) :
 def fourierPartialSum (f : TestFn) (N : ℕ) : TestFn :=
   ∑ n ∈ Finset.Icc (-(N : ℤ)) (N : ℤ), fourierCoef f n • monomial n
 
-/-- [T26], §3; the Fourier series of a test function sums to it in the `C^∞(S¹)` topology.-/
+/-- [T26], §3; the Fourier series of a test function sums to it in the `C^∞(S¹)` topology.
+@isnad1 id=hassum.0h1v.s4.16b51cf7708c from=translated src=- shape=42d46cf3 vocab=08ccce88
+-/
 theorem hasSum_fourierSeries (f : TestFn) :
     HasSum (fun n : ℤ => fourierCoef f n • monomial n) f := by
   refine (isInducing_angleDerivs.tendsto_nhds_iff).mpr ?_
@@ -415,7 +461,9 @@ theorem hasSum_fourierSeries (f : TestFn) :
     hswap]
   exact hasSum_angleDerivB j f
 
-/-- [T26], §3; symmetric Fourier partial sums converge in the `C^∞(S¹)` topology.-/
+/-- [T26], §3; symmetric Fourier partial sums converge in the `C^∞(S¹)` topology.
+@isnad1 id=tendsto.0h1v.s3.76bb52b82cec from=translated src=- shape=4ed846c1 vocab=7c070ae6
+-/
 theorem tendsto_fourierPartialSum (f : TestFn) :
     Tendsto (fourierPartialSum f) atTop (𝓝 f) := by
   have hfinset :
@@ -432,7 +480,9 @@ theorem tendsto_fourierPartialSum (f : TestFn) :
       · simpa only [Int.natCast_natAbs] using le_abs_self n
   exact (hasSum_fourierSeries f).comp hfinset
 
-/-- Convergence of symmetric Fourier partial sums in every literal `C^N` seminorm.-/
+/-- Convergence of symmetric Fourier partial sums in every literal `C^N` seminorm.
+@isnad1 id=tendsto.0h2v.s5.16cc308ce24f from=translated src=- shape=43f4b5b4 vocab=1c9cdf69
+-/
 theorem tendsto_cnorm_fourierPartialSum (N : ℕ) (f : TestFn) :
     Tendsto
       (fun M => ((cnorm N (fourierPartialSum f M - f) : NNReal) : ℝ))

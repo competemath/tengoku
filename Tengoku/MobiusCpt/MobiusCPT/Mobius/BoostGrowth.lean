@@ -21,6 +21,9 @@ open scoped ContDiff
 
 /-! ### The boost in real-angle coordinates -/
 
+/--
+@isnad1 id=eq.0h4v.s6.fba98d48e9bd from=translated src=- shape=0cf9f6f0 vocab=9293e82a
+-/
 theorem toAngle_beta_boost_eq (t : ℝ) (d : ℕ) (f : TestFn) (θ : ℝ) :
     toAngle (Mob.beta d (Mob.boost t) f) θ =
       ((boostP t θ ^ ((d : ℤ) - 1) : ℝ) : ℂ) * toAngle f (boostAngle t θ) := by
@@ -442,6 +445,9 @@ private theorem norm_iteratedFDeriv_boost_le
           · exact (pullbackC_pos N).le
           · exact (prefactorC_pos N d).le
 
+/--
+@isnad1 id=ex.0h2v.s6.1fedd59a585e from=translated src=- shape=14dfa42f vocab=fefbad8a
+-/
 theorem cnorm_boost_le (N d : ℕ) :
     ∃ A a : ℝ, 0 < A ∧ 0 < a ∧
       ∀ (t : ℝ) (f : TestFn),

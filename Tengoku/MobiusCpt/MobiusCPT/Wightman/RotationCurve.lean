@@ -40,13 +40,17 @@ def rotPullback (θ : ℝ) (f : TestFn) : TestFn :=
     rw [hrot]
     exact (ContMDiffMap.contMDiff f).comp (contMDiff_smul (rotMat (-θ)))⟩
 
-/-- Evaluation of pullback by a rotation.-/
+/-- Evaluation of pullback by a rotation.
+@isnad1 id=eq.0h3v.s5.8a676f331474 from=translated src=- shape=33841123 vocab=d52a328c
+-/
 @[simp]
 theorem rotPullback_apply (θ : ℝ) (f : TestFn) (z : Circle) :
     rotPullback θ f z = f (Mob.rot (-θ) • z) :=
   rfl
 
-/-- The conformal action of a rotation is ordinary pullback by its inverse rotation.-/
+/-- The conformal action of a rotation is ordinary pullback by its inverse rotation.
+@isnad1 id=eq.0h3v.s5.edcbafc71c4d from=translated src=- shape=0a92559e vocab=3cba71b0
+-/
 theorem beta_rot_eq_rotPullback (d : ℕ) (θ : ℝ) (f : TestFn) :
     Mob.beta d (Mob.rot θ) f = rotPullback θ f := by
   apply TestFn.ext
@@ -55,7 +59,9 @@ theorem beta_rot_eq_rotPullback (d : ℕ) (θ : ℝ) (f : TestFn) :
   simp only [one_zpow, Complex.ofReal_one, one_mul, rotMat_inv,
     rotPullback_apply, rotMat_smul, Mob.rot_smul]
 
-/-- In angle coordinates, rotation pullback is translation by `-θ`.-/
+/-- In angle coordinates, rotation pullback is translation by `-θ`.
+@isnad1 id=eq.0h2v.s4.de532fb03845 from=translated src=- shape=06b17517 vocab=1cdac827
+-/
 theorem toAngle_rotPullback (θ : ℝ) (f : TestFn) :
     toAngle (rotPullback θ f) = fun φ => toAngle f (φ - θ) := by
   funext φ
@@ -69,7 +75,9 @@ theorem toAngle_rotPullback (θ : ℝ) (f : TestFn) :
       ring
     _ = toAngle f (φ - θ) := by rfl
 
-/-- Angle derivatives are translated by rotation pullback.-/
+/-- Angle derivatives are translated by rotation pullback.
+@isnad1 id=eq.0h3v.s4.da0be736e69d from=translated src=- shape=09c26d48 vocab=29d02ed5
+-/
 theorem angleDeriv_rotPullback (j : ℕ) (θ : ℝ) (f : TestFn) :
     angleDeriv j (rotPullback θ f) = fun φ => angleDeriv j f (φ - θ) := by
   funext φ
@@ -79,7 +87,9 @@ theorem angleDeriv_rotPullback (j : ℕ) (θ : ℝ) (f : TestFn) :
   simpa only [sub_eq_add_neg] using
     congrFun (iteratedDeriv_comp_add_const j (toAngle f) (-θ)) φ
 
-/-- The sup norm of every angle derivative is invariant under rotation pullback.-/
+/-- The sup norm of every angle derivative is invariant under rotation pullback.
+@isnad1 id=eq.0h3v.s6.a6bcee551bd0 from=translated src=- shape=456be57e vocab=fef595ab
+-/
 theorem norm_angleDerivB_rotPullback (j : ℕ) (θ : ℝ) (f : TestFn) :
     ‖angleDerivB j (rotPullback θ f)‖ = ‖angleDerivB j f‖ := by
   apply le_antisymm
@@ -98,14 +108,18 @@ theorem norm_angleDerivB_rotPullback (j : ℕ) (θ : ℝ) (f : TestFn) :
     rw [angleDeriv_rotPullback] at hφ
     simpa only [add_sub_cancel_right] using hφ
 
-/-- Every `C^N` seminorm is invariant under rotation pullback.-/
+/-- Every `C^N` seminorm is invariant under rotation pullback.
+@isnad1 id=eq.0h3v.s4.e0b9e812d2dc from=translated src=- shape=9e366fc9 vocab=3cb5932e
+-/
 theorem cnorm_rotPullback (N : ℕ) (θ : ℝ) (f : TestFn) :
     cnorm N (rotPullback θ f) = cnorm N f := by
   apply NNReal.eq
   rw [cnorm_eq, cnorm_eq]
   exact Finset.sum_congr rfl (fun j _ => norm_angleDerivB_rotPullback j θ f)
 
-/-- Every `C^N` seminorm is invariant under the conformal action of a rotation.-/
+/-- Every `C^N` seminorm is invariant under the conformal action of a rotation.
+@isnad1 id=eq.0h4v.s6.dd3eaf9f7a8a from=translated src=- shape=fb7c9b53 vocab=209aa28e
+-/
 theorem cnorm_beta_rot (N d : ℕ) (θ : ℝ) (f : TestFn) :
     cnorm N (Mob.beta d (Mob.rot θ) f) = cnorm N f := by
   rw [beta_rot_eq_rotPullback, cnorm_rotPullback]
@@ -113,7 +127,9 @@ theorem cnorm_beta_rot (N d : ℕ) (θ : ℝ) (f : TestFn) :
 namespace WightmanData
 
 /-- A rotation curve whose rotating smeared product consists of pure monomial modes is the
-boundary value of a function continuous on the closed disc and holomorphic on the open disc.-/
+boundary value of a function continuous on the closed disc and holomorphic on the open disc.
+@isnad1 id=ex.1h6v.s8.5cd9c002c8ab from=translated src=- shape=e0ce6bbe vocab=49266381
+-/
 theorem exists_isDiscBoundaryClass_rotationCurve_monomial
     {𝓓 𝓕 : Type*} [AddCommGroup 𝓓] [Module ℂ 𝓓]
     (W : WightmanData Mob TestFn 𝓓 𝓕) (hW : W.IsWightmanCFT)
@@ -207,7 +223,9 @@ theorem exists_isDiscBoundaryClass_rotationCurve_monomial
 open Set Filter
 
 /-- An arbitrary rotation curve of a smeared product is the boundary value of a function
-continuous on the closed disc and holomorphic on the open disc.-/
+continuous on the closed disc and holomorphic on the open disc.
+@isnad1 id=ex.1h6v.s7.baa56191ce5e from=translated src=- shape=f22b382c vocab=46b0e018
+-/
 theorem exists_isDiscBoundaryClass_rotationCurve
     {𝓓 𝓕 : Type*} [AddCommGroup 𝓓] [Module ℂ 𝓓]
     (W : WightmanData Mob TestFn 𝓓 𝓕) (hW : W.IsWightmanCFT)

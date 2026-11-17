@@ -172,7 +172,9 @@ private theorem foldr_max_cnorm_sub_le (N : ℕ) (K : ℝ) (hK : 0 ≤ K)
             _ ≤ 2 * K := max_le hhead htail
 
 /-- [T26], Lemma 3.9, interior-growth input: the continued-boost difference grows at most
-exponentially in the real part throughout the closed strip.-/
+exponentially in the real part throughout the closed strip.
+@isnad1 id=ex.3h7v.s8.a2fee4ea6e1f from=translated src=- shape=f1e59c0b vocab=7f24d64e
+-/
 theorem lemma_3_9_interior_growth {W : WightmanData Mob TestFn 𝓓 𝓕}
     (hW : W.IsWightmanCFT) (φs : List 𝓕) (lam : W.toWightmanStruct.Compat)
     (Fs Gs : List AnalyticTestFn) (hFs : Fs.length = φs.length)

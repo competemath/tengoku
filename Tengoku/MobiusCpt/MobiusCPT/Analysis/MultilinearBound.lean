@@ -21,7 +21,9 @@ open scoped Topology
 noncomputable section
 
 /-- [T26], Lemma 3.8; a jointly continuous multilinear functional is bounded by a product of
-one common `C^N` norm over all its arguments.-/
+one common `C^N` norm over all its arguments.
+@isnad1 id=ex.1h2v.s7.e743a84cdf0a from=translated src=- shape=78e1ea7f vocab=ff95f42f
+-/
 theorem cnorm_bound_of_continuous_multilinear {k : ℕ}
     (M : MultilinearMap ℂ (fun _ : Fin k => TestFn) ℂ) (hM : Continuous M) :
     ∃ (N : ℕ) (A : ℝ), 0 < A ∧

@@ -28,7 +28,9 @@ private theorem linear_abs_sub_sq_le (a x : ℝ) :
 private theorem I_mul_pi_im : (Complex.I * (Real.pi : ℂ)).im = Real.pi := by
   simp [Complex.mul_im]
 
-/-- A Gaussian-weighted Phragmén–Lindelöf estimate on the strip of height `π`.-/
+/-- A Gaussian-weighted Phragmén–Lindelöf estimate on the strip of height `π`.
+@isnad1 id=le.6h5v.s8.bffdb4b87a85 from=translated src=- shape=8418a8ea vocab=1159f6a1
+-/
 theorem strip_max_principle {h : ℂ → ℂ}
     (hd : DiffContOnCl ℂ h (Complex.im ⁻¹' Set.Ioo 0 Real.pi))
     (hgrowth : ∃ A a : ℝ, ∀ τ ∈ strip (Complex.I * Real.pi),

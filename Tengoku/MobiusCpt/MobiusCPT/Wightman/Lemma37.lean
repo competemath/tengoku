@@ -57,7 +57,9 @@ private theorem smearedProduct_map_pow_neg_one_smul
         smul_smul, ← pow_add]
 
 /-- [T26], Lemma 3.7(ii); the analytic-core vector at `τ = iπ` maps to the reversed product with
-the conformal-dimension sign.-/
+the conformal-dimension sign.
+@isnad1 id=eq.1h4v.s8.1da204349d13 from=translated src=- shape=245c8b3e vocab=361df4a5
+-/
 theorem lemma_3_7_at_ipi (W : WightmanData Mob TestFn 𝓓 𝓕) (hW : W.IsWightmanCFT)
     (l : List (𝓕 × AnalyticTestFn)) :
     W.vtildeMap (Complex.I * Real.pi)
@@ -93,7 +95,9 @@ end WightmanData
 namespace WightmanBundle
 
 /-- [T26], Lemma 3.7(ii). Issue #9 discharges `MobiusCPT.Contract`'s
-`theorem_wanted lemma_3_7_at_ipi`, byte-identical statement text.-/
+`theorem_wanted lemma_3_7_at_ipi`, byte-identical statement text.
+@isnad1 id=eq.1h2v.s8.70bbbf7224da from=translated src=- shape=e10e0289 vocab=204b0284
+-/
 theorem lemma_3_7_at_ipi (W : WightmanBundle) (h : W.data.IsWightmanCFT)
     (l : List (W.𝓕 × AnalyticTestFn)) :
     W.data.vtildeMap (Complex.I * Real.pi)

@@ -42,29 +42,39 @@ structure AnalyticTestFn where
   flat_one : ∀ n : ℕ, iteratedFDerivWithin ℝ n toFun Oexterior 1 = 0
   flat_neg_one : ∀ n : ℕ, iteratedFDerivWithin ℝ n toFun Oexterior (-1) = 0
 
-/-- [T26], Definition 3.2; the interior of the finite exterior is open.-/
+/-- [T26], Definition 3.2; the interior of the finite exterior is open.
+@isnad1 id=isopen.0h0v.s4.3a36ae1e1bf7 from=translated src=- shape=25b03439 vocab=0018d37f
+-/
 theorem isOpen_OexteriorInterior : IsOpen OexteriorInterior := by
   change IsOpen {z : ℂ | (1 : ℝ) < ‖z‖}
   exact isOpen_lt continuous_const continuous_norm
 
-/-- [T26], Definition 3.2; the finite exterior is closed.-/
+/-- [T26], Definition 3.2; the finite exterior is closed.
+@isnad1 id=isclosed.0h0v.s4.67bc2a36f3a9 from=translated src=- shape=25b03439 vocab=3d9ae57e
+-/
 theorem isClosed_Oexterior : IsClosed Oexterior := by
   change IsClosed {z : ℂ | (1 : ℝ) ≤ ‖z‖}
   exact isClosed_le continuous_const continuous_norm
 
-/-- [T26], Definition 3.2; the finite interior is contained in the finite exterior.-/
+/-- [T26], Definition 3.2; the finite interior is contained in the finite exterior.
+@isnad1 id=le.0h0v.s2.8bf75ec13d15 from=translated src=- shape=836e6cbb vocab=4dcdde35
+-/
 theorem OexteriorInterior_subset_Oexterior : OexteriorInterior ⊆ Oexterior := by
   intro z hz
   have hz' : (1 : ℝ) < ‖z‖ := hz
   exact hz'.le
 
-/-- [T26], Definition 3.2; the unit circle is contained in the finite exterior.-/
+/-- [T26], Definition 3.2; the unit circle is contained in the finite exterior.
+@isnad1 id=mem.0h1v.s6.9491c3852df9 from=translated src=- shape=a19c4d96 vocab=641026c7
+-/
 theorem circle_subset_Oexterior : ∀ z : Circle, (z : ℂ) ∈ Oexterior := by
   intro z
   change (1 : ℝ) ≤ ‖(z : ℂ)‖
   rw [Circle.norm_coe]
 
-/-- [T26], Definition 3.2; the finite exterior has the unique differentiability property.-/
+/-- [T26], Definition 3.2; the finite exterior has the unique differentiability property.
+@isnad1 id=uniquedi.0h0v.s5.238b6c249d94 from=translated src=- shape=54c8eceb vocab=4f56bdaa
+-/
 theorem uniqueDiffOn_Oexterior : UniqueDiffOn ℝ Oexterior := by
   intro z hz
   change (1 : ℝ) ≤ ‖z‖ at hz
@@ -99,7 +109,9 @@ theorem uniqueDiffOn_Oexterior : UniqueDiffOn ℝ Oexterior := by
   exact (uniqueDiffWithinAt_convex (convex_closedBall (2 * z) 1) hinterior
     (subset_closure hzball)).mono hball
 
-/-- The circle exponential, regarded as a complex-valued real map, is smooth.-/
+/-- The circle exponential, regarded as a complex-valued real map, is smooth.
+@isnad1 id=contdiff.0h0v.s7.55069388a719 from=translated src=- shape=84399fc0 vocab=30662176
+-/
 theorem contDiff_circle_map : ContDiff ℝ ∞ (fun θ : ℝ => (Circle.exp θ : ℂ)) := by
   rw [show (fun θ : ℝ => (Circle.exp θ : ℂ)) =
       (fun θ : ℝ => Complex.exp ((θ : ℂ) * Complex.I)) by
@@ -109,7 +121,9 @@ theorem contDiff_circle_map : ContDiff ℝ ∞ (fun θ : ℝ => (Circle.exp θ :
 
 /-- A crude common bound for the iterated real derivatives of the circle exponential at a point.
 Only its existence is used: in the composition estimate below the outer constant is `0`, so the
-inner constant is irrelevant and no closed form for these derivatives is needed.-/
+inner constant is irrelevant and no closed form for these derivatives is needed.
+@isnad1 id=ex.0h2v.s8.c89e2486a8a0 from=translated src=- shape=6b79a4c1 vocab=73b38af6
+-/
 theorem exists_bound_iteratedFDeriv_circle_map (n : ℕ) (θ : ℝ) :
     ∃ D : ℝ, 1 ≤ D ∧ ∀ i : ℕ, 1 ≤ i → i ≤ n →
       ‖iteratedFDeriv ℝ i (fun θ : ℝ => (Circle.exp θ : ℂ)) θ‖ ≤ D ^ i := by
@@ -136,7 +150,9 @@ theorem exists_bound_iteratedFDeriv_circle_map (n : ℕ) (θ : ℝ) :
           ‖iteratedFDeriv ℝ j (fun θ : ℝ => (Circle.exp θ : ℂ)) θ‖) ^ i :=
         le_self_pow₀ hD1 (by omega)
 
-/-- [T26], Definition 3.2; an analytic test function restricts smoothly to the circle angle.-/
+/-- [T26], Definition 3.2; an analytic test function restricts smoothly to the circle angle.
+@isnad1 id=contdiff.0h1v.s7.198d2eae09bf from=translated src=- shape=ddf94565 vocab=462311ee
+-/
 theorem AnalyticTestFn.contDiff_boundary (F : AnalyticTestFn) :
     ContDiff ℝ ∞ (fun θ : ℝ => F.toFun (Circle.exp θ)) := by
   have hmaps : MapsTo (fun θ : ℝ => (Circle.exp θ : ℂ)) Set.univ Oexterior := by
@@ -148,7 +164,9 @@ theorem AnalyticTestFn.contDiff_boundary (F : AnalyticTestFn) :
   rw [heq]
   exact contDiffOn_univ.mp hcomp
 
-/-- [T26], Definition 3.2; the analytic boundary restriction is periodic.-/
+/-- [T26], Definition 3.2; the analytic boundary restriction is periodic.
+@isnad1 id=periodic.0h1v.s6.769a5d701b4c from=translated src=- shape=77a9ab35 vocab=caca0422
+-/
 theorem AnalyticTestFn.periodic_boundary (F : AnalyticTestFn) :
     Function.Periodic (fun θ : ℝ => F.toFun (Circle.exp θ)) (2 * Real.pi) := by
   intro θ
@@ -158,12 +176,16 @@ theorem AnalyticTestFn.periodic_boundary (F : AnalyticTestFn) :
 noncomputable def xRestrictS1 (F : AnalyticTestFn) : TestFn :=
   Classical.choose (exists_toAngle_eq F.contDiff_boundary F.periodic_boundary)
 
-/-- [T26], Definition 3.2; the angle description of the restriction to `S¹`.-/
+/-- [T26], Definition 3.2; the angle description of the restriction to `S¹`.
+@isnad1 id=eq.0h1v.s6.3ade05f3ad51 from=translated src=- shape=c98a0c39 vocab=1c8ae5f7
+-/
 theorem toAngle_xRestrictS1 (F : AnalyticTestFn) :
     toAngle (xRestrictS1 F) = fun θ : ℝ => F.toFun (Circle.exp θ) := by
   exact (Classical.choose_spec (exists_toAngle_eq F.contDiff_boundary F.periodic_boundary))
 
-/-- [T26], Definition 3.2; pointwise evaluation of the restriction to `S¹`.-/
+/-- [T26], Definition 3.2; pointwise evaluation of the restriction to `S¹`.
+@isnad1 id=eq.0h2v.s6.53f521bf4c60 from=translated src=- shape=52bbea6f vocab=707c9265
+-/
 theorem xRestrictS1_apply (F : AnalyticTestFn) (z : Circle) :
     xRestrictS1 F z = F.toFun z := by
   obtain ⟨θ, hθ⟩ := Circle.exp_surjective z
@@ -172,7 +194,9 @@ theorem xRestrictS1_apply (F : AnalyticTestFn) (z : Circle) :
   rw [hθ] at h
   exact h
 
-/-- The analytic boundary function is flat whenever the circle exponential reaches `±1`.-/
+/-- The analytic boundary function is flat whenever the circle exponential reaches `±1`.
+@isnad1 id=eq.1h3v.s8.91a11bc17e58 from=translated src=- shape=1eefb53a vocab=3a14c790
+-/
 theorem AnalyticTestFn.iteratedDeriv_boundary_eq_zero (F : AnalyticTestFn) (n : ℕ) {θ : ℝ}
     (hθ : (Circle.exp θ : ℂ) = 1 ∨ (Circle.exp θ : ℂ) = -1) :
     iteratedDeriv n (fun θ : ℝ => F.toFun (Circle.exp θ)) θ = 0 := by
@@ -215,7 +239,9 @@ theorem AnalyticTestFn.iteratedDeriv_boundary_eq_zero (F : AnalyticTestFn) (n : 
   rw [heq]
   exact hzero
 
-/-- [T26], Definition 3.2; the restriction to the circle is endpoint-flat.-/
+/-- [T26], Definition 3.2; the restriction to the circle is endpoint-flat.
+@isnad1 id=isendpoi.0h1v.s2.8ffec4ee9904 from=translated src=- shape=76a08d12 vocab=5c100dab
+-/
 theorem AnalyticTestFn.isEndpointFlat (F : AnalyticTestFn) :
     IsEndpointFlat (xRestrictS1 F) := by
   refine ⟨fun n => ?_, fun n => ?_⟩
@@ -236,15 +262,21 @@ noncomputable def xRestrictUpper (F : AnalyticTestFn) : TestFn :=
 noncomputable def xRestrictLower (F : AnalyticTestFn) : TestFn :=
   splitLower (xRestrictS1 F) F.isEndpointFlat
 
-/-- [T26], Definition 3.2; the upper restriction has upper semicircle support.-/
+/-- [T26], Definition 3.2; the upper restriction has upper semicircle support.
+@isnad1 id=suppuppe.0h1v.s2.c407c1ae55a1 from=translated src=- shape=76a08d12 vocab=489ca998
+-/
 theorem xRestrictUpper_supp (F : AnalyticTestFn) : SuppUpper (xRestrictUpper F) := by
   exact suppUpper_splitUpper (xRestrictS1 F) F.isEndpointFlat
 
-/-- [T26], Definition 3.2; the lower restriction has lower semicircle support.-/
+/-- [T26], Definition 3.2; the lower restriction has lower semicircle support.
+@isnad1 id=supplowe.0h1v.s2.1a61606705ae from=translated src=- shape=76a08d12 vocab=687185d4
+-/
 theorem xRestrictLower_supp (F : AnalyticTestFn) : SuppLower (xRestrictLower F) := by
   exact suppLower_splitLower (xRestrictS1 F) F.isEndpointFlat
 
-/-- [T26], Definition 3.2; the two semicircle restrictions sum to the circle restriction.-/
+/-- [T26], Definition 3.2; the two semicircle restrictions sum to the circle restriction.
+@isnad1 id=eq.0h1v.s4.5427510590bb from=translated src=- shape=c45662b3 vocab=ec9d6d85
+-/
 theorem xRestrict_split (F : AnalyticTestFn) :
     xRestrictS1 F = xRestrictUpper F + xRestrictLower F := by
   exact (splitUpper_add_splitLower (xRestrictS1 F) F.isEndpointFlat).symm
@@ -258,16 +290,22 @@ representative's arbitrary values and carries no meaning.-/
 def AnalyticTestFn.evalSphere (F : AnalyticTestFn) : OnePoint ℂ → ℂ :=
   fun p => p.elim 0 F.toFun
 
-/-- [T26], Definition 3.2; evaluation of `𝓧` at the point at infinity.-/
+/-- [T26], Definition 3.2; evaluation of `𝓧` at the point at infinity.
+@isnad1 id=eq.0h1v.s3.d472b0c3bd39 from=translated src=- shape=0d507416 vocab=92689008
+-/
 @[simp] theorem AnalyticTestFn.evalSphere_infty (F : AnalyticTestFn) :
     F.evalSphere OnePoint.infty = 0 := rfl
 
-/-- [T26], Definition 3.2; evaluation of `𝓧` at a finite point of the sphere.-/
+/-- [T26], Definition 3.2; evaluation of `𝓧` at a finite point of the sphere.
+@isnad1 id=eq.0h2v.s3.bd37ea8b5cca from=translated src=- shape=50a971f2 vocab=7284bbaf
+-/
 @[simp] theorem AnalyticTestFn.evalSphere_coe (F : AnalyticTestFn) (w : ℂ) :
     F.evalSphere (w : OnePoint ℂ) = F.toFun w := rfl
 
 /-- [T26], Definition 3.2; on `𝕆` the sphere evaluation depends only on the values of the
-representative there, hence — with `eqOn_Oexterior_of_xRestrictS1_eq` — only on `F|_{S¹}`.-/
+representative there, hence — with `eqOn_Oexterior_of_xRestrictS1_eq` — only on `F|_{S¹}`.
+@isnad1 id=eq.2h3v.s5.5bdb4c119c96 from=translated src=- shape=fa39ccf3 vocab=539f8134
+-/
 theorem AnalyticTestFn.evalSphere_congr {F G : AnalyticTestFn}
     (h : Set.EqOn F.toFun G.toFun Oexterior) {p : OnePoint ℂ} (hp : p ∈ Oset) :
     F.evalSphere p = G.evalSphere p := by
@@ -278,7 +316,9 @@ theorem AnalyticTestFn.evalSphere_congr {F G : AnalyticTestFn}
     exact h hw
 
 /-- [T26], Definition 3.2; `F` is holomorphic at `∞` with value `0`: the inverted function
-extends holomorphically over the origin.-/
+extends holomorphically over the origin.
+@isnad1 id=differen.0h1v.s6.af9e4ab6f410 from=translated src=- shape=de8ae920 vocab=df5a350a
+-/
 theorem AnalyticTestFn.differentiableAt_inv (F : AnalyticTestFn) :
     DifferentiableAt ℂ (fun w : ℂ => if w = 0 then 0 else F.toFun w⁻¹) 0 := by
   let q : ℂ → ℂ := fun w => if w = 0 then 0 else F.toFun w⁻¹
@@ -329,11 +369,16 @@ which is what makes the restriction `F ↦ F|_{S¹}` injective on `𝕆`.-/
 noncomputable def AnalyticTestFn.invExt (F : AnalyticTestFn) : ℂ → ℂ :=
   fun w => if w = 0 then 0 else F.toFun w⁻¹
 
+/--
+@isnad1 id=eq.1h2v.s4.fc26ad7f3bf3 from=translated src=- shape=13073f1a vocab=e9033c97
+-/
 theorem AnalyticTestFn.invExt_of_ne {F : AnalyticTestFn} {w : ℂ} (hw : w ≠ 0) :
     F.invExt w = F.toFun w⁻¹ := by
   rw [AnalyticTestFn.invExt, ite_eq_right hw]
 
-/-- The inverted function is holomorphic inside the unit disc and continuous up to its closure.-/
+/-- The inverted function is holomorphic inside the unit disc and continuous up to its closure.
+@isnad1 id=diffcont.0h1v.s5.5eeb88b6ffbf from=translated src=- shape=4ee979c2 vocab=2203fb99
+-/
 theorem AnalyticTestFn.diffContOnCl_invExt (F : AnalyticTestFn) :
     DiffContOnCl ℂ F.invExt (Metric.ball (0 : ℂ) 1) := by
   constructor
@@ -392,7 +437,9 @@ theorem AnalyticTestFn.diffContOnCl_invExt (F : AnalyticTestFn) :
 class whose circle restrictions agree agree at every point of `𝕆`.  The source states this (via
 Schwarz reflection and the identity theorem) in order to regard `𝓧` as a subset of `C^∞(S¹)`; here
 it is proved from the maximum modulus principle applied to the inverted functions, and it is what
-makes the values of the representative `toFun` inside the open unit disc irrelevant.-/
+makes the values of the representative `toFun` inside the open unit disc irrelevant.
+@isnad1 id=eqon.1h2v.s4.b62f24b7f4ad from=translated src=- shape=ab91b775 vocab=48d70b35
+-/
 theorem eqOn_Oexterior_of_xRestrictS1_eq {F G : AnalyticTestFn}
     (h : xRestrictS1 F = xRestrictS1 G) : Set.EqOn F.toFun G.toFun Oexterior := by
   have hfront : Set.EqOn F.invExt G.invExt (frontier (Metric.ball (0 : ℂ) 1)) := by

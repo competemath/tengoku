@@ -27,7 +27,9 @@ namespace MobiusCPT
 open Filter TopologicalSpace
 open scoped ContDiff Topology
 
-/-- [T26], §2.2; the family of all angle derivatives separates test functions.-/
+/-- [T26], §2.2; the family of all angle derivatives separates test functions.
+@isnad1 id=injectiv.0h0v.s8.1eca2e20fb56 from=translated src=- shape=85e2a3cd vocab=27da0847
+-/
 theorem angleDerivsₗ_injective : Function.Injective ⇑angleDerivsₗ := by
   intro f h hfh
   apply toAngle_injective
@@ -41,12 +43,16 @@ theorem angleDerivsₗ_injective : Function.Injective ⇑angleDerivsₗ := by
     _ = toAngle h θ := by
       rw [angleDerivB_apply, angleDeriv, iteratedDeriv_zero]
 
-/-- [T26], §2.2; the test-function topology is induced by all angle derivatives.-/
+/-- [T26], §2.2; the test-function topology is induced by all angle derivatives.
+@isnad1 id=isinduci.0h0v.s8.6be5c142155f from=translated src=- shape=85e2a3cd vocab=30863ff5
+-/
 theorem isInducing_angleDerivs : Topology.IsInducing ⇑angleDerivsₗ := by
   exact ⟨rfl⟩
 
 /-- [T26], §2.2; uniform limits of every iterated derivative remain smooth, with the
-prescribed limiting derivatives.-/
+prescribed limiting derivatives.
+@isnad1 id=and.2h2v.s7.bf37a57e8609 from=translated src=- shape=3c7f4452 vocab=8e17ead8
+-/
 theorem contDiff_of_tendstoUniformly_iteratedDeriv
     {u : ℕ → ℝ → ℂ} {g : ℕ → ℝ → ℂ}
     (hsmooth : ∀ n, ContDiff ℝ ∞ (u n))
@@ -82,7 +88,9 @@ theorem contDiff_of_tendstoUniformly_iteratedDeriv
   exact fun x ↦ (hderiv j x).differentiableAt
 
 /-- [T26], §2.2; compatible uniform limits of all angle derivatives again come from a
-smooth test function, so the angle-derivative image is closed.-/
+smooth test function, so the angle-derivative image is closed.
+@isnad1 id=isclosed.0h0v.s8.db3e78ff3369 from=translated src=- shape=23fe4467 vocab=c0647abc
+-/
 theorem isClosed_range_angleDerivs : IsClosed (Set.range ⇑angleDerivsₗ) := by
   let _ : IsCompletelyMetrizableSpace
       (ℕ → BoundedContinuousFunction ℝ ℂ) := inferInstance
@@ -141,20 +149,26 @@ theorem isClosed_range_angleDerivs : IsClosed (Set.range ⇑angleDerivsₗ) := b
     _ = F j θ := rfl
 
 /-- [T26], §2.2; `C∞(S¹)` is completely metrizable because its derivative image is
-closed in a countable product of Banach spaces.-/
+closed in a countable product of Banach spaces.
+@isnad1 id=iscomple.0h0v.s1.8ea3e2275c70 from=translated src=- shape=49959d42 vocab=5da7a7b8
+-/
 theorem isCompletelyMetrizableSpace_testFn : IsCompletelyMetrizableSpace TestFn := by
   have hclosedEmbedding : Topology.IsClosedEmbedding
       (angleDerivsₗ : TestFn → ℕ → BoundedContinuousFunction ℝ ℂ) :=
     ⟨⟨isInducing_angleDerivs, angleDerivsₗ_injective⟩, isClosed_range_angleDerivs⟩
   exact hclosedEmbedding.IsCompletelyMetrizableSpace
 
-/-- [T26], §2.2 and [Trèves, §33]; the Fréchet test-function space is a Baire space.-/
+/-- [T26], §2.2 and [Trèves, §33]; the Fréchet test-function space is a Baire space.
+@isnad1 id=bairespa.0h0v.s1.d53f9cc316da from=translated src=- shape=49959d42 vocab=fb258967
+-/
 instance testFnBaireSpace : BaireSpace TestFn := by
   let _ : IsCompletelyMetrizableSpace TestFn := isCompletelyMetrizableSpace_testFn
   exact BaireSpace.of_completelyPseudoMetrizable
 
 /-- [T26], §2.2 and [CRTT25], Definition 2.5; the complex test-function space is
-barrelled.-/
+barrelled.
+@isnad1 id=barrelle.0h0v.s3.4adf28f0d838 from=translated src=- shape=25b03439 vocab=4fbc212d
+-/
 instance testFnBarrelledSpace : BarrelledSpace ℂ TestFn := by
   infer_instance
 

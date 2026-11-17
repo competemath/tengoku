@@ -17,7 +17,9 @@ open scoped ContDiff Topology
 noncomputable section
 
 /-- [T26], eq. (3.5); on the unit circle the conformal scalar of the complex boost is the
-pole-free product `v_{-τ}`-denominator times `v_{-τ}`-numerator over `z`.-/
+pole-free product `v_{-τ}`-denominator times `v_{-τ}`-numerator over `z`.
+@isnad1 id=eq.0h2v.s8.a3e3f437aa3c from=translated src=- shape=aea9b59e vocab=bd84333f
+-/
 theorem cosh_add_re_mul_sinh_div (τ : ℂ) (z : Circle) :
     Complex.cosh τ + ((z : ℂ).re : ℂ) * Complex.sinh τ =
       cden (-τ) z * cnum (-τ) z / (z : ℂ) := by
@@ -36,7 +38,9 @@ theorem cosh_add_re_mul_sinh_div (τ : ℂ) (z : Circle) :
 
 /-- [T26], Definition 3.5; on the closed strip `0 ≤ Im τ ≤ π` the numerator of `v_{-τ}` does not
 vanish on the closed upper semicircle: it dominates the denominator in modulus, and the two cannot
-vanish together.-/
+vanish together.
+@isnad1 id=ne.3h2v.s7.fb7817e68b86 from=translated src=- shape=5696c72c vocab=fdd5251d
+-/
 theorem cnum_neg_ne_zero_of_upper {τ : ℂ} (h₀ : 0 ≤ τ.im) (h₁ : τ.im ≤ Real.pi)
     {z : Circle} (hz : 0 ≤ (z : ℂ).im) : cnum (-τ) z ≠ 0 := by
   intro hnum
@@ -48,7 +52,9 @@ theorem cnum_neg_ne_zero_of_upper {τ : ℂ} (h₀ : 0 ≤ τ.im) (h₁ : τ.im 
   exact (not_and_cnum_cden_eq_zero (-τ) z) ⟨hnum, hden⟩
 
 /-- [T26], Definition 3.5; the ratio that the removable-singularity extension is built on takes
-values in the closed unit disc.-/
+values in the closed unit disc.
+@isnad1 id=le.3h2v.s8.e0a5866b6d83 from=translated src=- shape=0141ffe1 vocab=2a8af540
+-/
 theorem norm_cden_div_cnum_le_one {τ : ℂ} (h₀ : 0 ≤ τ.im) (h₁ : τ.im ≤ Real.pi)
     {z : Circle} (hz : 0 ≤ (z : ℂ).im) :
     ‖cden (-τ) z / cnum (-τ) z‖ ≤ 1 := by
@@ -56,14 +62,18 @@ theorem norm_cden_div_cnum_le_one {τ : ℂ} (h₀ : 0 ≤ τ.im) (h₁ : τ.im 
   apply (div_le_iff₀ (norm_pos_iff.mpr (cnum_neg_ne_zero_of_upper h₀ h₁ hz))).2
   simpa using norm_cden_neg_le_norm_cnum_neg h₀ h₁ hz
 
-/-- [T26], Definition 3.5; the modulus bound is equivalently membership in the closed unit disc.-/
+/-- [T26], Definition 3.5; the modulus bound is equivalently membership in the closed unit disc.
+@isnad1 id=mem.3h2v.s8.802cea9ff459 from=translated src=- shape=03c5b75f vocab=fd17435b
+-/
 theorem cden_div_cnum_mem_closedBall {τ : ℂ} (h₀ : 0 ≤ τ.im) (h₁ : τ.im ≤ Real.pi)
     {z : Circle} (hz : 0 ≤ (z : ℂ).im) :
     cden (-τ) z / cnum (-τ) z ∈ Metric.closedBall (0 : ℂ) 1 := by
   rw [Metric.mem_closedBall, dist_zero_right]
   exact norm_cden_div_cnum_le_one h₀ h₁ hz
 
-/-- [T26], §3; the complex boost fixes the endpoint represented by `1`.-/
+/-- [T26], §3; the complex boost fixes the endpoint represented by `1`.
+@isnad1 id=eq.1h2v.s8.cb97a59df990 from=translated src=- shape=b5e18f97 vocab=d8bd1f35
+-/
 theorem cden_div_cnum_of_coe_eq_one {τ : ℂ} {z : Circle} (hz : (z : ℂ) = 1) :
     cden (-τ) z / cnum (-τ) z = 1 := by
   rw [cnum_neg, cden_neg, hz]
@@ -71,7 +81,9 @@ theorem cden_div_cnum_of_coe_eq_one {τ : ℂ} {z : Circle} (hz : (z : ℂ) = 1)
   rw [Complex.cosh_add_sinh, Complex.sinh_add_cosh]
   exact div_self (Complex.exp_ne_zero _)
 
-/-- [T26], §3; the complex boost fixes the endpoint represented by `-1`.-/
+/-- [T26], §3; the complex boost fixes the endpoint represented by `-1`.
+@isnad1 id=eq.1h2v.s8.f27f23fca5f1 from=translated src=- shape=15669f3e vocab=d8bd1f35
+-/
 theorem cden_div_cnum_of_coe_eq_neg_one {τ : ℂ} {z : Circle} (hz : (z : ℂ) = -1) :
     cden (-τ) z / cnum (-τ) z = -1 := by
   rw [cnum_neg, cden_neg, hz]
@@ -97,18 +109,24 @@ forming the raw quotient.-/
 noncomputable def AnalyticTestFn.invQuot (F : AnalyticTestFn) : ℂ → ℂ :=
   Function.update (fun w => F.invExt w / w) 0 (deriv F.invExt 0)
 
-/-- [T26], Definition 3.5; away from the origin `invQuot` is its literal quotient.-/
+/-- [T26], Definition 3.5; away from the origin `invQuot` is its literal quotient.
+@isnad1 id=eq.1h2v.s5.2b4b4a174699 from=translated src=- shape=b08ee6d6 vocab=4b4f3f2a
+-/
 theorem AnalyticTestFn.invQuot_of_ne (F : AnalyticTestFn) {w : ℂ} (hw : w ≠ 0) :
     F.invQuot w = F.invExt w / w := by
   simp [AnalyticTestFn.invQuot, hw]
 
-/-- [T26], Definition 3.5; the value of `invQuot` at the removable singularity is the derivative.-/
+/-- [T26], Definition 3.5; the value of `invQuot` at the removable singularity is the derivative.
+@isnad1 id=eq.0h1v.s5.eec05edd7be3 from=translated src=- shape=07b2fe90 vocab=0b494e20
+-/
 theorem AnalyticTestFn.invQuot_zero (F : AnalyticTestFn) :
     F.invQuot 0 = deriv F.invExt 0 := by
   simp [AnalyticTestFn.invQuot]
 
 /-- [T26], Definition 3.5; multiplying back by `w` recovers `F(w⁻¹)` everywhere, including at
-the origin where both sides are `0`.-/
+the origin where both sides are `0`.
+@isnad1 id=eq.0h2v.s4.e99153d7f570 from=translated src=- shape=a3c0a8ae vocab=62b179e1
+-/
 theorem AnalyticTestFn.mul_invQuot (F : AnalyticTestFn) (w : ℂ) :
     w * F.invQuot w = F.invExt w := by
   by_cases hw : w = 0
@@ -118,13 +136,17 @@ theorem AnalyticTestFn.mul_invQuot (F : AnalyticTestFn) (w : ℂ) :
     field_simp
 
 /-- [T26], Definition 3.5; away from the origin the divided function is the literal quotient
-`F(w⁻¹)/w`.-/
+`F(w⁻¹)/w`.
+@isnad1 id=eq.1h2v.s5.c7d3bc9dd839 from=translated src=- shape=bc18bc6f vocab=b8960fe8
+-/
 theorem AnalyticTestFn.invQuot_apply (F : AnalyticTestFn) {w : ℂ} (hw : w ≠ 0) :
     F.invQuot w = F.toFun w⁻¹ / w := by
   rw [F.invQuot_of_ne hw, F.invExt_of_ne hw]
 
 /-- [T26], Definition 3.5; the divided inverted function is holomorphic on the open unit disc:
-the singularity at the origin is removable because `F(∞) = 0`.-/
+the singularity at the origin is removable because `F(∞) = 0`.
+@isnad1 id=differen.0h1v.s6.2a3517737052 from=translated src=- shape=4ee979c2 vocab=93923cb4
+-/
 theorem AnalyticTestFn.differentiableOn_invQuot (F : AnalyticTestFn) :
     DifferentiableOn ℂ F.invQuot (Metric.ball (0 : ℂ) 1) := by
   let s : Set ℂ := Metric.ball (0 : ℂ) 1
@@ -159,7 +181,9 @@ theorem AnalyticTestFn.differentiableOn_invQuot (F : AnalyticTestFn) :
     ⟨hpunct, hcont⟩
 
 /-- [T26], Definition 3.2 and 3.5; the divided inverted function is smooth up to the boundary of
-the unit disc, which is where the complex boost reads it.-/
+the unit disc, which is where the complex boost reads it.
+@isnad1 id=contdiff.0h1v.s5.4049df9ae5ea from=translated src=- shape=300e0554 vocab=59b42aef
+-/
 theorem AnalyticTestFn.contDiffOn_invQuot (F : AnalyticTestFn) :
     ContDiffOn ℝ ∞ F.invQuot (Metric.closedBall (0 : ℂ) 1) := by
   intro w hw

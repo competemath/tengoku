@@ -27,14 +27,18 @@ def upperArc : Set Circle := {z | 0 < (z : ℂ).im}
 /-- [T26], §3; the open lower semicircle `I₋ = {z ∈ S¹ : Im z < 0}`.-/
 def lowerArc : Set Circle := {z | (z : ℂ).im < 0}
 
-/-- [T26], §3; the upper semicircle is open in the circle.-/
+/-- [T26], §3; the upper semicircle is open in the circle.
+@isnad1 id=isopen.0h0v.s2.2daf90c76008 from=translated src=- shape=25b03439 vocab=b91005b9
+-/
 theorem isOpen_upperArc : IsOpen upperArc := by
   change IsOpen {z : Circle | 0 < (z : ℂ).im}
   exact isOpen_lt (continuous_const : Continuous (fun _ : Circle => (0 : ℝ)))
     (Complex.continuous_im.comp
       (continuous_subtype_val : Continuous (fun z : Circle => (z : ℂ))))
 
-/-- [T26], §3; the lower semicircle is open in the circle.-/
+/-- [T26], §3; the lower semicircle is open in the circle.
+@isnad1 id=isopen.0h0v.s2.3691ca9d414c from=translated src=- shape=25b03439 vocab=15e74151
+-/
 theorem isOpen_lowerArc : IsOpen lowerArc := by
   change IsOpen {z : Circle | (z : ℂ).im < 0}
   exact isOpen_lt
@@ -47,7 +51,9 @@ private theorem circleExp_im (θ : ℝ) : (Circle.exp θ : ℂ).im = Real.sin θ
   rw [Circle.coe_exp, Complex.exp_ofReal_mul_I_im]
 
 /-- [T26], §3; a real angle lies in the upper semicircle exactly when one of its representatives
-lies in the open interval `(0, π)`.-/
+lies in the open interval `(0, π)`.
+@isnad1 id=iff.0h1v.s6.24d25630abed from=translated src=- shape=02656259 vocab=a300d376
+-/
 theorem mem_upperArc_circleExp {θ : ℝ} :
     Circle.exp θ ∈ upperArc ↔
       ∃ k : ℤ, θ - 2 * Real.pi * (k : ℝ) ∈ Set.Ioo 0 Real.pi := by
@@ -108,7 +114,9 @@ theorem mem_upperArc_circleExp {θ : ℝ} :
     exact hsinθ
 
 /-- [T26], §3; a real angle lies in the lower semicircle exactly when one of its representatives
-lies in the open interval `(π, 2π)`.-/
+lies in the open interval `(π, 2π)`.
+@isnad1 id=iff.0h1v.s6.8f94cae0bb29 from=translated src=- shape=dcfa7cf0 vocab=f5dd75c8
+-/
 theorem mem_lowerArc_circleExp {θ : ℝ} :
     Circle.exp θ ∈ lowerArc ↔
       ∃ k : ℤ, θ - 2 * Real.pi * (k : ℝ) ∈ Set.Ioo Real.pi (2 * Real.pi) := by
@@ -166,7 +174,9 @@ def SuppUpper (f : TestFn) : Prop := ∀ z ∈ lowerArc, f z = 0
 /-- [T26], §3; the lower support predicate means vanishing on the opposite open semicircle.-/
 def SuppLower (f : TestFn) : Prop := ∀ z ∈ upperArc, f z = 0
 
-/-- [T26], §3; the upper support predicate in the angle picture.-/
+/-- [T26], §3; the upper support predicate in the angle picture.
+@isnad1 id=iff.0h1v.s5.d45693b934ef from=translated src=- shape=f3387e6e vocab=6164fa0a
+-/
 theorem suppUpper_iff_angle (f : TestFn) :
     SuppUpper f ↔ ∀ θ ∈ Set.Ioo Real.pi (2 * Real.pi), toAngle f θ = 0 := by
   constructor
@@ -193,7 +203,9 @@ theorem suppUpper_iff_angle (f : TestFn) :
     rw [hexp] at hzero
     exact hzero
 
-/-- [T26], §3; the lower support predicate in the angle picture.-/
+/-- [T26], §3; the lower support predicate in the angle picture.
+@isnad1 id=iff.0h1v.s5.07dabf1a6360 from=translated src=- shape=84a5a3ff vocab=eb62ae86
+-/
 theorem suppLower_iff_angle (f : TestFn) :
     SuppLower f ↔ ∀ θ ∈ Set.Ioo 0 Real.pi, toAngle f θ = 0 := by
   constructor
@@ -220,55 +232,75 @@ theorem suppLower_iff_angle (f : TestFn) :
     rw [hexp] at hzero
     exact hzero
 
-/-- [T26], §3; the upper support predicate is closed under zero.-/
+/-- [T26], §3; the upper support predicate is closed under zero.
+@isnad1 id=suppuppe.0h0v.s4.180808591d82 from=translated src=- shape=e590c3e1 vocab=c83fd74a
+-/
 theorem suppUpper_zero : SuppUpper (0 : TestFn) := by
   intro z hz
   simp
 
-/-- [T26], §3; the upper support predicate is closed under addition.-/
+/-- [T26], §3; the upper support predicate is closed under addition.
+@isnad1 id=suppuppe.2h2v.s4.697117e8931c from=translated src=- shape=255dce7b vocab=ba1cbdab
+-/
 theorem suppUpper_add {f g : TestFn} (hf : SuppUpper f) (hg : SuppUpper g) :
     SuppUpper (f + g) := by
   intro z hz
   simp [hf z hz, hg z hz]
 
-/-- [T26], §3; the upper support predicate is closed under complex scalar multiplication.-/
+/-- [T26], §3; the upper support predicate is closed under complex scalar multiplication.
+@isnad1 id=suppuppe.1h2v.s4.614ede574668 from=translated src=- shape=a32eadfd vocab=127c2ffc
+-/
 theorem suppUpper_smul (c : ℂ) {f : TestFn} (hf : SuppUpper f) : SuppUpper (c • f) := by
   intro z hz
   simp [hf z hz]
 
-/-- [T26], §3; the upper support predicate is closed under negation.-/
+/-- [T26], §3; the upper support predicate is closed under negation.
+@isnad1 id=suppuppe.1h1v.s4.60946d385e57 from=translated src=- shape=23658224 vocab=64eca26e
+-/
 theorem suppUpper_neg {f : TestFn} (hf : SuppUpper f) : SuppUpper (-f) := by
   intro z hz
   simp [hf z hz]
 
-/-- [T26], §3; the upper support predicate is closed under subtraction.-/
+/-- [T26], §3; the upper support predicate is closed under subtraction.
+@isnad1 id=suppuppe.2h2v.s4.f53d4c24c8a7 from=translated src=- shape=255dce7b vocab=2b173529
+-/
 theorem suppUpper_sub {f g : TestFn} (hf : SuppUpper f) (hg : SuppUpper g) :
     SuppUpper (f - g) := by
   intro z hz
   simp [hf z hz, hg z hz]
 
-/-- [T26], §3; the lower support predicate is closed under zero.-/
+/-- [T26], §3; the lower support predicate is closed under zero.
+@isnad1 id=supplowe.0h0v.s4.4c40b1f9834d from=translated src=- shape=e590c3e1 vocab=c8c6258f
+-/
 theorem suppLower_zero : SuppLower (0 : TestFn) := by
   intro z hz
   simp
 
-/-- [T26], §3; the lower support predicate is closed under addition.-/
+/-- [T26], §3; the lower support predicate is closed under addition.
+@isnad1 id=supplowe.2h2v.s4.224f27aa2d1e from=translated src=- shape=255dce7b vocab=8cc360d7
+-/
 theorem suppLower_add {f g : TestFn} (hf : SuppLower f) (hg : SuppLower g) :
     SuppLower (f + g) := by
   intro z hz
   simp [hf z hz, hg z hz]
 
-/-- [T26], §3; the lower support predicate is closed under complex scalar multiplication.-/
+/-- [T26], §3; the lower support predicate is closed under complex scalar multiplication.
+@isnad1 id=supplowe.1h2v.s4.e571d31f11d3 from=translated src=- shape=a32eadfd vocab=d4adb9c1
+-/
 theorem suppLower_smul (c : ℂ) {f : TestFn} (hf : SuppLower f) : SuppLower (c • f) := by
   intro z hz
   simp [hf z hz]
 
-/-- [T26], §3; the lower support predicate is closed under negation.-/
+/-- [T26], §3; the lower support predicate is closed under negation.
+@isnad1 id=supplowe.1h1v.s4.6f58d607ce4f from=translated src=- shape=23658224 vocab=c11de73a
+-/
 theorem suppLower_neg {f : TestFn} (hf : SuppLower f) : SuppLower (-f) := by
   intro z hz
   simp [hf z hz]
 
-/-- [T26], §3; the lower support predicate is closed under subtraction.-/
+/-- [T26], §3; the lower support predicate is closed under subtraction.
+@isnad1 id=supplowe.2h2v.s4.037befb60008 from=translated src=- shape=255dce7b vocab=ea589e2c
+-/
 theorem suppLower_sub {f g : TestFn} (hf : SuppLower f) (hg : SuppLower g) :
     SuppLower (f - g) := by
   intro z hz
@@ -304,7 +336,9 @@ private theorem periodic_iteratedDeriv {g : ℝ → ℂ} {T : ℝ}
 
 /-- A pair of periodic functions agreeing on one half-open period interval agree everywhere.
 Made available outside this file so that `TestFunctions/Split.lean` and
-`TestFunctions/AnalyticReflect.lean` share the single periodisation argument.-/
+`TestFunctions/AnalyticReflect.lean` share the single periodisation argument.
+@isnad1 id=eq.4h3v.s6.ba25b772c685 from=translated src=- shape=7b7d41c4 vocab=b23ffb4c
+-/
 theorem periodic_eq_of_eq_on_Ico {q r : ℝ → ℂ} {T : ℝ} (hT : 0 < T)
     (hq : Function.Periodic q T) (hr : Function.Periodic r T)
     (hqr : ∀ x ∈ Set.Ico 0 T, q x = r x) : q = r := by
@@ -328,7 +362,9 @@ theorem periodic_eq_of_eq_on_Ico {q r : ℝ → ℂ} {T : ℝ} (hT : 0 < T)
     _ = r y := hqr y hy
     _ = r x := by rw [hxy, hrk]
 
-/-- [T26], §3; an upper-supported function has zero angle derivatives at both endpoints.-/
+/-- [T26], §3; an upper-supported function has zero angle derivatives at both endpoints.
+@isnad1 id=and.1h2v.s6.647dfc065399 from=translated src=- shape=fa29dc8f vocab=95c36faa
+-/
 theorem iteratedDeriv_toAngle_eq_zero_of_suppUpper {f : TestFn} (h : SuppUpper f) (j : ℕ) :
     iteratedDeriv j (toAngle f) 0 = 0 ∧ iteratedDeriv j (toAngle f) Real.pi = 0 := by
   have hzero_on : Set.EqOn (iteratedDeriv j (toAngle f))
@@ -359,7 +395,9 @@ theorem iteratedDeriv_toAngle_eq_zero_of_suppUpper {f : TestFn} (h : SuppUpper f
       _ = 0 := htwo
   exact ⟨hzero_at_zero, hpi⟩
 
-/-- [T26], §3; a lower-supported function has zero angle derivatives at both endpoints.-/
+/-- [T26], §3; a lower-supported function has zero angle derivatives at both endpoints.
+@isnad1 id=and.1h2v.s6.821ca48fe7a3 from=translated src=- shape=fa29dc8f vocab=484a87be
+-/
 theorem iteratedDeriv_toAngle_eq_zero_of_suppLower {f : TestFn} (h : SuppLower f) (j : ℕ) :
     iteratedDeriv j (toAngle f) 0 = 0 ∧ iteratedDeriv j (toAngle f) Real.pi = 0 := by
   have hzero : Set.EqOn (iteratedDeriv j (toAngle f)) (fun _ : ℝ => (0 : ℂ))
@@ -391,7 +429,9 @@ structure IsUpperFlat (g : ℝ → ℂ) : Prop where
 
 namespace IsUpperFlat
 
-/-- [T26], §3; upper-flat functions have zero iterated derivatives at both endpoints.-/
+/-- [T26], §3; upper-flat functions have zero iterated derivatives at both endpoints.
+@isnad1 id=and.1h2v.s6.6b8d0fd86f0d from=translated src=- shape=58a87ded vocab=9456cf99
+-/
 theorem iteratedDeriv_zero {g : ℝ → ℂ} (h : IsUpperFlat g) (j : ℕ) :
     iteratedDeriv j g 0 = 0 ∧ iteratedDeriv j g Real.pi = 0 := by
   have hleft : Set.EqOn g (fun _ : ℝ => (0 : ℂ)) (Set.Iio 0) := by
@@ -418,7 +458,9 @@ theorem iteratedDeriv_zero {g : ℝ → ℂ} (h : IsUpperFlat g) (j : ℕ) :
 
 end IsUpperFlat
 
-/-- [T26], §3; the zero-extension picture of `C_0^∞(I₊)`.-/
+/-- [T26], §3; the zero-extension picture of `C_0^∞(I₊)`.
+@isnad1 id=iff.0h1v.s5.beb63d087d8a from=translated src=- shape=da5bd4ae vocab=23c3ef9c
+-/
 theorem suppUpper_iff_zeroExtension (f : TestFn) :
     SuppUpper f ↔
       ∃ g : ℝ → ℂ, IsUpperFlat g ∧ toAngle f = periodize (2 * Real.pi) g := by
@@ -498,7 +540,9 @@ structure IsLowerFlat (g : ℝ → ℂ) : Prop where
 
 namespace IsLowerFlat
 
-/-- [T26], §3; lower-flat functions have zero iterated derivatives at both endpoints.-/
+/-- [T26], §3; lower-flat functions have zero iterated derivatives at both endpoints.
+@isnad1 id=and.1h2v.s6.0ec7fed926a8 from=translated src=- shape=f94f2e8f vocab=a58a91e5
+-/
 theorem iteratedDeriv_zero {g : ℝ → ℂ} (h : IsLowerFlat g) (j : ℕ) :
     iteratedDeriv j g Real.pi = 0 ∧ iteratedDeriv j g (2 * Real.pi) = 0 := by
   have hleft : Set.EqOn g (fun _ : ℝ => (0 : ℂ)) (Set.Iio Real.pi) := by
@@ -525,7 +569,9 @@ theorem iteratedDeriv_zero {g : ℝ → ℂ} (h : IsLowerFlat g) (j : ℕ) :
 
 end IsLowerFlat
 
-/-- [T26], §3; the zero-extension picture of `C_0^∞(I₋)`.-/
+/-- [T26], §3; the zero-extension picture of `C_0^∞(I₋)`.
+@isnad1 id=iff.0h1v.s5.bd7c575fa617 from=translated src=- shape=da5bd4ae vocab=d00831c2
+-/
 theorem suppLower_iff_zeroExtension (f : TestFn) :
     SuppLower f ↔
       ∃ g : ℝ → ℂ, IsLowerFlat g ∧ toAngle f = periodize (2 * Real.pi) g := by
@@ -619,7 +665,9 @@ theorem suppLower_iff_zeroExtension (f : TestFn) :
         intro hθ'
         exact (not_lt_of_ge (le_of_lt hθ.2)) hθ'.1)
 
-/-- [T26], §3; an upper-flat angle function periodizes to an upper-supported test function.-/
+/-- [T26], §3; an upper-flat angle function periodizes to an upper-supported test function.
+@isnad1 id=ex.1h1v.s5.4c2e30421336 from=translated src=- shape=f1bffa8f vocab=23c3ef9c
+-/
 theorem exists_suppUpper_toAngle_eq_periodize {g : ℝ → ℂ} (hg : IsUpperFlat g) :
     ∃ f : TestFn, toAngle f = periodize (2 * Real.pi) g ∧ SuppUpper f := by
   have hzero : ∀ θ : ℝ, θ ∉ Set.Ioo 0 (2 * Real.pi) → g θ = 0 := by
@@ -635,7 +683,9 @@ theorem exists_suppUpper_toAngle_eq_periodize {g : ℝ → ℂ} (hg : IsUpperFla
   refine ⟨f, hf, (suppUpper_iff_zeroExtension f).2 ?_⟩
   exact ⟨g, hg, hf⟩
 
-/-- [T26], §3; a lower-flat angle function periodizes to a lower-supported test function.-/
+/-- [T26], §3; a lower-flat angle function periodizes to a lower-supported test function.
+@isnad1 id=ex.1h1v.s5.aaec9a494486 from=translated src=- shape=f1bffa8f vocab=d00831c2
+-/
 theorem exists_suppLower_toAngle_eq_periodize {g : ℝ → ℂ} (hg : IsLowerFlat g) :
     ∃ f : TestFn, toAngle f = periodize (2 * Real.pi) g ∧ SuppLower f := by
   have hzero : ∀ θ : ℝ, θ ∉ Set.Ioo 0 (2 * Real.pi) → g θ = 0 := by
@@ -651,7 +701,9 @@ theorem exists_suppLower_toAngle_eq_periodize {g : ℝ → ℂ} (hg : IsLowerFla
   refine ⟨f, hf, (suppLower_iff_zeroExtension f).2 ?_⟩
   exact ⟨g, hg, hf⟩
 
-/-- [T26], §3; the closure of the open upper semicircle is the closed upper semicircle.-/
+/-- [T26], §3; the closure of the open upper semicircle is the closed upper semicircle.
+@isnad1 id=eq.0h0v.s6.17c930533690 from=translated src=- shape=92e709fe vocab=1c779ce0
+-/
 theorem closure_upperArc :
     closure upperArc = {z : Circle | 0 ≤ (z : ℂ).im} := by
   have hclosed : IsClosed {z : Circle | 0 ≤ (z : ℂ).im} :=
@@ -713,7 +765,9 @@ theorem closure_upperArc :
       simpa [hzminus] using hneg
 
 /-- [T26], §3; upper support is equivalent to closed topological support in the closed upper
-semicircle.-/
+semicircle.
+@isnad1 id=iff.0h1v.s4.8bc196f886ae from=translated src=- shape=df91f871 vocab=12970801
+-/
 theorem suppUpper_iff_tsupport (f : TestFn) :
     SuppUpper f ↔ tsupport (f : Circle → ℂ) ⊆ closure upperArc := by
   constructor
@@ -736,7 +790,9 @@ theorem suppUpper_iff_tsupport (f : TestFn) :
     change (z : ℂ).im < 0 at hz
     exact (not_lt_of_ge hzclosure) hz
 
-/-- [T26], §3; support compactly contained in the open upper semicircle implies upper support.-/
+/-- [T26], §3; support compactly contained in the open upper semicircle implies upper support.
+@isnad1 id=suppuppe.1h1v.s4.f3e75e8c54a0 from=translated src=- shape=745a4476 vocab=4f7f3f0b
+-/
 theorem suppUpper_of_tsupport_subset {f : TestFn}
     (h : tsupport (f : Circle → ℂ) ⊆ upperArc) : SuppUpper f := by
   apply (suppUpper_iff_tsupport f).2
@@ -750,7 +806,9 @@ locality (W2); `SuppUpper` and `SuppLower` are the two specific semicircle cases
 def support (f : TestFn) : Set Circle :=
   tsupport (f : Circle → ℂ)
 
-/-- The closed support is the closure of the set on which the test function is nonzero.-/
+/-- The closed support is the closure of the set on which the test function is nonzero.
+@isnad1 id=eq.0h1v.s4.5497c0490d44 from=translated src=- shape=4e9e8bdd vocab=50bc1461
+-/
 theorem support_def (f : TestFn) : support f = closure {z : Circle | f z ≠ 0} :=
   rfl
 
@@ -761,7 +819,9 @@ endpoints `{1, -1}`.-/
 def DisjointSupport (f g : TestFn) : Prop :=
   Disjoint (support f) (support g)
 
-/-- [T26], §3; the closure of the open lower semicircle is the closed lower semicircle.-/
+/-- [T26], §3; the closure of the open lower semicircle is the closed lower semicircle.
+@isnad1 id=eq.0h0v.s6.a07af9f5c592 from=translated src=- shape=498b1062 vocab=516db86f
+-/
 theorem closure_lowerArc :
     closure lowerArc = {z : Circle | (z : ℂ).im ≤ 0} := by
   have hpreimage : (Homeomorph.inv Circle) ⁻¹' upperArc = lowerArc := by
@@ -782,7 +842,9 @@ theorem closure_lowerArc :
       exact neg_nonneg
 
 /-- [T26], §3; `SuppLower` is the general closed-support condition for the closed lower
-semicircle.-/
+semicircle.
+@isnad1 id=iff.0h1v.s4.115cda3991e1 from=translated src=- shape=8d7e1659 vocab=6b2bb8fc
+-/
 theorem suppLower_iff_support (f : TestFn) :
     SuppLower f ↔ support f ⊆ closure lowerArc := by
   constructor
@@ -806,12 +868,16 @@ theorem suppLower_iff_support (f : TestFn) :
     exact (not_lt_of_ge hzclosure) hz
 
 /-- [T26], §3; lower support is equivalent to closed topological support in the closed lower
-semicircle.-/
+semicircle.
+@isnad1 id=iff.0h1v.s4.86e0a868b05e from=translated src=- shape=df91f871 vocab=e4abc77e
+-/
 theorem suppLower_iff_tsupport (f : TestFn) :
     SuppLower f ↔ tsupport (f : Circle → ℂ) ⊆ closure lowerArc :=
   suppLower_iff_support f
 
-/-- [T26], §3; support compactly contained in the open lower semicircle implies lower support.-/
+/-- [T26], §3; support compactly contained in the open lower semicircle implies lower support.
+@isnad1 id=supplowe.1h1v.s4.a559c83489ee from=translated src=- shape=745a4476 vocab=a6a981c1
+-/
 theorem suppLower_of_tsupport_subset {f : TestFn}
     (h : tsupport (f : Circle → ℂ) ⊆ lowerArc) : SuppLower f := by
   apply (suppLower_iff_tsupport f).2

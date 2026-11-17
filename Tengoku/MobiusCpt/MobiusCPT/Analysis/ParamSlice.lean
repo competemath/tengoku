@@ -30,16 +30,22 @@ noncomputable def sliceDeriv (S : Set (ℂ × ℝ)) : ℕ → (ℂ × ℝ → �
   | 0, f => f
   | (n + 1), f => fun p => fderivWithin ℝ (sliceDeriv S n f) S p (0, 1)
 
-/-- The zeroth slice derivative is the original function.-/
+/-- The zeroth slice derivative is the original function.
+@isnad1 id=eq.0h2v.s4.894040b36059 from=translated src=- shape=ecdf5a9b vocab=72c75a32
+-/
 @[simp] theorem sliceDeriv_zero (S : Set (ℂ × ℝ)) (f : ℂ × ℝ → ℂ) :
     sliceDeriv S 0 f = f := rfl
 
-/-- A successor slice derivative differentiates once more in the second-coordinate direction.-/
+/-- A successor slice derivative differentiates once more in the second-coordinate direction.
+@isnad1 id=eq.0h3v.s9.cc38dfccafee from=translated src=- shape=ce128ac1 vocab=b33c6f3d
+-/
 theorem sliceDeriv_succ (S : Set (ℂ × ℝ)) (n : ℕ) (f : ℂ × ℝ → ℂ) :
     sliceDeriv S (n + 1) f =
       fun p => fderivWithin ℝ (sliceDeriv S n f) S p (0, 1) := rfl
 
-/-- Every slice derivative of a jointly smooth function is again jointly smooth.-/
+/-- Every slice derivative of a jointly smooth function is again jointly smooth.
+@isnad1 id=contdiff.2h3v.s7.f016ddfb3a5d from=translated src=- shape=645573ec vocab=7477a763
+-/
 theorem contDiffOn_sliceDeriv {S : Set (ℂ × ℝ)} (hS : UniqueDiffOn ℝ S)
     {f : ℂ × ℝ → ℂ} (hf : ContDiffOn ℝ ∞ f S) (n : ℕ) :
     ContDiffOn ℝ ∞ (sliceDeriv S n f) S := by
@@ -49,14 +55,18 @@ theorem contDiffOn_sliceDeriv {S : Set (ℂ × ℝ)} (hS : UniqueDiffOn ℝ S)
       rw [sliceDeriv_succ]
       exact ((contDiffOn_infty_iff_fderivWithin hS).mp ih).2.clm_apply contDiffOn_const
 
-/-- Every slice derivative of a jointly smooth function is jointly continuous.-/
+/-- Every slice derivative of a jointly smooth function is jointly continuous.
+@isnad1 id=continuo.2h3v.s7.414e32ee39bf from=translated src=- shape=e8c73cb4 vocab=fe5a2ed0
+-/
 theorem continuousOn_sliceDeriv {S : Set (ℂ × ℝ)} (hS : UniqueDiffOn ℝ S)
     {f : ℂ × ℝ → ℂ} (hf : ContDiffOn ℝ ∞ f S) (n : ℕ) :
     ContinuousOn (sliceDeriv S n f) S :=
   (contDiffOn_sliceDeriv hS hf n).continuousOn
 
 /-- A jointly differentiable function differentiates along its second variable, with the joint
-derivative applied to the second coordinate direction.-/
+derivative applied to the second coordinate direction.
+@isnad1 id=hasderiv.2h5v.s9.9a04e1b76c48 from=translated src=- shape=91d307ec vocab=23dfe347
+-/
 theorem hasDerivWithinAt_slice {s : Set ℂ} {K : Set ℝ} {f : ℂ × ℝ → ℂ} {u : ℂ} {θ : ℝ}
     (hu : u ∈ s) (hf : DifferentiableWithinAt ℝ f (s ×ˢ K) (u, θ)) :
     HasDerivWithinAt (fun t : ℝ => f (u, t))
@@ -70,7 +80,9 @@ theorem hasDerivWithinAt_slice {s : Set ℂ} {K : Set ℝ} {f : ℂ × ℝ → �
   exact hd
 
 /-- On a product set, the `n`-th slice derivative of a jointly smooth function computes the
-`n`-th derivative of the slice within the second factor.-/
+`n`-th derivative of the slice within the second factor.
+@isnad1 id=eq.5h6v.s7.0472f745baa6 from=translated src=- shape=c593b62d vocab=a75a5548
+-/
 theorem sliceDeriv_eq_iteratedDerivWithin {s : Set ℂ} {K : Set ℝ}
     (hs : UniqueDiffOn ℝ s) (hK : UniqueDiffOn ℝ K)
     {f : ℂ × ℝ → ℂ} (hf : ContDiffOn ℝ ∞ f (s ×ˢ K)) (n : ℕ)
@@ -93,7 +105,9 @@ theorem sliceDeriv_eq_iteratedDerivWithin {s : Set ℂ} {K : Set ℝ}
           derivWithin_congr (fun t ht => ih (θ := t) ht) (ih (θ := θ) hθ)
 
 /-- A function continuous on `s ×ˢ K` with `K` compact is uniformly close, over all of `K`,
-to its values at a fixed parameter, for all parameters near that one.-/
+to its values at a fixed parameter, for all parameters near that one.
+@isnad1 id=eventual.4h5v.s7.21105da03d36 from=translated src=- shape=154bbe7f vocab=51e16b09
+-/
 theorem eventually_forall_norm_sub_lt {s : Set ℂ} {K : Set ℝ} (hK : IsCompact K)
     {f : ℂ × ℝ → ℂ} (hf : ContinuousOn f (s ×ˢ K)) {u₀ : ℂ} (hu₀ : u₀ ∈ s)
     {ε : ℝ} (hε : 0 < ε) :
@@ -110,7 +124,9 @@ theorem eventually_forall_norm_sub_lt {s : Set ℂ} {K : Set ℝ} (hK : IsCompac
   intro θ hθ
   simpa only [dist_eq_norm] using hclose u hu θ hθ
 
-/-- A convex subset of `ℂ` with nonempty interior determines derivatives at each of its points.-/
+/-- A convex subset of `ℂ` with nonempty interior determines derivatives at each of its points.
+@isnad1 id=uniquedi.2h1v.s6.cb8c06bf4a03 from=translated src=- shape=a5f66b6f vocab=6d474da6
+-/
 theorem uniqueDiffOn_of_convex {s : Set ℂ} (hs : Convex ℝ s) (hne : (interior s).Nonempty) :
     UniqueDiffOn ℝ s :=
   fun _ hz => uniqueDiffWithinAt_convex hs hne (subset_closure hz)

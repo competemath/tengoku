@@ -23,27 +23,35 @@ def strip (τ : ℂ) : Set ℂ :=
   {z : ℂ | min 0 τ.im ≤ z.im ∧ z.im ≤ max 0 τ.im}
 
 /-- [T26], Definition 3.1; the geometric closed strip bounded by `ℝ` and `ℝ + τ`. For real `τ`
-this degenerates to `ℝ`.-/
+this degenerates to `ℝ`.
+@isnad1 id=eq.0h1v.s5.fafd7775ddfb from=translated src=- shape=52fe5476 vocab=f4d36c4a
+-/
 theorem strip_eq :
     ∀ τ : ℂ, strip τ = { z : ℂ | min 0 τ.im ≤ z.im ∧ z.im ≤ max 0 τ.im } := by
   intro τ
   rfl
 
 /-- [T26], Definition 3.1; membership in the closed strip is a condition on the imaginary part
-alone.-/
+alone.
+@isnad1 id=iff.0h2v.s5.27e5f3532e5b from=translated src=- shape=ea4b7441 vocab=a4439d2a
+-/
 theorem mem_strip {τ z : ℂ} :
     z ∈ strip τ ↔ min 0 τ.im ≤ z.im ∧ z.im ≤ max 0 τ.im := by
   rfl
 
 /-- [T26], Definition 3.1; the closed strip in real and imaginary coordinates, the form in which
-mathlib's product lemmas compute its interior and closure.-/
+mathlib's product lemmas compute its interior and closure.
+@isnad1 id=eq.0h1v.s5.f072b17b90bf from=translated src=- shape=3a9c9572 vocab=ed07b0f1
+-/
 theorem strip_eq_reProdIm (τ : ℂ) :
     strip τ = Set.univ ×ℂ Set.Icc (min 0 τ.im) (max 0 τ.im) := by
   ext z
   simp only [mem_strip, Complex.mem_reProdIm, Set.mem_univ, Set.mem_Icc, true_and]
 
 /-- [T26], Definition 3.1; the interior of the closed strip makes both imaginary inequalities
-strict, so for real `τ` it is empty.-/
+strict, so for real `τ` it is empty.
+@isnad1 id=eq.0h1v.s5.898b5eeebd22 from=translated src=- shape=eaeab0bf vocab=a6c8569d
+-/
 theorem interior_strip (τ : ℂ) :
     interior (strip τ) =
       { z : ℂ | min 0 τ.im < z.im ∧ z.im < max 0 τ.im } := by
@@ -51,13 +59,17 @@ theorem interior_strip (τ : ℂ) :
   ext z
   simp only [Complex.mem_reProdIm, Set.mem_univ, Set.mem_Ioo, Set.mem_ofPred_eq, true_and]
 
-/-- [T26], Definition 3.1; the real axis is a boundary line of every strip.-/
+/-- [T26], Definition 3.1; the real axis is a boundary line of every strip.
+@isnad1 id=mem.0h2v.s3.486382485457 from=translated src=- shape=345545ca vocab=ddf38d64
+-/
 theorem ofReal_mem_strip (τ : ℂ) (t : ℝ) : (t : ℂ) ∈ strip τ := by
   rw [mem_strip]
   simp only [Complex.ofReal_im]
   exact ⟨min_le_left 0 τ.im, le_max_left 0 τ.im⟩
 
-/-- [T26], Definition 3.1; `ℝ + τ` is the other boundary line.-/
+/-- [T26], Definition 3.1; `ℝ + τ` is the other boundary line.
+@isnad1 id=mem.0h2v.s4.fefb9773741c from=translated src=- shape=1f980aa0 vocab=06911352
+-/
 theorem add_ofReal_mem_strip (τ : ℂ) (t : ℝ) :
     τ + (t : ℂ) ∈ strip τ := by
   rw [mem_strip]
@@ -65,18 +77,24 @@ theorem add_ofReal_mem_strip (τ : ℂ) (t : ℝ) :
   exact ⟨min_le_right 0 τ.im, le_max_right 0 τ.im⟩
 
 /-- [T26], Definition 3.1 and footnote 7; a real translation of the parameter does not move the
-strip.-/
+strip.
+@isnad1 id=eq.0h2v.s4.43815405c8ed from=translated src=- shape=85ad45db vocab=f52e9c7a
+-/
 theorem strip_add_ofReal (τ : ℂ) (t : ℝ) :
     strip (τ + (t : ℂ)) = strip τ := by
   ext z
   simp only [mem_strip, Complex.add_im, Complex.ofReal_im, add_zero]
 
-/-- [T26], Definition 3.1; the strip is invariant under real translation of its points.-/
+/-- [T26], Definition 3.1; the strip is invariant under real translation of its points.
+@isnad1 id=iff.0h3v.s5.645f3280535b from=translated src=- shape=c7f1df05 vocab=06911352
+-/
 theorem add_ofReal_mem_strip_iff (τ : ℂ) (t : ℝ) (z : ℂ) :
     z + (t : ℂ) ∈ strip τ ↔ z ∈ strip τ := by
   simp only [mem_strip, Complex.add_im, Complex.ofReal_im, add_zero]
 
-/-- [T26], Definition 3.1; negation exchanges the strip of `τ` with the strip of `-τ`.-/
+/-- [T26], Definition 3.1; negation exchanges the strip of `τ` with the strip of `-τ`.
+@isnad1 id=iff.0h2v.s4.5ad25b8843d8 from=translated src=- shape=faa43057 vocab=461eada2
+-/
 theorem neg_mem_strip_iff (τ z : ℂ) :
     -z ∈ strip (-τ) ↔ z ∈ strip τ := by
   rcases le_total 0 τ.im with hτ | hτ
@@ -87,14 +105,18 @@ theorem neg_mem_strip_iff (τ z : ℂ) :
       min_eq_left (neg_nonneg.mpr hτ), max_eq_right (neg_nonneg.mpr hτ), neg_le_neg_iff]
     constructor <;> intro h <;> constructor <;> linarith
 
-/-- [T26], Definition 3.1; a real parameter degenerates the strip to the real axis.-/
+/-- [T26], Definition 3.1; a real parameter degenerates the strip to the real axis.
+@isnad1 id=eq.0h1v.s4.5ce11e643aee from=translated src=- shape=9f2afd50 vocab=ac1b947e
+-/
 theorem strip_ofReal (t : ℝ) : strip (t : ℂ) = { z : ℂ | z.im = 0 } := by
   ext z
   simp only [mem_strip, Complex.ofReal_im, min_self, max_self, Set.mem_ofPred_eq]
   exact ⟨fun h ↦ le_antisymm h.2 h.1, fun h ↦ by simp [h]⟩
 
 /-- [T26], Definition 3.1; the degenerate strip has empty interior, so holomorphy there is
-vacuous.-/
+vacuous.
+@isnad1 id=eq.0h1v.s4.ede3725ec5c8 from=translated src=- shape=7565eb7d vocab=a7406371
+-/
 theorem interior_strip_ofReal (t : ℝ) :
     interior (strip (t : ℂ)) = ∅ := by
   rw [interior_strip]
@@ -386,7 +408,9 @@ private theorem eqOn_zero_strip_of_im_pos {τ : ℂ} {f : ℂ → ℂ}
 closed strip and holomorphic in its interior that vanishes on the real boundary line vanishes on
 the whole strip. [T26] records the extension as "necessarily unique" without argument; this is
 that argument. Note the hypothesis is genuinely a boundary one: the real axis consists of
-non-interior points of the strip, so the identity theorem does not apply to it directly.-/
+non-interior points of the strip, so the identity theorem does not apply to it directly.
+@isnad1 id=eqon.3h2v.s7.c1306d735af0 from=translated src=- shape=3c21fcef vocab=36fc25df
+-/
 theorem eqOn_zero_strip_of_ofReal {τ : ℂ} {f : ℂ → ℂ}
     (hc : ContinuousOn f (strip τ))
     (hd : DifferentiableOn ℂ f (interior (strip τ)))
@@ -435,7 +459,9 @@ theorem eqOn_zero_strip_of_ofReal {τ : ℂ} {f : ℂ → ℂ}
   · exact eqOn_zero_strip_of_im_pos hc hd h0 hb
 
 /-- [T26], Definition 3.1; two continuations agreeing on the real boundary agree on the strip.
-This is the uniqueness statement Definition 3.1 needs.-/
+This is the uniqueness statement Definition 3.1 needs.
+@isnad1 id=eqon.5h3v.s8.40b385577fc6 from=translated src=- shape=5da4519e vocab=36fc25df
+-/
 theorem eqOn_strip_of_eqOn_ofReal {τ : ℂ} {f g : ℂ → ℂ}
     (hcf : ContinuousOn f (strip τ))
     (hdf : DifferentiableOn ℂ f (interior (strip τ)))

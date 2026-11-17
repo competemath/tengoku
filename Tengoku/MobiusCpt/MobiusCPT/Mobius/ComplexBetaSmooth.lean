@@ -29,23 +29,31 @@ def betaBoostJoint (d : ℕ) (F : AnalyticTestFn) : ℂ × ℝ → ℂ :=
 on which the complex boost is defined.-/
 def stripUpper : Set (ℂ × ℝ) := strip (Complex.I * Real.pi) ×ˢ Set.Icc 0 Real.pi
 
-/-- The imaginary part of `I * π` is `π`.-/
+/-- The imaginary part of `I * π` is `π`.
+@isnad1 id=eq.0h0v.s3.4b5ad9b69a1b from=translated src=- shape=df8dbc5b vocab=bbe81e17
+-/
 theorem im_I_mul_pi : (Complex.I * (Real.pi : ℂ)).im = Real.pi := by
   simpa only [Complex.I_mul_im, Complex.ofReal_re]
 
-/-- [T26], Definition 3.5; membership in the closed strip `0 ≤ Im τ ≤ π`, unfolded.-/
+/-- [T26], Definition 3.5; membership in the closed strip `0 ≤ Im τ ≤ π`, unfolded.
+@isnad1 id=iff.0h1v.s5.190f27bcdb0b from=translated src=- shape=6447a7ab vocab=ea6c5f76
+-/
 theorem mem_strip_I_mul_pi {τ : ℂ} :
     τ ∈ strip (Complex.I * Real.pi) ↔ 0 ≤ τ.im ∧ τ.im ≤ Real.pi := by
   rw [mem_strip, im_I_mul_pi, min_eq_left Real.pi_pos.le, max_eq_right Real.pi_pos.le]
 
-/-- The closed upper semicircle in the angle coordinate.-/
+/-- The closed upper semicircle in the angle coordinate.
+@isnad1 id=le.1h1v.s6.bbe38c74fb00 from=translated src=- shape=fd3a967a vocab=80f62aea
+-/
 theorem im_circleExp_nonneg {θ : ℝ} (hθ : θ ∈ Set.Icc 0 Real.pi) :
     0 ≤ ((Circle.exp θ : Circle) : ℂ).im := by
   rw [Circle.coe_exp, Complex.exp_ofReal_mul_I_im]
   exact Real.sin_nonneg_of_nonneg_of_le_pi hθ.1 hθ.2
 
 /-- [T26], Definition 3.1; the closed strip is convex with nonempty interior, so it determines
-derivatives at each of its points.-/
+derivatives at each of its points.
+@isnad1 id=uniquedi.0h0v.s5.04308dd4b511 from=translated src=- shape=707b7c84 vocab=a373eaf5
+-/
 theorem uniqueDiffOn_strip_I_mul_pi : UniqueDiffOn ℝ (strip (Complex.I * Real.pi)) := by
   have hstrip : strip (Complex.I * Real.pi) =
       Complex.imLm ⁻¹' Set.Icc (0 : ℝ) Real.pi := by
@@ -62,7 +70,9 @@ theorem uniqueDiffOn_strip_I_mul_pi : UniqueDiffOn ℝ (strip (Complex.I * Real.
     max_eq_right Real.pi_pos.le, Complex.I_mul_im, Complex.ofReal_re]
   exact ⟨Real.pi_div_two_pos, half_lt_self Real.pi_pos⟩
 
-/-- The region of the complex boost determines derivatives at each of its points.-/
+/-- The region of the complex boost determines derivatives at each of its points.
+@isnad1 id=uniquedi.0h0v.s6.6aeff2114c84 from=translated src=- shape=ad7e9fa9 vocab=db4f96b8
+-/
 theorem uniqueDiffOn_stripUpper : UniqueDiffOn ℝ stripUpper := by
   simpa only [stripUpper] using
     uniqueDiffOn_strip_I_mul_pi.prod (uniqueDiffOn_Icc Real.pi_pos)
@@ -70,7 +80,9 @@ theorem uniqueDiffOn_stripUpper : UniqueDiffOn ℝ stripUpper := by
 /-- [T26], Definition 3.5; the complex boost is jointly smooth in the strip parameter and the
 circle angle. All the negative powers occurring in its definition are powers of quantities that
 do not vanish on this region, and the divided inverted function is read only inside the closed
-unit disc, where it is smooth.-/
+unit disc, where it is smooth.
+@isnad1 id=contdiff.0h2v.s6.7fa175c31c5f from=translated src=- shape=20cdbcc2 vocab=b24bb8f4
+-/
 theorem contDiffOn_betaBoostJoint (d : ℕ) (F : AnalyticTestFn) :
     ContDiffOn ℝ ∞ (betaBoostJoint d F) stripUpper := by
   have hcircle : ContDiff ℝ ∞
@@ -139,7 +151,9 @@ theorem contDiffOn_betaBoostJoint (d : ℕ) (F : AnalyticTestFn) :
   simpa only [betaBoostJoint] using betaBoostVal_eq_mul_inv d F (hP_ne p hp)
 
 /-- [T26], Definition 3.5; for a fixed strip parameter the complex boost is smooth in the circle
-angle on the closed upper semicircle.-/
+angle on the closed upper semicircle.
+@isnad1 id=contdiff.1h3v.s6.afcfdbc0f4bd from=translated src=- shape=bea5a95b vocab=34296c64
+-/
 theorem contDiffOn_betaBoostAngle (d : ℕ) (F : AnalyticTestFn) {τ : ℂ}
     (hτ : τ ∈ strip (Complex.I * Real.pi)) :
     ContDiffOn ℝ ∞ (fun θ : ℝ => betaBoostVal d τ F (Circle.exp θ))

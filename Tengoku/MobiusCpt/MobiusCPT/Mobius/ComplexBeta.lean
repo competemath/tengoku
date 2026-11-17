@@ -40,7 +40,9 @@ def betaBoostVal (d : ℕ) (τ : ℂ) (F : AnalyticTestFn) (z : Circle) : ℂ :=
 
 /-- The `zpow` bookkeeping behind the source correspondence: away from the poles, the source
 scalar `(Q·P/z)^{d-1}` times the factor `Q/P` coming from `F(P/Q) = (Q/P)·F.invQuot(Q/P)` is the
-pole-free monomial `P^{d-2} Q^d z^{1-d}` used in the definition.-/
+pole-free monomial `P^{d-2} Q^d z^{1-d}` used in the definition.
+@isnad1 id=eq.3h4v.s7.173a73fcc1f4 from=translated src=- shape=bbab5644 vocab=323cd310
+-/
 theorem zpow_boost_identity {P Q w : ℂ} (hP : P ≠ 0) (hQ : Q ≠ 0) (hw : w ≠ 0) (d : ℕ) :
     P ^ ((d : ℤ) - 2) * Q ^ d * w ^ (1 - (d : ℤ)) =
       (Q * P / w) ^ ((d : ℤ) - 1) * (Q / P) := by
@@ -57,7 +59,9 @@ theorem zpow_boost_identity {P Q w : ℂ} (hP : P ≠ 0) (hQ : Q ≠ 0) (hw : w 
   field_simp
 
 /-- [T26], Definition 3.5; the pointwise value written with only natural-number powers and
-inverses of the two nonvanishing quantities, the form in which its smoothness is proved.-/
+inverses of the two nonvanishing quantities, the form in which its smoothness is proved.
+@isnad1 id=eq.1h4v.s9.7349dd9c2256 from=translated src=- shape=bb5158ce vocab=3dd852f2
+-/
 theorem betaBoostVal_eq_mul_inv (d : ℕ) (F : AnalyticTestFn) {τ : ℂ} {z : Circle}
     (hP : cnum (-τ) z ≠ 0) :
     betaBoostVal d τ F z =
@@ -76,7 +80,9 @@ theorem betaBoostVal_eq_mul_inv (d : ℕ) (F : AnalyticTestFn) {τ : ℂ} {z : C
   rw [betaBoostVal, hPz, hzz]
 
 /-- [T26], Definition 3.5; away from the pole the definition is the literal source expression
-`(cosh τ + Re z sinh τ)^{d-1} F(v_{-τ}·z)` of equations (3.4)-(3.5).-/
+`(cosh τ + Re z sinh τ)^{d-1} F(v_{-τ}·z)` of equations (3.4)-(3.5).
+@isnad1 id=eq.4h4v.s8.6cbfe337d7f3 from=translated src=- shape=ecbd4094 vocab=37ab4514
+-/
 theorem betaBoostVal_eq_source (d : ℕ) (F : AnalyticTestFn) {τ : ℂ}
     (h₀ : 0 ≤ τ.im) (h₁ : τ.im ≤ Real.pi) {z : Circle} (hz : 0 ≤ (z : ℂ).im)
     (hden : cden (-τ) z ≠ 0) :
@@ -104,7 +110,9 @@ theorem betaBoostVal_eq_source (d : ℕ) (F : AnalyticTestFn) {τ : ℂ}
 /-- [T26], Definition 3.5; the pole of the source expression is a single point of the circle, so
 the closed upper semicircle minus the pole is dense in it.  This is what makes the
 removable-singularity extension unique, hence what makes `betaBoostVal` *the* extension rather
-than *an* extension.-/
+than *an* extension.
+@isnad1 id=subsingl.0h1v.s6.17405fa5c6bf from=translated src=- shape=336c66e2 vocab=7d2e5e52
+-/
 theorem subsingleton_cden_neg_eq_zero (τ : ℂ) :
     {z : Circle | cden (-τ) z = 0}.Subsingleton := by
   intro z hz w hw

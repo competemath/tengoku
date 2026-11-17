@@ -20,7 +20,9 @@ def betaBoostSliceDot (d : ℕ) (F : AnalyticTestFn) (j : ℕ) : ℂ × ℝ → 
   fderivWithin ℝ (betaBoostSlice d F j) stripUpper p (1, 0)
 
 /-- [T26], Lemma 3.6; the parameter derivative of every angle derivative is jointly continuous on
-the closed strip over the closed upper semicircle.-/
+the closed strip over the closed upper semicircle.
+@isnad1 id=continuo.0h3v.s5.0bcc7e87e64c from=translated src=- shape=f17a8b3d vocab=79e9b9e4
+-/
 theorem continuousOn_betaBoostSliceDot (d : ℕ) (F : AnalyticTestFn) (j : ℕ) :
     ContinuousOn (betaBoostSliceDot d F j) stripUpper := by
   have hcont : ContinuousOn (fderivWithin ℝ (betaBoostSlice d F j) stripUpper) stripUpper := by
@@ -37,7 +39,9 @@ theorem continuousOn_betaBoostSliceDot (d : ℕ) (F : AnalyticTestFn) (j : ℕ) 
 /-- [T26], Lemma 3.6; at an interior parameter the joint directional derivative is the complex
 derivative of the parameter slice.  The slice is complex differentiable by
 `differentiableOn_betaBoostSlice`, so its real Fréchet derivative is complex linear and evaluating
-it at `1` returns the complex derivative.-/
+it at `1` returns the complex derivative.
+@isnad1 id=hasderiv.2h5v.s6.eae7eb22398f from=translated src=- shape=dd9b82cb vocab=1cbcdac8
+-/
 theorem hasDerivAt_betaBoostSlice (d : ℕ) (F : AnalyticTestFn) (j : ℕ) {τ : ℂ}
     (hτ : τ ∈ interior (strip (Complex.I * Real.pi))) {θ : ℝ}
     (hθ : θ ∈ Set.Icc 0 Real.pi) :
@@ -103,7 +107,9 @@ theorem hasDerivAt_betaBoostSlice (d : ℕ) (F : AnalyticTestFn) (j : ℕ) {τ :
   simpa only [betaBoostSliceDot] using hderiv_eq
 
 /-- [T26], Lemma 3.6; at an interior parameter the ordinary complex derivative of the parameter
-slice is the joint directional derivative `betaBoostSliceDot`.-/
+slice is the joint directional derivative `betaBoostSliceDot`.
+@isnad1 id=eq.2h5v.s6.c4187264e472 from=translated src=- shape=83dff792 vocab=55a5b1ae
+-/
 theorem deriv_betaBoostSlice (d : ℕ) (F : AnalyticTestFn) (j : ℕ) {τ : ℂ}
     (hτ : τ ∈ interior (strip (Complex.I * Real.pi))) {θ : ℝ}
     (hθ : θ ∈ Set.Icc 0 Real.pi) :
@@ -111,7 +117,9 @@ theorem deriv_betaBoostSlice (d : ℕ) (F : AnalyticTestFn) (j : ℕ) {τ : ℂ}
   exact (hasDerivAt_betaBoostSlice d F j hτ hθ).deriv
 
 /-- [T26], Definition 3.5; at the endpoints of `I_+` every angle derivative of the boost is
-identically zero in the parameter, hence so is its parameter derivative.-/
+identically zero in the parameter, hence so is its parameter derivative.
+@isnad1 id=eq.2h5v.s6.5677da1d811a from=translated src=- shape=d7ed1b3e vocab=6342ed12
+-/
 theorem betaBoostSliceDot_eq_zero_of_endpoint (d : ℕ) (F : AnalyticTestFn) (j : ℕ) {τ : ℂ}
     (hτ : τ ∈ interior (strip (Complex.I * Real.pi))) {θ : ℝ}
     (hθ : θ = 0 ∨ θ = Real.pi) :

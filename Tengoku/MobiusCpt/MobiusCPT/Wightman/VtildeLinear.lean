@@ -22,7 +22,9 @@ variable [AddCommGroup 𝓓] [Module ℂ 𝓓]
 
 namespace WightmanData
 
-/-- [T26], Definition 3.1; the zero vector continues to the zero vector.-/
+/-- [T26], Definition 3.1; the zero vector continues to the zero vector.
+@isnad1 id=isboostc.0h6v.s7.40c4fe5e275c from=translated src=- shape=3a82027a vocab=f1afce8f
+-/
 theorem isBoostContinuation_zero (W : WightmanData G TF 𝓓 𝓕) (τ : ℂ) :
     W.IsBoostContinuation τ 0 0 (fun _ _ => 0) := by
   intro lam
@@ -32,7 +34,9 @@ theorem isBoostContinuation_zero (W : WightmanData G TF 𝓓 𝓕) (τ : ℂ) :
   · intro t
     simp [WightmanStruct.compatApply]
 
-/-- [T26], Definition 3.1; continuations add.-/
+/-- [T26], Definition 3.1; continuations add.
+@isnad1 id=isboostc.2h12v.s8.97fcbfbb19fb from=translated src=- shape=002422f5 vocab=50e00a53
+-/
 theorem IsBoostContinuation.add {W : WightmanData G TF 𝓓 𝓕} {τ : ℂ}
     {Φ₁ Ψ₁ Φ₂ Ψ₂ : 𝓓}
     {Gf₁ Gf₂ : W.toWightmanStruct.Compat → ℂ → ℂ}
@@ -71,7 +75,9 @@ theorem IsBoostContinuation.add {W : WightmanData G TF 𝓓 𝓕} {τ : ℂ}
       _ = W.toWightmanStruct.compatApply lam (W.boost t (Ψ₁ + Ψ₂)) := by
         rw [(W.boost_linear t Ψ₁ Ψ₂).1]
 
-/-- [T26], Definition 3.1; continuations are homogeneous.-/
+/-- [T26], Definition 3.1; continuations are homogeneous.
+@isnad1 id=isboostc.1h10v.s8.ad01e4786e22 from=translated src=- shape=db8c28a5 vocab=84adee0b
+-/
 theorem IsBoostContinuation.smul {W : WightmanData G TF 𝓓 𝓕} {τ : ℂ}
     {Φ Ψ : 𝓓} {Gf : W.toWightmanStruct.Compat → ℂ → ℂ} (c : ℂ)
     (h : W.IsBoostContinuation τ Φ Ψ Gf) :
@@ -126,12 +132,16 @@ def vtildeDomain (W : WightmanData G TF 𝓓 𝓕) (τ : ℂ) : Submodule ℂ �
     refine ⟨c • Ψ, ?_⟩
     exact ⟨fun lam z => c * Gf lam z, hGf.smul c⟩
 
-/-- [T26], Definition 3.1; membership in the subspace is membership in the domain.-/
+/-- [T26], Definition 3.1; membership in the subspace is membership in the domain.
+@isnad1 id=iff.0h7v.s7.45b563aa5cdd from=translated src=- shape=90603a97 vocab=4abecfa0
+-/
 theorem mem_vtildeDomain (W : WightmanData G TF 𝓓 𝓕) (τ : ℂ) (Φ : 𝓓) :
     Φ ∈ W.vtildeDomain τ ↔ W.VtildeDom τ Φ := by
   rfl
 
-/-- [T26], Definition 3.1; `Ṽ_τ` is additive on its domain.-/
+/-- [T26], Definition 3.1; `Ṽ_τ` is additive on its domain.
+@isnad1 id=eq.3h8v.s7.0eb1c8a6fe6f from=translated src=- shape=ea4b2894 vocab=89680e84
+-/
 theorem vtildeMap_add (W : WightmanData G TF 𝓓 𝓕)
     (hreg : W.toWightmanStruct.ActsRegularly) {τ : ℂ} {Φ₁ Φ₂ : 𝓓}
     (h₁ : W.VtildeDom τ Φ₁) (h₂ : W.VtildeDom τ Φ₂) :
@@ -141,7 +151,9 @@ theorem vtildeMap_add (W : WightmanData G TF 𝓓 𝓕)
   obtain ⟨Gf₂, hGf₂⟩ := W.vtildeVal_vtildeMap hreg h₂
   exact ⟨fun lam z => Gf₁ lam z + Gf₂ lam z, hGf₁.add hGf₂⟩
 
-/-- [T26], Definition 3.1; `Ṽ_τ` is homogeneous on its domain.-/
+/-- [T26], Definition 3.1; `Ṽ_τ` is homogeneous on its domain.
+@isnad1 id=eq.2h8v.s8.12a4da0642b6 from=translated src=- shape=0e471d99 vocab=c64066e4
+-/
 theorem vtildeMap_smul (W : WightmanData G TF 𝓓 𝓕)
     (hreg : W.toWightmanStruct.ActsRegularly) {τ : ℂ} (c : ℂ) {Φ : 𝓓}
     (h : W.VtildeDom τ Φ) :
@@ -173,18 +185,24 @@ noncomputable def vtildePMap (W : WightmanData G TF 𝓓 𝓕)
           W.vtildeMap_smul hreg c
             ((mem_vtildeDomain W τ (Φ : 𝓓)).mp Φ.property) }
 
-/-- [T26], Definition 3.1; the packaged operator has exactly the intended domain.-/
+/-- [T26], Definition 3.1; the packaged operator has exactly the intended domain.
+@isnad1 id=eq.1h6v.s7.12c73c0a2ea7 from=translated src=- shape=08ccc3b2 vocab=aaa5d214
+-/
 theorem vtildePMap_domain (W : WightmanData G TF 𝓓 𝓕)
     (hreg : W.toWightmanStruct.ActsRegularly) (τ : ℂ) :
     (W.vtildePMap hreg τ).domain = W.vtildeDomain τ := rfl
 
-/-- [T26], Definition 3.1; the packaged operator has exactly the intended action.-/
+/-- [T26], Definition 3.1; the packaged operator has exactly the intended action.
+@isnad1 id=eq.1h7v.s7.ee306120da18 from=translated src=- shape=98e768b2 vocab=bd8af70c
+-/
 theorem vtildePMap_apply (W : WightmanData G TF 𝓓 𝓕)
     (hreg : W.toWightmanStruct.ActsRegularly) (τ : ℂ) (Φ : W.vtildeDomain τ) :
     W.vtildePMap hreg τ Φ = W.vtildeMap τ (Φ : 𝓓) := rfl
 
 /-- [T26], Definition 3.1; membership in the packaged operator's domain is exactly membership
-in `D(Ṽ_τ)`.-/
+in `D(Ṽ_τ)`.
+@isnad1 id=iff.1h7v.s7.edf4cb4c0973 from=translated src=- shape=80d3bcfe vocab=b569dd07
+-/
 theorem mem_vtildePMap_domain (W : WightmanData G TF 𝓓 𝓕)
     (hreg : W.toWightmanStruct.ActsRegularly) (τ : ℂ) (Φ : 𝓓) :
     Φ ∈ (W.vtildePMap hreg τ).domain ↔ W.VtildeDom τ Φ := by

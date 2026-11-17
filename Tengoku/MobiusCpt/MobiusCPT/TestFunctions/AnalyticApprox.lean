@@ -23,7 +23,9 @@ open scoped ContDiff Topology
 noncomputable section
 
 /- The complement of the branch cut is open. -/
-/-- The branch cut is a closed subset of the complex plane.-/
+/-- The branch cut is a closed subset of the complex plane.
+@isnad1 id=isclosed.0h0v.s4.8c7e53041083 from=translated src=- shape=25b03439 vocab=4e5804e5
+-/
 theorem isClosed_cutSegment : IsClosed cutSegment := by
   change IsClosed ({z : ℂ | z.im = 0} ∩
     ({z : ℂ | -1 ≤ z.re} ∩ {z : ℂ | z.re ≤ 1}))
@@ -32,7 +34,9 @@ theorem isClosed_cutSegment : IsClosed cutSegment := by
       (isClosed_le Complex.continuous_re continuous_const))
 
 /- This name is used repeatedly when constructing neighbourhoods on which the branch is fixed. -/
-/-- The complement of the branch cut is open.-/
+/-- The complement of the branch cut is open.
+@isnad1 id=isopen.0h0v.s4.3f30b711bb8b from=translated src=- shape=531af6ad vocab=266f6e1f
+-/
 theorem isOpen_compl_cutSegment : IsOpen cutSegmentᶜ := isClosed_cutSegment.isOpen_compl
 
 /- The value at either endpoint is filled in by zero. -/
@@ -40,7 +44,9 @@ theorem isOpen_compl_cutSegment : IsOpen cutSegmentᶜ := isClosed_cutSegment.is
 noncomputable def stripApprox (s : ℝ) (a : ℝ → ℂ) (z : ℂ) : ℂ :=
   if z = 1 ∨ z = -1 then 0 else gaussConv s a (boostCoord z) / z
 
-/-- Off the two filled-in endpoints, the approximant has its quotient formula.-/
+/-- Off the two filled-in endpoints, the approximant has its quotient formula.
+@isnad1 id=eq.1h3v.s5.72f3895371c6 from=translated src=- shape=c551ae77 vocab=9421a52d
+-/
 theorem stripApprox_of_notMem_cutSegment {s : ℝ} {a : ℝ → ℂ} {z : ℂ}
     (hz : z ∉ cutSegment) :
     stripApprox s a z = gaussConv s a (boostCoord z) / z := by
@@ -56,7 +62,9 @@ theorem stripApprox_of_notMem_cutSegment {s : ℝ} {a : ℝ → ℂ} {z : ℂ}
     norm_num [cutSegment]
   simp [stripApprox, hz1, hzneg]
 
-/-- The quotient formula is holomorphic on the complement of the branch cut.-/
+/-- The quotient formula is holomorphic on the complement of the branch cut.
+@isnad1 id=analytic.3h3v.s6.e4bd7d2a6197 from=translated src=- shape=f8d1808c vocab=da63599e
+-/
 theorem analyticAt_stripApprox {s : ℝ} (hs : 0 < s) {a : ℝ → ℂ}
     (ha : IsRapidlyDecaying a) {z : ℂ} (hz : z ∉ cutSegment) :
     AnalyticAt ℂ (stripApprox s a) z := by
@@ -91,12 +99,16 @@ theorem analyticAt_stripApprox {s : ℝ} (hs : 0 < s) {a : ℝ → ℂ}
   filter_upwards [isOpen_compl_cutSegment.mem_nhds hz] with w hw
   exact (stripApprox_of_notMem_cutSegment hw).symm
 
-/-- The exponential identity used to turn the strip estimate into a natural power estimate.-/
+/-- The exponential identity used to turn the strip estimate into a natural power estimate.
+@isnad1 id=eq.0h2v.s5.ffde66426808 from=translated src=- shape=160a75f7 vocab=a66636a1
+-/
 theorem real_exp_neg_nat_mul (t : ℝ) (N : ℕ) :
     Real.exp (-(N : ℝ) * t) = (Real.exp (-t)) ^ N := by
   rw [show -(N : ℝ) * t = (N : ℝ) * (-t) by ring, Real.exp_nat_mul]
 
-/-- The exponential identity used at the negative end of the boost strip.-/
+/-- The exponential identity used at the negative end of the boost strip.
+@isnad1 id=eq.0h2v.s5.af05478f56d9 from=translated src=- shape=cc2e12ea vocab=26ea8041
+-/
 theorem real_exp_nat_mul (t : ℝ) (N : ℕ) :
     Real.exp ((N : ℝ) * t) = (Real.exp t) ^ N := by
   exact Real.exp_nat_mul t N
@@ -149,7 +161,9 @@ private theorem norm_sub_one_ge_three_halves_of_norm_add_one_le {z : ℂ}
   rw [add_comm] at h
   linarith
 
-/-- Gaussian decay at the `1` end gives arbitrary natural powers of `‖z - 1‖`.-/
+/-- Gaussian decay at the `1` end gives arbitrary natural powers of `‖z - 1‖`.
+@isnad1 id=ex.2h3v.s7.44050f0d60f7 from=translated src=- shape=e1f59e65 vocab=94ff2d11
+-/
 theorem exists_norm_stripApprox_le_one {s : ℝ} (hs : 0 < s) {a : ℝ → ℂ}
     (ha : IsRapidlyDecaying a) (N : ℕ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ z : ℂ, z ∉ cutSegment → ‖z - 1‖ ≤ 1 / 2 →
@@ -224,7 +238,9 @@ theorem exists_norm_stripApprox_le_one {s : ℝ} (hs : 0 < s) {a : ℝ → ℂ}
       rw [mul_pow]
       ring
 
-/-- Gaussian decay at the `-1` end gives arbitrary natural powers of `‖z + 1‖`.-/
+/-- Gaussian decay at the `-1` end gives arbitrary natural powers of `‖z + 1‖`.
+@isnad1 id=ex.2h3v.s7.193879fd756a from=translated src=- shape=e1f59e65 vocab=a02b9cdc
+-/
 theorem exists_norm_stripApprox_le_neg_one {s : ℝ} (hs : 0 < s) {a : ℝ → ℂ}
     (ha : IsRapidlyDecaying a) (N : ℕ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ z : ℂ, z ∉ cutSegment → ‖z + 1‖ ≤ 1 / 2 →
@@ -303,7 +319,9 @@ theorem exists_norm_stripApprox_le_neg_one {s : ℝ} (hs : 0 < s) {a : ℝ → �
       rw [mul_pow]
       ring
 
-/-- The distance from an exterior point near `1` to the branch cut has the required lower bound.-/
+/-- The distance from an exterior point near `1` to the branch cut has the required lower bound.
+@isnad1 id=le.3h2v.s6.14b478f7624c from=translated src=- shape=c27c0fab vocab=99104d48
+-/
 theorem le_dist_cutSegment_one {z : ℂ} (hz : 1 ≤ ‖z‖) (hre : 0 ≤ z.re) {p : ℂ}
     (hp : p ∈ cutSegment) : ‖z - 1‖ / 2 ≤ ‖z - p‖ := by
   change p.im = 0 ∧ -1 ≤ p.re ∧ p.re ≤ 1 at hp
@@ -356,7 +374,9 @@ theorem le_dist_cutSegment_one {z : ℂ} (hz : 1 ≤ ‖z‖) (hre : 0 ≤ z.re)
     apply le_of_sq_le_sq (b := ‖z - p‖) ?_ hnonneg
     nlinarith [hsqdist]
 
-/-- The distance from an exterior point near `-1` to the branch cut has the required lower bound.-/
+/-- The distance from an exterior point near `-1` to the branch cut has the required lower bound.
+@isnad1 id=le.3h2v.s6.08cb6faece7b from=translated src=- shape=fd410ae3 vocab=7e322750
+-/
 theorem le_dist_cutSegment_neg_one {z : ℂ} (hz : 1 ≤ ‖z‖) (hre : z.re ≤ 0) {p : ℂ}
     (hp : p ∈ cutSegment) : ‖z + 1‖ / 2 ≤ ‖z - p‖ := by
   change p.im = 0 ∧ -1 ≤ p.re ∧ p.re ≤ 1 at hp
@@ -412,7 +432,9 @@ theorem le_dist_cutSegment_neg_one {z : ℂ} (hz : 1 ≤ ‖z‖) (hre : z.re �
     apply le_of_sq_le_sq (b := ‖z - p‖) ?_ hnonneg
     nlinarith [hsqdist]
 
-/-- Complex derivatives of the approximant vanish to every prescribed power at `1`.-/
+/-- Complex derivatives of the approximant vanish to every prescribed power at `1`.
+@isnad1 id=ex.2h4v.s7.e463922ff4cd from=translated src=- shape=7b8d07af vocab=207bc858
+-/
 theorem exists_norm_iteratedDeriv_stripApprox_le_one {s : ℝ} (hs : 0 < s)
     {a : ℝ → ℂ} (ha : IsRapidlyDecaying a) (n N : ℕ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ z : ℂ, 1 ≤ ‖z‖ → ‖z - 1‖ ≤ 1 / 4 → z ≠ 1 →
@@ -478,7 +500,9 @@ theorem exists_norm_iteratedDeriv_stripApprox_le_one {s : ℝ} (hs : 0 < s)
     rw [h4]
   exact hcauchy.trans_eq hcancel
 
-/-- Complex derivatives of the approximant vanish to every prescribed power at `-1`.-/
+/-- Complex derivatives of the approximant vanish to every prescribed power at `-1`.
+@isnad1 id=ex.2h4v.s7.f91f4f3d61e2 from=translated src=- shape=2d902ec9 vocab=0ea83b53
+-/
 theorem exists_norm_iteratedDeriv_stripApprox_le_neg_one {s : ℝ} (hs : 0 < s)
     {a : ℝ → ℂ} (ha : IsRapidlyDecaying a) (n N : ℕ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ z : ℂ, 1 ≤ ‖z‖ → ‖z + 1‖ ≤ 1 / 4 → z ≠ -1 →
@@ -552,7 +576,9 @@ theorem exists_norm_iteratedDeriv_stripApprox_le_neg_one {s : ℝ} (hs : 0 < s)
     rw [h4]
   exact hcauchy.trans_eq hcancel
 
-/-- The approximant tends to zero at the point at infinity.-/
+/-- The approximant tends to zero at the point at infinity.
+@isnad1 id=tendsto.2h2v.s5.e2c8c1e04f8e from=translated src=- shape=0a7d858d vocab=f08569b6
+-/
 theorem tendsto_stripApprox {s : ℝ} (hs : 0 < s) {a : ℝ → ℂ}
     (ha : IsRapidlyDecaying a) :
     Filter.Tendsto (stripApprox s a) (Filter.cocompact ℂ) (nhds 0) := by
@@ -582,7 +608,9 @@ theorem tendsto_stripApprox {s : ℝ} (hs : 0 < s) {a : ℝ → ℂ}
       ((tendsto_norm_cocompact_atTop (E := ℂ)).inv_tendsto_atTop.const_mul C₀)
   exact squeeze_zero_norm' hupper hlim
 
-/-- The approximant is holomorphic on the open exterior.-/
+/-- The approximant is holomorphic on the open exterior.
+@isnad1 id=differen.2h2v.s6.dbe1727c6d10 from=translated src=- shape=af82851a vocab=0e2fddd8
+-/
 theorem differentiableOn_stripApprox {s : ℝ} (hs : 0 < s) {a : ℝ → ℂ}
     (ha : IsRapidlyDecaying a) :
     DifferentiableOn ℂ (stripApprox s a) OexteriorInterior := by
@@ -648,7 +676,9 @@ private theorem contDiffWithinAt_stripApprox_neg_one {s : ℝ} (hs : 0 < s)
       (notMem_cutSegment_of_one_le_norm hw.1 hwone hwne)
   · simpa [sub_neg_eq_add] using hbound
 
-/-- The approximant is smooth on the closed exterior, including its two flat endpoints.-/
+/-- The approximant is smooth on the closed exterior, including its two flat endpoints.
+@isnad1 id=contdiff.2h2v.s5.f98fda124e86 from=translated src=- shape=c7473c1e vocab=701f8684
+-/
 theorem contDiffOn_stripApprox {s : ℝ} (hs : 0 < s) {a : ℝ → ℂ}
     (ha : IsRapidlyDecaying a) :
     ContDiffOn ℝ ∞ (stripApprox s a) Oexterior := by
@@ -660,7 +690,9 @@ theorem contDiffOn_stripApprox {s : ℝ} (hs : 0 < s) {a : ℝ → ℂ}
   exact (analyticAt_stripApprox hs ha
     (notMem_cutSegment_of_one_le_norm hz hz1 hzneg)).restrictScalars.contDiffAt.contDiffWithinAt
 
-/-- Every real jet of the approximant vanishes at `1`.-/
+/-- Every real jet of the approximant vanishes at `1`.
+@isnad1 id=eq.2h3v.s8.6ef9d4badcb3 from=translated src=- shape=2d065d4b vocab=85ce4ef2
+-/
 theorem iteratedFDerivWithin_stripApprox_one {s : ℝ} (hs : 0 < s)
     {a : ℝ → ℂ} (ha : IsRapidlyDecaying a) (n : ℕ) :
     iteratedFDerivWithin ℝ n (stripApprox s a) Oexterior 1 = 0 := by
@@ -684,7 +716,9 @@ theorem iteratedFDerivWithin_stripApprox_one {s : ℝ} (hs : 0 < s)
       (notMem_cutSegment_of_one_le_norm hw.1 hwne hwneg)
   · exact hbound
 
-/-- Every real jet of the approximant vanishes at `-1`.-/
+/-- Every real jet of the approximant vanishes at `-1`.
+@isnad1 id=eq.2h3v.s8.2857732dcd4d from=translated src=- shape=62420b90 vocab=c8d7504c
+-/
 theorem iteratedFDerivWithin_stripApprox_neg_one {s : ℝ} (hs : 0 < s)
     {a : ℝ → ℂ} (ha : IsRapidlyDecaying a) (n : ℕ) :
     iteratedFDerivWithin ℝ n (stripApprox s a) Oexterior (-1) = 0 := by
@@ -715,7 +749,9 @@ noncomputable def stripApproxX {s : ℝ} (hs : 0 < s) {a : ℝ → ℂ}
     tendsto_stripApprox hs ha, iteratedFDerivWithin_stripApprox_one hs ha,
     iteratedFDerivWithin_stripApprox_neg_one hs ha⟩
 
-/-- [T26], Lemma 3.4; on the open upper semicircle the approximant is read in boost coordinates.-/
+/-- [T26], Lemma 3.4; on the open upper semicircle the approximant is read in boost coordinates.
+@isnad1 id=eq.1h3v.s6.9a6bdf54bd1c from=translated src=- shape=d034c2f9 vocab=4c36da73
+-/
 theorem stripApprox_circleExp {s : ℝ} {a : ℝ → ℂ} {θ : ℝ}
     (hθ : θ ∈ Set.Ioo 0 Real.pi) :
     stripApprox s a (Complex.exp (θ * Complex.I)) =

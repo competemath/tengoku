@@ -13,14 +13,18 @@ variable [AddCommGroup 𝓓] [Module ℂ 𝓓]
 
 namespace WightmanStruct
 
-/-- [T26], §2: appending operator lists composes their actions on a domain vector.-/
+/-- [T26], §2: appending operator lists composes their actions on a domain vector.
+@isnad1 id=eq.0h7v.s6.35182285fba2 from=translated src=- shape=5323d2b0 vocab=1b191bec
+-/
 theorem smearedProductOn_append (W : WightmanStruct TF 𝓓 𝓕)
     (L l : List (𝓕 × TF)) (Φ : 𝓓) :
     W.smearedProductOn (L ++ l) Φ =
       W.smearedProductOn L (W.smearedProductOn l Φ) := by
   simp [smearedProductOn, List.foldr_append]
 
-/-- [T26], §2: appending operator lists composes their vacuum products.-/
+/-- [T26], §2: appending operator lists composes their vacuum products.
+@isnad1 id=eq.0h6v.s6.eff7b9787ada from=translated src=- shape=6c52b5b3 vocab=86468026
+-/
 theorem smearedProduct_append (W : WightmanStruct TF 𝓓 𝓕)
     (L l : List (𝓕 × TF)) :
     W.smearedProduct (L ++ l) =
@@ -35,7 +39,9 @@ def IsCompatibleVac (W : WightmanStruct TF 𝓓 𝓕) (lam : 𝓓 →ₗ[ℂ] �
     Continuous fun f : Fin k → TF => lam (W.multiSmear φs W.vac f)
 
 /-- [T26], Definition 2.4 and §3: general-vector compatibility implies its
-vacuum-slot form.-/
+vacuum-slot form.
+@isnad1 id=iscompat.1h5v.s6.d2429e36842f from=translated src=- shape=74d536c3 vocab=4a1208d6
+-/
 theorem isCompatibleVac_of_isCompatible (W : WightmanStruct TF 𝓓 𝓕)
     (lam : 𝓓 →ₗ[ℂ] ℂ) :
     W.IsCompatible lam → W.IsCompatibleVac lam := by
@@ -43,7 +49,9 @@ theorem isCompatibleVac_of_isCompatible (W : WightmanStruct TF 𝓓 𝓕)
   exact h k φs W.vac
 
 /-- [T26], Definition 2.4 and §3: the vacuum-slot form implies compatibility
-for a Wightman CFT satisfying the spanning clause of (W4).-/
+for a Wightman CFT satisfying the spanning clause of (W4).
+@isnad1 id=iscompat.2h6v.s7.37d93d6ed243 from=translated src=- shape=1ba0d75b vocab=80bb19c0
+-/
 theorem isCompatible_of_isCompatibleVac (W : WightmanData G TF 𝓓 𝓕)
     (h4 : W.W4) (lam : 𝓓 →ₗ[ℂ] ℂ)
     (h : IsCompatibleVac W.toWightmanStruct lam) :
@@ -172,7 +180,9 @@ theorem isCompatible_of_isCompatibleVac (W : WightmanData G TF 𝓓 𝓕)
   exact continuous_finsetSum _ (fun i _ => hterm i)
 
 /-- [T26], Definition 2.4 and §3: under (W4), the two presentations of
-the compatible-functional space `D*_𝓕` are equivalent.-/
+the compatible-functional space `D*_𝓕` are equivalent.
+@isnad1 id=iff.1h6v.s7.8a042219dfbd from=translated src=- shape=84daa280 vocab=80bb19c0
+-/
 theorem isCompatible_iff_isCompatibleVac (W : WightmanData G TF 𝓓 𝓕)
     (h4 : W.W4) (lam : 𝓓 →ₗ[ℂ] ℂ) :
     IsCompatible W.toWightmanStruct lam ↔

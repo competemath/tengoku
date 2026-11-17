@@ -22,27 +22,37 @@ noncomputable section
 `X_γ(z) = |j(γ,z)|⁻²` with `j(γ,z) = β̄ z + ᾱ`; positive and real.-/
 def X (g : SU11) (z : Circle) : ℝ := (Complex.normSq (j g z))⁻¹
 
-/-- [T26], Definition 2.4: the conformal factor is strictly positive on the circle.-/
+/-- [T26], Definition 2.4: the conformal factor is strictly positive on the circle.
+@isnad1 id=lt.0h2v.s4.3648815b3f91 from=translated src=- shape=0d4521f5 vocab=ca2395a6
+-/
 theorem X_pos (g : SU11) (z : Circle) : 0 < X g z := by
   exact inv_pos.mpr (Complex.normSq_pos.mpr (j_ne_zero g z))
 
-/-- [T26], Definition 2.4: the conformal factor of the identity is one.-/
+/-- [T26], Definition 2.4: the conformal factor of the identity is one.
+@isnad1 id=eq.0h1v.s4.abee3412e09d from=translated src=- shape=fcc0db09 vocab=2bebfac2
+-/
 @[simp]
 theorem X_one (z : Circle) : X 1 z = 1 := by
   simp [X]
 
-/-- [T26], Definition 2.4: simultaneous sign change does not change the conformal factor.-/
+/-- [T26], Definition 2.4: simultaneous sign change does not change the conformal factor.
+@isnad1 id=eq.0h2v.s3.a5913493a269 from=translated src=- shape=7f0a0ac9 vocab=d91151ab
+-/
 @[simp]
 theorem X_neg (g : SU11) (z : Circle) : X (SU11.neg g) z = X g z := by
   simp [X, j_neg]
 
-/-- [T26], Definition 2.4: the conformal factor satisfies its multiplicative cocycle identity.-/
+/-- [T26], Definition 2.4: the conformal factor satisfies its multiplicative cocycle identity.
+@isnad1 id=eq.0h3v.s5.a37fb7ab0a8a from=translated src=- shape=cd871d23 vocab=e83b7f65
+-/
 theorem X_mul (g h : SU11) (z : Circle) :
     X (g * h) z = X g (h • z) * X h z := by
   rw [X, X, X, j_mul, Complex.normSq_mul, mul_inv]
 
 /-- [T26], Definition 2.4: evaluating at the inverse translate turns the conformal factor into
-the squared norm of the inverse automorphy factor.-/
+the squared norm of the inverse automorphy factor.
+@isnad1 id=eq.0h2v.s5.ca16af72bd53 from=translated src=- shape=63d37ec5 vocab=8f9cfc31
+-/
 theorem X_inv_smul (g : SU11) (z : Circle) :
     X g (g⁻¹ • z) = Complex.normSq (j g⁻¹ z) := by
   have h : X g (g⁻¹ • z) * X g⁻¹ z = 1 := by
@@ -52,7 +62,9 @@ theorem X_inv_smul (g : SU11) (z : Circle) :
   exact (mul_inv_eq_one₀ (Complex.normSq_pos.mpr (j_ne_zero g⁻¹ z)).ne').mp h
 
 /-- [T26], Definition 2.4, eq. (2.2): derivative of the circle-valued Möbius orbit, in the
-branch-free form used to identify the conformal factor with a logarithmic derivative.-/
+branch-free form used to identify the conformal factor with a logarithmic derivative.
+@isnad1 id=hasderiv.0h2v.s8.5d5cf611969f from=translated src=- shape=a6196d0b vocab=27213485
+-/
 theorem hasDerivAt_smul_circleExp (g : SU11) (θ : ℝ) :
     HasDerivAt (fun t : ℝ => ((g • Circle.exp t : Circle) : ℂ))
       (Complex.I * (Circle.exp θ : ℂ) / (j g (Circle.exp θ)) ^ 2) θ := by
@@ -118,7 +130,9 @@ theorem hasDerivAt_smul_circleExp (g : SU11) (θ : ℝ) :
   exact hn.div hd hj
 
 /-- [T26], Definition 2.4, eq. (2.2): `X_γ(e^{iθ}) = -i (d/dθ) log γ(e^{iθ})`, in the
-branch-free logarithmic-derivative form `-i · γ(e^{iθ})⁻¹ · (d/dθ) γ(e^{iθ})`.-/
+branch-free logarithmic-derivative form `-i · γ(e^{iθ})⁻¹ · (d/dθ) γ(e^{iθ})`.
+@isnad1 id=eq.0h2v.s8.d8461b3d5e9b from=translated src=- shape=2d0b8421 vocab=32fbaa0d
+-/
 theorem X_eq_logDeriv (g : SU11) (θ : ℝ) :
     ((X g (Circle.exp θ) : ℝ) : ℂ) =
       -Complex.I * (deriv (fun t : ℝ => ((g • Circle.exp t : Circle) : ℂ)) θ) /
@@ -137,7 +151,9 @@ theorem X_eq_logDeriv (g : SU11) (θ : ℝ) :
           ring]
   field_simp [j_ne_zero, Circle.coe_ne_zero]
 
-/-- [T26], §3: inversion reverses the real boost parameter.-/
+/-- [T26], §3: inversion reverses the real boost parameter.
+@isnad1 id=eq.0h1v.s3.ef0e456deb29 from=translated src=- shape=32371f98 vocab=0e650130
+-/
 @[simp]
 theorem boostMat_inv (t : ℝ) : (boostMat t)⁻¹ = boostMat (-t) := by
   apply SU11.ext
@@ -155,14 +171,18 @@ theorem boostMat_inv (t : ℝ) : (boostMat t)⁻¹ = boostMat (-t) := by
     simp
 
 /-- [T26], §3, eq. (3.4): the automorphy factor of a real boost is the denominator of the
-complex-parameter boost at the corresponding real parameter.-/
+complex-parameter boost at the corresponding real parameter.
+@isnad1 id=eq.0h2v.s6.d2fa01caa769 from=translated src=- shape=c2489f0c vocab=c1ae7fb3
+-/
 theorem j_boostMat_eq_cden (t : ℝ) (z : Circle) :
     j (boostMat t) z = cden (t : ℂ) z := by
   have hhalf : (t : ℂ) / 2 = ((t / 2 : ℝ) : ℂ) :=
     (Complex.ofReal_div t 2).symm
   rw [j_boostMat, cden, hhalf, ← Complex.ofReal_sinh, ← Complex.ofReal_cosh]
 
-/-- [T26], eq. (3.5): `X_{v_t}(v_{-t} · z) = cosh t + Re(z) sinh t`.-/
+/-- [T26], eq. (3.5): `X_{v_t}(v_{-t} · z) = cosh t + Re(z) sinh t`.
+@isnad1 id=eq.0h2v.s6.558034ff1c48 from=translated src=- shape=090d69c6 vocab=bd1b1a96
+-/
 theorem X_boostMat_inv_smul (t : ℝ) (z : Circle) :
     X (boostMat t) ((boostMat t)⁻¹ • z) =
       Real.cosh t + (z : ℂ).re * Real.sinh t := by
@@ -170,7 +190,9 @@ theorem X_boostMat_inv_smul (t : ℝ) (z : Circle) :
   simpa using normSq_cden_neg_ofReal t z
 
 /-- [T26], §3: for real `t` the group action of `v_t` is the `τ = t` case of the
-complex-boost formula.-/
+complex-boost formula.
+@isnad1 id=eq.0h2v.s7.c64fcc249343 from=translated src=- shape=93e715c9 vocab=3717fb14
+-/
 theorem coe_boostMat_smul (t : ℝ) (z : Circle) :
     ((boostMat t • z : Circle) : ℂ) = vApply (t : ℂ) (z : ℂ) := by
   have hhalf : (t : ℂ) / 2 = ((t / 2 : ℝ) : ℂ) :=
@@ -181,7 +203,9 @@ theorem coe_boostMat_smul (t : ℝ) (z : Circle) :
   rw [hhalf, ← Complex.ofReal_cosh, ← Complex.ofReal_sinh]
   ring
 
-/-- [T26], Definition 2.4: rotations have unit conformal factor.-/
+/-- [T26], Definition 2.4: rotations have unit conformal factor.
+@isnad1 id=eq.0h2v.s4.356edd07ed43 from=translated src=- shape=6c0ecea5 vocab=bd5bee0b
+-/
 @[simp]
 theorem X_rotMat (θ : ℝ) (z : Circle) : X (rotMat θ) z = 1 := by
   simp only [X, rotMat, j, map_zero, zero_mul, mul_zero, zero_add, add_zero]
@@ -202,23 +226,31 @@ def X (γ : Mob) (z : Circle) : ℝ :=
     · rfl
     · exact (MobiusCPT.X_neg g z).symm)
 
-/-- [T26], Definition 2.4: a representative computes the descended conformal factor.-/
+/-- [T26], Definition 2.4: a representative computes the descended conformal factor.
+@isnad1 id=eq.0h2v.s3.0f886af6d126 from=translated src=- shape=30fef48e vocab=487de0e6
+-/
 @[simp]
 theorem X_mk (g : SU11) (z : Circle) : X (mk g) z = MobiusCPT.X g z := rfl
 
-/-- [T26], Definition 2.4: the descended conformal factor is strictly positive.-/
+/-- [T26], Definition 2.4: the descended conformal factor is strictly positive.
+@isnad1 id=lt.0h2v.s4.c09db8e55ed5 from=translated src=- shape=0d4521f5 vocab=75845d67
+-/
 theorem X_pos (γ : Mob) (z : Circle) : 0 < X γ z := by
   obtain ⟨g, rfl⟩ := mk_surjective γ
   rw [X_mk]
   exact MobiusCPT.X_pos g z
 
-/-- [T26], Definition 2.4: the descended conformal factor satisfies the Möbius cocycle.-/
+/-- [T26], Definition 2.4: the descended conformal factor satisfies the Möbius cocycle.
+@isnad1 id=eq.0h3v.s5.5fc864e31e0a from=translated src=- shape=cd871d23 vocab=4d35253b
+-/
 theorem X_mul (γ δ : Mob) (z : Circle) : X (γ * δ) z = X γ (δ • z) * X δ z := by
   obtain ⟨g, rfl⟩ := mk_surjective γ
   obtain ⟨h, rfl⟩ := mk_surjective δ
   simpa only [← mk_mul, X_mk, mk_smul] using MobiusCPT.X_mul g h z
 
-/-- [T26], Definition 2.4: the descended conformal factor of the identity is one.-/
+/-- [T26], Definition 2.4: the descended conformal factor of the identity is one.
+@isnad1 id=eq.0h1v.s4.35fea97f02de from=translated src=- shape=fcc0db09 vocab=4fe1e36b
+-/
 @[simp]
 theorem X_one (z : Circle) : X (1 : Mob) z = 1 := by
   rw [← mk_one, X_mk]

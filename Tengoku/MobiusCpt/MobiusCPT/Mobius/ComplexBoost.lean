@@ -30,14 +30,18 @@ def cden (τ z : ℂ) : ℂ :=
 def vApply (τ z : ℂ) : ℂ :=
   cnum τ z / cden τ z
 
-/-- [T26], §3, eq. (3.4): the numerator of `v_{-τ} · z`.-/
+/-- [T26], §3, eq. (3.4): the numerator of `v_{-τ} · z`.
+@isnad1 id=eq.0h2v.s6.4a1e9221b76e from=translated src=- shape=eca36968 vocab=da604a0d
+-/
 @[simp]
 theorem cnum_neg (τ z : ℂ) :
     cnum (-τ) z = Complex.cosh (τ / 2) * z + Complex.sinh (τ / 2) := by
   rw [cnum, show -τ / 2 = -(τ / 2) by ring, Complex.cosh_neg, Complex.sinh_neg]
   ring
 
-/-- [T26], §3, eq. (3.4): the denominator of `v_{-τ} · z`.-/
+/-- [T26], §3, eq. (3.4): the denominator of `v_{-τ} · z`.
+@isnad1 id=eq.0h2v.s6.e9253fff6335 from=translated src=- shape=eca36968 vocab=462718e0
+-/
 @[simp]
 theorem cden_neg (τ z : ℂ) :
     cden (-τ) z = Complex.sinh (τ / 2) * z + Complex.cosh (τ / 2) := by
@@ -45,7 +49,9 @@ theorem cden_neg (τ z : ℂ) :
   ring
 
 /-- [T26], §3, eq. (3.4): the numerator and denominator of the complex boost cannot
-simultaneously degenerate.-/
+simultaneously degenerate.
+@isnad1 id=eq.0h2v.s6.26dd3158e95b from=translated src=- shape=6e0f3faf vocab=cf889df5
+-/
 theorem cosh_mul_cden_add_sinh_mul_cnum (τ z : ℂ) :
     Complex.cosh (τ / 2) * cden τ z + Complex.sinh (τ / 2) * cnum τ z = 1 := by
   calc
@@ -56,7 +62,9 @@ theorem cosh_mul_cden_add_sinh_mul_cnum (τ z : ℂ) :
     _ = 1 := Complex.cosh_sq_sub_sinh_sq (τ / 2)
 
 /-- [T26], §3, eq. (3.4): the numerator and denominator of the complex boost are not
-simultaneously zero.-/
+simultaneously zero.
+@isnad1 id=not.0h2v.s4.95297177b816 from=translated src=- shape=e4fc9930 vocab=24ebacab
+-/
 theorem not_and_cnum_cden_eq_zero (τ z : ℂ) :
     ¬(cnum τ z = 0 ∧ cden τ z = 0) := by
   rintro ⟨hnum, hden⟩
@@ -64,7 +72,9 @@ theorem not_and_cnum_cden_eq_zero (τ z : ℂ) :
   rw [hnum, hden] at h
   simp at h
 
-/-- [T26], Definition 3.5: the algebraic norm-square identity underlying the strip geometry.-/
+/-- [T26], Definition 3.5: the algebraic norm-square identity underlying the strip geometry.
+@isnad1 id=eq.0h3v.s8.08aa02313fe2 from=translated src=- shape=b9718668 vocab=67e6c5a7
+-/
 theorem normSq_sub_normSq_general (c s w : ℂ) :
     Complex.normSq (c * w + s) - Complex.normSq (s * w + c) =
       (Complex.normSq c - Complex.normSq s) * (Complex.normSq w - 1) -
@@ -74,7 +84,9 @@ theorem normSq_sub_normSq_general (c s w : ℂ) :
   ring
 
 /-- [T26], Definition 3.5: the imaginary part of the product of a complex hyperbolic
-half-angle and the conjugate of its hyperbolic sine.-/
+half-angle and the conjugate of its hyperbolic sine.
+@isnad1 id=eq.0h1v.s6.297333464296 from=translated src=- shape=bff43c30 vocab=9043b0e8
+-/
 theorem im_cosh_mul_conj_sinh (w : ℂ) :
     (Complex.cosh w * (starRingEnd ℂ) (Complex.sinh w)).im =
       -(Real.sin (2 * w.im)) / 2 := by
@@ -108,7 +120,9 @@ theorem im_cosh_mul_conj_sinh (w : ℂ) :
       ring
 
 /-- [T26], Definition 3.5: on the unit circle the numerator-minus-denominator norm square
-of `v_{-τ}` is controlled by the imaginary parts of `τ` and `z`.-/
+of `v_{-τ}` is controlled by the imaginary parts of `τ` and `z`.
+@isnad1 id=eq.0h2v.s8.ed84eaee8239 from=translated src=- shape=806656f0 vocab=0270fc70
+-/
 theorem normSq_cnum_neg_sub_normSq_cden_neg (τ : ℂ) (z : Circle) :
     Complex.normSq (cnum (-τ) z) - Complex.normSq (cden (-τ) z) =
       2 * Real.sin τ.im * (z : ℂ).im := by
@@ -132,7 +146,9 @@ theorem normSq_cnum_neg_sub_normSq_cden_neg (τ : ℂ) (z : Circle) :
       ring
 
 /-- [T26], Definition 3.5: for `0 ≤ Im τ ≤ π` and `z` in the closed upper semicircle,
-`|v_{-τ} · z| ≥ 1`, expressed before division so that the pole is included.-/
+`|v_{-τ} · z| ≥ 1`, expressed before division so that the pole is included.
+@isnad1 id=le.3h2v.s8.757934f2b853 from=translated src=- shape=8c425e95 vocab=9f0a24ad
+-/
 theorem norm_cden_neg_le_norm_cnum_neg {τ : ℂ} (h₀ : 0 ≤ τ.im)
     (h₁ : τ.im ≤ Real.pi) {z : Circle} (hz : 0 ≤ (z : ℂ).im) :
     ‖cden (-τ) z‖ ≤ ‖cnum (-τ) z‖ := by
@@ -147,7 +163,9 @@ theorem norm_cden_neg_le_norm_cnum_neg {τ : ℂ} (h₀ : 0 ≤ τ.im)
   linarith
 
 /-- [T26], Definition 3.5: away from its pole, `v_{-τ}` has norm at least one on the closed
-upper semicircle throughout the closed strip.-/
+upper semicircle throughout the closed strip.
+@isnad1 id=le.4h2v.s8.4eb8673cdb41 from=translated src=- shape=8c7420b5 vocab=090a2b7f
+-/
 theorem one_le_norm_vApply_neg {τ : ℂ} (h₀ : 0 ≤ τ.im) (h₁ : τ.im ≤ Real.pi)
     {z : Circle} (hz : 0 ≤ (z : ℂ).im) (hden : cden (-τ) z ≠ 0) :
     1 ≤ ‖vApply (-τ) (z : ℂ)‖ := by
@@ -156,7 +174,9 @@ theorem one_le_norm_vApply_neg {τ : ℂ} (h₀ : 0 ≤ τ.im) (h₁ : τ.im ≤
     (by simpa using norm_cden_neg_le_norm_cnum_neg h₀ h₁ hz)
 
 /-- [T26], Definition 3.5: away from its pole, `v_{-τ}` maps the open upper semicircle into
-the finite part of `𝕆`.-/
+the finite part of `𝕆`.
+@isnad1 id=le.4h2v.s7.a02e787f85ef from=translated src=- shape=80d7200c vocab=087acf16
+-/
 theorem one_le_norm_vApply_neg_of_mem_upperArc {τ : ℂ} (h₀ : 0 ≤ τ.im)
     (h₁ : τ.im ≤ Real.pi) {z : Circle} (hz : z ∈ upperArc)
     (hden : cden (-τ) z ≠ 0) :
@@ -173,7 +193,9 @@ def vApplyNegSphere (τ : ℂ) (z : Circle) : OnePoint ℂ :=
   else ((cnum (-τ) z / cden (-τ) z : ℂ) : OnePoint ℂ)
 
 /-- [T26], Definition 3.5: `v_{-τ}(I_+) ⊆ 𝕆` for `τ` in the closed strip
-`0 ≤ Im τ ≤ π`, including the boundary of the strip and the endpoints of the semicircle.-/
+`0 ≤ Im τ ≤ π`, including the boundary of the strip and the endpoints of the semicircle.
+@isnad1 id=mem.3h2v.s6.e817c5504e39 from=translated src=- shape=a967f5eb vocab=6009b65e
+-/
 theorem vApplyNegSphere_mem_Oset {τ : ℂ} (h₀ : 0 ≤ τ.im) (h₁ : τ.im ≤ Real.pi)
     {z : Circle} (hz : 0 ≤ (z : ℂ).im) :
     vApplyNegSphere τ z ∈ Oset := by
@@ -185,7 +207,9 @@ theorem vApplyNegSphere_mem_Oset {τ : ℂ} (h₀ : 0 ≤ τ.im) (h₁ : τ.im �
     exact Or.inr ⟨_, hv, rfl⟩
 
 /-- [T26], Definition 3.5: the difference of the hyperbolic norm squares depends only on
-the imaginary part of the complex parameter.-/
+the imaginary part of the complex parameter.
+@isnad1 id=eq.0h1v.s6.a18d414bb5f2 from=translated src=- shape=06d4fb5e vocab=30123407
+-/
 theorem normSq_cosh_sub_normSq_sinh (w : ℂ) :
     Complex.normSq (Complex.cosh w) - Complex.normSq (Complex.sinh w) =
       Real.cos (2 * w.im) := by
@@ -205,7 +229,9 @@ theorem normSq_cosh_sub_normSq_sinh (w : ℂ) :
       simp
 
 /-- [T26], Definition 3.5: if `cos (Im τ) ≠ 0`, the denominator of `v_{-τ}` has no pole
-on the unit circle.-/
+on the unit circle.
+@isnad1 id=ne.1h2v.s6.91ff197e5eff from=translated src=- shape=be4d8bab vocab=6d6a835f
+-/
 theorem cden_neg_ne_zero_of_im_ne {τ : ℂ} (h : Real.cos τ.im ≠ 0) (z : Circle) :
     cden (-τ) z ≠ 0 := by
   intro hden
@@ -223,7 +249,9 @@ theorem cden_neg_ne_zero_of_im_ne {τ : ℂ} (h : Real.cos τ.im ≠ 0) (z : Cir
   rw [him] at hcos
   exact h hcos.symm
 
-/-- [T26], Lemma 3.7: `cosh (iπ/2) = 0`.-/
+/-- [T26], Lemma 3.7: `cosh (iπ/2) = 0`.
+@isnad1 id=eq.0h0v.s5.87d9e765b045 from=translated src=- shape=6bfe1568 vocab=980c6601
+-/
 theorem cosh_I_mul_pi_div_two :
     Complex.cosh (Complex.I * Real.pi / 2) = 0 := by
   rw [show Complex.I * Real.pi / 2 = ((Real.pi / 2 : ℝ) : ℂ) * Complex.I by
@@ -231,7 +259,9 @@ theorem cosh_I_mul_pi_div_two :
     ring]
   simp [Complex.cosh_mul_I, Real.cos_pi_div_two]
 
-/-- [T26], Lemma 3.7: `sinh (iπ/2) = i`.-/
+/-- [T26], Lemma 3.7: `sinh (iπ/2) = i`.
+@isnad1 id=eq.0h0v.s4.d30aebb3b5a6 from=translated src=- shape=5e1afe03 vocab=a6f0c129
+-/
 theorem sinh_I_mul_pi_div_two :
     Complex.sinh (Complex.I * Real.pi / 2) = Complex.I := by
   rw [show Complex.I * Real.pi / 2 = ((Real.pi / 2 : ℝ) : ℂ) * Complex.I by
@@ -239,26 +269,34 @@ theorem sinh_I_mul_pi_div_two :
     ring]
   simp [Complex.sinh_mul_I, Real.sin_pi_div_two]
 
-/-- [T26], Lemma 3.7: the denominator of `v_{iπ}` is nonzero on the unit circle.-/
+/-- [T26], Lemma 3.7: the denominator of `v_{iπ}` is nonzero on the unit circle.
+@isnad1 id=ne.0h1v.s6.ed3cb065d268 from=translated src=- shape=8aa591fc vocab=1843419a
+-/
 theorem cden_I_mul_pi_ne_zero (z : Circle) :
     cden (Complex.I * Real.pi) (z : ℂ) ≠ 0 := by
   rw [cden, cosh_I_mul_pi_div_two, sinh_I_mul_pi_div_two, add_zero]
   exact mul_ne_zero (neg_ne_zero.mpr Complex.I_ne_zero) (Circle.coe_ne_zero z)
 
-/-- [T26], Lemma 3.7: `v_{iπ} · z = z⁻¹`.-/
+/-- [T26], Lemma 3.7: `v_{iπ} · z = z⁻¹`.
+@isnad1 id=eq.0h1v.s7.d2a272121b8c from=translated src=- shape=a90261a5 vocab=2ac74fea
+-/
 theorem vApply_I_mul_pi (z : Circle) :
     vApply (Complex.I * Real.pi) (z : ℂ) = ((z : ℂ))⁻¹ := by
   rw [vApply, cnum, cden, cosh_I_mul_pi_div_two, sinh_I_mul_pi_div_two]
   field_simp [Complex.I_ne_zero, Circle.coe_ne_zero z]
   ring
 
-/-- [T26], Lemma 3.7: the endpoint boost is inversion as a circle-valued operation.-/
+/-- [T26], Lemma 3.7: the endpoint boost is inversion as a circle-valued operation.
+@isnad1 id=eq.0h1v.s7.b55aa0db2490 from=translated src=- shape=2c8517ad vocab=2ac74fea
+-/
 theorem vApply_I_mul_pi_circle (z : Circle) :
     vApply (Complex.I * Real.pi) (z : ℂ) = ((z⁻¹ : Circle) : ℂ) := by
   simpa using vApply_I_mul_pi z
 
 /-- [T26], eq. (3.5): `cosh τ + Re(z) sinh τ` factors through the denominator of
-`v_{-τ}` and its reflected factor.-/
+`v_{-τ}` and its reflected factor.
+@isnad1 id=eq.0h2v.s8.8c00a26c4c04 from=translated src=- shape=d14ad82d vocab=f7b90548
+-/
 theorem cosh_add_re_mul_sinh (τ : ℂ) (z : Circle) :
     Complex.cosh τ + ((z : ℂ).re : ℂ) * Complex.sinh τ =
       cden (-τ) z *
@@ -301,7 +339,9 @@ theorem cosh_add_re_mul_sinh (τ : ℂ) (z : Circle) :
             Complex.cosh (τ / 2)) := by rw [cden_neg]
 
 /-- [T26], eq. (3.5): `|sinh(t/2) z + cosh(t/2)|² = cosh t + Re(z) sinh t`
-for a real boost parameter.-/
+for a real boost parameter.
+@isnad1 id=eq.0h2v.s7.0d8d0f36b12a from=translated src=- shape=69b4863b vocab=ad929bd9
+-/
 theorem normSq_cden_neg_ofReal (t : ℝ) (z : Circle) :
     Complex.normSq (cden (-(t : ℂ)) z) =
       Real.cosh t + (z : ℂ).re * Real.sinh t := by

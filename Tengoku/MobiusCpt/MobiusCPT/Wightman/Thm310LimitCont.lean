@@ -27,7 +27,9 @@ private theorem isClosed_strip (τ : ℂ) : IsClosed (strip τ) := by
   exact (isClosed_le continuous_const Complex.continuous_im).inter
     (isClosed_le Complex.continuous_im continuous_const)
 
-/-- The approximants converge locally uniformly on the closed strip.-/
+/-- The approximants converge locally uniformly on the closed strip.
+@isnad1 id=tendstol.2h5v.s7.c206e7213d11 from=translated src=- shape=6185723b vocab=1b705fd6
+-/
 theorem tendstoLocallyUniformlyOn_limG_strip (hW : W.IsWightmanCFT)
     (l : List (𝓕 × TestFn)) (hl : ∀ p ∈ l, SuppUpper p.2)
     (lam : W.toWightmanStruct.Compat) :
@@ -53,7 +55,9 @@ theorem tendstoLocallyUniformlyOn_limG_strip (hW : W.IsWightmanCFT)
       (fun y hy => tendsto_limG hW l hl lam (hK_subset hy))
   exact ⟨K, hK_nhds, h_uniform u hu⟩
 
-/-- The limiting continuation family is continuous on the closed strip.-/
+/-- The limiting continuation family is continuous on the closed strip.
+@isnad1 id=continuo.2h5v.s7.683f07576c51 from=translated src=- shape=23f7a071 vocab=288cfc73
+-/
 theorem continuousOn_limitG (hW : W.IsWightmanCFT) (l : List (𝓕 × TestFn))
     (hl : ∀ p ∈ l, SuppUpper p.2) (lam : W.toWightmanStruct.Compat) :
     ContinuousOn (limitG hW l hl lam) (strip (Complex.I * Real.pi)) := by

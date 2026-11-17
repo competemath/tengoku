@@ -19,7 +19,9 @@ open Set Filter
 
 noncomputable section
 
-/-- Inversion is continuous in the smooth test-function topology.-/
+/-- Inversion is continuous in the smooth test-function topology.
+@isnad1 id=continuo.0h0v.s2.c4178d4d4fc6 from=translated src=- shape=e3d48bcb vocab=fe3304d4
+-/
 theorem continuous_inv : Continuous inv := by
   change Continuous (invₗ : TestFn → TestFn)
   refine WithSeminorms.continuous_of_isBounded withSeminorms_cnorm
@@ -222,6 +224,9 @@ private theorem tendsto_boost_smearedProduct_ofFn (hW : W.IsWightmanCFT)
 
 /-! ### The lower boundary -/
 
+/--
+@isnad1 id=tendsto.2h6v.s7.f13ab0d40448 from=translated src=- shape=bdfa9a97 vocab=59cf7d7d
+-/
 theorem tendsto_limG_ofReal (hW : W.IsWightmanCFT) (l : List (Field × TestFn))
     (hl : ∀ p ∈ l, SuppUpper p.2) (lam : W.toWightmanStruct.Compat) (t : ℝ) :
     Tendsto (fun n => limG l hl lam n (t : ℂ)) atTop
@@ -256,6 +261,9 @@ noncomputable def upperLimitVector (l : List (Field × TestFn)) : D :=
   (-1 : ℂ) ^ ((l.map (fun p => W.dim p.1)).sum) •
     W.smearedProduct (l.reverse.map (fun p => (p.1, inv p.2)))
 
+/--
+@isnad1 id=tendsto.2h6v.s7.966251d14371 from=translated src=- shape=bc64ee19 vocab=2ea56e7d
+-/
 theorem tendsto_limG_ipi_add_ofReal (hW : W.IsWightmanCFT)
     (l : List (Field × TestFn)) (hl : ∀ p ∈ l, SuppUpper p.2)
     (lam : W.toWightmanStruct.Compat) (t : ℝ) :
@@ -347,6 +355,9 @@ theorem tendsto_limG_ipi_add_ofReal (hW : W.IsWightmanCFT)
 
 /-! ### Identification and packaging -/
 
+/--
+@isnad1 id=eq.2h6v.s7.f5b4e81acf9b from=translated src=- shape=34c6463e vocab=3361c0ab
+-/
 theorem limitG_ofReal (hW : W.IsWightmanCFT) (l : List (Field × TestFn))
     (hl : ∀ p ∈ l, SuppUpper p.2) (lam : W.toWightmanStruct.Compat) (t : ℝ) :
     limitG hW l hl lam (t : ℂ) =
@@ -355,6 +366,9 @@ theorem limitG_ofReal (hW : W.IsWightmanCFT) (l : List (Field × TestFn))
     (tendsto_limG hW l hl lam (ofReal_mem_strip (Complex.I * Real.pi) t))
     (tendsto_limG_ofReal hW l hl lam t)
 
+/--
+@isnad1 id=eq.2h6v.s7.d28d54df7209 from=translated src=- shape=75ad2286 vocab=8e6407cf
+-/
 theorem limitG_ipi_add_ofReal (hW : W.IsWightmanCFT)
     (l : List (Field × TestFn)) (hl : ∀ p ∈ l, SuppUpper p.2)
     (lam : W.toWightmanStruct.Compat) (t : ℝ) :
@@ -364,6 +378,9 @@ theorem limitG_ipi_add_ofReal (hW : W.IsWightmanCFT)
     (tendsto_limG hW l hl lam (add_ofReal_mem_strip (Complex.I * Real.pi) t))
     (tendsto_limG_ipi_add_ofReal hW l hl lam t)
 
+/--
+@isnad1 id=isboostc.2h4v.s7.d7500ddc5e53 from=translated src=- shape=592d0bbf vocab=832c876e
+-/
 theorem isBoostContinuation_limitG (hW : W.IsWightmanCFT)
     (l : List (Field × TestFn)) (hl : ∀ p ∈ l, SuppUpper p.2) :
     W.IsBoostContinuation (Complex.I * Real.pi) (W.smearedProduct l) (upperLimitVector (W := W) l)
@@ -372,6 +389,9 @@ theorem isBoostContinuation_limitG (hW : W.IsWightmanCFT)
   exact ⟨continuousOn_limitG hW l hl lam, differentiableOn_limitG hW l hl lam,
     limitG_ofReal hW l hl lam, limitG_ipi_add_ofReal hW l hl lam⟩
 
+/--
+@isnad1 id=and.2h4v.s7.89e43d6707af from=translated src=- shape=20456adc vocab=486dd743
+-/
 theorem thm_3_10_ii_core (hW : W.IsWightmanCFT) (l : List (Field × TestFn))
     (hl : ∀ p ∈ l, SuppUpper p.2) :
     W.VtildeDom (Complex.I * Real.pi) (W.smearedProduct l) ∧

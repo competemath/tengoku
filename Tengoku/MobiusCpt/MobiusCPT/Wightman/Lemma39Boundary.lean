@@ -116,7 +116,9 @@ private theorem foldr_max_inv_reverse_eq (N : ℕ) (fs gs : List TestFn)
   rw [hzip, List.map_map, List.map_congr_left hfun, List.map_reverse]
   exact List.Perm.foldr_eq (lcomm := max_left_commutative) (List.reverse_perm _) 0
 
-/-- [T26], Lemma 3.9: exponential control on the lower boundary of the strip.-/
+/-- [T26], Lemma 3.9: exponential control on the lower boundary of the strip.
+@isnad1 id=ex.1h3v.s8.1dee2c54bb07 from=translated src=- shape=87af00d5 vocab=e4a58ecc
+-/
 theorem lemma_3_9_lower_bound (W : WightmanBundle) (h : W.data.IsWightmanCFT)
     (φs : List W.𝓕) (lam : W.data.toWightmanStruct.Compat) :
     ∃ (N : ℕ) (k₁ k₂ : ℝ), 0 < N ∧ 0 < k₁ ∧ 0 < k₂ ∧
@@ -170,7 +172,9 @@ theorem lemma_3_9_lower_bound (W : WightmanBundle) (h : W.data.IsWightmanCFT)
       exact mul_le_mul_of_nonneg_right (hCle t)
         (mul_nonneg (NNReal.coe_nonneg _) (NNReal.coe_nonneg _))
 
-/-- [T26], Lemma 3.9: exponential control on the upper boundary of the strip.-/
+/-- [T26], Lemma 3.9: exponential control on the upper boundary of the strip.
+@isnad1 id=ex.1h3v.s9.b5a9a65aaa65 from=translated src=- shape=bfe70785 vocab=31442983
+-/
 theorem lemma_3_9_upper_bound (W : WightmanBundle) (h : W.data.IsWightmanCFT)
     (φs : List W.𝓕) (lam : W.data.toWightmanStruct.Compat) :
     ∃ (N : ℕ) (k₁ k₂ : ℝ), 0 < N ∧ 0 < k₁ ∧ 0 < k₂ ∧

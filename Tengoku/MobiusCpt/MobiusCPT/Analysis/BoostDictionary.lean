@@ -77,7 +77,9 @@ private theorem iteratedDeriv_comp_eq_zero_of_flat {g : ℝ → ℂ} {q : ℝ �
 
 /-! ### The two half-line estimates -/
 
-/-- The positive half-line estimate for the boost pullback of an upper-flat function.-/
+/-- The positive half-line estimate for the boost pullback of an upper-flat function.
+@isnad1 id=ex.1h3v.s6.ba12d8010663 from=translated src=- shape=ff80fca7 vocab=eb858112
+-/
 theorem exists_norm_iteratedDeriv_comp_boostToAngle_nonneg {g : ℝ → ℂ} (hg : IsUpperFlat g)
     (k N : ℕ) :
     ∃ C : ℝ, ∀ x : ℝ, 0 ≤ x →
@@ -188,7 +190,9 @@ theorem exists_norm_iteratedDeriv_comp_boostToAngle_nonneg {g : ℝ → ℂ} (hg
     _ = ((Nat.factorial k : ℝ) * K₀) * Real.exp (-(N : ℝ) * |x|) := by
       rw [hq_pow, abs_of_nonneg hx]
 
-/-- Reflection transports the positive half-line estimate to the negative half-line.-/
+/-- Reflection transports the positive half-line estimate to the negative half-line.
+@isnad1 id=ex.1h3v.s6.959894f29d7f from=translated src=- shape=b9b1e65e vocab=eb858112
+-/
 theorem exists_norm_iteratedDeriv_comp_boostToAngle_nonpos {g : ℝ → ℂ} (hg : IsUpperFlat g)
     (k N : ℕ) :
     ∃ C : ℝ, ∀ x : ℝ, x ≤ 0 →
@@ -228,7 +232,9 @@ theorem exists_norm_iteratedDeriv_comp_boostToAngle_nonpos {g : ℝ → ℂ} (hg
   simpa [abs_neg, neg_neg, norm_smul, Real.norm_eq_abs] using hC'
 
 /-- [T26], proof of Lemma 3.4; the boost picture of an upper-flat function decays faster than
-every exponential, together with all its derivatives.-/
+every exponential, together with all its derivatives.
+@isnad1 id=israpidl.1h1v.s3.3e7f0d8e1a16 from=translated src=- shape=443695da vocab=3214e4ce
+-/
 theorem isRapidlyDecaying_comp_boostToAngle {g : ℝ → ℂ} (hg : IsUpperFlat g) :
     IsRapidlyDecaying (fun x : ℝ => g (boostToAngle x)) := by
   have hcont : ContDiff ℝ ∞ (fun x : ℝ => g (boostToAngle x)) := by

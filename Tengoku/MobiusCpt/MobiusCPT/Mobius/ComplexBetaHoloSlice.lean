@@ -27,7 +27,9 @@ private theorem mem_interior_strip_I_mul_pi {τ : ℂ} :
 
 /-- [T26], Definition 3.5; strictly inside the strip and strictly inside the upper semicircle, the
 ratio fed to the divided inverted function lies in the open unit disc, where that function is
-holomorphic.-/
+holomorphic.
+@isnad1 id=lt.3h2v.s8.c8b3f3b6fb15 from=translated src=- shape=0141ffe1 vocab=431c98ec
+-/
 theorem norm_cden_div_cnum_lt_one {τ : ℂ} (h₀ : 0 < τ.im) (h₁ : τ.im < Real.pi)
     {z : Circle} (hz : 0 < (z : ℂ).im) :
     ‖cden (-τ) z / cnum (-τ) z‖ < 1 := by
@@ -49,7 +51,9 @@ theorem norm_cden_div_cnum_lt_one {τ : ℂ} (h₀ : 0 < τ.im) (h₁ : τ.im < 
 /-- [T26], Lemma 3.6; for a fixed point of the closed upper semicircle the complex boost is
 holomorphic in the strip parameter on the interior of the strip.  At the two endpoints the value
 is identically zero and the statement is trivial; in between, the ratio lies in the open unit disc
-where the divided inverted function is holomorphic.-/
+where the divided inverted function is holomorphic.
+@isnad1 id=differen.1h3v.s7.9cdbe6c720d8 from=translated src=- shape=18a640d8 vocab=d86521a7
+-/
 theorem differentiableOn_betaBoostVal (d : ℕ) (F : AnalyticTestFn) {θ : ℝ}
     (hθ : θ ∈ Set.Icc 0 Real.pi) :
     DifferentiableOn ℂ (fun τ : ℂ => betaBoostVal d τ F (Circle.exp θ))
@@ -144,7 +148,9 @@ private theorem hasDerivAt_betaBoostSlice_angle (d : ℕ) (F : AnalyticTestFn) (
 parameter on the interior of the strip.  The step from one order to the next is Weierstrass'
 theorem: the difference quotients in the angle are holomorphic in the parameter and converge
 locally uniformly, because the next angle derivative is jointly continuous, hence uniformly
-continuous on compacta.-/
+continuous on compacta.
+@isnad1 id=differen.1h4v.s7.71e53c91605b from=translated src=- shape=d5baffe6 vocab=cc2cb07f
+-/
 theorem differentiableOn_betaBoostSlice (d : ℕ) (F : AnalyticTestFn) (j : ℕ) {θ : ℝ}
     (hθ : θ ∈ Set.Icc 0 Real.pi) :
     DifferentiableOn ℂ (fun τ : ℂ => betaBoostSlice d F j (τ, θ))

@@ -27,7 +27,9 @@ open Filter Set Topology
 namespace MobiusCPT
 
 /-- A pointwise bounded family of continuous linear functionals on a barrelled space is
-equicontinuous at zero, in the explicit form needed below.-/
+equicontinuous at zero, in the explicit form needed below.
+@isnad1 id=ex.3h4v.s8.55451c7c70bd from=translated src=- shape=bc562898 vocab=9b337d47
+-/
 theorem exists_nhds_zero_forall_norm_le {E : Type*} [AddCommGroup E] [Module ℂ E]
     [TopologicalSpace E] [BarrelledSpace ℂ E] {iota : Sort*} (u : iota → E →ₗ[ℂ] ℂ)
     (hu : ∀ i, Continuous (u i))
@@ -64,7 +66,9 @@ theorem exists_nhds_zero_forall_norm_le {E : Type*} [AddCommGroup E] [Module ℂ
 vector space is jointly continuous.
 
 This is the classical theorem of [Trèves, *Topological Vector Spaces, Distributions and Kernels*,
-Theorem 34.1].-/
+Theorem 34.1].
+@isnad1 id=continuo.1h3v.s8.ab83aefdba5c from=translated src=- shape=f25e243d vocab=756de3ef
+-/
 theorem MultilinearMap.continuous_of_continuous_update {E : Type*} [AddCommGroup E]
     [Module ℂ E] [TopologicalSpace E] [IsTopologicalAddGroup E] [BarrelledSpace ℂ E]
     [FirstCountableTopology E] {k : ℕ}
@@ -180,7 +184,9 @@ theorem MultilinearMap.continuous_of_continuous_update {E : Type*} [AddCommGroup
       change Tendsto (fun n ↦ M (a n)) atTop (nhds (M b))
       exact tendsto_sub_nhds_zero_iff.mp hdifference
 
-/-- An unbundled separately continuous multilinear function is jointly continuous.-/
+/-- An unbundled separately continuous multilinear function is jointly continuous.
+@isnad1 id=continuo.3h3v.s8.863599a0615b from=translated src=- shape=da77788e vocab=027984e6
+-/
 theorem continuous_of_separately_continuous_multilinear {E : Type*} [AddCommGroup E]
     [Module ℂ E] [TopologicalSpace E] [IsTopologicalAddGroup E] [BarrelledSpace ℂ E]
     [FirstCountableTopology E] {k : ℕ} {M : (Fin k → E) → ℂ}

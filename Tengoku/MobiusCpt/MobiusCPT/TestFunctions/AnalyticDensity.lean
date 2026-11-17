@@ -28,7 +28,9 @@ open scoped ContDiff Topology
 def upperAnglePicture (f : TestFn) : ℝ → ℂ :=
   fun θ => Complex.exp (θ * Complex.I) * cutIcc 0 Real.pi (toAngle f) θ
 
-/-- The angle picture of `z · f` is smooth and supported in the upper semicircle.-/
+/-- The angle picture of `z · f` is smooth and supported in the upper semicircle.
+@isnad1 id=isupperf.1h1v.s3.c603defca98b from=translated src=- shape=58f8d12c vocab=a2809407
+-/
 theorem isUpperFlat_upperAnglePicture {f : TestFn} (hf : SuppUpper f) :
     IsUpperFlat (upperAnglePicture f) := by
   have hcut : IsUpperFlat (cutIcc 0 Real.pi (toAngle f)) :=
@@ -38,7 +40,9 @@ theorem isUpperFlat_upperAnglePicture {f : TestFn} (hf : SuppUpper f) :
   · intro θ hθ
     rw [upperAnglePicture, hcut.zero_outside θ hθ, mul_zero]
 
-/-- The angle bridge is additive on differences.-/
+/-- The angle bridge is additive on differences.
+@isnad1 id=eq.0h2v.s5.970c9d3199f8 from=translated src=- shape=285516c7 vocab=378bdb7e
+-/
 theorem toAngle_sub (g h : TestFn) : toAngle (g - h) = toAngle g - toAngle h := by
   funext θ
   have h1 : toAngle (g - h + h) θ = toAngle (g - h) θ + toAngle h θ := by
@@ -54,7 +58,9 @@ theorem toAngle_sub (g h : TestFn) : toAngle (g - h) = toAngle g - toAngle h := 
 def boostPicture (f : TestFn) : ℝ → ℂ :=
   fun x => upperAnglePicture f (boostToAngle x)
 
-/-- The boost picture of an upper-supported test function decays faster than every exponential.-/
+/-- The boost picture of an upper-supported test function decays faster than every exponential.
+@isnad1 id=israpidl.1h1v.s3.cda3c49f3a79 from=translated src=- shape=58f8d12c vocab=d592a4e6
+-/
 theorem isRapidlyDecaying_boostPicture {f : TestFn} (hf : SuppUpper f) :
     IsRapidlyDecaying (boostPicture f) :=
   isRapidlyDecaying_comp_boostToAngle (isUpperFlat_upperAnglePicture hf)
@@ -70,13 +76,17 @@ def errorAngle (f : TestFn) (hf : SuppUpper f) (n : ℕ) : ℝ → ℂ :=
   fun θ => Complex.exp (θ * Complex.I) *
     toAngle (xRestrictUpper (approx f hf n) - f) θ
 
-/-- The angle picture of the error is smooth.-/
+/-- The angle picture of the error is smooth.
+@isnad1 id=contdiff.1h2v.s5.aaa5fa1ae0a7 from=translated src=- shape=c7cbfaa2 vocab=8e88df2f
+-/
 theorem contDiff_errorAngle (f : TestFn) (hf : SuppUpper f) (n : ℕ) :
     ContDiff ℝ ∞ (errorAngle f hf n) :=
   contDiff_circle_map.mul (contDiff_toAngle _)
 
 /-- [T26], proof of Lemma 3.4; in the boost coordinate the error is exactly the Gaussian
-smoothing error of the boost picture.-/
+smoothing error of the boost picture.
+@isnad1 id=eq.1h3v.s6.86b2ec42a269 from=translated src=- shape=480f0ea9 vocab=162d4e02
+-/
 theorem errorAngle_boostToAngle (f : TestFn) (hf : SuppUpper f) (n : ℕ) (x : ℝ) :
     errorAngle f hf n (boostToAngle x) =
       gaussConv (1 / (n + 1)) (boostPicture f) (x : ℂ) - boostPicture f x := by
@@ -112,7 +122,9 @@ theorem errorAngle_boostToAngle (f : TestFn) (hf : SuppUpper f) (n : ℕ) (x : �
 
 /-! ### The `C^N` estimate -/
 
-/-- The `C^N` norm is controlled by a uniform bound on the angle derivatives.-/
+/-- The `C^N` norm is controlled by a uniform bound on the angle derivatives.
+@isnad1 id=le.2h3v.s6.9c529238620c from=translated src=- shape=2e15214e vocab=1de9e8e3
+-/
 theorem cnorm_le_of_forall {N : ℕ} {h : TestFn} {C : ℝ} (hC : 0 ≤ C)
     (hb : ∀ j : ℕ, j ≤ N → ∀ θ : ℝ, ‖angleDeriv j h θ‖ ≤ C) :
     (cnorm N h : ℝ) ≤ (N + 1) * C := by
@@ -131,7 +143,9 @@ theorem cnorm_le_of_forall {N : ℕ} {h : TestFn} {C : ℝ} (hC : 0 ≤ C)
       push_cast
       ring
 
-/-- Every iterated derivative of the conjugate phase `e^{-iθ}` has norm one.-/
+/-- Every iterated derivative of the conjugate phase `e^{-iθ}` has norm one.
+@isnad1 id=eq.0h2v.s7.9d23da819d1c from=translated src=- shape=4b821b33 vocab=3a892f9a
+-/
 theorem norm_iteratedFDeriv_circle_map_neg_eq (q : ℕ) (θ : ℝ) :
     ‖iteratedFDeriv ℝ q (fun t : ℝ => Complex.exp (-(t : ℂ) * Complex.I)) θ‖ = 1 := by
   have hiter : ∀ i : ℕ,
@@ -161,7 +175,9 @@ theorem norm_iteratedFDeriv_circle_map_neg_eq (q : ℕ) (θ : ℝ) :
   rw [norm_mul, norm_pow, hnorm, norm_neg, Complex.norm_I]
   simp
 
-/-- The angle picture of the error is the conjugate phase times `errorAngle`.-/
+/-- The angle picture of the error is the conjugate phase times `errorAngle`.
+@isnad1 id=eq.1h2v.s5.93c6995ba26d from=translated src=- shape=17a8d57d vocab=a976de4b
+-/
 theorem toAngle_error_eq (f : TestFn) (hf : SuppUpper f) (n : ℕ) :
     toAngle (xRestrictUpper (approx f hf n) - f) =
       fun θ : ℝ => Complex.exp (-(θ : ℂ) * Complex.I) * errorAngle f hf n θ := by
@@ -171,7 +187,9 @@ theorem toAngle_error_eq (f : TestFn) (hf : SuppUpper f) (n : ℕ) :
   rw [hzero, Complex.exp_zero, one_mul]
 
 /-- An upper-supported test function has vanishing angle derivatives on the closed lower
-semicircle.-/
+semicircle.
+@isnad1 id=eq.2h3v.s5.b5fee82f0bfd from=translated src=- shape=e5116d6c vocab=8cc6d341
+-/
 theorem angleDeriv_eq_zero_of_suppUpper {h : TestFn} (hh : SuppUpper h) (j : ℕ) {θ : ℝ}
     (hθ : θ ∈ Set.Icc Real.pi (2 * Real.pi)) : angleDeriv j h θ = 0 := by
   have hzero : Set.EqOn (toAngle h) (fun _ : ℝ => (0 : ℂ)) (Set.Ioo Real.pi (2 * Real.pi)) := by
@@ -192,7 +210,9 @@ theorem angleDeriv_eq_zero_of_suppUpper {h : TestFn} (hh : SuppUpper h) (j : ℕ
     simpa [angleDeriv] using this
 
 /-- [T26], proof of Lemma 3.4; the boost-side smallness of the error transfers to the
-`C^N` seminorms on the circle.-/
+`C^N` seminorms on the circle.
+@isnad1 id=ex.1h2v.s7.a2d97c4bcf73 from=translated src=- shape=f42152c1 vocab=09df9328
+-/
 theorem exists_norm_angleDeriv_le {f : TestFn} (hf : SuppUpper f) (N : ℕ) :
     ∃ K : ℝ, 0 ≤ K ∧ ∀ (n : ℕ) (M : ℝ), 0 ≤ M →
       (∀ i : ℕ, i ≤ N → ∀ x : ℝ,
@@ -381,7 +401,9 @@ theorem exists_norm_angleDeriv_le {f : TestFn} (hf : SuppUpper f) (N : ℕ) :
 
 /-! ### The Gaussian side -/
 
-/-- The Gaussian convolution of a rapidly decaying function is smooth on the line.-/
+/-- The Gaussian convolution of a rapidly decaying function is smooth on the line.
+@isnad1 id=contdiff.2h2v.s5.49e9d52d5cbb from=translated src=- shape=f000e3e6 vocab=7d72b685
+-/
 theorem contDiff_gaussConvReal {s : ℝ} (hs : 0 < s) {a : ℝ → ℂ} (ha : IsRapidlyDecaying a) :
     ContDiff ℝ ∞ (gaussConvReal s a) := by
   have hC : ContDiff ℂ ∞ (gaussConv s a) := (differentiable_gaussConv hs ha).contDiff
@@ -394,7 +416,9 @@ theorem contDiff_gaussConvReal {s : ℝ} (hs : 0 < s) {a : ℝ → ℂ} (ha : Is
   exact hcomp
 
 /-- [T26], proof of Lemma 3.4; in the boost coordinate the smoothing error is eventually below
-any prescribed weighted bound.-/
+any prescribed weighted bound.
+@isnad1 id=eventual.2h3v.s7.17a2bd9c05a5 from=translated src=- shape=408b2d91 vocab=daad760f
+-/
 theorem eventually_boost_error_le {f : TestFn} (hf : SuppUpper f) (N : ℕ) {M : ℝ} (hM : 0 < M) :
     ∀ᶠ n : ℕ in atTop, ∀ i : ℕ, i ≤ N → ∀ x : ℝ,
       ‖iteratedDeriv i (fun y : ℝ =>
@@ -436,7 +460,9 @@ theorem eventually_boost_error_le {f : TestFn} (hf : SuppUpper f) (N : ℕ) {M :
 
 /-! ### Lemma 3.4 -/
 
-/-- [T26], proof of Lemma 3.4; the approximants converge to `f` in `C^∞(S¹)`.-/
+/-- [T26], proof of Lemma 3.4; the approximants converge to `f` in `C^∞(S¹)`.
+@isnad1 id=tendsto.1h1v.s4.7f27ba3f7968 from=translated src=- shape=357bad3b vocab=0d5a7ba2
+-/
 theorem tendsto_xRestrictUpper_approx {f : TestFn} (hf : SuppUpper f) :
     Tendsto (fun n : ℕ => xRestrictUpper (approx f hf n)) atTop (nhds f) := by
   rw [tendsto_iff_cnorm]
@@ -469,7 +495,9 @@ theorem tendsto_xRestrictUpper_approx {f : TestFn} (hf : SuppUpper f) :
   exact lt_of_le_of_lt hcn hlt
 
 /-- [T26], Lemma 3.4; every upper-supported test function lies in the closure of the
-restrictions to `I₊` of the analytic class `𝓧`.-/
+restrictions to `I₊` of the analytic class `𝓧`.
+@isnad1 id=le.0h0v.s4.5832d1f0a02b from=translated src=- shape=7c4370d0 vocab=31cfe6f7
+-/
 theorem lemma_3_4_density_upper :
     { f : TestFn | SuppUpper f } ⊆
       closure { g : TestFn | ∃ F : AnalyticTestFn, xRestrictUpper F = g } := by

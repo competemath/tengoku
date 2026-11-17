@@ -45,7 +45,9 @@ namespace WightmanData
 
 /-- [T26], proof of Lemma 3.7, step 1: for `φ` covariant of dimension `d` and `f` a
 rotation eigenvector of weight `n`, the vector `φ(f)Ω` has conformal dimension `-n`.
-The proof is rotation covariance together with the (W4) invariance `U(r_θ)Ω = Ω`.-/
+The proof is rotation covariance together with the (W4) invariance `U(r_θ)Ω = Ω`.
+@isnad1 id=hasconfo.3h9v.s8.8207323c4cba from=translated src=- shape=d2e47e1d vocab=fce9e5f7
+-/
 theorem hasConformalDim_smear_vac (W : WightmanData G TF 𝓓 𝓕) (hW4 : W.W4)
     {φ : 𝓕} {d : ℕ} (hcov : W.IsCovariant φ d) {f : TF} {n : ℤ}
     (hf : IsRotWeight G d f n) :
@@ -59,7 +61,9 @@ theorem hasConformalDim_smear_vac (W : WightmanData G TF 𝓓 𝓕) (hW4 : W.W4)
 /-- [T26], proof of Lemma 3.7, step 2: (W3) applied to a single mode.  For a rotation
 eigenvector of strictly positive weight `n`, the vector `φ(f)Ω` has conformal dimension
 `-n < 0` and therefore vanishes.  (W3) is applied here to a genuine conformal-dimension
-eigenvector; the product form is `weightedProduct_eq_zero_of_sum_pos`.-/
+eigenvector; the product form is `weightedProduct_eq_zero_of_sum_pos`.
+@isnad1 id=eq.5h9v.s8.d6076a0addac from=translated src=- shape=84228d65 vocab=a5c5a59f
+-/
 theorem smear_vac_eq_zero_of_rotWeight_pos (W : WightmanData G TF 𝓓 𝓕)
     (hW3 : W.W3) (hW4 : W.W4) {φ : 𝓕} {d : ℕ} (hcov : W.IsCovariant φ d)
     {f : TF} {n : ℤ} (hf : IsRotWeight G d f n) (hn : 0 < n) :
@@ -71,18 +75,24 @@ fields paired with test functions, each test function carrying its rotation weig
 def weightedProduct (W : WightmanData G TF 𝓓 𝓕) (l : List (𝓕 × TF × ℤ)) : 𝓓 :=
   W.smearedProduct (l.map fun p => (p.1, p.2.1))
 
-/-- [T26], proof of Lemma 3.7, step 1: the empty weighted product is the vacuum.-/
+/-- [T26], proof of Lemma 3.7, step 1: the empty weighted product is the vacuum.
+@isnad1 id=eq.0h5v.s6.c57e5eb5eb4b from=translated src=- shape=fad74f1f vocab=a5ff7d9c
+-/
 theorem weightedProduct_nil (W : WightmanData G TF 𝓓 𝓕) :
     W.weightedProduct ([] : List (𝓕 × TF × ℤ)) = W.vac := rfl
 
-/-- [T26], proof of Lemma 3.7, step 1: a cons of a weighted product.-/
+/-- [T26], proof of Lemma 3.7, step 1: a cons of a weighted product.
+@isnad1 id=eq.0h7v.s8.24c2b02efbc2 from=translated src=- shape=75ebfcb6 vocab=fa896e21
+-/
 theorem weightedProduct_cons (W : WightmanData G TF 𝓓 𝓕) (p : 𝓕 × TF × ℤ)
     (l : List (𝓕 × TF × ℤ)) :
     W.weightedProduct (p :: l) = W.smear p.1 p.2.1 (W.weightedProduct l) := rfl
 
 /-- [T26], proof of Lemma 3.7, step 1, and [CRTT25] §2: the product
 `φ₁(f₁)⋯φ_k(f_k)Ω` of rotation eigenvectors of weights `n₁,…,n_k` has conformal dimension
-`-(n₁+⋯+n_k)`.-/
+`-(n₁+⋯+n_k)`.
+@isnad1 id=hasconfo.3h6v.s8.f29e38f4ecee from=translated src=- shape=be0b46bf vocab=d576eba9
+-/
 theorem hasConformalDim_weightedProduct (W : WightmanData G TF 𝓓 𝓕) (hW4 : W.W4)
     (l : List (𝓕 × TF × ℤ))
     (hcov : ∀ p ∈ l, W.IsCovariant p.1 (W.dim p.1))
@@ -114,7 +124,9 @@ theorem hasConformalDim_weightedProduct (W : WightmanData G TF 𝓓 𝓕) (hW4 :
       ring
 
 /-- [T26], proof of Lemma 3.7, step 2, for products: a product of rotation eigenvectors
-whose weights sum to a strictly positive integer annihilates the vacuum.-/
+whose weights sum to a strictly positive integer annihilates the vacuum.
+@isnad1 id=eq.5h6v.s8.a5fcf6c5c796 from=translated src=- shape=e0477203 vocab=6cf147f2
+-/
 theorem weightedProduct_eq_zero_of_sum_pos (W : WightmanData G TF 𝓓 𝓕)
     (hW3 : W.W3) (hW4 : W.W4) (l : List (𝓕 × TF × ℤ))
     (hcov : ∀ p ∈ l, W.IsCovariant p.1 (W.dim p.1))

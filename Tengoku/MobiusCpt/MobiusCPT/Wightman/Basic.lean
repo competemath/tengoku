@@ -26,7 +26,9 @@ structure WightmanStruct (TF : Type*) [AddCommGroup TF] [Module ℂ TF]
 
 namespace WightmanStruct
 
-/-- [T26], §2: the smeared field is linear in the domain vector.-/
+/-- [T26], §2: the smeared field is linear in the domain vector.
+@isnad1 id=and.0h8v.s10.01d059b4aee9 from=translated src=- shape=ea1b2db9 vocab=94e71b38
+-/
 theorem smear_linear
     (W : WightmanStruct TF 𝓓 𝓕) :
     ∀ (φ : 𝓕) (f : TF) (Φ Ψ : 𝓓),
@@ -35,7 +37,9 @@ theorem smear_linear
   intro φ f Φ Ψ
   exact ⟨(W.smear φ f).map_add Φ Ψ, fun c => (W.smear φ f).map_smul c Φ⟩
 
-/-- [T26], §2: the smeared field is linear in the test function.-/
+/-- [T26], §2: the smeared field is linear in the test function.
+@isnad1 id=and.0h8v.s10.cefdc55af9ba from=translated src=- shape=9ee8f2e1 vocab=94e71b38
+-/
 theorem smear_addLinear
     (W : WightmanStruct TF 𝓓 𝓕) :
     ∀ (φ : 𝓕) (f g : TF) (Φ : 𝓓),
@@ -57,25 +61,35 @@ def smearedProduct (W : WightmanStruct TF 𝓓 𝓕)
     (l : List (𝓕 × TF)) : 𝓓 :=
   W.smearedProductOn l W.vac
 
-/-- [T26], §2: the empty product acting on a domain vector is that vector.-/
+/-- [T26], §2: the empty product acting on a domain vector is that vector.
+@isnad1 id=eq.0h5v.s6.27ebd890f4c7 from=translated src=- shape=6904b42a vocab=89fe31c1
+-/
 theorem smearedProductOn_nil (W : WightmanStruct TF 𝓓 𝓕)
     (Φ : 𝓓) : W.smearedProductOn [] Φ = Φ := rfl
 
-/-- [T26], §2: a cons product acts on the product to its right.-/
+/-- [T26], §2: a cons product acts on the product to its right.
+@isnad1 id=eq.0h7v.s8.e34f3202403b from=translated src=- shape=b798896b vocab=673c8b61
+-/
 theorem smearedProductOn_cons (W : WightmanStruct TF 𝓓 𝓕)
     (p : 𝓕 × TF) (l : List (𝓕 × TF)) (Φ : 𝓓) :
     W.smearedProductOn (p :: l) Φ = W.smear p.1 p.2 (W.smearedProductOn l Φ) := rfl
 
-/-- [T26], §2: the empty smeared product is the vacuum.-/
+/-- [T26], §2: the empty smeared product is the vacuum.
+@isnad1 id=eq.0h4v.s6.6973d8f94347 from=translated src=- shape=a8ba16e4 vocab=d2417ad2
+-/
 theorem smearedProduct_nil (W : WightmanStruct TF 𝓓 𝓕) :
     W.smearedProduct [] = W.vac := rfl
 
-/-- [T26], §2: cons acts on the product to its right.-/
+/-- [T26], §2: cons acts on the product to its right.
+@isnad1 id=eq.0h6v.s8.0e79d5d25de3 from=translated src=- shape=93f8495c vocab=9dfb7982
+-/
 theorem smearedProduct_cons (W : WightmanStruct TF 𝓓 𝓕)
     (p : 𝓕 × TF) (l : List (𝓕 × TF)) :
     W.smearedProduct (p :: l) = W.smear p.1 p.2 (W.smearedProduct l) := rfl
 
-/-- [T26], §2: a smeared product is linear in the domain vector.-/
+/-- [T26], §2: a smeared product is linear in the domain vector.
+@isnad1 id=and.0h7v.s8.42d683f67d42 from=translated src=- shape=34558009 vocab=c4401751
+-/
 theorem smearedProductOn_linear (W : WightmanStruct TF 𝓓 𝓕) :
     ∀ (l : List (𝓕 × TF)) (Φ Ψ : 𝓓),
       (W.smearedProductOn l (Φ + Ψ) =
@@ -161,7 +175,9 @@ instance compatModule (W : WightmanStruct TF 𝓓 𝓕) : Module ℂ W.Compat :=
   change Module ℂ {lam : 𝓓 →ₗ[ℂ] ℂ // lam ∈ W.compatSubmodule}
   infer_instance
 
-/-- [T26], §2: evaluation by a compatible functional is linear on `𝓓`.-/
+/-- [T26], §2: evaluation by a compatible functional is linear on `𝓓`.
+@isnad1 id=and.0h7v.s7.f04b959d095e from=translated src=- shape=790007b6 vocab=c81d5a4c
+-/
 theorem compatApply_linear (W : WightmanStruct TF 𝓓 𝓕) :
     ∀ (lam : W.Compat) (Φ Ψ : 𝓓),
       (W.compatApply lam (Φ + Ψ) = W.compatApply lam Φ + W.compatApply lam Ψ) ∧
@@ -174,7 +190,9 @@ every non-zero domain vector.-/
 def ActsRegularly (W : WightmanStruct TF 𝓓 𝓕) : Prop :=
   ∀ Φ : 𝓓, Φ ≠ 0 → ∃ lam : W.Compat, W.compatApply lam Φ ≠ 0
 
-/-- [T26], Definition 2.4: regularity is equivalent to separation of domain vectors.-/
+/-- [T26], Definition 2.4: regularity is equivalent to separation of domain vectors.
+@isnad1 id=iff.0h4v.s6.9855297782ae from=translated src=- shape=fb10a6d2 vocab=c08fc2d5
+-/
 theorem actsRegularly_iff (W : WightmanStruct TF 𝓓 𝓕) :
     W.ActsRegularly ↔
       ∀ Φ Ψ : 𝓓,
@@ -209,7 +227,9 @@ def W2 (W : WightmanStruct TF 𝓓 𝓕) : Prop :=
     ∀ Φ : 𝓓, W.smear φ₁ f (W.smear φ₂ g Φ) = W.smear φ₂ g (W.smear φ₁ f Φ)
 
 /-- [T26], Definition 2.5 (W2): locality is unchanged by exchanging the two smeared fields,
-so no separate symmetry hypothesis on the disjointness relation is needed.-/
+so no separate symmetry hypothesis on the disjointness relation is needed.
+@isnad1 id=eq.2h9v.s10.b9ba2f813515 from=translated src=- shape=74078aec vocab=a1cee5ed
+-/
 theorem w2_symm (W : WightmanStruct TF 𝓓 𝓕) (h : W.W2) (φ₁ φ₂ : 𝓕) (f g : TF)
     (hfg : TestFunctions.DisjointSupp f g) (Φ : 𝓓) :
     W.smear φ₂ g (W.smear φ₁ f Φ) = W.smear φ₁ f (W.smear φ₂ g Φ) := by
@@ -234,7 +254,9 @@ def MemPLowerOmega (W : WightmanStruct TF 𝓓 𝓕) (Φ : 𝓓) : Prop :=
   Φ ∈ W.PLowerOmega
 
 /-- [T26], Definition 2.4 and Theorem 3.10: upper membership is exactly a finite
-complex-linear combination of upper-supported smeared products.-/
+complex-linear combination of upper-supported smeared products.
+@isnad1 id=iff.0h5v.s7.06eea6825626 from=translated src=- shape=debd71ca vocab=ec1be6a0
+-/
 theorem memPUpperOmega_iff (W : WightmanStruct TF 𝓓 𝓕) (Φ : 𝓓) :
     W.MemPUpperOmega Φ ↔
       ∃ (n : ℕ) (c : Fin n → ℂ) (ls : Fin n → List (𝓕 × TF)),
@@ -269,7 +291,9 @@ theorem memPUpperOmega_iff (W : WightmanStruct TF 𝓓 𝓕) (Φ : 𝓓) :
       Submodule.smul_mem _ _ (Submodule.subset_span ⟨ls i, hls i, rfl⟩))
 
 /-- [T26], Definition 2.4 and Theorem 3.10: lower membership is exactly a finite
-complex-linear combination of lower-supported smeared products.-/
+complex-linear combination of lower-supported smeared products.
+@isnad1 id=iff.0h5v.s7.4f9645809df0 from=translated src=- shape=debd71ca vocab=21cfda59
+-/
 theorem memPLowerOmega_iff (W : WightmanStruct TF 𝓓 𝓕) (Φ : 𝓓) :
     W.MemPLowerOmega Φ ↔
       ∃ (n : ℕ) (c : Fin n → ℂ) (ls : Fin n → List (𝓕 × TF)),
@@ -303,26 +327,34 @@ theorem memPLowerOmega_iff (W : WightmanStruct TF 𝓓 𝓕) (Φ : 𝓓) :
     exact Submodule.sum_mem _ (fun i _ =>
       Submodule.smul_mem _ _ (Submodule.subset_span ⟨ls i, hls i, rfl⟩))
 
-/-- [T26], Definition 2.4: the upper localized subspace is closed under addition.-/
+/-- [T26], Definition 2.4: the upper localized subspace is closed under addition.
+@isnad1 id=mempuppe.2h6v.s6.6a621e42a5e4 from=translated src=- shape=485fa983 vocab=d3f1e92a
+-/
 theorem memPUpperOmega_add (W : WightmanStruct TF 𝓓 𝓕) :
     ∀ (Φ Ψ : 𝓓), W.MemPUpperOmega Φ → W.MemPUpperOmega Ψ →
       W.MemPUpperOmega (Φ + Ψ) := by
   intro Φ Ψ hΦ hΨ
   exact W.PUpperOmega.add_mem hΦ hΨ
 
-/-- [T26], Definition 2.4: the upper localized subspace is closed under complex scalars.-/
+/-- [T26], Definition 2.4: the upper localized subspace is closed under complex scalars.
+@isnad1 id=mempuppe.1h6v.s7.4eb30e6bb837 from=translated src=- shape=b0ebc848 vocab=9541e3ac
+-/
 theorem memPUpperOmega_smul (W : WightmanStruct TF 𝓓 𝓕) :
     ∀ (c : ℂ) (Φ : 𝓓), W.MemPUpperOmega Φ → W.MemPUpperOmega (c • Φ) := by
   intro c Φ hΦ
   exact W.PUpperOmega.smul_mem c hΦ
 
-/-- [T26], Definition 2.4: the lower localized subspace is closed under complex scalars.-/
+/-- [T26], Definition 2.4: the lower localized subspace is closed under complex scalars.
+@isnad1 id=memplowe.1h6v.s7.0b38a5af3927 from=translated src=- shape=b0ebc848 vocab=dddd4599
+-/
 theorem memPLowerOmega_smul (W : WightmanStruct TF 𝓓 𝓕) :
     ∀ (c : ℂ) (Φ : 𝓓), W.MemPLowerOmega Φ → W.MemPLowerOmega (c • Φ) := by
   intro c Φ hΦ
   exact W.PLowerOmega.smul_mem c hΦ
 
-/-- [T26], §2 and Theorem 3.10: the empty product puts the vacuum in `P(I_+)Ω`.-/
+/-- [T26], §2 and Theorem 3.10: the empty product puts the vacuum in `P(I_+)Ω`.
+@isnad1 id=mempuppe.0h4v.s6.ed5b1fd237ed from=translated src=- shape=8ef1e82d vocab=f4fa6bad
+-/
 theorem memPUpperOmega_vac (W : WightmanStruct TF 𝓓 𝓕) :
     W.MemPUpperOmega W.vac := by
   change W.vac ∈ W.PUpperOmega

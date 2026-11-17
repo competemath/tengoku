@@ -33,7 +33,9 @@ noncomputable section
 /-- The classical "multilinear ⟹ Lipschitz-type" telescoping bound, specialised to the
 `cnorm`-product bound of `cnorm_bound_of_continuous_multilinear`: a `k`-term sum, each term
 linear in the difference of exactly one coordinate, rather than the `2^k`-term full expansion of
-`MultilinearMap.map_piecewise_add`.-/
+`MultilinearMap.map_piecewise_add`.
+@isnad1 id=le.2h6v.s8.4090513c96c2 from=translated src=- shape=9f7770e8 vocab=482da09c
+-/
 theorem MultilinearMap.norm_sub_le_of_cnorm_bound {k : ℕ}
     (M : MultilinearMap ℂ (fun _ : Fin k => TestFn) ℂ) (N : ℕ) (A : ℝ) (hA : 0 ≤ A)
     (hbound : ∀ h : Fin k → TestFn, ‖M h‖ ≤ A * ∏ i, (cnorm N (h i) : ℝ))
@@ -204,7 +206,9 @@ theorem MultilinearMap.norm_sub_le_of_cnorm_bound {k : ℕ}
     _ = A * (k : ℝ) * ((Finset.univ.sup fun i => cnorm N (b i - a i) : NNReal) : ℝ) *
           ∏ i : Fin k, (1 + (cnorm N (b i) : ℝ) + (cnorm N (a i) : ℝ)) := by ring
 
-/-- Equal-length lists zip to the tuple obtained by indexing both by their common `Fin` type.-/
+/-- Equal-length lists zip to the tuple obtained by indexing both by their common `Fin` type.
+@isnad1 id=eq.1h4v.s5.bceaf42ecfbc from=translated src=- shape=a69e7fb4 vocab=dd3884c6
+-/
 theorem List.zip_eq_ofFn_get_of_length_eq {α β : Type*} (xs : List α) (ys : List β)
     (h : ys.length = xs.length) :
     xs.zip ys = List.ofFn fun i : Fin xs.length =>
@@ -224,7 +228,9 @@ theorem List.zip_eq_ofFn_get_of_length_eq {α β : Type*} (xs : List α) (ys : L
 
 namespace WightmanData
 variable {𝓓 𝓕 : Type*} [AddCommGroup 𝓓] [Module ℂ 𝓓]
-/-- [T26], Lemma 3.8: real boosts obey a uniform exponential `C^N` continuity estimate.-/
+/-- [T26], Lemma 3.8: real boosts obey a uniform exponential `C^N` continuity estimate.
+@isnad1 id=ex.1h5v.s9.ba73d3264759 from=translated src=- shape=ad7be219 vocab=88b36ed3
+-/
 theorem lemma_3_8 (W : WightmanData Mob TestFn 𝓓 𝓕) (hW : W.IsWightmanCFT)
     (φs : List 𝓕) (lam : W.toWightmanStruct.Compat) :
     ∃ (N : ℕ) (C : ℝ → ℝ) (k₁ k₂ : ℝ),
@@ -488,7 +494,9 @@ theorem lemma_3_8 (W : WightmanData Mob TestFn 𝓓 𝓕) (hW : W.IsWightmanCFT)
 end WightmanData
 namespace WightmanBundle
 /-- [T26], Lemma 3.8. Issue #10 discharges `MobiusCPT.Contract`'s
-`theorem_wanted lemma_3_8`, byte-identical statement text.-/
+`theorem_wanted lemma_3_8`, byte-identical statement text.
+@isnad1 id=ex.1h3v.s9.0b44068a4181 from=translated src=- shape=4aa12f31 vocab=aee66beb
+-/
 theorem lemma_3_8 (W : WightmanBundle) (h : W.data.IsWightmanCFT)
     (φs : List W.𝓕) (lam : W.data.toWightmanStruct.Compat) :
     ∃ (N : ℕ) (C : ℝ → ℝ) (k₁ k₂ : ℝ),

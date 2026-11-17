@@ -99,7 +99,9 @@ private theorem iteratedDeriv_comp_affine (f : ℝ → ℂ) (hf : ContDiff ℝ �
 
 /-- Given a smooth complex function vanishing outside an open interval, there is a sequence of
 smooth functions, each vanishing outside a compact sub-interval strictly inside `(a, b)`,
-converging to the original function together with every derivative order, uniformly on `ℝ`.-/
+converging to the original function together with every derivative order, uniformly on `ℝ`.
+@isnad1 id=ex.3h3v.s8.fb621e8c38df from=translated src=- shape=6e42a1a5 vocab=5929d1bd
+-/
 theorem exists_contDiff_zero_outside_compact_tendstoUniformly {a b : ℝ} (hab : a < b)
     {g : ℝ → ℂ} (hg : ContDiff ℝ ∞ g) (hzero : ∀ θ, θ ∉ Set.Ioo a b → g θ = 0) :
     ∃ gSeq : ℕ → ℝ → ℂ,

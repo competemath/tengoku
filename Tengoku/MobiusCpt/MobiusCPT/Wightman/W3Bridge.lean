@@ -42,7 +42,9 @@ variable {𝓓 𝓕 : Type*} [AddCommGroup 𝓓] [Module ℂ 𝓓]
 /-- [T26], Definition 2.4 and the Issue #2 source gate: the monomial `z^n` is a rotation
 eigenvector of weight `n` for every conformal weight `d`, i.e. `β_d(r_θ)z^n = e^{-inθ}z^n`.
 This is `Mob.beta_rot_monomial`, i.e. it is **proved** from the conformal action, not
-assumed.-/
+assumed.
+@isnad1 id=isrotwei.0h2v.s4.766554d08b97 from=translated src=- shape=743aba6d vocab=ef682325
+-/
 theorem isRotWeight_monomial (d : ℕ) (n : ℤ) :
     IsRotWeight Mob d (monomial n) n := by
   intro θ
@@ -51,14 +53,18 @@ theorem isRotWeight_monomial (d : ℕ) (n : ℤ) :
 namespace WightmanData
 
 /-- [T26], proof of Lemma 3.7, step 1, on the concrete instance: `φ(z^n)Ω` has conformal
-dimension `-n`.-/
+dimension `-n`.
+@isnad1 id=hasconfo.2h6v.s8.22d3b02888d4 from=translated src=- shape=ac6e4705 vocab=3273b989
+-/
 theorem hasConformalDim_smear_monomial_vac (W : WightmanData Mob TestFn 𝓓 𝓕) (hW4 : W.W4)
     {φ : 𝓕} {d : ℕ} (hcov : W.IsCovariant φ d) (n : ℤ) :
     W.HasConformalDim (W.smear φ (monomial n) W.vac) (-n) := by
   exact W.hasConformalDim_smear_vac hW4 hcov (isRotWeight_monomial d n)
 
 /-- [T26], proof of Lemma 3.7, step 2, on the concrete instance: for `n > 0`, (W3) gives
-`φ(z^n)Ω = 0`.-/
+`φ(z^n)Ω = 0`.
+@isnad1 id=eq.4h6v.s8.98de1e3cd0c6 from=translated src=- shape=25291cb0 vocab=48e7bb04
+-/
 theorem smear_monomial_vac_eq_zero (W : WightmanData Mob TestFn 𝓓 𝓕)
     (hW3 : W.W3) (hW4 : W.W4) {φ : 𝓕} {d : ℕ} (hcov : W.IsCovariant φ d)
     {n : ℤ} (hn : 0 < n) :
@@ -67,7 +73,9 @@ theorem smear_monomial_vac_eq_zero (W : WightmanData Mob TestFn 𝓓 𝓕)
     (isRotWeight_monomial d n) hn
 
 /-- [T26], proof of Lemma 3.7, step 1, and [CRTT25] §2, on the concrete instance:
-`φ₁(z^{n₁})⋯φ_k(z^{n_k})Ω` has conformal dimension `-(n₁+⋯+n_k)`.-/
+`φ₁(z^{n₁})⋯φ_k(z^{n_k})Ω` has conformal dimension `-(n₁+⋯+n_k)`.
+@isnad1 id=hasconfo.2h4v.s7.3a6548b083f8 from=translated src=- shape=ee3e79da vocab=f68c5b2e
+-/
 theorem hasConformalDim_smearedProduct_monomial (W : WightmanData Mob TestFn 𝓓 𝓕)
     (hW4 : W.W4) (l : List (𝓕 × ℤ))
     (hcov : ∀ p ∈ l, W.IsCovariant p.1 (W.dim p.1)) :
@@ -90,7 +98,9 @@ theorem hasConformalDim_smearedProduct_monomial (W : WightmanData Mob TestFn �
     W.hasConformalDim_weightedProduct hW4 weighted hcovWeighted hwWeighted
 
 /-- [T26], proof of Lemma 3.7, step 2, for products on the concrete instance: a product of
-monomial modes whose exponents sum to a strictly positive integer annihilates the vacuum.-/
+monomial modes whose exponents sum to a strictly positive integer annihilates the vacuum.
+@isnad1 id=eq.4h4v.s7.b21e7a210cb3 from=translated src=- shape=37cf040c vocab=3e4e0c41
+-/
 theorem smearedProduct_monomial_eq_zero (W : WightmanData Mob TestFn 𝓓 𝓕)
     (hW3 : W.W3) (hW4 : W.W4) (l : List (𝓕 × ℤ))
     (hcov : ∀ p ∈ l, W.IsCovariant p.1 (W.dim p.1))
@@ -109,13 +119,17 @@ noncomputable def smearVac (W : WightmanData Mob TestFn 𝓓 𝓕) (φ : 𝓕) :
     intro c f
     exact (W.toWightmanStruct.smear_addLinear φ f f W.vac).2 c
 
-/-- [T26], Definition 2.4: `smearVac` computes the smeared field on the vacuum.-/
+/-- [T26], Definition 2.4: `smearVac` computes the smeared field on the vacuum.
+@isnad1 id=eq.0h5v.s8.c6f722cddf3c from=translated src=- shape=f38a1747 vocab=853b4b1a
+-/
 @[simp] theorem smearVac_apply (W : WightmanData Mob TestFn 𝓓 𝓕) (φ : 𝓕) (f : TestFn) :
     W.smearVac φ f = W.smear φ f W.vac := rfl
 
 /-- [T26], Definition 2.4, at `k = 1`: compatibility of `λ` makes `f ↦ λ(φ(f)Ω)`
 continuous on `C^∞(S¹)`.  This is the continuity that lets the Fourier expansion be
-exchanged with `λ` in step 3; it is not a formal manipulation of the series.-/
+exchanged with `λ` in step 3; it is not a formal manipulation of the series.
+@isnad1 id=continuo.0h5v.s7.638f1c0ee5c1 from=translated src=- shape=bce4afe4 vocab=41a9b7c7
+-/
 theorem continuous_compatApply_smearVac (W : WightmanData Mob TestFn 𝓓 𝓕)
     (lam : W.toWightmanStruct.Compat) (φ : 𝓕) :
     Continuous fun f : TestFn =>
@@ -129,7 +143,9 @@ theorem continuous_compatApply_smearVac (W : WightmanData Mob TestFn 𝓓 𝓕)
 /-- [T26], proof of Lemma 3.7, step 3: the Fourier expansion of `f` is transported through
 the continuous linear functional `f ↦ λ(φ(f)Ω)`.  The exchange of the sum with `λ` is
 `hasSum_fourierSeries` — convergence in the `C^∞(S¹)` topology — mapped through that
-continuous map, not a formal rearrangement.-/
+continuous map, not a formal rearrangement.
+@isnad1 id=hassum.0h6v.s9.96aeb56bb9a1 from=translated src=- shape=51136c2b vocab=7c302d83
+-/
 theorem hasSum_compatApply_smearVac (W : WightmanData Mob TestFn 𝓓 𝓕)
     (lam : W.toWightmanStruct.Compat) (φ : 𝓕) (f : TestFn) :
     HasSum
@@ -145,7 +161,9 @@ theorem hasSum_compatApply_smearVac (W : WightmanData Mob TestFn 𝓓 𝓕)
 
 /-- [T26], proof of Lemma 3.7, step 3, the value on the dual: for `φ` covariant of
 dimension `d` and `f` whose Fourier coefficients vanish for `n ≤ 0`, every compatible
-functional kills `φ(f)Ω`.-/
+functional kills `φ(f)Ω`.
+@isnad1 id=eq.4h7v.s8.14a0d074d688 from=translated src=- shape=661eab96 vocab=3f70a45f
+-/
 theorem compatApply_smear_vac_eq_zero (W : WightmanData Mob TestFn 𝓓 𝓕)
     (hW3 : W.W3) (hW4 : W.W4) {φ : 𝓕} {d : ℕ} (hcov : W.IsCovariant φ d)
     (f : TestFn) (hf : ∀ n : ℤ, n ≤ 0 → fourierCoef f n = 0)
@@ -172,7 +190,9 @@ holomorphic on the disc and vanishing at the origin — we have `φ(f)Ω = 0`.
 Issues #7 and #9 instantiate this with `f = (F ∘ z⁻¹)|_{S¹}` for `F ∈ 𝓧`, which is exactly
 the hypothesis [T26] supplies there.  The `n ≤ 0` hypothesis is the source's and is sharp
 for this argument: the zero mode `φ(z⁰)Ω` has conformal dimension `0`, which (W3) — a
-statement about `d < 0` — does not annihilate.-/
+statement about `d < 0` — does not annihilate.
+@isnad1 id=eq.3h6v.s8.535333bbe9a7 from=translated src=- shape=cdd623d6 vocab=94fa5353
+-/
 theorem smear_vac_eq_zero_of_fourierCoef_eq_zero (W : WightmanData Mob TestFn 𝓓 𝓕)
     (hW : W.IsWightmanCFT) {φ : 𝓕} {d : ℕ} (hcov : W.IsCovariant φ d)
     (f : TestFn) (hf : ∀ n : ℤ, n ≤ 0 → fourierCoef f n = 0) :
@@ -185,7 +205,9 @@ theorem smear_vac_eq_zero_of_fourierCoef_eq_zero (W : WightmanData Mob TestFn �
 
 /-- **The (W3) vacuum-annihilation bridge, covariance supplied by (W1).**  The form Issues
 #7 and #9 consume: under `IsWightmanCFT` every field is covariant at its own conformal
-dimension, so no covariance hypothesis need be carried.-/
+dimension, so no covariance hypothesis need be carried.
+@isnad1 id=eq.2h5v.s8.1139961309b8 from=translated src=- shape=0781f48e vocab=1fb092f0
+-/
 theorem smear_vac_eq_zero_of_fourierCoef_eq_zero' (W : WightmanData Mob TestFn 𝓓 𝓕)
     (hW : W.IsWightmanCFT) (φ : 𝓕)
     (f : TestFn) (hf : ∀ n : ℤ, n ≤ 0 → fourierCoef f n = 0) :

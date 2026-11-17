@@ -87,7 +87,9 @@ private theorem contDiffOn_betaBoostSliceDot_aux (d : ℕ) (F : AnalyticTestFn) 
 
 /-- [T26], Lemma 3.6; differentiating the complex boost in the angle and in the strip parameter
 commutes.  Both orders are directional derivatives of the same jointly smooth function, so this is
-symmetry of the second derivative.-/
+symmetry of the second derivative.
+@isnad1 id=eq.1h4v.s9.27111a09e36d from=translated src=- shape=aade7fee vocab=52ec9819
+-/
 theorem betaBoostSliceDot_succ (d : ℕ) (F : AnalyticTestFn) (j : ℕ) {p : ℂ × ℝ}
     (hp : p ∈ stripUpper) :
     fderivWithin ℝ (betaBoostSliceDot d F j) stripUpper p (0, 1) =
@@ -135,7 +137,9 @@ theorem betaBoostSliceDot_succ (d : ℕ) (F : AnalyticTestFn) (j : ℕ) {p : ℂ
       exact (heval (0, 1) (1, 0)).symm
 
 /-- [T26], Lemma 3.6; the `j`-th angle derivative of the parameter derivative is the parameter
-derivative of the `j`-th angle derivative.-/
+derivative of the `j`-th angle derivative.
+@isnad1 id=eq.1h4v.s5.a360e5076448 from=translated src=- shape=b4b530d9 vocab=983b5fed
+-/
 theorem sliceDeriv_betaBoostSliceDot (d : ℕ) (F : AnalyticTestFn) (j : ℕ) {p : ℂ × ℝ}
     (hp : p ∈ stripUpper) :
     sliceDeriv stripUpper j (betaBoostSliceDot d F 0) p = betaBoostSliceDot d F j p := by
@@ -156,7 +160,9 @@ def betaBoostDerivCut (d : ℕ) (τ : ℂ) (F : AnalyticTestFn) : ℝ → ℂ :=
   zeroExtendIcc 0 Real.pi (fun θ : ℝ => betaBoostSliceDot d F 0 (τ, θ))
 
 /-- [T26], Lemma 3.6; the parameter derivative of the complex boost slice is smooth in the angle
-on the closed upper semicircle.-/
+on the closed upper semicircle.
+@isnad1 id=contdiff.1h3v.s6.9144f7c0d536 from=translated src=- shape=09807018 vocab=26b6b807
+-/
 theorem contDiffOn_betaBoostSliceDot_angle (d : ℕ) (F : AnalyticTestFn) {τ : ℂ}
     (hτ : τ ∈ strip (Complex.I * Real.pi)) :
     ContDiffOn ℝ ∞ (fun θ : ℝ => betaBoostSliceDot d F 0 (τ, θ)) (Set.Icc 0 Real.pi) := by
@@ -171,7 +177,9 @@ theorem contDiffOn_betaBoostSliceDot_angle (d : ℕ) (F : AnalyticTestFn) {τ : 
   exact hcomp.congr fun θ _ => rfl
 
 /-- [T26], Lemma 3.6; within angle derivatives of the parameter derivative are the corresponding
-joint slice derivatives.-/
+joint slice derivatives.
+@isnad1 id=eq.2h5v.s6.902495fa950d from=translated src=- shape=e1510632 vocab=4f6317d3
+-/
 theorem iteratedDerivWithin_betaBoostSliceDot_angle (d : ℕ) (F : AnalyticTestFn) {τ : ℂ}
     (hτ : τ ∈ strip (Complex.I * Real.pi)) {θ : ℝ} (hθ : θ ∈ Set.Icc 0 Real.pi) (j : ℕ) :
     iteratedDerivWithin j (fun t : ℝ => betaBoostSliceDot d F 0 (τ, t))
@@ -292,7 +300,9 @@ private theorem betaBoostSliceDot_eq_zero_of_endpoint_closed (d : ℕ) (F : Anal
       betaBoostSliceDot] using hcomp_apply
 
 /-- [T26], Lemma 3.6; the zero extension of the parameter-derivative angle function is smooth on
-the real line.-/
+the real line.
+@isnad1 id=contdiff.1h3v.s5.0fe200d5a159 from=translated src=- shape=d2e13187 vocab=d51ff5e8
+-/
 theorem contDiff_betaBoostDerivCut (d : ℕ) (F : AnalyticTestFn) {τ : ℂ}
     (hτ : τ ∈ strip (Complex.I * Real.pi)) : ContDiff ℝ ∞ (betaBoostDerivCut d τ F) := by
   change ContDiff ℝ ∞
@@ -314,7 +324,9 @@ theorem contDiff_betaBoostDerivCut (d : ℕ) (F : AnalyticTestFn) {τ : ℂ}
           ⟨Real.pi_pos.le, le_rfl⟩ j
       _ = 0 := betaBoostSliceDot_eq_zero_of_endpoint_closed d F j hτ (Or.inr rfl)
 
-/-- [T26], Lemma 3.6; the parameter-derivative angle function is upper-flat.-/
+/-- [T26], Lemma 3.6; the parameter-derivative angle function is upper-flat.
+@isnad1 id=isupperf.1h3v.s4.9a88df6858c8 from=translated src=- shape=0a7fff51 vocab=5368e551
+-/
 theorem isUpperFlat_betaBoostDerivCut (d : ℕ) (F : AnalyticTestFn) {τ : ℂ}
     (hτ : τ ∈ strip (Complex.I * Real.pi)) : IsUpperFlat (betaBoostDerivCut d τ F) := by
   refine ⟨contDiff_betaBoostDerivCut d F hτ, ?_⟩
@@ -345,7 +357,9 @@ noncomputable def betaBoostDeriv (d : ℕ) (τ : ℂ) (F : AnalyticTestFn) : Tes
   else 0
 
 /-- On the closed strip, the angle representative of the parameter derivative is the periodisation
-of its zero-extended upper-semicircle formula.-/
+of its zero-extended upper-semicircle formula.
+@isnad1 id=eq.1h3v.s5.9e03491603dd from=translated src=- shape=e2d2ec0e vocab=37ed5f44
+-/
 theorem toAngle_betaBoostDeriv (d : ℕ) (F : AnalyticTestFn) {τ : ℂ}
     (hτ : τ ∈ strip (Complex.I * Real.pi)) :
     toAngle (betaBoostDeriv d τ F) = periodize (2 * Real.pi) (betaBoostDerivCut d τ F) := by
@@ -354,7 +368,9 @@ theorem toAngle_betaBoostDeriv (d : ℕ) (F : AnalyticTestFn) {τ : ℂ}
     (exists_suppUpper_toAngle_eq_periodize (isUpperFlat_betaBoostDerivCut d F hτ))).1
 
 /-- [T26], Lemma 3.6; the parameter-derivative test function is supported in the upper
-semicircle.-/
+semicircle.
+@isnad1 id=suppuppe.0h3v.s3.2d4cf1af37a1 from=translated src=- shape=27322421 vocab=f425e2e9
+-/
 theorem suppUpper_betaBoostDeriv (d : ℕ) (τ : ℂ) (F : AnalyticTestFn) :
     SuppUpper (betaBoostDeriv d τ F) := by
   by_cases hτ : τ ∈ strip (Complex.I * Real.pi)
@@ -365,7 +381,9 @@ theorem suppUpper_betaBoostDeriv (d : ℕ) (τ : ℂ) (F : AnalyticTestFn) :
     exact suppUpper_zero
 
 /-- [T26], Lemma 3.6; on the closed upper semicircle, the angle derivatives of the parameter
-derivative are the derivatives of its defining slice formula.-/
+derivative are the derivatives of its defining slice formula.
+@isnad1 id=eq.2h5v.s6.719bc30f1b54 from=translated src=- shape=9e949b95 vocab=9b6a3834
+-/
 theorem angleDeriv_betaBoostDeriv_of_mem (d : ℕ) (F : AnalyticTestFn) (j : ℕ) {τ : ℂ}
     (hτ : τ ∈ strip (Complex.I * Real.pi)) {θ : ℝ} (hθ : θ ∈ Set.Icc 0 Real.pi) :
     angleDeriv j (betaBoostDeriv d τ F) θ = betaBoostSliceDot d F j (τ, θ) := by
@@ -416,7 +434,9 @@ theorem angleDeriv_betaBoostDeriv_of_mem (d : ℕ) (F : AnalyticTestFn) (j : ℕ
       iteratedDerivWithin_betaBoostSliceDot_angle d F hτ hθ j
 
 /-- [T26], Lemma 3.6; off the closed upper semicircle, within one period, every angle derivative
-of the parameter derivative vanishes.-/
+of the parameter derivative vanishes.
+@isnad1 id=eq.2h5v.s6.3d34c4a7d178 from=translated src=- shape=572f6206 vocab=e35ed088
+-/
 theorem angleDeriv_betaBoostDeriv_of_notMem (d : ℕ) (F : AnalyticTestFn) (j : ℕ) {τ : ℂ}
     (hτ : τ ∈ strip (Complex.I * Real.pi)) {θ : ℝ}
     (hθ : θ ∈ Set.Ioo Real.pi (2 * Real.pi)) :

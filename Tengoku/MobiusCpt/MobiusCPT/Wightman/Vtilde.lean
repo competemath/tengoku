@@ -45,7 +45,9 @@ def VtildeDom (W : WightmanData G TF 𝓓 𝓕) (τ : ℂ) (Φ : 𝓓) : Prop :=
   ∃ Ψ : 𝓓, W.VtildeVal τ Φ Ψ
 
 /-- [T26], Definition 3.1; the continuation family is unique. Two families for the same `Φ`
-agree on the real boundary line by construction, hence on the whole closed strip.-/
+agree on the real boundary line by construction, hence on the whole closed strip.
+@isnad1 id=eqon.2h12v.s7.e63ccfc702a5 from=translated src=- shape=ae1dd35d vocab=44c2ebb8
+-/
 theorem isBoostContinuation_eqOn (W : WightmanData G TF 𝓓 𝓕) {τ : ℂ} {Φ Ψ Ψ' : 𝓓}
     {Gf Gf' : W.toWightmanStruct.Compat → ℂ → ℂ}
     (h : W.IsBoostContinuation τ Φ Ψ Gf) (h' : W.IsBoostContinuation τ Φ Ψ' Gf')
@@ -58,7 +60,9 @@ theorem isBoostContinuation_eqOn (W : WightmanData G TF 𝓓 𝓕) {τ : ℂ} {�
 
 /-- [T26], Definition 3.1; the continuation partner is unique. This is where the source's
 "`λ(V_t Ψ) = λ(V_t Ψ')` for all compatible `λ` forces `Ψ = Ψ'`" is discharged, and it is
-exactly separation of points by `D*_𝓕`, i.e. regularity — nothing stronger.-/
+exactly separation of points by `D*_𝓕`, i.e. regularity — nothing stronger.
+@isnad1 id=eq.3h9v.s7.e50c9c710b7a from=translated src=- shape=353bf93a vocab=a7076098
+-/
 theorem vtildeVal_unique (W : WightmanData G TF 𝓓 𝓕)
     (hreg : W.toWightmanStruct.ActsRegularly) {τ : ℂ} {Φ Ψ Ψ' : 𝓓}
     (h : W.VtildeVal τ Φ Ψ) (h' : W.VtildeVal τ Φ Ψ') : Ψ = Ψ' := by
@@ -72,7 +76,9 @@ theorem vtildeVal_unique (W : WightmanData G TF 𝓓 𝓕)
   simpa only [W.boost_zero] using hboundary
 
 /-- [T26], Definition 3.1; on the domain the continuation partner exists and is unique, so
-`Ṽ_τ` is a genuine partial function determined by the source conditions.-/
+`Ṽ_τ` is a genuine partial function determined by the source conditions.
+@isnad1 id=existsun.2h7v.s7.001d2ae7d712 from=translated src=- shape=b8a66e49 vocab=735fe56b
+-/
 theorem existsUnique_vtildeVal (W : WightmanData G TF 𝓓 𝓕)
     (hreg : W.toWightmanStruct.ActsRegularly) {τ : ℂ} {Φ : 𝓓} (h : W.VtildeDom τ Φ) :
     ∃! Ψ : 𝓓, W.VtildeVal τ Φ Ψ := by
@@ -87,7 +93,9 @@ noncomputable def vtildeMap (W : WightmanData G TF 𝓓 𝓕) (τ : ℂ) (Φ : �
   open Classical in
   if h : ∃! Ψ : 𝓓, W.VtildeVal τ Φ Ψ then h.choose else 0
 
-/-- [T26], Definition 3.1; on the domain, the representative is a continuation partner.-/
+/-- [T26], Definition 3.1; on the domain, the representative is a continuation partner.
+@isnad1 id=vtildeva.2h7v.s7.8ef8e78893be from=translated src=- shape=6acfeb8e vocab=269aaadd
+-/
 theorem vtildeVal_vtildeMap (W : WightmanData G TF 𝓓 𝓕)
     (hreg : W.toWightmanStruct.ActsRegularly) {τ : ℂ} {Φ : 𝓓} (h : W.VtildeDom τ Φ) :
     W.VtildeVal τ Φ (W.vtildeMap τ Φ) := by
@@ -95,7 +103,9 @@ theorem vtildeVal_vtildeMap (W : WightmanData G TF 𝓓 𝓕)
   rw [vtildeMap, dite_eq_left hu]
   exact hu.choose_spec.1
 
-/-- [T26], Definition 3.1; any continuation partner IS the value of the representative.-/
+/-- [T26], Definition 3.1; any continuation partner IS the value of the representative.
+@isnad1 id=eq.2h8v.s7.0414b08b8c89 from=translated src=- shape=a477c491 vocab=2e43bfb9
+-/
 theorem vtildeMap_eq (W : WightmanData G TF 𝓓 𝓕)
     (hreg : W.toWightmanStruct.ActsRegularly) {τ : ℂ} {Φ Ψ : 𝓓} (h : W.VtildeVal τ Φ Ψ) :
     W.vtildeMap τ Φ = Ψ := by
@@ -106,7 +116,9 @@ theorem vtildeMap_eq (W : WightmanData G TF 𝓓 𝓕)
 
 /-- [T26], Definition 3.1; the domain-membership interface later results use: exhibiting one
 family `G_λ` together with one companion vector both proves membership in `D(Ṽ_τ)` and pins the
-value of `Ṽ_τ`. This is the lemma Lemma 3.7 and Theorem 3.10 invoke.-/
+value of `Ṽ_τ`. This is the lemma Lemma 3.7 and Theorem 3.10 invoke.
+@isnad1 id=and.2h9v.s7.65b86710b3bb from=translated src=- shape=0da5d205 vocab=9031ba5b
+-/
 theorem vtildeDom_and_vtildeMap_eq (W : WightmanData G TF 𝓓 𝓕)
     (hreg : W.toWightmanStruct.ActsRegularly) {τ : ℂ} {Φ Ψ : 𝓓}
     {Gf : W.toWightmanStruct.Compat → ℂ → ℂ} (h : W.IsBoostContinuation τ Φ Ψ Gf) :
@@ -117,7 +129,9 @@ theorem vtildeDom_and_vtildeMap_eq (W : WightmanData G TF 𝓓 𝓕)
 /-- [T26], Definition 3.1; the compatible-functional characterization of `Ṽ_τ`, in the exact
 form the repository's statement contract pins. Regularity is the precise separation-of-points
 hypothesis needed for this equivalence. (The bound family is written `Gf` rather than `G`
-because `G` is the Möbius group type variable in this module; the statement is unchanged.)-/
+because `G` is the Möbius group type variable in this module; the statement is unchanged.)
+@isnad1 id=iff.1h8v.s9.10d6b6aba567 from=translated src=- shape=1e1e4a8a vocab=7ead055d
+-/
 theorem vtilde_spec (W : WightmanData G TF 𝓓 𝓕) :
     W.toWightmanStruct.ActsRegularly →
       ∀ (τ : ℂ) (Φ Ψ : 𝓓),

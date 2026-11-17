@@ -48,7 +48,9 @@ private theorem foldr_max_mono_N {M N : ℕ} (hMN : M ≤ N)
         max_le_max (cnorm_mono hMN (a.1 - a.2)) ih
 
 /-- [T26], Lemma 3.9. Issue #11 discharges `MobiusCPT.Contract`'s
-`theorem_wanted lemma_3_9`, byte-identical statement text.-/
+`theorem_wanted lemma_3_9`, byte-identical statement text.
+@isnad1 id=ex.1h3v.s8.b33ed80bc7f0 from=translated src=- shape=a85feca7 vocab=21700fa2
+-/
 theorem lemma_3_9 (W : WightmanBundle) (h : W.data.IsWightmanCFT)
     (φs : List W.𝓕) (lam : W.data.toWightmanStruct.Compat) :
     ∃ (N : ℕ) (M : ℝ),

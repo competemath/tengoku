@@ -26,13 +26,17 @@ def betaBoostSlice (d : ℕ) (F : AnalyticTestFn) (j : ℕ) : ℂ × ℝ → ℂ
   sliceDeriv stripUpper j (betaBoostJoint d F)
 
 /-- [T26], Lemma 3.6; every angle derivative of the complex boost is jointly continuous in the
-strip parameter and the angle.-/
+strip parameter and the angle.
+@isnad1 id=continuo.0h3v.s5.0edefd6164ed from=translated src=- shape=f17a8b3d vocab=c2db7ac6
+-/
 theorem continuousOn_betaBoostSlice (d : ℕ) (F : AnalyticTestFn) (j : ℕ) :
     ContinuousOn (betaBoostSlice d F j) stripUpper :=
   continuousOn_sliceDeriv uniqueDiffOn_stripUpper (contDiffOn_betaBoostJoint d F) j
 
 /-- [T26], Definition 3.5; the joint slice derivative computes the angle derivative of the
-pointwise boost formula.-/
+pointwise boost formula.
+@isnad1 id=eq.2h5v.s6.17af99f362ad from=translated src=- shape=5e741e61 vocab=42f7a925
+-/
 theorem betaBoostSlice_eq (d : ℕ) (F : AnalyticTestFn) (j : ℕ) {τ : ℂ}
     (hτ : τ ∈ strip (Complex.I * Real.pi)) {θ : ℝ} (hθ : θ ∈ Set.Icc 0 Real.pi) :
     betaBoostSlice d F j (τ, θ) =
@@ -43,7 +47,9 @@ theorem betaBoostSlice_eq (d : ℕ) (F : AnalyticTestFn) (j : ℕ) {τ : ℂ}
   exact h
 
 /-- [T26], Definition 3.5; on the closed upper semicircle the angle derivatives of the complex
-boost are the angle derivatives of its defining formula.-/
+boost are the angle derivatives of its defining formula.
+@isnad1 id=eq.2h5v.s6.0e0f33d0373c from=translated src=- shape=9e949b95 vocab=fc0720e5
+-/
 theorem angleDeriv_betaBoost_of_mem (d : ℕ) (F : AnalyticTestFn) (j : ℕ) {τ : ℂ}
     (hτ : τ ∈ strip (Complex.I * Real.pi)) {θ : ℝ} (hθ : θ ∈ Set.Icc 0 Real.pi) :
     angleDeriv j (betaBoost d τ F) θ = betaBoostSlice d F j (τ, θ) := by
@@ -77,7 +83,9 @@ theorem angleDeriv_betaBoost_of_mem (d : ℕ) (F : AnalyticTestFn) (j : ℕ) {τ
     _ = betaBoostSlice d F j (τ, θ) := (betaBoostSlice_eq d F j hτ hθ).symm
 
 /-- [T26], Definition 3.5; off the closed upper semicircle, within one period, every angle
-derivative of the complex boost vanishes: the boost is supported in `I_+`.-/
+derivative of the complex boost vanishes: the boost is supported in `I_+`.
+@isnad1 id=eq.2h5v.s6.1d463383c9e2 from=translated src=- shape=572f6206 vocab=106437fb
+-/
 theorem angleDeriv_betaBoost_of_notMem (d : ℕ) (F : AnalyticTestFn) (j : ℕ) {τ : ℂ}
     (hτ : τ ∈ strip (Complex.I * Real.pi)) {θ : ℝ}
     (hθ : θ ∈ Set.Ioo Real.pi (2 * Real.pi)) :
@@ -111,7 +119,9 @@ theorem angleDeriv_betaBoost_of_notMem (d : ℕ) (F : AnalyticTestFn) (j : ℕ) 
           rw [betaBoostCut, hcut]
     _ = 0 := zeroExtend_eq_zero_of_notMem _ hnot
 
-/-- Every real number is congruent modulo `2π` to a point of `[0, 2π)`.-/
+/-- Every real number is congruent modulo `2π` to a point of `[0, 2π)`.
+@isnad1 id=ex.0h1v.s6.36eab0e655e2 from=translated src=- shape=16678f8f vocab=3a0535c1
+-/
 theorem exists_sub_int_mul_mem_Ico (θ : ℝ) :
     ∃ n : ℤ, θ - n * (2 * Real.pi) ∈ Set.Ico 0 (2 * Real.pi) := by
   refine ⟨⌊θ / (2 * Real.pi)⌋, ⟨?_, ?_⟩⟩
@@ -134,7 +144,9 @@ theorem exists_sub_int_mul_mem_Ico (θ : ℝ) :
 
 /-- [T26], Lemma 3.6; a bound on the angle derivatives of the difference of two boosts over the
 closed upper semicircle bounds them over the whole circle, by periodicity together with the
-support property.-/
+support property.
+@isnad1 id=lt.4h7v.s7.c96898c6125a from=translated src=- shape=29946ee3 vocab=83b2ba73
+-/
 theorem forall_norm_angleDeriv_betaBoost_sub_lt (d : ℕ) (F : AnalyticTestFn) (j : ℕ)
     {τ σ : ℂ} (hτ : τ ∈ strip (Complex.I * Real.pi))
     (hσ : σ ∈ strip (Complex.I * Real.pi)) {ε : ℝ} (hε : 0 < ε)
@@ -165,7 +177,9 @@ theorem forall_norm_angleDeriv_betaBoost_sub_lt (d : ℕ) (F : AnalyticTestFn) (
 
 /-- [T26], Lemma 3.6, first clause; the complex boost is continuous on the closed strip as a curve
 of test functions, for the Fréchet topology of `C^∞(S¹)`.  No topology on `𝓧` is used: the source's
-"continuous on `𝕊_{iπ}`" is read in `C^∞(S¹)`, which is where `β_d(v_τ)F|_{I_+}` lives.-/
+"continuous on `𝕊_{iπ}`" is read in `C^∞(S¹)`, which is where `β_d(v_τ)F|_{I_+}` lives.
+@isnad1 id=continuo.0h2v.s5.10490e1a9175 from=translated src=- shape=4ff9b56c vocab=c5d0f3b0
+-/
 theorem continuousOn_betaBoost (d : ℕ) (F : AnalyticTestFn) :
     ContinuousOn (fun τ : ℂ => betaBoost d τ F) (strip (Complex.I * Real.pi)) := by
   intro τ₀ hτ₀

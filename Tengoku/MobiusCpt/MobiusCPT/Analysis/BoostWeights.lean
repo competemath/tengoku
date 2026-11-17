@@ -81,7 +81,9 @@ private theorem iteratedDeriv_succ_comp_boostToAngle {w : ℝ → ℂ} (hw : Con
 
 /-- [T26], proof of Lemma 3.4; the boost-chart weight bound.  The `m`-th `x`-derivative of the
 `j`-th `θ`-derivative of `w`, read along the chart, is bounded by `e^{j|x|}` times the first
-`j + m` `x`-derivatives of the boost picture `v` of `w`.-/
+`j + m` `x`-derivatives of the boost picture `v` of `w`.
+@isnad1 id=ex.0h2v.s7.daea51cecb48 from=translated src=- shape=69088d44 vocab=32de1e7a
+-/
 theorem exists_bound_boostChart (j m : ℕ) :
     ∃ K : ℝ, 0 ≤ K ∧ ∀ w v : ℝ → ℂ, ContDiff ℝ ∞ w → ContDiff ℝ ∞ v →
       (∀ y : ℝ, w (boostToAngle y) = v y) → ∀ x : ℝ,
@@ -225,7 +227,9 @@ theorem exists_bound_boostChart (j m : ℕ) :
               (∑ q ∈ Finset.range (m + 2), K q) *
               Real.exp (((j + 1 : ℕ) : ℝ) * |x|) * S := by push_cast; ring
 
-/-- [T26], proof of Lemma 3.4; the case of the previous bound used for the `C^N` seminorms.-/
+/-- [T26], proof of Lemma 3.4; the case of the previous bound used for the `C^N` seminorms.
+@isnad1 id=ex.0h1v.s7.cbc455ba6b10 from=translated src=- shape=5006de39 vocab=32de1e7a
+-/
 theorem exists_norm_iteratedDeriv_boostChart_le (j : ℕ) :
     ∃ K : ℝ, 0 ≤ K ∧ ∀ w v : ℝ → ℂ, ContDiff ℝ ∞ w → ContDiff ℝ ∞ v →
       (∀ y : ℝ, w (boostToAngle y) = v y) → ∀ x : ℝ,

@@ -27,7 +27,9 @@ open scoped ContDiff
 the imaginary axis and the closed exterior to the closed left half-plane.-/
 def cayley (z : ℂ) : ℂ := (1 + z) / (1 - z)
 
-/-- [T26], §3; in the Cayley coordinate the boost is the dilation by `e^τ`.-/
+/-- [T26], §3; in the Cayley coordinate the boost is the dilation by `e^τ`.
+@isnad1 id=eq.2h2v.s5.8cee501a5436 from=translated src=- shape=b36c8860 vocab=33e2ed85
+-/
 theorem cayley_vApply_neg (τ z : ℂ) (hz : z ≠ 1) (hden : cden (-τ) z ≠ 0) :
     cayley (vApply (-τ) z) = Complex.exp τ * cayley z := by
   have hden' : Complex.sinh (τ / 2) * z + Complex.cosh (τ / 2) ≠ 0 := by
@@ -67,14 +69,18 @@ theorem cayley_vApply_neg (τ z : ℂ) (hz : z ≠ 1) (hden : cden (-τ) z ≠ 0
     hquot _ _ _ hden' hBne, hexp, cayley, div_mul_div_comm]
 
 /-- The real and imaginary parts of the Cayley coordinate, with the denominator written as a
-real norm square.-/
+real norm square.
+@isnad1 id=eq.0h1v.s6.029fd157eaaa from=translated src=- shape=250f3b04 vocab=d14a7447
+-/
 theorem cayley_re_formula (z : ℂ) :
     (cayley z).re = (1 - ‖z‖ ^ 2) / ‖1 - z‖ ^ 2 := by
   simp [cayley, Complex.div_re, Complex.normSq_apply, Complex.sq_norm]
   ring
 
 /-- The imaginary part of the Cayley coordinate, with the denominator written as a real norm
-square.-/
+square.
+@isnad1 id=eq.0h1v.s6.a4a1dfb89eea from=translated src=- shape=81c6b810 vocab=77f49a70
+-/
 theorem cayley_im_formula (z : ℂ) :
     (cayley z).im = 2 * z.im / ‖1 - z‖ ^ 2 := by
   simp [cayley, Complex.div_im, Complex.normSq_apply, Complex.sq_norm]
@@ -83,7 +89,9 @@ theorem cayley_im_formula (z : ℂ) :
 /-- [T26], §3; the branch cut of the boost coordinate is the real segment `[-1, 1]`.-/
 def cutSegment : Set ℂ := {z : ℂ | z.im = 0 ∧ -1 ≤ z.re ∧ z.re ≤ 1}
 
-/-- An exterior point on the cut can only be one of the two endpoints.-/
+/-- An exterior point on the cut can only be one of the two endpoints.
+@isnad1 id=not.3h1v.s5.d496ed923ef5 from=translated src=- shape=8b13a206 vocab=031cd839
+-/
 theorem notMem_cutSegment_of_one_le_norm {z : ℂ} (h : 1 ≤ ‖z‖) (h1 : z ≠ 1)
     (h2 : z ≠ -1) : z ∉ cutSegment := by
   intro hz
@@ -112,7 +120,9 @@ theorem notMem_cutSegment_of_one_le_norm {z : ℂ} (h : 1 ≤ ‖z‖) (h1 : z �
     · simpa using hzre
     · simpa using hzim
 
-/-- The negative Cayley coordinate avoids the closed negative real axis exactly off the cut.-/
+/-- The negative Cayley coordinate avoids the closed negative real axis exactly off the cut.
+@isnad1 id=mem.1h1v.s4.85e5a213690e from=translated src=- shape=46a83b34 vocab=39fee014
+-/
 theorem neg_cayley_mem_slitPlane {z : ℂ} (hz : z ∉ cutSegment) :
     -cayley z ∈ Complex.slitPlane := by
   have hz1 : z ≠ 1 := by
@@ -153,7 +163,9 @@ theorem neg_cayley_mem_slitPlane {z : ℂ} (hz : z ∉ cutSegment) :
 /-- [T26], §3; the logarithmic boost coordinate is analytic away from its branch cut.-/
 def boostCoord (z : ℂ) : ℂ := Complex.log (-cayley z) + Complex.I * (Real.pi / 2)
 
-/-- The boost coordinate is holomorphic at every point off the branch cut.-/
+/-- The boost coordinate is holomorphic at every point off the branch cut.
+@isnad1 id=analytic.1h1v.s5.1d3b482c2571 from=translated src=- shape=a8b782fc vocab=078666fa
+-/
 theorem analyticAt_boostCoord {z : ℂ} (hz : z ∉ cutSegment) :
     AnalyticAt ℂ boostCoord z := by
   have hz1 : z ≠ 1 := by
@@ -169,7 +181,9 @@ theorem analyticAt_boostCoord {z : ℂ} (hz : z ∉ cutSegment) :
     (hcay.neg).clog (neg_cayley_mem_slitPlane hz)
   exact hlog.add analyticAt_const
 
-/-- Exponentiating the boost coordinate recovers the rotated Cayley coordinate.-/
+/-- Exponentiating the boost coordinate recovers the rotated Cayley coordinate.
+@isnad1 id=eq.1h1v.s4.6e61047b031a from=translated src=- shape=a0f1a236 vocab=17eb2c68
+-/
 theorem exp_boostCoord {z : ℂ} (hz : z ∉ cutSegment) :
     Complex.exp (boostCoord z) = -Complex.I * cayley z := by
   have hslit := neg_cayley_mem_slitPlane hz
@@ -185,12 +199,16 @@ theorem exp_boostCoord {z : ℂ} (hz : z ∉ cutSegment) :
         ring, Complex.exp_pi_div_two_mul_I]
     _ = -Complex.I * cayley z := by ring
 
-/-- The real part of the boost coordinate is the logarithm of the Cayley radial ratio.-/
+/-- The real part of the boost coordinate is the logarithm of the Cayley radial ratio.
+@isnad1 id=eq.1h1v.s5.0183fce4a110 from=translated src=- shape=50904da4 vocab=192f28c6
+-/
 theorem re_boostCoord {z : ℂ} (hz : z ∉ cutSegment) :
     (boostCoord z).re = Real.log (‖1 + z‖ / ‖1 - z‖) := by
   simp [boostCoord, cayley, Complex.log_re, Complex.norm_div]
 
-/-- Exponential decay at the `z = -1` end becomes the reciprocal radial ratio.-/
+/-- Exponential decay at the `z = -1` end becomes the reciprocal radial ratio.
+@isnad1 id=eq.2h1v.s6.c7ec016df0e9 from=translated src=- shape=a24e2260 vocab=700620b8
+-/
 theorem exp_neg_re_boostCoord {z : ℂ} (hz : z ∉ cutSegment) (h1 : z ≠ -1) :
     Real.exp (-(boostCoord z).re) = ‖1 - z‖ / ‖1 + z‖ := by
   have hz1 : z ≠ 1 := by
@@ -208,7 +226,9 @@ theorem exp_neg_re_boostCoord {z : ℂ} (hz : z ∉ cutSegment) (h1 : z ≠ -1) 
     simpa [sub_eq_add_neg] using (sub_ne_zero.mpr hplus_ne)
   rw [re_boostCoord hz, Real.exp_neg, Real.exp_log (div_pos hplus hminus), inv_div]
 
-/-- Exponentiating the real part of the boost coordinate gives the radial ratio.-/
+/-- Exponentiating the real part of the boost coordinate gives the radial ratio.
+@isnad1 id=eq.1h1v.s5.646edeb5af00 from=translated src=- shape=b250fbb1 vocab=cf223ab2
+-/
 theorem exp_re_boostCoord {z : ℂ} (hz : z ∉ cutSegment) :
     Real.exp ((boostCoord z).re) = ‖1 + z‖ / ‖1 - z‖ := by
   have hz1 : z ≠ 1 := by
@@ -235,7 +255,9 @@ theorem exp_re_boostCoord {z : ℂ} (hz : z ∉ cutSegment) :
     exact norm_pos_iff.mpr hne
   rw [re_boostCoord hz, Real.exp_log (div_pos hplus hminus)]
 
-/-- A crude global bound for the imaginary part of the boost coordinate.-/
+/-- A crude global bound for the imaginary part of the boost coordinate.
+@isnad1 id=le.0h1v.s5.94804c9f8fe0 from=translated src=- shape=f4471e25 vocab=aa5da73e
+-/
 theorem abs_im_boostCoord_le (z : ℂ) : |(boostCoord z).im| ≤ 3 * Real.pi / 2 := by
   have hlo := Complex.neg_pi_lt_log_im (-cayley z)
   have hhi := Complex.log_im_le_pi (-cayley z)
@@ -251,7 +273,9 @@ noncomputable def angleToBoost (θ : ℝ) : ℝ :=
 /-- [T26], §3; the inverse parametrisation of `I_+` by the boost coordinate.-/
 noncomputable def boostToAngle (x : ℝ) : ℝ := 2 * Real.arctan (Real.exp (-x))
 
-/-- The half-angle sine is positive on the upper semicircle.-/
+/-- The half-angle sine is positive on the upper semicircle.
+@isnad1 id=lt.1h1v.s5.731096eb995b from=translated src=- shape=7b11e177 vocab=5a5af916
+-/
 theorem sin_half_angle_pos {θ : ℝ} (hθ : θ ∈ Set.Ioo 0 Real.pi) :
     0 < Real.sin (θ / 2) := by
   obtain ⟨hθ1, hθ2⟩ := hθ
@@ -259,14 +283,18 @@ theorem sin_half_angle_pos {θ : ℝ} (hθ : θ ∈ Set.Ioo 0 Real.pi) :
   · linarith
   · linarith [Real.pi_pos]
 
-/-- The half-angle cosine is positive on the upper semicircle.-/
+/-- The half-angle cosine is positive on the upper semicircle.
+@isnad1 id=lt.1h1v.s5.ed4e931b8544 from=translated src=- shape=7b11e177 vocab=768cd784
+-/
 theorem cos_half_angle_pos {θ : ℝ} (hθ : θ ∈ Set.Ioo 0 Real.pi) :
     0 < Real.cos (θ / 2) := by
   obtain ⟨hθ1, hθ2⟩ := hθ
   apply Real.cos_pos_of_mem_Ioo
   constructor <;> linarith [Real.pi_pos]
 
-/-- The negative half-angle cosine is positive on the lower semicircle.-/
+/-- The negative half-angle cosine is positive on the lower semicircle.
+@isnad1 id=lt.1h1v.s5.ec4929d05c48 from=translated src=- shape=cea25de7 vocab=031c7a8c
+-/
 theorem neg_cos_half_angle_pos {θ : ℝ} (hθ : θ ∈ Set.Ioo Real.pi (2 * Real.pi)) :
     0 < -Real.cos (θ / 2) := by
   obtain ⟨hθ1, hθ2⟩ := hθ
@@ -274,26 +302,34 @@ theorem neg_cos_half_angle_pos {θ : ℝ} (hθ : θ ∈ Set.Ioo Real.pi (2 * Rea
   have hhalf' : θ / 2 < Real.pi + Real.pi / 2 := by linarith
   exact neg_pos.mpr (Real.cos_neg_of_pi_div_two_lt_of_lt hhalf hhalf')
 
-/-- The inverse boost parametrisation takes every real number into the open upper semicircle.-/
+/-- The inverse boost parametrisation takes every real number into the open upper semicircle.
+@isnad1 id=mem.0h1v.s4.6f841fca8f3e from=translated src=- shape=2fa8043a vocab=ac7eadbd
+-/
 theorem boostToAngle_mem_Ioo (x : ℝ) : boostToAngle x ∈ Set.Ioo 0 Real.pi := by
   unfold boostToAngle
   constructor
   · nlinarith [Real.arctan_pos.mpr (Real.exp_pos (-x))]
   · nlinarith [Real.arctan_lt_pi_div_two (Real.exp (-x)), Real.pi_pos]
 
-/-- A mirrored form of the inverse parametrisation, useful at the opposite end of the strip.-/
+/-- A mirrored form of the inverse parametrisation, useful at the opposite end of the strip.
+@isnad1 id=eq.0h1v.s5.328c948e2d7c from=translated src=- shape=a7917956 vocab=28e3b219
+-/
 theorem boostToAngle_eq_pi_sub (x : ℝ) :
     boostToAngle x = Real.pi - 2 * Real.arctan (Real.exp x) := by
   rw [boostToAngle, Real.exp_neg, Real.arctan_inv_of_pos (Real.exp_pos x)]
   ring
 
-/-- The inverse boost parametrisation is smooth to all orders.-/
+/-- The inverse boost parametrisation is smooth to all orders.
+@isnad1 id=contdiff.0h0v.s5.6ccf2aa96abf from=translated src=- shape=3cea26be vocab=a9a01ccd
+-/
 theorem contDiff_boostToAngle : ContDiff ℝ ∞ boostToAngle := by
   have h : ContDiff ℝ ∞ fun y : ℝ => Real.arctan (Real.exp (-y)) :=
     Real.contDiff_arctan.comp (Real.contDiff_exp.comp contDiff_neg)
   exact contDiff_const.mul h
 
-/-- The derivative of the inverse boost parametrisation is `-1 / cosh x`.-/
+/-- The derivative of the inverse boost parametrisation is `-1 / cosh x`.
+@isnad1 id=hasderiv.0h1v.s5.9bdbaf0f199d from=translated src=- shape=806634bd vocab=626e7ba6
+-/
 theorem hasDerivAt_boostToAngle (x : ℝ) :
     HasDerivAt boostToAngle (-(Real.cosh x)⁻¹) x := by
   have hexp : HasDerivAt (fun y : ℝ => Real.exp (-y)) (-Real.exp (-x)) x := by
@@ -315,16 +351,22 @@ theorem hasDerivAt_boostToAngle (x : ℝ) :
   rw [hval] at hscaled
   exact hscaled
 
-/-- The sine of the inverse-parametrised angle is positive.-/
+/-- The sine of the inverse-parametrised angle is positive.
+@isnad1 id=lt.0h1v.s3.c04299df3220 from=translated src=- shape=58747ce7 vocab=8719ad54
+-/
 theorem sin_boostToAngle_pos (x : ℝ) : 0 < Real.sin (boostToAngle x) := by
   exact Real.sin_pos_of_mem_Ioo (boostToAngle_mem_Ioo x)
 
-/-- The half-angle sine at the inverse-parametrised upper semicircle is positive.-/
+/-- The half-angle sine at the inverse-parametrised upper semicircle is positive.
+@isnad1 id=lt.0h1v.s4.ae65ed309198 from=translated src=- shape=36232bd4 vocab=6e626bd4
+-/
 theorem sin_half_boostToAngle_pos (x : ℝ) :
     0 < Real.sin (boostToAngle x / 2) := by
   exact sin_half_angle_pos (boostToAngle_mem_Ioo x)
 
-/-- The upper-circle angle coordinate recovers the original real boost coordinate.-/
+/-- The upper-circle angle coordinate recovers the original real boost coordinate.
+@isnad1 id=eq.0h1v.s3.ef1eae73a524 from=translated src=- shape=47dcad53 vocab=2e92e692
+-/
 theorem angleToBoost_boostToAngle (x : ℝ) : angleToBoost (boostToAngle x) = x := by
   have hr : 0 < Real.exp (-x) := Real.exp_pos _
   have hsqrt : 0 < Real.sqrt (1 + Real.exp (-x) ^ 2) := by positivity
@@ -341,7 +383,9 @@ theorem angleToBoost_boostToAngle (x : ℝ) : angleToBoost (boostToAngle x) = x 
       Real.arctan (Real.exp (-x)) := by ring
   rw [hhalf, Real.cos_arctan, Real.sin_arctan, hratio, hxinverse, Real.log_exp]
 
-/-- The inverse parametrisation recovers every angle in the open upper semicircle.-/
+/-- The inverse parametrisation recovers every angle in the open upper semicircle.
+@isnad1 id=eq.1h1v.s4.c6c67e0e239a from=translated src=- shape=6b04ac80 vocab=b1d92085
+-/
 theorem boostToAngle_angleToBoost {θ : ℝ} (hθ : θ ∈ Set.Ioo 0 Real.pi) :
     boostToAngle (angleToBoost θ) = θ := by
   have hs : 0 < Real.sin (θ / 2) := sin_half_angle_pos hθ
@@ -440,7 +484,9 @@ private theorem log_I : Complex.log Complex.I =
   · simp [Complex.log_re]
   · simp [Complex.log_im, Complex.arg_I]
 
-/-- The boost coordinate agrees with the real angle coordinate on the open upper semicircle.-/
+/-- The boost coordinate agrees with the real angle coordinate on the open upper semicircle.
+@isnad1 id=eq.1h1v.s5.4074558ac93a from=translated src=- shape=bc80622c vocab=cb9cd7ea
+-/
 theorem boostCoord_circleExp {θ : ℝ} (hθ : θ ∈ Set.Ioo 0 Real.pi) :
     boostCoord (Complex.exp (θ * Complex.I)) = (angleToBoost θ : ℂ) := by
   have hs := sin_half_angle_pos hθ
@@ -465,7 +511,9 @@ theorem boostCoord_circleExp {θ : ℝ} (hθ : θ ∈ Set.Ioo 0 Real.pi) :
   ring
 
 /-- The boost coordinate on the lower semicircle is the upper strip edge.  Its real logarithm is
-`log((-cos(θ/2))/sin(θ/2))`; this is the corrected ratio forced by `re_boostCoord`.-/
+`log((-cos(θ/2))/sin(θ/2))`; this is the corrected ratio forced by `re_boostCoord`.
+@isnad1 id=eq.1h1v.s6.2a4089845f76 from=translated src=- shape=b183c064 vocab=529273af
+-/
 theorem boostCoord_circleExp_lower {θ : ℝ} (hθ : θ ∈ Set.Ioo Real.pi (2 * Real.pi)) :
     boostCoord (Complex.exp (θ * Complex.I)) =
       (Real.log ((-Real.cos (θ / 2)) / Real.sin (θ / 2)) : ℂ) +

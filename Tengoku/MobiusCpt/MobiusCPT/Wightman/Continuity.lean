@@ -33,7 +33,9 @@ variable [AddCommGroup 𝓓] [Module ℂ 𝓓]
 
 namespace WightmanStruct
 
-/-- [T26], Definition 2.4: a nonempty `multiSmear` splits into its first field and tail.-/
+/-- [T26], Definition 2.4: a nonempty `multiSmear` splits into its first field and tail.
+@isnad1 id=eq.0h8v.s8.7095bf9575de from=translated src=- shape=37cf89fb vocab=a918a14e
+-/
 theorem multiSmear_succ (W : WightmanStruct TF 𝓓 𝓕) {k : ℕ}
     (φs : Fin (k + 1) → 𝓕) (Φ : 𝓓) (f : Fin (k + 1) → TF) :
     W.multiSmear φs Φ f =
@@ -42,7 +44,9 @@ theorem multiSmear_succ (W : WightmanStruct TF 𝓓 𝓕) {k : ℕ}
   rw [List.ofFn_succ, smearedProductOn_cons]
   rfl
 
-/-- [T26], Definition 2.4: `multiSmear` is additive in each test-function slot.-/
+/-- [T26], Definition 2.4: `multiSmear` is additive in each test-function slot.
+@isnad1 id=eq.0h11v.s7.3af73975dfba from=translated src=- shape=6b06c94e vocab=aa281870
+-/
 theorem multiSmear_update_add (W : WightmanStruct TF 𝓓 𝓕) {k : ℕ}
     (φs : Fin k → 𝓕) (Φ : 𝓓) (f : Fin k → TF) (i : Fin k) (x y : TF) :
     W.multiSmear φs Φ (Function.update f i (x + y)) =
@@ -63,7 +67,9 @@ theorem multiSmear_update_add (W : WightmanStruct TF 𝓓 𝓕) {k : ℕ}
         rw [ih (φs := Fin.tail φs) (f := Fin.tail f) (i := j)]
         exact (W.smear (φs 0) (f 0)).map_add _ _
 
-/-- [T26], Definition 2.4: `multiSmear` is homogeneous in each test-function slot.-/
+/-- [T26], Definition 2.4: `multiSmear` is homogeneous in each test-function slot.
+@isnad1 id=eq.0h11v.s7.55821bbfee0c from=translated src=- shape=d711ccd1 vocab=dcc67f42
+-/
 theorem multiSmear_update_smul (W : WightmanStruct TF 𝓓 𝓕) {k : ℕ}
     (φs : Fin k → 𝓕) (Φ : 𝓓) (f : Fin k → TF) (i : Fin k) (c : ℂ) (x : TF) :
     W.multiSmear φs Φ (Function.update f i (c • x)) =
@@ -92,7 +98,9 @@ def multiSmearMultilinear (W : WightmanStruct TF 𝓓 𝓕) {k : ℕ}
     (fun f i x y => W.multiSmear_update_add φs Φ f i x y)
     (fun f i c x => W.multiSmear_update_smul φs Φ f i c x)
 
-/-- [T26], Definition 2.4: the bundled multilinear map evaluates to `multiSmear`.-/
+/-- [T26], Definition 2.4: the bundled multilinear map evaluates to `multiSmear`.
+@isnad1 id=eq.0h8v.s7.bc6e287f391c from=translated src=- shape=9fb4fb48 vocab=b45bdb9e
+-/
 @[simp] theorem multiSmearMultilinear_apply (W : WightmanStruct TF 𝓓 𝓕) {k : ℕ}
     (φs : Fin k → 𝓕) (Φ : 𝓓) (f : Fin k → TF) :
     W.multiSmearMultilinear φs Φ f = W.multiSmear φs Φ f := rfl
@@ -104,7 +112,9 @@ def IsCompatibleSep (W : WightmanStruct TF 𝓓 𝓕) (lam : 𝓓 →ₗ[ℂ] �
     Continuous fun x : TF => lam (W.multiSmear φs Φ (Function.update g i x))
 
 /-- [T26], Definition 2.4 and [CRTT25], Definition 2.5: joint continuity implies
-separate continuity over any test-function interface.-/
+separate continuity over any test-function interface.
+@isnad1 id=iscompat.1h5v.s6.5d0cbbc5ab7e from=translated src=- shape=74d536c3 vocab=2afab1ab
+-/
 theorem isCompatibleSep_of_isCompatible (W : WightmanStruct TF 𝓓 𝓕)
     (lam : 𝓓 →ₗ[ℂ] ℂ) (h : W.IsCompatible lam) : W.IsCompatibleSep lam := by
   intro k φs Φ i g
@@ -115,7 +125,9 @@ theorem isCompatibleSep_of_isCompatible (W : WightmanStruct TF 𝓓 𝓕)
 /-- [Trèves, Corollary 34.2] via
 `MobiusCPT.MultilinearMap.continuous_of_continuous_update`: over the Fréchet space
 `C^∞(S¹)`, separate continuity implies joint continuity, so the [CRTT25] reading of
-`D*_𝓕` implies the [T26] reading.-/
+`D*_𝓕` implies the [T26] reading.
+@isnad1 id=iscompat.1h4v.s6.2191b1b87fed from=translated src=- shape=31a2b2b3 vocab=511415f5
+-/
 theorem isCompatible_of_isCompatibleSep {𝓓 𝓕 : Type*} [AddCommGroup 𝓓] [Module ℂ 𝓓]
     (W : WightmanStruct TestFn 𝓓 𝓕) (lam : 𝓓 →ₗ[ℂ] ℂ)
     (h : W.IsCompatibleSep lam) : W.IsCompatible lam := by
@@ -129,7 +141,9 @@ theorem isCompatible_of_isCompatibleSep {𝓓 𝓕 : Type*} [AddCommGroup 𝓓] 
         multiSmearMultilinear_apply] using h k φs Φ i g)
   exact hM.congr fun f => rfl
 
-/-- [T26], Definition 2.4 and [CRTT25], Definition 2.5 define the same `D*_𝓕`.-/
+/-- [T26], Definition 2.4 and [CRTT25], Definition 2.5 define the same `D*_𝓕`.
+@isnad1 id=iff.0h4v.s6.3ebf8cb8582a from=translated src=- shape=8b9c6180 vocab=511415f5
+-/
 theorem isCompatible_iff_isCompatibleSep {𝓓 𝓕 : Type*} [AddCommGroup 𝓓] [Module ℂ 𝓓]
     (W : WightmanStruct TestFn 𝓓 𝓕) (lam : 𝓓 →ₗ[ℂ] ℂ) :
     W.IsCompatible lam ↔ W.IsCompatibleSep lam :=
@@ -141,7 +155,9 @@ def ActsRegularlySep (W : WightmanStruct TF 𝓓 𝓕) : Prop :=
   ∀ Φ : 𝓓, Φ ≠ 0 → ∃ lam : 𝓓 →ₗ[ℂ] ℂ, W.IsCompatibleSep lam ∧ lam Φ ≠ 0
 
 /-- [T26], Definition 2.4 and [CRTT25], Definition 2.5 impose the same regularity
-hypothesis, so downstream theorems assuming `ActsRegularly` have the source hypothesis.-/
+hypothesis, so downstream theorems assuming `ActsRegularly` have the source hypothesis.
+@isnad1 id=iff.0h3v.s5.813684672678 from=translated src=- shape=5e1a3b42 vocab=3c71f2ac
+-/
 theorem actsRegularly_iff_actsRegularlySep {𝓓 𝓕 : Type*} [AddCommGroup 𝓓] [Module ℂ 𝓓]
     (W : WightmanStruct TestFn 𝓓 𝓕) :
     W.ActsRegularly ↔ W.ActsRegularlySep := by
@@ -158,7 +174,9 @@ theorem actsRegularly_iff_actsRegularlySep {𝓓 𝓕 : Type*} [AddCommGroup �
     exact hlam
 
 /-- [CRTT25], Definition 2.5: the separate-continuity form of the
-separation-of-points characterisation.-/
+separation-of-points characterisation.
+@isnad1 id=iff.0h3v.s7.ad37452463d9 from=translated src=- shape=dafc978d vocab=977e51fc
+-/
 theorem actsRegularlySep_iff {𝓓 𝓕 : Type*} [AddCommGroup 𝓓] [Module ℂ 𝓓]
     (W : WightmanStruct TestFn 𝓓 𝓕) :
     W.ActsRegularlySep ↔

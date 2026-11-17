@@ -26,7 +26,9 @@ noncomputable section
 
 /-- [CRTT25], Lemma 2.10(i); the reusable core. A curve `u : ℝ → TestFn` whose angle picture
 `(t, θ) ↦ toAngle (u t) θ` agrees with a jointly smooth, `2π`-periodic-in-`θ` function `g` is
-continuous into `C^∞(S¹)`. Boosts and rotations are two instantiations of this single fact.-/
+continuous into `C^∞(S¹)`. Boosts and rotations are two instantiations of this single fact.
+@isnad1 id=continuo.2h2v.s6.ee881d7cdbe8 from=translated src=- shape=8d3d1650 vocab=f1651f4a
+-/
 theorem continuous_of_jointlySmooth_periodic
     {g : ℝ × ℝ → ℂ} (hg : ContDiff ℝ ∞ g)
     {u : ℝ → TestFn} (hu : ∀ t θ : ℝ, toAngle (u t) θ = g (t, θ)) :

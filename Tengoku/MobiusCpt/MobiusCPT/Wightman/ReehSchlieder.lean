@@ -112,7 +112,9 @@ private theorem dense_localizedOmega
   linarith
 
 /-- [CRTT25], Appendix A, Corollary A.3(i): `P(I₋)Ω` is dense in the
-`𝓕`-strong topology.-/
+`𝓕`-strong topology.
+@isnad1 id=dense.1h1v.s6.504b80b33076 from=translated src=- shape=fb462e8e vocab=1c737334
+-/
 theorem reehSchlieder_lower (W : WightmanBundle) (hW : W.data.IsWightmanCFT) :
     @Dense W.𝓓 W.data.strongTop
       (W.data.toWightmanStruct.PLowerOmega : Set W.𝓓) := by
@@ -196,7 +198,9 @@ private theorem analyticCore_dense_of
   rw [hclosed] at hmono
   exact top_unique (by simpa only [hSclosure] using hmono)
 
-/-- The lower analytic smeared-product core is dense in the `𝓕`-strong topology.-/
+/-- The lower analytic smeared-product core is dense in the `𝓕`-strong topology.
+@isnad1 id=dense.1h1v.s7.c6c23e753955 from=translated src=- shape=e97b3aab vocab=8bbbd0f0
+-/
 theorem analyticCore_dense_lower (W : WightmanBundle) (hW : W.data.IsWightmanCFT) :
     @Dense W.𝓓 W.data.strongTop
       (Submodule.span ℂ { Φ : W.𝓓 | ∃ l : List (W.𝓕 × TestFn),

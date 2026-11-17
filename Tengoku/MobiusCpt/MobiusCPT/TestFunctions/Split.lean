@@ -20,12 +20,16 @@ structure IsEndpointFlat (f : TestFn) : Prop where
   zero : ∀ j : ℕ, iteratedDeriv j (toAngle f) 0 = 0
   pi : ∀ j : ℕ, iteratedDeriv j (toAngle f) Real.pi = 0
 
-/-- [T26], §3; upper-supported functions are endpoint-flat.-/
+/-- [T26], §3; upper-supported functions are endpoint-flat.
+@isnad1 id=isendpoi.1h1v.s2.b30a699a1e89 from=translated src=- shape=6321fd23 vocab=04d47d88
+-/
 theorem IsEndpointFlat.of_suppUpper {f : TestFn} (h : SuppUpper f) : IsEndpointFlat f := by
   exact ⟨fun j => (iteratedDeriv_toAngle_eq_zero_of_suppUpper h j).1,
     fun j => (iteratedDeriv_toAngle_eq_zero_of_suppUpper h j).2⟩
 
-/-- [T26], §3; lower-supported functions are endpoint-flat.-/
+/-- [T26], §3; lower-supported functions are endpoint-flat.
+@isnad1 id=isendpoi.1h1v.s2.b0ca99e9510d from=translated src=- shape=6321fd23 vocab=7a1c4bbf
+-/
 theorem IsEndpointFlat.of_suppLower {f : TestFn} (h : SuppLower f) : IsEndpointFlat f := by
   exact ⟨fun j => (iteratedDeriv_toAngle_eq_zero_of_suppLower h j).1,
     fun j => (iteratedDeriv_toAngle_eq_zero_of_suppLower h j).2⟩
@@ -45,7 +49,9 @@ private theorem periodic_iteratedDeriv_split {g : ℝ → ℂ} {T : ℝ}
   | zero => simpa only [iteratedDeriv_zero] using hper
   | succ j ih => simpa only [iteratedDeriv_succ] using deriv_periodic ih
 
-/-- [T26], §3; endpoint flatness gives zero angle derivatives at the endpoint at angle `2π`.-/
+/-- [T26], §3; endpoint flatness gives zero angle derivatives at the endpoint at angle `2π`.
+@isnad1 id=eq.1h2v.s5.4dad7305baf2 from=translated src=- shape=9ab1e8b8 vocab=be437738
+-/
 theorem IsEndpointFlat.two_pi {f : TestFn} (h : IsEndpointFlat f) (j : ℕ) :
     iteratedDeriv j (toAngle f) (2 * Real.pi) = 0 := by
   have hper := periodic_iteratedDeriv_split (periodic_toAngle f) j
@@ -54,7 +60,9 @@ theorem IsEndpointFlat.two_pi {f : TestFn} (h : IsEndpointFlat f) (j : ℕ) :
       simpa using hper 0
     _ = 0 := h.zero j
 
-/-- [T26], §3; an endpoint-flat test function yields an upper-flat cut-off angle function.-/
+/-- [T26], §3; an endpoint-flat test function yields an upper-flat cut-off angle function.
+@isnad1 id=isupperf.1h1v.s4.b34b881b2010 from=translated src=- shape=a9c441cc vocab=c6db801d
+-/
 theorem IsEndpointFlat.isUpperFlat_cutIcc {f : TestFn} (h : IsEndpointFlat f) :
     IsUpperFlat (cutIcc 0 Real.pi (toAngle f)) := by
   refine ⟨contDiff_cutIcc Real.pi_pos.le (contDiff_toAngle f) h.zero h.pi, ?_⟩
@@ -72,7 +80,9 @@ theorem IsEndpointFlat.isUpperFlat_cutIcc {f : TestFn} (h : IsEndpointFlat f) :
           lt_of_le_of_ne hθIcc.2 hθpi⟩)
   · exact cutIcc_eq_zero_of_notMem (toAngle f) hθIcc
 
-/-- [T26], §3; an endpoint-flat test function yields a lower-flat cut-off angle function.-/
+/-- [T26], §3; an endpoint-flat test function yields a lower-flat cut-off angle function.
+@isnad1 id=islowerf.1h1v.s4.dab4b7d8269b from=translated src=- shape=0a69ea47 vocab=91c27dc7
+-/
 theorem IsEndpointFlat.isLowerFlat_cutIcc {f : TestFn} (h : IsEndpointFlat f) :
     IsLowerFlat (cutIcc Real.pi (2 * Real.pi) (toAngle f)) := by
   refine ⟨contDiff_cutIcc (by linarith [Real.pi_pos]) (contDiff_toAngle f) h.pi h.two_pi, ?_⟩
@@ -98,28 +108,38 @@ noncomputable def splitUpper (f : TestFn) (h : IsEndpointFlat f) : TestFn :=
 noncomputable def splitLower (f : TestFn) (h : IsEndpointFlat f) : TestFn :=
   Classical.choose (exists_suppLower_toAngle_eq_periodize h.isLowerFlat_cutIcc)
 
-/-- [T26], Definition 3.2; the angle description of the named upper piece.-/
+/-- [T26], Definition 3.2; the angle description of the named upper piece.
+@isnad1 id=eq.1h1v.s5.09230fd61b1d from=translated src=- shape=65d92f2f vocab=0eee9bf1
+-/
 theorem toAngle_splitUpper (f : TestFn) (h : IsEndpointFlat f) :
     toAngle (splitUpper f h) = periodize (2 * Real.pi) (cutIcc 0 Real.pi (toAngle f)) := by
   exact (Classical.choose_spec (exists_suppUpper_toAngle_eq_periodize h.isUpperFlat_cutIcc)).1
 
-/-- [T26], Definition 3.2; the angle description of the named lower piece.-/
+/-- [T26], Definition 3.2; the angle description of the named lower piece.
+@isnad1 id=eq.1h1v.s5.c4458288bb76 from=translated src=- shape=0fac2c15 vocab=90edf8e8
+-/
 theorem toAngle_splitLower (f : TestFn) (h : IsEndpointFlat f) :
     toAngle (splitLower f h) =
       periodize (2 * Real.pi) (cutIcc Real.pi (2 * Real.pi) (toAngle f)) := by
   exact (Classical.choose_spec (exists_suppLower_toAngle_eq_periodize h.isLowerFlat_cutIcc)).1
 
-/-- [T26], Definition 3.2; the named upper piece has upper semicircle support.-/
+/-- [T26], Definition 3.2; the named upper piece has upper semicircle support.
+@isnad1 id=suppuppe.1h1v.s3.2bd68a7ca7f6 from=translated src=- shape=1f8e965c vocab=aed70b1e
+-/
 theorem suppUpper_splitUpper (f : TestFn) (h : IsEndpointFlat f) :
     SuppUpper (splitUpper f h) := by
   exact (Classical.choose_spec (exists_suppUpper_toAngle_eq_periodize h.isUpperFlat_cutIcc)).2
 
-/-- [T26], Definition 3.2; the named lower piece has lower semicircle support.-/
+/-- [T26], Definition 3.2; the named lower piece has lower semicircle support.
+@isnad1 id=supplowe.1h1v.s3.40b7f053b20d from=translated src=- shape=1f8e965c vocab=621b9d9d
+-/
 theorem suppLower_splitLower (f : TestFn) (h : IsEndpointFlat f) :
     SuppLower (splitLower f h) := by
   exact (Classical.choose_spec (exists_suppLower_toAngle_eq_periodize h.isLowerFlat_cutIcc)).2
 
-/-- [T26], Definition 3.2; on the closed upper semicircle the upper piece is unchanged.-/
+/-- [T26], Definition 3.2; on the closed upper semicircle the upper piece is unchanged.
+@isnad1 id=eq.2h2v.s5.f2e159f28c0b from=translated src=- shape=82ba5a16 vocab=2887e6a4
+-/
 theorem toAngle_splitUpper_of_mem {f : TestFn} (h : IsEndpointFlat f) {θ : ℝ}
     (hθ : θ ∈ Set.Icc 0 Real.pi) :
     toAngle (splitUpper f h) θ = toAngle f θ := by
@@ -127,7 +147,9 @@ theorem toAngle_splitUpper_of_mem {f : TestFn} (h : IsEndpointFlat f) {θ : ℝ}
   · exact cutIcc_eq_of_mem (toAngle f) hθ
   · exact ⟨hθ.1, by linarith [hθ.2, Real.pi_pos]⟩
 
-/-- [T26], Definition 3.2; the upper piece of an upper-supported function is the function itself.-/
+/-- [T26], Definition 3.2; the upper piece of an upper-supported function is the function itself.
+@isnad1 id=eq.1h1v.s3.f7d666419b2a from=translated src=- shape=fe21a9a1 vocab=08e2513d
+-/
 theorem splitUpper_of_suppUpper {f : TestFn} (hf : SuppUpper f) :
     splitUpper f (IsEndpointFlat.of_suppUpper hf) = f := by
   let h : IsEndpointFlat f := IsEndpointFlat.of_suppUpper hf
@@ -152,7 +174,9 @@ theorem splitUpper_of_suppUpper {f : TestFn} (hf : SuppUpper f) :
       exact hzero.symm
     · exact hθ
 
-/-- [T26], Definition 3.2; the lower piece of a lower-supported function is the function itself.-/
+/-- [T26], Definition 3.2; the lower piece of a lower-supported function is the function itself.
+@isnad1 id=eq.1h1v.s3.35566a58d827 from=translated src=- shape=fe21a9a1 vocab=cddd6ef1
+-/
 theorem splitLower_of_suppLower {f : TestFn} (hf : SuppLower f) :
     splitLower f (IsEndpointFlat.of_suppLower hf) = f := by
   let h : IsEndpointFlat f := IsEndpointFlat.of_suppLower hf
@@ -190,7 +214,9 @@ theorem splitLower_of_suppLower {f : TestFn} (hf : SuppLower f) :
       · exact cutIcc_eq_of_mem (toAngle f) ⟨hθgt.le, hθ.2.le⟩
       · exact hθ
 
-/-- [T26], Definition 3.2; endpoint-flatness decomposes a test function into named pieces.-/
+/-- [T26], Definition 3.2; endpoint-flatness decomposes a test function into named pieces.
+@isnad1 id=eq.1h1v.s4.aa6db21c4deb from=translated src=- shape=1156e384 vocab=6944d28a
+-/
 theorem splitUpper_add_splitLower (f : TestFn) (h : IsEndpointFlat f) :
     splitUpper f h + splitLower f h = f := by
   apply toAngle_injective

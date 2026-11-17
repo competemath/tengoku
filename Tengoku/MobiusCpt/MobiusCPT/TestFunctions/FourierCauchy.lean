@@ -27,6 +27,9 @@ noncomputable section
 
 /- The circle inverse in Step 1 is proved in `ℂ`, rather than by using the group API of `Circle`.
    This makes the later identification with the ordinary complex inverse explicit. -/
+/--
+@isnad1 id=eq.0h2v.s6.dc2ec4b0b5a2 from=translated src=- shape=2c2ccefe vocab=48c940f0
+-/
 theorem toAngle_inv_xRestrictS1 (F : AnalyticTestFn) (θ : ℝ) :
     toAngle (inv (xRestrictS1 F)) θ = F.invExt (Circle.exp θ : ℂ) := by
   have h1 : toAngle (inv (xRestrictS1 F)) θ = F.toFun (Circle.exp (-θ) : ℂ) := by
@@ -45,6 +48,9 @@ theorem toAngle_inv_xRestrictS1 (F : AnalyticTestFn) (θ : ℝ) :
 /- The two normalisations in the bridge are recorded pointwise.  `hfourier` is the
    additive-circle character at period `2π`; `hexp` is the integer-power identity that
    accounts for the extra derivative factor in the circle integral. -/
+/--
+@isnad1 id=eq.0h2v.s6.7017aacae729 from=translated src=- shape=ac39fb04 vocab=36989fc1
+-/
 theorem fourierCoef_inv_xRestrictS1_eq (F : AnalyticTestFn) (n : ℤ) :
     (2 * Real.pi * Complex.I : ℂ) * fourierCoef (inv (xRestrictS1 F)) n =
       ∮ z in C((0 : ℂ), 1), F.invExt z * z ^ (-(n + 1)) := by
@@ -200,6 +206,9 @@ private theorem fourierCoef_inv_xRestrictS1_eq_zero_of_zero (F : AnalyticTestFn)
       _ = 0 := hI
   exact (mul_eq_zero.mp hzero).resolve_left hscalar
 
+/--
+@isnad1 id=eq.1h2v.s4.8e74b1b43710 from=translated src=- shape=1f46d7fa vocab=d76b76f0
+-/
 theorem fourierCoef_inv_xRestrictS1_eq_zero_of_le_zero (F : AnalyticTestFn) (n : ℤ)
     (hn : n ≤ 0) : fourierCoef (inv (xRestrictS1 F)) n = 0 := by
   rcases hn.lt_or_eq with h | h
@@ -209,7 +218,9 @@ theorem fourierCoef_inv_xRestrictS1_eq_zero_of_le_zero (F : AnalyticTestFn) (n :
 
 /-- [T26], the (W3) vacuum-annihilation bridge used in the proof of Lemma 3.7: `F ∈ 𝓧`
 supplies exactly the `n ≤ 0` Fourier-vanishing hypothesis `smear_vac_eq_zero_of_fourierCoef_eq_zero'`
-(#26) needs, via `fourierCoef_inv_xRestrictS1_eq_zero_of_le_zero` above.-/
+(#26) needs, via `fourierCoef_inv_xRestrictS1_eq_zero_of_le_zero` above.
+@isnad1 id=eq.1h5v.s8.9ab47b91eefc from=translated src=- shape=1379f250 vocab=379dd08f
+-/
 theorem WightmanData.w3_vacuum_annihilation {𝓓 𝓕 : Type*} [AddCommGroup 𝓓] [Module ℂ 𝓓]
     (W : WightmanData Mob TestFn 𝓓 𝓕) (hW : W.IsWightmanCFT) (φ : 𝓕) (F : AnalyticTestFn) :
     W.smear φ (inv (xRestrictS1 F)) W.vac = 0 :=
@@ -217,7 +228,9 @@ theorem WightmanData.w3_vacuum_annihilation {𝓓 𝓕 : Type*} [AddCommGroup �
     (fun n hn => fourierCoef_inv_xRestrictS1_eq_zero_of_le_zero F n hn)
 
 /-- [T26], the (W3) vacuum-annihilation bridge. Issue #9 discharges `MobiusCPT.Contract`'s
-`theorem_wanted w3_vacuum_annihilation`, byte-identical statement text.-/
+`theorem_wanted w3_vacuum_annihilation`, byte-identical statement text.
+@isnad1 id=eq.1h3v.s8.6a1681146c69 from=translated src=- shape=e2152bd9 vocab=0e0b6520
+-/
 theorem WightmanBundle.w3_vacuum_annihilation (W : WightmanBundle) (h : W.data.IsWightmanCFT)
     (φ : W.𝓕) (F : AnalyticTestFn) :
     W.data.smear φ (inv (xRestrictS1 F)) W.data.vac = 0 :=

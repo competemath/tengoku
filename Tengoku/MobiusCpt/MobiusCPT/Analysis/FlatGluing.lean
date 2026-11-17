@@ -23,11 +23,15 @@ open scoped ContDiff Topology
 noncomputable def stepRight (a : ℝ) (g : ℝ → ℂ) : ℝ → ℂ :=
   fun x => if a ≤ x then g x else 0
 
-/-- Evaluation of `stepRight` on its retained half-line.-/
+/-- Evaluation of `stepRight` on its retained half-line.
+@isnad1 id=eq.1h3v.s4.9620226f1ab6 from=translated src=- shape=412f8247 vocab=a3a49f8a
+-/
 theorem stepRight_of_le {a x : ℝ} (g : ℝ → ℂ) (h : a ≤ x) : stepRight a g x = g x := by
   simp [stepRight, h]
 
-/-- Evaluation of `stepRight` on the half-line where it is cut off.-/
+/-- Evaluation of `stepRight` on the half-line where it is cut off.
+@isnad1 id=eq.1h3v.s4.3a5ea9595c30 from=translated src=- shape=338821e7 vocab=e458be21
+-/
 theorem stepRight_of_lt {a x : ℝ} (g : ℝ → ℂ) (h : x < a) : stepRight a g x = 0 := by
   simp [stepRight, not_le.mpr h]
 
@@ -65,14 +69,18 @@ private theorem hasDerivAt_stepRight {a : ℝ} {g : ℝ → ℂ} (hg : ContDiff 
     exact Filter.eventuallyEq_of_mem (Ioi_mem_nhds hax) fun y hy =>
       stepRight_of_le g hy.le
 
-/-- Differentiating an endpoint-flat right cutoff differentiates the retained function.-/
+/-- Differentiating an endpoint-flat right cutoff differentiates the retained function.
+@isnad1 id=eq.2h2v.s7.8427b7c3bdf9 from=translated src=- shape=a54861ce vocab=c3b083f3
+-/
 theorem deriv_stepRight {a : ℝ} {g : ℝ → ℂ} (hg : ContDiff ℝ ∞ g)
     (h0 : ∀ j : ℕ, iteratedDeriv j g a = 0) :
     deriv (stepRight a g) = stepRight a (deriv g) := by
   funext x
   exact (hasDerivAt_stepRight hg h0 x).deriv
 
-/-- An endpoint-flat right cutoff of a smooth function is smooth.-/
+/-- An endpoint-flat right cutoff of a smooth function is smooth.
+@isnad1 id=contdiff.2h2v.s6.2f412e440cab from=translated src=- shape=98aaefc8 vocab=5cdaaa80
+-/
 theorem contDiff_stepRight {a : ℝ} {g : ℝ → ℂ} (hg : ContDiff ℝ ∞ g)
     (h0 : ∀ j : ℕ, iteratedDeriv j g a = 0) :
     ContDiff ℝ ∞ (stepRight a g) := by
@@ -111,7 +119,9 @@ theorem contDiff_stepRight {a : ℝ} {g : ℝ → ℂ} (hg : ContDiff ℝ ∞ g)
         simpa only [Nat.cast_succ] using hs
   exact contDiff_infty.mpr (fun n => hfinite n g hg h0)
 
-/-- The endpoint-flat right cutoff commutes with all iterated derivatives.-/
+/-- The endpoint-flat right cutoff commutes with all iterated derivatives.
+@isnad1 id=eq.2h3v.s6.1b5d57315d90 from=translated src=- shape=ab36147f vocab=5cdaaa80
+-/
 theorem iteratedDeriv_stepRight {a : ℝ} {g : ℝ → ℂ} (hg : ContDiff ℝ ∞ g)
     (h0 : ∀ j : ℕ, iteratedDeriv j g a = 0) (n : ℕ) :
     iteratedDeriv n (stepRight a g) = stepRight a (iteratedDeriv n g) := by
@@ -142,17 +152,23 @@ theorem iteratedDeriv_stepRight {a : ℝ} {g : ℝ → ℂ} (hg : ContDiff ℝ �
 noncomputable def cutIcc (a b : ℝ) (g : ℝ → ℂ) : ℝ → ℂ :=
   fun x => if x ∈ Set.Icc a b then g x else 0
 
-/-- Evaluation of `cutIcc` off its closed interval.-/
+/-- Evaluation of `cutIcc` off its closed interval.
+@isnad1 id=eq.1h4v.s5.365e3cd872f2 from=translated src=- shape=108c6b63 vocab=96f2180d
+-/
 theorem cutIcc_eq_zero_of_notMem {a b x : ℝ} (g : ℝ → ℂ) (h : x ∉ Set.Icc a b) :
     cutIcc a b g x = 0 := by
   simp [cutIcc, h]
 
-/-- Evaluation of `cutIcc` on its closed interval.-/
+/-- Evaluation of `cutIcc` on its closed interval.
+@isnad1 id=eq.1h4v.s5.2f032abac862 from=translated src=- shape=692badce vocab=96f2180d
+-/
 theorem cutIcc_eq_of_mem {a b x : ℝ} (g : ℝ → ℂ) (h : x ∈ Set.Icc a b) :
     cutIcc a b g x = g x := by
   simp [cutIcc, h]
 
-/-- Cutting a smooth function to an interval preserves smoothness when both endpoints are flat.-/
+/-- Cutting a smooth function to an interval preserves smoothness when both endpoints are flat.
+@isnad1 id=contdiff.4h3v.s7.0f2734792c8f from=translated src=- shape=3810cea7 vocab=53abc6a5
+-/
 theorem contDiff_cutIcc {a b : ℝ} {g : ℝ → ℂ} (hab : a ≤ b) (hg : ContDiff ℝ ∞ g)
     (ha : ∀ j : ℕ, iteratedDeriv j g a = 0) (hb : ∀ j : ℕ, iteratedDeriv j g b = 0) :
     ContDiff ℝ ∞ (cutIcc a b g) := by
@@ -184,7 +200,9 @@ theorem contDiff_cutIcc {a b : ℝ} {g : ℝ → ℂ} (hab : a ≤ b) (hg : Cont
 noncomputable def periodize (T : ℝ) (h : ℝ → ℂ) : ℝ → ℂ :=
   fun x => h (x - T * ⌊x / T⌋)
 
-/-- `periodize T h` is periodic with period `T`.-/
+/-- `periodize T h` is periodic with period `T`.
+@isnad1 id=periodic.1h2v.s4.a09f36728f93 from=translated src=- shape=481e1002 vocab=4c593493
+-/
 theorem periodic_periodize (T : ℝ) (hT : 0 < T) (h : ℝ → ℂ) :
     Function.Periodic (periodize T h) T := by
   intro x
@@ -195,7 +213,9 @@ theorem periodic_periodize (T : ℝ) (hT : 0 < T) (h : ℝ → ℂ) :
   congr 1
   ring
 
-/-- On the half-open period interval, `periodize` agrees with the original function.-/
+/-- On the half-open period interval, `periodize` agrees with the original function.
+@isnad1 id=eq.2h3v.s5.6df1a1bcca57 from=translated src=- shape=e280190e vocab=1f461fd0
+-/
 theorem periodize_eq_self {T : ℝ} (hT : 0 < T) {h : ℝ → ℂ} {x : ℝ}
     (hx : x ∈ Set.Ico 0 T) : periodize T h x = h x := by
   have hxdiv : x / T ∈ Set.Ico (0 : ℝ) 1 := by
@@ -205,7 +225,9 @@ theorem periodize_eq_self {T : ℝ} (hT : 0 < T) {h : ℝ → ℂ} {x : ℝ}
   have hfloor : ⌊x / T⌋ = 0 := Int.floor_eq_zero_iff.mpr hxdiv
   simp [periodize, hfloor]
 
-/-- A smooth function supported in `(0, T)` periodizes to a smooth function.-/
+/-- A smooth function supported in `(0, T)` periodizes to a smooth function.
+@isnad1 id=contdiff.3h2v.s6.fcd93e05a012 from=translated src=- shape=62d0441b vocab=a082b8ab
+-/
 theorem contDiff_periodize {T : ℝ} (hT : 0 < T) {h : ℝ → ℂ} (hh : ContDiff ℝ ∞ h)
     (hsupp : ∀ x : ℝ, x ∉ Set.Ioo 0 T → h x = 0) :
     ContDiff ℝ ∞ (periodize T h) := by
@@ -429,7 +451,9 @@ theorem contDiff_periodize {T : ℝ} (hT : 0 < T) {h : ℝ → ℂ} (hh : ContDi
       (hinterior.eventuallyEq_of_mem (isOpen_Ioo.mem_nhds hxint))
 
 /-- A function supported in the first half of its period agrees with its periodisation on an open
-interval straddling the origin, so the two have the same derivatives there.-/
+interval straddling the origin, so the two have the same derivatives there.
+@isnad1 id=eqon.2h2v.s6.1589b8bba961 from=translated src=- shape=29540231 vocab=5c0cabfe
+-/
 theorem eqOn_periodize_of_support_le_half {T : ℝ} (hT : 0 < T) {h : ℝ → ℂ}
     (hsupp : ∀ x : ℝ, x ∉ Set.Icc 0 (T / 2) → h x = 0) :
     Set.EqOn (periodize T h) h (Set.Ioo (-(T / 2)) T) := by
@@ -462,7 +486,9 @@ theorem eqOn_periodize_of_support_le_half {T : ℝ} (hT : 0 < T) {h : ℝ → �
       _ = h x := (hsupp x hx_notmem).symm
 
 /-- Consequently every iterated derivative of the periodisation agrees with that of the original
-function on the open interval.-/
+function on the open interval.
+@isnad1 id=eqon.2h3v.s7.9141206f9646 from=translated src=- shape=6fadde2b vocab=4847cd99
+-/
 theorem iteratedDeriv_periodize_eqOn {T : ℝ} (hT : 0 < T) {h : ℝ → ℂ}
     (hsupp : ∀ x : ℝ, x ∉ Set.Icc 0 (T / 2) → h x = 0) (n : ℕ) :
     Set.EqOn (iteratedDeriv n (periodize T h)) (iteratedDeriv n h)

@@ -11,7 +11,9 @@ open scoped ContDiff Interval Topology
 noncomputable section
 
 /-- [T26], Lemma 3.6; the difference quotients of every angle derivative of the complex boost
-converge to its parameter derivative uniformly over the closed upper semicircle.-/
+converge to its parameter derivative uniformly over the closed upper semicircle.
+@isnad1 id=eventual.2h5v.s7.cd5aa48c2b56 from=translated src=- shape=2c024267 vocab=d5fbf070
+-/
 theorem eventually_forall_norm_slice_diff_quotient_sub_lt (d : ℕ) (F : AnalyticTestFn) (j : ℕ)
     {τ : ℂ} (hτ : τ ∈ interior (strip (Complex.I * Real.pi))) {ε : ℝ} (hε : 0 < ε) :
     ∀ᶠ h : ℂ in nhdsWithin (0 : ℂ) (({0} : Set ℂ)ᶜ),
@@ -140,7 +142,9 @@ theorem eventually_forall_norm_slice_diff_quotient_sub_lt (d : ℕ) (F : Analyti
     _ ≤ ε / 2 := hintegral
     _ < ε := by linarith
 
-/-- [T26], Lemma 3.6; the same estimate on the whole circle, by periodicity and support.-/
+/-- [T26], Lemma 3.6; the same estimate on the whole circle, by periodicity and support.
+@isnad1 id=eventual.2h5v.s7.497517e74d1f from=translated src=- shape=fbb3ad5e vocab=31122e86
+-/
 theorem eventually_forall_norm_angleDeriv_diff_quotient_sub_lt (d : ℕ) (F : AnalyticTestFn)
     (j : ℕ) {τ : ℂ} (hτ : τ ∈ interior (strip (Complex.I * Real.pi))) {ε : ℝ} (hε : 0 < ε) :
     ∀ᶠ h : ℂ in nhdsWithin (0 : ℂ) (({0} : Set ℂ)ᶜ),
@@ -186,7 +190,9 @@ theorem eventually_forall_norm_angleDeriv_diff_quotient_sub_lt (d : ℕ) (F : An
 
 /-- [T26], Lemma 3.6; the complex boost is differentiable in the strip parameter as a curve of test
 functions, in the locally convex sense: its difference quotients converge in the Fréchet topology
-of `C^∞(S¹)`.  No norm on `C^∞(S¹)` is used or implied.-/
+of `C^∞(S¹)`.  No norm on `C^∞(S¹)` is used or implied.
+@isnad1 id=hastestf.1h3v.s5.c50c50297c42 from=translated src=- shape=c407a925 vocab=0e1062f2
+-/
 theorem hasTestFnDerivAt_betaBoost (d : ℕ) (F : AnalyticTestFn) {τ : ℂ}
     (hτ : τ ∈ interior (strip (Complex.I * Real.pi))) :
     HasTestFnDerivAt (fun σ : ℂ => betaBoost d σ F) (betaBoostDeriv d τ F) τ := by
@@ -215,7 +221,9 @@ theorem hasTestFnDerivAt_betaBoost (d : ℕ) (F : AnalyticTestFn) {τ : ℂ}
 /-- [T26], Lemma 3.6; the scalarised form of the holomorphy clause: composing the boost curve with
 any continuous linear functional gives a function holomorphic on the interior of the strip.  This
 is the form [T26], Definition 3.1 uses, and it is a consequence of the locally convex derivative
-above rather than an extra assumption.-/
+above rather than an extra assumption.
+@isnad1 id=differen.0h3v.s7.2e902fc9d05a from=translated src=- shape=ed6c2843 vocab=d750d427
+-/
 theorem differentiableOn_clm_comp_betaBoost (d : ℕ) (F : AnalyticTestFn)
     (μ : TestFn →L[ℂ] ℂ) :
     DifferentiableOn ℂ (fun τ : ℂ => μ (betaBoost d τ F))

@@ -24,7 +24,9 @@ open scoped ContDiff Topology
 namespace MobiusCPT
 
 /-- A smooth function all of whose derivatives vanish at `p` is `O((y - p) ^ M)` to the right of
-`p`, for every `M`.-/
+`p`, for every `M`.
+@isnad1 id=ex.3h4v.s7.15ad6f95d9de from=translated src=- shape=9fd2d0dd vocab=eda2b266
+-/
 theorem exists_norm_le_pow_of_iteratedDeriv_eq_zero {g : ℝ → ℂ} (hg : ContDiff ℝ ∞ g)
     {p r : ℝ} (hr : 0 < r) (hflat : ∀ j : ℕ, iteratedDeriv j g p = 0) (M : ℕ) :
     ∃ K : ℝ, 0 ≤ K ∧ ∀ y ∈ Set.Icc p (p + r), ‖g y‖ ≤ K * (y - p) ^ M := by
@@ -109,7 +111,9 @@ private theorem differentiable_of_flat_at_zero {f : ℝ → ℂ}
   · exact (hsmooth.differentiableOn (by simp) x hx).differentiableAt (Ioi_mem_nhds hx)
 
 /-- A function vanishing on `(-∞, 0]`, smooth on `(0, ∞)`, and vanishing to infinite order at
-`0` from the right, is smooth on the whole line.-/
+`0` from the right, is smooth on the whole line.
+@isnad1 id=contdiff.3h1v.s7.c38831d83d49 from=translated src=- shape=b77210ee vocab=d9f70e7c
+-/
 theorem contDiff_of_flat_at_zero {f : ℝ → ℂ}
     (hzero : ∀ x : ℝ, x ≤ 0 → f x = 0)
     (hsmooth : ContDiffOn ℝ ∞ f (Set.Ioi 0))
@@ -265,7 +269,9 @@ private theorem hasFTaylorSeriesUpToOn_flatSeries {U : Set ℂ} {p : ℂ} {f : �
     · exact hasFDerivWithinAt_flatSeries_of_ne hzp (hholo z hz hzp) m
 
 /-- Let `f` be holomorphic on a punctured neighbourhood of `p` and let every complex derivative of
-`f` vanish there to second order. Then `f` is `C^∞` in the real sense within `U` at `p`.-/
+`f` vanish there to second order. Then `f` is `C^∞` in the real sense within `U` at `p`.
+@isnad1 id=contdiff.5h4v.s7.170bd2ade6e1 from=translated src=- shape=4b1f7fa7 vocab=6b6aeb74
+-/
 theorem contDiffWithinAt_of_flat_holomorphic {U : Set ℂ} {p : ℂ} {f : ℂ → ℂ} {r : ℝ}
     (hr : 0 < r) (hp : p ∈ U) (hfp : f p = 0)
     (hholo : ∀ z ∈ U ∩ Metric.ball p r, z ≠ p → AnalyticAt ℂ f z)
@@ -281,7 +287,9 @@ theorem contDiffWithinAt_of_flat_holomorphic {U : Set ℂ} {p : ℂ} {f : ℂ �
   exact inter_mem_nhdsWithin U (Metric.ball_mem_nhds p hr)
 
 /-- Under unique differentiability of `U`, every real Frechet jet of the flat holomorphic extension
-at `p` is zero.-/
+at `p` is zero.
+@isnad1 id=eq.6h5v.s9.1cd90352abfc from=translated src=- shape=4f8ff85f vocab=54039097
+-/
 theorem iteratedFDerivWithin_eq_zero_of_flat_holomorphic {U : Set ℂ} {p : ℂ}
     {f : ℂ → ℂ} {r : ℝ} (hr : 0 < r) (hU : UniqueDiffOn ℝ U) (hp : p ∈ U)
     (hfp : f p = 0)
@@ -306,17 +314,23 @@ theorem iteratedFDerivWithin_eq_zero_of_flat_holomorphic {U : Set ℂ} {p : ℂ}
 noncomputable def zeroExtendIcc (a b : ℝ) (g : ℝ → ℂ) : ℝ → ℂ :=
   fun x => if x ∈ Set.Icc a b then g x else 0
 
-/-- The zero extension agrees with the original function at points of the interval.-/
+/-- The zero extension agrees with the original function at points of the interval.
+@isnad1 id=eq.1h4v.s5.34dc45e484b9 from=translated src=- shape=692badce vocab=65d43dbe
+-/
 theorem zeroExtend_eq_of_mem {a b x : ℝ} (g : ℝ → ℂ) (h : x ∈ Set.Icc a b) :
     zeroExtendIcc a b g x = g x := by
   simp [zeroExtendIcc, h]
 
-/-- The zero extension is zero at points outside the interval.-/
+/-- The zero extension is zero at points outside the interval.
+@isnad1 id=eq.1h4v.s5.955c28f432b7 from=translated src=- shape=108c6b63 vocab=65d43dbe
+-/
 theorem zeroExtend_eq_zero_of_notMem {a b x : ℝ} (g : ℝ → ℂ) (h : x ∉ Set.Icc a b) :
     zeroExtendIcc a b g x = 0 := by
   simp [zeroExtendIcc, h]
 
-/-- Iterated derivatives within a set compose by adding their orders.-/
+/-- Iterated derivatives within a set compose by adding their orders.
+@isnad1 id=eqon.1h4v.s6.903dae52e7d7 from=translated src=- shape=78758430 vocab=82fe1b49
+-/
 theorem iteratedDerivWithin_iteratedDerivWithin {s : Set ℝ} (hs : UniqueDiffOn ℝ s)
     {g : ℝ → ℂ} (m i : ℕ) :
     Set.EqOn (iteratedDerivWithin m (iteratedDerivWithin i g s) s)
@@ -339,7 +353,9 @@ theorem iteratedDerivWithin_iteratedDerivWithin {s : Set ℝ} (hs : UniqueDiffOn
           omega
 
 /-- Every iterated derivative within a closed interval is bounded by a power of the
-distance from an endpoint at which all within derivatives vanish.-/
+distance from an endpoint at which all within derivatives vanish.
+@isnad1 id=ex.3h5v.s7.59dfa7e7734a from=translated src=- shape=c72697d0 vocab=0e21d4a9
+-/
 theorem exists_norm_iteratedDerivWithin_le_pow {a b : ℝ} (hab : a < b) {g : ℝ → ℂ}
     (hg : ContDiffOn ℝ ∞ g (Set.Icc a b))
     (ha : ∀ j : ℕ, iteratedDerivWithin j g (Set.Icc a b) a = 0) (k M : ℕ) :
@@ -487,7 +503,9 @@ private theorem deriv_zeroExtendIcc_of_differentiableOn {a b : ℝ} (hab : a < b
   exact (hasDerivAt_zeroExtendIcc_of_differentiableOn hab hg hga hgb hda hdb x).deriv
 
 /-- A closed-interval function whose within derivatives vanish at both endpoints has a smooth
-zero extension to the whole real line.-/
+zero extension to the whole real line.
+@isnad1 id=contdiff.4h3v.s7.56a6e181748c from=translated src=- shape=648870bb vocab=e584cf1c
+-/
 theorem contDiff_zeroExtend_of_flat_contDiffOn {a b : ℝ} (hab : a < b) {g : ℝ → ℂ}
     (hg : ContDiffOn ℝ ∞ g (Set.Icc a b))
     (ha : ∀ j : ℕ, iteratedDerivWithin j g (Set.Icc a b) a = 0)
@@ -553,20 +571,26 @@ theorem contDiff_zeroExtend_of_flat_contDiffOn {a b : ℝ} (hab : a < b) {g : �
         simpa only [Nat.cast_succ] using hs'
   exact contDiff_infty.mpr (fun n => hfinite n g hg ha hb)
 
-/-- The zero extension agrees with the original function on the closed interval.-/
+/-- The zero extension agrees with the original function on the closed interval.
+@isnad1 id=eqon.0h3v.s4.4d61a2e80e37 from=translated src=- shape=bccb0400 vocab=774cffb5
+-/
 theorem zeroExtendIcc_eqOn {a b : ℝ} (g : ℝ → ℂ) :
     Set.EqOn (zeroExtendIcc a b g) g (Set.Icc a b) := by
   intro x hx
   exact zeroExtend_eq_of_mem g hx
 
-/-- The zero extension vanishes outside its closed interval, so it is supported there.-/
+/-- The zero extension vanishes outside its closed interval, so it is supported there.
+@isnad1 id=eq.1h4v.s5.955c28f432b7 from=translated src=- shape=108c6b63 vocab=65d43dbe
+-/
 theorem zeroExtendIcc_eq_zero_of_notMem {a b x : ℝ} (g : ℝ → ℂ)
     (h : x ∉ Set.Icc a b) : zeroExtendIcc a b g x = 0 :=
   zeroExtend_eq_zero_of_notMem g h
 
 /-- Every iterated derivative of the smooth zero extension is the zero extension of the
 corresponding derivative within the interval.  In particular the extension's derivatives vanish
-outside the interval and at its endpoints.-/
+outside the interval and at its endpoints.
+@isnad1 id=eq.4h4v.s7.d068b375782f from=translated src=- shape=aac7abc3 vocab=3b4b7ea9
+-/
 theorem iteratedDeriv_zeroExtendIcc {a b : ℝ} (hab : a < b) {g : ℝ → ℂ}
     (hg : ContDiffOn ℝ ∞ g (Set.Icc a b))
     (ha : ∀ j : ℕ, iteratedDerivWithin j g (Set.Icc a b) a = 0)
@@ -610,7 +634,9 @@ theorem iteratedDeriv_zeroExtendIcc {a b : ℝ} (hab : a < b) {g : ℝ → ℂ}
       rw [ih (g := derivWithin g (Set.Icc a b)) hh' hha' hhb']
       rw [iteratedDerivWithin_succ']
 
-/-- The zero extension is flat at the left endpoint.-/
+/-- The zero extension is flat at the left endpoint.
+@isnad1 id=eq.4h4v.s7.6aea41e1f2ae from=translated src=- shape=dd1084e1 vocab=3b4b7ea9
+-/
 theorem iteratedDeriv_zeroExtendIcc_left {a b : ℝ} (hab : a < b) {g : ℝ → ℂ}
     (hg : ContDiffOn ℝ ∞ g (Set.Icc a b))
     (ha : ∀ j : ℕ, iteratedDerivWithin j g (Set.Icc a b) a = 0)
@@ -620,7 +646,9 @@ theorem iteratedDeriv_zeroExtendIcc_left {a b : ℝ} (hab : a < b) {g : ℝ → 
   rw [zeroExtend_eq_of_mem _ ⟨le_rfl, hab.le⟩]
   exact ha n
 
-/-- The zero extension is flat at the right endpoint.-/
+/-- The zero extension is flat at the right endpoint.
+@isnad1 id=eq.4h4v.s7.0d2e6d010fe5 from=translated src=- shape=123812a4 vocab=3b4b7ea9
+-/
 theorem iteratedDeriv_zeroExtendIcc_right {a b : ℝ} (hab : a < b) {g : ℝ → ℂ}
     (hg : ContDiffOn ℝ ∞ g (Set.Icc a b))
     (ha : ∀ j : ℕ, iteratedDerivWithin j g (Set.Icc a b) a = 0)
@@ -630,7 +658,9 @@ theorem iteratedDeriv_zeroExtendIcc_right {a b : ℝ} (hab : a < b) {g : ℝ →
   rw [zeroExtend_eq_of_mem _ ⟨hab.le, le_rfl⟩]
   exact hb n
 
-/-- Outside the interval every derivative of the zero extension vanishes.-/
+/-- Outside the interval every derivative of the zero extension vanishes.
+@isnad1 id=eq.5h5v.s7.74fafb8df966 from=translated src=- shape=e2970549 vocab=4a75e271
+-/
 theorem iteratedDeriv_zeroExtendIcc_of_notMem {a b x : ℝ} (hab : a < b) {g : ℝ → ℂ}
     (hg : ContDiffOn ℝ ∞ g (Set.Icc a b))
     (ha : ∀ j : ℕ, iteratedDerivWithin j g (Set.Icc a b) a = 0)
@@ -644,7 +674,9 @@ theorem iteratedDeriv_zeroExtendIcc_of_notMem {a b x : ℝ} (hab : a < b) {g : �
 
 /-- A crude common bound for the iterated derivatives of a function at one point.  Only its
 existence matters: it feeds the inner-constant slot of the composition estimate, where the outer
-constant is `0` and the inner one is therefore irrelevant.-/
+constant is `0` and the inner one is therefore irrelevant.
+@isnad1 id=ex.0h6v.s7.3fb059e6ee06 from=translated src=- shape=99ce5f98 vocab=3821ef21
+-/
 theorem exists_pow_bound_iteratedFDerivWithin {E F : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] [NormedAddCommGroup F] [NormedSpace ℝ F]
     (f : E → F) (s : Set E) (x : E) (n : ℕ) :
@@ -673,7 +705,9 @@ theorem exists_pow_bound_iteratedFDerivWithin {E F : Type*}
 
 /-- A composite is flat wherever the outer function is flat at the image point: the composition
 estimate with outer constant `0` forces every iterated derivative of the composite to vanish
-exactly, not merely to be small.-/
+exactly, not merely to be small.
+@isnad1 id=eq.7h9v.s9.120a49917236 from=translated src=- shape=abfc502a vocab=e8335399
+-/
 theorem iteratedFDerivWithin_comp_eq_zero_of_flat {E F G : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] [NormedAddCommGroup F] [NormedSpace ℝ F]
     [NormedAddCommGroup G] [NormedSpace ℝ G]
@@ -701,7 +735,9 @@ theorem iteratedFDerivWithin_comp_eq_zero_of_flat {E F G : Type*}
   exact norm_eq_zero.mp (le_antisymm hnorm (norm_nonneg _))
 
 /-- Multiplying a function that is flat at a point by any smooth function leaves it flat: every
-term of the Leibniz estimate carries a vanishing factor.-/
+term of the Leibniz estimate carries a vanishing factor.
+@isnad1 id=eq.5h6v.s9.d475ef45445b from=translated src=- shape=dde03053 vocab=073eb9bb
+-/
 theorem iteratedFDerivWithin_mul_eq_zero_of_flat {E : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
     {a h : E → ℂ} {s : Set E} {x : E}
@@ -733,7 +769,9 @@ theorem iteratedFDerivWithin_mul_eq_zero_of_flat {E : Type*}
   exact norm_eq_zero.mp (le_antisymm hnorm (norm_nonneg _))
 
 /-- In one real variable, flatness of the iterated Fréchet derivatives is flatness of the
-iterated derivatives.-/
+iterated derivatives.
+@isnad1 id=eq.1h4v.s8.459b2525fc70 from=translated src=- shape=0c1bc6a7 vocab=563173ac
+-/
 theorem iteratedDerivWithin_eq_zero_of_iteratedFDerivWithin_eq_zero {s : Set ℝ} {f : ℝ → ℂ}
     {x : ℝ} {n : ℕ} (h : iteratedFDerivWithin ℝ n f s x = 0) :
     iteratedDerivWithin n f s x = 0 := by

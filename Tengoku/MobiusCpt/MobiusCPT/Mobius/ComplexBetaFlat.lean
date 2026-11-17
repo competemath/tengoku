@@ -23,7 +23,9 @@ argument away from the origin where the divided inverted function is defined by 
 def discNear (c : ℂ) : Set ℂ :=
   Metric.closedBall (0 : ℂ) 1 ∩ Metric.closedBall c (1 / 2)
 
-/-- The localised disc is convex with nonempty interior, so it determines derivatives.-/
+/-- The localised disc is convex with nonempty interior, so it determines derivatives.
+@isnad1 id=uniquedi.1h1v.s6.1b290288e1c9 from=translated src=- shape=5d500d12 vocab=919a933c
+-/
 theorem uniqueDiffOn_discNear {c : ℂ} (hc : ‖c‖ = 1) : UniqueDiffOn ℝ (discNear c) := by
   apply uniqueDiffOn_of_convex
   · change Convex ℝ (Metric.closedBall (0 : ℂ) 1 ∩ Metric.closedBall c (1 / 2))
@@ -49,7 +51,9 @@ theorem uniqueDiffOn_discNear {c : ℂ} (hc : ‖c‖ = 1) : UniqueDiffOn ℝ (d
     refine ⟨p, ?_⟩
     exact (interior_maximal hsubset hopen) hp
 
-/-- The localised disc misses the origin.-/
+/-- The localised disc misses the origin.
+@isnad1 id=not.1h1v.s4.5ce8b7f0b7e4 from=translated src=- shape=c473fc75 vocab=7f899ef1
+-/
 theorem zero_notMem_discNear {c : ℂ} (hc : ‖c‖ = 1) : (0 : ℂ) ∉ discNear c := by
   intro hzero
   have hle : dist (0 : ℂ) c ≤ (1 / 2 : ℝ) := Metric.mem_closedBall.mp hzero.2
@@ -57,7 +61,9 @@ theorem zero_notMem_discNear {c : ℂ} (hc : ‖c‖ = 1) : (0 : ℂ) ∉ discNe
     simpa [dist_eq_norm, hc] using hle
   norm_num at hbad
 
-/-- Near a boundary point the localised disc is the closed disc.-/
+/-- Near a boundary point the localised disc is the closed disc.
+@isnad1 id=eventual.1h1v.s5.c4da24c7d0a3 from=translated src=- shape=3f6b8c65 vocab=36aecfe5
+-/
 theorem discNear_eventuallyEq {c : ℂ} (hc : ‖c‖ = 1) :
     discNear c =ᶠ[nhds c] Metric.closedBall (0 : ℂ) 1 := by
   apply Filter.eventuallyEq_of_mem
@@ -72,7 +78,9 @@ theorem discNear_eventuallyEq {c : ℂ} (hc : ‖c‖ = 1) :
   · intro h
     exact ⟨h, Metric.mem_closedBall.2 (Metric.mem_ball.1 hw).le⟩
 
-/-- Inversion maps the localised disc into the exterior domain.-/
+/-- Inversion maps the localised disc into the exterior domain.
+@isnad1 id=mapsto.1h1v.s4.c26dd603a651 from=translated src=- shape=6b712cf6 vocab=d3cadaf3
+-/
 theorem mapsTo_inv_discNear {c : ℂ} (hc : ‖c‖ = 1) :
     Set.MapsTo (fun w : ℂ => w⁻¹) (discNear c) Oexterior := by
   intro w hw
@@ -89,7 +97,9 @@ theorem mapsTo_inv_discNear {c : ℂ} (hc : ‖c‖ = 1) :
 
 /-- [T26], Definitions 3.2 and 3.5; the divided inverted function inherits the infinite-order
 vanishing of `F` at a boundary point fixed by inversion.  This is what makes the complex boost
-endpoint-flat, hence an element of `C_0^∞(I_+)`: the boost fixes `±1`, and `F` is flat there.-/
+endpoint-flat, hence an element of `C_0^∞(I_+)`: the boost fixes `±1`, and `F` is flat there.
+@isnad1 id=eq.3h3v.s9.204782b27762 from=translated src=- shape=74d7ef55 vocab=e84a6a4a
+-/
 theorem AnalyticTestFn.iteratedFDerivWithin_invQuot_eq_zero (F : AnalyticTestFn) {c : ℂ}
     (hc : ‖c‖ = 1) (hcinv : c⁻¹ = c)
     (hflat : ∀ n : ℕ, iteratedFDerivWithin ℝ n F.toFun Oexterior c = 0) (n : ℕ) :
@@ -162,19 +172,25 @@ theorem AnalyticTestFn.iteratedFDerivWithin_invQuot_eq_zero (F : AnalyticTestFn)
         iteratedFDerivWithin ℝ n F.invQuot s c := hset.symm
     _ = 0 := hwithin
 
-/-- [T26], Definition 3.2; the divided inverted function is flat at the endpoint `1`.-/
+/-- [T26], Definition 3.2; the divided inverted function is flat at the endpoint `1`.
+@isnad1 id=eq.0h2v.s8.d7c3959b80c4 from=translated src=- shape=9d3b32c0 vocab=839a5561
+-/
 theorem AnalyticTestFn.iteratedFDerivWithin_invQuot_one (F : AnalyticTestFn) (n : ℕ) :
     iteratedFDerivWithin ℝ n F.invQuot (Metric.closedBall (0 : ℂ) 1) 1 = 0 := by
   exact F.iteratedFDerivWithin_invQuot_eq_zero (c := (1 : ℂ))
     (by norm_num) (by norm_num) F.flat_one n
 
-/-- [T26], Definition 3.2; the divided inverted function is flat at the endpoint `-1`.-/
+/-- [T26], Definition 3.2; the divided inverted function is flat at the endpoint `-1`.
+@isnad1 id=eq.0h2v.s8.900bd7603883 from=translated src=- shape=9090c3a5 vocab=800abd60
+-/
 theorem AnalyticTestFn.iteratedFDerivWithin_invQuot_neg_one (F : AnalyticTestFn) (n : ℕ) :
     iteratedFDerivWithin ℝ n F.invQuot (Metric.closedBall (0 : ℂ) 1) (-1) = 0 := by
   exact F.iteratedFDerivWithin_invQuot_eq_zero (c := (-1 : ℂ))
     (by norm_num) (by norm_num) F.flat_neg_one n
 
-/-- [T26], Definition 3.2; `F` vanishes at the endpoint `1`.-/
+/-- [T26], Definition 3.2; `F` vanishes at the endpoint `1`.
+@isnad1 id=eq.0h1v.s4.6a525315ffa1 from=translated src=- shape=9b4d794a vocab=a07a6d85
+-/
 theorem AnalyticTestFn.toFun_one (F : AnalyticTestFn) : F.toFun 1 = 0 := by
   have hnorm : ‖iteratedFDerivWithin ℝ 0 F.toFun Oexterior 1‖ = 0 := by
     rw [F.flat_one 0]
@@ -182,7 +198,9 @@ theorem AnalyticTestFn.toFun_one (F : AnalyticTestFn) : F.toFun 1 = 0 := by
   rw [norm_iteratedFDerivWithin_zero] at hnorm
   exact norm_eq_zero.mp hnorm
 
-/-- [T26], Definition 3.2; `F` vanishes at the endpoint `-1`.-/
+/-- [T26], Definition 3.2; `F` vanishes at the endpoint `-1`.
+@isnad1 id=eq.0h1v.s4.5286f54c3637 from=translated src=- shape=3fade263 vocab=1dd32b03
+-/
 theorem AnalyticTestFn.toFun_neg_one (F : AnalyticTestFn) : F.toFun (-1) = 0 := by
   have hnorm : ‖iteratedFDerivWithin ℝ 0 F.toFun Oexterior (-1)‖ = 0 := by
     rw [F.flat_neg_one 0]
@@ -190,12 +208,16 @@ theorem AnalyticTestFn.toFun_neg_one (F : AnalyticTestFn) : F.toFun (-1) = 0 := 
   rw [norm_iteratedFDerivWithin_zero] at hnorm
   exact norm_eq_zero.mp hnorm
 
-/-- [T26], Definition 3.2; the divided inverted function vanishes at the endpoint `1`.-/
+/-- [T26], Definition 3.2; the divided inverted function vanishes at the endpoint `1`.
+@isnad1 id=eq.0h1v.s4.446482a9f15e from=translated src=- shape=9b4d794a vocab=9fd37fe4
+-/
 theorem AnalyticTestFn.invQuot_one (F : AnalyticTestFn) : F.invQuot 1 = 0 := by
   rw [F.invQuot_apply (w := (1 : ℂ)) (by norm_num)]
   simp [F.toFun_one]
 
-/-- [T26], Definition 3.2; the divided inverted function vanishes at the endpoint `-1`.-/
+/-- [T26], Definition 3.2; the divided inverted function vanishes at the endpoint `-1`.
+@isnad1 id=eq.0h1v.s4.8095ff59c433 from=translated src=- shape=3fade263 vocab=bf9f2d13
+-/
 theorem AnalyticTestFn.invQuot_neg_one (F : AnalyticTestFn) : F.invQuot (-1) = 0 := by
   rw [F.invQuot_apply (w := (-1 : ℂ)) (by norm_num)]
   simp [F.toFun_neg_one]
