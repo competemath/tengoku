@@ -45,7 +45,9 @@ def EntireXiPullbackDyadicCumulativeCountData.toGeneric
   count_le := H.count_le
 
 /-- A cumulative dyadic `O(R log R)` count discharges the sole global
-zero-distribution field of the canonical xi divisor.-/
+zero-distribution field of the canonical xi divisor.
+@isnad1 id=entirexi.0h1v.s1.9b67c541cf03 from=translated src=- shape=1d48f1ac vocab=efc45546
+-/
 theorem EntireXiPullbackDyadicCumulativeCountData.toCanonicalZeroDistribution
     (H : EntireXiPullbackDyadicCumulativeCountData) :
     EntireXiPullbackCanonicalZeroDistribution :=

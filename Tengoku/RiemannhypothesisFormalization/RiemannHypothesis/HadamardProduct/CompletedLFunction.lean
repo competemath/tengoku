@@ -38,7 +38,9 @@ noncomputable def canonicalProductWithOrigin
   (fun z ↦ z ^ m) * infiniteHadamardProduct zeroLoc
 
 /-- Inverse-square summability and norm properness make the canonical product
-with an origin factor entire.-/
+with an origin factor entire.
+@isnad1 id=differen.2h3v.s6.026a5323dd29 from=translated src=- shape=f71fa0e5 vocab=5827e446
+-/
 theorem canonicalProductWithOrigin_differentiable
     {ι : Type*} {zeroLoc : ι → ℂ} (m : ℕ)
     (Hinv : HadamardZeroInvSqSummability zeroLoc)
@@ -50,7 +52,9 @@ theorem canonicalProductWithOrigin_differentiable
       Hinv Hproper)
 
 /-- The analytic divisor of the canonical product is the origin multiplicity
-plus the cardinality of each nonzero location fiber.-/
+plus the cardinality of each nonzero location fiber.
+@isnad1 id=eq.2h4v.s6.8d24214b2aa1 from=translated src=- shape=0d78aa18 vocab=0ea5e9ca
+-/
 theorem canonicalProductWithOrigin_analyticOrderAt
     {ι : Type*} {zeroLoc : ι → ℂ} (m : ℕ)
     (Hinv : HadamardZeroInvSqSummability zeroLoc)
@@ -78,7 +82,9 @@ theorem canonicalProductWithOrigin_analyticOrderAt
   · rw [hmonomial.analyticOrderAt_eq_zero.mpr (pow_ne_zero m hz),
       zero_add, ite_eq_right hz]
 
-/-- The derivative of an even entire function is odd.-/
+/-- The derivative of an even entire function is odd.
+@isnad1 id=eq.2h2v.s7.92d21be57aef from=translated src=- shape=1160da92 vocab=c9c8bb48
+-/
 theorem deriv_neg_of_even
     {F : ℂ → ℂ} (hF : Differentiable ℂ F)
     (heven : ∀ z : ℂ, F (-z) = F z) (z : ℂ) :
@@ -98,7 +104,9 @@ theorem deriv_neg_of_even
   have hneg := congrArg Neg.neg hderiv
   simpa using hneg.symm
 
-/-- The totalized logarithmic derivative of an even entire function is odd.-/
+/-- The totalized logarithmic derivative of an even entire function is odd.
+@isnad1 id=eq.2h2v.s6.d814e874ae71 from=translated src=- shape=61620df5 vocab=92bbcab1
+-/
 theorem logDerivativeResponse_neg_of_even
     {F : ℂ → ℂ} (hF : Differentiable ℂ F)
     (heven : ∀ z : ℂ, F (-z) = F z) (z : ℂ) :
@@ -150,6 +158,9 @@ noncomputable def CompletedLFunctionHadamardData.canonicalProduct
     (H : CompletedLFunctionHadamardData F ι) : ℂ → ℂ :=
   canonicalProductWithOrigin H.originMultiplicity H.zeroLoc
 
+/--
+@isnad1 id=differen.0h3v.s6.94c949f34cc6 from=translated src=- shape=6f105931 vocab=da188117
+-/
 theorem CompletedLFunctionHadamardData.canonicalProduct_differentiable
     {F : ℂ → ℂ} {ι : Type u}
     (H : CompletedLFunctionHadamardData F ι) :
@@ -158,7 +169,9 @@ theorem CompletedLFunctionHadamardData.canonicalProduct_differentiable
     H.dyadicZeros.normProper
 
 /-- The constructed canonical product has exactly the analytic divisor of
-the completed L-function.-/
+the completed L-function.
+@isnad1 id=eq.0h4v.s5.a719c5309da2 from=translated src=- shape=3ff08dad vocab=0aec3271
+-/
 theorem CompletedLFunctionHadamardData.canonicalProduct_analyticOrderAt
     {F : ℂ → ℂ} {ι : Type u}
     (H : CompletedLFunctionHadamardData F ι) (z : ℂ) :
@@ -200,7 +213,9 @@ private theorem originMultiplicityResponse_im_neg
       simp at hz)
 
 /-- If all zeros are real, the divisor expansion gives the strict
-anti-Herglotz logarithmic-derivative sign.-/
+anti-Herglotz logarithmic-derivative sign.
+@isnad1 id=strictan.1h3v.s4.e535f1b6dcdf from=translated src=- shape=314be19c vocab=00742a9c
+-/
 theorem CompletedLFunctionHadamardData.strictAntiHerglotz_of_onlyRealZeros
     {F : ℂ → ℂ} {ι : Type u}
     (H : CompletedLFunctionHadamardData F ι)
@@ -233,7 +248,9 @@ theorem CompletedLFunctionHadamardData.strictAntiHerglotz_of_onlyRealZeros
 
 /-- Generic completed-L-function criterion: all zeros lie on the centered
 critical line exactly when the logarithmic derivative is strictly
-anti-Herglotz in the upper half-plane.-/
+anti-Herglotz in the upper half-plane.
+@isnad1 id=iff.0h3v.s4.52bb1bcd132e from=translated src=- shape=e60cc0cf vocab=00742a9c
+-/
 theorem CompletedLFunctionHadamardData.onlyRealZeros_iff_strictAntiHerglotz
     {F : ℂ → ℂ} {ι : Type u}
     (H : CompletedLFunctionHadamardData F ι) :

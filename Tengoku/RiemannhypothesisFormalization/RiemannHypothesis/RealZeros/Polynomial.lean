@@ -46,7 +46,9 @@ noncomputable def polynomialLogDerivResponse (p : Polynomial ℂ) : ℂ → ℂ 
   fun z => p.derivative.eval z / p.eval z
 
 /-- Any polynomial supplying a `LocalLogDerivPoleDecomposition` at an upper
-root has a positive imaginary escape.-/
+root has a positive imaginary escape.
+@isnad1 id=positive.0h3v.s3.e8b5432a282c from=translated src=- shape=7133652c vocab=3b7482be
+-/
 theorem polynomial_local_pole_forces_escape
     (p : Polynomial ℂ) (ρ : ℂ)
     (D : LocalLogDerivPoleDecomposition (polynomialLogDerivResponse p) ρ) :
@@ -66,7 +68,9 @@ structure PolynomialPoleWitnessHypothesis (p : Polynomial ℂ) : Prop where
         (polynomialLogDerivResponse p) ρ)
 
 /-- The polynomial pole-decomposition package implies the abstract
-`LogDerivPoleWitnessLaw`.-/
+`LogDerivPoleWitnessLaw`.
+@isnad1 id=logderiv.1h1v.s4.e488b30d6f98 from=translated src=- shape=b5f18f59 vocab=0330c840
+-/
 theorem polynomial_logDeriv_poleWitness
     (p : Polynomial ℂ)
     (H : PolynomialPoleWitnessHypothesis p) :
@@ -79,7 +83,9 @@ theorem polynomial_logDeriv_poleWitness
     exact positiveEscape_of_localLogDerivPole D
 
 /-- The logarithmic-derivative sign, the polynomial pole-witness package, and
-conjugation symmetry imply that all roots of `p` are real.-/
+conjugation symmetry imply that all roots of `p` are real.
+@isnad1 id=eq.4h2v.s6.4f0b8907a68c from=translated src=- shape=4082568c vocab=210c5111
+-/
 theorem polynomial_roots_real_of_logDeriv_antiHerglotz_and_conjSymm
     (p : Polynomial ℂ)
     (H : PolynomialPoleWitnessHypothesis p)
@@ -94,7 +100,9 @@ theorem polynomial_roots_real_of_logDeriv_antiHerglotz_and_conjSymm
 -- =====================================================================
 
 /-- The polynomial logarithmic-derivative background is continuous at any
-non-root: `q'(z)/q(z)` is continuous at `ρ` whenever `q.eval ρ ≠ 0`.-/
+non-root: `q'(z)/q(z)` is continuous at `ρ` whenever `q.eval ρ ≠ 0`.
+@isnad1 id=continuo.1h2v.s7.94ac6da19931 from=translated src=- shape=790722d3 vocab=720ccbfb
+-/
 theorem polynomial_logDeriv_background_continuousAt
     {q : Polynomial ℂ} {ρ : ℂ} (hqρ : q.eval ρ ≠ 0) :
     ContinuousAt (fun z => q.derivative.eval z / q.eval z) ρ := by
@@ -104,7 +112,9 @@ theorem polynomial_logDeriv_background_continuousAt
   · exact hqρ
 
 /-- The polynomial logarithmic-derivative background is bounded on a short
-vertical probe by continuity at the base point.-/
+vertical probe by continuity at the base point.
+@isnad1 id=ex.2h2v.s8.020c90b1d34c from=translated src=- shape=1d598fab vocab=b9fa89f1
+-/
 theorem polynomial_logDeriv_background_bounded_on_probe
     {q : Polynomial ℂ} {ρ : ℂ}
     (hqρ : q.eval ρ ≠ 0)
@@ -123,7 +133,9 @@ For `p ≠ 0` with `p.eval ρ = 0`, there exist `m > 0` and `q` such that
 positivity via `rootMultiplicity_pos`; factorization via
 `pow_rootMultiplicity_dvd`; nonzero remainder by contradiction using
 `dvd_iff_isRoot` + `mul_dvd_mul_left` + `pow_succ` +
-`le_rootMultiplicity_iff`.-/
+`le_rootMultiplicity_iff`.
+@isnad1 id=ex.2h2v.s7.812adc36096c from=translated src=- shape=aed25ad3 vocab=a1405b09
+-/
 theorem polynomial_factor_at_root_with_nonzero_remainder
     {p : Polynomial ℂ} {ρ : ℂ}
     (hp : p ≠ 0)
@@ -160,7 +172,9 @@ derivative response: if
 `p = (X − C ρ)^(k+1) · q` with `z ≠ ρ` and `q(z) ≠ 0`, then
 `p'(z)/p(z) = (k+1)/(z−ρ) + q'(z)/q(z)`. Reduces to the value-form
 `complex_local_pole_decomposition_general` after evaluating `eval` of
-the factorization and its derivative.-/
+the factorization and its derivative.
+@isnad1 id=eq.3h5v.s8.561133e18358 from=translated src=- shape=70bdf61d vocab=5f0cf8fd
+-/
 theorem polynomial_logDeriv_local_decomposition_of_factor
     {p q : Polynomial ℂ} {ρ z : ℂ} {k : ℕ}
     (hfac : p = (Polynomial.X - Polynomial.C ρ) ^ (k + 1) * q)
@@ -250,7 +264,9 @@ noncomputable def localLogDerivPoleDecomposition_of_polynomial_factor
 
 /-- For any nonzero polynomial `p`, the
 hypothesis package `PolynomialPoleWitnessHypothesis p` follows from
-root-multiplicity factorization and the local pole decomposition.-/
+root-multiplicity factorization and the local pole decomposition.
+@isnad1 id=polynomi.1h1v.s4.2f918bbe8582 from=translated src=- shape=d520fa10 vocab=14756460
+-/
 theorem polynomialPoleWitnessHypothesis_of_nonzero_polynomial
     (p : Polynomial ℂ) (hp : p ≠ 0) :
     PolynomialPoleWitnessHypothesis p := by
@@ -264,7 +280,9 @@ theorem polynomialPoleWitnessHypothesis_of_nonzero_polynomial
     hupper hfac hqρ⟩
 
 /-- For any nonzero polynomial `p`, the logarithmic-derivative sign condition
-and conjugation symmetry imply that all roots are real.-/
+and conjugation symmetry imply that all roots are real.
+@isnad1 id=eq.4h2v.s6.5718d14b591e from=translated src=- shape=192572ed vocab=b2cf579e
+-/
 theorem polynomial_roots_real_of_logDeriv_antiHerglotz_and_conjSymm'
     (p : Polynomial ℂ) (hp : p ≠ 0)
     (hanti : AntiHerglotzUHP (polynomialLogDerivResponse p))
@@ -279,7 +297,9 @@ theorem polynomial_roots_real_of_logDeriv_antiHerglotz_and_conjSymm'
 -- =====================================================================
 
 /-- A pole in the closed lower half-plane contributes a nonpositive
-imaginary part to its Cauchy kernel throughout the upper half-plane.-/
+imaginary part to its Cauchy kernel throughout the upper half-plane.
+@isnad1 id=le.2h2v.s5.1acf4c59dd51 from=translated src=- shape=b9ae0f95 vocab=2e065bae
+-/
 theorem lowerHalfPlane_residue_imag_nonpos
     (z rho : ℂ) (hz : 0 < z.im) (hrho : rho.im ≤ 0) :
     ((1 : ℂ) / (z - rho)).im ≤ 0 := by
@@ -293,7 +313,9 @@ theorem lowerHalfPlane_residue_imag_nonpos
   exact le_of_lt (div_neg_of_neg_of_pos (by linarith) hnorm)
 
 /-- A pole in the closed lower half-plane contributes a strictly negative
-imaginary part throughout the open upper half-plane.-/
+imaginary part throughout the open upper half-plane.
+@isnad1 id=lt.2h2v.s5.7edf961e2e2a from=translated src=- shape=87ad8f03 vocab=2e065bae
+-/
 theorem lowerHalfPlane_residue_imag_neg
     (z rho : ℂ) (hz : 0 < z.im) (hrho : rho.im ≤ 0) :
     ((1 : ℂ) / (z - rho)).im < 0 := by
@@ -307,7 +329,9 @@ theorem lowerHalfPlane_residue_imag_neg
   exact div_neg_of_neg_of_pos (by linarith) hnorm
 
 /-- A finite residue cloud supported in the closed lower half-plane has
-nonpositive imaginary part on the upper half-plane.-/
+nonpositive imaginary part on the upper half-plane.
+@isnad1 id=antiherg.1h1v.s5.54810248269b from=translated src=- shape=623ad3c4 vocab=39383c64
+-/
 theorem lowerHalfPlane_residue_cloud_antiHerglotz_multiset
     (roots : Multiset ℂ)
     (hroots : ∀ rho ∈ roots, rho.im ≤ 0) :
@@ -330,7 +354,9 @@ theorem lowerHalfPlane_residue_cloud_antiHerglotz_multiset
       exact add_nonpos hhead hrest
 
 /-- A nonempty finite residue cloud supported in the closed lower half-plane
-has strictly negative imaginary part on the upper half-plane.-/
+has strictly negative imaginary part on the upper half-plane.
+@isnad1 id=strictan.2h1v.s6.ee588e932c3e from=translated src=- shape=c2f441b1 vocab=41b17a1d
+-/
 theorem lowerHalfPlane_residue_cloud_strictAntiHerglotz_multiset
     (roots : Multiset ℂ) (hne : roots ≠ 0)
     (hroots : ∀ rho ∈ roots, rho.im ≤ 0) :
@@ -352,7 +378,9 @@ theorem lowerHalfPlane_residue_cloud_strictAntiHerglotz_multiset
 
 /-- For a nonzero complex polynomial, the upper-half-plane sign condition on
 its logarithmic derivative is equivalent to all roots lying in the closed
-lower half-plane. No conjugation symmetry is required.-/
+lower half-plane. No conjugation symmetry is required.
+@isnad1 id=iff.1h1v.s5.1d5f3ac6526b from=translated src=- shape=e4b7c101 vocab=4ae35c8d
+-/
 theorem polynomial_antiHerglotz_iff_roots_closedLower
     (p : Polynomial ℂ) (hp : p ≠ 0) :
     AntiHerglotzUHP (polynomialLogDerivResponse p) ↔
@@ -378,7 +406,9 @@ theorem polynomial_antiHerglotz_iff_roots_closedLower
 /-- For a nonzero complex polynomial, strict anti-Herglotz behavior of its
 logarithmic derivative is equivalent to positive degree together with every
 root lying in the closed lower half-plane. The degree hypothesis is necessary:
-the logarithmic derivative of a nonzero constant polynomial is zero.-/
+the logarithmic derivative of a nonzero constant polynomial is zero.
+@isnad1 id=iff.1h1v.s6.e626d1598925 from=translated src=- shape=6e2497d9 vocab=abd23365
+-/
 theorem polynomial_strictAntiHerglotz_iff_roots_closedLower
     (p : Polynomial ℂ) (hp : p ≠ 0) :
     StrictAntiHerglotzUHP (polynomialLogDerivResponse p) ↔
@@ -408,7 +438,9 @@ theorem polynomial_strictAntiHerglotz_iff_roots_closedLower
 /-- Punctured-domain version of
 `polynomial_antiHerglotz_iff_roots_closedLower`. This is the mathematically
 natural public statement: the logarithmic derivative is only constrained
-where its denominator is nonzero.-/
+where its denominator is nonzero.
+@isnad1 id=iff.1h1v.s6.7f26dcaa7a53 from=translated src=- shape=4678aea2 vocab=e3150251
+-/
 theorem polynomial_logDeriv_sign_away_iff_roots_closedLower
     (p : Polynomial ℂ) (hp : p ≠ 0) :
     (∀ z : ℂ, 0 < z.im → p.eval z ≠ 0 →
@@ -544,7 +576,9 @@ to split each factor.
 
 At each step we have `((X − C r) · q)' / ((X − C r) · q) = 1/(z − r) +
 q'/q` (this is `complex_local_pole_decomposition_simple_root` instantiated
-on values). Iterating gives the residue cloud.-/
+on values). Iterating gives the residue cloud.
+@isnad1 id=eq.1h2v.s7.79d179e53783 from=translated src=- shape=3a4b29d4 vocab=8d473bf2
+-/
 theorem polynomialLogDeriv_of_linearProd_eq_cloud
     (roots : List ℝ) (z : ℂ)
     (hz : ∀ r ∈ roots, z ≠ (r : ℂ)) :
@@ -635,7 +669,9 @@ private theorem prodLinearReal_eval_zero_of_mem
     · rw [ih hr_tail]; ring
 
 /-- The logarithmic derivative of a real-linearly-factorized polynomial
-equals the real residue cloud at any non-root.**-/
+equals the real residue cloud at any non-root.**
+@isnad1 id=eq.1h3v.s6.3d27f51df2e1 from=translated src=- shape=500980b7 vocab=e8b76fd0
+-/
 theorem polynomialLogDeriv_eq_real_residue_cloud_of_factorization
     {p : Polynomial ℂ}
     (F : PolynomialRealLinearFactorization p)
@@ -672,7 +708,9 @@ The converse of `polynomial_roots_real_of_logDeriv_antiHerglotz_and_conjSymm'`
 in the factorized form. At a non-root we reduce `Λ[p]` to the real
 residue cloud and apply §2's `real_residue_cloud_antiHerglotz_list`. At
 zeros, Lean's totalized `0 / 0 = 0` makes the inequality vacuous
-(§6-bis `antiHerglotz_at_zero_is_vacuous`).-/
+(§6-bis `antiHerglotz_at_zero_is_vacuous`).
+@isnad1 id=antiherg.0h2v.s3.966f79b42fa9 from=translated src=- shape=80a4b622 vocab=0c177a5e
+-/
 theorem polynomial_antiHerglotz_of_realLinearFactorization
     {p : Polynomial ℂ}
     (F : PolynomialRealLinearFactorization p) :
@@ -691,7 +729,9 @@ root being real.
 
 This is the Schwarz-symmetric specialization of
 `polynomial_antiHerglotz_iff_roots_closedLower`: symmetry rules out lower
-nonreal roots once upper nonreal roots have been excluded.-/
+nonreal roots once upper nonreal roots have been excluded.
+@isnad1 id=iff.2h1v.s6.bca9c6481316 from=translated src=- shape=76ac19ce vocab=b2cf579e
+-/
 theorem polynomial_antiHerglotz_iff_roots_real
     (p : Polynomial ℂ) (hp : p ≠ 0)
     (h_schwarz : ∀ z : ℂ, p.eval (star z) = star (p.eval z)) :
@@ -707,7 +747,9 @@ theorem polynomial_antiHerglotz_iff_roots_real
 
 /-- Strict Schwarz-symmetric polynomial criterion. A nonzero polynomial has
 strictly anti-Herglotz logarithmic derivative on the upper half-plane exactly
-when it has positive degree and all of its roots are real.-/
+when it has positive degree and all of its roots are real.
+@isnad1 id=iff.2h1v.s7.2e700c58c0d9 from=translated src=- shape=094b3424 vocab=9c45ac6b
+-/
 theorem polynomial_strictAntiHerglotz_iff_roots_real
     (p : Polynomial ℂ) (hp : p ≠ 0)
     (h_schwarz : ∀ z : ℂ, p.eval (star z) = star (p.eval z)) :
@@ -726,7 +768,9 @@ theorem polynomial_strictAntiHerglotz_iff_roots_real
 
 /-- Punctured-domain form of `polynomial_antiHerglotz_iff_roots_real`.
 The logarithmic-derivative inequality is requested only where `p.eval z ≠ 0`,
-so the public statement does not depend on totalized division at roots.-/
+so the public statement does not depend on totalized division at roots.
+@isnad1 id=iff.2h1v.s7.b172d8a7cfb9 from=translated src=- shape=19f42400 vocab=a94fd752
+-/
 theorem polynomial_logDeriv_sign_away_iff_roots_real
     (p : Polynomial ℂ) (hp : p ≠ 0)
     (h_schwarz : ∀ z : ℂ, p.eval (star z) = star (p.eval z)) :
@@ -748,7 +792,9 @@ theorem polynomial_logDeriv_sign_away_iff_roots_real
 /-- Compatibility theorem for the older real-linear-factorization API. The
 factorization data already implies the reverse sign direction, so the
 real-root premise of that implication is redundant in this formulation.
-Prefer `polynomial_antiHerglotz_iff_roots_real` in new code.-/
+Prefer `polynomial_antiHerglotz_iff_roots_real` in new code.
+@isnad1 id=iff.2h2v.s6.55921628f828 from=translated src=- shape=bdf4c4ff vocab=ab7c9865
+-/
 theorem polynomial_realLinearFactorized_antiHerglotz_iff
     {p : Polynomial ℂ}
     (F : PolynomialRealLinearFactorization p)

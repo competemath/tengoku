@@ -33,7 +33,9 @@ noncomputable def entireXiPullbackZeroOccurrenceLocFiberEquiv
   right_inv _i := Subtype.ext rfl
 
 /-- Away from the origin, the location-fiber cardinality of the canonical xi
-divisor is exactly the analytic multiplicity of the pullback.-/
+divisor is exactly the analytic multiplicity of the pullback.
+@isnad1 id=eq.1h1v.s5.0f0a7c341ed7 from=translated src=- shape=4c8fdf86 vocab=6b0f8a1a
+-/
 theorem entireXiPullbackZeroOccurrenceLoc_fiber_natCard
     {z : ℂ} (hz0 : z ≠ 0) :
     Nat.card {i : EntireXiPullbackZeroOccurrence //
@@ -64,7 +66,9 @@ noncomputable def entireXiPullbackCanonicalProduct : ℂ → ℂ :=
     infiniteHadamardProduct entireXiPullbackZeroOccurrenceLoc
 
 /-- The canonical xi product is entire under the sole global inverse-square
-zero-distribution hypothesis.-/
+zero-distribution hypothesis.
+@isnad1 id=differen.1h0v.s6.6aab9d593c00 from=translated src=- shape=3a987c3e vocab=243b6df0
+-/
 theorem entireXiPullbackCanonicalProduct_differentiable
     (H : EntireXiPullbackCanonicalZeroDistribution) :
     Differentiable ℂ entireXiPullbackCanonicalProduct := by
@@ -78,7 +82,9 @@ theorem entireXiPullbackCanonicalProduct_differentiable
       entireXiPullbackZeroOccurrenceNormProper
   exact hmonomial.mul hproduct
 
-/-- The order of the origin monomial at the origin is its exponent.-/
+/-- The order of the origin monomial at the origin is its exponent.
+@isnad1 id=eq.0h1v.s5.f500ab3bb751 from=translated src=- shape=6c6ad184 vocab=7b32b8de
+-/
 theorem analyticOrderAt_monomial_zero (m : ℕ) :
     analyticOrderAt (fun z : ℂ ↦ z ^ m) 0 = (m : ENat) := by
   change analyticOrderAt ((id : ℂ → ℂ) ^ m) (0 : ℂ) = (m : ENat)
@@ -86,7 +92,9 @@ theorem analyticOrderAt_monomial_zero (m : ℕ) :
   simp
 
 /-- The canonical product and `EntireXiPullback` have the same analytic order
-at every point.-/
+at every point.
+@isnad1 id=eq.1h1v.s5.00eb0d32176b from=translated src=- shape=3cdb13f9 vocab=20528b19
+-/
 theorem entireXiPullbackCanonicalProduct_analyticOrderAt
     (H : EntireXiPullbackCanonicalZeroDistribution) (z : ℂ) :
     analyticOrderAt entireXiPullbackCanonicalProduct z =

@@ -40,7 +40,9 @@ the closed upper half-plane.-/
 def HerglotzUHP (R : ℂ → ℂ) : Prop :=
   ∀ z : ℂ, 0 < z.im → 0 ≤ (R z).im
 
-/-- **General dualization.** `R` is anti-Herglotz iff `−R` is Herglotz.-/
+/-- **General dualization.** `R` is anti-Herglotz iff `−R` is Herglotz.
+@isnad1 id=iff.0h1v.s4.2c0a2e8cf1de from=translated src=- shape=c6d4572d vocab=ec028744
+-/
 theorem negHerglotzUHP_iff_antiHerglotzUHP (R : ℂ → ℂ) :
     HerglotzUHP (fun z => -(R z)) ↔ AntiHerglotzUHP R := by
   unfold HerglotzUHP AntiHerglotzUHP
@@ -65,7 +67,9 @@ is Herglotz on the upper half-plane.-/
 def XiPullback.HerglotzSign : Prop :=
   HerglotzUHP (fun z => -(logDerivativeResponse XiPullback z))
 
-/-- The two pullback sign conditions are equivalent via negation.-/
+/-- The two pullback sign conditions are equivalent via negation.
+@isnad1 id=iff.0h0v.s1.ab5e01a917b5 from=translated src=- shape=25b03439 vocab=5e0e3ee0
+-/
 theorem XiPullback.HerglotzSign_iff_AntiHerglotzSign :
     XiPullback.HerglotzSign ↔ XiPullback.AntiHerglotzSign :=
   negHerglotzUHP_iff_antiHerglotzUHP _
@@ -82,7 +86,9 @@ def CompletedXi.leftHalfPlaneLogDerivSign : Prop :=
 Given left-half-plane differentiability of `ξ` and the s-plane sign
 condition `Re(ξ'/ξ(s)) ≤ 0` for `Re s < ½`, the z-plane condition
 `Im(Λ[Ξ](z)) ≤ 0` for `Im z > 0` follows. At zeros of `Ξ`, the totalized
-`Λ[Ξ] = 0/0 = 0` makes the inequality trivially `0 ≤ 0`.-/
+`Λ[Ξ] = 0/0 = 0` makes the inequality trivially `0 ≤ 0`.
+@isnad1 id=antiherg.2h0v.s2.b59d58a75c4e from=translated src=- shape=f443e7c7 vocab=6b9803a1
+-/
 theorem XiPullback.AntiHerglotzSign_of_leftHalfPlaneLogDerivSign
     (hdiff : CompletedXiDifferentiableOnLeftHalfPlane)
     (h : CompletedXi.leftHalfPlaneLogDerivSign) :
@@ -129,7 +135,9 @@ noncomputable def XiPullback.antiHerglotzReflectionData_of_regularity_factorizat
 /-- ⭐ **PROVED — RH-facing capstone (conditional on the three inputs).**
 Every zero of `Ξ` is real, given completed-xi regularity, the analytic
 zero-factorization hypothesis, and the anti-Herglotz sign condition. The
-three hypotheses isolate exactly the remaining open content.-/
+three hypotheses isolate exactly the remaining open content.
+@isnad1 id=eq.4h1v.s4.3464fa2ea32d from=translated src=- shape=1b890e2c vocab=8a5569ad
+-/
 theorem XiPullback.zeros_real_of_regularity_factorization_sign
     (Hreg : CompletedXiRegularity)
     (Hfac : EntireZeroFactorizationHypothesis XiPullback)
@@ -152,7 +160,9 @@ def EntireXi.leftHalfPlaneLogDerivSign : Prop :=
   ∀ s : ℂ, s.re < (1 / 2 : ℝ) →
     ((deriv entireRiemannXi s) / entireRiemannXi s).re ≤ 0
 
-/-- ⭐ **PROVED — s-plane sign ⟹ z-plane anti-Herglotz (Mathlib-grounded).**-/
+/-- ⭐ **PROVED — s-plane sign ⟹ z-plane anti-Herglotz (Mathlib-grounded).**
+@isnad1 id=antiherg.1h0v.s1.6613e0664683 from=translated src=- shape=1d48f1ac vocab=9cd61e92
+-/
 theorem EntireXiPullback.AntiHerglotzSign_of_leftHalfPlaneLogDerivSign
     (h : EntireXi.leftHalfPlaneLogDerivSign) :
     EntireXiPullback.AntiHerglotzSign := by
@@ -172,7 +182,9 @@ theorem EntireXiPullback.AntiHerglotzSign_of_leftHalfPlaneLogDerivSign
 /-- ⭐ **PROVED — `EntireXiPullback` factorization hypothesis from
 analyticity + non-triviality.** Feeds the analytic discharge in
 `RealZeros.EntireFunctions`; non-triviality + connectedness rules out a
-local identical-zero via the isolated-zeros principle.-/
+local identical-zero via the isolated-zeros principle.
+@isnad1 id=entireze.1h0v.s4.50f94edefe21 from=translated src=- shape=f8834d92 vocab=406983d3
+-/
 theorem EntireZeroFactorizationHypothesis_EntireXiPullback
     (h_nontrivial : ∃ z : ℂ, EntireXiPullback z ≠ 0) :
     EntireZeroFactorizationHypothesis EntireXiPullback := by
@@ -211,7 +223,9 @@ noncomputable def EntireXiPullback.antiHerglotzReflectionData
   conjugationSymmetry := EntireXiPullback_schwarz H
 
 /-- Every zero of the Mathlib-grounded `EntireXiPullback` is real, given
-regularity, nontriviality, and the left-half-plane sign condition.-/
+regularity, nontriviality, and the left-half-plane sign condition.
+@isnad1 id=eq.4h1v.s5.f5633a9573fc from=translated src=- shape=c27bb72b vocab=73b26394
+-/
 theorem EntireXiPullback.zeros_real_of_regularity_and_sign
     (H : EntireRiemannXiRegularity)
     (h_nontrivial : ∃ z : ℂ, EntireXiPullback z ≠ 0)
@@ -222,7 +236,9 @@ theorem EntireXiPullback.zeros_real_of_regularity_and_sign
       h_sign)).zeros_real
 
 /-- Schwarz reflection, nontriviality, and the sign condition imply real
-zeros of the pullback.-/
+zeros of the pullback.
+@isnad1 id=eq.4h1v.s5.184eb6215c90 from=translated src=- shape=c27bb72b vocab=963c2855
+-/
 theorem EntireXiPullback.zeros_real_of_schwarz_and_sign
     (hsch : EntireXi.schwarzReflection)
     (h_nontrivial : ∃ z : ℂ, EntireXiPullback z ≠ 0)
@@ -233,7 +249,9 @@ theorem EntireXiPullback.zeros_real_of_schwarz_and_sign
 
 /-- `EntireXiPullback` is not identically zero. Witness
 `z = -I/2`, which sends the critical shift to `s = 1`, where
-`entireRiemannXi 1 = ½·1·0·completedRiemannZeta₀ 1 + ½ = ½ ≠ 0`.-/
+`entireRiemannXi 1 = ½·1·0·completedRiemannZeta₀ 1 + ½ = ½ ≠ 0`.
+@isnad1 id=entirexi.0h0v.s0.e3bd857e1bc7 from=translated src=- shape=45709ebd vocab=e3bd857e
+-/
 theorem EntireXiPullback_nontrivial_holds : EntireXiPullback_nontrivial := by
   refine ⟨-Complex.I / 2, ?_⟩
   have h_shift : (1 / 2 : ℂ) + Complex.I * (-Complex.I / 2) = 1 := by
@@ -250,7 +268,9 @@ theorem EntireXiPullback_nontrivial_holds : EntireXiPullback_nontrivial := by
   exact (by norm_num : (1 / 2 : ℂ) ≠ 0)
 
 /-- The Hurwitz FE-pair real-lifting hypothesis and the s-plane sign imply
-real zeros of the entire-xi pullback.-/
+real zeros of the entire-xi pullback.
+@isnad1 id=eq.3h1v.s4.2547ff42fcb3 from=translated src=- shape=dd3edbc8 vocab=cd50f9f1
+-/
 theorem EntireXiPullback.zeros_real_of_hurwitzReality_and_sign
     (h_real : hurwitzEvenFEPair_zero_f_modif_ofReal_target)
     (h_sign : EntireXi.leftHalfPlaneLogDerivSign) :
@@ -261,7 +281,9 @@ theorem EntireXiPullback.zeros_real_of_hurwitzReality_and_sign
 
 /-- The s-plane sign condition implies real-rootedness of
 `EntireXiPullback`. Schwarz reflection and nontriviality are discharged; the
-sign condition is the sole hypothesis.-/
+sign condition is the sole hypothesis.
+@isnad1 id=eq.2h1v.s4.8314cec09992 from=translated src=- shape=b6e9119e vocab=f1b10b81
+-/
 theorem EntireXiPullback.zeros_real_of_sign
     (h_sign : EntireXi.leftHalfPlaneLogDerivSign) :
     ∀ ρ : ℂ, EntireXiPullback ρ = 0 → ρ.im = 0 :=

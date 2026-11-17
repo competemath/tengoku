@@ -34,7 +34,9 @@ open Filter Metric Set Topology
 namespace OverflowResidueRH
 
 /-- The critical-line pullback is even, by the functional equation
-`xi(1 - s) = xi(s)`.-/
+`xi(1 - s) = xi(s)`.
+@isnad1 id=eq.0h1v.s3.176217bc1b08 from=translated src=- shape=cd419dad vocab=ddf45058
+-/
 theorem entireXiPullback_neg (z : Complex) :
     EntireXiPullback (-z) = EntireXiPullback z := by
   unfold EntireXiPullback
@@ -45,7 +47,9 @@ theorem entireXiPullback_neg (z : Complex) :
 /-- The affine coordinate change `z ↦ 1/2 + I*z` preserves analytic order,
 because its derivative is the nonzero constant `I`.  This is the local
 multiplicity bridge needed to compare the canonical pullback divisor with a
-multiplicity-weighted xi or zeta zero count.-/
+multiplicity-weighted xi or zeta zero count.
+@isnad1 id=eq.0h1v.s6.05e686a61f6f from=translated src=- shape=4cb9db63 vocab=bf05047b
+-/
 theorem entireXiPullback_analyticOrderAt_eq_entireRiemannXi (z : Complex) :
     analyticOrderAt EntireXiPullback z =
       analyticOrderAt entireRiemannXi
@@ -65,7 +69,9 @@ theorem entireXiPullback_analyticOrderAt_eq_entireRiemannXi (z : Complex) :
   rw [hfun] at hcomp
   exact hcomp
 
-/-- The pullback cannot vanish identically on a neighborhood of any point.-/
+/-- The pullback cannot vanish identically on a neighborhood of any point.
+@isnad1 id=not.0h1v.s5.2b3486f86f2a from=translated src=- shape=8dd287b1 vocab=1acdf070
+-/
 theorem EntireXiPullback_not_eventuallyEq_zero (p : Complex) :
     ¬ (EntireXiPullback =ᶠ[nhds p] 0) := by
   intro hlocal
@@ -79,7 +85,9 @@ theorem EntireXiPullback_not_eventuallyEq_zero (p : Complex) :
   obtain ⟨z, hz⟩ := EntireXiPullback_nontrivial_holds
   exact hz (heq (Set.mem_univ z))
 
-/-- The analytic order of the entire xi pullback is finite at every point.-/
+/-- The analytic order of the entire xi pullback is finite at every point.
+@isnad1 id=ne.0h1v.s4.6d311354aca7 from=translated src=- shape=c7b67b95 vocab=83ddb3ee
+-/
 theorem entireXiPullback_analyticOrderAt_ne_top (z : Complex) :
     analyticOrderAt EntireXiPullback z ≠ ⊤ := by
   intro htop
@@ -87,7 +95,9 @@ theorem entireXiPullback_analyticOrderAt_ne_top (z : Complex) :
     EntireXiPullback_not_eventuallyEq_zero z
       (analyticOrderAt_eq_top.mp htop)
 
-/-- Negation preserves the analytic order of the even pullback.-/
+/-- Negation preserves the analytic order of the even pullback.
+@isnad1 id=eq.0h1v.s5.09f3e94dd8e0 from=translated src=- shape=c8882199 vocab=ba942951
+-/
 theorem entireXiPullback_analyticOrderAt_neg (z : Complex) :
     analyticOrderAt EntireXiPullback (-z) =
       analyticOrderAt EntireXiPullback z := by
@@ -101,7 +111,9 @@ theorem entireXiPullback_analyticOrderAt_neg (z : Complex) :
   rw [hfun] at hcomp
   exact hcomp.symm
 
-/-- Negation also preserves the natural-valued analytic multiplicity.-/
+/-- Negation also preserves the natural-valued analytic multiplicity.
+@isnad1 id=eq.0h1v.s5.7fbe913181d9 from=translated src=- shape=c8882199 vocab=0d84433a
+-/
 theorem entireXiPullback_analyticOrderNatAt_neg (z : Complex) :
     analyticOrderNatAt EntireXiPullback (-z) =
       analyticOrderNatAt EntireXiPullback z := by
@@ -112,7 +124,9 @@ theorem entireXiPullback_analyticOrderNatAt_neg (z : Complex) :
 noncomputable def entireXiPullbackOriginMultiplicity : Nat :=
   analyticOrderNatAt EntireXiPullback 0
 
-/-- The origin multiplicity is exactly the analytic order at the origin.-/
+/-- The origin multiplicity is exactly the analytic order at the origin.
+@isnad1 id=eq.0h0v.s4.63eae7bbe4d2 from=translated src=- shape=6b4c05a4 vocab=e3be1ea4
+-/
 theorem entireXiPullback_analyticOrderAt_zero :
     analyticOrderAt EntireXiPullback 0 =
       (entireXiPullbackOriginMultiplicity : ENat) := by
@@ -121,7 +135,9 @@ theorem entireXiPullback_analyticOrderAt_zero :
       (entireXiPullback_analyticOrderAt_ne_top 0)).symm
 
 /-- The origin multiplicity is nonzero exactly when the pullback vanishes at
-the origin.-/
+the origin.
+@isnad1 id=iff.0h0v.s4.84ba0b7827ac from=translated src=- shape=8a6db391 vocab=f5c15d8e
+-/
 theorem entireXiPullbackOriginMultiplicity_ne_zero_iff :
     entireXiPullbackOriginMultiplicity ≠ 0 ↔
       EntireXiPullback 0 = 0 := by
@@ -145,6 +161,9 @@ def entireXiPullbackNonzeroZeroNeg
     EntireXiPullbackNonzeroZero :=
   ⟨-z.1, entireXiPullback_neg z.1 ▸ z.2.1, neg_ne_zero.mpr z.2.2⟩
 
+/--
+@isnad1 id=eq.0h1v.s5.f928f8e170e9 from=translated src=- shape=eae24fb1 vocab=0791fa0b
+-/
 @[simp] theorem entireXiPullbackNonzeroZeroNeg_val
     (z : EntireXiPullbackNonzeroZero) :
     (entireXiPullbackNonzeroZeroNeg z).1 = -z.1 :=
@@ -162,7 +181,9 @@ def entireXiPullbackNonzeroZeroNegEquiv :
     apply Subtype.ext
     simp [entireXiPullbackNonzeroZeroNeg]
 
-/-- Every nonzero pullback zero has strictly positive natural analytic order.-/
+/-- Every nonzero pullback zero has strictly positive natural analytic order.
+@isnad1 id=lt.0h1v.s5.4012012d023a from=translated src=- shape=8ead6cfb vocab=2b3ad4b4
+-/
 theorem entireXiPullbackNonzeroZero_analyticOrderNatAt_pos
     (z : EntireXiPullbackNonzeroZero) :
     0 < analyticOrderNatAt EntireXiPullback z.1 := by
@@ -197,7 +218,9 @@ noncomputable def entireXiPullbackZeroOccurrenceFiberEquiv
   right_inv k := rfl
 
 /-- The number of canonical occurrences above a nonzero zero is its exact
-analytic multiplicity.-/
+analytic multiplicity.
+@isnad1 id=eq.0h1v.s6.d0a37132c947 from=translated src=- shape=083f909b vocab=93df5396
+-/
 theorem entireXiPullbackZeroOccurrence_fiber_natCard
     (z : EntireXiPullbackNonzeroZero) :
     Nat.card {i : EntireXiPullbackZeroOccurrence // i.1 = z} =
@@ -220,7 +243,9 @@ noncomputable def entireXiPullbackZeroOccurrenceNegEquiv :
   Equiv.sigmaCongr entireXiPullbackNonzeroZeroNegEquiv fun z =>
     finCongr (entireXiPullback_analyticOrderNatAt_neg z.1).symm
 
-/-- The lifted occurrence equivalence negates its zero location.-/
+/-- The lifted occurrence equivalence negates its zero location.
+@isnad1 id=eq.0h1v.s4.58de60eec27e from=translated src=- shape=7d3121a7 vocab=3b3a2d57
+-/
 @[simp] theorem entireXiPullbackZeroOccurrenceNegEquiv_loc
     (i : EntireXiPullbackZeroOccurrence) :
     entireXiPullbackZeroOccurrenceLoc
@@ -230,7 +255,9 @@ noncomputable def entireXiPullbackZeroOccurrenceNegEquiv :
 
 /-- The canonical genus-one regularized logarithmic-derivative series is odd.
 The regularizing constants cancel under the exact negation pairing of the
-divisor occurrences.-/
+divisor occurrences.
+@isnad1 id=eq.0h1v.s4.7a478cf88e81 from=translated src=- shape=a5c8d768 vocab=54288bb6
+-/
 theorem entireXiPullbackCanonicalRegularizedSeries_neg (z : Complex) :
     hadamardRegularizedLogDerivSeries
         entireXiPullbackZeroOccurrenceLoc (-z) =
@@ -249,19 +276,25 @@ theorem entireXiPullbackCanonicalRegularizedSeries_neg (z : Complex) :
   simp only [one_div, inv_neg]
   ring
 
-/-- Every canonical occurrence is located away from the origin.-/
+/-- Every canonical occurrence is located away from the origin.
+@isnad1 id=ne.0h1v.s3.e62cedb7b1e5 from=translated src=- shape=a311c14d vocab=def954b1
+-/
 theorem entireXiPullbackZeroOccurrenceLoc_ne_zero
     (i : EntireXiPullbackZeroOccurrence) :
     entireXiPullbackZeroOccurrenceLoc i ≠ 0 :=
   i.1.2.2
 
-/-- Every canonical occurrence is located at a zero of the pullback.-/
+/-- Every canonical occurrence is located at a zero of the pullback.
+@isnad1 id=eq.0h1v.s3.9e06263e09af from=translated src=- shape=f6b6ad72 vocab=a96dddef
+-/
 theorem entireXiPullbackZeroOccurrenceLoc_is_zero
     (i : EntireXiPullbackZeroOccurrence) :
     EntireXiPullback (entireXiPullbackZeroOccurrenceLoc i) = 0 :=
   i.1.2.1
 
-/-- Every nonzero pullback zero occurs in the canonical multiplicity index.-/
+/-- Every nonzero pullback zero occurs in the canonical multiplicity index.
+@isnad1 id=ex.2h1v.s5.12273add6b32 from=translated src=- shape=390c56c7 vocab=a96dddef
+-/
 theorem entireXiPullbackZeroOccurrenceLoc_exhaustive
     {z : Complex}
     (hz : EntireXiPullback z = 0) (hz0 : z ≠ 0) :
@@ -272,7 +305,9 @@ theorem entireXiPullbackZeroOccurrenceLoc_exhaustive
     entireXiPullbackNonzeroZero_analyticOrderNatAt_pos rho
   exact ⟨⟨rho, ⟨0, hpos⟩⟩, rfl⟩
 
-/-- Set-level characterization of the canonical occurrence locations.-/
+/-- Set-level characterization of the canonical occurrence locations.
+@isnad1 id=iff.0h1v.s5.457317a9463f from=translated src=- shape=340ba8c2 vocab=a96dddef
+-/
 theorem exists_entireXiPullbackZeroOccurrenceLoc_iff (z : Complex) :
     (∃ i : EntireXiPullbackZeroOccurrence,
       entireXiPullbackZeroOccurrenceLoc i = z) ↔
@@ -285,7 +320,9 @@ theorem exists_entireXiPullbackZeroOccurrenceLoc_iff (z : Complex) :
   · rintro ⟨hz, hz0⟩
     exact entireXiPullbackZeroOccurrenceLoc_exhaustive hz hz0
 
-/-- Zeros of the entire xi pullback are locally finite.-/
+/-- Zeros of the entire xi pullback are locally finite.
+@isnad1 id=ex.0h1v.s5.cc399197bd4c from=translated src=- shape=a3dc674e vocab=286bb4e6
+-/
 theorem entireXiPullback_zeroSet_locallyFinite (p : Complex) :
     ∃ U ∈ nhds p,
       (U ∩ {z : Complex | EntireXiPullback z = 0}).Finite := by
@@ -323,7 +360,9 @@ theorem entireXiPullback_zeroSet_locallyFinite (p : Complex) :
     rw [hempty]
     exact Set.finite_empty
 
-/-- Only finitely many distinct pullback zeros lie in any closed norm ball.-/
+/-- Only finitely many distinct pullback zeros lie in any closed norm ball.
+@isnad1 id=finite.0h1v.s5.43ae466df969 from=translated src=- shape=4e1c758a vocab=216eaac8
+-/
 theorem entireXiPullback_zeroSet_finite_in_closedBall (R : Real) :
     {z : Complex |
       z ∈ Metric.closedBall (0 : Complex) R ∧ EntireXiPullback z = 0}.Finite := by
@@ -375,7 +414,9 @@ private theorem entireXiPullbackNonzeroZero_norm_le_finite (R : Real) :
       simpa [Metric.mem_closedBall, dist_eq_norm] using hrho)
   · exact Subtype.val_injective.injOn
 
-/-- The multiplicity-bearing pullback occurrence locations are norm-proper.-/
+/-- The multiplicity-bearing pullback occurrence locations are norm-proper.
+@isnad1 id=hadamard.0h0v.s1.4ab6bd770baf from=translated src=- shape=25b03439 vocab=38984e2f
+-/
 theorem entireXiPullbackZeroOccurrenceNormProper :
     HadamardZeroNormProper entireXiPullbackZeroOccurrenceLoc := by
   refine ⟨?_⟩
@@ -404,7 +445,9 @@ theorem entireXiPullbackZeroOccurrenceNormProper :
   exact Set.Finite.of_finite_fibers
     (fun i : EntireXiPullbackZeroOccurrence => i.1) hbase hfiber
 
-/-- The zero set of the entire xi pullback is countable.-/
+/-- The zero set of the entire xi pullback is countable.
+@isnad1 id=countabl.0h0v.s4.884a6be1c439 from=translated src=- shape=50446660 vocab=f3dd6ceb
+-/
 theorem entireXiPullback_zeroSet_countable :
     {z : Complex | EntireXiPullback z = 0}.Countable := by
   let D := MeromorphicOn.divisor EntireXiPullback (Set.univ : Set Complex)
@@ -427,7 +470,9 @@ theorem entireXiPullback_zeroSet_countable :
     (HereditarilyLindelofSpace.isLindelof D.support).countable_of_isDiscrete
       D.discreteSupport
 
-/-- The subtype of distinct nonzero pullback zeros is countable.-/
+/-- The subtype of distinct nonzero pullback zeros is countable.
+@isnad1 id=countabl.0h0v.s1.7a236cf41d24 from=translated src=- shape=49959d42 vocab=bb9bed4a
+-/
 noncomputable instance entireXiPullbackNonzeroZero_countable :
     Countable EntireXiPullbackNonzeroZero := by
   exact
@@ -435,13 +480,17 @@ noncomputable instance entireXiPullbackNonzeroZero_countable :
       intro z hz
       exact hz.1)).to_subtype
 
-/-- The exact multiplicity-bearing occurrence type is countable.-/
+/-- The exact multiplicity-bearing occurrence type is countable.
+@isnad1 id=countabl.0h0v.s1.569caa8d3ece from=translated src=- shape=49959d42 vocab=1baba7be
+-/
 noncomputable instance entireXiPullbackZeroOccurrence_countable :
     Countable EntireXiPullbackZeroOccurrence := by
   unfold EntireXiPullbackZeroOccurrence
   infer_instance
 
-/-- Proposition form of countability for downstream interfaces.-/
+/-- Proposition form of countability for downstream interfaces.
+@isnad1 id=countabl.0h0v.s1.569caa8d3ece from=translated src=- shape=49959d42 vocab=1baba7be
+-/
 theorem entireXiPullbackZeroOccurrence_countable_holds :
     Countable EntireXiPullbackZeroOccurrence := by
   infer_instance
@@ -455,7 +504,9 @@ structure EntireXiPullbackCanonicalZeroDistribution : Prop where
 
 /-- Canonical inverse-square distribution data supplies the complete generic
 Hadamard zero summability package; eventual escape follows from norm
-properness.-/
+properness.
+@isnad1 id=hadamard.1h0v.s2.d897099f4df7 from=translated src=- shape=da6c7ba4 vocab=18b7ed38
+-/
 theorem EntireXiPullbackCanonicalZeroDistribution.toHadamardZeroInvSqSummability
     (H : EntireXiPullbackCanonicalZeroDistribution) :
     HadamardZeroInvSqSummability entireXiPullbackZeroOccurrenceLoc :=

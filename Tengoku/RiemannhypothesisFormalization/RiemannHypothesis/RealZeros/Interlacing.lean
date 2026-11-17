@@ -40,25 +40,40 @@ def StrictlyInterlaces {n : ℕ}
 
 namespace StrictlyInterlaces
 
+/--
+@isnad1 id=lt.1h4v.s5.9211e852d3a9 from=translated src=- shape=0ac1cc64 vocab=a6d83c2c
+-/
 theorem left_lt {n : ℕ} {a : Fin (n + 1) → ℝ} {b : Fin n → ℝ}
     (h : StrictlyInterlaces a b) (i : Fin n) :
     a i.castSucc < b i :=
   (h.2.2 i).1
 
+/--
+@isnad1 id=lt.1h4v.s5.c10b722a50c4 from=translated src=- shape=536eee92 vocab=79dc04c2
+-/
 theorem right_lt {n : ℕ} {a : Fin (n + 1) → ℝ} {b : Fin n → ℝ}
     (h : StrictlyInterlaces a b) (i : Fin n) :
     b i < a i.succ :=
   (h.2.2 i).2
 
+/--
+@isnad1 id=lt.1h4v.s5.9ddd37bc73d9 from=translated src=- shape=ee113162 vocab=d6495191
+-/
 theorem outer_lt {n : ℕ} {a : Fin (n + 1) → ℝ} {b : Fin n → ℝ}
     (h : StrictlyInterlaces a b) (i : Fin n) :
     a i.castSucc < a i.succ :=
   (h.left_lt i).trans (h.right_lt i)
 
+/--
+@isnad1 id=injectiv.1h3v.s5.b2df020558cd from=translated src=- shape=90b77dd5 vocab=ace1f633
+-/
 theorem a_injective {n : ℕ} {a : Fin (n + 1) → ℝ} {b : Fin n → ℝ}
     (h : StrictlyInterlaces a b) : Function.Injective a :=
   h.1.injective
 
+/--
+@isnad1 id=injectiv.1h3v.s5.ea45420ac752 from=translated src=- shape=30058ed9 vocab=ace1f633
+-/
 theorem b_injective {n : ℕ} {a : Fin (n + 1) → ℝ} {b : Fin n → ℝ}
     (h : StrictlyInterlaces a b) : Function.Injective b :=
   h.2.1.injective
@@ -68,7 +83,9 @@ end StrictlyInterlaces
 /-! ## Unconditional Rolle and Gauss--Lucas consequences -/
 
 /-- Rolle's theorem in the exact polynomial form needed for finite
-interlacing: between two distinct real roots of `p` lies a root of `p'`.-/
+interlacing: between two distinct real roots of `p` lies a root of `p'`.
+@isnad1 id=ex.3h3v.s7.0b4cf220c2f9 from=translated src=- shape=7a48705d vocab=4ee2071c
+-/
 theorem polynomial_derivative_root_between
     (p : Polynomial ℝ) {x y : ℝ}
     (hxy : x < y) (hx : p.eval x = 0) (hy : p.eval y = 0) :
@@ -80,7 +97,9 @@ theorem polynomial_derivative_root_between
 
 /-- A direct Gauss--Lucas specialization: if every root of a nonconstant
 complex polynomial is real, then every root of its derivative is real.
-This conclusion allows repeated roots; it is not a simplicity theorem.-/
+This conclusion allows repeated roots; it is not a simplicity theorem.
+@isnad1 id=eq.3h2v.s7.ca7e45154018 from=translated src=- shape=665c4ad9 vocab=bdd80bc3
+-/
 theorem polynomial_derivative_roots_real
     {P : Polynomial ℂ} (hdegree : 0 < P.degree)
     (hreal : ∀ z : ℂ, P.eval z = 0 → z.im = 0) :
@@ -124,18 +143,27 @@ structure OrientedStrictInterlacingPolynomialData
 
 namespace OrientedStrictInterlacingPolynomialData
 
+/--
+@isnad1 id=ne.0h3v.s4.397dd7af460e from=translated src=- shape=99945591 vocab=2811a68c
+-/
 theorem A_ne_zero {A B : Polynomial ℝ}
     (D : OrientedStrictInterlacingPolynomialData A B) : A ≠ 0 := by
   rw [D.factorA]
   exact mul_ne_zero (Polynomial.C_ne_zero.mpr D.leadingA_ne)
     (Finset.prod_ne_zero_iff.mpr fun i _ => Polynomial.X_sub_C_ne_zero _)
 
+/--
+@isnad1 id=ne.0h3v.s4.cd7dc6acd246 from=translated src=- shape=6f354e3d vocab=2811a68c
+-/
 theorem B_ne_zero {A B : Polynomial ℝ}
     (D : OrientedStrictInterlacingPolynomialData A B) : B ≠ 0 := by
   rw [D.factorB]
   exact mul_ne_zero (Polynomial.C_ne_zero.mpr D.leadingB_ne)
     (Finset.prod_ne_zero_iff.mpr fun i _ => Polynomial.X_sub_C_ne_zero _)
 
+/--
+@isnad1 id=eq.0h4v.s5.583b513119a6 from=translated src=- shape=5bc533fd vocab=ec9017fd
+-/
 theorem a_isRoot {A B : Polynomial ℝ}
     (D : OrientedStrictInterlacingPolynomialData A B) (i : Fin (D.n + 1)) :
     A.eval (D.a i) = 0 := by
@@ -151,6 +179,9 @@ theorem a_isRoot {A B : Polynomial ℝ}
       right
       exact Finset.prod_eq_zero (Finset.mem_univ i) (by simp)
 
+/--
+@isnad1 id=eq.0h4v.s5.4a623d5f994e from=translated src=- shape=88feb4c0 vocab=4bfe95b9
+-/
 theorem b_isRoot {A B : Polynomial ℝ}
     (D : OrientedStrictInterlacingPolynomialData A B) (i : Fin D.n) :
     B.eval (D.b i) = 0 := by
@@ -166,7 +197,9 @@ theorem b_isRoot {A B : Polynomial ℝ}
       right
       exact Finset.prod_eq_zero (Finset.mem_univ i) (by simp)
 
-/-- The displayed array exhausts all real roots of `A`.-/
+/-- The displayed array exhausts all real roots of `A`.
+@isnad1 id=iff.0h4v.s6.5bc83780e5ea from=translated src=- shape=b95ad689 vocab=ec9017fd
+-/
 theorem A_eval_eq_zero_iff {A B : Polynomial ℝ}
     (D : OrientedStrictInterlacingPolynomialData A B) (x : ℝ) :
     A.eval x = 0 ↔ ∃ i : Fin (D.n + 1), D.a i = x := by
@@ -190,7 +223,9 @@ theorem A_eval_eq_zero_iff {A B : Polynomial ℝ}
   · rintro ⟨i, hi⟩
     exact ⟨i, sub_eq_zero.mpr hi.symm⟩
 
-/-- The displayed array exhausts all real roots of `B`.-/
+/-- The displayed array exhausts all real roots of `B`.
+@isnad1 id=iff.0h4v.s5.fa9c3ab75df3 from=translated src=- shape=b2f74328 vocab=4bfe95b9
+-/
 theorem B_eval_eq_zero_iff {A B : Polynomial ℝ}
     (D : OrientedStrictInterlacingPolynomialData A B) (x : ℝ) :
     B.eval x = 0 ↔ ∃ i : Fin D.n, D.b i = x := by
@@ -214,7 +249,9 @@ theorem B_eval_eq_zero_iff {A B : Polynomial ℝ}
   · rintro ⟨i, hi⟩
     exact ⟨i, sub_eq_zero.mpr hi.symm⟩
 
-/-- No root in the `A` array equals a root in the `B` array.-/
+/-- No root in the `A` array equals a root in the `B` array.
+@isnad1 id=ne.0h5v.s5.5ebb13d5ebfa from=translated src=- shape=ae977650 vocab=5625383d
+-/
 theorem a_ne_b {A B : Polynomial ℝ}
     (D : OrientedStrictInterlacingPolynomialData A B)
     (i : Fin (D.n + 1)) (j : Fin D.n) : D.a i ≠ D.b j := by
@@ -228,7 +265,9 @@ theorem a_ne_b {A B : Polynomial ℝ}
     exact ne_of_gt ((D.interlaces.right_lt j).trans_le hle)
 
 /-- Strict interlacing factorization data itself proves that `A` and `B`
-have no common real root.-/
+have no common real root.
+@isnad1 id=not.0h4v.s5.cdccffd6db36 from=translated src=- shape=56645e7a vocab=c9676b4a
+-/
 theorem no_common_real_root {A B : Polynomial ℝ}
     (D : OrientedStrictInterlacingPolynomialData A B) (x : ℝ) :
     ¬ (A.eval x = 0 ∧ B.eval x = 0) := by
@@ -239,7 +278,9 @@ theorem no_common_real_root {A B : Polynomial ℝ}
 
 /-- Each adjacent pair of roots in the complete `A` factorization contains
 a real root of `A'`.  This is an actual finite Rolle-interlacing theorem,
-not an interface field.-/
+not an interface field.
+@isnad1 id=ex.0h4v.s7.a8c510f23760 from=translated src=- shape=487a6885 vocab=72ff26b2
+-/
 theorem derivative_root_between_a {A B : Polynomial ℝ}
     (D : OrientedStrictInterlacingPolynomialData A B) (i : Fin D.n) :
     ∃ c : ℝ,
@@ -340,21 +381,27 @@ structure EntireBiInfiniteStrictInterlacingData
 
 namespace EntireBiInfiniteStrictInterlacingData
 
-/-- Every zero of the first function is real.-/
+/-- Every zero of the first function is real.
+@isnad1 id=eq.1h4v.s5.ffc2bc90efad from=translated src=- shape=9d21af2b vocab=1bc2bcf0
+-/
 theorem A_roots_real {A B : ℂ → ℂ}
     (D : EntireBiInfiniteStrictInterlacingData A B)
     {z : ℂ} (hz : A z = 0) : z.im = 0 := by
   obtain ⟨n, rfl⟩ := (D.A_zero_iff z).mp hz
   simp
 
-/-- Every zero of the second function is real.-/
+/-- Every zero of the second function is real.
+@isnad1 id=eq.1h4v.s5.cc2e0a4be96c from=translated src=- shape=37205252 vocab=1bc2bcf0
+-/
 theorem B_roots_real {A B : ℂ → ℂ}
     (D : EntireBiInfiniteStrictInterlacingData A B)
     {z : ℂ} (hz : B z = 0) : z.im = 0 := by
   obtain ⟨n, rfl⟩ := (D.B_zero_iff z).mp hz
   simp
 
-/-- Exhaustive alternating enumerations have no common zero.-/
+/-- Exhaustive alternating enumerations have no common zero.
+@isnad1 id=not.0h4v.s5.920951023473 from=translated src=- shape=70aa5049 vocab=8f14fc45
+-/
 theorem no_common {A B : ℂ → ℂ}
     (D : EntireBiInfiniteStrictInterlacingData A B) (z : ℂ) :
     ¬ (A z = 0 ∧ B z = 0) := by

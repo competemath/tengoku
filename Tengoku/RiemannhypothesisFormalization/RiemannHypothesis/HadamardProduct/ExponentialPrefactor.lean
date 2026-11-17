@@ -32,7 +32,9 @@ constant log-derivative `b`.**
 
 This is the concrete Hadamard prefactor calculation used in the
 classical genus-one product: the nonzero scalar `C` contributes no
-log-derivative, and `exp (a + b·s)` contributes exactly `b`.-/
+log-derivative, and `exp (a + b·s)` contributes exactly `b`.
+@isnad1 id=eq.1h4v.s5.3f58ac1da64c from=translated src=- shape=192bebe7 vocab=628719ef
+-/
 theorem logDerivativeResponse_exp_affine_prefactor
     {C a b s : ℂ} (hC : C ≠ 0) :
     logDerivativeResponse
@@ -108,7 +110,9 @@ as the prefactor term plus the pulled-back regularized zero series.**
 
 This is the form the Stieltjes proof actually integrates/splits:
 the constant chain-rule term `I*b` plus the genus-one zero sum on the
-line `s = 1/2 + I*z`.-/
+line `s = 1/2 + I*z`.
+@isnad1 id=eq.0h4v.s7.33087010128c from=translated src=- shape=52306f06 vocab=f2cb6413
+-/
 theorem expAffineHadamardPullbackZeroContribution_eq_prefactor_plus_tsum
     {ι : Type} (zeroLoc : ι → ℂ) (b z : ℂ) :
     expAffineHadamardPullbackZeroContribution zeroLoc b z
@@ -123,7 +127,9 @@ theorem expAffineHadamardPullbackZeroContribution_eq_prefactor_plus_tsum
   rw [mul_add, tsum_mul_left]
 
 /-- 🌟🌟 **PROVED — finite expanded pullback contribution in terms of
-the existing finite regularized Hadamard sum.**-/
+the existing finite regularized Hadamard sum.**
+@isnad1 id=eq.0h5v.s6.a5cd7af39beb from=translated src=- shape=ddf23767 vocab=107be072
+-/
 theorem expAffineHadamardPullbackFiniteContribution_eq_prefactor_plus_finiteRegularizedSum
     {ι : Type} (zeroLoc : ι → ℂ) (b : ℂ) (F : Finset ι) (z : ℂ) :
     expAffineHadamardPullbackFiniteContribution zeroLoc b F z
@@ -137,7 +143,9 @@ theorem expAffineHadamardPullbackFiniteContribution_eq_prefactor_plus_finiteRegu
   rw [Finset.mul_sum]
 
 /-- 🌟🌟🌟 **PROVED — compact and expanded exp-affine Hadamard pullback
-contributions agree pointwise.**-/
+contributions agree pointwise.**
+@isnad1 id=eq.0h4v.s4.9caacf3c005a from=translated src=- shape=abcab7c4 vocab=9ce0b5c5
+-/
 theorem expAffineHadamardPullbackZeroContribution_eq_expanded
     {ι : Type} (zeroLoc : ι → ℂ) (b z : ℂ) :
     expAffineHadamardPullbackZeroContribution zeroLoc b z

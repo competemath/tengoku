@@ -35,7 +35,9 @@ open MeasureTheory Set
 open Real
 
 /-- An exponent bounded above by a natural number can be dominated on
-`[1, ∞)` by the corresponding gamma-integrable natural power.-/
+`[1, ∞)` by the corresponding gamma-integrable natural power.
+@isnad1 id=integrab.2h3v.s6.d8738a46823c from=translated src=- shape=f8350544 vocab=376350a2
+-/
 theorem integrableOn_Ioi_one_rpow_mul_exp_neg_mul_of_le_nat
     {q p : ℝ} (n : ℕ) (hp : 0 < p) (hq : q ≤ n) :
     IntegrableOn (fun x : ℝ ↦ x ^ q * exp (-(p * x))) (Ioi 1) := by
@@ -57,7 +59,9 @@ theorem integrableOn_Ioi_one_rpow_mul_exp_neg_mul_of_le_nat
       exact mul_le_mul_of_nonneg_right
         (Real.rpow_le_rpow_of_exponent_le hx.le hq) (Real.exp_nonneg _)
 
-/-- The upper Mellin tail is bounded by a scaled factorial.-/
+/-- The upper Mellin tail is bounded by a scaled factorial.
+@isnad1 id=le.2h3v.s7.31aee776eab9 from=translated src=- shape=33571c10 vocab=2c12e9f1
+-/
 theorem integral_Ioi_one_rpow_mul_exp_neg_mul_le_factorial
     {q p : ℝ} (n : ℕ) (hp : 0 < p) (hq : q ≤ n) :
     (∫ x : ℝ in Ioi 1, x ^ q * exp (-(p * x))) ≤
@@ -101,7 +105,9 @@ theorem integral_Ioi_one_rpow_mul_exp_neg_mul_le_factorial
           hp)
 
 /-- Under inversion, the lower-tail model has exactly the same gamma
-integral as the upper-tail model.-/
+integral as the upper-tail model.
+@isnad1 id=eq.1h2v.s7.567da308a044 from=translated src=- shape=6ead0560 vocab=01d7f853
+-/
 theorem integral_Ioi_zero_inv_rpow_mul_exp_neg_mul_eq_factorial
     (n : ℕ) {p : ℝ} (hp : 0 < p) :
     (∫ x : ℝ in Ioi 0,
@@ -131,7 +137,9 @@ theorem integral_Ioi_zero_inv_rpow_mul_exp_neg_mul_eq_factorial
         linarith)
       hp)
 
-/-- The inverted lower-tail model is integrable.-/
+/-- The inverted lower-tail model is integrable.
+@isnad1 id=integrab.1h2v.s6.614d440fdb05 from=translated src=- shape=e7a0a36f vocab=ee090bdd
+-/
 theorem integrableOn_Ioi_zero_inv_rpow_mul_exp_neg_mul
     (n : ℕ) {p : ℝ} (hp : 0 < p) :
     IntegrableOn (fun x : ℝ ↦
@@ -173,7 +181,9 @@ structure MellinTwoSidedExponentialDecay (f : ℝ → ℂ) : Type where
 
 /-- Two-sided exponential decay bounds a convergent Mellin transform by an
 explicit factorial envelope.  The exponent hypotheses say that `n` dominates
-both powers occurring after splitting the integral at `1`.-/
+both powers occurring after splitting the integral at `1`.
+@isnad1 id=le.3h4v.s7.412d747cbb6d from=translated src=- shape=95fdeb39 vocab=b9bae55a
+-/
 theorem MellinTwoSidedExponentialDecay.norm_mellin_le_factorial
     {f : ℝ → ℂ} (H : MellinTwoSidedExponentialDecay f)
     (s : ℂ) (n : ℕ)

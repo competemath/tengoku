@@ -18,13 +18,17 @@ the pairing proves; no lower bound for the resulting product is asserted.
 namespace OverflowResidueRH
 
 /-- Negating a zero location is the same as negating the argument of its
-genus-one factor.-/
+genus-one factor.
+@isnad1 id=eq.0h2v.s4.55ec7e2d995a from=translated src=- shape=04c242a7 vocab=831130ca
+-/
 theorem hadamardGenus1Factor_neg_location (ρ z : ℂ) :
     hadamardGenus1Factor (-ρ) z = hadamardGenus1Factor ρ (-z) := by
   unfold hadamardGenus1Factor
   rw [div_neg, neg_div]
 
-/-- The paired genus-one factors reduce to a quadratic genus-zero factor.-/
+/-- The paired genus-one factors reduce to a quadratic genus-zero factor.
+@isnad1 id=eq.1h2v.s6.cab03f7dd21f from=translated src=- shape=e53ebf5f vocab=2e966eac
+-/
 theorem hadamardGenus1Factor_mul_neg_location
     {ρ z : ℂ} (hρ : ρ ≠ 0) :
     hadamardGenus1Factor ρ z * hadamardGenus1Factor (-ρ) z =
@@ -38,7 +42,9 @@ theorem hadamardGenus1Factor_mul_neg_location
 
 /-- Reindexing an infinite genus-one product by an exact negation
 involution makes it even.  This statement is unconditional because
-Mathlib's totalized `tprod` is invariant under equivalence reindexing.-/
+Mathlib's totalized `tprod` is invariant under equivalence reindexing.
+@isnad1 id=eq.1h4v.s5.4634cfd44dff from=translated src=- shape=08f0c87f vocab=3c1559ce
+-/
 theorem infiniteHadamardProduct_even_of_neg_equiv
     {ι : Type*} (zeroLoc : ι → ℂ) (e : ι ≃ ι)
     (he : ∀ i : ι, zeroLoc (e i) = -zeroLoc i) (z : ℂ) :

@@ -35,7 +35,9 @@ namespace OverflowResidueRH
 noncomputable def twoPiI : Complex :=
   2 * (Real.pi : Complex) * Complex.I
 
-/-- The contour-normalizing constant is nonzero.-/
+/-- The contour-normalizing constant is nonzero.
+@isnad1 id=ne.0h0v.s3.cdad49716a8a from=translated src=- shape=ffdda526 vocab=d6ee077f
+-/
 theorem twoPiI_ne_zero : twoPiI ≠ 0 := by
   unfold twoPiI
   exact mul_ne_zero
@@ -58,7 +60,9 @@ noncomputable def rectangleBoundaryIntegral
 /-- Mathlib's available rectangle theorem: a function differentiable on the
 whole closed rectangle has zero boundary integral.  This is Cauchy--Goursat,
 not a residue theorem; it cannot be applied directly to a logarithmic
-derivative across its zeros.-/
+derivative across its zeros.
+@isnad1 id=eq.1h5v.s6.4f2d130971da from=translated src=- shape=092c77dd vocab=4afaf510
+-/
 theorem rectangleBoundaryIntegral_eq_zero_of_differentiableOn
     {g : Complex → Complex} {left right bottom top : Real}
     (hg : DifferentiableOn Complex g
@@ -80,7 +84,9 @@ def RectangleResidueIdentity
 
 /-- Unfolding a supplied residue identity yields the normalized equality.
 This small theorem is useful in signatures and makes clear that no existence
-claim is hidden in the definition.-/
+claim is hidden in the definition.
+@isnad1 id=eq.1h6v.s5.efcd007b3eb0 from=translated src=- shape=2c4819bc vocab=f970e960
+-/
 theorem RectangleResidueIdentity.boundaryIntegral_eq
     {logDerivative : Complex → Complex}
     {left right bottom top : Real} {divisorMass : Int}
@@ -232,7 +238,9 @@ of `z ↦ (z - rho)⁻¹` is exactly `2 * pi * I`.
 
 This theorem isolates what can already be proved from Mathlib's logarithm and
 interval-integral API.  A general argument principle still additionally needs
-an analytic finite-divisor factorization (or a meromorphic residue theorem).-/
+an analytic finite-divisor factorization (or a meromorphic residue theorem).
+@isnad1 id=eq.4h5v.s5.22029ceea923 from=translated src=- shape=55aaa130 vocab=553a5c9a
+-/
 theorem rectangleBoundaryIntegral_inv_sub_eq_twoPiI
     {left right bottom top : Real} {rho : Complex}
     (hleft : left < rho.re) (hright : rho.re < right)
@@ -295,7 +303,9 @@ theorem rectangleBoundaryIntegral_inv_sub_eq_twoPiI
 /-- The linear-principal-part version of
 `rectangleBoundaryIntegral_inv_sub_eq_twoPiI`.  In particular, choosing an
 integer cast as `c` gives exactly the residue contribution of a zero or pole
-with that signed multiplicity.-/
+with that signed multiplicity.
+@isnad1 id=eq.4h6v.s6.d66614414eda from=translated src=- shape=24cf247d vocab=038a6c44
+-/
 theorem rectangleBoundaryIntegral_const_mul_inv_sub_eq
     {left right bottom top : Real} {rho c : Complex}
     (hleft : left < rho.re) (hright : rho.re < right)
@@ -312,7 +322,9 @@ theorem rectangleBoundaryIntegral_const_mul_inv_sub_eq
 
 /-- A principal part whose center is outside the closed rectangle has zero
 boundary integral, directly by Mathlib's rectangular Cauchy--Goursat
-theorem.-/
+theorem.
+@isnad1 id=eq.1h5v.s5.1d55997fbec8 from=translated src=- shape=c35c07b7 vocab=d4bf22c5
+-/
 theorem rectangleBoundaryIntegral_inv_sub_eq_zero_of_outside
     {left right bottom top : Real} {rho : Complex}
     (hout : ∀ z ∈ ([[left, right]] ×ℂ [[bottom, top]]), z ≠ rho) :
@@ -324,7 +336,9 @@ theorem rectangleBoundaryIntegral_inv_sub_eq_zero_of_outside
     (sub_ne_zero.mpr (hout z hz))).differentiableWithinAt
 
 /-- Linear version of
-`rectangleBoundaryIntegral_inv_sub_eq_zero_of_outside`.-/
+`rectangleBoundaryIntegral_inv_sub_eq_zero_of_outside`.
+@isnad1 id=eq.1h6v.s6.3e7424ad0580 from=translated src=- shape=1b9a22dc vocab=7b894322
+-/
 theorem rectangleBoundaryIntegral_const_mul_inv_sub_eq_zero_of_outside
     {left right bottom top : Real} {rho c : Complex}
     (hout : ∀ z ∈ ([[left, right]] ×ℂ [[bottom, top]]), z ≠ rho) :
@@ -415,7 +429,9 @@ private theorem intervalIntegrable_const_mul_inv_vertical_of_ne
         (fun y hy => sub_ne_zero.mpr (hne y hy))))
 
 /-- Boundary integration commutes with a finite sum of principal parts as
-soon as the four families of edge restrictions are interval-integrable.-/
+soon as the four families of edge restrictions are interval-integrable.
+@isnad1 id=eq.4h8v.s8.926e2f7c1144 from=translated src=- shape=207c0dde vocab=f83d41e6
+-/
 theorem rectangleBoundaryIntegral_finitePrincipalPart_eq_sum
     {ι : Type*} (s : Finset ι) (rho : ι → Complex) (c : ι → Complex)
     {left right bottom top : Real}
@@ -455,7 +471,9 @@ open Classical in
 /-- General finite rectangular residue formula. Each center is classified as
 either strictly inside or outside the whole closed rectangle.  The latter
 condition is what a no-zero-on-boundary hypothesis reduces to after splitting
-on interior membership.-/
+on interior membership.
+@isnad1 id=eq.3h8v.s7.5cb6426e7df2 from=translated src=- shape=fa1f3099 vocab=606238aa
+-/
 theorem rectangleBoundaryIntegral_finitePrincipalPart_eq_insideSum
     {ι : Type*} (s : Finset ι) (rho : ι → Complex) (c : ι → Complex)
     {left right bottom top : Real}
@@ -557,7 +575,9 @@ Every center lies strictly inside the rectangle; the boundary integral of
 their finite principal-part sum is `2*pi*I` times the sum of the supplied
 coefficients.  This is the strongest residue theorem needed after one has
 factored an analytic function into its finite interior divisor and a
-zero-free analytic factor.-/
+zero-free analytic factor.
+@isnad1 id=eq.4h8v.s7.9fb0112ee192 from=translated src=- shape=0a1d1462 vocab=2896a4cc
+-/
 theorem rectangleBoundaryIntegral_finitePrincipalPart_eq
     {ι : Type*} (s : Finset ι) (rho : ι → Complex) (c : ι → Complex)
     {left right bottom top : Real}

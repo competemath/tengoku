@@ -327,7 +327,9 @@ structure CompletedXiZeroInvSqDistribution
     ∀ s : ℂ,
       ∀ᶠ i in Filter.cofinite, 2 * ‖s‖ ≤ ‖HZ.zeroLoc i‖
 
-/-- ⭐ **PROVED — convert to `CompletedXiHadamardPrefactorData`.**-/
+/-- ⭐ **PROVED — convert to `CompletedXiHadamardPrefactorData`.**
+@isnad1 id=complete.1h1v.s3.6e5d07d19345 from=translated src=- shape=c3984ded vocab=5fba7c56
+-/
 theorem ConcreteCompletedXiHadamardPrefactor.toPrefactorData
     {prefactor : ℂ → ℂ}
     (H : ConcreteCompletedXiHadamardPrefactor prefactor) :
@@ -358,7 +360,9 @@ noncomputable def HadamardProductLUCOnXiNonzeroData.toLUCLogDerivData
       intro s hs
       exact H.logDeriv_eq_tsum s hs }
 
-/-- ⭐ **PROVED — convert to `CompletedXiHadamardFactorizationData`.**-/
+/-- ⭐ **PROVED — convert to `CompletedXiHadamardFactorizationData`.**
+@isnad1 id=complete.1h3v.s4.22443dbbe62e from=translated src=- shape=b0d553a6 vocab=88e88a17
+-/
 theorem ConcreteCompletedXiHadamardFactorization.toFactorizationData
     {ι : Type} {HZ : ConcreteCompletedXiZeroSystem ι}
     {prefactor : ℂ → ℂ}
@@ -366,7 +370,9 @@ theorem ConcreteCompletedXiHadamardFactorization.toFactorizationData
     CompletedXiHadamardFactorizationData HZ.zeroLoc prefactor :=
   { factorization := H.factorization }
 
-/-- ⭐ **PROVED — convert to `HadamardZeroInvSqSummability`.**-/
+/-- ⭐ **PROVED — convert to `HadamardZeroInvSqSummability`.**
+@isnad1 id=hadamard.1h2v.s3.76036462c681 from=translated src=- shape=232020f7 vocab=9aded9fd
+-/
 theorem CompletedXiZeroInvSqDistribution.toHadamardZeroInvSqSummability
     {ι : Type} {HZ : ConcreteCompletedXiZeroSystem ι}
     (H : CompletedXiZeroInvSqDistribution HZ) :

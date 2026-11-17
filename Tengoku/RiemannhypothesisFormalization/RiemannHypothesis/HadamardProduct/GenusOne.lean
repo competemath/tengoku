@@ -34,7 +34,9 @@ namespace OverflowResidueRH
 noncomputable def hadamardGenus1Factor (ρ s : ℂ) : ℂ :=
   (1 - s / ρ) * Complex.exp (s / ρ)
 
-/-- ⭐ **PROVED — genus-1 factor non-vanishing when `s ≠ ρ` and `ρ ≠ 0`.**-/
+/-- ⭐ **PROVED — genus-1 factor non-vanishing when `s ≠ ρ` and `ρ ≠ 0`.**
+@isnad1 id=ne.2h2v.s4.63d930480702 from=translated src=- shape=c27ca7af vocab=4025fd56
+-/
 lemma hadamardGenus1Factor_ne_zero {ρ s : ℂ} (hρ : ρ ≠ 0) (hsρ : s ≠ ρ) :
     hadamardGenus1Factor ρ s ≠ 0 := by
   unfold hadamardGenus1Factor
@@ -48,7 +50,9 @@ lemma hadamardGenus1Factor_ne_zero {ρ s : ℂ} (hρ : ρ ≠ 0) (hsρ : s ≠ �
     exact hsρ h2
   · exact Complex.exp_ne_zero _
 
-/-- ⭐ **PROVED — genus-1 factor is differentiable everywhere.**-/
+/-- ⭐ **PROVED — genus-1 factor is differentiable everywhere.**
+@isnad1 id=differen.0h2v.s6.d359e74e81b8 from=translated src=- shape=fc53336a vocab=a24e95b0
+-/
 lemma hadamardGenus1Factor_differentiableAt (ρ s : ℂ) :
     DifferentiableAt ℂ (hadamardGenus1Factor ρ) s := by
   unfold hadamardGenus1Factor
@@ -61,20 +65,26 @@ lemma hadamardGenus1Factor_differentiableAt (ρ s : ℂ) :
   exact h_left.mul h_right
 
 /-- ⭐ **PROVED — every genus-one Hadamard factor is normalized to `1`
-at the origin.**-/
+at the origin.**
+@isnad1 id=eq.0h1v.s4.30ab4e11debe from=translated src=- shape=1d838610 vocab=4025fd56
+-/
 theorem hadamardGenus1Factor_zero (ρ : ℂ) :
     hadamardGenus1Factor ρ 0 = 1 := by
   simp [hadamardGenus1Factor]
 
 /-- ⭐ **PROVED — bridge between `logDeriv` (Mathlib) and
-`logDerivativeResponse` (this repository).** Definitionally equal.-/
+`logDerivativeResponse` (this repository).** Definitionally equal.
+@isnad1 id=eq.0h2v.s4.3bffa5ac6e2b from=translated src=- shape=43ff3e6e vocab=8e5b82d8
+-/
 theorem logDerivativeResponse_eq_logDeriv (f : ℂ → ℂ) (z : ℂ) :
     logDerivativeResponse f z = logDeriv f z := rfl
 
 /-- 🌟🌟🌟 **PROVED — equal log-derivatives force a quotient derivative
 to vanish.** Once two nonzero differentiable functions have the same
 logarithmic derivative at `s`, the quotient `f/g` has derivative `0`
-at `s`.-/
+at `s`.
+@isnad1 id=eq.5h3v.s7.cd4b0f492aff from=translated src=- shape=e05517b3 vocab=ae68af07
+-/
 theorem deriv_div_eq_zero_of_logDerivativeResponse_eq
     {f g : ℂ → ℂ} {s : ℂ}
     (hf_diff : DifferentiableAt ℂ f s)
@@ -90,7 +100,9 @@ theorem deriv_div_eq_zero_of_logDerivativeResponse_eq
   exact sub_eq_zero.mpr hlog
 
 /-- 🌟🌟🌟 **PROVED — per-factor log-derivative of the genus-1
-Hadamard factor.** `logDeriv ((1 - ·/ρ) · exp(·/ρ)) s = 1/(s-ρ) + 1/ρ`.-/
+Hadamard factor.** `logDeriv ((1 - ·/ρ) · exp(·/ρ)) s = 1/(s-ρ) + 1/ρ`.
+@isnad1 id=eq.2h2v.s6.7cc19485452d from=translated src=- shape=e0f4580a vocab=00043e40
+-/
 theorem logDeriv_hadamardGenus1Factor {ρ s : ℂ} (hρ : ρ ≠ 0) (hs : s ≠ ρ) :
     logDeriv (hadamardGenus1Factor ρ) s = 1 / (s - ρ) + 1 / ρ := by
   have h_left_diff : DifferentiableAt ℂ (fun y : ℂ => 1 - y/ρ) s :=
@@ -133,14 +145,18 @@ theorem logDeriv_hadamardGenus1Factor {ρ s : ℂ} (hρ : ρ ≠ 0) (hs : s ≠ 
   ring
 
 /-- 🌟🌟🌟 **PROVED — per-factor `logDerivativeResponse` of the genus-1
-Hadamard factor.** Same identity under the definitional bridge.-/
+Hadamard factor.** Same identity under the definitional bridge.
+@isnad1 id=eq.2h2v.s6.566ea8e93784 from=translated src=- shape=23c85485 vocab=ffac9da4
+-/
 theorem logDerivativeResponse_hadamardGenus1Factor
     {ρ s : ℂ} (hρ : ρ ≠ 0) (hs : s ≠ ρ) :
     logDerivativeResponse (hadamardGenus1Factor ρ) s = 1 / (s - ρ) + 1 / ρ := by
   rw [logDerivativeResponse_eq_logDeriv]
   exact logDeriv_hadamardGenus1Factor hρ hs
 
-/-- ⭐ **PROVED — genus-1 factor vanishes at its own zero `s = ρ`.**-/
+/-- ⭐ **PROVED — genus-1 factor vanishes at its own zero `s = ρ`.**
+@isnad1 id=eq.1h1v.s4.085e365f836f from=translated src=- shape=ef8e552e vocab=4025fd56
+-/
 lemma hadamardGenus1Factor_self_eq_zero
     {ρ : ℂ} (hρ : ρ ≠ 0) :
     hadamardGenus1Factor ρ ρ = 0 := by

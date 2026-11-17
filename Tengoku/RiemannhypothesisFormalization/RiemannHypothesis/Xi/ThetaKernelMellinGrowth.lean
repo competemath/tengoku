@@ -37,13 +37,18 @@ used by `WeakFEPair.f_modif` to preserve exact inversion symmetry.-/
 noncomputable def hurwitzThetaMellinKernel : ℝ → ℂ :=
   (HurwitzZeta.hurwitzEvenFEPair 0).f_modif
 
+/--
+@isnad1 id=eq.0h0v.s3.82b03f801015 from=translated src=- shape=1ac31801 vocab=760f4f6c
+-/
 @[simp]
 theorem hurwitzThetaMellinKernel_one :
     hurwitzThetaMellinKernel 1 = 0 := by
   simp [hurwitzThetaMellinKernel, WeakFEPair.f_modif]
 
 /-- Above `1`, the modified kernel is exactly the constant-subtracted even
-Hurwitz kernel.-/
+Hurwitz kernel.
+@isnad1 id=eq.1h1v.s5.5bb1bae207e1 from=translated src=- shape=400bdb69 vocab=25d74205
+-/
 theorem hurwitzThetaMellinKernel_eq_evenKernel_sub_one
     {x : ℝ} (hx : 1 < x) :
     hurwitzThetaMellinKernel x =
@@ -57,7 +62,9 @@ private theorem hurwitzEvenFEPair_zero_g_modif_eq_f_modif (x : ℝ) :
   change (HurwitzZeta.hurwitzEvenFEPair 0).symm.f_modif x = _
   rw [HurwitzZeta.hurwitzEvenFEPair_zero_symm]
 
-/-- Exact self-dual inversion of the modified kernel, with weight `1 / 2`.-/
+/-- Exact self-dual inversion of the modified kernel, with weight `1 / 2`.
+@isnad1 id=eq.1h1v.s6.06ef23a495bc from=translated src=- shape=e66a995c vocab=84ba480b
+-/
 theorem hurwitzThetaMellinKernel_inversion (x : ℝ) (hx : 0 < x) :
     hurwitzThetaMellinKernel (1 / x) =
       ((x ^ (1 / 2 : ℝ) : ℝ) : ℂ) • hurwitzThetaMellinKernel x := by
@@ -71,7 +78,9 @@ which bound the concrete modified kernel on the entire upper half-line.
 The compact maximum is taken for
 `x ↦ ‖(evenKernel 0 x - 1 : ℂ)‖ * exp (p * x)`.  This avoids any
 continuity claim about `f_modif` at `x = 1`, where that function is defined to
-be zero.-/
+be zero.
+@isnad1 id=ex.0h0v.s6.e4bf4548e3a1 from=translated src=- shape=d6102c92 vocab=d7f437ad
+-/
 theorem exists_hurwitzThetaMellinKernel_upper_bound :
     ∃ p A : ℝ, 0 < p ∧ 0 ≤ A ∧
       ∀ x : ℝ, 1 ≤ x →
@@ -150,6 +159,9 @@ structure HurwitzThetaMellinUpperDecay where
   upper : ∀ x : ℝ, 1 ≤ x →
     ‖hurwitzThetaMellinKernel x‖ ≤ A * Real.exp (-(p * x))
 
+/--
+@isnad1 id=nonempty.0h0v.s1.2cdb89156316 from=translated src=- shape=49959d42 vocab=d30145ef
+-/
 theorem hurwitzThetaMellinUpperDecay_nonempty :
     Nonempty HurwitzThetaMellinUpperDecay := by
   obtain ⟨p, A, hp, hA, hupper⟩ :=
@@ -196,7 +208,9 @@ noncomputable def hurwitzThetaMellinTwoSidedExponentialDecay :
 
 /-- Direct factorial Mellin envelope for the concrete modified Hurwitz theta
 kernel.  The only remaining analytic input at a point `s` is Mellin
-convergence itself.-/
+convergence itself.
+@isnad1 id=le.3h2v.s7.f70bb08381db from=translated src=- shape=a57b1f5a vocab=c562acea
+-/
 theorem norm_mellin_hurwitzThetaMellinKernel_le_factorial
     (s : ℂ) (n : ℕ)
     (hupper : s.re - 1 ≤ n)
@@ -214,7 +228,9 @@ theorem norm_mellin_hurwitzThetaMellinKernel_le_factorial
 /-! ## The concrete completed zeta function -/
 
 /-- Mathlib's pole-subtracted completed zeta function is exactly one half of
-the Mellin transform of the concrete modified theta kernel at `s / 2`.-/
+the Mellin transform of the concrete modified theta kernel at `s / 2`.
+@isnad1 id=eq.0h1v.s5.73948ef86e61 from=translated src=- shape=98f1de63 vocab=bde5d855
+-/
 theorem completedRiemannZeta₀_eq_thetaMellin (s : ℂ) :
     completedRiemannZeta₀ s =
       mellin hurwitzThetaMellinKernel (s / 2) / 2 := by

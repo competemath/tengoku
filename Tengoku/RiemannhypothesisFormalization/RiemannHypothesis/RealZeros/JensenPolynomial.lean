@@ -49,7 +49,9 @@ noncomputable def jensenPolynomial
 
 /-! ## Exact finite-polynomial identities -/
 
-/-- Exact coefficient formula for a Jensen polynomial.-/
+/-- Exact coefficient formula for a Jensen polynomial.
+@isnad1 id=eq.0h4v.s5.1e30e1d4d60f from=translated src=- shape=d39051f2 vocab=0aede2e0
+-/
 theorem jensenPolynomial_coeff
     (γ : ℕ → ℝ) (n d k : ℕ) :
     (jensenPolynomial γ n d).coeff k =
@@ -77,7 +79,9 @@ theorem jensenPolynomial_coeff
 
 /-- Exact Jensen differentiation identity
 `(J_γ^{d+1,n})' = (d+1) J_γ^{d,n+1}`.  This is the finite algebraic
-mechanism behind passage from unshifted to shifted Jensen polynomials.-/
+mechanism behind passage from unshifted to shifted Jensen polynomials.
+@isnad1 id=eq.0h3v.s7.64ac530f005c from=translated src=- shape=a7c650a5 vocab=f4b8c0ab
+-/
 theorem jensenPolynomial_derivative_succ
     (γ : ℕ → ℝ) (n d : ℕ) :
     (jensenPolynomial γ n (d + 1)).derivative =
@@ -120,7 +124,9 @@ def PolynomialHyperbolic (p : Polynomial ℂ) : Prop :=
 namespace PolynomialHyperbolic
 
 /-- Gauss--Lucas gives a fully formal finite-dimensional closure theorem:
-the nonzero derivative of a hyperbolic polynomial is hyperbolic.-/
+the nonzero derivative of a hyperbolic polynomial is hyperbolic.
+@isnad1 id=polynomi.2h1v.s7.a3a936bf3fac from=translated src=- shape=7f95bffa vocab=45ecb05d
+-/
 theorem derivative {p : Polynomial ℂ}
     (hp : PolynomialHyperbolic p) (hderiv : p.derivative ≠ 0) :
     PolynomialHyperbolic p.derivative := by
@@ -133,7 +139,9 @@ theorem derivative {p : Polynomial ℂ}
     · exact hp.2
 
 /-- Removing a constant polynomial factor preserves hyperbolicity whenever
-the product itself is hyperbolic.-/
+the product itself is hyperbolic.
+@isnad1 id=polynomi.1h2v.s6.8363152c17ff from=translated src=- shape=dc08cd36 vocab=66e20d0e
+-/
 theorem of_C_mul {p : Polynomial ℂ} {c : ℂ}
     (h : PolynomialHyperbolic (Polynomial.C c * p)) :
     PolynomialHyperbolic p := by
@@ -157,7 +165,9 @@ function `∑ γ(k) z^k/k!`; all-shifts hyperbolicity is strictly stronger.-/
 def JensenPolynomialHyperbolicityAtOrigin (γ : ℕ → ℝ) : Prop :=
   ∀ d : ℕ, PolynomialHyperbolic (jensenPolynomial γ 0 d)
 
-/-- All-shifts hyperbolicity implies the unshifted predicate.-/
+/-- All-shifts hyperbolicity implies the unshifted predicate.
+@isnad1 id=jensenpo.1h1v.s3.aad095e45596 from=translated src=- shape=cdb3b71b vocab=bb13da65
+-/
 theorem JensenPolynomialHyperbolicity.atOrigin
     {γ : ℕ → ℝ} (hγ : JensenPolynomialHyperbolicity γ) :
     JensenPolynomialHyperbolicityAtOrigin γ :=
@@ -166,7 +176,9 @@ theorem JensenPolynomialHyperbolicity.atOrigin
 /-- One differentiation step converts hyperbolicity of `J^{d+1,n}` into
 hyperbolicity of `J^{d,n+1}`, provided the latter polynomial is not the zero
 polynomial.  The displayed coefficient condition is exactly what ensures
-that nondegeneracy.-/
+that nondegeneracy.
+@isnad1 id=polynomi.2h3v.s6.a1f25448f771 from=translated src=- shape=8f65c698 vocab=dddd6d6c
+-/
 theorem jensenPolynomial_hyperbolic_shift_of_succ
     {γ : ℕ → ℝ} {n d : ℕ}
     (h : PolynomialHyperbolic (jensenPolynomial γ n (d + 1)))
@@ -189,7 +201,9 @@ theorem jensenPolynomial_hyperbolic_shift_of_succ
 hyperbolicity of all unshifted Jensen polynomials implies hyperbolicity of
 all shifted Jensen polynomials.  The hypothesis is necessary: a sequence
 supported only at index zero has hyperbolic unshifted polynomials but zero
-shifted polynomials.-/
+shifted polynomials.
+@isnad1 id=jensenpo.2h1v.s4.7a59a2f88913 from=translated src=- shape=a1ef8281 vocab=bb13da65
+-/
 theorem JensenPolynomialHyperbolicityAtOrigin.allShifts_of_ne_zero
     {γ : ℕ → ℝ}
     (H : JensenPolynomialHyperbolicityAtOrigin γ)
@@ -213,7 +227,9 @@ noncomputable def rescaledJensenPolynomial
     (Polynomial.C (Complex.ofReal (((d + 1 : ℕ) : ℝ)⁻¹)) * Polynomial.X)
 
 /-- Jensen polynomials have real coefficients, hence obey Schwarz
-reflection after evaluation.-/
+reflection after evaluation.
+@isnad1 id=eq.0h4v.s6.1809da9e25bc from=translated src=- shape=8949b2fa vocab=688676cb
+-/
 theorem jensenPolynomial_schwarz
     (γ : ℕ → ℝ) (n d : ℕ) (z : ℂ) :
     (jensenPolynomial γ n d).eval (star z) =
@@ -231,7 +247,9 @@ theorem jensenPolynomial_schwarz
   simp
 
 /-- The standard rescaling preserves the real-coefficient Schwarz
-reflection identity.-/
+reflection identity.
+@isnad1 id=eq.0h3v.s6.0dcd3adc081f from=translated src=- shape=ceeb806d vocab=9ec5623a
+-/
 theorem rescaledJensenPolynomial_schwarz
     (γ : ℕ → ℝ) (d : ℕ) (z : ℂ) :
     (rescaledJensenPolynomial γ d).eval (star z) =
@@ -244,7 +262,9 @@ theorem rescaledJensenPolynomial_schwarz
       (Complex.ofReal (((d + 1 : ℕ) : ℝ)⁻¹) * z)
 
 /-- The all-shifts hyperbolicity predicate supplies hyperbolicity of every
-member of the standard rescaled approximation sequence.-/
+member of the standard rescaled approximation sequence.
+@isnad1 id=polynomi.1h2v.s3.2d20eaa757a9 from=translated src=- shape=eecc2ef0 vocab=799390d2
+-/
 theorem JensenPolynomialHyperbolicityAtOrigin.rescaled
     {γ : ℕ → ℝ} (hγ : JensenPolynomialHyperbolicityAtOrigin γ) (d : ℕ) :
     PolynomialHyperbolic (rescaledJensenPolynomial γ d) := by
@@ -299,7 +319,9 @@ noncomputable def JensenConvergenceData.toLaguerrePolyaApproximationData
   tendstoLocallyUniformly := C.tendstoLocallyUniformly
 
 /-- A nontrivial Jensen limit has only real zeros once the explicit
-hyperbolicity and convergence inputs are supplied.-/
+hyperbolicity and convergence inputs are supplied.
+@isnad1 id=eq.4h3v.s5.05c5b4c4e360 from=translated src=- shape=7c26a408 vocab=4a0b4ff8
+-/
 theorem roots_real_of_jensen_hyperbolicity
     {F : ℂ → ℂ} {γ : ℕ → ℝ}
     (C : JensenConvergenceData F γ)

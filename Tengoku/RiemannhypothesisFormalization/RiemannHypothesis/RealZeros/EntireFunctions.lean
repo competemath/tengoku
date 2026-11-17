@@ -42,7 +42,9 @@ open Complex Filter Topology
 
 /-- If `P` holds on a neighborhood of `ρ`, then `P` holds
 on the entire probe segment `ρ − ε·I` for all small enough `ε`. Useful
-for both polynomial and xi-pullback discharges.-/
+for both polynomial and xi-pullback discharges.
+@isnad1 id=ex.2h2v.s6.83f7922d1c46 from=translated src=- shape=fec75201 vocab=21460d16
+-/
 theorem eventually_nhds_implies_probe_eventually
     {P : ℂ → Prop} {ρ : ℂ}
     (hP : ∀ᶠ z in 𝓝 ρ, P z)
@@ -69,7 +71,9 @@ theorem eventually_nhds_implies_probe_eventually
 `P` hold *at* the probe `ρ − ε·I`, it holds on an entire neighbourhood of
 it. This is the form needed when feeding the data into Mathlib lemmas of
 the shape `Filter.EventuallyEq.deriv_eq`, which require eventual equality
-*at* the differentiation point.-/
+*at* the differentiation point.
+@isnad1 id=ex.2h2v.s6.f86dedaece16 from=translated src=- shape=4520a3b8 vocab=21460d16
+-/
 theorem eventually_nhds_implies_probe_eventually_nhds
     {P : ℂ → Prop} {ρ : ℂ}
     (hP : ∀ᶠ z in 𝓝 ρ, P z)
@@ -118,7 +122,9 @@ structure EntireLocalPoleDecompositionHypothesis (F : ℂ → ℂ) : Prop where
       Nonempty (LocalLogDerivPoleDecomposition (logDerivativeResponse F) ρ)
 
 /-- The entire-function pole-decomposition hypothesis implies the abstract
-`LogDerivPoleWitnessLaw`.-/
+`LogDerivPoleWitnessLaw`.
+@isnad1 id=logderiv.1h1v.s3.441c49515f61 from=translated src=- shape=9e398655 vocab=e16e24ef
+-/
 theorem entireLocalPoleDecomposition_gives_poleWitness
     {F : ℂ → ℂ} (H : EntireLocalPoleDecompositionHypothesis F) :
     LogDerivPoleWitnessLaw F (logDerivativeResponse F) where
@@ -135,7 +141,9 @@ is real.
 Inhabiting `EntireLocalPoleDecompositionHypothesis F` for any analytic
 `F` reduces to the local factorization at each zero plus the bounded
 background — both standard complex analysis, handled by the reusable
-`continuousAt_implies_probe_bounded`.-/
+`continuousAt_implies_probe_bounded`.
+@isnad1 id=eq.4h2v.s6.74b87283263f from=translated src=- shape=ff50a0e2 vocab=8ee6873b
+-/
 theorem entire_function_roots_real_of_logDeriv_antiHerglotz_and_conjSymm
     (F : ℂ → ℂ)
     (H : EntireLocalPoleDecompositionHypothesis F)
@@ -176,7 +184,9 @@ transfers to the actual log-derivative response:
 Mechanism: `Filter.EventuallyEq.deriv_eq` rewrites `deriv F z` to the
 derivative of the factored form; the product/power rules compute the
 latter; `complex_local_pole_decomposition_general` reduces the
-resulting algebraic ratio.-/
+resulting algebraic ratio.
+@isnad1 id=eq.5h5v.s7.b94dba568161 from=translated src=- shape=6f22a05d vocab=17181e8f
+-/
 theorem logDeriv_of_eventual_factorization
     {F g : ℂ → ℂ} {ρ z : ℂ} {m : ℕ}
     (hm : 0 < m)
@@ -309,7 +319,9 @@ structure EntireZeroFactorizationHypothesis (F : ℂ → ℂ) : Prop where
 hypothesis.** Direct composition with the bridge above. After this, the
 §10 capstone `entire_function_roots_real_of_logDeriv_antiHerglotz_and_conjSymm`
 is one step away from being hypothesis-free for any `F` supplying a
-`LocalAnalyticZeroFactorization` at each upper-half-plane zero.-/
+`LocalAnalyticZeroFactorization` at each upper-half-plane zero.
+@isnad1 id=entirelo.1h1v.s3.ba94c027c84c from=translated src=- shape=c3984ded vocab=43a37819
+-/
 theorem entireZeroFactorization_gives_EntireLocalPoleDecompositionHypothesis
     {F : ℂ → ℂ}
     (H : EntireZeroFactorizationHypothesis F) :
@@ -321,7 +333,9 @@ theorem entireZeroFactorization_gives_EntireLocalPoleDecompositionHypothesis
 
 /-- ⭐ **PROVED — ENTIRE-FUNCTION TEMPLATE, ANALYTIC-INPUT FORM.**
 The §10 capstone, with the abstract pole-decomposition hypothesis replaced
-by the natural analytic factorization hypothesis.-/
+by the natural analytic factorization hypothesis.
+@isnad1 id=eq.4h2v.s6.dd3c07087559 from=translated src=- shape=ff50a0e2 vocab=f9cc7f25
+-/
 theorem entire_function_roots_real_of_analytic_factor_antiHerglotz_and_conjSymm
     (F : ℂ → ℂ)
     (H : EntireZeroFactorizationHypothesis F)
@@ -375,7 +389,9 @@ def EntireZerosNonDegenerate (F : ℂ → ℂ) : Prop :=
   ∀ ρ : ℂ, F ρ = 0 → 0 < ρ.im → AnalyticZeroNonDegenerate F ρ
 
 /-- Analytic factorization plus nondegeneracy gives the entire-function
-zero-factorization hypothesis.-/
+zero-factorization hypothesis.
+@isnad1 id=entireze.2h1v.s3.e96967fa208a from=translated src=- shape=ec59b149 vocab=86cf994d
+-/
 theorem entireZeroFactorization_of_analytic
     {F : ℂ → ℂ}
     (h_admits : EntireAnalyticZerosAdmitFactorization F)
@@ -385,7 +401,9 @@ theorem entireZeroFactorization_of_analytic
     h_admits ρ (h_nondeg ρ hzero hupper) hzero
 
 /-- Analytic factorization and nondegenerate upper-half-plane zeros give the
-entire-function pole-decomposition hypothesis.-/
+entire-function pole-decomposition hypothesis.
+@isnad1 id=entirelo.2h1v.s3.1527982d00d8 from=translated src=- shape=ec59b149 vocab=e73e426a
+-/
 theorem entireLocalPoleDecomposition_of_analytic
     {F : ℂ → ℂ}
     (h_admits : EntireAnalyticZerosAdmitFactorization F)
@@ -397,7 +415,9 @@ theorem entireLocalPoleDecomposition_of_analytic
 /-- The sign condition, Schwarz reflection, analyticity, and
 upper-half-plane zero nondegeneracy imply that all zeros are real. The
 entire-function template has the
-pole-decomposition hypothesis discharged from the natural analytic inputs.-/
+pole-decomposition hypothesis discharged from the natural analytic inputs.
+@isnad1 id=eq.5h2v.s6.2db52fd5ce2e from=translated src=- shape=fb011e82 vocab=e704456e
+-/
 theorem entire_function_roots_real_of_analytic_inputs
     (F : ℂ → ℂ)
     (h_admits : EntireAnalyticZerosAdmitFactorization F)
@@ -421,7 +441,9 @@ theorem entire_function_roots_real_of_analytic_inputs
 /-- Mathlib discharge of `AnalyticZeroAdmitsFactorization`.
 Given any `F : ℂ → ℂ` analytic and non-degenerate at `ρ` with `F ρ = 0`,
 Mathlib's isolated-zeros machinery extracts a positive multiplicity `m`
-and an analytic non-vanishing remainder `g`.-/
+and an analytic non-vanishing remainder `g`.
+@isnad1 id=analytic.0h2v.s3.edbe8b52bd97 from=translated src=- shape=60da5477 vocab=bf0a881e
+-/
 theorem analytic_zero_admits_factorization
     (F : ℂ → ℂ) (ρ : ℂ) :
     AnalyticZeroAdmitsFactorization F ρ := by
@@ -459,7 +481,9 @@ theorem analytic_zero_admits_factorization
            hfactor := hfactor }⟩
 
 /-- Every `F : ℂ → ℂ`
-automatically inhabits `EntireAnalyticZerosAdmitFactorization`.-/
+automatically inhabits `EntireAnalyticZerosAdmitFactorization`.
+@isnad1 id=entirean.0h1v.s2.a769802ae18a from=translated src=- shape=e7ab9488 vocab=072ba76b
+-/
 theorem entireAnalyticZerosAdmitFactorization_holds
     (F : ℂ → ℂ) :
     EntireAnalyticZerosAdmitFactorization F :=
@@ -468,7 +492,9 @@ theorem entireAnalyticZerosAdmitFactorization_holds
 /-- With the Mathlib factorization theorem in hand, the `h_admits` hypothesis
 is automatic; the remaining inputs
 are non-degeneracy of the UHP zeros, anti-Herglotz of `Λ[F]`, and Schwarz
-reflection.-/
+reflection.
+@isnad1 id=eq.4h2v.s6.3b3f4c27859b from=translated src=- shape=ff50a0e2 vocab=9f1e4f5c
+-/
 theorem entire_function_roots_real_of_analytic_nondeg
     (F : ℂ → ℂ)
     (h_nondeg : EntireZerosNonDegenerate F)
@@ -483,7 +509,9 @@ identically-zero germ. Consequently, every zero is nondegenerate in the sense
 needed by the local factorization argument.
 
 This is the natural global discharge of `EntireZerosNonDegenerate`: the
-identity theorem replaces the project-specific nondegeneracy package.-/
+identity theorem replaces the project-specific nondegeneracy package.
+@isnad1 id=entireze.2h1v.s5.94911bfa47d1 from=translated src=- shape=0f6a19e8 vocab=5f0d4955
+-/
 theorem entireZerosNonDegenerate_of_analyticOnNhd_univ
     {F : ℂ → ℂ}
     (hF : AnalyticOnNhd ℂ F Set.univ)
@@ -508,7 +536,9 @@ nonpositive imaginary part away from its zeros has no zero in the open upper
 half-plane.
 
 The sign assumption is stated only where `F z ≠ 0`; this avoids relying on
-Lean's totalized value for division by zero.-/
+Lean's totalized value for division by zero.
+@isnad1 id=ne.4h2v.s6.836823fe6799 from=translated src=- shape=05896787 vocab=ec013879
+-/
 theorem entire_function_no_upper_zeros_of_analytic_nontrivial
     (F : ℂ → ℂ)
     (hF : AnalyticOnNhd ℂ F Set.univ)
@@ -529,7 +559,9 @@ theorem entire_function_no_upper_zeros_of_analytic_nontrivial
 upper-half-plane logarithmic-derivative sign has only real zeros.
 
 This theorem exposes only standard analytic hypotheses. Local zero
-factorization and the pole witness are discharged internally.-/
+factorization and the pole witness are discharged internally.
+@isnad1 id=eq.5h2v.s7.162aa6f1deb5 from=translated src=- shape=e2873f42 vocab=8e2a04b4
+-/
 theorem entire_function_roots_real_of_analytic_nontrivial
     (F : ℂ → ℂ)
     (hF : AnalyticOnNhd ℂ F Set.univ)

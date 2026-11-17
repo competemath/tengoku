@@ -72,7 +72,9 @@ noncomputable def logDerivativeResponse (f : ℂ → ℂ) : ℂ → ℂ :=
 
 /-- **PROVED — totalized log-derivative is `0` at any zero.**
 Pure consequence of Lean's `a / 0 = 0` convention; recorded as a named
-lemma so the totalization behaviour is explicit.-/
+lemma so the totalization behaviour is explicit.
+@isnad1 id=eq.1h2v.s4.a83895f64cb2 from=translated src=- shape=1c306a95 vocab=231148a7
+-/
 theorem logDerivativeResponse_eq_zero_at_zero
     {f : ℂ → ℂ} {ρ : ℂ} (hzero : f ρ = 0) :
     logDerivativeResponse f ρ = 0 := by
@@ -82,7 +84,9 @@ theorem logDerivativeResponse_eq_zero_at_zero
 /-- **PROVED — anti-Herglotz inequality is vacuous at any zero.**
 At a zero, both sides of `(R z).im ≤ 0` are `0`. The substantive
 content of `AntiHerglotzUHP R` therefore lies entirely on the
-zero-free set.-/
+zero-free set.
+@isnad1 id=eq.1h2v.s4.11de2193fe60 from=translated src=- shape=a1e6859e vocab=ad1007d3
+-/
 theorem antiHerglotz_at_zero_is_vacuous
     {f : ℂ → ℂ} {ρ : ℂ} (hzero : f ρ = 0) :
     (logDerivativeResponse f ρ).im = 0 := by
@@ -94,7 +98,9 @@ the pole-decomposition engine lives at probe `ρ − ε·I` with `ε > 0`, and
 the imaginary parts differ by exactly `ε`, so the probe is distinct from
 the pole `ρ` itself. The totalization at `ρ` therefore never enters the
 engine's contradiction. (The companion `probe_ne_pole` in `PoleProbe`
-proves the same fact in the same form.)-/
+proves the same fact in the same form.)
+@isnad1 id=ne.1h2v.s5.6d85bedc4fdc from=translated src=- shape=0ba7dce2 vocab=b24b8591
+-/
 theorem lowerProbe_ne_pole
     (ρ : ℂ) (ε : ℝ) (hε : 0 < ε) :
     ρ - (ε : ℂ) * Complex.I ≠ ρ := by
@@ -111,7 +117,9 @@ points.** `AntiHerglotzUHP R` with totalized `R = Λ[f]` is *equivalent*
 on its substantive content to the same inequality demanded only at points
 where `f ≠ 0`. The forward direction is trivial; the backward direction
 patches in the vacuous `0 ≤ 0` at zeros. This formalises the claim that
-the totalization adds no proof obligations.-/
+the totalization adds no proof obligations.
+@isnad1 id=iff.0h1v.s5.8828b3c2aa86 from=translated src=- shape=baafcb74 vocab=56458931
+-/
 theorem antiHerglotz_iff_antiHerglotz_away_from_zeros
     (f : ℂ → ℂ) :
     AntiHerglotzUHP (logDerivativeResponse f)
@@ -130,7 +138,9 @@ theorem antiHerglotz_iff_antiHerglotz_away_from_zeros
 -- the Cauchy-kernel and zero-counting layers built above this module.
 -- =====================================================================
 
-/-- ⭐ **PROVED — secant lower bound for `Real.log`** on `[α, β] ⊆ (0, ∞)`.-/
+/-- ⭐ **PROVED — secant lower bound for `Real.log`** on `[α, β] ⊆ (0, ∞)`.
+@isnad1 id=le.4h3v.s6.bba632c1e6a5 from=translated src=- shape=7dbf86fb vocab=58955ff2
+-/
 theorem Real.secant_le_log
     {α β T : ℝ} (hα : 0 < α) (hαβ : α < β) (hαT : α ≤ T) (hTβ : T ≤ β) :
     ((β - T) / (β - α)) * Real.log α + ((T - α) / (β - α)) * Real.log β
@@ -158,7 +168,9 @@ theorem Real.secant_le_log
 /-- ⭐ **PROVED — `IntervalIntegrable.ofReal` for ℝ → ℂ.** Lifts real
 interval integrability to ℂ via the pointwise coercion. Built from
 Mathlib's `MeasureTheory.Integrable.ofReal` on each of the two
-`IntegrableOn` halves of `IntervalIntegrable`.-/
+`IntegrableOn` halves of `IntervalIntegrable`.
+@isnad1 id=interval.1h3v.s5.f615ce4129d3 from=translated src=- shape=0ac2a27f vocab=9d7d9828
+-/
 lemma intervalIntegrable_ofReal
     {f : ℝ → ℝ} {a b : ℝ}
     (hf : IntervalIntegrable f MeasureTheory.volume a b) :
@@ -172,7 +184,9 @@ Cauchy criterion via `Metric.cauchy_iff`, with the key step
 `‖∫_{Y1}^{Y2} f‖ ≤ ∫_{Y1}^{Y2} ‖f u‖ du ≤ ∫_{Y1}^{Y2} M u du`
 (combining `MeasureTheory.norm_integral_le_integral_norm` and
 `intervalIntegral.integral_mono_on`) plus the M-tail smallness from
-the M-partial Cauchy structure.-/
+the M-partial Cauchy structure.
+@isnad1 id=ex.4h4v.s7.919a4a08d76b from=translated src=- shape=b5d4041a vocab=4bf1555c
+-/
 theorem improperComplexIntegralConverges_of_normMajorant
     {f : ℝ → ℂ} {M : ℝ → ℝ} {T LM : ℝ}
     (hf_int : ∀ X, T ≤ X → IntervalIntegrable f MeasureTheory.volume T X)
@@ -279,14 +293,18 @@ theorem improperComplexIntegralConverges_of_normMajorant
 
 /-- ⭐ **PROVED — `log X / X → 0`** as `X → ∞`. Via Mathlib's
 `Real.tendsto_pow_log_div_mul_add_atTop` specialized to `n = 1, a = 1,
-b = 0`.-/
+b = 0`.
+@isnad1 id=tendsto.0h0v.s5.c54c5714bc4e from=translated src=- shape=97d5bd57 vocab=0815b434
+-/
 lemma log_div_id_atTop_tendsto_zero :
     Filter.Tendsto (fun X : ℝ => Real.log X / X) Filter.atTop (𝓝 0) := by
   have := Real.tendsto_pow_log_div_mul_add_atTop (1 : ℝ) (0 : ℝ) 1
     (by norm_num : (1 : ℝ) ≠ 0)
   simpa using this
 
-/-- ⭐ **PROVED — `z - (u : ℂ) ≠ 0` when `0 < z.im`.**-/
+/-- ⭐ **PROVED — `z - (u : ℂ) ≠ 0` when `0 < z.im`.**
+@isnad1 id=ne.1h2v.s5.75ccc0230792 from=translated src=- shape=48243d09 vocab=05feb82f
+-/
 lemma complex_sub_real_ne_zero_of_im_pos
     {z : ℂ} (hz : 0 < z.im) (u : ℝ) :
     z - (u : ℂ) ≠ 0 := by
@@ -296,7 +314,9 @@ lemma complex_sub_real_ne_zero_of_im_pos
   rw [him'] at him
   linarith
 
-/-- ⭐ **PROVED — `z + (u : ℂ) ≠ 0` when `0 < z.im`.**-/
+/-- ⭐ **PROVED — `z + (u : ℂ) ≠ 0` when `0 < z.im`.**
+@isnad1 id=ne.1h2v.s5.d2b96eba2020 from=translated src=- shape=48243d09 vocab=c7bf89cf
+-/
 lemma complex_add_real_ne_zero_of_im_pos
     {z : ℂ} (hz : 0 < z.im) (u : ℝ) :
     z + (u : ℂ) ≠ 0 := by
@@ -308,7 +328,9 @@ lemma complex_add_real_ne_zero_of_im_pos
 
 /-- 🌟 **PROVED — `arctan ((X - a)/y) → π/2` as `X → ∞` for `y > 0`.**
 The inner shift `(X - a)/y → ∞` (since `y > 0`); compose with
-`Real.tendsto_arctan_atTop`.-/
+`Real.tendsto_arctan_atTop`.
+@isnad1 id=tendsto.1h2v.s6.e06d875c87d5 from=translated src=- shape=db5267ef vocab=58f55c8f
+-/
 lemma tendsto_arctan_shift_atTop
     (a : ℝ) {y : ℝ} (hy : 0 < y) :
     Filter.Tendsto
@@ -326,14 +348,18 @@ lemma tendsto_arctan_shift_atTop
   exact h_arctan_at_top.comp h_shift
 
 /-- ⭐ **PROVED — `π/2 − arctan s = arctan (1/s)` for `s > 0`.**
-Direct from Mathlib's `Real.arctan_inv_of_pos`.-/
+Direct from Mathlib's `Real.arctan_inv_of_pos`.
+@isnad1 id=eq.1h1v.s5.dfa9011579a1 from=translated src=- shape=430691f0 vocab=da55b4bc
+-/
 lemma pi_div_two_sub_arctan_eq_arctan_inv
     {s : ℝ} (hs : 0 < s) :
     Real.pi / 2 - Real.arctan s = Real.arctan (1 / s) := by
   rw [one_div]
   exact (Real.arctan_inv_of_pos hs).symm
 
-/-- ⭐ **PROVED — generic pointwise list sum bound.**-/
+/-- ⭐ **PROVED — generic pointwise list sum bound.**
+@isnad1 id=le.1h4v.s5.61bb4d5b4655 from=translated src=- shape=1d687187 vocab=484108fc
+-/
 lemma list_sum_le_sum_of_pointwise
     {α : Type*} {L : List α} {f g : α → ℝ}
     (h : ∀ a ∈ L, f a ≤ g a) :
@@ -353,7 +379,9 @@ real series.**
 
 This is the summability engine needed for the Riemann-von Mangoldt side:
 partition a nonnegative family into finite fibers, dominate the `tsum` of
-each fiber by a summable sequence, and the original family is summable.-/
+each fiber by a summable sequence, and the original family is summable.
+@isnad1 id=summable.4h4v.s7.05963a83e745 from=translated src=- shape=5b21e87a vocab=dfb24076
+-/
 theorem summable_of_nonneg_fiber_tsum_le
     {ι : Type*}
     (bin : ι → ℕ)
@@ -398,7 +426,9 @@ theorem summable_of_nonneg_fiber_tsum_le
 This is the classical convergence input behind the Riemann–von Mangoldt shell
 route: an annular zero count of size `O(log n)` produces an inverse-square mass
 of size `O(log n / n^2)`, which is summable.  The proof compares with the
-convergent `p`-series `∑ 1 / n^(3/2)` using `log n = o(n^(1/2))`.-/
+convergent `p`-series `∑ 1 / n^(3/2)` using `log n = o(n^(1/2))`.
+@isnad1 id=summable.0h0v.s5.815fbd5f9fcf from=translated src=- shape=69cac024 vocab=8494cc7a
+-/
 theorem summable_log_natCast_mul_pred_sq_inv :
     Summable (fun n : ℕ => Real.log n * (((n - 1 : ℕ) : ℝ) ^ 2)⁻¹) := by
   have hsummable_rpow : Summable (fun n : ℕ => 1 / (n : ℝ) ^ (3 / 2 : ℝ)) :=
@@ -441,7 +471,9 @@ theorem summable_log_natCast_mul_pred_sq_inv :
 -- =====================================================================
 
 /-- ⭐ **PROVED — `π/2 − arctan(A/y) = arctan(y/A)` for `A, y > 0`.**
-CLV-shaped specialization of the complement identity.-/
+CLV-shaped specialization of the complement identity.
+@isnad1 id=eq.2h2v.s6.58dcc662e343 from=translated src=- shape=45fe2fbb vocab=da55b4bc
+-/
 lemma pi_div_two_sub_arctan_shift_eq_arctan_div
     {A y : ℝ} (hA : 0 < A) (hy : 0 < y) :
     Real.pi / 2 - Real.arctan (A / y) = Real.arctan (y / A) := by
@@ -452,7 +484,9 @@ lemma pi_div_two_sub_arctan_shift_eq_arctan_div
 
 /-- ⭐ **PROVED — Endpoint bound: `log(10/(2π)) ≥ 9/25`.**
 Chain: `exp(-9/25) ≥ 16/25` (from `add_one_le_exp`) ⟹ `exp(9/25) ≤ 25/16`
-⟹ `25/16 ≤ 10/(2π)` (since `π < 3.15 < 3.2 = 16/5`).-/
+⟹ `25/16 ≤ 10/(2π)` (since `π < 3.15 < 3.2 = 16/5`).
+@isnad1 id=le.0h0v.s5.5b74da228298 from=translated src=- shape=dc55f354 vocab=138ffc9b
+-/
 lemma log_10_div_2pi_ge_9_25 :
     (9 / 25 : ℝ) ≤ Real.log (10 / (2 * Real.pi)) := by
   have h_pi_pos : 0 < Real.pi := Real.pi_pos
@@ -474,7 +508,9 @@ lemma log_10_div_2pi_ge_9_25 :
   rwa [Real.log_exp] at h
 
 /-- ⭐ **PROVED — Helper 3a: `log(12/(2π)) ≥ 2/5`.**
-Via `Real.add_one_le_exp(-2/5)` ⟹ `exp(2/5) ≤ 5/3 ≤ 12/(2π)`.-/
+Via `Real.add_one_le_exp(-2/5)` ⟹ `exp(2/5) ≤ 5/3 ≤ 12/(2π)`.
+@isnad1 id=le.0h0v.s5.f348fc76719d from=translated src=- shape=dc55f354 vocab=138ffc9b
+-/
 lemma log_12_div_2pi_ge_2_5 :
     (2 / 5 : ℝ) ≤ Real.log (12 / (2 * Real.pi)) := by
   have h_pi_pos : 0 < Real.pi := Real.pi_pos
@@ -496,7 +532,9 @@ lemma log_12_div_2pi_ge_2_5 :
   rwa [Real.log_exp] at h
 
 /-- ⭐ **PROVED — Helper 3b: `log(13/(2π)) ≥ 1/2`.**
-Via `Real.add_one_le_exp(-1/2)` ⟹ `exp(1/2) ≤ 2 ≤ 13/(2π)`.-/
+Via `Real.add_one_le_exp(-1/2)` ⟹ `exp(1/2) ≤ 2 ≤ 13/(2π)`.
+@isnad1 id=le.0h0v.s5.216b2c7d7715 from=translated src=- shape=dc55f354 vocab=138ffc9b
+-/
 lemma log_13_div_2pi_ge_1_2 :
     (1 / 2 : ℝ) ≤ Real.log (13 / (2 * Real.pi)) := by
   have h_pi_pos : 0 < Real.pi := Real.pi_pos
@@ -521,7 +559,9 @@ lemma log_13_div_2pi_ge_1_2 :
 Cubing: `(exp 1)^3 < 2.7182818286^3 ≤ (17/8)^4` (norm_num).
 ∴ `exp 3 ≤ (17/8)^4`. Hence `exp(3/4)^4 ≤ (17/8)^4`, so
 `exp(3/4) ≤ 17/8`. Finally `17/8 ≤ 14/(2π)` since `(17/8)·(2π) ≤ 14`
-via `π < 3.1416`.-/
+via `π < 3.1416`.
+@isnad1 id=le.0h0v.s5.2bfc88959072 from=translated src=- shape=dc55f354 vocab=138ffc9b
+-/
 lemma log_14_div_2pi_ge_3_4 :
     (3 / 4 : ℝ) ≤ Real.log (14 / (2 * Real.pi)) := by
   have h_pi_pos : 0 < Real.pi := Real.pi_pos
@@ -563,7 +603,9 @@ lemma log_14_div_2pi_ge_3_4 :
 /-- ⭐ **PROVED — Endpoint bound: `log(19/(2π)) ≥ 11/10`.**
 Chain: `exp 1 < 2.7182818286` → `(exp 1)^11 < 2.7182818286^11 ≤ (301/100)^10`
 → `exp(11/10)^10 ≤ (301/100)^10` → `exp(11/10) ≤ 301/100`
-→ `301/100 ≤ 19/(2π)` via `π < 3.1416`.-/
+→ `301/100 ≤ 19/(2π)` via `π < 3.1416`.
+@isnad1 id=le.0h0v.s5.a735b7806bfd from=translated src=- shape=dc55f354 vocab=138ffc9b
+-/
 lemma log_19_div_2pi_ge_11_10 :
     (11 / 10 : ℝ) ≤ Real.log (19 / (2 * Real.pi)) := by
   have h_pi_pos : 0 < Real.pi := Real.pi_pos
@@ -604,7 +646,9 @@ lemma log_19_div_2pi_ge_11_10 :
 
 /-- ⭐ **PROVED — Endpoint bound: `log(32/(2π)) ≥ 8/5`.**
 Chain: `(exp 1)^8 < 2.7182818286^8 ≤ 5^5` → `exp(8/5) ≤ 5`
-→ `5 ≤ 32/(2π)` via `π < 3.15`.-/
+→ `5 ≤ 32/(2π)` via `π < 3.15`.
+@isnad1 id=le.0h0v.s5.e39380ccdccf from=translated src=- shape=dc55f354 vocab=138ffc9b
+-/
 lemma log_32_div_2pi_ge_8_5 :
     (8 / 5 : ℝ) ≤ Real.log (32 / (2 * Real.pi)) := by
   have h_pi_pos : 0 < Real.pi := Real.pi_pos
@@ -641,7 +685,9 @@ lemma log_32_div_2pi_ge_8_5 :
   have h := Real.log_le_log h_exp_pos h_exp_le_ratio
   rwa [Real.log_exp] at h
 
-/-- `log(36/(2π)) ≥ 5/3`. Route: `exp(5/3)^3 = exp 5 = (exp 1)^5 ≤ (11/2)^3`.-/
+/-- `log(36/(2π)) ≥ 5/3`. Route: `exp(5/3)^3 = exp 5 = (exp 1)^5 ≤ (11/2)^3`.
+@isnad1 id=le.0h0v.s5.d032cbb5dbac from=translated src=- shape=dc55f354 vocab=138ffc9b
+-/
 lemma log_36_div_2pi_ge_5_3 :
     (5 / 3 : ℝ) ≤ Real.log (36 / (2 * Real.pi)) := by
   have h_pi_pos : 0 < Real.pi := Real.pi_pos
@@ -683,7 +729,9 @@ lemma log_36_div_2pi_ge_5_3 :
 
 /-- ⭐ **PROVED — Endpoint bound: `log(48/(2π)) ≥ 2`.**
 Chain: `(exp 1)² ≤ 7.4` (from `exp_one_lt_d9`) and `7.4·(2π) ≤ 48` via
-`π < 3.1416`. Tighter than the [80,140] chain because `8·(2π) > 48`.-/
+`π < 3.1416`. Tighter than the [80,140] chain because `8·(2π) > 48`.
+@isnad1 id=le.0h0v.s5.44779633cfcf from=translated src=- shape=42c398e3 vocab=138ffc9b
+-/
 lemma log_48_div_2pi_ge_2 :
     (2 : ℝ) ≤ Real.log (48 / (2 * Real.pi)) := by
   have h_pi_lt : Real.pi < 3.1416 := Real.pi_lt_d4
@@ -712,7 +760,9 @@ lemma log_48_div_2pi_ge_2 :
 /-- ⭐ **PROVED — `log(80/(2π)) ≥ 2`.**
 Squaring: `(exp 1)² < 2.7182818286² ≤ 8` (norm_num).
 ∴ `exp 2 ≤ 8`. Finally `8 ≤ 80/(2π)` since `8·(2π) ≤ 80`
-via `π < 4`.-/
+via `π < 4`.
+@isnad1 id=le.0h0v.s5.adc944ab9ce9 from=translated src=- shape=42c398e3 vocab=138ffc9b
+-/
 lemma log_80_div_2pi_ge_2 :
     (2 : ℝ) ≤ Real.log (80 / (2 * Real.pi)) := by
   have h_pi_pos : 0 < Real.pi := Real.pi_pos
@@ -740,7 +790,9 @@ lemma log_80_div_2pi_ge_2 :
 
 /-- ⭐ **PROVED — Sharper π reciprocal: `1/(2π) ≥ 7/44`.**
 Via `Real.pi_lt_d4 : π < 3.1416`, hence `2π < 6.2832 < 44/7`,
-hence `(7/44)·(2π) ≤ 1`.-/
+hence `(7/44)·(2π) ≤ 1`.
+@isnad1 id=le.0h0v.s5.0326e734c79f from=translated src=- shape=8e7eeca2 vocab=4e693cc6
+-/
 lemma one_div_two_pi_ge_seven_fortyfour :
     (7 / 44 : ℝ) ≤ 1 / (2 * Real.pi) := by
   have hpi : Real.pi < 3.1416 := Real.pi_lt_d4
@@ -750,7 +802,9 @@ lemma one_div_two_pi_ge_seven_fortyfour :
   nlinarith
 
 /-- ⭐ **PROVED — `1/(2π) ≥ 3/19`.**
-Since `2π ≤ 6.3 ≤ 19/3`.-/
+Since `2π ≤ 6.3 ≤ 19/3`.
+@isnad1 id=le.0h0v.s5.9e24b857285d from=translated src=- shape=8e7eeca2 vocab=4e693cc6
+-/
 lemma one_div_two_pi_ge_three_nineteenths :
     (3 / 19 : ℝ) ≤ 1 / (2 * Real.pi) := by
   have h_pi_lt : Real.pi < 3.15 := Real.pi_lt_d2
@@ -759,7 +813,9 @@ lemma one_div_two_pi_ge_three_nineteenths :
   rw [le_div_iff₀ h_2pi_pos]
   nlinarith
 
-/-- ⭐ **PROVED — Padé bound** `2(5−π)/(5+π) ≤ log(5/π)`.-/
+/-- ⭐ **PROVED — Padé bound** `2(5−π)/(5+π) ≤ log(5/π)`.
+@isnad1 id=le.0h0v.s6.1ac7c3668fba from=translated src=- shape=ab436ab8 vocab=2546ef4e
+-/
 lemma pade_log_5_div_pi :
     2 * (5 - Real.pi) / (5 + Real.pi) ≤ Real.log (5 / Real.pi) := by
   have h_pi_pos : 0 < Real.pi := Real.pi_pos
@@ -805,7 +861,9 @@ lemma pade_log_5_div_pi :
   rw [div_le_iff₀ h_5_plus_pi_pos]
   linarith [h_step2]
 
-/-- ⭐ **PROVED — rational `74/163 ≤ 2(5−π)/(5+π)`** from `π ≤ 3.15`.-/
+/-- ⭐ **PROVED — rational `74/163 ≤ 2(5−π)/(5+π)`** from `π ≤ 3.15`.
+@isnad1 id=le.0h0v.s6.5bde10b6b0a4 from=translated src=- shape=d06053b3 vocab=46f5873d
+-/
 lemma pade_rational_lb_at_5_div_pi :
     (74 / 163 : ℝ) ≤ 2 * (5 - Real.pi) / (5 + Real.pi) := by
   have h_pi_lt : Real.pi < 3.15 := Real.pi_lt_d2
@@ -814,7 +872,9 @@ lemma pade_rational_lb_at_5_div_pi :
   rw [le_div_iff₀ h_5_plus_pi_pos]
   linarith
 
-/-- ⭐ **PROVED — `log(5/π) ≥ 74/163`.**-/
+/-- ⭐ **PROVED — `log(5/π) ≥ 74/163`.**
+@isnad1 id=le.0h0v.s5.a35f76c99fe5 from=translated src=- shape=3844b2e5 vocab=3087e699
+-/
 lemma log_5_div_pi_ge_74_div_163 :
     (74 / 163 : ℝ) ≤ Real.log (5 / Real.pi) :=
   le_trans pade_rational_lb_at_5_div_pi pade_log_5_div_pi

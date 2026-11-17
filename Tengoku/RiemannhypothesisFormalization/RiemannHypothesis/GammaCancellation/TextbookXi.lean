@@ -42,17 +42,23 @@ noncomputable def rawCompletedXiFormula (s : ℂ) : ℂ :=
     * Complex.Gamma (s / 2)
     * riemannZeta s
 
-/-- ⭐ **PROVED — `completedXiFunction = rawCompletedXiFormula` by `rfl`.**-/
+/-- ⭐ **PROVED — `completedXiFunction = rawCompletedXiFormula` by `rfl`.**
+@isnad1 id=eq.0h1v.s3.be09f6d86653 from=translated src=- shape=0fc427d2 vocab=d92dc9ab
+-/
 theorem completedXiFunction_eq_rawFormula (s : ℂ) :
     completedXiFunction s = rawCompletedXiFormula s := rfl
 
-/-- ⭐ **PROVED — `completedXiFunction 1 = 0`.**-/
+/-- ⭐ **PROVED — `completedXiFunction 1 = 0`.**
+@isnad1 id=eq.0h0v.s3.280ccb0dea2f from=translated src=- shape=3c26ae4f vocab=4734eea1
+-/
 theorem completedXiFunction_one_eq_zero : completedXiFunction 1 = 0 := by
   unfold completedXiFunction
   ring
 
 /-- 🌟🌟🌟 **PROVED — raw completed ξ vanishes when `s/2 = -n`.**
-Direct application of `Complex.Gamma_neg_nat_eq_zero`.-/
+Direct application of `Complex.Gamma_neg_nat_eq_zero`.
+@isnad1 id=eq.1h2v.s5.16efb8186e3f from=translated src=- shape=2cca160c vocab=6096d665
+-/
 theorem completedXiFunction_vanishes_of_half_eq_neg_nat
     {s : ℂ} {n : ℕ} (hs : s / 2 = -((n : ℂ))) :
     completedXiFunction s = 0 := by
@@ -69,7 +75,9 @@ structure CompletedXiVanishesOnGammaPolePullback : Prop where
       s / 2 ∈ gammaPoleSet →
       completedXiFunction s = 0
 
-/-- 🌟🌟🌟🌟 **PROVED unconditionally.**-/
+/-- 🌟🌟🌟🌟 **PROVED unconditionally.**
+@isnad1 id=complete.0h0v.s0.baa26094858f from=translated src=- shape=45709ebd vocab=baa26094
+-/
 theorem completedXiVanishesOnGammaPolePullback :
     CompletedXiVanishesOnGammaPolePullback := by
   refine ⟨?_⟩
@@ -85,7 +93,9 @@ structure CompletedXiNonzeroExcludesGammaPole : Prop where
       completedXiFunction s ≠ 0 →
       s / 2 ∉ gammaPoleSet
 
-/-- ⭐ **PROVED — nonzero exclusion from vanishing.**-/
+/-- ⭐ **PROVED — nonzero exclusion from vanishing.**
+@isnad1 id=complete.1h0v.s1.b8e3602a1977 from=translated src=- shape=1d48f1ac vocab=4572d0ca
+-/
 theorem CompletedXiNonzeroExcludesGammaPole.of_vanishes
     (H : CompletedXiVanishesOnGammaPolePullback) :
     CompletedXiNonzeroExcludesGammaPole := by
@@ -94,7 +104,9 @@ theorem CompletedXiNonzeroExcludesGammaPole.of_vanishes
   exact hs (H.vanishes s hpole)
 
 /-- 🌟🌟 **PROVED — `CompletedXiNonzeroExcludesGammaPole`
-unconditionally.**-/
+unconditionally.**
+@isnad1 id=complete.0h0v.s0.6f171ecf38e0 from=translated src=- shape=45709ebd vocab=6f171ecf
+-/
 theorem completedXiNonzeroExcludesGammaPole :
     CompletedXiNonzeroExcludesGammaPole :=
   CompletedXiNonzeroExcludesGammaPole.of_vanishes
@@ -113,7 +125,9 @@ structure CompletedXiRawEntireXiOffPolePointwiseFormula : Prop where
       completedXiFunction s = entireRiemannXi s
 
 /-- 🌟🌟 **PROVED — raw completed ξ formula in terms of
-`completedRiemannZeta`** (off Γ poles).-/
+`completedRiemannZeta`** (off Γ poles).
+@isnad1 id=eq.2h1v.s6.42db256ad074 from=translated src=- shape=f4d89ad0 vocab=0d3c2570
+-/
 theorem rawCompletedXiFormula_eq_completedZeta
     (HzetaRaw : CompletedRiemannZetaRawOffPoleFormula)
     {s : ℂ} (hsPole : s / 2 ∉ gammaPoleSet) :
@@ -124,7 +138,9 @@ theorem rawCompletedXiFormula_eq_completedZeta
   ring
 
 /-- 🌟🌟🌟 **PROVED — `CompletedXiRawEntireXiOffPolePointwiseFormula`
-from zeta formula identities.**-/
+from zeta formula identities.**
+@isnad1 id=complete.3h0v.s2.1c760a5f0eca from=translated src=- shape=b198369b vocab=56eceede
+-/
 theorem CompletedXiRawEntireXiOffPolePointwiseFormula.of_completedZetaIdentities
     (HzetaRaw : CompletedRiemannZetaRawOffPoleFormula)
     (Hzeta0 : CompletedRiemannZetaZeroCorrectionFormula)
@@ -150,7 +166,9 @@ theorem CompletedXiRawEntireXiOffPolePointwiseFormula.of_completedZetaIdentities
 
 /-- 🌟🌟🌟🌟 **PROVED unconditionally** — the raw completed-ξ function
 agrees pointwise with Mathlib's `entireRiemannXi` off Γ-poles and away
-from `s = 1`.-/
+from `s = 1`.
+@isnad1 id=complete.0h0v.s0.7970b2b34f1b from=translated src=- shape=45709ebd vocab=7970b2b3
+-/
 theorem completedXiRawEntireXiOffPolePointwiseFormula :
     CompletedXiRawEntireXiOffPolePointwiseFormula :=
   CompletedXiRawEntireXiOffPolePointwiseFormula.of_completedZetaIdentities
@@ -170,7 +188,9 @@ structure RawCompletedXiCorrectness : Prop where
       completedXiFunction s = entireRiemannXi s
 
 /-- 🌟🌟 **PROVED — `RawCompletedXiCorrectness` from the two
-pointwise formula targets.**-/
+pointwise formula targets.**
+@isnad1 id=rawcompl.2h0v.s2.89e84b87bf97 from=translated src=- shape=f443e7c7 vocab=ef4fb233
+-/
 theorem RawCompletedXiCorrectness.of_pointwise
     (Hvanish : CompletedXiVanishesOnGammaPolePullback)
     (Hformula : CompletedXiRawEntireXiOffPolePointwiseFormula) :
@@ -180,7 +200,9 @@ theorem RawCompletedXiCorrectness.of_pointwise
     offPole_eq := Hformula.pointwise_eq }
 
 /-- 🌟🌟🌟🌟 **PROVED unconditionally** — the complete raw completed-ξ
-correctness package.-/
+correctness package.
+@isnad1 id=rawcompl.0h0v.s0.d4aba89642da from=translated src=- shape=45709ebd vocab=d4aba896
+-/
 theorem rawCompletedXiCorrectness :
     RawCompletedXiCorrectness :=
   RawCompletedXiCorrectness.of_pointwise

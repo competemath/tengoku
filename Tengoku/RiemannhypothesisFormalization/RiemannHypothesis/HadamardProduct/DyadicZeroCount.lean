@@ -60,7 +60,9 @@ noncomputable def hadamardZeroDyadicShellInvSqMass
   ∑' i : {i : ι // hadamardZeroDyadicBin zeroLoc i = n},
     (‖zeroLoc i.1‖ ^ 2)⁻¹
 
-/-- Every occurrence in dyadic bin `n` lies in the ball of radius `2 ^ n`.-/
+/-- Every occurrence in dyadic bin `n` lies in the ball of radius `2 ^ n`.
+@isnad1 id=le.0h3v.s5.66f871556b98 from=translated src=- shape=4786ca34 vocab=2582e8d4
+-/
 theorem hadamardZero_norm_le_pow_two_dyadicBin
     {ι : Type*} (zeroLoc : ι → ℂ) (i : ι) :
     ‖zeroLoc i‖ ≤ (2 : Real) ^ hadamardZeroDyadicBin zeroLoc i := by
@@ -70,7 +72,9 @@ theorem hadamardZero_norm_le_pow_two_dyadicBin
   exact_mod_cast h
 
 /-- An occurrence in positive dyadic bin `n` lies strictly outside the
-preceding dyadic radius `2 ^ (n - 1)`.-/
+preceding dyadic radius `2 ^ (n - 1)`.
+@isnad1 id=lt.2h4v.s6.41321d6103be from=translated src=- shape=dff6976e vocab=5f3734ef
+-/
 theorem pow_two_pred_lt_norm_of_hadamardZeroDyadicBin_eq
     {ι : Type*} {zeroLoc : ι → ℂ} {i : ι} {n : Nat}
     (hn : 1 ≤ n) (hi : hadamardZeroDyadicBin zeroLoc i = n) :
@@ -87,7 +91,9 @@ theorem pow_two_pred_lt_norm_of_hadamardZeroDyadicBin_eq
   rw [hi] at hp
   simpa [Nat.pred_eq_sub_one] using Nat.lt_ceil.mp hp
 
-/-- Norm properness makes every exact dyadic bin finite.-/
+/-- Norm properness makes every exact dyadic bin finite.
+@isnad1 id=finite.1h3v.s4.d98f5af891e4 from=translated src=- shape=6e04dd65 vocab=49a8da29
+-/
 theorem hadamardZeroDyadicBin_finite
     {ι : Type*} {zeroLoc : ι → ℂ}
     (Hproper : HadamardZeroNormProper zeroLoc) (n : Nat) :
@@ -98,7 +104,9 @@ theorem hadamardZeroDyadicBin_finite
     rw [hi] at h
     exact h)
 
-/-- Each dyadic inverse-square shell mass is nonnegative.-/
+/-- Each dyadic inverse-square shell mass is nonnegative.
+@isnad1 id=le.0h3v.s4.371eaba89a01 from=translated src=- shape=4b7ae131 vocab=cb8a4a90
+-/
 theorem hadamardZeroDyadicShellInvSqMass_nonneg
     {ι : Type*} (zeroLoc : ι → ℂ) (n : Nat) :
     0 ≤ hadamardZeroDyadicShellInvSqMass zeroLoc n :=
@@ -139,7 +147,9 @@ private lemma inv_sq_pow_two_pred_eq_of_pos
 
 /-- The inverse-square mass in positive bin `n` is bounded by the cumulative
 count in the radius-`2 ^ n` ball times the inverse square of the preceding
-dyadic radius.-/
+dyadic radius.
+@isnad1 id=le.2h3v.s6.7ee210881553 from=translated src=- shape=975bf34e vocab=82575df3
+-/
 theorem hadamardZeroDyadicShellInvSqMass_le_ballCard_mul
     {ι : Type*} {zeroLoc : ι → ℂ}
     (Hproper : HadamardZeroNormProper zeroLoc) (n : Nat) (hn : 1 ≤ n) :
@@ -224,7 +234,9 @@ noncomputable def hadamardZeroDyadicInvSqMajorant
   4 * C * ((n + 1 : Nat) : Real) * (1 / 2 : Real) ^ n +
     4 * C₀ * (1 / 4 : Real) ^ n
 
-/-- The explicit dyadic inverse-square majorant is summable.-/
+/-- The explicit dyadic inverse-square majorant is summable.
+@isnad1 id=summable.0h2v.s4.530f716b9b3c from=translated src=- shape=ddf3513c vocab=0f16f1f6
+-/
 theorem hadamardZeroDyadicInvSqMajorant_summable (C C₀ : Real) :
     Summable (hadamardZeroDyadicInvSqMajorant C C₀) := by
   have hhalf :
@@ -247,7 +259,9 @@ theorem hadamardZeroDyadicInvSqMajorant_summable (C C₀ : Real) :
 
 /-- An eventual cumulative `O(R log R)` dyadic count makes the sequence of
 dyadic inverse-square shell masses summable.  Finitely many bins below the
-explicit threshold `lower + 1` are harmless.-/
+explicit threshold `lower + 1` are harmless.
+@isnad1 id=summable.0h3v.s4.047acbb6996f from=translated src=- shape=29affbfc vocab=c1d63c67
+-/
 theorem HadamardZeroDyadicCumulativeCountData.shellInvSqMass_summable
     {ι : Type*} {zeroLoc : ι → ℂ}
     (H : HadamardZeroDyadicCumulativeCountData zeroLoc) :
@@ -305,7 +319,9 @@ theorem HadamardZeroDyadicCumulativeCountData.shellInvSqMass_summable
         (fun _ _ h ↦ Nat.add_right_cancel h)
 
 /-- A cumulative dyadic `O(R log R)` count implies inverse-square
-summability of all zero occurrences.-/
+summability of all zero occurrences.
+@isnad1 id=summable.0h3v.s5.00dc1d569174 from=translated src=- shape=8cc45dd7 vocab=667c267f
+-/
 theorem HadamardZeroDyadicCumulativeCountData.invSq_summable
     {ι : Type*} {zeroLoc : ι → ℂ}
     (H : HadamardZeroDyadicCumulativeCountData zeroLoc) :
@@ -318,7 +334,9 @@ theorem HadamardZeroDyadicCumulativeCountData.invSq_summable
   exact le_rfl
 
 /-- A cumulative dyadic `O(R log R)` count supplies the full generic
-Hadamard zero-summability package, including cofinite escape.-/
+Hadamard zero-summability package, including cofinite escape.
+@isnad1 id=hadamard.0h3v.s3.78d854001c1a from=translated src=- shape=f148952d vocab=12b28864
+-/
 theorem HadamardZeroDyadicCumulativeCountData.toHadamardZeroInvSqSummability
     {ι : Type*} {zeroLoc : ι → ℂ}
     (H : HadamardZeroDyadicCumulativeCountData zeroLoc) :

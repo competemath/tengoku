@@ -45,7 +45,9 @@ def DerivativeCompanionHermiteBiehlerUHP (F : ℂ → ℂ) : Prop :=
 `a + I b` over `a - I b` is equivalent to `Im (b/a) < 0`.
 
 The zero-denominator case is included: when `a = 0`, both norms are equal and
-Lean's totalized quotient `b / 0` is zero.-/
+Lean's totalized quotient `b / 0` is zero.
+@isnad1 id=iff.0h2v.s6.b7b140c54a50 from=translated src=- shape=7e663cff vocab=5af46b94
+-/
 theorem norm_add_I_mul_gt_norm_sub_I_mul_iff_div_im_neg
     (a b : ℂ) :
     ‖a + Complex.I * b‖ > ‖a - Complex.I * b‖ ↔
@@ -84,7 +86,9 @@ theorem norm_add_I_mul_gt_norm_sub_I_mul_iff_div_im_neg
 
 /-- Pointwise derivative-companion dominance is exactly strict negativity of
 the totalized logarithmic derivative.  No nonvanishing or differentiability
-hypothesis is needed for this algebraic statement.-/
+hypothesis is needed for this algebraic statement.
+@isnad1 id=iff.0h2v.s4.d647dbb25ec4 from=translated src=- shape=efe24f73 vocab=0acf8440
+-/
 theorem derivativeCompanionHermiteBiehlerAt_iff_logDerivative_im_neg
     (F : ℂ → ℂ) (z : ℂ) :
     DerivativeCompanionHermiteBiehlerAt F z ↔
@@ -94,7 +98,9 @@ theorem derivativeCompanionHermiteBiehlerAt_iff_logDerivative_im_neg
 
 /-- A strict derivative-companion inequality forces nonvanishing at that
 point.  This records explicitly why the strict global predicate cannot hold
-at a zero of `F`.-/
+at a zero of `F`.
+@isnad1 id=ne.1h2v.s4.5f20f62578ed from=translated src=- shape=a2160f70 vocab=d3823330
+-/
 theorem DerivativeCompanionHermiteBiehlerAt.ne_zero
     {F : ℂ → ℂ} {z : ℂ}
     (h : DerivativeCompanionHermiteBiehlerAt F z) :
@@ -105,7 +111,9 @@ theorem DerivativeCompanionHermiteBiehlerAt.ne_zero
   exact (lt_irrefl _ h)
 
 /-- **Global derivative-companion bridge.** Upper-half-plane companion norm
-dominance is equivalent to strict anti-Herglotz behavior of `F'/F`.-/
+dominance is equivalent to strict anti-Herglotz behavior of `F'/F`.
+@isnad1 id=iff.0h1v.s3.0c09535fb66f from=translated src=- shape=7766ecb4 vocab=f473a439
+-/
 theorem derivativeCompanionHermiteBiehlerUHP_iff_strictAntiHerglotz
     (F : ℂ → ℂ) :
     DerivativeCompanionHermiteBiehlerUHP F ↔

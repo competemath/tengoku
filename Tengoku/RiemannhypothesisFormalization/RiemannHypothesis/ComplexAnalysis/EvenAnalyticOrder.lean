@@ -19,7 +19,9 @@ Hadamard divisor contains a separately recorded origin factor.
 namespace OverflowResidueRH
 
 /-- The finite analytic order at the origin of an even complex analytic
-function is even.-/
+function is even.
+@isnad1 id=even.3h1v.s6.3c29cfe1b0b6 from=translated src=- shape=ccb7ebf6 vocab=39315c06
+-/
 theorem analyticOrderNatAt_zero_even_of_even
     {f : ℂ → ℂ} (hf : AnalyticAt ℂ f 0)
     (hfinite : analyticOrderAt f 0 ≠ ⊤)

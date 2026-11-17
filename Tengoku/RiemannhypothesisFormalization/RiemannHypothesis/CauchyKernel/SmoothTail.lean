@@ -78,7 +78,9 @@ noncomputable def tailK80_const : ℝ := 1 / 300
 /-- **Smooth uniform LB constant**: `(259/3586)·(5/29) ≈ 0.01246`.-/
 noncomputable def smoothLBConst : ℝ := (259 / 3586) * (5 / 29)
 
-/-- ⭐ **PROVED — `tailK32_rat` is anti-monotone in `T`.**-/
+/-- ⭐ **PROVED — `tailK32_rat` is anti-monotone in `T`.**
+@isnad1 id=le.2h2v.s4.7cee3d00c614 from=translated src=- shape=9d085f0b vocab=25752dfc
+-/
 lemma tailK32_rat_antitone_T {T₁ T₂ : ℝ}
     (hT₁_pos : 0 < T₁) (h_T_le : T₁ ≤ T₂) :
     tailK32_rat T₂ ≤ tailK32_rat T₁ := by
@@ -93,7 +95,9 @@ lemma tailK32_rat_antitone_T {T₁ T₂ : ℝ}
   rw [h_form₁, h_form₂]
   exact mul_le_mul_of_nonneg_left hinv h_pos_factor
 
-/-- ⭐ **PROVED — `tailK32_rat T ≤ tailK_32_36 T` on `[32, 36]`.**-/
+/-- ⭐ **PROVED — `tailK32_rat T ≤ tailK_32_36 T` on `[32, 36]`.**
+@isnad1 id=le.2h1v.s5.eaba61804570 from=translated src=- shape=b462cbef vocab=dd178d63
+-/
 lemma tailK32_rat_le_tailK_32_36
     {T : ℝ} (hT32 : 32 ≤ T) (_hT36 : T ≤ 36) :
     tailK32_rat T ≤ tailK_32_36 T := by
@@ -116,7 +120,9 @@ lemma tailK32_rat_le_tailK_32_36
 
 /-- ⭐ **PROVED — `tailK_10_12 T ≥ 33/4750`** on `[10, 12]`.
 Chain: `tailK = (22/15)·(9/25)·(1/(2π))·(1/T)` with `1/(2π) ≥ 3/19`
-and `1/T ≥ 1/12`.-/
+and `1/T ≥ 1/12`.
+@isnad1 id=le.2h1v.s5.0bd01644a5e5 from=translated src=- shape=bbe7ea0d vocab=e6969518
+-/
 lemma tailK_10_12_ge_const
     {T : ℝ} (hT10 : 10 ≤ T) (hT12 : T ≤ 12) :
     tailK10_const ≤ tailK_10_12 T := by
@@ -150,7 +156,9 @@ lemma tailK_10_12_ge_const
 /-- ⭐ **PROVED — Helper 8b: `tailK_12_13 T ≥ 7/1000` on `[12, 13]`.**
 Chain: `tailK = (22/15)·((affine LB)/(2π))/T`. With affine LB ≥ 2/5,
 `1/(2π) ≥ 3/19`, and `1/T ≥ 1/13`:
-  tailK ≥ (22/15)·(2/5)·(3/19)·(1/13) = 132/18525 > 7/1000.-/
+  tailK ≥ (22/15)·(2/5)·(3/19)·(1/13) = 132/18525 > 7/1000.
+@isnad1 id=le.2h1v.s5.f4329101641e from=translated src=- shape=bbe7ea0d vocab=03d33906
+-/
 lemma tailK_12_13_ge_const
     {T : ℝ} (hT12 : 12 ≤ T) (hT13 : T ≤ 13) :
     tailK12_const ≤ tailK_12_13 T := by
@@ -188,7 +196,9 @@ lemma tailK_12_13_ge_const
              mul_pos hT_pos hT_pos]
 
 /-- ⭐ **PROVED — `tailK_13_14 T ≥ 1/120`.**
-Chain: `(22/15)·(1/2)·(7/44)·(1/14) = 1/120`.-/
+Chain: `(22/15)·(1/2)·(7/44)·(1/14) = 1/120`.
+@isnad1 id=le.2h1v.s5.fc5597213b78 from=translated src=- shape=bbe7ea0d vocab=4ba2a8e8
+-/
 lemma tailK_13_14_ge_const
     {T : ℝ} (hT13 : 13 ≤ T) (hT14 : T ≤ 14) :
     tailK13_const ≤ tailK_13_14 T := by
@@ -220,7 +230,9 @@ lemma tailK_13_14_ge_const
   linarith [h3, h_C_le_A, h_const_eq]
 
 /-- ⭐ **PROVED — `tailK_14_19 T ≥ 7/760`.**
-Chain: `(22/15)·(3/4)·(7/44)·(1/19) = 7/760`.-/
+Chain: `(22/15)·(3/4)·(7/44)·(1/19) = 7/760`.
+@isnad1 id=le.2h1v.s5.06f933128ce9 from=translated src=- shape=bbe7ea0d vocab=4bdf6641
+-/
 lemma tailK_14_19_ge_const
     {T : ℝ} (hT14 : 14 ≤ T) (hT19 : T ≤ 19) :
     tailK14_const ≤ tailK_14_19 T := by
@@ -251,7 +263,9 @@ lemma tailK_14_19_ge_const
   have h_const_eq : (22 / 15 : ℝ) * (3 / 4) * (7/44) * (1/19) = 7/760 := by norm_num
   linarith [h3, h_C_le_A, h_const_eq]
 
-/-- `7/(18·B) ≤ tailK_36_48 T` for `T ≤ B`. Chain: `(22/15)·(5/3)·(7/44) = 7/18`.-/
+/-- `7/(18·B) ≤ tailK_36_48 T` for `T ≤ B`. Chain: `(22/15)·(5/3)·(7/44) = 7/18`.
+@isnad1 id=le.2h2v.s5.21e254032e41 from=translated src=- shape=0b010c9f vocab=2eccdf40
+-/
 lemma tailK_36_48_ge_const
     {T B : ℝ} (hTpos : 0 < T) (hTB : T ≤ B) :
     (7 / (18 * B) : ℝ) ≤ tailK_36_48 T := by
@@ -289,7 +303,9 @@ lemma tailK_36_48_ge_const
   linarith
 
 /-- ⭐ **PROVED — `tailK_80_140 T ≥ 1/300`.**
-Chain: `(22/15)·2·(7/44)·(1/140) = 1/300`.-/
+Chain: `(22/15)·2·(7/44)·(1/140) = 1/300`.
+@isnad1 id=le.2h1v.s5.49701a7abb3e from=translated src=- shape=bbe7ea0d vocab=9b23638f
+-/
 lemma tailK_80_140_ge_const
     {T : ℝ} (_hT80 : 80 ≤ T) (hT140 : T ≤ 140) :
     tailK80_const ≤ tailK_80_140 T := by
@@ -322,7 +338,9 @@ lemma tailK_80_140_ge_const
 
 /-- ⭐ **PROVED — Generic tail bound `tailK_80_140 T ≥ 7/(15·B)`** for
 `T ≤ B`. Reused for each `[48, 80]` subband by setting `B` to the
-subband upper endpoint.-/
+subband upper endpoint.
+@isnad1 id=le.3h2v.s6.09639ea98205 from=translated src=- shape=71015746 vocab=42ac687c
+-/
 lemma tailK_80_140_ge_seven_fifteen_div
     {T B : ℝ} (hT_pos : 0 < T) (hB_pos : 0 < B) (hT_le : T ≤ B) :
     (7 / (15 * B) : ℝ) ≤ tailK_80_140 T := by

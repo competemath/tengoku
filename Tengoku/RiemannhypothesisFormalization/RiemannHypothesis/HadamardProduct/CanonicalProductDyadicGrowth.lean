@@ -37,7 +37,9 @@ noncomputable def hadamardZeroDyadicShellInvMass
   ∑' i : {i : ι // hadamardZeroDyadicBin zeroLoc i = n},
     ‖zeroLoc i.1‖⁻¹
 
-/-- Each reciprocal-norm shell mass is nonnegative.-/
+/-- Each reciprocal-norm shell mass is nonnegative.
+@isnad1 id=le.0h3v.s4.f0db8dfb0811 from=translated src=- shape=4b7ae131 vocab=620f7272
+-/
 theorem hadamardZeroDyadicShellInvMass_nonneg
     {ι : Type*} (zeroLoc : ι → ℂ) (n : Nat) :
     0 ≤ hadamardZeroDyadicShellInvMass zeroLoc n :=
@@ -49,7 +51,9 @@ noncomputable def hadamardZeroDyadicLowInvMass
   ∑ n ∈ Finset.range lower, hadamardZeroDyadicShellInvMass zeroLoc n
 
 /-- Norm properness makes the union of the dyadic bins below any fixed
-threshold finite.-/
+threshold finite.
+@isnad1 id=finite.1h3v.s4.5439e05d5064 from=translated src=- shape=6e04dd65 vocab=2b0b8d20
+-/
 theorem hadamardZeroDyadicBelow_finite
     {ι : Type*} {zeroLoc : ι → ℂ}
     (Hproper : HadamardZeroNormProper zeroLoc) (lower : Nat) :
@@ -59,7 +63,9 @@ theorem hadamardZeroDyadicBelow_finite
   exact (hadamardZero_norm_le_pow_two_dyadicBin zeroLoc i).trans
     (pow_le_pow_right₀ (by norm_num : (1 : Real) ≤ 2) (Nat.le_of_lt hi))
 
-/-- The finite low reciprocal mass is nonnegative.-/
+/-- The finite low reciprocal mass is nonnegative.
+@isnad1 id=le.0h3v.s4.dfafbfd1d76c from=translated src=- shape=4b7ae131 vocab=c31ff5cf
+-/
 theorem hadamardZeroDyadicLowInvMass_nonneg
     {ι : Type*} (zeroLoc : ι → ℂ) (lower : Nat) :
     0 ≤ hadamardZeroDyadicLowInvMass zeroLoc lower := by
@@ -69,7 +75,9 @@ theorem hadamardZeroDyadicLowInvMass_nonneg
 
 /-- The reciprocal mass in a positive dyadic bin is bounded by the
 cumulative count in the enclosing ball times the reciprocal of the
-preceding dyadic radius.-/
+preceding dyadic radius.
+@isnad1 id=le.2h3v.s6.a273d77d5c7a from=translated src=- shape=b96eaa8b vocab=b3810e88
+-/
 theorem hadamardZeroDyadicShellInvMass_le_ballCard_mul
     {ι : Type*} {zeroLoc : ι → ℂ}
     (Hproper : HadamardZeroNormProper zeroLoc) (n : Nat) (hn : 1 ≤ n) :
@@ -159,7 +167,9 @@ private lemma inv_sq_pow_two_pred_eq_of_pos_explicit
   rw [pow_two]
 
 /-- The explicit reciprocal-mass bound forced by the cumulative dyadic
-count in every bin where the count estimate is available.-/
+count in every bin where the count estimate is available.
+@isnad1 id=le.2h4v.s7.49d86f974027 from=translated src=- shape=e796fac2 vocab=1be101dd
+-/
 theorem HadamardZeroDyadicCumulativeCountData.shellInvMass_le
     {ι : Type*} {zeroLoc : ι → ℂ}
     (H : HadamardZeroDyadicCumulativeCountData zeroLoc)
@@ -189,7 +199,9 @@ theorem HadamardZeroDyadicCumulativeCountData.shellInvMass_le
           2 * H.C₀ * (1 / 2 : Real) ^ n := by ring
 
 /-- Public per-shell form of the inverse-square majorant used by the
-summability bridge.-/
+summability bridge.
+@isnad1 id=le.2h4v.s5.71c0c3b1b743 from=translated src=- shape=3f656c8a vocab=e464afab
+-/
 theorem HadamardZeroDyadicCumulativeCountData.shellInvSqMass_le
     {ι : Type*} {zeroLoc : ι → ℂ}
     (H : HadamardZeroDyadicCumulativeCountData zeroLoc)
@@ -227,6 +239,9 @@ noncomputable def hadamardZeroDyadicHeadFinset
     (Hproper : HadamardZeroNormProper zeroLoc) (K : Nat) : Finset ι :=
   (hadamardZeroDyadicBelow_finite Hproper (K + 1)).toFinset
 
+/--
+@isnad1 id=iff.1h4v.s5.bfe4e7faf730 from=translated src=- shape=de70a130 vocab=a4851419
+-/
 @[simp] theorem mem_hadamardZeroDyadicHeadFinset
     {ι : Type*} {zeroLoc : ι → ℂ}
     (Hproper : HadamardZeroNormProper zeroLoc) (K : Nat) (i : ι) :
@@ -259,7 +274,9 @@ private lemma hasSum_quarter_explicit :
   norm_num at h
   exact h
 
-/-- Exact tail of the weighted half-geometric series.-/
+/-- Exact tail of the weighted half-geometric series.
+@isnad1 id=hassum.0h1v.s7.89a3361007cc from=translated src=- shape=b07e814e vocab=724984fa
+-/
 theorem hasSum_hadamardDyadicWeightedHalf_tail (K : Nat) :
     HasSum
       (fun j : Nat ↦ (((K + 1 + j) + 1 : Nat) : Real) *
@@ -287,7 +304,9 @@ theorem hasSum_hadamardDyadicWeightedHalf_tail (K : Nat) :
   rw [hfun, ← hvalue]
   exact hs
 
-/-- Exact tail of the quarter-geometric series.-/
+/-- Exact tail of the quarter-geometric series.
+@isnad1 id=hassum.0h1v.s7.50ebd495ace3 from=translated src=- shape=d853cd84 vocab=36567afc
+-/
 theorem hasSum_hadamardDyadicQuarter_tail (K : Nat) :
     HasSum (fun j : Nat ↦ (1 / 4 : Real) ^ (K + 1 + j))
       ((1 / 3 : Real) * (1 / 4 : Real) ^ K) := by
@@ -308,7 +327,9 @@ theorem hasSum_hadamardDyadicQuarter_tail (K : Nat) :
 
 /-! ## Explicit head and tail masses -/
 
-/-- A finite dyadic head is exactly the sum of its shell reciprocal masses.-/
+/-- A finite dyadic head is exactly the sum of its shell reciprocal masses.
+@isnad1 id=eq.1h3v.s5.1ef392e8f3a3 from=translated src=- shape=f756f9a5 vocab=a33a99aa
+-/
 theorem sum_hadamardZeroDyadicHead_inv_eq_sum_shellInvMass
     {ι : Type*} {zeroLoc : ι → ℂ}
     (Hproper : HadamardZeroNormProper zeroLoc) (K : Nat) :
@@ -357,7 +378,9 @@ theorem sum_hadamardZeroDyadicHead_inv_eq_sum_shellInvMass
     rfl
 
 /-- The reciprocal mass of a dyadic head is controlled by the exact finite
-low-bin mass and a quadratic polynomial in the dyadic index.-/
+low-bin mass and a quadratic polynomial in the dyadic index.
+@isnad1 id=le.2h4v.s7.7fd062ed5e16 from=translated src=- shape=42eec056 vocab=5172df28
+-/
 theorem HadamardZeroDyadicCumulativeCountData.sum_head_inv_le
     {ι : Type*} {zeroLoc : ι → ℂ}
     (H : HadamardZeroDyadicCumulativeCountData zeroLoc)
@@ -447,7 +470,9 @@ theorem HadamardZeroDyadicCumulativeCountData.sum_head_inv_le
           (2 * H.C * ((K + 1 : Nat) : Real) + 2 * H.C₀) := by rfl
 
 /-- The inverse-square mass beyond dyadic bin `K` has the exact geometric
-tail bound forced by the cumulative count.-/
+tail bound forced by the cumulative count.
+@isnad1 id=le.1h4v.s8.770d930e92ee from=translated src=- shape=8ae02af1 vocab=9b70de5c
+-/
 theorem HadamardZeroDyadicCumulativeCountData.tailInvSqMass_le
     {ι : Type*} {zeroLoc : ι → ℂ}
     (H : HadamardZeroDyadicCumulativeCountData zeroLoc)
@@ -552,7 +577,9 @@ private theorem tsum_compl_hadamardZeroDyadicHead_eq_tail
 
 /-- Fully explicit head-tail exponent bound for a genus-one canonical
 product under a cumulative dyadic count.  This is the sharper result from
-which the clean logarithmic-square estimate is derived.-/
+which the clean logarithmic-square estimate is derived.
+@isnad1 id=le.2h5v.s8.21b8c854de73 from=translated src=- shape=e3cafddb vocab=757e29c1
+-/
 theorem HadamardZeroDyadicCumulativeCountData.norm_infiniteHadamardProduct_le_exp_dyadic
     {ι : Type*} {zeroLoc : ι → ℂ}
     (H : HadamardZeroDyadicCumulativeCountData zeroLoc)
@@ -701,7 +728,9 @@ private lemma dyadic_exponent_algebra
 
 /-- Clean order-one logarithmic-square bound on a dyadic scale.  The
 coefficient includes the exact finite reciprocal mass of the bins below
-`max 1 lower`; no symmetry cancellation is assumed.-/
+`max 1 lower`; no symmetry cancellation is assumed.
+@isnad1 id=le.3h5v.s7.c75f44bfd17d from=translated src=- shape=fcba3a7b vocab=890faa91
+-/
 theorem HadamardZeroDyadicCumulativeCountData.norm_infiniteHadamardProduct_le_exp_logSq
     {ι : Type*} {zeroLoc : ι → ℂ}
     (H : HadamardZeroDyadicCumulativeCountData zeroLoc)

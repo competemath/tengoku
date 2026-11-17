@@ -56,14 +56,18 @@ Mathlib-nontrivial zeta zero has that imaginary part.-/
 def ZetaGoodHeight (T : Real) : Prop :=
   ∀ s : Complex, IsMathlibNontrivialZetaZero s → s.im ≠ T
 
-/-- The set of actual positive zeta-zero heights up to `B` is finite.-/
+/-- The set of actual positive zeta-zero heights up to `B` is finite.
+@isnad1 id=finite.0h1v.s3.1b2effc6827f from=translated src=- shape=12111fa0 vocab=e7b33f5b
+-/
 theorem zetaZeroHeightSetUpTo_finite (B : Real) :
     (Complex.im '' zetaNontrivialZerosUpToHeightSet B).Finite :=
   (zetaNontrivialZerosUpToHeightSet_finite B).image Complex.im
 
 /-- Every nonempty positive real interval contains a safe zeta contour
 height.  This is the exact avoidance lemma needed before applying a rectangle
-argument principle.-/
+argument principle.
+@isnad1 id=ex.2h2v.s5.13d651bf80a0 from=translated src=- shape=c41ecdc9 vocab=a5c17d94
+-/
 theorem exists_zetaGoodHeight_between
     {A B : Real} (hA : 0 < A) (hAB : A < B) :
     ∃ T : Real, A < T ∧ T < B ∧ ZetaGoodHeight T := by
@@ -90,7 +94,9 @@ structure SafeContourHeight (A B : Real) where
   good : ZetaGoodHeight height
 
 /-- Safe horizontal zeta-contour heights exist in every positive open
-interval.-/
+interval.
+@isnad1 id=nonempty.2h2v.s4.cce7b6a2e688 from=translated src=- shape=9baf3a82 vocab=ad6fd46c
+-/
 theorem safeContourHeight_nonempty
     {A B : Real} (hA : 0 < A) (hAB : A < B) :
     Nonempty (SafeContourHeight A B) := by
@@ -107,15 +113,27 @@ def standard (A T : Real) (hAT : A < T) : ZetaRectangle where
   left_lt_right := by norm_num
   bottom_lt_top := hAT
 
+/--
+@isnad1 id=eq.1h2v.s4.b58eaccf73aa from=translated src=- shape=bf3b1a98 vocab=24b883b7
+-/
 @[simp] theorem standard_left (A T : Real) (hAT : A < T) :
     (standard A T hAT).left = -1 := rfl
 
+/--
+@isnad1 id=eq.1h2v.s4.2e50eef073ac from=translated src=- shape=912186cd vocab=eabe60e0
+-/
 @[simp] theorem standard_right (A T : Real) (hAT : A < T) :
     (standard A T hAT).right = 2 := rfl
 
+/--
+@isnad1 id=eq.1h2v.s4.ed7490e0d880 from=translated src=- shape=488bb350 vocab=68f02e58
+-/
 @[simp] theorem standard_bottom (A T : Real) (hAT : A < T) :
     (standard A T hAT).bottom = A := rfl
 
+/--
+@isnad1 id=eq.1h2v.s4.b147aa7a51c0 from=translated src=- shape=98dce709 vocab=2c691498
+-/
 @[simp] theorem standard_top (A T : Real) (hAT : A < T) :
     (standard A T hAT).top = T := rfl
 
@@ -137,7 +155,9 @@ structure AdmissibleForZeta (R : ZetaRectangle) : Prop where
 /-- A rectangle which contains the critical strip horizontally, lies above
 the real axis, and has good horizontal heights has no zeta zero or pole on
 its boundary.  Thus the geometric part of the argument-principle route is
-unconditional.-/
+unconditional.
+@isnad1 id=admissib.5h1v.s5.14badda8bb08 from=translated src=- shape=a28abe84 vocab=90557c92
+-/
 theorem admissibleForZeta_of_wide_positive_good
     {R : ZetaRectangle}
     (hleft : R.left < 0)
@@ -167,7 +187,9 @@ theorem admissibleForZeta_of_wide_positive_good
     linarith
 
 /-- The standard rectangle is admissible whenever its two horizontal
-heights are positive/safe.-/
+heights are positive/safe.
+@isnad1 id=admissib.4h2v.s5.c9bdff45f1c4 from=translated src=- shape=0723d7a3 vocab=67d0cc25
+-/
 theorem standard_admissibleForZeta
     {A T : Real} (hA : 0 < A) (hAT : A < T)
     (hAgood : ZetaGoodHeight A) (hTgood : ZetaGoodHeight T) :
@@ -181,7 +203,9 @@ theorem standard_admissibleForZeta
 
 /-- Every point of a positive-height closed rectangle is a regular point of
 `riemannZeta`; the only exceptional point for Mathlib's differentiability
-theorem is `1`, whose imaginary part is zero.-/
+theorem is `1`, whose imaginary part is zero.
+@isnad1 id=differen.2h2v.s6.1a278c7291a8 from=translated src=- shape=6901700b vocab=b73c1258
+-/
 theorem differentiableAt_riemannZeta_of_containsClosed_bottom_pos
     {R : ZetaRectangle} (hbottom : 0 < R.bottom)
     {s : Complex} (hs : R.ContainsClosed s) :
@@ -195,7 +219,9 @@ theorem differentiableAt_riemannZeta_of_containsClosed_bottom_pos
 
 /-- On an admissible positive-height rectangle, zeta is nonzero at every
 boundary point.  The admissibility field excludes nontrivial zeros; positive
-height separately excludes both the negative-even trivial zeros and `1`.-/
+height separately excludes both the negative-even trivial zeros and `1`.
+@isnad1 id=ne.3h2v.s5.705ebcc27561 from=translated src=- shape=88854e88 vocab=3f38bf15
+-/
 theorem riemannZeta_ne_zero_of_admissible_on_boundary
     {R : ZetaRectangle} (H : R.AdmissibleForZeta)
     (hbottom : 0 < R.bottom) {s : Complex}

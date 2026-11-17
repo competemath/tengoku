@@ -30,7 +30,9 @@ open Complex
   star(Ξ z) = star (ξ(½ + I·z)) = ξ(star(½ + I·z))          (ξ-Schwarz)
             = ξ((½) − I·star z)                              (critical_shift_star)
             = ξ(1 − ((½) − I·star z)) = ξ((½) + I·star z)    (functional eqn)
-            = Ξ(star z).-/
+            = Ξ(star z).
+@isnad1 id=eq.1h1v.s6.7ae0382bdf20 from=translated src=- shape=1333c580 vocab=8e60fd54
+-/
 theorem XiPullback_schwarz
     (H : CompletedXiRegularity) :
     ∀ z : ℂ, XiPullback (star z) = star (XiPullback z) := by
@@ -46,7 +48,9 @@ theorem XiPullback_schwarz
 -- =====================================================================
 
 /-- ⭐ **PROVED — `entireRiemannXi` is differentiable everywhere.**
-Polynomial · (entire `completedRiemannZeta₀`) + const.-/
+Polynomial · (entire `completedRiemannZeta₀`) + const.
+@isnad1 id=differen.0h0v.s6.046567a843e5 from=translated src=- shape=aa9fb30a vocab=f644908c
+-/
 theorem entireRiemannXi_differentiable :
     Differentiable ℂ entireRiemannXi := by
   unfold entireRiemannXi
@@ -59,21 +63,27 @@ theorem entireRiemannXi_differentiable :
   exact (h_poly.mul h_zeta₀).add (differentiable_const _)
 
 /-- ⭐ **PROVED — functional equation `entireRiemannXi (1 − s) = entireRiemannXi s`.**
-Symmetric polynomial prefactor + `completedRiemannZeta₀_one_sub`.-/
+Symmetric polynomial prefactor + `completedRiemannZeta₀_one_sub`.
+@isnad1 id=eq.0h1v.s4.4e2568845fc2 from=translated src=- shape=0d0922af vocab=a65c2bc0
+-/
 theorem entireRiemannXi_one_sub (s : ℂ) :
     entireRiemannXi (1 - s) = entireRiemannXi s := by
   unfold entireRiemannXi
   rw [completedRiemannZeta₀_one_sub]
   ring
 
-/-- ⭐ **PROVED — `entireRiemannXi` differentiable at every point.**-/
+/-- ⭐ **PROVED — `entireRiemannXi` differentiable at every point.**
+@isnad1 id=differen.0h1v.s6.f01e4c9b46cb from=translated src=- shape=1111aaa7 vocab=35fb14af
+-/
 theorem entireRiemannXi_differentiableAt (s : ℂ) :
     DifferentiableAt ℂ entireRiemannXi s :=
   entireRiemannXi_differentiable s
 
 /-- ⭐ **PROVED — Mathlib-grounded ξ regularity is automatic modulo
 Schwarz.** Differentiability and the functional equation come for free;
-only Schwarz remains.-/
+only Schwarz remains.
+@isnad1 id=entireri.1h0v.s1.aff714432d30 from=translated src=- shape=1d48f1ac vocab=5d59b566
+-/
 theorem EntireRiemannXiRegularity_of_schwarz
     (hsch : EntireXi.schwarzReflection) :
     EntireRiemannXiRegularity where
@@ -81,7 +91,9 @@ theorem EntireRiemannXiRegularity_of_schwarz
   schwarz := hsch
   functional_equation := fun s => (entireRiemannXi_one_sub s).symm
 
-/-- ⭐ **PROVED — `EntireXiPullback` is differentiable everywhere.**-/
+/-- ⭐ **PROVED — `EntireXiPullback` is differentiable everywhere.**
+@isnad1 id=differen.0h0v.s6.abde8f9083db from=translated src=- shape=aa9fb30a vocab=0b7f0b79
+-/
 theorem EntireXiPullback_differentiable :
     Differentiable ℂ EntireXiPullback := by
   intro z
@@ -95,13 +107,17 @@ theorem EntireXiPullback_differentiable :
     entireRiemannXi_differentiableAt _
   exact h_outer.comp z h_inner
 
-/-- ⭐ **PROVED — `EntireXiPullback` is analytic at every point.**-/
+/-- ⭐ **PROVED — `EntireXiPullback` is analytic at every point.**
+@isnad1 id=analytic.0h1v.s4.44de8b79142f from=translated src=- shape=1111aaa7 vocab=85f794bc
+-/
 theorem EntireXiPullback_analyticAt (z : ℂ) :
     AnalyticAt ℂ EntireXiPullback z :=
   EntireXiPullback_differentiable.analyticAt z
 
 /-- ⭐ **PROVED — Schwarz reflection for `EntireXiPullback`.** From the
-Mathlib-grounded regularity (Schwarz + functional equation).-/
+Mathlib-grounded regularity (Schwarz + functional equation).
+@isnad1 id=eq.1h1v.s6.cd09a05fe0c0 from=translated src=- shape=1333c580 vocab=643314ac
+-/
 theorem EntireXiPullback_schwarz
     (H : EntireRiemannXiRegularity) :
     ∀ z : ℂ, EntireXiPullback (star z) = star (EntireXiPullback z) := by
@@ -121,7 +137,9 @@ open MeasureTheory in
 /-- ⭐ **PROVED — Mellin transform of an `ℝ → ℂ`-lifted real function
 commutes with conjugation.** For real-valued `f`,
 `mellin (ofReal ∘ f) (star s) = star (mellin (ofReal ∘ f) s)`, via
-`integral_conj` + `Complex.cpow_conj` (using `(t : ℂ).arg = 0 ≠ π` for `t > 0`).-/
+`integral_conj` + `Complex.cpow_conj` (using `(t : ℂ).arg = 0 ≠ π` for `t > 0`).
+@isnad1 id=eq.0h2v.s6.3186f0857ead from=translated src=- shape=7a44367d vocab=98077814
+-/
 theorem mellin_star_ofReal (f : ℝ → ℝ) (s : ℂ) :
     mellin (fun t : ℝ => ((f t : ℝ) : ℂ)) (star s)
       = star (mellin (fun t : ℝ => ((f t : ℝ) : ℂ)) s) := by
@@ -152,7 +170,9 @@ theorem mellin_star_ofReal (f : ℝ → ℝ) (s : ℂ) :
 
 /-- ⭐ **PROVED — abstract FE-pair lift.** If a `WeakFEPair ℂ` has its
 `f_modif` field equal to the `ofReal` lift of a real-valued function,
-then its `Λ₀` commutes with `star`.-/
+then its `Λ₀` commutes with `star`.
+@isnad1 id=eq.1h3v.s6.3ddbffa23303 from=translated src=- shape=294fbe05 vocab=f5ebec25
+-/
 theorem WeakFEPair_Λ₀_star_of_f_modif_ofReal
     (P : WeakFEPair ℂ) (φ : ℝ → ℝ)
     (h : ∀ x : ℝ, P.f_modif x = ((φ x : ℝ) : ℂ))
@@ -170,7 +190,9 @@ def hurwitzEvenFEPair_zero_f_modif_ofReal_target : Prop :=
     (HurwitzZeta.hurwitzEvenFEPair 0).f_modif x = ((φ x : ℝ) : ℂ)
 
 /-- ⭐ **PROVED — `completedHurwitzZetaEven₀ 0` Schwarz, modulo the FE-pair
-real-lifting hypothesis.**-/
+real-lifting hypothesis.**
+@isnad1 id=eq.1h1v.s6.7f6ccaa873f2 from=translated src=- shape=76786dbd vocab=4271a019
+-/
 theorem completedHurwitzZetaEven₀_zero_star
     (h_real : hurwitzEvenFEPair_zero_f_modif_ofReal_target) (s : ℂ) :
     HurwitzZeta.completedHurwitzZetaEven₀ 0 (star s)
@@ -185,7 +207,9 @@ theorem completedHurwitzZetaEven₀_zero_star
   rw [WeakFEPair_Λ₀_star_of_f_modif_ofReal _ φ hφ (s / 2)]
   rw [star_div₀, h_two_star]
 
-/-- ⭐ **PROVED — `completedRiemannZeta₀` Schwarz from the FE-pair hypothesis.**-/
+/-- ⭐ **PROVED — `completedRiemannZeta₀` Schwarz from the FE-pair hypothesis.**
+@isnad1 id=eq.1h1v.s6.78ca156505d3 from=translated src=- shape=1333c580 vocab=d9eec5fb
+-/
 theorem completedRiemannZeta₀_star
     (h_real : hurwitzEvenFEPair_zero_f_modif_ofReal_target) (s : ℂ) :
     completedRiemannZeta₀ (star s) = star (completedRiemannZeta₀ s) := by
@@ -193,7 +217,9 @@ theorem completedRiemannZeta₀_star
   exact completedHurwitzZetaEven₀_zero_star h_real s
 
 /-- ⭐ **PROVED — Schwarz reflection for `entireRiemannXi`, modulo the
-FE-pair real-lifting hypothesis.**-/
+FE-pair real-lifting hypothesis.**
+@isnad1 id=schwarzr.1h0v.s1.b5debb0b485f from=translated src=- shape=1d48f1ac vocab=7035d379
+-/
 theorem entireRiemannXi_schwarz_of_hurwitzZero
     (h_real : hurwitzEvenFEPair_zero_f_modif_ofReal_target) :
     EntireXi.schwarzReflection := by
@@ -217,7 +243,9 @@ noncomputable def hurwitzEven_zero_f_modif_real (x : ℝ) : ℝ :=
   (Set.Ioo (0 : ℝ) 1).indicator
     (fun y => HurwitzZeta.evenKernel 0 y - y ^ (-(1 / 2 : ℝ))) x
 
-/-- ⭐ **PROVED — `hurwitzEvenFEPair 0` has real-valued `f_modif`.**-/
+/-- ⭐ **PROVED — `hurwitzEvenFEPair 0` has real-valued `f_modif`.**
+@isnad1 id=hurwitze.0h0v.s0.52d145a7c335 from=translated src=- shape=45709ebd vocab=52d145a7
+-/
 theorem hurwitzEvenFEPair_zero_f_modif_ofReal_holds :
     hurwitzEvenFEPair_zero_f_modif_ofReal_target := by
   refine ⟨hurwitzEven_zero_f_modif_real, ?_⟩
@@ -250,7 +278,9 @@ theorem hurwitzEvenFEPair_zero_f_modif_ofReal_holds :
       simp
 
 /-- ⭐ **PROVED — Schwarz reflection for `entireRiemannXi`, unconditional.**
-Final discharge of `EntireXi.schwarzReflection` via the FE-pair witness.-/
+Final discharge of `EntireXi.schwarzReflection` via the FE-pair witness.
+@isnad1 id=schwarzr.0h0v.s0.6f249625d15f from=translated src=- shape=45709ebd vocab=6f249625
+-/
 theorem EntireXi.schwarzReflection_holds :
     EntireXi.schwarzReflection :=
   entireRiemannXi_schwarz_of_hurwitzZero hurwitzEvenFEPair_zero_f_modif_ofReal_holds

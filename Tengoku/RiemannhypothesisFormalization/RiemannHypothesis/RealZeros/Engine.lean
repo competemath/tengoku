@@ -48,7 +48,9 @@ structure LogDerivPoleWitnessLaw (f R : ℂ → ℂ) : Prop where
     ∀ ρ : ℂ, f ρ = 0 → 0 < ρ.im → PositiveUpperImaginaryEscape R
 
 /-- **Anti-Herglotz forbids upper zeros.** Pole witness + anti-Herglotz
-response ⇒ `f` has no upper-half-plane zeros. One line via the iff.-/
+response ⇒ `f` has no upper-half-plane zeros. One line via the iff.
+@isnad1 id=ne.3h3v.s5.7006f142ee18 from=translated src=- shape=99d690d8 vocab=9b9ed12d
+-/
 theorem antiHerglotz_forbids_upper_zeros
     {f R : ℂ → ℂ}
     (hpole : LogDerivPoleWitnessLaw f R)
@@ -64,7 +66,9 @@ theorem antiHerglotz_forbids_upper_zeros
 * Upper zero: killed directly by `antiHerglotz_forbids_upper_zeros`.
 * Lower zero: killed via conjugate reflection — `f (star ρ) = star (f ρ) = 0`
   with `(star ρ).im = −ρ.im > 0`, again contradicting
-  `antiHerglotz_forbids_upper_zeros`.-/
+  `antiHerglotz_forbids_upper_zeros`.
+@isnad1 id=eq.4h3v.s6.48d0ebd53f55 from=translated src=- shape=ac508689 vocab=5317d654
+-/
 theorem realZeros_of_antiHerglotz_logDerivative
     {f R : ℂ → ℂ}
     (hpole : LogDerivPoleWitnessLaw f R)
@@ -106,7 +110,9 @@ structure AntiHerglotzReflectionData where
   conjugationSymmetry : ∀ z : ℂ, F (star z) = star (F z)
 
 /-- **PROVED — every zero of `P.F` is real.** Immediate from the engine
-theorem applied to the three bundled hypotheses.-/
+theorem applied to the three bundled hypotheses.
+@isnad1 id=eq.1h2v.s4.6800982a9926 from=translated src=- shape=4130c8cd vocab=5913ab5b
+-/
 theorem AntiHerglotzReflectionData.zeros_real (P : AntiHerglotzReflectionData) :
     ∀ ρ : ℂ, P.F ρ = 0 → ρ.im = 0 :=
   realZeros_of_antiHerglotz_logDerivative

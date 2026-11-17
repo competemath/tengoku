@@ -47,7 +47,9 @@ def ZetaNontrivialZeroInHeightSlab (A B : Real) : Type :=
   {s : Complex // IsNontrivialZetaZeroInHeightSlab A B s}
 
 /-- A bounded positive-height slab contains only finitely many distinct
-nontrivial zeta zeros.-/
+nontrivial zeta zeros.
+@isnad1 id=finite.0h2v.s3.ed206ff68964 from=translated src=- shape=b794339c vocab=319a4e91
+-/
 theorem zetaNontrivialZeroInHeightSlab_finite (A B : Real) :
     Finite (ZetaNontrivialZeroInHeightSlab A B) := by
   exact ((zetaNontrivialZerosUpToHeightSet_finite B).subset (by
@@ -60,7 +62,9 @@ noncomputable def ZetaZeroOccurrenceInHeightSlab
   Sigma fun s : ZetaNontrivialZeroInHeightSlab A B =>
     Fin (analyticOrderNatAt riemannZeta s.1)
 
-/-- The multiplicity-bearing slab occurrence type is finite.-/
+/-- The multiplicity-bearing slab occurrence type is finite.
+@isnad1 id=finite.0h2v.s3.9d23e1a95674 from=translated src=- shape=b794339c vocab=c0a31faf
+-/
 theorem zetaZeroOccurrenceInHeightSlab_finite (A B : Real) :
     Finite (ZetaZeroOccurrenceInHeightSlab A B) := by
   letI : Finite (ZetaNontrivialZeroInHeightSlab A B) :=
@@ -153,7 +157,9 @@ noncomputable def zetaZeroOccurrenceUpToHeightEquivSumSlab
 nonnegative height, and with a good top height, its interior nontrivial zeros
 are exactly the positive-ordinate zeros in its half-open height slab. The
 good-height condition removes the only endpoint discrepancy, at the top
-edge.-/
+edge.
+@isnad1 id=iff.4h2v.s5.c33904238389 from=translated src=- shape=4f3d32ee vocab=b50e5ff8
+-/
 theorem isNontrivialZetaZeroInside_iff_heightSlab
     {R : ZetaRectangle} {s : Complex}
     (hleft : R.left < 0)
@@ -183,7 +189,9 @@ noncomputable def zetaWeightedZeroCountInHeightSlab
   zetaWeightedZeroCountUpToHeight B - zetaWeightedZeroCountUpToHeight A
 
 /-- The cumulative-count difference is exactly the cardinality of the
-multiplicity-bearing slab occurrence type.-/
+multiplicity-bearing slab occurrence type.
+@isnad1 id=eq.1h2v.s4.8726122eab31 from=translated src=- shape=12269a14 vocab=1392c25a
+-/
 theorem natCard_zetaZeroOccurrenceInHeightSlab
     {A B : Real} (hAB : A <= B) :
     Nat.card (ZetaZeroOccurrenceInHeightSlab A B) =
@@ -210,7 +218,9 @@ height slab is exactly `2*pi*I` times the multiplicity-weighted slab count.
 
 What remains for the full zeta argument principle is the analytic
 decomposition asserting that `zetaLogDeriv - zetaSlabPrincipalPart R`
-extends holomorphically through the zeros in the rectangle.-/
+extends holomorphically through the zeros in the rectangle.
+@isnad1 id=eq.4h1v.s6.f1d177f1325f from=translated src=- shape=2b5aa917 vocab=daae80e2
+-/
 theorem rectangleBoundaryIntegral_zetaSlabPrincipalPart_eq
     {R : ZetaRectangle}
     (hleft : R.left < 0)
@@ -261,7 +271,9 @@ theorem rectangleBoundaryIntegral_zetaSlabPrincipalPart_eq
   exact_mod_cast hcard
 
 /-- Monotonicity guarantees that the slab increment reconstructs the upper
-cumulative count.-/
+cumulative count.
+@isnad1 id=eq.1h2v.s4.8451c0fafc1f from=translated src=- shape=1ba37644 vocab=829a7a0f
+-/
 theorem zetaWeightedZeroCountInHeightSlab_add_lower
     {A B : Real} (hAB : A <= B) :
     zetaWeightedZeroCountInHeightSlab A B +
@@ -291,7 +303,9 @@ structure ResidueIdentity (R : ZetaRectangle) : Prop where
 
 /-- A supplied residue identity evaluates the original four parameterized
 edges, because the affine/orientation comparison to Mathlib's boundary
-expression has already been proved.-/
+expression has already been proved.
+@isnad1 id=eq.1h1v.s4.6e107efe5c93 from=translated src=- shape=ce4aa39d vocab=8c6f3e89
+-/
 theorem ResidueIdentity.rectangleLogDerivIntegral_eq
     {R : ZetaRectangle} (H : R.ResidueIdentity) :
     R.rectangleLogDerivIntegral =
@@ -311,7 +325,9 @@ noncomputable def rectangleArgumentTerm (R : ZetaRectangle) : Real :=
 /-- Once the exact residue identity is supplied, the fixed rectangle
 argument term gives the Riemann--von Mangoldt formula at the rectangle's top
 height.  Every remaining step is algebra and monotonicity of the independently
-defined weighted count.-/
+defined weighted count.
+@isnad1 id=eq.1h1v.s4.d2cde06f919e from=translated src=- shape=b794e6b3 vocab=dded459f
+-/
 theorem count_eq_smooth_add_rectangleArgumentTerm_of_residueIdentity
     {R : ZetaRectangle} (H : R.ResidueIdentity) :
     (zetaWeightedZeroCountUpToHeight R.top : Real) =
@@ -363,7 +379,9 @@ noncomputable def ZetaStandardRectangleResidueFormula.rectangleAt
 
 /-- Every standard rectangle in the family is geometrically admissible at a
 safe top height; this part is proved and is not stored as an analytic
-hypothesis.-/
+hypothesis.
+@isnad1 id=admissib.2h3v.s4.c778e33ce5e3 from=translated src=- shape=33f3726b vocab=7316210b
+-/
 theorem ZetaStandardRectangleResidueFormula.rectangleAt_admissible
     {A : Real} (F : ZetaStandardRectangleResidueFormula A)
     {T : Real} (hT : (F.threshold : Real) <= T)
@@ -375,7 +393,9 @@ theorem ZetaStandardRectangleResidueFormula.rectangleAt_admissible
 
 /-- A standard-rectangle residue package proves the exact
 Riemann--von Mangoldt decomposition at each safe height, with the argument
-term given by the explicit four-edge integral.-/
+term given by the explicit four-edge integral.
+@isnad1 id=eq.2h3v.s5.726975b818d6 from=translated src=- shape=867e309c vocab=e4da7d1b
+-/
 theorem ZetaStandardRectangleResidueFormula.count_eq_at_good_height
     {A : Real} (F : ZetaStandardRectangleResidueFormula A)
     {T : Real} (hT : (F.threshold : Real) <= T)
@@ -405,7 +425,9 @@ structure ZetaStandardRectangleBacklundBound
 
 /-- Residue identities plus a Backlund estimate for the same explicit
 rectangle term give the expected `O(log T)` counting remainder at safe
-heights.  No term is redefined from the desired conclusion.-/
+heights.  No term is redefined from the desired conclusion.
+@isnad1 id=le.2h4v.s6.5fbf4ec30de9 from=translated src=- shape=67fc5d13 vocab=21979117
+-/
 theorem ZetaStandardRectangleBacklundBound.count_sub_smooth_bound_at_good_height
     {A : Real} {F : ZetaStandardRectangleResidueFormula A}
     (B : ZetaStandardRectangleBacklundBound F)
@@ -436,7 +458,9 @@ structure ArgumentPrincipleFormula (R : ZetaRectangle) : Type where
       (zetaWeightedZeroCountInHeightSlab R.bottom R.top : Int)
 
 /-- Every rectangle formula carries a proved geometric admissibility
-certificate; this is not part of the missing analytic input.-/
+certificate; this is not part of the missing analytic input.
+@isnad1 id=admissib.0h2v.s2.49d9d4430735 from=translated src=- shape=6321fd23 vocab=49bc3836
+-/
 theorem ArgumentPrincipleFormula.admissible
     {R : ZetaRectangle} (F : ArgumentPrincipleFormula R) :
     R.AdmissibleForZeta :=
@@ -445,7 +469,9 @@ theorem ArgumentPrincipleFormula.admissible
     F.bottom_good F.top_good
 
 /-- The argument index of a canonical positive-height rectangle formula is
-nonnegative because it is exactly a natural multiplicity count.-/
+nonnegative because it is exactly a natural multiplicity count.
+@isnad1 id=le.0h2v.s4.f3b0e7e26696 from=translated src=- shape=9363a417 vocab=b77f817e
+-/
 theorem ArgumentPrincipleFormula.argumentIndex_nonneg
     {R : ZetaRectangle} (F : ArgumentPrincipleFormula R) :
   0 <= F.argumentIndex := by
@@ -470,7 +496,9 @@ noncomputable def ArgumentPrincipleFormula.ofResidueIdentity
   formula := rfl
 
 /-- Conversely, every legacy argument-principle formula contains a proof of
-the exact residue identity.-/
+the exact residue identity.
+@isnad1 id=residuei.0h2v.s2.37d4b6208101 from=translated src=- shape=6321fd23 vocab=b2f3cc31
+-/
 theorem ArgumentPrincipleFormula.toResidueIdentity
     {R : ZetaRectangle} (F : ArgumentPrincipleFormula R) :
     R.ResidueIdentity := by
@@ -530,7 +558,9 @@ structure ZetaBacklundArgumentBound
 /-- A Riemann--von Mangoldt formula determines its argument term uniquely:
 above its threshold it is exactly the independently defined counting
 remainder.  Thus the bare formula structure alone contains no boundary
-estimate; an explicit contour realization is genuinely additional work.-/
+estimate; an explicit contour realization is genuinely additional work.
+@isnad1 id=eq.1h2v.s5.62ea47a432d6 from=translated src=- shape=bb79fcc5 vocab=324c22e6
+-/
 theorem ZetaRiemannVonMangoldtArgumentFormula.argumentTerm_eq_count_sub_smooth
     (F : ZetaRiemannVonMangoldtArgumentFormula)
     {T : Real} (hT : (F.threshold : Real) <= T) :
@@ -542,7 +572,9 @@ theorem ZetaRiemannVonMangoldtArgumentFormula.argumentTerm_eq_count_sub_smooth
 
 /-- Likewise, a `ZetaBacklundArgumentBound` is precisely an eventual
 logarithmic estimate for the actual zero-counting remainder once the formula
-is known.-/
+is known.
+@isnad1 id=le.1h3v.s6.1486644494ed from=translated src=- shape=6d8fe7bc vocab=0670a3ba
+-/
 theorem ZetaBacklundArgumentBound.count_sub_smooth_bound
     {F : ZetaRiemannVonMangoldtArgumentFormula}
     (B : ZetaBacklundArgumentBound F)

@@ -45,7 +45,9 @@ def HasSubquadraticUpperRealGrowthAtInfinity (f : ℂ → ℂ) : Prop :=
     ∀ z : ℂ, R ≤ ‖z‖ → (f z).re ≤ ε * ‖z‖ ^ 2
 
 /-- For a continuous function, the eventual one-sided estimate can be made
-global by adding a constant.-/
+global by adding a constant.
+@isnad1 id=hassubqu.2h1v.s5.d78fcb5597ca from=translated src=- shape=e1e3bc3f vocab=891bc7f1
+-/
 theorem HasSubquadraticUpperRealGrowthAtInfinity.toGlobal
     {f : ℂ → ℂ} (hupper : HasSubquadraticUpperRealGrowthAtInfinity f)
     (hf : Continuous f) : HasSubquadraticUpperRealGrowth f := by
@@ -70,7 +72,9 @@ theorem HasSubquadraticUpperRealGrowthAtInfinity.toGlobal
     exact hre.trans <| hnorm.trans <| by linarith
 
 /-- Borel--Caratheodory upgrades a one-sided subquadratic real-part estimate
-for an entire function to subquadratic norm growth.-/
+for an entire function to subquadratic norm growth.
+@isnad1 id=hassubqu.2h1v.s6.01186f9ee44f from=translated src=- shape=56ab3657 vocab=e9c07284
+-/
 theorem hasSubquadraticNormGrowth_of_upperRealGrowth
     {f : ℂ → ℂ} (hf : Differentiable ℂ f)
     (hupper : HasSubquadraticUpperRealGrowth f) :
@@ -163,7 +167,9 @@ def HasLinearExponentialNormGrowth (q : ℂ → ℂ) : Prop :=
     ∀ z : ℂ, ‖q z‖ ≤ A * Real.exp (B * ‖z‖)
 
 /-- Every finite-exponential-type bound is subquadratic in the
-maximum-modulus sense.-/
+maximum-modulus sense.
+@isnad1 id=hassubqu.1h1v.s3.7441c6d70452 from=translated src=- shape=c3984ded vocab=db0b5683
+-/
 theorem HasLinearExponentialNormGrowth.toSubquadraticExponentialNormGrowth
     {q : ℂ → ℂ} (hq : HasLinearExponentialNormGrowth q) :
     HasSubquadraticExponentialNormGrowth q := by
@@ -187,7 +193,9 @@ theorem HasLinearExponentialNormGrowth.toSubquadraticExponentialNormGrowth
       ring
 
 /-- For a nowhere-zero function, a subquadratic maximum-modulus estimate
-implies subquadratic logarithmic norm growth.-/
+implies subquadratic logarithmic norm growth.
+@isnad1 id=hassubqu.2h1v.s4.5eee017aba4f from=translated src=- shape=4c5a4da2 vocab=5eb3ebd2
+-/
 theorem HasSubquadraticExponentialNormGrowth.toLogNormGrowth
     {q : ℂ → ℂ} (hq : HasSubquadraticExponentialNormGrowth q)
     (hq_ne : ∀ z : ℂ, q z ≠ 0) :
@@ -209,7 +217,9 @@ theorem HasSubquadraticExponentialNormGrowth.toLogNormGrowth
         (le_refl _)
 
 /-- The real part of any entire logarithm inherits logarithmic norm growth
-from its exponential.-/
+from its exponential.
+@isnad1 id=hassubqu.2h2v.s4.466473dff51d from=translated src=- shape=012c939f vocab=0c0f5b3d
+-/
 theorem HasSubquadraticLogNormGrowth.upperRealGrowth_of_exp
     {q h : ℂ → ℂ} (hq : HasSubquadraticLogNormGrowth q)
     (hexp : ∀ z : ℂ, Complex.exp (h z) = q z) :
@@ -223,7 +233,9 @@ theorem HasSubquadraticLogNormGrowth.upperRealGrowth_of_exp
     _ ≤ C + ε * ‖z‖ ^ 2 := hbound z
 
 /-- The at-infinity logarithmic bound transfers pointwise to the real part
-of any exponential logarithm.-/
+of any exponential logarithm.
+@isnad1 id=hassubqu.2h2v.s4.47b235b6d506 from=translated src=- shape=012c939f vocab=cdc8899d
+-/
 theorem HasSubquadraticLogNormGrowthAtInfinity.upperRealGrowth_of_exp
     {q h : ℂ → ℂ} (hq : HasSubquadraticLogNormGrowthAtInfinity q)
     (hexp : ∀ z : ℂ, Complex.exp (h z) = q z) :
@@ -239,7 +251,9 @@ theorem HasSubquadraticLogNormGrowthAtInfinity.upperRealGrowth_of_exp
 /-- If the quotient has a continuous global logarithm, an at-infinity
 logarithmic norm estimate extends across the omitted compact disk.  This is
 the precise bridge between the asymptotic `o(‖z‖²)` formulation and the
-global-with-a-constant formulation used by Borel--Caratheodory.-/
+global-with-a-constant formulation used by Borel--Caratheodory.
+@isnad1 id=hassubqu.3h2v.s5.e04841a6c158 from=translated src=- shape=e7174988 vocab=21171694
+-/
 theorem HasSubquadraticLogNormGrowthAtInfinity.toGlobal_of_exp
     {q h : ℂ → ℂ} (hq : HasSubquadraticLogNormGrowthAtInfinity q)
     (hh : Continuous h)
@@ -257,7 +271,9 @@ theorem HasSubquadraticLogNormGrowthAtInfinity.toGlobal_of_exp
 
 /-- An entire logarithm of a quotient with subquadratic logarithmic norm
 growth has subquadratic norm growth.  This is the reusable
-Borel--Caratheodory transfer theorem.-/
+Borel--Caratheodory transfer theorem.
+@isnad1 id=hassubqu.3h2v.s6.d221d6e2e881 from=translated src=- shape=54a97235 vocab=13c1076f
+-/
 theorem HasSubquadraticLogNormGrowth.log_hasSubquadraticNormGrowth
     {q h : ℂ → ℂ} (hq : HasSubquadraticLogNormGrowth q)
     (hh : Differentiable ℂ h)
@@ -268,7 +284,9 @@ theorem HasSubquadraticLogNormGrowth.log_hasSubquadraticNormGrowth
 
 /-- Genuine one-sided little-oh growth of `log ‖q‖` at infinity already
 controls the full norm of an entire logarithm.  Continuity on the omitted
-compact disk supplies the harmless additive constant.-/
+compact disk supplies the harmless additive constant.
+@isnad1 id=hassubqu.3h2v.s6.d51f5b77886a from=translated src=- shape=54a97235 vocab=7d76629c
+-/
 theorem
     HasSubquadraticLogNormGrowthAtInfinity.log_hasSubquadraticNormGrowth
     {q h : ℂ → ℂ} (hq : HasSubquadraticLogNormGrowthAtInfinity q)

@@ -123,7 +123,9 @@ structure HadamardProductLUCOnXiNonzeroData
       logDerivativeResponse (infiniteHadamardProduct zeroLoc) s
         = hadamardRegularizedLogDerivSeries zeroLoc s
 
-/-- ⭐ **PROVED — `s ≠ zeroLoc i` when `entireRiemannXi s ≠ 0`.**-/
+/-- ⭐ **PROVED — `s ≠ zeroLoc i` when `entireRiemannXi s ≠ 0`.**
+@isnad1 id=ne.1h4v.s4.d90fc3f137d8 from=translated src=- shape=e8c40d2d vocab=dd546fd6
+-/
 theorem ConcreteEntireXiZeroSystem.nonzero_no_collision
     {ι : Type} (H : ConcreteEntireXiZeroSystem ι)
     {s : ℂ} (hs : entireRiemannXi s ≠ 0) :
@@ -136,7 +138,9 @@ theorem ConcreteEntireXiZeroSystem.nonzero_no_collision
 /-- The canonical entire-ξ nonzero-zero location map.-/
 def entireXiNonzeroZeroLoc (i : EntireXiNonzeroZeroIndex) : ℂ := i.1
 
-/-- ⭐ **PROVED — `C·exp(a + b·s)` is a valid entire-ξ prefactor.**-/
+/-- ⭐ **PROVED — `C·exp(a + b·s)` is a valid entire-ξ prefactor.**
+@isnad1 id=entirexi.1h3v.s5.e35bd284475a from=translated src=- shape=dd51e875 vocab=669f2d0a
+-/
 theorem EntireXiHadamardPrefactor.exp_affine
     {C a b : ℂ} (hC : C ≠ 0) :
     EntireXiHadamardPrefactor
@@ -181,7 +185,9 @@ noncomputable def canonicalEntireXiLogDerivativeSourceAwayFromZeros :
     differentiable_at := fun s _hs => entireRiemannXi_differentiableAt s
     xi_logDeriv_eq := fun _s _hs => rfl }
 
-/-- ⭐ **PROVED — convert to `HadamardZeroInvSqSummability`.**-/
+/-- ⭐ **PROVED — convert to `HadamardZeroInvSqSummability`.**
+@isnad1 id=hadamard.1h2v.s3.725061c5148f from=translated src=- shape=232020f7 vocab=d7329e2d
+-/
 theorem EntireXiZeroInvSqDistribution.toHadamardZeroInvSqSummability
     {ι : Type} {HZ : ConcreteEntireXiZeroSystem ι}
     (H : EntireXiZeroInvSqDistribution HZ) :
@@ -191,7 +197,9 @@ theorem EntireXiZeroInvSqDistribution.toHadamardZeroInvSqSummability
     eventually_large := H.eventually_large }
 
 /-- 🌟🌟🌟 **PROVED — entire-ξ inverse-square zero distribution gives
-nonvanishing of the genus-one product off the indexed zero set.**-/
+nonvanishing of the genus-one product off the indexed zero set.**
+@isnad1 id=ne.2h3v.s5.681ac24af7b3 from=translated src=- shape=782f7483 vocab=767deceb
+-/
 theorem EntireXiZeroInvSqDistribution.infiniteProduct_ne_zero
     {ι : Type} {HZ : ConcreteEntireXiZeroSystem ι}
     (H : EntireXiZeroInvSqDistribution HZ)
@@ -215,7 +223,9 @@ structure EntireXiClassicalHadamardTheorem (ι : Type) : Type where
 
 /-- ⭐ **PROVED — `entireRiemannXi 0 = 1/2`.**
 This gives a concrete nonzero value, so the entire-ξ zero set is not
-locally identically zero anywhere.-/
+locally identically zero anywhere.
+@isnad1 id=eq.0h0v.s5.ed365be5d99d from=translated src=- shape=d4f6e56f vocab=f528f7f1
+-/
 theorem entireRiemannXi_zero :
     entireRiemannXi 0 = (1 / 2 : ℂ) := by
   simp [entireRiemannXi]
@@ -241,7 +251,9 @@ def concreteEntireXiZeroSystem :
       exact ⟨⟨s, ⟨hs, hs0⟩⟩, rfl⟩ }
 
 /-- 🌟🌟 **PROVED — entire-ξ zero distribution from inverse-square
-summability plus norm-properness of the concrete zero system.**-/
+summability plus norm-properness of the concrete zero system.**
+@isnad1 id=entirexi.2h2v.s5.c50637cc1797 from=translated src=- shape=355075f3 vocab=16202165
+-/
 theorem EntireXiZeroInvSqDistribution.of_invSqSummable_normProper
     {ι : Type} {HZ : ConcreteEntireXiZeroSystem ι}
     (hinv : Summable fun i : ι => (‖HZ.zeroLoc i‖ ^ 2)⁻¹)
@@ -284,7 +296,9 @@ abbrev EntireXiCanonicalZeroNormProper : Prop :=
 
 If it vanished on a neighborhood of any point, the identity theorem on
 the connected plane would force it to vanish at `0`, contradicting
-`entireRiemannXi_zero`.-/
+`entireRiemannXi_zero`.
+@isnad1 id=not.0h1v.s5.a49303369339 from=translated src=- shape=8dd287b1 vocab=7a46e9c8
+-/
 theorem entireRiemannXi_not_eventuallyEq_zero (p : ℂ) :
     ¬ entireRiemannXi =ᶠ[𝓝 p] 0 := by
   intro hlocal
@@ -323,7 +337,9 @@ noncomputable def HadamardProductLUCOnEntireXiNonzeroData.of_LUCLogDerivData
 At nonzeros, continuity gives a zero-free neighborhood. At zeros,
 Mathlib's isolated-zero theorem gives a punctured neighborhood with no
 other zeros, and nontriviality is supplied by
-`entireRiemannXi_not_eventuallyEq_zero`.-/
+`entireRiemannXi_not_eventuallyEq_zero`.
+@isnad1 id=ex.0h1v.s5.2de4855de0f6 from=translated src=- shape=a3dc674e vocab=07061042
+-/
 theorem entireRiemannXi_zeroSet_locallyFinite (p : ℂ) :
     ∃ U ∈ 𝓝 p, (U ∩ {s : ℂ | entireRiemannXi s = 0}).Finite := by
   by_cases hp : entireRiemannXi p = 0
@@ -361,7 +377,9 @@ theorem entireRiemannXi_zeroSet_locallyFinite (p : ℂ) :
     exact Set.finite_empty
 
 /-- ⭐ **PROVED — zeros of `entireRiemannXi` are finite in every closed
-norm disk.**-/
+norm disk.**
+@isnad1 id=finite.0h1v.s5.393e5e3fcf90 from=translated src=- shape=4e1c758a vocab=10cdd522
+-/
 theorem entireRiemannXi_zeroSet_finite_in_closedBall (R : ℝ) :
     {s : ℂ |
       s ∈ Metric.closedBall (0 : ℂ) R ∧ entireRiemannXi s = 0}.Finite := by
@@ -400,7 +418,9 @@ theorem entireRiemannXi_zeroSet_finite_in_closedBall (R : ℝ) :
 
 The canonical index type is a subtype of the actual nonzero zero set.
 Local isolated-zero theory proves finite-in-disks for the zero values,
-and subtype injectivity transfers that finiteness to the index set.-/
+and subtype injectivity transfers that finiteness to the index set.
+@isnad1 id=entirexi.0h0v.s0.8cf33f7dd67e from=translated src=- shape=45709ebd vocab=8cf33f7d
+-/
 theorem entireXiCanonicalZeroNormProper :
     EntireXiCanonicalZeroNormProper := by
   refine ⟨?_⟩
@@ -429,7 +449,9 @@ theorem entireXiCanonicalZeroNormProper :
       intro i _hi j _hj hij
       exact Subtype.ext hij)
 
-/-- The canonical norm-ceiling fiber of nonzero entire-ξ zeros is finite.-/
+/-- The canonical norm-ceiling fiber of nonzero entire-ξ zeros is finite.
+@isnad1 id=finite.0h1v.s4.a3ed620ab457 from=translated src=- shape=17de3894 vocab=da9814de
+-/
 theorem entireXiCanonicalZeroNormCeilFiberFinite (n : ℕ) :
     {i : EntireXiNonzeroZeroIndex |
       Nat.ceil ‖concreteEntireXiZeroSystem.zeroLoc i‖ = n}.Finite := by
@@ -445,7 +467,9 @@ norm-ceiling shell.**
 
 If `ρ` lies in shell `ceil ‖ρ‖ = n`, then its norm is strictly larger
 than the previous integer radius.  This is the pointwise estimate used to
-convert shell zero counts into inverse-square mass bounds.-/
+convert shell zero counts into inverse-square mass bounds.
+@isnad1 id=lt.2h2v.s5.e96146f709c1 from=translated src=- shape=2bdd17f7 vocab=c953789b
+-/
 theorem entireXiCanonicalZeroNormCeilFiber_pred_lt_norm
     {i : EntireXiNonzeroZeroIndex} {n : ℕ}
     (hn : 1 ≤ n)
@@ -479,7 +503,9 @@ quotient-form Hadamard data.**
 
 This removes the removable-singularity bookkeeping from later interfaces:
 once the quotient has been identified off the zeros and the product has
-the right zero set, the ordinary factorization field follows pointwise.-/
+the right zero set, the ordinary factorization field follows pointwise.
+@isnad1 id=entirexi.1h3v.s4.3fd0d1a9051f from=translated src=- shape=54fe90d4 vocab=bddbee37
+-/
 theorem EntireXiHadamardFactorization.of_quotientFactorization
     {ι : Type} {HZ : ConcreteEntireXiZeroSystem ι}
     {prefactor : ℂ → ℂ}
@@ -528,7 +554,9 @@ noncomputable def HadamardProductLUCOnEntireXiNonzeroData.toLogDerivLimitData
       exact HZ.nonzero_no_collision hs)
 
 /-- 🌟🌟 **PROVED — canonical entire-ξ zero distribution from canonical
-inverse-square summability and finite-in-disks properness.**-/
+inverse-square summability and finite-in-disks properness.**
+@isnad1 id=entirexi.2h0v.s5.037f85fa2cd1 from=translated src=- shape=cd41c82e vocab=6cd4622c
+-/
 theorem EntireXiZeroInvSqDistribution.of_canonical_invSqSummable_normProper
     (hinv :
       Summable fun i : EntireXiNonzeroZeroIndex =>
@@ -538,7 +566,9 @@ theorem EntireXiZeroInvSqDistribution.of_canonical_invSqSummable_normProper
   EntireXiZeroInvSqDistribution.of_invSqSummable_normProper hinv Hproper
 
 /-- 🌟🌟🌟 **PROVED — canonical norm-ceiling zero-counting majorants imply
-the exact inverse-square summability required by Hadamard.**-/
+the exact inverse-square summability required by Hadamard.**
+@isnad1 id=summable.0h1v.s5.a21e7b488475 from=translated src=- shape=00d346fb vocab=dfa1b428
+-/
 theorem entireXiCanonical_invSqSummable_of_ceilFiberMajorant
     (H : EntireXiCanonicalZeroCeilFiberInvSqMajorant) :
     Summable fun i : EntireXiNonzeroZeroIndex =>
@@ -558,7 +588,9 @@ theorem entireXiCanonical_invSqSummable_of_ceilFiberMajorant
 
 /-- 🌟🌟 **PROVED — canonical entire-ξ zero distribution from canonical
 inverse-square summability alone (norm-properness supplied internally by
-the isolated-zero theory).**-/
+the isolated-zero theory).**
+@isnad1 id=entirexi.1h0v.s5.3c7069314eb5 from=translated src=- shape=dfb1c359 vocab=f6420875
+-/
 theorem EntireXiZeroInvSqDistribution.of_canonical_invSqSummable
     (hinv :
       Summable fun i : EntireXiNonzeroZeroIndex =>
@@ -569,7 +601,9 @@ theorem EntireXiZeroInvSqDistribution.of_canonical_invSqSummable
 
 /-- 🌟🌟🌟 **PROVED — quotient-form Hadamard data with the zero-factor
 side discharged.** A quotient proof now only needs product nonvanishing
-off the indexed zero set and the off-zero quotient identity.-/
+off the indexed zero set and the off-zero quotient identity.
+@isnad1 id=entirexi.2h3v.s6.125599cadbba from=translated src=- shape=a01c9a8f vocab=f4145bb2
+-/
 theorem EntireXiHadamardFactorization.of_offZeroQuotient
     {ι : Type} {HZ : ConcreteEntireXiZeroSystem ι}
     {prefactor : ℂ → ℂ}
@@ -590,7 +624,9 @@ theorem EntireXiHadamardFactorization.of_offZeroQuotient
       quotient_eq_prefactor := hquot }
 
 /-- 🌟🌟🌟 **PROVED — the same norm-ceiling majorant directly supplies the
-canonical entire-ξ inverse-square zero-distribution package.**-/
+canonical entire-ξ inverse-square zero-distribution package.**
+@isnad1 id=entirexi.0h1v.s2.2cae28121a69 from=translated src=- shape=da6c7ba4 vocab=abe8b5da
+-/
 theorem EntireXiZeroInvSqDistribution.of_canonical_ceilFiberMajorant
     (H : EntireXiCanonicalZeroCeilFiberInvSqMajorant) :
     EntireXiZeroInvSqDistribution concreteEntireXiZeroSystem :=
@@ -599,7 +635,9 @@ theorem EntireXiZeroInvSqDistribution.of_canonical_ceilFiberMajorant
 
 /-- 🌟🌟🌟🌟 **PROVED — quotient-form Hadamard factorization with product
 nonvanishing discharged from inverse-square zero distribution.** The
-only remaining factorization input is the off-zero quotient identity.-/
+only remaining factorization input is the off-zero quotient identity.
+@isnad1 id=entirexi.2h3v.s5.02015b318590 from=translated src=- shape=b42f5ff4 vocab=bc75e5e5
+-/
 theorem EntireXiHadamardFactorization.of_offZeroQuotient_invSq
     {ι : Type} {HZ : ConcreteEntireXiZeroSystem ι}
     {prefactor : ℂ → ℂ}

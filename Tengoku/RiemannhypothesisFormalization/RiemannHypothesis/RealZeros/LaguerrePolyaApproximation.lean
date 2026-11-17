@@ -54,7 +54,9 @@ structure LaguerrePolyaApproximationData (F : ℂ → ℂ) where
       (fun n z => (approximant n).eval z) F atTop Set.univ
 
 /-- A Laguerre--Pólya approximable limit is entire (complex
-differentiable everywhere).-/
+differentiable everywhere).
+@isnad1 id=differen.0h2v.s6.7c7e77753c14 from=translated src=- shape=4abcf43f vocab=6e7d5b09
+-/
 theorem LaguerrePolyaApproximationData.differentiable
     {F : ℂ → ℂ} (A : LaguerrePolyaApproximationData F) :
     Differentiable ℂ F := by
@@ -65,7 +67,9 @@ theorem LaguerrePolyaApproximationData.differentiable
   simpa only [differentiableOn_univ] using hdiffOn
 
 /-- Schwarz symmetry is closed under locally uniform (indeed pointwise)
-limits.-/
+limits.
+@isnad1 id=eq.0h3v.s6.0d704193a045 from=translated src=- shape=009ab79b vocab=9443b96b
+-/
 theorem LaguerrePolyaApproximationData.schwarz
     {F : ℂ → ℂ} (A : LaguerrePolyaApproximationData F) (z : ℂ) :
     F (star z) = star (F z) := by
@@ -89,7 +93,9 @@ theorem LaguerrePolyaApproximationData.schwarz
 
 /-- The anti-Herglotz logarithmic-derivative sign of the real-rooted
 approximating polynomials passes to the locally uniform limit at every point
-where the limit is nonzero.-/
+where the limit is nonzero.
+@isnad1 id=le.2h3v.s5.cdd497be7ae5 from=translated src=- shape=b0a1bd4a vocab=7b19f644
+-/
 theorem LaguerrePolyaApproximationData.logDerivative_im_nonpos_away
     {F : ℂ → ℂ} (A : LaguerrePolyaApproximationData F) :
     ∀ z : ℂ, 0 < z.im → F z ≠ 0 →
@@ -122,7 +128,9 @@ theorem LaguerrePolyaApproximationData.logDerivative_im_nonpos_away
   simpa [logDerivativeResponse, logDeriv_apply] using hlimit
 
 /-- Totalized anti-Herglotz form of the preceding punctured-domain theorem.
-At zeros, both logarithmic-derivative conventions evaluate to zero.-/
+At zeros, both logarithmic-derivative conventions evaluate to zero.
+@isnad1 id=antiherg.0h2v.s3.e0e4481d0a92 from=translated src=- shape=aef97f5f vocab=2cf0b225
+-/
 theorem LaguerrePolyaApproximationData.antiHerglotz
     {F : ℂ → ℂ} (A : LaguerrePolyaApproximationData F) :
     AntiHerglotzUHP (logDerivativeResponse F) :=
@@ -130,7 +138,9 @@ theorem LaguerrePolyaApproximationData.antiHerglotz
     A.logDerivative_im_nonpos_away
 
 /-- **Laguerre--Pólya closure theorem.** A nontrivial locally uniform limit
-of nonzero Schwarz-symmetric real-rooted polynomials has only real zeros.-/
+of nonzero Schwarz-symmetric real-rooted polynomials has only real zeros.
+@isnad1 id=eq.2h3v.s5.e2aeb2e6f1dd from=translated src=- shape=91b43b54 vocab=3e066fae
+-/
 theorem LaguerrePolyaApproximationData.roots_real
     {F : ℂ → ℂ} (A : LaguerrePolyaApproximationData F)
     (h_nontrivial : ∃ z : ℂ, F z ≠ 0) :

@@ -67,7 +67,9 @@ private theorem entireQuotientCompletion_meromorphicOrderAt_eq_zero
   rw [hgn]
   simp
 
-/-- Equal finite analytic-order divisors make the completed quotient entire.-/
+/-- Equal finite analytic-order divisors make the completed quotient entire.
+@isnad1 id=differen.4h2v.s8.63c9b0bc2a6e from=translated src=- shape=c96d0c05 vocab=d1955cd9
+-/
 theorem entireQuotientCompletion_differentiable
     {f g : ℂ → ℂ}
     (hf : Differentiable ℂ f)
@@ -84,7 +86,9 @@ theorem entireQuotientCompletion_differentiable
       hf hg horder hfinite z]).differentiableAt
 
 /-- Equal finite analytic-order divisors make the completed quotient nowhere
-zero.-/
+zero.
+@isnad1 id=ne.4h3v.s7.438a93940db4 from=translated src=- shape=0e0a5113 vocab=d1955cd9
+-/
 theorem entireQuotientCompletion_ne_zero
     {f g : ℂ → ℂ}
     (hf : Differentiable ℂ f)
@@ -101,7 +105,9 @@ theorem entireQuotientCompletion_ne_zero
       hf hg horder hfinite z)
 
 /-- Away from zeros of the denominator, completion does not change the
-ordinary quotient.-/
+ordinary quotient.
+@isnad1 id=eq.3h3v.s7.fb40eae843e5 from=translated src=- shape=0962e5b7 vocab=e532212b
+-/
 theorem entireQuotientCompletion_eq_div
     {f g : ℂ → ℂ}
     (hf : Differentiable ℂ f)
@@ -122,7 +128,9 @@ theorem entireQuotientCompletion_eq_div
 
 The logarithm is obtained by integrating `q' / q`, normalized to
 `Complex.log (q 0)`.  Constancy of `exp h / q` then gives `exp h = q`
-globally.-/
+globally.
+@isnad1 id=ex.2h1v.s7.f88111690bd1 from=translated src=- shape=d2a84a49 vocab=0225faae
+-/
 theorem exists_differentiable_log_of_differentiable_ne_zero
     {q : ℂ → ℂ}
     (hq : Differentiable ℂ q)
@@ -165,7 +173,9 @@ theorem exists_differentiable_log_of_differentiable_ne_zero
 
 /-- A zero-free entire completed quotient therefore has an entire logarithm.
 This packages the two generic steps most directly used by a Hadamard quotient
-argument.-/
+argument.
+@isnad1 id=ex.4h2v.s8.cf8cfb426f1b from=translated src=- shape=9b3e98b3 vocab=573b56a2
+-/
 theorem exists_differentiable_log_entireQuotientCompletion
     {f g : ℂ → ℂ}
     (hf : Differentiable ℂ f)

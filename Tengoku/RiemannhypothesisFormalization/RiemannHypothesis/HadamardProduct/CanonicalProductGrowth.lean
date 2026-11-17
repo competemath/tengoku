@@ -28,7 +28,9 @@ namespace OverflowResidueRH
 
 open ValueDistribution
 
-/-- A genus-one factor has a global linear exponential bound.-/
+/-- A genus-one factor has a global linear exponential bound.
+@isnad1 id=le.0h2v.s5.2c3c9f3f3525 from=translated src=- shape=f3962177 vocab=f8eceb96
+-/
 lemma norm_hadamardGenus1Factor_le_exp_linear
     (ρ z : ℂ) :
     ‖hadamardGenus1Factor ρ z‖ ≤ Real.exp (2 * ‖z‖ / ‖ρ‖) := by
@@ -58,7 +60,9 @@ lemma norm_hadamardGenus1Factor_le_exp_linear
 
 /-- A genus-one factor has a global quadratic exponential bound.  For
 `‖z / ρ‖ ≤ 1` this is the Taylor estimate; outside the unit disk the linear
-bound is stronger.-/
+bound is stronger.
+@isnad1 id=le.0h2v.s6.5d2e9c0858c8 from=translated src=- shape=2f1c91d4 vocab=8994e5b6
+-/
 lemma norm_hadamardGenus1Factor_le_exp_quadratic
     (ρ z : ℂ) :
     ‖hadamardGenus1Factor ρ z‖ ≤
@@ -110,7 +114,9 @@ lemma norm_hadamardGenus1Factor_le_exp_quadratic
 
 /-- A summable nonnegative exponential majorant controls the norm of a
 multipliable complex product.  The proof passes finite-product bounds to the
-limit, avoiding an ordered-monoid requirement on `ℝ`.-/
+limit, avoiding an ordered-monoid requirement on `ℝ`.
+@isnad1 id=le.4h3v.s6.4b8e5c593240 from=translated src=- shape=fef59372 vocab=7ab7c1f9
+-/
 lemma norm_tprod_le_exp_tsum
     {ι : Type*} {f : ι → ℂ} {b : ι → ℝ}
     (hf : Multipliable f) (hb : Summable b)
@@ -137,6 +143,9 @@ lemma norm_tprod_le_exp_tsum
 set_option maxHeartbeats 400000 in
 -- The full-index `ite` majorant avoids expensive subtype-product reduction,
 -- but its finite-head/complement tsum normalization needs extra elaboration.
+/--
+@isnad1 id=le.1h4v.s7.1e61250bd893 from=translated src=- shape=2fcefcbf vocab=a8e6e106
+-/
 lemma norm_infiniteHadamardProduct_le_exp_split
     {ι : Type*} {zeroLoc : ι → ℂ}
     (H : HadamardZeroInvSqSummability zeroLoc)

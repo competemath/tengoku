@@ -36,7 +36,9 @@ def HasSublinearNormGrowth (f : ℂ → ℂ) : Prop :=
   ∀ ε : ℝ, 0 < ε → ∃ R : ℝ, 0 ≤ R ∧
     ∀ z : ℂ, R ≤ ‖z‖ → ‖f z‖ ≤ ε * ‖z‖
 
-/-- Adding a constant does not change sublinear norm growth at infinity.-/
+/-- Adding a constant does not change sublinear norm growth at infinity.
+@isnad1 id=hassubli.1h2v.s4.fc97844f00e4 from=translated src=- shape=c82ddb5d vocab=b6237d50
+-/
 theorem HasSublinearNormGrowth.add_const
     {f : ℂ → ℂ} (hf : HasSublinearNormGrowth f) (c : ℂ) :
     HasSublinearNormGrowth (fun z => f z + c) := by
@@ -56,7 +58,9 @@ theorem HasSublinearNormGrowth.add_const
       add_le_add (hf_bound z hzRf) hc
     _ = ε * ‖z‖ := by ring
 
-/-- Subtracting a constant does not change sublinear norm growth.-/
+/-- Subtracting a constant does not change sublinear norm growth.
+@isnad1 id=hassubli.1h2v.s4.4278e5887deb from=translated src=- shape=c82ddb5d vocab=c62602d7
+-/
 theorem HasSublinearNormGrowth.sub_const
     {f : ℂ → ℂ} (hf : HasSublinearNormGrowth f) (c : ℂ) :
     HasSublinearNormGrowth (fun z => f z - c) := by
@@ -64,7 +68,9 @@ theorem HasSublinearNormGrowth.sub_const
 
 /-- The derivative of an entire function with sublinear norm growth vanishes
 at every point.  This is the first-derivative Cauchy estimate with an
-arbitrarily small asymptotic coefficient.-/
+arbitrarily small asymptotic coefficient.
+@isnad1 id=eq.2h2v.s6.5fe7e7894423 from=translated src=- shape=97c588a9 vocab=4abbbcf8
+-/
 theorem deriv_eq_zero_of_sublinearNormGrowth
     {f : ℂ → ℂ} (hf : Differentiable ℂ f)
     (hgrowth : HasSublinearNormGrowth f) (c : ℂ) :
@@ -101,7 +107,9 @@ theorem deriv_eq_zero_of_sublinearNormGrowth
     ‖deriv f c‖ ≤ ((ε / 2) * (2 * r)) / r := hcauchy
     _ = ε := by field_simp
 
-/-- An entire function with sublinear norm growth is constant.-/
+/-- An entire function with sublinear norm growth is constant.
+@isnad1 id=ex.2h1v.s6.da9d0309c43c from=translated src=- shape=2a0c3e52 vocab=92168b3d
+-/
 theorem differentiable_eq_const_of_sublinearNormGrowth
     {f : ℂ → ℂ} (hf : Differentiable ℂ f)
     (hgrowth : HasSublinearNormGrowth f) :
@@ -115,7 +123,9 @@ def HasSubquadraticNormGrowth (f : ℂ → ℂ) : Prop :=
   ∀ ε : ℝ, 0 < ε → ∃ R : ℝ, 0 ≤ R ∧
     ∀ z : ℂ, R ≤ ‖z‖ → ‖f z‖ ≤ ε * ‖z‖ ^ 2
 
-/-- Adding a constant does not change subquadratic norm growth at infinity.-/
+/-- Adding a constant does not change subquadratic norm growth at infinity.
+@isnad1 id=hassubqu.1h2v.s4.1a5550093dd3 from=translated src=- shape=c82ddb5d vocab=03a0affe
+-/
 theorem HasSubquadraticNormGrowth.add_const
     {f : ℂ → ℂ} (hf : HasSubquadraticNormGrowth f) (c : ℂ) :
     HasSubquadraticNormGrowth (fun z => f z + c) := by
@@ -142,14 +152,18 @@ theorem HasSubquadraticNormGrowth.add_const
       add_le_add (hf_bound z hzRf) hc
     _ = ε * ‖z‖ ^ 2 := by ring
 
-/-- Subtracting a constant does not change subquadratic norm growth.-/
+/-- Subtracting a constant does not change subquadratic norm growth.
+@isnad1 id=hassubqu.1h2v.s4.6afddb52b087 from=translated src=- shape=c82ddb5d vocab=ccccdd37
+-/
 theorem HasSubquadraticNormGrowth.sub_const
     {f : ℂ → ℂ} (hf : HasSubquadraticNormGrowth f) (c : ℂ) :
     HasSubquadraticNormGrowth (fun z => f z - c) := by
   simpa [sub_eq_add_neg] using hf.add_const (-c)
 
 /-- The second derivative of an entire function with subquadratic norm growth
-vanishes at every point.-/
+vanishes at every point.
+@isnad1 id=eq.2h2v.s6.20d8d045995e from=translated src=- shape=00e545ae vocab=e6906eb7
+-/
 theorem iteratedDeriv_two_eq_zero_of_subquadraticNormGrowth
     {f : ℂ → ℂ} (hf : Differentiable ℂ f)
     (hgrowth : HasSubquadraticNormGrowth f) (c : ℂ) :
@@ -191,7 +205,9 @@ theorem iteratedDeriv_two_eq_zero_of_subquadraticNormGrowth
       field_simp [ne_of_gt hr_pos]
       ring
 
-/-- An entire function with subquadratic norm growth is affine.-/
+/-- An entire function with subquadratic norm growth is affine.
+@isnad1 id=ex.2h1v.s6.9a31695a24b2 from=translated src=- shape=559da512 vocab=1d2db8a6
+-/
 theorem differentiable_eq_affine_of_subquadraticNormGrowth
     {f : ℂ → ℂ} (hf : Differentiable ℂ f)
     (hgrowth : HasSubquadraticNormGrowth f) :

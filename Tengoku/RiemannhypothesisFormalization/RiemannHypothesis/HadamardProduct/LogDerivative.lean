@@ -79,7 +79,9 @@ structure HadamardFiniteExhaustion
 
 /-- ⭐ **PROVED — indexed finite Hadamard products are differentiable
 everywhere.** The finite holomorphicity input for Mathlib's
-locally-uniform derivative theorem.-/
+locally-uniform derivative theorem.
+@isnad1 id=differen.0h4v.s6.fe1ea0f7ce01 from=translated src=- shape=72a154f3 vocab=b3c5ca7d
+-/
 theorem indexedFiniteHadamardProduct_differentiableAt
     {ι : Type*} (zeroLoc : ι → ℂ) (F : Finset ι) (s : ℂ) :
     DifferentiableAt ℂ (fun s' : ℂ =>
@@ -89,7 +91,9 @@ theorem indexedFiniteHadamardProduct_differentiableAt
     hadamardGenus1Factor_differentiableAt (zeroLoc i) s)
 
 /-- ⭐ **PROVED — indexed finite Hadamard products are differentiable on
-every region.**-/
+every region.**
+@isnad1 id=differen.0h4v.s6.a6db0a4d4fac from=translated src=- shape=a459d3fa vocab=31d6851c
+-/
 theorem indexedFiniteHadamardProduct_differentiableOn
     {ι : Type*} (zeroLoc : ι → ℂ) (F : Finset ι) (U : Set ℂ) :
     DifferentiableOn ℂ
@@ -162,7 +166,9 @@ noncomputable def HadamardFiniteDerivativeLimitData.of_locallyUniformProduct
   simpa [F, Function.comp_def] using hderiv_luc.tendsto_at hs
 
 /-- 🌟🌟🌟 **PROVED — the locally-uniform Hadamard product limit is
-differentiable on its open region.**-/
+differentiable on its open region.**
+@isnad1 id=differen.0h4v.s6.27fdb40ad4a8 from=translated src=- shape=9d8e986a vocab=cae67df4
+-/
 theorem HadamardProductLocallyUniformLimitData.infinite_differentiableOn
     {ι : Type*} {zeroLoc : ι → ℂ}
     {Hex : HadamardFiniteExhaustion zeroLoc}
@@ -182,7 +188,9 @@ theorem HadamardProductLocallyUniformLimitData.infinite_differentiableOn
       hfinite_diff Hluc.isOpen_region
 
 /-- 🌟🌟🌟 **PROVED — pointwise differentiability from locally-uniform
-Hadamard product convergence on an open region.**-/
+Hadamard product convergence on an open region.**
+@isnad1 id=differen.1h5v.s6.939494279803 from=translated src=- shape=07aca710 vocab=7ba76573
+-/
 theorem HadamardProductLocallyUniformLimitData.infinite_differentiableAt
     {ι : Type*} {zeroLoc : ι → ℂ}
     {Hex : HadamardFiniteExhaustion zeroLoc}
@@ -198,21 +206,27 @@ The classical genus-one hypothesis `Σ 1/‖ρ‖² < ∞` (with the zeros event
 to any probe) makes the regularized term series summable and the genus-one product
 multipliable, supplying the convergence inputs the LUC data above consumes. -/
 
-/-- ⭐ **PROVED — paired/regularized identity.** `1/(s-ρ) + 1/ρ = s/((s-ρ)·ρ)`.-/
+/-- ⭐ **PROVED — paired/regularized identity.** `1/(s-ρ) + 1/ρ = s/((s-ρ)·ρ)`.
+@isnad1 id=eq.2h2v.s6.6f7ac20874b6 from=translated src=- shape=72ed5122 vocab=5eb28542
+-/
 lemma hadamard_regularized_term_eq {s ρ : ℂ} (hρ : ρ ≠ 0) (hsρ : s ≠ ρ) :
     1 / (s - ρ) + 1 / ρ = s / ((s - ρ) * ρ) := by
   have hsρ' : s - ρ ≠ 0 := sub_ne_zero.mpr hsρ
   field_simp
   ring
 
-/-- ⭐ **PROVED — norm form of the regularized identity.**-/
+/-- ⭐ **PROVED — norm form of the regularized identity.**
+@isnad1 id=eq.2h2v.s6.d2db73f55b18 from=translated src=- shape=91d0fec1 vocab=374f721e
+-/
 lemma norm_hadamard_regularized_term_eq
     {s ρ : ℂ} (hρ : ρ ≠ 0) (hsρ : s ≠ ρ) :
     ‖1 / (s - ρ) + 1 / ρ‖ = ‖s‖ / (‖s - ρ‖ * ‖ρ‖) := by
   rw [hadamard_regularized_term_eq hρ hsρ, norm_div, norm_mul]
 
 /-- ⭐ **PROVED — reverse-triangle large-zero bound.** When `2‖s‖ ≤ ‖ρ‖`,
-`‖s − ρ‖ ≥ ‖ρ‖/2`.-/
+`‖s − ρ‖ ≥ ‖ρ‖/2`.
+@isnad1 id=le.1h2v.s6.a25273416205 from=translated src=- shape=c9efc772 vocab=20a84934
+-/
 lemma norm_sub_ge_half_of_two_norm_le {s ρ : ℂ}
     (hlarge : 2 * ‖s‖ ≤ ‖ρ‖) :
     ‖ρ‖ / 2 ≤ ‖s - ρ‖ := by
@@ -224,7 +238,9 @@ lemma norm_sub_ge_half_of_two_norm_le {s ρ : ℂ}
   linarith
 
 /-- 🌟🌟🌟 **PROVED — large-zero bound on the regularized Hadamard term.**
-`‖1/(s−ρ) + 1/ρ‖ ≤ 2‖s‖/‖ρ‖²` for `‖ρ‖ ≥ 2‖s‖`.-/
+`‖1/(s−ρ) + 1/ρ‖ ≤ 2‖s‖/‖ρ‖²` for `‖ρ‖ ≥ 2‖s‖`.
+@isnad1 id=le.3h2v.s7.bf2fb8e91a8f from=translated src=- shape=d468f62f vocab=b0ad2dd3
+-/
 lemma norm_hadamard_regularized_term_le_large {s ρ : ℂ}
     (hρ : ρ ≠ 0) (hsρ : s ≠ ρ) (hlarge : 2 * ‖s‖ ≤ ‖ρ‖) :
     ‖1 / (s - ρ) + 1 / ρ‖ ≤ 2 * ‖s‖ / ‖ρ‖ ^ 2 := by
@@ -261,7 +277,9 @@ structure HadamardZeroNormProper
     ∀ R : ℝ, { i : ι | ‖zeroLoc i‖ ≤ R }.Finite
 
 /-- 🌟🌟 **PROVED — norm-proper zero locations are eventually large in the
-cofinite filter.**-/
+cofinite filter.**
+@isnad1 id=eventual.1h3v.s5.a8a5c7cd55e7 from=translated src=- shape=31fb4ccc vocab=642dd418
+-/
 theorem HadamardZeroNormProper.eventually_large
     {ι : Type*} {zeroLoc : ι → ℂ}
     (H : HadamardZeroNormProper zeroLoc) :
@@ -279,7 +297,9 @@ noncomputable def HadamardZeroNormProper.normExhaustion
     (H : HadamardZeroNormProper zeroLoc) : ℕ → Finset ι :=
   fun n => (H.finite_norm_le (n : ℝ)).toFinset
 
-/-- ⭐ **PROVED — membership in the norm-ball exhaustion.**-/
+/-- ⭐ **PROVED — membership in the norm-ball exhaustion.**
+@isnad1 id=iff.1h4v.s5.95a404eeb7ba from=translated src=- shape=ef64e8c3 vocab=d21060d8
+-/
 theorem HadamardZeroNormProper.mem_normExhaustion
     {ι : Type*} {zeroLoc : ι → ℂ}
     (H : HadamardZeroNormProper zeroLoc)
@@ -289,7 +309,9 @@ theorem HadamardZeroNormProper.mem_normExhaustion
   rw [Set.Finite.mem_toFinset]
   rfl
 
-/-- 🌟🌟 **PROVED — norm-ball finite exhaustion is monotone.**-/
+/-- 🌟🌟 **PROVED — norm-ball finite exhaustion is monotone.**
+@isnad1 id=monotone.1h2v.s4.09e082c70b4d from=translated src=- shape=4aaf9cd4 vocab=d71f2950
+-/
 theorem HadamardZeroNormProper.normExhaustion_mono
     {ι : Type*} {zeroLoc : ι → ℂ}
     (H : HadamardZeroNormProper zeroLoc) :
@@ -299,7 +321,9 @@ theorem HadamardZeroNormProper.normExhaustion_mono
   rw [H.mem_normExhaustion]
   exact le_trans hi (Nat.cast_le.mpr hnm)
 
-/-- 🌟🌟 **PROVED — norm-ball finite exhaustion is exhaustive.**-/
+/-- 🌟🌟 **PROVED — norm-ball finite exhaustion is exhaustive.**
+@isnad1 id=ex.1h3v.s5.2bf53e57d6ba from=translated src=- shape=213281df vocab=e84cfd2c
+-/
 theorem HadamardZeroNormProper.normExhaustion_exhaustive
     {ι : Type*} {zeroLoc : ι → ℂ}
     (H : HadamardZeroNormProper zeroLoc) :
@@ -309,7 +333,9 @@ theorem HadamardZeroNormProper.normExhaustion_exhaustive
   exact ⟨n, (H.mem_normExhaustion).mpr hn⟩
 
 /-- 🌟🌟 **PROVED — build inverse-square Hadamard zero data from
-summability plus local finiteness.**-/
+summability plus local finiteness.**
+@isnad1 id=hadamard.3h2v.s6.0f5d4b8918ed from=translated src=- shape=dca84240 vocab=b0786784
+-/
 theorem HadamardZeroInvSqSummability.of_invSqSummable_normProper
     {ι : Type*} {zeroLoc : ι → ℂ}
     (hzero : ∀ i, zeroLoc i ≠ 0)
@@ -321,7 +347,9 @@ theorem HadamardZeroInvSqSummability.of_invSqSummable_normProper
     eventually_large := Hproper.eventually_large }
 
 /-- 🌟🌟🌟 **PROVED — regularized series is summable from inv-sq
-summability + eventually-large.**-/
+summability + eventually-large.**
+@isnad1 id=summable.4h3v.s7.2c35d4e15069 from=translated src=- shape=da7bc35d vocab=ca8249ad
+-/
 theorem summable_hadamard_regularized_terms_of_inv_sq
     {ι : Type*} {zeroLoc : ι → ℂ} {s : ℂ}
     (hzero_ne : ∀ i, zeroLoc i ≠ 0)
@@ -342,7 +370,9 @@ theorem summable_hadamard_regularized_terms_of_inv_sq
       rw [div_eq_mul_inv]
     linarith [h_eq ▸ h_bound]
 
-/-- ⭐ **PROVED — regularized summability from `HadamardZeroInvSqSummability`.**-/
+/-- ⭐ **PROVED — regularized summability from `HadamardZeroInvSqSummability`.**
+@isnad1 id=summable.2h3v.s6.8af116eef47e from=translated src=- shape=8eb4c829 vocab=400311b2
+-/
 theorem HadamardZeroInvSqSummability.summable_regularized
     {ι : Type*} {zeroLoc : ι → ℂ}
     (H : HadamardZeroInvSqSummability zeroLoc)
@@ -354,7 +384,9 @@ theorem HadamardZeroInvSqSummability.summable_regularized
 /-- 🌟🌟🌟 **PROVED — totalized regularized series is summable at every
 point.** Collisions can occur only among the finitely many non-large
 zeros; once `2‖s‖ ≤ ‖ρᵢ‖`, `s = ρᵢ` would force `ρᵢ = 0`, contradicting
-`zero_ne`.-/
+`zero_ne`.
+@isnad1 id=summable.1h3v.s6.a3426600e29a from=translated src=- shape=e4787ed0 vocab=400311b2
+-/
 theorem HadamardZeroInvSqSummability.summable_regularized_totalized
     {ι : Type*} {zeroLoc : ι → ℂ}
     (H : HadamardZeroInvSqSummability zeroLoc)
@@ -388,7 +420,9 @@ structure GenusOneTaylorBoundData : Prop where
       ‖1 - (1 - w) * Complex.exp w‖ ≤ 4 * ‖w‖ ^ 2
 
 /-- 🌟🌟🌟 **PROVED — specialization to `hadamardGenus1Factor` with
-`‖s‖ ≤ ‖ρ‖`.**-/
+`‖s‖ ≤ ‖ρ‖`.**
+@isnad1 id=le.3h2v.s6.54b34e11d30d from=translated src=- shape=1419154f vocab=16e21be0
+-/
 lemma norm_one_sub_hadamardGenus1Factor_le_large
     {ρ s : ℂ} (hρ : ρ ≠ 0) (hlarge : ‖s‖ ≤ ‖ρ‖)
     (Hbound : GenusOneTaylorBoundData) :
@@ -402,7 +436,9 @@ lemma norm_one_sub_hadamardGenus1Factor_le_large
   rw [norm_div, div_pow] at h
   exact h
 
-/-- 🌟🌟🌟 **PROVED — norm-summability of `1 - E₁(s/ρᵢ)`.**-/
+/-- 🌟🌟🌟 **PROVED — norm-summability of `1 - E₁(s/ρᵢ)`.**
+@isnad1 id=summable.4h3v.s6.98e050a201ef from=translated src=- shape=29a67b38 vocab=79d3de1b
+-/
 theorem summable_norm_one_sub_hadamardGenus1Factor_of_inv_sq
     {ι : Type*} {zeroLoc : ι → ℂ} {s : ℂ}
     (Hbound : GenusOneTaylorBoundData)
@@ -423,7 +459,9 @@ theorem summable_norm_one_sub_hadamardGenus1Factor_of_inv_sq
     rw [Real.norm_of_nonneg (norm_nonneg _)]
     linarith [h_eq ▸ h_bound]
 
-/-- 🌟🌟🌟 **PROVED — ℂ-valued `Summable (1 - E₁(s/ρᵢ))` from norm.**-/
+/-- 🌟🌟🌟 **PROVED — ℂ-valued `Summable (1 - E₁(s/ρᵢ))` from norm.**
+@isnad1 id=summable.4h3v.s6.f910f98d998d from=translated src=- shape=ab806243 vocab=79d3de1b
+-/
 theorem summable_one_sub_hadamardGenus1Factor_of_inv_sq
     {ι : Type*} {zeroLoc : ι → ℂ} {s : ℂ}
     (Hbound : GenusOneTaylorBoundData)
@@ -438,7 +476,9 @@ theorem summable_one_sub_hadamardGenus1Factor_of_inv_sq
 
 /-- 🌟🌟🌟 **PROVED — `Multipliable (hadamardGenus1Factor ∘ zeroLoc)`
 from inverse-square zero summability + Taylor bound.** Uses Mathlib's
-`Complex.multipliable_one_add_of_summable`.-/
+`Complex.multipliable_one_add_of_summable`.
+@isnad1 id=multipli.4h3v.s6.50f4c08551ae from=translated src=- shape=d8afdcb6 vocab=904adcbc
+-/
 theorem multipliable_hadamardGenus1Factor_of_inv_sq
     {ι : Type*} {zeroLoc : ι → ℂ} {s : ℂ}
     (Hbound : GenusOneTaylorBoundData)
@@ -458,7 +498,9 @@ theorem multipliable_hadamardGenus1Factor_of_inv_sq
   simpa using h_mul
 
 /-- ⭐ **PROVED — `Multipliable` from the `HadamardZeroInvSqSummability`
-bundle + Taylor bound.**-/
+bundle + Taylor bound.**
+@isnad1 id=multipli.2h3v.s5.344d45d96995 from=translated src=- shape=0f378413 vocab=e216a1ae
+-/
 theorem HadamardZeroInvSqSummability.multipliable_genus1
     {ι : Type*} {zeroLoc : ι → ℂ}
     (H : HadamardZeroInvSqSummability zeroLoc)
@@ -472,7 +514,9 @@ theorem HadamardZeroInvSqSummability.multipliable_genus1
 
 /-- 🌟🌟🌟🌟 **PROVED — `GenusOneTaylorBoundData` inhabited.**
 `1 - (1-w)·exp(w) = -(exp(w)-1-w) + w·(exp(w)-1)`; the triangle inequality
-plus Mathlib's two exponential bounds give `‖·‖ ≤ 3‖w‖² ≤ 4‖w‖²`.-/
+plus Mathlib's two exponential bounds give `‖·‖ ≤ 3‖w‖² ≤ 4‖w‖²`.
+@isnad1 id=genusone.0h0v.s0.11b869988f8a from=translated src=- shape=45709ebd vocab=11b86998
+-/
 theorem genusOneTaylorBoundData : GenusOneTaylorBoundData := by
   refine ⟨?_⟩
   intro w hw
@@ -495,7 +539,9 @@ theorem genusOneTaylorBoundData : GenusOneTaylorBoundData := by
     _ ≤ 4 * ‖w‖ ^ 2 := by nlinarith [sq_nonneg ‖w‖]
 
 /-- 🌟🌟🌟 **PROVED — `Multipliable` from `HadamardZeroInvSqSummability`
-alone** (no Taylor hypothesis).-/
+alone** (no Taylor hypothesis).
+@isnad1 id=multipli.1h3v.s5.a24d00ce80ea from=translated src=- shape=35ac2f25 vocab=a781743f
+-/
 theorem HadamardZeroInvSqSummability.product_multipliable
     {ι : Type*} {zeroLoc : ι → ℂ}
     (H : HadamardZeroInvSqSummability zeroLoc) :
@@ -503,7 +549,9 @@ theorem HadamardZeroInvSqSummability.product_multipliable
       Multipliable fun i : ι => hadamardGenus1Factor (zeroLoc i) s :=
   fun s => H.multipliable_genus1 genusOneTaylorBoundData s
 
-/-- 🌟🌟🌟 **PROVED — finite Hadamard products converge to the `tprod`.**-/
+/-- 🌟🌟🌟 **PROVED — finite Hadamard products converge to the `tprod`.**
+@isnad1 id=tendsto.1h3v.s5.d28857338f42 from=translated src=- shape=ebe64165 vocab=9fa6c5aa
+-/
 theorem HadamardZeroInvSqSummability.indexedFiniteProduct_tendsto
     {ι : Type*} {zeroLoc : ι → ℂ}
     (H : HadamardZeroInvSqSummability zeroLoc) (s : ℂ) :
@@ -515,7 +563,9 @@ theorem HadamardZeroInvSqSummability.indexedFiniteProduct_tendsto
   exact (H.product_multipliable s).hasProd
 
 /-- 🌟🌟🌟 **PROVED — finite regularized sums converge to the `tsum`
-for the totalized expression at every point.**-/
+for the totalized expression at every point.**
+@isnad1 id=tendsto.1h3v.s5.1d1b1d70404a from=translated src=- shape=ebe64165 vocab=fda6408e
+-/
 theorem HadamardZeroInvSqSummability.finiteRegularizedSum_tendsto_totalized
     {ι : Type*} {zeroLoc : ι → ℂ}
     (H : HadamardZeroInvSqSummability zeroLoc)
@@ -528,7 +578,9 @@ theorem HadamardZeroInvSqSummability.finiteRegularizedSum_tendsto_totalized
   exact (H.summable_regularized_totalized s).hasSum
 
 /-- 🌟🌟🌟 **PROVED — monotone finite exhaustions inherit Hadamard product
-convergence.**-/
+convergence.**
+@isnad1 id=tendsto.3h4v.s6.43cf53952d88 from=translated src=- shape=83b4a1f1 vocab=0207d7a7
+-/
 theorem HadamardZeroInvSqSummability.indexedFiniteProduct_tendsto_at_exhaustion
     {ι : Type*} {zeroLoc : ι → ℂ}
     (H : HadamardZeroInvSqSummability zeroLoc)
@@ -544,7 +596,9 @@ theorem HadamardZeroInvSqSummability.indexedFiniteProduct_tendsto_at_exhaustion
     (tendsto_atTop_finset_of_monotone hmono hexhaustive)
 
 /-- 🌟🌟🌟 **PROVED — monotone finite exhaustions inherit totalized
-regularized-sum convergence at every point.**-/
+regularized-sum convergence at every point.**
+@isnad1 id=tendsto.3h4v.s6.c003a539a511 from=translated src=- shape=83b4a1f1 vocab=7bd34d60
+-/
 theorem HadamardZeroInvSqSummability.finiteRegularizedSum_tendsto_at_exhaustion_totalized
     {ι : Type*} {zeroLoc : ι → ℂ}
     (H : HadamardZeroInvSqSummability zeroLoc)
@@ -583,7 +637,9 @@ noncomputable def HadamardFiniteExhaustion.of_invSq_mono_exhaustive
 
 /-- 🌟🌟🌟🌟 **PROVED — locally uniform convergence of the genus-one
 Hadamard product from a summable uniform deviation bound.** Mathlib's
-Weierstrass product theorem applied to `E₁(s/ρᵢ) = 1 + (E₁(s/ρᵢ)-1)`.-/
+Weierstrass product theorem applied to `E₁(s/ρᵢ) = 1 + (E₁(s/ρᵢ)-1)`.
+@isnad1 id=hasprodl.3h4v.s7.14989460ca3f from=translated src=- shape=f126e931 vocab=d2a1129d
+-/
 theorem hasProdLocallyUniformlyOn_hadamardGenus1Factor_of_summable_bound
     {ι : Type*} {zeroLoc : ι → ℂ} {U : Set ℂ} {u : ι → ℝ}
     (hU : IsOpen U)
@@ -616,7 +672,9 @@ theorem hasProdLocallyUniformlyOn_hadamardGenus1Factor_of_summable_bound
     add_assoc] using hprod
 
 /-- 🌟🌟🌟🌟 **PROVED — finite Hadamard products tend locally uniformly
-to the infinite genus-one product under a summable uniform bound.**-/
+to the infinite genus-one product under a summable uniform bound.**
+@isnad1 id=tendstol.3h4v.s7.6029c66e9711 from=translated src=- shape=2eedbe28 vocab=3603516c
+-/
 theorem tendstoLocallyUniformlyOn_indexedFiniteHadamardProduct_of_summable_bound
     {ι : Type*} {zeroLoc : ι → ℂ} {U : Set ℂ} {u : ι → ℝ}
     (hU : IsOpen U)
@@ -639,7 +697,9 @@ theorem tendstoLocallyUniformlyOn_indexedFiniteHadamardProduct_of_summable_bound
 /-- 🌟🌟🌟🌟 **PROVED — bounded-region uniform genus-one deviation
 estimate from inverse-square zero data.** On any region bounded by `R`,
 all large zeros satisfy `‖s‖ ≤ ‖ρᵢ‖` uniformly; the Taylor bound gives the
-summable majorant `4R²/‖ρᵢ‖²`.-/
+summable majorant `4R²/‖ρᵢ‖²`.
+@isnad1 id=eventual.3h4v.s7.ebb71082ad20 from=translated src=- shape=a895985c vocab=d5cf5b01
+-/
 theorem HadamardZeroInvSqSummability.eventually_uniform_factor_sub_one_bound
     {ι : Type*} {zeroLoc : ι → ℂ}
     (H : HadamardZeroInvSqSummability zeroLoc)
@@ -683,7 +743,9 @@ theorem HadamardZeroInvSqSummability.eventually_uniform_factor_sub_one_bound
     _ = 4 * R ^ 2 * (‖zeroLoc i‖ ^ 2)⁻¹ := by ring
 
 /-- 🌟🌟🌟🌟 **PROVED — locally uniform Hadamard product convergence on
-bounded open regions from inverse-square zero distribution.**-/
+bounded open regions from inverse-square zero distribution.**
+@isnad1 id=tendstol.4h4v.s6.b617ce19982f from=translated src=- shape=a98e635e vocab=f0a6ddba
+-/
 theorem tendstoLocallyUniformlyOn_indexedFiniteHadamardProduct_of_norm_bounded_open
     {ι : Type*} {zeroLoc : ι → ℂ}
     (H : HadamardZeroInvSqSummability zeroLoc)
@@ -708,7 +770,9 @@ theorem tendstoLocallyUniformlyOn_indexedFiniteHadamardProduct_of_norm_bounded_o
       (H.eventually_uniform_factor_sub_one_bound hR hUbound)
 
 /-- 🌟🌟🌟 **PROVED — a monotone exhaustive finite sequence inherits
-locally-uniform convergence from the canonical `Finset` net.**-/
+locally-uniform convergence from the canonical `Finset` net.**
+@isnad1 id=tendstol.3h4v.s7.d1ca1c4073f2 from=translated src=- shape=7f7ca37d vocab=343d8888
+-/
 theorem tendstoLocallyUniformlyOn_indexedFiniteHadamardProduct_at_exhaustion
     {ι : Type*} {zeroLoc : ι → ℂ}
     {U : Set ℂ} {exhaust : ℕ → Finset ι}
@@ -762,7 +826,9 @@ noncomputable def HadamardProductLocallyUniformLimitData.of_finsetLocallyUniform
 /-- 🌟🌟🌟🌟🌟 **PROVED — locally uniform convergence of the genus-one
 Hadamard product on the whole complex plane from inverse-square zero
 distribution.** Genuinely local: near `x`, work inside a ball of radius
-`‖x‖+1` and apply the bounded-open theorem.-/
+`‖x‖+1` and apply the bounded-open theorem.
+@isnad1 id=tendstol.1h2v.s5.d9ffac17c6a6 from=translated src=- shape=b204c804 vocab=fc2367ea
+-/
 theorem HadamardZeroInvSqSummability.tendstoLocallyUniformlyOn_indexedFiniteHadamardProduct_univ
     {ι : Type*} {zeroLoc : ι → ℂ}
     (H : HadamardZeroInvSqSummability zeroLoc) :
@@ -815,7 +881,9 @@ noncomputable def HadamardProductLocallyUniformLimitData.of_invSq_univ
 
 /-- 🌟🌟🌟 **PROVED — infinite genus-one product is nonzero off the
 indexed zeros when the genus-one deviations are summable.** Uses Mathlib's
-complex logarithm infinite-product theorem.-/
+complex logarithm infinite-product theorem.
+@isnad1 id=ne.2h3v.s6.e114f3bd469d from=translated src=- shape=07bf4cbc vocab=60b4a80c
+-/
 theorem infiniteHadamardProduct_ne_zero_of_summable_factor_sub_one
     {ι : Type*} {zeroLoc : ι → ℂ} {s : ℂ}
     (hfactor_ne :
@@ -847,7 +915,9 @@ theorem infiniteHadamardProduct_ne_zero_of_summable_factor_sub_one
   exact Complex.exp_ne_zero _ hexp_zero
 
 /-- 🌟🌟🌟 **PROVED — inverse-square zero distribution implies the
-infinite genus-one product is nonzero away from the indexed zeros.**-/
+infinite genus-one product is nonzero away from the indexed zeros.**
+@isnad1 id=ne.2h3v.s5.f00b0cca3c61 from=translated src=- shape=3f319edb vocab=41e53e49
+-/
 theorem HadamardZeroInvSqSummability.infiniteProduct_ne_zero
     {ι : Type*} {zeroLoc : ι → ℂ}
     (H : HadamardZeroInvSqSummability zeroLoc)

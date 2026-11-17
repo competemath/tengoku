@@ -51,7 +51,9 @@ real-rooted products.-/
 def StrictAntiHerglotzUHP (R : ℂ → ℂ) : Prop :=
   ∀ z : ℂ, 0 < z.im → (R z).im < 0
 
-/-- A strict anti-Herglotz function is anti-Herglotz.-/
+/-- A strict anti-Herglotz function is anti-Herglotz.
+@isnad1 id=antiherg.1h1v.s3.034d82d730fa from=translated src=- shape=c3984ded vocab=3a9637b3
+-/
 theorem StrictAntiHerglotzUHP.antiHerglotz
     {R : ℂ → ℂ} (hR : StrictAntiHerglotzUHP R) :
     AntiHerglotzUHP R :=
@@ -64,7 +66,9 @@ def PositiveUpperImaginaryEscape (R : ℂ → ℂ) : Prop :=
   ∃ z : ℂ, 0 < z.im ∧ 0 < (R z).im
 
 /-- **The clean iff.** Anti-Herglotz on the upper half-plane is precisely
-the absence of positive upper-imaginary escape.-/
+the absence of positive upper-imaginary escape.
+@isnad1 id=iff.0h1v.s3.057a385325c8 from=translated src=- shape=7766ecb4 vocab=93a9d82e
+-/
 theorem antiHerglotz_iff_no_positiveUpperEscape (R : ℂ → ℂ) :
     AntiHerglotzUHP R ↔ ¬ PositiveUpperImaginaryEscape R := by
   unfold AntiHerglotzUHP PositiveUpperImaginaryEscape
@@ -76,7 +80,9 @@ theorem antiHerglotz_iff_no_positiveUpperEscape (R : ℂ → ℂ) :
     push Not at hpos
     exact hno ⟨z, hzim, hpos⟩
 
-/-- The logical gate — restating the iff as the contradiction direction.-/
+/-- The logical gate — restating the iff as the contradiction direction.
+@isnad1 id=not.1h1v.s3.8974890839c2 from=translated src=- shape=aef97f5f vocab=93a9d82e
+-/
 theorem positive_escape_kills_antiHerglotz
     {R : ℂ → ℂ} (h : PositiveUpperImaginaryEscape R) :
     ¬ AntiHerglotzUHP R :=
@@ -89,7 +95,9 @@ theorem positive_escape_kills_antiHerglotz
 /-- **Atom.** For a real root `r` and any upper-half-plane `z`,
   Im(1 / (z − r)) = −(Im z) / |z − r|² ≤ 0.
 The single nonpositivity fact from which the anti-Herglotz cloud law
-follows by summation.-/
+follows by summation.
+@isnad1 id=le.1h2v.s5.ffdb5611366d from=translated src=- shape=6acc2f6f vocab=8f1fa78a
+-/
 theorem complex_real_root_residue_imag_nonpos
     (z : ℂ) (r : ℝ) (hz : 0 < z.im) :
     ((1 : ℂ) / (z - (r : ℂ))).im ≤ 0 := by
@@ -105,7 +113,9 @@ theorem complex_real_root_residue_imag_nonpos
   exact le_of_lt (div_neg_of_neg_of_pos (by linarith) hns)
 
 /-- **Strict real residue atom.** A real pole contributes strictly negative
-imaginary part at every point of the open upper half-plane.-/
+imaginary part at every point of the open upper half-plane.
+@isnad1 id=lt.1h2v.s5.8e080ece097c from=translated src=- shape=459aa008 vocab=62f2855f
+-/
 theorem complex_real_root_residue_imag_neg
     (z : ℂ) (r : ℝ) (hz : 0 < z.im) :
     ((1 : ℂ) / (z - (r : ℂ))).im < 0 := by
@@ -121,7 +131,9 @@ theorem complex_real_root_residue_imag_neg
 
 /-- **Real residue cloud is anti-Herglotz.** For any finite list of real
 roots, the cloud `z ↦ Σ_r 1 / (z − r)` satisfies the anti-Herglotz
-upper-half-plane sign law.-/
+upper-half-plane sign law.
+@isnad1 id=antiherg.0h1v.s5.6d204569065e from=translated src=- shape=a9fd1eb2 vocab=3567cf9c
+-/
 theorem real_residue_cloud_antiHerglotz_list (rs : List ℝ) :
     AntiHerglotzUHP
       (fun z : ℂ => (rs.map (fun r : ℝ => (1 : ℂ) / (z - (r : ℂ)))).sum) := by
@@ -137,7 +149,9 @@ theorem real_residue_cloud_antiHerglotz_list (rs : List ℝ) :
 
 /-- ⭐ **PROVED — weighted real residue cloud is anti-Herglotz.**
 Generalizes `real_residue_cloud_antiHerglotz_list` to `(root, weight)`
-pairs with non-negative real weights.-/
+pairs with non-negative real weights.
+@isnad1 id=antiherg.1h1v.s6.e04ac24fadbc from=translated src=- shape=ba6106e1 vocab=aab8720b
+-/
 theorem real_weighted_residue_cloud_antiHerglotz_list
     (atoms : List (ℝ × ℝ))
     (hweights : ∀ a ∈ atoms, 0 ≤ a.2) :
@@ -171,7 +185,9 @@ theorem real_weighted_residue_cloud_antiHerglotz_list
 
 /-- **UHP-restricted closure for `AntiHerglotzUHP`.**
 If `F X` is eventually anti-Herglotz and `F X z → f z` pointwise *only
-on UHP*, then `f` is anti-Herglotz.-/
+on UHP*, then `f` is anti-Herglotz.
+@isnad1 id=antiherg.2h2v.s6.83d359be50e4 from=translated src=- shape=46c8fd68 vocab=fffb139e
+-/
 theorem AntiHerglotzUHP.of_eventual_pointwise_tendsto_UHP
     {F : ℝ → ℂ → ℂ} {f : ℂ → ℂ}
     (hF : ∀ᶠ X in Filter.atTop, AntiHerglotzUHP (F X))

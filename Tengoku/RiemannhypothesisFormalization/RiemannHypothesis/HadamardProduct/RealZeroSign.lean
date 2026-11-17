@@ -50,7 +50,9 @@ noncomputable def natHadamardProductLocallyUniformLimitData
 
 /-- Every finite regularized sum over real zero locations has nonpositive
 imaginary part in the upper half-plane. The regularizing terms `1 / ρ` are
-real and therefore do not affect the sign.-/
+real and therefore do not affect the sign.
+@isnad1 id=le.1h3v.s5.b19df739a1df from=translated src=- shape=f3998460 vocab=b7bf1a03
+-/
 theorem finiteHadamardRegularizedSum_real_im_nonpos
     (zeroLoc : ℕ → ℝ) (F : Finset ℕ)
     {s : ℂ} (hs : 0 < s.im) :
@@ -69,7 +71,9 @@ theorem finiteHadamardRegularizedSum_real_im_nonpos
 
 /-- A finite regularized sum containing the index `i` is bounded above by
 the strictly negative imaginary contribution of that one residue. The
-remaining residues are nonpositive and the genus-one regularizers are real.-/
+remaining residues are nonpositive and the genus-one regularizers are real.
+@isnad1 id=le.2h4v.s6.dc22e4c94739 from=translated src=- shape=1105ff62 vocab=e4d10daa
+-/
 theorem finiteHadamardRegularizedSum_real_im_le_residue
     (zeroLoc : ℕ → ℝ) (F : Finset ℕ) {i : ℕ} (hi : i ∈ F)
     {s : ℂ} (hs : 0 < s.im) :
@@ -93,7 +97,9 @@ theorem finiteHadamardRegularizedSum_real_im_le_residue
   linarith
 
 /-- Every nonempty finite regularized sum over real zero locations is
-strictly anti-Herglotz.-/
+strictly anti-Herglotz.
+@isnad1 id=lt.2h3v.s5.1434ed7096ce from=translated src=- shape=14c67d7f vocab=9401d134
+-/
 theorem finiteHadamardRegularizedSum_real_im_neg
     (zeroLoc : ℕ → ℝ) (F : Finset ℕ) (hF : F.Nonempty)
     {s : ℂ} (hs : 0 < s.im) :
@@ -108,7 +114,9 @@ theorem finiteHadamardRegularizedSum_real_im_neg
 /-- The regularized logarithmic-derivative series for real zero locations has
 nonpositive imaginary part in the upper half-plane. This is obtained by
 passing the finite residue-cloud inequality through the convergent partial
-sums.-/
+sums.
+@isnad1 id=le.2h2v.s5.518b8601c19d from=translated src=- shape=aab3dac2 vocab=65f7ee86
+-/
 theorem hadamardRegularizedLogDerivSeries_real_im_nonpos
     (zeroLoc : ℕ → ℝ)
     (H : HadamardZeroInvSqSummability
@@ -142,7 +150,9 @@ theorem hadamardRegularizedLogDerivSeries_real_im_nonpos
 /-- The regularized logarithmic-derivative series of a natural-number-indexed
 real zero sequence has strictly negative imaginary part in the upper
 half-plane. Strictness is retained in the limit by keeping the zeroth residue
-as a uniform negative upper bound.-/
+as a uniform negative upper bound.
+@isnad1 id=lt.2h2v.s5.cd10215b9125 from=translated src=- shape=bbbe12db vocab=5ba8f20e
+-/
 theorem hadamardRegularizedLogDerivSeries_real_im_neg
     (zeroLoc : ℕ → ℝ)
     (H : HadamardZeroInvSqSummability

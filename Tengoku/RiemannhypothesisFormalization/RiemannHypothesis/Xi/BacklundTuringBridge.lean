@@ -40,7 +40,9 @@ noncomputable def entireXiPullbackCanonicalShellInvSqMass (n : Nat) : Real :=
       Nat.ceil ‖entireXiPullbackZeroOccurrenceLoc i‖ = n},
     (‖entireXiPullbackZeroOccurrenceLoc i‖ ^ 2)⁻¹
 
-/-- Every norm-ceiling shell of canonical occurrences is finite.-/
+/-- Every norm-ceiling shell of canonical occurrences is finite.
+@isnad1 id=finite.0h1v.s4.accb43636cf1 from=translated src=- shape=7222a50a vocab=35db09ed
+-/
 theorem entireXiPullbackCanonicalNormCeilFiberFinite (n : Nat) :
     {i : EntireXiPullbackZeroOccurrence |
       Nat.ceil ‖entireXiPullbackZeroOccurrenceLoc i‖ = n}.Finite := by
@@ -53,7 +55,9 @@ theorem entireXiPullbackCanonicalNormCeilFiberFinite (n : Nat) :
       exact Nat.le_of_ceil_le hceil)
 
 /-- A canonical occurrence in shell `n` has norm strictly larger than the
-previous integer radius.-/
+previous integer radius.
+@isnad1 id=lt.2h2v.s5.0944729f7445 from=translated src=- shape=bd7959af vocab=9f515c4b
+-/
 theorem entireXiPullbackCanonicalNormCeilFiber_pred_lt_norm
     {i : EntireXiPullbackZeroOccurrence} {n : Nat}
     (hn : 1 ≤ n)
@@ -66,7 +70,9 @@ theorem entireXiPullbackCanonicalNormCeilFiber_pred_lt_norm
   exact Nat.lt_ceil.mp hpred_lt_ceil
 
 /-- In shell `n ≥ 2`, each inverse-square contribution is at most
-`(n - 1)⁻²`.-/
+`(n - 1)⁻²`.
+@isnad1 id=le.2h2v.s6.1473179d2af9 from=translated src=- shape=8a9e782f vocab=a1f2fb83
+-/
 theorem entireXiPullbackCanonicalNormCeilFiber_invSq_le_pred
     {i : EntireXiPullbackZeroOccurrence} {n : Nat}
     (hn : 2 ≤ n)
@@ -91,13 +97,17 @@ theorem entireXiPullbackCanonicalNormCeilFiber_invSq_le_pred
       (sq_pos_of_pos hnorm_pos)
       (sq_pos_of_pos hpred_pos)).mpr hsquares
 
-/-- Canonical shell inverse-square mass is nonnegative.-/
+/-- Canonical shell inverse-square mass is nonnegative.
+@isnad1 id=le.0h1v.s3.4f4d7e973af5 from=translated src=- shape=b9369acb vocab=13dfa9ad
+-/
 theorem entireXiPullbackCanonicalShellInvSqMass_nonneg (n : Nat) :
     0 ≤ entireXiPullbackCanonicalShellInvSqMass n :=
   tsum_nonneg fun _ => by positivity
 
 /-- Shell inverse-square mass is bounded by shell cardinality times the
-inverse square of its inner integer radius.-/
+inverse square of its inner integer radius.
+@isnad1 id=le.1h1v.s6.a787989bf874 from=translated src=- shape=aa4322ec vocab=d4422f81
+-/
 theorem entireXiPullbackCanonicalShellInvSqMass_le_card_mul
     (n : Nat) (hn : 2 ≤ n) :
     entireXiPullbackCanonicalShellInvSqMass n
@@ -127,7 +137,9 @@ theorem entireXiPullbackCanonicalShellInvSqMass_le_card_mul
 
 /-- An eventual logarithmic annular occurrence-count bound makes the shell
 inverse-square masses summable.  The finitely many shells below `lower` are
-absorbed by `summable_nat_add_iff`.-/
+absorbed by `summable_nat_add_iff`.
+@isnad1 id=summable.2h3v.s6.f0d91d91b48c from=translated src=- shape=41bbec9d vocab=f812123b
+-/
 theorem
     entireXiPullbackCanonicalShellInvSqMass_summable_of_eventual_shellCard_log_bound
     (lower : Nat) (hlower : 2 ≤ lower) (C C₀ : Real)
@@ -173,7 +185,9 @@ theorem
       ring
 
 /-- Summability of the norm-ceiling shell masses yields inverse-square
-summability of all multiplicity-bearing canonical occurrences.-/
+summability of all multiplicity-bearing canonical occurrences.
+@isnad1 id=summable.1h0v.s5.ede453e3abb9 from=translated src=- shape=b6125351 vocab=3678b71a
+-/
 theorem entireXiPullbackCanonical_invSqSummable_of_shellMass_summable
     (H : Summable entireXiPullbackCanonicalShellInvSqMass) :
     Summable fun i : EntireXiPullbackZeroOccurrence =>
@@ -202,7 +216,9 @@ structure EntireXiPullbackBacklundTuringShellBound : Type where
         C * Real.log n + C₀
 
 /-- A multiplicity-aware Backlund--Turing shell bound discharges the complete
-canonical inverse-square zero-distribution input.-/
+canonical inverse-square zero-distribution input.
+@isnad1 id=entirexi.0h1v.s1.312286b0c336 from=translated src=- shape=1d48f1ac vocab=02e4ee0f
+-/
 theorem EntireXiPullbackBacklundTuringShellBound.toCanonicalZeroDistribution
     (H : EntireXiPullbackBacklundTuringShellBound) :
     EntireXiPullbackCanonicalZeroDistribution := by

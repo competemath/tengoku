@@ -21,7 +21,9 @@ open Set
 
 namespace OverflowResidueRH
 
-/-- A genus-one factor has a simple zero at its designated nonzero location.-/
+/-- A genus-one factor has a simple zero at its designated nonzero location.
+@isnad1 id=eq.1h1v.s5.97d3c3742980 from=translated src=- shape=740dc023 vocab=a101c87a
+-/
 theorem hadamardGenus1Factor_analyticOrderAt_self
     {ρ : ℂ} (hρ : ρ ≠ 0) :
     analyticOrderAt (hadamardGenus1Factor ρ) ρ = 1 := by
@@ -47,13 +49,17 @@ theorem hadamardGenus1Factor_analyticOrderAt_self
   change analyticOrderAt (left * right) ρ = 1
   rw [analyticOrderAt_mul hleft hright, hleft_order, hright_order, add_zero]
 
-/-- A single genus-one factor is entire.-/
+/-- A single genus-one factor is entire.
+@isnad1 id=differen.0h1v.s6.62c8fcc4524d from=translated src=- shape=55d61ed8 vocab=90584126
+-/
 theorem hadamardGenus1Factor_differentiable (ρ : ℂ) :
     Differentiable ℂ (hadamardGenus1Factor ρ) :=
   fun z ↦ hadamardGenus1Factor_differentiableAt ρ z
 
 /-- Inverse-square summability and norm properness make the full genus-one
-product entire.-/
+product entire.
+@isnad1 id=differen.2h2v.s6.53f6362c4ee7 from=translated src=- shape=10fffd03 vocab=feebe770
+-/
 theorem infiniteHadamardProduct_differentiable_of_invSq_normProper
     {ι : Type*} {zeroLoc : ι → ℂ}
     (Hinv : HadamardZeroInvSqSummability zeroLoc)
@@ -69,7 +75,9 @@ theorem infiniteHadamardProduct_differentiable_of_invSq_normProper
   rw [← differentiableOn_univ]
   exact Hluc.infinite_differentiableOn
 
-/-- Norm properness is inherited by a subtype of the index set.-/
+/-- Norm properness is inherited by a subtype of the index set.
+@isnad1 id=hadamard.1h3v.s4.0a58622b1818 from=translated src=- shape=240c37f0 vocab=edd5f3ed
+-/
 theorem HadamardZeroNormProper.subtype
     {ι : Type*} {zeroLoc : ι → ℂ}
     (H : HadamardZeroNormProper zeroLoc) (p : ι → Prop) :
@@ -79,7 +87,9 @@ theorem HadamardZeroNormProper.subtype
   exact (H.finite_norm_le R).preimage Subtype.val_injective.injOn
 
 /-- Inverse-square Hadamard data is inherited by a subtype when norm
-properness supplies the eventual-escape field.-/
+properness supplies the eventual-escape field.
+@isnad1 id=hadamard.2h3v.s5.8ba54a79f4b6 from=translated src=- shape=f446b717 vocab=eb4f62fb
+-/
 theorem HadamardZeroInvSqSummability.subtype_of_normProper
     {ι : Type*} {zeroLoc : ι → ℂ}
     (Hinv : HadamardZeroInvSqSummability zeroLoc)
@@ -90,7 +100,9 @@ theorem HadamardZeroInvSqSummability.subtype_of_normProper
     (Hinv.inv_sq_summable.subtype p)
     (Hproper.subtype p)
 
-/-- The fiber of a norm-proper location map over one point is finite.-/
+/-- The fiber of a norm-proper location map over one point is finite.
+@isnad1 id=finite.1h3v.s4.c4b8f1f1b8e5 from=translated src=- shape=9252627c vocab=3e56e3a9
+-/
 theorem HadamardZeroNormProper.finite_fiber
     {ι : Type*} {zeroLoc : ι → ℂ}
     (H : HadamardZeroNormProper zeroLoc) (ρ : ℂ) :
@@ -102,7 +114,9 @@ theorem HadamardZeroNormProper.finite_fiber
 
 /-- The canonical genus-one product has analytic order equal to the number of
 indices located at the point.  Repeated locations are therefore counted with
-their full multiplicity.-/
+their full multiplicity.
+@isnad1 id=eq.2h3v.s5.8b1770229b43 from=translated src=- shape=b9e23960 vocab=6b125eaf
+-/
 theorem infiniteHadamardProduct_analyticOrderAt_eq_fiber_natCard
     {ι : Type*} {zeroLoc : ι → ℂ}
     (Hinv : HadamardZeroInvSqSummability zeroLoc)

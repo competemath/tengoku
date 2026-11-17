@@ -25,7 +25,9 @@ xi-specific zero-distribution or Hadamard-product package is assumed.
 namespace OverflowResidueRH
 
 /-- At a zero of the centered pullback, analytic order is exactly the order
-of `riemannZeta` at the corresponding point `1 / 2 + I * z`.-/
+of `riemannZeta` at the corresponding point `1 / 2 + I * z`.
+@isnad1 id=eq.1h1v.s6.02c3703fb657 from=translated src=- shape=2537151f vocab=f2075a70
+-/
 theorem entireXiPullback_analyticOrderAt_eq_riemannZeta_of_zero
     {z : ℂ} (hz : EntireXiPullback z = 0) :
     analyticOrderAt EntireXiPullback z =
@@ -34,7 +36,9 @@ theorem entireXiPullback_analyticOrderAt_eq_riemannZeta_of_zero
   (entireXiPullback_analyticOrderAt_eq_entireRiemannXi z).trans
     (entireRiemannXi_analyticOrderAt_eq_riemannZeta_of_zero hz)
 
-/-- Natural-number form of exact pullback--zeta multiplicity preservation.-/
+/-- Natural-number form of exact pullback--zeta multiplicity preservation.
+@isnad1 id=eq.1h1v.s6.56a785924865 from=translated src=- shape=2537151f vocab=30a0ac3f
+-/
 theorem entireXiPullback_analyticOrderNatAt_eq_riemannZeta_of_zero
     {z : ℂ} (hz : EntireXiPullback z = 0) :
     analyticOrderNatAt EntireXiPullback z =
@@ -45,7 +49,9 @@ theorem entireXiPullback_analyticOrderNatAt_eq_riemannZeta_of_zero
 
 /-- The canonical occurrence fiber over a nonzero pullback zero has cardinal
 equal to the analytic multiplicity of the corresponding zeta zero.  This is
-the precise local bridge needed by multiplicity-weighted height counts.-/
+the precise local bridge needed by multiplicity-weighted height counts.
+@isnad1 id=eq.0h1v.s7.2dffa87f7058 from=translated src=- shape=c547c846 vocab=9d3a5ec7
+-/
 theorem entireXiPullbackZeroOccurrence_fiber_natCard_eq_riemannZeta_order
     (z : EntireXiPullbackNonzeroZero) :
     Nat.card {i : EntireXiPullbackZeroOccurrence // i.1 = z} =

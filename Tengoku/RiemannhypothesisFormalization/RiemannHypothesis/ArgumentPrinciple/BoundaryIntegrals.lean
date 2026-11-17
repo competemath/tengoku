@@ -38,7 +38,9 @@ noncomputable def backlundRightEdgeLogDerivBound : Real :=
     ‖LSeries.term (fun m : Nat => (ArithmeticFunction.vonMangoldt m : Complex))
       (2 : Complex) n‖
 
-/-- The right-edge majorant is nonnegative.-/
+/-- The right-edge majorant is nonnegative.
+@isnad1 id=le.0h0v.s3.b6cb74bb7e69 from=translated src=- shape=ff3a10fc vocab=6340e5bc
+-/
 theorem backlundRightEdgeLogDerivBound_nonneg :
     0 ≤ backlundRightEdgeLogDerivBound := by
   unfold backlundRightEdgeLogDerivBound
@@ -48,7 +50,9 @@ theorem backlundRightEdgeLogDerivBound_nonneg :
 vertical line `Re s = 2` by one height-independent constant.  This uses
 Mathlib's von Mangoldt L-series identity and absolute convergence at `2`;
 it is stronger than choosing a new compactness constant on each unit
-height window.-/
+height window.
+@isnad1 id=le.0h1v.s5.7f8242397a6a from=translated src=- shape=302ae3cd vocab=856a10e4
+-/
 theorem norm_zetaLogDeriv_two_add_mul_I_le (y : Real) :
     ‖zetaLogDeriv ((2 : Complex) + (y : Complex) * Complex.I)‖ ≤
       backlundRightEdgeLogDerivBound := by
@@ -103,7 +107,9 @@ noncomputable def topEdge (R : ZetaRectangle) (t : Real) : Complex :=
 noncomputable def leftEdge (R : ZetaRectangle) (t : Real) : Complex :=
   ⟨R.left, R.top - t * (R.top - R.bottom)⟩
 
-/-- The constant tangent vector of the positively oriented bottom edge.-/
+/-- The constant tangent vector of the positively oriented bottom edge.
+@isnad1 id=eq.0h2v.s6.108c3be781e8 from=translated src=- shape=f6566fcc vocab=8d2ce62c
+-/
 theorem deriv_bottomEdge (R : ZetaRectangle) (t : Real) :
     deriv R.bottomEdge t = (R.right - R.left : Complex) := by
   have hfun : R.bottomEdge = fun u : Real =>
@@ -120,7 +126,9 @@ theorem deriv_bottomEdge (R : ZetaRectangle) (t : Real) :
   · congr 1
   · ring
 
-/-- The constant tangent vector of the positively oriented right edge.-/
+/-- The constant tangent vector of the positively oriented right edge.
+@isnad1 id=eq.0h2v.s6.d66ca8221f5b from=translated src=- shape=c112fdea vocab=d4ec4078
+-/
 theorem deriv_rightEdge (R : ZetaRectangle) (t : Real) :
     deriv R.rightEdge t = (R.top - R.bottom : Complex) * Complex.I := by
   have hfun : R.rightEdge = fun u : Real =>
@@ -137,7 +145,9 @@ theorem deriv_rightEdge (R : ZetaRectangle) (t : Real) :
   · congr 1
   · ring
 
-/-- The constant tangent vector of the positively oriented top edge.-/
+/-- The constant tangent vector of the positively oriented top edge.
+@isnad1 id=eq.0h2v.s6.cbabdea5bd13 from=translated src=- shape=bb6f4804 vocab=d4f19a24
+-/
 theorem deriv_topEdge (R : ZetaRectangle) (t : Real) :
     deriv R.topEdge t = -(R.right - R.left : Complex) := by
   have hfun : R.topEdge = fun u : Real =>
@@ -154,7 +164,9 @@ theorem deriv_topEdge (R : ZetaRectangle) (t : Real) :
   · congr 1
   · ring
 
-/-- The constant tangent vector of the positively oriented left edge.-/
+/-- The constant tangent vector of the positively oriented left edge.
+@isnad1 id=eq.0h2v.s6.fd8630668a62 from=translated src=- shape=448e07ce vocab=f0b1ba00
+-/
 theorem deriv_leftEdge (R : ZetaRectangle) (t : Real) :
     deriv R.leftEdge t = -(R.top - R.bottom : Complex) * Complex.I := by
   have hfun : R.leftEdge = fun u : Real =>
@@ -206,7 +218,9 @@ noncomputable def mathlibBoundaryLogDerivIntegral
   rectangleBoundaryIntegral zetaLogDeriv R.left R.right R.bottom R.top
 
 /-- Affine substitution identifies the parameterized bottom-edge integral
-with the bottom term in Mathlib's rectangle-boundary convention.-/
+with the bottom term in Mathlib's rectangle-boundary convention.
+@isnad1 id=eq.0h1v.s5.4683349cd156 from=translated src=- shape=6168a4eb vocab=ea311f6c
+-/
 theorem bottomLogDerivIntegral_eq_horizontal (R : ZetaRectangle) :
     R.bottomLogDerivIntegral =
       ∫ x in R.left..R.right,
@@ -227,7 +241,9 @@ theorem bottomLogDerivIntegral_eq_horizontal (R : ZetaRectangle) :
   · congr 1 <;> ring
 
 /-- Affine substitution identifies the parameterized right-edge integral
-with the right term in Mathlib's rectangle-boundary convention.-/
+with the right term in Mathlib's rectangle-boundary convention.
+@isnad1 id=eq.0h1v.s5.2a029efbdf5a from=translated src=- shape=6d11ebeb vocab=36eb447f
+-/
 theorem rightLogDerivIntegral_eq_vertical (R : ZetaRectangle) :
     R.rightLogDerivIntegral = Complex.I *
       ∫ y in R.bottom..R.top,
@@ -265,7 +281,9 @@ theorem rightLogDerivIntegral_eq_vertical (R : ZetaRectangle) :
 
 /-- The complete right edge of the standard rectangle has a genuine
 height-uniform linear bound coming from the single von Mangoldt majorant at
-`Re s = 2`.  The constant does not depend on `A` or `T`.-/
+`Re s = 2`.  The constant does not depend on `A` or `T`.
+@isnad1 id=le.1h2v.s5.80a3b0761e58 from=translated src=- shape=5b95f3e7 vocab=1fb415ad
+-/
 theorem norm_standard_rightLogDerivIntegral_le
     {A T : Real} (hAT : A < T) :
     ‖(standard A T hAT).rightLogDerivIntegral‖ ≤
@@ -284,7 +302,9 @@ theorem norm_standard_rightLogDerivIntegral_le
       rw [abs_of_nonneg (sub_nonneg.mpr hAT.le)]
 
 /-- Affine substitution and interval reversal identify the parameterized
-top-edge integral with the negative top term in Mathlib's convention.-/
+top-edge integral with the negative top term in Mathlib's convention.
+@isnad1 id=eq.0h1v.s5.069d1f07574f from=translated src=- shape=37913ec5 vocab=fc835e17
+-/
 theorem topLogDerivIntegral_eq_horizontal (R : ZetaRectangle) :
     R.topLogDerivIntegral = -
       ∫ x in R.left..R.right,
@@ -331,7 +351,9 @@ theorem topLogDerivIntegral_eq_horizontal (R : ZetaRectangle) :
       exact intervalIntegral.integral_symm R.left R.right
 
 /-- Affine substitution and interval reversal identify the parameterized
-left-edge integral with the negative left term in Mathlib's convention.-/
+left-edge integral with the negative left term in Mathlib's convention.
+@isnad1 id=eq.0h1v.s5.153086924829 from=translated src=- shape=2d3906e0 vocab=8cfab84c
+-/
 theorem leftLogDerivIntegral_eq_vertical (R : ZetaRectangle) :
     R.leftLogDerivIntegral = -Complex.I *
       ∫ y in R.bottom..R.top,
@@ -384,7 +406,9 @@ theorem leftLogDerivIntegral_eq_vertical (R : ZetaRectangle) :
 /-- The hand-written four-path contour integral is definitionally tied to
 Mathlib's rectangle-boundary integral after four proved affine substitutions.
 Consequently a future residue theorem can be applied without any orientation
-or normalization ambiguity.-/
+or normalization ambiguity.
+@isnad1 id=eq.0h1v.s3.487ada057a0e from=translated src=- shape=b70c6bb1 vocab=b7d00b25
+-/
 theorem rectangleLogDerivIntegral_eq_mathlibBoundary
     (R : ZetaRectangle) :
     R.rectangleLogDerivIntegral = R.mathlibBoundaryLogDerivIntegral := by

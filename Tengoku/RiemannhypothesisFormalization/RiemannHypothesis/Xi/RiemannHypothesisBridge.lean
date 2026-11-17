@@ -40,7 +40,9 @@ def IsMathlibNontrivialZetaZero (s : ℂ) : Prop :=
     s ≠ 1
 
 /-- At a regular point, the entire xi definition agrees directly with the
-completed-zeta formula.-/
+completed-zeta formula.
+@isnad1 id=eq.2h1v.s6.1f2542b7252c from=translated src=- shape=c8388633 vocab=8f3b89be
+-/
 theorem entireRiemannXi_eq_completedRiemannZeta
     {s : ℂ} (hs0 : s ≠ 0) (hs1 : s ≠ 1) :
     entireRiemannXi s =
@@ -50,7 +52,9 @@ theorem entireRiemannXi_eq_completedRiemannZeta
   exact (xi_completedZeta_correction_algebra hs0 hs1).symm
 
 /-- Away from the totalized point at zero, completed zeta is the Deligne
-Gamma factor times Riemann zeta whenever that Gamma factor is nonzero.-/
+Gamma factor times Riemann zeta whenever that Gamma factor is nonzero.
+@isnad1 id=eq.2h1v.s5.e2079819bb8e from=translated src=- shape=933d9f5b vocab=d81b2980
+-/
 theorem completedRiemannZeta_eq_GammaReal_mul_riemannZeta
     {s : ℂ} (hs0 : s ≠ 0) (hG : Gammaℝ s ≠ 0) :
     completedRiemannZeta s = Gammaℝ s * riemannZeta s := by
@@ -59,7 +63,9 @@ theorem completedRiemannZeta_eq_GammaReal_mul_riemannZeta
   field_simp [hG]
 
 /-- At regular points, vanishing of the entire xi function is equivalent to
-vanishing of Riemann zeta.-/
+vanishing of Riemann zeta.
+@isnad1 id=iff.3h1v.s5.a1a7bb8b74d9 from=translated src=- shape=87592818 vocab=78dd26f4
+-/
 theorem entireRiemannXi_eq_zero_iff_riemannZeta_eq_zero
     {s : ℂ} (hs0 : s ≠ 0) (hs1 : s ≠ 1)
     (hG : Gammaℝ s ≠ 0) :
@@ -68,17 +74,23 @@ theorem entireRiemannXi_eq_zero_iff_riemannZeta_eq_zero
       completedRiemannZeta_eq_GammaReal_mul_riemannZeta hs0 hG]
   simp [hs0, sub_ne_zero.mpr hs1, hG]
 
-/-- The entire xi function is nonzero at `s = 0`.-/
+/-- The entire xi function is nonzero at `s = 0`.
+@isnad1 id=ne.0h0v.s3.5d054d8dd55a from=translated src=- shape=3c26ae4f vocab=5134c549
+-/
 theorem entireRiemannXi_zero_ne :
     entireRiemannXi 0 ≠ 0 := by
   norm_num [entireRiemannXi]
 
-/-- The entire xi function is nonzero at `s = 1`.-/
+/-- The entire xi function is nonzero at `s = 1`.
+@isnad1 id=ne.0h0v.s3.796302f0bf9e from=translated src=- shape=3c26ae4f vocab=5134c549
+-/
 theorem entireRiemannXi_one_ne :
     entireRiemannXi 1 ≠ 0 := by
   norm_num [entireRiemannXi]
 
-/-- A nontrivial zeta zero is not a pullback of a Gamma pole.-/
+/-- A nontrivial zeta zero is not a pullback of a Gamma pole.
+@isnad1 id=not.2h1v.s6.4aff1740f81b from=translated src=- shape=aa6ab141 vocab=5cc9e17f
+-/
 theorem half_not_mem_gammaPoleSet_of_nontrivial_zeta_zero
     {s : ℂ} (hzeta : riemannZeta s = 0)
     (hnot_trivial : ¬ ∃ n : ℕ, s = -2 * (n + 1)) :
@@ -97,7 +109,9 @@ theorem half_not_mem_gammaPoleSet_of_nontrivial_zeta_zero
       simpa using hn
     linear_combination 2 * hn'
 
-/-- Every Mathlib-nontrivial zeta zero is a zero of the entire xi function.-/
+/-- Every Mathlib-nontrivial zeta zero is a zero of the entire xi function.
+@isnad1 id=eq.3h1v.s6.0a387c205e6d from=translated src=- shape=90c3814f vocab=0a2f27fb
+-/
 theorem entireRiemannXi_eq_zero_of_nontrivial_zeta_zero
     {s : ℂ} (hzeta : riemannZeta s = 0)
     (hnot_trivial : ¬ ∃ n : ℕ, s = -2 * (n + 1))
@@ -108,7 +122,9 @@ theorem entireRiemannXi_eq_zero_of_nontrivial_zeta_zero
   rw [← completedXiRawEntireXiOffPolePointwiseFormula.pointwise_eq s hs1 hsPole]
   simp [completedXiFunction, hzeta]
 
-/-- The entire xi function has no zeros in the half-plane `1 < re s`.-/
+/-- The entire xi function has no zeros in the half-plane `1 < re s`.
+@isnad1 id=ne.1h1v.s4.5b1a92cf5ec1 from=translated src=- shape=555d9df8 vocab=77c82b41
+-/
 theorem entireRiemannXi_ne_zero_of_one_lt_re
     {s : ℂ} (hs : 1 < s.re) :
     entireRiemannXi s ≠ 0 := by
@@ -145,7 +161,9 @@ theorem entireRiemannXi_ne_zero_of_one_lt_re
   exact hraw
 
 /-- Negative-even trivial zeta zeros are not zeros of the entire xi function.
-The functional equation moves them to the zero-free half-plane.-/
+The functional equation moves them to the zero-free half-plane.
+@isnad1 id=ne.0h1v.s5.0d98b9d1c167 from=translated src=- shape=98817f85 vocab=64746c52
+-/
 theorem entireRiemannXi_neg_two_mul_nat_add_one_ne_zero (n : ℕ) :
     entireRiemannXi (-2 * ((n : ℂ) + 1)) ≠ 0 := by
   rw [← entireRiemannXi_one_sub]
@@ -156,7 +174,9 @@ theorem entireRiemannXi_neg_two_mul_nat_add_one_ne_zero (n : ℕ) :
 /-- A zero of the entire xi function cannot occur at a pullback of a Gamma
 pole.  Negative even points are moved by the functional equation to
 `re s > 1`; the remaining pole-pullback point is `s = 0`, where xi is
-`1 / 2`.-/
+`1 / 2`.
+@isnad1 id=not.1h1v.s5.1aa23f990b90 from=translated src=- shape=14d42a76 vocab=f0250af3
+-/
 theorem half_not_mem_gammaPoleSet_of_entireRiemannXi_zero
     {s : ℂ} (hxi : entireRiemannXi s = 0) :
     s / 2 ∉ gammaPoleSet := by
@@ -179,7 +199,9 @@ theorem half_not_mem_gammaPoleSet_of_entireRiemannXi_zero
     rw [entireRiemannXi_one_sub]
     exact hxi
 
-/-- A zero of the entire xi function is not the totalized point `s = 1`.-/
+/-- A zero of the entire xi function is not the totalized point `s = 1`.
+@isnad1 id=ne.1h1v.s4.c3adae59e7cc from=translated src=- shape=ec3adfee vocab=5134c549
+-/
 theorem ne_one_of_entireRiemannXi_zero
     {s : ℂ} (hxi : entireRiemannXi s = 0) :
     s ≠ 1 := by
@@ -188,7 +210,9 @@ theorem ne_one_of_entireRiemannXi_zero
   norm_num [entireRiemannXi] at hxi
 
 /-- Every zero of the entire xi function is a zero of Mathlib's Riemann zeta
-function.-/
+function.
+@isnad1 id=eq.1h1v.s4.495684249d88 from=translated src=- shape=dbdd11df vocab=fba8f5a7
+-/
 theorem riemannZeta_eq_zero_of_entireRiemannXi_zero
     {s : ℂ} (hxi : entireRiemannXi s = 0) :
     riemannZeta s = 0 := by
@@ -218,7 +242,9 @@ theorem riemannZeta_eq_zero_of_entireRiemannXi_zero
   exact (mul_eq_zero.mp hraw).resolve_left hcoefficient
 
 /-- A zero of the entire xi function is not a trivial negative-even zeta
-zero.-/
+zero.
+@isnad1 id=not.1h1v.s5.c3bad7a41620 from=translated src=- shape=a8f78a57 vocab=64746c52
+-/
 theorem not_trivial_of_entireRiemannXi_zero
     {s : ℂ} (hxi : entireRiemannXi s = 0) :
     ¬ ∃ n : ℕ, s = -2 * (n + 1) := by
@@ -231,7 +257,9 @@ theorem not_trivial_of_entireRiemannXi_zero
   ring
 
 /-- The zeros of the entire xi function are exactly the nontrivial zeros in
-Mathlib's formulation of the Riemann hypothesis.-/
+Mathlib's formulation of the Riemann hypothesis.
+@isnad1 id=iff.0h1v.s3.b0aa46ba5487 from=translated src=- shape=f72d1292 vocab=1a779c7d
+-/
 theorem entireRiemannXi_eq_zero_iff_mathlib_nontrivial_zeta_zero
     {s : ℂ} :
     entireRiemannXi s = 0 ↔ IsMathlibNontrivialZetaZero s := by
@@ -245,7 +273,9 @@ theorem entireRiemannXi_eq_zero_iff_mathlib_nontrivial_zeta_zero
 
 /-- Every zero of the entire xi function lies strictly inside the critical
 strip.  The right boundary follows from zeta nonvanishing on `re s ≥ 1`; the
-left boundary follows by reflecting with the xi functional equation.-/
+left boundary follows by reflecting with the xi functional equation.
+@isnad1 id=mem.1h1v.s5.085a07c162d1 from=translated src=- shape=7d06874f vocab=2f03c98b
+-/
 theorem entireRiemannXi_zero_re_mem_Ioo
     {s : ℂ} (hxi : entireRiemannXi s = 0) :
     s.re ∈ Set.Ioo (0 : ℝ) 1 := by
@@ -272,7 +302,9 @@ theorem entireRiemannXi_zero_re_mem_Ioo
 
 /-- Consequently, the imaginary coordinate of every centered-pullback zero
 lies strictly between `-1/2` and `1/2`.  This is the geometric input that
-compares pullback norm shells with zeta-height slabs.-/
+compares pullback norm shells with zeta-height slabs.
+@isnad1 id=lt.1h1v.s5.1de821101241 from=translated src=- shape=dcedf27f vocab=85df402e
+-/
 theorem entireXiPullback_zero_im_abs_lt_half
     {z : ℂ} (hz : EntireXiPullback z = 0) :
     |z.im| < (1 / 2 : ℝ) := by
@@ -340,7 +372,9 @@ private theorem
 
 /-- At every zero of `entireRiemannXi`, its analytic order is exactly the
 analytic order of `riemannZeta`.  Thus the xi--zeta zero correspondence
-preserves multiplicity, rather than merely preserving the zero set.-/
+preserves multiplicity, rather than merely preserving the zero set.
+@isnad1 id=eq.1h1v.s5.8dfefdf8b7dd from=translated src=- shape=147c6a37 vocab=1e349b1f
+-/
 theorem entireRiemannXi_analyticOrderAt_eq_riemannZeta_of_zero
     {s : ℂ} (hxi : entireRiemannXi s = 0) :
     analyticOrderAt entireRiemannXi s =
@@ -370,7 +404,9 @@ theorem entireRiemannXi_analyticOrderAt_eq_riemannZeta_of_zero
   rw [analyticOrderAt_mul hunit hzeta,
     hunit.analyticOrderAt_eq_zero.mpr hunit_ne, zero_add]
 
-/-- Natural-number form of exact xi--zeta multiplicity preservation.-/
+/-- Natural-number form of exact xi--zeta multiplicity preservation.
+@isnad1 id=eq.1h1v.s5.f8a4e891c841 from=translated src=- shape=147c6a37 vocab=693bb72f
+-/
 theorem entireRiemannXi_analyticOrderNatAt_eq_riemannZeta_of_zero
     {s : ℂ} (hxi : entireRiemannXi s = 0) :
     analyticOrderNatAt entireRiemannXi s =
@@ -379,7 +415,9 @@ theorem entireRiemannXi_analyticOrderNatAt_eq_riemannZeta_of_zero
     (entireRiemannXi_analyticOrderAt_eq_riemannZeta_of_zero hxi)
 
 /-- Exact analytic multiplicity preservation, stated directly for Mathlib's
-predicate of a nontrivial zeta zero.-/
+predicate of a nontrivial zeta zero.
+@isnad1 id=eq.1h1v.s5.b38095f2d4d8 from=translated src=- shape=e315fbd1 vocab=6e4ee6fb
+-/
 theorem entireRiemannXi_analyticOrderAt_eq_riemannZeta_of_mathlib_nontrivial_zero
     {s : ℂ} (hs : IsMathlibNontrivialZetaZero s) :
     analyticOrderAt entireRiemannXi s =
@@ -388,7 +426,9 @@ theorem entireRiemannXi_analyticOrderAt_eq_riemannZeta_of_mathlib_nontrivial_zer
     (entireRiemannXi_eq_zero_iff_mathlib_nontrivial_zeta_zero.mpr hs)
 
 /-- Natural-number multiplicity preservation, stated directly for Mathlib's
-predicate of a nontrivial zeta zero.-/
+predicate of a nontrivial zeta zero.
+@isnad1 id=eq.1h1v.s5.ca9f5e30b0a3 from=translated src=- shape=e315fbd1 vocab=56be9322
+-/
 theorem entireRiemannXi_analyticOrderNatAt_eq_riemannZeta_of_mathlib_nontrivial_zero
     {s : ℂ} (hs : IsMathlibNontrivialZetaZero s) :
     analyticOrderNatAt entireRiemannXi s =
@@ -397,7 +437,9 @@ theorem entireRiemannXi_analyticOrderNatAt_eq_riemannZeta_of_mathlib_nontrivial_
     (entireRiemannXi_eq_zero_iff_mathlib_nontrivial_zeta_zero.mpr hs)
 
 /-- Mathlib's Riemann hypothesis is exactly the assertion that all zeros of
-the entire xi function lie on the critical line.-/
+the entire xi function lie on the critical line.
+@isnad1 id=iff.0h0v.s5.572819e9bb3b from=translated src=- shape=e15090fc vocab=25b220e8
+-/
 theorem riemannHypothesis_iff_entireRiemannXi_zeros_on_critical_line :
     RiemannHypothesis ↔
       ∀ s : ℂ, entireRiemannXi s = 0 → s.re = 1 / 2 := by
@@ -414,7 +456,9 @@ theorem riemannHypothesis_iff_entireRiemannXi_zeros_on_critical_line :
 
 /-- Pulling the entire xi function back along `s = 1 / 2 + I * z`
 turns Mathlib's Riemann hypothesis into the literal real-rootedness of
-`EntireXiPullback`.-/
+`EntireXiPullback`.
+@isnad1 id=iff.0h0v.s4.3cfe64282f88 from=translated src=- shape=8f900334 vocab=935ce66d
+-/
 theorem riemannHypothesis_iff_entireXiPullback_zeros_real :
     RiemannHypothesis ↔
       ∀ z : ℂ, EntireXiPullback z = 0 → z.im = 0 := by
@@ -444,7 +488,9 @@ theorem riemannHypothesis_iff_entireXiPullback_zeros_real :
 /-- The repository's remaining left-half-plane logarithmic-derivative sign
 condition implies Mathlib's literal `RiemannHypothesis`.  All regularity,
 Schwarz-reflection, nontriviality, exceptional-point, and zero-correspondence
-obligations have been discharged; `h_sign` is the only hypothesis.-/
+obligations have been discharged; `h_sign` is the only hypothesis.
+@isnad1 id=riemannh.1h0v.s1.b7c3d6070e6a from=translated src=- shape=1d48f1ac vocab=16040785
+-/
 theorem riemannHypothesis_of_entireXi_leftHalfPlaneLogDerivSign
     (h_sign : EntireXi.leftHalfPlaneLogDerivSign) :
     RiemannHypothesis :=

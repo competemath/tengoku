@@ -60,7 +60,9 @@ structure CompletedXiEqualsEntireXiLocallyAFZSource : Prop where
       completedXiFunction s ≠ 0 →
       DifferentiableAt ℂ completedXiFunction s
 
-/-- ⭐ **PROVED — entire ξ nonzero from raw nonzero + local equality.**-/
+/-- ⭐ **PROVED — entire ξ nonzero from raw nonzero + local equality.**
+@isnad1 id=ne.2h1v.s4.a284eb6282f4 from=translated src=- shape=dbc03218 vocab=a9ee275b
+-/
 theorem entireXi_nonzero_of_completedXi_nonzero_of_localEquality
     (H : CompletedXiEqualsEntireXiLocallyAFZSource)
     {s : ℂ} (hs : completedXiFunction s ≠ 0) :
@@ -73,14 +75,18 @@ theorem entireXi_nonzero_of_completedXi_nonzero_of_localEquality
   apply hs
   rw [hval, hent]
 
-/-- ⭐ **PROVED — raw completed ξ differentiable at AFZ.**-/
+/-- ⭐ **PROVED — raw completed ξ differentiable at AFZ.**
+@isnad1 id=differen.2h1v.s6.7939000158fe from=translated src=- shape=1e696ea8 vocab=6fdc6ba1
+-/
 theorem completedXi_differentiable_at_nonzero_of_localEquality
     (H : CompletedXiEqualsEntireXiLocallyAFZSource)
     {s : ℂ} (hs : completedXiFunction s ≠ 0) :
     DifferentiableAt ℂ completedXiFunction s :=
   H.differentiable_completed s hs
 
-/-- ⭐ **PROVED — local equality ⟹ `logDerivativeResponse` agree.**-/
+/-- ⭐ **PROVED — local equality ⟹ `logDerivativeResponse` agree.**
+@isnad1 id=eq.1h3v.s5.d905936314b1 from=translated src=- shape=bead67ce vocab=bf71d352
+-/
 theorem logDerivativeResponse_eq_of_eventuallyEq
     {f g : ℂ → ℂ} {s : ℂ} (hfg : f =ᶠ[𝓝 s] g) :
     logDerivativeResponse f s = logDerivativeResponse g s := by
@@ -89,7 +95,9 @@ theorem logDerivativeResponse_eq_of_eventuallyEq
   unfold logDerivativeResponse
   rw [hderiv, hval]
 
-/-- ⭐ **PROVED — log-derivs of completed ξ and entire ξ agree AFZ.**-/
+/-- ⭐ **PROVED — log-derivs of completed ξ and entire ξ agree AFZ.**
+@isnad1 id=eq.2h1v.s4.2428a03ee4a3 from=translated src=- shape=bc2faf44 vocab=4852ebaa
+-/
 theorem logDeriv_completed_eq_entire_of_localEquality
     (H : CompletedXiEqualsEntireXiLocallyAFZSource)
     {s : ℂ} (hs : completedXiFunction s ≠ 0) :
@@ -99,7 +107,9 @@ theorem logDeriv_completed_eq_entire_of_localEquality
     (H.eventually_eq_of_completed_nonzero s hs)
 
 /-- 🌟🌟🌟 **PROVED — `EntireXiToCompletedXiLogDerivBridge` from
-local equality source.**-/
+local equality source.**
+@isnad1 id=entirexi.1h0v.s1.e3e193dbd1e4 from=translated src=- shape=1d48f1ac vocab=7f8bd77b
+-/
 theorem EntireXiToCompletedXiLogDerivBridge.of_localEquality
     (H : CompletedXiEqualsEntireXiLocallyAFZSource) :
     EntireXiToCompletedXiLogDerivBridge := by
@@ -128,14 +138,18 @@ structure CompletedXiRawEqualsEntireXiOffGammaPoles : Prop where
       completedXiFunction s ≠ 0 →
       DifferentiableAt ℂ completedXiFunction s
 
-/-- ⭐ **PROVED — local equality source from raw off-pole theorem.**-/
+/-- ⭐ **PROVED — local equality source from raw off-pole theorem.**
+@isnad1 id=complete.1h0v.s1.c9d6fc6d088f from=translated src=- shape=1d48f1ac vocab=4f281b2b
+-/
 theorem CompletedXiEqualsEntireXiLocallyAFZSource.of_rawOffGammaPoles
     (H : CompletedXiRawEqualsEntireXiOffGammaPoles) :
     CompletedXiEqualsEntireXiLocallyAFZSource :=
   { eventually_eq_of_completed_nonzero := H.eventually_eq
     differentiable_completed := H.differentiable_at }
 
-/-- ⭐ **PROVED — full bridge from raw off-pole theorem.**-/
+/-- ⭐ **PROVED — full bridge from raw off-pole theorem.**
+@isnad1 id=entirexi.1h0v.s1.98a16a70f727 from=translated src=- shape=1d48f1ac vocab=011c36e6
+-/
 theorem EntireXiToCompletedXiLogDerivBridge.of_rawOffGammaPoles
     (H : CompletedXiRawEqualsEntireXiOffGammaPoles) :
     EntireXiToCompletedXiLogDerivBridge :=
@@ -143,7 +157,9 @@ theorem EntireXiToCompletedXiLogDerivBridge.of_rawOffGammaPoles
     (CompletedXiEqualsEntireXiLocallyAFZSource.of_rawOffGammaPoles H)
 
 /-- ⭐ **PROVED — `completedXi` differentiable when locally equal to
-`entireXi` (which is itself differentiable).**-/
+`entireXi` (which is itself differentiable).**
+@isnad1 id=differen.2h1v.s7.f2adcdbdf198 from=translated src=- shape=1420df90 vocab=89cac1af
+-/
 theorem completedXi_differentiable_of_eventuallyEq_entireXi
     {s : ℂ}
     (hev : completedXiFunction =ᶠ[𝓝 s] entireRiemannXi)
@@ -158,7 +174,9 @@ structure EntireRiemannXiDifferentiabilitySource : Prop where
     ∀ s : ℂ, DifferentiableAt ℂ entireRiemannXi s
 
 /-- 🌟🌟 **PROVED — unconditional inhabitant via
-`entireRiemannXi_differentiable`.**-/
+`entireRiemannXi_differentiable`.**
+@isnad1 id=entireri.0h0v.s0.f39faa9f2ef7 from=translated src=- shape=45709ebd vocab=f39faa9f
+-/
 theorem entireRiemannXi_differentiabilitySource :
     EntireRiemannXiDifferentiabilitySource :=
   ⟨fun _ => entireRiemannXi_differentiable.differentiableAt⟩
@@ -172,7 +190,9 @@ structure CompletedXiRawEntireXiLocalEqualitySource : Prop where
       completedXiFunction =ᶠ[𝓝 s] entireRiemannXi
 
 /-- 🌟🌟🌟 **PROVED — `CompletedXiRawEqualsEntireXiOffGammaPoles`
-from local equality + entire differentiability.**-/
+from local equality + entire differentiability.**
+@isnad1 id=complete.2h0v.s5.ab8e83cee552 from=translated src=- shape=adac93f9 vocab=b117e725
+-/
 theorem CompletedXiRawEqualsEntireXiOffGammaPoles.of_eventuallyEq
     (Hdiff : EntireRiemannXiDifferentiabilitySource)
     (Heq :
@@ -188,7 +208,9 @@ theorem CompletedXiRawEqualsEntireXiOffGammaPoles.of_eventuallyEq
     (Heq s hs) (Hdiff.differentiable_at s)
 
 /-- ⭐ **PROVED — bridge from `CompletedXiRawEntireXiLocalEqualitySource`
-+ differentiability source.**-/
++ differentiability source.**
+@isnad1 id=complete.2h0v.s2.707881dfbf37 from=translated src=- shape=f443e7c7 vocab=4c4f54fe
+-/
 theorem CompletedXiRawEqualsEntireXiOffGammaPoles.of_localEqualitySource
     (Hdiff : EntireRiemannXiDifferentiabilitySource)
     (Heq : CompletedXiRawEntireXiLocalEqualitySource) :
@@ -208,7 +230,9 @@ structure CompletedXiRawEqualsEntireXiOnRegularRegion : Prop where
       s ∈ completedXiRawRegularRegion →
       completedXiFunction =ᶠ[𝓝 s] entireRiemannXi
 
-/-- ⭐ **PROVED — bridge from regular-region variant.**-/
+/-- ⭐ **PROVED — bridge from regular-region variant.**
+@isnad1 id=complete.1h0v.s1.f2414942b955 from=translated src=- shape=1d48f1ac vocab=961a7997
+-/
 theorem CompletedXiRawEntireXiLocalEqualitySource.of_regularRegion
     (H : CompletedXiRawEqualsEntireXiOnRegularRegion) :
     CompletedXiRawEntireXiLocalEqualitySource := by
@@ -235,7 +259,9 @@ structure CompletedXiRawEntireXiOpenNeighborhoodEqualitySource : Prop where
         IsOpen U ∧ s ∈ U ∧ Set.EqOn completedXiFunction entireRiemannXi U
 
 /-- 🌟🌟 **PROVED — local equality source from open-neighborhood
-variant.**-/
+variant.**
+@isnad1 id=complete.1h0v.s1.c1eb4a9b905d from=translated src=- shape=1d48f1ac vocab=9eb71d8d
+-/
 theorem CompletedXiRawEntireXiLocalEqualitySource.of_openNeighborhood
     (H : CompletedXiRawEntireXiOpenNeighborhoodEqualitySource) :
     CompletedXiRawEntireXiLocalEqualitySource := by
@@ -267,7 +293,9 @@ structure CompletedXiRawEntireXiOffPoleFormulaEquality : Prop where
       Set.EqOn completedXiFunction entireRiemannXi U
 
 /-- 🌟🌟🌟 **PROVED — open-neighborhood equality from
-Γ-regular + off-pole formula.**-/
+Γ-regular + off-pole formula.**
+@isnad1 id=complete.2h0v.s2.23eb17e77ee3 from=translated src=- shape=f443e7c7 vocab=f0790478
+-/
 theorem CompletedXiRawEntireXiOpenNeighborhoodEqualitySource.of_gammaRegular_offPoleFormula
     (Hreg : CompletedXiGammaRegularNeighborhoodSource)
     (Hformula : CompletedXiRawEntireXiOffPoleFormulaEquality) :
@@ -278,7 +306,9 @@ theorem CompletedXiRawEntireXiOpenNeighborhoodEqualitySource.of_gammaRegular_off
   exact ⟨U, hUopen, hsU, Hformula.eq_on_regular U hUopen hreg⟩
 
 /-- 🌟🌟🌟 **PROVED — local equality source from Γ-regular +
-off-pole formula.**-/
+off-pole formula.**
+@isnad1 id=complete.2h0v.s2.1134e395873d from=translated src=- shape=f443e7c7 vocab=c978bd61
+-/
 theorem CompletedXiRawEntireXiLocalEqualitySource.of_gammaRegular_offPoleFormula
     (Hreg : CompletedXiGammaRegularNeighborhoodSource)
     (Hformula : CompletedXiRawEntireXiOffPoleFormulaEquality) :
@@ -288,7 +318,9 @@ theorem CompletedXiRawEntireXiLocalEqualitySource.of_gammaRegular_offPoleFormula
       Hreg Hformula)
 
 /-- 🌟🌟🌟 **PROVED — `CompletedXiGammaRegularNeighborhoodSource`
-from no-pole + avoiding-neighborhood sources.**-/
+from no-pole + avoiding-neighborhood sources.**
+@isnad1 id=complete.2h0v.s2.cbe6354815f5 from=translated src=- shape=f443e7c7 vocab=7403ae68
+-/
 theorem CompletedXiGammaRegularNeighborhoodSource.of_noPole_and_avoidingNhds
     (Hnopole : CompletedXiNonzeroExcludesGammaPole)
     (Hnhds : GammaPoleAvoidingNeighborhoodSource) :
@@ -299,7 +331,9 @@ theorem CompletedXiGammaRegularNeighborhoodSource.of_noPole_and_avoidingNhds
 
 /-- 🌟🌟🌟 **PROVED — local equality source from raw correctness via
 direct pointwise → local bridge.** Bypasses the set-level open-region
-chain (which has trouble with the `+ 1/2` correction at s = 1).-/
+chain (which has trouble with the `+ 1/2` correction at s = 1).
+@isnad1 id=complete.1h0v.s1.8ee9cc9a2ebc from=translated src=- shape=1d48f1ac vocab=8931b03c
+-/
 theorem CompletedXiRawEntireXiLocalEqualitySource.of_rawCorrectness
     (H : RawCompletedXiCorrectness) :
     CompletedXiRawEntireXiLocalEqualitySource := by
@@ -326,7 +360,9 @@ theorem CompletedXiRawEntireXiLocalEqualitySource.of_rawCorrectness
   filter_upwards [hU_open.mem_nhds hsU] with w hwU
   exact H.offPole_eq w hwU.2 hwU.1
 
-/-- 🌟🌟🌟 **PROVED — pointwise equality source from raw correctness.**-/
+/-- 🌟🌟🌟 **PROVED — pointwise equality source from raw correctness.**
+@isnad1 id=complete.1h0v.s1.084f3b233cbc from=translated src=- shape=1d48f1ac vocab=ea545ef8
+-/
 theorem CompletedXiRawEntireXiPointwiseEqualitySource.of_rawCorrectness
     (H : RawCompletedXiCorrectness) :
     CompletedXiRawEntireXiPointwiseEqualitySource := by
@@ -339,7 +375,9 @@ theorem CompletedXiRawEntireXiPointwiseEqualitySource.of_rawCorrectness
   exact H.offPole_eq s h_s_ne_one h_polePullback
 
 /-- 🌟🌟🌟 **PROVED — open-neighborhood equality source from raw
-correctness.**-/
+correctness.**
+@isnad1 id=complete.1h0v.s1.5c45b1abeedd from=translated src=- shape=1d48f1ac vocab=7f5e74b8
+-/
 theorem CompletedXiRawEntireXiOpenNeighborhoodEqualitySource.of_rawCorrectness
     (H : RawCompletedXiCorrectness) :
     CompletedXiRawEntireXiOpenNeighborhoodEqualitySource := by
@@ -365,7 +403,9 @@ theorem CompletedXiRawEntireXiOpenNeighborhoodEqualitySource.of_rawCorrectness
   intro w hw
   exact H.offPole_eq w hw.2 hw.1
 
-/-- 🌟🌟 **PROVED — full entire→completed bridge from raw correctness.**-/
+/-- 🌟🌟 **PROVED — full entire→completed bridge from raw correctness.**
+@isnad1 id=entirexi.1h0v.s1.b0ad647cc651 from=translated src=- shape=1d48f1ac vocab=a0b1f50e
+-/
 theorem EntireXiToCompletedXiLogDerivBridge.of_rawCorrectness
     (H : RawCompletedXiCorrectness) :
     EntireXiToCompletedXiLogDerivBridge :=
@@ -376,7 +416,9 @@ theorem EntireXiToCompletedXiLogDerivBridge.of_rawCorrectness
 
 /-- 🌟🌟🌟🌟 **PROVED unconditionally** — pointwise equality between raw
 completed ξ and Mathlib's entire ξ at all nonzero raw completed-ξ
-points.-/
+points.
+@isnad1 id=complete.0h0v.s0.7431c114a1e7 from=translated src=- shape=45709ebd vocab=7431c114
+-/
 theorem completedXiRawEntireXiPointwiseEqualitySource :
     CompletedXiRawEntireXiPointwiseEqualitySource :=
   CompletedXiRawEntireXiPointwiseEqualitySource.of_rawCorrectness
@@ -384,7 +426,9 @@ theorem completedXiRawEntireXiPointwiseEqualitySource :
 
 /-- 🌟🌟🌟🌟 **PROVED unconditionally** — open-neighborhood equality between
 raw completed ξ and Mathlib's entire ξ at all nonzero raw completed-ξ
-points.-/
+points.
+@isnad1 id=complete.0h0v.s0.07d6a28431f8 from=translated src=- shape=45709ebd vocab=07d6a284
+-/
 theorem completedXiRawEntireXiOpenNeighborhoodEqualitySource :
     CompletedXiRawEntireXiOpenNeighborhoodEqualitySource :=
   CompletedXiRawEntireXiOpenNeighborhoodEqualitySource.of_rawCorrectness
@@ -392,21 +436,27 @@ theorem completedXiRawEntireXiOpenNeighborhoodEqualitySource :
 
 /-- 🌟🌟🌟🌟 **PROVED unconditionally** — local equality between raw
 completed ξ and Mathlib's entire ξ at all nonzero raw completed-ξ
-points.-/
+points.
+@isnad1 id=complete.0h0v.s0.edf40ba6cc7c from=translated src=- shape=45709ebd vocab=edf40ba6
+-/
 theorem completedXiRawEntireXiLocalEqualitySource :
     CompletedXiRawEntireXiLocalEqualitySource :=
   CompletedXiRawEntireXiLocalEqualitySource.of_openNeighborhood
     completedXiRawEntireXiOpenNeighborhoodEqualitySource
 
 /-- 🌟🌟🌟🌟 **PROVED unconditionally** — regular-region local equality
-between raw completed ξ and Mathlib's entire ξ.-/
+between raw completed ξ and Mathlib's entire ξ.
+@isnad1 id=complete.0h0v.s0.91bf0c65c4c8 from=translated src=- shape=45709ebd vocab=91bf0c65
+-/
 theorem completedXiRawEqualsEntireXiOnRegularRegion :
     CompletedXiRawEqualsEntireXiOnRegularRegion :=
   ⟨fun s hs =>
     completedXiRawEntireXiLocalEqualitySource.eventually_eq_at_nonzero s hs⟩
 
 /-- 🌟🌟🌟🌟 **PROVED unconditionally** — raw completed ξ agrees locally
-with entire ξ off Γ-poles, with differentiability included.-/
+with entire ξ off Γ-poles, with differentiability included.
+@isnad1 id=complete.0h0v.s0.d057bbc8b9af from=translated src=- shape=45709ebd vocab=d057bbc8
+-/
 theorem completedXiRawEqualsEntireXiOffGammaPoles :
     CompletedXiRawEqualsEntireXiOffGammaPoles :=
   CompletedXiRawEqualsEntireXiOffGammaPoles.of_localEqualitySource
@@ -415,14 +465,18 @@ theorem completedXiRawEqualsEntireXiOffGammaPoles :
 
 /-- 🌟🌟🌟🌟 **PROVED unconditionally** — the older local AFZ equality
 source, including differentiability of raw completed ξ at nonzero raw
-completed-ξ points.-/
+completed-ξ points.
+@isnad1 id=complete.0h0v.s0.9a871195f4e8 from=translated src=- shape=45709ebd vocab=9a871195
+-/
 theorem completedXiEqualsEntireXiLocallyAFZSource :
     CompletedXiEqualsEntireXiLocallyAFZSource :=
   CompletedXiEqualsEntireXiLocallyAFZSource.of_rawOffGammaPoles
     completedXiRawEqualsEntireXiOffGammaPoles
 
 /-- 🌟🌟🌟🌟🌟 **PROVED unconditionally** — the completed-to-entire ξ
-log-derivative bridge. The Γ-cancellation hazard, fully discharged.-/
+log-derivative bridge. The Γ-cancellation hazard, fully discharged.
+@isnad1 id=entirexi.0h0v.s0.39525cfb0837 from=translated src=- shape=45709ebd vocab=39525cfb
+-/
 theorem entireXiToCompletedXiLogDerivBridge :
     EntireXiToCompletedXiLogDerivBridge :=
   EntireXiToCompletedXiLogDerivBridge.of_rawOffGammaPoles

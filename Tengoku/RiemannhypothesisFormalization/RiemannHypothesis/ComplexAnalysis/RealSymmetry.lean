@@ -19,7 +19,9 @@ namespace OverflowResidueRH
 
 open Complex
 
-/-- `(star z).im = -z.im` — the `Star`-side restatement of `Complex.conj_im`.-/
+/-- `(star z).im = -z.im` — the `Star`-side restatement of `Complex.conj_im`.
+@isnad1 id=eq.0h1v.s5.15f0da0e7df9 from=translated src=- shape=5a02da31 vocab=71c00b8c
+-/
 theorem complex_star_im (ρ : ℂ) : (star ρ).im = -ρ.im := by
   change (starRingEnd ℂ ρ).im = -ρ.im
   exact Complex.conj_im ρ

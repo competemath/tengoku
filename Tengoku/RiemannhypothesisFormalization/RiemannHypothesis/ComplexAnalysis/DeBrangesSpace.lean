@@ -94,7 +94,9 @@ noncomputable def deBrangesKernel
     (2 * (Real.pi : ℂ) * Complex.I * (star w - z))
 
 /-- A strict Hermite--Biehler function has no zero in the open upper
-half-plane.-/
+half-plane.
+@isnad1 id=ne.2h2v.s5.fcff471248f7 from=translated src=- shape=481276ad vocab=1bfedb41
+-/
 theorem HermiteBiehlerUHP.ne_zero
     {E : ℂ → ℂ} (hE : HermiteBiehlerUHP E)
     {z : ℂ} (hz : 0 < z.im) : E z ≠ 0 := by

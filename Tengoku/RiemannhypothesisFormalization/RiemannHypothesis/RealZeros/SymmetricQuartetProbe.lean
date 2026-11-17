@@ -29,7 +29,9 @@ open Complex
 
 /-- A nonzero polynomial with an upper-half-plane root has an explicit
 lower-probe sign violation.  The witness lies below the root on the same
-vertical line, remains in the upper half-plane, and is not itself a root.-/
+vertical line, remains in the upper half-plane, and is not itself a root.
+@isnad1 id=ex.3h2v.s7.6e5f9df3d13f from=translated src=- shape=28f32dc4 vocab=e3f35783
+-/
 theorem polynomial_upper_root_has_lowerProbe_signViolation
     (p : Polynomial ℂ) (hp : p ≠ 0) {ρ : ℂ}
     (hroot : p.eval ρ = 0) (hupper : 0 < ρ.im) :
@@ -61,7 +63,9 @@ noncomputable def symmetricZeroQuartetPolynomial (ρ : ℂ) : Polynomial ℂ :=
     (Polynomial.X - Polynomial.C (-ρ)) *
     (Polynomial.X - Polynomial.C (-star ρ))
 
-/-- Evaluation exposes the four orbit factors.-/
+/-- Evaluation exposes the four orbit factors.
+@isnad1 id=eq.0h2v.s6.cec79ecc3945 from=translated src=- shape=d87a51aa vocab=fce8600a
+-/
 @[simp] theorem symmetricZeroQuartetPolynomial_eval (ρ z : ℂ) :
     (symmetricZeroQuartetPolynomial ρ).eval z =
       (z - ρ) * (z - star ρ) * (z + ρ) * (z + star ρ) := by
@@ -69,7 +73,9 @@ noncomputable def symmetricZeroQuartetPolynomial (ρ : ℂ) : Polynomial ℂ :=
     Polynomial.eval_sub, Polynomial.eval_X, Polynomial.eval_C]
 
 /-- The orbit polynomial is nonzero, independently of any possible
-coincidences among the four orbit points.-/
+coincidences among the four orbit points.
+@isnad1 id=ne.0h1v.s4.9629860794b2 from=translated src=- shape=0ecb4223 vocab=b98a329b
+-/
 theorem symmetricZeroQuartetPolynomial_ne_zero (ρ : ℂ) :
     symmetricZeroQuartetPolynomial ρ ≠ 0 := by
   unfold symmetricZeroQuartetPolynomial
@@ -80,12 +86,16 @@ theorem symmetricZeroQuartetPolynomial_ne_zero (ρ : ℂ) :
       (Polynomial.X_sub_C_ne_zero (-ρ)))
     (Polynomial.X_sub_C_ne_zero (-star ρ))
 
-/-- The generating point is a root of its orbit polynomial.-/
+/-- The generating point is a root of its orbit polynomial.
+@isnad1 id=eq.0h1v.s4.7e1d6f12ba5f from=translated src=- shape=9b5b2757 vocab=9342bf63
+-/
 @[simp] theorem symmetricZeroQuartetPolynomial_root (ρ : ℂ) :
     (symmetricZeroQuartetPolynomial ρ).eval ρ = 0 := by
   simp
 
-/-- Every point in the negation/conjugation orbit is a root.-/
+/-- Every point in the negation/conjugation orbit is a root.
+@isnad1 id=and.0h1v.s6.1996f3e02dac from=translated src=- shape=ff7bce69 vocab=7a050916
+-/
 theorem symmetricZeroQuartetPolynomial_orbit_roots (ρ : ℂ) :
     (symmetricZeroQuartetPolynomial ρ).eval ρ = 0 ∧
     (symmetricZeroQuartetPolynomial ρ).eval (star ρ) = 0 ∧
@@ -93,14 +103,18 @@ theorem symmetricZeroQuartetPolynomial_orbit_roots (ρ : ℂ) :
     (symmetricZeroQuartetPolynomial ρ).eval (-star ρ) = 0 := by
   simp
 
-/-- The orbit polynomial is even.-/
+/-- The orbit polynomial is even.
+@isnad1 id=eq.0h2v.s4.dd21180144c1 from=translated src=- shape=1a808353 vocab=fd1e3e65
+-/
 theorem symmetricZeroQuartetPolynomial_neg (ρ z : ℂ) :
     (symmetricZeroQuartetPolynomial ρ).eval (-z) =
       (symmetricZeroQuartetPolynomial ρ).eval z := by
   simp only [symmetricZeroQuartetPolynomial_eval]
   ring
 
-/-- The orbit polynomial is Schwarz symmetric.-/
+/-- The orbit polynomial is Schwarz symmetric.
+@isnad1 id=eq.0h2v.s6.191fbc243ef0 from=translated src=- shape=0b705c00 vocab=0e1c6714
+-/
 theorem symmetricZeroQuartetPolynomial_conj (ρ z : ℂ) :
     (symmetricZeroQuartetPolynomial ρ).eval (star z) =
       star ((symmetricZeroQuartetPolynomial ρ).eval z) := by
@@ -111,7 +125,9 @@ theorem symmetricZeroQuartetPolynomial_conj (ρ z : ℂ) :
 /-- **Concrete quartet obstruction.** If the generating zero lies in the
 upper half-plane, the even Schwarz-symmetric quartet polynomial has an
 explicit non-root probe in the upper half-plane at which its logarithmic
-derivative has positive imaginary part.-/
+derivative has positive imaginary part.
+@isnad1 id=ex.1h1v.s7.567f64968978 from=translated src=- shape=ebdd4b2b vocab=88d82543
+-/
 theorem symmetricZeroQuartet_forces_lowerProbe_signViolation
     {ρ : ℂ} (hupper : 0 < ρ.im) :
     ∃ ε : ℝ, 0 < ε ∧ ε < ρ.im ∧
@@ -127,7 +143,9 @@ theorem symmetricZeroQuartet_forces_lowerProbe_signViolation
     (symmetricZeroQuartetPolynomial_root ρ) hupper
 
 /-- Consequently the quartet polynomial cannot satisfy the anti-Herglotz
-upper-half-plane sign condition.-/
+upper-half-plane sign condition.
+@isnad1 id=not.1h1v.s4.cb63d55919eb from=translated src=- shape=9331ee5e vocab=4536e2d7
+-/
 theorem symmetricZeroQuartet_not_antiHerglotz
     {ρ : ℂ} (hupper : 0 < ρ.im) :
     ¬ AntiHerglotzUHP

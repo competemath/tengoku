@@ -58,14 +58,18 @@ noncomputable def indexedFiniteHadamardProduct
   ∏ i ∈ F, hadamardGenus1Factor (zeroLoc i) s
 
 /-- ⭐ **PROVED — every indexed finite Hadamard product is normalized
-to `1` at the origin.**-/
+to `1` at the origin.**
+@isnad1 id=eq.0h3v.s4.d1c4418690fb from=translated src=- shape=db3340f4 vocab=2b2cb036
+-/
 theorem indexedFiniteHadamardProduct_zero
     {ι : Type*} (zeroLoc : ι → ℂ) (F : Finset ι) :
     indexedFiniteHadamardProduct zeroLoc F 0 = 1 := by
   simp [indexedFiniteHadamardProduct, hadamardGenus1Factor_zero]
 
 /-- ⭐ **PROVED — the infinite genus-one Hadamard product is normalized
-to `1` at the origin.**-/
+to `1` at the origin.**
+@isnad1 id=eq.0h2v.s4.33bb05fb9f36 from=translated src=- shape=53125252 vocab=256bdc0b
+-/
 theorem infiniteHadamardProduct_zero
     {ι : Type*} (zeroLoc : ι → ℂ) :
     infiniteHadamardProduct zeroLoc 0 = 1 := by
@@ -73,7 +77,9 @@ theorem infiniteHadamardProduct_zero
 
 /-- 🌟🌟 **PROVED — the infinite Hadamard product vanishes at every
 indexed zero.** This discharges the zero-side of the quotient
-factorization data directly from the canonical genus-one factor.-/
+factorization data directly from the canonical genus-one factor.
+@isnad1 id=eq.1h3v.s5.56751b4c65c4 from=translated src=- shape=bb50523b vocab=256bdc0b
+-/
 theorem infiniteHadamardProduct_eq_zero_at_zeroLoc
     {ι : Type*} {zeroLoc : ι → ℂ}
     (hzero : ∀ i : ι, zeroLoc i ≠ 0)

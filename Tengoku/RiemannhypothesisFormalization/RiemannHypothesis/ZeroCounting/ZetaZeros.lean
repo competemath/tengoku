@@ -38,7 +38,9 @@ def zetaNontrivialZerosUpToHeightSet (T : Real) : Set Complex :=
 The proof uses Mathlib's compact-intersection finiteness theorem for the
 actual zeta-zero set.  The critical-strip bound places the real part in
 `(0, 1)`, while the height inequalities place the imaginary part in
-`(0, T]`, so the counted set lies in a fixed closed ball.-/
+`(0, T]`, so the counted set lies in a fixed closed ball.
+@isnad1 id=finite.0h1v.s2.fb6e3395d358 from=translated src=- shape=1a6c1393 vocab=e3f841f7
+-/
 theorem zetaNontrivialZerosUpToHeightSet_finite (T : Real) :
     (zetaNontrivialZerosUpToHeightSet T).Finite := by
   have hcompact :
@@ -77,7 +79,9 @@ noncomputable def ZetaZeroOccurrenceUpToHeight (T : Real) : Type :=
   Sigma fun s : ZetaNontrivialZeroUpToHeight T =>
     Fin (analyticOrderNatAt riemannZeta s.1)
 
-/-- The occurrence type defining the weighted count is finite.-/
+/-- The occurrence type defining the weighted count is finite.
+@isnad1 id=finite.0h1v.s2.27d6cfef7792 from=translated src=- shape=76a08d12 vocab=1005db37
+-/
 theorem zetaZeroOccurrenceUpToHeight_finite (T : Real) :
     Finite (ZetaZeroOccurrenceUpToHeight T) := by
   unfold ZetaZeroOccurrenceUpToHeight
@@ -89,7 +93,9 @@ noncomputable def zetaWeightedZeroCountUpToHeight (T : Real) : Nat :=
   Nat.card (ZetaZeroOccurrenceUpToHeight T)
 
 /-- The occurrence-cardinality definition is the usual finite sum of
-analytic multiplicities over the distinct counted zeros.-/
+analytic multiplicities over the distinct counted zeros.
+@isnad1 id=eq.0h1v.s5.1183224b26ef from=translated src=- shape=2abe52fe vocab=46683403
+-/
 theorem zetaWeightedZeroCountUpToHeight_eq_sum (T : Real) :
     zetaWeightedZeroCountUpToHeight T =
       ∑ s : ZetaNontrivialZeroUpToHeight T,
@@ -119,7 +125,9 @@ noncomputable def zetaZeroOccurrenceUpToHeightEmbedding
         hcomponents.1
     exact Sigma.ext hbase hcomponents.2
 
-/-- The exact multiplicity-weighted zeta-zero count is monotone in height.-/
+/-- The exact multiplicity-weighted zeta-zero count is monotone in height.
+@isnad1 id=le.1h2v.s4.6cc2b868f466 from=translated src=- shape=d7721dd6 vocab=796ecbb5
+-/
 theorem zetaWeightedZeroCountUpToHeight_mono
     {A B : Real} (hAB : A ≤ B) :
     zetaWeightedZeroCountUpToHeight A ≤
@@ -133,7 +141,9 @@ theorem zetaWeightedZeroCountUpToHeight_mono
     (zetaZeroOccurrenceUpToHeightEmbedding hAB)
     (zetaZeroOccurrenceUpToHeightEmbedding hAB).injective
 
-/-- The weighted zeta count is zero at nonpositive height.-/
+/-- The weighted zeta count is zero at nonpositive height.
+@isnad1 id=eq.1h1v.s4.fbf4ef11088d from=translated src=- shape=eed96abc vocab=796ecbb5
+-/
 theorem zetaWeightedZeroCountUpToHeight_eq_zero_of_nonpos
     {T : Real} (hT : T ≤ 0) :
     zetaWeightedZeroCountUpToHeight T = 0 := by

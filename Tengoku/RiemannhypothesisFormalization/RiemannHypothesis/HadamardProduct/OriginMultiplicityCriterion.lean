@@ -29,7 +29,9 @@ noncomputable def expAffineGenusOneProductWithOriginMultiplicity
   fun z => z ^ m * expAffineGenusOneProduct C a b zeroLoc z
 
 /-- With a nonzero affine prefactor, the explicit origin exponent is exactly
-the analytic order of the product at the origin.-/
+the analytic order of the product at the origin.
+@isnad1 id=eq.2h5v.s5.2e37e4851900 from=translated src=- shape=0c8d1c48 vocab=c3302c69
+-/
 theorem expAffineGenusOneProductWithOriginMultiplicity_analyticOrderAt_zero
     (m : ℕ) {C a b : ℂ} (hC : C ≠ 0)
     (zeroLoc : ℕ → ℂ) (H : NatHadamardZeroInvSqData zeroLoc) :

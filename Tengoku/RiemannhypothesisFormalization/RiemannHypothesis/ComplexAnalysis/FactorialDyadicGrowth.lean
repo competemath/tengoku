@@ -38,7 +38,9 @@ open Real
 /-! ## Elementary estimates -/
 
 /-- A deliberately coarse bound which is convenient for absorbing ordinary
-powers into an exponential.-/
+powers into an exponential.
+@isnad1 id=le.1h2v.s5.9094a263dc7a from=translated src=- shape=85b6d5fe vocab=f8f3d287
+-/
 theorem nonneg_pow_le_exp_mul_nat (x : Real) (hx : 0 <= x) (n : Nat) :
     x ^ n <= Real.exp (x * n) := by
   have hxexp : x <= Real.exp x := by
@@ -51,7 +53,9 @@ theorem nonneg_pow_le_exp_mul_nat (x : Real) (hx : 0 <= x) (n : Nat) :
       ring
 
 /-- Replace an affine dyadic index bound by a pure dyadic bound.  The slack
-factor `2 * K + 1` is chosen so that the statement also covers `m = 0`.-/
+factor `2 * K + 1` is chosen so that the statement also covers `m = 0`.
+@isnad1 id=le.1h3v.s6.5a77c3fcab67 from=translated src=- shape=6791eef8 vocab=f96c6fce
+-/
 theorem affineDyadicIndex_le_pureDyadic {K m N : Nat}
     (hN : N <= K * 2 ^ m + K) :
     N <= (2 * K + 1) * 2 ^ m := by
@@ -66,7 +70,9 @@ theorem affineDyadicIndex_le_pureDyadic {K m N : Nat}
       omega
 
 /-- A natural number bounded by `D * 2 ^ m` is bounded by an exponential
-whose logarithm is linear in `m`.-/
+whose logarithm is linear in `m`.
+@isnad1 id=le.1h3v.s6.ba40d95c004c from=translated src=- shape=4346542e vocab=c6436769
+-/
 theorem natCast_le_exp_of_le_dyadic (D m N : Nat)
     (hN : N <= D * 2 ^ m) :
     (N : Real) <= Real.exp (((D : Real) + 2) * (m + 1)) := by
@@ -89,7 +95,9 @@ theorem natCast_le_exp_of_le_dyadic (D m N : Nat)
 
 /-- The factorial part of a pure dyadic index envelope has dyadic order-one
 growth.  The proof only uses `N! <= N ^ N`; sharper Stirling estimates are not
-needed for the downstream order statement.-/
+needed for the downstream order statement.
+@isnad1 id=le.1h3v.s6.b4177f2ebf61 from=translated src=- shape=b9fa5598 vocab=511dd277
+-/
 theorem factorial_le_exp_of_le_dyadic (D m N : Nat)
     (hN : N <= D * 2 ^ m) :
     (N.factorial : Real) <=
@@ -121,7 +129,9 @@ theorem factorial_le_exp_of_le_dyadic (D m N : Nat)
       ring
 
 /-- The ordinary-power part of the factorial envelope has dyadic order-one
-growth when the exponent has a pure dyadic bound.-/
+growth when the exponent has a pure dyadic bound.
+@isnad1 id=le.2h4v.s7.665270708b1e from=translated src=- shape=9ee4361b vocab=c6436769
+-/
 theorem pow_succ_le_exp_of_le_dyadic (B : Real) (hB : 0 <= B)
     (D m N : Nat) (hN : N <= D * 2 ^ m) :
     B ^ (N + 1) <=
@@ -158,7 +168,9 @@ theorem pow_succ_le_exp_of_le_dyadic (B : Real) (hB : 0 <= B)
           ring
 
 /-- A nonnegative constant can be absorbed into the same dyadic exponential
-without introducing a separate additive constant.-/
+without introducing a separate additive constant.
+@isnad1 id=le.1h2v.s6.5743ecae367a from=translated src=- shape=b45421d8 vocab=c6436769
+-/
 theorem le_exp_dyadic_self (C : Real) (hC : 0 <= C) (m : Nat) :
     C <= Real.exp (C *
       (((m + 1 : Nat) : Real) * (2 : Real) ^ m)) := by
@@ -185,7 +197,9 @@ def factorialDyadicGrowthRate (C B : Real) (K : Nat) : Real :=
   C + B * (D + 1) + (D + 2) * D
 
 /-- The explicit factorial-to-dyadic rate is nonnegative when the original
-envelope constants are nonnegative.-/
+envelope constants are nonnegative.
+@isnad1 id=le.2h3v.s5.f4a4de7be199 from=translated src=- shape=e982cce8 vocab=b3ea6f02
+-/
 theorem factorialDyadicGrowthRate_nonneg (C B : Real) (K : Nat)
     (hC : 0 <= C) (hB : 0 <= B) :
     0 <= factorialDyadicGrowthRate C B K := by
@@ -193,7 +207,9 @@ theorem factorialDyadicGrowthRate_nonneg (C B : Real) (K : Nat)
   positivity
 
 /-- Natural-power form of the factorial-to-dyadic bridge.  This is stronger
-than an eventual estimate: it holds for every natural `m`.-/
+than an eventual estimate: it holds for every natural `m`.
+@isnad1 id=le.3h5v.s7.6f6d1ebfd82d from=translated src=- shape=4e194fae vocab=46bc6c73
+-/
 theorem mul_pow_factorial_le_exp_dyadic
     (C B : Real) (hC : 0 <= C) (hB : 0 <= B)
     (K m N : Nat) (hN : N <= K * 2 ^ m + K) :
@@ -224,7 +240,9 @@ theorem mul_pow_factorial_le_exp_dyadic
       ring
 
 /-- `Real.rpow` form of the bridge.  This is the form that applies directly
-to `MellinTwoSidedExponentialDecay.norm_mellin_le_factorial`.-/
+to `MellinTwoSidedExponentialDecay.norm_mellin_le_factorial`.
+@isnad1 id=le.3h5v.s7.0b9c416b3e34 from=translated src=- shape=ebd28515 vocab=46bc6c73
+-/
 theorem mul_rpow_factorial_le_exp_dyadic
     (C B : Real) (hC : 0 <= C) (hB : 0 <= B)
     (K m N : Nat) (hN : N <= K * 2 ^ m + K) :

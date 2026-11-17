@@ -73,7 +73,9 @@ noncomputable def completedLProductZeroLocNormBallEquiv
     rcases x with ⟨i | j, hi⟩ <;> apply Subtype.ext <;> rfl
   right_inv x := by rcases x with i | j <;> rfl
 
-/-- Norm properness is closed under disjoint union.-/
+/-- Norm properness is closed under disjoint union.
+@isnad1 id=hadamard.2h4v.s4.e074f8363430 from=translated src=- shape=25f688ee vocab=d21fbdf6
+-/
 theorem HadamardZeroNormProper.sum
     {ι : Type u} {κ : Type v} {zeroLocF : ι → ℂ} {zeroLocG : κ → ℂ}
     (HF : HadamardZeroNormProper zeroLocF)
@@ -92,7 +94,9 @@ theorem HadamardZeroNormProper.sum
       e.symm⟩
 
 /-- The cumulative dyadic count of a disjoint-union divisor is the sum of
-the two cumulative counts.-/
+the two cumulative counts.
+@isnad1 id=eq.2h5v.s5.6c952b154078 from=translated src=- shape=e62a99ac vocab=8a16e02c
+-/
 theorem hadamardZeroDyadicBallCard_completedLProductZeroLoc
     {ι : Type u} {κ : Type v} (zeroLocF : ι → ℂ) (zeroLocG : κ → ℂ)
     (HF : HadamardZeroNormProper zeroLocF)
@@ -156,7 +160,9 @@ noncomputable def HadamardZeroDyadicCumulativeCountData.sum
     simpa [Nat.cast_add, Nat.cast_one] using hsum
 
 /-- The regularized logarithmic-derivative series of a disjoint-union
-divisor is the sum of the two factor series.-/
+divisor is the sum of the two factor series.
+@isnad1 id=eq.4h5v.s6.f74aa8932276 from=translated src=- shape=929f2776 vocab=e62c863c
+-/
 theorem hadamardRegularizedLogDerivSeries_completedLProductZeroLoc
     {ι : Type u} {κ : Type v} {zeroLocF : ι → ℂ} {zeroLocG : κ → ℂ}
     (HF : HadamardZeroInvSqSummability zeroLocF)
@@ -189,7 +195,9 @@ theorem hadamardRegularizedLogDerivSeries_completedLProductZeroLoc
   simpa only [termF, termG] using hsum.tsum_eq
 
 /-- A point avoiding the occurrence divisor and the origin is nonzero for
-the completed L-function.-/
+the completed L-function.
+@isnad1 id=ne.2h4v.s5.8bc86f1bdfbb from=translated src=- shape=488eeb11 vocab=1b04a320
+-/
 theorem CompletedLFunctionHadamardData.ne_zero_of_ne_zeroLoc
     {F : ℂ → ℂ} {ι : Type u} (H : CompletedLFunctionHadamardData F ι)
     {z : ℂ} (hz0 : z ≠ 0) (hzloc : ∀ i : ι, z ≠ H.zeroLoc i) :

@@ -30,7 +30,9 @@ noncomputable def expAffineGenusOneProduct
 
 /-- A Schwarz-reflecting function has real totalized logarithmic derivative at
 the origin. No nonvanishing assumption is needed for this general statement:
-if the value at the origin is zero, totalized division makes the response zero.-/
+if the value at the origin is zero, totalized division makes the response zero.
+@isnad1 id=eq.1h1v.s6.92608e6925a2 from=translated src=- shape=3134a12c vocab=d13bb546
+-/
 theorem logDerivativeResponse_zero_im_eq_zero_of_schwarz
     (F : ℂ → ℂ) (h_schwarz : ∀ z : ℂ, F (star z) = star (F z)) :
     (logDerivativeResponse F 0).im = 0 := by

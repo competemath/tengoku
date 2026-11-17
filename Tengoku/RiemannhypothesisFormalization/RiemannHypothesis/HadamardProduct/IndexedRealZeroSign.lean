@@ -23,7 +23,9 @@ namespace OverflowResidueRH
 open Filter Topology
 
 /-- A finite regularized sum over real zero locations has nonpositive
-imaginary part in the open upper half-plane.-/
+imaginary part in the open upper half-plane.
+@isnad1 id=le.1h4v.s5.bfcdd62f9958 from=translated src=- shape=73fe59ac vocab=cf5d5063
+-/
 theorem finiteHadamardRegularizedSum_real_im_nonpos_indexed
     {ι : Type*} (zeroLoc : ι → ℝ) (F : Finset ι)
     {s : ℂ} (hs : 0 < s.im) :
@@ -41,7 +43,9 @@ theorem finiteHadamardRegularizedSum_real_im_nonpos_indexed
   exact complex_real_root_residue_imag_nonpos s (zeroLoc i) hs
 
 /-- A finite regularized sum containing `i` is bounded above by the strictly
-negative imaginary contribution of that residue.-/
+negative imaginary contribution of that residue.
+@isnad1 id=le.2h5v.s6.0fcbc7acba3d from=translated src=- shape=72b6b9f6 vocab=59125e77
+-/
 theorem finiteHadamardRegularizedSum_real_im_le_residue_indexed
     {ι : Type*} (zeroLoc : ι → ℝ) (F : Finset ι)
     {i : ι} (hi : i ∈ F) {s : ℂ} (hs : 0 < s.im) :
@@ -66,7 +70,9 @@ theorem finiteHadamardRegularizedSum_real_im_le_residue_indexed
   linarith
 
 /-- The regularized genus-one series over arbitrary real zero locations has
-nonpositive imaginary part in the open upper half-plane.-/
+nonpositive imaginary part in the open upper half-plane.
+@isnad1 id=le.2h3v.s5.42f16eed36cd from=translated src=- shape=6d37a537 vocab=a67ed76a
+-/
 theorem hadamardRegularizedLogDerivSeries_real_im_nonpos_indexed
     {ι : Type*} (zeroLoc : ι → ℝ)
     (H : HadamardZeroInvSqSummability
@@ -89,7 +95,9 @@ theorem hadamardRegularizedLogDerivSeries_real_im_nonpos_indexed
       finiteHadamardRegularizedSum_real_im_nonpos_indexed zeroLoc F hs)
 
 /-- If the arbitrary index type is nonempty, its regularized genus-one series
-has strictly negative imaginary part in the open upper half-plane.-/
+has strictly negative imaginary part in the open upper half-plane.
+@isnad1 id=lt.2h3v.s5.a31bf35e3669 from=translated src=- shape=de632c8e vocab=82fd760e
+-/
 theorem hadamardRegularizedLogDerivSeries_real_im_neg_indexed
     {ι : Type*} [Nonempty ι] (zeroLoc : ι → ℝ)
     (H : HadamardZeroInvSqSummability
@@ -126,7 +134,9 @@ theorem hadamardRegularizedLogDerivSeries_real_im_neg_indexed
     (complex_real_root_residue_imag_neg s (zeroLoc i₀) hs)
 
 /-- Complex-valued finite-sum wrapper: if every indexed location has zero
-imaginary part, the finite regularized sum has nonpositive imaginary part.-/
+imaginary part, the finite regularized sum has nonpositive imaginary part.
+@isnad1 id=le.2h4v.s5.3c35d6d3d7f8 from=translated src=- shape=e88de4ff vocab=3ebe84ec
+-/
 theorem finiteHadamardRegularizedSum_im_nonpos_of_real_indexed
     {ι : Type*} (zeroLoc : ι → ℂ)
     (hreal : ∀ i : ι, (zeroLoc i).im = 0)
@@ -141,7 +151,9 @@ theorem finiteHadamardRegularizedSum_im_nonpos_of_real_indexed
   simpa only [hloc] using
     finiteHadamardRegularizedSum_real_im_nonpos_indexed realLoc F hs
 
-/-- Complex-valued series wrapper for nonpositive imaginary part.-/
+/-- Complex-valued series wrapper for nonpositive imaginary part.
+@isnad1 id=le.3h3v.s5.eda5f359c1df from=translated src=- shape=551bc4ec vocab=a2ed2ba3
+-/
 theorem hadamardRegularizedLogDerivSeries_im_nonpos_of_real_indexed
     {ι : Type*} (zeroLoc : ι → ℂ)
     (H : HadamardZeroInvSqSummability zeroLoc)
@@ -163,7 +175,9 @@ theorem hadamardRegularizedLogDerivSeries_im_nonpos_of_real_indexed
       realLoc Hreal hs
 
 /-- Complex-valued series wrapper for strict negativity over a nonempty index
-type.-/
+type.
+@isnad1 id=lt.3h3v.s5.939310058611 from=translated src=- shape=5bfa8e9f vocab=ca38c23b
+-/
 theorem hadamardRegularizedLogDerivSeries_im_neg_of_real_indexed
     {ι : Type*} [Nonempty ι] (zeroLoc : ι → ℂ)
     (H : HadamardZeroInvSqSummability zeroLoc)

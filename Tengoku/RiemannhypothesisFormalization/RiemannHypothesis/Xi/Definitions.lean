@@ -57,7 +57,9 @@ structure CompletedXiRegularity : Prop where
   functional_equation :
     ∀ s : ℂ, completedXiFunction s = completedXiFunction (1 - s)
 
-/-- **PROVED — real part of the critical shift.** `Re(½ + I·z) = ½ − Im z`.-/
+/-- **PROVED — real part of the critical shift.** `Re(½ + I·z) = ½ − Im z`.
+@isnad1 id=eq.0h1v.s6.e32bf8ab98cd from=translated src=- shape=88e54a30 vocab=90349bd7
+-/
 theorem critical_shift_re (z : ℂ) :
     ((1 / 2 : ℂ) + Complex.I * z).re = 1 / 2 - z.im := by
   rw [Complex.add_re, Complex.mul_re, Complex.I_re, Complex.I_im,
@@ -69,7 +71,9 @@ theorem critical_shift_re (z : ℂ) :
 /-- **PROVED — algebraic star/critical-shift identity.**
 `star ((½ : ℂ) + I · z) = (½ : ℂ) − I · star z.` The `−I · star z`
 (not `+I · star z`) is what makes the pullback Schwarz identity require the
-functional equation in addition to ξ-Schwarz.-/
+functional equation in addition to ξ-Schwarz.
+@isnad1 id=eq.0h1v.s7.e0d77fdec83d from=translated src=- shape=3d66e5a7 vocab=31f0446c
+-/
 theorem critical_shift_star (z : ℂ) :
     star ((1 / 2 : ℂ) + Complex.I * z) =
       (1 / 2 : ℂ) - Complex.I * star z := by

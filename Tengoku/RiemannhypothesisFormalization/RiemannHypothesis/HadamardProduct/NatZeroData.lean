@@ -27,7 +27,9 @@ structure NatHadamardZeroInvSqData (zeroLoc : ℕ → ℂ) : Prop where
   inv_sq_summable : Summable fun i : ℕ => (‖zeroLoc i‖ ^ 2)⁻¹
 
 /-- Inverse-square summability of a nonzero sequence forces its norms to
-escape every fixed bound along the cofinite filter.-/
+escape every fixed bound along the cofinite filter.
+@isnad1 id=eventual.1h2v.s5.1cdc9104e879 from=translated src=- shape=38a59c27 vocab=87e471c8
+-/
 theorem NatHadamardZeroInvSqData.eventually_large
     {zeroLoc : ℕ → ℂ} (H : NatHadamardZeroInvSqData zeroLoc)
     (s : ℂ) :
@@ -59,7 +61,9 @@ theorem NatHadamardZeroInvSqData.eventually_large
     exact le_of_lt (by simpa [R] using hlt)
 
 /-- Minimal natural-number-indexed data supplies the general Hadamard zero
-package; eventual escape is derived rather than assumed.-/
+package; eventual escape is derived rather than assumed.
+@isnad1 id=hadamard.1h1v.s3.4eadb7d01ee8 from=translated src=- shape=933d35c6 vocab=09aa2f03
+-/
 theorem NatHadamardZeroInvSqData.toHadamardZeroInvSqSummability
     {zeroLoc : ℕ → ℂ} (H : NatHadamardZeroInvSqData zeroLoc) :
     HadamardZeroInvSqSummability zeroLoc :=

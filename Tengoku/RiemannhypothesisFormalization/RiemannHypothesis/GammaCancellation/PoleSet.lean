@@ -39,11 +39,15 @@ def gammaPoleSet : Set ℂ :=
 def completedXiGammaPolePullbackSet : Set ℂ :=
   {s : ℂ | s / 2 ∈ gammaPoleSet}
 
-/-- ⭐ **PROVED — `gammaPoleSet` membership unfold.**-/
+/-- ⭐ **PROVED — `gammaPoleSet` membership unfold.**
+@isnad1 id=iff.0h1v.s4.b40a663e22ca from=translated src=- shape=b29dc122 vocab=bc62bee9
+-/
 theorem mem_gammaPoleSet_iff (z : ℂ) :
     z ∈ gammaPoleSet ↔ ∃ n : ℕ, z = -((n : ℂ)) := Iff.rfl
 
-/-- ⭐ **PROVED — pullback membership unfold.**-/
+/-- ⭐ **PROVED — pullback membership unfold.**
+@isnad1 id=iff.0h1v.s5.0b513e911513 from=translated src=- shape=4838994d vocab=9be2edcc
+-/
 theorem mem_completedXiGammaPolePullbackSet_iff (s : ℂ) :
     s ∈ completedXiGammaPolePullbackSet ↔ s / 2 ∈ gammaPoleSet := Iff.rfl
 
@@ -65,7 +69,9 @@ structure IsClosedGammaPoleSetSource : Prop where
 
 /-- 🌟🌟🌟 **PROVED — `GammaPoleAvoidingNeighborhoodSource` from
 `IsClosed gammaPoleSet`.** Closed complement + preimage of open
-under continuous `w ↦ w/2`.-/
+under continuous `w ↦ w/2`.
+@isnad1 id=gammapol.1h0v.s1.dd498de1c392 from=translated src=- shape=1d48f1ac vocab=59425779
+-/
 theorem GammaPoleAvoidingNeighborhoodSource.of_isClosed
     (H : IsClosedGammaPoleSetSource) :
     GammaPoleAvoidingNeighborhoodSource := by
@@ -78,15 +84,21 @@ theorem GammaPoleAvoidingNeighborhoodSource.of_isClosed
   · intro w hw
     exact hw
 
-/-- ⭐ **PROVED — `‖(n : ℂ)‖ = n` for natural `n`.**-/
+/-- ⭐ **PROVED — `‖(n : ℂ)‖ = n` for natural `n`.**
+@isnad1 id=eq.0h1v.s3.dfe4192893f6 from=translated src=- shape=fc7e9921 vocab=59d73c0d
+-/
 theorem norm_natCast_complex (n : ℕ) : ‖(n : ℂ)‖ = n := by
   simp
 
-/-- ⭐ **PROVED — `‖-((n : ℂ))‖ = n`.**-/
+/-- ⭐ **PROVED — `‖-((n : ℂ))‖ = n`.**
+@isnad1 id=eq.0h1v.s4.5026b0fc4757 from=translated src=- shape=3c7e7d0a vocab=5b55fbae
+-/
 theorem norm_neg_natCast_complex (n : ℕ) : ‖-((n : ℂ))‖ = n := by
   rw [norm_neg, norm_natCast_complex]
 
-/-- 🌟🌟🌟🌟 **PROVED — `gammaPoleSet` is closed in ℂ.**-/
+/-- 🌟🌟🌟🌟 **PROVED — `gammaPoleSet` is closed in ℂ.**
+@isnad1 id=isclosed.0h0v.s4.3b35b1b3620a from=translated src=- shape=25b03439 vocab=9262cba8
+-/
 theorem isClosed_gammaPoleSet : IsClosed gammaPoleSet := by
   -- Step 1: `gammaPoleSet = -·⁻¹ Set.range ((↑) : ℕ → ℂ)`.
   have h_eq : gammaPoleSet = Neg.neg ⁻¹' Set.range ((↑) : ℕ → ℂ) := by
@@ -127,12 +139,16 @@ theorem isClosed_gammaPoleSet : IsClosed gammaPoleSet := by
   · exact Nat.isClosedEmbedding_coe_real.isClosed_range.preimage
       Complex.continuous_re
 
-/-- 🌟🌟 **PROVED unconditionally.**-/
+/-- 🌟🌟 **PROVED unconditionally.**
+@isnad1 id=isclosed.0h0v.s0.6e9d6716fd86 from=translated src=- shape=45709ebd vocab=6e9d6716
+-/
 theorem isClosedGammaPoleSetSource :
     IsClosedGammaPoleSetSource :=
   ⟨isClosed_gammaPoleSet⟩
 
-/-- 🌟🌟 **PROVED unconditionally — `GammaPoleAvoidingNeighborhoodSource`.**-/
+/-- 🌟🌟 **PROVED unconditionally — `GammaPoleAvoidingNeighborhoodSource`.**
+@isnad1 id=gammapol.0h0v.s0.625f6dbf0554 from=translated src=- shape=45709ebd vocab=625f6dbf
+-/
 theorem gammaPoleAvoidingNeighborhoodSource :
     GammaPoleAvoidingNeighborhoodSource :=
   GammaPoleAvoidingNeighborhoodSource.of_isClosed isClosedGammaPoleSetSource

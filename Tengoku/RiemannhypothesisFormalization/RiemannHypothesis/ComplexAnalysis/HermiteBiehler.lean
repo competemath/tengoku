@@ -57,11 +57,17 @@ structure EntireHermiteBiehlerData (E : ℂ → ℂ) : Prop where
   differentiable : Differentiable ℂ E
   hermiteBiehler : HermiteBiehlerUHP E
 
+/--
+@isnad1 id=eq.0h2v.s3.ddd2480a98ba from=translated src=- shape=21082139 vocab=dd51a29d
+-/
 @[simp]
 theorem hermiteBiehlerSharp_sharp (E : ℂ → ℂ) (z : ℂ) :
     hermiteBiehlerSharp (hermiteBiehlerSharp E) z = E z := by
   simp [hermiteBiehlerSharp]
 
+/--
+@isnad1 id=eq.0h3v.s5.c169e8604d31 from=translated src=- shape=9bf0e71e vocab=53a7e07f
+-/
 @[simp]
 theorem hermiteBiehlerSharp_add (E G : ℂ → ℂ) (z : ℂ) :
     hermiteBiehlerSharp (fun w => E w + G w) z =
@@ -76,7 +82,9 @@ noncomputable def derivativeCompanionEntireFunction
 
 /-- Differentiating a Schwarz-symmetric function preserves the reflected
 derivative identity.  This uses Mathlib's `deriv_conj_conj`, including its
-totalized behavior at nondifferentiability points.-/
+totalized behavior at nondifferentiability points.
+@isnad1 id=eq.1h2v.s7.1ca802906e91 from=translated src=- shape=a714198f vocab=f678e65a
+-/
 theorem deriv_schwarz
     {F : ℂ → ℂ} (hF : ∀ z : ℂ, F (star z) = star (F z)) (z : ℂ) :
     star (deriv F (star z)) = deriv F z := by
@@ -90,7 +98,9 @@ theorem deriv_schwarz
   simpa [Function.comp_apply] using hderiv
 
 /-- For Schwarz-symmetric `F`, the sharp reflection of `F + iF'` is exactly
-`F - iF'`.-/
+`F - iF'`.
+@isnad1 id=eq.1h2v.s7.7b9438f2fa0f from=translated src=- shape=7b097d46 vocab=b8bf4d75
+-/
 theorem hermiteBiehlerSharp_derivativeCompanionEntireFunction
     {F : ℂ → ℂ} (hF : ∀ z : ℂ, F (star z) = star (F z)) (z : ℂ) :
     hermiteBiehlerSharp (derivativeCompanionEntireFunction F) z =
@@ -108,7 +118,9 @@ theorem hermiteBiehlerSharp_derivativeCompanionEntireFunction
 
 /-- **Full-predicate derivative-companion bridge.**  For a
 Schwarz-symmetric function, membership of `F + iF'` in the strict
-Hermite--Biehler class is exactly derivative-companion norm dominance.-/
+Hermite--Biehler class is exactly derivative-companion norm dominance.
+@isnad1 id=iff.1h1v.s6.f51f5ddfaae7 from=translated src=- shape=38b9b68a vocab=c2504369
+-/
 theorem hermiteBiehlerUHP_derivativeCompanion_iff
     {F : ℂ → ℂ} (hF : ∀ z : ℂ, F (star z) = star (F z)) :
     HermiteBiehlerUHP (derivativeCompanionEntireFunction F) ↔
@@ -124,7 +136,9 @@ theorem hermiteBiehlerUHP_derivativeCompanion_iff
       hermiteBiehlerSharp_derivativeCompanionEntireFunction hF z] using h z hz
 
 /-- Therefore the full Hermite--Biehler inequality for the derivative
-companion is exactly strict anti-Herglotz behavior of `F'/F`.-/
+companion is exactly strict anti-Herglotz behavior of `F'/F`.
+@isnad1 id=iff.1h1v.s6.8107e7c40e03 from=translated src=- shape=1c750d61 vocab=a9385a58
+-/
 theorem hermiteBiehlerUHP_derivativeCompanion_iff_strictAntiHerglotz
     {F : ℂ → ℂ} (hF : ∀ z : ℂ, F (star z) = star (F z)) :
     HermiteBiehlerUHP (derivativeCompanionEntireFunction F) ↔
@@ -137,7 +151,9 @@ noncomputable def realPolynomialComplexEval
     (p : Polynomial ℝ) (z : ℂ) : ℂ :=
   (p.map (algebraMap ℝ ℂ)).eval z
 
-/-- Evaluation of a real polynomial on `ℂ` obeys Schwarz reflection.-/
+/-- Evaluation of a real polynomial on `ℂ` obeys Schwarz reflection.
+@isnad1 id=eq.0h2v.s6.ea5842764cae from=translated src=- shape=c3f23262 vocab=fb27ed5d
+-/
 theorem realPolynomialComplexEval_schwarz
     (p : Polynomial ℝ) (z : ℂ) :
     realPolynomialComplexEval p (star z) =
@@ -146,7 +162,9 @@ theorem realPolynomialComplexEval_schwarz
     Polynomial.aeval_conj p z
 
 /-- The analytic derivative of complex evaluation is evaluation of the
-formal polynomial derivative.-/
+formal polynomial derivative.
+@isnad1 id=eq.0h2v.s7.d6d7556fc9d7 from=translated src=- shape=bb0b3ac7 vocab=10b19a64
+-/
 theorem realPolynomialComplexEval_deriv
     (p : Polynomial ℝ) (z : ℂ) :
     deriv (realPolynomialComplexEval p) z =
@@ -156,7 +174,9 @@ theorem realPolynomialComplexEval_deriv
   rw [Polynomial.deriv, Polynomial.derivative_map]
 
 /-- At a real argument, complex evaluation is the complex embedding of real
-evaluation.-/
+evaluation.
+@isnad1 id=eq.0h2v.s4.43d88319a822 from=translated src=- shape=71777729 vocab=817f581e
+-/
 theorem realPolynomialComplexEval_ofReal
     (p : Polynomial ℝ) (x : ℝ) :
     realPolynomialComplexEval p (x : ℂ) = Complex.ofReal (p.eval x) := by
@@ -167,7 +187,9 @@ theorem realPolynomialComplexEval_ofReal
   rw [Polynomial.eval₂_at_apply]
 
 /-- Function-level and polynomial logarithmic derivatives agree for complex
-evaluation of a real polynomial.-/
+evaluation of a real polynomial.
+@isnad1 id=eq.0h1v.s5.af1d38e56500 from=translated src=- shape=8aa0d1be vocab=f0ccae3b
+-/
 theorem logDerivativeResponse_realPolynomialComplexEval
     (p : Polynomial ℝ) :
     logDerivativeResponse (realPolynomialComplexEval p) =
@@ -188,7 +210,9 @@ nonzero real polynomial `p`, the derivative companion `p+i p'` satisfies the
 strict upper-half-plane Hermite--Biehler inequality exactly when `p` has
 positive degree and every complex root of `p` is real.  This theorem is
 proved from the repository's polynomial anti-Herglotz equivalence and does
-not consume `NormalizedPolynomialHermiteBiehlerTheoremData`.-/
+not consume `NormalizedPolynomialHermiteBiehlerTheoremData`.
+@isnad1 id=iff.1h1v.s6.cea2d60fa7d3 from=translated src=- shape=e23eca51 vocab=9f20df0b
+-/
 theorem realPolynomial_derivativeCompanion_hermiteBiehler_iff_roots_real
     (p : Polynomial ℝ) (hp : p ≠ 0) :
     HermiteBiehlerUHP
@@ -212,7 +236,9 @@ theorem realPolynomial_derivativeCompanion_hermiteBiehler_iff_roots_real
     simpa [q, realPolynomialComplexEval] using
       realPolynomialComplexEval_schwarz p z
 
-/-- Exact value of the polynomial derivative companion on the real axis.-/
+/-- Exact value of the polynomial derivative companion on the real axis.
+@isnad1 id=eq.0h2v.s7.89765e7b4d84 from=translated src=- shape=fde3bcee vocab=73dcdef7
+-/
 theorem derivativeCompanion_realPolynomial_at_real
     (p : Polynomial ℝ) (x : ℝ) :
     derivativeCompanionEntireFunction (realPolynomialComplexEval p) (x : ℂ) =
@@ -231,7 +257,9 @@ theorem derivativeCompanion_realPolynomial_at_real
   rw [Polynomial.eval₂_at_apply, Polynomial.eval₂_at_apply]
 
 /-- On the real axis, the derivative companion is nonzero exactly when `p`
-and `p'` do not vanish simultaneously.-/
+and `p'` do not vanish simultaneously.
+@isnad1 id=iff.0h2v.s7.dd25c7a299b1 from=translated src=- shape=51c9e245 vocab=bab42821
+-/
 theorem derivativeCompanion_realPolynomial_ne_zero_iff
     (p : Polynomial ℝ) (x : ℝ) :
     derivativeCompanionEntireFunction (realPolynomialComplexEval p) (x : ℂ) ≠ 0 ↔
@@ -250,7 +278,9 @@ theorem derivativeCompanion_realPolynomial_ne_zero_iff
 
 /-- The strict no-real-zero version exposes the additional no-common-root
 condition explicitly.  Thus real-rootedness is not conflated with
-simplicity.-/
+simplicity.
+@isnad1 id=iff.1h1v.s7.7878068ff0c1 from=translated src=- shape=afd1ae39 vocab=8a1b0382
+-/
 theorem
     realPolynomial_derivativeCompanion_hermiteBiehlerNoRealZeros_iff
     (p : Polynomial ℝ) (hp : p ≠ 0) :
@@ -271,7 +301,9 @@ theorem
 
 /-- Oriented strict interlacing factorization data proves the real-axis
 nonvanishing part of Hermite--Biehler directly.  The remaining deep reverse
-direction is only the open-upper-half-plane norm inequality.-/
+direction is only the open-upper-half-plane norm inequality.
+@isnad1 id=ne.0h4v.s4.000235b7b7fd from=translated src=- shape=61486e26 vocab=e04a7147
+-/
 theorem OrientedStrictInterlacingPolynomialData.polynomialHermiteBiehler_noRealZeros
     {A B : Polynomial ℝ}
     (D : OrientedStrictInterlacingPolynomialData A B) :
@@ -307,7 +339,9 @@ structure NormalizedPolynomialHermiteBiehlerTheoremData : Prop where
       HermiteBiehlerNoRealZeros (polynomialHermiteBiehlerFunction A B)
 
 /-- The exact iff obtained from an explicit implementation of the classical
-normalized polynomial Hermite--Biehler theorem.-/
+normalized polynomial Hermite--Biehler theorem.
+@isnad1 id=iff.4h2v.s6.8370c1d425bc from=translated src=- shape=b0b6cb8d vocab=b26b2fb4
+-/
 theorem normalizedPolynomialHermiteBiehler_iff_interlacing
     (T : NormalizedPolynomialHermiteBiehlerTheoremData)
     (A B : Polynomial ℝ) (hA : A ≠ 0) (hB : B ≠ 0)
@@ -344,7 +378,9 @@ structure EntireHermiteBiehlerInterlacingTheoremData
       HermiteBiehlerNoRealZeros (entireHermiteBiehlerFunction A B)
 
 /-- Exact full function-level Hermite--Biehler/interlacing equivalence from
-an explicitly supplied proof package.-/
+an explicitly supplied proof package.
+@isnad1 id=iff.1h2v.s4.ceb8d32d7a5b from=translated src=- shape=46371d65 vocab=9eda935b
+-/
 theorem entireHermiteBiehler_iff_orientedStrictInterlacing
     {A B : ℂ → ℂ}
     (T : EntireHermiteBiehlerInterlacingTheoremData A B) :

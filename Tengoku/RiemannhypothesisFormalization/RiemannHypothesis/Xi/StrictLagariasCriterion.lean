@@ -43,7 +43,9 @@ def EntireXi.LagariasPositivity : Prop :=
 
 /-- The explicit nonvanishing formulation and the totalized strict sign
 formulation are equivalent. Strict positivity forces the denominator to be
-nonzero because division by zero is totalized to zero.-/
+nonzero because division by zero is totalized to zero.
+@isnad1 id=iff.0h0v.s1.23b81db22a50 from=translated src=- shape=25b03439 vocab=cd4d92f4
+-/
 theorem entireXi_lagariasPositivity_iff_rightHalfPlaneStrictLogDerivSign :
     EntireXi.LagariasPositivity ↔
       EntireXi.rightHalfPlaneStrictLogDerivSign := by
@@ -62,7 +64,9 @@ def EntireXiPullback.StrictAntiHerglotzSign : Prop :=
   StrictAntiHerglotzUHP (logDerivativeResponse EntireXiPullback)
 
 /-- Differentiating `xi(1 - s) = xi(s)` gives
-`xi'(1 - s) = -xi'(s)`.-/
+`xi'(1 - s) = -xi'(s)`.
+@isnad1 id=eq.0h1v.s6.28bffd71682c from=translated src=- shape=b597386d vocab=171d02ef
+-/
 theorem entireRiemannXi_deriv_one_sub (s : ℂ) :
     deriv entireRiemannXi (1 - s) = -deriv entireRiemannXi s := by
   have hinner : HasDerivAt (fun w : ℂ => 1 - w) (-1) s :=
@@ -95,7 +99,9 @@ theorem entireRiemannXi_deriv_one_sub (s : ℂ) :
   have hneg := congrArg Neg.neg hderiv'
   simpa using hneg.symm
 
-/-- Functional equation for the totalized logarithmic derivative.-/
+/-- Functional equation for the totalized logarithmic derivative.
+@isnad1 id=eq.0h1v.s7.97b8718ddaae from=translated src=- shape=287b67af vocab=b79c6836
+-/
 theorem entireRiemannXi_logDeriv_one_sub (s : ℂ) :
     deriv entireRiemannXi (1 - s) / entireRiemannXi (1 - s) =
       -(deriv entireRiemannXi s / entireRiemannXi s) := by
@@ -104,7 +110,9 @@ theorem entireRiemannXi_logDeriv_one_sub (s : ℂ) :
 
 /-- The strict right-half-plane condition for xi is exactly the strict
 anti-Herglotz condition for its critical-line pullback. The functional
-equation moves the pullback's left half-plane to the classical right half.-/
+equation moves the pullback's left half-plane to the classical right half.
+@isnad1 id=iff.0h0v.s1.16466f8cfc32 from=translated src=- shape=25b03439 vocab=f2741a5a
+-/
 theorem entireXi_rightHalfPlaneStrictLogDerivSign_iff_pullback :
     EntireXi.rightHalfPlaneStrictLogDerivSign ↔
       EntireXiPullback.StrictAntiHerglotzSign := by
@@ -154,7 +162,9 @@ theorem entireXi_rightHalfPlaneStrictLogDerivSign_iff_pullback :
     linarith
 
 /-- The strict right-half-plane Lagarias sign condition implies Mathlib's
-literal Riemann hypothesis, unconditionally.-/
+literal Riemann hypothesis, unconditionally.
+@isnad1 id=riemannh.1h0v.s1.4008ce57e055 from=translated src=- shape=1d48f1ac vocab=7b6c7c52
+-/
 theorem riemannHypothesis_of_entireXi_rightHalfPlaneStrictLogDerivSign
     (h : EntireXi.rightHalfPlaneStrictLogDerivSign) :
     RiemannHypothesis := by
@@ -169,7 +179,9 @@ theorem riemannHypothesis_of_entireXi_rightHalfPlaneStrictLogDerivSign
     (EntireXiPullback_schwarz
       (EntireRiemannXiRegularity_of_schwarz EntireXi.schwarzReflection_holds))
 
-/-- Classical punctured-domain Lagarias positivity implies Mathlib's RH.-/
+/-- Classical punctured-domain Lagarias positivity implies Mathlib's RH.
+@isnad1 id=riemannh.1h0v.s1.dc88764c8c3b from=translated src=- shape=1d48f1ac vocab=bc8e78e0
+-/
 theorem riemannHypothesis_of_entireXi_lagariasPositivity
     (h : EntireXi.LagariasPositivity) :
     RiemannHypothesis :=
@@ -203,7 +215,9 @@ structure EntireXiPullbackExpAffineHadamardData : Type where
         originMultiplicity C a b zeroLoc
 
 /-- Exact factorization plus the known nontriviality of the xi pullback forces
-the affine prefactor constant to be nonzero.-/
+the affine prefactor constant to be nonzero.
+@isnad1 id=ne.0h1v.s3.16f79b90881f from=translated src=- shape=a311c14d vocab=42f66c17
+-/
 theorem EntireXiPullbackExpAffineHadamardData.constant_ne_zero
     (H : EntireXiPullbackExpAffineHadamardData) :
     H.C ≠ 0 := by
@@ -215,7 +229,9 @@ theorem EntireXiPullbackExpAffineHadamardData.constant_ne_zero
     expAffineGenusOneProduct, hC]
 
 /-- The factorization records a central zero exactly when the explicit origin
-multiplicity is nonzero.-/
+multiplicity is nonzero.
+@isnad1 id=iff.0h1v.s4.54fa0499032b from=translated src=- shape=44a7bd5e vocab=75828b43
+-/
 theorem EntireXiPullbackExpAffineHadamardData.center_zero_iff
     (H : EntireXiPullbackExpAffineHadamardData) :
     EntireXiPullback 0 = 0 ↔ H.originMultiplicity ≠ 0 := by
@@ -225,7 +241,9 @@ theorem EntireXiPullbackExpAffineHadamardData.center_zero_iff
     H.constant_ne_zero]
 
 /-- The explicit origin exponent in the xi factorization package is exactly
-the analytic order of the pullback at the origin.-/
+the analytic order of the pullback at the origin.
+@isnad1 id=eq.0h1v.s4.1ea907e04918 from=translated src=- shape=aecb75e5 vocab=a593dbd1
+-/
 theorem EntireXiPullbackExpAffineHadamardData.analyticOrderAt_zero
     (H : EntireXiPullbackExpAffineHadamardData) :
     analyticOrderAt EntireXiPullback 0 =
@@ -238,7 +256,9 @@ theorem EntireXiPullbackExpAffineHadamardData.analyticOrderAt_zero
 
 /-- The origin together with the indexed nonzero locations exhausts the zero
 set of the full pullback. Repeated indices carry multiplicity, but this theorem
-records only set-level equality; an analytic-order theorem is separate.-/
+records only set-level equality; an analytic-order theorem is separate.
+@isnad1 id=iff.0h2v.s5.db05a18d370e from=translated src=- shape=fdcb5171 vocab=595d526b
+-/
 theorem EntireXiPullbackExpAffineHadamardData.zero_iff_origin_or_exists_zeroLoc
     (H : EntireXiPullbackExpAffineHadamardData) (z : ℂ) :
     EntireXiPullback z = 0 ↔

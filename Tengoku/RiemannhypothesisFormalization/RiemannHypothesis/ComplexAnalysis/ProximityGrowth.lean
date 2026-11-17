@@ -31,7 +31,9 @@ def HasSubquadraticProximityGrowthAtInfinity (q : ℂ → ℂ) : Prop :=
     ∀ r : ℝ, R ≤ r → proximity q ⊤ r ≤ ε * r ^ 2
 
 /-- A pointwise subquadratic upper logarithmic bound implies subquadratic
-circle-average proximity.-/
+circle-average proximity.
+@isnad1 id=hassubqu.2h1v.s5.67903e7a6057 from=translated src=- shape=e1e3bc3f vocab=293bd4c3
+-/
 theorem HasSubquadraticLogNormGrowthAtInfinity.toProximityGrowthAtInfinity
     {f : ℂ → ℂ}
     (hgrowth : HasSubquadraticLogNormGrowthAtInfinity f)
@@ -57,7 +59,9 @@ theorem HasSubquadraticLogNormGrowthAtInfinity.toProximityGrowthAtInfinity
 
 /-- Poisson's formula upgrades subquadratic circle-average proximity to the
 pointwise one-sided logarithmic norm estimate.  On the circle of radius
-`2‖z‖`, the Poisson kernel lies between `0` and `3`.-/
+`2‖z‖`, the Poisson kernel lies between `0` and `3`.
+@isnad1 id=hassubqu.3h2v.s6.b32662748903 from=translated src=- shape=504fefeb vocab=0a75a9d0
+-/
 theorem HasSubquadraticProximityGrowthAtInfinity.toLogNormGrowthAtInfinity
     {q h : ℂ → ℂ} (hprox : HasSubquadraticProximityGrowthAtInfinity q)
     (hh : Differentiable ℂ h)
@@ -180,7 +184,9 @@ def HasSubquadraticCharacteristicGrowthAtInfinity (f : ℂ → ℂ) : Prop :=
     ∀ r : ℝ, R ≤ r → characteristic f ⊤ r ≤ ε * r ^ 2
 
 /-- Since proximity is the nonnegative summand of the characteristic, a
-subquadratic characteristic has subquadratic proximity.-/
+subquadratic characteristic has subquadratic proximity.
+@isnad1 id=hassubqu.1h1v.s3.95b506a0b68b from=translated src=- shape=c3984ded vocab=c83265ef
+-/
 theorem
     HasSubquadraticCharacteristicGrowthAtInfinity.toProximityGrowthAtInfinity
     {f : ℂ → ℂ}
@@ -199,7 +205,9 @@ theorem
 
 /-- For a quotient, proximity control of the numerator and characteristic
 control of the denominator suffice.  The First Main Theorem controls the
-proximity of the reciprocal denominator up to a fixed constant.-/
+proximity of the reciprocal denominator up to a fixed constant.
+@isnad1 id=hassubqu.5h3v.s6.c12e366e81a6 from=translated src=- shape=179df4df vocab=b378024a
+-/
 theorem
     hasSubquadraticProximityGrowthAtInfinity_of_proximity_and_characteristic
     {f g q : ℂ → ℂ}
@@ -270,7 +278,9 @@ theorem
 
 /-- If `q = f * g⁻¹` away from a codiscrete exceptional set, then
 subquadratic characteristics of `f` and `g` imply subquadratic proximity of
-`q`.  Common zeros need no pointwise division or lower product estimate.-/
+`q`.  Common zeros need no pointwise division or lower product estimate.
+@isnad1 id=hassubqu.5h3v.s6.995b91cd0405 from=translated src=- shape=179df4df vocab=b378024a
+-/
 theorem hasSubquadraticProximityGrowthAtInfinity_of_characteristic_factors
     {f g q : ℂ → ℂ}
     (hfmer : Meromorphic f) (hgmer : Meromorphic g)

@@ -96,7 +96,9 @@ noncomputable def smoothZeroCountingN0 (u : ℝ) : ℝ :=
     + 7 / 8
 
 /-- **PROVED — `ρ(u) ≥ 0` for `u ≥ 2π`.** Because `u/(2π) ≥ 1`, so
-`log(u/(2π)) ≥ 0`, and `1/(2π) > 0`.-/
+`log(u/(2π)) ≥ 0`, and `1/(2π) > 0`.
+@isnad1 id=le.1h1v.s5.5306560d37fc from=translated src=- shape=e799f964 vocab=1e6d003f
+-/
 theorem zeroDensityRho_nonneg_of_ge_two_pi
     {u : ℝ} (hu : 2 * Real.pi ≤ u) :
     0 ≤ zeroDensityRho u := by
@@ -124,7 +126,9 @@ Derivatives:
       `= (1/(2π))·log(u/(2π)) + 1/(2π)`
   `deriv N_0 u`
       `= (1/(2π))·log(u/(2π)) + 1/(2π) − 1/(2π) + 0`
-      `= (1/(2π))·log(u/(2π)) = ρ(u)`.-/
+      `= (1/(2π))·log(u/(2π)) = ρ(u)`.
+@isnad1 id=eq.1h1v.s5.26b0afc1627b from=translated src=- shape=4f4de17d vocab=35954a4e
+-/
 theorem deriv_smoothZeroCountingN0
     {u : ℝ} (hu : 0 < u) :
     deriv smoothZeroCountingN0 u = zeroDensityRho u := by
@@ -206,7 +210,9 @@ noncomputable def smoothTailRationalLowerBoundAbs (x y T : ℝ) : ℝ :=
 /-- ⭐ **PROVED — `HasDerivAt smoothZeroCountingN0 (zeroDensityRho u) u` for
 `u > 0`.** The `HasDerivAt`-flavoured version of the existing
 `deriv_smoothZeroCountingN0`. Needed to apply
-`monotoneOn_of_deriv_nonneg`.-/
+`monotoneOn_of_deriv_nonneg`.
+@isnad1 id=hasderiv.1h1v.s5.4dd3b6e5a1a8 from=translated src=- shape=111225e6 vocab=581b5083
+-/
 theorem hasDerivAt_smoothZeroCountingN0
     {u : ℝ} (hu : 0 < u) :
     HasDerivAt smoothZeroCountingN0 (zeroDensityRho u) u := by
@@ -250,7 +256,9 @@ Direct from `monotoneOn_of_deriv_nonneg`:
 * continuity and differentiability on the interior follow from
   `hasDerivAt_smoothZeroCountingN0`;
 * the derivative `zeroDensityRho u` is `≥ 0` for `u ≥ 2π`
-  (`zeroDensityRho_nonneg_of_ge_two_pi`).-/
+  (`zeroDensityRho_nonneg_of_ge_two_pi`).
+@isnad1 id=monotone.0h0v.s4.24f10e82d3d9 from=translated src=- shape=92be8dee vocab=1c660391
+-/
 theorem smoothZeroCountingN0_monotoneOn_Ici_two_pi :
     MonotoneOn smoothZeroCountingN0 (Set.Ici (2 * Real.pi)) := by
   apply monotoneOn_of_deriv_nonneg (convex_Ici _)
@@ -272,7 +280,9 @@ theorem smoothZeroCountingN0_monotoneOn_Ici_two_pi :
 
 /-- ⭐ **PROVED — `smoothZeroCountingN0(2π) = -1/8`.**
 
-Direct evaluation: `N₀(2π) = 1 · log(1) − 1 + 7/8 = -1/8`.-/
+Direct evaluation: `N₀(2π) = 1 · log(1) − 1 + 7/8 = -1/8`.
+@isnad1 id=eq.0h0v.s5.84ce468efd4b from=translated src=- shape=b7f2224e vocab=5e540ea2
+-/
 theorem smoothZeroCountingN0_at_two_pi :
     smoothZeroCountingN0 (2 * Real.pi) = -(1 / 8) := by
   have h2pi_pos : (0 : ℝ) < 2 * Real.pi := by positivity
@@ -286,7 +296,9 @@ theorem smoothZeroCountingN0_at_two_pi :
 
 Chain: `5/π ≥ 5/3.15 > 1.58` (since `π < 3.15`), `5/π < 2` (since
 `π > 2.5`), so `log(5/π) ≤ log 2 ≤ 0.7` (Mathlib `Real.log_two_lt_d9`),
-giving `N₀(10) = (5/π)·log(5/π) − 5/π + 7/8 ≤ 1.58·0.7 − 1.58 + 7/8 ≈ 0.40 ≤ 1/2`.-/
+giving `N₀(10) = (5/π)·log(5/π) − 5/π + 7/8 ≤ 1.58·0.7 − 1.58 + 7/8 ≈ 0.40 ≤ 1/2`.
+@isnad1 id=le.0h0v.s5.b6b13a84621f from=translated src=- shape=d4f6e56f vocab=bffd8a91
+-/
 theorem smoothZeroCountingN0_at_10_le_half :
     smoothZeroCountingN0 10 ≤ 1 / 2 := by
   unfold smoothZeroCountingN0
@@ -335,7 +347,9 @@ Chain (with `q := 7/π`):
 * `q · q ≤ q · 2.23` from `q ≤ 2.23`;
 * combine: `q · log q ≤ q · 0.6932 + q · 1.115 − q = q · 0.8082`;
 * `N₀(14) = q · log q − q + 7/8 ≤ −0.1918 · q + 7/8`;
-* `q > 2.222 ⟹ −0.1918 · q < −0.4262`, so `N₀(14) < 0.449 ≤ 1/2`.-/
+* `q > 2.222 ⟹ −0.1918 · q < −0.4262`, so `N₀(14) < 0.449 ≤ 1/2`.
+@isnad1 id=le.0h0v.s5.b662409002ad from=translated src=- shape=d4f6e56f vocab=bffd8a91
+-/
 theorem smoothZeroCountingN0_at_14_le_half :
     smoothZeroCountingN0 14 ≤ 1 / 2 := by
   unfold smoothZeroCountingN0
@@ -387,7 +401,9 @@ theorem smoothZeroCountingN0_at_14_le_half :
 the `_le_half` bound). Same proof technique: tangent at
 `q = 2` via `Real.log_le_sub_one_of_pos` on `q/2`. The proof
 actually shows `N₀(14) ≤ −0.1918·(7/π) + 7/8 < 0.4487`, which is
-`< 9/20 = 0.45` (margin ≈ 0.0013).-/
+`< 9/20 = 0.45` (margin ≈ 0.0013).
+@isnad1 id=le.0h0v.s5.5bb957c66715 from=translated src=- shape=d4f6e56f vocab=bffd8a91
+-/
 theorem smoothZeroCountingN0_at_14_le_nine_twentieth :
     smoothZeroCountingN0 14 ≤ (9 / 20 : ℝ) := by
   unfold smoothZeroCountingN0
@@ -429,7 +445,9 @@ lower bound `Real.le_log_one_add_of_nonneg`:
 `log(5/π) ≥ 2(5-π)/(5+π)`, hence
 `(5/π)·log(5/π) ≥ 10(5-π)/(π(5+π))`. Clearing denominators reduces
 to `37π² − 415π + 1000 ≥ 0` on `π ∈ (3.14, 3.15)`, which holds with
-margin ≈ 60. Numerically `N₀(10) ≈ 0.023 ≥ -0.05`.-/
+margin ≈ 60. Numerically `N₀(10) ≈ 0.023 ≥ -0.05`.
+@isnad1 id=le.0h0v.s5.940c278280a6 from=translated src=- shape=9a8e957f vocab=6f7c3e53
+-/
 theorem smoothZeroCountingN0_at_10_ge_neg_one_twentieth :
     -(1 / 20 : ℝ) ≤ smoothZeroCountingN0 10 := by
   unfold smoothZeroCountingN0
@@ -532,7 +550,9 @@ theorem smoothZeroCountingN0_at_10_ge_neg_one_twentieth :
 
 /-- ⭐ **PROVED — `zeroDensityRho T ≤ T`** for `T ≥ 2π`.
 Via `log x ≤ x` applied to `x = T/(2π)`, then `log(T/(2π))/(2π) ≤ T/(4π²) ≤ T`
-(since `4π² > 1`).-/
+(since `4π² > 1`).
+@isnad1 id=le.1h1v.s4.d05eee7ea845 from=translated src=- shape=55a5ca4a vocab=1e6d003f
+-/
 lemma zeroDensityRho_le_T
     {T : ℝ} (hT2pi : 2 * Real.pi ≤ T) :
     zeroDensityRho T ≤ T := by
@@ -567,7 +587,9 @@ lemma zeroDensityRho_le_T
 
 /-- ⭐ **PROVED — `|zeroDensityRho u| ≤ (1/(2π)) · log u` for `u ≥ 2π`.**
 For `u ≥ 2π`, `ρ u = (1/(2π))·(log u - log(2π)) ≥ 0` and `log(2π) ≥ 0`
-(since `2π ≥ 1`), so `|ρ u| = ρ u ≤ (1/(2π)) log u`.-/
+(since `2π ≥ 1`), so `|ρ u| = ρ u ≤ (1/(2π)) log u`.
+@isnad1 id=le.1h1v.s6.c4dde4df05b2 from=translated src=- shape=9021398b vocab=a12b18c7
+-/
 lemma zeroDensityRho_abs_le_log_div_two_pi_of_ge_two_pi
     {u : ℝ} (hu : 2 * Real.pi ≤ u) :
     |zeroDensityRho u| ≤ (1 / (2 * Real.pi)) * Real.log u := by
@@ -594,7 +616,9 @@ lemma zeroDensityRho_abs_le_log_div_two_pi_of_ge_two_pi
   nlinarith [mul_nonneg h2pi_inv_nn h_log_2pi_nn]
 
 /-- ⭐ **PROVED — `zeroDensityRho` is monotone on `[2π, ∞)`.** Follows
-from `log` monotonicity on `[1, ∞)` after dividing by `2π`.-/
+from `log` monotonicity on `[1, ∞)` after dividing by `2π`.
+@isnad1 id=monotone.0h0v.s4.2b33bb8be8ef from=translated src=- shape=92be8dee vocab=aa5df70f
+-/
 lemma zeroDensityRho_mono_on_tail :
     MonotoneOn zeroDensityRho (Set.Ici (2 * Real.pi)) := by
   intro a ha b hb hab
@@ -611,7 +635,9 @@ lemma zeroDensityRho_mono_on_tail :
   exact mul_le_mul_of_nonneg_left h_log_le h2pi_inv_nn
 
 /-- ⭐ **PROVED — `zeroDensityRho` is continuous at any `X > 0`.**
-`ρ(u) = (1/(2π))·log(u/(2π))`; `log` is continuous away from `0`.-/
+`ρ(u) = (1/(2π))·log(u/(2π))`; `log` is continuous away from `0`.
+@isnad1 id=continuo.1h1v.s4.5be15e3ca349 from=translated src=- shape=4d60c403 vocab=5a4ac642
+-/
 lemma zeroDensityRho_continuousAt {X : ℝ} (hX : 0 < X) :
     ContinuousAt zeroDensityRho X := by
   unfold zeroDensityRho
@@ -626,7 +652,9 @@ lemma zeroDensityRho_continuousAt {X : ℝ} (hX : 0 < X) :
     h_inner.log h_div_ne
   exact continuousAt_const.mul h_log
 
-/-- ⭐ **PROVED — `ρ(T) ≤ ρ(u)` on the tail.**-/
+/-- ⭐ **PROVED — `ρ(T) ≤ ρ(u)` on the tail.**
+@isnad1 id=le.2h2v.s5.8ec07612b48f from=translated src=- shape=6c845eca vocab=1e6d003f
+-/
 lemma zeroDensityRho_le_of_tail
     {T u : ℝ} (hT : 2 * Real.pi ≤ T) (hTu : T ≤ u) :
     zeroDensityRho T ≤ zeroDensityRho u := by
@@ -634,7 +662,9 @@ lemma zeroDensityRho_le_of_tail
 
 /-- ⭐ **PROVED — eventual log-growth bound for `zeroDensityRho`.**
 For `A := 1/(2π)`, `B := 0`, eventually `|ρ u| ≤ A · log u + B`. Direct
-form for plugging into the smooth density majorant chain.-/
+form for plugging into the smooth density majorant chain.
+@isnad1 id=eventual.0h0v.s6.55dd1eed399a from=translated src=- shape=69233481 vocab=5251b9a6
+-/
 lemma zeroDensityRho_log_growth_eventually :
     ∀ᶠ u : ℝ in Filter.atTop,
       |zeroDensityRho u| ≤ (1 / (2 * Real.pi)) * Real.log u + 0 := by
@@ -647,7 +677,9 @@ endpoint bound `N₀(U) ≤ 1/2`. Parameterized generalization fixing the
 upper endpoint `U`.
 
 Lower bound is automatic from `smoothZeroCountingN0_at_two_pi`
-(`N₀(2π) = -1/8 ≥ -1/2`) and monotonicity on `[2π, ∞)`.-/
+(`N₀(2π) = -1/8 ≥ -1/2`) and monotonicity on `[2π, ∞)`.
+@isnad1 id=le.4h2v.s6.ab4e7ef4e56f from=translated src=- shape=ff547bc4 vocab=8d03e27d
+-/
 theorem abs_smoothZeroCountingN0_le_half_on_first_band_param
     {U : ℝ} (hU_ge_two_pi : 2 * Real.pi ≤ U)
     (hN0_U_le_half : smoothZeroCountingN0 U ≤ 1 / 2)
@@ -670,7 +702,9 @@ theorem abs_smoothZeroCountingN0_le_half_on_first_band_param
   linarith
 
 /-- 🌟 **PROVED — endpoint difference `N₀(14) − N₀(10) ≤ 1/2`** by
-combining the bounds `N₀(14) ≤ 9/20` and `N₀(10) ≥ -1/20`.-/
+combining the bounds `N₀(14) ≤ 9/20` and `N₀(10) ≥ -1/20`.
+@isnad1 id=le.0h0v.s5.3a589b9dd8ac from=translated src=- shape=375494cc vocab=f55e1b7c
+-/
 theorem smoothZeroCountingN0_14_sub_10_le_half :
     smoothZeroCountingN0 14 - smoothZeroCountingN0 10 ≤ (1 / 2 : ℝ) := by
   have h14 := smoothZeroCountingN0_at_14_le_nine_twentieth
@@ -679,7 +713,9 @@ theorem smoothZeroCountingN0_14_sub_10_le_half :
 
 /-- 🌟 **PROVED — `|N₀(u)| ≤ 1/2` for `u ∈ [2π, 14]`.**
 Specialization of `abs_smoothZeroCountingN0_le_half_on_first_band_param`
-with the new endpoint `smoothZeroCountingN0_at_14_le_half`.-/
+with the new endpoint `smoothZeroCountingN0_at_14_le_half`.
+@isnad1 id=le.2h1v.s6.3eb8b09100ec from=translated src=- shape=55bd7435 vocab=8d03e27d
+-/
 theorem abs_smoothZeroCountingN0_le_half_on_first_band_14
     {u : ℝ}
     (hlo : 2 * Real.pi ≤ u) (hhi : u ≤ 14) :
@@ -693,7 +729,9 @@ theorem abs_smoothZeroCountingN0_le_half_on_first_band_14
 /-- 🌟 **PROVED — uniform diff bound** `|N₀(10) − N₀(u)| ≤ 1/2` on
 `[11, 14]`. By monotonicity (`N₀` increasing on `[2π, ∞)`), the
 absolute value equals `N₀(u) − N₀(10)`, and the worst case is at
-`u = 14`.-/
+`u = 14`.
+@isnad1 id=le.2h1v.s6.2e82682ae30d from=translated src=- shape=1db380cb vocab=fa419b65
+-/
 theorem abs_N0_10_sub_N0_le_half_on_11_14
     {u : ℝ} (hu11 : 11 ≤ u) (hu14 : u ≤ 14) :
     |smoothZeroCountingN0 10 - smoothZeroCountingN0 u| ≤ (1 / 2 : ℝ) := by
@@ -724,7 +762,9 @@ theorem abs_N0_10_sub_N0_le_half_on_11_14
   rw [h_eq]
   linarith
 
-/-- 🌟 **PROVED — `ρ(10) ≥ 259/3586`.**-/
+/-- 🌟 **PROVED — `ρ(10) ≥ 259/3586`.**
+@isnad1 id=le.0h0v.s5.88f27f2b6707 from=translated src=- shape=63c521e8 vocab=7ba80bd4
+-/
 theorem zeroDensityRho_10_ge_259_div_3586 :
     (259 / 3586 : ℝ) ≤ zeroDensityRho 10 := by
   have h_eq : (10 : ℝ) / (2 * Real.pi) = 5 / Real.pi := by ring

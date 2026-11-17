@@ -24,7 +24,9 @@ namespace OverflowResidueRH
 open Complex
 
 /-- **PROVED — inner derivative.** `HasDerivAt (fun z => ½ + I·z) I z`,
-the derivative of the critical-shift map is `I` at every point.-/
+the derivative of the critical-shift map is `I` at every point.
+@isnad1 id=hasderiv.0h1v.s6.ec542bd8bccc from=translated src=- shape=53eee74a vocab=137297f6
+-/
 theorem hasDerivAt_critical_shift (z : ℂ) :
     HasDerivAt (fun z : ℂ => (1 / 2 : ℂ) + Complex.I * z) Complex.I z := by
   have h1 : HasDerivAt (fun z : ℂ => z) (1 : ℂ) z := hasDerivAt_id z
@@ -38,7 +40,9 @@ theorem hasDerivAt_critical_shift (z : ℂ) :
 /-- ⭐ **PROVED — chain rule for `XiPullback`.** Under differentiability
 of `completedXiFunction` at the pullback point,
   `Λ[Ξ](z) = I · Λ[ξ](½ + I·z)`.
-The explicit converter that unlocks attacks on the explicit ξ formula.-/
+The explicit converter that unlocks attacks on the explicit ξ formula.
+@isnad1 id=eq.1h1v.s7.891fe09d1cb5 from=translated src=- shape=8c606761 vocab=1ef8b685
+-/
 theorem XiPullback_logDeriv_chain_rule
     {z : ℂ}
     (hxi_diff : DifferentiableAt ℂ completedXiFunction
@@ -69,7 +73,9 @@ def CompletedXiDifferentiableOnLeftHalfPlane : Prop :=
   ∀ s : ℂ, s.re < (1 / 2 : ℝ) → DifferentiableAt ℂ completedXiFunction s
 
 /-- ⭐ **PROVED — completed-xi regularity ⟹ left-half-plane
-differentiability.**-/
+differentiability.**
+@isnad1 id=complete.1h0v.s1.08db37ca0cba from=translated src=- shape=1d48f1ac vocab=19a03176
+-/
 theorem completedXiRegularity_gives_leftHalfDiff
     (H : CompletedXiRegularity) :
     CompletedXiDifferentiableOnLeftHalfPlane :=
@@ -77,7 +83,9 @@ theorem completedXiRegularity_gives_leftHalfDiff
 
 /-- ⭐ **PROVED — `XiPullback` is differentiable from `CompletedXiRegularity`.**
 The composition of the entire inner map `z ↦ (1/2) + I·z` with the
-everywhere-differentiable outer `completedXiFunction`.-/
+everywhere-differentiable outer `completedXiFunction`.
+@isnad1 id=differen.1h1v.s6.f4e2553178f9 from=translated src=- shape=ac643da3 vocab=90cd584f
+-/
 theorem XiPullback_differentiableAt_of_completedXiRegularity
     (H : CompletedXiRegularity) (z : ℂ) :
     DifferentiableAt ℂ XiPullback z := by
@@ -93,7 +101,9 @@ theorem XiPullback_differentiableAt_of_completedXiRegularity
 
 /-- ⭐ **PROVED — chain rule for `EntireXiPullback`.**
 `Λ[EntireXiPullback](z) = I · Λ[entireRiemannXi](½ + I·z)`. The
-Mathlib-grounded analogue; the critical-shift arithmetic is ξ-agnostic.-/
+Mathlib-grounded analogue; the critical-shift arithmetic is ξ-agnostic.
+@isnad1 id=eq.0h1v.s7.9e265a3e673a from=translated src=- shape=ec0b1282 vocab=91aa1eb1
+-/
 theorem EntireXiPullback_logDeriv_chain_rule (z : ℂ) :
     logDerivativeResponse EntireXiPullback z =
       Complex.I *

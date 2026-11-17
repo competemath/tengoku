@@ -44,7 +44,9 @@ structure CompletedRiemannZetaRawOffPoleFormula : Prop where
         = Complex.exp (-(s / 2) * (Real.log Real.pi : ℂ))
           * Complex.Gamma (s / 2) * riemannZeta s
 
-/-- ⭐ **PROVED — off Γ-poles implies `s ≠ 0`.**-/
+/-- ⭐ **PROVED — off Γ-poles implies `s ≠ 0`.**
+@isnad1 id=ne.1h1v.s5.1a4df3282af6 from=translated src=- shape=c93763fc vocab=75d702c9
+-/
 theorem ne_zero_of_half_not_gammaPole
     {s : ℂ} (hsPole : s / 2 ∉ gammaPoleSet) :
     s ≠ 0 := by
@@ -53,7 +55,9 @@ theorem ne_zero_of_half_not_gammaPole
   rw [hs]
   exact ⟨0, by simp⟩
 
-/-- ⭐ **PROVED — off Γ-poles implies the Deligne Γ-factor is nonzero.**-/
+/-- ⭐ **PROVED — off Γ-poles implies the Deligne Γ-factor is nonzero.**
+@isnad1 id=ne.1h1v.s5.f11a21e0dfcf from=translated src=- shape=595d51c7 vocab=68dd00d8
+-/
 theorem GammaReal_ne_zero_of_half_not_gammaPole
     {s : ℂ} (hsPole : s / 2 ∉ gammaPoleSet) :
     Gammaℝ s ≠ 0 := by
@@ -62,7 +66,9 @@ theorem GammaReal_ne_zero_of_half_not_gammaPole
   apply hsPole
   exact ⟨n, by rw [hn]; ring⟩
 
-/-- ⭐ **PROVED — `Gammaℝ` as the explicit exponential Γ-factor.**-/
+/-- ⭐ **PROVED — `Gammaℝ` as the explicit exponential Γ-factor.**
+@isnad1 id=eq.0h1v.s6.2cfd9ffc67dd from=translated src=- shape=6f46651b vocab=07be176d
+-/
 theorem GammaReal_eq_exp_gamma (s : ℂ) :
     Gammaℝ s =
       Complex.exp (-(s / 2) * (Real.log Real.pi : ℂ))
@@ -76,7 +82,9 @@ theorem GammaReal_eq_exp_gamma (s : ℂ) :
   · exact Complex.ofReal_ne_zero.mpr Real.pi_ne_zero
 
 /-- 🌟🌟 **PROVED unconditionally** — Mathlib's completed zeta is the
-raw Γ·ζ expression off Γ-poles.-/
+raw Γ·ζ expression off Γ-poles.
+@isnad1 id=complete.0h0v.s0.f558b92a9daa from=translated src=- shape=45709ebd vocab=f558b92a
+-/
 theorem completedRiemannZetaRawOffPoleFormula :
     CompletedRiemannZetaRawOffPoleFormula := by
   refine ⟨?_⟩
@@ -102,7 +110,9 @@ structure CompletedRiemannZetaZeroCorrectionFormula : Prop where
         = completedRiemannZeta₀ s - 1 / s - 1 / (1 - s)
 
 /-- 🌟🌟 **PROVED unconditionally** — direct application of
-Mathlib's `completedRiemannZeta_eq`.-/
+Mathlib's `completedRiemannZeta_eq`.
+@isnad1 id=complete.0h0v.s0.e61830fb7113 from=translated src=- shape=45709ebd vocab=e61830fb
+-/
 theorem completedRiemannZetaZeroCorrectionFormula :
     CompletedRiemannZetaZeroCorrectionFormula :=
   ⟨completedRiemannZeta_eq⟩
@@ -116,7 +126,9 @@ structure EntireRiemannXiFormulaSource : Prop where
         = (1 / 2 : ℂ) * s * (s - 1) * completedRiemannZeta₀ s + 1 / 2
 
 /-- ⭐ **PROVED unconditionally** — `entireRiemannXi` is exactly that
-formula by definition.-/
+formula by definition.
+@isnad1 id=entireri.0h0v.s0.8610216bc40c from=translated src=- shape=45709ebd vocab=8610216b
+-/
 theorem entireRiemannXiFormulaSource :
     EntireRiemannXiFormulaSource := by
   refine ⟨?_⟩
@@ -126,7 +138,9 @@ theorem entireRiemannXiFormulaSource :
 /-- ⭐ **PROVED — algebra for the ξ correction term**, valid for
 `s ≠ 0` and `s ≠ 1`. The identity fails at s = 0 and s = 1 in Lean's
 totalized arithmetic (`1/0 = 0`), because the `+ 1/2` correction
-kicks in exactly when the `s·(s-1)` factor vanishes.-/
+kicks in exactly when the `s·(s-1)` factor vanishes.
+@isnad1 id=eq.2h1v.s7.6de8dd33ef4d from=translated src=- shape=8ff66a18 vocab=a02f648b
+-/
 theorem xi_completedZeta_correction_algebra
     {s : ℂ} (hs0 : s ≠ 0) (hs1 : s ≠ 1) :
     (1 / 2 : ℂ) * s * (s - 1)

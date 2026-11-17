@@ -47,7 +47,9 @@ open Complex
 
 /-- **PROVED — escape value `m/ε` exceeds any bounded `K` once `ε < m/K`.**
 This is the analytic clincher: a bounded background cannot kill the
-`m/ε` divergence near an upper pole.-/
+`m/ε` divergence near an upper pole.
+@isnad1 id=lt.4h3v.s6.0fff52899432 from=translated src=- shape=66f2d362 vocab=bc32530a
+-/
 theorem escape_exceeds_bounded_background
     (m K eps : ℝ) (_hm : m > 0) (hK : K > 0) (hε : 0 < eps)
     (hsmall : eps < m / K) :
@@ -61,7 +63,9 @@ theorem escape_exceeds_bounded_background
   rw [hKK] at this
   linarith
 
-/-- **PROVED — escape strictly positive: `m/ε − K > 0` once `ε < m/K`.**-/
+/-- **PROVED — escape strictly positive: `m/ε − K > 0` once `ε < m/K`.**
+@isnad1 id=lt.4h3v.s6.ef7cdaa0d8e3 from=translated src=- shape=8070912a vocab=7310742b
+-/
 theorem residual_escape_positive
     (m K eps : ℝ) (hm : m > 0) (hK : K > 0) (hε : 0 < eps)
     (hsmall : eps < m / K) :
@@ -69,7 +73,9 @@ theorem residual_escape_positive
   have h := escape_exceeds_bounded_background m K eps hm hK hε hsmall
   linarith
 
-/-- **PROVED — probe subtraction: `(a + (b−ε)·I) − (a + b·I) = −ε·I`.**-/
+/-- **PROVED — probe subtraction: `(a + (b−ε)·I) − (a + b·I) = −ε·I`.**
+@isnad1 id=eq.0h3v.s6.b13b602b7644 from=translated src=- shape=714eead2 vocab=6d3076ce
+-/
 theorem complex_probe_subtraction (a b eps : ℝ) :
     ((a : ℂ) + (b - eps) * Complex.I) - ((a : ℂ) + b * Complex.I)
       = -eps * Complex.I := by
@@ -77,7 +83,9 @@ theorem complex_probe_subtraction (a b eps : ℝ) :
 
 /-- **PROVED — `Im(m / (−ε·I)) = m / ε`** for `ε ≠ 0`.
 The central probe identity: at the probe just below an upper pole, the
-residue contribution `m / (z_ε − ρ)` has imaginary part `m/ε`.-/
+residue contribution `m / (z_ε − ρ)` has imaginary part `m/ε`.
+@isnad1 id=eq.1h2v.s5.a2f37724a245 from=translated src=- shape=0ad56615 vocab=b82d9480
+-/
 theorem im_principalPart_at_lowerProbe (m eps : ℝ) (hε : eps ≠ 0) :
     ((m : ℂ) / ((-eps : ℂ) * Complex.I)).im = m / eps := by
   have hε2 : eps^2 ≠ 0 := pow_ne_zero 2 hε
@@ -90,7 +98,9 @@ theorem im_principalPart_at_lowerProbe (m eps : ℝ) (hε : eps ≠ 0) :
   field_simp
   ring
 
-/-- **PROVED — `Im(m / (−ε·I)) > 0` when `m, ε > 0`.**-/
+/-- **PROVED — `Im(m / (−ε·I)) > 0` when `m, ε > 0`.**
+@isnad1 id=lt.2h2v.s5.c381f50801e6 from=translated src=- shape=a52c1a69 vocab=11685c36
+-/
 theorem im_principalPart_at_lowerProbe_pos
     (m eps : ℝ) (hm : 0 < m) (hε : 0 < eps) :
     0 < ((m : ℂ) / ((-eps : ℂ) * Complex.I)).im := by
@@ -99,7 +109,9 @@ theorem im_principalPart_at_lowerProbe_pos
 
 /-- **PROVED — escape exceeds bounded background (complex form):**
 if `m, ε > 0` and `ε < m/K` and `|Im B| ≤ K` then
-`Im(m / (−ε·I) + B) > 0`.-/
+`Im(m / (−ε·I) + B) > 0`.
+@isnad1 id=lt.5h4v.s6.de7a0d82502a from=translated src=- shape=237977c2 vocab=4f903bc1
+-/
 theorem upper_pole_escape_with_background_complex
     (m eps K : ℝ) (B : ℂ)
     (hm : 0 < m) (hK : 0 < K) (hε : 0 < eps)
@@ -113,7 +125,9 @@ theorem upper_pole_escape_with_background_complex
   linarith
 
 /-- **PROVED — escape via probe formula combined: at `z_ε` for upper pole
-`ρ`, the residue + background imaginary part is positive.**-/
+`ρ`, the residue + background imaginary part is positive.**
+@isnad1 id=lt.7h6v.s7.e0860f57408d from=translated src=- shape=671f9e2c vocab=c5c3eab4
+-/
 theorem polynomial_upper_root_forces_escape_complex
     (a b eps m K : ℝ) (B : ℂ)
     (_hb : 0 < b) (hm : 0 < m) (hK : 0 < K)
@@ -159,7 +173,9 @@ decomposition interval, for which the point `ρ - ε I` remains in the upper
 half-plane and the response has strictly positive imaginary part.
 
 This strengthened form records the geometry used by the pole argument and is
-therefore useful for concrete counterexample/diagnostic constructions.-/
+therefore useful for concrete counterexample/diagnostic constructions.
+@isnad1 id=ex.0h3v.s6.c694af469c8d from=translated src=- shape=72769a6f vocab=a78175f4
+-/
 theorem exists_lowerProbe_escape_of_localLogDerivPole
     {R : ℂ → ℂ} {ρ : ℂ}
     (D : LocalLogDerivPoleDecomposition R ρ) :
@@ -196,7 +212,9 @@ theorem exists_lowerProbe_escape_of_localLogDerivPole
 
 /-- **PROVED — THE TRUE ANALYTIC ENGINE.** A local pole decomposition at
 an upper pole forces a positive upper-imaginary escape. Pick
-`ε := min(ε₀/2, m/(2K))`, apply `upper_pole_escape_with_background_complex`.-/
+`ε := min(ε₀/2, m/(2K))`, apply `upper_pole_escape_with_background_complex`.
+@isnad1 id=positive.0h3v.s3.f60f867310f1 from=translated src=- shape=faf7ecc9 vocab=d4217bb3
+-/
 theorem positiveEscape_of_localLogDerivPole
     {R : ℂ → ℂ} {ρ : ℂ}
     (D : LocalLogDerivPoleDecomposition R ρ) :
@@ -208,7 +226,9 @@ theorem positiveEscape_of_localLogDerivPole
 /-- **PROVED — complex local-pole decomposition for a simple root.**
 If `p` factors locally as `p = (X − ρ) · q` at `z` with `q(z) ≠ 0`
 and `z ≠ ρ`, then `(p value)' / (p value) = 1/(z−ρ) + q'/q`.
-Stated as an algebraic identity on values.-/
+Stated as an algebraic identity on values.
+@isnad1 id=eq.2h4v.s6.ecb0a930e3a3 from=translated src=- shape=524cc905 vocab=5eb28542
+-/
 theorem complex_local_pole_decomposition_simple_root
     (z ρ q dq : ℂ) (hρ : z ≠ ρ) (hq : q ≠ 0) :
     (q + (z - ρ) * dq) / ((z - ρ) * q)
@@ -218,7 +238,9 @@ theorem complex_local_pole_decomposition_simple_root
 
 /-- **PROVED — local-pole decomposition for general multiplicity `m = k+1`
 in the form `(p value)' / (p value) = m/(z−ρ) + q'/q`** when supplied
-with the standard derivative expansion `m·(z−ρ)^(m−1)·q + (z−ρ)^m·q'`.-/
+with the standard derivative expansion `m·(z−ρ)^(m−1)·q + (z−ρ)^m·q'`.
+@isnad1 id=eq.2h5v.s7.2e30a0fcc7db from=translated src=- shape=51a04fd2 vocab=52897966
+-/
 theorem complex_local_pole_decomposition_general
     (z ρ q dq : ℂ) (k : ℕ) (hρ : z ≠ ρ) (hq : q ≠ 0) :
     (((k + 1 : ℕ) : ℂ) * (z - ρ)^k * q + (z - ρ)^(k + 1) * dq)
@@ -240,7 +262,9 @@ theorem complex_local_pole_decomposition_general
 at `ρ` is uniformly bounded (in imaginary part) along the probe segment
 `ρ − ε·I` for `0 < ε < ε0`. Reusable for both polynomial and xi targets:
 pick metric `δ` for radius 1, take `ε0 = min(δ/2, ρ.im/2)`, `K = ‖B ρ‖ + 1`,
-close via triangle inequality.-/
+close via triangle inequality.
+@isnad1 id=ex.2h2v.s7.ed900fb9eff6 from=translated src=- shape=d4ae6eaa vocab=d93e0db7
+-/
 theorem continuousAt_implies_probe_bounded
     {B : ℂ → ℂ} {ρ : ℂ}
     (hB : ContinuousAt B ρ)
@@ -280,7 +304,9 @@ theorem continuousAt_implies_probe_bounded
   linarith
 
 /-- **PROVED — probe never coincides with the pole when `ε > 0`.**
-The imaginary parts differ by exactly `ε`.-/
+The imaginary parts differ by exactly `ε`.
+@isnad1 id=ne.1h2v.s5.6d85bedc4fdc from=translated src=- shape=0ba7dce2 vocab=b24b8591
+-/
 theorem probe_ne_pole (ρ : ℂ) (ε : ℝ) (hε : 0 < ε) :
     ρ - (ε : ℂ) * Complex.I ≠ ρ := by
   intro h
@@ -292,7 +318,9 @@ theorem probe_ne_pole (ρ : ℂ) (ε : ℝ) (hε : 0 < ε) :
   linarith
 
 /-- **PROVED — continuous-at-ρ + nonzero-at-ρ ⟹ nonzero on probe.**
-Triangle bound: `‖f(z)‖ > ‖f ρ‖/2` on a small enough probe segment.-/
+Triangle bound: `‖f(z)‖ > ‖f ρ‖/2` on a small enough probe segment.
+@isnad1 id=ex.3h2v.s7.ebe5f71dbd8f from=translated src=- shape=a800f30d vocab=b8c1574c
+-/
 theorem continuousAt_implies_probe_nonzero
     {f : ℂ → ℂ} {ρ : ℂ}
     (hf : ContinuousAt f ρ)

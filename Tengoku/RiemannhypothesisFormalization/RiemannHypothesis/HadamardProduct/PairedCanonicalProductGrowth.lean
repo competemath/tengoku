@@ -110,7 +110,9 @@ noncomputable def pairedQuadraticProduct
 /-! ## Pair representatives inherit the full count -/
 
 /-- The representative system is norm-proper because it injects into the
-full divisor with exactly the same locations.-/
+full divisor with exactly the same locations.
+@isnad1 id=hadamard.1h3v.s4.7208111bff3f from=translated src=- shape=8ad94a00 vocab=00ef24d2
+-/
 theorem HadamardNegationPairingData.repLoc_normProper
     {ι : Type*} {zeroLoc : ι → ℂ}
     (P : HadamardNegationPairingData zeroLoc)
@@ -125,7 +127,9 @@ theorem HadamardNegationPairingData.repLoc_normProper
     exact congrArg Prod.fst hp
   exact (H.finite_norm_le R).preimage he.injOn
 
-/-- The representative system inherits inverse-square summability.-/
+/-- The representative system inherits inverse-square summability.
+@isnad1 id=hadamard.2h3v.s4.d824bc59687b from=translated src=- shape=bbc03de1 vocab=ff657c4a
+-/
 theorem HadamardNegationPairingData.repLoc_invSqSummability
     {ι : Type*} {zeroLoc : ι → ℂ}
     (P : HadamardNegationPairingData zeroLoc)
@@ -144,7 +148,9 @@ theorem HadamardNegationPairingData.repLoc_invSqSummability
   eventually_large := (P.repLoc_normProper Hproper).eventually_large
 
 /-- A ball of pair representatives has cardinality at most the corresponding
-ball of the full occurrence divisor.-/
+ball of the full occurrence divisor.
+@isnad1 id=le.1h4v.s5.cf12df04b31c from=translated src=- shape=a90f4cc1 vocab=57d8d9cd
+-/
 theorem HadamardNegationPairingData.repLoc_dyadicBallCard_le
     {ι : Type*} {zeroLoc : ι → ℂ}
     (P : HadamardNegationPairingData zeroLoc)
@@ -187,7 +193,9 @@ noncomputable def HadamardNegationPairingData.repLocBallProdBoolEquiv
   exact Equiv.prodSubtypeFstEquivSubtypeProd.symm.trans
     (P.pairEquiv.subtypeEquiv hpred)
 
-/-- Exact negation pairing halves every radial occurrence count.-/
+/-- Exact negation pairing halves every radial occurrence count.
+@isnad1 id=eq.0h4v.s5.0a72b4348ea2 from=translated src=- shape=bf6cd5ba vocab=0c47468d
+-/
 theorem HadamardNegationPairingData.dyadicBallCard_eq_two_mul_repLoc
     {ι : Type*} {zeroLoc : ι → ℂ}
     (P : HadamardNegationPairingData zeroLoc) (n : ℕ) :
@@ -256,7 +264,9 @@ noncomputable def
 
 /-- A paired quadratic factor retains the global linear bound obtained by
 multiplying the two genus-one bounds.  This estimate is used only for the
-fixed finite collection of very small representatives.-/
+fixed finite collection of very small representatives.
+@isnad1 id=le.1h2v.s6.b5bb4fc8de61 from=translated src=- shape=ad84b512 vocab=4264dce8
+-/
 theorem norm_pairedQuadraticFactor_le_exp_linear
     {ρ z : ℂ} (hρ : ρ ≠ 0) :
     ‖1 - (z / ρ) ^ 2‖ ≤ Real.exp (4 * ‖z‖ / ‖ρ‖) := by
@@ -277,7 +287,9 @@ theorem norm_pairedQuadraticFactor_le_exp_linear
       ring
 
 /-- The cancellation-improved global quadratic bound for one paired
-factor, with coefficient `1` rather than the genus-one Taylor constant.-/
+factor, with coefficient `1` rather than the genus-one Taylor constant.
+@isnad1 id=le.0h2v.s6.3cc5e02ae741 from=translated src=- shape=d9b33156 vocab=3f540baf
+-/
 theorem norm_pairedQuadraticFactor_le_exp_quadratic
     (ρ z : ℂ) :
     ‖1 - (z / ρ) ^ 2‖ ≤
@@ -294,7 +306,9 @@ theorem norm_pairedQuadraticFactor_le_exp_quadratic
       Real.add_one_le_exp (‖z‖ ^ 2 * (‖ρ‖ ^ 2)⁻¹))
 
 /-- Inverse-square summability makes the quadratic paired factors
-multipliable directly.-/
+multipliable directly.
+@isnad1 id=multipli.1h3v.s6.a70d99b7c57c from=translated src=- shape=4e0c1129 vocab=d8011da7
+-/
 theorem multipliable_pairedQuadraticFactor
     {κ : Type*} {repLoc : κ → ℂ}
     (H : HadamardZeroInvSqSummability repLoc) (z : ℂ) :
@@ -322,7 +336,9 @@ private theorem pow_two_le_exp_nat (m : ℕ) :
       norm_num
 
 /-- On dyadic shell `n ≤ K`, the paired factor costs only linearly in the
-shell distance `K-n`, rather than linearly in `2^(K-n)`.-/
+shell distance `K-n`, rather than linearly in `2^(K-n)`.
+@isnad1 id=le.4h6v.s7.cc061b344bc0 from=translated src=- shape=2b323d7a vocab=4bb82035
+-/
 theorem norm_pairedQuadraticFactor_le_exp_dyadicShell
     {κ : Type*} {repLoc : κ → ℂ} (j : κ) (z : ℂ)
     (K n : ℕ) (hn_one : 1 ≤ n) (hnK : n ≤ K)
@@ -397,7 +413,9 @@ private lemma pow_two_sub_eq_mul_half
   norm_num
 
 /-- The exact weighted convolution responsible for removing the second
-logarithm is bounded by the full first moment of the half-geometric series.-/
+logarithm is bounded by the full first moment of the half-geometric series.
+@isnad1 id=le.0h1v.s7.32bc4fc0efdc from=translated src=- shape=db773559 vocab=e1e191d1
+-/
 theorem sum_dyadicPairedShellWeight_le (K : ℕ) :
     (∑ n ∈ Finset.range (K + 1),
         (((K - n + 1 : ℕ) : ℝ) * ((n + 1 : ℕ) : ℝ) *
@@ -446,7 +464,9 @@ theorem sum_dyadicPairedShellWeight_le (K : ℕ) :
     _ = 4 * ((K + 1 : ℕ) : ℝ) * (2 : ℝ) ^ K := by ring
 
 /-- The additive constant in a cumulative count contributes only a finite
-quadratic polynomial in the dyadic index.-/
+quadratic polynomial in the dyadic index.
+@isnad1 id=le.0h1v.s6.b160507ea5d1 from=translated src=- shape=9dc8c48b vocab=9276fc65
+-/
 theorem sum_dyadicPairedShellDistance_le (K : ℕ) :
     (∑ n ∈ Finset.range (K + 1), ((K - n + 1 : ℕ) : ℝ)) ≤
       (((K + 1 : ℕ) : ℝ) ^ 2) := by
@@ -468,7 +488,9 @@ noncomputable def hadamardZeroDyadicShellCard
     {κ : Type*} (repLoc : κ → ℂ) (n : ℕ) : ℕ :=
   Nat.card {j : κ // hadamardZeroDyadicBin repLoc j = n}
 
-/-- An exact shell injects into its enclosing dyadic ball.-/
+/-- An exact shell injects into its enclosing dyadic ball.
+@isnad1 id=le.1h3v.s4.b5e9cac56357 from=translated src=- shape=eaa6c8b5 vocab=2879361f
+-/
 theorem hadamardZeroDyadicShellCard_le_ballCard
     {κ : Type*} {repLoc : κ → ℂ}
     (Hproper : HadamardZeroNormProper repLoc) (n : ℕ) :
@@ -486,7 +508,9 @@ theorem hadamardZeroDyadicShellCard_le_ballCard
     exact Subtype.ext (congrArg
       (fun x : {j : κ // ‖repLoc j‖ ≤ (2 : ℝ) ^ n} ↦ x.1) hjk))
 
-/-- Regroup an arbitrary finite dyadic-head weight by exact shells.-/
+/-- Regroup an arbitrary finite dyadic-head weight by exact shells.
+@isnad1 id=eq.1h4v.s6.5d5844f91ffa from=translated src=- shape=8f0617d6 vocab=7586f3ca
+-/
 theorem sum_hadamardZeroDyadicHead_weight_eq_shellCard
     {κ : Type*} {repLoc : κ → ℂ}
     (Hproper : HadamardZeroNormProper repLoc) (K : ℕ) (w : ℕ → ℝ) :
@@ -542,7 +566,9 @@ theorem sum_hadamardZeroDyadicHead_weight_eq_shellCard
 
 /-- The high part of a paired dyadic head has an explicit `O(2^K K)`
 bound.  Bins below `L = max 1 lower` carry weight zero and are handled by
-their exact finite reciprocal mass.-/
+their exact finite reciprocal mass.
+@isnad1 id=le.0h4v.s7.65cb301dc3ce from=translated src=- shape=91fc31fa vocab=46debf43
+-/
 theorem HadamardZeroDyadicCumulativeCountData.sum_pairedHighWeight_le
     {κ : Type*} {repLoc : κ → ℂ}
     (H : HadamardZeroDyadicCumulativeCountData repLoc)
@@ -628,7 +654,9 @@ theorem HadamardZeroDyadicCumulativeCountData.sum_pairedHighWeight_le
         3 * H.C₀ * (((K + 1 : ℕ) : ℝ) ^ 2) := by ring
 
 /-- The low-bin indicator inside any larger head sums to the exact low
-reciprocal mass.-/
+reciprocal mass.
+@isnad1 id=eq.3h4v.s6.19837fb5cb07 from=translated src=- shape=51ba3e38 vocab=1e945f00
+-/
 theorem sum_dyadicHead_lowInv_eq_lowInvMass
     {κ : Type*} {repLoc : κ → ℂ}
     (Hproper : HadamardZeroNormProper repLoc)
@@ -671,7 +699,9 @@ theorem sum_dyadicHead_lowInv_eq_lowInvMass
       rw [Nat.sub_add_cancel hL]
 
 /-- The inverse-square sum over the complement of the dyadic head is exactly
-the sum over bins strictly above `K`.-/
+the sum over bins strictly above `K`.
+@isnad1 id=eq.1h3v.s7.9a12df3d9c52 from=translated src=- shape=88b9eb41 vocab=bd9152f6
+-/
 theorem tsum_compl_dyadicHead_invSq_eq_tail
     {κ : Type*} {repLoc : κ → ℂ}
     (Hproper : HadamardZeroNormProper repLoc) (K : ℕ) :
@@ -698,7 +728,9 @@ theorem tsum_compl_dyadicHead_invSq_eq_tail
 
 /-- The unsimplified paired head--tail bound.  It exposes separately the
 exact finite low mass, the `O(2^K K)` weighted middle shells, and the exact
-inverse-square tail forced by the cumulative count.-/
+inverse-square tail forced by the cumulative count.
+@isnad1 id=le.2h5v.s8.6efe3be6eea2 from=translated src=- shape=3d3270f1 vocab=b44a4127
+-/
 theorem HadamardZeroDyadicCumulativeCountData.norm_pairedQuadraticProduct_le_exp_raw
     {κ : Type*} {repLoc : κ → ℂ}
     (H : HadamardZeroDyadicCumulativeCountData repLoc)
@@ -866,7 +898,9 @@ private lemma paired_sq_mul_quarter_pow_le_self
 
 /-- Exact negation pairing removes the logarithmic-square loss.  Under the
 same cumulative `O(2^K K)` count, the quadratic paired product has an
-explicit `O(2^K K) = O(r log r)` exponent on each dyadic annulus.-/
+explicit `O(2^K K) = O(r log r)` exponent on each dyadic annulus.
+@isnad1 id=le.3h5v.s7.dbba5e938d2c from=translated src=- shape=052c57d1 vocab=31d61585
+-/
 theorem HadamardZeroDyadicCumulativeCountData.norm_pairedQuadraticProduct_le_exp_rLogR
     {κ : Type*} {repLoc : κ → ℂ}
     (H : HadamardZeroDyadicCumulativeCountData repLoc)
