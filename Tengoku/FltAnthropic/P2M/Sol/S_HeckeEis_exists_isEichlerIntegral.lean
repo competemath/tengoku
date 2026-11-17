@@ -1,0 +1,117 @@
+import Tengoku
+import Tengoku.FltAnthropic.Definitions.Def_HeckeEis_BinaryFormRep
+import Tengoku.FltAnthropic.Definitions.Def_Gamma0CoeffCohomology
+import Tengoku.FltAnthropic.Definitions.Def_HeckeEis_EichlerIntegral
+import Tengoku.FltAnthropic.Theorems.Thm_Complex_exists_hasDerivAt_of_starConvex
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_HeckeEis_exists_isEichlerIntegral.lean`: wrote out 2 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_export`, 1 `p2m_open`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_HeckeEis_exists_isEichlerIntegral
+
+set_option autoImplicit false
+
+open scoped Manifold MatrixGroups
+
+noncomputable section
+
+namespace HeckeEis
+export _root_.HeckeEis (BinaryForm isHomogeneous_linePow linePow coe_linePow IsEichlerIntegral)
+open _root_.HeckeEis
+
+open UpperHalfPlane MvPolynomial
+open scoped Manifold Polynomial
+
+namespace EichlerIntegralExistence
+
+variable (n : ℕ)
+
+def degExps : Finset (Fin 2 →₀ ℕ) :=
+  (Finset.range (n + 1)).image fun k => Finsupp.single 0 k + Finsupp.single 1 (n - k)
+
+/--
+@isnad1 id=iff.0h2v.s7.573149af04e2 from=translated src=- shape=9552f26d vocab=2b90cab7
+-/
+theorem mem_degExps_iff (d : Fin 2 →₀ ℕ) : d ∈ degExps n ↔ d.degree = n := by
+  rw [Finsupp.degree_eq_sum, Fin.sum_univ_two]
+  simp only [degExps, Finset.mem_image, Finset.mem_range]
+  constructor
+  · rintro ⟨k, hk, rfl⟩
+    simp
+    omega
+  · intro h
+    refine ⟨d 0, by omega, ?_⟩
+    ext i
+    fin_cases i
+    · simp
+    · simp
+      omega
+
+def linePowPoly : MvPolynomial (Fin 2) ℂ[X] :=
+  (C Polynomial.X * X 0 + X 1) ^ n
+
+/--
+@isnad1 id=eq.0h3v.s8.65705e886425 from=translated src=- shape=da057258 vocab=bddd4d0d
+-/
+theorem coeff_linePow_eq_eval (d : Fin 2 →₀ ℕ) (z : ℂ) :
+    MvPolynomial.coeff d ((C z * X 0 + X 1 : MvPolynomial (Fin 2) ℂ) ^ n)
+      = Polynomial.eval z (MvPolynomial.coeff d (linePowPoly n)) := by
+  have h : ((C z * X 0 + X 1 : MvPolynomial (Fin 2) ℂ) ^ n)
+      = MvPolynomial.map (Polynomial.evalRingHom z) (linePowPoly n) := by
+    simp [linePowPoly, MvPolynomial.map_X, MvPolynomial.map_C]
+  rw [h, MvPolynomial.coeff_map]
+  rfl
+
+def assemble (g : (Fin 2 →₀ ℕ) → ℂ → ℂ) (τ : ℍ) : ↥(BinaryForm ℂ n) :=
+  ⟨∑ d ∈ degExps n, monomial d (g d (τ : ℂ)), Submodule.sum_mem _ fun d hd =>
+    (mem_homogeneousSubmodule n _).mpr (isHomogeneous_monomial _ ((mem_degExps_iff n d).mp hd))⟩
+
+/--
+@isnad1 id=eq.0h4v.s8.96507f70da72 from=translated src=- shape=0085f8b1 vocab=23dc1ecf
+-/
+theorem coeff_assemble (g : (Fin 2 →₀ ℕ) → ℂ → ℂ) (τ : ℍ) (d : Fin 2 →₀ ℕ) :
+    MvPolynomial.coeff d (assemble n g τ : MvPolynomial (Fin 2) ℂ) = if d ∈ degExps n then g d (τ : ℂ) else 0 := by
+  show MvPolynomial.coeff d (∑ e ∈ degExps n, monomial e (g e (τ : ℂ))) = _
+  simp only [coeff_sum, coeff_monomial, Finset.sum_ite_eq']
+
+end EichlerIntegralExistence
+
+end HeckeEis
+
+open _root_.HeckeEis _root_.P2MW.S_HeckeEis_exists_isEichlerIntegral.HeckeEis HeckeEis.EichlerIntegralExistence UpperHalfPlane MvPolynomial in
+/--
+@isnad1 id=ex.1h2v.s8.647f7a03131d from=translated src=- shape=4d86a89c vocab=da24402d
+-/
+theorem solution (n : ℕ) {f : UpperHalfPlane → ℂ}
+    (hf : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) f) :
+    ∃ F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n), HeckeEis.IsEichlerIntegral n f F := by
+  let U : Set ℂ := {z | 0 < z.im}
+  have hU : IsOpen U := isOpen_upperHalfPlaneSet
+  have hI : ((I : ℍ) : ℂ) ∈ U := (I : ℍ).im_pos
+  have hstar : StarConvex ℝ ((I : ℍ) : ℂ) U := (convex_halfSpace_im_gt 0).starConvex hI
+  have hfd : DifferentiableOn ℂ (f ∘ ofComplex) U := UpperHalfPlane.mdifferentiable_iff.mp hf
+  have key : ∀ d : Fin 2 →₀ ℕ, ∃ g : ℂ → ℂ, ∀ z ∈ U,
+      HasDerivAt g ((f ∘ ofComplex) z * (MvPolynomial.coeff d (linePowPoly n)).eval z) z := by
+    intro d
+    obtain ⟨g, -, hg⟩ := Complex.exists_hasDerivAt_of_starConvex hU hI hstar
+      (hfd.mul (Polynomial.differentiable _).differentiableOn)
+    exact ⟨g, hg⟩
+  choose g hg using key
+  refine ⟨assemble n g, fun d τ => ?_⟩
+  simp only [coeff_assemble]
+  by_cases hd : d ∈ degExps n
+  · simp only [ite_eq_left hd]
+    have h2 : (f ∘ ofComplex) (τ : ℂ) * (MvPolynomial.coeff d (linePowPoly n)).eval (τ : ℂ)
+        = f τ * MvPolynomial.coeff d ((linePow n (τ : ℂ) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) := by
+      rw [Function.comp_apply, ofComplex_apply, coe_linePow, coeff_linePow_eq_eval]
+    rw [← h2]
+    refine (hg d (τ : ℂ) τ.im_pos).congr_of_eventuallyEq ?_
+    filter_upwards [hU.mem_nhds τ.im_pos] with z hz
+    rw [ofComplex_apply_of_im_pos hz]
+  · simp only [ite_eq_right hd]
+    have h0 : MvPolynomial.coeff d ((linePow n (τ : ℂ) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) = 0 :=
+      (isHomogeneous_linePow n τ).coeff_eq_zero (by rwa [mem_degExps_iff] at hd)
+    rw [h0, mul_zero]
+    exact hasDerivAt_const _ _
+
+end

@@ -1,0 +1,40 @@
+import Tengoku
+import Tengoku.FltAnthropic.Definitions.Def_GaloisRep_Flat
+import Tengoku.FltAnthropic.Theorems.Thm_Bialgebra_counit_comp_algEquiv_of_comul_compat
+import Tengoku.FltAnthropic.Theorems.Thm_HopfAlgebra_antipode_comp_algEquiv_of_comul_compat
+import Tengoku.FltAnthropic.Theorems.Thm_HopfAlgebra_basis_structureConstants_mem_ratLocalizedAt_range_of_bialgHom_basis_match
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_HopfAlgebra_basis_structureConstants_mem_ratLocalizedAt_range_of_basis_match_padic.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_HopfAlgebra_basis_structureConstants_mem_ratLocalizedAt_range_of_basis_match_padic
+
+open scoped NNReal TensorProduct
+
+/--
+@isnad1 id=and.2h7v.s15.572c37f0683c from=translated src=- shape=fac7cb1a vocab=c6109694
+-/
+theorem solution
+    (p : ℕ) [Fact p.Prime]
+    (A : Type) [CommRing A] [HopfAlgebra ℚ A]
+    (Hp : Type) [CommRing Hp] [HopfAlgebra ℤ_[p] Hp]
+    (φ : (ℚ_[p] ⊗[ℚ] A) ≃ₐ[ℚ_[p]] (ℚ_[p] ⊗[ℤ_[p]] Hp))
+    (hφcomul : ∀ x, Coalgebra.comul (R := ℚ_[p]) (φ x) =
+        (TensorProduct.map φ.toLinearMap φ.toLinearMap) (Coalgebra.comul (R := ℚ_[p]) x))
+    (n : ℕ) (b : Module.Basis (Fin n) ℚ A) (bHp : Module.Basis (Fin n) ℤ_[p] Hp)
+    (hmatch : ∀ i, φ (1 ⊗ₜ[ℚ] (b i)) = 1 ⊗ₜ[ℤ_[p]] (bHp i)) :
+    (∀ i j k, b.repr (b i * b j) k ∈ (algebraMap (GaloisRep.ratLocalizedAt p) ℚ).range) ∧
+    (∀ k, b.repr 1 k ∈ (algebraMap (GaloisRep.ratLocalizedAt p) ℚ).range) ∧
+    (∀ i jk, (b.tensorProduct b).repr (Coalgebra.comul (R := ℚ) (b i)) jk
+        ∈ (algebraMap (GaloisRep.ratLocalizedAt p) ℚ).range) ∧
+    (∀ i, Coalgebra.counit (R := ℚ) (b i) ∈ (algebraMap (GaloisRep.ratLocalizedAt p) ℚ).range) ∧
+    (∀ i k, b.repr (HopfAlgebra.antipode ℚ (b i)) k
+        ∈ (algebraMap (GaloisRep.ratLocalizedAt p) ℚ).range) := by
+  have hφcounit : ∀ x, Coalgebra.counit (R := ℚ_[p]) (φ x) = Coalgebra.counit (R := ℚ_[p]) x :=
+    Bialgebra.counit_comp_algEquiv_of_comul_compat ℚ_[p] (ℚ_[p] ⊗[ℚ] A) (ℚ_[p] ⊗[ℤ_[p]] Hp)
+      φ hφcomul
+  have hφanti : ∀ x, φ (HopfAlgebra.antipode ℚ_[p] x) = HopfAlgebra.antipode ℚ_[p] (φ x) :=
+    HopfAlgebra.antipode_comp_algEquiv_of_comul_compat ℚ_[p] (ℚ_[p] ⊗[ℚ] A) (ℚ_[p] ⊗[ℤ_[p]] Hp)
+      φ hφcomul
+  exact HopfAlgebra.basis_structureConstants_mem_ratLocalizedAt_range_of_bialgHom_basis_match
+    p A Hp φ hφcomul hφcounit hφanti n b bHp hmatch

@@ -1,0 +1,144 @@
+import Tengoku.FltAnthropic.Definitions.Def_LocalLanglands_HeckeCosetSystem
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_HeckeIntegralSeam_IsHeckeCosetSystem_sum_apply_mul_prod_ofFn_eq_of_mem.lean`: wrote out 4 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 2 `p2m_export`, 2 `p2m_open`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_HeckeIntegralSeam_IsHeckeCosetSystem_sum_apply_mul_prod_ofFn_eq_of_mem
+
+set_option autoImplicit false
+
+namespace HeckeIntegralSeam
+export _root_.HeckeIntegralSeam (IsHeckeCosetSystem)
+open _root_.HeckeIntegralSeam
+namespace IsHeckeCosetSystem
+export _root_.HeckeIntegralSeam.IsHeckeCosetSystem (mk_injective covers mk mem_doubleCoset)
+open _root_.HeckeIntegralSeam.IsHeckeCosetSystem
+namespace KcWordR1
+
+variable {G : Type*} [Group G] {U : Subgroup G} {g : G} {ι₀ : Type*} {reps : ι₀ → G}
+
+/--
+@isnad1 id=ex.2h7v.s6.35a260b31c90 from=translated src=- shape=5d194345 vocab=f1489390
+-/
+theorem exists_mk_mul_eq_mk (hsys : IsHeckeCosetSystem U g reps) {u : G} (hu : u ∈ U) (i : ι₀) :
+    ∃ j, (QuotientGroup.mk (u * reps i) : G ⧸ U) = QuotientGroup.mk (reps j) :=
+  hsys.covers _ (HeckePair.mul_mem_doubleCoset (hsys.mem_doubleCoset i) hu)
+
+noncomputable def leftPerm (hsys : IsHeckeCosetSystem U g reps) {u : G} (hu : u ∈ U) : ι₀ → ι₀ :=
+  fun i => Classical.choose (exists_mk_mul_eq_mk hsys hu i)
+
+/--
+@isnad1 id=eq.2h7v.s6.b9dfbd81b7e5 from=translated src=- shape=7e9f740a vocab=6375a75d
+-/
+theorem mk_mul_eq_mk_leftPerm (hsys : IsHeckeCosetSystem U g reps) {u : G} (hu : u ∈ U) (i : ι₀) :
+    (QuotientGroup.mk (u * reps i) : G ⧸ U) = QuotientGroup.mk (reps (leftPerm hsys hu i)) :=
+  Classical.choose_spec (exists_mk_mul_eq_mk hsys hu i)
+
+/--
+@isnad1 id=ex.2h7v.s6.a91c2fa3e8b8 from=translated src=- shape=64bf0c45 vocab=a5130771
+-/
+theorem exists_mul_reps_eq (hsys : IsHeckeCosetSystem U g reps) {u : G} (hu : u ∈ U) (i : ι₀) :
+    ∃ u' ∈ U, u * reps i = reps (leftPerm hsys hu i) * u' := by
+  have h := mk_mul_eq_mk_leftPerm hsys hu i
+  rw [QuotientGroup.eq] at h
+  refine ⟨(reps (leftPerm hsys hu i))⁻¹ * (u * reps i), ?_, by group⟩
+  have := U.inv_mem h
+  simpa [mul_inv_rev] using this
+
+/--
+@isnad1 id=injectiv.2h6v.s5.f212b244eb8c from=translated src=- shape=f5fd8f0c vocab=6ac381f2
+-/
+theorem leftPerm_injective (hsys : IsHeckeCosetSystem U g reps) {u : G} (hu : u ∈ U) :
+    Function.Injective (leftPerm hsys hu) := by
+  intro i j hij
+  have hi := mk_mul_eq_mk_leftPerm hsys hu i
+  have hj := mk_mul_eq_mk_leftPerm hsys hu j
+  rw [hij] at hi
+  have hmk : (QuotientGroup.mk (u * reps i) : G ⧸ U) = QuotientGroup.mk (u * reps j) :=
+    hi.trans hj.symm
+  apply hsys.mk_injective
+  change (QuotientGroup.mk (reps i) : G ⧸ U) = QuotientGroup.mk (reps j)
+  rw [QuotientGroup.eq] at hmk ⊢
+  simpa [mul_inv_rev, mul_assoc] using hmk
+
+/--
+@isnad1 id=surjecti.2h6v.s5.7c67860a6f14 from=translated src=- shape=f5fd8f0c vocab=7bae3858
+-/
+theorem leftPerm_surjective (hsys : IsHeckeCosetSystem U g reps) {u : G} (hu : u ∈ U) :
+    Function.Surjective (leftPerm hsys hu) := by
+  intro j
+  obtain ⟨i, hi⟩ := exists_mk_mul_eq_mk hsys (U.inv_mem hu) j
+  refine ⟨i, ?_⟩
+  apply hsys.mk_injective
+  change (QuotientGroup.mk (reps (leftPerm hsys hu i)) : G ⧸ U) = QuotientGroup.mk (reps j)
+  rw [← mk_mul_eq_mk_leftPerm hsys hu i]
+  rw [QuotientGroup.eq] at hi ⊢
+  have := U.inv_mem hi
+  simpa [mul_inv_rev, mul_assoc] using this
+
+/--
+@isnad1 id=bijectiv.2h6v.s5.9e763a652b45 from=translated src=- shape=f5fd8f0c vocab=5f57480f
+-/
+theorem leftPerm_bijective (hsys : IsHeckeCosetSystem U g reps) {u : G} (hu : u ∈ U) :
+    Function.Bijective (leftPerm hsys hu) :=
+  ⟨leftPerm_injective hsys hu, leftPerm_surjective hsys hu⟩
+
+/--
+@isnad1 id=eq.3h9v.s7.61f7b59b633c from=translated src=- shape=4414b734 vocab=e33dec3c
+-/
+theorem sum_apply_mul_mul_reps_eq [Fintype ι₀] (hsys : IsHeckeCosetSystem U g reps)
+    {M : Type*} [AddCommMonoid M] {ψ : G → M} (hψ : ∀ x : G, ∀ u ∈ U, ψ (x * u) = ψ x)
+    (x u : G) (hu : u ∈ U) :
+    ∑ i, ψ (x * u * reps i) = ∑ i, ψ (x * reps i) := by
+  have key : ∀ i, ψ (x * u * reps i) = ψ (x * reps (leftPerm hsys hu i)) := by
+    intro i
+    obtain ⟨u', hu', h⟩ := exists_mul_reps_eq hsys hu i
+    rw [mul_assoc, h, ← mul_assoc, hψ _ _ hu']
+  simp_rw [key]
+  exact (leftPerm_bijective hsys hu).sum_comp (fun j => ψ (x * reps j))
+
+/--
+@isnad1 id=eq.0h7v.s8.bc8841689f32 from=translated src=- shape=5efe89d8 vocab=587a9e44
+-/
+theorem sum_word_succ [Fintype ι₀] {M : Type*} [AddCommMonoid M] (φ : G → M) (k : ℕ) (x : G) :
+    ∑ ι : Fin (k + 1) → ι₀, φ (x * (List.ofFn fun m => reps (ι m)).prod) =
+      ∑ i : ι₀, ∑ ι : Fin k → ι₀, φ (x * reps i * (List.ofFn fun m => reps (ι m)).prod) := by
+  rw [← Fintype.sum_equiv (Fin.consEquiv fun _ : Fin (k + 1) => ι₀)
+    (fun p : ι₀ × (Fin k → ι₀) => φ (x * reps p.1 * (List.ofFn fun m => reps (p.2 m)).prod)) _
+    (fun p => ?_), Fintype.sum_prod_type]
+  simp only [Fin.consEquiv_apply, List.ofFn_succ, Fin.cons_zero, Fin.cons_succ, List.prod_cons,
+    mul_assoc]
+
+/--
+@isnad1 id=eq.3h10v.s8.6dc5fc3d469c from=translated src=- shape=7be02951 vocab=6fdf4925
+-/
+theorem sum_apply_mul_mul_prod_ofFn_eq [Fintype ι₀] (hsys : IsHeckeCosetSystem U g reps)
+    {M : Type*} [AddCommMonoid M] {φ : G → M} (hφ : ∀ x : G, ∀ u ∈ U, φ (x * u) = φ x)
+    (k : ℕ) (x u : G) (hu : u ∈ U) :
+    ∑ ι : Fin k → ι₀, φ (x * u * (List.ofFn fun m => reps (ι m)).prod) =
+      ∑ ι : Fin k → ι₀, φ (x * (List.ofFn fun m => reps (ι m)).prod) := by
+  induction k generalizing x u with
+  | zero => simp [hφ x u hu]
+  | succ k ih =>
+    rw [sum_word_succ, sum_word_succ]
+    set ψ : G → M := fun y => ∑ ι : Fin k → ι₀, φ (y * (List.ofFn fun m => reps (ι m)).prod)
+      with hψ
+    have hψinv : ∀ y : G, ∀ v ∈ U, ψ (y * v) = ψ y := fun y v hv => ih y v hv
+    have := sum_apply_mul_mul_reps_eq hsys (ψ := ψ) hψinv x u hu
+    simpa [hψ] using this
+
+end KcWordR1
+end IsHeckeCosetSystem
+end HeckeIntegralSeam
+
+/--
+@isnad1 id=eq.3h10v.s8.5cae18dab4d7 from=translated src=- shape=63966748 vocab=6fdf4925
+-/
+theorem solution
+    {G : Type*} [Group G] {U : Subgroup G} {g : G} {ι₀ : Type*} [Fintype ι₀] {reps : ι₀ → G}
+    (hsys : HeckeIntegralSeam.IsHeckeCosetSystem U g reps)
+    {M : Type*} [AddCommMonoid M] (φ : G → M) (hφ : ∀ x : G, ∀ u ∈ U, φ (x * u) = φ x)
+    (k : ℕ) (x u : G) (hu : u ∈ U) :
+    ∑ ι : Fin k → ι₀, φ (x * u * (List.ofFn fun m => reps (ι m)).prod) =
+      ∑ ι : Fin k → ι₀, φ (x * (List.ofFn fun m => reps (ι m)).prod) :=
+  HeckeIntegralSeam.IsHeckeCosetSystem.KcWordR1.sum_apply_mul_mul_prod_ofFn_eq hsys hφ k x u hu
