@@ -20,16 +20,25 @@ abbrev GraphVertexSpace (V : Type*) := V → ℂ
 def vertexDelta (v : V) : GraphVertexSpace V :=
   fun x => if x = v then 1 else 0
 
+/--
+@isnad1 id=eq.0h3v.s5.86a4415dca47 from=translated src=- shape=82af96ed vocab=89d9a8a4
+-/
 @[simp]
 theorem vertexDelta_apply (v x : V) :
     vertexDelta (V := V) v x = if x = v then 1 else 0 := by
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.d93ef30f6cc7 from=translated src=- shape=980d5fe1 vocab=fd56e610
+-/
 @[simp]
 theorem vertexDelta_self (v : V) :
     vertexDelta (V := V) v v = 1 := by
   simp [vertexDelta]
 
+/--
+@isnad1 id=eq.1h3v.s4.894eb9f08f18 from=translated src=- shape=fb1c1c0d vocab=fd56e610
+-/
 theorem vertexDelta_apply_of_ne {v x : V} (h : x ≠ v) :
     vertexDelta (V := V) v x = 0 := by
   simp [vertexDelta, h]
@@ -38,18 +47,27 @@ theorem vertexDelta_apply_of_ne {v x : V} (h : x ≠ v) :
 def edgeDifference (u v : V) : GraphVertexSpace V :=
   vertexDelta (V := V) u - vertexDelta (V := V) v
 
+/--
+@isnad1 id=eq.0h4v.s6.767609038989 from=translated src=- shape=8893b798 vocab=09773dcb
+-/
 @[simp]
 theorem edgeDifference_apply (u v x : V) :
     edgeDifference (V := V) u v x =
       (if x = u then 1 else 0) - (if x = v then 1 else 0) := by
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.11314d0d0f7f from=translated src=- shape=61ee8d7b vocab=8dc79670
+-/
 @[simp]
 theorem edgeDifference_self (u : V) :
     edgeDifference (V := V) u u = 0 := by
   ext x
   simp [edgeDifference]
 
+/--
+@isnad1 id=eq.0h3v.s5.e46c1fc3b00f from=translated src=- shape=902aba12 vocab=7a04f9a7
+-/
 theorem edgeDifference_swap (u v : V) :
     edgeDifference (V := V) v u =
       - edgeDifference (V := V) u v := by
@@ -65,6 +83,9 @@ def incidenceSpace (G : SimpleGraph V) :
   Submodule.span ℂ
     {x | ∃ u v : V, G.Adj u v ∧ edgeDifference (V := V) u v = x}
 
+/--
+@isnad1 id=mem.1h4v.s6.e0b4888c062e from=translated src=- shape=189b6da0 vocab=a3ea01ff
+-/
 theorem edgeDifference_mem_incidenceSpace
     (G : SimpleGraph V) {u v : V} (huv : G.Adj u v) :
     edgeDifference (V := V) u v ∈ incidenceSpace (V := V) G := by
@@ -95,18 +116,25 @@ def graphZeroSumSpace :
     rw [← Finset.mul_sum, hx, mul_zero]
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=iff.0h2v.s6.72beba26f502 from=translated src=- shape=7f0e42b5 vocab=26c2ce46
+-/
 @[simp]
 theorem mem_graphZeroSumSpace (x : GraphVertexSpace V) :
     x ∈ graphZeroSumSpace (V := V) ↔ ∑ v : V, x v = 0 := by
   rfl
 
-/-- Every edge-incidence vector has zero total sum.-/
+/-- Every edge-incidence vector has zero total sum.
+@isnad1 id=mem.0h3v.s6.068607356b5c from=translated src=- shape=121ae3f9 vocab=6e351e44
+-/
 theorem edgeDifference_mem_graphZeroSumSpace (u v : V) :
     edgeDifference (V := V) u v ∈ graphZeroSumSpace (V := V) := by
   rw [mem_graphZeroSumSpace]
   simp [edgeDifference, vertexDelta, Finset.sum_sub_distrib]
 
-/-- The graph incidence space always lies in the traceless vertex sector.-/
+/-- The graph incidence space always lies in the traceless vertex sector.
+@isnad1 id=le.0h2v.s6.e96a6eb40558 from=translated src=- shape=3bc679bb vocab=e67302d2
+-/
 theorem incidenceSpace_le_graphZeroSumSpace (G : SimpleGraph V) :
     incidenceSpace (V := V) G ≤ graphZeroSumSpace (V := V) := by
   apply Submodule.span_le.mpr
@@ -118,6 +146,9 @@ theorem incidenceSpace_le_graphZeroSumSpace (G : SimpleGraph V) :
 
 -- Vertex differences telescope.
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h4v.s5.1326435b67d4 from=translated src=- shape=48eee5a0 vocab=a04c1ae3
+-/
 theorem edgeDifference_trans
     (u v w : V) :
     edgeDifference (V := V) u w =
@@ -129,6 +160,9 @@ theorem edgeDifference_trans
 -- If two vertices are reachable in `G`, their coordinate difference lies
 -- in the graph incidence space. This is the path-telescoping lemma.
 omit [Fintype V] in
+/--
+@isnad1 id=mem.1h4v.s6.1ba4c94a8cdf from=translated src=- shape=189b6da0 vocab=79499fed
+-/
 theorem edgeDifference_mem_incidenceSpace_of_reachable
     (G : SimpleGraph V) {u v : V} (huv : G.Reachable u v) :
     edgeDifference (V := V) u v ∈ incidenceSpace (V := V) G := by
@@ -150,6 +184,9 @@ theorem edgeDifference_mem_incidenceSpace_of_reachable
 -- Equal connected-component classes imply that the corresponding
 -- coordinate difference lies in the incidence space.
 omit [Fintype V] in
+/--
+@isnad1 id=mem.1h4v.s6.c19643d11721 from=translated src=- shape=09205395 vocab=9a0b6999
+-/
 theorem edgeDifference_mem_incidenceSpace_of_component_eq
     (G : SimpleGraph V) {u v : V}
     (hcomp : G.connectedComponentMk u = G.connectedComponentMk v) :
@@ -167,6 +204,9 @@ noncomputable def componentIndicator
   exact if G.connectedComponentMk v = c then 1 else 0
 
 omit [DecidableEq V] [Fintype V] in
+/--
+@isnad1 id=eq.0h3v.s4.d350513e9e71 from=translated src=- shape=5ff2b2df vocab=92151f70
+-/
 @[simp]
 theorem componentIndicator_self
     (G : SimpleGraph V) (u : V) :
@@ -175,6 +215,9 @@ theorem componentIndicator_self
   simp [componentIndicator]
 
 omit [DecidableEq V] [Fintype V] in
+/--
+@isnad1 id=eq.1h5v.s5.e220dd257096 from=translated src=- shape=0942ea19 vocab=6ea08396
+-/
 theorem componentIndicator_eq_of_mk_eq
     (G : SimpleGraph V) {u v : V}
     (h : G.connectedComponentMk u = G.connectedComponentMk v)
@@ -209,6 +252,9 @@ noncomputable def componentSum (G : SimpleGraph V) :
     ring
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h4v.s7.a57a81460f9e from=translated src=- shape=a82a2d0c vocab=8c5ada97
+-/
 @[simp]
 theorem componentSum_apply
     (G : SimpleGraph V) (x : GraphVertexSpace V)
@@ -218,7 +264,9 @@ theorem componentSum_apply
   rfl
 
 /-- A coordinate basis vector contributes exactly the indicator of its
-connected component.-/
+connected component.
+@isnad1 id=eq.0h4v.s7.7c024a0af0f8 from=translated src=- shape=c1d96c66 vocab=82aca8a3
+-/
 theorem componentSum_vertexDelta
     (G : SimpleGraph V) (u : V) (c : G.ConnectedComponent) :
     componentSum (V := V) G (vertexDelta (V := V) u) c =
@@ -228,7 +276,9 @@ theorem componentSum_vertexDelta
   simp [vertexDelta]
 
 /-- Edge differences have zero component sum because adjacent endpoints lie
-in the same connected component.-/
+in the same connected component.
+@isnad1 id=eq.1h4v.s7.39f9c52722a4 from=translated src=- shape=285c7e0d vocab=7b7a2dab
+-/
 theorem componentSum_edgeDifference
     (G : SimpleGraph V) {u v : V} (huv : G.Adj u v) :
     componentSum (V := V) G (edgeDifference (V := V) u v) = 0 := by
@@ -242,7 +292,9 @@ theorem componentSum_edgeDifference
   rw [componentIndicator_eq_of_mk_eq (V := V) G hcomp c]
   exact sub_self _
 
-/-- Every graph-incidence vector has zero sum on every connected component.-/
+/-- Every graph-incidence vector has zero sum on every connected component.
+@isnad1 id=le.0h2v.s7.1d46eda8e51b from=translated src=- shape=3f5a7ecb vocab=318b2dc2
+-/
 theorem incidenceSpace_le_componentSum_ker
     (G : SimpleGraph V) :
     incidenceSpace (V := V) G ≤
@@ -262,6 +314,9 @@ noncomputable def componentRep
   Quot.out c
 
 omit [DecidableEq V] [Fintype V] in
+/--
+@isnad1 id=eq.0h3v.s4.a5f5c78c542a from=translated src=- shape=a5bc72c5 vocab=af23ec63
+-/
 @[simp]
 theorem connectedComponentMk_componentRep
     (G : SimpleGraph V) (c : G.ConnectedComponent) :
@@ -271,13 +326,18 @@ theorem connectedComponentMk_componentRep
 
 -- A representative vertex belongs to the component it represents.
 omit [DecidableEq V] [Fintype V] in
+/--
+@isnad1 id=eq.0h3v.s4.a5f5c78c542a from=translated src=- shape=a5bc72c5 vocab=af23ec63
+-/
 theorem componentRep_same_component
     (G : SimpleGraph V) (c : G.ConnectedComponent) :
     G.connectedComponentMk (componentRep (V := V) G c) = c :=
   connectedComponentMk_componentRep (V := V) G c
 
 /-- Component sum of the delta-vector at a chosen representative is the
-component indicator evaluated at that representative.-/
+component indicator evaluated at that representative.
+@isnad1 id=eq.0h4v.s7.cdb08de6f71f from=translated src=- shape=659d6485 vocab=9eee69c8
+-/
 theorem componentSum_vertexDelta_componentRep
     (G : SimpleGraph V) (c c' : G.ConnectedComponent) :
     componentSum (V := V) G
@@ -287,7 +347,9 @@ theorem componentSum_vertexDelta_componentRep
   exact componentSum_vertexDelta (V := V) G
     (componentRep (V := V) G c) c'
 
-/-- The component-sum map is surjective.-/
+/-- The component-sum map is surjective.
+@isnad1 id=surjecti.0h2v.s7.b9d9ecefc20c from=translated src=- shape=69f47b3d vocab=880a72d0
+-/
 theorem componentSum_surjective
     (G : SimpleGraph V) :
     Function.Surjective (componentSum (V := V) G) := by
@@ -308,7 +370,9 @@ theorem componentSum_surjective
   simp [componentIndicator, connectedComponentMk_componentRep]
 
 /-- Hence the range of the component-sum map is the whole component
-coordinate space.-/
+coordinate space.
+@isnad1 id=eq.0h2v.s7.9c878d02bd7b from=translated src=- shape=635c689d vocab=bdbd69eb
+-/
 theorem componentSum_range_eq_top
     (G : SimpleGraph V) :
     LinearMap.range (componentSum (V := V) G) = ⊤ := by
@@ -323,6 +387,9 @@ def componentCount (G : SimpleGraph V) : ℕ :=
 
 -- The source vertex-coordinate space has complex dimension `|V|`.
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h1v.s5.683c385c6ce2 from=translated src=- shape=2a7f0613 vocab=eebaec34
+-/
 theorem finrank_graphVertexSpace :
     Module.finrank ℂ (GraphVertexSpace V) = Fintype.card V := by
   simp [GraphVertexSpace]
@@ -331,6 +398,9 @@ theorem finrank_graphVertexSpace :
 -- number of connected components. The statement uses `Nat.card`, so it does
 -- not depend on which `Fintype` instance Lean chooses for the quotient.
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h2v.s5.9db7482e913e from=translated src=- shape=6ad95750 vocab=f301bb22
+-/
 theorem finrank_componentSpace
     (G : SimpleGraph V) :
     Module.finrank ℂ (G.ConnectedComponent → ℂ) =
@@ -338,7 +408,9 @@ theorem finrank_componentSpace
   rw [Module.finrank_pi]
   simp [componentCount]
 
-/-- Since `componentSum` is surjective, its range has dimension `c(G)`.-/
+/-- Since `componentSum` is surjective, its range has dimension `c(G)`.
+@isnad1 id=eq.0h2v.s8.879f9446c2fc from=translated src=- shape=794c66dd vocab=b8a0a603
+-/
 theorem finrank_componentSum_range
     (G : SimpleGraph V) :
     Module.finrank ℂ ↥(LinearMap.range (componentSum (V := V) G)) =
@@ -347,7 +419,9 @@ theorem finrank_componentSum_range
   simpa using finrank_componentSpace (V := V) G
 
 /-- Rank--nullity for the component-sum map:
-the componentwise zero-sum space has dimension `|V| - c(G)`.-/
+the componentwise zero-sum space has dimension `|V| - c(G)`.
+@isnad1 id=eq.0h2v.s8.b909b65ae260 from=translated src=- shape=81fa3f52 vocab=934aecda
+-/
 theorem finrank_componentSum_ker
     (G : SimpleGraph V) :
     Module.finrank ℂ ↥((componentSum (V := V) G).ker) =
@@ -364,6 +438,9 @@ theorem finrank_componentSum_ker
 -- If `x` lies in the kernel of the component-sum map, then its
 -- component-indicator weighted sum vanishes on every connected component.
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.1h4v.s7.35057c88cc2a from=translated src=- shape=a6656d63 vocab=90f8c9c8
+-/
 theorem componentCoefficient_eq_zero_of_mem_ker
     (G : SimpleGraph V) (x : GraphVertexSpace V)
     (hx : x ∈ (componentSum (V := V) G).ker)
@@ -374,7 +451,9 @@ theorem componentCoefficient_eq_zero_of_mem_ker
   rw [Pi.zero_apply, componentSum_apply] at hc
   exact hc
 
-/-- The standard coordinate vectors resolve every vertex vector.-/
+/-- The standard coordinate vectors resolve every vertex vector.
+@isnad1 id=eq.0h2v.s5.18da6eae1949 from=translated src=- shape=a3dc2c97 vocab=b3e48999
+-/
 theorem sum_smul_vertexDelta
     (x : GraphVertexSpace V) :
     (∑ v : V, x v • vertexDelta (V := V) v) = x := by
@@ -382,7 +461,9 @@ theorem sum_smul_vertexDelta
   ext u
   simp [vertexDelta]
 
-/-- The representative correction vanishes on the kernel of `componentSum`.-/
+/-- The representative correction vanishes on the kernel of `componentSum`.
+@isnad1 id=eq.1h3v.s7.a1ddab00f932 from=translated src=- shape=0ea1718d vocab=92b33fff
+-/
 theorem representativeCorrection_eq_zero_of_mem_ker
     (G : SimpleGraph V) (x : GraphVertexSpace V)
     (hx : x ∈ (componentSum (V := V) G).ker) :
@@ -447,7 +528,9 @@ def representativeDifference
       (componentRep (V := V) G (G.connectedComponentMk v))
 
 /-- Every canonical representative difference belongs to the graph incidence
-space, by the telescoping lemma inside each connected component.-/
+space, by the telescoping lemma inside each connected component.
+@isnad1 id=mem.0h3v.s6.38800eb264f7 from=translated src=- shape=c5933ed7 vocab=74af9343
+-/
 theorem representativeDifference_mem_incidenceSpace
     (G : SimpleGraph V) (x : GraphVertexSpace V) :
     representativeDifference (V := V) G x ∈
@@ -461,7 +544,9 @@ theorem representativeDifference_mem_incidenceSpace
     (V := V) G (G.connectedComponentMk v)]
 
 /-- On the kernel of the component-sum map, the canonical representative
-difference reconstructs the original vector.-/
+difference reconstructs the original vector.
+@isnad1 id=eq.1h3v.s7.151ae6d1a623 from=translated src=- shape=361132bc vocab=7c4514c4
+-/
 theorem representativeDifference_eq_of_mem_ker
     (G : SimpleGraph V) (x : GraphVertexSpace V)
     (hx : x ∈ (componentSum (V := V) G).ker) :
@@ -475,7 +560,9 @@ theorem representativeDifference_eq_of_mem_ker
   exact sub_zero x
 
 /-- Reverse inclusion: every componentwise zero-sum vector is generated by
-graph edge differences.-/
+graph edge differences.
+@isnad1 id=le.0h2v.s7.69c58606f83d from=translated src=- shape=6e33a26f vocab=318b2dc2
+-/
 theorem componentSum_ker_le_incidenceSpace
     (G : SimpleGraph V) :
     (componentSum (V := V) G).ker ≤ incidenceSpace (V := V) G := by
@@ -485,7 +572,9 @@ theorem componentSum_ker_le_incidenceSpace
   rw [representativeDifference_eq_of_mem_ker (V := V) G x hx] at hmem
   exact hmem
 
-/-- The graph incidence space is exactly the kernel of componentwise summation.-/
+/-- The graph incidence space is exactly the kernel of componentwise summation.
+@isnad1 id=eq.0h2v.s6.e67cccc4bdf0 from=translated src=- shape=3f5a7ecb vocab=41c72a1d
+-/
 theorem incidenceSpace_eq_componentSum_ker
     (G : SimpleGraph V) :
     incidenceSpace (V := V) G =
@@ -495,7 +584,9 @@ theorem incidenceSpace_eq_componentSum_ker
   · exact componentSum_ker_le_incidenceSpace (V := V) G
 
 /-- F-stage main theorem / Incidence Rank Theorem:
-`dim_C B(G) = |V| - c(G)`.-/
+`dim_C B(G) = |V| - c(G)`.
+@isnad1 id=eq.0h2v.s7.162466ecbc33 from=translated src=- shape=b0a9d0ce vocab=90b92f53
+-/
 theorem incidence_rank
     (G : SimpleGraph V) :
     Module.finrank ℂ ↥(incidenceSpace (V := V) G) =

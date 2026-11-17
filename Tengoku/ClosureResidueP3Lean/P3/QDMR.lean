@@ -26,18 +26,26 @@ def stableHiddenFlow
     Submodule ℂ (EdgeSpace V) :=
   ⨆ k : ℕ, hiddenFlow φ k
 
+/--
+@isnad1 id=le.0h3v.s10.90c3b14b32f2 from=translated src=- shape=b3852d76 vocab=9ef282ff
+-/
 theorem residue_le_stableResidue
     (φ : Dynamics V) (k : ℕ) :
     residue φ k ≤ stableResidue (V := V) φ := by
   exact le_iSup (fun n : ℕ => residue φ n) k
 
+/--
+@isnad1 id=le.0h3v.s8.cffa0bb0e103 from=translated src=- shape=98946af4 vocab=39b3a768
+-/
 theorem hiddenFlow_le_stableHiddenFlow
     (φ : Dynamics V) (k : ℕ) :
     hiddenFlow φ k ≤ stableHiddenFlow (V := V) φ := by
   exact le_iSup (fun n : ℕ => hiddenFlow φ n) k
 
 /-- If the residue filtration is constant from `s` onward, then the stable
-join is exactly the finite space `R_s`.-/
+join is exactly the finite space `R_s`.
+@isnad1 id=eq.1h3v.s9.2a30c95ade70 from=translated src=- shape=2011caee vocab=9ef282ff
+-/
 theorem stableResidue_eq_of_eventually_constant
     (φ : Dynamics V) (s : ℕ)
     (hs : ∀ k : ℕ, s ≤ k → residue φ k = residue φ s) :
@@ -50,7 +58,9 @@ theorem stableResidue_eq_of_eventually_constant
     · rw [hs k hsk]
   · exact residue_le_stableResidue (V := V) φ s
 
-/-- The analogous finite-attainment statement for the hidden-flow join.-/
+/-- The analogous finite-attainment statement for the hidden-flow join.
+@isnad1 id=eq.1h3v.s7.ce8ba6ec7a11 from=translated src=- shape=f1c307a3 vocab=39b3a768
+-/
 theorem stableHiddenFlow_eq_of_eventually_constant
     (φ : Dynamics V) (s : ℕ)
     (hs : ∀ k : ℕ, s ≤ k → hiddenFlow φ k = hiddenFlow φ s) :
@@ -69,7 +79,9 @@ noncomputable def coreStabilizationDepth
   Classical.choose (finite_core_eventually_constant (V := V) φ)
 
 /-- The chosen depth really stabilizes hidden defects, hidden flows and
-residues simultaneously.-/
+residues simultaneously.
+@isnad1 id=and.1h3v.s9.6262ff2381f4 from=translated src=- shape=5e528c74 vocab=a72f5fb4
+-/
 theorem coreStabilizationDepth_spec
     (φ : Dynamics V) :
     ∀ k : ℕ, coreStabilizationDepth (V := V) φ ≤ k →
@@ -83,7 +95,9 @@ theorem coreStabilizationDepth_spec
     (finite_core_eventually_constant (V := V) φ)
 
 /-- The infinite-looking residue join is attained at the chosen finite
-stabilization depth.-/
+stabilization depth.
+@isnad1 id=eq.0h2v.s8.fd1d64c27b13 from=translated src=- shape=eeb0bd6e vocab=5593f608
+-/
 theorem stableResidue_eq_core
     (φ : Dynamics V) :
     stableResidue (V := V) φ =
@@ -93,7 +107,9 @@ theorem stableResidue_eq_core
   exact (coreStabilizationDepth_spec (V := V) φ k hk).2.2
 
 /-- The infinite-looking hidden-flow join is likewise attained at that same
-finite depth.-/
+finite depth.
+@isnad1 id=eq.0h2v.s7.65bfa36cb556 from=translated src=- shape=a6638dc3 vocab=4ff01ede
+-/
 theorem stableHiddenFlow_eq_core
     (φ : Dynamics V) :
     stableHiddenFlow (V := V) φ =
@@ -126,7 +142,9 @@ def graphSaturatedAtInfinity
     incidenceSpace (V := V) (stableSupportGraph (V := V) φ)
 
 /-- Stable saturation is exactly ordinary graph saturation at the chosen
-common stabilization depth.-/
+common stabilization depth.
+@isnad1 id=iff.0h2v.s4.e6cad71b2dd0 from=translated src=- shape=1003becb vocab=d2eab1ff
+-/
 theorem graphSaturatedAtInfinity_iff_core
     (φ : Dynamics V) :
     graphSaturatedAtInfinity (V := V) φ ↔
@@ -144,6 +162,9 @@ def QDMR
     (φ : Dynamics V) : ℕ :=
   Module.finrank ℂ ↥(stableResidue (V := V) φ)
 
+/--
+@isnad1 id=eq.0h2v.s11.f4ff6e42e351 from=translated src=- shape=463ee682 vocab=7849ec2d
+-/
 theorem QDMR_eq_core_residue_finrank
     (φ : Dynamics V) :
     QDMR (V := V) φ =
@@ -155,7 +176,9 @@ theorem QDMR_eq_core_residue_finrank
 /-- Final stabilized Incidence Rank correspondence:
 if the stabilized residue fills the incidence space of the stabilized hidden
 support graph, then QDMR is the vertex count minus the number of connected
-components.-/
+components.
+@isnad1 id=eq.1h2v.s5.8eb79bb3b5fc from=translated src=- shape=a48555e7 vocab=008c0981
+-/
 theorem QDMR_eq_card_sub_components
     (φ : Dynamics V)
     (hsat : graphSaturatedAtInfinity (V := V) φ) :
@@ -181,7 +204,9 @@ def stablePrimitiveResidueSpan
 
 /-- The stabilized residue sector is exactly the stabilized primitive-defect
 quadratic-return span.  This is the stable form of D4
-`residue_eq_span_primitive`.-/
+`residue_eq_span_primitive`.
+@isnad1 id=eq.0h2v.s8.3ed4ed405c6f from=translated src=- shape=d62cf427 vocab=1439511e
+-/
 theorem stableResidue_eq_stablePrimitiveResidueSpan
     (φ : Dynamics V) :
     stableResidue (V := V) φ =
@@ -199,7 +224,9 @@ theorem stableResidue_eq_stablePrimitiveResidueSpan
       (fun n : ℕ => residue φ n) k
 
 /-- The primitive-defect stable span is also attained at the same finite
-core stabilization depth.-/
+core stabilization depth.
+@isnad1 id=eq.0h2v.s8.cd465442dac9 from=translated src=- shape=eeb0bd6e vocab=d9053941
+-/
 theorem stablePrimitiveResidueSpan_eq_core
     (φ : Dynamics V) :
     stablePrimitiveResidueSpan (V := V) φ =
@@ -211,7 +238,9 @@ theorem stablePrimitiveResidueSpan_eq_core
         (coreStabilizationDepth (V := V) φ)]
 
 /-- QDMR is equivalently the dimension of the stabilized span of quadratic
-returns of primitive defects `z_m(d)=Q Φ^m(d)`.-/
+returns of primitive defects `z_m(d)=Q Φ^m(d)`.
+@isnad1 id=eq.0h2v.s11.b12174a5f003 from=translated src=- shape=51b73040 vocab=926e4426
+-/
 theorem QDMR_eq_stablePrimitiveResidue_finrank
     (φ : Dynamics V) :
     QDMR (V := V) φ =
@@ -220,7 +249,9 @@ theorem QDMR_eq_stablePrimitiveResidue_finrank
   unfold QDMR
   rw [stableResidue_eq_stablePrimitiveResidueSpan (V := V) φ]
 
-/-- Fully primitive finite-core form of QDMR.-/
+/-- Fully primitive finite-core form of QDMR.
+@isnad1 id=eq.0h2v.s11.70200a6f813f from=translated src=- shape=463ee682 vocab=0bf22085
+-/
 theorem QDMR_eq_core_primitiveResidue_finrank
     (φ : Dynamics V) :
     QDMR (V := V) φ =

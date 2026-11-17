@@ -37,7 +37,9 @@ def hiddenFlow (φ : Dynamics V) (k : ℕ) : Submodule ℂ (EdgeSpace V) :=
         w.1 ∈ hidden φ j ∧
         hadamardFlow (V := V) z w = f}
 
-/-- A single admissible quadratic return belongs to `R_k`.-/
+/-- A single admissible quadratic return belongs to `R_k`.
+@isnad1 id=mem.3h7v.s11.622d4cc34dcb from=translated src=- shape=e66469ef vocab=216923ae
+-/
 theorem quadraticReturn_mem_residue
     (φ : Dynamics V) {k i j : ℕ}
     (hij : i + j ≤ k)
@@ -48,7 +50,9 @@ theorem quadraticReturn_mem_residue
   apply Submodule.subset_span
   exact ⟨i, j, hij, z, w, hz, hw, rfl⟩
 
-/-- A single admissible hidden Hadamard flow belongs to `F_k`.-/
+/-- A single admissible hidden Hadamard flow belongs to `F_k`.
+@isnad1 id=mem.3h7v.s9.829a3d2fad82 from=translated src=- shape=d3981db1 vocab=768e70da
+-/
 theorem hadamardFlow_mem_hiddenFlow
     (φ : Dynamics V) {k i j : ℕ}
     (hij : i + j ≤ k)
@@ -59,7 +63,9 @@ theorem hadamardFlow_mem_hiddenFlow
   apply Submodule.subset_span
   exact ⟨i, j, hij, z, w, hz, hw, rfl⟩
 
-/-- D1: the quadratic residue filtration is monotone in depth.-/
+/-- D1: the quadratic residue filtration is monotone in depth.
+@isnad1 id=le.1h4v.s10.63d7f64069dd from=translated src=- shape=4e8a34f7 vocab=9303f2e9
+-/
 theorem residue_mono (φ : Dynamics V) {k l : ℕ} (hkl : k ≤ l) :
     residue φ k ≤ residue φ l := by
   apply Submodule.span_mono
@@ -67,7 +73,9 @@ theorem residue_mono (φ : Dynamics V) {k l : ℕ} (hkl : k ≤ l) :
   rcases hr with ⟨i, j, hij, z, w, hz, hw, rfl⟩
   exact ⟨i, j, hij.trans hkl, z, w, hz, hw, rfl⟩
 
-/-- D1: the hidden flow filtration is monotone in depth.-/
+/-- D1: the hidden flow filtration is monotone in depth.
+@isnad1 id=le.1h4v.s8.c559514e8aee from=translated src=- shape=7bcbca21 vocab=cd1dd13b
+-/
 theorem hiddenFlow_mono (φ : Dynamics V) {k l : ℕ} (hkl : k ≤ l) :
     hiddenFlow φ k ≤ hiddenFlow φ l := by
   apply Submodule.span_mono
@@ -77,7 +85,9 @@ theorem hiddenFlow_mono (φ : Dynamics V) {k l : ℕ} (hkl : k ≤ l) :
 
 /-! ## D1: initial vanishing -/
 
-/-- An off-diagonal vector belonging to `H₀` must be zero.-/
+/-- An off-diagonal vector belonging to `H₀` must be zero.
+@isnad1 id=eq.1h3v.s8.ea32565ff9dc from=translated src=- shape=5a0d46f9 vocab=b7f3cfac
+-/
 theorem offDiag_eq_zero_of_mem_hidden_zero
     (φ : Dynamics V) (z : OffDiag (V := V))
     (hz : z.1 ∈ hidden φ 0) :
@@ -88,6 +98,9 @@ theorem offDiag_eq_zero_of_mem_hidden_zero
   apply Subtype.ext
   exact hz0
 
+/--
+@isnad1 id=eq.0h2v.s8.25b86dfcf88e from=translated src=- shape=7281303b vocab=0945be9b
+-/
 @[simp]
 theorem hadamardFlow_zero_left
     (w : OffDiag (V := V)) :
@@ -96,6 +109,9 @@ theorem hadamardFlow_zero_left
     hadamardFlow_smul_left (V := V) (0 : ℂ)
       (0 : OffDiag (V := V)) w
 
+/--
+@isnad1 id=eq.0h2v.s8.de8afaa4e866 from=translated src=- shape=5a5b8c18 vocab=0945be9b
+-/
 @[simp]
 theorem hadamardFlow_zero_right
     (z : OffDiag (V := V)) :
@@ -104,6 +120,9 @@ theorem hadamardFlow_zero_right
     hadamardFlow_smul_right (V := V) (0 : ℂ)
       z (0 : OffDiag (V := V))
 
+/--
+@isnad1 id=eq.0h2v.s10.4383d8cbbfbd from=translated src=- shape=eff485be vocab=9caafa97
+-/
 @[simp]
 theorem quadraticReturn_zero_left
     (w : OffDiag (V := V)) :
@@ -111,6 +130,9 @@ theorem quadraticReturn_zero_left
   rw [quadraticReturn_eq_divergence]
   simp
 
+/--
+@isnad1 id=eq.0h2v.s10.d3a0026632fc from=translated src=- shape=5e4988c2 vocab=9caafa97
+-/
 @[simp]
 theorem quadraticReturn_zero_right
     (z : OffDiag (V := V)) :
@@ -118,7 +140,9 @@ theorem quadraticReturn_zero_right
   rw [quadraticReturn_eq_divergence]
   simp
 
-/-- D1: `R₀ = 0`.-/
+/-- D1: `R₀ = 0`.
+@isnad1 id=eq.0h2v.s10.dd678885f1e2 from=translated src=- shape=79f05895 vocab=904f40f1
+-/
 @[simp]
 theorem residue_zero (φ : Dynamics V) :
     residue φ 0 = ⊥ := by
@@ -136,7 +160,9 @@ theorem residue_zero (φ : Dynamics V) :
     simp
   · exact bot_le
 
-/-- D1: `F₀ = 0`.-/
+/-- D1: `F₀ = 0`.
+@isnad1 id=eq.0h2v.s8.7bc71263d8a3 from=translated src=- shape=fe871dd8 vocab=ea930400
+-/
 @[simp]
 theorem hiddenFlow_zero (φ : Dynamics V) :
     hiddenFlow φ 0 = ⊥ := by
@@ -155,7 +181,9 @@ theorem hiddenFlow_zero (φ : Dynamics V) :
   · exact bot_le
 
 /-- D1: total depth one still forces one hidden factor to lie in `H₀`,
-hence `R₁ = 0`.-/
+hence `R₁ = 0`.
+@isnad1 id=eq.0h2v.s10.bb9568e5c1cd from=translated src=- shape=79f05895 vocab=904f40f1
+-/
 @[simp]
 theorem residue_one (φ : Dynamics V) :
     residue φ 1 = ⊥ := by
@@ -177,7 +205,9 @@ theorem residue_one (φ : Dynamics V) :
       simp
   · exact bot_le
 
-/-- D1: likewise `F₁ = 0`.-/
+/-- D1: likewise `F₁ = 0`.
+@isnad1 id=eq.0h2v.s8.c9d66449f49b from=translated src=- shape=fe871dd8 vocab=ea930400
+-/
 @[simp]
 theorem hiddenFlow_one (φ : Dynamics V) :
     hiddenFlow φ 1 = ⊥ := by
@@ -210,6 +240,9 @@ def primitiveDefect
   ⟨offProjection (V := V) ((φ ^ m) d.1),
     delta_offProjection_eq_zero (V := V) ((φ ^ m) d.1)⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.6a55d36c7cb8 from=translated src=- shape=abe6a781 vocab=540ee987
+-/
 @[simp]
 theorem primitiveDefect_val
     (φ : Dynamics V) (m : ℕ)
@@ -226,7 +259,9 @@ def primitiveHiddenSpan
     {z | ∃ d : diagonalSubmodule (V := V), ∃ m : ℕ,
       m ≤ k ∧ (primitiveDefect (V := V) φ m d).1 = z}
 
-/-- Each primitive defect at depth `m ≤ k` belongs to `H_k`.-/
+/-- Each primitive defect at depth `m ≤ k` belongs to `H_k`.
+@isnad1 id=mem.1h5v.s8.15c733869da8 from=translated src=- shape=c89f3934 vocab=f51e9fe7
+-/
 theorem primitiveDefect_mem_hidden
     (φ : Dynamics V) {m k : ℕ} (hmk : m ≤ k)
     (d : diagonalSubmodule (V := V)) :
@@ -236,7 +271,9 @@ theorem primitiveDefect_mem_hidden
   exact ⟨d, m, hmk, rfl⟩
 
 /-- D3: `H_k` is exactly the span of the primitive defects
-`Q φ^m(d)` with `m ≤ k`.-/
+`Q φ^m(d)` with `m ≤ k`.
+@isnad1 id=eq.0h3v.s5.31958ea676a5 from=translated src=- shape=7ff282e8 vocab=30ec144e
+-/
 theorem hidden_eq_span_primitive
     (φ : Dynamics V) (k : ℕ) :
     hidden φ k = primitiveHiddenSpan (V := V) φ k := by
@@ -254,7 +291,9 @@ theorem hidden_eq_span_primitive
 
 /-! ## D4: primitive-pair description of the residue filtration -/
 
-/-- Quadratic return is additive in its first hidden argument.-/
+/-- Quadratic return is additive in its first hidden argument.
+@isnad1 id=eq.0h4v.s10.ef7f25d9ec31 from=translated src=- shape=c328755d vocab=fe217af3
+-/
 theorem quadraticReturn_add_left
     (z₁ z₂ w : OffDiag (V := V)) :
     quadraticReturn (V := V) (z₁ + z₂) w =
@@ -263,7 +302,9 @@ theorem quadraticReturn_add_left
   simp only [quadraticReturn_eq_divergence,
     hadamardFlow_add_left, LinearMap.map_add]
 
-/-- Quadratic return is complex-linear in its first hidden argument.-/
+/-- Quadratic return is complex-linear in its first hidden argument.
+@isnad1 id=eq.0h4v.s10.b69a479466f5 from=translated src=- shape=88b04dce vocab=b507613c
+-/
 theorem quadraticReturn_smul_left
     (c : ℂ) (z w : OffDiag (V := V)) :
     quadraticReturn (V := V) (c • z) w =
@@ -271,7 +312,9 @@ theorem quadraticReturn_smul_left
   simp only [quadraticReturn_eq_divergence,
     hadamardFlow_smul_left, LinearMap.map_smul]
 
-/-- Quadratic return is additive in its second hidden argument.-/
+/-- Quadratic return is additive in its second hidden argument.
+@isnad1 id=eq.0h4v.s10.0ad6eb7d58f0 from=translated src=- shape=29bedaaf vocab=fe217af3
+-/
 theorem quadraticReturn_add_right
     (z w₁ w₂ : OffDiag (V := V)) :
     quadraticReturn (V := V) z (w₁ + w₂) =
@@ -280,7 +323,9 @@ theorem quadraticReturn_add_right
   simp only [quadraticReturn_eq_divergence,
     hadamardFlow_add_right, LinearMap.map_add]
 
-/-- Quadratic return is conjugate-linear in its second hidden argument.-/
+/-- Quadratic return is conjugate-linear in its second hidden argument.
+@isnad1 id=eq.0h4v.s10.5f9226eb3964 from=translated src=- shape=fc56e065 vocab=163491aa
+-/
 theorem quadraticReturn_smul_right
     (c : ℂ) (z w : OffDiag (V := V)) :
     quadraticReturn (V := V) z (c • w) =
@@ -299,7 +344,9 @@ def primitiveResidueSpan
           (primitiveDefect (V := V) φ m d)
           (primitiveDefect (V := V) φ n e) = r}
 
-/-- A primitive-pair return of total depth at most `k` belongs to the primitive residue span.-/
+/-- A primitive-pair return of total depth at most `k` belongs to the primitive residue span.
+@isnad1 id=mem.1h7v.s10.073a414d93c3 from=translated src=- shape=73a265e2 vocab=15a49fd2
+-/
 theorem primitiveReturn_mem_primitiveResidueSpan
     (φ : Dynamics V) {k m n : ℕ}
     (hmn : m + n ≤ k)
@@ -321,6 +368,9 @@ def offDiagOfPrimitiveSpan
   rw [hidden_eq_span_primitive (V := V) φ k]
   exact hx
 
+/--
+@isnad1 id=eq.1h4v.s7.dddb80a0d2d5 from=translated src=- shape=2bfef208 vocab=6eb3211b
+-/
 @[simp]
 theorem offDiagOfPrimitiveSpan_val
     (φ : Dynamics V) (k : ℕ)
@@ -330,7 +380,9 @@ theorem offDiagOfPrimitiveSpan_val
 
 /-- If both arguments lie in primitive hidden spans of depths `i,j`,
 their quadratic return lies in the primitive residue span at every
-`k ≥ i+j`.-/
+`k ≥ i+j`.
+@isnad1 id=mem.3h7v.s11.d77abf89dd32 from=translated src=- shape=880cc566 vocab=d6d1c3d0
+-/
 theorem quadraticReturn_mem_primitiveResidueSpan_of_mem
     (φ : Dynamics V) {i j k : ℕ} (hij : i + j ≤ k)
     (z w : OffDiag (V := V))
@@ -485,7 +537,9 @@ theorem quadraticReturn_mem_primitiveResidueSpan_of_mem
     ∈ primitiveResidueSpan (V := V) φ k at hP
   simpa [hzpack, hwpack] using hP
 
-/-- D4: the residue filtration is exactly the span of primitive defect pairs.-/
+/-- D4: the residue filtration is exactly the span of primitive defect pairs.
+@isnad1 id=eq.0h3v.s8.a36f6bf23682 from=translated src=- shape=8ea88ef0 vocab=b94c73b3
+-/
 theorem residue_eq_span_primitive
     (φ : Dynamics V) (k : ℕ) :
     residue φ k = primitiveResidueSpan (V := V) φ k := by
@@ -534,7 +588,9 @@ def residueOrderHom (φ : Dynamics V) :
     intro i j hij
     exact residue_mono φ hij
 
-/-- D5: the hidden-defect filtration stabilizes after finitely many steps.-/
+/-- D5: the hidden-defect filtration stabilizes after finitely many steps.
+@isnad1 id=ex.0h2v.s5.a13b039e9db3 from=translated src=- shape=4328da3a vocab=a2a9f851
+-/
 theorem hidden_eventually_constant (φ : Dynamics V) :
     ∃ s : ℕ, ∀ k : ℕ, s ≤ k → hidden φ k = hidden φ s := by
   let a : ℕ →o Submodule ℂ (A V) := hiddenOrderHom (V := V) φ
@@ -543,7 +599,9 @@ theorem hidden_eventually_constant (φ : Dynamics V) :
   intro k hsk
   exact (hs k hsk).symm
 
-/-- D5: the hidden-flow filtration stabilizes after finitely many steps.-/
+/-- D5: the hidden-flow filtration stabilizes after finitely many steps.
+@isnad1 id=ex.0h2v.s7.0a61cde2148c from=translated src=- shape=4328da3a vocab=cd1dd13b
+-/
 theorem hiddenFlow_eventually_constant (φ : Dynamics V) :
     ∃ s : ℕ, ∀ k : ℕ, s ≤ k → hiddenFlow φ k = hiddenFlow φ s := by
   let a : ℕ →o Submodule ℂ (EdgeSpace V) := hiddenFlowOrderHom (V := V) φ
@@ -552,7 +610,9 @@ theorem hiddenFlow_eventually_constant (φ : Dynamics V) :
   intro k hsk
   exact (hs k hsk).symm
 
-/-- D5: the quadratic residue filtration stabilizes after finitely many steps.-/
+/-- D5: the quadratic residue filtration stabilizes after finitely many steps.
+@isnad1 id=ex.0h2v.s8.1b547870bd55 from=translated src=- shape=21ff016f vocab=9303f2e9
+-/
 theorem residue_eventually_constant (φ : Dynamics V) :
     ∃ s : ℕ, ∀ k : ℕ, s ≤ k → residue φ k = residue φ s := by
   let a : ℕ →o Submodule ℂ (DiagZero (V := V)) := residueOrderHom (V := V) φ
@@ -562,7 +622,9 @@ theorem residue_eventually_constant (φ : Dynamics V) :
   exact (hs k hsk).symm
 
 /-- There is one common finite depth after which hidden defects, hidden flows,
-and residues are all stationary.-/
+and residues are all stationary.
+@isnad1 id=ex.0h2v.s9.d04f2d9b28e6 from=translated src=- shape=fcaa5ff4 vocab=efbd1b60
+-/
 theorem finite_core_eventually_constant (φ : Dynamics V) :
     ∃ s : ℕ, ∀ k : ℕ, s ≤ k →
       hidden φ k = hidden φ s ∧
@@ -619,31 +681,46 @@ def residueGrowth (φ : Dynamics V) : ℕ → ℕ
 def CRP (φ : Dynamics V) (k : ℕ) : ℕ × ℕ :=
   (closureGrowth φ k, residueGrowth φ k)
 
+/--
+@isnad1 id=eq.0h2v.s4.26aff60422ce from=translated src=- shape=5fedfa96 vocab=ffeacf98
+-/
 @[simp]
 theorem closureGrowth_zero (φ : Dynamics V) :
     closureGrowth φ 0 = Fintype.card V := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.d7c4d18c3ff1 from=translated src=- shape=bb346ada vocab=9624435b
+-/
 @[simp]
 theorem residueGrowth_zero (φ : Dynamics V) :
     residueGrowth φ 0 = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.f631acab830e from=translated src=- shape=fe050d99 vocab=58da7171
+-/
 @[simp]
 theorem CRP_zero (φ : Dynamics V) :
     CRP φ 0 = (Fintype.card V, 0) := by
   rfl
 
-/-- Closure dimensions are monotone with depth.-/
+/-- Closure dimensions are monotone with depth.
+@isnad1 id=le.1h4v.s5.82759f765697 from=translated src=- shape=6c5d50c6 vocab=b86d43f9
+-/
 theorem closureDim_mono (φ : Dynamics V) {i j : ℕ} (hij : i ≤ j) :
     closureDim φ i ≤ closureDim φ j := by
   exact Submodule.finrank_mono (closure_mono φ hij)
 
-/-- Residue dimensions are monotone with depth.-/
+/-- Residue dimensions are monotone with depth.
+@isnad1 id=le.1h4v.s5.c1c9aa791042 from=translated src=- shape=6c5d50c6 vocab=8f7057ba
+-/
 theorem residueDim_mono (φ : Dynamics V) {i j : ℕ} (hij : i ≤ j) :
     residueDim φ i ≤ residueDim φ j := by
   exact Submodule.finrank_mono (residue_mono φ hij)
 
 /-- Additive form of the closure-growth definition, avoiding truncated-subtraction
-ambiguity in later proofs.-/
+ambiguity in later proofs.
+@isnad1 id=eq.0h3v.s6.0c7e8a33389b from=translated src=- shape=504a19bc vocab=19e82aa5
+-/
 theorem closureDim_add_growth (φ : Dynamics V) (k : ℕ) :
     closureDim φ k + closureGrowth φ (k + 1) =
       closureDim φ (k + 1) := by
@@ -652,7 +729,9 @@ theorem closureDim_add_growth (φ : Dynamics V) (k : ℕ) :
     closureDim φ (k + 1)
   exact Nat.add_sub_of_le (closureDim_mono φ (Nat.le_succ k))
 
-/-- Additive form of the residue-growth definition.-/
+/-- Additive form of the residue-growth definition.
+@isnad1 id=eq.0h3v.s6.57c8b3622144 from=translated src=- shape=504a19bc vocab=745a0abf
+-/
 theorem residueDim_add_growth (φ : Dynamics V) (k : ℕ) :
     residueDim φ k + residueGrowth φ (k + 1) =
       residueDim φ (k + 1) := by
@@ -661,7 +740,9 @@ theorem residueDim_add_growth (φ : Dynamics V) (k : ℕ) :
     residueDim φ (k + 1)
   exact Nat.add_sub_of_le (residueDim_mono φ (Nat.le_succ k))
 
-/-- The first two residue-growth entries vanish because `R₀ = R₁ = 0`.-/
+/-- The first two residue-growth entries vanish because `R₀ = R₁ = 0`.
+@isnad1 id=eq.0h2v.s4.6197e2307807 from=translated src=- shape=bb346ada vocab=9624435b
+-/
 @[simp]
 theorem residueGrowth_one (φ : Dynamics V) :
     residueGrowth φ 1 = 0 := by
@@ -670,7 +751,9 @@ theorem residueGrowth_one (φ : Dynamics V) :
   rw [residue_one (V := V) φ, residue_zero (V := V) φ]
   simp
 
-/-- Once the residue filtration has stabilized, all later residue growth vanishes.-/
+/-- Once the residue filtration has stabilized, all later residue growth vanishes.
+@isnad1 id=eq.2h4v.s8.7a03327ab811 from=translated src=- shape=ac82c726 vocab=3f1608b8
+-/
 theorem residueGrowth_eq_zero_of_stable
     (φ : Dynamics V) {s k : ℕ}
     (hsk : s ≤ k)
@@ -686,7 +769,9 @@ theorem residueGrowth_eq_zero_of_stable
   simp
 
 /-- D-stage summary: a finite depth exists after which both the finite core and
-the residue-growth component of CRP are stationary.-/
+the residue-growth component of CRP are stationary.
+@isnad1 id=ex.0h2v.s5.9adb966eac00 from=translated src=- shape=2030e35b vocab=807666bf
+-/
 theorem CRP_residue_eventually_zero (φ : Dynamics V) :
     ∃ s : ℕ, ∀ k : ℕ, s ≤ k → residueGrowth φ (k + 1) = 0 := by
   obtain ⟨s, hs⟩ := residue_eventually_constant (V := V) φ
@@ -697,7 +782,9 @@ theorem CRP_residue_eventually_zero (φ : Dynamics V) :
 D2 / Corollary 6.2 (Flow--Residue Factorization at filtration level):
 `R_k` is exactly the image of `F_k` under divergence.
 
-Crucially, this is a theorem connecting two independently defined spans.-/
+Crucially, this is a theorem connecting two independently defined spans.
+@isnad1 id=eq.0h3v.s9.3b6304d9deeb from=translated src=- shape=e9316037 vocab=59fd5267
+-/
 theorem residue_eq_map_divergence (φ : Dynamics V) (k : ℕ) :
     residue φ k = (hiddenFlow φ k).map (divergence (V := V)) := by
   apply le_antisymm

@@ -12,7 +12,9 @@ section SaturatedStabilizer
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- H1 / Theorem 8.1, exposed under the dependency-map name:
-at a graph-saturated depth, residue rank is controlled by support connectivity.-/
+at a graph-saturated depth, residue rank is controlled by support connectivity.
+@isnad1 id=eq.1h3v.s11.18ffab211619 from=translated src=- shape=68698928 vocab=a1ea1d0e
+-/
 theorem residue_finrank_of_graphSaturated
     (φ : Dynamics V) (k : ℕ)
     (hsat : graphSaturated (V := V) φ k) :
@@ -24,7 +26,9 @@ theorem residue_finrank_of_graphSaturated
 
 /-- The number of connected components of a finite graph never exceeds the
 number of vertices.  We derive this from the already-kernel-checked
-component-sum rank--nullity computation.-/
+component-sum rank--nullity computation.
+@isnad1 id=le.0h2v.s4.a2a4d66c7211 from=translated src=- shape=e4761ef8 vocab=242adf8e
+-/
 theorem componentCount_le_card
     (G : SimpleGraph V) :
     componentCount (V := V) G ≤ Fintype.card V := by
@@ -36,7 +40,9 @@ theorem componentCount_le_card
   omega
 
 /-- H2 / consecutive saturated depths:
-CRP residue growth equals the drop in the number of connected components.-/
+CRP residue growth equals the drop in the number of connected components.
+@isnad1 id=eq.2h3v.s6.50ad71131af5 from=translated src=- shape=8f114111 vocab=0fb8e302
+-/
 theorem residueGrowth_eq_component_drop
     (φ : Dynamics V) (k : ℕ)
     (hsat_k : graphSaturated (V := V) φ k)
@@ -88,6 +94,9 @@ def componentConstant
     simp [hd i j hij]
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=iff.0h3v.s11.3e5704072597 from=translated src=- shape=4b8142b4 vocab=1abefcb4
+-/
 @[simp]
 theorem mem_componentConstant
     (G : SimpleGraph V) (d : DiagZero (V := V)) :
@@ -105,6 +114,9 @@ def coordinatePairing
 
 -- The native `DiagZero` inner product agrees with the coordinate pairing.
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h3v.s13.87249af47e95 from=translated src=- shape=e658fd30 vocab=712260c6
+-/
 theorem inner_eq_coordinatePairing
     (r d : DiagZero (V := V)) :
     inner ℂ r d =
@@ -114,7 +126,9 @@ theorem inner_eq_coordinatePairing
   simp_rw [RCLike.inner_apply]
   rfl
 
-/-- Pairing against an incidence generator is the endpoint difference.-/
+/-- Pairing against an incidence generator is the endpoint difference.
+@isnad1 id=eq.0h4v.s9.c84b4e6943cc from=translated src=- shape=89286715 vocab=cdd4216b
+-/
 theorem coordinatePairing_edgeDifference
     (d : DiagZero (V := V)) (i j : V) :
     coordinatePairing (V := V)
@@ -160,7 +174,9 @@ def coordinateAnnihilator
       _ = 0 := by rw [hx, mul_zero]
 
 /-- If `d` is constant on graph components, every incidence vector pairs
-trivially with `d`.-/
+trivially with `d`.
+@isnad1 id=le.1h3v.s11.d2302d22e5d8 from=translated src=- shape=6c4bb49a vocab=50133d62
+-/
 theorem incidenceSpace_le_coordinateAnnihilator_of_componentConstant
     (G : SimpleGraph V) (d : DiagZero (V := V))
     (hd : d ∈ componentConstant (V := V) G) :
@@ -178,7 +194,9 @@ theorem incidenceSpace_le_coordinateAnnihilator_of_componentConstant
   exact sub_self _
 
 /-- Under graph saturation, every stabilizer direction is constant on each
-connected component of the support graph.-/
+connected component of the support graph.
+@isnad1 id=le.1h3v.s10.a0ca03dd25f3 from=translated src=- shape=64a2f2ad vocab=3b3d4bdf
+-/
 theorem stabilizer_le_componentConstant_of_graphSaturated
     (φ : Dynamics V) (k : ℕ)
     (hsat : graphSaturated (V := V) φ k) :
@@ -208,7 +226,9 @@ theorem stabilizer_le_componentConstant_of_graphSaturated
   exact sub_eq_zero.mp hzero
 
 /-- Conversely, at a graph-saturated depth every component-constant
-traceless diagonal direction is a stabilizer.-/
+traceless diagonal direction is a stabilizer.
+@isnad1 id=le.1h3v.s10.229824fe321d from=translated src=- shape=9f461c3b vocab=3b3d4bdf
+-/
 theorem componentConstant_le_stabilizer_of_graphSaturated
     (φ : Dynamics V) (k : ℕ)
     (hsat : graphSaturated (V := V) φ k) :
@@ -236,7 +256,9 @@ theorem componentConstant_le_stabilizer_of_graphSaturated
   exact hann
 
 /-- H3: at a graph-saturated depth the silent stabilizer is exactly the
-space of traceless diagonal functions constant on graph components.-/
+space of traceless diagonal functions constant on graph components.
+@isnad1 id=eq.1h3v.s8.ab162d5b437e from=translated src=- shape=64a2f2ad vocab=b44442f3
+-/
 theorem stabilizer_eq_componentConstant_of_graphSaturated
     (φ : Dynamics V) (k : ℕ)
     (hsat : graphSaturated (V := V) φ k) :
@@ -261,6 +283,9 @@ def componentValueSum
     simp [Finset.mul_sum]
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h3v.s7.bb5f6be8332e from=translated src=- shape=2c58f3bd vocab=73d570d9
+-/
 @[simp]
 theorem componentValueSum_apply
     (G : SimpleGraph V)
@@ -272,6 +297,9 @@ theorem componentValueSum_apply
 -- When the vertex set is nonempty, the expanded component-value sum is
 -- surjective.  A constant component value realizes any prescribed scalar.
 omit [DecidableEq V] in
+/--
+@isnad1 id=surjecti.0h2v.s6.59b96f3774b6 from=translated src=- shape=7671cecf vocab=6a7b8d6a
+-/
 theorem componentValueSum_surjective
     [Nonempty V]
     (G : SimpleGraph V) :
@@ -286,6 +314,9 @@ theorem componentValueSum_surjective
 
 -- The kernel of the expanded component-value sum has dimension `c(G)-1`.
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h2v.s8.5cc4c8491ed1 from=translated src=- shape=99eb6679 vocab=2ade526a
+-/
 theorem finrank_componentValueSum_ker
     [Nonempty V]
     (G : SimpleGraph V) :
@@ -344,6 +375,9 @@ def componentConstantToKernel
     rfl
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=injectiv.0h2v.s13.51d0a69970b8 from=translated src=- shape=19440f33 vocab=2100636c
+-/
 theorem componentConstantToKernel_injective
     (G : SimpleGraph V) :
     Function.Injective (componentConstantToKernel (V := V) G) := by
@@ -373,6 +407,9 @@ theorem componentConstantToKernel_injective
   exact hd.symm.trans (hc.trans he)
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=surjecti.0h2v.s13.4e4e9987049b from=translated src=- shape=19440f33 vocab=4c3d1796
+-/
 theorem componentConstantToKernel_surjective
     (G : SimpleGraph V) :
     Function.Surjective (componentConstantToKernel (V := V) G) := by
@@ -420,6 +457,9 @@ noncomputable def componentConstantKernelEquiv
 -- A traceless diagonal function constant on graph components has exactly
 -- `c(G)-1` complex degrees of freedom.
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h2v.s11.f246007b5523 from=translated src=- shape=fa986ed8 vocab=daaaa077
+-/
 theorem finrank_componentConstant
     [Nonempty V]
     (G : SimpleGraph V) :
@@ -434,7 +474,9 @@ theorem finrank_componentConstant
       finrank_componentValueSum_ker (V := V) G
 
 /-- H4 / saturated stabilizer dimension:
-at a graph-saturated depth, the silent stabilizer has dimension `c(G_k)-1`.-/
+at a graph-saturated depth, the silent stabilizer has dimension `c(G_k)-1`.
+@isnad1 id=eq.1h3v.s11.b6df60bae13e from=translated src=- shape=c706e830 vocab=7e191036
+-/
 theorem silent_finrank_of_graphSaturated
     [Nonempty V]
     (φ : Dynamics V) (k : ℕ)

@@ -24,6 +24,9 @@ def diagZeroCoordinates :
     rfl
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h3v.s10.8a7904738239 from=translated src=- shape=c51934e3 vocab=e232fe43
+-/
 @[simp]
 theorem diagZeroCoordinates_apply
     (d : DiagZero (V := V)) (i : V) :
@@ -64,6 +67,9 @@ def supportGraph
     · exact hii.1 rfl
     · exact hii.1 rfl⟩
 
+/--
+@isnad1 id=iff.0h5v.s5.b7119c3121c8 from=translated src=- shape=2c3a0159 vocab=d15e8c2e
+-/
 @[simp]
 theorem supportGraph_adj
     (φ : Dynamics V) (k : ℕ) (i j : V) :
@@ -73,7 +79,9 @@ theorem supportGraph_adj
   rfl
 
 /-- A nonzero directed coordinate of a hidden flow forces the underlying
-undirected edge to occur in the support graph.-/
+undirected edge to occur in the support graph.
+@isnad1 id=adj.3h6v.s8.dc4a26b0357d from=translated src=- shape=4f5943e8 vocab=bef11a5e
+-/
 theorem supportGraph_adj_of_flow
     (φ : Dynamics V) (k : ℕ)
     (f : EdgeSpace V) (hf : f ∈ hiddenFlow φ k)
@@ -82,7 +90,9 @@ theorem supportGraph_adj_of_flow
     (supportGraph (V := V) φ k).Adj i j := by
   exact Or.inl ⟨hij, f, hf, hneq⟩
 
-/-- Reversing the orientation gives the same undirected support edge.-/
+/-- Reversing the orientation gives the same undirected support edge.
+@isnad1 id=adj.3h6v.s8.0ef149437b81 from=translated src=- shape=d8d2a362 vocab=bef11a5e
+-/
 theorem supportGraph_adj_of_flow_rev
     (φ : Dynamics V) (k : ℕ)
     (f : EdgeSpace V) (hf : f ∈ hiddenFlow φ k)
@@ -94,7 +104,9 @@ theorem supportGraph_adj_of_flow_rev
 /-! ## G1: residue support lies in the graph-incidence space -/
 
 /-- Along every nonzero coordinate of a hidden flow, the two endpoints lie
-in the same connected component of the support graph.-/
+in the same connected component of the support graph.
+@isnad1 id=eq.2h6v.s8.bab37d89e9d2 from=translated src=- shape=4d55b5be vocab=8c2d7142
+-/
 theorem connectedComponentMk_eq_of_hiddenFlow_nonzero
     (φ : Dynamics V) (k : ℕ)
     (f : EdgeSpace V) (hf : f ∈ hiddenFlow φ k)
@@ -111,7 +123,9 @@ theorem connectedComponentMk_eq_of_hiddenFlow_nonzero
       (supportGraph_adj_of_flow (V := V) φ k f hf hij hneq)
 
 /-- Hence every component indicator of the support graph takes equal values
-at the endpoints of a nonzero hidden-flow coordinate.-/
+at the endpoints of a nonzero hidden-flow coordinate.
+@isnad1 id=eq.2h7v.s8.f98dab394ad2 from=translated src=- shape=1b9fb049 vocab=8c511e10
+-/
 theorem componentIndicator_eq_of_hiddenFlow_nonzero
     (φ : Dynamics V) (k : ℕ)
     (f : EdgeSpace V) (hf : f ∈ hiddenFlow φ k)
@@ -125,7 +139,9 @@ theorem componentIndicator_eq_of_hiddenFlow_nonzero
     (V := V) φ k f hf hneq
 
 /-- The coordinate divergence of a hidden flow has zero sum on every
-connected component of its support graph.-/
+connected component of its support graph.
+@isnad1 id=eq.1h4v.s11.29bf80fea27e from=translated src=- shape=a0978939 vocab=ef6fcd49
+-/
 theorem componentSum_divergence_eq_zero
     (φ : Dynamics V) (k : ℕ)
     (f : EdgeSpace V) (hf : f ∈ hiddenFlow φ k) :
@@ -173,7 +189,9 @@ theorem componentSum_divergence_eq_zero
   exact sub_self _
 
 /-- Coordinate divergence of every hidden flow belongs to the incidence space
-of the support graph.-/
+of the support graph.
+@isnad1 id=mem.1h4v.s11.14298f85105e from=translated src=- shape=886e2e0b vocab=b0b6f323
+-/
 theorem divergence_mem_incidenceSpace
     (φ : Dynamics V) (k : ℕ)
     (f : EdgeSpace V) (hf : f ∈ hiddenFlow φ k) :
@@ -186,7 +204,9 @@ theorem divergence_mem_incidenceSpace
 
 /-- G1 / Support inclusion:
 the coordinate realization of the quadratic residue space lies in the
-incidence space of the hidden-flow support graph.-/
+incidence space of the hidden-flow support graph.
+@isnad1 id=le.0h3v.s6.8bf1b376b780 from=translated src=- shape=8d4617f8 vocab=376cea58
+-/
 theorem residueCoordinateSpace_le_incidenceSpace
     (φ : Dynamics V) (k : ℕ) :
     residueCoordinateSpace (V := V) φ k ≤
