@@ -79,6 +79,7 @@ import Tengoku.ErdosLean
 import Tengoku.AclGeom
 import Tengoku.Certifyinginvariantsnf
 import Tengoku.LanaOrbicurveCores
+import Tengoku.TunnellTwoToOneMap
 import Tengoku.AsymptoticTrianglePacking
 import Tengoku.Primenumbertheoremand
 import Tengoku.FormalMathfin
