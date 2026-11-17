@@ -14,7 +14,9 @@ Structural dependencies are proved in the imported project modules.
 namespace TutteFormalization
 
 /-- `thm:path-theorem`, the two-endpoints-off-cut BJL formulation.
-The public type is unchanged from the approved independent specification.-/
+The public type is unchanged from the approved independent specification.
+@isnad1 id=ex.10h6v.s7.b92043dbf9ba from=translated src=- shape=94055f23 vocab=45823dfb
+-/
 theorem path_theorem {α : Type*} (M : Matroid α) [M.Finite]
     (hM : Connected M) (Γ : Set (Set α)) (hΓ : ModularCut M Γ)
     (F : Set α) (hF : Indecomposable M F) (hFproper : F ≠ M.E)

@@ -6,6 +6,9 @@ import Tengoku.TutteHomotopyLean.TutteFormalization.DiamondRanks
 namespace TutteFormalization
 variable {α : Type*} {M : Matroid α} [M.Finite] {S T : Set α}
 
+/--
+@isnad1 id=ex.4h4v.s7.88c3ba3b583f from=translated src=- shape=b25b0c2c vocab=4855febe
+-/
 theorem exists_indecomposable_diamond (hS : Indecomposable M S)
     (hT : Indecomposable M T) (hTS : T ⊆ S)
     (hSr : natRank M S = natRank M T + 2) :

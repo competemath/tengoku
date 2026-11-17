@@ -13,7 +13,9 @@ namespace TutteFormalization
 
 variable {α : Type*} {M : Matroid α} [M.Finite] {F L U P X Y : Set α}
 
-/-- PT-02: after the nested-flat equality, indecomposability gives the Tutte edge.-/
+/-- PT-02: after the nested-flat equality, indecomposability gives the Tutte edge.
+@isnad1 id=tutteadj.7h5v.s6.5c81f9a12b8f from=translated src=- shape=23ea907c vocab=9376cd61
+-/
 theorem tutteAdjacent_of_corankTwo (hF : Indecomposable M F) (hc : CorankTwo M F)
     (hX : IsHyperplane M X) (hY : IsHyperplane M Y) (hXY : X ≠ Y)
     (hFX : F ⊆ X) (hFY : F ⊆ Y) : TutteAdjacent M X Y := by
@@ -22,7 +24,9 @@ theorem tutteAdjacent_of_corankTwo (hF : Indecomposable M F) (hc : CorankTwo M F
 
 /-- PT-05: the source's submodularity argument for the complementary intersection.
 The rank equation for U and the join condition are explicit premises supplied by
-the earlier structural construction, which is not proved in this batch.-/
+the earlier structural construction, which is not proved in this batch.
+@isnad1 id=eq.7h5v.s6.7e5bf1d46f6e from=translated src=- shape=8d7368d2 vocab=b5ad870b
+-/
 theorem corankTwo_inter_eq_of_join_eq_ground (hF : M.IsFlat F)
     (hL : CorankTwo M L) (hU : M.IsFlat U) (hFL : F ⊆ L) (hFU : F ⊆ U)
     (hUr : natRank M U = natRank M F + 2)
@@ -38,7 +42,9 @@ theorem corankTwo_inter_eq_of_join_eq_ground (hF : M.IsFlat F)
     (Set.subset_inter hFL hFU) hupper).symm
 
 /-- PT-06 / PD-004: apply with P=V or P=W. Derives the intersection and strict
-containment before proving both rank bounds. No corank hypothesis is needed here.-/
+containment before proving both rank bounds. No corank hypothesis is needed here.
+@isnad1 id=and.6h6v.s7.917caa58d4c3 from=translated src=- shape=987e6fc6 vocab=43ac431a
+-/
 theorem path_join_rank_bounds (hL : M.IsFlat L) (hP : M.IsFlat P)
     (hLU : L ∩ U = F) (hFP : F ⊂ P) (hPU : P ⊆ U)
     (hPr : natRank M P = natRank M F + 1) :
@@ -68,7 +74,9 @@ theorem path_join_rank_bounds (hL : M.IsFlat L) (hP : M.IsFlat P)
   have hupper : natRank M (M.closure (L ∪ P)) ≤ natRank M L + 1 := by omega
   exact ⟨hLP, hstrict, hlower, hupper⟩
 
-/-- PT-06: with L of corank two, the two bounds certify the constructed hyperplane.-/
+/-- PT-06: with L of corank two, the two bounds certify the constructed hyperplane.
+@isnad1 id=ishyperp.6h6v.s6.01afe6cc1cac from=translated src=- shape=e7ebd4dc vocab=7fb0bac7
+-/
 theorem path_join_isHyperplane (hL : CorankTwo M L) (hP : M.IsFlat P)
     (hLU : L ∩ U = F) (hFP : F ⊂ P) (hPU : P ⊆ U)
     (hPr : natRank M P = natRank M F + 1) : IsHyperplane M (M.closure (L ∪ P)) := by

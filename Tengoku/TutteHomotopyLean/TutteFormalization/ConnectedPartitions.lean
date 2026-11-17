@@ -9,6 +9,9 @@ namespace TutteFormalization
 open scoped Matroid
 variable {α : Type*} {M : Matroid α} [M.Finite]
 
+/--
+@isnad1 id=iff.0h2v.s6.1a5319c527c8 from=translated src=- shape=716e657a vocab=a8785cfc
+-/
 theorem connected_iff_no_natRank_partition : Connected M ↔
     ¬ ∃ A B : Set α, A.Nonempty ∧ B.Nonempty ∧ Disjoint A B ∧
       A ∪ B = M.E ∧ natRank M A + natRank M B = natRank M M.E := by
@@ -19,6 +22,9 @@ theorem connected_iff_no_natRank_partition : Connected M ↔
     exact_mod_cast Iff.rfl
   simp only [heq]
 
+/--
+@isnad1 id=or.5h5v.s6.048907f55f15 from=translated src=- shape=a1bbd572 vocab=b0f1459b
+-/
 theorem connected_contract_partition_side {A B F : Set α}
     (hd : Disjoint A B) (hu : A ∪ B = M.E)
     (hr : natRank M A + natRank M B = natRank M M.E)
@@ -34,7 +40,9 @@ theorem connected_contract_partition_side {A B F : Set α}
   · exact natRank_contract_partition hd hu hr F hF
 
 /-- `prop:connected-intersection`, via the same direct-sum obstruction in rank form.
-The source's particular common-cocircuit argument is not claimed audited.-/
+The source's particular common-cocircuit argument is not claimed audited.
+@isnad1 id=indecomp.3h4v.s5.e7035ccbe916 from=translated src=- shape=5949d83d vocab=99520603
+-/
 theorem indecomposable_inter {F₁ F₂ : Set α} (h₁ : Indecomposable M F₁)
     (h₂ : Indecomposable M F₂) (hu : F₁ ∪ F₂ ≠ M.E) :
     Indecomposable M (F₁ ∩ F₂) := by

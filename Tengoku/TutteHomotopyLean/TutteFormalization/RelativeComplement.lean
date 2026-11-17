@@ -12,6 +12,9 @@ namespace TutteFormalization
 
 variable {α : Type*} {M : Matroid α} [M.Finite]
 
+/--
+@isnad1 id=eq.3h4v.s6.688ab01e4765 from=translated src=- shape=92fd3ebf vocab=4a76c35f
+-/
 theorem natRank_closure_insert {S : Set α} (hS : M.IsFlat S) {e : α}
     (he : e ∈ M.E) (heS : e ∉ S) :
     natRank M (M.closure (insert e S)) = natRank M S + 1 := by
@@ -22,7 +25,9 @@ theorem natRank_closure_insert {S : Set α} (hS : M.IsFlat S) {e : α}
   exact_mod_cast hr
 
 /-- ST-05: recursive construction before the final intersection calculation.
-The additive rank equation avoids truncated subtraction in the invariant.-/
+The additive rank equation avoids truncated subtraction in the invariant.
+@isnad1 id=ex.3h4v.s6.1d13f999a642 from=translated src=- shape=d8e3f738 vocab=0bc9a793
+-/
 theorem exists_relative_complement_data (S T : Set α)
     (hS : M.IsFlat S) (hT : M.IsFlat T) (hTS : T ⊆ S) :
     ∃ U : Set α, M.IsFlat U ∧ T ⊆ U ∧ M.closure (U ∪ S) = M.E ∧
@@ -59,7 +64,9 @@ theorem exists_relative_complement_data (S T : Set α)
       simpa only [S', M.closure_union_closure_right_eq, heq] using hjoin
     exact ⟨U, hU, hTT'.trans hT'U, hjoin', by omega⟩
 
-/-- ST-05: full relative complement, with the source corank formula.-/
+/-- ST-05: full relative complement, with the source corank formula.
+@isnad1 id=ex.3h4v.s6.d15526b6b83c from=translated src=- shape=22ffece6 vocab=fd4c24fd
+-/
 theorem exists_relative_complement (S T : Set α)
     (hS : M.IsFlat S) (hT : M.IsFlat T) (hTS : T ⊆ S) :
     ∃ U : Set α, M.IsFlat U ∧ T ⊆ U ∧ U ∩ S = T ∧ M.closure (U ∪ S) = M.E ∧

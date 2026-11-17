@@ -7,6 +7,9 @@ import Tengoku.TutteHomotopyLean.TutteFormalization.RelativeComplement
 namespace TutteFormalization
 variable {α : Type*} {M : Matroid α} [M.Finite] {S T : Set α}
 
+/--
+@isnad1 id=ex.4h4v.s6.a5bbdd064c32 from=translated src=- shape=689e3d7c vocab=10ce0517
+-/
 theorem exists_crossing_hyperplane (hS : M.IsFlat S) (hT : Indecomposable M T)
     (hTS : T ⊂ S) (hSE : S ≠ M.E) :
     ∃ H, IsHyperplane M H ∧ T ⊆ H ∧ ¬ S ⊆ H ∧ S ∪ H ≠ M.E := by
@@ -46,7 +49,9 @@ theorem exists_crossing_hyperplane (hS : M.IsFlat S) (hT : Indecomposable M T)
     intro e he
     exact (show e ∈ S ∪ H from hUnion.symm ▸ he.1).resolve_left he.2
 
-/-- Source rank-one downward step; the maximized quantity is literally |H ∩ S|.-/
+/-- Source rank-one downward step; the maximized quantity is literally |H ∩ S|.
+@isnad1 id=ex.3h4v.s6.df0c312c50a4 from=translated src=- shape=6a3bbe93 vocab=6b7d39b6
+-/
 theorem exists_indecomposable_step (hS : Indecomposable M S) (hT : Indecomposable M T)
     (hTS : T ⊂ S) : ∃ U, Indecomposable M U ∧ T ⊆ U ∧ U ⊂ S ∧
       natRank M U + 1 = natRank M S := by

@@ -12,11 +12,16 @@ namespace TutteFormalization
 
 variable {α : Type*} {M : Matroid α} [M.Finite] {A B X H : Set α}
 
+/--
+@isnad1 id=le.0h4v.s5.2cc62c0dd161 from=translated src=- shape=c00b484d vocab=62231445
+-/
 theorem natRank_submodular_sets (M : Matroid α) [M.Finite] (X Y : Set α) :
     natRank M (X ∩ Y) + natRank M (X ∪ Y) ≤ natRank M X + natRank M Y := by
   simpa only [natRank_closure] using natRank_submodular M X Y
 
-/-- BG-01/BG-02: ranks in an additive ground partition add on every subset.-/
+/-- BG-01/BG-02: ranks in an additive ground partition add on every subset.
+@isnad1 id=eq.4h5v.s7.0ad09b914f9c from=translated src=- shape=1f8cc87c vocab=6a5f88a9
+-/
 theorem natRank_partition (hd : Disjoint A B) (hu : A ∪ B = M.E)
     (hr : natRank M A + natRank M B = natRank M M.E) (hX : X ⊆ M.E) :
     natRank M X = natRank M (X ∩ A) + natRank M (X ∩ B) := by
@@ -35,7 +40,9 @@ theorem natRank_partition (hd : Disjoint A B) (hu : A ∪ B = M.E)
   rw [heq3, heq4, natRank_empty] at h3
   omega
 
-/-- A set losing an element outside a flat loses rank when intersected with it.-/
+/-- A set losing an element outside a flat loses rank when intersected with it.
+@isnad1 id=lt.3h4v.s5.30f236f53f10 from=translated src=- shape=708f3c3d vocab=12560148
+-/
 theorem natRank_inter_lt_of_not_subset_flat (hH : M.IsFlat H)
     (hXE : X ⊆ M.E) (hn : ¬ X ⊆ H) : natRank M (X ∩ H) < natRank M X := by
   by_contra h
@@ -49,7 +56,9 @@ theorem natRank_inter_lt_of_not_subset_flat (hH : M.IsFlat H)
   exact (M.subset_closure X hXE).trans
     (hc.symm.subset.trans ((M.closure_mono Set.inter_subset_right).trans_eq hH.closure))
 
-/-- BG-01: a hyperplane in an additive ground partition contains one entire side.-/
+/-- BG-01: a hyperplane in an additive ground partition contains one entire side.
+@isnad1 id=or.4h5v.s6.279226454e99 from=translated src=- shape=908d0912 vocab=4b0a64da
+-/
 theorem hyperplane_contains_partition_side (hd : Disjoint A B) (hu : A ∪ B = M.E)
     (hr : natRank M A + natRank M B = natRank M M.E) (hH : IsHyperplane M H) :
     A ⊆ H ∨ B ⊆ H := by
@@ -64,7 +73,9 @@ theorem hyperplane_contains_partition_side (hd : Disjoint A B) (hu : A ∪ B = M
   have hHr := hyperplane_natRank hH
   omega
 
-/-- BG-01: contraction preserves the additive rank of the two residual sides.-/
+/-- BG-01: contraction preserves the additive rank of the two residual sides.
+@isnad1 id=eq.4h5v.s7.486e3edd4aaa from=translated src=- shape=91534e94 vocab=a7cbca00
+-/
 theorem natRank_contract_partition (hd : Disjoint A B) (hu : A ∪ B = M.E)
     (hr : natRank M A + natRank M B = natRank M M.E) (F : Set α) (hF : F ⊆ M.E) :
     natRank (M.contract F) (A \ F) + natRank (M.contract F) (B \ F) =
@@ -90,14 +101,18 @@ theorem natRank_contract_partition (hd : Disjoint A B) (hu : A ∪ B = M.E)
   omega
 
 omit [M.Finite] in
-/-- BG-01: a basis computes natural rank by its finite cardinality.-/
+/-- BG-01: a basis computes natural rank by its finite cardinality.
+@isnad1 id=eq.1h4v.s4.6116103a7b83 from=translated src=- shape=2d08df53 vocab=9ec1c5cb
+-/
 theorem natRank_eq_ncard_of_isBasis {I S : Set α} (hI : M.IsBasis I S) :
     natRank M S = I.ncard := by
   simp only [natRank, hI.eRk_eq_encard, Set.ncard_def]
 
 /-- Direct-sum background: the hyperplane-side property implies rank additivity.
 Extend a basis of A to a ground basis; the remaining basis elements span B,
-since otherwise a hyperplane containing them would contain neither full side.-/
+since otherwise a hyperplane containing them would contain neither full side.
+@isnad1 id=eq.3h4v.s6.6724f29117ae from=translated src=- shape=be2e434d vocab=4b0a64da
+-/
 theorem natRank_add_of_hyperplane_sides (hd : Disjoint A B) (hu : A ∪ B = M.E)
     (hh : ∀ H : Set α, IsHyperplane M H → A ⊆ H ∨ B ⊆ H) :
     natRank M A + natRank M B = natRank M M.E := by

@@ -11,7 +11,9 @@ namespace TutteFormalization
 
 variable {α : Type*} {M : Matroid α} [M.Finite] {F X Y : Set α}
 
-/-- BG-01: extend a basis of F with e, then remove e from a containing base.-/
+/-- BG-01: extend a basis of F with e, then remove e from a containing base.
+@isnad1 id=ex.3h4v.s6.12030bb0a00e from=translated src=- shape=4ae65183 vocab=c6ba38ad
+-/
 theorem exists_hyperplane_superset_notMem (hF : M.IsFlat F) {e : α}
     (heE : e ∈ M.E) (heF : e ∉ F) :
     ∃ H : Set α, IsHyperplane M H ∧ F ⊆ H ∧ e ∉ H := by
@@ -45,7 +47,9 @@ theorem exists_hyperplane_superset_notMem (hF : M.IsFlat F) {e : α}
     exact_mod_cast hr.symm
   exact ⟨M.closure J, isHyperplane_of_natRank (M.isFlat_closure _) hnr, hFJ, heJ⟩
 
-/-- BG-01: the containing hyperplanes detect containment in a flat.-/
+/-- BG-01: the containing hyperplanes detect containment in a flat.
+@isnad1 id=le.3h4v.s5.d2110ca9dc7c from=translated src=- shape=a4d6d2d3 vocab=edfaca18
+-/
 theorem subset_flat_of_forall_hyperplane (hF : M.IsFlat F) {A : Set α} (hAE : A ⊆ M.E)
     (h : ∀ H : Set α, IsHyperplane M H → F ⊆ H → A ⊆ H) : A ⊆ F := by
   intro e heA
@@ -54,6 +58,9 @@ theorem subset_flat_of_forall_hyperplane (hF : M.IsFlat F) {A : Set α} (hAE : A
   exact heH (h H hH hFH heA)
 
 omit [M.Finite] in
+/--
+@isnad1 id=eq.3h4v.s5.268e9dd452dd from=translated src=- shape=b179a160 vocab=f43c2b4d
+-/
 theorem hyperplane_join_eq_ground (hX : IsHyperplane M X) (hY : IsHyperplane M Y)
     (hne : X ≠ Y) : M.closure (X ∪ Y) = M.E := by
   have hXE : X ∪ Y ⊆ M.E := Set.union_subset hX.1.subset_ground hY.1.subset_ground
@@ -66,7 +73,9 @@ theorem hyperplane_join_eq_ground (hX : IsHyperplane M X) (hY : IsHyperplane M Y
     · exact False.elim (hX.2.1 h)
   · exact heq
 
-/-- ST-02: the precise modular equality, not just distinctness of hyperplanes.-/
+/-- ST-02: the precise modular equality, not just distinctness of hyperplanes.
+@isnad1 id=modularp.4h4v.s5.05b6dd808029 from=translated src=- shape=ee5a9d25 vocab=d65c58f7
+-/
 theorem hyperplanes_modularPair_of_corankTwo (hX : IsHyperplane M X)
     (hY : IsHyperplane M Y) (hne : X ≠ Y) (hc : CorankTwo M (X ∩ Y)) : ModularPair M X Y := by
   refine ⟨hX.1, hY.1, ?_⟩
@@ -80,7 +89,9 @@ theorem hyperplanes_modularPair_of_corankTwo (hX : IsHyperplane M X)
     ← cast_natRank M (X ∩ Y), ← cast_natRank M M.E]
   exact_mod_cast (show natRank M X + natRank M Y = natRank M (X ∩ Y) + natRank M M.E by omega)
 
-/-- ST-02 / PT-07: two cut hyperplanes with corank-two intersection put it in the cut.-/
+/-- ST-02 / PT-07: two cut hyperplanes with corank-two intersection put it in the cut.
+@isnad1 id=mem.7h5v.s6.be94db8aa41c from=translated src=- shape=5a5b8f55 vocab=a9f21915
+-/
 theorem ModularCut.hyperplane_inter_mem {Γ : Set (Set α)} (hΓ : ModularCut M Γ)
     (hX : IsHyperplane M X) (hY : IsHyperplane M Y) (hne : X ≠ Y)
     (hc : CorankTwo M (X ∩ Y)) (hXΓ : X ∈ Γ) (hYΓ : Y ∈ Γ) : X ∩ Y ∈ Γ :=

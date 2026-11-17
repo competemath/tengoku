@@ -7,6 +7,9 @@ import Tengoku.TutteHomotopyLean.TutteFormalization.PathOperations
 public target, so none of its dependencies can rely on that target. -/
 namespace TutteFormalization
 
+/--
+@isnad1 id=ex.10h6v.s7.b92043dbf9ba from=translated src=- shape=94055f23 vocab=45823dfb
+-/
 theorem path_theorem_induction {α : Type*} (M : Matroid α) [M.Finite]
     (_hM : Connected M) (Γ : Set (Set α)) (hΓ : ModularCut M Γ)
     (F : Set α) (hF : Indecomposable M F) (hFproper : F ≠ M.E)

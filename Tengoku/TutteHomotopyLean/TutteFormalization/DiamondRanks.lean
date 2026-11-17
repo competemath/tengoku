@@ -8,12 +8,18 @@ namespace TutteFormalization
 open scoped Matroid
 variable {α : Type*} {M : Matroid α} [M.Finite] {S T L P X Y : Set α}
 
+/--
+@isnad1 id=iff.1h3v.s5.52f645743451 from=translated src=- shape=62a6505b vocab=13137955
+-/
 theorem corankTwo_iff_natRank (hF : M.IsFlat T) :
     CorankTwo M T ↔ natRank M T + 2 = natRank M M.E := by
   unfold CorankTwo
   rw [and_iff_right hF, ← cast_natRank M T, ← cast_natRank M M.E]
   exact_mod_cast Iff.rfl
 
+/--
+@isnad1 id=ne.7h5v.s6.9a5534e76a8c from=translated src=- shape=127d3c17 vocab=2077af88
+-/
 theorem union_ne_ground_of_indecomposable_inter (hT : Indecomposable M T)
     (hX : M.IsFlat X) (hY : M.IsFlat Y) (hi : X ∩ Y = T)
     (hnX : X ≠ T) (hnY : Y ≠ T)
@@ -46,6 +52,9 @@ theorem union_ne_ground_of_indecomposable_inter (hT : Indecomposable M T)
       natRank (M ／ T) (M.E \ T)
     omega
 
+/--
+@isnad1 id=and.9h6v.s7.7995e52cef38 from=translated src=- shape=5a414139 vocab=406c57fe
+-/
 theorem diamond_join_inter (hS : M.IsFlat S) (hL : CorankTwo M L)
     (hP : M.IsFlat P) (hi : L ∩ S = T) (hTP : T ⊂ P) (hPS : P ⊆ S)
     (hSr : natRank M S = natRank M T + 2)
@@ -69,6 +78,9 @@ theorem diamond_join_inter (hS : M.IsFlat S) (hL : CorankTwo M L)
   exact (flat_eq_of_subset_of_natRank_le hP (flat_inter hS hH.1)
     (Set.subset_inter hPS hPH) (by omega)).symm
 
+/--
+@isnad1 id=eq.8h5v.s6.ce13dba6d4a4 from=translated src=- shape=ab36d696 vocab=d2f2c5e9
+-/
 theorem cover_flats_inter_eq {F P Q : Set α} (hF : M.IsFlat F)
     (hP : M.IsFlat P) (hQ : M.IsFlat Q) (hFP : F ⊆ P) (hFQ : F ⊆ Q)
     (hrP : natRank M P = natRank M F + 1)
@@ -82,6 +94,9 @@ theorem cover_flats_inter_eq {F P Q : Set α} (hF : M.IsFlat F)
   exact (flat_eq_of_subset_of_natRank_le hF (flat_inter hP hQ)
     (Set.subset_inter hFP hFQ) (by omega)).symm
 
+/--
+@isnad1 id=eq.9h6v.s7.8fe0ada4aea1 from=translated src=- shape=8237d30c vocab=f5101e79
+-/
 theorem cover_flats_join_eq {F P Q S : Set α} (hS : M.IsFlat S)
     (hP : M.IsFlat P) (hQ : M.IsFlat Q) (hPS : P ⊆ S) (hQS : Q ⊆ S)
     (hrP : natRank M P = natRank M F + 1)

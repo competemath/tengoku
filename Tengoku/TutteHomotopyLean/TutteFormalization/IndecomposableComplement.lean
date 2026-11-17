@@ -6,7 +6,9 @@ import Tengoku.TutteHomotopyLean.TutteFormalization.Diamond
 namespace TutteFormalization
 variable {α : Type*} {M : Matroid α} [M.Finite] {S T U : Set α}
 
-/-- The minimal-rank argument in the source complement proof.-/
+/-- The minimal-rank argument in the source complement proof.
+@isnad1 id=ex.6h5v.s6.0c0c17ef4828 from=translated src=- shape=38cafae2 vocab=5cc0d48a
+-/
 theorem exists_indecomposable_cover_not_subset (hS : Indecomposable M S)
     (hT : Indecomposable M T) (hU : M.IsFlat U) (hTS : T ⊆ S) (hTU : T ⊆ U) (hnSU : ¬ S ⊆ U) :
     ∃ W, Indecomposable M W ∧ T ⊆ W ∧ W ⊆ S ∧ ¬ W ⊆ U ∧
@@ -42,7 +44,9 @@ theorem exists_indecomposable_cover_not_subset (hS : Indecomposable M S)
   · have hbound := hmin B ⟨hB, hTV.trans hVB, hBW.trans hW.2.2.1, hBU⟩
     omega
 
-/-- Source indecomposable complement, with the literal corank equation.-/
+/-- Source indecomposable complement, with the literal corank equation.
+@isnad1 id=ex.6h5v.s7.2a581eafabb0 from=translated src=- shape=d4fe15b6 vocab=279ef7cc
+-/
 theorem exists_indecomposable_complement (hS : Indecomposable M S)
     (hT : Indecomposable M T) (hU : M.IsFlat U) (hTS : T ⊆ S) (hTU : T ⊆ U)
     (hjoin : M.closure (S ∪ U) = M.E) :

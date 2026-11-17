@@ -14,12 +14,18 @@ open scoped Matroid
 variable {α : Type*} {M : Matroid α} [M.Finite] {F H G : Set α}
 
 omit [M.Finite] in
+/--
+@isnad1 id=isflat.2h4v.s5.7f3cbbc0276c from=translated src=- shape=87d9ad31 vocab=67639782
+-/
 theorem flat_sdiff_contract (hH : M.IsFlat H) (hFH : F ⊆ H) :
     (M ／ F).IsFlat (H \ F) := by
   apply (M ／ F).isFlat_iff_closure_eq.mpr
   simp only [M.contract_closure_eq, Set.sdiff_union_of_subset hFH, hH.closure]
 
 omit [M.Finite] in
+/--
+@isnad1 id=isflat.2h4v.s5.0fc57cc3ff07 from=translated src=- shape=913868ed vocab=4cb959e4
+-/
 theorem flat_union_of_contract_flat (hF : M.IsFlat F) (hG : (M ／ F).IsFlat G) :
     M.IsFlat (G ∪ F) := by
   have hg : M.closure (G ∪ F) \ F = G := by
@@ -32,6 +38,9 @@ theorem flat_union_of_contract_flat (hF : M.IsFlat F) (hG : (M ／ F).IsFlat G) 
       (Set.sdiff_union_of_subset hFC).symm
     _ = G ∪ F := congrArg (fun S => S ∪ F) hg
 
+/--
+@isnad1 id=ishyperp.3h4v.s5.e29b479b6e47 from=translated src=- shape=6f51ace7 vocab=e53ab435
+-/
 theorem hyperplane_sdiff_contract (hF : M.IsFlat F) (hH : IsHyperplane M H)
     (hFH : F ⊆ H) : IsHyperplane (M ／ F) (H \ F) := by
   apply isHyperplane_of_natRank (flat_sdiff_contract hH.1 hFH)
@@ -44,6 +53,9 @@ theorem hyperplane_sdiff_contract (hF : M.IsFlat F) (hH : IsHyperplane M H)
   change natRank (M ／ F) (H \ F) + 1 = natRank (M ／ F) (M.E \ F)
   omega
 
+/--
+@isnad1 id=ishyperp.2h4v.s5.81f067fba69b from=translated src=- shape=c9bf7d7f vocab=f166ae28
+-/
 theorem hyperplane_union_of_contract (hF : M.IsFlat F) (hG : IsHyperplane (M ／ F) G) :
     IsHyperplane M (G ∪ F) := by
   apply isHyperplane_of_natRank (flat_union_of_contract_flat hF hG.1)
@@ -55,6 +67,9 @@ theorem hyperplane_union_of_contract (hF : M.IsFlat F) (hG : IsHyperplane (M ／
   omega
 
 omit [M.Finite] in
+/--
+@isnad1 id=iff.2h4v.s5.423259526fb3 from=translated src=- shape=5027582a vocab=db9f4ff9
+-/
 theorem indecomposable_sdiff_contract_iff (hH : M.IsFlat H) (hFH : F ⊆ H) :
     Indecomposable (M ／ F) (H \ F) ↔ Indecomposable M H := by
   have heq : (M ／ F) ／ (H \ F) = M ／ H := by
@@ -65,6 +80,9 @@ theorem indecomposable_sdiff_contract_iff (hH : M.IsFlat H) (hFH : F ⊆ H) :
   · intro h
     exact ⟨flat_sdiff_contract hH hFH, heq ▸ h.2⟩
 
+/--
+@isnad1 id=indecomp.0h2v.s3.2da437ab5c15 from=translated src=- shape=54f98053 vocab=9c430c91
+-/
 theorem ground_indecomposable (M : Matroid α) [M.Finite] : Indecomposable M M.E := by
   refine ⟨M.ground_isFlat,
     connected_of_empty_isFlat_of_rank_le_one (contract_empty_isFlat M.ground_isFlat) ?_⟩

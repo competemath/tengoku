@@ -31,14 +31,23 @@ noncomputable def matroid {n : ℕ} (N : FiniteModel n) : Matroid (Fin n) := by
       exact ⟨e, by simpa using heJ, by simpa using heI, by simpa using he⟩)
     (fun {_} _ => Set.subset_univ _)).matroid
 
+/--
+@isnad1 id=eq.0h2v.s4.58abc3426c47 from=translated src=- shape=915f20c5 vocab=e04c4d7d
+-/
 @[simp] theorem ground {n} (N : FiniteModel n) : N.matroid.E = Set.univ := rfl
 instance {n} (N : FiniteModel n) : N.matroid.Finite := ⟨Set.toFinite _⟩
 
+/--
+@isnad1 id=iff.0h3v.s5.f2447f26e027 from=translated src=- shape=eccb9cd9 vocab=ca2e93ae
+-/
 @[simp] theorem indep_iff {n} (N : FiniteModel n) (I : Finset (Fin n)) :
     N.matroid.Indep (I : Set (Fin n)) ↔ N.independent I = true := by
   classical
   simp [matroid, IndepMatroid.matroid_indep_iff]
 
+/--
+@isnad1 id=eq.0h3v.s4.b2e3e54fd88a from=translated src=- shape=b100f7dc vocab=67f4f17e
+-/
 theorem rank_eq {n} (N : FiniteModel n) (S : Finset (Fin n)) :
     natRank N.matroid S = N.rank S := by
   classical

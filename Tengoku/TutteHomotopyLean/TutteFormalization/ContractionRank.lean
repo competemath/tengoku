@@ -14,6 +14,9 @@ open scoped Matroid
 
 variable {α : Type*} {M : Matroid α} [M.Finite]
 
+/--
+@isnad1 id=eq.1h3v.s6.0e0ed63ee02e from=translated src=- shape=885aea70 vocab=185135c0
+-/
 theorem natRank_dual_add (M : Matroid α) [M.Finite] (X : Set α) (hX : X ⊆ M.E) :
     natRank M✶ X + natRank M M.E = natRank M (M.E \ X) + X.ncard := by
   have h := M.eRk_dual_add_eRank X hX
@@ -21,12 +24,17 @@ theorem natRank_dual_add (M : Matroid α) [M.Finite] (X : Set α) (hX : X ⊆ M.
     ← cast_natRank M (M.E \ X), ← (M.ground_finite.subset hX).cast_ncard_eq] at h
   exact_mod_cast h
 
+/--
+@isnad1 id=eq.1h4v.s5.0f655c980dc2 from=translated src=- shape=c9e8b6c8 vocab=12037f5c
+-/
 theorem natRank_delete (M : Matroid α) (C X : Set α) (hX : X ⊆ M.E \ C) :
     natRank (M ＼ C) X = natRank M X := by
   unfold natRank
   rw [M.delete_eq_restrict, M.restrict_eRk_eq hX]
 
-/-- BG-01: the exact additive form of the contraction rank formula on its ground set.-/
+/-- BG-01: the exact additive form of the contraction rank formula on its ground set.
+@isnad1 id=eq.2h4v.s6.85abe8369e99 from=translated src=- shape=519103a4 vocab=7f9415fd
+-/
 theorem natRank_contract_add (F X : Set α) (hF : F ⊆ M.E) (hX : X ⊆ M.E \ F) :
     natRank (M ／ F) X + natRank M F = natRank M (X ∪ F) := by
   let N := M✶ ＼ F
@@ -51,16 +59,23 @@ theorem natRank_contract_add (F X : Set α) (hF : F ⊆ M.E) (hX : X ⊆ M.E \ F
   omega
 
 omit [M.Finite] in
-/-- BG-01: contracting a flat makes the empty set a flat (the quotient is loopless).-/
+/-- BG-01: contracting a flat makes the empty set a flat (the quotient is loopless).
+@isnad1 id=isflat.1h3v.s4.7729af9d7638 from=translated src=- shape=a76fda9d vocab=972196c7
+-/
 theorem contract_empty_isFlat {F : Set α} (hF : M.IsFlat F) :
     (M ／ F).IsFlat ∅ := by
   apply (M ／ F).isFlat_iff_closure_eq.mpr
   simp [M.contract_closure_eq, hF.closure]
 
+/--
+@isnad1 id=eq.0h2v.s4.9c906bda892b from=translated src=- shape=fe9fd6fa vocab=3e52a375
+-/
 theorem natRank_empty (M : Matroid α) : natRank M ∅ = 0 := by
   simp [natRank]
 
-/-- A nonempty ground subset of a loopless matroid has positive rank.-/
+/-- A nonempty ground subset of a loopless matroid has positive rank.
+@isnad1 id=lt.3h3v.s5.413847b31362 from=translated src=- shape=a79c7323 vocab=ace3cb94
+-/
 theorem natRank_pos_of_empty_isFlat (h0 : M.IsFlat ∅) {A : Set α}
     (hAE : A ⊆ M.E) (hA : A.Nonempty) : 0 < natRank M A := by
   obtain ⟨e, heA⟩ := hA
@@ -71,7 +86,9 @@ theorem natRank_pos_of_empty_isFlat (h0 : M.IsFlat ∅) {A : Set α}
   have hmono : natRank M {e} ≤ natRank M A := natRank_mono (Set.singleton_subset_iff.mpr heA)
   omega
 
-/-- Source connectedness for loopless matroids of rank at most one, including rank zero.-/
+/-- Source connectedness for loopless matroids of rank at most one, including rank zero.
+@isnad1 id=connecte.2h2v.s5.70d3fe3314a8 from=translated src=- shape=94c2076b vocab=bbbf2c2f
+-/
 theorem connected_of_empty_isFlat_of_rank_le_one (h0 : M.IsFlat ∅)
     (hr : natRank M M.E ≤ 1) : Connected M := by
   rintro ⟨A, B, hA, hB, _, hAB, hsep⟩
@@ -84,7 +101,9 @@ theorem connected_of_empty_isFlat_of_rank_le_one (h0 : M.IsFlat ∅)
     exact_mod_cast hsep
   omega
 
-/-- `def:indecomposable`: every hyperplane is indecomposable.-/
+/-- `def:indecomposable`: every hyperplane is indecomposable.
+@isnad1 id=indecomp.1h3v.s4.5a5b5716e43e from=translated src=- shape=ec067713 vocab=97467c82
+-/
 theorem hyperplane_indecomposable {H : Set α} (hH : IsHyperplane M H) :
     Indecomposable M H := by
   refine ⟨hH.1, connected_of_empty_isFlat_of_rank_le_one (contract_empty_isFlat hH.1) ?_⟩

@@ -7,6 +7,9 @@ literally repeating the downward step. This is the chain interface needed below.
 namespace TutteFormalization
 variable {α : Type*} {M : Matroid α} [M.Finite] {S T : Set α}
 
+/--
+@isnad1 id=ex.5h5v.s6.992c898bb2e9 from=translated src=- shape=4687a314 vocab=595c2ee5
+-/
 theorem exists_indecomposable_of_rank (hS : Indecomposable M S) (hT : Indecomposable M T)
     (hTS : T ⊆ S) (k : ℕ) (hTk : natRank M T ≤ k) (hkS : k ≤ natRank M S) :
     ∃ U, Indecomposable M U ∧ T ⊆ U ∧ U ⊆ S ∧ natRank M U = k := by

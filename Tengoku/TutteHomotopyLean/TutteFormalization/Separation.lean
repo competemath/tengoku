@@ -8,6 +8,9 @@ namespace TutteFormalization
 open scoped Matroid
 variable {α : Type*} {M : Matroid α} [M.Finite] {F : Set α}
 
+/--
+@isnad1 id=iff.1h3v.s6.ac1199933025 from=translated src=- shape=44455f79 vocab=8b899ee9
+-/
 theorem decomposable_iff_separation (hF : M.IsFlat F) :
     ¬ Indecomposable M F ↔ ∃ X₁ X₂ : Set α,
       F = X₁ ∩ X₂ ∧ X₁ ∪ X₂ = M.E ∧ X₁ ≠ F ∧ X₂ ≠ F ∧

@@ -14,25 +14,38 @@ namespace TutteFormalization
 
 variable {α : Type*} {M : Matroid α} [M.Finite] {F G H : Set α}
 
-/-- PD-002: Mathlib already infers finiteness after arbitrary contraction.-/
+/-- PD-002: Mathlib already infers finiteness after arbitrary contraction.
+@isnad1 id=finite.0h3v.s4.9c1a1e02f0f8 from=translated src=- shape=2f5d2d78 vocab=a7ad9d1c
+-/
 theorem contraction_finite (M : Matroid α) [M.Finite] (F : Set α) :
     (M.contract F).Finite := inferInstance
 
 /-- Engineering interface; only used with a finite-ground-set matroid below.-/
 noncomputable def natRank (M : Matroid α) (F : Set α) : ℕ := (M.eRk F).toNat
 
+/--
+@isnad1 id=eq.0h3v.s4.9498a8971808 from=translated src=- shape=fcd3673b vocab=0d60cb8e
+-/
 theorem cast_natRank (M : Matroid α) [M.Finite] (F : Set α) :
     (natRank M F : ℕ∞) = M.eRk F :=
   ENat.natCast_toNat (M.isRkFinite_set F).eRk_lt_top.ne
 
+/--
+@isnad1 id=le.1h4v.s5.737a7c1ef75e from=translated src=- shape=3fc7fe92 vocab=90f627e7
+-/
 theorem natRank_mono (hFG : F ⊆ G) : natRank M F ≤ natRank M G := by
   exact ENat.toNat_le_toNat (M.eRk_mono hFG) (M.isRkFinite_set G).eRk_lt_top.ne
 
+/--
+@isnad1 id=eq.0h3v.s4.4f75345142fd from=translated src=- shape=ab3a5df3 vocab=66596a7b
+-/
 theorem natRank_closure (M : Matroid α) (F : Set α) :
     natRank M (M.closure F) = natRank M F := by
   simp only [natRank, M.eRk_closure_eq]
 
-/-- BG-01: reuse the verified submodular rank inequality, converting finite ranks.-/
+/-- BG-01: reuse the verified submodular rank inequality, converting finite ranks.
+@isnad1 id=le.0h4v.s5.d0d4981fcecb from=translated src=- shape=e34b1174 vocab=e24aa0fc
+-/
 theorem natRank_submodular (M : Matroid α) [M.Finite] (F G : Set α) :
     natRank M (F ∩ G) + natRank M (M.closure (F ∪ G)) ≤
       natRank M F + natRank M G := by
@@ -42,7 +55,9 @@ theorem natRank_submodular (M : Matroid α) [M.Finite] (F G : Set α) :
   rw [natRank_closure]
   exact_mod_cast h
 
-/-- BG-01: nested flats cannot have nonincreasing rank unless they are equal.-/
+/-- BG-01: nested flats cannot have nonincreasing rank unless they are equal.
+@isnad1 id=eq.4h4v.s5.2bb6a704c327 from=translated src=- shape=2b805660 vocab=4af1dd45
+-/
 theorem flat_eq_of_subset_of_natRank_le (hF : M.IsFlat F) (hG : M.IsFlat G)
     (hFG : F ⊆ G) (hr : natRank M G ≤ natRank M F) : F = G := by
   have her : M.eRk G ≤ M.eRk F := by
@@ -52,6 +67,9 @@ theorem flat_eq_of_subset_of_natRank_le (hF : M.IsFlat F) (hG : M.IsFlat G)
     (M.isRkFinite_set F).closure_eq_closure_of_subset_of_eRk_ge_eRk hFG her
   simpa only [hF.closure, hG.closure] using hc
 
+/--
+@isnad1 id=lt.3h4v.s5.dc41c1ae2358 from=translated src=- shape=cd1d55fc vocab=c75ecdca
+-/
 theorem natRank_lt_of_flat_ssubset (hF : M.IsFlat F) (hG : M.IsFlat G)
     (hFG : F ⊂ G) : natRank M F < natRank M G := by
   by_contra hn
@@ -59,7 +77,9 @@ theorem natRank_lt_of_flat_ssubset (hF : M.IsFlat F) (hG : M.IsFlat G)
   exact hFG.2 heq.symm.subset
 
 omit [M.Finite] in
-/-- BG-01: intersection of flats, via closure monotonicity and extensivity.-/
+/-- BG-01: intersection of flats, via closure monotonicity and extensivity.
+@isnad1 id=isflat.2h4v.s4.42474c90225f from=translated src=- shape=80e5bfc8 vocab=d64dfa96
+-/
 theorem flat_inter (hF : M.IsFlat F) (hG : M.IsFlat G) : M.IsFlat (F ∩ G) := by
   apply M.isFlat_iff_closure_eq.mpr
   apply Set.Subset.antisymm
@@ -68,7 +88,9 @@ theorem flat_inter (hF : M.IsFlat F) (hG : M.IsFlat G) : M.IsFlat (F ∩ G) := b
       ((M.closure_mono Set.inter_subset_right).trans_eq hG.closure)
   · exact M.subset_closure _ (Set.inter_subset_left.trans hF.subset_ground)
 
-/-- BG-01: adjoining one element outside a hyperplane spans the ground set.-/
+/-- BG-01: adjoining one element outside a hyperplane spans the ground set.
+@isnad1 id=eq.1h3v.s5.1c84e6a8e332 from=translated src=- shape=7321de01 vocab=39c4bbb7
+-/
 theorem hyperplane_natRank (hH : IsHyperplane M H) :
     natRank M H + 1 = natRank M M.E := by
   have hn : ¬ M.E ⊆ H := fun h => hH.2.1 (Set.Subset.antisymm hH.1.subset_ground h)
@@ -89,6 +111,9 @@ theorem hyperplane_natRank (hH : IsHyperplane M H) :
   rw [hground, ← cast_natRank M M.E, ← cast_natRank M H] at hr
   exact_mod_cast hr.symm
 
+/--
+@isnad1 id=ishyperp.2h3v.s5.9fa13c46fe38 from=translated src=- shape=34be2ce7 vocab=f0819c71
+-/
 theorem isHyperplane_of_natRank (hH : M.IsFlat H)
     (hr : natRank M H + 1 = natRank M M.E) : IsHyperplane M H := by
   refine ⟨hH, ?_, ?_⟩
@@ -103,7 +128,9 @@ theorem isHyperplane_of_natRank (hH : M.IsFlat H)
       natRank_lt_of_flat_ssubset hH hG (hHG.ssubset_of_ne (Ne.symm heq))
     exact flat_eq_of_subset_of_natRank_le hG M.ground_isFlat hG.subset_ground (by omega)
 
-/-- PT-02 / PD-003: strict containment below a hyperplane gives the upper rank bound.-/
+/-- PT-02 / PD-003: strict containment below a hyperplane gives the upper rank bound.
+@isnad1 id=eq.6h5v.s6.ea133ea82717 from=translated src=- shape=6b17d201 vocab=bcbbf2d5
+-/
 theorem hyperplane_inter_eq_of_corankTwo (hF : CorankTwo M F)
     {X Y : Set α} (hX : IsHyperplane M X) (hY : IsHyperplane M Y)
     (hXY : X ≠ Y) (hFX : F ⊆ X) (hFY : F ⊆ Y) : X ∩ Y = F := by
