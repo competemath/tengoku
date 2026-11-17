@@ -1,0 +1,1 @@
+-- LevinEntireFunctionsLean: a factory bundle (data/intake/levin-entire-functions-lean). This file only marks the library for Tengoku/All.lean.

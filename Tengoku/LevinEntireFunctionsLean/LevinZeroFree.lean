@@ -1,0 +1,138 @@
+import Tengoku.LevinEntireFunctionsLean.LevinGrowth
+import Tengoku.LevinEntireFunctionsLean.LevinAssembly
+import Tengoku.LevinEntireFunctionsLean.LevinFiniteType
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku repair: removed `#print axioms LevinZeroFree.directionCompactSpace` (it only prints; the queue checks the axioms of every declaration). -/
+/-! Tengoku repair: removed `#print axioms LevinZeroFree.directionNonempty` (it only prints; the queue checks the axioms of every declaration). -/
+/-! Tengoku repair: removed `#print axioms LevinZeroFree.rayRegular_tendsto` (it only prints; the queue checks the axioms of every declaration). -/
+/-! Tengoku repair: removed `#print axioms LevinZeroFree.radialRegular_of_uniform_limit` (it only prints; the queue checks the axioms of every declaration). -/
+/-! Tengoku repair: removed `#print axioms LevinZeroFree.exists_dense_sequence_in` (it only prints; the queue checks the axioms of every declaration). -/
+/-! Tengoku repair: removed `#print axioms LevinZeroFree.radialRegular_of_zero_free_dense_sequence` (it only prints; the queue checks the axioms of every declaration). -/
+/-! Tengoku repair: removed `#print axioms LevinZeroFree.radialRegular_of_zero_free_dense_rays` (it only prints; the queue checks the axioms of every declaration). -/
+
+/-!
+# The dense-ray criterion for globally zero-free entire functions
+
+This is a genuine special case: the analytic modulus is derived from the
+entire-function and finite-type hypotheses. The conclusion is radial regularity.
+General entire functions with zeros, and the C₀-disk conclusion, are not claimed.
+-/
+
+noncomputable section
+open MeasureTheory Set Filter Topology Metric
+open LevinGrowth LevinDensity LevinAssembly
+
+namespace LevinZeroFree
+
+/--
+@isnad1 id=compacts.0h0v.s4.3a823fa61a18 from=translated src=- shape=49959d42 vocab=03b284d2
+-/
+instance directionCompactSpace : CompactSpace Direction := by
+  have hset : {ζ : ℂ | ‖ζ‖ = 1} = sphere (0 : ℂ) 1 := by
+    ext ζ
+    simp only [mem_ofPred_eq, mem_sphere, dist_zero_right]
+  have hc : IsCompact {ζ : ℂ | ‖ζ‖ = 1} := by
+    rw [hset]
+    exact isCompact_sphere _ _
+  exact isCompact_iff_compactSpace.mp hc
+
+/--
+@isnad1 id=nonempty.0h0v.s1.4d2474343b7e from=translated src=- shape=49959d42 vocab=13d5fb52
+-/
+instance directionNonempty : Nonempty Direction := ⟨⟨1, norm_one⟩⟩
+
+/-- Translate the epsilon definition on one ray into its outside filter.
+@isnad1 id=ex.1h4v.s5.0759ba2ea3b0 from=translated src=- shape=feea5ae9 vocab=66d244cc
+-/
+theorem rayRegular_tendsto {f : ℂ → ℂ} {ρ : ℝ} {ζ : Direction} {a : ℝ}
+    (h : RayRegular f ρ ζ a) :
+    ∃ E : Set ℝ, MeasurableSet E ∧ ZeroRadialDensity E ∧
+      Tendsto (fun r => normalizedLog f ρ r ζ) (outsideFilter E) (𝓝 a) := by
+  obtain ⟨E, hEm, hEz, hlim⟩ := h
+  refine ⟨E, hEm, hEz, Metric.tendsto_nhds.2 ?_⟩
+  intro ε hε
+  obtain ⟨R, _, hR⟩ := hlim ε hε
+  apply eventually_inf_principal.mpr
+  filter_upwards [eventually_ge_atTop R] with r hr hrE
+  simpa only [Real.dist_eq] using (hR r hr hrE).2
+
+/-- Convert a uniform limit outside an actual zero-density radial set to the
+paper-facing radial definition. The nonvanishing clause is retained explicitly.
+@isnad1 id=radialre.5h4v.s6.73d2c290eca6 from=translated src=- shape=af081c1d vocab=4db0d46d
+-/
+theorem radialRegular_of_uniform_limit {f : ℂ → ℂ} {ρ : ℝ}
+    (hnz : ∀ z : ℂ, f z ≠ 0) (E : Set ℝ)
+    (hEm : MeasurableSet E) (hEz : ZeroRadialDensity E) (h : Direction → ℝ)
+    (hh : Continuous h)
+    (hlim : TendstoUniformly (normalizedLog f ρ) h (outsideFilter E)) :
+    RadialRegular f ρ h := by
+  refine ⟨hh, E, hEm, hEz, ?_⟩
+  intro ε hε
+  have hevent := (Metric.tendstoUniformly_iff.1 hlim) ε hε
+  obtain ⟨R, hR⟩ := eventually_atTop.1 (eventually_inf_principal.1 hevent)
+  refine ⟨max R 1, lt_of_lt_of_le (by norm_num) (le_max_right _ _), ?_⟩
+  intro r hr hrE ζ
+  refine ⟨hnz _, ?_⟩
+  have hb := hR r ((le_max_left _ _).trans hr) hrE ζ
+  simpa only [Real.dist_eq, abs_sub_comm] using hb
+
+/-- A dense set of directions admits a countable dense sequence of directions
+inside it. This uses the actual topology inherited from the complex plane.
+@isnad1 id=ex.1h1v.s6.d4723355a8a8 from=translated src=- shape=19f52772 vocab=1d607ce4
+-/
+theorem exists_dense_sequence_in {S : Set Direction} (hS : Dense S) :
+    ∃ d : ℕ → Direction, DenseRange d ∧ ∀ n, d n ∈ S := by
+  obtain ⟨T, hTS, hTc, hTd⟩ := hS.exists_countable_dense_subset
+  obtain ⟨d, hd⟩ := hTc.exists_eq_range hTd.nonempty
+  refine ⟨d, ?_, ?_⟩
+  · show Dense (range d)
+    rwa [← hd]
+  · intro n
+    apply hTS
+    rw [hd]
+    exact mem_range_self n
+
+/-- Globally zero-free entire functions of finite positive type satisfy the
+radial dense-ray criterion. The angular equicontinuity is proved analytically
+from these hypotheses by `LevinFiniteType`, rather than assumed here.
+@isnad1 id=ex.6h3v.s7.775aa8ebc900 from=translated src=- shape=b7c59789 vocab=e7d35f61
+-/
+theorem radialRegular_of_zero_free_dense_sequence {f : ℂ → ℂ} {ρ : ℝ}
+    (hf : Differentiable ℂ f) (hρ : 0 ≤ ρ)
+    (htype : FinitePositiveType f ρ) (hnz : ∀ z : ℂ, f z ≠ 0)
+    (d : ℕ → Direction) (hd : DenseRange d)
+    (hgood : ∀ n, ∃ a : ℝ, RayRegular f ρ (d n) a) :
+    ∃ h : Direction → ℝ, RadialRegular f ρ h := by
+  choose a ha using hgood
+  have hdir (n : ℕ) := rayRegular_tendsto (ha n)
+  have heq : ∃ E : Set ℝ, MeasurableSet E ∧ ZeroRadialDensity E ∧
+      LevinCompact.AsymptoticUniformEquicontinuous (normalizedLog f ρ) (outsideFilter E) := by
+    refine ⟨∅, MeasurableSet.empty, ?_, ?_⟩
+    · intro ε hε
+      refine ⟨0, le_rfl, fun R _ => ?_⟩
+      simp only [empty_inter, measure_empty]
+      exact bot_le
+    · apply asymptoticUniformEquicontinuous_mono
+        (LevinFiniteType.zero_free_asymptotic_equicontinuity hf hρ htype hnz)
+      exact inf_le_left
+  obtain ⟨E, hEm, hEz, h, hh, hlim, _⟩ :=
+    exists_uniform_limit_from_separate_exceptional_sets
+      (normalizedLog f ρ) d hd a hdir heq
+  exact ⟨h, radialRegular_of_uniform_limit hnz E hEm hEz h hh.continuous hlim⟩
+
+/-- Dense-set version of the zero-free special case, without a preselected
+countable dense sequence. The conclusion remains radial regularity.
+@isnad1 id=ex.5h2v.s7.7fa5e59c6bed from=translated src=- shape=72995110 vocab=b4f97621
+-/
+theorem radialRegular_of_zero_free_dense_rays {f : ℂ → ℂ} {ρ : ℝ}
+    (hf : Differentiable ℂ f) (hρ : 0 ≤ ρ)
+    (htype : FinitePositiveType f ρ) (hnz : ∀ z : ℂ, f z ≠ 0)
+    (hgood : Dense {ζ : Direction | ∃ a : ℝ, RayRegular f ρ ζ a}) :
+    ∃ h : Direction → ℝ, RadialRegular f ρ h := by
+  obtain ⟨d, hd, hmem⟩ := exists_dense_sequence_in hgood
+  exact radialRegular_of_zero_free_dense_sequence hf hρ htype hnz d hd hmem
+
+end LevinZeroFree
+

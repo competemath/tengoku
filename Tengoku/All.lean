@@ -24,6 +24,7 @@ import Tengoku.DerivedAlgGeoLean
 import Tengoku.Dandelin
 import Tengoku.Polyfun
 import Tengoku.Hironaka
+import Tengoku.LevinEntireFunctionsLean
 import Tengoku.KummerCriterion
 import Tengoku.FltRegular
 import Tengoku.HodgeStructuresLean4
