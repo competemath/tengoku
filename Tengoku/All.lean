@@ -20,6 +20,7 @@ import Tengoku.Aintlib
 import Tengoku.LeanOperads
 import Tengoku.Expdb
 import Tengoku.DerivedAlgGeoLean
+import Tengoku.Dandelin
 import Tengoku.Polyfun
 import Tengoku.Hironaka
 import Tengoku.KummerCriterion
