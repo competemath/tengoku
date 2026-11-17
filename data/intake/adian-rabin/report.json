@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "2377e473aa409398bd2e3d3ec39dafe070c252229302ae899269674608d50b30",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "adian-rabin",
+ "lint_mode": "proposed",
+ "modules": 83,
+ "part": 1,
+ "theorems": 1005
+}

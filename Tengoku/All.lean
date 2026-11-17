@@ -113,6 +113,7 @@ import Tengoku.Apap
 import Tengoku.Sendov
 import Tengoku.DgLean
 import Tengoku.LeanEvalPiSuccSphereNMulequivZmodTwo
+import Tengoku.AdianRabin
 import Tengoku.LeanCommutator
 import Tengoku.Leancert
 import Tengoku.QuadraticAlgebras
