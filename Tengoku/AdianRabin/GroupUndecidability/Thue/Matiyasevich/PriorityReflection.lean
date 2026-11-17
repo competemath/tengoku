@@ -14,6 +14,9 @@ variable {n r : ℕ}
 
 /-! ### Elementary interfaces used by the priority reflection proof -/
 
+/--
+@isnad1 id=injectiv.0h1v.s3.cb06abcf1ec4 from=translated src=- shape=08ae0ce5 vocab=d6dfb6fe
+-/
 theorem priority_encode_injective (u₀ : ℕ) :
     Function.Injective (Priority.encode u₀) := by
   intro X Y h
@@ -23,6 +26,9 @@ theorem priority_encode_injective (u₀ : ℕ) :
   exact liftBinary_injective
     (List.append_left_injective [a] hmarker)
 
+/--
+@isnad1 id=iff.0h6v.s7.43260ef8a448 from=translated src=- shape=f0d4eb5f vocab=47bbbefb
+-/
 theorem source_binary_iff (F E : Fin r → List (Fin n))
     (X Y : List (Fin n)) :
     ThueEq (finiteSystem F E) X Y ↔
@@ -262,7 +268,9 @@ private theorem decode_step_of_contextual
 
 /-- Equation (25), packaged as the invariant needed in the remainder of the
 construction: every reachable word has the normal form of a reachable binary
-word.-/
+word.
+@isnad1 id=ex.2h6v.s7.be603dc838b3 from=translated src=- shape=e8dd5baf vocab=8fb7c90a
+-/
 theorem decode_reachable_of_contextual
     (hselect : ContextualReplacement)
     (F E : Fin r → List (Fin n)) (X : List (Fin n))
@@ -281,6 +289,9 @@ theorem decode_reachable_of_contextual
   | tail _ hstep ih =>
       exact decode_step_of_contextual hselect F E X ih hstep
 
+/--
+@isnad1 id=reachabl.1h5v.s5.59ada3dd943b from=translated src=- shape=389a3ab3 vocab=9c064dd4
+-/
 theorem reachableNoAAA_of_contextual
     (hselect : ContextualReplacement)
     (F E : Fin r → List (Fin n)) (X : List (Fin n)) :
@@ -292,6 +303,9 @@ theorem reachableNoAAA_of_contextual
   rw [hnormal]
   exact noAAA_of_binary_reachable F E X hbinary
 
+/--
+@isnad1 id=iff.1h6v.s6.d1e877400a22 from=translated src=- shape=17935189 vocab=7345538a
+-/
 theorem priority_thueEq_iff_of_contextual
     (hselect : ContextualReplacement)
     (F E : Fin r → List (Fin n)) (X Y : List (Fin n)) :
@@ -314,6 +328,9 @@ theorem priority_thueEq_iff_of_contextual
     rw [← hB] at hbinary
     exact (source_binary_iff F E X Y).mpr hbinary
 
+/--
+@isnad1 id=priority.1h4v.s4.f4eb2fe1ab35 from=translated src=- shape=48d768cd vocab=9365060f
+-/
 theorem priorityBridge_of_contextual
     (hselect : ContextualReplacement)
     (F E : Fin r → List (Fin n)) : PriorityBridge F E where
@@ -322,12 +339,18 @@ theorem priorityBridge_of_contextual
   thueEq_iff := priority_thueEq_iff_of_contextual hselect F E
   reachableNoAAA := reachableNoAAA_of_contextual hselect F E
 
+/--
+@isnad1 id=compress.1h0v.s1.29135fbd20fa from=translated src=- shape=1d48f1ac vocab=d3d4039c
+-/
 theorem compressionTheorem_of_contextual
     (hselect : ContextualReplacement) : CompressionTheorem := by
   apply compressionTheorem_of_priorityBridges
   intro n r _hn _hr F E
   exact priorityBridge_of_contextual hselect F E
 
+/--
+@isnad1 id=contextu.0h0v.s0.59f7b210eb09 from=translated src=- shape=45709ebd vocab=59f7b210
+-/
 theorem contextualReplacement : ContextualReplacement := by
   intro u p q leftRows rightRows hp hq hleftEnd hrightEnd
     left right B hleft hright hclean
@@ -335,7 +358,9 @@ theorem contextualReplacement : ContextualReplacement := by
     u p q leftRows rightRows hp hq hleftEnd hrightEnd
       hleft hright hclean
 
-/-- Matiyasevich's complete finite-system compression theorem.-/
+/-- Matiyasevich's complete finite-system compression theorem.
+@isnad1 id=compress.0h0v.s0.92095a96e224 from=translated src=- shape=45709ebd vocab=92095a96
+-/
 theorem compressionTheorem : CompressionTheorem :=
   compressionTheorem_of_contextual contextualReplacement
 

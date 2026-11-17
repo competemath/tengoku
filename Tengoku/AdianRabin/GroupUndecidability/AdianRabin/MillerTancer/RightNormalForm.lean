@@ -150,6 +150,9 @@ private theorem block₄_prod (k : ℤ) (hk : k ≠ 0) :
     (block₄ k hk).prod = elt 4 ^ k := by
   simpa [block₄, elt] using blockConjugate_prod 4 (by omega) k hk
 
+/--
+@isnad1 id=eq.1h2v.s6.e7bd136d10f3 from=translated src=- shape=dc11945e vocab=ed3c0cb5
+-/
 @[simp]
 theorem block_prod (i : Fin 5) (k : ℤ) (hk : k ≠ 0) :
     (block i k hk).prod = elt i ^ k := by
@@ -174,19 +177,31 @@ def lastValue : Fin 5 → ZMul → ZMul
   | 3, _ => Multiplicative.ofAdd 3
   | 4, _ => Multiplicative.ofAdd 4
 
+/--
+@isnad1 id=eq.1h2v.s6.63e52a5a2dce from=translated src=- shape=9cdc38cd vocab=cbfb7095
+-/
 @[simp]
 theorem block_head (i : Fin 5) (k : ℤ) (hk : k ≠ 0) :
     (block i k hk).head = headValue i (Multiplicative.ofAdd k) := by
   fin_cases i <;> rfl
 
+/--
+@isnad1 id=eq.1h2v.s6.6c7ab93c700a from=translated src=- shape=9cdc38cd vocab=8a51e2ca
+-/
 @[simp]
 theorem block_last (i : Fin 5) (k : ℤ) (hk : k ≠ 0) :
     (block i k hk).last = lastValue i (Multiplicative.ofAdd k) := by
   fin_cases i <;> rfl
 
+/--
+@isnad1 id=iff.0h1v.s5.b038ee107e6c from=translated src=- shape=2ca1125d vocab=67a5d6db
+-/
 theorem side_eq_zero_iff (i : Fin 5) : side i = 0 ↔ i = 0 := by
   fin_cases i <;> simp [side]
 
+/--
+@isnad1 id=or.1h2v.s6.bf343088ff0e from=translated src=- shape=6f4244ae vocab=92334afe
+-/
 theorem block_append_or_zero (i : Fin 5) (k : ℤ) (hk : k ≠ 0) :
     i = 0 ∨ NeWord.IsAppend (block i k hk) := by
   fin_cases i
@@ -284,6 +299,9 @@ noncomputable def image {i j : Fin 5}
         · rw [CoprodI.NeWord.append_prod, ih₁.prod_eq, ih₂.prod_eq]
           simp [lift]
 
+/--
+@isnad1 id=injectiv.0h0v.s7.b914e4d09a38 from=translated src=- shape=ac9758f7 vocab=5b0349d9
+-/
 theorem lift_injective : Function.Injective lift := by
   apply CoprodI.lift_injective_of_neWord_nontrivial cyclicMap
   intro i j w
@@ -298,15 +316,24 @@ namespace RightNormalForm
 def freeMap : FreeGroup (Fin 5) →* R :=
   FreeGroup.lift elt
 
+/--
+@isnad1 id=eq.0h0v.s7.a09f480d7c83 from=translated src=- shape=9ceb619d vocab=66d61141
+-/
 theorem freeMap_eq : freeMap = lift.comp (CoprodI.intOfFree (Fin 5)) := by
   apply FreeGroup.ext_hom
   intro i
   simp [freeMap, lift, cyclicMap, CoprodI.intOfFree]
 
+/--
+@isnad1 id=injectiv.0h0v.s7.3246916d7269 from=translated src=- shape=d2491ecb vocab=d322e127
+-/
 theorem freeMap_injective : Function.Injective freeMap := by
   rw [freeMap_eq]
   exact lift_injective.comp (CoprodI.intOfFree_injective (Fin 5))
 
+/--
+@isnad1 id=eq.0h0v.s8.8b8f2f3648c2 from=translated src=- shape=46e7c506 vocab=772cc98a
+-/
 theorem original_rightBasisMap_comp :
     (CoprodI.intOfFree (Fin 2)).comp rightBasisMap = freeMap := by
   apply FreeGroup.ext_hom
@@ -315,6 +342,9 @@ theorem original_rightBasisMap_comp :
     simp [CoprodI.intOfFree, rightBasisMap, rightBasis, freeMap, elt, b, g,
       rightBeta, rightGamma]
 
+/--
+@isnad1 id=injectiv.0h0v.s7.68dd809cac5c from=translated src=- shape=d2491ecb vocab=28aa5007
+-/
 theorem original_rightBasisMap_injective : Function.Injective rightBasisMap := by
   intro x y h
   apply freeMap_injective

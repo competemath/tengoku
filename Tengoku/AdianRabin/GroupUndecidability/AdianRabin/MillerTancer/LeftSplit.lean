@@ -52,6 +52,9 @@ def splitSide : SplitIndex → OuterIndex
   | .zero => .base
   | .tail => .alpha
 
+/--
+@isnad1 id=ne.1h2v.s3.d739887fecfc from=translated src=- shape=d7721dd6 vocab=c9d3d28a
+-/
 theorem splitSide_ne {i j : SplitIndex} (hij : i ≠ j) :
     splitSide i ≠ splitSide j := by
   cases i <;> cases j <;> simp_all [splitSide]
@@ -69,6 +72,9 @@ def zeroImage (x : FreeGroup Unit) (hx : x ≠ 1) :
   baseSingleton (beta ^ FreeGroup.freeGroupUnitEquivInt x)
     (beta_zpow_ne_one _ (unitExponent_ne_zero x hx))
 
+/--
+@isnad1 id=eq.1h2v.s7.10a419509eec from=translated src=- shape=1b68bc31 vocab=79ae4f4b
+-/
 @[simp] theorem zeroImage_prod (x : FreeGroup Unit) (hx : x ≠ 1) :
     (zeroImage (G := G) x hx).prod = zeroMap x := by
   let k := FreeGroup.freeGroupUnitEquivInt x
@@ -129,6 +135,9 @@ noncomputable def image (w z : G)
       rw [ih₁.prod_eq, ih₂.prod_eq]
       simp [splitLift]
 
+/--
+@isnad1 id=injectiv.1h4v.s8.704c742faa81 from=translated src=- shape=14c5bdfc vocab=b42d62a8
+-/
 theorem splitLift_injective_of_tailImage (w z : G)
     (tailImage : ∀ x : FreeGroup (Fin 4), x ≠ 1 →
       CoprodI.NeWord (OuterFactor G) OuterIndex.alpha OuterIndex.alpha)
@@ -165,6 +174,9 @@ def sourceJoin : SplitProduct →* FreeGroup (Fin 5) :=
     | .zero => zeroJoin
     | .tail => tailJoin
 
+/--
+@isnad1 id=eq.0h0v.s7.8d92fec8037f from=translated src=- shape=e4bf2c2e vocab=a350eea0
+-/
 theorem sourceJoin_comp_sourceSplit :
     sourceJoin.comp sourceSplit = MonoidHom.id (FreeGroup (Fin 5)) := by
   apply FreeGroup.ext_hom
@@ -174,11 +186,17 @@ theorem sourceJoin_comp_sourceSplit :
       FreeGroup.lift_apply_of] <;>
     exact FreeGroup.lift_apply_of
 
+/--
+@isnad1 id=injectiv.0h0v.s7.d1c160e401fd from=translated src=- shape=d2491ecb vocab=de7b049f
+-/
 theorem sourceSplit_injective : Function.Injective sourceSplit := by
   apply Function.LeftInverse.injective (g := sourceJoin)
   intro x
   exact DFunLike.congr_fun sourceJoin_comp_sourceSplit x
 
+/--
+@isnad1 id=eq.0h3v.s9.ee7054c30c6d from=translated src=- shape=fdb734b8 vocab=f8b65aab
+-/
 theorem splitLift_comp_sourceSplit (w z : G) :
     (splitLift w z).comp sourceSplit =
       FreeGroup.lift (outerLeftBasis w z) := by
@@ -190,7 +208,9 @@ theorem splitLift_comp_sourceSplit (w z : G) :
     exact FreeGroup.lift_apply_of
 
 /-- Reduce the five-generator left-basis check to normal forms for the tail
-four-generator map.-/
+four-generator map.
+@isnad1 id=injectiv.1h4v.s9.698abb3318fd from=translated src=- shape=d2745716 vocab=10c6c883
+-/
 theorem outerLeftBasis_injective_of_tailImage (w z : G)
     (tailImage : ∀ x : FreeGroup (Fin 4), x ≠ 1 →
       CoprodI.NeWord (OuterFactor G) OuterIndex.alpha OuterIndex.alpha)

@@ -22,6 +22,9 @@ left context acts on the binary suffix by consing binary letters and applying
 def lowerBit (x : A₂) : Fin 2 :=
   if x = a then 0 else 1
 
+/--
+@isnad1 id=eq.1h1v.s3.3f289304eaa3 from=translated src=- shape=c8beee5b vocab=7be29b62
+-/
 theorem liftBit_lowerBit {x : A₂} (hx : x ≠ e) :
     liftBit (lowerBit x) = x := by
   fin_cases x
@@ -29,11 +32,16 @@ theorem liftBit_lowerBit {x : A₂} (hx : x ≠ e) :
   · rfl
   · exact (hx rfl).elim
 
+/--
+@isnad1 id=eq.0h1v.s4.7d2cd6c4e17f from=translated src=- shape=848cd2ae vocab=07cfd01a
+-/
 theorem lowerBit_liftBit (x : Fin 2) : lowerBit (liftBit x) = x := by
   fin_cases x <;> simp [lowerBit, liftBit, a]
 
 /-- A clean output of `pushE` can only arise by sampling an even binary
-prefix followed by the existing block of `e`'s.-/
+prefix followed by the existing block of `e`'s.
+@isnad1 id=ex.2h3v.s7.1a057740e722 from=translated src=- shape=d7413c38 vocab=d39a1654
+-/
 theorem pushE_clean_inv (W : List A₂) (B : List (Fin 2)) (v : ℕ)
     (hcount : eCount W = v)
     (hclean : pushE W = liftBinary B ++ List.replicate (v + 1) e) :
@@ -133,35 +141,55 @@ def Processable : List A₂ → List (Fin 2) → Prop
   | x :: l, W =>
       Processable l W ∧ (x = e → 2 ∣ (process l W).length)
 
+/--
+@isnad1 id=eq.0h2v.s5.749ce9d7fdcb from=translated src=- shape=2556309a vocab=9a80f38d
+-/
 @[simp] theorem process_cons_e (l : List A₂) (W : List (Fin 2)) :
     process (e :: l) W = selectOdd (process l W) := by
   simp [process]
 
+/--
+@isnad1 id=eq.1h3v.s5.6b41980414d6 from=translated src=- shape=486a1ee9 vocab=281c28ef
+-/
 theorem process_cons_ne (x : A₂) (l : List A₂) (W : List (Fin 2))
     (hx : x ≠ e) :
     process (x :: l) W = lowerBit x :: process l W := by
   simp [process, hx]
 
+/--
+@isnad1 id=iff.0h2v.s5.361a46019bae from=translated src=- shape=a8bfcdcd vocab=a0108e04
+-/
 theorem processable_cons_e_iff (l : List A₂) (W : List (Fin 2)) :
     Processable (e :: l) W ↔
       Processable l W ∧ 2 ∣ (process l W).length := by
   simp [Processable]
 
+/--
+@isnad1 id=iff.1h3v.s4.dde589f0556c from=translated src=- shape=f2b8d41c vocab=16ededcc
+-/
 theorem processable_cons_ne_iff (x : A₂) (l : List A₂)
     (W : List (Fin 2)) (hx : x ≠ e) :
     Processable (x :: l) W ↔ Processable l W := by
   simp [Processable, hx]
 
+/--
+@isnad1 id=eq.0h1v.s4.b88294d4aecd from=translated src=- shape=5909f812 vocab=d98c42e4
+-/
 @[simp] theorem eCount_e_cons (l : List A₂) :
     eCount (e :: l) = eCount l + 1 := by
   simp [eCount]
 
+/--
+@isnad1 id=eq.1h2v.s4.2fa169a1a234 from=translated src=- shape=edcfab99 vocab=d266b0e2
+-/
 theorem eCount_cons_ne (x : A₂) (l : List A₂) (hx : x ≠ e) :
     eCount (x :: l) = eCount l := by
   simp [eCount, hx]
 
 /-- A processable context has the advertised clean first-priority normal
-form.-/
+form.
+@isnad1 id=eq.1h2v.s5.0c559f757dd3 from=translated src=- shape=cac883fa vocab=074e221d
+-/
 theorem firstNormal_eq_process (l : List A₂) (W : List (Fin 2))
     (hvalid : Processable l W) :
     firstNormal (l ++ liftBinary W) =
@@ -184,7 +212,9 @@ theorem firstNormal_eq_process (l : List A₂) (W : List (Fin 2))
         simp [process, hx, eCount, hxlift]
 
 /-- Conversely, a clean normal form uniquely determines the binary process
-and proves all of its parity obligations.-/
+and proves all of its parity obligations.
+@isnad1 id=and.1h3v.s6.bf1498d72773 from=translated src=- shape=35938aae vocab=074e221d
+-/
 theorem processable_of_firstNormal_clean (l : List A₂) (W B : List (Fin 2))
     (hclean : firstNormal (l ++ liftBinary W) =
       liftBinary B ++ List.replicate (eCount l) e) :
@@ -242,7 +272,9 @@ theorem processable_of_firstNormal_clean (l : List A₂) (W B : List (Fin 2))
 
 /-- Changing the binary suffix length by a multiple of the full sampling
 period preserves every intermediate parity obligation.  After all samplings,
-the output length changes by precisely the quotient `k`.-/
+the output length changes by precisely the quotient `k`.
+@isnad1 id=and.1h4v.s6.d581c5bf05fe from=translated src=- shape=82e114ee vocab=eb9eafe5
+-/
 theorem process_periodic_shift (l : List A₂)
     (W₁ W₂ : List (Fin 2)) (k : ℕ)
     (hlen : W₂.length = W₁.length + k * 2 ^ eCount l) :
@@ -291,7 +323,9 @@ theorem process_periodic_shift (l : List A₂)
 /-! ### Affine description and phase-neutral transpose replacement -/
 
 /-- An arbitrary context acts affinely on every binary suffix: a fixed binary
-prefix is followed by one fixed residue class modulo `2^(eCount l)`.-/
+prefix is followed by one fixed residue class modulo `2^(eCount l)`.
+@isnad1 id=ex.0h1v.s6.3397d4ba6d2c from=translated src=- shape=b3bf9621 vocab=c2a656d6
+-/
 theorem process_affine (l : List A₂) :
     ∃ P : List (Fin 2), ∃ j : Fin (2 ^ eCount l), ∀ W,
       process l W = P ++ affineSample (eCount l) j W := by
@@ -318,7 +352,9 @@ theorem process_affine (l : List A₂) :
         rfl
 
 /-- Replacing a rectangular transpose by another rectangular transpose keeps
-the fixed affine contexts and selects the same row index.-/
+the fixed affine contexts and selects the same row index.
+@isnad1 id=ex.2h6v.s9.203b0109a574 from=translated src=- shape=654a460c vocab=e1e55571
+-/
 theorem process_replace_transpose (l : List A₂) (p q : ℕ)
     (leftRows rightRows : Fin (2 ^ eCount l) → List (Fin 2))
     (R : List (Fin 2))
@@ -337,7 +373,9 @@ theorem process_replace_transpose (l : List A₂) (p q : ℕ)
     simp only [List.append_assoc]
 
 /-- Since both transpose lengths are multiples of the full sampling period,
-replacing one by the other preserves clean processability.-/
+replacing one by the other preserves clean processability.
+@isnad1 id=iff.0h6v.s7.ff74c105abdc from=translated src=- shape=c31c1bb8 vocab=15c20130
+-/
 theorem processable_replace_transpose (l : List A₂) (p q : ℕ)
     (leftRows : Fin (2 ^ eCount l) → List (Fin 2))
     (rightRows : Fin (2 ^ eCount l) → List (Fin 2))
@@ -360,7 +398,9 @@ theorem processable_replace_transpose (l : List A₂) (p q : ℕ)
 
 /-! ### The contextual same-row theorem -/
 
-/-- A word with no `e` is uniquely in the image of the binary inclusion.-/
+/-- A word with no `e` is uniquely in the image of the binary inclusion.
+@isnad1 id=ex.1h1v.s5.b5cb9a4b329f from=translated src=- shape=030e79e1 vocab=777d545b
+-/
 theorem exists_liftBinary_of_eCount_zero {W : List A₂}
     (hW : eCount W = 0) :
     ∃ B : List (Fin 2), W = liftBinary B := by
@@ -378,7 +418,9 @@ theorem exists_liftBinary_of_eCount_zero {W : List A₂}
       simp [liftBit_lowerBit hx]
 
 /-- If a block ending in `1` occurs immediately before a suffix and the whole
-word ends in the marker `0`, then that marker belongs to the suffix.-/
+word ends in the marker `0`, then that marker belongs to the suffix.
+@isnad1 id=ex.2h4v.s8.ee55ed3ff357 from=translated src=- shape=04b179c7 vocab=f4a35cb2
+-/
 theorem split_before_terminal_zero
     {P L S B : List (Fin 2)}
     (hend : ∃ init, L = init ++ [(1 : Fin 2)])
@@ -409,7 +451,9 @@ left transpose is a clean encoded word, replacing it by any other rectangular
 transpose selects the same row index and leaves both binary contexts fixed.
 
 The terminal-`1` hypotheses distinguish the last letter of a selected row
-from the terminal `a` (binary `0`) marker in `encode`.-/
+from the terminal `a` (binary `0`) marker in `encode`.
+@isnad1 id=ex.7h8v.s9.6a071fd5e1b4 from=translated src=- shape=f26d91f6 vocab=397b62b4
+-/
 theorem replace_transpose_clean (u p q : ℕ)
     (leftRows rightRows : Fin (2 ^ u) → List (Fin 2))
     (hp : ∀ i, (leftRows i).length = p)

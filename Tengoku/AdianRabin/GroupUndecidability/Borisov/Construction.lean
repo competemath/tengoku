@@ -541,7 +541,9 @@ private theorem thueEq_preserves_testCommutes (datum : Thue.StandingDatum)
 
 /-- The elementary direction of Borisov's simulation theorem.  It uses only
 the defining relators: one Thue rewrite preserves commutation of `Q⁻¹tQ`
-with `k`, and the target relator supplies the base case at `P`.-/
+with `k`, and the target relator supplies the base case at `P`.
+@isnad1 id=wordprob.1h2v.s5.d04a28981d90 from=translated src=- shape=381f0461 vocab=89c7a2e2
+-/
 theorem criterion_forward
     (datum : Thue.StandingDatum) (Q : List (Fin 2)) :
     ThueEq (Thue.systemOf datum.F datum.E) Q datum.P →

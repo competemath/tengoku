@@ -19,15 +19,24 @@ transition.-/
 def Terminates {C : Type*} (step : C → Option C) (c : C) : Prop :=
   ∃ n, iterate step n c = none
 
+/--
+@isnad1 id=terminat.1h3v.s4.057c7db22554 from=translated src=- shape=21ab88a4 vocab=500a8c3f
+-/
 theorem terminates_of_halted {C : Type*} {step : C → Option C} {c : C}
     (h : step c = none) : Terminates step c :=
   ⟨1, by simp [iterate, h]⟩
 
+/--
+@isnad1 id=terminat.2h4v.s4.9c4ae4b2cdd0 from=translated src=- shape=0185fa00 vocab=e23dc9b7
+-/
 theorem terminates_of_step {C : Type*} {step : C → Option C} {c d : C}
     (hcd : step c = some d) (hd : Terminates step d) : Terminates step c := by
   obtain ⟨n, hn⟩ := hd
   exact ⟨n + 1, by simp [iterate, hcd, hn]⟩
 
+/--
+@isnad1 id=terminat.2h4v.s4.6e4bef800fcf from=translated src=- shape=e02252f0 vocab=e23dc9b7
+-/
 theorem terminates_after_step {C : Type*} {step : C → Option C} {c d : C}
     (hcd : step c = some d) (hc : Terminates step c) : Terminates step d := by
   obtain ⟨n, hn⟩ := hc
@@ -36,6 +45,9 @@ theorem terminates_after_step {C : Type*} {step : C → Option C} {c d : C}
   | succ n =>
       exact ⟨n, by simpa [iterate, hcd] using hn⟩
 
+/--
+@isnad1 id=iff.0h3v.s5.cee0d0445a2c from=translated src=- shape=7a7d0f2c vocab=21c99db7
+-/
 theorem terminates_iff_reaches_halt {C : Type*} {step : C → Option C} {c : C} :
     Terminates step c ↔
       ∃ h, StateTransition.Reaches step c h ∧ step h = none := by
@@ -57,7 +69,9 @@ theorem terminates_iff_reaches_halt {C : Type*} {step : C → Option C} {c : C} 
     | head hcd _ ih => exact terminates_of_step hcd ih
 
 /-- `Terminates` agrees with Mathlib's domain predicate for the standard
-state-transition evaluator.-/
+state-transition evaluator.
+@isnad1 id=iff.0h3v.s4.cb14b04843ca from=translated src=- shape=29ea8500 vocab=8564fc6f
+-/
 theorem terminates_iff_eval_dom {C : Type*} {step : C → Option C} {c : C} :
     Terminates step c ↔ (StateTransition.eval step c).Dom := by
   rw [terminates_iff_reaches_halt, Part.dom_iff_mem]
@@ -94,6 +108,9 @@ namespace Coding
 
 variable {C α : Type*} (K : Coding C α)
 
+/--
+@isnad1 id=thueeq.1h4v.s5.327f75e5e9e5 from=translated src=- shape=2e672f10 vocab=c0f0d117
+-/
 theorem simulation {c : C} :
     Terminates K.step c → ThueEq K.system (K.encode c) K.target := by
   rintro ⟨n, hn⟩
@@ -108,6 +125,9 @@ theorem simulation {c : C} :
           exact (Relation.ReflTransGen.single (K.simulate_step hstep)).trans
             (ih hd)
 
+/--
+@isnad1 id=terminat.1h4v.s5.595a037267f8 from=translated src=- shape=6d3ce850 vocab=c0f0d117
+-/
 theorem inverse_simulation {c : C} :
     ThueEq K.system (K.encode c) K.target → Terminates K.step c := by
   intro h
@@ -130,7 +150,9 @@ theorem inverse_simulation {c : C} :
   exact hall c rfl
 
 /-- A deterministic machine terminates exactly when its encoding is
-Thue-equivalent to the fixed target.-/
+Thue-equivalent to the fixed target.
+@isnad1 id=iff.0h4v.s5.5641cd305836 from=translated src=- shape=24dddc8d vocab=c0f0d117
+-/
 theorem terminates_iff {c : C} :
     Terminates K.step c ↔ ThueEq K.system (K.encode c) K.target :=
   ⟨K.simulation, K.inverse_simulation⟩

@@ -52,12 +52,18 @@ def B0 : Subgroup (CStage datum) :=
 def Delta : Subgroup (TStage datum (FreeInput datum)) :=
   KSubgroup datum (FreeInput datum)
 
+/--
+@isnad1 id=le.0h1v.s7.e1b0d8dc3e9a from=translated src=- shape=cfdabf11 vocab=7e036450
+-/
 theorem CE_le_B :
     CE datum (FreeInput datum) ≤ B datum := by
   rw [CE, Subgroup.closure_le]
   simp only [Set.insert_subset_iff, Set.singleton_subset_iff]
   exact ⟨Subgroup.subset_closure (by simp), Subgroup.subset_closure (by simp)⟩
 
+/--
+@isnad1 id=le.0h1v.s7.94ede79bfc8d from=translated src=- shape=cfdabf11 vocab=790745d0
+-/
 theorem CD_le_B :
     CD datum (FreeInput datum) ≤ B datum := by
   rw [CD, Subgroup.closure_le]
@@ -100,24 +106,42 @@ def firstExponentFree : FreeGroup (Fin 2) →* Multiplicative ℤ :=
 def firstExponent3 : Gamma3 →* Multiplicative ℤ :=
   (firstExponentFree.comp stableProjection3)
 
+/--
+@isnad1 id=eq.0h0v.s7.5f757dc68437 from=translated src=- shape=e2e809a1 vocab=26f9b371
+-/
 @[simp] theorem firstExponentFree_of_zero :
     firstExponentFree (FreeGroup.of (0 : Fin 2)) =
       Multiplicative.ofAdd 1 := by
   simp [firstExponentFree]
 
+/--
+@isnad1 id=eq.0h0v.s7.dfc033036ba7 from=translated src=- shape=622a4905 vocab=9b99facc
+-/
 @[simp] theorem firstExponentFree_of_one :
     firstExponentFree (FreeGroup.of (1 : Fin 2)) = 1 := by
   simp [firstExponentFree]
 
+/--
+@isnad1 id=eq.0h0v.s6.a1d160659a20 from=translated src=- shape=09b15779 vocab=4854eecc
+-/
 @[simp] theorem firstExponent3_d : firstExponent3 d3 = 1 := by
   simp [firstExponent3, firstExponentFree]
 
+/--
+@isnad1 id=eq.0h0v.s6.4eb9e0d342c0 from=translated src=- shape=09b15779 vocab=dcb69fad
+-/
 @[simp] theorem firstExponent3_e : firstExponent3 e3 = 1 := by
   simp [firstExponent3, firstExponentFree]
 
+/--
+@isnad1 id=eq.0h0v.s6.7fb28c5bdb06 from=translated src=- shape=09b15779 vocab=78a164cd
+-/
 @[simp] theorem firstExponent3_s2 : firstExponent3 s2_3 = 1 := by
   simp [firstExponent3, firstExponentFree]
 
+/--
+@isnad1 id=eq.0h1v.s7.17eaff2a8011 from=translated src=- shape=d3903745 vocab=c2ff2272
+-/
 theorem firstExponent3_positive (w : List (Fin 2)) :
     Multiplicative.toAdd (firstExponent3 (positive3 w)) =
       (w.count (0 : Fin 2) : ℤ) := by
@@ -145,6 +169,9 @@ private theorem J3_one_le_firstExponent3_ker :
   · simp
   · simp [stable3]
 
+/--
+@isnad1 id=not.0h1v.s6.3f4518c0c45f from=translated src=- shape=8ee52686 vocab=ab42b839
+-/
 theorem positive3_not_mem_J3_one : positive3 datum.P ∉ J3 1 := by
   intro hP
   have hker := J3_one_le_firstExponent3_ker hP
@@ -156,7 +183,9 @@ theorem positive3_not_mem_J3_one : positive3 datum.P ∉ J3 1 := by
     (BorisovG0NormalForm.count_zero_pos_of_containsBoth datum.P_support)) hz
 
 /-- The stronger exclusion used in the proof of Proposition 3.8:
-`P ∉ ⟨d,e,c,s₂⟩`.-/
+`P ∉ ⟨d,e,c,s₂⟩`.
+@isnad1 id=not.0h1v.s6.ba74b9be3a87 from=translated src=- shape=078fd556 vocab=8578c013
+-/
 theorem positive2_not_mem_B0 :
     positive2 datum (FreeInput datum) datum.P ∉ B0 datum := by
   intro hP
@@ -191,6 +220,9 @@ theorem positive2_not_mem_B0 :
 def C0 : Subgroup (CStage datum) :=
   Subgroup.closure ({c datum (FreeInput datum)} : Set (CStage datum))
 
+/--
+@isnad1 id=iff.0h2v.s8.447c15d9188d from=translated src=- shape=89408553 vocab=e81e3558
+-/
 theorem C0_le_iff {S : Subgroup (CStage datum)} :
     C0 datum ≤ S ↔ c datum (FreeInput datum) ∈ S := by
   simp [C0, Subgroup.closure_le]
@@ -209,25 +241,39 @@ def B0InT : Subgroup (TStage datum (FreeInput datum)) :=
 def C0InT : Subgroup (TStage datum (FreeInput datum)) :=
   (C0 datum).map (toTStage datum (FreeInput datum))
 
+/--
+@isnad1 id=le.0h1v.s7.21680a7c72eb from=translated src=- shape=935d3ac8 vocab=718fe3d8
+-/
 theorem B_le_B0 : B datum ≤ B0 datum := by
   rw [B, Subgroup.closure_le]
   simp only [Set.insert_subset_iff, Set.singleton_subset_iff]
   exact ⟨Subgroup.subset_closure (by simp), Subgroup.subset_closure (by simp),
     Subgroup.subset_closure (by simp)⟩
 
+/--
+@isnad1 id=le.0h1v.s7.3b983b84e0a1 from=translated src=- shape=cfdabf11 vocab=03f8ebc1
+-/
 theorem CE_le_B0 : CE datum (FreeInput datum) ≤ B0 datum :=
   (CE_le_B datum).trans (B_le_B0 datum)
 
+/--
+@isnad1 id=le.0h1v.s7.768c57897eaf from=translated src=- shape=cfdabf11 vocab=56578d60
+-/
 theorem CD_le_B0 : CD datum (FreeInput datum) ≤ B0 datum :=
   (CD_le_B datum).trans (B_le_B0 datum)
 
+/--
+@isnad1 id=le.0h1v.s7.570174ef4717 from=translated src=- shape=814f2a94 vocab=c150d791
+-/
 theorem C0_le_CD : C0 datum ≤ CD datum (FreeInput datum) := by
   rw [C0_le_iff]
   apply Subgroup.subset_closure
   simp
 
 /-- The double-coset identity in the proof of Proposition 3.8.
-Inside the `t`-stage, `⟨c,t⟩ ∩ (Delta · B₀ · Delta) = ⟨c⟩`.-/
+Inside the `t`-stage, `⟨c,t⟩ ∩ (Delta · B₀ · Delta) = ⟨c⟩`.
+@isnad1 id=eq.0h1v.s10.797d6efe8964 from=translated src=- shape=789a273c vocab=1f4c060b
+-/
 theorem CT_inter_deltaDoubleCoset_B0 :
     ((CT datum : Subgroup (TStage datum (FreeInput datum))) :
         Set (TStage datum (FreeInput datum))) ∩

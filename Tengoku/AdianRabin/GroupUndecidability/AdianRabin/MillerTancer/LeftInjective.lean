@@ -20,6 +20,9 @@ variable {G : Type} [Group G]
 
 def q (z : G) : LeftProduct G := old z * beta
 
+/--
+@isnad1 id=ne.0h2v.s5.52d6ff04c6bd from=translated src=- shape=f31f4592 vocab=e443c973
+-/
 theorem q_ne_one (z : G) : q z ≠ 1 :=
   old_mul_beta_ne_one z
 
@@ -101,13 +104,22 @@ def leftPowerWord4 (z : G) (k : ℤ) (hk : k ≠ 0) :
       | succ n => exact posBlock z n
   | negSucc n => exact negBlock z n
 
+/--
+@isnad1 id=eq.0h3v.s5.fd06c8a73fec from=translated src=- shape=c2355ab1 vocab=a56832c0
+-/
 @[simp] theorem leftPowerWord4_ofNat (z : G) (n : ℕ) :
     leftPowerWord4 z (Int.ofNat (n + 1))
       (Int.ofNat_ne_zero.mpr (Nat.succ_ne_zero n)) = posBlock z n := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.df23c8940523 from=translated src=- shape=6803050f vocab=f521ca6e
+-/
 @[simp] theorem leftPowerWord4_negSucc (z : G) (n : ℕ) :
     leftPowerWord4 z (Int.negSucc n) (by omega) = negBlock z n := rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.0c82a80dbb75 from=translated src=- shape=3d1e6ba3 vocab=1e59add3
+-/
 @[simp] theorem leftPowerWord4_prod (w z : G) (k : ℤ) (hk : k ≠ 0) :
     (leftPowerWord4 z k hk).prod = outerLeftBasis w z 4 ^ k := by
   cases k with
@@ -154,6 +166,9 @@ def smallWord (w z : G) (hw : w ≠ 1) (i : SmallIndex) (k : ℤ) (hk : k ≠ 0)
   | .three => leftPowerWord3 w hw k hk
   | .four => leftPowerWord4 z k hk
 
+/--
+@isnad1 id=eq.2h5v.s7.861e229fa937 from=translated src=- shape=4ec56981 vocab=8d3c1a5f
+-/
 @[simp] theorem smallWord_prod (w z : G) (hw : w ≠ 1)
     (i : SmallIndex) (k : ℤ) (hk : k ≠ 0) :
     (smallWord w z hw i k hk).prod = smallBasis w z i ^ k := by
@@ -570,6 +585,9 @@ private theorem evalSmall_eq_map_prod (w z : G) (l : List (SmallIndex × ℤ)) :
 
 abbrev SmallCyclic (_ : SmallIndex) := FreeGroup Unit
 
+/--
+@isnad1 id=ex.2h4v.s8.8f1cc7893c6a from=translated src=- shape=0b5f3b69 vocab=abdf47fa
+-/
 theorem exists_small_image (w z : G) (hw : w ≠ 1)
     (x : FreeGroup SmallIndex) (hx : x ≠ 1) :
     ∃ u : CoprodI.NeWord (OuterFactor G) OuterIndex.alpha OuterIndex.alpha,
@@ -676,6 +694,9 @@ def toSmall : FreeGroup (Fin 4) →* FreeGroup SmallIndex :=
 def fromSmall : FreeGroup SmallIndex →* FreeGroup (Fin 4) :=
   FreeGroup.lift fun i ↦ FreeGroup.of (finOfSmall i)
 
+/--
+@isnad1 id=injectiv.0h0v.s7.91b5e8e0be08 from=translated src=- shape=5d101c07 vocab=6c438d84
+-/
 theorem toSmall_injective : Function.Injective toSmall := by
   apply Function.LeftInverse.injective (g := fromSmall)
   intro x
@@ -685,6 +706,9 @@ theorem toSmall_injective : Function.Injective toSmall := by
     fin_cases i <;> simp [fromSmall, toSmall, smallOfFin, finOfSmall]
   exact DFunLike.congr_fun hcomp x
 
+/--
+@isnad1 id=eq.0h3v.s8.c07f28fb948e from=translated src=- shape=0a124233 vocab=557c1814
+-/
 theorem smallLift_comp_toSmall (w z : G) :
     (FreeGroup.lift (smallBasis w z)).comp toSmall =
       LeftSplit.tailMap w z := by
@@ -694,6 +718,9 @@ theorem smallLift_comp_toSmall (w z : G) :
     simp [toSmall, smallOfFin, smallBasis, LeftSplit.tailMap,
       LeftSplit.tailBasis, outerLeftBasis]
 
+/--
+@isnad1 id=ex.2h4v.s8.6b7f0e58bafe from=translated src=- shape=6ddc9374 vocab=10bc151b
+-/
 theorem exists_fin_tail_image (w z : G) (hw : w ≠ 1)
     (x : FreeGroup (Fin 4)) (hx : x ≠ 1) :
     ∃ u : CoprodI.NeWord (OuterFactor G) OuterIndex.alpha OuterIndex.alpha,
@@ -713,12 +740,17 @@ noncomputable def tailImageFin (w z : G) (hw : w ≠ 1)
     CoprodI.NeWord (OuterFactor G) OuterIndex.alpha OuterIndex.alpha :=
   Classical.choose (exists_fin_tail_image w z hw x hx)
 
+/--
+@isnad1 id=eq.2h4v.s8.db2e6239bd9d from=translated src=- shape=b1d7bf3b vocab=576edcc2
+-/
 theorem tailImageFin_prod (w z : G) (hw : w ≠ 1)
     (x : FreeGroup (Fin 4)) (hx : x ≠ 1) :
     (tailImageFin w z hw x hx).prod = LeftSplit.tailMap w z x :=
   Classical.choose_spec (exists_fin_tail_image w z hw x hx)
 
-/-- The complete left free-basis lemma used in the amalgamated-product proof.-/
+/-- The complete left free-basis lemma used in the amalgamated-product proof.
+@isnad1 id=injectiv.1h3v.s9.27750e6e10b1 from=translated src=- shape=b385f156 vocab=551397ef
+-/
 theorem outerLeftBasis_lift_injective (w z : G) (hw : w ≠ 1) :
     Function.Injective (FreeGroup.lift (outerLeftBasis w z)) :=
   LeftSplit.outerLeftBasis_injective_of_tailImage w z

@@ -27,10 +27,16 @@ def liftLetter (x : Fin n) : Fin (n + 1) := x.castSucc
 def liftWord (W : List (Fin n)) : List (Fin (n + 1)) :=
   W.map liftLetter
 
+/--
+@isnad1 id=eq.0h3v.s7.bfeb227d8237 from=translated src=- shape=74605ae0 vocab=cb928700
+-/
 @[simp] theorem liftWord_append (X Y : List (Fin n)) :
     liftWord (X ++ Y) = liftWord X ++ liftWord Y := by
   simp [liftWord]
 
+/--
+@isnad1 id=eq.0h2v.s4.e6e279dc8955 from=translated src=- shape=b6cad4f7 vocab=0d881dc1
+-/
 @[simp] theorem liftWord_length (W : List (Fin n)) :
     (liftWord W).length = W.length := by
   simp [liftWord]
@@ -42,23 +48,38 @@ def projectLetter (x : Fin (n + 1)) : Option (Fin n) :=
 def decode (W : List (Fin (n + 1))) : List (Fin n) :=
   W.filterMap projectLetter
 
+/--
+@isnad1 id=eq.0h1v.s3.8e70a9df3132 from=translated src=- shape=38d6f9b1 vocab=7a71b072
+-/
 @[simp] theorem projectLetter_pad : projectLetter (pad (n := n)) = none := by
   simp [projectLetter, pad]
 
+/--
+@isnad1 id=eq.0h2v.s4.78d3b381aba1 from=translated src=- shape=e515e695 vocab=1ff9dba5
+-/
 @[simp] theorem projectLetter_lift (x : Fin n) :
     projectLetter (liftLetter x) = some x := by
   simp [projectLetter, liftLetter]
 
+/--
+@isnad1 id=eq.0h3v.s7.7869d5077c45 from=translated src=- shape=894c900d vocab=fa64753b
+-/
 @[simp] theorem decode_append (X Y : List (Fin (n + 1))) :
     decode (X ++ Y) = decode X ++ decode Y := by
   simp [decode]
 
+/--
+@isnad1 id=eq.0h2v.s4.af9085e19236 from=translated src=- shape=60f8d03b vocab=a87df5e7
+-/
 @[simp] theorem decode_liftWord (W : List (Fin n)) :
     decode (liftWord W) = W := by
   induction W with
   | nil => rfl
   | cons x W ih => simp [liftWord, decode]
 
+/--
+@isnad1 id=eq.0h2v.s4.321e2b8a532c from=translated src=- shape=3a8fe518 vocab=1854b30e
+-/
 @[simp] theorem decode_replicate_pad (k : ℕ) :
     decode (List.replicate k (pad (n := n))) = [] := by
   induction k with
@@ -75,6 +96,9 @@ def p (F E : Fin r → List (Fin n)) : ℕ := sideBound F E + 1
 /-- The common length of the right sides of `T₁`.-/
 def q (F E : Fin r → List (Fin n)) : ℕ := p F E + 1
 
+/--
+@isnad1 id=lt.0h5v.s5.197530b8650f from=translated src=- shape=23a69ddc vocab=7faf1d34
+-/
 theorem F_length_lt_p (F E : Fin r → List (Fin n)) (i : Fin r) :
     (F i).length < p F E := by
   have hmem : max (F i).length (E i).length ∈
@@ -85,6 +109,9 @@ theorem F_length_lt_p (F E : Fin r → List (Fin n)) (i : Fin r) :
   simp only [p]
   omega
 
+/--
+@isnad1 id=lt.0h5v.s5.b078034523de from=translated src=- shape=7e052996 vocab=7faf1d34
+-/
 theorem E_length_lt_p (F E : Fin r → List (Fin n)) (i : Fin r) :
     (E i).length < p F E := by
   have hmem : max (F i).length (E i).length ∈
@@ -95,9 +122,15 @@ theorem E_length_lt_p (F E : Fin r → List (Fin n)) (i : Fin r) :
   simp only [p]
   omega
 
+/--
+@isnad1 id=lt.0h4v.s4.8f9e67bb9490 from=translated src=- shape=1c2dba3e vocab=5f6b9977
+-/
 theorem p_pos (F E : Fin r → List (Fin n)) : 0 < p F E := by
   simp [p]
 
+/--
+@isnad1 id=le.0h4v.s4.8da46dbf8a2e from=translated src=- shape=41cf4cd7 vocab=d6628a24
+-/
 theorem p_le_q (F E : Fin r → List (Fin n)) : p F E ≤ q F E := by
   simp [q]
 
@@ -126,10 +159,16 @@ def encode (F E : Fin r → List (Fin n)) (W : List (Fin n)) :
     List (Fin (n + 1)) :=
   liftWord W ++ List.replicate (q F E) pad
 
+/--
+@isnad1 id=eq.0h5v.s5.512c1cd65e41 from=translated src=- shape=a683dcee vocab=b922836d
+-/
 @[simp] theorem decode_encode (F E : Fin r → List (Fin n))
     (W : List (Fin n)) : decode (encode F E W) = W := by
   simp [encode]
 
+/--
+@isnad1 id=computab.0h4v.s6.5427ea436fa5 from=translated src=- shape=1fdd3b7f vocab=5a1ae904
+-/
 theorem encode_computable (F E : Fin r → List (Fin n)) :
     Computable (encode F E) := by
   have hlift : Primrec (liftWord : List (Fin n) → List (Fin (n + 1))) :=
@@ -138,28 +177,43 @@ theorem encode_computable (F E : Fin r → List (Fin n)) :
   exact (Primrec.list_append.comp hlift
     (Primrec.const (List.replicate (q F E) (pad (n := n))))).to_comp
 
+/--
+@isnad1 id=eq.0h5v.s7.5512e01ea0db from=translated src=- shape=dc107453 vocab=798548cf
+-/
 @[simp] theorem stage₁F_primary (F E : Fin r → List (Fin n)) (i : Fin r) :
     stage₁F F E (Fin.castAdd (n + 1) i) =
       liftWord (F i) ++ List.replicate (p F E - (F i).length) pad := by
   simp [stage₁F]
 
+/--
+@isnad1 id=eq.0h5v.s7.c23e179617a6 from=translated src=- shape=920407cd vocab=404f736a
+-/
 @[simp] theorem stage₁E_primary (F E : Fin r → List (Fin n)) (i : Fin r) :
     stage₁E F E (Fin.castAdd (n + 1) i) =
       liftWord (E i) ++ List.replicate (q F E - (E i).length) pad := by
   simp [stage₁E]
 
+/--
+@isnad1 id=eq.0h5v.s7.8aed28e5df60 from=translated src=- shape=ad75e99a vocab=ef4c5101
+-/
 @[simp] theorem stage₁F_shift (F E : Fin r → List (Fin n))
     (j : Fin (n + 1)) :
     stage₁F F E (Fin.natAdd r j) =
       [j] ++ List.replicate (p F E - 1) pad := by
   simp [stage₁F]
 
+/--
+@isnad1 id=eq.0h5v.s7.b64bda8a6772 from=translated src=- shape=8c1e6871 vocab=b2442ee2
+-/
 @[simp] theorem stage₁E_shift (F E : Fin r → List (Fin n))
     (j : Fin (n + 1)) :
     stage₁E F E (Fin.natAdd r j) =
       [pad, j] ++ List.replicate (q F E - 2) pad := by
   simp [stage₁E]
 
+/--
+@isnad1 id=eq.0h5v.s6.afb1e62200dd from=translated src=- shape=8a768de9 vocab=ef3a0c3e
+-/
 theorem stage₁F_length (F E : Fin r → List (Fin n))
     (i : Fin (r + (n + 1))) : (stage₁F F E i).length = p F E := by
   induction i using Fin.addCases with
@@ -174,6 +228,9 @@ theorem stage₁F_length (F E : Fin r → List (Fin n))
       have := p_pos F E
       omega
 
+/--
+@isnad1 id=eq.0h5v.s6.495c06562368 from=translated src=- shape=8a768de9 vocab=909b4043
+-/
 theorem stage₁E_length (F E : Fin r → List (Fin n))
     (i : Fin (r + (n + 1))) : (stage₁E F E i).length = q F E := by
   induction i using Fin.addCases with
@@ -441,7 +498,9 @@ private theorem simulate_rule (F E : Fin r → List (Fin n))
       List.append_assoc] using h₃raw
   exact (h₁.trans h₂).trans h₃
 
-/-- Forward simulation of one arbitrary `T₀` step.-/
+/-- Forward simulation of one arbitrary `T₀` step.
+@isnad1 id=thueeq.1h6v.s6.3278b75f5ec1 from=translated src=- shape=deb35a35 vocab=bfe489a6
+-/
 theorem simulate_step (F E : Fin r → List (Fin n))
     {X Y : List (Fin n)} (h : ThueStep (finiteSystem F E) X Y) :
     ThueEq (stage₁System F E) (encode F E X) (encode F E Y) := by
@@ -453,7 +512,9 @@ theorem simulate_step (F E : Fin r → List (Fin n))
   · exact simulate_rule F E i l s
   · exact thueEq_symm (simulate_rule F E i l s)
 
-/-- Forward half of equivalence (10) for all derivations.-/
+/-- Forward half of equivalence (10) for all derivations.
+@isnad1 id=thueeq.1h6v.s6.577c7af6b99c from=translated src=- shape=ea234727 vocab=cc20be72
+-/
 theorem simulate (F E : Fin r → List (Fin n)) {X Y : List (Fin n)}
     (h : ThueEq (finiteSystem F E) X Y) :
     ThueEq (stage₁System F E) (encode F E X) (encode F E Y) := by
@@ -476,7 +537,9 @@ private theorem decode_shift_sides (F E : Fin r → List (Fin n))
   simp [decode]
 
 /-- Every first-stage rewrite decodes either to one source rewrite or to an
-identity.  This is the argument in the last paragraph of Section 2.2.-/
+identity.  This is the argument in the last paragraph of Section 2.2.
+@isnad1 id=thueeq.1h6v.s6.c1df26310cd3 from=translated src=- shape=4f133d46 vocab=23c6fa3d
+-/
 theorem decode_step (F E : Fin r → List (Fin n))
     {X Y : List (Fin (n + 1))}
     (h : ThueStep (stage₁System F E) X Y) :
@@ -516,7 +579,9 @@ theorem decode_step (F E : Fin r → List (Fin n))
         have heq := decode_shift_sides F E j
         rw [decode_append, decode_append, decode_append, decode_append, heq]
 
-/-- `φ₀` maps an entire first-stage derivation to a source derivation.-/
+/-- `φ₀` maps an entire first-stage derivation to a source derivation.
+@isnad1 id=thueeq.1h6v.s6.d259a78dcc19 from=translated src=- shape=ee5c52c0 vocab=56ae9bd0
+-/
 theorem decode_thueEq (F E : Fin r → List (Fin n))
     {X Y : List (Fin (n + 1))}
     (h : ThueEq (stage₁System F E) X Y) :
@@ -525,7 +590,9 @@ theorem decode_thueEq (F E : Fin r → List (Fin n))
   | refl => exact Relation.ReflTransGen.refl
   | tail _ hstep ih => exact ih.trans (decode_step F E hstep)
 
-/-- Reflection half of equivalence (10) for the padding stage.-/
+/-- Reflection half of equivalence (10) for the padding stage.
+@isnad1 id=thueeq.1h6v.s6.7dd5923ad1cb from=translated src=- shape=7d69bed6 vocab=cc20be72
+-/
 theorem reflect (F E : Fin r → List (Fin n)) {X Y : List (Fin n)}
     (h : ThueEq (stage₁System F E) (encode F E X) (encode F E Y)) :
     ThueEq (finiteSystem F E) X Y := by

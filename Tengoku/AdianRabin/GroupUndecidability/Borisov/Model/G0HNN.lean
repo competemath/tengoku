@@ -52,15 +52,27 @@ def hnnE : G0HNN := BorisovHNNModel.e3
 def hnnS1 : G0HNN := BorisovHNNModel.s1_3
 def hnnS2 : G0HNN := BorisovHNNModel.s2_3
 
+/--
+@isnad1 id=eq.0h0v.s6.dd25696e0b56 from=translated src=- shape=297c55a4 vocab=1f35ece2
+-/
 theorem hnn_d_four_mul_s1 : hnnD ^ 4 * hnnS1 = hnnS1 * hnnD :=
   BorisovHNNModel.gamma3_d_four_mul_s1
 
+/--
+@isnad1 id=eq.0h0v.s6.dad22838b9bf from=translated src=- shape=3c00f348 vocab=538d6969
+-/
 theorem hnn_e_mul_s1 : hnnE * hnnS1 = hnnS1 * hnnE ^ 4 :=
   BorisovHNNModel.gamma3_e_mul_s1
 
+/--
+@isnad1 id=eq.0h0v.s6.ca73b1dff149 from=translated src=- shape=297c55a4 vocab=b4550f31
+-/
 theorem hnn_d_four_mul_s2 : hnnD ^ 4 * hnnS2 = hnnS2 * hnnD :=
   BorisovHNNModel.gamma3_d_four_mul_s2
 
+/--
+@isnad1 id=eq.0h0v.s6.da582c851955 from=translated src=- shape=3c00f348 vocab=de178b9f
+-/
 theorem hnn_e_mul_s2 : hnnE * hnnS2 = hnnS2 * hnnE ^ 4 :=
   BorisovHNNModel.gamma3_e_mul_s2
 
@@ -115,6 +127,9 @@ private theorem hnn_relators :
 def toHNN : BorisovIntersections.G0 →* G0HNN :=
   PresentedGroup.toGroup hnn_relators
 
+/--
+@isnad1 id=eq.0h1v.s7.fb400bd1ed7a from=translated src=- shape=0b01b9ff vocab=3595737a
+-/
 @[simp] theorem toHNN_of (i : Fin 4) :
     toHNN (PresentedGroup.of i) = hnnGenerator i :=
   PresentedGroup.toGroup.of hnn_relators
@@ -128,21 +143,33 @@ def presentedS1 : BorisovIntersections.G0 :=
 def presentedS2 : BorisovIntersections.G0 :=
   BorisovIntersections.evalWord BorisovIntersections.s2Word
 
+/--
+@isnad1 id=eq.0h0v.s5.a2bea081c3ca from=translated src=- shape=00b6a8f6 vocab=21940db3
+-/
 @[simp] theorem presentedD_eq_of :
     presentedD = PresentedGroup.of (0 : Fin 4) := by
   simp [presentedD, BorisovIntersections.d, BorisovIntersections.evalWord,
     BorisovIntersections.dWord, FP.evalWord]
 
+/--
+@isnad1 id=eq.0h0v.s5.5b22d385146f from=translated src=- shape=00b6a8f6 vocab=1272e977
+-/
 @[simp] theorem presentedE_eq_of :
     presentedE = PresentedGroup.of (1 : Fin 4) := by
   simp [presentedE, BorisovIntersections.e, BorisovIntersections.evalWord,
     BorisovIntersections.eWord, FP.evalWord]
 
+/--
+@isnad1 id=eq.0h0v.s5.04649a27058a from=translated src=- shape=00b6a8f6 vocab=b82ce1e0
+-/
 @[simp] theorem presentedS1_eq_of :
     presentedS1 = PresentedGroup.of (2 : Fin 4) := by
   simp [presentedS1, BorisovIntersections.evalWord,
     BorisovIntersections.s1Word, FP.evalWord]
 
+/--
+@isnad1 id=eq.0h0v.s5.7457d8c69c5f from=translated src=- shape=00b6a8f6 vocab=1e60f852
+-/
 @[simp] theorem presentedS2_eq_of :
     presentedS2 = PresentedGroup.of (3 : Fin 4) := by
   simp [presentedS2, BorisovIntersections.evalWord,
@@ -269,10 +296,16 @@ private theorem presented_s2_mul_e_four :
 def baseToPresented : Base →* BorisovIntersections.G0 :=
   FreeGroup.lift ![presentedD, presentedE]
 
+/--
+@isnad1 id=eq.0h0v.s6.6c02459f07c6 from=translated src=- shape=501f93a1 vocab=37ec479d
+-/
 @[simp] theorem baseToPresented_baseD :
     baseToPresented baseD = presentedD := by
   simp [baseToPresented, baseD, BorisovHNNModel.d]
 
+/--
+@isnad1 id=eq.0h0v.s6.819d91bdf0a8 from=translated src=- shape=501f93a1 vocab=6d289147
+-/
 @[simp] theorem baseToPresented_baseE :
     baseToPresented baseE = presentedE := by
   simp [baseToPresented, baseE, BorisovHNNModel.e]
@@ -321,10 +354,16 @@ private theorem first_lift_condition
 def g1ToPresented : G1 →* BorisovIntersections.G0 :=
   HNNExtension.lift baseToPresented presentedS1 first_lift_condition
 
+/--
+@isnad1 id=eq.0h1v.s8.4d5232342ca8 from=translated src=- shape=390f4ebc vocab=66be549e
+-/
 @[simp] theorem g1ToPresented_of (x : Base) :
     g1ToPresented (baseToG1 x) = baseToPresented x := by
   simp [g1ToPresented, baseToG1, BorisovHNNModel.of0]
 
+/--
+@isnad1 id=eq.0h0v.s6.c11fe14d4c2a from=translated src=- shape=501f93a1 vocab=cfb4e998
+-/
 @[simp] theorem g1ToPresented_s1 :
     g1ToPresented BorisovHNNModel.s1 = presentedS1 := by
   simp [g1ToPresented, BorisovHNNModel.s1]
@@ -343,41 +382,71 @@ private theorem second_lift_condition
 def fromHNN : G0HNN →* BorisovIntersections.G0 :=
   HNNExtension.lift g1ToPresented presentedS2 second_lift_condition
 
+/--
+@isnad1 id=eq.0h1v.s8.034f5fe4dcab from=translated src=- shape=390f4ebc vocab=5a7fe96e
+-/
 @[simp] theorem fromHNN_of (x : G1) :
     fromHNN (g1ToG0HNN x) = g1ToPresented x := by
   simp [fromHNN, g1ToG0HNN, BorisovHNNModel.of1]
 
+/--
+@isnad1 id=eq.0h0v.s6.4da03d2654c2 from=translated src=- shape=501f93a1 vocab=2df986e6
+-/
 @[simp] theorem fromHNN_hnnD : fromHNN hnnD = presentedD := by
   change fromHNN (g1ToG0HNN (baseToG1 baseD)) = presentedD
   rw [fromHNN_of, g1ToPresented_of, baseToPresented_baseD]
 
+/--
+@isnad1 id=eq.0h0v.s6.d8215d78e90b from=translated src=- shape=501f93a1 vocab=d7441cfd
+-/
 @[simp] theorem fromHNN_hnnE : fromHNN hnnE = presentedE := by
   change fromHNN (g1ToG0HNN (baseToG1 baseE)) = presentedE
   rw [fromHNN_of, g1ToPresented_of, baseToPresented_baseE]
 
+/--
+@isnad1 id=eq.0h0v.s6.bde6f4bf4bb7 from=translated src=- shape=501f93a1 vocab=d3e7eab8
+-/
 @[simp] theorem fromHNN_hnnS1 : fromHNN hnnS1 = presentedS1 := by
   change fromHNN (g1ToG0HNN BorisovHNNModel.s1) = presentedS1
   rw [fromHNN_of, g1ToPresented_s1]
 
+/--
+@isnad1 id=eq.0h0v.s6.e995bdbf1eca from=translated src=- shape=501f93a1 vocab=d84f332f
+-/
 @[simp] theorem fromHNN_hnnS2 : fromHNN hnnS2 = presentedS2 := by
   simp [fromHNN, hnnS2, BorisovHNNModel.s2_3]
 
+/--
+@isnad1 id=eq.0h0v.s6.adca6869ed3e from=translated src=- shape=501f93a1 vocab=068101c2
+-/
 @[simp] theorem toHNN_presentedD : toHNN presentedD = hnnD := by
   rw [presentedD_eq_of, toHNN_of]
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s6.f03137e27494 from=translated src=- shape=501f93a1 vocab=bda3aba9
+-/
 @[simp] theorem toHNN_presentedE : toHNN presentedE = hnnE := by
   rw [presentedE_eq_of, toHNN_of]
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s6.0969e1eb3508 from=translated src=- shape=501f93a1 vocab=40327228
+-/
 @[simp] theorem toHNN_presentedS1 : toHNN presentedS1 = hnnS1 := by
   rw [presentedS1_eq_of, toHNN_of]
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s6.90055e88c9c8 from=translated src=- shape=501f93a1 vocab=89dd2cba
+-/
 @[simp] theorem toHNN_presentedS2 : toHNN presentedS2 = hnnS2 := by
   rw [presentedS2_eq_of, toHNN_of]
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s7.f2167f9c0086 from=translated src=- shape=33485c38 vocab=e26053ce
+-/
 theorem fromHNN_comp_toHNN :
     fromHNN.comp toHNN = MonoidHom.id BorisovIntersections.G0 := by
   apply PresentedGroup.ext
@@ -403,6 +472,9 @@ private theorem toHNN_comp_g1ToPresented :
     rw [g1ToPresented_s1, toHNN_presentedS1]
     rfl
 
+/--
+@isnad1 id=eq.0h0v.s7.538f8be07144 from=translated src=- shape=33485c38 vocab=e26053ce
+-/
 theorem toHNN_comp_fromHNN :
     toHNN.comp fromHNN = MonoidHom.id G0HNN := by
   apply HNNExtension.hom_ext
@@ -421,6 +493,9 @@ noncomputable def g0Equiv : BorisovIntersections.G0 ≃* G0HNN :=
   MonoidHom.toMulEquiv toHNN fromHNN
     fromHNN_comp_toHNN toHNN_comp_fromHNN
 
+/--
+@isnad1 id=eq.0h1v.s8.11067c53c1f6 from=translated src=- shape=011ad8da vocab=af8f188f
+-/
 @[simp] theorem g0Equiv_apply (x : BorisovIntersections.G0) :
     g0Equiv x = toHNN x := rfl
 

@@ -58,21 +58,33 @@ def relation (lhs rhs : Word n) : Word n :=
 def commutator (u v : Word n) : Word n :=
   mul (inverse u) (mul (inverse v) (mul u v))
 
+/--
+@isnad1 id=eq.0h3v.s4.d1b03a2810ad from=translated src=- shape=e617d6f0 vocab=3dae3ed3
+-/
 @[simp]
 theorem inverse_mul (u v : Word n) :
     inverse (mul u v) = mul (inverse v) (inverse u) := by
   simp [inverse, mul, List.reverse_append]
 
+/--
+@isnad1 id=eq.0h2v.s3.e2767f6855cd from=translated src=- shape=6ddf6d3e vocab=c59463a4
+-/
 @[simp]
 theorem inverse_inverse (w : Word n) : inverse (inverse w) = w := by
   simp [inverse, Function.comp_def]
 
+/--
+@isnad1 id=eq.0h5v.s5.9a9ef8ffe549 from=translated src=- shape=4c6697c8 vocab=5e1e0953
+-/
 @[simp]
 theorem substitute_append {A : Type*} (s : A → Word n)
     (u v : List (A × Bool)) :
     substitute s (u ++ v) = mul (substitute s u) (substitute s v) := by
   simp [substitute, mul]
 
+/--
+@isnad1 id=eq.0h4v.s4.56070d895444 from=translated src=- shape=a7330973 vocab=0a95fa13
+-/
 @[simp]
 theorem substitute_invRev {A : Type*} (s : A → Word n)
     (w : List (A × Bool)) :
@@ -101,6 +113,9 @@ theorem substitute_invRev {A : Type*} (s : A → Word n)
             inverse (mul (s i) (substitute s w))
           rw [inverse_mul]
 
+/--
+@isnad1 id=eq.0h4v.s5.6331a3f8f24e from=translated src=- shape=9efe2eb0 vocab=2cc33d9d
+-/
 @[simp]
 theorem substitute_flatten {A : Type*} (s : A → Word n)
     (ws : List (List (A × Bool))) :
@@ -116,29 +131,44 @@ theorem substitute_flatten {A : Type*} (s : A → Word n)
 def eval {G : Type*} [Group G] (x : Fin n → G) (w : Word n) : G :=
   FreeGroup.lift x (FreeGroup.mk w)
 
+/--
+@isnad1 id=eq.0h4v.s4.0b9dbdaa47a8 from=translated src=- shape=b6e6378a vocab=9a9843c7
+-/
 @[simp]
 theorem eval_generator {G : Type*} [Group G]
     (x : Fin n → G) (i : Fin n) :
     eval x (generator i) = x i := by
   simp [eval, generator]
 
+/--
+@isnad1 id=eq.0h5v.s5.d7230e188f4c from=translated src=- shape=770d2149 vocab=aff5e3de
+-/
 @[simp]
 theorem eval_mul {G : Type*} [Group G]
     (x : Fin n → G) (u v : Word n) :
     eval x (mul u v) = eval x u * eval x v :=
   map_mul (FreeGroup.lift x) (FreeGroup.mk u) (FreeGroup.mk v)
 
+/--
+@isnad1 id=eq.0h5v.s6.0320abb06580 from=translated src=- shape=bcc31bcf vocab=7acec1b5
+-/
 @[simp]
 theorem eval_append {G : Type*} [Group G]
     (x : Fin n → G) (u v : Word n) :
     eval x (u ++ v) = eval x u * eval x v :=
   eval_mul x u v
 
+/--
+@isnad1 id=eq.0h2v.s4.8a2ee6272659 from=translated src=- shape=ac96ee11 vocab=7a49c9b0
+-/
 theorem mk_inverse (w : Word n) :
     FreeGroup.mk (inverse w) = (FreeGroup.mk w)⁻¹ := by
   rw [FreeGroup.inv_mk]
   simp only [inverse, FreeGroup.invRev, List.map_reverse]
 
+/--
+@isnad1 id=eq.0h4v.s5.368e4ad0499f from=translated src=- shape=ae579020 vocab=6c2c7fda
+-/
 @[simp]
 theorem eval_inverse {G : Type*} [Group G]
     (x : Fin n → G) (w : Word n) :
@@ -146,6 +176,9 @@ theorem eval_inverse {G : Type*} [Group G]
   rw [eval, mk_inverse]
   exact map_inv (FreeGroup.lift x) (FreeGroup.mk w)
 
+/--
+@isnad1 id=eq.0h5v.s5.159619076d28 from=translated src=- shape=3b45f66d vocab=0fb5215f
+-/
 @[simp]
 theorem eval_pow {G : Type*} [Group G]
     (x : Fin n → G) (w : Word n) (k : ℕ) :
@@ -153,6 +186,9 @@ theorem eval_pow {G : Type*} [Group G]
   rw [eval, pow, ← FreeGroup.pow_mk]
   exact map_pow (FreeGroup.lift x) (FreeGroup.mk w) k
 
+/--
+@isnad1 id=eq.0h4v.s5.325cfd58da4e from=translated src=- shape=88e2cb85 vocab=8e64a4db
+-/
 @[simp]
 theorem eval_product {G : Type*} [Group G]
     (x : Fin n → G) (ws : List (Word n)) :
@@ -163,6 +199,9 @@ theorem eval_product {G : Type*} [Group G]
       change eval x (mul w (product ws)) = _
       simp [ih]
 
+/--
+@isnad1 id=eq.0h6v.s5.b317118d63f1 from=translated src=- shape=2020d182 vocab=64511773
+-/
 @[simp]
 theorem eval_mapGenerators {G : Type*} [Group G]
     (x : Fin k → G) (f : Fin n → Fin k) (w : Word n) :
@@ -174,6 +213,9 @@ theorem eval_mapGenerators {G : Type*} [Group G]
       cases sign <;>
         simp [eval, mapGenerators, FreeGroup.lift_mk, Function.comp_def]
 
+/--
+@isnad1 id=eq.0h6v.s7.35f889b95279 from=translated src=- shape=387ff89b vocab=3a81fb95
+-/
 theorem map_eval {G H : Type*} [Group G] [Group H]
     (f : G →* H) (x : Fin n → G) (w : Word n) :
     f (eval x w) = eval (f ∘ x) w := by
@@ -184,6 +226,9 @@ theorem map_eval {G H : Type*} [Group G] [Group H]
   intro i
   simp [Function.comp_def]
 
+/--
+@isnad1 id=eq.0h6v.s7.c3bd96b12db4 from=translated src=- shape=fbdaa626 vocab=ebbc73a4
+-/
 @[simp]
 theorem eval_substitutePositive {G : Type*} [Group G]
     (x : Fin n → G) (s₁ s₂ : Word n) (w : List (Fin 2)) :
@@ -199,6 +244,9 @@ theorem eval_substitutePositive {G : Type*} [Group G]
       rw [eval_append, ih]
       split <;> rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.4427806fd289 from=translated src=- shape=18a6b5d1 vocab=46b5b27c
+-/
 @[simp]
 theorem eval_substitute {G : Type*} [Group G]
     (x : Fin k → G) (s : Fin n → Word k) (w : Word n) :
@@ -218,18 +266,27 @@ theorem eval_substitute {G : Type*} [Group G]
       · simp only [ite_true]
         simp [eval, FreeGroup.lift_mk]
 
+/--
+@isnad1 id=eq.0h5v.s6.a6791360834a from=translated src=- shape=ac2967f7 vocab=3083f13c
+-/
 @[simp]
 theorem eval_relation {G : Type*} [Group G]
     (x : Fin n → G) (lhs rhs : Word n) :
     eval x (relation lhs rhs) = eval x lhs * (eval x rhs)⁻¹ := by
   simp [relation]
 
+/--
+@isnad1 id=iff.0h5v.s5.e7fd48211349 from=translated src=- shape=f21f3531 vocab=2a2d71f9
+-/
 theorem eval_relation_eq_one_iff {G : Type*} [Group G]
     (x : Fin n → G) (lhs rhs : Word n) :
     eval x (relation lhs rhs) = 1 ↔ eval x lhs = eval x rhs := by
   rw [eval_relation]
   exact mul_inv_eq_one
 
+/--
+@isnad1 id=eq.0h5v.s6.c6dcc1941e91 from=translated src=- shape=7e76b3fd vocab=a6f20ac4
+-/
 @[simp]
 theorem eval_commutator {G : Type*} [Group G]
     (x : Fin n → G) (u v : Word n) :
@@ -263,6 +320,9 @@ def wordProblem (P : FP n m) (w : Word n) : Prop :=
 def evalWord (P : FP n m) (w : Word n) : P.Group :=
   Word.eval (fun i => PresentedGroup.of i) w
 
+/--
+@isnad1 id=eq.0h4v.s7.29c91af1aa9e from=translated src=- shape=e516a060 vocab=169350e8
+-/
 theorem evalWord_eq_mk (P : FP n m) (w : Word n) :
     P.evalWord w = PresentedGroup.mk P.relSet (FreeGroup.mk w) := by
   change (FreeGroup.lift (fun i => PresentedGroup.of i)) (FreeGroup.mk w) = _
@@ -271,12 +331,17 @@ theorem evalWord_eq_mk (P : FP n m) (w : Word n) :
   intro i
   rfl
 
+/--
+@isnad1 id=iff.0h4v.s6.b7255590b9f8 from=translated src=- shape=06822309 vocab=b72dc0a8
+-/
 theorem wordProblem_iff_evalWord_eq_one (P : FP n m) (w : Word n) :
     P.wordProblem w ↔ P.evalWord w = 1 := by
   rw [evalWord_eq_mk]
   rfl
 
-/-- Every designated relator evaluates to one in the presented group.-/
+/-- Every designated relator evaluates to one in the presented group.
+@isnad1 id=eq.0h4v.s5.925ee4db953b from=translated src=- shape=cd800d9c vocab=001c6f93
+-/
 theorem relator_eq_one (P : FP n m) (i : Fin m) :
     P.evalWord (P.relator i) = 1 := by
   rw [evalWord_eq_mk]
@@ -291,12 +356,18 @@ def homOfRelators {G : Type*} [_root_.Group G] (P : FP n m) (x : Fin n → G)
     obtain ⟨i, rfl⟩ := hr
     exact h i
 
+/--
+@isnad1 id=eq.1h6v.s7.8c7ef9fc4393 from=translated src=- shape=77c9370a vocab=bcaec343
+-/
 @[simp]
 theorem homOfRelators_of {G : Type*} [_root_.Group G] (P : FP n m)
     (x : Fin n → G) (h : ∀ i, Word.eval x (P.relator i) = 1) (i : Fin n) :
     P.homOfRelators x h (PresentedGroup.of i) = x i :=
   PresentedGroup.toGroup.of _
 
+/--
+@isnad1 id=eq.1h6v.s7.e4ecc35c031e from=translated src=- shape=b9add53d vocab=6847249b
+-/
 @[simp]
 theorem homOfRelators_evalWord {G : Type*} [_root_.Group G] (P : FP n m)
     (x : Fin n → G) (h : ∀ i, Word.eval x (P.relator i) = 1) (w : Word n) :
@@ -316,6 +387,9 @@ def NormallyGenerates (P : FP n m) (z : Word n) : Prop :=
       ({PresentedGroup.mk P.relSet (FreeGroup.mk z)} : Set P.Group) =
     ⊤
 
+/--
+@isnad1 id=iff.0h3v.s4.e62783a26aa0 from=translated src=- shape=a10f8515 vocab=28e04a92
+-/
 theorem presentsTrivial_iff_subsingleton (P : FP n m) :
     P.presentsTrivial ↔ Subsingleton P.Group := by
   constructor
@@ -335,7 +409,9 @@ theorem presentsTrivial_iff_subsingleton (P : FP n m) :
     exact h.elim _ _
 
 /-- A finite presentation is trivial when all of its canonical generators
-are equal to one.-/
+are equal to one.
+@isnad1 id=presents.1h3v.s6.0057b91c8981 from=translated src=- shape=3d76779d vocab=042d6d71
+-/
 theorem presentsTrivial_of_generator_eq_one (P : FP n m)
     (h : ∀ i, (PresentedGroup.of i : P.Group) = 1) : P.presentsTrivial := by
   rw [presentsTrivial_iff_subsingleton]

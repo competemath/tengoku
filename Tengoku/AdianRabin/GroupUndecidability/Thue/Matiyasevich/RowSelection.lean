@@ -24,19 +24,34 @@ def thin {α : Type*} : ℕ → List α → List α
   | 0, W => W
   | u + 1, W => selectOdd (thin u W)
 
+/--
+@isnad1 id=eq.0h1v.s3.61d981367726 from=translated src=- shape=d7e42ba8 vocab=235654bb
+-/
 @[simp] theorem selectOdd_nil {α : Type*} : selectOdd ([] : List α) = [] := rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.cdb21c6ac1df from=translated src=- shape=4f2e6052 vocab=7206d10c
+-/
 @[simp] theorem selectOdd_cons_cons {α : Type*} (x y : α) (W : List α) :
     selectOdd (x :: y :: W) = y :: selectOdd W := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.f88a6ff37cd6 from=translated src=- shape=b7914832 vocab=d78d4c2a
+-/
 @[simp] theorem thin_succ {α : Type*} (u : ℕ) (W : List α) :
     thin (u + 1) W = selectOdd (thin u W) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.70ddbb59abe9 from=translated src=- shape=4eef11c7 vocab=bc8a6335
+-/
 @[simp] theorem thin_nil {α : Type*} (u : ℕ) : thin u ([] : List α) = [] := by
   induction u with
   | zero => rfl
   | succ u ih => rw [thin_succ, ih, selectOdd_nil]
 
+/--
+@isnad1 id=eq.0h2v.s4.d27bab4049ab from=translated src=- shape=1e72e309 vocab=f093a8d9
+-/
 theorem selectOdd_length {α : Type*} (W : List α) :
     (selectOdd W).length = W.length / 2 := by
   induction W using List.twoStepInduction with
@@ -46,6 +61,9 @@ theorem selectOdd_length {α : Type*} (W : List α) :
       simp only [selectOdd_cons_cons, List.length_cons, ih]
       omega
 
+/--
+@isnad1 id=eq.0h4v.s5.47dd07b38525 from=translated src=- shape=5473d936 vocab=65b9110c
+-/
 theorem selectOdd_getD {α : Type*} (W : List α) (i : ℕ) (d : α) :
     (selectOdd W).getD i d = W.getD (2 * i + 1) d := by
   induction W using List.twoStepInduction generalizing i with
@@ -58,6 +76,9 @@ theorem selectOdd_getD {α : Type*} (W : List α) (i : ℕ) (d : α) :
       | succ i =>
           simpa [selectOdd, Nat.mul_succ, Nat.add_assoc] using ih (i := i)
 
+/--
+@isnad1 id=eq.0h3v.s5.9221db30320d from=translated src=- shape=1e5d00ec vocab=b5e440ac
+-/
 theorem thin_length {α : Type*} (u : ℕ) (W : List α) :
     (thin u W).length = W.length / 2 ^ u := by
   induction u with
@@ -66,6 +87,9 @@ theorem thin_length {α : Type*} (u : ℕ) (W : List α) :
       rw [thin_succ, selectOdd_length, ih, Nat.div_div_eq_div_mul]
       simp [pow_succ, Nat.mul_comm]
 
+/--
+@isnad1 id=eq.0h5v.s6.56d00b5bf10e from=translated src=- shape=076dd7d4 vocab=f257d031
+-/
 theorem thin_getD {α : Type*} (u : ℕ) (W : List α) (i : ℕ) (d : α) :
     (thin u W).getD i d = W.getD (2 ^ u * (i + 1) - 1) d := by
   induction u generalizing i with
@@ -77,6 +101,9 @@ theorem thin_getD {α : Type*} (u : ℕ) (W : List α) (i : ℕ) (d : α) :
       rw [show 2 * i + 1 + 1 = 2 * (i + 1) by omega]
       simp [Nat.mul_assoc]
 
+/--
+@isnad1 id=eq.1h3v.s5.20f5e6cff4f1 from=translated src=- shape=803a7796 vocab=788d4bf3
+-/
 theorem selectOdd_append_of_even {α : Type*} (X Y : List α)
     (heven : 2 ∣ X.length) :
     selectOdd (X ++ Y) = selectOdd X ++ selectOdd Y := by
@@ -94,6 +121,9 @@ theorem selectOdd_append_of_even {α : Type*} (X Y : List α)
         omega
       simp [selectOdd, ih htail]
 
+/--
+@isnad1 id=eq.1h4v.s6.0cb26e3ca51d from=translated src=- shape=ebd08ab3 vocab=9d57c041
+-/
 theorem thin_append_of_dvd {α : Type*} (u : ℕ) (X Y : List α)
     (hdiv : 2 ^ u ∣ X.length) :
     thin u (X ++ Y) = thin u X ++ thin u Y := by
@@ -113,6 +143,9 @@ theorem thin_append_of_dvd {α : Type*} (u : ℕ) (X Y : List α)
       rw [ih X hdiv']
       exact selectOdd_append_of_even (thin u X) (thin u Y) heven
 
+/--
+@isnad1 id=eq.0h3v.s5.85f015bdf458 from=translated src=- shape=43c63751 vocab=d78d4c2a
+-/
 theorem thin_succ_comm {α : Type*} (u : ℕ) (W : List α) :
     thin (u + 1) W = thin u (selectOdd W) := by
   induction u with
@@ -129,10 +162,16 @@ def expand (u : ℕ) : List (Fin 2) → List (Fin 2)
   | [] => []
   | x :: W => List.replicate (2 ^ u - 1) 0 ++ x :: expand u W
 
+/--
+@isnad1 id=eq.0h3v.s7.b73f6f615ce4 from=translated src=- shape=0d3880e0 vocab=3e95a16d
+-/
 @[simp] theorem expand_cons (u : ℕ) (x : Fin 2) (W : List (Fin 2)) :
     expand u (x :: W) =
       List.replicate (2 ^ u - 1) 0 ++ x :: expand u W := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.5f8bb51a22f1 from=translated src=- shape=9bb553e4 vocab=9c90cb2b
+-/
 theorem expand_length (u : ℕ) (W : List (Fin 2)) :
     (expand u W).length = W.length * 2 ^ u := by
   induction W with
@@ -144,11 +183,17 @@ theorem expand_length (u : ℕ) (W : List (Fin 2)) :
       rw [Nat.succ_mul]
       omega
 
+/--
+@isnad1 id=dvd.0h2v.s5.5e86884bdaf3 from=translated src=- shape=1df3198a vocab=5e6921e1
+-/
 theorem expand_length_dvd (u : ℕ) (W : List (Fin 2)) :
     2 ^ u ∣ (expand u W).length := by
   refine ⟨W.length, ?_⟩
   rw [expand_length, Nat.mul_comm]
 
+/--
+@isnad1 id=eq.0h2v.s7.7dba038bbf82 from=translated src=- shape=6b94d75c vocab=6128d3db
+-/
 theorem selectOdd_expandBlock (k : ℕ) (x : Fin 2) :
     selectOdd (List.replicate (2 * k + 1) 0 ++ [x]) =
       List.replicate k 0 ++ [x] := by
@@ -162,6 +207,9 @@ theorem selectOdd_expandBlock (k : ℕ) (x : Fin 2) :
         0 :: (List.replicate k 0 ++ [x])
       rw [selectOdd_cons_cons, ih]
 
+/--
+@isnad1 id=eq.0h2v.s7.adfa50ba8b5a from=translated src=- shape=624c35df vocab=1470bfa4
+-/
 theorem thin_expandBlock (u : ℕ) (x : Fin 2) :
     thin u (List.replicate (2 ^ u - 1) 0 ++ [x]) = [x] := by
   induction u with
@@ -174,7 +222,9 @@ theorem thin_expandBlock (u : ℕ) (x : Fin 2) :
         omega]
       rw [selectOdd_expandBlock, ih]
 
-/-- `thin` is a left inverse to aligned expansion.-/
+/-- `thin` is a left inverse to aligned expansion.
+@isnad1 id=eq.0h2v.s4.4726a218d302 from=translated src=- shape=6ca3e239 vocab=32f40773
+-/
 @[simp] theorem thin_expand (u : ℕ) (W : List (Fin 2)) :
     thin u (expand u W) = W := by
   induction W with
@@ -194,11 +244,17 @@ theorem thin_expandBlock (u : ℕ) (x : Fin 2) :
 
 /-! ### Reading a column-major transpose -/
 
+/--
+@isnad1 id=eq.0h4v.s6.9a2ef06480f5 from=translated src=- shape=0788cae7 vocab=41802bed
+-/
 theorem column_getD {t : ℕ} (rows : Fin t → List (Fin 2))
     (col : ℕ) (i : Fin t) :
     (column rows col).getD i.val 0 = (rows i).getD col 0 := by
   simp [column, i.isLt]
 
+/--
+@isnad1 id=eq.1h6v.s6.2dacaae25eba from=translated src=- shape=63960cfa vocab=03e29a02
+-/
 theorem columnsFrom_getD {t : ℕ} (rows : Fin t → List (Fin 2))
     (start width col : ℕ) (i : Fin t) (hcol : col < width) :
     (columnsFrom rows start width).getD (col * t + i.val) 0 =
@@ -228,6 +284,9 @@ theorem columnsFrom_getD {t : ℕ} (rows : Fin t → List (Fin 2))
             rw [Nat.succ_mul]
             omega
 
+/--
+@isnad1 id=eq.1h5v.s6.127276eddc92 from=translated src=- shape=69a4fddc vocab=c8476a97
+-/
 theorem transpose_getD {t width : ℕ}
     (rows : Fin t → List (Fin 2)) (col : ℕ) (i : Fin t)
     (hcol : col < width) :
@@ -243,6 +302,9 @@ def paddedTransposeLast {t : ℕ} (width : ℕ)
   List.replicate (t - 1 - j.val) 0 ++
     transpose width rows ++ List.replicate j.val 0 ++ [z]
 
+/--
+@isnad1 id=eq.0h5v.s5.1eb3b2cb93a1 from=translated src=- shape=11622805 vocab=8be90b93
+-/
 theorem paddedTransposeLast_length {t width : ℕ}
     (rows : Fin t → List (Fin 2)) (j : Fin t) (z : Fin 2) :
     (paddedTransposeLast width rows j z).length = (width + 1) * t := by
@@ -252,6 +314,9 @@ theorem paddedTransposeLast_length {t width : ℕ}
   rw [Nat.add_mul]
   omega
 
+/--
+@isnad1 id=eq.2h6v.s7.8a2d5a37b986 from=translated src=- shape=10a7c0fb vocab=24f2d0e8
+-/
 theorem paddedTransposeLast_getD_row {t width : ℕ}
     (rows : Fin t → List (Fin 2)) (j : Fin t) (z : Fin 2) (ht : 0 < t)
     (col : ℕ) (hcol : col < width) :
@@ -287,6 +352,9 @@ theorem paddedTransposeLast_getD_row {t width : ℕ}
       exact hstep.trans_le hbound
   · simpa using hleft
 
+/--
+@isnad1 id=eq.1h5v.s6.7401fa3b23e4 from=translated src=- shape=d5c5cf92 vocab=24f2d0e8
+-/
 theorem paddedTransposeLast_getD_last {t width : ℕ}
     (rows : Fin t → List (Fin 2)) (j : Fin t) (z : Fin 2) (ht : 0 < t) :
     (paddedTransposeLast width rows j z).getD
@@ -319,7 +387,9 @@ theorem paddedTransposeLast_getD_last {t width : ℕ}
       omega
   · simpa using hleft
 
-/-- General row selection with an arbitrary final sampled bit.-/
+/-- General row selection with an arbitrary final sampled bit.
+@isnad1 id=eq.1h5v.s7.1edff4c5d59e from=translated src=- shape=4d6f1909 vocab=7bcaa4a1
+-/
 theorem thin_paddedTranspose_last (u width : ℕ)
     (rows : Fin (2 ^ u) → List (Fin 2)) (j : Fin (2 ^ u))
     (z : Fin 2) (hlen : ∀ i, (rows i).length = width) :
@@ -360,6 +430,9 @@ theorem thin_paddedTranspose_last (u width : ℕ)
 
 /-! ### Priority normalization performs the sampling -/
 
+/--
+@isnad1 id=eq.1h2v.s6.42f2e8fd7fb3 from=translated src=- shape=56ac3c7b vocab=891df8ae
+-/
 theorem pushE_liftBinary_even (W : List (Fin 2)) (v : ℕ)
     (heven : 2 ∣ W.length) :
     pushE (liftBinary W ++ List.replicate v e) =
@@ -397,7 +470,9 @@ theorem pushE_liftBinary_even (W : List (Fin 2)) (v : ℕ)
         rw [pushE_bb, hih]
 
 /-- An initial block `e^u` implements `thin u` on a binary word whose
-length is a multiple of `2^u`.-/
+length is a multiple of `2^u`.
+@isnad1 id=eq.1h2v.s6.44f7a935b890 from=translated src=- shape=b2534be9 vocab=2d3e1ab7
+-/
 theorem firstNormal_replicate_e_liftBinary (u : ℕ) (W : List (Fin 2))
     (hdiv : 2 ^ u ∣ W.length) :
     firstNormal (List.replicate u e ++ liftBinary W) =
@@ -421,6 +496,9 @@ theorem firstNormal_replicate_e_liftBinary (u : ℕ) (W : List (Fin 2))
 
 /-! ### The last column -/
 
+/--
+@isnad1 id=eq.0h4v.s6.fa71a5342131 from=translated src=- shape=770ae815 vocab=b776a806
+-/
 theorem columnsFrom_last {t : ℕ}
     (rows : Fin t → List (Fin 2)) (start k : ℕ) :
     columnsFrom rows start (k + 1) =
@@ -436,6 +514,9 @@ theorem columnsFrom_last {t : ℕ}
       congr 1
       omega
 
+/--
+@isnad1 id=eq.3h3v.s7.d23234ac01e2 from=translated src=- shape=66a8554b vocab=4c79a0a6
+-/
 theorem column_last {t width : ℕ}
     (rows : Fin t → List (Fin 2))
     (hwidth : 0 < width)
@@ -459,7 +540,9 @@ theorem column_last {t width : ℕ}
 
 /-- If every nonempty rectangular row ends in the binary letter `1`, then
 the column-major transpose also ends in `1` (the final entry of its final
-column).-/
+column).
+@isnad1 id=ex.4h3v.s7.e2d9644dd1ce from=translated src=- shape=de43d244 vocab=f287a148
+-/
 theorem transpose_ends_b {t width : ℕ}
     (rows : Fin t → List (Fin 2))
     (ht : 0 < t) (hwidth : 0 < width)
@@ -477,6 +560,9 @@ theorem transpose_ends_b {t width : ℕ}
   refine ⟨columnsFrom rows 0 width ++ List.replicate t 1, ?_⟩
   simp only [List.append_assoc]
 
+/--
+@isnad1 id=ex.4h3v.s7.a92cf797554e from=translated src=- shape=5d95cc4c vocab=4a05c822
+-/
 theorem liftBinary_transpose_ends_b {t width : ℕ}
     (rows : Fin t → List (Fin 2))
     (ht : 0 < t) (hwidth : 0 < width)
@@ -513,6 +599,9 @@ def affineSample (u : ℕ) (j : Fin (2 ^ u)) (W : List (Fin 2)) :
     List (Fin 2) :=
   thin u (List.replicate (2 ^ u - 1 - j.val) 0 ++ W)
 
+/--
+@isnad1 id=eq.0h3v.s7.bb3eb575e839 from=translated src=- shape=54008816 vocab=a6ba4f9d
+-/
 theorem affineSample_length (u : ℕ) (j : Fin (2 ^ u))
     (W : List (Fin 2)) :
     (affineSample u j W).length =
@@ -520,6 +609,9 @@ theorem affineSample_length (u : ℕ) (j : Fin (2 ^ u))
   rw [affineSample, thin_length]
   simp only [List.length_append, List.length_replicate]
 
+/--
+@isnad1 id=eq.0h4v.s7.80b4d2254d65 from=translated src=- shape=5783deed vocab=34fbf72d
+-/
 theorem affineSample_getD (u : ℕ) (j : Fin (2 ^ u))
     (W : List (Fin 2)) (k : ℕ) :
     (affineSample u j W).getD k 0 =
@@ -551,7 +643,9 @@ theorem affineSample_getD (u : ℕ) (j : Fin (2 ^ u))
 
 /-- A column-major transpose occupies a whole number of sampling periods.
 Sampling it at phase `j`, followed by an arbitrary suffix, returns row `j`
-followed by the suffix sampled at the unchanged phase.-/
+followed by the suffix sampled at the unchanged phase.
+@isnad1 id=eq.1h5v.s7.a8320500f5fe from=translated src=- shape=585bcb30 vocab=77baf2c4
+-/
 theorem affineSample_transpose_append
     (u width : ℕ) (rows : Fin (2 ^ u) → List (Fin 2))
     (j : Fin (2 ^ u)) (R : List (Fin 2))
@@ -707,7 +801,9 @@ private theorem selectOdd_cons_affineSample_low
 
 /-- Prefixing an affine sample and applying `selectOdd` updates only the
 finite prefix and lifts the sampling phase by one binary digit.  For an even
-prefix length the new phase is `j + 2^u`; for an odd prefix length it is `j`.-/
+prefix length the new phase is `j + 2^u`; for an odd prefix length it is `j`.
+@isnad1 id=ex.0h3v.s7.868f259c3717 from=translated src=- shape=52d8c8d4 vocab=7bf46821
+-/
 theorem selectOdd_prefix_affineSample (u : ℕ)
     (P : List (Fin 2)) (j : Fin (2 ^ u)) :
     ∃ P' : List (Fin 2), ∃ j' : Fin (2 ^ (u + 1)), ∀ W,

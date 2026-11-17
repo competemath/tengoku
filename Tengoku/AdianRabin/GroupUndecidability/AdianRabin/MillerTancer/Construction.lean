@@ -87,6 +87,9 @@ def transform (P : FP n m) (z w : Word n) : FP (n + 3) (m + 4) where
     (fun i => oldWord (P.relator i))
     (additionalRelators z w)
 
+/--
+@isnad1 id=eq.0h6v.s6.39722277b790 from=translated src=- shape=1ed739dc vocab=92c01ad6
+-/
 @[simp]
 theorem transform_old
     (P : FP n m) (z w : Word n) (i : Fin m) :
@@ -94,6 +97,9 @@ theorem transform_old
       oldWord (P.relator i) := by
   simp [transform]
 
+/--
+@isnad1 id=eq.0h6v.s6.51d28ec99f1a from=translated src=- shape=ff7ba9d1 vocab=b5f7295d
+-/
 @[simp]
 theorem transform_additional
     (P : FP n m) (z w : Word n) (i : Fin 4) :
@@ -101,7 +107,9 @@ theorem transform_additional
       additionalRelators z w i := by
   simp [transform]
 
-/-- The word-indexed transformation is uniform and computable.-/
+/-- The word-indexed transformation is uniform and computable.
+@isnad1 id=computab.0h4v.s7.f8857c7ec650 from=translated src=- shape=29aabdf6 vocab=83c0c3a7
+-/
 theorem transform_computable (P : FP n m) (z : Word n) :
     Computable₂ fun w i => (transform P z w).relator i := by
   have holdGenerator : Primrec (@oldGenerator n) := by
@@ -226,7 +234,9 @@ private theorem additional_relator_eq_one
   simpa [FP.evalWord] using
     (transform P z w).relator_eq_one (Fin.natAdd m i)
 
-/-- The elementary half of the Miller--Tancer argument.-/
+/-- The elementary half of the Miller--Tancer argument.
+@isnad1 id=presents.2h5v.s5.81c78826dea3 from=translated src=- shape=d338397f vocab=ecb59a46
+-/
 theorem presentsTrivial_transform_of_wordProblem
     (P : FP n m) (z : Word n) (hz : P.NormallyGenerates z) (w : Word n)
     (hw : P.wordProblem w) :

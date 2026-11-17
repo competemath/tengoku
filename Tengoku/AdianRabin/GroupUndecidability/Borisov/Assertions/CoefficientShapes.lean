@@ -70,7 +70,9 @@ theorem eq_stableLetters_of_ruleCount_zero
 
 /-- Pure list-theoretic form of Borisov's page-771 dichotomy: if all letters
 are positive and at most one is a rule letter, the word is either stable-only
-or has a unique rule letter in positive stable contexts.-/
+or has a unique rule letter in positive stable contexts.
+@isnad1 id=or.2h1v.s6.bd1ef33871ac from=translated src=- shape=d10e1523 vocab=db62421e
+-/
 theorem letters_eq_stable_or_oneRule
     (letters : List (Basis × Bool))
     (hpositive : AllPositive letters) (hsparse : ruleCount letters ≤ 1) :
@@ -100,6 +102,9 @@ theorem letters_eq_stable_or_oneRule
             ⟨right, rfl⟩
           exact Or.inr ⟨[], right, i, rfl⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.0d91fc04b334 from=translated src=- shape=6b34ada4 vocab=95595c80
+-/
 @[simp] theorem uLift_mk_stableLetters
     (datum : Thue.StandingDatum) (w : List (Fin 2)) :
     uLift datum (FreeGroup.mk (stableLetters w)) = positive3 w := by
@@ -108,6 +113,9 @@ theorem letters_eq_stable_or_oneRule
   rw [List.map_map]
   congr 1
 
+/--
+@isnad1 id=eq.0h2v.s6.5464082b79c8 from=translated src=- shape=6b34ada4 vocab=0ef92c59
+-/
 @[simp] theorem vLift_mk_stableLetters
     (datum : Thue.StandingDatum) (w : List (Fin 2)) :
     vLift datum (FreeGroup.mk (stableLetters w)) = positive3 w := by
@@ -116,6 +124,9 @@ theorem letters_eq_stable_or_oneRule
   rw [List.map_map]
   congr 1
 
+/--
+@isnad1 id=eq.0h4v.s7.356d5f8cc0c3 from=translated src=- shape=73328549 vocab=770ac3c2
+-/
 @[simp] theorem uLift_mk_oneRuleLetters
     (datum : Thue.StandingDatum) (left right : List (Fin 2)) (i : Fin 3) :
     uLift datum (FreeGroup.mk (oneRuleLetters left right i)) =
@@ -129,6 +140,9 @@ theorem letters_eq_stable_or_oneRule
   rw [← FreeGroup.mul_mk, map_mul, uLift_mk_stableLetters]
   simp [uLift, uBasis, mul_assoc]
 
+/--
+@isnad1 id=eq.0h4v.s7.98eb30c04f9b from=translated src=- shape=73328549 vocab=e6291102
+-/
 @[simp] theorem vLift_mk_oneRuleLetters
     (datum : Thue.StandingDatum) (left right : List (Fin 2)) (i : Fin 3) :
     vLift datum (FreeGroup.mk (oneRuleLetters left right i)) =
@@ -151,6 +165,9 @@ def CanonicalCoefficientWordShape (w : FreeGroup Basis) : Prop :=
     ∃ (left right : List (Fin 2)) (i : Fin 3),
       w.toWord = oneRuleLetters left right i
 
+/--
+@isnad1 id=canonica.2h1v.s6.98ba5456607b from=translated src=- shape=762ffa89 vocab=5927846a
+-/
 theorem canonicalCoefficientWordShape_of_positive_sparse
     (w : FreeGroup Basis) (hpositive : AllPositive w.toWord)
     (hsparse : ruleCount w.toWord ≤ 1) :
@@ -158,7 +175,9 @@ theorem canonicalCoefficientWordShape_of_positive_sparse
   letters_eq_stable_or_oneRule w.toWord hpositive hsparse
 
 /-- A canonical source preimage of the stated syntactic form gives the exact
-semantic source shape.-/
+semantic source shape.
+@isnad1 id=sourceco.2h5v.s8.34cb4a925ce3 from=translated src=- shape=3dc4fd2b vocab=17aa1b26
+-/
 theorem sourceCoefficientShape_of_preimage
     (datum : Thue.StandingDatum) (Q : List (Fin 2)) (f r : ℤ)
     (w : FreeGroup Basis)
@@ -184,7 +203,9 @@ theorem sourceCoefficientShape_of_preimage
       _ = positive3 left * a3 datum i * positive3 right :=
         uLift_mk_oneRuleLetters datum left right i
 
-/-- The target analogue of `sourceCoefficientShape_of_preimage`.-/
+/-- The target analogue of `sourceCoefficientShape_of_preimage`.
+@isnad1 id=targetco.2h5v.s8.495b767fc18f from=translated src=- shape=3dc4fd2b vocab=51fba915
+-/
 theorem targetCoefficientShape_of_preimage
     (datum : Thue.StandingDatum) (Q : List (Fin 2)) (f r : ℤ)
     (w : FreeGroup Basis)
@@ -212,7 +233,9 @@ theorem targetCoefficientShape_of_preimage
 
 /-- If the normal-form parser establishes the source syntactic alternative
 for every preimage, then the public source coefficient-shape theorem follows
-from subgroup membership.-/
+from subgroup membership.
+@isnad1 id=sourceco.2h4v.s8.1c7ee492190f from=translated src=- shape=fd533a73 vocab=df38f665
+-/
 theorem sourceCoefficientShape_of_parser
     (datum : Thue.StandingDatum)
     (hparse : ∀ (Q : List (Fin 2)) (f r : ℤ) (w : FreeGroup Basis),
@@ -226,7 +249,9 @@ theorem sourceCoefficientShape_of_parser
   exact sourceCoefficientShape_of_preimage datum Q f r w heval
     (hparse Q f r w heval)
 
-/-- Target version of `sourceCoefficientShape_of_parser`.-/
+/-- Target version of `sourceCoefficientShape_of_parser`.
+@isnad1 id=targetco.2h4v.s8.7b63b7a2a074 from=translated src=- shape=fd533a73 vocab=3042304b
+-/
 theorem targetCoefficientShape_of_parser
     (datum : Thue.StandingDatum)
     (hparse : ∀ (Q : List (Fin 2)) (f r : ℤ) (w : FreeGroup Basis),
@@ -242,7 +267,9 @@ theorem targetCoefficientShape_of_parser
 
 /-- A local source interface for the Britton comparison.  It
 is enough to prove that the canonical preimage has no negative letters and
-at most one displayed rule letter.-/
+at most one displayed rule letter.
+@isnad1 id=sourceco.3h4v.s9.52c33c757cd3 from=translated src=- shape=3dd4be61 vocab=fe5f8ad4
+-/
 theorem sourceCoefficientShape_of_positive_sparse_parser
     (datum : Thue.StandingDatum)
     (hpositive : ∀ (Q : List (Fin 2)) (f r : ℤ) (w : FreeGroup Basis),
@@ -260,7 +287,9 @@ theorem sourceCoefficientShape_of_positive_sparse_parser
     (hpositive Q f r w heval) (hsparse Q f r w heval)
 
 /-- Target counterpart of
-`sourceCoefficientShape_of_positive_sparse_parser`.-/
+`sourceCoefficientShape_of_positive_sparse_parser`.
+@isnad1 id=targetco.3h4v.s9.f39838accd48 from=translated src=- shape=3dd4be61 vocab=b0e89a5c
+-/
 theorem targetCoefficientShape_of_positive_sparse_parser
     (datum : Thue.StandingDatum)
     (hpositive : ∀ (Q : List (Fin 2)) (f r : ℤ) (w : FreeGroup Basis),

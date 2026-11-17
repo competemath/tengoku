@@ -32,20 +32,32 @@ def rho₁Letter (N : ℕ) (j : Fin N) : List (Fin 2) :=
 def rho₁ (N : ℕ) (W : List (Fin N)) : List (Fin 2) :=
   W.flatMap (rho₁Letter N)
 
+/--
+@isnad1 id=eq.0h3v.s6.95d93e447736 from=translated src=- shape=8436092f vocab=ca1ed882
+-/
 @[simp] theorem rho₁_cons (j : Fin N) (W : List (Fin N)) :
     rho₁ N (j :: W) = rho₁Letter N j ++ rho₁ N W := by
   simp [rho₁]
 
+/--
+@isnad1 id=eq.0h3v.s6.07948169c74a from=translated src=- shape=3dcf42fc vocab=a30a387c
+-/
 @[simp] theorem rho₁_append (X Y : List (Fin N)) :
     rho₁ N (X ++ Y) = rho₁ N X ++ rho₁ N Y := by
   simp [rho₁]
 
+/--
+@isnad1 id=eq.0h2v.s4.3c1e6b5201b2 from=translated src=- shape=036446b3 vocab=574fcf12
+-/
 @[simp] theorem rho₁Letter_length (j : Fin N) :
     (rho₁Letter N j).length = N + 4 := by
   simp only [rho₁Letter, List.length_append, List.length_cons,
     List.length_nil, List.length_replicate]
   omega
 
+/--
+@isnad1 id=eq.0h2v.s5.5a072b3de315 from=translated src=- shape=76aede97 vocab=8bfa5c18
+-/
 @[simp] theorem rho₁_length (W : List (Fin N)) :
     (rho₁ N W).length = W.length * (N + 4) := by
   induction W with
@@ -54,6 +66,9 @@ def rho₁ (N : ℕ) (W : List (Fin N)) : List (Fin 2) :=
       simp only [List.flatMap_nil, List.length_nil, Nat.zero_mul]
   | cons j W ih => simp [ih, Nat.add_mul, Nat.add_comm]
 
+/--
+@isnad1 id=computab.0h1v.s5.d783a50899fb from=translated src=- shape=4d006e38 vocab=cf173e89
+-/
 theorem rho₁_computable (N : ℕ) : Computable (rho₁ N) :=
   (Primrec.list_flatMap Primrec.id
     ((Primrec.dom_finite (rho₁Letter N)).comp₂ Primrec₂.right)).to_comp
@@ -62,16 +77,25 @@ theorem rho₁_computable (N : ℕ) : Computable (rho₁ N) :=
 def indexRun (W : List (Fin 2)) : ℕ :=
   ((W.drop 2).takeWhile fun x => x == b).length
 
+/--
+@isnad1 id=eq.0h2v.s4.84ea859213bc from=translated src=- shape=c4786f84 vocab=7e84a3c7
+-/
 @[simp] theorem indexRun_rho₁Letter (j : Fin N) :
     indexRun (rho₁Letter N j) = j.val + 1 := by
   simp [indexRun, rho₁Letter, a, b]
 
+/--
+@isnad1 id=injectiv.0h1v.s3.154886b05b5d from=translated src=- shape=1189ee0c vocab=df968bb9
+-/
 theorem rho₁Letter_injective : Function.Injective (rho₁Letter N) := by
   intro i j h
   have hrun := congrArg indexRun h
   simp only [indexRun_rho₁Letter] at hrun
   exact Fin.ext (by omega)
 
+/--
+@isnad1 id=ex.0h2v.s6.910a4c21ce35 from=translated src=- shape=65187a3b vocab=89b132a5
+-/
 theorem rho₁Letter_ends_b (j : Fin N) :
     ∃ init, rho₁Letter N j = init ++ [(1 : Fin 2)] := by
   let k := N - j.val - 1
@@ -200,6 +224,9 @@ private theorem rho₁_prefix {X W : List (Fin N)} {s : List (Fin 2)}
           obtain ⟨R, hW, hs⟩ := ih hparts.2
           exact ⟨R, by simp [hW], hs⟩
 
+/--
+@isnad1 id=injectiv.0h1v.s3.ac069a1b383f from=translated src=- shape=4d006e38 vocab=70cc6dde
+-/
 theorem rho₁_injective : Function.Injective (rho₁ N) := by
   intro X Y h
   obtain ⟨R, hY, hR⟩ :=
@@ -214,7 +241,9 @@ theorem rho₁_injective : Function.Injective (rho₁ N) := by
   subst R
   simpa using hY.symm
 
-/-- Every nonempty encoded word begins with the synchronizing marker.-/
+/-- Every nonempty encoded word begins with the synchronizing marker.
+@isnad1 id=ex.1h2v.s6.f6a1e79e8069 from=translated src=- shape=285f8594 vocab=1c9c3366
+-/
 theorem rho₁_starts_aa {W : List (Fin N)} (hW : W ≠ []) :
     ∃ tail, rho₁ N W = (0 : Fin 2) :: 0 :: tail := by
   cases W with
@@ -224,7 +253,9 @@ theorem rho₁_starts_aa {W : List (Fin N)} (hW : W ≠ []) :
         List.replicate (N - j.val) b ++ rho₁ N W, ?_⟩
       simp [rho₁Letter, a, List.append_assoc]
 
-/-- The code language contains no run `aaa`.-/
+/-- The code language contains no run `aaa`.
+@isnad1 id=not.0h2v.s7.b74258c465ac from=translated src=- shape=68f22db7 vocab=a3ff186e
+-/
 theorem rho₁_noAAA (W : List (Fin N)) :
     ¬ ∃ l s, rho₁ N W = l ++ [(0 : Fin 2), 0, 0] ++ s := by
   rintro ⟨l, s, h⟩
@@ -274,20 +305,31 @@ def stage₂PrimeE (E : Fin r → List (Fin N)) (i : Fin r) : List (Fin 2) :=
 def stage₂PrimeSystem (F E : Fin r → List (Fin N)) : ThueSystem (Fin 2) :=
   finiteSystem (stage₂PrimeF F) (stage₂PrimeE E)
 
+/--
+@isnad1 id=eq.0h4v.s5.55824d740763 from=translated src=- shape=7f0600bd vocab=c44adb81
+-/
 @[simp] theorem stage₂PrimeF_length (F : Fin r → List (Fin N)) (i : Fin r) :
     (stage₂PrimeF F i).length = (F i).length * (N + 4) := by
   simp [stage₂PrimeF]
 
+/--
+@isnad1 id=eq.0h4v.s5.7906ce96cfd5 from=translated src=- shape=7f0600bd vocab=3beab8f5
+-/
 @[simp] theorem stage₂PrimeE_length (E : Fin r → List (Fin N)) (i : Fin r) :
     (stage₂PrimeE E i).length = (E i).length * (N + 4) := by
   simp [stage₂PrimeE]
 
-/-- Common source-side lengths become common binary-side lengths.-/
+/-- Common source-side lengths become common binary-side lengths.
+@isnad1 id=eq.1h5v.s6.7c99e198d40a from=translated src=- shape=fdb3c40a vocab=c44adb81
+-/
 theorem stage₂PrimeF_common_length (F : Fin r → List (Fin N)) (p : ℕ)
     (hF : ∀ i, (F i).length = p) (i : Fin r) :
     (stage₂PrimeF F i).length = p * (N + 4) := by
   simp [hF]
 
+/--
+@isnad1 id=eq.1h5v.s6.a056ee0079b7 from=translated src=- shape=fdb3c40a vocab=3beab8f5
+-/
 theorem stage₂PrimeE_common_length (E : Fin r → List (Fin N)) (q : ℕ)
     (hE : ∀ i, (E i).length = q) (i : Fin r) :
     (stage₂PrimeE E i).length = q * (N + 4) := by
@@ -312,7 +354,9 @@ private theorem thueStep_encode (F E : Fin r → List (Fin N))
     by simpa [stage₂PrimeF, rho₁_append] using congrArg (rho₁ N) hY⟩
 
 /-- A rewrite out of an encoded word is aligned and uniquely reflects to one
-source rewrite.  Positivity of all rule sides is the only hypothesis.-/
+source rewrite.  Positivity of all rule sides is the only hypothesis.
+@isnad1 id=ex.3h6v.s6.339d74c9af49 from=translated src=- shape=9df67d0c vocab=ab9a447c
+-/
 theorem decode_step (F E : Fin r → List (Fin N))
     (hF : ∀ i, F i ≠ []) (hE : ∀ i, E i ≠ []) {X : List (Fin N)}
     {W : List (Fin 2)}
@@ -341,7 +385,9 @@ theorem decode_step (F E : Fin r → List (Fin N))
     · exact ⟨L, R, F i, E i, ⟨i, rfl⟩, Or.inr ⟨hX', rfl⟩⟩
 
 /-- Every derivation starting at an encoded word stays encoded and reflects
-to a source derivation.-/
+to a source derivation.
+@isnad1 id=ex.3h6v.s6.6c44fae2482b from=translated src=- shape=9df67d0c vocab=2c0de479
+-/
 theorem decode_thueEq (F E : Fin r → List (Fin N))
     (hF : ∀ i, F i ≠ []) (hE : ∀ i, E i ≠ []) {X : List (Fin N)}
     {W : List (Fin 2)}
@@ -355,7 +401,9 @@ theorem decode_thueEq (F E : Fin r → List (Fin N))
       exact ⟨Z, rfl, hXY.tail hYZ⟩
 
 /-- Equivalence (19): the binary many-rule system is equivalent to the
-positive-side source system on encoded words.-/
+positive-side source system on encoded words.
+@isnad1 id=iff.2h6v.s6.3d13f6d6e4ae from=translated src=- shape=07d20991 vocab=2c0de479
+-/
 theorem thueEq_iff (F E : Fin r → List (Fin N))
     (hF : ∀ i, F i ≠ []) (hE : ∀ i, E i ≠ []) (X Y : List (Fin N)) :
     ThueEq (finiteSystem F E) X Y ↔

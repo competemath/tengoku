@@ -68,7 +68,9 @@ private theorem transposedShape
       hlength hends
 
 /-- The transposed left long word begins with `2t` copies of `a` and ends
-with `b`, exactly as required in the page-50 counting argument.-/
+with `b`, exactly as required in the page-50 counting argument.
+@isnad1 id=longshap.0h4v.s5.b727090d8a09 from=translated src=- shape=ff5bd66f vocab=c9a91ffa
+-/
 theorem leftShape (F E : Fin r → List (Fin n)) :
     LongShape (2 * t n r) (leftLong F E) := by
   simpa [leftLong] using transposedShape (paddedLeftRows F E)
@@ -76,7 +78,9 @@ theorem leftShape (F E : Fin r → List (Fin n)) :
     (paddedLeftRows_length F E) (paddedLeftRows_starts_aa F E)
     (paddedLeftRows_ends_b F E)
 
-/-- The analogous shape theorem for the right long word.-/
+/-- The analogous shape theorem for the right long word.
+@isnad1 id=longshap.0h4v.s5.54e12647ec18 from=translated src=- shape=ff5bd66f vocab=bcab4168
+-/
 theorem rightShape (F E : Fin r → List (Fin n)) :
     LongShape (2 * t n r) (rightLong F E) := by
   simpa [rightLong] using transposedShape (paddedRightRows F E)
@@ -88,16 +92,25 @@ theorem rightShape (F E : Fin r → List (Fin n)) :
 
 def housekeepingIndex (i : Fin 4) : Fin 5 := Fin.castLE (by omega) i
 
+/--
+@isnad1 id=eq.0h2v.s4.e80e4cad4ffa from=translated src=- shape=2847e37f vocab=31f8ceb7
+-/
 @[simp] theorem stage₂F_housekeepingIndex (L : List Priority.A₂)
     (i : Fin 4) :
     stage₂F L (housekeepingIndex i) = housekeepingF i := by
   fin_cases i <;> simp [stage₂F, housekeepingF, housekeepingIndex] <;> decide
 
+/--
+@isnad1 id=eq.0h2v.s4.2022204c05dc from=translated src=- shape=2847e37f vocab=61c5cc41
+-/
 @[simp] theorem stage₂E_housekeepingIndex (M : List Priority.A₂)
     (i : Fin 4) :
     stage₂E M (housekeepingIndex i) = housekeepingE i := by
   fin_cases i <;> simp [stage₂E, housekeepingE, housekeepingIndex] <;> decide
 
+/--
+@isnad1 id=thuestep.1h4v.s4.c49ed63a07af from=translated src=- shape=0939eef9 vocab=8942ecb8
+-/
 theorem firstStep_to_thueStep (L M : List Priority.A₂)
     {X Y : List Priority.A₂} (h : FirstStep X Y) :
     ThueStep (stage₂System L M) X Y := by
@@ -106,7 +119,9 @@ theorem firstStep_to_thueStep (L M : List Priority.A₂)
     ⟨housekeepingIndex i, by simp⟩, Or.inl ⟨rfl, rfl⟩⟩
 
 /-- Every directed first-priority reduction is also a derivation in the
-symmetric five-relation Thue system.-/
+symmetric five-relation Thue system.
+@isnad1 id=thueeq.1h4v.s4.96b4777f82ce from=translated src=- shape=0939eef9 vocab=6a21bb35
+-/
 theorem firstEq_to_stage₂Eq (L M : List Priority.A₂)
     {X Y : List Priority.A₂} (h : FirstEq X Y) :
     ThueEq (stage₂System L M) X Y := by
@@ -234,7 +249,9 @@ private theorem simulate_row (F E : Fin r → List (Fin n))
 
 /-- Forward half of Matiyasevich's priority-compression equivalence: every
 binary rewrite, in arbitrary two-sided context, is simulated by the
-five-relation system on `{a,b,e}`.-/
+five-relation system on `{a,b,e}`.
+@isnad1 id=thueeq.1h6v.s6.8a9d9f4884bb from=translated src=- shape=847d864e vocab=148e06ea
+-/
 theorem simulate_binary (F E : Fin r → List (Fin n))
     {X Y : List (Fin 2)} (h : ThueEq (binarySystem F E) X Y) :
     ThueEq (stage₂System (leftLong F E) (rightLong F E))

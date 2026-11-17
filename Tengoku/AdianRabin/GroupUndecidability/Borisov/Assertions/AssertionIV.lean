@@ -23,6 +23,9 @@ open BorisovHNNModel
 
 noncomputable section
 
+/--
+@isnad1 id=eq.0h0v.s9.3f7a145addec from=translated src=- shape=2fe6ff03 vocab=61ca28f0
+-/
 theorem baseEmbedding_eq_lift :
     of1.comp of0 = FreeGroup.lift ![d3, e3] := by
   apply FreeGroup.ext_hom
@@ -30,7 +33,9 @@ theorem baseEmbedding_eq_lift :
   fin_cases i <;> rfl
 
 /-- The displayed subgroup `<d₃,e₃>` is exactly the embedded original
-free-group base.-/
+free-group base.
+@isnad1 id=eq.0h0v.s6.6a5d8b202530 from=translated src=- shape=d40eaf2c vocab=d70efb1a
+-/
 theorem DE3_eq_range_baseEmbedding :
     DE3 = MonoidHom.range (of1.comp of0) := by
   have hset : Set.range ![d3, e3] = ({d3, e3} : Set Gamma3) := by
@@ -78,12 +83,18 @@ def signedUnit : Bool → ℤˣ
   | true => 1
   | false => -1
 
+/--
+@isnad1 id=eq.0h0v.s4.702a2c3bd312 from=translated src=- shape=8c4e12ea vocab=c04e0c33
+-/
 @[simp] theorem signedUnit_true : signedUnit true = 1 := rfl
 def factorColors (rules : Fin 3 → List (Fin 2)) : Basis × Bool → List (Fin 2)
   | (.inl beta, _) => [beta]
   | (.inr i, true) => rules i
   | (.inr i, false) => (rules i).reverse
 
+/--
+@isnad1 id=ne.1h2v.s5.b6eb4fd510d2 from=translated src=- shape=71aeeb10 vocab=3836838d
+-/
 theorem factorColors_ne_nil
     (rules : Fin 3 → List (Fin 2)) (hne : ∀ i, rules i ≠ [])
     (x : Basis × Bool) : factorColors rules x ≠ [] := by
@@ -99,6 +110,9 @@ def run (colors : List (Fin 2)) (hne : colors ≠ [])
       { color := color, sign := u, coeff := 1 }) ++
     [{ color := colors.getLast hne, sign := u, coeff := lastCoeff }]
 
+/--
+@isnad1 id=ne.1h3v.s5.155b451ac314 from=translated src=- shape=1829d1f8 vocab=bd4d312b
+-/
 @[simp] theorem run_ne_nil (colors : List (Fin 2)) (hne : colors ≠ [])
     (u : ℤˣ) (lastCoeff : BorisovHNNModel.Base) :
     run colors hne u lastCoeff ≠ [] := by
@@ -122,6 +136,9 @@ private theorem isChain_of_constant_sign
             intro z hz
             exact hsign z (by simp [hz])
 
+/--
+@isnad1 id=ischain.1h3v.s5.e376fcd7266d from=translated src=- shape=80cbe463 vocab=d680b983
+-/
 theorem run_chain (colors : List (Fin 2)) (hne : colors ≠ [])
     (u : ℤˣ) (lastCoeff : BorisovHNNModel.Base) :
     (run colors hne u lastCoeff).IsChain (MultipleHNNFlat.Rel A0 B0) := by
@@ -130,12 +147,18 @@ theorem run_chain (colors : List (Fin 2)) (hne : colors ≠ [])
   simp only [run, List.mem_append, List.mem_map, List.mem_singleton] at hs
   rcases hs with ⟨color, hcolor, rfl⟩ | rfl <;> rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.9174e6031f53 from=translated src=- shape=563788b6 vocab=5510041d
+-/
 @[simp] theorem run_getLast (colors : List (Fin 2)) (hne : colors ≠ [])
     (u : ℤˣ) (lastCoeff : BorisovHNNModel.Base) :
     (run colors hne u lastCoeff).getLast (run_ne_nil colors hne u lastCoeff) =
       { color := colors.getLast hne, sign := u, coeff := lastCoeff } := by
   simp [run]
 
+/--
+@isnad1 id=eq.1h3v.s5.9d85b2877dc5 from=translated src=- shape=aaa910d3 vocab=fb4a663c
+-/
 @[simp] theorem run_head_color (colors : List (Fin 2)) (hne : colors ≠ [])
     (u : ℤˣ) (lastCoeff : BorisovHNNModel.Base) :
     ((run colors hne u lastCoeff).head
@@ -147,6 +170,9 @@ theorem run_chain (colors : List (Fin 2)) (hne : colors ≠ [])
       | nil => simp [run]
       | cons d ds => simp [run]
 
+/--
+@isnad1 id=eq.1h3v.s5.d8df236cc2dc from=translated src=- shape=fb68001b vocab=140c2074
+-/
 @[simp] theorem run_head_sign (colors : List (Fin 2)) (hne : colors ≠ [])
     (u : ℤˣ) (lastCoeff : BorisovHNNModel.Base) :
     ((run colors hne u lastCoeff).head
@@ -164,12 +190,18 @@ def factorRun (rules : Fin 3 → List (Fin 2)) (hne : ∀ i, rules i ≠ [])
   run (factorColors rules x) (factorColors_ne_nil rules hne x)
     (signedUnit x.2) lastCoeff
 
+/--
+@isnad1 id=ne.1h3v.s5.0de48571c738 from=translated src=- shape=18a8b09f vocab=48d18d73
+-/
 @[simp] theorem factorRun_ne_nil
     (rules : Fin 3 → List (Fin 2)) (hne : ∀ i, rules i ≠ [])
     (x : Basis × Bool) (lastCoeff : BorisovHNNModel.Base) :
     factorRun rules hne x lastCoeff ≠ [] :=
   run_ne_nil _ _ _ _
 
+/--
+@isnad1 id=ischain.1h3v.s6.8f366a46e71a from=translated src=- shape=eabb5ee4 vocab=020c2d86
+-/
 theorem factorRun_chain
     (rules : Fin 3 → List (Fin 2)) (hne : ∀ i, rules i ≠ [])
     (x : Basis × Bool) (lastCoeff : BorisovHNNModel.Base) :
@@ -177,6 +209,9 @@ theorem factorRun_chain
       (MultipleHNNFlat.Rel A0 B0) :=
   run_chain _ _ _ _
 
+/--
+@isnad1 id=eq.1h2v.s6.3ddd4252e75f from=translated src=- shape=670c1c26 vocab=a5ae00e0
+-/
 theorem factorColors_head
     (rules : Fin 3 → List (Fin 2)) (hne : ∀ i, rules i ≠ [])
     (x : Basis × Bool) :
@@ -190,6 +225,9 @@ theorem factorColors_head
       · simp [factorColors, firstStable, ruleLast]
       · simp [factorColors, firstStable, ruleFirst]
 
+/--
+@isnad1 id=eq.1h2v.s6.d74894c337bb from=translated src=- shape=670c1c26 vocab=9bde358e
+-/
 theorem factorColors_getLast
     (rules : Fin 3 → List (Fin 2)) (hne : ∀ i, rules i ≠ [])
     (x : Basis × Bool) :
@@ -203,6 +241,9 @@ theorem factorColors_getLast
       · simp [factorColors, lastStable, ruleFirst]
       · simp [factorColors, lastStable, ruleLast]
 
+/--
+@isnad1 id=eq.1h3v.s6.55e1a29b915d from=translated src=- shape=4b223120 vocab=aeb0ec79
+-/
 theorem factorRun_head_color
     (rules : Fin 3 → List (Fin 2)) (hne : ∀ i, rules i ≠ [])
     (x : Basis × Bool) (lastCoeff : BorisovHNNModel.Base) :
@@ -211,6 +252,9 @@ theorem factorRun_head_color
         firstStable rules hne x := by
   simp [factorRun, factorColors_head rules hne x]
 
+/--
+@isnad1 id=eq.1h3v.s6.e304d05b6788 from=translated src=- shape=ce36652c vocab=a76674aa
+-/
 theorem factorRun_head_sign
     (rules : Fin 3 → List (Fin 2)) (hne : ∀ i, rules i ≠ [])
     (x : Basis × Bool) (lastCoeff : BorisovHNNModel.Base) :
@@ -218,6 +262,9 @@ theorem factorRun_head_sign
       (factorRun_ne_nil rules hne x lastCoeff)).sign = signedUnit x.2 := by
   simp [factorRun]
 
+/--
+@isnad1 id=eq.1h3v.s6.8f04d622bf64 from=translated src=- shape=4b223120 vocab=a07fd19b
+-/
 theorem factorRun_getLast_color
     (rules : Fin 3 → List (Fin 2)) (hne : ∀ i, rules i ≠ [])
     (x : Basis × Bool) (lastCoeff : BorisovHNNModel.Base) :
@@ -226,6 +273,9 @@ theorem factorRun_getLast_color
         lastStable rules hne x := by
   simp [factorRun, factorColors_getLast rules hne x]
 
+/--
+@isnad1 id=eq.1h3v.s6.ce2fc2025718 from=translated src=- shape=ce36652c vocab=b4337eca
+-/
 theorem factorRun_getLast_sign
     (rules : Fin 3 → List (Fin 2)) (hne : ∀ i, rules i ≠ [])
     (x : Basis × Bool) (lastCoeff : BorisovHNNModel.Base) :
@@ -233,6 +283,9 @@ theorem factorRun_getLast_sign
       (factorRun_ne_nil rules hne x lastCoeff)).sign = signedUnit x.2 := by
   simp [factorRun]
 
+/--
+@isnad1 id=eq.1h3v.s5.32dc4ec87f1a from=translated src=- shape=aa09b422 vocab=b94358c9
+-/
 theorem factorRun_getLast_coeff
     (rules : Fin 3 → List (Fin 2)) (hne : ∀ i, rules i ≠ [])
     (x : Basis × Bool) (lastCoeff : BorisovHNNModel.Base) :
@@ -283,6 +336,9 @@ private theorem factor_boundary_rel
     cases hx : x.2 <;>
       simpa [associatedForSign, signedUnit, hx] using hmem'
 
+/--
+@isnad1 id=ischain.2h2v.s6.1647dae642d3 from=translated src=- shape=df60fbb3 vocab=3e4c446b
+-/
 theorem expansionTail_chain
     (rules : Fin 3 → List (Fin 2)) (hne : ∀ i, rules i ≠ [])
     (letters : List (Basis × Bool))
@@ -327,20 +383,35 @@ def stableProduct (colors : List (Fin 2)) (u : ℤˣ) :
   (colors.map fun color ↦
     MultipleHNNFlat.stableLetter A0 B0 phi0 color ^ (u : ℤ)).prod
 
+/--
+@isnad1 id=eq.0h1v.s8.e3b69e4da976 from=translated src=- shape=360b11d9 vocab=53938c28
+-/
 @[simp] theorem flat_baseEmbedding (g : BorisovHNNModel.Base) :
     MultipleHNN.baseEmbedding A0 B0 phi0 g = baseToG0HNN g := rfl
 
+/--
+@isnad1 id=eq.0h0v.s8.407973bf4585 from=translated src=- shape=d48763ff vocab=c3d45399
+-/
 @[simp] theorem flat_baseEmbedding_one :
     MultipleHNN.baseEmbedding A0 B0 phi0
       (1 : BorisovHNNModel.Base) = 1 :=
   map_one _
 
+/--
+@isnad1 id=eq.0h0v.s6.94f37dcaaede from=translated src=- shape=501f93a1 vocab=bcdeb816
+-/
 @[simp] theorem baseToG0HNN_d :
     baseToG0HNN BorisovHNNModel.d = hnnD := rfl
 
+/--
+@isnad1 id=eq.0h0v.s6.9fe2199d9905 from=translated src=- shape=501f93a1 vocab=e82348a5
+-/
 @[simp] theorem baseToG0HNN_e :
     baseToG0HNN BorisovHNNModel.e = hnnE := rfl
 
+/--
+@isnad1 id=eq.0h1v.s8.3e44c74923c5 from=translated src=- shape=7b22f814 vocab=a07be4fa
+-/
 theorem flat_d_rulePower (i : Fin 3) :
     MultipleHNN.baseEmbedding A0 B0 phi0
         (BorisovHNNModel.d ^ rulePower i) = hnnD ^ (i.val + 1) := by
@@ -349,6 +420,9 @@ theorem flat_d_rulePower (i : Fin 3) :
   rw [show rulePower i = ((i.val + 1 : ℕ) : ℤ) by simp [rulePower]]
   exact zpow_natCast _ _
 
+/--
+@isnad1 id=eq.0h1v.s8.dd2f3eadcdf7 from=translated src=- shape=7b22f814 vocab=597c7b28
+-/
 theorem flat_e_rulePower (i : Fin 3) :
     MultipleHNN.baseEmbedding A0 B0 phi0
         (BorisovHNNModel.e ^ rulePower i) = hnnE ^ (i.val + 1) := by
@@ -357,6 +431,9 @@ theorem flat_e_rulePower (i : Fin 3) :
   rw [show rulePower i = ((i.val + 1 : ℕ) : ℤ) by simp [rulePower]]
   exact zpow_natCast _ _
 
+/--
+@isnad1 id=eq.1h3v.s10.43e9b22c8732 from=translated src=- shape=03a9e19d vocab=c282ccd3
+-/
 theorem run_eval (colors : List (Fin 2)) (hne : colors ≠ [])
     (u : ℤˣ) (lastCoeff : BorisovHNNModel.Base) :
     ((run colors hne u lastCoeff).map fun s ↦
@@ -407,6 +484,9 @@ theorem run_eval (colors : List (Fin 2)) (hne : colors ≠ [])
       MultipleHNN.baseEmbedding A0 B0 phi0 lastCoeff
   rw [← mul_assoc, hletters]
 
+/--
+@isnad1 id=eq.0h1v.s5.3e2e854a92a3 from=translated src=- shape=a3488841 vocab=d859bcaa
+-/
 theorem stableProduct_one (colors : List (Fin 2)) :
     stableProduct colors 1 = modelPositive colors := by
   simp only [stableProduct, modelPositive, Thue.evalPositive]
@@ -415,6 +495,9 @@ theorem stableProduct_one (colors : List (Fin 2)) :
   intro color hcolor
   fin_cases color <;> rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.41b6b55d41dc from=translated src=- shape=fbaafdec vocab=08e55695
+-/
 theorem stableProduct_reverse_neg_one (colors : List (Fin 2)) :
     stableProduct colors.reverse (-1) = (stableProduct colors 1)⁻¹ := by
   have hneg : ((-1 : ℤˣ) : ℤ) = -1 := by norm_num
@@ -431,17 +514,26 @@ theorem stableProduct_reverse_neg_one (colors : List (Fin 2)) :
     rfl
   rw [hmap]
 
+/--
+@isnad1 id=eq.0h1v.s5.78d0467b0de1 from=translated src=- shape=6cfd96c2 vocab=dd0f6605
+-/
 theorem stableProduct_singleton_one (color : Fin 2) :
     stableProduct [color] 1 =
       MultipleHNNFlat.stableLetter A0 B0 phi0 color := by
   simp [stableProduct]
 
+/--
+@isnad1 id=eq.0h1v.s7.b47c2e9f2bac from=translated src=- shape=564b5b26 vocab=125d3ccf
+-/
 theorem stableProduct_singleton_neg_one (color : Fin 2) :
     stableProduct [color] (-1) =
       (MultipleHNNFlat.stableLetter A0 B0 phi0 color)⁻¹ := by
   have hneg : ((-1 : ℤˣ) : ℤ) = -1 := by norm_num
   simp [stableProduct, hneg]
 
+/--
+@isnad1 id=eq.0h1v.s7.b61a2f3818e2 from=translated src=- shape=6d47dcb5 vocab=b8dc9e0d
+-/
 theorem toHNN_stable_flat (beta : Fin 2) :
     toHNN (stable beta) =
       MultipleHNNFlat.stableLetter A0 B0 phi0 beta := by
@@ -453,6 +545,9 @@ def factorModel (rules : Fin 3 → List (Fin 2)) (x : Basis × Bool) :
     stableProduct (factorColors rules x) (signedUnit x.2) *
       MultipleHNN.baseEmbedding A0 B0 phi0 (suffix x)
 
+/--
+@isnad1 id=eq.0h2v.s7.f9ee077c80ca from=translated src=- shape=1e7f90ab vocab=0d19769c
+-/
 theorem factorModel_positive_u (datum : Thue.StandingDatum) (q : Basis) :
     factorModel datum.F (q, true) = toHNN (uBasis datum q) := by
   cases q with
@@ -466,6 +561,9 @@ theorem factorModel_positive_u (datum : Thue.StandingDatum) (q : Basis) :
       change _ = toHNN (a datum i)
       exact (toHNN_a datum i).symm
 
+/--
+@isnad1 id=eq.0h2v.s7.76d1d9e345c6 from=translated src=- shape=1e7f90ab vocab=08cd3b9e
+-/
 theorem factorModel_positive_v (datum : Thue.StandingDatum) (q : Basis) :
     factorModel datum.E (q, true) = toHNN (vBasis datum q) := by
   cases q with
@@ -479,6 +577,9 @@ theorem factorModel_positive_v (datum : Thue.StandingDatum) (q : Basis) :
       change _ = toHNN (b datum i)
       exact (toHNN_b datum i).symm
 
+/--
+@isnad1 id=eq.0h2v.s7.09c03b117cfa from=translated src=- shape=c54d6b1b vocab=15337987
+-/
 theorem factorModel_negative
     (rules : Fin 3 → List (Fin 2)) (q : Basis) :
     factorModel rules (q, false) = (factorModel rules (q, true))⁻¹ := by
@@ -510,6 +611,9 @@ theorem factorModel_negative
       simp only [map_zpow, zpow_neg, map_inv]
       group
 
+/--
+@isnad1 id=eq.0h2v.s8.e9d5df97ebc4 from=translated src=- shape=cc0baa24 vocab=7abb8126
+-/
 theorem factorModel_u (datum : Thue.StandingDatum) (x : Basis × Bool) :
     factorModel datum.F x =
       if x.2 then toHNN (uBasis datum x.1)
@@ -520,6 +624,9 @@ theorem factorModel_u (datum : Thue.StandingDatum) (x : Basis × Bool) :
     rfl
   · simpa using factorModel_positive_u datum q
 
+/--
+@isnad1 id=eq.0h2v.s8.0f3a3c6fb6ef from=translated src=- shape=cc0baa24 vocab=2b1ab885
+-/
 theorem factorModel_v (datum : Thue.StandingDatum) (x : Basis × Bool) :
     factorModel datum.E x =
       if x.2 then toHNN (vBasis datum x.1)
@@ -530,6 +637,9 @@ theorem factorModel_v (datum : Thue.StandingDatum) (x : Basis × Bool) :
     rfl
   · simpa using factorModel_positive_v datum q
 
+/--
+@isnad1 id=eq.1h3v.s10.c3b230090974 from=translated src=- shape=f44361aa vocab=dd2cb1e6
+-/
 theorem factorRun_eval
     (rules : Fin 3 → List (Fin 2)) (hne : ∀ i, rules i ≠ [])
     (x : Basis × Bool) (lastCoeff : BorisovHNNModel.Base) :
@@ -541,7 +651,9 @@ theorem factorRun_eval
   run_eval _ _ _ _
 
 /-- The literal expansion evaluates to the product of its signed displayed
-factors.  This is independent of reducedness.-/
+factors.  This is independent of reducedness.
+@isnad1 id=eq.1h2v.s10.e8282baf058a from=translated src=- shape=7e19d60a vocab=a9eb95ee
+-/
 theorem expansion_eval
     (rules : Fin 3 → List (Fin 2)) (hne : ∀ i, rules i ≠ [])
     (letters : List (Basis × Bool)) :
@@ -569,6 +681,9 @@ theorem expansion_eval
           simp only [nextPrefix, factorModel]
           group
 
+/--
+@isnad1 id=ne.2h2v.s6.04a2ff23c35f from=translated src=- shape=0dcd5732 vocab=e3505be1
+-/
 theorem expansionTail_ne_nil
     (rules : Fin 3 → List (Fin 2)) (hne : ∀ i, rules i ≠ [])
     (letters : List (Basis × Bool)) (hletters : letters ≠ []) :
@@ -589,6 +704,9 @@ def expansionWord
   toList := expansionTail rules hne letters
   chain := expansionTail_chain rules hne letters hreduced
 
+/--
+@isnad1 id=eq.2h2v.s8.283437e6f6fa from=translated src=- shape=dbf4c342 vocab=ea03f026
+-/
 theorem expansionWord_eval
     (rules : Fin 3 → List (Fin 2)) (hne : ∀ i, rules i ≠ [])
     (letters : List (Basis × Bool))
@@ -599,6 +717,9 @@ theorem expansionWord_eval
   simpa [MultipleHNNFlat.eval, expansionWord] using
     expansion_eval rules hne letters
 
+/--
+@isnad1 id=eq.0h2v.s9.67de3a32db9f from=translated src=- shape=7ee53906 vocab=2beb02b8
+-/
 theorem factorProduct_u (datum : Thue.StandingDatum)
     (letters : List (Basis × Bool)) :
     (letters.map (factorModel datum.F)).prod =
@@ -611,6 +732,9 @@ theorem factorProduct_u (datum : Thue.StandingDatum)
   rw [factorModel_u]
   cases sign <;> simp <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.c99244722889 from=translated src=- shape=7ee53906 vocab=51f65d5f
+-/
 theorem factorProduct_v (datum : Thue.StandingDatum)
     (letters : List (Basis × Bool)) :
     (letters.map (factorModel datum.E)).prod =
@@ -631,6 +755,9 @@ def vExpansion (datum : Thue.StandingDatum) (w : FreeGroup Basis) : FlatWord :=
   expansionWord datum.E datum.E_nonempty w.toWord
     (FreeGroup.isReduced_toWord (x := w))
 
+/--
+@isnad1 id=eq.0h2v.s9.94963d7a9e13 from=translated src=- shape=997f8b5d vocab=09f57f66
+-/
 theorem uExpansion_eval (datum : Thue.StandingDatum) (w : FreeGroup Basis) :
     MultipleHNNFlat.eval A0 B0 phi0 (uExpansion datum w) =
       toHNN (FreeGroup.lift (uBasis datum) w) := by
@@ -638,6 +765,9 @@ theorem uExpansion_eval (datum : Thue.StandingDatum) (w : FreeGroup Basis) :
   rw [expansionWord_eval datum.F datum.F_nonempty w.toWord
     (FreeGroup.isReduced_toWord (x := w)), factorProduct_u, FreeGroup.mk_toWord]
 
+/--
+@isnad1 id=eq.0h2v.s9.5f646e0be1ea from=translated src=- shape=997f8b5d vocab=f3fba861
+-/
 theorem vExpansion_eval (datum : Thue.StandingDatum) (w : FreeGroup Basis) :
     MultipleHNNFlat.eval A0 B0 phi0 (vExpansion datum w) =
       toHNN (FreeGroup.lift (vBasis datum) w) := by
@@ -652,12 +782,18 @@ private theorem toWord_ne_nil_of_ne_one {w : FreeGroup Basis} (hw : w ≠ 1) :
   rw [← FreeGroup.mk_toWord (x := w), hnil]
   rfl
 
+/--
+@isnad1 id=ne.1h2v.s5.f9c99b183bc2 from=translated src=- shape=c0423673 vocab=385062c3
+-/
 theorem uExpansion_toList_ne_nil (datum : Thue.StandingDatum)
     {w : FreeGroup Basis} (hw : w ≠ 1) :
     (uExpansion datum w).toList ≠ [] :=
   expansionTail_ne_nil datum.F datum.F_nonempty w.toWord
     (toWord_ne_nil_of_ne_one hw)
 
+/--
+@isnad1 id=ne.1h2v.s5.c6ca6623bf42 from=translated src=- shape=c0423673 vocab=1fc27d0b
+-/
 theorem vExpansion_toList_ne_nil (datum : Thue.StandingDatum)
     {w : FreeGroup Basis} (hw : w ≠ 1) :
     (vExpansion datum w).toList ≠ [] :=
@@ -665,7 +801,9 @@ theorem vExpansion_toList_ne_nil (datum : Thue.StandingDatum)
     (toWord_ne_nil_of_ne_one hw)
 
 /-- A nontrivial free word has nontrivial image under the displayed
-`A`-basis lift.-/
+`A`-basis lift.
+@isnad1 id=ne.1h2v.s8.defc78716cdb from=translated src=- shape=1458dcbe vocab=c23010d1
+-/
 theorem uLift_ne_one (datum : Thue.StandingDatum) {w : FreeGroup Basis}
     (hw : w ≠ 1) : FreeGroup.lift (uBasis datum) w ≠ 1 := by
   have hflat := MultipleHNNFlat.eval_ne_one A0 B0 phi0
@@ -675,7 +813,9 @@ theorem uLift_ne_one (datum : Thue.StandingDatum) {w : FreeGroup Basis}
   rw [uExpansion_eval, hOne, map_one]
   rfl
 
-/-- The corresponding nontriviality theorem for the displayed `B`-basis.-/
+/-- The corresponding nontriviality theorem for the displayed `B`-basis.
+@isnad1 id=ne.1h2v.s8.c1a057d01375 from=translated src=- shape=1458dcbe vocab=ad969e03
+-/
 theorem vLift_ne_one (datum : Thue.StandingDatum) {w : FreeGroup Basis}
     (hw : w ≠ 1) : FreeGroup.lift (vBasis datum) w ≠ 1 := by
   have hflat := MultipleHNNFlat.eval_ne_one A0 B0 phi0
@@ -685,7 +825,9 @@ theorem vLift_ne_one (datum : Thue.StandingDatum) {w : FreeGroup Basis}
   rw [vExpansion_eval, hOne, map_one]
   rfl
 
-/-- Borisov's first rank-five freeness assertion.-/
+/-- Borisov's first rank-five freeness assertion.
+@isnad1 id=injectiv.0h1v.s8.eb568e61044c from=translated src=- shape=29f217fe vocab=fd95b201
+-/
 theorem uLift_injective (datum : Thue.StandingDatum) :
     Function.Injective (FreeGroup.lift (uBasis datum)) := by
   apply (injective_iff_map_eq_one _).2
@@ -693,7 +835,9 @@ theorem uLift_injective (datum : Thue.StandingDatum) :
   by_contra hne
   exact uLift_ne_one datum hne hw
 
-/-- Borisov's second rank-five freeness assertion.-/
+/-- Borisov's second rank-five freeness assertion.
+@isnad1 id=injectiv.0h1v.s8.7cbf069aa287 from=translated src=- shape=29f217fe vocab=a6cdd040
+-/
 theorem vLift_injective (datum : Thue.StandingDatum) :
     Function.Injective (FreeGroup.lift (vBasis datum)) := by
   apply (injective_iff_map_eq_one _).2
@@ -702,7 +846,9 @@ theorem vLift_injective (datum : Thue.StandingDatum) :
   exact vLift_ne_one datum hne hw
 
 /-- A nontrivial `A`-basis word does not land in the embedded base subgroup
-`<d₃,e₃>`.-/
+`<d₃,e₃>`.
+@isnad1 id=not.1h2v.s9.fe754f6b32c2 from=translated src=- shape=37a7038b vocab=c7935393
+-/
 theorem uLift_not_mem_DE3_of_ne_one (datum : Thue.StandingDatum)
     {w : FreeGroup Basis} (hw : w ≠ 1) :
     toHNN (FreeGroup.lift (uBasis datum) w) ∉
@@ -716,7 +862,9 @@ theorem uLift_not_mem_DE3_of_ne_one (datum : Thue.StandingDatum)
   exact hmem
 
 /-- A nontrivial `B`-basis word does not land in the embedded base subgroup
-`<d₃,e₃>`.-/
+`<d₃,e₃>`.
+@isnad1 id=not.1h2v.s9.5c6482ebc4ec from=translated src=- shape=37a7038b vocab=ed499da1
+-/
 theorem vLift_not_mem_DE3_of_ne_one (datum : Thue.StandingDatum)
     {w : FreeGroup Basis} (hw : w ≠ 1) :
     toHNN (FreeGroup.lift (vBasis datum) w) ∉
@@ -729,18 +877,26 @@ theorem vLift_not_mem_DE3_of_ne_one (datum : Thue.StandingDatum)
   rw [BorisovBaseRange.DE3_eq_range_baseEmbedding] at hmem
   exact hmem
 
+/--
+@isnad1 id=eq.0h1v.s8.bf62b97fac41 from=translated src=- shape=db2926b1 vocab=c260cca4
+-/
 theorem Uc_eq_uLift_range (datum : Thue.StandingDatum) :
     Uc datum = MonoidHom.range (FreeGroup.lift (uBasis datum)) := by
   unfold Uc
   rw [FreeGroup.range_lift_eq_closure]
 
+/--
+@isnad1 id=eq.0h1v.s8.347ad2b76b30 from=translated src=- shape=db2926b1 vocab=b8b7f709
+-/
 theorem Vc_eq_vLift_range (datum : Thue.StandingDatum) :
     Vc datum = MonoidHom.range (FreeGroup.lift (vBasis datum)) := by
   unfold Vc
   rw [FreeGroup.range_lift_eq_closure]
 
 /-- The complete Assertion IV package, including the letterwise
-correspondence between the two free rank-five subgroups.-/
+correspondence between the two free rank-five subgroups.
+@isnad1 id=assertio.0h1v.s2.b5d7447a7451 from=translated src=- shape=5c11bb93 vocab=407ae564
+-/
 theorem assertionIV (datum : Thue.StandingDatum) : AssertionIV datum := by
   refine
     { u_free := uLift_injective datum

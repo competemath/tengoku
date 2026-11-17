@@ -32,6 +32,9 @@ def enumeratedE (T : ThueSystem α) (hT : T.Finite) :
     Fin (ruleCount T hT + 1) → List α :=
   Fin.cases [] fun i => (ruleEquiv T hT).symm i |>.1.2
 
+/--
+@isnad1 id=eq.1h2v.s6.36ee2d4f45b5 from=translated src=- shape=516c22a8 vocab=ee91eb12
+-/
 theorem enumeratedSystem_eq (T : ThueSystem α) (hT : T.Finite) :
     finiteSystem (enumeratedF T hT) (enumeratedE T hT) =
       insert ([], []) T := by
@@ -65,6 +68,9 @@ private theorem step_insert_identity {T : ThueSystem α}
     · exact Or.inl (hX.trans hY.symm)
   · exact Or.inr ⟨l, r, x, y, hT, hwords⟩
 
+/--
+@isnad1 id=iff.0h4v.s5.d4d9e345d9fc from=translated src=- shape=eeca511f vocab=5ef0572f
+-/
 theorem insert_identity_iff (T : ThueSystem α) (X Y : List α) :
     ThueEq (insert ([], []) T) X Y ↔ ThueEq T X Y := by
   constructor
@@ -81,6 +87,9 @@ theorem insert_identity_iff (T : ThueSystem α) (X Y : List α) :
       rcases hstep with ⟨l, r, x, y, hxy, hwords⟩
       exact ⟨l, r, x, y, Set.mem_insert_iff.mpr (Or.inr hxy), hwords⟩
 
+/--
+@isnad1 id=iff.1h4v.s5.2bc8062cb9db from=translated src=- shape=ff36638e vocab=ab0110f7
+-/
 theorem enumerated_iff (T : ThueSystem α) (hT : T.Finite)
     (X Y : List α) :
     ThueEq (finiteSystem (enumeratedF T hT) (enumeratedE T hT)) X Y ↔
@@ -90,14 +99,23 @@ theorem enumerated_iff (T : ThueSystem α) (hT : T.Finite)
 /-- Homomorphic word transport along an equivalence of finite alphabets.-/
 def mapWord (e : α ≃ β) (W : List α) : List β := W.map e
 
+/--
+@isnad1 id=eq.0h5v.s5.7619a3291958 from=translated src=- shape=fc6ea939 vocab=5e832ec4
+-/
 @[simp] theorem mapWord_append (e : α ≃ β) (X Y : List α) :
     mapWord e (X ++ Y) = mapWord e X ++ mapWord e Y := by
   simp [mapWord]
 
+/--
+@isnad1 id=eq.0h4v.s4.b810c02dacaa from=translated src=- shape=2ce9bb00 vocab=c1c89c7f
+-/
 @[simp] theorem mapWord_symm_mapWord (e : α ≃ β) (W : List α) :
     mapWord e.symm (mapWord e W) = W := by
   simp [mapWord]
 
+/--
+@isnad1 id=computab.0h3v.s5.2b550b8a9be1 from=translated src=- shape=7bbdad61 vocab=18dea13d
+-/
 theorem mapWord_computable [Primcodable α] [Primcodable β] [Finite α]
     (e : α ≃ β) : Computable (mapWord e) :=
   (Primrec.list_map Primrec.id
@@ -166,7 +184,9 @@ def alphabetEmbedding {s : ℕ} [Primcodable α] [Primcodable β] [Finite α]
 
 /-- Convert any finite fixed-target Thue problem over a nonempty finite
 alphabet into the exact `Fin n`/`Fin r` seed expected by the compression
-theorem.-/
+theorem.
+@isnad1 id=ex.2h3v.s6.5e0ad74b5535 from=translated src=- shape=caab224e vocab=62db7e7f
+-/
 theorem seed_of_finite_system [Fintype α] [Nonempty α] [Primcodable α]
     (T : ThueSystem α) (hT : T.Finite) (P : List α)
     (hund : ¬ ComputablePred fun Q : List α => ThueEq T Q P) :

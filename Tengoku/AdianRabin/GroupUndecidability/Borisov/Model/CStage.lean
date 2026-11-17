@@ -80,6 +80,9 @@ def cEquiv (datum : Thue.StandingDatum) (hfree : RankFiveFree datum) :
   rangeEquiv (uLift datum) (vLift datum)
     hfree.u_injective hfree.v_injective
 
+/--
+@isnad1 id=eq.1h2v.s10.ddca2e0b0a39 from=translated src=- shape=b1071949 vocab=62607624
+-/
 @[simp]
 theorem cEquiv_on_basis (datum : Thue.StandingDatum)
     (hfree : RankFiveFree datum) (q : RuleBasis) :
@@ -121,12 +124,17 @@ def c (datum : Thue.StandingDatum) (hfree : RankFiveFree datum) :
     Gamma2 datum hfree :=
   (HNNExtension.t : Gamma2 datum hfree)⁻¹
 
+/--
+@isnad1 id=injectiv.1h1v.s7.148973e5b2e4 from=translated src=- shape=07ef95f6 vocab=046c0367
+-/
 theorem of3_injective (datum : Thue.StandingDatum)
     (hfree : RankFiveFree datum) :
     Function.Injective (of3 datum hfree) :=
   HNNExtension.of_injective (cEquiv datum hfree)
 
-/-- The defining `c`-conjugation law on all five displayed basis elements.-/
+/-- The defining `c`-conjugation law on all five displayed basis elements.
+@isnad1 id=eq.1h2v.s8.45bd5ae7fc99 from=translated src=- shape=ba3218c9 vocab=2950ad4f
+-/
 theorem c_conjugates_basis (datum : Thue.StandingDatum)
     (hfree : RankFiveFree datum) (q : RuleBasis) :
     (c datum hfree)⁻¹ * of3 datum hfree (uBasis datum q) * c datum hfree =
@@ -139,6 +147,9 @@ theorem c_conjugates_basis (datum : Thue.StandingDatum)
   rw [ht]
   simp [uq, cEquiv_on_basis]
 
+/--
+@isnad1 id=commute.1h2v.s7.28094c16f746 from=translated src=- shape=52e0d1a7 vocab=983f6d7e
+-/
 theorem c_commutes_stable (datum : Thue.StandingDatum)
     (hfree : RankFiveFree datum) (beta : Fin 2) :
     Commute (of3 datum hfree (stable3 beta)) (c datum hfree) := by
@@ -149,7 +160,9 @@ theorem c_commutes_stable (datum : Thue.StandingDatum)
   have hc := congrArg (fun x => c datum hfree * x) h
   simpa [mul_assoc] using hc
 
-/-- The three simulator relations `c⁻¹ A_i c = B_i`.-/
+/-- The three simulator relations `c⁻¹ A_i c = B_i`.
+@isnad1 id=eq.1h2v.s8.bb6aa9f2c8a6 from=translated src=- shape=e226136e vocab=927caba3
+-/
 theorem c_simulation (datum : Thue.StandingDatum)
     (hfree : RankFiveFree datum) (i : Fin 3) :
     (c datum hfree)⁻¹ * of3 datum hfree (a3 datum i) * c datum hfree =
@@ -166,11 +179,17 @@ def stableProjection1 : Stage1 →* FreeGroup (Fin 2) :=
     intro a
     simp)
 
+/--
+@isnad1 id=eq.0h1v.s8.6aae84e41828 from=translated src=- shape=727baffe vocab=2e13d770
+-/
 @[simp]
 theorem stableProjection1_of0 (x : Base) :
     stableProjection1 (of0 x) = 1 := by
   simp [stableProjection1, of0]
 
+/--
+@isnad1 id=eq.0h0v.s7.851bb5852d27 from=translated src=- shape=8ad73e9a vocab=2fd079d0
+-/
 @[simp]
 theorem stableProjection1_s1 :
     stableProjection1 s1 = FreeGroup.of (0 : Fin 2) := by
@@ -186,19 +205,31 @@ def stableProjection3 : Gamma3 →* FreeGroup (Fin 2) :=
     rw [ha, phi1_inA1]
     simp [stableProjection1, of0, coe_inA1, coe_inB1])
 
+/--
+@isnad1 id=eq.0h0v.s7.67f57ae00667 from=translated src=- shape=9dd44ff7 vocab=6d9cc2e5
+-/
 @[simp]
 theorem stableProjection3_d : stableProjection3 d3 = 1 := by
   simp [stableProjection3, d3, of1]
 
+/--
+@isnad1 id=eq.0h0v.s7.3825f050d1f8 from=translated src=- shape=9dd44ff7 vocab=0dc6fbfd
+-/
 @[simp]
 theorem stableProjection3_e : stableProjection3 e3 = 1 := by
   simp [stableProjection3, e3, of1]
 
+/--
+@isnad1 id=eq.0h0v.s7.7a1286fadbab from=translated src=- shape=8ad73e9a vocab=b51ee7bf
+-/
 @[simp]
 theorem stableProjection3_s1 :
     stableProjection3 s1_3 = FreeGroup.of (0 : Fin 2) := by
   simp [stableProjection3, s1_3, of1]
 
+/--
+@isnad1 id=eq.0h0v.s7.e4df677729e5 from=translated src=- shape=8ad73e9a vocab=9ad69e52
+-/
 @[simp]
 theorem stableProjection3_s2 :
     stableProjection3 s2_3 = FreeGroup.of (1 : Fin 2) := by
@@ -208,6 +239,9 @@ theorem stableProjection3_s2 :
 def positiveFree (w : List (Fin 2)) : FreeGroup (Fin 2) :=
   FreeGroup.mk (w.map fun i => (i, true))
 
+/--
+@isnad1 id=eq.0h1v.s6.80c7ca6c5327 from=translated src=- shape=2bbd6ddc vocab=68fb8ca8
+-/
 theorem positiveFree_eq_eval (w : List (Fin 2)) :
     positiveFree w =
       Thue.evalPositive (FreeGroup.of 0) (FreeGroup.of 1) w := by
@@ -227,6 +261,9 @@ theorem positiveFree_eq_eval (w : List (Fin 2)) :
         _ = Thue.evalPositive (FreeGroup.of 0) (FreeGroup.of 1) (i :: w) := by
           fin_cases i <;> simp [Thue.evalPositive]
 
+/--
+@isnad1 id=eq.0h1v.s7.5e35cb11ee18 from=translated src=- shape=399113e2 vocab=4d4734f5
+-/
 theorem stableProjection3_positive (w : List (Fin 2)) :
     stableProjection3 (positive3 w) = positiveFree w := by
   induction w with
@@ -253,6 +290,9 @@ private theorem positiveLetters_reduced (w : List (Fin 2)) :
           rw [List.isChain_cons]
           exact ⟨by simp, ih⟩
 
+/--
+@isnad1 id=injectiv.0h0v.s4.6e8440e47e82 from=translated src=- shape=9c34f928 vocab=16474975
+-/
 theorem positiveFree_injective : Function.Injective positiveFree := by
   intro u v huv
   have hreduce := FreeGroup.reduce.sound huv
@@ -268,6 +308,9 @@ theorem positiveFree_injective : Function.Injective positiveFree := by
 def DE3 : Subgroup Gamma3 :=
   Subgroup.closure ({d3, e3} : Set Gamma3)
 
+/--
+@isnad1 id=le.0h0v.s7.852304253a45 from=translated src=- shape=7d909ad6 vocab=8f34d8b5
+-/
 theorem DE3_le_projection_ker :
     DE3 ≤ MonoidHom.ker stableProjection3 := by
   rw [DE3, Subgroup.closure_le]
@@ -277,7 +320,9 @@ theorem DE3_le_projection_ker :
   · simpa only [Set.mem_singleton_iff] using hx ▸ stableProjection3_e
 
 /-- Borisov Lemma 4 when the context contains no `c`: projecting to the free
-group on `s₁,s₂` forces the two positive words to be literally equal.-/
+group on `s₁,s₂` forces the two positive words to be literally equal.
+@isnad1 id=eq.3h4v.s8.53b545b58677 from=translated src=- shape=fdb227b9 vocab=465b69c7
+-/
 theorem lemma4_zero_c
     (P Q : List (Fin 2)) (L R : Gamma3)
     (hL : L ∈ DE3) (hR : R ∈ DE3)
@@ -300,10 +345,16 @@ def dCyclic : Subgroup Gamma3 :=
 def eCyclic : Subgroup Gamma3 :=
   Subgroup.closure ({e3} : Set Gamma3)
 
+/--
+@isnad1 id=le.0h0v.s6.58a52e39f914 from=translated src=- shape=836e6cbb vocab=d1184359
+-/
 theorem dCyclic_le_DE3 : dCyclic ≤ DE3 := by
   rw [dCyclic, Subgroup.closure_le, Set.singleton_subset_iff]
   exact Subgroup.subset_closure (by simp)
 
+/--
+@isnad1 id=le.0h0v.s6.7f5aefe7d49a from=translated src=- shape=836e6cbb vocab=5e83769e
+-/
 theorem eCyclic_le_DE3 : eCyclic ≤ DE3 := by
   rw [eCyclic, Subgroup.closure_le, Set.singleton_subset_iff]
   exact Subgroup.subset_closure (by simp)
@@ -359,7 +410,9 @@ def BorisovLemma4 (datum : Thue.StandingDatum)
     Lemma4Equation datum hfree P Q L R →
       ThueEq (Thue.systemOf datum.F datum.E) Q P
 
-/-- The `m = 0` branch of the published induction in the iterated HNN model.-/
+/-- The `m = 0` branch of the published induction in the iterated HNN model.
+@isnad1 id=thueeq.4h5v.s7.9c1cfeffe967 from=translated src=- shape=21430e6c vocab=c501a37a
+-/
 theorem lemma4_of_context_lists_nil
     (datum : Thue.StandingDatum) (hfree : RankFiveFree datum)
     (P Q : List (Fin 2))
@@ -391,6 +444,9 @@ def CE (datum : Thue.StandingDatum) (hfree : RankFiveFree datum) :
   Subgroup.closure
     ({c datum hfree, of3 datum hfree e3} : Set (Gamma2 datum hfree))
 
+/--
+@isnad1 id=iff.0h5v.s7.bd17e59b7ed4 from=translated src=- shape=30f5063e vocab=9f72dee7
+-/
 theorem equation_iff_factorization
     {G : Type*} [Group G] (P L Q R : G) :
     P⁻¹ * L * Q * R = 1 ↔ P = L * Q * R := by
@@ -404,6 +460,9 @@ theorem equation_iff_factorization
 
 /-! ## Isolating the positive-`c` induction step -/
 
+/--
+@isnad1 id=thuestep.0h4v.s7.a30b3a752b8c from=translated src=- shape=39e79252 vocab=ffbf5563
+-/
 theorem thueStep_rule_forward
     (datum : Thue.StandingDatum) (l r : List (Fin 2)) (i : Fin 3) :
     ThueStep (Thue.systemOf datum.F datum.E)
@@ -411,6 +470,9 @@ theorem thueStep_rule_forward
   refine ⟨l, r, datum.F i, datum.E i, ⟨i, rfl⟩, ?_⟩
   exact Or.inl ⟨rfl, rfl⟩
 
+/--
+@isnad1 id=thuestep.0h4v.s7.1cd96447717f from=translated src=- shape=fb8f4d57 vocab=ffbf5563
+-/
 theorem thueStep_rule_backward
     (datum : Thue.StandingDatum) (l r : List (Fin 2)) (i : Fin 3) :
     ThueStep (Thue.systemOf datum.F datum.E)
@@ -443,7 +505,9 @@ def PinchReduction (datum : Thue.StandingDatum)
             contextComplexity datum hfree L R
 
 /-- Once the local pinch-reduction statement is available, well-founded
-induction gives all of Borisov's Lemma 4.-/
+induction gives all of Borisov's Lemma 4.
+@isnad1 id=borisovl.2h1v.s3.f57fec2be208 from=translated src=- shape=b28a8773 vocab=c2d85b25
+-/
 theorem borisovLemma4_of_pinchReduction
     (datum : Thue.StandingDatum) (hfree : RankFiveFree datum)
     (hpinch : PinchReduction datum hfree) :
@@ -476,6 +540,9 @@ def cExponent (datum : Thue.StandingDatum) (hfree : RankFiveFree datum) :
   HNNExtension.lift (1 : Gamma3 →* Multiplicative ℤ)
     (Multiplicative.ofAdd 1) (by intro a; simp)
 
+/--
+@isnad1 id=eq.1h1v.s7.5eef327e00e9 from=translated src=- shape=7f3c6d1d vocab=8a21086e
+-/
 @[simp]
 theorem cExponent_c
     (datum : Thue.StandingDatum) (hfree : RankFiveFree datum) :

@@ -62,7 +62,9 @@ private theorem init_represents {Q : Type*} [Inhabited Q] (input : List Bool) :
       exact ⟨default, rfl, rfl, rfl⟩
 
 /-- One atomic `TM0` step is simulated by one combined step for a move and by
-two combined steps for a write.-/
+two combined steps for a write.
+@isnad1 id=respects.0h2v.s5.a5e30d373655 from=translated src=- shape=a090c7c9 vocab=25e4be36
+-/
 theorem respects {Q : Type*} [Inhabited Q] (M : TM0.Machine Bool Q) :
     StateTransition.Respects (TM0.step M) (PostMachine.step (machine M))
       Represents := by
@@ -167,7 +169,9 @@ theorem respects {Q : Type*} [Inhabited Q] (M : TM0.Machine Bool Q) :
                   Relation.TransGen.single h₁
                 exact path₁.tail h₂
 
-/-- The combined machine has the same halting domain as the Mathlib machine.-/
+/-- The combined machine has the same halting domain as the Mathlib machine.
+@isnad1 id=iff.0h3v.s5.4b1357acaed1 from=translated src=- shape=097a227c vocab=00eb5240
+-/
 theorem eval_dom_iff {Q : Type*} [Inhabited Q]
     (M : TM0.Machine Bool Q) (input : List Bool) :
     (StateTransition.eval (PostMachine.step (machine M)) (init input)).Dom ↔
@@ -175,13 +179,18 @@ theorem eval_dom_iff {Q : Type*} [Inhabited Q]
   rw [TM0.eval]
   simpa using StateTransition.tr_eval_dom (respects M) (init_represents input)
 
+/--
+@isnad1 id=iff.0h3v.s5.cf4c0369ae3a from=translated src=- shape=303f28ac vocab=34b85334
+-/
 theorem terminates_iff_tm0_eval_dom {Q : Type*} [Inhabited Q]
     (M : TM0.Machine Bool Q) (input : List Bool) :
     MachineThue.Terminates (PostMachine.step (machine M)) (init input) ↔
       (TM0.eval M input).Dom :=
   MachineThue.terminates_iff_eval_dom.trans (eval_dom_iff M input)
 
-/-- Direct fixed-target Thue characterization of Mathlib `TM0` halting.-/
+/-- Direct fixed-target Thue characterization of Mathlib `TM0` halting.
+@isnad1 id=iff.0h3v.s5.699e9d4a1930 from=translated src=- shape=65ada74d vocab=f87150ce
+-/
 theorem thue_iff_tm0_eval_dom {Q : Type*} [Inhabited Q]
     (M : TM0.Machine Bool Q) (input : List Bool) :
     ThueEq (PostMachine.system (machine M))
@@ -191,6 +200,9 @@ theorem thue_iff_tm0_eval_dom {Q : Type*} [Inhabited Q]
   (PostMachine.terminates_iff (machine M) (init input)).symm.trans
     (terminates_iff_tm0_eval_dom M input)
 
+/--
+@isnad1 id=finite.0h2v.s4.dfcb6d019303 from=translated src=- shape=b7a13220 vocab=92262250
+-/
 theorem thue_system_finite {Q : Type*} [Inhabited Q] [Finite Q]
     (M : TM0.Machine Bool Q) :
     Set.Finite (PostMachine.system (machine M)) :=

@@ -23,32 +23,50 @@ generators.-/
 def word (w : Borisov.BorisovWord) : HostWord :=
   Word.substitute generatorWord w
 
+/--
+@isnad1 id=eq.0h1v.s4.0fdd2065fc11 from=translated src=- shape=700c1813 vocab=78658a1a
+-/
 @[simp]
 theorem word_generator (i : Fin 7) :
     word (Word.generator i) = generatorWord i := by
   simp [word, Word.substitute, Word.generator]
 
+/--
+@isnad1 id=eq.0h2v.s4.8c79ae60fdff from=translated src=- shape=4ebd3742 vocab=0b4fa3f8
+-/
 @[simp]
 theorem word_mul (u v : Borisov.BorisovWord) :
     word (Word.mul u v) = Word.mul (word u) (word v) :=
   Word.substitute_append generatorWord u v
 
+/--
+@isnad1 id=eq.0h1v.s4.bcfe0bf506b0 from=translated src=- shape=558e1401 vocab=f2317745
+-/
 @[simp]
 theorem word_inverse (u : Borisov.BorisovWord) :
     word (Word.inverse u) = Word.inverse (word u) := by
   simpa [word, Word.inverse, FreeGroup.invRev, List.map_reverse] using
     Word.substitute_invRev generatorWord u
 
+/--
+@isnad1 id=eq.0h1v.s4.5812985060a4 from=translated src=- shape=97354188 vocab=3455b01b
+-/
 @[simp]
 theorem word_product (ws : List Borisov.BorisovWord) :
     word (Word.product ws) = Word.product (ws.map word) :=
   Word.substitute_flatten generatorWord ws
 
+/--
+@isnad1 id=eq.0h2v.s4.e6b3404468b3 from=translated src=- shape=4ebd3742 vocab=bb5c0dac
+-/
 @[simp]
 theorem word_commutator (u v : Borisov.BorisovWord) :
     word (Word.commutator u v) = Word.commutator (word u) (word v) := by
   simp [Word.commutator]
 
+/--
+@isnad1 id=eq.0h1v.s3.ddd92753bd7d from=translated src=- shape=4a432b24 vocab=c304d678
+-/
 @[simp]
 theorem word_positive (Q : List (Fin 2)) :
     word (Borisov.positiveWord Q) = positiveWord Q := by
@@ -62,13 +80,18 @@ theorem word_positive (Q : List (Fin 2)) :
       fin_cases i <;>
         rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.185be9b3cecc from=translated src=- shape=4a432b24 vocab=59808440
+-/
 @[simp]
 theorem word_testWord (Q : List (Fin 2)) :
     word (Borisov.testWord Q) = testWord Q := by
   simp [Borisov.testWord, testWord, generatorWord,
     oldGenerator, Borisov.tWord, Borisov.kWord, tau]
 
-/-- Evaluation commutes with the ordered word substitution.-/
+/-- Evaluation commutes with the ordered word substitution.
+@isnad1 id=eq.0h3v.s5.e99f4c12f04b from=translated src=- shape=c717fd31 vocab=15837fc6
+-/
 theorem eval_word {G : Type*} [Group G] (x : Fin 3 → G)
     (u : Borisov.BorisovWord) :
     Word.eval x (word u) =
@@ -108,7 +131,9 @@ private theorem conjugate_pow {G : Type*} [Group G]
   simpa using (conj_pow (a := y⁻¹) (b := a) (i := n))
 
 /-- Every Borisov relator is satisfied after applying the ordered
-compression into the three-generator host.-/
+compression into the three-generator host.
+@isnad1 id=eq.0h2v.s8.311c32f8e3bf from=translated src=- shape=737a0023 vocab=27fbc931
+-/
 theorem relator_eq_one (datum : Thue.StandingDatum) (i : Fin 14) :
     Word.eval
         (fun j => Word.eval
@@ -336,6 +361,9 @@ def hom (datum : Thue.StandingDatum) :
       (generatorWord i))
     (relator_eq_one datum)
 
+/--
+@isnad1 id=eq.0h2v.s8.409fc883c5b3 from=translated src=- shape=56c59fa7 vocab=d4df4941
+-/
 @[simp]
 theorem hom_of (datum : Thue.StandingDatum) (i : Fin 7) :
     hom datum (PresentedGroup.of i) =
@@ -343,7 +371,9 @@ theorem hom_of (datum : Thue.StandingDatum) (i : Fin 7) :
   (Borisov.presentation datum).homOfRelators_of _ _ i
 
 /-- The compression homomorphism evaluates a Borisov word by first applying
-the syntactic substitution.-/
+the syntactic substitution.
+@isnad1 id=eq.0h2v.s8.a85822374d00 from=translated src=- shape=6a9394e5 vocab=ef53667e
+-/
 theorem hom_evalWord (datum : Thue.StandingDatum)
     (u : Borisov.BorisovWord) :
     hom datum ((Borisov.presentation datum).evalWord u) =
@@ -359,7 +389,9 @@ theorem hom_evalWord (datum : Thue.StandingDatum)
       rw [FP.evalWord, eval_word]
 
 /-- The elementary direction of preservation: any Borisov word which is one
-remains one after compression.-/
+remains one after compression.
+@isnad1 id=wordprob.1h2v.s5.fe1779e1d845 from=translated src=- shape=e865f4a6 vocab=a0994bf4
+-/
 theorem wordProblem_word_of_wordProblem (datum : Thue.StandingDatum)
     (u : Borisov.BorisovWord)
     (hu : (Borisov.presentation datum).wordProblem u) :
@@ -375,7 +407,9 @@ def Injective (datum : Thue.StandingDatum) : Prop :=
   Function.Injective (hom datum)
 
 /-- Injectivity of the compression homomorphism gives reflection of the word
-problem.-/
+problem.
+@isnad1 id=wordprob.2h2v.s5.cd3cc53a11b1 from=translated src=- shape=ab83634f vocab=28db05fe
+-/
 theorem wordProblem_of_wordProblem_word
     (datum : Thue.StandingDatum) (hinj : Injective datum)
     (u : Borisov.BorisovWord)
@@ -385,6 +419,9 @@ theorem wordProblem_of_wordProblem_word
   apply hinj
   rw [hom_evalWord, hu, map_one]
 
+/--
+@isnad1 id=iff.1h2v.s5.e31431643477 from=translated src=- shape=f8a93d74 vocab=28db05fe
+-/
 theorem wordProblem_iff_wordProblem_word
     (datum : Thue.StandingDatum) (hinj : Injective datum)
     (u : Borisov.BorisovWord) :
@@ -394,6 +431,9 @@ theorem wordProblem_iff_wordProblem_word
   · exact wordProblem_word_of_wordProblem datum u
   · exact wordProblem_of_wordProblem_word datum hinj u
 
+/--
+@isnad1 id=iff.1h2v.s5.7906ebffd4b3 from=translated src=- shape=5a00d15f vocab=1dc13e60
+-/
 theorem testWord_iff (datum : Thue.StandingDatum)
     (hinj : Injective datum) (Q : List (Fin 2)) :
     (Borisov.presentation datum).wordProblem (Borisov.testWord Q) ↔

@@ -114,7 +114,9 @@ private theorem map_z_conjugates_c :
     z_conjugates_c datum theta zeta
 
 /-- Each ordered substitution word evaluates back to the old generator it
-eliminated.-/
+eliminated.
+@isnad1 id=eq.0h4v.s10.fc50e407f00b from=translated src=- shape=781d0bdb vocab=2ac1dac2
+-/
 theorem eval_tau (g : OldGen) :
     Word.eval (hostValue datum theta zeta) (tau g) =
       oldValue datum theta zeta g := by
@@ -172,17 +174,26 @@ theorem eval_tau (g : OldGen) :
 def evalOld (w : OldWord) : Z datum theta zeta :=
   FreeGroup.lift (oldValue datum theta zeta) (FreeGroup.mk w)
 
+/--
+@isnad1 id=eq.0h4v.s4.8e500c476b55 from=translated src=- shape=cf666e11 vocab=18902e9c
+-/
 @[simp] theorem evalOld_generator (g : OldGen) :
     evalOld datum theta zeta (OldWord.generator g) =
       oldValue datum theta zeta g := by
   simp [evalOld, OldWord.generator]
 
+/--
+@isnad1 id=eq.0h5v.s10.e3bb217513f7 from=translated src=- shape=bebc953d vocab=45c4cddc
+-/
 @[simp] theorem evalOld_mul (u v : OldWord) :
     evalOld datum theta zeta (OldWord.mul u v) =
       evalOld datum theta zeta u * evalOld datum theta zeta v :=
   map_mul (FreeGroup.lift (oldValue datum theta zeta))
     (FreeGroup.mk u) (FreeGroup.mk v)
 
+/--
+@isnad1 id=eq.0h4v.s10.0e7839b431cc from=translated src=- shape=98ae2bf5 vocab=32a43333
+-/
 @[simp] theorem evalOld_inverse (u : OldWord) :
     evalOld datum theta zeta (OldWord.inverse u) =
       (evalOld datum theta zeta u)⁻¹ := by
@@ -192,6 +203,9 @@ def evalOld (w : OldWord) : Z datum theta zeta :=
   rw [evalOld, hm]
   exact map_inv (FreeGroup.lift (oldValue datum theta zeta)) (FreeGroup.mk u)
 
+/--
+@isnad1 id=eq.0h4v.s11.1e6ab67910de from=translated src=- shape=a8aca6f3 vocab=8492d3b5
+-/
 @[simp] theorem evalOld_product (us : List OldWord) :
     evalOld datum theta zeta (OldWord.product us) =
       (us.map (evalOld datum theta zeta)).prod := by
@@ -201,6 +215,9 @@ def evalOld (w : OldWord) : Z datum theta zeta :=
       change evalOld datum theta zeta (OldWord.mul u (OldWord.product us)) = _
       simp [ih]
 
+/--
+@isnad1 id=eq.0h5v.s10.a09ff21769f9 from=translated src=- shape=68646251 vocab=83963e0a
+-/
 @[simp] theorem evalOld_pow (u : OldWord) (n : ℕ) :
     evalOld datum theta zeta (OldWord.pow u n) =
       evalOld datum theta zeta u ^ n := by
@@ -208,6 +225,9 @@ def evalOld (w : OldWord) : Z datum theta zeta :=
   exact map_pow (FreeGroup.lift (oldValue datum theta zeta))
     (FreeGroup.mk u) n
 
+/--
+@isnad1 id=eq.0h4v.s11.c12ebe3de108 from=translated src=- shape=5bd727a3 vocab=bab2af1b
+-/
 theorem evalOld_positive (w : List (Fin 2)) :
     evalOld datum theta zeta (OldWord.positive w) =
       (w.map fun i => if i = 0 then oldValue datum theta zeta .s1
@@ -221,11 +241,17 @@ theorem evalOld_positive (w : List (Fin 2)) :
       rw [evalOld_mul, evalOld_generator, ih]
       by_cases hi : i = 0 <;> simp [hi]
 
+/--
+@isnad1 id=eq.0h5v.s11.bb209637678e from=translated src=- shape=e05f3b7c vocab=38e3b1ff
+-/
 @[simp] theorem evalOld_relation (u v : OldWord) :
     evalOld datum theta zeta (OldWord.relation u v) =
       evalOld datum theta zeta u * (evalOld datum theta zeta v)⁻¹ := by
   simp [OldWord.relation]
 
+/--
+@isnad1 id=eq.0h5v.s12.1d0ca25c83ed from=translated src=- shape=32d5277a vocab=d76db3a2
+-/
 @[simp] theorem evalOld_commutator (u v : OldWord) :
     evalOld datum theta zeta (OldWord.commutator u v) =
       (evalOld datum theta zeta u)⁻¹ *
@@ -234,7 +260,9 @@ theorem evalOld_positive (w : List (Fin 2)) :
   simp [OldWord.commutator, mul_assoc]
 
 /-- Evaluation commutes with substitution of the six eliminated
-generators.-/
+generators.
+@isnad1 id=eq.0h4v.s10.14db487e8555 from=translated src=- shape=95c4940b vocab=b77e8eaf
+-/
 theorem eval_evaluate (w : OldWord) :
     Word.eval (hostValue datum theta zeta) (OldWord.evaluate tau w) =
       evalOld datum theta zeta w := by
@@ -265,6 +293,9 @@ def borisovValue : Fin 7 → Z datum theta zeta :=
   gammaToZ datum theta zeta ∘
     modelGenerator datum (HostYStage.FreeInput datum)
 
+/--
+@isnad1 id=eq.0h4v.s5.6ebae2f719a0 from=translated src=- shape=f9052fb9 vocab=0c23296b
+-/
 theorem borisovValue_eq_oldGenerator (i : Fin 7) :
     borisovValue datum theta zeta i =
       oldValue datum theta zeta (Compression.oldGenerator i) := by
@@ -307,7 +338,9 @@ theorem borisovValue_eq_oldGenerator (i : Fin 7) :
     borisovValue_eq_oldGenerator datum theta zeta (6 : Fin 7)
 
 /-- Every Borisov relator remains valid after the two proper HNN
-extensions.-/
+extensions.
+@isnad1 id=eq.0h4v.s11.753ca9cfd96c from=translated src=- shape=cf4cf128 vocab=7863394e
+-/
 theorem borisov_relator_eq_one (i : Fin 14) :
     Word.eval (borisovValue datum theta zeta)
         ((Borisov.presentation datum).relator i) = 1 := by
@@ -352,7 +385,9 @@ private theorem swapped_commutator_eq_one {G : Type*} [Group G]
     _ = 1 := by group
 
 /-- The eight inherited Borisov relations and the last `y`-relation all
-hold before syntactic elimination.-/
+hold before syntactic elimination.
+@isnad1 id=eq.0h4v.s10.b67fbe9417aa from=translated src=- shape=6c7c2f45 vocab=003ec70f
+-/
 theorem surviving_relator_eq_one (i : Fin 9) :
     evalOld datum theta zeta
         (oldSurvivingRelator datum.F datum.E datum.P i) = 1 := by
@@ -425,6 +460,9 @@ theorem surviving_relator_eq_one (i : Fin 9) :
 
 /-! ## The decompression homomorphism -/
 
+/--
+@isnad1 id=eq.0h4v.s11.fef8489bb52e from=translated src=- shape=cf4cf128 vocab=714719c3
+-/
 theorem host_relator_eq_one (i : Fin 9) :
     Word.eval (hostValue datum theta zeta)
         ((presentationOf datum).relator i) = 1 := by
@@ -440,11 +478,17 @@ def fromHost : (presentationOf datum).Group →* Z datum theta zeta :=
   (presentationOf datum).homOfRelators (hostValue datum theta zeta)
     (host_relator_eq_one datum theta zeta)
 
+/--
+@isnad1 id=eq.0h4v.s11.4a981be1fef2 from=translated src=- shape=4cc903f4 vocab=a6f0a4fe
+-/
 @[simp] theorem fromHost_of (i : Fin 3) :
     fromHost datum theta zeta (PresentedGroup.of i) =
       hostValue datum theta zeta i :=
   (presentationOf datum).homOfRelators_of _ _ i
 
+/--
+@isnad1 id=eq.0h4v.s11.ccb40f485b7b from=translated src=- shape=ad372d9e vocab=f8ede268
+-/
 theorem fromHost_evalWord (w : HostWord) :
     fromHost datum theta zeta ((presentationOf datum).evalWord w) =
       Word.eval (hostValue datum theta zeta) w :=
@@ -457,13 +501,18 @@ def borisovToZ :
   (gammaToZ datum theta zeta).comp
     (toFinalModel datum (HostYStage.FreeInput datum))
 
+/--
+@isnad1 id=injectiv.0h3v.s11.bbabdbf61f45 from=translated src=- shape=0d23d623 vocab=5ff6c659
+-/
 theorem borisovToZ_injective :
     Function.Injective (borisovToZ datum theta zeta) :=
   ((toZStage_injective datum theta zeta).comp
     (toYStage_injective datum theta)).comp
     (toFinalModel_injective datum (HostYStage.FreeInput datum))
 
-/-- The six eliminations commute with the semantic inclusions.-/
+/-- The six eliminations commute with the semantic inclusions.
+@isnad1 id=eq.0h3v.s11.012adf93c0f6 from=translated src=- shape=c1e0862a vocab=ae516a20
+-/
 theorem fromHost_comp_compression :
     (fromHost datum theta zeta).comp (Compression.hom datum) =
       borisovToZ datum theta zeta := by
@@ -479,7 +528,9 @@ theorem fromHost_comp_compression :
   exact (borisovValue_eq_oldGenerator datum theta zeta i).symm
 
 /-- The subgroup equivalences constructed in Section 3 of the paper imply
-injectivity of the compression homomorphism.-/
+injectivity of the compression homomorphism.
+@isnad1 id=injectiv.0h3v.s3.5e7a82cfd84b from=translated src=- shape=31d8cb97 vocab=7fcce307
+-/
 theorem compression_injective_of
     (theta : ThetaData datum) (zeta : ZetaData datum theta) :
     Compression.Injective datum := by
@@ -498,7 +549,9 @@ end HostCompressionInjective
 namespace Host
 
 /-- The canonical data from Section 3 of the paper give compression
-injectivity for the concrete simulator.-/
+injectivity for the concrete simulator.
+@isnad1 id=injectiv.0h1v.s2.4d44c3ce5779 from=translated src=- shape=5c11bb93 vocab=b6ac6d5a
+-/
 theorem compression_injective (datum : Thue.StandingDatum) :
     Compression.Injective datum :=
   HostCompressionInjective.compression_injective_of datum

@@ -18,6 +18,9 @@ open BorisovAssertionIV
 
 noncomputable section
 
+/--
+@isnad1 id=eq.0h1v.s7.8f1246aface5 from=translated src=- shape=aa6bf7df vocab=54390e41
+-/
 @[simp] theorem g0Equiv_stable
     (beta : Fin 2) :
     g0Equiv (BorisovIntersections.stable beta) =
@@ -27,6 +30,9 @@ noncomputable section
     simp [BorisovCStage.stable3, BorisovG0HNN.hnnS1,
       BorisovG0HNN.hnnS2]
 
+/--
+@isnad1 id=eq.0h2v.s7.64c3e02e37df from=translated src=- shape=511e7c8c vocab=1b67cb23
+-/
 @[simp] theorem g0Equiv_uBasis
     (datum : Thue.StandingDatum) (q : Basis) :
     g0Equiv (BorisovIntersections.uBasis datum q) =
@@ -40,6 +46,9 @@ noncomputable section
       rw [g0Equiv_apply, toHNN_a]
       rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.8fc92d0741af from=translated src=- shape=511e7c8c vocab=f6ccc23e
+-/
 @[simp] theorem g0Equiv_vBasis
     (datum : Thue.StandingDatum) (q : Basis) :
     g0Equiv (BorisovIntersections.vBasis datum q) =
@@ -54,7 +63,9 @@ noncomputable section
       rfl
 
 /-- Transporting the displayed source-basis lift through `g0Equiv` gives the
-semantic source-basis lift.-/
+semantic source-basis lift.
+@isnad1 id=eq.0h2v.s9.07197b30a012 from=translated src=- shape=8263a7d0 vocab=1a7939b8
+-/
 theorem g0Equiv_uLift
     (datum : Thue.StandingDatum) (w : FreeGroup Basis) :
     g0Equiv (FreeGroup.lift (BorisovIntersections.uBasis datum) w) =
@@ -69,7 +80,9 @@ theorem g0Equiv_uLift
   exact DFunLike.congr_fun hf w
 
 /-- Transporting the displayed target-basis lift through `g0Equiv` gives the
-semantic target-basis lift.-/
+semantic target-basis lift.
+@isnad1 id=eq.0h2v.s9.b9069de01835 from=translated src=- shape=8263a7d0 vocab=c0f0e3f5
+-/
 theorem g0Equiv_vLift
     (datum : Thue.StandingDatum) (w : FreeGroup Basis) :
     g0Equiv (FreeGroup.lift (BorisovIntersections.vBasis datum) w) =
@@ -84,7 +97,9 @@ theorem g0Equiv_vLift
   exact DFunLike.congr_fun hf w
 
 /-- Assertion IV in the four-generator presentation supplies exactly the
-freeness input used to construct the semantic `c`-HNN extension.-/
+freeness input used to construct the semantic `c`-HNN extension.
+@isnad1 id=rankfive.1h1v.s2.3af0dee5ab42 from=translated src=- shape=6321fd23 vocab=0dab7870
+-/
 theorem rankFiveFree_of_assertionIV
     (datum : Thue.StandingDatum) (hIV : AssertionIV datum) :
     RankFiveFree datum where
@@ -103,7 +118,9 @@ theorem rankFiveFree_of_assertionIV
     exact hxy
 
 /-- Borisov's Assertion IV, transported from the four-generator
-presentation to the concrete iterated-HNN model used by the later stages.-/
+presentation to the concrete iterated-HNN model used by the later stages.
+@isnad1 id=rankfive.0h1v.s2.479b1b12cf5c from=translated src=- shape=5c11bb93 vocab=f421ec22
+-/
 theorem rankFiveFree (datum : Thue.StandingDatum) : RankFiveFree datum :=
   rankFiveFree_of_assertionIV datum (assertionIV datum)
 
@@ -111,7 +128,9 @@ theorem rankFiveFree (datum : Thue.StandingDatum) : RankFiveFree datum :=
 from the strengthened, base-exclusion form of Assertion IV.  This bypasses
 the weaker presentation-level `AssertionV` interface: a nontrivial word in
 either displayed rank-five basis has a nonempty flat reduced expansion and
-therefore cannot lie in the embedded `<d,e>` base.-/
+therefore cannot lie in the embedded `<d,e>` base.
+@isnad1 id=baseinte.0h1v.s2.084c783267e8 from=translated src=- shape=5c11bb93 vocab=6987f851
+-/
 theorem baseIntersections (datum : Thue.StandingDatum) :
     BaseIntersections datum where
   u_inf_DE := by
@@ -155,11 +174,17 @@ def stableCyclic3 (beta : Fin 2) :
     ({BorisovCStage.stable3 beta} :
       Set BorisovHNNModel.Gamma3)
 
+/--
+@isnad1 id=eq.0h0v.s7.19886d80731a from=translated src=- shape=501f93a1 vocab=5461df01
+-/
 @[simp] theorem g0Equiv_d :
     g0Equiv BorisovIntersections.d = d3 := by
   change toHNN presentedD = hnnD
   exact toHNN_presentedD
 
+/--
+@isnad1 id=eq.0h0v.s7.133b4c5d3a3a from=translated src=- shape=501f93a1 vocab=185abc5f
+-/
 @[simp] theorem g0Equiv_e :
     g0Equiv BorisovIntersections.e = e3 := by
   change toHNN presentedE = hnnE
@@ -209,18 +234,27 @@ private theorem g0Equiv_mem_stableCyclic3_of_mem_stableCyclic
     exact Subgroup.subset_closure (Set.mem_singleton _)
   exact hle hx
 
+/--
+@isnad1 id=le.0h2v.s6.104c01e60498 from=translated src=- shape=3b656e49 vocab=0504c3a6
+-/
 theorem stableCyclic3_le_U (datum : Thue.StandingDatum) (beta : Fin 2) :
     stableCyclic3 beta ≤ U datum := by
   rw [stableCyclic3, Subgroup.closure_le, Set.singleton_subset_iff]
   exact ⟨FreeGroup.of (Sum.inl beta), by
     simp [BorisovCStage.uLift, BorisovCStage.uBasis]⟩
 
+/--
+@isnad1 id=le.0h2v.s6.1e310f8ee8ea from=translated src=- shape=3b656e49 vocab=c98efac7
+-/
 theorem stableCyclic3_le_V (datum : Thue.StandingDatum) (beta : Fin 2) :
     stableCyclic3 beta ≤ V datum := by
   rw [stableCyclic3, Subgroup.closure_le, Set.singleton_subset_iff]
   exact ⟨FreeGroup.of (Sum.inl beta), by
     simp [BorisovCStage.vLift, BorisovCStage.vBasis]⟩
 
+/--
+@isnad1 id=le.0h1v.s6.aff7fed98081 from=translated src=- shape=97e46943 vocab=e4f2b16b
+-/
 theorem stableCyclic3_le_J3 (beta : Fin 2) :
     stableCyclic3 beta ≤ J3 beta := by
   rw [stableCyclic3, Subgroup.closure_le, Set.singleton_subset_iff]
@@ -250,7 +284,9 @@ private theorem g0Equiv_symm_mem_Vc_of_mem_V
   exact ⟨w, rfl⟩
 
 /-- The `U_c ∩ J_beta` statement in Lemma 3.5 of the paper, transported to the
-concrete semantic model `Gamma3`.-/
+concrete semantic model `Gamma3`.
+@isnad1 id=eq.0h2v.s6.ba2a2f290d88 from=translated src=- shape=28f3fb2c vocab=500520e6
+-/
 theorem U_inf_J3 (datum : Thue.StandingDatum) (beta : Fin 2) :
     U datum ⊓ J3 beta = stableCyclic3 beta := by
   apply le_antisymm
@@ -267,7 +303,9 @@ theorem U_inf_J3 (datum : Thue.StandingDatum) (beta : Fin 2) :
     exact ⟨stableCyclic3_le_U datum beta hx, stableCyclic3_le_J3 beta hx⟩
 
 /-- The `V_c ∩ J_beta` statement in Lemma 3.5 of the paper, transported to the
-concrete semantic model `Gamma3`.-/
+concrete semantic model `Gamma3`.
+@isnad1 id=eq.0h2v.s6.0a5d45d5da98 from=translated src=- shape=28f3fb2c vocab=6aa658c7
+-/
 theorem V_inf_J3 (datum : Thue.StandingDatum) (beta : Fin 2) :
     V datum ⊓ J3 beta = stableCyclic3 beta := by
   apply le_antisymm
@@ -289,6 +327,9 @@ def uStable (datum : Thue.StandingDatum) (beta : Fin 2) : U datum :=
     ⟨FreeGroup.of (Sum.inl beta), by
       simp [BorisovCStage.uLift, BorisovCStage.uBasis]⟩⟩
 
+/--
+@isnad1 id=eq.1h2v.s9.40b1ba7cacc3 from=translated src=- shape=6d4f544c vocab=1828521d
+-/
 @[simp] theorem cEquiv_uStable
     (datum : Thue.StandingDatum) (hfree : RankFiveFree datum)
     (beta : Fin 2) :
@@ -301,7 +342,9 @@ def uStable (datum : Thue.StandingDatum) (beta : Fin 2) : U datum :=
 
 /-- The associated isomorphism for the `c`-HNN stage preserves membership
 in `J_beta`.  This is the compatibility hypothesis consumed by the
-restricted-HNN embedding over `J_beta`.-/
+restricted-HNN embedding over `J_beta`.
+@isnad1 id=iff.1h3v.s10.0e7682d5a575 from=translated src=- shape=315af165 vocab=1266f097
+-/
 theorem cEquiv_mem_J3_iff
     (datum : Thue.StandingDatum) (hfree : RankFiveFree datum)
     (beta : Fin 2) (a : U datum) :

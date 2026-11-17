@@ -66,18 +66,27 @@ def oldSingleton (g : G) (hg : g ≠ 1) :
     CoprodI.NeWord (LeftFactor G) .old .old :=
   .singleton g hg
 
+/--
+@isnad1 id=eq.1h2v.s6.f1410d303bf2 from=translated src=- shape=5d17c20e vocab=a8c9df96
+-/
 @[simp] theorem alphaSingleton_prod (k : ℤ) (hk : k ≠ 0) :
     (alphaSingleton (G := G) k hk).prod = a ^ k := by
   change CoprodI.of (i := LeftIndex.alpha) ((FreeGroup.of ()) ^ k) =
     (CoprodI.of (i := LeftIndex.alpha) (FreeGroup.of ()) : SplitLeft G) ^ k
   exact map_zpow _ _ _
 
+/--
+@isnad1 id=eq.1h2v.s6.0f986778bfdb from=translated src=- shape=5d17c20e vocab=4a4b7357
+-/
 @[simp] theorem betaSingleton_prod (k : ℤ) (hk : k ≠ 0) :
     (betaSingleton (G := G) k hk).prod = auxiliaryAlpha ^ k := by
   change CoprodI.of (i := LeftIndex.beta) ((FreeGroup.of ()) ^ k) =
     (CoprodI.of (i := LeftIndex.beta) (FreeGroup.of ()) : SplitLeft G) ^ k
   exact map_zpow _ _ _
 
+/--
+@isnad1 id=eq.0h1v.s5.29b9e33de387 from=translated src=- shape=b28cad4b vocab=8a5cb1a5
+-/
 @[simp] theorem old_one : old (1 : G) = (1 : SplitLeft G) :=
   map_one
     (CoprodI.of (M := LeftFactor G) (i := LeftIndex.old) :
@@ -95,12 +104,18 @@ def conjugatePowerAlpha (k : ℤ) (hk : k ≠ 0) :
     (.append (alphaSingleton k hk) (by decide)
       (betaSingleton (-1) (by norm_num)))
 
+/--
+@isnad1 id=eq.1h2v.s7.350f347cb595 from=translated src=- shape=8df6aa5f vocab=6c2a1c40
+-/
 @[simp] theorem conjugatePowerA_prod (k : ℤ) (hk : k ≠ 0) :
     (conjugatePowerA (G := G) k hk).prod =
       (a * auxiliaryAlpha * a⁻¹) ^ k := by
   simp [conjugatePowerA]
   group
 
+/--
+@isnad1 id=eq.1h2v.s7.7635ef40041f from=translated src=- shape=8df6aa5f vocab=243414ef
+-/
 @[simp] theorem conjugatePowerAlpha_prod (k : ℤ) (hk : k ≠ 0) :
     (conjugatePowerAlpha (G := G) k hk).prod =
       (auxiliaryAlpha * a * auxiliaryAlpha⁻¹) ^ k := by
@@ -125,6 +140,9 @@ noncomputable def oldBlock (degree : Fin d → ℕ)
       (.append (oldSingleton (x i) hx) (by decide)
         (betaSingleton e he))
 
+/--
+@isnad1 id=eq.1h5v.s6.ebe29c1c192d from=translated src=- shape=18b82b35 vocab=c67856cb
+-/
 @[simp] theorem oldBlock_prod (degree : Fin d → ℕ)
     (hdegree : ∀ i, 0 < degree i) (x : Fin d → G) (i : Fin d) :
     (oldBlock degree hdegree x i).prod = oldElement degree x i := by
@@ -136,6 +154,9 @@ noncomputable def oldBlock (degree : Fin d → ℕ)
   · simp [oldBlock, hx, oldElement, oldSingleton_prod_local]
     group
 
+/--
+@isnad1 id=eq.1h5v.s6.d20d757b9e96 from=translated src=- shape=e6aae54d vocab=8fd226e7
+-/
 @[simp] theorem oldBlock_head (degree : Fin d → ℕ)
     (hdegree : ∀ i, 0 < degree i) (x : Fin d → G) (i : Fin d) :
     (oldBlock degree hdegree x i).head =
@@ -144,6 +165,9 @@ noncomputable def oldBlock (degree : Fin d → ℕ)
   by_cases hx : x i = 1 <;>
     simp [oldBlock, hx, alphaSingleton, cyclicSingleton] <;> rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.7dbf1e6113e9 from=translated src=- shape=b9c511fa vocab=33560220
+-/
 @[simp] theorem oldBlock_last (degree : Fin d → ℕ)
     (hdegree : ∀ i, 0 < degree i) (x : Fin d → G) (i : Fin d) :
     (oldBlock degree hdegree x i).last =
@@ -159,6 +183,9 @@ def commutatorBlock (w : G) (hw : w ≠ 1) :
       (.append (oldSingleton w⁻¹ (inv_ne_one.mpr hw)) (by decide)
         (betaSingleton (-2) (by norm_num))))
 
+/--
+@isnad1 id=eq.1h2v.s8.ac17cc773a93 from=translated src=- shape=ecbd10cb vocab=37dc4767
+-/
 @[simp] theorem commutatorBlock_prod (w : G) (hw : w ≠ 1) :
     (commutatorBlock w hw).prod =
       old w * auxiliaryAlpha ^ 2 * (old w)⁻¹ *
@@ -199,6 +226,9 @@ def cyclicPowerPacked {i j : LeftIndex}
       | succ n => exact positivePacked u hij n
   | negSucc n => exact negativePacked u hij n
 
+/--
+@isnad1 id=eq.1h5v.s6.228160eb20aa from=translated src=- shape=1d656d65 vocab=75ed5f57
+-/
 @[simp] theorem positivePowerWord_head {i j : LeftIndex}
     (u : CoprodI.NeWord (LeftFactor G) i j) (hij : j ≠ i) (n : ℕ) :
     (positivePowerWord u hij n).head = u.head := by
@@ -206,6 +236,9 @@ def cyclicPowerPacked {i j : LeftIndex}
   | zero => rfl
   | succ n ih => simpa [positivePowerWord] using ih
 
+/--
+@isnad1 id=eq.1h5v.s6.89a5dac42a62 from=translated src=- shape=c91f13c2 vocab=cb366669
+-/
 @[simp] theorem positivePowerWord_last {i j : LeftIndex}
     (u : CoprodI.NeWord (LeftFactor G) i j) (hij : j ≠ i) (n : ℕ) :
     (positivePowerWord u hij n).last = u.last := by
@@ -213,6 +246,9 @@ def cyclicPowerPacked {i j : LeftIndex}
   | zero => rfl
   | succ => rfl
 
+/--
+@isnad1 id=eq.2h5v.s8.08b30f1d7a4f from=translated src=- shape=9c045259 vocab=996ff850
+-/
 theorem cyclicPowerPacked_prod {i j : LeftIndex}
     (u : CoprodI.NeWord (LeftFactor G) i j) (hij : j ≠ i)
     (k : ℤ) (hk : k ≠ 0) :
@@ -230,6 +266,9 @@ theorem cyclicPowerPacked_prod {i j : LeftIndex}
       change (positivePowerWord u hij n).inv.prod = u.prod ^ Int.negSucc n
       simp [positivePowerWord_prod, zpow_negSucc]
 
+/--
+@isnad1 id=eq.3h5v.s6.a2fa3c3f0e9b from=translated src=- shape=73a0bb35 vocab=037c4d48
+-/
 theorem cyclicPowerPacked_head_pos {i j : LeftIndex}
     (u : CoprodI.NeWord (LeftFactor G) i j) (hij : j ≠ i)
     (k : ℤ) (hk : k ≠ 0) (hpos : 0 < k) :
@@ -243,6 +282,9 @@ theorem cyclicPowerPacked_head_pos {i j : LeftIndex}
           simp [positivePacked, PackedWord.headLetter]
   | negSucc n => simp at hpos
 
+/--
+@isnad1 id=eq.3h5v.s6.e67860ad4b86 from=translated src=- shape=853d4a54 vocab=d7468654
+-/
 theorem cyclicPowerPacked_last_pos {i j : LeftIndex}
     (u : CoprodI.NeWord (LeftFactor G) i j) (hij : j ≠ i)
     (k : ℤ) (hk : k ≠ 0) (hpos : 0 < k) :
@@ -256,6 +298,9 @@ theorem cyclicPowerPacked_last_pos {i j : LeftIndex}
           simp [positivePacked, PackedWord.lastLetter]
   | negSucc n => simp at hpos
 
+/--
+@isnad1 id=eq.3h5v.s7.0f0533fa05b7 from=translated src=- shape=d7827248 vocab=28311c49
+-/
 theorem cyclicPowerPacked_head_neg {i j : LeftIndex}
     (u : CoprodI.NeWord (LeftFactor G) i j) (hij : j ≠ i)
     (k : ℤ) (hk : k ≠ 0) (hneg : k < 0) :
@@ -266,6 +311,9 @@ theorem cyclicPowerPacked_head_neg {i j : LeftIndex}
       change (negativePacked u hij n).headLetter = ⟨j, u.last⁻¹⟩
       simp [negativePacked, PackedWord.headLetter]
 
+/--
+@isnad1 id=eq.3h5v.s7.a28411b7d260 from=translated src=- shape=050801bd vocab=c132bd69
+-/
 theorem cyclicPowerPacked_last_neg {i j : LeftIndex}
     (u : CoprodI.NeWord (LeftFactor G) i j) (hij : j ≠ i)
     (k : ℤ) (hk : k ≠ 0) (hneg : k < 0) :
@@ -288,6 +336,9 @@ noncomputable def powerPacked (degree : Fin d → ℕ)
   | commutator =>
       exact cyclicPowerPacked (commutatorBlock w hw) (by decide) k hk
 
+/--
+@isnad1 id=eq.3h7v.s6.87257a32b4bf from=translated src=- shape=47e69a2a vocab=1fd61873
+-/
 @[simp] theorem powerPacked_old
     (degree : Fin d → ℕ) (hdegree : ∀ i, 0 < degree i)
     (x : Fin d → G) (w : G) (hw : w ≠ 1) (i : Fin d)
@@ -295,6 +346,9 @@ noncomputable def powerPacked (degree : Fin d → ℕ)
     powerPacked degree hdegree x w hw (.old i) k hk =
       cyclicPowerPacked (oldBlock degree hdegree x i) (by decide) k hk := rfl
 
+/--
+@isnad1 id=eq.3h6v.s6.f07b0711f35d from=translated src=- shape=a8bbd2f4 vocab=adb47037
+-/
 @[simp] theorem powerPacked_commutator
     (degree : Fin d → ℕ) (hdegree : ∀ i, 0 < degree i)
     (x : Fin d → G) (w : G) (hw : w ≠ 1) (k : ℤ) (hk : k ≠ 0) :
@@ -353,6 +407,9 @@ attribute [simp] codeLetter expectedHeadCode expectedLastCode
 
 private theorem not_pos_of_neg {k : ℤ} (hk : k < 0) : ¬ 0 < k := by omega
 
+/--
+@isnad1 id=eq.3h7v.s6.665c57756a1c from=translated src=- shape=3ffb51df vocab=7ada354b
+-/
 @[simp] theorem powerPacked_headLetter
     (degree : Fin d → ℕ) (hdegree : ∀ i, 0 < degree i)
     (x : Fin d → G) (w : G) (hw : w ≠ 1)
@@ -391,6 +448,9 @@ private theorem not_pos_of_neg {k : ℤ} (hk : k < 0) : ¬ 0 < k := by omega
             (commutatorBlock w hw) (by decide) k hk hpos]
         simp [expectedHead, hpos, oldLetter, commutatorBlock, oldSingleton]
 
+/--
+@isnad1 id=eq.3h7v.s6.b1d623595262 from=translated src=- shape=3ffb51df vocab=fbbde24b
+-/
 @[simp] theorem powerPacked_lastLetter
     (degree : Fin d → ℕ) (hdegree : ∀ i, 0 < degree i)
     (x : Fin d → G) (w : G) (hw : w ≠ 1)
@@ -431,6 +491,9 @@ private theorem not_pos_of_neg {k : ℤ} (hk : k < 0) : ¬ 0 < k := by omega
         simp [expectedLast, hpos, betaLetter, commutatorBlock,
           betaSingleton, cyclicSingleton]
 
+/--
+@isnad1 id=eq.3h7v.s7.4bae0279eef7 from=translated src=- shape=2b2e2f73 vocab=ecc930d3
+-/
 @[simp] theorem powerPacked_prod
     (degree : Fin d → ℕ) (hdegree : ∀ i, 0 < degree i)
     (x : Fin d → G) (w : G) (hw : w ≠ 1)
@@ -457,11 +520,17 @@ def Noncancelling (p q : Σ i, LeftFactor G i) : Prop :=
   ∀ h : p.1 = q.1,
     p.2 * cast (congrArg (LeftFactor G) h.symm) q.2 ≠ 1
 
+/--
+@isnad1 id=noncance.1h3v.s5.9fdc2615ccf9 from=translated src=- shape=a42005b0 vocab=6c9998bc
+-/
 theorem noncancelling_of_index_ne (p q : Σ i, LeftFactor G i)
     (h : p.1 ≠ q.1) : Noncancelling p q := by
   intro heq
   exact (h heq).elim
 
+/--
+@isnad1 id=noncance.1h3v.s5.3676d1fd9296 from=translated src=- shape=b78c6197 vocab=28052670
+-/
 theorem alphaLetter_noncancelling (r s : ℤ) (h : r + s ≠ 0) :
     Noncancelling (alphaLetter (G := G) r) (alphaLetter s) := by
   intro _
@@ -469,6 +538,9 @@ theorem alphaLetter_noncancelling (r s : ℤ) (h : r + s ≠ 0) :
   rw [← zpow_add]
   exact FreeGroup.unitGenerator_zpow_ne_one (r + s) h
 
+/--
+@isnad1 id=noncance.1h3v.s5.b3b8c9072d0b from=translated src=- shape=b78c6197 vocab=05526cf1
+-/
 theorem betaLetter_noncancelling (r s : ℤ) (h : r + s ≠ 0) :
     Noncancelling (betaLetter (G := G) r) (betaLetter s) := by
   intro _
@@ -485,6 +557,9 @@ def CodeNoncancelling : LetterCode → LetterCode → Prop
   | .oldWInv, .oldWInv => False
   | _, _ => True
 
+/--
+@isnad1 id=noncance.1h4v.s4.4e9206598979 from=translated src=- shape=93d260a3 vocab=81cf5116
+-/
 theorem code_noncancelling (w : G) (p q : LetterCode)
     (h : CodeNoncancelling p q) :
     Noncancelling (codeLetter w p) (codeLetter w q) := by
@@ -543,6 +618,9 @@ private theorem expected_code_noncancelling
     simp [degreeInt] at hne
     omega
 
+/--
+@isnad1 id=noncance.2h8v.s5.7f588f085491 from=translated src=- shape=e2fadf22 vocab=6352521a
+-/
 theorem expected_noncancelling
     (degree : Fin d → ℕ) (hinjective : Function.Injective degree)
     (w : G) (i j : BasisIndex d) (r s : ℤ) (hij : i ≠ j) :
@@ -556,6 +634,9 @@ def IsAppend {i j : LeftIndex} :
   | .singleton _ _ => False
   | .append _ _ _ => True
 
+/--
+@isnad1 id=isappend.2h5v.s5.6206ca6e8ba3 from=translated src=- shape=73ee83c6 vocab=2920be26
+-/
 theorem positivePowerWord_isAppend {i j : LeftIndex}
     (u : CoprodI.NeWord (LeftFactor G) i j) (hij : j ≠ i) (n : ℕ)
     (hu : IsAppend u) : IsAppend (positivePowerWord u hij n) := by
@@ -563,6 +644,9 @@ theorem positivePowerWord_isAppend {i j : LeftIndex}
   | zero => exact hu
   | succ => trivial
 
+/--
+@isnad1 id=isappend.1h4v.s5.aa1cbb7af4e9 from=translated src=- shape=0a717433 vocab=44ff237b
+-/
 theorem inv_isAppend {i j : LeftIndex}
     (u : CoprodI.NeWord (LeftFactor G) i j) (hu : IsAppend u) :
     IsAppend u.inv := by
@@ -570,6 +654,9 @@ theorem inv_isAppend {i j : LeftIndex}
   | singleton => contradiction
   | append => trivial
 
+/--
+@isnad1 id=isappend.3h5v.s6.4895ad5a116e from=translated src=- shape=34e67f33 vocab=31e47e9e
+-/
 theorem cyclicPowerPacked_isAppend {i j : LeftIndex}
     (u : CoprodI.NeWord (LeftFactor G) i j) (hij : j ≠ i)
     (k : ℤ) (hk : k ≠ 0) (hu : IsAppend u) :
@@ -581,12 +668,18 @@ theorem cyclicPowerPacked_isAppend {i j : LeftIndex}
       | succ n => exact positivePowerWord_isAppend u hij n hu
   | negSucc n => exact inv_isAppend _ (positivePowerWord_isAppend u hij n hu)
 
+/--
+@isnad1 id=isappend.1h5v.s5.78f476f75919 from=translated src=- shape=0be21418 vocab=9b9e709a
+-/
 theorem oldBlock_isAppend (degree : Fin d → ℕ)
     (hdegree : ∀ i, 0 < degree i) (x : Fin d → G) (i : Fin d) :
     IsAppend (oldBlock degree hdegree x i) := by
   classical
   by_cases hx : x i = 1 <;> simp [oldBlock, hx, IsAppend]
 
+/--
+@isnad1 id=isappend.3h7v.s6.e55b6b7bd48d from=translated src=- shape=4b2a89dc vocab=eb721e92
+-/
 theorem powerPacked_isAppend
     (degree : Fin d → ℕ) (hdegree : ∀ i, 0 < degree i)
     (x : Fin d → G) (w : G) (hw : w ≠ 1)
@@ -601,6 +694,9 @@ theorem powerPacked_isAppend
   | commutator =>
       exact cyclicPowerPacked_isAppend _ _ k hk (by trivial)
 
+/--
+@isnad1 id=ex.2h3v.s8.b0fbbdf81c70 from=translated src=- shape=ed246225 vocab=3e29cb84
+-/
 theorem exists_joinPacked (u v : PackedWord G)
     (hu : IsAppend u.word)
     (h : Noncancelling u.lastLetter v.headLetter) :
@@ -629,12 +725,18 @@ noncomputable def joinPacked (u v : PackedWord G)
     (h : Noncancelling u.lastLetter v.headLetter) : PackedWord G :=
   Classical.choose (exists_joinPacked u v hu h)
 
+/--
+@isnad1 id=eq.2h3v.s8.e0e1474ac11e from=translated src=- shape=cd104c4b vocab=4605899f
+-/
 theorem joinPacked_prod (u v : PackedWord G)
     (hu : IsAppend u.word)
     (h : Noncancelling u.lastLetter v.headLetter) :
     (joinPacked u v hu h).word.prod = u.word.prod * v.word.prod :=
   (Classical.choose_spec (exists_joinPacked u v hu h)).1
 
+/--
+@isnad1 id=eq.2h3v.s5.706598a2a321 from=translated src=- shape=41e4f304 vocab=69b11f86
+-/
 @[simp] theorem joinPacked_headLetter (u v : PackedWord G)
     (hu : IsAppend u.word)
     (h : Noncancelling u.lastLetter v.headLetter) :
@@ -734,7 +836,9 @@ private theorem evalBasis_eq_map_prod
   | cons p l ih => simp [evalBasis, ih]
 
 /-- Gordon's left-hand words freely generate whenever the degree assignment
-is positive and injective and the parameter word is nontrivial.-/
+is positive and injective and the parameter word is nontrivial.
+@isnad1 id=injectiv.3h5v.s8.248e15f330b8 from=translated src=- shape=7007563d vocab=f2c287cf
+-/
 theorem splitBasis_lift_injective
     (degree : Fin d → ℕ) (hdegree : ∀ i, 0 < degree i)
     (hinjective : Function.Injective degree)

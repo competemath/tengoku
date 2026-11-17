@@ -66,35 +66,59 @@ def TCY : Subgroup (Y datum theta) :=
   Subgroup.closure ({tY datum theta, cY datum theta, y datum theta} :
     Set (Y datum theta))
 
+/--
+@isnad1 id=mem.0h2v.s11.9ef2f9273b59 from=translated src=- shape=ecf033d2 vocab=cfc7f993
+-/
 @[simp] theorem dY_mem_DTC : dY datum theta ∈ DTC datum theta := by
   apply Subgroup.subset_closure
   simp
 
+/--
+@isnad1 id=mem.0h2v.s11.2bec884fb01b from=translated src=- shape=ecf033d2 vocab=efd0baf3
+-/
 @[simp] theorem tY_mem_DTC : tY datum theta ∈ DTC datum theta := by
   apply Subgroup.subset_closure
   simp
 
+/--
+@isnad1 id=mem.0h2v.s11.90af6a455a0a from=translated src=- shape=ecf033d2 vocab=878326d5
+-/
 @[simp] theorem cY_mem_DTC : cY datum theta ∈ DTC datum theta := by
   apply Subgroup.subset_closure
   simp
 
+/--
+@isnad1 id=mem.0h2v.s11.ffd934bccbff from=translated src=- shape=ecf033d2 vocab=549a9154
+-/
 @[simp] theorem tY_mem_TCY : tY datum theta ∈ TCY datum theta := by
   apply Subgroup.subset_closure
   simp
 
+/--
+@isnad1 id=mem.0h2v.s11.b1c3f5eae07b from=translated src=- shape=ecf033d2 vocab=c4e6e57c
+-/
 @[simp] theorem cY_mem_TCY : cY datum theta ∈ TCY datum theta := by
   apply Subgroup.subset_closure
   simp
 
+/--
+@isnad1 id=mem.0h2v.s11.6373dba724f8 from=translated src=- shape=ecf033d2 vocab=c7130994
+-/
 @[simp] theorem y_mem_TCY : y datum theta ∈ TCY datum theta := by
   apply Subgroup.subset_closure
   simp
 
+/--
+@isnad1 id=eq.0h2v.s11.8af04ad28074 from=translated src=- shape=20edfa43 vocab=c0baba87
+-/
 theorem kY_eq_y_inv_tY_y :
     kY datum theta =
       (y datum theta)⁻¹ * tY datum theta * y datum theta :=
   (y_conjugates_t datum theta).symm
 
+/--
+@isnad1 id=mem.0h2v.s11.5242e80ca019 from=translated src=- shape=ecf033d2 vocab=015765ab
+-/
 @[simp] theorem kY_mem_TCY : kY datum theta ∈ TCY datum theta := by
   rw [kY_eq_y_inv_tY_y]
   exact (TCY datum theta).mul_mem
@@ -126,16 +150,25 @@ abbrev YRestricted :=
 def yRestrictedEmbedding : YRestricted datum theta →* Y datum theta :=
   restrictedEmbedding (Kc datum) (theta_mem_Kc_iff datum theta)
 
+/--
+@isnad1 id=injectiv.0h2v.s13.256c2bdef323 from=translated src=- shape=d8f20a08 vocab=e5ea4ee4
+-/
 theorem yRestrictedEmbedding_injective :
     Function.Injective (yRestrictedEmbedding datum theta) :=
   restrictedEmbedding_injective (Kc datum) (theta_mem_Kc_iff datum theta)
 
+/--
+@isnad1 id=eq.0h3v.s16.75407448265b from=translated src=- shape=1d14ee79 vocab=bab69729
+-/
 @[simp] theorem yRestrictedEmbedding_of (x : Kc datum) :
     yRestrictedEmbedding datum theta (HNNExtension.of x) =
       toYStage datum theta (x : HostYStage.Gamma datum) :=
   restrictedEmbedding_of
     (Kc datum) (theta_mem_Kc_iff datum theta) x
 
+/--
+@isnad1 id=eq.0h2v.s13.7a737578cd3f from=translated src=- shape=8ae02ecd vocab=736d5ed0
+-/
 @[simp] theorem yRestrictedEmbedding_t :
     yRestrictedEmbedding datum theta HNNExtension.t =
       (HNNExtension.t : Y datum theta) :=
@@ -217,6 +250,9 @@ def yRestrictedEquivTCY : YRestricted datum theta ≃* TCY datum theta :=
       (theta_mem_Kc_iff datum theta)).trans
     (MulEquiv.subgroupCongr (restrictedGenerated_eq_TCY datum theta))
 
+/--
+@isnad1 id=eq.0h3v.s15.0ec70167ff22 from=translated src=- shape=f3d76365 vocab=b5b268f7
+-/
 @[simp] theorem yRestrictedEquivTCY_coe (x : YRestricted datum theta) :
     ((yRestrictedEquivTCY datum theta x : TCY datum theta) :
         Y datum theta) =
@@ -291,6 +327,9 @@ def sourceEmbedding : SourceModel datum →* Y datum theta :=
     ((toFinalStage datum (HostYStage.FreeInput datum)).comp
       (sourceToTStage datum))
 
+/--
+@isnad1 id=injectiv.0h2v.s11.236c81474068 from=translated src=- shape=8dfac733 vocab=b2e151a9
+-/
 theorem sourceEmbedding_injective :
     Function.Injective (sourceEmbedding datum theta) :=
   (toYStage_injective datum theta).comp
@@ -353,6 +392,9 @@ def sourceModelEquivDTC : SourceModel datum ≃* DTC datum theta :=
   (MonoidHom.ofInjective (sourceEmbedding_injective datum theta)).trans
     (MulEquiv.subgroupCongr (sourceEmbedding_range datum theta))
 
+/--
+@isnad1 id=eq.0h3v.s14.ae9de78b7c7e from=translated src=- shape=7498358b vocab=03207e31
+-/
 @[simp] theorem sourceModelEquivDTC_coe (x : SourceModel datum) :
     ((sourceModelEquivDTC datum theta x : DTC datum theta) :
         Y datum theta) = sourceEmbedding datum theta x := by
@@ -372,6 +414,9 @@ def sourceModelC : SourceModel datum :=
       Subgroup.subset_closure (by simp)⟩ :
         CD datum (HostYStage.FreeInput datum))
 
+/--
+@isnad1 id=eq.0h2v.s14.11e983ae2e66 from=translated src=- shape=4d5dd8ca vocab=e4a0cf98
+-/
 @[simp] theorem sourceModelEquivDTC_d :
     sourceModelEquivDTC datum theta (sourceModelD datum) =
       ⟨dY datum theta, dY_mem_DTC datum theta⟩ := by
@@ -380,6 +425,9 @@ def sourceModelC : SourceModel datum :=
   simp [sourceModelD, sourceEmbedding,
     dY, HostYStage.d, modelD, cStageToFinal]
 
+/--
+@isnad1 id=eq.0h2v.s14.190f5e3f1c62 from=translated src=- shape=4d5dd8ca vocab=744975bb
+-/
 @[simp] theorem sourceModelEquivDTC_t :
     sourceModelEquivDTC datum theta (sourceModelT datum) =
       ⟨tY datum theta, tY_mem_DTC datum theta⟩ := by
@@ -387,6 +435,9 @@ def sourceModelC : SourceModel datum :=
   rw [sourceModelEquivDTC_coe]
   simp [sourceModelT, sourceEmbedding, tY, HostYStage.t, modelT]
 
+/--
+@isnad1 id=eq.0h2v.s14.8a805c49614c from=translated src=- shape=4d5dd8ca vocab=e9d98f13
+-/
 @[simp] theorem sourceModelEquivDTC_c :
     sourceModelEquivDTC datum theta (sourceModelC datum) =
       ⟨cY datum theta, cY_mem_DTC datum theta⟩ := by
@@ -405,6 +456,9 @@ def yRestrictedC : YRestricted datum theta :=
 
 def yRestrictedY : YRestricted datum theta := HNNExtension.t⁻¹
 
+/--
+@isnad1 id=eq.0h2v.s15.9d91fc18a7dc from=translated src=- shape=f32b3565 vocab=fd086c24
+-/
 @[simp] theorem yRestrictedEquivTCY_t :
     yRestrictedEquivTCY datum theta (yRestrictedT datum theta) =
       ⟨tY datum theta, tY_mem_TCY datum theta⟩ := by
@@ -414,6 +468,9 @@ def yRestrictedY : YRestricted datum theta := HNNExtension.t⁻¹
     (Kc datum) (theta_mem_Kc_iff datum theta)
     (⟨t datum, CTInGamma_le_Kc datum (t_mem_CTInGamma datum)⟩ : Kc datum)
 
+/--
+@isnad1 id=eq.0h2v.s15.e3efbb658ef3 from=translated src=- shape=f32b3565 vocab=4e71f918
+-/
 @[simp] theorem yRestrictedEquivTCY_c :
     yRestrictedEquivTCY datum theta (yRestrictedC datum theta) =
       ⟨cY datum theta, cY_mem_TCY datum theta⟩ := by
@@ -423,6 +480,9 @@ def yRestrictedY : YRestricted datum theta := HNNExtension.t⁻¹
     (Kc datum) (theta_mem_Kc_iff datum theta)
     (⟨c datum, CTInGamma_le_Kc datum (c_mem_CTInGamma datum)⟩ : Kc datum)
 
+/--
+@isnad1 id=eq.0h2v.s15.e995f28f1f15 from=translated src=- shape=f32b3565 vocab=6553f2ea
+-/
 @[simp] theorem yRestrictedEquivTCY_y :
     yRestrictedEquivTCY datum theta (yRestrictedY datum theta) =
       ⟨y datum theta, y_mem_TCY datum theta⟩ := by
@@ -1428,6 +1488,9 @@ def pathEquiv : DTC datum theta ≃* TCY datum theta :=
     ((sourceModelEquivYRestricted datum theta).trans
       (yRestrictedEquivTCY datum theta))
 
+/--
+@isnad1 id=eq.0h2v.s15.9a66f7b97dc3 from=translated src=- shape=b6da49e2 vocab=8f928c2d
+-/
 @[simp] theorem pathEquiv_d :
     pathEquiv datum theta (sourceD datum theta) = targetT datum theta := by
   have hpre :
@@ -1442,6 +1505,9 @@ def pathEquiv : DTC datum theta ≃* TCY datum theta :=
   rw [hpre, sourceModelToYRestricted_d, yRestrictedEquivTCY_t]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s15.78b9645bfb90 from=translated src=- shape=b6da49e2 vocab=c5930f6c
+-/
 @[simp] theorem pathEquiv_t :
     pathEquiv datum theta (sourceT datum theta) = targetC datum theta := by
   have hpre :
@@ -1457,6 +1523,9 @@ def pathEquiv : DTC datum theta ≃* TCY datum theta :=
     sourceModelToYRestricted_t, yRestrictedEquivTCY_c]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s15.de20f8a8a3f9 from=translated src=- shape=b6da49e2 vocab=de3d8149
+-/
 @[simp] theorem pathEquiv_c :
     pathEquiv datum theta (sourceC datum theta) = targetY datum theta := by
   have hpre :
@@ -1501,6 +1570,9 @@ def toZStage : Y datum theta →* ZStage datum theta zeta := HNNExtension.of
 def zLetter : ZStage datum theta zeta :=
   (HNNExtension.t : ZStage datum theta zeta)⁻¹
 
+/--
+@isnad1 id=injectiv.0h3v.s12.2a395cc30296 from=translated src=- shape=b4c763bc vocab=fd6dfa00
+-/
 theorem toZStage_injective : Function.Injective (toZStage datum theta zeta) :=
   HNNExtension.of_injective zeta.equiv
 
@@ -1516,6 +1588,9 @@ private theorem z_conjugates (x : DTC datum theta) :
   rw [h]
   simp [toZStage]
 
+/--
+@isnad1 id=eq.0h3v.s13.672077669617 from=translated src=- shape=6a1e8df5 vocab=5aa318ad
+-/
 theorem z_conjugates_d :
     (zLetter datum theta zeta)⁻¹ *
         toZStage datum theta zeta (dY datum theta) *
@@ -1525,6 +1600,9 @@ theorem z_conjugates_d :
   rw [z_conjugates, zeta.map_d]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s13.281f0e6a1563 from=translated src=- shape=6a1e8df5 vocab=cf22679d
+-/
 theorem z_conjugates_t :
     (zLetter datum theta zeta)⁻¹ *
         toZStage datum theta zeta (tY datum theta) *
@@ -1534,6 +1612,9 @@ theorem z_conjugates_t :
   rw [z_conjugates, zeta.map_t]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s13.f9c775b887a2 from=translated src=- shape=6a1e8df5 vocab=f65bcf5a
+-/
 theorem z_conjugates_c :
     (zLetter datum theta zeta)⁻¹ *
         toZStage datum theta zeta (cY datum theta) *

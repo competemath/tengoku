@@ -166,7 +166,9 @@ private def moveRightPair {Q : Type*}
 
 /-- A machine with finitely many states produces a finite Thue system.  The
 proof bounds the actual rules by seven finite families, without requiring the
-transition function itself to carry any computability data.-/
+transition function itself to carry any computability data.
+@isnad1 id=finite.0h2v.s4.5140ed00ca95 from=translated src=- shape=a544227b vocab=a4e5ae76
+-/
 theorem system_finite {Q : Type*} [Finite Q] (M : Machine Q) :
     Set.Finite (system M) := by
   let S₀ := Set.range (@haltPair Q)
@@ -229,12 +231,17 @@ theorem system_finite {Q : Type*} [Finite Q] (M : Machine Q) :
         ⟨(q, a, q', a', b), rfl⟩
       simp only [Set.mem_union, hs, or_true]
 
+/--
+@isnad1 id=thuestep.1h6v.s6.2bd67c78dfa8 from=translated src=- shape=506d24bf vocab=39be83ee
+-/
 theorem rule_step {Q : Type*} {M : Machine Q}
     {x y : List (Symbol Q)} (hxy : Rule M x y) (l r : List (Symbol Q)) :
     ThueStep (system M) (l ++ x ++ r) (l ++ y ++ r) :=
   ⟨l, r, x, y, hxy, Or.inl ⟨rfl, rfl⟩⟩
 
-/-- Every nonhalting machine step is one application of a Post rule.-/
+/-- Every nonhalting machine step is one application of a Post rule.
+@isnad1 id=thuestep.1h4v.s5.44afeae480ca from=translated src=- shape=46520e52 vocab=90dad2a1
+-/
 theorem simulation_step {Q : Type*} {M : Machine Q} {c d : Config Q}
     (hcd : step M c = some d) :
     ThueStep (system M) (encode c) (encode d) := by
@@ -314,7 +321,9 @@ private theorem erase_right {Q : Type*} (M : Machine Q)
       exact (Relation.ReflTransGen.single hs').trans ih
 
 /-- Once the machine halts, deletion rules remove both finite tape fragments
-and the final rule produces the fixed target.-/
+and the final rule produces the fixed target.
+@isnad1 id=thueeq.1h3v.s4.ccdaa4bccff0 from=translated src=- shape=13e9b05c vocab=82110910
+-/
 theorem simulation_halt {Q : Type*} {M : Machine Q} {c : Config Q}
     (hc : step M c = none) :
     ThueEq (system M) (encode c) (target : List (Symbol Q)) := by
@@ -329,6 +338,9 @@ theorem simulation_halt {Q : Type*} {M : Machine Q} {c : Config Q}
     simpa [encode, encodeTape, target] using
       rule_step (Rule.halt hhalt) ([] : List (Symbol Q)) []
 
+/--
+@isnad1 id=ne.0h2v.s3.ad64a4b4b5fa from=translated src=- shape=3af7e31b vocab=9223c636
+-/
 theorem target_ne_encode {Q : Type*} (c : Config Q) :
     (target : List (Symbol Q)) ≠ encode c := by
   intro h
@@ -824,7 +836,9 @@ private theorem backward_rule_of_step {Q : Type*} {M : Machine Q}
       · simp [step, hcmd]
 
 /-- Post's inverse-simulation invariant for one symmetric rewrite out of a
-live encoded configuration.-/
+live encoded configuration.
+@isnad1 id=or.2h5v.s6.0ca5f80043ba from=translated src=- shape=9b6a1640 vocab=ec5dc89e
+-/
 theorem classify_step {Q : Type*} {M : Machine Q} {c d : Config Q}
     (hstep : step M c = some d) {w : List (Symbol Q)}
     (hrew : ThueStep (system M) (encode c) w) :
@@ -851,7 +865,9 @@ def coding {Q : Type*} (M : Machine Q) :
   classify := fun hstep hrew => classify_step hstep hrew
 
 /-- A binary machine terminates exactly when its Post word is equivalent to
-the fixed word `R L`.-/
+the fixed word `R L`.
+@isnad1 id=iff.0h3v.s4.a39488191fa3 from=translated src=- shape=0ec862e9 vocab=f4e6cdbf
+-/
 theorem terminates_iff {Q : Type*} (M : Machine Q) (c : Config Q) :
     MachineThue.Terminates (step M) c ↔
       ThueEq (system M) (encode c) (target : List (Symbol Q)) :=

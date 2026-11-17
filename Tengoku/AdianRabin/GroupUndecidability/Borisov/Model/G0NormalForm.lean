@@ -67,10 +67,16 @@ private theorem swapped_relators :
 def swappedToHNN : G0 →* G0HNN :=
   PresentedGroup.toGroup swapped_relators
 
+/--
+@isnad1 id=eq.0h1v.s7.0278b977e737 from=translated src=- shape=0b01b9ff vocab=28c2f400
+-/
 @[simp] theorem swappedToHNN_of (i : Fin 4) :
     swappedToHNN (PresentedGroup.of i) = swappedGenerator i := by
   simp [swappedToHNN]
 
+/--
+@isnad1 id=eq.0h0v.s7.9173bfb371e1 from=translated src=- shape=5ad8c5b3 vocab=622e6ba4
+-/
 @[simp] theorem swappedToHNN_stable_one :
     swappedToHNN (stable 1) = hnnS1 := by
   simp [stable, BorisovIntersections.evalWord, stableWord, s2Word,
@@ -81,6 +87,9 @@ def swappedToHNN : G0 →* G0HNN :=
 def modelPositive (w : List (Fin 2)) : G0HNN :=
   Thue.evalPositive hnnS1 hnnS2 w
 
+/--
+@isnad1 id=eq.0h1v.s7.dafc51a64a33 from=translated src=- shape=a6cc42b2 vocab=a02fd086
+-/
 @[simp] theorem toHNN_positiveWord (w : List (Fin 2)) :
     toHNN (evalWord (positiveWord w)) = modelPositive w := by
   simp only [BorisovIntersections.evalWord, FP.evalWord, positiveWord,
@@ -92,21 +101,36 @@ def modelPositive (w : List (Fin 2)) : G0HNN :=
   intro i _
   fin_cases i <;> simp [hnnGenerator, s1Word, s2Word]
 
+/--
+@isnad1 id=lt.1h1v.s5.dafc706ce457 from=translated src=- shape=14390d91 vocab=acf0f8a8
+-/
 theorem count_zero_pos_of_containsBoth {w : List (Fin 2)}
     (hw : Thue.ContainsBoth w) : 0 < w.count (0 : Fin 2) :=
   List.count_pos_iff.mpr hw.1
 
 /-! ## Images of the displayed `A_i` and `B_i` -/
 
+/--
+@isnad1 id=eq.0h0v.s6.608d568d75cf from=translated src=- shape=501f93a1 vocab=df9ee8f9
+-/
 @[simp] theorem toHNN_d : toHNN BorisovIntersections.d = hnnD := by
   simpa [presentedD] using toHNN_presentedD
 
+/--
+@isnad1 id=eq.0h0v.s6.48c8663418d8 from=translated src=- shape=501f93a1 vocab=ba08210e
+-/
 @[simp] theorem toHNN_e : toHNN BorisovIntersections.e = hnnE := by
   simpa [presentedE] using toHNN_presentedE
 
+/--
+@isnad1 id=eq.0h0v.s7.c635a6f5a4ef from=translated src=- shape=5ad8c5b3 vocab=d885fdc4
+-/
 @[simp] theorem toHNN_stable_zero : toHNN (stable 0) = hnnS1 := by
   simpa [presentedS1, stable, stableWord] using toHNN_presentedS1
 
+/--
+@isnad1 id=eq.0h0v.s7.3c3cf13cfce6 from=translated src=- shape=5ad8c5b3 vocab=028577e2
+-/
 @[simp] theorem toHNN_stable_one : toHNN (stable 1) = hnnS2 := by
   simpa [presentedS2, stable, stableWord] using toHNN_presentedS2
 
@@ -124,6 +148,9 @@ private theorem b_eq_product (datum : Thue.StandingDatum) (i : Fin 3) :
   simp [b, bWord, evalWord, FP.evalWord, Word.eval_product,
     BorisovIntersections.d, BorisovIntersections.e, dWord, eWord, mul_assoc]
 
+/--
+@isnad1 id=eq.0h2v.s8.994441241488 from=translated src=- shape=a81a120d vocab=fc37b04c
+-/
 @[simp] theorem toHNN_a (datum : Thue.StandingDatum) (i : Fin 3) :
     toHNN (a datum i) =
       hnnD ^ (i.val + 1) * modelPositive (datum.F i) *
@@ -131,6 +158,9 @@ private theorem b_eq_product (datum : Thue.StandingDatum) (i : Fin 3) :
   rw [a_eq_product, map_mul, map_mul, map_pow, map_pow,
     toHNN_d, toHNN_e, toHNN_positiveWord]
 
+/--
+@isnad1 id=eq.0h2v.s8.bbd1d86a909e from=translated src=- shape=a81a120d vocab=dbee7ff0
+-/
 @[simp] theorem toHNN_b (datum : Thue.StandingDatum) (i : Fin 3) :
     toHNN (b datum i) =
       hnnD ^ (i.val + 1) * modelPositive (datum.E i) *
@@ -155,6 +185,9 @@ private theorem hnnS1_mem_stageOne :
   refine ⟨BorisovHNNModel.s1, ?_⟩
   rfl
 
+/--
+@isnad1 id=mem.1h1v.s8.9a057f74b65e from=translated src=- shape=d93be730 vocab=57a241fa
+-/
 theorem toHNN_mem_stageOne_of_mem_J_zero {x : G0}
     (hx : x ∈ J 0) :
     toHNN x ∈ MonoidHom.range g1ToG0HNN := by
@@ -171,6 +204,9 @@ theorem toHNN_mem_stageOne_of_mem_J_zero {x : G0}
       simpa using hnnS1_mem_stageOne
   exact hle hx
 
+/--
+@isnad1 id=mem.1h1v.s8.9dcd6a6c74c0 from=translated src=- shape=d93be730 vocab=6e896c75
+-/
 theorem swappedToHNN_mem_stageOne_of_mem_J_one {x : G0}
     (hx : x ∈ J 1) :
     swappedToHNN x ∈ MonoidHom.range g1ToG0HNN := by

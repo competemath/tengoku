@@ -53,7 +53,9 @@ private theorem combined_chain
 /-- The first genuinely group-theoretic step in Borisov's positive-`c`
 induction.  If `P⁻¹ L Q R = 1` and at least one `c` occurs, then both
 contexts contain a stable letter and the coefficient across their boundary
-is a Britton pinch.-/
+is a Britton pinch.
+@isnad1 id=ex.3h5v.s8.8dee9f1ea894 from=translated src=- shape=00a82199 vocab=348bdb77
+-/
 theorem lemma4_boundary_pinch
     (datum : Thue.StandingDatum) (hfree : RankFiveFree datum)
     (P Q : List (Fin 2))
@@ -163,7 +165,9 @@ theorem lemma4_boundary_pinch
 
 /-- The boundary pinch with the cyclic context coefficients written as
 integer powers.  These are the two cases to which Borisov's Assertion V is
-applied: an `A`-pinch rewrites an `F_i`, and a `B`-pinch rewrites an `E_i`.-/
+applied: an `A`-pinch rewrites an `F_i`, and a `B`-pinch rewrites an `E_i`.
+@isnad1 id=ex.3h5v.s9.eb8251215c2b from=translated src=- shape=693c5d03 vocab=f53d81ac
+-/
 theorem lemma4_boundary_pinch_power_form
     (datum : Thue.StandingDatum) (hfree : RankFiveFree datum)
     (P Q : List (Fin 2))
@@ -501,7 +505,9 @@ private theorem target_pinch_reduces
     omega
 
 /-- All HNN manipulation in the positive-`c` induction follows formally from
-the base-group coefficient classification.-/
+the base-group coefficient classification.
+@isnad1 id=pinchred.2h1v.s3.790747942e85 from=translated src=- shape=b28a8773 vocab=361ccde2
+-/
 theorem pinchReduction_of_classification
     (datum : Thue.StandingDatum) (hfree : RankFiveFree datum)
     (hclass : PinchClassification datum hfree) :
@@ -527,7 +533,9 @@ theorem pinchReduction_of_classification
         ⟨L', R', heq', hlt⟩
       exact ⟨Q', L', R', hQQ', heq', hlt⟩
 
-/-- Borisov's Lemma 4 derived from `PinchClassification`.-/
+/-- Borisov's Lemma 4 derived from `PinchClassification`.
+@isnad1 id=borisovl.2h1v.s3.2f192d5a08ed from=translated src=- shape=b28a8773 vocab=16adbc55
+-/
 theorem borisovLemma4_of_classification
     (datum : Thue.StandingDatum) (hfree : RankFiveFree datum)
     (hclass : PinchClassification datum hfree) :

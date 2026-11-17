@@ -129,7 +129,9 @@ def ContainsStable (w : ReducedWord A B phi) : Prop :=
   w.ContainsSecond ∨ w.ContainsFirstInHead
 
 /-- Outer Britton lemma: a reduced word containing the second stable letter
-does not lie in the embedded first-stage group.-/
+does not lie in the embedded first-stage group.
+@isnad1 id=not.1h5v.s8.fa9231f19517 from=translated src=- shape=def6bbe4 vocab=ca86b18d
+-/
 theorem eval_not_mem_stageOne (w : ReducedWord A B phi)
     (hsecond : w.ContainsSecond) :
     w.eval ∉ MonoidHom.range (stageTwoOf A B phi) := by
@@ -142,7 +144,9 @@ theorem eval_not_mem_stageOne (w : ReducedWord A B phi)
   exact hsecond this
 
 /-- Generalized two-stable-letter Britton lemma: a reduced word containing a
-stable letter does not represent an element of the original base group.-/
+stable letter does not represent an element of the original base group.
+@isnad1 id=not.1h5v.s8.85847decd91c from=translated src=- shape=e4202986 vocab=a4636c31
+-/
 theorem eval_not_mem_base (w : ReducedWord A B phi)
     (hstable : w.ContainsStable) :
     w.eval ∉ MonoidHom.range (baseEmbedding A B phi) := by
@@ -171,7 +175,9 @@ theorem eval_not_mem_base (w : ReducedWord A B phi)
         phi w.head hinnerBase
     exact hfirst hnil
 
-/-- A reduced two-stable-letter word containing a stable letter is nontrivial.-/
+/-- A reduced two-stable-letter word containing a stable letter is nontrivial.
+@isnad1 id=ne.1h5v.s7.e9f9b56c3c63 from=translated src=- shape=76b75754 vocab=3eb764c6
+-/
 theorem eval_ne_one (w : ReducedWord A B phi)
     (hstable : w.ContainsStable) :
     w.eval ≠ 1 := by

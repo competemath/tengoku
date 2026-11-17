@@ -10,14 +10,18 @@ namespace Host
 
 /--
 The two proper HNN embeddings and the six Tietze eliminations preserve the
-truth of Borisov's test word.-/
+truth of Borisov's test word.
+@isnad1 id=iff.0h2v.s5.8a5c5f2be4a5 from=translated src=- shape=e87fed70 vocab=fa4bcc99
+-/
 theorem borisov_testWord_iff_compressed
     (datum : Thue.StandingDatum) (Q : List (Fin 2)) :
     (Borisov.presentation datum).wordProblem (Borisov.testWord Q) ↔
       (presentationOf datum).wordProblem (testWord Q) :=
   Compression.testWord_iff datum (compression_injective datum) Q
 
-/-- The Thue predicate is represented by the compressed host test word.-/
+/-- The Thue predicate is represented by the compressed host test word.
+@isnad1 id=iff.0h2v.s5.f9449c3f9675 from=translated src=- shape=c16a6ad7 vocab=2e2d25f7
+-/
 theorem thueEq_iff_testWord
     (datum : Thue.StandingDatum) (Q : List (Fin 2)) :
     ThueEq (Thue.systemOf datum.F datum.E) Q datum.P ↔
@@ -26,7 +30,9 @@ theorem thueEq_iff_testWord
     (borisov_testWord_iff_compressed datum Q)
 
 /-- Normal generation from Proposition 2.4 of the paper, proved in the
-compressed presentation.-/
+compressed presentation.
+@isnad1 id=normally.0h1v.s4.9ed0effef900 from=translated src=- shape=0cddca05 vocab=6196370d
+-/
 theorem z_normallyGenerates (datum : Thue.StandingDatum) :
     (presentationOf datum).NormallyGenerates zWord := by
   let P := presentationOf datum
@@ -102,7 +108,9 @@ theorem z_normallyGenerates (datum : Thue.StandingDatum) :
   unfold FP.NormallyGenerates
   simpa only [P, N, FP.evalWord_eq_mk] using hN
 
-/-- The explicit compressed host has unsolvable word problem.-/
+/-- The explicit compressed host has unsolvable word problem.
+@isnad1 id=not.0h1v.s5.f7173068f32f from=translated src=- shape=bc918dce vocab=2027e2c9
+-/
 theorem wordProblem_unsolvable (datum : Thue.StandingDatum) :
     ¬ ComputablePred (presentationOf datum).wordProblem := by
   apply not_computablePred_of_manyOneReducible datum.undecidable

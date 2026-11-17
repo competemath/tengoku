@@ -40,6 +40,9 @@ private theorem e_mul_stable3 (beta : Fin 2) :
   · simpa [stable3] using gamma3_e_mul_s1
   · simpa [stable3] using gamma3_e_mul_s2
 
+/--
+@isnad1 id=eq.0h2v.s7.213238344de4 from=translated src=- shape=ad3aaf10 vocab=b4c7a7df
+-/
 theorem stable3_mul_d_zpow (beta : Fin 2) (n : ℤ) :
     stable3 beta * d3 ^ n = d3 ^ (4 * n) * stable3 beta := by
   have hconj :
@@ -63,6 +66,9 @@ theorem stable3_mul_d_zpow (beta : Fin 2) (n : ℤ) :
     _ = d3 ^ (4 * n) * stable3 beta :=
       congrArg (fun x => x * stable3 beta) (zpow_mul d3 4 n).symm
 
+/--
+@isnad1 id=eq.0h2v.s7.7da4de7c1569 from=translated src=- shape=54d249e5 vocab=82bc71c2
+-/
 theorem e_zpow_mul_stable3 (beta : Fin 2) (n : ℤ) :
     e3 ^ n * stable3 beta = stable3 beta * e3 ^ (4 * n) := by
   have hconj :
@@ -89,6 +95,9 @@ theorem e_zpow_mul_stable3 (beta : Fin 2) (n : ℤ) :
     _ = stable3 beta * e3 ^ (4 * n) :=
       congrArg (fun x => stable3 beta * x) (zpow_mul e3 4 n).symm
 
+/--
+@isnad1 id=eq.0h2v.s7.9492d8b9237c from=translated src=- shape=9f49ed3d vocab=3f99cdd6
+-/
 theorem positive3_mul_d_zpow (w : List (Fin 2)) (n : ℤ) :
     positive3 w * d3 ^ n =
       d3 ^ ((4 : ℤ) ^ w.length * n) * positive3 w := by
@@ -103,6 +112,9 @@ theorem positive3_mul_d_zpow (w : List (Fin 2)) (n : ℤ) :
       simp only [List.length_cons, pow_succ]
       ring
 
+/--
+@isnad1 id=eq.0h2v.s7.aa239c3b59b0 from=translated src=- shape=9721ddb1 vocab=b9a0b634
+-/
 theorem e_zpow_mul_positive3 (w : List (Fin 2)) (n : ℤ) :
     e3 ^ n * positive3 w =
       positive3 w * e3 ^ ((4 : ℤ) ^ w.length * n) := by
@@ -117,12 +129,18 @@ theorem e_zpow_mul_positive3 (w : List (Fin 2)) (n : ℤ) :
       simp only [List.length_cons, pow_succ]
       ring
 
+/--
+@isnad1 id=eq.0h2v.s7.334bc74c94af from=translated src=- shape=49a5e0d3 vocab=c3f66262
+-/
 theorem positive3_mul_d_pow (w : List (Fin 2)) (n : ℕ) :
     positive3 w * d3 ^ n =
       d3 ^ ((4 : ℤ) ^ w.length * (n : ℤ)) * positive3 w := by
   simpa only [zpow_natCast] using
     positive3_mul_d_zpow w (n : ℤ)
 
+/--
+@isnad1 id=eq.0h2v.s7.45d3b8d376be from=translated src=- shape=95303f7e vocab=901ef551
+-/
 theorem e_pow_mul_positive3 (w : List (Fin 2)) (n : ℕ) :
     e3 ^ n * positive3 w =
       positive3 w * e3 ^ ((4 : ℤ) ^ w.length * (n : ℤ)) := by
@@ -147,14 +165,23 @@ def targetPositive (datum : Thue.StandingDatum) (w : List (Fin 2)) :
   Thue.evalPositive (targetBasis datum (.inl 0))
     (targetBasis datum (.inl 1)) w
 
+/--
+@isnad1 id=eq.0h2v.s6.5434b6cc44ab from=translated src=- shape=38d7e856 vocab=3488d88b
+-/
 @[simp] theorem coe_sourceBasis (datum : Thue.StandingDatum)
     (q : RuleBasis) :
     ((sourceBasis datum q : U datum) : Gamma3) = uBasis datum q := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.6e0274442b15 from=translated src=- shape=38d7e856 vocab=cd217c2e
+-/
 @[simp] theorem coe_targetBasis (datum : Thue.StandingDatum)
     (q : RuleBasis) :
     ((targetBasis datum q : V datum) : Gamma3) = vBasis datum q := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.437621cf694b from=translated src=- shape=691b2352 vocab=64d02caf
+-/
 @[simp] theorem coe_sourcePositive (datum : Thue.StandingDatum)
     (w : List (Fin 2)) :
     ((sourcePositive datum w : U datum) : Gamma3) = positive3 w := by
@@ -169,6 +196,9 @@ def targetPositive (datum : Thue.StandingDatum) (w : List (Fin 2)) :
       rw [Subgroup.coe_mul, ih]
       fin_cases beta <;> simp [sourceBasis, uBasis, stable3]
 
+/--
+@isnad1 id=eq.0h2v.s6.77e78d3c585e from=translated src=- shape=691b2352 vocab=bf42c961
+-/
 @[simp] theorem coe_targetPositive (datum : Thue.StandingDatum)
     (w : List (Fin 2)) :
     ((targetPositive datum w : V datum) : Gamma3) = positive3 w := by
@@ -183,12 +213,18 @@ def targetPositive (datum : Thue.StandingDatum) (w : List (Fin 2)) :
       rw [Subgroup.coe_mul, ih]
       fin_cases beta <;> simp [targetBasis, vBasis, stable3]
 
+/--
+@isnad1 id=eq.1h2v.s9.4285c607f4cc from=translated src=- shape=c0ebdcf9 vocab=64e2a0f8
+-/
 theorem cEquiv_sourceBasis (datum : Thue.StandingDatum)
     (hfree : RankFiveFree datum) (q : RuleBasis) :
     cEquiv datum hfree (sourceBasis datum q) = targetBasis datum q := by
   apply Subtype.ext
   simp [sourceBasis, targetBasis]
 
+/--
+@isnad1 id=eq.1h2v.s9.c374683e3e29 from=translated src=- shape=ad4ebdde vocab=2096149e
+-/
 theorem cEquiv_sourcePositive (datum : Thue.StandingDatum)
     (hfree : RankFiveFree datum) (w : List (Fin 2)) :
     cEquiv datum hfree (sourcePositive datum w) = targetPositive datum w := by
@@ -203,6 +239,9 @@ theorem cEquiv_sourcePositive (datum : Thue.StandingDatum)
       rw [map_mul, ih]
       fin_cases beta <;> simp [cEquiv_sourceBasis]
 
+/--
+@isnad1 id=eq.1h2v.s10.998141bed13d from=translated src=- shape=3e694470 vocab=a8864f38
+-/
 theorem cEquiv_symm_targetPositive (datum : Thue.StandingDatum)
     (hfree : RankFiveFree datum) (w : List (Fin 2)) :
     (cEquiv datum hfree).symm (targetPositive datum w) =
@@ -210,6 +249,9 @@ theorem cEquiv_symm_targetPositive (datum : Thue.StandingDatum)
   rw [← cEquiv_sourcePositive datum hfree w]
   simp
 
+/--
+@isnad1 id=eq.1h2v.s10.02a35a3e9abf from=translated src=- shape=3d77562e vocab=bbedf032
+-/
 theorem cEquiv_symm_targetBasis (datum : Thue.StandingDatum)
     (hfree : RankFiveFree datum) (q : RuleBasis) :
     (cEquiv datum hfree).symm (targetBasis datum q) =
@@ -217,16 +259,25 @@ theorem cEquiv_symm_targetBasis (datum : Thue.StandingDatum)
   rw [← cEquiv_sourceBasis datum hfree q]
   simp
 
+/--
+@isnad1 id=eq.0h2v.s6.182cb935e77e from=translated src=- shape=155616fe vocab=120ba962
+-/
 @[simp] theorem positive3_append (u v : List (Fin 2)) :
     positive3 (u ++ v) = positive3 u * positive3 v := by
   simp [positive3, Thue.evalPositive, List.map_append]
 
+/--
+@isnad1 id=eq.0h2v.s6.fc88c308ebe0 from=translated src=- shape=fb9dfbb5 vocab=edbb98b0
+-/
 @[simp] theorem positiveFree_append (u v : List (Fin 2)) :
     positiveFree (u ++ v) = positiveFree u * positiveFree v := by
   simp [positiveFree, List.map_append, FreeGroup.mul_mk]
 
 /-! ## Reading the middle positive word from a one-rule coefficient -/
 
+/--
+@isnad1 id=eq.1h7v.s8.23ed22ff982d from=translated src=- shape=4928d6fa vocab=e57b1d6c
+-/
 theorem positive_word_eq_of_source_one_rule
     (datum : Thue.StandingDatum) (Q left right : List (Fin 2))
     (f r : ℤ) (i : Fin 3)
@@ -241,6 +292,9 @@ theorem positive_word_eq_of_source_one_rule
       mul_assoc] using hproj
   exact positiveFree_injective hfree
 
+/--
+@isnad1 id=eq.1h7v.s8.0b2dc57c93fd from=translated src=- shape=4928d6fa vocab=32a1736e
+-/
 theorem positive_word_eq_of_target_one_rule
     (datum : Thue.StandingDatum) (Q left right : List (Fin 2))
     (f r : ℤ) (i : Fin 3)
@@ -257,6 +311,9 @@ theorem positive_word_eq_of_target_one_rule
 
 /-! ## Exact one-rule transport calculations -/
 
+/--
+@isnad1 id=eq.1h4v.s10.9f33c4ffac7c from=translated src=- shape=9dd61bf5 vocab=ecb78ae4
+-/
 theorem source_one_rule_transport_value
     (datum : Thue.StandingDatum) (hfree : RankFiveFree datum)
     (left right : List (Fin 2)) (i : Fin 3) :
@@ -287,6 +344,9 @@ theorem source_one_rule_transport_value
       simp only [positive3_append, Int.natCast_add, Int.natCast_one]
       group
 
+/--
+@isnad1 id=eq.1h4v.s11.729e79cf3f25 from=translated src=- shape=31919298 vocab=d59cbd4f
+-/
 theorem target_one_rule_transport_value
     (datum : Thue.StandingDatum) (hfree : RankFiveFree datum)
     (left right : List (Fin 2)) (i : Fin 3) :
@@ -321,7 +381,9 @@ theorem target_one_rule_transport_value
 
 /-- The `source` field of `PinchClassification` for a coefficient whose
 rank-five normal form has one positive rule letter, with arbitrary positive
-stable-letter contexts on the two sides.-/
+stable-letter contexts on the two sides.
+@isnad1 id=ex.3h7v.s10.cc6157f045f2 from=translated src=- shape=79dca772 vocab=aa9334b7
+-/
 theorem source_classification_one_rule
     (datum : Thue.StandingDatum) (hfree : RankFiveFree datum)
     (Q : List (Fin 2)) (f r : ℤ)
@@ -355,7 +417,9 @@ theorem source_classification_one_rule
     exact source_one_rule_transport_value datum hfree left right i
 
 /-- The symmetric `target` field for a coefficient with one positive rule
-letter.  It performs the reverse Thue rewrite `E_i ↦ F_i`.-/
+letter.  It performs the reverse Thue rewrite `E_i ↦ F_i`.
+@isnad1 id=ex.3h7v.s10.57e907ecc1c7 from=translated src=- shape=a7ce044f vocab=521337b6
+-/
 theorem target_classification_one_rule
     (datum : Thue.StandingDatum) (hfree : RankFiveFree datum)
     (Q : List (Fin 2)) (f r : ℤ)
@@ -390,6 +454,9 @@ theorem target_classification_one_rule
 
 /-! ## The zero-rule shape and the exact classification interface -/
 
+/--
+@isnad1 id=ex.3h5v.s10.9026a62171d3 from=translated src=- shape=82e2fa08 vocab=759b67d4
+-/
 theorem source_classification_stable_shape
     (datum : Thue.StandingDatum) (hfree : RankFiveFree datum)
     (Q : List (Fin 2)) (f r : ℤ) (w : List (Fin 2))
@@ -415,6 +482,9 @@ theorem source_classification_stable_shape
     rw [hcoefficient, cEquiv_sourcePositive]
     simp
 
+/--
+@isnad1 id=ex.3h5v.s10.2a5aee2e2ae1 from=translated src=- shape=bf765bbc vocab=38a90771
+-/
 theorem target_classification_stable_shape
     (datum : Thue.StandingDatum) (hfree : RankFiveFree datum)
     (Q : List (Fin 2)) (f r : ℤ) (w : List (Fin 2))
@@ -459,7 +529,9 @@ def TargetCoefficientShape (datum : Thue.StandingDatum)
         positive3 left * b3 datum i * positive3 right
 
 /-- The two normal-form shape classifications yield the full coefficient
-classifier.-/
+classifier.
+@isnad1 id=pinchcla.3h1v.s8.d76d16492ce0 from=translated src=- shape=7f356d18 vocab=87e681b1
+-/
 theorem pinchClassification_of_shapes
     (datum : Thue.StandingDatum) (hfree : RankFiveFree datum)
     (hsource : ∀ (Q : List (Fin 2)) (f r : ℤ),

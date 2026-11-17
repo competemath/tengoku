@@ -25,10 +25,16 @@ def dExponent : Base →* Multiplicative ℤ :=
 def eExponent : Base →* Multiplicative ℤ :=
   FreeGroup.lift ![1, Multiplicative.ofAdd 1]
 
+/--
+@isnad1 id=eq.0h0v.s6.1fb7d74dca93 from=translated src=- shape=2afcf23d vocab=dc928f5a
+-/
 @[simp] theorem dExponent_d :
     Multiplicative.toAdd (dExponent d) = 1 := by
   simp [dExponent, d]
 
+/--
+@isnad1 id=eq.0h0v.s6.02bfc2babea0 from=translated src=- shape=2afcf23d vocab=fc8ac454
+-/
 @[simp] theorem eExponent_e :
     Multiplicative.toAdd (eExponent e) = 1 := by
   simp [eExponent, e]
@@ -40,6 +46,9 @@ private def scaleFour : Multiplicative ℤ →* Multiplicative ℤ where
     apply Multiplicative.toAdd.injective
     simp [mul_add]
 
+/--
+@isnad1 id=eq.0h1v.s8.f95fef00493d from=translated src=- shape=ad04f690 vocab=d16a888e
+-/
 @[simp] theorem eExponent_alpha (x : Base) :
     Multiplicative.toAdd (eExponent (alpha x)) =
       4 * Multiplicative.toAdd (eExponent x) := by
@@ -52,6 +61,9 @@ private def scaleFour : Multiplicative ℤ →* Multiplicative ℤ where
     all_goals norm_num
   exact congrArg Multiplicative.toAdd (DFunLike.congr_fun hhom x)
 
+/--
+@isnad1 id=eq.0h1v.s8.4306495cbe7c from=translated src=- shape=ad04f690 vocab=a3369f71
+-/
 @[simp] theorem dExponent_beta (x : Base) :
     Multiplicative.toAdd (dExponent (beta x)) =
       4 * Multiplicative.toAdd (dExponent x) := by
@@ -64,18 +76,27 @@ private def scaleFour : Multiplicative ℤ →* Multiplicative ℤ where
     all_goals norm_num
   exact congrArg Multiplicative.toAdd (DFunLike.congr_fun hhom x)
 
+/--
+@isnad1 id=dvd.1h1v.s6.7f2c302a1bec from=translated src=- shape=c50c64fd vocab=16c16ad3
+-/
 theorem e_pow_mem_A0_dvd (n : ℤ) (h : e ^ n ∈ A0) : (4 : ℤ) ∣ n := by
   rcases h with ⟨x, hx⟩
   have hm := congrArg (fun z => Multiplicative.toAdd (eExponent z)) hx
   refine ⟨Multiplicative.toAdd (eExponent x), ?_⟩
   simpa using hm.symm
 
+/--
+@isnad1 id=dvd.1h1v.s6.1a84bca122d6 from=translated src=- shape=c50c64fd vocab=6b4b4661
+-/
 theorem d_pow_mem_B0_dvd (n : ℤ) (h : d ^ n ∈ B0) : (4 : ℤ) ∣ n := by
   rcases h with ⟨x, hx⟩
   have hm := congrArg (fun z => Multiplicative.toAdd (dExponent z)) hx
   refine ⟨Multiplicative.toAdd (dExponent x), ?_⟩
   simpa using hm.symm
 
+/--
+@isnad1 id=eq.1h2v.s6.3aff850dafbf from=translated src=- shape=53a6163f vocab=61c8f5da
+-/
 theorem fin3_succ_sub_eq_zero_of_abs_lt
     (i j : Fin 3)
     (hdiv : (4 : ℤ) ∣ ((i.val : ℤ) + 1 - ((j.val : ℤ) + 1))) :
@@ -85,24 +106,34 @@ theorem fin3_succ_sub_eq_zero_of_abs_lt
   omega
 
 /-- Distinct rule exponents `1,2,3` cannot differ by a nonzero multiple of
-four in the right associated subgroup `<d,e⁴>`.-/
+four in the right associated subgroup `<d,e⁴>`.
+@isnad1 id=eq.1h2v.s7.27d75963a39f from=translated src=- shape=73ca24c0 vocab=130b6d83
+-/
 theorem e_rule_difference_mem_A0_imp_eq (i j : Fin 3)
     (hmem : e ^ ((i.val : ℤ) + 1 - ((j.val : ℤ) + 1)) ∈ A0) :
     i = j :=
   fin3_succ_sub_eq_zero_of_abs_lt i j (e_pow_mem_A0_dvd _ hmem)
 
-/-- The symmetric exponent-separation fact in `<d⁴,e>`.-/
+/-- The symmetric exponent-separation fact in `<d⁴,e>`.
+@isnad1 id=eq.1h2v.s7.dd9d530de3ff from=translated src=- shape=73ca24c0 vocab=893b9cdc
+-/
 theorem d_rule_difference_mem_B0_imp_eq (i j : Fin 3)
     (hmem : d ^ ((i.val : ℤ) + 1 - ((j.val : ℤ) + 1)) ∈ B0) :
     i = j :=
   fin3_succ_sub_eq_zero_of_abs_lt i j (d_pow_mem_B0_dvd _ hmem)
 
+/--
+@isnad1 id=not.0h1v.s6.c24341c463e8 from=translated src=- shape=9c547295 vocab=0faf320a
+-/
 theorem e_rule_power_not_mem_A0 (i : Fin 3) :
     e ^ ((i.val : ℤ) + 1) ∉ A0 := by
   intro hmem
   rcases e_pow_mem_A0_dvd _ hmem with ⟨k, hk⟩
   omega
 
+/--
+@isnad1 id=not.0h1v.s6.5f5e7606793a from=translated src=- shape=9c547295 vocab=583f0088
+-/
 theorem d_rule_power_not_mem_B0 (i : Fin 3) :
     d ^ ((i.val : ℤ) + 1) ∉ B0 := by
   intro hmem
@@ -252,7 +283,9 @@ private theorem neg_pos_factor_eq
 
 /-- The four cases in Borisov's proof of Assertion IV.  If consecutive
 signed displayed factors have opposite signs and their touching stable
-letters form a Britton pinch, their basis indices are equal.-/
+letters form a Britton pinch, their basis indices are equal.
+@isnad1 id=eq.4h3v.s6.e9c591e669a9 from=translated src=- shape=4c8238b3 vocab=02965f65
+-/
 theorem boundary_pinch_forces_same_factor
     (rules : Fin 3 → List (Fin 2)) (hne : ∀ i, rules i ≠ [])
     (x y : Basis × Bool)
@@ -271,7 +304,9 @@ theorem boundary_pinch_forces_same_factor
   · exact (hsign rfl).elim
 
 /-- A freely reduced adjacent pair of displayed factors cannot have a
-Britton pinch across its boundary.-/
+Britton pinch across its boundary.
+@isnad1 id=not.4h3v.s7.ab789985d699 from=translated src=- shape=65328497 vocab=02965f65
+-/
 theorem no_boundary_pinch_of_reduced_pair
     (rules : Fin 3 → List (Fin 2)) (hne : ∀ i, rules i ≠ [])
     (x y : Basis × Bool)

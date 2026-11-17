@@ -15,14 +15,18 @@ displayed rule letter.
 namespace Undecidability
 namespace Borisov
 
-/-- The deep normal-form direction in Borisov's simulation theorem.-/
+/-- The deep normal-form direction in Borisov's simulation theorem.
+@isnad1 id=thueeq.1h2v.s5.12b8c5ebaf93 from=translated src=- shape=a33881f7 vocab=89c7a2e2
+-/
 theorem criterion_converse
     (datum : Thue.StandingDatum) (Q : List (Fin 2)) :
     (presentation datum).wordProblem (testWord Q) →
       ThueEq (Thue.systemOf datum.F datum.E) Q datum.P :=
   BorisovModFiveSparsity.criterion_converse datum Q
 
-/-- Borisov's simulation theorem, specialized to the standing datum.-/
+/-- Borisov's simulation theorem, specialized to the standing datum.
+@isnad1 id=iff.0h2v.s5.c5b504bfce39 from=translated src=- shape=c16a6ad7 vocab=89c7a2e2
+-/
 theorem criterion
     (datum : Thue.StandingDatum) (Q : List (Fin 2)) :
     ThueEq (Thue.systemOf datum.F datum.E) Q datum.P ↔

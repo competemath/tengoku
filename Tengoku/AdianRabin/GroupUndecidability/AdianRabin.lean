@@ -17,7 +17,9 @@ namespace Undecidability.AdianRabin
 
 /-- The compressed Miller--Tancer construction produces an Adian--Rabin
 family with one additional generator and two additional relators when the
-normal generator is a displayed presentation generator.-/
+normal generator is a displayed presentation generator.
+@isnad1 id=ex.2h4v.s6.29fe2951a4bb from=translated src=- shape=33ab4b2f vocab=b06dfd6e
+-/
 theorem exists_miller_tancer_family
     (P : FP n m) (k : Fin n)
     (hP : ¬ ComputablePred P.wordProblem)

@@ -49,7 +49,9 @@ def comp {α β γ : Type*}
   thueEq_iff := fun X Y => (f.thueEq_iff X Y).trans
     (g.thueEq_iff (f.encode X) (f.encode Y))
 
-/-- Fixed-target undecidability is transported by an embedding.-/
+/-- Fixed-target undecidability is transported by an embedding.
+@isnad1 id=not.1h6v.s6.1d27928990a2 from=translated src=- shape=4e1cd235 vocab=8ca5fcc0
+-/
 theorem target_undecidable {α β : Type*}
     [Primcodable α] [Primcodable β]
     {S : ThueSystem α} {T : ThueSystem β}
@@ -101,7 +103,9 @@ def CompressionTheorem : Prop :=
         ∀ W, reduction.encode W ≠ []
 
 /-- The three-stage compression theorem sends any finite fixed-target seed to
-an undecidable binary three-relation system.-/
+an undecidable binary three-relation system.
+@isnad1 id=hasundec.1h1v.s2.16a5742f5648 from=translated src=- shape=f443e7c7 vocab=d882c283
+-/
 theorem has_undecidable_three_rule_system_of_compression
     (hcompression : CompressionTheorem)
     (seed : FiniteFixedTargetSeed) : HasUndecidableThreeRuleSystem := by

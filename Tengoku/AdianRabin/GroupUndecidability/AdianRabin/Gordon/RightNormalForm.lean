@@ -83,11 +83,17 @@ def blockAlpha (k : ℤ) (hk : k ≠ 0) :
 
 def oldExponent (i : Fin n) : ℤ := i.1 + 1
 
+/--
+@isnad1 id=lt.0h2v.s4.7a1cecd31c2e from=translated src=- shape=9363a417 vocab=ceb240cd
+-/
 theorem oldExponent_pos (i : Fin n) : 0 < oldExponent i := by
   simp [oldExponent]
 
 def commutatorExponent (n : ℕ) : ℤ := n + 1
 
+/--
+@isnad1 id=lt.0h1v.s3.5e1655013d1e from=translated src=- shape=b9369acb vocab=cea33473
+-/
 theorem commutatorExponent_pos (n : ℕ) : 0 < commutatorExponent n := by
   simp [commutatorExponent]
 
@@ -166,6 +172,9 @@ private theorem blockCommutator_prod (n : ℕ) (k : ℤ) (hk : k ≠ 0) :
   rw [show commutatorExponent n = ((n + 1 : ℕ) : ℤ) by
     simp [commutatorExponent], zpow_natCast]
 
+/--
+@isnad1 id=eq.1h3v.s6.45fdee6da559 from=translated src=- shape=6e4ccbb0 vocab=7fac7b38
+-/
 @[simp] theorem block_prod (i : BasisIndex n) (k : ℤ) (hk : k ≠ 0) :
     (block i k hk).prod = elt i ^ k := by
   cases i with
@@ -186,18 +195,30 @@ def lastValue : BasisIndex n → ZMul → ZMul
   | .old i, _ => Multiplicative.ofAdd (oldExponent i)
   | .commutator, _ => Multiplicative.ofAdd (commutatorExponent n)
 
+/--
+@isnad1 id=eq.1h3v.s6.0c1bae8cd9f3 from=translated src=- shape=cf1ed923 vocab=33d6457c
+-/
 @[simp] theorem block_head (i : BasisIndex n) (k : ℤ) (hk : k ≠ 0) :
     (block i k hk).head = headValue i (Multiplicative.ofAdd k) := by
   cases i <;> rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.dea3b210e86c from=translated src=- shape=cf1ed923 vocab=6f5ad78a
+-/
 @[simp] theorem block_last (i : BasisIndex n) (k : ℤ) (hk : k ≠ 0) :
     (block i k hk).last = lastValue i (Multiplicative.ofAdd k) := by
   cases i <;> rfl
 
+/--
+@isnad1 id=iff.0h2v.s5.bd35b81ebd7c from=translated src=- shape=23de4789 vocab=f421938f
+-/
 theorem side_eq_zero_iff (i : BasisIndex n) :
     side i = 0 ↔ i = .conjugateA ∨ i = .conjugateAlpha := by
   cases i <;> simp [side]
 
+/--
+@isnad1 id=or.1h3v.s5.c0db219663c1 from=translated src=- shape=d822d623 vocab=43b325e4
+-/
 theorem block_append_or_small (i : BasisIndex n) (k : ℤ) (hk : k ≠ 0) :
     i = .conjugateA ∨ CoprodI.NeWord.IsAppend (block i k hk) := by
   cases i with
@@ -218,11 +239,17 @@ def GoodLast : BasisIndex n → ZMul → Prop
   | .old i, x => x = Multiplicative.ofAdd (oldExponent i)
   | .commutator, x => x = Multiplicative.ofAdd (commutatorExponent n)
 
+/--
+@isnad1 id=goodhead.0h3v.s3.6d061d83d8f4 from=translated src=- shape=940e110f vocab=db5aa5da
+-/
 @[simp] theorem goodHead_headValue (i : BasisIndex n) (x : ZMul) :
     GoodHead i (headValue i x) := by
   cases i <;> simp [GoodHead, headValue]
   omega
 
+/--
+@isnad1 id=goodlast.0h3v.s3.06de61deb652 from=translated src=- shape=940e110f vocab=5b20cee4
+-/
 @[simp] theorem goodLast_lastValue (i : BasisIndex n) (x : ZMul) :
     GoodLast i (lastValue i x) := by
   cases i <;> simp [GoodLast, lastValue]
@@ -376,6 +403,9 @@ noncomputable def image {n : ℕ} {i j : BasisIndex n}
         · rw [CoprodI.NeWord.append_prod, ih1.prod_eq, ih2.prod_eq]
           simp [lift]
 
+/--
+@isnad1 id=injectiv.0h1v.s6.88a1d06f974f from=translated src=- shape=5d97b0f8 vocab=e45755c4
+-/
 theorem lift_injective (n : ℕ) : Function.Injective (lift n) := by
   apply CoprodI.lift_injective_of_neWord_nontrivial cyclicMap
   intro i j w
@@ -386,16 +416,25 @@ theorem lift_injective (n : ℕ) : Function.Injective (lift n) := by
 def freeMap (n : ℕ) : FreeGroup (BasisIndex n) →* R :=
   FreeGroup.lift elt
 
+/--
+@isnad1 id=eq.0h1v.s7.b1f5ba831055 from=translated src=- shape=8c50edab vocab=49fe7084
+-/
 theorem freeMap_eq (n : ℕ) : freeMap n =
     (lift n).comp (CoprodI.intOfFree (BasisIndex n)) := by
   apply FreeGroup.ext_hom
   intro i
   simp [freeMap, lift, cyclicMap, CoprodI.intOfFree]
 
+/--
+@isnad1 id=injectiv.0h1v.s6.65d6476dafcb from=translated src=- shape=52afbc2d vocab=3d24919e
+-/
 theorem freeMap_injective (n : ℕ) : Function.Injective (freeMap n) := by
   rw [freeMap_eq n]
   exact (lift_injective n).comp (CoprodI.intOfFree_injective (BasisIndex n))
 
+/--
+@isnad1 id=eq.0h1v.s8.27d105d29d7a from=translated src=- shape=4f2af440 vocab=f1b91aef
+-/
 theorem rightBasisMap_comp (n : ℕ) :
     (CoprodI.intOfFree (Fin 2)).comp (rightBasisMap n) = freeMap n := by
   apply FreeGroup.ext_hom
@@ -406,7 +445,9 @@ theorem rightBasisMap_comp (n : ℕ) :
 
 end RightNormalForm
 
-/-- Gordon's right-hand amalgamating words freely generate.-/
+/-- Gordon's right-hand amalgamating words freely generate.
+@isnad1 id=injectiv.0h1v.s6.9735b8c64857 from=translated src=- shape=52afbc2d vocab=916e238f
+-/
 theorem rightBasisMap_injective (n : ℕ) :
     Function.Injective (rightBasisMap n) := by
   intro x y h

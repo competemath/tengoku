@@ -75,7 +75,9 @@ private theorem binaryStart_computable {Q : Type*} [Inhabited Q] [Finite Q]
         PostMachine.encodeTape, tape]
 
 /-- The reduction from source input words to initial Thue words is
-computable.-/
+computable.
+@isnad1 id=computab.1h6v.s6.bccb1dd7bf7d from=translated src=- shape=df93cd1e vocab=73a15124
+-/
 theorem start_computable (B : TM1BinaryAdapter.Code Γ)
     (M : Λ → TM1.Stmt Γ Λ σ) (S : Finset Λ) (hS : TM1.Supports M S)
     [Primcodable Γ] [Primcodable (Alphabet B M S)] :
@@ -86,7 +88,9 @@ theorem start_computable (B : TM1BinaryAdapter.Code Γ)
     (TM1BinaryAdapter.encodeInput_computable B)
 
 /-- The resulting finite fixed-target Thue system recognizes precisely the
-halting inputs of the supported source program.-/
+halting inputs of the supported source program.
+@isnad1 id=iff.1h7v.s8.f69a1f778b00 from=translated src=- shape=2d0287a8 vocab=ae5d70f0
+-/
 theorem thue_iff_eval_dom (B : TM1BinaryAdapter.Code Γ)
     (M : Λ → TM1.Stmt Γ Λ σ) (S : Finset Λ) (hS : TM1.Supports M S)
     (input : List Γ) :
@@ -101,7 +105,9 @@ theorem thue_iff_eval_dom (B : TM1BinaryAdapter.Code Γ)
     (TM1BinaryAdapter.encodeInput B input)).trans
       (TM1BinaryAdapter.finite_eval_dom_iff B M S hS input)
 
-/-- The Thue presentation used above has finitely many rules.-/
+/-- The Thue presentation used above has finitely many rules.
+@isnad1 id=finite.1h6v.s8.d900585d5d4a from=translated src=- shape=0a2528ff vocab=74170bbd
+-/
 theorem system_finite (B : TM1BinaryAdapter.Code Γ)
     (M : Λ → TM1.Stmt Γ Λ σ) (S : Finset Λ) (hS : TM1.Supports M S) :
     Set.Finite (PostMachine.system (postMachine B M S hS)) := by

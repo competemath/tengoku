@@ -27,6 +27,9 @@ noncomputable def liftState (M : TM0.Machine Gamma Q) (S : Finset Q)
   exact if hq : q ∈ S then ⟨q, hq⟩ else default
 
 omit [Inhabited Gamma] in
+/--
+@isnad1 id=eq.2h5v.s6.95e400c32026 from=translated src=- shape=35f57f0e vocab=aefc5b48
+-/
 @[simp]
 theorem liftState_coe (M : TM0.Machine Gamma Q) (S : Finset Q)
     (hS : TM0.Supports M (S : Set Q)) {q : Q} (hq : q ∈ S) :
@@ -43,6 +46,9 @@ noncomputable def machine (M : TM0.Machine Gamma Q) (S : Finset Q)
 def includeCfg (S : Finset Q) : TM0.Cfg Gamma S → TM0.Cfg Gamma Q
   | ⟨q, tape⟩ => ⟨q.1, tape⟩
 
+/--
+@isnad1 id=eq.1h5v.s7.c4afd23a2088 from=translated src=- shape=09bcbc89 vocab=693b32ab
+-/
 theorem step_map (M : TM0.Machine Gamma Q) (S : Finset Q)
     (hS : TM0.Supports M (S : Set Q)) (c : TM0.Cfg Gamma S) :
     Option.map (includeCfg S)
@@ -60,6 +66,9 @@ theorem step_map (M : TM0.Machine Gamma Q) (S : Finset Q)
       cases stmt <;>
         simp [machine, h, includeCfg, liftState_coe M S hS hq']
 
+/--
+@isnad1 id=respects.1h4v.s7.d717d64dbc94 from=translated src=- shape=c17cacaf vocab=15af3e6d
+-/
 theorem respects (M : TM0.Machine Gamma Q) (S : Finset Q)
     (hS : TM0.Supports M (S : Set Q)) :
     StateTransition.Respects
@@ -80,13 +89,18 @@ theorem respects (M : TM0.Machine Gamma Q) (S : Finset Q)
       rw [h] at hm
       exact Relation.TransGen.single (by simpa using hm.symm)
 
+/--
+@isnad1 id=eq.1h5v.s6.3cb3f4578f5c from=translated src=- shape=69a70e8d vocab=935ac825
+-/
 theorem init_include (M : TM0.Machine Gamma Q) (S : Finset Q)
     (hS : TM0.Supports M (S : Set Q)) (input : List Gamma) :
     includeCfg S
         (@TM0.init Gamma S (supportedInhabited M S hS) inferInstance input) =
       TM0.init input := rfl
 
-/-- Restricting to a certified finite support preserves the halting domain.-/
+/-- Restricting to a certified finite support preserves the halting domain.
+@isnad1 id=iff.1h5v.s6.96cd6cd8af50 from=translated src=- shape=832e8c51 vocab=c1410041
+-/
 theorem eval_dom_iff (M : TM0.Machine Gamma Q) (S : Finset Q)
     (hS : TM0.Supports M (S : Set Q)) (input : List Gamma) :
     (@TM0.eval Gamma S (supportedInhabited M S hS) inferInstance
@@ -117,7 +131,9 @@ structure Code (Γ : Type*) [Inhabited Γ] where
   enc_blank : enc default = List.Vector.replicate width false
   dec_enc : ∀ a, dec (enc a) = a
 
-/-- Every inhabited finite alphabet admits a fixed-length binary code.-/
+/-- Every inhabited finite alphabet admits a fixed-length binary code.
+@isnad1 id=nonempty.0h1v.s3.5f9e2bf08b47 from=translated src=- shape=9499e9bc vocab=fdda355b
+-/
 theorem exists_code (Γ : Type*) [Inhabited Γ] [Finite Γ] : Nonempty (Code Γ) := by
   obtain ⟨n, enc, dec, hblank, hinv⟩ := TM1to1.exists_enc_dec (Γ := Γ)
   exact ⟨⟨n, enc, dec, hblank, hinv⟩⟩
@@ -142,7 +158,9 @@ def encodeInput (B : Code Γ) (input : List Γ) : List Bool :=
 
 /-- Fixed-width block encoding of words over a finite computably coded
 alphabet is computable.  No effectiveness hypothesis on the particular code
-table is needed: every function on a finite domain is primitive recursive.-/
+table is needed: every function on a finite domain is primitive recursive.
+@isnad1 id=computab.0h2v.s4.95b55a032df1 from=translated src=- shape=a48bc37a vocab=74f552bf
+-/
 theorem encodeInput_computable [Primcodable Γ] [Finite Γ] (B : Code Γ) :
     Computable (encodeInput B) :=
   (Primrec.list_flatMap Primrec.id
@@ -156,7 +174,9 @@ private theorem trCfg_init (B : Code Γ) (input : List Γ) :
     Turing.Tape.mk₁, Turing.Tape.mk₂, encodeInput]
   rfl
 
-/-- Mathlib's binary block compiler preserves the halting domain.-/
+/-- Mathlib's binary block compiler preserves the halting domain.
+@isnad1 id=iff.0h6v.s6.05700f4d0d1f from=translated src=- shape=f28c316c vocab=f6a63a68
+-/
 theorem program_eval_dom_iff (B : Code Γ) (M : Λ → TM1.Stmt Γ Λ σ)
     (input : List Γ) :
     (TM1.eval (program B M) (encodeInput B input)).Dom ↔
@@ -171,7 +191,9 @@ theorem program_eval_dom_iff (B : Code Γ) (M : Λ → TM1.Stmt Γ Λ σ)
           TM1.init (encodeInput B input) from
             trCfg_init (Λ := Λ) (σ := σ) B input)
 
-/-- Compiling further from `TM1` to `TM0` preserves the halting domain.-/
+/-- Compiling further from `TM1` to `TM0` preserves the halting domain.
+@isnad1 id=iff.0h6v.s6.2d0cc326fe54 from=translated src=- shape=d3bd060e vocab=71be22ca
+-/
 theorem eval_dom_iff (B : Code Γ) (M : Λ → TM1.Stmt Γ Λ σ)
     (input : List Γ) :
     (TM0.eval (machine B M) (encodeInput B input)).Dom ↔
@@ -187,7 +209,9 @@ noncomputable def support [Fintype Γ] [Fintype σ]
   TM1to0.trStmts (program B M) (TM1to1.trSupp M S)
 
 /-- A support certificate for the source program induces one for the binary
-`TM0`.-/
+`TM0`.
+@isnad1 id=supports.1h6v.s7.153cee151ff7 from=translated src=- shape=bc39e5aa vocab=a4509de9
+-/
 theorem machine_supports [Fintype Γ] [Fintype σ]
     (B : Code Γ) (M : Λ → TM1.Stmt Γ Λ σ) (S : Finset Λ)
     (hS : TM1.Supports M S) :
@@ -212,7 +236,9 @@ noncomputable def finiteMachine [Fintype Γ] [Fintype σ]
     (machine_supports B M S hS)
 
 /-- The finite-state binary machine has exactly the source program's halting
-domain on encoded inputs.-/
+domain on encoded inputs.
+@isnad1 id=iff.1h7v.s7.3b3c9e121d8b from=translated src=- shape=b9cfb759 vocab=bcb59e2b
+-/
 theorem finite_eval_dom_iff [Fintype Γ] [Fintype σ]
     (B : Code Γ) (M : Λ → TM1.Stmt Γ Λ σ) (S : Finset Λ)
     (hS : TM1.Supports M S) (input : List Γ) :

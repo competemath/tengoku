@@ -46,7 +46,9 @@ omit [DecidableEq ι] [(i : ι) → DecidableEq (M i)] in
   simp [twoWord, CoprodI.Word.prod_cons]
 
 /-- A product of two letters from distinct free factors has canonical
-free-product normal-form length at most two.-/
+free-product normal-form length at most two.
+@isnad1 id=le.1h6v.s8.99ae812f0966 from=translated src=- shape=9ccb1b7d vocab=18be6945
+-/
 theorem normalForm_length_mul_of_of_le_two {i j : ι} (hij : i ≠ j)
     (d : M i) (e : M j) :
     (CoprodI.Word.equiv (CoprodI.of d * CoprodI.of e)).toList.length ≤ 2 := by
@@ -114,7 +116,9 @@ private theorem rulePair_ne_one (rules : Fin 3 → List (Fin 2)) (i : Fin 3) :
       ⟨1, BorisovModFiveQuotient.c5Generator ^ (i.val + 1)⟩
       (c5_rulePower_ne_one i)
 
-/-- No base syllable in the displayed trace is the identity of its factor.-/
+/-- No base syllable in the displayed trace is the identity of its factor.
+@isnad1 id=ne.1h3v.s7.b1338a7638fa from=translated src=- shape=e4277c60 vocab=e353185b
+-/
 theorem baseLetters_ne_one (rules : Fin 3 → List (Fin 2))
     (letters : List Basis) :
     ∀ x ∈ baseLetters rules letters, x.2 ≠ 1 := by
@@ -148,7 +152,9 @@ private theorem baseLetters_head_fst (rules : Fin 3 → List (Fin 2))
           simpa using ih y hy
       | inr i => simp [baseLetters, rulePair]
 
-/-- The base trace alternates between the two free factors.-/
+/-- The base trace alternates between the two free factors.
+@isnad1 id=ischain.0h2v.s6.baab6df36673 from=translated src=- shape=86ca666a vocab=e9a099ac
+-/
 theorem baseLetters_chain_ne (rules : Fin 3 → List (Fin 2))
     (letters : List Basis) :
     (baseLetters rules letters).IsChain fun x y ↦ x.1 ≠ y.1 := by
@@ -184,12 +190,17 @@ def baseWord (rules : Fin 3 → List (Fin 2))
   ne_one := baseLetters_ne_one rules letters
   chain_ne := baseLetters_chain_ne rules letters
 
+/--
+@isnad1 id=eq.0h2v.s7.a4e9daea0b70 from=translated src=- shape=f2fefda5 vocab=cbbed3ec
+-/
 @[simp] theorem baseWord_prod (rules : Fin 3 → List (Fin 2))
     (letters : List Basis) :
     (baseWord rules letters).prod = letterProd (baseLetters rules letters) := rfl
 
 /-- The canonical normal form of the base-coordinate product is exactly the
-reduced trace constructed above.-/
+reduced trace constructed above.
+@isnad1 id=eq.0h2v.s9.d9bb5f3bb242 from=translated src=- shape=a2c45469 vocab=16c70453
+-/
 theorem normalForm_letterProd (rules : Fin 3 → List (Fin 2))
     (letters : List Basis) :
     CoprodI.Word.equiv (letterProd (baseLetters rules letters)) =
@@ -201,7 +212,9 @@ theorem normalForm_letterProd (rules : Fin 3 → List (Fin 2))
   exact (baseWord_prod rules letters).symm
 
 /-- Every displayed rule letter contributes exactly two syllables to the
-canonical free-product normal form, while stable letters contribute none.-/
+canonical free-product normal form, while stable letters contribute none.
+@isnad1 id=eq.0h2v.s9.1e1f7179f82c from=translated src=- shape=c49c27f8 vocab=a2ca7e47
+-/
 theorem normalForm_letterProd_length (rules : Fin 3 → List (Fin 2))
     (letters : List Basis) :
     (CoprodI.Word.equiv
@@ -210,7 +223,9 @@ theorem normalForm_letterProd_length (rules : Fin 3 → List (Fin 2))
   rw [normalForm_letterProd]
   exact baseLetters_length rules letters
 
-/-- The concrete two-factor version used for mod-five coefficient words.-/
+/-- The concrete two-factor version used for mod-five coefficient words.
+@isnad1 id=le.0h2v.s11.5aeeab6b058b from=translated src=- shape=d13327d6 vocab=d9909be1
+-/
 theorem normalForm_length_factor_zero_one_le_two (d e : C5) :
     (CoprodI.Word.equiv
       (CoprodI.of (M := Factor5) (i := (0 : Fin 2)) d *

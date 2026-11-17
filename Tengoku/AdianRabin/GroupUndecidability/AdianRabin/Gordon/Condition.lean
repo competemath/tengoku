@@ -49,6 +49,9 @@ noncomputable def representative (condition : Condition21 P)
     (q : condition.orderValues) : Fin condition.p :=
   Classical.choose (Finset.mem_image.mp q.property)
 
+/--
+@isnad1 id=eq.0h5v.s6.af64d5c112b6 from=translated src=- shape=3ed56103 vocab=f01729be
+-/
 theorem q_representative (condition : Condition21 P)
     (q : condition.orderValues) :
     condition.q (condition.representative q) = q.1 :=
@@ -75,12 +78,18 @@ noncomputable def normalizedQ (condition : Condition21 P) :
     Fin condition.orderValues.card → ℕ :=
   fun i ↦ (condition.valueEquiv i).1
 
+/--
+@isnad1 id=injectiv.0h4v.s4.eb452c5a6a9d from=translated src=- shape=a282dda9 vocab=c24ebb68
+-/
 theorem normalizedQ_injective (condition : Condition21 P) :
     Function.Injective condition.normalizedQ := by
   intro i j hij
   apply condition.valueEquiv.injective
   exact Subtype.ext hij
 
+/--
+@isnad1 id=lt.0h5v.s5.9ebb5271baef from=translated src=- shape=574b1fc8 vocab=4a26629e
+-/
 theorem normalizedQ_pos (condition : Condition21 P)
     (i : Fin condition.orderValues.card) :
     0 < condition.normalizedQ i := by
@@ -88,6 +97,9 @@ theorem normalizedQ_pos (condition : Condition21 P)
   rw [← condition.q_representative (condition.valueEquiv i)]
   exact condition.q_pos _
 
+/--
+@isnad1 id=eq.0h5v.s9.e6a76c0fad68 from=translated src=- shape=82deb872 vocab=012d304b
+-/
 theorem normalized_exactOrder (condition : Condition21 P)
     (i : Fin condition.orderValues.card) :
     orderOf (Abelianization.of
@@ -99,6 +111,9 @@ theorem normalized_exactOrder (condition : Condition21 P)
   rw [condition.exactOrder, condition.q_representative]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.233e10252cd9 from=translated src=- shape=7e7dc560 vocab=04f56981
+-/
 theorem normalized_gcd (condition : Condition21 P) :
     Finset.univ.gcd condition.normalizedQ = 1 := by
   rw [Finset.gcd_eq_gcd_image]
@@ -124,6 +139,9 @@ theorem normalized_gcd (condition : Condition21 P) :
 noncomputable def degreeBound (condition : Condition21 P) : ℕ :=
   Finset.univ.sum condition.normalizedQ
 
+/--
+@isnad1 id=le.0h5v.s5.ee1481f19210 from=translated src=- shape=bfcbdb42 vocab=9e71c0ad
+-/
 theorem normalizedQ_le_degreeBound (condition : Condition21 P)
     (i : Fin condition.orderValues.card) :
     condition.normalizedQ i ≤ condition.degreeBound :=
@@ -140,6 +158,9 @@ noncomputable def normalizedPreimage (condition : Condition21 P)
     Fin condition.orderValues.card :=
   Classical.choose hj
 
+/--
+@isnad1 id=eq.1h5v.s6.4f85e660d43a from=translated src=- shape=ce3155a7 vocab=e22968e8
+-/
 theorem normalizedSelected_preimage (condition : Condition21 P)
     (j : Fin n) (hj : condition.IsNormalizedSelected j) :
     condition.normalizedSelected (condition.normalizedPreimage j hj) = j :=
@@ -156,6 +177,9 @@ noncomputable def extendedDegree (condition : Condition21 P) (j : Fin n) : ℕ :
     else
       condition.degreeBound + j.1 + 1
 
+/--
+@isnad1 id=eq.0h5v.s6.d0e0d6fb1971 from=translated src=- shape=15d316d9 vocab=09fd959e
+-/
 theorem extendedDegree_selected (condition : Condition21 P)
     (i : Fin condition.orderValues.card) :
     condition.extendedDegree (condition.normalizedSelected i) =
@@ -168,6 +192,9 @@ theorem extendedDegree_selected (condition : Condition21 P)
   apply condition.normalizedSelected.injective
   exact condition.normalizedSelected_preimage _ hi
 
+/--
+@isnad1 id=lt.0h5v.s4.e977dfd3a8a1 from=translated src=- shape=0234a48b vocab=a5129e0b
+-/
 theorem extendedDegree_pos (condition : Condition21 P) (j : Fin n) :
     0 < condition.extendedDegree j := by
   rw [extendedDegree]
@@ -175,6 +202,9 @@ theorem extendedDegree_pos (condition : Condition21 P) (j : Fin n) :
   · exact condition.normalizedQ_pos _
   · omega
 
+/--
+@isnad1 id=injectiv.0h4v.s4.6507630ef737 from=translated src=- shape=888bb99a vocab=83e520e6
+-/
 theorem extendedDegree_injective (condition : Condition21 P) :
     Function.Injective condition.extendedDegree := by
   intro i j hij

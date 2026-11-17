@@ -83,6 +83,9 @@ full Borisov presentation.-/
 def gamma3ToPresented : Gamma3 →* Presented datum :=
   (g0ToPresented datum).comp BorisovG0HNN.fromHNN
 
+/--
+@isnad1 id=eq.0h1v.s7.9297920f9415 from=translated src=- shape=60f45744 vocab=ed3d3581
+-/
 @[simp] theorem gamma3ToPresented_d3 :
     gamma3ToPresented datum d3 = presentedGenerator datum 0 := by
   rw [gamma3ToPresented, MonoidHom.comp_apply,
@@ -92,6 +95,9 @@ def gamma3ToPresented : Gamma3 →* Presented datum :=
     BorisovIntersections.evalWord, BorisovIntersections.dWord,
     FP.evalWord, g0Generator, presentedGenerator]
 
+/--
+@isnad1 id=eq.0h1v.s7.0049b63a2a4c from=translated src=- shape=60f45744 vocab=0d10b06e
+-/
 @[simp] theorem gamma3ToPresented_e3 :
     gamma3ToPresented datum e3 = presentedGenerator datum 1 := by
   rw [gamma3ToPresented, MonoidHom.comp_apply,
@@ -101,6 +107,9 @@ def gamma3ToPresented : Gamma3 →* Presented datum :=
     BorisovIntersections.evalWord, BorisovIntersections.eWord,
     FP.evalWord, g0Generator, presentedGenerator]
 
+/--
+@isnad1 id=eq.0h1v.s7.90dfc194d2dd from=translated src=- shape=60f45744 vocab=b546695d
+-/
 @[simp] theorem gamma3ToPresented_s1_3 :
     gamma3ToPresented datum s1_3 = presentedGenerator datum 2 := by
   rw [gamma3ToPresented, MonoidHom.comp_apply,
@@ -110,6 +119,9 @@ def gamma3ToPresented : Gamma3 →* Presented datum :=
     BorisovIntersections.s1Word, FP.evalWord, g0Generator,
     presentedGenerator]
 
+/--
+@isnad1 id=eq.0h1v.s7.71bfd46a9889 from=translated src=- shape=60f45744 vocab=bdcdb60c
+-/
 @[simp] theorem gamma3ToPresented_s2_3 :
     gamma3ToPresented datum s2_3 = presentedGenerator datum 3 := by
   rw [gamma3ToPresented, MonoidHom.comp_apply,
@@ -119,6 +131,9 @@ def gamma3ToPresented : Gamma3 →* Presented datum :=
     BorisovIntersections.s2Word, FP.evalWord, g0Generator,
     presentedGenerator]
 
+/--
+@isnad1 id=eq.0h2v.s7.3c86eb419790 from=translated src=- shape=5918813b vocab=a20f145e
+-/
 @[simp] theorem gamma3ToPresented_positive3 (w : List (Fin 2)) :
     gamma3ToPresented datum (positive3 w) =
       Thue.evalPositive (presentedGenerator datum 2)
@@ -263,11 +278,17 @@ def gamma2ToPresented : Gamma2 datum hfree →* Presented datum :=
   HNNExtension.lift (gamma3ToPresented datum)
     (presentedGenerator datum 4)⁻¹ (c_lift_condition datum hfree)
 
+/--
+@isnad1 id=eq.1h2v.s8.484cecf74881 from=translated src=- shape=fcbbee20 vocab=bc749b70
+-/
 @[simp] theorem gamma2ToPresented_of3 (x : Gamma3) :
     gamma2ToPresented datum hfree (of3 datum hfree x) =
       gamma3ToPresented datum x := by
   simp [gamma2ToPresented, of3]
 
+/--
+@isnad1 id=eq.1h1v.s7.8101515efe1b from=translated src=- shape=c749e51c vocab=b76165c7
+-/
 @[simp] theorem gamma2ToPresented_c :
     gamma2ToPresented datum hfree (c datum hfree) =
       presentedGenerator datum 4 := by
@@ -324,22 +345,34 @@ def tStageToPresented : TStage datum hfree →* Presented datum :=
       have ha := CD_le_t_centralizer datum hfree a.property
       exact (Subgroup.mem_centralizer_singleton_iff.mp ha).symm)
 
+/--
+@isnad1 id=eq.1h2v.s10.0c419a03b186 from=translated src=- shape=a5728eb7 vocab=848cb71d
+-/
 @[simp] theorem tStageToPresented_of (x : Gamma2 datum hfree) :
     tStageToPresented datum hfree (toTStage datum hfree x) =
       gamma2ToPresented datum hfree x := by
   simp [tStageToPresented, toTStage, centralizerOf]
 
+/--
+@isnad1 id=eq.1h1v.s8.319e954c3877 from=translated src=- shape=c749e51c vocab=6a7c3e62
+-/
 @[simp] theorem tStageToPresented_t :
     tStageToPresented datum hfree (tLetter datum hfree) =
       presentedGenerator datum 5 := by
   simp [tStageToPresented, tLetter, centralizerStable]
 
+/--
+@isnad1 id=eq.1h2v.s7.89d1bd1ef670 from=translated src=- shape=bd3adb57 vocab=a851785f
+-/
 @[simp] theorem gamma2ToPresented_positive2 (w : List (Fin 2)) :
     gamma2ToPresented datum hfree (positive2 datum hfree w) =
       Thue.evalPositive (presentedGenerator datum 2)
         (presentedGenerator datum 3) w := by
   simp [positive2]
 
+/--
+@isnad1 id=eq.1h2v.s9.fae0f29be2eb from=translated src=- shape=9ef14a11 vocab=a1bc235d
+-/
 @[simp] theorem tStageToPresented_conjugatedT (w : List (Fin 2)) :
     tStageToPresented datum hfree (conjugatedT datum hfree w) =
       (Thue.evalPositive (presentedGenerator datum 2)
@@ -450,51 +483,81 @@ def fromFinalModel : FinalStage datum hfree →* Presented datum :=
       have ha := KSubgroup_le_k_centralizer datum hfree a.property
       exact (Subgroup.mem_centralizer_singleton_iff.mp ha).symm)
 
+/--
+@isnad1 id=eq.1h2v.s12.1a6899cb6ab2 from=translated src=- shape=a5728eb7 vocab=23fd9921
+-/
 @[simp] theorem fromFinalModel_of (x : TStage datum hfree) :
     fromFinalModel datum hfree (toFinalStage datum hfree x) =
       tStageToPresented datum hfree x := by
   simp [fromFinalModel, toFinalStage, centralizerOf]
 
+/--
+@isnad1 id=eq.1h1v.s11.16488059446d from=translated src=- shape=c749e51c vocab=4e8419a6
+-/
 @[simp] theorem fromFinalModel_k :
     fromFinalModel datum hfree (kLetter datum hfree) =
       presentedGenerator datum 6 := by
   simp [fromFinalModel, kLetter, centralizerStable]
 
+/--
+@isnad1 id=eq.1h1v.s11.f8bd76e32533 from=translated src=- shape=c749e51c vocab=8fd9a030
+-/
 @[simp] theorem fromFinalModel_modelD :
     fromFinalModel datum hfree (modelD datum hfree) =
       presentedGenerator datum 0 := by
   simp [modelD, cStageToFinal]
 
+/--
+@isnad1 id=eq.1h1v.s11.079ce485b72f from=translated src=- shape=c749e51c vocab=b3116a06
+-/
 @[simp] theorem fromFinalModel_modelE :
     fromFinalModel datum hfree (modelE datum hfree) =
       presentedGenerator datum 1 := by
   simp [modelE, cStageToFinal]
 
+/--
+@isnad1 id=eq.1h1v.s11.3eb7d1c6300b from=translated src=- shape=c749e51c vocab=8f44d415
+-/
 @[simp] theorem fromFinalModel_modelS1 :
     fromFinalModel datum hfree (modelS1 datum hfree) =
       presentedGenerator datum 2 := by
   simp [modelS1, cStageToFinal]
 
+/--
+@isnad1 id=eq.1h1v.s11.1b5410e69c4a from=translated src=- shape=c749e51c vocab=0dc69997
+-/
 @[simp] theorem fromFinalModel_modelS2 :
     fromFinalModel datum hfree (modelS2 datum hfree) =
       presentedGenerator datum 3 := by
   simp [modelS2, cStageToFinal]
 
+/--
+@isnad1 id=eq.1h1v.s11.57fbdf78c020 from=translated src=- shape=c749e51c vocab=bd2b81db
+-/
 @[simp] theorem fromFinalModel_modelC :
     fromFinalModel datum hfree (modelC datum hfree) =
       presentedGenerator datum 4 := by
   simp [modelC, cStageToFinal]
 
+/--
+@isnad1 id=eq.1h1v.s11.6b4b38930d6e from=translated src=- shape=c749e51c vocab=db192999
+-/
 @[simp] theorem fromFinalModel_modelT :
     fromFinalModel datum hfree (modelT datum hfree) =
       presentedGenerator datum 5 := by
   simp [modelT]
 
+/--
+@isnad1 id=eq.1h1v.s11.37982bf05add from=translated src=- shape=c749e51c vocab=8c376462
+-/
 @[simp] theorem fromFinalModel_modelK :
     fromFinalModel datum hfree (modelK datum hfree) =
       presentedGenerator datum 6 := by
   simp [modelK]
 
+/--
+@isnad1 id=eq.1h1v.s10.efe7bf9208dc from=translated src=- shape=61107600 vocab=3268ef74
+-/
 theorem fromFinalModel_comp_toFinalModel :
     (fromFinalModel datum hfree).comp (toFinalModel datum hfree) =
       MonoidHom.id (Presented datum) := by
@@ -502,6 +565,9 @@ theorem fromFinalModel_comp_toFinalModel :
   intro i
   fin_cases i <;> simp [modelGenerator, presentedGenerator]
 
+/--
+@isnad1 id=injectiv.1h1v.s11.c14d04dbcfb2 from=translated src=- shape=e3fdc604 vocab=9503d3a0
+-/
 theorem toFinalModel_injective_internal :
     Function.Injective (toFinalModel datum hfree) := by
   apply Function.LeftInverse.injective
@@ -517,7 +583,9 @@ namespace BorisovFinalModel
 
 /-- The canonical homomorphism from Borisov's fourteen-relator presentation
 to its iterated-HNN semantic model is injective.  The proof constructs an
-explicit left inverse through all five HNN stages.-/
+explicit left inverse through all five HNN stages.
+@isnad1 id=injectiv.1h1v.s11.c14d04dbcfb2 from=translated src=- shape=e3fdc604 vocab=9503d3a0
+-/
 theorem toFinalModel_injective
     (datum : Thue.StandingDatum)
     (hfree : BorisovCStage.RankFiveFree datum) :

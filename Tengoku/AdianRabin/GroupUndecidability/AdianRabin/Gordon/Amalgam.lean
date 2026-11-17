@@ -83,6 +83,9 @@ def pushRight (P : FP n m) (data : TorsionData P) (w : Word n) :
     RightFactor →* Pushout P data w :=
   Monoid.PushoutI.of (φ := diagram P data w) Side.right
 
+/--
+@isnad1 id=eq.0h6v.s9.1b0c159e8965 from=translated src=- shape=49358c71 vocab=dc014b21
+-/
 theorem identifies_basis (P : FP n m) (data : TorsionData P)
     (w : Word n) (i : BasisIndex n) :
     pushLeft P data w (leftBasis P data w i) =
@@ -100,14 +103,23 @@ def witnessGenerator (P : FP n m) (data : TorsionData P)
     (w : Word n) : Fin 2 → Pushout P data w :=
   ![pushLeft P data w (aLeft P), pushRight P data w bRight]
 
+/--
+@isnad1 id=eq.0h5v.s8.c94a577c6aa3 from=translated src=- shape=a73b1bc2 vocab=3579c049
+-/
 @[simp] theorem witnessGenerator_a (P : FP n m) (data : TorsionData P)
     (w : Word n) :
     witnessGenerator P data w 0 = pushLeft P data w (aLeft P) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.71a94986d4d7 from=translated src=- shape=018015a4 vocab=bdbd0508
+-/
 @[simp] theorem witnessGenerator_b (P : FP n m) (data : TorsionData P)
     (w : Word n) :
     witnessGenerator P data w 1 = pushRight P data w bRight := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.1b9fe5f93643 from=translated src=- shape=722f0609 vocab=359a0689
+-/
 theorem eval_alpha_witness (P : FP n m) (data : TorsionData P)
     (w : Word n) :
     Word.eval (witnessGenerator P data w) alphaWord =
@@ -132,6 +144,9 @@ theorem eval_alpha_witness (P : FP n m) (data : TorsionData P)
       rw [← h']
       group
 
+/--
+@isnad1 id=eq.0h5v.s7.9ad27dcf2d1e from=translated src=- shape=b6e16286 vocab=bb4aa624
+-/
 theorem eval_beta_witness (P : FP n m) (data : TorsionData P)
     (w : Word n) :
     Word.eval (witnessGenerator P data w) betaWord =
@@ -172,6 +187,9 @@ theorem eval_beta_witness (P : FP n m) (data : TorsionData P)
                     pushRight P data w bRight := by group
         _ = pushRight P data w betaRight := by rw [h']; group
 
+/--
+@isnad1 id=eq.0h6v.s7.465e2b39be32 from=translated src=- shape=f0cfed05 vocab=c0f8fbf0
+-/
 theorem eval_rightConjugateWord_witness
     (P : FP n m) (data : TorsionData P) (w : Word n) (r : ℕ) :
     Word.eval (witnessGenerator P data w) (rightConjugateWord r) =
@@ -180,6 +198,9 @@ theorem eval_rightConjugateWord_witness
     eval_beta_witness, witnessGenerator_b, map_mul, map_inv, map_pow,
     mul_assoc]
 
+/--
+@isnad1 id=eq.0h6v.s9.23a9c338748f from=translated src=- shape=96c1975b vocab=7829e95b
+-/
 theorem eval_encodedGenerator_witness
     (P : FP n m) (data : TorsionData P) (w : Word n) (i : Fin n) :
     Word.eval (witnessGenerator P data w) (encodedGenerator data i) =
@@ -209,6 +230,9 @@ theorem eval_encodedGenerator_witness
       rw [← h']
       group
 
+/--
+@isnad1 id=eq.0h6v.s9.237896bb952c from=translated src=- shape=d86dbd43 vocab=33852f49
+-/
 theorem eval_encodeWord_witness (P : FP n m) (data : TorsionData P)
     (w u : Word n) :
     Word.eval (witnessGenerator P data w) (encodeWord data u) =
@@ -226,6 +250,9 @@ theorem eval_encodeWord_witness (P : FP n m) (data : TorsionData P)
     (PresentedGroup.of : Fin n → P.Group) u]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.f415f9283bb5 from=translated src=- shape=a14c688b vocab=9aaa1b51
+-/
 theorem eval_additional (P : FP n m) (data : TorsionData P)
     (w : Word n) :
     Word.eval (witnessGenerator P data w)
@@ -261,6 +288,9 @@ theorem eval_additional (P : FP n m) (data : TorsionData P)
         (rightConjugateWord (n + 1)) :=
       (eval_rightConjugateWord_witness P data w (n + 1)).symm
 
+/--
+@isnad1 id=eq.0h6v.s7.01041e9776da from=translated src=- shape=bea24e69 vocab=eba0f9d6
+-/
 theorem transformed_relator_eq_one (P : FP n m) (data : TorsionData P)
     (w : Word n) (i : Fin (m + 1)) :
     Word.eval (witnessGenerator P data w)
@@ -278,6 +308,9 @@ def witnessHom (P : FP n m) (data : TorsionData P) (w : Word n) :
   (transform P data w).homOfRelators (witnessGenerator P data w)
     (transformed_relator_eq_one P data w)
 
+/--
+@isnad1 id=eq.0h6v.s9.18ccebe351c3 from=translated src=- shape=d614cb68 vocab=b3ea62a0
+-/
 @[simp]
 theorem witnessHom_of (P : FP n m) (data : TorsionData P)
     (w : Word n) (i : Fin 2) :
@@ -286,7 +319,9 @@ theorem witnessHom_of (P : FP n m) (data : TorsionData P)
   (transform P data w).homOfRelators_of _ _ i
 
 /-- The amalgamated-product argument, conditional on the two free-basis
-injectivity lemmas.-/
+injectivity lemmas.
+@isnad1 id=not.3h5v.s8.f18c79a88edd from=translated src=- shape=00ad6a26 vocab=96016ced
+-/
 theorem transform_not_trivial_of_basis_injective
     (P : FP n m) (data : TorsionData P) (w : Word n)
     (hleft : Function.Injective (leftMap P data w))

@@ -41,11 +41,17 @@ def invertFactorsHom : ModFiveBase →* ModFiveBase :=
     ((Monoid.CoprodI.of (M := fun _ : Fin 2 ↦ C5) (i := i)) :
       C5 →* ModFiveBase).comp c5Inverse
 
+/--
+@isnad1 id=eq.0h2v.s10.808bb371476a from=translated src=- shape=31288bc6 vocab=df27ebf3
+-/
 @[simp] theorem invertFactorsHom_of (i : Fin 2) (x : C5) :
     invertFactorsHom (Monoid.CoprodI.of (i := i) x) =
       Monoid.CoprodI.of (i := i) x⁻¹ := by
   simp [invertFactorsHom, c5Inverse]
 
+/--
+@isnad1 id=eq.0h1v.s9.bdd4f7818ef1 from=translated src=- shape=c3d0c544 vocab=a24e349c
+-/
 theorem invertFactorsHom_involutive (x : ModFiveBase) :
     invertFactorsHom (invertFactorsHom x) = x := by
   induction x using Monoid.CoprodI.induction_on with
@@ -60,9 +66,15 @@ def invertFactors : MulAut ModFiveBase where
   right_inv := invertFactorsHom_involutive
   map_mul' := map_mul invertFactorsHom
 
+/--
+@isnad1 id=eq.0h0v.s8.cc0c3f822b9d from=translated src=- shape=8c5cab74 vocab=ea6bcee1
+-/
 @[simp] theorem invertFactors_modD : invertFactors modD = modD⁻¹ := by
   simp [invertFactors, modD]
 
+/--
+@isnad1 id=eq.0h0v.s8.f2a69278fcfb from=translated src=- shape=8c5cab74 vocab=e6e47299
+-/
 @[simp] theorem invertFactors_modE : invertFactors modE = modE⁻¹ := by
   simp [invertFactors, modE]
 
@@ -83,10 +95,16 @@ def quotientBase : ModFiveBase →* QuotientGroup :=
 def quotientStable : QuotientGroup :=
   SemidirectProduct.inr (Multiplicative.ofAdd 1)
 
+/--
+@isnad1 id=eq.0h0v.s10.7c586e0d6493 from=translated src=- shape=226d4b26 vocab=217e3fdf
+-/
 @[simp] theorem inversionAction_one :
     inversionAction (Multiplicative.ofAdd 1) = invertFactors := by
   simp [inversionAction]
 
+/--
+@isnad1 id=eq.0h1v.s10.6a34701e42c0 from=translated src=- shape=4cf381eb vocab=327d069f
+-/
 @[simp] theorem quotientStable_mul_base (x : ModFiveBase) :
     quotientStable * quotientBase x =
       quotientBase (invertFactors x) * quotientStable := by
@@ -95,12 +113,21 @@ def quotientStable : QuotientGroup :=
 def baseModFive : Base →* ModFiveBase :=
   FreeGroup.lift ![modD, modE]
 
+/--
+@isnad1 id=eq.0h0v.s7.85bf1a9d814a from=translated src=- shape=501f93a1 vocab=6be26760
+-/
 @[simp] theorem baseModFive_d : baseModFive d = modD := by
   simp [baseModFive, d]
 
+/--
+@isnad1 id=eq.0h0v.s7.82ff3026f1a6 from=translated src=- shape=501f93a1 vocab=7f6df38a
+-/
 @[simp] theorem baseModFive_e : baseModFive e = modE := by
   simp [baseModFive, e]
 
+/--
+@isnad1 id=eq.0h0v.s7.dd6af84b9599 from=translated src=- shape=d3acad82 vocab=4c471169
+-/
 theorem modD_pow_four : modD ^ 4 = modD⁻¹ := by
   rw [show modD = Monoid.CoprodI.of (i := (0 : Fin 2)) c5Generator by rfl,
     ← map_pow, ← map_inv]
@@ -109,6 +136,9 @@ theorem modD_pow_four : modD ^ 4 = modD⁻¹ := by
   change (4 : ZMod 5) = -1
   decide
 
+/--
+@isnad1 id=eq.0h0v.s7.9872a97d3e1c from=translated src=- shape=d3acad82 vocab=18b6e7fa
+-/
 theorem modE_pow_four : modE ^ 4 = modE⁻¹ := by
   rw [show modE = Monoid.CoprodI.of (i := (1 : Fin 2)) c5Generator by rfl,
     ← map_pow, ← map_inv]
@@ -117,6 +147,9 @@ theorem modE_pow_four : modE ^ 4 = modE⁻¹ := by
   change (4 : ZMod 5) = -1
   decide
 
+/--
+@isnad1 id=eq.0h1v.s9.d758782bb9bc from=translated src=- shape=35047ad1 vocab=61b5e2ab
+-/
 theorem baseModFive_beta_eq_invert_alpha (x : Base) :
     baseModFive (beta x) = invertFactors (baseModFive (alpha x)) := by
   let lhs : Base →* ModFiveBase := baseModFive.comp beta
@@ -135,6 +168,9 @@ theorem baseModFive_beta_eq_invert_alpha (x : Base) :
 def baseToQuotient : Base →* QuotientGroup :=
   quotientBase.comp baseModFive
 
+/--
+@isnad1 id=eq.0h1v.s9.217d7f3f4baf from=translated src=- shape=5df993ef vocab=212a5ca3
+-/
 theorem stable_power_relation (x : Base) :
     quotientStable * baseToQuotient (alpha x) =
       baseToQuotient (beta x) * quotientStable := by
@@ -151,10 +187,16 @@ private theorem firstLiftCondition (a : A0) :
 def stageOneToQuotient : Stage1 →* QuotientGroup :=
   HNNExtension.lift baseToQuotient quotientStable firstLiftCondition
 
+/--
+@isnad1 id=eq.0h1v.s8.8cec7f1c7be7 from=translated src=- shape=390f4ebc vocab=0c52e8dc
+-/
 @[simp] theorem stageOneToQuotient_of0 (x : Base) :
     stageOneToQuotient (of0 x) = baseToQuotient x := by
   simp [stageOneToQuotient, of0]
 
+/--
+@isnad1 id=eq.0h0v.s7.5918d8a6fc74 from=translated src=- shape=501f93a1 vocab=0ad3a160
+-/
 @[simp] theorem stageOneToQuotient_s1 :
     stageOneToQuotient s1 = quotientStable := by
   simp [stageOneToQuotient, s1]
@@ -169,22 +211,37 @@ private theorem secondLiftCondition (a : A1) :
 def gamma3ToQuotient : Gamma3 →* QuotientGroup :=
   HNNExtension.lift stageOneToQuotient quotientStable secondLiftCondition
 
+/--
+@isnad1 id=eq.0h1v.s8.281487a5d9c0 from=translated src=- shape=390f4ebc vocab=3b8e15e4
+-/
 @[simp] theorem gamma3ToQuotient_of1 (x : Stage1) :
     gamma3ToQuotient (of1 x) = stageOneToQuotient x := by
   simp [gamma3ToQuotient, of1]
 
+/--
+@isnad1 id=eq.0h0v.s8.d8661affe347 from=translated src=- shape=4ea32f46 vocab=5cc28ab3
+-/
 @[simp] theorem gamma3ToQuotient_d3 :
     gamma3ToQuotient d3 = quotientBase modD := by
   simp [d3, baseToQuotient, quotientBase]
 
+/--
+@isnad1 id=eq.0h0v.s8.f65397bb7d5d from=translated src=- shape=4ea32f46 vocab=6b550712
+-/
 @[simp] theorem gamma3ToQuotient_e3 :
     gamma3ToQuotient e3 = quotientBase modE := by
   simp [e3, baseToQuotient, quotientBase]
 
+/--
+@isnad1 id=eq.0h0v.s7.70e0074212da from=translated src=- shape=501f93a1 vocab=01b02dcc
+-/
 @[simp] theorem gamma3ToQuotient_s1 :
     gamma3ToQuotient s1_3 = quotientStable := by
   simp [s1_3]
 
+/--
+@isnad1 id=eq.0h0v.s7.4b32d5b4a9c5 from=translated src=- shape=501f93a1 vocab=99db42d2
+-/
 @[simp] theorem gamma3ToQuotient_s2 :
     gamma3ToQuotient s2_3 = quotientStable := by
   simp [gamma3ToQuotient, s2_3]

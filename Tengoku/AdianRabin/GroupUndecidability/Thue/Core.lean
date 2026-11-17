@@ -23,6 +23,9 @@ def ThueEq {α : Type*} (T : ThueSystem α) :=
 
 namespace Thue
 
+/--
+@isnad1 id=thuestep.1h4v.s4.4651f25779af from=translated src=- shape=f8656c9f vocab=2d5371ed
+-/
 theorem thueStep_symm {T : ThueSystem α} {X Y : List α}
     (h : ThueStep T X Y) : ThueStep T Y X := by
   rcases h with ⟨l, r, x, y, hxy, hwords⟩
@@ -30,6 +33,9 @@ theorem thueStep_symm {T : ThueSystem α} {X Y : List α}
   · exact ⟨l, r, x, y, hxy, Or.inr ⟨hY, hX⟩⟩
   · exact ⟨l, r, x, y, hxy, Or.inl ⟨hY, hX⟩⟩
 
+/--
+@isnad1 id=thueeq.1h4v.s4.5afe7c9caa87 from=translated src=- shape=f8656c9f vocab=34aff543
+-/
 theorem thueEq_symm {T : ThueSystem α} {X Y : List α}
     (h : ThueEq T X Y) : ThueEq T Y X := by
   induction h with
@@ -37,6 +43,9 @@ theorem thueEq_symm {T : ThueSystem α} {X Y : List α}
   | tail _ hstep ih =>
       exact (Relation.ReflTransGen.single (thueStep_symm hstep)).trans ih
 
+/--
+@isnad1 id=thuestep.1h6v.s6.30375ba189c8 from=translated src=- shape=cf689ffb vocab=e6b9f777
+-/
 theorem thueStep_context {T : ThueSystem α} (l r : List α)
     {X Y : List α} (h : ThueStep T X Y) :
     ThueStep T (l ++ X ++ r) (l ++ Y ++ r) := by
@@ -47,6 +56,9 @@ theorem thueStep_context {T : ThueSystem α} (l r : List α)
   · exact ⟨l ++ l', r' ++ r, x, y, hxy,
       Or.inr ⟨by simp only [List.append_assoc], by simp only [List.append_assoc]⟩⟩
 
+/--
+@isnad1 id=thueeq.1h6v.s6.f5f723aade3e from=translated src=- shape=cf689ffb vocab=f7d57db8
+-/
 theorem thueEq_context {T : ThueSystem α} (l r : List α)
     {X Y : List α} (h : ThueEq T X Y) :
     ThueEq T (l ++ X ++ r) (l ++ Y ++ r) :=

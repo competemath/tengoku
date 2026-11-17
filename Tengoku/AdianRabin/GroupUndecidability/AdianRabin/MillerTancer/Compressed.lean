@@ -15,7 +15,9 @@ eliminations.  The resulting presentation has `n + 1` generators and
 
 namespace Undecidability.MillerTancer
 
-/-- The raw Miller--Tancer triviality criterion.-/
+/-- The raw Miller--Tancer triviality criterion.
+@isnad1 id=iff.1h5v.s5.111954b853a3 from=translated src=- shape=415bf8fb vocab=ecb59a46
+-/
 theorem presentsTrivial_transform_iff
     (P : FP n m) (z : Word n)
     (hz : P.NormallyGenerates z) (w : Word n) :
@@ -61,16 +63,28 @@ def retainedIndex (m : ℕ) : Fin (m + 2) → Fin (m + 4) :=
 def transform (P : FP n m) (k : Fin n) (w : Word n) : FP (n + 1) (m + 2) where
  relator i := thetaWord k ((MillerTancer.transform P (Word.generator k) w).relator (retainedIndex m i))
 
+/--
+@isnad1 id=eq.0h2v.s5.7cac86c55ea8 from=translated src=- shape=b2f189dd vocab=1466243d
+-/
 @[simp] theorem retainedIndex_old (i : Fin m) :
  retainedIndex m (Fin.castAdd 2 i) = Fin.castAdd 4 i := by simp [retainedIndex]
+/--
+@isnad1 id=eq.0h2v.s5.2a19f6e60913 from=translated src=- shape=8c010b3b vocab=1fabc78b
+-/
 @[simp] theorem retainedIndex_additional (j : Fin 2) :
  retainedIndex m (Fin.natAdd m j) = Fin.natAdd m (keptAdditionalIndex j) := by simp [retainedIndex]
 
+/--
+@isnad1 id=eq.0h6v.s6.5d903b002a01 from=translated src=- shape=87ab3f94 vocab=2d06a85b
+-/
 @[simp] theorem transform_old (P : FP n m) (k : Fin n) (w : Word n) (i : Fin m) :
  (transform P k w).relator (Fin.castAdd 2 i) =
    thetaWord k (MillerTancer.oldWord (P.relator i)) := by
  simp [transform]
 
+/--
+@isnad1 id=eq.0h6v.s6.cf7c237aecc3 from=translated src=- shape=69fce63c vocab=bc1d3936
+-/
 @[simp] theorem transform_additional (P : FP n m) (k : Fin n) (w : Word n) (j : Fin 2) :
  (transform P k w).relator (Fin.natAdd m j) =
    thetaWord k (MillerTancer.additionalRelators (Word.generator k) w (keptAdditionalIndex j)) := by
@@ -84,6 +98,9 @@ private theorem inverse_primrec (N : ℕ) : Primrec (@Word.inverse N) := by
   intro w
   rfl
 
+/--
+@isnad1 id=primrec.0h2v.s7.d32622b71ae7 from=translated src=- shape=b2abe638 vocab=1f32ca2c
+-/
 theorem thetaWord_primrec (k : Fin n) : Primrec (thetaWord k) := by
   have hgenerator : Primrec (thetaGenerator k) := Primrec.dom_finite _
   have hletter : Primrec fun x : SignedGenerator (n + 3) =>
@@ -98,6 +115,9 @@ theorem thetaWord_primrec (k : Fin n) : Primrec (thetaWord k) := by
   funext x
   cases x.2 <;> rfl
 
+/--
+@isnad1 id=computab.0h4v.s7.5e5e705e6446 from=translated src=- shape=efcebf7b vocab=a96e576f
+-/
 theorem transform_computable (P : FP n m) (k : Fin n) :
     Computable₂ fun w i => (transform P k w).relator i := by
   have hindex : Computable (retainedIndex m) := (Primrec.dom_finite _).to_comp
@@ -108,12 +128,18 @@ theorem transform_computable (P : FP n m) (k : Fin n) :
       Computable.fst (hindex.comp Computable.snd)
   exact ((thetaWord_primrec k).to_comp.comp hraw).to₂
 
+/--
+@isnad1 id=eq.0h5v.s6.1811db5c39be from=translated src=- shape=021428d8 vocab=f150cf2c
+-/
 @[simp] theorem eval_thetaWord {G : Type*} [Group G]
     (x : Fin (n + 1) → G) (k : Fin n) (w : Word (n + 3)) :
     Word.eval x (thetaWord k w) =
       Word.eval (fun i => Word.eval x (thetaGenerator k i)) w :=
   Word.eval_substitute x (thetaGenerator k) w
 
+/--
+@isnad1 id=eq.0h3v.s5.54d4be9bdca4 from=translated src=- shape=6f76360f vocab=fa7bfc75
+-/
 @[simp] theorem thetaGenerator_old (k : Fin n) (i : Fin n) :
  thetaGenerator k (MillerTancer.oldGenerator i) = encodedOldGenerator k i := by
  simp [thetaGenerator, MillerTancer.oldGenerator]
@@ -384,14 +410,18 @@ def transformEquiv (P : FP n m) (k : Fin n) (w : Word n) :
   MonoidHom.toMulEquiv (forwardHom P k w) (reverseHom P k w)
     (reverse_forward P k w) (forward_reverse P k w)
 
-/-- Compression preserves the presented group, hence triviality.-/
+/-- Compression preserves the presented group, hence triviality.
+@isnad1 id=iff.0h5v.s6.5f99b7a41980 from=translated src=- shape=3493006b vocab=072c7bef
+-/
 theorem presentsTrivial_transform_iff_raw (P : FP n m) (k : Fin n) (w : Word n) :
     (Compressed.transform P k w).presentsTrivial ↔
       (MillerTancer.transform P (Word.generator k) w).presentsTrivial := by
   rw [FP.presentsTrivial_iff_subsingleton, FP.presentsTrivial_iff_subsingleton]
   exact (transformEquiv P k w).toEquiv.subsingleton_congr.symm
 
-/-- The compressed Miller--Tancer triviality criterion.-/
+/-- The compressed Miller--Tancer triviality criterion.
+@isnad1 id=iff.1h5v.s5.6b40d23fa53a from=translated src=- shape=a757a7b6 vocab=b7526679
+-/
 theorem presentsTrivial_transform_iff (P : FP n m) (k : Fin n)
     (hk : P.NormallyGenerates (Word.generator k)) (w : Word n) :
     (Compressed.transform P k w).presentsTrivial ↔ P.wordProblem w := by

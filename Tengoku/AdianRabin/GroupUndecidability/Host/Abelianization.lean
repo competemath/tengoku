@@ -6,7 +6,9 @@ import Tengoku.Seed.GroupTheory.Abelianization.Defs
 namespace Undecidability
 namespace Host
 
-/-- Every homomorphism from the host group to a commutative group kills `D`.-/
+/-- Every homomorphism from the host group to a commutative group kills `D`.
+@isnad1 id=eq.0h3v.s8.c44ae83cfff0 from=translated src=- shape=1a039146 vocab=d825eb6d
+-/
 theorem map_d_eq_one_of_commGroup
     (datum : Thue.StandingDatum) {A : Type*} [CommGroup A]
     (f : (presentationOf datum).Group →* A) :
@@ -37,7 +39,9 @@ theorem map_d_eq_one_of_commGroup
     _ = (x 0 ^ 2) ^ 2 := pow_mul (x 0) 2 2
     _ = 1 := by simp [hd₂]
 
-/-- The image of `D` is trivial in the abelianization of the host group.-/
+/-- The image of `D` is trivial in the abelianization of the host group.
+@isnad1 id=eq.0h1v.s10.69d932b021ca from=translated src=- shape=5202a4ca vocab=dd4f3517
+-/
 theorem d_eq_one_in_abelianization (datum : Thue.StandingDatum) :
     Abelianization.of
       (PresentedGroup.of (0 : Fin 3) : (presentationOf datum).Group) = 1 :=

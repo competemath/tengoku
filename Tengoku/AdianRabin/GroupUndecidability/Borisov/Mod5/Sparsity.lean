@@ -29,10 +29,16 @@ noncomputable section
 
 abbrev Basis := BorisovCStage.RuleBasis
 
+/--
+@isnad1 id=eq.0h1v.s7.1dd1ac0c93da from=translated src=- shape=1be51759 vocab=97619074
+-/
 @[simp] theorem gamma3ToQuotient_stable3 (beta : Fin 2) :
     gamma3ToQuotient (stable3 beta) = quotientStable := by
   fin_cases beta <;> simp [stable3]
 
+/--
+@isnad1 id=eq.0h1v.s8.01a32576c6f8 from=translated src=- shape=721eba93 vocab=5c464f35
+-/
 @[simp] theorem gamma3ToQuotient_positive3 (word : List (Fin 2)) :
     gamma3ToQuotient (positive3 word) = quotientStable ^ word.length := by
   induction word with
@@ -44,6 +50,9 @@ abbrev Basis := BorisovCStage.RuleBasis
       rw [hcons, map_mul, gamma3ToQuotient_stable3, ih,
         List.length_cons, pow_succ']
 
+/--
+@isnad1 id=eq.0h2v.s7.8e98efa000fa from=translated src=- shape=04670f58 vocab=4a553c6b
+-/
 @[simp] theorem gamma3ToQuotient_uBasis
     (datum : Thue.StandingDatum) (q : Basis) :
     gamma3ToQuotient (uBasis datum q) = quotientBasis datum.F q := by
@@ -52,6 +61,9 @@ abbrev Basis := BorisovCStage.RuleBasis
   | inr i =>
       simp [uBasis, a3, quotientBasis, map_mul, map_pow]
 
+/--
+@isnad1 id=eq.0h2v.s7.1c89e2953a04 from=translated src=- shape=04670f58 vocab=9efa650e
+-/
 @[simp] theorem gamma3ToQuotient_vBasis
     (datum : Thue.StandingDatum) (q : Basis) :
     gamma3ToQuotient (vBasis datum q) = quotientBasis datum.E q := by
@@ -61,7 +73,9 @@ abbrev Basis := BorisovCStage.RuleBasis
       simp [vBasis, b3, quotientBasis, map_mul, map_pow]
 
 /-- A positive source-basis word is evaluated by the explicit mod-five
-quotient evaluator after forgetting its (necessarily positive) signs.-/
+quotient evaluator after forgetting its (necessarily positive) signs.
+@isnad1 id=eq.1h2v.s8.b55ad515594f from=translated src=- shape=6a0483fc vocab=57491026
+-/
 theorem gamma3ToQuotient_uLift_of_allPositive
     (datum : Thue.StandingDatum) (w : FreeGroup Basis)
     (hpositive : AllPositive w.toWord) :
@@ -84,7 +98,9 @@ theorem gamma3ToQuotient_uLift_of_allPositive
       simp
 
 /-- Target-basis counterpart of
-`gamma3ToQuotient_uLift_of_allPositive`.-/
+`gamma3ToQuotient_uLift_of_allPositive`.
+@isnad1 id=eq.1h2v.s8.57a7e7c6603b from=translated src=- shape=6a0483fc vocab=e2055f50
+-/
 theorem gamma3ToQuotient_vLift_of_allPositive
     (datum : Thue.StandingDatum) (w : FreeGroup Basis)
     (hpositive : AllPositive w.toWord) :
@@ -139,6 +155,9 @@ noncomputable section
 
 abbrev Basis := BorisovCStage.RuleBasis
 
+/--
+@isnad1 id=eq.0h1v.s4.9321b3e8f85a from=translated src=- shape=bb454d64 vocab=1c722767
+-/
 @[simp] theorem basisRuleCount_map_fst
     (letters : List (Basis × Bool)) :
     basisRuleCount (letters.map Prod.fst) = ruleCount letters := by
@@ -148,16 +167,25 @@ abbrev Basis := BorisovCStage.RuleBasis
       rcases x with ⟨q, sign⟩
       cases q <;> simp [basisRuleCount, ruleCount, ih]
 
+/--
+@isnad1 id=eq.0h2v.s8.e28c88f72ac2 from=translated src=- shape=e89e6f3e vocab=1c2f37da
+-/
 @[simp] theorem quotientBase_zpow_left (x : ModFiveBase) (n : ℤ) :
     (quotientBase x ^ n).left = x ^ n := by
   rw [← map_zpow]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.bff233624032 from=translated src=- shape=1e0b2fc9 vocab=7c5dff3d
+-/
 @[simp] theorem quotientBase_zpow_right (x : ModFiveBase) (n : ℤ) :
     (quotientBase x ^ n).right = 1 := by
   rw [← map_zpow]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.b795f1247d77 from=translated src=- shape=62307db9 vocab=cc5774fc
+-/
 theorem quotient_coefficient_left
     (Q : List (Fin 2)) (f r : ℤ) :
     (gamma3ToQuotient (d3 ^ f * positive3 Q * e3 ^ r)).left =
@@ -170,6 +198,9 @@ theorem quotient_coefficient_left
     inversionAction_nat, one_mul]
   simp
 
+/--
+@isnad1 id=eq.0h1v.s9.ecb3a5c9058e from=translated src=- shape=de2b5bd7 vocab=ced8dad7
+-/
 theorem modD_zpow_as_letter (f : ℤ) :
     modD ^ f =
       CoprodI.of (M := Factor5) (i := (0 : Fin 2)) (c5Generator ^ f) := by
@@ -177,6 +208,9 @@ theorem modD_zpow_as_letter (f : ℤ) :
       c5Generator) ^ f = _
   rw [← map_zpow]
 
+/--
+@isnad1 id=eq.0h2v.s11.9c5931610da1 from=translated src=- shape=d79dd6d5 vocab=a8dfeaea
+-/
 theorem twisted_modE_zpow_as_letter (n : ℕ) (r : ℤ) :
     (invertFactors ^ n) (modE ^ r) =
       CoprodI.of (M := Factor5) (i := (1 : Fin 2))
@@ -185,6 +219,9 @@ theorem twisted_modE_zpow_as_letter (n : ℕ) (r : ℤ) :
     c5Generator by rfl, ← map_zpow]
   exact invertFactors_pow_of n (1 : Fin 2) (c5Generator ^ r)
 
+/--
+@isnad1 id=le.0h3v.s11.8d2a223cda78 from=translated src=- shape=c9b85511 vocab=62338126
+-/
 theorem coefficient_normalForm_length_le_two
     (Q : List (Fin 2)) (f r : ℤ) :
     (CoprodI.Word.equiv
@@ -196,7 +233,9 @@ theorem coefficient_normalForm_length_le_two
 /-! ## The source and target parsers -/
 
 /-- The source-basis word representing a padded positive coefficient contains
-at most one displayed Thue-rule letter.-/
+at most one displayed Thue-rule letter.
+@isnad1 id=le.1h5v.s8.ed44caf481cd from=translated src=- shape=c53bd203 vocab=a3c415f5
+-/
 theorem u_ruleCount_le_one
     (datum : Thue.StandingDatum)
     (Q : List (Fin 2)) (f r : ℤ) (w : FreeGroup Basis)
@@ -215,7 +254,9 @@ theorem u_ruleCount_le_one
   have hright := coefficient_normalForm_length_le_two Q f r
   omega
 
-/-- Target-basis counterpart of `u_ruleCount_le_one`.-/
+/-- Target-basis counterpart of `u_ruleCount_le_one`.
+@isnad1 id=le.1h5v.s8.9c582a0f9365 from=translated src=- shape=c53bd203 vocab=bc1a79ee
+-/
 theorem v_ruleCount_le_one
     (datum : Thue.StandingDatum)
     (Q : List (Fin 2)) (f r : ℤ) (w : FreeGroup Basis)
@@ -235,7 +276,9 @@ theorem v_ruleCount_le_one
   omega
 
 /-- Borisov's converse criterion obtained from the mod-five free-product
-rule-count bound.-/
+rule-count bound.
+@isnad1 id=thueeq.1h2v.s5.12b8c5ebaf93 from=translated src=- shape=a33881f7 vocab=89c7a2e2
+-/
 theorem criterion_converse
     (datum : Thue.StandingDatum) (Q : List (Fin 2)) :
     (Borisov.presentation datum).wordProblem (Borisov.testWord Q) →

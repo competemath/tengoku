@@ -86,6 +86,9 @@ def pushRight (P : FP n m) (z w : Word n) :
     RightFactor →* Pushout P z w :=
   Monoid.PushoutI.of (φ := diagram P z w) Side.right
 
+/--
+@isnad1 id=eq.0h6v.s9.3368eba0200f from=translated src=- shape=212abba7 vocab=d1d8dc5c
+-/
 theorem identifies_basis (P : FP n m) (z w : Word n) (i : Fin 5) :
     pushLeft P z w (leftBasis P z w i) =
       pushRight P z w (rightBasis i) := by
@@ -97,6 +100,9 @@ theorem identifies_basis (P : FP n m) (z w : Word n) (i : Fin 5) :
   change pushRight P z w (rightMap (FreeGroup.of i)) = _ at hright
   simpa [leftMap, rightMap] using hleft.trans hright.symm
 
+/--
+@isnad1 id=eq.0h5v.s9.239e37c6c14f from=translated src=- shape=84235dae vocab=9ffe45db
+-/
 theorem identifies_beta (P : FP n m) (z w : Word n) :
     pushLeft P z w (betaLeft P) = pushRight P z w betaRight := by
   simpa [leftBasis, rightBasis] using identifies_basis P z w (0 : Fin 5)
@@ -110,30 +116,45 @@ def witnessGenerator (P : FP n m) (z w : Word n) :
       pushLeft P z w (betaLeft P),
       pushRight P z w gammaRight]
 
+/--
+@isnad1 id=eq.0h6v.s9.c24a9619011c from=translated src=- shape=78788105 vocab=dfbc5a8d
+-/
 @[simp]
 theorem witnessGenerator_old (P : FP n m) (z w : Word n) (i : Fin n) :
     witnessGenerator P z w (oldGenerator i) =
       pushLeft P z w (oldLeft P (PresentedGroup.of i)) := by
   simp [witnessGenerator, oldGenerator]
 
+/--
+@isnad1 id=eq.0h5v.s8.8b28b50d2145 from=translated src=- shape=7eb37a18 vocab=20f8e0d1
+-/
 @[simp]
 theorem witnessGenerator_alpha (P : FP n m) (z w : Word n) :
     witnessGenerator P z w (Fin.natAdd n 0) =
       pushLeft P z w (alphaLeft P) := by
   simp [witnessGenerator]
 
+/--
+@isnad1 id=eq.0h5v.s8.03d55976be70 from=translated src=- shape=7eb37a18 vocab=1bbb3c3b
+-/
 @[simp]
 theorem witnessGenerator_beta (P : FP n m) (z w : Word n) :
     witnessGenerator P z w (Fin.natAdd n 1) =
       pushLeft P z w (betaLeft P) := by
   simp [witnessGenerator]
 
+/--
+@isnad1 id=eq.0h5v.s8.469c52bfb98e from=translated src=- shape=0481bee5 vocab=cb73293a
+-/
 @[simp]
 theorem witnessGenerator_gamma (P : FP n m) (z w : Word n) :
     witnessGenerator P z w (Fin.natAdd n 2) =
       pushRight P z w gammaRight := by
   simp [witnessGenerator]
 
+/--
+@isnad1 id=eq.0h6v.s9.5bfb6e683624 from=translated src=- shape=243a8b53 vocab=cab1cdd7
+-/
 theorem eval_oldWord_witness (P : FP n m) (z w u : Word n) :
     Word.eval (witnessGenerator P z w) (oldWord u) =
       pushLeft P z w (oldLeft P (P.evalWord u)) := by
@@ -148,6 +169,9 @@ theorem eval_oldWord_witness (P : FP n m) (z w u : Word n) :
     (PresentedGroup.of : Fin n → P.Group) u]
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.c3c1cf1487bd from=translated src=- shape=f7ba2860 vocab=6a50009d
+-/
 theorem eval_oldGenerators_witness (P : FP n m) (z w u : Word n) :
     Word.eval
         (fun i => pushLeft P z w (oldLeft P (PresentedGroup.of i))) u =
@@ -156,6 +180,9 @@ theorem eval_oldGenerators_witness (P : FP n m) (z w u : Word n) :
     (PresentedGroup.of : Fin n → P.Group) u).symm using 1 <;>
     simp [Function.comp_def, FP.evalWord]
 
+/--
+@isnad1 id=eq.0h5v.s7.83d358440c3c from=translated src=- shape=a39bbf1e vocab=2ca99210
+-/
 theorem eval_sigma₁_witness (P : FP n m) (z w : Word n) :
     Word.eval (witnessGenerator P z w) (sigma₁ n) = 1 := by
   rw [sigma₁, Word.eval_relation_eq_one_iff]
@@ -163,6 +190,9 @@ theorem eval_sigma₁_witness (P : FP n m) (z w : Word n) :
     Word.product, identifies_beta P z w, mul_assoc] using
       identifies_basis P z w (1 : Fin 5)
 
+/--
+@isnad1 id=eq.0h5v.s7.6a245c9c41c3 from=translated src=- shape=a39bbf1e vocab=d5e1242a
+-/
 theorem eval_sigma₂_witness (P : FP n m) (z w : Word n) :
     Word.eval (witnessGenerator P z w) (sigma₂ n) = 1 := by
   rw [sigma₂, Word.eval_relation_eq_one_iff]
@@ -170,6 +200,9 @@ theorem eval_sigma₂_witness (P : FP n m) (z w : Word n) :
     Word.product, identifies_beta P z w, mul_assoc] using
       identifies_basis P z w (2 : Fin 5)
 
+/--
+@isnad1 id=eq.0h5v.s7.6440837e6221 from=translated src=- shape=13732482 vocab=b52a7369
+-/
 theorem eval_sigma₃_witness (P : FP n m) (z w : Word n) :
     Word.eval (witnessGenerator P z w) (sigma₃ w) = 1 := by
   rw [sigma₃, Word.eval_relation_eq_one_iff]
@@ -178,6 +211,9 @@ theorem eval_sigma₃_witness (P : FP n m) (z w : Word n) :
     eval_oldGenerators_witness, mul_assoc] using
       identifies_basis P z w (3 : Fin 5)
 
+/--
+@isnad1 id=eq.0h5v.s7.bc10542934c2 from=translated src=- shape=08b7e997 vocab=23f7b66f
+-/
 theorem eval_sigma₄_witness (P : FP n m) (z w : Word n) :
     Word.eval (witnessGenerator P z w) (sigma₄ z) = 1 := by
   rw [sigma₄, Word.eval_relation_eq_one_iff]
@@ -186,6 +222,9 @@ theorem eval_sigma₄_witness (P : FP n m) (z w : Word n) :
     eval_oldGenerators_witness, mul_assoc] using
       identifies_basis P z w (4 : Fin 5)
 
+/--
+@isnad1 id=eq.0h6v.s7.92eec5557108 from=translated src=- shape=be61e7bc vocab=da283c3d
+-/
 theorem transformed_relator_eq_one (P : FP n m) (z w : Word n)
     (i : Fin (m + 4)) :
     Word.eval (witnessGenerator P z w) ((transform P z w).relator i) = 1 := by
@@ -206,6 +245,9 @@ def witnessHom (P : FP n m) (z w : Word n) :
   (transform P z w).homOfRelators (witnessGenerator P z w)
     (transformed_relator_eq_one P z w)
 
+/--
+@isnad1 id=eq.0h6v.s9.234cc21e9aec from=translated src=- shape=42218e13 vocab=82be414e
+-/
 @[simp]
 theorem witnessHom_of (P : FP n m) (z w : Word n) (i : Fin (n + 3)) :
     witnessHom P z w (PresentedGroup.of i) = witnessGenerator P z w i :=
@@ -213,7 +255,9 @@ theorem witnessHom_of (P : FP n m) (z w : Word n) (i : Fin (n + 3)) :
 
 /--
 The amalgamated-product half of the Miller--Tancer construction, conditional only on
-the two separated-conjugates maps being injective.-/
+the two separated-conjugates maps being injective.
+@isnad1 id=not.3h5v.s8.77a583ef3320 from=translated src=- shape=fc612933 vocab=d06c14a0
+-/
 theorem transform_not_trivial_of_basis_injective
     (P : FP n m) (z w : Word n)
     (hleft : Function.Injective (leftMap P z w))

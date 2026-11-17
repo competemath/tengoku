@@ -46,46 +46,70 @@ def relation (lhs rhs : OldWord) : OldWord :=
 def commutator (u v : OldWord) : OldWord :=
   product [inverse u, inverse v, u, v]
 
+/--
+@isnad1 id=eq.0h2v.s3.ce171284a7a5 from=translated src=- shape=02ea90bc vocab=53e3c600
+-/
 @[simp]
 theorem evaluate_generator (sigma : OldGen → HostWord) (g : OldGen) :
     evaluate sigma (generator g) = sigma g := by
   simp [evaluate, generator, Word.substitute]
 
+/--
+@isnad1 id=eq.0h3v.s4.38cfc4e69ccb from=translated src=- shape=8b203f96 vocab=ea285b4a
+-/
 @[simp]
 theorem evaluate_mul (sigma : OldGen → HostWord) (u v : OldWord) :
     evaluate sigma (mul u v) =
       Word.mul (evaluate sigma u) (evaluate sigma v) := by
   simp [evaluate, mul]
 
+/--
+@isnad1 id=eq.0h2v.s4.97d114dccc50 from=translated src=- shape=b321c2a0 vocab=15e93cbf
+-/
 @[simp]
 theorem evaluate_inverse (sigma : OldGen → HostWord) (w : OldWord) :
     evaluate sigma (inverse w) = Word.inverse (evaluate sigma w) :=
   Word.substitute_invRev sigma w
 
+/--
+@isnad1 id=eq.0h2v.s4.08dcdf846e46 from=translated src=- shape=df17b36f vocab=b04b91ac
+-/
 @[simp]
 theorem evaluate_product (sigma : OldGen → HostWord) (ws : List OldWord) :
     evaluate sigma (product ws) =
       Word.product (ws.map (evaluate sigma)) :=
   Word.substitute_flatten sigma ws
 
+/--
+@isnad1 id=eq.0h3v.s4.31e6eeee5930 from=translated src=- shape=e2a6ed73 vocab=d3c0a47c
+-/
 @[simp]
 theorem evaluate_pow (sigma : OldGen → HostWord) (w : OldWord) (n : ℕ) :
     evaluate sigma (pow w n) = Word.pow (evaluate sigma w) n := by
   simpa only [evaluate, pow, Word.pow, Word.product, List.map_replicate] using
     Word.substitute_flatten sigma (List.replicate n w)
 
+/--
+@isnad1 id=eq.0h3v.s4.21a9bd0098f0 from=translated src=- shape=8b203f96 vocab=d843db7b
+-/
 @[simp]
 theorem evaluate_relation (sigma : OldGen → HostWord) (lhs rhs : OldWord) :
     evaluate sigma (relation lhs rhs) =
       Word.relation (evaluate sigma lhs) (evaluate sigma rhs) := by
   simp [relation, Word.relation]
 
+/--
+@isnad1 id=eq.0h3v.s4.48ce936069e3 from=translated src=- shape=8b203f96 vocab=d9bf17dc
+-/
 @[simp]
 theorem evaluate_commutator (sigma : OldGen → HostWord) (u v : OldWord) :
     evaluate sigma (commutator u v) =
       Word.commutator (evaluate sigma u) (evaluate sigma v) := by
   simp [commutator, Word.commutator, Word.product, Word.mul]
 
+/--
+@isnad1 id=eq.0h2v.s4.c1d9eb9b6244 from=translated src=- shape=7ab71ec3 vocab=d3fabcfd
+-/
 @[simp]
 theorem evaluate_positive (sigma : OldGen → HostWord) (w : List (Fin 2)) :
     evaluate sigma (positive w) =
@@ -202,7 +226,9 @@ def testWord (Q : List (Fin 2)) : HostWord :=
   let q := positiveWord Q
   Word.commutator (Word.product [Word.inverse q, tWord, q]) kWord
 
-/-- The syntactic map from a Thue input to the host test word is computable.-/
+/-- The syntactic map from a Thue input to the host test word is computable.
+@isnad1 id=computab.0h0v.s5.534843eb7c46 from=translated src=- shape=2a30f11b vocab=b4ecad15
+-/
 theorem testWord_computable : Computable testWord := by
   have hpositive : Primrec positiveWord := by
     apply Primrec.of_eq

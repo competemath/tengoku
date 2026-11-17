@@ -10,7 +10,9 @@ namespace Undecidability.MillerTancer.Compressed
 def family (P : FP n m) (k : Fin n) : ℕ → FP (n + 1) (m + 2) :=
   fun j => Compressed.transform P k (wordOfNat n j)
 
-/-- The compressed family is an effective Adian--Rabin family.-/
+/-- The compressed family is an effective Adian--Rabin family.
+@isnad1 id=isadianr.2h4v.s6.d3064cfe1d2d from=translated src=- shape=a60d3b6f vocab=2fa6b6f6
+-/
 theorem family_isAdianRabin (P : FP n m) (k : Fin n)
     (hP : ¬ ComputablePred P.wordProblem)
     (hk : P.NormallyGenerates (Word.generator k)) :

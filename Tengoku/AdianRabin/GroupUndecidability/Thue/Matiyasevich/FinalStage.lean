@@ -31,14 +31,23 @@ def rho₂Letter : A₂ → List (Fin 2) := ![
 def rho₂ (W : List A₂) : List (Fin 2) :=
   W.flatMap rho₂Letter
 
+/--
+@isnad1 id=eq.0h2v.s5.4207e5e0f7a8 from=translated src=- shape=be46c7cc vocab=2d2e26e0
+-/
 @[simp] theorem rho₂_cons (x : A₂) (W : List A₂) :
     rho₂ (x :: W) = rho₂Letter x ++ rho₂ W := by
   simp [rho₂]
 
+/--
+@isnad1 id=eq.0h2v.s6.dde0cc11ba1e from=translated src=- shape=a7e57a98 vocab=ffbd2947
+-/
 @[simp] theorem rho₂_append (X Y : List A₂) :
     rho₂ (X ++ Y) = rho₂ X ++ rho₂ Y := by
   simp [rho₂]
 
+/--
+@isnad1 id=computab.0h0v.s5.e9f8c3b0a34a from=translated src=- shape=7bb2d09b vocab=17eec35d
+-/
 theorem rho₂_computable : Computable rho₂ :=
   (Primrec.list_flatMap Primrec.id
     ((Primrec.dom_finite rho₂Letter).comp₂ Primrec₂.right)).to_comp
@@ -79,7 +88,9 @@ private theorem phi₂Aux_rho₂_reverse_append (W : List A₂)
         rw [phi₂Aux.eq_def]
         simp [e]
 
-/-- `φ₂` is a left inverse to the binary encoding, as required below (26).-/
+/-- `φ₂` is a left inverse to the binary encoding, as required below (26).
+@isnad1 id=eq.0h1v.s3.d1f6a02b4244 from=translated src=- shape=e9e6e124 vocab=3d2decb1
+-/
 @[simp] theorem phi₂_rho₂ (W : List A₂) : phi₂ (rho₂ W) = W := by
   have h := phi₂Aux_rho₂_reverse_append W []
   simp only [List.append_nil] at h
@@ -88,13 +99,18 @@ private theorem phi₂Aux_rho₂_reverse_append (W : List A₂)
 
 /-- Appending a complete encoded word cannot interact with the decoding of
 the prefix.  This is the algebraic form of the right-to-left parsing used on
-page 52.-/
+page 52.
+@isnad1 id=eq.0h2v.s6.4f2048300c57 from=translated src=- shape=d48e4ca5 vocab=965e8a7a
+-/
 theorem phi₂_append_rho₂ (X : List (Fin 2)) (W : List A₂) :
     phi₂ (X ++ rho₂ W) = phi₂ X ++ W := by
   have h := phi₂Aux_rho₂_reverse_append W X.reverse
   have h' := congrArg List.reverse h
   simpa [phi₂, List.reverse_append] using h'
 
+/--
+@isnad1 id=eq.0h3v.s6.245e1827ec40 from=translated src=- shape=30fc3095 vocab=965e8a7a
+-/
 theorem phi₂_context_rho₂ (l : List (Fin 2)) (X Y : List A₂) :
     phi₂ (l ++ rho₂ X ++ rho₂ Y) = phi₂ l ++ X ++ Y := by
   calc
@@ -193,7 +209,9 @@ private theorem phi₂Aux_reconstruct (Z : List (Fin 2)) :
             simpa only [List.cons_append] using congrArg ((1 : Fin 2) :: ·) h)
 
 /-- Equivalently, every binary word is either exactly an encoded word or is
-an encoded word preceded by the unmatched letter `d`.-/
+an encoded word preceded by the unmatched letter `d`.
+@isnad1 id=or.0h1v.s5.946aa4fd2983 from=translated src=- shape=73e42c91 vocab=18600aea
+-/
 theorem rho₂_phi₂_reconstruct (W : List (Fin 2)) :
     rho₂ (phi₂ W) = W ∨ (0 : Fin 2) :: rho₂ (phi₂ W) = W := by
   have h := phi₂Aux_reconstruct W.reverse
@@ -251,7 +269,9 @@ private theorem base_rule_step (U V : List (Fin 2)) (i : Fin 3)
 
 /-- Each of the five rules of `T₂` is simulated by the final three rules.
 The middle two housekeeping simulations use the first or second final rule in
-a one-letter right context.-/
+a one-letter right context.
+@isnad1 id=thueeq.0h3v.s5.0f8a0a6e2b8c from=translated src=- shape=ef206e2f vocab=fac22e64
+-/
 theorem rho₂_rule (L M : List A₂) (i : Fin 5) :
     ThueEq (baseSystem (rho₂ L) (rho₂ M))
       (rho₂ (stage₂F L i)) (rho₂ (stage₂E M i)) := by
@@ -272,7 +292,9 @@ theorem rho₂_rule (L M : List A₂) (i : Fin 5) :
       (by simpa [rho₂, rho₂Letter, stage₂F, stage₂E, baseF, baseE, a, b, e] using
         base_rule_step (rho₂ L) (rho₂ M) 2 [] [])
 
-/-- Forward half of equivalence (10) for the last stage.-/
+/-- Forward half of equivalence (10) for the last stage.
+@isnad1 id=thueeq.1h4v.s5.4462e291eb5a from=translated src=- shape=5b44f5f9 vocab=59729de4
+-/
 theorem rho₂_step (L M : List A₂) {X Y : List A₂}
     (h : ThueStep (stage₂System L M) X Y) :
     ThueEq (baseSystem (rho₂ L) (rho₂ M)) (rho₂ X) (rho₂ Y) := by
@@ -286,7 +308,9 @@ theorem rho₂_step (L M : List A₂) {X Y : List A₂}
   · simpa only [rho₂_append] using
       thueEq_context (rho₂ l) (rho₂ r) (thueEq_symm (rho₂_rule L M i))
 
-/-- Forward half of equivalence (10) for arbitrary derivations.-/
+/-- Forward half of equivalence (10) for arbitrary derivations.
+@isnad1 id=thueeq.1h4v.s5.a31231aa947b from=translated src=- shape=c9a3d3ab vocab=74ca4288
+-/
 theorem rho₂_forward (L M : List A₂) {X Y : List A₂}
     (h : ThueEq (stage₂System L M) X Y) :
     ThueEq (baseSystem (rho₂ L) (rho₂ M)) (rho₂ X) (rho₂ Y) := by
@@ -294,7 +318,9 @@ theorem rho₂_forward (L M : List A₂) {X Y : List A₂}
   | refl => exact Relation.ReflTransGen.refl
   | tail _ hbc ih => exact ih.trans (rho₂_step L M hbc)
 
-/-- Every nonempty `T₂` word has nonempty binary encoding.-/
+/-- Every nonempty `T₂` word has nonempty binary encoding.
+@isnad1 id=ne.1h1v.s4.69ea86981554 from=translated src=- shape=c4623330 vocab=38a85b21
+-/
 theorem rho₂_ne_nil {W : List A₂} (hW : W ≠ []) : rho₂ W ≠ [] := by
   cases W with
   | nil => contradiction
@@ -310,7 +336,9 @@ private theorem stage₂_rule_step (L M : List A₂) (i : Fin 5)
 
 /-- A use of either short final relation always decodes to one of the four
 housekeeping relations (20)--(23).  Which one is selected is determined by the
-single residual `d` at the beginning of the right context.-/
+single residual `d` at the beginning of the right context.
+@isnad1 id=thueeq.1h5v.s7.8929ae7da271 from=translated src=- shape=d47e5474 vocab=57f8248a
+-/
 theorem phi₂_short_rule (L M : List A₂) (i : Fin 3) (hi : i ≠ 2)
     (l r : List (Fin 2)) :
     ThueEq (stage₂System L M)
@@ -422,7 +450,9 @@ theorem phi₂_short_rule (L M : List A₂) (i : Fin 3) (hi : i ≠ 2)
 /-- The long final relation also decodes directly when the right context is
 aligned.  Thus the only unformalized case in the last-stage converse is the
 long relation together with the residual alternative
-`0 :: rho₂ (phi₂ r) = r`.-/
+`0 :: rho₂ (phi₂ r) = r`.
+@isnad1 id=thueeq.1h4v.s7.50d2b2ad2167 from=translated src=- shape=6ca5af9b vocab=57f8248a
+-/
 theorem phi₂_long_rule_aligned (L M : List A₂)
     (l r : List (Fin 2)) (hr : rho₂ (phi₂ r) = r) :
     ThueEq (stage₂System L M)
@@ -445,6 +475,9 @@ def LongRuleAlignedFrom (L M X : List A₂) : Prop :=
       (W = l ++ rho₂ L ++ r ∨ W = l ++ rho₂ M ++ r) →
       rho₂ (phi₂ r) = r
 
+/--
+@isnad1 id=thueeq.2h4v.s7.812981d52d59 from=translated src=- shape=69900ade vocab=804bb7f0
+-/
 theorem phi₂_step_of_long_aligned (L M : List A₂)
     {X Y : List (Fin 2)}
     (haligned : ∀ l r,
@@ -477,7 +510,9 @@ theorem phi₂_step_of_long_aligned (L M : List A₂)
 
 /-- Conditional converse for the final stage.  The rewriting and decoder
 bookkeeping reduce precisely to `LongRuleAlignedFrom`, supplied by the
-`e`-count and priority-normal-form invariants of Section 2.4.-/
+`e`-count and priority-normal-form invariants of Section 2.4.
+@isnad1 id=thueeq.2h4v.s5.6b07c4c81e8f from=translated src=- shape=f6c7421c vocab=354dc8a9
+-/
 theorem rho₂_reflect_of_longRuleAligned (L M X Y : List A₂)
     (hsafe : LongRuleAlignedFrom L M X)
     (h : ThueEq (baseSystem (rho₂ L) (rho₂ M)) (rho₂ X) (rho₂ Y)) :
@@ -495,6 +530,9 @@ theorem rho₂_reflect_of_longRuleAligned (L M X Y : List A₂)
           (fun l r hocc => hsafe _ hab l r hocc) hbc)
   simpa using aux h
 
+/--
+@isnad1 id=iff.1h4v.s5.1623ac859a24 from=translated src=- shape=e66de3c2 vocab=354dc8a9
+-/
 theorem rho₂_iff_of_longRuleAligned (L M X : List A₂)
     (hsafe : LongRuleAlignedFrom L M X) (Y : List A₂) :
     ThueEq (stage₂System L M) X Y ↔

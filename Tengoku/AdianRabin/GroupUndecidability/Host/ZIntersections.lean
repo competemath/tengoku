@@ -50,12 +50,18 @@ def Kc : Subgroup (Gamma datum) :=
 def CKInGamma : Subgroup (Gamma datum) :=
   generatedWith (CInGamma datum) (k datum)
 
+/--
+@isnad1 id=mem.0h1v.s11.fa7d574a2029 from=translated src=- shape=58e3eb1f vocab=9afd12da
+-/
 theorem c_mem_CInGamma : HostYStage.c datum ∈ CInGamma datum := by
   refine ⟨toTStage datum (FreeInput datum)
       (BorisovCStage.c datum (FreeInput datum)), ?_, rfl⟩
   exact ⟨BorisovCStage.c datum (FreeInput datum),
     Subgroup.subset_closure (by rfl), rfl⟩
 
+/--
+@isnad1 id=mem.0h1v.s11.f9c474ad8880 from=translated src=- shape=58e3eb1f vocab=54bebaa3
+-/
 theorem c_mem_CTInGamma : HostYStage.c datum ∈ CTInGamma datum := by
   refine ⟨toTStage datum (FreeInput datum)
       (BorisovCStage.c datum (FreeInput datum)), ?_, rfl⟩
@@ -64,25 +70,40 @@ theorem c_mem_CTInGamma : HostYStage.c datum ∈ CTInGamma datum := by
   exact ⟨BorisovCStage.c datum (FreeInput datum),
     Subgroup.subset_closure (by rfl), rfl⟩
 
+/--
+@isnad1 id=mem.0h1v.s11.acd7c9a24c9f from=translated src=- shape=58e3eb1f vocab=74a56a37
+-/
 theorem t_mem_CTInGamma : t datum ∈ CTInGamma datum := by
   refine ⟨tLetter datum (FreeInput datum), ?_, rfl⟩
   apply Subgroup.subset_closure
   right
   rfl
 
+/--
+@isnad1 id=le.0h1v.s12.f5c08f112274 from=translated src=- shape=935d3ac8 vocab=78190640
+-/
 theorem CTInGamma_le_Kc : CTInGamma datum ≤ Kc datum := by
   intro x hx
   apply Subgroup.subset_closure
   exact Or.inl hx
 
+/--
+@isnad1 id=mem.0h1v.s11.a4ec556e8fa6 from=translated src=- shape=58e3eb1f vocab=9046bd9a
+-/
 theorem c_mem_CKInGamma : HostYStage.c datum ∈ CKInGamma datum := by
   apply Subgroup.subset_closure
   exact Or.inl (c_mem_CInGamma datum)
 
+/--
+@isnad1 id=mem.0h1v.s11.864c33b1709a from=translated src=- shape=58e3eb1f vocab=8f06ce1c
+-/
 theorem k_mem_CKInGamma : k datum ∈ CKInGamma datum := by
   apply Subgroup.subset_closure
   exact Or.inr rfl
 
+/--
+@isnad1 id=le.0h1v.s12.fe7c957e9179 from=translated src=- shape=935d3ac8 vocab=9f489faf
+-/
 theorem CKInGamma_le_Kc : CKInGamma datum ≤ Kc datum := by
   rw [CKInGamma, generatedWith, Subgroup.closure_le]
   intro x hx
@@ -169,6 +190,9 @@ private theorem CT_maps_into_HMinus :
     subst x
     simpa [HostYStage.t, modelT] using t_mem_HMinus datum
 
+/--
+@isnad1 id=le.0h1v.s12.1a18e88e83b9 from=translated src=- shape=935d3ac8 vocab=f7cb5ac3
+-/
 theorem CTInGamma_le_HMinus : CTInGamma datum ≤ HMinus datum := by
   rw [CTInGamma, Subgroup.map_le_iff_le_comap]
   exact CT_maps_into_HMinus datum
@@ -191,7 +215,9 @@ private theorem HMinus_le_finalRange :
         (of3 datum (FreeInput datum) s1_3), rfl⟩
 
 /-- The first equality of Proposition 3.8 of the paper:
-`K_c ∩ H_y^- = ⟨t,c⟩`.-/
+`K_c ∩ H_y^- = ⟨t,c⟩`.
+@isnad1 id=eq.0h1v.s11.948d2fd07eb9 from=translated src=- shape=efa682fd vocab=72f7f693
+-/
 theorem Kc_inf_HMinus :
     Kc datum ⊓ HMinus datum = CTInGamma datum := by
   have hrestricted :
@@ -295,7 +321,9 @@ private theorem C0_le_CE :
   simp
 
 /-- The second equality of Proposition 3.8 of the paper:
-`K_c ∩ H_y^+ = ⟨c,k⟩`.-/
+`K_c ∩ H_y^+ = ⟨c,k⟩`.
+@isnad1 id=eq.0h1v.s11.a87ce9d60122 from=translated src=- shape=efa682fd vocab=bda991bd
+-/
 theorem Kc_inf_HPlus :
     Kc datum ⊓ HPlus datum = CKInGamma datum := by
   have hdouble :
@@ -340,7 +368,9 @@ def CKInHPlus : Subgroup (HPlus datum) :=
   (CKInGamma datum).comap (HPlus datum).subtype
 
 /-- The isomorphism following Lemma 3.1 carries `⟨t,c⟩` exactly onto
-`⟨k,c⟩`.-/
+`⟨k,c⟩`.
+@isnad1 id=iff.0h3v.s15.c0461e7b4709 from=translated src=- shape=15185f6a vocab=26a55584
+-/
 theorem theta_mem_CT_iff_CK (theta : ThetaData datum) (a : HMinus datum) :
     (a : Gamma datum) ∈ CTInGamma datum ↔
       ((theta.equiv a : HPlus datum) : Gamma datum) ∈ CKInGamma datum := by
@@ -402,7 +432,9 @@ theorem theta_mem_CT_iff_CK (theta : ThetaData datum) (a : HMinus datum) :
 
 /-- Membership in `K_c` is preserved by the first-stage attaching
 isomorphism.  This is the compatibility hypothesis needed to restrict the
-`y`-HNN extension to `K_c`.-/
+`y`-HNN extension to `K_c`.
+@isnad1 id=iff.0h3v.s15.9c2f11a096c2 from=translated src=- shape=a7395d44 vocab=5ee0caab
+-/
 theorem theta_mem_Kc_iff (theta : ThetaData datum) (a : HMinus datum) :
     (a : Gamma datum) ∈ Kc datum ↔
       ((theta.equiv a : HPlus datum) : Gamma datum) ∈ Kc datum := by

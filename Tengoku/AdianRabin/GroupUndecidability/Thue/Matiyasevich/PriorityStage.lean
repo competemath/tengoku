@@ -28,9 +28,15 @@ def exponent (r : ℕ) : ℕ := Nat.clog 2 r
 /-- The number `t` of rows used in the transposed long relation.-/
 def powerCount (r : ℕ) : ℕ := 2 ^ exponent r
 
+/--
+@isnad1 id=le.0h1v.s3.c8fcd9e159d2 from=translated src=- shape=e63234f4 vocab=284cdd1b
+-/
 theorem relationCount_le_powerCount (r : ℕ) : r ≤ powerCount r :=
   (Nat.clog_le_iff_le_pow (b := 2) (by omega)).mp le_rfl
 
+/--
+@isnad1 id=lt.0h1v.s3.1fd753840937 from=translated src=- shape=8a62b088 vocab=976a0861
+-/
 theorem powerCount_pos (r : ℕ) : 0 < powerCount r :=
   pow_pos (by omega) _
 
@@ -58,15 +64,24 @@ def transpose {t : ℕ} (width : ℕ)
     (rows : Fin t → List (Fin 2)) : List (Fin 2) :=
   columnsFrom rows 0 width
 
+/--
+@isnad1 id=eq.0h4v.s6.4f478cdebd8e from=translated src=- shape=05d0fcb0 vocab=b776a806
+-/
 @[simp] theorem columnsFrom_succ {t : ℕ} (rows : Fin t → List (Fin 2))
     (j k : ℕ) :
     columnsFrom rows j (k + 1) =
       column rows j ++ columnsFrom rows (j + 1) k := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.bb0fa491650b from=translated src=- shape=9a3f3c1c vocab=d81b9260
+-/
 theorem column_length {t : ℕ} (rows : Fin t → List (Fin 2)) (j : ℕ) :
     (column rows j).length = t := by
   simp [column]
 
+/--
+@isnad1 id=eq.0h4v.s5.aeb802a0b7f4 from=translated src=- shape=98b286d9 vocab=fab07cf3
+-/
 theorem columnsFrom_length {t width : ℕ}
     (rows : Fin t → List (Fin 2)) (start : ℕ) :
     (columnsFrom rows start width).length = width * t := by
@@ -75,11 +90,17 @@ theorem columnsFrom_length {t width : ℕ}
   | succ width ih =>
       simp [columnsFrom, column_length, ih, Nat.succ_mul, Nat.add_comm]
 
+/--
+@isnad1 id=eq.0h3v.s5.4b3fdc6accb7 from=translated src=- shape=c066949e vocab=8ffc85b1
+-/
 theorem transpose_length {t width : ℕ}
     (rows : Fin t → List (Fin 2)) :
     (transpose width rows).length = width * t :=
   columnsFrom_length rows 0
 
+/--
+@isnad1 id=eq.1h2v.s7.0e2d6150d1cd from=translated src=- shape=24d840b9 vocab=c80f1416
+-/
 theorem column_zero_of_starts_aa {t : ℕ}
     (rows : Fin t → List (Fin 2))
     (hrows : ∀ i, ∃ tail, rows i = (0 : Fin 2) :: 0 :: tail) :
@@ -92,6 +113,9 @@ theorem column_zero_of_starts_aa {t : ℕ}
     simp [hi]
   rw [hfun, List.ofFn_const]
 
+/--
+@isnad1 id=eq.1h2v.s7.5d4a2adccb83 from=translated src=- shape=24d840b9 vocab=c80f1416
+-/
 theorem column_one_of_starts_aa {t : ℕ}
     (rows : Fin t → List (Fin 2))
     (hrows : ∀ i, ∃ tail, rows i = (0 : Fin 2) :: 0 :: tail) :
@@ -104,7 +128,9 @@ theorem column_one_of_starts_aa {t : ℕ}
     simp [hi]
   rw [hfun, List.ofFn_const]
 
-/-- The long word begins with `2t` copies of `a`, the fact used on page 50.-/
+/-- The long word begins with `2t` copies of `a`, the fact used on page 50.
+@isnad1 id=ex.2h3v.s7.5662fd9449c1 from=translated src=- shape=69a7b619 vocab=846f11c1
+-/
 theorem transpose_starts_two_columns {t width : ℕ}
     (rows : Fin t → List (Fin 2)) (hwidth : 2 ≤ width)
     (hrows : ∀ i, ∃ tail, rows i = (0 : Fin 2) :: 0 :: tail) :
@@ -140,34 +166,58 @@ def firstNormal : List A₂ → List A₂
       if x = e then pushE (firstNormal rest)
       else x :: firstNormal rest
 
+/--
+@isnad1 id=eq.0h1v.s4.88c98c8c66ce from=translated src=- shape=7e140789 vocab=b725800e
+-/
 @[simp] theorem firstNormal_a_cons (W : List A₂) :
     firstNormal (a :: W) = a :: firstNormal W := by
   simp [firstNormal, a, e]
 
+/--
+@isnad1 id=eq.0h1v.s4.0d3830c50eb8 from=translated src=- shape=7e140789 vocab=f126a468
+-/
 @[simp] theorem firstNormal_b_cons (W : List A₂) :
     firstNormal (b :: W) = b :: firstNormal W := by
   simp [firstNormal, b, e]
 
+/--
+@isnad1 id=eq.0h1v.s3.e9051328d937 from=translated src=- shape=26286207 vocab=5a352115
+-/
 @[simp] theorem firstNormal_e_cons (W : List A₂) :
     firstNormal (e :: W) = pushE (firstNormal W) := by
   simp [firstNormal]
 
+/--
+@isnad1 id=eq.0h1v.s4.c6d8f849de9f from=translated src=- shape=d001ed8a vocab=41f9396f
+-/
 @[simp] theorem pushE_aa (W : List A₂) :
     pushE (a :: a :: W) = a :: pushE W := by
   simp [pushE, a, e]
 
+/--
+@isnad1 id=eq.0h1v.s4.539679f82a0f from=translated src=- shape=e513e15c vocab=e88df3e6
+-/
 @[simp] theorem pushE_ab (W : List A₂) :
     pushE (a :: b :: W) = b :: pushE W := by
   simp [pushE, a, b, e]
 
+/--
+@isnad1 id=eq.0h1v.s4.3dceb9521729 from=translated src=- shape=e513e15c vocab=e88df3e6
+-/
 @[simp] theorem pushE_ba (W : List A₂) :
     pushE (b :: a :: W) = a :: pushE W := by
   simp [pushE, a, b, e]
 
+/--
+@isnad1 id=eq.0h1v.s4.b0d9edb25092 from=translated src=- shape=d001ed8a vocab=9d93a046
+-/
 @[simp] theorem pushE_bb (W : List A₂) :
     pushE (b :: b :: W) = b :: pushE W := by
   simp [pushE, b, e]
 
+/--
+@isnad1 id=eq.1h3v.s5.047bc6c71970 from=translated src=- shape=422458b8 vocab=cb78b73d
+-/
 theorem firstNormal_prefix_congr (l : List A₂) {X Y : List A₂}
     (h : firstNormal X = firstNormal Y) :
     firstNormal (l ++ X) = firstNormal (l ++ Y) := by
@@ -189,7 +239,9 @@ def housekeepingE : Fin 4 → List A₂ := ![
 ]
 
 /-- One use of a housekeeping rule in any two-sided context preserves the
-first priority normal form.-/
+first priority normal form.
+@isnad1 id=eq.0h3v.s6.3d13d1c8400a from=translated src=- shape=9e3e91c0 vocab=c6d53dcd
+-/
 theorem firstNormal_housekeeping
     (l r : List A₂) (i : Fin 4) :
     firstNormal (l ++ housekeepingF i ++ r) =
@@ -210,16 +262,24 @@ private theorem firstStep_rule (i : Fin 4) (l r : List A₂) :
     FirstStep (l ++ housekeepingF i ++ r) (l ++ housekeepingE i ++ r) :=
   ⟨l, r, i, rfl, rfl⟩
 
+/--
+@isnad1 id=firstste.1h3v.s5.b8309f6c90f3 from=translated src=- shape=a94430c7 vocab=0a17d2a4
+-/
 theorem firstStep_prefix (l : List A₂) {X Y : List A₂}
     (h : FirstStep X Y) : FirstStep (l ++ X) (l ++ Y) := by
   rcases h with ⟨l', r, i, rfl, rfl⟩
   refine ⟨l ++ l', r, i, ?_, ?_⟩ <;> simp [List.append_assoc]
 
+/--
+@isnad1 id=firsteq.1h3v.s5.1d95f26bf6dc from=translated src=- shape=a94430c7 vocab=795cf9cd
+-/
 theorem firstEq_prefix (l : List A₂) {X Y : List A₂}
     (h : FirstEq X Y) : FirstEq (l ++ X) (l ++ Y) :=
   h.lift (l ++ ·) (fun _ _ hstep => firstStep_prefix l hstep)
 
-/-- Greedily moving one `e` is itself a directed derivation.-/
+/-- Greedily moving one `e` is itself a directed derivation.
+@isnad1 id=firsteq.0h1v.s3.b7255efb2b77 from=translated src=- shape=d213e086 vocab=2bb97bc0
+-/
 theorem pushE_reachable (W : List A₂) : FirstEq (e :: W) (pushE W) := by
   induction W using List.twoStepInduction with
   | nil => exact Relation.ReflTransGen.refl
@@ -240,7 +300,9 @@ theorem pushE_reachable (W : List A₂) : FirstEq (e :: W) (pushE W) := by
       · exact Relation.ReflTransGen.refl
       · exact Relation.ReflTransGen.refl
 
-/-- Every word reduces to the canonical value computed by `firstNormal`.-/
+/-- Every word reduces to the canonical value computed by `firstNormal`.
+@isnad1 id=firsteq.0h1v.s2.4968dcfbb741 from=translated src=- shape=802d6110 vocab=bed6a7e1
+-/
 theorem firstNormal_reachable (W : List A₂) : FirstEq W (firstNormal W) := by
   induction W with
   | nil => exact Relation.ReflTransGen.refl
@@ -256,31 +318,52 @@ theorem firstNormal_reachable (W : List A₂) : FirstEq W (firstNormal W) := by
 
 def eCount (W : List A₂) : ℕ := W.count e
 
+/--
+@isnad1 id=eq.0h0v.s3.f52bd5deb0c9 from=translated src=- shape=35225b15 vocab=df661042
+-/
 @[simp] theorem eCount_nil : eCount [] = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.fb1e75799e0a from=translated src=- shape=31b9e54f vocab=aefa2c54
+-/
 @[simp] theorem eCount_append (X Y : List A₂) :
     eCount (X ++ Y) = eCount X + eCount Y := by
   simp [eCount]
 
+/--
+@isnad1 id=eq.0h1v.s3.2a6b0ec84fb4 from=translated src=- shape=43b70bd7 vocab=94e8966f
+-/
 @[simp] theorem eCount_replicate_a (n : ℕ) :
     eCount (List.replicate n a) = 0 := by
   unfold eCount
   rw [List.count_eq_zero]
   simp [a, e]
 
+/--
+@isnad1 id=eq.0h0v.s4.c255d97617ec from=translated src=- shape=8bd47bdb vocab=67590ef9
+-/
 @[simp] theorem eCount_ae : eCount [a, e] = 1 := by decide
 
+/--
+@isnad1 id=eq.1h2v.s4.367baf39e436 from=translated src=- shape=930726e8 vocab=72a47615
+-/
 theorem firstStep_eCount {X Y : List A₂} (h : FirstStep X Y) :
     eCount X = eCount Y := by
   rcases h with ⟨l, r, i, rfl, rfl⟩
   fin_cases i <;> simp [housekeepingF, housekeepingE, eCount, a, b, e]
 
+/--
+@isnad1 id=eq.1h2v.s4.522ae2239990 from=translated src=- shape=930726e8 vocab=e236104c
+-/
 theorem firstEq_eCount {X Y : List A₂} (h : FirstEq X Y) :
     eCount X = eCount Y := by
   induction h with
   | refl => rfl
   | tail _ hstep ih => exact ih.trans (firstStep_eCount hstep)
 
+/--
+@isnad1 id=eq.0h1v.s3.50d16119a881 from=translated src=- shape=b59b98b7 vocab=8567eae2
+-/
 theorem firstNormal_eCount (W : List A₂) :
     eCount (firstNormal W) = eCount W :=
   (firstEq_eCount (firstNormal_reachable W)).symm
@@ -290,24 +373,39 @@ def liftBit (x : Fin 2) : A₂ := Fin.castLE (by omega) x
 
 def liftBinary (W : List (Fin 2)) : List A₂ := W.map liftBit
 
+/--
+@isnad1 id=eq.0h2v.s5.48351f469192 from=translated src=- shape=95c3e8a8 vocab=7ee7918d
+-/
 @[simp] theorem liftBinary_cons (x : Fin 2) (W : List (Fin 2)) :
     liftBinary (x :: W) = liftBit x :: liftBinary W := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.83fa0db4638d from=translated src=- shape=3d0fbb06 vocab=4fb73f8e
+-/
 @[simp] theorem liftBinary_append (X Y : List (Fin 2)) :
     liftBinary (X ++ Y) = liftBinary X ++ liftBinary Y := by
   simp [liftBinary]
 
+/--
+@isnad1 id=eq.0h1v.s4.16a6c8731377 from=translated src=- shape=dc1acdc6 vocab=178bd818
+-/
 @[simp] theorem eCount_liftBinary (W : List (Fin 2)) :
     eCount (liftBinary W) = 0 := by
   unfold eCount
   rw [List.count_eq_zero]
   simp [liftBinary, liftBit, e]
 
+/--
+@isnad1 id=injectiv.0h0v.s3.a84293dbe0ec from=translated src=- shape=bfe16b09 vocab=e177e3bc
+-/
 theorem liftBit_injective : Function.Injective liftBit := by
   intro x y h
   apply Fin.ext
   exact congrArg (fun z : A₂ => z.val) h
 
+/--
+@isnad1 id=injectiv.0h0v.s3.32b3fcff90e0 from=translated src=- shape=4b0fdcd1 vocab=0464c442
+-/
 theorem liftBinary_injective : Function.Injective liftBinary :=
   liftBit_injective.list_map
 
@@ -315,6 +413,9 @@ theorem liftBinary_injective : Function.Injective liftBinary :=
 def encode (u : ℕ) (W : List (Fin 2)) : List A₂ :=
   liftBinary W ++ [a] ++ List.replicate u e
 
+/--
+@isnad1 id=computab.0h1v.s5.d1f3e4c1643c from=translated src=- shape=08ae0ce5 vocab=d2698c24
+-/
 theorem encode_computable (u : ℕ) : Computable (encode u) := by
   have hlift : Primrec liftBinary :=
     Primrec.list_map Primrec.id
@@ -324,9 +425,15 @@ theorem encode_computable (u : ℕ) : Computable (encode u) := by
   exact (Primrec.list_append.comp hwithA
     (Primrec.const (List.replicate u e))).to_comp
 
+/--
+@isnad1 id=ne.0h2v.s4.d43c677e2eb6 from=translated src=- shape=58e8495d vocab=e32ff5fa
+-/
 theorem encode_ne_nil (u : ℕ) (W : List (Fin 2)) : encode u W ≠ [] := by
   simp [encode]
 
+/--
+@isnad1 id=eq.0h2v.s4.fdd7b69c8842 from=translated src=- shape=306e8207 vocab=d3b6b511
+-/
 @[simp] theorem encode_eCount (u : ℕ) (W : List (Fin 2)) :
     eCount (encode u W) = u := by
   rw [show encode u W =
@@ -334,6 +441,9 @@ theorem encode_ne_nil (u : ℕ) (W : List (Fin 2)) : encode u W ≠ [] := by
   rw [eCount_append, eCount_liftBinary]
   simp [eCount, a, e]
 
+/--
+@isnad1 id=eq.0h1v.s4.6e65821eadc2 from=translated src=- shape=bd6b4149 vocab=d51958f3
+-/
 @[simp] theorem pushE_replicate_e (u : ℕ) :
     pushE (List.replicate u e) = e :: List.replicate u e := by
   cases u with
@@ -345,6 +455,9 @@ theorem encode_ne_nil (u : ℕ) (W : List (Fin 2)) : encode u W ≠ [] := by
           rw [List.replicate_succ, List.replicate_succ]
           simp [pushE, e]
 
+/--
+@isnad1 id=eq.0h1v.s3.75727a1ae9a0 from=translated src=- shape=93d34c32 vocab=8e5671cd
+-/
 theorem firstNormal_replicate_e (u : ℕ) :
     firstNormal (List.replicate u e) = List.replicate u e := by
   induction u with
@@ -353,6 +466,9 @@ theorem firstNormal_replicate_e (u : ℕ) :
       rw [List.replicate_succ, firstNormal_e_cons, ih]
       exact pushE_replicate_e u
 
+/--
+@isnad1 id=eq.0h2v.s5.3657127f82e5 from=translated src=- shape=915c267a vocab=60c3c1b5
+-/
 theorem firstNormal_liftBinary_append (W : List (Fin 2)) (T : List A₂) :
     firstNormal (liftBinary W ++ T) =
       liftBinary W ++ firstNormal T := by
@@ -368,6 +484,9 @@ theorem firstNormal_liftBinary_append (W : List (Fin 2)) (T : List A₂) :
           b :: (liftBinary W ++ firstNormal T)
         rw [firstNormal_b_cons, ih]
 
+/--
+@isnad1 id=eq.0h2v.s4.d118d9771365 from=translated src=- shape=c33e3e61 vocab=c991ea5a
+-/
 @[simp] theorem firstNormal_encode (u : ℕ) (W : List (Fin 2)) :
     firstNormal (encode u W) = encode u W := by
   unfold encode
@@ -376,6 +495,9 @@ theorem firstNormal_liftBinary_append (W : List (Fin 2)) (T : List A₂) :
   simp only [List.singleton_append, firstNormal_a_cons,
     firstNormal_replicate_e]
 
+/--
+@isnad1 id=eq.1h3v.s4.7e2470745c43 from=translated src=- shape=1dcdb26d vocab=14504d49
+-/
 theorem stage₂_side_eCount (L M : List A₂)
     (hLM : eCount L = eCount M) (i : Fin 5) :
     eCount (stage₂F L i) = eCount (stage₂E M i) := by
@@ -391,6 +513,9 @@ theorem stage₂_side_eCount (L M : List A₂)
   · change eCount L = eCount M
     exact hLM
 
+/--
+@isnad1 id=eq.2h4v.s5.71edc67c17ac from=translated src=- shape=7dc32450 vocab=279c28b4
+-/
 theorem stage₂Step_eCount (L M : List A₂)
     (hLM : eCount L = eCount M) {X Y : List A₂}
     (h : ThueStep (stage₂System L M) X Y) : eCount X = eCount Y := by
@@ -405,6 +530,9 @@ theorem stage₂Step_eCount (L M : List A₂)
   · simpa [eCount, Nat.add_assoc] using
       (congrArg (fun n => eCount l + n + eCount r) hsides).symm
 
+/--
+@isnad1 id=eq.2h4v.s5.dcafa288a0e2 from=translated src=- shape=7dc32450 vocab=1770c46b
+-/
 theorem stage₂Eq_eCount (L M : List A₂)
     (hLM : eCount L = eCount M) {X Y : List A₂}
     (h : ThueEq (stage₂System L M) X Y) : eCount X = eCount Y := by
@@ -420,12 +548,18 @@ def NoAAA (W : List A₂) : Prop :=
 def HasARun (k : ℕ) (W : List A₂) : Prop :=
   ∃ l r, W = l ++ List.replicate k a ++ r
 
+/--
+@isnad1 id=hasarun.1h3v.s4.408a01232eea from=translated src=- shape=cb36b207 vocab=9dba44f2
+-/
 theorem hasARun_prefix (p : List A₂) {k : ℕ} {W : List A₂}
     (h : HasARun k W) : HasARun k (p ++ W) := by
   obtain ⟨l, r, rfl⟩ := h
   refine ⟨p ++ l, r, ?_⟩
   simp only [List.append_assoc]
 
+/--
+@isnad1 id=hasarun.2h3v.s4.d4479a245944 from=translated src=- shape=03c0ee99 vocab=ec309abc
+-/
 theorem hasARun_of_le {m n : ℕ} {W : List A₂} (hmn : m ≤ n)
     (h : HasARun n W) : HasARun m W := by
   obtain ⟨l, r, rfl⟩ := h
@@ -438,7 +572,9 @@ theorem hasARun_of_le {m n : ℕ} {W : List A₂} (hmn : m ≤ n)
         (List.replicate (n - m) a ++ r) := by
           simp only [List.replicate_add, List.append_assoc]
 
-/-- On a binary run, `pushE` keeps every second letter.-/
+/-- On a binary run, `pushE` keeps every second letter.
+@isnad1 id=eq.0h2v.s5.030f5d085d7e from=translated src=- shape=922b8f54 vocab=6038e0de
+-/
 theorem pushE_replicate_even (k : ℕ) (W : List A₂) :
     pushE (List.replicate (2 * k) a ++ W) =
       List.replicate k a ++ pushE W := by
@@ -452,7 +588,9 @@ theorem pushE_replicate_even (k : ℕ) (W : List A₂) :
       rw [pushE_aa, ih]
 
 /-- A possible one-letter parity offset before an even run does not affect
-the sharp halving estimate.-/
+the sharp halving estimate.
+@isnad1 id=hasarun.0h3v.s5.983eebd450c3 from=translated src=- shape=1d294d1e vocab=ea9c6323
+-/
 theorem pushE_singleton_hasARun (x : A₂) (k : ℕ) (W : List A₂) :
     HasARun k (pushE (x :: List.replicate (2 * k) a ++ W)) := by
   cases k with
@@ -492,7 +630,9 @@ theorem pushE_singleton_hasARun (x : A₂) (k : ℕ) (W : List A₂) :
         simp only [List.cons_append]
 
 /-- The sharp run estimate for one first-priority normalization step: one
-`e` can at most halve the length of an `a`-run.-/
+`e` can at most halve the length of an `a`-run.
+@isnad1 id=hasarun.1h2v.s4.33350951268f from=translated src=- shape=6964c726 vocab=7d8c2a3f
+-/
 theorem pushE_hasARun_half {k : ℕ} {W : List A₂}
     (h : HasARun (2 * k) W) : HasARun k (pushE W) := by
   obtain ⟨l, r, rfl⟩ := h
@@ -521,6 +661,9 @@ theorem pushE_hasARun_half {k : ℕ} {W : List A₂}
         apply hasARun_of_le (by omega : k ≤ 2 * k)
         exact ⟨[e, x, y] ++ l, r, by simp [List.append_assoc]⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.c12eeeb8ff5e from=translated src=- shape=fc42b7bf vocab=f9464cc7
+-/
 theorem firstNormal_replicate_a_append (n : ℕ) (W : List A₂) :
     firstNormal (List.replicate n a ++ W) =
       List.replicate n a ++ firstNormal W := by
@@ -531,7 +674,9 @@ theorem firstNormal_replicate_a_append (n : ℕ) (W : List A₂) :
       simp only [List.cons_append, firstNormal_a_cons, ih]
 
 /-- After normalizing a prefix `X`, every one of its `e` letters can have
-halved a following run at most once.-/
+halved a following run at most once.
+@isnad1 id=hasarun.0h3v.s6.6f0311948ad0 from=translated src=- shape=32da0ce4 vocab=a5661a5e
+-/
 theorem firstNormal_hasARun_scaled (X Y : List A₂) (k : ℕ) :
     HasARun k (firstNormal
       (X ++ List.replicate (2 ^ eCount X * k) a ++ Y)) := by
@@ -551,6 +696,9 @@ theorem firstNormal_hasARun_scaled (X Y : List A₂) (k : ℕ) :
       · have hi := hasARun_prefix [x] (ih (k := k))
         simpa [eCount, hx, firstNormal] using hi
 
+/--
+@isnad1 id=not.1h1v.s3.65844698e353 from=translated src=- shape=e1534e72 vocab=109f7f9d
+-/
 theorem noAAA_not_hasARun_three {W : List A₂} (h : NoAAA W) :
     ¬ HasARun 3 W := by
   simpa [NoAAA, HasARun] using h
@@ -565,7 +713,9 @@ def LongRunRequirement (u run : ℕ) : Prop :=
 
 /-- The quantitative assertion used on page 50.  The transposed long side
 starts with `2t = 2 * 2^u` copies of `a`; if fewer than `u` priority letters
-occur to its left, at least four consecutive `a`'s survive normalization.-/
+occur to its left, at least four consecutive `a`'s survive normalization.
+@isnad1 id=longrunr.0h1v.s5.1a34c65052c0 from=translated src=- shape=6d03ee5b vocab=0f8ec1df
+-/
 theorem longRunRequirement_two_power (u : ℕ) :
     LongRunRequirement u (2 * 2 ^ u) := by
   intro X Y hnormal
@@ -610,7 +760,9 @@ of `a` and a final `b`.-/
 def LongShape (run : ℕ) (W : List A₂) : Prop :=
   ∃ middle, W = List.replicate run a ++ middle ++ [b]
 
-/-- Decode a long side with a residual `d` inside arbitrary contexts.-/
+/-- Decode a long side with a residual `d` inside arbitrary contexts.
+@isnad1 id=ex.1h4v.s7.fc167d378196 from=translated src=- shape=683ea014 vocab=a923da12
+-/
 theorem phi₂_residual_long_context {run : ℕ} {W : List A₂}
     (hshape : LongShape run W) (l : List (Fin 2)) (R : List A₂) :
     ∃ middle,
@@ -641,7 +793,9 @@ theorem phi₂_residual_long_context {run : ℕ} {W : List A₂}
 the long final relation cannot be followed by the residual unmatched `d`.
 This is the counting core of the converse `T₃ → T₂`: the initial run of
 `a`'s forces all `u` priority letters into the left context, while decoding
-the residual `d` creates one additional `e`.-/
+the residual `d` creates one additional `e`.
+@isnad1 id=eq.8h8v.s8.26c265b1403c from=translated src=- shape=519f007e vocab=0444b927
+-/
 theorem long_aligned_of_decoded_reachable {u run : ℕ}
     {L M X : List A₂} {W : List (Fin 2)}
     (hLM : eCount L = eCount M)
@@ -694,7 +848,9 @@ theorem long_aligned_of_decoded_reachable {u run : ℕ}
 alignment invariant required for its next long-rule step.  The simultaneous
 induction avoids any circularity: alignment at the current word decodes the
 next step, and the decoded prefix derivation re-establishes alignment at the
-new word by `long_aligned_of_decoded_reachable`.-/
+new word by `long_aligned_of_decoded_reachable`.
+@isnad1 id=and.7h6v.s8.41f9781370ac from=translated src=- shape=36fab73c vocab=d5901f23
+-/
 theorem final_decode_and_aligned {u run : ℕ}
     {L M X : List A₂} {W : List (Fin 2)}
     (hLM : eCount L = eCount M)
@@ -724,7 +880,9 @@ theorem final_decode_and_aligned {u run : ℕ}
         hRun hshapeL hshapeM hdecode⟩
 
 /-- The page-50 invariants imply the exact alignment predicate consumed by
-the final-stage reflection theorem.-/
+the final-stage reflection theorem.
+@isnad1 id=longrule.6h5v.s5.0e968112c59f from=translated src=- shape=1f5a9c31 vocab=4b0b672a
+-/
 theorem longRuleAlignedFrom_of_invariants {u run : ℕ}
     {L M X : List A₂}
     (hLM : eCount L = eCount M)
@@ -739,7 +897,9 @@ theorem longRuleAlignedFrom_of_invariants {u run : ℕ}
     hshapeL hshapeM hfinal).2
 
 /-- A convenient conditional form of equivalence (10), with the two
-priority invariants made explicit.-/
+priority invariants made explicit.
+@isnad1 id=iff.6h6v.s6.f90ce78b7ddd from=translated src=- shape=89aefff8 vocab=d2cf4ff8
+-/
 theorem rho₂_iff_of_priority_invariants {u run : ℕ}
     {L M X : List A₂}
     (hLM : eCount L = eCount M)

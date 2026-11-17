@@ -56,7 +56,9 @@ def thetaCTtoKc :
 
 /-- Coercing the restricted map back to the ambient semantic Borisov group
 is literally the original attaching map following Lemma 3.1 on the
-corresponding element of `HMinus`.-/
+corresponding element of `HMinus`.
+@isnad1 id=eq.0h3v.s17.e5a5c74b6f00 from=translated src=- shape=e0da87de vocab=f82ac19f
+-/
 @[simp] theorem thetaCTtoKc_coe
     (x : HostZBaseIntersections.CT datum) :
     ((thetaCTtoKc datum theta x : Kc datum) : HostYStage.Gamma datum) =
@@ -64,17 +66,25 @@ corresponding element of `HMinus`.-/
         HostYStage.Gamma datum) :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s15.ce9b47a749ab from=translated src=- shape=88f3980b vocab=3ed514d4
+-/
 @[simp] theorem ctToHMinus_baseT :
     ctToHMinus datum (HostKcModel.baseT datum) = minusT datum := by
   apply Subtype.ext
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s15.6822997ae4b0 from=translated src=- shape=88f3980b vocab=a647ac83
+-/
 @[simp] theorem ctToHMinus_baseC :
     ctToHMinus datum (HostKcModel.baseC datum) = minusC datum := by
   apply Subtype.ext
   rfl
 
-/-- The path generator `t` is sent to `k`.-/
+/-- The path generator `t` is sent to `k`.
+@isnad1 id=eq.0h2v.s15.aad8620a9a3b from=translated src=- shape=a500ff64 vocab=c7a656db
+-/
 @[simp] theorem thetaCTtoKc_baseT :
     thetaCTtoKc datum theta (HostKcModel.baseT datum) =
       ⟨HostYStage.k datum, by
@@ -84,7 +94,9 @@ corresponding element of `HMinus`.-/
   rw [thetaCTtoKc_coe, ctToHMinus_baseT, theta.map_t]
   rfl
 
-/-- The path generator `c` is fixed.-/
+/-- The path generator `c` is fixed.
+@isnad1 id=eq.0h2v.s15.29533c360c26 from=translated src=- shape=a500ff64 vocab=4ce61750
+-/
 @[simp] theorem thetaCTtoKc_baseC :
     thetaCTtoKc datum theta (HostKcModel.baseC datum) =
       ⟨HostYStage.c datum,

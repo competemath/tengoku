@@ -88,6 +88,9 @@ generators.-/
 def encodeWord (data : TorsionData P) (w : Word n) : Word 2 :=
   Word.substitute (encodedGenerator data) w
 
+/--
+@isnad1 id=eq.0h7v.s6.bfc9d8800a8b from=translated src=- shape=2a5af311 vocab=2c9d7251
+-/
 @[simp]
 theorem eval_encodeWord {H : Type*} [Group H]
     (data : TorsionData P) (x : Fin 2 → H) (w : Word n) :
@@ -108,6 +111,9 @@ def transform (P : FP n m) (data : TorsionData P)
     (fun i ↦ encodeWord data (P.relator i))
     (fun _ ↦ additionalRelator data w)
 
+/--
+@isnad1 id=eq.0h6v.s6.14d9398fbec4 from=translated src=- shape=a36db779 vocab=b9b324aa
+-/
 @[simp]
 theorem transform_old (P : FP n m) (data : TorsionData P)
     (w : Word n) (i : Fin m) :
@@ -115,6 +121,9 @@ theorem transform_old (P : FP n m) (data : TorsionData P)
       encodeWord data (P.relator i) := by
   simp [transform]
 
+/--
+@isnad1 id=eq.0h6v.s6.e1a808ce8994 from=translated src=- shape=01062f22 vocab=df09eb68
+-/
 @[simp]
 theorem transform_additional (P : FP n m) (data : TorsionData P)
     (w : Word n) (i : Fin 1) :
@@ -132,6 +141,9 @@ private theorem inverse_primrec : Primrec (@Word.inverse 2) := by
   intro w
   rfl
 
+/--
+@isnad1 id=primrec.0h4v.s5.a0426823ed8a from=translated src=- shape=e49b7d32 vocab=c29f666f
+-/
 theorem encodeWord_primrec (P : FP n m) (data : TorsionData P) :
     Primrec (fun w : Word n ↦ encodeWord data w) := by
   have hgenerator : Primrec (encodedGenerator data) :=
@@ -170,7 +182,9 @@ private theorem paperCommutator_primrec (v : Word 2) :
   intro u
   simp [paperCommutator, Word.product]
 
-/-- The word-indexed Gordon transformation is uniform and computable.-/
+/-- The word-indexed Gordon transformation is uniform and computable.
+@isnad1 id=computab.0h4v.s6.534e284d442e from=translated src=- shape=4ddd1844 vocab=ed419424
+-/
 theorem transform_computable (P : FP n m) (data : TorsionData P) :
     Computable₂ fun w i ↦ (transform P data w).relator i := by
   have hcomm : Primrec fun w : Word n ↦

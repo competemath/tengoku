@@ -33,6 +33,9 @@ def rightMulList : List (ℤˣ × G) → G → List (ℤˣ × G)
   | [x], g => [(x.1, x.2 * g)]
   | x :: y :: rest, g => x :: rightMulList (y :: rest) g
 
+/--
+@isnad1 id=eq.0h3v.s5.c1c3470b3a76 from=translated src=- shape=ca6acf04 vocab=915bf39e
+-/
 theorem rightMulList_map_fst (l : List (ℤˣ × G)) (g : G) :
     (rightMulList l g).map Prod.fst = l.map Prod.fst := by
   induction l with
@@ -44,6 +47,9 @@ theorem rightMulList_map_fst (l : List (ℤˣ × G)) (g : G) :
           simp only [rightMulList, List.map_cons]
           exact congrArg (List.cons x.1) ih
 
+/--
+@isnad1 id=ischain.1h5v.s7.0227b4a1aee9 from=translated src=- shape=e9b21687 vocab=f97584d8
+-/
 theorem rightMulList_chain
     (l : List (ℤˣ × G))
     (hchain : l.IsChain
@@ -72,10 +78,16 @@ def rightMul (w : InnerWord A B) (g : G) : InnerWord A B where
   toList := rightMulList w.toList g
   chain := rightMulList_chain A B w.toList w.chain g
 
+/--
+@isnad1 id=eq.0h5v.s6.110906c2be9c from=translated src=- shape=ee482514 vocab=89d95569
+-/
 theorem rightMul_map_fst (w : InnerWord A B) (g : G) :
     (rightMul A B w g).toList.map Prod.fst = w.toList.map Prod.fst :=
   rightMulList_map_fst w.toList g
 
+/--
+@isnad1 id=eq.1h6v.s9.06ea94f99af3 from=translated src=- shape=03960de6 vocab=e09e02b7
+-/
 theorem rightMulList_prod
     (l : List (ℤˣ × G)) (g : G) (hne : l ≠ []) :
     ((rightMulList l g).map (fun x ↦
@@ -94,6 +106,9 @@ theorem rightMulList_prod
           rw [ih (by simp)]
           simp [mul_assoc]
 
+/--
+@isnad1 id=eq.0h6v.s8.66ca88a729f7 from=translated src=- shape=dd044523 vocab=434bbc09
+-/
 theorem rightMul_prod (w : InnerWord A B) (g : G) :
     (rightMul A B w g).prod phi =
       w.prod phi * HNNExtension.of g := by
@@ -106,7 +121,9 @@ theorem rightMul_prod (w : InnerWord A B) (g : G) :
     simp [mul_assoc]
 
 /-- Right multiplication by an embedded base element preserves the complete
-stable-sign list of a reduced word.-/
+stable-sign list of a reduced word.
+@isnad1 id=eq.1h6v.s8.4c8d3b1f206f from=translated src=- shape=363a24ac vocab=fc4ae907
+-/
 theorem inner_signs_eq_of_inv_mul_mem_range
     (w₁ w₂ : InnerWord A B)
     (hmem : (w₁.prod phi)⁻¹ * w₂.prod phi ∈
@@ -129,6 +146,9 @@ def innerLeftMul (g : G) (w : InnerWord A B) : InnerWord A B where
   toList := w.toList
   chain := w.chain
 
+/--
+@isnad1 id=le.0h5v.s7.af47f4ca7f84 from=translated src=- shape=fe528fe7 vocab=c704ed0c
+-/
 theorem mapped_toSubgroup_le_stageOne_range (u : ℤˣ) :
     HNNExtension.toSubgroup
         (MultipleHNN.MappedA A B phi) (MultipleHNN.MappedB A B phi) u ≤
@@ -140,7 +160,9 @@ theorem mapped_toSubgroup_le_stageOne_range (u : ℤˣ) :
     exact ⟨b, rfl⟩
 
 /-- Moving an element of the subgroup on the left of a stable letter across
-that letter.  This unit-valued version packages the two usual HNN relations.-/
+that letter.  This unit-valued version packages the two usual HNN relations.
+@isnad1 id=eq.0h6v.s10.6dbdaff6643a from=translated src=- shape=5af210db vocab=10ef8db0
+-/
 theorem of_subgroup_mul_t_zpow
     {K : Type*} [Group K] (C D : Subgroup K) (psi : C ≃* D)
     (u : ℤˣ) (a : HNNExtension.toSubgroup C D (-u)) :
@@ -177,12 +199,18 @@ def nestedLeftBase (g : G) (w : MultipleHNN.ReducedWord A B phi) :
   toList := w.toList
   chain := w.chain
 
+/--
+@isnad1 id=eq.0h6v.s6.55d1468a849d from=translated src=- shape=5803b541 vocab=a384b2bc
+-/
 @[simp] theorem nestedLeftBase_signature
     (g : G) (w : MultipleHNN.ReducedWord A B phi) :
     MultipleHNNFlat.nestedSignature A B phi
         (nestedLeftBase A B phi g w) =
       MultipleHNNFlat.nestedSignature A B phi w := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.2ff924a53e78 from=translated src=- shape=54290a67 vocab=5f0334e7
+-/
 theorem nestedLeftBase_eval
     (g : G) (w : MultipleHNN.ReducedWord A B phi) :
     MultipleHNN.ReducedWord.eval A B phi
@@ -198,7 +226,9 @@ theorem nestedLeftBase_eval
 /-! ## Uniqueness of the nested signature -/
 
 /-- Equal evaluations of nested reduced words have identical interleaved
-color/sign signatures.-/
+color/sign signatures.
+@isnad1 id=eq.1h6v.s6.ac6cf269f69f from=translated src=- shape=159eb263 vocab=9e892ef2
+-/
 theorem nestedSignature_eq_of_eval_eq
     (w₁ w₂ : MultipleHNN.ReducedWord A B phi)
     (heval : MultipleHNN.ReducedWord.eval A B phi w₁ =
@@ -365,7 +395,9 @@ theorem nestedSignature_eq_of_eval_eq
 
 /-- The color/sign signature is a complete invariant of the stable letters
 in a flat reduced word.  In particular, equality cannot change a sign,
-insert a stable letter, or change the interleaving of the two colors.-/
+insert a stable letter, or change the interleaving of the two colors.
+@isnad1 id=eq.1h6v.s6.4cf50b3c808a from=translated src=- shape=32ff349d vocab=d67de237
+-/
 theorem signature_eq_of_eval_eq
     (w₁ w₂ : MultipleHNNFlat.ReducedWord A B)
     (heval : MultipleHNNFlat.eval A B phi w₁ =

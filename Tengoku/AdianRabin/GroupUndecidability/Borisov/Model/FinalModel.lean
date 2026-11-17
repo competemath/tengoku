@@ -48,34 +48,58 @@ def modelGenerator : Fin 7 → FinalStage datum hfree :=
     modelS1 datum hfree, modelS2 datum hfree,
     modelC datum hfree, modelT datum hfree, modelK datum hfree]
 
+/--
+@isnad1 id=eq.1h1v.s9.4ad3b5b4b557 from=translated src=- shape=4ee5799c vocab=d53fa27e
+-/
 @[simp] theorem eval_dWord :
     Word.eval (modelGenerator datum hfree) Borisov.dWord = modelD datum hfree := by
   simp [Borisov.dWord, modelGenerator]
 
+/--
+@isnad1 id=eq.1h1v.s9.4022cd9667c6 from=translated src=- shape=4ee5799c vocab=964b6d60
+-/
 @[simp] theorem eval_eWord :
     Word.eval (modelGenerator datum hfree) Borisov.eWord = modelE datum hfree := by
   simp [Borisov.eWord, modelGenerator]
 
+/--
+@isnad1 id=eq.1h1v.s9.1a448b4ce59d from=translated src=- shape=4ee5799c vocab=805028dc
+-/
 @[simp] theorem eval_s1Word :
     Word.eval (modelGenerator datum hfree) Borisov.s1Word = modelS1 datum hfree := by
   simp [Borisov.s1Word, modelGenerator]
 
+/--
+@isnad1 id=eq.1h1v.s9.5b557a492596 from=translated src=- shape=4ee5799c vocab=57f69cbf
+-/
 @[simp] theorem eval_s2Word :
     Word.eval (modelGenerator datum hfree) Borisov.s2Word = modelS2 datum hfree := by
   simp [Borisov.s2Word, modelGenerator]
 
+/--
+@isnad1 id=eq.1h1v.s9.29c5cefeeef2 from=translated src=- shape=4ee5799c vocab=7acf4299
+-/
 @[simp] theorem eval_cWord :
     Word.eval (modelGenerator datum hfree) Borisov.cWord = modelC datum hfree := by
   simp [Borisov.cWord, modelGenerator]
 
+/--
+@isnad1 id=eq.1h1v.s9.66e8748c8a2e from=translated src=- shape=4ee5799c vocab=53823e2b
+-/
 @[simp] theorem eval_tWord :
     Word.eval (modelGenerator datum hfree) Borisov.tWord = modelT datum hfree := by
   simp [Borisov.tWord, modelGenerator]
 
+/--
+@isnad1 id=eq.1h1v.s9.ce9f8b3db29e from=translated src=- shape=4ee5799c vocab=257265c9
+-/
 @[simp] theorem eval_kWord :
     Word.eval (modelGenerator datum hfree) Borisov.kWord = modelK datum hfree := by
   simp [Borisov.kWord, modelGenerator]
 
+/--
+@isnad1 id=eq.1h2v.s11.167a56a76dcd from=translated src=- shape=b08fa36e vocab=21145289
+-/
 @[simp] theorem eval_positiveWord (w : List (Fin 2)) :
     Word.eval (modelGenerator datum hfree) (Borisov.positiveWord w) =
       cStageToFinal datum hfree (positive2 datum hfree w) := by
@@ -295,10 +319,16 @@ semantic iterated-HNN model.-/
 def toFinalModel : (Borisov.presentation datum).Group →* FinalStage datum hfree :=
   PresentedGroup.toGroup (model_relators datum hfree)
 
+/--
+@isnad1 id=eq.1h2v.s11.2f0a6bb78f46 from=translated src=- shape=e2a3c700 vocab=5c5b614d
+-/
 @[simp] theorem toFinalModel_of (i : Fin 7) :
     toFinalModel datum hfree (PresentedGroup.of i) = modelGenerator datum hfree i := by
   simp [toFinalModel]
 
+/--
+@isnad1 id=eq.1h2v.s11.bcd9ff1f6d6b from=translated src=- shape=d4049f83 vocab=32a9e2e6
+-/
 theorem toFinalModel_evalWord (w : Borisov.BorisovWord) :
     toFinalModel datum hfree ((Borisov.presentation datum).evalWord w) =
       Word.eval (modelGenerator datum hfree) w := by
@@ -307,6 +337,9 @@ theorem toFinalModel_evalWord (w : Borisov.BorisovWord) :
   funext i
   exact toFinalModel_of datum hfree i
 
+/--
+@isnad1 id=eq.1h2v.s12.f96128ee4c49 from=translated src=- shape=d09152bf vocab=5656acca
+-/
 theorem eval_testWord :
     Word.eval (modelGenerator datum hfree) (Borisov.testWord Q) =
       (finalConjugatedT datum hfree Q)⁻¹ * (modelK datum hfree)⁻¹ *
@@ -320,7 +353,9 @@ theorem eval_testWord :
     mul_assoc]
 
 /-- Borisov's converse criterion follows from the subgroup intersections and
-the positive-`c` pinch induction.-/
+the positive-`c` pinch induction.
+@isnad1 id=thueeq.4h2v.s5.9e17f315811f from=translated src=- shape=84fa3477 vocab=1d44efb0
+-/
 theorem criterion_converse_of_borisov_inputs
     (hinter : BaseIntersections datum)
     (hlemma4 : BorisovLemma4 datum hfree)

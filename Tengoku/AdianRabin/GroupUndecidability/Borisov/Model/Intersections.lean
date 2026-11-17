@@ -107,14 +107,23 @@ def Uc (datum : Thue.StandingDatum) : Subgroup G0 :=
 def Vc (datum : Thue.StandingDatum) : Subgroup G0 :=
   Subgroup.closure (Set.range (vBasis datum))
 
+/--
+@isnad1 id=mem.0h2v.s6.30763943b541 from=translated src=- shape=0d848a5a vocab=3f36fe59
+-/
 theorem uBasis_mem_Uc (datum : Thue.StandingDatum) (q : Basis) :
     uBasis datum q ∈ Uc datum :=
   Subgroup.subset_closure ⟨q, rfl⟩
 
+/--
+@isnad1 id=mem.0h2v.s6.d76f815a3ea5 from=translated src=- shape=0d848a5a vocab=5ee7b7fe
+-/
 theorem vBasis_mem_Vc (datum : Thue.StandingDatum) (q : Basis) :
     vBasis datum q ∈ Vc datum :=
   Subgroup.subset_closure ⟨q, rfl⟩
 
+/--
+@isnad1 id=mem.0h1v.s6.f14f0532992d from=translated src=- shape=68445637 vocab=589d4dbe
+-/
 theorem stable_mem_J (beta : Fin 2) : stable beta ∈ J beta := by
   apply Subgroup.subset_closure
   simp
@@ -259,7 +268,9 @@ private theorem stableCyclic_le_J (beta : Fin 2) :
   subst g
   exact stable_mem_J beta
 
-/-- First half of Lemma 3.5 of the paper: `U_c ∩ J_beta = <s_beta>`.-/
+/-- First half of Lemma 3.5 of the paper: `U_c ∩ J_beta = <s_beta>`.
+@isnad1 id=eq.2h2v.s6.59abfe35044f from=translated src=- shape=7895d30f vocab=44036e19
+-/
 theorem Uc_inf_J (datum : Thue.StandingDatum) (beta : Fin 2)
     (hIV : AssertionIV datum) (hV : AssertionV datum hIV) :
     Uc datum ⊓ J beta = stableCyclic beta := by
@@ -274,7 +285,9 @@ theorem Uc_inf_J (datum : Thue.StandingDatum) (beta : Fin 2)
   · intro g hg
     exact ⟨stableCyclic_le_Uc datum beta hg, stableCyclic_le_J beta hg⟩
 
-/-- First half of Lemma 3.5 of the paper: `V_c ∩ J_beta = <s_beta>`.-/
+/-- First half of Lemma 3.5 of the paper: `V_c ∩ J_beta = <s_beta>`.
+@isnad1 id=eq.2h2v.s6.243d975a2b2c from=translated src=- shape=7895d30f vocab=aa41a7fc
+-/
 theorem Vc_inf_J (datum : Thue.StandingDatum) (beta : Fin 2)
     (hIV : AssertionIV datum) (hV : AssertionV datum hIV) :
     Vc datum ⊓ J beta = stableCyclic beta := by
@@ -289,7 +302,9 @@ theorem Vc_inf_J (datum : Thue.StandingDatum) (beta : Fin 2)
   · intro g hg
     exact ⟨stableCyclic_le_Vc datum beta hg, stableCyclic_le_J beta hg⟩
 
-/-- Second half of Lemma 3.5 of the paper: `U_c ∩ <d,e> = 1`.-/
+/-- Second half of Lemma 3.5 of the paper: `U_c ∩ <d,e> = 1`.
+@isnad1 id=eq.2h1v.s6.7f7aa107969f from=translated src=- shape=0fdea9b1 vocab=90516069
+-/
 theorem Uc_inf_DE (datum : Thue.StandingDatum)
     (hIV : AssertionIV datum) (hV : AssertionV datum hIV) :
     Uc datum ⊓ DE = ⊥ := by
@@ -304,7 +319,9 @@ theorem Uc_inf_DE (datum : Thue.StandingDatum)
     simp
   · exact bot_le
 
-/-- Second half of Lemma 3.5 of the paper: `V_c ∩ <d,e> = 1`.-/
+/-- Second half of Lemma 3.5 of the paper: `V_c ∩ <d,e> = 1`.
+@isnad1 id=eq.2h1v.s6.317ae3e787d5 from=translated src=- shape=0fdea9b1 vocab=77d97806
+-/
 theorem Vc_inf_DE (datum : Thue.StandingDatum)
     (hIV : AssertionIV datum) (hV : AssertionV datum hIV) :
     Vc datum ⊓ DE = ⊥ := by
@@ -319,7 +336,9 @@ theorem Vc_inf_DE (datum : Thue.StandingDatum)
     simp
   · exact bot_le
 
-/-- The four intersections in Lemma 3.5 of the paper, bundled together.-/
+/-- The four intersections in Lemma 3.5 of the paper, bundled together.
+@isnad1 id=and.2h1v.s8.3b2e2f7b54c7 from=translated src=- shape=5b3866e0 vocab=edce59f3
+-/
 theorem lemma4_2 (datum : Thue.StandingDatum)
     (hIV : AssertionIV datum) (hV : AssertionV datum hIV) :
     (∀ beta : Fin 2,

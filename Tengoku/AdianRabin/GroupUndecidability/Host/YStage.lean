@@ -159,41 +159,65 @@ private theorem gamma3_hom_ext {Q : Type*} [Group Q]
     · exact hs1
   · exact hs2
 
+/--
+@isnad1 id=eq.0h0v.s7.60e75a17cece from=translated src=- shape=0ee3752f vocab=21615830
+-/
 @[simp] theorem twistHom_d3 : twistHom d3 = e3⁻¹ := by
   change twistFromG0 (fromHNN hnnD) = _
   rw [fromHNN_hnnD, presentedD_eq_of, twistFromG0_of]
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s6.2c0cbe2a9f4f from=translated src=- shape=9bb9467d vocab=d12a6734
+-/
 @[simp] theorem twistHom_e3 : twistHom e3 = d3 := by
   change twistFromG0 (fromHNN hnnE) = _
   rw [fromHNN_hnnE, presentedE_eq_of, twistFromG0_of]
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s7.b9cf8ed34d17 from=translated src=- shape=0ee3752f vocab=1700900f
+-/
 @[simp] theorem twistHom_s1_3 : twistHom s1_3 = s2_3⁻¹ := by
   change twistFromG0 (fromHNN hnnS1) = _
   rw [fromHNN_hnnS1, presentedS1_eq_of, twistFromG0_of]
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s7.d9810f907f2c from=translated src=- shape=0ee3752f vocab=1700900f
+-/
 @[simp] theorem twistHom_s2_3 : twistHom s2_3 = s1_3⁻¹ := by
   change twistFromG0 (fromHNN hnnS2) = _
   rw [fromHNN_hnnS2, presentedS2_eq_of, twistFromG0_of]
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s6.65dc61f82827 from=translated src=- shape=9bb9467d vocab=233d2000
+-/
 @[simp] theorem untwistHom_d3 : untwistHom d3 = e3 := by
   change untwistFromG0 (fromHNN hnnD) = _
   rw [fromHNN_hnnD, presentedD_eq_of, untwistFromG0_of]
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s7.e62e8fde7247 from=translated src=- shape=0ee3752f vocab=9d97aaa5
+-/
 @[simp] theorem untwistHom_e3 : untwistHom e3 = d3⁻¹ := by
   change untwistFromG0 (fromHNN hnnE) = _
   rw [fromHNN_hnnE, presentedE_eq_of, untwistFromG0_of]
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s7.fc176f38f4b1 from=translated src=- shape=0ee3752f vocab=cc9e28e0
+-/
 @[simp] theorem untwistHom_s1_3 : untwistHom s1_3 = s2_3⁻¹ := by
   change untwistFromG0 (fromHNN hnnS1) = _
   rw [fromHNN_hnnS1, presentedS1_eq_of, untwistFromG0_of]
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s7.3f6291dbe685 from=translated src=- shape=0ee3752f vocab=cc9e28e0
+-/
 @[simp] theorem untwistHom_s2_3 : untwistHom s2_3 = s1_3⁻¹ := by
   change untwistFromG0 (fromHNN hnnS2) = _
   rw [fromHNN_hnnS2, presentedS2_eq_of, untwistFromG0_of]
@@ -207,6 +231,9 @@ private theorem twist_comp_untwist :
     twistHom.comp untwistHom = MonoidHom.id Gamma3 := by
   apply gamma3_hom_ext <;> simp
 
+/--
+@isnad1 id=mem.1h1v.s8.04bfa64e3011 from=translated src=- shape=59af1417 vocab=403b9429
+-/
 theorem twist_mem_J3 {x : Gamma3} (hx : x ∈ J3 0) :
     twistHom x ∈ J3 1 := by
   let K : Subgroup Gamma3 := (J3 1).comap twistHom
@@ -224,6 +251,9 @@ theorem twist_mem_J3 {x : Gamma3} (hx : x ∈ J3 0) :
       exact (J3 1).inv_mem (Subgroup.subset_closure (by simp [stable3]))
   exact hle hx
 
+/--
+@isnad1 id=mem.1h1v.s8.88dd655519f7 from=translated src=- shape=59af1417 vocab=e57f5f45
+-/
 theorem untwist_mem_J3 {x : Gamma3} (hx : x ∈ J3 1) :
     untwistHom x ∈ J3 0 := by
   let K : Subgroup Gamma3 := (J3 0).comap untwistHom
@@ -503,6 +533,9 @@ private theorem cRestrictedRangeEquiv_symm_coreStable :
   simpa [coreStable] using cRestrictedRangeEquiv_symm_of datum 0
     (⟨stable3 0, stable3_mem_J3 0⟩ : J3 0)
 
+/--
+@isnad1 id=eq.0h1v.s10.ae9c979b0c7a from=translated src=- shape=8464e2e9 vocab=d0611c02
+-/
 @[simp] theorem cSubgroupEquiv_coreD :
     cSubgroupEquiv datum (coreD datum 0) = (coreE datum 1)⁻¹ := by
   simp only [cSubgroupEquiv, MulEquiv.trans_apply]
@@ -516,6 +549,9 @@ private theorem cRestrictedRangeEquiv_symm_coreStable :
   rw [cRestrictedRangeEquiv_of_coe]
   simp [coreE, jEquiv]
 
+/--
+@isnad1 id=eq.0h1v.s10.9554c27a3073 from=translated src=- shape=601ee3e0 vocab=f4be32ae
+-/
 @[simp] theorem cSubgroupEquiv_coreE :
     cSubgroupEquiv datum (coreE datum 0) = coreD datum 1 := by
   simp only [cSubgroupEquiv, MulEquiv.trans_apply]
@@ -529,6 +565,9 @@ private theorem cRestrictedRangeEquiv_symm_coreStable :
   rw [cRestrictedRangeEquiv_of_coe]
   simp [coreD, jEquiv]
 
+/--
+@isnad1 id=eq.0h1v.s10.529fa0aaf9e1 from=translated src=- shape=601ee3e0 vocab=a3298d95
+-/
 @[simp] theorem cSubgroupEquiv_coreC :
     cSubgroupEquiv datum (coreC datum 0) = coreC datum 1 := by
   simp only [cSubgroupEquiv, MulEquiv.trans_apply]
@@ -538,6 +577,9 @@ private theorem cRestrictedRangeEquiv_symm_coreStable :
   rw [map_inv]
   simp [coreC, BorisovCStage.c]
 
+/--
+@isnad1 id=eq.0h1v.s10.a1779324a9d6 from=translated src=- shape=52cd5386 vocab=80b7a18a
+-/
 @[simp] theorem cSubgroupEquiv_coreS1 :
     cSubgroupEquiv datum (coreStable datum 0) = (coreStable datum 1)⁻¹ := by
   simp only [cSubgroupEquiv, MulEquiv.trans_apply]
@@ -730,6 +772,9 @@ private theorem cSubgroupEquiv_symm_mem_CD_of_mem_CE
           (CD datum (rankFiveFree datum)).inv_mem hpa
   exact hp
 
+/--
+@isnad1 id=iff.0h2v.s11.814e8c22eef4 from=translated src=- shape=5cff328f vocab=b76af816
+-/
 theorem cSubgroupEquiv_mem_CD_iff (x : CSubgroup datum 0) :
     (x : Gamma2 datum (rankFiveFree datum)) ∈ CD datum (rankFiveFree datum) ↔
       ((cSubgroupEquiv datum x : CSubgroup datum 1) :
@@ -761,6 +806,9 @@ private def cSubgroupToPlusBase :
 def outerBaseEquiv : CSubgroup datum 0 ≃* PlusBase datum :=
   (cSubgroupEquiv datum).trans (cSubgroupToPlusBase datum)
 
+/--
+@isnad1 id=eq.0h2v.s12.1af5cfce5f02 from=translated src=- shape=ae644b4c vocab=0bbb4a0c
+-/
 @[simp] theorem outerBaseEquiv_coe (x : CSubgroup datum 0) :
     ((outerBaseEquiv datum x : PlusBase datum) :
       TStage datum (rankFiveFree datum)) =
@@ -810,6 +858,9 @@ private theorem toTStage_mem_KSubgroup_iff (x : CSubgroup datum 1) :
     apply mapped_CE_le_KSubgroup datum
     exact ⟨(x : Gamma2 datum (rankFiveFree datum)), hxCE, rfl⟩
 
+/--
+@isnad1 id=iff.0h2v.s12.726e19346fb2 from=translated src=- shape=07457cb9 vocab=95dca4a4
+-/
 theorem outerBaseEquiv_mem_associated_iff (x : CSubgroup datum 0) :
     (x : Gamma2 datum (rankFiveFree datum)) ∈
         CD datum (rankFiveFree datum) ↔
@@ -933,33 +984,63 @@ def HMinus : Subgroup (Gamma datum) :=
 def HPlus : Subgroup (Gamma datum) :=
   Subgroup.closure ({d datum, e datum, c datum, k datum, s2 datum} : Set (Gamma datum))
 
+/--
+@isnad1 id=mem.0h1v.s11.d8a442e427f0 from=translated src=- shape=58e3eb1f vocab=d18f3a0a
+-/
 @[simp] theorem d_mem_HMinus : d datum ∈ HMinus datum :=
   Subgroup.subset_closure (Or.inl rfl)
 
+/--
+@isnad1 id=mem.0h1v.s11.46f99c99189f from=translated src=- shape=58e3eb1f vocab=89bce79d
+-/
 @[simp] theorem e_mem_HMinus : e datum ∈ HMinus datum :=
   Subgroup.subset_closure (Or.inr (Or.inl rfl))
 
+/--
+@isnad1 id=mem.0h1v.s11.6d9f74a04ce4 from=translated src=- shape=58e3eb1f vocab=221e713b
+-/
 @[simp] theorem c_mem_HMinus : c datum ∈ HMinus datum :=
   Subgroup.subset_closure (Or.inr (Or.inr (Or.inl rfl)))
 
+/--
+@isnad1 id=mem.0h1v.s11.4a47e4ceca4d from=translated src=- shape=58e3eb1f vocab=d23dce32
+-/
 @[simp] theorem t_mem_HMinus : t datum ∈ HMinus datum :=
   Subgroup.subset_closure (Or.inr (Or.inr (Or.inr (Or.inl rfl))))
 
+/--
+@isnad1 id=mem.0h1v.s11.4bc94e6fdc9e from=translated src=- shape=58e3eb1f vocab=cfb705a2
+-/
 @[simp] theorem s1_mem_HMinus : s1 datum ∈ HMinus datum :=
   Subgroup.subset_closure (Or.inr (Or.inr (Or.inr (Or.inr rfl))))
 
+/--
+@isnad1 id=mem.0h1v.s11.d317de9b62b5 from=translated src=- shape=58e3eb1f vocab=4019ffa5
+-/
 @[simp] theorem d_mem_HPlus : d datum ∈ HPlus datum :=
   Subgroup.subset_closure (Or.inl rfl)
 
+/--
+@isnad1 id=mem.0h1v.s11.526136f451a6 from=translated src=- shape=58e3eb1f vocab=24f0b538
+-/
 @[simp] theorem e_mem_HPlus : e datum ∈ HPlus datum :=
   Subgroup.subset_closure (Or.inr (Or.inl rfl))
 
+/--
+@isnad1 id=mem.0h1v.s11.e38e68492424 from=translated src=- shape=58e3eb1f vocab=82c778be
+-/
 @[simp] theorem c_mem_HPlus : c datum ∈ HPlus datum :=
   Subgroup.subset_closure (Or.inr (Or.inr (Or.inl rfl)))
 
+/--
+@isnad1 id=mem.0h1v.s11.48af68781991 from=translated src=- shape=58e3eb1f vocab=5a57bea8
+-/
 @[simp] theorem k_mem_HPlus : k datum ∈ HPlus datum :=
   Subgroup.subset_closure (Or.inr (Or.inr (Or.inr (Or.inl rfl))))
 
+/--
+@isnad1 id=mem.0h1v.s11.eb9018d3401b from=translated src=- shape=58e3eb1f vocab=f7de8ff9
+-/
 @[simp] theorem s2_mem_HPlus : s2 datum ∈ HPlus datum :=
   Subgroup.subset_closure (Or.inr (Or.inr (Or.inr (Or.inr rfl))))
 
@@ -1155,6 +1236,9 @@ def plusParamEquiv : PlusRestricted datum ≃* HPlus datum :=
   (plusRestrictedRangeEquiv datum).trans
     (MulEquiv.subgroupCongr (PlusGenerated_eq_HPlus datum))
 
+/--
+@isnad1 id=eq.0h2v.s14.363cd6950c09 from=translated src=- shape=99ef6dde vocab=3faeff57
+-/
 @[simp] theorem minusParamEquiv_coe (x : MinusRestricted datum) :
     ((minusParamEquiv datum x : HMinus datum) : Gamma datum) =
       minusEmbedding datum x := by
@@ -1170,6 +1254,9 @@ def plusParamEquiv : PlusRestricted datum ≃* HPlus datum :=
       TStage datum (rankFiveFree datum)) = minusEmbeddingToT datum x at h
   exact congrArg (toFinalStage datum (rankFiveFree datum)) h
 
+/--
+@isnad1 id=eq.0h2v.s14.32829aa714db from=translated src=- shape=99ef6dde vocab=d643cbf3
+-/
 @[simp] theorem plusParamEquiv_coe (x : PlusRestricted datum) :
     ((plusParamEquiv datum x : HPlus datum) : Gamma datum) =
       plusEmbedding datum x := by
@@ -1339,6 +1426,9 @@ def thetaEquiv : HMinus datum ≃* HPlus datum :=
   (minusParamEquiv datum).symm.trans
     ((outerRestrictedEquiv datum).trans (plusParamEquiv datum))
 
+/--
+@isnad1 id=eq.0h1v.s15.2a27e9b4cf8e from=translated src=- shape=781d98a7 vocab=309ff394
+-/
 @[simp] theorem thetaEquiv_minusD :
     thetaEquiv datum (minusD datum) = (plusE datum)⁻¹ := by
   change
@@ -1349,6 +1439,9 @@ def thetaEquiv : HMinus datum ≃* HPlus datum :=
     (minusParamEquiv datum).symm_apply_apply,
     outerRestrictedEquiv_paramD, map_inv, plusParamEquiv_paramE]
 
+/--
+@isnad1 id=eq.0h1v.s15.4ee3574b8048 from=translated src=- shape=e7dad405 vocab=132d1e3e
+-/
 @[simp] theorem thetaEquiv_minusE :
     thetaEquiv datum (minusE datum) = plusD datum := by
   change
@@ -1359,6 +1452,9 @@ def thetaEquiv : HMinus datum ≃* HPlus datum :=
     (minusParamEquiv datum).symm_apply_apply,
     outerRestrictedEquiv_paramE, plusParamEquiv_paramD]
 
+/--
+@isnad1 id=eq.0h1v.s15.2e7bb3d906d8 from=translated src=- shape=e7dad405 vocab=ea04efef
+-/
 @[simp] theorem thetaEquiv_minusC :
     thetaEquiv datum (minusC datum) = plusC datum := by
   change
@@ -1369,6 +1465,9 @@ def thetaEquiv : HMinus datum ≃* HPlus datum :=
     (minusParamEquiv datum).symm_apply_apply,
     outerRestrictedEquiv_paramC, plusParamEquiv_paramC]
 
+/--
+@isnad1 id=eq.0h1v.s15.823c58775fc5 from=translated src=- shape=e7dad405 vocab=27698719
+-/
 @[simp] theorem thetaEquiv_minusT :
     thetaEquiv datum (minusT datum) = plusK datum := by
   change
@@ -1379,6 +1478,9 @@ def thetaEquiv : HMinus datum ≃* HPlus datum :=
     (minusParamEquiv datum).symm_apply_apply,
     outerRestrictedEquiv_paramT, plusParamEquiv_paramK]
 
+/--
+@isnad1 id=eq.0h1v.s15.8c424368f936 from=translated src=- shape=781d98a7 vocab=f726fe01
+-/
 @[simp] theorem thetaEquiv_minusS1 :
     thetaEquiv datum (minusS1 datum) = (plusS2 datum)⁻¹ := by
   change
@@ -1409,6 +1511,9 @@ def toYStage : Gamma datum →* YStage datum theta := HNNExtension.of
 /-- The paper's `y`; Mathlib's stable letter is `y⁻¹`.-/
 def yLetter : YStage datum theta := (HNNExtension.t : YStage datum theta)⁻¹
 
+/--
+@isnad1 id=injectiv.0h2v.s12.729acf66881c from=translated src=- shape=8dfac733 vocab=1016c21e
+-/
 theorem toYStage_injective : Function.Injective (toYStage datum theta) :=
   HNNExtension.of_injective theta.equiv
 
@@ -1421,6 +1526,9 @@ private theorem y_conjugates (x : HMinus datum) :
   rw [h]
   simp [toYStage]
 
+/--
+@isnad1 id=eq.0h2v.s13.376a3de13071 from=translated src=- shape=bbe16f2d vocab=1460bbc7
+-/
 theorem y_conjugates_d :
     (yLetter datum theta)⁻¹ * toYStage datum theta (d datum) * yLetter datum theta =
       (toYStage datum theta (e datum))⁻¹ := by
@@ -1428,6 +1536,9 @@ theorem y_conjugates_d :
   rw [y_conjugates, theta.map_d]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s13.00a47dadf275 from=translated src=- shape=f6cd0203 vocab=1460bbc7
+-/
 theorem y_conjugates_e :
     (yLetter datum theta)⁻¹ * toYStage datum theta (e datum) * yLetter datum theta =
       toYStage datum theta (d datum) := by
@@ -1435,6 +1546,9 @@ theorem y_conjugates_e :
   rw [y_conjugates, theta.map_e]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s13.30ee8df9adc3 from=translated src=- shape=f6cd0203 vocab=fae02b6b
+-/
 theorem y_conjugates_c :
     (yLetter datum theta)⁻¹ * toYStage datum theta (c datum) * yLetter datum theta =
       toYStage datum theta (c datum) := by
@@ -1442,6 +1556,9 @@ theorem y_conjugates_c :
   rw [y_conjugates, theta.map_c]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s13.f1e2a39fcc5b from=translated src=- shape=f6cd0203 vocab=7e9398b5
+-/
 theorem y_conjugates_t :
     (yLetter datum theta)⁻¹ * toYStage datum theta (t datum) * yLetter datum theta =
       toYStage datum theta (k datum) := by
@@ -1449,6 +1566,9 @@ theorem y_conjugates_t :
   rw [y_conjugates, theta.map_t]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s13.3b7f1bbcba72 from=translated src=- shape=bbe16f2d vocab=000d3703
+-/
 theorem y_conjugates_s1 :
     (yLetter datum theta)⁻¹ * toYStage datum theta (s1 datum) * yLetter datum theta =
       (toYStage datum theta (s2 datum))⁻¹ := by

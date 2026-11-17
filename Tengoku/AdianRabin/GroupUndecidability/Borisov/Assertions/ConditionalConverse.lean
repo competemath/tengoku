@@ -19,7 +19,9 @@ noncomputable section
 
 /-- The converse simulation theorem with the required `Gamma3` normal-form
 inputs displayed explicitly.  All `c`, `t`, and `k` HNN stages, the ordered
-double-coset extraction, and the full Lemma-4 induction are discharged.-/
+double-coset extraction, and the full Lemma-4 induction are discharged.
+@isnad1 id=thueeq.4h2v.s5.327b72cf01b8 from=translated src=- shape=84fa3477 vocab=97cbebc1
+-/
 theorem criterion_converse_of_classification
     (datum : Thue.StandingDatum)
     (hfree : RankFiveFree datum)
@@ -61,7 +63,9 @@ open BorisovCoefficientSignComparison
 noncomputable section
 
 /-- Minimal semantic boundary for the converse: rank-five freeness, the two
-base intersections, and the literal coefficient shapes.-/
+base intersections, and the literal coefficient shapes.
+@isnad1 id=thueeq.5h2v.s8.c60e0f5059c1 from=translated src=- shape=c40750c0 vocab=0f014078
+-/
 theorem criterion_converse_of_shapes
     (datum : Thue.StandingDatum)
     (hfree : RankFiveFree datum)
@@ -80,7 +84,9 @@ theorem criterion_converse_of_shapes
 
 /-- Parser-facing form of `criterion_converse_of_shapes`: positivity and the absence of two
 displayed rule letters are the exact two facts consumed from the
-coefficient-by-coefficient comparison of flat HNN normal forms.-/
+coefficient-by-coefficient comparison of flat HNN normal forms.
+@isnad1 id=thueeq.5h2v.s10.523c7c62c6b9 from=translated src=- shape=6e84df01 vocab=20f7b5d7
+-/
 theorem criterion_converse_of_positive_sparse_parsers
     (datum : Thue.StandingDatum)
     (hsourcePositive : ∀ (Q : List (Fin 2)) (f r : ℤ)
@@ -111,7 +117,9 @@ theorem criterion_converse_of_positive_sparse_parsers
 
 /-- Flat-signature uniqueness supplies positivity automatically.  Thus the
 page-771 parser input used here is that a canonical rank-five preimage
-contains at most one displayed rule letter.-/
+contains at most one displayed rule letter.
+@isnad1 id=thueeq.3h2v.s9.9cb7b7d77973 from=translated src=- shape=0eadc0d6 vocab=8d2c8d30
+-/
 theorem criterion_converse_of_sparse_parsers
     (datum : Thue.StandingDatum)
     (hsourceSparse : ∀ (Q : List (Fin 2)) (f r : ℤ)

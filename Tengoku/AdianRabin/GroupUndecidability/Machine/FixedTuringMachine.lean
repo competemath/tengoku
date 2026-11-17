@@ -14,6 +14,9 @@ run on the fixed input `0`.-/
 def fixedUniversalEval (n : ℕ) : Part ℕ :=
   Nat.Partrec.Code.eval (ofNat Nat.Partrec.Code n) 0
 
+/--
+@isnad1 id=partrec.0h0v.s3.3b7d097a98f9 from=translated src=- shape=e3d48bcb vocab=f59d9a27
+-/
 theorem fixedUniversalEval_partrec : Partrec fixedUniversalEval :=
   Nat.Partrec.Code.eval_part.comp
     ((Computable.ofNat Nat.Partrec.Code).comp Computable.id)
@@ -21,7 +24,9 @@ theorem fixedUniversalEval_partrec : Partrec fixedUniversalEval :=
 
 /-- A code in Mathlib's list-oriented partial-recursive basis which computes
 the unary universal partial function.  This is the fixed program subsequently
-compiled to a Turing machine.-/
+compiled to a Turing machine.
+@isnad1 id=ex.0h0v.s4.c609372ce1a2 from=translated src=- shape=8da952f2 vocab=5fe42e8c
+-/
 theorem exists_fixed_universal_code :
     ∃ c : ToPartrec.Code, ∀ n,
       (c.eval [n]).Dom ↔ (fixedUniversalEval n).Dom := by
@@ -48,7 +53,9 @@ noncomputable instance symbolPrimcodable : Primcodable Symbol :=
 
 /-- With the initial-state instance specialized to the program `c`, Mathlib's
 standard `TM2.init` is definitionally the configuration used by the verified
-partial-recursive-to-machine compiler.-/
+partial-recursive-to-machine compiler.
+@isnad1 id=iff.0h2v.s5.c0c00445e97d from=translated src=- shape=36265ff8 vocab=3f2e4a2a
+-/
 theorem tm2_eval_dom_iff (c : ToPartrec.Code) (n : ℕ) :
     letI : Inhabited State :=
       ⟨PartrecToTM2.trNormal c PartrecToTM2.Cont'.halt⟩
@@ -135,6 +142,9 @@ private theorem trNat_bit (b : Bool) (n : ℕ)
   exact trNum_bit b n <| h.imp_right fun hn hcast => hn <| by
     simpa using congrArg (fun x : Num => (x : ℕ)) hcast
 
+/--
+@isnad1 id=computab.0h0v.s3.1a8088fcc8cd from=translated src=- shape=4b736592 vocab=bae1b476
+-/
 theorem trNat_computable : Computable PartrecToTM2.trNat := by
   let g : Unit → List (List Symbol) → Option (List Symbol) := fun _ ih =>
     ih.length.casesOn (some []) fun k =>
@@ -196,12 +206,18 @@ theorem trNat_computable : Computable PartrecToTM2.trNat := by
         Nat.bit_bodd_div2]
   exact (hrec hspec).comp (Computable.const Unit.unit) Computable.id
 
+/--
+@isnad1 id=computab.0h0v.s4.bfda6c3e84f3 from=translated src=- shape=767e0ecd vocab=7a0518d3
+-/
 theorem trSingleton_computable :
     Computable fun n => PartrecToTM2.trList [n] :=
   (Computable.list_append.comp trNat_computable
     (Computable.const [PartrecToTM2.Γ'.cons])).of_eq fun n => by
       simp
 
+/--
+@isnad1 id=computab.0h0v.s5.a7b27e326de6 from=translated src=- shape=4d652395 vocab=c616f5e0
+-/
 theorem trInit_main_computable :
     Computable (fun L : List Symbol =>
       @TM2to1.trInit Stack (fun _ : Stack => Symbol)
@@ -229,14 +245,22 @@ theorem trInit_main_computable :
     rfl
 
 /-- The variable input word for the fixed Post machine is computably obtained
-from the natural-number program code.-/
+from the natural-number program code.
+@isnad1 id=computab.0h0v.s3.545c24cde5f8 from=translated src=- shape=4b736592 vocab=f5456e8c
+-/
 theorem postInput_computable : Computable postInput :=
   trInit_main_computable.comp trSingleton_computable
 
+/--
+@isnad1 id=computab.0h0v.s4.93676a41ca1c from=translated src=- shape=ff54d285 vocab=1f717f4b
+-/
 theorem postInput_encode_computable :
     Computable fun p : Nat.Partrec.Code => postInput (Encodable.encode p) :=
   postInput_computable.comp Computable.encode
 
+/--
+@isnad1 id=iff.0h2v.s5.5524fba3b754 from=translated src=- shape=59547a88 vocab=2740ba5f
+-/
 theorem post_eval_dom_iff (c : ToPartrec.Code) (n : ℕ) :
     @Part.Dom (ListBlank TapeSymbol)
       (@TM0.eval TapeSymbol PostState (postStateInhabited c) inferInstance
@@ -256,6 +280,9 @@ noncomputable def oneTapeSupport (c : ToPartrec.Code) : Finset OneTapeState :=
   TM2to1.trSupp PartrecToTM2.tr <|
     PartrecToTM2.codeSupp c PartrecToTM2.Cont'.halt
 
+/--
+@isnad1 id=supports.0h1v.s3.9f612b196486 from=translated src=- shape=1b6a46b7 vocab=348565c1
+-/
 theorem oneTapeProgram_supports (c : ToPartrec.Code) :
     @TM1.Supports TapeSymbol OneTapeState (Option Symbol)
       (oneTapeStateInhabited c) oneTapeProgram (oneTapeSupport c) := by

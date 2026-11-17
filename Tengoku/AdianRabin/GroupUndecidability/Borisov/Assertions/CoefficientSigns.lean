@@ -42,6 +42,9 @@ def positiveCoefficientWord (Q : List (Fin 2)) (f r : ℤ) : FlatWord :=
       toList := run Q hQ 1 (e ^ r)
       chain := run_chain Q hQ 1 (e ^ r) }
 
+/--
+@isnad1 id=eq.0h3v.s6.db591de0ff2f from=translated src=- shape=bff816ce vocab=25772bb2
+-/
 @[simp] theorem positiveCoefficientWord_signature
     (Q : List (Fin 2)) (f r : ℤ) :
     MultipleHNNFlat.signature A0 B0 (positiveCoefficientWord Q f r) =
@@ -60,6 +63,9 @@ def positiveCoefficientWord (Q : List (Fin 2)) (f r : ℤ) : FlatWord :=
       (List.dropLast_append_getLast hQ)
     simpa [List.map_append] using hsplit
 
+/--
+@isnad1 id=eq.0h3v.s7.8f55c2d87827 from=translated src=- shape=c3b53d69 vocab=c2240f2a
+-/
 theorem positiveCoefficientWord_eval
     (Q : List (Fin 2)) (f r : ℤ) :
     MultipleHNNFlat.eval A0 B0 phi0 (positiveCoefficientWord Q f r) =
@@ -80,12 +86,18 @@ theorem positiveCoefficientWord_eval
 
 /-! ## Positivity extracted from signature equality -/
 
+/--
+@isnad1 id=iff.0h1v.s5.2c420cd8a71e from=translated src=- shape=afed266f vocab=e8f2f5fe
+-/
 theorem allPositive_iff_forall_sign (letters : List (Basis × Bool)) :
     AllPositive letters ↔ ∀ x ∈ letters, x.2 = true := by
   induction letters with
   | nil => simp [AllPositive]
   | cons x xs ih => simp [AllPositive, ih]
 
+/--
+@isnad1 id=ex.1h3v.s6.db0ddd676f1f from=translated src=- shape=715e552e vocab=92941b9d
+-/
 theorem factorRun_has_own_sign
     (rules : Fin 3 → List (Fin 2)) (hne : ∀ i, rules i ≠ [])
     (x : Basis × Bool)
@@ -97,6 +109,9 @@ theorem factorRun_has_own_sign
   refine ⟨s, List.head_mem (factorRun_ne_nil rules hne x lastCoeff), ?_⟩
   exact factorRun_head_sign rules hne x lastCoeff
 
+/--
+@isnad1 id=ex.2h3v.s6.cfcaf56b80c6 from=translated src=- shape=b50cbdcd vocab=8998f989
+-/
 theorem expansionTail_has_factor_sign
     (rules : Fin 3 → List (Fin 2)) (hne : ∀ i, rules i ≠ [])
     (letters : List (Basis × Bool))
@@ -116,7 +131,9 @@ theorem expansionTail_has_factor_sign
         exact ⟨s, List.mem_append_right _ hs, hsign⟩
 
 /-- If a literal rank-five expansion has the same signature as a positive
-stable word, every displayed rank-five letter is positive.-/
+stable word, every displayed rank-five letter is positive.
+@isnad1 id=allposit.3h3v.s7.21be5512c535 from=translated src=- shape=3714ba28 vocab=27242795
+-/
 theorem allPositive_of_expansion_signature
     (rules : Fin 3 → List (Fin 2)) (hne : ∀ i, rules i ≠ [])
     (letters : List (Basis × Bool))
@@ -145,7 +162,9 @@ theorem allPositive_of_expansion_signature
   · rfl
 
 /-- Signature comparison supplies the complete positivity half of Borisov's
-page-771 coefficient parser for the source basis.-/
+page-771 coefficient parser for the source basis.
+@isnad1 id=allposit.1h5v.s8.6083ec559315 from=translated src=- shape=7a016b7a vocab=aa46a663
+-/
 theorem u_allPositive_of_coefficient_eq
     (datum : Thue.StandingDatum) (Q : List (Fin 2)) (f r : ℤ)
     (w : FreeGroup Basis)
@@ -162,7 +181,9 @@ theorem u_allPositive_of_coefficient_eq
     (FreeGroup.isReduced_toWord (x := w)) Q (by
       simpa [uExpansion] using hsig)
 
-/-- Target-basis counterpart of `u_allPositive_of_coefficient_eq`.-/
+/-- Target-basis counterpart of `u_allPositive_of_coefficient_eq`.
+@isnad1 id=allposit.1h5v.s8.424cb3b2fc8f from=translated src=- shape=7a016b7a vocab=5cb656b4
+-/
 theorem v_allPositive_of_coefficient_eq
     (datum : Thue.StandingDatum) (Q : List (Fin 2)) (f r : ℤ)
     (w : FreeGroup Basis)

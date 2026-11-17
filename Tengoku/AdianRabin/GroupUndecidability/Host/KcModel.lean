@@ -53,7 +53,9 @@ private theorem C0InT_le_Delta : C0InT datum ≤ Delta datum := by
 
 /-- A consequence of the double-coset identity in the proof of
 Proposition 3.8: in the `t`-stage,
-`⟨c,t⟩ ∩ Delta = ⟨c⟩`.-/
+`⟨c,t⟩ ∩ Delta = ⟨c⟩`.
+@isnad1 id=eq.0h1v.s9.5c1bcfdd6482 from=translated src=- shape=9c76142a vocab=cad6eff3
+-/
 theorem CT_inf_Delta :
     CT datum ⊓ Delta datum = C0InT datum := by
   apply le_antisymm
@@ -75,7 +77,9 @@ def C0InCT : Subgroup (CT datum) :=
   (C0InT datum).comap (CT datum).subtype
 
 /-- The associated subgroup obtained by restricting `Delta` to `⟨c,t⟩`
-is exactly the copy of `⟨c⟩` in that base.-/
+is exactly the copy of `⟨c⟩` in that base.
+@isnad1 id=eq.0h1v.s10.cac27e587d26 from=translated src=- shape=451393b3 vocab=11beacb1
+-/
 theorem restrictedA_eq_C0InCT :
     restrictedA (A := KSubgroup datum (FreeInput datum)) (CT datum) =
       C0InCT datum := by
@@ -142,6 +146,9 @@ def ctModelEquivCT : CTModel datum ≃* CT datum :=
   (restrictedEquivGeneratedWithStable (C0 datum) (tCompatibility datum)).trans
     (MulEquiv.subgroupCongr (ctModelGenerated_eq_CT datum))
 
+/--
+@isnad1 id=eq.0h2v.s12.c6e67a796278 from=translated src=- shape=55857e2e vocab=f42549e6
+-/
 @[simp] theorem ctModelEquivCT_coe (x : CTModel datum) :
     ((ctModelEquivCT datum x : CT datum) : TBase datum) =
       ctModelEmbedding datum x := by
@@ -162,12 +169,18 @@ def cInC0 : C0 datum :=
 def ctModelC : CTModel datum := HNNExtension.of (cInC0 datum)
 def ctModelT : CTModel datum := HNNExtension.t
 
+/--
+@isnad1 id=eq.0h1v.s12.2ba9f58b6928 from=translated src=- shape=27241272 vocab=24a6dd5b
+-/
 @[simp] theorem ctModelEquivCT_c :
     ctModelEquivCT datum (ctModelC datum) = baseC datum := by
   apply Subtype.ext
   simp [ctModelC, ctModelEquivCT_coe, ctModelEmbedding,
     cInC0, baseC, toTStage, centralizerOf]
 
+/--
+@isnad1 id=eq.0h1v.s12.19a496c5459c from=translated src=- shape=27241272 vocab=079ff067
+-/
 @[simp] theorem ctModelEquivCT_t :
     ctModelEquivCT datum (ctModelT datum) = baseT datum := by
   apply Subtype.ext
@@ -206,6 +219,9 @@ def restrictedEquivKc : Restricted datum ≃* Kc datum :=
   (restrictedEquivGeneratedWithStable (CT datum) (kCompatibility datum)).trans
     (MulEquiv.subgroupCongr (restrictedGenerated_eq_Kc datum))
 
+/--
+@isnad1 id=eq.0h2v.s15.f67762e277c3 from=translated src=- shape=ab840b0e vocab=58ef0a9f
+-/
 @[simp] theorem restrictedEquivKc_coe (x : Restricted datum) :
     ((restrictedEquivKc datum x : Kc datum) : Gamma datum) =
       restrictedEmbeddingToGamma datum x := by
@@ -222,6 +238,9 @@ def restrictedT : Restricted datum := HNNExtension.of (baseT datum)
 def restrictedC : Restricted datum := HNNExtension.of (baseC datum)
 def restrictedK : Restricted datum := HNNExtension.t
 
+/--
+@isnad1 id=eq.0h1v.s14.2003b27d1022 from=translated src=- shape=e8b28176 vocab=c376c0e1
+-/
 @[simp] theorem restrictedEquivKc_t :
     restrictedEquivKc datum (restrictedT datum) =
       ⟨HostYStage.t datum,
@@ -231,6 +250,9 @@ def restrictedK : Restricted datum := HNNExtension.t
     restrictedEmbeddingToGamma, baseT, HostYStage.t,
     BorisovFinalModel.modelT, toFinalStage, centralizerOf]
 
+/--
+@isnad1 id=eq.0h1v.s14.7a891e34c501 from=translated src=- shape=e8b28176 vocab=ab84da00
+-/
 @[simp] theorem restrictedEquivKc_c :
     restrictedEquivKc datum (restrictedC datum) =
       ⟨HostYStage.c datum,
@@ -241,6 +263,9 @@ def restrictedK : Restricted datum := HNNExtension.t
     BorisovFinalModel.modelC, BorisovFinalModel.cStageToFinal,
     toFinalStage, centralizerOf]
 
+/--
+@isnad1 id=eq.0h1v.s14.0ce999ebc594 from=translated src=- shape=e8b28176 vocab=0e82316e
+-/
 @[simp] theorem restrictedEquivKc_k :
     restrictedEquivKc datum (restrictedK datum) =
       ⟨HostYStage.k datum, by

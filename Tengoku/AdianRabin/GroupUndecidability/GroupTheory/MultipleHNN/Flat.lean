@@ -305,7 +305,9 @@ private theorem collapse_exists (g : G) (l : List (Syllable (G := G)))
           simp [nw, MultipleHNN.ReducedWord.ContainsSecond]
 
 /-- Every flat reduced word has a nested reduced representative with the
-same evaluation and exactly the same color/sign signature.-/
+same evaluation and exactly the same color/sign signature.
+@isnad1 id=ex.0h5v.s7.87d16ffa156f from=translated src=- shape=99c1c977 vocab=96005beb
+-/
 theorem exists_nested_with_signature (w : ReducedWord A B) :
     ∃ v : MultipleHNN.ReducedWord A B phi,
       v.eval = eval A B phi w ∧
@@ -316,7 +318,9 @@ theorem exists_nested_with_signature (w : ReducedWord A B) :
     simpa [signature] using c.signature_eq⟩
 
 /-- Color-sensitive flat Britton lemma.  If a reduced flat word contains the
-second stable letter, its value cannot lie in the embedded first HNN stage.-/
+second stable letter, its value cannot lie in the embedded first HNN stage.
+@isnad1 id=not.1h5v.s8.6d844cdc6d83 from=translated src=- shape=3272095e vocab=7a98eb9c
+-/
 theorem eval_not_mem_stageOne_of_contains_color_one
     (w : ReducedWord A B)
     (hcolor : ∃ s ∈ w.toList, s.color = 1) :
@@ -332,7 +336,9 @@ theorem eval_not_mem_stageOne_of_contains_color_one
       (by simpa [heval] using hmem)
 
 /-- A nonempty flat reduced word is nontrivial.  This is the simultaneous
-two-stable-letter form of Britton's lemma.-/
+two-stable-letter form of Britton's lemma.
+@isnad1 id=ne.1h5v.s7.415bf14a6257 from=translated src=- shape=e326b5ce vocab=f416f6ff
+-/
 theorem eval_ne_one (w : ReducedWord A B) (hne : w.toList ≠ []) :
     eval A B phi w ≠ 1 := by
   rcases collapse_exists (A := A) (B := B) (phi := phi)
@@ -373,7 +379,9 @@ variable (A B : Subgroup G) (phi : A ≃* B)
 
 /-- A nonempty flat reduced word cannot lie in the embedded original base.
 This strengthens `eval_ne_one` in the form needed for Borisov's subgroup
-intersection calculations.-/
+intersection calculations.
+@isnad1 id=not.1h5v.s8.2b7323919916 from=translated src=- shape=a54efd07 vocab=179de3ab
+-/
 theorem eval_not_mem_base (w : ReducedWord A B) (hne : w.toList ≠ []) :
     eval A B phi w ∉
       MonoidHom.range (MultipleHNN.baseEmbedding A B phi) := by

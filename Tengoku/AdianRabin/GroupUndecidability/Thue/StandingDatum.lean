@@ -48,6 +48,9 @@ def encodedSystem (U₃ V₃ : List (Fin 2)) : ThueSystem (Fin 2) :=
 def ContainsBoth (w : List (Fin 2)) : Prop :=
   (0 : Fin 2) ∈ w ∧ (1 : Fin 2) ∈ w
 
+/--
+@isnad1 id=ne.1h1v.s4.7e014b479a49 from=translated src=- shape=99203729 vocab=d26d17a1
+-/
 theorem containsBoth_ne_nil {w : List (Fin 2)} (h : ContainsBoth w) :
     w ≠ [] := by
   intro hw
@@ -81,11 +84,16 @@ structure StandingDatum where
       evalPositive s₁ s₂ (F 1) = evalPositive s₁ s₂ (E 1) →
       s₁ = 1 ∧ s₂ = 1
 
-/-- The synchronizing code is computable.-/
+/-- The synchronizing code is computable.
+@isnad1 id=computab.0h0v.s5.29c1d277e2c8 from=translated src=- shape=abfd47c6 vocab=ba4dbf07
+-/
 theorem eta_computable : Computable eta :=
   (Primrec.list_flatMap Primrec.id
     ((Primrec.dom_finite etaLetter).comp₂ Primrec₂.right)).to_comp
 
+/--
+@isnad1 id=eq.0h2v.s6.86edf5535d7c from=translated src=- shape=1fabd902 vocab=aeb9dbd6
+-/
 @[simp]
 theorem eta_cons (a : Fin 2) (w : List (Fin 2)) :
     eta (a :: w) = etaLetter a ++ eta w := by
@@ -284,7 +292,9 @@ private theorem thueEq_decode (U₃ V₃ : List (Fin 2))
 
 /-- Every rewrite between encoded words uniquely decodes.  The nonemptiness
 hypotheses exclude rules with an empty side, which could be applied away from a
-codeword boundary.-/
+codeword boundary.
+@isnad1 id=iff.2h4v.s6.258035ae15d1 from=translated src=- shape=4e86c580 vocab=aa066cd8
+-/
 theorem synchronization (U₃ V₃ X Y : List (Fin 2))
     (hU₃ : U₃ ≠ []) (hV₃ : V₃ ≠ []) :
     ThueEq (baseSystem U₃ V₃) X Y ↔
@@ -297,7 +307,9 @@ theorem synchronization (U₃ V₃ X Y : List (Fin 2))
     have : Y = Z := eta_injective hYZ
     simpa [this] using hXZ
 
-/-- A nonempty encoded word contains both `s₁` and `s₂`.-/
+/-- A nonempty encoded word contains both `s₁` and `s₂`.
+@isnad1 id=contains.1h1v.s4.57fc2bf3476b from=translated src=- shape=7599c396 vocab=0af29c7f
+-/
 theorem eta_containsBoth {w : List (Fin 2)} (hw : w ≠ []) :
     ContainsBoth (eta w) := by
   cases w with
@@ -305,7 +317,9 @@ theorem eta_containsBoth {w : List (Fin 2)} (hw : w ≠ []) :
   | cons a w =>
       fin_cases a <;> simp [eta, etaLetter, ContainsBoth]
 
-/-- The encoded second rule, together with `s₂ = s₁⁻¹`, kills both letters.-/
+/-- The encoded second rule, together with `s₂ = s₁⁻¹`, kills both letters.
+@isnad1 id=and.2h5v.s6.9baac63b9f1a from=translated src=- shape=ace0ddbd vocab=74d20776
+-/
 theorem encoded_second_rule_kills
     (U₃ V₃ : List (Fin 2))
     {G : Type} [Group G] (s₁ s₂ : G)
@@ -319,7 +333,9 @@ theorem encoded_second_rule_kills
     evalPositive] at hrel
   exact ⟨hrel, by simp [hrel]⟩
 
-/-- Synchronization transfers fixed-target undecidability to the encoded system.-/
+/-- Synchronization transfers fixed-target undecidability to the encoded system.
+@isnad1 id=not.3h3v.s7.923653b34bd3 from=translated src=- shape=7d16e6f8 vocab=9aa1719d
+-/
 theorem encoded_undecidable
     {U₃ V₃ P₀ : List (Fin 2)}
     (hU₃ : U₃ ≠ []) (hV₃ : V₃ ≠ [])

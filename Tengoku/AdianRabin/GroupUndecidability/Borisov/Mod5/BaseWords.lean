@@ -33,6 +33,9 @@ def invertC5 : MulAut C5 where
   right_inv x := inv_inv x
   map_mul' x y := by simp [mul_comm]
 
+/--
+@isnad1 id=eq.0h3v.s11.aab281718494 from=translated src=- shape=abfdc507 vocab=879f64af
+-/
 @[simp] theorem invertFactors_pow_of (n : ℕ) (i : Fin 2) (x : C5) :
     (invertFactors ^ n) (CoprodI.of (M := Factor5) (i := i) x) =
       CoprodI.of (M := Factor5) (i := i) ((invertC5 ^ n) x) := by
@@ -52,9 +55,15 @@ def invertC5 : MulAut C5 where
 def twistLetter (n : ℕ) : BaseLetter → BaseLetter
   | ⟨i, x⟩ => ⟨i, (invertC5 ^ n) x⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.633ad50eb455 from=translated src=- shape=6b0ba5cd vocab=c002621e
+-/
 @[simp] theorem twistLetter_fst (n : ℕ) (x : BaseLetter) :
     (twistLetter n x).1 = x.1 := by cases x; rfl
 
+/--
+@isnad1 id=ne.1h2v.s7.03f90f61b567 from=translated src=- shape=94db4ca7 vocab=8f3ed562
+-/
 theorem twistLetter_ne_one (n : ℕ) (x : BaseLetter) (hx : x.2 ≠ 1) :
     (twistLetter n x).2 ≠ 1 := by
   rcases x with ⟨i, x⟩
@@ -68,15 +77,24 @@ theorem twistLetter_ne_one (n : ℕ) (x : BaseLetter) (hx : x.2 ≠ 1) :
 def letterProd (letters : List BaseLetter) : ModFiveBase :=
   (letters.map fun x => CoprodI.of (M := Factor5) (i := x.1) x.2).prod
 
+/--
+@isnad1 id=eq.0h2v.s10.21f62fec37c7 from=translated src=- shape=97e58296 vocab=b8a7b0a7
+-/
 @[simp] theorem letterProd_cons (x : BaseLetter) (xs : List BaseLetter) :
     letterProd (x :: xs) =
       CoprodI.of (M := Factor5) (i := x.1) x.2 * letterProd xs := by
   simp [letterProd]
 
+/--
+@isnad1 id=eq.0h2v.s6.6b571fce69c6 from=translated src=- shape=31b9e54f vocab=b539b116
+-/
 @[simp] theorem letterProd_append (xs ys : List BaseLetter) :
     letterProd (xs ++ ys) = letterProd xs * letterProd ys := by
   simp [letterProd, List.map_append]
 
+/--
+@isnad1 id=eq.0h2v.s10.50efc1c6bbec from=translated src=- shape=2d64a2d4 vocab=f3fa3324
+-/
 @[simp] theorem invertFactors_pow_letterProd (n : ℕ)
     (letters : List BaseLetter) :
     (invertFactors ^ n) (letterProd letters) =
@@ -117,6 +135,9 @@ def baseLetters (rules : Fin 3 → List (Fin 2)) : List Basis → List BaseLette
       rulePair rules i ++
         (baseLetters rules rest).map (twistLetter (rules i).length)
 
+/--
+@isnad1 id=eq.0h2v.s5.2da5866169fe from=translated src=- shape=12bd7451 vocab=c11fa98d
+-/
 @[simp] theorem baseLetters_length (rules : Fin 3 → List (Fin 2))
     (letters : List Basis) :
     (baseLetters rules letters).length = 2 * basisRuleCount letters := by
@@ -139,6 +160,9 @@ def quotientEval (rules : Fin 3 → List (Fin 2))
     (letters : List Basis) : QuotientGroup :=
   (letters.map (quotientBasis rules)).prod
 
+/--
+@isnad1 id=eq.0h1v.s7.753950b4d84a from=translated src=- shape=c721731a vocab=6f3f909d
+-/
 @[simp] theorem quotientStable_pow_left (n : ℕ) :
     (quotientStable ^ n).left = 1 := by
   let g : Multiplicative ℤ := Multiplicative.ofAdd 1
@@ -149,6 +173,9 @@ def quotientEval (rules : Fin 3 → List (Fin 2))
   rw [hp]
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.8c32538e8fca from=translated src=- shape=ecdb181a vocab=f40417ec
+-/
 @[simp] theorem quotientStable_pow_right (n : ℕ) :
     (quotientStable ^ n).right = Multiplicative.ofAdd (n : ℤ) := by
   induction n with
@@ -158,12 +185,21 @@ def quotientEval (rules : Fin 3 → List (Fin 2))
       apply Multiplicative.toAdd.injective
       simp [quotientStable]
 
+/--
+@isnad1 id=eq.0h1v.s8.6507b2576365 from=translated src=- shape=27fc582a vocab=e9750f3e
+-/
 @[simp] theorem quotientBase_left (x : ModFiveBase) :
     (quotientBase x).left = x := rfl
 
+/--
+@isnad1 id=eq.0h1v.s8.865d4cacfe3f from=translated src=- shape=b11ccfac vocab=26063bea
+-/
 @[simp] theorem quotientBase_right (x : ModFiveBase) :
     (quotientBase x).right = 1 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.a2edc44258e4 from=translated src=- shape=0e231d13 vocab=7c5dff3d
+-/
 @[simp] theorem quotientBase_pow_right (x : ModFiveBase) (n : ℕ) :
     (quotientBase x ^ n).right = 1 := by
   have hp : (SemidirectProduct.inl x : QuotientGroup) ^ n =
@@ -173,16 +209,25 @@ def quotientEval (rules : Fin 3 → List (Fin 2))
   rw [hp]
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s10.03c7225eacb6 from=translated src=- shape=204fdc4d vocab=a14b5191
+-/
 @[simp] theorem inversionAction_nat (n : ℕ) :
     inversionAction (Multiplicative.ofAdd (n : ℤ)) = invertFactors ^ n := by
   simp [inversionAction]
 
+/--
+@isnad1 id=eq.0h1v.s11.3569a1cc3530 from=translated src=- shape=4704e5bb vocab=9eb2651e
+-/
 @[simp] theorem invertFactors_pow_modE (n : ℕ) :
     (invertFactors ^ n) modE =
       CoprodI.of (M := Factor5) (i := (1 : Fin 2))
         ((invertC5 ^ n) c5Generator) := by
   simp [modE]
 
+/--
+@isnad1 id=eq.0h2v.s6.ad0e8f51b90d from=translated src=- shape=0c819ad1 vocab=b77b421e
+-/
 @[simp] theorem quotientBasis_right
     (rules : Fin 3 → List (Fin 2)) (q : Basis) :
     (quotientBasis rules q).right =
@@ -194,11 +239,17 @@ def quotientEval (rules : Fin 3 → List (Fin 2))
         quotientBase_right, quotientStable_pow_right,
         one_mul, mul_one, stableWeight]
 
+/--
+@isnad1 id=eq.0h2v.s7.f50320a06dcc from=translated src=- shape=54a646a4 vocab=0742ae60
+-/
 @[simp] theorem quotientBasis_left_stable
     (rules : Fin 3 → List (Fin 2)) (beta : Fin 2) :
     (quotientBasis rules (.inl beta)).left = 1 := by
   simp [quotientBasis, quotientStable]
 
+/--
+@isnad1 id=eq.0h2v.s6.fa3f3bc91b6c from=translated src=- shape=8502cc15 vocab=0f544df1
+-/
 @[simp] theorem quotientBasis_left_rule
     (rules : Fin 3 → List (Fin 2)) (i : Fin 3) :
     (quotientBasis rules (.inr i)).left = letterProd (rulePair rules i) := by
@@ -207,7 +258,9 @@ def quotientEval (rules : Fin 3 → List (Fin 2))
     quotientStable_pow_left]
   simp [rulePair, letterProd, invertFactors_pow_modE, modD, map_pow]
 
-/-- Exact base-coordinate evaluation formula.-/
+/-- Exact base-coordinate evaluation formula.
+@isnad1 id=eq.0h2v.s6.29366119114a from=translated src=- shape=8152ef7e vocab=c793351f
+-/
 @[simp] theorem quotientEval_left
     (rules : Fin 3 → List (Fin 2)) (letters : List Basis) :
     (quotientEval rules letters).left = letterProd (baseLetters rules letters) := by
