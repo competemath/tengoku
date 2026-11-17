@@ -38,11 +38,16 @@ quadratic form `x ↦ Tr_{K/ℚ}(x²)`.-/
 noncomputable def qTraceQ : QuadraticForm ℚ (AdjoinRoot fQ) :=
   LinearMap.BilinMap.toQuadraticMap (Algebra.traceForm ℚ (AdjoinRoot fQ))
 
+/--
+@isnad1 id=eq.0h1v.s8.bc3b5bc3d564 from=translated src=- shape=1e708e2d vocab=bdb8a7a2
+-/
 theorem qTraceQ_apply (x : AdjoinRoot fQ) :
     qTraceQ x = Algebra.trace ℚ (AdjoinRoot fQ) (x * x) := by
   rw [qTraceQ, LinearMap.BilinMap.toQuadraticMap_apply, Algebra.traceForm_apply]
 
-/-- The Gram matrix entries of the trace form in the power basis are the entries of `M`.-/
+/-- The Gram matrix entries of the trace form in the power basis are the entries of `M`.
+@isnad1 id=eq.0h2v.s10.f2ea5d6d9cf6 from=translated src=- shape=09393d67 vocab=24c10c8f
+-/
 theorem traceForm_bQ (i j : Fin 4) :
     Algebra.traceForm ℚ (AdjoinRoot fQ) (bQ i) (bQ j) = M i j := by
   have h : Algebra.traceMatrix ℚ (⇑bQ) i j
@@ -51,7 +56,9 @@ theorem traceForm_bQ (i j : Fin 4) :
   rw [traceMatrix_bQ] at h
   exact h.symm
 
-/-- The value of the trace form on a general combination of the power basis.-/
+/-- The value of the trace form on a general combination of the power basis.
+@isnad1 id=eq.0h4v.s10.6d48aca7bbd7 from=translated src=- shape=4a2f860d vocab=5916143a
+-/
 theorem qTraceQ_comb (a₀ a₁ a₂ a₃ : ℚ) :
     qTraceQ (a₀ • bQ 0 + a₁ • bQ 1 + a₂ • bQ 2 + a₃ • bQ 3)
       = 4 * a₀ * a₀ + 6 * a₀ * a₃ + 6 * a₁ * a₂ + 8 * a₁ * a₃ + 4 * a₂ * a₂ + 3 * a₃ * a₃ := by
@@ -69,11 +76,17 @@ theorem qTraceQ_comb (a₀ a₁ a₂ a₃ : ℚ) :
 noncomputable def cQ : Basis (Fin 4) ℚ (AdjoinRoot fQ) :=
   bQ.map (Matrix.toLinearEquiv bQ P P_isUnit)
 
+/--
+@isnad1 id=eq.0h1v.s8.4b8b86ce4c3e from=translated src=- shape=bcdd1ea1 vocab=97aa8f77
+-/
 theorem cQ_apply (i : Fin 4) : cQ i = ∑ j, P j i • bQ j := by
   show (bQ.map (Matrix.toLinearEquiv bQ P P_isUnit)) i = _
   rw [Basis.map_apply]
   simp
 
+/--
+@isnad1 id=eq.0h1v.s10.4b074f371a4e from=translated src=- shape=f46fcc1f vocab=49b56e98
+-/
 theorem sum_cQ (w : Fin 4 → ℚ) :
     ∑ i, w i • cQ i
       = (w 0 + (-3 / 4) * w 3) • bQ 0 + (w 2 + (16 / 9) * w 3) • bQ 1
@@ -85,7 +98,9 @@ theorem sum_cQ (w : Fin 4 → ℚ) :
   module
 
 /-- The basis representation of the trace form in the basis `cQ` is the weighted sum of
-squares with weights the diagonal of `D = diag(4, 4, -9/4, 283/36)`.-/
+squares with weights the diagonal of `D = diag(4, 4, -9/4, 283/36)`.
+@isnad1 id=eq.0h1v.s8.27736c410b42 from=translated src=- shape=89934810 vocab=04c1604f
+-/
 theorem basisRepr_cQ_apply (w : Fin 4 → ℚ) :
     qTraceQ.basisRepr cQ w = weightedSumSquares ℚ (fun i : Fin 4 => D i i) w := by
   rw [QuadraticMap.basisRepr_apply, sum_cQ, qTraceQ_comb, weightedSumSquares_apply]
@@ -95,11 +110,16 @@ theorem basisRepr_cQ_apply (w : Fin 4 → ℚ) :
     Matrix.head_fin_const]
   ring
 
+/--
+@isnad1 id=eq.0h0v.s7.c0cd983b375f from=translated src=- shape=dd246e6f vocab=9e167127
+-/
 theorem basisRepr_cQ : qTraceQ.basisRepr cQ = weightedSumSquares ℚ (fun i : Fin 4 => D i i) := by
   ext w
   exact basisRepr_cQ_apply w
 
-/-- **The quartic trace form is equivalent to `diag(4, 4, -9/4, 283/36)`.**-/
+/-- **The quartic trace form is equivalent to `diag(4, 4, -9/4, 283/36)`.**
+@isnad1 id=equivale.0h0v.s7.c9abc21f4307 from=translated src=- shape=6754f16c vocab=e669a207
+-/
 theorem qTraceQ_equiv :
     QuadraticMap.Equivalent qTraceQ (weightedSumSquares ℚ (fun i : Fin 4 => D i i)) := by
   refine ⟨?_⟩
@@ -108,21 +128,27 @@ theorem qTraceQ_equiv :
 
 /-! ### The signature -/
 
-/-- **The trace form of `ℚ[x]/(x⁴ − x − 1)` has three positive squares.**-/
+/-- **The trace form of `ℚ[x]/(x⁴ − x − 1)` has three positive squares.**
+@isnad1 id=eq.0h0v.s5.d3813533fb8d from=translated src=- shape=b6447e33 vocab=cc07816a
+-/
 theorem sigPos_traceQ : sigPos qTraceQ = 3 := by
   rw [QuadraticForm.sigPos_of_equiv_weightedSumSquares qTraceQ_equiv, Set.ncard_eq_three]
   refine ⟨0, 1, 3, by decide, by decide, by decide, ?_⟩
   ext i
   fin_cases i <;> norm_num [D] <;> decide
 
-/-- **The trace form of `ℚ[x]/(x⁴ − x − 1)` has one negative square.**-/
+/-- **The trace form of `ℚ[x]/(x⁴ − x − 1)` has one negative square.**
+@isnad1 id=eq.0h0v.s5.c4ee048b26f7 from=translated src=- shape=b6447e33 vocab=1b971282
+-/
 theorem sigNeg_traceQ : sigNeg qTraceQ = 1 := by
   rw [QuadraticForm.sigNeg_of_equiv_weightedSumSquares qTraceQ_equiv, Set.ncard_eq_one]
   refine ⟨2, ?_⟩
   ext i
   fin_cases i <;> norm_num [D] <;> decide
 
-/-- **Signature `(3, 1)` for `ℚ[x]/(x⁴ − x − 1)`, as an intrinsic invariant.**-/
+/-- **Signature `(3, 1)` for `ℚ[x]/(x⁴ − x − 1)`, as an intrinsic invariant.**
+@isnad1 id=and.0h0v.s6.eb2c926cbb44 from=translated src=- shape=eb8f7155 vocab=461e335f
+-/
 theorem traceForm_signature_Q : sigPos qTraceQ = 3 ∧ sigNeg qTraceQ = 1 :=
   ⟨sigPos_traceQ, sigNeg_traceQ⟩
 
@@ -133,11 +159,16 @@ quadratic form `x ↦ Tr_{k/ℚ}(x²)`.-/
 noncomputable def qTraceρ : QuadraticForm ℚ (AdjoinRoot fρ) :=
   LinearMap.BilinMap.toQuadraticMap (Algebra.traceForm ℚ (AdjoinRoot fρ))
 
+/--
+@isnad1 id=eq.0h1v.s8.c0f4aaf047ab from=translated src=- shape=1e708e2d vocab=cc937807
+-/
 theorem qTraceρ_apply (x : AdjoinRoot fρ) :
     qTraceρ x = Algebra.trace ℚ (AdjoinRoot fρ) (x * x) := by
   rw [qTraceρ, LinearMap.BilinMap.toQuadraticMap_apply, Algebra.traceForm_apply]
 
-/-- The Gram matrix entries of the trace form in the power basis are the entries of `Mρ`.-/
+/-- The Gram matrix entries of the trace form in the power basis are the entries of `Mρ`.
+@isnad1 id=eq.0h2v.s10.6f922cfa7754 from=translated src=- shape=09393d67 vocab=57a622c1
+-/
 theorem traceForm_bρ (i j : Fin 3) :
     Algebra.traceForm ℚ (AdjoinRoot fρ) (bρ i) (bρ j) = Mρ i j := by
   have h : Algebra.traceMatrix ℚ (⇑bρ) i j
@@ -146,7 +177,9 @@ theorem traceForm_bρ (i j : Fin 3) :
   rw [traceMatrix_bρ] at h
   exact h.symm
 
-/-- The value of the trace form on a general combination of the power basis.-/
+/-- The value of the trace form on a general combination of the power basis.
+@isnad1 id=eq.0h3v.s9.25add8c75050 from=translated src=- shape=114f3869 vocab=7a232075
+-/
 theorem qTraceρ_comb (a₀ a₁ a₂ : ℚ) :
     qTraceρ (a₀ • bρ 0 + a₁ • bρ 1 + a₂ • bρ 2)
       = 3 * a₀ * a₀ + 4 * a₀ * a₂ + 2 * a₁ * a₁ + 6 * a₁ * a₂ + 2 * a₂ * a₂ := by
@@ -162,11 +195,17 @@ theorem qTraceρ_comb (a₀ a₁ a₂ : ℚ) :
 noncomputable def cρ : Basis (Fin 3) ℚ (AdjoinRoot fρ) :=
   bρ.map (Matrix.toLinearEquiv bρ Pρ Pρ_isUnit)
 
+/--
+@isnad1 id=eq.0h1v.s8.a7990850b596 from=translated src=- shape=bcdd1ea1 vocab=5bae8ab0
+-/
 theorem cρ_apply (i : Fin 3) : cρ i = ∑ j, Pρ j i • bρ j := by
   show (bρ.map (Matrix.toLinearEquiv bρ Pρ Pρ_isUnit)) i = _
   rw [Basis.map_apply]
   simp
 
+/--
+@isnad1 id=eq.0h1v.s10.2b9e41e73c80 from=translated src=- shape=83d64802 vocab=e457c681
+-/
 theorem sum_cρ (w : Fin 3 → ℚ) :
     ∑ i, w i • cρ i
       = (w 0 + (-2 / 3) * w 2) • bρ 0 + (w 1 + (-3 / 2) * w 2) • bρ 1 + (w 2) • bρ 2 := by
@@ -177,7 +216,9 @@ theorem sum_cρ (w : Fin 3 → ℚ) :
   module
 
 /-- The basis representation of the trace form in the basis `cρ` is the weighted sum of
-squares with weights the diagonal of `Dρ = diag(3, 2, -23/6)`.-/
+squares with weights the diagonal of `Dρ = diag(3, 2, -23/6)`.
+@isnad1 id=eq.0h1v.s8.e87563dcd2aa from=translated src=- shape=89934810 vocab=e3dba95d
+-/
 theorem basisRepr_cρ_apply (w : Fin 3 → ℚ) :
     qTraceρ.basisRepr cρ w = weightedSumSquares ℚ (fun i : Fin 3 => Dρ i i) w := by
   rw [QuadraticMap.basisRepr_apply, sum_cρ, qTraceρ_comb, weightedSumSquares_apply]
@@ -187,32 +228,43 @@ theorem basisRepr_cρ_apply (w : Fin 3 → ℚ) :
     Matrix.head_fin_const]
   ring
 
+/--
+@isnad1 id=eq.0h0v.s7.e8537ecfa8bd from=translated src=- shape=dd246e6f vocab=716371ab
+-/
 theorem basisRepr_cρ : qTraceρ.basisRepr cρ = weightedSumSquares ℚ (fun i : Fin 3 => Dρ i i) := by
   ext w
   exact basisRepr_cρ_apply w
 
-/-- **The cubic trace form is equivalent to `diag(3, 2, -23/6)`.**-/
+/-- **The cubic trace form is equivalent to `diag(3, 2, -23/6)`.**
+@isnad1 id=equivale.0h0v.s7.3f5776bad8dd from=translated src=- shape=6754f16c vocab=64a3eae7
+-/
 theorem qTraceρ_equiv :
     QuadraticMap.Equivalent qTraceρ (weightedSumSquares ℚ (fun i : Fin 3 => Dρ i i)) := by
   refine ⟨?_⟩
   rw [← basisRepr_cρ]
   exact QuadraticMap.isometryEquivBasisRepr qTraceρ cρ
 
-/-- **The trace form of `ℚ[x]/(x³ − x − 1)` has two positive squares.**-/
+/-- **The trace form of `ℚ[x]/(x³ − x − 1)` has two positive squares.**
+@isnad1 id=eq.0h0v.s5.dc9753534538 from=translated src=- shape=b6447e33 vocab=0ba100ce
+-/
 theorem sigPos_traceρ : sigPos qTraceρ = 2 := by
   rw [QuadraticForm.sigPos_of_equiv_weightedSumSquares qTraceρ_equiv, Set.ncard_eq_two]
   refine ⟨0, 1, by decide, ?_⟩
   ext i
   fin_cases i <;> norm_num [Dρ]
 
-/-- **The trace form of `ℚ[x]/(x³ − x − 1)` has one negative square.**-/
+/-- **The trace form of `ℚ[x]/(x³ − x − 1)` has one negative square.**
+@isnad1 id=eq.0h0v.s5.7e8a3acb4529 from=translated src=- shape=b6447e33 vocab=f8833b1f
+-/
 theorem sigNeg_traceρ : sigNeg qTraceρ = 1 := by
   rw [QuadraticForm.sigNeg_of_equiv_weightedSumSquares qTraceρ_equiv, Set.ncard_eq_one]
   refine ⟨2, ?_⟩
   ext i
   fin_cases i <;> norm_num [Dρ] <;> decide
 
-/-- **Signature `(2, 1)` for `ℚ[x]/(x³ − x − 1)`, as an intrinsic invariant.**-/
+/-- **Signature `(2, 1)` for `ℚ[x]/(x³ − x − 1)`, as an intrinsic invariant.**
+@isnad1 id=and.0h0v.s6.2703a59ff187 from=translated src=- shape=eb8f7155 vocab=39de0f07
+-/
 theorem traceForm_signature_ρ : sigPos qTraceρ = 2 ∧ sigNeg qTraceρ = 1 :=
   ⟨sigPos_traceρ, sigNeg_traceρ⟩
 

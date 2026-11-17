@@ -48,7 +48,9 @@ structure IsFrameFunction (f : Matrix n n ℂ → ℝ) : Prop where
 /-! ### The bootstrap: additivity forces homogeneity -/
 
 omit [DecidableEq n] [Fintype n] in
-/-- Real scalar multiples of PSD matrices by nonnegative reals are PSD.-/
+/-- Real scalar multiples of PSD matrices by nonnegative reals are PSD.
+@isnad1 id=possemid.2h3v.s6.d8b1160fddd8 from=translated src=- shape=b73b9a92 vocab=5c1b8a16
+-/
 lemma smul_posSemidef {a : Matrix n n ℂ} (ha : a.PosSemidef)
     {c : ℝ} (hc : 0 ≤ c) : (c • a).PosSemidef := by
   have h : (c • a) = ((c : ℂ) • a) := by
@@ -58,11 +60,17 @@ lemma smul_posSemidef {a : Matrix n n ℂ} (ha : a.PosSemidef)
   exact ha.smul (by exact_mod_cast hc)
 
 omit [Fintype n] in
+/--
+@isnad1 id=iseffect.0h1v.s4.fb735f541cf5 from=translated src=- shape=279f3e75 vocab=a1e4da40
+-/
 lemma effect_zero : IsEffect (0 : Matrix n n ℂ) := by
   refine ⟨PosSemidef.zero, ?_⟩
   simpa using (PosSemidef.one : (1 : Matrix n n ℂ).PosSemidef)
 
 omit [Fintype n] in
+/--
+@isnad1 id=iseffect.0h1v.s4.81c979644b14 from=translated src=- shape=279f3e75 vocab=a1e4da40
+-/
 lemma effect_one : IsEffect (1 : Matrix n n ℂ) := by
   refine ⟨PosSemidef.one, ?_⟩
   simpa using (PosSemidef.zero : (0 : Matrix n n ℂ).PosSemidef)
@@ -74,6 +82,9 @@ variable {f : Matrix n n ℂ → ℝ} (hf : IsFrameFunction f)
 include hf
 
 omit [Fintype n] in
+/--
+@isnad1 id=eq.1h2v.s5.5db032810027 from=translated src=- shape=1cf34139 vocab=e4c19eb3
+-/
 lemma frame_zero : f 0 = 0 := by
   have h := hf.add 0 0 PosSemidef.zero PosSemidef.zero
     (by simpa using (PosSemidef.one : (1 : Matrix n n ℂ).PosSemidef))
@@ -82,7 +93,9 @@ lemma frame_zero : f 0 = 0 := by
 
 omit [Fintype n] in
 /-- Monotonicity: if `a` is PSD, `b - a` is PSD, and `b` is an effect,
-then `f a ≤ f b`.-/
+then `f a ≤ f b`.
+@isnad1 id=le.4h4v.s6.258fe5e3a66b from=translated src=- shape=fae3fde4 vocab=c4a9b7ed
+-/
 lemma frame_mono {a b : Matrix n n ℂ} (ha : a.PosSemidef)
     (hab : (b - a).PosSemidef) (hb1 : (1 - b).PosSemidef) : f a ≤ f b := by
   have hb : b = a + (b - a) := by abel
@@ -99,13 +112,18 @@ lemma frame_mono {a b : Matrix n n ℂ} (ha : a.PosSemidef)
     _ = f b := by rw [← hb]
 
 omit [Fintype n] in
+/--
+@isnad1 id=le.2h3v.s5.d0f9a2fb55a6 from=translated src=- shape=cae56ff1 vocab=cf862cdb
+-/
 lemma frame_effect_le_one {a : Matrix n n ℂ} (h : IsEffect a) : f a ≤ 1 := by
   have := frame_mono hf h.1 (by simpa using h.2) (by simpa using
     (PosSemidef.zero : (0 : Matrix n n ℂ).PosSemidef))
   simpa [hf.norm_one] using this
 
 omit [Fintype n] in
-/-- Natural scaling: `f (k • a) = k * f a` whenever `k • a` stays an effect.-/
+/-- Natural scaling: `f (k • a) = k * f a` whenever `k • a` stays an effect.
+@isnad1 id=eq.3h4v.s7.d5f2f8e642fc from=translated src=- shape=0c8c38e1 vocab=2e277494
+-/
 lemma frame_nsmul {a : Matrix n n ℂ} (ha : a.PosSemidef) :
     ∀ k : ℕ, (1 - (k : ℝ) • a).PosSemidef → f ((k : ℝ) • a) = k * f a := by
   intro k
@@ -129,7 +147,9 @@ lemma frame_nsmul {a : Matrix n n ℂ} (ha : a.PosSemidef) :
       ring
 
 omit [Fintype n] in
-/-- Division: `f ((1/m) • a) = f a / m` for an effect `a`.-/
+/-- Division: `f ((1/m) • a) = f a / m` for an effect `a`.
+@isnad1 id=eq.4h4v.s7.3d79c4f90027 from=translated src=- shape=b69a9fd0 vocab=7f6d4f4e
+-/
 lemma frame_inv_smul {a : Matrix n n ℂ} (ha : a.PosSemidef)
     (h1 : (1 - a).PosSemidef) {m : ℕ} (hm : 0 < m) :
     f ((m : ℝ)⁻¹ • a) = f a / m := by
@@ -144,7 +164,9 @@ lemma frame_inv_smul {a : Matrix n n ℂ} (ha : a.PosSemidef)
   exact h.symm
 
 omit [Fintype n] in
-/-- Rational scaling: `f ((p/m) • a) = (p/m) * f a` for `p ≤ m`.-/
+/-- Rational scaling: `f ((p/m) • a) = (p/m) * f a` for `p ≤ m`.
+@isnad1 id=eq.5h5v.s7.b83464b5317e from=translated src=- shape=b1238448 vocab=cd392556
+-/
 lemma frame_rat_smul {a : Matrix n n ℂ} (ha : a.PosSemidef)
     (h1 : (1 - a).PosSemidef) {p m : ℕ} (hpm : p ≤ m) (hm : 0 < m) :
     f (((p : ℝ) / m) • a) = (p : ℝ) / m * f a := by
@@ -167,7 +189,9 @@ lemma frame_rat_smul {a : Matrix n n ℂ} (ha : a.PosSemidef)
   field_simp
 
 omit [Fintype n] in
-/-- Scalar monotonicity in the coefficient.-/
+/-- Scalar monotonicity in the coefficient.
+@isnad1 id=le.6h5v.s7.a2b46e089408 from=translated src=- shape=a2a644ca vocab=91d7e968
+-/
 lemma frame_smul_mono {a : Matrix n n ℂ} (ha : a.PosSemidef)
     (h1 : (1 - a).PosSemidef) {s t : ℝ} (hs : 0 ≤ s) (hst : s ≤ t)
     (ht : t ≤ 1) : f (s • a) ≤ f (t • a) := by
@@ -181,7 +205,9 @@ lemma frame_smul_mono {a : Matrix n n ℂ} (ha : a.PosSemidef)
 
 omit [Fintype n] in
 /-- **Real homogeneity by monotone squeeze**: no continuity hypothesis is
-needed; monotonicity substitutes. The analytic heart of Busch's proof.-/
+needed; monotonicity substitutes. The analytic heart of Busch's proof.
+@isnad1 id=eq.5h4v.s7.c0e314968757 from=translated src=- shape=95e5796e vocab=f636b208
+-/
 lemma frame_smul {a : Matrix n n ℂ} (ha : a.PosSemidef)
     (h1 : (1 - a).PosSemidef) {t : ℝ} (h0 : 0 ≤ t) (ht : t ≤ 1) :
     f (t • a) = t * f a := by
@@ -280,7 +306,9 @@ end Bootstrap
 
 /-- Conjugation by the eigenvector unitary preserves positive
 semidefiniteness of the diagonal core: if the entries are nonnegative,
-the conjugated matrix is PSD.-/
+the conjugated matrix is PSD.
+@isnad1 id=possemid.2h3v.s12.41fdc5253ba9 from=translated src=- shape=fb010eca vocab=498d93e8
+-/
 lemma posSemidef_conjAut {A : Matrix n n ℂ} (hH : A.IsHermitian)
     {d : n → ℝ} (hd : ∀ i, 0 ≤ d i) :
     ((conjStarAlgAut ℂ _ hH.eigenvectorUnitary)
@@ -300,12 +328,18 @@ eigenvalues (= one plus its trace).-/
 noncomputable def scaleOf (A : Matrix n n ℂ) : ℝ :=
   if h : A.IsHermitian then (∑ i, h.eigenvalues i) + 1 else 1
 
+/--
+@isnad1 id=lt.1h2v.s5.37eeb81c6f44 from=translated src=- shape=f279bf63 vocab=6d0d2207
+-/
 lemma scaleOf_pos {A : Matrix n n ℂ} (hA : A.PosSemidef) : 0 < scaleOf A := by
   rw [scaleOf, dite_eq_left hA.isHermitian]
   have : 0 ≤ ∑ i, hA.isHermitian.eigenvalues i :=
     Finset.sum_nonneg fun i _ => hA.eigenvalues_nonneg i
   linarith
 
+/--
+@isnad1 id=le.1h2v.s5.ffd3cbb86c92 from=translated src=- shape=f279bf63 vocab=ce1eccc7
+-/
 lemma one_le_scaleOf {A : Matrix n n ℂ} (hA : A.PosSemidef) : 1 ≤ scaleOf A := by
   rw [scaleOf, dite_eq_left hA.isHermitian]
   have : 0 ≤ ∑ i, hA.isHermitian.eigenvalues i :=
@@ -313,7 +347,9 @@ lemma one_le_scaleOf {A : Matrix n n ℂ} (hA : A.PosSemidef) : 1 ≤ scaleOf A 
   linarith
 
 /-- **Scaling into the effect interval**: for PSD `A`, `(scaleOf A)⁻¹ • A`
-is an effect. Proof: conjugate the claim to the eigenvalue diagonal.-/
+is an effect. Proof: conjugate the claim to the eigenvalue diagonal.
+@isnad1 id=iseffect.1h2v.s6.d33ce304e6e5 from=translated src=- shape=e881751f vocab=11a61fce
+-/
 lemma effect_inv_scale_smul {A : Matrix n n ℂ} (hA : A.PosSemidef) :
     IsEffect ((scaleOf A)⁻¹ • A) := by
   have hH := hA.isHermitian
@@ -362,7 +398,9 @@ noncomputable def ext (f : Matrix n n ℂ → ℝ) (A : Matrix n n ℂ) : ℝ :=
 include hf
 
 omit [Fintype n] in
-/-- Scale independence: any valid scale computes the same extension.-/
+/-- Scale independence: any valid scale computes the same extension.
+@isnad1 id=eq.6h5v.s8.d6e01652c158 from=translated src=- shape=4536e99b vocab=f024d8eb
+-/
 lemma scale_indep {A : Matrix n n ℂ} (_hA : A.PosSemidef) {c d : ℝ}
     (hc : 0 < c) (hd : 0 < d) (hdc : d ≤ c) (hde : IsEffect (d⁻¹ • A)) :
     c * f (c⁻¹ • A) = d * f (d⁻¹ • A) := by
@@ -377,7 +415,9 @@ lemma scale_indep {A : Matrix n n ℂ} (_hA : A.PosSemidef) {c d : ℝ}
   rw [hsplit, frame_smul hf hde.1 hde.2 ht0 ht1]
   field_simp
 
-/-- The extension agrees with `f` on effects.-/
+/-- The extension agrees with `f` on effects.
+@isnad1 id=eq.2h3v.s5.8eddf9176822 from=translated src=- shape=27ca9474 vocab=d54795d8
+-/
 lemma ext_eq_on_effect {A : Matrix n n ℂ} (h : IsEffect A) :
     ext f A = f A := by
   rw [ext]
@@ -388,7 +428,9 @@ lemma ext_eq_on_effect {A : Matrix n n ℂ} (h : IsEffect A) :
 
 omit hf in
 /-- Scales dominate componentwise: `scaleOf A ≤ scaleOf (A + B)` for PSD
-`A`, `B` (trace additivity plus nonnegativity).-/
+`A`, `B` (trace additivity plus nonnegativity).
+@isnad1 id=le.2h3v.s6.96172bbbc39f from=translated src=- shape=b99f3af4 vocab=d4f9db36
+-/
 lemma scaleOf_le_add {A B : Matrix n n ℂ} (hA : A.PosSemidef)
     (hB : B.PosSemidef) : scaleOf A ≤ scaleOf (A + B) := by
   have hAB : (A + B).PosSemidef := hA.add hB
@@ -414,7 +456,9 @@ lemma scaleOf_le_add {A B : Matrix n n ℂ} (hA : A.PosSemidef)
     Finset.sum_nonneg fun i _ => hB.eigenvalues_nonneg i
   linarith
 
-/-- The extension is additive on PSD matrices.-/
+/-- The extension is additive on PSD matrices.
+@isnad1 id=eq.3h4v.s6.bf59760c63e9 from=translated src=- shape=7569a1d8 vocab=1bd23c19
+-/
 lemma ext_add {A B : Matrix n n ℂ} (hA : A.PosSemidef) (hB : B.PosSemidef) :
     ext f (A + B) = ext f A + ext f B := by
   set e : ℝ := scaleOf (A + B) with he
@@ -452,7 +496,9 @@ lemma ext_add {A B : Matrix n n ℂ} (hA : A.PosSemidef) (hB : B.PosSemidef) :
   have hgoal : ext f (A + B) = e * f (e⁻¹ • (A + B)) := by rw [ext]
   rw [hgoal, ← hsum, hadd, mul_add, hextA, hextB]
 
-/-- Homogeneity of the extension under nonnegative real scaling.-/
+/-- Homogeneity of the extension under nonnegative real scaling.
+@isnad1 id=eq.3h4v.s6.eee7d3501429 from=translated src=- shape=53da064e vocab=26fdc050
+-/
 lemma ext_smul {A : Matrix n n ℂ} (hA : A.PosSemidef) {t : ℝ} (ht : 0 ≤ t) :
     ext f (t • A) = t * ext f A := by
   rcases eq_or_lt_of_le ht with rfl | htpos
@@ -479,6 +525,9 @@ lemma ext_smul {A : Matrix n n ℂ} (hA : A.PosSemidef) {t : ℝ} (ht : 0 ≤ t)
     ring
 
 omit hf in
+/--
+@isnad1 id=le.2h3v.s5.d47e2632dd7a from=translated src=- shape=a0f9e996 vocab=f18c385a
+-/
 lemma ext_nonneg_of_frame (hf' : IsFrameFunction f) {A : Matrix n n ℂ}
     (hA : A.PosSemidef) : 0 ≤ ext f A := by
   rw [ext]
@@ -486,7 +535,9 @@ lemma ext_nonneg_of_frame (hf' : IsFrameFunction f) {A : Matrix n n ℂ}
   have h0 := scaleOf_pos hA
   positivity
 
-/-- `ext` of a nonnegative multiple of the identity.-/
+/-- `ext` of a nonnegative multiple of the identity.
+@isnad1 id=eq.2h3v.s6.ab944e9009ea from=translated src=- shape=9b49eaf2 vocab=5bfc6d25
+-/
 lemma ext_smul_one {c : ℝ} (hc : 0 ≤ c) : ext f (c • 1) = c := by
   rw [ext_smul hf PosSemidef.one hc, ext_eq_on_effect hf effect_one,
     hf.norm_one, mul_one]
@@ -500,6 +551,9 @@ absolute values of its eigenvalues.-/
 noncomputable def shiftOf (A : Matrix n n ℂ) : ℝ :=
   if h : A.IsHermitian then (∑ i, |h.eigenvalues i|) + 1 else 1
 
+/--
+@isnad1 id=le.0h2v.s4.a572622628bd from=translated src=- shape=c312778e vocab=1462efe7
+-/
 lemma shiftOf_nonneg (A : Matrix n n ℂ) : 0 ≤ shiftOf A := by
   rw [shiftOf]
   by_cases h : A.IsHermitian
@@ -510,7 +564,9 @@ lemma shiftOf_nonneg (A : Matrix n n ℂ) : 0 ≤ shiftOf A := by
   · rw [dite_eq_right h]
     linarith
 
-/-- The canonical shift makes a Hermitian matrix PSD.-/
+/-- The canonical shift makes a Hermitian matrix PSD.
+@isnad1 id=possemid.1h2v.s7.8f946a16f439 from=translated src=- shape=896fbaaf vocab=acc902d9
+-/
 lemma shift_posSemidef {A : Matrix n n ℂ} (hH : A.IsHermitian) :
     (A + shiftOf A • 1).PosSemidef := by
   set s : ℝ := shiftOf A with hs
@@ -555,7 +611,9 @@ noncomputable def extH (f : Matrix n n ℂ → ℝ) (A : Matrix n n ℂ) : ℝ :
 
 include hf
 
-/-- Shift independence: any PSD-making shift computes the same value.-/
+/-- Shift independence: any PSD-making shift computes the same value.
+@isnad1 id=eq.4h4v.s8.d169fb1f4710 from=translated src=- shape=c327e254 vocab=14b57490
+-/
 lemma extH_eq_shift {A : Matrix n n ℂ} (hH : A.IsHermitian) {s : ℝ}
     (hs : 0 ≤ s) (hpsd : (A + s • 1).PosSemidef) :
     extH f A = ext f (A + s • 1) - s := by
@@ -579,14 +637,18 @@ lemma extH_eq_shift {A : Matrix n n ℂ} (hH : A.IsHermitian) {s : ℝ}
   · rw [extH, hcomm hs hS hle hpsd]
   · rw [extH, ← hcomm hS hs hle hSpsd]
 
-/-- `extH` agrees with `ext` on PSD matrices.-/
+/-- `extH` agrees with `ext` on PSD matrices.
+@isnad1 id=eq.2h3v.s5.b7331b149dd9 from=translated src=- shape=e617573f vocab=6916c641
+-/
 lemma extH_eq_ext {A : Matrix n n ℂ} (hA : A.PosSemidef) :
     extH f A = ext f A := by
   have h := extH_eq_shift hf hA.isHermitian le_rfl
     (by simpa using hA)
   simpa using h
 
-/-- Additivity of `extH` on Hermitian matrices.-/
+/-- Additivity of `extH` on Hermitian matrices.
+@isnad1 id=eq.3h4v.s7.94732f9b8660 from=translated src=- shape=7599b2a4 vocab=04904fc2
+-/
 lemma extH_add {A B : Matrix n n ℂ} (hA : A.IsHermitian) (hB : B.IsHermitian) :
     extH f (A + B) = extH f A + extH f B := by
   set sA := shiftOf A
@@ -607,13 +669,17 @@ lemma extH_add {A B : Matrix n n ℂ} (hA : A.IsHermitian) (hB : B.IsHermitian) 
     ext_add hf hApsd hBpsd, extH, extH]
   ring
 
-/-- `extH` vanishes at zero.-/
+/-- `extH` vanishes at zero.
+@isnad1 id=eq.1h2v.s5.921720b9bb1d from=translated src=- shape=68425576 vocab=4fa1309f
+-/
 lemma extH_zero : extH f 0 = 0 := by
   have h := extH_eq_shift hf (isHermitian_zero) le_rfl (by simpa using
     (PosSemidef.zero : (0 : Matrix n n ℂ).PosSemidef))
   simpa [ext, frame_zero hf] using h
 
-/-- `extH` respects negation on Hermitian matrices.-/
+/-- `extH` respects negation on Hermitian matrices.
+@isnad1 id=eq.2h3v.s6.83b0c374fefd from=translated src=- shape=c8b500fa vocab=42a4528b
+-/
 lemma extH_neg {A : Matrix n n ℂ} (hH : A.IsHermitian) :
     extH f (-A) = - extH f A := by
   have h := extH_add hf hH hH.neg
@@ -621,12 +687,17 @@ lemma extH_neg {A : Matrix n n ℂ} (hH : A.IsHermitian) :
   linarith
 
 omit [DecidableEq n] [Fintype n] hf in
+/--
+@isnad1 id=ishermit.1h3v.s6.3bacfdca673e from=translated src=- shape=5e2f065c vocab=2ff13c02
+-/
 lemma isHermitian_real_smul {A : Matrix n n ℂ} (hH : A.IsHermitian)
     (t : ℝ) : (t • A).IsHermitian := by
   show (t • A)ᴴ = t • A
   rw [Matrix.conjTranspose_smul, star_trivial, hH]
 
-/-- Real homogeneity of `extH` for nonnegative scalars.-/
+/-- Real homogeneity of `extH` for nonnegative scalars.
+@isnad1 id=eq.3h4v.s7.6f17fc286f06 from=translated src=- shape=dd9145a3 vocab=c85c5b31
+-/
 lemma extH_smul_nonneg {A : Matrix n n ℂ} (hH : A.IsHermitian) {t : ℝ}
     (ht : 0 ≤ t) : extH f (t • A) = t * extH f A := by
   set s := shiftOf A with hsdef
@@ -641,7 +712,9 @@ lemma extH_smul_nonneg {A : Matrix n n ℂ} (hH : A.IsHermitian) {t : ℝ}
     ext_smul hf hpsd ht, extH]
   ring
 
-/-- Full real homogeneity of `extH` on Hermitian matrices.-/
+/-- Full real homogeneity of `extH` on Hermitian matrices.
+@isnad1 id=eq.2h4v.s7.bb1db62bd14b from=translated src=- shape=9829862e vocab=f7162ce6
+-/
 lemma extH_smul {A : Matrix n n ℂ} (hH : A.IsHermitian) (t : ℝ) :
     extH f (t • A) = t * extH f A := by
   rcases le_total 0 t with ht | ht
@@ -661,10 +734,16 @@ noncomputable def eb (i j : n) : Matrix n n ℂ :=
   of fun p q => if p = i ∧ q = j then 1 else 0
 
 omit [Fintype n] in
+/--
+@isnad1 id=eq.0h5v.s5.f9cef917160c from=translated src=- shape=3217ed62 vocab=d1883480
+-/
 lemma eb_apply (i j p q : n) :
     eb i j p q = if p = i ∧ q = j then 1 else 0 := rfl
 
 omit [Fintype n] in
+/--
+@isnad1 id=eq.0h3v.s5.f5da2bd94d69 from=translated src=- shape=96c6705c vocab=0155b406
+-/
 lemma eb_conjTranspose (i j : n) : (eb i j)ᴴ = eb j i := by
   ext p q
   simp only [conjTranspose_apply, eb_apply]
@@ -679,11 +758,17 @@ noncomputable def TB (i j : n) : Matrix n n ℂ :=
   Complex.I • eb i j - Complex.I • eb j i
 
 omit [Fintype n] in
+/--
+@isnad1 id=ishermit.0h3v.s5.d4ca96f2d6ef from=translated src=- shape=4aa7800d vocab=60ce5fa8
+-/
 lemma SB_hermitian (i j : n) : (SB i j).IsHermitian := by
   show (SB i j)ᴴ = SB i j
   rw [SB, conjTranspose_add, eb_conjTranspose, eb_conjTranspose, add_comm]
 
 omit [Fintype n] in
+/--
+@isnad1 id=ishermit.0h3v.s5.99126639b0ff from=translated src=- shape=4aa7800d vocab=5838879a
+-/
 lemma TB_hermitian (i j : n) : (TB i j).IsHermitian := by
   show (TB i j)ᴴ = TB i j
   rw [TB, conjTranspose_sub, conjTranspose_smul, conjTranspose_smul,
@@ -692,14 +777,23 @@ lemma TB_hermitian (i j : n) : (TB i j).IsHermitian := by
   module
 
 omit [Fintype n] in
+/--
+@isnad1 id=eq.0h3v.s4.48609fe059ec from=translated src=- shape=d78e0854 vocab=d8adaf8c
+-/
 lemma SB_symm (i j : n) : SB j i = SB i j := add_comm _ _
 
 omit [Fintype n] in
+/--
+@isnad1 id=eq.0h3v.s5.ca235853539d from=translated src=- shape=2962190b vocab=8365d2e6
+-/
 lemma TB_antisymm (i j : n) : TB j i = -TB i j := by
   rw [TB, TB]
   module
 
 omit [Fintype n] in
+/--
+@isnad1 id=eq.0h2v.s5.552f53e6e71c from=translated src=- shape=2059183b vocab=4f62c5c5
+-/
 lemma TB_self (i : n) : TB i i = 0 := by
   rw [TB]
   module
@@ -710,12 +804,17 @@ noncomputable def rho (f : Matrix n n ℂ → ℝ) : Matrix n n ℂ :=
   of fun i j =>
     ((extH f (SB i j) : ℂ) + Complex.I * (extH f (TB i j) : ℂ)) / 2
 
+/--
+@isnad1 id=eq.0h4v.s6.162105fcee8d from=translated src=- shape=85e422f7 vocab=ed3d559a
+-/
 lemma rho_apply (f : Matrix n n ℂ → ℝ) (i j : n) :
     rho f i j
       = ((extH f (SB i j) : ℂ) + Complex.I * (extH f (TB i j) : ℂ)) / 2 :=
   rfl
 
-/-- Trace against a matrix unit picks out an entry.-/
+/-- Trace against a matrix unit picks out an entry.
+@isnad1 id=eq.0h4v.s5.6344e031f2b4 from=translated src=- shape=85057b42 vocab=3157bf9a
+-/
 lemma trace_mul_eb (M : Matrix n n ℂ) (i j : n) :
     (M * eb i j).trace = M j i := by
   have h : ∀ p, (M * eb i j) p p = if p = j then M p i else 0 := by
@@ -736,17 +835,25 @@ variable {f : Matrix n n ℂ → ℝ} (hf : IsFrameFunction f)
 include hf
 
 omit hf in
+/--
+@isnad1 id=eq.0h4v.s6.7a6f70a1cd48 from=translated src=- shape=ad2bf81d vocab=43452d36
+-/
 lemma trace_mul_SB (M : Matrix n n ℂ) (i j : n) :
     (M * SB i j).trace = M j i + M i j := by
   rw [SB, mul_add, trace_add, trace_mul_eb, trace_mul_eb]
 
 omit hf in
+/--
+@isnad1 id=eq.0h4v.s6.37864c29cc16 from=translated src=- shape=ccb577cb vocab=374c654b
+-/
 lemma trace_mul_TB (M : Matrix n n ℂ) (i j : n) :
     (M * TB i j).trace = Complex.I * M j i - Complex.I * M i j := by
   rw [TB, mul_sub, trace_sub, mul_smul_comm, mul_smul_comm, trace_smul,
     trace_smul, trace_mul_eb, trace_mul_eb, smul_eq_mul, smul_eq_mul]
 
-/-- Trace of `rho` against the symmetric basis element.-/
+/-- Trace of `rho` against the symmetric basis element.
+@isnad1 id=eq.1h4v.s6.1a42ebdcc019 from=translated src=- shape=3241c69d vocab=30254c7d
+-/
 lemma trace_rho_SB (i j : n) :
     (rho f * SB i j).trace = (extH f (SB i j) : ℂ) := by
   rw [trace_mul_SB, rho_apply, rho_apply, SB_symm, TB_antisymm,
@@ -754,7 +861,9 @@ lemma trace_rho_SB (i j : n) :
   push_cast
   ring
 
-/-- Trace of `rho` against the antisymmetric basis element.-/
+/-- Trace of `rho` against the antisymmetric basis element.
+@isnad1 id=eq.1h4v.s6.4e81cae82b56 from=translated src=- shape=3241c69d vocab=4f3bbf13
+-/
 lemma trace_rho_TB (i j : n) :
     (rho f * TB i j).trace = (extH f (TB i j) : ℂ) := by
   rw [trace_mul_TB, rho_apply, rho_apply, SB_symm, TB_antisymm,
@@ -763,6 +872,9 @@ lemma trace_rho_TB (i j : n) :
   linear_combination (-(extH f (TB i j) : ℂ)) * Complex.I_sq
 
 omit [DecidableEq n] [Fintype n] hf in
+/--
+@isnad1 id=ishermit.1h4v.s6.d2ff3585a22e from=translated src=- shape=051dfd31 vocab=49796600
+-/
 lemma isHermitian_finsetSum {ι : Type*} {s : Finset ι}
     {g : ι → Matrix n n ℂ} (hg : ∀ k ∈ s, (g k).IsHermitian) :
     (∑ k ∈ s, g k).IsHermitian := by
@@ -773,6 +885,9 @@ lemma isHermitian_finsetSum {ι : Type*} {s : Finset ι}
       exact (hg a (Finset.mem_cons_self a s)).add
         (ih fun k hk => hg k (Finset.mem_cons_of_mem hk))
 
+/--
+@isnad1 id=eq.2h5v.s6.10b38451461d from=translated src=- shape=9e247688 vocab=64a92840
+-/
 lemma extH_finsetSum {ι : Type*} {s : Finset ι} {g : ι → Matrix n n ℂ}
     (hg : ∀ k ∈ s, (g k).IsHermitian) :
     extH f (∑ k ∈ s, g k) = ∑ k ∈ s, extH f (g k) := by
@@ -785,7 +900,9 @@ lemma extH_finsetSum {ι : Type*} {s : Finset ι} {g : ι → Matrix n n ℂ}
         ih fun k hk => hg k (Finset.mem_cons_of_mem hk)]
 
 omit hf in
-/-- Hermitian matrices decompose over the `SB`/`TB` basis.-/
+/-- Hermitian matrices decompose over the `SB`/`TB` basis.
+@isnad1 id=eq.1h2v.s8.3319f33930d7 from=translated src=- shape=af5efec1 vocab=c186d69f
+-/
 lemma hermitian_decomp {M : Matrix n n ℂ} (hM : M.IsHermitian) :
     M = (2⁻¹ : ℝ) • ∑ i, ∑ j,
       ((M i j).re • SB i j + (M i j).im • TB i j) := by
@@ -836,7 +953,9 @@ lemma hermitian_decomp {M : Matrix n n ℂ} (hM : M.IsHermitian) :
   have hM' := Complex.re_add_im (M p q)
   linear_combination -hM'
 
-/-- **The trace formula**: `rho` represents the Hermitian extension.-/
+/-- **The trace formula**: `rho` represents the Hermitian extension.
+@isnad1 id=eq.2h3v.s6.d592089ff8da from=translated src=- shape=88263c11 vocab=925134bd
+-/
 lemma trace_rho_mul {M : Matrix n n ℂ} (hM : M.IsHermitian) :
     (rho f * M).trace = (extH f M : ℂ) := by
   have hsummand : ∀ i j : n,
@@ -874,7 +993,9 @@ lemma trace_rho_mul {M : Matrix n n ℂ} (hM : M.IsHermitian) :
   push_cast
   ring
 
-/-- `rho` is Hermitian.-/
+/-- `rho` is Hermitian.
+@isnad1 id=ishermit.1h2v.s5.b138f5cfd655 from=translated src=- shape=c4a4ec00 vocab=5e5d31bb
+-/
 lemma rho_hermitian : (rho f).IsHermitian := by
   show (rho f)ᴴ = rho f
   ext i j
@@ -887,7 +1008,9 @@ lemma rho_hermitian : (rho f).IsHermitian := by
 
 omit hf in
 omit [DecidableEq n] in
-/-- Outer products are PSD (direct computation).-/
+/-- Outer products are PSD (direct computation).
+@isnad1 id=possemid.0h2v.s5.3ca5d3d0d5f0 from=translated src=- shape=51970e62 vocab=3e67439b
+-/
 lemma outer_posSemidef (x : n → ℂ) : (vecMulVec x (star x)).PosSemidef := by
   refine PosSemidef.of_dotProduct_mulVec_nonneg ?_ ?_
   · show (vecMulVec x (star x))ᴴ = vecMulVec x (star x)
@@ -921,6 +1044,9 @@ end RhoTrace
 /-! ### Assembly -/
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=eq.0h3v.s7.98a386db416f from=translated src=- shape=b343c4ec vocab=8b370d0a
+-/
 lemma dotProduct_eq_trace (X : Matrix n n ℂ) (x : n → ℂ) :
     star x ⬝ᵥ (X *ᵥ x) = (X * vecMulVec x (star x)).trace := by
   rw [Matrix.trace]
@@ -930,6 +1056,9 @@ lemma dotProduct_eq_trace (X : Matrix n n ℂ) (x : n → ℂ) :
   refine Finset.sum_congr rfl fun p _ => Finset.sum_congr rfl fun q _ => by
     ring
 
+/--
+@isnad1 id=eq.0h1v.s5.d2c6718d268f from=translated src=- shape=e0e9b498 vocab=36d9921f
+-/
 lemma sum_eb_diag : (∑ i, eb i i) = (1 : Matrix n n ℂ) := by
   ext p q
   simp only [Matrix.sum_apply, eb_apply, Matrix.one_apply]
@@ -942,6 +1071,9 @@ lemma sum_eb_diag : (∑ i, eb i i) = (1 : Matrix n n ℂ) := by
     · simp [h1]
 
 omit [Fintype n] in
+/--
+@isnad1 id=ishermit.0h2v.s5.156906e71f63 from=translated src=- shape=2abe9ad7 vocab=5082c22d
+-/
 lemma eb_diag_hermitian (i : n) : (eb i i).IsHermitian := by
   show (eb i i)ᴴ = eb i i
   rw [eb_conjTranspose]
@@ -952,6 +1084,9 @@ variable {f : Matrix n n ℂ → ℝ} (hf : IsFrameFunction f)
 
 include hf
 
+/--
+@isnad1 id=possemid.1h2v.s4.0e73c87c46eb from=translated src=- shape=ac7f09b8 vocab=491b4a36
+-/
 lemma rho_posSemidef : (rho f).PosSemidef := by
   refine PosSemidef.of_dotProduct_mulVec_nonneg (rho_hermitian hf) ?_
   intro x
@@ -961,6 +1096,9 @@ lemma rho_posSemidef : (rho f).PosSemidef := by
   have h := ext_nonneg_of_frame hf houter
   exact_mod_cast h
 
+/--
+@isnad1 id=eq.1h2v.s5.730d7af59ef2 from=translated src=- shape=6754de84 vocab=39b3f90c
+-/
 lemma rho_trace_one : (rho f).trace = 1 := by
   have hdiag : ∀ i, rho f i i = (extH f (eb i i) : ℂ) := by
     intro i
@@ -984,7 +1122,9 @@ end Assembly
 /-- **Busch's theorem**, finite dimension: every frame function on the
 effects of `Matrix n n ℂ` is `a ↦ trace (ρ * a)` for a unique density
 matrix `ρ`. Born-rule uniqueness in the POVM reading, valid from
-dimension 2 (Busch 2003).-/
+dimension 2 (Busch 2003).
+@isnad1 id=existsun.1h2v.s6.a7f0c63d7ac8 from=translated src=- shape=8078ae48 vocab=79e5dddd
+-/
 theorem busch [Nonempty n] (f : Matrix n n ℂ → ℝ) (hf : IsFrameFunction f) :
     ∃! ρ : Matrix n n ℂ, ρ.PosSemidef ∧ ρ.trace = 1 ∧
       ∀ a : Matrix n n ℂ, IsEffect a → (ρ * a).trace = (f a : ℂ) := by

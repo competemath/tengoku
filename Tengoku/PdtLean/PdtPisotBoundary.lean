@@ -47,7 +47,9 @@ noncomputable section
 open Complex
 
 /-- **The quartic spirals.** Every non-real root `w` of `x⁴ − x − 1` has
-`‖w‖ > 1`: the transverse mode of `Q` EXPANDS, so `Q` is not a Pisot number.-/
+`‖w‖ > 1`: the transverse mode of `Q` EXPANDS, so `Q` is not a Pisot number.
+@isnad1 id=lt.2h1v.s5.27e6b7cf9974 from=translated src=- shape=eda45c81 vocab=fd2acc2b
+-/
 theorem quartic_conj_norm_gt_one (w : ℂ) (hw : w ^ 4 = w + 1) (him : w.im ≠ 0) :
     1 < ‖w‖ := by
   have hw0 : w ≠ 0 := by intro h; apply him; rw [h]; simp
@@ -91,7 +93,9 @@ theorem quartic_conj_norm_gt_one (w : ℂ) (hw : w ^ 4 = w + 1) (him : w.im ≠ 
   nlinarith [norm_nonneg w, hs1, hnorm, sq_nonneg (‖w‖ - 1)]
 
 /-- **The cubic settles.** Every non-real root `z` of `x³ − x − 1` has `‖z‖ < 1`:
-the transverse mode of `ρ` CONTRACTS, so `ρ` is a Pisot number.-/
+the transverse mode of `ρ` CONTRACTS, so `ρ` is a Pisot number.
+@isnad1 id=lt.2h1v.s5.698639849248 from=translated src=- shape=3551f5d9 vocab=fd2acc2b
+-/
 theorem cubic_conj_norm_lt_one (z : ℂ) (hz : z ^ 3 = z + 1) (him : z.im ≠ 0) :
     ‖z‖ < 1 := by
   have hz0 : z ≠ 0 := by intro h; apply him; rw [h]; simp

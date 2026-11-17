@@ -33,16 +33,24 @@ The quartic `X⁴ − X − 1` and cubic `X³ − X − 1` over `ℚ` are declar
 in `PdtNorm` (`fQ`, `fρ`), `PdtDiscriminant` (`fq`, `fc`) and `PdtTraceForm`
 (`f4`). All bodies are syntactically identical, so each bridge is `rfl`. -/
 
-/-- The quartic of `PdtDiscriminant` is the quartic of `PdtNorm`.-/
+/-- The quartic of `PdtDiscriminant` is the quartic of `PdtNorm`.
+@isnad1 id=eq.0h0v.s2.5f6b522e8cab from=translated src=- shape=836e6cbb vocab=120b553a
+-/
 theorem fq_eq_fQ : PDT.fq = PDT.fQ := rfl
 
-/-- The cubic of `PdtDiscriminant` is the cubic of `PdtNorm`.-/
+/-- The cubic of `PdtDiscriminant` is the cubic of `PdtNorm`.
+@isnad1 id=eq.0h0v.s2.6fc299478e8d from=translated src=- shape=836e6cbb vocab=8b3a900e
+-/
 theorem fc_eq_fρ : PDT.fc = PDT.fρ := rfl
 
-/-- The quartic abbrev of `PdtTraceForm` is the quartic of `PdtNorm`.-/
+/-- The quartic abbrev of `PdtTraceForm` is the quartic of `PdtNorm`.
+@isnad1 id=eq.0h0v.s2.c0af28e802af from=translated src=- shape=836e6cbb vocab=79cda230
+-/
 theorem f4_eq_fQ : PDT.f4 = PDT.fQ := rfl
 
-/-- The quartic abbrev of `PdtTraceForm` is the quartic of `PdtDiscriminant`.-/
+/-- The quartic abbrev of `PdtTraceForm` is the quartic of `PdtDiscriminant`.
+@isnad1 id=eq.0h0v.s2.a404938e6769 from=translated src=- shape=836e6cbb vocab=0836f921
+-/
 theorem f4_eq_fq : PDT.f4 = PDT.fq := rfl
 
 /-! ## Quartic Gram-matrix identification
@@ -55,13 +63,17 @@ matrix, entrywise) are byte-identical literals, so `M = M4` is `rfl`. -/
 `PdtSignature.M` and `PdtTraceForm.M4` are literally equal; `M4` is proved
 entrywise equal to `Algebra.traceForm` on the power basis in `PdtTraceForm`
 (`traceForm_eq_M4`), so the `(3,1)`-signature certificate analyses the genuine
-trace form.-/
+trace form.
+@isnad1 id=eq.0h0v.s4.ec3c28478063 from=translated src=- shape=8b913b8d vocab=0aad4aae
+-/
 theorem M_eq_M4 : PDT.M = PDT.M4 := rfl
 
 /-- Consequence of `M_eq_M4`: each entry of the hand-written signature matrix `M`
 equals the corresponding `Algebra.traceForm` Gram entry on the power basis of
 `ℚ[x]/(x⁴−x−1)`. This is what makes `signature_3_1` a statement about the
-genuine trace form.-/
+genuine trace form.
+@isnad1 id=eq.0h2v.s10.736384dc354b from=translated src=- shape=5a52aecc vocab=b604c0b0
+-/
 theorem M_entry_eq_traceForm (i j : Fin 4) :
     PDT.M i j = Algebra.traceForm ℚ (AdjoinRoot PDT.f4) (PDT.pb4.basis (PDT.ι i)) (PDT.pb4.basis (PDT.ι j)) := by
   rw [M_eq_M4]; exact (PDT.traceForm_eq_M4 i j).symm

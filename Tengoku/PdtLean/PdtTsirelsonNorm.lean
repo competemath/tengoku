@@ -65,7 +65,9 @@ with `B₀ = s • B₀i`, `B₁ = s • B₁i`, `s = 1/√2`.-/
 noncomputable def Pchsh : Mat := A₀ * B₀ + A₀ * B₁ + A₁ * B₀ - A₁ * B₁
 
 /-- `P = s • M`: the physical CHSH operator is the integer CHSH matrix scaled
-by `1/√2`.-/
+by `1/√2`.
+@isnad1 id=eq.0h0v.s4.53ad41f082bf from=translated src=- shape=896694f3 vocab=aa52aa99
+-/
 theorem Pchsh_eq_smul : Pchsh = s • Mchsh := by
   unfold Pchsh Mchsh B₀ B₁
   rw [mul_smul_comm, mul_smul_comm, mul_smul_comm, mul_smul_comm]
@@ -76,7 +78,9 @@ theorem Pchsh_eq_smul : Pchsh = s • Mchsh := by
 with eigenvalue `±4`.-/
 def Kchsh : Mat := !![8,0,0,8; 0,8,-8,0; 0,-8,8,0; 8,0,0,8]
 
-/-- The square of the integer CHSH matrix, entrywise.-/
+/-- The square of the integer CHSH matrix, entrywise.
+@isnad1 id=eq.0h0v.s5.241b71eb8f34 from=translated src=- shape=8bb084c5 vocab=47ed92cb
+-/
 theorem Mchsh_sq_eq : Mchsh * Mchsh = Kchsh := by
   rw [Mchsh_eq]
   ext i j
@@ -88,25 +92,34 @@ theorem Mchsh_sq_eq : Mchsh * Mchsh = Kchsh := by
 form `M² = c·1` with `c ≠ 0` can hold (kernel-certified for every scalar, in
 scaled form, as `Pchsh_sq_ne_smul`). Equivalently `P² ≠ 8·1`: the naive
 CHSH-algebra shortcut to the Tsirelson norm is not available for this
-representation.-/
+representation.
+@isnad1 id=ne.0h0v.s6.d7b470fbb186 from=translated src=- shape=6ac889ba vocab=563483bd
+-/
 theorem Mchsh_sq_ne_sixteen_one : Mchsh * Mchsh ≠ (16 : ℝ) • (1 : Mat) := by
   rw [Mchsh_sq_eq]
   intro h
   have h00 := congrArg (fun X : Mat => X 0 0) h
   norm_num [Kchsh, Matrix.smul_apply, Matrix.one_apply] at h00
 
-/-- `K² = 16·K` — `K/16` is idempotent.-/
+/-- `K² = 16·K` — `K/16` is idempotent.
+@isnad1 id=eq.0h0v.s6.d2119be03859 from=translated src=- shape=b5c2f4ed vocab=a8a376e0
+-/
 theorem Kchsh_sq : Kchsh * Kchsh = (16 : ℝ) • Kchsh := by
   ext i j
   fin_cases i <;> fin_cases j <;>
     simp [Kchsh, Matrix.mul_apply, Fin.sum_univ_four] <;> norm_num
 
-/-- `K` is symmetric, hence (real) self-adjoint.-/
+/-- `K` is symmetric, hence (real) self-adjoint.
+@isnad1 id=eq.0h0v.s5.758697a0f249 from=translated src=- shape=28fc0566 vocab=2f7f97af
+-/
 theorem Kchsh_sa : star Kchsh = Kchsh := by
   rw [star_eq_conjTranspose]
   ext i j
   fin_cases i <;> fin_cases j <;> simp [Kchsh]
 
+/--
+@isnad1 id=ne.0h0v.s4.3f21832ce9d8 from=translated src=- shape=ffdda526 vocab=db133495
+-/
 theorem Kchsh_ne_zero : Kchsh ≠ 0 := by
   intro h
   have h00 := congrArg (fun X : Mat => X 0 0) h
@@ -114,14 +127,18 @@ theorem Kchsh_ne_zero : Kchsh ≠ 0 := by
 
 /-- **`P² = (1/2)·K`.** The scaled CHSH operator squares to half the
 integer idempotent-like matrix `K` (NOT to `8·1`; see
-`Mchsh_sq_ne_sixteen_one`).-/
+`Mchsh_sq_ne_sixteen_one`).
+@isnad1 id=eq.0h0v.s6.c6555dbae653 from=translated src=- shape=b64df005 vocab=fcb1aec0
+-/
 theorem Pchsh_sq : Pchsh * Pchsh = (1 / 2 : ℝ) • Kchsh := by
   rw [Pchsh_eq_smul, smul_mul_smul_comm, Mchsh_sq_eq, s_sq]
 
 /-- **Falsification, scaled form (kernel-certified):** `P² ≠ 8·1`. The `(0,0)`
 entry of `P²` is `4`, not `8` — the scalar-square shortcut `P² = 8·1 ⇒ ‖P‖ = √8`
 is not available for this representation. Scaled companion of
-`Mchsh_sq_ne_sixteen_one`.-/
+`Mchsh_sq_ne_sixteen_one`.
+@isnad1 id=ne.0h0v.s6.1aa333b37dd0 from=translated src=- shape=6ac889ba vocab=14b60f4c
+-/
 theorem Pchsh_sq_ne : Pchsh * Pchsh ≠ (8 : ℝ) • (1 : Mat) := by
   rw [Pchsh_sq]
   intro h
@@ -133,7 +150,9 @@ ANY real `c`. The `(0,3)` entry of `P² = (1/2)·K` is `4` — nonzero and
 off-diagonal — while every scalar multiple of the identity has all
 off-diagonal entries `0`, so a single entry refutes every scalar at once.
 Strengthens `Pchsh_sq_ne` from `c = 8` to all of `ℝ`: the scalar-square
-route `P² = c·1 ⇒ ‖P‖ = √c` is closed for every scalar, not just `8`.-/
+route `P² = c·1 ⇒ ‖P‖ = √c` is closed for every scalar, not just `8`.
+@isnad1 id=ne.0h1v.s6.5408934728c0 from=translated src=- shape=9000cb98 vocab=14b60f4c
+-/
 theorem Pchsh_sq_ne_smul : ∀ c : ℝ, Pchsh * Pchsh ≠ c • (1 : Mat) := by
   intro c h
   rw [Pchsh_sq] at h
@@ -141,19 +160,25 @@ theorem Pchsh_sq_ne_smul : ∀ c : ℝ, Pchsh * Pchsh ≠ c • (1 : Mat) := by
   simp [Kchsh, Matrix.smul_apply, show (0 : Fin 4) ≠ 3 by decide] at h03
 
 /-- The integer CHSH matrix is self-adjoint (star of each product swaps the
-factors; cross-party commutation swaps them back).-/
+factors; cross-party commutation swaps them back).
+@isnad1 id=eq.0h0v.s5.09e9e2ee8804 from=translated src=- shape=28fc0566 vocab=953fe310
+-/
 theorem Mchsh_sa : star Mchsh = Mchsh := by
   unfold Mchsh
   rw [star_sub, star_add, star_add, star_mul, star_mul, star_mul, star_mul,
     A₀_sa, A₁_sa, B₀i_sa, B₁i_sa,
     ← A₀B₀i_comm, ← A₀B₁i_comm, ← A₁B₀i_comm, ← A₁B₁i_comm]
 
-/-- The scaled CHSH operator is self-adjoint.-/
+/-- The scaled CHSH operator is self-adjoint.
+@isnad1 id=eq.0h0v.s5.c4d90881e57c from=translated src=- shape=28fc0566 vocab=4a9a46b6
+-/
 theorem Pchsh_sa : star Pchsh = Pchsh := by
   rw [Pchsh_eq_smul, star_smul, Mchsh_sa, star_trivial]
 
 /-- Restatement of `chsh_saturates` in terms of `Pchsh`: the CHSH operator
-attains the eigenvalue `2√2` on `v = (1,0,0,1)`.-/
+attains the eigenvalue `2√2` on `v = (1,0,0,1)`.
+@isnad1 id=eq.0h0v.s6.66f4cebd338d from=translated src=- shape=ad0c0024 vocab=2cf25fe3
+-/
 theorem Pchsh_mulVec : Pchsh.mulVec vsat = (2 * Real.sqrt 2) • vsat :=
   chsh_saturates
 
@@ -162,7 +187,9 @@ section OperatorNorm
 open scoped Matrix.Norms.L2Operator
 
 /-- `‖K‖ = 16` in the l2 operator norm, by the C*-identity:
-`‖K‖² = ‖Kᴴ·K‖ = ‖K²‖ = ‖16·K‖ = 16·‖K‖` and `‖K‖ ≠ 0`.-/
+`‖K‖² = ‖Kᴴ·K‖ = ‖K²‖ = ‖16·K‖ = 16·‖K‖` and `‖K‖ ≠ 0`.
+@isnad1 id=eq.0h0v.s5.1c8c7e7b47d7 from=translated src=- shape=b3c4969c vocab=e76cf093
+-/
 theorem Kchsh_opNorm : ‖Kchsh‖ = 16 := by
   have hnz : ‖Kchsh‖ ≠ 0 := norm_ne_zero_iff.mpr Kchsh_ne_zero
   have hC : ‖Kchsh‖ * ‖Kchsh‖ = 16 * ‖Kchsh‖ := by
@@ -175,7 +202,9 @@ in the l2 operator norm on `M₄(ℝ)`. Proof: the C*-identity plus `P`
 self-adjoint give `‖P‖² = ‖P²‖ = ‖(1/2)•K‖ = (1/2)·16 = 8`; nonnegativity
 pins `‖P‖ = √8 = 2√2`. This replaces the prose inference in
 `PdtTsirelson.lean` ("the operator norm of `P` is ≥ `2√2`") with a kernel
-equality.-/
+equality.
+@isnad1 id=eq.0h0v.s5.6a6dfd3e6bf7 from=translated src=- shape=7fa0a057 vocab=036ef078
+-/
 theorem Pchsh_opNorm : ‖Pchsh‖ = 2 * Real.sqrt 2 := by
   have hsq : ‖Pchsh‖ * ‖Pchsh‖ = 8 := by
     rw [← Matrix.l2_opNorm_conjTranspose_mul_self Pchsh, ← star_eq_conjTranspose,

@@ -172,7 +172,9 @@ open LinearMap
 If a bilinear form `B` on a commutative `R`-algebra `A` is *associative*
 (`B (x*z) y = B x (z*y)` — the algebraic form of "built from the algebra's own
 multiplication, no extra data") and `j ∈ A` satisfies `j² = -1`, then
-`B j j = - B 1 1`.-/
+`B j j = - B 1 1`.
+@isnad1 id=eq.2h4v.s10.cab7e8f71c13 from=translated src=- shape=47a206b9 vocab=3b0a1e7e
+-/
 theorem assoc_sq_eq_neg_one {R A : Type*} [CommRing R] [CommRing A] [Algebra R A]
     (B : LinearMap.BilinForm R A)
     (hassoc : ∀ x y z : A, B (x * z) y = B x (z * y))
@@ -185,7 +187,9 @@ theorem assoc_sq_eq_neg_one {R A : Type*} [CommRing R] [CommRing A] [Algebra R A
 /-- **No positive-definite intrinsic metric at a complex place.**
 On a nontrivial real algebra containing a square root of `-1`, no associative bilinear
 form is positive definite. This is the corrected forcing step: the obstruction is the
-complex place, not non-CM-ness.-/
+complex place, not non-CM-ness.
+@isnad1 id=not.2h3v.s10.7dfe8626b7d8 from=translated src=- shape=6060576a vocab=d71fe99e
+-/
 theorem no_posDef_assoc_of_sq_neg_one {A : Type*} [CommRing A] [Nontrivial A] [Algebra ℝ A]
     (B : LinearMap.BilinForm ℝ A)
     (hassoc : ∀ x y z : A, B (x * z) y = B x (z * y))
@@ -203,23 +207,31 @@ theorem no_posDef_assoc_of_sq_neg_one {A : Type*} [CommRing A] [Nontrivial A] [A
   linarith
 
 /-- The trace form of any commutative algebra is associative: `Tr(xz·y) = Tr(x·zy)`.
-This is what makes the trace form *intrinsic*.-/
+This is what makes the trace form *intrinsic*.
+@isnad1 id=eq.0h5v.s9.f5b2581d3f1a from=translated src=- shape=7c1ff9b5 vocab=9112a805
+-/
 theorem traceForm_assoc {R S : Type*} [CommRing R] [CommRing S] [Algebra R S] (x y z : S) :
     Algebra.traceForm R S (x * z) y = Algebra.traceForm R S x (z * y) := by
   simp only [Algebra.traceForm_apply, mul_assoc]
 
 /-! ## §2 — The complex place: `(1,1)` untwisted, `(2,0)` twisted -/
 
-/-- The local trace form of a complex place on the unit: `Tr_{ℂ/ℝ}(1) = 2`.-/
+/-- The local trace form of a complex place on the unit: `Tr_{ℂ/ℝ}(1) = 2`.
+@isnad1 id=eq.0h0v.s9.17344b971d96 from=translated src=- shape=a95491cf vocab=8b6daffa
+-/
 theorem traceForm_C_one : Algebra.traceForm ℝ ℂ 1 1 = 2 := by
   simp [Algebra.traceForm_apply, Algebra.trace_complex_apply]
 
 /-- The local trace form of a complex place on `i`: `Tr_{ℂ/ℝ}(i²) = -2`.
-One positive and one negative direction: the complex place is a hyperbolic plane.-/
+One positive and one negative direction: the complex place is a hyperbolic plane.
+@isnad1 id=eq.0h0v.s9.57bb946d8a93 from=translated src=- shape=7212ff84 vocab=08dcc874
+-/
 theorem traceForm_C_I : Algebra.traceForm ℝ ℂ Complex.I Complex.I = -2 := by
   simp [Algebra.traceForm_apply, Algebra.trace_complex_apply, Complex.I_mul_I]
 
-/-- **The untwisted trace form of a complex place is NOT positive definite.**-/
+/-- **The untwisted trace form of a complex place is NOT positive definite.**
+@isnad1 id=not.0h0v.s9.6a409da9dceb from=translated src=- shape=13e8c89e vocab=dd60829d
+-/
 theorem traceForm_C_not_posDef :
     ¬ (∀ z : ℂ, z ≠ 0 → 0 < Algebra.traceForm ℝ ℂ z z) :=
   no_posDef_assoc_of_sq_neg_one (Algebra.traceForm ℝ ℂ)
@@ -228,20 +240,26 @@ theorem traceForm_C_not_posDef :
 /-- The conjugation-twisted ("Born") form at a complex place, `H z w = Tr(z · conj w)`.-/
 noncomputable def cmTwist (z w : ℂ) : ℝ := Algebra.traceForm ℝ ℂ z (starRingEnd ℂ w)
 
-/-- `H z z = 2‖z‖²`.-/
+/-- `H z z = 2‖z‖²`.
+@isnad1 id=eq.0h1v.s5.02a68fae8b51 from=translated src=- shape=1b2494cc vocab=1dee1497
+-/
 theorem cmTwist_self (z : ℂ) : cmTwist z z = 2 * Complex.normSq z := by
   simp [cmTwist, Algebra.traceForm_apply, Algebra.trace_complex_apply, Complex.mul_conj]
 
 /-- **The conjugation twist IS positive definite.** This is the escape route that a CM
 field (or a totally real field, where the involution is the identity) possesses and a
-field with trivial automorphism group does not.-/
+field with trivial automorphism group does not.
+@isnad1 id=lt.1h1v.s4.0a8223ea2d41 from=translated src=- shape=8051f446 vocab=e55a23e4
+-/
 theorem cmTwist_posDef (z : ℂ) (hz : z ≠ 0) : 0 < cmTwist z z := by
   rw [cmTwist_self]
   have : 0 < Complex.normSq z := Complex.normSq_pos.mpr hz
   linarith
 
 /-- **The dichotomy at a complex place, in one statement.** The untwisted intrinsic
-(trace) form is indefinite; the conjugation-twisted form is positive definite.-/
+(trace) form is indefinite; the conjugation-twisted form is positive definite.
+@isnad1 id=and.0h0v.s10.b9008288a8c8 from=translated src=- shape=9c440aa7 vocab=2c2f34f7
+-/
 theorem complex_place_dichotomy :
     Algebra.traceForm ℝ ℂ 1 1 = 2 ∧
     Algebra.traceForm ℝ ℂ Complex.I Complex.I = -2 ∧
@@ -266,38 +284,55 @@ contributes exactly one negative direction, for every λ.** Hence `negative inde
 this is the local trace form; these are exactly the associative forms on `ℂ` over `ℝ`.-/
 noncomputable def lamForm (lam z w : ℂ) : ℝ := Algebra.traceForm ℝ ℂ (lam * z) w
 
-/-- Every `lamForm` is associative, i.e. intrinsic to the algebra.-/
+/-- Every `lamForm` is associative, i.e. intrinsic to the algebra.
+@isnad1 id=eq.0h4v.s5.846c058ef3c3 from=translated src=- shape=bebe8e4c vocab=ad86750e
+-/
 theorem lamForm_assoc (lam x y z : ℂ) : lamForm lam (x * z) y = lamForm lam x (z * y) := by
   simp only [lamForm, Algebra.traceForm_apply]
   ring_nf
 
-/-- The diagonal of the `λ`-twisted form, expanded in real coordinates.-/
+/-- The diagonal of the `λ`-twisted form, expanded in real coordinates.
+@isnad1 id=eq.0h2v.s6.3135563d8e0b from=translated src=- shape=794e286e vocab=ae838fde
+-/
 theorem lamForm_self (lam z : ℂ) :
     lamForm lam z z = 2 * (lam.re * (z.re ^ 2 - z.im ^ 2) - lam.im * (2 * z.re * z.im)) := by
   simp only [lamForm, Algebra.traceForm_apply, Algebra.trace_complex_apply, Complex.mul_re,
     Complex.mul_im]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s5.ebe19279f850 from=translated src=- shape=1ce0d12c vocab=ee246ab7
+-/
 theorem lamForm_one (lam : ℂ) : lamForm lam 1 1 = 2 * lam.re := by
   rw [lamForm_self]; simp
 
+/--
+@isnad1 id=eq.0h1v.s4.e5330bfbf277 from=translated src=- shape=6647dd39 vocab=bbcda30e
+-/
 theorem lamForm_I (lam : ℂ) : lamForm lam Complex.I Complex.I = -2 * lam.re := by
   rw [lamForm_self]; simp
 
+/--
+@isnad1 id=eq.0h1v.s5.c62b5889370b from=translated src=- shape=e9b8f14c vocab=1826766c
+-/
 theorem lamForm_cross (lam : ℂ) : lamForm lam 1 Complex.I = -2 * lam.im := by
   simp only [lamForm, Algebra.traceForm_apply, Algebra.trace_complex_apply, Complex.mul_re,
     Complex.mul_im]
   simp
 
 /-- **The complex-place block determinant is `-4‖λ‖²`.** (The factor `4` is the
-`Tr_{ℂ/ℝ} = 2·Re` convention; the usual statement is `-|λ_v|²`, up to that normalisation.)-/
+`Tr_{ℂ/ℝ} = 2·Re` convention; the usual statement is `-|λ_v|²`, up to that normalisation.)
+@isnad1 id=eq.0h1v.s6.c0571078e1fc from=translated src=- shape=bfbeb6bb vocab=d07c88c3
+-/
 theorem lamForm_block_det (lam : ℂ) :
     lamForm lam 1 1 * lamForm lam Complex.I Complex.I - lamForm lam 1 Complex.I ^ 2
       = -4 * Complex.normSq lam := by
   rw [lamForm_one, lamForm_I, lamForm_cross, Complex.normSq_apply]
   ring
 
-/-- The block determinant is strictly negative for every nonzero twist.-/
+/-- The block determinant is strictly negative for every nonzero twist.
+@isnad1 id=lt.1h1v.s6.1dbe81ed750d from=translated src=- shape=23bf40c3 vocab=9288d5aa
+-/
 theorem lamForm_block_det_neg (lam : ℂ) (h : lam ≠ 0) :
     lamForm lam 1 1 * lamForm lam Complex.I Complex.I - lamForm lam 1 Complex.I ^ 2 < 0 := by
   rw [lamForm_block_det]
@@ -306,7 +341,9 @@ theorem lamForm_block_det_neg (lam : ℂ) (h : lam ≠ 0) :
 
 /-- **Every complex place contributes a negative direction, for every twist `λ ≠ 0`.**
 This is the local half of "negative index ≥ r₂": one explicit timelike vector in the
-`{1, i}` plane, produced from the sign of `Re λ` (or, when `Re λ = 0`, from `Im λ`).-/
+`{1, i}` plane, produced from the sign of `Re λ` (or, when `Re λ = 0`, from `Im λ`).
+@isnad1 id=ex.1h1v.s5.379912f91259 from=translated src=- shape=67b8c617 vocab=7293fc23
+-/
 theorem lamForm_neg_direction (lam : ℂ) (h : lam ≠ 0) :
     ∃ z : ℂ, z ≠ 0 ∧ lamForm lam z z < 0 := by
   rcases lt_trichotomy lam.re 0 with hr | hr | hr
@@ -334,7 +371,9 @@ theorem lamForm_neg_direction (lam : ℂ) (h : lam ≠ 0) :
 
 /-- **No twist of the local trace form at a complex place is positive definite.**
 Equivalently, at `r₂ = 1` the negative index is at least `1`: there is always a time
-direction, whatever `λ` is chosen.-/
+direction, whatever `λ` is chosen.
+@isnad1 id=not.1h1v.s5.9feef446308f from=translated src=- shape=3f5d0d83 vocab=7293fc23
+-/
 theorem lamForm_not_posDef (lam : ℂ) (h : lam ≠ 0) :
     ¬ (∀ z : ℂ, z ≠ 0 → 0 < lamForm lam z z) := by
   intro hpos
@@ -349,7 +388,9 @@ noncomputable def tW : AdjoinRoot f4 := 4 * r4 - 3 * r4 ^ 2
 /-- **A timelike direction in the intrinsic metric of `ℚ(Q)`, exhibited.**
 `Tr_{K/ℚ}(x²) = -36 < 0` for `x = 4·root − 3·root²`, computed from the genuine
 `Algebra.traceForm ℚ (AdjoinRoot f4)` via the power sums `p₂ = 0, p₃ = 3, p₄ = 4`
-of `PdtTraceForm`.-/
+of `PdtTraceForm`.
+@isnad1 id=eq.0h0v.s9.f7e02e57eca5 from=translated src=- shape=e70def31 vocab=bef7b326
+-/
 theorem traceForm_tW : Algebra.traceForm ℚ (AdjoinRoot f4) tW tW = -36 := by
   rw [Algebra.traceForm_apply]
   have hx : tW * tW
@@ -360,7 +401,9 @@ theorem traceForm_tW : Algebra.traceForm ℚ (AdjoinRoot f4) tW tW = -36 := by
     trace_r4_pow2, trace_r4_pow3, trace_r4_pow4]
   norm_num
 
-/-- The witness is nonzero (it has nonzero trace-form self-pairing).-/
+/-- The witness is nonzero (it has nonzero trace-form self-pairing).
+@isnad1 id=ne.0h0v.s5.844b4788b01f from=translated src=- shape=6b8fdc29 vocab=9247acc9
+-/
 theorem tW_ne_zero : tW ≠ 0 := by
   intro h
   have h2 := traceForm_tW
@@ -369,7 +412,9 @@ theorem tW_ne_zero : tW ≠ 0 := by
 
 /-- **The intrinsic metric of `ℚ(Q)` is not positive definite** — the arithmetic content
 of "no Euclidean intrinsic metric", proved by explicit witness rather than by any
-CM-theoretic detour.-/
+CM-theoretic detour.
+@isnad1 id=not.0h0v.s9.7f2a5caa2901 from=translated src=- shape=740c31b6 vocab=c7e73fe0
+-/
 theorem traceForm_Q_not_posDef :
     ¬ (∀ x : AdjoinRoot f4, x ≠ 0 → 0 < Algebra.traceForm ℚ (AdjoinRoot f4) x x) := by
   intro hpos
@@ -382,7 +427,9 @@ theorem traceForm_Q_not_posDef :
 is not positive definite; (ii) its Gram matrix in the power basis is `PdtSignature.M`
 (`PdtTraceForm.traceForm_eq_M4`); (iii) `M` is carried by an invertible rational
 congruence to `diag(4, 4, -9/4, 283/36)` — three positive, one negative — and
-`det M = -283 < 0`, so by Sylvester's law the signature is exactly `(3,1)`.-/
+`det M = -283 < 0`, so by Sylvester's law the signature is exactly `(3,1)`.
+@isnad1 id=and.0h0v.s11.9cb49505e194 from=translated src=- shape=709386b7 vocab=a3e41c6d
+-/
 theorem lorentzian_signature_of_pdt_quartic :
     Algebra.traceForm ℚ (AdjoinRoot f4) tW tW = -36 ∧
     (∀ i j : Fin 4,
@@ -407,13 +454,22 @@ open Polynomial AdjoinRoot Algebra
 /-- The cubic `X³ − X − 1`.-/
 abbrev cf : ℚ[X] := X ^ 3 - X - 1
 
+/--
+@isnad1 id=monic.0h0v.s2.94c9c3caab7d from=translated src=- shape=25b03439 vocab=e238d1c3
+-/
 theorem cf_monic : (cf).Monic := by
   show ((X ^ 3 - X - 1 : ℚ[X])).Monic
   have : (X ^ 3 - X - 1 : ℚ[X]) = X ^ 3 + (- X - 1) := by ring
   rw [this]; apply monic_X_pow_add; compute_degree!
 
+/--
+@isnad1 id=ne.0h0v.s4.37a3f46bfc77 from=translated src=- shape=2d527563 vocab=d26c0fa0
+-/
 theorem cf_ne : cf ≠ 0 := cf_monic.ne_zero
 
+/--
+@isnad1 id=eq.0h0v.s3.c3a19a52c853 from=translated src=- shape=b3c4969c vocab=f8cff131
+-/
 theorem cf_deg : cf.natDegree = 3 := by
   show (X ^ 3 - X - 1 : ℚ[X]).natDegree = 3; compute_degree!
 
@@ -421,31 +477,60 @@ theorem cf_deg : cf.natDegree = 3 := by
 abbrev cpb := AdjoinRoot.powerBasis cf_ne
 abbrev cr := root cf
 
+/--
+@isnad1 id=eq.0h0v.s5.24cc7118c10b from=translated src=- shape=b6447e33 vocab=f4e31168
+-/
 theorem cpb_dim : cpb.dim = 3 := cf_deg
 
-/-- The defining relation `ρ³ = ρ + 1`.-/
+/-- The defining relation `ρ³ = ρ + 1`.
+@isnad1 id=eq.0h0v.s7.2fbb7692e4d5 from=translated src=- shape=b6dd541a vocab=989dd0db
+-/
 theorem cr_pow3 : cr ^ 3 = cr + 1 := by
   have h : aeval cr cf = 0 := by rw [aeval_eq, mk_self]
   show (root cf) ^ 3 = root cf + 1
   simp only [cf, map_sub, map_pow, map_one, aeval_X] at h
   linear_combination h
 
+/--
+@isnad1 id=eq.0h0v.s7.b72e6fefe6d6 from=translated src=- shape=03e9e35c vocab=989dd0db
+-/
 theorem cr_pow4 : cr ^ 4 = cr ^ 2 + cr := by linear_combination (cr) * cr_pow3
+/--
+@isnad1 id=eq.0h0v.s7.381c307f948d from=translated src=- shape=c23eda6d vocab=989dd0db
+-/
 theorem cr_pow5 : cr ^ 5 = cr ^ 2 + cr + 1 := by
   linear_combination (cr ^ 2 + 1) * cr_pow3
+/--
+@isnad1 id=eq.0h0v.s8.a027e3ba983e from=translated src=- shape=478a7d9d vocab=3266c7b5
+-/
 theorem cr_pow6 : cr ^ 6 = cr ^ 2 + 2 * cr + 1 := by
   linear_combination (cr ^ 3 + cr + 1) * cr_pow3
 
 /-- cast `Fin 3 → Fin cpb.dim`.-/
 abbrev cι (i : Fin 3) : Fin cpb.dim := Fin.cast cpb_dim.symm i
 
+/--
+@isnad1 id=eq.0h1v.s8.ffb6b7babddc from=translated src=- shape=2675c9c8 vocab=49f473c6
+-/
 theorem cbasis_val (i : Fin 3) : cpb.basis (cι i) = cr ^ (i : ℕ) := by
   rw [PowerBasis.coe_basis]; rfl
 
+/--
+@isnad1 id=eq.0h0v.s8.a76f2551f8b9 from=translated src=- shape=66429139 vocab=c1f9205d
+-/
 theorem cbasis_val0 : cpb.basis (cι 0) = cr ^ (0 : ℕ) := by rw [cbasis_val]; norm_num
+/--
+@isnad1 id=eq.0h0v.s8.602045d75802 from=translated src=- shape=66429139 vocab=c1f9205d
+-/
 theorem cbasis_val1 : cpb.basis (cι 1) = cr ^ (1 : ℕ) := by rw [cbasis_val]; norm_num
+/--
+@isnad1 id=eq.0h0v.s8.fc0728f624e3 from=translated src=- shape=66429139 vocab=c1f9205d
+-/
 theorem cbasis_val2 : cpb.basis (cι 2) = cr ^ (2 : ℕ) := by rw [cbasis_val]; norm_num
 
+/--
+@isnad1 id=eq.0h4v.s10.225387d259ac from=translated src=- shape=8497516c vocab=29ea3f1a
+-/
 theorem crepr_comb (a b c : ℚ) (j : Fin 3) :
     cpb.basis.repr (a • cr ^ (0 : ℕ) + b • cr ^ (1 : ℕ) + c • cr ^ (2 : ℕ)) (cι j)
       = ![a, b, c] j := by
@@ -454,12 +539,24 @@ theorem crepr_comb (a b c : ℚ) (j : Fin 3) :
     Pi.smul_apply, Module.Basis.repr_self_apply, smul_eq_mul]
   fin_cases j <;> simp [cι, Fin.ext_iff]
 
+/--
+@isnad1 id=eq.0h1v.s10.211ad6591000 from=translated src=- shape=503b2dba vocab=0f371302
+-/
 theorem crepr0 (j : Fin 3) : cpb.basis.repr (cr ^ (0 : ℕ)) (cι j) = ![1,0,0] j := by
   have := crepr_comb 1 0 0 j; simpa using this
+/--
+@isnad1 id=eq.0h1v.s10.bd4d02b47ea1 from=translated src=- shape=503b2dba vocab=0f371302
+-/
 theorem crepr1 (j : Fin 3) : cpb.basis.repr (cr ^ (1 : ℕ)) (cι j) = ![0,1,0] j := by
   have := crepr_comb 0 1 0 j; simpa using this
+/--
+@isnad1 id=eq.0h1v.s10.c1c20e563898 from=translated src=- shape=503b2dba vocab=0f371302
+-/
 theorem crepr2 (j : Fin 3) : cpb.basis.repr (cr ^ (2 : ℕ)) (cι j) = ![0,0,1] j := by
   have := crepr_comb 0 0 1 j; simpa using this
+/--
+@isnad1 id=eq.0h1v.s10.e25ada2a63ee from=translated src=- shape=503b2dba vocab=0f371302
+-/
 theorem crepr3 (j : Fin 3) : cpb.basis.repr (cr ^ (3 : ℕ)) (cι j) = ![1,1,0] j := by
   have h := crepr_comb 1 1 0 j
   rw [cr_pow3]
@@ -467,6 +564,9 @@ theorem crepr3 (j : Fin 3) : cpb.basis.repr (cr ^ (3 : ℕ)) (cι j) = ![1,1,0] 
         = (1:ℚ) • cr ^ (0:ℕ) + (1:ℚ) • cr ^ (1:ℕ) + (0:ℚ) • cr ^ (2:ℕ) by
         simp only [Algebra.smul_def, map_one, map_zero]; ring]
   exact h
+/--
+@isnad1 id=eq.0h1v.s10.8f02f56c8197 from=translated src=- shape=503b2dba vocab=0f371302
+-/
 theorem crepr4 (j : Fin 3) : cpb.basis.repr (cr ^ (4 : ℕ)) (cι j) = ![0,1,1] j := by
   have h := crepr_comb 0 1 1 j
   rw [cr_pow4]
@@ -474,6 +574,9 @@ theorem crepr4 (j : Fin 3) : cpb.basis.repr (cr ^ (4 : ℕ)) (cι j) = ![0,1,1] 
         = (0:ℚ) • cr ^ (0:ℕ) + (1:ℚ) • cr ^ (1:ℕ) + (1:ℚ) • cr ^ (2:ℕ) by
         simp only [Algebra.smul_def, map_one, map_zero]; ring]
   exact h
+/--
+@isnad1 id=eq.0h1v.s10.c54a159f2859 from=translated src=- shape=503b2dba vocab=0f371302
+-/
 theorem crepr5 (j : Fin 3) : cpb.basis.repr (cr ^ (5 : ℕ)) (cι j) = ![1,1,1] j := by
   have h := crepr_comb 1 1 1 j
   rw [cr_pow5]
@@ -481,6 +584,9 @@ theorem crepr5 (j : Fin 3) : cpb.basis.repr (cr ^ (5 : ℕ)) (cι j) = ![1,1,1] 
         = (1:ℚ) • cr ^ (0:ℕ) + (1:ℚ) • cr ^ (1:ℕ) + (1:ℚ) • cr ^ (2:ℕ) by
         simp only [Algebra.smul_def, map_one]; ring]
   exact h
+/--
+@isnad1 id=eq.0h1v.s10.cf937f357c06 from=translated src=- shape=503b2dba vocab=0f371302
+-/
 theorem crepr6 (j : Fin 3) : cpb.basis.repr (cr ^ (6 : ℕ)) (cι j) = ![1,2,1] j := by
   have h := crepr_comb 1 2 1 j
   rw [cr_pow6]
@@ -489,7 +595,9 @@ theorem crepr6 (j : Fin 3) : cpb.basis.repr (cr ^ (6 : ℕ)) (cι j) = ![1,2,1] 
         simp only [Algebra.smul_def, map_ofNat, map_one]; ring]
   exact h
 
-/-- `Algebra.trace` as the explicit `Fin 3` sum of `repr (ρ^{k+j})_j`.-/
+/-- `Algebra.trace` as the explicit `Fin 3` sum of `repr (ρ^{k+j})_j`.
+@isnad1 id=eq.0h1v.s10.7bd5c7eaa38b from=translated src=- shape=bb841a07 vocab=c8726e40
+-/
 theorem ctrace_eq_sum (k : ℕ) :
     Algebra.trace ℚ (AdjoinRoot cf) (cr ^ k)
       = ∑ j : Fin 3, cpb.basis.repr (cr ^ (k + (j : ℕ))) (cι j) := by
@@ -503,6 +611,9 @@ theorem ctrace_eq_sum (k : ℕ) :
       = cpb.basis.repr (cr ^ k * cpb.basis (cι j)) (cι j)
   rw [hb, ← pow_add]
 
+/--
+@isnad1 id=eq.0h0v.s8.e410bbda7650 from=translated src=- shape=93b561e0 vocab=cbee76b3
+-/
 theorem ctrace_pow0 : Algebra.trace ℚ (AdjoinRoot cf) (cr ^ 0) = 3 := by
   rw [ctrace_eq_sum, Fin.sum_univ_three]
   rw [show (0:ℕ)+((0:Fin 3):ℕ) = 0 by rfl, show (0:ℕ)+((1:Fin 3):ℕ) = 1 by rfl,
@@ -510,6 +621,9 @@ theorem ctrace_pow0 : Algebra.trace ℚ (AdjoinRoot cf) (cr ^ 0) = 3 := by
   norm_num [Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons, Matrix.cons_val_two,
     Matrix.vecHead, Matrix.vecTail, Matrix.cons_val]
 
+/--
+@isnad1 id=eq.0h0v.s8.c539769a42a6 from=translated src=- shape=93b561e0 vocab=cbee76b3
+-/
 theorem ctrace_pow1 : Algebra.trace ℚ (AdjoinRoot cf) (cr ^ 1) = 0 := by
   rw [ctrace_eq_sum, Fin.sum_univ_three]
   rw [show (1:ℕ)+((0:Fin 3):ℕ) = 1 by rfl, show (1:ℕ)+((1:Fin 3):ℕ) = 2 by rfl,
@@ -517,6 +631,9 @@ theorem ctrace_pow1 : Algebra.trace ℚ (AdjoinRoot cf) (cr ^ 1) = 0 := by
   norm_num [Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons, Matrix.cons_val_two,
     Matrix.vecHead, Matrix.vecTail, Matrix.cons_val]
 
+/--
+@isnad1 id=eq.0h0v.s8.df4755d7c9b9 from=translated src=- shape=93b561e0 vocab=cbee76b3
+-/
 theorem ctrace_pow2 : Algebra.trace ℚ (AdjoinRoot cf) (cr ^ 2) = 2 := by
   rw [ctrace_eq_sum, Fin.sum_univ_three]
   rw [show (2:ℕ)+((0:Fin 3):ℕ) = 2 by rfl, show (2:ℕ)+((1:Fin 3):ℕ) = 3 by rfl,
@@ -524,6 +641,9 @@ theorem ctrace_pow2 : Algebra.trace ℚ (AdjoinRoot cf) (cr ^ 2) = 2 := by
   norm_num [Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons, Matrix.cons_val_two,
     Matrix.vecHead, Matrix.vecTail, Matrix.cons_val]
 
+/--
+@isnad1 id=eq.0h0v.s8.8bc4c6b5bb8e from=translated src=- shape=93b561e0 vocab=cbee76b3
+-/
 theorem ctrace_pow3 : Algebra.trace ℚ (AdjoinRoot cf) (cr ^ 3) = 3 := by
   rw [ctrace_eq_sum, Fin.sum_univ_three]
   rw [show (3:ℕ)+((0:Fin 3):ℕ) = 3 by rfl, show (3:ℕ)+((1:Fin 3):ℕ) = 4 by rfl,
@@ -531,6 +651,9 @@ theorem ctrace_pow3 : Algebra.trace ℚ (AdjoinRoot cf) (cr ^ 3) = 3 := by
   norm_num [Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons, Matrix.cons_val_two,
     Matrix.vecHead, Matrix.vecTail, Matrix.cons_val]
 
+/--
+@isnad1 id=eq.0h0v.s8.c70eaa7e5eb5 from=translated src=- shape=93b561e0 vocab=cbee76b3
+-/
 theorem ctrace_pow4 : Algebra.trace ℚ (AdjoinRoot cf) (cr ^ 4) = 2 := by
   rw [ctrace_eq_sum, Fin.sum_univ_three]
   rw [show (4:ℕ)+((0:Fin 3):ℕ) = 4 by rfl, show (4:ℕ)+((1:Fin 3):ℕ) = 5 by rfl,
@@ -538,7 +661,9 @@ theorem ctrace_pow4 : Algebra.trace ℚ (AdjoinRoot cf) (cr ^ 4) = 2 := by
   norm_num [Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons, Matrix.cons_val_two,
     Matrix.vecHead, Matrix.vecTail, Matrix.cons_val]
 
-/-- **The genuine cubic trace form is `PdtSignatureRho.Mρ`.**-/
+/-- **The genuine cubic trace form is `PdtSignatureRho.Mρ`.**
+@isnad1 id=eq.0h2v.s10.b95b9673bdf9 from=translated src=- shape=d6946be3 vocab=2594dac9
+-/
 theorem ctraceForm_eq_Mrho (i j : Fin 3) :
     Algebra.traceForm ℚ (AdjoinRoot cf) (cpb.basis (cι i)) (cpb.basis (cι j)) = PDT.Mρ i j := by
   rw [Algebra.traceForm_apply, cbasis_val i, cbasis_val j, ← pow_add]
@@ -551,7 +676,9 @@ theorem ctraceForm_eq_Mrho (i j : Fin 3) :
 /-- The timelike witness in `ℤ[ρ]`: `x = 4 + 9ρ − 6ρ²` has `Tr_{K/ℚ}(x²) = -138 < 0`.-/
 noncomputable def tWrho : AdjoinRoot cf := 4 + 9 * cr - 6 * cr ^ 2
 
-/-- **A timelike direction in the intrinsic metric of `ℚ(ρ)`, exhibited.**-/
+/-- **A timelike direction in the intrinsic metric of `ℚ(ρ)`, exhibited.**
+@isnad1 id=eq.0h0v.s9.7239093fcb16 from=translated src=- shape=e70def31 vocab=b62536ce
+-/
 theorem ctraceForm_tWrho : Algebra.traceForm ℚ (AdjoinRoot cf) tWrho tWrho = -138 := by
   rw [Algebra.traceForm_apply]
   have hx : tWrho * tWrho
@@ -563,13 +690,18 @@ theorem ctraceForm_tWrho : Algebra.traceForm ℚ (AdjoinRoot cf) tWrho tWrho = -
     ctrace_pow0, ctrace_pow1, ctrace_pow2, ctrace_pow3, ctrace_pow4]
   norm_num
 
+/--
+@isnad1 id=ne.0h0v.s5.91c5da212152 from=translated src=- shape=6b8fdc29 vocab=bd054760
+-/
 theorem tWrho_ne_zero : tWrho ≠ 0 := by
   intro h
   have h2 := ctraceForm_tWrho
   rw [h] at h2
   simp at h2
 
-/-- **The intrinsic metric of `ℚ(ρ)` is not positive definite either.**-/
+/-- **The intrinsic metric of `ℚ(ρ)` is not positive definite either.**
+@isnad1 id=not.0h0v.s9.37be4a4cbfef from=translated src=- shape=740c31b6 vocab=5d02f002
+-/
 theorem ctraceForm_rho_not_posDef :
     ¬ (∀ x : AdjoinRoot cf, x ≠ 0 → 0 < Algebra.traceForm ℚ (AdjoinRoot cf) x x) := by
   intro hpos
@@ -579,7 +711,9 @@ theorem ctraceForm_rho_not_posDef :
 
 /-- **`r₂ = 1` instantiated for the CUBIC, the second PDT polynomial.** The genuine trace
 form of `ℚ[x]/(x³−x−1)` is `Mρ`, it has the explicit timelike vector `4 + 9ρ − 6ρ²`
-(`Tr(x²) = -138`), and `PdtSignatureRho`'s congruence pins its signature at `(2,1)`.-/
+(`Tr(x²) = -138`), and `PdtSignatureRho`'s congruence pins its signature at `(2,1)`.
+@isnad1 id=and.0h0v.s11.9c72567b953b from=translated src=- shape=f41a49a1 vocab=c93c918e
+-/
 theorem lorentzian_signature_of_pdt_cubic :
     Algebra.traceForm ℚ (AdjoinRoot cf) tWrho tWrho = -138 ∧
     (∀ i j : Fin 3,
@@ -629,40 +763,71 @@ def Hz : Matrix (Fin 4) (Fin 4) ℚ :=
 /-- The quadratic form attached to a `4×4` Gram matrix.-/
 def qform (G : Matrix (Fin 4) (Fin 4) ℚ) (v : Fin 4 → ℚ) : ℚ := ∑ i, ∑ j, v i * G i j * v j
 
+/--
+@isnad1 id=issymm.0h0v.s3.1f24073f1466 from=translated src=- shape=d3a93718 vocab=a3c762ff
+-/
 theorem Mz_symm : Mz.IsSymm := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [Mz, Matrix.transpose_apply]
 
-/-- `det Mz = 125 = disc ℚ(ζ₅)` (positive: an even number of negative eigenvalues).-/
+/-- `det Mz = 125 = disc ℚ(ζ₅)` (positive: an even number of negative eigenvalues).
+@isnad1 id=eq.0h0v.s4.8438fa7ab9a7 from=translated src=- shape=5ca0a7a0 vocab=cbda3045
+-/
 theorem det_Mz : Mz.det = 125 := by
   simp only [Mz, Matrix.det_succ_row_zero, Fin.sum_univ_succ, Fin.sum_univ_zero,
     Matrix.det_fin_zero, Matrix.submatrix_apply, Fin.succAbove, Fin.castSucc_zero,
     Fin.val_zero, Fin.val_succ]
   decide +kernel
 
+/--
+@isnad1 id=eq.0h0v.s7.a02314aa1809 from=translated src=- shape=a8c27b39 vocab=2e8ff0a4
+-/
 theorem congruence_Mz : Pz.transpose * Mz * Pz = Dz := by
   ext i j
   fin_cases i <;> fin_cases j <;>
     simp [Pz, Mz, Dz, Matrix.mul_apply, Fin.sum_univ_four, Matrix.transpose_apply] <;> norm_num
 
+/--
+@isnad1 id=eq.0h0v.s4.c497f272f43c from=translated src=- shape=5ca0a7a0 vocab=4c65eee1
+-/
 theorem det_Pz : Pz.det = 1 := by
   simp only [Pz, Matrix.det_succ_row_zero, Fin.sum_univ_succ, Fin.sum_univ_zero,
     Matrix.det_fin_zero, Matrix.submatrix_apply, Fin.succAbove, Fin.castSucc_zero,
     Fin.val_zero, Fin.val_succ]
   decide +kernel
 
+/--
+@isnad1 id=isunit.0h0v.s4.949291455f35 from=translated src=- shape=4d15e069 vocab=203042d5
+-/
 theorem Pz_isUnit : IsUnit Pz.det := by rw [det_Pz]; exact isUnit_one
 
+/--
+@isnad1 id=isdiag.0h0v.s3.553f7f351b8d from=translated src=- shape=d3a93718 vocab=57c3b730
+-/
 theorem Dz_isDiag : Dz.IsDiag := by
   intro i j hij; fin_cases i <;> fin_cases j <;> simp_all [Dz]
 
+/--
+@isnad1 id=lt.0h0v.s5.9945f56482c6 from=translated src=- shape=2a8c603f vocab=8576c435
+-/
 theorem Dz00_pos : (0:ℚ) < Dz 0 0 := by show (0:ℚ) < 4; norm_num
+/--
+@isnad1 id=lt.0h0v.s5.49d0602d3c6e from=translated src=- shape=b4dc571a vocab=8576c435
+-/
 theorem Dz11_neg : Dz 1 1 < (0:ℚ) := by show (-5/4:ℚ) < 0; norm_num
+/--
+@isnad1 id=lt.0h0v.s5.5a3456cbb17b from=translated src=- shape=2a8c603f vocab=8576c435
+-/
 theorem Dz22_pos : (0:ℚ) < Dz 2 2 := by show (0:ℚ) < 10; norm_num
+/--
+@isnad1 id=lt.0h0v.s5.ee5e5ad872c7 from=translated src=- shape=b4dc571a vocab=8576c435
+-/
 theorem Dz33_neg : Dz 3 3 < (0:ℚ) := by show (-5/2:ℚ) < 0; norm_num
 
 /-- **The CM field's UNTWISTED trace form has signature `(2,2)`** — an explicit invertible
 rational congruence to `diag(4, -5/4, 10, -5/2)`. A CM field does NOT escape by having a
-positive-definite trace form.-/
+positive-definite trace form.
+@isnad1 id=and.0h0v.s8.70c863ed2b58 from=translated src=- shape=176e255d vocab=1a912100
+-/
 theorem signature_2_2_cyclotomic :
     Mz.IsSymm ∧ Pz.transpose * Mz * Pz = Dz ∧ IsUnit Pz.det ∧ Dz.IsDiag ∧
     (0 < Dz 0 0 ∧ 0 < Dz 2 2) ∧ (Dz 1 1 < 0 ∧ Dz 3 3 < 0) ∧ Mz.det = 125 :=
@@ -670,19 +835,25 @@ theorem signature_2_2_cyclotomic :
     ⟨Dz11_neg, Dz33_neg⟩, det_Mz⟩
 
 /-- The timelike witness for the CM field's untwisted trace form: `x = 1 + 4ζ`,
-`Tr(x²) = 4 + 8·(-1) + 16·(-1) = -20 < 0`.-/
+`Tr(x²) = 4 + 8·(-1) + 16·(-1) = -20 < 0`.
+@isnad1 id=eq.0h0v.s5.e9a5caea2e67 from=translated src=- shape=c2a59def vocab=89d68cff
+-/
 theorem qform_Mz_witness : qform Mz ![1,4,0,0] = -20 := by
   simp [qform, Mz, Fin.sum_univ_four]
   norm_num
 
 /-- The same computation for the PDT quartic's trace form (`PdtSignature.M`), matching the
-field-level statement `traceForm_tW`: `x = 4·root - 3·root²`, `Tr(x²) = -36 < 0`.-/
+field-level statement `traceForm_tW`: `x = 4·root - 3·root²`, `Tr(x²) = -36 < 0`.
+@isnad1 id=eq.0h0v.s6.cd8393b649ea from=translated src=- shape=6c50a74c vocab=a4c93285
+-/
 theorem qform_M_witness : qform PDT.M ![0,4,-3,0] = -36 := by
   simp [qform, PDT.M, Fin.sum_univ_four]
   norm_num
 
 /-- The sum-of-squares identity behind positive-definiteness of `Hz = 5·I - J`:
-`5·Σvᵢ² - (Σvᵢ)² = Σvᵢ² + Σ_{i<j}(vᵢ-vⱼ)²`.-/
+`5·Σvᵢ² - (Σvᵢ)² = Σvᵢ² + Σ_{i<j}(vᵢ-vⱼ)²`.
+@isnad1 id=eq.0h4v.s8.cd1c80c156d0 from=translated src=- shape=644283fb vocab=2b94e286
+-/
 theorem qform_Hz_eq (a b c d : ℚ) :
     qform Hz ![a,b,c,d] = (a^2+b^2+c^2+d^2)
       + ((a-b)^2+(a-c)^2+(a-d)^2+(b-c)^2+(b-d)^2+(c-d)^2) := by
@@ -691,7 +862,9 @@ theorem qform_Hz_eq (a b c d : ℚ) :
 
 /-- **The CM field's CONJUGATION-TWISTED form IS positive definite.** This is the escape:
 `ℚ(ζ₅)` has a nontrivial involution (complex conjugation `ζ ↦ ζ⁻¹`) and the twisted form
-`Tr(x · x̄)` is Euclidean, while its untwisted trace form is `(2,2)`.-/
+`Tr(x · x̄)` is Euclidean, while its untwisted trace form is `(2,2)`.
+@isnad1 id=lt.1h4v.s6.bf437ca93493 from=translated src=- shape=8ddaa094 vocab=63311df2
+-/
 theorem qform_Hz_pos {a b c d : ℚ} (h : a ≠ 0 ∨ b ≠ 0 ∨ c ≠ 0 ∨ d ≠ 0) :
     0 < qform Hz ![a,b,c,d] := by
   have key : ∀ x : ℚ, x ≠ 0 → 0 < x ^ 2 :=
@@ -712,7 +885,9 @@ behave alike — each has an explicit timelike direction, so neither is Euclidea
 company on the TWIST: the CM field's conjugation-twisted form is positive definite. §2b rules
 out every MULTIPLICATIVE twist `Tr(λ·z·w)` at a complex place, for any field; the conjugation
 twist is not of that form (`cmTwist_posDef`), which is exactly how a CM field escapes. So the
-contrast here is about which fields possess a conjugation to twist by at all.-/
+contrast here is about which fields possess a conjugation to twist by at all.
+@isnad1 id=and.0h0v.s7.35742e2583a4 from=translated src=- shape=bd3b80e1 vocab=e5a1fb49
+-/
 theorem cm_control_contrast :
     qform PDT.M ![0,4,-3,0] = -36 ∧
     qform Mz ![1,4,0,0] = -20 ∧

@@ -51,6 +51,9 @@ def actionMap (v : Fin N → ℚ) : Matrix (Fin N) (Fin N) ℚ →ₗ[ℚ] (Fin 
   map_add' X Y := Matrix.add_mulVec X Y v
   map_smul' c X := Matrix.smul_mulVec c X v
 
+/--
+@isnad1 id=eq.0h3v.s7.9c3f71833ed4 from=translated src=- shape=8d33e9dc vocab=ac9d3af5
+-/
 @[simp] lemma actionMap_apply (v : Fin N → ℚ) (X : Matrix (Fin N) (Fin N) ℚ) :
     actionMap v X = X *ᵥ v := rfl
 
@@ -58,6 +61,9 @@ def actionMap (v : Fin N → ℚ) : Matrix (Fin N) (Fin N) ℚ →ₗ[ℚ] (Fin 
 def sl (N : ℕ) : Submodule ℚ (Matrix (Fin N) (Fin N) ℚ) :=
   LinearMap.ker (Matrix.traceLinearMap (Fin N) ℚ ℚ)
 
+/--
+@isnad1 id=iff.0h2v.s6.454f9c01cdbb from=translated src=- shape=a8985717 vocab=c6eb6864
+-/
 @[simp] lemma mem_sl {X : Matrix (Fin N) (Fin N) ℚ} : X ∈ sl N ↔ X.trace = 0 := by
   simp [sl, LinearMap.mem_ker]
 
@@ -65,6 +71,9 @@ def sl (N : ℕ) : Submodule ℚ (Matrix (Fin N) (Fin N) ℚ) :=
 def slAction (v : Fin N → ℚ) : sl N →ₗ[ℚ] (Fin N → ℚ) :=
   (actionMap v).comp (sl N).subtype
 
+/--
+@isnad1 id=eq.0h3v.s9.2f450dc91263 from=translated src=- shape=93744035 vocab=99f516a4
+-/
 @[simp] lemma slAction_apply (v : Fin N → ℚ) (X : sl N) :
     slAction v X = (X : Matrix (Fin N) (Fin N) ℚ) *ᵥ v := rfl
 
@@ -83,12 +92,18 @@ variable (v w : Fin N → ℚ) (i j : Fin N)
 def colSolve : Matrix (Fin N) (Fin N) ℚ :=
   Matrix.of fun k l => if l = i then w k / v i else 0
 
+/--
+@isnad1 id=eq.1h4v.s5.137590d6ccd9 from=translated src=- shape=69c4d2fc vocab=95dcf24b
+-/
 lemma colSolve_mulVec (hi : v i ≠ 0) : colSolve v w i *ᵥ v = w := by
   funext k
   simp only [colSolve, Matrix.mulVec, dotProduct, Matrix.of_apply, ite_mul, zero_mul,
     Finset.sum_ite_eq', Finset.mem_univ, ite_true]
   exact div_mul_cancel₀ (w k) hi
 
+/--
+@isnad1 id=eq.0h4v.s5.e8344e048569 from=translated src=- shape=8e8dda43 vocab=0708ec1f
+-/
 lemma trace_colSolve : (colSolve v w i).trace = w i / v i := by
   simp only [colSolve, Matrix.trace, Matrix.diag, Matrix.of_apply, Finset.sum_ite_eq',
     Finset.mem_univ, ite_true]
@@ -99,10 +114,16 @@ on the full `gl` stabilizer.-/
 def traceFixer : Matrix (Fin N) (Fin N) ℚ :=
   Matrix.single j j 1 - Matrix.single j i (v j / v i)
 
+/--
+@isnad1 id=eq.1h4v.s6.6ed93b29d0c1 from=translated src=- shape=1ccae7f0 vocab=310e168a
+-/
 lemma traceFixer_mulVec (hi : v i ≠ 0) : traceFixer v i j *ᵥ v = 0 := by
   rw [traceFixer, Matrix.sub_mulVec, Matrix.single_mulVec, Matrix.single_mulVec, one_mul,
     div_mul_cancel₀ _ hi, sub_self]
 
+/--
+@isnad1 id=eq.1h4v.s5.c243d244757f from=translated src=- shape=033b59b2 vocab=225d28e6
+-/
 lemma trace_traceFixer (hij : j ≠ i) : (traceFixer v i j).trace = 1 := by
   rw [traceFixer, Matrix.trace_sub, Matrix.trace_single_eq_same,
     Matrix.trace_single_eq_of_ne _ _ _ hij, sub_zero]
@@ -111,10 +132,16 @@ lemma trace_traceFixer (hij : j ≠ i) : (traceFixer v i j).trace = 1 := by
 def slSolve : Matrix (Fin N) (Fin N) ℚ :=
   colSolve v w i - (w i / v i) • traceFixer v i j
 
+/--
+@isnad1 id=eq.1h5v.s5.35ee6140e31b from=translated src=- shape=895a43f2 vocab=07107b7b
+-/
 lemma slSolve_mulVec (hi : v i ≠ 0) : slSolve v w i j *ᵥ v = w := by
   rw [slSolve, Matrix.sub_mulVec, Matrix.smul_mulVec, colSolve_mulVec v w i hi,
     traceFixer_mulVec v i j hi, smul_zero, sub_zero]
 
+/--
+@isnad1 id=eq.1h5v.s5.bdedae48e468 from=translated src=- shape=897d6a16 vocab=e218dacb
+-/
 lemma trace_slSolve (hij : j ≠ i) : (slSolve v w i j).trace = 0 := by
   rw [slSolve, Matrix.trace_sub, Matrix.trace_smul, trace_colSolve,
     trace_traceFixer v i j hij, smul_eq_mul, mul_one, sub_self]
@@ -123,7 +150,9 @@ end Solvers
 
 /-! ### (1) Surjectivity -/
 
-/-- The unrestricted (`gl`) action map is surjective for `v ≠ 0`.-/
+/-- The unrestricted (`gl`) action map is surjective for `v ≠ 0`.
+@isnad1 id=surjecti.1h2v.s7.18f343a2daf8 from=translated src=- shape=cd01a263 vocab=6564ace3
+-/
 theorem actionMap_surjective {v : Fin N → ℚ} (hv : v ≠ 0) :
     Function.Surjective (actionMap v) := by
   obtain ⟨i, hi⟩ := Function.ne_iff.mp hv
@@ -132,7 +161,9 @@ theorem actionMap_surjective {v : Fin N → ℚ} (hv : v ≠ 0) :
   exact ⟨colSolve v w i, colSolve_mulVec v w i hi⟩
 
 /-- **Surjectivity.** For `N ≥ 2` and `v ≠ 0`, the map `X ↦ X *ᵥ v` from the
-trace-zero matrices `sl N` surjects onto all of `ℚ^N`.-/
+trace-zero matrices `sl N` surjects onto all of `ℚ^N`.
+@isnad1 id=surjecti.2h2v.s9.2ec9be057d76 from=translated src=- shape=40178fe5 vocab=63da9164
+-/
 theorem slAction_surjective (hN : 2 ≤ N) {v : Fin N → ℚ} (hv : v ≠ 0) :
     Function.Surjective (slAction v) := by
   obtain ⟨i, hi⟩ := Function.ne_iff.mp hv
@@ -157,6 +188,9 @@ private lemma nat_sub₄ (M n : ℕ) (h : n + 1 ≤ M) : M - n - 1 + 1 = M - n :
 
 private lemma nat_sub₅ (M n : ℕ) (h : n + 1 ≤ M) : M - 1 = n + (M - n - 1) := by omega
 
+/--
+@isnad1 id=le.1h1v.s5.d2fe04d9a42c from=translated src=- shape=11baa6c4 vocab=94889561
+-/
 lemma aux_le (hN : 2 ≤ N) : N + 1 ≤ N ^ 2 := by
   rw [pow_two]
   calc N + 1 ≤ 2 * N := by omega
@@ -164,11 +198,16 @@ lemma aux_le (hN : 2 ≤ N) : N + 1 ≤ N ^ 2 := by
 
 /-! ### Ambient dimensions -/
 
+/--
+@isnad1 id=eq.0h1v.s5.7772e0c2a75e from=translated src=- shape=18ffe548 vocab=22733b21
+-/
 lemma finrank_gl : finrank ℚ (Matrix (Fin N) (Fin N) ℚ) = N * N := by
   rw [Module.finrank_matrix]
   simp [Fintype.card_fin]
 
-/-- The trace functional is surjective (`N ≥ 2` suffices; `N ≥ 1` is what is used).-/
+/-- The trace functional is surjective (`N ≥ 2` suffices; `N ≥ 1` is what is used).
+@isnad1 id=surjecti.1h1v.s6.59efab1aed8a from=translated src=- shape=41c02f7f vocab=39d5ad56
+-/
 lemma traceLinearMap_surjective (hN : 2 ≤ N) :
     Function.Surjective (Matrix.traceLinearMap (Fin N) ℚ ℚ) := by
   intro c
@@ -178,7 +217,9 @@ lemma traceLinearMap_surjective (hN : 2 ≤ N) :
     smul_eq_mul]
   exact div_mul_cancel₀ c hNe
 
-/-- `dim sl(N) = N² − 1` — rank–nullity applied to the trace character.-/
+/-- `dim sl(N) = N² − 1` — rank–nullity applied to the trace character.
+@isnad1 id=eq.1h1v.s7.6dcb076f0353 from=translated src=- shape=55edb949 vocab=b8fddb35
+-/
 theorem finrank_sl (hN : 2 ≤ N) : finrank ℚ (sl N) = N ^ 2 - 1 := by
   have h := LinearMap.finrank_range_add_finrank_ker (Matrix.traceLinearMap (Fin N) ℚ ℚ)
   rw [LinearMap.range_eq_top.mpr (traceLinearMap_surjective hN), finrank_top,
@@ -192,7 +233,9 @@ theorem finrank_sl (hN : 2 ≤ N) : finrank ℚ (sl N) = N ^ 2 - 1 := by
 /-- **The stabilizer identity.** For `N ≥ 2` and `v ≠ 0`, the stabilizer
 subalgebra `{X ∈ sl N | X *ᵥ v = 0}` has dimension `N² − N − 1`.
 Proof: rank–nullity for `slAction v` on `sl N`, whose range is everything
-by `slAction_surjective`.-/
+by `slAction_surjective`.
+@isnad1 id=eq.2h2v.s10.395a485a76dd from=translated src=- shape=54ecc902 vocab=beb0d919
+-/
 theorem finrank_stabilizer (hN : 2 ≤ N) {v : Fin N → ℚ} (hv : v ≠ 0) :
     finrank ℚ (stabilizer v) = N ^ 2 - N - 1 := by
   have h := LinearMap.finrank_range_add_finrank_ker (slAction v)
@@ -204,7 +247,9 @@ theorem finrank_stabilizer (hN : 2 ≤ N) {v : Fin N → ℚ} (hv : v ≠ 0) :
 /-! ### (3) Corank 1 against the full gl-stabilizer; the difference is the
 trace character -/
 
-/-- The full `gl` stabilizer `{X ∈ gl(N) | X *ᵥ v = 0}` has dimension `N² − N`.-/
+/-- The full `gl` stabilizer `{X ∈ gl(N) | X *ᵥ v = 0}` has dimension `N² − N`.
+@isnad1 id=eq.1h2v.s8.d41c876486c7 from=translated src=- shape=bd6190f7 vocab=28d8fdb9
+-/
 theorem finrank_glStabilizer {v : Fin N → ℚ} (hv : v ≠ 0) :
     finrank ℚ (LinearMap.ker (actionMap v)) = N ^ 2 - N := by
   have h := LinearMap.finrank_range_add_finrank_ker (actionMap v)
@@ -214,7 +259,9 @@ theorem finrank_glStabilizer {v : Fin N → ℚ} (hv : v ≠ 0) :
   exact nat_sub₃ (N * N) _ N h
 
 /-- **Corank 1.** The sl-stabilizer sits inside the gl-stabilizer with
-codimension exactly 1: `(N² − N − 1) + 1 = N² − N`.-/
+codimension exactly 1: `(N² − N − 1) + 1 = N² − N`.
+@isnad1 id=eq.2h2v.s10.7035769fa9dc from=translated src=- shape=73ff3b9f vocab=2b1adb37
+-/
 theorem stabilizer_corank_one (hN : 2 ≤ N) {v : Fin N → ℚ} (hv : v ≠ 0) :
     finrank ℚ (stabilizer v) + 1 = finrank ℚ (LinearMap.ker (actionMap v)) := by
   rw [finrank_stabilizer hN hv, finrank_glStabilizer hv]
@@ -223,7 +270,9 @@ theorem stabilizer_corank_one (hN : 2 ≤ N) {v : Fin N → ℚ} (hv : v ≠ 0) 
 /-- The missing dimension IS the trace character: the gl-stabilizer contains an
 element of trace `1` (the explicit witness `traceFixer`), so the trace
 functional does not vanish on it — which is exactly why intersecting with
-`sl N` costs one dimension.-/
+`sl N` costs one dimension.
+@isnad1 id=ex.2h2v.s7.40e1036410ed from=translated src=- shape=f9fa40ce vocab=0c2e0bfc
+-/
 theorem exists_traceOne_mem_glStabilizer (hN : 2 ≤ N) {v : Fin N → ℚ} (hv : v ≠ 0) :
     ∃ Y ∈ LinearMap.ker (actionMap v), Matrix.trace Y = 1 := by
   obtain ⟨i, hi⟩ := Function.ne_iff.mp hv
@@ -235,7 +284,9 @@ theorem exists_traceOne_mem_glStabilizer (hN : 2 ≤ N) {v : Fin N → ℚ} (hv 
   exact traceFixer_mulVec v i j hi
 
 /-- Structurally, the sl-stabilizer (pushed into the matrix space) is exactly
-the intersection of `sl N` with the full gl-stabilizer.-/
+the intersection of `sl N` with the full gl-stabilizer.
+@isnad1 id=eq.0h2v.s8.3ad231c5abe6 from=translated src=- shape=58e59a7d vocab=1bce9608
+-/
 theorem stabilizer_map_subtype (v : Fin N → ℚ) :
     (stabilizer v).map (sl N).subtype = sl N ⊓ LinearMap.ker (actionMap v) := by
   unfold stabilizer slAction
@@ -244,31 +295,45 @@ theorem stabilizer_map_subtype (v : Fin N → ℚ) :
 /-! ### (4) Bonus: `dim sl(N) = N + (N² − N − 1)` -/
 
 /-- The moving directions (`N` of them, by surjectivity) plus the stabilizer
-(`N² − N − 1`) exhaust `sl(N)`: `N² − 1 = N + (N² − N − 1)`.-/
+(`N² − N − 1`) exhaust `sl(N)`: `N² − 1 = N + (N² − N − 1)`.
+@isnad1 id=eq.1h1v.s7.eb046c2aca25 from=translated src=- shape=ea79e120 vocab=bfa572aa
+-/
 theorem finrank_sl_eq_add (hN : 2 ≤ N) : finrank ℚ (sl N) = N + (N ^ 2 - N - 1) := by
   rw [finrank_sl hN]
   exact nat_sub₅ (N ^ 2) N (aux_le hN)
 
 /-! ### Concrete instantiations: N = 4, 5, 15 -/
 
+/--
+@isnad1 id=eq.1h1v.s11.72f2a12bdcaf from=translated src=- shape=68a269f4 vocab=c26324d6
+-/
 theorem finrank_stabilizer_four {v : Fin 4 → ℚ} (hv : v ≠ 0) :
     finrank ℚ (stabilizer v) = 11 := by
   have h := finrank_stabilizer (by norm_num) hv
   norm_num at h
   exact h
 
+/--
+@isnad1 id=eq.1h1v.s11.2a9c1f8ec64c from=translated src=- shape=68a269f4 vocab=c26324d6
+-/
 theorem finrank_stabilizer_five {v : Fin 5 → ℚ} (hv : v ≠ 0) :
     finrank ℚ (stabilizer v) = 19 := by
   have h := finrank_stabilizer (by norm_num) hv
   norm_num at h
   exact h
 
+/--
+@isnad1 id=eq.1h1v.s11.fcc811ec9efe from=translated src=- shape=68a269f4 vocab=c26324d6
+-/
 theorem finrank_stabilizer_fifteen {v : Fin 15 → ℚ} (hv : v ≠ 0) :
     finrank ℚ (stabilizer v) = 209 := by
   have h := finrank_stabilizer (by norm_num) hv
   norm_num at h
   exact h
 
+/--
+@isnad1 id=eq.0h0v.s8.8098dddd04cb from=translated src=- shape=656e43d6 vocab=2316c402
+-/
 theorem finrank_sl_four : finrank ℚ (sl 4) = 15 := by
   have h := finrank_sl (N := 4) (by norm_num)
   norm_num at h

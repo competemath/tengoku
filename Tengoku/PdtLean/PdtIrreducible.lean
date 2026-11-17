@@ -12,15 +12,23 @@ noncomputable def cubicZ : ℤ[X] := X ^ 3 - X - 1
 /-- The quartic x⁴ - x - 1 over ℤ.-/
 noncomputable def quarticZ : ℤ[X] := X ^ 4 - X - 1
 
+/--
+@isnad1 id=monic.0h0v.s2.6aac41eb22f7 from=translated src=- shape=25b03439 vocab=bcaa23c2
+-/
 lemma cubicZ_monic : (cubicZ).Monic := by
   unfold cubicZ
   monicity!
 
+/--
+@isnad1 id=monic.0h0v.s2.3d4a4ca09aa7 from=translated src=- shape=25b03439 vocab=f236c747
+-/
 lemma quarticZ_monic : (quarticZ).Monic := by
   unfold quarticZ
   monicity!
 
-/-- The image of cubicZ under ℤ → ZMod 2.-/
+/-- The image of cubicZ under ℤ → ZMod 2.
+@isnad1 id=eq.0h0v.s9.748510dc75c4 from=translated src=- shape=5d7e0263 vocab=6c3f0752
+-/
 lemma cubicZ_map2 : cubicZ.map (Int.castRingHom (ZMod 2)) = X ^ 3 + X + 1 := by
   unfold cubicZ
   simp only [Polynomial.map_sub, Polynomial.map_pow, Polynomial.map_X, Polynomial.map_one]
@@ -31,7 +39,9 @@ lemma cubicZ_map2 : cubicZ.map (Int.castRingHom (ZMod 2)) = X ^ 3 + X + 1 := by
       _ = 0 := by simp
   linear_combination (-(X : (ZMod 2)[X]) - 1) * h2
 
-/-- x³ + x + 1 is irreducible over 𝔽₂ (it has no root in 𝔽₂).-/
+/-- x³ + x + 1 is irreducible over 𝔽₂ (it has no root in 𝔽₂).
+@isnad1 id=irreduci.0h0v.s9.e66fbfe9869c from=translated src=- shape=937c7dd0 vocab=45bd7d0e
+-/
 lemma cubic_irred_zmod2 : Irreducible (X ^ 3 + X + 1 : (ZMod 2)[X]) := by
   apply irreducible_of_degree_le_three_of_not_isRoot
   · -- natDegree ∈ [1,3]
@@ -44,13 +54,17 @@ lemma cubic_irred_zmod2 : Irreducible (X ^ 3 + X + 1 : (ZMod 2)[X]) := by
     simp only [eval_add, eval_pow, eval_X, eval_one]
     fin_cases x <;> decide
 
-/-- x³ - x - 1 is irreducible over ℤ.-/
+/-- x³ - x - 1 is irreducible over ℤ.
+@isnad1 id=irreduci.0h0v.s3.7d1b216a9c20 from=translated src=- shape=545db28e vocab=60fab2aa
+-/
 lemma cubicZ_irred : Irreducible cubicZ := by
   apply cubicZ_monic.irreducible_of_irreducible_map (Int.castRingHom (ZMod 2))
   rw [cubicZ_map2]
   exact cubic_irred_zmod2
 
-/-- x³ - x - 1 is irreducible over ℚ.-/
+/-- x³ - x - 1 is irreducible over ℚ.
+@isnad1 id=irreduci.0h0v.s6.4a094132c93c from=translated src=- shape=cb70c07b vocab=c05160bf
+-/
 theorem cubicQ_irreducible :
     Irreducible (X ^ 3 - X - 1 : ℚ[X]) := by
   have h := (cubicZ_monic.irreducible_iff_irreducible_map_fraction_map
@@ -62,7 +76,9 @@ theorem cubicQ_irreducible :
 
 /-! ### The quartic x⁴ - x - 1 -/
 
-/-- The image of quarticZ under ℤ → ZMod 2 is x⁴ + x + 1.-/
+/-- The image of quarticZ under ℤ → ZMod 2 is x⁴ + x + 1.
+@isnad1 id=eq.0h0v.s9.be3976074c67 from=translated src=- shape=5d7e0263 vocab=276c6c3e
+-/
 lemma quarticZ_map2 : quarticZ.map (Int.castRingHom (ZMod 2)) = X ^ 4 + X + 1 := by
   unfold quarticZ
   simp only [Polynomial.map_sub, Polynomial.map_pow, Polynomial.map_X, Polynomial.map_one]
@@ -73,13 +89,17 @@ lemma quarticZ_map2 : quarticZ.map (Int.castRingHom (ZMod 2)) = X ^ 4 + X + 1 :=
       _ = 0 := by simp
   linear_combination (-(X : (ZMod 2)[X]) - 1) * h2
 
-/-- x⁴ + x + 1 has no root in 𝔽₂.-/
+/-- x⁴ + x + 1 has no root in 𝔽₂.
+@isnad1 id=not.0h1v.s9.d1691a806a29 from=translated src=- shape=72346032 vocab=c1fe0869
+-/
 lemma quartic_no_root_zmod2 (x : ZMod 2) : ¬ (X ^ 4 + X + 1 : (ZMod 2)[X]).IsRoot x := by
   rw [IsRoot.def]
   simp only [eval_add, eval_pow, eval_X, eval_one]
   fin_cases x <;> decide
 
-/-- A monic degree-2 polynomial over 𝔽₂ with no root equals X²+X+1.-/
+/-- A monic degree-2 polynomial over 𝔽₂ with no root equals X²+X+1.
+@isnad1 id=eq.3h1v.s9.680920c530f0 from=translated src=- shape=ed515b83 vocab=e742c72f
+-/
 lemma monic_deg2_no_root_eq (q : (ZMod 2)[X]) (hm : q.Monic) (hnd : q.natDegree = 2)
     (hr : ∀ x, ¬ q.IsRoot x) : q = X ^ 2 + X + 1 := by
   have hform : q = C (q.coeff 0) + C (q.coeff 1) * X + C (q.coeff 2) * X ^ 2 := by
@@ -106,7 +126,9 @@ lemma monic_deg2_no_root_eq (q : (ZMod 2)[X]) (hm : q.Monic) (hnd : q.natDegree 
   rw [hform, hc2, hcoeff0, hcoeff1, C_1]
   ring
 
-/-- x⁴ + x + 1 is irreducible over 𝔽₂.-/
+/-- x⁴ + x + 1 is irreducible over 𝔽₂.
+@isnad1 id=irreduci.0h0v.s9.6bf408d48a95 from=translated src=- shape=937c7dd0 vocab=45bd7d0e
+-/
 lemma quartic_irred_zmod2 : Irreducible (X ^ 4 + X + 1 : (ZMod 2)[X]) := by
   set p : (ZMod 2)[X] := X ^ 4 + X + 1 with hp
   have hm : p.Monic := by rw [hp]; monicity!
@@ -169,13 +191,17 @@ lemma quartic_irred_zmod2 : Irreducible (X ^ 4 + X + 1 : (ZMod 2)[X]) := by
     simp only [coeff_add, coeff_X_pow, coeff_X, coeff_one] at hc
     exact absurd hc (by decide)
 
-/-- x⁴ - x - 1 is irreducible over ℤ.-/
+/-- x⁴ - x - 1 is irreducible over ℤ.
+@isnad1 id=irreduci.0h0v.s3.c6fb97c18cdd from=translated src=- shape=545db28e vocab=3996184b
+-/
 lemma quarticZ_irred : Irreducible quarticZ := by
   apply quarticZ_monic.irreducible_of_irreducible_map (Int.castRingHom (ZMod 2))
   rw [quarticZ_map2]
   exact quartic_irred_zmod2
 
-/-- x⁴ - x - 1 is irreducible over ℚ.-/
+/-- x⁴ - x - 1 is irreducible over ℚ.
+@isnad1 id=irreduci.0h0v.s6.40cf3a05e29b from=translated src=- shape=cb70c07b vocab=c05160bf
+-/
 theorem quarticQ_irreducible :
     Irreducible (X ^ 4 - X - 1 : ℚ[X]) := by
   have h := (quarticZ_monic.irreducible_iff_irreducible_map_fraction_map

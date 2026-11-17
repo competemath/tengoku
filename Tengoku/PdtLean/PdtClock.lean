@@ -61,7 +61,9 @@ word telescopes to this (`sum_m_eq`).-/
 noncomputable def cumFloor (β : ℝ) (n : ℕ) : ℤ := ⌊(n : ℝ) * β⌋
 
 /-- The tick word is the forward difference of the cumulative floor:
-`m β n = cumFloor β (n+1) − cumFloor β n`.-/
+`m β n = cumFloor β (n+1) − cumFloor β n`.
+@isnad1 id=eq.0h2v.s5.e7d164ac027c from=translated src=- shape=11a754bd vocab=d419bf63
+-/
 theorem m_eq_cumFloor (β : ℝ) (n : ℕ) : m β n = cumFloor β (n + 1) - cumFloor β n := by
   unfold m cumFloor
   push_cast
@@ -72,7 +74,9 @@ theorem m_eq_cumFloor (β : ℝ) (n : ℕ) : m β n = cumFloor β (n + 1) - cumF
 /-- **The floor-additivity dichotomy.** For all reals `a, b`,
 `⌊a+b⌋` is either `⌊a⌋+⌊b⌋` or `⌊a⌋+⌊b⌋+1`. Elementary: the lower bound is
 `Int.le_floor` from `⌊a⌋ ≤ a`, `⌊b⌋ ≤ b`; the upper bound is `Int.floor_lt`
-from `a < ⌊a⌋+1`, `b < ⌊b⌋+1`.-/
+from `a < ⌊a⌋+1`, `b < ⌊b⌋+1`.
+@isnad1 id=or.0h2v.s6.83c531c7734b from=translated src=- shape=9b467740 vocab=342d6915
+-/
 theorem floor_add_cases (a b : ℝ) :
     ⌊a + b⌋ = ⌊a⌋ + ⌊b⌋ ∨ ⌊a + b⌋ = ⌊a⌋ + ⌊b⌋ + 1 := by
   have hlo : ⌊a⌋ + ⌊b⌋ ≤ ⌊a + b⌋ := by
@@ -94,7 +98,9 @@ theorem floor_add_cases (a b : ℝ) :
 /-! ## TWO-VALUED (the clock's binary alphabet) -/
 
 /-- **TWO-VALUED.** For a slope `0 < β < 1`, every tick duration is `0`
-or `1`: `m β n ∈ {0, 1}`. From `⌊nβ + β⌋ − ⌊nβ⌋ ∈ {⌊β⌋, ⌊β⌋+1} = {0,1}`.-/
+or `1`: `m β n ∈ {0, 1}`. From `⌊nβ + β⌋ − ⌊nβ⌋ ∈ {⌊β⌋, ⌊β⌋+1} = {0,1}`.
+@isnad1 id=or.2h2v.s5.15d171963277 from=translated src=- shape=9877c935 vocab=52825024
+-/
 theorem m_mem (β : ℝ) (hβ0 : 0 < β) (hβ1 : β < 1) (n : ℕ) :
     m β n = 0 ∨ m β n = 1 := by
   have hfβ : ⌊β⌋ = 0 := by
@@ -108,7 +114,9 @@ theorem m_mem (β : ℝ) (hβ0 : 0 < β) (hβ1 : β < 1) (n : ℕ) :
 /-! ## DENSITY (telescoping identity, two-sided bound, and the limit) -/
 
 /-- **telescoping identity.** The running 1-count telescopes exactly:
-`∑_{k<N} m β k = ⌊N·β⌋ = cumFloor β N`.-/
+`∑_{k<N} m β k = ⌊N·β⌋ = cumFloor β N`.
+@isnad1 id=eq.0h2v.s4.e33d09f7bc1b from=translated src=- shape=26974033 vocab=8ccb3fa1
+-/
 theorem sum_m_eq (β : ℝ) (N : ℕ) :
     ∑ k ∈ Finset.range N, m β k = cumFloor β N := by
   induction N with
@@ -118,7 +126,9 @@ theorem sum_m_eq (β : ℝ) (N : ℕ) :
     omega
 
 /-- **two-sided bound.** The running 1-count brackets `N·β`:
-`⌊N·β⌋ ≤ N·β < ⌊N·β⌋ + 1`, written on the telescoped sum.-/
+`⌊N·β⌋ ≤ N·β < ⌊N·β⌋ + 1`, written on the telescoped sum.
+@isnad1 id=and.0h2v.s6.c4f60abf4433 from=translated src=- shape=13743b2d vocab=ff8d0ba7
+-/
 theorem sum_m_bounds (β : ℝ) (N : ℕ) :
     ((∑ k ∈ Finset.range N, m β k : ℤ) : ℝ) ≤ (N : ℝ) * β ∧
       (N : ℝ) * β < ((∑ k ∈ Finset.range N, m β k : ℤ) : ℝ) + 1 := by
@@ -128,7 +138,9 @@ theorem sum_m_bounds (β : ℝ) (N : ℕ) :
 
 /-- **DENSITY = β.** The frequency of `1`'s converges to the slope:
 `(∑_{k<N} m β k)/N → β` as `N → ∞`. Squeeze on
-`β − 1/N < ⌊Nβ⌋/N ≤ β`.-/
+`β − 1/N < ⌊Nβ⌋/N ≤ β`.
+@isnad1 id=tendsto.0h1v.s5.20e258ce937c from=translated src=- shape=ff679fbc vocab=03bfa439
+-/
 theorem density_tendsto (β : ℝ) :
     Filter.Tendsto (fun N : ℕ => ((∑ k ∈ Finset.range N, m β k : ℤ) : ℝ) / (N : ℝ))
       Filter.atTop (nhds β) := by
@@ -159,7 +171,9 @@ theorem density_tendsto (β : ℝ) :
 /-! ## BALANCED (the crown: "not random" / maximally even) -/
 
 /-- **Windowed telescoping.** The 1-count of the length-`L` window starting at
-`i` telescopes: `∑_{k<L} m β (i+k) = cumFloor β (i+L) − cumFloor β i`.-/
+`i` telescopes: `∑_{k<L} m β (i+k) = cumFloor β (i+L) − cumFloor β i`.
+@isnad1 id=eq.0h3v.s5.17bd12f8ab92 from=translated src=- shape=973fed5f vocab=62499463
+-/
 theorem window_sum (β : ℝ) (i L : ℕ) :
     ∑ k ∈ Finset.range L, m β (i + k) = cumFloor β (i + L) - cumFloor β i := by
   induction L with
@@ -172,7 +186,9 @@ theorem window_sum (β : ℝ) (i L : ℕ) :
 
 /-- **Every window count lies in `{⌊Lβ⌋, ⌊Lβ⌋+1}`.** For any start `i` and
 length `L`, the window 1-count is `⌊Lβ⌋` or `⌊Lβ⌋+1`. From `floor_add_cases`
-with `a = iβ`, `b = Lβ`.-/
+with `a = iβ`, `b = Lβ`.
+@isnad1 id=or.0h3v.s6.f856394af697 from=translated src=- shape=af2ef404 vocab=a006a8cb
+-/
 theorem window_mem (β : ℝ) (i L : ℕ) :
     cumFloor β (i + L) - cumFloor β i = ⌊(L : ℝ) * β⌋ ∨
       cumFloor β (i + L) - cumFloor β i = ⌊(L : ℝ) * β⌋ + 1 := by
@@ -186,7 +202,9 @@ theorem window_mem (β : ℝ) (i L : ℕ) :
 differing by at most `1`:
 `|∑_{k<L} m β (i+k) − ∑_{k<L} m β (j+k)| ≤ 1`.
 Both counts lie in `{⌊Lβ⌋, ⌊Lβ⌋+1}` (`window_mem`), so they differ by ≤ 1.
-This is the precise Sturmian balance property — the word is maximally even.-/
+This is the precise Sturmian balance property — the word is maximally even.
+@isnad1 id=le.0h4v.s6.1e6534e810b0 from=translated src=- shape=ad610d6c vocab=6e5fe573
+-/
 theorem balanced (β : ℝ) (L i j : ℕ) :
     |(∑ k ∈ Finset.range L, m β (i + k)) - (∑ k ∈ Finset.range L, m β (j + k))| ≤ 1 := by
   rw [window_sum, window_sum]
@@ -203,7 +221,9 @@ Proof: a period `p` forces the cumulative floor to be additive over the period,
 forward-difference recurrence), hence `cumFloor β (M·p) = M·cumFloor β p` for
 all `M`. Comparing with the floor bracket `Mpβ < cumFloor β (M·p) + 1` gives
 `M · Int.fract(pβ) < 1` for ALL `M`; but `Int.fract(pβ) > 0` (as `pβ` is
-irrational), so this fails for large `M` (Archimedean).-/
+irrational), so this fails for large `M` (Archimedean).
+@isnad1 id=not.1h1v.s5.adfdfb1da7c1 from=translated src=- shape=38349210 vocab=7cd53335
+-/
 theorem aperiodic (β : ℝ) (hβ : Irrational β) :
     ¬ ∃ p : ℕ, 0 < p ∧ ∀ n : ℕ, m β (n + p) = m β n := by
   rintro ⟨p, hp, hper⟩

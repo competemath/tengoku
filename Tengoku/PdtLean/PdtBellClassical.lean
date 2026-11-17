@@ -14,7 +14,9 @@ Commuting observables cannot exceed 2; the noncommutative real-Pauli tuple reach
 
 /-- **Classical CHSH bound ≤ 2.** In a COMMUTATIVE ordered \*-ring, any CHSH tuple satisfies
 `A₀B₀ + A₀B₁ + A₁B₀ − A₁B₁ ≤ 2` (Mathlib's `CHSH_inequality_of_comm`). The commutativity
-hypothesis is exactly what fails in the quantum case.-/
+hypothesis is exactly what fails in the quantum case.
+@isnad1 id=le.1h5v.s7.5b8a39c10bc3 from=translated src=- shape=6a4c711d vocab=e52d408c
+-/
 theorem chsh_comm_le_two
     {R : Type*} [CommRing R] [PartialOrder R] [StarRing R] [StarOrderedRing R]
     [Algebra ℝ R] [IsOrderedModule ℝ R]
@@ -23,7 +25,9 @@ theorem chsh_comm_le_two
   CHSH_inequality_of_comm A₀ A₁ B₀ B₁ T
 
 /-- **The Bell gap is strict:** the classical bound `2` is strictly below the quantum
-Tsirelson value `2√2 ≈ 2.828`. Commuting observables stop at 2; noncommutativity reaches 2√2.-/
+Tsirelson value `2√2 ≈ 2.828`. Commuting observables stop at 2; noncommutativity reaches 2√2.
+@isnad1 id=lt.0h0v.s5.344b299a1b60 from=translated src=- shape=f1dc1f2b vocab=0ac30d73
+-/
 theorem bell_gap : (2 : ℝ) < 2 * Real.sqrt 2 := by
   nlinarith [Real.sq_sqrt (show (0:ℝ) ≤ 2 by norm_num), Real.sqrt_nonneg 2]
 

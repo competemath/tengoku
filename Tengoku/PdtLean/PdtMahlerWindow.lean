@@ -91,7 +91,9 @@ noncomputable def boxD3 : Finset Z3 :=
 
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 2000000 in
-/-- COVERAGE at degree 3: 147 kernel-checked certificates.-/
+/-- COVERAGE at degree 3: 147 kernel-checked certificates.
+@isnad1 id=eq.1h1v.s4.ba63cba045f7 from=translated src=- shape=f9706b48 vocab=fd1e32b3
+-/
 theorem boxD3_all : ∀ t ∈ boxD3, elemOK3 t = true := by decide
 
 /-! ## Degree 3: main assembly -/
@@ -100,15 +102,24 @@ noncomputable section
 
 def zquad' (v : ℤ × ℤ) : ℤ[X] := X ^ 2 + C v.1 * X + C v.2
 
+/--
+@isnad1 id=iff.0h1v.s6.c582e23f7a31 from=translated src=- shape=fa922883 vocab=fd9e6cd8
+-/
 lemma mem_boxD3 {t : Z3} :
     t ∈ boxD3 ↔ |t.1| ≤ 3 ∧ |t.2.1| ≤ 3 ∧ |t.2.2| ≤ 1 := by
   obtain ⟨a, b, c⟩ := t
   simp [boxD3, Finset.mem_product, Finset.mem_Icc, abs_le]
 
+/--
+@isnad1 id=eq.0h4v.s6.cce3181ab3c4 from=translated src=- shape=5c4b7d98 vocab=22d32097
+-/
 lemma lowerCert3_succ_def (fuel : ℕ) (P2 Q2 : ℤ) (s : Z3) :
     lowerCert3 (fuel + 1) P2 Q2 s
       = (lowerHit3 P2 Q2 s || lowerCert3 fuel (P2 ^ 2) (Q2 ^ 2) (gr3Z s)) := rfl
 
+/--
+@isnad1 id=eq.1h1v.s5.e19b0bf2f39a from=translated src=- shape=74b21166 vocab=e2c28f8a
+-/
 lemma lowerCert3_of_not_mem {t : Z3} (h : t ∉ boxD3) :
     lowerCert3 9 133 100 t = true := by
   obtain ⟨a, b, c⟩ := t
@@ -208,20 +219,31 @@ noncomputable def boxD2 : Finset Z2 :=
 
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 2000000 in
-/-- COVERAGE at degree 2: 21 kernel-checked certificates.-/
+/-- COVERAGE at degree 2: 21 kernel-checked certificates.
+@isnad1 id=eq.1h1v.s4.7c4aa2ed4239 from=translated src=- shape=f9706b48 vocab=a186b1ad
+-/
 theorem boxD2_all : ∀ t ∈ boxD2, elemOK2 t = true := by decide
 
 noncomputable section
 
+/--
+@isnad1 id=iff.0h1v.s5.4190d5c1bab3 from=translated src=- shape=db87a060 vocab=f10f9729
+-/
 lemma mem_boxD2 {t : Z2} :
     t ∈ boxD2 ↔ |t.1| ≤ 3 ∧ |t.2| ≤ 1 := by
   obtain ⟨a, b⟩ := t
   simp [boxD2, Finset.mem_product, Finset.mem_Icc, abs_le]
 
+/--
+@isnad1 id=eq.0h4v.s6.a0853ae32585 from=translated src=- shape=5c4b7d98 vocab=67d34d3f
+-/
 lemma lowerCert2_succ_def (fuel : ℕ) (P2 Q2 : ℤ) (s : Z2) :
     lowerCert2 (fuel + 1) P2 Q2 s
       = (lowerHit2 P2 Q2 s || lowerCert2 fuel (P2 ^ 2) (Q2 ^ 2) (gr2Z s)) := rfl
 
+/--
+@isnad1 id=eq.1h1v.s5.a03bfd188f00 from=translated src=- shape=74b21166 vocab=cbf299b2
+-/
 lemma lowerCert2_of_not_mem {t : Z2} (h : t ∉ boxD2) :
     lowerCert2 9 81 50 t = true := by
   obtain ⟨a, b⟩ := t

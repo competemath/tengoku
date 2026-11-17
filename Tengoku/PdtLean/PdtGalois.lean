@@ -23,6 +23,9 @@ attribute [local instance] Polynomial.Gal.splits_ℚ_ℂ
 
 /-! ### (A0) A subgroup of `S₄` of order divisible by `12` containing a transposition is `S₄` -/
 
+/--
+@isnad1 id=eq.5h3v.s7.4b69555fb66c from=translated src=- shape=52baf676 vocab=8928abf3
+-/
 theorem perm_four_eq_top {α : Type*} [Fintype α] [DecidableEq α] (hα : Fintype.card α = 4)
     (H : Subgroup (Equiv.Perm α)) (h4 : 4 ∣ Nat.card H) (h3 : 3 ∣ Nat.card H)
     {τ : Equiv.Perm α} (hτ : τ ∈ H) (hswap : τ.IsSwap) : H = ⊤ := by
@@ -45,6 +48,9 @@ theorem perm_four_eq_top {α : Type*} [Fintype α] [DecidableEq α] (hα : Finty
 
 /-! ### (A1) The degree of an irreducible polynomial divides the order of its Galois group -/
 
+/--
+@isnad1 id=dvd.1h1v.s4.7849b295a669 from=translated src=- shape=61f38eae vocab=af172014
+-/
 theorem natDegree_dvd_card_gal {p : ℚ[X]} (p_irr : Irreducible p) :
     p.natDegree ∣ Nat.card p.Gal := by
   rw [Gal.card_of_separable p_irr.separable]
@@ -75,7 +81,9 @@ noncomputable def resolventCubic (p : ℚ[X]) : ℚ[X] :=
 
 /-! ### (A3) The criterion -/
 
-/-- The number of complex roots of an irreducible rational polynomial is its degree.-/
+/-- The number of complex roots of an irreducible rational polynomial is its degree.
+@isnad1 id=eq.1h1v.s5.5cfacf17f79f from=translated src=- shape=6793cc2e vocab=3776b78d
+-/
 theorem card_rootSet_complex {p : ℚ[X]} (p_irr : Irreducible p) :
     Fintype.card (p.rootSet ℂ) = p.natDegree := by
   classical

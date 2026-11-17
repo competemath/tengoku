@@ -31,7 +31,9 @@ section General
 
 variable {R A B : Type*} [CommRing R] [CommRing A] [CommRing B] [Algebra R A] [Algebra R B]
 
-/-- Left multiplication by a pure tensor is the tensor product of the left multiplications.-/
+/-- Left multiplication by a pure tensor is the tensor product of the left multiplications.
+@isnad1 id=eq.0h5v.s11.b5928ce9046b from=translated src=- shape=2a124264 vocab=b922575c
+-/
 theorem lmul_tmul_general (a : A) (b : B) :
     Algebra.lmul R (A ⊗[R] B) (a ⊗ₜ b)
       = TensorProduct.map (Algebra.lmul R A a) (Algebra.lmul R B b) := by
@@ -42,12 +44,16 @@ theorem lmul_tmul_general (a : A) (b : B) :
 
 variable [Module.Free R A] [Module.Finite R A] [Module.Free R B] [Module.Finite R B]
 
-/-- **The trace of a pure tensor is the product of the traces.**-/
+/-- **The trace of a pure tensor is the product of the traces.**
+@isnad1 id=eq.0h5v.s10.774a2c89d5e1 from=translated src=- shape=a79f1666 vocab=38ba3321
+-/
 theorem trace_tmul_general (a : A) (b : B) :
     Algebra.trace R (A ⊗[R] B) (a ⊗ₜ b) = Algebra.trace R A a * Algebra.trace R B b := by
   simp only [Algebra.trace_apply, lmul_tmul_general, LinearMap.trace_tensorProduct']
 
-/-- **The trace form of a tensor product on pure tensors is the product of the trace forms.**-/
+/-- **The trace form of a tensor product on pure tensors is the product of the trace forms.**
+@isnad1 id=eq.0h7v.s12.d76201ac1b6d from=translated src=- shape=31ec17a6 vocab=00b7a7dc
+-/
 theorem traceForm_tmul_general (a a' : A) (b b' : B) :
     Algebra.traceForm R (A ⊗[R] B) (a ⊗ₜ b) (a' ⊗ₜ b')
       = Algebra.traceForm R A a a' * Algebra.traceForm R B b b' := by
@@ -55,7 +61,9 @@ theorem traceForm_tmul_general (a a' : A) (b b' : B) :
 
 variable {ι κ : Type*}
 
-/-- **The Gram matrix of a tensor basis is the Kronecker product of the Gram matrices.**-/
+/-- **The Gram matrix of a tensor basis is the Kronecker product of the Gram matrices.**
+@isnad1 id=eq.0h7v.s9.3c349031d7d4 from=translated src=- shape=2f0b3e35 vocab=a24c80ea
+-/
 theorem traceMatrix_tensorProduct (bA : Basis ι R A) (bB : Basis κ R B) :
     Algebra.traceMatrix R (⇑(bA.tensorProduct bB))
       = Algebra.traceMatrix R ⇑bA ⊗ₖ Algebra.traceMatrix R ⇑bB := by
@@ -73,7 +81,9 @@ section Counting
 variable {K : Type*} [Field K] [LinearOrder K] [IsStrictOrderedRing K]
 variable {ι κ : Type*} [Fintype ι] [Fintype κ]
 
-/-- A product weight is positive iff both factors are positive or both are negative.-/
+/-- A product weight is positive iff both factors are positive or both are negative.
+@isnad1 id=eq.0h5v.s8.78ade12f41ae from=translated src=- shape=e9f8fe6e vocab=f51b6ae0
+-/
 theorem ncard_pos_mul (w₁ : ι → K) (w₂ : κ → K) :
     {p : ι × κ | 0 < w₁ p.1 * w₂ p.2}.ncard
       = {i | 0 < w₁ i}.ncard * {j | 0 < w₂ j}.ncard
@@ -91,7 +101,9 @@ theorem ncard_pos_mul (w₁ : ι → K) (w₂ : κ → K) :
     exact lt_asymm hi hi'
   rw [hset, Set.ncard_union_eq hdisj, Set.ncard_prod, Set.ncard_prod]
 
-/-- A product weight is negative iff the factors have opposite strict signs.-/
+/-- A product weight is negative iff the factors have opposite strict signs.
+@isnad1 id=eq.0h5v.s8.ac35a47b82d6 from=translated src=- shape=51ded01c vocab=f51b6ae0
+-/
 theorem ncard_neg_mul (w₁ : ι → K) (w₂ : κ → K) :
     {p : ι × κ | w₁ p.1 * w₂ p.2 < 0}.ncard
       = {i | 0 < w₁ i}.ncard * {j | w₂ j < 0}.ncard
@@ -118,7 +130,9 @@ open QuadraticMap
 variable {K V W : Type*} [Field K] [Invertible (2 : K)]
   [AddCommGroup V] [Module K V] [AddCommGroup W] [Module K W]
 
-/-- The tensor product of two orthogonal families is orthogonal for the tensor product form.-/
+/-- The tensor product of two orthogonal families is orthogonal for the tensor product form.
+@isnad1 id=isortho.2h9v.s12.8afaf3380108 from=translated src=- shape=1bbe097d vocab=6fc12936
+-/
 theorem isOrthoᵢ_tmul (Q₁ : QuadraticForm K V) (Q₂ : QuadraticForm K W)
     {ι κ : Type*} {v : ι → V} {w : κ → W}
     (hv : (associated (R := K) Q₁).IsOrthoᵢ v) (hw : (associated (R := K) Q₂).IsOrthoᵢ w) :
@@ -132,7 +146,9 @@ theorem isOrthoᵢ_tmul (Q₁ : QuadraticForm K V) (Q₂ : QuadraticForm K W)
     rw [hw h2, zero_smul]
 
 /-- The tensor product of two quadratic forms, in the tensor product of orthogonal bases, is the
-weighted sum of squares with the product weights.-/
+weighted sum of squares with the product weights.
+@isnad1 id=equivale.2h9v.s11.26d4199ecd90 from=translated src=- shape=47413e16 vocab=780e6734
+-/
 theorem tmul_equivalent_weightedSumSquares (Q₁ : QuadraticForm K V) (Q₂ : QuadraticForm K W)
     {ι κ : Type*} [Fintype ι] [Fintype κ] (v : Basis ι K V) (w : Basis κ K W)
     (hv : (associated (R := K) Q₁).IsOrthoᵢ v) (hw : (associated (R := K) Q₂).IsOrthoᵢ w) :
@@ -156,7 +172,9 @@ theorem tmul_equivalent_weightedSumSquares (Q₁ : QuadraticForm K V) (Q₂ : Qu
 variable [LinearOrder K] [IsStrictOrderedRing K] [FiniteDimensional K V] [FiniteDimensional K W]
 
 /-- **The signature product rule, positive part**:
-`p(Q₁ ⊗ Q₂) = p(Q₁) p(Q₂) + n(Q₁) n(Q₂)`.-/
+`p(Q₁ ⊗ Q₂) = p(Q₁) p(Q₂) + n(Q₁) n(Q₂)`.
+@isnad1 id=eq.0h5v.s8.5783066020bf from=translated src=- shape=ba0af9ac vocab=5bda2862
+-/
 theorem sigPos_tmul (Q₁ : QuadraticForm K V) (Q₂ : QuadraticForm K W) :
     sigPos (Q₁.tmul Q₂) = sigPos Q₁ * sigPos Q₂ + sigNeg Q₁ * sigNeg Q₂ := by
   obtain ⟨v, hv⟩ :=
@@ -176,7 +194,9 @@ theorem sigPos_tmul (Q₁ : QuadraticForm K V) (Q₂ : QuadraticForm K W) :
   exact ncard_pos_mul (fun i => Q₁ (v i)) (fun j => Q₂ (w j))
 
 /-- **The signature product rule, negative part**:
-`n(Q₁ ⊗ Q₂) = p(Q₁) n(Q₂) + n(Q₁) p(Q₂)`.-/
+`n(Q₁ ⊗ Q₂) = p(Q₁) n(Q₂) + n(Q₁) p(Q₂)`.
+@isnad1 id=eq.0h5v.s8.6c3d489612b5 from=translated src=- shape=30d95c03 vocab=5bda2862
+-/
 theorem sigNeg_tmul (Q₁ : QuadraticForm K V) (Q₂ : QuadraticForm K W) :
     sigNeg (Q₁.tmul Q₂) = sigPos Q₁ * sigNeg Q₂ + sigNeg Q₁ * sigPos Q₂ := by
   obtain ⟨v, hv⟩ :=
@@ -203,7 +223,9 @@ open QuadraticMap
 
 variable {R : Type*} [CommRing R]
 
-/-- The trace form is symmetric (in the form `associated_left_inverse` expects).-/
+/-- The trace form is symmetric (in the form `associated_left_inverse` expects).
+@isnad1 id=eq.0h4v.s9.32df797a6f3b from=translated src=- shape=29a4633c vocab=9fc481db
+-/
 theorem traceForm_comm (S : Type*) [CommRing S] [Algebra R S] (x y : S) :
     Algebra.traceForm R S x y = Algebra.traceForm R S y x := by
   rw [Algebra.traceForm_apply, Algebra.traceForm_apply, mul_comm]
@@ -212,7 +234,9 @@ variable [Invertible (2 : R)] {A B : Type*} [CommRing A] [CommRing B] [Algebra R
   [Module.Free R A] [Module.Finite R A] [Module.Free R B] [Module.Finite R B]
 
 /-- **The trace quadratic form `x ↦ Tr(x²)` of `A ⊗ B` is the tensor product of the trace
-quadratic forms of `A` and `B`.**-/
+quadratic forms of `A` and `B`.**
+@isnad1 id=eq.0h3v.s10.864a02ff4fb4 from=translated src=- shape=683bce50 vocab=0ee801bf
+-/
 theorem qTrace_tensor :
     LinearMap.BilinMap.toQuadraticMap (Algebra.traceForm R (A ⊗[R] B))
       = QuadraticForm.tmul (LinearMap.BilinMap.toQuadraticMap (Algebra.traceForm R A))
@@ -256,19 +280,25 @@ section Instance
 
 local instance : Invertible (2 : ℚ) := invertibleOfNonzero two_ne_zero
 
-/-- The trace quadratic form of the compositum is the tensor product of the two trace forms.-/
+/-- The trace quadratic form of the compositum is the tensor product of the two trace forms.
+@isnad1 id=eq.0h0v.s8.6435a799d319 from=translated src=- shape=e9b3c159 vocab=844c6ebf
+-/
 theorem qTraceL_eq_tmul : qTraceL = qTraceρ.tmul qTraceQ :=
   qTrace_tensor (R := ℚ) (A := AdjoinRoot fρ) (B := AdjoinRoot fQ)
 
 /-- Signature `(7, 5)` of the compositum as an instance of the signature product rule:
-`2·3 + 1·1 = 7`.-/
+`2·3 + 1·1 = 7`.
+@isnad1 id=eq.0h0v.s7.e13fc1ad6aca from=translated src=- shape=34bef2d9 vocab=70a32b52
+-/
 theorem sigPos_traceL_of_general : sigPos qTraceL = 7 := by
   have h := sigPos_tmul qTraceρ qTraceQ
   rw [sigPos_traceρ, sigPos_traceQ, sigNeg_traceρ, sigNeg_traceQ] at h
   rw [qTraceL_eq_tmul]
   exact h
 
-/-- `2·1 + 1·3 = 5`.-/
+/-- `2·1 + 1·3 = 5`.
+@isnad1 id=eq.0h0v.s7.a0e3e99cd5be from=translated src=- shape=34bef2d9 vocab=b8806e27
+-/
 theorem sigNeg_traceL_of_general : sigNeg qTraceL = 5 := by
   have h := sigNeg_tmul qTraceρ qTraceQ
   rw [sigPos_traceρ, sigPos_traceQ, sigNeg_traceρ, sigNeg_traceQ] at h

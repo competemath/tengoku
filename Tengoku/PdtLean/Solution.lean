@@ -24,6 +24,9 @@ private def toFrame {n : Type*} [Fintype n] [DecidableEq n]
   add := hadd
   norm_one := h1
 
+/--
+@isnad1 id=eq.7h4v.s8.58b073839248 from=translated src=- shape=bc142588 vocab=7a10bf5d
+-/
 theorem homogeneity_automatic {n : Type*} [Fintype n] [DecidableEq n]
     (f : Matrix n n ℂ → ℝ)
     (h0 : ∀ a : Matrix n n ℂ, a.PosSemidef → (1 - a).PosSemidef → 0 ≤ f a)
@@ -35,6 +38,9 @@ theorem homogeneity_automatic {n : Type*} [Fintype n] [DecidableEq n]
     f (t • a) = t * f a :=
   PDT.Busch.frame_smul (toFrame h0 hadd h1) ha ha1 ht0 ht1
 
+/--
+@isnad1 id=existsun.3h2v.s8.8258cf6623a6 from=translated src=- shape=e3bb1f84 vocab=4c97352d
+-/
 theorem busch_representation {n : Type*} [Fintype n] [DecidableEq n]
     [Nonempty n] (f : Matrix n n ℂ → ℝ)
     (h0 : ∀ a : Matrix n n ℂ, a.PosSemidef → (1 - a).PosSemidef → 0 ≤ f a)

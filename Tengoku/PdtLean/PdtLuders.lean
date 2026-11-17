@@ -89,6 +89,9 @@ def ludersMap {ι n : Type*} [Fintype ι] [Fintype n]
     (A : ι → Matrix n n ℂ) (B : Matrix n n ℂ) : Matrix n n ℂ :=
   ∑ i, A i * B * A i
 
+/--
+@isnad1 id=eq.0h4v.s6.a6ca270d83f5 from=translated src=- shape=eb28b609 vocab=1d58d711
+-/
 @[simp]
 theorem ludersMap_apply {ι n : Type*} [Fintype ι] [Fintype n]
     (A : ι → Matrix n n ℂ) (B : Matrix n n ℂ) :
@@ -106,7 +109,9 @@ Lemma 3.3 proves it; the commutation conclusion for the square roots `A i` is
 stronger than the conclusion for the effects `A i * A i`.
 
 Scope: this is a **non-disturbance / fixed-point** statement, not a uniqueness
-theorem for the update map.-/
+theorem for the update map.
+@isnad1 id=iff.2h4v.s7.93ff6835751c from=translated src=- shape=c6c0b0c0 vocab=6db9808e
+-/
 theorem ludersMap_fixed_iff_commute {ι n : Type*} [Fintype ι] [Fintype n]
     [DecidableEq n] (A : ι → Matrix n n ℂ) (hherm : ∀ i, (A i).IsHermitian)
     (hres : ∑ i, A i * A i = 1) (B : Matrix n n ℂ) :
@@ -184,7 +189,9 @@ arbitrary Hermitian square root would not do: for `E = 1` and `A = diag(1,-1)`,
 `A B A = B` fails for some `B` while `Commute 1 B` always holds).
 
 Scope: **non-disturbance, not uniqueness**; and the `[Fintype n]` hypothesis is
-essential (see the module docstring).-/
+essential (see the module docstring).
+@isnad1 id=iff.2h4v.s7.bf7ebb42956f from=translated src=- shape=c6950127 vocab=abcc3bbf
+-/
 theorem luders_fixed_iff_commute_effects {ι n : Type*} [Fintype ι] [Fintype n]
     [DecidableEq n] (E : ι → Matrix n n ℂ) (hE : ∀ i, (E i).PosSemidef)
     (hres : ∑ i, E i = 1) (B : Matrix n n ℂ) :
@@ -215,7 +222,9 @@ orthogonal-projection predicate for matrices.)-/
 def IsOrthProj {n : Type*} [Fintype n] (M : Matrix n n ℂ) : Prop :=
   M.IsHermitian ∧ M * M = M
 
-/-- The sharp Lüders update `ρ ↦ Q ρ Q` preserves positivity.-/
+/-- The sharp Lüders update `ρ ↦ Q ρ Q` preserves positivity.
+@isnad1 id=possemid.2h3v.s6.3140069fe919 from=translated src=- shape=2635f1e4 vocab=89a495ee
+-/
 theorem posSemidef_luders {n : Type*} [Fintype n] [DecidableEq n]
     {Q ρ : Matrix n n ℂ} (hQ : IsOrthProj Q) (hρ : ρ.PosSemidef) :
     (Q * ρ * Q).PosSemidef := by
@@ -223,14 +232,18 @@ theorem posSemidef_luders {n : Type*} [Fintype n] [DecidableEq n]
   rwa [hQ.1.eq] at this
 
 /-- The sharp Lüders update is **trace preserving against the Born weight**:
-`trace (Q ρ Q) = trace (Q ρ)`.-/
+`trace (Q ρ Q) = trace (Q ρ)`.
+@isnad1 id=eq.1h3v.s6.8d57850b3ba2 from=translated src=- shape=e9003adf vocab=ab281ee8
+-/
 theorem trace_luders {n : Type*} [Fintype n] [DecidableEq n]
     {Q : Matrix n n ℂ} (hQ : IsOrthProj Q) (ρ : Matrix n n ℂ) :
     (Q * ρ * Q).trace = (Q * ρ).trace := by
   rw [Matrix.trace_mul_cycle Q ρ Q, hQ.2]
 
 /-- The sharp Lüders update is **idempotent**: repeating the same measurement
-changes nothing.-/
+changes nothing.
+@isnad1 id=eq.1h3v.s7.2b45c3015831 from=translated src=- shape=e3664d41 vocab=4071f3c5
+-/
 theorem luders_idem {n : Type*} [Fintype n] [DecidableEq n]
     {Q : Matrix n n ℂ} (hQ : IsOrthProj Q) (ρ : Matrix n n ℂ) :
     Q * (Q * ρ * Q) * Q = Q * ρ * Q := by
@@ -240,7 +253,9 @@ theorem luders_idem {n : Type*} [Fintype n] [DecidableEq n]
 /-- **The Lüders rule is coherent.**  If `P` is a subprojection of `Q`
 (`P * Q = Q * P = P`), then a prior Lüders measurement of `Q` does not change
 the Born statistics of `P`.  This is the *existence* half of Fiorentino &
-Weigert's Theorem 1; `coherence_forces_luders` is the *uniqueness* half.-/
+Weigert's Theorem 1; `coherence_forces_luders` is the *uniqueness* half.
+@isnad1 id=eq.2h4v.s7.838a008d59d1 from=translated src=- shape=b056b568 vocab=2d76c6bc
+-/
 theorem luders_coherent {n : Type*} [Fintype n] [DecidableEq n]
     {P Q : Matrix n n ℂ} (hPQ : P * Q = P) (hQP : Q * P = P) (ρ : Matrix n n ℂ) :
     (P * (Q * ρ * Q)).trace = (P * ρ).trace := by
@@ -264,7 +279,9 @@ formalized here.  Nothing in this module may be read as a statement about
 composite systems, and in particular nothing here bears on any
 bipartite/entanglement chain. -/
 
-/-- `1 - Q` is an orthogonal projection when `Q` is.-/
+/-- `1 - Q` is an orthogonal projection when `Q` is.
+@isnad1 id=isorthpr.1h2v.s5.f32efa9af890 from=translated src=- shape=082903d1 vocab=7b4b4f60
+-/
 theorem IsOrthProj.compl {n : Type*} [Fintype n] [DecidableEq n]
     {Q : Matrix n n ℂ} (hQ : IsOrthProj Q) : IsOrthProj (1 - Q) := by
   refine ⟨Matrix.isHermitian_one.sub hQ.1, ?_⟩
@@ -273,7 +290,9 @@ theorem IsOrthProj.compl {n : Type*} [Fintype n] [DecidableEq n]
   abel
 
 /-- **Support lemma.**  A positive semidefinite matrix whose trace against the
-complementary projection `1 - Q` vanishes is supported in the range of `Q`.-/
+complementary projection `1 - Q` vanishes is supported in the range of `Q`.
+@isnad1 id=and.3h3v.s7.5836671bb650 from=translated src=- shape=e46a5f84 vocab=841b20fb
+-/
 theorem support_of_trace_compl {n : Type*} [Fintype n] [DecidableEq n]
     {Q M : Matrix n n ℂ} (hQ : IsOrthProj Q) (hM : M.PosSemidef)
     (h : ((1 - Q) * M).trace = 0) : Q * M = M ∧ M * Q = M := by
@@ -307,7 +326,9 @@ theorem support_of_trace_compl {n : Type*} [Fintype n] [DecidableEq n]
 
 /-! ### Rank-one probes -/
 
-/-- The outer product `x xᴴ` squares to `‖x‖² • x xᴴ`.-/
+/-- The outer product `x xᴴ` squares to `‖x‖² • x xᴴ`.
+@isnad1 id=eq.0h2v.s7.d908e538e5d2 from=translated src=- shape=69cba169 vocab=ae78636d
+-/
 theorem outer_mul_outer {n : Type*} [Fintype n] (x : n → ℂ) :
     Matrix.vecMulVec x (star x) * Matrix.vecMulVec x (star x)
       = (star x ⬝ᵥ x) • Matrix.vecMulVec x (star x) := by
@@ -317,7 +338,9 @@ theorem outer_mul_outer {n : Type*} [Fintype n] (x : n → ℂ) :
   rw [Finset.sum_mul]
   exact Finset.sum_congr rfl fun k _ => by ring
 
-/-- If `Q` is Hermitian and fixes `x`, then `x xᴴ Q = x xᴴ`.-/
+/-- If `Q` is Hermitian and fixes `x`, then `x xᴴ Q = x xᴴ`.
+@isnad1 id=eq.2h3v.s7.67206440aabf from=translated src=- shape=36517eb0 vocab=c788dc76
+-/
 theorem outer_mul_right {n : Type*} [Fintype n] (x : n → ℂ) (Q : Matrix n n ℂ)
     (hQ : Q.IsHermitian) (hx : Q *ᵥ x = x) :
     Matrix.vecMulVec x (star x) * Q = Matrix.vecMulVec x (star x) := by
@@ -336,7 +359,9 @@ theorem outer_mul_right {n : Type*} [Fintype n] (x : n → ℂ) (Q : Matrix n n 
     _ = x i * star (∑ k, Q j k * x k) := by rw [← Finset.mul_sum, ← star_sum]
     _ = x i * star (x j) := by rw [hrow]
 
-/-- If `Q` fixes `x`, then `Q x xᴴ = x xᴴ`.-/
+/-- If `Q` fixes `x`, then `Q x xᴴ = x xᴴ`.
+@isnad1 id=eq.1h3v.s7.43269cd6938e from=translated src=- shape=093e6fe6 vocab=35753ba9
+-/
 theorem outer_mul_left {n : Type*} [Fintype n] (x : n → ℂ) (Q : Matrix n n ℂ)
     (hx : Q *ᵥ x = x) :
     Q * Matrix.vecMulVec x (star x) = Matrix.vecMulVec x (star x) := by
@@ -350,7 +375,9 @@ theorem outer_mul_left {n : Type*} [Fintype n] (x : n → ℂ) (Q : Matrix n n �
         rw [Finset.sum_mul]; exact Finset.sum_congr rfl fun k _ => by ring
     _ = x i * star (x j) := by rw [hrow]
 
-/-- The quadratic form as a trace against the rank-one matrix `x xᴴ`.-/
+/-- The quadratic form as a trace against the rank-one matrix `x xᴴ`.
+@isnad1 id=eq.0h3v.s7.98a386db416f from=translated src=- shape=b343c4ec vocab=8b370d0a
+-/
 theorem dotProduct_eq_trace {n : Type*} [Fintype n] (X : Matrix n n ℂ) (x : n → ℂ) :
     star x ⬝ᵥ (X *ᵥ x) = (X * Matrix.vecMulVec x (star x)).trace := by
   rw [Matrix.trace]
@@ -359,7 +386,9 @@ theorem dotProduct_eq_trace {n : Type*} [Fintype n] (X : Matrix n n ℂ) (x : n 
   simp only [Matrix.mulVec, dotProduct, Pi.star_apply, Finset.mul_sum]
   exact Finset.sum_congr rfl fun p _ => Finset.sum_congr rfl fun q _ => by ring
 
-/-- Conjugation identity for quadratic forms.-/
+/-- Conjugation identity for quadratic forms.
+@isnad1 id=eq.0h4v.s7.77252e557796 from=translated src=- shape=94379a36 vocab=0ae47ee8
+-/
 theorem quad_conj {n : Type*} [Fintype n] (M N : Matrix n n ℂ) (v : n → ℂ) :
     star (N *ᵥ v) ⬝ᵥ (M *ᵥ (N *ᵥ v)) = star v ⬝ᵥ ((Nᴴ * M * N) *ᵥ v) := by
   rw [Matrix.star_mulVec, Matrix.mulVec_mulVec, ← Matrix.dotProduct_mulVec,
@@ -367,7 +396,9 @@ theorem quad_conj {n : Type*} [Fintype n] (M N : Matrix n n ℂ) (v : n → ℂ)
 
 /-- **Probe lemma, range case.**  If the trace of `D` against every
 subprojection of `Q` vanishes, then the quadratic form of `D` vanishes on every
-vector fixed by `Q`.-/
+vector fixed by `Q`.
+@isnad1 id=eq.3h4v.s7.32c05c6356f3 from=translated src=- shape=a44f7008 vocab=730d24fc
+-/
 theorem quad_zero_of_fixed {n : Type*} [Fintype n] [DecidableEq n]
     {Q D : Matrix n n ℂ} (hQ : IsOrthProj Q)
     (hsub : ∀ P : Matrix n n ℂ, IsOrthProj P → P * Q = P → Q * P = P → (P * D).trace = 0)
@@ -429,7 +460,9 @@ here.
 *not* single out the projection postulate for composite systems — that is
 Fiorentino & Weigert's Theorem 2 (coherence **and** composition compatibility),
 which is not formalized here.  This theorem must never be quoted for a
-bipartite/entangled setting.-/
+bipartite/entangled setting.
+@isnad1 id=eq.5h4v.s8.c9eaabf68673 from=translated src=- shape=c3766019 vocab=767d8a8b
+-/
 theorem coherence_forces_luders {n : Type*} [Fintype n] [DecidableEq n]
     (ω : Matrix n n ℂ → Matrix n n ℂ → Matrix n n ℂ)
     (hpos : ∀ Q ρ, IsOrthProj Q → ρ.PosSemidef → (ω Q ρ).PosSemidef)
@@ -498,7 +531,9 @@ hypotheses constrain `ω Q ρ` only for `Q` an orthogonal projection and `ρ`
 positive semidefinite, and leave `ω` entirely free off that domain.  Uniqueness
 holds exactly on the domain, which is what `coherence_forces_luders` states.
 
-Scope rider as above: **non-composite systems only**.-/
+Scope rider as above: **non-composite systems only**.
+@isnad1 id=ex.0h1v.s8.7b2790055618 from=translated src=- shape=9b6b54cb vocab=767d8a8b
+-/
 theorem exists_coherent_update {n : Type*} [Fintype n] [DecidableEq n] :
     ∃ ω : Matrix n n ℂ → Matrix n n ℂ → Matrix n n ℂ,
       (∀ Q ρ, IsOrthProj Q → ρ.PosSemidef → (ω Q ρ).PosSemidef) ∧

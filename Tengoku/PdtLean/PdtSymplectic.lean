@@ -54,7 +54,9 @@ def Cnj : Matrix (Fin 2) (Fin 2) ℚ := !![1, 0; 0, -1]
 def omegaB : Matrix (Fin 2) (Fin 2) ℚ := !![0, 1; -1, 0]
 
 /-- **The symplectic form is alternating.** `ω = Jᵀ Gborn` is skew-symmetric,
-`ωᵀ = -ω`. This is `Im(z̄·w)`, the imaginary part of the Born rule.-/
+`ωᵀ = -ω`. This is `Im(z̄·w)`, the imaginary part of the Born rule.
+@isnad1 id=eq.0h0v.s5.c37a87259e84 from=translated src=- shape=4b28c5e4 vocab=1201f6eb
+-/
 theorem omega_born_skew : omegaB.transpose = -omegaB := by
   ext i j; fin_cases i <;> fin_cases j <;>
     simp [omegaB, Matrix.transpose_apply, Matrix.neg_apply]

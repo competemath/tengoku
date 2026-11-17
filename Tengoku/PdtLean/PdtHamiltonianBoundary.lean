@@ -52,16 +52,22 @@ def scalarEvolution (h dt : ℝ) : ℂ :=
 def scalarHamiltonian (σ : ℂ) (dt : ℝ) (k : ℤ) : ℝ :=
   (2 * Real.pi * (k : ℝ) - Complex.arg σ) / dt
 
-/-- Exact radial-times-phase polar decomposition.-/
+/-- Exact radial-times-phase polar decomposition.
+@isnad1 id=eq.0h1v.s4.f93acd9febe1 from=translated src=- shape=e1ff1cbc vocab=2ca1fbd6
+-/
 theorem radial_phase_decomposition (σ : ℂ) :
     (‖σ‖ : ℂ) * unitaryPhase σ = σ := by
   exact Complex.norm_mul_exp_arg_mul_I σ
 
-/-- The normalized phase lies on the unit circle.-/
+/-- The normalized phase lies on the unit circle.
+@isnad1 id=eq.0h1v.s3.71ec8eee86a2 from=translated src=- shape=fcff7bf0 vocab=b0f71e46
+-/
 theorem unitaryPhase_norm (σ : ℂ) : ‖unitaryPhase σ‖ = 1 := by
   exact Complex.norm_exp_ofReal_mul_I (Complex.arg σ)
 
-/-- For a nonzero tick, the phase is exactly the tick divided by its norm.-/
+/-- For a nonzero tick, the phase is exactly the tick divided by its norm.
+@isnad1 id=eq.1h1v.s4.1d993245bbe0 from=translated src=- shape=7ee7f508 vocab=ace738cf
+-/
 theorem unitaryPhase_eq_div_norm {σ : ℂ} (hσ : σ ≠ 0) :
     unitaryPhase σ = σ / (‖σ‖ : ℂ) := by
   have hn : (‖σ‖ : ℂ) ≠ 0 := by
@@ -69,13 +75,17 @@ theorem unitaryPhase_eq_div_norm {σ : ℂ} (hσ : σ ≠ 0) :
   apply (eq_div_iff hn).2
   simpa [mul_comm] using radial_phase_decomposition σ
 
-/-- Every real scalar Hamiltonian evolution has unit norm.-/
+/-- Every real scalar Hamiltonian evolution has unit norm.
+@isnad1 id=eq.0h2v.s4.bd0da0b43d18 from=translated src=- shape=18e50d40 vocab=eb3b9430
+-/
 theorem scalarEvolution_norm (h dt : ℝ) : ‖scalarEvolution h dt‖ = 1 := by
   rw [scalarEvolution, Complex.norm_exp]
   simp
 
 /-- A raw gain or loss multiplier cannot be one-step evolution from a real
-scalar Hamiltonian.-/
+scalar Hamiltonian.
+@isnad1 id=not.1h2v.s4.befde6d8d41f from=translated src=- shape=291e2edb vocab=eb3b9430
+-/
 theorem no_scalarHamiltonian_for_raw_tick {σ : ℂ} (hnorm : ‖σ‖ ≠ 1)
     (dt : ℝ) : ¬ ∃ h : ℝ, scalarEvolution h dt = σ := by
   rintro ⟨h, heq⟩
@@ -84,7 +94,9 @@ theorem no_scalarHamiltonian_for_raw_tick {σ : ℂ} (hnorm : ‖σ‖ ≠ 1)
   exact scalarEvolution_norm h dt
 
 /-- Every integer branch generates the normalized phase over a positive tick
-duration.-/
+duration.
+@isnad1 id=eq.1h3v.s4.8fb8aa4d081a from=translated src=- shape=0a04c4a3 vocab=7c30a1f1
+-/
 theorem scalarHamiltonian_generates_phase (σ : ℂ) {dt : ℝ} (hdt : 0 < dt)
     (k : ℤ) : scalarEvolution (scalarHamiltonian σ dt k) dt = unitaryPhase σ := by
   have hdt0 : dt ≠ 0 := ne_of_gt hdt
@@ -104,7 +116,9 @@ theorem scalarHamiltonian_generates_phase (σ : ℂ) {dt : ℝ} (hdt : 0 < dt)
   ring
 
 /-- Complete scalar classification: the real Hamiltonians giving the
-normalized phase are exactly the integer logarithm branches.-/
+normalized phase are exactly the integer logarithm branches.
+@isnad1 id=iff.1h3v.s5.6bb4de72cc70 from=translated src=- shape=05b6a058 vocab=7c30a1f1
+-/
 theorem scalarEvolution_eq_phase_iff (σ : ℂ) {dt : ℝ} (hdt : 0 < dt) (h : ℝ) :
     scalarEvolution h dt = unitaryPhase σ ↔
       ∃ k : ℤ, h = scalarHamiltonian σ dt k := by
@@ -130,7 +144,9 @@ theorem scalarEvolution_eq_phase_iff (σ : ℂ) {dt : ℝ} (hdt : 0 < dt) (h : �
   · rintro ⟨k, rfl⟩
     exact scalarHamiltonian_generates_phase σ hdt k
 
-/-- Distinct logarithm branches differ by the expected energy quantum.-/
+/-- Distinct logarithm branches differ by the expected energy quantum.
+@isnad1 id=eq.1h4v.s6.0d19e4f46071 from=translated src=- shape=8ec2ce32 vocab=248b4b0c
+-/
 theorem scalarHamiltonian_sub (σ : ℂ) {dt : ℝ} (hdt : 0 < dt) (k m : ℤ) :
     scalarHamiltonian σ dt k - scalarHamiltonian σ dt m =
       2 * Real.pi * ((k - m : ℤ) : ℝ) / dt := by
@@ -141,7 +157,9 @@ theorem scalarHamiltonian_sub (σ : ℂ) {dt : ℝ} (hdt : 0 < dt) (k m : ℤ) :
   ring
 
 /-- Both nonreal PDT conjugate ticks lie outside raw scalar Hermitian
-evolution: the cubic contracts and the quartic expands.-/
+evolution: the cubic contracts and the quartic expands.
+@isnad1 id=and.4h3v.s7.9e804a5ec08e from=translated src=- shape=e9b7274e vocab=a334706a
+-/
 theorem cubic_quartic_raw_ticks_not_scalarHamiltonian
     {z w : ℂ} (hz : z ^ 3 = z + 1) (hzim : z.im ≠ 0)
     (hw : w ^ 4 = w + 1) (hwim : w.im ≠ 0) (dt : ℝ) :

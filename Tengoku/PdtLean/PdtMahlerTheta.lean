@@ -24,7 +24,9 @@ open Polynomial Complex
 
 noncomputable section
 
-/-- Kernel bracket, lower side: `11/10 < M(x⁴−x−1)`.-/
+/-- Kernel bracket, lower side: `11/10 < M(x⁴−x−1)`.
+@isnad1 id=lt.0h0v.s6.a746db4ea158 from=translated src=- shape=71a67939 vocab=1e2941a7
+-/
 lemma fam_lower_11 :
     (11 : ℝ) / 10
       < ((zq4 (0, 0, -1, -1)).map (Int.castRingHom ℂ)).mahlerMeasure := by
@@ -34,7 +36,9 @@ lemma fam_lower_11 :
     exact_mod_cast (by decide : lowerCert 9 (11 : ℤ) (10 : ℤ) (0, 0, -1, -1) = true)
   exact_mod_cast hs h'
 
-/-- Products of `max 1 ‖·‖` are at least one.-/
+/-- Products of `max 1 ‖·‖` are at least one.
+@isnad1 id=le.0h1v.s5.b628e0974fc7 from=translated src=- shape=634136a5 vocab=fcd570a2
+-/
 lemma one_le_prod_max (s : Multiset ℂ) :
     1 ≤ (s.map fun r => max 1 ‖r‖).prod := by
   induction s using Multiset.induction_on with

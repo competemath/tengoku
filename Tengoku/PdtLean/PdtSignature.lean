@@ -59,46 +59,70 @@ def D : Matrix (Fin 4) (Fin 4) ℚ :=
      0, 0, -9/4, 0;
      0, 0, 0, 283/36]
 
-/-- `M` is symmetric (it is a Gram matrix).-/
+/-- `M` is symmetric (it is a Gram matrix).
+@isnad1 id=issymm.0h0v.s3.f684c1941bdb from=translated src=- shape=d3a93718 vocab=2bcef70a
+-/
 theorem M_symm : M.IsSymm := by
   ext i j
   fin_cases i <;> fin_cases j <;> simp [M, Matrix.IsSymm, Matrix.transpose_apply]
 
 /-- The determinant of the trace form is `-283`. Negative determinant forces
-an odd number of negative eigenvalues, hence at least one.-/
+an odd number of negative eigenvalues, hence at least one.
+@isnad1 id=eq.0h0v.s5.4f0815cdbbf3 from=translated src=- shape=e5ac977b vocab=c7a4e95f
+-/
 theorem det_M : M.det = -283 := by
   simp only [M, Matrix.det_succ_row_zero, Fin.sum_univ_succ, Fin.sum_univ_zero,
     Matrix.det_fin_zero, Matrix.submatrix_apply, Fin.succAbove, Fin.castSucc_zero,
     Fin.val_zero, Fin.val_succ, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons]
   decide +kernel
 
-/-- The congruence `Pᵀ * M * P = D` holds exactly over `ℚ`.-/
+/-- The congruence `Pᵀ * M * P = D` holds exactly over `ℚ`.
+@isnad1 id=eq.0h0v.s7.6674ac9de9f1 from=translated src=- shape=a8c27b39 vocab=430e0bd1
+-/
 theorem congruence : P.transpose * M * P = D := by
   ext i j
   fin_cases i <;> fin_cases j <;>
     simp [P, M, D, Matrix.mul_apply, Fin.sum_univ_four, Matrix.transpose_apply] <;> norm_num
 
-/-- `P` is invertible: its determinant is `-1`.-/
+/-- `P` is invertible: its determinant is `-1`.
+@isnad1 id=eq.0h0v.s5.9207e6b61e7b from=translated src=- shape=e5ac977b vocab=37c67987
+-/
 theorem det_P : P.det = -1 := by
   simp only [P, Matrix.det_succ_row_zero, Fin.sum_univ_succ, Fin.sum_univ_zero,
     Matrix.det_fin_zero, Matrix.submatrix_apply, Fin.succAbove, Fin.castSucc_zero,
     Fin.val_zero, Fin.val_succ, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons]
   decide +kernel
 
-/-- `P` is a unit (its determinant is a unit), so the congruence is genuine.-/
+/-- `P` is a unit (its determinant is a unit), so the congruence is genuine.
+@isnad1 id=isunit.0h0v.s4.c28cf7614cb4 from=translated src=- shape=4d15e069 vocab=434b99c6
+-/
 theorem P_isUnit : IsUnit P.det := by
   rw [det_P]; exact isUnit_one.neg
 
-/-- `D` is diagonal.-/
+/-- `D` is diagonal.
+@isnad1 id=isdiag.0h0v.s3.596acc93976c from=translated src=- shape=d3a93718 vocab=80af7afc
+-/
 theorem D_isDiag : D.IsDiag := by
   intro i j hij
   fin_cases i <;> fin_cases j <;> simp_all [D]
 
 /-! ### The (3,1) signature, read off from the signs of the diagonal of `D`. -/
 
+/--
+@isnad1 id=lt.0h0v.s5.35257c64c7b5 from=translated src=- shape=2a8c603f vocab=5bd62cac
+-/
 theorem D00_pos : (0 : ℚ) < D 0 0 := by show (0 : ℚ) < (4 : ℚ); norm_num
+/--
+@isnad1 id=lt.0h0v.s5.fe98b041a363 from=translated src=- shape=2a8c603f vocab=5bd62cac
+-/
 theorem D11_pos : (0 : ℚ) < D 1 1 := by show (0 : ℚ) < (4 : ℚ); norm_num
+/--
+@isnad1 id=lt.0h0v.s5.e9ea1eeb1ae2 from=translated src=- shape=2a8c603f vocab=5bd62cac
+-/
 theorem D33_pos : (0 : ℚ) < D 3 3 := by show (0 : ℚ) < (283 / 36 : ℚ); norm_num
+/--
+@isnad1 id=lt.0h0v.s5.4e6146eadca6 from=translated src=- shape=b4dc571a vocab=5bd62cac
+-/
 theorem D22_neg : D 2 2 < (0 : ℚ) := by show (-9 / 4 : ℚ) < 0; norm_num
 
 /-- **The (3,1) signature theorem (concrete Sylvester form).**
@@ -108,7 +132,9 @@ to the diagonal form `D` whose diagonal has exactly three positive entries
 and one negative entry. By Sylvester's law of inertia the signature of the
 real quadratic form `M` is therefore `(3, 1)`. Together with `det_M = -283`
 (`< 0`, forcing an odd number of negative signs) this pins the signature
-uniquely.-/
+uniquely.
+@isnad1 id=and.0h0v.s8.9d86dd6055ed from=translated src=- shape=24852430 vocab=c91ef8f6
+-/
 theorem signature_3_1 :
     M.IsSymm ∧
     P.transpose * M * P = D ∧

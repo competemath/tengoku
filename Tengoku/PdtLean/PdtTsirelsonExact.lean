@@ -65,7 +65,9 @@ variable {R : Type*} [Ring R] [StarRing R] {A₀ A₁ B₀ B₁ : R}
 
 /-- The CHSH operator of any CHSH tuple is self-adjoint (abstract form of
 `PDT.Pchsh_sa`): `star` flips each product, and cross-party commutation flips
-it back.-/
+it back.
+@isnad1 id=eq.1h5v.s8.14f2ef2fc7dc from=translated src=- shape=3e3e46cf vocab=b353ac06
+-/
 theorem chsh_sa (h : IsCHSHTuple A₀ A₁ B₀ B₁) :
     star (A₀ * B₀ + A₀ * B₁ + A₁ * B₀ - A₁ * B₁)
       = A₀ * B₀ + A₀ * B₁ + A₁ * B₀ - A₁ * B₁ := by
@@ -78,7 +80,9 @@ theorem chsh_sa (h : IsCHSHTuple A₀ A₁ B₀ B₁) :
 correction to the naive `T² = 8·1` (which `PdtTsirelsonNorm.Pchsh_sq_ne_smul`
 refutes for the real-Pauli tuple, for every scalar `c`, not just `8`): the
 deviation of `T²` from the scalar `4`
-is precisely the product of the two intra-party commutators.-/
+is precisely the product of the two intra-party commutators.
+@isnad1 id=eq.1h5v.s8.fbab0a87f3b2 from=translated src=- shape=ed03e39a vocab=3ff9134e
+-/
 theorem chsh_mul_self (h : IsCHSHTuple A₀ A₁ B₀ B₁) :
     (A₀ * B₀ + A₀ * B₁ + A₁ * B₀ - A₁ * B₁) * (A₀ * B₀ + A₀ * B₁ + A₁ * B₀ - A₁ * B₁)
       = 4 + (A₀ * A₁ - A₁ * A₀) * (B₁ * B₀ - B₀ * B₁) := by
@@ -130,7 +134,9 @@ section CStarNorm
 
 variable {R : Type*} [NormedRing R] [StarRing R] [CStarRing R] [Nontrivial R]
 
-/-- A self-adjoint involution in a unital C*-normed ring has norm exactly 1.-/
+/-- A self-adjoint involution in a unital C*-normed ring has norm exactly 1.
+@isnad1 id=eq.2h2v.s6.be2e84835b49 from=translated src=- shape=db04fb7c vocab=758179b6
+-/
 theorem norm_eq_one_of_selfAdjoint_involution {a : R}
     (hsa : star a = a) (hinv : a ^ 2 = 1) : ‖a‖ = 1 := by
   have hsq : ‖a‖ * ‖a‖ = 1 := by
@@ -141,7 +147,9 @@ theorem norm_eq_one_of_selfAdjoint_involution {a : R}
 
 variable [NormedAlgebra ℝ R]
 
-/-- `‖(4 : R)‖ = 4` in a unital real C*-normed algebra.-/
+/-- `‖(4 : R)‖ = 4` in a unital real C*-normed algebra.
+@isnad1 id=eq.0h1v.s6.b6debb1ad3b6 from=translated src=- shape=1dc5594e vocab=7ebed6b2
+-/
 theorem norm_four : ‖(4 : R)‖ = 4 := by
   have h : (4 : R) = (4 : ℝ) • (1 : R) := by
     rw [← Algebra.algebraMap_eq_smul_one, map_ofNat]
@@ -153,7 +161,9 @@ variable {A₀ A₁ B₀ B₁ : R}
 unital real C*-normed algebra, a CHSH tuple's operator satisfies
 `‖T‖ ≤ 2√2`. Proof: `T` is self-adjoint with `T² = 4 + [A₀,A₁][B₁,B₀]`
 (`chsh_mul_self`); the generators have norm 1 (`norm_eq_one_of_selfAdjoint_involution`),
-so each commutator has norm ≤ 2 and `‖T‖² = ‖T²‖ ≤ 4 + 2·2 = 8`.-/
+so each commutator has norm ≤ 2 and `‖T‖² = ‖T²‖ ≤ 4 + 2·2 = 8`.
+@isnad1 id=le.1h5v.s7.eadf32facb0a from=translated src=- shape=f6700cc1 vocab=60456bf6
+-/
 theorem chsh_norm_le (h : IsCHSHTuple A₀ A₁ B₀ B₁) :
     ‖A₀ * B₀ + A₀ * B₁ + A₁ * B₀ - A₁ * B₁‖ ≤ 2 * Real.sqrt 2 := by
   have nA₀ : ‖A₀‖ = 1 := norm_eq_one_of_selfAdjoint_involution h.A₀_sa h.A₀_inv
@@ -188,7 +198,9 @@ theorem chsh_norm_le (h : IsCHSHTuple A₀ A₁ B₀ B₁) :
 
 /-- **The classical CHSH constant, exactly.** If either party's observables
 commute, the CHSH operator has norm exactly `2`: the commutator product in
-`chsh_mul_self` vanishes, so `T² = 4` and the C*-identity gives `‖T‖² = 4`.-/
+`chsh_mul_self` vanishes, so `T² = 4` and the C*-identity gives `‖T‖² = 4`.
+@isnad1 id=eq.2h5v.s8.3afdc16bf4ee from=translated src=- shape=f05c628f vocab=ef4cd41d
+-/
 theorem chsh_norm_of_comm (h : IsCHSHTuple A₀ A₁ B₀ B₁)
     (hcomm : A₀ * A₁ = A₁ * A₀ ∨ B₀ * B₁ = B₁ * B₀) :
     ‖A₀ * B₀ + A₀ * B₁ + A₁ * B₀ - A₁ * B₁‖ = 2 := by
@@ -206,7 +218,9 @@ theorem chsh_norm_of_comm (h : IsCHSHTuple A₀ A₁ B₀ B₁)
 /-- **Necessity of noncommutativity, formally.** Any CHSH tuple whose operator
 norm exceeds the classical bound `2` must be noncommuting in **both** parties:
 `A₀A₁ ≠ A₁A₀` and `B₀B₁ ≠ B₁B₀`. (Contrapositive of `chsh_norm_of_comm`:
-commutation on either side pins the norm at exactly 2.)-/
+commutation on either side pins the norm at exactly 2.)
+@isnad1 id=and.2h5v.s8.b2d6b7f99d5d from=translated src=- shape=c250a8c4 vocab=60dc6853
+-/
 theorem noncomm_of_chsh_norm_gt_two (h : IsCHSHTuple A₀ A₁ B₀ B₁)
     (hgt : 2 < ‖A₀ * B₀ + A₀ * B₁ + A₁ * B₀ - A₁ * B₁‖) :
     A₀ * A₁ ≠ A₁ * A₀ ∧ B₀ * B₁ ≠ B₁ * B₀ := by
@@ -227,7 +241,9 @@ section MatrixCase
 open scoped Matrix.Norms.L2Operator
 
 /-- **The generic upper bound over `M₄(ℝ)`:** every CHSH tuple of 4×4 real
-matrices has CHSH operator norm at most `2√2` (l2 operator norm).-/
+matrices has CHSH operator norm at most `2√2` (l2 operator norm).
+@isnad1 id=le.1h4v.s9.fedc5a762730 from=translated src=- shape=4d56a4f6 vocab=9a1bbff7
+-/
 theorem chsh_opNorm_le (A₀ A₁ B₀ B₁ : Mat) (h : IsCHSHTuple A₀ A₁ B₀ B₁) :
     ‖A₀ * B₀ + A₀ * B₁ + A₁ * B₀ - A₁ * B₁‖ ≤ 2 * Real.sqrt 2 :=
   chsh_norm_le h
@@ -236,7 +252,9 @@ theorem chsh_opNorm_le (A₀ A₁ B₀ B₁ : Mat) (h : IsCHSHTuple A₀ A₁ B�
 CHSH operator norm — an upper bound for every CHSH tuple (`chsh_opNorm_le`),
 attained by the real-Pauli tuple of `PdtTsirelson.lean` (`Pchsh_opNorm`).
 This is the optimality theorem: not a bound plus an example, but the
-supremum, achieved.-/
+supremum, achieved.
+@isnad1 id=isgreate.0h0v.s9.4af06b4602d6 from=translated src=- shape=db7d5820 vocab=44f0e93e
+-/
 theorem chsh_opNorm_isGreatest :
     IsGreatest {x : ℝ | ∃ A₀ A₁ B₀ B₁ : Mat, IsCHSHTuple A₀ A₁ B₀ B₁ ∧
       x = ‖A₀ * B₀ + A₀ * B₁ + A₁ * B₀ - A₁ * B₁‖} (2 * Real.sqrt 2) := by
@@ -246,30 +264,40 @@ theorem chsh_opNorm_isGreatest :
     exact chsh_opNorm_le a₀ a₁ b₀ b₁ h
 
 /-- **The classical constant over `M₄(ℝ)`, exactly:** a CHSH tuple with either
-party commuting has CHSH operator norm exactly `2`.-/
+party commuting has CHSH operator norm exactly `2`.
+@isnad1 id=eq.2h4v.s9.8b1e523f0d64 from=translated src=- shape=9a8697d2 vocab=a6d1e299
+-/
 theorem chsh_opNorm_eq_two_of_comm (A₀ A₁ B₀ B₁ : Mat) (h : IsCHSHTuple A₀ A₁ B₀ B₁)
     (hcomm : A₀ * A₁ = A₁ * A₀ ∨ B₀ * B₁ = B₁ * B₀) :
     ‖A₀ * B₀ + A₀ * B₁ + A₁ * B₀ - A₁ * B₁‖ = 2 :=
   chsh_norm_of_comm h hcomm
 
-/-- The real-Pauli CHSH operator violates the classical bound: `2 < ‖P‖ = 2√2`.-/
+/-- The real-Pauli CHSH operator violates the classical bound: `2 < ‖P‖ = 2√2`.
+@isnad1 id=lt.0h0v.s5.ee6ffc3c6907 from=translated src=- shape=7164367e vocab=6a8cab2f
+-/
 theorem Pchsh_opNorm_gt_two : 2 < ‖Pchsh‖ := by
   rw [Pchsh_opNorm]; exact bell_gap
 
 /-- **Necessity, instantiated:** the real-Pauli tuple's Alice observables do
 not commute — forced by its CHSH violation via `noncomm_of_chsh_norm_gt_two`,
-not checked entrywise.-/
+not checked entrywise.
+@isnad1 id=ne.0h0v.s6.07c64fa99c42 from=translated src=- shape=10954431 vocab=2d315b3f
+-/
 theorem A_noncomm : A₀ * A₁ ≠ A₁ * A₀ :=
   (noncomm_of_chsh_norm_gt_two isCHSH Pchsh_opNorm_gt_two).1
 
-/-- **Necessity, instantiated:** Bob's observables do not commute either.-/
+/-- **Necessity, instantiated:** Bob's observables do not commute either.
+@isnad1 id=ne.0h0v.s6.cf35149226f2 from=translated src=- shape=10954431 vocab=ad356677
+-/
 theorem B_noncomm : B₀ * B₁ ≠ B₁ * B₀ :=
   (noncomm_of_chsh_norm_gt_two isCHSH Pchsh_opNorm_gt_two).2
 
 end MatrixCase
 
 /-- Independent entrywise check of `A_noncomm`: the `(0,2)` entries of
-`A₀A₁` and `A₁A₀` are `−1` and `1`.-/
+`A₀A₁` and `A₁A₀` are `−1` and `1`.
+@isnad1 id=ne.0h0v.s6.07c64fa99c42 from=translated src=- shape=10954431 vocab=2d315b3f
+-/
 theorem A_noncomm_explicit : A₀ * A₁ ≠ A₁ * A₀ := by
   intro hcontra
   have h02 := congrArg (fun M : Mat => M 0 2) hcontra

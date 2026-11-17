@@ -25,7 +25,9 @@ open Polynomial
 noncomputable section
 
 /-- The Mahler measure of a product of monic linear factors is the product
-of `max 1 ‖root‖`: the workhorse identity behind every invariance lemma.-/
+of `max 1 ‖root‖`: the workhorse identity behind every invariance lemma.
+@isnad1 id=eq.0h1v.s6.01de123a5a42 from=translated src=- shape=41bea034 vocab=2083811a
+-/
 lemma mahlerMeasure_multiset_prod_X_sub_C (s : Multiset ℂ) :
     ((s.map fun r => X - C r).prod).mahlerMeasure
       = (s.map fun r => max 1 ‖r‖).prod := by
@@ -35,12 +37,16 @@ lemma mahlerMeasure_multiset_prod_X_sub_C (s : Multiset ℂ) :
       simp only [Multiset.map_cons, Multiset.prod_cons, mahlerMeasure_mul,
         mahlerMeasure_X_sub_C, ih]
 
-/-- A monic complex polynomial is the product of `X - C r` over its roots.-/
+/-- A monic complex polynomial is the product of `X - C r` over its roots.
+@isnad1 id=eq.1h1v.s6.559ca3b345b5 from=translated src=- shape=312cea02 vocab=013bb5cb
+-/
 lemma monic_eq_prod_roots {p : ℂ[X]} (hm : p.Monic) :
     p = (p.roots.map fun r => X - C r).prod :=
   (IsAlgClosed.splits p).eq_prod_roots_of_monic hm
 
-/-- Mahler measure of a monic polynomial as a product over its roots.-/
+/-- Mahler measure of a monic polynomial as a product over its roots.
+@isnad1 id=eq.1h1v.s5.7e3120b1aa62 from=translated src=- shape=9e943e1d vocab=99490d75
+-/
 lemma mahlerMeasure_eq_prod_roots {p : ℂ[X]} (hm : p.Monic) :
     p.mahlerMeasure = (p.roots.map fun r => max 1 ‖r‖).prod := by
   conv_lhs => rw [monic_eq_prod_roots hm]
@@ -50,20 +56,30 @@ lemma mahlerMeasure_eq_prod_roots {p : ℂ[X]} (hm : p.Monic) :
 def q4 (a b c e : ℂ) : ℂ[X] :=
   X ^ 4 + C a * X ^ 3 + C b * X ^ 2 + C c * X + C e
 
+/--
+@isnad1 id=monic.0h4v.s4.e90ac8e9f98c from=translated src=- shape=996c3a5e vocab=d3d50ff3
+-/
 lemma q4_monic (a b c e : ℂ) : (q4 a b c e).Monic := by
   unfold q4; monicity!
 
+/--
+@isnad1 id=eq.0h4v.s4.bd46478203b5 from=translated src=- shape=89d3e630 vocab=3bfc8589
+-/
 lemma q4_natDegree (a b c e : ℂ) : (q4 a b c e).natDegree = 4 := by
   unfold q4; compute_degree!
 
-/-- Composition with `-X` on the explicit quartic flips the odd coefficients.-/
+/-- Composition with `-X` on the explicit quartic flips the odd coefficients.
+@isnad1 id=eq.0h4v.s5.8acd360a30b5 from=translated src=- shape=41bca953 vocab=14317b3f
+-/
 lemma q4_comp_neg (a b c e : ℂ) :
     (q4 a b c e).comp (-X) = q4 (-a) b (-c) e := by
   unfold q4
   simp only [add_comp, mul_comp, pow_comp, X_comp, C_comp, map_neg]
   ring
 
-/-- Composition with `-X` of a product of monic linear factors, sign tracked.-/
+/-- Composition with `-X` of a product of monic linear factors, sign tracked.
+@isnad1 id=eq.0h1v.s7.eb989362bd50 from=translated src=- shape=6dfe713a vocab=6c70426f
+-/
 lemma prod_X_sub_C_comp_neg (s : Multiset ℂ) :
     ((s.map fun r => X - C r).prod).comp (-X)
       = (-1) ^ (Multiset.card s) * (s.map fun r => X - C (-r)).prod := by
@@ -74,7 +90,9 @@ lemma prod_X_sub_C_comp_neg (s : Multiset ℂ) :
         X_comp, C_comp, ih, Multiset.card_cons, map_neg]
       ring
 
-/-- Negation invariance of the Mahler measure for monic polynomials.-/
+/-- Negation invariance of the Mahler measure for monic polynomials.
+@isnad1 id=eq.1h1v.s4.1d92a963801e from=translated src=- shape=2fbd00c4 vocab=120b3cba
+-/
 lemma mahlerMeasure_comp_neg {p : ℂ[X]} (hm : p.Monic) :
     (p.comp (-X)).mahlerMeasure = p.mahlerMeasure := by
   conv_lhs => rw [monic_eq_prod_roots hm]
@@ -97,7 +115,9 @@ lemma mahlerMeasure_comp_neg {p : ℂ[X]} (hm : p.Monic) :
 
 /-! ## Phase B: the Graeffe transform at degree 4 and M(G p) = M(p)² -/
 
-/-- Composition with `X²` is injective over ℂ (every complex number is a square).-/
+/-- Composition with `X²` is injective over ℂ (every complex number is a square).
+@isnad1 id=eq.1h2v.s6.f3200798a844 from=translated src=- shape=b3d70b51 vocab=b0ebc648
+-/
 lemma comp_X_sq_injective {f g : ℂ[X]} (h : f.comp (X ^ 2) = g.comp (X ^ 2)) :
     f = g := by
   apply Polynomial.funext
@@ -107,7 +127,9 @@ lemma comp_X_sq_injective {f g : ℂ[X]} (h : f.comp (X ^ 2) = g.comp (X ^ 2)) :
   simpa [eval_comp, hx] using h2
 
 /-- The Graeffe ring identity at degree 4, coefficient-explicit:
-`q(x)·q(−x) = (Graeffe q)(x²)`.-/
+`q(x)·q(−x) = (Graeffe q)(x²)`.
+@isnad1 id=eq.0h4v.s8.1068709b18fb from=translated src=- shape=f8089864 vocab=d64ea76c
+-/
 lemma gr4_ring (a b c e : ℂ) :
     q4 a b c e * q4 (-a) b (-c) e
       = (q4 (2*b - a^2) (b^2 - 2*a*c + 2*e) (2*b*e - c^2) (e^2)).comp (X ^ 2) := by
@@ -116,7 +138,9 @@ lemma gr4_ring (a b c e : ℂ) :
   simp only [map_sub, map_add, map_mul, map_pow, map_neg, map_ofNat]
   ring
 
-/-- `∏(X² − r²) = ∏(X − r) · ∏(X + r)`.-/
+/-- `∏(X² − r²) = ∏(X − r) · ∏(X + r)`.
+@isnad1 id=eq.0h1v.s8.ea474e42dcf6 from=translated src=- shape=ca714758 vocab=887822ab
+-/
 lemma prod_X_sq_sub_sq (s : Multiset ℂ) :
     (s.map fun r => X ^ 2 - C (r ^ 2)).prod
       = (s.map fun r => X - C r).prod * (s.map fun r => X + C r).prod := by
@@ -126,13 +150,18 @@ lemma prod_X_sq_sub_sq (s : Multiset ℂ) :
   simp only [map_pow]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s4.3063fdb22f40 from=translated src=- shape=37b50186 vocab=7842d38e
+-/
 lemma q4_roots_card (a b c e : ℂ) :
     Multiset.card (q4 a b c e).roots = 4 := by
   have h := (IsAlgClosed.splits (k := ℂ) (q4 a b c e)).natDegree_eq_card_roots
   rw [q4_natDegree] at h
   omega
 
-/-- `∏(X + C r)` over the roots of a monic quartic is the sign-flipped quartic.-/
+/-- `∏(X + C r)` over the roots of a monic quartic is the sign-flipped quartic.
+@isnad1 id=eq.0h4v.s6.9e1a8d57a90f from=translated src=- shape=dffb4384 vocab=0318a1d9
+-/
 lemma prod_X_add_C_roots (a b c e : ℂ) :
     (((q4 a b c e).roots).map fun r => X + C r).prod = q4 (-a) b (-c) e := by
   have h := prod_X_sub_C_comp_neg (q4 a b c e).roots
@@ -143,6 +172,9 @@ lemma prod_X_add_C_roots (a b c e : ℂ) :
   intro r _
   rw [map_neg, sub_neg_eq_add]
 
+/--
+@isnad1 id=eq.0h1v.s6.828ecdf3cb73 from=translated src=- shape=d9c2d399 vocab=736bf6a8
+-/
 lemma max_one_norm_sq (r : ℂ) : max 1 ‖r ^ 2‖ = max 1 ‖r‖ * max 1 ‖r‖ := by
   rw [norm_pow]
   rcases le_total ‖r‖ 1 with h | h
@@ -150,7 +182,9 @@ lemma max_one_norm_sq (r : ℂ) : max 1 ‖r ^ 2‖ = max 1 ‖r‖ * max 1 ‖r
   · rw [max_eq_right (one_le_pow₀ h), max_eq_right h, pow_two]
 
 /-- The Graeffe measure identity at degree 4: the transformed quartic has
-Mahler measure the square of the original. The heart of every certificate.-/
+Mahler measure the square of the original. The heart of every certificate.
+@isnad1 id=eq.0h4v.s7.f6f763836a80 from=translated src=- shape=b645d775 vocab=0bfa155f
+-/
 lemma mahlerMeasure_gr4 (a b c e : ℂ) :
     (q4 (2*b - a^2) (b^2 - 2*a*c + 2*e) (2*b*e - c^2) (e^2)).mahlerMeasure
       = (q4 a b c e).mahlerMeasure ^ 2 := by
@@ -200,18 +234,25 @@ noncomputable section
 def zq4 (t : Z4) : ℤ[X] :=
   X ^ 4 + C t.1 * X ^ 3 + C t.2.1 * X ^ 2 + C t.2.2.1 * X + C t.2.2.2
 
-/-- Casting the integer quartic to ℂ gives `q4` of the cast coefficients.-/
+/-- Casting the integer quartic to ℂ gives `q4` of the cast coefficients.
+@isnad1 id=eq.0h1v.s6.cf618fd047b0 from=translated src=- shape=8b9d7f38 vocab=35d7c498
+-/
 lemma map_zq4 (t : Z4) :
     (zq4 t).map (Int.castRingHom ℂ)
       = q4 (t.1 : ℂ) (t.2.1 : ℂ) (t.2.2.1 : ℂ) (t.2.2.2 : ℂ) := by
   unfold zq4 q4
   simp [Polynomial.map_add, Polynomial.map_mul, Polynomial.map_pow, map_C]
 
+/--
+@isnad1 id=eq.0h1v.s4.59ea3485b23a from=translated src=- shape=eafca2f9 vocab=5e479a04
+-/
 lemma natDegree_map_zq4 (t : Z4) :
     ((zq4 t).map (Int.castRingHom ℂ)).natDegree = 4 := by
   rw [map_zq4]; exact q4_natDegree _ _ _ _
 
-/-- One Graeffe step at the tuple level squares the Mahler measure.-/
+/-- One Graeffe step at the tuple level squares the Mahler measure.
+@isnad1 id=eq.0h1v.s5.97f7cb95fca5 from=translated src=- shape=36b12079 vocab=614923c8
+-/
 lemma mahlerMeasure_map_gr4Z (t : Z4) :
     ((zq4 (gr4Z t)).map (Int.castRingHom ℂ)).mahlerMeasure
       = ((zq4 t).map (Int.castRingHom ℂ)).mahlerMeasure ^ 2 := by
@@ -226,7 +267,9 @@ lemma mahlerMeasure_map_gr4Z (t : Z4) :
     congr 1 <;> push_cast <;> ring
   rw [harg, mahlerMeasure_gr4]
 
-/-- `K` Graeffe steps raise the Mahler measure to the `2^K`-th power.-/
+/-- `K` Graeffe steps raise the Mahler measure to the `2^K`-th power.
+@isnad1 id=eq.0h2v.s6.6b0401729ee4 from=translated src=- shape=eec7bdba vocab=3fd60013
+-/
 lemma mahlerMeasure_map_gr4Z_iterate (K : ℕ) (t : Z4) :
     ((zq4 (gr4Z^[K] t)).map (Int.castRingHom ℂ)).mahlerMeasure
       = ((zq4 t).map (Int.castRingHom ℂ)).mahlerMeasure ^ (2 ^ K) := by
@@ -238,11 +281,16 @@ lemma mahlerMeasure_map_gr4Z_iterate (K : ℕ) (t : Z4) :
       congr 1
       ring
 
+/--
+@isnad1 id=eq.0h2v.s5.cc6838500daf from=translated src=- shape=940e014d vocab=d0e3c23e
+-/
 lemma coeff_int_cast_CX (n : ℤ) (k : ℕ) :
     ((n : ℂ[X])).coeff k = if k = 0 then (n : ℂ) else 0 := by
   rw [← Polynomial.C_eq_intCast, Polynomial.coeff_C]
 
-/-- The `x^k` coefficient of the cast quartic is the cast tuple entry.-/
+/-- The `x^k` coefficient of the cast quartic is the cast tuple entry.
+@isnad1 id=eq.1h2v.s5.75ad153e54b4 from=translated src=- shape=0f190568 vocab=07027ae9
+-/
 lemma coeff_map_zq4 (t : Z4) (k : ℕ) (hk : k ≤ 4) :
     ((zq4 t).map (Int.castRingHom ℂ)).coeff k = (tupCoeff t k : ℂ) := by
   obtain ⟨a, b, c, e⟩ := t
@@ -250,7 +298,9 @@ lemma coeff_map_zq4 (t : Z4) (k : ℕ) (hk : k ≤ 4) :
   interval_cases k <;> simp [q4, tupCoeff, coeff_int_cast_CX]
 
 /-- Soundness of the LOWER Graeffe certificate: an integer coefficient
-inequality on the `K`-th Graeffe iterate forces `M > P/Q`.-/
+inequality on the `K`-th Graeffe iterate forces `M > P/Q`.
+@isnad1 id=lt.3h5v.s7.90999d075bc5 from=translated src=- shape=9961e5cd vocab=5eda7ad2
+-/
 lemma lower_cert_sound {t : Z4} {P Q : ℕ} (hQ : 0 < Q) {K k : ℕ} (hk : k ≤ 4)
     (h : (Nat.choose 4 k : ℤ) * (P : ℤ) ^ (2 ^ K)
         < |tupCoeff (gr4Z^[K] t) k| * (Q : ℤ) ^ (2 ^ K)) :
@@ -285,7 +335,9 @@ lemma lower_cert_sound {t : Z4} {P Q : ℕ} (hQ : 0 < Q) {K k : ℕ} (hk : k ≤
   exact lt_of_pow_lt_pow_left₀ _ hM0 hpow
 
 /-- The ℓ¹ bound: the Mahler measure of the cast quartic is at most the
-ℓ¹ size of the tuple (Mathlib's `mahlerMeasure_le_sum_norm_coeff`).-/
+ℓ¹ size of the tuple (Mathlib's `mahlerMeasure_le_sum_norm_coeff`).
+@isnad1 id=le.0h1v.s4.99c297226b5c from=translated src=- shape=98471d4d vocab=790f66db
+-/
 lemma mahlerMeasure_map_zq4_le_l1 (s : Z4) :
     ((zq4 s).map (Int.castRingHom ℂ)).mahlerMeasure ≤ (tupL1 s : ℝ) := by
   refine (mahlerMeasure_le_sum_norm_coeff _).trans ?_
@@ -312,7 +364,9 @@ lemma mahlerMeasure_map_zq4_le_l1 (s : Z4) :
     abs_nonneg (e : ℝ)]
 
 /-- Soundness of the UPPER ℓ¹ certificate: an integer ℓ¹ inequality on the
-`K`-th Graeffe iterate forces `M ≤ P/Q`.-/
+`K`-th Graeffe iterate forces `M ≤ P/Q`.
+@isnad1 id=le.2h4v.s7.34e46387d00f from=translated src=- shape=31484221 vocab=f9980364
+-/
 lemma upper_cert_sound {t : Z4} {P Q : ℕ} (hQ : 0 < Q) {K : ℕ}
     (h : tupL1 (gr4Z^[K] t) * (Q : ℤ) ^ (2 ^ K) ≤ (P : ℤ) ^ (2 ^ K)) :
     ((zq4 t).map (Int.castRingHom ℂ)).mahlerMeasure ≤ (P : ℝ) / Q := by
@@ -329,6 +383,9 @@ lemma upper_cert_sound {t : Z4} {P Q : ℕ} (hQ : 0 < Q) {K : ℕ}
 
 /-! ## Root inversion: the reversal ties -/
 
+/--
+@isnad1 id=ne.2h5v.s5.fad0f26d9920 from=translated src=- shape=ac1a07e4 vocab=edad11f0
+-/
 lemma q4_roots_ne_zero {a b c e : ℂ} (he : e ≠ 0) {r : ℂ}
     (hr : r ∈ (q4 a b c e).roots) : r ≠ 0 := by
   rintro rfl
@@ -336,7 +393,9 @@ lemma q4_roots_ne_zero {a b c e : ℂ} (he : e ≠ 0) {r : ℂ}
   simp [q4, IsRoot] at h0
   exact he h0
 
-/-- Pulling a negation out of a multiset product.-/
+/-- Pulling a negation out of a multiset product.
+@isnad1 id=eq.0h2v.s6.dbac4824b654 from=translated src=- shape=fb508a1c vocab=0f65a609
+-/
 lemma prod_map_neg' (s : Multiset ℂ) (f : ℂ → ℂ) :
     (s.map fun r => -(f r)).prod
       = (-1) ^ (Multiset.card s) * (s.map f).prod := by
@@ -345,7 +404,9 @@ lemma prod_map_neg' (s : Multiset ℂ) (f : ℂ → ℂ) :
   | cons r s ih => simp only [Multiset.map_cons, Multiset.prod_cons, ih,
       Multiset.card_cons]; ring
 
-/-- The product of the roots of a monic quartic is its constant term.-/
+/-- The product of the roots of a monic quartic is its constant term.
+@isnad1 id=eq.0h4v.s4.f8b965090ee7 from=translated src=- shape=0f09b18a vocab=7226a7a0
+-/
 lemma q4_prod_roots (a b c e : ℂ) : (q4 a b c e).roots.prod = e := by
   have h := congrArg (eval 0) (monic_eq_prod_roots (q4_monic a b c e))
   rw [eval_multiset_prod, Multiset.map_map] at h
@@ -359,12 +420,18 @@ lemma q4_prod_roots (a b c e : ℂ) : (q4 a b c e).roots.prod = e := by
     Even.neg_one_pow (by decide : Even 4), one_mul] at h
   simpa using h.symm
 
+/--
+@isnad1 id=eq.0h1v.s4.ef43deec4677 from=translated src=- shape=40577f78 vocab=452ec4e4
+-/
 lemma norm_prod_multiset (s : Multiset ℂ) :
     ‖s.prod‖ = (s.map fun z => ‖z‖).prod := by
   induction s using Multiset.induction_on with
   | empty => simp
   | cons r s ih => simp [norm_mul, ih]
 
+/--
+@isnad1 id=eq.1h1v.s5.7b382d5df6d5 from=translated src=- shape=0f2c9c8a vocab=3aeb06cf
+-/
 lemma max_one_norm_inv {r : ℂ} (hr : r ≠ 0) :
     max 1 ‖r⁻¹‖ = max 1 ‖r‖ / ‖r‖ := by
   have h0 : (0 : ℝ) < ‖r‖ := norm_pos_iff.mpr hr
@@ -375,7 +442,9 @@ lemma max_one_norm_inv {r : ℂ} (hr : r ≠ 0) :
       div_self (ne_of_gt h0)]
 
 /-- Root-inversion identity: the monic quartic with inverted roots is the
-coefficient-reversed quartic (constant term nonzero).-/
+coefficient-reversed quartic (constant term nonzero).
+@isnad1 id=eq.1h4v.s7.5d7efd41f350 from=translated src=- shape=c42eacf0 vocab=33bd8f6c
+-/
 lemma prod_roots_inv (a b c e : ℂ) (he : e ≠ 0) :
     ((q4 a b c e).roots.map fun r => X - C r⁻¹).prod
       = q4 (c/e) (b/e) (a/e) (1/e) := by
@@ -442,7 +511,9 @@ lemma prod_roots_inv (a b c e : ℂ) (he : e ≠ 0) :
     ring
 
 /-- Reversal invariance at unit constant term: the Mahler measure of the
-coefficient-reversed quartic equals the original's.-/
+coefficient-reversed quartic equals the original's.
+@isnad1 id=eq.1h4v.s6.bbad9474ef3b from=translated src=- shape=b84d8a75 vocab=076afa75
+-/
 lemma mahlerMeasure_q4_inv (a b c e : ℂ) (he : ‖e‖ = 1) :
     (q4 (c/e) (b/e) (a/e) (1/e)).mahlerMeasure = (q4 a b c e).mahlerMeasure := by
   have he0 : e ≠ 0 := by
@@ -491,6 +562,9 @@ def lowerCert : ℕ → ℤ → ℤ → Z4 → Bool
 
 noncomputable section
 
+/--
+@isnad1 id=lt.2h4v.s7.8265186b15b0 from=translated src=- shape=ce19eb55 vocab=1b5a1070
+-/
 lemma lowerHit_sound {P Q : ℕ} (hQ : 0 < Q) {K : ℕ} {t : Z4}
     (h : lowerHit ((P : ℤ) ^ 2 ^ K) ((Q : ℤ) ^ 2 ^ K) (gr4Z^[K] t) = true) :
     (P : ℝ) / Q < ((zq4 t).map (Int.castRingHom ℂ)).mahlerMeasure := by
@@ -510,6 +584,9 @@ lemma lowerHit_sound {P Q : ℕ} (hQ : 0 < Q) {K : ℕ} {t : Z4}
     exact lower_cert_sound (K := K) (k := 3) hQ (by norm_num)
       (by rw [hc]; exact h)
 
+/--
+@isnad1 id=lt.2h5v.s7.6b99b63f6920 from=translated src=- shape=56db5d5f vocab=87062141
+-/
 lemma lowerCert_sound {P Q : ℕ} (hQ : 0 < Q) :
     ∀ (fuel K : ℕ) (t : Z4),
       lowerCert fuel ((P : ℤ) ^ 2 ^ K) ((Q : ℤ) ^ 2 ^ K) (gr4Z^[K] t) = true →
@@ -532,7 +609,9 @@ lemma lowerCert_sound {P Q : ℕ} (hQ : 0 < Q) :
         rw [e1, e2, e3] at h2
         exact ih (K + 1) t h2
 
-/-- Top-level LOWER certificate at θ = 139/100 with fuel 9 (K ≤ 8).-/
+/-- Top-level LOWER certificate at θ = 139/100 with fuel 9 (K ≤ 8).
+@isnad1 id=lt.1h1v.s6.ba6adfdbe493 from=translated src=- shape=71044582 vocab=0dc0d44c
+-/
 lemma lowerCert_139_sound {t : Z4} (h : lowerCert 9 139 100 t = true) :
     (139 : ℝ) / 100 < ((zq4 t).map (Int.castRingHom ℂ)).mahlerMeasure := by
   have hs := lowerCert_sound (P := 139) (Q := 100) (by norm_num) 9 0 t

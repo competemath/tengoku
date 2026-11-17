@@ -13,6 +13,9 @@ noncomputable section
 /-- The cubic `X^3 - X - 1`.-/
 def fc : ℚ[X] := X ^ 3 - X - 1
 
+/--
+@isnad1 id=monic.0h0v.s2.f3647d5403ea from=translated src=- shape=25b03439 vocab=69d2ae61
+-/
 lemma fc_monic : (fc).Monic := by
   unfold fc; monicity!
 

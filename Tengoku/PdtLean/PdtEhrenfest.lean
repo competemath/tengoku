@@ -126,6 +126,9 @@ def U' (a b p : ℝ) (r : ℝ) : ℝ := -2 * a * r ^ (-3 : ℝ) + b * p * r ^ (-
 /-- `U''(r) = 6a r⁻⁴ − b p (p+1) r⁻ᵖ⁻²`.-/
 def U'' (a b p : ℝ) (r : ℝ) : ℝ := 6 * a * r ^ (-4 : ℝ) - b * p * (p + 1) * r ^ (-p - 2)
 
+/--
+@isnad1 id=hasderiv.1h4v.s5.8c3c148f80a1 from=translated src=- shape=bed4e801 vocab=c6431215
+-/
 theorem hasDerivAt_U (a b p : ℝ) {r : ℝ} (hr : r ≠ 0) :
     HasDerivAt (U a b p) (U' a b p r) r := by
   unfold U
@@ -138,6 +141,9 @@ theorem hasDerivAt_U (a b p : ℝ) {r : ℝ} (hr : r ≠ 0) :
   rw [e]
   ring
 
+/--
+@isnad1 id=hasderiv.1h4v.s5.06dd80780931 from=translated src=- shape=bed4e801 vocab=0f554ad5
+-/
 theorem hasDerivAt_U' (a b p : ℝ) {r : ℝ} (hr : r ≠ 0) :
     HasDerivAt (U' a b p) (U'' a b p r) r := by
   unfold U'
@@ -151,20 +157,31 @@ theorem hasDerivAt_U' (a b p : ℝ) {r : ℝ} (hr : r ≠ 0) :
   rw [e1, e2]
   ring
 
+/--
+@isnad1 id=eq.1h4v.s5.90747e75220e from=translated src=- shape=a2230066 vocab=bf5164e1
+-/
 theorem deriv_U (a b p : ℝ) {r : ℝ} (hr : r ≠ 0) : deriv (U a b p) r = U' a b p r :=
   (hasDerivAt_U a b p hr).deriv
 
+/--
+@isnad1 id=eventual.1h4v.s6.550ce1124dee from=translated src=- shape=78e76a44 vocab=f37aebc6
+-/
 theorem deriv_U_eventuallyEq (a b p : ℝ) {r : ℝ} (hr : 0 < r) :
     deriv (U a b p) =ᶠ[𝓝 r] U' a b p := by
   filter_upwards [Ioi_mem_nhds hr] with x hx
   exact deriv_U a b p (Set.mem_Ioi.mp hx).ne'
 
+/--
+@isnad1 id=eq.1h4v.s6.400a73ffcadc from=translated src=- shape=74f499d3 vocab=153775e8
+-/
 theorem deriv_deriv_U (a b p : ℝ) {r : ℝ} (hr : 0 < r) :
     deriv (deriv (U a b p)) r = U'' a b p r := by
   rw [(deriv_U_eventuallyEq a b p hr).deriv_eq]
   exact (hasDerivAt_U' a b p hr.ne').deriv
 
-/-- `U'(r) = r⁻³ (−2a + b p r^(2−p))`.-/
+/-- `U'(r) = r⁻³ (−2a + b p r^(2−p))`.
+@isnad1 id=eq.1h4v.s6.61106bc6c151 from=translated src=- shape=5d8dcd87 vocab=73696649
+-/
 theorem U'_eq (a b p : ℝ) {r : ℝ} (hr : 0 < r) :
     U' a b p r = r ^ (-3 : ℝ) * (-2 * a + b * p * r ^ (2 - p)) := by
   unfold U'
@@ -172,7 +189,9 @@ theorem U'_eq (a b p : ℝ) {r : ℝ} (hr : 0 < r) :
     rw [← Real.rpow_add hr]; congr 1; ring
   rw [this]; ring
 
-/-- `U''(r) = r⁻⁴ (6a − (p+1) · b p r^(2−p))`.-/
+/-- `U''(r) = r⁻⁴ (6a − (p+1) · b p r^(2−p))`.
+@isnad1 id=eq.1h4v.s7.e44339bb919e from=translated src=- shape=f2aa2acc vocab=c7ef389d
+-/
 theorem U''_eq (a b p : ℝ) {r : ℝ} (hr : 0 < r) :
     U'' a b p r = r ^ (-4 : ℝ) * (6 * a - (p + 1) * (b * p * r ^ (2 - p))) := by
   unfold U''
@@ -182,7 +201,9 @@ theorem U''_eq (a b p : ℝ) {r : ℝ} (hr : 0 < r) :
 
 /-! ## (A1) Circular orbits: the critical points -/
 
-/-- (A1) `U'(r) = 0 ↔ r^(2−p) = 2a/(bp)` on `(0, ∞)`.-/
+/-- (A1) `U'(r) = 0 ↔ r^(2−p) = 2a/(bp)` on `(0, ∞)`.
+@isnad1 id=iff.4h4v.s7.6f7e31f9954c from=translated src=- shape=662e06c0 vocab=7eaf98b3
+-/
 theorem critical_iff {a b p : ℝ} (ha : 0 < a) (hb : 0 < b) (hp : 0 < p) {r : ℝ} (hr : 0 < r) :
     deriv (U a b p) r = 0 ↔ r ^ (2 - p) = 2 * a / (b * p) := by
   rw [deriv_U a b p hr.ne', U'_eq a b p hr]
@@ -203,20 +224,30 @@ theorem critical_iff {a b p : ℝ} (ha : 0 < a) (hb : 0 < b) (hp : 0 < p) {r : �
 /-- The circular-orbit radius `rstar = (2a/(bp))^(1/(2−p))` (for `p ≠ 2`).-/
 def rstar (a b p : ℝ) : ℝ := (2 * a / (b * p)) ^ (2 - p)⁻¹
 
+/--
+@isnad1 id=lt.3h3v.s5.112a0c0faba5 from=translated src=- shape=1b4cbc0d vocab=142f31e9
+-/
 theorem rstar_pos {a b p : ℝ} (ha : 0 < a) (hb : 0 < b) (hp : 0 < p) : 0 < rstar a b p :=
   Real.rpow_pos_of_pos (div_pos (by linarith) (mul_pos hb hp)) _
 
+/--
+@isnad1 id=eq.4h3v.s6.4c69fd1aeb7a from=translated src=- shape=2d2e8d0b vocab=9c03c12d
+-/
 theorem rstar_rpow {a b p : ℝ} (ha : 0 < a) (hb : 0 < b) (hp : 0 < p) (hp2 : p ≠ 2) :
     rstar a b p ^ (2 - p) = 2 * a / (b * p) := by
   unfold rstar
   exact Real.rpow_inv_rpow (div_pos (by linarith) (mul_pos hb hp)).le (sub_ne_zero.mpr hp2.symm)
 
-/-- `rstar` is a critical point of `U`.-/
+/-- `rstar` is a critical point of `U`.
+@isnad1 id=eq.4h3v.s6.727ee2101282 from=translated src=- shape=e9f521d4 vocab=006a4d3d
+-/
 theorem deriv_U_rstar {a b p : ℝ} (ha : 0 < a) (hb : 0 < b) (hp : 0 < p) (hp2 : p ≠ 2) :
     deriv (U a b p) (rstar a b p) = 0 :=
   (critical_iff ha hb hp (rstar_pos ha hb hp)).mpr (rstar_rpow ha hb hp hp2)
 
-/-- (A1) For `p ≠ 2`, `rstar` is the ONLY critical point of `U` on `(0, ∞)`.-/
+/-- (A1) For `p ≠ 2`, `rstar` is the ONLY critical point of `U` on `(0, ∞)`.
+@isnad1 id=eq.6h4v.s6.493baf27d36d from=translated src=- shape=7342b298 vocab=006a4d3d
+-/
 theorem critical_unique {a b p : ℝ} (ha : 0 < a) (hb : 0 < b) (hp : 0 < p) (hp2 : p ≠ 2)
     {r : ℝ} (hr : 0 < r) (h : deriv (U a b p) r = 0) : r = rstar a b p := by
   have h1 := (critical_iff ha hb hp hr).mp h
@@ -227,7 +258,9 @@ theorem critical_unique {a b p : ℝ} (ha : 0 < a) (hb : 0 < b) (hp : 0 < p) (hp
 
 /-! ## (A2) The second derivative at the circular orbit -/
 
-/-- At any critical point, `U''(r) = 2a (2 − p) r⁻⁴`.-/
+/-- At any critical point, `U''(r) = 2a (2 − p) r⁻⁴`.
+@isnad1 id=eq.5h4v.s7.a138e910bce9 from=translated src=- shape=3197a102 vocab=0a9cd9d8
+-/
 theorem deriv_deriv_U_of_critical {a b p : ℝ} (ha : 0 < a) (hb : 0 < b) (hp : 0 < p)
     {r : ℝ} (hr : 0 < r) (h : r ^ (2 - p) = 2 * a / (b * p)) :
     deriv (deriv (U a b p)) r = 2 * a * (2 - p) * r ^ (-4 : ℝ) := by
@@ -237,14 +270,18 @@ theorem deriv_deriv_U_of_critical {a b p : ℝ} (ha : 0 < a) (hb : 0 < b) (hp : 
   have : b * p * (2 * a / (b * p)) = 2 * a := by field_simp
   rw [this]; ring
 
-/-- (A2) `U''(rstar) = 2a (2 − p) rstar⁻⁴`: its sign is the sign of `2 − p`.-/
+/-- (A2) `U''(rstar) = 2a (2 − p) rstar⁻⁴`: its sign is the sign of `2 − p`.
+@isnad1 id=eq.4h3v.s7.4b7989de0ea7 from=translated src=- shape=8427a96e vocab=bc8755b1
+-/
 theorem deriv_deriv_U_rstar {a b p : ℝ} (ha : 0 < a) (hb : 0 < b) (hp : 0 < p) (hp2 : p ≠ 2) :
     deriv (deriv (U a b p)) (rstar a b p) = 2 * a * (2 - p) * rstar a b p ^ (-4 : ℝ) :=
   deriv_deriv_U_of_critical ha hb hp (rstar_pos ha hb hp) (rstar_rpow ha hb hp hp2)
 
 /-! ## (A3) Stability -/
 
-/-- (A3) `p < 2`: the circular orbit is a local minimum of `U` (stable).-/
+/-- (A3) `p < 2`: the circular orbit is a local minimum of `U` (stable).
+@isnad1 id=islocalm.4h3v.s6.58c2d866d7ae from=translated src=- shape=69499544 vocab=76a6072f
+-/
 theorem isLocalMin_of_lt_two {a b p : ℝ} (ha : 0 < a) (hb : 0 < b) (hp : 0 < p) (hp2 : p < 2) :
     IsLocalMin (U a b p) (rstar a b p) := by
   apply isLocalMin_of_deriv_deriv_pos
@@ -255,7 +292,9 @@ theorem isLocalMin_of_lt_two {a b p : ℝ} (ha : 0 < a) (hb : 0 < b) (hp : 0 < p
   · exact deriv_U_rstar ha hb hp hp2.ne
   · exact (hasDerivAt_U a b p (rstar_pos ha hb hp).ne').continuousAt
 
-/-- (A3) `p > 2`: the circular orbit is a local maximum of `U` (unstable).-/
+/-- (A3) `p > 2`: the circular orbit is a local maximum of `U` (unstable).
+@isnad1 id=islocalm.4h3v.s6.37d388a52803 from=translated src=- shape=4c380684 vocab=e8ae3c5e
+-/
 theorem isLocalMax_of_gt_two {a b p : ℝ} (ha : 0 < a) (hb : 0 < b) (hp : 0 < p) (hp2 : 2 < p) :
     IsLocalMax (U a b p) (rstar a b p) := by
   apply isLocalMax_of_deriv_deriv_neg
@@ -268,7 +307,9 @@ theorem isLocalMax_of_gt_two {a b p : ℝ} (ha : 0 < a) (hb : 0 < b) (hp : 0 < p
 
 /-! ## (A4) No bounded motion between two radii -/
 
-/-- (A4) `p > 2`: `U` has NO local minimum anywhere on `(0, ∞)`.-/
+/-- (A4) `p > 2`: `U` has NO local minimum anywhere on `(0, ∞)`.
+@isnad1 id=not.5h4v.s6.324fcbb5f0b1 from=translated src=- shape=e375e48e vocab=583980b2
+-/
 theorem not_isLocalMin_of_gt_two {a b p : ℝ} (ha : 0 < a) (hb : 0 < b) (hp : 0 < p)
     (hp2 : 2 < p) {r : ℝ} (hr : 0 < r) : ¬ IsLocalMin (U a b p) r := by
   intro hmin
@@ -290,7 +331,9 @@ theorem not_isLocalMin_of_gt_two {a b p : ℝ} (ha : 0 < a) (hb : 0 < b) (hp : 0
     exact mul_neg_of_neg_of_pos (mul_neg_of_pos_of_neg (mul_pos two_pos ha) h2) h1
   linarith
 
-/-- (A4) `p = 2` (`n = 4`), `a ≠ b`: `U = (a − b) r⁻²` has no critical point on `(0, ∞)`.-/
+/-- (A4) `p = 2` (`n = 4`), `a ≠ b`: `U = (a − b) r⁻²` has no critical point on `(0, ∞)`.
+@isnad1 id=ne.4h3v.s6.24f1764eb820 from=translated src=- shape=49155f7c vocab=200f81ef
+-/
 theorem deriv_U_two_ne_zero {a b : ℝ} (ha : 0 < a) (hb : 0 < b) (hab : a ≠ b) {r : ℝ}
     (hr : 0 < r) : deriv (U a b 2) r ≠ 0 := by
   intro h
@@ -300,10 +343,16 @@ theorem deriv_U_two_ne_zero {a b : ℝ} (ha : 0 < a) (hb : 0 < b) (hab : a ≠ b
   field_simp at h1
   exact hab (by linarith)
 
+/--
+@isnad1 id=not.4h3v.s6.142d36e870fd from=translated src=- shape=ba6c9edb vocab=583980b2
+-/
 theorem not_isLocalMin_two {a b : ℝ} (ha : 0 < a) (hb : 0 < b) (hab : a ≠ b) {r : ℝ}
     (hr : 0 < r) : ¬ IsLocalMin (U a b 2) r :=
   fun h => deriv_U_two_ne_zero ha hb hab hr h.deriv_eq_zero
 
+/--
+@isnad1 id=not.4h3v.s6.1402e4736e1a from=translated src=- shape=ba6c9edb vocab=0a746c03
+-/
 theorem not_isLocalMax_two {a b : ℝ} (ha : 0 < a) (hb : 0 < b) (hab : a ≠ b) {r : ℝ}
     (hr : 0 < r) : ¬ IsLocalMax (U a b 2) r :=
   fun h => deriv_U_two_ne_zero ha hb hab hr h.deriv_eq_zero
@@ -313,25 +362,33 @@ theorem not_isLocalMax_two {a b : ℝ} (ha : 0 < a) (hb : 0 < b) (hab : a ≠ b)
 /-- The Newtonian exponent in `n` spatial dimensions, `p = n − 2`.-/
 def pdim (n : ℕ) : ℝ := (n : ℝ) - 2
 
-/-- `n = 3`: stable circular orbit.-/
+/-- `n = 3`: stable circular orbit.
+@isnad1 id=islocalm.2h2v.s5.76ee32895793 from=translated src=- shape=420f7fa1 vocab=566673d4
+-/
 theorem stable_three {a b : ℝ} (ha : 0 < a) (hb : 0 < b) :
     IsLocalMin (U a b (pdim 3)) (rstar a b (pdim 3)) :=
   isLocalMin_of_lt_two ha hb (by norm_num [pdim]) (by norm_num [pdim])
 
-/-- `n ≥ 5`: the circular orbit is unstable.-/
+/-- `n ≥ 5`: the circular orbit is unstable.
+@isnad1 id=islocalm.3h3v.s5.5cca82eee780 from=translated src=- shape=0fb19990 vocab=3df3edcd
+-/
 theorem unstable_of_ge_five {a b : ℝ} (ha : 0 < a) (hb : 0 < b) (n : ℕ) (hn : 5 ≤ n) :
     IsLocalMax (U a b (pdim n)) (rstar a b (pdim n)) := by
   have h5 : (5 : ℝ) ≤ n := by exact_mod_cast hn
   exact isLocalMax_of_gt_two ha hb (by unfold pdim; linarith) (by unfold pdim; linarith)
 
-/-- `n ≥ 5`: no motion between two positive radii (no local minimum of `U`).-/
+/-- `n ≥ 5`: no motion between two positive radii (no local minimum of `U`).
+@isnad1 id=not.4h4v.s6.9738b5eb36c8 from=translated src=- shape=a9a94e58 vocab=8f6099a9
+-/
 theorem no_bounded_of_ge_five {a b : ℝ} (ha : 0 < a) (hb : 0 < b) (n : ℕ) (hn : 5 ≤ n)
     {r : ℝ} (hr : 0 < r) : ¬ IsLocalMin (U a b (pdim n)) r := by
   have h5 : (5 : ℝ) ≤ n := by exact_mod_cast hn
   exact not_isLocalMin_of_gt_two ha hb (by unfold pdim; linarith) (by unfold pdim; linarith) hr
 
 /-- (A5) Ehrenfest's table: among `n ≥ 3` (with `a ≠ b`, excluding the degenerate `n = 4`
-cancellation), `U` has a local minimum on `(0, ∞)` iff `n = 3`.-/
+cancellation), `U` has a local minimum on `(0, ∞)` iff `n = 3`.
+@isnad1 id=iff.4h3v.s6.c3c63a283561 from=translated src=- shape=4c695dfb vocab=8f6099a9
+-/
 theorem stable_iff_three {a b : ℝ} (ha : 0 < a) (hb : 0 < b) (hab : a ≠ b) (n : ℕ)
     (hn : 3 ≤ n) : (∃ r, 0 < r ∧ IsLocalMin (U a b (pdim n)) r) ↔ n = 3 := by
   constructor
@@ -351,7 +408,9 @@ theorem stable_iff_three {a b : ℝ} (ha : 0 < a) (hb : 0 < b) (hab : a ≠ b) (
 
 /-- (B) `U''(rstar) · rstar⁴ / (2a) = 2 − p`.  Since `2a/rstar⁴ = m ω_φ²` up to the mass, this
 is `(ω_r/ω_φ)²`, the square of the ratio of the radial small-oscillation frequency to the angular
-frequency: the orbit closes iff it is rational.-/
+frequency: the orbit closes iff it is rational.
+@isnad1 id=eq.4h3v.s7.de2ffda0ae3c from=translated src=- shape=53e3f548 vocab=67b2229f
+-/
 theorem freq_ratio_sq {a b p : ℝ} (ha : 0 < a) (hb : 0 < b) (hp : 0 < p) (hp2 : p ≠ 2) :
     deriv (deriv (U a b p)) (rstar a b p) * rstar a b p ^ (4 : ℝ) / (2 * a) = 2 - p := by
   rw [deriv_deriv_U_rstar ha hb hp hp2]
@@ -361,14 +420,18 @@ theorem freq_ratio_sq {a b p : ℝ} (ha : 0 < a) (hb : 0 < b) (hp : 0 < p) (hp2 
   rw [div_eq_iff ha']
   linear_combination (2 * a * (2 - p)) * h
 
-/-- The same with a natural-number power `rstar ^ 4`.-/
+/-- The same with a natural-number power `rstar ^ 4`.
+@isnad1 id=eq.4h3v.s7.75d248b9984e from=translated src=- shape=a9fcc7a8 vocab=67b2229f
+-/
 theorem freq_ratio_sq' {a b p : ℝ} (ha : 0 < a) (hb : 0 < b) (hp : 0 < p) (hp2 : p ≠ 2) :
     deriv (deriv (U a b p)) (rstar a b p) * rstar a b p ^ 4 / (2 * a) = 2 - p := by
   have : rstar a b p ^ (4 : ℝ) = rstar a b p ^ (4 : ℕ) := by
     exact_mod_cast Real.rpow_natCast (rstar a b p) 4
   rw [← this]; exact freq_ratio_sq ha hb hp hp2
 
-/-- (B) In `n` dimensions (`n ≥ 3`, `n ≠ 4`) the frequency ratio squared is `4 − n`.-/
+/-- (B) In `n` dimensions (`n ≥ 3`, `n ≠ 4`) the frequency ratio squared is `4 − n`.
+@isnad1 id=eq.4h3v.s7.897540fd166d from=translated src=- shape=a36a3e95 vocab=30c633cd
+-/
 theorem freq_ratio_sq_dim {a b : ℝ} (ha : 0 < a) (hb : 0 < b) (n : ℕ) (hn : 3 ≤ n)
     (hn4 : n ≠ 4) :
     deriv (deriv (U a b (pdim n))) (rstar a b (pdim n)) * rstar a b (pdim n) ^ (4 : ℝ) / (2 * a)
@@ -382,7 +445,9 @@ theorem freq_ratio_sq_dim {a b : ℝ} (ha : 0 < a) (hb : 0 < b) (n : ℕ) (hn : 
     exact_mod_cast this
   rw [freq_ratio_sq ha hb hp hp2]; unfold pdim; ring
 
-/-- `n = 3` (Kepler): ratio squared `= 1`, closed orbits.-/
+/-- `n = 3` (Kepler): ratio squared `= 1`, closed orbits.
+@isnad1 id=eq.2h2v.s7.117e788aed43 from=translated src=- shape=7f179fa3 vocab=ded3d866
+-/
 theorem freq_ratio_sq_three {a b : ℝ} (ha : 0 < a) (hb : 0 < b) :
     deriv (deriv (U a b (pdim 3))) (rstar a b (pdim 3)) * rstar a b (pdim 3) ^ (4 : ℝ) / (2 * a)
       = 1 := by
@@ -400,6 +465,9 @@ def Ulog'' (a b : ℝ) (r : ℝ) : ℝ := 6 * a * r ^ (-4 : ℝ) - b * r ^ (-2 :
 /-- The circular-orbit radius `√(2a/b)` in the logarithmic case.-/
 def rlog (a b : ℝ) : ℝ := Real.sqrt (2 * a / b)
 
+/--
+@isnad1 id=hasderiv.1h3v.s5.1a7ccbcb459a from=translated src=- shape=223100aa vocab=aee2c1e7
+-/
 theorem hasDerivAt_Ulog (a b : ℝ) {r : ℝ} (hr : r ≠ 0) :
     HasDerivAt (Ulog a b) (Ulog' a b r) r := by
   unfold Ulog
@@ -412,6 +480,9 @@ theorem hasDerivAt_Ulog (a b : ℝ) {r : ℝ} (hr : r ≠ 0) :
   rw [e, Real.rpow_neg_one]
   ring
 
+/--
+@isnad1 id=hasderiv.1h3v.s5.1c0c23027bf8 from=translated src=- shape=223100aa vocab=c61e26d0
+-/
 theorem hasDerivAt_Ulog' (a b : ℝ) {r : ℝ} (hr : r ≠ 0) :
     HasDerivAt (Ulog' a b) (Ulog'' a b r) r := by
   unfold Ulog'
@@ -425,9 +496,15 @@ theorem hasDerivAt_Ulog' (a b : ℝ) {r : ℝ} (hr : r ≠ 0) :
   rw [e1, e2]
   ring
 
+/--
+@isnad1 id=eq.1h3v.s5.d3dbbd783afb from=translated src=- shape=9f15e818 vocab=aff3da85
+-/
 theorem deriv_Ulog (a b : ℝ) {r : ℝ} (hr : r ≠ 0) : deriv (Ulog a b) r = Ulog' a b r :=
   (hasDerivAt_Ulog a b hr).deriv
 
+/--
+@isnad1 id=eq.1h3v.s6.a64360a64b82 from=translated src=- shape=c04c3132 vocab=9ee937fd
+-/
 theorem deriv_deriv_Ulog (a b : ℝ) {r : ℝ} (hr : 0 < r) :
     deriv (deriv (Ulog a b)) r = Ulog'' a b r := by
   have hev : deriv (Ulog a b) =ᶠ[𝓝 r] Ulog' a b := by
@@ -436,6 +513,9 @@ theorem deriv_deriv_Ulog (a b : ℝ) {r : ℝ} (hr : 0 < r) :
   rw [hev.deriv_eq]
   exact (hasDerivAt_Ulog' a b hr.ne').deriv
 
+/--
+@isnad1 id=eq.1h3v.s6.1e3ffa6f1b0d from=translated src=- shape=7b511792 vocab=3a845a67
+-/
 theorem Ulog'_eq (a b : ℝ) {r : ℝ} (hr : 0 < r) :
     Ulog' a b r = r ^ (-3 : ℝ) * (-2 * a + b * r ^ (2 : ℝ)) := by
   unfold Ulog'
@@ -443,6 +523,9 @@ theorem Ulog'_eq (a b : ℝ) {r : ℝ} (hr : 0 < r) :
     rw [← Real.rpow_add hr]; norm_num
   rw [this]; ring
 
+/--
+@isnad1 id=eq.1h3v.s6.f247d8978bc6 from=translated src=- shape=3eb52419 vocab=bdaf2273
+-/
 theorem Ulog''_eq (a b : ℝ) {r : ℝ} (hr : 0 < r) :
     Ulog'' a b r = r ^ (-4 : ℝ) * (6 * a - b * r ^ (2 : ℝ)) := by
   unfold Ulog''
@@ -450,7 +533,9 @@ theorem Ulog''_eq (a b : ℝ) {r : ℝ} (hr : 0 < r) :
     rw [← Real.rpow_add hr]; norm_num
   rw [this]; ring
 
-/-- `n = 2`: `U'(r) = 0 ↔ r² = 2a/b`.-/
+/-- `n = 2`: `U'(r) = 0 ↔ r² = 2a/b`.
+@isnad1 id=iff.3h3v.s6.df8d4bc7f7a4 from=translated src=- shape=eeea2fc6 vocab=f55facaa
+-/
 theorem critical_iff_log {a b : ℝ} (ha : 0 < a) (hb : 0 < b) {r : ℝ} (hr : 0 < r) :
     deriv (Ulog a b) r = 0 ↔ r ^ (2 : ℝ) = 2 * a / b := by
   rw [deriv_Ulog a b hr.ne', Ulog'_eq a b hr]
@@ -466,16 +551,27 @@ theorem critical_iff_log {a b : ℝ} (ha : 0 < a) (hb : 0 < b) {r : ℝ} (hr : 0
     have : b * (2 * a / b) = 2 * a := by field_simp
     rw [this]; ring
 
+/--
+@isnad1 id=lt.2h2v.s5.0afc084b71a0 from=translated src=- shape=6c67d60b vocab=ced15140
+-/
 theorem rlog_pos {a b : ℝ} (ha : 0 < a) (hb : 0 < b) : 0 < rlog a b :=
   Real.sqrt_pos.mpr (div_pos (by linarith) hb)
 
+/--
+@isnad1 id=eq.2h2v.s6.27978f35bcbd from=translated src=- shape=9cbdc9ab vocab=215602ce
+-/
 theorem rlog_sq {a b : ℝ} (ha : 0 < a) (hb : 0 < b) : rlog a b ^ (2 : ℝ) = 2 * a / b := by
   rw [Real.rpow_two]; exact Real.sq_sqrt (div_pos (by linarith) hb).le
 
+/--
+@isnad1 id=eq.2h2v.s6.6f88edc54154 from=translated src=- shape=33e77649 vocab=8a176b6e
+-/
 theorem deriv_Ulog_rlog {a b : ℝ} (ha : 0 < a) (hb : 0 < b) : deriv (Ulog a b) (rlog a b) = 0 :=
   (critical_iff_log ha hb (rlog_pos ha hb)).mpr (rlog_sq ha hb)
 
-/-- `n = 2`: `rlog = √(2a/b)` is the unique critical point.-/
+/-- `n = 2`: `rlog = √(2a/b)` is the unique critical point.
+@isnad1 id=eq.4h3v.s6.d4aa5281b7d4 from=translated src=- shape=9d5f537b vocab=8a176b6e
+-/
 theorem critical_unique_log {a b : ℝ} (ha : 0 < a) (hb : 0 < b) {r : ℝ} (hr : 0 < r)
     (h : deriv (Ulog a b) r = 0) : r = rlog a b := by
   have h1 := (critical_iff_log ha hb hr).mp h
@@ -484,7 +580,9 @@ theorem critical_unique_log {a b : ℝ} (ha : 0 < a) (hb : 0 < b) {r : ℝ} (hr 
   rw [← h1]
   exact (Real.sqrt_sq hr.le).symm
 
-/-- `n = 2`: `U''(rlog) = 4a rlog⁻⁴ > 0`.-/
+/-- `n = 2`: `U''(rlog) = 4a rlog⁻⁴ > 0`.
+@isnad1 id=eq.2h2v.s7.f00c78734b34 from=translated src=- shape=11cfd53a vocab=9b8b40b7
+-/
 theorem deriv_deriv_Ulog_rlog {a b : ℝ} (ha : 0 < a) (hb : 0 < b) :
     deriv (deriv (Ulog a b)) (rlog a b) = 4 * a * rlog a b ^ (-4 : ℝ) := by
   rw [deriv_deriv_Ulog a b (rlog_pos ha hb), Ulog''_eq a b (rlog_pos ha hb), rlog_sq ha hb]
@@ -492,7 +590,9 @@ theorem deriv_deriv_Ulog_rlog {a b : ℝ} (ha : 0 < a) (hb : 0 < b) :
   have : b * (2 * a / b) = 2 * a := by field_simp
   rw [this]; ring
 
-/-- (A5) `n = 2`: the circular orbit of the logarithmic potential is stable.-/
+/-- (A5) `n = 2`: the circular orbit of the logarithmic potential is stable.
+@isnad1 id=islocalm.2h2v.s5.9171f62b2b77 from=translated src=- shape=92866f0d vocab=8ecbb81d
+-/
 theorem isLocalMin_log {a b : ℝ} (ha : 0 < a) (hb : 0 < b) : IsLocalMin (Ulog a b) (rlog a b) := by
   apply isLocalMin_of_deriv_deriv_pos
   · rw [deriv_deriv_Ulog_rlog ha hb]
@@ -501,7 +601,9 @@ theorem isLocalMin_log {a b : ℝ} (ha : 0 < a) (hb : 0 < b) : IsLocalMin (Ulog 
   · exact deriv_Ulog_rlog ha hb
   · exact (hasDerivAt_Ulog a b (rlog_pos ha hb).ne').continuousAt
 
-/-- (B) `n = 2`: the frequency ratio squared is `2`.-/
+/-- (B) `n = 2`: the frequency ratio squared is `2`.
+@isnad1 id=eq.2h2v.s7.9b7c0fb0031a from=translated src=- shape=b116e8b1 vocab=a791dfe1
+-/
 theorem freq_ratio_sq_log {a b : ℝ} (ha : 0 < a) (hb : 0 < b) :
     deriv (deriv (Ulog a b)) (rlog a b) * rlog a b ^ (4 : ℝ) / (2 * a) = 2 := by
   rw [deriv_deriv_Ulog_rlog ha hb]
@@ -511,7 +613,9 @@ theorem freq_ratio_sq_log {a b : ℝ} (ha : 0 < a) (hb : 0 < b) :
   rw [div_eq_iff ha']
   linear_combination (4 * a) * h
 
-/-- (B) `n = 2`: the frequency ratio `√2` is irrational — the orbits do not close.-/
+/-- (B) `n = 2`: the frequency ratio `√2` is irrational — the orbits do not close.
+@isnad1 id=irration.2h2v.s7.ae71a6bca4c1 from=translated src=- shape=0e619302 vocab=6a964850
+-/
 theorem freq_ratio_log_irrational {a b : ℝ} (ha : 0 < a) (hb : 0 < b) :
     Irrational (Real.sqrt (deriv (deriv (Ulog a b)) (rlog a b) * rlog a b ^ (4 : ℝ) / (2 * a))) := by
   rw [freq_ratio_sq_log ha hb]; exact irrational_sqrt_two
@@ -521,6 +625,9 @@ theorem freq_ratio_log_irrational {a b : ℝ} (ha : 0 < a) (hb : 0 < b) :
 /-- The radial profile `r ↦ r^(2−n)` of the `n`-dimensional Newtonian potential.-/
 def radial (n : ℝ) (r : ℝ) : ℝ := r ^ (2 - n)
 
+/--
+@isnad1 id=hasderiv.1h2v.s6.8a5f89f74d91 from=translated src=- shape=3b46c519 vocab=97f91c74
+-/
 theorem hasDerivAt_radial (n : ℝ) {r : ℝ} (hr : r ≠ 0) :
     HasDerivAt (radial n) ((2 - n) * r ^ (1 - n)) r := by
   unfold radial
@@ -529,10 +636,16 @@ theorem hasDerivAt_radial (n : ℝ) {r : ℝ} (hr : r ≠ 0) :
   have e : 2 - n - 1 = 1 - n := by ring
   rw [e]
 
+/--
+@isnad1 id=eq.1h2v.s6.d2d6d6bfdd83 from=translated src=- shape=10110856 vocab=245444a6
+-/
 theorem deriv_radial (n : ℝ) {r : ℝ} (hr : r ≠ 0) :
     deriv (radial n) r = (2 - n) * r ^ (1 - n) :=
   (hasDerivAt_radial n hr).deriv
 
+/--
+@isnad1 id=eq.1h2v.s7.126173bc1a03 from=translated src=- shape=41a5a091 vocab=349203fc
+-/
 theorem deriv_deriv_radial (n : ℝ) {r : ℝ} (hr : 0 < r) :
     deriv (deriv (radial n)) r = (2 - n) * (1 - n) * r ^ (-n) := by
   have hev : deriv (radial n) =ᶠ[𝓝 r] fun x => (2 - n) * x ^ (1 - n) := by
@@ -546,7 +659,9 @@ theorem deriv_deriv_radial (n : ℝ) {r : ℝ} (hr : 0 < r) :
   try ring1
 
 /-- (C, radial form) `f(r) = r^(2−n)` satisfies `f'' + (n−1)/r · f' = 0` on `(0, ∞)`: the
-radial Laplace equation in `n` dimensions, for every real `n`.-/
+radial Laplace equation in `n` dimensions, for every real `n`.
+@isnad1 id=eq.1h2v.s7.69da2ed45b67 from=translated src=- shape=3585a9f2 vocab=068c8d0d
+-/
 theorem radial_laplacian_zero (n : ℝ) {r : ℝ} (hr : 0 < r) :
     deriv (deriv (radial n)) r + (n - 1) / r * deriv (radial n) r = 0 := by
   rw [deriv_deriv_radial n hr, deriv_radial n hr.ne']
@@ -575,10 +690,15 @@ def innerB (E : Type*) [NormedAddCommGroup E] [InnerProductSpace ℝ E] : E →L
   (isBoundedBilinearMap_inner (𝕜 := ℝ) (E := E)).toContinuousLinearMap
 
 omit [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=eq.0h3v.s9.f4c14b445b04 from=translated src=- shape=44bb5c95 vocab=96fbc9fa
+-/
 theorem innerB_apply (x y : E) : innerB E x y = ⟪x, y⟫ := rfl
 
 omit [FiniteDimensional ℝ E] in
-/-- `fderiv` of `y ↦ g(‖y‖²)` at `x` is `2 g'(‖x‖²) ⟪x, ·⟫`.-/
+/-- `fderiv` of `y ↦ g(‖y‖²)` at `x` is `2 g'(‖x‖²) ⟪x, ·⟫`.
+@isnad1 id=hasfderi.1h4v.s9.77a87b610e3f from=translated src=- shape=fe6e4cd5 vocab=8d878578
+-/
 theorem hasFDerivAt_comp_normSq {g g' : ℝ → ℝ} {x : E}
     (hg : HasDerivAt g (g' (‖x‖ ^ 2)) (‖x‖ ^ 2)) :
     HasFDerivAt (fun y : E => g (‖y‖ ^ 2)) ((2 * g' (‖x‖ ^ 2)) • innerB E x) x := by
@@ -591,7 +711,9 @@ theorem hasFDerivAt_comp_normSq {g g' : ℝ → ℝ} {x : E}
   ring1
 
 omit [FiniteDimensional ℝ E] in
-/-- `fderiv` of `y ↦ 2 g'(‖y‖²) ⟪y, ·⟫`.-/
+/-- `fderiv` of `y ↦ 2 g'(‖y‖²) ⟪y, ·⟫`.
+@isnad1 id=hasfderi.1h4v.s12.c8876e66a773 from=translated src=- shape=5707401b vocab=558315c4
+-/
 theorem hasFDerivAt_fderiv_comp_normSq {g' g'' : ℝ → ℝ} {x : E}
     (hg' : HasDerivAt g' (g'' (‖x‖ ^ 2)) (‖x‖ ^ 2)) :
     HasFDerivAt (fun y : E => (2 * g' (‖y‖ ^ 2)) • innerB E y)
@@ -606,7 +728,9 @@ theorem hasFDerivAt_fderiv_comp_normSq {g' g'' : ℝ → ℝ} {x : E}
   exact hφ.smul hB
 
 /-- The Laplacian of a radial function `g(‖y‖²)` over an orthonormal basis of cardinality `n`:
-`Δ = 2n g'(‖x‖²) + 4‖x‖² g''(‖x‖²)`.-/
+`Δ = 2n g'(‖x‖²) + 4‖x‖² g''(‖x‖²)`.
+@isnad1 id=eq.3h7v.s8.c3d0773723e3 from=translated src=- shape=e7253bbe vocab=a99b7108
+-/
 theorem laplacian_comp_normSq_basis {ι : Type*} [Fintype ι] (b : OrthonormalBasis ι ℝ E)
     {g g' g'' : ℝ → ℝ} (hg : ∀ t : ℝ, 0 < t → HasDerivAt g (g' t) t)
     (hg' : ∀ t : ℝ, 0 < t → HasDerivAt g' (g'' t) t) {x : E} (hx : x ≠ 0) :
@@ -639,14 +763,18 @@ theorem laplacian_comp_normSq_basis {ι : Type*} [Fintype ι] (b : OrthonormalBa
     ← Finset.mul_sum, hsum]
   ring
 
-/-- `Δ (g(‖y‖²)) = 2n g'(‖x‖²) + 4‖x‖² g''(‖x‖²)`, `n = finrank ℝ E`.-/
+/-- `Δ (g(‖y‖²)) = 2n g'(‖x‖²) + 4‖x‖² g''(‖x‖²)`, `n = finrank ℝ E`.
+@isnad1 id=eq.3h5v.s8.f069dae42d39 from=translated src=- shape=f58814ba vocab=0b806a41
+-/
 theorem laplacian_comp_normSq {g g' g'' : ℝ → ℝ} (hg : ∀ t : ℝ, 0 < t → HasDerivAt g (g' t) t)
     (hg' : ∀ t : ℝ, 0 < t → HasDerivAt g' (g'' t) t) {x : E} (hx : x ≠ 0) :
     Δ (fun y : E => g (‖y‖ ^ 2)) x
       = 2 * (Module.finrank ℝ E : ℝ) * g' (‖x‖ ^ 2) + 4 * ‖x‖ ^ 2 * g'' (‖x‖ ^ 2) := by
   rw [laplacian_comp_normSq_basis (stdOrthonormalBasis ℝ E) hg hg' hx, Fintype.card_fin]
 
-/-- (C) `Δ ‖x‖^s = s (n + s − 2) ‖x‖^(s−2)` for `x ≠ 0`, `n = finrank ℝ E`.-/
+/-- (C) `Δ ‖x‖^s = s (n + s − 2) ‖x‖^(s−2)` for `x ≠ 0`, `n = finrank ℝ E`.
+@isnad1 id=eq.1h3v.s7.0482e557881d from=translated src=- shape=cc381d4f vocab=1cc1f480
+-/
 theorem laplacian_normPow (s : ℝ) {x : E} (hx : x ≠ 0) :
     Δ (fun y : E => ‖y‖ ^ s) x = s * ((Module.finrank ℝ E : ℝ) + s - 2) * ‖x‖ ^ (s - 2) := by
   have hx0 : 0 < ‖x‖ := norm_pos_iff.mpr hx
@@ -671,7 +799,9 @@ theorem laplacian_normPow (s : ℝ) {x : E} (hx : x ≠ 0) :
   rw [e1, e2]
   linear_combination (s * (s - 2)) * e3
 
-/-- (C) `Δ log ‖x‖ = (n − 2) ‖x‖⁻²` for `x ≠ 0`, `n = finrank ℝ E`.-/
+/-- (C) `Δ log ‖x‖ = (n − 2) ‖x‖⁻²` for `x ≠ 0`, `n = finrank ℝ E`.
+@isnad1 id=eq.1h2v.s7.e21cc99f36aa from=translated src=- shape=a30f2c22 vocab=b5a15845
+-/
 theorem laplacian_log_norm {x : E} (hx : x ≠ 0) :
     Δ (fun y : E => Real.log ‖y‖) x = ((Module.finrank ℝ E : ℝ) - 2) * (‖x‖ ^ 2)⁻¹ := by
   have hx0 : 0 < ‖x‖ := norm_pos_iff.mpr hx
@@ -692,7 +822,9 @@ theorem laplacian_log_norm {x : E} (hx : x ≠ 0) :
   linear_combination (-2 * (‖x‖ ^ 2)⁻¹) * hc
 
 /-- (C) `‖x‖^(2−n)` is harmonic on `E \ {0}` for every real inner product space `E` of finite
-dimension `n` — the Newtonian potential solves Laplace's equation away from the source.-/
+dimension `n` — the Newtonian potential solves Laplace's equation away from the source.
+@isnad1 id=harmonic.0h1v.s7.889d9709836e from=translated src=- shape=630edb2e vocab=744bda0b
+-/
 theorem harmonicOnNhd_normPow :
     HarmonicOnNhd (fun y : E => ‖y‖ ^ (2 - (Module.finrank ℝ E : ℝ))) {x : E | x ≠ 0} := by
   intro x hx
@@ -702,7 +834,9 @@ theorem harmonicOnNhd_normPow :
   rw [Pi.zero_apply, laplacian_normPow _ hy]
   ring
 
-/-- (C) `log ‖x‖` is harmonic on `E \ {0}` when `finrank ℝ E = 2`.-/
+/-- (C) `log ‖x‖` is harmonic on `E \ {0}` when `finrank ℝ E = 2`.
+@isnad1 id=harmonic.1h1v.s6.7432bce2418c from=translated src=- shape=0307888b vocab=b4ddeb4a
+-/
 theorem harmonicOnNhd_log_norm (h2 : Module.finrank ℝ E = 2) :
     HarmonicOnNhd (fun y : E => Real.log ‖y‖) {x : E | x ≠ 0} := by
   intro x hx
@@ -713,13 +847,17 @@ theorem harmonicOnNhd_log_norm (h2 : Module.finrank ℝ E = 2) :
   norm_num
 
 /-- (C) Ehrenfest's `n`-dimensional Newtonian potential `‖x‖^(2−n)` on `ℝⁿ` is harmonic off
-the origin.-/
+the origin.
+@isnad1 id=harmonic.0h1v.s7.037f7b34d727 from=translated src=- shape=65f854a7 vocab=7b88c66b
+-/
 theorem harmonicOnNhd_euclidean (n : ℕ) :
     HarmonicOnNhd (fun x : EuclideanSpace ℝ (Fin n) => ‖x‖ ^ (2 - n : ℝ)) {x | x ≠ 0} := by
   have h := harmonicOnNhd_normPow (E := EuclideanSpace ℝ (Fin n))
   rwa [finrank_euclideanSpace_fin] at h
 
-/-- (C) The two-dimensional logarithmic potential `log ‖x‖` on `ℝ²` is harmonic off the origin.-/
+/-- (C) The two-dimensional logarithmic potential `log ‖x‖` on `ℝ²` is harmonic off the origin.
+@isnad1 id=harmonic.0h0v.s8.c6457b673cdc from=translated src=- shape=89643d79 vocab=6d5110eb
+-/
 theorem harmonicOnNhd_euclidean_two :
     HarmonicOnNhd (fun x : EuclideanSpace ℝ (Fin 2) => Real.log ‖x‖) {x | x ≠ 0} :=
   harmonicOnNhd_log_norm finrank_euclideanSpace_fin
@@ -731,7 +869,9 @@ The radial Laplace equation `f'' + (n−1)/r · f' = 0` on `(0, ∞)` has the fi
 and conversely.  Together with `Δ (f ∘ ‖·‖) = f'' + (n−1)/‖x‖ · f'` this classifies the radial
 harmonic functions on `E ∖ {0}`: they are exactly the Newtonian potentials. -/
 
-/-- The first integral: `φ(r) = r^(n−1) f'(r)` has derivative `r^(n−1) (f'' + (n−1)/r · f')`.-/
+/-- The first integral: `φ(r) = r^(n−1) f'(r)` has derivative `r^(n−1) (f'' + (n−1)/r · f')`.
+@isnad1 id=hasderiv.2h4v.s7.3a0948eab2f9 from=translated src=- shape=50466454 vocab=0d4d74e9
+-/
 theorem hasDerivAt_rpow_mul {n : ℝ} {f' f'' : ℝ → ℝ} {r : ℝ}
     (hf' : HasDerivAt f' (f'' r) r) (hr : 0 < r) :
     HasDerivAt (fun r => r ^ (n - 1) * f' r) (r ^ (n - 1) * (f'' r + (n - 1) / r * f' r)) r := by
@@ -742,7 +882,9 @@ theorem hasDerivAt_rpow_mul {n : ℝ} {f' f'' : ℝ → ℝ} {r : ℝ}
   rw [e, div_eq_mul_inv, div_eq_mul_inv]
   ring
 
-/-- The first integral of the radial ODE: `f'(r) = c · r^(1−n)` on `(0, ∞)`.-/
+/-- The first integral of the radial ODE: `f'(r) = c · r^(1−n)` on `(0, ∞)`.
+@isnad1 id=ex.2h3v.s7.7d5b79a3b7ec from=translated src=- shape=0a426f82 vocab=0d4d74e9
+-/
 theorem radial_ode_deriv_eq {n : ℝ} {f' f'' : ℝ → ℝ}
     (hf' : ∀ r, 0 < r → HasDerivAt f' (f'' r) r)
     (hode : ∀ r, 0 < r → f'' r + (n - 1) / r * f' r = 0) :
@@ -762,7 +904,9 @@ theorem radial_ode_deriv_eq {n : ℝ} {f' f'' : ℝ → ℝ}
     rw [this, Real.rpow_zero]
   linear_combination (r ^ (1 - n)) * h1 - (f' r) * e
 
-/-- (D) Solutions of the radial Laplace equation for `n ≠ 2`: `f = a + b r^(2−n)` on `(0, ∞)`.-/
+/-- (D) Solutions of the radial Laplace equation for `n ≠ 2`: `f = a + b r^(2−n)` on `(0, ∞)`.
+@isnad1 id=ex.4h4v.s8.0f857afed6df from=translated src=- shape=10142b34 vocab=0d4e0477
+-/
 theorem radial_ode_solution {n : ℕ} {f f' f'' : ℝ → ℝ}
     (hf : ∀ r, 0 < r → HasDerivAt f (f' r) r) (hf' : ∀ r, 0 < r → HasDerivAt f' (f'' r) r)
     (hode : ∀ r, 0 < r → f'' r + ((n : ℝ) - 1) / r * f' r = 0) (hn : n ≠ 2) :
@@ -791,7 +935,9 @@ theorem radial_ode_solution {n : ℕ} {f f' f'' : ℝ → ℝ}
   have h : f r = c / (2 - (n : ℝ)) * r ^ (2 - (n : ℝ)) + a := ha hr
   rw [h]; ring
 
-/-- (D) Solutions of the radial Laplace equation for `n = 2`: `f = a + b log r` on `(0, ∞)`.-/
+/-- (D) Solutions of the radial Laplace equation for `n = 2`: `f = a + b log r` on `(0, ∞)`.
+@isnad1 id=ex.4h4v.s7.4a9cfd6fe670 from=translated src=- shape=bde83936 vocab=42b522cc
+-/
 theorem radial_ode_solution_two {n : ℕ} {f f' f'' : ℝ → ℝ}
     (hf : ∀ r, 0 < r → HasDerivAt f (f' r) r) (hf' : ∀ r, 0 < r → HasDerivAt f' (f'' r) r)
     (hode : ∀ r, 0 < r → f'' r + ((n : ℝ) - 1) / r * f' r = 0) (hn : n = 2) :
@@ -810,11 +956,16 @@ theorem radial_ode_solution_two {n : ℕ} {f f' f'' : ℝ → ℝ}
   have h : f r = c * Real.log r + a := ha hr
   rw [h]; ring
 
-/-- `r ↦ a + b r^(2−n)` and its derivative, for any real `n`.-/
+/-- `r ↦ a + b r^(2−n)` and its derivative, for any real `n`.
+@isnad1 id=hasderiv.1h4v.s7.18428d4c91ae from=translated src=- shape=dab20e9f vocab=8095c37e
+-/
 theorem hasDerivAt_affine_radial (a b n : ℝ) {r : ℝ} (hr : r ≠ 0) :
     HasDerivAt (fun r : ℝ => a + b * r ^ (2 - n)) (b * ((2 - n) * r ^ (1 - n))) r :=
   ((hasDerivAt_radial n hr).const_mul b).const_add a
 
+/--
+@isnad1 id=eq.2h5v.s7.dd7e6880bc3b from=translated src=- shape=928d5c2d vocab=ab37ee49
+-/
 theorem deriv_of_eq_affine_radial {n : ℕ} {f : ℝ → ℝ} {a b : ℝ}
     (h : ∀ r, 0 < r → f r = a + b * r ^ (2 - (n : ℝ))) {r : ℝ} (hr : 0 < r) :
     deriv f r = b * ((2 - (n : ℝ)) * r ^ (1 - (n : ℝ))) := by
@@ -824,7 +975,9 @@ theorem deriv_of_eq_affine_radial {n : ℕ} {f : ℝ → ℝ} {a b : ℝ}
   rw [hev.deriv_eq]
   exact (hasDerivAt_affine_radial a b n hr.ne').deriv
 
-/-- (D, converse) `f = a + b r^(2−n)` on `(0, ∞)` satisfies the radial Laplace equation there.-/
+/-- (D, converse) `f = a + b r^(2−n)` on `(0, ∞)` satisfies the radial Laplace equation there.
+@isnad1 id=eq.2h5v.s7.a0b5ae5b50e1 from=translated src=- shape=16864cd0 vocab=45c0773a
+-/
 theorem radial_ode_of_eq {n : ℕ} {f : ℝ → ℝ} {a b : ℝ}
     (h : ∀ r, 0 < r → f r = a + b * r ^ (2 - (n : ℝ))) {r : ℝ} (hr : 0 < r) :
     deriv (deriv f) r + ((n : ℝ) - 1) / r * deriv f r = 0 := by
@@ -843,7 +996,9 @@ theorem radial_ode_of_eq {n : ℕ} {f : ℝ → ℝ} {a b : ℝ}
   ring
 
 /-- (D, converse, with named derivatives) `f = a + b r^(2−n)` on `(0, ∞)` satisfies
-`f'' + (n−1)/r · f' = 0` there.-/
+`f'' + (n−1)/r · f' = 0` there.
+@isnad1 id=eq.4h7v.s7.0b5f231f94cc from=translated src=- shape=be8b7e2b vocab=0d4e0477
+-/
 theorem radial_ode_of_eq' {n : ℕ} {f f' f'' : ℝ → ℝ}
     (hf : ∀ r, 0 < r → HasDerivAt f (f' r) r) (hf' : ∀ r, 0 < r → HasDerivAt f' (f'' r) r)
     {a b : ℝ} (h : ∀ r, 0 < r → f r = a + b * r ^ (2 - (n : ℝ))) {r : ℝ} (hr : 0 < r) :
@@ -856,11 +1011,16 @@ theorem radial_ode_of_eq' {n : ℕ} {f f' f'' : ℝ → ℝ}
   have h3 := radial_ode_of_eq h hr
   rwa [h2, (hf r hr).deriv] at h3
 
-/-- `r ↦ a + b log r` and its derivative.-/
+/-- `r ↦ a + b log r` and its derivative.
+@isnad1 id=hasderiv.1h3v.s6.f6c4b6b14969 from=translated src=- shape=8cdd9859 vocab=d3b4a0b4
+-/
 theorem hasDerivAt_affine_log (a b : ℝ) {r : ℝ} (hr : r ≠ 0) :
     HasDerivAt (fun r : ℝ => a + b * Real.log r) (b * r⁻¹) r :=
   ((Real.hasDerivAt_log hr).const_mul b).const_add a
 
+/--
+@isnad1 id=eq.2h4v.s6.99d086d0073e from=translated src=- shape=a8a60169 vocab=8dd456ad
+-/
 theorem deriv_of_eq_affine_log {f : ℝ → ℝ} {a b : ℝ}
     (h : ∀ r, 0 < r → f r = a + b * Real.log r) {r : ℝ} (hr : 0 < r) :
     deriv f r = b * r⁻¹ := by
@@ -870,7 +1030,9 @@ theorem deriv_of_eq_affine_log {f : ℝ → ℝ} {a b : ℝ}
   rw [hev.deriv_eq]
   exact (hasDerivAt_affine_log a b hr.ne').deriv
 
-/-- (D, converse, `n = 2`) `f = a + b log r` on `(0, ∞)` satisfies the radial Laplace equation.-/
+/-- (D, converse, `n = 2`) `f = a + b log r` on `(0, ∞)` satisfies the radial Laplace equation.
+@isnad1 id=eq.3h5v.s7.0e2cc93dac97 from=translated src=- shape=ad3eb04b vocab=033c0a74
+-/
 theorem radial_ode_of_eq_two {n : ℕ} {f : ℝ → ℝ} {a b : ℝ} (hn : n = 2)
     (h : ∀ r, 0 < r → f r = a + b * Real.log r) {r : ℝ} (hr : 0 < r) :
     deriv (deriv f) r + ((n : ℝ) - 1) / r * deriv f r = 0 := by
@@ -885,6 +1047,9 @@ theorem radial_ode_of_eq_two {n : ℕ} {f : ℝ → ℝ} {a b : ℝ} (hn : n = 2
   rw [e, sq, mul_inv, div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=eq.5h7v.s7.01860cf0725f from=translated src=- shape=83a10c96 vocab=42b522cc
+-/
 theorem radial_ode_of_eq_two' {n : ℕ} {f f' f'' : ℝ → ℝ}
     (hf : ∀ r, 0 < r → HasDerivAt f (f' r) r) (hf' : ∀ r, 0 < r → HasDerivAt f' (f'' r) r)
     (hn : n = 2) {a b : ℝ} (h : ∀ r, 0 < r → f r = a + b * Real.log r) {r : ℝ} (hr : 0 < r) :
@@ -898,7 +1063,9 @@ theorem radial_ode_of_eq_two' {n : ℕ} {f f' f'' : ℝ → ℝ}
   rwa [h2, (hf r hr).deriv] at h3
 
 /-- (D) The one-variable classification, `n ≠ 2`: a twice differentiable profile (`f''` not assumed continuous) on `(0, ∞)` solves the radial
-Laplace equation iff it is `a + b r^(2−n)`.-/
+Laplace equation iff it is `a + b r^(2−n)`.
+@isnad1 id=iff.3h4v.s8.949a8a093fb0 from=translated src=- shape=07e6716d vocab=0d4e0477
+-/
 theorem radial_ode_iff {n : ℕ} {f f' f'' : ℝ → ℝ}
     (hf : ∀ r, 0 < r → HasDerivAt f (f' r) r) (hf' : ∀ r, 0 < r → HasDerivAt f' (f'' r) r)
     (hn : n ≠ 2) :
@@ -908,7 +1075,9 @@ theorem radial_ode_iff {n : ℕ} {f f' f'' : ℝ → ℝ}
    fun ⟨_, _, h⟩ _ hr => radial_ode_of_eq' hf hf' h hr⟩
 
 /-- (D) The one-variable classification, `n = 2`: a twice differentiable profile (`f''` not assumed continuous) on `(0, ∞)` solves the radial
-Laplace equation iff it is `a + b log r`.-/
+Laplace equation iff it is `a + b log r`.
+@isnad1 id=iff.3h4v.s7.0d84769007c6 from=translated src=- shape=a5492438 vocab=42b522cc
+-/
 theorem radial_ode_iff_two {n : ℕ} {f f' f'' : ℝ → ℝ}
     (hf : ∀ r, 0 < r → HasDerivAt f (f' r) r) (hf' : ∀ r, 0 < r → HasDerivAt f' (f'' r) r)
     (hn : n = 2) :
@@ -920,7 +1089,9 @@ theorem radial_ode_iff_two {n : ℕ} {f f' f'' : ℝ → ℝ}
 /-! ## (D) The Laplacian of a radial function in the norm parametrization -/
 
 /-- (D) `Δ (f ∘ ‖·‖) x = f''(‖x‖) + (n−1)/‖x‖ · f'(‖x‖)` for `x ≠ 0`, `n = finrank ℝ E`, for any
-profile `f` that is twice differentiable on `(0, ∞)`.-/
+profile `f` that is twice differentiable on `(0, ∞)`.
+@isnad1 id=eq.3h5v.s8.1a79edc9be07 from=translated src=- shape=d1bf6acf vocab=f7d07273
+-/
 theorem laplacian_comp_norm {f f' f'' : ℝ → ℝ}
     (hf : ∀ r, 0 < r → HasDerivAt f (f' r) r) (hf' : ∀ r, 0 < r → HasDerivAt f' (f'' r) r)
     {x : E} (hx : x ≠ 0) :
@@ -963,7 +1134,9 @@ theorem laplacian_comp_norm {f f' f'' : ℝ → ℝ}
 
 /-- (D) Uniqueness of the Newtonian potential, `n ≠ 2`: a radial function `f(‖y‖)`, with `f`
 twice differentiable on `(0, ∞)`, is harmonic on `E ∖ {0}` iff `f = a + b r^(2−n)` on `(0, ∞)`,
-`n = finrank ℝ E`.-/
+`n = finrank ℝ E`.
+@isnad1 id=iff.3h4v.s8.fb655cf7a8c4 from=translated src=- shape=670b1848 vocab=6b9af5e6
+-/
 theorem harmonicOnNhd_radial_iff [Nontrivial E] {f f' f'' : ℝ → ℝ}
     (hf : ∀ r, 0 < r → HasDerivAt f (f' r) r) (hf' : ∀ r, 0 < r → HasDerivAt f' (f'' r) r)
     (hn : Module.finrank ℝ E ≠ 2) :
@@ -998,7 +1171,9 @@ theorem harmonicOnNhd_radial_iff [Nontrivial E] {f f' f'' : ℝ → ℝ}
 
 /-- (D) Uniqueness of the logarithmic potential, `n = 2`: a radial function `f(‖y‖)`, with `f`
 twice differentiable on `(0, ∞)`, is harmonic on `E ∖ {0}` iff `f = a + b log r` on `(0, ∞)`.
-(`E` is automatically nontrivial, since `finrank ℝ E = 2`.)-/
+(`E` is automatically nontrivial, since `finrank ℝ E = 2`.)
+@isnad1 id=iff.3h4v.s8.56f909d0884d from=translated src=- shape=9a7d654d vocab=d53a0810
+-/
 theorem harmonicOnNhd_radial_iff_two {f f' f'' : ℝ → ℝ}
     (hf : ∀ r, 0 < r → HasDerivAt f (f' r) r) (hf' : ∀ r, 0 < r → HasDerivAt f' (f'' r) r)
     (h2 : Module.finrank ℝ E = 2) :

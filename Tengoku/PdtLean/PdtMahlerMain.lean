@@ -26,17 +26,29 @@ open Polynomial
 
 noncomputable section
 
+/--
+@isnad1 id=eq.0h2v.s5.67e309ce9996 from=translated src=- shape=7b358dae vocab=fca73980
+-/
 lemma coeff_int_cast_ZX (n : ℤ) (k : ℕ) :
     ((n : ℤ[X])).coeff k = if k = 0 then n else 0 := by
   rw [← Polynomial.C_eq_intCast, Polynomial.coeff_C]
   simp
 
+/--
+@isnad1 id=monic.0h1v.s2.81bd55f6b37e from=translated src=- shape=1a6c1393 vocab=8a2a7048
+-/
 lemma zq4_monic_int (t : Z4) : (zq4 t).Monic := by
   unfold zq4; monicity!
 
+/--
+@isnad1 id=eq.0h1v.s3.d1de2c8a27bb from=translated src=- shape=8e1bdd70 vocab=ea446dd6
+-/
 lemma zq4_natDegree_int (t : Z4) : (zq4 t).natDegree = 4 := by
   unfold zq4; compute_degree!
 
+/--
+@isnad1 id=eq.1h2v.s4.4e052749b22d from=translated src=- shape=17b86b1e vocab=51067f08
+-/
 lemma coeff_zq4 (t : Z4) (k : ℕ) (hk : k ≤ 4) :
     (zq4 t).coeff k = tupCoeff t k := by
   obtain ⟨a, b, c, e⟩ := t
@@ -62,6 +74,9 @@ lemma eq_zq4_self (p : ℤ[X]) (hm : p.Monic) (hd : p.natDegree = 4) :
 
 /-! ### Cyclotomic elements have measure one -/
 
+/--
+@isnad1 id=eq.1h1v.s6.596621ff0222 from=translated src=- shape=96df6b34 vocab=0eeceb11
+-/
 lemma mahlerMeasure_X_pow_sub_one {n : ℕ} (hn : 0 < n) :
     (((X : ℂ[X]) ^ n - 1)).mahlerMeasure = 1 := by
   have hm : ((X : ℂ[X]) ^ n - 1).Monic := by
@@ -89,7 +104,9 @@ lemma mahlerMeasure_X_pow_sub_one {n : ℕ} (hn : 0 < n) :
   rw [Multiset.map_congr rfl hone]
   simp
 
-/-- A monic quartic dividing `Xⁿ − 1` has Mahler measure 1.-/
+/-- A monic quartic dividing `Xⁿ − 1` has Mahler measure 1.
+@isnad1 id=eq.2h3v.s6.a98be32c9651 from=translated src=- shape=34abf8bf vocab=54762b01
+-/
 lemma mahler_eq_one_of_dvd_X_pow_sub_one {t : Z4} {g : ℤ[X]} {n : ℕ}
     (hn : 0 < n) (hfac : zq4 t * g = X ^ n - 1) :
     ((zq4 t).map (Int.castRingHom ℂ)).mahlerMeasure = 1 := by
@@ -120,16 +137,28 @@ lemma mahler_eq_one_of_dvd_X_pow_sub_one {t : Z4} {g : ℤ[X]} {n : ℕ}
       _ = 1 := hM
   exact le_antisymm hle h1t
 
+/--
+@isnad1 id=eq.0h0v.s7.391766d09949 from=translated src=- shape=f386646f vocab=819f6765
+-/
 lemma cyclo5_fac : zq4 (1, 1, 1, 1) * (X - 1) = X ^ 5 - 1 := by
   unfold zq4; simp; ring
 
+/--
+@isnad1 id=eq.0h0v.s7.e18074f3278d from=translated src=- shape=d83dba42 vocab=819f6765
+-/
 lemma cyclo8_fac : zq4 (0, 0, 0, 1) * (X ^ 4 - 1) = X ^ 8 - 1 := by
   unfold zq4; simp; ring
 
+/--
+@isnad1 id=eq.0h0v.s8.c078c57fb133 from=translated src=- shape=d4c54dfa vocab=c7a74ad8
+-/
 lemma cyclo10_fac :
     zq4 (-1, 1, -1, 1) * (X ^ 6 + X ^ 5 - X - 1) = X ^ 10 - 1 := by
   unfold zq4; simp; ring
 
+/--
+@isnad1 id=eq.0h0v.s8.314e78882a39 from=translated src=- shape=9d181a9d vocab=c7a74ad8
+-/
 lemma cyclo12_fac :
     zq4 (0, -1, 0, 1) * (X ^ 8 + X ^ 6 - X ^ 2 - 1) = X ^ 12 - 1 := by
   unfold zq4; simp; ring
@@ -143,6 +172,9 @@ def zcub (v : ℤ × ℤ × ℤ) : ℤ[X] :=
 
 def zquad (w : ℤ × ℤ) : ℤ[X] := X ^ 2 + C w.1 * X + C w.2
 
+/--
+@isnad1 id=eq.0h2v.s5.4f89003bd5bb from=translated src=- shape=48a45f4c vocab=9ad4a3b0
+-/
 lemma zq4_mul13 (u : ℤ) (v : ℤ × ℤ × ℤ) :
     zq4 (mul13 u v) = zlin u * zcub v := by
   obtain ⟨v2, v1, v0⟩ := v
@@ -150,6 +182,9 @@ lemma zq4_mul13 (u : ℤ) (v : ℤ × ℤ × ℤ) :
   simp only [map_add, map_mul]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s5.301ba778cfb3 from=translated src=- shape=2f48b43f vocab=aa80a061
+-/
 lemma zq4_mul22 (w1 w2 : ℤ × ℤ) :
     zq4 (mul22 w1 w2) = zquad w1 * zquad w2 := by
   obtain ⟨a1, a0⟩ := w1
@@ -158,15 +193,27 @@ lemma zq4_mul22 (w1 w2 : ℤ × ℤ) :
   simp only [map_add, map_mul]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s3.364f2ab06664 from=translated src=- shape=fcff7bf0 vocab=aa9898b7
+-/
 lemma zlin_natDegree (u : ℤ) : (zlin u).natDegree = 1 := by
   unfold zlin; compute_degree!
 
+/--
+@isnad1 id=eq.0h1v.s4.666ee75e1802 from=translated src=- shape=b806ffca vocab=51892d60
+-/
 lemma zcub_natDegree (v : ℤ × ℤ × ℤ) : (zcub v).natDegree = 3 := by
   unfold zcub; compute_degree!
 
+/--
+@isnad1 id=eq.0h1v.s4.e73f24a2c651 from=translated src=- shape=2f4b1f6b vocab=18fd18bf
+-/
 lemma zquad_natDegree (w : ℤ × ℤ) : (zquad w).natDegree = 2 := by
   unfold zquad; compute_degree!
 
+/--
+@isnad1 id=not.0h2v.s4.7fb0ed67d86a from=translated src=- shape=af61a21b vocab=6f1dc6d5
+-/
 lemma not_irr_mul13 (u : ℤ) (v : ℤ × ℤ × ℤ) :
     ¬ Irreducible (zq4 (mul13 u v)) := by
   rw [zq4_mul13]
@@ -177,6 +224,9 @@ lemma not_irr_mul13 (u : ℤ) (v : ℤ × ℤ × ℤ) :
   · exact Polynomial.not_isUnit_of_natDegree_pos _
       (by rw [zcub_natDegree]; norm_num) h
 
+/--
+@isnad1 id=not.0h2v.s4.445213796b2f from=translated src=- shape=c121e237 vocab=88277b16
+-/
 lemma not_irr_mul22 (w1 w2 : ℤ × ℤ) :
     ¬ Irreducible (zq4 (mul22 w1 w2)) := by
   rw [zq4_mul22]
@@ -189,6 +239,9 @@ lemma not_irr_mul22 (w1 w2 : ℤ × ℤ) :
 
 /-! ### The tie orbit has equal measure -/
 
+/--
+@isnad1 id=eq.0h0v.s6.a1188611e1c0 from=translated src=- shape=85ccde3e vocab=4a977b26
+-/
 lemma tie_neg_eq :
     ((zq4 (0, 0, 1, -1)).map (Int.castRingHom ℂ)).mahlerMeasure
       = ((zq4 (0, 0, -1, -1)).map (Int.castRingHom ℂ)).mahlerMeasure := by
@@ -199,6 +252,9 @@ lemma tie_neg_eq :
   norm_num at h ⊢
   exact h
 
+/--
+@isnad1 id=eq.0h0v.s6.2def23217e56 from=translated src=- shape=85ccde3e vocab=4a977b26
+-/
 lemma tie_rev_eq :
     ((zq4 (1, 0, 0, -1)).map (Int.castRingHom ℂ)).mahlerMeasure
       = ((zq4 (0, 0, -1, -1)).map (Int.castRingHom ℂ)).mahlerMeasure := by
@@ -208,6 +264,9 @@ lemma tie_rev_eq :
   norm_num at h ⊢
   exact h
 
+/--
+@isnad1 id=eq.0h0v.s6.d69afcd1e58e from=translated src=- shape=3c6d1835 vocab=4a977b26
+-/
 lemma tie_revneg_eq :
     ((zq4 (-1, 0, 0, -1)).map (Int.castRingHom ℂ)).mahlerMeasure
       = ((zq4 (0, 0, -1, -1)).map (Int.castRingHom ℂ)).mahlerMeasure := by
@@ -222,7 +281,9 @@ lemma tie_revneg_eq :
 
 /-! ### The upper certificate for the family and the out-of-box branch -/
 
-/-- `M(x⁴−x−1) ≤ 139/100`, by the K = 5 ℓ¹ Graeffe certificate.-/
+/-- `M(x⁴−x−1) ≤ 139/100`, by the K = 5 ℓ¹ Graeffe certificate.
+@isnad1 id=le.0h0v.s6.21a5c0c9020e from=translated src=- shape=7591a053 vocab=bca8996a
+-/
 lemma fam_upper :
     ((zq4 (0, 0, -1, -1)).map (Int.castRingHom ℂ)).mahlerMeasure
       ≤ (139 : ℝ) / 100 := by
@@ -230,17 +291,25 @@ lemma fam_upper :
     (by norm_num) (K := 5) (by decide)
   exact_mod_cast h
 
+/--
+@isnad1 id=iff.0h1v.s6.db013d5fdd98 from=translated src=- shape=3b8d71c7 vocab=9be04dd9
+-/
 lemma mem_boxD4 {t : Z4} :
     t ∈ boxD4 ↔ |t.1| ≤ 5 ∧ |t.2.1| ≤ 8 ∧ |t.2.2.1| ≤ 5 ∧ |t.2.2.2| ≤ 1 := by
   obtain ⟨a, b, c, e⟩ := t
   simp [boxD4, Finset.mem_product, Finset.mem_Icc, abs_le]
 
+/--
+@isnad1 id=eq.0h4v.s6.853a6bf38112 from=translated src=- shape=5c4b7d98 vocab=a7187a6a
+-/
 lemma lowerCert_succ_def (fuel : ℕ) (P2 Q2 : ℤ) (s : Z4) :
     lowerCert (fuel + 1) P2 Q2 s
       = (lowerHit P2 Q2 s || lowerCert fuel (P2 ^ 2) (Q2 ^ 2) (gr4Z s)) := rfl
 
 /-- Outside the box, some coefficient bound is violated, which is a depth-0
-Graeffe certificate.-/
+Graeffe certificate.
+@isnad1 id=eq.1h1v.s5.32706f8a63f0 from=translated src=- shape=74b21166 vocab=dfe95965
+-/
 lemma lowerCert_of_not_mem {t : Z4} (h : t ∉ boxD4) :
     lowerCert 9 139 100 t = true := by
   obtain ⟨a, b, c, e⟩ := t
@@ -283,7 +352,9 @@ lemma lowerCert_of_not_mem {t : Z4} (h : t ∉ boxD4) :
 
 /-- THE DEGREE-4 MAHLER MINIMALITY THEOREM: among monic irreducible
 integer quartics of Mahler measure above one, `x⁴ − x − 1` attains the
-minimum. (F:233 positives, d = 4; the QM paper's extremality trace row.)-/
+minimum. (F:233 positives, d = 4; the QM paper's extremality trace row.)
+@isnad1 id=le.4h1v.s7.f3ca540cb48b from=translated src=- shape=f703efe7 vocab=1f222822
+-/
 theorem quartic_mahler_min (p : ℤ[X]) (hm : p.Monic) (hd : p.natDegree = 4)
     (hi : Irreducible p)
     (h1 : 1 < (p.map (Int.castRingHom ℂ)).mahlerMeasure) :

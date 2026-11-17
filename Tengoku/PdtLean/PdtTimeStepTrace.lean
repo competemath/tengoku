@@ -26,7 +26,9 @@ namespace TimeStepTrace
 open SignatureForcing
 
 /-- Multiplying the existing timelike witness by the quartic root gives positive
-trace-square. This uses the genuine field trace, not an unlinked matrix.-/
+trace-square. This uses the genuine field trace, not an unlinked matrix.
+@isnad1 id=eq.0h0v.s9.c92b236e1251 from=translated src=- shape=60b899d1 vocab=dd59829c
+-/
 theorem traceForm_mul_tW :
     Algebra.traceForm ℚ (AdjoinRoot f4) (r4 * tW) (r4 * tW) = 91 := by
   rw [Algebra.traceForm_apply]
@@ -38,14 +40,18 @@ theorem traceForm_mul_tW :
     trace_r4_pow4, trace_r4_pow5, trace_r4_pow6]
   norm_num
 
-/-- An exact timelike-to-spacelike witness for quartic-root multiplication.-/
+/-- An exact timelike-to-spacelike witness for quartic-root multiplication.
+@isnad1 id=and.0h0v.s10.7fafb32a3a7c from=translated src=- shape=3738054b vocab=78f98281
+-/
 theorem timelike_to_spacelike :
     Algebra.traceForm ℚ (AdjoinRoot f4) tW tW < 0 ∧
     0 < Algebra.traceForm ℚ (AdjoinRoot f4) (r4 * tW) (r4 * tW) := by
   rw [traceForm_tW, traceForm_mul_tW]
   norm_num
 
-/-- Quartic-root multiplication does not preserve the full timelike set.-/
+/-- Quartic-root multiplication does not preserve the full timelike set.
+@isnad1 id=not.0h0v.s10.066462505fb4 from=translated src=- shape=61600788 vocab=c5475a32
+-/
 theorem not_preserves_timelike :
     ¬ (∀ x : AdjoinRoot f4,
       Algebra.traceForm ℚ (AdjoinRoot f4) x x < 0 →

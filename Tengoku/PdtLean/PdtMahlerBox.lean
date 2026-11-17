@@ -68,7 +68,9 @@ set_option maxRecDepth 100000
 set_option maxHeartbeats 12000000
 
 /-- COVERAGE: every element of the box carries a certificate. The finite
-heart of the minimality theorem — 6,171 kernel-checked certificates.-/
+heart of the minimality theorem — 6,171 kernel-checked certificates.
+@isnad1 id=eq.1h1v.s4.6ed956afc7ca from=translated src=- shape=f9706b48 vocab=15692db1
+-/
 theorem boxD4_all : ∀ t ∈ boxD4, elemOK t = true := by decide
 
 set_option maxRecDepth 512
