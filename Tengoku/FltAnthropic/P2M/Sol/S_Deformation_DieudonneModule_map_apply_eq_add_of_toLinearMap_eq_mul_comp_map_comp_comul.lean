@@ -14,6 +14,9 @@ open Deformation
 
 set_option maxHeartbeats 6400000 in
 open scoped TensorProduct in
+/--
+@isnad1 id=eq.1h8v.s11.925c82272f9d from=translated src=- shape=6910937b vocab=0246f537
+-/
 theorem solution
     (R : Type) [CommRing R] (p : ℕ) [Fact p.Prime]
     {A : Type} [CommRing A] [Bialgebra R A] {B : Type} [CommRing B] [Bialgebra R B]

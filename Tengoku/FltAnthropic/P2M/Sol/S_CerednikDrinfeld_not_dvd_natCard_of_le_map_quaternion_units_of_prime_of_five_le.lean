@@ -13,6 +13,9 @@ open Polynomial
 namespace CerednikDrinfeld
 namespace TorsionOrderAux
 
+/--
+@isnad1 id=not.5h3v.s7.241e745034cc from=translated src=- shape=9aacccd5 vocab=3050faaa
+-/
 theorem not_dvd_X_pow_sub_C {p : ℕ} (hp : p.Prime) (h5 : 5 ≤ p) {a : ℚ} (ha : a ≠ 0)
     {q : ℚ[X]} (hq : q.Monic) (hq2 : q.natDegree = 2) : ¬ q ∣ X ^ p - C a := by
   intro hdvd
@@ -114,6 +117,9 @@ end CerednikDrinfeld.TorsionOrderAux
 namespace CerednikDrinfeld
 namespace TorsionOrderAux
 
+/--
+@isnad1 id=ex.5h6v.s10.d797c83ca58b from=translated src=- shape=a491fb36 vocab=3799a1bc
+-/
 theorem exists_eq_smul_one_of_pow_eq_smul_one
     (K₀ : Type) [Field K₀] [Algebra ℚ K₀] {p : ℕ} (hp : p.Prime) (h5 : 5 ≤ p)
     (Y : Matrix (Fin 2) (Fin 2) K₀) (t n : ℚ)
@@ -186,6 +192,9 @@ theorem exists_eq_smul_one_of_pow_eq_smul_one
     linear_combination (-1 : ℚ[X]) * hdiv
   exact not_dvd_X_pow_sub_C hp h5 hα0 hqm hq2 hdvd
 
+/--
+@isnad1 id=eq.0h2v.s9.a7a1e3b84e0d from=translated src=- shape=291aa6d0 vocab=77553dee
+-/
 theorem coe_scalar (K₀ : Type) [Field K₀] (u : K₀ˣ) :
     ((Matrix.GeneralLinearGroup.scalar (Fin 2) u : GL (Fin 2) K₀) : Matrix (Fin 2) (Fin 2) K₀) =
       (u : K₀) • (1 : Matrix (Fin 2) (Fin 2) K₀) := by
@@ -194,6 +203,9 @@ theorem coe_scalar (K₀ : Type) [Field K₀] (u : K₀ˣ) :
 end CerednikDrinfeld.TorsionOrderAux
 
 open CerednikDrinfeld.TorsionOrderAux in
+/--
+@isnad1 id=not.5h7v.s11.6f1428450088 from=translated src=- shape=a0fad929 vocab=d51bfae3
+-/
 theorem solution
     (K₀ : Type) [Field K₀] [Algebra ℚ K₀]
     {a b : ℚ} (ι : ℍ[ℚ, a, b] →ₐ[ℚ] Matrix (Fin 2) (Fin 2) K₀)

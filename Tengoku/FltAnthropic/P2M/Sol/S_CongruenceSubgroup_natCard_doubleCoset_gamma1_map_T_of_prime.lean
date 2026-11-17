@@ -11,10 +11,16 @@ open scoped MatrixGroups
 
 namespace CuspKit
 
+/--
+@isnad1 id=eq.0h4v.s9.d2718224572c from=translated src=- shape=ca7fbf22 vocab=fc437038
+-/
 theorem map_apply (N : ℕ) (γ : SL(2, ℤ)) (i j : Fin 2) :
     (Matrix.SpecialLinearGroup.map (n := Fin 2) (Int.castRingHom (ZMod N)) γ) i j = ((γ i j : ℤ) : ZMod N) := by
   simp [Matrix.SpecialLinearGroup.map_apply_coe]
 
+/--
+@isnad1 id=iff.0h2v.s9.e1a4dd37d17b from=translated src=- shape=a31834f8 vocab=bd13a8eb
+-/
 theorem mem_map_gamma1_iff (N : ℕ) [NeZero N] (g : SL(2, ZMod N)) :
     g ∈ (CongruenceSubgroup.Gamma1 N).map (Matrix.SpecialLinearGroup.map (n := Fin 2) (Int.castRingHom (ZMod N))) ↔
       g 0 0 = 1 ∧ g 1 0 = 0 ∧ g 1 1 = 1 := by
@@ -34,6 +40,9 @@ theorem mem_map_gamma1_iff (N : ℕ) [NeZero N] (g : SL(2, ZMod N)) :
       rw [map_apply]
       fin_cases i <;> fin_cases j <;> simp [ModularGroup.coe_T_zpow, h00, h10, h11, ZMod.natCast_zmod_val]
 
+/--
+@isnad1 id=iff.0h2v.s9.5f7d4657aef7 from=translated src=- shape=1563e5b4 vocab=c78f75b3
+-/
 theorem mem_map_zpowers_T_iff (N : ℕ) [NeZero N] (g : SL(2, ZMod N)) :
     g ∈ (Subgroup.zpowers ModularGroup.T).map (Matrix.SpecialLinearGroup.map (n := Fin 2) (Int.castRingHom (ZMod N))) ↔
       g 0 0 = 1 ∧ g 1 0 = 0 ∧ g 1 1 = 1 := by
@@ -54,34 +63,58 @@ section Unipotent
 
 variable {R : Type*} [CommRing R]
 
+/--
+@isnad1 id=eq.2h3v.s9.9acd1d880f71 from=translated src=- shape=7495e3ab vocab=ff007dc7
+-/
 theorem mul_apply_10_of_left (a M : SL(2, R)) (ha : a 1 0 = 0) (ha1 : a 1 1 = 1) : (a * M) 1 0 = M 1 0 := by
   show ((a : Matrix (Fin 2) (Fin 2) R) * M) 1 0 = M 1 0
   simp [Matrix.mul_apply, Fin.sum_univ_two, ha, ha1]
 
+/--
+@isnad1 id=eq.2h3v.s9.87af8a4a645d from=translated src=- shape=7495e3ab vocab=ff007dc7
+-/
 theorem mul_apply_11_of_left (a M : SL(2, R)) (ha : a 1 0 = 0) (ha1 : a 1 1 = 1) : (a * M) 1 1 = M 1 1 := by
   show ((a : Matrix (Fin 2) (Fin 2) R) * M) 1 1 = M 1 1
   simp [Matrix.mul_apply, Fin.sum_univ_two, ha, ha1]
 
+/--
+@isnad1 id=eq.1h3v.s9.c6fe523e532c from=translated src=- shape=434cfdc6 vocab=1f5eb86d
+-/
 theorem mul_apply_00_of_left (a M : SL(2, R)) (ha0 : a 0 0 = 1) : (a * M) 0 0 = M 0 0 + a 0 1 * M 1 0 := by
   show ((a : Matrix (Fin 2) (Fin 2) R) * M) 0 0 = _
   simp [Matrix.mul_apply, Fin.sum_univ_two, ha0]
 
+/--
+@isnad1 id=eq.1h3v.s9.19dced7a4d6e from=translated src=- shape=434cfdc6 vocab=1f5eb86d
+-/
 theorem mul_apply_01_of_left (a M : SL(2, R)) (ha0 : a 0 0 = 1) : (a * M) 0 1 = M 0 1 + a 0 1 * M 1 1 := by
   show ((a : Matrix (Fin 2) (Fin 2) R) * M) 0 1 = _
   simp [Matrix.mul_apply, Fin.sum_univ_two, ha0]
 
+/--
+@isnad1 id=eq.2h3v.s9.afec8b7d52c0 from=translated src=- shape=257c47fb vocab=ff007dc7
+-/
 theorem mul_apply_10_of_right (M b : SL(2, R)) (hb0 : b 0 0 = 1) (hb : b 1 0 = 0) : (M * b) 1 0 = M 1 0 := by
   show ((M : Matrix (Fin 2) (Fin 2) R) * b) 1 0 = M 1 0
   simp [Matrix.mul_apply, Fin.sum_univ_two, hb0, hb]
 
+/--
+@isnad1 id=eq.2h3v.s9.69a4a7a48275 from=translated src=- shape=257c47fb vocab=ff007dc7
+-/
 theorem mul_apply_00_of_right (M b : SL(2, R)) (hb0 : b 0 0 = 1) (hb : b 1 0 = 0) : (M * b) 0 0 = M 0 0 := by
   show ((M : Matrix (Fin 2) (Fin 2) R) * b) 0 0 = M 0 0
   simp [Matrix.mul_apply, Fin.sum_univ_two, hb0, hb]
 
+/--
+@isnad1 id=eq.1h3v.s9.4627b0658062 from=translated src=- shape=4134ca0f vocab=1f5eb86d
+-/
 theorem mul_apply_11_of_right (M b : SL(2, R)) (hb1 : b 1 1 = 1) : (M * b) 1 1 = M 1 0 * b 0 1 + M 1 1 := by
   show ((M : Matrix (Fin 2) (Fin 2) R) * b) 1 1 = _
   simp [Matrix.mul_apply, Fin.sum_univ_two, hb1]
 
+/--
+@isnad1 id=eq.0h2v.s8.45dc2504c619 from=translated src=- shape=beb1d2c3 vocab=d104cdc8
+-/
 theorem det_eq (M : SL(2, R)) : M 0 0 * M 1 1 - M 0 1 * M 1 0 = 1 := by
   have := M.prop
   rw [Matrix.det_fin_two] at this
@@ -89,6 +122,9 @@ theorem det_eq (M : SL(2, R)) : M 0 0 * M 1 1 - M 0 1 * M 1 0 = 1 := by
 
 def uni (s : R) : SL(2, R) := ⟨!![1, s; 0, 1], by simp [Matrix.det_fin_two_of]⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.33a73290fc1c from=translated src=- shape=edc69b66 vocab=10342946
+-/
 @[scoped simp] theorem uni_01 (s : R) : (uni s) 0 1 = s := rfl
 
 end Unipotent
@@ -113,6 +149,9 @@ noncomputable def inv (g : Gp) : (ZMod p)ˣ ⊕ (ZMod p)ˣ :=
     exact zero_ne_one this))
   else Sum.inl (Units.mk0 (g 1 0) h)
 
+/--
+@isnad1 id=eq.3h5v.s10.960b84e9d00a from=translated src=- shape=240ee4b8 vocab=8faaf6e9
+-/
 theorem inv_eq_of_rel {x y : Gp} (a b : Gp) (ha : a 0 0 = 1 ∧ a 1 0 = 0 ∧ a 1 1 = 1) (hb : b 0 0 = 1 ∧ b 1 0 = 0 ∧ b 1 1 = 1)
     (hy : y = a * x * b) : inv p x = inv p y := by
   obtain ⟨ha0, ha, ha1⟩ := ha
@@ -132,6 +171,9 @@ theorem inv_eq_of_rel {x y : Gp} (a b : Gp) (ha : a 0 0 = 1 ∧ a 1 0 = 0 ∧ a 
     congr 1
     exact Units.ext h10.symm
 
+/--
+@isnad1 id=eq.4h3v.s9.c6d4fc36bb4b from=translated src=- shape=b48e47d4 vocab=4391c934
+-/
 theorem ext_of_row (x y : Gp) (h00 : x 0 0 = y 0 0) (h10 : x 1 0 = y 1 0) (h11 : x 1 1 = y 1 1) (hc : x 1 0 ≠ 0) : x = y := by
   have hx := det_eq x
   have hy := det_eq y
@@ -148,6 +190,9 @@ theorem ext_of_row (x y : Gp) (h00 : x 0 0 = y 0 0) (h10 : x 1 0 = y 1 0) (h11 :
   · exact h10
   · exact h11
 
+/--
+@isnad1 id=eq.4h3v.s9.08ac6bc18abc from=translated src=- shape=ecab871f vocab=4391c934
+-/
 theorem ext_of_diag (x y : Gp) (h00 : x 0 0 = y 0 0) (h01 : x 0 1 = y 0 1) (h10 : x 1 0 = 0) (h10' : y 1 0 = 0) : x = y := by
   have hx := det_eq x
   have hy := det_eq y
@@ -164,6 +209,9 @@ theorem ext_of_diag (x y : Gp) (h00 : x 0 0 = y 0 0) (h01 : x 0 1 = y 0 1) (h10 
   · exact h10.trans h10'.symm
   · exact h11
 
+/--
+@isnad1 id=eq.0h1v.s9.42b81843983f from=translated src=- shape=b5900817 vocab=83c2ae98
+-/
 theorem natCard_doubleCoset_unipotent :
     Nat.card (DoubleCoset.Quotient
       (((CongruenceSubgroup.Gamma1 p).map rp : Subgroup Gp) : Set Gp)
@@ -253,6 +301,9 @@ theorem natCard_doubleCoset_unipotent :
 end CuspKit
 open scoped _root_.P2MW.S_CongruenceSubgroup_natCard_doubleCoset_gamma1_map_T_of_prime.CuspKit
 
+/--
+@isnad1 id=eq.0h1v.s9.42b81843983f from=translated src=- shape=b5900817 vocab=83c2ae98
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] :
     Nat.card (DoubleCoset.Quotient (((CongruenceSubgroup.Gamma1 p).map (Matrix.SpecialLinearGroup.map (n := Fin 2) (Int.castRingHom (ZMod p)))) : Set SL(2, ZMod p)) (((Subgroup.zpowers ModularGroup.T).map (Matrix.SpecialLinearGroup.map (n := Fin 2) (Int.castRingHom (ZMod p)))) : Set SL(2, ZMod p))) = 2 * (p - 1) :=

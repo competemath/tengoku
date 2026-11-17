@@ -21,9 +21,15 @@ noncomputable abbrev nd (e i : ℕ) : Fin 2 →₀ ℕ :=
   Finsupp.single (0 : Fin 2) i + Finsupp.single (1 : Fin 2) (e - i)
 
 omit W in
+/--
+@isnad1 id=eq.0h2v.s5.33e1d4c1f6cb from=translated src=- shape=63341c4e vocab=b388dfc2
+-/
 @[scoped simp] theorem nd_zero (e i : ℕ) : nd e i 0 = i := by simp [nd]
 
 omit W in
+/--
+@isnad1 id=eq.0h2v.s6.27984046ee8a from=translated src=- shape=49a32e5b vocab=a5103867
+-/
 @[scoped simp] theorem nd_one (e i : ℕ) : nd e i 1 = e - i := by simp [nd]
 
 omit W in
@@ -32,11 +38,17 @@ theorem eq_nd (n : Fin 2 →₀ ℕ) : n = nd (n 0 + n 1) (n 0) := by
   fin_cases j <;> simp [nd]
 
 omit W in
+/--
+@isnad1 id=injon.0h1v.s5.3e1f56d07ce2 from=translated src=- shape=696d3529 vocab=95b4ab47
+-/
 theorem nd_injOn (e : ℕ) : Set.InjOn (nd e) ↑(Finset.range (e + 1)) := by
   intro i _ j _ h
   have := congrArg (fun n : Fin 2 →₀ ℕ => n 0) h
   simpa using this
 
+/--
+@isnad1 id=eq.2h4v.s9.eaab399ba6af from=translated src=- shape=f4e129ad vocab=ba08a040
+-/
 theorem coeff_eq_zero_of_mem_pow (e : ℕ) (g : MvPowerSeries (Fin 2) W)
     (hg : g ∈ (Ideal.span {(MvPowerSeries.X 0 : MvPowerSeries (Fin 2) W), MvPowerSeries.X 1}) ^ e)
     (n : Fin 2 →₀ ℕ) (hn : n 0 + n 1 < e) : MvPowerSeries.coeff n g = 0 :=
@@ -54,6 +66,9 @@ variable (W : Type) [CommRing W]
 noncomputable def lineSubst (a b : W) : Fin 2 → PowerSeries W :=
   fun s => PowerSeries.C (if s = 0 then a else b) * PowerSeries.X
 
+/--
+@isnad1 id=hassubst.0h3v.s4.c391e5eb61d8 from=translated src=- shape=b0d56de5 vocab=c5f80d47
+-/
 theorem hasSubst_lineSubst (a b : W) : MvPowerSeries.HasSubst (lineSubst W a b) := by
   apply MvPowerSeries.hasSubst_of_constantCoeff_zero
   intro s
@@ -63,18 +78,30 @@ theorem hasSubst_lineSubst (a b : W) : MvPowerSeries.HasSubst (lineSubst W a b) 
 noncomputable def lineEval (a b : W) (G : MvPowerSeries (Fin 2) W) : PowerSeries W :=
   MvPowerSeries.subst (lineSubst W a b) G
 
+/--
+@isnad1 id=eq.0h5v.s6.72522c599929 from=translated src=- shape=0e3ee65c vocab=ff73bf4c
+-/
 theorem lineEval_mul (a b : W) (G H : MvPowerSeries (Fin 2) W) :
     lineEval W a b (G * H) = lineEval W a b G * lineEval W a b H :=
   MvPowerSeries.subst_mul (hasSubst_lineSubst W a b) G H
 
+/--
+@isnad1 id=eq.0h5v.s7.80b8f36cc2e2 from=translated src=- shape=fc5bf67d vocab=f4b54b91
+-/
 theorem lineEval_pow (a b : W) (G : MvPowerSeries (Fin 2) W) (n : ℕ) :
     lineEval W a b (G ^ n) = lineEval W a b G ^ n :=
   MvPowerSeries.subst_pow (hasSubst_lineSubst W a b) G n
 
+/--
+@isnad1 id=eq.0h4v.s8.c88e107f0f97 from=translated src=- shape=7d06a818 vocab=e3d0622e
+-/
 theorem mvcoeff_C_mul_X_pow (c : W) (e m : ℕ) :
     MvPowerSeries.coeff (Finsupp.single () e) (PowerSeries.C c * PowerSeries.X ^ m) = if e = m then c else 0 :=
   PowerSeries.coeff_C_mul_X_pow c m e
 
+/--
+@isnad1 id=eq.0h5v.s8.10c3c726c8af from=translated src=- shape=bca0e596 vocab=a714eca8
+-/
 theorem coeff_lineEval (a b : W) (G : MvPowerSeries (Fin 2) W) (e : ℕ) :
     PowerSeries.coeff e (lineEval W a b G) =
       ∑ i ∈ Finset.range (e + 1), MvPowerSeries.coeff (nd e i) G * a ^ i * b ^ (e - i) := by
@@ -108,6 +135,9 @@ theorem coeff_lineEval (a b : W) (G : MvPowerSeries (Fin 2) W) (e : ℕ) :
     simp only [Finset.coe_image, Finset.coe_range, Set.mem_image, Set.mem_Iio]
     exact ⟨d 0, by omega, by rw [(eq_nd d), h, nd_zero]⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.fc59a2521e1f from=translated src=- shape=8cf1ca62 vocab=e92184c0
+-/
 theorem constantCoeff_lineEval (a b : W) (G : MvPowerSeries (Fin 2) W) :
     PowerSeries.constantCoeff (lineEval W a b G) = MvPowerSeries.coeff (0 : Fin 2 →₀ ℕ) G := by
   rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply, coeff_lineEval]
@@ -120,6 +150,9 @@ open scoped _root_.P2MW.S_MvPowerSeries_mul_pow_mem_span_X_pow_and_sum_coeff_mul
 open scoped _root_.P2MW.S_MvPowerSeries_mul_pow_mem_span_X_pow_and_sum_coeff_mul_pow_eq_constantCoeff_mul_pow.MvPowerSeries
 
 open MvPowerSeries.PowPureAux in
+/--
+@isnad1 id=and.1h7v.s11.e6f4ba3969b6 from=translated src=- shape=47aed77d vocab=5266da17
+-/
 theorem solution
     (W : Type) [CommRing W] (G h : MvPowerSeries (Fin 2) W) (d k : ℕ)
     (hh : h ∈ (Ideal.span {(MvPowerSeries.X 0 : MvPowerSeries (Fin 2) W), MvPowerSeries.X 1}) ^ d) (a b : W) :

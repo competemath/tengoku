@@ -8,6 +8,9 @@ namespace P2MW.S_CuspForm_eq_zero_of_odd_gamma0
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.1h3v.s9.fd819ef495d7 from=translated src=- shape=7d4e36f4 vocab=57d95e34
+-/
 theorem solution (N : ℕ) (k : ℤ) (hk : Odd k)
     (f : CuspForm (CongruenceSubgroup.Gamma0 N) k) : f = 0 := by
   have hΓ : (-1 : GL (Fin 2) ℝ) ∈ (CongruenceSubgroup.Gamma0 N : Subgroup (GL (Fin 2) ℝ)) := by

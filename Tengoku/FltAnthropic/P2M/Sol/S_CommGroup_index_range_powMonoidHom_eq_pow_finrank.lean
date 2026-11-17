@@ -9,6 +9,9 @@ set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 3200000
 
+/--
+@isnad1 id=eq.2h2v.s7.a24dc6398b9d from=translated src=- shape=79af5bf8 vocab=710cdf03
+-/
 theorem solution {F : Type*} [CommGroup F] [Group.FG F]
     (htf : ∀ (x : F) (m : ℕ), 0 < m → x ^ m = 1 → x = 1) {n : ℕ} (hn : 0 < n) :
     (powMonoidHom n : F →* F).range.index = n ^ Module.finrank ℤ (Additive F) := by

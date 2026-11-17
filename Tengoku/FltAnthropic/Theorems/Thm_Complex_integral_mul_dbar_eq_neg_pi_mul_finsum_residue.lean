@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Complex_integral_mul_dbar_eq_neg_pi_mul_fi
 open Complex MeasureTheory
 open scoped Topology Real
 
+/--
+@isnad1 id=eq.5h4v.s10.bcb4a5476e31 from=translated src=- shape=bca81833 vocab=02ee6dd4
+-/
 theorem Complex.integral_mul_dbar_eq_neg_pi_mul_finsum_residue
     (U : Set ℂ) (hU : IsOpen U) (F c : ℂ → ℂ)
     (hloc : ∀ a ∈ U, ∃ g : ℂ → ℂ, AnalyticAt ℂ g a ∧

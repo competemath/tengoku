@@ -22,6 +22,9 @@ open _root_.Deformation
 
 variable {p : ℕ} [Fact p.Prime]
 
+/--
+@isnad1 id=eq.0h4v.s7.31bac3c04915 from=translated src=- shape=c25f7f92 vocab=048cfc75
+-/
 theorem coeff_zero_add {S : Type v} [CommRing S] (a b : TruncatedWittVector p 1 S) :
     (a + b).coeff 0 = a.coeff 0 + b.coeff 0 := by
   obtain ⟨a, rfl⟩ := WittVector.truncate_surjective p 1 S a
@@ -37,6 +40,9 @@ theorem eq_iff_coeff_zero {S : Type v} [CommRing S] (a b : TruncatedWittVector p
   subst hi
   exact h
 
+/--
+@isnad1 id=iff.0h4v.s8.da34d1d35e73 from=translated src=- shape=677e795f vocab=dd563698
+-/
 theorem main (k : Type u) [Field k] (p : ℕ) [Fact p.Prime] [CharP k p]
     (A : Type v) [CommRing A] [HopfAlgebra k A] (x : TruncatedWittVector p 1 A) :
     x ∈ wittHom k p 1 A ↔ x.coeff 0 ∈ primitives k A := by
@@ -49,6 +55,9 @@ theorem main (k : Type u) [Field k] (p : ℕ) [Fact p.Prime] [CharP k p]
 
 end Deformation.WittHomLevelOne
 
+/--
+@isnad1 id=iff.0h4v.s8.da34d1d35e73 from=translated src=- shape=677e795f vocab=dd563698
+-/
 theorem solution
     (k : Type u) [Field k] (p : ℕ) [Fact p.Prime] [CharP k p]
     (A : Type v) [CommRing A] [HopfAlgebra k A] (x : TruncatedWittVector p 1 A) :

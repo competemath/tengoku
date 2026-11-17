@@ -16,19 +16,31 @@ variable {q : ℕ} {O : Type} [CommRing O]
 
 abbrev sw : Fin 2 ≃ Fin 2 := Equiv.swap (0 : Fin 2) 1
 
+/--
+@isnad1 id=eq.0h1v.s8.b11287dc7efd from=translated src=- shape=bb3dded3 vocab=f57fa76b
+-/
 lemma rename_X0 : rename (⇑sw) (X 0 : MvPowerSeries (Fin 2) O) = X 1 := by
   rw [rename_X]; simp [sw]
 
+/--
+@isnad1 id=eq.0h1v.s8.9ac8b32e7fdf from=translated src=- shape=bb3dded3 vocab=f57fa76b
+-/
 lemma rename_X1 : rename (⇑sw) (X 1 : MvPowerSeries (Fin 2) O) = X 0 := by
   rw [rename_X]; simp [sw]
 
 variable (q) in
+/--
+@isnad1 id=eq.0h2v.s8.e9accb34824c from=translated src=- shape=62d90b25 vocab=d541fd7e
+-/
 lemma rename_drinfeldForm :
     rename (⇑sw) (drinfeldForm q O) = -drinfeldForm q O := by
   unfold drinfeldForm
   rw [map_sub, map_mul, map_mul, map_pow, map_pow, rename_X0, rename_X1]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s9.df3506767831 from=translated src=- shape=c8fd7783 vocab=75269d9b
+-/
 lemma map_span_X :
     Ideal.map (rename (R := O) (⇑sw)).toRingHom
       (Ideal.span {(X 0 : MvPowerSeries (Fin 2) O), X 1}) =
@@ -40,6 +52,9 @@ lemma map_span_X :
     simp only [AlgHom.toRingHom_eq_coe, RingHom.coe_coe, rename_X0, rename_X1]
   rw [this, Set.pair_comm]
 
+/--
+@isnad1 id=mem.1h3v.s10.ae7a5d3f874f from=translated src=- shape=eacfd9b3 vocab=7ff434f6
+-/
 lemma rename_mem_pow {g : MvPowerSeries (Fin 2) O} {n : ℕ}
     (hg : g ∈ (Ideal.span {(X 0 : MvPowerSeries (Fin 2) O), X 1}) ^ n) :
     rename (⇑sw) g ∈ (Ideal.span {(X 0 : MvPowerSeries (Fin 2) O), X 1}) ^ n := by
@@ -62,6 +77,9 @@ noncomputable def swapPres (pr : ChartPresentation q O ϖ) : ChartPresentation q
     rw [this]
     exact neg_mem h
 
+/--
+@isnad1 id=eq.0h4v.s8.8fd3e2d89886 from=translated src=- shape=469816c5 vocab=7af57ab0
+-/
 lemma swapPres_rel (pr : ChartPresentation q O ϖ) :
     (swapPres pr).rel = rename (⇑sw) pr.rel := by
   simp only [ChartPresentation.rel, swapPres, map_sub, map_mul, rename_C]
@@ -74,6 +92,9 @@ noncomputable def swapEquiv (pr : ChartPresentation q O ϖ) : pr.Ring ≃+* (swa
       congr 2
       )
 
+/--
+@isnad1 id=eq.0h5v.s11.626eabdb6d92 from=translated src=- shape=43d862c5 vocab=57230a04
+-/
 lemma swapEquiv_mk (pr : ChartPresentation q O ϖ) (g : MvPowerSeries (Fin 2) O) :
     swapEquiv pr (Ideal.Quotient.mk _ g) = Ideal.Quotient.mk _ (rename (⇑sw) g) := by
   simp [swapEquiv]
@@ -81,6 +102,9 @@ lemma swapEquiv_mk (pr : ChartPresentation q O ϖ) (g : MvPowerSeries (Fin 2) O)
 end S7Swap
 
 open S7Swap in
+/--
+@isnad1 id=ex.0h4v.s13.9ff3432993c7 from=translated src=- shape=e96e8c9b vocab=8f2d953a
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime] (O : Type) [CommRing O] (ϖ : O) (pr : ChartPresentation q O ϖ) :
     ∃ (pr' : ChartPresentation q O ϖ) (e : pr.Ring ≃+* pr'.Ring),

@@ -14,6 +14,9 @@ open Polynomial CuspidalType
 
 open Matrix
 
+/--
+@isnad1 id=ex.1h3v.s8.092aacdfcc8a from=translated src=- shape=cd9f83db vocab=bc5582bf
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime]
     (g : GL2 q) (x : ZMod q)

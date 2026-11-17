@@ -51,6 +51,9 @@ theorem eq_zero_and_eq_zero_of_forall_mul_pow_eq_mul {κ : Type*} [Field κ] {n 
   rw [hc, zero_mul] at this
   exact (mul_eq_zero.mp this.symm).resolve_right hy0
 
+/--
+@isnad1 id=eq.4h9v.s8.0fb4caca72ff from=translated src=- shape=3a1de5ba vocab=406e4f69
+-/
 theorem mul_eq_mul_of_forall_period_of_forall_eq_mul {κ : Type*} [Field κ] {p : ℕ} (hp : 2 ≤ p)
     (s : Finset κ) (hs : p < s.card) (α β P Q μ e : κ)
     (hper : ∀ y ∈ s, β * y ^ (p ^ 2) + α * y ^ p = e * y)
@@ -72,6 +75,9 @@ namespace H4C2c
 end H4C2c
 
 open H4C2c in
+/--
+@isnad1 id=not.4h13v.s10.ac6bfb7d6cf9 from=translated src=- shape=7b7ae74c vocab=664a00de
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] {κ : Type} [Field κ] [CharP κ p]
     {G : Type} [AddCommGroup G] (x₀ : G →+ κ)

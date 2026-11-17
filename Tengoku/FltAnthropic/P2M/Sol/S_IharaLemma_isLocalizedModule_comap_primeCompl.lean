@@ -9,6 +9,9 @@ import Tengoku.Seed.RingTheory.Localization.Defs
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_IharaLemma_isLocalizedModule_comap_primeCompl.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 namespace P2MW.S_IharaLemma_isLocalizedModule_comap_primeCompl
 
+/--
+@isnad1 id=islocali.1h6v.s9.6938d62e3ea0 from=translated src=- shape=856c47de vocab=909faae0
+-/
 theorem solution {Λ B : Type*} [CommRing Λ] [CommRing B] [Algebra Λ B]
     (hπ : Function.Surjective (algebraMap Λ B))
     (𝔭 : Ideal B) [𝔭.IsPrime]

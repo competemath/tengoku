@@ -15,13 +15,22 @@ open scoped Real
 
 namespace DedekindEtaLog
 
+/--
+@isnad1 id=eq.5h2v.s5.1888d4a0cfd8 from=translated src=- shape=7032fc57 vocab=5ddfe85e
+-/
 lemma exp_inj_of_im {x y : ℂ} (hx1 : -π < x.im) (hx2 : x.im ≤ π) (hy1 : -π < y.im) (hy2 : y.im ≤ π)
     (h : exp x = exp y) : x = y := by
   rw [← log_exp hx1 hx2, ← log_exp hy1 hy2, h]
 
+/--
+@isnad1 id=and.1h1v.s6.3a39fb41ac27 from=translated src=- shape=6dba8754 vocab=2d5e91d6
+-/
 lemma arg_mem_of_re_pos {u : ℂ} (hu : 0 < u.re) : -(π / 2) < arg u ∧ arg u < π / 2 :=
   abs_lt.1 (abs_arg_lt_pi_div_two_iff.2 (Or.inl hu))
 
+/--
+@isnad1 id=eq.4h3v.s6.4099757e88d3 from=translated src=- shape=a84c53f5 vocab=26814477
+-/
 theorem log_add_log_eq {u v w : ℂ} (hu : 0 < u.re) (hv : 0 < v.re) (hw : 0 < w.re)
     (h : u * v = -I * w) : log u + log v = log w - π * I / 2 := by
   have hu0 : u ≠ 0 := fun h0 => by simp [h0] at hu
@@ -49,5 +58,8 @@ end DedekindEtaLog
 
 end
 
+/--
+@isnad1 id=eq.4h3v.s6.4099757e88d3 from=translated src=- shape=a84c53f5 vocab=26814477
+-/
 theorem solution {u v w : ℂ} (hu : 0 < u.re) (hv : 0 < v.re) (hw : 0 < w.re) (h : u * v = -Complex.I * w) : Complex.log u + Complex.log v = Complex.log w - Real.pi * Complex.I / 2 :=
   DedekindEtaLog.log_add_log_eq hu hv hw h

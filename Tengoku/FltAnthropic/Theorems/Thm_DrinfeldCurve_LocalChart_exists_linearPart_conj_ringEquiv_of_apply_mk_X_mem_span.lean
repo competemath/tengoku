@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_DrinfeldCurve_LocalChart_exists_linearPart
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=other.10h16v.s18.748c773e162e from=translated src=- shape=6a6b69bd vocab=dde34590
+-/
 theorem DrinfeldCurve.LocalChart.exists_linearPart_conj_ringEquiv_of_apply_mk_X_mem_span
     (q : ℕ) [Fact q.Prime]
     (W₀ : Type) [CommRing W₀] [IsDomain W₀] [IsDiscreteValuationRing W₀]

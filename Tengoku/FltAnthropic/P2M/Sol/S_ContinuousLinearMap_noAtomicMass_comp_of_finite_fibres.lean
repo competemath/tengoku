@@ -13,6 +13,9 @@ namespace NoAtomPush
 
 variable {Y : Type*} [TopologicalSpace Y]
 
+/--
+@isnad1 id=continuo.3h3v.s7.f2720df5853f from=translated src=- shape=f2ea94fa vocab=2829d2b9
+-/
 theorem continuous_piece (h : Y → ℂ) (hh : Continuous h) (A : Set Y) [∀ y, Decidable (y ∈ A)] (hA : IsOpen A)
     (hz : ∀ x ∉ A, (∀ᶠ y in 𝓝 x, y ∉ A) ∨ h x = 0) :
     Continuous (fun y => if y ∈ A then h y else 0) := by
@@ -41,6 +44,9 @@ theorem continuous_piece (h : Y → ℂ) (hh : Continuous h) (A : Set Y) [∀ y,
 end NoAtomPush
 
 open NoAtomPush in
+/--
+@isnad1 id=ex.6h11v.s12.a1a753706af3 from=translated src=- shape=6d4f78a0 vocab=24a557bb
+-/
 theorem solution
     {ιK ιL : Type} (XK : Set (ιK → ℂ × ℂ)) (hXKc : IsCompact XK) (X : Set (ιL → ℂ × ℂ)) (T : Finset ιK)
     (w' : ιK → ιL)

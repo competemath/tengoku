@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open IsLocalRing
 
+/--
+@isnad1 id=ex.12h13v.s15.2239d3fa9250 from=translated src=- shape=0d282a0b vocab=2a111b61
+-/
 theorem DrinfeldCurve.LocalChart.exists_apply_mk_X_eq_mk_linearPart_rational_of_ringEquiv_of_forall_apply_mk_C
     (q : ℕ) [Fact q.Prime]
     (W₁ : Type) [CommRing W₁] [IsDomain W₁] [IsDiscreteValuationRing W₁]

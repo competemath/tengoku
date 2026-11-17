@@ -12,6 +12,9 @@ set_option maxHeartbeats 80000000
 
 open IsLocalRing ModularCurve ModularCurve.UVCrossingModel
 
+/--
+@isnad1 id=other.12h11v.s21.ed8cbc0ac087 from=translated src=- shape=f9943204 vocab=017637d2
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime]
     (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] [IsAdicComplete (maximalIdeal O) O]

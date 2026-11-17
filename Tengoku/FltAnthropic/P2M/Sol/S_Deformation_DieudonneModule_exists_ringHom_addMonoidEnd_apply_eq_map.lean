@@ -12,6 +12,9 @@ namespace P2MW.S_Deformation_DieudonneModule_exists_ringHom_addMonoidEnd_apply_e
 set_option autoImplicit false
 open scoped TensorProduct
 
+/--
+@isnad1 id=ex.3h5v.s11.56aec6d03154 from=translated src=- shape=e31e32d7 vocab=fb2a507d
+-/
 theorem solution
     (R : Type) [CommRing R] (p : ℕ) [Fact p.Prime]
     {A : Type} [CommRing A] [Bialgebra R A]

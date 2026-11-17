@@ -18,6 +18,9 @@ export _root_.CuspForm (translate ext)
 namespace ConjInvolution
 open _root_.CuspForm
 
+/--
+@isnad1 id=eq.0h1v.s10.c4cffff0b514 from=translated src=- shape=cc935429 vocab=d1af7eee
+-/
 theorem J_inv_mul_mapGL_mul_J (γ : SL(2, ℤ)) :
     UpperHalfPlane.J⁻¹ * (mapGL ℝ γ : GL (Fin 2) ℝ) * UpperHalfPlane.J =
       (mapGL ℝ (ModularCurve.Period.jConjSL γ) : GL (Fin 2) ℝ) := by
@@ -29,6 +32,9 @@ theorem J_inv_mul_mapGL_mul_J (γ : SL(2, ℤ)) :
     simp [UpperHalfPlane.J, Matrix.mul_apply, Fin.sum_univ_two, ModularCurve.Period.jConjMat,
       Matrix.GeneralLinearGroup.mkOfDetNeZero, Matrix.vecMul, dotProduct]
 
+/--
+@isnad1 id=eq.1h1v.s11.830216630437 from=translated src=- shape=ca8330ba vocab=18d45b31
+-/
 theorem conjAct_J_inv_smul_eq (Γ : Subgroup SL(2, ℤ))
     (hΓ : ∀ γ ∈ Γ, ModularCurve.Period.jConjSL γ ∈ Γ) :
     ConjAct.toConjAct (UpperHalfPlane.J)⁻¹ • (Γ : Subgroup (GL (Fin 2) ℝ)) =
@@ -55,6 +61,9 @@ def conjOf (Γ : Subgroup SL(2, ℤ)) (hΓ : ∀ γ ∈ Γ, ModularCurve.Period.
   (CuspForm.translate f UpperHalfPlane.J).copy ((⇑f) ∣[k] UpperHalfPlane.J) rfl
     (conjAct_J_inv_smul_eq Γ hΓ).symm
 
+/--
+@isnad1 id=eq.1h4v.s10.d691f4f3daf3 from=translated src=- shape=fc218028 vocab=a80d79b9
+-/
 theorem conjOf_apply (Γ : Subgroup SL(2, ℤ)) (hΓ : ∀ γ ∈ Γ, ModularCurve.Period.jConjSL γ ∈ Γ) {k : ℤ}
     (f : CuspForm Γ k) (τ : ℍ) : conjOf Γ hΓ f τ = conj (f (UpperHalfPlane.J • τ)) := by
   show ((⇑f) ∣[k] UpperHalfPlane.J) τ = _
@@ -65,6 +74,9 @@ end CuspForm.ConjInvolution
 
 end
 
+/--
+@isnad1 id=ex.1h3v.s11.0bf98f058f35 from=translated src=- shape=88486107 vocab=893d3cf7
+-/
 theorem solution
     (Γ : Subgroup SL(2, ℤ)) (hΓ : ∀ γ ∈ Γ, ModularCurve.Period.jConjSL γ ∈ Γ) (k : ℤ)
     (f : CuspForm Γ k) :

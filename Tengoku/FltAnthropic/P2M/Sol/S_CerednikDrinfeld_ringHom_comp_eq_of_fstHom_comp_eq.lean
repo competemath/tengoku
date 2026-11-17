@@ -7,6 +7,9 @@ namespace P2MW.S_CerednikDrinfeld_ringHom_comp_eq_of_fstHom_comp_eq
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.1h5v.s10.c17d1da710f3 from=translated src=- shape=a9666ffc vocab=e3c2301a
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] (k : Type) [Field k] [CharP k p] [PerfectRing k p]
     (κ : Type) [Field κ] [CharP κ p]

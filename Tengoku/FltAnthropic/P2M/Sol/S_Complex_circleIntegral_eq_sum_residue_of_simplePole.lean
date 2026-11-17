@@ -11,6 +11,9 @@ set_option maxHeartbeats 6400000
 open scoped Topology
 open Metric Filter
 
+/--
+@isnad1 id=eq.4h5v.s8.00afb11db780 from=translated src=- shape=f1a28df2 vocab=43f815ba
+-/
 theorem solution {R : ℝ} {z₀ : ℂ} (hR : 0 < R) (h c : ℂ → ℂ) (Z : Finset ℂ)
     (hZ : ∀ a ∈ Z, a ∈ Metric.ball z₀ R)
     (hh : ∀ z ∈ Metric.closedBall z₀ R, z ∉ Z → AnalyticAt ℂ h z)

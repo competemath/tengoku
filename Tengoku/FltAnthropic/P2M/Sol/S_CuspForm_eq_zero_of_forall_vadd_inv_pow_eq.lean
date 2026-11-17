@@ -8,6 +8,9 @@ namespace P2MW.S_CuspForm_eq_zero_of_forall_vadd_inv_pow_eq
 open CongruenceSubgroup ModularForm UpperHalfPlane
 open scoped ModularForm UpperHalfPlane MatrixGroups Real
 
+/--
+@isnad1 id=eq.2h4v.s10.6112ce885e88 from=translated src=- shape=2c685b14 vocab=6d2600fb
+-/
 theorem solution
     {R q' : ℕ} [NeZero R] (hq' : 1 < q') (k : ℤ)
     (y : CuspForm ((Gamma0 R : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)) k)

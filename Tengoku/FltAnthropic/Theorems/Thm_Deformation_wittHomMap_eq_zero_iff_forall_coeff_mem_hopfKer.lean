@@ -10,6 +10,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Deformation_wittHomMap_eq_zero_iff_forall_
 
 universe u v w
 
+/--
+@isnad1 id=iff.0h7v.s11.b4b4dc74993e from=translated src=- shape=086a873f vocab=677485d6
+-/
 theorem Deformation.wittHomMap_eq_zero_iff_forall_coeff_mem_hopfKer
     {R : Type u} [CommRing R] {p : ℕ} [Fact p.Prime] {n : ℕ}
     {A : Type v} [CommRing A] [Bialgebra R A] {B : Type w} [CommRing B] [Bialgebra R B]

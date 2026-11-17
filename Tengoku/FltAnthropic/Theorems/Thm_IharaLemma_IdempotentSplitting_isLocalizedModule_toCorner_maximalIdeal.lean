@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_IharaLemma_IdempotentSplitting_isLocalized
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=islocali.0h4v.s7.b8aa98428ca1 from=translated src=- shape=6ae5c7fb vocab=ea78c178
+-/
 theorem IharaLemma.IdempotentSplitting.isLocalizedModule_toCorner_maximalIdeal {B : Type}
     [CommRing B] (S : IharaLemma.IdempotentSplitting B) (i : Fin S.n) {M : Type}
     [AddCommGroup M] [Module B M] :

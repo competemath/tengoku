@@ -11,6 +11,9 @@ set_option autoImplicit false
 open Complex Real UpperHalfPlane
 open scoped Manifold MatrixGroups ModularForm
 
+/--
+@isnad1 id=ex.7h6v.s9.d390dcbcb0f6 from=translated src=- shape=d2f9b436 vocab=30af0471
+-/
 theorem WLight.exists_analyticOnNhd_div_of_monicRel {𝕜 : Type*} [NontriviallyNormedField 𝕜]
     {U : Set 𝕜} (hU : IsOpen U) (hUc : IsPreconnected U)
     {F G : 𝕜 → 𝕜} {c : ℕ → 𝕜 → 𝕜} {n : ℕ}

@@ -8,6 +8,9 @@ namespace P2MW.S_ClassGroup_exists_finset_forall_exists_mk0_eq_of_dvd
 set_option autoImplicit false
 open scoped nonZeroDivisors
 
+/--
+@isnad1 id=ex.0h1v.s11.d25352d7c8d8 from=translated src=- shape=cab8315d vocab=423700ba
+-/
 theorem solution
     (R : Type*) [CommRing R] [IsDedekindDomain R] [Finite (ClassGroup R)] :
     ∃ S : Finset (IsDedekindDomain.HeightOneSpectrum R), ∀ c : ClassGroup R, ∃ I : (Ideal R)⁰,

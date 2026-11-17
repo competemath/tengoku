@@ -5,6 +5,9 @@ import Tengoku
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_Complex_exists_mul_norm_sub_le_iSup_norm_minor_of_wedge_deriv_ne_zero.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 namespace P2MW.S_Complex_exists_mul_norm_sub_le_iSup_norm_minor_of_wedge_deriv_ne_zero
 
+/--
+@isnad1 id=ex.3h4v.s8.e6f636273a5b from=translated src=- shape=73c6d087 vocab=3ed28d24
+-/
 theorem solution {r : ℕ} {φ : ℂ → Fin r → ℂ} {c : ℂ}
     {R : ℝ} (hR : 0 < R) (hφ : ∀ i, DifferentiableOn ℂ (fun z ↦ φ z i) (Metric.ball c R))
     (hw : ∃ p : Fin r × Fin r,

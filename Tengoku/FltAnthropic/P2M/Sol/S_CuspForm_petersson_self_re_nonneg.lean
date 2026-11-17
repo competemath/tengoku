@@ -24,9 +24,15 @@ def summand (f g : CuspForm (CongruenceSubgroup.Gamma0 N) k)
     (q : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N) (τ : ℍ) : ℂ :=
   UpperHalfPlane.petersson k (tr f q.out) (tr g q.out) τ
 
+/--
+@isnad1 id=eq.0h5v.s9.b4085a0eda40 from=translated src=- shape=0eebad85 vocab=9d7856db
+-/
 theorem integrand_eq_finsum (f g : CuspForm (CongruenceSubgroup.Gamma0 N) k) (τ : ℍ) :
     CuspForm.peterssonIntegrand f g τ = ∑ᶠ q, summand f g q τ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.537feb80c80d from=translated src=- shape=8850e7dc vocab=7bc51e94
+-/
 theorem integrand_eq_sum [Fintype (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N)]
     (f g : CuspForm (CongruenceSubgroup.Gamma0 N) k) (τ : ℍ) :
     CuspForm.peterssonIntegrand f g τ = ∑ q, summand f g q τ := by
@@ -36,6 +42,9 @@ def selfDensity [Fintype (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N)]
     (f : CuspForm (CongruenceSubgroup.Gamma0 N) k) (τ : ℍ) : ℝ :=
   ∑ q : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N, ‖tr f q.out τ‖ ^ 2 * τ.im ^ k
 
+/--
+@isnad1 id=eq.0h3v.s5.29a8a5ba3bd0 from=translated src=- shape=b2a5f648 vocab=49ae1aab
+-/
 theorem petersson_self_pt (h : ℍ → ℂ) (τ : ℍ) :
     UpperHalfPlane.petersson k h h τ = ((‖h τ‖ ^ 2 * τ.im ^ k : ℝ) : ℂ) := by
   unfold UpperHalfPlane.petersson
@@ -43,6 +52,9 @@ theorem petersson_self_pt (h : ℍ → ℂ) (τ : ℍ) :
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h4v.s8.cc902880f9e8 from=translated src=- shape=f391d3f7 vocab=1428685a
+-/
 theorem integrand_self_eq [Fintype (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N)]
     (f : CuspForm (CongruenceSubgroup.Gamma0 N) k) (τ : ℍ) :
     CuspForm.peterssonIntegrand f f τ = (selfDensity f τ : ℂ) := by
@@ -50,12 +62,18 @@ theorem integrand_self_eq [Fintype (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N)]
   refine Finset.sum_congr rfl fun q _ => ?_
   exact petersson_self_pt _ _
 
+/--
+@isnad1 id=le.0h4v.s8.572a68d18a06 from=translated src=- shape=10dfa17e vocab=e60db6e2
+-/
 theorem selfDensity_nonneg [Fintype (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N)]
     (f : CuspForm (CongruenceSubgroup.Gamma0 N) k) (τ : ℍ) : 0 ≤ selfDensity f τ :=
   Finset.sum_nonneg fun _ _ => mul_nonneg (sq_nonneg _) (zpow_nonneg τ.im_pos.le _)
 
 def twoI : ℍ := ⟨2 * Complex.I, by simp⟩
 
+/--
+@isnad1 id=eq.0h3v.s8.ad0a4153ddfa from=translated src=- shape=25930019 vocab=9a559b26
+-/
 theorem petersson_self_eq_integral [Fintype (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N)]
     (f : CuspForm (CongruenceSubgroup.Gamma0 N) k) :
     CuspForm.petersson f f = ((∫ τ in 𝒟, selfDensity f τ : ℝ) : ℂ) := by
@@ -68,6 +86,9 @@ variable [NeZero N]
 scoped instance : Finite (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N) :=
   Subgroup.finite_quotient_of_finiteIndex
 
+/--
+@isnad1 id=le.0h3v.s7.454faf7cea3d from=translated src=- shape=41c2441f vocab=fc6c042f
+-/
 theorem petersson_self_re_nonneg' (f : CuspForm (CongruenceSubgroup.Gamma0 N) k) :
     0 ≤ (CuspForm.petersson f f).re := by
   haveI := Fintype.ofFinite (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N)
@@ -78,6 +99,9 @@ end fin
 
 end AlliAux1Pet
 open scoped _root_.P2MW.S_CuspForm_petersson_self_re_nonneg.AlliAux1Pet
+/--
+@isnad1 id=le.0h3v.s7.454faf7cea3d from=translated src=- shape=41c2441f vocab=fc6c042f
+-/
 theorem solution {N : ℕ} {k : ℤ} [NeZero N]
     (f : CuspForm (CongruenceSubgroup.Gamma0 N) k) :
     0 ≤ (CuspForm.petersson f f).re :=

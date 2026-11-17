@@ -9,6 +9,9 @@ import Tengoku.Seed.Data.Set.Finite.Lattice
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_Complex_exists_forall_not_countable_setOf_re_gt_mem_of_finite.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 namespace P2MW.S_Complex_exists_forall_not_countable_setOf_re_gt_mem_of_finite
 
+/--
+@isnad1 id=ex.1h2v.s6.348a6cd078d1 from=translated src=- shape=82f36c78 vocab=bf94310f
+-/
 theorem solution
     {ι : Type} [Finite ι] (S : ι → Set ℂ)
     (h : ∀ σ' : ℝ, ¬ Set.Countable {s : ℂ | σ' < s.re ∧ ∃ i, s ∈ S i}) :

@@ -9,6 +9,9 @@ import Tengoku.Seed.Analysis.Complex.Convex
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_Complex_exists_forall_ne_zero_re_gt_of_differentiableOn_of_exists_ne_zero.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 namespace P2MW.S_Complex_exists_forall_ne_zero_re_gt_of_differentiableOn_of_exists_ne_zero
 
+/--
+@isnad1 id=ex.2h5v.s7.cdbea7843758 from=translated src=- shape=6c1ad5c3 vocab=5897f66e
+-/
 theorem solution
     {ι : Type} (t : Finset ι) (f : ι → ℂ → ℂ) (σ : ℝ)
     (hf : ∀ i ∈ t, DifferentiableOn ℂ (f i) {s : ℂ | σ < s.re})

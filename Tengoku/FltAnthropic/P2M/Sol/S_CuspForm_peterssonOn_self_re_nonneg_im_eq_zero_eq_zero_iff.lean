@@ -20,6 +20,9 @@ variable {Γ : Subgroup SL(2, ℤ)} [Γ.FiniteIndex] {k : ℤ}
 
 local notation "Γᴳᴸ" => ((Γ : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ))
 
+/--
+@isnad1 id=continuo.0h0v.s7.9213c1ba3a46 from=translated src=- shape=6cb9e56d vocab=434fe350
+-/
 scoped instance sl2zContinuousConstSMul : ContinuousConstSMul SL(2, ℤ) ℍ where
   continuous_const_smul γ := by
     have h : (fun z : ℍ => γ • z) =
@@ -35,6 +38,9 @@ scoped instance fintypeQuot : Fintype (SL(2, ℤ) ⧸ Γ) :=
 
 def cosum (Φ : ℍ → ℂ) (x : ℍ) : ℂ := ∑ q : SL(2, ℤ) ⧸ Γ, Φ ((q.out⁻¹ : SL(2, ℤ)) • x)
 
+/--
+@isnad1 id=eq.0h4v.s6.d812b939f2c1 from=translated src=- shape=cf9b44ef vocab=4637b5c1
+-/
 theorem integrand_eq (F G : ℍ → ℂ) :
     CuspForm.peterssonOnIntegrand Γ k F G = cosum (Γ := Γ) (UpperHalfPlane.petersson k F G) := by
   funext x
@@ -42,6 +48,9 @@ theorem integrand_eq (F G : ℍ → ℂ) :
   rw [finsum_eq_sum_of_fintype]
   exact Finset.sum_congr rfl fun q _ => UpperHalfPlane.petersson_slash_SL k F G _ x
 
+/--
+@isnad1 id=ex.0h4v.s9.2f65463a0061 from=translated src=- shape=e3bfd1fd vocab=10b6c998
+-/
 theorem petersson_bounded (f g : CuspForm Γᴳᴸ k) :
     ∃ C, ∀ x, ‖UpperHalfPlane.petersson k ⇑f ⇑g x‖ ≤ C :=
   CuspFormClass.petersson_bounded_left k Γᴳᴸ f g
@@ -49,10 +58,16 @@ theorem petersson_bounded (f g : CuspForm Γᴳᴸ k) :
 def dens (f : CuspForm Γᴳᴸ k) (x : ℍ) : ℝ := ‖f x‖ ^ 2 * x.im ^ k
 
 omit [Γ.FiniteIndex] in
+/--
+@isnad1 id=le.0h4v.s7.f9aac5fbf147 from=translated src=- shape=7960cd4f vocab=2e103bd1
+-/
 theorem dens_nonneg (f : CuspForm Γᴳᴸ k) (x : ℍ) : 0 ≤ dens f x :=
   mul_nonneg (sq_nonneg _) (zpow_nonneg x.im_pos.le _)
 
 omit [Γ.FiniteIndex] in
+/--
+@isnad1 id=eq.0h4v.s9.d39d8079c57a from=translated src=- shape=c54a7422 vocab=3339017c
+-/
 theorem petersson_self_eq_dens (f : CuspForm Γᴳᴸ k) (x : ℍ) :
     UpperHalfPlane.petersson k ⇑f ⇑f x = ((dens f x : ℝ) : ℂ) := by
   unfold UpperHalfPlane.petersson dens
@@ -61,6 +76,9 @@ theorem petersson_self_eq_dens (f : CuspForm Γᴳᴸ k) (x : ℍ) :
   ring
 
 omit [Γ.FiniteIndex] in
+/--
+@isnad1 id=continuo.0h3v.s7.0cd2ce11055f from=translated src=- shape=eb657e45 vocab=098d1116
+-/
 theorem continuous_dens (f : CuspForm Γᴳᴸ k) : Continuous (dens f) := by
   unfold dens
   refine ((continuous_norm.comp (CuspFormClass.holo f).continuous).pow 2).mul ?_
@@ -68,18 +86,30 @@ theorem continuous_dens (f : CuspForm Γᴳᴸ k) : Continuous (dens f) := by
 
 def rdens (f : CuspForm Γᴳᴸ k) (x : ℍ) : ℝ := ∑ q : SL(2, ℤ) ⧸ Γ, dens f ((q.out⁻¹ : SL(2, ℤ)) • x)
 
+/--
+@isnad1 id=le.0h4v.s7.4ee96c48c813 from=translated src=- shape=dea551f3 vocab=82d8a9d4
+-/
 theorem rdens_nonneg (f : CuspForm Γᴳᴸ k) (x : ℍ) : 0 ≤ rdens f x :=
   Finset.sum_nonneg fun _ _ => dens_nonneg f _
 
+/--
+@isnad1 id=continuo.0h3v.s7.0c9161125ab8 from=translated src=- shape=601b35ab vocab=cd6b8172
+-/
 theorem continuous_rdens (f : CuspForm Γᴳᴸ k) : Continuous (rdens f) :=
   continuous_finsetSum _ fun _ _ => (continuous_dens f).comp (continuous_const_smul _)
 
+/--
+@isnad1 id=eq.0h3v.s9.0f06d223d09b from=translated src=- shape=97033c91 vocab=a7aad045
+-/
 theorem integrand_self_eq (f : CuspForm Γᴳᴸ k) :
     CuspForm.peterssonOnIntegrand Γ k ⇑f ⇑f = fun x => ((rdens f x : ℝ) : ℂ) := by
   rw [integrand_eq]
   funext x
   simp only [cosum, rdens, petersson_self_eq_dens, Complex.ofReal_sum]
 
+/--
+@isnad1 id=integrab.0h3v.s8.579b8d6c035b from=translated src=- shape=07aa7802 vocab=23cc4f13
+-/
 theorem integrable_rdens (f : CuspForm Γᴳᴸ k) : Integrable (rdens f) (volume.restrict (𝒟 : Set ℍ)) := by
   obtain ⟨C, hC⟩ := petersson_bounded f f
   refine Measure.integrableOn_of_bounded (M := ∑ _q : SL(2, ℤ) ⧸ Γ, C)
@@ -89,19 +119,31 @@ theorem integrable_rdens (f : CuspForm Γᴳᴸ k) : Integrable (rdens f) (volum
   have := hC ((q.out⁻¹ : SL(2, ℤ)) • x)
   rwa [petersson_self_eq_dens, Complex.norm_real] at this
 
+/--
+@isnad1 id=eq.0h3v.s9.4b4cecf6c581 from=translated src=- shape=7345818e vocab=5cfe2706
+-/
 theorem peterssonOn_self_eq (f : CuspForm Γᴳᴸ k) :
     CuspForm.peterssonOn Γ k f f = ((∫ x in (𝒟 : Set ℍ), rdens f x : ℝ) : ℂ) := by
   rw [CuspForm.peterssonOn_def, integrand_self_eq, integral_complex_ofReal]
 
+/--
+@isnad1 id=le.0h3v.s9.a7ba545558c3 from=translated src=- shape=7c1a2029 vocab=53cab797
+-/
 theorem peterssonOn_self_re_nonneg (f : CuspForm Γᴳᴸ k) : 0 ≤ (CuspForm.peterssonOn Γ k f f).re := by
   rw [peterssonOn_self_eq, Complex.ofReal_re]
   exact setIntegral_nonneg ModularGroup.isClosed_fd.measurableSet fun x _ => rdens_nonneg f x
 
+/--
+@isnad1 id=eq.0h3v.s9.d660a3206605 from=translated src=- shape=376da5f8 vocab=5317bc9c
+-/
 theorem peterssonOn_self_im (f : CuspForm Γᴳᴸ k) : (CuspForm.peterssonOn Γ k f f).im = 0 := by
   rw [peterssonOn_self_eq, Complex.ofReal_im]
 
 def w₀ : ℍ := ⟨2 * Complex.I, by simp⟩
 
+/--
+@isnad1 id=mem.0h0v.s3.0c4d2d55cea0 from=translated src=- shape=d1530203 vocab=7d314ad3
+-/
 theorem w₀_mem_fdo : w₀ ∈ 𝒟ᵒ := by
   refine ⟨?_, ?_⟩
   · show 1 < Complex.normSq (2 * Complex.I)
@@ -109,6 +151,9 @@ theorem w₀_mem_fdo : w₀ ∈ 𝒟ᵒ := by
   · show |(2 * Complex.I).re| < 1 / 2
     simp
 
+/--
+@isnad1 id=eq.2h4v.s8.b508e89d434a from=translated src=- shape=7b472e92 vocab=e827e403
+-/
 theorem rdens_eq_zero_of_integral_eq_zero (f : CuspForm Γᴳᴸ k)
     (h : ∫ x in (𝒟 : Set ℍ), rdens f x = 0) {x : ℍ} (hx : x ∈ 𝒟ᵒ) : rdens f x = 0 := by
 
@@ -188,6 +233,9 @@ theorem eq_zero_of_peterssonOn_self_eq_zero (f : CuspForm Γᴳᴸ k) (h : CuspF
   simp only [hF, Function.comp_apply, ofComplex_apply, Pi.zero_apply] at this
   simpa using this
 
+/--
+@isnad1 id=iff.0h3v.s10.5c14e0476901 from=translated src=- shape=2d726a8e vocab=07a53f05
+-/
 theorem peterssonOn_self_eq_zero_iff (f : CuspForm Γᴳᴸ k) : CuspForm.peterssonOn Γ k f f = 0 ↔ f = 0 := by
   constructor
   · exact eq_zero_of_peterssonOn_self_eq_zero f
@@ -205,6 +253,9 @@ end
 open scoped _root_.P2MW.S_CuspForm_peterssonOn_self_re_nonneg_im_eq_zero_eq_zero_iff.PetOnIP2
 
 open scoped MatrixGroups in
+/--
+@isnad1 id=and.0h3v.s11.bfa79f901738 from=translated src=- shape=2c5ef99b vocab=b74c6acf
+-/
 theorem solution (Γ : Subgroup SL(2, ℤ))
     [Γ.FiniteIndex] (k : ℤ) (f : CuspForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) :
     0 ≤ (CuspForm.peterssonOn Γ k f f).re ∧ (CuspForm.peterssonOn Γ k f f).im = 0 ∧

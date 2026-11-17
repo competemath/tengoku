@@ -13,6 +13,9 @@ universe u
 
 namespace RBCProof
 
+/--
+@isnad1 id=ex.2h10v.s9.8f01b2d252b0 from=translated src=- shape=47452086 vocab=eddb8233
+-/
 theorem pb_exists {P X Y Z : CommRingCat.{u}} {fst : P ⟶ X} {snd : P ⟶ Y} {f : X ⟶ Z} {g : Y ⟶ Z}
     (h : IsPullback fst snd f g) (x : X) (y : Y) (hxy : f x = g y) : ∃ p : P, fst p = x ∧ snd p = y := by
   let e := h.isLimit.conePointUniqueUpToIso (CommRingCat.pullbackConeIsLimit f g)
@@ -27,6 +30,9 @@ theorem pb_exists {P X Y Z : CommRingCat.{u}} {fst : P ⟶ X} {snd : P ⟶ Y} {f
     simp [CommRingCat.pullbackCone] at this
     exact this
 
+/--
+@isnad1 id=eq.3h10v.s9.d6004f5cc966 from=translated src=- shape=fc822063 vocab=eddb8233
+-/
 theorem pb_ext {P X Y Z : CommRingCat.{u}} {fst : P ⟶ X} {snd : P ⟶ Y} {f : X ⟶ Z} {g : Y ⟶ Z}
     (h : IsPullback fst snd f g) (p q : P) (h1 : fst p = fst q) (h2 : snd p = snd q) : p = q := by
   let e := h.isLimit.conePointUniqueUpToIso (CommRingCat.pullbackConeIsLimit f g)
@@ -45,6 +51,9 @@ theorem pb_ext {P X Y Z : CommRingCat.{u}} {fst : P ⟶ X} {snd : P ⟶ Y} {f : 
   · exact k1p.trans (h1.trans k1q.symm)
   · exact k2p.trans (h2.trans k2q.symm)
 
+/--
+@isnad1 id=surjecti.2h8v.s8.e05334e3d4d9 from=translated src=- shape=63bb8771 vocab=c7bff7fe
+-/
 theorem po_surj {C C₀ A A₀ : CommRingCat.{u}} {φ : C ⟶ C₀} {u : C ⟶ A} {u₀ : C₀ ⟶ A₀} {q : A ⟶ A₀}
     (h : IsPushout φ u u₀ q) (hφ : Function.Surjective φ) : Function.Surjective q := by
   have htop := CommRingCat.closure_range_union_range_eq_top_of_isPushout h
@@ -61,6 +70,9 @@ theorem po_surj {C C₀ A A₀ : CommRingCat.{u}} {φ : C ⟶ C₀} {u : C ⟶ A
   have hz : z ∈ q.hom.range := hle ▸ Subring.mem_top z
   exact hz
 
+/--
+@isnad1 id=eq.2h8v.s8.d924e89fa431 from=translated src=- shape=524d17e5 vocab=db96001d
+-/
 theorem po_ker {C C₀ A A₀ : CommRingCat.{u}} {φ : C ⟶ C₀} {u : C ⟶ A} {u₀ : C₀ ⟶ A₀} {q : A ⟶ A₀}
     (h : IsPushout φ u u₀ q) (hφ : Function.Surjective φ) :
     RingHom.ker q.hom = (RingHom.ker φ.hom).map u.hom := by
@@ -91,6 +103,9 @@ theorem po_ker {C C₀ A A₀ : CommRingCat.{u}} {φ : C ⟶ C₀} {u : C ⟶ A}
     simp only [CommRingCat.hom_comp, RingHom.coe_comp, Function.comp_apply, hc, map_zero] at this
     exact this.symm
 
+/--
+@isnad1 id=ispushou.10h20v.s8.7e2ffd8e570c from=translated src=- shape=d8d91a4d vocab=e2533977
+-/
 theorem half {P C' C'' C₀ A A' A'' A₀ : CommRingCat.{u}}
     {p' : P ⟶ C'} {p'' : P ⟶ C''} {φ' : C' ⟶ C₀} {φ'' : C'' ⟶ C₀} (hC : IsPullback p' p'' φ' φ'')
     {a' : A ⟶ A'} {a'' : A ⟶ A''} {q' : A' ⟶ A₀} {q'' : A'' ⟶ A₀} (hA : IsPullback a' a'' q' q'')
@@ -181,6 +196,9 @@ theorem half {P C' C'' C₀ A A' A'' A₀ : CommRingCat.{u}}
 
 end RBCProof
 
+/--
+@isnad1 id=and.10h20v.s8.aad018ad16d3 from=translated src=- shape=15bf00f1 vocab=e2533977
+-/
 theorem solution
     {P C' C'' C₀ A A' A'' A₀ : CommRingCat.{u}}
     {p' : P ⟶ C'} {p'' : P ⟶ C''} {φ' : C' ⟶ C₀} {φ'' : C'' ⟶ C₀} (hC : IsPullback p' p'' φ' φ'')

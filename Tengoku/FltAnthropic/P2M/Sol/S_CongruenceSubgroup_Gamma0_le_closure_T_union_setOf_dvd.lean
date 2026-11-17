@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 namespace AlliAux1Gen
 
+/--
+@isnad1 id=ex.2h3v.s5.4998516661c9 from=translated src=- shape=eabaa460 vocab=e4a95996
+-/
 theorem exists_isCoprime_add_mul (a c : ℤ) {q : ℕ} (hq : q ≠ 0) (hac : IsCoprime a c) :
     ∃ j : ℤ, IsCoprime (a + j * c) (q : ℤ) := by
   classical
@@ -53,6 +56,9 @@ theorem exists_isCoprime_add_mul (a c : ℤ) {q : ℕ} (hq : q ≠ 0) (hac : IsC
 
 open Matrix.SpecialLinearGroup in
 
+/--
+@isnad1 id=and.0h3v.s10.b63a13b68a2b from=translated src=- shape=aed89198 vocab=b0b57fd0
+-/
 theorem T_zpow_mul_mul_T_zpow_apply (j j' : ℤ) (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) :
     ((ModularGroup.T ^ j * γ * ModularGroup.T ^ j' :
         Matrix.SpecialLinearGroup (Fin 2) ℤ) : Matrix (Fin 2) (Fin 2) ℤ) 1 0
@@ -68,6 +74,9 @@ theorem T_zpow_mul_mul_T_zpow_apply (j j' : ℤ) (γ : Matrix.SpecialLinearGroup
 
 end AlliAux1Gen
 
+/--
+@isnad1 id=le.1h2v.s9.6a5f7871221c from=translated src=- shape=9664f8ec vocab=72dbdf66
+-/
 theorem solution (M : ℕ) {q : ℕ} (hq : q ≠ 0) :
     CongruenceSubgroup.Gamma0 M ≤ Subgroup.closure
       ({ModularGroup.T} ∪ {γ : Matrix.SpecialLinearGroup (Fin 2) ℤ |

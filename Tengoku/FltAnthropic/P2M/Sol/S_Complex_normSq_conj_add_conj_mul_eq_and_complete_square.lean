@@ -7,6 +7,9 @@ namespace P2MW.S_Complex_normSq_conj_add_conj_mul_eq_and_complete_square
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.0h2v.s10.685c3550009c from=translated src=- shape=0c051d76 vocab=285390a3
+-/
 theorem solution
     (r z : ℂ) :
     (‖(starRingEnd ℂ) z + (starRingEnd ℂ) r * z‖ ^ 2 =

@@ -8,6 +8,9 @@ namespace P2MW.S_CohCarrier_index_comap_unitsMap
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.1h3v.s7.72ca8c2420c2 from=translated src=- shape=7ee27b52 vocab=8c619bb6
+-/
 theorem solution
     {M M' : ℕ} [NeZero M'] (hMM' : M ∣ M') (H₀ : Subgroup (ZMod M)ˣ) :
     (H₀.comap (ZMod.unitsMap hMM')).index = H₀.index :=

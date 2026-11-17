@@ -18,11 +18,17 @@ export _root_.Complex (one_re measurable_ofReal one_cpow re norm_cpow_eq_rpow_re
 namespace BetaHalfLine
 open _root_.Complex
 
+/--
+@isnad1 id=integrab.1h4v.s6.5af4d2b0ee09 from=translated src=- shape=17c7ea8c vocab=ec62ff08
+-/
 theorem integrable_of_integral_ne_zero {α : Type*} [MeasurableSpace α] {μ : Measure α} {E : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] {f : α → E} (h : ∫ x, f x ∂μ ≠ 0) : Integrable f μ := by
   by_contra hf
   exact h (integral_undef hf)
 
+/--
+@isnad1 id=integrab.2h2v.s6.4386c7a82bd2 from=translated src=- shape=ae9ff38e vocab=00aaa6dd
+-/
 theorem integrableOn_rpow_mul_exp_neg_mul {a r : ℝ} (ha : 0 < a) (hr : 0 < r) :
     IntegrableOn (fun t : ℝ => t ^ (a - 1) * Real.exp (-(r * t))) (Ioi 0) := by
   apply integrable_of_integral_ne_zero
@@ -32,6 +38,9 @@ theorem integrableOn_rpow_mul_exp_neg_mul {a r : ℝ} (ha : 0 < a) (hr : 0 < r) 
 def B (a b : ℂ) (p : ℝ × ℝ) : ℂ :=
   (p.1 : ℂ) ^ (a - 1) * ((p.2 : ℂ) ^ (a + b - 1) * Complex.exp (-((((1 + p.1 : ℝ)) : ℂ) * (p.2 : ℂ))))
 
+/--
+@isnad1 id=measurab.0h2v.s4.a91c80e0a715 from=translated src=- shape=168abce8 vocab=310ac54d
+-/
 theorem measurable_B (a b : ℂ) : Measurable (B a b) := by
   unfold B
   refine ((Complex.measurable_ofReal.comp measurable_fst).pow_const _).mul
@@ -39,6 +48,9 @@ theorem measurable_B (a b : ℂ) : Measurable (B a b) := by
   exact ((Complex.measurable_ofReal.comp (measurable_const.add measurable_fst)).mul
     (Complex.measurable_ofReal.comp measurable_snd)).neg
 
+/--
+@isnad1 id=eq.0h4v.s6.329a71b010c9 from=translated src=- shape=f8ae73e4 vocab=d92a5b67
+-/
 theorem B_eq (a b : ℂ) (v y : ℝ) :
     B a b (v, y) = ((y : ℂ) ^ (a + b - 1) * Complex.exp (-(y : ℂ))) *
       ((v : ℂ) ^ (a - 1) * Complex.exp (-((y : ℂ) * (v : ℂ)))) := by
@@ -48,6 +60,9 @@ theorem B_eq (a b : ℂ) (v y : ℝ) :
     rw [← Complex.exp_add]; push_cast; ring_nf
   rw [e]; ring
 
+/--
+@isnad1 id=eq.2h4v.s7.e4085d7ba295 from=translated src=- shape=fe80cfa5 vocab=ae028724
+-/
 theorem norm_B (a b : ℂ) {v y : ℝ} (hv : 0 < v) (hy : 0 < y) :
     ‖B a b (v, y)‖ = (y ^ ((a + b).re - 1) * Real.exp (-y)) * (v ^ (a.re - 1) * Real.exp (-(y * v))) := by
   rw [B_eq, norm_mul, norm_mul, norm_mul, Complex.norm_cpow_eq_rpow_re_of_pos hv,
@@ -55,6 +70,9 @@ theorem norm_B (a b : ℂ) {v y : ℝ} (hv : 0 < v) (hy : 0 < y) :
   simp only [Complex.neg_re, Complex.mul_re, Complex.ofReal_re, Complex.ofReal_im, Complex.sub_re,
     Complex.one_re, mul_zero, sub_zero]
 
+/--
+@isnad1 id=integrab.2h2v.s6.0f62df621d5c from=translated src=- shape=44505f96 vocab=7b6c3485
+-/
 theorem integrable_B (a b : ℂ) (ha : 0 < a.re) (hb : 0 < b.re) :
     Integrable (B a b) ((volume.restrict (Ioi (0 : ℝ))).prod (volume.restrict (Ioi (0 : ℝ)))) := by
   have hab : 0 < (a + b).re := by simp; linarith
@@ -76,6 +94,9 @@ theorem integrable_B (a b : ℂ) (ha : 0 < a.re) (hb : 0 < b.re) :
     rw [show -((1 : ℝ) * y) = -y by ring, ← e]
     ring
 
+/--
+@isnad1 id=eq.3h3v.s7.53ec1b43027f from=translated src=- shape=937bc2ad vocab=427e4720
+-/
 theorem integral_B_snd (a b : ℂ) (ha : 0 < a.re) (hb : 0 < b.re) {v : ℝ} (hv : 0 < v) :
     ∫ y in Ioi (0 : ℝ), B a b (v, y) =
       (v : ℂ) ^ (a - 1) * ((1 / (((1 + v : ℝ)) : ℂ)) ^ (a + b) * Complex.Gamma (a + b)) := by
@@ -84,6 +105,9 @@ theorem integral_B_snd (a b : ℂ) (ha : 0 < a.re) (hb : 0 < b.re) {v : ℝ} (hv
       ((y : ℂ) ^ (a + b - 1) * Complex.exp (-((((1 + v : ℝ)) : ℂ) * (y : ℂ)))) from rfl,
     integral_const_mul, Complex.integral_cpow_mul_exp_neg_mul_Ioi hab (by positivity)]
 
+/--
+@isnad1 id=eq.2h3v.s7.e647f2b0f087 from=translated src=- shape=d6130be7 vocab=3a195614
+-/
 theorem integral_B_fst (a b : ℂ) (ha : 0 < a.re) {y : ℝ} (hy : 0 < y) :
     ∫ v in Ioi (0 : ℝ), B a b (v, y) =
       ((y : ℂ) ^ (a + b - 1) * Complex.exp (-(y : ℂ))) * ((1 / (y : ℂ)) ^ a * Complex.Gamma a) := by
@@ -98,6 +122,9 @@ end
 namespace Complex export _root_.Complex (one_re measurable_ofReal one_cpow re norm_cpow_eq_rpow_re_of_pos ofReal_re add_re ofReal_ne_zero norm_real real_smul cpow_ne_zero_iff cpow_one Gamma cpow_neg ofReal_mul neg_re sub_re inv_cpow cpow_add integral_cpow_mul_exp_neg_mul_Ioi Gamma_ne_zero_of_re_pos mul_cpow_ofReal_nonneg exp arg_ofReal_of_nonneg norm_exp ofReal_one mul_re ofReal_im exp_add) namespace BetaHalfLine end Complex.BetaHalfLine
 open scoped _root_.Complex in
 open Complex.BetaHalfLine in
+/--
+@isnad1 id=and.2h2v.s8.17f59c3bbcc7 from=translated src=- shape=1865e57f vocab=c8f90654
+-/
 theorem Complex.BetaHalfLine.betaHalfLine
     (a b : ℂ) (ha : 0 < a.re) (hb : 0 < b.re) :
     IntegrableOn (fun v : ℝ => (v : ℂ) ^ (a - 1) * (((1 + v : ℝ)) : ℂ) ^ (-(a + b))) (Set.Ioi 0) ∧
@@ -162,6 +189,9 @@ noncomputable def g (α β γ : ℂ) (p : ℝ × ℝ) : ℂ :=
   ((p.2 : ℂ) ^ (β - 1) * (((1 + p.2 : ℝ)) : ℂ) ^ (-γ)) *
     ((p.1 : ℂ) ^ (α + β - γ - 1) * Complex.exp (-((((1 + p.2 : ℝ)) : ℂ) * (p.1 : ℂ))))
 
+/--
+@isnad1 id=measurab.0h3v.s4.4cafa88606ec from=translated src=- shape=0a05a8f8 vocab=b1594f5b
+-/
 theorem measurable_f (α β γ : ℂ) : Measurable (f α β γ) := by
   unfold f
   have hs : Measurable (fun p : ℝ × ℝ => (((p.1 + p.2 : ℝ)) : ℂ)) :=
@@ -169,6 +199,9 @@ theorem measurable_f (α β γ : ℂ) : Measurable (f α β γ) := by
   exact (((Measurable.cexp hs.neg).mul ((Complex.measurable_ofReal.comp measurable_fst).pow_const _)).mul
     ((Complex.measurable_ofReal.comp measurable_snd).pow_const _)).mul (hs.pow_const _)
 
+/--
+@isnad1 id=measurab.0h3v.s4.c77bb109a03d from=translated src=- shape=0a05a8f8 vocab=b2b65ab8
+-/
 theorem measurable_g (α β γ : ℂ) : Measurable (g α β γ) := by
   unfold g
   have h1 : Measurable (fun p : ℝ × ℝ => (((1 + p.2 : ℝ)) : ℂ)) :=
@@ -177,6 +210,9 @@ theorem measurable_g (α β γ : ℂ) : Measurable (g α β γ) := by
     (((Complex.measurable_ofReal.comp measurable_fst).pow_const _).mul
       (Measurable.cexp (h1.mul (Complex.measurable_ofReal.comp measurable_fst)).neg))
 
+/--
+@isnad1 id=eq.2h5v.s6.1ede9e98e226 from=translated src=- shape=d924e01f vocab=263b399e
+-/
 theorem tau_mul_f_eq_g (α β γ : ℂ) {τ v : ℝ} (hτ : 0 < τ) (hv : 0 < v) :
     (τ : ℂ) * f α β γ (τ, τ * v) = g α β γ (τ, v) := by
   have hτ0 : (τ : ℂ) ≠ 0 := Complex.ofReal_ne_zero.mpr hτ.ne'
@@ -200,6 +236,9 @@ theorem tau_mul_f_eq_g (α β γ : ℂ) {τ v : ℝ} (hτ : 0 < τ) (hv : 0 < v)
           Complex.exp (-((((1 + v : ℝ)) : ℂ) * (τ : ℂ)))) := by ring
     _ = _ := by rw [e5]
 
+/--
+@isnad1 id=eq.2h5v.s7.be7ce9c75fef from=translated src=- shape=da2f5868 vocab=a763509e
+-/
 theorem norm_g (α β γ : ℂ) {τ v : ℝ} (hτ : 0 < τ) (hv : 0 < v) :
     ‖g α β γ (τ, v)‖ = (v ^ (β.re - 1) * (1 + v) ^ (-γ.re)) *
       (τ ^ ((α + β - γ).re - 1) * Real.exp (-((1 + v) * τ))) := by
@@ -208,6 +247,9 @@ theorem norm_g (α β γ : ℂ) {τ v : ℝ} (hτ : 0 < τ) (hv : 0 < v) :
     Complex.neg_re, Complex.sub_re, Complex.one_re, Complex.mul_re, Complex.ofReal_re, Complex.ofReal_im,
     mul_zero, sub_zero]
 
+/--
+@isnad1 id=integrab.3h3v.s7.c8ba79f61bd9 from=translated src=- shape=1370c6d8 vocab=112603bd
+-/
 theorem integrable_g (α β γ : ℂ) (hα : 0 < α.re) (hβ : 0 < β.re) (hγ : 0 < (α + β - γ).re) :
     Integrable (g α β γ) ((volume.restrict (Ioi (0 : ℝ))).prod (volume.restrict (Ioi (0 : ℝ)))) := by
   rw [integrable_prod_iff' (measurable_g α β γ).aestronglyMeasurable]
@@ -234,6 +276,9 @@ theorem integrable_g (α β γ : ℂ) (hα : 0 < α.re) (hβ : 0 < β.re) (hγ :
       rw [← Real.rpow_add h1v]; congr 1; ring
     rw [← e]; ring
 
+/--
+@isnad1 id=integrab.3h3v.s7.acd4e20f59a1 from=translated src=- shape=1370c6d8 vocab=67f79cfd
+-/
 theorem integrable_f (α β γ : ℂ) (hα : 0 < α.re) (hβ : 0 < β.re) (hγ : 0 < (α + β - γ).re) :
     Integrable (f α β γ) ((volume.restrict (Ioi (0 : ℝ))).prod (volume.restrict (Ioi (0 : ℝ)))) := by
   have hg := integrable_g α β γ hα hβ hγ
@@ -265,6 +310,9 @@ theorem integrable_f (α β γ : ℂ) (hα : 0 < α.re) (hβ : 0 < β.re) (hγ :
       rw [← tau_mul_f_eq_g α β γ hτ hv, norm_mul, Complex.norm_real, Real.norm_eq_abs, abs_of_pos hτ]
     rw [e, hsub, smul_eq_mul, ← mul_assoc, mul_inv_cancel₀ hτ.ne', one_mul]
 
+/--
+@isnad1 id=eq.3h3v.s7.7df20cd1f2a8 from=translated src=- shape=79341ada vocab=0246b384
+-/
 theorem integral_f (α β γ : ℂ) (hα : 0 < α.re) (hβ : 0 < β.re) (hγ : 0 < (α + β - γ).re) :
     ∫ p : ℝ × ℝ, f α β γ p ∂((volume.restrict (Ioi (0 : ℝ))).prod (volume.restrict (Ioi (0 : ℝ)))) =
       Complex.Gamma (α + β - γ) * Complex.Gamma α * Complex.Gamma β / Complex.Gamma (α + β) := by
@@ -309,6 +357,9 @@ theorem integral_f (α β γ : ℂ) (hα : 0 < α.re) (hβ : 0 < β.re) (hγ : 0
 end Complex.Dirichlet2
 
 open Complex.Dirichlet2 in
+/--
+@isnad1 id=and.3h3v.s9.87dd079a87a6 from=translated src=- shape=c6a25f5b vocab=e3153c46
+-/
 theorem solution
     (α β γ : ℂ) (hα : 0 < α.re) (hβ : 0 < β.re) (hγ : 0 < (α + β - γ).re) :
     Integrable (fun p : ℝ × ℝ => Complex.exp (-(((p.1 + p.2 : ℝ)) : ℂ)) * (p.1 : ℂ) ^ (α - 1) *

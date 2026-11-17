@@ -8,6 +8,9 @@ namespace P2MW.S_Complex_exists_differentiable_eqOn_halfPlane_of_forall_exists_e
 set_option autoImplicit false
 set_option maxHeartbeats 800000
 
+/--
+@isnad1 id=ex.2h2v.s8.a58dbe64e134 from=translated src=- shape=136c02da vocab=4e314c7d
+-/
 theorem solution
     (L : ℂ → ℂ) (σ : ℝ) (hL : ContinuousOn L {s : ℂ | σ < s.re})
     (h : ∀ s₁ : ℂ, ∃ (Z E : ℂ → ℂ) (c : ℂ) (σ' : ℝ), Differentiable ℂ Z ∧ Differentiable ℂ E ∧ c ≠ 0 ∧

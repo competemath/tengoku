@@ -7,6 +7,9 @@ namespace P2MW.S_Complex_norm_one_sub_inv_exp_and_sq_mul_log_eq_and_contDiff
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.0h0v.s10.1942d10abe49 from=translated src=- shape=1e3c8fae vocab=d0f3a552
+-/
 theorem solution :
     (∀ X Θ : ℝ, ‖(1 : ℂ) - (Complex.exp (((X / 2 : ℝ) : ℂ) + 2 * Real.pi * Complex.I * (Θ : ℂ)))⁻¹‖ =
         Real.exp (-(X / 2)) * ‖(1 : ℂ) - Complex.exp (((X / 2 : ℝ) : ℂ) + 2 * Real.pi * Complex.I * (Θ : ℂ))‖) ∧

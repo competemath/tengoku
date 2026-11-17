@@ -11,6 +11,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Deformation_mem_wittHom_of_mem_fontaineKer
 
 universe u v w
 
+/--
+@isnad1 id=mem.5h6v.s12.25613fb01de7 from=translated src=- shape=b8eb6360 vocab=84d62ee1
+-/
 theorem Deformation.mem_wittHom_of_mem_fontaineKer_of_verschiebung_mem_wittHom
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [Fact p.Prime] (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞)
     {k : Type v} [CommRing k] [Algebra 𝓞 k]

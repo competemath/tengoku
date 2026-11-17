@@ -7,6 +7,9 @@ namespace P2MW.S_Complex_exists_analyticOnNhd_comp_pow_of_forall_mul_eq
 
 open Metric
 
+/--
+@isnad1 id=ex.5h4v.s7.b93299c86f02 from=translated src=- shape=7ef83bb1 vocab=284185cb
+-/
 theorem solution {e : ℕ} (he : 0 < e) {ω : ℂ} (hω : IsPrimitiveRoot ω e)
     {f : ℂ → ℂ} {r : ℝ} (hr : 0 < r) (hf : AnalyticOnNhd ℂ f (Metric.ball 0 r))
     (hinv : ∀ z ∈ Metric.ball 0 r, f (ω * z) = f z) :

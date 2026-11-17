@@ -18,6 +18,9 @@ namespace Disc
 section COI
 variable {R : Type*} [CommRing R]
 
+/--
+@isnad1 id=complete.1h4v.s6.4243dcd50518 from=translated src=- shape=954837dc vocab=afdcb4a4
+-/
 theorem coi_pi {ι κ : Type*} [Fintype ι] [DecidableEq ι] [Fintype κ] [DecidableEq κ] (F : ι → κ → R)
     (hF : ∀ i, CompleteOrthogonalIdempotents (F i)) :
     CompleteOrthogonalIdempotents (fun p : ι → κ => ∏ i, F i (p i)) := by
@@ -33,6 +36,9 @@ theorem coi_pi {ι κ : Type*} [Fintype ι] [DecidableEq ι] [Fintype κ] [Decid
     rw [← Fintype.prod_sum]
     exact Finset.prod_eq_one fun i _ => (hF i).complete
 
+/--
+@isnad1 id=eq.1h6v.s6.26f795de6ccf from=translated src=- shape=9776c667 vocab=97797d13
+-/
 theorem pi_mul_apply {ι κ : Type*} [Fintype ι] [DecidableEq ι] [Fintype κ] [DecidableEq κ] (F : ι → κ → R)
     (hF : ∀ i, CompleteOrthogonalIdempotents (F i)) (p : ι → κ) (i : ι) :
     (∏ i, F i (p i)) * F i (p i) = ∏ i, F i (p i) := by
@@ -43,9 +49,15 @@ end COI
 section Cyc
 variable {R : Type*} [CommRing R] {N : ℕ} (ζ : R)
 
+/--
+@isnad1 id=eq.1h4v.s6.a530693eb1d3 from=translated src=- shape=861a684a vocab=454b8705
+-/
 theorem pow_val_eq (hζ : ζ ^ (N + 1) = 1) (m : ℕ) : ζ ^ (m % (N + 1)) = ζ ^ m := by
   conv_rhs => rw [← Nat.mod_add_div m (N + 1), pow_add, pow_mul, hζ, one_pow, mul_one]
 
+/--
+@isnad1 id=eq.1h5v.s8.64bd58e2fed2 from=translated src=- shape=2e1e7af2 vocab=ac80ddd2
+-/
 theorem pow_val_add (hζ : ζ ^ (N + 1) = 1) (a b : ZMod (N + 1)) :
     ζ ^ (a + b).val = ζ ^ a.val * ζ ^ b.val := by
   rw [ZMod.val_add, pow_val_eq ζ hζ, pow_add]
@@ -74,6 +86,9 @@ end TN.Disc
 namespace TN
 namespace Disc
 
+/--
+@isnad1 id=ex.7h5v.s10.137c560495ee from=translated src=- shape=19e41c6e vocab=10717428
+-/
 theorem main {K : Type*} [AddCommGroup K] [Fintype K] [DecidableEq K] (N : ℕ)
     {R : Type*} [CommRing R] (hd : IsUnit ((N + 1 : ℕ) : R)) (ζ : R) (hζ : ζ ^ (N + 1) = 1)
     (hζu : ∀ j : ℕ, 0 < j → j < N + 1 → IsUnit (1 - ζ ^ j))
@@ -121,6 +136,9 @@ theorem main {K : Type*} [AddCommGroup K] [Fintype K] [DecidableEq K] (N : ℕ)
 
 end TN.Disc
 
+/--
+@isnad1 id=ex.7h5v.s9.26f65c748748 from=translated src=- shape=51b59c68 vocab=307091e8
+-/
 theorem solution
     {K : Type*} [AddCommGroup K] [Fintype K] [DecidableEq K] {d : ℕ} [NeZero d]
     {R : Type*} [CommRing R] (hd : IsUnit ((d : ℕ) : R)) (ζ : R) (hζ : ζ ^ d = 1) (hζu : ∀ j : ℕ, 0 < j → j < d → IsUnit (1 - ζ ^ j))

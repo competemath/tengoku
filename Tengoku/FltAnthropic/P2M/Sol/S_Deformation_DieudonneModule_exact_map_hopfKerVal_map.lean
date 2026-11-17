@@ -29,6 +29,9 @@ variable {B : Type w} [CommRing B] [HopfAlgebra k B] (π : A →ₐc[k] B)
 
 open _root_.HopfAlgebra open _root_.Deformation.TruncWitt
 
+/--
+@isnad1 id=eq.0h7v.s16.38384ab5bc39 from=translated src=- shape=dd9172e3 vocab=7608c9de
+-/
 theorem wittHomMap_wittHomMap_hopfKerVal (x : wittHom k p n ↥(hopfKer π)) :
     wittHomMap p n π (wittHomMap p n (hopfKerVal π) x) = 0 := by
   rw [Deformation.wittHomMap_eq_zero_iff_forall_coeff_mem_hopfKer]
@@ -36,6 +39,9 @@ theorem wittHomMap_wittHomMap_hopfKerVal (x : wittHom k p n ↥(hopfKer π)) :
   rw [coeff_wittHomMap, hopfKerVal_apply]
   exact ((x : TruncatedWittVector p n ↥(hopfKer π)).coeff i).2
 
+/--
+@isnad1 id=ex.1h7v.s12.f94af8e29a60 from=translated src=- shape=d23ab9c2 vocab=2aa57aec
+-/
 theorem exists_map_eq_of_forall_coeff_mem (y : TruncatedWittVector p n A)
     (hy : ∀ i, y.coeff i ∈ hopfKer π) :
     ∃ x : TruncatedWittVector p n ↥(hopfKer π),
@@ -43,6 +49,9 @@ theorem exists_map_eq_of_forall_coeff_mem (y : TruncatedWittVector p n A)
   ⟨TruncatedWittVector.mk p fun i => ⟨y.coeff i, hy i⟩,
     TruncatedWittVector.ext fun i => by rw [coeff_map, TruncatedWittVector.coeff_mk]; rfl⟩
 
+/--
+@isnad1 id=mem.1h7v.s13.0fdb484603e0 from=translated src=- shape=2614a0ae vocab=8f7ca78c
+-/
 theorem mem_wittHom_of_map_mem (x : TruncatedWittVector p n ↥(hopfKer π))
     (hx : TruncWitt.map ((hopfKerVal π : ↥(hopfKer π) →ₐ[k] A)).toRingHom x ∈ wittHom k p n A) :
     x ∈ wittHom k p n ↥(hopfKer π) := by
@@ -78,6 +87,9 @@ end DieudonneMiddleExact
 end Deformation
 
 open _root_.Deformation _root_.P2MW.S_Deformation_DieudonneModule_exact_map_hopfKerVal_map.Deformation HopfAlgebra in
+/--
+@isnad1 id=exact.0h5v.s13.8bc09684b8da from=translated src=- shape=7a6177fa vocab=0f4ce190
+-/
 theorem solution
     (k : Type u) [Field k] (p : ℕ) [Fact p.Prime]
     {A : Type v} [CommRing A] [HopfAlgebra k A] [Coalgebra.IsCocomm k A]

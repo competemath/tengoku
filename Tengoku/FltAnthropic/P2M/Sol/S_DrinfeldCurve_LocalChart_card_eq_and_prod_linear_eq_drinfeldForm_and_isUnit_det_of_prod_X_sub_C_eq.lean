@@ -8,6 +8,9 @@ namespace P2MW.S_DrinfeldCurve_LocalChart_card_eq_and_prod_linear_eq_drinfeldFor
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.1h3v.s10.fad9601ed24a from=translated src=- shape=828309ee vocab=ac794724
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime] (W : Type) [CommRing W] [Nontrivial W]
     (T : Finset W) (hT : ∏ t ∈ T, (Polynomial.X - Polynomial.C t) = (Polynomial.X ^ q - Polynomial.X : Polynomial W)) :

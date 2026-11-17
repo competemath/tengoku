@@ -21,6 +21,9 @@ open _root_.Deformation
 variable {R : Type u} [CommRing R] {p : ℕ} [Fact p.Prime] {n : ℕ}
 variable {A : Type v} [CommRing A] [Bialgebra R A]
 
+/--
+@isnad1 id=eq.0h5v.s9.d7f0d445681c from=translated src=- shape=cd3f19b6 vocab=22300169
+-/
 theorem map_convOne (x : wittHom R p n A) :
     map (1 : WithConv (A →ₐ[R] A)).ofConv.toRingHom (x : TruncatedWittVector p n A) = 0 := by
   have hfac : (1 : WithConv (A →ₐ[R] A)).ofConv.toRingHom =
@@ -29,6 +32,9 @@ theorem map_convOne (x : wittHom R p n A) :
     simp [AlgHom.convOne_apply]
   rw [hfac, ← map_map, map_counit_of_mem_wittHom x.2, map_zero]
 
+/--
+@isnad1 id=eq.0h6v.s9.2d9049725d63 from=translated src=- shape=54a9c5da vocab=830ae0a7
+-/
 theorem map_convPow_id (x : wittHom R p n A) (k : ℕ) :
     map ((WithConv.toConv (AlgHom.id R A)) ^ k).ofConv.toRingHom (x : TruncatedWittVector p n A) =
       k • (x : TruncatedWittVector p n A) := by
@@ -39,6 +45,9 @@ theorem map_convPow_id (x : wittHom R p n A) (k : ℕ) :
     congr 1
     exact TruncWitt.map_id _
 
+/--
+@isnad1 id=eq.1h6v.s10.a8f0c8524711 from=translated src=- shape=92121737 vocab=ee188c32
+-/
 theorem main (m : ℕ)
     (hA : ∀ (T : Type v) [CommRing T] [Algebra R T] (f : WithConv (A →ₐ[R] T)), f ^ m = 1)
     (x : wittHom R p n A) : m • x = 0 := by
@@ -48,6 +57,9 @@ theorem main (m : ℕ)
 
 end Deformation.WittHomExponent
 
+/--
+@isnad1 id=eq.1h6v.s10.a8f0c8524711 from=translated src=- shape=92121737 vocab=ee188c32
+-/
 theorem solution
     {R : Type u} [CommRing R] {p : ℕ} [Fact p.Prime] {n : ℕ}
     {A : Type v} [CommRing A] [Bialgebra R A] (m : ℕ)

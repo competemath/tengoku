@@ -10,6 +10,9 @@ namespace RadialGreen
 open Complex MeasureTheory Set Filter intervalIntegral
 open scoped Real Topology Interval
 
+/--
+@isnad1 id=eq.0h2v.s9.b7d137779921 from=translated src=- shape=49d00971 vocab=4472ad1b
+-/
 theorem clm_decomp (L : ℂ →L[ℝ] ℂ) (w : ℂ) :
     L w = (w.re : ℂ) * L 1 + (w.im : ℂ) * L I := by
   have hw : w = (w.re : ℝ) • (1 : ℂ) + (w.im : ℝ) • I := by
@@ -17,9 +20,15 @@ theorem clm_decomp (L : ℂ →L[ℝ] ℂ) (w : ℂ) :
   conv_lhs => rw [hw]
   rw [map_add, map_smul, map_smul, real_smul, real_smul]
 
+/--
+@isnad1 id=eq.0h3v.s9.dbdbc034e9f1 from=translated src=- shape=893ec9dd vocab=bbba9a9e
+-/
 theorem clm_real_mul (L : ℂ →L[ℝ] ℂ) (t : ℝ) (w : ℂ) : L ((t : ℂ) * w) = (t : ℂ) * L w := by
   rw [← real_smul, map_smul, real_smul]
 
+/--
+@isnad1 id=eq.0h2v.s10.efee48f7661d from=translated src=- shape=e5fb55a2 vocab=c5b28081
+-/
 theorem clm_wirtinger_bar (L : ℂ →L[ℝ] ℂ) (w : ℂ) :
     I * L w - L (I * w) = 2 * I * (starRingEnd ℂ) w * ((L 1 + I * L I) / 2) := by
   rw [clm_decomp L w, clm_decomp L (I * w)]
@@ -30,6 +39,9 @@ theorem clm_wirtinger_bar (L : ℂ →L[ℝ] ℂ) (w : ℂ) :
   rw [h1, h2, h3]
   linear_combination (-(w.re : ℂ) * L I + (w.im : ℂ) * L 1 + I * (w.im : ℂ) * L I) * I_sq
 
+/--
+@isnad1 id=eq.0h2v.s10.154158fef8a9 from=translated src=- shape=d1b6fd9f vocab=27ca624f
+-/
 theorem clm_wirtinger (L : ℂ →L[ℝ] ℂ) (w : ℂ) :
     I * L w + L (I * w) = 2 * I * w * ((L 1 - I * L I) / 2) := by
   rw [clm_decomp L w, clm_decomp L (I * w)]
@@ -44,24 +56,45 @@ noncomputable def u (φ : ℝ) : ℂ := exp (φ * I)
 
 noncomputable def ub (φ : ℝ) : ℂ := exp (-(φ * I))
 
+/--
+@isnad1 id=eq.0h1v.s4.82040bf8bf40 from=translated src=- shape=62cde15b vocab=c4c06034
+-/
 theorem u_mul_ub (φ : ℝ) : u φ * ub φ = 1 := by
   rw [u, ub, ← exp_add, add_neg_cancel, exp_zero]
 
+/--
+@isnad1 id=eq.0h1v.s5.46eff771e3a5 from=translated src=- shape=f68c6383 vocab=96b02b39
+-/
 theorem conj_u (φ : ℝ) : (starRingEnd ℂ) (u φ) = ub φ := by
   rw [u, ub, ← exp_conj, map_mul, conj_ofReal, conj_I, mul_neg]
 
+/--
+@isnad1 id=eq.0h1v.s3.f1e0ae989abc from=translated src=- shape=0cfb200e vocab=5487df97
+-/
 theorem norm_u (φ : ℝ) : ‖u φ‖ = 1 := norm_exp_ofReal_mul_I φ
 
+/--
+@isnad1 id=continuo.0h0v.s4.18c7c326f5f0 from=translated src=- shape=54c8eceb vocab=2840b4a8
+-/
 theorem continuous_u : Continuous u := by unfold u; fun_prop
 
+/--
+@isnad1 id=continuo.0h0v.s4.442d655d6efe from=translated src=- shape=54c8eceb vocab=4928a1db
+-/
 theorem continuous_ub : Continuous ub := by unfold ub; fun_prop
 
+/--
+@isnad1 id=hasderiv.0h1v.s6.5dcb31eb2e61 from=translated src=- shape=9297926b vocab=13d0e78e
+-/
 theorem hasDerivAt_u (φ : ℝ) : HasDerivAt u (u φ * I) φ := by
   have h : HasDerivAt (fun x : ℝ => (x : ℂ) * I) (1 * I) φ := (hasDerivAt_id φ).ofReal_comp.mul_const I
   have := (Complex.hasDerivAt_exp ((φ : ℂ) * I)).comp φ h
   simp [u, one_mul] at this
   exact this
 
+/--
+@isnad1 id=hasderiv.0h1v.s6.f56f593181e0 from=translated src=- shape=5d912d18 vocab=4379d014
+-/
 theorem hasDerivAt_ub (φ : ℝ) : HasDerivAt ub (ub φ * (-I)) φ := by
   have h : HasDerivAt (fun x : ℝ => -((x : ℂ) * I)) (-(1 * I)) φ :=
     ((hasDerivAt_id φ).ofReal_comp.mul_const I).neg
@@ -69,6 +102,9 @@ theorem hasDerivAt_ub (φ : ℝ) : HasDerivAt ub (ub φ * (-I)) φ := by
   simp [ub, one_mul] at this ⊢
   exact this
 
+/--
+@isnad1 id=eq.0h1v.s4.e85e6ab531f5 from=translated src=- shape=c70754e9 vocab=d332e7e4
+-/
 theorem u_add_two_pi (φ : ℝ) : u (φ + 2 * π) = u φ := by
   rw [u, u, ofReal_add, add_mul, exp_add]
   have : exp (((2 * π : ℝ) : ℂ) * I) = 1 := by
@@ -76,14 +112,23 @@ theorem u_add_two_pi (φ : ℝ) : u (φ + 2 * π) = u φ := by
     exact exp_two_pi_mul_I
   rw [this, mul_one]
 
+/--
+@isnad1 id=eq.0h1v.s4.8b0cafd48912 from=translated src=- shape=c70754e9 vocab=e79f2404
+-/
 theorem ub_add_two_pi (φ : ℝ) : ub (φ + 2 * π) = ub φ := by
   rw [← conj_u, ← conj_u, u_add_two_pi]
 
+/--
+@isnad1 id=eq.0h3v.s6.0253c87ababd from=translated src=- shape=6020a0d2 vocab=819d1321
+-/
 theorem conj_coef_mul_u (x y φ : ℝ) :
     (starRingEnd ℂ) (((x : ℂ) + (y : ℂ) * I) * u φ) = ((x : ℂ) - (y : ℂ) * I) * ub φ := by
   rw [map_mul, conj_u, map_add, map_mul, conj_ofReal, conj_ofReal, conj_I]
   ring
 
+/--
+@isnad1 id=eq.2h3v.s5.ecfdf3eb0650 from=translated src=- shape=bcd9b5ef vocab=5aa13659
+-/
 theorem periodic_apply_arg {r : ℝ → ℝ} (hper : Function.Periodic r (2 * π)) {t : ℝ} (ht : 0 < t)
     (φ : ℝ) : r (arg ((t : ℂ) * u φ)) = r φ := by
   rw [arg_real_mul _ ht, u, arg_exp_mul_I, toIocMod]
@@ -97,11 +142,20 @@ noncomputable def Ψ (φ s : ℝ) : ℂ := c + (s : ℂ) * (r φ : ℂ) * u φ
 
 noncomputable def sc (s : ℝ) : ℝ := (projIcc (0 : ℝ) 1 zero_le_one s : ℝ)
 
+/--
+@isnad1 id=eq.1h1v.s4.ee691ca4a398 from=translated src=- shape=59a9e9ba vocab=bfda2e9f
+-/
 theorem sc_of_mem {s : ℝ} (hs : s ∈ Icc (0 : ℝ) 1) : sc s = s := by
   rw [sc, projIcc_of_mem _ hs]
 
+/--
+@isnad1 id=mem.0h1v.s4.d76952566992 from=translated src=- shape=828ff9db vocab=bfda2e9f
+-/
 theorem sc_mem (s : ℝ) : sc s ∈ Icc (0 : ℝ) 1 := (projIcc 0 1 zero_le_one s).2
 
+/--
+@isnad1 id=continuo.0h0v.s3.1469eea4b3b5 from=translated src=- shape=e3d48bcb vocab=07104b83
+-/
 theorem continuous_sc : Continuous sc := continuous_subtype_val.comp continuous_projIcc
 
 noncomputable def Ψc (φ s : ℝ) : ℂ := Ψ c r φ (sc s)
@@ -141,10 +195,16 @@ noncomputable def Bsc (a b : ℝ) (hab : a ≤ b) (φ s : ℝ) : ℂ :=
 noncomputable def Tint (φ s : ℝ) : ℂ :=
   2 * I * (sc s : ℂ) * (r φ : ℂ) ^ 2 * g P Q (Ψc c r φ s)
 
+/--
+@isnad1 id=eq.2h8v.s6.27da72170799 from=translated src=- shape=31fea105 vocab=5d026920
+-/
 theorem Bs_eq_Bsc (a b : ℝ) (hab : a ≤ b) (φ : ℝ) {s : ℝ} (hs : s ∈ Icc (0 : ℝ) 1) :
     Bs c r P Q a b hab φ s = Bsc c r P Q a b hab φ s := by
   simp only [Bs, Bsc, Ψc, sc_of_mem hs]
 
+/--
+@isnad1 id=eq.1h8v.s6.c20eae78bb4f from=translated src=- shape=e2f85cbc vocab=1dce968a
+-/
 theorem Bsc_eq (a b : ℝ) (hab : a ≤ b) (φ s : ℝ) :
     Bsc c r P Q a b hab φ s = Aφ c r P Q a b hab φ s + Tint c r P Q φ s := by
   simp only [Bsc, Aφ, Tint, g]
@@ -182,6 +242,9 @@ variable {c : ℂ} {r : ℝ → ℝ} {P Q : ℂ → ℂ} {U : Set ℂ}
   (hP : ContDiffOn ℝ 1 P U) (hQ : ContDiffOn ℝ 1 Q U)
 
 include hper hpos in
+/--
+@isnad1 id=le.3h4v.s6.903807c96c6c from=translated src=- shape=d2444e1a vocab=d309cd05
+-/
 theorem mem_K_Ψ (φ : ℝ) {s : ℝ} (hs : s ∈ Icc (0 : ℝ) 1) :
     ‖Ψ c r φ s - c‖ ≤ r (arg (Ψ c r φ s - c)) := by
   have hΨ : Ψ c r φ s - c = ((s * r φ : ℝ) : ℂ) * u φ := by
@@ -197,14 +260,23 @@ theorem mem_K_Ψ (φ : ℝ) {s : ℝ} (hs : s ∈ Icc (0 : ℝ) 1) :
       _ = r φ := one_mul _
 
 include hper hpos hKU in
+/--
+@isnad1 id=mem.4h5v.s6.577594b3d96f from=translated src=- shape=c3151702 vocab=d309cd05
+-/
 theorem Ψ_mem_U (φ : ℝ) {s : ℝ} (hs : s ∈ Icc (0 : ℝ) 1) : Ψ c r φ s ∈ U :=
   hKU _ (mem_K_Ψ hper hpos φ hs)
 
 include hper hpos hKU in
+/--
+@isnad1 id=mem.3h5v.s6.844749f9e8c2 from=translated src=- shape=252f32ac vocab=3e207102
+-/
 theorem Ψc_mem_U (φ s : ℝ) : Ψc c r φ s ∈ U :=
   Ψ_mem_U hper hpos hKU φ (sc_mem s)
 
 include hcont in
+/--
+@isnad1 id=continuo.1h2v.s6.1a8ecac3f79d from=translated src=- shape=ea80b77c vocab=7f2e333d
+-/
 theorem continuous_Ψc : Continuous fun p : ℝ × ℝ => Ψc c r p.1 p.2 := by
   unfold Ψc Ψ
   have h1 : Continuous fun p : ℝ × ℝ => (sc p.2 : ℂ) :=
@@ -215,20 +287,32 @@ theorem continuous_Ψc : Continuous fun p : ℝ × ℝ => Ψc c r p.1 p.2 := by
   exact continuous_const.add ((h1.mul h2).mul h3)
 
 include hcont hper hpos hKU hP in
+/--
+@isnad1 id=continuo.5h4v.s7.c46d78a4e3d9 from=translated src=- shape=2f59560f vocab=4c62652c
+-/
 theorem continuous_P_Ψc : Continuous fun p : ℝ × ℝ => P (Ψc c r p.1 p.2) :=
   hP.continuousOn.comp_continuous (continuous_Ψc hcont) fun p => Ψc_mem_U hper hpos hKU p.1 p.2
 
 include hcont hper hpos hU hKU hP in
+/--
+@isnad1 id=continuo.7h5v.s9.696a7bd0a384 from=translated src=- shape=eeac4f4d vocab=21d29ff8
+-/
 theorem continuous_DP_Ψc {v : ℝ × ℝ → ℂ} (hv : Continuous v) :
     Continuous fun p : ℝ × ℝ => fderiv ℝ P (Ψc c r p.1 p.2) (v p) :=
   ((hP.continuousOn_fderiv_of_isOpen hU le_rfl).comp_continuous (continuous_Ψc hcont)
     fun p => Ψc_mem_U hper hpos hKU p.1 p.2).clm_apply hv
 
+/--
+@isnad1 id=continuo.2h3v.s6.8ea5c8a966dc from=translated src=- shape=03c15eaa vocab=c4f220d1
+-/
 theorem continuous_rd {a b : ℝ} (hab : a < b) (hC : ContDiffOn ℝ 2 r (Icc a b)) :
     Continuous (rd r a b hab.le) :=
   (hC.continuousOn_derivWithin (uniqueDiffOn_Icc hab) (by norm_num)).comp_continuous
     (continuous_subtype_val.comp continuous_projIcc) fun φ => (projIcc a b hab.le φ).2
 
+/--
+@isnad1 id=and.1h1v.s7.b8f56ebd68da from=translated src=- shape=f61659d5 vocab=95e1439c
+-/
 theorem continuous_atoms (hcont : Continuous r) :
     (Continuous fun p : ℝ × ℝ => u p.1) ∧ (Continuous fun p : ℝ × ℝ => ub p.1) ∧
       (Continuous fun p : ℝ × ℝ => (r p.1 : ℂ)) ∧ (Continuous fun p : ℝ × ℝ => (sc p.2 : ℂ)) :=
@@ -237,6 +321,9 @@ theorem continuous_atoms (hcont : Continuous r) :
     continuous_ofReal.comp (continuous_sc.comp continuous_snd)⟩
 
 include hcont hper hpos hKU hP hQ in
+/--
+@isnad1 id=continuo.6h5v.s7.aca511fdf110 from=translated src=- shape=4b979948 vocab=88da6874
+-/
 theorem continuous_A : Continuous fun p : ℝ × ℝ => A c r P Q p.1 p.2 := by
   obtain ⟨hu1, hub1, hr1, -⟩ := continuous_atoms (r := r) hcont
   have hPc := continuous_P_Ψc hcont hper hpos hKU hP
@@ -246,6 +333,9 @@ theorem continuous_A : Continuous fun p : ℝ × ℝ => A c r P Q p.1 p.2 := by
   exact ((hPc.mul hu1).add (hQc.mul hub1)).mul hr1
 
 include hcont hper hpos hU hKU hP hQ in
+/--
+@isnad1 id=continuo.7h5v.s7.43f6bd5c83e0 from=translated src=- shape=38e3ef77 vocab=22ea3df1
+-/
 theorem continuous_g_Ψc : Continuous fun p : ℝ × ℝ => g P Q (Ψc c r p.1 p.2) := by
   have h1 := continuous_DP_Ψc hcont hper hpos hU hKU hP (continuous_const (y := (1 : ℂ)))
   have h2 := continuous_DP_Ψc hcont hper hpos hU hKU hP (continuous_const (y := I))
@@ -258,6 +348,9 @@ theorem continuous_g_Ψc : Continuous fun p : ℝ × ℝ => g P Q (Ψc c r p.1 p
     ((h3.sub (continuous_const.mul h4)).div_const 2)
 
 include hcont hper hpos hU hKU hP hQ in
+/--
+@isnad1 id=continuo.7h5v.s7.36db0e1d4b1b from=translated src=- shape=4f65fd16 vocab=71735d1a
+-/
 theorem continuous_Tint : Continuous fun p : ℝ × ℝ => Tint c r P Q p.1 p.2 := by
   obtain ⟨-, -, hr1, hsc2⟩ := continuous_atoms (r := r) hcont
   have hg := continuous_g_Ψc hcont hper hpos hU hKU hP hQ
@@ -266,6 +359,9 @@ theorem continuous_Tint : Continuous fun p : ℝ × ℝ => Tint c r P Q p.1 p.2 
   exact (((continuous_const.mul hsc2).mul (hr1.pow 2)).mul hg)
 
 include hcont hper hpos hU hKU hP hQ in
+/--
+@isnad1 id=continuo.9h7v.s8.826297475400 from=translated src=- shape=f6c7286e vocab=59fdae68
+-/
 theorem continuous_Aφ {a b : ℝ} (hab : a < b) (hC : ContDiffOn ℝ 2 r (Icc a b)) :
     Continuous fun p : ℝ × ℝ => Aφ c r P Q a b hab.le p.1 p.2 := by
   obtain ⟨hu1, hub1, hr1, hsc2⟩ := continuous_atoms (r := r) hcont
@@ -290,6 +386,9 @@ theorem continuous_Aφ {a b : ℝ} (hab : a < b) (hC : ContDiffOn ℝ 2 r (Icc a
     (hQc.mul (hub1.mul continuous_const))).mul hr1).add (((hPc.mul hu1).add (hQc.mul hub1)).mul hrd1)
 
 include hcont hper hpos hU hKU hP hQ in
+/--
+@isnad1 id=continuo.9h7v.s8.97eee026638e from=translated src=- shape=f6c7286e vocab=c071757b
+-/
 theorem continuous_Bsc {a b : ℝ} (hab : a < b) (hC : ContDiffOn ℝ 2 r (Icc a b)) :
     Continuous fun p : ℝ × ℝ => Bsc c r P Q a b hab.le p.1 p.2 := by
   obtain ⟨hu1, hub1, hr1, hsc2⟩ := continuous_atoms (r := r) hcont
@@ -310,20 +409,32 @@ theorem continuous_Bsc {a b : ℝ} (hab : a < b) (hC : ContDiffOn ℝ 2 r (Icc a
     (((hDQ.mul hsc2).add (hQc.mul continuous_const)).mul
       ((hrd1.sub (hr1.mul continuous_const)).mul hub1))
 
+/--
+@isnad1 id=continuo.1h2v.s6.cf70d30dee96 from=translated src=- shape=5819a23b vocab=07bf9670
+-/
 theorem continuous_slice_left {f : ℝ → ℝ → ℂ} (hf : Continuous fun p : ℝ × ℝ => f p.1 p.2)
     (φ : ℝ) : Continuous fun s => f φ s :=
   hf.comp (continuous_const.prodMk continuous_id)
 
+/--
+@isnad1 id=continuo.1h1v.s6.d49e7260812a from=translated src=- shape=b196a7eb vocab=9acc9bea
+-/
 theorem continuous_param_integral {f : ℝ → ℝ → ℂ} (hf : Continuous fun p : ℝ × ℝ => f p.1 p.2) :
     Continuous fun φ => ∫ s in (0 : ℝ)..1, f φ s :=
   intervalIntegral.continuous_parametric_intervalIntegral_of_continuous' (f := f) hf 0 1
 
+/--
+@isnad1 id=hasderiv.0h4v.s6.acdb105a9355 from=translated src=- shape=d646ef99 vocab=6af85514
+-/
 theorem hasDerivAt_Ψ_s (φ s : ℝ) : HasDerivAt (fun s : ℝ => Ψ c r φ s) ((r φ : ℂ) * u φ) s := by
   have h : (fun s : ℝ => Ψ c r φ s) = fun s : ℝ => c + (s : ℂ) * ((r φ : ℂ) * u φ) := by
     ext s; simp only [Ψ, mul_assoc]
   rw [h]
   exact (((hasDerivAt_id s).ofReal_comp.mul_const _).const_add c).congr_deriv (by simp)
 
+/--
+@isnad1 id=hasderiv.1h5v.s7.1e7238b2fc54 from=translated src=- shape=19ce9aa9 vocab=fceeaceb
+-/
 theorem hasDerivAt_Ψc_φ {φ δ : ℝ} (hr : HasDerivAt r δ φ) (s : ℝ) :
     HasDerivAt (fun φ => Ψc c r φ s) ((sc s : ℂ) * ((δ : ℂ) + (r φ : ℂ) * I) * u φ) φ := by
   have h1 : HasDerivAt (fun φ => (r φ : ℂ)) (δ : ℂ) φ := hr.ofReal_comp
@@ -334,10 +445,16 @@ theorem hasDerivAt_Ψc_φ {φ δ : ℝ} (hr : HasDerivAt r δ φ) (s : ℝ) :
   exact h2.congr_deriv (by ring)
 
 include hP hU in
+/--
+@isnad1 id=hasfderi.3h3v.s8.1f41d2e6d727 from=translated src=- shape=696d99a1 vocab=6631fc86
+-/
 theorem hasFDerivAt_P {z : ℂ} (hz : z ∈ U) : HasFDerivAt P (fderiv ℝ P z) z :=
   ((hP.differentiableOn one_ne_zero).differentiableAt (hU.mem_nhds hz)).hasFDerivAt
 
 include hP hQ hU in
+/--
+@isnad1 id=hasderiv.5h9v.s7.e9cbbf87824e from=translated src=- shape=e52f3868 vocab=9288cd54
+-/
 theorem hasDerivAt_B {a b : ℝ} (hab : a ≤ b) (φ : ℝ) {s : ℝ} (hs : Ψ c r φ s ∈ U) :
     HasDerivAt (fun s => B c r P Q a b hab φ s) (Bs c r P Q a b hab φ s) s := by
   have hPz := (hasFDerivAt_P hU hP hs).comp_hasDerivAt s (hasDerivAt_Ψ_s (c := c) (r := r) φ s)
@@ -345,9 +462,15 @@ theorem hasDerivAt_B {a b : ℝ} (hab : a ≤ b) (φ : ℝ) {s : ℝ} (hs : Ψ c
   have hs1 : HasDerivAt (fun s : ℝ => (s : ℂ)) 1 s := (hasDerivAt_id s).ofReal_comp
   exact ((hPz.mul hs1).mul_const _).add ((hQz.mul hs1).mul_const _)
 
+/--
+@isnad1 id=eq.1h7v.s5.b17abae93552 from=translated src=- shape=21de4d4b vocab=7e1e182d
+-/
 theorem B_zero {a b : ℝ} (hab : a ≤ b) (φ : ℝ) : B c r P Q a b hab φ 0 = 0 := by
   simp [B]
 
+/--
+@isnad1 id=eq.1h7v.s7.6af58e0aedf8 from=translated src=- shape=f439cf85 vocab=b1f7c486
+-/
 theorem B_one {a b : ℝ} (hab : a ≤ b) (φ : ℝ) :
     B c r P Q a b hab φ 1 =
       P (c + (r φ : ℂ) * u φ) * (((rd r a b hab φ : ℂ) + (r φ : ℂ) * I) * u φ) +
@@ -356,6 +479,9 @@ theorem B_one {a b : ℝ} (hab : a ≤ b) (φ : ℝ) :
 
 include hcont hper hpos hU hKU hP hQ in
 
+/--
+@isnad1 id=eq.9h8v.s8.19b4d3ee8fa8 from=translated src=- shape=b30f698d vocab=18963701
+-/
 theorem B_one_eq_integral {a b : ℝ} (hab : a < b) (hC : ContDiffOn ℝ 2 r (Icc a b)) (φ : ℝ) :
     B c r P Q a b hab.le φ 1 = ∫ s in (0 : ℝ)..1, Bsc c r P Q a b hab.le φ s := by
   have hcs : Continuous fun s => Bsc c r P Q a b hab.le φ s :=
@@ -373,6 +499,9 @@ theorem B_one_eq_integral {a b : ℝ} (hab : a < b) (hC : ContDiffOn ℝ 2 r (Ic
   exact intervalIntegral.integral_congr fun s hs => Bs_eq_Bsc c r P Q a b hab.le φ
     (by rwa [uIcc_of_le zero_le_one] at hs)
 
+/--
+@isnad1 id=hasderiv.3h4v.s6.227fb3752fa7 from=translated src=- shape=af071275 vocab=8e7afcba
+-/
 theorem hasDerivAt_rd {a b : ℝ} (hab : a < b) (hC : ContDiffOn ℝ 2 r (Icc a b)) {φ : ℝ}
     (hφ : φ ∈ Ioo a b) : HasDerivAt r (rd r a b hab.le φ) φ := by
   have hmem : φ ∈ Icc a b := ⟨hφ.1.le, hφ.2.le⟩
@@ -386,6 +515,9 @@ theorem hasDerivAt_rd {a b : ℝ} (hab : a < b) (hC : ContDiffOn ℝ 2 r (Icc a 
 
 include hper hpos hU hKU hP hQ in
 
+/--
+@isnad1 id=hasderiv.9h9v.s8.0dc85868664f from=translated src=- shape=c0310cee vocab=fcd11030
+-/
 theorem hasDerivAt_A {a b : ℝ} (hab : a < b) (hC : ContDiffOn ℝ 2 r (Icc a b)) {φ : ℝ}
     (hφ : φ ∈ Ioo a b) (s : ℝ) :
     HasDerivAt (fun φ => A c r P Q φ s) (Aφ c r P Q a b hab.le φ s) φ := by
@@ -400,6 +532,9 @@ theorem hasDerivAt_A {a b : ℝ} (hab : a < b) (hC : ContDiffOn ℝ 2 r (Icc a b
 
 include hcont hper hpos hU hKU hP hQ in
 
+/--
+@isnad1 id=hasderiv.10h8v.s8.b4e8931cf244 from=translated src=- shape=ce59bd23 vocab=1e64bde0
+-/
 theorem hasDerivAt_G {a b : ℝ} (hab : a < b) (hC : ContDiffOn ℝ 2 r (Icc a b)) {φ₀ : ℝ}
     (hφ₀ : φ₀ ∈ Ioo a b) :
     HasDerivAt (fun φ => ∫ s in (0 : ℝ)..1, A c r P Q φ s)
@@ -436,10 +571,16 @@ noncomputable def bd (c : ℂ) (r : ℝ → ℝ) (P Q : ℂ → ℂ) (φ : ℝ) 
   P (c + r φ * exp (φ * I)) * ((((deriv r φ : ℝ) : ℂ) + r φ * I) * exp (φ * I)) +
     Q (c + r φ * exp (φ * I)) * (starRingEnd ℂ) ((((deriv r φ : ℝ) : ℂ) + r φ * I) * exp (φ * I))
 
+/--
+@isnad1 id=eq.0h3v.s6.1358080e69aa from=translated src=- shape=14b52b2f vocab=0365bbe5
+-/
 theorem conj_coef_mul_exp (x y φ : ℝ) :
     (starRingEnd ℂ) (((x : ℂ) + (y : ℂ) * I) * exp (φ * I)) = ((x : ℂ) - (y : ℂ) * I) * ub φ :=
   conj_coef_mul_u x y φ
 
+/--
+@isnad1 id=eq.3h7v.s6.7485472fe86b from=translated src=- shape=74ec400c vocab=baa8b64e
+-/
 theorem bd_eq_B_one {a b : ℝ} (hab : a < b) (hC : ContDiffOn ℝ 2 r (Icc a b)) {φ : ℝ}
     (hφ : φ ∈ Ioo a b) : bd c r P Q φ = B c r P Q a b hab.le φ 1 := by
   rw [bd, B_one, (hasDerivAt_rd hab hC hφ).deriv, conj_coef_mul_exp]
@@ -447,6 +588,9 @@ theorem bd_eq_B_one {a b : ℝ} (hab : a < b) (hC : ContDiffOn ℝ 2 r (Icc a b)
 
 include hcont hper hpos hU hKU hP hQ in
 
+/--
+@isnad1 id=and.9h7v.s8.35ba400f0a37 from=translated src=- shape=b8a9dd49 vocab=3aacfc32
+-/
 theorem arc_integral {a b : ℝ} (hab : a < b) (hC : ContDiffOn ℝ 2 r (Icc a b)) :
     (∫ φ in a..b, bd c r P Q φ) =
         ((∫ s in (0 : ℝ)..1, A c r P Q b s) - ∫ s in (0 : ℝ)..1, A c r P Q a s) +
@@ -483,11 +627,17 @@ theorem arc_integral {a b : ℝ} (hab : a < b) (hC : ContDiffOn ℝ 2 r (Icc a b
     exact (ae_restrict_iff' measurableSet_uIoc).2 (hae.mono fun φ hφ hφI => (hφ hφI).symm)
 
 include hper in
+/--
+@isnad1 id=eq.1h6v.s6.01f5552bc4e3 from=translated src=- shape=6ff08b8a vocab=6524e4c0
+-/
 theorem A_add_two_pi (φ s : ℝ) : A c r P Q (φ + 2 * π) s = A c r P Q φ s := by
   simp only [A, Ψc, Ψ, hper φ, u_add_two_pi, ub_add_two_pi]
 
 include hcont hper hpos hU hKU hP hQ in
 
+/--
+@isnad1 id=eq.11h7v.s9.a8e74300e1f9 from=translated src=- shape=5592f0a2 vocab=00371844
+-/
 theorem boundary_integral_eq (N : ℕ) (φs : Fin (N + 1) → ℝ) (hφ0 : φs 0 = 0)
     (hφN : φs (Fin.last N) = 2 * π) (hmono : StrictMono φs)
     (hC2 : ∀ i : Fin N, ContDiffOn ℝ 2 r (Icc (φs i.castSucc) (φs i.succ))) :
@@ -544,9 +694,15 @@ variable {c : ℂ} {r : ℝ → ℝ} {P Q : ℂ → ℂ} {U : Set ℂ}
   (hU : IsOpen U) (hKU : ∀ z : ℂ, ‖z - c‖ ≤ r (arg (z - c)) → z ∈ U)
   (hP : ContDiffOn ℝ 1 P U) (hQ : ContDiffOn ℝ 1 Q U)
 
+/--
+@isnad1 id=periodic.0h0v.s4.222cb96b0b29 from=translated src=- shape=fcb2be5d vocab=b0b65060
+-/
 theorem u_periodic : Function.Periodic u (2 * π) := u_add_two_pi
 
 include hcont in
+/--
+@isnad1 id=continuo.1h2v.s6.b004a4d775c8 from=translated src=- shape=ea80b77c vocab=9e053687
+-/
 theorem continuous_Ψ2 : Continuous fun p : ℝ × ℝ => Ψ c r p.1 p.2 := by
   unfold Ψ
   exact continuous_const.add (((continuous_ofReal.comp continuous_snd).mul
@@ -554,6 +710,9 @@ theorem continuous_Ψ2 : Continuous fun p : ℝ × ℝ => Ψ c r p.1 p.2 := by
 
 include hcont hper hpos in
 
+/--
+@isnad1 id=iscompac.3h2v.s6.d09fc7f631af from=translated src=- shape=7cf6128e vocab=77252285
+-/
 theorem isCompact_K : IsCompact {z : ℂ | ‖z - c‖ ≤ r (arg (z - c))} := by
   have hK : {z : ℂ | ‖z - c‖ ≤ r (arg (z - c))} =
       (fun p : ℝ × ℝ => Ψ c r p.1 p.2) '' (Icc 0 (2 * π) ×ˢ Icc (0 : ℝ) 1) := by
@@ -583,6 +742,9 @@ theorem isCompact_K : IsCompact {z : ℂ | ‖z - c‖ ≤ r (arg (z - c))} := b
   exact (isCompact_Icc.prod isCompact_Icc).image (continuous_Ψ2 hcont)
 
 include hcont hper in
+/--
+@isnad1 id=ex.2h1v.s5.a0949fa3ba44 from=translated src=- shape=9a7b5af3 vocab=413b8379
+-/
 theorem r_bounded : ∃ R, ∀ φ, r φ ≤ R := by
   obtain ⟨φ₀, -, hφ₀⟩ := isCompact_Icc.exists_isMaxOn (nonempty_Icc.2 (by positivity :
     (0 : ℝ) ≤ 2 * π)) hcont.continuousOn
@@ -596,6 +758,9 @@ theorem r_bounded : ∃ R, ∀ φ, r φ ≤ R := by
   rw [this]
   exact hφ₀ hmem
 
+/--
+@isnad1 id=measurab.0h2v.s4.25627aa5a0e8 from=translated src=- shape=9333a676 vocab=f5ad5420
+-/
 theorem measurable_g : Measurable (g P Q) := by
   unfold g
   exact (((measurable_fderiv_apply_const ℝ P (1 : ℂ)).add
@@ -604,6 +769,9 @@ theorem measurable_g : Measurable (g P Q) := by
       ((measurable_fderiv_apply_const ℝ Q I).const_mul I)).div_const 2)
 
 include hU hP hQ in
+/--
+@isnad1 id=continuo.3h3v.s7.78d3302aae53 from=translated src=- shape=3f387477 vocab=f6626680
+-/
 theorem continuousOn_g : ContinuousOn (g P Q) U := by
   have hP' := hP.continuousOn_fderiv_of_isOpen hU le_rfl
   have hQ' := hQ.continuousOn_fderiv_of_isOpen hU le_rfl
@@ -620,6 +788,9 @@ noncomputable def V (c : ℂ) (r : ℝ → ℝ) (P Q : ℂ → ℂ) (φ : ℝ) :
   (r φ : ℂ) * ∫ s in (0 : ℝ)..1, ((r φ * s : ℝ) : ℂ) * g P Q (c + ((r φ * s : ℝ) : ℂ) * u φ)
 
 include hpos in
+/--
+@isnad1 id=eq.1h5v.s6.43c544ed208b from=translated src=- shape=c373579c vocab=516bc46e
+-/
 theorem inner_integral (φ : ℝ) : ∫ ρ in Ioi (0 : ℝ), F c r P Q (ρ, φ) = V c r P Q φ := by
   have h1 : (fun ρ : ℝ => F c r P Q (ρ, φ)) =
       (Iic (r φ)).indicator fun ρ : ℝ => (ρ : ℂ) * g P Q (c + (ρ : ℂ) * u φ) := by
@@ -632,9 +803,15 @@ theorem inner_integral (φ : ℝ) : ∫ ρ in Ioi (0 : ℝ), F c r P Q (ρ, φ) 
   rw [← hsub, V, real_smul]
 
 include hper in
+/--
+@isnad1 id=eq.1h5v.s6.b6367bf5e4b2 from=translated src=- shape=5cd3596d vocab=f691557d
+-/
 theorem V_add_two_pi (φ : ℝ) : V c r P Q (φ + 2 * π) = V c r P Q φ := by
   simp only [V, hper φ, u_add_two_pi]
 
+/--
+@isnad1 id=eq.0h5v.s6.bc4b46ffe499 from=translated src=- shape=fbaa804c vocab=05169745
+-/
 theorem Tint_integral_eq (φ : ℝ) :
     (∫ s in (0 : ℝ)..1, Tint c r P Q φ s) = 2 * I * V c r P Q φ := by
   rw [V, ← intervalIntegral.integral_const_mul, ← intervalIntegral.integral_const_mul]
@@ -648,6 +825,9 @@ theorem Tint_integral_eq (φ : ℝ) :
 
 include hcont hper hpos hU hKU hP hQ in
 
+/--
+@isnad1 id=eq.7h5v.s8.7164774ac005 from=translated src=- shape=67fef0e7 vocab=5144e49e
+-/
 theorem area_integral_eq :
     (∫ z in {z : ℂ | ‖z - c‖ ≤ r (arg (z - c))}, g P Q z) = ∫ φ in (0 : ℝ)..(2 * π), V c r P Q φ := by
   set K := {z : ℂ | ‖z - c‖ ≤ r (arg (z - c))} with hKdef
@@ -734,6 +914,9 @@ end Area
 end RadialGreen
 
 open RadialGreen Complex MeasureTheory Set in
+/--
+@isnad1 id=eq.11h7v.s11.3bde7f075542 from=translated src=- shape=12bda2ff vocab=4fbfeff0
+-/
 theorem solution
     (c : ℂ) (r : ℝ → ℝ) (hcont : Continuous r) (hper : Function.Periodic r (2 * Real.pi))
     (hpos : ∀ φ, 0 < r φ)

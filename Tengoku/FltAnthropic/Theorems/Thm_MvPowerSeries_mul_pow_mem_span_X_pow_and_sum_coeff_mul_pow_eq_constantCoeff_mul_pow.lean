@@ -9,6 +9,9 @@ attribute [-simp] DrinfeldCurve.LocalChart.ChartPresentation.mk.sizeOf_spec Drin
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.1h7v.s11.e6f4ba3969b6 from=translated src=- shape=47aed77d vocab=5266da17
+-/
 theorem MvPowerSeries.mul_pow_mem_span_X_pow_and_sum_coeff_mul_pow_eq_constantCoeff_mul_pow
     (W : Type) [CommRing W] (G h : MvPowerSeries (Fin 2) W) (d k : ℕ)
     (hh : h ∈ (Ideal.span {(MvPowerSeries.X 0 : MvPowerSeries (Fin 2) W), MvPowerSeries.X 1}) ^ d) (a b : W) :

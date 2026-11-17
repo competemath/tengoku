@@ -10,6 +10,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_IharaLemma_nonempty_idempotentSplitting_of
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=nonempty.0h2v.s6.9eb75672aba5 from=translated src=- shape=52dfdb30 vocab=eca0891b
+-/
 theorem IharaLemma.nonempty_idempotentSplitting_of_finite (𝒪 : Type) [CommRing 𝒪] [IsLocalRing 𝒪]
     [IsNoetherianRing 𝒪] (B : Type) [CommRing B] [Algebra 𝒪 B] [Module.Finite 𝒪 B]
     [IsAdicComplete (IsLocalRing.maximalIdeal 𝒪) 𝒪] :

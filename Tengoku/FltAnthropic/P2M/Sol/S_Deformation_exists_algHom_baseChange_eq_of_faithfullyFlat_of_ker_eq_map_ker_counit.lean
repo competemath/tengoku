@@ -27,8 +27,14 @@ variable {A : Type*} {B : Type*} [CommRing A] [CommRing B] [Algebra A B]
 noncomputable def d : B →ₗ[A] B ⊗[A] B :=
   (TensorProduct.mk A B B).flip 1 - TensorProduct.mk A B B 1
 
+/--
+@isnad1 id=eq.0h3v.s9.faf6ed0d79a8 from=translated src=- shape=895ddfee vocab=b260280c
+-/
 theorem d_apply (b : B) : d b = b ⊗ₜ[A] (1 : B) - (1 : B) ⊗ₜ[A] b := rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.ceac10ea5d90 from=translated src=- shape=80099438 vocab=2f5ae222
+-/
 theorem d_comp_linearMap : (d : B →ₗ[A] B ⊗[A] B) ∘ₗ Algebra.linearMap A B = 0 := by
   refine LinearMap.ext fun a => ?_
   rw [LinearMap.comp_apply, Algebra.linearMap_apply, d_apply, Algebra.algebraMap_eq_smul_one,
@@ -40,6 +46,9 @@ noncomputable def s : B ⊗[A] (B ⊗[A] B) →ₗ[A] B ⊗[A] B :=
 noncomputable def r : B ⊗[A] B →ₗ[A] B ⊗[A] A :=
   (TensorProduct.mk A B A).flip 1 ∘ₗ LinearMap.mul' A B
 
+/--
+@isnad1 id=eq.0h3v.s12.f0c04f16a7ed from=translated src=- shape=265d4ff6 vocab=340b7e1c
+-/
 theorem homotopy (w : B ⊗[A] B) :
     s ((d : B →ₗ[A] B ⊗[A] B).lTensor B w) = (Algebra.linearMap A B).lTensor B (r w) - w := by
   induction w using TensorProduct.induction_on with
@@ -51,6 +60,9 @@ theorem homotopy (w : B ⊗[A] B) :
       TensorProduct.mk_apply, Algebra.linearMap_apply, map_one]
   | add x y hx hy => rw [map_add, map_add, hx, map_add, map_add, hy]; abel
 
+/--
+@isnad1 id=exact.0h2v.s11.81f5993e54e4 from=translated src=- shape=569af0b9 vocab=2dac6850
+-/
 theorem exact_lTensor :
     Function.Exact ((Algebra.linearMap A B).lTensor B) ((d : B →ₗ[A] B ⊗[A] B).lTensor B) := by
   intro w
@@ -63,6 +75,9 @@ theorem exact_lTensor :
     rw [← LinearMap.comp_apply, ← LinearMap.lTensor_comp, d_comp_linearMap, LinearMap.lTensor_zero,
       LinearMap.zero_apply]
 
+/--
+@isnad1 id=ex.1h3v.s8.9cb9d2b8d2af from=translated src=- shape=de0ccc05 vocab=4f5e8bb4
+-/
 theorem exists_algebraMap_eq [Module.FaithfullyFlat A B] {b : B}
     (hb : b ⊗ₜ[A] (1 : B) = (1 : B) ⊗ₜ[A] b) : ∃ a : A, algebraMap A B a = b := by
   have hex : Function.Exact (Algebra.linearMap A B) (d : B →ₗ[A] B ⊗[A] B) :=
@@ -86,16 +101,25 @@ noncomputable abbrev red {X : Type w₁} [CommRing X] [Algebra 𝓞 X] {Y : Type
     [Algebra 𝓞 Y] (x : X →ₐ[𝓞] Y) : k ⊗[𝓞] X →ₐ[k] k ⊗[𝓞] Y :=
   Algebra.TensorProduct.map (AlgHom.id k k) x
 
+/--
+@isnad1 id=eq.0h7v.s9.954e7e9d595c from=translated src=- shape=6d526358 vocab=35f09926
+-/
 theorem red_tmul {X : Type w₁} [CommRing X] [Algebra 𝓞 X] {Y : Type w'} [CommRing Y] [Algebra 𝓞 Y]
     (x : X →ₐ[𝓞] Y) (c : k) (r : X) : red (k := k) x (c ⊗ₜ[𝓞] r) = c ⊗ₜ[𝓞] x r := by
   rw [Algebra.TensorProduct.map_tmul, AlgHom.id_apply]
 
+/--
+@isnad1 id=eq.0h7v.s9.e162c4cae180 from=translated src=- shape=8298a426 vocab=f2954829
+-/
 theorem red_comp {X : Type w₁} [CommRing X] [Algebra 𝓞 X] {Y : Type w₂} [CommRing Y] [Algebra 𝓞 Y]
     {Z : Type w₃} [CommRing Z] [Algebra 𝓞 Z] (x : X →ₐ[𝓞] Y) (y : Y →ₐ[𝓞] Z) :
     red (k := k) (y.comp x) = (red (k := k) y).comp (red (k := k) x) := by
   refine Algebra.TensorProduct.ext' fun c r => ?_
   simp
 
+/--
+@isnad1 id=eq.0h5v.s9.924339749207 from=translated src=- shape=09adfb6b vocab=2c22a491
+-/
 theorem includeRight_comp {X : Type w₁} [CommRing X] [Algebra 𝓞 X] {Y : Type w'} [CommRing Y]
     [Algebra 𝓞 Y] (x : X →ₐ[𝓞] Y) :
     (Algebra.TensorProduct.includeRight : Y →ₐ[𝓞] k ⊗[𝓞] Y).toRingHom.comp x.toRingHom =
@@ -104,6 +128,9 @@ theorem includeRight_comp {X : Type w₁} [CommRing X] [Algebra 𝓞 X] {Y : Typ
   refine RingHom.ext fun r => ?_
   simp [Algebra.TensorProduct.includeRight_apply]
 
+/--
+@isnad1 id=eq.0h5v.s10.afec2dbd6b3f from=translated src=- shape=a993bf85 vocab=6d15a95c
+-/
 theorem red_bialgHom {X : Type w₁} [CommRing X] [Bialgebra 𝓞 X] {Y : Type w'} [CommRing Y]
     [Bialgebra 𝓞 Y] (q : X →ₐc[𝓞] Y) :
     red (k := k) (q : X →ₐ[𝓞] Y) =
@@ -121,6 +148,9 @@ def Cond (p : ℕ) [Fact p.Prime] {X : Type w₁} [CommRing X] [Bialgebra 𝓞 X
         Deformation.TruncWitt.fontaineKer p n
           (Algebra.TensorProduct.includeRight : Y →ₐ[𝓞] k ⊗[𝓞] Y).toRingHom
 
+/--
+@isnad1 id=cond.1h8v.s10.d9ebc9d53711 from=translated src=- shape=4c917f84 vocab=b662c1f8
+-/
 theorem cond_comp {𝒮 : Type w₁} [CommRing 𝒮] [Bialgebra 𝓞 𝒮] {ℛ : Type w₂} [CommRing ℛ]
     [Bialgebra 𝓞 ℛ] {Y : Type w'} [CommRing Y] [Algebra 𝓞 Y]
     (q : 𝒮 →ₐc[𝓞] ℛ) (χ : k ⊗[𝓞] ℛ →ₐ[k] k ⊗[𝓞] Y) (hχ : Cond p χ) :
@@ -144,6 +174,9 @@ theorem cond_comp {𝒮 : Type w₁} [CommRing 𝒮] [Bialgebra 𝓞 𝒮] {ℛ 
   rw [Deformation.coe_wittHomMap, Deformation.TruncWitt.map_map] at this
   exact this
 
+/--
+@isnad1 id=cond.1h8v.s9.20620665cfb8 from=translated src=- shape=edb26b65 vocab=ec61682d
+-/
 theorem cond_map {X : Type w₁} [CommRing X] [Bialgebra 𝓞 X] {Y : Type w₂} [CommRing Y]
     [Algebra 𝓞 Y] {Y' : Type w'} [CommRing Y'] [Algebra 𝓞 Y'] (ι : Y →ₐ[𝓞] Y')
     (χ : k ⊗[𝓞] X →ₐ[k] k ⊗[𝓞] Y) (hχ : Cond p χ) :
@@ -155,11 +188,17 @@ theorem cond_map {X : Type w₁} [CommRing X] [Bialgebra 𝓞 X] {Y : Type w₂}
   rw [Deformation.TruncWitt.map_map] at this
   exact this
 
+/--
+@isnad1 id=eq.0h6v.s8.1dbc8cdea308 from=translated src=- shape=28e6b2f1 vocab=063fc6ec
+-/
 theorem conv_mul_assoc {R : Type*} [CommSemiring R] {C : Type*} [Semiring C] [Bialgebra R C]
     {A : Type*} [CommSemiring A] [Algebra R A] (a b c : WithConv (C →ₐ[R] A)) :
     a * b * c = a * (b * c) :=
   mul_assoc a b c
 
+/--
+@isnad1 id=eq.0h4v.s7.bf42714bb1b3 from=translated src=- shape=60d9c43c vocab=063fc6ec
+-/
 theorem conv_one_mul {R : Type*} [CommSemiring R] {C : Type*} [Semiring C] [Bialgebra R C]
     {A : Type*} [CommSemiring A] [Algebra R A] (a : WithConv (C →ₐ[R] A)) : 1 * a = a :=
   one_mul a
@@ -168,6 +207,9 @@ section Conv
 
 variable {ℛ : Type w₁} [CommRing ℛ]
 
+/--
+@isnad1 id=eq.0h6v.s11.eb5dcecb4747 from=translated src=- shape=05cc1915 vocab=7eac5163
+-/
 theorem red_convMul [Bialgebra 𝓞 ℛ] {Y : Type w'} [CommRing Y] [Algebra 𝓞 Y]
     (f g : ℛ →ₐ[𝓞] Y) :
     red (k := k) (WithConv.toConv f * WithConv.toConv g).ofConv =
@@ -182,6 +224,9 @@ theorem red_convMul [Bialgebra 𝓞 ℛ] {Y : Type w'} [CommRing Y] [Algebra �
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [Algebra.TensorProduct.tmul_mul_tmul, one_mul]
 
+/--
+@isnad1 id=eq.0h4v.s10.256d53e7e762 from=translated src=- shape=d461a8b2 vocab=eaca2fdc
+-/
 theorem red_convOne [Bialgebra 𝓞 ℛ] {Y : Type w'} [CommRing Y] [Algebra 𝓞 Y] :
     red (k := k) (1 : WithConv (ℛ →ₐ[𝓞] Y)).ofConv =
       (1 : WithConv (k ⊗[𝓞] ℛ →ₐ[k] k ⊗[𝓞] Y)).ofConv := by
@@ -201,6 +246,9 @@ noncomputable def invPoint {Y : Type w'} [CommRing Y] [Algebra 𝓞 Y] (x : ℛ 
     ℛ →ₐ[𝓞] Y :=
   x.comp antipodeAlgHom
 
+/--
+@isnad1 id=eq.0h4v.s9.6b7a588874e2 from=translated src=- shape=53f9868f vocab=e69cda02
+-/
 theorem invPoint_convMul {Y : Type w'} [CommRing Y] [Algebra 𝓞 Y] (x : ℛ →ₐ[𝓞] Y) :
     WithConv.toConv (invPoint x) * WithConv.toConv x = 1 := by
   refine WithConv.ofConv_injective (AlgHom.ext fun a => ?_)
@@ -218,6 +266,9 @@ theorem invPoint_convMul {Y : Type w'} [CommRing Y] [Algebra 𝓞 Y] (x : ℛ �
     rfl
   rw [this, key, AlgHom.commutes]
 
+/--
+@isnad1 id=eq.0h4v.s9.b3250fc78145 from=translated src=- shape=b51c16d0 vocab=e69cda02
+-/
 theorem convMul_invPoint {Y : Type w'} [CommRing Y] [Algebra 𝓞 Y] (x : ℛ →ₐ[𝓞] Y) :
     WithConv.toConv x * WithConv.toConv (invPoint x) = 1 := by
   refine WithConv.ofConv_injective (AlgHom.ext fun a => ?_)
@@ -244,6 +295,9 @@ variable {ℛ : Type w₁} [CommRing ℛ] [HopfAlgebra 𝓞 ℛ]
 variable {ℛ₁ : Type w₂} [CommRing ℛ₁] [Bialgebra 𝓞 ℛ₁]
 variable {ℛ₃ : Type w₃} [CommRing ℛ₃] [Bialgebra 𝓞 ℛ₃]
 
+/--
+@isnad1 id=ex.15h17v.s14.d89e4f822ef1 from=translated src=- shape=b95568c4 vocab=7b71a17d
+-/
 theorem core (hk : Surjective (algebraMap 𝓞 k))
     (hker : RingHom.ker (algebraMap 𝓞 k) = Ideal.span {(p : 𝓞)})
     (π : ℛ →ₐc[𝓞] ℛ₁) (hπ : Surjective π) (j : ℛ₃ →ₐc[𝓞] ℛ)
@@ -434,6 +488,9 @@ section Instantiate
 
 omit [Fact p.Prime] in
 
+/--
+@isnad1 id=mem.1h3v.s7.6de4ed8c04ec from=translated src=- shape=83831f15 vocab=222ad58a
+-/
 theorem natCast_mem_nonZeroDivisors_of_flat (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞) (Y : Type w')
     [CommRing Y] [Algebra 𝓞 Y] [Module.Flat 𝓞 Y] : (p : Y) ∈ nonZeroDivisors Y := by
   have hreg : IsSMulRegular Y (p : 𝓞) := Module.Flat.isSMulRegular_of_nonZeroDivisors hp
@@ -446,6 +503,9 @@ variable {ℛ : Type w₁} [CommRing ℛ] [HopfAlgebra 𝓞 ℛ]
 variable {ℛ₁ : Type w₂} [CommRing ℛ₁] [Bialgebra 𝓞 ℛ₁]
 variable {ℛ₃ : Type w₃} [CommRing ℛ₃] [Bialgebra 𝓞 ℛ₃]
 
+/--
+@isnad1 id=ex.12h10v.s14.f575d1e8298a from=translated src=- shape=b9a5e59c vocab=71af50f7
+-/
 theorem exists_algHom_red_eq (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞)
     (hk : Surjective (algebraMap 𝓞 k))
     (hker : RingHom.ker (algebraMap 𝓞 k) = Ideal.span {(p : 𝓞)})
@@ -548,6 +608,9 @@ open scoped _root_.P2MW.S_Deformation_exists_algHom_baseChange_eq_of_faithfullyF
 
 open Deformation.FontaineExtStab in
 
+/--
+@isnad1 id=ex.12h10v.s15.786dfd2de46f from=translated src=- shape=161402b6 vocab=64092968
+-/
 theorem solution
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [Fact p.Prime] (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞)
     {k : Type v} [CommRing k] [Algebra 𝓞 k]

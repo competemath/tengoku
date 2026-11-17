@@ -20,9 +20,15 @@ variable {R : Type*} [CommRing R] {C : Type*} [AddCommGroup C] [Module R C] [Coa
 noncomputable def M' : (N ⊗[R] C) ⊗[R] C →ₗ[R] N ⊗[R] C :=
   _root_.TensorProduct.map (_root_.TensorProduct.rid R N ∘ₗ LinearMap.lTensor N Coalgebra.counit) LinearMap.id
 
+/--
+@isnad1 id=eq.0h5v.s10.a2d1f2f2d6e7 from=translated src=- shape=fcc9251b vocab=06375894
+-/
 theorem M'_tmul (x : N ⊗[R] C) (c : C) :
     M' (R := R) (x ⊗ₜ[R] c) = (_root_.TensorProduct.rid R N (LinearMap.lTensor N Coalgebra.counit x)) ⊗ₜ[R] c := rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.669ecf1176e3 from=translated src=- shape=d1d17155 vocab=60b83a12
+-/
 theorem M'_tmul_tmul (n : N) (c c' : C) :
     M' (R := R) ((n ⊗ₜ[R] c) ⊗ₜ[R] c') = (Coalgebra.counit (R := R) c • n) ⊗ₜ[R] c' := by
   rw [M'_tmul, LinearMap.lTensor_tmul, TensorProduct.rid_tmul]
@@ -30,8 +36,14 @@ theorem M'_tmul_tmul (n : N) (c c' : C) :
 noncomputable def Phi : ((N ⊗[R] C) ⊗[R] C) ⊗[R] C →ₗ[R] (N ⊗[R] C) ⊗[R] C :=
   LinearMap.rTensor C (M' (R := R) (C := C) (N := N))
 
+/--
+@isnad1 id=eq.0h5v.s11.ead768697bb3 from=translated src=- shape=083a9a74 vocab=7f5110ec
+-/
 theorem Phi_tmul (y : (N ⊗[R] C) ⊗[R] C) (c : C) : Phi (R := R) (y ⊗ₜ[R] c) = M' y ⊗ₜ[R] c := rfl
 
+/--
+@isnad1 id=eq.0h4v.s13.a97bbe1f1e32 from=translated src=- shape=d88c630f vocab=ca3bd4e5
+-/
 theorem Phi_A (e : (N ⊗[R] C) ⊗[R] C) :
     Phi ((_root_.TensorProduct.assoc R (N ⊗[R] C) C C).symm (LinearMap.lTensor (N ⊗[R] C) Coalgebra.comul e)) =
       (_root_.TensorProduct.assoc R N C C).symm (LinearMap.lTensor N Coalgebra.comul (M' e)) := by
@@ -47,6 +59,9 @@ theorem Phi_A (e : (N ⊗[R] C) ⊗[R] C) :
     | add w₁ w₂ h₁ h₂ => rw [TensorProduct.tmul_add, TensorProduct.tmul_add, map_add, map_add, map_add, h₁, h₂]
   | add x y hx hy => simp only [map_add, hx, hy]
 
+/--
+@isnad1 id=eq.0h4v.s12.2b7cc3d9d819 from=translated src=- shape=c488dab7 vocab=670aef96
+-/
 theorem Phi_B (e : (N ⊗[R] C) ⊗[R] C) :
     Phi (_root_.TensorProduct.map (_root_.TensorProduct.assoc R N C C).symm.toLinearMap LinearMap.id
       (LinearMap.rTensor C (LinearMap.lTensor N Coalgebra.comul) e)) = e := by
@@ -71,6 +86,9 @@ theorem Phi_B (e : (N ⊗[R] C) ⊗[R] C) :
     | add x y hx hy => simp only [map_add, hx, hy]
   | add x y hx hy => simp only [map_add, hx, hy]
 
+/--
+@isnad1 id=eq.0h5v.s11.ead768697bb3 from=translated src=- shape=083a9a74 vocab=7f5110ec
+-/
 theorem Phi_tmul_c (e : (N ⊗[R] C) ⊗[R] C) (c₀ : C) : Phi (R := R) (e ⊗ₜ[R] c₀) = M' e ⊗ₜ[R] c₀ := rfl
 
 end COFREEH1
@@ -79,11 +97,17 @@ namespace COFREEH1
 
 variable {R : Type} [CommRing R] {L : Type} [CommRing L] [Bialgebra R L] {N : Type} [AddCommGroup N] [Module R N]
 
+/--
+@isnad1 id=eq.0h4v.s14.8de60cff9b98 from=translated src=- shape=ac539925 vocab=76d2db06
+-/
 theorem Phi_B' (e : (N ⊗[R] L) ⊗[R] L) :
     Phi (((_root_.TensorProduct.assoc R N L L).symm.toLinearMap.rTensor L)
       (((Coalgebra.comul (R := R) (A := L)).lTensor N).rTensor L e)) = e :=
   Phi_B e
 
+/--
+@isnad1 id=eq.0h4v.s12.ccdc050bdd63 from=translated src=- shape=fe529177 vocab=d9551072
+-/
 theorem m_eq (e : (N ⊗[R] L) ⊗[R] L) :
     ((_root_.TensorProduct.rid R N).toLinearMap.rTensor L (((Coalgebra.counit (R := R) (A := L)).lTensor N).rTensor L e)) =
       M' e := by
@@ -93,6 +117,9 @@ theorem m_eq (e : (N ⊗[R] L) ⊗[R] L) :
 end COFREEH1
 
 open COFREEH1 in
+/--
+@isnad1 id=eq.1h4v.s15.8d6e7bbc5e3b from=translated src=- shape=920f01ed vocab=4eb85bc3
+-/
 theorem solution
     {R : Type} [CommRing R] {L : Type} [CommRing L] [Bialgebra R L]
     {N : Type} [AddCommGroup N] [Module R N]

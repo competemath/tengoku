@@ -17,6 +17,9 @@ noncomputable def refl (p : ℕ) (B : Multiset ℂ) : ℂ[X] := (B.map fun β =>
 
 noncomputable def invRoots (P : ℂ[X]) : Multiset ℂ := P.roots.map (·⁻¹)
 
+/--
+@isnad1 id=eq.0h1v.s4.1bc17aa99a01 from=translated src=- shape=2c6ce007 vocab=856e0425
+-/
 theorem coeff_zero_eul (B : Multiset ℂ) : (eul B).coeff 0 = 1 := by
   unfold eul
   rw [coeff_zero_multiset_prod, Multiset.map_map]
@@ -25,18 +28,30 @@ theorem coeff_zero_eul (B : Multiset ℂ) : (eul B).coeff 0 = 1 := by
     simp
   rw [this, Multiset.map_const', Multiset.prod_replicate, one_pow]
 
+/--
+@isnad1 id=ne.0h1v.s4.1945c265a87e from=translated src=- shape=ea91c9b2 vocab=62ba0f7c
+-/
 theorem eul_ne_zero (B : Multiset ℂ) : eul B ≠ 0 := by
   intro h
   have := coeff_zero_eul B
   rw [h, coeff_zero] at this
   exact zero_ne_one this
 
+/--
+@isnad1 id=monic.0h2v.s3.25ec318809b8 from=translated src=- shape=fcfe4792 vocab=fed29bbb
+-/
 theorem refl_monic (p : ℕ) (B : Multiset ℂ) : (refl p B).Monic := by
   unfold refl
   exact monic_multiset_prod_of_monic _ _ fun β _ => monic_X_sub_C _
 
+/--
+@isnad1 id=ne.0h2v.s4.99ac0eb3f24c from=translated src=- shape=11ea66bd vocab=c8d98ad0
+-/
 theorem refl_ne_zero (p : ℕ) (B : Multiset ℂ) : refl p B ≠ 0 := (refl_monic p B).ne_zero
 
+/--
+@isnad1 id=eq.0h2v.s5.b78bd184370d from=translated src=- shape=040f5f2c vocab=a0c054e8
+-/
 theorem eval_eul (B : Multiset ℂ) (x : ℂ) :
     (eul B).eval x = (B.map fun β => 1 - β * x).prod := by
   unfold eul
@@ -44,6 +59,9 @@ theorem eval_eul (B : Multiset ℂ) (x : ℂ) :
   refine congrArg _ (Multiset.map_congr rfl fun β _ => ?_)
   simp
 
+/--
+@isnad1 id=eq.0h3v.s5.8b54902cae3d from=translated src=- shape=20da8962 vocab=98286810
+-/
 theorem eval_refl (p : ℕ) (B : Multiset ℂ) (x : ℂ) :
     (refl p B).eval x = (B.map fun β => x - β / (p : ℂ)).prod := by
   unfold refl
@@ -51,6 +69,9 @@ theorem eval_refl (p : ℕ) (B : Multiset ℂ) (x : ℂ) :
   refine congrArg _ (Multiset.map_congr rfl fun β _ => ?_)
   simp
 
+/--
+@isnad1 id=eq.1h3v.s6.f070eb92e6f2 from=translated src=- shape=60910889 vocab=7295c3db
+-/
 theorem pow_card_mul_prod_eq_eval_refl (p : ℕ) (B : Multiset ℂ) {x : ℂ} (hx : x ≠ 0) :
     x ^ Multiset.card B * (B.map fun β => 1 - β * (x⁻¹ * (p : ℂ)⁻¹)).prod =
       (refl p B).eval x := by
@@ -99,6 +120,9 @@ theorem eq_eul_invRoots {P : ℂ[X]} (h0 : P.coeff 0 = 1) : P = eul (invRoots P)
   rw [hconst, C_1, one_mul] at hsplit
   exact hsplit.symm
 
+/--
+@isnad1 id=ex.2h2v.s5.a1d5f197404d from=translated src=- shape=378618ae vocab=4db57ece
+-/
 theorem mem_invRoots {P : ℂ[X]} (h0 : P.coeff 0 = 1) {β : ℂ} (hβ : β ∈ invRoots P) :
     ∃ z : ℂ, P.IsRoot z ∧ z ≠ 0 ∧ β = z⁻¹ := by
   have hP : P ≠ 0 := by
@@ -112,6 +136,9 @@ theorem mem_invRoots {P : ℂ[X]} (h0 : P.coeff 0 = 1) {β : ℂ} (hβ : β ∈ 
   rw [h, IsRoot.def, ← coeff_zero_eq_eval_zero, h0] at hz
   exact one_ne_zero hz
 
+/--
+@isnad1 id=and.3h3v.s6.767787790284 from=translated src=- shape=8336defb vocab=f7daa3b3
+-/
 theorem invRoots_small {P : ℂ[X]} {p : ℕ} (h0 : P.coeff 0 = 1)
     (hP : ∀ z : ℂ, P.IsRoot z → 1 < ‖z‖ ^ 2 * p) {β : ℂ} (hβ : β ∈ invRoots P) :
     β ≠ 0 ∧ ‖β‖ ^ 2 < p := by
@@ -123,11 +150,17 @@ theorem invRoots_small {P : ℂ[X]} {p : ℕ} (h0 : P.coeff 0 = 1)
   rw [inv_lt_iff_one_lt_mul₀ hzpos]
   linarith [mul_comm (‖z‖ ^ 2) (p : ℝ)]
 
+/--
+@isnad1 id=eq.0h2v.s5.9f1f67ec903c from=translated src=- shape=9bcd9213 vocab=8bc96e0e
+-/
 theorem roots_refl (p : ℕ) (B : Multiset ℂ) : (refl p B).roots = B.map (· / (p : ℂ)) := by
   unfold refl
   have : (fun β : ℂ => X - C (β / (p : ℂ))) = (fun a => X - C a) ∘ fun β => β / (p : ℂ) := rfl
   rw [this, ← Multiset.map_map, roots_multiset_prod_X_sub_C]
 
+/--
+@isnad1 id=eq.1h1v.s7.2f106ffa70ef from=translated src=- shape=75cb20d5 vocab=15433492
+-/
 theorem eul_eq_C_mul_prod (B : Multiset ℂ) (hB : ∀ β ∈ B, β ≠ 0) :
     eul B = C ((B.map fun β => -β).prod) * ((B.map (·⁻¹)).map fun a => X - C a).prod := by
   unfold eul
@@ -140,6 +173,9 @@ theorem eul_eq_C_mul_prod (B : Multiset ℂ) (hB : ∀ β ∈ B, β ≠ 0) :
   congr 1
   exact Multiset.prod_hom' (s := B) C fun z => -z
 
+/--
+@isnad1 id=eq.1h1v.s5.fea1295a76ad from=translated src=- shape=e42f1f4f vocab=6d736973
+-/
 theorem roots_eul (B : Multiset ℂ) (hB : ∀ β ∈ B, β ≠ 0) : (eul B).roots = B.map (·⁻¹) := by
   rw [eul_eq_C_mul_prod B hB, roots_C_mul, roots_multiset_prod_X_sub_C]
   rw [Ne, Multiset.prod_eq_zero_iff, Multiset.mem_map]
@@ -156,12 +192,18 @@ def nOf (m : S →₀ ℕ) : ℕ := ∏ p : S, (p : ℕ) ^ (m p)
 
 variable {S}
 
+/--
+@isnad1 id=ne.1h2v.s5.e9a84111bb16 from=translated src=- shape=f94bd5da vocab=4a50e73d
+-/
 theorem nOf_ne_zero (hS : ∀ p ∈ S, p.Prime) (m : S →₀ ℕ) : nOf S m ≠ 0 := by
   unfold nOf
   rw [Finset.prod_ne_zero_iff]
   intro p _
   exact pow_ne_zero _ (hS p.1 p.2).ne_zero
 
+/--
+@isnad1 id=eq.1h3v.s7.6a6ff53b03f2 from=translated src=- shape=eb8aad6c vocab=09ffb51e
+-/
 theorem factorization_nOf (hS : ∀ p ∈ S, p.Prime) (m : S →₀ ℕ) (p : S) :
     (nOf S m).factorization p = m p := by
   unfold nOf
@@ -176,17 +218,26 @@ theorem factorization_nOf (hS : ∀ p ∈ S, p.Prime) (m : S →₀ ℕ) (p : S)
     exact hqp (Subtype.ext h)
   · intro h; exact absurd (Finset.mem_univ p) h
 
+/--
+@isnad1 id=injectiv.1h1v.s5.0c768e11543a from=translated src=- shape=c920650a vocab=b2c766ca
+-/
 theorem nOf_injective (hS : ∀ p ∈ S, p.Prime) : Function.Injective (nOf S) := by
   intro m m' h
   ext p
   rw [← factorization_nOf hS m p, ← factorization_nOf hS m' p, h]
 
+/--
+@isnad1 id=eq.0h3v.s5.e8bf77b47813 from=translated src=- shape=ab709254 vocab=cb498106
+-/
 theorem natCast_pow_cpow (n k : ℕ) (z : ℂ) :
     (((n ^ k : ℕ)) : ℂ) ^ z = (((n : ℕ) : ℂ) ^ z) ^ k := by
   induction k with
   | zero => simp
   | succ k ih => rw [pow_succ, Nat.cast_mul, Complex.natCast_mul_natCast_cpow, ih, pow_succ]
 
+/--
+@isnad1 id=eq.0h4v.s5.164cb7f6550c from=translated src=- shape=5d88cc5c vocab=cde60e62
+-/
 theorem natCast_prod_cpow {ι : Type*} (T : Finset ι) (a : ι → ℕ) (z : ℂ) :
     (((∏ i ∈ T, a i : ℕ)) : ℂ) ^ z = ∏ i ∈ T, ((a i : ℕ) : ℂ) ^ z := by
   classical
@@ -196,6 +247,9 @@ theorem natCast_prod_cpow {ι : Type*} (T : Finset ι) (a : ι → ℕ) (z : ℂ
     rw [Finset.prod_insert hi, Finset.prod_insert hi, Nat.cast_mul,
       Complex.natCast_mul_natCast_cpow, ih]
 
+/--
+@isnad1 id=eq.0h3v.s7.19cc1a5782c8 from=translated src=- shape=514bfb32 vocab=24a93bcc
+-/
 theorem prod_xs_pow (m : S →₀ ℕ) (s : ℂ) :
     ∏ p : S, xs S s p ^ (m p) = ((nOf S m : ℕ) : ℂ) ^ (-s) := by
   unfold nOf xs
@@ -203,6 +257,9 @@ theorem prod_xs_pow (m : S →₀ ℕ) (s : ℂ) :
   refine Finset.prod_congr rfl fun p _ => ?_
   rw [natCast_pow_cpow]
 
+/--
+@isnad1 id=eq.0h3v.s8.2c539b82855d from=translated src=- shape=558da107 vocab=b7d5971d
+-/
 theorem eval_xs (F : MvPolynomial S ℂ) (s : ℂ) :
     MvPolynomial.eval (xs S s) F = ∑ m ∈ F.support, F.coeff m * ((nOf S m : ℕ) : ℂ) ^ (-s) := by
   rw [MvPolynomial.eval_eq']
@@ -212,6 +269,9 @@ theorem eval_xs (F : MvPolynomial S ℂ) (s : ℂ) :
 noncomputable def cf (F : MvPolynomial S ℂ) (n : ℕ) : ℂ :=
   ∑ m ∈ F.support with nOf S m = n, F.coeff m
 
+/--
+@isnad1 id=eq.1h3v.s6.25d7020ffd2a from=translated src=- shape=cde50dd5 vocab=3287438a
+-/
 theorem cf_nOf (hS : ∀ p ∈ S, p.Prime) (F : MvPolynomial S ℂ) (m : S →₀ ℕ) :
     cf F (nOf S m) = F.coeff m := by
   classical
@@ -225,6 +285,9 @@ theorem cf_nOf (hS : ∀ p ∈ S, p.Prime) (F : MvPolynomial S ℂ) (m : S →�
   · rw [Finset.sum_empty]
     exact (MvPolynomial.notMem_support_iff.mp h).symm
 
+/--
+@isnad1 id=eq.1h3v.s6.615b45557407 from=translated src=- shape=e30a447b vocab=29f9bae2
+-/
 theorem cf_eq_zero_of_notMem (F : MvPolynomial S ℂ) {n : ℕ}
     (hn : n ∉ F.support.image (nOf S)) : cf F n = 0 := by
   unfold cf
@@ -232,12 +295,18 @@ theorem cf_eq_zero_of_notMem (F : MvPolynomial S ℂ) {n : ℕ}
   rw [Finset.mem_filter] at hm
   exact absurd (Finset.mem_image.mpr ⟨m, hm.1, hm.2⟩) hn
 
+/--
+@isnad1 id=le.0h3v.s6.b9c078f97f5e from=translated src=- shape=fec844b8 vocab=219fa7b9
+-/
 theorem norm_cf_le (F : MvPolynomial S ℂ) (n : ℕ) :
     ‖cf F n‖ ≤ ∑ m ∈ F.support, ‖F.coeff m‖ := by
   unfold cf
   refine (norm_sum_le _ _).trans ?_
   exact Finset.sum_le_sum_of_subset_of_nonneg (Finset.filter_subset _ _) fun _ _ _ => norm_nonneg _
 
+/--
+@isnad1 id=eq.1h3v.s8.d8bbdb953642 from=translated src=- shape=4fbe9571 vocab=79d94e8a
+-/
 theorem LSeries_cf (hS : ∀ p ∈ S, p.Prime) (F : MvPolynomial S ℂ) (s : ℂ) :
     LSeries (cf F) s = MvPolynomial.eval (xs S s) F := by
   classical
@@ -255,6 +324,9 @@ theorem LSeries_cf (hS : ∀ p ∈ S, p.Prime) (F : MvPolynomial S ℂ) (s : ℂ
     · rfl
     · rw [cf_eq_zero_of_notMem F hn, zero_div]
 
+/--
+@isnad1 id=lt.0h2v.s5.ecc94feda861 from=translated src=- shape=557cc2f4 vocab=c26cdc21
+-/
 theorem abscissaOfAbsConv_cf_lt_top (F : MvPolynomial S ℂ) :
     LSeries.abscissaOfAbsConv (cf F) < ⊤ := by
   have hsum : LSeriesSummable (cf F) (2 : ℝ) :=
@@ -286,12 +358,21 @@ noncomputable def Rpoly (p : ℕ) (e : ℤ) (B B' C' : Multiset ℂ) : ℂ[X] :=
 
 def Dexp (e : ℤ) (B' C' : Multiset ℂ) : ℕ := e.toNat + (-e).toNat + Multiset.card B' + Multiset.card C'
 
+/--
+@isnad1 id=ne.0h5v.s5.cdb9c31bf764 from=translated src=- shape=696632f5 vocab=aaae46ca
+-/
 theorem Lpoly_ne_zero (p : ℕ) (e : ℤ) (B' Cm C' : Multiset ℂ) : Lpoly p e B' Cm C' ≠ 0 :=
   mul_ne_zero (mul_ne_zero (pow_ne_zero _ X_ne_zero) (refl_ne_zero p B')) (eul_ne_zero Cm)
 
+/--
+@isnad1 id=ne.0h5v.s5.4929077e3c25 from=translated src=- shape=696632f5 vocab=c827b197
+-/
 theorem Rpoly_ne_zero (p : ℕ) (e : ℤ) (B B' C' : Multiset ℂ) : Rpoly p e B B' C' ≠ 0 :=
   mul_ne_zero (mul_ne_zero (pow_ne_zero _ X_ne_zero) (eul_ne_zero B)) (refl_ne_zero p C')
 
+/--
+@isnad1 id=eq.1h6v.s7.d6281757c1cb from=translated src=- shape=91b671cd vocab=bf459bcc
+-/
 theorem key_left (p : ℕ) (e : ℤ) (B' Cm C' : Multiset ℂ) {x : ℂ} (hx : x ≠ 0) :
     x ^ Dexp e B' C' * (x ^ e * (B'.map fun β => 1 - β * (x⁻¹ * (p : ℂ)⁻¹)).prod *
         (Cm.map fun γ => 1 - γ * x).prod) =
@@ -316,6 +397,9 @@ theorem key_left (p : ℕ) (e : ℤ) (B' Cm C' : Multiset ℂ) {x : ℂ} (hx : x
             (Cm.map fun γ => 1 - γ * x).prod := by rw [hpow]
     _ = _ := by ring
 
+/--
+@isnad1 id=eq.1h6v.s7.0ea1c239279f from=translated src=- shape=34bccb5c vocab=d40e147f
+-/
 theorem key_right (p : ℕ) (e : ℤ) (B B' C' : Multiset ℂ) {x : ℂ} (hx : x ≠ 0) :
     x ^ Dexp e B' C' * ((B.map fun β => 1 - β * x).prod *
         (C'.map fun γ => 1 - γ * (x⁻¹ * (p : ℂ)⁻¹)).prod) =
@@ -325,6 +409,9 @@ theorem key_right (p : ℕ) (e : ℤ) (B B' C' : Multiset ℂ) {x : ℂ} (hx : x
     pow_add]
   ring
 
+/--
+@isnad1 id=eq.1h2v.s6.09eafd535fba from=translated src=- shape=2c1c82fa vocab=3cc5cd79
+-/
 theorem cpow_sub_one_eq {p : ℕ} (hp : p ≠ 0) (s : ℂ) :
     (p : ℂ) ^ (s - 1) = ((p : ℂ) ^ (-s))⁻¹ * (p : ℂ)⁻¹ := by
   have hp' : (p : ℂ) ≠ 0 := by exact_mod_cast hp
@@ -334,6 +421,9 @@ section MvEval
 
 variable {σ : Type*}
 
+/--
+@isnad1 id=eq.0h4v.s8.78607a536c07 from=translated src=- shape=6777399c vocab=8ef0fff1
+-/
 theorem eval_aeval_X (g : σ → ℂ) (i : σ) (f : ℂ[X]) :
     MvPolynomial.eval g (Polynomial.aeval (MvPolynomial.X i : MvPolynomial σ ℂ) f) =
       f.eval (g i) := by
@@ -347,6 +437,9 @@ theorem eval_aeval_X (g : σ → ℂ) (i : σ) (f : ℂ[X]) :
 noncomputable def spec [DecidableEq σ] (i : σ) (t : ℂ) : MvPolynomial σ ℂ →ₐ[ℂ] ℂ[X] :=
   MvPolynomial.aeval fun j => if j = i then (Polynomial.X : ℂ[X]) else Polynomial.C t
 
+/--
+@isnad1 id=eq.0h4v.s8.8a418dc3361d from=translated src=- shape=d50e96a7 vocab=4899c4f5
+-/
 theorem spec_aeval_X_self [DecidableEq σ] (i : σ) (t : ℂ) (f : ℂ[X]) :
     spec i t (Polynomial.aeval (MvPolynomial.X i : MvPolynomial σ ℂ) f) = f := by
   have h := Polynomial.aeval_algHom_apply (spec i t) (MvPolynomial.X i : MvPolynomial σ ℂ) f
@@ -354,6 +447,9 @@ theorem spec_aeval_X_self [DecidableEq σ] (i : σ) (t : ℂ) (f : ℂ[X]) :
   unfold spec
   rw [MvPolynomial.aeval_X, ite_eq_left rfl, aeval_X_left_apply]
 
+/--
+@isnad1 id=eq.1h5v.s8.f3012fac70e7 from=translated src=- shape=3ce5a771 vocab=c013281b
+-/
 theorem spec_aeval_X_ne [DecidableEq σ] {i j : σ} (hji : j ≠ i) (t : ℂ) (f : ℂ[X]) :
     spec i t (Polynomial.aeval (MvPolynomial.X j : MvPolynomial σ ℂ) f) =
       Polynomial.C (f.eval t) := by
@@ -363,6 +459,9 @@ theorem spec_aeval_X_ne [DecidableEq σ] {i j : σ} (hji : j ≠ i) (t : ℂ) (f
   rw [MvPolynomial.aeval_X, ite_eq_right hji, C_eq_algebraMap t, aeval_algebraMap_apply_eq_algebraMap_eval]
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s8.44b42c85247c from=translated src=- shape=e135d08f vocab=e33bd084
+-/
 theorem spec_prod [DecidableEq σ] (T : Finset σ) {i : σ} (hi : i ∈ T) (t : ℂ) (f : σ → ℂ[X]) :
     spec i t (∏ j ∈ T, Polynomial.aeval (MvPolynomial.X j : MvPolynomial σ ℂ) (f j)) =
       f i * Polynomial.C (∏ j ∈ T.erase i, (f j).eval t) := by
@@ -379,8 +478,14 @@ def SmallRt (p : ℕ) (z : ℂ) : Prop := ‖z‖ ^ 2 * p < 1
 
 noncomputable scoped instance (p : ℕ) : DecidablePred (SmallRt p) := fun _ => by unfold SmallRt; infer_instance
 
+/--
+@isnad1 id=smallrt.0h1v.s3.a1474b59ac75 from=translated src=- shape=8ba9e24c vocab=90296c0e
+-/
 theorem small_zero (p : ℕ) : SmallRt p 0 := by simp [SmallRt]
 
+/--
+@isnad1 id=smallrt.2h2v.s5.fe948129e8c8 from=translated src=- shape=a0265a65 vocab=0e3270d2
+-/
 theorem small_div {p : ℕ} (hp : p ≠ 0) {β : ℂ} (hβ : ‖β‖ ^ 2 < p) : SmallRt p (β / (p : ℂ)) := by
   unfold SmallRt
   have hp' : (0 : ℝ) < p := by exact_mod_cast Nat.pos_of_ne_zero hp
@@ -388,6 +493,9 @@ theorem small_div {p : ℕ} (hp : p ≠ 0) {β : ℂ} (hβ : ‖β‖ ^ 2 < p) :
   rw [div_mul_eq_mul_div, div_lt_one (by positivity)]
   nlinarith
 
+/--
+@isnad1 id=not.2h2v.s5.cfe29ed59472 from=translated src=- shape=7a5ad8bb vocab=1621031c
+-/
 theorem not_small_inv {p : ℕ} {γ : ℂ} (hγ0 : γ ≠ 0) (hγ : ‖γ‖ ^ 2 < p) : ¬ SmallRt p γ⁻¹ := by
   unfold SmallRt
   rw [norm_inv, inv_pow, not_lt]
@@ -395,6 +503,9 @@ theorem not_small_inv {p : ℕ} {γ : ℂ} (hγ0 : γ ≠ 0) (hγ : ‖γ‖ ^ 2
   rw [le_inv_mul_iff₀ hpos, mul_one]
   exact hγ.le
 
+/--
+@isnad1 id=eq.1h5v.s7.0ed931ee959f from=translated src=- shape=f8a8c29a vocab=1eaa0303
+-/
 theorem roots_Lpoly (p : ℕ) (e : ℤ) (B' Cm C' : Multiset ℂ) (hCm : ∀ γ ∈ Cm, γ ≠ 0) :
     (Lpoly p e B' Cm C').roots =
       (2 * e.toNat + Multiset.card C') • ({0} : Multiset ℂ) + B'.map (· / (p : ℂ)) +
@@ -403,6 +514,9 @@ theorem roots_Lpoly (p : ℕ) (e : ℤ) (B' Cm C' : Multiset ℂ) (hCm : ∀ γ 
   rw [roots_mul (Lpoly_ne_zero p e B' Cm C'), roots_mul, roots_X_pow, roots_refl, roots_eul Cm hCm]
   exact mul_ne_zero (pow_ne_zero _ X_ne_zero) (refl_ne_zero p B')
 
+/--
+@isnad1 id=eq.1h5v.s7.2125fe0ec54d from=translated src=- shape=e5778a98 vocab=0487a0ba
+-/
 theorem roots_Rpoly (p : ℕ) (e : ℤ) (B B' C' : Multiset ℂ) (hB : ∀ β ∈ B, β ≠ 0) :
     (Rpoly p e B B' C').roots =
       (e.toNat + (-e).toNat + Multiset.card B') • ({0} : Multiset ℂ) + B.map (·⁻¹) +
@@ -411,6 +525,9 @@ theorem roots_Rpoly (p : ℕ) (e : ℤ) (B B' C' : Multiset ℂ) (hB : ∀ β �
   rw [roots_mul (Rpoly_ne_zero p e B B' C'), roots_mul, roots_X_pow, roots_eul B hB, roots_refl]
   exact mul_ne_zero (pow_ne_zero _ X_ne_zero) (eul_ne_zero B)
 
+/--
+@isnad1 id=eq.2h2v.s6.344de8cc9bc1 from=translated src=- shape=fb402837 vocab=0b6d50a0
+-/
 theorem filter_small_map_div {p : ℕ} (hp : p ≠ 0) (B : Multiset ℂ) (hB : ∀ β ∈ B, ‖β‖ ^ 2 < p) :
     (B.map (· / (p : ℂ))).filter (SmallRt p) = B.map (· / (p : ℂ)) := by
   rw [Multiset.filter_eq_self]
@@ -419,6 +536,9 @@ theorem filter_small_map_div {p : ℕ} (hp : p ≠ 0) (B : Multiset ℂ) (hB : �
   obtain ⟨β, hβ, rfl⟩ := hz
   exact small_div hp (hB β hβ)
 
+/--
+@isnad1 id=eq.1h2v.s6.e47869798c61 from=translated src=- shape=818d1467 vocab=466412e1
+-/
 theorem filter_small_map_inv {p : ℕ} (B : Multiset ℂ) (hB : ∀ β ∈ B, β ≠ 0 ∧ ‖β‖ ^ 2 < p) :
     (B.map (·⁻¹)).filter (SmallRt p) = 0 := by
   rw [Multiset.filter_eq_nil]
@@ -427,6 +547,9 @@ theorem filter_small_map_inv {p : ℕ} (B : Multiset ℂ) (hB : ∀ β ∈ B, β
   obtain ⟨β, hβ, rfl⟩ := hz
   exact not_small_inv (hB β hβ).1 (hB β hβ).2
 
+/--
+@isnad1 id=eq.2h2v.s6.3dc869c925c4 from=translated src=- shape=5effdea4 vocab=0b6d50a0
+-/
 theorem filter_not_small_map_div {p : ℕ} (hp : p ≠ 0) (B : Multiset ℂ)
     (hB : ∀ β ∈ B, ‖β‖ ^ 2 < p) :
     (B.map (· / (p : ℂ))).filter (fun z => ¬ SmallRt p z) = 0 := by
@@ -436,6 +559,9 @@ theorem filter_not_small_map_div {p : ℕ} (hp : p ≠ 0) (B : Multiset ℂ)
   obtain ⟨β, hβ, rfl⟩ := hz
   exact not_not_intro (small_div hp (hB β hβ))
 
+/--
+@isnad1 id=eq.1h2v.s6.2b9ccfd28440 from=translated src=- shape=9ed63ec5 vocab=466412e1
+-/
 theorem filter_not_small_map_inv {p : ℕ} (B : Multiset ℂ)
     (hB : ∀ β ∈ B, β ≠ 0 ∧ ‖β‖ ^ 2 < p) :
     (B.map (·⁻¹)).filter (fun z => ¬ SmallRt p z) = B.map (·⁻¹) := by
@@ -445,6 +571,9 @@ theorem filter_not_small_map_inv {p : ℕ} (B : Multiset ℂ)
   obtain ⟨β, hβ, rfl⟩ := hz
   exact not_small_inv (hB β hβ).1 (hB β hβ).2
 
+/--
+@isnad1 id=eq.2h2v.s6.44602a579567 from=translated src=- shape=7912ccbd vocab=9c921191
+-/
 theorem filter_ne_zero_map_div {p : ℕ} (hp : p ≠ 0) (B : Multiset ℂ) (hB : ∀ β ∈ B, β ≠ 0) :
     (B.map (· / (p : ℂ))).filter (· ≠ 0) = B.map (· / (p : ℂ)) := by
   rw [Multiset.filter_eq_self]
@@ -454,6 +583,9 @@ theorem filter_ne_zero_map_div {p : ℕ} (hp : p ≠ 0) (B : Multiset ℂ) (hB :
   have hp' : (p : ℂ) ≠ 0 := by exact_mod_cast hp
   exact div_ne_zero (hB β hβ) hp'
 
+/--
+@isnad1 id=and.8h8v.s8.21b9bc287239 from=translated src=- shape=7977a83b vocab=2c5fffe0
+-/
 theorem one_prime {p : ℕ} (hp : p ≠ 0) (e : ℤ) (B Cm B' C' : Multiset ℂ)
     (hB : ∀ β ∈ B, β ≠ 0 ∧ ‖β‖ ^ 2 < p) (hCm : ∀ β ∈ Cm, β ≠ 0 ∧ ‖β‖ ^ 2 < p)
     (hB' : ∀ β ∈ B', β ≠ 0 ∧ ‖β‖ ^ 2 < p) (hC' : ∀ β ∈ C', β ≠ 0 ∧ ‖β‖ ^ 2 < p)
@@ -500,17 +632,26 @@ theorem one_prime {p : ℕ} (hp : p ≠ 0) (e : ℤ) (B Cm B' C' : Multiset ℂ)
   have he : ((e.toNat : ℕ) : ℤ) - (((-e).toNat : ℕ) : ℤ) = e := Int.toNat_sub_toNat_neg e
   omega
 
+/--
+@isnad1 id=ne.1h1v.s5.1d7119ed9ab7 from=translated src=- shape=c5642954 vocab=9e1e55db
+-/
 theorem prod_map_neg_ne_zero (B : Multiset ℂ) (hB : ∀ β ∈ B, β ≠ 0) :
     (B.map fun β => -β).prod ≠ 0 := by
   rw [Ne, Multiset.prod_eq_zero_iff, Multiset.mem_map]
   rintro ⟨β, hβ, h⟩
   exact hB β hβ (neg_eq_zero.mp h)
 
+/--
+@isnad1 id=eq.1h1v.s5.52055cd7630f from=translated src=- shape=3e675396 vocab=d67efc9e
+-/
 theorem natDegree_eul (B : Multiset ℂ) (hB : ∀ β ∈ B, β ≠ 0) :
     (eul B).natDegree = Multiset.card B := by
   rw [eul_eq_C_mul_prod B hB, natDegree_C_mul (prod_map_neg_ne_zero B hB),
     natDegree_multiset_prod_X_sub_C_eq_card, Multiset.card_map]
 
+/--
+@isnad1 id=eq.1h1v.s5.44ac978c2367 from=translated src=- shape=f0d7f89a vocab=aad2aa0b
+-/
 theorem coeff_card_eul (B : Multiset ℂ) (hB : ∀ β ∈ B, β ≠ 0) :
     (eul B).coeff (Multiset.card B) = (B.map fun β => -β).prod := by
   rw [eul_eq_C_mul_prod B hB, coeff_C_mul]
@@ -520,6 +661,9 @@ theorem coeff_card_eul (B : Multiset ℂ) (hB : ∀ β ∈ B, β ≠ 0) :
     rw [natDegree_multiset_prod_X_sub_C_eq_card, Multiset.card_map]
   rw [← hdeg, hmonic.coeff_natDegree, mul_one]
 
+/--
+@isnad1 id=ex.3h1v.s6.349c87f4f5c8 from=translated src=- shape=fc810c66 vocab=63a5dbbf
+-/
 theorem exists_pair_of_norm_coeff_two (Cm : Multiset ℂ) (hCm : ∀ γ ∈ Cm, γ ≠ 0)
     (hdeg : (eul Cm).natDegree ≤ 2) (hcoeff : ‖(eul Cm).coeff 2‖ = 1) :
     ∃ l m : ℂ, Cm = {l, m} ∧ ‖l‖ * ‖m‖ = 1 := by
@@ -540,17 +684,26 @@ theorem exists_pair_of_norm_coeff_two (Cm : Multiset ℂ) (hCm : ∀ γ ∈ Cm, 
     Multiset.prod_cons, Multiset.prod_singleton, neg_mul_neg, norm_mul] at hcoeff
   exact hcoeff
 
+/--
+@isnad1 id=eq.3h2v.s6.6c1e5e644478 from=translated src=- shape=6b714aa2 vocab=01b77100
+-/
 theorem norm_invRoots_eq_one {P : ℂ[X]} (h0 : P.coeff 0 = 1)
     (hP : ∀ z : ℂ, P.IsRoot z → ‖z‖ = 1) {β : ℂ} (hβ : β ∈ invRoots P) : ‖β‖ = 1 := by
   obtain ⟨z, hz, -, rfl⟩ := mem_invRoots h0 hβ
   rw [norm_inv, hP z hz, inv_one]
 
+/--
+@isnad1 id=and.2h2v.s6.4986e8372d69 from=translated src=- shape=74693d14 vocab=d8075ef3
+-/
 theorem small_of_norm_eq_one {p : ℕ} (hp : 2 ≤ p) {β : ℂ} (h : ‖β‖ = 1) :
     β ≠ 0 ∧ ‖β‖ ^ 2 < p := by
   refine ⟨fun hβ => ?_, ?_⟩
   · rw [hβ, norm_zero] at h; exact zero_ne_one h
   · rw [h, one_pow]; exact_mod_cast hp
 
+/--
+@isnad1 id=and.11h5v.s8.a0367b44246d from=translated src=- shape=783bdd54 vocab=c96aef97
+-/
 theorem core_real {P x y x' y' : ℝ} (hP : 2 ≤ P) (hx : 0 < x) (hy : 0 < y) (hx' : 0 < x')
     (hy' : 0 < y') (hxy : x * y = 1) (hxy' : x' * y' = 1)
     (F1 : y = 1 ∨ y = x' / P ∨ y = y' / P)
@@ -625,12 +778,18 @@ theorem core_real {P x y x' y' : ℝ} (hP : 2 ≤ P) (hx : 0 < x) (hy : 0 < y) (
     rw [mul_one] at h3
     rcases F4' with h4 | h4 | h4 <;> nlinarith
 
+/--
+@isnad1 id=iff.0h6v.s7.bbd08bcd93ff from=translated src=- shape=6d4e4b72 vocab=2e7d7f4b
+-/
 theorem mem_roots_shape {a : ℕ} {U V : Multiset ℂ} {f g : ℂ → ℂ} {z : ℂ} :
     z ∈ a • ({0} : Multiset ℂ) + U.map f + V.map g ↔
       (a ≠ 0 ∧ z = 0) ∨ (∃ u ∈ U, f u = z) ∨ ∃ v ∈ V, g v = z := by
   simp only [Multiset.mem_add, Multiset.mem_nsmul, Multiset.mem_singleton, Multiset.mem_map,
     or_assoc]
 
+/--
+@isnad1 id=and.8h11v.s8.0596a197482a from=translated src=- shape=cdf79266 vocab=2f9ad0e6
+-/
 theorem norm_eq_one_of_roots_eq {p : ℕ} (hp : 2 ≤ p) (a b : ℕ) (B B' Cm C' : Multiset ℂ)
     (hB : ∀ β ∈ B, ‖β‖ = 1) (hB' : ∀ β ∈ B', ‖β‖ = 1)
     {l m l' m' : ℂ} (hCm : Cm = {l, m}) (hlm : ‖l‖ * ‖m‖ = 1)
@@ -733,6 +892,9 @@ section Assembly
 
 variable {S : Finset ℕ}
 
+/--
+@isnad1 id=ex.1h2v.s6.bb255e81923a from=translated src=- shape=072a7f19 vocab=883a39f8
+-/
 theorem exists_eval_ne_zero (T : Finset ℕ) (f : ℕ → ℂ[X]) (hf : ∀ q ∈ T, f q ≠ 0) :
     ∃ t : ℂ, ∀ q ∈ T, (f q).eval t ≠ 0 := by
   have hprod : ∏ q ∈ T, f q ≠ 0 := Finset.prod_ne_zero_iff.mpr hf
@@ -748,6 +910,9 @@ open scoped _root_.P2MW.S_DeligneSerre_eq_of_finite_eulerProduct_functionalEquat
 
 open DeligneSerreL49G in
 
+/--
+@isnad1 id=and.11h9v.s9.e9e3fd094f43 from=translated src=- shape=ab1b97aa vocab=cce91df3
+-/
 theorem solution
     (S : Finset ℕ) (hS : ∀ p ∈ S, p.Prime) (e : ℕ → ℤ) (ω : ℂ) (hω : ω ≠ 0)
     (P Q P' Q' : ℕ → ℂ[X])

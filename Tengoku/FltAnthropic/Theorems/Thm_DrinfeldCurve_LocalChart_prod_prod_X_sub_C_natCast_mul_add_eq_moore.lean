@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open IsLocalRing
 
+/--
+@isnad1 id=eq.0h2v.s12.2d2d0fd45f26 from=translated src=- shape=9b1a127c vocab=789779fa
+-/
 theorem DrinfeldCurve.LocalChart.prod_prod_X_sub_C_natCast_mul_add_eq_moore
     (q : ℕ) [Fact q.Prime] (R : Type) [CommRing R] [CharP R q] :
     ∏ a : Fin q, ∏ b : Fin q,

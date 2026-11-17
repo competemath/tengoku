@@ -11,12 +11,18 @@ namespace PolarDiscAux
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
+/--
+@isnad1 id=eq.0h2v.s6.a04456b18711 from=translated src=- shape=1048ef3f vocab=f44e6c51
+-/
 theorem circleMap_eq_center_add_polarCoord_symm (c : ℂ) (p : ℝ × ℝ) :
     circleMap c p.1 p.2 = c + Complex.polarCoord.symm p := by
   simp only [circleMap, Complex.polarCoord_symm_apply, Complex.exp_mul_I]
   push_cast
   ring
 
+/--
+@isnad1 id=eq.1h5v.s8.cb1fd0407032 from=translated src=- shape=a94d4613 vocab=4ec01968
+-/
 theorem indicator_ball_comp_polarCoord_symm (f : ℂ → E) (c : ℂ) (R : ℝ) {p : ℝ × ℝ}
     (hp : p ∈ polarCoord.target) :
     p.1 • (ball (0 : ℂ) R).indicator (fun w ↦ f (c + w)) (Complex.polarCoord.symm p)
@@ -33,6 +39,9 @@ theorem indicator_ball_comp_polarCoord_symm (f : ℂ → E) (c : ℂ) (R : ℝ) 
     have h2 : p ∉ Ioo 0 R ×ˢ Ioo (-π) π := fun h ↦ hR h.1.2
     rw [indicator_of_notMem h1, indicator_of_notMem h2, smul_zero]
 
+/--
+@isnad1 id=le.0h1v.s6.e6746512a450 from=translated src=- shape=ae84d74b vocab=7d5fca70
+-/
 theorem Ioo_prod_Ioo_subset_polarCoord_target (R : ℝ) :
     Ioo 0 R ×ˢ Ioo (-π) π ⊆ polarCoord.target :=
   prod_mono Ioo_subset_Ioi_self Subset.rfl
@@ -40,6 +49,9 @@ theorem Ioo_prod_Ioo_subset_polarCoord_target (R : ℝ) :
 end PolarDiscAux
 
 open PolarDiscAux in
+/--
+@isnad1 id=eq.0h4v.s7.2f6391196fe8 from=translated src=- shape=50c55028 vocab=fe2e8818
+-/
 theorem solution {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] (f : ℂ → E) (c : ℂ) (R : ℝ) :
     ∫ z in ball c R, f z = ∫ p in Ioo 0 R ×ˢ Ioo (-π) π, p.1 • f (circleMap c p.1 p.2) := by
   calc ∫ z in ball c R, f z

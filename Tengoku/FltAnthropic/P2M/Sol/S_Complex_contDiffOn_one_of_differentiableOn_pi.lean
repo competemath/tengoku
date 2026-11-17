@@ -16,9 +16,15 @@ variable {f : (Fin n → ℂ) → E} {U : Set (Fin n → ℂ)}
 
 def ev (n : ℕ) (i : Fin n) : Fin n → ℂ := Pi.single i 1
 
+/--
+@isnad1 id=eq.0h3v.s6.bd9827399859 from=translated src=- shape=2b8523c2 vocab=471ab646
+-/
 theorem norm_smul_ev (t : ℂ) (i : Fin n) : ‖t • ev n i‖ = ‖t‖ := by
   rw [norm_smul, ev, Pi.norm_single, norm_one, mul_one]
 
+/--
+@isnad1 id=mem.3h7v.s7.b3dd0b8a5733 from=translated src=- shape=45df3f9b vocab=9866d4e9
+-/
 theorem add_smul_ev_mem_ball {z₀ z : Fin n → ℂ} {R r : ℝ} (hrR : 2 * r ≤ R) (hz : z ∈ ball z₀ r)
     {t : ℂ} (ht : ‖t‖ ≤ r) (i : Fin n) : z + t • ev n i ∈ ball z₀ R := by
   rw [mem_ball] at hz ⊢
@@ -27,6 +33,9 @@ theorem add_smul_ev_mem_ball {z₀ z : Fin n → ℂ} {R r : ℝ} (hrR : 2 * r �
     _ = ‖t‖ + dist z z₀ := by rw [norm_smul_ev]
     _ < R := by linarith
 
+/--
+@isnad1 id=differen.3h7v.s8.49b85a164a78 from=translated src=- shape=9ba3fa5d vocab=c6887560
+-/
 theorem differentiableOn_slice (hU : IsOpen U) (hf : DifferentiableOn ℂ f U) {z : Fin n → ℂ} (i : Fin n)
     {s : Set ℂ} (hs : ∀ t ∈ s, z + t • ev n i ∈ U) :
     DifferentiableOn ℂ (fun t : ℂ => f (z + t • ev n i)) s := by
@@ -36,6 +45,9 @@ theorem differentiableOn_slice (hU : IsOpen U) (hf : DifferentiableOn ℂ f U) {
     (differentiableAt_const z).add (differentiableAt_id.smul_const (ev n i))
   exact (h1.comp t h2).differentiableWithinAt
 
+/--
+@isnad1 id=eq.3h6v.s9.fe3b296f0324 from=translated src=- shape=315b7f96 vocab=3351429e
+-/
 theorem deriv_slice (hU : IsOpen U) (hf : DifferentiableOn ℂ f U) {z : Fin n → ℂ} (hz : z ∈ U) (i : Fin n) :
     deriv (fun t : ℂ => f (z + t • ev n i)) 0 = fderiv ℂ f z (ev n i) := by
   have h1 : HasFDerivAt f (fderiv ℂ f z) (z + (0 : ℂ) • ev n i) := by
@@ -45,6 +57,9 @@ theorem deriv_slice (hU : IsOpen U) (hf : DifferentiableOn ℂ f U) {z : Fin n �
     simpa using ((hasDerivAt_id (0 : ℂ)).smul_const (ev n i)).const_add z
   exact (h1.comp_hasDerivAt (0 : ℂ) h2).deriv
 
+/--
+@isnad1 id=eq.6h9v.s9.6061570458ff from=translated src=- shape=4d69c31c vocab=a31d7c04
+-/
 theorem fderiv_apply_ev_eq_circleIntegral (hU : IsOpen U) (hf : DifferentiableOn ℂ f U)
     {z₀ z : Fin n → ℂ} {R r : ℝ} (hr0 : 0 < r) (hRU : ball z₀ R ⊆ U) (hrR : 2 * r ≤ R)
     (hz : z ∈ ball z₀ r) (i : Fin n) :
@@ -59,6 +74,9 @@ theorem fderiv_apply_ev_eq_circleIntegral (hU : IsOpen U) (hf : DifferentiableOn
   rw [deriv_slice hU hf hzU i] at key
   rw [key, smul_smul, inv_mul_cancel₀ two_pi_I_ne_zero, one_smul]
 
+/--
+@isnad1 id=continuo.2h5v.s9.e296cd9863ef from=translated src=- shape=22111c4f vocab=4e789a08
+-/
 theorem continuousOn_fderiv_apply_ev (hU : IsOpen U) (hf : DifferentiableOn ℂ f U) (i : Fin n) :
     ContinuousOn (fun z => fderiv ℂ f z (ev n i)) U := by
   intro z₀ hz₀
@@ -102,6 +120,9 @@ theorem continuousOn_fderiv_apply_ev (hU : IsOpen U) (hf : DifferentiableOn ℂ 
     fun z hz => fderiv_apply_ev_eq_circleIntegral hU hf hr0 hRU hrR hz i
   exact (hcont.congr heq).continuousAt (isOpen_ball.mem_nhds (mem_ball_self hr0))
 
+/--
+@isnad1 id=eq.0h4v.s13.ffe2625cf1b7 from=translated src=- shape=97e16325 vocab=74a02e92
+-/
 theorem fderiv_eq_sum (z : Fin n → ℂ) :
     fderiv ℂ f z = ∑ i, ContinuousLinearMap.smulRightL ℂ (Fin n → ℂ) E (ContinuousLinearMap.proj i)
       (fderiv ℂ f z (ev n i)) := by
@@ -112,6 +133,9 @@ theorem fderiv_eq_sum (z : Fin n → ℂ) :
   refine Finset.sum_congr rfl fun i _ => ?_
   simp [ContinuousLinearMap.smulRight_apply, map_smul, ev]
 
+/--
+@isnad1 id=contdiff.2h4v.s7.a78f154e70be from=translated src=- shape=4e0559b5 vocab=1e5e3baa
+-/
 theorem main (hU : IsOpen U) (hf : DifferentiableOn ℂ f U) : ContDiffOn ℂ 1 f U := by
   have hcont : ContinuousOn (fderiv ℂ f) U := by
     have h : ContinuousOn (fun z => ∑ i, ContinuousLinearMap.smulRightL ℂ (Fin n → ℂ) E
@@ -125,6 +149,9 @@ theorem main (hU : IsOpen U) (hf : DifferentiableOn ℂ f U) : ContDiffOn ℂ 1 
 
 end BenchNOsgood
 
+/--
+@isnad1 id=contdiff.2h4v.s7.a78f154e70be from=translated src=- shape=4e0559b5 vocab=1e5e3baa
+-/
 theorem solution {n : ℕ} {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     [CompleteSpace E] {f : (Fin n → ℂ) → E} {U : Set (Fin n → ℂ)} (hU : IsOpen U)
     (hf : DifferentiableOn ℂ f U) : ContDiffOn ℂ 1 f U :=

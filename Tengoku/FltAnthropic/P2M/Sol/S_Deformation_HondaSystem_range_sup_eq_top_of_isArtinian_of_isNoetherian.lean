@@ -18,6 +18,9 @@ section Toolkit
 
 variable {S : Type u} [Ring S]
 
+/--
+@isnad1 id=eq.0h4v.s9.f38c1dbd44d8 from=translated src=- shape=6ce92ef4 vocab=5b72fb0e
+-/
 theorem length_add_length_eq {D : Type v} [AddCommGroup D] [Module S D] (N N' : Submodule S D) :
     Module.length S N + Module.length S N' =
       Module.length S ↥(N ⊓ N') + Module.length S ↥(N ⊔ N') := by
@@ -50,6 +53,9 @@ theorem length_add_length_eq {D : Type v} [AddCommGroup D] [Module S D] (N N' : 
   rw [← Module.length_prod]
   exact Module.length_eq_add_of_exact f g hf hg hfg
 
+/--
+@isnad1 id=eq.0h6v.s8.c3f54b01b557 from=translated src=- shape=ec3bdb0d vocab=8390a151
+-/
 theorem length_eq_length_ker_add_length_range {S₂ : Type u₁} [Ring S₂] {σ : S →+* S₂}
     [RingHomSurjective σ] {D₁ : Type v} [AddCommGroup D₁] [Module S D₁]
     {D₂ : Type u₂} [AddCommGroup D₂] [Module S₂ D₂] (g : D₁ →ₛₗ[σ] D₂) :
@@ -92,6 +98,9 @@ section Count
 variable {S : Type u} [CommRing S] {D : Type v} [AddCommGroup D] [Module S D]
 variable {σ τ : S →+* S} [RingHomSurjective σ] [RingHomSurjective τ]
 
+/--
+@isnad1 id=eq.5h8v.s10.bb910fa27f57 from=translated src=- shape=04f71396 vocab=ebf689ac
+-/
 theorem range_sup_eq_top [IsArtinian S D] [IsNoetherian S D]
     (F : D →ₛₗ[σ] D) (V : D →ₛₗ[τ] D) (ℓ : S)
     (hFV : ∀ x, F (V x) = ℓ • x)
@@ -207,6 +216,9 @@ end Count
 
 end HondaLength
 
+/--
+@isnad1 id=eq.5h8v.s10.34b417dfd6ad from=translated src=- shape=83cb29d9 vocab=ebf689ac
+-/
 theorem solution
     {S : Type u} [CommRing S] {D : Type v} [AddCommGroup D] [Module S D]
     [IsArtinian S D] [IsNoetherian S D]

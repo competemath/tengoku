@@ -15,6 +15,9 @@ open Polynomial CuspidalType
 
 open Finset
 
+/--
+@isnad1 id=ex.0h2v.s11.05ee96f4de31 from=translated src=- shape=0b0b6052 vocab=d97f6f33
+-/
 theorem solution (q : ℕ) [Fact q.Prime] (K : Type*) [Field K] [IsAlgClosed K] [CharZero K] :
     ∃ S₀ : Finset ((GaloisField q 2)ˣ →* Kˣ),
       (∀ μ : (GaloisField q 2)ˣ →* Kˣ,

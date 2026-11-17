@@ -13,6 +13,9 @@ set_option autoImplicit false
 
 open IsLocalRing
 
+/--
+@isnad1 id=isunit.4h5v.s10.03b9fffbc75c from=translated src=- shape=56cacc4f vocab=2811e296
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪] (p : ℕ) [Fact p.Prime] (hp𝒪 : (p : 𝒪) ∈ maximalIdeal 𝒪)
     (N r : ℕ) [NeZero N] (hr : r.Prime) (hr1 : ¬ p ∣ r - 1) [NeZero (N * r)]

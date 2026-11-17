@@ -12,6 +12,9 @@ open scoped ComplexConjugate InnerProductSpace
 
 namespace AvgOp
 
+/--
+@isnad1 id=hascompa.0h3v.s4.1ccb37924355 from=translated src=- shape=6d142812 vocab=8d364687
+-/
 theorem hasCompactSupport_of_compactSpace' {X Y : Type*} [TopologicalSpace X] [CompactSpace X] [Zero Y] [TopologicalSpace Y]
     (f : X → Y) : HasCompactSupport f :=
   IsCompact.of_isClosed_subset isCompact_univ (isClosed_tsupport f) (Set.subset_univ _)
@@ -24,21 +27,36 @@ variable {C : Type*} [Group C] [TopologicalSpace C] [IsTopologicalGroup C] [Comp
 
 include hSb hSc hw
 
+/--
+@isnad1 id=continuo.3h6v.s11.5089dfd27a06 from=translated src=- shape=3d672680 vocab=22bc7715
+-/
 theorem continuous_integrand (v : H) : Continuous fun c : C => w c • S c v :=
   hw.smul (hSc v)
 
+/--
+@isnad1 id=integrab.3h7v.s11.80ae5e072e30 from=translated src=- shape=089cb709 vocab=a9040d05
+-/
 theorem integrable_integrand (v : H) : Integrable (fun c : C => w c • S c v) μ :=
   (continuous_integrand S B hSb hSc w hw v).integrable_of_hasCompactSupport (hasCompactSupport_of_compactSpace' _)
 
+/--
+@isnad1 id=le.3h7v.s11.d80355269358 from=translated src=- shape=9e2eb162 vocab=f058ba4b
+-/
 theorem norm_integrand_le (v : H) (c : C) : ‖w c • S c v‖ ≤ ‖w c‖ * (B * ‖v‖) := by
   rw [norm_smul]
   gcongr
   exact (S c).le_of_opNorm_le (hSb c) v
 
+/--
+@isnad1 id=ex.3h5v.s11.980b3d21dc54 from=translated src=- shape=738fb9af vocab=e860020a
+-/
 theorem exists_bound_w : ∃ M : ℝ, ∀ c : C, ‖w c‖ ≤ M := by
   obtain ⟨c₀, -, hc₀⟩ := isCompact_univ.exists_isMaxOn (Set.univ_nonempty) hw.norm.continuousOn
   exact ⟨‖w c₀‖, fun c => hc₀ (Set.mem_univ c)⟩
 
+/--
+@isnad1 id=le.4h8v.s11.d1bd0421cb19 from=translated src=- shape=1dbe5086 vocab=b6dd4211
+-/
 theorem norm_integral_le (M : ℝ) (hM : ∀ c : C, ‖w c‖ ≤ M) (v : H) :
     ‖∫ c, w c • S c v ∂μ‖ ≤ M * B * ‖v‖ := by
   have hB : 0 ≤ B := (norm_nonneg _).trans (hSb 1)
@@ -66,8 +84,14 @@ noncomputable def avg : H →L[ℂ] H :=
     obtain ⟨M, hM⟩ := exists_bound_w S B hSb hSc w hw
     exact ⟨M * B, fun v => norm_integral_le μ S B hSb hSc w hw M hM v⟩)
 
+/--
+@isnad1 id=eq.3h7v.s11.1ae47d2cbc2c from=translated src=- shape=18e9f251 vocab=decfcb17
+-/
 theorem avg_apply (v : H) : avg μ S B hSb hSc w hw v = ∫ c, w c • S c v ∂μ := rfl
 
+/--
+@isnad1 id=eq.4h7v.s12.b1b096e652b5 from=translated src=- shape=311416f3 vocab=6f5b38aa
+-/
 theorem comm (T : H →L[ℂ] H) (hT : ∀ c : C, T.comp (S c) = (S c).comp T) :
     T.comp (avg μ S B hSb hSc w hw) = (avg μ S B hSb hSc w hw).comp T := by
   ext v
@@ -78,6 +102,9 @@ theorem comm (T : H →L[ℂ] H) (hT : ∀ c : C, T.comp (S c) = (S c).comp T) :
   congr 1
   exact congrArg (fun R : H →L[ℂ] H => R v) (hT c)
 
+/--
+@isnad1 id=le.5h7v.s11.42302645d8cc from=translated src=- shape=b0f07676 vocab=56557aac
+-/
 theorem map_le (L : Submodule ℂ H) (hL : IsClosed (L : Set H)) (hLs : ∀ c : C, L.map (S c : H →ₗ[ℂ] H) ≤ L) :
     L.map (avg μ S B hSb hSc w hw : H →ₗ[ℂ] H) ≤ L := by
   rintro _ ⟨m, hm, rfl⟩
@@ -95,6 +122,9 @@ theorem map_le (L : Submodule ℂ H) (hL : IsClosed (L : Set H)) (hLs : ∀ c : 
 
 end AvgOp
 
+/--
+@isnad1 id=ex.3h6v.s12.92e309d89d3b from=translated src=- shape=7ca5acbc vocab=759322dd
+-/
 theorem solution
     {C : Type*} [Group C] [TopologicalSpace C] [IsTopologicalGroup C] [CompactSpace C] [T2Space C]
     [MeasurableSpace C] [BorelSpace C] (μ : Measure C) [μ.IsHaarMeasure] [IsProbabilityMeasure μ]

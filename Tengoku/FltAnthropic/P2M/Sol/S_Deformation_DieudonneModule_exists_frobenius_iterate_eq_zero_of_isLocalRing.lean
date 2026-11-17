@@ -23,6 +23,9 @@ open _root_.Deformation open _root_.P2MW.S_Deformation_DieudonneModule_exists_fr
 
 variable {p : ℕ} [hp : Fact p.Prime] {B : Type v} [CommRing B] [Bialgebra (ZMod p) B]
 
+/--
+@isnad1 id=eq.0h6v.s11.acde76cefaa9 from=translated src=- shape=2dea848a vocab=8bdf5bb6
+-/
 theorem coeff_wittHomFrobenius_iterate {k : ℕ} (x : wittHom (ZMod p) p k B) (n : ℕ) (i : Fin k) :
     (((wittHomFrobenius (ZMod p) p k B)^[n] x : wittHom (ZMod p) p k B) :
       TruncatedWittVector p k B).coeff i = ((x : TruncatedWittVector p k B).coeff i) ^ (p ^ n) := by
@@ -31,6 +34,9 @@ theorem coeff_wittHomFrobenius_iterate {k : ℕ} (x : wittHom (ZMod p) p k B) (n
   | succ n ih =>
     rw [Function.iterate_succ_apply', coeff_wittHomFrobenius, ih, ← pow_mul, ← pow_succ]
 
+/--
+@isnad1 id=eq.0h5v.s12.9616bcdf18b6 from=translated src=- shape=50a2a496 vocab=f948c0a1
+-/
 theorem frobenius_iterate_of {k : ℕ} (x : wittHom (ZMod p) p k B) (n : ℕ) :
     (frobenius (ZMod p) p B)^[n] (of (ZMod p) p B k x) =
       of (ZMod p) p B k ((wittHomFrobenius (ZMod p) p k B)^[n] x) := by
@@ -39,6 +45,9 @@ theorem frobenius_iterate_of {k : ℕ} (x : wittHom (ZMod p) p k B) (n : ℕ) :
   | succ n ih =>
     rw [Function.iterate_succ_apply', Function.iterate_succ_apply', ih, frobenius_of]
 
+/--
+@isnad1 id=ex.1h2v.s9.50d04c2c4b8f from=translated src=- shape=d1f739ae vocab=846df80c
+-/
 theorem exists_pow_eq_zero_of_counit_eq_zero [Module.Finite (ZMod p) B] (hB : IsLocalRing B) :
     ∃ N : ℕ, ∀ b : B, Coalgebra.counit (R := ZMod p) b = 0 → b ^ N = 0 := by
   haveI := hB
@@ -56,6 +65,9 @@ theorem exists_pow_eq_zero_of_counit_eq_zero [Module.Finite (ZMod p) B] (hB : Is
   have : b ^ N ∈ (IsLocalRing.maximalIdeal B) ^ N := Ideal.pow_mem_pow hmem N
   rwa [hN, Ideal.zero_eq_bot, Ideal.mem_bot] at this
 
+/--
+@isnad1 id=ex.1h2v.s9.7e0f4b762f14 from=translated src=- shape=415b5f08 vocab=ba1ec898
+-/
 theorem main [Module.Finite (ZMod p) B] (hB : IsLocalRing B) :
     ∃ n : ℕ, ∀ z : DieudonneModule (ZMod p) p B, (frobenius (ZMod p) p B)^[n] z = 0 := by
   obtain ⟨N, hN⟩ := exists_pow_eq_zero_of_counit_eq_zero (p := p) hB
@@ -72,6 +84,9 @@ theorem main [Module.Finite (ZMod p) B] (hB : IsLocalRing B) :
 
 end Deformation.DieudonneModule.S4b
 
+/--
+@isnad1 id=ex.1h2v.s9.7e0f4b762f14 from=translated src=- shape=415b5f08 vocab=ba1ec898
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] (B : Type v) [CommRing B] [Bialgebra (ZMod p) B] [Module.Finite (ZMod p) B]
     (hB : IsLocalRing B) :

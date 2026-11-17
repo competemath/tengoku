@@ -151,6 +151,9 @@ end Lift
 
 end Deformation.HondaSystem.NormalFormC12
 
+/--
+@isnad1 id=ex.7h7v.s11.eb322d8e77d0 from=translated src=- shape=2123799b vocab=67a49601
+-/
 theorem solution
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [Fact p.Prime] (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞)
     [Algebra 𝓞 (ZMod p)] (hker : RingHom.ker (algebraMap 𝓞 (ZMod p)) = Ideal.span {(p : 𝓞)})

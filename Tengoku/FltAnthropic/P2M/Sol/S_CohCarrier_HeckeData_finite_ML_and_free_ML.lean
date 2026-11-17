@@ -35,6 +35,9 @@ private theorem subsingleton_localizedModule_of_smul_eq_zero {R : Type} [CommRin
       exact ⟨s, by simp [Submonoid.smul_def, hs]⟩
   exact ⟨fun x y => (h0 x).trans (h0 y).symm⟩
 
+/--
+@isnad1 id=and.1h4v.s10.94f5b6bd9f58 from=translated src=- shape=fce2e370 vocab=45df7f60
+-/
 theorem solution {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪]
     [IsNoetherianRing 𝒪] [IsAdicComplete (IsLocalRing.maximalIdeal 𝒪) 𝒪]
     {V : Type} [AddCommGroup V] [Module 𝒪 V] [Module.Finite 𝒪 V]

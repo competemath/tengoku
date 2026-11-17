@@ -12,6 +12,9 @@ open UpperHalfPlane OnePoint Matrix.SpecialLinearGroup
 
 namespace SolRD4Aux
 
+/--
+@isnad1 id=iscusp.1h2v.s10.3bf7bcf5f962 from=translated src=- shape=4132f655 vocab=c7ad38b1
+-/
 lemma isCusp_SL2Z_map_smul {c : OnePoint ℝ} (hc : IsCusp c 𝒮ℒ) (β : GL (Fin 2) ℚ) :
     IsCusp (β.map (Rat.castHom ℝ) • c) 𝒮ℒ := by
   rw [isCusp_SL2Z_iff] at hc ⊢
@@ -20,10 +23,16 @@ lemma isCusp_SL2Z_map_smul {c : OnePoint ℝ} (hc : IsCusp c 𝒮ℒ) (β : GL (
   have h := OnePoint.map_smul (Rat.castHom ℝ) β c₀
   simpa only [Rat.coe_castHom] using h
 
+/--
+@isnad1 id=iscusp.1h2v.s8.fe9f1b6d705a from=translated src=- shape=6aba3374 vocab=8561e515
+-/
 lemma isCusp_SL2Z_of_isCusp_map {Γ : Subgroup SL(2, ℤ)} {c : OnePoint ℝ}
     (hc : IsCusp c (Subgroup.map (mapGL ℝ) Γ)) : IsCusp c 𝒮ℒ :=
   hc.mono (Subgroup.map_le_range _ _)
 
+/--
+@isnad1 id=iszeroat.1h4v.s10.ce221390583e from=translated src=- shape=60819f50 vocab=d7848058
+-/
 lemma isZeroAt_slash_map {M : ℕ} [NeZero M] (g : CuspForm (CongruenceSubgroup.Gamma0 M) 2)
     (β : GL (Fin 2) ℚ) {c : OnePoint ℝ} (hc : IsCusp c 𝒮ℒ) :
     c.IsZeroAt ((⇑g) ∣[(2 : ℤ)] β.map (Rat.castHom ℝ)) 2 := by
@@ -32,6 +41,9 @@ lemma isZeroAt_slash_map {M : ℕ} [NeZero M] (g : CuspForm (CongruenceSubgroup.
   rw [Subgroup.IsArithmetic.isCusp_iff_isCusp_SL2Z]
   exact isCusp_SL2Z_map_smul hc β
 
+/--
+@isnad1 id=iszeroat.1h5v.s6.11b6872fb169 from=translated src=- shape=603a234b vocab=88e485f1
+-/
 lemma isZeroAt_sum {ι : Type} (s : Finset ι) (c : ι → ℂ) (f : ι → UpperHalfPlane → ℂ)
     {x : OnePoint ℝ} (hf : ∀ i ∈ s, x.IsZeroAt (f i) 2) :
     x.IsZeroAt (∑ i ∈ s, c i • f i) 2 := by
@@ -48,6 +60,9 @@ lemma isZeroAt_sum {ι : Type} (s : Finset ι) (c : ι → ℂ) (f : ι → Uppe
     rw [ModularForm.smul_slash]
     exact (hf a (Finset.mem_insert_self a s) γ hγ).smul _
 
+/--
+@isnad1 id=mdiffere.1h4v.s8.ab4896b12f78 from=translated src=- shape=4d285e86 vocab=b8584ffa
+-/
 lemma mdifferentiable_sum {ι : Type} (s : Finset ι) (c : ι → ℂ) (f : ι → UpperHalfPlane → ℂ)
     (hf : ∀ i ∈ s, MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (f i)) :
     MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (∑ i ∈ s, c i • f i) := by
@@ -63,6 +78,9 @@ end SolRD4Aux
 
 open SolRD4Aux in
 open _root_.CuspForm _root_.ModularForm.CuspForm in
+/--
+@isnad1 id=ex.2h7v.s11.8c2a3941466a from=translated src=- shape=7314d936 vocab=50a64e8b
+-/
 theorem solution
     {M N : ℕ} [NeZero M] (g : CuspForm (CongruenceSubgroup.Gamma0 M) 2)
     {ι : Type} [Fintype ι] (c : ι → ℂ) (β : ι → GL (Fin 2) ℚ)

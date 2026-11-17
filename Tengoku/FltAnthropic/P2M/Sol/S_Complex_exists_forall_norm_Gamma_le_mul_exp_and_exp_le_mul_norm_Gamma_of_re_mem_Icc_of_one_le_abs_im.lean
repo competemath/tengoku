@@ -333,6 +333,9 @@ end GammaVerticalStrips
 
 open GammaVerticalStrips in
 
+/--
+@isnad1 id=ex.0h2v.s7.5a944d75657c from=translated src=- shape=d7ab9db5 vocab=d34b86e8
+-/
 theorem solution
     (σ₁ σ₂ : ℝ) :
     ∃ (A : ℝ) (N : ℕ), ∀ w : ℂ, σ₁ ≤ w.re → w.re ≤ σ₂ → 1 ≤ |w.im| →

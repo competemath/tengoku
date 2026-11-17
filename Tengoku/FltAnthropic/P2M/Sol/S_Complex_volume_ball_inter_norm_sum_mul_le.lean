@@ -7,6 +7,9 @@ namespace P2MW.S_Complex_volume_ball_inter_norm_sum_mul_le
 
 open MeasureTheory Metric
 
+/--
+@isnad1 id=le.1h3v.s8.4537befb8530 from=translated src=- shape=5f217b34 vocab=c4041909
+-/
 theorem solution {n : ℕ} (w : Fin n → ℂ) (hw : w ≠ 0) (ε : ℝ) :
     volume {b : Fin n → ℂ | b ∈ Metric.ball 0 1 ∧ ‖∑ j, b j * w j‖ ≤ ε}
       ≤ ENNReal.ofReal ((ε / ‖w‖) ^ 2) * volume (Metric.ball (0 : Fin n → ℂ) 1) := by

@@ -10,6 +10,9 @@ open Set Filter MeasureTheory intervalIntegral Metric
 
 namespace RadialPrimitive
 
+/--
+@isnad1 id=ex.3h3v.s7.1779fcacc90a from=translated src=- shape=3abc6680 vocab=b3985bda
+-/
 theorem main {U : Set ℂ} (hU : IsOpen U) {q : ℂ}
     (hstar : StarConvex ℝ q U) {f : ℂ → ℂ} (hf : DifferentiableOn ℂ f U) :
     ∃ g : ℂ → ℂ, g q = 0 ∧ ∀ z ∈ U, HasDerivAt g (f z) z := by
@@ -145,6 +148,9 @@ theorem main {U : Set ℂ} (hU : IsOpen U) {q : ℂ}
 
 end RadialPrimitive
 
+/--
+@isnad1 id=ex.4h3v.s7.615835d4ccbb from=translated src=- shape=d8884165 vocab=b3985bda
+-/
 theorem solution {U : Set ℂ} (hU : IsOpen U) {q : ℂ} (hq : q ∈ U)
     (hstar : StarConvex ℝ q U) {f : ℂ → ℂ} (hf : DifferentiableOn ℂ f U) :
     ∃ g : ℂ → ℂ, g q = 0 ∧ ∀ z ∈ U, HasDerivAt g (f z) z := by

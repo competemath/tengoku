@@ -154,6 +154,9 @@ private theorem kerEquivPrim_map (ψ : A →ₐc[k] A) (z : (DieudonneModule.ver
 
 end KVPNat
 
+/--
+@isnad1 id=ex.0h3v.s15.dd366544d57a from=translated src=- shape=b10e4a7a vocab=5a4eaa08
+-/
 theorem solution
     (k : Type*) [Field k] (p : ℕ) [Fact p.Prime] [CharP k p]
     (A : Type*) [CommRing A] [HopfAlgebra k A] :

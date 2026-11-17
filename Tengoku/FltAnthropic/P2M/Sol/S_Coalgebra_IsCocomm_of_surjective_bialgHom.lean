@@ -7,6 +7,9 @@ namespace P2MW.S_Coalgebra_IsCocomm_of_surjective_bialgHom
 set_option autoImplicit false
 open scoped TensorProduct
 
+/--
+@isnad1 id=iscocomm.1h4v.s8.f508d910615e from=translated src=- shape=e2c7fede vocab=2fe5b9a3
+-/
 theorem solution
     {R : Type*} [CommSemiring R] {A : Type*} [Semiring A] [Bialgebra R A] [Coalgebra.IsCocomm R A]
     {B : Type*} [Semiring B] [Bialgebra R B] (π : A →ₐc[R] B) (hπ : Function.Surjective π) :

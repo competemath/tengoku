@@ -13,6 +13,9 @@ open Function Deformation Deformation.TruncWitt
 
 universe u v w
 
+/--
+@isnad1 id=eq.0h8v.s13.177db6d191fa from=translated src=- shape=ee5fbe20 vocab=926272e9
+-/
 theorem solution
     {R : Type u} [CommRing R] {p : ℕ} [Fact p.Prime] {n : ℕ}
     {A : Type v} [CommRing A] [Bialgebra R A]

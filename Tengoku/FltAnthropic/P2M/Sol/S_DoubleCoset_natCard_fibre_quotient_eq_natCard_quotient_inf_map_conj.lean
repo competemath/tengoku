@@ -17,6 +17,9 @@ variable {G : Type*} [Group G] {Γ U V : Subgroup G}
 def conjStab (V : Subgroup G) (β : G) : Subgroup G :=
   V.map (MulAut.conj β).toMonoidHom
 
+/--
+@isnad1 id=iff.0h4v.s6.665b8a22bad9 from=translated src=- shape=6ad766a8 vocab=af5c0f54
+-/
 theorem mem_conjStab {V : Subgroup G} {β x : G} :
     x ∈ conjStab V β ↔ ∃ μ ∈ V, β * μ * β⁻¹ = x := by
   simp only [conjStab, Subgroup.mem_map, MulEquiv.coe_toMonoidHom, MulAut.conj_apply]
@@ -28,6 +31,9 @@ def fibrationMap (hΓU : Γ ≤ U) :
     obtain ⟨γ, hγ, v, hv, rfl⟩ := DoubleCoset.rel_iff.mp hab
     exact ((DoubleCoset.eq U V a _).mpr ⟨γ, hΓU hγ, v, hv, rfl⟩)
 
+/--
+@isnad1 id=eq.1h5v.s6.0570c88933db from=translated src=- shape=dc2d05c7 vocab=ccb2f85a
+-/
 @[scoped simp]
 theorem fibrationMap_mk (hΓU : Γ ≤ U) (g : G) :
     fibrationMap (V := V) hΓU (DoubleCoset.mk Γ V g) = DoubleCoset.mk U V g :=
@@ -36,6 +42,9 @@ theorem fibrationMap_mk (hΓU : Γ ≤ U) (g : G) :
 def Fibre (hΓU : Γ ≤ U) (q : DoubleCoset.Quotient (U : Set G) (V : Set G)) : Type _ :=
   {x : DoubleCoset.Quotient (Γ : Set G) (V : Set G) // fibrationMap hΓU x = q}
 
+/--
+@isnad1 id=eq.1h6v.s7.f3f2ed7c51cd from=translated src=- shape=3755a8a6 vocab=16797fc0
+-/
 theorem toFibre_mem (hΓU : Γ ≤ U) (β : G) (ν : U) :
     fibrationMap (V := V) hΓU (DoubleCoset.mk Γ V ((ν : G) * β)) = DoubleCoset.mk U V β := by
   rw [fibrationMap_mk]
@@ -100,6 +109,9 @@ noncomputable def fibreEquiv (hΓU : Γ ≤ U) (β : G) :
       exact (DoubleCoset.eq Γ V (u⁻¹ * β) g).mpr
         ⟨1, Γ.one_mem, v⁻¹, V.inv_mem hv, by rw [hβ]; group⟩
 
+/--
+@isnad1 id=eq.1h5v.s7.dd25fedb3046 from=translated src=- shape=8fe43e92 vocab=b0832957
+-/
 theorem card_fibre (hΓU : Γ ≤ U) (β : G) :
     Nat.card (Fibre (V := V) hΓU (DoubleCoset.mk U V β)) =
       Nat.card (DoubleCoset.Quotient ((Γ.subgroupOf U : Subgroup U) : Set U)
@@ -166,6 +178,9 @@ open scoped _root_.P2MW.S_DoubleCoset_natCard_fibre_quotient_eq_natCard_quotient
 open scoped _root_.P2MW.S_DoubleCoset_natCard_fibre_quotient_eq_natCard_quotient_inf_map_conj.P2MWs13
 
 open P2MWs13.DoubleCosetFibration in
+/--
+@isnad1 id=eq.1h5v.s9.afc88af03f78 from=translated src=- shape=a0324ca8 vocab=68b1b70b
+-/
 theorem solution
     {G : Type*} [Group G] {Γ U : Subgroup G} (V : Subgroup G) (hΓU : Γ ≤ U) (β : G) :
     Nat.card {q : DoubleCoset.Quotient (Γ : Set G) (V : Set G) //

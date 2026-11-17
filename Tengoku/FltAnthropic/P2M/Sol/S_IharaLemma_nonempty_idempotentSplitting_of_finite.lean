@@ -25,6 +25,9 @@ section Artinian
 
 variable (B : Type) [CommRing B] [IsArtinianRing B]
 
+/--
+@isnad1 id=nonempty.0h1v.s4.090c87639074 from=translated src=- shape=76d92355 vocab=651df187
+-/
 theorem splitting_of_isArtinianRing : Nonempty (IdempotentSplitting B) := by
   classical
   letI : Fintype (MaximalSpectrum B) := Fintype.ofFinite _
@@ -94,6 +97,9 @@ abbrev mB (𝒪 : Type) [CommRing 𝒪] [IsLocalRing 𝒪] (B : Type) [CommRing 
 
 omit [IsNoetherianRing 𝒪] [Module.Finite 𝒪 B] in
 
+/--
+@isnad1 id=iff.0h5v.s8.ee6e784abd7c from=translated src=- shape=d0af9f37 vocab=bc030fe8
+-/
 theorem smodEq_iff_sub_mem_pow (n : ℕ) (x y : B) :
     x ≡ y [SMOD ((maximalIdeal 𝒪) ^ n • ⊤ : Submodule 𝒪 B)] ↔ x - y ∈ mB 𝒪 B ^ n := by
   rw [SModEq.sub_mem, Ideal.smul_top_eq_map, Submodule.restrictScalars_mem, Ideal.map_pow]
@@ -125,6 +131,9 @@ def newton (b : B) : ℕ → B
   | n + 1 => 3 * newton b n ^ 2 - 2 * newton b n ^ 3
 
 omit [IsNoetherianRing 𝒪] [Module.Finite 𝒪 B] in
+/--
+@isnad1 id=and.1h4v.s8.cbaf2e727b9b from=translated src=- shape=efd13507 vocab=e5f0c708
+-/
 theorem newton_spec {b : B} (hb : b ^ 2 - b ∈ mB 𝒪 B) (n : ℕ) :
     newton b n ^ 2 - newton b n ∈ mB 𝒪 B ^ (n + 1) ∧ newton b n - b ∈ mB 𝒪 B := by
   induction n with
@@ -145,6 +154,9 @@ theorem newton_spec {b : B} (hb : b ^ 2 - b ∈ mB 𝒪 B) (n : ℕ) :
       exact Ideal.add_mem _ h2 (Ideal.mul_mem_right _ _ (Ideal.pow_le_self (Nat.succ_ne_zero n) h1))
 
 omit [IsNoetherianRing 𝒪] [Module.Finite 𝒪 B] in
+/--
+@isnad1 id=mem.1h4v.s8.b3ee58fc1e81 from=translated src=- shape=1906998d vocab=e5f0c708
+-/
 theorem newton_succ_sub {b : B} (hb : b ^ 2 - b ∈ mB 𝒪 B) (n : ℕ) :
     newton b (n + 1) - newton b n ∈ mB 𝒪 B ^ (n + 1) := by
   have key : 3 * newton b n ^ 2 - 2 * newton b n ^ 3 - newton b n =
@@ -153,6 +165,9 @@ theorem newton_succ_sub {b : B} (hb : b ^ 2 - b ∈ mB 𝒪 B) (n : ℕ) :
   exact Ideal.mul_mem_right _ _ (newton_spec hb n).1
 
 omit [IsNoetherianRing 𝒪] [Module.Finite 𝒪 B] in
+/--
+@isnad1 id=mem.2h5v.s8.9ec0b9f27a07 from=translated src=- shape=ad65006d vocab=9b6f6f7f
+-/
 theorem newton_sub_of_le {b : B} (hb : b ^ 2 - b ∈ mB 𝒪 B) {m n : ℕ} (hmn : m ≤ n) :
     newton b n - newton b m ∈ mB 𝒪 B ^ (m + 1) := by
   induction n, hmn using Nat.le_induction with
@@ -162,6 +177,9 @@ theorem newton_sub_of_le {b : B} (hb : b ^ 2 - b ∈ mB 𝒪 B) {m n : ℕ} (hmn
     rw [key]
     exact Ideal.add_mem _ (Ideal.pow_le_pow_right (by omega) (newton_succ_sub hb n)) ih
 
+/--
+@isnad1 id=ex.1h3v.s8.c4e32e2c34f3 from=translated src=- shape=5f3764b2 vocab=e17fa5a3
+-/
 theorem exists_isIdempotentElem_lift [IsAdicComplete (maximalIdeal 𝒪) 𝒪] {b : B} (hb : b ^ 2 - b ∈ mB 𝒪 B) :
     ∃ e : B, IsIdempotentElem e ∧ e - b ∈ mB 𝒪 B := by
   haveI : IsPrecomplete (maximalIdeal 𝒪) B := IharaLemma.isPrecomplete_of_finite _ _
@@ -188,6 +206,9 @@ theorem exists_isIdempotentElem_lift [IsAdicComplete (maximalIdeal 𝒪) 𝒪] {
 
 omit [IsNoetherianRing 𝒪] in
 
+/--
+@isnad1 id=le.0h3v.s7.395d327c9cdb from=translated src=- shape=08ebd8d4 vocab=63ca0905
+-/
 theorem mB_le_of_isMaximal (M : Ideal B) [hM : M.IsMaximal] : mB 𝒪 B ≤ M := by
   have h1 : (M.comap (algebraMap 𝒪 B)).IsMaximal := Ideal.isMaximal_comap_of_isIntegral_of_isMaximal M
   have h2 : maximalIdeal 𝒪 ≤ M.comap (algebraMap 𝒪 B) := (IsLocalRing.eq_maximalIdeal h1).ge
@@ -195,6 +216,9 @@ theorem mB_le_of_isMaximal (M : Ideal B) [hM : M.IsMaximal] : mB 𝒪 B ≤ M :=
 
 variable (𝒪 B) in
 
+/--
+@isnad1 id=nonempty.0h2v.s6.9eb75672aba5 from=translated src=- shape=52dfdb30 vocab=eca0891b
+-/
 theorem splitting_of_finite [IsAdicComplete (maximalIdeal 𝒪) 𝒪] :
     Nonempty (IdempotentSplitting B) := by
   classical
@@ -264,6 +288,9 @@ end Complete
 
 end IharaLemmaSolSplit
 
+/--
+@isnad1 id=nonempty.0h2v.s6.9eb75672aba5 from=translated src=- shape=52dfdb30 vocab=eca0891b
+-/
 theorem solution (𝒪 : Type) [CommRing 𝒪] [IsLocalRing 𝒪]
     [IsNoetherianRing 𝒪] (B : Type) [CommRing B] [Algebra 𝒪 B] [Module.Finite 𝒪 B]
     [IsAdicComplete (IsLocalRing.maximalIdeal 𝒪) 𝒪] :

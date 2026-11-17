@@ -14,6 +14,9 @@ namespace RibbonDualityEngine
 
 open ModularCurve
 
+/--
+@isnad1 id=eq.1h3v.s6.efcb31682bc6 from=translated src=- shape=ee0aa61e vocab=20ec0495
+-/
 theorem finrank_eq_of_natCard_eq (K : Type*) [DivisionRing K] {V W : Type*}
     [AddCommGroup V] [Module K V] [AddCommGroup W] [Module K W] [Finite V] [Finite W]
     (h : Nat.card V = Nat.card W) : Module.finrank K V = Module.finrank K W := by
@@ -37,6 +40,9 @@ theorem finrank_eq_of_natCard_eq (K : Type*) [DivisionRing K] {V W : Type*}
     rw [hW] at hWne
     rw [hzero _ hVne, hzero _ hWne]
 
+/--
+@isnad1 id=subsingl.0h2v.s4.4b5e49376cb6 from=translated src=- shape=8d323e6a vocab=63a14a4d
+-/
 theorem subsingleton_of_finite_of_infinite (K : Type*) [DivisionRing K] [Infinite K]
     (V : Type*) [AddCommGroup V] [Module K V] [Finite V] : Subsingleton V := by
   refine ⟨fun a b => ?_⟩
@@ -51,6 +57,9 @@ theorem subsingleton_of_finite_of_infinite (K : Type*) [DivisionRing K] [Infinit
 
 set_option backward.isDefEq.respectTransparency false in
 
+/--
+@isnad1 id=and.3h3v.s7.1b44de674094 from=translated src=- shape=f3298f36 vocab=e22be349
+-/
 theorem card_hom_eq_card_of_prime_torsion (G μ : Type*) [AddCommGroup G]
     [AddCommGroup μ] [AddGroup.FG G] {p : ℕ} [Module (ZMod p) G] (hp : p.Prime)
     (hG : ∀ g : G, p • g = 0) (hμ : Nat.card μ = p) :
@@ -81,6 +90,9 @@ theorem card_hom_eq_card_of_prime_torsion (G μ : Type*) [AddCommGroup G]
   rw [Nat.card_congr e12, Nat.card_fun, hμ, Nat.card_eq_fintype_card, Fintype.card_fin,
     Module.natCard_eq_pow_finrank (K := ZMod p) (V := G), Nat.card_zmod]
 
+/--
+@isnad1 id=eq.0h2v.s7.ce227511fa2d from=translated src=- shape=4c01808c vocab=9495549a
+-/
 theorem card_ker_eq_card_quotient_range {Ψ : Type*} [AddCommGroup Ψ] [Finite Ψ]
     (φ : Ψ →ₗ[ℤ] Ψ) :
     Nat.card ↥(LinearMap.ker φ) = Nat.card (Ψ ⧸ LinearMap.range φ) := by
@@ -121,6 +133,9 @@ section Lattice
 
 variable {Z : Type*} [AddCommGroup Z]
 
+/--
+@isnad1 id=finite.1h2v.s9.22723456e83e from=translated src=- shape=b5473651 vocab=f3eaca6a
+-/
 theorem finite_coker [Module.Free ℤ Z] [Module.Finite ℤ Z]
     (G : Z →ₗ[ℤ] Module.Dual ℤ Z) (hinj : Function.Injective G) :
     Finite (Module.Dual ℤ Z ⧸ LinearMap.range G) := by
@@ -130,6 +145,9 @@ theorem finite_coker [Module.Free ℤ Z] [Module.Finite ℤ Z]
   let b := Module.Free.chooseBasis ℤ Z
   rw [Module.finrank_eq_card_basis b, Module.finrank_eq_card_basis b.dualBasis]
 
+/--
+@isnad1 id=ex.1h3v.s6.5b4bf0178151 from=translated src=- shape=50bbde29 vocab=c107c9c7
+-/
 theorem exists_eq_smul_of_forall_dvd [Module.Free ℤ Z] [Module.Finite ℤ Z] (P : ℤ) (x : Z)
     (h : ∀ g : Module.Dual ℤ Z, P ∣ g x) : ∃ x' : Z, x = P • x' := by
   classical
@@ -142,6 +160,9 @@ theorem exists_eq_smul_of_forall_dvd [Module.Free ℤ Z] [Module.Finite ℤ Z] (
   rw [smul_smul, ← hc i]
   rfl
 
+/--
+@isnad1 id=dvd.6h9v.s11.ce489a8362ff from=translated src=- shape=f2a3c94a vocab=de035d2b
+-/
 theorem pairing_indep (G : Z →ₗ[ℤ] Module.Dual ℤ Z) (hsym : ∀ x y : Z, G x y = G y x)
     (hinj : Function.Injective G) (P : ℤ)
     {f f' g g' : Module.Dual ℤ Z} {x x' : Z} (hx : G x = P • f) (hx' : G x' = P • f')
@@ -161,6 +182,9 @@ abbrev pmul (G : Z →ₗ[ℤ] Module.Dual ℤ Z) (P : ℤ) :
     (Module.Dual ℤ Z ⧸ LinearMap.range G) →ₗ[ℤ] (Module.Dual ℤ Z ⧸ LinearMap.range G) :=
   P • LinearMap.id
 
+/--
+@isnad1 id=eq.0h4v.s12.4b409c777f36 from=translated src=- shape=4f508937 vocab=37bb5f59
+-/
 theorem pmul_apply (G : Z →ₗ[ℤ] Module.Dual ℤ Z) (P : ℤ)
     (q : Module.Dual ℤ Z ⧸ LinearMap.range G) : pmul G P q = P • q := rfl
 
@@ -169,6 +193,9 @@ end Lattice
 noncomputable abbrev TorP (M : Type*) [AddCommGroup M] [Module HeckeAlg M] (p : ℕ) : Submodule HeckeAlg M :=
   Submodule.torsionBy HeckeAlg M ((p : ℕ) : HeckeAlg)
 
+/--
+@isnad1 id=eq.1h7v.s11.8b2021ff2ab9 from=translated src=- shape=75ab7d61 vocab=a7712c52
+-/
 theorem adjoint_all {P : Type*} [AddCommGroup P] [Module HeckeAlg P]
     {Q : Type*} [AddCommGroup Q] [Module HeckeAlg Q] {μ : Type*} [AddCommGroup μ]
     (β : P →+ (Q →+ μ))
@@ -203,6 +230,9 @@ theorem adjoint_all {P : Type*} [AddCommGroup P] [Module HeckeAlg P]
 set_option backward.isDefEq.respectTransparency false in
 set_option maxHeartbeats 3200000 in
 
+/--
+@isnad1 id=eq.7h9v.s14.9567815dc5f1 from=translated src=- shape=c2a974f8 vocab=77783d84
+-/
 theorem finrank_torsion_eq_finrank_quotient
     {Z : Type*} [AddCommGroup Z] [Module.Free ℤ Z] [Module.Finite ℤ Z]
     (G : Z →ₗ[ℤ] Module.Dual ℤ Z) (hsym : ∀ x y : Z, G x y = G y x)
@@ -464,6 +494,9 @@ end RibbonDualityEngine
 
 open CerednikDrinfeld ModularCurve
 
+/--
+@isnad1 id=eq.4h10v.s16.bccfc8ddcda9 from=translated src=- shape=f1315928 vocab=15389348
+-/
 theorem solution
     {E V : Type*} [Fintype E] [Fintype V] [DecidableEq V] {D : DegeneracyData E V}
     (H : HeckeData D)

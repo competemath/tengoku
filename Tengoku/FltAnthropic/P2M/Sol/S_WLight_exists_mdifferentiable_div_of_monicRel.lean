@@ -27,10 +27,16 @@ end ValuationEngine
 
 section HBridge
 
+/--
+@isnad1 id=analytic.1h1v.s7.e68542bd780a from=translated src=- shape=6db56ede vocab=455c6563
+-/
 lemma analyticOnNhd_comp_ofComplex {f : ℍ → ℂ} (hf : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) f) :
     AnalyticOnNhd ℂ (f ∘ ofComplex) upperHalfPlaneSet :=
   (UpperHalfPlane.mdifferentiable_iff.mp hf).analyticOnNhd isOpen_upperHalfPlaneSet
 
+/--
+@isnad1 id=mdiffere.1h1v.s7.5d1f1bba9ff1 from=translated src=- shape=bce9a9b6 vocab=455c6563
+-/
 lemma mdifferentiable_of_analyticOnNhd {f : ℍ → ℂ}
     (hf : AnalyticOnNhd ℂ (f ∘ ofComplex) upperHalfPlaneSet) :
     MDifferentiable 𝓘(ℂ) 𝓘(ℂ) f :=
@@ -42,6 +48,9 @@ end WLight
 
 open _root_.WLight _root_.P2MW.S_WLight_exists_mdifferentiable_div_of_monicRel.WLight in
 
+/--
+@isnad1 id=ex.5h4v.s9.2eb944b07c5d from=translated src=- shape=99d27d5c vocab=e6d384e4
+-/
 theorem solution {a b : ℍ → ℂ} {c : ℕ → ℍ → ℂ} {d : ℕ}
     (hahol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) a) (hbhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) b)
     (hb0 : b ≠ 0) (hc : ∀ k < d, MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (c k))

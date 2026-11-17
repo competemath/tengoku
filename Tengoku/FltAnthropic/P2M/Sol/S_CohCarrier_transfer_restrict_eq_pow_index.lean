@@ -9,6 +9,9 @@ namespace P2MW.S_CohCarrier_transfer_restrict_eq_pow_index
 
 open Subgroup Subgroup.leftTransversals
 
+/--
+@isnad1 id=eq.0h4v.s7.2db8e96239b5 from=translated src=- shape=8209794b vocab=cd62987b
+-/
 theorem solution {G : Type*} [Group G] (K : Subgroup G) [K.FiniteIndex]
     {C : Type*} [CommGroup C] (φ : G →* C) :
     MonoidHom.transfer (φ.domRestrict K) = φ ^ K.index := by

@@ -11,6 +11,9 @@ set_option autoImplicit false
 open Complex Real UpperHalfPlane
 open scoped Manifold MatrixGroups ModularForm
 
+/--
+@isnad1 id=ex.5h4v.s9.2eb944b07c5d from=translated src=- shape=99d27d5c vocab=e6d384e4
+-/
 theorem WLight.exists_mdifferentiable_div_of_monicRel {a b : ℍ → ℂ} {c : ℕ → ℍ → ℂ} {d : ℕ}
     (hahol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) a) (hbhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) b)
     (hb0 : b ≠ 0) (hc : ∀ k < d, MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (c k))

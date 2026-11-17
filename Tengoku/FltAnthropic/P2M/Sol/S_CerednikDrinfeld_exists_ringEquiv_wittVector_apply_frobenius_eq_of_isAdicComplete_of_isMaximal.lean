@@ -8,6 +8,9 @@ namespace P2MW.S_CerednikDrinfeld_exists_ringEquiv_wittVector_apply_frobenius_eq
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.5h4v.s10.d57de141e6ff from=translated src=- shape=1c9ee690 vocab=1a13b1fa
+-/
 theorem solution
     (r : ℕ) [Fact r.Prime]
     (Onr : Type) [CommRing Onr] [IsDomain Onr] [CharZero Onr]

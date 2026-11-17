@@ -28,16 +28,25 @@ noncomputable abbrev red {X : Type w₁} [CommRing X] [Algebra 𝓞 X] {Y : Type
     [Algebra 𝓞 Y] (x : X →ₐ[𝓞] Y) : k ⊗[𝓞] X →ₐ[k] k ⊗[𝓞] Y :=
   Algebra.TensorProduct.map (AlgHom.id k k) x
 
+/--
+@isnad1 id=eq.0h7v.s9.fc8f325effab from=translated src=- shape=6d526358 vocab=36627854
+-/
 theorem red_tmul {X : Type w₁} [CommRing X] [Algebra 𝓞 X] {Y : Type w'} [CommRing Y] [Algebra 𝓞 Y]
     (x : X →ₐ[𝓞] Y) (c : k) (r : X) : red (k := k) x (c ⊗ₜ[𝓞] r) = c ⊗ₜ[𝓞] x r := by
   rw [Algebra.TensorProduct.map_tmul, AlgHom.id_apply]
 
+/--
+@isnad1 id=eq.0h7v.s9.5165f88247b6 from=translated src=- shape=8298a426 vocab=4adfaf46
+-/
 theorem red_comp {X : Type w₁} [CommRing X] [Algebra 𝓞 X] {Y : Type w₂} [CommRing Y] [Algebra 𝓞 Y]
     {Z : Type w₃} [CommRing Z] [Algebra 𝓞 Z] (x : X →ₐ[𝓞] Y) (y : Y →ₐ[𝓞] Z) :
     red (k := k) (y.comp x) = (red (k := k) y).comp (red (k := k) x) := by
   refine Algebra.TensorProduct.ext' fun c r => ?_
   simp
 
+/--
+@isnad1 id=eq.0h5v.s9.a3ca9e3c6b26 from=translated src=- shape=94f6ea6b vocab=c61f9561
+-/
 theorem tmul_algebraMap {X : Type w₁} [CommRing X] [Algebra 𝓞 X] (c : k) (o : 𝓞) :
     (c ⊗ₜ[𝓞] algebraMap 𝓞 X o : k ⊗[𝓞] X) = algebraMap k (k ⊗[𝓞] X) (o • c) := by
   rw [Algebra.algebraMap_eq_smul_one, ← TensorProduct.smul_tmul, Algebra.TensorProduct.algebraMap_apply,
@@ -52,6 +61,9 @@ def Cond (p : ℕ) [Fact p.Prime] {X : Type w₁} [CommRing X] [Bialgebra 𝓞 X
         Deformation.TruncWitt.fontaineKer p n
           (Algebra.TensorProduct.includeRight : Y →ₐ[𝓞] k ⊗[𝓞] Y).toRingHom
 
+/--
+@isnad1 id=cond.1h8v.s10.827f292e9781 from=translated src=- shape=4c917f84 vocab=0cc845ca
+-/
 theorem cond_comp {𝒮 : Type w₁} [CommRing 𝒮] [Bialgebra 𝓞 𝒮] {ℛ : Type w₂} [CommRing ℛ]
     [Bialgebra 𝓞 ℛ] {Y : Type w'} [CommRing Y] [Algebra 𝓞 Y]
     (q : 𝒮 →ₐc[𝓞] ℛ) (χ : k ⊗[𝓞] ℛ →ₐ[k] k ⊗[𝓞] Y) (hχ : Cond p χ) :
@@ -79,6 +91,9 @@ noncomputable abbrev unitPoint (𝒮' : Type w₁) [CommRing 𝒮'] [Bialgebra �
     [CommRing Y] [Algebra 𝓞 Y] : 𝒮' →ₐ[𝓞] Y :=
   (Algebra.ofId 𝓞 Y).comp (Bialgebra.counitAlgHom 𝓞 𝒮')
 
+/--
+@isnad1 id=ex.5h10v.s11.d2e61f3abc5e from=translated src=- shape=7bd39ed7 vocab=973b668f
+-/
 theorem exists_algHom_red_eq
     {𝒮 : Type w₁} [CommRing 𝒮] [Bialgebra 𝓞 𝒮]
     {𝒮' : Type w₂} [CommRing 𝒮'] [Bialgebra 𝓞 𝒮']
@@ -149,6 +164,9 @@ end Deformation.FontaineKerStab
 
 open Deformation.FontaineKerStab in
 
+/--
+@isnad1 id=ex.5h10v.s14.30c0dd15f13a from=translated src=- shape=9b4c62f6 vocab=8cb8be28
+-/
 theorem solution
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [Fact p.Prime]
     {k : Type v} [CommRing k] [Algebra 𝓞 k]

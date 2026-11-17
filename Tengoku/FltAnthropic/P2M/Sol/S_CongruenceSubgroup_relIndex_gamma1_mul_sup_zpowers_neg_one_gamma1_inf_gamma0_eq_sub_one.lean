@@ -14,6 +14,9 @@ namespace S1
 
 open CongruenceSubgroup
 
+/--
+@isnad1 id=le.0h2v.s8.978784418b58 from=translated src=- shape=3e2aa08f vocab=59b53bf5
+-/
 theorem gamma1_mul_le (M p : ℕ) : Gamma1 (M * p) ≤ Gamma1 M ⊓ Gamma0 p := by
   intro A hA
   rw [Gamma1_mem] at hA
@@ -31,6 +34,9 @@ theorem gamma1_mul_le (M p : ℕ) : Gamma1 (M * p) ≤ Gamma1 M ⊓ Gamma0 p := 
     have := congrArg (ZMod.castHom (dvd_mul_left p M) (ZMod p)) h10
     rwa [map_intCast, map_zero] at this
 
+/--
+@isnad1 id=mem.0h2v.s8.9965183f04e5 from=translated src=- shape=73dfe385 vocab=877d8f05
+-/
 theorem T_mem (M p : ℕ) : ModularGroup.T ∈ Gamma1 M ⊓ Gamma0 p := by
   refine Subgroup.mem_inf.mpr ⟨?_, ?_⟩
   · rw [Gamma1_mem, ModularGroup.coe_T]
@@ -38,6 +44,9 @@ theorem T_mem (M p : ℕ) : ModularGroup.T ∈ Gamma1 M ⊓ Gamma0 p := by
   · rw [Gamma0_mem, ModularGroup.coe_T]
     simp
 
+/--
+@isnad1 id=not.1h1v.s8.15a640988b92 from=translated src=- shape=225021a0 vocab=8c8c9eb3
+-/
 theorem neg_one_notMem_gamma1 (M : ℕ) (hM : 3 ≤ M) : (-1 : SL(2, ℤ)) ∉ Gamma1 M := by
   intro h
   rw [Gamma1_mem] at h
@@ -51,6 +60,9 @@ theorem neg_one_notMem_gamma1 (M : ℕ) (hM : 3 ≤ M) : (-1 : SL(2, ℤ)) ∉ G
   have h3 : (M : ℤ) ≤ 2 := Int.le_of_dvd (by norm_num) h2
   omega
 
+/--
+@isnad1 id=or.1h2v.s10.72a459372450 from=translated src=- shape=bdebf355 vocab=f9aa1175
+-/
 theorem mem_or_neg_mem_of_mem_sup (X : Subgroup SL(2, ℤ)) {γ : SL(2, ℤ)}
     (hγ : γ ∈ X ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))) : γ ∈ X ∨ -γ ∈ X := by
   rw [Subgroup.sup_eq_closure] at hγ
@@ -91,6 +103,9 @@ theorem mem_or_neg_mem_of_mem_sup (X : Subgroup SL(2, ℤ)) {γ : SL(2, ℤ)}
     · exact Or.inl (X.inv_mem hx)
     · right; rw [neg_inv]; exact X.inv_mem hx
 
+/--
+@isnad1 id=eq.1h1v.s9.a0b49822b960 from=translated src=- shape=40959d55 vocab=8268fcb4
+-/
 theorem relIndex_sup_zpowers_neg_one_eq_two (X : Subgroup SL(2, ℤ)) (hX : (-1 : SL(2, ℤ)) ∉ X) :
     X.relIndex (X ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))) = 2 := by
   rw [Subgroup.relIndex, Subgroup.index_eq_two_iff]
@@ -109,15 +124,27 @@ theorem relIndex_sup_zpowers_neg_one_eq_two (X : Subgroup SL(2, ℤ)) (hX : (-1 
 noncomputable def dChar (M p : ℕ) : ↥(Gamma1 M ⊓ Gamma0 p) →* (ZMod p)ˣ :=
   ((Gamma0Map p).comp (Subgroup.inclusion inf_le_right)).toHomUnits
 
+/--
+@isnad1 id=eq.0h3v.s12.5832ae3cffc6 from=translated src=- shape=55a8cf4a vocab=28221c86
+-/
 theorem val_dChar (M p : ℕ) (γ : ↥(Gamma1 M ⊓ Gamma0 p)) :
     ((dChar M p γ : (ZMod p)ˣ) : ZMod p) = ((((γ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) 1 1 : ℤ) : ZMod p) := rfl
 
+/--
+@isnad1 id=iff.0h2v.s6.446626663c3f from=translated src=- shape=02339e84 vocab=c9cfc347
+-/
 theorem intCast_eq_one_iff (n : ℕ) (z : ℤ) : ((z : ℤ) : ZMod n) = 1 ↔ (n : ℤ) ∣ z - 1 := by
   rw [← ZMod.intCast_zmod_eq_zero_iff_dvd, Int.cast_sub, Int.cast_one, sub_eq_zero]
 
+/--
+@isnad1 id=iscoprim.1h2v.s4.f0605a933280 from=translated src=- shape=28cd8840 vocab=14e5b055
+-/
 theorem isCoprime_of_not_dvd (M p : ℕ) [Fact p.Prime] (hpM : ¬ p ∣ M) : IsCoprime (M : ℤ) (p : ℤ) :=
   Nat.isCoprime_iff_coprime.mpr ((Nat.Prime.coprime_iff_not_dvd Fact.out).mpr hpM).symm
 
+/--
+@isnad1 id=iff.1h3v.s12.ad1c1b7cc66f from=translated src=- shape=8cd859d3 vocab=3aedc1b2
+-/
 theorem dChar_eq_one_iff (M p : ℕ) [Fact p.Prime] (hpM : ¬ p ∣ M) (γ : ↥(Gamma1 M ⊓ Gamma0 p)) :
     dChar M p γ = 1 ↔ (γ : SL(2, ℤ)) ∈ Gamma1 (M * p) := by
   have hcop := isCoprime_of_not_dvd M p hpM
@@ -149,6 +176,9 @@ theorem dChar_eq_one_iff (M p : ℕ) [Fact p.Prime] (hpM : ¬ p ∣ M) (γ : ↥
     have := congrArg (ZMod.castHom (dvd_mul_left p M) (ZMod p)) hd'
     rwa [map_intCast, map_one] at this
 
+/--
+@isnad1 id=surjecti.1h2v.s12.05b6a8e1f089 from=translated src=- shape=58ed994b vocab=588f17a7
+-/
 theorem dChar_surjective (M p : ℕ) [Fact p.Prime] (hpM : ¬ p ∣ M) : Function.Surjective (dChar M p) := by
   intro u
   have hcop := isCoprime_of_not_dvd M p hpM
@@ -205,6 +235,9 @@ theorem dChar_surjective (M p : ℕ) [Fact p.Prime] (hpM : ¬ p ∣ M) : Functio
   rw [hγ11]
   exact hdmodp
 
+/--
+@isnad1 id=eq.1h2v.s7.4b2e20effa5a from=translated src=- shape=55931868 vocab=3e7ee4e9
+-/
 theorem relIndex_gamma1_mul (M p : ℕ) [Fact p.Prime] (hpM : ¬ p ∣ M) :
     (Gamma1 (M * p)).relIndex (Gamma1 M ⊓ Gamma0 p) = p - 1 := by
   have hker : (dChar M p).ker = (Gamma1 (M * p)).subgroupOf (Gamma1 M ⊓ Gamma0 p) := by
@@ -217,6 +250,9 @@ theorem relIndex_gamma1_mul (M p : ℕ) [Fact p.Prime] (hpM : ¬ p ∣ M) :
 end Ws28.S1
 
 open Ws28.S1 CongruenceSubgroup in
+/--
+@isnad1 id=and.2h2v.s11.9b7ce26647a6 from=translated src=- shape=57e8d928 vocab=d5987893
+-/
 theorem solution
     (M p : ℕ) [NeZero M] (hM : 3 ≤ M) [Fact p.Prime] (hpM : ¬ p ∣ M) :
     CongruenceSubgroup.Gamma1 (M * p) ≤ CongruenceSubgroup.Gamma1 M ⊓ CongruenceSubgroup.Gamma0 p ∧

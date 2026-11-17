@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_FrobeniusDensity_tendsto_sub_one_mul_ideal
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_FrobeniusDensity_tendsto_sub_one_mul_idealSum_test.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
 open NumberField
+/--
+@isnad1 id=tendsto.0h1v.s6.5bb2baa1cdda from=translated src=- shape=a0c6036f vocab=8be211e7
+-/
 theorem FrobeniusDensity.tendsto_sub_one_mul_idealSum_test
     (K : Type*) [Field K] [NumberField K] :
     Filter.Tendsto (fun s : ℝ => (s - 1) * (FrobeniusDensity.idealSum K s).toReal)

@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 namespace P2MPontryagin
 
+/--
+@isnad1 id=eq.0h1v.s4.2dbc67dd7724 from=translated src=- shape=210878d7 vocab=f37ffda3
+-/
 theorem natCard_characterModule (M : Type*) [AddCommGroup M] [Finite M] :
     Nat.card (CharacterModule M) = Nat.card M :=
   CharacterModule.natCard_eq_of_finite M
@@ -40,6 +43,9 @@ noncomputable def descend {P : Type*} [AddCommGroup P] [Module A P] (f : G →�
     rw [map_sub, map_sub, sub_sub, sub_eq_zero] at this
     exact this
 
+/--
+@isnad1 id=eq.1h6v.s9.cfa24cb916ca from=translated src=- shape=a714a858 vocab=e603170f
+-/
 theorem descend_apply {P : Type*} [AddCommGroup P] [Module A P] (f : G →ₗ[A] P)
     (φ : CharacterModule G) (h : ∀ x ∈ LinearMap.ker f, φ x = 0) (x : G) :
     descend f φ h ⟨f x, LinearMap.mem_range_self f x⟩ = φ x := by
@@ -53,6 +59,9 @@ theorem descend_apply {P : Type*} [AddCommGroup P] [Module A P] (f : G →ₗ[A]
 
 def genMap {s : ℕ} (b : Fin s → A) : G →ₗ[A] (Fin s → G) := LinearMap.pi fun i => b i • LinearMap.id
 
+/--
+@isnad1 id=eq.0h4v.s6.a9a3f3fc421e from=translated src=- shape=63e3d852 vocab=f43b33af
+-/
 theorem ker_genMap {s : ℕ} (b : Fin s → A) :
     LinearMap.ker (genMap (G := G) b) = torsionBySet A G (Set.range b) := by
   ext x
@@ -62,6 +71,9 @@ theorem ker_genMap {s : ℕ} (b : Fin s → A) :
   · intro h; funext i; exact h ⟨b i, i, rfl⟩
 
 omit [Module A G] in
+/--
+@isnad1 id=eq.0h5v.s6.9a1ea1617592 from=translated src=- shape=7c1a6bf2 vocab=34def508
+-/
 theorem charSum_apply {ι : Type*} (t : Finset ι) (c : ι → CharacterModule G) (x : G) :
     (∑ i ∈ t, c i) x = ∑ i ∈ t, c i x := by
   classical
@@ -70,6 +82,9 @@ theorem charSum_apply {ι : Type*} (t : Finset ι) (c : ι → CharacterModule G
   · intro i t hi ih
     rw [Finset.sum_insert hi, Finset.sum_insert hi, ← ih]; rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.172d772897d5 from=translated src=- shape=2f70838a vocab=f6e16043
+-/
 theorem ker_dual_subtype_torsionBySet {s : ℕ} (b : Fin s → A) :
     LinearMap.ker (CharacterModule.dual (torsionBySet A G (Set.range b)).subtype)
       = Ideal.span (Set.range b) • (⊤ : Submodule A (CharacterModule G)) := by
@@ -107,6 +122,9 @@ theorem ker_dual_subtype_torsionBySet {s : ℕ} (b : Fin s → A) :
     show φ (a • x) = 0
     rw [hax, map_zero]
 
+/--
+@isnad1 id=eq.0h4v.s8.9f8323a793e2 from=translated src=- shape=05867c91 vocab=a7fc6016
+-/
 theorem natCard_quotient_span_smul_top {s : ℕ} (b : Fin s → A)
     [Finite ↥(torsionBySet A G (Set.range b))] :
     Nat.card (CharacterModule G ⧸ Ideal.span (Set.range b) • (⊤ : Submodule A (CharacterModule G)))
@@ -116,6 +134,9 @@ theorem natCard_quotient_span_smul_top {s : ℕ} (b : Fin s → A)
   rw [← ker_dual_subtype_torsionBySet b, Nat.card_congr (LinearMap.quotKerEquivOfSurjective _ hs).toEquiv,
     natCard_characterModule]
 
+/--
+@isnad1 id=eq.2h3v.s8.2f3fe13a3a34 from=translated src=- shape=65bc25f7 vocab=5b6e7b3a
+-/
 theorem natCard_quotient_ideal_smul_top_eq_natCard_torsionBySet (s : Set A) (hs : s.Finite)
     (hfin : Finite ↥(torsionBySet A G s)) :
     Nat.card (CharacterModule G ⧸ (Ideal.span s • (⊤ : Submodule A (CharacterModule G))))
@@ -128,6 +149,9 @@ theorem natCard_quotient_ideal_smul_top_eq_natCard_torsionBySet (s : Set A) (hs 
 
 end P2MPontryagin
 
+/--
+@isnad1 id=eq.2h3v.s8.2f3fe13a3a34 from=translated src=- shape=65bc25f7 vocab=5b6e7b3a
+-/
 theorem solution
     (A : Type*) [CommRing A] (G : Type*) [AddCommGroup G] [Module A G]
     (s : Set A) (hs : s.Finite) (hfin : Finite ↥(Submodule.torsionBySet A G s)) :

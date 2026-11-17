@@ -8,5 +8,8 @@ import Tengoku.FltAnthropic.P2M.Sol.S_IharaLemma_isPrecomplete_of_finite
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=isprecom.0h3v.s6.d5bd06a9e8b4 from=translated src=- shape=ca941a41 vocab=3c050046
+-/
 theorem IharaLemma.isPrecomplete_of_finite {R : Type*} [CommRing R] (I : Ideal R) [IsPrecomplete I R]
     (M : Type*) [AddCommGroup M] [Module R M] [Module.Finite R M] : IsPrecomplete I M := by exact @_root_.P2MW.S_IharaLemma_isPrecomplete_of_finite.solution R _ I _ M _ _ _

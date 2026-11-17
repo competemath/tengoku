@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_IharaLemma_finite_cornerSubmodule
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=finite.0h4v.s8.fe149485653a from=translated src=- shape=35eb52a5 vocab=917e51ca
+-/
 theorem IharaLemma.finite_cornerSubmodule {𝒪 : Type} [CommRing 𝒪] {B : Type} [CommRing B]
     [Algebra 𝒪 B] {V : Type} [AddCommGroup V] [Module B V] [Module 𝒪 V] [IsScalarTower 𝒪 B V]
     (e : B) [Module.Finite 𝒪 V] :

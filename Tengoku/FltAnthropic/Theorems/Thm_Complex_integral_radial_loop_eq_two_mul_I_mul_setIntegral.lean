@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Complex_integral_radial_loop_eq_two_mul_I_
 
 open Complex in
 
+/--
+@isnad1 id=eq.11h7v.s11.3bde7f075542 from=translated src=- shape=12bda2ff vocab=4fbfeff0
+-/
 theorem Complex.integral_radial_loop_eq_two_mul_I_mul_setIntegral
     (c : ℂ) (r : ℝ → ℝ) (hcont : Continuous r) (hper : Function.Periodic r (2 * Real.pi))
     (hpos : ∀ φ, 0 < r φ)

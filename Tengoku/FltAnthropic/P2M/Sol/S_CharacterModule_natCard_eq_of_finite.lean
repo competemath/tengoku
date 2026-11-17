@@ -11,6 +11,9 @@ namespace P2MPontryagin
 
 open DirectSum
 
+/--
+@isnad1 id=eq.1h1v.s8.adb06cd9b554 from=translated src=- shape=9f8b98da vocab=ada087a6
+-/
 theorem setOf_nsmul_eq_zero_addCircle (n : ℕ) (hn : n ≠ 0) :
     {a : AddCircle (1 : ℚ) | n • a = 0}
       = (AddSubgroup.zmultiples (((1 : ℚ) / n : ℚ) : AddCircle (1 : ℚ)) : Set (AddCircle (1 : ℚ))) := by
@@ -36,6 +39,9 @@ theorem setOf_nsmul_eq_zero_addCircle (n : ℕ) (hn : n ≠ 0) :
     have hn' : (n : ℚ) ≠ 0 := by exact_mod_cast hn
     rw [mul_one_div_cancel hn', AddCircle.coe_period, smul_zero]
 
+/--
+@isnad1 id=eq.1h1v.s7.5539a975a7f3 from=translated src=- shape=7e0155d2 vocab=899848f4
+-/
 theorem natCard_nsmul_eq_zero_addCircle (n : ℕ) (hn : n ≠ 0) :
     Nat.card {a : AddCircle (1 : ℚ) // n • a = 0} = n := by
   have h := setOf_nsmul_eq_zero_addCircle n hn
@@ -45,6 +51,9 @@ theorem natCard_nsmul_eq_zero_addCircle (n : ℕ) (hn : n ≠ 0) :
     rw [h]; rfl
   rw [this, Nat.card_zmultiples, AddCircle.addOrderOf_period_div (Nat.pos_of_ne_zero hn)]
 
+/--
+@isnad1 id=eq.1h1v.s6.9bd9e8209bef from=translated src=- shape=7b1fd3b5 vocab=3960da23
+-/
 theorem natCard_zmod_addMonoidHom_addCircle (n : ℕ) (hn : n ≠ 0) :
     Nat.card (ZMod n →+ AddCircle (1 : ℚ)) = n := by
   have e1 : (ZMod n →+ AddCircle (1 : ℚ)) ≃ {f : ℤ →+ AddCircle (1 : ℚ) // f n = 0} := (ZMod.lift n).symm
@@ -55,6 +64,9 @@ theorem natCard_zmod_addMonoidHom_addCircle (n : ℕ) (hn : n ≠ 0) :
       simp only [zmultiplesHom_symm_apply, hf])
   rw [Nat.card_congr (e1.trans e2), natCard_nsmul_eq_zero_addCircle n hn]
 
+/--
+@isnad1 id=eq.0h1v.s4.2dbc67dd7724 from=translated src=- shape=210878d7 vocab=f37ffda3
+-/
 theorem natCard_characterModule (M : Type*) [AddCommGroup M] [Finite M] :
     Nat.card (CharacterModule M) = Nat.card M := by
   classical
@@ -73,6 +85,9 @@ theorem natCard_characterModule (M : Type*) [AddCommGroup M] [Finite M] :
 
 end P2MPontryagin
 
+/--
+@isnad1 id=eq.0h1v.s4.2dbc67dd7724 from=translated src=- shape=210878d7 vocab=f37ffda3
+-/
 theorem solution (M : Type*) [AddCommGroup M] [Finite M] :
     Nat.card (CharacterModule M) = Nat.card M :=
   P2MPontryagin.natCard_characterModule M

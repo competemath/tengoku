@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped MatrixGroups
 
+/--
+@isnad1 id=eq.1h2v.s7.5d29f59dd30b from=translated src=- shape=40a0ef76 vocab=5ef46b89
+-/
 theorem solution (N ℓ : ℕ) [NeZero N]
     (hNℓ : Nat.Coprime N ℓ) :
     CongruenceSubgroup.Gamma1 N ⊓ CongruenceSubgroup.Gamma0 ℓ =

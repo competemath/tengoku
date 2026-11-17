@@ -11,6 +11,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Deformation_DieudonneModule_map_apply_eq_a
 set_option autoImplicit false
 open scoped TensorProduct in
 
+/--
+@isnad1 id=eq.1h8v.s11.925c82272f9d from=translated src=- shape=6910937b vocab=0246f537
+-/
 theorem Deformation.DieudonneModule.map_apply_eq_add_of_toLinearMap_eq_mul_comp_map_comp_comul
     (R : Type) [CommRing R] (p : ℕ) [Fact p.Prime]
     {A : Type} [CommRing A] [Bialgebra R A] {B : Type} [CommRing B] [Bialgebra R B]

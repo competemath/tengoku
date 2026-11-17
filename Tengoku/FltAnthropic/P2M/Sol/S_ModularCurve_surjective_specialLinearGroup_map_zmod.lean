@@ -147,6 +147,9 @@ end ModularCurve
 
 open scoped MatrixGroups
 
+/--
+@isnad1 id=surjecti.0h1v.s9.a9276878e40b from=translated src=- shape=f709f38e vocab=1944a2b7
+-/
 theorem solution (N : ℕ) [NeZero N] :
     Function.Surjective
       (Matrix.SpecialLinearGroup.map (n := Fin 2) (Int.castRingHom (ZMod N))) := by

@@ -12,6 +12,9 @@ open scoped Topology
 
 namespace R4BC
 
+/--
+@isnad1 id=le.6h4v.s7.6f44f588d979 from=translated src=- shape=7c2d42a1 vocab=103e99f5
+-/
 theorem bc_bound_le {M R x : ℝ} (hM : 0 < M) (hR : 0 < R) {θ : ℝ} (_hθ0 : 0 < θ) (hθ1 : θ < 1)
     (_hx0 : 0 ≤ x) (hx : x ≤ θ * R) :
     2 * (2 * M) * x / (R - x) ≤ 4 * M * θ / (1 - θ) := by
@@ -20,6 +23,9 @@ theorem bc_bound_le {M R x : ℝ} (hM : 0 < M) (hR : 0 < R) {θ : ℝ} (_hθ0 : 
   rw [div_le_div_iff₀ hRx h1θ]
   nlinarith [mul_pos hM hR]
 
+/--
+@isnad1 id=and.7h5v.s8.a5462ae6e91c from=translated src=- shape=170c8a31 vocab=0073f3ac
+-/
 theorem main (F : ℂ → ℂ) (s₀ : ℂ) (R M : ℝ) (hR : 0 < R) (hM : 0 < M)
     (hd : DifferentiableOn ℂ F (ball s₀ R))
     (hnz : ∀ z ∈ ball s₀ R, F z ≠ 0)
@@ -157,6 +163,9 @@ theorem main (F : ℂ → ℂ) (s₀ : ℂ) (R M : ℝ) (hR : 0 < R) (hM : 0 < M
 
 end R4BC
 
+/--
+@isnad1 id=and.7h5v.s8.a5462ae6e91c from=translated src=- shape=170c8a31 vocab=0073f3ac
+-/
 theorem solution
     (F : ℂ → ℂ) (s₀ : ℂ) (R M : ℝ) (hR : 0 < R) (hM : 0 < M)
     (hd : DifferentiableOn ℂ F (Metric.ball s₀ R))

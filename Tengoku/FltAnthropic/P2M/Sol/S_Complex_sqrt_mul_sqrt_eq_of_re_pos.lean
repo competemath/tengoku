@@ -16,18 +16,30 @@ open scoped Real
 
 namespace DedekindEtaLaw
 
+/--
+@isnad1 id=eq.0h1v.s4.24ab7fd8c012 from=translated src=- shape=6cd42883 vocab=38fbebb9
+-/
 lemma sqrt_sq (a : ℂ) : Complex.sqrt a ^ 2 = a := by
   have h := cpow_nat_inv_pow a two_ne_zero
   rw [Complex.sqrt]
   norm_num at h ⊢
   exact h
 
+/--
+@isnad1 id=eq.0h1v.s5.f413c23b74b2 from=translated src=- shape=5d265ca5 vocab=7db86fe2
+-/
 lemma sqrt_re (a : ℂ) : (Complex.sqrt a).re = √((‖a‖ + a.re) / 2) := by
   rw [Complex.sqrt]; exact cpow_inv_two_re a
 
+/--
+@isnad1 id=eq.0h1v.s5.bed81469912d from=translated src=- shape=00b27188 vocab=8c804cdc
+-/
 lemma abs_sqrt_im (a : ℂ) : |(Complex.sqrt a).im| = √((‖a‖ - a.re) / 2) := by
   rw [Complex.sqrt]; exact abs_cpow_inv_two_im a
 
+/--
+@isnad1 id=lt.1h1v.s4.4757509510ee from=translated src=- shape=1fdb91b8 vocab=d948c70a
+-/
 lemma abs_sqrt_im_lt_re {a : ℂ} (ha : 0 < a.re) : |(Complex.sqrt a).im| < (Complex.sqrt a).re := by
   rw [sqrt_re, abs_sqrt_im]
   apply Real.sqrt_lt_sqrt
@@ -43,6 +55,9 @@ lemma eq_of_sq_eq_sq_of_re_pos {s t : ℂ} (h : s ^ 2 = t ^ 2) (hs : 0 < s.re) (
     rw [h, neg_re] at hs
     linarith
 
+/--
+@isnad1 id=lt.1h1v.s5.5f1f95794e51 from=translated src=- shape=b1ba0b72 vocab=09103047
+-/
 lemma sqrt_neg_I_mul_re_pos {x : ℂ} (hx : |x.im| < x.re) : 0 < (Complex.sqrt (-I) * x).re := by
   rw [Complex.sqrt_neg_I, mul_assoc, re_ofReal_mul]
   have h2 : (0 : ℝ) < √(2⁻¹) := Real.sqrt_pos_of_pos (by norm_num)
@@ -50,6 +65,9 @@ lemma sqrt_neg_I_mul_re_pos {x : ℂ} (hx : |x.im| < x.re) : 0 < (Complex.sqrt (
   rw [this]
   exact mul_pos h2 (by cases abs_lt.1 hx; linarith)
 
+/--
+@isnad1 id=eq.4h3v.s6.422266e7414f from=translated src=- shape=39558d98 vocab=7fe8133a
+-/
 theorem sqrt_mul_sqrt_eq {u v w : ℂ} (hu : 0 < u.re) (hv : 0 < v.re) (hw : 0 < w.re)
     (h : u * v = -I * w) : Complex.sqrt u * Complex.sqrt v = Complex.sqrt (-I) * Complex.sqrt w := by
   apply eq_of_sq_eq_sq_of_re_pos
@@ -68,5 +86,8 @@ end DedekindEtaLaw
 
 end
 
+/--
+@isnad1 id=eq.4h3v.s6.422266e7414f from=translated src=- shape=39558d98 vocab=7fe8133a
+-/
 theorem solution {u v w : ℂ} (hu : 0 < u.re) (hv : 0 < v.re) (hw : 0 < w.re) (h : u * v = -Complex.I * w) : Complex.sqrt u * Complex.sqrt v = Complex.sqrt (-Complex.I) * Complex.sqrt w :=
   DedekindEtaLaw.sqrt_mul_sqrt_eq hu hv hw h

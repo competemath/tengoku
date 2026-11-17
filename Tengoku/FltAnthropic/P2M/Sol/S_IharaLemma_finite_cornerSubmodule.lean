@@ -9,6 +9,9 @@ namespace P2MW.S_IharaLemma_finite_cornerSubmodule
 set_option autoImplicit false
 
 open IharaLemma in
+/--
+@isnad1 id=finite.0h4v.s8.fe149485653a from=translated src=- shape=35eb52a5 vocab=917e51ca
+-/
 theorem solution {𝒪 : Type} [CommRing 𝒪] {B : Type} [CommRing B]
     [Algebra 𝒪 B] {V : Type} [AddCommGroup V] [Module B V] [Module 𝒪 V] [IsScalarTower 𝒪 B V]
     (e : B) [Module.Finite 𝒪 V] :

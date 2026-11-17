@@ -12,6 +12,9 @@ universe u
 open CategoryTheory CategoryTheory.Limits
 open scoped TensorProduct
 
+/--
+@isnad1 id=ispushou.0h4v.s11.866651535754 from=translated src=- shape=c40724c3 vocab=f165be21
+-/
 theorem solution
     (R : Type u) [CommRing R] (A B C : Type u) [CommRing A] [CommRing B] [CommRing C]
     [Algebra R A] [Algebra R B] [Algebra R C] :

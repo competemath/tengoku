@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_DrinfeldCurve_LocalChart_mem_of_mk_sum_C_m
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=mem.3h9v.s14.840761b36c90 from=translated src=- shape=cccabe2d vocab=b60fec46
+-/
 theorem DrinfeldCurve.LocalChart.mem_of_mk_sum_C_mul_X_mem_span_sq
     (q : ℕ) [Fact q.Prime]
     (W : Type) [CommRing W] (I : Ideal W)

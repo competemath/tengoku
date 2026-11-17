@@ -14,6 +14,9 @@ attribute [-simp] IharaLemma.IdempotentSplitting.cornerRingLinearEquiv_apply Iha
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.1h4v.s10.57d5ba7a1cf7 from=translated src=- shape=fce2e370 vocab=45df7f60
+-/
 theorem CohCarrier.HeckeData.finite_ML_and_free_ML {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪]
     [IsNoetherianRing 𝒪] [IsAdicComplete (IsLocalRing.maximalIdeal 𝒪) 𝒪]
     {V : Type} [AddCommGroup V] [Module 𝒪 V] [Module.Finite 𝒪 V]

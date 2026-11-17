@@ -17,6 +17,9 @@ open Function Deformation
 
 variable (k : Type*) [Field k] (p : ℕ) [Fact p.Prime] [CharP k p] (A : Type*) [CommRing A] [HopfAlgebra k A]
 
+/--
+@isnad1 id=eq.0h4v.s7.31bac3c04915 from=translated src=- shape=c25f7f92 vocab=048cfc75
+-/
 theorem coeff_zero_add (x y : TruncatedWittVector p 1 A) : (x + y).coeff 0 = x.coeff 0 + y.coeff 0 := by
   obtain ⟨x, rfl⟩ := WittVector.truncate_surjective p 1 A x
   obtain ⟨y, rfl⟩ := WittVector.truncate_surjective p 1 A y
@@ -41,6 +44,9 @@ noncomputable def wittHomOneEquiv : wittHom k p 1 A ≃+ ↥(primitives k A) whe
     rw [TruncatedWittVector.coeff_mk])
   map_add' u v := Subtype.ext (coeff_zero_add p A u.1 v.1)
 
+/--
+@isnad1 id=eq.0h3v.s8.20770926f051 from=translated src=- shape=1cbd0f5b vocab=03ba3003
+-/
 theorem verschiebung_one_eq_zero (x : TruncatedWittVector p 1 A) : TruncWitt.verschiebung x = 0 :=
   TruncatedWittVector.ext fun i => by
     have hi : i = 0 := Fin.ext (by omega)
@@ -50,6 +56,9 @@ theorem verschiebung_one_eq_zero (x : TruncatedWittVector p 1 A) : TruncWitt.ver
 
 omit [CharP k p] in
 
+/--
+@isnad1 id=eq.0h4v.s12.0d09c686a563 from=translated src=- shape=0beb895d vocab=9236cd50
+-/
 theorem verschiebung_of_one (x : wittHom k p 1 A) :
     DieudonneModule.verschiebung k p A (DieudonneModule.of k p A 1 x) = 0 := by
   rw [DieudonneModule.verschiebung_of]
@@ -61,6 +70,9 @@ noncomputable def ofOne : wittHom k p 1 A →+ (DieudonneModule.verschiebung k p
     rw [AddMonoidHom.mem_ker]; exact verschiebung_of_one k p A x
 
 omit [CharP k p] in
+/--
+@isnad1 id=injectiv.0h3v.s13.3cf74ad7311b from=translated src=- shape=8a5dd31b vocab=d5e08119
+-/
 theorem ofOne_injective : Injective (ofOne k p A) := fun _ _ h =>
   DieudonneModule.of_injective 1 (congrArg Subtype.val h)
 
@@ -83,6 +95,9 @@ theorem eq_shiftLE_of_verschiebung_eq_zero {n : ℕ} (hn : 1 ≤ n) (x : Truncat
     exact TruncatedWittVector.coeff_zero p n A _
 
 omit [CharP k p] in
+/--
+@isnad1 id=surjecti.0h3v.s13.5dceeb6bf750 from=translated src=- shape=8a5dd31b vocab=0eb9c1e1
+-/
 theorem ofOne_surjective : Surjective (ofOne k p A) := by
   rintro ⟨z, hz⟩
   rw [AddMonoidHom.mem_ker] at hz
@@ -117,6 +132,9 @@ noncomputable def kerEquivOne : (DieudonneModule.verschiebung k p A).ker ≃+ wi
 
 end KVP
 
+/--
+@isnad1 id=nonempty.0h3v.s10.3d2e31543545 from=translated src=- shape=49dc271a vocab=7c2d8fb6
+-/
 theorem solution
     (k : Type*) [Field k] (p : ℕ) [Fact p.Prime] [CharP k p]
     (A : Type*) [CommRing A] [HopfAlgebra k A] :

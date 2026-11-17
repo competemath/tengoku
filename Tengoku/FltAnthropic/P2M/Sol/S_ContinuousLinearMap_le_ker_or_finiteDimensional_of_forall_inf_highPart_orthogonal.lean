@@ -20,6 +20,9 @@ def highPart (T : E →L[𝕜] E) (r : ℝ) : Submodule 𝕜 E :=
 
 omit [CompleteSpace E] in
 
+/--
+@isnad1 id=le.9h8v.s10.f8aed39259f2 from=translated src=- shape=15fc4063 vocab=2bf77f7f
+-/
 theorem le_norm_sub_of_mem_eigenspace {T : E →L[𝕜] E} (hT' : (T : E →ₗ[𝕜] E).IsSymmetric)
     {μ ν : 𝕜} (hμν : μ ≠ ν) {r : ℝ} (hr : 0 ≤ r) (hμ : r ≤ ‖μ‖) (hν : r ≤ ‖ν‖)
     {e e' : E} (he : e ∈ eigenspace (T : Module.End 𝕜 E) μ) (he' : e' ∈ eigenspace (T : Module.End 𝕜 E) ν)
@@ -39,6 +42,9 @@ theorem le_norm_sub_of_mem_eigenspace {T : E →L[𝕜] E} (hT' : (T : E →ₗ[
     rw [hpy]; nlinarith [norm_nonneg μ, norm_nonneg ν]
   nlinarith [norm_nonneg (μ • e - ν • e'), h1]
 
+/--
+@isnad1 id=finite.3h4v.s9.765644e1dc17 from=translated src=- shape=f0ff4074 vocab=c451eaf4
+-/
 theorem finite_setOf_hasEigenvalue_le_norm_pf {T : E →L[𝕜] E}
     (hT : IsCompactOperator T) (hT' : (T : E →ₗ[𝕜] E).IsSymmetric) {r : ℝ} (hr : 0 < r) :
     {μ : 𝕜 | HasEigenvalue (T : Module.End 𝕜 E) μ ∧ r ≤ ‖μ‖}.Finite := by
@@ -70,6 +76,9 @@ theorem finite_setOf_hasEigenvalue_le_norm_pf {T : E →L[𝕜] E}
   rw [dist_eq_norm] at this
   exact absurd (hsep (φ N₀) (φ (N₀ + 1)) (fun h => by have := hφ.injective h; omega)) (not_le.mpr this)
 
+/--
+@isnad1 id=finitedi.3h4v.s9.82107cc46c15 from=translated src=- shape=df0c1d2a vocab=4de9742c
+-/
 theorem finiteDimensional_highPart_pf {T : E →L[𝕜] E}
     (hT : IsCompactOperator T) (hT' : (T : E →ₗ[𝕜] E).IsSymmetric) {r : ℝ} (hr : 0 < r) :
     FiniteDimensional 𝕜 ↥(highPart T r) := by
@@ -99,6 +108,9 @@ theorem finiteDimensional_highPart_pf {T : E →L[𝕜] E}
     exact Submodule.finiteDimensional_iSup _
   exact Submodule.finiteDimensional_of_le hle
 
+/--
+@isnad1 id=mem.1h4v.s10.8e4ec1c85513 from=translated src=- shape=25ec4e44 vocab=82cd90ec
+-/
 theorem apply_mem_iSup_eigenspace_ne_zero {T : E →L[𝕜] E} {u : E}
     (hu : u ∈ ⨆ (μ : 𝕜) (_ : μ ≠ 0), eigenspace (T : Module.End 𝕜 E) μ) :
     T u ∈ ⨆ (μ : 𝕜) (_ : μ ≠ 0), eigenspace (T : Module.End 𝕜 E) μ := by
@@ -116,6 +128,9 @@ theorem apply_mem_iSup_eigenspace_ne_zero {T : E →L[𝕜] E} {u : E}
       exact hx'
   · rw [map_add]; exact Submodule.add_mem _ hx hy
 
+/--
+@isnad1 id=eq.2h3v.s10.49fe57377fec from=translated src=- shape=632b3743 vocab=273adbe0
+-/
 theorem orthogonal_iSup_eigenspace_ne_zero_eq_ker_pf {T : E →L[𝕜] E}
     (hT : IsCompactOperator T) (hT' : (T : E →ₗ[𝕜] E).IsSymmetric) :
     (⨆ (μ : 𝕜) (_ : μ ≠ 0), eigenspace (T : Module.End 𝕜 E) μ)ᗮ = LinearMap.ker (T : E →ₗ[𝕜] E) := by
@@ -168,6 +183,9 @@ theorem orthogonal_iSup_eigenspace_ne_zero_eq_ker_pf {T : E →L[𝕜] E}
         exact hT'.orthogonalFamily_eigenspaces hμ ⟨x, hx⟩ ⟨v, hv0⟩
     · rw [inner_add_left, hx, hy, add_zero]
 
+/--
+@isnad1 id=eq.2h3v.s9.2df2b2d0632f from=translated src=- shape=f7218a4f vocab=103a9172
+-/
 theorem iInf_highPart_orthogonal_eq_ker_pf {T : E →L[𝕜] E}
     (hT : IsCompactOperator T) (hT' : (T : E →ₗ[𝕜] E).IsSymmetric) :
     (⨅ (r : ℝ) (_ : 0 < r), (highPart T r)ᗮ) = LinearMap.ker (T : E →ₗ[𝕜] E) := by
@@ -188,6 +206,9 @@ theorem iInf_highPart_orthogonal_eq_ker_pf {T : E →L[𝕜] E}
     have hr : 0 < ‖μ‖ := norm_pos_iff.mpr hμ
     exact le_iSup₂_of_le ‖μ‖ hr (le_iSup₂_of_le μ le_rfl le_rfl)
 
+/--
+@isnad1 id=ex.4h4v.s12.b7b0ebf39443 from=translated src=- shape=502059c8 vocab=75691f83
+-/
 theorem exists_inf_highPart_orthogonal_eq_bot_of_not_le_ker_pf {T : E →L[𝕜] E}
     (hT : IsCompactOperator T) (hT' : (T : E →ₗ[𝕜] E).IsSymmetric) (X : Submodule 𝕜 E)
     (hX : ∀ r : ℝ, 0 < r → X ⊓ (highPart T r)ᗮ = ⊥ ∨ X ≤ (highPart T r)ᗮ)
@@ -216,6 +237,9 @@ theorem exists_inf_highPart_orthogonal_eq_bot_of_not_le_ker_pf {T : E →L[𝕜]
     exact hcon r hr h _ hinj
   · exact h
 
+/--
+@isnad1 id=or.3h4v.s10.26eac02c8baa from=translated src=- shape=f8bf478b vocab=b0315d64
+-/
 theorem le_ker_or_finiteDimensional_of_forall_inf_highPart_orthogonal_pf {T : E →L[𝕜] E}
     (hT : IsCompactOperator T) (hT' : (T : E →ₗ[𝕜] E).IsSymmetric) (X : Submodule 𝕜 E)
     (hX : ∀ r : ℝ, 0 < r → X ⊓ (highPart T r)ᗮ = ⊥ ∨ X ≤ (highPart T r)ᗮ) :
@@ -229,6 +253,9 @@ theorem le_ker_or_finiteDimensional_of_forall_inf_highPart_orthogonal_pf {T : E 
 end ContinuousLinearMap
 
 open Module.End in
+/--
+@isnad1 id=or.3h4v.s11.4af906bfce65 from=translated src=- shape=90cfcace vocab=9170e4f2
+-/
 theorem solution {𝕜 E : Type*} [RCLike 𝕜] [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] [CompleteSpace E] {T : E →L[𝕜] E}
     (hT : IsCompactOperator T) (hT' : (T : E →ₗ[𝕜] E).IsSymmetric) (X : Submodule 𝕜 E)
     (hX : ∀ r : ℝ, 0 < r → X ⊓ (⨆ (μ : 𝕜) (_ : r ≤ ‖μ‖), Module.End.eigenspace (T : Module.End 𝕜 E) μ)ᗮ = ⊥ ∨ X ≤ (⨆ (μ : 𝕜) (_ : r ≤ ‖μ‖), Module.End.eigenspace (T : Module.End 𝕜 E) μ)ᗮ) :

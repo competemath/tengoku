@@ -11,6 +11,9 @@ open scoped MatrixGroups
 
 namespace CuspKit
 
+/--
+@isnad1 id=not.1h1v.s8.b65ee107c3a7 from=translated src=- shape=85a2144b vocab=6dace7fa
+-/
 theorem neg_one_not_mem_gamma1 (N : ℕ) [NeZero N] (hN : 3 ≤ N) : (-1 : SL(2, ℤ)) ∉ CongruenceSubgroup.Gamma1 N := by
   intro h
   rw [CongruenceSubgroup.Gamma1_mem] at h
@@ -26,6 +29,9 @@ theorem neg_one_not_mem_gamma1 (N : ℕ) [NeZero N] (hN : 3 ≤ N) : (-1 : SL(2,
   have := Nat.le_of_dvd (by norm_num) h2
   omega
 
+/--
+@isnad1 id=or.1h1v.s9.f7b04a0d0736 from=translated src=- shape=613570b8 vocab=10f8d285
+-/
 theorem mem_zpowers_neg_one {z : SL(2, ℤ)} (hz : z ∈ Subgroup.zpowers (-1 : SL(2, ℤ))) : z = 1 ∨ z = -1 := by
   rw [Subgroup.zpowers_eq_closure] at hz
   induction hz using Subgroup.closure_induction with
@@ -42,6 +48,9 @@ theorem mem_zpowers_neg_one {z : SL(2, ℤ)} (hz : z ∈ Subgroup.zpowers (-1 : 
     · left; exact inv_one
     · right; exact inv_eq_of_mul_eq_one_right (by rw [neg_mul_neg, one_mul])
 
+/--
+@isnad1 id=normal.0h0v.s7.0e0371bc12d3 from=translated src=- shape=20adafaa vocab=67149b4c
+-/
 scoped instance zpowers_neg_one_normal : (Subgroup.zpowers (-1 : SL(2, ℤ))).Normal := by
   refine ⟨fun n hn g => ?_⟩
   rcases mem_zpowers_neg_one hn with rfl | rfl
@@ -52,6 +61,9 @@ end CuspKit
 open scoped _root_.P2MW.S_CongruenceSubgroup_two_mul_index_gamma1_sup_zpowers_neg_one.CuspKit
 
 open CuspKit in
+/--
+@isnad1 id=eq.1h1v.s9.66b2d781291b from=translated src=- shape=7b1a3472 vocab=cd65be1f
+-/
 theorem solution
     (N : ℕ) [NeZero N] (hN : 3 ≤ N) :
     2 * (CongruenceSubgroup.Gamma1 N ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index = (CongruenceSubgroup.Gamma1 N).index := by

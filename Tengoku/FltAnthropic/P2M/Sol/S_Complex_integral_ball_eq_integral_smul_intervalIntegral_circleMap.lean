@@ -13,6 +13,9 @@ namespace PolarDiscAux
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
+/--
+@isnad1 id=eq.0h4v.s6.3c7a419b2a40 from=translated src=- shape=af6b8bbc vocab=1c9d56ed
+-/
 theorem integral_Ioo_neg_pi_pi_circleMap (f : ℂ → E) (c : ℂ) (r : ℝ) :
     ∫ θ in Ioo (-π) π, f (circleMap c r θ) = ∫ θ in 0..2 * π, f (circleMap c r θ) := by
   rw [← integral_Ioc_eq_integral_Ioo, ← intervalIntegral.integral_of_le (by linarith [pi_pos])]
@@ -27,6 +30,9 @@ theorem integral_Ioo_neg_pi_pi_circleMap (f : ℂ → E) (c : ℂ) (r : ℝ) :
 end PolarDiscAux
 
 open PolarDiscAux in
+/--
+@isnad1 id=eq.1h4v.s8.6f37516138c7 from=translated src=- shape=c41d0d6b vocab=c290c6e5
+-/
 theorem solution {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] {f : ℂ → E} {c : ℂ} {R : ℝ}
     (hf : IntegrableOn f (ball c R)) :
     ∫ z in ball c R, f z = ∫ r in Ioo 0 R, r • ∫ θ in 0..2 * π, f (circleMap c r θ) := by

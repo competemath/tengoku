@@ -29,39 +29,66 @@ section normRpow
 
 variable {s : ℝ}
 
+/--
+@isnad1 id=le.0h2v.s7.bf5d89febbc3 from=translated src=- shape=0bd4bc8f vocab=c6fb666b
+-/
 lemma two_le_absNorm (v : HeightOneSpectrum (𝓞 K)) : 2 ≤ Ideal.absNorm v.asIdeal := by
   rw [Nat.two_le_iff]
   exact ⟨fun h => v.ne_bot (Ideal.absNorm_eq_zero_iff.mp h),
     fun h => v.isPrime.ne_top (Ideal.absNorm_eq_one_iff.mp h)⟩
 
+/--
+@isnad1 id=le.1h2v.s8.004b4f43eaab from=translated src=- shape=e6d4aee3 vocab=dbb6355b
+-/
 lemma one_le_cast_absNorm {I : Ideal (𝓞 K)} (hI : I ≠ ⊥) :
     (1 : ℝ≥0∞) ≤ (Ideal.absNorm I : ℝ≥0∞) := by
   exact_mod_cast one_le_absNorm hI
 
+/--
+@isnad1 id=le.2h3v.s7.d6871dfe5ac4 from=translated src=- shape=b0b09cff vocab=40282a41
+-/
 lemma normRpow_le_one {I : Ideal (𝓞 K)} (hI : I ≠ ⊥) (hs : 0 ≤ s) : normRpow K s I ≤ 1 := by
   rcases hs.eq_or_lt with rfl | hs
   · simp [normRpow]
   · exact ENNReal.rpow_le_one_of_one_le_of_neg (one_le_cast_absNorm hI) (neg_neg_iff_pos.mpr hs)
 
+/--
+@isnad1 id=ne.2h3v.s7.6a786f40a138 from=translated src=- shape=e19cbb7b vocab=9085089a
+-/
 lemma normRpow_ne_top {I : Ideal (𝓞 K)} (hI : I ≠ ⊥) (hs : 0 ≤ s) : normRpow K s I ≠ ∞ :=
   ((normRpow_le_one hI hs).trans_lt ENNReal.one_lt_top).ne
 
+/--
+@isnad1 id=lt.0h2v.s8.6e796e136d8a from=translated src=- shape=46d1201b vocab=45369bc8
+-/
 lemma one_lt_cast_absNorm (v : HeightOneSpectrum (𝓞 K)) :
     (1 : ℝ≥0∞) < (Ideal.absNorm v.asIdeal : ℝ≥0∞) := by
   exact_mod_cast Nat.lt_of_lt_of_le Nat.one_lt_two (two_le_absNorm v)
 
+/--
+@isnad1 id=lt.1h3v.s5.b7a6d86fcc31 from=translated src=- shape=c5f2ad46 vocab=e78a130c
+-/
 lemma normRpow_lt_one (v : HeightOneSpectrum (𝓞 K)) (hs : 0 < s) :
     normRpow K s v.asIdeal < 1 :=
   ENNReal.rpow_lt_one_of_one_lt_of_neg (one_lt_cast_absNorm v) (neg_neg_iff_pos.mpr hs)
 
+/--
+@isnad1 id=eq.0h2v.s6.8770182f40dd from=translated src=- shape=9c519702 vocab=19357853
+-/
 lemma normRpow_top : normRpow K s (⊤ : Ideal (𝓞 K)) = 1 := by
   simp [normRpow]
 
+/--
+@isnad1 id=eq.0h4v.s7.c8e708ed4590 from=translated src=- shape=e94573be vocab=c400b3c3
+-/
 lemma normRpow_mul {I J : Ideal (𝓞 K)} :
     normRpow K s (I * J) = normRpow K s I * normRpow K s J := by
   unfold normRpow
   rw [map_mul, Nat.cast_mul, ENNReal.mul_rpow_of_ne_top (by simp) (by simp)]
 
+/--
+@isnad1 id=eq.0h4v.s7.4b0e6faf2996 from=translated src=- shape=bbfa46b4 vocab=78363091
+-/
 lemma normRpow_pow {I : Ideal (𝓞 K)} (e : ℕ) :
     normRpow K s (I ^ e) = normRpow K s I ^ e := by
   induction e with
@@ -71,10 +98,16 @@ lemma normRpow_pow {I : Ideal (𝓞 K)} (e : ℕ) :
 end normRpow
 
 section Factors
+/--
+@isnad1 id=iff.1h3v.s8.20d666fc79bb from=translated src=- shape=a31e9088 vocab=a3a000f9
+-/
 lemma mem_primeFactors {I : Ideal (𝓞 K)} (hI : I ≠ ⊥) {v : HeightOneSpectrum (𝓞 K)} :
     v ∈ primeFactors K I ↔ v.asIdeal ∣ I := by
   simp [primeFactors, hI]
 
+/--
+@isnad1 id=isfactor.1h2v.s6.295e880bbd40 from=translated src=- shape=8f3019a4 vocab=ba0a31bc
+-/
 lemma isFactoredBy_primeFactors {I : Ideal (𝓞 K)} (hI : I ≠ ⊥) :
     IsFactoredBy (primeFactors K I) I :=
   ⟨hI, fun _ hv => (mem_primeFactors hI).mpr hv⟩
@@ -88,6 +121,9 @@ private lemma _root_.FrobeniusDensity.IsFactoredBy.mono {T T' : Finset (HeightOn
 end IsFactoredBy
 export _root_.FrobeniusDensity (IsFactoredBy.mono)
 omit [NumberField K] in
+/--
+@isnad1 id=isfactor.0h2v.s6.28d7e65ebd84 from=translated src=- shape=2d32ffe0 vocab=70459c56
+-/
 lemma isFactoredBy_top (T : Finset (HeightOneSpectrum (𝓞 K))) :
     IsFactoredBy T (⊤ : Ideal (𝓞 K)) := by
   refine ⟨by simp, fun v hv => absurd ?_ v.isPrime.ne_top⟩
@@ -119,6 +155,9 @@ noncomputable def consFactored (v : HeightOneSpectrum (𝓞 K))
     simp [h2]
   · exact Finset.mem_cons_of_mem (p.2.2.2 w hw)
 
+/--
+@isnad1 id=injectiv.1h3v.s7.b5807d2a97af from=translated src=- shape=f16d8cc9 vocab=d8e2c8e3
+-/
 lemma consFactored_injective (v : HeightOneSpectrum (𝓞 K))
     {T : Finset (HeightOneSpectrum (𝓞 K))} (hv : v ∉ T) :
     Function.Injective (consFactored v hv) := by
@@ -138,6 +177,9 @@ lemma consFactored_injective (v : HeightOneSpectrum (𝓞 K))
   subst he
   exact Prod.ext rfl (Subtype.ext (mul_left_cancel₀ (pow_ne_zero _ v.ne_bot) h'))
 
+/--
+@isnad1 id=surjecti.1h3v.s7.e273e29bea2f from=translated src=- shape=f16d8cc9 vocab=77458a79
+-/
 lemma consFactored_surjective (v : HeightOneSpectrum (𝓞 K))
     {T : Finset (HeightOneSpectrum (𝓞 K))} (hv : v ∉ T) :
     Function.Surjective (consFactored v hv) := by
@@ -159,6 +201,9 @@ noncomputable def consFactoredEquiv (v : HeightOneSpectrum (𝓞 K))
       {I : Ideal (𝓞 K) // IsFactoredBy (T.cons v hv) I} :=
   Equiv.ofBijective _ ⟨consFactored_injective v hv, consFactored_surjective v hv⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.c0d4b0c8b5c1 from=translated src=- shape=5626f454 vocab=7bbbbda7
+-/
 lemma factoredSum_empty (s : ℝ) :
     factoredSum K (∅ : Finset (HeightOneSpectrum (𝓞 K))) s = 1 := by
   have huniq : ∀ I : {I : Ideal (𝓞 K) // IsFactoredBy ∅ I},
@@ -167,6 +212,9 @@ lemma factoredSum_empty (s : ℝ) :
     (fun b hb => absurd (huniq b) hb)]
   exact normRpow_top
 
+/--
+@isnad1 id=eq.1h4v.s7.19bef16b8e20 from=translated src=- shape=2ac87efe vocab=44b2c9b2
+-/
 lemma factoredSum_cons (v : HeightOneSpectrum (𝓞 K))
     {T : Finset (HeightOneSpectrum (𝓞 K))} (hv : v ∉ T) (s : ℝ) :
     factoredSum K (T.cons v hv) s =
@@ -194,12 +242,18 @@ lemma factoredSum_cons (v : HeightOneSpectrum (𝓞 K))
     _ = (∑' e : ℕ, normRpow K s v.asIdeal ^ e) * factoredSum K T s := ENNReal.tsum_mul_right
     _ = (1 - normRpow K s v.asIdeal)⁻¹ * factoredSum K T s := by rw [ENNReal.tsum_geometric]
 
+/--
+@isnad1 id=eq.0h3v.s6.c55605d0653e from=translated src=- shape=c0b23890 vocab=9a3c6659
+-/
 lemma factoredSum_eq_prod (T : Finset (HeightOneSpectrum (𝓞 K))) (s : ℝ) :
     factoredSum K T s = ∏ v ∈ T, (1 - normRpow K s v.asIdeal)⁻¹ := by
   induction T using Finset.cons_induction_on with
   | empty => simpa using factoredSum_empty s
   | cons v T hv ih => rw [factoredSum_cons v hv, ih, Finset.prod_cons]
 
+/--
+@isnad1 id=le.0h3v.s5.66c342b583c1 from=translated src=- shape=d194c0d9 vocab=d46e9194
+-/
 lemma factoredSum_le_idealSum (T : Finset (HeightOneSpectrum (𝓞 K))) (s : ℝ) :
     factoredSum K T s ≤ idealSum K s := by
   have hinj : Function.Injective
@@ -210,6 +264,9 @@ lemma factoredSum_le_idealSum (T : Finset (HeightOneSpectrum (𝓞 K))) (s : ℝ
     exact h
   exact ENNReal.tsum_comp_le_tsum_of_injective hinj fun I => normRpow K s I.1
 
+/--
+@isnad1 id=eq.0h2v.s5.dc2c68e8b6ce from=translated src=- shape=0d43d98b vocab=0c520cd1
+-/
 lemma idealSum_eq_iSup_factoredSum (s : ℝ) :
     idealSum K s = ⨆ T : Finset (HeightOneSpectrum (𝓞 K)), factoredSum K T s := by
   classical
@@ -237,12 +294,18 @@ end EulerProduct
 
 section Comparisons
 
+/--
+@isnad1 id=le.0h2v.s4.72395887de41 from=translated src=- shape=7858f812 vocab=9944f801
+-/
 lemma primeSum_le_idealSum (s : ℝ) : primeSum K s ≤ idealSum K s := by
   have hinj : Function.Injective
       (fun v : HeightOneSpectrum (𝓞 K) => (⟨v.asIdeal, v.ne_bot⟩ : {I : Ideal (𝓞 K) // I ≠ ⊥})) :=
     fun v w h => HeightOneSpectrum.ext (by simpa using congrArg Subtype.val h)
   exact ENNReal.tsum_comp_le_tsum_of_injective hinj fun I => normRpow K s I.1
 
+/--
+@isnad1 id=le.1h2v.s5.cd64a05c5a72 from=translated src=- shape=0425ee2b vocab=7d9476e8
+-/
 lemma primeSqSum_le_idealSum_two {s : ℝ} (hs : 1 ≤ s) : primeSqSum K s ≤ idealSum K 2 := by
   refine le_trans (ENNReal.tsum_le_tsum fun v => ?_) (primeSum_le_idealSum (K := K) 2)
   have h1 : normRpow K s v.asIdeal ^ (2 : ℕ) = (Ideal.absNorm v.asIdeal : ℝ≥0∞) ^ (-s * 2) := by
@@ -252,25 +315,40 @@ lemma primeSqSum_le_idealSum_two {s : ℝ} (hs : 1 ≤ s) : primeSqSum K s ≤ i
   refine ENNReal.rpow_le_rpow_of_exponent_le (one_le_cast_absNorm v.ne_bot) ?_
   nlinarith
 
+/--
+@isnad1 id=le.0h2v.s4.18ca51e2443c from=translated src=- shape=c8279772 vocab=164cbbdb
+-/
 lemma one_le_idealSum (s : ℝ) : 1 ≤ idealSum K s := by
   have h : normRpow K s (⊤ : Ideal (𝓞 K)) ≤ idealSum K s :=
     ENNReal.le_tsum (⟨⊤, by simp⟩ : {I : Ideal (𝓞 K) // I ≠ ⊥})
   rwa [normRpow_top] at h
 
+/--
+@isnad1 id=le.0h3v.s5.c77363c05446 from=translated src=- shape=d484cdaf vocab=2bc07f47
+-/
 lemma one_le_factoredSum (T : Finset (HeightOneSpectrum (𝓞 K))) (s : ℝ) :
     1 ≤ factoredSum K T s := by
   have h : normRpow K s (⊤ : Ideal (𝓞 K)) ≤ factoredSum K T s :=
     ENNReal.le_tsum (⟨⊤, isFactoredBy_top T⟩ : {I : Ideal (𝓞 K) // IsFactoredBy T I})
   rwa [normRpow_top] at h
 
+/--
+@isnad1 id=lt.1h3v.s5.491bb94259fc from=translated src=- shape=1c5ea25f vocab=5480ce73
+-/
 lemma factoredSum_toReal_pos {T : Finset (HeightOneSpectrum (𝓞 K))} {s : ℝ}
     (hfin : idealSum K s ≠ ∞) : 0 < (factoredSum K T s).toReal := by
   refine ENNReal.toReal_pos_iff.mpr ⟨lt_of_lt_of_le zero_lt_one (one_le_factoredSum T s), ?_⟩
   exact lt_top_iff_ne_top.mpr fun h => hfin (eq_top_iff.mpr (h ▸ factoredSum_le_idealSum T s))
 
+/--
+@isnad1 id=ne.1h2v.s5.8ef6abfbb481 from=translated src=- shape=d5798753 vocab=48c76676
+-/
 lemma primeSum_ne_top {s : ℝ} (hfin : idealSum K s ≠ ∞) : primeSum K s ≠ ∞ :=
   fun h => hfin (eq_top_iff.mpr (h ▸ primeSum_le_idealSum s))
 
+/--
+@isnad1 id=lt.1h2v.s5.6814d72734fa from=translated src=- shape=50f969f3 vocab=8a482e78
+-/
 lemma idealSum_toReal_pos {s : ℝ} (hfin : idealSum K s ≠ ∞) : 0 < (idealSum K s).toReal :=
   ENNReal.toReal_pos_iff.mpr
     ⟨lt_of_lt_of_le zero_lt_one (one_le_idealSum s), lt_top_iff_ne_top.mpr hfin⟩
@@ -279,10 +357,16 @@ end Comparisons
 
 section LogIneq
 
+/--
+@isnad1 id=le.1h1v.s5.07c89e81e87c from=translated src=- shape=5129ca7c vocab=71ad43e6
+-/
 lemma le_neg_log_one_sub {x : ℝ} (hx1 : x < 1) : x ≤ -Real.log (1 - x) := by
   have h := Real.log_le_sub_one_of_pos (x := 1 - x) (by linarith)
   linarith
 
+/--
+@isnad1 id=le.2h1v.s6.990030e688c6 from=translated src=- shape=840782ab vocab=41da6211
+-/
 lemma neg_log_one_sub_le {x : ℝ} (_hx0 : 0 ≤ x) (hx1 : x ≤ 1 / 2) :
     -Real.log (1 - x) ≤ x + 2 * x ^ 2 := by
   have h1 : (1 - x)⁻¹ ≤ 1 + x + 2 * x ^ 2 := by
@@ -303,9 +387,15 @@ section LogSandwich
 
 variable {s : ℝ}
 
+/--
+@isnad1 id=le.0h3v.s5.d535c12321e1 from=translated src=- shape=8072bb16 vocab=3a81837d
+-/
 lemma normRpow_toReal_nonneg (v : HeightOneSpectrum (𝓞 K)) :
     0 ≤ (normRpow K s v.asIdeal).toReal := ENNReal.toReal_nonneg
 
+/--
+@isnad1 id=le.1h3v.s6.71349ece739d from=translated src=- shape=41640c56 vocab=5d3b1585
+-/
 lemma normRpow_toReal_le_half (v : HeightOneSpectrum (𝓞 K)) (hs : 1 ≤ s) :
     (normRpow K s v.asIdeal).toReal ≤ 1 / 2 := by
   have h1 : normRpow K s v.asIdeal ≤ (Ideal.absNorm v.asIdeal : ℝ≥0∞) ^ (-1 : ℝ) :=
@@ -322,16 +412,25 @@ lemma normRpow_toReal_le_half (v : HeightOneSpectrum (𝓞 K)) (hs : 1 ≤ s) :
         exact normRpow_ne_top v.ne_bot (by linarith)
     _ = 1 / 2 := h3
 
+/--
+@isnad1 id=lt.1h3v.s5.81799cf513f0 from=translated src=- shape=e93e323b vocab=94d22a7b
+-/
 lemma normRpow_toReal_lt_one (v : HeightOneSpectrum (𝓞 K)) (hs : 1 ≤ s) :
     (normRpow K s v.asIdeal).toReal < 1 :=
   lt_of_le_of_lt (normRpow_toReal_le_half v hs) (by norm_num)
 
+/--
+@isnad1 id=eq.1h3v.s6.45cac3d5305c from=translated src=- shape=67284a31 vocab=7aaaff57
+-/
 lemma toReal_eulerFactor (v : HeightOneSpectrum (𝓞 K)) (hs : 1 ≤ s) :
     ((1 - normRpow K s v.asIdeal)⁻¹).toReal =
       (1 - (normRpow K s v.asIdeal).toReal)⁻¹ := by
   rw [ENNReal.toReal_inv,
     ENNReal.toReal_sub_of_le (normRpow_lt_one v (by linarith)).le (by simp), ENNReal.toReal_one]
 
+/--
+@isnad1 id=eq.1h3v.s6.bc317654bb94 from=translated src=- shape=40fd8961 vocab=f72accae
+-/
 lemma log_factoredSum_toReal (T : Finset (HeightOneSpectrum (𝓞 K))) (hs : 1 ≤ s) :
     Real.log ((factoredSum K T s).toReal) =
       ∑ v ∈ T, -Real.log (1 - (normRpow K s v.asIdeal).toReal) := by
@@ -342,6 +441,9 @@ lemma log_factoredSum_toReal (T : Finset (HeightOneSpectrum (𝓞 K))) (hs : 1 �
     rw [toReal_eulerFactor v hs]
     exact (inv_pos.mpr (by linarith [normRpow_toReal_lt_one v hs])).ne'
 
+/--
+@isnad1 id=le.2h3v.s6.c821285722f8 from=translated src=- shape=b05d8ed3 vocab=9d42e356
+-/
 lemma sum_normRpow_toReal_le (T : Finset (HeightOneSpectrum (𝓞 K))) (hs : 1 ≤ s)
     (hfin : primeSum K s ≠ ∞) :
     ∑ v ∈ T, (normRpow K s v.asIdeal).toReal ≤ (primeSum K s).toReal := by
@@ -351,6 +453,9 @@ lemma sum_normRpow_toReal_le (T : Finset (HeightOneSpectrum (𝓞 K))) (hs : 1 �
   exact (ENNReal.toReal_le_toReal
     (ENNReal.sum_lt_top.mpr fun v hv => (hne v hv).lt_top).ne hfin).mpr (ENNReal.sum_le_tsum T)
 
+/--
+@isnad1 id=le.2h3v.s6.18ed0e782848 from=translated src=- shape=81aea985 vocab=10669002
+-/
 lemma sum_normRpow_sq_toReal_le (T : Finset (HeightOneSpectrum (𝓞 K))) (hs : 1 ≤ s)
     (hfin2 : idealSum K 2 ≠ ∞) :
     ∑ v ∈ T, (normRpow K s v.asIdeal).toReal ^ 2 ≤ (idealSum K 2).toReal := by
@@ -371,6 +476,9 @@ lemma sum_normRpow_sq_toReal_le (T : Finset (HeightOneSpectrum (𝓞 K))) (hs : 
     _ ≤ (idealSum K 2).toReal :=
         (ENNReal.toReal_le_toReal hsq hfin2).mpr (primeSqSum_le_idealSum_two hs)
 
+/--
+@isnad1 id=le.2h2v.s5.ff43f1d5f9c4 from=translated src=- shape=36fcf479 vocab=8418262e
+-/
 theorem primeSum_toReal_le_log_idealSum (hs : 1 ≤ s) (hfin : idealSum K s ≠ ∞) :
     (primeSum K s).toReal ≤ Real.log ((idealSum K s).toReal) := by
 
@@ -386,6 +494,9 @@ theorem primeSum_toReal_le_log_idealSum (hs : 1 ≤ s) (hfin : idealSum K s ≠ 
           ((ENNReal.toReal_le_toReal ?_ hfin).mpr (factoredSum_le_idealSum T s))
         exact fun h => hfin (eq_top_iff.mpr (h ▸ factoredSum_le_idealSum T s))
 
+/--
+@isnad1 id=le.3h2v.s6.1ec66972ddc5 from=translated src=- shape=97b6f03b vocab=c629bc68
+-/
 theorem log_idealSum_le_primeSum_toReal (hs : 1 ≤ s) (hfin : idealSum K s ≠ ∞)
     (hfin2 : idealSum K 2 ≠ ∞) :
     Real.log ((idealSum K s).toReal) ≤
@@ -459,6 +570,9 @@ end FrobeniusDensity
 
 open _root_.FrobeniusDensity open _root_.P2MW.S_FrobeniusDensity_primeSum_toReal_add_log_isBigO.FrobeniusDensity
 
+/--
+@isnad1 id=isbigo.0h1v.s6.c250cad75475 from=translated src=- shape=938ffee7 vocab=a91a3bd0
+-/
 theorem solution (K : Type*) [Field K] [NumberField K] :
     (fun s : ℝ => (FrobeniusDensity.primeSum K s).toReal + Real.log (s - 1))
       =O[nhdsWithin 1 (Set.Ioi 1)] (fun _ => (1:ℝ)) := by

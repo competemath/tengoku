@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open CuspidalType
 
+/--
+@isnad1 id=eq.1h6v.s10.faa4f6d649cd from=translated src=- shape=3aa12072 vocab=fa75841b
+-/
 theorem solution
     {q : ℕ} [Fact q.Prime] {K : Type*} [Field K] {V : Type*} [AddCommGroup V] [Module K V]
     (ρ : Representation K (GL2 q) V)

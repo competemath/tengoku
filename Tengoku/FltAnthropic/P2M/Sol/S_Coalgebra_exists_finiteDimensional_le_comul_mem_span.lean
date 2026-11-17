@@ -18,15 +18,24 @@ variable {k : Type u} [Field k] {C : Type v} [AddCommGroup C] [Module k C]
 noncomputable def cR (ψ : Module.Dual k C) : C ⊗[k] C →ₗ[k] C :=
   (TensorProduct.rid k C).toLinearMap ∘ₗ LinearMap.lTensor C ψ
 
+/--
+@isnad1 id=eq.0h5v.s8.b42dd7ec9edc from=translated src=- shape=0ca75e36 vocab=4128ef75
+-/
 @[scoped simp] theorem cR_tmul (ψ : Module.Dual k C) (a b : C) : cR ψ (a ⊗ₜ[k] b) = ψ b • a := by
   simp [cR]
 
 noncomputable def cL (φ : Module.Dual k C) : C ⊗[k] C →ₗ[k] C :=
   (TensorProduct.lid k C).toLinearMap ∘ₗ LinearMap.rTensor C φ
 
+/--
+@isnad1 id=eq.0h5v.s8.c8e23fa33776 from=translated src=- shape=10715715 vocab=a0104ceb
+-/
 @[scoped simp] theorem cL_tmul (φ : Module.Dual k C) (a b : C) : cL φ (a ⊗ₜ[k] b) = φ a • b := by
   simp [cL]
 
+/--
+@isnad1 id=eq.0h5v.s11.23602b77f2ca from=translated src=- shape=f1aafe6d vocab=c942778c
+-/
 theorem lTensor_cR_assoc (ψ : Module.Dual k C) (z : C ⊗[k] C) (r : C) :
     LinearMap.lTensor C (cR ψ) (TensorProduct.assoc k C C C (z ⊗ₜ[k] r)) = ψ r • z := by
   induction z using TensorProduct.induction_on with
@@ -34,6 +43,9 @@ theorem lTensor_cR_assoc (ψ : Module.Dual k C) (z : C ⊗[k] C) (r : C) :
   | tmul p q => simp [TensorProduct.smul_tmul', TensorProduct.tmul_smul]
   | add z₁ z₂ h₁ h₂ => simp only [TensorProduct.add_tmul, map_add, h₁, h₂, smul_add]
 
+/--
+@isnad1 id=eq.0h5v.s11.89661ba05205 from=translated src=- shape=3328de30 vocab=27d745ac
+-/
 theorem rTensor_cL_assoc_symm (φ : Module.Dual k C) (p : C) (z : C ⊗[k] C) :
     LinearMap.rTensor C (cL φ) ((TensorProduct.assoc k C C C).symm (p ⊗ₜ[k] z)) = φ p • z := by
   induction z using TensorProduct.induction_on with
@@ -41,6 +53,9 @@ theorem rTensor_cL_assoc_symm (φ : Module.Dual k C) (p : C) (z : C ⊗[k] C) :
   | tmul q r => simp [TensorProduct.smul_tmul']
   | add z₁ z₂ h₁ h₂ => simp only [TensorProduct.tmul_add, map_add, h₁, h₂, smul_add]
 
+/--
+@isnad1 id=ex.1h4v.s7.7684b1e21c6f from=translated src=- shape=6098e37a vocab=11dceb55
+-/
 theorem exists_dual_family {ι : Type*} [Fintype ι] [DecidableEq ι] (e : ι → C) (he : LinearIndependent k e) :
     ∃ ψ : ι → Module.Dual k C, ∀ i j, ψ i (e j) = if i = j then 1 else 0 := by
   classical
@@ -143,6 +158,9 @@ theorem eq_sum_tmul_cL {ι : Type*} [Fintype ι] [DecidableEq ι] (u : ι → C)
       refine Finset.sum_congr rfl fun l _ => ?_
       rw [map_smul, TensorProduct.tmul_smul]
 
+/--
+@isnad1 id=mem.1h6v.s9.f11543afccd1 from=translated src=- shape=bafe5ca9 vocab=5145c2f2
+-/
 theorem cR_mem (ψ : Module.Dual k C) (A B : Submodule k C) (t : C ⊗[k] C)
     (ht : t ∈ Submodule.span k {s : C ⊗[k] C | ∃ a ∈ A, ∃ b ∈ B, s = a ⊗ₜ[k] b}) : cR ψ t ∈ A := by
   induction ht using Submodule.span_induction with
@@ -151,6 +169,9 @@ theorem cR_mem (ψ : Module.Dual k C) (A B : Submodule k C) (t : C ⊗[k] C)
   | add s t _ _ hs ht => rw [map_add]; exact A.add_mem hs ht
   | smul r s _ hs => rw [map_smul]; exact A.smul_mem _ hs
 
+/--
+@isnad1 id=mem.1h6v.s9.07ffafcd330f from=translated src=- shape=3fa1df39 vocab=fa63d570
+-/
 theorem cL_mem (φ : Module.Dual k C) (A B : Submodule k C) (t : C ⊗[k] C)
     (ht : t ∈ Submodule.span k {s : C ⊗[k] C | ∃ a ∈ A, ∃ b ∈ B, s = a ⊗ₜ[k] b}) : cL φ t ∈ B := by
   induction ht using Submodule.span_induction with
@@ -159,6 +180,9 @@ theorem cL_mem (φ : Module.Dual k C) (A B : Submodule k C) (t : C ⊗[k] C)
   | add s t _ _ hs ht => rw [map_add]; exact B.add_mem hs ht
   | smul r s _ hs => rw [map_smul]; exact B.smul_mem _ hs
 
+/--
+@isnad1 id=mem.2h6v.s9.0bfd3dcb0699 from=translated src=- shape=826c151b vocab=98b685e4
+-/
 theorem tmul_mem_span {A B : Submodule k C} {a b : C} (ha : a ∈ A) (hb : b ∈ B) :
     a ⊗ₜ[k] b ∈ Submodule.span k {s : C ⊗[k] C | ∃ a ∈ A, ∃ b ∈ B, s = a ⊗ₜ[k] b} :=
   Submodule.subset_span ⟨a, ha, b, hb, rfl⟩
@@ -167,6 +191,9 @@ end S17Tb0
 open scoped _root_.P2MW.S_Coalgebra_exists_finiteDimensional_le_comul_mem_span.S17Tb0
 
 open S17Tb0 in
+/--
+@isnad1 id=ex.2h4v.s10.f1c357be6e0e from=translated src=- shape=2bc112fb vocab=e59bea3d
+-/
 theorem solution
     {k : Type u} [Field k] {C : Type v} [AddCommGroup C] [Module k C] [Coalgebra k C]
     (K : Submodule k C)

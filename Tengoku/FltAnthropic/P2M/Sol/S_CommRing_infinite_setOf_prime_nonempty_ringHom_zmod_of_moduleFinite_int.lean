@@ -19,6 +19,9 @@ variable (R : Type*) [CommRing R] [IsDomain R] [CharZero R] [Module.Finite ℤ R
 
 end fracfield
 
+/--
+@isnad1 id=tendsto.0h0v.s5.35f8fa789bb1 from=translated src=- shape=9eb8b840 vocab=d84520e3
+-/
 theorem tendsto_log_sub_one : Tendsto (fun s : ℝ => Real.log (s - 1)) (𝓝[>] (1 : ℝ)) atBot := by
   have h1 : Tendsto (fun s : ℝ => s - 1) (𝓝[>] (1 : ℝ)) (𝓝[>] (0 : ℝ)) := by
     refine tendsto_nhdsWithin_of_tendsto_nhds_of_eventually_within _ ?_ ?_

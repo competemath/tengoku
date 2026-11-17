@@ -84,6 +84,9 @@ private theorem linearEquiv_smul_eq_toCornerRing_smul {Λ B : Type} [CommRing Λ
   rw [hcoe, mul_comm (S.e i) (algebraMap Λ B a), mul_assoc, (S.idem i).eq, mul_smul,
     S.e_smul_coe i (e m), algebraMap_smul B a ((e m : _) : V)]
 
+/--
+@isnad1 id=and.1h4v.s17.15b43ded8a71 from=translated src=- shape=dd43bcd7 vocab=f3711d4c
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪] [IsNoetherianRing 𝒪]
     [IsAdicComplete (IsLocalRing.maximalIdeal 𝒪) 𝒪]

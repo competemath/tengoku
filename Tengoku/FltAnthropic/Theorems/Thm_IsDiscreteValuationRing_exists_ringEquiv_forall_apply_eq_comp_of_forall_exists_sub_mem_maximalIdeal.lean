@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsLocalRing
 
+/--
+@isnad1 id=ex.8h10v.s10.c95f2ff7104b from=translated src=- shape=bfab8aea vocab=02054c62
+-/
 theorem IsDiscreteValuationRing.exists_ringEquiv_forall_apply_eq_comp_of_forall_exists_sub_mem_maximalIdeal
     (A W₀ W S : Type) [CommRing A] [IsDomain A] [IsDiscreteValuationRing A]
     [CommRing W₀] [IsDomain W₀] [IsDiscreteValuationRing W₀] [IsAdicComplete (IsLocalRing.maximalIdeal W₀) W₀]

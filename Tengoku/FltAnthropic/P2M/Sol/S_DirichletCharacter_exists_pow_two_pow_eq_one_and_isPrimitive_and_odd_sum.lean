@@ -21,13 +21,22 @@ def s : ℕ := (ℓ - 1).factorization 2
 
 def m : ℕ := (ℓ - 1) / 2 ^ s ℓ
 
+/--
+@isnad1 id=eq.0h1v.s5.80e3fee42bd5 from=translated src=- shape=d589dd52 vocab=77b18df9
+-/
 theorem two_pow_mul_m : 2 ^ s ℓ * m ℓ = ℓ - 1 := Nat.ordProj_mul_ordCompl_eq_self (ℓ - 1) 2
 
+/--
+@isnad1 id=odd.1h1v.s4.f1b4d7724572 from=translated src=- shape=9b0a439c vocab=c774bb65
+-/
 theorem m_odd (hℓ : ℓ ≠ 2) : Odd (m ℓ) := by
   have h1 : ℓ - 1 ≠ 0 := by have := hp.out.two_le; omega
   have hcop : Nat.Coprime 2 (m ℓ) := Nat.coprime_ordCompl Nat.prime_two h1
   exact (Nat.Prime.coprime_iff_not_dvd Nat.prime_two).mp hcop |> Nat.odd_iff.mpr ∘ (fun h => Nat.two_dvd_ne_zero.mp h)
 
+/--
+@isnad1 id=lt.1h1v.s4.bef01a1cb37a from=translated src=- shape=933eeff6 vocab=18a9ed18
+-/
 theorem s_pos (hℓ : ℓ ≠ 2) : 0 < s ℓ := by
   have h2 : 2 ∣ ℓ - 1 := by
     have := hp.out.eq_one_or_self_of_dvd 2
@@ -39,12 +48,18 @@ theorem s_pos (hℓ : ℓ ≠ 2) : 0 < s ℓ := by
 
 noncomputable def ζ : ℂ := cexp (2 * Real.pi * I / (2 ^ s ℓ : ℂ))
 
+/--
+@isnad1 id=isprimit.0h1v.s5.ad5859218cdf from=translated src=- shape=a2e054ef vocab=b617e7f9
+-/
 theorem ζ_prim : IsPrimitiveRoot (ζ ℓ) (2 ^ s ℓ) := by
   have := Complex.isPrimitiveRoot_exp (2 ^ s ℓ) (pow_ne_zero _ two_ne_zero)
   convert this using 2
   push_cast
   rfl
 
+/--
+@isnad1 id=eq.1h1v.s6.f3f0f4e08ac1 from=translated src=- shape=ef0cffec vocab=7dc7a181
+-/
 theorem ζ_pow_half (hℓ : ℓ ≠ 2) : ζ ℓ ^ 2 ^ (s ℓ - 1) = -1 := by
   rw [ζ, ← Complex.exp_nat_mul]
   have hs := s_pos ℓ hℓ
@@ -61,6 +76,9 @@ end Setup
 end LiftA2P
 
 open LiftA2P Complex Finset in
+/--
+@isnad1 id=ex.1h1v.s9.6234a1fcaf93 from=translated src=- shape=12b19da9 vocab=b21d325e
+-/
 theorem solution
     (ℓ : ℕ) [Fact ℓ.Prime] (hℓ : ℓ ≠ 2) :
     ∃ (n : ℕ) (χ : DirichletCharacter ℂ ℓ), 0 < n ∧

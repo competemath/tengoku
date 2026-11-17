@@ -13,6 +13,9 @@ open scoped ContDiff Real
 
 namespace OsgoodK3d
 
+/--
+@isnad1 id=differen.2h5v.s9.b075ab8391a1 from=translated src=- shape=13a02cec vocab=dbf50e68
+-/
 theorem differentiableOn_fderiv_apply {n : ℕ} {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     [CompleteSpace E] {f : (Fin n → ℂ) → E} {U : Set (Fin n → ℂ)} (hU : IsOpen U)
     (hf : DifferentiableOn ℂ f U) (v : Fin n → ℂ) :
@@ -118,6 +121,9 @@ theorem differentiableOn_fderiv_apply {n : ℕ} {E : Type*} [NormedAddCommGroup 
     eventually_of_mem (ball_mem_nhds z₀ hr0) fun z hz => by rw [hslice z hz, hcirc]
   exact ((hG.differentiableAt.const_smul ((2 * π * Complex.I : ℂ)⁻¹)).congr_of_eventuallyEq hev).differentiableWithinAt
 
+/--
+@isnad1 id=differen.2h4v.s9.b129f44fd0b9 from=translated src=- shape=c3dc1536 vocab=f668895f
+-/
 theorem differentiableOn_fderiv {n : ℕ} {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     [CompleteSpace E] {f : (Fin n → ℂ) → E} {U : Set (Fin n → ℂ)} (hU : IsOpen U)
     (hf : DifferentiableOn ℂ f U) :
@@ -136,6 +142,9 @@ theorem differentiableOn_fderiv {n : ℕ} {E : Type*} [NormedAddCommGroup E] [No
 end OsgoodK3d
 
 open OsgoodK3d in
+/--
+@isnad1 id=contdiff.2h4v.s7.ad584953c8f2 from=translated src=- shape=50abee44 vocab=e887f036
+-/
 theorem solution {n : ℕ} {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     [CompleteSpace E] {f : (Fin n → ℂ) → E} {U : Set (Fin n → ℂ)} (hU : IsOpen U)
     (hf : DifferentiableOn ℂ f U) : ContDiffOn ℂ ∞ f U := by

@@ -7,6 +7,9 @@ namespace P2MW.S_CerednikDrinfeld_exists_torsionFree_surjective_comp_eq_forall_i
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.2h4v.s8.69d3a6e33687 from=translated src=- shape=ba55c491 vocab=9f918edf
+-/
 theorem solution
     (p : ℕ) {S B : Type} [CommRing S] [CommRing B]
     (q : S →+* B) (hq : Function.Surjective q) (hS : ∀ s : S, (p : S) * s = 0 → s = 0) :

@@ -9,6 +9,9 @@ namespace P2MW.S_DoubleCoset_natCard_quotient_eq_natCard_quotient_map_of_surject
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.2h5v.s7.2515ba6c1fff from=translated src=- shape=66b0ee2d vocab=df80257e
+-/
 theorem solution
     {G Q : Type*} [Group G] [Group Q] (f : G →* Q) (hf : Function.Surjective f)
     (H K : Subgroup G) (hH : f.ker ≤ H) :

@@ -14,6 +14,9 @@ namespace ProdMeasurable
 
 open Topology
 
+/--
+@isnad1 id=measurab.1h3v.s6.887f6bdee071 from=translated src=- shape=b5d866bc vocab=e89f33b9
+-/
 theorem measurable_of_continuous {X Y : Type*} [TopologicalSpace X] [CompactSpace X] [T2Space X]
     [TopologicalSpace Y] [CompactSpace Y] [T2Space Y]
     [MeasurableSpace X] [BorelSpace X] [MeasurableSpace Y] [BorelSpace Y]
@@ -75,6 +78,9 @@ end ProdMeasurable
 
 namespace AvgConvBounds
 
+/--
+@isnad1 id=ex.1h2v.s5.a1dd2ccc8343 from=translated src=- shape=06e4ad20 vocab=f30dd259
+-/
 theorem exists_bound {C : Type*} [TopologicalSpace C] [CompactSpace C] [Nonempty C] {w : C → ℂ} (hw : Continuous w) :
     ∃ M : ℝ, ∀ c : C, ‖w c‖ ≤ M := by
   obtain ⟨c₀, -, hc₀⟩ := isCompact_univ.exists_isMaxOn (Set.univ_nonempty) hw.norm.continuousOn
@@ -84,6 +90,9 @@ end AvgConvBounds
 
 namespace AvgConv
 
+/--
+@isnad1 id=hascompa.0h3v.s4.1ccb37924355 from=translated src=- shape=6d142812 vocab=8d364687
+-/
 theorem hasCompactSupport_of_compactSpace' {X Y : Type*} [TopologicalSpace X] [CompactSpace X] [Zero Y] [TopologicalSpace Y]
     (f : X → Y) : HasCompactSupport f :=
   IsCompact.of_isClosed_subset isCompact_univ (isClosed_tsupport f) (Set.subset_univ _)
@@ -96,12 +105,21 @@ variable {C : Type*} [Group C] [TopologicalSpace C] [IsTopologicalGroup C] [Comp
 include hSb hSc
 
 omit hSb in
+/--
+@isnad1 id=continuo.2h5v.s11.1a015baa855a from=translated src=- shape=0394e1d9 vocab=bf6e39d4
+-/
 theorem continuous_integrand (w : C → ℂ) (hw : Continuous w) (v : H) : Continuous fun c : C => w c • S c v :=
   hw.smul (hSc v)
 
+/--
+@isnad1 id=integrab.3h7v.s11.80ae5e072e30 from=translated src=- shape=089cb709 vocab=a9040d05
+-/
 theorem integrable_integrand (w : C → ℂ) (hw : Continuous w) (v : H) : Integrable (fun c : C => w c • S c v) μ :=
   (continuous_integrand S hSc w hw v).integrable_of_hasCompactSupport (hasCompactSupport_of_compactSpace' _)
 
+/--
+@isnad1 id=eq.3h8v.s12.6b14aeed3fcd from=translated src=- shape=a45a518f vocab=06290dfc
+-/
 theorem apply_integral (w : C → ℂ) (hw : Continuous w) (v : H) (d : C) :
     S d (∫ c, w c • S c v ∂μ) = ∫ c, w (d⁻¹ * c) • S c v ∂μ := by
   rw [← ContinuousLinearMap.integral_comp_comm (S d) (integrable_integrand μ S B hSb hSc w hw v)]
@@ -113,6 +131,9 @@ theorem apply_integral (w : C → ℂ) (hw : Continuous w) (v : H) (d : C) :
   rw [h1]
   exact integral_mul_left_eq_self (fun c' => w (d⁻¹ * c') • S c' v) d
 
+/--
+@isnad1 id=eq.7h10v.s12.b764b7ce7ad9 from=translated src=- shape=7e55617f vocab=31fee38b
+-/
 theorem comp_eq (w₁ w₂ : C → ℂ) (hw₁ : Continuous w₁) (hw₂ : Continuous w₂) (A₁ A₂ A₁₂ : H →L[ℂ] H)
     (h₁ : ∀ v : H, A₁ v = ∫ c, w₁ c • S c v ∂μ) (h₂ : ∀ v : H, A₂ v = ∫ c, w₂ c • S c v ∂μ)
     (h₁₂ : ∀ v : H, A₁₂ v = ∫ c, (∫ d, w₁ d * w₂ (d⁻¹ * c) ∂μ) • S c v ∂μ) :
@@ -150,6 +171,9 @@ theorem comp_eq (w₁ w₂ : C → ℂ) (hw₁ : Continuous w₁) (hw₂ : Conti
   congr 1; funext c
   rw [← integral_smul_const]
 
+/--
+@isnad1 id=and.3h6v.s12.c82d931524b7 from=translated src=- shape=d42e4ea0 vocab=920ed91f
+-/
 theorem one_clause (A : H →L[ℂ] H) (hA : ∀ v : H, A v = ∫ c, S c v ∂μ) :
     (∀ v : H, A v = v ↔ ∀ c : C, S c v = v) ∧ A.comp A = A := by
   have hA' : ∀ v : H, A v = ∫ c, (fun _ => (1 : ℂ)) c • S c v ∂μ := fun v => by simp [hA]
@@ -167,6 +191,9 @@ theorem one_clause (A : H →L[ℂ] H) (hA : ∀ v : H, A v = ∫ c, S c v ∂μ
 
 end AvgConv
 
+/--
+@isnad1 id=and.2h5v.s13.c4cd2d25fd39 from=translated src=- shape=3c4d1919 vocab=31fee38b
+-/
 theorem solution
     {C : Type*} [Group C] [TopologicalSpace C] [IsTopologicalGroup C] [CompactSpace C] [T2Space C]
     [MeasurableSpace C] [BorelSpace C] (μ : Measure C) [μ.IsHaarMeasure] [IsProbabilityMeasure μ]

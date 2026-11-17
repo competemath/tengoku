@@ -11,6 +11,9 @@ namespace IharaLemmaSolCorner
 
 open IharaLemma
 
+/--
+@isnad1 id=eq.2h6v.s8.2638f026c164 from=translated src=- shape=14bf27cd vocab=45f87462
+-/
 theorem smul_eq_zero_of_notMem {B : Type} [CommRing B] (S : IdempotentSplitting B) {M : Type}
     [AddCommGroup M] [Module B M] {u : B} {y : M} (huy : u • y = 0) {j : Fin S.n} (hu : u ∉ S.𝔪 j) :
     S.e j • y = 0 := by
@@ -20,6 +23,9 @@ theorem smul_eq_zero_of_notMem {B : Type} [CommRing B] (S : IdempotentSplitting 
 
 end IharaLemmaSolCorner
 
+/--
+@isnad1 id=eq.2h6v.s8.1803ed403bbe from=translated src=- shape=d7da6d6a vocab=45f87462
+-/
 theorem solution {B : Type} [CommRing B]
     (S : IharaLemma.IdempotentSplitting B) {M : Type} [AddCommGroup M] [Module B M]
     {u : B} {y : M} (huy : u • y = 0) (i₀ : Fin S.n) (hu : ∀ j, j ≠ i₀ → u ∉ S.𝔪 j) :

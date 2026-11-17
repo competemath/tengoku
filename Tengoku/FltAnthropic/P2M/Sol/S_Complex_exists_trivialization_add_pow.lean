@@ -11,6 +11,9 @@ namespace PowTrivialization
 
 open Complex
 
+/--
+@isnad1 id=mem.1h3v.s6.c8872c093e1b from=translated src=- shape=12fa6df9 vocab=69a4d24f
+-/
 theorem mem_slitPlane_of_ray_avoid {b z : ℂ} {θ : ℝ}
     (hray : ∀ t : ℝ, 0 ≤ t → b + t * Complex.exp (θ * I) ≠ z) :
     (z - b) * Complex.exp ((Real.pi - θ) * I) ∈ slitPlane := by
@@ -51,10 +54,16 @@ noncomputable def rootBranch (b : ℂ) (θ : ℝ) (e : ℕ) (z : ℂ) : ℂ :=
   Complex.exp (Complex.log ((z - b) * Complex.exp ((Real.pi - θ) * I)) / e)
     * Complex.exp (((θ - Real.pi : ℝ)) * I / e)
 
+/--
+@isnad1 id=ne.0h4v.s4.9a1126afc059 from=translated src=- shape=b953b0d4 vocab=42b6b87d
+-/
 theorem rootBranch_ne_zero (b : ℂ) (θ : ℝ) (e : ℕ) (z : ℂ) :
     rootBranch b θ e z ≠ 0 :=
   mul_ne_zero (Complex.exp_ne_zero _) (Complex.exp_ne_zero _)
 
+/--
+@isnad1 id=eq.2h4v.s6.1ac788189ad3 from=translated src=- shape=0239b573 vocab=5168d087
+-/
 theorem rootBranch_pow {b z : ℂ} {θ : ℝ} {e : ℕ} (he : e ≠ 0)
     (hray : ∀ t : ℝ, 0 ≤ t → b + t * Complex.exp (θ * I) ≠ z) :
     rootBranch b θ e z ^ e = z - b := by
@@ -70,6 +79,9 @@ theorem rootBranch_pow {b z : ℂ} {θ : ℝ} {e : ℕ} (he : e ≠ 0)
     show ((↑Real.pi - ↑θ) * I + ((θ - Real.pi : ℝ) : ℂ) * I : ℂ) = 0 by push_cast; ring,
     Complex.exp_zero, mul_one]
 
+/--
+@isnad1 id=continuo.1h4v.s6.c5be44ca4d1d from=translated src=- shape=a9d9c77f vocab=121699d9
+-/
 theorem continuousOn_rootBranch (b : ℂ) (θ : ℝ) (e : ℕ) {U : Set ℂ}
     (hray : ∀ z ∈ U, ∀ t : ℝ, 0 ≤ t → b + t * Complex.exp (θ * I) ≠ z) :
     ContinuousOn (rootBranch b θ e) U := by
@@ -83,6 +95,9 @@ theorem continuousOn_rootBranch (b : ℂ) (θ : ℝ) (e : ℕ) {U : Set ℂ}
 
 section Assembly
 
+/--
+@isnad1 id=ex.2h4v.s9.0746345196aa from=translated src=- shape=75cb5566 vocab=cf7207af
+-/
 theorem exists_evenlyCovered_data {b : ℂ} {θ : ℝ} {e : ℕ} (he : e ≠ 0)
     {U : Set ℂ}
     (hray : ∀ z ∈ U, ∀ t : ℝ, 0 ≤ t → b + t * Complex.exp (θ * I) ≠ z) :
@@ -204,6 +219,9 @@ end Assembly
 
 end PowTrivialization
 
+/--
+@isnad1 id=ex.2h4v.s9.0746345196aa from=translated src=- shape=75cb5566 vocab=cf7207af
+-/
 theorem solution {b : ℂ} {θ : ℝ} {e : ℕ} (he : e ≠ 0) {U : Set ℂ}
     (hray : ∀ z ∈ U, ∀ t : ℝ, 0 ≤ t → b + t * Complex.exp (θ * Complex.I) ≠ z) :
     ∃ H : ((fun ζ : ℂ => b + ζ ^ e) ⁻¹' U) ≃ₜ U × Fin e,

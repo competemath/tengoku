@@ -17,10 +17,16 @@ namespace WeightLoweringCriterion
 
 local notation "Δ" => ModularForm.discriminant
 
+/--
+@isnad1 id=differen.1h2v.s7.69ea71e9ad1e from=translated src=- shape=2539a356 vocab=fc01c16b
+-/
 theorem differentiableAt_comp_ofComplex {u : ℍ → ℂ} (hu : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) u) (τ : ℍ) :
     DifferentiableAt ℂ (u ∘ ofComplex) (τ : ℂ) :=
   UpperHalfPlane.mdifferentiableAt_iff.1 (hu τ)
 
+/--
+@isnad1 id=analytic.1h1v.s7.3e2cbd5cbc5c from=translated src=- shape=93ba65f0 vocab=0437fed6
+-/
 theorem analyticOnNhd_comp_ofComplex {u : ℍ → ℂ} (hu : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) u) :
     AnalyticOnNhd ℂ (u ∘ ofComplex) {z : ℂ | 0 < z.im} :=
   (UpperHalfPlane.mdifferentiable_iff.1 hu).analyticOnNhd isOpen_upperHalfPlaneSet
@@ -43,11 +49,17 @@ theorem eq_zero_of_mul_eq_zero {u v : ℍ → ℂ} (hu : MDifferentiable 𝓘(�
   have := hEq τ.im_pos
   simpa [Function.comp, ofComplex_apply] using this
 
+/--
+@isnad1 id=mdiffere.2h3v.s8.91c2359f754b from=translated src=- shape=6e5ac5d2 vocab=fdfd06ad
+-/
 theorem mdifferentiableAt_of_eventuallyEq {f g : ℍ → ℂ} {τ : ℍ}
     (hfg : (f ∘ ofComplex) =ᶠ[𝓝 (τ : ℂ)] (g ∘ ofComplex))
     (hg : DifferentiableAt ℂ (g ∘ ofComplex) (τ : ℂ)) : MDifferentiableAt 𝓘(ℂ) 𝓘(ℂ) f τ :=
   UpperHalfPlane.mdifferentiableAt_iff.2 (hfg.differentiableAt_iff.2 hg)
 
+/--
+@isnad1 id=ex.7h5v.s9.af28355582f5 from=translated src=- shape=b96b4618 vocab=80316b54
+-/
 theorem exists_mul_eq_of_coprime {P b c H₁ H₂ : ℍ → ℂ}
     (hb : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) b) (hc : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) c)
     (hH₁ : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) H₁) (hH₂ : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) H₂)
@@ -97,15 +109,30 @@ theorem exists_mul_eq_of_coprime {P b c H₁ H₂ : ℍ → ℂ}
       rw [← h₁ τ]
       field_simp
 
+/--
+@isnad1 id=ne.0h1v.s3.f93aa6b5071c from=translated src=- shape=a311c14d vocab=a003dbfc
+-/
 theorem disc_ne_zero (τ : ℍ) : Δ τ ≠ 0 := discriminant_ne_zero τ
 
+/--
+@isnad1 id=mdiffere.0h0v.s6.ec57f8f093bc from=translated src=- shape=38f10366 vocab=b78e0804
+-/
 theorem mdifferentiable_disc : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (Δ : ℍ → ℂ) :=
   CuspForm.discriminant.holo'
 
+/--
+@isnad1 id=mdiffere.0h0v.s8.96d5befe2100 from=translated src=- shape=d88b448d vocab=1f53e3ef
+-/
 theorem mdifferentiable_E₄ : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (E₄ : ℍ → ℂ) := E₄.holo'
 
+/--
+@isnad1 id=mdiffere.0h0v.s8.1575bfaf2957 from=translated src=- shape=d88b448d vocab=c2bf97e9
+-/
 theorem mdifferentiable_E₆ : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (E₆ : ℍ → ℂ) := E₆.holo'
 
+/--
+@isnad1 id=or.0h1v.s9.acaf56197579 from=translated src=- shape=e71a5413 vocab=7867bb58
+-/
 theorem E₄_ne_zero_or_E₆_ne_zero (τ : ℍ) : E₄ τ ≠ 0 ∨ E₆ τ ≠ 0 := by
   by_contra h
   push Not at h
@@ -113,32 +140,50 @@ theorem E₄_ne_zero_or_E₆_ne_zero (τ : ℍ) : E₄ τ ≠ 0 ∨ E₆ τ ≠ 
   rw [h.1, h.2] at hΔ
   exact disc_ne_zero τ (by rw [hΔ]; norm_num)
 
+/--
+@isnad1 id=ex.0h0v.s8.df7d20d1c899 from=translated src=- shape=62bd6e7d vocab=da1d28e5
+-/
 theorem exists_E₄_ne_zero : ∃ τ : ℍ, E₄ τ ≠ 0 := by
   by_contra h
   push Not at h
   have : (E₄ : ModularForm 𝒮ℒ 4) = 0 := DFunLike.ext _ _ fun τ => by simpa using h τ
   exact EisensteinSeries.E_ne_zero (by norm_num) ⟨2, rfl⟩ this
 
+/--
+@isnad1 id=ex.0h0v.s8.4e72cc8f288a from=translated src=- shape=62bd6e7d vocab=a0ff033d
+-/
 theorem exists_E₆_ne_zero : ∃ τ : ℍ, E₆ τ ≠ 0 := by
   by_contra h
   push Not at h
   have : (E₆ : ModularForm 𝒮ℒ 6) = 0 := DFunLike.ext _ _ fun τ => by simpa using h τ
   exact EisensteinSeries.E_ne_zero (by norm_num) ⟨3, rfl⟩ this
 
+/--
+@isnad1 id=mem.0h1v.s10.77457495362f from=translated src=- shape=2408d407 vocab=0563b254
+-/
 theorem mem_SL (A : SL(2, ℤ)) : (A : GL (Fin 2) ℝ) ∈ 𝒮ℒ := ⟨A, rfl⟩
 
+/--
+@isnad1 id=eq.0h2v.s10.52ecc3fa1da0 from=translated src=- shape=05b466f0 vocab=9d8051c2
+-/
 theorem E₄_smul (A : SL(2, ℤ)) (τ : ℍ) :
     E₄ (A • τ) = denom (A : GL (Fin 2) ℝ) τ ^ (4 : ℤ) * E₄ τ := by
   have := SlashInvariantForm.slash_action_eqn'' E₄ (Γ := 𝒮ℒ) (γ := (A : GL (Fin 2) ℝ)) (mem_SL A) τ
   rw [← ModularGroup.sl_moeb] at this
   exact_mod_cast this
 
+/--
+@isnad1 id=eq.0h2v.s10.f6a9765c23f1 from=translated src=- shape=05b466f0 vocab=9d8d7f84
+-/
 theorem E₆_smul (A : SL(2, ℤ)) (τ : ℍ) :
     E₆ (A • τ) = denom (A : GL (Fin 2) ℝ) τ ^ (6 : ℤ) * E₆ τ := by
   have := SlashInvariantForm.slash_action_eqn'' E₆ (Γ := 𝒮ℒ) (γ := (A : GL (Fin 2) ℝ)) (mem_SL A) τ
   rw [← ModularGroup.sl_moeb] at this
   exact_mod_cast this
 
+/--
+@isnad1 id=eq.0h2v.s10.7a09adf7acba from=translated src=- shape=8767563f vocab=becfccb2
+-/
 theorem disc_smul (A : SL(2, ℤ)) (τ : ℍ) :
     Δ (A • τ) = denom (A : GL (Fin 2) ℝ) τ ^ (12 : ℤ) * Δ τ := by
   have := SlashInvariantForm.slash_action_eqn'' CuspForm.discriminant (Γ := 𝒮ℒ)
@@ -150,11 +195,20 @@ variable (a b m : ℕ)
 
 def Efun : ℍ → ℂ := fun τ => E₄ τ ^ a * E₆ τ ^ b
 
+/--
+@isnad1 id=eq.0h3v.s9.bd7f357e861c from=translated src=- shape=3994ad34 vocab=2620314f
+-/
 theorem Efun_apply (τ : ℍ) : Efun a b τ = E₄ τ ^ a * E₆ τ ^ b := rfl
 
+/--
+@isnad1 id=mdiffere.0h2v.s6.c51dca371315 from=translated src=- shape=954635de vocab=ec3430f8
+-/
 theorem mdifferentiable_Efun : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (Efun a b) :=
   (mdifferentiable_E₄.pow a).mul (mdifferentiable_E₆.pow b)
 
+/--
+@isnad1 id=ex.0h2v.s4.ff8bb8334e7f from=translated src=- shape=59e13455 vocab=b74f3162
+-/
 theorem exists_Efun_ne_zero : ∃ τ : ℍ, Efun a b τ ≠ 0 := by
 
   obtain ⟨τ₄, h₄⟩ := exists_E₄_ne_zero
@@ -169,16 +223,25 @@ theorem exists_Efun_ne_zero : ∃ τ : ℍ, Efun a b τ ≠ 0 := by
   obtain ⟨τ₆, h₆⟩ := exists_E₆_ne_zero
   exact h₆ (by simpa using congrFun this τ₆)
 
+/--
+@isnad1 id=eq.0h4v.s10.17e723663651 from=translated src=- shape=1619d0b3 vocab=455a050b
+-/
 theorem Efun_smul (A : SL(2, ℤ)) (τ : ℍ) :
     Efun a b (A • τ) = denom (A : GL (Fin 2) ℝ) τ ^ ((4 * a + 6 * b : ℕ) : ℤ) * Efun a b τ := by
   simp only [Efun, E₄_smul, E₆_smul, zpow_natCast, zpow_ofNat]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s10.90ad6d733d01 from=translated src=- shape=4d93aef5 vocab=eeab9b87
+-/
 theorem disc_pow_smul (A : SL(2, ℤ)) (τ : ℍ) :
     Δ (A • τ) ^ m = denom (A : GL (Fin 2) ℝ) τ ^ ((12 * m : ℕ) : ℤ) * Δ τ ^ m := by
   rw [disc_smul, zpow_natCast, zpow_ofNat]
   ring
 
+/--
+@isnad1 id=tendsto.2h1v.s8.ef451d6ff0d2 from=translated src=- shape=24994bb6 vocab=85fbcf2f
+-/
 theorem tendsto_E {k : ℕ} (hk : 3 ≤ k) (hk2 : Even k) :
     Tendsto (⇑(ModularForm.E hk) : ℍ → ℂ) atImInfty (𝓝 1) := by
   have hanal := ModularFormClass.analyticAt_cuspFunction_zero (ModularForm.E hk) one_pos
@@ -192,6 +255,9 @@ theorem tendsto_E {k : ℕ} (hk : 3 ≤ k) (hk2 : Even k) :
     (fun τ => eq_cuspFunction τ one_ne_zero hper)
   simpa [hval] using this
 
+/--
+@isnad1 id=tendsto.0h2v.s5.94474a69e784 from=translated src=- shape=744f70f3 vocab=309e3d43
+-/
 theorem tendsto_Efun : Tendsto (Efun a b) atImInfty (𝓝 1) := by
   have h4 := (tendsto_E (by norm_num : 3 ≤ 4) ⟨2, rfl⟩).pow a
   have h6 := (tendsto_E (by norm_num : 3 ≤ 6) ⟨3, rfl⟩).pow b
@@ -199,6 +265,9 @@ theorem tendsto_Efun : Tendsto (Efun a b) atImInfty (𝓝 1) := by
   simp [Efun] at h__af
   exact h__af
 
+/--
+@isnad1 id=isbounde.0h2v.s3.9fc2b2023663 from=translated src=- shape=215a98a0 vocab=c0094f61
+-/
 theorem isBoundedAtImInfty_Efun : IsBoundedAtImInfty (Efun a b) :=
   (tendsto_Efun a b).isBigO_one ℝ
 
@@ -209,6 +278,9 @@ variable (hk : k + 4 * a + 6 * b = 12 * m) {F : ℍ → ℂ}
 
 include hk in
 
+/--
+@isnad1 id=eq.2h8v.s8.9dbdfcf10d8b from=translated src=- shape=858c78ed vocab=d6c7c475
+-/
 theorem slash_mul_Efun {f : ℍ → ℂ} (hf : ∀ τ : ℍ, f τ * Efun a b τ = F τ * Δ τ ^ m)
     (A : SL(2, ℤ)) (τ : ℍ) : (f ∣[k] A) τ * Efun a b τ = F (A • τ) * Δ τ ^ m := by
   have hd : (denom (A : GL (Fin 2) ℝ) τ : ℂ) ≠ 0 := denom_ne_zero _ _
@@ -229,6 +301,9 @@ theorem slash_mul_Efun {f : ℍ → ℂ} (hf : ∀ τ : ℍ, f τ * Efun a b τ 
   linear_combination h1
 
 include hk in
+/--
+@isnad1 id=and.2h7v.s11.f49d96e73ca8 from=translated src=- shape=bdd8a6d4 vocab=467d9aba
+-/
 theorem forward (f : CuspForm (Γ : Subgroup (GL (Fin 2) ℝ)) k)
     (hf : ∀ τ : ℍ, f τ * (E₄ τ ^ a * E₆ τ ^ b) = F τ * Δ τ ^ m) :
     ((∃ G : ℍ → ℂ, MDifferentiable 𝓘(ℂ) 𝓘(ℂ) G ∧ ∀ τ : ℍ, (F τ * Δ τ ^ m) ^ 3 = E₄ τ ^ (3 * a) * G τ) ∧
@@ -268,6 +343,9 @@ variable (hk : k + 4 * a + 6 * b = 12 * m) {F : ℍ → ℂ} (hF : MDifferentiab
 
 include hF in
 
+/--
+@isnad1 id=ex.2h3v.s10.9cfa268d00e3 from=translated src=- shape=1c5ee354 vocab=7208ad36
+-/
 theorem exists_div_E₄ (h : ∃ G : ℍ → ℂ, MDifferentiable 𝓘(ℂ) 𝓘(ℂ) G ∧
       ∀ τ : ℍ, (F τ * Δ τ ^ m) ^ 3 = E₄ τ ^ (3 * a) * G τ) :
     ∃ H : ℍ → ℂ, MDifferentiable 𝓘(ℂ) 𝓘(ℂ) H ∧ ∀ τ : ℍ, H τ * E₄ τ ^ a = F τ * Δ τ ^ m := by
@@ -301,6 +379,9 @@ theorem exists_div_E₄ (h : ∃ G : ℍ → ℂ, MDifferentiable 𝓘(ℂ) 𝓘
 
 include hF in
 
+/--
+@isnad1 id=ex.2h3v.s10.2e348e52cc89 from=translated src=- shape=1c5ee354 vocab=69c05a5f
+-/
 theorem exists_div_E₆ (h : ∃ G : ℍ → ℂ, MDifferentiable 𝓘(ℂ) 𝓘(ℂ) G ∧
       ∀ τ : ℍ, (F τ * Δ τ ^ m) ^ 2 = E₆ τ ^ (2 * b) * G τ) :
     ∃ H : ℍ → ℂ, MDifferentiable 𝓘(ℂ) 𝓘(ℂ) H ∧ ∀ τ : ℍ, H τ * E₆ τ ^ b = F τ * Δ τ ^ m := by
@@ -333,6 +414,9 @@ theorem exists_div_E₆ (h : ∃ G : ℍ → ℂ, MDifferentiable 𝓘(ℂ) 𝓘
 
 include hk hF in
 
+/--
+@isnad1 id=ex.6h6v.s11.a4120fdcdfbd from=translated src=- shape=44b397dd vocab=467d9aba
+-/
 theorem backward
     (h₁ : ∃ G : ℍ → ℂ, MDifferentiable 𝓘(ℂ) 𝓘(ℂ) G ∧ ∀ τ : ℍ, (F τ * Δ τ ^ m) ^ 3 = E₄ τ ^ (3 * a) * G τ)
     (h₂ : ∃ G : ℍ → ℂ, MDifferentiable 𝓘(ℂ) 𝓘(ℂ) G ∧ ∀ τ : ℍ, (F τ * Δ τ ^ m) ^ 2 = E₆ τ ^ (2 * b) * G τ)
@@ -390,6 +474,9 @@ theorem backward
 
 end Backward
 
+/--
+@isnad1 id=iff.2h6v.s11.b86e8178f814 from=translated src=- shape=2b1dedfd vocab=467d9aba
+-/
 theorem main (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex]
     (k : ℤ) (a b m : ℕ) (hk : k + 4 * a + 6 * b = 12 * m)
     (F : ℍ → ℂ) (hF : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) F) :
@@ -409,6 +496,9 @@ end
 
 open scoped Manifold MatrixGroups ModularForm
 
+/--
+@isnad1 id=iff.2h6v.s11.b86e8178f814 from=translated src=- shape=2b1dedfd vocab=467d9aba
+-/
 theorem solution (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex]
     (k : ℤ) (a b m : ℕ) (hk : k + 4 * a + 6 * b = 12 * m)
     (F : UpperHalfPlane → ℂ) (hF : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) F) :

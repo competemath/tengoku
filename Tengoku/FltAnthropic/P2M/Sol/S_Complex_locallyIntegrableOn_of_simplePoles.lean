@@ -10,6 +10,9 @@ open scoped Topology
 
 namespace SimplePolesLocInt
 
+/--
+@isnad1 id=integrab.0h2v.s6.04f8fa965f6e from=translated src=- shape=9e98c675 vocab=7d00c5c6
+-/
 theorem integrableOn_const_div (c : ℂ) (r : ℝ) :
     IntegrableOn (fun x : ℂ => c / x) (ball 0 r) := by
   have hd : 1 ≤ Module.finrank ℝ ℂ := by rw [Complex.finrank_real_complex]; norm_num
@@ -19,6 +22,9 @@ theorem integrableOn_const_div (c : ℂ) (r : ℝ) :
     rw [norm_div, Real.rpow_neg_one, div_eq_mul_inv]
   · exact (measurable_const.div measurable_id).aestronglyMeasurable
 
+/--
+@isnad1 id=integrab.0h3v.s6.95842b12c712 from=translated src=- shape=61d2a1d0 vocab=112d77cf
+-/
 theorem integrableOn_const_div_sub (c a : ℂ) (r : ℝ) :
     IntegrableOn (fun z : ℂ => c / (z - a)) (ball a r) := by
   have hT := (measurePreserving_add_right (volume : Measure ℂ) a).integrableOn_comp_preimage
@@ -31,6 +37,9 @@ theorem integrableOn_const_div_sub (c a : ℂ) (r : ℝ) :
   simp only [Function.comp_def, add_sub_cancel_right]
   exact integrableOn_const_div c r
 
+/--
+@isnad1 id=locallyi.2h3v.s7.800ec2c885fe from=translated src=- shape=7d18141e vocab=d2a8e835
+-/
 theorem main
     (U : Set ℂ) (hU : IsOpen U) (F c : ℂ → ℂ)
     (hloc : ∀ a ∈ U, ∃ g : ℂ → ℂ, AnalyticAt ℂ g a ∧
@@ -69,6 +78,9 @@ end SimplePolesLocInt
 
 open Complex MeasureTheory in
 open scoped Topology in
+/--
+@isnad1 id=locallyi.2h3v.s7.800ec2c885fe from=translated src=- shape=7d18141e vocab=d2a8e835
+-/
 theorem solution
     (U : Set ℂ) (hU : IsOpen U) (F c : ℂ → ℂ)
     (hloc : ∀ a ∈ U, ∃ g : ℂ → ℂ, AnalyticAt ℂ g a ∧

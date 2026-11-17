@@ -22,12 +22,18 @@ section Nakayama
 
 variable {V : Type u} [AddCommGroup V] [Module R V]
 
+/--
+@isnad1 id=eq.0h3v.s10.f7bc3558fe8f from=translated src=- shape=3b9b46d0 vocab=e3768741
+-/
 theorem span_one_tmul_eq_top (K : Type u) [CommRing K] [Algebra R K] (Q : Type u) [AddCommGroup Q]
     [Module R Q] : Submodule.span K (Set.range (TensorProduct.mk R K Q 1)) = ⊤ := by
   have h := (Submodule.baseChange_eq_span (p := (⊤ : Submodule R Q)) (A := K)).symm.trans
     (Submodule.baseChange_top (R := R) (M := Q) (A := K))
   rwa [Submodule.map_coe, Submodule.top_coe, Set.image_univ] at h
 
+/--
+@isnad1 id=ex.1h4v.s11.4707fe59be10 from=translated src=- shape=88a7f0d4 vocab=5bb4ceab
+-/
 theorem exists_span_singleton (W : Submodule R V) (𝔭 : PrimeSpectrum R)
     (hle : Module.finrank 𝔭.asIdeal.ResidueField (𝔭.asIdeal.ResidueField ⊗[R] (V ⧸ W)) ≤ 1)
     [Module.Finite R V] :
@@ -60,6 +66,9 @@ theorem exists_span_singleton (W : Submodule R V) (𝔭 : PrimeSpectrum R)
     obtain ⟨c, hc⟩ := Submodule.mem_span_singleton.mp hw
     exact ⟨c, hc⟩
 
+/--
+@isnad1 id=ex.1h4v.s10.1099c655ebb3 from=translated src=- shape=c0fcbfe0 vocab=3b0e7b1e
+-/
 theorem exists_generator (W : Submodule R V) (𝔭 : PrimeSpectrum R) [Module.Finite R V]
     (hle : Module.finrank 𝔭.asIdeal.ResidueField (𝔭.asIdeal.ResidueField ⊗[R] (V ⧸ W)) ≤ 1) :
     ∃ (q : V) (h : R), h ∉ 𝔭.asIdeal ∧ ∀ v : V, ∃ r : R, h • v - r • q ∈ W := by
@@ -125,12 +134,18 @@ def Dm : Matrix (ι1 G) (ι0 G) R := LinearMap.toMatrix (b0 G) (b1 G) G.d
 
 def W : Submodule R (ι0 G → R) := LinearMap.range (Matrix.mulVecLin (Dm G)ᵀ)
 
+/--
+@isnad1 id=mem.0h3v.s7.6bd696d740fc from=translated src=- shape=ab07af4f vocab=f6c58299
+-/
 theorem row_mem_W (j : ι1 G) : (fun i => Dm G j i) ∈ W G := by
   refine LinearMap.mem_range.mpr ⟨Pi.single j 1, ?_⟩
   funext i
   rw [Matrix.mulVecLin_apply, Matrix.mulVec_single_one]
   rfl
 
+/--
+@isnad1 id=iff.0h3v.s8.71b87a8137cd from=translated src=- shape=32f61c08 vocab=ec456cdb
+-/
 theorem mem_W_iff (y : ι0 G → R) : y ∈ W G ↔ ∃ w : ι1 G → R, ∀ i, y i = ∑ j, Dm G j i * w j := by
   rw [W, LinearMap.mem_range]
   constructor
@@ -145,6 +160,9 @@ variable (B : Type u) [CommRing B] [Algebra R B]
 
 def Kmat : Submodule B (ι0 G → B) := LinearMap.ker ((Dm G).map (algebraMap R B)).mulVecLin
 
+/--
+@isnad1 id=iff.0h4v.s8.fb079100b9fb from=translated src=- shape=4b98cf6e vocab=e9781fc0
+-/
 theorem mem_Kmat_iff (x : ι0 G → B) :
     x ∈ Kmat G B ↔ ∀ j, ∑ i, algebraMap R B (Dm G j i) * x i = 0 := by
   rw [Kmat, LinearMap.mem_ker, Matrix.mulVecLin_apply]
@@ -160,13 +178,22 @@ abbrev β0 : Module.Basis (ι0 G) B (B ⊗[R] G.C0) := Algebra.TensorProduct.bas
 
 abbrev β1 : Module.Basis (ι1 G) B (B ⊗[R] G.C1) := Algebra.TensorProduct.basis B (b1 G)
 
+/--
+@isnad1 id=eq.0h3v.s12.2177cd5662de from=translated src=- shape=5b48e236 vocab=3caa9252
+-/
 theorem Dm_map_eq : (Dm G).map (algebraMap R B) = LinearMap.toMatrix (β0 G B) (β1 G B) (G.d.baseChange B) := by
   rw [Dm, LinearMap.toMatrix_baseChange]
 
+/--
+@isnad1 id=eq.0h4v.s11.ad3b2c15a3f8 from=translated src=- shape=cfec80a4 vocab=763f9d69
+-/
 theorem repr_baseChange (y : B ⊗[R] G.C0) :
     ((β1 G B).repr (G.d.baseChange B y) : ι1 G → B) = ((Dm G).map (algebraMap R B)) *ᵥ ((β0 G B).repr y) := by
   rw [Dm_map_eq, LinearMap.toMatrix_mulVec_repr]
 
+/--
+@isnad1 id=iff.0h4v.s10.a2141c017065 from=translated src=- shape=ae2898f4 vocab=82efc4b7
+-/
 theorem mem_H0_iff (y : B ⊗[R] G.C0) : y ∈ G.H0 B ↔ ((β0 G B).repr y : ι0 G → B) ∈ Kmat G B := by
   change y ∈ LinearMap.ker (G.d.baseChange B) ↔ _ ∈ LinearMap.ker _
   rw [LinearMap.mem_ker, LinearMap.mem_ker, Matrix.mulVecLin_apply, ← repr_baseChange]
@@ -194,6 +221,9 @@ def baseChangeCokerEquiv {P Q : Type u} [AddCommGroup P] [Module R P] [AddCommGr
     rwa [← LinearMap.baseChange_eq_ltensor, ← LinearMap.baseChange_eq_ltensor] at h
   exact hexA.linearEquivOfSurjective (LinearMap.baseChange_surjective A hsurj)
 
+/--
+@isnad1 id=eq.0h3v.s10.79d5b20e8340 from=translated src=- shape=a63132ab vocab=bf2eccf7
+-/
 theorem finrank_fibre_eq (𝔭 : PrimeSpectrum R) :
     Module.finrank 𝔭.asIdeal.ResidueField (𝔭.asIdeal.ResidueField ⊗[R] ((ι0 G → R) ⧸ W G)) = G.fibreH0 𝔭 := by
   haveI : Nontrivial R := ⟨⟨0, 1, fun h => 𝔭.isPrime.ne_top
@@ -239,25 +269,43 @@ variable (B : Type u) [CommRing B] [Algebra R B]
 
 def pair (v : ι0 G → R) (x : ι0 G → B) : B := ∑ i, algebraMap R B (v i) * x i
 
+/--
+@isnad1 id=eq.0h6v.s7.6a0491e9ce3d from=translated src=- shape=8492937c vocab=5ee6b6f6
+-/
 theorem pair_smul_left (r : R) (v : ι0 G → R) (x : ι0 G → B) :
     pair G B (r • v) x = algebraMap R B r * pair G B v x := by
   simp [pair, Finset.mul_sum, mul_assoc]
 
+/--
+@isnad1 id=eq.0h6v.s7.9fa7fb35dee0 from=translated src=- shape=ed9ff9c4 vocab=b6fd277e
+-/
 theorem pair_sub_left (v v' : ι0 G → R) (x : ι0 G → B) : pair G B (v - v') x = pair G B v x - pair G B v' x := by
   simp [pair, sub_mul, Finset.sum_sub_distrib]
 
+/--
+@isnad1 id=eq.0h5v.s6.5e7e0a57f8df from=translated src=- shape=f58e8f68 vocab=dd450039
+-/
 theorem pair_single (i : ι0 G) (x : ι0 G → B) : pair G B (Pi.single i 1) x = x i := by
   rw [pair, Finset.sum_eq_single i]
   · simp
   · intro j _ hj; simp [hj]
   · intro h; exact absurd (Finset.mem_univ i) h
 
+/--
+@isnad1 id=eq.0h6v.s7.f017ab9ac5c8 from=translated src=- shape=0e588a09 vocab=9df055f8
+-/
 theorem pair_add_right (v : ι0 G → R) (x x' : ι0 G → B) : pair G B v (x + x') = pair G B v x + pair G B v x' := by
   simp [pair, mul_add, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h6v.s6.5a5022579895 from=translated src=- shape=72a8e36f vocab=6a0fdf33
+-/
 theorem pair_smul_right (b : B) (v : ι0 G → R) (x : ι0 G → B) : pair G B v (b • x) = b * pair G B v x := by
   simp [pair, Finset.mul_sum, mul_left_comm]
 
+/--
+@isnad1 id=eq.2h5v.s8.f1e715a6d64b from=translated src=- shape=a8cf4199 vocab=ca37d899
+-/
 theorem pair_eq_zero_of_mem_W {y : ι0 G → R} (hy : y ∈ W G) {x : ι0 G → B} (hx : x ∈ Kmat G B) :
     pair G B y x = 0 := by
   obtain ⟨w, hw⟩ := (mem_W_iff G y).mp hy
@@ -273,6 +321,9 @@ variable (q : ι0 G → R) (h : R)
 
 def J : Ideal R := (W G).comap (LinearMap.toSpanSingleton R (ι0 G → R) q)
 
+/--
+@isnad1 id=iff.0h4v.s8.947b48c1f209 from=translated src=- shape=2bf819af vocab=a6a7e0c9
+-/
 theorem mem_J_iff (r : R) : r ∈ J G q ↔ r • q ∈ W G := Iff.rfl
 
 def Φ : Kmat G B →ₗ[B] B where
@@ -280,6 +331,9 @@ def Φ : Kmat G B →ₗ[B] B where
   map_add' x x' := pair_add_right G B q x x'
   map_smul' b x := pair_smul_right G B b q x
 
+/--
+@isnad1 id=eq.0h5v.s10.a70bffdec896 from=translated src=- shape=82801211 vocab=b82fe1ea
+-/
 theorem Φ_apply (x : Kmat G B) : Φ G B q x = pair G B q x := rfl
 
 variable {q h}
@@ -288,12 +342,18 @@ include hE hu
 
 omit hE hu in
 
+/--
+@isnad1 id=eq.1h8v.s11.abfa531ba9f9 from=translated src=- shape=b641bc85 vocab=a3af584e
+-/
 theorem pair_eq (v : ι0 G → R) (r : R) (hr : h • v - r • q ∈ W G) (x : Kmat G B) :
     algebraMap R B h * pair G B v x = algebraMap R B r * Φ G B q x := by
   have h0 := pair_eq_zero_of_mem_W G B hr x.2
   rw [pair_sub_left, pair_smul_left, pair_smul_left, sub_eq_zero] at h0
   rw [h0, Φ_apply]
 
+/--
+@isnad1 id=injectiv.2h5v.s10.a4bc274c81f4 from=translated src=- shape=c19b0f7d vocab=a73e6970
+-/
 theorem Φ_injective : Function.Injective (Φ G B q) := by
   intro x x' hxx'
   rw [← sub_eq_zero] at hxx' ⊢
@@ -307,6 +367,9 @@ theorem Φ_injective : Function.Injective (Φ G B q) := by
   exact (hu.mul_right_eq_zero.mp h1).trans rfl
 
 omit hE in
+/--
+@isnad1 id=mem.1h6v.s10.578e9c289cf8 from=translated src=- shape=afeb86ab vocab=6293304e
+-/
 theorem Φ_mem (x : Kmat G B) : Φ G B q x ∈ ((J G q).map (algebraMap R B)).annihilator := by
   rw [Submodule.mem_annihilator]
   intro b hb
@@ -322,6 +385,9 @@ theorem Φ_mem (x : Kmat G B) : Φ G B q x ∈ ((J G q).map (algebraMap R B)).an
   · intro a b _ _ ha hb; rw [smul_add, ha, hb, add_zero]
   · intro a b _ hb; rw [smul_comm, hb, smul_zero]
 
+/--
+@isnad1 id=ex.3h6v.s11.8efc238cb164 from=translated src=- shape=3b765a2f vocab=653f4b55
+-/
 theorem Φ_surjective (b : B) (hb : b ∈ ((J G q).map (algebraMap R B)).annihilator) :
     ∃ x : Kmat G B, Φ G B q x = b := by
   rw [Submodule.mem_annihilator] at hb
@@ -397,6 +463,9 @@ end Pairing
 
 section Main
 
+/--
+@isnad1 id=ex.1h3v.s10.70c79685f315 from=translated src=- shape=95abceae vocab=a5516418
+-/
 theorem main (G : CoherentBaseChange.TwoTermComplex.{u, u} R) (𝔭 : PrimeSpectrum R) (h𝔭 : G.fibreH0 𝔭 ≤ 1) :
     ∃ (h : R) (J : Ideal R), h ∉ 𝔭.asIdeal ∧
       ∀ (B : Type u) [CommRing B] [Algebra R B], IsUnit (algebraMap R B h) →
@@ -413,6 +482,9 @@ end P2mTwoTermH0Ann
 
 end
 
+/--
+@isnad1 id=ex.1h3v.s10.70c79685f315 from=translated src=- shape=95abceae vocab=a5516418
+-/
 theorem solution
     {R : Type u} [CommRing R] (G : CoherentBaseChange.TwoTermComplex.{u, u} R)
     (𝔭 : PrimeSpectrum R) (h𝔭 : G.fibreH0 𝔭 ≤ 1) :

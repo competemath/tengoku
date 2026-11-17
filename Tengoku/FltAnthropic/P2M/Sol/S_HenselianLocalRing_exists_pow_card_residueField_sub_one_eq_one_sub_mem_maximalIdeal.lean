@@ -7,6 +7,9 @@ namespace P2MW.S_HenselianLocalRing_exists_pow_card_residueField_sub_one_eq_one_
 
 open IsLocalRing Polynomial
 
+/--
+@isnad1 id=isunit.0h1v.s5.9803fca5a843 from=translated src=- shape=ce9428e8 vocab=25cb136a
+-/
 theorem w2aux_unit
     {A : Type*} [CommRing A] [IsLocalRing A] [Finite (IsLocalRing.ResidueField A)] :
     IsUnit ((Nat.card (IsLocalRing.ResidueField A) - 1 : ℕ) : A) := by
@@ -22,6 +25,9 @@ theorem w2aux_unit
   rw [Nat.cast_sub h1.le, hq0, Nat.cast_one, zero_sub, neg_eq_zero] at h0
   exact one_ne_zero h0
 
+/--
+@isnad1 id=mem.1h2v.s7.4f0bd88c7a27 from=translated src=- shape=cf120dea vocab=2fbf9d1b
+-/
 theorem w2aux_fermat
     {A : Type*} [CommRing A] [IsLocalRing A] [Finite (IsLocalRing.ResidueField A)]
     {u : A} (hu : IsUnit u) :
@@ -32,6 +38,9 @@ theorem w2aux_fermat
   rw [Nat.card_eq_fintype_card]
   exact FiniteField.pow_card_sub_one_eq_one (residue A u) hū
 
+/--
+@isnad1 id=ex.1h2v.s7.863685b64ffb from=translated src=- shape=0dc13783 vocab=55c6d427
+-/
 theorem solution
     {A : Type*} [CommRing A] [IsLocalRing A] [HenselianLocalRing A]
     [Finite (IsLocalRing.ResidueField A)] {u : A} (hu : IsUnit u) :

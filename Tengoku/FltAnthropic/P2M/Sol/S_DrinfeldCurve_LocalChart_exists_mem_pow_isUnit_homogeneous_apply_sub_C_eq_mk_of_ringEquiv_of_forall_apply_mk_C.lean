@@ -28,9 +28,15 @@ noncomputable abbrev nd (e i : ℕ) : Fin 2 →₀ ℕ :=
   Finsupp.single (0 : Fin 2) i + Finsupp.single (1 : Fin 2) (e - i)
 
 omit W in
+/--
+@isnad1 id=eq.0h2v.s5.0d007ec227cf from=translated src=- shape=63341c4e vocab=d82f0ccf
+-/
 @[scoped simp] theorem nd_zero (e i : ℕ) : nd e i 0 = i := by simp [nd]
 
 omit W in
+/--
+@isnad1 id=eq.0h2v.s6.28b6518fdad5 from=translated src=- shape=49a32e5b vocab=a1da11a5
+-/
 @[scoped simp] theorem nd_one (e i : ℕ) : nd e i 1 = e - i := by simp [nd]
 
 omit W in
@@ -39,21 +45,33 @@ theorem eq_nd (n : Fin 2 →₀ ℕ) : n = nd (n 0 + n 1) (n 0) := by
   fin_cases j <;> simp [nd]
 
 omit W in
+/--
+@isnad1 id=injon.0h1v.s5.4add47b31d60 from=translated src=- shape=696d3529 vocab=70e873df
+-/
 theorem nd_injOn (e : ℕ) : Set.InjOn (nd e) ↑(Finset.range (e + 1)) := by
   intro i _ j _ h
   have := congrArg (fun n : Fin 2 →₀ ℕ => n 0) h
   simpa using this
 
+/--
+@isnad1 id=eq.2h4v.s9.eaab399ba6af from=translated src=- shape=f4e129ad vocab=ba08a040
+-/
 theorem coeff_eq_zero_of_mem_pow (e : ℕ) (g : MvPowerSeries (Fin 2) W)
     (hg : g ∈ (Ideal.span {(MvPowerSeries.X 0 : MvPowerSeries (Fin 2) W), MvPowerSeries.X 1}) ^ e)
     (n : Fin 2 →₀ ℕ) (hn : n 0 + n 1 < e) : MvPowerSeries.coeff n g = 0 :=
   (MvPowerSeries.mem_span_X_pow_iff_forall_coeff_eq_zero_of_degree_lt W e g).mp hg n hn
 
+/--
+@isnad1 id=mem.1h3v.s9.d24d1a76a384 from=translated src=- shape=996d9203 vocab=ba08a040
+-/
 theorem mem_pow_of_coeff_eq_zero (e : ℕ) (g : MvPowerSeries (Fin 2) W)
     (hg : ∀ n : Fin 2 →₀ ℕ, n 0 + n 1 < e → MvPowerSeries.coeff n g = 0) :
     g ∈ (Ideal.span {(MvPowerSeries.X 0 : MvPowerSeries (Fin 2) W), MvPowerSeries.X 1}) ^ e :=
   (MvPowerSeries.mem_span_X_pow_iff_forall_coeff_eq_zero_of_degree_lt W e g).mpr hg
 
+/--
+@isnad1 id=mem.1h2v.s9.30fe688f21ce from=translated src=- shape=40af063b vocab=719df3cf
+-/
 theorem mem_span_X_of_coeff_zero (g : MvPowerSeries (Fin 2) W)
     (hg : MvPowerSeries.coeff (0 : Fin 2 →₀ ℕ) g = 0) :
     g ∈ Ideal.span {(MvPowerSeries.X 0 : MvPowerSeries (Fin 2) W), MvPowerSeries.X 1} := by
@@ -63,6 +81,9 @@ theorem mem_span_X_of_coeff_zero (g : MvPowerSeries (Fin 2) W)
     ext j; fin_cases j <;> simp <;> omega
   rw [this]; exact hg
 
+/--
+@isnad1 id=mem.3h6v.s10.39fc7c00fb82 from=translated src=- shape=e76d2567 vocab=2629fedf
+-/
 theorem pow_mul_pow_mem_pow (x y : MvPowerSeries (Fin 2) W)
     (hx : x ∈ Ideal.span {(MvPowerSeries.X 0 : MvPowerSeries (Fin 2) W), MvPowerSeries.X 1})
     (hy : y ∈ Ideal.span {(MvPowerSeries.X 0 : MvPowerSeries (Fin 2) W), MvPowerSeries.X 1})
@@ -74,6 +95,9 @@ theorem pow_mul_pow_mem_pow (x y : MvPowerSeries (Fin 2) W)
 noncomputable def low (e : ℕ) (g : MvPowerSeries (Fin 2) W) : MvPowerSeries (Fin 2) W :=
   ∑ i ∈ Finset.range (e + 1), MvPowerSeries.monomial (nd e i) (MvPowerSeries.coeff (nd e i) g)
 
+/--
+@isnad1 id=eq.0h4v.s9.50c445d61438 from=translated src=- shape=4d0e2a33 vocab=3f224e4c
+-/
 theorem coeff_low (e : ℕ) (g : MvPowerSeries (Fin 2) W) (n : Fin 2 →₀ ℕ) :
     MvPowerSeries.coeff n (low W e g) = if n 0 + n 1 = e then MvPowerSeries.coeff n g else 0 := by
   classical
@@ -102,6 +126,9 @@ theorem coeff_low (e : ℕ) (g : MvPowerSeries (Fin 2) W) (n : Fin 2 →₀ ℕ)
     simp only [Finset.mem_range] at hi
     rw [hni, nd_zero, nd_one]; omega
 
+/--
+@isnad1 id=mem.1h3v.s9.bd6b7c683a0d from=translated src=- shape=016ca64f vocab=3c2d5a40
+-/
 theorem sub_low_mem_pow (e : ℕ) (g : MvPowerSeries (Fin 2) W)
     (hg : ∀ n : Fin 2 →₀ ℕ, n 0 + n 1 < e → MvPowerSeries.coeff n g = 0) :
     g - low W e g ∈ (Ideal.span {(MvPowerSeries.X 0 : MvPowerSeries (Fin 2) W), MvPowerSeries.X 1}) ^ (e + 1) := by
@@ -111,6 +138,9 @@ theorem sub_low_mem_pow (e : ℕ) (g : MvPowerSeries (Fin 2) W)
   · exact sub_self _
   · rw [hg n (by omega), sub_zero]
 
+/--
+@isnad1 id=eq.0h4v.s9.b0e1d944f0b1 from=translated src=- shape=5f9def3f vocab=60928a44
+-/
 theorem monomial_nd_eq (e i : ℕ) (c : W) :
     MvPowerSeries.monomial (nd e i) c =
       MvPowerSeries.C c * MvPowerSeries.X 0 ^ i * MvPowerSeries.X 1 ^ (e - i) := by
@@ -118,6 +148,9 @@ theorem monomial_nd_eq (e i : ℕ) (c : W) :
     MvPowerSeries.monomial_mul_monomial, MvPowerSeries.monomial_mul_monomial]
   simp [nd]
 
+/--
+@isnad1 id=eq.0h3v.s9.f2b5f442df1c from=translated src=- shape=69496ab7 vocab=e3722838
+-/
 theorem low_eq_sum_C_mul (e : ℕ) (g : MvPowerSeries (Fin 2) W) :
     low W e g = ∑ i ∈ Finset.range (e + 1),
       MvPowerSeries.C (MvPowerSeries.coeff (nd e i) g) * MvPowerSeries.X 0 ^ i * MvPowerSeries.X 1 ^ (e - i) := by
@@ -126,12 +159,18 @@ theorem low_eq_sum_C_mul (e : ℕ) (g : MvPowerSeries (Fin 2) W) :
 
 end Graded
 
+/--
+@isnad1 id=ne.1h2v.s6.5ef0cb1a72e2 from=translated src=- shape=faa93f22 vocab=e29db3e2
+-/
 theorem ne_zero_of_maximalIdeal_eq (W : Type) [CommRing W] [IsDomain W] [IsDiscreteValuationRing W]
     (π : W) (hπ : maximalIdeal W = Ideal.span {π}) : π ≠ 0 := by
   intro h
   apply IsDiscreteValuationRing.not_a_field (R := W)
   rw [hπ, h, Ideal.span_singleton_zero]
 
+/--
+@isnad1 id=eq.1h3v.s9.9072feede972 from=translated src=- shape=2583a6de vocab=77ca078f
+-/
 theorem coeff_zero_eq_zero_of_sub_drinfeldForm_mem (q : ℕ) [Fact q.Prime] (W : Type) [CommRing W]
     (f : MvPowerSeries (Fin 2) W)
     (hf : f - DrinfeldCurve.LocalChart.drinfeldForm q W ∈
@@ -157,6 +196,9 @@ theorem coeff_zero_eq_zero_of_sub_drinfeldForm_mem (q : ℕ) [Fact q.Prime] (W :
   rw [map_sub, h2, sub_zero] at h1
   exact h1
 
+/--
+@isnad1 id=iff.0h2v.s9.de7a3d4446c6 from=translated src=- shape=c53b2c22 vocab=719df3cf
+-/
 theorem memSpanX_iff_coeff_zero_eq_zero (W : Type) [CommRing W] (g : MvPowerSeries (Fin 2) W) :
     g ∈ Ideal.span {(MvPowerSeries.X 0 : MvPowerSeries (Fin 2) W), MvPowerSeries.X 1} ↔
       MvPowerSeries.coeff (0 : Fin 2 →₀ ℕ) g = 0 := by
@@ -170,6 +212,9 @@ theorem memSpanX_iff_coeff_zero_eq_zero (W : Type) [CommRing W] (g : MvPowerSeri
       ext i; fin_cases i <;> simp <;> omega
     rw [this]; exact h
 
+/--
+@isnad1 id=iff.3h6v.s13.26eaeae56307 from=translated src=- shape=675bde8e vocab=b90c7c33
+-/
 theorem mem_map_span_X_iff_not_isUnit (W : Type) [CommRing W] [IsDomain W] [IsDiscreteValuationRing W]
     (π : W) (hπ : maximalIdeal W = Ideal.span {π})
     (f u v : MvPowerSeries (Fin 2) W) (hv : IsUnit v)
@@ -230,6 +275,9 @@ theorem mem_map_span_X_iff_not_isUnit (W : Type) [CommRing W] [IsDomain W] [IsDi
     rw [hgsplit, map_add, map_mul]
     exact Ideal.add_mem _ (Ideal.mem_map_of_mem _ hgI) (Ideal.mul_mem_left _ _ hCπ)
 
+/--
+@isnad1 id=mem.3h7v.s8.ad8d07ca7d76 from=translated src=- shape=beb365fc vocab=5f62d4e8
+-/
 theorem map_mem_pow_of_mem_pow {A B : Type} [CommRing A] [CommRing B] (ψ : A ≃+* B)
     (J₁ : Ideal A) (J₂ : Ideal B)
     (h₁ : ∀ x, x ∈ J₁ → ¬ IsUnit x) (h₂ : ∀ y, ¬ IsUnit y → y ∈ J₂)
@@ -251,6 +299,9 @@ variable (W : Type) [CommRing W]
 noncomputable def lineSubst (a b : W) : Fin 2 → PowerSeries W :=
   fun s => PowerSeries.C (if s = 0 then a else b) * PowerSeries.X
 
+/--
+@isnad1 id=hassubst.0h3v.s4.d04236deed5a from=translated src=- shape=b0d56de5 vocab=ee6c2860
+-/
 theorem hasSubst_lineSubst (a b : W) : MvPowerSeries.HasSubst (lineSubst W a b) := by
   apply MvPowerSeries.hasSubst_of_constantCoeff_zero
   intro s
@@ -260,29 +311,47 @@ theorem hasSubst_lineSubst (a b : W) : MvPowerSeries.HasSubst (lineSubst W a b) 
 noncomputable def lineEval (a b : W) (G : MvPowerSeries (Fin 2) W) : PowerSeries W :=
   MvPowerSeries.subst (lineSubst W a b) G
 
+/--
+@isnad1 id=eq.0h5v.s6.4f8545f4b4dc from=translated src=- shape=0e3ee65c vocab=e90724af
+-/
 theorem lineEval_mul (a b : W) (G H : MvPowerSeries (Fin 2) W) :
     lineEval W a b (G * H) = lineEval W a b G * lineEval W a b H :=
   MvPowerSeries.subst_mul (hasSubst_lineSubst W a b) G H
 
+/--
+@isnad1 id=eq.0h5v.s7.a62756ce09a5 from=translated src=- shape=fc5bf67d vocab=9fc167b7
+-/
 theorem lineEval_pow (a b : W) (G : MvPowerSeries (Fin 2) W) (n : ℕ) :
     lineEval W a b (G ^ n) = lineEval W a b G ^ n :=
   MvPowerSeries.subst_pow (hasSubst_lineSubst W a b) G n
 
+/--
+@isnad1 id=eq.0h5v.s6.7de50b6c51a5 from=translated src=- shape=fff96a49 vocab=5650610a
+-/
 theorem lineEval_sum (a b : W) (s : Finset ℕ) (G : ℕ → MvPowerSeries (Fin 2) W) :
     lineEval W a b (∑ i ∈ s, G i) = ∑ i ∈ s, lineEval W a b (G i) := by
   unfold lineEval
   rw [← MvPowerSeries.coe_substAlgHom (hasSubst_lineSubst W a b), map_sum]
 
+/--
+@isnad1 id=eq.0h4v.s7.943c42d1954b from=translated src=- shape=399b97fb vocab=153b733a
+-/
 theorem lineEval_C (a b w : W) :
     lineEval W a b (MvPowerSeries.C w) = PowerSeries.C w := by
   unfold lineEval
   rw [MvPowerSeries.subst_C]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.c88e107f0f97 from=translated src=- shape=7d06a818 vocab=e3d0622e
+-/
 theorem mvcoeff_C_mul_X_pow (c : W) (e m : ℕ) :
     MvPowerSeries.coeff (Finsupp.single () e) (PowerSeries.C c * PowerSeries.X ^ m) = if e = m then c else 0 :=
   PowerSeries.coeff_C_mul_X_pow c m e
 
+/--
+@isnad1 id=eq.0h5v.s8.a43fc81e808a from=translated src=- shape=bca0e596 vocab=e11bb65e
+-/
 theorem coeff_lineEval (a b : W) (G : MvPowerSeries (Fin 2) W) (e : ℕ) :
     PowerSeries.coeff e (lineEval W a b G) =
       ∑ i ∈ Finset.range (e + 1), MvPowerSeries.coeff (nd e i) G * a ^ i * b ^ (e - i) := by
@@ -316,11 +385,17 @@ theorem coeff_lineEval (a b : W) (G : MvPowerSeries (Fin 2) W) (e : ℕ) :
     simp only [Finset.coe_image, Finset.coe_range, Set.mem_image, Set.mem_Iio]
     exact ⟨d 0, by omega, by rw [(eq_nd d), h, nd_zero]⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.196bd2d7ae00 from=translated src=- shape=8cf1ca62 vocab=456d118c
+-/
 theorem constantCoeff_lineEval (a b : W) (G : MvPowerSeries (Fin 2) W) :
     PowerSeries.constantCoeff (lineEval W a b G) = MvPowerSeries.coeff (0 : Fin 2 →₀ ℕ) G := by
   rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply, coeff_lineEval]
   simp [nd]
 
+/--
+@isnad1 id=eq.0h4v.s9.1b01054651bc from=translated src=- shape=2a8d29dd vocab=4d8a88e5
+-/
 theorem coeff_one_lineEval (a b : W) (G : MvPowerSeries (Fin 2) W) :
     PowerSeries.coeff 1 (lineEval W a b G) =
       MvPowerSeries.coeff (Finsupp.single (0 : Fin 2) 1) G * a +
@@ -328,6 +403,9 @@ theorem coeff_one_lineEval (a b : W) (G : MvPowerSeries (Fin 2) W) :
   rw [coeff_lineEval, Finset.sum_range_succ, Finset.sum_range_succ, Finset.sum_range_zero]
   simp [nd, add_comm]
 
+/--
+@isnad1 id=eq.2h5v.s9.fb986272c628 from=translated src=- shape=86a5bcf5 vocab=f6c43c6e
+-/
 theorem coeff_pow_mul_pow (φ χ : PowerSeries W) (hφ : PowerSeries.constantCoeff φ = 0)
     (hχ : PowerSeries.constantCoeff χ = 0) (j k : ℕ) :
     PowerSeries.coeff (j + k) (φ ^ j * χ ^ k) = PowerSeries.coeff 1 φ ^ j * PowerSeries.coeff 1 χ ^ k := by
@@ -345,6 +423,9 @@ theorem coeff_pow_mul_pow (φ χ : PowerSeries W) (hφ : PowerSeries.constantCoe
 
 end Line
 
+/--
+@isnad1 id=and.2h4v.s8.0581c1e4aa41 from=translated src=- shape=fa1e3e40 vocab=080a9222
+-/
 theorem natDir_rational (q : ℕ) [Fact q.Prime] (W : Type) [CommRing W] [IsLocalRing W]
     (hq : (q : W) ∈ maximalIdeal W) (n₀ n₁ : ℕ) (h : n₀ = 1 ∨ (n₀ = 0 ∧ n₁ = 1)) :
     ((n₀ : W) ∉ maximalIdeal W ∨ (n₁ : W) ∉ maximalIdeal W) ∧
@@ -375,6 +456,9 @@ theorem natDir_rational (q : ℕ) [Fact q.Prime] (W : Type) [CommRing W] [IsLoca
     rw [Nat.cast_zero, Nat.cast_one, zero_pow hq0, zero_mul, zero_mul, sub_zero]
     exact zero_mem _
 
+/--
+@isnad1 id=isunit.5h11v.s9.7374d7f24ceb from=translated src=- shape=d0fdc23b vocab=a4601f78
+-/
 theorem isUnit_of_sub_sum_mem (W₁ W₂ : Type) [CommRing W₁] [CommRing W₂] [IsLocalRing W₂]
     (ρ : W₁ →+* W₂) (e : ℕ) (c : ℕ → W₁) (lam : W₂) (hlam : IsUnit lam) (n₀ n₁ : ℕ) (ℓ₀ ℓ₁ : W₂)
     (h₀ : ℓ₀ - lam * (n₀ : W₂) ∈ maximalIdeal W₂) (h₁ : ℓ₁ - lam * (n₁ : W₂) ∈ maximalIdeal W₂)
@@ -417,6 +501,9 @@ open scoped _root_.P2MW.S_DrinfeldCurve_LocalChart_exists_mem_pow_isUnit_homogen
 
 open DrinfeldCurve.LocalChart.HasseTransportAux
 
+/--
+@isnad1 id=ex.16h17v.s16.1001ad50aab4 from=translated src=- shape=3225d29f vocab=412f56de
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime]
     (W₁ : Type) [CommRing W₁] [IsDomain W₁] [IsDiscreteValuationRing W₁]

@@ -23,6 +23,9 @@ open _root_.Deformation
 variable {R : Type u} [CommRing R] {p : ℕ} [Fact p.Prime] {n : ℕ}
 variable {A : Type v} [CommRing A] [Bialgebra R A] {B : Type w} [CommRing B] [Bialgebra R B]
 
+/--
+@isnad1 id=eq.1h5v.s9.ea8d92e062e4 from=translated src=- shape=31360b49 vocab=38678381
+-/
 theorem apply_eq_algebraMap_counit_of_mem_hopfKer (π : A →ₐc[R] B) {a : A}
     (ha : a ∈ HopfAlgebra.hopfKer π) :
     π a = algebraMap R B (Coalgebra.counit (R := R) a) := by
@@ -51,6 +54,9 @@ theorem apply_eq_algebraMap_counit_of_mem_hopfKer (π : A →ₐc[R] B) {a : A}
   rw [h3, Coalgebra.sum_counit_smul 𝓡] at h2
   rw [h2, Algebra.algebraMap_eq_smul_one]
 
+/--
+@isnad1 id=iff.0h7v.s11.b4b4dc74993e from=translated src=- shape=086a873f vocab=677485d6
+-/
 theorem main (π : A →ₐc[R] B) (x : wittHom R p n A) :
     wittHomMap p n π x = 0 ↔
       ∀ i, (x : TruncatedWittVector p n A).coeff i ∈ HopfAlgebra.hopfKer π := by
@@ -92,6 +98,9 @@ theorem main (π : A →ₐc[R] B) (x : wittHom R p n A) :
 
 end Deformation.WittHomLeftExact
 
+/--
+@isnad1 id=iff.0h7v.s11.b4b4dc74993e from=translated src=- shape=086a873f vocab=677485d6
+-/
 theorem solution
     {R : Type u} [CommRing R] {p : ℕ} [Fact p.Prime] {n : ℕ}
     {A : Type v} [CommRing A] [Bialgebra R A] {B : Type w} [CommRing B] [Bialgebra R B]

@@ -16,11 +16,17 @@ open _root_.CerednikDrinfeld
 
 variable {E V : Type} [Fintype E] [DecidableEq V]
 
+/--
+@isnad1 id=eq.0h5v.s7.7848a390608f from=translated src=- shape=92f7b925 vocab=640bf103
+-/
 theorem pushforward_apply (f : E → V) (x : E → ℤ) (v : V) :
     pushforward f x v = ∑ e : E, if f e = v then x e else 0 := by
   simp only [pushforward, Matrix.mulVecLin_apply, Matrix.mulVec, dotProduct, degeneracyMatrix, Matrix.of_apply,
     ite_mul, one_mul, zero_mul]
 
+/--
+@isnad1 id=iff.0h4v.s8.b705a38b8e0e from=translated src=- shape=ab99b49c vocab=1f0489c2
+-/
 theorem mem_ribbonKernel_iff' (D : DegeneracyData E V) (x : E → ℤ) :
     x ∈ ribbonKernel D ↔ pushforward D.a x = 0 ∧ pushforward D.b x = 0 := by
   rw [mem_ribbonKernel]
@@ -32,6 +38,9 @@ theorem mem_ribbonKernel_iff' (D : DegeneracyData E V) (x : E → ℤ) :
     · simpa [jointDelta] using ha
     · simpa [jointDelta] using hb
 
+/--
+@isnad1 id=eq.0h7v.s8.33932ced9dd0 from=translated src=- shape=c5b0ff15 vocab=b69dbd1d
+-/
 theorem pushforward_tag_apply (f : E → V) (i : Fin 2) (x : E → ℤ) (v : V) (j : Fin 2) :
     pushforward (fun e => (f e, i)) x (v, j) = if j = i then pushforward f x v else 0 := by
   rw [pushforward_apply, pushforward_apply]
@@ -46,6 +55,9 @@ theorem pushforward_tag_apply (f : E → V) (i : Fin 2) (x : E → ℤ) (v : V) 
     refine Finset.sum_eq_zero fun e _ => ?_
     rw [ite_eq_right (fun hh : (f e, i) = (v, j) => hij (congrArg Prod.snd hh).symm)]
 
+/--
+@isnad1 id=iff.0h5v.s9.5abfd9e7beb4 from=translated src=- shape=a6bf0bd3 vocab=af8a0b7f
+-/
 theorem pushforward_tag_eq_zero_iff (f : E → V) (i : Fin 2) (x : E → ℤ) :
     pushforward (fun e => (f e, i)) x = 0 ↔ pushforward f x = 0 := by
   constructor
@@ -63,6 +75,9 @@ theorem pushforward_tag_eq_zero_iff (f : E → V) (i : Fin 2) (x : E → ℤ) :
 end CerednikDrinfeld.Unfold
 
 open CerednikDrinfeld.Unfold in
+/--
+@isnad1 id=other.0h3v.s13.fd83d78ec141 from=translated src=- shape=126dfa19 vocab=beea78c2
+-/
 theorem solution
     {E V : Type} [Fintype E] [Fintype V] [DecidableEq V] (D : DegeneracyData E V) :
     let D' : DegeneracyData E (V × Fin 2) := ⟨fun e => (D.a e, 0), fun e => (D.b e, 1), D.w⟩

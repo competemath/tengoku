@@ -14,12 +14,21 @@ namespace FibreCont
 
 open Complex
 
+/--
+@isnad1 id=isopen.0h1v.s4.4e047f5a8158 from=translated src=- shape=c7f34c7d vocab=4be0ec2c
+-/
 theorem isOpen_halfPlane (σ : ℝ) : IsOpen {s : ℂ | σ < s.re} :=
   isOpen_lt continuous_const Complex.continuous_re
 
+/--
+@isnad1 id=isprecon.0h1v.s4.ba7c15c09846 from=translated src=- shape=c7f34c7d vocab=3588f831
+-/
 theorem isPreconnected_halfPlane (σ : ℝ) : IsPreconnected {s : ℂ | σ < s.re} :=
   (convex_halfSpace_re_gt σ).isPreconnected
 
+/--
+@isnad1 id=differen.1h1v.s6.ef0c732e30db from=translated src=- shape=cc743aa5 vocab=81b18d2d
+-/
 theorem differentiable_cpow_neg (N : ℝ) (hN : 0 < N) : Differentiable ℂ fun s : ℂ => (N : ℂ) ^ (-s) := by
   have hN0 : (N : ℂ) ≠ 0 := Complex.ofReal_ne_zero.mpr hN.ne'
   have : (fun s : ℂ => (N : ℂ) ^ (-s)) = fun s : ℂ => Complex.exp (Complex.log (N : ℂ) * (-s)) := by
@@ -28,6 +37,9 @@ theorem differentiable_cpow_neg (N : ℝ) (hN : 0 < N) : Differentiable ℂ fun 
   rw [this]
   exact Complex.differentiable_exp.comp ((differentiable_const _).mul differentiable_neg)
 
+/--
+@isnad1 id=differen.1h2v.s6.1d9ca01cc184 from=translated src=- shape=fc04bfee vocab=9f36bfb4
+-/
 theorem differentiable_polynomial_eval_cpow_neg (N : ℝ) (hN : 0 < N) (P : Polynomial ℂ) :
     Differentiable ℂ fun s : ℂ => P.eval ((N : ℂ) ^ (-s)) := by
   induction P using Polynomial.induction_on' with
@@ -39,6 +51,9 @@ theorem differentiable_polynomial_eval_cpow_neg (N : ℝ) (hN : 0 < N) (P : Poly
 
 end FibreCont
 
+/--
+@isnad1 id=eq.4h7v.s7.84cc97f951d0 from=translated src=- shape=ace78aef vocab=ce5dec7c
+-/
 theorem solution
     (N : ℝ) (hN : 0 < N) (σ₂ σ₀ : ℝ) (f : ℂ → ℂ)
     (hf : DifferentiableOn ℂ f {s : ℂ | σ₂ < s.re})

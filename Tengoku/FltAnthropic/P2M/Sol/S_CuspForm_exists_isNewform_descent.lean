@@ -34,6 +34,9 @@ private theorem exists_isNewform_descent_aux :
 end CuspForm
 
 open CongruenceSubgroup ModularFormClass in
+/--
+@isnad1 id=ex.1h2v.s10.6fdf6cdfa984 from=translated src=- shape=7c99666e vocab=17d2db3e
+-/
 theorem solution {N : ℕ} [NeZero N]
     (f : CuspForm (Gamma0 N) 2) (hf : f.IsNormalizedEigenform) :
     ∃ (M : ℕ) (_ : M ∣ N) (g : CuspForm (Gamma0 M) 2),

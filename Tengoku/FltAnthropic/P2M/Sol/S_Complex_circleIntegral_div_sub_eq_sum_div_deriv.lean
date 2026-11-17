@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open scoped Topology
 
+/--
+@isnad1 id=eq.6h6v.s8.ef18b9b93275 from=translated src=- shape=04335e0b vocab=85cf6556
+-/
 theorem solution {R Ψ : ℂ → ℂ} {c t : ℂ} {r : ℝ}
     (hr : 0 < r) (hR : ∀ z ∈ Metric.closedBall c r, AnalyticAt ℂ R z)
     (hΨ : ∀ z ∈ Metric.closedBall c r, AnalyticAt ℂ Ψ z)

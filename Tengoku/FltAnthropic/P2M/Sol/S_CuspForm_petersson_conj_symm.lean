@@ -24,9 +24,15 @@ def summand (f g : CuspForm (CongruenceSubgroup.Gamma0 N) k)
     (q : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N) (τ : ℍ) : ℂ :=
   UpperHalfPlane.petersson k (tr f q.out) (tr g q.out) τ
 
+/--
+@isnad1 id=eq.0h5v.s9.bd1150f52612 from=translated src=- shape=0eebad85 vocab=bf12f60b
+-/
 theorem integrand_eq_finsum (f g : CuspForm (CongruenceSubgroup.Gamma0 N) k) (τ : ℍ) :
     CuspForm.peterssonIntegrand f g τ = ∑ᶠ q, summand f g q τ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.494fbf6b3c03 from=translated src=- shape=8850e7dc vocab=493f0076
+-/
 theorem integrand_eq_sum [Fintype (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N)]
     (f g : CuspForm (CongruenceSubgroup.Gamma0 N) k) (τ : ℍ) :
     CuspForm.peterssonIntegrand f g τ = ∑ q, summand f g q τ := by
@@ -38,6 +44,9 @@ def selfDensity [Fintype (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N)]
 
 def twoI : ℍ := ⟨2 * Complex.I, by simp⟩
 
+/--
+@isnad1 id=eq.0h6v.s8.5b68109856a1 from=translated src=- shape=a9ed8c42 vocab=ac383525
+-/
 theorem summand_conj (f g : CuspForm (CongruenceSubgroup.Gamma0 N) k)
     (q : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N) (τ : UpperHalfPlane) :
     starRingEnd ℂ (summand g f q τ) = summand f g q τ := by
@@ -45,6 +54,9 @@ theorem summand_conj (f g : CuspForm (CongruenceSubgroup.Gamma0 N) k)
     Complex.conj_ofReal]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s8.5c532976e40b from=translated src=- shape=3ff7ddb5 vocab=e66352a8
+-/
 theorem integrand_conj [Fintype (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N)]
     (f g : CuspForm (CongruenceSubgroup.Gamma0 N) k) (τ : UpperHalfPlane) :
     starRingEnd ℂ (CuspForm.peterssonIntegrand g f τ) = CuspForm.peterssonIntegrand f g τ := by
@@ -61,6 +73,9 @@ end fin
 
 end AlliAux1Pet
 open scoped _root_.P2MW.S_CuspForm_petersson_conj_symm.AlliAux1Pet
+/--
+@isnad1 id=eq.0h4v.s8.b8d1060ddeda from=translated src=- shape=03a78823 vocab=6d8b8778
+-/
 theorem solution {N : ℕ} {k : ℤ} [NeZero N]
     (f g : CuspForm (CongruenceSubgroup.Gamma0 N) k) :
     starRingEnd ℂ (CuspForm.petersson g f) = CuspForm.petersson f g := by

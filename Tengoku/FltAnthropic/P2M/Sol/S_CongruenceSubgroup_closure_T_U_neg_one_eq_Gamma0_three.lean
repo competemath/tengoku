@@ -16,25 +16,46 @@ namespace A2Gamma0Three
 
 namespace Gamma0Three
 
+/--
+@isnad1 id=fact.0h0v.s2.fdf266938498 from=translated src=- shape=8d7dbbf6 vocab=c1c9ca6d
+-/
 scoped instance fact_prime_three_A2 : Fact (Nat.Prime 3) := ⟨by norm_num⟩
 
 def repOfLabel : Option (ZMod 3) → SL(2, ℤ)
   | none => 1
   | some k => ⟨!![0, -1; 1, (k.val : ℤ)], by simp [Matrix.det_fin_two_of]⟩
 
+/--
+@isnad1 id=eq.0h0v.s6.c3f82872f548 from=translated src=- shape=d32e451a vocab=497906e2
+-/
 @[scoped simp] lemma repOfLabel_none : repOfLabel none = 1 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.8f84aa8cf60c from=translated src=- shape=bb17f649 vocab=4755727d
+-/
 @[scoped simp] lemma repOfLabel_some_one_zero (k : ZMod 3) : repOfLabel (some k) 1 0 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.5ae6180e624b from=translated src=- shape=167414b4 vocab=a437b3e2
+-/
 @[scoped simp] lemma repOfLabel_some_one_one (k : ZMod 3) :
     repOfLabel (some k) 1 1 = (k.val : ℤ) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s7.a406afd5260e from=translated src=- shape=04eee0ce vocab=568d92df
+-/
 @[scoped simp] lemma one_apply_one_zero : (1 : SL(2, ℤ)) 1 0 = 0 := rfl
 
+/--
+@isnad1 id=eq.0h0v.s7.5416eec10a68 from=translated src=- shape=04eee0ce vocab=568d92df
+-/
 @[scoped simp] lemma one_apply_one_one : (1 : SL(2, ℤ)) 1 1 = 1 := rfl
 
 def transversal : Set SL(2, ℤ) := Set.range repOfLabel
 
+/--
+@isnad1 id=mem.0h0v.s7.f3ce48f492d0 from=translated src=- shape=0f0fcc84 vocab=e3a9be34
+-/
 lemma one_mem_transversal : (1 : SL(2, ℤ)) ∈ transversal := ⟨none, rfl⟩
 
 def label (g : SL(2, ℤ)) : Option (ZMod 3) :=
@@ -44,6 +65,9 @@ def label (g : SL(2, ℤ)) : Option (ZMod 3) :=
 private lemma intCast_val (k : ZMod 3) : (((k.val : ℕ) : ℤ) : ZMod 3) = k := by
   exact_mod_cast ZMod.natCast_rightInverse k
 
+/--
+@isnad1 id=ne.1h1v.s8.bf46797f55f4 from=translated src=- shape=58cd7501 vocab=0edf81a7
+-/
 lemma apply_one_one_ne_zero (g : SL(2, ℤ)) (hc : (g 1 0 : ZMod 3) = 0) :
     (g 1 1 : ZMod 3) ≠ 0 := by
   intro hd
@@ -72,11 +96,17 @@ private theorem inv_entries (A : SL(2, ℤ)) :
     rw [Matrix.SpecialLinearGroup.coe_inv, Matrix.adjugate_fin_two]
   refine ⟨?_, ?_, ?_, ?_⟩ <;> simp [h]
 
+/--
+@isnad1 id=eq.0h2v.s9.a27e34aa398c from=translated src=- shape=5a2ca795 vocab=f3f3675c
+-/
 lemma mul_inv_apply_one_zero (g h : SL(2, ℤ)) :
     (g * h⁻¹) 1 0 = g 1 0 * h 1 1 - g 1 1 * h 1 0 := by
   rw [mul_entry, (inv_entries h).1, (inv_entries h).2.2.1]
   ring
 
+/--
+@isnad1 id=iff.0h2v.s10.1866b2e796b0 from=translated src=- shape=9a6ebe4a vocab=913fc3dc
+-/
 theorem mul_inv_mem_iff (g h : SL(2, ℤ)) :
     g * h⁻¹ ∈ Gamma0 3 ↔
       (g 1 0 : ZMod 3) * (h 1 1 : ZMod 3) = (g 1 1 : ZMod 3) * (h 1 0 : ZMod 3) := by
@@ -84,6 +114,9 @@ theorem mul_inv_mem_iff (g h : SL(2, ℤ)) :
   push_cast
   exact sub_eq_zero
 
+/--
+@isnad1 id=iff.0h2v.s8.d69ad4e5c177 from=translated src=- shape=071fbf96 vocab=85663112
+-/
 theorem mul_inv_repOfLabel_mem_iff (g : SL(2, ℤ)) (l : Option (ZMod 3)) :
     g * (repOfLabel l)⁻¹ ∈ Gamma0 3 ↔ l = label g := by
   rw [mul_inv_mem_iff]
@@ -108,6 +141,9 @@ theorem mul_inv_repOfLabel_mem_iff (g : SL(2, ℤ)) (l : Option (ZMod 3)) :
     · rw [ite_eq_right hc, Option.some_inj, eq_div_iff hc]
       constructor <;> intro h <;> linear_combination h
 
+/--
+@isnad1 id=iscomple.0h0v.s7.9f7c305160e0 from=translated src=- shape=e3493e40 vocab=081fc759
+-/
 theorem isComplement_transversal :
     IsComplement (Gamma0 3 : Set SL(2, ℤ)) transversal := by
   rw [isComplement_iff_existsUnique_mul_inv_mem]
@@ -117,6 +153,9 @@ theorem isComplement_transversal :
   · rintro ⟨x, l, rfl⟩ ht
     exact Subtype.ext (congrArg repOfLabel ((mul_inv_repOfLabel_mem_iff g l).mp ht))
 
+/--
+@isnad1 id=eq.0h1v.s7.1fc873a07113 from=translated src=- shape=551143b5 vocab=824d2bce
+-/
 lemma coe_toRightFun (g : SL(2, ℤ)) :
     (isComplement_transversal.toRightFun g : SL(2, ℤ)) = repOfLabel (label g) := by
   have huniq := isComplement_iff_existsUnique_mul_inv_mem.mp isComplement_transversal g
@@ -131,6 +170,9 @@ lemma coe_toRightFun (g : SL(2, ℤ)) :
 def schreierGen (l : Option (ZMod 3)) (s : SL(2, ℤ)) : SL(2, ℤ) :=
   repOfLabel l * s * (repOfLabel (label (repOfLabel l * s)))⁻¹
 
+/--
+@isnad1 id=mem.0h2v.s7.e6b341006212 from=translated src=- shape=803767a3 vocab=a077c134
+-/
 theorem schreierGen_mem (l : Option (ZMod 3)) (s : SL(2, ℤ)) :
     schreierGen l s ∈ Gamma0 3 :=
   (mul_inv_repOfLabel_mem_iff (repOfLabel l * s) (label (repOfLabel l * s))).mpr rfl
@@ -139,6 +181,9 @@ def schreierGens : Set SL(2, ℤ) :=
   {x | ∃ l : Option (ZMod 3),
     x = schreierGen l ModularGroup.S ∨ x = schreierGen l ModularGroup.T}
 
+/--
+@isnad1 id=eq.0h0v.s6.6c059a229afa from=translated src=- shape=ab32f238 vocab=303ea004
+-/
 theorem closure_schreierGens : Subgroup.closure schreierGens = Gamma0 3 := by
   refine le_antisymm ((Subgroup.closure_le _).mpr ?_) ?_
   · rintro x ⟨l, rfl | rfl⟩ <;> exact schreierGen_mem _ _
@@ -160,20 +205,38 @@ open scoped _root_.P2MW.S_CongruenceSubgroup_closure_T_U_neg_one_eq_Gamma0_three
 
 def U₃ : SL(2, ℤ) := ⟨!![1, 0; -3, 1], by simp [Matrix.det_fin_two_of]⟩
 
+/--
+@isnad1 id=eq.0h0v.s6.b105ea8f261f from=translated src=- shape=552b42ea vocab=2d63a361
+-/
 @[scoped simp] lemma U₃_one_zero : U₃ 1 0 = -3 := rfl
+/--
+@isnad1 id=eq.0h0v.s6.7c5534341a76 from=translated src=- shape=669cc5ff vocab=902c41ea
+-/
 @[scoped simp] lemma U₃_one_one : U₃ 1 1 = 1 := rfl
 
+/--
+@isnad1 id=mem.0h0v.s7.196b421842dd from=translated src=- shape=95df9e21 vocab=8624f481
+-/
 lemma T_mem_gamma0_three : ModularGroup.T ∈ Gamma0 3 := by
   rw [Gamma0_mem]; decide
 
+/--
+@isnad1 id=mem.0h0v.s7.42d84d007abc from=translated src=- shape=95df9e21 vocab=ac7a4d06
+-/
 lemma U₃_mem_gamma0_three : U₃ ∈ Gamma0 3 := by
   rw [Gamma0_mem]; decide
 
+/--
+@isnad1 id=mem.0h0v.s8.ebb0d762efe9 from=translated src=- shape=99b5c3fa vocab=3a18f723
+-/
 lemma neg_one_mem_gamma0_three : (-1 : SL(2, ℤ)) ∈ Gamma0 3 := by
   rw [Gamma0_mem]; decide
 
 def gens : Set SL(2, ℤ) := {ModularGroup.T, U₃, -1}
 
+/--
+@isnad1 id=le.0h0v.s7.9b842f0e1368 from=translated src=- shape=1eb93031 vocab=91f3ab91
+-/
 lemma gens_subset_gamma0_three : gens ⊆ (Gamma0 3 : Subgroup SL(2, ℤ)) := by
   rintro x (rfl | rfl | rfl)
   · exact T_mem_gamma0_three
@@ -199,6 +262,9 @@ private lemma schreierGen_one_S :
 private lemma schreierGen_two_S :
     schreierGen (some 2) ModularGroup.S = -1 * (U₃ * ModularGroup.T) := by decide +kernel
 
+/--
+@isnad1 id=le.0h0v.s7.adbe91715502 from=translated src=- shape=b7ea182e vocab=18276761
+-/
 lemma schreierGens_subset_closure_gens :
     schreierGens ⊆ (Subgroup.closure gens : Set SL(2, ℤ)) := by
   have hT : ModularGroup.T ∈ Subgroup.closure gens :=
@@ -227,6 +293,9 @@ lemma schreierGens_subset_closure_gens :
 end Gamma0Three
 open scoped _root_.P2MW.S_CongruenceSubgroup_closure_T_U_neg_one_eq_Gamma0_three.A2Gamma0Three.Gamma0Three
 
+/--
+@isnad1 id=eq.0h0v.s6.3bb7afe913b2 from=translated src=- shape=ab32f238 vocab=b3ab2a4d
+-/
 theorem closure_T_U_neg_one_eq : Subgroup.closure gens = Gamma0 3 := by
   refine le_antisymm ((Subgroup.closure_le _).mpr gens_subset_gamma0_three) ?_
   rw [← Gamma0Three.closure_schreierGens]
@@ -236,6 +305,9 @@ end A2Gamma0Three
 open scoped _root_.P2MW.S_CongruenceSubgroup_closure_T_U_neg_one_eq_Gamma0_three.A2Gamma0Three.Gamma0Three _root_.P2MW.S_CongruenceSubgroup_closure_T_U_neg_one_eq_Gamma0_three.A2Gamma0Three
 
 open scoped MatrixGroups in
+/--
+@isnad1 id=eq.1h1v.s9.56f1f6ec2051 from=translated src=- shape=52bc809b vocab=d2a43df6
+-/
 theorem solution (U : SL(2, ℤ)) (hU : (U : Matrix (Fin 2) (Fin 2) ℤ) = !![1, 0; -3, 1]) :
     Subgroup.closure ({ModularGroup.T, U, -1} : Set SL(2, ℤ)) = CongruenceSubgroup.Gamma0 3 := by
   have hU' : U = A2Gamma0Three.U₃ := Subtype.ext hU

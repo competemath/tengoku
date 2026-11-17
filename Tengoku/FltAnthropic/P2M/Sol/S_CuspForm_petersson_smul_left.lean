@@ -24,9 +24,15 @@ def summand (f g : CuspForm (CongruenceSubgroup.Gamma0 N) k)
     (q : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N) (τ : ℍ) : ℂ :=
   UpperHalfPlane.petersson k (tr f q.out) (tr g q.out) τ
 
+/--
+@isnad1 id=eq.0h5v.s9.24d726c0c1b3 from=translated src=- shape=0eebad85 vocab=9f25e406
+-/
 theorem integrand_eq_finsum (f g : CuspForm (CongruenceSubgroup.Gamma0 N) k) (τ : ℍ) :
     CuspForm.peterssonIntegrand f g τ = ∑ᶠ q, summand f g q τ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.d10408f7c846 from=translated src=- shape=8850e7dc vocab=2d8caf12
+-/
 theorem integrand_eq_sum [Fintype (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N)]
     (f g : CuspForm (CongruenceSubgroup.Gamma0 N) k) (τ : ℍ) :
     CuspForm.peterssonIntegrand f g τ = ∑ q, summand f g q τ := by
@@ -38,6 +44,9 @@ def selfDensity [Fintype (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N)]
 
 def twoI : ℍ := ⟨2 * Complex.I, by simp⟩
 
+/--
+@isnad1 id=eq.0h7v.s10.ab48959d9709 from=translated src=- shape=7c39cec7 vocab=8340ef5a
+-/
 theorem summand_smul (c : ℂ) (f g : CuspForm (CongruenceSubgroup.Gamma0 N) k)
     (q : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N) (τ : UpperHalfPlane) :
     summand (c • f) g q τ = starRingEnd ℂ c * summand f g q τ := by
@@ -45,6 +54,9 @@ theorem summand_smul (c : ℂ) (f g : CuspForm (CongruenceSubgroup.Gamma0 N) k)
     UpperHalfPlane.petersson, Pi.smul_apply, smul_eq_mul, map_mul]
   ring
 
+/--
+@isnad1 id=eq.0h6v.s10.aa9ac5861628 from=translated src=- shape=805525c4 vocab=13df73b7
+-/
 theorem integrand_smul [Fintype (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N)]
     (c : ℂ) (f g : CuspForm (CongruenceSubgroup.Gamma0 N) k) (τ : UpperHalfPlane) :
     CuspForm.peterssonIntegrand (c • f) g τ = starRingEnd ℂ c * CuspForm.peterssonIntegrand f g τ := by
@@ -61,6 +73,9 @@ end fin
 
 end AlliAux1Pet
 open scoped _root_.P2MW.S_CuspForm_petersson_smul_left.AlliAux1Pet
+/--
+@isnad1 id=eq.0h5v.s9.716523ae47ef from=translated src=- shape=9e5daad1 vocab=4ba95c97
+-/
 theorem solution {N : ℕ} {k : ℤ} [NeZero N]
     (c : ℂ) (f g : CuspForm (CongruenceSubgroup.Gamma0 N) k) :
     CuspForm.petersson (c • f) g = starRingEnd ℂ c * CuspForm.petersson f g := by

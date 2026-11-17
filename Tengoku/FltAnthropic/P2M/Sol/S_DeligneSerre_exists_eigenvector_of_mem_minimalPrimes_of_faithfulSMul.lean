@@ -20,6 +20,9 @@ open Module
 
 open scoped IsMulCommutative in
 
+/--
+@isnad1 id=ex.1h4v.s9.504c33a058f5 from=translated src=- shape=7e5263a8 vocab=1f19a018
+-/
 theorem exists_eigenvector_of_mem_minimalPrimes_of_faithfulSMul_impl
     {K : Type*} [Field K] [IsAlgClosed K]
     {V : Type*} [AddCommGroup V] [Module K V] [FiniteDimensional K V]
@@ -136,6 +139,9 @@ theorem exists_eigenvector_of_mem_minimalPrimes_of_faithfulSMul_impl
 
 end DeligneSerre
 
+/--
+@isnad1 id=ex.1h4v.s9.504c33a058f5 from=translated src=- shape=7e5263a8 vocab=1f19a018
+-/
 theorem solution
     {K : Type*} [Field K] [IsAlgClosed K]
     {V : Type*} [AddCommGroup V] [Module K V] [FiniteDimensional K V]

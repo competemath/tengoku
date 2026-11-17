@@ -14,16 +14,25 @@ namespace EIS2K2
 
 noncomputable def F (n : ℕ) (w : ℂ) : ℂ := 1 / (w - (n + 1)) + 1 / (w + (n + 1))
 
+/--
+@isnad1 id=ne.1h2v.s5.c4d691bc5921 from=translated src=- shape=c02f3241 vocab=95eebe66
+-/
 lemma sub_ne_zero_of_mem {w : ℂ} (hw : w ∈ integerComplement) (n : ℕ) : w - (n + 1) ≠ 0 := by
   have := integerComplement_add_ne_zero hw (-(n + 1 : ℤ))
   push_cast at this
   rwa [← sub_eq_add_neg] at this
 
+/--
+@isnad1 id=ne.1h2v.s5.9e5bbb9482fc from=translated src=- shape=9389f74d vocab=294279a4
+-/
 lemma add_ne_zero_of_mem {w : ℂ} (hw : w ∈ integerComplement) (n : ℕ) : w + (n + 1) ≠ 0 := by
   have := integerComplement_add_ne_zero hw ((n + 1 : ℤ))
   push_cast at this
   exact this
 
+/--
+@isnad1 id=hasderiv.1h2v.s7.1401477b0be0 from=translated src=- shape=80e7530a vocab=85f1600c
+-/
 lemma hasDerivAt_F {w : ℂ} (hw : w ∈ integerComplement) (n : ℕ) :
     HasDerivAt (F n) (-(1 / (w - (n + 1)) ^ 2) - 1 / (w + (n + 1)) ^ 2) w := by
   have h1 : HasDerivAt (fun w : ℂ => (w - (n + 1))⁻¹) (-(1 : ℂ) / (w - (n + 1)) ^ 2) w :=
@@ -41,9 +50,15 @@ lemma hasDerivAt_F {w : ℂ} (hw : w ∈ integerComplement) (n : ℕ) :
   simp only [one_div]
   ring
 
+/--
+@isnad1 id=differen.1h2v.s6.6b88928b4a83 from=translated src=- shape=fda39fe2 vocab=e8457f37
+-/
 lemma differentiableOn_F {U : Set ℂ} (hU : U ⊆ integerComplement) (n : ℕ) : DifferentiableOn ℂ (F n) U :=
   fun _ hw => (hasDerivAt_F (hU hw) n).differentiableAt.differentiableWithinAt
 
+/--
+@isnad1 id=hasderiv.1h1v.s7.7630e12cde7c from=translated src=- shape=e37672bd vocab=03069af9
+-/
 lemma hasDerivAt_cot_sub {w : ℂ} (hw : w ∈ integerComplement) :
     HasDerivAt (fun x : ℂ => π * cot (π * x) - 1 / x)
       (-((π : ℂ) ^ 2 / Complex.sin (π * w) ^ 2) + 1 / w ^ 2) w := by
@@ -77,6 +92,9 @@ lemma hasDerivAt_cot_sub {w : ℂ} (hw : w ∈ integerComplement) :
   field_simp
   ring
 
+/--
+@isnad1 id=hassum.1h1v.s8.d45a594757b9 from=translated src=- shape=26e0d1aa vocab=2b3c1dcc
+-/
 theorem hasSum_nat (z : ℂ) (hz : z ∈ integerComplement) :
     HasSum (fun n : ℕ => 1 / (z + (n + 1)) ^ 2 + 1 / (z - (n + 1)) ^ 2)
       ((π : ℂ) ^ 2 / Complex.sin (π * z) ^ 2 - 1 / z ^ 2) := by
@@ -192,6 +210,9 @@ theorem hasSum_nat (z : ℂ) (hz : z ∈ integerComplement) :
   · funext n; ring
   · ring
 
+/--
+@isnad1 id=eq.1h1v.s7.21d5870a53fa from=translated src=- shape=485b6b8c vocab=256ddcb2
+-/
 theorem main (z : ℂ) (hz : z ∈ integerComplement) :
     ∑' n : ℤ, 1 / (z + n) ^ 2 = (π : ℂ) ^ 2 / Complex.sin (π * z) ^ 2 := by
   have hsum := hasSum_nat z hz
@@ -227,6 +248,9 @@ theorem main (z : ℂ) (hz : z ∈ integerComplement) :
 
 end EIS2K2
 
+/--
+@isnad1 id=eq.1h1v.s7.21d5870a53fa from=translated src=- shape=485b6b8c vocab=256ddcb2
+-/
 theorem solution (z : ℂ) (hz : z ∈ Complex.integerComplement) :
     ∑' n : ℤ, 1 / (z + n) ^ 2 = (π : ℂ) ^ 2 / Complex.sin (π * z) ^ 2 :=
   EIS2K2.main z hz

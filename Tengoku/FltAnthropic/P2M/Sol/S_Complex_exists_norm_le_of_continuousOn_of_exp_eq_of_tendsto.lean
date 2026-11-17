@@ -11,6 +11,9 @@ namespace P2mLogBranch
 
 open Filter Topology Complex
 
+/--
+@isnad1 id=ex.4h4v.s7.1a5ac5e9e275 from=translated src=- shape=7325cb74 vocab=f02a06cc
+-/
 theorem main {Λ ℓ : ℝ → ℂ} {a : ℝ} {c : ℂ} (hΛ : ContinuousOn Λ (Set.Ioi a))
     (hexp : ∀ s : ℝ, a < s → Complex.exp (Λ s) = ℓ s)
     (hlim : Filter.Tendsto ℓ (nhdsWithin a (Set.Ioi a)) (nhds c)) (hc : c ≠ 0) :
@@ -156,6 +159,9 @@ theorem main {Λ ℓ : ℝ → ℂ} {a : ℝ} {c : ℂ} (hΛ : ContinuousOn Λ (
 
 end P2mLogBranch
 
+/--
+@isnad1 id=ex.4h4v.s7.1a5ac5e9e275 from=translated src=- shape=7325cb74 vocab=f02a06cc
+-/
 theorem solution
     {Λ ℓ : ℝ → ℂ} {a : ℝ} {c : ℂ} (hΛ : ContinuousOn Λ (Set.Ioi a))
     (hexp : ∀ s : ℝ, a < s → Complex.exp (Λ s) = ℓ s)

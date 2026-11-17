@@ -29,11 +29,17 @@ def pmGamma1 (M : ℕ) : Subgroup SL(2, ℤ) where
       have h : (-a)⁻¹ = -a⁻¹ := inv_eq_of_mul_eq_one_right (by rw [neg_mul_neg, mul_inv_cancel])
       rw [← h]; exact inv_mem ha
 
+/--
+@isnad1 id=le.0h1v.s9.220bd8941a1e from=translated src=- shape=92e870fe vocab=b0b9f972
+-/
 theorem sup_le_pmGamma1 (M : ℕ) :
     CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) ≤ pmGamma1 M :=
   sup_le (fun _ hg => Or.inl hg)
     (Subgroup.zpowers_le.2 (Or.inr (by rw [neg_neg]; exact one_mem _)))
 
+/--
+@isnad1 id=eq.0h2v.s10.b8c6353d9561 from=translated src=- shape=7c26e4b9 vocab=93131524
+-/
 theorem trace_conj_T_zpow (σ : SL(2, ℤ)) (h : ℤ) :
     ((σ * ModularGroup.T ^ h * σ⁻¹ : SL(2, ℤ)) 0 0 : ℤ) + (σ * ModularGroup.T ^ h * σ⁻¹ : SL(2, ℤ)) 1 1 = 2 := by
   have h1 : Matrix.trace ((σ * ModularGroup.T ^ h * σ⁻¹ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) =
@@ -49,6 +55,9 @@ theorem trace_conj_T_zpow (σ : SL(2, ℤ)) (h : ℤ) :
 
 end RegCuspAux
 
+/--
+@isnad1 id=mem.2h3v.s10.77bdf53b1888 from=translated src=- shape=a4557b19 vocab=40e2bfbc
+-/
 theorem solution (M : ℕ) (hM : ¬ M ∣ 4)
     (σ : SL(2, ℤ)) (h : ℤ) (hmem : σ * ModularGroup.T ^ h * σ⁻¹ ∈ CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))) :
     σ * ModularGroup.T ^ h * σ⁻¹ ∈ CongruenceSubgroup.Gamma1 M := by

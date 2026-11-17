@@ -12,11 +12,17 @@ open scoped MatrixGroups
 
 namespace P2MtkDiamondLift
 
+/--
+@isnad1 id=eq.1h3v.s9.018e831caa9b from=translated src=- shape=8121768a vocab=8951bf74
+-/
 theorem crt_fst {m n : ℕ} (h : m.Coprime n) (x : ZMod (m * n)) :
     (ZMod.chineseRemainder h x).1 = ZMod.castHom (dvd_mul_right m n) (ZMod m) x := by
   show (ZMod.castHom (show m.lcm n ∣ m * n by simp [Nat.lcm_dvd_iff]) (ZMod m × ZMod n) x).1 = _
   rw [ZMod.castHom_apply, ZMod.castHom_apply, Prod.fst_zmod_cast]
 
+/--
+@isnad1 id=eq.1h3v.s9.122921555e53 from=translated src=- shape=fd3b9acc vocab=062185b9
+-/
 theorem crt_snd {m n : ℕ} (h : m.Coprime n) (x : ZMod (m * n)) :
     (ZMod.chineseRemainder h x).2 = ZMod.castHom (dvd_mul_left n m) (ZMod n) x := by
   show (ZMod.castHom (show m.lcm n ∣ m * n by simp [Nat.lcm_dvd_iff]) (ZMod m × ZMod n) x).2 = _
@@ -24,6 +30,9 @@ theorem crt_snd {m n : ℕ} (h : m.Coprime n) (x : ZMod (m * n)) :
 
 end P2MtkDiamondLift
 
+/--
+@isnad1 id=ex.2h4v.s9.3dc1240e77de from=translated src=- shape=bc60a94b vocab=c7c12ed0
+-/
 theorem solution
     (q M' : ℕ) [NeZero q] [NeZero M'] (hqM' : Nat.Coprime q M') (ℓ : ℕ) (hℓ : ℓ ∣ M') (d : (ZMod ℓ)ˣ) :
     ∃ γ : SL(2, ℤ), γ ∈ CongruenceSubgroup.Gamma q ∧ γ ∈ CongruenceSubgroup.Gamma0 M' ∧

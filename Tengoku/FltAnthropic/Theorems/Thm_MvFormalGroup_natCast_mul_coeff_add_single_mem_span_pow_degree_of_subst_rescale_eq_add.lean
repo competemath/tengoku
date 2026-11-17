@@ -14,6 +14,9 @@ open MvPowerSeries
 
 universe u
 
+/--
+@isnad1 id=mem.6h9v.s10.a4010aa5c4a8 from=translated src=- shape=54403e24 vocab=8250499e
+-/
 theorem Tengoku.FltAnthropic.MvFormalGroup.natCast_mul_coeff_add_single_mem_span_pow_degree_of_subst_rescale_eq_add
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [Fact p.Prime] (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞)
     {d : ℕ} (F : MvFormalGroup d 𝓞) [F.IsComm]

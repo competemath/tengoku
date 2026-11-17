@@ -20,6 +20,9 @@ section Extract
 
 variable {R : Type u} [CommRing R]
 
+/--
+@isnad1 id=finite.0h3v.s9.2c7faf073cf5 from=translated src=- shape=3607ddd0 vocab=03271e13
+-/
 theorem subquot_finite [IsNoetherianRing R]
     {M : Type u} [AddCommGroup M] [Module R M] [Module.Finite R M]
     (s : SubQuot R M) : Module.Finite R s.carrier := by
@@ -27,6 +30,9 @@ theorem subquot_finite [IsNoetherianRing R]
   haveI : Module.Finite R ↥s.Z := Module.Finite.iff_fg.mpr (IsNoetherian.noetherian _)
   exact Module.Finite.of_surjective (Submodule.mkQ _) (Submodule.Quotient.mk_surjective _)
 
+/--
+@isnad1 id=finite.3h5v.s10.1141de4ea9f9 from=translated src=- shape=e4e53eb5 vocab=9b08cc25
+-/
 theorem filt_finite [IsNoetherianRing R]
     {M : Type u} [AddCommGroup M] [Module R M] {N : ℕ} (F : Fin (N + 1) → Submodule R M)
     (hF₀ : F 0 = ⊥) (hFmono : Monotone F)
@@ -47,6 +53,9 @@ theorem filt_finite [IsNoetherianRing R]
 namespace Convergence export _root_.DoubleComplex.Convergence (Bfilt_mono Einf Hfilt hZ0 Bfilt_gr Bfilt_top Bfilt_bot Hfilt_gr Bfilt) end Convergence
 open scoped _root_.DoubleComplex.Convergence in
 
+/--
+@isnad1 id=finite.3h6v.s7.0c1235568011 from=translated src=- shape=16dba2bc vocab=c519ca48
+-/
 theorem Convergence.finite_E2_q0 [IsNoetherianRing R]
     {E₂ : ℕ → ℕ → Type u} [∀ p q, AddCommGroup (E₂ p q)] [∀ p q, Module R (E₂ p q)]
     {H : ℕ → Type u} [∀ n, AddCommGroup (H n)] [∀ n, Module R (H n)] {N : ℕ}
@@ -87,6 +96,9 @@ end Extract
 
 end DoubleComplex
 
+/--
+@isnad1 id=finite.3h6v.s7.0c1235568011 from=translated src=- shape=16dba2bc vocab=c519ca48
+-/
 theorem solution {R : Type u} [CommRing R] [IsNoetherianRing R]
     {E₂ : ℕ → ℕ → Type u} [∀ p q, AddCommGroup (E₂ p q)] [∀ p q, Module R (E₂ p q)]
     {H : ℕ → Type u} [∀ n, AddCommGroup (H n)] [∀ n, Module R (H n)] {N : ℕ}

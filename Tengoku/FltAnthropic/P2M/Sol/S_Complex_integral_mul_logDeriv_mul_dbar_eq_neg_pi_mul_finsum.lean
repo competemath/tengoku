@@ -16,6 +16,9 @@ export _root_.Complex (I integral_mul_dbar_eq_neg_pi_mul_finsum_residue)
 namespace LogDerivStokes
 open _root_.Complex
 
+/--
+@isnad1 id=eventual.1h2v.s6.bdbaa0077d68 from=translated src=- shape=e0a6322a vocab=56fd4082
+-/
 theorem eventually_nhdsNE_eventually_nhds {z : ℂ} {P : ℂ → Prop} (h : ∀ᶠ w in 𝓝[≠] z, P w) :
     ∀ᶠ w in 𝓝[≠] z, ∀ᶠ u in 𝓝 w, P u := by
   rw [eventually_nhdsWithin_iff] at h ⊢
@@ -23,6 +26,9 @@ theorem eventually_nhdsNE_eventually_nhds {z : ℂ} {P : ℂ → Prop} (h : ∀�
   have hne : ∀ᶠ u in 𝓝 w, u ≠ z := isOpen_ne.eventually_mem hwz
   filter_upwards [hw, hne] with u hu hune using hu hune
 
+/--
+@isnad1 id=eq.3h4v.s8.62b7200e13ac from=translated src=- shape=b2f940a9 vocab=379134d7
+-/
 theorem deriv_zpow_mul_div {G : ℂ → ℂ} {a z : ℂ} (n : ℤ) (hza : z ≠ a)
     (hG : DifferentiableAt ℂ G z) (hG0 : G z ≠ 0) :
     deriv (fun w => (w - a) ^ n * G w) z / ((z - a) ^ n * G z) =
@@ -38,11 +44,17 @@ theorem deriv_zpow_mul_div {G : ℂ → ℂ} {a z : ℂ} (n : ℤ) (hza : z ≠ 
   have hpow : (z - a) ^ n ≠ 0 := zpow_ne_zero n hsub
   field_simp
 
+/--
+@isnad1 id=analytic.1h2v.s6.f480e5a7cd4a from=translated src=- shape=90ba9816 vocab=b008d5de
+-/
 theorem analyticAt_dslope {E : ℂ → ℂ} {a : ℂ} (hE : AnalyticAt ℂ E a) :
     AnalyticAt ℂ (dslope E a) a := by
   obtain ⟨p, hp⟩ := hE
   exact ⟨_, hp.has_fpower_series_dslope_fslope⟩
 
+/--
+@isnad1 id=ex.3h4v.s7.ccb80774e1cd from=translated src=- shape=f87fb04f vocab=8fa6fde5
+-/
 theorem hloc_logDeriv {F E : ℂ → ℂ} {a : ℂ} (hF : MeromorphicAt F a) {n : ℤ}
     (hn : meromorphicOrderAt F a = (n : WithTop ℤ)) (hE : AnalyticAt ℂ E a) :
     ∃ g : ℂ → ℂ, AnalyticAt ℂ g a ∧
@@ -66,6 +78,9 @@ theorem hloc_logDeriv {F E : ℂ → ℂ} {a : ℂ} (hF : MeromorphicAt F a) {n 
   field_simp
   ring
 
+/--
+@isnad1 id=eq.7h4v.s10.1249fc9f5cd7 from=translated src=- shape=1d06ed3b vocab=2f418a46
+-/
 theorem main (U : Set ℂ) (hU : IsOpen U) (F : ℂ → ℂ) (hF : ∀ z ∈ U, MeromorphicAt F z)
     (hF' : ∀ z ∈ U, meromorphicOrderAt F z ≠ ⊤)
     (E : ℂ → ℂ) (hE : DifferentiableOn ℂ E U)
@@ -89,6 +104,9 @@ theorem main (U : Set ℂ) (hU : IsOpen U) (F : ℂ → ℂ) (hF : ∀ z ∈ U, 
 
 end Complex.LogDerivStokes
 
+/--
+@isnad1 id=eq.7h4v.s10.1249fc9f5cd7 from=translated src=- shape=1d06ed3b vocab=2f418a46
+-/
 theorem solution
     (U : Set ℂ) (hU : IsOpen U) (F : ℂ → ℂ) (hF : ∀ z ∈ U, MeromorphicAt F z)
     (hF' : ∀ z ∈ U, meromorphicOrderAt F z ≠ ⊤)

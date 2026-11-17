@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=eq.4h4v.s8.e19138fcbecb from=translated src=- shape=da92945f vocab=6c137a83
+-/
 theorem Complex.integral_Ioi_integral_Ioi_cpow_mul_one_add_cpow_neg_mul_one_add_add_cpow_neg_of_balance
     (A a b D : ℂ) (hA : 0 < A.re) (hbA : 0 < (b - A).re) (haD : 0 < (a + D - A).re) (hba : 0 < (b - a).re) :
     ∫ x in Set.Ioi (0:ℝ), ∫ y in Set.Ioi (0:ℝ),

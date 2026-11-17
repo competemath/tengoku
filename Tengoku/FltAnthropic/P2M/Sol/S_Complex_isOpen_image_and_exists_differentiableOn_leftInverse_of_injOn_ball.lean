@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open Topology Filter
 
+/--
+@isnad1 id=ne.4h3v.s7.95409a17fcc7 from=translated src=- shape=1af63581 vocab=6f943027
+-/
 theorem deriv_ne_zero_of_injOn_of_isOpen {U : Set ℂ} (hU : IsOpen U) {f : ℂ → ℂ}
     (hf : DifferentiableOn ℂ f U) (hinj : Set.InjOn f U) {z₁ : ℂ} (hz₁ : z₁ ∈ U) :
     deriv f z₁ ≠ 0 := by
@@ -136,6 +139,9 @@ theorem deriv_ne_zero_of_injOn_of_isOpen {U : Set ℂ} (hU : IsOpen U) {f : ℂ 
     linear_combination hha'
   exact hab (hinj (hNsub a haN).1 (hNsub b hbN).1 hfab)
 
+/--
+@isnad1 id=and.3h3v.s8.bd703be6771d from=translated src=- shape=d615feb0 vocab=25da7ccd
+-/
 theorem solution
     (f : ℂ → ℂ) (z₀ : ℂ) (ε : ℝ) (hε : 0 < ε)
     (hf : DifferentiableOn ℂ f (Metric.ball z₀ ε)) (hinj : Set.InjOn f (Metric.ball z₀ ε)) :

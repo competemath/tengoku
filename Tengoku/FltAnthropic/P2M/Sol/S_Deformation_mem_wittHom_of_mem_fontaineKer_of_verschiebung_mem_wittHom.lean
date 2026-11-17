@@ -25,6 +25,9 @@ variable {ℛ : Type u} [CommRing ℛ] {p : ℕ} [hp : Fact p.Prime]
 variable {A : Type v} [CommRing A] {π : ℛ →+* A}
 
 omit hp in
+/--
+@isnad1 id=eq.1h4v.s7.c8a25c1d0212 from=translated src=- shape=a3917bfe vocab=99f9e11a
+-/
 theorem natCast_eq_zero_of_ker_eq (hker : RingHom.ker π = Ideal.span {(p : ℛ)}) : (p : A) = 0 := by
   have : (p : ℛ) ∈ RingHom.ker π := hker ▸ Ideal.mem_span_singleton_self _
   rwa [RingHom.mem_ker, map_natCast] at this
@@ -104,6 +107,9 @@ variable {p : ℕ} [hp : Fact p.Prime] {n : ℕ}
 variable {k : Type u} [CommRing k] {A : Type v} [CommRing A] [Bialgebra k A]
 variable {ℛ : Type w} [CommRing ℛ] {ℛ₂ : Type u'} [CommRing ℛ₂]
 
+/--
+@isnad1 id=mem.7h12v.s11.abafe3dc3f8d from=translated src=- shape=82bd0ea1 vocab=d4ce0f1b
+-/
 theorem mem_wittHom_of_lift (π : ℛ →+* A) (π₂ : ℛ₂ →+* TensorProduct k A A)
     (Δ ι₁ ι₂ : ℛ →+* ℛ₂)
     (hΔ : π₂.comp Δ = (comulRingHom k A).comp π)
@@ -148,17 +154,29 @@ noncomputable def theta : (k ⊗[𝓞] ℛ) ⊗[k] (k ⊗[𝓞] ℛ) →ₐ[k] k
 
 variable {k ℛ}
 
+/--
+@isnad1 id=eq.0h4v.s11.b8b0eb927cda from=translated src=- shape=baf89e5f vocab=cb353318
+-/
 theorem redLeft_apply (r : ℛ) :
     redLeft k ℛ r = ((1 : k) ⊗ₜ[𝓞] r) ⊗ₜ[k] (1 : k ⊗[𝓞] ℛ) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.a1f83f2d3bc3 from=translated src=- shape=cbf0e619 vocab=97700a13
+-/
 theorem redRight_apply (r : ℛ) :
     redRight k ℛ r = (1 : k ⊗[𝓞] ℛ) ⊗ₜ[k] ((1 : k) ⊗ₜ[𝓞] r) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.c6090944ab81 from=translated src=- shape=d747bc31 vocab=8c744b86
+-/
 theorem pi2_tmul (r s : ℛ) :
     pi2 k ℛ (r ⊗ₜ[𝓞] s) = ((1 : k) ⊗ₜ[𝓞] r) ⊗ₜ[k] ((1 : k) ⊗ₜ[𝓞] s) := by
   rw [pi2, Algebra.TensorProduct.lift_tmul, redLeft_apply, redRight_apply,
     Algebra.TensorProduct.tmul_mul_tmul, one_mul, mul_one]
 
+/--
+@isnad1 id=eq.0h4v.s12.5a890b6f4b09 from=translated src=- shape=d44f92e5 vocab=a2dfb3c0
+-/
 theorem theta_pi2 (z : ℛ ⊗[𝓞] ℛ) : theta k ℛ (pi2 k ℛ z) = (1 : k) ⊗ₜ[𝓞] z := by
   induction z using TensorProduct.induction_on with
   | zero => rw [map_zero, map_zero, TensorProduct.tmul_zero]
@@ -167,6 +185,9 @@ theorem theta_pi2 (z : ℛ ⊗[𝓞] ℛ) : theta k ℛ (pi2 k ℛ z) = (1 : k) 
     simp
   | add x y hx hy => rw [map_add, map_add, hx, hy, TensorProduct.tmul_add]
 
+/--
+@isnad1 id=eq.0h3v.s12.fd7dbdb37b66 from=translated src=- shape=daa99ce4 vocab=c4318193
+-/
 theorem pi2_comp_includeLeft :
     (pi2 (𝓞 := 𝓞) k ℛ).toRingHom.comp
         (Algebra.TensorProduct.includeLeft : ℛ →ₐ[𝓞] ℛ ⊗[𝓞] ℛ).toRingHom =
@@ -178,6 +199,9 @@ theorem pi2_comp_includeLeft :
   rw [pi2_tmul]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s12.10f39a657714 from=translated src=- shape=80871bbb vocab=acf17ed0
+-/
 theorem pi2_comp_includeRight :
     (pi2 (𝓞 := 𝓞) k ℛ).toRingHom.comp
         (Algebra.TensorProduct.includeRight : ℛ →ₐ[𝓞] ℛ ⊗[𝓞] ℛ).toRingHom =
@@ -189,6 +213,9 @@ theorem pi2_comp_includeRight :
   rw [pi2_tmul]
   rfl
 
+/--
+@isnad1 id=eq.2h4v.s11.b51c1a743ae4 from=translated src=- shape=269c8adf vocab=154d3c9a
+-/
 theorem ker_pi2 (hk : Function.Surjective (algebraMap 𝓞 k)) {p : ℕ}
     (hker : RingHom.ker (algebraMap 𝓞 k) = Ideal.span {(p : 𝓞)}) :
     RingHom.ker (pi2 (𝓞 := 𝓞) k ℛ).toRingHom = Ideal.span {(p : ℛ ⊗[𝓞] ℛ)} := by
@@ -206,6 +233,9 @@ theorem ker_pi2 (hk : Function.Surjective (algebraMap 𝓞 k)) {p : ℕ}
     have h := SpecialFibre.natCast_eq_zero (ℛ := ℛ) hk hker
     rw [← map_natCast (algebraMap (k ⊗[𝓞] ℛ) ((k ⊗[𝓞] ℛ) ⊗[k] (k ⊗[𝓞] ℛ))), h, map_zero]
 
+/--
+@isnad1 id=mem.1h3v.s10.71b00f2c5a23 from=translated src=- shape=d605de0f vocab=35eb5e23
+-/
 theorem natCast_mem_nonZeroDivisors_tensor [Module.Flat 𝓞 ℛ] {p : ℕ}
     (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞) : (p : ℛ ⊗[𝓞] ℛ) ∈ nonZeroDivisors (ℛ ⊗[𝓞] ℛ) := by
   have hreg : IsSMulRegular (ℛ ⊗[𝓞] ℛ) (p : 𝓞) := Module.Flat.isSMulRegular_of_nonZeroDivisors hp
@@ -220,6 +250,9 @@ section Comul
 variable {𝓞 : Type u} [CommRing 𝓞] {k : Type v} [CommRing k] [Algebra 𝓞 k]
 variable {ℛ : Type w} [CommRing ℛ] [Bialgebra 𝓞 ℛ]
 
+/--
+@isnad1 id=eq.0h4v.s12.be96a42e5387 from=translated src=- shape=3aca71ea vocab=c436ab0a
+-/
 theorem comul_one_tmul (r : ℛ) :
     Coalgebra.comul (R := k) ((1 : k) ⊗ₜ[𝓞] r) = pi2 k ℛ (Coalgebra.comul (R := 𝓞) r) := by
   rw [TensorProduct.comul_tmul, CommSemiring.comul_apply k 1]
@@ -230,6 +263,9 @@ theorem comul_one_tmul (r : ℛ) :
     rfl
   | add x y hx hy => rw [TensorProduct.tmul_add, map_add, map_add, hx, hy]
 
+/--
+@isnad1 id=eq.0h3v.s12.ec060f81992c from=translated src=- shape=dcb241df vocab=397de6af
+-/
 theorem pi2_comp_comul :
     (pi2 (𝓞 := 𝓞) k ℛ).toRingHom.comp (Bialgebra.comulAlgHom 𝓞 ℛ).toRingHom =
       (Bialgebra.comulAlgHom k (k ⊗[𝓞] ℛ)).toRingHom.comp
@@ -245,6 +281,9 @@ variable {𝓞 : Type u} [CommRing 𝓞] {p : ℕ} [hp : Fact p.Prime]
 variable {k : Type v} [CommRing k] [Algebra 𝓞 k]
 variable {ℛ : Type w} [CommRing ℛ] [Bialgebra 𝓞 ℛ]
 
+/--
+@isnad1 id=mem.5h6v.s12.c32bc3f70bdd from=translated src=- shape=1589c864 vocab=84d62ee1
+-/
 theorem criterion (hp' : (p : 𝓞) ∈ nonZeroDivisors 𝓞) [Module.Flat 𝓞 ℛ]
     (hk : Function.Surjective (algebraMap 𝓞 k))
     (hker : RingHom.ker (algebraMap 𝓞 k) = Ideal.span {(p : 𝓞)})
@@ -268,6 +307,9 @@ end Criterion
 
 end FontaineCriterion
 
+/--
+@isnad1 id=mem.5h6v.s12.25613fb01de7 from=translated src=- shape=b8eb6360 vocab=84d62ee1
+-/
 theorem solution
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [Fact p.Prime] (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞)
     {k : Type v} [CommRing k] [Algebra 𝓞 k]

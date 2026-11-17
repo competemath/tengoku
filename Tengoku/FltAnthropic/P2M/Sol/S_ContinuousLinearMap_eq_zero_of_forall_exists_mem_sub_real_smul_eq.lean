@@ -312,6 +312,9 @@ end SymmetricRangeDensity
 
 open SymmetricRangeDensity in
 
+/--
+@isnad1 id=eq.2h4v.s10.d941b5070295 from=translated src=- shape=0d3611a3 vocab=154b51f6
+-/
 theorem solution
     {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
     (T : H →L[ℂ] H) (E : Submodule ℂ H)

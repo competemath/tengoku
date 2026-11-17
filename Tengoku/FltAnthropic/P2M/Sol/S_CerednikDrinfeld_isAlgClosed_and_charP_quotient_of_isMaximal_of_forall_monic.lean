@@ -7,6 +7,9 @@ namespace P2MW.S_CerednikDrinfeld_isAlgClosed_and_charP_quotient_of_isMaximal_of
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.3h4v.s9.66a5ac5c8d35 from=translated src=- shape=0d239f73 vocab=e952c3d7
+-/
 theorem solution
     {r : ℕ} [Fact r.Prime]
     (𝒪 : Type) [CommRing 𝒪] (π : 𝒪) (hunr : Ideal.span {((r : ℕ) : 𝒪)} = Ideal.span {π})

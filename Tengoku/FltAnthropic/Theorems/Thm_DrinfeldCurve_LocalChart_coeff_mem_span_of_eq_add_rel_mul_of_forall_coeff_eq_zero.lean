@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open IsLocalRing
 
+/--
+@isnad1 id=mem.7h10v.s10.19af97219465 from=translated src=- shape=e5b1a2eb vocab=fde4d7b4
+-/
 theorem DrinfeldCurve.LocalChart.coeff_mem_span_of_eq_add_rel_mul_of_forall_coeff_eq_zero
     (W : Type) [CommRing W] [IsDomain W] (π : W) (hπ : π ≠ 0)
     (f u v : MvPowerSeries (Fin 2) W) (hv : IsUnit v) (hf : MvPowerSeries.coeff (0 : Fin 2 →₀ ℕ) f = 0)

@@ -33,6 +33,9 @@ private theorem exists_isMaximal_comap_eq_of_ker_le'
     (S := integralClosure ℤ ℂ) 𝔪 (by rwa [RingHom.algebraMap_toAlgebra])
   exact ⟨𝔪', h𝔪'max, by rwa [RingHom.algebraMap_toAlgebra] at h𝔪'⟩
 
+/--
+@isnad1 id=ex.1h3v.s10.5385c387dba9 from=translated src=- shape=da741803 vocab=815edf0b
+-/
 theorem exists_eigencharacter_of_annihilator_le_impl
     {V : Type*} [AddCommGroup V] [Module ℂ V] [FiniteDimensional ℂ V]
     {T : Type*} [CommRing T] [Module T V] [SMulCommClass T ℂ V] [Module.Finite ℤ T]
@@ -93,6 +96,9 @@ theorem exists_eigencharacter_of_annihilator_le_impl
 
 end DeligneSerre
 
+/--
+@isnad1 id=ex.1h3v.s10.5385c387dba9 from=translated src=- shape=da741803 vocab=815edf0b
+-/
 theorem solution
     {V : Type*} [AddCommGroup V] [Module ℂ V] [FiniteDimensional ℂ V]
     {T : Type*} [CommRing T] [Module T V] [SMulCommClass T ℂ V] [Module.Finite ℤ T]

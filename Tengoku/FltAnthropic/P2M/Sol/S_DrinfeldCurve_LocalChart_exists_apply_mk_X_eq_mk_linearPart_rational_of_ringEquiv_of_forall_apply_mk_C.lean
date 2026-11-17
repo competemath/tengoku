@@ -33,6 +33,9 @@ theorem eq_of_deg_lt_two (n : Fin 2 →₀ ℕ) (h : n 0 + n 1 < 2) :
     · right; right; ext i; fin_cases i <;> simp <;> omega
     · right; left; ext i; fin_cases i <;> simp <;> omega
 
+/--
+@isnad1 id=eq.0h3v.s6.94796caf0707 from=translated src=- shape=c12722ca vocab=6d884e52
+-/
 theorem prod_sub_natCast (q : ℕ) [hq : Fact q.Prime] (K : Type*) [CommRing K] [CharP K q] (t : K) :
     ∏ a : Fin q, (t - ((a : ℕ) : K)) = t ^ q - t := by
   classical
@@ -62,6 +65,9 @@ theorem prod_sub_natCast (q : ℕ) [hq : Fact q.Prime] (K : Type*) [CommRing K] 
     exact Fin.ext this
   · simp [φ, map_natCast]
 
+/--
+@isnad1 id=ex.1h3v.s6.213cd0df81d6 from=translated src=- shape=7bdf6f8c vocab=ad71f7b8
+-/
 theorem exists_natCast_eq_of_pow_eq (q : ℕ) [hq : Fact q.Prime] (K : Type*) [Field K] [CharP K q]
     (μ : K) (hμ : μ ^ q = μ) : ∃ n : ℕ, n < q ∧ ((n : ℕ) : K) = μ := by
   classical
@@ -70,6 +76,9 @@ theorem exists_natCast_eq_of_pow_eq (q : ℕ) [hq : Fact q.Prime] (K : Type*) [F
   obtain ⟨a, -, ha⟩ := Finset.prod_eq_zero_iff.mp h
   exact ⟨a, a.isLt, (sub_eq_zero.mp ha).symm⟩
 
+/--
+@isnad1 id=mem.6h7v.s9.2568b6311eaa from=translated src=- shape=6b3835cd vocab=4111c3c7
+-/
 theorem mul_pow_sub_mul_pow_mem {A : Type*} [CommRing A] (I : Ideal A) (a a' b b' : A)
     (ha' : a' ∈ I) (hb : b ∈ I) (hb' : b' ∈ I)
     (h1 : a - a' ∈ I ^ 2) (h2 : b - b' ∈ I ^ 2) (n : ℕ) (hn : 1 ≤ n) :
@@ -94,6 +103,9 @@ section chart
 
 variable {W : Type} [CommRing W]
 
+/--
+@isnad1 id=eq.1h3v.s8.3497ed091530 from=translated src=- shape=14847aaf vocab=1c8efd66
+-/
 theorem coeff_drinfeldForm_eq_zero_of_lt (q : ℕ) [Fact q.Prime] (n : Fin 2 →₀ ℕ) (h : n 0 + n 1 < q + 1) :
     coeff n (DrinfeldCurve.LocalChart.drinfeldForm q W) = 0 := by
   classical
@@ -106,12 +118,18 @@ theorem coeff_drinfeldForm_eq_zero_of_lt (q : ℕ) [Fact q.Prime] (n : Fin 2 →
   · intro hn; subst hn; simp at h
   · intro hn; subst hn; simp at h
 
+/--
+@isnad1 id=mem.0h2v.s8.a24511ab3528 from=translated src=- shape=0d0ec458 vocab=768232ea
+-/
 theorem drinfeldForm_mem_pow (q : ℕ) [Fact q.Prime] :
     DrinfeldCurve.LocalChart.drinfeldForm q W ∈
       (Ideal.span {(X 0 : MvPowerSeries (Fin 2) W), X 1}) ^ (q + 1) :=
   (MvPowerSeries.mem_span_X_pow_iff_forall_coeff_eq_zero_of_degree_lt W (q + 1) _).mpr
     (fun n hn => coeff_drinfeldForm_eq_zero_of_lt q n hn)
 
+/--
+@isnad1 id=eq.1h3v.s9.d20ef4fb81b1 from=translated src=- shape=e990b4b9 vocab=21b73260
+-/
 theorem constantCoeff_eq_zero_of_sub_drinfeldForm_mem (q : ℕ) [Fact q.Prime] (f : MvPowerSeries (Fin 2) W)
     (hf : f - DrinfeldCurve.LocalChart.drinfeldForm q W ∈
       (Ideal.span {(X 0 : MvPowerSeries (Fin 2) W), X 1}) ^ (q + 2)) :
@@ -121,6 +139,9 @@ theorem constantCoeff_eq_zero_of_sub_drinfeldForm_mem (q : ℕ) [Fact q.Prime] (
   rw [map_sub, h2, sub_zero, coeff_zero_eq_constantCoeff_apply] at h1
   exact h1
 
+/--
+@isnad1 id=iff.0h2v.s8.e4d613811eca from=translated src=- shape=df085ddd vocab=e3ce9f79
+-/
 theorem mem_span_X_iff_constantCoeff (g : MvPowerSeries (Fin 2) W) :
     g ∈ Ideal.span {(X 0 : MvPowerSeries (Fin 2) W), X 1} ↔ constantCoeff g = 0 := by
   have := MvPowerSeries.mem_span_X_pow_iff_forall_coeff_eq_zero_of_degree_lt W 1 g
@@ -132,6 +153,9 @@ theorem mem_span_X_iff_constantCoeff (g : MvPowerSeries (Fin 2) W) :
 
 variable [IsLocalRing W]
 
+/--
+@isnad1 id=mem.1h3v.s9.85de4b54c3a9 from=translated src=- shape=9b41a871 vocab=c7a3d99b
+-/
 theorem constantCoeff_mem_maximalIdeal_of_not_isUnit_mk (J : Ideal (MvPowerSeries (Fin 2) W))
     (g : MvPowerSeries (Fin 2) W) (h : ¬ IsUnit (Ideal.Quotient.mk J g)) :
     constantCoeff g ∈ maximalIdeal W := by
@@ -139,6 +163,9 @@ theorem constantCoeff_mem_maximalIdeal_of_not_isUnit_mk (J : Ideal (MvPowerSerie
   intro hu
   exact h ((isUnit_iff_constantCoeff.mpr hu).map _)
 
+/--
+@isnad1 id=not.3h6v.s12.21803920717f from=translated src=- shape=5a740995 vocab=540511d2
+-/
 theorem not_isUnit_mk_of_constantCoeff_mem (π : W) (hπ : π ∈ maximalIdeal W) (f u v : MvPowerSeries (Fin 2) W)
     (hf : constantCoeff f = 0) (g : MvPowerSeries (Fin 2) W) (hg : constantCoeff g ∈ maximalIdeal W) :
     ¬ IsUnit (Ideal.Quotient.mk (Ideal.span {C π * v - f * u}) g) := by
@@ -156,6 +183,9 @@ theorem not_isUnit_mk_of_constantCoeff_mem (π : W) (hπ : π ∈ maximalIdeal W
   rw [(residue_eq_zero_iff _).mpr hg] at h1
   exact not_isUnit_zero h1
 
+/--
+@isnad1 id=ex.4h6v.s12.00c51b3c6547 from=translated src=- shape=951e8292 vocab=65b20f4c
+-/
 theorem exists_rep_constantCoeff_eq_zero (π : W) (hπ : maximalIdeal W = Ideal.span {π}) (f u v : MvPowerSeries (Fin 2) W)
     (hv : IsUnit v) (hf : constantCoeff f = 0)
     (s : MvPowerSeries (Fin 2) W ⧸ Ideal.span {C π * v - f * u}) (hs : ¬ IsUnit s) :
@@ -175,6 +205,9 @@ theorem exists_rep_constantCoeff_eq_zero (π : W) (hπ : maximalIdeal W = Ideal.
 
 omit [IsLocalRing W] in
 
+/--
+@isnad1 id=ex.1h4v.s11.d6409a6e841b from=translated src=- shape=42e0c988 vocab=5dba087f
+-/
 theorem exists_rep_mem_pow_of_mem_map_pow (J : Ideal (MvPowerSeries (Fin 2) W)) (e : ℕ)
     (s : MvPowerSeries (Fin 2) W ⧸ J)
     (hs : s ∈ ((Ideal.span {(X 0 : MvPowerSeries (Fin 2) W), X 1}).map (Ideal.Quotient.mk J)) ^ e) :
@@ -183,6 +216,9 @@ theorem exists_rep_mem_pow_of_mem_map_pow (J : Ideal (MvPowerSeries (Fin 2) W)) 
   exact (Ideal.mem_map_iff_of_surjective _ Ideal.Quotient.mk_surjective).mp hs
 
 omit [IsLocalRing W] in
+/--
+@isnad1 id=mem.1h4v.s11.2d040db23cac from=translated src=- shape=8d48f33c vocab=5dba087f
+-/
 theorem mk_mem_map_pow_of_mem_pow (J : Ideal (MvPowerSeries (Fin 2) W)) (e : ℕ)
     (g : MvPowerSeries (Fin 2) W) (hg : g ∈ (Ideal.span {(X 0 : MvPowerSeries (Fin 2) W), X 1}) ^ e) :
     Ideal.Quotient.mk J g ∈ ((Ideal.span {(X 0 : MvPowerSeries (Fin 2) W), X 1}).map (Ideal.Quotient.mk J)) ^ e := by
@@ -190,6 +226,9 @@ theorem mk_mem_map_pow_of_mem_pow (J : Ideal (MvPowerSeries (Fin 2) W)) (e : ℕ
 
 omit [IsLocalRing W] in
 
+/--
+@isnad1 id=mem.6h8v.s14.dcb84ed51002 from=translated src=- shape=2f1aac81 vocab=5ed5ff10
+-/
 theorem coeff_mem_span_of_mk_mem_pow_succ [IsDomain W] (π : W) (hπ : π ≠ 0) (f u v : MvPowerSeries (Fin 2) W)
     (hv : IsUnit v) (hf : constantCoeff f = 0) (e : ℕ) (g : MvPowerSeries (Fin 2) W)
     (hg : g ∈ (Ideal.span {(X 0 : MvPowerSeries (Fin 2) W), X 1}) ^ e)
@@ -213,6 +252,9 @@ section linforms
 
 variable {W : Type} [CommRing W]
 
+/--
+@isnad1 id=eq.0h3v.s8.e2e3e8f8df24 from=translated src=- shape=96a65121 vocab=e46a8118
+-/
 theorem coeff_single_X (j k : Fin 2) :
     coeff (Finsupp.single j 1) (X k : MvPowerSeries (Fin 2) W) = if j = k then 1 else 0 := by
   classical
@@ -223,16 +265,25 @@ theorem coeff_single_X (j k : Fin 2) :
     intro hh
     exact h (Finsupp.single_left_injective one_ne_zero hh)
 
+/--
+@isnad1 id=eq.0h4v.s9.6e71d7279029 from=translated src=- shape=c41fb561 vocab=c8a28cbd
+-/
 theorem coeff_single_lin (a₀ a₁ : W) (j : Fin 2) :
     coeff (Finsupp.single j 1) (C a₀ * X 0 + C a₁ * X 1 : MvPowerSeries (Fin 2) W) = if j = 0 then a₀ else a₁ := by
   classical
   rw [map_add, coeff_C_mul, coeff_C_mul, coeff_single_X, coeff_single_X]
   fin_cases j <;> simp
 
+/--
+@isnad1 id=eq.0h3v.s9.2448240dbe4d from=translated src=- shape=c8eb3797 vocab=cd47dbc2
+-/
 theorem constantCoeff_lin (a₀ a₁ : W) :
     constantCoeff (C a₀ * X 0 + C a₁ * X 1 : MvPowerSeries (Fin 2) W) = 0 := by
   simp [constantCoeff_X]
 
+/--
+@isnad1 id=eq.0h1v.s8.fba45b4ff06a from=translated src=- shape=49ea6cc3 vocab=57dd135f
+-/
 theorem degree_fin_two (d : Fin 2 →₀ ℕ) : d.degree = d 0 + d 1 := by
   rw [Finsupp.degree_eq_sum, Fin.sum_univ_two]
 
@@ -242,6 +293,9 @@ end DrinfeldCurve.LocalChart.LinearPartAux
 
 set_option maxHeartbeats 4000000 in
 open DrinfeldCurve.LocalChart.LinearPartAux MvPowerSeries in
+/--
+@isnad1 id=ex.12h13v.s15.2239d3fa9250 from=translated src=- shape=0d282a0b vocab=2a111b61
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime]
     (W₁ : Type) [CommRing W₁] [IsDomain W₁] [IsDiscreteValuationRing W₁]

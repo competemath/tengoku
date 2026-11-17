@@ -21,6 +21,9 @@ open _root_.DrinfeldCurve.LocalChart open _root_.DrinfeldCurve
 
 open MvPowerSeries
 
+/--
+@isnad1 id=isunit.3h6v.s12.23636b4039ab from=translated src=- shape=7746fb32 vocab=540511d2
+-/
 theorem isUnit_constantCoeff_of_isUnit_mk {W : Type} [CommRing W] [IsLocalRing W] (π : W) (hπ : π ∈ maximalIdeal W)
     (f u v : MvPowerSeries (Fin 2) W) (hf : constantCoeff f = 0) (g : MvPowerSeries (Fin 2) W)
     (hg : IsUnit (Ideal.Quotient.mk (Ideal.span {C π * v - f * u}) g)) : IsUnit (constantCoeff g) := by
@@ -38,6 +41,9 @@ theorem isUnit_constantCoeff_of_isUnit_mk {W : Type} [CommRing W] [IsLocalRing W
   rw [(residue_eq_zero_iff _).mpr hm] at h1
   exact not_isUnit_zero h1
 
+/--
+@isnad1 id=eq.0h2v.s8.36b00da68850 from=translated src=- shape=6353e1a6 vocab=745a8f1c
+-/
 theorem coeff_drinfeldForm_zero {W : Type} [CommRing W] (q : ℕ) [Fact q.Prime] :
     coeff (0 : Fin 2 →₀ ℕ) (DrinfeldCurve.LocalChart.drinfeldForm q W) = 0 := by
   classical
@@ -50,6 +56,9 @@ theorem coeff_drinfeldForm_zero {W : Type} [CommRing W] (q : ℕ) [Fact q.Prime]
   · intro hn; have := congrArg (fun n : Fin 2 →₀ ℕ => n 1) hn; simp at this
   · intro hn; have := congrArg (fun n : Fin 2 →₀ ℕ => n 0) hn; simp at this
 
+/--
+@isnad1 id=mem.0h2v.s8.a24511ab3528 from=translated src=- shape=0d0ec458 vocab=768232ea
+-/
 theorem drinfeldForm_mem_pow {W : Type} [CommRing W] (q : ℕ) [Fact q.Prime] :
     DrinfeldCurve.LocalChart.drinfeldForm q W ∈
       (Ideal.span {(X 0 : MvPowerSeries (Fin 2) W), X 1}) ^ (q + 1) := by
@@ -60,6 +69,9 @@ theorem drinfeldForm_mem_pow {W : Type} [CommRing W] (q : ℕ) [Fact q.Prime] :
   · rw [pow_succ']; exact Ideal.mul_mem_mul h0 (Ideal.pow_mem_pow h1 q)
   · rw [pow_succ]; exact Ideal.mul_mem_mul (Ideal.pow_mem_pow h0 q) h1
 
+/--
+@isnad1 id=eq.2h6v.s9.9ee135571d31 from=translated src=- shape=a522510d vocab=18cdea2e
+-/
 theorem sum_coeff_eq_zero_of_mem_pow {W : Type} [CommRing W] (N e : ℕ) (hNe : N < e) (T : MvPowerSeries (Fin 2) W)
     (hT : T ∈ (Ideal.span {(X 0 : MvPowerSeries (Fin 2) W), X 1}) ^ e) (a b : W) :
     (∑ i ∈ Finset.range (N + 1),
@@ -73,6 +85,9 @@ theorem sum_coeff_eq_zero_of_mem_pow {W : Type} [CommRing W] (N e : ℕ) (hNe : 
 end DrinfeldCurve.LocalChart.DistPolyPureAux
 
 open DrinfeldCurve.LocalChart.DistPolyPureAux in
+/--
+@isnad1 id=ex.9h11v.s14.0b5b22d02bf0 from=translated src=- shape=3705cf2b vocab=dda572b8
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime] (W : Type) [CommRing W] [IsLocalRing W]
     (π : W) (hπ : maximalIdeal W = Ideal.span {π})

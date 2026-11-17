@@ -7,6 +7,9 @@ namespace P2MW.S_CerednikDrinfeld_exists_ringHom_away_comp_eq_and_not_mem_iff
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.0h4v.s10.8322ef3c9fc0 from=translated src=- shape=72db075e vocab=7e81c1f8
+-/
 theorem solution
     {B B' : Type} [CommRing B] [CommRing B'] (f : B →+* B') (g : B) :
     (∃ fg : Localization.Away g →+* Localization.Away (f g),

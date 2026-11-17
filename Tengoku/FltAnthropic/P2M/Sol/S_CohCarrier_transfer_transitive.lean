@@ -14,6 +14,9 @@ namespace SolAux
 
 variable {G : Type*} [Group G] {C : Type*} [CommGroup C]
 
+/--
+@isnad1 id=eq.1h4v.s10.23afee2c2df2 from=translated src=- shape=f82719e6 vocab=078374f9
+-/
 theorem prodRep_section (K L : Subgroup G) (hKL : K ≤ L) (q : G ⧸ K) :
     ((Quotient.out (Subgroup.quotientEquivProdOfLE hKL q).1
       * ((Quotient.out (Subgroup.quotientEquivProdOfLE hKL q).2 : L) : G) : G) : G ⧸ K) = q := by
@@ -23,6 +26,9 @@ theorem prodRep_section (K L : Subgroup G) (hKL : K ≤ L) (q : G ⧸ K) :
     from rfl, Subgroup.quotientEquivProdOfLE_symm_apply]
   conv_rhs => rw [← Quotient.out_eq' (Subgroup.quotientEquivProdOfLE hKL q).2, Quotient.map'_mk'']
 
+/--
+@isnad1 id=eq.1h5v.s10.bba9ab9c85b5 from=translated src=- shape=80ca3d5b vocab=deb0d74c
+-/
 theorem quotientEquivProdOfLE_smul (K L : Subgroup G) (hKL : K ≤ L)
     [L.FiniteIndex] (g : G) (q : G ⧸ K) :
     (Subgroup.quotientEquivProdOfLE hKL (g⁻¹ • q)).1
@@ -33,6 +39,9 @@ theorem quotientEquivProdOfLE_smul (K L : Subgroup G) (hKL : K ≤ L)
       Quotient.map'_mk'', id]
     rfl
 
+/--
+@isnad1 id=mem.0h4v.s7.ae8a862284ad from=translated src=- shape=2e097eed vocab=64e5df36
+-/
 theorem diffElt_mem_aux (L : Subgroup G) (g : G) (p : G ⧸ L) :
     (Quotient.out p)⁻¹ * (g * Quotient.out (g⁻¹ • p : G ⧸ L)) ∈ L := by
   refine QuotientGroup.leftRel_apply.mp (Quotient.exact' ?_)
@@ -43,9 +52,15 @@ theorem diffElt_mem_aux (L : Subgroup G) (g : G) (p : G ⧸ L) :
 noncomputable def diffElt (L : Subgroup G) (g : G) (p : G ⧸ L) : L :=
   ⟨(Quotient.out p)⁻¹ * (g * Quotient.out (g⁻¹ • p : G ⧸ L)), diffElt_mem_aux L g p⟩
 
+/--
+@isnad1 id=eq.0h4v.s7.d566a2941c5f from=translated src=- shape=ce3df1f2 vocab=00e7d64c
+-/
 theorem diffElt_coe (L : Subgroup G) (g : G) (p : G ⧸ L) :
     (diffElt L g p : G) = (Quotient.out p)⁻¹ * (g * Quotient.out (g⁻¹ • p : G ⧸ L)) := rfl
 
+/--
+@isnad1 id=eq.1h5v.s11.0071a4dcda48 from=translated src=- shape=86de8d65 vocab=2af80725
+-/
 theorem quotientEquivProdOfLE_smul_snd (K L : Subgroup G) (hKL : K ≤ L) (g : G) (q : G ⧸ K) :
     (Subgroup.quotientEquivProdOfLE hKL (g⁻¹ • q)).2
       = (diffElt L g (Subgroup.quotientEquivProdOfLE hKL q).1)⁻¹
@@ -70,6 +85,9 @@ end SolAux
 
 open SolAux
 
+/--
+@isnad1 id=eq.1h5v.s10.5945274b9769 from=translated src=- shape=7289fe63 vocab=97afff8a
+-/
 theorem solution {G : Type*} [Group G] {C : Type*} [CommGroup C] (K L : Subgroup G) (hKL : K ≤ L)
     [K.FiniteIndex] [L.FiniteIndex] [(K.subgroupOf L).FiniteIndex] (ψ : K →* C) :
     MonoidHom.transfer ψ

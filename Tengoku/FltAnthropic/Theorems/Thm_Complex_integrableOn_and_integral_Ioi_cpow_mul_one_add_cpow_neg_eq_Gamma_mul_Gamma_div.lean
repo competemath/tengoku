@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=and.2h2v.s8.17f59c3bbcc7 from=translated src=- shape=1865e57f vocab=c8f90654
+-/
 theorem Complex.integrableOn_and_integral_Ioi_cpow_mul_one_add_cpow_neg_eq_Gamma_mul_Gamma_div
     (a b : ℂ) (ha : 0 < a.re) (hb : 0 < b.re) :
     IntegrableOn (fun v : ℝ => (v : ℂ) ^ (a - 1) * (((1 + v : ℝ)) : ℂ) ^ (-(a + b))) (Set.Ioi 0) ∧

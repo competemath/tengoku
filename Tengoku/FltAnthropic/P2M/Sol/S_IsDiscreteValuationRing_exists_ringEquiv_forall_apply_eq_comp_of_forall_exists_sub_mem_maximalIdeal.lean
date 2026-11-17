@@ -12,6 +12,9 @@ open IsLocalRing
 
 namespace T1Aux
 
+/--
+@isnad1 id=iff.2h6v.s8.8ff398132e17 from=translated src=- shape=bd385b49 vocab=5e0910df
+-/
 theorem mem_pow_iff
     (A W : Type) [CommRing A] [IsDomain A] [IsDiscreteValuationRing A]
     [CommRing W] [IsDomain W] [IsDiscreteValuationRing W]
@@ -65,6 +68,9 @@ theorem mem_pow_iff
   · rintro ⟨c, rfl⟩
     exact ⟨σ c, by rw [map_mul, map_pow]⟩
 
+/--
+@isnad1 id=ex.2h6v.s8.01bde3365d0a from=translated src=- shape=892d5cf0 vocab=6ea549b2
+-/
 theorem dense
     (A W : Type) [CommRing A] [CommRing W] [IsLocalRing W]
     (ϖ : A) (σ : A →+* W) (hσ : maximalIdeal W = Ideal.span {σ ϖ})
@@ -84,6 +90,9 @@ theorem dense
     rw [this, pow_succ]
     exact Ideal.mul_mem_mul ha' (hσ ▸ Ideal.mem_span_singleton_self _)
 
+/--
+@isnad1 id=ex.4h6v.s9.94aa13115608 from=translated src=- shape=350cffd3 vocab=6403269f
+-/
 theorem dir
     (A W₀ W : Type) [CommRing A] [IsDomain A] [IsDiscreteValuationRing A]
     [CommRing W₀] [IsDomain W₀] [IsDiscreteValuationRing W₀]
@@ -177,6 +186,9 @@ theorem dir
 
 end T1Aux
 
+/--
+@isnad1 id=ex.8h10v.s10.c95f2ff7104b from=translated src=- shape=bfab8aea vocab=02054c62
+-/
 theorem solution
     (A W₀ W S : Type) [CommRing A] [IsDomain A] [IsDiscreteValuationRing A]
     [CommRing W₀] [IsDomain W₀] [IsDiscreteValuationRing W₀] [IsAdicComplete (IsLocalRing.maximalIdeal W₀) W₀]

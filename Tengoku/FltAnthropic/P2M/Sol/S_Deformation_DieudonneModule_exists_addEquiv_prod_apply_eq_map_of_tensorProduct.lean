@@ -48,28 +48,49 @@ noncomputable def proj₂ : B₁ ⊗[R] B₂ →ₐc[R] B₂ :=
 
 variable {R B₁ B₂}
 
+/--
+@isnad1 id=eq.0h4v.s10.a77b1d6e0550 from=translated src=- shape=e408b713 vocab=9dfe43ce
+-/
 @[scoped simp] theorem incl₁_apply (x : B₁) : incl₁ R B₁ B₂ x = x ⊗ₜ[R] 1 := by
   simp [incl₁]
 
+/--
+@isnad1 id=eq.0h4v.s10.5b0fffac5060 from=translated src=- shape=5e0356ad vocab=f727e94e
+-/
 @[scoped simp] theorem incl₂_apply (y : B₂) : incl₂ R B₁ B₂ y = 1 ⊗ₜ[R] y := by
   simp [incl₂]
 
+/--
+@isnad1 id=eq.0h5v.s10.f00e3ac67f1c from=translated src=- shape=c83f1603 vocab=093b2c1c
+-/
 @[scoped simp] theorem proj₁_tmul (x : B₁) (y : B₂) :
     proj₁ R B₁ B₂ (x ⊗ₜ[R] y) = Coalgebra.counit (R := R) y • x := by
   simp [proj₁]
 
+/--
+@isnad1 id=eq.0h5v.s10.d85f38fd0e91 from=translated src=- shape=bc12e771 vocab=ea4e669f
+-/
 @[scoped simp] theorem proj₂_tmul (x : B₁) (y : B₂) :
     proj₂ R B₁ B₂ (x ⊗ₜ[R] y) = Coalgebra.counit (R := R) x • y := by
   simp [proj₂]
 
+/--
+@isnad1 id=eq.0h3v.s9.11a4ea24a8c1 from=translated src=- shape=8202a990 vocab=9b5c8b9c
+-/
 theorem incl₁_toAlgHom :
     (incl₁ R B₁ B₂ : B₁ →ₐ[R] B₁ ⊗[R] B₂) = Algebra.TensorProduct.includeLeft :=
   AlgHom.ext fun x => by simp
 
+/--
+@isnad1 id=eq.0h3v.s9.0244fa3c5223 from=translated src=- shape=6b288ec1 vocab=eeef83d9
+-/
 theorem incl₂_toAlgHom :
     (incl₂ R B₁ B₂ : B₂ →ₐ[R] B₁ ⊗[R] B₂) = Algebra.TensorProduct.includeRight :=
   AlgHom.ext fun x => by simp
 
+/--
+@isnad1 id=eq.0h3v.s11.f6021661a20d from=translated src=- shape=bed4f923 vocab=fd809081
+-/
 theorem toLinearMap_incl₁_comp_proj₁ :
     ((incl₁ R B₁ B₂ : B₁ →ₐ[R] B₁ ⊗[R] B₂).comp (proj₁ R B₁ B₂ : B₁ ⊗[R] B₂ →ₐ[R] B₁)).toLinearMap =
       TensorProduct.map (WithConv.toConv (LinearMap.id : B₁ →ₗ[R] B₁)).ofConv
@@ -77,6 +98,9 @@ theorem toLinearMap_incl₁_comp_proj₁ :
   refine TensorProduct.ext' fun x y => ?_
   simp [LinearMap.convOne_apply, Algebra.algebraMap_eq_smul_one]
 
+/--
+@isnad1 id=eq.0h3v.s11.4f68c32f6a46 from=translated src=- shape=82341015 vocab=0f8fc07d
+-/
 theorem toLinearMap_incl₂_comp_proj₂ :
     ((incl₂ R B₁ B₂ : B₂ →ₐ[R] B₁ ⊗[R] B₂).comp (proj₂ R B₁ B₂ : B₁ ⊗[R] B₂ →ₐ[R] B₂)).toLinearMap =
       TensorProduct.map (1 : WithConv (B₁ →ₗ[R] B₁)).ofConv
@@ -85,6 +109,9 @@ theorem toLinearMap_incl₂_comp_proj₂ :
   simp [LinearMap.convOne_apply, TensorProduct.smul_tmul, TensorProduct.tmul_smul,
     Algebra.algebraMap_eq_smul_one]
 
+/--
+@isnad1 id=eq.0h3v.s12.8cf3b41b64bc from=translated src=- shape=3dcdcec1 vocab=60d27395
+-/
 theorem convMul_ofConv_eq_id :
     (WithConv.toConv ((incl₁ R B₁ B₂ : B₁ →ₐ[R] B₁ ⊗[R] B₂).comp
         (proj₁ R B₁ B₂ : B₁ ⊗[R] B₂ →ₐ[R] B₁)) *
@@ -109,6 +136,9 @@ section Dieudonne
 variable {R : Type u} [CommRing R] {p : ℕ} [Fact p.Prime] {B₁ B₂ : Type v} [CommRing B₁] [CommRing B₂]
   [Bialgebra R B₁] [Bialgebra R B₂]
 
+/--
+@isnad1 id=eq.0h6v.s16.2b261af91fc2 from=translated src=- shape=aaab0b30 vocab=6e2c9e05
+-/
 theorem wittHomMap_incl₁_proj₁_add {n : ℕ} (y : wittHom R p n (B₁ ⊗[R] B₂)) :
     wittHomMap p n ((incl₁ R B₁ B₂).comp (proj₁ R B₁ B₂)) y +
       wittHomMap p n ((incl₂ R B₁ B₂).comp (proj₂ R B₁ B₂)) y = y := by
@@ -125,6 +155,9 @@ theorem wittHomMap_incl₁_proj₁_add {n : ℕ} (y : wittHom R p n (B₁ ⊗[R]
   rw [AddSubgroup.coe_add, coe_wittHomMap, coe_wittHomMap]
   exact key.symm
 
+/--
+@isnad1 id=eq.0h5v.s13.f58b337d17aa from=translated src=- shape=17d7697b vocab=48f4d1a3
+-/
 theorem map_incl₁_proj₁_add (z : DieudonneModule R p (B₁ ⊗[R] B₂)) :
     map R p (incl₁ R B₁ B₂) (map R p (proj₁ R B₁ B₂) z) +
       map R p (incl₂ R B₁ B₂) (map R p (proj₂ R B₁ B₂) z) = z := by
@@ -132,6 +165,9 @@ theorem map_incl₁_proj₁_add (z : DieudonneModule R p (B₁ ⊗[R] B₂)) :
   induction z using DieudonneModule.induction_on with
   | ih n y => rw [map_of, map_of, ← map_add, wittHomMap_incl₁_proj₁_add]
 
+/--
+@isnad1 id=eq.0h5v.s12.3144a3a391bc from=translated src=- shape=0f61e7f7 vocab=55b3d1e6
+-/
 theorem map_proj₁_incl₁ (m : DieudonneModule R p B₁) :
     map R p (proj₁ R B₁ B₂) (map R p (incl₁ R B₁ B₂) m) = m := by
   induction m using DieudonneModule.induction_on with
@@ -141,6 +177,9 @@ theorem map_proj₁_incl₁ (m : DieudonneModule R p B₁) :
     refine Subtype.ext (TruncatedWittVector.ext fun i => ?_)
     simp
 
+/--
+@isnad1 id=eq.0h5v.s12.d98ce8b2fa66 from=translated src=- shape=5829153c vocab=e4005c80
+-/
 theorem map_proj₂_incl₂ (m : DieudonneModule R p B₂) :
     map R p (proj₂ R B₁ B₂) (map R p (incl₂ R B₁ B₂) m) = m := by
   induction m using DieudonneModule.induction_on with
@@ -150,6 +189,9 @@ theorem map_proj₂_incl₂ (m : DieudonneModule R p B₂) :
     refine Subtype.ext (TruncatedWittVector.ext fun i => ?_)
     simp
 
+/--
+@isnad1 id=eq.0h5v.s12.3fa2b73a02d6 from=translated src=- shape=893c5515 vocab=a1c308d3
+-/
 theorem map_proj₁_incl₂ (m : DieudonneModule R p B₂) :
     map R p (proj₁ R B₁ B₂) (map R p (incl₂ R B₁ B₂) m) = 0 := by
   induction m using DieudonneModule.induction_on with
@@ -159,6 +201,9 @@ theorem map_proj₁_incl₂ (m : DieudonneModule R p B₂) :
     refine Subtype.ext (TruncatedWittVector.ext fun i => ?_)
     simp [counit_coeff_of_mem_wittHom x.2 i]
 
+/--
+@isnad1 id=eq.0h5v.s12.a1d13c237fb3 from=translated src=- shape=66e513ff vocab=510e5f65
+-/
 theorem map_proj₂_incl₁ (m : DieudonneModule R p B₁) :
     map R p (proj₂ R B₁ B₂) (map R p (incl₁ R B₁ B₂) m) = 0 := by
   induction m using DieudonneModule.induction_on with
@@ -180,18 +225,30 @@ noncomputable def prodEquiv :
       obtain ⟨m₁, m₂⟩ := m
       simp [map_proj₁_incl₁, map_proj₂_incl₂, map_proj₁_incl₂, map_proj₂_incl₁])
 
+/--
+@isnad1 id=eq.0h5v.s13.106e2f8d0d28 from=translated src=- shape=37c18f85 vocab=eeaefdf4
+-/
 @[scoped simp] theorem prodEquiv_apply (z : DieudonneModule R p (B₁ ⊗[R] B₂)) :
     prodEquiv R p B₁ B₂ z = (map R p (proj₁ R B₁ B₂) z, map R p (proj₂ R B₁ B₂) z) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s13.067322fa9a88 from=translated src=- shape=f5e169dd vocab=82334e91
+-/
 @[scoped simp] theorem prodEquiv_symm_apply (m₁ : DieudonneModule R p B₁) (m₂ : DieudonneModule R p B₂) :
     (prodEquiv R p B₁ B₂).symm (m₁, m₂) =
       map R p (incl₁ R B₁ B₂) m₁ + map R p (incl₂ R B₁ B₂) m₂ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s13.5d81d224b1c6 from=translated src=- shape=a05b684a vocab=e23b4f2e
+-/
 theorem prodEquiv_frobenius [CharP R p] (z : DieudonneModule R p (B₁ ⊗[R] B₂)) :
     prodEquiv R p B₁ B₂ (frobenius R p (B₁ ⊗[R] B₂) z) =
       (frobenius R p B₁ (prodEquiv R p B₁ B₂ z).1, frobenius R p B₂ (prodEquiv R p B₁ B₂ z).2) := by
   simp [map_frobenius]
 
+/--
+@isnad1 id=eq.0h5v.s13.b9a47f76da81 from=translated src=- shape=38f42083 vocab=73c330a1
+-/
 theorem prodEquiv_verschiebung (z : DieudonneModule R p (B₁ ⊗[R] B₂)) :
     prodEquiv R p B₁ B₂ (verschiebung R p (B₁ ⊗[R] B₂) z) =
       (verschiebung R p B₁ (prodEquiv R p B₁ B₂ z).1,
@@ -205,6 +262,9 @@ open scoped _root_.P2MW.S_Deformation_DieudonneModule_exists_addEquiv_prod_apply
 open scoped _root_.P2MW.S_Deformation_DieudonneModule_exists_addEquiv_prod_apply_eq_map_of_tensorProduct.Deformation _root_.P2MW.S_Deformation_DieudonneModule_exists_addEquiv_prod_apply_eq_map_of_tensorProduct.Deformation.DieudonneModule
 open scoped _root_.P2MW.S_Deformation_DieudonneModule_exists_addEquiv_prod_apply_eq_map_of_tensorProduct.Deformation
 
+/--
+@isnad1 id=ex.0h3v.s16.a35c4ecbc38d from=translated src=- shape=6f4740cf vocab=3f635073
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime]
     (B₁ B₂ : Type v) [CommRing B₁] [CommRing B₂] [Bialgebra (ZMod p) B₁] [Bialgebra (ZMod p) B₂] :

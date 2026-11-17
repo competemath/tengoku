@@ -16,6 +16,9 @@ namespace T2Aux
 
 variable {W : Type} [CommRing W]
 
+/--
+@isnad1 id=iff.0h2v.s8.e4d613811eca from=translated src=- shape=df085ddd vocab=e3ce9f79
+-/
 theorem mem_spanX_iff (g : MvPowerSeries (Fin 2) W) :
     g ∈ Ideal.span {(X 0 : MvPowerSeries (Fin 2) W), X 1} ↔ constantCoeff g = 0 := by
   have h := MvPowerSeries.mem_span_X_pow_iff_forall_coeff_eq_zero_of_degree_lt W 1 g
@@ -31,11 +34,17 @@ theorem mem_spanX_iff (g : MvPowerSeries (Fin 2) W) :
     subst hn0
     simpa [coeff_zero_eq_constantCoeff_apply] using H
 
+/--
+@isnad1 id=eq.0h2v.s7.880715d8d23e from=translated src=- shape=fcf6d47a vocab=237de6d4
+-/
 theorem constantCoeff_drinfeldForm (q : ℕ) [Fact q.Prime] :
     constantCoeff (DrinfeldCurve.LocalChart.drinfeldForm q W) = 0 := by
   simp [DrinfeldCurve.LocalChart.drinfeldForm, map_sub, map_mul, map_pow, constantCoeff_X,
     (Fact.out : q.Prime).ne_zero]
 
+/--
+@isnad1 id=eq.1h3v.s9.d20ef4fb81b1 from=translated src=- shape=e990b4b9 vocab=21b73260
+-/
 theorem constantCoeff_eq_zero_of_sub_drinfeldForm_mem (q : ℕ) [Fact q.Prime] (f : MvPowerSeries (Fin 2) W)
     (hf : f - DrinfeldCurve.LocalChart.drinfeldForm q W ∈
       (Ideal.span {(X 0 : MvPowerSeries (Fin 2) W), X 1}) ^ (q + 2)) :
@@ -49,6 +58,9 @@ end T2Aux
 
 open T2Aux
 
+/--
+@isnad1 id=mem.9h17v.s18.7e1323edbfba from=translated src=- shape=f7d0b848 vocab=b78d19fc
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime]
     (W₀ : Type) [CommRing W₀] [IsDomain W₀] [IsDiscreteValuationRing W₀]

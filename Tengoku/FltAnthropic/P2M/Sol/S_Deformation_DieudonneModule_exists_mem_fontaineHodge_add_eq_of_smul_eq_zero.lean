@@ -31,6 +31,9 @@ structure Inputs (p : ℕ) [Fact p.Prime] (k : Type u) [CommRing k] (A : Type v)
     ∃ b : TruncatedWittVector p (n + 1) A, b ∈ fontaineKer p (n + 1) π ∧
       TruncatedWittVector.truncate (Nat.le_succ n) b = u
 
+/--
+@isnad1 id=ex.2h7v.s12.ce1a5488d779 from=translated src=- shape=de44c892 vocab=869a91d7
+-/
 theorem exists_restrict_eq (H : Inputs p k A π) {n : ℕ} (x : wittHom k p n A)
     (hFx : frobeniusFun (x : TruncatedWittVector p n A) ∈ fontaineKer p n π) :
     ∃ b : wittHom k p (n + 1) A, (b : TruncatedWittVector p (n + 1) A) ∈ fontaineKer p (n + 1) π ∧
@@ -41,6 +44,9 @@ theorem exists_restrict_eq (H : Inputs p k A π) {n : ℕ} (x : wittHom k p n A)
     exact shift_mem_wittHom x.2
   exact ⟨⟨b, H.crit (n + 1) b hb hVb⟩, hb, Subtype.ext hbx⟩
 
+/--
+@isnad1 id=ex.2h7v.s14.8af9c2f99732 from=translated src=- shape=fbb33f6d vocab=25d7b743
+-/
 theorem exists_mem_verschiebung_of_eq (H : Inputs p k A π) {n : ℕ} (x : wittHom k p n A)
     (hFx : frobeniusFun (x : TruncatedWittVector p n A) ∈ fontaineKer p n π) :
     ∃ b : wittHom k p (n + 1) A, of k p A (n + 1) b ∈ fontaineHodge k p π ∧
@@ -48,6 +54,9 @@ theorem exists_mem_verschiebung_of_eq (H : Inputs p k A π) {n : ℕ} (x : wittH
   obtain ⟨b, hb, hbx⟩ := exists_restrict_eq H x hFx
   exact ⟨b, of_mem_fontaineHodge hb, by rw [← wittHomShift_restrict, hbx]⟩
 
+/--
+@isnad1 id=ex.3h6v.s9.36fc06a230cb from=translated src=- shape=02209586 vocab=94c1f943
+-/
 theorem exists_mem_add_eq_of_smul_eq_zero (H : Inputs p k A π) (hpA : (p : A) = 0)
     {z : DieudonneModule k p A} (hz : (p : ℤ) • z = 0) :
     ∃ y ∈ fontaineHodge k p π, ∃ x : DieudonneModule k p A,
@@ -91,6 +100,9 @@ variable {𝓞 : Type u} [CommRing 𝓞] {p : ℕ} [Fact p.Prime]
 variable {k : Type v} [CommRing k] [Algebra 𝓞 k]
 variable {ℛ : Type w} [CommRing ℛ] [Bialgebra 𝓞 ℛ] [Module.Flat 𝓞 ℛ]
 
+/--
+@isnad1 id=inputs.3h4v.s9.c4719754c64a from=translated src=- shape=9c9c4323 vocab=ba1ceadc
+-/
 theorem inputs (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞) (hk : Function.Surjective (algebraMap 𝓞 k))
     (hker : RingHom.ker (algebraMap 𝓞 k) = Ideal.span {(p : 𝓞)}) :
     @Inputs p _ k _ (k ⊗[𝓞] ℛ) inferInstance inferInstance ℛ _
@@ -106,6 +118,9 @@ end Inst
 
 end FontaineTors
 
+/--
+@isnad1 id=ex.4h5v.s13.b34fa9edafa7 from=translated src=- shape=3d214ce8 vocab=a49ced7b
+-/
 theorem solution
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [Fact p.Prime] (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞)
     {k : Type v} [CommRing k] [Algebra 𝓞 k]

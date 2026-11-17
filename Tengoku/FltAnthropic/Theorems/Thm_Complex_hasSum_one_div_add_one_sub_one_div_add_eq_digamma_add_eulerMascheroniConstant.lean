@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Complex_hasSum_one_div_add_one_sub_one_div
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=hassum.1h1v.s6.85862c91cd8c from=translated src=- shape=3e127015 vocab=16290d66
+-/
 theorem Complex.hasSum_one_div_add_one_sub_one_div_add_eq_digamma_add_eulerMascheroniConstant
     (s : ℂ) (hs : 0 < s.re) :
     HasSum (fun k : ℕ => (1 : ℂ) / ((k : ℂ) + 1) - 1 / ((k : ℂ) + s))

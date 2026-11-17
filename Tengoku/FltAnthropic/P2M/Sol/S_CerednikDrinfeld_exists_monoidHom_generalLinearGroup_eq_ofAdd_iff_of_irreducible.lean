@@ -12,6 +12,9 @@ namespace Blk407V
 def Rep {𝒪 : Type} [CommRing 𝒪] (π : 𝒪) (K₀ : Type) [Field K₀] [Algebra 𝒪 K₀] (x : K₀) (n : ℤ) : Prop :=
   ∃ u : 𝒪ˣ, x = algebraMap 𝒪 K₀ (u : 𝒪) * (algebraMap 𝒪 K₀ π) ^ n
 
+/--
+@isnad1 id=ex.2h4v.s6.35fbbf6c9701 from=translated src=- shape=00f484b5 vocab=6a0fa7b7
+-/
 theorem rep_exists {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪] {π : 𝒪}
     {K₀ : Type} [Field K₀] [Algebra 𝒪 K₀] [IsFractionRing 𝒪 K₀] (hπ : Irreducible π) (x : K₀) (hx : x ≠ 0) : ∃ n : ℤ, Rep π K₀ x n := by
   have hAinj : Function.Injective (algebraMap 𝒪 K₀) := IsFractionRing.injective 𝒪 K₀
@@ -30,6 +33,9 @@ theorem rep_exists {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValu
   rw [map_mul, map_mul, map_pow, map_pow, Units.val_mul, map_mul, hwinv, zpow_sub₀ hπ0, zpow_natCast, zpow_natCast]
   field_simp
 
+/--
+@isnad1 id=eq.3h6v.s6.64859833eb88 from=translated src=- shape=b7b14d68 vocab=6a0fa7b7
+-/
 theorem rep_unique {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪] {π : 𝒪}
     {K₀ : Type} [Field K₀] [Algebra 𝒪 K₀] [IsFractionRing 𝒪 K₀] (hπ : Irreducible π) {x : K₀} {n n' : ℤ} (h : Rep π K₀ x n) (h' : Rep π K₀ x n') : n = n' := by
   have hAinj : Function.Injective (algebraMap 𝒪 K₀) := IsFractionRing.injective 𝒪 K₀
@@ -48,6 +54,9 @@ theorem rep_unique {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValu
   have := IsDiscreteValuationRing.unit_mul_pow_congr_pow hπ hπ u u' a a' (hAinj key)
   omega
 
+/--
+@isnad1 id=rep.3h7v.s6.ab7baa0751b2 from=translated src=- shape=762df632 vocab=4ec4adcb
+-/
 theorem rep_mul {𝒪 : Type} [CommRing 𝒪] {π : 𝒪} {K₀ : Type} [Field K₀] [Algebra 𝒪 K₀] [IsDomain 𝒪] [IsFractionRing 𝒪 K₀] {x y : K₀} {n n' : ℤ} (hπ : Irreducible π) (h : Rep π K₀ x n) (h' : Rep π K₀ y n') :
     Rep π K₀ (x * y) (n + n') := by
   have hAinj : Function.Injective (algebraMap 𝒪 K₀) := IsFractionRing.injective 𝒪 K₀
@@ -57,11 +66,17 @@ theorem rep_mul {𝒪 : Type} [CommRing 𝒪] {π : 𝒪} {K₀ : Type} [Field K
   refine ⟨u * u', ?_⟩
   rw [Units.val_mul, map_mul, zpow_add₀ hπ0]; ring
 
+/--
+@isnad1 id=rep.0h3v.s5.da5fcf483af8 from=translated src=- shape=e54193a3 vocab=810bdda1
+-/
 theorem rep_one {𝒪 : Type} [CommRing 𝒪] {π : 𝒪} {K₀ : Type} [Field K₀] [Algebra 𝒪 K₀] : Rep π K₀ (1 : K₀) 0 := ⟨1, by simp⟩
 
 end Blk407V
 
 open Blk407V in
+/--
+@isnad1 id=ex.2h4v.s9.3c55dae73b31 from=translated src=- shape=33c117c2 vocab=83c7adf0
+-/
 theorem solution
     (𝒪 : Type) [CommRing 𝒪] [IsDomain 𝒪] (hdvr : IsDiscreteValuationRing 𝒪)
     (π : 𝒪) (hπ : Irreducible π)

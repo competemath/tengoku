@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_IharaLemma_isLocalizedModule_comap_primeCo
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=islocali.1h6v.s9.6938d62e3ea0 from=translated src=- shape=856c47de vocab=909faae0
+-/
 theorem IharaLemma.isLocalizedModule_comap_primeCompl {Λ B : Type*} [CommRing Λ] [CommRing B] [Algebra Λ B]
     (hπ : Function.Surjective (algebraMap Λ B))
     (𝔭 : Ideal B) [𝔭.IsPrime]

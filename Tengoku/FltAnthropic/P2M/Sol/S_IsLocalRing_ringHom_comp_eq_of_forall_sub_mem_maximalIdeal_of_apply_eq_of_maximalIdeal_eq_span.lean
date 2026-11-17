@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open IsLocalRing
 
+/--
+@isnad1 id=eq.5h4v.s7.12946edbfc54 from=translated src=- shape=7e6fbead vocab=5b0937b2
+-/
 theorem rootOfUnity_unique_E4 {R : Type*} [CommRing R] [IsLocalRing R] {m : ℕ} (hm : IsUnit ((m : ℕ) : R))
     (hm1 : 1 ≤ m) {α β : R} (hα : α ^ m = 1) (hβ : β ^ m = 1) (hαβ : α - β ∈ maximalIdeal R) : α = β := by
   classical
@@ -43,6 +46,9 @@ theorem rootOfUnity_unique_E4 {R : Type*} [CommRing R] [IsLocalRing R] {m : ℕ}
   have : α - β = 0 := (hSu.mul_right_eq_zero).mp hgeom
   exact sub_eq_zero.mp this
 
+/--
+@isnad1 id=eq.3h5v.s8.cc4f4c368cfe from=translated src=- shape=17d385d8 vocab=f142f4f4
+-/
 theorem solution
     (W : Type) [CommRing W] [IsDomain W] [IsDiscreteValuationRing W]
     [IsAdicComplete (maximalIdeal W) W]

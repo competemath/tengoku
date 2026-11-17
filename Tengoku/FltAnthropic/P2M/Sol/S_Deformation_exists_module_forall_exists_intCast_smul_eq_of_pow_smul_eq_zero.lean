@@ -72,6 +72,9 @@ private lemma zsmul_eq_zsmul_of_sub_mem [Algebra 𝓞 (ZMod p)] (hp : (p : 𝓞)
 end WEK0
 
 open WEK0 in
+/--
+@isnad1 id=ex.3h4v.s8.60fa9b9b7693 from=translated src=- shape=0c9096e7 vocab=76a8688e
+-/
 theorem solution
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [Fact p.Prime] (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞)
     [Algebra 𝓞 (ZMod p)] (hker : RingHom.ker (algebraMap 𝓞 (ZMod p)) = Ideal.span {(p : 𝓞)})

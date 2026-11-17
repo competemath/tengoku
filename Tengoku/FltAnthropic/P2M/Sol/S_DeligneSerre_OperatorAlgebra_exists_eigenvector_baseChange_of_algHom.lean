@@ -17,6 +17,9 @@ section Nilp
 
 variable {R E : Type*} [CommRing R] [AddCommGroup E] [Module R E]
 
+/--
+@isnad1 id=mem.2h6v.s8.961286361971 from=translated src=- shape=eabb655d vocab=5cd54d75
+-/
 theorem pow_apply_mem (p : Submodule R E) (N : Module.End R E) (hmaps : ∀ x ∈ p, N x ∈ p)
     (x : E) (hx : x ∈ p) (j : ℕ) : (N ^ j) x ∈ p := by
   induction j with
@@ -25,6 +28,9 @@ theorem pow_apply_mem (p : Submodule R E) (N : Module.End R E) (hmaps : ∀ x �
     rw [pow_succ', Module.End.mul_apply]
     exact hmaps _ ih
 
+/--
+@isnad1 id=ex.3h4v.s8.77a3481b3825 from=translated src=- shape=6b6a086f vocab=7bec8fcf
+-/
 theorem exists_ne_zero_mem_ker_of_isNilpotent (p : Submodule R E) (hp : p ≠ ⊥)
     (N : Module.End R E) (hN : IsNilpotent N) (hmaps : ∀ x ∈ p, N x ∈ p) :
     ∃ v ∈ p, v ≠ 0 ∧ N v = 0 := by
@@ -46,6 +52,9 @@ theorem exists_ne_zero_mem_ker_of_isNilpotent (p : Submodule R E) (hp : p ≠ �
   · rw [← Module.End.mul_apply, ← pow_succ', Nat.sub_add_cancel hj₀pos]
     exact hj₀spec
 
+/--
+@isnad1 id=ex.4h6v.s9.9f1c405544bb from=translated src=- shape=7f36fc3c vocab=d79b9c9f
+-/
 theorem exists_common_ker_finset {ι : Type*} (N : ι → Module.End R E)
     (hcomm : ∀ i j, Commute (N i) (N j)) (hnil : ∀ i, IsNilpotent (N i)) (s : Finset ι) :
     ∀ (p : Submodule R E), p ≠ ⊥ → (∀ i, ∀ x ∈ p, N i x ∈ p) →
@@ -76,6 +85,9 @@ theorem exists_common_ker_finset {ι : Type*} (N : ι → Module.End R E)
     · exact LinearMap.mem_ker.mp hvp'.2
     · exact hv i hi
 
+/--
+@isnad1 id=ex.2h4v.s8.ee0c9478b198 from=translated src=- shape=de7f061e vocab=b113e024
+-/
 theorem exists_common_ker [IsArtinian R E] [Nontrivial E] {ι : Type*} (N : ι → Module.End R E)
     (hcomm : ∀ i j, Commute (N i) (N j)) (hnil : ∀ i, IsNilpotent (N i)) :
     ∃ v : E, v ≠ 0 ∧ ∀ i, N i v = 0 := by
@@ -111,6 +123,9 @@ section Faithful
 variable {𝒪 : Type*} [CommRing 𝒪] {M : Type*} [AddCommGroup M] [Module 𝒪 M]
   {T : Type*} [CommRing T] [Algebra 𝒪 T] {F : Type*} [Field F] [Algebra 𝒪 F]
 
+/--
+@isnad1 id=linearin.1h8v.s9.0fbaa7f6e422 from=translated src=- shape=a0bc28cb vocab=a19d6959
+-/
 theorem linearIndependent_coeff {I J : Type*} [Fintype I] [Fintype J]
     (b : Module.Basis I 𝒪 M) (β : Module.Basis J 𝒪 T)
     (act : T →ₐ[𝒪] Module.End 𝒪 M) (hact : Function.Injective act) :
@@ -137,6 +152,9 @@ theorem linearIndependent_coeff {I J : Type*} [Fintype I] [Fintype J]
 
 end Faithful
 
+/--
+@isnad1 id=ex.3h8v.s11.c2e1ad9b5589 from=translated src=- shape=a3d8d058 vocab=6b8971a9
+-/
 theorem main
     {𝒪 : Type*} [CommRing 𝒪] [IsDomain 𝒪] [IsPrincipalIdealRing 𝒪]
     {M : Type*} [AddCommGroup M] [Module 𝒪 M] [Module.Finite 𝒪 M] [Module.IsTorsionFree 𝒪 M]
@@ -373,6 +391,9 @@ theorem main
 
 end DeligneSerre.OperatorAlgebra.PointLemma
 
+/--
+@isnad1 id=ex.3h8v.s11.c2e1ad9b5589 from=translated src=- shape=a3d8d058 vocab=6b8971a9
+-/
 theorem solution
     {𝒪 : Type*} [CommRing 𝒪] [IsDomain 𝒪] [IsPrincipalIdealRing 𝒪]
     {M : Type*} [AddCommGroup M] [Module 𝒪 M] [Module.Finite 𝒪 M] [Module.IsTorsionFree 𝒪 M]

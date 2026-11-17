@@ -14,15 +14,27 @@ open Finset
 
 noncomputable def term (s : ℂ) (k : ℕ) : ℂ := 1 / ((k : ℂ) + 1) - 1 / ((k : ℂ) + s)
 
+/--
+@isnad1 id=eq.0h2v.s5.6922f04898a2 from=translated src=- shape=c3923dfd vocab=11321e88
+-/
 theorem re_natCast_add (s : ℂ) (k : ℕ) : ((k : ℂ) + s).re = (k : ℝ) + s.re := by simp
 
+/--
+@isnad1 id=le.0h2v.s5.50c4c89a90b1 from=translated src=- shape=e357a966 vocab=f284047e
+-/
 theorem le_norm_natCast_add (s : ℂ) (k : ℕ) : (k : ℝ) + s.re ≤ ‖(k : ℂ) + s‖ := by
   rw [← re_natCast_add]; exact Complex.re_le_norm _
 
+/--
+@isnad1 id=le.0h1v.s5.24c407506c8e from=translated src=- shape=64c5ccdb vocab=1bb731c8
+-/
 theorem le_norm_natCast_add_one (k : ℕ) : (k : ℝ) + 1 ≤ ‖(k : ℂ) + 1‖ := by
   have := le_norm_natCast_add 1 k
   simpa using this
 
+/--
+@isnad1 id=le.3h3v.s6.60eeaa991095 from=translated src=- shape=e41003a5 vocab=eddb0d54
+-/
 theorem norm_term_le_head {δ : ℝ} (hδ : 0 < δ) (hδ1 : δ ≤ 1) {s : ℂ} (hs : δ ≤ s.re) (k : ℕ) :
     ‖term s k‖ ≤ (1 + δ⁻¹) / ((k : ℝ) + 1) := by
   have hk0 : (0 : ℝ) ≤ (k : ℝ) := Nat.cast_nonneg k
@@ -43,6 +55,9 @@ theorem norm_term_le_head {δ : ℝ} (hδ : 0 < δ) (hδ1 : δ ≤ 1) {s : ℂ} 
     _ ≤ 1 / ((k : ℝ) + 1) + δ⁻¹ / ((k : ℝ) + 1) := add_le_add h1 h2
     _ = (1 + δ⁻¹) / ((k : ℝ) + 1) := by ring
 
+/--
+@isnad1 id=le.2h2v.s6.aae21382073b from=translated src=- shape=41aeca5f vocab=c381dd49
+-/
 theorem norm_term_le_tail {s : ℂ} (hs : 0 < s.re) {k : ℕ} (hk : 1 ≤ k) :
     ‖term s k‖ ≤ ‖s - 1‖ * (1 / (k : ℝ) - 1 / ((k : ℝ) + 1)) := by
   have hk1 : (1 : ℝ) ≤ (k : ℝ) := by exact_mod_cast hk
@@ -66,6 +81,9 @@ theorem norm_term_le_tail {s : ℂ} (hs : 0 < s.re) {k : ℕ} (hk : 1 ≤ k) :
         field_simp
         ring
 
+/--
+@isnad1 id=eq.2h2v.s7.ed7a098ba18c from=translated src=- shape=546897cb vocab=46a888cd
+-/
 theorem sum_Ico_one_div_sub (N : ℕ) (hN : 1 ≤ N) (m : ℕ) (hm : N ≤ m) :
     ∑ k ∈ Ico N m, (1 / (k : ℝ) - 1 / ((k : ℝ) + 1)) = 1 / (N : ℝ) - 1 / (m : ℝ) := by
   induction m, hm using Nat.le_induction with
@@ -75,6 +93,9 @@ theorem sum_Ico_one_div_sub (N : ℕ) (hN : 1 ≤ N) (m : ℕ) (hm : N ≤ m) :
     push_cast
     ring
 
+/--
+@isnad1 id=le.0h1v.s5.fe15801df1b3 from=translated src=- shape=428d9986 vocab=f61032fb
+-/
 theorem sum_range_one_div_le (N : ℕ) : ∑ i ∈ range N, (1 : ℝ) / ((i : ℝ) + 1) ≤ 1 + Real.log N := by
   have h := harmonic_le_one_add_log N
   have e : ((harmonic N : ℚ) : ℝ) = ∑ i ∈ range N, (1 : ℝ) / ((i : ℝ) + 1) := by
@@ -83,6 +104,9 @@ theorem sum_range_one_div_le (N : ℕ) : ∑ i ∈ range N, (1 : ℝ) / ((i : �
   rw [← e]
   exact h
 
+/--
+@isnad1 id=le.4h3v.s7.d011ed8610d0 from=translated src=- shape=58df7b10 vocab=7592b68c
+-/
 theorem sum_norm_term_le {δ : ℝ} (hδ : 0 < δ) (hδ1 : δ ≤ 1) {s : ℂ} (hs : δ ≤ s.re) (hs2 : s.re ≤ 2)
     (n : ℕ) :
     ∑ k ∈ range n, ‖term s k‖ ≤ (1 + δ⁻¹) * (1 + Real.log (2 + |s.im|)) + 1 := by
@@ -140,6 +164,9 @@ theorem sum_norm_term_le {δ : ℝ} (hδ : 0 < δ) (hδ1 : δ ≤ 1) {s : ℂ} (
       Finset.sum_le_sum_of_subset_of_nonneg (Finset.range_mono hnN.le) fun k _ _ => hnn k
     linarith [hhead]
 
+/--
+@isnad1 id=ex.1h1v.s6.0c2828ea45ea from=translated src=- shape=dbdf97e3 vocab=12c6a13e
+-/
 theorem main (δ : ℝ) (hδ : 0 < δ) :
     ∃ C : ℝ, 0 < C ∧ ∀ s : ℂ, δ ≤ s.re → s.re ≤ 2 →
       ‖Complex.digamma s‖ ≤ C * Real.log (2 + |s.im|) := by
@@ -181,6 +208,9 @@ theorem main (δ : ℝ) (hδ : 0 < δ) :
 
 end SlDigammaStrip
 
+/--
+@isnad1 id=ex.1h1v.s6.0c2828ea45ea from=translated src=- shape=dbdf97e3 vocab=12c6a13e
+-/
 theorem solution
     (δ : ℝ) (hδ : 0 < δ) :
     ∃ C : ℝ, 0 < C ∧ ∀ s : ℂ, δ ≤ s.re → s.re ≤ 2 →

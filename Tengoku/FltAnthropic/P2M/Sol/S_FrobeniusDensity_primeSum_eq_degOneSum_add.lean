@@ -85,6 +85,9 @@ open scoped _root_.P2MW.S_FrobeniusDensity_primeSum_eq_degOneSum_add.FrobeniusDe
 
 open _root_.FrobeniusDensity open _root_.P2MW.S_FrobeniusDensity_primeSum_eq_degOneSum_add.FrobeniusDensity
 
+/--
+@isnad1 id=eq.0h3v.s5.f7d74ca214d4 from=translated src=- shape=26693953 vocab=b3156205
+-/
 theorem solution (K : Type*) [Field K] [NumberField K] (S₀ : Finset ℕ) (s : ℝ) :
     FrobeniusDensity.primeSum K s =
       FrobeniusDensity.degOneSum K S₀ s + FrobeniusDensity.cutSum K S₀ s +

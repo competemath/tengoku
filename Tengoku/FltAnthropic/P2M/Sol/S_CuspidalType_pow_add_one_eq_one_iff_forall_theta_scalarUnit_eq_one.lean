@@ -41,6 +41,9 @@ end CuStSmallRows
 
 open CuStSmallRows in
 
+/--
+@isnad1 id=iff.0h3v.s11.9114621d61f7 from=translated src=- shape=85961f00 vocab=348c2219
+-/
 theorem solution {q : ℕ} [Fact q.Prime] {K : Type*} [Field K]
     (θ : (GaloisField q 2)ˣ →* Kˣ) :
     θ ^ (q + 1) = 1 ↔

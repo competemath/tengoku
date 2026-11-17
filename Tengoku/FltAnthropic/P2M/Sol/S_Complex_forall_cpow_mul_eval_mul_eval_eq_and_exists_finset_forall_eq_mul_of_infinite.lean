@@ -11,16 +11,25 @@ open Polynomial
 
 namespace LTLaurentCancel
 
+/--
+@isnad1 id=eq.0h3v.s6.75a84d8b6e42 from=translated src=- shape=359e4659 vocab=2cb8029a
+-/
 theorem natCast_cpow_intCast_mul (q : ℕ) (n : ℤ) (w : ℂ) :
     (q : ℂ) ^ ((n : ℂ) * w) = ((q : ℂ) ^ (-w)) ^ (-n) := by
   have : ((n : ℂ) * w) = ((-n : ℤ) : ℂ) * (-w) := by push_cast; ring
   rw [this, Complex.cpow_int_mul]
 
+/--
+@isnad1 id=ne.1h2v.s5.a53e18b47b39 from=translated src=- shape=096dab66 vocab=6a11df9b
+-/
 theorem natCast_cpow_ne_zero {q : ℕ} (hq : 1 < q) (w : ℂ) : (q : ℂ) ^ w ≠ 0 := by
   rw [Ne, Complex.cpow_eq_zero_iff, not_and_or]
   left
   exact_mod_cast (show (q : ℕ) ≠ 0 by omega)
 
+/--
+@isnad1 id=infinite.2h2v.s6.09d0e6574268 from=translated src=- shape=a257135a vocab=3b1ae6c0
+-/
 theorem infinite_setOf_cpow {q : ℕ} (hq : 1 < q) (S : Set ℂ) (hS : {t : ℝ | (t : ℂ) ∈ S}.Infinite) :
     {Y : ℂ | ∃ s ∈ S, Y = (q : ℂ) ^ (-s)}.Infinite := by
   have hq0 : (0 : ℝ) ≤ q := by positivity
@@ -43,6 +52,9 @@ theorem infinite_setOf_cpow {q : ℕ} (hq : 1 < q) (S : Set ℂ) (hS : {t : ℝ 
   show (((q : ℝ) ^ (-t) : ℝ) : ℂ) = (q : ℂ) ^ (-(t : ℂ))
   rw [Complex.ofReal_cpow hq0]; push_cast; rfl
 
+/--
+@isnad1 id=eq.3h8v.s8.8b6a821a35c2 from=translated src=- shape=78a063cd vocab=4d509381
+-/
 theorem laurent_identity_of_infinite {q : ℕ} (hq : 1 < q) (P Q₁ Q₂ : ℂ[X]) (m k : ℤ) (S : Set ℂ)
     (hS : {t : ℝ | (t : ℂ) ∈ S}.Infinite)
     (h : ∀ s ∈ S,
@@ -83,6 +95,9 @@ theorem laurent_identity_of_infinite {q : ℕ} (hq : 1 < q) (P Q₁ Q₂ : ℂ[X
     exact (hlaur s').mp (h s' hs')
   exact (hlaur s).mpr (by rw [hAB])
 
+/--
+@isnad1 id=ex.5h10v.s8.1b6180cd9296 from=translated src=- shape=155c900f vocab=72379b42
+-/
 theorem exists_finset_dual_eq {q : ℕ} (hq : 1 < q) (Zd γ : ℂ → ℂ) (P Q₁ Q₂ : ℂ[X]) (hQ₂ : Q₂ ≠ 0)
     (m k : ℤ) (S S₁ : Set ℂ) (hS : {t : ℝ | (t : ℂ) ∈ S}.Infinite)
     (h : ∀ s ∈ S,
@@ -112,6 +127,9 @@ end LTLaurentCancel
 
 open LTLaurentCancel
 
+/--
+@isnad1 id=and.5h10v.s9.0f65d82c8b5d from=translated src=- shape=dc987bb0 vocab=72379b42
+-/
 theorem solution
     (q : ℕ) (hq : 1 < q) (P Q₁ Q₂ : Polynomial ℂ) (hQ₂ : Q₂ ≠ 0) (m k : ℤ) (γ Zd : ℂ → ℂ) (S S₁ : Set ℂ)
     (hS : {t : ℝ | (t : ℂ) ∈ S}.Infinite)

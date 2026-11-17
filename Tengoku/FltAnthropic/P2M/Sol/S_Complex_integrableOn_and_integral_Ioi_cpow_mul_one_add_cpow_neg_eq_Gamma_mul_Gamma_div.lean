@@ -18,11 +18,17 @@ export _root_.Complex (one_re measurable_ofReal one_cpow re norm_cpow_eq_rpow_re
 namespace BetaHalfLine
 open _root_.Complex
 
+/--
+@isnad1 id=integrab.1h4v.s6.5af4d2b0ee09 from=translated src=- shape=17c7ea8c vocab=ec62ff08
+-/
 theorem integrable_of_integral_ne_zero {α : Type*} [MeasurableSpace α] {μ : Measure α} {E : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] {f : α → E} (h : ∫ x, f x ∂μ ≠ 0) : Integrable f μ := by
   by_contra hf
   exact h (integral_undef hf)
 
+/--
+@isnad1 id=integrab.2h2v.s6.4386c7a82bd2 from=translated src=- shape=ae9ff38e vocab=00aaa6dd
+-/
 theorem integrableOn_rpow_mul_exp_neg_mul {a r : ℝ} (ha : 0 < a) (hr : 0 < r) :
     IntegrableOn (fun t : ℝ => t ^ (a - 1) * Real.exp (-(r * t))) (Ioi 0) := by
   apply integrable_of_integral_ne_zero
@@ -32,6 +38,9 @@ theorem integrableOn_rpow_mul_exp_neg_mul {a r : ℝ} (ha : 0 < a) (hr : 0 < r) 
 def B (a b : ℂ) (p : ℝ × ℝ) : ℂ :=
   (p.1 : ℂ) ^ (a - 1) * ((p.2 : ℂ) ^ (a + b - 1) * Complex.exp (-((((1 + p.1 : ℝ)) : ℂ) * (p.2 : ℂ))))
 
+/--
+@isnad1 id=measurab.0h2v.s4.2177fb90f1c1 from=translated src=- shape=168abce8 vocab=982fb1d2
+-/
 theorem measurable_B (a b : ℂ) : Measurable (B a b) := by
   unfold B
   refine ((Complex.measurable_ofReal.comp measurable_fst).pow_const _).mul
@@ -39,6 +48,9 @@ theorem measurable_B (a b : ℂ) : Measurable (B a b) := by
   exact ((Complex.measurable_ofReal.comp (measurable_const.add measurable_fst)).mul
     (Complex.measurable_ofReal.comp measurable_snd)).neg
 
+/--
+@isnad1 id=eq.0h4v.s6.3fb1ca90d395 from=translated src=- shape=f8ae73e4 vocab=01c34864
+-/
 theorem B_eq (a b : ℂ) (v y : ℝ) :
     B a b (v, y) = ((y : ℂ) ^ (a + b - 1) * Complex.exp (-(y : ℂ))) *
       ((v : ℂ) ^ (a - 1) * Complex.exp (-((y : ℂ) * (v : ℂ)))) := by
@@ -48,6 +60,9 @@ theorem B_eq (a b : ℂ) (v y : ℝ) :
     rw [← Complex.exp_add]; push_cast; ring_nf
   rw [e]; ring
 
+/--
+@isnad1 id=eq.2h4v.s7.c627b99605c5 from=translated src=- shape=fe80cfa5 vocab=9c6c6626
+-/
 theorem norm_B (a b : ℂ) {v y : ℝ} (hv : 0 < v) (hy : 0 < y) :
     ‖B a b (v, y)‖ = (y ^ ((a + b).re - 1) * Real.exp (-y)) * (v ^ (a.re - 1) * Real.exp (-(y * v))) := by
   rw [B_eq, norm_mul, norm_mul, norm_mul, Complex.norm_cpow_eq_rpow_re_of_pos hv,
@@ -55,6 +70,9 @@ theorem norm_B (a b : ℂ) {v y : ℝ} (hv : 0 < v) (hy : 0 < y) :
   simp only [Complex.neg_re, Complex.mul_re, Complex.ofReal_re, Complex.ofReal_im, Complex.sub_re,
     Complex.one_re, mul_zero, sub_zero]
 
+/--
+@isnad1 id=integrab.2h2v.s6.54c979e2d755 from=translated src=- shape=44505f96 vocab=bbb0ad95
+-/
 theorem integrable_B (a b : ℂ) (ha : 0 < a.re) (hb : 0 < b.re) :
     Integrable (B a b) ((volume.restrict (Ioi (0 : ℝ))).prod (volume.restrict (Ioi (0 : ℝ)))) := by
   have hab : 0 < (a + b).re := by simp; linarith
@@ -76,6 +94,9 @@ theorem integrable_B (a b : ℂ) (ha : 0 < a.re) (hb : 0 < b.re) :
     rw [show -((1 : ℝ) * y) = -y by ring, ← e]
     ring
 
+/--
+@isnad1 id=eq.3h3v.s7.660b2941404c from=translated src=- shape=937bc2ad vocab=b78b6c47
+-/
 theorem integral_B_snd (a b : ℂ) (ha : 0 < a.re) (hb : 0 < b.re) {v : ℝ} (hv : 0 < v) :
     ∫ y in Ioi (0 : ℝ), B a b (v, y) =
       (v : ℂ) ^ (a - 1) * ((1 / (((1 + v : ℝ)) : ℂ)) ^ (a + b) * Complex.Gamma (a + b)) := by
@@ -84,6 +105,9 @@ theorem integral_B_snd (a b : ℂ) (ha : 0 < a.re) (hb : 0 < b.re) {v : ℝ} (hv
       ((y : ℂ) ^ (a + b - 1) * Complex.exp (-((((1 + v : ℝ)) : ℂ) * (y : ℂ)))) from rfl,
     integral_const_mul, Complex.integral_cpow_mul_exp_neg_mul_Ioi hab (by positivity)]
 
+/--
+@isnad1 id=eq.2h3v.s7.24afd95d6b4f from=translated src=- shape=d6130be7 vocab=fe951af3
+-/
 theorem integral_B_fst (a b : ℂ) (ha : 0 < a.re) {y : ℝ} (hy : 0 < y) :
     ∫ v in Ioi (0 : ℝ), B a b (v, y) =
       ((y : ℂ) ^ (a + b - 1) * Complex.exp (-(y : ℂ))) * ((1 / (y : ℂ)) ^ a * Complex.Gamma a) := by
@@ -96,6 +120,9 @@ end Complex.BetaHalfLine
 end
 
 open Complex.BetaHalfLine in
+/--
+@isnad1 id=and.2h2v.s8.17f59c3bbcc7 from=translated src=- shape=1865e57f vocab=c8f90654
+-/
 theorem solution
     (a b : ℂ) (ha : 0 < a.re) (hb : 0 < b.re) :
     IntegrableOn (fun v : ℝ => (v : ℂ) ^ (a - 1) * (((1 + v : ℝ)) : ℂ) ^ (-(a + b))) (Set.Ioi 0) ∧

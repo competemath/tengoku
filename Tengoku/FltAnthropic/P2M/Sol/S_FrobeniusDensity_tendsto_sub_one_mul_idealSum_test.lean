@@ -18,6 +18,9 @@ open _root_.FrobeniusDensity
 
 variable (K : Type*) [Field K] [NumberField K]
 
+/--
+@isnad1 id=le.0h3v.s4.052316c4f987 from=translated src=- shape=da63d2fc vocab=e0aaed75
+-/
 lemma zetaTerm_nonneg (s : ℝ) (n : ℕ) : 0 ≤ zetaTerm K s n := by
   unfold zetaTerm
   split
@@ -139,6 +142,9 @@ end FrobeniusDensity
 
 open _root_.FrobeniusDensity open _root_.P2MW.S_FrobeniusDensity_tendsto_sub_one_mul_idealSum_test.FrobeniusDensity
 
+/--
+@isnad1 id=tendsto.0h1v.s6.5bb2baa1cdda from=translated src=- shape=a0c6036f vocab=8be211e7
+-/
 theorem solution (K : Type*) [Field K] [NumberField K] :
     Filter.Tendsto (fun s : ℝ => (s - 1) * (FrobeniusDensity.idealSum K s).toReal)
       (nhdsWithin 1 (Set.Ioi 1)) (nhds (dedekindZeta_residue K)) := by

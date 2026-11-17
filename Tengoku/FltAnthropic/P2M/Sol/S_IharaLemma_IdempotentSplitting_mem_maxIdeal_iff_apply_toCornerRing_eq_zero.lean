@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open IharaLemma
 
+/--
+@isnad1 id=iff.0h6v.s8.eecadcaa7483 from=translated src=- shape=468519d3 vocab=acb4887e
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪] {B : Type} [CommRing B] [Algebra 𝒪 B]
     (Sp : IdempotentSplitting B) (i : Fin Sp.n)

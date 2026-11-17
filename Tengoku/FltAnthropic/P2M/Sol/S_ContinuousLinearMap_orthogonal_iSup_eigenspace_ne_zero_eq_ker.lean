@@ -18,6 +18,9 @@ variable {𝕜 E : Type*} [RCLike 𝕜] [NormedAddCommGroup E] [InnerProductSpac
 def highPart (T : E →L[𝕜] E) (r : ℝ) : Submodule 𝕜 E :=
   ⨆ (μ : 𝕜) (_ : r ≤ ‖μ‖), eigenspace (T : Module.End 𝕜 E) μ
 
+/--
+@isnad1 id=mem.1h4v.s10.8e4ec1c85513 from=translated src=- shape=25ec4e44 vocab=82cd90ec
+-/
 theorem apply_mem_iSup_eigenspace_ne_zero {T : E →L[𝕜] E} {u : E}
     (hu : u ∈ ⨆ (μ : 𝕜) (_ : μ ≠ 0), eigenspace (T : Module.End 𝕜 E) μ) :
     T u ∈ ⨆ (μ : 𝕜) (_ : μ ≠ 0), eigenspace (T : Module.End 𝕜 E) μ := by
@@ -35,6 +38,9 @@ theorem apply_mem_iSup_eigenspace_ne_zero {T : E →L[𝕜] E} {u : E}
       exact hx'
   · rw [map_add]; exact Submodule.add_mem _ hx hy
 
+/--
+@isnad1 id=eq.2h3v.s10.49fe57377fec from=translated src=- shape=632b3743 vocab=273adbe0
+-/
 theorem orthogonal_iSup_eigenspace_ne_zero_eq_ker {T : E →L[𝕜] E}
     (hT : IsCompactOperator T) (hT' : (T : E →ₗ[𝕜] E).IsSymmetric) :
     (⨆ (μ : 𝕜) (_ : μ ≠ 0), eigenspace (T : Module.End 𝕜 E) μ)ᗮ = LinearMap.ker (T : E →ₗ[𝕜] E) := by
@@ -90,6 +96,9 @@ theorem orthogonal_iSup_eigenspace_ne_zero_eq_ker {T : E →L[𝕜] E}
 end ContinuousLinearMap
 
 open Module.End in
+/--
+@isnad1 id=eq.2h3v.s10.49fe57377fec from=translated src=- shape=632b3743 vocab=273adbe0
+-/
 theorem solution {𝕜 E : Type*} [RCLike 𝕜] [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] [CompleteSpace E] {T : E →L[𝕜] E}
     (hT : IsCompactOperator T) (hT' : (T : E →ₗ[𝕜] E).IsSymmetric) :
     (⨆ (μ : 𝕜) (_ : μ ≠ 0), eigenspace (T : Module.End 𝕜 E) μ)ᗮ = LinearMap.ker (T : E →ₗ[𝕜] E) :=

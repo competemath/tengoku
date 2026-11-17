@@ -28,6 +28,9 @@ theorem eq_of_deg_lt_two (n : Fin 2 →₀ ℕ) (h : n 0 + n 1 < 2) :
     · right; right; ext i; fin_cases i <;> simp <;> omega
   · right; left; ext i; fin_cases i <;> simp <;> omega
 
+/--
+@isnad1 id=eq.0h4v.s9.91b8c19414fb from=translated src=- shape=970936e1 vocab=4e2d4552
+-/
 theorem coeff_lin (a b : W) (n : Fin 2 →₀ ℕ) :
     MvPowerSeries.coeff n (MvPowerSeries.C a * MvPowerSeries.X 0 + MvPowerSeries.C b * MvPowerSeries.X 1 :
       MvPowerSeries (Fin 2) W) =
@@ -36,16 +39,25 @@ theorem coeff_lin (a b : W) (n : Fin 2 →₀ ℕ) :
   simp only [map_add, MvPowerSeries.coeff_C_mul, MvPowerSeries.coeff_X]
   split_ifs <;> simp
 
+/--
+@isnad1 id=ne.0h0v.s6.e6c81b400d74 from=translated src=- shape=dbfa929c vocab=804f4db2
+-/
 theorem single_zero_ne_single_one : (Finsupp.single (0 : Fin 2) 1 : Fin 2 →₀ ℕ) ≠ Finsupp.single 1 1 := by
   intro h
   have := congrArg (fun f : Fin 2 →₀ ℕ => f 0) h
   simp at this
 
+/--
+@isnad1 id=ne.0h1v.s6.0a1ee83f203a from=translated src=- shape=e7f19cb8 vocab=804f4db2
+-/
 theorem zero_ne_single (i : Fin 2) : (0 : Fin 2 →₀ ℕ) ≠ Finsupp.single i 1 := by
   intro h
   have := congrArg (fun f : Fin 2 →₀ ℕ => f i) h
   simp at this
 
+/--
+@isnad1 id=mem.1h2v.s10.d9839aa1be9a from=translated src=- shape=8b5159ec vocab=749c1e19
+-/
 theorem sub_lin_mem_sq (φ : MvPowerSeries (Fin 2) W) (hφ : φ ∈ XX W) :
     φ - (MvPowerSeries.C (MvPowerSeries.coeff (Finsupp.single 0 1) φ) * MvPowerSeries.X 0 +
       MvPowerSeries.C (MvPowerSeries.coeff (Finsupp.single 1 1) φ) * MvPowerSeries.X 1) ∈ XX W ^ 2 := by
@@ -60,6 +72,9 @@ theorem sub_lin_mem_sq (φ : MvPowerSeries (Fin 2) W) (hφ : φ ∈ XX W) :
   · rw [map_sub, coeff_lin]; simp [single_zero_ne_single_one]
   · rw [map_sub, coeff_lin]; simp [single_zero_ne_single_one.symm]
 
+/--
+@isnad1 id=mem.1h3v.s9.55fd5852b7c3 from=translated src=- shape=c4fa0a22 vocab=b0cd0859
+-/
 theorem f_mem_sq (q : ℕ) [Fact q.Prime] (f : MvPowerSeries (Fin 2) W)
     (hf : f - DrinfeldCurve.LocalChart.drinfeldForm q W ∈ XX W ^ (q + 2)) : f ∈ XX W ^ 2 := by
   have hq : 1 ≤ q := (Fact.out : q.Prime).one_le
@@ -86,19 +101,31 @@ variable (g : MvPowerSeries (Fin 2) W)
 abbrev JJ : Ideal (MvPowerSeries (Fin 2) W ⧸ Ideal.span {g}) :=
   Ideal.span {Ideal.Quotient.mk (Ideal.span {g}) (MvPowerSeries.X 0), Ideal.Quotient.mk (Ideal.span {g}) (MvPowerSeries.X 1)}
 
+/--
+@isnad1 id=eq.0h2v.s10.614bcb290341 from=translated src=- shape=e7579be4 vocab=9c299ef3
+-/
 theorem JJ_eq_map : JJ g = (XX W).map (Ideal.Quotient.mk (Ideal.span {g})) := by
   rw [XX, Ideal.map_span, Set.image_pair]
 
+/--
+@isnad1 id=eq.0h2v.s11.e788e88349fa from=translated src=- shape=7f5bf6de vocab=0e9665fe
+-/
 theorem JJ_sq_eq_map : JJ g ^ 2 = (XX W ^ 2).map (Ideal.Quotient.mk (Ideal.span {g})) := by
   rw [Ideal.map_pow, JJ_eq_map]
 
 def Rel (s : MvPowerSeries (Fin 2) W ⧸ Ideal.span {g}) (c : Fin 2 → W) : Prop :=
   s - Ideal.Quotient.mk (Ideal.span {g}) (MvPowerSeries.C (c 0) * MvPowerSeries.X 0 + MvPowerSeries.C (c 1) * MvPowerSeries.X 1) ∈ JJ g ^ 2
 
+/--
+@isnad1 id=iff.0h4v.s12.b66c961bf4dd from=translated src=- shape=f132d332 vocab=0f046d2d
+-/
 theorem rel_iff_sum (s : MvPowerSeries (Fin 2) W ⧸ Ideal.span {g}) (c : Fin 2 → W) :
     Rel g s c ↔ s - Ideal.Quotient.mk (Ideal.span {g}) (∑ ii : Fin 2, MvPowerSeries.C (c ii) * MvPowerSeries.X ii) ∈ JJ g ^ 2 := by
   rw [Rel, Fin.sum_univ_two]
 
+/--
+@isnad1 id=ex.1h3v.s10.2a337d2bc61e from=translated src=- shape=22ea8dfc vocab=a8dd8685
+-/
 theorem exists_rel (s : MvPowerSeries (Fin 2) W ⧸ Ideal.span {g}) (hs : s ∈ JJ g) : ∃ c : Fin 2 → W, Rel g s c := by
   rw [JJ_eq_map] at hs
   obtain ⟨φ, hφ, rfl⟩ := (Ideal.mem_map_iff_of_surjective _ Ideal.Quotient.mk_surjective).mp hs
@@ -106,12 +133,18 @@ theorem exists_rel (s : MvPowerSeries (Fin 2) W ⧸ Ideal.span {g}) (hs : s ∈ 
   rw [Rel, JJ_sq_eq_map, ← map_sub]
   exact Ideal.mem_map_of_mem _ (by simpa using sub_lin_mem_sq φ hφ)
 
+/--
+@isnad1 id=rel.0h3v.s10.2fd8c693ca3d from=translated src=- shape=6d97a123 vocab=55185be4
+-/
 theorem rel_X (jj : Fin 2) :
     Rel g (Ideal.Quotient.mk (Ideal.span {g}) (MvPowerSeries.X jj)) (fun ii => (1 : Matrix (Fin 2) (Fin 2) W) ii jj) := by
   rw [Rel]
   simp only [Matrix.one_apply]
   fin_cases jj <;> simp
 
+/--
+@isnad1 id=rel.2h6v.s10.b5a11ab13331 from=translated src=- shape=6859e1a7 vocab=2931742b
+-/
 theorem rel_sub {s s' : MvPowerSeries (Fin 2) W ⧸ Ideal.span {g}} {c c' : Fin 2 → W}
     (h : Rel g s c) (h' : Rel g s' c') : Rel g (s - s') (c - c') := by
   rw [Rel] at h h' ⊢
@@ -122,6 +155,9 @@ theorem rel_sub {s s' : MvPowerSeries (Fin 2) W ⧸ Ideal.span {g}} {c c' : Fin 
 
 end Chart
 
+/--
+@isnad1 id=rel.3h9v.s13.550528c1dd06 from=translated src=- shape=684278ad vocab=866dff88
+-/
 theorem rel_push {W₀ W : Type} [CommRing W₀] [CommRing W] (g₀ : MvPowerSeries (Fin 2) W₀) (g : MvPowerSeries (Fin 2) W)
     (φ : (MvPowerSeries (Fin 2) W₀ ⧸ Ideal.span {g₀}) →+* (MvPowerSeries (Fin 2) W ⧸ Ideal.span {g}))
     (ρ : W₀ → W) (hφC : ∀ w : W₀, φ (Ideal.Quotient.mk _ (MvPowerSeries.C w)) = Ideal.Quotient.mk _ (MvPowerSeries.C (ρ w)))
@@ -162,6 +198,9 @@ theorem rel_push {W₀ W : Type} [CommRing W₀] [CommRing W] (g₀ : MvPowerSer
   simp only [map_sub, map_add, map_mul, hφC, Fin.sum_univ_two]
   ring
 
+/--
+@isnad1 id=and.3h8v.s14.d46d5099bbe3 from=translated src=- shape=b02b0279 vocab=f1e3a0df
+-/
 theorem mem_of_lin_mem_sq (t : W) (I : Ideal W) (ht : t ∈ I) (f u v : MvPowerSeries (Fin 2) W) (hf : f ∈ XX W ^ 2)
     (a b : W)
     (h : Ideal.Quotient.mk (Ideal.span {MvPowerSeries.C t * v - f * u})
@@ -205,6 +244,9 @@ end
 end LinPartTransport
 
 open LinPartTransport in
+/--
+@isnad1 id=other.10h16v.s18.748c773e162e from=translated src=- shape=6a6b69bd vocab=dde34590
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime]
     (W₀ : Type) [CommRing W₀] [IsDomain W₀] [IsDiscreteValuationRing W₀]

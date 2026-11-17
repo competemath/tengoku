@@ -12,6 +12,9 @@ open Matrix
 
 namespace GCusp
 
+/--
+@isnad1 id=eq.0h2v.s10.25ba25cc514b from=translated src=- shape=d0957289 vocab=f04fbac5
+-/
 theorem coe_mul_T_zpow_mul_S_inv (β : SL(2, ℤ)) (j : ℤ) :
     ((β * ModularGroup.T ^ j * ModularGroup.S⁻¹ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) =
       !![-((β : Matrix (Fin 2) (Fin 2) ℤ) 0 0 * j + (β : Matrix (Fin 2) (Fin 2) ℤ) 0 1), (β : Matrix (Fin 2) (Fin 2) ℤ) 0 0;
@@ -26,6 +29,9 @@ theorem coe_mul_T_zpow_mul_S_inv (β : SL(2, ℤ)) (j : ℤ) :
 
 end GCusp
 
+/--
+@isnad1 id=and.0h2v.s11.609d28e0344f from=translated src=- shape=66d872b8 vocab=9c71467b
+-/
 theorem solution
     (N : ℕ) (β : SL(2, ℤ)) :
     ((β ∈ CongruenceSubgroup.Gamma1 N ∨ -β ∈ CongruenceSubgroup.Gamma1 N) ↔

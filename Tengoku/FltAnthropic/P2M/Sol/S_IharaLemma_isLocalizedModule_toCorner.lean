@@ -8,6 +8,9 @@ namespace P2MW.S_IharaLemma_isLocalizedModule_toCorner
 
 open IharaLemma
 
+/--
+@isnad1 id=islocali.3h4v.s8.8aac9c7b9c4c from=translated src=- shape=d6f464c3 vocab=d80b9e46
+-/
 theorem solution {B : Type} [CommRing B] {M : Type} [AddCommGroup M] [Module B M] {e : B}
     (he : IsIdempotentElem e) (𝔪 : Ideal B) [h𝔪 : 𝔪.IsMaximal] (hem : e ∉ 𝔪)
     (hother : ∀ J : Ideal B, J.IsMaximal → J ≠ 𝔪 → e ∈ J) :

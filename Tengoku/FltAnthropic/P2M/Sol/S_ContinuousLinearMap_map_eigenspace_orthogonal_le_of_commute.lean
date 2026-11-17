@@ -10,6 +10,9 @@ set_option autoImplicit false
 open Module.End
 open scoped InnerProductSpace
 
+/--
+@isnad1 id=and.4h5v.s11.9ed2ee3237d9 from=translated src=- shape=5fb545a1 vocab=4c027816
+-/
 theorem solution {𝕜 E : Type*} [RCLike 𝕜] [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] [CompleteSpace E]
     {T : E →L[𝕜] E} (hT : IsCompactOperator T) (hT' : (T : E →ₗ[𝕜] E).IsSymmetric)
     (S : E →L[𝕜] E) (hST : S.comp T = T.comp S) (μ : 𝕜) (hμ : μ ≠ 0) :

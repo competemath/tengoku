@@ -21,6 +21,9 @@ open _root_.DrinfeldCurve.LocalChart open _root_.DrinfeldCurve
 
 open MvPowerSeries
 
+/--
+@isnad1 id=isunit.3h6v.s12.23636b4039ab from=translated src=- shape=7746fb32 vocab=540511d2
+-/
 theorem isUnit_constantCoeff_of_isUnit_mk {W : Type} [CommRing W] [IsLocalRing W] (π : W) (hπ : π ∈ maximalIdeal W)
     (f u v : MvPowerSeries (Fin 2) W) (hf : constantCoeff f = 0) (g : MvPowerSeries (Fin 2) W)
     (hg : IsUnit (Ideal.Quotient.mk (Ideal.span {C π * v - f * u}) g)) : IsUnit (constantCoeff g) := by
@@ -38,6 +41,9 @@ theorem isUnit_constantCoeff_of_isUnit_mk {W : Type} [CommRing W] [IsLocalRing W
   rw [(residue_eq_zero_iff _).mpr hm] at h1
   exact not_isUnit_zero h1
 
+/--
+@isnad1 id=eq.0h2v.s8.36b00da68850 from=translated src=- shape=6353e1a6 vocab=745a8f1c
+-/
 theorem coeff_drinfeldForm_zero {W : Type} [CommRing W] (q : ℕ) [Fact q.Prime] :
     coeff (0 : Fin 2 →₀ ℕ) (DrinfeldCurve.LocalChart.drinfeldForm q W) = 0 := by
   classical
@@ -53,6 +59,9 @@ theorem coeff_drinfeldForm_zero {W : Type} [CommRing W] (q : ℕ) [Fact q.Prime]
 end DrinfeldCurve.LocalChart.PowPureChartAux
 
 open DrinfeldCurve.LocalChart.PowPureChartAux in
+/--
+@isnad1 id=ex.5h10v.s14.85efc3dd1d35 from=translated src=- shape=91ef0545 vocab=12048122
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime] (W : Type) [CommRing W] [IsLocalRing W]
     (π : W) (hπ : π ∈ maximalIdeal W)

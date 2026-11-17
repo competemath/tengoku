@@ -11,6 +11,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Deformation_TruncWitt_exists_mem_fontaineK
 
 universe u v w
 
+/--
+@isnad1 id=ex.3h6v.s9.8c01a6424778 from=translated src=- shape=a2340ad7 vocab=6195bf92
+-/
 theorem Deformation.TruncWitt.exists_mem_fontaineKer_truncate_eq_of_frobeniusFun_mem_fontaineKer
     {ℛ : Type u} [CommRing ℛ] (p : ℕ) [Fact p.Prime]
     {A : Type v} [CommRing A] (π : ℛ →+* A) (hπ : Function.Surjective π)

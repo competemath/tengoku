@@ -16,6 +16,9 @@ noncomputable def dU (G : E × ℝ → F) : ℕ → (E × ℝ → F)
   | 0 => G
   | n + 1 => fun p => fderiv ℝ (dU G n) p (0, 1)
 
+/--
+@isnad1 id=contdiff.1h4v.s7.44cd77127b75 from=translated src=- shape=540d342d vocab=77b4ffd1
+-/
 theorem contDiff_dU (G : E × ℝ → F) (hG : ContDiff ℝ (⊤ : ℕ∞) G) : ∀ n, ContDiff ℝ (⊤ : ℕ∞) (dU G n) := by
   intro n
   induction n with
@@ -25,6 +28,9 @@ theorem contDiff_dU (G : E × ℝ → F) (hG : ContDiff ℝ (⊤ : ℕ∞) G) : 
     have h1 : ContDiff ℝ (⊤ : ℕ∞) (fderiv ℝ (dU G n)) := ih.fderiv_right (by simp)
     exact h1.clm_apply contDiff_const
 
+/--
+@isnad1 id=eq.1h6v.s6.2340920bf645 from=translated src=- shape=22187601 vocab=62534763
+-/
 theorem iteratedDeriv_slice (G : E × ℝ → F) (hG : ContDiff ℝ (⊤ : ℕ∞) G) :
     ∀ (n : ℕ) (a : E) (u : ℝ), iteratedDeriv n (fun u => G (a, u)) u = dU G n (a, u) := by
   intro n
@@ -42,6 +48,9 @@ theorem iteratedDeriv_slice (G : E × ℝ → F) (hG : ContDiff ℝ (⊤ : ℕ�
       (hasDerivAt_const u a).prodMk (hasDerivAt_id u)
     exact (hd.hasFDerivAt.comp_hasDerivAt u hγ).deriv
 
+/--
+@isnad1 id=and.2h6v.s7.c84e3ba59fac from=translated src=- shape=4b894495 vocab=a77ad0b9
+-/
 theorem main {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     [NormedAddCommGroup F] [NormedSpace ℝ F]
     (Ψ : E → ℝ → F) (hΨ : ContDiff ℝ (⊤ : ℕ∞) (fun p : E × ℝ => Ψ p.1 p.2))
@@ -71,6 +80,9 @@ theorem main {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDim
 
 end Ws31.SmoothFamily
 
+/--
+@isnad1 id=and.2h6v.s7.c84e3ba59fac from=translated src=- shape=4b894495 vocab=a77ad0b9
+-/
 theorem solution
     {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     [NormedAddCommGroup F] [NormedSpace ℝ F]

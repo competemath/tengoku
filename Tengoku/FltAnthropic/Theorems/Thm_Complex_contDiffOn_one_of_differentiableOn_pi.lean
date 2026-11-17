@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Complex_contDiffOn_one_of_differentiableOn
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=contdiff.2h4v.s7.a78f154e70be from=translated src=- shape=4e0559b5 vocab=1e5e3baa
+-/
 theorem Complex.contDiffOn_one_of_differentiableOn_pi {n : ℕ} {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     [CompleteSpace E] {f : (Fin n → ℂ) → E} {U : Set (Fin n → ℂ)} (hU : IsOpen U)
     (hf : DifferentiableOn ℂ f U) : ContDiffOn ℂ 1 f U := by exact @_root_.P2MW.S_Complex_contDiffOn_one_of_differentiableOn_pi.solution n E _ _ _ f U hU hf

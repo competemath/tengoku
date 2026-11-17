@@ -17,6 +17,9 @@ open _root_.FrobeniusDensity
 
 variable (K : Type*) [Field K] [NumberField K]
 
+/--
+@isnad1 id=le.0h3v.s4.052316c4f987 from=translated src=- shape=da63d2fc vocab=e0aaed75
+-/
 lemma zetaTerm_nonneg (s : ℝ) (n : ℕ) : 0 ≤ zetaTerm K s n := by
   unfold zetaTerm
   split
@@ -124,6 +127,9 @@ private lemma idealSum_eq_tsum_zetaTerm (s : ℝ) :
 
 end FrobeniusDensity
 
+/--
+@isnad1 id=ne.1h2v.s5.4a743e78fba6 from=translated src=- shape=dfe627a7 vocab=676cf995
+-/
 theorem solution (K : Type*) [Field K] [NumberField K] {s : ℝ} (hs : 1 < s) :
     FrobeniusDensity.idealSum K s ≠ ⊤ := by
   rw [FrobeniusDensity.idealSum_eq_tsum_zetaTerm,

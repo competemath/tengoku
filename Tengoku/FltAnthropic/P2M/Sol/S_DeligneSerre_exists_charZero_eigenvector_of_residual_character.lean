@@ -31,13 +31,22 @@ def torsionAway (M : Type*) [AddCommGroup M] [Module R M] (p : Ideal R) [hp : p.
 
 variable {p : Ideal R} [hp : p.IsPrime]
 
+/--
+@isnad1 id=iff.0h4v.s7.a85cf1b815a5 from=translated src=- shape=1cf1f268 vocab=da41114f
+-/
 theorem mem_torsionAway {x : M} : x ∈ torsionAway M p ↔ ∃ s : R, s ∉ p ∧ s • x = 0 := Iff.rfl
 
+/--
+@isnad1 id=mem.2h5v.s7.dacbc53b3ac3 from=translated src=- shape=bf7bbf9c vocab=da41114f
+-/
 theorem mem_torsionAway_of_smul_mem {s : R} (hs : s ∉ p) {x : M}
     (hx : s • x ∈ torsionAway M p) : x ∈ torsionAway M p := by
   obtain ⟨t, ht, htx⟩ := hx
   exact ⟨t * s, fun h => (hp.mem_or_mem h).elim ht hs, by rw [mul_smul, htx]⟩
 
+/--
+@isnad1 id=ne.0h3v.s7.d56ea6fe8715 from=translated src=- shape=86f3b0cc vocab=2a531c1d
+-/
 theorem torsionAway_ne_top [Module.Finite R M] [FaithfulSMul R M] : torsionAway M p ≠ ⊤ := by
   classical
   intro htop
@@ -69,20 +78,32 @@ theorem torsionAway_ne_top [Module.Finite R M] [FaithfulSMul R M] : torsionAway 
 def annMod (p : Ideal R) [p.IsPrime] (y : M) : Ideal R :=
   (torsionAway M p).comap (LinearMap.toSpanSingleton R M y)
 
+/--
+@isnad1 id=iff.0h5v.s7.93c32c1d7425 from=translated src=- shape=4a386785 vocab=267616bd
+-/
 theorem mem_annMod {y : M} {r : R} : r ∈ annMod p y ↔ r • y ∈ torsionAway M p := by
   simp [annMod, Submodule.mem_comap, LinearMap.toSpanSingleton_apply]
 
+/--
+@isnad1 id=le.1h4v.s7.cd17d65c28db from=translated src=- shape=b5ed6b62 vocab=5de9c6b8
+-/
 theorem annMod_le {y : M} (hy : y ∉ torsionAway M p) : annMod p y ≤ p := by
   intro r hr
   by_contra hrp
   exact hy (mem_torsionAway_of_smul_mem hrp (mem_annMod.mp hr))
 
+/--
+@isnad1 id=le.0h5v.s7.846e8d08c17d from=translated src=- shape=3e70bf8c vocab=e14f8224
+-/
 theorem annMod_mono (y : M) (a : R) : annMod p y ≤ annMod p (a • y) := by
   intro r hr
   rw [mem_annMod] at hr ⊢
   rw [smul_comm]
   exact Submodule.smul_mem _ a hr
 
+/--
+@isnad1 id=ex.1h3v.s8.d4dd6652019b from=translated src=- shape=408743fe vocab=6d9fa6d0
+-/
 theorem exists_exact_annihilator [IsNoetherianRing R] [Module.Finite R M] [FaithfulSMul R M]
     (hmin : p ∈ minimalPrimes R) :
     ∃ x : M, x ≠ 0 ∧ (∀ r ∈ p, r • x = 0) ∧ (∀ r : R, r • x = 0 → r ∈ p) := by
@@ -152,6 +173,9 @@ end Key
 
 end DeligneSerre.S17
 
+/--
+@isnad1 id=ex.0h4v.s10.d0b30e87d6b1 from=translated src=- shape=25f9ed00 vocab=85564ffb
+-/
 theorem solution {T : Type*} [CommRing T] [Module.Finite ℤ T]
     [Module.IsTorsionFree ℤ T] {M : Type*} [AddCommGroup M] [Module T M] [Module.Finite T M] [FaithfulSMul T M]
     {k : Type*} [Field k] (χ : T →+* k) :

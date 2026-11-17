@@ -15,10 +15,19 @@ noncomputable def γ (c : ℂ) (r : ℝ → ℝ) (φ : ℝ) : ℂ := c + (r φ :
 
 noncomputable def γ' (r : ℝ → ℝ) (φ : ℝ) : ℂ := (((deriv r φ : ℝ) : ℂ) + r φ * I) * exp (φ * I)
 
+/--
+@isnad1 id=ne.0h1v.s4.270fb8a30107 from=translated src=- shape=99c319c0 vocab=ecfafdc9
+-/
 theorem exp_mul_I_ne_zero (φ : ℝ) : exp (φ * I) ≠ 0 := exp_ne_zero _
 
+/--
+@isnad1 id=eq.0h1v.s4.a41fe167865b from=translated src=- shape=d2e861a6 vocab=d6b61dc0
+-/
 theorem norm_exp_mul_I (φ : ℝ) : ‖exp (φ * I)‖ = 1 := norm_exp_ofReal_mul_I φ
 
+/--
+@isnad1 id=eq.0h1v.s5.acc1b38b3db6 from=translated src=- shape=6ada9296 vocab=2059374e
+-/
 theorem exp_mul_I_add_two_pi (φ : ℝ) : exp (((φ + 2 * π : ℝ) : ℂ) * I) = exp (φ * I) := by
   rw [ofReal_add, add_mul, exp_add]
   have : exp (((2 * π : ℝ) : ℂ) * I) = 1 := by
@@ -26,6 +35,9 @@ theorem exp_mul_I_add_two_pi (φ : ℝ) : exp (((φ + 2 * π : ℝ) : ℂ) * I) 
     exact exp_two_pi_mul_I
   rw [this, mul_one]
 
+/--
+@isnad1 id=eq.2h3v.s6.42c695e3fa13 from=translated src=- shape=54a50e98 vocab=94a6c594
+-/
 theorem periodic_apply_arg {r : ℝ → ℝ} (hper : Function.Periodic r (2 * π)) {t : ℝ} (ht : 0 < t)
     (φ : ℝ) : r (arg ((t : ℂ) * exp (φ * I))) = r φ := by
   rw [arg_real_mul _ ht, arg_exp_mul_I, toIocMod]
@@ -36,24 +48,39 @@ section Loop
 variable {c : ℂ} {r : ℝ → ℝ}
   (hcont : Continuous r) (hper : Function.Periodic r (2 * π)) (hpos : ∀ φ, 0 < r φ)
 
+/--
+@isnad1 id=eq.0h3v.s5.4900c955f79c from=translated src=- shape=cecd1bf7 vocab=c973acfc
+-/
 theorem γ_sub_c (φ : ℝ) : γ c r φ - c = (r φ : ℂ) * exp (φ * I) := by
   simp [γ]
 
 include hpos in
+/--
+@isnad1 id=eq.1h3v.s5.639b2241a163 from=translated src=- shape=14a170f0 vocab=2989bd31
+-/
 theorem norm_γ_sub_c (φ : ℝ) : ‖γ c r φ - c‖ = r φ := by
   rw [γ_sub_c, norm_mul, norm_exp_mul_I, mul_one, Complex.norm_of_nonneg (hpos φ).le]
 
 include hper hpos in
+/--
+@isnad1 id=eq.2h3v.s6.0dc646b4ed8e from=translated src=- shape=5fec850a vocab=70a1808e
+-/
 theorem r_arg_γ (φ : ℝ) : r (arg (γ c r φ - c)) = r φ := by
   rw [γ_sub_c]; exact periodic_apply_arg hper (hpos φ) φ
 
 include hper hpos in
 
+/--
+@isnad1 id=le.2h3v.s6.74ebce7db539 from=translated src=- shape=8b57d1d5 vocab=9823ab3d
+-/
 theorem γ_mem_K (φ : ℝ) : ‖γ c r φ - c‖ ≤ r (arg (γ c r φ - c)) := by
   rw [norm_γ_sub_c hpos, r_arg_γ hper hpos]
 
 include hper hpos in
 
+/--
+@isnad1 id=ne.5h5v.s7.661480004565 from=translated src=- shape=28277ef3 vocab=cf20eb8b
+-/
 theorem γ_ne_segment {p : ℂ} (hp : ‖p - c‖ < r (arg (p - c))) {t : ℝ} (ht0 : 0 ≤ t) (ht1 : t ≤ 1)
     (φ : ℝ) : γ c r φ ≠ c + (t : ℂ) * (p - c) := by
   intro h
@@ -71,13 +98,22 @@ theorem γ_ne_segment {p : ℂ} (hp : ‖p - c‖ < r (arg (p - c))) {t : ℝ} (
     linarith
 
 include hper in
+/--
+@isnad1 id=eq.1h3v.s5.3b6ca280433d from=translated src=- shape=36ac020e vocab=44a5d4fd
+-/
 theorem γ_add_two_pi (φ : ℝ) : γ c r (φ + 2 * π) = γ c r φ := by
   simp only [γ, hper φ, exp_mul_I_add_two_pi]
 
 include hcont in
+/--
+@isnad1 id=continuo.1h2v.s5.22e2ebf0fd23 from=translated src=- shape=23f47f88 vocab=56992c9b
+-/
 theorem continuous_γ : Continuous (γ c r) := by
   unfold γ; fun_prop
 
+/--
+@isnad1 id=measurab.1h1v.s4.53c9647d5574 from=translated src=- shape=49046029 vocab=2eabd4bc
+-/
 theorem measurable_γ' (hcont : Continuous r) : Measurable (γ' r) := by
   unfold γ'
   exact ((measurable_ofReal.comp (measurable_deriv r)).add
@@ -86,11 +122,17 @@ theorem measurable_γ' (hcont : Continuous r) : Measurable (γ' r) := by
 noncomputable def rd (r : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b) (φ : ℝ) : ℝ :=
   derivWithin r (Icc a b) (projIcc a b hab φ : ℝ)
 
+/--
+@isnad1 id=continuo.2h3v.s6.d999e4080178 from=translated src=- shape=03c15eaa vocab=ae0ea490
+-/
 theorem continuous_rd {a b : ℝ} (hab : a < b) (hC : ContDiffOn ℝ 2 r (Icc a b)) :
     Continuous (rd r a b hab.le) :=
   (hC.continuousOn_derivWithin (uniqueDiffOn_Icc hab) (by norm_num)).comp_continuous
     (continuous_subtype_val.comp continuous_projIcc) fun φ => (projIcc a b hab.le φ).2
 
+/--
+@isnad1 id=hasderiv.3h4v.s6.59810f94c052 from=translated src=- shape=af071275 vocab=c66f808e
+-/
 theorem hasDerivAt_rd {a b : ℝ} (hab : a < b) (hC : ContDiffOn ℝ 2 r (Icc a b)) {φ : ℝ}
     (hφ : φ ∈ Ioo a b) : HasDerivAt r (rd r a b hab.le φ) φ := by
   have hmem : φ ∈ Icc a b := ⟨hφ.1.le, hφ.2.le⟩
@@ -105,11 +147,17 @@ theorem hasDerivAt_rd {a b : ℝ} (hab : a < b) (hC : ContDiffOn ℝ 2 r (Icc a 
 noncomputable def γd (r : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b) (φ : ℝ) : ℂ :=
   (((rd r a b hab φ : ℝ) : ℂ) + r φ * I) * exp (φ * I)
 
+/--
+@isnad1 id=eq.3h4v.s6.3db0d864ad19 from=translated src=- shape=5ecf6365 vocab=e31f7e60
+-/
 theorem γ'_eq_γd {a b : ℝ} (hab : a < b) (hC : ContDiffOn ℝ 2 r (Icc a b)) {φ : ℝ}
     (hφ : φ ∈ Ioo a b) : γ' r φ = γd r a b hab.le φ := by
   rw [γ', γd, (hasDerivAt_rd hab hC hφ).deriv]
 
 include hcont in
+/--
+@isnad1 id=continuo.3h3v.s6.aa02b04c0ee7 from=translated src=- shape=16716ec6 vocab=6bb4dff3
+-/
 theorem continuous_γd {a b : ℝ} (hab : a < b) (hC : ContDiffOn ℝ 2 r (Icc a b)) :
     Continuous (γd r a b hab.le) := by
   unfold γd
@@ -117,12 +165,18 @@ theorem continuous_γd {a b : ℝ} (hab : a < b) (hC : ContDiffOn ℝ 2 r (Icc a
   fun_prop
 
 include hcont in
+/--
+@isnad1 id=continuo.4h4v.s6.21f57926b39d from=translated src=- shape=c305ebea vocab=bed9d6fa
+-/
 theorem γ'_continuousAt {a b : ℝ} (hab : a < b) (hC : ContDiffOn ℝ 2 r (Icc a b)) {φ : ℝ}
     (hφ : φ ∈ Ioo a b) : ContinuousAt (γ' r) φ := by
   refine ((continuous_γd hcont hab hC).continuousAt (x := φ)).congr_of_eventuallyEq ?_
   filter_upwards [Ioo_mem_nhds hφ.1 hφ.2] with ψ hψ
   exact γ'_eq_γd hab hC hψ
 
+/--
+@isnad1 id=hasderiv.3h5v.s7.fb47a28f4bca from=translated src=- shape=63c32b5c vocab=60eab583
+-/
 theorem hasDerivAt_γ {a b : ℝ} (hab : a < b) (hC : ContDiffOn ℝ 2 r (Icc a b)) {φ : ℝ}
     (hφ : φ ∈ Ioo a b) : HasDerivAt (γ c r) (γ' r φ) φ := by
   have hr : HasDerivAt (fun φ => (r φ : ℂ)) ((deriv r φ : ℝ) : ℂ) φ := by
@@ -141,6 +195,9 @@ theorem hasDerivAt_γ {a b : ℝ} (hab : a < b) (hC : ContDiffOn ℝ 2 r (Icc a 
 
 include hcont in
 
+/--
+@isnad1 id=interval.6h5v.s8.0fa8f0540d01 from=translated src=- shape=ff042093 vocab=e7eb32d0
+-/
 theorem intervalIntegrable_loop {h : ℂ → ℂ} (hh : ∀ φ, ContinuousAt h (γ c r φ))
     (N : ℕ) (φs : Fin (N + 1) → ℝ) (hφ0 : φs 0 = 0) (hφN : φs (Fin.last N) = 2 * π)
     (hmono : StrictMono φs)
@@ -195,10 +252,16 @@ variable {c : ℂ} {r : ℝ → ℝ}
 
 noncomputable def wi (c : ℂ) (r : ℝ → ℝ) (q : ℂ) (φ : ℝ) : ℂ := γ' r φ / (γ c r φ - q)
 
+/--
+@isnad1 id=eq.0h4v.s5.b5da85f5027d from=translated src=- shape=e42a2284 vocab=7dc8349b
+-/
 theorem wi_eq (q : ℂ) (φ : ℝ) : wi c r q φ = (fun z => (z - q)⁻¹) (γ c r φ) * γ' r φ := by
   simp only [wi, div_eq_mul_inv, mul_comm]
 
 include hcont hφ0 hφN hmono hC2 in
+/--
+@isnad1 id=interval.6h5v.s8.4e3412e2d4c6 from=translated src=- shape=9f784e32 vocab=c9c12110
+-/
 theorem intervalIntegrable_wi {q : ℂ} (hq : ∀ φ, γ c r φ ≠ q) :
     IntervalIntegrable (wi c r q) volume 0 (2 * π) := by
   have : wi c r q = fun φ => (fun z => (z - q)⁻¹) (γ c r φ) * γ' r φ := funext (wi_eq q)
@@ -208,6 +271,9 @@ theorem intervalIntegrable_wi {q : ℂ} (hq : ∀ φ, γ c r φ ≠ q) :
 
 include hcont hper hφ0 hφN hmono hC2 in
 
+/--
+@isnad1 id=eq.7h5v.s8.e7d501abe979 from=translated src=- shape=6c56669d vocab=eaee8d00
+-/
 theorem exp_winding_eq_one {q : ℂ} (hq : ∀ φ, γ c r φ ≠ q) :
     exp (∫ φ in (0 : ℝ)..(2 * π), wi c r q φ) = 1 := by
   have hint := intervalIntegrable_wi hcont N φs hφ0 hφN hmono hC2 hq
@@ -301,6 +367,9 @@ theorem exp_winding_eq_one {q : ℂ} (hq : ∀ φ, γ c r φ ≠ q) :
 
 include hcont hper hpos hφ0 hφN hmono hC2 in
 
+/--
+@isnad1 id=continuo.8h5v.s8.88833e3c8fbe from=translated src=- shape=6a2bac44 vocab=bee1635a
+-/
 theorem continuous_winding_segment {p : ℂ} (hp : ‖p - c‖ < r (arg (p - c))) :
     Continuous fun t : Icc (0 : ℝ) 1 =>
       ∫ φ in (0 : ℝ)..(2 * π), wi c r (c + ((t : ℝ) : ℂ) * (p - c)) φ := by
@@ -340,6 +409,9 @@ theorem continuous_winding_segment {p : ℂ} (hp : ‖p - c‖ < r (arg (p - c))
 
 include hcont hper hpos hφ0 hφN hmono hC2 in
 
+/--
+@isnad1 id=eq.7h4v.s8.779a70d0e540 from=translated src=- shape=aee49e3e vocab=4bb24f23
+-/
 theorem winding_centre : (∫ φ in (0 : ℝ)..(2 * π), wi c r c φ) = 2 * π * I := by
 
   have hwi : ∀ φ, wi c r c φ = ((deriv r φ / r φ : ℝ) : ℂ) + I := by
@@ -431,6 +503,9 @@ theorem winding_centre : (∫ φ in (0 : ℝ)..(2 * π), wi c r c φ) = 2 * π *
 
 include hcont hper hpos hφ0 hφN hmono hC2 in
 
+/--
+@isnad1 id=eq.8h5v.s8.ad73a05a5d26 from=translated src=- shape=0af58279 vocab=fcf4f993
+-/
 theorem winding_eq {p : ℂ} (hp : ‖p - c‖ < r (arg (p - c))) :
     (∫ φ in (0 : ℝ)..(2 * π), wi c r p φ) = 2 * π * I := by
   set W : Icc (0 : ℝ) 1 → ℂ := fun t =>
@@ -489,6 +564,9 @@ open Classical in
 noncomputable def Ft (z : ℂ) : ℂ :=
   if z ∈ P then limUnder (𝓝[≠] z) (fun w => f w - R P res w) else f z - R P res z
 
+/--
+@isnad1 id=eventual.1h2v.s5.ed0d7f0eea91 from=translated src=- shape=3e4152d5 vocab=7fe8150f
+-/
 theorem eventually_notMem (P : Finset ℂ) {z : ℂ} (hz : z ∉ P) : ∀ᶠ w in 𝓝 z, w ∉ P := by
   have : ∀ᶠ w in 𝓝 z, ∀ p ∈ P, w ≠ p := by
     rw [eventually_all_finset]
@@ -496,6 +574,9 @@ theorem eventually_notMem (P : Finset ℂ) {z : ℂ} (hz : z ∉ P) : ∀ᶠ w i
     exact isOpen_ne.mem_nhds fun h => hz (h ▸ hp)
   exact this.mono fun w hw hwP => hw w hwP rfl
 
+/--
+@isnad1 id=eventual.0h2v.s5.9d8deb4f1266 from=translated src=- shape=a2528e46 vocab=63f71190
+-/
 theorem eventually_notMem_punctured (P : Finset ℂ) (z : ℂ) : ∀ᶠ w in 𝓝[≠] z, w ∉ P := by
   have h1 : ∀ᶠ w in 𝓝[≠] z, w ∉ P.erase z :=
     (eventually_notMem (P.erase z) (P.notMem_erase z)).filter_mono nhdsWithin_le_nhds
@@ -503,11 +584,17 @@ theorem eventually_notMem_punctured (P : Finset ℂ) (z : ℂ) : ∀ᶠ w in �
   filter_upwards [h1, h2] with w hw1 hw2 hwP
   exact hw1 (Finset.mem_erase.2 ⟨hw2, hwP⟩)
 
+/--
+@isnad1 id=analytic.1h3v.s5.7dc9fe2ec79f from=translated src=- shape=16b65042 vocab=9d846269
+-/
 theorem analyticAt_R {z : ℂ} (hz : ∀ p ∈ P, z ≠ p) : AnalyticAt ℂ (R P res) z := by
   unfold R
   refine Finset.analyticAt_fun_sum P fun p hp => ?_
   exact analyticAt_const.fun_div (analyticAt_id.fun_sub analyticAt_const) (sub_ne_zero.2 (hz p hp))
 
+/--
+@isnad1 id=analytic.2h4v.s6.ce998bb476e8 from=translated src=- shape=481f09d3 vocab=6b92cfe2
+-/
 theorem analyticAt_Ft_of_notMem {z : ℂ} (hz : z ∉ P) (hf : AnalyticAt ℂ f z) :
     AnalyticAt ℂ (Ft f P res) z := by
   have hR : AnalyticAt ℂ (R P res) z := analyticAt_R P res fun p hp h => hz (h ▸ hp)
@@ -515,6 +602,9 @@ theorem analyticAt_Ft_of_notMem {z : ℂ} (hz : z ∉ P) (hf : AnalyticAt ℂ f 
   filter_upwards [eventually_notMem P hz] with w hw
   simp only [Ft, ite_eq_right hw, Pi.sub_apply]
 
+/--
+@isnad1 id=analytic.3h5v.s7.979e6603e392 from=translated src=- shape=0522bdcc vocab=4e17816b
+-/
 theorem analyticAt_Ft_of_mem {p : ℂ} (hp : p ∈ P) {g : ℂ → ℂ} (hg : AnalyticAt ℂ g p)
     (hloc : ∀ᶠ z in 𝓝[≠] p, f z = res p / (z - p) + g z) : AnalyticAt ℂ (Ft f P res) p := by
 
@@ -552,6 +642,9 @@ theorem analyticAt_Ft_of_mem {p : ℂ} (hp : p ∈ P) {g : ℂ → ℂ} (hg : An
   · rw [hzp, hFp]
   · exact (hsub z (hts ⟨hz, hzp⟩)).symm
 
+/--
+@isnad1 id=eq.1h4v.s5.9512f7166ee1 from=translated src=- shape=287b371d vocab=dae8a002
+-/
 theorem Ft_of_notMem {z : ℂ} (hz : z ∉ P) : Ft f P res z = f z - R P res z := by
   simp only [Ft, ite_eq_right hz]
 
@@ -560,6 +653,9 @@ end Principal
 end RadialResidue
 
 open RadialResidue Complex MeasureTheory Set Filter in
+/--
+@isnad1 id=eq.10h7v.s9.7a0b74d3ec0f from=translated src=- shape=058c4845 vocab=f98f764a
+-/
 theorem solution
     (c : ℂ) (r : ℝ → ℝ) (hcont : Continuous r) (hper : Function.Periodic r (2 * Real.pi))
     (hpos : ∀ φ, 0 < r φ)

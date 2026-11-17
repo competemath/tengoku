@@ -12,6 +12,9 @@ open scoped Real Topology
 
 namespace LaurentUnique
 
+/--
+@isnad1 id=le.3h4v.s6.e8ccab8dd4d6 from=translated src=- shape=c74c0ed5 vocab=c66b9bb5
+-/
 theorem zpow_le_add {r₁ r r₂ : ℝ} (h0 : 0 < r₁) (h1 : r₁ ≤ r) (h2 : r ≤ r₂) (m : ℤ) :
     r ^ m ≤ r₁ ^ m + r₂ ^ m := by
   have hr : 0 < r := h0.trans_le h1
@@ -29,6 +32,9 @@ end LaurentUnique
 
 open LaurentUnique in
 
+/--
+@isnad1 id=eq.5h3v.s7.722fbdedbd42 from=translated src=- shape=d8852824 vocab=89b1acdc
+-/
 theorem solution
     (e : ℤ → ℂ) {r₁ r₂ : ℝ} (h0 : 0 < r₁) (h12 : r₁ < r₂)
     (hs₁ : Summable fun m : ℤ => ‖e m‖ * r₁ ^ m) (hs₂ : Summable fun m : ℤ => ‖e m‖ * r₂ ^ m)

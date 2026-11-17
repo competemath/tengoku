@@ -18,6 +18,9 @@ open _root_.Complex
 
 variable {R G : ℂ → ℂ} {z₀ t : ℂ} {r : ℝ}
 
+/--
+@isnad1 id=ne.4h5v.s7.543be15abd6a from=translated src=- shape=a505a679 vocab=02c01c55
+-/
 theorem analyticOrderAt_ne_top (hr : 0 < r)
     (hR : ∀ z ∈ closedBall z₀ r, AnalyticAt ℂ R z)
     (hne : ∀ z ∈ sphere z₀ r, R z ≠ t) {a : ℂ} (ha : a ∈ closedBall z₀ r) :
@@ -41,6 +44,9 @@ theorem analyticOrderAt_ne_top (hr : 0 < r)
   have hpt' : (z₀ : ℂ) + r ∈ ball z₀ (e + r) := sphere_subset_ball (by linarith) hpt
   exact hne _ hpt (sub_eq_zero.1 (hEq hpt'))
 
+/--
+@isnad1 id=finite.3h4v.s7.42c27d5c0c45 from=translated src=- shape=cc0cb312 vocab=f0e9c65c
+-/
 theorem finite_zeros (hr : 0 < r)
     (hR : ∀ z ∈ closedBall z₀ r, AnalyticAt ℂ R z)
     (hne : ∀ z ∈ sphere z₀ r, R z ≠ t) :
@@ -67,6 +73,9 @@ theorem finite_zeros (hr : 0 < r)
     filter_upwards [hne0] with z hz hzS
     exact hz (sub_eq_zero.2 hzS.2)
 
+/--
+@isnad1 id=ex.3h4v.s8.f062d15b34f7 from=translated src=- shape=9bd707a8 vocab=2a53ca39
+-/
 theorem local_form {a : ℂ} (hRa : AnalyticAt ℂ R a) (hGa : AnalyticAt ℂ G a)
     (htop : analyticOrderAt (fun z => R z - t) a ≠ ⊤) :
     ∃ g : ℂ → ℂ, AnalyticAt ℂ g a ∧
@@ -125,6 +134,9 @@ end Complex.WeightedArgumentPrinciple
 
 open Complex.WeightedArgumentPrinciple in
 
+/--
+@isnad1 id=ex.4h5v.s8.85dbb1dc0eef from=translated src=- shape=a7125d50 vocab=5e90d20c
+-/
 theorem solution
     {R G : ℂ → ℂ} {z₀ t : ℂ} {r : ℝ} (hr : 0 < r)
     (hR : ∀ z ∈ Metric.closedBall z₀ r, AnalyticAt ℂ R z)

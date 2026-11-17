@@ -10,6 +10,9 @@ open ModularFormClass
 
 namespace AlliAux1
 
+/--
+@isnad1 id=and.7h7v.s11.b0bdda0ab67d from=translated src=- shape=b35781dd vocab=466bd079
+-/
 theorem qCoeff_prime_pow_eq {M R R' : ℕ}
     {g : CuspForm (CongruenceSubgroup.Gamma0 R) 2}
     {g' : CuspForm (CongruenceSubgroup.Gamma0 R') 2}
@@ -29,6 +32,9 @@ theorem qCoeff_prime_pow_eq {M R R' : ℕ}
       hg.qCoeff_prime_pow_of_not_dvd p j hp hpR, hg'.qCoeff_prime_pow_of_not_dvd p j hp hpR',
       ih.1, ih.2, h p hp hpM]
 
+/--
+@isnad1 id=eq.0h2v.s8.f20ce77235b7 from=translated src=- shape=107d3dc5 vocab=ec19a74d
+-/
 theorem qCoeff_zero_eq_zero {S : ℕ} (f : CuspForm (CongruenceSubgroup.Gamma0 S) 2) :
     qCoeff f 0 = 0 :=
   CuspFormClass.qExpansion_coeff_zero f one_pos (by simp)
@@ -36,6 +42,9 @@ theorem qCoeff_zero_eq_zero {S : ℕ} (f : CuspForm (CongruenceSubgroup.Gamma0 S
 end AlliAux1
 
 open AlliAux1 in
+/--
+@isnad1 id=eq.6h6v.s10.837a1c511375 from=translated src=- shape=2d1c1c2f vocab=821500fc
+-/
 theorem solution
     {M R R' : ℕ}
     {g : CuspForm (CongruenceSubgroup.Gamma0 R) 2}

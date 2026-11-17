@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open scoped IsMulCommutative
 
+/--
+@isnad1 id=nonempty.0h4v.s9.8a4d85a5d2c8 from=translated src=- shape=e94ae578 vocab=9bbfd792
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪] [IsNoetherianRing 𝒪]
     [IsAdicComplete (IsLocalRing.maximalIdeal 𝒪) 𝒪]

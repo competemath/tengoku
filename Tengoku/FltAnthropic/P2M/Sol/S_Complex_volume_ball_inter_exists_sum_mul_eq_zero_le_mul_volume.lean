@@ -10,6 +10,9 @@ namespace P2MW.S_Complex_volume_ball_inter_exists_sum_mul_eq_zero_le_mul_volume
 open MeasureTheory Metric
 open scoped ENNReal NNReal
 
+/--
+@isnad1 id=le.3h5v.s9.30c6ff6a0207 from=translated src=- shape=6972f522 vocab=3a06dca9
+-/
 theorem solution {n : ℕ} (c : ℂ → Fin n → ℂ)
     (S : Set ℂ) {η L : ℝ} (hη : 0 < η) (hηc : ∀ z ∈ S, η ≤ ‖c z‖)
     (hLip : ∀ z ∈ S, ∃ δ > 0, ∀ y ∈ Metric.closedBall z δ, ‖c y - c z‖ ≤ L * ‖y - z‖) :

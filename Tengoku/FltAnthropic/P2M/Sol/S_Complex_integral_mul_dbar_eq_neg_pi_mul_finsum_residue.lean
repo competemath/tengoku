@@ -14,23 +14,38 @@ namespace CauchyPompeiuResidue
 
 noncomputable def D (f : ℂ → ℂ) (z : ℂ) : ℂ := (fderiv ℝ f z 1 + I * fderiv ℝ f z I) / 2
 
+/--
+@isnad1 id=continuo.1h1v.s6.abc5a2d5ad42 from=translated src=- shape=9052cce5 vocab=5e445ad4
+-/
 theorem D_continuous {f : ℂ → ℂ} (hf : ContDiff ℝ 1 f) : Continuous (D f) := by
   unfold D
   have hc : ∀ v : ℂ, Continuous fun z => fderiv ℝ f z v := fun v =>
     (hf.continuous_fderiv one_ne_zero).clm_apply continuous_const
   exact ((hc 1).add (continuous_const.mul (hc I))).div_const _
 
+/--
+@isnad1 id=eq.1h2v.s5.61cf72982261 from=translated src=- shape=1b5e1525 vocab=dfe03785
+-/
 theorem D_eq_zero_of_notMem_tsupport {f : ℂ → ℂ} {z : ℂ} (hz : z ∉ tsupport f) : D f z = 0 := by
   simp [D, fderiv_of_notMem_tsupport ℝ hz]
 
+/--
+@isnad1 id=hascompa.1h1v.s5.350fd1a2b585 from=translated src=- shape=7861e8ca vocab=d130965a
+-/
 theorem D_hasCompactSupport {f : ℂ → ℂ} (hf : HasCompactSupport f) : HasCompactSupport (D f) :=
   HasCompactSupport.intro hf fun _ hz => D_eq_zero_of_notMem_tsupport hz
 
+/--
+@isnad1 id=le.0h1v.s5.ca3603f5d049 from=translated src=- shape=4845273c vocab=8d37c2bb
+-/
 theorem tsupport_D_subset (f : ℂ → ℂ) : tsupport (D f) ⊆ tsupport f :=
   closure_minimal (fun _ hz => by
     by_contra h'
     exact hz (D_eq_zero_of_notMem_tsupport h')) (isClosed_tsupport f)
 
+/--
+@isnad1 id=integrab.0h1v.s6.5a32a6c32dbc from=translated src=- shape=1ac6687d vocab=47b0d0c5
+-/
 theorem integrableOn_inv (r : ℝ) : IntegrableOn (fun x : ℂ => x⁻¹) (ball 0 r) := by
   have hd : 1 ≤ Module.finrank ℝ ℂ := by rw [Complex.finrank_real_complex]; norm_num
   refine integrableOn_ball_of_norm_le_rpow (μ := volume) hd (C := 1) (α := 1) ?_ ?_ ?_
@@ -39,6 +54,9 @@ theorem integrableOn_inv (r : ℝ) : IntegrableOn (fun x : ℂ => x⁻¹) (ball 
     rw [norm_inv, Real.rpow_neg_one, one_mul]
   · exact measurable_inv.aestronglyMeasurable
 
+/--
+@isnad1 id=integrab.0h2v.s6.7fb36851d10e from=translated src=- shape=694cbce2 vocab=09e60ef3
+-/
 theorem integrableOn_inv_sub (a : ℂ) (r : ℝ) :
     IntegrableOn (fun z : ℂ => (z - a)⁻¹) (ball a r) := by
   have hT := (measurePreserving_add_right (volume : Measure ℂ) a).integrableOn_comp_preimage
@@ -51,6 +69,9 @@ theorem integrableOn_inv_sub (a : ℂ) (r : ℝ) :
   simp only [Function.comp_def, add_sub_cancel_right]
   exact integrableOn_inv r
 
+/--
+@isnad1 id=integrab.2h2v.s7.add4f7204de7 from=translated src=- shape=9988b091 vocab=57833110
+-/
 theorem integrable_inv_sub_mul (a : ℂ) {u : ℂ → ℂ} (hu : Continuous u)
     (hus : HasCompactSupport u) : Integrable fun z => (z - a)⁻¹ * u z := by
   obtain ⟨R, hR⟩ := hus.isCompact.isBounded.subset_closedBall a
@@ -63,6 +84,9 @@ theorem integrable_inv_sub_mul (a : ℂ) {u : ℂ → ℂ} (hu : Continuous u)
   have huz : u z ≠ 0 := fun h0 => hz (by simp [h0])
   exact closedBall_subset_closedBall (by linarith) (hR (subset_tsupport _ huz))
 
+/--
+@isnad1 id=continuo.4h3v.s7.bef9bbca4ca0 from=translated src=- shape=de60c345 vocab=fdd1de03
+-/
 theorem continuous_mul_of_tsupport_subset {V : Set ℂ} {f g : ℂ → ℂ} (hV : IsOpen V)
     (hf : ContinuousOn f V) (hg : Continuous g) (hgV : tsupport g ⊆ V) :
     Continuous fun z => f z * g z := by
@@ -76,6 +100,9 @@ theorem continuous_mul_of_tsupport_subset {V : Set ℂ} {f g : ℂ → ℂ} (hV 
       simp [hw]
     exact (continuousAt_congr this).2 continuousAt_const
 
+/--
+@isnad1 id=integrab.5h3v.s7.fd180aa7e69d from=translated src=- shape=bdf87be4 vocab=1f31744d
+-/
 theorem integrable_mul_of_tsupport_subset {V : Set ℂ} {f g : ℂ → ℂ} (hV : IsOpen V)
     (hf : ContinuousOn f V) (hg : Continuous g) (hgs : HasCompactSupport g)
     (hgV : tsupport g ⊆ V) : Integrable fun z => f z * g z :=
@@ -84,6 +111,9 @@ theorem integrable_mul_of_tsupport_subset {V : Set ℂ} {f g : ℂ → ℂ} (hV 
 noncomputable def Freg (F c : ℂ → ℂ) (z : ℂ) : ℂ :=
   limUnder (𝓝[≠] z) fun w => F w - c z / (w - z)
 
+/--
+@isnad1 id=eq.2h4v.s6.83b539e9fd5b from=translated src=- shape=2ad3bd1a vocab=55ff9521
+-/
 theorem Freg_eq {F c : ℂ → ℂ} {a : ℂ} {g : ℂ → ℂ} (hg : ContinuousAt g a)
     (hev : ∀ᶠ z in 𝓝[≠] a, F z = c a / (z - a) + g z) : Freg F c a = g a := by
   have ht : Tendsto (fun w => F w - c a / (w - a)) (𝓝[≠] a) (𝓝 (g a)) := by
@@ -99,6 +129,9 @@ variable {U : Set ℂ} {F c : ℂ → ℂ} (hU : IsOpen U)
   (hloc : ∀ a ∈ U, ∃ g : ℂ → ℂ, AnalyticAt ℂ g a ∧ ∀ᶠ z in 𝓝[≠] a, F z = c a / (z - a) + g z)
 include hU hloc
 
+/--
+@isnad1 id=ex.3h4v.s8.e83f5b61e532 from=translated src=- shape=f4abce86 vocab=65059322
+-/
 theorem local_ball {a : ℂ} (ha : a ∈ U) : ∃ g : ℂ → ℂ, ∃ r > 0, ball a r ⊆ U ∧
     (∀ z ∈ ball a r, AnalyticAt ℂ g z) ∧ ∀ z ∈ ball a r, z ≠ a → F z = c a / (z - a) + g z := by
   obtain ⟨g, hg, hev⟩ := hloc a ha
@@ -115,6 +148,9 @@ theorem local_ball {a : ℂ} (ha : a ∈ U) : ∃ g : ℂ → ℂ, ∃ r > 0, ba
 
 omit hU in
 
+/--
+@isnad1 id=eq.6h7v.s8.5fe65ce6f3ec from=translated src=- shape=5ebb6d00 vocab=479336ec
+-/
 theorem c_eq_zero_near {a : ℂ} {g : ℂ → ℂ} {r : ℝ} (hsub : ball a r ⊆ U)
     (hg : ∀ z ∈ ball a r, AnalyticAt ℂ g z)
     (hF : ∀ z ∈ ball a r, z ≠ a → F z = c a / (z - a) + g z) {z : ℂ} (hz : z ∈ ball a r)
@@ -143,6 +179,9 @@ theorem c_eq_zero_near {a : ℂ} {g : ℂ → ℂ} {r : ℝ} (hsub : ball a r �
     simpa using this
   exact tendsto_const_nhds_iff.1 (ht.congr' hev)
 
+/--
+@isnad1 id=ex.3h4v.s8.0e8f942b7bff from=translated src=- shape=7367985a vocab=be01ae19
+-/
 theorem clean {a : ℂ} (ha : a ∈ U) : ∃ g : ℂ → ℂ, ∃ r > 0, ball a r ⊆ U ∧
     (∀ z ∈ ball a r, AnalyticAt ℂ g z) ∧
     (∀ z ∈ ball a r, Freg F c z = c a / (z - a) + g z) ∧
@@ -176,6 +215,9 @@ theorem clean {a : ℂ} (ha : a ∈ U) : ∃ g : ℂ → ℂ, ∃ r > 0, ball a 
     exact hF w hw hwa
   · rw [← hFF z hz hza, hF z hz hza]
 
+/--
+@isnad1 id=finite.4h4v.s7.2b917bd2377e from=translated src=- shape=c3da8d8d vocab=34ffaa29
+-/
 theorem finite_exceptional {K : Set ℂ} (hK : IsCompact K) (hKU : K ⊆ U) :
     {z ∈ K | c z ≠ 0 ∨ F z ≠ Freg F c z}.Finite := by
   choose g r hr hsub hg hFreg hexc using fun (x : ℂ) (hx : x ∈ K) => clean hU hloc (hKU hx)
@@ -193,6 +235,9 @@ theorem finite_exceptional {K : Set ℂ} (hK : IsCompact K) (hKU : K ⊆ U) :
 
 end
 
+/--
+@isnad1 id=eq.5h4v.s8.2e3a2f61a0fc from=translated src=- shape=6d643e4c vocab=85f2507a
+-/
 theorem main (U : Set ℂ) (hU : IsOpen U) (F c : ℂ → ℂ)
     (hloc : ∀ a ∈ U, ∃ g : ℂ → ℂ, AnalyticAt ℂ g a ∧
       ∀ᶠ z in 𝓝[≠] a, F z = c a / (z - a) + g z)
@@ -300,6 +345,9 @@ end CauchyPompeiuResidue
 
 open Complex MeasureTheory in
 open scoped Real Topology in
+/--
+@isnad1 id=eq.5h4v.s10.bcb4a5476e31 from=translated src=- shape=bca81833 vocab=02ee6dd4
+-/
 theorem solution
     (U : Set ℂ) (hU : IsOpen U) (F c : ℂ → ℂ)
     (hloc : ∀ a ∈ U, ∃ g : ℂ → ℂ, AnalyticAt ℂ g a ∧

@@ -9,6 +9,9 @@ namespace P2MW.S_IharaLemma_IdempotentSplitting_isLocalizedModule_toCorner_maxim
 
 open IharaLemma
 
+/--
+@isnad1 id=islocali.0h4v.s7.b8aa98428ca1 from=translated src=- shape=6ae5c7fb vocab=ea78c178
+-/
 theorem solution {B : Type} [CommRing B] (S : IdempotentSplitting B) (i : Fin S.n) {M : Type}
     [AddCommGroup M] [Module B M] :
     IsLocalizedModule (S.𝔪 i).primeCompl (toCorner (M := M) (S.e i)) :=

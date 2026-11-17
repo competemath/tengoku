@@ -13,6 +13,9 @@ open IsLocalRing
 
 namespace TransportLin
 
+/--
+@isnad1 id=mem.1h2v.s8.b9dbf9637ebc from=translated src=- shape=e073ff1c vocab=e3ce9f79
+-/
 theorem mem_span_X_of_constantCoeff_eq_zero {O : Type*} [CommRing O] (φ : MvPowerSeries (Fin 2) O)
     (h : MvPowerSeries.constantCoeff φ = 0) :
     φ ∈ Ideal.span {(MvPowerSeries.X 0 : MvPowerSeries (Fin 2) O), MvPowerSeries.X 1} := by
@@ -45,6 +48,9 @@ theorem mem_span_X_of_constantCoeff_eq_zero {O : Type*} [CommRing O] (φ : MvPow
 end TransportLin
 
 open TransportLin in
+/--
+@isnad1 id=other.14h16v.s16.bbfe6e6b02f2 from=translated src=- shape=91bff3b2 vocab=be476082
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime]
     (W : Type) [CommRing W] [IsDomain W] [IsDiscreteValuationRing W]

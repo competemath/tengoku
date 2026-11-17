@@ -18,6 +18,9 @@ variable {𝕜 E : Type*} [RCLike 𝕜] [NormedAddCommGroup E] [InnerProductSpac
 def highPart (T : E →L[𝕜] E) (r : ℝ) : Submodule 𝕜 E :=
   ⨆ (μ : 𝕜) (_ : r ≤ ‖μ‖), eigenspace (T : Module.End 𝕜 E) μ
 
+/--
+@isnad1 id=le.2h5v.s10.230917e3a5de from=translated src=- shape=78bb5bdc vocab=1e56c046
+-/
 theorem map_highPart_le_of_commute_pf {T S : E →L[𝕜] E}
     (hT' : (T : E →ₗ[𝕜] E).IsSymmetric) (hST : S.comp T = T.comp S) (r : ℝ) :
     Submodule.map (S : E →ₗ[𝕜] E) (highPart T r) ≤ highPart T r := by
@@ -35,6 +38,9 @@ theorem map_highPart_le_of_commute_pf {T S : E →L[𝕜] E}
   have : T (S x) = S (T x) := h.symm
   rw [ContinuousLinearMap.coe_coe, this, show (T x) = μ • x from hx, map_smul]
 
+/--
+@isnad1 id=eq.2h4v.s12.b4a28619f876 from=translated src=- shape=b6af3ace vocab=8e49ca0d
+-/
 theorem adjoint_comp_eq_of_isSymmetric {T S : E →L[𝕜] E}
     (hT' : (T : E →ₗ[𝕜] E).IsSymmetric) (hST : S.comp T = T.comp S) :
     (adjoint S).comp T = T.comp (adjoint S) := by
@@ -43,6 +49,9 @@ theorem adjoint_comp_eq_of_isSymmetric {T S : E →L[𝕜] E}
   rw [adjoint_comp, adjoint_comp, hT] at this
   exact this.symm
 
+/--
+@isnad1 id=le.2h5v.s10.d78292bb70a4 from=translated src=- shape=4207af11 vocab=8f8528d5
+-/
 theorem map_highPart_orthogonal_le_of_commute_pf {T S : E →L[𝕜] E}
     (hT' : (T : E →ₗ[𝕜] E).IsSymmetric) (hST : S.comp T = T.comp S) (r : ℝ) :
     Submodule.map (S : E →ₗ[𝕜] E) (highPart T r)ᗮ ≤ (highPart T r)ᗮ := by
@@ -58,6 +67,9 @@ theorem map_highPart_orthogonal_le_of_commute_pf {T S : E →L[𝕜] E}
 end ContinuousLinearMap
 
 open Module.End in
+/--
+@isnad1 id=le.2h5v.s11.cd897b6338a7 from=translated src=- shape=d405a16b vocab=d1fc0425
+-/
 theorem solution {𝕜 E : Type*} [RCLike 𝕜] [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] [CompleteSpace E] {T S : E →L[𝕜] E}
     (hT' : (T : E →ₗ[𝕜] E).IsSymmetric) (hST : S.comp T = T.comp S) (r : ℝ) :
     Submodule.map (S : E →ₗ[𝕜] E) (⨆ (μ : 𝕜) (_ : r ≤ ‖μ‖), Module.End.eigenspace (T : Module.End 𝕜 E) μ)ᗮ ≤ (⨆ (μ : 𝕜) (_ : r ≤ ‖μ‖), Module.End.eigenspace (T : Module.End 𝕜 E) μ)ᗮ :=

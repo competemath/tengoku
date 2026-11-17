@@ -14,6 +14,9 @@ namespace CongruenceSubgroup
 export _root_.CongruenceSubgroup (Gamma1_mem Gamma1)
 open _root_.CongruenceSubgroup
 
+/--
+@isnad1 id=or.1h2v.s9.c86ad39bc8b7 from=translated src=- shape=db337ddd vocab=d5f69728
+-/
 theorem sq_trace_lt_four_or_eq_of_smul_eq (γ : SL(2, ℤ)) (τ : ℍ) (hτ : γ • τ = τ) :
     (γ 0 0 + γ 1 1) ^ 2 < 4 ∨ γ = 1 ∨ γ = -1 := by
 
@@ -103,6 +106,9 @@ theorem eq_one_or_eq_neg_one_of_mem_Gamma1_of_smul_eq (M : ℕ) (hM : 4 ≤ M) (
 
 end CongruenceSubgroup
 
+/--
+@isnad1 id=or.3h3v.s9.ed012643d17f from=translated src=- shape=842c5b97 vocab=be400f42
+-/
 theorem solution (M : ℕ) (hM : 4 ≤ M)
     (γ : SL(2, ℤ)) (hγ : γ ∈ CongruenceSubgroup.Gamma1 M ∨ -γ ∈ CongruenceSubgroup.Gamma1 M)
     (τ : UpperHalfPlane) (hτ : γ • τ = τ) : γ = 1 ∨ γ = -1 :=

@@ -14,15 +14,24 @@ open _root_.DeligneSerre
 
 variable {T : Type*} [CommRing T] (𝔭 : Ideal T)
 
+/--
+@isnad1 id=finite.0h2v.s6.6a71f44e4b24 from=translated src=- shape=8f22efcc vocab=e1fe5b07
+-/
 theorem module_finite_quotient [Module.Finite ℤ T] : Module.Finite ℤ (T ⧸ 𝔭) :=
   Module.Finite.of_surjective (Ideal.Quotient.mk 𝔭).toIntAlgHom.toLinearMap Ideal.Quotient.mk_surjective
 
+/--
+@isnad1 id=isintegr.0h2v.s6.f9f411c38a2a from=translated src=- shape=4a9e890a vocab=4a02a222
+-/
 theorem isIntegral_quotient [Module.Finite ℤ T] : Algebra.IsIntegral ℤ (T ⧸ 𝔭) := by
   haveI : Module.Finite ℤ (T ⧸ 𝔭) := module_finite_quotient 𝔭
   exact Algebra.IsIntegral.of_finite ℤ (T ⧸ 𝔭)
 
 end DeligneSerre.S17
 
+/--
+@isnad1 id=ex.0h3v.s9.662009b089ac from=translated src=- shape=5fc22646 vocab=cf82e4d4
+-/
 theorem solution {T : Type*} [CommRing T] [Module.Finite ℤ T]
     [Module.IsTorsionFree ℤ T] {k : Type*} [Field k] (χ : T →+* k) :
     ∃ 𝔭 ∈ minimalPrimes T,

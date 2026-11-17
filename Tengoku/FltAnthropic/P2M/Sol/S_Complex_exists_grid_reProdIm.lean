@@ -13,9 +13,15 @@ namespace AtlasGrid
 
 noncomputable def pt (a ℓ : ℝ) (N : ℕ) (i : ℕ) : ℝ := a + i * (ℓ / N)
 
+/--
+@isnad1 id=le.1h2v.s5.acee22da6c0a from=translated src=- shape=221a5a0f vocab=b8cc1e03
+-/
 theorem step_nonneg {ℓ : ℝ} (hℓ : 0 ≤ ℓ) (N : ℕ) : 0 ≤ ℓ / N :=
   div_nonneg hℓ (Nat.cast_nonneg N)
 
+/--
+@isnad1 id=le.1h2v.s6.2185c0ddcdde from=translated src=- shape=4ef8c086 vocab=54d350e1
+-/
 theorem step_le {ℓ δ : ℝ} (hδ : 0 < δ) : ℓ / (⌈2 * ℓ / δ⌉₊ : ℕ) ≤ δ / 2 := by
   rcases Nat.eq_zero_or_pos ⌈2 * ℓ / δ⌉₊ with hN | hN
   · rw [hN, Nat.cast_zero, div_zero]; linarith
@@ -26,15 +32,24 @@ theorem step_le {ℓ δ : ℝ} (hδ : 0 < δ) : ℓ / (⌈2 * ℓ / δ⌉₊ : �
       _ ≤ (⌈2 * ℓ / δ⌉₊ * δ) / 2 := by gcongr
       _ = δ / 2 * ⌈2 * ℓ / δ⌉₊ := by ring
 
+/--
+@isnad1 id=eq.3h2v.s6.1cc23e9e918a from=translated src=- shape=ea12f9e5 vocab=254fab3f
+-/
 theorem ceil_eq_zero_imp {ℓ δ : ℝ} (hℓ : 0 ≤ ℓ) (hδ : 0 < δ) (h : ⌈2 * ℓ / δ⌉₊ = 0) : ℓ = 0 := by
   rw [Nat.ceil_eq_zero] at h
   have h2 : 2 * ℓ / δ * δ ≤ 0 * δ := mul_le_mul_of_nonneg_right h hδ.le
   rw [div_mul_cancel₀ _ hδ.ne', zero_mul] at h2
   linarith
 
+/--
+@isnad1 id=eq.0h5v.s6.9dd1ec727ace from=translated src=- shape=2c884520 vocab=e3d4363d
+-/
 theorem pt_sub (a ℓ : ℝ) (N p q : ℕ) : pt a ℓ N p - pt a ℓ N q = ((p : ℝ) - q) * (ℓ / N) := by
   unfold pt; ring
 
+/--
+@isnad1 id=and.2h4v.s5.874b2ec3ab53 from=translated src=- shape=c24b1b7a vocab=0a72df2b
+-/
 theorem pt_mem {a ℓ : ℝ} (hℓ : 0 ≤ ℓ) {N i : ℕ} (hi : i ≤ N) :
     a ≤ pt a ℓ N i ∧ pt a ℓ N i ≤ a + ℓ := by
   unfold pt
@@ -50,6 +65,9 @@ theorem pt_mem {a ℓ : ℝ} (hℓ : 0 ≤ ℓ) {N i : ℕ} (hi : i ≤ N) :
       have h2 : (N : ℝ) * (ℓ / N) = ℓ := by field_simp
       linarith
 
+/--
+@isnad1 id=ex.4h4v.s6.fbd46560795a from=translated src=- shape=540fc18a vocab=81c94df5
+-/
 theorem exists_near {a ℓ : ℝ} (hℓ : 0 ≤ ℓ) {N : ℕ} (hN : N = 0 → ℓ = 0) {v : ℝ}
     (hv₁ : a ≤ v) (hv₂ : v ≤ a + ℓ) : ∃ i ≤ N, |v - pt a ℓ N i| ≤ ℓ / N := by
   have hs := step_nonneg hℓ N
@@ -86,13 +104,31 @@ def walk (a b l : ℕ) : ℕ := if a ≤ b then min (a + l) b else max (a - l) b
 
 def len (a b : ℕ) : ℕ := (a - b) + (b - a)
 
+/--
+@isnad1 id=eq.0h2v.s3.9737d8df4c13 from=translated src=- shape=2d8bf611 vocab=570a54b2
+-/
 theorem walk_zero (a b : ℕ) : walk a b 0 = a := by unfold walk; split_ifs <;> omega
+/--
+@isnad1 id=eq.0h2v.s3.ec4a99c3830a from=translated src=- shape=2a0bd113 vocab=7a146d03
+-/
 theorem walk_len (a b : ℕ) : walk a b (len a b) = b := by unfold walk len; split_ifs <;> omega
+/--
+@isnad1 id=eq.1h3v.s4.b5bd965b4ccf from=translated src=- shape=2dd4384d vocab=bf0e2fb0
+-/
 theorem walk_of_len_le {a b l : ℕ} (h : len a b ≤ l) : walk a b l = b := by
   unfold walk len at *; split_ifs <;> omega
+/--
+@isnad1 id=le.0h3v.s4.de3f13c676f8 from=translated src=- shape=30304ab3 vocab=047f52c4
+-/
 theorem walk_le (a b l : ℕ) : walk a b l ≤ max a b := by unfold walk; split_ifs <;> omega
+/--
+@isnad1 id=le.0h2v.s3.4ec869f9aa35 from=translated src=- shape=42e73927 vocab=8f42a9f4
+-/
 theorem len_le (a b : ℕ) : len a b ≤ max a b := by unfold len; omega
 
+/--
+@isnad1 id=le.1h2v.s6.afc6080af482 from=translated src=- shape=7fb622ac vocab=66e2ee22
+-/
 theorem abs_cast_sub_le_one {p q : ℕ} (h : p ≤ q + 1 ∧ q ≤ p + 1) : |(p : ℝ) - q| ≤ 1 := by
   rw [abs_sub_le_iff]; constructor
   · have : (p : ℝ) ≤ q + 1 := by exact_mod_cast h.1
@@ -104,6 +140,9 @@ end AtlasGrid
 
 open AtlasGrid
 
+/--
+@isnad1 id=ex.3h5v.s9.82c612bfc3e6 from=translated src=- shape=34a739e5 vocab=09bc9d86
+-/
 theorem solution {a₁ a₂ b₁ b₂ δ : ℝ} (ha : a₁ ≤ a₂) (hb : b₁ ≤ b₂) (hδ : 0 < δ) :
     ∃ (m n : ℕ) (c : Fin (m + 1) × Fin (n + 1) → ℂ),
       (∀ i, c i ∈ Set.Icc a₁ a₂ ×ℂ Set.Icc b₁ b₂) ∧

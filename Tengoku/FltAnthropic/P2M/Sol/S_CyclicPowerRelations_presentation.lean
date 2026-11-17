@@ -227,6 +227,9 @@ end road
 
 end CyclicPowerPresentation
 
+/--
+@isnad1 id=and.4h6v.s10.cf18506f858f from=translated src=- shape=f71b2418 vocab=e28b0892
+-/
 theorem solution
     {R : Type u} [CommRing R] {A : Type v} [CommRing A] [Algebra R A]
     (p r : ℕ) [NeZero r] (hp : 2 ≤ p)

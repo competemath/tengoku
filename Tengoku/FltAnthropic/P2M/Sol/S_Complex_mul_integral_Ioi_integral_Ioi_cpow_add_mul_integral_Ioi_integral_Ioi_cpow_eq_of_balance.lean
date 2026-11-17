@@ -19,20 +19,35 @@ namespace P2mKcContig
 
 abbrev μ0 : Measure ℝ := volume.restrict (Ioi (0:ℝ))
 
+/--
+@isnad1 id=eventual.0h0v.s4.ebc57804b35d from=translated src=- shape=7a53fbac vocab=26b4f1d7
+-/
 theorem ae_pos_μ0 : ∀ᵐ x ∂μ0, 0 < x := ae_restrict_mem measurableSet_Ioi
 
+/--
+@isnad1 id=eq.1h2v.s5.2679cbb4fb02 from=translated src=- shape=955acc88 vocab=80da2760
+-/
 theorem norm_ofReal_cpow {x : ℝ} (hx : 0 < x) (r : ℂ) : ‖(x : ℂ) ^ r‖ = x ^ r.re :=
   norm_cpow_eq_rpow_re_of_pos hx r
 
+/--
+@isnad1 id=eq.1h2v.s5.2c6cd123d68e from=translated src=- shape=49c25c64 vocab=e3513ad6
+-/
 theorem ofReal_mul_cpow {x : ℝ} (hx : 0 < x) (r : ℂ) : (x : ℂ) * (x : ℂ) ^ r = (x : ℂ) ^ (r + 1) := by
   rw [cpow_add _ _ (ofReal_ne_zero.mpr hx.ne'), cpow_one, mul_comm]
 
+/--
+@isnad1 id=and.2h2v.s8.17f59c3bbcc7 from=translated src=- shape=1865e57f vocab=c8f90654
+-/
 theorem beta (a b : ℂ) (ha : 0 < a.re) (hb : 0 < b.re) :
     IntegrableOn (fun v : ℝ => (v : ℂ) ^ (a - 1) * (((1 + v : ℝ)) : ℂ) ^ (-(a + b))) (Ioi 0) ∧
       ∫ v in Ioi (0 : ℝ), (v : ℂ) ^ (a - 1) * (((1 + v : ℝ)) : ℂ) ^ (-(a + b)) =
         Complex.Gamma a * Complex.Gamma b / Complex.Gamma (a + b) :=
   Complex.integrableOn_and_integral_Ioi_cpow_mul_one_add_cpow_neg_eq_Gamma_mul_Gamma_div a b ha hb
 
+/--
+@isnad1 id=integrab.2h2v.s6.55d9dde163b0 from=translated src=- shape=498748ff vocab=fb9af8a3
+-/
 theorem integrableOn_betaR {a c : ℝ} (ha : 0 < a) (hc : a < c) :
     IntegrableOn (fun v : ℝ => v ^ (a - 1) * (1 + v) ^ (-c)) (Ioi 0) := by
   have h0 := (beta (a : ℂ) ((c - a : ℝ) : ℂ) (by simpa) (by simp; linarith)).1.norm
@@ -46,15 +61,24 @@ def kk (β b d : ℂ) (x y : ℝ) : ℂ :=
 
 def kR (β b d : ℝ) (x y : ℝ) : ℝ := y ^ (β - 1) * (1 + y) ^ (-b) * (1 + x + y) ^ (-d)
 
+/--
+@isnad1 id=eq.2h5v.s5.dd53badc5764 from=translated src=- shape=f7aa5840 vocab=4af0fb8f
+-/
 theorem norm_kk (β b d : ℂ) {x y : ℝ} (hx : 0 ≤ x) (hy : 0 < y) : ‖kk β b d x y‖ = kR β.re b.re d.re x y := by
   simp only [kk, kR, norm_mul, norm_ofReal_cpow hy, sub_re, one_re]
   rw [norm_ofReal_cpow (by linarith), norm_ofReal_cpow (by linarith), neg_re, neg_re]
 
+/--
+@isnad1 id=le.2h5v.s5.6c911bc1b34e from=translated src=- shape=2fc0cd18 vocab=bcf15441
+-/
 theorem kR_nonneg (β b d : ℝ) {x y : ℝ} (hx : 0 ≤ x) (hy : 0 < y) : 0 ≤ kR β b d x y := by
   unfold kR
   have : 0 < 1 + x + y := by linarith
   positivity
 
+/--
+@isnad1 id=le.3h5v.s6.0b7bb6538b05 from=translated src=- shape=82cfc092 vocab=72ee89dc
+-/
 theorem kR_le (β b d : ℝ) (hd : 0 ≤ d) {x y : ℝ} (hx : 0 ≤ x) (hy : 0 < y) :
     kR β b d x y ≤ y ^ (β - 1) * (1 + y) ^ (-(b + d)) := by
   unfold kR
@@ -66,6 +90,9 @@ theorem kR_le (β b d : ℝ) (hd : 0 ≤ d) {x y : ℝ} (hx : 0 ≤ x) (hy : 0 <
     _ = y ^ (β - 1) * (1 + y) ^ (-(b + d)) := by
         rw [mul_assoc, ← Real.rpow_add (by linarith)]; ring_nf
 
+/--
+@isnad1 id=eq.2h5v.s5.33ce6799677d from=translated src=- shape=b7531c87 vocab=d42b0f5e
+-/
 theorem kk_ofReal (β b d : ℝ) {x y : ℝ} (hx : 0 ≤ x) (hy : 0 < y) :
     kk (β : ℂ) (b : ℂ) (d : ℂ) x y = ((kR β b d x y : ℝ) : ℂ) := by
   simp only [kk, kR]
@@ -74,6 +101,9 @@ theorem kk_ofReal (β b d : ℝ) {x y : ℝ} (hx : 0 ≤ x) (hy : 0 < y) :
     ← ofReal_cpow (by linarith)]
   push_cast; ring
 
+/--
+@isnad1 id=measurab.0h3v.s4.49718411402b from=translated src=- shape=8c05b0c4 vocab=edc0c8e3
+-/
 theorem measurable_kk (β b d : ℂ) : Measurable (Function.uncurry (kk β b d)) := by
   unfold kk
   refine Measurable.mul (Measurable.mul ?_ ?_) ?_
@@ -81,9 +111,15 @@ theorem measurable_kk (β b d : ℂ) : Measurable (Function.uncurry (kk β b d))
   · exact (Complex.measurable_ofReal.comp (by fun_prop)).pow_const _
   · exact (Complex.measurable_ofReal.comp (by fun_prop)).pow_const _
 
+/--
+@isnad1 id=measurab.0h4v.s4.e48e726e9f7f from=translated src=- shape=b2e041c5 vocab=fde327d9
+-/
 theorem measurable_kk_x (β b d : ℂ) (x : ℝ) : Measurable (kk β b d x) :=
   (measurable_kk β b d).of_uncurry_left
 
+/--
+@isnad1 id=integrab.4h4v.s6.645b7e6b5fe6 from=translated src=- shape=fb284fb4 vocab=b0696424
+-/
 theorem integrable_kk (β b d : ℂ) (hβ : 0 < β.re) (hd : 0 ≤ d.re) (hbd : β.re < b.re + d.re) {x : ℝ}
     (hx : 0 ≤ x) : Integrable (kk β b d x) μ0 := by
   refine Integrable.mono' (integrableOn_betaR hβ hbd) (measurable_kk_x β b d x).aestronglyMeasurable ?_
@@ -91,6 +127,9 @@ theorem integrable_kk (β b d : ℂ) (hβ : 0 < β.re) (hd : 0 ≤ d.re) (hbd : 
   rw [norm_kk β b d hx hy]
   exact kR_le _ _ _ hd hx hy
 
+/--
+@isnad1 id=eq.5h4v.s8.4e19d0800275 from=translated src=- shape=6e30a0f0 vocab=ddc13d74
+-/
 theorem ibp (B b d : ℂ) (hB : 0 < B.re) (hb : 0 < b.re) (hd : 0 < d.re) (hlt : B.re < b.re + d.re) {x : ℝ}
     (hx : 0 < x) :
     B * (∫ y in Ioi (0:ℝ), kk B b d x y) - b * (∫ y in Ioi (0:ℝ), kk (B + 1) (b + 1) d x y)
@@ -199,6 +238,9 @@ theorem ibp (B b d : ℂ) (hB : 0 < B.re) (hb : 0 < b.re) (hd : 0 < d.re) (hlt :
     integral_const_mul] at key
   exact key
 
+/--
+@isnad1 id=eq.2h5v.s6.e4c75f653f86 from=translated src=- shape=b6c37697 vocab=c7f6f85c
+-/
 theorem kk_split (B b d : ℂ) {x y : ℝ} (hx : 0 < x) (hy : 0 < y) :
     kk (B + 1) b (d + 1) x y = kk B b d x y - (((1 + x : ℝ)) : ℂ) * kk B b (d + 1) x y := by
   have hy2 : (0:ℝ) < 1 + x + y := by linarith
@@ -211,6 +253,9 @@ theorem kk_split (B b d : ℂ) {x y : ℝ} (hx : 0 < x) (hy : 0 < y) :
   rw [e1, e2, e3]
   ring
 
+/--
+@isnad1 id=eq.4h4v.s8.ac16e1bf9d8d from=translated src=- shape=4e8d28ae vocab=5bf6cf34
+-/
 theorem pointwise_J (a b D : ℂ) (ha : 0 < a.re) (hD : 0 < D.re) (hba : 0 < (b - a).re) {x : ℝ} (hx : 0 < x) :
     a * (∫ y in Ioi (0:ℝ), kk (a + D) b D x y) + D * ((((1 + x : ℝ)) : ℂ) * ∫ y in Ioi (0:ℝ), kk (a + D) b (D + 1) x y)
       = b * ∫ y in Ioi (0:ℝ), kk (a + D + 1) (b + 1) D x y := by
@@ -232,6 +277,9 @@ theorem pointwise_J (a b D : ℂ) (ha : 0 < a.re) (hD : 0 < D.re) (hba : 0 < (b 
 def F (A a' β b' d : ℂ) (x : ℝ) : ℂ :=
   (x : ℂ) ^ (A - 1) * (((1 + x : ℝ)) : ℂ) ^ (-a') * ∫ y in Ioi (0:ℝ), kk β b' d x y
 
+/--
+@isnad1 id=measurab.0h5v.s4.cc6cd8bc4e3e from=translated src=- shape=f4eabd00 vocab=506bcd43
+-/
 theorem measurable_F (A a' β b' d : ℂ) : Measurable (F A a' β b' d) := by
   unfold F
   refine Measurable.mul (Measurable.mul ?_ ?_) ?_
@@ -240,12 +288,18 @@ theorem measurable_F (A a' β b' d : ℂ) : Measurable (F A a' β b' d) := by
   · have h : StronglyMeasurable (Function.uncurry (kk β b' d)) := (measurable_kk β b' d).stronglyMeasurable
     exact (MeasureTheory.StronglyMeasurable.integral_prod_right (ν := volume.restrict (Ioi (0:ℝ))) h).measurable
 
+/--
+@isnad1 id=eq.0h6v.s7.7f7b72049aa1 from=translated src=- shape=88607f84 vocab=0d46e489
+-/
 theorem F_eq (A a' β b' d : ℂ) (x : ℝ) :
     F A a' β b' d x = ∫ y in Ioi (0:ℝ), (x : ℂ) ^ (A - 1) * (((1 + x : ℝ)) : ℂ) ^ (-a') *
       ((y : ℂ) ^ (β - 1) * (((1 + y : ℝ)) : ℂ) ^ (-b')) * (((1 + x + y : ℝ)) : ℂ) ^ (-d) := by
   rw [F, ← integral_const_mul]
   congr 1; funext y; simp only [kk]; ring
 
+/--
+@isnad1 id=eq.4h5v.s7.9813245bd009 from=translated src=- shape=7aa91f4c vocab=82167a41
+-/
 theorem pointwise_F (A a b D : ℂ) (ha : 0 < a.re) (hD : 0 < D.re) (hba : 0 < (b - a).re) {x : ℝ} (hx : 0 < x) :
     a * F A (a + 1) (a + D) b D x + D * F A a (a + D) b (D + 1) x = b * F A (a + 1) (a + 1 + D) (b + 1) D x := by
   have hx1 : (0:ℝ) < 1 + x := by linarith
@@ -256,6 +310,9 @@ theorem pointwise_F (A a b D : ℂ) (ha : 0 < a.re) (hD : 0 < D.re) (hba : 0 < (
   rw [e1, show a + 1 + D = a + D + 1 by ring]
   linear_combination ((x : ℂ) ^ (A - 1) * (((1 + x : ℝ)) : ℂ) ^ (-(a + 1))) * h
 
+/--
+@isnad1 id=eq.4h4v.s7.ba91a3e15cb1 from=translated src=- shape=6227f286 vocab=51dd8164
+-/
 theorem integral_F_balanced (A a' b' d : ℂ) (hA : 0 < A.re) (hbA : 0 < (b' - A).re) (haD : 0 < (a' + d - A).re)
     (hba : 0 < (b' - a').re) :
     ∫ x in Ioi (0:ℝ), F A a' (a' + d) b' d x
@@ -266,6 +323,9 @@ theorem integral_F_balanced (A a' b' d : ℂ) (hA : 0 < A.re) (hbA : 0 < (b' - A
   refine setIntegral_congr_fun measurableSet_Ioi (fun x hx => ?_)
   exact F_eq A a' (a' + d) b' d x
 
+/--
+@isnad1 id=integrab.6h4v.s7.77388aa1b6c0 from=translated src=- shape=40674e75 vocab=45e55140
+-/
 theorem integrable_F_balanced (A a' b' d : ℂ) (hA : 0 < A.re) (hbA : 0 < (b' - A).re) (haD : 0 < (a' + d - A).re)
     (hba : 0 < (b' - a').re) (hb : 0 < b'.re) (hden : 0 < (d + b' - A).re) :
     Integrable (F A a' (a' + d) b' d) μ0 := by
@@ -282,6 +342,9 @@ theorem integrable_F_balanced (A a' b' d : ℂ) (hA : 0 < A.re) (hbA : 0 < (b' -
 def FR (A a' β b' d : ℝ) (x : ℝ) : ℝ :=
   x ^ (A - 1) * (1 + x) ^ (-a') * ∫ y in Ioi (0:ℝ), kR β b' d x y
 
+/--
+@isnad1 id=eq.1h6v.s5.4688700dae97 from=translated src=- shape=92c0f866 vocab=8c27f8e4
+-/
 theorem F_ofReal (A a' β b' d : ℝ) {x : ℝ} (hx : 0 < x) :
     F (A : ℂ) (a' : ℂ) (β : ℂ) (b' : ℂ) (d : ℂ) x = ((FR A a' β b' d x : ℝ) : ℂ) := by
   simp only [F, FR]
@@ -290,6 +353,9 @@ theorem F_ofReal (A a' β b' d : ℝ) {x : ℝ} (hx : 0 < x) :
     ← ofReal_cpow hx.le, ← ofReal_cpow (by linarith)]
   push_cast; ring
 
+/--
+@isnad1 id=le.1h6v.s5.6440b875443b from=translated src=- shape=e9af8972 vocab=6f1e37e4
+-/
 theorem FR_nonneg (A a' β b' d : ℝ) {x : ℝ} (hx : 0 < x) : 0 ≤ FR A a' β b' d x := by
   unfold FR
   have h : 0 ≤ ∫ y in Ioi (0:ℝ), kR β b' d x y :=
@@ -297,6 +363,9 @@ theorem FR_nonneg (A a' β b' d : ℝ) {x : ℝ} (hx : 0 < x) : 0 ≤ FR A a' β
   have : 0 < 1 + x := by linarith
   positivity
 
+/--
+@isnad1 id=le.1h6v.s5.2e9aa44c83d6 from=translated src=- shape=db276ffb vocab=c904e627
+-/
 theorem norm_F_le (A a' β b' d : ℂ) {x : ℝ} (hx : 0 < x) :
     ‖F A a' β b' d x‖ ≤ FR A.re a'.re β.re b'.re d.re x := by
   simp only [F, FR, norm_mul, norm_ofReal_cpow hx, sub_re, one_re]
@@ -307,6 +376,9 @@ theorem norm_F_le (A a' β b' d : ℂ) {x : ℝ} (hx : 0 < x) :
   refine (norm_integral_le_integral_norm _).trans (le_of_eq ?_)
   exact setIntegral_congr_fun measurableSet_Ioi (fun y hy => norm_kk β b' d hx.le hy)
 
+/--
+@isnad1 id=integrab.6h4v.s7.c8917d4664b0 from=translated src=- shape=3ed6b3ee vocab=45e55140
+-/
 theorem integrable_F_one (A a b D : ℂ) (hA : 0 < A.re) (ha : 0 < a.re) (hD : 0 < D.re) (hba : 0 < (b - a).re)
     (hbA : 0 < (b - A + 1).re) (haD : 0 < (a + D - A + 1).re) :
     Integrable (F A (a + 1) (a + D) b D) μ0 := by
@@ -348,6 +420,9 @@ theorem integrable_F_one (A a b D : ℂ) (hA : 0 < A.re) (ha : 0 < a.re) (hD : 0
       = (br * FR Ar (ar + 1) (ar + 1 + Dr) (br + 1) Dr x) / ar by ring, le_div_iff₀ ha, ← hPR]
   nlinarith [hD, h2]
 
+/--
+@isnad1 id=eq.6h4v.s8.3b2e79c65a59 from=translated src=- shape=a1be6957 vocab=51dd8164
+-/
 theorem main (A a b D : ℂ) (hA : 0 < A.re) (ha : 0 < a.re) (hD : 0 < D.re) (hba : 0 < (b - a).re)
     (hbA : 0 < (b - A + 1).re) (haD : 0 < (a + D - A + 1).re) :
     a * (∫ x in Ioi (0:ℝ), F A (a + 1) (a + D) b D x) + D * (∫ x in Ioi (0:ℝ), F A a (a + D) b (D + 1) x)
@@ -378,6 +453,9 @@ theorem main (A a b D : ℂ) (hA : 0 < A.re) (ha : 0 < a.re) (hD : 0 < D.re) (hb
   field_simp
   ring
 
+/--
+@isnad1 id=eq.6h4v.s9.2496d6e5ee77 from=translated src=- shape=b727984f vocab=6c137a83
+-/
 theorem main' (A a b D : ℂ) (hA : 0 < A.re) (ha : 0 < a.re) (hD : 0 < D.re) (hba : 0 < (b - a).re)
     (hbA : 0 < (b - A + 1).re) (haD : 0 < (a + D - A + 1).re) :
     a * (∫ x in Set.Ioi (0:ℝ), ∫ y in Set.Ioi (0:ℝ),
@@ -396,6 +474,9 @@ end P2mKcContig
 
 end
 
+/--
+@isnad1 id=eq.6h4v.s9.2496d6e5ee77 from=translated src=- shape=b727984f vocab=6c137a83
+-/
 theorem solution
     (A a b D : ℂ) (hA : 0 < A.re) (ha : 0 < a.re) (hD : 0 < D.re) (hba : 0 < (b - a).re)
     (hbA : 0 < (b - A + 1).re) (haD : 0 < (a + D - A + 1).re) :

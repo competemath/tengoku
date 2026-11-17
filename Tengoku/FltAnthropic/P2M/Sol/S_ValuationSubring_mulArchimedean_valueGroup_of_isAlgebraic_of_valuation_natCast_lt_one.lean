@@ -15,11 +15,17 @@ section ValueGroup
 variable {K : Type*} [Field K] (A : ValuationSubring K)
 variable [Algebra ℚ K] [Algebra.IsAlgebraic ℚ K]
 
+/--
+@isnad1 id=ex.3h4v.s8.9974a3ccf142 from=translated src=- shape=527af619 vocab=85647ecb
+-/
 theorem exists_pow_valuation_eq_valuation_prime_zpow {p : ℕ} (hp : p.Prime)
     (hAp : A.valuation (p : K) < 1) {x : K} (hx : x ≠ 0) :
     ∃ n : ℕ, 0 < n ∧ ∃ k : ℤ, A.valuation x ^ n = A.valuation (p : K) ^ k :=
   ValuationSubring.exists_pow_valuation_eq_valuation_natCast_zpow_of_isAlgebraic A hp hAp hx
 
+/--
+@isnad1 id=mularchi.2h3v.s8.59c83d4cee13 from=translated src=- shape=d809bd2d vocab=f94c7f57
+-/
 theorem mulArchimedean_valueGroup {p : ℕ} (hp : p.Prime) (hAp : A.valuation (p : K) < 1) :
     MulArchimedean A.ValueGroup := by
   haveI : CharZero K := charZero_of_injective_algebraMap (algebraMap ℚ K).injective
@@ -67,6 +73,9 @@ end ValueGroup
 
 end P2mR1W0arch
 
+/--
+@isnad1 id=mularchi.2h3v.s8.2a5b0e052236 from=translated src=- shape=04ff4518 vocab=f94c7f57
+-/
 theorem solution
     {K : Type*} [Field K] [Algebra ℚ K] [Algebra.IsAlgebraic ℚ K]
     (A : ValuationSubring K) {p : ℕ} (hp : p.Prime) (hAp : A.valuation (p : K) < 1) :

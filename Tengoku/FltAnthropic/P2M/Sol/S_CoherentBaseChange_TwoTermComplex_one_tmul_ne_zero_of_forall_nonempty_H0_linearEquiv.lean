@@ -23,6 +23,9 @@ section Naturality
 variable {A B : Type u} [CommRing A] [Algebra R A] [CommRing B] [Algebra R B]
   {C0 C1 : Type u} [AddCommGroup C0] [Module R C0] [AddCommGroup C1] [Module R C1]
 
+/--
+@isnad1 id=eq.0h8v.s11.793db5007e74 from=translated src=- shape=4be48b03 vocab=2b70b77f
+-/
 theorem baseChange_rTensor (d : C0 →ₗ[R] C1) (φ : A →ₗ[R] B) (x : A ⊗[R] C0) :
     (d.baseChange B) (φ.rTensor C0 x) = φ.rTensor C1 (d.baseChange A x) := by
   induction x using TensorProduct.induction_on with
@@ -30,6 +33,9 @@ theorem baseChange_rTensor (d : C0 →ₗ[R] C1) (φ : A →ₗ[R] B) (x : A ⊗
   | tmul a c => simp [LinearMap.rTensor_tmul, LinearMap.baseChange_tmul]
   | add x y hx hy => simp [map_add, hx, hy]
 
+/--
+@isnad1 id=eq.0h5v.s10.fb145f408954 from=translated src=- shape=aa943a66 vocab=4a79ba66
+-/
 theorem lid_baseChange_apply (d : C0 →ₗ[R] C1) (x : R ⊗[R] C0) :
     TensorProduct.lid R C1 (d.baseChange R x) = d (TensorProduct.lid R C0 x) := by
   induction x using TensorProduct.induction_on with
@@ -47,18 +53,30 @@ variable (R) (M : Type u) [AddCommGroup M] [Module R M]
 
 attribute [local instance] opModule
 
+/--
+@isnad1 id=iscentra.0h2v.s7.687730efe23a from=translated src=- shape=173c72ed vocab=eb7f1339
+-/
 scoped instance isCentralScalar : IsCentralScalar R M := ⟨fun _ _ => rfl⟩
 
+/--
+@isnad1 id=isscalar.0h2v.s7.383cc8557fed from=translated src=- shape=37f3004a vocab=0f9f8980
+-/
 scoped instance isScalarTower_op : IsScalarTower R Rᵐᵒᵖ M :=
   ⟨fun r x m => by
     change (r * MulOpposite.unop x) • m = r • ((MulOpposite.unop x) • m)
     rw [mul_smul]⟩
 
+/--
+@isnad1 id=smulcomm.0h2v.s7.31b03c35aad6 from=translated src=- shape=37f3004a vocab=8b39c7de
+-/
 scoped instance smulCommClass_op : SMulCommClass R Rᵐᵒᵖ M :=
   ⟨fun r x m => by
     change r • ((MulOpposite.unop x) • m) = (MulOpposite.unop x) • (r • m)
     rw [smul_comm]⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.8dc2b1455977 from=translated src=- shape=7add023f vocab=63501be8
+-/
 theorem inr_mul_eq (m : M) (x : TrivSqZeroExt R M) :
     (TrivSqZeroExt.inr m : TrivSqZeroExt R M) * x = TrivSqZeroExt.inr (x.fst • m) := by
   refine TrivSqZeroExt.ext ?_ ?_
@@ -76,6 +94,9 @@ variable (M : Type u) [AddCommGroup M] [Module R M]
 
 attribute [local instance] opModule
 
+/--
+@isnad1 id=eq.0h5v.s11.967958e72d94 from=translated src=- shape=5f09262f vocab=e42ab4a2
+-/
 theorem inr_smul_eq (m : M) (k : TrivSqZeroExt R M ⊗[R] G.C0) :
     (TrivSqZeroExt.inr m : TrivSqZeroExt R M) • k =
       (TrivSqZeroExt.inr m : TrivSqZeroExt R M) ⊗ₜ[R]
@@ -88,6 +109,9 @@ theorem inr_smul_eq (m : M) (k : TrivSqZeroExt R M ⊗[R] G.C0) :
         TrivSqZeroExt.inr_smul, TensorProduct.smul_tmul]
   | add x y hx hy => rw [smul_add, hx, hy, map_add, map_add, TensorProduct.tmul_add]
 
+/--
+@isnad1 id=eq.1h6v.s9.a2522c0335e4 from=translated src=- shape=ae3011fc vocab=fedf0c48
+-/
 theorem inr_tmul_eq_zero (g₀ : G.C0) (h : ∀ m : M, (m ⊗ₜ[R] g₀ : M ⊗[R] G.C0) = 0) (m : M) (r : R) :
     ((TrivSqZeroExt.inr m : TrivSqZeroExt R M) ⊗ₜ[R] (r • g₀) : TrivSqZeroExt R M ⊗[R] G.C0) = 0 := by
   have h1 : ((TrivSqZeroExt.inrHom R M).rTensor G.C0) ((r • m) ⊗ₜ[R] g₀) =
@@ -97,6 +121,9 @@ theorem inr_tmul_eq_zero (g₀ : G.C0) (h : ∀ m : M, (m ⊗ₜ[R] g₀ : M ⊗
     rw [TrivSqZeroExt.inr_smul, TensorProduct.smul_tmul]
   rw [← h1, h (r • m), map_zero]
 
+/--
+@isnad1 id=subsingl.2h5v.s11.d30d5bd7e703 from=translated src=- shape=c181c549 vocab=e0bdc1f9
+-/
 theorem subsingleton_of_forall_tmul_eq_zero (g₀ : G.C0)
     (hker : ∀ x : G.C0, G.d x = 0 → ∃ r : R, x = r • g₀)
     (ψ : G.H0 (TrivSqZeroExt R M) ≃ₗ[TrivSqZeroExt R M] TrivSqZeroExt R M)
@@ -125,6 +152,9 @@ theorem subsingleton_of_forall_tmul_eq_zero (g₀ : G.C0)
   simp only [TrivSqZeroExt.snd_inr, TrivSqZeroExt.snd_zero] at h4
   exact sub_eq_zero.mp h4
 
+/--
+@isnad1 id=ne.2h4v.s10.5d304675dcd7 from=translated src=- shape=b766ca0b vocab=041ac845
+-/
 theorem main (g₀ : G.C0)
     (hker : ∀ x : G.C0, G.d x = 0 → ∃ r : R, x = r • g₀)
     (hH0 : ∀ (C : Type u) [CommRing C] [Algebra R C], Nonempty (G.H0 C ≃ₗ[C] C))
@@ -147,6 +177,9 @@ open scoped _root_.P2MW.S_CoherentBaseChange_TwoTermComplex_one_tmul_ne_zero_of_
 end
 open scoped _root_.P2MW.S_CoherentBaseChange_TwoTermComplex_one_tmul_ne_zero_of_forall_nonempty_H0_linearEquiv.P2mTwoTermH0Unimodular
 
+/--
+@isnad1 id=ne.2h4v.s10.5d304675dcd7 from=translated src=- shape=b766ca0b vocab=041ac845
+-/
 theorem solution
     {R : Type u} [CommRing R] (G : CoherentBaseChange.TwoTermComplex.{u, u} R) (g₀ : G.C0)
     (hker : ∀ x : G.C0, G.d x = 0 → ∃ r : R, x = r • g₀)

@@ -19,6 +19,9 @@ open _root_.DrinfeldCurve.LocalChart open _root_.DrinfeldCurve
 
 variable (q : ℕ) [hq : Fact q.Prime]
 
+/--
+@isnad1 id=eq.0h3v.s6.94796caf0707 from=translated src=- shape=c12722ca vocab=6d884e52
+-/
 theorem prod_sub_natCast (K : Type*) [CommRing K] [CharP K q] (t : K) :
     ∏ a : Fin q, (t - ((a : ℕ) : K)) = t ^ q - t := by
   classical
@@ -47,6 +50,9 @@ theorem prod_sub_natCast (K : Type*) [CommRing K] [CharP K q] (t : K) :
     exact Fin.ext this
   · simp [φ, map_natCast]
 
+/--
+@isnad1 id=eq.0h4v.s7.a398ed657c9c from=translated src=- shape=bededde8 vocab=362a73a1
+-/
 theorem prod_sub_natCast_mul (D : Type*) [CommRing D] [IsDomain D] [CharP D q] (Y c : D) :
     ∏ a : Fin q, (Y - ((a : ℕ) : D) * c) = Y ^ q - c ^ (q - 1) * Y := by
   classical
@@ -79,10 +85,16 @@ theorem prod_sub_natCast_mul (D : Type*) [CommRing D] [IsDomain D] [CharP D q] (
           rw [mul_sub, mul_pow, e2]; ring
       _ = y ^ q - d ^ (q - 1) * y := by rw [e1]
 
+/--
+@isnad1 id=eq.0h3v.s6.5a3afbf476c3 from=translated src=- shape=2d7c5431 vocab=eeda0486
+-/
 theorem natCast_pow_char (D : Type*) [CommRing D] [CharP D q] (n : ℕ) : ((n : D)) ^ q = (n : D) := by
   have := map_natCast (frobenius D q) n
   rwa [frobenius_def] at this
 
+/--
+@isnad1 id=eq.1h4v.s7.e65319867173 from=translated src=- shape=f0e7db8e vocab=dbe7ed7c
+-/
 theorem sub_pow_sub_one_eq_geom_sum (D : Type*) [CommRing D] [IsDomain D] [CharP D q] (S T : D) (hST : S ≠ T) :
     (T - S) ^ (q - 1) = ∑ i ∈ Finset.range q, S ^ i * T ^ (q - 1 - i) := by
   have hq1 : q - 1 + 1 = q := by have := hq.out.two_le; omega
@@ -93,6 +105,9 @@ theorem sub_pow_sub_one_eq_geom_sum (D : Type*) [CommRing D] [IsDomain D] [CharP
     rw [← hq1, pow_succ, hq1]; ring
   rw [this, sub_pow_char]; ring
 
+/--
+@isnad1 id=eq.0h4v.s7.c527a3c8f3be from=translated src=- shape=7845b294 vocab=f867fc77
+-/
 theorem prod_sub_natCast_mul' (K : Type*) [CommRing K] [CharP K q] (Y c : K) :
     ∏ a : Fin q, (Y - ((a : ℕ) : K) * c) = Y ^ q - c ^ (q - 1) * Y := by
   classical
@@ -103,6 +118,9 @@ theorem prod_sub_natCast_mul' (K : Type*) [CommRing K] [CharP K q] (Y c : K) :
     MvPolynomial.eval₂_X] at h
   simpa [g] using h
 
+/--
+@isnad1 id=eq.0h4v.s7.a5bd1390d5f6 from=translated src=- shape=2b995018 vocab=c93dcb33
+-/
 theorem sub_pow_sub_one_eq_geom_sum' (K : Type*) [CommRing K] [CharP K q] (S T : K) :
     (T - S) ^ (q - 1) = ∑ i ∈ Finset.range q, S ^ i * T ^ (q - 1 - i) := by
   classical
@@ -118,6 +136,9 @@ end DrinfeldCurve.LocalChart.MooreAux
 
 open DrinfeldCurve.LocalChart.MooreAux in
 
+/--
+@isnad1 id=eq.0h2v.s12.2d2d0fd45f26 from=translated src=- shape=9b1a127c vocab=789779fa
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime] (R : Type) [CommRing R] [CharP R q] :
     ∏ a : Fin q, ∏ b : Fin q,

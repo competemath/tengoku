@@ -7,6 +7,9 @@ namespace P2MW.S_CerednikDrinfeld_isUnit_natCast_of_not_dvd_of_card_quotient
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=isunit.4h4v.s7.7f88faef6baf from=translated src=- shape=ac876b33 vocab=559df655
+-/
 theorem solution
     {r : ℕ} [Fact r.Prime]
     (𝒪 : Type) [CommRing 𝒪] [IsDomain 𝒪]

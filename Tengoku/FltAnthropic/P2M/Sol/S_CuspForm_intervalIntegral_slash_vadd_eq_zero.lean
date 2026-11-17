@@ -15,11 +15,17 @@ open UpperHalfPlane
 namespace Ws41
 namespace L5a
 
+/--
+@isnad1 id=le.0h1v.s7.f6d5096ec62c from=translated src=- shape=7aabf878 vocab=7e0c4c21
+-/
 theorem gamma_le_gamma1_of_level (n : ℕ) : CongruenceSubgroup.Gamma n ≤ CongruenceSubgroup.Gamma1 n := by
   intro γ hγ
   rw [CongruenceSubgroup.Gamma_mem] at hγ
   exact (CongruenceSubgroup.Gamma1_mem n γ).mpr ⟨hγ.1, hγ.2.2.2, hγ.2.2.1⟩
 
+/--
+@isnad1 id=eq.1h5v.s11.a04861102b7f from=translated src=- shape=70912558 vocab=d13686db
+-/
 theorem slash_vadd_natCast {n : ℕ} {k : ℤ} (f : ℍ → ℂ)
     (hf : ∀ ε : SL(2, ℤ), ε ∈ CongruenceSubgroup.Gamma1 n → f ∣[k] (ε : GL (Fin 2) ℝ) = f)
     (ρ : SL(2, ℤ)) (w : ℍ) :
@@ -40,6 +46,9 @@ theorem slash_vadd_natCast {n : ℕ} {k : ℤ} (f : ℍ → ℂ)
   rw [ModularForm.SL_slash_apply, modular_T_zpow_smul, hden, _root_.one_zpow, mul_one, Int.cast_natCast] at h
   exact h
 
+/--
+@isnad1 id=eq.4h5v.s11.0ac648f3cd24 from=translated src=- shape=81860729 vocab=cb948dd7
+-/
 theorem intervalIntegral_slash_vadd_eq_zero {n : ℕ} (hn : n ≠ 0) {k : ℤ} (f : ℍ → ℂ)
     (hf_hol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) f)
     (hf : ∀ ε : SL(2, ℤ), ε ∈ CongruenceSubgroup.Gamma1 n → f ∣[k] (ε : GL (Fin 2) ℝ) = f)
@@ -103,6 +112,9 @@ end
 
 open scoped MatrixGroups ModularForm Manifold
 
+/--
+@isnad1 id=eq.0h5v.s10.45e1075af6cd from=translated src=- shape=18c0c28c vocab=4e42875e
+-/
 theorem solution
     {M : ℕ} [NeZero M] {k : ℤ} (h : CuspForm (CongruenceSubgroup.Gamma1 M) k) (ρ : SL(2, ℤ))
     (z : UpperHalfPlane) :

@@ -13,12 +13,18 @@ namespace Q1ParamHol
 
 variable {Y : Type*} [TopologicalSpace Y]
 
+/--
+@isnad1 id=continuo.2h4v.s6.8f4a08c39675 from=translated src=- shape=d2fdbce1 vocab=44b67252
+-/
 theorem continuous_slice {U : Set ℂ} (F : ℂ → Y → ℂ)
     (hF : ContinuousOn (Function.uncurry F) (U ×ˢ Set.univ)) {z : ℂ} (hz : z ∈ U) :
     Continuous (F z) := by
   have : Continuous fun a : Y => (z, a) := continuous_const.prodMk continuous_id
   exact hF.comp_continuous this (fun a => ⟨hz, trivial⟩)
 
+/--
+@isnad1 id=isopen.1h3v.s6.b56b94247528 from=translated src=- shape=b2bc6516 vocab=0a90b3c8
+-/
 theorem isOpen_nonzero {U : Set ℂ} (F : ℂ → Y → ℂ)
     (hF : ContinuousOn (Function.uncurry F) (U ×ˢ Set.univ)) :
     IsOpen (⋃ z ∈ U, {a : Y | F z a ≠ 0}) := by
@@ -28,6 +34,9 @@ theorem isOpen_nonzero {U : Set ℂ} (F : ℂ → Y → ℂ)
 end Q1ParamHol
 
 open Q1ParamHol in
+/--
+@isnad1 id=differen.5h5v.s8.5ea2160876ca from=translated src=- shape=e4ce6b8a vocab=c4cda6e6
+-/
 theorem solution
     {Y : Type*} [TopologicalSpace Y] [MeasurableSpace Y] [OpensMeasurableSpace Y]
     (ν : MeasureTheory.Measure Y) [MeasureTheory.IsFiniteMeasureOnCompacts ν]

@@ -21,13 +21,22 @@ variable {ι : Type*} (f : ι → Module.End K W) (χ : ι → K)
 
 def eigInf (F : Finset ι) : Submodule K W := ⨅ i ∈ F, (f i).eigenspace (χ i)
 
+/--
+@isnad1 id=le.1h7v.s7.24002415425c from=translated src=- shape=8e21450b vocab=e7f9ee9c
+-/
 theorem eigInf_mono {F G : Finset ι} (h : F ⊆ G) : eigInf f χ G ≤ eigInf f χ F :=
   biInf_mono h
 
+/--
+@isnad1 id=iff.0h7v.s8.a98773a22a1c from=translated src=- shape=683d45ed vocab=b538c6d5
+-/
 theorem mem_eigInf_iff (F : Finset ι) (w : W) :
     w ∈ eigInf f χ F ↔ ∀ i ∈ F, f i w = χ i • w := by
   simp [eigInf, Submodule.mem_iInf, Module.End.mem_eigenspace_iff]
 
+/--
+@isnad1 id=ne.2h6v.s9.b6708bc2816e from=translated src=- shape=22a21c5a vocab=4be56328
+-/
 theorem eigInf_ne_bot [Nontrivial W] (hcomm : ∀ i j, Commute (f i) (f j))
     (hnil : ∀ i, IsNilpotent (f i - algebraMap K (Module.End K W) (χ i))) (F : Finset ι) :
     eigInf f χ F ≠ ⊥ := by
@@ -94,6 +103,9 @@ theorem eigInf_ne_bot [Nontrivial W] (hcomm : ∀ i j, Commute (f i) (f j))
     rw [hbot] at hmem
     exact (Submodule.mem_bot K).mp hmem
 
+/--
+@isnad1 id=ex.2h5v.s9.9797322364e3 from=translated src=- shape=237d3c76 vocab=d35a46d9
+-/
 theorem exists_common_eigenvector [Nontrivial W] (hcomm : ∀ i j, Commute (f i) (f j))
     (hnil : ∀ i, IsNilpotent (f i - algebraMap K (Module.End K W) (χ i))) :
     ∃ w : W, w ≠ 0 ∧ ∀ i, f i w = χ i • w := by
@@ -127,6 +139,9 @@ section Kill
 
 variable {K : Type*} [Field K] {W : Type*} [AddCommGroup W] [Module K W]
 
+/--
+@isnad1 id=commute.0h4v.s8.aab7b7ec15a7 from=translated src=- shape=ba347fd9 vocab=da047a22
+-/
 theorem commute_aeval_self (f : Module.End K W) (Q : Polynomial K) :
     Commute (Polynomial.aeval f Q) f := by
   induction Q using Polynomial.induction_on' with
@@ -135,6 +150,9 @@ theorem commute_aeval_self (f : Module.End K W) (Q : Polynomial K) :
     rw [Polynomial.aeval_monomial]
     exact (Algebra.commute_algebraMap_left c f).mul_left ((Commute.refl f).pow_left n)
 
+/--
+@isnad1 id=eq.4h9v.s10.95567d2a6aa1 from=translated src=- shape=66b59744 vocab=6629595e
+-/
 theorem aeval_apply_eq_zero_of_mem_maxGenEigenspace (f : Module.End K W) {P Q : Polynomial K}
     {a b : K} (hab : a ≠ b) (m : ℕ) (hP : P = (Polynomial.X - Polynomial.C a) ^ m * Q)
     (hPf : Polynomial.aeval f P = 0) {w : W} (hw : w ∈ f.maxGenEigenspace b) :
@@ -178,10 +196,16 @@ section TensorZero
 variable {𝒪 : Type*} [CommRing 𝒪] [IsLocalRing 𝒪] {k : Type*} [Field k] [Algebra 𝒪 k]
 variable {V : Type*} [AddCommGroup V] [Module 𝒪 V]
 
+/--
+@isnad1 id=eq.1h2v.s7.15fda8aa5f7c from=translated src=- shape=1e53088f vocab=7386444d
+-/
 theorem ker_algebraMap_eq_maximalIdeal (hk : Function.Surjective (algebraMap 𝒪 k)) :
     RingHom.ker (algebraMap 𝒪 k) = IsLocalRing.maximalIdeal 𝒪 :=
   IsLocalRing.eq_maximalIdeal (RingHom.ker_isMaximal_of_surjective _ hk)
 
+/--
+@isnad1 id=mem.1h6v.s8.fd44aff12fff from=translated src=- shape=1ce0e2ca vocab=691f2326
+-/
 theorem mem_smul_top_of_one_tmul_eq_zero_aux (I : Ideal 𝒪) (q : (𝒪 ⧸ I) ≃ₐ[𝒪] k)
     (w : V) (hw : (1 : k) ⊗ₜ[𝒪] w = 0) : w ∈ I • (⊤ : Submodule 𝒪 V) := by
   have h0 : (1 : 𝒪 ⧸ I) ⊗ₜ[𝒪] w = 0 := by
@@ -193,6 +217,9 @@ theorem mem_smul_top_of_one_tmul_eq_zero_aux (I : Ideal 𝒪) (q : (𝒪 ⧸ I) 
   rw [map_one, one_smul, h0, map_zero] at h2
   exact (Submodule.Quotient.mk_eq_zero _).mp h2.symm
 
+/--
+@isnad1 id=mem.2h4v.s8.de51d4fe4fe6 from=translated src=- shape=5d1e16c8 vocab=89dac23f
+-/
 theorem mem_maximalIdeal_smul_of_one_tmul_eq_zero (hk : Function.Surjective (algebraMap 𝒪 k))
     (w : V) (hw : (1 : k) ⊗ₜ[𝒪] w = 0) :
     w ∈ (IsLocalRing.maximalIdeal 𝒪) • (⊤ : Submodule 𝒪 V) := by
@@ -206,6 +233,9 @@ theorem mem_maximalIdeal_smul_of_one_tmul_eq_zero (hk : Function.Surjective (alg
   exact mem_smul_top_of_one_tmul_eq_zero_aux (RingHom.ker (Algebra.ofId 𝒪 k))
     (Ideal.quotientKerAlgEquivOfSurjective hk') w hw
 
+/--
+@isnad1 id=eq.1h4v.s8.1485e462ac00 from=translated src=- shape=79a54e9b vocab=1cc0cef0
+-/
 theorem one_tmul_injective_field (k : Type*) [Field k] (K : Type*) [Field K] [Algebra k K]
     {M : Type*} [AddCommGroup M] [Module k M] (y : M)
     (hy : (1 : K) ⊗ₜ[k] y = 0) : y = 0 := by
@@ -222,6 +252,9 @@ theorem one_tmul_injective_field (k : Type*) [Field k] (K : Type*) [Field K] [Al
 
 variable (K : Type*) [Field K] [Algebra 𝒪 K] [Algebra k K] [IsScalarTower 𝒪 k K]
 
+/--
+@isnad1 id=mem.2h5v.s9.f3a823cc1864 from=translated src=- shape=40f281cf vocab=71cc0f8e
+-/
 theorem mem_maximalIdeal_smul_of_one_tmul_eq_zero' (hk : Function.Surjective (algebraMap 𝒪 k))
     (w : V) (hw : (1 : K) ⊗ₜ[𝒪] w = 0) :
     w ∈ (IsLocalRing.maximalIdeal 𝒪) • (⊤ : Submodule 𝒪 V) := by
@@ -239,6 +272,9 @@ section Localised
 variable {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪] {k : Type} [Field k] [Algebra 𝒪 k]
 variable {V : Type} [AddCommGroup V] [Module 𝒪 V] (D : HeckeData 𝒪 V k)
 
+/--
+@isnad1 id=mem.1h6v.s13.67fb5c193253 from=translated src=- shape=2ec07f23 vocab=ff906e24
+-/
 theorem smul_mem_maximalIdeal_smul_ML (L : Localization D.mTheta.primeCompl) {y : D.ML}
     (hy : y ∈ (IsLocalRing.maximalIdeal 𝒪) • (⊤ : Submodule 𝒪 D.ML)) :
     L • y ∈ (IsLocalRing.maximalIdeal 𝒪) • (⊤ : Submodule 𝒪 D.ML) := by
@@ -247,6 +283,9 @@ theorem smul_mem_maximalIdeal_smul_ML (L : Localization D.mTheta.primeCompl) {y 
     exact Submodule.smul_mem_smul ha Submodule.mem_top
   · rw [smul_add]; exact Submodule.add_mem _ hy hz
 
+/--
+@isnad1 id=mem.2h6v.s12.b4c853973d97 from=translated src=- shape=167526e9 vocab=1b454404
+-/
 theorem toML_mem_of_smul_mem (m : V) (s : D.FreeAlg) (hs : s ∈ D.mTheta.primeCompl)
     (h : s • m ∈ (IsLocalRing.maximalIdeal 𝒪) • (⊤ : Submodule 𝒪 V)) :
     D.toML m ∈ (IsLocalRing.maximalIdeal 𝒪) • (⊤ : Submodule 𝒪 D.ML) := by
@@ -273,6 +312,9 @@ namespace ResidNilpotence
 variable {𝒪 : Type} [CommRing 𝒪] {k : Type} [Field k] [Algebra 𝒪 k]
 variable {V : Type} [AddCommGroup V] [Module 𝒪 V] (D : HeckeData 𝒪 V k)
 
+/--
+@isnad1 id=commute.1h6v.s9.ccf441bdb617 from=translated src=- shape=128ed6ef vocab=b3350706
+-/
 theorem commute_opAlgHom (Z : Module.End 𝒪 V) (hZ : ∀ g : D.Gen, Z * D.op g = D.op g * Z)
     (s : D.FreeAlg) : Commute Z (D.opAlgHom s) := by
   induction s using MvPolynomial.induction_on with
@@ -286,6 +328,9 @@ theorem commute_opAlgHom (Z : Module.End 𝒪 V) (hZ : ∀ g : D.Gen, Z * D.op g
       rw [map_mul, D.opAlgHom_X]
       exact hp.mul_right (hZ g)
 
+/--
+@isnad1 id=eq.0h7v.s11.d3cf2c7e2dea from=translated src=- shape=490e52dc vocab=e88034d9
+-/
 theorem baseChange_opAlgHom_aeval_X (K : Type) [CommRing K] [Algebra 𝒪 K] (g : D.Gen)
     (Q : Polynomial 𝒪) :
     (D.opAlgHom (Polynomial.aeval (MvPolynomial.X g : D.FreeAlg) Q)).baseChange K =
@@ -299,6 +344,9 @@ theorem baseChange_opAlgHom_aeval_X (K : Type) [CommRing K] [Algebra 𝒪 K] (g 
         Algebra.algebraMap_eq_smul_one, smul_mul_assoc, smul_mul_assoc, one_mul, one_mul,
         LinearMap.baseChange_smul, LinearMap.baseChange_pow, algebraMap_smul]
 
+/--
+@isnad1 id=eq.1h7v.s11.16405365e493 from=translated src=- shape=c80c057f vocab=61bd2e26
+-/
 theorem opAlgHom_baseChange_apply_of_forall_op (K : Type) [Field K] [Algebra 𝒪 K] [Algebra k K]
     [IsScalarTower 𝒪 k K] (x : K ⊗[𝒪] V)
     (hx : ∀ g : D.Gen, (D.op g).baseChange K x = algebraMap k K (D.θbar g) • x) (z : D.FreeAlg) :
@@ -326,6 +374,9 @@ section Restrict
 variable {K : Type*} [Field K] {W : Type*} [AddCommGroup W] [Module K W] [FiniteDimensional K W]
 variable {ι : Type*}
 
+/--
+@isnad1 id=eq.1h7v.s12.6d2853236bc0 from=translated src=- shape=83a4dc1e vocab=4f1a8458
+-/
 theorem restrict_sub_algebraMap_pow_apply (f : Module.End K W) (p : Submodule K W)
     (hp : ∀ x ∈ p, f x ∈ p) (c : K) (m : ℕ) (x : p) :
     (((f.restrict hp - algebraMap K (Module.End K p) c) ^ m) x : W) =
@@ -336,6 +387,9 @@ theorem restrict_sub_algebraMap_pow_apply (f : Module.End K W) (p : Submodule K 
     rw [pow_succ, pow_succ, Module.End.mul_apply, Module.End.mul_apply, ih]
     simp [LinearMap.restrict_apply, Algebra.algebraMap_eq_smul_one]
 
+/--
+@isnad1 id=ex.4h6v.s10.d44ee64ff8c7 from=translated src=- shape=6b436df9 vocab=f66698fd
+-/
 theorem exists_common_eigenvector_of_submodule (f : ι → Module.End K W) (χ : ι → K)
     (p : Submodule K W) (hp : p ≠ ⊥) (hinv : ∀ i, ∀ x ∈ p, f i x ∈ p)
     (hcomm : ∀ i j, Commute (f i) (f j))
@@ -367,6 +421,9 @@ section Main
 variable {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪] {k : Type} [Field k] [Algebra 𝒪 k]
 variable {V : Type} [AddCommGroup V] [Module 𝒪 V] [Module.Finite 𝒪 V]
 
+/--
+@isnad1 id=ex.3h7v.s13.740afff51d58 from=translated src=- shape=900ea05e vocab=94587ced
+-/
 theorem main (hk : Function.Surjective (algebraMap 𝒪 k)) (D : HeckeData 𝒪 V k)
     (Z : Module.End 𝒪 V) (hZ : ∀ g : D.Gen, Z * D.op g = D.op g * Z) (z₀ : D.FreeAlg)
     (K : Type) [Field K] [IsAlgClosed K] [Algebra 𝒪 K] [Algebra k K] [IsScalarTower 𝒪 k K]
@@ -582,6 +639,9 @@ end Main
 
 end ResidNilpotence
 
+/--
+@isnad1 id=ex.3h7v.s13.05fad1e0569b from=translated src=- shape=19bb4f23 vocab=94587ced
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪]
     {k : Type} [Field k] [Algebra 𝒪 k] (hk : Function.Surjective (algebraMap 𝒪 k))

@@ -7,6 +7,9 @@ namespace P2MW.S_Complex_exists_lipschitzWith_divided_minor
 
 open Metric
 
+/--
+@isnad1 id=ex.2h4v.s9.9c6e70c12ccb from=translated src=- shape=1fe166a1 vocab=0d9307bb
+-/
 theorem solution {r : ℕ} {φ : ℂ → Fin r → ℂ} {c : ℂ} {R : ℝ} (hR : 0 < R)
     (hφ : ∀ i, DifferentiableOn ℂ (fun z ↦ φ z i) (Metric.ball c R)) :
     ∃ ρ > 0, ∃ L ≥ 0, ∃ Ψ : ℂ → ℂ → (Fin r × Fin r → ℂ),

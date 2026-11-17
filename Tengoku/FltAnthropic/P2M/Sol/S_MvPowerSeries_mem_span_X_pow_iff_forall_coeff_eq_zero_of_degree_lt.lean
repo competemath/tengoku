@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open IsLocalRing
 
+/--
+@isnad1 id=iff.0h3v.s9.373296bd5b8d from=translated src=- shape=5b464554 vocab=ba08a040
+-/
 theorem solution
     (W : Type) [CommRing W] (e : ℕ) (g : MvPowerSeries (Fin 2) W) :
     g ∈ (Ideal.span {(MvPowerSeries.X 0 : MvPowerSeries (Fin 2) W), MvPowerSeries.X 1}) ^ e ↔

@@ -23,10 +23,16 @@ def IsHyper (H : Subgroup G) : Prop :=
   ∃ q : ℕ, q.Prime ∧ ∃ C : Subgroup G, C ≤ H ∧ IsCyclic C ∧ (Nat.card C).Coprime q ∧
     (∀ h ∈ H, ∀ c ∈ C, h * c * h⁻¹ ∈ C) ∧ (∀ h ∈ H, ∃ n : ℕ, h ^ q ^ n ∈ C)
 
+/--
+@isnad1 id=eq.0h4v.s7.ebd16ab4f6fd from=translated src=- shape=8c1479e9 vocab=f1c55822
+-/
 theorem conj_pow' (a s : G) (m : ℕ) : (a⁻¹ * s * a) ^ m = a⁻¹ * s ^ m * a := by
   have := @conj_pow G _ m a⁻¹ s
   simpa using this
 
+/--
+@isnad1 id=ishyper.2h4v.s6.3b3e5a9a3830 from=translated src=- shape=bc7df23c vocab=9207a75c
+-/
 theorem IsHyper.of_le_conj {K : Subgroup G} (hK : IsHyper K) (a : G) (S : Subgroup G)
     (hS : ∀ s ∈ S, a⁻¹ * s * a ∈ K) : IsHyper S := by
   obtain ⟨q, hq, C, hCK, hCcyc, hCcop, hCnorm, hCpow⟩ := hK
@@ -75,9 +81,15 @@ theorem IsHyper.of_le_conj {K : Subgroup G} (hK : IsHyper K) (a : G) (S : Subgro
 
 def pc (H : Subgroup G) : G → ℤ := fun g => (Nat.card {c : G ⧸ H // g • c = c} : ℤ)
 
+/--
+@isnad1 id=eq.0h3v.s7.aa6262be3ad0 from=translated src=- shape=600e2146 vocab=7ffbd30e
+-/
 theorem pc_apply (H : Subgroup G) (g : G) :
     pc H g = Nat.card {c : G ⧸ H // g • c = c} := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.b1c6daf12c7f from=translated src=- shape=a4292b8d vocab=1146100f
+-/
 theorem card_mul_pc (H : Subgroup G) (g : G) :
     (Nat.card H : ℤ) * pc H g = Nat.card {x : G // x⁻¹ * g * x ∈ H} := by
   have h := QuotientGroup.card_preimage_mk H (fixedBy (G ⧸ H) g)
@@ -93,6 +105,9 @@ theorem card_mul_pc (H : Subgroup G) (g : G) :
   have h' : Nat.card {x : G // x⁻¹ * g * x ∈ H} = Nat.card H * Nat.card {c : G ⧸ H // g • c = c} := h
   rw [h']
 
+/--
+@isnad1 id=eq.0h1v.s5.2aac60445d23 from=translated src=- shape=d78764ec vocab=c92543f5
+-/
 theorem pc_top : pc (⊤ : Subgroup G) = 1 := by
   funext g
   rw [pc_apply, Pi.one_apply]
@@ -102,6 +117,9 @@ theorem pc_top : pc (⊤ : Subgroup G) = 1 := by
     exact ⟨inferInstance, ⟨⟨((1 : G) : G ⧸ (⊤ : Subgroup G)), Subsingleton.elim _ _⟩⟩⟩
   rw [this, Nat.cast_one]
 
+/--
+@isnad1 id=eq.0h3v.s5.874d8a5f7a64 from=translated src=- shape=753deaa5 vocab=6350e697
+-/
 theorem induced_one_eq_pc (H : Subgroup G) (g : G) :
     ClassFunction.induced H (fun _ => (1 : ℚ)) g = pc H g := by
   rw [ClassFunction.induced_apply, Finset.sum_boole]
@@ -119,12 +137,18 @@ theorem induced_one_eq_pc (H : Subgroup G) (g : G) :
   rw [← h']
   field_simp
 
+/--
+@isnad1 id=mem.1h4v.s7.6eda7289c7cb from=translated src=- shape=643024d1 vocab=786d93a0
+-/
 theorem conj_mem_of_mem_stabilizer (K : Subgroup G) (a : G) {s : G}
     (hs : s ∈ stabilizer G (a : G ⧸ K)) : a⁻¹ * s * a ∈ K := by
   rw [mem_stabilizer_iff, MulAction.Quotient.smul_mk, smul_eq_mul, QuotientGroup.eq] at hs
   rw [show (s * a)⁻¹ * a = (a⁻¹ * s * a)⁻¹ by group, inv_mem_iff] at hs
   exact hs
 
+/--
+@isnad1 id=eq.0h4v.s9.9607df1ee9cb from=translated src=- shape=bfb4ea25 vocab=acc9225d
+-/
 theorem pc_mul_pc_eq_sum (H K : Subgroup G) (g : G) :
     pc H g * pc K g =
       ∑ ω : orbitRel.Quotient G ((G ⧸ H) × (G ⧸ K)), pc (stabilizer G ω.out) g := by
@@ -182,6 +206,9 @@ theorem pc_mul_pc_eq_sum (H K : Subgroup G) (g : G) :
     exact x.2.1
   · rw [← hequiv, c.2]
 
+/--
+@isnad1 id=mem.1h4v.s8.5e087e77dace from=translated src=- shape=c7606761 vocab=1db83aa3
+-/
 theorem pc_mul_pc_mem_span (H K : Subgroup G) (T : Set (Subgroup G))
     (hT : ∀ (a : G) (S : Subgroup G), (∀ s ∈ S, a⁻¹ * s * a ∈ K) → S ∈ T) :
     pc H * pc K ∈ Submodule.span ℤ (pc '' T) := by
@@ -202,15 +229,27 @@ def P : Submodule ℤ (G → ℤ) := Submodule.span ℤ (pc '' (Set.univ : Set (
 
 def I : Submodule ℤ (G → ℤ) := Submodule.span ℤ (pc '' {S : Subgroup G | IsHyper S})
 
+/--
+@isnad1 id=le.0h1v.s6.a55c233e025c from=translated src=- shape=e6c04028 vocab=878bc89d
+-/
 theorem I_le_P : (I : Submodule ℤ (G → ℤ)) ≤ P :=
   Submodule.span_mono (Set.image_mono (Set.subset_univ _))
 
+/--
+@isnad1 id=mem.0h2v.s6.e2e254d2478d from=translated src=- shape=74eeb3f5 vocab=a7de0c4f
+-/
 theorem pc_mem_P (H : Subgroup G) : pc H ∈ (P : Submodule ℤ (G → ℤ)) :=
   Submodule.subset_span ⟨H, Set.mem_univ _, rfl⟩
 
+/--
+@isnad1 id=mem.0h1v.s6.bafc0e5bced2 from=translated src=- shape=bdcc5851 vocab=bbe91c17
+-/
 theorem one_mem_P : (1 : G → ℤ) ∈ (P : Submodule ℤ (G → ℤ)) := by
   rw [← pc_top]; exact pc_mem_P ⊤
 
+/--
+@isnad1 id=mem.3h5v.s9.afb4a99520c0 from=translated src=- shape=82e4fd2b vocab=700af25d
+-/
 theorem mul_mem_span_of_gen (T₁ T₂ : Set (Subgroup G))
     (h : ∀ H ∈ T₁, ∀ K ∈ T₂, pc H * pc K ∈ Submodule.span ℤ (pc '' T₂))
     {f g : G → ℤ} (hf : f ∈ Submodule.span ℤ (pc '' T₁)) (hg : g ∈ Submodule.span ℤ (pc '' T₂)) :
@@ -229,10 +268,16 @@ theorem mul_mem_span_of_gen (T₁ T₂ : Set (Subgroup G))
   | add x y _ _ hx hy => rw [add_mul]; exact Submodule.add_mem _ (hx hg) (hy hg)
   | smul n x _ hx => rw [smul_mul_assoc]; exact Submodule.smul_mem _ n (hx hg)
 
+/--
+@isnad1 id=mem.2h3v.s8.dd06df039bbb from=translated src=- shape=604250db vocab=b1e7d4be
+-/
 theorem mul_mem_P {f g : G → ℤ} (hf : f ∈ (P : Submodule ℤ (G → ℤ))) (hg : g ∈ (P : Submodule ℤ (G → ℤ))) :
     f * g ∈ (P : Submodule ℤ (G → ℤ)) :=
   mul_mem_span_of_gen _ _ (fun H _ K _ => pc_mul_pc_mem_span H K _ fun _ S _ => Set.mem_univ S) hf hg
 
+/--
+@isnad1 id=mem.2h3v.s8.b1caefe5b53f from=translated src=- shape=99eb3d33 vocab=d1fad45f
+-/
 theorem mul_mem_I {f g : G → ℤ} (hf : f ∈ (P : Submodule ℤ (G → ℤ))) (hg : g ∈ (I : Submodule ℤ (G → ℤ))) :
     f * g ∈ (I : Submodule ℤ (G → ℤ)) :=
   mul_mem_span_of_gen _ _ (fun H _ K hK => pc_mul_pc_mem_span H K _ fun a S hS => hK.of_le_conj a S hS) hf hg
@@ -249,6 +294,9 @@ section Arith
 
 variable (q : ℕ) [hq : Fact q.Prime]
 
+/--
+@isnad1 id=mem.3h5v.s7.e742937904bc from=translated src=- shape=4aafc315 vocab=3e89f797
+-/
 theorem mem_of_orderOf_coprime {H C : Subgroup G} (hpow : ∀ h ∈ H, ∃ n : ℕ, h ^ q ^ n ∈ C)
     {y : G} (hy : y ∈ H) (hcop : (orderOf y).Coprime q) : y ∈ C := by
   obtain ⟨n, hn⟩ := hpow y hy
@@ -264,10 +312,16 @@ theorem mem_of_orderOf_coprime {H C : Subgroup G} (hpow : ∀ h ∈ H, ∃ n : �
   rw [this]
   exact C.zpow_mem hn u
 
+/--
+@isnad1 id=eq.0h3v.s6.101a3fe0bd44 from=translated src=- shape=fb055481 vocab=4b64a0c4
+-/
 theorem orderOf_conj' (y z : G) : orderOf (y⁻¹ * z * y) = orderOf z := by
   have := orderOf_injective (MulAut.conj y⁻¹).toMonoidHom (MulAut.conj y⁻¹).injective z
   simpa [MulAut.conj_apply] using this
 
+/--
+@isnad1 id=ex.0h3v.s5.e2b7d40c1082 from=translated src=- shape=2a1b0eb9 vocab=bf20c532
+-/
 theorem exists_isHyper_not_dvd (x : G) : ∃ H : Subgroup G, IsHyper H ∧ ¬ (q : ℤ) ∣ pc H x := by
   have hq' : q.Prime := hq.out
 
@@ -490,6 +544,9 @@ theorem exists_isHyper_not_dvd (x : G) : ∃ H : Subgroup G, IsHyper H ∧ ¬ (q
 
 end Arith
 
+/--
+@isnad1 id=mem.0h1v.s6.b68f151810fb from=translated src=- shape=bdcc5851 vocab=2b81bab5
+-/
 theorem one_mem_I : (1 : G → ℤ) ∈ (I : Submodule ℤ (G → ℤ)) := by
   by_contra h1
   set R : Type := ↥(Psub : Subring (G → ℤ)) with hR
@@ -628,6 +685,9 @@ theorem one_mem_I : (1 : G → ℤ) ∈ (I : Submodule ℤ (G → ℤ)) := by
   rw [hmem𝔐] at hm
   exact hndvd ((key _).1 hm)
 
+/--
+@isnad1 id=ex.0h1v.s6.2ed9f3598a6e from=translated src=- shape=356b3ca4 vocab=12607d35
+-/
 theorem main : ∃ (k : ℕ) (H : Fin k → Subgroup G) (a : Fin k → ℤ),
     (∀ i, IsHyper (H i)) ∧
     ∀ g : G, (1 : ℚ) = ∑ i, (a i : ℚ) * ClassFunction.induced (H i) (fun _ => (1 : ℚ)) g := by
@@ -648,6 +708,9 @@ theorem main : ∃ (k : ℕ) (H : Fin k → Subgroup G) (a : Fin k → ℤ),
 
 end SolomonProof
 
+/--
+@isnad1 id=ex.0h1v.s8.789680406989 from=translated src=- shape=b0fe8fa6 vocab=cd06899e
+-/
 theorem solution {G : Type} [Group G] [Fintype G] :
     ∃ (k : ℕ) (H : Fin k → Subgroup G) (a : Fin k → ℤ),
       (∀ i, ∃ q : ℕ, q.Prime ∧ ∃ C : Subgroup G, C ≤ H i ∧ IsCyclic C ∧ (Nat.card C).Coprime q ∧

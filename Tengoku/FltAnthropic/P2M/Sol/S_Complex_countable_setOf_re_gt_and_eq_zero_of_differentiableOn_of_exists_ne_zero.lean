@@ -9,6 +9,9 @@ import Tengoku.Seed.Topology.Bases
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_Complex_countable_setOf_re_gt_and_eq_zero_of_differentiableOn_of_exists_ne_zero.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 namespace P2MW.S_Complex_countable_setOf_re_gt_and_eq_zero_of_differentiableOn_of_exists_ne_zero
 
+/--
+@isnad1 id=countabl.2h2v.s7.3ac4afd7f050 from=translated src=- shape=f9e47244 vocab=98c51edb
+-/
 theorem solution
     (f : ℂ → ℂ) (σ : ℝ)
     (hf : DifferentiableOn ℂ f {s : ℂ | σ < s.re})

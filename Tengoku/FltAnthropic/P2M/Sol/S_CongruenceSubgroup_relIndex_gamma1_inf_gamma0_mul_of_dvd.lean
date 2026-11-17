@@ -78,6 +78,9 @@ end IndexDvd
 
 open IndexDvd in
 
+/--
+@isnad1 id=eq.1h2v.s7.cb3b335ba136 from=translated src=- shape=372b6010 vocab=e9e1581e
+-/
 theorem solution (M q : ℕ) [NeZero M] (hq : q ∣ M) :
     (CongruenceSubgroup.Gamma1 M ⊓ CongruenceSubgroup.Gamma0 (M * q)).relIndex (CongruenceSubgroup.Gamma1 M) = q := by
   have hker : (Gamma1 M ⊓ Gamma0 (M * q)).subgroupOf (Gamma1 M) = (cHom M q hq).ker := by

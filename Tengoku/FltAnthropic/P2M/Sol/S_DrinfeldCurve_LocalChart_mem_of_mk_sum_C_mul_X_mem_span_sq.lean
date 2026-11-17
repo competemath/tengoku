@@ -12,6 +12,9 @@ set_option maxHeartbeats 3200000
 
 open MvPowerSeries
 
+/--
+@isnad1 id=mem.3h9v.s14.840761b36c90 from=translated src=- shape=cccabe2d vocab=b60fec46
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime]
     (W : Type) [CommRing W] (I : Ideal W)

@@ -17,11 +17,17 @@ variable {M : ℕ} [NeZero M]
 
 omit [NeZero M] in
 
+/--
+@isnad1 id=mem.0h1v.s7.a3c1e01aa291 from=translated src=- shape=eaec2ebd vocab=1bbc2817
+-/
 theorem one_mem_strictPeriods :
     (1 : ℝ) ∈ ((Gamma1 M : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)).strictPeriods := by
   rw [CongruenceSubgroup.strictPeriods_Gamma1]
   exact AddSubgroup.mem_zmultiples _
 
+/--
+@isnad1 id=lt.0h1v.s4.d91d3e20f1c7 from=translated src=- shape=01d6dd50 vocab=bce0bb4f
+-/
 theorem sqrtM_pos : 0 < Real.sqrt M :=
   Real.sqrt_pos.mpr (by exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne M))
 
@@ -30,17 +36,29 @@ noncomputable def pt (M : ℕ) [NeZero M] (t : ℝ) (ht : 0 < t) : ℍ :=
     rw [Complex.I_mul_im, ← ofReal_div, ofReal_re]
     exact div_pos ht sqrtM_pos⟩
 
+/--
+@isnad1 id=eq.1h2v.s5.8c852842d2f1 from=translated src=- shape=93a464ed vocab=eb891c16
+-/
 @[scoped simp] theorem coe_pt (t : ℝ) (ht : 0 < t) : ((pt M t ht : ℍ) : ℂ) = Complex.I * (t / Real.sqrt M) := rfl
 
+/--
+@isnad1 id=eq.1h2v.s5.5368ad863261 from=translated src=- shape=419fc0d0 vocab=c230fc7e
+-/
 theorem im_pt (t : ℝ) (ht : 0 < t) : (pt M t ht).im = t / Real.sqrt M := by
   rw [← UpperHalfPlane.coe_im, coe_pt, Complex.I_mul_im, ← ofReal_div, ofReal_re]
 
 noncomputable def axis (M : ℕ) [NeZero M] (g : ℍ → ℂ) (t : ℝ) : ℂ :=
   if ht : 0 < t then g (pt M t ht) else 0
 
+/--
+@isnad1 id=eq.1h3v.s5.a10e5d7c04c3 from=translated src=- shape=58286a54 vocab=ec14c90c
+-/
 theorem axis_of_pos (g : ℍ → ℂ) {t : ℝ} (ht : 0 < t) : axis M g t = g (pt M t ht) := by
   simp [axis, ht]
 
+/--
+@isnad1 id=eq.2h5v.s7.92c0051d920c from=translated src=- shape=a47a64a7 vocab=a6eb4bbd
+-/
 theorem axis_inv (g g' : ℍ → ℂ) (c : ℂ)
     (hW : ∀ τ τ' : ℍ, (τ' : ℂ) * ((M : ℂ) * (τ : ℂ)) = -1 → g τ' = c * (τ : ℂ) * g' τ)
     {t : ℝ} (ht : 0 < t) :
@@ -63,12 +81,21 @@ theorem axis_inv (g g' : ℍ → ℂ) (c : ℂ)
 noncomputable def ptTop (M : ℕ) [NeZero M] (t : ℝ) : ℍ :=
   if ht : 0 < t then pt M t ht else UpperHalfPlane.I
 
+/--
+@isnad1 id=eq.1h2v.s5.919e9a77a369 from=translated src=- shape=ff17533d vocab=8b17c9af
+-/
 theorem ptTop_of_pos {t : ℝ} (ht : 0 < t) : ptTop M t = pt M t ht := by
   simp [ptTop, ht]
 
+/--
+@isnad1 id=eq.1h3v.s5.bdcd6b31fb53 from=translated src=- shape=f1e6cfa3 vocab=9d8a1033
+-/
 theorem axis_eq_comp_ptTop (g : ℍ → ℂ) {t : ℝ} (ht : 0 < t) : axis M g t = g (ptTop M t) := by
   rw [axis_of_pos g ht, ptTop_of_pos ht]
 
+/--
+@isnad1 id=tendsto.0h1v.s4.e147e0c3c1c1 from=translated src=- shape=47b2e5eb vocab=5735dfb7
+-/
 theorem tendsto_ptTop : Tendsto (ptTop M) atTop atImInfty := by
   rw [atImInfty, tendsto_comap_iff]
   have h : Tendsto (fun t : ℝ => t / Real.sqrt M) atTop atTop :=
@@ -77,6 +104,9 @@ theorem tendsto_ptTop : Tendsto (ptTop M) atTop atImInfty := by
   filter_upwards [eventually_gt_atTop 0] with t ht
   rw [Function.comp_apply, ptTop_of_pos ht, im_pt]
 
+/--
+@isnad1 id=isbigo.0h2v.s9.d225006542b4 from=translated src=- shape=8e6bf23d vocab=30eaa8b6
+-/
 theorem axis_isBigO_exp (g : CuspForm (Gamma1 M) 1) :
     axis M g =O[atTop] fun t => Real.exp (-(2 * π / Real.sqrt M) * t) := by
   have hdec := CuspFormClass.exp_decay_atImInfty g one_pos one_mem_strictPeriods
@@ -90,11 +120,17 @@ theorem axis_isBigO_exp (g : CuspForm (Gamma1 M) 1) :
     congr 1
     ring
 
+/--
+@isnad1 id=isbigo.0h3v.s8.85a3484f653b from=translated src=- shape=9daad30b vocab=6831e58b
+-/
 theorem axis_isBigO_rpow (g : CuspForm (Gamma1 M) 1) (r : ℝ) :
     axis M g =O[atTop] fun t => t ^ r :=
   (axis_isBigO_exp g).trans
     (isLittleO_exp_neg_mul_rpow_atTop (div_pos (by positivity) sqrtM_pos) r).isBigO
 
+/--
+@isnad1 id=continuo.0h2v.s8.b7cbf0515a48 from=translated src=- shape=3aea8a63 vocab=402cfac1
+-/
 theorem continuousOn_axis (g : CuspForm (Gamma1 M) 1) : ContinuousOn (axis M g) (Ioi 0) := by
   rw [continuousOn_iff_continuous_domRestrict]
   have hg : Continuous (g : ℍ → ℂ) := (CuspForm.holo' g).continuous
@@ -105,14 +141,23 @@ theorem continuousOn_axis (g : CuspForm (Gamma1 M) 1) : ContinuousOn (axis M g) 
   ext u
   exact axis_of_pos _ u.2
 
+/--
+@isnad1 id=locallyi.0h2v.s9.7d5312fa40b6 from=translated src=- shape=6fae8956 vocab=1d10883f
+-/
 theorem locallyIntegrableOn_axis (g : CuspForm (Gamma1 M) 1) :
     LocallyIntegrableOn (axis M g) (Ioi 0) :=
   (continuousOn_axis g).locallyIntegrableOn measurableSet_Ioi
 
 omit [NeZero M] in
+/--
+@isnad1 id=eq.0h3v.s9.7eb917c482ed from=translated src=- shape=506ac3e8 vocab=f340b32b
+-/
 theorem qCoeff_eq (g : CuspForm (Gamma1 M) 1) (n : ℕ) :
     ModularFormClass.qCoeff g n = (qExpansion 1 g).coeff n := rfl
 
+/--
+@isnad1 id=hassum.1h3v.s9.8b138c184f98 from=translated src=- shape=39603f06 vocab=c54246a5
+-/
 theorem hasSum_axis (g : CuspForm (Gamma1 M) 1) {t : ℝ} (ht : 0 < t) :
     HasSum (fun n : ℕ => ModularFormClass.qCoeff g n *
         (Real.exp (-π * (2 * n / Real.sqrt M) * t) : ℂ)) (axis M g t) := by
@@ -132,6 +177,9 @@ theorem hasSum_axis (g : CuspForm (Gamma1 M) 1) {t : ℝ} (ht : 0 < t) :
   rw [I_sq]
   ring
 
+/--
+@isnad1 id=isbigo.0h2v.s9.bef8940f842f from=translated src=- shape=e3891b66 vocab=a47175d6
+-/
 theorem qCoeff_isBigO (g : CuspForm (Gamma1 M) 1) :
     (fun n => ModularFormClass.qCoeff g n) =O[atTop] fun n => (n : ℝ) ^ ((1 : ℝ) / 2) := by
   have h := CuspFormClass.qExpansion_isBigO g
@@ -142,17 +190,29 @@ theorem qCoeff_isBigO (g : CuspForm (Gamma1 M) 1) :
     ring
 
 omit [NeZero M] in
+/--
+@isnad1 id=eq.0h2v.s8.b202b7e51750 from=translated src=- shape=107d3dc5 vocab=9aa48efb
+-/
 theorem qCoeff_zero (g : CuspForm (Gamma1 M) 1) : ModularFormClass.qCoeff g 0 = 0 :=
   CuspFormClass.qExpansion_coeff_zero g one_pos one_mem_strictPeriods
 
+/--
+@isnad1 id=lseriess.1h3v.s8.9e76f639ca33 from=translated src=- shape=e6f45cea vocab=27efaccf
+-/
 theorem lseriesSummable_qCoeff (g : CuspForm (Gamma1 M) 1) {s : ℂ} (hs : 3 / 2 < s.re) :
     LSeriesSummable (fun n => ModularFormClass.qCoeff g n) s := by
   refine LSeriesSummable_of_isBigO_rpow hs ?_
   convert qCoeff_isBigO g using 3
   norm_num
 
+/--
+@isnad1 id=lt.0h1v.s5.8bef92a9a587 from=translated src=- shape=bd168171 vocab=72841655
+-/
 theorem two_div_sqrt_pos : 0 < 2 / Real.sqrt M := div_pos two_pos sqrtM_pos
 
+/--
+@isnad1 id=summable.1h3v.s9.4cd95a25a70f from=translated src=- shape=09e0889b vocab=93ffafd4
+-/
 theorem summable_norm_div (g : CuspForm (Gamma1 M) 1) {σ : ℝ} (hσ : 3 / 2 < σ) :
     Summable fun n : ℕ => ‖ModularFormClass.qCoeff g n‖ / (2 * n / Real.sqrt M) ^ σ := by
 
@@ -176,6 +236,9 @@ theorem summable_norm_div (g : CuspForm (Gamma1 M) 1) {σ : ℝ} (hσ : 3 / 2 < 
   ring_nf
   exact le_rfl
 
+/--
+@isnad1 id=eq.1h3v.s9.d38d6693f9f6 from=translated src=- shape=9debc565 vocab=a7ecc118
+-/
 theorem mellin_axis (g : CuspForm (Gamma1 M) 1) {s : ℂ} (hs : 3 / 2 < s.re) :
     mellin (axis M g) s = ((Real.sqrt M / (2 * Real.pi) : ℝ) : ℂ) ^ s * Complex.Gamma s *
       LSeries (fun n => ModularFormClass.qCoeff g n) s := by
@@ -236,6 +299,9 @@ noncomputable def fePair (g g' : CuspForm (Gamma1 M) 1) (c : ℂ) (hc : c ≠ 0)
   hf_top := fun r => by simpa only [sub_zero] using axis_isBigO_rpow g r
   hg_top := fun r => by simpa only [sub_zero] using axis_isBigO_rpow g' r
 
+/--
+@isnad1 id=isstrong.2h4v.s9.f16227bdbeb4 from=translated src=- shape=3bf04369 vocab=ef13436d
+-/
 theorem fePair_isStrong (g g' : CuspForm (Gamma1 M) 1) (c : ℂ) (hc : c ≠ 0)
     (hW : ∀ τ τ' : ℍ, (τ' : ℂ) * ((M : ℂ) * (τ : ℂ)) = -1 → g τ' = c * (τ : ℂ) * g' τ) :
     IsStrongFEPair (fePair g g' c hc hW) where
@@ -247,6 +313,9 @@ open scoped _root_.P2MW.S_CuspForm_exists_weightOne_completedLSeries_functionalE
 
 open HeckeFEWeightOne in
 
+/--
+@isnad1 id=ex.2h4v.s11.30d935f1e9c2 from=translated src=- shape=3e035407 vocab=81a930a4
+-/
 theorem solution
     (M : ℕ) [NeZero M] (g g' : CuspForm (Gamma1 M) 1) (c : ℂ) (hc : c ≠ 0)
     (hW : ∀ τ τ' : UpperHalfPlane, (τ' : ℂ) * ((M : ℂ) * (τ : ℂ)) = -1 →

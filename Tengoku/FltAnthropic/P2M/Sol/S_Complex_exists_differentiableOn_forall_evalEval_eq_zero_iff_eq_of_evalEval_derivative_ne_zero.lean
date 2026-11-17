@@ -12,6 +12,9 @@ open Topology Polynomial
 open Polynomial Topology Filter
 open scoped Polynomial.Bivariate
 
+/--
+@isnad1 id=ex.2h3v.s9.b225e64faa52 from=translated src=- shape=49604967 vocab=38c51a60
+-/
 theorem solution
     (F : Polynomial (Polynomial ℂ)) (z₀ w₀ : ℂ)
     (h₀ : F.evalEval z₀ w₀ = 0) (hd : (Polynomial.derivative F).evalEval z₀ w₀ ≠ 0) :

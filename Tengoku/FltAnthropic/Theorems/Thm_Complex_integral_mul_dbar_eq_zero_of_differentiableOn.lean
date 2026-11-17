@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Complex_integral_mul_dbar_eq_zero_of_diffe
 
 open Complex MeasureTheory
 
+/--
+@isnad1 id=eq.5h3v.s10.864cfb6df93e from=translated src=- shape=90fd4f1d vocab=36f33148
+-/
 theorem Complex.integral_mul_dbar_eq_zero_of_differentiableOn
     (V : Set ℂ) (hV : IsOpen V) (G : ℂ → ℂ) (hG : DifferentiableOn ℂ G V)
     (h : ℂ → ℂ) (hh : ContDiff ℝ 1 h) (hsupp : HasCompactSupport h) (hV' : tsupport h ⊆ V) :

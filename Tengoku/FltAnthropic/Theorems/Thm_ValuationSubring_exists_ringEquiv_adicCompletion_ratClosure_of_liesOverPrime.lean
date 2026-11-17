@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open IsDedekindDomain NumberField ValuationSubring
 
+/--
+@isnad1 id=ex.2h3v.s17.e27010434e7d from=translated src=- shape=7f640a36 vocab=7ba1d3a7
+-/
 theorem ValuationSubring.exists_ringEquiv_adicCompletion_ratClosure_of_liesOverPrime
     (r : ℕ) [Fact r.Prime] (A : ValuationSubring (AlgebraicClosure ℚ)) (hA : A.LiesOverPrime r)
     (v : HeightOneSpectrum (𝓞 ℚ)) (hv : ((r : ℕ) : 𝓞 ℚ) ∈ v.asIdeal) :

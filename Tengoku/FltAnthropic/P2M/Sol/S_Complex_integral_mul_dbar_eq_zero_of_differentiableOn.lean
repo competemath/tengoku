@@ -10,6 +10,9 @@ open scoped Topology
 
 namespace HolomorphicStokes
 
+/--
+@isnad1 id=continuo.4h3v.s7.bef9bbca4ca0 from=translated src=- shape=de60c345 vocab=fdd1de03
+-/
 theorem continuous_mul_of_tsupport_subset {V : Set ℂ} {f g : ℂ → ℂ} (hV : IsOpen V)
     (hf : ContinuousOn f V) (hg : Continuous g) (hgV : tsupport g ⊆ V) :
     Continuous fun z => f z * g z := by
@@ -23,11 +26,17 @@ theorem continuous_mul_of_tsupport_subset {V : Set ℂ} {f g : ℂ → ℂ} (hV 
       simp [hw]
     exact (continuousAt_congr this).2 continuousAt_const
 
+/--
+@isnad1 id=integrab.5h3v.s7.fd180aa7e69d from=translated src=- shape=bdf87be4 vocab=1f31744d
+-/
 theorem integrable_mul_of_tsupport_subset {V : Set ℂ} {f g : ℂ → ℂ} (hV : IsOpen V)
     (hf : ContinuousOn f V) (hg : Continuous g) (hgs : HasCompactSupport g)
     (hgV : tsupport g ⊆ V) : Integrable fun z => f z * g z :=
   (continuous_mul_of_tsupport_subset hV hf hg hgV).integrable_of_hasCompactSupport hgs.mul_left
 
+/--
+@isnad1 id=eq.5h3v.s10.864cfb6df93e from=translated src=- shape=90fd4f1d vocab=36f33148
+-/
 theorem main (V : Set ℂ) (hV : IsOpen V) (G : ℂ → ℂ) (hG : DifferentiableOn ℂ G V)
     (h : ℂ → ℂ) (hh : ContDiff ℝ 1 h) (hsupp : HasCompactSupport h) (hV' : tsupport h ⊆ V) :
     ∫ z, G z * ((fderiv ℝ h z 1 + I * fderiv ℝ h z I) / 2) = 0 := by
@@ -86,6 +95,9 @@ theorem main (V : Set ℂ) (hV : IsOpen V) (G : ℂ → ℂ) (hG : Differentiabl
 end HolomorphicStokes
 
 open Complex MeasureTheory in
+/--
+@isnad1 id=eq.5h3v.s10.864cfb6df93e from=translated src=- shape=90fd4f1d vocab=36f33148
+-/
 theorem solution
     (V : Set ℂ) (hV : IsOpen V) (G : ℂ → ℂ) (hG : DifferentiableOn ℂ G V)
     (h : ℂ → ℂ) (hh : ContDiff ℝ 1 h) (hsupp : HasCompactSupport h) (hV' : tsupport h ⊆ V) :

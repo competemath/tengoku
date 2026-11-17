@@ -25,19 +25,31 @@ def corr (n : ℕ) : ℂ :=
 
 variable {S R}
 
+/--
+@isnad1 id=eq.1h2v.s5.85afbed056fe from=translated src=- shape=d11ce18f vocab=997d3723
+-/
 theorem corr_one (h0 : ∀ p ∈ S, (R p).coeff 0 = 1) : corr S R 1 = 1 := by
   simp only [corr, ne_eq, one_ne_zero, not_false_eq_true, Nat.primeFactors_one,
     Finset.empty_subset, and_self, ↓reduceIte, Nat.factorization_one, Finsupp.coe_zero,
     Pi.zero_apply]
   exact Finset.prod_eq_one fun p hp => h0 p hp
 
+/--
+@isnad1 id=eq.1h3v.s5.4111e5685b58 from=translated src=- shape=63068927 vocab=4b941201
+-/
 theorem corr_of_not_subset {n : ℕ} (h : ¬ n.primeFactors ⊆ S) : corr S R n = 0 := by
   simp [corr, h]
 
+/--
+@isnad1 id=eq.2h3v.s6.d81cc503a35c from=translated src=- shape=4ac59300 vocab=590024ba
+-/
 theorem corr_of_subset {n : ℕ} (hn : n ≠ 0) (h : n.primeFactors ⊆ S) :
     corr S R n = ∏ p ∈ S, (R p).coeff (n.factorization p) := by
   simp [corr, hn, h]
 
+/--
+@isnad1 id=eq.3h4v.s6.b9b1d33e2249 from=translated src=- shape=344bd42a vocab=2444c1c7
+-/
 theorem corr_prime_pow_of_mem (h0 : ∀ p ∈ S, (R p).coeff 0 = 1) {p : ℕ} (hp : p.Prime)
     (hpS : p ∈ S) (k : ℕ) : corr S R (p ^ k) = (R p).coeff k := by
   rcases Nat.eq_zero_or_pos k with rfl | hk
@@ -51,12 +63,18 @@ theorem corr_prime_pow_of_mem (h0 : ∀ p ∈ S, (R p).coeff 0 = 1) {p : ℕ} (h
   · rw [Nat.primeFactors_prime_pow hk.ne' hp]
     exact Finset.singleton_subset_iff.mpr hpS
 
+/--
+@isnad1 id=eq.3h4v.s6.4209fc3ece7d from=translated src=- shape=56b6847c vocab=80aaa96b
+-/
 theorem corr_prime_pow_of_not_mem {p : ℕ} (hp : p.Prime) (hpS : p ∉ S) {k : ℕ} (hk : k ≠ 0) :
     corr S R (p ^ k) = 0 := by
   apply corr_of_not_subset
   rw [Nat.primeFactors_prime_pow hk hp, Finset.singleton_subset_iff]
   exact hpS
 
+/--
+@isnad1 id=eq.4h4v.s6.183d93c9cb1a from=translated src=- shape=1766e525 vocab=e8da4c11
+-/
 theorem corr_mul_of_coprime (h0 : ∀ p ∈ S, (R p).coeff 0 = 1) {m n : ℕ} (hm : m ≠ 0)
     (hn : n ≠ 0) (hmn : m.Coprime n) : corr S R (m * n) = corr S R m * corr S R n := by
   have hpf : (m * n).primeFactors = m.primeFactors ∪ n.primeFactors := Nat.primeFactors_mul hm hn
@@ -82,6 +100,9 @@ theorem corr_mul_of_coprime (h0 : ∀ p ∈ S, (R p).coeff 0 = 1) {m n : ℕ} (h
     · rw [corr_of_not_subset h, zero_mul]
     · rw [corr_of_not_subset h, mul_zero]
 
+/--
+@isnad1 id=ismultip.2h1v.s6.ffe00ee0549c from=translated src=- shape=04652125 vocab=970f8212
+-/
 theorem isMultiplicative_toArithmeticFunction {f : ℕ → ℂ} (h1 : f 1 = 1)
     (hmul : ∀ m n : ℕ, m ≠ 0 → n ≠ 0 → m.Coprime n → f (m * n) = f m * f n) :
     (toArithmeticFunction f).IsMultiplicative := by
@@ -94,6 +115,9 @@ theorem isMultiplicative_toArithmeticFunction {f : ℕ → ℂ} (h1 : f 1 = 1)
   rw [ite_eq_right (not_or.mpr ⟨hm, hn⟩), ite_eq_right hm, ite_eq_right hn]
   exact hmul m n hm hn hmn
 
+/--
+@isnad1 id=eq.1h4v.s6.e9a6fe34eb11 from=translated src=- shape=1acd8573 vocab=91a7cbf9
+-/
 theorem convolution_prime_pow (f g : ℕ → ℂ) {p : ℕ} (hp : p.Prime) (k : ℕ) :
     (f ⍟ g) (p ^ k) = ∑ i ∈ Finset.range (k + 1), f (p ^ i) * g (p ^ (k - i)) := by
   rw [LSeries.convolution_def]
@@ -104,6 +128,9 @@ theorem convolution_prime_pow (f g : ℕ → ℂ) {p : ℕ} (hp : p.Prime) (k : 
   simp only [Function.Embedding.coeFn_mk]
   rw [Nat.pow_div (Nat.lt_succ_iff.mp (Finset.mem_range.mp hi)) hp.pos]
 
+/--
+@isnad1 id=eq.1h4v.s7.86c67926f3a3 from=translated src=- shape=231c1792 vocab=4d4d895f
+-/
 theorem sum_antidiagonal_of_mul_mk_eq_one {f : ℕ → ℂ} {p : ℕ} {Rp : ℂ[X]}
     (h : (Rp : PowerSeries ℂ) * PowerSeries.mk (fun k => f (p ^ k)) = 1) (k : ℕ) :
     ∑ i ∈ Finset.range (k + 1), f (p ^ i) * Rp.coeff (k - i) = if k = 0 then 1 else 0 := by
@@ -113,6 +140,9 @@ theorem sum_antidiagonal_of_mul_mk_eq_one {f : ℕ → ℂ} {p : ℕ} {Rp : ℂ[
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [PowerSeries.coeff_mk, Polynomial.coeff_coe]
 
+/--
+@isnad1 id=eq.2h3v.s6.25823212cd3b from=translated src=- shape=ad69b959 vocab=db8212e0
+-/
 theorem coeff_zero_eq_one_of_mul_mk_eq_one {f : ℕ → ℂ} (h1 : f 1 = 1) {p : ℕ} {Rp : ℂ[X]}
     (h : (Rp : PowerSeries ℂ) * PowerSeries.mk (fun k => f (p ^ k)) = 1) : Rp.coeff 0 = 1 := by
   have := sum_antidiagonal_of_mul_mk_eq_one h 0
@@ -140,6 +170,9 @@ section Conv
 
 variable {S : Finset ℕ} {a b : ℕ → ℂ} {P Q : ℕ → ℂ[X]}
 
+/--
+@isnad1 id=eq.4h5v.s7.4e4afb7c6c7a from=translated src=- shape=ce7af541 vocab=006869d4
+-/
 theorem convolution_corr_prime_pow (hS : ∀ p ∈ S, p.Prime) (ha₁ : a 1 = 1)
     (hP : ∀ p : ℕ, p.Prime → (P p : PowerSeries ℂ) * PowerSeries.mk (fun k => a (p ^ k)) = 1)
     {p : ℕ} (hp : p.Prime) (k : ℕ) :
@@ -158,6 +191,9 @@ theorem convolution_corr_prime_pow (hS : ∀ p ∈ S, p.Prime) (ha₁ : a 1 = 1)
       rw [corr_prime_pow_of_not_mem hp hpS (by omega), mul_zero]
     · intro h; exact absurd (Finset.self_mem_range_succ k) h
 
+/--
+@isnad1 id=eq.8h5v.s8.c53911e6be09 from=translated src=- shape=6368c970 vocab=c0a48585
+-/
 theorem convolution_corr_eq (hS : ∀ p ∈ S, p.Prime) (ha₁ : a 1 = 1) (hb₁ : b 1 = 1)
     (hamul : ∀ m n : ℕ, m.Coprime n → a (m * n) = a m * a n)
     (hbmul : ∀ m n : ℕ, m.Coprime n → b (m * n) = b m * b n)
@@ -205,12 +241,18 @@ variable {S : Finset ℕ}
 
 def nOf (S : Finset ℕ) (m : S → ℕ) : ℕ := ∏ p : S, (p : ℕ) ^ (m p)
 
+/--
+@isnad1 id=ne.1h2v.s5.2bce25108c51 from=translated src=- shape=eac049db vocab=31a70de1
+-/
 theorem nOf_ne_zero (hS : ∀ p ∈ S, p.Prime) (m : S → ℕ) : nOf S m ≠ 0 := by
   unfold nOf
   rw [Finset.prod_ne_zero_iff]
   intro p _
   exact pow_ne_zero _ (hS p.1 p.2).ne_zero
 
+/--
+@isnad1 id=eq.1h3v.s6.866a95fda6c7 from=translated src=- shape=a6f1f82c vocab=36908447
+-/
 theorem factorization_nOf (hS : ∀ p ∈ S, p.Prime) (m : S → ℕ) (p : S) :
     (nOf S m).factorization p = m p := by
   unfold nOf
@@ -225,6 +267,9 @@ theorem factorization_nOf (hS : ∀ p ∈ S, p.Prime) (m : S → ℕ) (p : S) :
     exact hqp (Subtype.ext h)
   · intro h; exact absurd (Finset.mem_univ p) h
 
+/--
+@isnad1 id=eq.2h3v.s6.de5129c9eb44 from=translated src=- shape=25f50fe8 vocab=c66ed630
+-/
 theorem factorization_nOf_of_not_mem (hS : ∀ p ∈ S, p.Prime) (m : S → ℕ) {q : ℕ}
     (hq : q ∉ S) : (nOf S m).factorization q = 0 := by
   unfold nOf
@@ -235,6 +280,9 @@ theorem factorization_nOf_of_not_mem (hS : ∀ p ∈ S, p.Prime) (m : S → ℕ)
   rw [Nat.Prime.factorization (hS p.1 p.2), Finsupp.single_apply, ite_eq_right, mul_zero]
   intro h; exact hq (h ▸ p.2)
 
+/--
+@isnad1 id=le.1h2v.s5.276934c49ae2 from=translated src=- shape=1e17fed3 vocab=b80e161a
+-/
 theorem primeFactors_nOf_subset (hS : ∀ p ∈ S, p.Prime) (m : S → ℕ) :
     (nOf S m).primeFactors ⊆ S := by
   intro q hq
@@ -243,17 +291,26 @@ theorem primeFactors_nOf_subset (hS : ∀ p ∈ S, p.Prime) (m : S → ℕ) :
   rw [← Nat.support_factorization, Finsupp.mem_support_iff] at hq
   exact hq h
 
+/--
+@isnad1 id=injectiv.1h1v.s5.bfb248634a41 from=translated src=- shape=20e4e6f8 vocab=fa268eb3
+-/
 theorem nOf_injective (hS : ∀ p ∈ S, p.Prime) : Function.Injective (nOf S) := by
   intro m m' h
   funext p
   rw [← factorization_nOf hS m p, ← factorization_nOf hS m' p, h]
 
+/--
+@isnad1 id=eq.0h3v.s5.e8bf77b47813 from=translated src=- shape=ab709254 vocab=cb498106
+-/
 theorem natCast_pow_cpow (n k : ℕ) (z : ℂ) :
     (((n ^ k : ℕ)) : ℂ) ^ z = (((n : ℕ) : ℂ) ^ z) ^ k := by
   induction k with
   | zero => simp
   | succ k ih => rw [pow_succ, Nat.cast_mul, Complex.natCast_mul_natCast_cpow, ih, pow_succ]
 
+/--
+@isnad1 id=eq.0h4v.s5.164cb7f6550c from=translated src=- shape=5d88cc5c vocab=cde60e62
+-/
 theorem natCast_prod_cpow {ι : Type*} (T : Finset ι) (c : ι → ℕ) (z : ℂ) :
     (((∏ i ∈ T, c i : ℕ)) : ℂ) ^ z = ∏ i ∈ T, ((c i : ℕ) : ℂ) ^ z := by
   classical
@@ -280,6 +337,9 @@ variable (S) in
 
 def eulerProd (R : ℕ → ℂ[X]) (s : ℂ) : ℂ := ∏ p ∈ S, (R p).eval ((p : ℂ) ^ (-s))
 
+/--
+@isnad1 id=eq.1h3v.s5.c88a8f8e4265 from=translated src=- shape=adc59a51 vocab=5061efc8
+-/
 theorem LSeries_corr (hS : ∀ p ∈ S, p.Prime) (R : ℕ → ℂ[X]) (s : ℂ) :
     LSeries (corr S R) s = eulerProd S R s := by
   classical
@@ -331,6 +391,9 @@ theorem LSeries_corr (hS : ∀ p ∈ S, p.Prime) (R : ℕ → ℂ[X]) (s : ℂ) 
     refine Finset.prod_congr rfl fun p _ => ?_
     rw [natCast_pow_cpow]
 
+/--
+@isnad1 id=lseriess.1h3v.s5.1bd355d97aca from=translated src=- shape=361f4b8b vocab=daacd52f
+-/
 theorem LSeriesSummable_corr (hS : ∀ p ∈ S, p.Prime) (R : ℕ → ℂ[X]) (s : ℂ) :
     LSeriesSummable (corr S R) s := by
   classical
@@ -355,6 +418,9 @@ theorem LSeriesSummable_corr (hS : ∀ p ∈ S, p.Prime) (R : ℕ → ℂ[X]) (s
     exact hne' p p.2 (Polynomial.coeff_eq_zero_of_natDegree_lt (not_le.mp hlt))
   · exact corr_of_not_subset hsub
 
+/--
+@isnad1 id=differen.1h2v.s6.5eb0ac945a51 from=translated src=- shape=af568445 vocab=05ce407b
+-/
 theorem differentiable_eulerProd (hS : ∀ p ∈ S, p.Prime) (R : ℕ → ℂ[X]) :
     Differentiable ℂ (eulerProd S R) := by
   have h : ∀ p ∈ S, Differentiable ℂ (fun s : ℂ => (R p).eval ((p : ℂ) ^ (-s))) := by
@@ -400,10 +466,16 @@ theorem eq_of_eq_on_real_gt {f g : ℂ → ℂ} (hf : Differentiable ℂ f) (hg 
   have := hzero (Set.mem_univ z)
   simpa [hD, sub_eq_zero] using this
 
+/--
+@isnad1 id=eq.1h2v.s6.2c48e8988d8b from=translated src=- shape=9fac6415 vocab=2d66c279
+-/
 theorem conj_ofReal_cpow_ofReal {x : ℝ} (hx : 0 ≤ x) (t : ℝ) :
     starRingEnd ℂ ((x : ℂ) ^ (t : ℂ)) = (x : ℂ) ^ (t : ℂ) := by
   rw [← Complex.ofReal_cpow hx, Complex.conj_ofReal]
 
+/--
+@isnad1 id=eq.0h2v.s6.bed37a719386 from=translated src=- shape=6f804196 vocab=9a7b0758
+-/
 theorem conj_LSeries_ofReal (f : ℕ → ℂ) (s : ℝ) :
     starRingEnd ℂ (LSeries f s) = LSeries (fun m => starRingEnd ℂ (f m)) s := by
   rw [LSeries, LSeries, Complex.conj_tsum]
@@ -415,6 +487,9 @@ theorem conj_LSeries_ofReal (f : ℕ → ℂ) (s : ℝ) :
   have : ((n : ℂ)) = ((n : ℝ) : ℂ) := by norm_cast
   rw [this, conj_ofReal_cpow_ofReal (Nat.cast_nonneg n)]
 
+/--
+@isnad1 id=eq.0h3v.s6.8b7394d27145 from=translated src=- shape=bee7ed6c vocab=c4ec3e60
+-/
 theorem conj_eulerProd_ofReal (S : Finset ℕ) (R : ℕ → ℂ[X]) (s : ℝ) :
     starRingEnd ℂ (eulerProd S R s) = eulerProd S (fun p => (R p).map (starRingEnd ℂ)) s := by
   rw [eulerProd, eulerProd, map_prod]
@@ -424,6 +499,9 @@ theorem conj_eulerProd_ofReal (S : Finset ℕ) (R : ℕ → ℂ[X]) (s : ℝ) :
     rw [this, ← Complex.ofReal_neg, conj_ofReal_cpow_ofReal (Nat.cast_nonneg p)]
   rw [Polynomial.eval_map, ← hx, Polynomial.eval₂_hom, hx]
 
+/--
+@isnad1 id=lseriess.1h2v.s5.3f98feaa0b79 from=translated src=- shape=7a0982f1 vocab=d1e2f7f1
+-/
 theorem LSeriesSummable_conj {f : ℕ → ℂ} {s : ℝ} (h : LSeriesSummable f s) :
     LSeriesSummable (fun m => starRingEnd ℂ (f m)) s := by
   rw [LSeriesSummable] at h ⊢
@@ -433,6 +511,9 @@ theorem LSeriesSummable_conj {f : ℕ → ℂ} {s : ℝ} (h : LSeriesSummable f 
   · simp [LSeries.term_zero]
   rw [LSeries.term_of_ne_zero hn, LSeries.term_of_ne_zero hn, norm_div, norm_div, RCLike.norm_conj]
 
+/--
+@isnad1 id=ex.2h2v.s5.e31fd24a9337 from=translated src=- shape=1d604642 vocab=9b7e11cc
+-/
 theorem exists_LSeries_ne_zero {f : ℕ → ℂ} (h1 : f 1 = 1) {s₀ : ℝ} (hs : LSeriesSummable f s₀) :
     ∃ σ : ℝ, ∀ s : ℝ, σ < s → LSeries f s ≠ 0 := by
   set f' : ℕ → ℂ := fun m => if m = 0 then 0 else f m with hf'
@@ -462,6 +543,9 @@ section Powers
 
 variable {S : Finset ℕ}
 
+/--
+@isnad1 id=eq.0h3v.s7.29c2a9a577f4 from=translated src=- shape=8541dff8 vocab=0a48e5fc
+-/
 theorem cpow_nOf (m : S → ℕ) (z : ℂ) :
     ((nOf S m : ℕ) : ℂ) ^ z = ∏ p : S, ((((p : ℕ) : ℂ)) ^ z) ^ (m p) := by
   unfold nOf
@@ -469,12 +553,18 @@ theorem cpow_nOf (m : S → ℕ) (z : ℂ) :
   refine Finset.prod_congr rfl fun p _ => ?_
   rw [natCast_pow_cpow]
 
+/--
+@isnad1 id=eq.3h3v.s6.58ed976de735 from=translated src=- shape=3ef088f1 vocab=34c3af48
+-/
 theorem natCast_cpow_eq_prod (hS : ∀ p ∈ S, p.Prime) {M : ℕ} (hM : M ≠ 0)
     (hMS : M.primeFactors ⊆ S) (z : ℂ) :
     ((M : ℕ) : ℂ) ^ z = ∏ p ∈ S, ((((p : ℕ) : ℂ)) ^ z) ^ (M.factorization p) := by
   conv_lhs => rw [eq_nOf_of_subset hS hM hMS]
   rw [cpow_nOf, ← Finset.prod_coe_sort S]
 
+/--
+@isnad1 id=eq.0h2v.s5.70b934069034 from=translated src=- shape=afb33db3 vocab=d70b9971
+-/
 theorem sqrt_cpow_sq (M : ℕ) (s : ℂ) :
     (((Real.sqrt M : ℝ) : ℂ) ^ s) ^ 2 = ((M : ℕ) : ℂ) ^ s := by
   rcases Nat.eq_zero_or_pos M with rfl | hM
@@ -496,6 +586,9 @@ end Powers
 
 section ConjPoly
 
+/--
+@isnad1 id=iff.0h2v.s5.3676dbb61aba from=translated src=- shape=8c1d82d3 vocab=4370ec4a
+-/
 theorem isRoot_map_conj_iff (P : ℂ[X]) (z : ℂ) :
     (P.map (starRingEnd ℂ)).IsRoot z ↔ P.IsRoot (starRingEnd ℂ z) := by
   rw [IsRoot.def, IsRoot.def, Polynomial.eval_map]
@@ -503,9 +596,15 @@ theorem isRoot_map_conj_iff (P : ℂ[X]) (z : ℂ) :
     Polynomial.eval₂_hom]
   rw [map_eq_zero]
 
+/--
+@isnad1 id=eq.0h2v.s5.ee4978ed2d7b from=translated src=- shape=c2aded88 vocab=f1a4ca95
+-/
 theorem coeff_map_conj (P : ℂ[X]) (k : ℕ) :
     (P.map (starRingEnd ℂ)).coeff k = starRingEnd ℂ (P.coeff k) := Polynomial.coeff_map _ _
 
+/--
+@isnad1 id=eq.0h1v.s4.99025fc53503 from=translated src=- shape=37e61072 vocab=4b39d9a5
+-/
 theorem natDegree_map_conj (P : ℂ[X]) : (P.map (starRingEnd ℂ)).natDegree = P.natDegree :=
   Polynomial.natDegree_map_eq_of_injective (starRingEnd ℂ).injective _
 
@@ -514,6 +613,9 @@ end ConjPoly
 end DeligneSerreCmp
 
 open DeligneSerreCmp in
+/--
+@isnad1 id=and.31h19v.s10.23906ea4ad12 from=translated src=- shape=87f28d2b vocab=22e9ee30
+-/
 theorem solution
     (S : Finset ℕ) (hS : ∀ p ∈ S, p.Prime)
     (a b : ℕ → ℂ) (ha₁ : a 1 = 1) (hb₁ : b 1 = 1)

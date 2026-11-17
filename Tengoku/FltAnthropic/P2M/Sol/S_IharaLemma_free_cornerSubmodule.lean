@@ -35,6 +35,9 @@ private theorem finite_cornerSubmodule_of_finite {𝒪 : Type} [CommRing 𝒪] {
   exact Module.Finite.range _
 
 open IharaLemma in
+/--
+@isnad1 id=free.1h4v.s8.a85b1af8aa0f from=translated src=- shape=c984b624 vocab=0caa43f8
+-/
 theorem solution {𝒪 : Type} [CommRing 𝒪] {B : Type} [CommRing B]
     [Algebra 𝒪 B] {V : Type} [AddCommGroup V] [Module B V] [Module 𝒪 V] [IsScalarTower 𝒪 B V]
     (e : B) (he : IsIdempotentElem e) [IsLocalRing 𝒪] [Module.Finite 𝒪 V] [Module.Free 𝒪 V] :

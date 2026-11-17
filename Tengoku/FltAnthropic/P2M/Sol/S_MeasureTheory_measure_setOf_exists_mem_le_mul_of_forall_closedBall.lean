@@ -8,6 +8,9 @@ namespace P2MW.S_MeasureTheory_measure_setOf_exists_mem_le_mul_of_forall_closedB
 open MeasureTheory Metric Set
 open scoped ENNReal NNReal
 
+/--
+@isnad1 id=le.2h8v.s8.416d2e4d59eb from=translated src=- shape=e4818d3c vocab=029f5d74
+-/
 theorem solution
     {α β : Type*} [MetricSpace α] [SecondCountableTopology α] [MeasurableSpace α] [OpensMeasurableSpace α]
     [HasBesicovitchCovering α] {_ : MeasurableSpace β} (μ : Measure β) (ν : Measure α) [SFinite ν]

@@ -29,24 +29,39 @@ noncomputable def shiftIter : (m : ℕ) → (TruncatedWittVector p 1 S →+ Trun
   | 0 => AddMonoidHom.id _
   | m + 1 => (TruncWitt.shift (p := p) (n := m + 1) (R := S)).comp (shiftIter m)
 
+/--
+@isnad1 id=eq.0h4v.s10.571396f877d0 from=translated src=- shape=63008d08 vocab=4248094c
+-/
 theorem shiftIter_succ (m : ℕ) (y : TruncatedWittVector p 1 S) :
     shiftIter (m + 1) y = TruncWitt.shift (shiftIter m y) := rfl
 
+/--
+@isnad1 id=injectiv.0h3v.s8.9c00a85193b3 from=translated src=- shape=1b08eb7b vocab=d1c1cf47
+-/
 theorem shiftIter_injective : ∀ m : ℕ, Injective (shiftIter (p := p) (S := S) m)
   | 0 => fun _ _ h => h
   | m + 1 => fun _ _ h => shiftIter_injective m (shift_injective h)
 
+/--
+@isnad1 id=eq.0h6v.s10.bff716bb1217 from=translated src=- shape=d019e0b0 vocab=45836c2d
+-/
 theorem map_shiftIter (f : S →+* S') : ∀ (m : ℕ) (y : TruncatedWittVector p 1 S),
     map f (shiftIter m y) = shiftIter m (map f y)
   | 0, _ => rfl
   | m + 1, y => by rw [shiftIter_succ, shiftIter_succ, map_shift, map_shiftIter f m y]
 
+/--
+@isnad1 id=eq.0h4v.s9.1a492f79481e from=translated src=- shape=1dad8522 vocab=3a2f2b7f
+-/
 theorem coeff_shiftIter_last : ∀ (m : ℕ) (y : TruncatedWittVector p 1 S),
     (shiftIter m y).coeff (Fin.last m) = y.coeff 0
   | 0, _ => rfl
   | m + 1, y => by
     rw [shiftIter_succ, ← Fin.succ_last, coeff_shift_succ, coeff_shiftIter_last m y]
 
+/--
+@isnad1 id=eq.1h5v.s9.9d7f031dc083 from=translated src=- shape=0ea9c9c1 vocab=3a2f2b7f
+-/
 theorem coeff_shiftIter_of_ne_last : ∀ (m : ℕ) (y : TruncatedWittVector p 1 S) (i : Fin (m + 1)),
     i ≠ Fin.last m → (shiftIter m y).coeff i = 0
   | 0, _, i, hi => absurd (Fin.eq_zero i) (by simpa using hi)
@@ -67,6 +82,9 @@ theorem eq_shiftIter_of_forall_coeff_eq_zero (m : ℕ) (x : TruncatedWittVector 
     rw [coeff_shiftIter_last, TruncatedWittVector.coeff_mk]
   · rw [hx i hi, coeff_shiftIter_of_ne_last m _ i hi]
 
+/--
+@isnad1 id=eq.0h4v.s7.31bac3c04915 from=translated src=- shape=c25f7f92 vocab=048cfc75
+-/
 theorem coeff_zero_add (a b : TruncatedWittVector p 1 S) :
     (a + b).coeff 0 = a.coeff 0 + b.coeff 0 := by
   obtain ⟨a, rfl⟩ := WittVector.truncate_surjective p 1 S a
@@ -86,12 +104,18 @@ end Iter
 
 variable {R : Type u} [CommRing R] {n : ℕ} {A : Type v} [CommRing A] [Bialgebra R A]
 
+/--
+@isnad1 id=iff.0h4v.s10.a0edce91d44b from=translated src=- shape=94982a03 vocab=b2c370b3
+-/
 theorem mem_wittHom_one_iff (y : TruncatedWittVector p 1 A) :
     y ∈ wittHom R p 1 A ↔
       Coalgebra.comul (R := R) (y.coeff 0) = y.coeff 0 ⊗ₜ[R] (1 : A) + (1 : A) ⊗ₜ[R] y.coeff 0 := by
   rw [mem_wittHom_iff, eq_iff_coeff_zero, coeff_zero_add, coeff_map, coeff_map, coeff_map]
   exact Iff.rfl
 
+/--
+@isnad1 id=iff.1h5v.s10.7e78566df11f from=translated src=- shape=8b74e505 vocab=b4b62957
+-/
 theorem main (x : TruncatedWittVector p (n + 1) A)
     (hx : ∀ i : Fin (n + 1), i ≠ Fin.last n → x.coeff i = 0) :
     x ∈ wittHom R p (n + 1) A ↔
@@ -109,6 +133,9 @@ end Deformation.WittHomKerRestrict
 open scoped _root_.P2MW.S_Deformation_mem_wittHom_succ_iff_comul_eq_of_forall_coeff_eq_zero.Deformation _root_.P2MW.S_Deformation_mem_wittHom_succ_iff_comul_eq_of_forall_coeff_eq_zero.Deformation.WittHomKerRestrict
 open scoped _root_.P2MW.S_Deformation_mem_wittHom_succ_iff_comul_eq_of_forall_coeff_eq_zero.Deformation
 
+/--
+@isnad1 id=iff.1h5v.s10.13dc308e471c from=translated src=- shape=3e10c826 vocab=b4b62957
+-/
 theorem solution
     {R : Type u} [CommRing R] {p : ℕ} [Fact p.Prime] {n : ℕ}
     {A : Type v} [CommRing A] [Bialgebra R A]

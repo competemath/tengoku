@@ -72,6 +72,9 @@ private lemma TT_pow_eval (k : ℕ) (θ : AddCircle (1 : ℝ)) :
           have : ((T 1 + T (-1)) ^ k : LaurentPolynomial ℂ).coeff m = 0 := by simpa using hm
           rw [this, zero_mul])
 
+/--
+@isnad1 id=eq.6h16v.s12.9e5483cb6087 from=translated src=- shape=c3a517b7 vocab=11fb2765
+-/
 theorem solution
     {ιL : Type} (d : ℕ) (XK : Set (Fin d → ℂ × ℂ)) (X : Set (ιL → ℂ × ℂ))
     (emb : C((Fin d → AddCircle (1 : ℝ)), XK))

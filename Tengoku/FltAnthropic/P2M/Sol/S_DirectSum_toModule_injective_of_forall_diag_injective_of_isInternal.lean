@@ -12,6 +12,9 @@ open scoped DirectSum
 
 universe u
 
+/--
+@isnad1 id=injectiv.3h5v.s10.8c1f8398e57f from=translated src=- shape=1c41501d vocab=13896f57
+-/
 theorem solution
     {R : Type u} [CommRing R] {H' : Type u} [AddCommGroup H'] [Module R H']
     (𝒜' : ℕ → Submodule R H') (h𝒜' : DirectSum.IsInternal 𝒜')

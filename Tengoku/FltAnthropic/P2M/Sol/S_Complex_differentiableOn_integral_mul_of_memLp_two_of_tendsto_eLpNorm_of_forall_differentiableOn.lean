@@ -16,10 +16,16 @@ namespace WeakHolo
 
 variable {Y : Type*} [MeasurableSpace Y] {μ : Measure Y}
 
+/--
+@isnad1 id=integrab.2h4v.s7.43c537d05be3 from=translated src=- shape=3a443c47 vocab=c7307a36
+-/
 theorem integrable_mul_of_memLp_two {f g : Y → ℂ} (hf : MemLp f 2 μ) (hg : MemLp g 2 μ) :
     Integrable (fun y => f y * g y) μ :=
   memLp_one_iff_integrable.mp (hg.mul' hf)
 
+/--
+@isnad1 id=le.2h4v.s8.7d3249dbdf9d from=translated src=- shape=3e51aee7 vocab=eff50230
+-/
 theorem integral_norm_mul_le {f g : Y → ℂ} (hf : MemLp f 2 μ) (hg : MemLp g 2 μ) :
     ∫ y, ‖f y * g y‖ ∂μ ≤ (eLpNorm f 2 μ).toReal * (eLpNorm g 2 μ).toReal := by
   have hint : Integrable (fun y => f y * g y) μ := integrable_mul_of_memLp_two hf hg
@@ -34,10 +40,16 @@ theorem integral_norm_mul_le {f g : Y → ℂ} (hf : MemLp f 2 μ) (hg : MemLp g
         ENNReal.toReal_mono (ENNReal.mul_ne_top hf.eLpNorm_ne_top hg.eLpNorm_ne_top) h1
     _ = _ := ENNReal.toReal_mul
 
+/--
+@isnad1 id=le.2h4v.s8.54be0dde98c6 from=translated src=- shape=201568e4 vocab=eff50230
+-/
 theorem norm_integral_mul_le {f g : Y → ℂ} (hf : MemLp f 2 μ) (hg : MemLp g 2 μ) :
     ‖∫ y, f y * g y ∂μ‖ ≤ (eLpNorm f 2 μ).toReal * (eLpNorm g 2 μ).toReal :=
   (norm_integral_le_integral_norm _).trans (integral_norm_mul_le hf hg)
 
+/--
+@isnad1 id=continuo.3h5v.s8.5e9d15d07925 from=translated src=- shape=19fbce49 vocab=b175a490
+-/
 theorem continuousWithinAt_eLpNorm_toReal {U : Set ℂ} {v : ℂ → Y → ℂ}
     (hv : ∀ z ∈ U, MemLp (v z) 2 μ)
     (hvc : ∀ z₀ ∈ U, Tendsto (fun z => eLpNorm (v z - v z₀) 2 μ) (𝓝[U] z₀) (𝓝 0))
@@ -76,6 +88,9 @@ section Side
 
 variable [SFinite μ] {U : Set ℂ} {v : ℂ → Y → ℂ} {w : Y → ℂ}
 
+/--
+@isnad1 id=and.7h8v.s9.007de1d5140c from=translated src=- shape=c9fee435 vocab=7b4b28f6
+-/
 theorem side (hw : MemLp w 2 μ)
     (hvm : ∀ z ∈ U, Measurable (v z))
     (hv : ∀ z ∈ U, MemLp (v z) 2 μ)
@@ -166,6 +181,9 @@ end
 open MeasureTheory Filter Topology Set Complex WeakHolo
 open scoped ENNReal Interval
 
+/--
+@isnad1 id=differen.6h5v.s8.68fa61ee2698 from=translated src=- shape=33d98bd8 vocab=c98674dd
+-/
 theorem solution
     {Y : Type*} [MeasurableSpace Y] (μ : MeasureTheory.Measure Y) [MeasureTheory.SFinite μ]
     {U : Set ℂ} (hU : IsOpen U)

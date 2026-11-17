@@ -49,10 +49,16 @@ def kerRetraction (d : M →ₗ[R] N) {s : N →ₗ[R] M} (hs : d ∘ₗ s = Lin
     simp only [LinearMap.mem_ker, map_sub, LinearMap.sub_apply, LinearMap.id_apply,
       LinearMap.comp_apply, ← LinearMap.comp_apply d s, hs, sub_self])
 
+/--
+@isnad1 id=eq.1h6v.s9.b33859df71c6 from=translated src=- shape=beeb01eb vocab=76697519
+-/
 theorem kerRetraction_apply_coe (d : M →ₗ[R] N) {s : N →ₗ[R] M}
     (hs : d ∘ₗ s = LinearMap.id) (x : M) :
     (kerRetraction d hs x : M) = x - s (d x) := rfl
 
+/--
+@isnad1 id=eq.1h5v.s10.25ff97f84804 from=translated src=- shape=3088e86a vocab=99398384
+-/
 theorem kerRetraction_comp_subtype (d : M →ₗ[R] N) {s : N →ₗ[R] M}
     (hs : d ∘ₗ s = LinearMap.id) :
     (kerRetraction d hs) ∘ₗ (LinearMap.ker d).subtype = LinearMap.id := by
@@ -69,9 +75,15 @@ def kerBaseChangeHomOf (d : M →ₗ[R] N) :
     suffices h : d ∘ₗ (LinearMap.ker d).subtype = 0 by rw [h]; simp
     ext ⟨y, hy⟩; exact hy)
 
+/--
+@isnad1 id=eq.0h6v.s13.38da7bd0e148 from=translated src=- shape=324c67cf vocab=7b4160de
+-/
 theorem kerBaseChangeHomOf_apply_coe (d : M →ₗ[R] N) (x : A ⊗[R] (LinearMap.ker d)) :
     (kerBaseChangeHomOf A d x : A ⊗[R] M) = (LinearMap.ker d).subtype.baseChange A x := rfl
 
+/--
+@isnad1 id=bijectiv.1h5v.s12.9696b53bd620 from=translated src=- shape=398a1c3d vocab=7800a84d
+-/
 theorem kerBaseChangeHomOf_bijective [Module.Projective R N] (d : M →ₗ[R] N)
     (hd : Function.Surjective d) :
     Function.Bijective (kerBaseChangeHomOf A d) := by
@@ -93,6 +105,9 @@ theorem kerBaseChangeHomOf_bijective [Module.Projective R N] (d : M →ₗ[R] N)
     simp only [kerBaseChangeHomOf_apply_coe, LinearMap.baseChange_eq_ltensor]
     exact hx
 
+/--
+@isnad1 id=projecti.1h4v.s8.f79a254361f5 from=translated src=- shape=a38bfb63 vocab=dc53c618
+-/
 theorem projective_ker_of_surjective_of_projective
     [Module.Projective R M] [Module.Projective R N]
     (d : M →ₗ[R] N) (hd : Function.Surjective d) :
@@ -109,6 +124,9 @@ variable {R : Type u} [CommRing R] {M : Type v} [AddCommGroup M] [Module R M]
 
 abbrev κ (𝔭 : PrimeSpectrum R) : Type u := 𝔭.asIdeal.ResidueField
 
+/--
+@isnad1 id=eq.0h3v.s11.aaab1ab23a8a from=translated src=- shape=c0c11087 vocab=d40b3889
+-/
 theorem span_one_tmul_eq_top (𝔭 : PrimeSpectrum R) :
     Submodule.span (κ 𝔭) (Set.range fun x : M => (1 : κ 𝔭) ⊗ₜ[R] x) = ⊤ := by
   rw [eq_top_iff]
@@ -122,6 +140,9 @@ theorem span_one_tmul_eq_top (𝔭 : PrimeSpectrum R) :
     exact Submodule.smul_mem _ _ (Submodule.subset_span ⟨x, rfl⟩)
   | add s t hs ht => exact Submodule.add_mem _ hs ht
 
+/--
+@isnad1 id=ex.0h3v.s11.15da05981506 from=translated src=- shape=dc77255a vocab=cba97658
+-/
 theorem exists_basis_one_tmul [Module.Finite R M] (𝔭 : PrimeSpectrum R) :
     ∃ (ι : Type v) (_ : Fintype ι) (m : ι → M) (b : Module.Basis ι (κ 𝔭) (κ 𝔭 ⊗[R] M)),
       ∀ i, b i = (1 : κ 𝔭) ⊗ₜ[R] m i := by
@@ -133,6 +154,9 @@ theorem exists_basis_one_tmul [Module.Finite R M] (𝔭 : PrimeSpectrum R) :
   · rw [haspan, span_one_tmul_eq_top]
   · simp only [Module.Basis.mk_apply, Function.comp_apply]
 
+/--
+@isnad1 id=subsingl.1h6v.s11.c0b4a5f5fbd3 from=translated src=- shape=26c89c70 vocab=02ca7364
+-/
 theorem subsingleton_residue_tensor_coker (𝔭 : PrimeSpectrum R) {ι : Type v} [Fintype ι]
     (m : ι → M) (b : Module.Basis ι (κ 𝔭) (κ 𝔭 ⊗[R] M)) (hb : ∀ i, b i = (1 : κ 𝔭) ⊗ₜ[R] m i) :
     Subsingleton (κ 𝔭 ⊗[R] (M ⧸ LinearMap.range (Fintype.linearCombination R m))) := by
@@ -160,6 +184,9 @@ theorem subsingleton_residue_tensor_coker (𝔭 : PrimeSpectrum R) {ι : Type v}
   rw [hzero]
   rfl
 
+/--
+@isnad1 id=injectiv.3h8v.s13.97008c294494 from=translated src=- shape=65a58e6f vocab=31ac5ed6
+-/
 theorem baseChange_injective_of_le [Module.Finite R M] {e : ℕ}
     (hconst : ∀ 𝔮 : PrimeSpectrum R, Module.finrank (κ 𝔮) (κ 𝔮 ⊗[R] M) = e)
     (𝔭 : PrimeSpectrum R) {ι : Type v}
@@ -197,6 +224,9 @@ theorem baseChange_injective_of_le [Module.Finite R M] {e : ℕ}
   exact (LinearMap.injective_iff_surjective_of_finrank_eq_finrank (hdom.trans hcod.symm)).mpr
     hsurjφ
 
+/--
+@isnad1 id=mem.4h10v.s12.57ad7f3bff86 from=translated src=- shape=c09c059e vocab=f8c14618
+-/
 theorem coeff_mem_of_rel [Module.Finite R M] {e : ℕ}
     (hconst : ∀ 𝔮 : PrimeSpectrum R, Module.finrank (κ 𝔮) (κ 𝔮 ⊗[R] M) = e)
     (𝔭 : PrimeSpectrum R) {ι : Type v} [Fintype ι]
@@ -215,6 +245,9 @@ theorem coeff_mem_of_rel [Module.Finite R M] {e : ℕ}
     Algebra.algebraMap_eq_smul_one]
   exact hcoord
 
+/--
+@isnad1 id=eq.3h9v.s12.8e6eb47adbdc from=translated src=- shape=87330f81 vocab=28009251
+-/
 theorem algebraMap_coeff_eq_zero [IsReduced R] [Module.Finite R M] {e : ℕ}
     (hconst : ∀ 𝔮 : PrimeSpectrum R, Module.finrank (κ 𝔮) (κ 𝔮 ⊗[R] M) = e)
     (𝔭 : PrimeSpectrum R)
@@ -235,6 +268,9 @@ theorem algebraMap_coeff_eq_zero [IsReduced R] [Module.Finite R M] {e : ℕ}
   have hmem : x i ∈ 𝔮.asIdeal := coeff_mem_of_rel hconst 𝔭 m b hb hle x hx i
   exact Ideal.mem_comap.mp hmem
 
+/--
+@isnad1 id=free.1h4v.s10.f34284af990c from=translated src=- shape=71da1cac vocab=3bd47cad
+-/
 theorem free_localizedModule_of_isReduced [IsReduced R] [Module.Finite R M] {e : ℕ}
     (hconst : ∀ 𝔮 : PrimeSpectrum R, Module.finrank (κ 𝔮) (κ 𝔮 ⊗[R] M) = e)
     (𝔭 : PrimeSpectrum R) :
@@ -342,6 +378,9 @@ export _root_.CoherentBaseChange.TwoTermComplex (fibre_euler)
 private abbrev _root_.CoherentBaseChange.TwoTermComplex.coker : Type v := G.C1 ⧸ LinearMap.range G.d
 
 export _root_.CoherentBaseChange.TwoTermComplex (coker)
+/--
+@isnad1 id=finitepr.0h2v.s7.4a6b7d0c02bb from=translated src=- shape=ed10201d vocab=e4cc5746
+-/
 scoped instance coker_finitePresentation : Module.FinitePresentation R G.coker :=
   haveI : Module.FinitePresentation R G.C1 := Module.finitePresentation_of_projective R G.C1
   Module.finitePresentation_of_surjective (LinearMap.range G.d).mkQ
@@ -427,6 +466,9 @@ private theorem _root_.CoherentBaseChange.TwoTermComplex.projective_ker_of_isRed
 
 export _root_.CoherentBaseChange.TwoTermComplex (projective_ker_of_isReduced_impl)
 
+/--
+@isnad1 id=eq.0h3v.s11.18f41bbbe506 from=translated src=- shape=516d6bab vocab=be5b235a
+-/
 theorem kerBaseChangeHom_eq (A : Type w) [CommRing A] [Algebra R A] :
     G.kerBaseChangeHom A = kerBaseChangeHomOf A G.d := rfl
 
@@ -497,6 +539,9 @@ end CoherentBaseChange.TwoTermComplex
 open scoped _root_.P2MW.S_CoherentBaseChange_TwoTermComplex_projective_ker_of_isReduced_of_fibreH0_const.CoherentBaseChange _root_.P2MW.S_CoherentBaseChange_TwoTermComplex_projective_ker_of_isReduced_of_fibreH0_const.CoherentBaseChange.TwoTermComplex
 open scoped _root_.P2MW.S_CoherentBaseChange_TwoTermComplex_projective_ker_of_isReduced_of_fibreH0_const.CoherentBaseChange
 
+/--
+@isnad1 id=and.1h3v.s13.41dffdbd593f from=translated src=- shape=2cd71f6f vocab=a72759bb
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsReduced R] (G : TwoTermComplex.{u, v} R) {c : ℕ}
     (h0 : ∀ 𝔭 : PrimeSpectrum R, G.fibreH0 𝔭 = c) :

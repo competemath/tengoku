@@ -23,6 +23,9 @@ def R (w : ℂ) : ℂ :=
     (cexp (2 * π * I * w) * (cexp (2 * π * I * w) ^ 2 + 4 * cexp (2 * π * I * w) + 1) /
       (1 - cexp (2 * π * I * w)) ^ 4)
 
+/--
+@isnad1 id=eq.0h1v.s7.8a2b05c9f170 from=translated src=- shape=31d62ecc vocab=b6ee4a2b
+-/
 theorem natCast_pow_three_eq (n : ℕ) :
     ((n : ℕ) : ℂ) ^ 3 = (((n + 3).choose 3 : ℕ) : ℂ) * 6 - (((n + 2).choose 2 : ℕ) : ℂ) * 12 +
       (((n + 1).choose 1 : ℕ) : ℂ) * 7 - 1 := by
@@ -48,12 +51,18 @@ theorem natCast_pow_three_eq (n : ℕ) :
   have h1C : (((n + 1).choose 1 : ℕ) : ℂ) = n + 1 := by exact_mod_cast h1N
   linear_combination (-1 : ℂ) * h3C + 6 * h2C + (-7 : ℂ) * h1C
 
+/--
+@isnad1 id=eq.1h1v.s8.eb6c89aa4297 from=translated src=- shape=0e440691 vocab=80516351
+-/
 theorem geom_value_identity {r : ℂ} (h : 1 - r ≠ 0) :
     6 * (1 / (1 - r) ^ 4) - 12 * (1 / (1 - r) ^ 3) + 7 * (1 / (1 - r) ^ 2) - 1 / (1 - r) ^ 1 =
       r * (r ^ 2 + 4 * r + 1) / (1 - r) ^ 4 := by
   field_simp
   ring
 
+/--
+@isnad1 id=hassum.1h1v.s7.a6b8d871a934 from=translated src=- shape=8cb1f8c3 vocab=4d71439e
+-/
 theorem hasSum_pow_three_mul_geometric {r : ℂ} (hr : ‖r‖ < 1) :
     HasSum (fun n : ℕ ↦ (n : ℂ) ^ 3 * r ^ n) (r * (r ^ 2 + 4 * r + 1) / (1 - r) ^ 4) := by
   have h3 := hasSum_choose_mul_geometric_of_norm_lt_one 3 hr
@@ -74,6 +83,9 @@ theorem hasSum_pow_three_mul_geometric {r : ℂ} (hr : ‖r‖ < 1) :
     ring
   · rw [← geom_value_identity hr1]
 
+/--
+@isnad1 id=eq.1h1v.s4.6bd0745d9b72 from=translated src=- shape=8b8e55c8 vocab=64534f29
+-/
 theorem F_eq_R_of_im_pos {w : ℂ} (hw : 0 < w.im) : F w = R w := by
   let z : UpperHalfPlane := ⟨w, hw⟩
   have hL := EisensteinSeries.qExpansion_identity (k := 3) (by norm_num) z
@@ -89,6 +101,9 @@ theorem F_eq_R_of_im_pos {w : ℂ} (hw : 0 < w.im) : F w = R w := by
   rw [hf]
   ring
 
+/--
+@isnad1 id=isclosed.0h0v.s4.4e4b1c433594 from=translated src=- shape=6fb0b3e8 vocab=879586ca
+-/
 theorem isClosed_range_intCast : IsClosed (Set.range ((↑) : ℤ → ℂ)) := by
   have h : IsClosedEmbedding (fun n : ℤ ↦ (((n : ℝ)) : ℂ)) :=
     Complex.isometry_ofReal.isClosedEmbedding.comp Int.isClosedEmbedding_coe_real
@@ -96,9 +111,15 @@ theorem isClosed_range_intCast : IsClosed (Set.range ((↑) : ℤ → ℂ)) := b
     ext w; simp
   exact hr ▸ h.isClosed_range
 
+/--
+@isnad1 id=isopen.0h0v.s4.890225ca1219 from=translated src=- shape=25b03439 vocab=b65b0378
+-/
 theorem isOpen_integerComplement : IsOpen integerComplement :=
   isClosed_range_intCast.isOpen_compl
 
+/--
+@isnad1 id=ex.1h1v.s5.6d1aa96cb523 from=translated src=- shape=070b46cd vocab=c4e291fd
+-/
 theorem exists_pos_le_norm_add_intCast {w : ℂ} (hw : w ∈ integerComplement) :
     ∃ d : ℝ, 0 < d ∧ ∀ n : ℤ, d ≤ ‖w + n‖ := by
   have hne : (Set.range ((↑) : ℤ → ℂ)).Nonempty := ⟨0, 0, by simp⟩
@@ -109,12 +130,18 @@ theorem exists_pos_le_norm_add_intCast {w : ℂ} (hw : w ∈ integerComplement) 
   rw [dist_eq_norm, Int.cast_neg, sub_neg_eq_add] at h
   exact h
 
+/--
+@isnad1 id=summable.0h1v.s5.fe24b1e8c86f from=translated src=- shape=cc85e2f4 vocab=4b6ad704
+-/
 theorem summable_norm_term (w : ℂ) : Summable fun n : ℤ ↦ 1 / ‖w + n‖ ^ 4 := by
   have h := EisensteinSeries.linear_right_summable w 1 (k := 4) (by norm_num)
   have h' := summable_norm_iff.mpr h
   refine h'.congr fun n ↦ ?_
   simp only [Int.cast_one, one_mul, norm_inv, norm_pow, zpow_ofNat, one_div]
 
+/--
+@isnad1 id=differen.1h1v.s6.1206c5601f50 from=translated src=- shape=3211a2b3 vocab=0403d4a7
+-/
 theorem differentiableAt_F {w₀ : ℂ} (hw₀ : w₀ ∈ integerComplement) : DifferentiableAt ℂ F w₀ := by
   obtain ⟨d, hd, hdle⟩ := exists_pos_le_norm_add_intCast hw₀
   have hpos : ∀ n : ℤ, 0 < ‖w₀ + n‖ := fun n ↦ hd.trans_le (hdle n)
@@ -152,9 +179,15 @@ theorem differentiableAt_F {w₀ : ℂ} (hw₀ : w₀ ∈ integerComplement) : D
       linarith
   exact hF.differentiableAt (hSo.mem_nhds (Metric.mem_ball_self (half_pos hd)))
 
+/--
+@isnad1 id=differen.0h0v.s6.e49a5cc80cb3 from=translated src=- shape=cf415218 vocab=8bd8599f
+-/
 theorem differentiableOn_F : DifferentiableOn ℂ F integerComplement :=
   fun w hw ↦ (differentiableAt_F hw).differentiableWithinAt
 
+/--
+@isnad1 id=ne.1h1v.s5.2a5ae3b7e8dd from=translated src=- shape=161835b9 vocab=245e2adc
+-/
 theorem cexp_ne_one {w : ℂ} (hw : w ∈ integerComplement) : cexp (2 * π * I * w) ≠ 1 := by
   intro h
   obtain ⟨n, hn⟩ := Complex.exp_eq_one_iff.mp h
@@ -162,6 +195,9 @@ theorem cexp_ne_one {w : ℂ} (hw : w ∈ integerComplement) : cexp (2 * π * I 
   have h3 : w * (2 * π * I) = n * (2 * π * I) := by rw [mul_comm]; exact hn
   exact hw ⟨n, (mul_right_cancel₀ h2 h3).symm⟩
 
+/--
+@isnad1 id=differen.0h0v.s6.db73517ede6e from=translated src=- shape=cf415218 vocab=947d800a
+-/
 theorem differentiableOn_R : DifferentiableOn ℂ R integerComplement := by
   intro w hw
   have hne : (1 - cexp (2 * π * I * w)) ^ 4 ≠ 0 := pow_ne_zero _ (sub_ne_zero.mpr (cexp_ne_one hw).symm)
@@ -169,12 +205,18 @@ theorem differentiableOn_R : DifferentiableOn ℂ R integerComplement := by
   unfold R
   fun_prop (disch := exact hne)
 
+/--
+@isnad1 id=isprecon.0h0v.s4.831f3a5cf7ab from=translated src=- shape=25b03439 vocab=b82d086d
+-/
 theorem isPreconnected_integerComplement : IsPreconnected integerComplement := by
   have h : IsConnected (Set.range ((↑) : ℤ → ℂ))ᶜ :=
     Set.Countable.isConnected_compl_of_one_lt_rank
       (by rw [Complex.rank_real_complex]; norm_num) (Set.countable_range _)
   exact h.isPreconnected
 
+/--
+@isnad1 id=eq.1h1v.s4.896f018da759 from=translated src=- shape=8e794ca7 vocab=d88c0dfa
+-/
 theorem F_eq_R {w : ℂ} (hw : w ∈ integerComplement) : F w = R w := by
   have hF : AnalyticOnNhd ℂ F integerComplement := differentiableOn_F.analyticOnNhd isOpen_integerComplement
   have hR : AnalyticOnNhd ℂ R integerComplement := differentiableOn_R.analyticOnNhd isOpen_integerComplement
@@ -192,6 +234,9 @@ end HurwitzFour
 end
 
 open HurwitzFour in
+/--
+@isnad1 id=eq.1h1v.s8.8e005bdb960a from=translated src=- shape=c061fc04 vocab=d650c195
+-/
 theorem solution (x : ℝ) (hx : ∀ n : ℤ, (x : ℝ) ≠ n) :
     ∑' n : ℤ, 1 / ((x : ℂ) + n) ^ 4 =
       (2 * π * I) ^ 4 / 6 *

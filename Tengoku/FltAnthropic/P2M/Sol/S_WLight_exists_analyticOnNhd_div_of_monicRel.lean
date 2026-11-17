@@ -20,6 +20,9 @@ namespace WLight
 
 section ValuationEngine
 
+/--
+@isnad1 id=le.2h6v.s7.f08c9de36132 from=translated src=- shape=798d3492 vocab=f9e8d3e3
+-/
 theorem le_meromorphicOrderAt_sum {𝕜 : Type*} [NontriviallyNormedField 𝕜]
     {ι : Type*} (s : Finset ι) {f : ι → 𝕜 → 𝕜} {x : 𝕜}
     (hf : ∀ i ∈ s, MeromorphicAt (f i) x) (m : WithTop ℤ)
@@ -38,6 +41,9 @@ theorem le_meromorphicOrderAt_sum {𝕜 : Type*} [NontriviallyNormedField 𝕜]
             apply meromorphicOrderAt_add (hf a (Finset.mem_insert_self a s))
             exact MeromorphicAt.sum (fun i hi ↦ hf i (Finset.mem_insert_of_mem hi))
 
+/--
+@isnad1 id=le.5h6v.s9.fe6f49bc9872 from=translated src=- shape=a08a7ccc vocab=46ffa3a6
+-/
 theorem meromorphicOrderAt_le_of_monicRel {𝕜 : Type*} [NontriviallyNormedField 𝕜]
     {F G : 𝕜 → 𝕜} {c : ℕ → 𝕜 → 𝕜} {n : ℕ} {τ : 𝕜}
     (hF : AnalyticAt 𝕜 F τ) (hG : AnalyticAt 𝕜 G τ)
@@ -101,6 +107,9 @@ theorem meromorphicOrderAt_le_of_monicRel {𝕜 : Type*} [NontriviallyNormedFiel
 
 open WithTop.LinearOrderedAddCommGroup in
 
+/--
+@isnad1 id=le.5h6v.s9.6d134767db58 from=translated src=- shape=40035e11 vocab=be80f60f
+-/
 theorem meromorphicOrderAt_div_nonneg_of_monicRel {𝕜 : Type*} [NontriviallyNormedField 𝕜]
     {F G : 𝕜 → 𝕜} {c : ℕ → 𝕜 → 𝕜} {n : ℕ} {τ : 𝕜}
     (hF : AnalyticAt 𝕜 F τ) (hG : AnalyticAt 𝕜 G τ)
@@ -119,6 +128,9 @@ end WLight
 open WLight in
 open Filter in
 
+/--
+@isnad1 id=ex.7h6v.s9.d390dcbcb0f6 from=translated src=- shape=d2f9b436 vocab=30af0471
+-/
 theorem solution {𝕜 : Type*} [NontriviallyNormedField 𝕜]
     {U : Set 𝕜} (hU : IsOpen U) (hUc : IsPreconnected U)
     {F G : 𝕜 → 𝕜} {c : ℕ → 𝕜 → 𝕜} {n : ℕ}

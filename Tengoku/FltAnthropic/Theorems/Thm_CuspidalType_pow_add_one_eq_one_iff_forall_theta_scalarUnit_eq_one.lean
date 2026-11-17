@@ -9,6 +9,9 @@ local notation α "^+" M:51 => FixedPoints.addSubgroup M α
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=iff.0h3v.s11.9114621d61f7 from=translated src=- shape=85961f00 vocab=348c2219
+-/
 theorem CuspidalType.pow_add_one_eq_one_iff_forall_theta_scalarUnit_eq_one {q : ℕ} [Fact q.Prime] {K : Type*} [Field K]
     (θ : (GaloisField q 2)ˣ →* Kˣ) :
     θ ^ (q + 1) = 1 ↔

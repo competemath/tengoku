@@ -22,6 +22,9 @@ variable {A : Type w} [CommRing A] {π : ℛ →+* A}
 
 omit hp in
 
+/--
+@isnad1 id=eq.1h4v.s7.c8a25c1d0212 from=translated src=- shape=a3917bfe vocab=99f9e11a
+-/
 theorem natCast_eq_zero_of_ker_eq (hker : RingHom.ker π = Ideal.span {(p : ℛ)}) : (p : A) = 0 := by
   have : (p : ℛ) ∈ RingHom.ker π := hker ▸ Ideal.mem_span_singleton_self _
   rwa [RingHom.mem_ker, map_natCast] at this
@@ -92,6 +95,9 @@ theorem eq_zero_of_mem_fontaineKer_of_verschiebung_eq_zero
 end FontaineSH3
 
 open Deformation Deformation.TruncWitt Deformation.DieudonneModule in
+/--
+@isnad1 id=eq.4h6v.s9.c9f02609d150 from=translated src=- shape=c91c7296 vocab=365fa0b4
+-/
 theorem solution
     {ℛ : Type u} [CommRing ℛ] (p : ℕ) [Fact p.Prime] (hp : (p : ℛ) ∈ nonZeroDivisors ℛ)
     {R : Type v} [CommRing R] {A : Type w} [CommRing A] [Bialgebra R A]

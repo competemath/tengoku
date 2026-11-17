@@ -10,6 +10,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Deformation_mem_wittHom_one_iff_coeff_mem_
 namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 universe u v
 
+/--
+@isnad1 id=iff.0h4v.s8.da34d1d35e73 from=translated src=- shape=677e795f vocab=dd563698
+-/
 theorem Deformation.mem_wittHom_one_iff_coeff_mem_primitives
     (k : Type u) [Field k] (p : ℕ) [Fact p.Prime] [CharP k p]
     (A : Type v) [CommRing A] [HopfAlgebra k A] (x : TruncatedWittVector p 1 A) :

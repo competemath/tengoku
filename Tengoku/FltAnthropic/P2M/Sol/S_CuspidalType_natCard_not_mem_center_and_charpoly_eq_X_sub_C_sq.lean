@@ -20,6 +20,9 @@ section Generic
 
 variable {F : Type*} [Field F] [DecidableEq F]
 
+/--
+@isnad1 id=and.1h2v.s8.813c6d69bc62 from=translated src=- shape=df19191c vocab=7ca00d32
+-/
 theorem nil_rel (N : Matrix (Fin 2) (Fin 2) F) (hN : N * N = 0) :
     N 1 1 = -N 0 0 ∧ N 0 0 * N 0 0 + N 0 1 * N 1 0 = 0 := by
   have h := fun i j => congrFun (congrFun hN i) j
@@ -48,6 +51,9 @@ theorem nil_rel (N : Matrix (Fin 2) (Fin 2) F) (hN : N * N = 0) :
 def nilOf (s t : F) : Matrix (Fin 2) (Fin 2) F :=
   if s = 0 then !![0, 0; t, 0] else !![t, s; -(t * t) / s, -t]
 
+/--
+@isnad1 id=eq.0h3v.s7.da2b842d5109 from=translated src=- shape=9f97dee5 vocab=ec69306a
+-/
 theorem nilOf_mul_self (s t : F) : nilOf s t * nilOf s t = 0 := by
   unfold nilOf
   split_ifs with hs
@@ -57,9 +63,15 @@ theorem nilOf_mul_self (s t : F) : nilOf s t * nilOf s t = 0 := by
     ext i j
     fin_cases i <;> fin_cases j <;> (simp; field_simp; ring)
 
+/--
+@isnad1 id=eq.0h3v.s5.f572f465d047 from=translated src=- shape=ffb14f58 vocab=e6b192fe
+-/
 theorem nilOf_apply_01 (s t : F) : nilOf s t 0 1 = s := by
   unfold nilOf; split_ifs with hs <;> simp [hs]
 
+/--
+@isnad1 id=iff.0h3v.s7.9fb9a16db665 from=translated src=- shape=f701a11a vocab=5e3f3612
+-/
 theorem nilOf_eq_zero_iff (s t : F) : nilOf s t = 0 ↔ s = 0 ∧ t = 0 := by
   constructor
   · intro h
@@ -71,6 +83,9 @@ theorem nilOf_eq_zero_iff (s t : F) : nilOf s t = 0 ↔ s = 0 ∧ t = 0 := by
     ext i j
     fin_cases i <;> fin_cases j <;> simp [nilOf]
 
+/--
+@isnad1 id=injectiv.0h1v.s5.e924552f6531 from=translated src=- shape=2a7403dc vocab=aeffb873
+-/
 theorem nilOf_injective : Function.Injective (fun p : F × F => nilOf p.1 p.2) := by
   rintro ⟨s, t⟩ ⟨s', t'⟩ h
   simp only at h
@@ -86,6 +101,9 @@ theorem nilOf_injective : Function.Injective (fun p : F × F => nilOf p.1 p.2) :
     simp [nilOf, hs0] at h00
     simp [h00]
 
+/--
+@isnad1 id=ex.1h2v.s7.36095bd70c1e from=translated src=- shape=1110ad1c vocab=ec69306a
+-/
 theorem exists_nilOf_eq (N : Matrix (Fin 2) (Fin 2) F) (hN : N * N = 0) :
     ∃ s t : F, nilOf s t = N := by
   obtain ⟨hd, hadbc⟩ := nil_rel N hN
@@ -103,6 +121,9 @@ theorem exists_nilOf_eq (N : Matrix (Fin 2) (Fin 2) F) (hN : N * N = 0) :
     field_simp
     linear_combination -hadbc
 
+/--
+@isnad1 id=bijectiv.0h1v.s10.dd28b9332e6d from=translated src=- shape=dad02c8f vocab=adb5c2ff
+-/
 theorem nilOf_bijective :
     Function.Bijective (fun p : {p : F × F // p ≠ 0} =>
       (⟨nilOf p.1.1 p.1.2, fun h => p.2 (Prod.ext ((nilOf_eq_zero_iff _ _).mp h).1 ((nilOf_eq_zero_iff _ _).mp h).2),
@@ -127,9 +148,15 @@ def glOf (z : F) (hz : z ≠ 0) (N : Matrix (Fin 2) (Fin 2) F) (hN : N * N = 0) 
       simp [sub_mul, mul_add, hN]⟩
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=eq.2h3v.s8.51d0b73aeda8 from=translated src=- shape=dda21ddb vocab=863027f8
+-/
 @[scoped simp] theorem val_glOf (z : F) (hz : z ≠ 0) (N : Matrix (Fin 2) (Fin 2) F) (hN : N * N = 0) :
     ((glOf z hz N hN : GL (Fin 2) F) : Matrix (Fin 2) (Fin 2) F) = z • (1 + N) := rfl
 
+/--
+@isnad1 id=eq.1h3v.s9.7b6f5efe39cb from=translated src=- shape=5455e67f vocab=5999f700
+-/
 theorem charpoly_smul_one_add (z : F) (N : Matrix (Fin 2) (Fin 2) F) (hN : N * N = 0) :
     (z • (1 + N)).charpoly = (X - C z) ^ 2 := by
   obtain ⟨hd, hadbc⟩ := nil_rel N hN
@@ -141,6 +168,9 @@ theorem charpoly_smul_one_add (z : F) (N : Matrix (Fin 2) (Fin 2) F) (hN : N * N
   rw [Matrix.charpoly_fin_two, htr, hdet, map_mul, map_pow, show C (2 : F) = (2 : F[X]) from map_ofNat C 2]
   ring
 
+/--
+@isnad1 id=not.3h3v.s9.702ef3e155de from=translated src=- shape=c8dd4020 vocab=c1f0bbfa
+-/
 theorem smul_one_add_not_mem_range_scalar (z : F) (hz : z ≠ 0) (N : Matrix (Fin 2) (Fin 2) F)
     (hN : N * N = 0) (hN0 : N ≠ 0) : z • (1 + N) ∉ Set.range (Matrix.scalar (Fin 2)) := by
   rintro ⟨a, ha⟩
@@ -177,6 +207,9 @@ theorem eq_of_X_sub_C_sq_eq {z z' : F} (h : (X - C z) ^ 2 = (X - C z') ^ 2) : z 
   have h3 : z - z' = 0 := pow_eq_zero_iff (n := 2) (by norm_num) |>.mp h2
   linear_combination h3
 
+/--
+@isnad1 id=injectiv.0h1v.s8.6ae681b8aa4c from=translated src=- shape=d3643413 vocab=318ddd74
+-/
 theorem phi_injective : Function.Injective (phi (F := F)) := by
   rintro ⟨z, N, hN0, hN⟩ ⟨z', N', hN0', hN'⟩ h
   have hval : (z : F) • (1 + N) = (z' : F) • (1 + N') := by
@@ -194,6 +227,9 @@ theorem phi_injective : Function.Injective (phi (F := F)) := by
   subst this
   rfl
 
+/--
+@isnad1 id=surjecti.0h1v.s8.9194c8a90769 from=translated src=- shape=d3643413 vocab=12666e3d
+-/
 theorem phi_surjective : Function.Surjective (phi (F := F)) := by
   rintro ⟨g, hgc, z, hchar⟩
 
@@ -224,15 +260,24 @@ theorem phi_surjective : Function.Surjective (phi (F := F)) := by
   apply Units.ext
   simp [phi, hgN]
 
+/--
+@isnad1 id=bijectiv.0h1v.s8.d8451cbb8d9b from=translated src=- shape=d3643413 vocab=eea28c2e
+-/
 theorem phi_bijective : Function.Bijective (phi (F := F)) := ⟨phi_injective, phi_surjective⟩
 
 end Generic
 
+/--
+@isnad1 id=eq.0h1v.s8.27a838103738 from=translated src=- shape=fb4cfce0 vocab=07fbda10
+-/
 theorem card_nil (q : ℕ) [Fact q.Prime] :
     Nat.card {N : Matrix (Fin 2) (Fin 2) (ZMod q) // N ≠ 0 ∧ N * N = 0} = q ^ 2 - 1 := by
   rw [← Nat.card_eq_of_bijective _ nilOf_bijective, Nat.card_eq_fintype_card,
     Fintype.card_subtype_compl, Fintype.card_prod, ZMod.card, Fintype.card_subtype_eq, sq]
 
+/--
+@isnad1 id=eq.0h1v.s6.7322d86f5c21 from=translated src=- shape=ed31da93 vocab=2928254c
+-/
 theorem card_S (q : ℕ) [Fact q.Prime] : Nat.card (S (ZMod q)) = (q - 1) * (q ^ 2 - 1) := by
   rw [← Nat.card_eq_of_bijective _ phi_bijective, Nat.card_prod, card_nil, Nat.card_eq_fintype_card,
     ZMod.card_units]
@@ -240,6 +285,9 @@ theorem card_S (q : ℕ) [Fact q.Prime] : Nat.card (S (ZMod q)) = (q - 1) * (q ^
 end Ws23C2
 open scoped _root_.P2MW.S_CuspidalType_natCard_not_mem_center_and_charpoly_eq_X_sub_C_sq.Ws23C2
 
+/--
+@isnad1 id=eq.0h1v.s9.2fdfa194e8ba from=translated src=- shape=fbef39ab vocab=b6781a40
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime]
     :

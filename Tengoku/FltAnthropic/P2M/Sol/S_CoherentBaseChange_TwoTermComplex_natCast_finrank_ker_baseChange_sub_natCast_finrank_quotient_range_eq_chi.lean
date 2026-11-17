@@ -25,18 +25,27 @@ variable {R : Type u} [CommRing R] (G : CoherentBaseChange.TwoTermComplex.{u, v}
 
 noncomputable def rk : ℕ := Module.finrank K (LinearMap.range (G.d.baseChange K))
 
+/--
+@isnad1 id=eq.0h3v.s11.523b47cb9d0f from=translated src=- shape=c6a3ebe7 vocab=7a1f53cc
+-/
 theorem h0_add_rk :
     Module.finrank K (LinearMap.ker (G.d.baseChange K)) + rk G K =
       Module.finrank K (K ⊗[R] G.C0) := by
   have h := LinearMap.finrank_range_add_finrank_ker (G.d.baseChange K)
   unfold rk; omega
 
+/--
+@isnad1 id=eq.0h3v.s11.d0787791c35f from=translated src=- shape=57571614 vocab=5cd10710
+-/
 theorem rk_add_h1 :
     rk G K + Module.finrank K ((K ⊗[R] G.C1) ⧸ LinearMap.range (G.d.baseChange K)) =
       Module.finrank K (K ⊗[R] G.C1) := by
   have h := Submodule.finrank_quotient_add_finrank (LinearMap.range (G.d.baseChange K))
   unfold rk; omega
 
+/--
+@isnad1 id=eq.0h3v.s12.8032d0a32de4 from=translated src=- shape=f6e2675f vocab=bc460bf3
+-/
 theorem main :
     (Module.finrank K (LinearMap.ker (G.d.baseChange K)) : ℤ) -
       Module.finrank K ((K ⊗[R] G.C1) ⧸ LinearMap.range (G.d.baseChange K)) = G.chi := by
@@ -53,6 +62,9 @@ theorem main :
 
 end CoherentBaseChange.TwoTermComplex.ChiFieldAux
 
+/--
+@isnad1 id=eq.0h3v.s12.8032d0a32de4 from=translated src=- shape=f6e2675f vocab=bc460bf3
+-/
 theorem solution
     {R : Type u} [CommRing R] (G : CoherentBaseChange.TwoTermComplex.{u, v} R)
     (K : Type w) [Field K] [Algebra R K] :

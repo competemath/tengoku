@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped MatrixGroups in
 
+/--
+@isnad1 id=ex.4h2v.s12.00ba2176b800 from=translated src=- shape=cfc6fcba vocab=6dfc7e60
+-/
 theorem solution
     (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex]
     (hS₀ : ∀ j : ℤ, ModularGroup.S * ModularGroup.T ^ j ∉ Γ ∧ -(ModularGroup.S * ModularGroup.T ^ j) ∉ Γ)

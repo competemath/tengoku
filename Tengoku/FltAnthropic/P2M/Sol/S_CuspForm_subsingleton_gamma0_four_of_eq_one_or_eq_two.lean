@@ -29,11 +29,17 @@ open scoped Classical
 variable [SlashInvariantFormClass F 𝒢 k] [𝒢.IsFiniteRelIndex 𝒮ℒ]
 
 omit [𝒢.IsFiniteRelIndex 𝒮ℒ] in
+/--
+@isnad1 id=eq.0h5v.s11.1bfa8af26b3f from=translated src=- shape=8ff1d68b vocab=3462ed5a
+-/
 lemma quotientFunc_coe (f : F) (h : 𝒮ℒ) :
     quotientFunc f (h : 𝒬) = (f : ℍ → ℂ) ∣[k] h.val⁻¹ := rfl
 
 omit [𝒢.IsFiniteRelIndex 𝒮ℒ] in
 
+/--
+@isnad1 id=eq.1h2v.s14.42367c182b15 from=translated src=- shape=545b65f0 vocab=f0cf3b01
+-/
 lemma smul_coe_one_eq {g : 𝒮ℒ} (hg : (g : GL (Fin 2) ℝ) ∈ 𝒢) : g • ((1 : 𝒮ℒ) : 𝒬) = (1 : 𝒮ℒ) := by
   rw [MulAction.Quotient.smul_coe, smul_eq_mul, mul_one]
   exact QuotientGroup.eq.mpr (by simpa [Subgroup.mem_subgroupOf] using inv_mem hg)
@@ -44,12 +50,18 @@ def normCompl (f : F) : ℍ → ℂ :=
   letI := Fintype.ofFinite 𝒬
   ∏ q ∈ Finset.univ.erase ((1 : 𝒮ℒ) : 𝒬), quotientFunc f q
 
+/--
+@isnad1 id=eq.0h1v.s14.ae62b29b18ee from=translated src=- shape=34fae548 vocab=3445f0a3
+-/
 lemma card_univ_erase_one :
     letI := Fintype.ofFinite 𝒬
     (Finset.univ.erase ((1 : 𝒮ℒ) : 𝒬)).card = Nat.card 𝒬 - 1 := by
   letI := Fintype.ofFinite 𝒬
   rw [Finset.card_erase_of_mem (Finset.mem_univ _), Finset.card_univ, Nat.card_eq_fintype_card]
 
+/--
+@isnad1 id=eq.0h4v.s12.d37ee1630e30 from=translated src=- shape=728db54e vocab=774db818
+-/
 theorem coe_norm_eq_mul_normCompl [ModularFormClass F 𝒢 k] (f : F) :
     ⇑(ModularForm.norm 𝒮ℒ f) = (f : ℍ → ℂ) * normCompl 𝒢 f := by
   letI := Fintype.ofFinite 𝒬
@@ -57,6 +69,9 @@ theorem coe_norm_eq_mul_normCompl [ModularFormClass F 𝒢 k] (f : F) :
   rw [← Finset.mul_prod_erase _ _ (Finset.mem_univ ((1 : 𝒮ℒ) : 𝒬)), quotientFunc_coe]
   simp
 
+/--
+@isnad1 id=eq.2h5v.s11.79a102f0fb0a from=translated src=- shape=9b4bbc7a vocab=326bc41e
+-/
 theorem normCompl_slash (h𝒢 : 𝒢 ≤ 𝒮ℒ) (f : F) {γ : GL (Fin 2) ℝ} (hγ : γ ∈ 𝒢) :
     normCompl 𝒢 f ∣[k * ((Nat.card 𝒬 - 1 : ℕ) : ℤ)] γ = normCompl 𝒢 f := by
   letI := Fintype.ofFinite 𝒬
@@ -95,9 +110,15 @@ def normComplForm [𝒢.IsArithmetic] [ModularFormClass F 𝒢 k] (h𝒢 : 𝒢 
     simpa using ((Subgroup.IsArithmetic.isCusp_iff_isCusp_SL2Z 𝒢).mp h).of_isFiniteRelIndex_conj
       (𝒢 := 𝒢) r.prop
 
+/--
+@isnad1 id=eq.1h4v.s12.629b39a40765 from=translated src=- shape=8d23ac10 vocab=abcff1f1
+-/
 @[scoped simp] lemma coe_normComplForm [𝒢.IsArithmetic] [ModularFormClass F 𝒢 k] (h𝒢 : 𝒢 ≤ 𝒮ℒ) (f : F) :
     ⇑(normComplForm h𝒢 f) = normCompl 𝒢 f := rfl
 
+/--
+@isnad1 id=iszeroat.1h4v.s11.24d377015436 from=translated src=- shape=8102af54 vocab=7bbda810
+-/
 theorem isZeroAtImInfty_normCompl [𝒢.IsArithmetic] [CuspFormClass F 𝒢 k] (f : F)
     (hcard : 1 < Nat.card 𝒬) : IsZeroAtImInfty (normCompl 𝒢 f) := by
   letI := Fintype.ofFinite 𝒬
@@ -125,15 +146,27 @@ end generic
 
 section Gamma0
 
+/--
+@isnad1 id=mem.0h1v.s7.cdd8bd13907c from=translated src=- shape=fab0867b vocab=8624f481
+-/
 lemma T_mem_Gamma0 (N : ℕ) : ModularGroup.T ∈ Gamma0 N := by
   simp [Gamma0_mem, ModularGroup.coe_T]
 
+/--
+@isnad1 id=not.0h0v.s7.cdd9c0401585 from=translated src=- shape=d0d9d1f3 vocab=65d1aa3f
+-/
 lemma S_notMem_Gamma0_two : ModularGroup.S ∉ Gamma0 2 := by
   simp [Gamma0_mem, ModularGroup.coe_S]
 
+/--
+@isnad1 id=le.0h1v.s9.7d96d38150db from=translated src=- shape=9fbcccfe vocab=38dee8a6
+-/
 lemma Gamma0_le_SL (N : ℕ) : ((Gamma0 N : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)) ≤ 𝒮ℒ :=
   Subgroup.map_le_range _ _
 
+/--
+@isnad1 id=mem.0h1v.s7.42dd5cae402a from=translated src=- shape=eaec2ebd vocab=fbf1a2fe
+-/
 lemma one_mem_strictPeriods_Gamma0 (N : ℕ) :
     (1 : ℝ) ∈ ((Gamma0 N : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)).strictPeriods := by
   rw [Subgroup.strictPeriods_eq_zmultiples_one_of_T_mem (T_mem_Gamma0 N)]
@@ -143,6 +176,9 @@ def slq (Γ : Subgroup SL(2, ℤ)) (γ : SL(2, ℤ)) :
     𝒮ℒ ⧸ ((Γ : Subgroup (GL (Fin 2) ℝ)).subgroupOf 𝒮ℒ) :=
   ((mapGL ℝ : SL(2, ℤ) →* GL (Fin 2) ℝ).rangeRestrict γ : 𝒮ℒ)
 
+/--
+@isnad1 id=surjecti.0h1v.s11.404bc644656b from=translated src=- shape=61b0eeba vocab=94a9011e
+-/
 lemma slq_surjective (Γ : Subgroup SL(2, ℤ)) : Function.Surjective (slq Γ) := by
   intro q
   induction q using Quotient.inductionOn with
@@ -150,16 +186,25 @@ lemma slq_surjective (Γ : Subgroup SL(2, ℤ)) : Function.Surjective (slq Γ) :
     obtain ⟨γ, hγ⟩ := (mapGL ℝ : SL(2, ℤ) →* GL (Fin 2) ℝ).rangeRestrict_surjective r
     exact ⟨γ, by rw [slq, hγ]⟩
 
+/--
+@isnad1 id=iff.0h3v.s11.71f2f3ed08de from=translated src=- shape=4f0c15f0 vocab=263cd8eb
+-/
 lemma slq_eq_slq_iff (Γ : Subgroup SL(2, ℤ)) (ρ γ : SL(2, ℤ)) :
     slq Γ ρ = slq Γ γ ↔ ρ⁻¹ * γ ∈ Γ := by
   rw [slq, slq, QuotientGroup.eq, Subgroup.mem_subgroupOf, ← map_inv, ← map_mul,
     MonoidHom.coe_rangeRestrict]
   exact Subgroup.mem_map_iff_mem mapGL_injective
 
+/--
+@isnad1 id=eq.0h1v.s8.02f33bd19087 from=translated src=- shape=5024c0cc vocab=5ddf637a
+-/
 lemma S_mul_apply_one_zero (γ : SL(2, ℤ)) :
     (↑(ModularGroup.S * γ) : Matrix (Fin 2) (Fin 2) ℤ) 1 0 = (↑γ : Matrix (Fin 2) (Fin 2) ℤ) 0 0 := by
   simp [Matrix.SpecialLinearGroup.coe_mul, ModularGroup.coe_S, Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h1v.s9.488f83be0837 from=translated src=- shape=b268b995 vocab=1e1389f5
+-/
 lemma ST_mul_apply_one_zero (γ : SL(2, ℤ)) :
     (↑(ModularGroup.S * ModularGroup.T * γ) : Matrix (Fin 2) (Fin 2) ℤ) 1 0 =
       (↑γ : Matrix (Fin 2) (Fin 2) ℤ) 0 0 + (↑γ : Matrix (Fin 2) (Fin 2) ℤ) 1 0 := by
@@ -168,6 +213,9 @@ lemma ST_mul_apply_one_zero (γ : SL(2, ℤ)) :
 
 def rep : Fin 3 → SL(2, ℤ) := ![1, ModularGroup.S⁻¹, (ModularGroup.S * ModularGroup.T)⁻¹]
 
+/--
+@isnad1 id=surjecti.0h0v.s11.4fc18453fda2 from=translated src=- shape=7b49b0b1 vocab=092cedf2
+-/
 lemma slq_rep_surjective : Function.Surjective (fun i => slq (Gamma0 2) (rep i)) := by
   intro q
   obtain ⟨γ, rfl⟩ := slq_surjective (Gamma0 2) q
@@ -184,10 +232,16 @@ lemma slq_rep_surjective : Function.Surjective (fun i => slq (Gamma0 2) (rep i))
       ST_mul_apply_one_zero, Int.cast_add]
     exact hac
 
+/--
+@isnad1 id=le.0h0v.s11.e0870383934c from=translated src=- shape=65767518 vocab=ce281da7
+-/
 theorem card_quotient_Gamma0_two_le :
     Nat.card (𝒮ℒ ⧸ (((Gamma0 2 : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)).subgroupOf 𝒮ℒ)) ≤ 3 := by
   simpa using Nat.card_le_card_of_surjective _ slq_rep_surjective
 
+/--
+@isnad1 id=lt.0h0v.s11.7984f17a09e9 from=translated src=- shape=3fab62f3 vocab=ffc8b8b2
+-/
 theorem one_lt_card_quotient_Gamma0_two :
     1 < Nat.card (𝒮ℒ ⧸ (((Gamma0 2 : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)).subgroupOf 𝒮ℒ)) := by
   rw [Finite.one_lt_card_iff_nontrivial]
@@ -201,14 +255,23 @@ section WL1A
 open _root_.ModularForm open _root_.CuspForm open _root_.ModularForm.CuspForm open _root_.Complex open _root_.Matrix open _root_.ModularGroup
 open scoped Manifold
 
+/--
+@isnad1 id=eq.0h0v.s7.00e8e41872cb from=translated src=- shape=5c97c7a6 vocab=4e17ca46
+-/
 lemma gamma0_one_eq_top : Gamma0 1 = (⊤ : Subgroup SL(2, ℤ)) := by
   ext A
   simpa [Gamma0_mem] using Subsingleton.elim _ _
 
+/--
+@isnad1 id=eq.0h0v.s8.b9860d4bdb15 from=translated src=- shape=516c33d9 vocab=bdfa8f94
+-/
 lemma coe_gamma0_one :
     (Subgroup.map (mapGL ℝ) (Gamma0 1) : Subgroup (GL (Fin 2) ℝ)) = 𝒮ℒ := by
   rw [gamma0_one_eq_top, ← MonoidHom.range_eq_map]
 
+/--
+@isnad1 id=subsingl.0h0v.s7.bfb42a9a4028 from=translated src=- shape=dfa9b7bf vocab=ead6ced2
+-/
 lemma arm_one : Subsingleton (CuspForm (Gamma0 1) (4 : ℤ)) := by
   rw [show Subgroup.map (mapGL ℝ) (Gamma0 1) = 𝒮ℒ from coe_gamma0_one]
   exact rank_zero_iff.mp (CuspForm.rank_eq_zero_of_weight_lt_twelve (by norm_num))
@@ -217,20 +280,32 @@ variable (f : CuspForm (Gamma0 2) (4 : ℤ))
 
 local notation "g₂" => normComplForm (𝒢 := Subgroup.map (mapGL ℝ) (Gamma0 2)) (Gamma0_le_SL 2) f
 
+/--
+@isnad1 id=analytic.0h1v.s8.769755686308 from=translated src=- shape=5c78b72e vocab=b42ace6a
+-/
 lemma analyticAt_cuspFunction_f : AnalyticAt ℂ (cuspFunction 1 (⇑f)) 0 :=
   ModularFormClass.analyticAt_cuspFunction_zero f one_pos (one_mem_strictPeriods_Gamma0 2)
 
+/--
+@isnad1 id=analytic.0h1v.s9.1cf30d7f18fd from=translated src=- shape=e460f29d vocab=eb223a15
+-/
 lemma analyticAt_cuspFunction_gFn :
     AnalyticAt ℂ (cuspFunction 1 (normCompl (k := (4 : ℤ)) (Subgroup.map (mapGL ℝ) (Gamma0 2)) f)) 0 := by
   rw [← coe_normComplForm (Gamma0_le_SL 2) f]
   exact ModularFormClass.analyticAt_cuspFunction_zero g₂ one_pos (one_mem_strictPeriods_Gamma0 2)
 
+/--
+@isnad1 id=le.0h1v.s8.5d8919848732 from=translated src=- shape=2ca05e3e vocab=e6dbe2d5
+-/
 lemma order_pos_f : 1 ≤ (qExpansion 1 (⇑f)).order := by
   refine le_trans (by norm_num) (PowerSeries.nat_le_order _ 1 fun i hi => ?_)
   have h0 : i = 0 := by omega
   subst h0
   exact CuspFormClass.qExpansion_coeff_zero f one_pos (one_mem_strictPeriods_Gamma0 2)
 
+/--
+@isnad1 id=le.0h1v.s9.2a2a33858daa from=translated src=- shape=e0ea56f7 vocab=f81fdf48
+-/
 lemma order_pos_gFn :
     1 ≤ (qExpansion 1 (normCompl (k := (4 : ℤ)) (Subgroup.map (mapGL ℝ) (Gamma0 2)) f)).order := by
   refine le_trans (by norm_num) (PowerSeries.nat_le_order _ 1 fun i hi => ?_)
@@ -240,6 +315,9 @@ lemma order_pos_gFn :
   simp [(isZeroAtImInfty_normCompl f one_lt_card_quotient_Gamma0_two).cuspFunction_apply_zero
     one_pos]
 
+/--
+@isnad1 id=lt.0h1v.s12.27da41fca00f from=translated src=- shape=afda9c88 vocab=8871c167
+-/
 lemma order_qExpansion_norm :
     (1 : ℕ∞) < (qExpansion 1 ⇑(ModularForm.norm 𝒮ℒ f)).order := by
   rw [coe_norm_eq_mul_normCompl f,
@@ -250,6 +328,9 @@ lemma order_qExpansion_norm :
       (qExpansion 1 (normCompl (k := (4 : ℤ)) (Subgroup.map (mapGL ℝ) (Gamma0 2)) f)).order :=
     add_le_add (order_pos_f f) (order_pos_gFn f)
 
+/--
+@isnad1 id=eq.0h1v.s9.29c47cd4f20a from=translated src=- shape=571d3fe5 vocab=856228bc
+-/
 lemma f_eq_zero : f = 0 := by
   have hF : ModularForm.norm 𝒮ℒ f = 0 := by
     apply ModularForm.sturm_bound_levelOne
@@ -271,6 +352,9 @@ open scoped _root_.P2MW.S_CuspForm_subsingleton_gamma0_four_of_eq_one_or_eq_two.
 end
 open scoped _root_.P2MW.S_CuspForm_subsingleton_gamma0_four_of_eq_one_or_eq_two.RC2rCosets
 
+/--
+@isnad1 id=subsingl.1h1v.s7.994870849891 from=translated src=- shape=e5d17f11 vocab=ead6ced2
+-/
 theorem solution (N' : ℕ) (hN' : N' = 1 ∨ N' = 2) :
     Subsingleton (CuspForm (CongruenceSubgroup.Gamma0 N') (4 : ℤ)) := by
   rcases hN' with rfl | rfl

@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.Definitions.Def_CuspForm_IntegralStructure
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_CuspForm_hasIntegralBasis_iff_hasIntegralStructure_two.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 namespace P2MW.S_CuspForm_hasIntegralBasis_iff_hasIntegralStructure_two
 
+/--
+@isnad1 id=iff.0h1v.s3.246dccb21b3b from=translated src=- shape=d1296dc1 vocab=462c0e2f
+-/
 theorem solution (N : ℕ) : CuspForm.HasIntegralBasis N ↔ CuspForm.HasIntegralStructure N 2 := by
   have hset : CuspForm.qIntegralSet N =
       {f : CuspForm (CongruenceSubgroup.Gamma0 N) 2 | ∀ n : ℕ, ∃ m : ℤ, ModularFormClass.qCoeff f n = (m : ℂ)} := by

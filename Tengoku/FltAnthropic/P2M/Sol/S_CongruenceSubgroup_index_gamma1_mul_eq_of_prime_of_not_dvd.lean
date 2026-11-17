@@ -12,10 +12,16 @@ open scoped MatrixGroups
 
 namespace CuspKit
 
+/--
+@isnad1 id=eq.0h4v.s9.d2718224572c from=translated src=- shape=ca7fbf22 vocab=fc437038
+-/
 theorem map_apply (N : ℕ) (γ : SL(2, ℤ)) (i j : Fin 2) :
     (Matrix.SpecialLinearGroup.map (n := Fin 2) (Int.castRingHom (ZMod N)) γ) i j = ((γ i j : ℤ) : ZMod N) := by
   simp [Matrix.SpecialLinearGroup.map_apply_coe]
 
+/--
+@isnad1 id=iff.0h2v.s9.e1a4dd37d17b from=translated src=- shape=a31834f8 vocab=bd13a8eb
+-/
 theorem mem_map_gamma1_iff (N : ℕ) [NeZero N] (g : SL(2, ZMod N)) :
     g ∈ (CongruenceSubgroup.Gamma1 N).map (Matrix.SpecialLinearGroup.map (n := Fin 2) (Int.castRingHom (ZMod N))) ↔
       g 0 0 = 1 ∧ g 1 0 = 0 ∧ g 1 1 = 1 := by
@@ -39,6 +45,9 @@ section Unipotent
 
 variable {R : Type*} [CommRing R]
 
+/--
+@isnad1 id=eq.0h2v.s8.45dc2504c619 from=translated src=- shape=beb1d2c3 vocab=d104cdc8
+-/
 theorem det_eq (M : SL(2, R)) : M 0 0 * M 1 1 - M 0 1 * M 1 0 = 1 := by
   have := M.prop
   rw [Matrix.det_fin_two] at this
@@ -55,6 +64,9 @@ namespace CuspKit
 
 open Matrix
 
+/--
+@isnad1 id=iff.1h4v.s7.09972da904de from=translated src=- shape=cdac3ab1 vocab=01ceea95
+-/
 theorem intCast_eq_intCast_iff_of_coprime {M n : ℕ} (h : M.Coprime n) (k c : ℤ) :
     ((k : ZMod (M * n)) = c) ↔ ((k : ZMod M) = c ∧ (k : ZMod n) = c) := by
   have key : ∀ (m : ℕ) (x : ℤ), ((x : ZMod m) = 0) ↔ (m : ℤ) ∣ x := fun m x => ZMod.intCast_zmod_eq_zero_iff_dvd x m
@@ -72,6 +84,9 @@ variable (p : ℕ) [Fact p.Prime]
 local notation "Gp" => SL(2, ZMod p)
 local notation "rp" => (Matrix.SpecialLinearGroup.map (n := Fin 2) (Int.castRingHom (ZMod p)))
 
+/--
+@isnad1 id=eq.0h1v.s7.32f8cd61ee00 from=translated src=- shape=35383b52 vocab=0283ab0b
+-/
 theorem index_unipotent :
     (((CongruenceSubgroup.Gamma1 p).map rp : Subgroup Gp)).index = p ^ 2 - 1 := by
   classical
@@ -168,6 +183,9 @@ theorem index_unipotent :
     Fintype.card_subtype_compl, Fintype.card_pi, Finset.prod_const, Finset.card_univ, Fintype.card_fin, ZMod.card,
     Fintype.card_subtype_eq]
 
+/--
+@isnad1 id=le.1h2v.s7.ef395aae51bb from=translated src=- shape=93f9f454 vocab=7a9e0f36
+-/
 theorem gamma1_mul_le (M n : ℕ) [NeZero M] [NeZero n] (hMn : M.Coprime n) :
     CongruenceSubgroup.Gamma1 (M * n) ≤ CongruenceSubgroup.Gamma1 M := by
   intro γ hγ
@@ -182,6 +200,9 @@ end CuspKit
 open scoped _root_.P2MW.S_CongruenceSubgroup_index_gamma1_mul_eq_of_prime_of_not_dvd.CuspKit
 
 open CuspKit in
+/--
+@isnad1 id=eq.1h2v.s7.34c888b108fb from=translated src=- shape=e6c758cb vocab=37eafe2a
+-/
 theorem solution
     (M : ℕ) [NeZero M] (p : ℕ) [Fact p.Prime] (hpM : ¬ p ∣ M) :
     (CongruenceSubgroup.Gamma1 (M * p)).index = (p ^ 2 - 1) * (CongruenceSubgroup.Gamma1 M).index := by

@@ -8,6 +8,9 @@ namespace P2MW.S_Complex_volume_ball_inter_exists_sum_mul_eq_zero_le
 
 open MeasureTheory Metric
 
+/--
+@isnad1 id=le.2h5v.s9.fd2ac040be22 from=translated src=- shape=f85bcce1 vocab=059e85f5
+-/
 theorem solution {n : ℕ} (c : ℂ → Fin n → ℂ) (z₀ : ℂ) (K : Set ℂ)
     (hc : c z₀ ≠ 0) {δ : ℝ} (hδ : ∀ z ∈ K, ‖c z - c z₀‖ ≤ δ) :
     volume {b : Fin n → ℂ | b ∈ Metric.ball 0 1 ∧ ∃ z ∈ K, ∑ j, b j * c z j = 0}

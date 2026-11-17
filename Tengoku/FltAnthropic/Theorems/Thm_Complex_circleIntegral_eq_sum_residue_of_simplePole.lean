@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Complex_circleIntegral_eq_sum_residue_of_s
 
 open scoped Topology
 
+/--
+@isnad1 id=eq.4h5v.s8.00afb11db780 from=translated src=- shape=f1a28df2 vocab=43f815ba
+-/
 theorem Complex.circleIntegral_eq_sum_residue_of_simplePole
     {R : ℝ} {z₀ : ℂ} (hR : 0 < R) (h c : ℂ → ℂ) (Z : Finset ℂ)
     (hZ : ∀ a ∈ Z, a ∈ Metric.ball z₀ R)

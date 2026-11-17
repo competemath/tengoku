@@ -10,6 +10,9 @@ set_option autoImplicit false
 open CongruenceSubgroup
 open scoped MatrixGroups
 
+/--
+@isnad1 id=le.2h2v.s10.6fb770350bec from=translated src=- shape=004b1394 vocab=80695a32
+-/
 theorem CongruenceSubgroup.Gamma_div_le_gamma1_inf_Gamma_sup_zpowers
     (N p : ℕ) [NeZero N] (hp : p.Prime) (hpN : p ∣ N) :
     Gamma (N / p) ≤ (Gamma1 N ⊓ Gamma (N / p ^ N.factorization p)) ⊔

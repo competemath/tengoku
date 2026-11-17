@@ -16,34 +16,64 @@ def Low (x : ℤ) : SL(2, ℤ) := ⟨!![1, 0; x, 1], by rw [Matrix.det_fin_two_o
 
 def Up (x : ℤ) : SL(2, ℤ) := ⟨!![1, x; 0, 1], by rw [Matrix.det_fin_two_of]; ring⟩
 
+/--
+@isnad1 id=eq.0h1v.s8.17c4dc226f0f from=translated src=- shape=303c012e vocab=f9b199ad
+-/
 @[scoped simp] lemma coe_Low (x : ℤ) : (Low x : Matrix (Fin 2) (Fin 2) ℤ) = !![1, 0; x, 1] := rfl
+/--
+@isnad1 id=eq.0h1v.s8.fa2efdc8a1c3 from=translated src=- shape=459109f9 vocab=c4640748
+-/
 @[scoped simp] lemma coe_Up (x : ℤ) : (Up x : Matrix (Fin 2) (Fin 2) ℤ) = !![1, x; 0, 1] := rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.f244b9a657b1 from=translated src=- shape=31c04d1d vocab=f9b199ad
+-/
 lemma Low_apply (x : ℤ) (i j : Fin 2) : (Low x) i j = !![(1 : ℤ), 0; x, 1] i j := rfl
+/--
+@isnad1 id=eq.0h3v.s8.6a836cd1dd46 from=translated src=- shape=aa93e8d6 vocab=c4640748
+-/
 lemma Up_apply (x : ℤ) (i j : Fin 2) : (Up x) i j = !![(1 : ℤ), x; 0, 1] i j := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.e1624191e257 from=translated src=- shape=ff03d487 vocab=5e77b579
+-/
 lemma Low_add (x y : ℤ) : Low (x + y) = Low x * Low y := by
   ext i j
   rw [Matrix.SpecialLinearGroup.coe_mul, coe_Low, coe_Low, coe_Low]
   fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two] <;> ring
 
+/--
+@isnad1 id=eq.0h0v.s6.56de74aacb44 from=translated src=- shape=98680116 vocab=1dcb2878
+-/
 lemma Low_zero : Low 0 = 1 := by
   ext i j
   fin_cases i <;> fin_cases j <;> rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.33e0ae54b83f from=translated src=- shape=6097b448 vocab=e447de55
+-/
 lemma Low_neg (x : ℤ) : Low (-x) = (Low x)⁻¹ := by
   rw [eq_inv_iff_mul_eq_one, ← Low_add, neg_add_cancel, Low_zero]
 
+/--
+@isnad1 id=eq.0h2v.s7.d44a65999bca from=translated src=- shape=ffd9c15a vocab=1822f3eb
+-/
 lemma Low_natMul (x : ℤ) (n : ℕ) : Low (n * x) = Low x ^ n := by
   induction n with
   | zero => simp [Low_zero]
   | succ n ih => rw [pow_succ, ← ih, ← Low_add]; congr 1; push_cast; ring
 
+/--
+@isnad1 id=eq.0h2v.s7.94118525a497 from=translated src=- shape=4a3b38cd vocab=26e5b904
+-/
 lemma Low_intMul (x : ℤ) (n : ℤ) : Low (n * x) = Low x ^ n := by
   rcases Int.eq_nat_or_neg n with ⟨k, rfl | rfl⟩
   · rw [zpow_natCast, Low_natMul]
   · rw [_root_.zpow_neg, zpow_natCast, ← Low_natMul, ← Low_neg]; congr 1; ring
 
+/--
+@isnad1 id=eq.0h1v.s8.e9ff6237f766 from=translated src=- shape=28fbe220 vocab=f6d057eb
+-/
 lemma S_T_S_eq (n : ℤ) : ModularGroup.S * ModularGroup.T ^ n * ModularGroup.S⁻¹ = Low (-n) := by
   ext i j
   rw [ModularGroup.S_inv, Matrix.SpecialLinearGroup.coe_mul,
@@ -55,24 +85,36 @@ section entries
 
 variable (x : ℤ) (m : SL(2, ℤ))
 
+/--
+@isnad1 id=eq.0h4v.s10.dbc8a0a45264 from=translated src=- shape=19abce6e vocab=3690eea9
+-/
 lemma Up_mul_apply (i j : Fin 2) :
     (Up x * m) i j = !![m 0 0 + x * m 1 0, m 0 1 + x * m 1 1; m 1 0, m 1 1] i j := by
   show ((Up x * m : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) i j = _
   rw [Matrix.SpecialLinearGroup.coe_mul, coe_Up]
   fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h4v.s10.1014d8923c11 from=translated src=- shape=eff2df48 vocab=e0fd1b60
+-/
 lemma mul_Low_apply (i j : Fin 2) :
     (m * Low x) i j = !![m 0 0 + m 0 1 * x, m 0 1; m 1 0 + m 1 1 * x, m 1 1] i j := by
   show ((m * Low x : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) i j = _
   rw [Matrix.SpecialLinearGroup.coe_mul, coe_Low]
   fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h4v.s10.889489841da4 from=translated src=- shape=611e6ba9 vocab=3690eea9
+-/
 lemma mul_Up_apply (i j : Fin 2) :
     (m * Up x) i j = !![m 0 0, m 0 0 * x + m 0 1; m 1 0, m 1 0 * x + m 1 1] i j := by
   show ((m * Up x : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) i j = _
   rw [Matrix.SpecialLinearGroup.coe_mul, coe_Up]
   fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h4v.s10.9cc90b34c0f0 from=translated src=- shape=4bd3ac38 vocab=e0fd1b60
+-/
 lemma Low_mul_apply (i j : Fin 2) :
     (Low x * m) i j = !![m 0 0, m 0 1; m 1 0 + x * m 0 0, m 1 1 + x * m 0 1] i j := by
   show ((Low x * m : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) i j = _
@@ -81,9 +123,15 @@ lemma Low_mul_apply (i j : Fin 2) :
 
 end entries
 
+/--
+@isnad1 id=eq.0h1v.s8.df8917939df4 from=translated src=- shape=3d4d5f77 vocab=ec2cc098
+-/
 lemma det_eq (m : SL(2, ℤ)) : m 0 0 * m 1 1 - m 0 1 * m 1 0 = 1 := by
   have := m.det_coe; rwa [Matrix.det_fin_two] at this
 
+/--
+@isnad1 id=iff.0h2v.s9.d056d895aebf from=translated src=- shape=6e767701 vocab=2fd0db27
+-/
 lemma mem_Gamma_iff (n : ℕ) (γ : SL(2, ℤ)) :
     γ ∈ Gamma n ↔ (n : ℤ) ∣ γ 0 0 - 1 ∧ (n : ℤ) ∣ γ 0 1 ∧ (n : ℤ) ∣ γ 1 0 ∧ (n : ℤ) ∣ γ 1 1 - 1 := by
   rw [Gamma_mem]
@@ -91,27 +139,45 @@ lemma mem_Gamma_iff (n : ℕ) (γ : SL(2, ℤ)) :
     rw [← sub_eq_zero, ← Int.cast_one, ← Int.cast_sub, ZMod.intCast_zmod_eq_zero_iff_dvd]
   rw [h1, h1, ZMod.intCast_zmod_eq_zero_iff_dvd, ZMod.intCast_zmod_eq_zero_iff_dvd]
 
+/--
+@isnad1 id=le.1h2v.s7.d84c3560203b from=translated src=- shape=01686ef7 vocab=286ca1d7
+-/
 lemma Gamma_le_Gamma_of_dvd {A B : ℕ} (h : A ∣ B) : Gamma B ≤ Gamma A := by
   intro γ hγ
   rw [mem_Gamma_iff] at hγ ⊢
   have hAB : (A : ℤ) ∣ (B : ℤ) := Int.natCast_dvd_natCast.mpr h
   exact ⟨hAB.trans hγ.1, hAB.trans hγ.2.1, hAB.trans hγ.2.2.1, hAB.trans hγ.2.2.2⟩
 
+/--
+@isnad1 id=le.0h1v.s7.f6d5096ec62c from=translated src=- shape=7aabf878 vocab=7e0c4c21
+-/
 lemma Gamma_le_Gamma1 (n : ℕ) : Gamma n ≤ Gamma1 n := by
   intro γ hγ
   rw [Gamma_mem] at hγ
   rw [Gamma1_mem]
   exact ⟨hγ.1, hγ.2.2.2, hγ.2.2.1⟩
 
+/--
+@isnad1 id=mem.1h2v.s7.e89f3847f060 from=translated src=- shape=0878ecd0 vocab=6bb9b8f1
+-/
 lemma Low_mem_Gamma_of_dvd {n : ℕ} {x : ℤ} (h : (n : ℤ) ∣ x) : Low x ∈ Gamma n := by
   rw [mem_Gamma_iff]; simp [Low_apply, h]
 
+/--
+@isnad1 id=mem.1h2v.s7.4015e034a851 from=translated src=- shape=0878ecd0 vocab=385c40e7
+-/
 lemma Up_mem_Gamma_of_dvd {n : ℕ} {x : ℤ} (h : (n : ℤ) ∣ x) : Up x ∈ Gamma n := by
   rw [mem_Gamma_iff]; simp [Up_apply, h]
 
+/--
+@isnad1 id=mem.0h2v.s7.a445f62d2288 from=translated src=- shape=3ffbcb54 vocab=d1f2d44f
+-/
 lemma Up_mem_Gamma1 (n : ℕ) (x : ℤ) : Up x ∈ Gamma1 n := by
   rw [Gamma1_mem]; simp [Up_apply]
 
+/--
+@isnad1 id=mem.1h3v.s9.8c3fff61d2b8 from=translated src=- shape=627cb01e vocab=854e55ea
+-/
 lemma mul_inv_mem_Gamma {n : ℕ} {x y : SL(2, ℤ)} (h : ∀ i j, (n : ℤ) ∣ y i j - x i j) :
     x * y⁻¹ ∈ Gamma n := by
   have hxy : (Matrix.SpecialLinearGroup.map (Int.castRingHom (ZMod n)) x)
@@ -129,24 +195,39 @@ def G (N p : ℕ) : Subgroup SL(2, ℤ) :=
   (Gamma1 N ⊓ Gamma (N / p ^ N.factorization p)) ⊔
     Subgroup.zpowers (ModularGroup.S * ModularGroup.T ^ ((N / p : ℕ) : ℤ) * ModularGroup.S⁻¹)
 
+/--
+@isnad1 id=mem.0h3v.s7.7880bdd5d7cc from=translated src=- shape=107631ef vocab=c0e10b72
+-/
 lemma Low_mem_G (t : ℤ) : Low (t * ((N / p : ℕ) : ℤ)) ∈ G N p := by
   apply Subgroup.mem_sup_right
   rw [S_T_S_eq, show t * ((N / p : ℕ) : ℤ) = (-t) * (-((N / p : ℕ) : ℤ)) by ring, Low_intMul]
   exact Subgroup.zpow_mem_zpowers _ _
 
+/--
+@isnad1 id=mem.1h3v.s7.d83da94a42f2 from=translated src=- shape=74b484dc vocab=d6ed62d2
+-/
 lemma Low_mem_G_of_dvd {x : ℤ} (hx : (((N / p : ℕ) : ℤ)) ∣ x) : Low x ∈ G N p := by
   obtain ⟨t, rfl⟩ := hx
   rw [mul_comm]; exact Low_mem_G t
 
+/--
+@isnad1 id=mem.1h3v.s7.579dad98737d from=translated src=- shape=abdd61f6 vocab=32b2e1e3
+-/
 lemma Up_mem_G {x : ℤ} (hx : ((N / p ^ N.factorization p : ℕ) : ℤ) ∣ x) : Up x ∈ G N p :=
   Subgroup.mem_sup_left ⟨Up_mem_Gamma1 N x, Up_mem_Gamma_of_dvd hx⟩
 
+/--
+@isnad1 id=le.0h2v.s7.4f06693060e1 from=translated src=- shape=cd723e11 vocab=d2864c72
+-/
 lemma Gamma_le_G : Gamma N ≤ G N p := fun γ hγ =>
   Subgroup.mem_sup_left ⟨Gamma_le_Gamma1 N hγ,
     Gamma_le_Gamma_of_dvd (Nat.ordCompl_dvd N p) hγ⟩
 
 include hp hpN
 
+/--
+@isnad1 id=other.2h2v.s7.c5935f33ccaf from=translated src=- shape=ab860a1e vocab=13bd7700
+-/
 lemma setup :
     let q := p ^ N.factorization p
     let M := N / p ^ N.factorization p
@@ -164,6 +245,9 @@ lemma setup :
       rw [← pow_succ, Nat.sub_add_cancel he], ← mul_assoc, Nat.mul_div_cancel _ hp.pos]
   · exact (Nat.coprime_ordCompl hp hN).pow_left _
 
+/--
+@isnad1 id=mem.4h3v.s9.4b4896fa3891 from=translated src=- shape=6dd870f0 vocab=1bd44536
+-/
 lemma mem_G_of_not_dvd (m : SL(2, ℤ)) (hm : m ∈ Gamma (N / p)) (hd : ¬ (p : ℤ) ∣ m 1 1) :
     m ∈ G N p := by
   obtain ⟨hqM, hNp, hMN', hcop, hpM, hqN, hpq⟩ := setup hp hpN
@@ -354,6 +438,9 @@ lemma mem_G_of_not_dvd (m : SL(2, ℤ)) (hm : m ∈ Gamma (N / p)) (hd : ¬ (p :
   have := mul_mem (Gamma_le_G hmem) hPG
   rwa [inv_mul_cancel_right] at this
 
+/--
+@isnad1 id=le.2h2v.s7.5c04e76efdb6 from=translated src=- shape=31b1426f vocab=582e421d
+-/
 theorem main : Gamma (N / p) ≤ G N p := by
   intro m hm
   obtain ⟨hqM, hNp, hMN', hcop, hpM, hqN, hpq⟩ := setup hp hpN
@@ -398,6 +485,9 @@ end GammaGenSol
 open scoped _root_.P2MW.S_CongruenceSubgroup_Gamma_div_le_gamma1_inf_Gamma_sup_zpowers.GammaGenSol
 
 open CongruenceSubgroup in
+/--
+@isnad1 id=le.2h2v.s10.6fb770350bec from=translated src=- shape=004b1394 vocab=80695a32
+-/
 theorem solution
     (N p : ℕ) [NeZero N] (hp : p.Prime) (hpN : p ∣ N) :
     Gamma (N / p) ≤ (Gamma1 N ⊓ Gamma (N / p ^ N.factorization p)) ⊔

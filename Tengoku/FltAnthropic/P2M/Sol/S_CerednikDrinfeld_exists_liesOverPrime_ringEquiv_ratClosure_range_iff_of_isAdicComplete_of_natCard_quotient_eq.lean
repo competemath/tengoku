@@ -14,6 +14,9 @@ set_option autoImplicit false
 
 open IsDedekindDomain NumberField ValuationSubring
 
+/--
+@isnad1 id=ex.5h4v.s16.9d0c863e5988 from=translated src=- shape=8e1744bc vocab=3fbd1633
+-/
 theorem solution
     (r : ℕ) [Fact r.Prime]
     (𝒪 : Type) [CommRing 𝒪] [IsDomain 𝒪] [CharZero 𝒪] (hdvr : IsDiscreteValuationRing 𝒪)

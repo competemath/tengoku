@@ -64,6 +64,9 @@ local notation "Γ₁(" M ")" => ((Gamma1 M : Subgroup SL(2, ℤ)) : Subgroup (G
 
 def J (γ : SL(2, ℤ)) (τ : UpperHalfPlane) : ℂ := ((γ 1 0 : ℤ) : ℂ) * (τ : ℂ) + ((γ 1 1 : ℤ) : ℂ)
 
+/--
+@isnad1 id=ne.0h2v.s5.7ddf084e89f5 from=translated src=- shape=48e25eb1 vocab=9ad210d7
+-/
 theorem J_ne_zero (γ : SL(2, ℤ)) (τ : UpperHalfPlane) : J γ τ ≠ 0 := by
   intro h
   have him := congrArg Complex.im h
@@ -86,9 +89,15 @@ def twist (k : ℤ) (γ : SL(2, ℤ)) : (UpperHalfPlane → ℂ) →ₗ[ℂ] (Up
   map_add' F G := by funext τ; simp only [Pi.add_apply]; ring
   map_smul' c F := by funext τ; simp only [Pi.smul_apply, smul_eq_mul, RingHom.id_apply]; ring
 
+/--
+@isnad1 id=eq.0h4v.s8.ab78e89fa47c from=translated src=- shape=ca14b052 vocab=b4ce01de
+-/
 theorem twist_apply (γ : SL(2, ℤ)) (F : UpperHalfPlane → ℂ) (τ : UpperHalfPlane) :
     twist k γ F τ = (J γ τ ^ k)⁻¹ * F (γ • τ) := rfl
 
+/--
+@isnad1 id=eq.2h5v.s10.03225a70582f from=translated src=- shape=801faca4 vocab=70d16b6f
+-/
 theorem twist_coe_of_hasNebentypus {ψ : DirichletCharacter ℂ N} {g : CuspForm Γ₁(N) k}
     (hg : CuspForm.HasNebentypus ψ g) (γ : SL(2, ℤ)) (hγ : γ ∈ Gamma0 N) :
     twist k γ ⇑g = ψ ((γ 1 1 : ℤ) : ZMod N) • ⇑g := by
@@ -98,6 +107,9 @@ theorem twist_coe_of_hasNebentypus {ψ : DirichletCharacter ℂ N} {g : CuspForm
   change (J γ τ ^ k)⁻¹ * (ψ _ * (J γ τ ^ k * g τ)) = _
   field_simp
 
+/--
+@isnad1 id=ex.1h3v.s9.00f0f8f66dad from=translated src=- shape=b93c0471 vocab=c6c04166
+-/
 theorem exists_gamma0_apply_ne [NeZero N] {ψ ψ' : DirichletCharacter ℂ N} (h : ψ ≠ ψ') :
     ∃ γ : SL(2, ℤ), γ ∈ Gamma0 N ∧ ψ ((γ 1 1 : ℤ) : ZMod N) ≠ ψ' ((γ 1 1 : ℤ) : ZMod N) := by
   by_contra hall
@@ -116,11 +128,17 @@ theorem exists_gamma0_apply_ne [NeZero N] {ψ ψ' : DirichletCharacter ℂ N} (h
   have := hall γ hγ
   rwa [hγd] at this
 
+/--
+@isnad1 id=eq.0h5v.s10.927162dca751 from=translated src=- shape=178b3c4a vocab=b8264638
+-/
 theorem coe_sum {ι : Type*} (s : Finset ι) (g : ι → CuspForm Γ₁(N) k) :
     (⇑(∑ i ∈ s, g i) : UpperHalfPlane → ℂ) = ∑ i ∈ s, ⇑(g i) := by
   have := map_sum (FunLike.coeAddMonoidHom (CuspForm Γ₁(N) k) UpperHalfPlane ℂ) g s
   exact this
 
+/--
+@isnad1 id=eq.3h8v.s10.6b397df8a3a3 from=translated src=- shape=a1dc28e6 vocab=c3ae5ec9
+-/
 theorem main [NeZero N] [DecidableEq (DirichletCharacter ℂ N)] {ι : Type*} (s : Finset ι)
     (χ : ι → DirichletCharacter ℂ N) (g : ι → CuspForm Γ₁(N) k)
     (hg : ∀ i ∈ s, CuspForm.HasNebentypus (χ i) (g i))
@@ -177,6 +195,9 @@ end NebentypusDirectSum
 end
 
 open scoped MatrixGroups in
+/--
+@isnad1 id=eq.3h8v.s10.40ea1625e71a from=translated src=- shape=edc41859 vocab=c3ae5ec9
+-/
 theorem solution
     {N : ℕ} [NeZero N] {k : ℤ} [DecidableEq (DirichletCharacter ℂ N)] {ι : Type*} (s : Finset ι)
     (χ : ι → DirichletCharacter ℂ N) (g : ι → CuspForm (CongruenceSubgroup.Gamma1 N) k)

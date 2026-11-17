@@ -155,6 +155,9 @@ end NonSplit
 
 open scoped IsMulCommutative in
 
+/--
+@isnad1 id=ex.3h8v.s16.13c9ee1f3e59 from=translated src=- shape=1f056ffe vocab=5d7bf1b2
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪] [IsNoetherianRing 𝒪] [IsAdicComplete (maximalIdeal 𝒪) 𝒪]
     {V : Type} [AddCommGroup V] [Module 𝒪 V] [Module.Finite 𝒪 V]

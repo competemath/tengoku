@@ -13,6 +13,9 @@ open Complex Metric MeasureTheory
 
 variable {Φ G : ℂ → ℂ} {z₀ t₀ : ℂ} {r : ℝ}
 
+/--
+@isnad1 id=ex.3h4v.s7.c20d67bfcc76 from=translated src=- shape=300eb694 vocab=14f5b2a8
+-/
 theorem exists_pos_le_norm_sub (hr : 0 < r) (hΦ : ∀ z ∈ sphere z₀ r, AnalyticAt ℂ Φ z)
     (hne : ∀ z ∈ sphere z₀ r, Φ z ≠ t₀) :
     ∃ δ : ℝ, 0 < δ ∧ ∀ z ∈ sphere z₀ r, δ ≤ ‖Φ z - t₀‖ := by
@@ -23,10 +26,16 @@ theorem exists_pos_le_norm_sub (hr : 0 < r) (hΦ : ∀ z ∈ sphere z₀ r, Anal
   refine ⟨‖Φ x - t₀‖, norm_pos_iff.2 (sub_ne_zero.2 (hne x hx)), fun z hz => ?_⟩
   exact (isMinOn_iff.1 hmin) z hz
 
+/--
+@isnad1 id=le.1h3v.s6.63f79f0b865b from=translated src=- shape=fe78689d vocab=4603300a
+-/
 theorem norm_deriv_circleMap_le (hr : 0 < r) (θ : ℝ) : ‖deriv (circleMap z₀ r) θ‖ ≤ r := by
   rw [deriv_circleMap]
   simp [circleMap, abs_of_pos hr]
 
+/--
+@isnad1 id=eq.4h5v.s8.814ae2d8835c from=translated src=- shape=290eac95 vocab=5b189ffe
+-/
 theorem circleIntegral_mul_deriv_div_sq_eq (hr : 0 < r)
     (hΦ : ∀ z ∈ sphere z₀ r, AnalyticAt ℂ Φ z) (hG : ∀ z ∈ sphere z₀ r, AnalyticAt ℂ G z)
     (hne : ∀ z ∈ sphere z₀ r, Φ z ≠ t₀) :
@@ -66,6 +75,9 @@ theorem circleIntegral_mul_deriv_div_sq_eq (hr : 0 < r)
 end CircleLogIntegralLevel
 
 open CircleLogIntegralLevel Complex Metric MeasureTheory in
+/--
+@isnad1 id=hasderiv.4h5v.s8.f8a638895a6e from=translated src=- shape=570e13b4 vocab=85d7cc23
+-/
 theorem solution
     {Φ G : ℂ → ℂ} {z₀ t₀ : ℂ} {r : ℝ} (hr : 0 < r)
     (hΦ : ∀ z ∈ Metric.sphere z₀ r, AnalyticAt ℂ Φ z)
