@@ -21,7 +21,9 @@ open scoped Topology Classical MatrixGroups UpperHalfPlane
 namespace Singularity
 
 /-- Ordinary Ancona bounds all strip coordinates at once along an arbitrary
-approach to a nonzero finite endpoint.-/
+approach to a nonzero finite endpoint.
+@isnad1 id=ex.6h7v.s16.94fb4e21e053 from=translated src=- shape=c15cb160 vocab=386c4ffa
+-/
 theorem cocompact_strip_green_domination
     (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
     [CompactSpace (Quotient (MulAction.orbitRel Γ ℍ))]
@@ -51,7 +53,9 @@ theorem cocompact_strip_green_domination
     nlinarith only [hc]
 
 /-- The two fixed Green envelopes furnished by the strip comparison are
-square summable on the whole group.-/
+square summable on the whole group.
+@isnad1 id=and.1h5v.s12.591c78b149b2 from=translated src=- shape=7810ef96 vocab=1436428a
+-/
 theorem green_envelopes_square_summable {Γ : Type*} [Group Γ]
     [MeasurableSpace Γ] [MeasurableMul Γ] [MeasurableSingletonClass Γ]
     (s : Finset Γ) (μ : Γ → ℝ) (hgap : spectralRadius ℂ (rightMarkov s μ) < 1)

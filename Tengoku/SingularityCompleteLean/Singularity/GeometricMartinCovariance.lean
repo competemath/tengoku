@@ -19,7 +19,9 @@ open scoped Topology Classical MatrixGroups UpperHalfPlane
 namespace Singularity
 
 /-- Möbius transformations preserve finite-boundary convergence away from their
-pole. The denominator condition says precisely that the image is finite.-/
+pole. The denominator condition says precisely that the image is finite.
+@isnad1 id=tendsto.2h5v.s8.070ce7c5fd78 from=translated src=- shape=72508667 vocab=500087e7
+-/
 theorem real_boundary_smul_tendsto {α : Type*} {l : Filter α}
     (g : SL(2, ℝ)) (ξ : ℝ) (hg : g 1 0 * ξ + g 1 1 ≠ 0)
     (z : α → ℍ) (hz : Tendsto (fun n => (z n : ℂ)) l (𝓝 (ξ : ℂ))) :

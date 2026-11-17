@@ -19,7 +19,9 @@ open scoped ENNReal
 namespace Singularity
 
 /-- Restricting to a set where the Radon–Nikodym density is positive gives
-absolute continuity back toward the original measure.-/
+absolute continuity back toward the original measure.
+@isnad1 id=absolute.2h4v.s6.8e67ef3450d8 from=translated src=- shape=b4e7f00f vocab=834ca0ec
+-/
 theorem restrict_absolutelyContinuous_of_rnDeriv_pos {X : Type*} [MeasurableSpace X]
     (ν m : Measure X) [SigmaFinite ν] [SigmaFinite m]
     {E : Set X} (hE : MeasurableSet E) (hp : ∀ x ∈ E, 0 < ν.rnDeriv m x) :
@@ -35,7 +37,9 @@ theorem restrict_absolutelyContinuous_of_rnDeriv_pos {X : Type*} [MeasurableSpac
   simpa [ae_iff] using ht
 
 /-- Absolute continuity admits an invariant full-measure carrier on which the
-restricted reference and original measure have precisely the same null sets.-/
+restricted reference and original measure have precisely the same null sets.
+@isnad1 id=ex.2h4v.s7.da64fae34212 from=translated src=- shape=bd95646e vocab=f45fbe88
+-/
 theorem exists_invariant_equivalent_restriction
     {Γ X : Type*} [Group Γ] [Countable Γ] [MeasurableSpace X]
     [MulAction Γ X] [MeasurableConstSMul Γ X]

@@ -18,7 +18,9 @@ open scoped Topology Classical MatrixGroups UpperHalfPlane
 namespace Singularity
 
 /-- Two prescribed boundary points can simultaneously be placed in the real
-chart when the orbit of infinity is infinite.-/
+chart when the orbit of infinity is infinite.
+@isnad1 id=ex.1h3v.s12.988a7b4a8244 from=translated src=- shape=15a1c5b2 vocab=3966c77f
+-/
 theorem exists_common_finite_image_boundary (Γ : Subgroup SL(2, ℝ))
     (horbit : (MulAction.orbit Γ (∞ : OnePoint ℝ)).Infinite) (p q : OnePoint ℝ) :
     ∃ (g : Γ) (ξ η : ℝ), g • p = (ξ : OnePoint ℝ) ∧ g • q = (η : OnePoint ℝ) := by
@@ -56,7 +58,9 @@ variable (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
   (horbit : (MulAction.orbit Γ (∞ : OnePoint ℝ)).Infinite)
 
 include hmass in
-/-- Distinct compact geometric boundary points have distinct Martin points.-/
+/-- Distinct compact geometric boundary points have distinct Martin points.
+@isnad1 id=injectiv.5h3v.s16.47f442567929 from=translated src=- shape=4fa584a2 vocab=21312463
+-/
 theorem compactMartinPoint_injective :
     Function.Injective (compactMartinPoint Γ s μ hpos hgen hgap horbit) := by
   intro p q he
@@ -70,7 +74,9 @@ theorem compactMartinPoint_injective :
   rw [hp, hq, hξη]
 
 include hmass in
-/-- Every point of the actual abstract Martin boundary is geometric.-/
+/-- Every point of the actual abstract Martin boundary is geometric.
+@isnad1 id=surjecti.5h3v.s16.315bab98735d from=translated src=- shape=4fa584a2 vocab=9087a123
+-/
 theorem compactMartinPoint_surjective :
     Function.Surjective (compactMartinPoint Γ s μ hpos hgen hgap horbit) := by
   intro H
@@ -91,7 +97,9 @@ theorem compactMartinPoint_surjective :
     ((hlim x).comp hφ.tendsto_atTop)
 
 include hmass in
-/-- The actual compact geometric boundary map is a homeomorphism.-/
+/-- The actual compact geometric boundary map is a homeomorphism.
+@isnad1 id=ishomeom.5h3v.s16.9171a454f72f from=translated src=- shape=4fa584a2 vocab=eec25cb8
+-/
 theorem isHomeomorph_compactMartinPoint :
     IsHomeomorph (compactMartinPoint Γ s μ hpos hgen hgap horbit) :=
   isHomeomorph_iff_continuous_bijective.mpr

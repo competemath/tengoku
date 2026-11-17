@@ -17,7 +17,9 @@ open scoped Topology Classical MatrixGroups UpperHalfPlane
 namespace Singularity
 
 /-- Orbit approximations beyond x on a geodesic escape every fixed state and
-have triangle excess bounded uniformly at x.-/
+have triangle excess bounded uniformly at x.
+@isnad1 id=ex.0h1v.s13.4df45f45a09e from=translated src=- shape=ba3f7354 vocab=e2f7417d
+-/
 theorem cocompact_exists_beyond_sequence (Γ : Subgroup SL(2, ℝ))
     [CompactSpace (Quotient (MulAction.orbitRel Γ ℍ))] :
     ∃ D : ℝ, 0 < D ∧ ∀ x : Γ, ∃ y : ℕ → Γ,

@@ -17,7 +17,9 @@ open Set Filter MeasureTheory MeasureTheory.Measure
 
 namespace Singularity
 
-/-- Right invariance makes the measures of orbit preimages independent of the base point.-/
+/-- Right invariance makes the measures of orbit preimages independent of the base point.
+@isnad1 id=eq.0h6v.s7.51ce055360e0 from=translated src=- shape=38c3573e vocab=e1c527e9
+-/
 theorem orbit_preimage_measure_eq {G X : Type*} [Group G] [MeasurableSpace G]
     [MeasurableMul₂ G] [MeasurableInv G] [MulAction G X] [MulAction.IsPretransitive G X]
     (ν : Measure G) [ν.IsMulRightInvariant] (x y : X) (s : Set X) :
@@ -26,7 +28,9 @@ theorem orbit_preimage_measure_eq {G X : Type*} [Group G] [MeasurableSpace G]
   have h := measure_preimage_mul_right ν a ((fun g : G => g • x) ⁻¹' s)
   simpa only [preimage_preimage, Function.comp_def, mul_smul] using h.symm
 
-/-- A homogeneous orbit map detects precisely the null sets of an invariant measure.-/
+/-- A homogeneous orbit map detects precisely the null sets of an invariant measure.
+@isnad1 id=iff.1h6v.s8.3034eaf32247 from=translated src=- shape=b5fd1310 vocab=b47db1fd
+-/
 theorem orbit_preimage_null_iff {G X : Type*} [Group G] [MeasurableSpace G]
     [MeasurableMul₂ G] [MeasurableInv G] [MeasurableSpace X]
     [MulAction G X] [MulAction.IsPretransitive G X] [MeasurableSMul₂ G X]
@@ -59,7 +63,9 @@ theorem orbit_preimage_null_iff {G X : Type*} [Group G] [MeasurableSpace G]
       simpa only [ae_iff, not_not, Set.preimage] using hy
     exact (orbit_preimage_measure_eq ν x y s).trans hz
 
-/-- The homogeneous orbit pushforward and the invariant measure are mutually absolutely continuous.-/
+/-- The homogeneous orbit pushforward and the invariant measure are mutually absolutely continuous.
+@isnad1 id=and.0h5v.s8.1882f2333232 from=translated src=- shape=e10c6264 vocab=acfa9778
+-/
 theorem orbit_map_measureClass {G X : Type*} [Group G] [MeasurableSpace G]
     [MeasurableMul₂ G] [MeasurableInv G] [MeasurableSpace X]
     [MulAction G X] [MulAction.IsPretransitive G X] [MeasurableSMul₂ G X]
@@ -77,7 +83,9 @@ theorem orbit_map_measureClass {G X : Type*} [Group G] [MeasurableSpace G]
     rw [Measure.map_apply hm hs] at hzero
     exact (orbit_preimage_null_iff ν μ x hs).mp hzero
 
-/-- The same measure-class statement for the inverse orbit map and a left-invariant measure.-/
+/-- The same measure-class statement for the inverse orbit map and a left-invariant measure.
+@isnad1 id=and.0h5v.s8.19677dc3fd1b from=translated src=- shape=787ccd0b vocab=dc93fac1
+-/
 theorem inverse_orbit_map_measureClass {G X : Type*} [Group G] [MeasurableSpace G]
     [MeasurableMul₂ G] [MeasurableInv G] [MeasurableSpace X]
     [MulAction G X] [MulAction.IsPretransitive G X] [MeasurableSMul₂ G X]

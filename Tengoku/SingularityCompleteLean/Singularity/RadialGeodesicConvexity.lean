@@ -16,21 +16,27 @@ noncomputable section
 open scoped MatrixGroups UpperHalfPlane
 namespace Singularity
 
-/-- Squared norm of a real affine expression on the imaginary axis.-/
+/-- Squared norm of a real affine expression on the imaginary axis.
+@isnad1 id=eq.0h3v.s6.02964ddc2e0d from=translated src=- shape=8dca68c9 vocab=bf3b3f32
+-/
 theorem axis_real_affine_normSq (u v t : ℝ) :
     Complex.normSq ((u : ℂ) * (verticalHeightRay UpperHalfPlane.I t : ℂ) + (v : ℂ)) =
       u^2 * (Real.exp t)^2 + v^2 := by
   simp [Complex.normSq_apply, verticalHeightRay]
   ring
 
-/-- The denominator in the radius formula is strictly positive.-/
+/-- The denominator in the radius formula is strictly positive.
+@isnad1 id=lt.0h2v.s8.a5dabb35a1a0 from=translated src=- shape=377f8165 vocab=f7a2dc80
+-/
 theorem axis_mobius_radius_denominator_pos (g : SL(2, ℝ)) (t : ℝ) :
     0 < (g 1 0)^2 * (Real.exp t)^2 + (g 1 1)^2 := by
   have hh := Complex.normSq_pos.mpr (UpperHalfPlane.denom_ne_zero g (verticalHeightRay UpperHalfPlane.I t))
   change 0 < Complex.normSq ((g 1 0 : ℂ) * (verticalHeightRay UpperHalfPlane.I t : ℂ) + (g 1 1 : ℂ)) at hh
   rwa [axis_real_affine_normSq] at hh
 
-/-- Exact radius along any constructed hyperbolic axis.-/
+/-- Exact radius along any constructed hyperbolic axis.
+@isnad1 id=eq.0h2v.s9.056413cafa15 from=translated src=- shape=439b3f03 vocab=06ad871a
+-/
 theorem axis_mobius_normSq (g : SL(2, ℝ)) (t : ℝ) :
     Complex.normSq ((g • verticalHeightRay UpperHalfPlane.I t : ℍ) : ℂ) =
       ((g 0 0)^2 * (Real.exp t)^2 + (g 0 1)^2) /
@@ -38,14 +44,18 @@ theorem axis_mobius_normSq (g : SL(2, ℝ)) (t : ℝ) :
   rw [UpperHalfPlane.coe_specialLinearGroup_apply, Complex.normSq_div]
   simp only [Algebra.algebraMap_self, RingHom.id_apply, axis_real_affine_normSq]
 
-/-- A radial lower bound can be stated as a squared Euclidean-radius bound.-/
+/-- A radial lower bound can be stated as a squared Euclidean-radius bound.
+@isnad1 id=iff.0h2v.s5.4f7a7738160c from=translated src=- shape=36d57384 vocab=69dcd47f
+-/
 theorem axisRadialCoordinate_ge_iff_normSq (z : ℍ) (r : ℝ) :
     r ≤ axisRadialCoordinate z ↔ (Real.exp r)^2 ≤ Complex.normSq (z : ℂ) := by
   rw [axisRadialCoordinate_eq_log_norm, Complex.normSq_eq_norm_sq,
     sq_le_sq₀ (Real.exp_pos r).le (norm_nonneg _),
     Real.le_log_iff_exp_le (norm_pos_iff.mpr z.ne_zero)]
 
-/-- Every point of the axis segment obeys a common endpoint lower-radius bound.-/
+/-- Every point of the axis segment obeys a common endpoint lower-radius bound.
+@isnad1 id=le.4h5v.s9.3e1eb163b87c from=translated src=- shape=d32a2a49 vocab=44af3843
+-/
 theorem axisRadialCoordinate_segment_lower (g : SL(2, ℝ)) (r a b t : ℝ)
     (hat : a ≤ t) (htb : t ≤ b)
     (ha : r ≤ axisRadialCoordinate (g • verticalHeightRay UpperHalfPlane.I a))
@@ -68,7 +78,9 @@ theorem axisRadialCoordinate_segment_lower (g : SL(2, ℝ)) (r a b t : ℝ)
     nlinarith
 
 /-- Arbitrary endpoints above a radial level admit a constructed geodesic
-segment entirely above that same level, in any isometric chart.-/
+segment entirely above that same level, in any isometric chart.
+@isnad1 id=ex.2h4v.s9.f38d4deb082f from=translated src=- shape=a2ac4d8c vocab=d42f0957
+-/
 theorem exists_radially_deep_geodesic_line (q : SL(2, ℝ)) (z w : ℍ) (r : ℝ)
     (hz : r ≤ axisRadialCoordinate (q • z)) (hw : r ≤ axisRadialCoordinate (q • w)) :
     ∃ c : ℝ → ℍ, Isometry c ∧ c 0 = z ∧ c (dist z w) = w ∧

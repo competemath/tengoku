@@ -16,7 +16,9 @@ open scoped Topology Classical MatrixGroups UpperHalfPlane
 namespace Singularity
 
 /-- Minimality in the positive harmonic cone is preserved by the normalized
-Martin translation action.-/
+Martin translation action.
+@isnad1 id=ex.4h6v.s8.381dd6734fcf from=translated src=- shape=7dc083a1 vocab=7b21f21d
+-/
 theorem harmonic_minimal_martinTranslate {Γ : Type*} [Group Γ]
     (s : Finset Γ) (μ : Γ → ℝ) (H : Γ → ℝ) (hHp : ∀ x, 0 < H x)
     (hmin : ∀ f : Γ → ℝ, (∀ x, 0 ≤ f x ∧ f x ≤ H x) →

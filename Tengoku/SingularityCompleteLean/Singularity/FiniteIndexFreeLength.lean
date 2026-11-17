@@ -23,7 +23,9 @@ namespace Singularity
 variable {G α : Type*} [Group G]
 
 /-- A homomorphism from a finite-index subgroup to a free group has a uniform
-free-word norm bound in terms of the ambient finite-support word distance.-/
+free-word norm bound in terms of the ambient finite-support word distance.
+@isnad1 id=ex.1h5v.s9.a91e8bfbea7f from=translated src=- shape=083c6aad vocab=e7d2f423
+-/
 theorem finiteIndex_free_norm_word_bound (H : Subgroup G) [H.FiniteIndex]
     (φ : H →* FreeGroup α) (s : Finset G) (hgen : Submonoid.closure (s : Set G) = ⊤) :
     ∃ L : ℕ, 0 < L ∧ ∀ h : H, FreeGroup.norm (φ h) ≤ L * wordDistance s hgen 1 (h : G) := by
@@ -51,7 +53,9 @@ theorem finiteIndex_free_norm_word_bound (H : Subgroup G) [H.FiniteIndex]
   simpa only [hret, map_one, FreeGroup.norm_one, Nat.zero_add, wordDistance] using hb
 
 /-- Every nonidentity element of a finite-index free subgroup has linear
-word growth measured in the original ambient generating set.-/
+word growth measured in the original ambient generating set.
+@isnad1 id=ex.2h4v.s8.8a7171a8eb1f from=translated src=- shape=11d04bd4 vocab=6cb9efd9
+-/
 theorem finiteIndex_free_power_word_lower (H : Subgroup G) [H.FiniteIndex] [IsFreeGroup H]
     (s : Finset G) (hgen : Submonoid.closure (s : Set G) = ⊤) (h : H) (hh : h ≠ 1) :
     ∃ κ : ℝ, 0 < κ ∧ ∀ n : ℕ, κ * n ≤ (wordDistance s hgen 1 ((h : G) ^ n) : ℝ) := by
@@ -74,7 +78,9 @@ theorem finiteIndex_free_power_word_lower (H : Subgroup G) [H.FiniteIndex] [IsFr
   simpa only [div_eq_mul_inv, mul_comm] using hd
 
 /-- An infinite-order element has a positive power with linear word growth
-whenever the ambient group has a finite-index free subgroup.-/
+whenever the ambient group has a finite-index free subgroup.
+@isnad1 id=ex.2h4v.s7.b0ea5fd7c7b6 from=translated src=- shape=129bcb3a vocab=48ea5a92
+-/
 theorem exists_power_linear_word_growth_of_finiteIndex_free (H : Subgroup G)
     [H.FiniteIndex] [IsFreeGroup H]
     (s : Finset G) (hgen : Submonoid.closure (s : Set G) = ⊤)

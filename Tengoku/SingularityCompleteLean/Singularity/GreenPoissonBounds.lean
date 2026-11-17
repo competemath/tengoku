@@ -23,7 +23,9 @@ def GreenDistanceComparison (Γ : Subgroup SL(2, ℝ)) (s : Finset Γ) (μ : Γ 
     C⁻¹ * Real.exp (-dist (x • UpperHalfPlane.I) (y • UpperHalfPlane.I)) ≤ walkGreen s μ x y ∧
     walkGreen s μ x y ≤ C * Real.exp (-dist (x • UpperHalfPlane.I) (y • UpperHalfPlane.I))
 
-/-- A lower denominator estimate and upper numerator estimate give the distance difference.-/
+/-- A lower denominator estimate and upper numerator estimate give the distance difference.
+@isnad1 id=le.3h5v.s6.9fa890439aaa from=translated src=- shape=b0a6ab7b vocab=778a9b9f
+-/
 theorem quotient_le_exp_distance_difference {a b C p q : ℝ} (hC : 0 < C)
     (hb : C⁻¹ * Real.exp (-p) ≤ b) (ha : a ≤ C * Real.exp (-q)) :
     a / b ≤ C ^ 2 * Real.exp (p - q) := by
@@ -40,12 +42,16 @@ variable (Γ : Subgroup SL(2, ℝ)) (s : Finset Γ) (μ : Γ → ℝ) {C : ℝ}
   (hC : 0 < C) (hcmp : GreenDistanceComparison Γ s μ C)
 
 include hC hcmp in
-/-- The comparison gives strict positivity of all denominators used here.-/
+/-- The comparison gives strict positivity of all denominators used here.
+@isnad1 id=lt.2h6v.s10.3cdbee3a1665 from=translated src=- shape=7f317c87 vocab=fd8e461f
+-/
 theorem GreenDistanceComparison_positive (x y : Γ) : 0 < walkGreen s μ x y :=
   lt_of_lt_of_le (mul_pos (inv_pos.mpr hC) (Real.exp_pos _)) (hcmp x y).1
 
 include hC hcmp in
-/-- Uniform row bound near a finite-boundary ray, valid at every group vertex.-/
+/-- Uniform row bound near a finite-boundary ray, valid at every group vertex.
+@isnad1 id=le.4h9v.s12.68bf26ed9e82 from=translated src=- shape=ce5a0ccd vocab=897db9b4
+-/
 theorem greenDistance_row_poisson_bound (ξ : ℝ) {t D : ℝ} (ht : 0 ≤ t) (x g : Γ)
     (hx : dist (x • UpperHalfPlane.I) (finiteBoundaryRay ξ t) ≤ D) :
     walkGreen s μ x g / walkGreen s μ x 1 ≤
@@ -57,7 +63,9 @@ theorem greenDistance_row_poisson_bound (ξ : ℝ) {t D : ℝ} (ht : 0 ≤ t) (x
     (sq_nonneg C)).trans_eq (mul_assoc _ _ _).symm)
 
 include hC hcmp in
-/-- The same comparison bounds columns; symmetry of the random walk is unnecessary.-/
+/-- The same comparison bounds columns; symmetry of the random walk is unnecessary.
+@isnad1 id=le.4h9v.s12.6d0419e831d6 from=translated src=- shape=42dc4551 vocab=897db9b4
+-/
 theorem greenDistance_column_poisson_bound (ξ : ℝ) {t D : ℝ} (ht : 0 ≤ t) (y g : Γ)
     (hy : dist (y • UpperHalfPlane.I) (finiteBoundaryRay ξ t) ≤ D) :
     walkGreen s μ g y / walkGreen s μ 1 y ≤
@@ -71,7 +79,9 @@ theorem greenDistance_column_poisson_bound (ξ : ℝ) {t D : ℝ} (ht : 0 ≤ t)
     (sq_nonneg C)).trans_eq (mul_assoc _ _ _).symm)
 
 include hC hcmp in
-/-- Actual cyclic row quotients have a uniform exponential envelope.-/
+/-- Actual cyclic row quotients have a uniform exponential envelope.
+@isnad1 id=le.7h12v.s13.0af3416a6b59 from=translated src=- shape=29f31ec3 vocab=b0aebef9
+-/
 theorem greenDistance_row_orbit_bound (a b : Γ) {τ ξ : ℝ}
     (ha : (a : SL(2, ℝ)) = dilationMatrix τ) (hτ : 0 < τ) (hξ : ξ ≠ 0)
     {t D : ℝ} (ht : 0 ≤ t) (x : Γ)
@@ -86,7 +96,9 @@ theorem greenDistance_row_orbit_bound (a b : Γ) {τ ξ : ℝ}
       (mul_assoc _ _ _).symm)
 
 include hC hcmp in
-/-- Actual cyclic column quotients have the corresponding exponential envelope.-/
+/-- Actual cyclic column quotients have the corresponding exponential envelope.
+@isnad1 id=le.7h12v.s13.f30ba4f8beff from=translated src=- shape=276fc458 vocab=b0aebef9
+-/
 theorem greenDistance_column_orbit_bound (a b : Γ) {τ ξ : ℝ}
     (ha : (a : SL(2, ℝ)) = dilationMatrix τ) (hτ : 0 < τ) (hξ : ξ ≠ 0)
     {t D : ℝ} (ht : 0 ≤ t) (y : Γ)
@@ -101,7 +113,9 @@ theorem greenDistance_column_orbit_bound (a b : Γ) {τ ξ : ℝ}
       (mul_assoc _ _ _).symm)
 
 include hC hcmp in
-/-- Complex norms of the positive normalized Green entries are the real ratios.-/
+/-- Complex norms of the positive normalized Green entries are the real ratios.
+@isnad1 id=eq.2h8v.s11.b62b7667db09 from=translated src=- shape=3fdce211 vocab=e7763e01
+-/
 theorem greenDistance_complex_quotient_norm (x y u v : Γ) :
     ‖(walkGreen s μ x y : ℂ) / (walkGreen s μ u v : ℂ)‖ =
       walkGreen s μ x y / walkGreen s μ u v := by

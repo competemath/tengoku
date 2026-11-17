@@ -18,7 +18,9 @@ open scoped Classical
 
 namespace Singularity
 
-/-- A free group on at least two generators has no invariant mean.-/
+/-- A free group on at least two generators has no invariant mean.
+@isnad1 id=not.0h1v.s3.8e8cb7ce23f0 from=translated src=- shape=fba248a8 vocab=58a19fa3
+-/
 theorem freeGroup_no_invariantMean (α : Type*) [Nontrivial α] :
     ¬HasInvariantMean (FreeGroup α) := by
   classical
@@ -52,7 +54,9 @@ theorem freeGroup_no_invariantMean (α : Type*) [Nontrivial α] :
   change 1 ≤ m C + m D at hb
   linarith
 
-/-- A group containing a free group on two generators is nonamenable.-/
+/-- A group containing a free group on two generators is nonamenable.
+@isnad1 id=not.1h2v.s6.8161ada2dc0b from=translated src=- shape=ad36415b vocab=6764ba4e
+-/
 theorem no_invariantMean_of_free_subgroup {G : Type*} [Group G]
     (j : FreeGroup Bool →* G) (hj : Function.Injective j) : ¬HasInvariantMean G :=
   fun hm => freeGroup_no_invariantMean Bool (hasInvariantMean_of_injective j hj hm)

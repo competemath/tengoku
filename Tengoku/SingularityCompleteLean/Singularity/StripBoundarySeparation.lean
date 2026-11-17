@@ -17,7 +17,9 @@ open scoped Topology UpperHalfPlane
 namespace Singularity
 
 /-- The interior-to-boundary Cayley difference has the same explicit formula
-as the two-interior-point difference.-/
+as the two-interior-point difference.
+@isnad1 id=eq.0h2v.s6.4a7529db1254 from=translated src=- shape=ee1a148e vocab=2f61d752
+-/
 theorem halfPlaneCayley_sub_realBoundary (z : ℍ) (ξ : ℝ) :
     halfPlaneCayley z - realBoundaryCayley ξ =
       (2 * Complex.I) * ((z : ℂ) - (ξ : ℂ)) /
@@ -27,7 +29,9 @@ theorem halfPlaneCayley_sub_realBoundary (z : ℍ) (ξ : ℝ) :
   ring
 
 /-- A transverse finite endpoint has a positive uniform disk distance from
-all points of a fixed axis strip.-/
+all points of a fixed axis strip.
+@isnad1 id=ex.2h2v.s6.8564ee4dd61e from=translated src=- shape=ea7f3577 vocab=c7bd8ed3
+-/
 theorem axisRatioStrip_cayley_separation (R : ℝ) (hR : 0 ≤ R) (ξ : ℝ) (hξ : ξ ≠ 0) :
     ∃ δ : ℝ, 0 < δ ∧ ∀ z ∈ axisRatioStrip R,
       δ ≤ dist (halfPlaneCayley z) (realBoundaryCayley ξ) := by
@@ -68,7 +72,9 @@ theorem axisRatioStrip_cayley_separation (R : ℝ) (hR : 0 ≤ R) (ξ : ℝ) (h�
   nlinarith [mul_le_mul_of_nonneg_right hh hB.le]
 
 /-- Any approach to a transverse finite endpoint is eventually uniformly
-separated from the whole strip, with one bound for all its points.-/
+separated from the whole strip, with one bound for all its points.
+@isnad1 id=ex.3h5v.s6.9c1574be0ee8 from=translated src=- shape=4920f58e vocab=fc90ccea
+-/
 theorem eventually_cayley_separated_from_strip {ι : Type*} {l : Filter ι}
     (R : ℝ) (hR : 0 ≤ R) (ξ : ℝ) (hξ : ξ ≠ 0) (x : ι → ℍ)
     (hx : Tendsto (fun n => halfPlaneCayley (x n)) l (𝓝 (realBoundaryCayley ξ))) :

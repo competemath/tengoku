@@ -18,7 +18,9 @@ open scoped Classical Topology ENNReal
 namespace Singularity
 
 /-- A finite measure dominated by a constant times Lebesgue measure gives
-vanishing mass to a rescaled density-zero set.-/
+vanishing mass to a rescaled density-zero set.
+@isnad1 id=tendsto.3h4v.s7.815c3b121168 from=translated src=- shape=05f4f5f4 vocab=89322dad
+-/
 theorem boundedDensity_rescaled_density_zero (ν : Measure ℝ) [IsFiniteMeasure ν]
     (c : ℝ≥0∞) (hc : c ≠ ⊤) (hdom : ν ≤ c • volume) (S : Set ℝ) (x : ℝ)
     (hdensity : Tendsto (fun r : ℝ => volume (S ∩ closedBall x r) / volume (closedBall x r))
@@ -51,7 +53,9 @@ theorem boundedDensity_rescaled_density_zero (ν : Measure ℝ) [IsFiniteMeasure
     _ ≤ ε / 2 + ε / 2 := add_le_add hb hRtail
     _ = ε := ENNReal.add_halves ε
 
-/-- At a density-one point, the complement has vanishing rescaled mass.-/
+/-- At a density-one point, the complement has vanishing rescaled mass.
+@isnad1 id=tendsto.4h4v.s8.b1763e941d18 from=translated src=- shape=aa23f15f vocab=7fc1a4cc
+-/
 theorem boundedDensity_rescaled_compl_of_density_one (ν : Measure ℝ) [IsFiniteMeasure ν]
     (c : ℝ≥0∞) (hc : c ≠ ⊤) (hdom : ν ≤ c • volume)
     (S : Set ℝ) (hS : MeasurableSet S) (x : ℝ)

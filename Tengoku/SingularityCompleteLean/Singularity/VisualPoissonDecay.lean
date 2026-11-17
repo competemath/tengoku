@@ -16,7 +16,9 @@ open scoped MatrixGroups UpperHalfPlane
 
 namespace Singularity
 
-/-- A scalar estimate for the two tails of a dilated Poisson expression.-/
+/-- A scalar estimate for the two tails of a dilated Poisson expression.
+@isnad1 id=le.1h2v.s6.16362996da49 from=translated src=- shape=b2e3bd3b vocab=8989a924
+-/
 theorem exp_scaled_ratio_decay {ξ : ℝ} (hξ : ξ ≠ 0) (t : ℝ) :
     Real.exp (-t) / (1 + (Real.exp (-t) * ξ) ^ 2) ≤
       (1 + (ξ⁻¹) ^ 2) * Real.exp (-|t|) := by
@@ -38,12 +40,17 @@ theorem exp_scaled_ratio_decay {ξ : ℝ} (hξ : ξ ≠ 0) (t : ℝ) :
 def visualPoissonEnvelope (z : ℍ) (ξ : ℝ) : ℝ :=
   (Real.pi * (1 + ξ ^ 2)) * poissonEnvelopeConstant z.re z.im * (1 + (ξ⁻¹) ^ 2)
 
+/--
+@isnad1 id=lt.0h2v.s4.acc8c1d205fd from=translated src=- shape=787c1379 vocab=5d049b53
+-/
 theorem visualPoissonEnvelope_pos (z : ℍ) (ξ : ℝ) : 0 < visualPoissonEnvelope z ξ := by
   unfold visualPoissonEnvelope
   have hc := poissonEnvelopeConstant_pos z.re z.im_pos
   positivity
 
-/-- The visual kernel decays in both directions along the full dilation subgroup.-/
+/-- The visual kernel decays in both directions along the full dilation subgroup.
+@isnad1 id=le.1h3v.s7.1875928ab485 from=translated src=- shape=11d05c86 vocab=46bb101e
+-/
 theorem visualPoisson_dilation_decay (z : ℍ) {ξ : ℝ} (hξ : ξ ≠ 0) (t : ℝ) :
     visualPoisson (dilationMatrix t • z) ξ ≤ visualPoissonEnvelope z ξ * Real.exp (-|t|) := by
   rw [visualPoisson_eq_density, dilationMatrix_smul_re, dilationMatrix_smul_im,
@@ -66,7 +73,9 @@ theorem visualPoisson_dilation_decay (z : ℍ) {ξ : ℝ} (hξ : ξ ≠ 0) (t : 
       unfold visualPoissonEnvelope
       ring
 
-/-- The decay rate on integer orbits is exactly the positive dilation parameter.-/
+/-- The decay rate on integer orbits is exactly the positive dilation parameter.
+@isnad1 id=le.2h4v.s8.4d5136b6f705 from=translated src=- shape=28e460cc vocab=752f0224
+-/
 theorem visualPoisson_zpow_decay (z : ℍ) {ξ τ : ℝ} (hξ : ξ ≠ 0) (hτ : 0 < τ) (n : ℤ) :
     visualPoisson (dilationMatrix τ ^ n • z) ξ ≤
       visualPoissonEnvelope z ξ * Real.exp (-τ * |(n : ℝ)|) := by
@@ -76,7 +85,9 @@ theorem visualPoisson_zpow_decay (z : ℍ) {ξ τ : ℝ} (hξ : ξ ≠ 0) (hτ :
   have he : -(|(n : ℝ)| * τ) = -τ * |(n : ℝ)| := by ring
   rwa [he] at h
 
-/-- The actual visual kernels, not just their envelopes, are square-summable.-/
+/-- The actual visual kernels, not just their envelopes, are square-summable.
+@isnad1 id=summable.2h4v.s8.19199f3adeca from=translated src=- shape=37dbae0e vocab=1876e6ea
+-/
 theorem summable_visualPoisson_orbits_sq {J : Type*} [Fintype J] (z : J → ℍ)
     {ξ τ : ℝ} (hξ : ξ ≠ 0) (hτ : 0 < τ) :
     Summable (fun p : ℤ × J => (visualPoisson (dilationMatrix τ ^ p.1 • z p.2) ξ) ^ 2) := by

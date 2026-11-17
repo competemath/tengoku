@@ -18,7 +18,9 @@ open scoped Topology Classical MatrixGroups UpperHalfPlane
 namespace Singularity
 
 /-- A sequence approaching a real boundary coordinate eventually avoids every
-fixed orbit vertex.-/
+fixed orbit vertex.
+@isnad1 id=eventual.1h6v.s11.615a5d3deaf7 from=translated src=- shape=c245c263 vocab=251c9372
+-/
 theorem real_boundary_approach_eventually_ne {α : Type*} {l : Filter α}
     (Γ : Subgroup SL(2, ℝ)) (ξ : ℝ) (y : α → Γ)
     (hy : Tendsto (fun n => ((y n • UpperHalfPlane.I : ℍ) : ℂ)) l (𝓝 (ξ : ℂ))) (g : Γ) :
@@ -38,7 +40,9 @@ variable (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
 
 include hpos hmass hgen hgap in
 /-- Every pointwise Martin limit obtained by an arbitrary approach to ξ has
-uniform eventual reverse Green comparison along the chosen ray to ξ.-/
+uniform eventual reverse Green comparison along the chosen ray to ξ.
+@isnad1 id=ex.4h3v.s16.6a0ee410cef4 from=translated src=- shape=3dc31805 vocab=4fc33401
+-/
 theorem real_boundary_martin_eventual_green_comparison :
     ∃ C : ℝ, 0 < C ∧ ∀ (ξ : ℝ) (y : ℕ → Γ) (J : Γ → ℝ),
       Tendsto (fun k => ((y k • UpperHalfPlane.I : ℍ) : ℂ)) atTop (𝓝 (ξ : ℂ)) →
@@ -69,7 +73,9 @@ theorem real_boundary_martin_eventual_green_comparison :
 
 include hpos hmass hgen hgap in
 /-- Any normalized harmonic function with the proved eventual reverse Green
-comparison is dominated everywhere by a fixed multiple of the ray limit.-/
+comparison is dominated everywhere by a fixed multiple of the ray limit.
+@isnad1 id=ex.10h7v.s16.5029f96e5342 from=translated src=- shape=07ea0465 vocab=cf690472
+-/
 theorem harmonic_dominated_by_ray_of_eventual_comparison {ξ : ℝ} {H J : Γ → ℝ}
     (hH : H ∈ rayMartinCluster Γ s μ ξ) (hJ1 : J 1 = 1) (hJp : ∀ x, 0 ≤ J x)
     (hJh : ∀ x, ∑ g ∈ s, μ g * J (x * g) = J x) (C : ℝ) (hC : 0 < C)

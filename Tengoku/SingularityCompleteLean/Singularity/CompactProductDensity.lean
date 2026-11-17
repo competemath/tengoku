@@ -20,7 +20,9 @@ open MeasureTheory Filter Set
 
 namespace Singularity
 
-/-- A positive continuous section has positive lower and finite upper bounds on a compact set avoiding its anchor.-/
+/-- A positive continuous section has positive lower and finite upper bounds on a compact set avoiding its anchor.
+@isnad1 id=ex.6h5v.s7.2c7d6564a34d from=translated src=- shape=01148744 vocab=c5d5ade3
+-/
 theorem compact_positive_section_bounds {X : Type*} [TopologicalSpace X]
     (H : X × X → ℝ)
     (hH : ContinuousOn H {p | p.1 ≠ p.2})
@@ -37,7 +39,9 @@ theorem compact_positive_section_bounds {X : Type*} [TopologicalSpace X]
   · exact div_pos (hp u y (fun h => hy (h ▸ hu))) hd
   · exact div_pos (hp v y (fun h => hy (h ▸ hv))) hd
 
-/-- A product density continuous and positive off the diagonal forces uniform a.e. bounds on its first factor.-/
+/-- A product density continuous and positive off the diagonal forces uniform a.e. bounds on its first factor.
+@isnad1 id=ex.4h5v.s7.17a14449c400 from=translated src=- shape=2bbe3948 vocab=645a0961
+-/
 theorem compact_product_density_first_bounds {X : Type*}
     [TopologicalSpace X] [T2Space X] [CompactSpace X]
     [MeasurableSpace X] (m : Measure X) [IsProbabilityMeasure m] [NullSingletonClass m]
@@ -69,7 +73,9 @@ theorem compact_product_density_first_bounds {X : Type*}
     rw [hxf]
     exact ⟨(min_le_left _ _).trans (hab x hx).1, (hab x hx).2.trans (le_max_left _ _)⟩
 
-/-- Both factors admit common positive lower and finite upper bounds.-/
+/-- Both factors admit common positive lower and finite upper bounds.
+@isnad1 id=ex.4h5v.s8.4a691863f4f3 from=translated src=- shape=dc1ae841 vocab=645a0961
+-/
 theorem compact_product_density_bounds {X : Type*}
     [TopologicalSpace X] [T2Space X] [CompactSpace X]
     [MeasurableSpace X] (m : Measure X) [IsProbabilityMeasure m] [NullSingletonClass m]

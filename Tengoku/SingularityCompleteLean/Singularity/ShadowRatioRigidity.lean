@@ -19,7 +19,9 @@ open scoped ENNReal Topology
 namespace Singularity
 
 /-- A positive shadow-mass ratio limit supplies the bounded-magnitude sequence
-used in the density-rigidity argument. No global density bound is assumed.-/
+used in the density-rigidity argument. No global density bound is assumed.
+@isnad1 id=ex.6h9v.s8.51b5a89733e5 from=translated src=- shape=1e89e69a vocab=2e2ed16c
+-/
 theorem bounded_magnitude_difference_of_shadow_ratio_limit {B : Type*} [MeasurableSpace B]
     (ν m : Measure B) [IsFiniteMeasure ν] [IsFiniteMeasure m]
     (S : ℕ → Set B) (Dν Dm : ℕ → ℝ) (Cν Cm : ℝ)

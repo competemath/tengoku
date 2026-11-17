@@ -18,7 +18,9 @@ open scoped Topology
 
 namespace Singularity
 
-/-- Contraction of conjugates forces a fixed vector for a strongly continuous isometric action.-/
+/-- Contraction of conjugates forces a fixed vector for a strongly continuous isometric action.
+@isnad1 id=eq.3h7v.s8.a502afa0dd89 from=translated src=- shape=e077e3ee vocab=7960de28
+-/
 theorem fixed_of_conjugates_tendsto_one {G X ι : Type*} [Group G] [TopologicalSpace G]
     [MetricSpace X] [MulAction G X] [IsIsometricSMul G X]
     {l : Filter ι} [l.NeBot] (a : ι → G) (g : G) (v : X)
@@ -36,7 +38,9 @@ theorem fixed_of_conjugates_tendsto_one {G X ι : Type*} [Group G] [TopologicalS
   simp only [Function.comp_def, one_smul, hd, dist_self] at ht
   exact dist_eq_zero.mp (tendsto_nhds_unique tendsto_const_nhds ht)
 
-/-- Fixing one group element implies fixing every positive and negative integral power.-/
+/-- Fixing one group element implies fixing every positive and negative integral power.
+@isnad1 id=eq.1h5v.s6.7d9460433a68 from=translated src=- shape=b87e1dcb vocab=7f092c9e
+-/
 theorem fixed_zpow_of_fixed {G X : Type*} [Group G] [MulAction G X]
     (g : G) (v : X) (hfix : g • v = v) (n : ℤ) : g ^ n • v = v :=
   MulAction.mem_fixedBy_zpow hfix n

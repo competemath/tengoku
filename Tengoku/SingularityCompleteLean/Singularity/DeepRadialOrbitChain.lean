@@ -16,7 +16,9 @@ open scoped Classical MatrixGroups UpperHalfPlane
 namespace Singularity
 
 /-- Short orbit chains join all endpoints above a radial level, losing at most
-the covering radius in depth and retaining the prescribed endpoint vertices.-/
+the covering radius in depth and retaining the prescribed endpoint vertices.
+@isnad1 id=ex.4h6v.s14.866624f758e3 from=translated src=- shape=b494a441 vocab=7bfb050c
+-/
 theorem deep_radial_orbit_chain_of_cover (Γ : Subgroup SL(2, ℝ)) (E : ℝ) (hE : 0 ≤ E)
     (hcover : ∀ z : ℍ, ∃ g : Γ, dist (g • UpperHalfPlane.I) z ≤ E)
     (q : SL(2, ℝ)) (r : ℝ) (x y : Γ)

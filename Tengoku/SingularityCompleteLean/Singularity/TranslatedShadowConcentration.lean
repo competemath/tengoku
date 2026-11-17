@@ -22,7 +22,9 @@ variable {Γ B : Type*} [Group Γ] [MeasurableSpace B] [MulAction Γ B]
 
 include hq
 
-/-- A quantitative relative-error bound using a positive inverse-shadow mass.-/
+/-- A quantitative relative-error bound using a positive inverse-shadow mass.
+@isnad1 id=le.6h9v.s8.ed952a26e7b3 from=translated src=- shape=d3a732af vocab=1e8c893a
+-/
 theorem relative_shadow_error_le_translated_complement (g : Γ) {S E : Set B}
     (hS : MeasurableSet S) (hE : MeasurableSet E) (D C : ℝ) {c : ℝ} (hc : 0 < c)
     (hmass : c ≤ (ν ((fun ξ : B => g • ξ) ⁻¹' S)).toReal)
@@ -60,7 +62,9 @@ theorem relative_shadow_error_le_translated_complement (g : Γ) {S E : Set B}
     _ ≤ _ := mul_le_mul_of_nonneg_left hlc (by positivity)
 
 /-- Uniform inverse mass and cocycle control give relative concentration in
-shadows whenever translated measures concentrate on E.-/
+shadows whenever translated measures concentrate on E.
+@isnad1 id=tendsto.7h9v.s8.feb0c76e56e3 from=translated src=- shape=01f04e9e vocab=67a12707
+-/
 theorem relative_shadow_error_tendsto_zero_of_translated_concentration
     (g : ℕ → Γ) (S : ℕ → Set B) {E : Set B}
     (hS : ∀ n, MeasurableSet (S n)) (hE : MeasurableSet E) (D : ℕ → ℝ)

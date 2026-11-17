@@ -18,7 +18,9 @@ open MeasureTheory Set Filter
 open scoped ENNReal Topology
 namespace Singularity
 
-/-- A relative error at most one half puts at least half the mass in E.-/
+/-- A relative error at most one half puts at least half the mass in E.
+@isnad1 id=le.3h4v.s7.070e531cfc68 from=translated src=- shape=aa8c885b vocab=98e330ca
+-/
 theorem measureReal_le_twice_inter_of_relative_error {B : Type*} [MeasurableSpace B]
     (ν : Measure B) [IsFiniteMeasure ν] {S E : Set B} (hE : MeasurableSet E)
     (hpos : 0 < (ν S).toReal)
@@ -30,7 +32,9 @@ theorem measureReal_le_twice_inter_of_relative_error {B : Type*} [MeasurableSpac
   linarith
 
 /-- Local density comparison and small relative errors control the logarithm
-of the full shadow-mass ratio.-/
+of the full shadow-mass ratio.
+@isnad1 id=le.7h6v.s8.809ad726c915 from=translated src=- shape=01f560ad vocab=d997611e
+-/
 theorem log_shadow_mass_difference_of_window_concentration
     {B : Type*} [MeasurableSpace B] (ν m : Measure B)
     [IsFiniteMeasure ν] [IsFiniteMeasure m] {S E : Set B} (hE : MeasurableSet E)
@@ -84,7 +88,9 @@ theorem log_shadow_mass_difference_of_window_concentration
   exact abs_le.mpr ⟨by linarith, by linarith⟩
 
 /-- Relative concentration in a common bounded-density window bounds the
-magnitude difference eventually; no convergence of the mass ratio is needed.-/
+magnitude difference eventually; no convergence of the mass ratio is needed.
+@isnad1 id=eventual.9h10v.s9.2343d54203db from=translated src=- shape=84d8611a vocab=6a7b4b16
+-/
 theorem eventually_bounded_magnitude_difference_of_concentration
     {B : Type*} [MeasurableSpace B] (ν m : Measure B)
     [IsFiniteMeasure ν] [IsFiniteMeasure m] {E : Set B} (hE : MeasurableSet E)
@@ -113,7 +119,9 @@ theorem eventually_bounded_magnitude_difference_of_concentration
   rcases abs_le.mp h2 with ⟨h2l, h2u⟩
   exact abs_le.mpr ⟨by linarith, by linarith⟩
 
-/-- A finite initial segment cannot destroy boundedness of a real sequence.-/
+/-- A finite initial segment cannot destroy boundedness of a real sequence.
+@isnad1 id=ex.1h2v.s5.47949e6b4a66 from=translated src=- shape=2916f202 vocab=1a8d2b9b
+-/
 theorem bounded_abs_sequence_of_eventually {f : ℕ → ℝ} {C : ℝ}
     (h : ∀ᶠ n in atTop, |f n| ≤ C) : ∃ K : ℝ, ∀ n, |f n| ≤ K := by
   obtain ⟨N, hN⟩ := eventually_atTop.mp h

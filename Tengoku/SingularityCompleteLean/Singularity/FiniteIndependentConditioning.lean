@@ -16,7 +16,9 @@ open scoped Classical
 namespace Singularity
 
 /-- Given a finite-valued observed variable and an independent variable,
-conditional expectation averages only over the independent variable.-/
+conditional expectation averages only over the independent variable.
+@isnad1 id=eventual.5h7v.s7.2551df432fe4 from=translated src=- shape=2695f247 vocab=dde195ab
+-/
 theorem condExp_finite_independent {Ω A B : Type*}
     [MeasurableSpace Ω] [MeasurableSpace A] [MeasurableSpace B]
     [Fintype A] [MeasurableSingletonClass A]

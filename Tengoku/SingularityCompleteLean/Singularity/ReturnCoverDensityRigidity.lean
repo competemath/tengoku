@@ -20,7 +20,9 @@ namespace Singularity
 
 /-- A finite corrected return cover and bounded shadow-magnitude difference
 bound the log density on its carrier. The cover is an explicit hypothesis;
-absolute continuity alone does not imply this conclusion.-/
+absolute continuity alone does not imply this conclusion.
+@isnad1 id=eventual.8h15v.s9.5fe99b38c711 from=translated src=- shape=6ddb2a1a vocab=2307d073
+-/
 theorem logDensity_bound_of_shadow_return_cover {Γ B : Type*} [Group Γ] [Countable Γ]
     [MeasurableSpace B] [MulAction Γ B] [MeasurableConstSMul Γ B]
     (ν m : Measure B) [IsFiniteMeasure ν] [IsFiniteMeasure m] (hac : ν ≪ m)

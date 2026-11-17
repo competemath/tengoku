@@ -17,7 +17,9 @@ open MeasureTheory
 open scoped Classical
 namespace Singularity
 
-/-- A first entrance cannot occur at a vertex outside the entrance set.-/
+/-- A first entrance cannot occur at a vertex outside the entrance set.
+@isnad1 id=eq.1h6v.s5.73f54ec5be97 from=translated src=- shape=8510d4f8 vocab=c08a5600
+-/
 theorem firstEntranceKernel_eq_zero_of_notMem {Γ : Type*} [Group Γ]
     (s : Finset Γ) (μ : Γ → ℝ) (A : Set Γ) (x a : Γ) (ha : a ∉ A) :
     firstEntranceKernel s μ A x a = 0 := by

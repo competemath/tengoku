@@ -17,7 +17,9 @@ namespace Singularity
 
 variable {Γ : Type*} [Group Γ]
 
-/-- A closed layer of one-jump width separates its strict opposite sides.-/
+/-- A closed layer of one-jump width separates its strict opposite sides.
+@isnad1 id=separate.5h8v.s7.c6a6f1084fd8 from=translated src=- shape=36717406 vocab=6d26059b
+-/
 theorem bounded_coordinate_layer_separates (s : Finset Γ) (h : Γ → ℝ) (L t : ℝ)
     (hL : 0 ≤ L)
     (hjump : ∀ x : Γ, ∀ g ∈ s, |h (x*g) - h x| ≤ L)

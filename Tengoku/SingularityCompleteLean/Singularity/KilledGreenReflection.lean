@@ -18,7 +18,9 @@ namespace Singularity
 variable {X : Type*} [MeasurableSpace X] [MeasurableSingletonClass X]
 
 omit [MeasurableSingletonClass X] in
-/-- A zero boundary value removes that boundary from a counting-L² pairing.-/
+/-- A zero boundary value removes that boundary from a counting-L² pairing.
+@isnad1 id=eq.2h5v.s10.242e9394c825 from=translated src=- shape=14e596fe vocab=8dcc057e
+-/
 theorem counting_inner_eq_of_eq_off_boundary (A : Set X) (u v w : GroupL2 X)
     (hu : ∀ x ∈ A, u x = 0) (hvw : ∀ x, x ∉ A → v x = w x) :
     inner ℂ u v = inner ℂ u w := by
@@ -31,7 +33,9 @@ theorem counting_inner_eq_of_eq_off_boundary (A : Set X) (u v w : GroupL2 X)
   · rw [hu x hx, inner_zero_left, inner_zero_left]
   · rw [hvw x hx]
 
-/-- Dual exterior Green equations identify the two point-mass pairings.-/
+/-- Dual exterior Green equations identify the two point-mass pairings.
+@isnad1 id=eq.4h7v.s16.d38095a4cd2b from=translated src=- shape=69fa2a50 vocab=6cf66443
+-/
 theorem killed_columns_duality (P : GroupL2 X →L[ℂ] GroupL2 X) (A : Set X)
     (f h : GroupL2 X) (x y : X)
     (hfA : ∀ z ∈ A, f z = 0) (hhA : ∀ z ∈ A, h z = 0)

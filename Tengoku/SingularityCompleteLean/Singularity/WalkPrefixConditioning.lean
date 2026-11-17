@@ -15,7 +15,9 @@ open MeasureTheory ProbabilityTheory Set Filter
 open scoped Classical
 namespace Singularity
 
-/-- Exact conditional averaging at deterministic time n.-/
+/-- Exact conditional averaging at deterministic time n.
+@isnad1 id=eventual.4h5v.s9.a23e01b9fdaf from=translated src=- shape=0b2d3a06 vocab=45ec3a7a
+-/
 theorem infiniteWalkLaw_condExp_prefix_tail
     {Γ : Type*} [MeasurableSpace Γ] [MeasurableSingletonClass Γ]
     (s : Finset Γ) (μ : Γ → ℝ) (hμ : ∀ g ∈ s, 0 ≤ μ g)

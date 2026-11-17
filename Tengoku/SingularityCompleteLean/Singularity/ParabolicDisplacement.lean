@@ -19,7 +19,9 @@ open scoped Topology MatrixGroups UpperHalfPlane
 
 namespace Singularity
 
-/-- Upper shears add their parameters under multiplication.-/
+/-- Upper shears add their parameters under multiplication.
+@isnad1 id=eq.0h2v.s7.0748c8b88860 from=translated src=- shape=ff03d487 vocab=2e63856b
+-/
 theorem upperShearMatrix_add (u v : ℝ) :
     upperShearMatrix (u + v) = upperShearMatrix u * upperShearMatrix v := by
   apply Matrix.SpecialLinearGroup.ext
@@ -27,20 +29,26 @@ theorem upperShearMatrix_add (u v : ℝ) :
   simp only [Matrix.SpecialLinearGroup.coe_mul, Matrix.mul_apply, Fin.sum_univ_two]
   fin_cases i <;> fin_cases j <;> simp [upperShearMatrix, add_comm]
 
-/-- The nth power is translation by n times the original parameter.-/
+/-- The nth power is translation by n times the original parameter.
+@isnad1 id=eq.0h2v.s7.a3455dd21e5e from=translated src=- shape=b9130087 vocab=6ab46ac0
+-/
 theorem upperShearMatrix_pow (u : ℝ) (n : ℕ) :
     upperShearMatrix u ^ n = upperShearMatrix ((n : ℝ) * u) := by
   induction n with
   | zero => simp [upperShearMatrix_zero]
   | succ n ih => rw [pow_succ, ih, ← upperShearMatrix_add]; congr 1; push_cast; ring
 
-/-- The upper shear acts as horizontal translation on the upper half-plane.-/
+/-- The upper shear acts as horizontal translation on the upper half-plane.
+@isnad1 id=eq.0h2v.s7.965ba770f9be from=translated src=- shape=dacac798 vocab=a3087c85
+-/
 theorem upperShearMatrix_smul_coe (u : ℝ) (z : ℍ) :
     ((upperShearMatrix u • z : ℍ) : ℂ) = (z : ℂ) + u := by
   have h := UpperHalfPlane.coe_specialLinearGroup_apply (upperShearMatrix u) z
   simpa [upperShearMatrix] using h
 
-/-- Exact displacement at i.-/
+/-- Exact displacement at i.
+@isnad1 id=eq.0h1v.s7.1fe65754b4b0 from=translated src=- shape=1ba7f92a vocab=c9f33d17
+-/
 theorem upperShearMatrix_dist_I (u : ℝ) :
     dist UpperHalfPlane.I (upperShearMatrix u • UpperHalfPlane.I) = 2 * Real.arsinh (|u| / 2) := by
   rw [UpperHalfPlane.dist_eq]
@@ -53,7 +61,9 @@ theorem upperShearMatrix_dist_I (u : ℝ) :
   rw [show (UpperHalfPlane.I : ℂ) - ((UpperHalfPlane.I : ℂ) + (u : ℂ)) = -(u : ℂ) by ring,
     norm_neg, Complex.norm_real, Real.norm_eq_abs]
 
-/-- A convenient logarithmic upper bound on inverse hyperbolic sine.-/
+/-- A convenient logarithmic upper bound on inverse hyperbolic sine.
+@isnad1 id=le.1h1v.s5.e13b6ba1da70 from=translated src=- shape=95b97e91 vocab=718fb3f1
+-/
 theorem arsinh_le_log_two_mul_add_one (x : ℝ) (hx : 0 ≤ x) :
     Real.arsinh x ≤ Real.log (2 * x + 1) := by
   have hs : Real.sqrt (1 + x ^ 2) ≤ x + 1 := by
@@ -64,7 +74,9 @@ theorem arsinh_le_log_two_mul_add_one (x : ℝ) (hx : 0 ≤ x) :
     linarith
   · linarith
 
-/-- Parabolic translation displacement is bounded logarithmically in its parameter.-/
+/-- Parabolic translation displacement is bounded logarithmically in its parameter.
+@isnad1 id=le.0h1v.s7.f93f98e34ccc from=translated src=- shape=1ba7f92a vocab=a3155b13
+-/
 theorem upperShearMatrix_dist_I_le_log (u : ℝ) :
     dist UpperHalfPlane.I (upperShearMatrix u • UpperHalfPlane.I) ≤ 2 * Real.log (|u| + 1) := by
   rw [upperShearMatrix_dist_I]
@@ -74,7 +86,9 @@ theorem upperShearMatrix_dist_I_le_log (u : ℝ) :
   congr 2
   ring
 
-/-- Logarithmic growth of an affine function of n is sublinear.-/
+/-- Logarithmic growth of an affine function of n is sublinear.
+@isnad1 id=tendsto.1h1v.s6.a87f33807cc7 from=translated src=- shape=aa4ccadd vocab=21d935bf
+-/
 theorem log_nat_mul_add_one_div_tendsto (c : ℝ) (hc : 0 ≤ c) :
     Tendsto (fun n : ℕ => Real.log (c * n + 1) / (n : ℝ)) atTop (𝓝 0) := by
   have hn : Tendsto (fun n : ℕ => (n : ℝ) + 1) atTop atTop :=
@@ -92,7 +106,9 @@ theorem log_nat_mul_add_one_div_tendsto (c : ℝ) (hc : 0 ≤ c) :
   apply Real.log_le_log (by positivity)
   nlinarith [Nat.cast_nonneg (α := ℝ) n]
 
-/-- The displacement of the actual parabolic powers, divided by n, tends to zero.-/
+/-- The displacement of the actual parabolic powers, divided by n, tends to zero.
+@isnad1 id=tendsto.0h1v.s8.015d1ea4d356 from=translated src=- shape=a3d2981a vocab=83bd0903
+-/
 theorem upperShearMatrix_displacement_sublinear (u : ℝ) :
     Tendsto (fun n : ℕ => dist UpperHalfPlane.I ((upperShearMatrix u) ^ n • UpperHalfPlane.I) /
       (n : ℝ)) atTop (𝓝 0) := by
@@ -104,7 +120,9 @@ theorem upperShearMatrix_displacement_sublinear (u : ℝ) :
     (Nat.cast_nonneg n)
   simpa only [abs_mul, abs_of_nonneg (Nat.cast_nonneg (α := ℝ) n), mul_comm (n : ℝ) |u|, mul_div_assoc] using h
 
-/-- Changing the basepoint changes displacement by at most twice their distance.-/
+/-- Changing the basepoint changes displacement by at most twice their distance.
+@isnad1 id=le.0h3v.s8.fff2c2d95cc0 from=translated src=- shape=a94335e3 vocab=c9747bf5
+-/
 theorem slTwo_displacement_le_change_basepoint (g : SL(2, ℝ)) (z w : ℍ) :
     dist z (g • z) ≤ 2 * dist z w + dist w (g • w) := by
   have h₁ := dist_triangle z w (g • z)
@@ -113,7 +131,9 @@ theorem slTwo_displacement_le_change_basepoint (g : SL(2, ℝ)) (z w : ℍ) :
   rw [he, dist_comm w z] at h₂
   linarith
 
-/-- Parabolic displacement is sublinear at every basepoint.-/
+/-- Parabolic displacement is sublinear at every basepoint.
+@isnad1 id=tendsto.0h2v.s8.ccf1fce613d6 from=translated src=- shape=a3a219ba vocab=a3e8659a
+-/
 theorem upperShearMatrix_displacement_sublinear_at (u : ℝ) (z : ℍ) :
     Tendsto (fun n : ℕ => dist z ((upperShearMatrix u) ^ n • z) / (n : ℝ)) atTop (𝓝 0) := by
   have hc : Tendsto (fun n : ℕ => (2 * dist z UpperHalfPlane.I) / (n : ℝ)) atTop (𝓝 0) :=
@@ -124,7 +144,9 @@ theorem upperShearMatrix_displacement_sublinear_at (u : ℝ) (z : ℍ) :
   exact div_le_div_of_nonneg_right (slTwo_displacement_le_change_basepoint _ z UpperHalfPlane.I)
     (Nat.cast_nonneg n)
 
-/-- Conjugating a parabolic preserves sublinear displacement.-/
+/-- Conjugating a parabolic preserves sublinear displacement.
+@isnad1 id=tendsto.0h3v.s9.60cb0a8459c0 from=translated src=- shape=06349b55 vocab=1bf22b6f
+-/
 theorem conjugate_upperShearMatrix_displacement_sublinear (B : SL(2, ℝ)) (u : ℝ) (z : ℍ) :
     Tendsto (fun n : ℕ => dist z ((B * upperShearMatrix u * B⁻¹) ^ n • z) / (n : ℝ)) atTop (𝓝 0) := by
   have he (n : ℕ) : (B * upperShearMatrix u * B⁻¹) ^ n = B * upperShearMatrix u ^ n * B⁻¹ := by

@@ -17,7 +17,9 @@ open Set
 
 namespace Singularity
 
-/-- Lifts of a semigroup-generating set map onto the whole target group.-/
+/-- Lifts of a semigroup-generating set map onto the whole target group.
+@isnad1 id=ex.2h5v.s8.846a70cddef6 from=translated src=- shape=4d957128 vocab=3d4394e2
+-/
 theorem closure_preimage_maps_onto {G H : Type*} [Group G] [Group H]
     (φ : G →* H) (hφ : Function.Surjective φ) (s : Set H)
     (hs : Submonoid.closure s = ⊤) :
@@ -35,7 +37,9 @@ theorem closure_preimage_maps_onto {G H : Type*} [Group G] [Group H]
     exact ⟨g * k, Submonoid.mul_mem _ hg hk, by rw [map_mul, he, hf]⟩
 
 /-- Taking the whole inverse-image jump set preserves semigroup generation
-when every kernel element is an involution.-/
+when every kernel element is an involution.
+@isnad1 id=eq.4h4v.s8.4f28af90e3fb from=translated src=- shape=c5a7e39e vocab=29d7ecb4
+-/
 theorem closure_preimage_eq_top_of_involutive_kernel {G H : Type*} [Group G] [Group H]
     (φ : G →* H) (hφ : Function.Surjective φ) (s : Set H) (hne : s.Nonempty)
     (hs : Submonoid.closure s = ⊤) (hker : ∀ g, φ g = 1 → g ^ 2 = 1) :

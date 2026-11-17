@@ -18,7 +18,9 @@ open scoped Topology MatrixGroups
 
 namespace Singularity
 
-/-- Near-identity group elements move even varying points by a vanishing distance.-/
+/-- Near-identity group elements move even varying points by a vanishing distance.
+@isnad1 id=tendsto.1h4v.s7.6d72f3597aa7 from=translated src=- shape=e0e98c54 vocab=3ad9436e
+-/
 theorem compact_action_dist_tendsto_zero {G X : Type*}
     [Group G] [TopologicalSpace G]
     [PseudoMetricSpace X] [CompactSpace X] [MulAction G X] [ContinuousSMul G X]
@@ -36,7 +38,9 @@ theorem compact_action_dist_tendsto_zero {G X : Type*}
   refine ⟨N, fun n hn => ?_⟩
   simpa only [Real.dist_eq, sub_zero, abs_of_nonneg dist_nonneg] using hN n hn (x n) (Set.mem_univ _)
 
-/-- Contraction by conjugation produces asymptotic trajectories in a compact action.-/
+/-- Contraction by conjugation produces asymptotic trajectories in a compact action.
+@isnad1 id=tendsto.1h5v.s8.86fc3b9e29b3 from=translated src=- shape=213ae37e vocab=f82b3ea5
+-/
 theorem compact_action_asymptotic_of_conjugates {G X : Type*}
     [Group G] [TopologicalSpace G]
     [PseudoMetricSpace X] [CompactSpace X] [MulAction G X] [ContinuousSMul G X]
@@ -46,7 +50,9 @@ theorem compact_action_asymptotic_of_conjugates {G X : Type*}
   have h := compact_action_dist_tendsto_zero _ hu (fun n => a ^ n • x)
   simpa only [smul_iterate, mul_smul, inv_smul_smul] using h
 
-/-- Lower-shear translates are forward-asymptotic under a positive diagonal time.-/
+/-- Lower-shear translates are forward-asymptotic under a positive diagonal time.
+@isnad1 id=tendsto.1h4v.s9.6c83d57c77db from=translated src=- shape=82538da2 vocab=46d9a995
+-/
 theorem compact_lowerShear_asymptotic {X : Type*}
     [PseudoMetricSpace X] [CompactSpace X]
     [MulAction SL(2, ℝ) X] [ContinuousSMul SL(2, ℝ) X]
@@ -58,7 +64,9 @@ theorem compact_lowerShear_asymptotic {X : Type*}
     simpa using (dilationMatrix_zpow τ (n : ℤ)).symm
   simpa only [he] using lowerShear_conjugates_tendsto_one τ u hτ
 
-/-- Cesàro subsequential limits propagate along the actual contracting shear orbits.-/
+/-- Cesàro subsequential limits propagate along the actual contracting shear orbits.
+@isnad1 id=tendsto.4h7v.s9.7605502ba0fc from=translated src=- shape=11695e48 vocab=3c3b8d77
+-/
 theorem compact_lowerShear_birkhoffAverage_subsequence {X : Type*}
     [PseudoMetricSpace X] [CompactSpace X]
     [MulAction SL(2, ℝ) X] [ContinuousSMul SL(2, ℝ) X]
@@ -73,7 +81,9 @@ theorem compact_lowerShear_birkhoffAverage_subsequence {X : Type*}
     (compact_lowerShear_asymptotic τ hτ u x) ns hns c hx
 
 /-- Continuous observables also detect uniform near-identity convergence on a compact
-state space when no particular compatible metric has been selected.-/
+state space when no particular compatible metric has been selected.
+@isnad1 id=tendsto.2h5v.s7.6dcfeeb51d8b from=translated src=- shape=9fd33984 vocab=85bfc94b
+-/
 theorem compact_action_observed_sub_tendsto_zero {G X : Type*}
     [Group G] [TopologicalSpace G] [TopologicalSpace X] [CompactSpace X]
     [MulAction G X] [ContinuousSMul G X]
@@ -95,7 +105,9 @@ theorem compact_action_observed_sub_tendsto_zero {G X : Type*}
     hN n hn (x n) (Set.mem_univ _)
 
 /-- Contracting lower shears preserve every continuous observable's subsequential
-Cesàro limit on a compact SL(2,ℝ) space, independently of a choice of metric.-/
+Cesàro limit on a compact SL(2,ℝ) space, independently of a choice of metric.
+@isnad1 id=tendsto.4h7v.s9.0439cd2e89fd from=translated src=- shape=11695e48 vocab=9d5da71f
+-/
 theorem compact_lowerShear_average_limit {X : Type*}
     [TopologicalSpace X] [CompactSpace X]
     [MulAction SL(2, ℝ) X] [ContinuousSMul SL(2, ℝ) X]

@@ -18,7 +18,9 @@ open scoped ENNReal Topology
 namespace Singularity
 
 /-- A bounded magnitude sequence and corrected returns upgrade local shadow
-comparison to global magnitude rigidity.-/
+comparison to global magnitude rigidity.
+@isnad1 id=ex.13h14v.s9.9142286b1116 from=translated src=- shape=b6ade6a5 vocab=287095df
+-/
 theorem magnitude_rigidity_of_bounded_sequence_return_cover {Γ B : Type*} [Group Γ] [Countable Γ]
     [MeasurableSpace B] [MulAction Γ B] [MeasurableConstSMul Γ B]
     (ν m : Measure B) [IsFiniteMeasure ν] [IsFiniteMeasure m]

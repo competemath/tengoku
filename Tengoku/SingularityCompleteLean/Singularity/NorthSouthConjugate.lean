@@ -20,7 +20,9 @@ namespace Singularity
 variable {G : Type} {X : Type*} [Group G] [TopologicalSpace X]
   [MulAction G X] [ContinuousConstSMul G X]
 
-/-- Uniform north--south dynamics is preserved by conjugation.-/
+/-- Uniform north--south dynamics is preserved by conjugation.
+@isnad1 id=uniformn.1h6v.s7.cdf5ad6781c1 from=translated src=- shape=9302f3ae vocab=7d978a3d
+-/
 theorem UniformNorthSouth.conjugate {g : G} {p q : X}
     (h : UniformNorthSouth g p q) (b : G) :
     UniformNorthSouth (b * g * b⁻¹) (b • p) (b • q) := by
@@ -42,7 +44,9 @@ theorem UniformNorthSouth.conjugate {g : G} {p q : X}
     | succ n ih => simp only [pow_succ, ih]; group
   simpa only [hpow, mul_smul] using him
 
-/-- An element and a conjugate with disjoint endpoint pairs have free positive powers.-/
+/-- An element and a conjugate with disjoint endpoint pairs have free positive powers.
+@isnad1 id=ex.2h6v.s8.47695c12d376 from=translated src=- shape=31c9bb39 vocab=d276648d
+-/
 theorem northSouth_conjugate_free_powers [T2Space X] {g : G} {p q : X}
     (h : UniformNorthSouth g p q) (b : G)
     (hdistinct : Function.Injective (fun z : Bool × Bool =>
@@ -70,7 +74,9 @@ theorem northSouth_conjugate_free_powers [T2Space X] {g : G} {p q : X}
     cases i <;> rfl
   rwa [← he] at hinj
 
-/-- The conjugate-pair criterion supplies classical nonamenability.-/
+/-- The conjugate-pair criterion supplies classical nonamenability.
+@isnad1 id=not.2h6v.s7.c03a140dbb76 from=translated src=- shape=1c016e73 vocab=e3c694ca
+-/
 theorem no_invariantMean_of_northSouth_conjugate [T2Space X] {g : G} {p q : X}
     (h : UniformNorthSouth g p q) (b : G)
     (hdistinct : Function.Injective (fun z : Bool × Bool =>

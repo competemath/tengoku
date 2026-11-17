@@ -14,7 +14,9 @@ open MeasureTheory Set Filter
 open scoped Classical
 namespace Singularity
 
-/-- The first-step relation iterates to any finite prefix.-/
+/-- The first-step relation iterates to any finite prefix.
+@isnad1 id=eventual.3h6v.s9.402a5aa8825f from=translated src=- shape=7335ff94 vocab=bddced38
+-/
 theorem walkBoundaryMap_time_cocycle
     {Γ B : Type*} [Group Γ] [MeasurableSpace Γ] [MeasurableSingletonClass Γ]
     [MulAction Γ B] (s : Finset Γ) (μ : Γ → ℝ)

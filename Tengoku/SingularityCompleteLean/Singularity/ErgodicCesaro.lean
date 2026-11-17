@@ -20,7 +20,9 @@ open scoped Topology
 
 namespace Singularity
 
-/-- Representatives of Koopman averages agree almost everywhere with orbit averages.-/
+/-- Representatives of Koopman averages agree almost everywhere with orbit averages.
+@isnad1 id=eventual.1h5v.s13.632dce569bea from=translated src=- shape=4ceaf8a5 vocab=a5e3f572
+-/
 theorem koopman_birkhoffAverage_ae {X : Type*} [MeasurableSpace X]
     (μ : Measure X) (T : X → X) (hT : MeasurePreserving T μ μ)
     (f : Lp ℝ 2 μ) (n : ℕ) :
@@ -40,7 +42,9 @@ theorem koopman_birkhoffAverage_ae {X : Type*} [MeasurableSpace X]
   exact (Lp.coeFn_smul ((n : ℝ)⁻¹) (∑ k ∈ Finset.range n, U^[k] f)).trans
     (hsum.fun_comp fun r => (n : ℝ)⁻¹ • r)
 
-/-- Ergodic orbit averages of an `L²` function have an a.e. constant subsequential limit.-/
+/-- Ergodic orbit averages of an `L²` function have an a.e. constant subsequential limit.
+@isnad1 id=ex.1h4v.s8.b58e17406184 from=translated src=- shape=87cf059b vocab=2d96e236
+-/
 theorem ergodic_birkhoffAverage_subsequence {X : Type*} [MeasurableSpace X]
     (μ : Measure X) (T : X → X) (hT : Ergodic T μ) (f : Lp ℝ 2 μ) :
     ∃ c : ℝ, ∃ ns : ℕ → ℕ, StrictMono ns ∧
@@ -68,7 +72,9 @@ theorem ergodic_birkhoffAverage_subsequence {X : Type*} [MeasurableSpace X]
     atTop (𝓝 ((v : Lp ℝ 2 μ) x)) at hx
   simpa only [heqx, hcx, Function.const_apply] using hx
 
-/-- The preceding subsequence theorem for an actual square-integrable function.-/
+/-- The preceding subsequence theorem for an actual square-integrable function.
+@isnad1 id=ex.2h4v.s7.e01aba07d4ea from=translated src=- shape=4667f885 vocab=d8d90146
+-/
 theorem ergodic_birkhoffAverage_subsequence_of_memLp {X : Type*} [MeasurableSpace X]
     (μ : Measure X) (T : X → X) (hT : Ergodic T μ) (f : X → ℝ) (hf : MemLp f 2 μ) :
     ∃ c : ℝ, ∃ ns : ℕ → ℕ, StrictMono ns ∧
@@ -80,14 +86,18 @@ theorem ergodic_birkhoffAverage_subsequence_of_memLp {X : Type*} [MeasurableSpac
   filter_upwards [hlim, heq] with x hx heqx
   simpa only [birkhoffAverage, birkhoffSum, heqx] using hx
 
-/-- Measurability of real orbit averages.-/
+/-- Measurability of real orbit averages.
+@isnad1 id=measurab.2h4v.s5.4a183e2b6d43 from=translated src=- shape=fc1740a9 vocab=635b111c
+-/
 theorem measurable_real_birkhoffAverage {X : Type*} [MeasurableSpace X]
     (T : X → X) (hT : Measurable T) (f : X → ℝ) (hf : Measurable f) (n : ℕ) :
     Measurable (birkhoffAverage ℝ T f n) := by
   unfold birkhoffAverage birkhoffSum
   exact (measurable_const : Measurable (fun _ : X => (n : ℝ)⁻¹)).smul (Finset.measurable_sum _ fun k _ => hf.comp (hT.iterate k))
 
-/-- A global bound on the observable also bounds every average, including the zeroth.-/
+/-- A global bound on the observable also bounds every average, including the zeroth.
+@isnad1 id=le.2h6v.s6.1e8f1785750b from=translated src=- shape=3fd7bfd4 vocab=39186e70
+-/
 theorem norm_real_birkhoffAverage_le {X : Type*} (T : X → X) (f : X → ℝ)
     (C : ℝ) (hC : 0 ≤ C) (hf : ∀ x, ‖f x‖ ≤ C) (n : ℕ) (x : X) :
     ‖birkhoffAverage ℝ T f n x‖ ≤ C := by
@@ -103,7 +113,9 @@ theorem norm_real_birkhoffAverage_le {X : Type*} (T : X → X) (f : X → ℝ)
       mul_le_mul_of_nonneg_left (Finset.sum_le_sum fun _ _ => hf _) (inv_nonneg.mpr hn'.le)
     _ = C := by simp [hn'.ne']
 
-/-- An invariant finite measure integrates each nonempty orbit average to the original integral.-/
+/-- An invariant finite measure integrates each nonempty orbit average to the original integral.
+@isnad1 id=eq.3h5v.s6.160ba3fd1c9f from=translated src=- shape=eb083744 vocab=74f024eb
+-/
 theorem integral_real_birkhoffAverage {X : Type*} [MeasurableSpace X]
     (μ : Measure X) (T : X → X) (hT : MeasurePreserving T μ μ)
     (f : X → ℝ) (hf : Integrable f μ) (n : ℕ) (hn : n ≠ 0) :
@@ -119,7 +131,9 @@ theorem integral_real_birkhoffAverage {X : Type*} [MeasurableSpace X]
   rw [integral_smul, integral_finsetSum _ (fun k _ => hi k)]
   simp [he, smul_eq_mul, Nat.cast_ne_zero.mpr hn]
 
-/-- An a.e. subsequential average limit determines the integral for an invariant probability.-/
+/-- An a.e. subsequential average limit determines the integral for an invariant probability.
+@isnad1 id=eq.6h7v.s7.68861983b282 from=translated src=- shape=422ed7af vocab=81e94311
+-/
 theorem integral_eq_of_birkhoffAverage_subsequence {X : Type*} [MeasurableSpace X]
     (μ : Measure X) [IsProbabilityMeasure μ] (T : X → X)
     (hT : MeasurePreserving T μ μ) (f : X → ℝ) (hf : Measurable f)
@@ -141,7 +155,9 @@ theorem integral_eq_of_birkhoffAverage_subsequence {X : Type*} [MeasurableSpace 
     simpa using hconv.congr' heq
   exact tendsto_nhds_unique tendsto_const_nhds hconv'
 
-/-- An ergodic invariant probability supplies subsequential convergence to its space average.-/
+/-- An ergodic invariant probability supplies subsequential convergence to its space average.
+@isnad1 id=ex.4h5v.s7.06bf540eafd0 from=translated src=- shape=71ce0548 vocab=f25640da
+-/
 theorem ergodic_bounded_birkhoffAverage_subsequence {X : Type*} [MeasurableSpace X]
     (μ : Measure X) [IsProbabilityMeasure μ] (T : X → X) (hT : Ergodic T μ)
     (f : X → ℝ) (hf : Measurable f) (C : ℝ) (hC : 0 ≤ C) (hbound : ∀ x, ‖f x‖ ≤ C) :

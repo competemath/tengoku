@@ -27,7 +27,9 @@ variable (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
 
 omit [DiscreteTopology Γ] in
 include hpos hgen hgap in
-/-- Ray cluster functions are normalized, strictly positive, and harmonic.-/
+/-- Ray cluster functions are normalized, strictly positive, and harmonic.
+@isnad1 id=and.4h5v.s16.4887b26d6f7d from=translated src=- shape=52d72142 vocab=8637100b
+-/
 theorem rayMartinCluster_harmonic {ξ : ℝ} {H : Γ → ℝ}
     (hH : H ∈ rayMartinCluster Γ s μ ξ) :
     H 1 = 1 ∧ (∀ x, 0 < H x) ∧ (∀ x, ∑ g ∈ s, μ g * H (x * g) = H x) := by
@@ -40,7 +42,9 @@ theorem rayMartinCluster_harmonic {ξ : ℝ} {H : Γ → ℝ}
 
 include hpos hmass hgen hgap in
 /-- Every ray limit has a uniform reverse Green comparison on a tail.
-The constant is independent of the ray, cluster function, and starting state.-/
+The constant is independent of the ray, cluster function, and starting state.
+@isnad1 id=ex.4h3v.s16.91784cee482a from=translated src=- shape=05a03d5e vocab=cf690472
+-/
 theorem cocompact_ray_martin_eventual_green_comparison :
     ∃ C : ℝ, 0 < C ∧ ∀ (ξ : ℝ) (H : Γ → ℝ), H ∈ rayMartinCluster Γ s μ ξ →
       ∀ x, ∀ᶠ n in atTop, H x ≤ C *
@@ -65,7 +69,9 @@ theorem cocompact_ray_martin_eventual_green_comparison :
       (walkGreen s μ x (cocompactRaySequence Γ ξ n))).const_mul C) he
 
 include hpos hmass hgen hgap in
-/-- Every actual ray cluster function is minimal in the positive harmonic cone.-/
+/-- Every actual ray cluster function is minimal in the positive harmonic cone.
+@isnad1 id=ex.7h6v.s16.ce0fda916007 from=translated src=- shape=b4a82105 vocab=0b8f8bda
+-/
 theorem rayMartinCluster_minimal {ξ : ℝ} {H : Γ → ℝ}
     (hH : H ∈ rayMartinCluster Γ s μ ξ) (f : Γ → ℝ)
     (hf : ∀ x, 0 ≤ f x ∧ f x ≤ H x)

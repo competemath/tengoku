@@ -20,7 +20,9 @@ namespace Singularity
 
 variable {α : Type*}
 
-/-- A nonidentity reduced word has a nonempty cyclic reduction.-/
+/-- A nonidentity reduced word has a nonempty cyclic reduction.
+@isnad1 id=ne.1h2v.s5.23ff910652c6 from=translated src=- shape=96725f87 vocab=f604610b
+-/
 theorem freeGroup_cyclic_core_ne_nil (g : FreeGroup α) (hg : g ≠ 1) :
     FreeGroup.reduceCyclically g.toWord ≠ [] := by
   intro he
@@ -29,7 +31,9 @@ theorem freeGroup_cyclic_core_ne_nil (g : FreeGroup α) (hg : g ≠ 1) :
     FreeGroup.mk_toWord] at h
   exact hg h.symm
 
-/-- The exact positive-power length consists of the conjugator and repeated cyclic core.-/
+/-- The exact positive-power length consists of the conjugator and repeated cyclic core.
+@isnad1 id=eq.0h3v.s7.de251875413b from=translated src=- shape=21bcc9ad vocab=f51c2480
+-/
 theorem freeGroup_norm_pow_succ (g : FreeGroup α) (n : ℕ) :
     FreeGroup.norm (g ^ (n + 1)) =
       2 * (FreeGroup.reduceCyclically.conjugator g.toWord).length +
@@ -40,7 +44,9 @@ theorem freeGroup_norm_pow_succ (g : FreeGroup α) (n : ℕ) :
     smul_eq_mul, FreeGroup.invRev_length]
   omega
 
-/-- Every nonidentity free-group element has at least linear reduced-word growth.-/
+/-- Every nonidentity free-group element has at least linear reduced-word growth.
+@isnad1 id=le.1h3v.s5.959611d84943 from=translated src=- shape=f35e65be vocab=741e7cab
+-/
 theorem freeGroup_norm_pow_ge (g : FreeGroup α) (hg : g ≠ 1) (n : ℕ) :
     n ≤ FreeGroup.norm (g ^ n) := by
   cases n with

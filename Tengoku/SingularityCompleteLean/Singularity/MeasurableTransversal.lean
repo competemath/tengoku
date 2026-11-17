@@ -16,7 +16,9 @@ open Set
 
 namespace Singularity
 
-/-- A finite measurable family of injective sheets has a measurable transversal.-/
+/-- A finite measurable family of injective sheets has a measurable transversal.
+@isnad1 id=ex.4h6v.s7.5fef72eec8d2 from=translated src=- shape=3cf65c7b vocab=55f3ab38
+-/
 theorem exists_measurable_injective_selection {X Y ι : Type*}
     [MeasurableSpace X] [MeasurableSpace Y] (f : X → Y) (hf : Measurable f)
     (U : ι → Set X) (t : Finset ι)

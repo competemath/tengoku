@@ -16,7 +16,9 @@ open scoped ENNReal NNReal
 
 namespace Singularity
 
-/-- A quantitative intersection bound, expressed in terms of complement masses.-/
+/-- A quantitative intersection bound, expressed in terms of complement masses.
+@isnad1 id=le.4h6v.s7.e0faac22cbf2 from=translated src=- shape=073f019b vocab=ef140dd7
+-/
 theorem probability_inter_lower_of_compl_bounds {B : Type*} [MeasurableSpace B]
     (ν : Measure B) [IsProbabilityMeasure ν] {S T : Set B}
     (hS : MeasurableSet S) (hT : MeasurableSet T) (a b : ℝ≥0∞)
@@ -39,7 +41,9 @@ variable {Γ B : Type*} [Group Γ] [MeasurableSpace B] [MulAction Γ B]
 include hq
 
 /-- Mixed shadows have exponential mass bounds once their inverse complements
-are small and one of the shadows carries the cocycle estimate.-/
+are small and one of the shadows carries the cocycle estimate.
+@isnad1 id=and.6h10v.s8.b3c680b4745a from=translated src=- shape=21594d0f vocab=643f3a88
+-/
 theorem mixed_shadow_mass_bounds_of_logCocycle (g : Γ) {S T : Set B}
     (hS : MeasurableSet S) (hT : MeasurableSet T) (D C : ℝ)
     (hbound : ∀ᵐ ξ ∂ν, ξ ∈ (fun η : B => g • η) ⁻¹' S →
@@ -68,7 +72,9 @@ theorem mixed_shadow_mass_bounds_of_logCocycle (g : Γ) {S T : Set B}
       _ = _ := mul_one _
 
 /-- If the two inverse-shadow complements each have mass at most one quarter,
-the mixed shadow has a uniform positive exponential lower bound.-/
+the mixed shadow has a uniform positive exponential lower bound.
+@isnad1 id=and.6h8v.s8.440cf6373cc5 from=translated src=- shape=145bf480 vocab=1bf6c0ca
+-/
 theorem mixed_shadow_mass_bounds_of_quarter_complements (g : Γ) {S T : Set B}
     (hS : MeasurableSet S) (hT : MeasurableSet T) (D C : ℝ)
     (hbound : ∀ᵐ ξ ∂ν, ξ ∈ (fun η : B => g • η) ⁻¹' S →

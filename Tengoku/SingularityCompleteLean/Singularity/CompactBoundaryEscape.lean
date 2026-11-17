@@ -20,7 +20,9 @@ open scoped Topology Classical MatrixGroups UpperHalfPlane
 
 namespace Singularity
 
-/-- An escaping discrete-group orbit cannot have an interior limit in the compact sphere.-/
+/-- An escaping discrete-group orbit cannot have an interior limit in the compact sphere.
+@isnad1 id=mem.2h4v.s12.3c44b4e9f4a8 from=translated src=- shape=4c466168 vocab=18bd9aab
+-/
 theorem escaping_orbit_limit_in_boundary (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
     (z : ℍ) (y : ℕ → Γ)
     (hescape : ∀ K : Finset Γ, ∀ᶠ n in atTop, y n ∉ K)
@@ -47,7 +49,9 @@ theorem escaping_orbit_limit_in_boundary (Γ : Subgroup SL(2, ℝ)) [DiscreteTop
     obtain ⟨n, hn, hne⟩ := (hv.and (hescape hK.toFinset)).exists
     exact hne hn
 
-/-- Compactness supplies a boundary accumulation point for every escaping discrete orbit.-/
+/-- Compactness supplies a boundary accumulation point for every escaping discrete orbit.
+@isnad1 id=ex.1h3v.s12.c4380a43da7a from=translated src=- shape=1b10e2b2 vocab=bcceb692
+-/
 theorem escaping_orbit_boundary_subsequence (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
     (z : ℍ) (y : ℕ → Γ)
     (hescape : ∀ K : Finset Γ, ∀ᶠ n in atTop, y n ∉ K) :

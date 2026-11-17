@@ -16,21 +16,27 @@ open scoped MatrixGroups UpperHalfPlane
 
 namespace Singularity
 
-/-- Absolute trace less than two is the ellipticity condition in determinant one.-/
+/-- Absolute trace less than two is the ellipticity condition in determinant one.
+@isnad1 id=isellipt.1h1v.s9.50487b4a6f5e from=translated src=- shape=7b3d7444 vocab=893fc3a8
+-/
 theorem slTwo_isElliptic_of_abs_trace_lt_two (g : SL(2, ℝ))
     (h : |g 0 0 + g 1 1| < 2) : (Matrix.SpecialLinearGroup.mapGL ℝ g).IsElliptic := by
   change (g : Matrix (Fin 2) (Fin 2) ℝ).discr < 0
   rw [Matrix.discr_fin_two, Matrix.trace_fin_two, g.property]
   nlinarith [sq_abs (g 0 0 + g 1 1), abs_nonneg (g 0 0 + g 1 1)]
 
-/-- The elliptic fixed point is an actual point of the upper half-plane.-/
+/-- The elliptic fixed point is an actual point of the upper half-plane.
+@isnad1 id=ex.1h1v.s8.73dcb56be46a from=translated src=- shape=d0fea88c vocab=80bbe8a6
+-/
 theorem slTwo_exists_fixedPoint_of_abs_trace_lt_two (g : SL(2, ℝ))
     (h : |g 0 0 + g 1 1| < 2) : ∃ z : ℍ, g • z = z := by
   let he := slTwo_isElliptic_of_abs_trace_lt_two g h
   refine ⟨UpperHalfPlane.fixedPt (Matrix.SpecialLinearGroup.mapGL ℝ g) he, ?_⟩
   exact (UpperHalfPlane.gl_smul_eq_self_iff_eq_fixedPt (by simp) he).mpr rfl
 
-/-- Conjugating a subgroup preserves a bound on all of its traces.-/
+/-- Conjugating a subgroup preserves a bound on all of its traces.
+@isnad1 id=le.1h3v.s10.7eb0e93d6f07 from=translated src=- shape=debe10b4 vocab=17803991
+-/
 theorem conjugateSubgroup_trace_bound (Γ : Subgroup SL(2, ℝ)) (B : SL(2, ℝ))
     (h : ∀ g : Γ, |(g : SL(2, ℝ)) 0 0 + (g : SL(2, ℝ)) 1 1| ≤ 2)
     (g : conjugateSubgroup Γ B) : |(g : SL(2, ℝ)) 0 0 + (g : SL(2, ℝ)) 1 1| ≤ 2 := by
@@ -38,7 +44,9 @@ theorem conjugateSubgroup_trace_bound (Γ : Subgroup SL(2, ℝ)) (B : SL(2, ℝ)
   change |(B * g * B⁻¹) 0 0 + (B * g * B⁻¹) 1 1| ≤ 2 at ht
   rwa [slTwo_trace_conjugate] at ht
 
-/-- An elliptic element in a subgroup with no hyperbolic traces gives a common interior fixed point.-/
+/-- An elliptic element in a subgroup with no hyperbolic traces gives a common interior fixed point.
+@isnad1 id=ex.2h2v.s12.6043ffe936a2 from=translated src=- shape=e19f68f0 vocab=ce87ac02
+-/
 theorem exists_common_fixedPoint_of_elliptic (Γ : Subgroup SL(2, ℝ))
     (hbound : ∀ g : Γ, |(g : SL(2, ℝ)) 0 0 + (g : SL(2, ℝ)) 1 1| ≤ 2)
     (a : Γ) (ha : |(a : SL(2, ℝ)) 0 0 + (a : SL(2, ℝ)) 1 1| < 2) :

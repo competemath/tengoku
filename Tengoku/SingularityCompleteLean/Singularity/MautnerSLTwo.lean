@@ -16,6 +16,9 @@ open scoped MatrixGroups Topology
 
 namespace Singularity
 
+/--
+@isnad1 id=eq.0h1v.s6.2c0983bcd531 from=translated src=- shape=220b2af3 vocab=bb5c4ccd
+-/
 theorem upperShearMatrix_eq_transvection (u : ℝ) :
     upperShearMatrix u = Matrix.SpecialLinearGroup.transvection
       (show (0 : Fin 2) ≠ 1 from zero_ne_one) u := by
@@ -24,6 +27,9 @@ theorem upperShearMatrix_eq_transvection (u : ℝ) :
   fin_cases i <;> fin_cases j <;>
     simp [upperShearMatrix, Matrix.SpecialLinearGroup.transvection_coe]
 
+/--
+@isnad1 id=eq.0h1v.s6.dbd026fc8a8b from=translated src=- shape=220b2af3 vocab=8274ab17
+-/
 theorem lowerShearMatrix_eq_transvection (u : ℝ) :
     lowerShearMatrix u = Matrix.SpecialLinearGroup.transvection
       (show (1 : Fin 2) ≠ 0 from one_ne_zero) u := by
@@ -32,7 +38,9 @@ theorem lowerShearMatrix_eq_transvection (u : ℝ) :
   fin_cases i <;> fin_cases j <;>
     simp [lowerShearMatrix, Matrix.SpecialLinearGroup.transvection_coe]
 
-/-- The two shear subgroups together detect fixed points for the entire group.-/
+/-- The two shear subgroups together detect fixed points for the entire group.
+@isnad1 id=eq.2h3v.s9.bef091d37e9a from=translated src=- shape=c4199058 vocab=9bb0b3b6
+-/
 theorem fixed_slTwo_of_fixed_shears {X : Type*} [MulAction SL(2, ℝ) X]
     (v : X) (hu : ∀ u, upperShearMatrix u • v = v)
     (hl : ∀ u, lowerShearMatrix u • v = v) (g : SL(2, ℝ)) : g • v = v := by
@@ -46,7 +54,9 @@ theorem fixed_slTwo_of_fixed_shears {X : Type*} [MulAction SL(2, ℝ) X]
   · intro a b ha hb
     rw [mul_smul, hb, ha]
 
-/-- A positive diagonal time has exactly the fixed vectors of the full group.-/
+/-- A positive diagonal time has exactly the fixed vectors of the full group.
+@isnad1 id=eq.2h4v.s9.2432e79e832f from=translated src=- shape=07a75540 vocab=f8e7e269
+-/
 theorem fixed_slTwo_of_fixed_dilation {X : Type*} [MetricSpace X]
     [MulAction SL(2, ℝ) X] [IsIsometricSMul SL(2, ℝ) X]
     [ContinuousSMul SL(2, ℝ) X] (τ : ℝ) (hτ : 0 < τ)

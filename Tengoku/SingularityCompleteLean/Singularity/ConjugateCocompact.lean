@@ -17,7 +17,9 @@ open scoped Classical Topology MatrixGroups UpperHalfPlane
 
 namespace Singularity
 
-/-- Conjugating the subgroup preserves compactness of the actual hyperbolic orbit quotient.-/
+/-- Conjugating the subgroup preserves compactness of the actual hyperbolic orbit quotient.
+@isnad1 id=compacts.0h2v.s10.9cb3ba01e089 from=translated src=- shape=777f9fa4 vocab=55a40936
+-/
 theorem conjugateSubgroup_cocompact (Γ : Subgroup SL(2, ℝ))
     [CompactSpace (Quotient (MulAction.orbitRel Γ ℍ))] (B : SL(2, ℝ)) :
     CompactSpace (Quotient (MulAction.orbitRel (conjugateSubgroup Γ B) ℍ)) := by
@@ -44,7 +46,9 @@ theorem conjugateSubgroup_cocompact (Γ : Subgroup SL(2, ℝ))
   exact isCompact_univ_iff.mp (hsurj ▸ hK'.image hπ)
 
 /-- A cocompact discrete subgroup with a hyperbolic trace admits coordinates in which
-all the established strip-geometry hypotheses concerning the group are preserved.-/
+all the established strip-geometry hypotheses concerning the group are preserved.
+@isnad1 id=ex.1h2v.s11.e8eeb0bdb8ad from=translated src=- shape=48d867a6 vocab=ec8a67c9
+-/
 theorem exists_cocompact_normalized_subgroup (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
     [CompactSpace (Quotient (MulAction.orbitRel Γ ℍ))]
     (a : Γ) (htrace : 2 < |(a : SL(2, ℝ)) 0 0 + (a : SL(2, ℝ)) 1 1|) :

@@ -15,7 +15,9 @@ noncomputable section
 open scoped Classical MatrixGroups UpperHalfPlane
 namespace Singularity
 
-/-- Each side of the shrinking interval remains below its initial length.-/
+/-- Each side of the shrinking interval remains below its initial length.
+@isnad1 id=and.2h3v.s5.53cbabecc1fc from=translated src=- shape=bed15fbc vocab=6a125acf
+-/
 theorem axisInterval_components_le (l r : ℝ) (hl : 0 ≤ l) (hr : 0 ≤ r) (n : ℕ) :
     (axisInterval l r n).1 ≤ l ∧ (axisInterval l r n).2 ≤ r := by
   induction n with
@@ -27,7 +29,9 @@ theorem axisInterval_components_le (l r : ℝ) (hl : 0 ≤ l) (hr : 0 ≤ r) (n 
     split <;> dsimp <;> constructor <;> linarith [ih.1,ih.2,hn.1,hn.2]
 
 /-- The original endpoint depth, with the explicit tube allowance, keeps every
-admissible pair of the shrinking construction above a fixed radial level.-/
+admissible pair of the shrinking construction above a fixed radial level.
+@isnad1 id=and.5h10v.s12.0617ee2e38ef from=translated src=- shape=285d3757 vocab=864963e1
+-/
 theorem axisPairSet_radial_depth (Γ : Subgroup SL(2, ℝ)) (g q : SL(2, ℝ))
     (E l r a H : ℝ) (hl : 0 ≤ l) (hr : 0 ≤ r)
     (hleft : a+H+(l+r)/50+E ≤ axisRadialCoordinate (q • (g • verticalHeightRay UpperHalfPlane.I (-l))))

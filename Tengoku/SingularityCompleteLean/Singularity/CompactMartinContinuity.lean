@@ -23,7 +23,9 @@ variable (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
   (horbit : (MulAction.orbit Γ (∞ : OnePoint ℝ)).Infinite)
 
 include hmass in
-/-- Every evaluation of the compact geometric Martin map is continuous.-/
+/-- Every evaluation of the compact geometric Martin map is continuous.
+@isnad1 id=continuo.5h4v.s16.31bc8037fc2b from=translated src=- shape=8cccc1a7 vocab=300b638b
+-/
 theorem continuous_compactMartinPoint_eval (x : Γ) :
     Continuous (fun p => (compactMartinPoint Γ s μ hpos hgen hgap horbit p).val x) := by
   let : MetricSpace (OnePoint ℂ) := TopologicalSpace.metrizableSpaceMetric (OnePoint ℂ)
@@ -55,7 +57,9 @@ theorem continuous_compactMartinPoint_eval (x : Γ) :
     tendsto_one_div_add_atTop_nhds_zero_nat
 
 include hmass in
-/-- The geometric Martin map is continuous on the compact real projective line.-/
+/-- The geometric Martin map is continuous on the compact real projective line.
+@isnad1 id=continuo.5h3v.s16.aa01e5c85e54 from=translated src=- shape=4fa584a2 vocab=32f48011
+-/
 theorem continuous_compactMartinPoint :
     Continuous (compactMartinPoint Γ s μ hpos hgen hgap horbit) := by
   apply continuous_induced_rng.mpr

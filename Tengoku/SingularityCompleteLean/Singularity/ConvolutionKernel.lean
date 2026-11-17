@@ -15,7 +15,9 @@ open MeasureTheory
 
 namespace Singularity
 
-/-- The integral of the product of the absolute values satisfies Cauchy–Schwarz.-/
+/-- The integral of the product of the absolute values satisfies Cauchy–Schwarz.
+@isnad1 id=le.0h2v.s10.9258c351b9b7 from=translated src=- shape=1f7d09e7 vocab=813d92b0
+-/
 theorem integral_norm_mul_norm_L2 (f g : RealLineL2) :
     ∫ t, ‖f t‖ * ‖g t‖ ≤ ‖f‖ * ‖g‖ := by
   have h := integral_mul_norm_le_Lp_mul_Lq Real.HolderConjugate.two_two
@@ -27,7 +29,9 @@ theorem integral_norm_mul_norm_L2 (f g : RealLineL2) :
   simpa only [Real.rpow_two, hf, hg, ← Real.sqrt_eq_rpow,
     Real.sqrt_sq (norm_nonneg f), Real.sqrt_sq (norm_nonneg g)] using h
 
-/-- The translated inner-product density has a uniform L¹ bound.-/
+/-- The translated inner-product density has a uniform L¹ bound.
+@isnad1 id=le.0h3v.s10.7da434b47fce from=translated src=- shape=715f0780 vocab=300f1ad5
+-/
 theorem integral_norm_inner_translation_le (u : ℝ) (h f : RealLineL2) :
     ∫ s, ‖inner ℂ (h s) (f (s - u))‖ ≤ ‖h‖ * ‖f‖ := by
   calc
@@ -40,7 +44,9 @@ theorem integral_norm_inner_translation_le (u : ℝ) (h f : RealLineL2) :
     _ ≤ ‖h‖ * ‖realTranslation u f‖ := integral_norm_mul_norm_L2 h _
     _ = ‖h‖ * ‖f‖ := by rw [(realTranslation u).norm_map]
 
-/-- Joint integrability, including the L² inputs that need not belong to L¹.-/
+/-- Joint integrability, including the L² inputs that need not belong to L¹.
+@isnad1 id=integrab.1h3v.s10.dae0cbb51e42 from=translated src=- shape=a43b8c6b vocab=dc1cb086
+-/
 theorem convolution_kernel_fubini {k : ℝ → ℂ} (hk : Integrable k) (h f : RealLineL2) :
     Integrable (fun p : ℝ × ℝ => k p.1 * inner ℂ (h p.2) (f (p.2 - p.1)))
       (volume.prod volume) := by
@@ -63,7 +69,9 @@ theorem convolution_kernel_fubini {k : ℝ → ℂ} (hk : Integrable k) (h f : R
       rw [integral_const_mul]
       exact mul_le_mul_of_nonneg_left (integral_norm_inner_translation_le u h f) (norm_nonneg _))
 
-/-- The weak physical-space kernel formula for actual L² convolution.-/
+/-- The weak physical-space kernel formula for actual L² convolution.
+@isnad1 id=eq.1h3v.s12.04d1f9a37bd7 from=translated src=- shape=77497f85 vocab=b88ac29b
+-/
 theorem convolutionL2_inner_kernel (k : ℝ → ℂ) (hk : Integrable k) (f h : RealLineL2) :
     inner ℂ h (convolutionL2 k hk f) =
       ∫ s, ∫ t, k (s - t) * inner ℂ (h s) (f t) := by

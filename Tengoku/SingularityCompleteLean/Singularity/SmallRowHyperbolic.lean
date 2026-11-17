@@ -18,7 +18,9 @@ open scoped Topology MatrixGroups
 
 namespace Singularity
 
-/-- A uniformly bounded real factor times a sequence tending to zero tends to zero.-/
+/-- A uniformly bounded real factor times a sequence tending to zero tends to zero.
+@isnad1 id=tendsto.2h3v.s6.ccfc4b85e299 from=translated src=- shape=1d694fdb vocab=adc27b22
+-/
 theorem bounded_mul_tendsto_zero (f h : ℕ → ℝ) (C : ℝ)
     (hf : ∀ n, |f n| ≤ C) (hh : Tendsto h atTop (nhds 0)) :
     Tendsto (fun n => f n * h n) atTop (nhds 0) := by
@@ -26,7 +28,9 @@ theorem bounded_mul_tendsto_zero (f h : ℕ → ℝ) (C : ℝ)
   rw [norm_mul, Real.norm_eq_abs (f n)]
   exact mul_le_mul_of_nonneg_right (hf n) (norm_nonneg _)
 
-/-- A small lower row and an element not fixing infinity force a hyperbolic trace.-/
+/-- A small lower row and an element not fixing infinity force a hyperbolic trace.
+@isnad1 id=ex.3h3v.s11.b616d4656b36 from=translated src=- shape=50138e56 vocab=809f6fd2
+-/
 theorem exists_hyperbolic_of_small_lower_row (Γ : Subgroup SL(2, ℝ))
     (g : ℕ → Γ)
     (hc : Tendsto (fun n => (g n : SL(2, ℝ)) 1 0) atTop (nhds 0))

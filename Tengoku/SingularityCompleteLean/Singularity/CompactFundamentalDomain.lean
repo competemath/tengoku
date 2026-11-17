@@ -20,7 +20,9 @@ open Set MeasureTheory Topology
 
 namespace Singularity
 
-/-- A measurable transversal for the right cosets is a fundamental domain for the right action.-/
+/-- A measurable transversal for the right cosets is a fundamental domain for the right action.
+@isnad1 id=isfundam.3h4v.s7.1fdb24fbad62 from=translated src=- shape=cef6ca0f vocab=433b527d
+-/
 theorem isFundamentalDomain_of_quotient_transversal {G : Type*} [Group G]
     [MeasurableSpace G] (Γ : Subgroup G) (ν : Measure G) {S : Set G}
     (hS : MeasurableSet S) (hinj : Set.InjOn (QuotientGroup.mk : G → G ⧸ Γ) S)
@@ -42,7 +44,9 @@ theorem isFundamentalDomain_of_quotient_transversal {G : Type*} [Group G]
   apply MulOpposite.unop_injective
   exact mul_left_cancel he
 
-/-- Compactness of a discrete coset quotient supplies a relatively compact measurable domain.-/
+/-- Compactness of a discrete coset quotient supplies a relatively compact measurable domain.
+@isnad1 id=ex.0h3v.s7.1a487156da1a from=translated src=- shape=c9aed59c vocab=658bc869
+-/
 theorem exists_compact_fundamentalDomain {G : Type*} [Group G]
     [TopologicalSpace G] [IsTopologicalGroup G] [LocallyCompactSpace G] [PolishSpace G]
     [MeasurableSpace G] [BorelSpace G] (Γ : Subgroup G) [DiscreteTopology Γ]
@@ -54,7 +58,9 @@ theorem exists_compact_fundamentalDomain {G : Type*} [Group G]
     (QuotientGroup.mk : G → G ⧸ Γ) hc QuotientGroup.mk_surjective
   exact ⟨S, K, hS, hK, hSK, isFundamentalDomain_of_quotient_transversal Γ ν hS hi hs⟩
 
-/-- The constructed domain has finite mass for every locally finite Borel measure.-/
+/-- The constructed domain has finite mass for every locally finite Borel measure.
+@isnad1 id=ex.0h3v.s7.645ae1334fc6 from=translated src=- shape=77f82c74 vocab=9e1fae3d
+-/
 theorem exists_finite_fundamentalDomain {G : Type*} [Group G]
     [TopologicalSpace G] [IsTopologicalGroup G] [LocallyCompactSpace G] [PolishSpace G]
     [MeasurableSpace G] [BorelSpace G] (Γ : Subgroup G) [DiscreteTopology Γ]

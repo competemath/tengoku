@@ -16,7 +16,9 @@ open scoped ENNReal
 namespace Singularity
 
 /-- Absorb a positive inverse-shadow mass into the additive shadow constant.
-No global lower bound on the mass is silently supplied by this statement.-/
+No global lower bound on the mass is silently supplied by this statement.
+@isnad1 id=and.7h8v.s8.8370f924e8b0 from=translated src=- shape=cec7740c vocab=f1bc1f2b
+-/
 theorem shadow_estimates_of_positive_inverse_mass
     {Γ B : Type*} [Group Γ] [MeasurableSpace B] [MulAction Γ B]
     [MeasurableConstSMul Γ B] (ν : Measure B) [IsFiniteMeasure ν]

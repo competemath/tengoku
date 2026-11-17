@@ -17,7 +17,9 @@ open scoped Classical Topology ENNReal
 
 namespace Singularity
 
-/-- The Poisson law at x+i r is the affine rescaling of the law at i.-/
+/-- The Poisson law at x+i r is the affine rescaling of the law at i.
+@isnad1 id=eq.1h2v.s5.34205418af06 from=translated src=- shape=a74e92c9 vocab=2ca45fdd
+-/
 theorem halfPlanePoissonMeasure_affine (x r : ℝ) (hr : 0 < r) :
     Measure.map (fun t : ℝ => x + r * t) (halfPlanePoissonMeasure 0 1) = halfPlanePoissonMeasure x r := by
   have hs : Measure.map (fun t : ℝ => r * t) (halfPlanePoissonMeasure 0 1) = halfPlanePoissonMeasure 0 r := by
@@ -32,7 +34,9 @@ theorem halfPlanePoissonMeasure_affine (x r : ℝ) (hr : 0 < r) :
     _ = Measure.map (fun t : ℝ => x + t) (halfPlanePoissonMeasure 0 r) := by rw [hs]
     _ = _ := by simpa only [add_zero] using halfPlanePoissonMeasure_translate 0 r x
 
-/-- The standard Cauchy law has globally bounded density.-/
+/-- The standard Cauchy law has globally bounded density.
+@isnad1 id=le.0h0v.s6.ebaddb09d06b from=translated src=- shape=bfb43b03 vocab=ba6da845
+-/
 theorem halfPlanePoissonMeasure_base_le_volume :
     halfPlanePoissonMeasure 0 1 ≤ ENNReal.ofReal Real.pi⁻¹ • volume := by
   rw [halfPlanePoissonMeasure, ← withDensity_const]
@@ -46,7 +50,9 @@ theorem halfPlanePoissonMeasure_base_le_volume :
   rw [← mul_assoc, inv_mul_cancel₀ Real.pi_ne_zero, one_mul]
   nlinarith [sq_nonneg t]
 
-/-- The Poisson measure of the complement tends to zero at every density-one point.-/
+/-- The Poisson measure of the complement tends to zero at every density-one point.
+@isnad1 id=tendsto.2h2v.s7.f9019dc3684a from=translated src=- shape=3d027c1a vocab=09d37096
+-/
 theorem halfPlanePoisson_compl_tendsto_of_density_one (S : Set ℝ) (hS : MeasurableSet S) (x : ℝ)
     (hdensity : Tendsto (fun r : ℝ => volume (S ∩ closedBall x r) / volume (closedBall x r))
       (𝓝[>] 0) (𝓝 1)) :
@@ -59,7 +65,9 @@ theorem halfPlanePoisson_compl_tendsto_of_density_one (S : Set ℝ) (hS : Measur
   rw [← halfPlanePoissonMeasure_affine x r hr]
   exact (Measure.map_apply (by fun_prop : Measurable (fun t : ℝ => x + r * t)) hS.compl).symm
 
-/-- Vertical Poisson concentration holds at almost every point of a measurable set.-/
+/-- Vertical Poisson concentration holds at almost every point of a measurable set.
+@isnad1 id=eventual.1h1v.s6.b48e08efea39 from=translated src=- shape=359c17a4 vocab=6c663a48
+-/
 theorem ae_halfPlanePoisson_compl_tendsto (S : Set ℝ) (hS : MeasurableSet S) :
     ∀ᵐ x ∂volume.restrict S,
       Tendsto (fun r : ℝ => halfPlanePoissonMeasure x r Sᶜ) (𝓝[>] 0) (𝓝 0) := by

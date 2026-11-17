@@ -20,7 +20,9 @@ namespace Singularity
 
 variable {X ι : Type*} [MeasurableSpace X] {μ : Measure X}
 
-/-- The overlap bound controls the squared norm of every finite column.-/
+/-- The overlap bound controls the squared norm of every finite column.
+@isnad1 id=le.0h6v.s6.e8748d31f1c6 from=translated src=- shape=91fdf31f vocab=84c3d943
+-/
 theorem DensityFamily.column_square_bound (K : DensityFamily X ι μ) (x : X) (s : Finset ι) :
     ∑ i ∈ s, ‖(K.density i x : ℂ)‖ ^ 2 ≤ K.overlapBound ^ 2 := by
   calc
@@ -39,17 +41,24 @@ def DensityFamily.column (K : DensityFamily X ι μ) (x : X) : SequenceL2 ι :=
   ⟨fun i => (K.density i x : ℂ), memℓp_gen' (C := K.overlapBound ^ 2)
     (fun s => by simpa using K.column_square_bound x s)⟩
 
+/--
+@isnad1 id=eq.0h6v.s7.2577215a89b5 from=translated src=- shape=be260d0a vocab=0a904352
+-/
 theorem DensityFamily.column_apply (K : DensityFamily X ι μ) (x : X) (i : ι) :
     K.column x i = (K.density i x : ℂ) := rfl
 
-/-- Uniform bound in the Hilbert-space norm.-/
+/-- Uniform bound in the Hilbert-space norm.
+@isnad1 id=le.0h5v.s7.d10bba002eb9 from=translated src=- shape=31321b36 vocab=366bd790
+-/
 theorem DensityFamily.column_norm_le (K : DensityFamily X ι μ) (x : X) :
     ‖K.column x‖ ≤ K.overlapBound := by
   apply lp.norm_le_of_forall_sum_le (p := 2) (by norm_num) K.overlapBound_nonneg
   intro s
   simpa only [column_apply, ENNReal.toReal_ofNat, Real.rpow_two] using K.column_square_bound x s
 
-/-- Strong measurability follows from the countable coordinate expansion.-/
+/-- Strong measurability follows from the countable coordinate expansion.
+@isnad1 id=aestrong.0h4v.s9.8249aa349c04 from=translated src=- shape=795c1489 vocab=e5e16278
+-/
 theorem DensityFamily.column_aestronglyMeasurable [Countable ι] (K : DensityFamily X ι μ) :
     AEStronglyMeasurable K.column μ := by
   classical
@@ -62,7 +71,9 @@ theorem DensityFamily.column_aestronglyMeasurable [Countable ι] (K : DensityFam
     (lp.hasSum_single ENNReal.ofNat_ne_top (K.column x)).tsum_eq
   simpa only [he] using AEStronglyMeasurable.tsum (L := .unconditional ι) hm
 
-/-- The vector-valued integrand is integrable for every L¹ input.-/
+/-- The vector-valued integrand is integrable for every L¹ input.
+@isnad1 id=integrab.1h5v.s11.a2dfbb889b0f from=translated src=- shape=80a7e95e vocab=0d86938e
+-/
 theorem DensityFamily.column_integrable [Countable ι] (K : DensityFamily X ι μ)
     {f : X → ℂ} (hf : Integrable f μ) : Integrable (fun x => f x • K.column x) μ := by
   apply (hf.norm.mul_const K.overlapBound).mono'
@@ -72,7 +83,9 @@ theorem DensityFamily.column_integrable [Countable ι] (K : DensityFamily X ι �
     rw [norm_smul]
     exact mul_le_mul_of_nonneg_left (K.column_norm_le x) (norm_nonneg _))
 
-/-- The analysis operator equals the Bochner integral on L¹∩L².-/
+/-- The analysis operator equals the Bochner integral on L¹∩L².
+@isnad1 id=eq.1h5v.s12.92b89de6dd83 from=translated src=- shape=fe6746b7 vocab=ba573f5c
+-/
 theorem DensityFamily.analysis_eq_integral [Countable ι] (K : DensityFamily X ι μ)
     (f : Lp ℂ 2 μ) (hf : Integrable (f : X → ℂ) μ) :
     K.analysis f = ∫ x, f x • K.column x ∂μ := by

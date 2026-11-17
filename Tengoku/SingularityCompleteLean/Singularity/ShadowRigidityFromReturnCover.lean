@@ -22,7 +22,9 @@ namespace Singularity
 
 /-- Common exponential shadow estimates, a differentiating sequence, and a
 finite corrected return cover imply global magnitude rigidity. All geometric
-and differentiation inputs are explicit hypotheses.-/
+and differentiation inputs are explicit hypotheses.
+@isnad1 id=ex.14h14v.s9.38ea237d06dd from=translated src=- shape=3348c16f vocab=07e26fe1
+-/
 theorem magnitude_rigidity_of_shadow_return_cover {Γ B : Type*} [Group Γ] [Countable Γ]
     [MeasurableSpace B] [MulAction Γ B] [MeasurableConstSMul Γ B]
     (ν m : Measure B) [IsFiniteMeasure ν] [IsFiniteMeasure m]

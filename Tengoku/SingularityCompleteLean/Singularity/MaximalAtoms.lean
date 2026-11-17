@@ -20,7 +20,9 @@ open scoped Classical ENNReal
 
 namespace Singularity
 
-/-- A finite measure has finitely many singleton masses above every positive threshold.-/
+/-- A finite measure has finitely many singleton masses above every positive threshold.
+@isnad1 id=finite.1h3v.s5.a9e7bd871d7c from=translated src=- shape=c3deef80 vocab=01fec4b6
+-/
 theorem finite_large_atoms {X : Type*} [MeasurableSpace X] [MeasurableSingletonClass X]
     (ν : Measure X) [IsFiniteMeasure ν] {ε : ℝ≥0∞} (hε : ε ≠ 0) :
     {x : X | ε ≤ ν {x}}.Finite := by
@@ -29,7 +31,9 @@ theorem finite_large_atoms {X : Type*} [MeasurableSpace X] [MeasurableSingletonC
       (fun x y hxy => (Set.disjoint_singleton.mpr hxy).aedisjoint)
   exact ENNReal.finite_const_le_of_tsum_ne_top (ne_top_of_le_ne_top (measure_ne_top ν univ) hs) hε
 
-/-- If a finite measure has a nonzero singleton, its largest singleton mass is attained.-/
+/-- If a finite measure has a nonzero singleton, its largest singleton mass is attained.
+@isnad1 id=ex.1h2v.s7.26c2be373d29 from=translated src=- shape=0d09977f vocab=aa93f83c
+-/
 theorem exists_maximal_atom {X : Type*} [MeasurableSpace X] [MeasurableSingletonClass X]
     (ν : Measure X) [IsFiniteMeasure ν] (h : ∃ x : X, ν {x} ≠ 0) :
     ∃ x : X, 0 < ν {x} ∧ ∀ y : X, ν {y} ≤ ν {x} := by
@@ -42,7 +46,9 @@ theorem exists_maximal_atom {X : Type*} [MeasurableSpace X] [MeasurableSingleton
   · exact hmax y hy
   · exact (le_of_not_ge hy).trans hx
 
-/-- The real singleton-mass function also attains a positive maximum when an atom is present.-/
+/-- The real singleton-mass function also attains a positive maximum when an atom is present.
+@isnad1 id=ex.1h2v.s7.1f726301c4a8 from=translated src=- shape=b6e7f175 vocab=d4853953
+-/
 theorem exists_maximal_real_atom {X : Type*} [MeasurableSpace X] [MeasurableSingletonClass X]
     (ν : Measure X) [IsFiniteMeasure ν] (h : ∃ x : X, ν {x} ≠ 0) :
     ∃ x : X, 0 < (ν {x}).toReal ∧ ∀ y : X, (ν {y}).toReal ≤ (ν {x}).toReal := by
@@ -50,7 +56,9 @@ theorem exists_maximal_real_atom {X : Type*} [MeasurableSpace X] [MeasurableSing
   exact ⟨x, ENNReal.toReal_pos hx.ne' (measure_ne_top ν _),
     fun y => (ENNReal.toReal_le_toReal (measure_ne_top ν _) (measure_ne_top ν _)).mpr (hmax y)⟩
 
-/-- The positive maximizers of the real singleton-mass function form a finite set.-/
+/-- The positive maximizers of the real singleton-mass function form a finite set.
+@isnad1 id=finite.1h3v.s6.af003e16b0e0 from=translated src=- shape=cea29ec2 vocab=769a2005
+-/
 theorem finite_maximal_real_atoms {X : Type*} [MeasurableSpace X] [MeasurableSingletonClass X]
     (ν : Measure X) [IsFiniteMeasure ν] (x : X) (hx : 0 < (ν {x}).toReal) :
     {y : X | (ν {y}).toReal = (ν {x}).toReal}.Finite := by

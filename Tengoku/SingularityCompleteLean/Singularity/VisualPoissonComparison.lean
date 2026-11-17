@@ -15,7 +15,9 @@ open MeasureTheory Set OnePoint
 open scoped Classical ENNReal UpperHalfPlane
 namespace Singularity
 
-/-- Every visual Poisson value is at most the exponential displacement.-/
+/-- Every visual Poisson value is at most the exponential displacement.
+@isnad1 id=le.0h2v.s4.0d3630391013 from=translated src=- shape=666427e1 vocab=01759d9a
+-/
 theorem visualPoisson_le_exp_dist (z : ℍ) (ξ : ℝ) :
     visualPoisson z ξ ≤ Real.exp (dist UpperHalfPlane.I z) := by
   unfold visualPoisson
@@ -25,7 +27,9 @@ theorem visualPoisson_le_exp_dist (z : ℍ) (ξ : ℝ) :
   rw [dist_smul, dist_comm z UpperHalfPlane.I] at h
   simpa only [mul_comm] using h
 
-/-- Pointwise comparison of the normalized real-boundary Poisson densities.-/
+/-- Pointwise comparison of the normalized real-boundary Poisson densities.
+@isnad1 id=le.0h2v.s5.7ed57dc95dc8 from=translated src=- shape=034d4652 vocab=2f7df9fc
+-/
 theorem halfPlanePoisson_le_exp_dist (z : ℍ) (ξ : ℝ) :
     halfPlanePoisson z.re z.im ξ ≤ Real.exp (dist UpperHalfPlane.I z) *
       halfPlanePoisson 0 1 ξ := by
@@ -43,7 +47,9 @@ theorem halfPlanePoisson_le_exp_dist (z : ℍ) (ξ : ℝ) :
     _ = _ := by rw [mul_left_comm _ (Real.exp _), he, mul_one]
 
 /-- The finite-chart visual measure is dominated by exponential displacement
- times the base visual measure.-/
+ times the base visual measure.
+@isnad1 id=le.0h1v.s5.534cf4227280 from=translated src=- shape=f8272d54 vocab=3ac1dbfa
+-/
 theorem poissonBoundaryMeasure_le_exp_dist (z : ℍ) :
     poissonBoundaryMeasure z ≤ ENNReal.ofReal (Real.exp (dist UpperHalfPlane.I z)) •
       poissonBoundaryMeasure UpperHalfPlane.I := by
@@ -54,7 +60,9 @@ theorem poissonBoundaryMeasure_le_exp_dist (z : ℍ) :
   intro ξ
   exact ENNReal.ofReal_le_ofReal (halfPlanePoisson_le_exp_dist z ξ)
 
-/-- Every nonempty compact-boundary open set has positive visual measure.-/
+/-- Every nonempty compact-boundary open set has positive visual measure.
+@isnad1 id=isopenpo.0h1v.s4.57e9ed8dde2e from=translated src=- shape=6e3f75ce vocab=0f749409
+-/
 theorem compactPoissonMeasure_isOpenPosMeasure (z : ℍ) :
     Measure.IsOpenPosMeasure (compactPoissonMeasure z) := by
   let : Measure.IsOpenPosMeasure (poissonBoundaryMeasure z) :=

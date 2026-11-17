@@ -23,16 +23,24 @@ variable {Γ : Type*} [Group Γ]
 def normalizedKilledGreen (s : Finset Γ) (μ : Γ → ℝ) (A : Set Γ) (o z x : Γ) : ℝ :=
   killedGreen s μ A x z / killedGreen s μ A o z
 
+/--
+@isnad1 id=eq.1h6v.s5.256cb1f74b9c from=translated src=- shape=82714d6e vocab=462c9882
+-/
 theorem normalizedKilledGreen_base (s : Finset Γ) (μ : Γ → ℝ) (A : Set Γ) (o z : Γ)
     (hden : killedGreen s μ A o z ≠ 0) : normalizedKilledGreen s μ A o z o = 1 := div_self hden
 
+/--
+@isnad1 id=le.1h7v.s6.9c9a4b455adb from=translated src=- shape=14b0f16b vocab=6fa064b0
+-/
 theorem normalizedKilledGreen_nonneg (s : Finset Γ) (μ : Γ → ℝ) (hμ : ∀ g ∈ s, 0 ≤ μ g)
     (A : Set Γ) (o z x : Γ) : 0 ≤ normalizedKilledGreen s μ A o z x :=
   div_nonneg (killedGreen_nonneg s μ hμ A x z) (killedGreen_nonneg s μ hμ A o z)
 
 variable [MeasurableSpace Γ] [MeasurableMul Γ] [MeasurableSingletonClass Γ] [Countable Γ]
 
-/-- Finite common subtraction of L² kernels stays in L².-/
+/-- Finite common subtraction of L² kernels stays in L².
+@isnad1 id=memlp.2h6v.s8.3c571f8e33f2 from=translated src=- shape=11c8853b vocab=f76c6279
+-/
 theorem commonSubtraction_memLp (k : ℕ → Γ → ℝ) (c : ℝ) (o : Γ) (f : Γ → ℝ)
     (hf : MemLp (fun x => (f x : ℂ)) 2 Measure.count)
     (hk : ∀ n, MemLp (fun x => (k n x : ℂ)) 2 Measure.count) (n : ℕ) :
@@ -47,7 +55,9 @@ theorem commonSubtraction_memLp (k : ℕ → Γ → ℝ) (c : ℝ) (o : Γ) (f :
 
 omit [MeasurableSpace Γ] [MeasurableMul Γ] [MeasurableSingletonClass Γ] [Countable Γ] in
 /-- Common subtraction preserves harmonicity wherever all earlier kernels
-and the initial function are harmonic.-/
+and the initial function are harmonic.
+@isnad1 id=eq.2h9v.s7.d3d0dbdb4cc2 from=translated src=- shape=1e647f67 vocab=2d42e3a9
+-/
 theorem commonSubtraction_harmonic (s : Finset Γ) (μ : Γ → ℝ)
     (k : ℕ → Γ → ℝ) (c : ℝ) (o : Γ) (f : Γ → ℝ) (n : ℕ) (x : Γ)
     (hf : f x = ∑ g ∈ s, μ g * f (x*g))
@@ -71,7 +81,9 @@ theorem commonSubtraction_harmonic (s : Finset Γ) (μ : Γ → ℝ)
 
 omit [MeasurableSpace Γ] [MeasurableMul Γ] [MeasurableSingletonClass Γ] [Countable Γ] in
 /-- Boundary-Harnack bounds for the actual killed-column residuals imply a
-geometric contraction. The domain comparisons are hypotheses, not axioms.-/
+geometric contraction. The domain comparisons are hypotheses, not axioms.
+@isnad1 id=le.7h13v.s8.1af02e2ab46c from=translated src=- shape=85285866 vocab=94cc5dd5
+-/
 theorem killedGreen_commonSubtraction_contraction (s : Finset Γ) (μ : Γ → ℝ)
     (A : ℕ → Set Γ) (z : ℕ → Γ) (o : Γ) (C : ℝ) (hC : 1 ≤ C)
     (f g : Γ → ℝ) (S : ℕ → Set Γ) (N : ℕ)

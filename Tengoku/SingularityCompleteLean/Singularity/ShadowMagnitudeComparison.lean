@@ -16,7 +16,9 @@ open scoped ENNReal
 namespace Singularity
 
 /-- Two exponential mass bounds control the logarithmic mass with the same
-additive error. Finite measure ensures the real logarithm is well-defined.-/
+additive error. Finite measure ensures the real logarithm is well-defined.
+@isnad1 id=le.2h5v.s6.04dce8a8db08 from=translated src=- shape=d3ea4708 vocab=285e7ddd
+-/
 theorem log_measure_error_of_exp_bounds {B : Type*} [MeasurableSpace B]
     (ν : Measure B) [IsFiniteMeasure ν] (S : Set B) (D C : ℝ)
     (hl : ENNReal.ofReal (Real.exp (-D - C)) ≤ ν S)
@@ -35,7 +37,9 @@ theorem log_measure_error_of_exp_bounds {B : Type*} [MeasurableSpace B]
   exact abs_le.mpr ⟨by linarith, by linarith⟩
 
 /-- Exponential comparison of measures bounds the difference of their log
-masses on each positive-mass set.-/
+masses on each positive-mass set.
+@isnad1 id=le.3h5v.s7.d0aba56e54e1 from=translated src=- shape=4252c2fc vocab=722f141c
+-/
 theorem log_measure_difference_of_exp_comparison {B : Type*} [MeasurableSpace B]
     (ν m : Measure B) [IsFiniteMeasure ν] [IsFiniteMeasure m] (S : Set B)
     (hS : 0 < m S) (K : ℝ)
@@ -57,7 +61,9 @@ theorem log_measure_difference_of_exp_comparison {B : Type*} [MeasurableSpace B]
   exact abs_le.mpr ⟨by linarith, by linarith⟩
 
 /-- Comparable measures with exponential estimates on one common shadow have
-uniformly comparable magnitudes. This is the final numerical rigidity step.-/
+uniformly comparable magnitudes. This is the final numerical rigidity step.
+@isnad1 id=le.6h9v.s8.dda7b30718b9 from=translated src=- shape=2fcd81c9 vocab=ac5b1c80
+-/
 theorem shadow_magnitude_comparison {B : Type*} [MeasurableSpace B]
     (ν m : Measure B) [IsFiniteMeasure ν] [IsFiniteMeasure m] (S : Set B)
     (Dν Dm Cν Cm K : ℝ)
@@ -79,7 +85,9 @@ theorem shadow_magnitude_comparison {B : Type*} [MeasurableSpace B]
   constructor <;> linarith
 
 /-- For an upper magnitude estimate only the reference shadow's lower mass,
-the target shadow's upper mass, and one-sided measure domination are needed.-/
+the target shadow's upper mass, and one-sided measure domination are needed.
+@isnad1 id=le.4h9v.s7.c01d24ff6e68 from=translated src=- shape=08b8de34 vocab=74d4a6ee
+-/
 theorem shadow_magnitude_upper_of_one_sided_comparison {B : Type*} [MeasurableSpace B]
     (ν m : Measure B) (S : Set B) (Dν Dm C K a : ℝ) (ha : 0 < a)
     (hml : ENNReal.ofReal (Real.exp (-Dm)) * ENNReal.ofReal a ≤ m S)

@@ -21,7 +21,9 @@ open scoped Topology Classical MatrixGroups UpperHalfPlane
 
 namespace Singularity
 
-/-- A sufficiently small positive escape rate is dominated by spectral decay.-/
+/-- A sufficiently small positive escape rate is dominated by spectral decay.
+@isnad1 id=ex.2h1v.s6.95a5a891d21d from=translated src=- shape=3c2ff630 vocab=a1f884aa
+-/
 theorem exists_positive_escape_rate {q : ℝ} (hq : 0 < q) (hq1 : q < 1) :
     ∃ a : ℝ, 0 < a ∧ Real.exp (4 * a) * q < 1 := by
   have hl : Real.log q < 0 := Real.log_neg hq hq1
@@ -37,7 +39,9 @@ variable (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
   [MeasurableSpace Γ] [MeasurableSingletonClass Γ] [MeasurableMul Γ]
 
 omit [DiscreteTopology Γ] [MeasurableSpace Γ] [MeasurableSingletonClass Γ] [MeasurableMul Γ] in
-/-- Changing the initial point in the half-plane changes radial distance by a bounded amount.-/
+/-- Changing the initial point in the half-plane changes radial distance by a bounded amount.
+@isnad1 id=le.0h3v.s12.ba16e697493e from=translated src=- shape=6de53ed3 vocab=323ca284
+-/
 theorem orbit_radial_basepoint_bound (g : Γ) (z : ℍ) :
     dist (g • UpperHalfPlane.I) UpperHalfPlane.I ≤
       dist (g • z) UpperHalfPlane.I + dist z UpperHalfPlane.I := by

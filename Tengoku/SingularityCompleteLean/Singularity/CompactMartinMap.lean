@@ -16,7 +16,9 @@ open scoped Topology Classical MatrixGroups UpperHalfPlane
 namespace Singularity
 
 /-- Every compact boundary point has an actual orbit approach, obtained by
-transporting a chosen finite-endpoint ray.-/
+transporting a chosen finite-endpoint ray.
+@isnad1 id=ex.1h2v.s12.4427e0a4eccb from=translated src=- shape=a9bccf90 vocab=4637034c
+-/
 theorem exists_compact_boundary_orbit_approach (Γ : Subgroup SL(2, ℝ))
     [CompactSpace (Quotient (MulAction.orbitRel Γ ℍ))]
     (horbit : (MulAction.orbit Γ (∞ : OnePoint ℝ)).Infinite) (p : OnePoint ℝ) :
@@ -56,7 +58,9 @@ def compactMartinPoint (p : OnePoint ℝ) : martinBoundary s μ 1 :=
 
 include hmass in
 /-- Full pointwise Martin convergence for arbitrary approaches to every compact
-boundary point, including infinity.-/
+boundary point, including infinity.
+@isnad1 id=tendsto.6h6v.s16.e326d01bc883 from=translated src=- shape=a0a41be5 vocab=4f336d7b
+-/
 theorem compactMartinPoint_tendsto (p : OnePoint ℝ) (y : ℕ → Γ)
     (hy : Tendsto (fun n => hyperbolicCompactEmbedding (y n • UpperHalfPlane.I)) atTop
       (𝓝 (compactBoundaryEmbedding p))) (x : Γ) :
@@ -67,7 +71,9 @@ theorem compactMartinPoint_tendsto (p : OnePoint ℝ) (y : ℕ → Γ)
     h.choose h.choose_spec.choose h.choose_spec.choose_spec y hy x
 
 include hmass in
-/-- Every valid finite-image chart gives the same actual Martin boundary point.-/
+/-- Every valid finite-image chart gives the same actual Martin boundary point.
+@isnad1 id=eq.6h6v.s16.21793f0700a7 from=translated src=- shape=cd1568dc vocab=780addab
+-/
 theorem compactMartinPoint_chart (p : OnePoint ℝ) (g : Γ) (ξ : ℝ)
     (hg : g • p = (ξ : OnePoint ℝ)) :
     compactMartinPoint Γ s μ hpos hgen hgap horbit p =

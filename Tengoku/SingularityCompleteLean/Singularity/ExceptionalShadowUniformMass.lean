@@ -20,7 +20,9 @@ namespace Singularity
 
 /-- Exceptional-set compactness for every sequence implies uniform exhaustion
 in measure. The pointwise-to-uniform inference uses the full subsequence
-hypothesis and atomlessness; pointwise exhaustion alone is insufficient.-/
+hypothesis and atomlessness; pointwise exhaustion alone is insufficient.
+@isnad1 id=ex.3h5v.s7.0870b3bde5a8 from=translated src=- shape=d30da250 vocab=2e6f23de
+-/
 theorem uniform_shadow_mass_of_exceptional_subsequences
     {A B : Type*} [MeasurableSpace B] [TopologicalSpace B]
     (ν : Measure B) [Measure.OuterRegular ν] [NullSingletonClass ν]

@@ -19,7 +19,9 @@ open Set Topology
 
 namespace Singularity
 
-/-- Select one point in every fiber, measurably and inside a compact set.-/
+/-- Select one point in every fiber, measurably and inside a compact set.
+@isnad1 id=ex.2h3v.s6.a92fd1863dc5 from=translated src=- shape=b80854f3 vocab=ed0139ed
+-/
 theorem exists_compact_measurable_transversal {X Y : Type*}
     [TopologicalSpace X] [LocallyCompactSpace X] [MeasurableSpace X] [BorelSpace X]
     [TopologicalSpace Y] [CompactSpace Y] [MeasurableSpace Y] [BorelSpace Y]

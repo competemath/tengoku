@@ -16,7 +16,9 @@ open scoped Classical
 namespace Singularity
 
 /-- Adding finitely many predecessors turns avoidance at both ends of a
-step into an outgoing-exit condition depending only on its initial vertex.-/
+step into an outgoing-exit condition depending only on its initial vertex.
+@isnad1 id=ex.1h4v.s7.900738ab1b92 from=translated src=- shape=ccffd74c vocab=737997ea
+-/
 theorem exists_finite_exit_enlargement {Γ : Type*} [Group Γ]
     (s A : Finset Γ) (V : Set Γ)
     (hstep : ∀ v : Γ, v ∉ (A : Set Γ) → ∀ t ∈ s,

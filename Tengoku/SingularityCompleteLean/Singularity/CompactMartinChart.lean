@@ -17,7 +17,9 @@ open scoped Topology Classical MatrixGroups UpperHalfPlane
 namespace Singularity
 
 /-- An infinite orbit of infinity supplies a group element with finite image
-there. This is the only additional chart needed beyond the real line.-/
+there. This is the only additional chart needed beyond the real line.
+@isnad1 id=ex.1h1v.s12.a14bc354505a from=translated src=- shape=75a4e3dd vocab=3966c77f
+-/
 theorem exists_finite_image_infty (Γ : Subgroup SL(2, ℝ))
     (horbit : (MulAction.orbit Γ (∞ : OnePoint ℝ)).Infinite) :
     ∃ (g : Γ) (ξ : ℝ), g • (∞ : OnePoint ℝ) = (ξ : OnePoint ℝ) := by
@@ -29,7 +31,9 @@ theorem exists_finite_image_infty (Γ : Subgroup SL(2, ℝ))
   | infty => exact (hn he).elim
   | coe ξ => exact ⟨g, ξ, he⟩
 
-/-- Each point of the compact boundary can be moved into the finite real chart.-/
+/-- Each point of the compact boundary can be moved into the finite real chart.
+@isnad1 id=ex.1h2v.s12.b60391f597bb from=translated src=- shape=f7d7cef4 vocab=3966c77f
+-/
 theorem exists_finite_image_boundary (Γ : Subgroup SL(2, ℝ))
     (horbit : (MulAction.orbit Γ (∞ : OnePoint ℝ)).Infinite) (p : OnePoint ℝ) :
     ∃ (g : Γ) (ξ : ℝ), g • p = (ξ : OnePoint ℝ) := by
@@ -38,7 +42,9 @@ theorem exists_finite_image_boundary (Γ : Subgroup SL(2, ℝ))
   | coe ξ => exact ⟨1, ξ, one_smul _ _⟩
 
 /-- A compact-boundary approach becomes ordinary complex convergence when a
-chart moves its endpoint to a finite real coordinate.-/
+chart moves its endpoint to a finite real coordinate.
+@isnad1 id=tendsto.2h7v.s12.38dbf4d427bf from=translated src=- shape=7ce86212 vocab=c7251edf
+-/
 theorem compact_orbit_approach_finite_image {α : Type*} {l : Filter α}
     (Γ : Subgroup SL(2, ℝ)) (p : OnePoint ℝ) (g : Γ) (ξ : ℝ)
     (hg : g • p = (ξ : OnePoint ℝ)) (y : α → Γ)
@@ -69,7 +75,9 @@ variable (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
 
 include hmass in
 /-- Arbitrary approaches to any point with a finite-image chart have a unique
-Martin limit, given by transporting the established finite-chart point.-/
+Martin limit, given by transporting the established finite-chart point.
+@isnad1 id=tendsto.6h8v.s16.9ad39ac80f16 from=translated src=- shape=5e71ad28 vocab=5c62d356
+-/
 theorem compact_martin_tendsto_of_finite_image (p : OnePoint ℝ) (g : Γ) (ξ : ℝ)
     (hg : g • p = (ξ : OnePoint ℝ)) (y : ℕ → Γ)
     (hy : Tendsto (fun n => hyperbolicCompactEmbedding (y n • UpperHalfPlane.I)) atTop

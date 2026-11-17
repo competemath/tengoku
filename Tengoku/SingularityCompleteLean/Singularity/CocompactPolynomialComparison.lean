@@ -19,7 +19,9 @@ open scoped Classical MatrixGroups UpperHalfPlane
 namespace Singularity
 
 /-- A logarithmic radius makes a double-exponential bound smaller than half
-of a specified exponential lower bound, uniformly in nonnegative distance.-/
+of a specified exponential lower bound, uniformly in nonnegative distance.
+@isnad1 id=ex.4h4v.s7.8a6b315c80a7 from=translated src=- shape=307b96ec vocab=09534f10
+-/
 theorem exists_log_radius_absorption (a b A c : ℝ)
     (ha : 0 < a) (hb : 0 ≤ b) (hA : 0 < A) (hc : 0 < c) :
     ∃ M : ℝ, 0 < M ∧ ∀ d ≥ 0,

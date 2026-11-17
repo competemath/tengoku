@@ -22,20 +22,26 @@ variable {Γ : Type*} [Group Γ]
 def martinTranslate (o g : Γ) (H : Γ → ℝ) : Γ → ℝ :=
   fun z => H (g⁻¹ * z) / H (g⁻¹ * o)
 
-/-- Normalization makes the identity group element act trivially.-/
+/-- Normalization makes the identity group element act trivially.
+@isnad1 id=eq.1h3v.s5.156c5e3063ee from=translated src=- shape=1e089e05 vocab=1e763828
+-/
 theorem martinTranslate_one (o : Γ) (H : Γ → ℝ) (ho : H o = 1) :
     martinTranslate o 1 H = H := by
   ext z
   simp [martinTranslate, ho]
 
-/-- The normalized maps obey the left-action multiplication law.-/
+/-- The normalized maps obey the left-action multiplication law.
+@isnad1 id=eq.1h5v.s6.4b40a0c63823 from=translated src=- shape=0bb48c6e vocab=5e4d792c
+-/
 theorem martinTranslate_mul (o g h : Γ) (H : Γ → ℝ) (hH : H (h⁻¹ * o) ≠ 0) :
     martinTranslate o g (martinTranslate o h H) = martinTranslate o (g * h) H := by
   ext z
   simp only [martinTranslate, mul_inv_rev, mul_assoc]
   exact div_div_div_cancel_right₀ hH _ _
 
-/-- The harmonic equation transforms equivariantly under normalized precomposition.-/
+/-- The harmonic equation transforms equivariantly under normalized precomposition.
+@isnad1 id=eq.0h7v.s6.2aa8b022dbbc from=translated src=- shape=027001a3 vocab=d04733cd
+-/
 theorem martinDefect_translate (s : Finset Γ) (μ : Γ → ℝ) (o g z : Γ) (H : Γ → ℝ) :
     martinDefect s μ z (martinTranslate o g H) = martinDefect s μ (g⁻¹ * z) H / H (g⁻¹ * o) := by
   simp only [martinDefect, martinTranslate, sub_div, Finset.sum_div, mul_div_assoc, mul_assoc]
@@ -46,7 +52,9 @@ variable (s : Finset Γ) (μ : Γ → ℝ) (hpos : ∀ g ∈ s, 0 < μ g)
   (hgap : spectralRadius ℂ (rightMarkov s μ) < 1)
 
 include hpos hgen hgap in
-/-- The normalized action extends left translation of actual finite-state columns.-/
+/-- The normalized action extends left translation of actual finite-state columns.
+@isnad1 id=eq.3h6v.s12.f8fa3523a58f from=translated src=- shape=44a116a0 vocab=2dcf122d
+-/
 theorem martinTranslate_embedding (o g y : Γ) :
     martinTranslate o g (martinEmbedding s μ o y) = martinEmbedding s μ o (g * y) := by
   ext z
@@ -58,7 +66,9 @@ theorem martinTranslate_embedding (o g y : Γ) :
   rw [hz, ho]
 
 include hpos hgen hgap in
-/-- The action is continuous wherever the proved coordinate lower bounds apply.-/
+/-- The action is continuous wherever the proved coordinate lower bounds apply.
+@isnad1 id=continuo.3h5v.s12.d2d3b7284fc8 from=translated src=- shape=c6ca17f0 vocab=20c215c4
+-/
 theorem continuousOn_martinTranslate (o g : Γ) :
     ContinuousOn (martinTranslate o g) (martinClosure s μ o) := by
   apply continuousOn_pi.mpr
@@ -68,7 +78,9 @@ theorem continuousOn_martinTranslate (o g : Γ) :
     (fun H hH => ne_of_gt (martinClosure_pos s μ hpos hgen hgap o hH (g⁻¹ * o)))
 
 include hpos hgen hgap in
-/-- The action preserves the compactification carrier.-/
+/-- The action preserves the compactification carrier.
+@isnad1 id=mem.4h6v.s12.84ba7c90c69a from=translated src=- shape=7a31b88d vocab=406cc8c6
+-/
 theorem martinTranslate_mem_closure (o g : Γ) {H : Γ → ℝ}
     (hH : H ∈ martinClosure s μ o) : martinTranslate o g H ∈ martinClosure s μ o := by
   have hm : MapsTo (martinTranslate o g) (range (martinEmbedding s μ o))
@@ -78,7 +90,9 @@ theorem martinTranslate_mem_closure (o g : Γ) {H : Γ → ℝ}
   exact hm.closure_of_continuousOn (continuousOn_martinTranslate s μ hpos hgen hgap o g) hH
 
 include hpos hgen hgap in
-/-- Harmonicity and closure membership show that the abstract boundary is preserved.-/
+/-- Harmonicity and closure membership show that the abstract boundary is preserved.
+@isnad1 id=mem.4h6v.s12.b6a5355ad2f1 from=translated src=- shape=7a31b88d vocab=918b00c1
+-/
 theorem martinTranslate_mem_boundary (o g : Γ) {H : Γ → ℝ}
     (hH : H ∈ martinBoundary s μ o) : martinTranslate o g H ∈ martinBoundary s μ o := by
   apply (martinBoundary_iff_harmonic s μ hpos hgen hgap o _).mpr
@@ -91,11 +105,17 @@ theorem martinTranslate_mem_boundary (o g : Γ) {H : Γ → ℝ}
 def martinBoundaryMap (o g : Γ) (ξ : martinBoundary s μ o) : martinBoundary s μ o :=
   ⟨martinTranslate o g ξ.val, martinTranslate_mem_boundary s μ hpos hgen hgap o g ξ.property⟩
 
+/--
+@isnad1 id=eq.3h5v.s12.368aee6079c1 from=translated src=- shape=fa134038 vocab=33561846
+-/
 theorem martinBoundaryMap_one (o : Γ) (ξ : martinBoundary s μ o) :
     martinBoundaryMap s μ hpos hgen hgap o 1 ξ = ξ := by
   apply Subtype.ext
   exact martinTranslate_one o ξ.val (martinClosure_base s μ hpos hgen hgap o ξ.property.1)
 
+/--
+@isnad1 id=eq.3h7v.s12.4af43438bcbf from=translated src=- shape=38a8f126 vocab=47b03b9a
+-/
 theorem martinBoundaryMap_mul (o g h : Γ) (ξ : martinBoundary s μ o) :
     martinBoundaryMap s μ hpos hgen hgap o g (martinBoundaryMap s μ hpos hgen hgap o h ξ) =
       martinBoundaryMap s μ hpos hgen hgap o (g * h) ξ := by
@@ -103,6 +123,9 @@ theorem martinBoundaryMap_mul (o g h : Γ) (ξ : martinBoundary s μ o) :
   exact martinTranslate_mul o g h ξ.val
     (ne_of_gt (martinClosure_pos s μ hpos hgen hgap o ξ.property.1 (h⁻¹ * o)))
 
+/--
+@isnad1 id=continuo.3h5v.s12.20fb94985087 from=translated src=- shape=ce8bce10 vocab=74f1077f
+-/
 theorem continuous_martinBoundaryMap (o g : Γ) :
     Continuous (martinBoundaryMap s μ hpos hgen hgap o g) := by
   apply Continuous.subtype_mk
@@ -130,6 +153,9 @@ def martinBoundaryCocycle (o g : Γ) (ξ : martinBoundary s μ o) : ℝ :=
   martinBoundaryKernel s μ o (g⁻¹ * o) ξ
 
 omit [MeasurableSpace Γ] [MeasurableMul Γ] [MeasurableSingletonClass Γ] in
+/--
+@isnad1 id=continuo.0h5v.s6.090b70e18618 from=translated src=- shape=30b91784 vocab=1e03d432
+-/
 theorem continuous_martinBoundaryCocycle (o g : Γ) : Continuous (martinBoundaryCocycle s μ o g) :=
   continuous_martinBoundaryKernel s μ o (g⁻¹ * o)
 

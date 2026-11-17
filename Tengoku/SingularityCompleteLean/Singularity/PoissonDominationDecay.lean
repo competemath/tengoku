@@ -19,7 +19,9 @@ open scoped Classical ENNReal UpperHalfPlane
 
 namespace Singularity
 
-/-- A quadratic coefficient whose multiples of every square are bounded is nonpositive.-/
+/-- A quadratic coefficient whose multiples of every square are bounded is nonpositive.
+@isnad1 id=le.1h2v.s5.81b924fb9272 from=translated src=- shape=4e8b4489 vocab=150e4428
+-/
 theorem nonpos_of_mul_sq_bounded (a b : ℝ) (h : ∀ t : ℝ, a * t ^ 2 ≤ b) : a ≤ 0 := by
   by_contra ha
   have ha : 0 < a := lt_of_not_ge ha
@@ -31,7 +33,9 @@ theorem nonpos_of_mul_sq_bounded (a b : ℝ) (h : ∀ t : ℝ, a * t ^ 2 ≤ b) 
   rw [he] at ht
   linarith [le_max_left b 0]
 
-/-- A visual-measure domination gives the corresponding everywhere polynomial Poisson inequality.-/
+/-- A visual-measure domination gives the corresponding everywhere polynomial Poisson inequality.
+@isnad1 id=le.3h4v.s7.97b22452f240 from=translated src=- shape=35ad0c6b vocab=56ae114f
+-/
 theorem poisson_domination_quadratic (z : ℍ) (t B : ℝ) (ht : 0 ≤ t) (hB : 0 ≤ B)
     (hdom : ENNReal.ofReal t • poissonBoundaryMeasure z ≤
       ENNReal.ofReal B • poissonBoundaryMeasure UpperHalfPlane.I) :
@@ -63,7 +67,9 @@ theorem poisson_domination_quadratic (z : ℍ) (t B : ℝ) (ht : 0 ≤ t) (hB : 
   intro ξ
   exact hc.closure_subset (he.symm ▸ mem_univ ξ)
 
-/-- Poisson domination has exponential hyperbolic decay in its scalar coefficient.-/
+/-- Poisson domination has exponential hyperbolic decay in its scalar coefficient.
+@isnad1 id=le.3h3v.s7.953c5e9de047 from=translated src=- shape=f5dffbaa vocab=083c59e8
+-/
 theorem poisson_domination_exp_decay (z : ℍ) (t B : ℝ) (ht : 0 ≤ t) (hB : 0 ≤ B)
     (hdom : ENNReal.ofReal t • poissonBoundaryMeasure z ≤
       ENNReal.ofReal B • poissonBoundaryMeasure UpperHalfPlane.I) :

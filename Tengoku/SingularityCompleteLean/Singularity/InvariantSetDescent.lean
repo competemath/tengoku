@@ -21,7 +21,9 @@ namespace Singularity
 def invariantSetCore (G X : Type*) [SMul G X] (s : Set X) : Set X :=
   ⋂ g : G, (fun x : X => g • x) ⁻¹' s
 
-/-- Group translation preserves the core exactly.-/
+/-- Group translation preserves the core exactly.
+@isnad1 id=eq.0h4v.s6.9c08d6333b2b from=translated src=- shape=4ab52c2d vocab=d5bfb911
+-/
 theorem preimage_invariantSetCore {G X : Type*} [Group G] [MulAction G X]
     (s : Set X) (g : G) :
     (fun x : X => g • x) ⁻¹' invariantSetCore G X s = invariantSetCore G X s := by
@@ -33,12 +35,17 @@ theorem preimage_invariantSetCore {G X : Type*} [Group G] [MulAction G X]
   · intro h a
     simpa only [mul_smul] using h (a * g)
 
+/--
+@isnad1 id=measurab.1h3v.s5.d0af3e2abdf5 from=translated src=- shape=84e638f9 vocab=2801d259
+-/
 theorem invariantSetCore_measurable {G X : Type*} [Countable G] [SMul G X]
     [MeasurableSpace X] [MeasurableConstSMul G X] {s : Set X} (hs : MeasurableSet s) :
     MeasurableSet (invariantSetCore G X s) :=
   MeasurableSet.iInter (fun g => hs.preimage (measurable_const_smul g))
 
-/-- Saturating the core adds no new points.-/
+/-- Saturating the core adds no new points.
+@isnad1 id=eq.0h3v.s6.39c1f68eebf7 from=translated src=- shape=17e79195 vocab=e07cf916
+-/
 theorem quotient_preimage_image_invariantSetCore {G X : Type*} [Group G] [MulAction G X]
     (s : Set X) :
     Quotient.mk (MulAction.orbitRel G X) ⁻¹'

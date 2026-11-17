@@ -16,7 +16,9 @@ open scoped Classical Topology Pointwise
 
 namespace Singularity
 
-/-- Displacement of a two-point set makes the four original and translated points distinct.-/
+/-- Displacement of a two-point set makes the four original and translated points distinct.
+@isnad1 id=injectiv.2h5v.s7.b0bdd9fb6d3d from=translated src=- shape=b423654b vocab=ca3be393
+-/
 theorem twoPoint_translate_injective {G X : Type*} [Group G] [MulAction G X]
     {p q : X} (hpq : p ≠ q) (b : G)
     (hdisj : Disjoint ((fun x => b • x) '' {p, q}) {p, q}) :
@@ -38,7 +40,9 @@ theorem twoPoint_translate_injective {G X : Type*} [Group G] [MulAction G X]
   · change b • e k = b • e l at h
     exact Prod.ext rfl (hei (MulAction.injective b h))
 
-/-- One north--south element with infinite endpoint orbits yields a free subgroup.-/
+/-- One north--south element with infinite endpoint orbits yields a free subgroup.
+@isnad1 id=ex.4h5v.s7.b02c12b1f13f from=translated src=- shape=cde05286 vocab=98688d46
+-/
 theorem exists_free_subgroup_of_northSouth {G : Type} {X : Type*} [Group G]
     [TopologicalSpace X] [T2Space X] [MulAction G X] [ContinuousConstSMul G X]
     {g : G} {p q : X} (hpq : p ≠ q) (hdyn : UniformNorthSouth g p q)
@@ -56,7 +60,9 @@ theorem exists_free_subgroup_of_northSouth {G : Type} {X : Type*} [Group G]
     (twoPoint_translate_injective hpq b hb)
   exact ⟨_, hn⟩
 
-/-- Infinite endpoint orbits and north--south dynamics imply nonamenability.-/
+/-- Infinite endpoint orbits and north--south dynamics imply nonamenability.
+@isnad1 id=not.4h5v.s6.0ec2a92660e4 from=translated src=- shape=939bb34f vocab=9948b3e0
+-/
 theorem no_invariantMean_of_northSouth_infinite_orbits {G : Type} {X : Type*} [Group G]
     [TopologicalSpace X] [T2Space X] [MulAction G X] [ContinuousConstSMul G X]
     {g : G} {p q : X} (hpq : p ≠ q) (hdyn : UniformNorthSouth g p q)

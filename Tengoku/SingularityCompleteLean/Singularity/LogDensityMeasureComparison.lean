@@ -17,7 +17,9 @@ open scoped ENNReal
 namespace Singularity
 
 /-- A bounded logarithmic density of equivalent finite measures yields the
-corresponding two-sided exponential comparison of the measures themselves.-/
+corresponding two-sided exponential comparison of the measures themselves.
+@isnad1 id=and.3h4v.s7.69fbf4f79946 from=translated src=- shape=55796dc1 vocab=25e6b630
+-/
 theorem measure_exp_comparison_of_logDensity_bound {B : Type*} [MeasurableSpace B]
     (ν m : Measure B) [IsFiniteMeasure ν] [IsFiniteMeasure m]
     (hac : ν ≪ m) (hreverse : m ≪ ν) (C : ℝ)

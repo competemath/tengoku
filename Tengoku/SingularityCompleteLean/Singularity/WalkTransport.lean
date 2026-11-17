@@ -37,14 +37,18 @@ variable [MeasurableSpace Γ] [MeasurableSingletonClass Γ]
   [MeasurableSpace Λ] [MeasurableSingletonClass Λ]
 
 omit [Group Γ] [Group Λ] [MeasurableSingletonClass Λ] in
-/-- Coordinatewise relabeling is measurable.-/
+/-- Coordinatewise relabeling is measurable.
+@isnad1 id=measurab.0h5v.s7.9eb9c029d6b6 from=translated src=- shape=45de6ef7 vocab=81bb61e0
+-/
 theorem measurable_transportWalk (s : Finset Γ) (t : Finset Λ) (e : s ≃ t) :
     Measurable (transportWalk s t e) := by
   exact measurable_pi_lambda _ (fun n => (measurable_of_countable e).comp (measurable_pi_apply n))
 
 omit [Group Γ] [Group Λ] [MeasurableSpace Γ] [MeasurableSingletonClass Γ]
   [MeasurableSpace Λ] [MeasurableSingletonClass Λ] in
-/-- Matching weights identify the relabeled one-step distribution.-/
+/-- Matching weights identify the relabeled one-step distribution.
+@isnad1 id=eq.5h7v.s9.3a41d2097c67 from=translated src=- shape=d7023448 vocab=2bfed45c
+-/
 theorem supportJumpLaw_transport (s : Finset Γ) (t : Finset Λ) (e : s ≃ t)
     (μ : Γ → ℝ) (ν : Λ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hν : ∀ g ∈ t, 0 ≤ ν g)
@@ -60,7 +64,9 @@ theorem supportJumpLaw_transport (s : Finset Γ) (t : Finset Λ) (e : s ≃ t)
   rw [← hw (e.symm b), e.apply_symm_apply]
 
 omit [Group Γ] [Group Λ] [MeasurableSingletonClass Λ] in
-/-- The actual infinite product path law is carried to the relabeled path law.-/
+/-- The actual infinite product path law is carried to the relabeled path law.
+@isnad1 id=eq.5h7v.s9.ea304afbf86b from=translated src=- shape=4c5d7d31 vocab=774b3fbc
+-/
 theorem infiniteWalkLaw_transport (s : Finset Γ) (t : Finset Λ) (e : s ≃ t)
     (μ : Γ → ℝ) (ν : Λ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hν : ∀ g ∈ t, 0 ≤ ν g)
@@ -77,7 +83,9 @@ theorem infiniteWalkLaw_transport (s : Finset Γ) (t : Finset Λ) (e : s ≃ t)
 
 omit [MeasurableSpace Γ] [MeasurableSingletonClass Γ]
   [MeasurableSpace Λ] [MeasurableSingletonClass Λ] in
-/-- Intertwining each jump intertwines every position of every sample path.-/
+/-- Intertwining each jump intertwines every position of every sample path.
+@isnad1 id=eq.1h9v.s8.a13465241dbf from=translated src=- shape=51eb9a31 vocab=d1103539
+-/
 theorem walkPosition_transport (s : Finset Γ) (t : Finset Λ) (e : s ≃ t)
     (φ : Γ →* Λ) (he : ∀ g : s, (e g : Λ) = φ g)
     (x : Γ) (n : ℕ) (ω : ℕ → s) :

@@ -16,7 +16,9 @@ namespace Singularity
 
 variable {Γ : Type*} [MeasurableSpace Γ] [MeasurableSingletonClass Γ]
 
-/-- The finite prefix and all increments after it are independent.-/
+/-- The finite prefix and all increments after it are independent.
+@isnad1 id=indepfun.2h4v.s8.8ecbca2d4abe from=translated src=- shape=658c13d9 vocab=be42c2f6
+-/
 theorem infiniteWalkLaw_prefix_tail_independent (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1) (n : ℕ) :
     IndepFun (walkPrefix s n) (fun ω k => ω (k + n)) (infiniteWalkLaw s μ hμ hmass) := by
@@ -36,7 +38,9 @@ theorem infiniteWalkLaw_prefix_tail_independent (s : Finset Γ) (μ : Γ → ℝ
     (measurable_pi_lambda _ (fun i : I => measurable_pi_apply
       ⟨i.val + n, Finset.mem_image.mpr ⟨i.val, i.property, rfl⟩⟩))
 
-/-- The position at time n is independent of all increments after time n.-/
+/-- The position at time n is independent of all increments after time n.
+@isnad1 id=indepfun.2h5v.s7.008bf70e5955 from=translated src=- shape=331c351e vocab=b512d9f9
+-/
 theorem infiniteWalkLaw_position_tail_independent [Group Γ] (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1) (x : Γ) (n : ℕ) :
     IndepFun (walkPosition s x n) (fun ω k => ω (k + n)) (infiniteWalkLaw s μ hμ hmass) :=

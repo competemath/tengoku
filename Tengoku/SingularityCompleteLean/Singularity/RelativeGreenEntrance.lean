@@ -16,7 +16,9 @@ open MeasureTheory
 open scoped Classical
 namespace Singularity
 
-/-- A killed path cannot end in the killing set.-/
+/-- A killed path cannot end in the killing set.
+@isnad1 id=eq.1h6v.s5.3717f9f57df9 from=translated src=- shape=53c5c875 vocab=d1efd584
+-/
 theorem killedGreen_target_mem {Γ : Type*} [Group Γ]
     (s : Finset Γ) (μ : Γ → ℝ) (A : Set Γ) (x y : Γ) (hy : y ∈ A) :
     killedGreen s μ A x y = 0 := by

@@ -19,7 +19,9 @@ open scoped MatrixGroups ENNReal
 
 namespace Singularity
 
-/-- Mautner's theorem applied to the actual continuous domain action on Lp.-/
+/-- Mautner's theorem applied to the actual continuous domain action on Lp.
+@isnad1 id=eq.2h7v.s11.0bf4dc118c64 from=translated src=- shape=35b9c724 vocab=a669ab14
+-/
 theorem fixed_Lp_slTwo_of_fixed_dilation {X E : Type*}
     [TopologicalSpace X] [R1Space X] [MeasurableSpace X] [BorelSpace X]
     [MulAction SL(2, ℝ) X] [ContinuousSMul SL(2, ℝ) X]
@@ -33,7 +35,9 @@ theorem fixed_Lp_slTwo_of_fixed_dilation {X E : Type*}
   borelize SL(2, ℝ)
   exact fixed_domain_slTwo_of_fixed_dilation τ hτ f hfix g
 
-/-- Almost-invariant sets for one positive dilation are almost-invariant for every group element.-/
+/-- Almost-invariant sets for one positive dilation are almost-invariant for every group element.
+@isnad1 id=eventual.3h5v.s9.216d6848290c from=translated src=- shape=12922782 vocab=ea23b88d
+-/
 theorem preimage_slTwo_ae_eq_of_dilation {X : Type*}
     [TopologicalSpace X] [R1Space X] [MeasurableSpace X] [BorelSpace X]
     [MulAction SL(2, ℝ) X] [ContinuousSMul SL(2, ℝ) X]
@@ -53,7 +57,9 @@ theorem preimage_slTwo_ae_eq_of_dilation {X : Type*}
   rw [DomMulAct.mk_smul_indicatorConstLp] at hg
   exact (indicatorConstLp_inj _ _ _ _ (one_ne_zero : (1 : ℝ) ≠ 0)).mp hg
 
-/-- Ergodicity of the full group implies ergodicity of each positive diagonal time.-/
+/-- Ergodicity of the full group implies ergodicity of each positive diagonal time.
+@isnad1 id=ergodic.1h3v.s9.de93d6e1b838 from=translated src=- shape=ed40234a vocab=7c39ceb2
+-/
 theorem ergodic_dilation_of_ergodic_slTwo {X : Type*}
     [TopologicalSpace X] [R1Space X] [MeasurableSpace X] [BorelSpace X]
     [MulAction SL(2, ℝ) X] [ContinuousSMul SL(2, ℝ) X]

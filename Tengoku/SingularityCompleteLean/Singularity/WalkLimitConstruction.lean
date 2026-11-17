@@ -29,14 +29,18 @@ def walkPathLimit (s : Finset Γ) (orbit : Γ → B) (ω : ℕ → s) : B :=
   Filter.limUnder atTop (fun n => orbit (walkPosition s 1 n ω))
 
 omit [TopologicalSpace B] [BorelSpace B] [PseudoMetrizableSpace B] in
-/-- Finite support makes orbit observations measurable even without any regularity of orbit.-/
+/-- Finite support makes orbit observations measurable even without any regularity of orbit.
+@isnad1 id=measurab.0h5v.s6.77f54942ad55 from=translated src=- shape=f06de1ef vocab=3d59c713
+-/
 theorem measurable_walkOrbitPosition (s : Finset Γ) (orbit : Γ → B) (n : ℕ) :
     Measurable (fun ω => orbit (walkPosition s 1 n ω)) :=
   (measurable_of_countable (fun w => orbit (walkEndpoint s n 1 w))).comp
     (measurable_walkPrefix s n)
 
 omit [MeasurableSingletonClass Γ] [MeasurableSpace B] [BorelSpace B] [PseudoMetrizableSpace B] in
-/-- Existence of almost-sure limits implies convergence to the selected limit.-/
+/-- Existence of almost-sure limits implies convergence to the selected limit.
+@isnad1 id=eventual.3h5v.s9.0f1cdbd2ba97 from=translated src=- shape=d864c892 vocab=5caf168a
+-/
 theorem walkPathLimit_tendsto (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1) (orbit : Γ → B)
     (hconv : ∀ᵐ ω ∂infiniteWalkLaw s μ hμ hmass,
@@ -46,7 +50,9 @@ theorem walkPathLimit_tendsto (s : Finset Γ) (μ : Γ → ℝ)
   filter_upwards [hconv] with ω hω
   exact tendsto_nhds_limUnder hω
 
-/-- The selected limit is almost everywhere measurable under actual path convergence.-/
+/-- The selected limit is almost everywhere measurable under actual path convergence.
+@isnad1 id=aemeasur.3h5v.s8.b3c6a47af0c8 from=translated src=- shape=678722d9 vocab=7333b6bc
+-/
 theorem aemeasurable_walkPathLimit (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1) (orbit : Γ → B)
     (hconv : ∀ᵐ ω ∂infiniteWalkLaw s μ hμ hmass,
@@ -56,7 +62,9 @@ theorem aemeasurable_walkPathLimit (s : Finset Γ) (μ : Γ → ℝ)
     (fun n => (measurable_walkOrbitPosition s orbit n).aemeasurable)
     (walkPathLimit_tendsto s μ hμ hmass orbit hconv)
 
-/-- A measurable version of the path limit exists; convergence requires no separately chosen map.-/
+/-- A measurable version of the path limit exists; convergence requires no separately chosen map.
+@isnad1 id=ex.3h5v.s9.13ecf5920ada from=translated src=- shape=b09c9929 vocab=bee45f68
+-/
 theorem exists_measurable_walkLimit (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1) (orbit : Γ → B)
     (hconv : ∀ᵐ ω ∂infiniteWalkLaw s μ hμ hmass,
@@ -72,7 +80,9 @@ theorem exists_measurable_walkLimit (s : Finset Γ) (μ : Γ → ℝ)
 variable [T2Space B]
 
 omit [MeasurableSingletonClass Γ] [MeasurableSpace B] [BorelSpace B] [PseudoMetrizableSpace B] in
-/-- Any two almost-sure path limits agree on a common full-measure set.-/
+/-- Any two almost-sure path limits agree on a common full-measure set.
+@isnad1 id=eventual.4h7v.s9.b6f6fda835f9 from=translated src=- shape=a240a9cd vocab=b54045b6
+-/
 theorem walkBoundaryLimit_ae_unique (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1) (orbit : Γ → B)
     (b c : (ℕ → s) → B)
@@ -85,7 +95,9 @@ theorem walkBoundaryLimit_ae_unique (s : Finset Γ) (μ : Γ → ℝ)
   exact tendsto_nhds_unique hω kω
 
 omit [MeasurableSingletonClass Γ] [BorelSpace B] [PseudoMetrizableSpace B] in
-/-- The distribution of a path limit is independent of all choices on null sets.-/
+/-- The distribution of a path limit is independent of all choices on null sets.
+@isnad1 id=eq.4h7v.s9.671f3161ac04 from=translated src=- shape=51c9a35c vocab=676d479c
+-/
 theorem walkBoundaryLaw_unique (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1) (orbit : Γ → B)
     (b c : (ℕ → s) → B)
@@ -98,7 +110,9 @@ theorem walkBoundaryLaw_unique (s : Finset Γ) (μ : Γ → ℝ)
 
 variable [MulAction Γ B] [ContinuousConstSMul Γ B] [MeasurableSMul₂ Γ B]
 
-/-- Path convergence constructs a stationary probability law whose translates are equivalent.-/
+/-- Path convergence constructs a stationary probability law whose translates are equivalent.
+@isnad1 id=ex.5h5v.s10.33a34782b558 from=translated src=- shape=64ae93f5 vocab=cb186c6a
+-/
 theorem exists_stationary_walkLimit (s : Finset Γ) (μ : Γ → ℝ)
     (hpos : ∀ g ∈ s, 0 < μ g) (hmass : ∑ g ∈ s, μ g = 1)
     (hgen : Submonoid.closure (s : Set Γ) = ⊤)

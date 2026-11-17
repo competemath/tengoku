@@ -19,13 +19,17 @@ namespace Singularity
 def chartNonpositiveBoundaryArc (B : SL(2, ℝ)) : Set (OnePoint ℝ) :=
   (fun ξ : OnePoint ℝ => B⁻¹ • ξ) ⁻¹' (((↑) : ℝ → OnePoint ℝ) '' Ioi 0)ᶜ
 
-/-- The ideal arc includes its endpoints and is closed.-/
+/-- The ideal arc includes its endpoints and is closed.
+@isnad1 id=isclosed.0h1v.s5.768bfd25b0b8 from=translated src=- shape=c2144898 vocab=fed61ca8
+-/
 theorem isClosed_chartNonpositiveBoundaryArc (B : SL(2, ℝ)) :
     IsClosed (chartNonpositiveBoundaryArc B) :=
   (OnePoint.isOpen_image_coe.mpr isOpen_Ioi).isClosed_compl.preimage (continuous_const_smul B⁻¹)
 
 /-- Orbit points on the negative side can have no positive finite ideal
-limit in the same chart.-/
+limit in the same chart.
+@isnad1 id=mem.1h4v.s8.f98e2f4e89ea from=translated src=- shape=55ed4461 vocab=09cbcff2
+-/
 theorem boundary_mem_arc_of_negative_chart_closure
     {Γ : Type*} [SMul Γ ℍ] (z : ℍ) (B : SL(2, ℝ)) (ξ : OnePoint ℝ)
     (hξ : compactBoundaryEmbedding ξ ∈ closure
@@ -55,7 +59,9 @@ theorem boundary_mem_arc_of_negative_chart_closure
   exact ⟨(t : ℂ), ht, rfl⟩
 
 /-- Convergence to an interior point of the negative ideal arc eventually
-places the hyperbolic sequence on the negative side of the chart.-/
+places the hyperbolic sequence on the negative side of the chart.
+@isnad1 id=eventual.2h5v.s9.d1c1b3467fe5 from=translated src=- shape=fc277fd9 vocab=11e413de
+-/
 theorem eventually_negative_chart_of_boundary_tendsto
     {ι : Type*} {l : Filter ι} (w : ι → ℍ) (B : SL(2, ℝ)) (ξ : OnePoint ℝ)
     (ht : Tendsto (fun n => hyperbolicCompactEmbedding (w n)) l

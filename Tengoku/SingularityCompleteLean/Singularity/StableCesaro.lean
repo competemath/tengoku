@@ -20,7 +20,9 @@ open scoped Topology
 
 namespace Singularity
 
-/-- Uniform continuity takes asymptotic pairs to asymptotic observed values.-/
+/-- Uniform continuity takes asymptotic pairs to asymptotic observed values.
+@isnad1 id=tendsto.2h5v.s6.a3d330cb5846 from=translated src=- shape=4cbaefb4 vocab=d26c0bf2
+-/
 theorem observed_dist_tendsto_zero {X Y : Type*} [PseudoMetricSpace X]
     [PseudoMetricSpace Y] (f : X → Y) (hf : UniformContinuous f)
     (x y : ℕ → X) (hxy : Tendsto (fun n => dist (x n) (y n)) atTop (𝓝 0)) :
@@ -33,7 +35,9 @@ theorem observed_dist_tendsto_zero {X Y : Type*} [PseudoMetricSpace X]
   simpa only [Real.dist_eq, sub_zero, abs_of_nonneg dist_nonneg] using
     hδf (by simpa only [Real.dist_eq, sub_zero, abs_of_nonneg dist_nonneg] using hN n hn)
 
-/-- Contracting trajectories have asymptotic Cesàro averages.-/
+/-- Contracting trajectories have asymptotic Cesàro averages.
+@isnad1 id=tendsto.2h5v.s7.be2653825071 from=translated src=- shape=55870af3 vocab=3b68f8db
+-/
 theorem stable_birkhoffAverage_dist_tendsto_zero {X : Type*} [PseudoMetricSpace X]
     (T : X → X) (f : X → ℝ) (hf : UniformContinuous f) (x y : X)
     (hxy : Tendsto (fun n => dist (T^[n] x) (T^[n] y)) atTop (𝓝 0)) :
@@ -44,7 +48,9 @@ theorem stable_birkhoffAverage_dist_tendsto_zero {X : Type*} [PseudoMetricSpace 
     (fun n => (dist_birkhoffAverage_birkhoffAverage_le ℝ T f n x y).trans_eq ?_) h
   rw [div_eq_inv_mul]
 
-/-- An average limit along a subsequence propagates to an asymptotic trajectory.-/
+/-- An average limit along a subsequence propagates to an asymptotic trajectory.
+@isnad1 id=tendsto.4h7v.s7.fbc6c7edddc7 from=translated src=- shape=e86744bd vocab=3b68f8db
+-/
 theorem stable_birkhoffAverage_subsequence {X : Type*} [PseudoMetricSpace X]
     (T : X → X) (f : X → ℝ) (hf : UniformContinuous f) (x y : X)
     (hxy : Tendsto (fun n => dist (T^[n] x) (T^[n] y)) atTop (𝓝 0))
@@ -54,7 +60,9 @@ theorem stable_birkhoffAverage_subsequence {X : Type*} [PseudoMetricSpace X]
   exact tendsto_of_tendsto_of_dist hx
     ((stable_birkhoffAverage_dist_tendsto_zero T f hf x y hxy).comp hns)
 
-/-- Asymptotic observed values have asymptotic averages, without a metric on the state space.-/
+/-- Asymptotic observed values have asymptotic averages, without a metric on the state space.
+@isnad1 id=tendsto.1h5v.s7.6f2581914c54 from=translated src=- shape=0ec7ac68 vocab=2c1c5717
+-/
 theorem birkhoffAverage_sub_tendsto_zero_of_observed {X : Type*}
     (T : X → X) (f : X → ℝ) (x y : X)
     (hxy : Tendsto (fun n => f (T^[n] x) - f (T^[n] y)) atTop (𝓝 0)) :
@@ -63,7 +71,9 @@ theorem birkhoffAverage_sub_tendsto_zero_of_observed {X : Type*}
   simpa only [birkhoffAverage, birkhoffSum, smul_eq_mul, Finset.sum_sub_distrib,
     mul_sub] using hxy.cesaro
 
-/-- An average limit propagates whenever the observed orbit differences vanish.-/
+/-- An average limit propagates whenever the observed orbit differences vanish.
+@isnad1 id=tendsto.3h7v.s7.12b2692065e4 from=translated src=- shape=b97e45c1 vocab=2c1c5717
+-/
 theorem birkhoffAverage_subsequence_of_observed {X : Type*}
     (T : X → X) (f : X → ℝ) (x y : X)
     (hxy : Tendsto (fun n => f (T^[n] x) - f (T^[n] y)) atTop (𝓝 0))
@@ -73,7 +83,9 @@ theorem birkhoffAverage_subsequence_of_observed {X : Type*}
   have h := (birkhoffAverage_sub_tendsto_zero_of_observed T f x y hxy).comp hns
   simpa only [Function.comp_def, sub_sub_cancel, sub_zero] using hx.sub h
 
-/-- Fubini and saturation in the first coordinate allow an arbitrary first marginal.-/
+/-- Fubini and saturation in the first coordinate allow an arbitrary first marginal.
+@isnad1 id=eventual.3h8v.s7.962286189137 from=translated src=- shape=6409bf87 vocab=16a51a5f
+-/
 theorem ae_product_of_fibre_saturation {A B : Type*} [MeasurableSpace A]
     [MeasurableSpace B] (α α' : Measure A) (β β' : Measure B)
     [NeZero α] [SFinite β] [SFinite β'] (hβ : β' ≪ β)

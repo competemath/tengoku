@@ -24,7 +24,9 @@ variable (Γ : Subgroup SL(2, ℝ)) [MeasurableSpace Γ] [MeasurableSingletonCla
   [MeasurableMul Γ]
 
 omit [MeasurableSpace Γ] [MeasurableSingletonClass Γ] [MeasurableMul Γ] in
-/-- The lower half of the distance comparison controls the radial weight by a Green row.-/
+/-- The lower half of the distance comparison controls the radial weight by a Green row.
+@isnad1 id=le.2h5v.s11.0a0c8864216c from=translated src=- shape=c997da89 vocab=001e9090
+-/
 theorem radial_le_green_of_comparison (s : Finset Γ) (μ : Γ → ℝ)
     {C : ℝ} (hC : 0 < C) (hcmp : GreenDistanceComparison Γ s μ C) (g : Γ) :
     Real.exp (-dist (g • UpperHalfPlane.I) UpperHalfPlane.I) ≤ C * walkGreen s μ 1 g := by

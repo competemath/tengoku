@@ -19,7 +19,9 @@ open scoped Classical Topology ENNReal
 
 namespace Singularity
 
-/-- Density one of a measurable set is density zero of its complement.-/
+/-- Density one of a measurable set is density zero of its complement.
+@isnad1 id=tendsto.2h2v.s7.f2bbb6712ffe from=translated src=- shape=731c8818 vocab=ced3e0db
+-/
 theorem density_compl_tendsto_zero (S : Set ℝ) (hS : MeasurableSet S) (x : ℝ)
     (h : Tendsto (fun r : ℝ => volume (S ∩ closedBall x r) / volume (closedBall x r))
       (𝓝[>] 0) (𝓝 1)) :
@@ -40,14 +42,18 @@ theorem density_compl_tendsto_zero (S : Set ℝ) (hS : MeasurableSet S) (x : ℝ
   filter_upwards [self_mem_nhdsWithin] with r hr
   exact (he r hr).symm
 
-/-- Lebesgue measure under a translated positive dilation.-/
+/-- Lebesgue measure under a translated positive dilation.
+@isnad1 id=eq.1h3v.s6.eb9278209513 from=translated src=- shape=5183b136 vocab=7ac160b1
+-/
 theorem volume_affine_preimage (x r : ℝ) (hr : 0 < r) (S : Set ℝ) :
     volume ((fun t : ℝ => x + r * t) ⁻¹' S) = ENNReal.ofReal r⁻¹ * volume S := by
   change volume ((fun t : ℝ => r * t) ⁻¹' ((fun t : ℝ => x + t) ⁻¹' S)) = _
   rw [Real.volume_preimage_mul_left hr.ne', measure_preimage_add, abs_of_pos (inv_pos.mpr hr)]
 
 /-- The measure of the rescaled set in a fixed window is its local density
-multiplied by the length of that window.-/
+multiplied by the length of that window.
+@isnad1 id=eq.2h4v.s7.74ae3b609789 from=translated src=- shape=9b43aafe vocab=5ce44650
+-/
 theorem volume_rescaled_inter_ball (S : Set ℝ) (x r R : ℝ) (hr : 0 < r) (hR : 0 < R) :
     volume (((fun t : ℝ => x + r * t) ⁻¹' S) ∩ closedBall 0 R) =
       ENNReal.ofReal (2 * R) * (volume (S ∩ closedBall x (r * R)) / volume (closedBall x (r * R))) := by
@@ -74,7 +80,9 @@ theorem volume_rescaled_inter_ball (S : Set ℝ) (x r R : ℝ) (hr : 0 < r) (hR 
       rw [ENNReal.mul_div_cancel hp htop]
     _ = _ := by rw [← mul_assoc, hc]
 
-/-- Density zero implies vanishing measure after rescaling in each fixed window.-/
+/-- Density zero implies vanishing measure after rescaling in each fixed window.
+@isnad1 id=tendsto.2h3v.s7.c47075657abd from=translated src=- shape=3b7e03ac vocab=4ae8d1d4
+-/
 theorem density_zero_rescaled_ball (S : Set ℝ) (x : ℝ)
     (h : Tendsto (fun r : ℝ => volume (S ∩ closedBall x r) / volume (closedBall x r))
       (𝓝[>] 0) (𝓝 0)) (R : ℝ) (hR : 0 < R) :

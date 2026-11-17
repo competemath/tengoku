@@ -16,7 +16,9 @@ open scoped ENNReal
 namespace Singularity
 
 /-- The lower shadow bound and upper local Jacobian bound imply inverse
-mass at least exp(-2C), independently of the magnitude D.-/
+mass at least exp(-2C), independently of the magnitude D.
+@isnad1 id=le.4h7v.s8.248601178ddc from=translated src=- shape=e1405646 vocab=940b42f2
+-/
 theorem inverse_shadow_mass_lower_of_exp_bound
     {Γ B : Type*} [Group Γ] [MeasurableSpace B] [MulAction Γ B]
     [MeasurableConstSMul Γ B] (ν : Measure B) [IsFiniteMeasure ν]

@@ -22,7 +22,9 @@ where a last exit exists.-/
 def finiteLastExitVertex (s A : Finset Γ) (x : Γ) (hx : x ∈ A) (ω : ℕ → s) : A :=
   if h : ∃ a : A, ω ∈ walkLastExitEver s (A : Set Γ) x a then h.choose else ⟨x, hx⟩
 
-/-- The selected vertex is the unique vertex specified by any last-exit event.-/
+/-- The selected vertex is the unique vertex specified by any last-exit event.
+@isnad1 id=eq.2h6v.s7.ca93fe740ba7 from=translated src=- shape=e6911560 vocab=bd4a92cf
+-/
 theorem finiteLastExitVertex_of_mem (s A : Finset Γ) (x : Γ) (hx : x ∈ A)
     (ω : ℕ → s) (a : A) (ha : ω ∈ walkLastExitEver s (A : Set Γ) x a) :
     finiteLastExitVertex s A x hx ω = a := by
@@ -32,7 +34,9 @@ theorem finiteLastExitVertex_of_mem (s A : Finset Γ) (x : Γ) (hx : x ∈ A)
   exact Set.disjoint_left.mp (walkLastExitEver_disjoint s (A : Set Γ) x
     (fun hh => he (Subtype.ext hh))) h.choose_spec ha
 
-/-- On the union of last-exit events, the chosen vertex satisfies its event.-/
+/-- On the union of last-exit events, the chosen vertex satisfies its event.
+@isnad1 id=mem.2h5v.s8.a9e7ed04efe7 from=translated src=- shape=9922a5d0 vocab=bd4a92cf
+-/
 theorem finiteLastExitVertex_mem (s A : Finset Γ) (x : Γ) (hx : x ∈ A) (ω : ℕ → s)
     (h : ∃ a : A, ω ∈ walkLastExitEver s (A : Set Γ) x a) :
     ω ∈ walkLastExitEver s (A : Set Γ) x (finiteLastExitVertex s A x hx ω) := by
@@ -40,7 +44,9 @@ theorem finiteLastExitVertex_mem (s A : Finset Γ) (x : Γ) (hx : x ∈ A) (ω :
   exact h.choose_spec
 
 /-- The only extra part of a fiber is the fallback event, when the requested
-vertex is the chosen starting point.-/
+vertex is the chosen starting point.
+@isnad1 id=eq.1h5v.s8.2b73c091c17b from=translated src=- shape=d40d1592 vocab=2e75c871
+-/
 theorem finiteLastExitVertex_fiber (s A : Finset Γ) (x : Γ) (hx : x ∈ A) (a : A) :
     {ω | finiteLastExitVertex s A x hx ω = a} = walkLastExitEver s (A : Set Γ) x a ∪
       (if a = ⟨x, hx⟩ then (⋃ b : A, walkLastExitEver s (A : Set Γ) x b)ᶜ else ∅) := by
@@ -70,7 +76,9 @@ theorem finiteLastExitVertex_fiber (s A : Finset Γ) (x : Γ) (hx : x ∈ A) (a 
 
 variable [MeasurableSpace Γ] [MeasurableSingletonClass Γ]
 
-/-- The actual last-exit vertex is a measurable random variable.-/
+/-- The actual last-exit vertex is a measurable random variable.
+@isnad1 id=measurab.1h4v.s7.bb2f92773d2b from=translated src=- shape=9fcadf31 vocab=5d06820c
+-/
 theorem measurable_finiteLastExitVertex (s A : Finset Γ) (x : Γ) (hx : x ∈ A) :
     Measurable (finiteLastExitVertex s A x hx) := by
   apply measurable_to_countable'

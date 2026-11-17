@@ -18,7 +18,9 @@ open scoped ComplexConjugate
 
 namespace Singularity
 
-/-- Integration commutes with the conjugate-linear argument of the inner product.-/
+/-- Integration commutes with the conjugate-linear argument of the inner product.
+@isnad1 id=eq.1h3v.s8.f770dd2ab27d from=translated src=- shape=0e6f1246 vocab=64aa7fc6
+-/
 theorem integral_inner_first {E : Type*} [NormedAddCommGroup E]
     [InnerProductSpace ℂ E] [NormedSpace ℝ E] [IsScalarTower ℝ ℂ E] [CompleteSpace E] {u : ℝ → E}
     (hu : Integrable u) (y : E) :
@@ -27,7 +29,9 @@ theorem integral_inner_first {E : Type*} [NormedAddCommGroup E]
   rw [← integral_conj] at h
   simpa only [inner_conj_symm] using h
 
-/-- Two Bochner integrals may be paired through a bounded operator.-/
+/-- Two Bochner integrals may be paired through a bounded operator.
+@isnad1 id=eq.2h5v.s9.20230f4eea6d from=translated src=- shape=143ecb43 vocab=5b68a755
+-/
 theorem inner_integral_operator_integral {E F : Type*}
     [NormedAddCommGroup E] [InnerProductSpace ℂ E] [NormedSpace ℝ E] [IsScalarTower ℝ ℂ E] [CompleteSpace E]
     [NormedAddCommGroup F] [InnerProductSpace ℂ F] [NormedSpace ℝ F] [IsScalarTower ℝ ℂ F] [CompleteSpace F]
@@ -40,7 +44,9 @@ theorem inner_integral_operator_integral {E F : Type*}
   funext s
   rw [← M.integral_comp_comm hv, integral_inner (M.integrable_comp hv)]
 
-/-- The corresponding double integral is absolutely integrable.-/
+/-- The corresponding double integral is absolutely integrable.
+@isnad1 id=integrab.2h5v.s9.3dd5490c1f03 from=translated src=- shape=8e14b103 vocab=064f6966
+-/
 theorem integrable_inner_operator_prod {E F : Type*}
     [NormedAddCommGroup E] [InnerProductSpace ℂ E] [NormedSpace ℝ E] [IsScalarTower ℝ ℂ E] [CompleteSpace E]
     [NormedAddCommGroup F] [InnerProductSpace ℂ F] [NormedSpace ℝ F] [IsScalarTower ℝ ℂ F] [CompleteSpace F]
@@ -69,7 +75,9 @@ def densityFactorization (Kminus Kplus : DensityFamily ℝ ι volume)
     (M : SequenceL2 ι →L[ℂ] SequenceL2 ι) : RealLineL2 →L[ℂ] RealLineL2 :=
   Kminus.analysis.adjoint.comp (M.comp Kplus.analysis)
 
-/-- Exact weak kernel formula on L¹∩L².-/
+/-- Exact weak kernel formula on L¹∩L².
+@isnad1 id=eq.2h6v.s13.c2d3a16bae2a from=translated src=- shape=f41532fa vocab=6a3dc9ad
+-/
 theorem densityFactorization_inner (Kminus Kplus : DensityFamily ℝ ι volume)
     (M : SequenceL2 ι →L[ℂ] SequenceL2 ι) (f h : RealLineL2)
     (hf : Integrable (f : ℝ → ℂ)) (hh : Integrable (h : ℝ → ℂ)) :
@@ -87,7 +95,9 @@ theorem densityFactorization_inner (Kminus Kplus : DensityFamily ℝ ι volume)
     RCLike.inner_apply]
   ring
 
-/-- Absolute integrability of the physical pairing kernel on L¹∩L².-/
+/-- Absolute integrability of the physical pairing kernel on L¹∩L².
+@isnad1 id=integrab.2h6v.s10.b8aad3f8897a from=translated src=- shape=faa3676d vocab=4f2f8c1c
+-/
 theorem densityPairingKernel_integrable (Kminus Kplus : DensityFamily ℝ ι volume)
     (M : SequenceL2 ι →L[ℂ] SequenceL2 ι) {f h : ℝ → ℂ}
     (hf : Integrable f) (hh : Integrable h) :
@@ -100,7 +110,9 @@ theorem densityPairingKernel_integrable (Kminus Kplus : DensityFamily ℝ ι vol
       RCLike.inner_apply]
     ring)
 
-/-- Weak agreement on Schwartz tests determines a bounded L² operator.-/
+/-- Weak agreement on Schwartz tests determines a bounded L² operator.
+@isnad1 id=eq.1h2v.s14.9999eccc7154 from=translated src=- shape=dbc7c75b vocab=fdd40ce8
+-/
 theorem operator_eq_of_schwartz_pairings (C D : RealLineL2 →L[ℂ] RealLineL2)
     (hpair : ∀ f h : SchwartzMap ℝ ℂ,
       inner ℂ (h.toLp 2) (C (f.toLp 2)) = inner ℂ (h.toLp 2) (D (f.toLp 2))) : C = D := by

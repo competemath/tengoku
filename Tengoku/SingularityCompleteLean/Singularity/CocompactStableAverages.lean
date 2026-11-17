@@ -24,7 +24,9 @@ variable [MeasurableSpace SL(2, ℝ)] [BorelSpace SL(2, ℝ)]
   [CompactSpace (Quotient (MulAction.orbitRel Γ ℍ))]
   (ν : Measure SL(2, ℝ)) [IsHaarMeasure ν]
 
-/-- The subsequential Haar basin is saturated along every contracting horocycle.-/
+/-- The subsequential Haar basin is saturated along every contracting horocycle.
+@isnad1 id=ex.1h4v.s12.9c4c8fe33ade from=translated src=- shape=a45ea226 vocab=32c3ba41
+-/
 theorem cocompactHaar_lowerShear_average_subsequence (τ : ℝ) (hτ : 0 < τ)
     (f : (SL(2, ℝ) ⧸ Γ) →ᵇ ℝ) :
     ∃ ns : ℕ → ℕ, StrictMono ns ∧ ∀ᵐ x ∂cocompactHaarQuotientProbability Γ ν,
@@ -42,7 +44,9 @@ theorem cocompactHaar_lowerShear_average_subsequence (τ : ℝ) (hτ : 0 < τ)
   exact compact_lowerShear_average_limit τ hτ u x f f.continuous
     ns hns.tendsto_atTop _ hx
 
-/-- The same saturated basin has full Haar measure upstairs in SL(2,ℝ).-/
+/-- The same saturated basin has full Haar measure upstairs in SL(2,ℝ).
+@isnad1 id=ex.1h4v.s12.549b18a3c79d from=translated src=- shape=cfbeb517 vocab=8ba1613c
+-/
 theorem cocompactHaar_group_lowerShear_average_subsequence (τ : ℝ) (hτ : 0 < τ)
     (f : (SL(2, ℝ) ⧸ Γ) →ᵇ ℝ) :
     ∃ ns : ℕ → ℕ, StrictMono ns ∧ ∀ᵐ g ∂ν, ∀ u : ℝ, Tendsto

@@ -27,7 +27,9 @@ def radialOrbitLayer (Γ : Subgroup SL(2, ℝ)) (s : Finset Γ) (q : SL(2, ℝ))
   {x | t ≤ axisRadialCoordinate (q • (x • z)) ∧
     axisRadialCoordinate (q • (x • z)) ≤ t + finiteJumpLengthBound Γ z s}
 
-/-- These actual layers separate all finite permitted jump paths across them.-/
+/-- These actual layers separate all finite permitted jump paths across them.
+@isnad1 id=separate.2h7v.s12.03ff2721354f from=translated src=- shape=825a6b10 vocab=7c3b216b
+-/
 theorem radialOrbitLayer_separates (Γ : Subgroup SL(2, ℝ)) (s : Finset Γ)
     (q : SL(2, ℝ)) (z : ℍ) (t : ℝ) (x y : Γ)
     (hx : t + finiteJumpLengthBound Γ z s < axisRadialCoordinate (q • (x • z)))

@@ -16,7 +16,9 @@ open MeasureTheory ProbabilityTheory Filter Set MeasurableSpace
 
 namespace Singularity
 
-/-- A shifted measurable event uses only coordinates at or beyond the shift.-/
+/-- A shifted measurable event uses only coordinates at or beyond the shift.
+@isnad1 id=measurab.2h4v.s7.8461f309cffe from=translated src=- shape=60e825ba vocab=30988cee
+-/
 theorem shifted_event_measurable {S : Type*} [MeasurableSpace S]
     {E : Set (ℕ → S)} (hE : MeasurableSet E) (k n : ℕ) (hkn : k ≤ n) :
     MeasurableSet[⨆ i ≥ k, MeasurableSpace.comap (fun ω : ℕ → S => ω i)
@@ -28,7 +30,9 @@ theorem shifted_event_measurable {S : Type*} [MeasurableSpace S]
   apply Measurable.of_comap_le
   exact le_iSup_of_le (i + n) (le_iSup_of_le (by omega : k ≤ i + n) le_rfl)
 
-/-- Limsup of shifted copies belongs to the coordinate tail sigma algebra.-/
+/-- Limsup of shifted copies belongs to the coordinate tail sigma algebra.
+@isnad1 id=measurab.1h2v.s6.28a6a0b7b275 from=translated src=- shape=ad370b57 vocab=f2d25e3d
+-/
 theorem shifted_event_limsup_tail {S : Type*} [MeasurableSpace S]
     {E : Set (ℕ → S)} (hE : MeasurableSet E) :
     MeasurableSet[limsup (fun i => MeasurableSpace.comap

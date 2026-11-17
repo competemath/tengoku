@@ -17,7 +17,9 @@ namespace Singularity
 
 variable {Γ : Type*} [Group Γ]
 
-/-- A coordinate with jump changes at most L changes by at most nL along a word.-/
+/-- A coordinate with jump changes at most L changes by at most nL along a word.
+@isnad1 id=le.1h7v.s7.ca55cf6edb27 from=translated src=- shape=173f408d vocab=b4d751a4
+-/
 theorem walkEndpoint_coordinate_bound (s : Finset Γ) (h : Γ → ℝ) (L : ℝ)
     (hjump : ∀ x : Γ, ∀ g ∈ s, |h (x*g) - h x| ≤ L)
     (n : ℕ) (x : Γ) (w : WalkWord s n) :
@@ -35,7 +37,9 @@ theorem walkEndpoint_coordinate_bound (s : Finset Γ) (h : Γ → ℝ) (L : ℝ)
     linarith
 
 /-- A path shorter than the round trip to a sublevel avoids that sublevel
-at every position, including its final point.-/
+at every position, including its final point.
+@isnad1 id=and.3h9v.s7.152d7e759af7 from=translated src=- shape=0886479a vocab=a527e83e
+-/
 theorem walk_avoids_sublevel_of_short_excursion (s : Finset Γ) (h : Γ → ℝ) (L r : ℝ)
     (hjump : ∀ x : Γ, ∀ g ∈ s, |h (x*g) - h x| ≤ L)
     (A : Set Γ) (hA : ∀ a ∈ A, h a ≤ r) (n : ℕ) (x : Γ) (w : WalkWord s n)
@@ -63,7 +67,9 @@ theorem walk_avoids_sublevel_of_short_excursion (s : Finset Γ) (h : Γ → ℝ)
     have hn := ih (x*g) w hs
     exact ⟨⟨hx, hn.1⟩, hn.2⟩
 
-/-- Below the excursion cutoff, killing removes none of the transition mass.-/
+/-- Below the excursion cutoff, killing removes none of the transition mass.
+@isnad1 id=eq.3h10v.s7.650fc9996c6e from=translated src=- shape=6d11321d vocab=21bd7ace
+-/
 theorem killedWeight_eq_transition_of_short_excursion
     (s : Finset Γ) (μ : Γ → ℝ) (h : Γ → ℝ) (L r : ℝ)
     (hjump : ∀ x : Γ, ∀ g ∈ s, |h (x*g) - h x| ≤ L)

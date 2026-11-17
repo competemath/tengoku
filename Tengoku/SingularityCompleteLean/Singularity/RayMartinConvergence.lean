@@ -32,14 +32,18 @@ def rayMartinPoint (ξ : ℝ) : martinBoundary s μ 1 :=
       (rayMartinCluster_nonempty Γ s μ hpos hgen hgap ξ).choose_spec⟩
 
 omit [DiscreteTopology Γ] in
-/-- The selected boundary point is an actual ray cluster function.-/
+/-- The selected boundary point is an actual ray cluster function.
+@isnad1 id=mem.3h4v.s16.0dbd40e2489d from=translated src=- shape=ff18a250 vocab=97750fb9
+-/
 theorem rayMartinPoint_mem (ξ : ℝ) :
     (rayMartinPoint Γ s μ hpos hgen hgap ξ).val ∈ rayMartinCluster Γ s μ ξ :=
   (rayMartinCluster_nonempty Γ s μ hpos hgen hgap ξ).choose_spec
 
 include hmass in
 /-- Distinct finite geometric directions give distinct actual Martin boundary
-points. This asserts injectivity, not a homeomorphism or surjectivity.-/
+points. This asserts injectivity, not a homeomorphism or surjectivity.
+@isnad1 id=injectiv.4h3v.s16.4f6df51f1878 from=translated src=- shape=9442f8f5 vocab=add5b550
+-/
 theorem rayMartinPoint_injective :
     Function.Injective (rayMartinPoint Γ s μ hpos hgen hgap) := by
   intro ξ η he

@@ -15,7 +15,9 @@ open MeasureTheory Set Filter
 open scoped Topology Classical
 namespace Singularity
 
-/-- Last-visit values for an exhausting family inherit any limit of the path.-/
+/-- Last-visit values for an exhausting family inherit any limit of the path.
+@isnad1 id=tendsto.3h7v.s6.0e72f52d8c8b from=translated src=- shape=301d0ddc vocab=8076a804
+-/
 theorem last_visit_values_tendsto {X B : Type*} [TopologicalSpace B]
     (f v : ℕ → X) (A : ℕ → Set X) (orbit : X → B) (b : B)
     (hexhaust : ∀ x, ∀ᶠ n in atTop, x ∈ A n)
@@ -35,7 +37,9 @@ theorem last_visit_values_tendsto {X B : Type*} [TopologicalSpace B]
   exact hN m hNm
 
 /-- A countable nonempty space admits finite exhaustions containing any fixed
-finite set at every stage.-/
+finite set at every stage.
+@isnad1 id=ex.0h2v.s5.6caa35762854 from=translated src=- shape=91e4b715 vocab=787dde89
+-/
 theorem exists_finite_exhaustion_containing {X : Type*} [Countable X] [Nonempty X]
     (B : Finset X) :
     ∃ A : ℕ → Finset X, (∀ n, B ⊆ A n) ∧ ∀ x, ∀ᶠ n in atTop, x ∈ A n := by
@@ -51,7 +55,9 @@ theorem exists_finite_exhaustion_containing {X : Type*} [Countable X] [Nonempty 
 variable {Γ : Type*} [Group Γ]
 
 /-- On a transient path, the selected finite-set last-exit vertices have the
-same compactification limit as the full path.-/
+same compactification limit as the full path.
+@isnad1 id=tendsto.4h8v.s7.5c99c459370b from=translated src=- shape=c0d613e0 vocab=bed892d0
+-/
 theorem finiteLastExitVertex_tendsto {B : Type*} [TopologicalSpace B]
     (s : Finset Γ) (A : ℕ → Finset Γ) (x : Γ) (hx : ∀ n, x ∈ A n)
     (hexhaust : ∀ g, ∀ᶠ n in atTop, g ∈ A n) (ω : ℕ → s)

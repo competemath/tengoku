@@ -16,7 +16,9 @@ open scoped Classical Topology MatrixGroups UpperHalfPlane
 
 namespace Singularity
 
-/-- The lower row of a determinant-one matrix is nonzero.-/
+/-- The lower row of a determinant-one matrix is nonzero.
+@isnad1 id=lt.0h1v.s8.b58a7242e7de from=translated src=- shape=97560be4 vocab=47fc887c
+-/
 theorem slTwo_lower_row_sq_pos (g : SL(2, ℝ)) : 0 < g 1 0 ^ 2 + g 1 1 ^ 2 := by
   have hdet : g 0 0 * g 1 1 - g 0 1 * g 1 0 = 1 := by
     simpa only [Matrix.det_fin_two] using g.property
@@ -25,7 +27,9 @@ theorem slTwo_lower_row_sq_pos (g : SL(2, ℝ)) : 0 < g 1 0 ^ 2 + g 1 1 ^ 2 := b
   have hd : g 1 1 = 0 := by nlinarith [sq_nonneg (g 1 1), sq_nonneg (g 1 0)]
   simp [hc, hd] at hdet
 
-/-- The imaginary part of g i records the squared norm of its lower row.-/
+/-- The imaginary part of g i records the squared norm of its lower row.
+@isnad1 id=eq.0h1v.s8.1dd7cbc5e1e3 from=translated src=- shape=f3ed059c vocab=64633f2c
+-/
 theorem slTwo_im_smul_I (g : SL(2, ℝ)) :
     (g • UpperHalfPlane.I).im = 1 / (g 1 0 ^ 2 + g 1 1 ^ 2) := by
   have hdet : g 0 0 * g 1 1 - g 0 1 * g 1 0 = 1 := by
@@ -36,7 +40,9 @@ theorem slTwo_im_smul_I (g : SL(2, ℝ)) :
   rw [← sub_div, hdet]
   simp [pow_two, add_comm]
 
-/-- An orbit of a cocompact subgroup reaches arbitrarily large heights.-/
+/-- An orbit of a cocompact subgroup reaches arbitrarily large heights.
+@isnad1 id=ex.0h2v.s11.55d2596a2500 from=translated src=- shape=4ef9d455 vocab=ee51b04f
+-/
 theorem cocompact_orbit_height_unbounded (Γ : Subgroup SL(2, ℝ))
     [CompactSpace (Quotient (MulAction.orbitRel Γ ℍ))] (R : ℝ) :
     ∃ g : Γ, R < (g • UpperHalfPlane.I).im := by
@@ -51,7 +57,9 @@ theorem cocompact_orbit_height_unbounded (Γ : Subgroup SL(2, ℝ))
     nlinarith [Real.exp_pos D]
   exact ⟨g, lt_of_lt_of_le (by linarith [le_abs_self R]) hbound⟩
 
-/-- A cocompact subgroup has a sequence of matrices with both lower entries tending to zero.-/
+/-- A cocompact subgroup has a sequence of matrices with both lower entries tending to zero.
+@isnad1 id=ex.0h1v.s10.b332eea82126 from=translated src=- shape=4554c56a vocab=cdbfa3e9
+-/
 theorem exists_cocompact_small_lower_row (Γ : Subgroup SL(2, ℝ))
     [CompactSpace (Quotient (MulAction.orbitRel Γ ℍ))] :
     ∃ g : ℕ → Γ,

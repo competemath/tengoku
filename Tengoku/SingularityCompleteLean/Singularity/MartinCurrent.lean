@@ -33,7 +33,9 @@ def martinBoundaryMeasurableEquiv (o g : Γ) :
 
 omit [MeasurableSpace Γ] [MeasurableMul Γ] [MeasurableSingletonClass Γ] in
 include hgen in
-/-- The actual normalization cocycle is measurable on the boundary.-/
+/-- The actual normalization cocycle is measurable on the boundary.
+@isnad1 id=measurab.1h5v.s6.ded20d43cc02 from=translated src=- shape=9fcbd410 vocab=10fdd721
+-/
 theorem measurable_martinBoundaryCocycle (o g : Γ) :
     Measurable (martinBoundaryCocycle s μ o g) := by
   let : Countable Γ := countable_of_finite_jump_generation s hgen

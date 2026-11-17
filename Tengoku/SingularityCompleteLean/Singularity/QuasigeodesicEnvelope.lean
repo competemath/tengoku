@@ -16,7 +16,9 @@ open scoped Classical BigOperators UpperHalfPlane
 
 namespace Singularity
 
-/-- A finite interval of integer translates satisfies the lattice envelope bound.-/
+/-- A finite interval of integer translates satisfies the lattice envelope bound.
+@isnad1 id=le.1h3v.s5.1836823ec9cd from=translated src=- shape=827fdc19 vocab=28cfc3dd
+-/
 theorem sum_exp_nat_distance_le {τ : ℝ} (hτ : 0 < τ) (m N : ℕ) :
     ∑ k ∈ Finset.range N, Real.exp (-τ * |(k : ℝ) - (m : ℝ)|) ≤
       latticeEnvelopeBound τ := by
@@ -33,7 +35,9 @@ theorem sum_exp_nat_distance_le {τ : ℝ} (hτ : 0 < τ) (m N : ℕ) :
   ring
 
 /-- Distance from a nearest vertex has both a uniform and an index-dependent
-lower bound; averaging them produces a summable envelope.-/
+lower bound; averaging them produces a summable envelope.
+@isnad1 id=le.2h7v.s7.7b90a6a23f82 from=translated src=- shape=0f6e0bbf vocab=8cb5c783
+-/
 theorem nearest_vertex_exp_bound {X : Type*} [PseudoMetricSpace X]
     (p : ℕ → X) (o : X) (a b : ℝ) (m k : ℕ)
     (hmin : dist o (p m) ≤ dist o (p k))
@@ -48,7 +52,9 @@ theorem nearest_vertex_exp_bound {X : Type*} [PseudoMetricSpace X]
   linarith
 
 /-- The distance between the endpoints is at most the sum of the successive
-Cayley movements.-/
+Cayley movements.
+@isnad1 id=le.1h3v.s6.afce7d9a24fd from=translated src=- shape=43d1cb56 vocab=7aa23e62
+-/
 theorem cayley_chain_bound (p : ℕ → ℍ) (N : ℕ) (L : ℝ)
     (hstep : ∀ k < N, dist (p k) (p (k + 1)) ≤ L) :
     dist (halfPlaneCayley (p 0)) (halfPlaneCayley (p N)) ≤
@@ -66,7 +72,9 @@ theorem cayley_chain_bound (p : ℕ → ℍ) (N : ℕ) (L : ℝ)
       _ = _ := by rw [Finset.sum_range_succ, mul_add]
 
 /-- A linearly separated chain has exponentially small total Cayley movement
-when all of its vertices lie far from the center.-/
+when all of its vertices lie far from the center.
+@isnad1 id=le.4h6v.s8.9ca90e33c7b0 from=translated src=- shape=4616dd6b vocab=4f018072
+-/
 theorem cayley_quasigeodesic_envelope (p : ℕ → ℍ) (N m : ℕ) (a b L : ℝ)
     (ha : 0 < a)
     (hstep : ∀ k < N, dist (p k) (p (k + 1)) ≤ L)

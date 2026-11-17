@@ -17,7 +17,9 @@ namespace Singularity
 
 variable {Γ : Type*} [Group Γ]
 
-/-- A permitted finite word can be displayed as a chain of vertices.-/
+/-- A permitted finite word can be displayed as a chain of vertices.
+@isnad1 id=ex.0h5v.s6.bf05808b1ec3 from=translated src=- shape=ba6bc936 vocab=07c75391
+-/
 theorem walkWord_vertex_chain (s : Finset Γ) (n : ℕ) (w : WalkWord s n) (x : Γ) :
     ∃ p : ℕ → Γ, p 0 = x ∧ p n = walkEndpoint s n x w ∧
       ∀ k < n, ∃ g ∈ s, p (k + 1) = p k * g := by
@@ -33,7 +35,9 @@ theorem walkWord_vertex_chain (s : Finset Γ) (n : ℕ) (w : WalkWord s n) (x : 
       · exact ⟨w.1, w.1.property, by simpa [p] using hq0⟩
       · simpa only [p, Nat.add_one_ne_zero, ↓reduceIte, Nat.add_sub_cancel] using hstep k (by omega)
 
-/-- Any subchain bounds the directed distance by its number of steps.-/
+/-- Any subchain bounds the directed distance by its number of steps.
+@isnad1 id=le.4h6v.s7.600a3cbb459a from=translated src=- shape=ca622186 vocab=db4276a7
+-/
 theorem jumpDistance_chain_le (s : Finset Γ)
     (hgen : Submonoid.closure (s : Set Γ) = ⊤) (p : ℕ → Γ) (N : ℕ)
     (hstep : ∀ k < N, ∃ g ∈ s, p (k + 1) = p k * g)
@@ -53,7 +57,9 @@ theorem jumpDistance_chain_le (s : Finset Γ)
     exact (jumpDistance_triangle s hgen _ (p (i + d)) _).trans
       (Nat.add_le_add (ih (by omega)) hnext)
 
-/-- Every forward subchain of a shortest directed path is shortest.-/
+/-- Every forward subchain of a shortest directed path is shortest.
+@isnad1 id=eq.5h6v.s7.a581e38640d6 from=translated src=- shape=bf9904b1 vocab=db4276a7
+-/
 theorem jumpDistance_shortest_chain (s : Finset Γ)
     (hgen : Submonoid.closure (s : Set Γ) = ⊤) (p : ℕ → Γ) (N : ℕ)
     (hstep : ∀ k < N, ∃ g ∈ s, p (k + 1) = p k * g)
@@ -68,7 +74,9 @@ theorem jumpDistance_shortest_chain (s : Finset Γ)
   omega
 
 /-- A shortest symmetric word path has exactly the index distance between
-every pair of vertices, and every step is an original or inverse generator.-/
+every pair of vertices, and every step is an original or inverse generator.
+@isnad1 id=ex.1h4v.s7.61bfda0246d8 from=translated src=- shape=6a214e91 vocab=8aa253f4
+-/
 theorem wordDistance_geodesic_chain (s : Finset Γ)
     (hgen : Submonoid.closure (s : Set Γ) = ⊤) (x y : Γ) :
     ∃ p : ℕ → Γ, p 0 = x ∧ p (wordDistance s hgen x y) = y ∧

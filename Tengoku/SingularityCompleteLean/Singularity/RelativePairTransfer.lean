@@ -26,7 +26,9 @@ def relativePairTransfer (s : Finset Γ) (μ : Γ → ℝ) (A : Set Γ) (B : Fin
   map_add' f g := by ext p; simp [mul_add, Finset.sum_add_distrib]
   map_smul' c f := by ext p; simp [Finset.mul_sum, mul_left_comm]
 
-/-- Positivity preserves comparisons on the admissible successor pairs.-/
+/-- Positivity preserves comparisons on the admissible successor pairs.
+@isnad1 id=le.4h11v.s9.eaccc3172b71 from=translated src=- shape=b44acff7 vocab=c68a705c
+-/
 theorem relativePairTransfer_monoOn (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (A : Set Γ) (B : Finset Γ) (last : Bool) (S S' : Set (Γ × Γ))
     (hmove : ∀ p ∈ S, ∀ b : B, (if last then (p.1, (b : Γ)) else ((b : Γ), p.2)) ∈ S')

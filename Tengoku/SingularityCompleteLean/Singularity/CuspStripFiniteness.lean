@@ -19,7 +19,9 @@ open Set
 open scoped Classical MatrixGroups UpperHalfPlane
 namespace Singularity
 
-/-- A closed rectangle with any positive lower height is compact in H².-/
+/-- A closed rectangle with any positive lower height is compact in H².
+@isnad1 id=iscompac.1h3v.s5.8d7ee352dc34 from=translated src=- shape=fc358cc9 vocab=3534f6b8
+-/
 theorem isCompact_heightBandRectangle (C l H : ℝ) (hl : 0 < l) :
     IsCompact {z : ℍ | |z.re| ≤ C ∧ l ≤ z.im ∧ z.im ≤ H} := by
   rw [UpperHalfPlane.isEmbedding_coe.isCompact_iff (f := ((↑) : ℍ → ℂ))]
@@ -35,7 +37,9 @@ theorem isCompact_heightBandRectangle (C l H : ℝ) (hl : 0 < l) :
   exact isCompact_Icc.reProdIm isCompact_Icc
 
 /-- A pole-height bound at zero gives a positive lower height in a fixed
-axis-ratio strip.-/
+axis-ratio strip.
+@isnad1 id=le.3h3v.s8.9704df7a8d94 from=translated src=- shape=e80c153c vocab=957445b9
+-/
 theorem axisRatioStrip_height_lower_of_pole_bound {R D : ℝ} (hD : 0 < D)
     (z : ℍ) (hz : z ∈ axisRatioStrip R) (hpole : (boundaryPoleMatrix 0 • z).im ≤ D) :
     1 / (D * (R ^ 2 + 1)) ≤ z.im := by
@@ -57,7 +61,9 @@ theorem axisRatioStrip_height_lower_of_pole_bound {R D : ℝ} (hD : 0 < D)
   nlinarith
 
 /-- Two endpoint height bounds make every fixed axis strip contain only
-finitely many vertices of a discrete subgroup.-/
+finitely many vertices of a discrete subgroup.
+@isnad1 id=finite.4h5v.s13.3ac6b1f88c21 from=translated src=- shape=814d3b5b vocab=7891e736
+-/
 theorem finite_axisRatioStrip_of_two_height_bounds
     (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ] (z : ℍ)
     {R C D : ℝ} (hR : 0 ≤ R) (hD : 0 < D)
@@ -76,7 +82,9 @@ theorem finite_axisRatioStrip_of_two_height_bounds
   exact hr.trans (mul_le_mul_of_nonneg_left (hinfty g) hR)
 
 /-- With two controlled endpoints, the already constructed finite-jump
-separator is genuinely finite, rather than merely periodic.-/
+separator is genuinely finite, rather than merely periodic.
+@isnad1 id=finite.3h5v.s12.90e0dbc68a2e from=translated src=- shape=ae5d35ba vocab=33a3cab4
+-/
 theorem finite_finiteJumpStrip_of_two_height_bounds
     (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ] (z : ℍ) (s : Finset Γ)
     {C D : ℝ} (hD : 0 < D)
@@ -87,7 +95,9 @@ theorem finite_finiteJumpStrip_of_two_height_bounds
     (jumpStripRadius_pos (finiteJumpLengthBound_nonneg Γ z s)).le hD hinfty hzero
 
 /-- Nontrivial parabolic shears at both endpoints supply the two height
-bounds internally. Hence every fixed axis-ratio strip between them is finite.-/
+bounds internally. Hence every fixed axis-ratio strip between them is finite.
+@isnad1 id=finite.5h5v.s11.a33d7227f48b from=translated src=- shape=58149b2b vocab=9fec4128
+-/
 theorem finite_axisRatioStrip_of_two_parabolic_shears
     (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ] (z : ℍ) {R : ℝ} (hR : 0 ≤ R)
     (u v : ℝ) (hu : u ≠ 0) (hv : v ≠ 0)
@@ -112,7 +122,9 @@ theorem finite_axisRatioStrip_of_two_parabolic_shears
   simpa only [he] using hΛ a
 
 /-- Nontrivial parabolic shears at both endpoints supply the two height
-bounds internally. Hence the finite-jump separator between them is finite.-/
+bounds internally. Hence the finite-jump separator between them is finite.
+@isnad1 id=finite.4h5v.s10.5f502df55564 from=translated src=- shape=6aa27dab vocab=51ba2c67
+-/
 theorem finite_finiteJumpStrip_of_two_parabolic_shears
     (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ] (z : ℍ) (s : Finset Γ)
     (u v : ℝ) (hu : u ≠ 0) (hv : v ≠ 0)

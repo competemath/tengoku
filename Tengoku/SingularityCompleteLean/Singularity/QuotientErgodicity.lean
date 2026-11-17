@@ -17,7 +17,9 @@ open scoped Pointwise
 
 namespace Singularity
 
-/-- Null sets for a quotient measure are exactly the sets with Haar-null full preimage.-/
+/-- Null sets for a quotient measure are exactly the sets with Haar-null full preimage.
+@isnad1 id=iff.2h6v.s8.c21ab2b3f873 from=translated src=- shape=8402cdf2 vocab=8767fdae
+-/
 theorem quotientMeasure_null_iff {G : Type*} [Group G] [MeasurableSpace G]
     [MeasurableMul₂ G] [MeasurableInv G] (Γ : Subgroup G) [Countable Γ]
     (ν : Measure G) [ν.IsMulRightInvariant] (μ : Measure (G ⧸ Γ))
@@ -37,7 +39,9 @@ theorem quotientMeasure_null_iff {G : Type*} [Group G] [MeasurableSpace G]
   · intro h
     exact measure_mono_null inter_subset_left h
 
-/-- Almost-everywhere assertions can be checked on the full group above a quotient.-/
+/-- Almost-everywhere assertions can be checked on the full group above a quotient.
+@isnad1 id=iff.2h6v.s8.ebcd1714ac49 from=translated src=- shape=1e926365 vocab=796053f5
+-/
 theorem quotientMeasure_ae_iff {G : Type*} [Group G] [MeasurableSpace G]
     [MeasurableMul₂ G] [MeasurableInv G] (Γ : Subgroup G) [Countable Γ]
     (ν : Measure G) [ν.IsMulRightInvariant] (μ : Measure (G ⧸ Γ))
@@ -48,7 +52,9 @@ theorem quotientMeasure_ae_iff {G : Type*} [Group G] [MeasurableSpace G]
   simp only [ae_iff]
   exact (quotientMeasure_null_iff Γ ν μ hF hP.compl).symm
 
-/-- The full group action on a Haar quotient is ergodic.-/
+/-- The full group action on a Haar quotient is ergodic.
+@isnad1 id=ergodics.1h5v.s8.3492a8806e47 from=translated src=- shape=86efc45e vocab=72714bad
+-/
 theorem ergodicSMul_quotient_of_fundamentalDomain {G : Type*} [Group G]
     [MeasurableSpace G] [MeasurableMul₂ G] [MeasurableInv G]
     (Γ : Subgroup G) [Countable Γ] (ν : Measure G) [SFinite ν]

@@ -19,7 +19,9 @@ namespace Singularity
 
 variable {G : Type*} [Group G]
 
-/-- Word length is subadditive on products.-/
+/-- Word length is subadditive on products.
+@isnad1 id=le.1h4v.s7.a8c649f986fc from=translated src=- shape=09645091 vocab=0a4c83ff
+-/
 theorem wordDistance_one_mul_le (s : Finset G) (hgen : Submonoid.closure (s : Set G) = ⊤)
     (g h : G) : wordDistance s hgen 1 (g * h) ≤ wordDistance s hgen 1 g + wordDistance s hgen 1 h := by
   have htri := wordDistance_triangle s hgen 1 g (g * h)
@@ -27,7 +29,9 @@ theorem wordDistance_one_mul_le (s : Finset G) (hgen : Submonoid.closure (s : Se
     simpa only [mul_one] using wordDistance_left s hgen g 1 h
   rwa [he] at htri
 
-/-- The length of g^n is at most n times the length of g.-/
+/-- The length of g^n is at most n times the length of g.
+@isnad1 id=le.1h4v.s6.13bdd69220df from=translated src=- shape=598e3960 vocab=86602bf4
+-/
 theorem wordDistance_pow_le (s : Finset G) (hgen : Submonoid.closure (s : Set G) = ⊤)
     (g : G) (n : ℕ) : wordDistance s hgen 1 (g ^ n) ≤ n * wordDistance s hgen 1 g := by
   induction n with
@@ -36,7 +40,9 @@ theorem wordDistance_pow_le (s : Finset G) (hgen : Submonoid.closure (s : Set G)
     rw [pow_succ]
     exact (wordDistance_one_mul_le s hgen _ _).trans (by simpa [Nat.succ_mul] using Nat.add_le_add_right ih (wordDistance s hgen 1 g))
 
-/-- Linear growth for one positive power implies linear growth for the original element.-/
+/-- Linear growth for one positive power implies linear growth for the original element.
+@isnad1 id=ex.4h5v.s7.f10ad1495a54 from=translated src=- shape=1777c965 vocab=2e89d7a1
+-/
 theorem linear_word_growth_of_power (s : Finset G) (hgen : Submonoid.closure (s : Set G) = ⊤)
     (g : G) (m : ℕ) (hm : 0 < m) (κ : ℝ) (hκ : 0 < κ)
     (hpow : ∀ n : ℕ, κ * n ≤ (wordDistance s hgen 1 ((g ^ m) ^ n) : ℝ)) :
@@ -74,7 +80,9 @@ theorem linear_word_growth_of_power (s : Finset G) (hgen : Submonoid.closure (s 
   nlinarith
 
 /-- Every infinite-order element in a group with a finite-index free subgroup is undistorted
-for every finite semigroup-generating support.-/
+for every finite semigroup-generating support.
+@isnad1 id=ex.2h4v.s7.3e631ba5304f from=translated src=- shape=cb28f4e0 vocab=022f4e70
+-/
 theorem linear_word_growth_of_finiteIndex_free (H : Subgroup G) [H.FiniteIndex] [IsFreeGroup H]
     (s : Finset G) (hgen : Submonoid.closure (s : Set G) = ⊤) (g : G) (hg : ¬IsOfFinOrder g) :
     ∃ κ E : ℝ, 0 < κ ∧ 0 ≤ E ∧ ∀ n : ℕ,

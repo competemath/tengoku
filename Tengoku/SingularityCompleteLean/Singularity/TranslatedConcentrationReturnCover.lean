@@ -15,7 +15,9 @@ open MeasureTheory Set Filter
 open scoped ENNReal Topology
 namespace Singularity
 
-/-- Concentration on E controls the return error in an arbitrary shadow family.-/
+/-- Concentration on E controls the return error in an arbitrary shadow family.
+@isnad1 id=tendsto.1h6v.s7.74d90e102b76 from=translated src=- shape=eb199deb vocab=947b74f5
+-/
 theorem inverse_shadow_error_of_translated_concentration
     {Γ B : Type*} [Group Γ] [MeasurableSpace B] [MulAction Γ B]
     (ν : Measure B) (g : ℕ → Γ) (S : ℕ → Set B) (E : Set B)
@@ -26,7 +28,9 @@ theorem inverse_shadow_error_of_translated_concentration
   exact fun ξ hξ => hξ.2
 
 /-- An eventual corrected shadow cover and concentration of translated
-measures give corrected returns to E, with no shadow mass or cocycle inputs.-/
+measures give corrected returns to E, with no shadow mass or cocycle inputs.
+@isnad1 id=eventual.3h7v.s8.c0a16822774a from=translated src=- shape=f00c8422 vocab=988c2289
+-/
 theorem shadow_return_cover_of_translated_concentration
     {Γ B : Type*} [Group Γ] [Countable Γ] [MeasurableSpace B]
     [MulAction Γ B] [MeasurableConstSMul Γ B]

@@ -22,11 +22,16 @@ def inverseDomainHom (G : Type*) [Group G] : G →* Gᵈᵐᵃ where
   map_one' := by simp
   map_mul' a b := by simp
 
+/--
+@isnad1 id=continuo.0h1v.s6.7dcb65d56dff from=translated src=- shape=6be4b685 vocab=33ea2f25
+-/
 theorem continuous_inverseDomainHom {G : Type*} [Group G]
     [TopologicalSpace G] [IsTopologicalGroup G] : Continuous (inverseDomainHom G) :=
   DomMulAct.continuous_mk.comp continuous_inv
 
-/-- The fixed-vector theorem also holds for the opposite action used on function spaces.-/
+/-- The fixed-vector theorem also holds for the opposite action used on function spaces.
+@isnad1 id=eq.2h4v.s10.ed4d5350c4c6 from=translated src=- shape=b444d2cc vocab=0c900b28
+-/
 theorem fixed_domain_slTwo_of_fixed_dilation {X : Type*} [MetricSpace X]
     [MulAction SL(2, ℝ)ᵈᵐᵃ X] [IsIsometricSMul SL(2, ℝ)ᵈᵐᵃ X]
     [ContinuousSMul SL(2, ℝ)ᵈᵐᵃ X] (τ : ℝ) (hτ : 0 < τ)

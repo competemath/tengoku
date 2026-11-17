@@ -16,7 +16,9 @@ open MeasureTheory Set Filter
 open scoped ENNReal
 namespace Singularity
 
-/-- The logarithmic density window is measurable.-/
+/-- The logarithmic density window is measurable.
+@isnad1 id=measurab.0h4v.s5.c723a6f8c80a from=translated src=- shape=d60eec63 vocab=aca9f4c2
+-/
 theorem measurableSet_logDensity_window {B : Type*} [MeasurableSpace B]
     (ν m : Measure B) (M : ℝ) :
     MeasurableSet {ξ | |Real.log ((ν.rnDeriv m ξ).toReal)| ≤ M} := by
@@ -25,7 +27,9 @@ theorem measurableSet_logDensity_window {B : Type*} [MeasurableSpace B]
       (measurable_const (a := M))
 
 /-- Every nonzero measure has a positive-mass window for its real
-logarithmic density relative to any reference measure.-/
+logarithmic density relative to any reference measure.
+@isnad1 id=ex.1h3v.s6.2ead94cee0e8 from=translated src=- shape=9b5a8421 vocab=dde84ea0
+-/
 theorem exists_positive_logDensity_window {B : Type*} [MeasurableSpace B]
     (ν m : Measure B) (hν : 0 < ν univ) :
     ∃ M : ℝ, 0 ≤ M ∧ 0 < ν {ξ | |Real.log ((ν.rnDeriv m ξ).toReal)| ≤ M} := by
@@ -45,7 +49,9 @@ theorem exists_positive_logDensity_window {B : Type*} [MeasurableSpace B]
   exact hν.ne' h
 
 /-- A bound on the log density on E compares the restrictions of two
-finite equivalent measures, without any bound outside E.-/
+finite equivalent measures, without any bound outside E.
+@isnad1 id=and.4h5v.s7.778969e9c87a from=translated src=- shape=8f4b2979 vocab=510a6c84
+-/
 theorem restricted_measure_comparison_of_logDensity_window
     {B : Type*} [MeasurableSpace B] (ν m : Measure B)
     [IsFiniteMeasure ν] [IsFiniteMeasure m]

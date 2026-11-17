@@ -32,7 +32,9 @@ variable {Γ : Type*} [MeasurableSpace Γ] [MeasurableSingletonClass Γ] [Counta
 def l2InvariantMean (f : ℕ → GroupL2 Γ) (A : Set Γ) : ℝ :=
   limUnder (Ultrafilter.of (atTop : Filter ℕ)) (fun n => l2SetMass (f n) A)
 
-/-- Compactness of [0,1] ensures that each set mass has the required ultrafilter limit.-/
+/-- Compactness of [0,1] ensures that each set mass has the required ultrafilter limit.
+@isnad1 id=tendsto.1h3v.s8.c4a7e6b1db8b from=translated src=- shape=14f0cf7d vocab=271e0283
+-/
 theorem l2InvariantMean_tendsto (f : ℕ → GroupL2 Γ) (hf : ∀ n, ‖f n‖ = 1) (A : Set Γ) :
     Tendsto (fun n => l2SetMass (f n) A) (Ultrafilter.of (atTop : Filter ℕ)) (nhds (l2InvariantMean f A)) := by
   have hb : ∀ᶠ n in (Ultrafilter.of (atTop : Filter ℕ) : Filter ℕ), l2SetMass (f n) A ∈ Icc (0 : ℝ) 1 :=
@@ -41,26 +43,34 @@ theorem l2InvariantMean_tendsto (f : ℕ → GroupL2 Γ) (hf : ∀ n, ‖f n‖ 
     ((Ultrafilter.of (atTop : Filter ℕ)).map (fun n => l2SetMass (f n) A)) (mem_map.mp hb)
   exact tendsto_nhds_limUnder ⟨x, hx.2⟩
 
-/-- Every set has nonnegative limiting mass.-/
+/-- Every set has nonnegative limiting mass.
+@isnad1 id=le.1h3v.s8.d95eb8566a87 from=translated src=- shape=fc48aeee vocab=b4ba8530
+-/
 theorem l2InvariantMean_nonneg (f : ℕ → GroupL2 Γ) (hf : ∀ n, ‖f n‖ = 1) (A : Set Γ) :
     0 ≤ l2InvariantMean f A :=
   ge_of_tendsto (l2InvariantMean_tendsto f hf A) (Eventually.of_forall (fun _ => l2SetMass_nonneg _ _))
 
-/-- The empty set has zero limiting mass.-/
+/-- The empty set has zero limiting mass.
+@isnad1 id=eq.1h2v.s8.e98946820e9c from=translated src=- shape=00b2e90b vocab=9159dd82
+-/
 theorem l2InvariantMean_empty (f : ℕ → GroupL2 Γ) (hf : ∀ n, ‖f n‖ = 1) :
     l2InvariantMean f ∅ = 0 := by
   have h := l2InvariantMean_tendsto f hf ∅
   simp only [l2SetMass_empty] at h
   exact tendsto_nhds_unique h tendsto_const_nhds
 
-/-- The entire group has limiting mass one.-/
+/-- The entire group has limiting mass one.
+@isnad1 id=eq.1h2v.s8.209c83616d49 from=translated src=- shape=3e0aa0be vocab=4861fb65
+-/
 theorem l2InvariantMean_univ (f : ℕ → GroupL2 Γ) (hf : ∀ n, ‖f n‖ = 1) :
     l2InvariantMean f univ = 1 := by
   have h := l2InvariantMean_tendsto f hf univ
   simp only [l2SetMass_univ, hf, one_pow] at h
   exact tendsto_nhds_unique h tendsto_const_nhds
 
-/-- Disjoint finite additivity survives the ultrafilter limit.-/
+/-- Disjoint finite additivity survives the ultrafilter limit.
+@isnad1 id=eq.2h4v.s8.e2bea462be28 from=translated src=- shape=09b84e92 vocab=b72c5ac1
+-/
 theorem l2InvariantMean_union (f : ℕ → GroupL2 Γ) (hf : ∀ n, ‖f n‖ = 1)
     (A B : Set Γ) (hAB : Disjoint A B) :
     l2InvariantMean f (A ∪ B) = l2InvariantMean f A + l2InvariantMean f B := by
@@ -70,7 +80,9 @@ theorem l2InvariantMean_union (f : ℕ → GroupL2 Γ) (hf : ∀ n, ‖f n‖ = 
 
 variable [Group Γ] [MeasurableMul Γ]
 
-/-- Almost invariance of vectors makes every set mass asymptotically translation invariant.-/
+/-- Almost invariance of vectors makes every set mass asymptotically translation invariant.
+@isnad1 id=tendsto.2h4v.s11.91cfe11a95c4 from=translated src=- shape=b01aa26b vocab=02bf635c
+-/
 theorem l2SetMass_translation_tendsto (f : ℕ → GroupL2 Γ) (hf : ∀ n, ‖f n‖ = 1)
     (g : Γ) (hg : Tendsto (fun n => ‖rightTranslation g (f n) - f n‖) atTop (nhds 0))
     (A : Set Γ) : Tendsto (fun n => l2SetMass (f n) ((fun x => x * g) '' A) - l2SetMass (f n) A)
@@ -80,7 +92,9 @@ theorem l2SetMass_translation_tendsto (f : ℕ → GroupL2 Γ) (hf : ∀ n, ‖f
   have h := l2SetMass_sub_le (rightTranslation g (f n)) (f n) A
   simpa only [rightTranslation_norm, hf, one_add_one_eq_two] using h
 
-/-- The limit mean is invariant under every translation that almost fixes the vectors.-/
+/-- The limit mean is invariant under every translation that almost fixes the vectors.
+@isnad1 id=eq.2h4v.s11.e15d9a9f2346 from=translated src=- shape=9493d9d1 vocab=07d50907
+-/
 theorem l2InvariantMean_right_invariant (f : ℕ → GroupL2 Γ) (hf : ∀ n, ‖f n‖ = 1)
     (g : Γ) (hg : Tendsto (fun n => ‖rightTranslation g (f n) - f n‖) atTop (nhds 0))
     (A : Set Γ) : l2InvariantMean f ((fun x => x * g) '' A) = l2InvariantMean f A := by
@@ -88,7 +102,9 @@ theorem l2InvariantMean_right_invariant (f : ℕ → GroupL2 Γ) (hf : ∀ n, �
   have hl := (l2InvariantMean_tendsto f hf ((fun x => x * g) '' A)).sub (l2InvariantMean_tendsto f hf A)
   exact sub_eq_zero.mp (tendsto_nhds_unique hl h)
 
-/-- Almost invariant unit vectors supply a right-invariant finitely additive probability.-/
+/-- Almost invariant unit vectors supply a right-invariant finitely additive probability.
+@isnad1 id=hasright.2h2v.s11.b5ef47ea3e45 from=translated src=- shape=695104e4 vocab=16f93e91
+-/
 theorem hasRightInvariantMean_of_almostInvariantL2 (f : ℕ → GroupL2 Γ)
     (hf : ∀ n, ‖f n‖ = 1)
     (hinv : ∀ g : Γ, Tendsto (fun n => ‖rightTranslation g (f n) - f n‖) atTop (nhds 0)) :

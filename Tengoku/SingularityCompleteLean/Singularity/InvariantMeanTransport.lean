@@ -17,7 +17,9 @@ open scoped Classical
 
 namespace Singularity
 
-/-- A nonnegative finitely additive set function is monotone.-/
+/-- A nonnegative finitely additive set function is monotone.
+@isnad1 id=le.3h4v.s6.2ba3ee88ebfd from=translated src=- shape=f7f4d099 vocab=66043f1f
+-/
 theorem invariantMean_mono {X : Type*} (m : Set X → ℝ) (hpos : ∀ A, 0 ≤ m A)
     (hadd : ∀ A B, Disjoint A B → m (A ∪ B) = m A + m B)
     {A B : Set X} (hAB : A ⊆ B) : m A ≤ m B := by
@@ -36,7 +38,9 @@ theorem invariantMean_mono {X : Type*} (m : Set X → ℝ) (hpos : ∀ A, 0 ≤ 
   rw [he] at h
   linarith [hpos (B \ A)]
 
-/-- An equivariant map transports a left invariant mean by preimages.-/
+/-- An equivariant map transports a left invariant mean by preimages.
+@isnad1 id=hasinvar.2h4v.s7.06438efb6ba7 from=translated src=- shape=91b43f32 vocab=82ac8750
+-/
 theorem hasInvariantMean_of_equivariant_map {G H : Type*} [Group G] [Group H]
     (j : H →* G) (p : G → H) (hp : ∀ h x, p (j h * x) = h * p x)
     (hm : HasInvariantMean G) : HasInvariantMean H := by
@@ -62,7 +66,9 @@ theorem hasInvariantMean_of_equivariant_map {G H : Type*} [Group G] [Group H]
     dsimp only
     rw [he, hinv]
 
-/-- The right-translation version of equivariant transport.-/
+/-- The right-translation version of equivariant transport.
+@isnad1 id=hasright.2h4v.s7.0433b78ec519 from=translated src=- shape=7d677053 vocab=04e90ba2
+-/
 theorem hasRightInvariantMean_of_equivariant_map {G H : Type*} [Group G] [Group H]
     (j : H →* G) (p : G → H) (hp : ∀ h x, p (x * j h) = p x * h)
     (hm : HasRightInvariantMean G) : HasRightInvariantMean H := by
@@ -93,7 +99,9 @@ def subgroupRightCoordinate {G : Type*} [Group G] (H : Subgroup G) (x : G) : H :
   ⟨(Quotient.out (QuotientGroup.mk x : G ⧸ H))⁻¹ * x,
     QuotientGroup.leftRel_apply.mp (Quotient.exact' (Quotient.out_eq' _))⟩
 
-/-- Right multiplication by subgroup elements leaves the coset representative fixed.-/
+/-- Right multiplication by subgroup elements leaves the coset representative fixed.
+@isnad1 id=eq.0h4v.s7.e9bf1d7a8e01 from=translated src=- shape=6b5f2b60 vocab=1e46c8fd
+-/
 theorem subgroupRightCoordinate_mul {G : Type*} [Group G] (H : Subgroup G)
     (h : H) (x : G) : subgroupRightCoordinate H (x * h) = subgroupRightCoordinate H x * h := by
   apply Subtype.ext
@@ -101,19 +109,25 @@ theorem subgroupRightCoordinate_mul {G : Type*} [Group G] (H : Subgroup G)
     ((Quotient.out (QuotientGroup.mk x : G ⧸ H))⁻¹ * x) * h
   rw [QuotientGroup.mk_mul_of_mem x h.property, mul_assoc]
 
-/-- A right invariant mean on a group induces one on each subgroup.-/
+/-- A right invariant mean on a group induces one on each subgroup.
+@isnad1 id=hasright.1h2v.s5.365813488a25 from=translated src=- shape=4b15469b vocab=f01d0ea8
+-/
 theorem hasRightInvariantMean_subgroup {G : Type*} [Group G] (H : Subgroup G)
     (hm : HasRightInvariantMean G) : HasRightInvariantMean H :=
   hasRightInvariantMean_of_equivariant_map H.subtype (subgroupRightCoordinate H)
     (subgroupRightCoordinate_mul H) hm
 
-/-- Amenability is inherited by subgroups, in the classical set-function formulation.-/
+/-- Amenability is inherited by subgroups, in the classical set-function formulation.
+@isnad1 id=hasinvar.1h2v.s5.4f553e7d3125 from=translated src=- shape=4b15469b vocab=2382cf56
+-/
 theorem hasInvariantMean_subgroup {G : Type*} [Group G] (H : Subgroup G)
     (hm : HasInvariantMean G) : HasInvariantMean H :=
   (hasInvariantMean_iff_right H).mpr
     (hasRightInvariantMean_subgroup H ((hasInvariantMean_iff_right G).mp hm))
 
-/-- An injective group homomorphism transfers an ambient invariant mean to its domain.-/
+/-- An injective group homomorphism transfers an ambient invariant mean to its domain.
+@isnad1 id=hasinvar.2h3v.s6.a0e0fccbbf10 from=translated src=- shape=2be079fb vocab=34d6a2f8
+-/
 theorem hasInvariantMean_of_injective {G H : Type*} [Group G] [Group H]
     (j : H →* G) (hj : Function.Injective j) (hm : HasInvariantMean G) : HasInvariantMean H := by
   let e : H ≃* j.range := MonoidHom.ofInjective hj

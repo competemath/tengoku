@@ -27,6 +27,9 @@ variable [MeasurableSpace SL(2, ℝ)] [BorelSpace SL(2, ℝ)]
 def cocompactHaarQuotientProbability : Measure (SL(2, ℝ) ⧸ Γ) :=
   (cocompactHaarQuotientMeasure Γ ν univ)⁻¹ • cocompactHaarQuotientMeasure Γ ν
 
+/--
+@isnad1 id=isprobab.0h2v.s10.21d2e6c65728 from=translated src=- shape=ee388383 vocab=ed0cd1c9
+-/
 theorem cocompactHaarQuotientProbability_probability :
     IsProbabilityMeasure (cocompactHaarQuotientProbability Γ ν) := by
   let := cocompactHaarQuotientMeasure_finite Γ ν
@@ -35,7 +38,9 @@ theorem cocompactHaarQuotientProbability_probability :
   unfold cocompactHaarQuotientProbability
   infer_instance
 
-/-- Normalizing the Haar quotient does not change its null sets.-/
+/-- Normalizing the Haar quotient does not change its null sets.
+@isnad1 id=and.0h2v.s10.2628d8f6160c from=translated src=- shape=fbb2a249 vocab=c7a6b6b1
+-/
 theorem cocompactHaarQuotientProbability_measureClass :
     cocompactHaarQuotientProbability Γ ν ≪ cocompactHaarQuotientMeasure Γ ν ∧
       cocompactHaarQuotientMeasure Γ ν ≪ cocompactHaarQuotientProbability Γ ν := by
@@ -43,13 +48,17 @@ theorem cocompactHaarQuotientProbability_measureClass :
   exact ⟨smul_absolutelyContinuous,
     absolutelyContinuous_smul (ENNReal.inv_ne_zero.mpr (measure_ne_top _ _))⟩
 
-/-- Positive diagonal time maps are ergodic for the actual normalized quotient.-/
+/-- Positive diagonal time maps are ergodic for the actual normalized quotient.
+@isnad1 id=ergodic.1h3v.s11.005967e01914 from=translated src=- shape=c1e6483a vocab=764ea348
+-/
 theorem cocompactHaarQuotientProbability_dilation_ergodic (τ : ℝ) (hτ : 0 < τ) :
     Ergodic (fun x : SL(2, ℝ) ⧸ Γ => dilationMatrix τ • x)
       (cocompactHaarQuotientProbability Γ ν) :=
   (cocompactHaarQuotientMeasure_dilation_ergodic Γ ν τ hτ).smul_measure _
 
-/-- Actual quotient orbit averages converge along a subsequence to their Haar average.-/
+/-- Actual quotient orbit averages converge along a subsequence to their Haar average.
+@isnad1 id=ex.4h5v.s11.4de9df9c5a0e from=translated src=- shape=ee3169bb vocab=21461b2b
+-/
 theorem cocompactHaar_birkhoffAverage_subsequence (τ : ℝ) (hτ : 0 < τ)
     (f : SL(2, ℝ) ⧸ Γ → ℝ) (hf : Measurable f)
     (C : ℝ) (hC : 0 ≤ C) (hbound : ∀ x, ‖f x‖ ≤ C) :

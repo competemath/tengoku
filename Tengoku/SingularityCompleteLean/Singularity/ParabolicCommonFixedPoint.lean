@@ -17,7 +17,9 @@ open scoped MatrixGroups UpperHalfPlane
 
 namespace Singularity
 
-/-- Conjugate a parabolic matrix by a matrix sending infinity to its repeated fixed point.-/
+/-- Conjugate a parabolic matrix by a matrix sending infinity to its repeated fixed point.
+@isnad1 id=ex.2h1v.s10.5702ca24b3da from=translated src=- shape=39e7a324 vocab=4cbbb28d
+-/
 theorem slTwo_parabolic_normalization (g : SL(2, ℝ))
     (htrace : (g 0 0 + g 1 1) ^ 2 = 4) (hc : g 1 0 ≠ 0) :
     ∃ B : SL(2, ℝ), (B⁻¹ * g * B) 1 0 = 0 ∧
@@ -45,7 +47,9 @@ theorem slTwo_parabolic_normalization (g : SL(2, ℝ))
   simp only [Matrix.of_apply, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_fin_one]
   exact ⟨hq, by linarith, neg_ne_zero.mpr hc⟩
 
-/-- A parabolic element in a subgroup with no hyperbolic traces gives a common ideal fixed point.-/
+/-- A parabolic element in a subgroup with no hyperbolic traces gives a common ideal fixed point.
+@isnad1 id=ex.3h2v.s12.235cc073bfc1 from=translated src=- shape=5e500093 vocab=c1ff1192
+-/
 theorem exists_common_boundary_fixedPoint_of_parabolic (Γ : Subgroup SL(2, ℝ))
     (hbound : ∀ g : Γ, |(g : SL(2, ℝ)) 0 0 + (g : SL(2, ℝ)) 1 1| ≤ 2)
     (a : Γ) (htrace : ((a : SL(2, ℝ)) 0 0 + (a : SL(2, ℝ)) 1 1) ^ 2 = 4)

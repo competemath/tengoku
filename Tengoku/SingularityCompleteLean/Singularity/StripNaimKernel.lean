@@ -17,7 +17,9 @@ open MeasureTheory Filter Set
 open scoped Classical Topology MatrixGroups UpperHalfPlane
 namespace Singularity
 
-/-- Supported counting-L² vectors are determined by their coordinates on the support.-/
+/-- Supported counting-L² vectors are determined by their coordinates on the support.
+@isnad1 id=eq.1h4v.s13.d52892390dca from=translated src=- shape=e5a9c4d2 vocab=5a718caa
+-/
 theorem supportedL2_ext_on {X : Type*} [MeasurableSpace X] [MeasurableSingletonClass X]
     (A : Set X) (u v : supportedL2 A)
     (h : ∀ g ∈ A, (u : GroupL2 X) g = (v : GroupL2 X) g) : u = v := by

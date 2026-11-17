@@ -17,7 +17,9 @@ open MeasureTheory ProbabilityTheory Set Filter
 open scoped ENNReal Classical
 namespace Singularity
 
-/-- A sequence starting in A and eventually avoiding A has a last visit.-/
+/-- A sequence starting in A and eventually avoiding A has a last visit.
+@isnad1 id=ex.2h3v.s6.fefb04a064fb from=translated src=- shape=8f7512c5 vocab=4f26754d
+-/
 theorem exists_last_visit_of_eventually_avoid {X : Type*} (f : ℕ → X) (A : Set X)
     (hzero : f 0 ∈ A) (havoid : ∀ᶠ n in atTop, f n ∉ A) :
     ∃ n, f n ∈ A ∧ ∀ k, n < k → f k ∉ A := by
@@ -39,7 +41,9 @@ theorem exists_last_visit_of_eventually_avoid {X : Type*} (f : ℕ → X) (A : S
 variable {Γ : Type*} [Group Γ] [MeasurableSpace Γ] [MeasurableSingletonClass Γ]
   [MeasurableMul Γ] [Countable Γ]
 
-/-- Almost every path starting in a finite A has a last exit at a vertex of A.-/
+/-- Almost every path starting in a finite A has a last exit at a vertex of A.
+@isnad1 id=eventual.4h5v.s12.d110e496186d from=translated src=- shape=09ebaae7 vocab=65ac6bea
+-/
 theorem walkLastExitEver_ae_cover (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1)
     (hgap : spectralRadius ℂ (rightMarkov s μ) < 1) (A : Finset Γ) (x : Γ) (hx : x ∈ A) :
@@ -49,7 +53,9 @@ theorem walkLastExitEver_ae_cover (s : Finset Γ) (μ : Γ → ℝ)
     (A : Set Γ) hx (hω A)
   exact mem_iUnion.mpr ⟨⟨walkPosition s x n ω, hn⟩, mem_iUnion.mpr ⟨n, rfl, hn, ht⟩⟩
 
-/-- The last-exit masses sum to one for every finite set containing the start.-/
+/-- The last-exit masses sum to one for every finite set containing the start.
+@isnad1 id=eq.4h5v.s12.0c5e1a1c1d3e from=translated src=- shape=2f58adea vocab=811655bb
+-/
 theorem finiteLastExit_mass (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1)
     (hgap : spectralRadius ℂ (rightMarkov s μ) < 1) (A : Finset Γ) (x : Γ) (hx : x ∈ A) :

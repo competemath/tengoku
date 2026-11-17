@@ -18,7 +18,9 @@ open scoped Classical MatrixGroups UpperHalfPlane
 
 namespace Singularity
 
-/-- The displacement formula for a horizontal translation at any basepoint.-/
+/-- The displacement formula for a horizontal translation at any basepoint.
+@isnad1 id=eq.0h2v.s7.9953a0e05329 from=translated src=- shape=641534e5 vocab=cf51ee7b
+-/
 theorem upperShearMatrix_dist (u : ℝ) (z : ℍ) :
     dist z (upperShearMatrix u • z) = 2 * Real.arsinh (|u| / (2 * z.im)) := by
   have him : (upperShearMatrix u • z).im = z.im := by
@@ -33,7 +35,9 @@ theorem upperShearMatrix_dist (u : ℝ) (z : ℍ) :
   rw [show (z : ℂ) - ((z : ℂ) + (u : ℂ)) = -(u : ℂ) by ring,
     norm_neg, Complex.norm_real, Real.norm_eq_abs]
 
-/-- A nontrivial horizontal translation fixes no interior point.-/
+/-- A nontrivial horizontal translation fixes no interior point.
+@isnad1 id=ne.1h2v.s7.d42a5527d192 from=translated src=- shape=796ea0ff vocab=149a1989
+-/
 theorem upperShearMatrix_smul_ne (u : ℝ) (hu : u ≠ 0) (z : ℍ) :
     upperShearMatrix u • z ≠ z := by
   intro he
@@ -43,7 +47,9 @@ theorem upperShearMatrix_smul_ne (u : ℝ) (hu : u ≠ 0) (z : ℍ) :
   exact hu (by linarith)
 
 /-- Nonzero orbit displacements in a discrete group have a positive lower bound.
-Elements of the finite point stabilizer are explicitly excluded.-/
+Elements of the finite point stabilizer are explicitly excluded.
+@isnad1 id=ex.0h2v.s12.6ab3c1bf12f0 from=translated src=- shape=02d345e2 vocab=6c1bb2ea
+-/
 theorem discrete_orbit_displacement_gap (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ] (z : ℍ) :
     ∃ ε : ℝ, 0 < ε ∧ ∀ g : Γ, g • z ≠ z → ε ≤ dist z (g • z) := by
   let S : Finset Γ := (finite_group_vertices_in_compact Γ z (isCompact_closedBall z 1)).toFinset
@@ -73,7 +79,9 @@ theorem discrete_orbit_displacement_gap (Γ : Subgroup SL(2, ℝ)) [DiscreteTopo
   · exact (min_le_right _ _).trans (le_of_not_ge hd)
 
 /-- A discrete group containing a nontrivial upper shear has a uniformly
-bounded-height orbit at every basepoint.-/
+bounded-height orbit at every basepoint.
+@isnad1 id=ex.2h3v.s11.9d1f8f43cd1c from=translated src=- shape=91beb91f vocab=12ae2ed5
+-/
 theorem discrete_upperShear_orbit_height_bound (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
     (u : ℝ) (hu : u ≠ 0) (hmem : upperShearMatrix u ∈ Γ) (z : ℍ) :
     ∃ C : ℝ, 0 < C ∧ ∀ g : Γ, (g • z).im ≤ C := by

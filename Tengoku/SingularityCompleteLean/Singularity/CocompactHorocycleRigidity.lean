@@ -29,7 +29,9 @@ def lowerShearQuotientChart {B : Type*} (Γ : Subgroup SL(2, ℝ))
     (σ : B → SL(2, ℝ) ⧸ Γ) (p : ℝ × B) : SL(2, ℝ) ⧸ Γ :=
   lowerShearMatrix p.1 • σ p.2
 
-/-- Measurability requires only measurability of the transverse section.-/
+/-- Measurability requires only measurability of the transverse section.
+@isnad1 id=measurab.1h3v.s10.e0f287250205 from=translated src=- shape=f7a2bf2a vocab=791f99b4
+-/
 theorem measurable_lowerShearQuotientChart {B : Type*} [MeasurableSpace B]
     [MeasurableSpace SL(2, ℝ)] [BorelSpace SL(2, ℝ)]
     (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ] (σ : B → SL(2, ℝ) ⧸ Γ) (hσ : Measurable σ) :
@@ -37,7 +39,9 @@ theorem measurable_lowerShearQuotientChart {B : Type*} [MeasurableSpace B]
   let := slTwo_polishSpace
   exact (continuous_lowerShearMatrix.measurable.comp measurable_fst).smul (hσ.comp measurable_snd)
 
-/-- Changing the first chart coordinate is exactly a lower-shear translation.-/
+/-- Changing the first chart coordinate is exactly a lower-shear translation.
+@isnad1 id=eq.0h6v.s10.8223ed133f8c from=translated src=- shape=6aecb444 vocab=ecb6c847
+-/
 theorem lowerShearQuotientChart_change {B : Type*} (Γ : Subgroup SL(2, ℝ))
     (σ : B → SL(2, ℝ) ⧸ Γ) (u v : ℝ) (b : B) :
     lowerShearQuotientChart Γ σ (v, b) =
@@ -45,7 +49,9 @@ theorem lowerShearQuotientChart_change {B : Type*} (Γ : Subgroup SL(2, ℝ))
   simp only [lowerShearQuotientChart, ← mul_smul, ← lowerShearMatrix_add, sub_add_cancel]
 
 /-- Actual quotient rigidity for arbitrary measurable coordinates along contracting
-horocycles; the first coordinate need not be the additive shear parameter.-/
+horocycles; the first coordinate need not be the additive shear parameter.
+@isnad1 id=eq.7h12v.s12.a8af4f947c4c from=translated src=- shape=531e9e52 vocab=c3fd3236
+-/
 theorem cocompact_invariant_probability_eq_haar_of_stable_charts
     {A B I : Type*} [MeasurableSpace A] [MeasurableSpace B] [Countable I]
     [MeasurableSpace SL(2, ℝ)] [BorelSpace SL(2, ℝ)]
@@ -96,7 +102,9 @@ theorem cocompact_invariant_probability_eq_haar_of_stable_charts
   exact integral_eq_of_birkhoffAverage_subsequence m T hinv f f.continuous.measurable
     ‖f‖ (norm_nonneg _) f.norm_coe_le_norm ns hns.tendsto_atTop c hlim'
 
-/-- Actual quotient rigidity under explicit one-sided horocycle chart hypotheses.-/
+/-- Actual quotient rigidity under explicit one-sided horocycle chart hypotheses.
+@isnad1 id=eq.6h11v.s12.46f874366091 from=translated src=- shape=d2f08296 vocab=15d55973
+-/
 theorem cocompact_invariant_probability_eq_haar_of_horocycle_charts
     {B I : Type*} [MeasurableSpace B] [Countable I]
     [MeasurableSpace SL(2, ℝ)] [BorelSpace SL(2, ℝ)]

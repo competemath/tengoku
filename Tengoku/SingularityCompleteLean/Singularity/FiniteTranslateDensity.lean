@@ -14,7 +14,9 @@ open MeasureTheory Set Filter
 open scoped Classical ENNReal
 namespace Singularity
 
-/-- Local finite-mixture identities pass to actual real translated densities.-/
+/-- Local finite-mixture identities pass to actual real translated densities.
+@isnad1 id=eventual.4h7v.s8.a7798f52c869 from=translated src=- shape=e203c79c vocab=f2e1c467
+-/
 theorem stationaryRealDensity_finite_mixture_on_set
     {Γ B : Type*} [Group Γ] [MeasurableSpace B] [MulAction Γ B] [MeasurableConstSMul Γ B]
     (ν : Measure B) [IsFiniteMeasure ν]

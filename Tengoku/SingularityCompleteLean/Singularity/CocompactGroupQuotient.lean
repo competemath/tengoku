@@ -20,7 +20,9 @@ open scoped MatrixGroups UpperHalfPlane
 
 namespace Singularity
 
-/-- Compactness of Γ\ℍ implies compactness of the right-coset quotient SL(2,ℝ)/Γ.-/
+/-- Compactness of Γ\ℍ implies compactness of the right-coset quotient SL(2,ℝ)/Γ.
+@isnad1 id=compacts.0h1v.s9.26384a0ba65a from=translated src=- shape=12447234 vocab=c9e10b55
+-/
 theorem cocompact_slTwo_quotient (Γ : Subgroup SL(2, ℝ))
     [CompactSpace (Quotient (MulAction.orbitRel Γ ℍ))] :
     CompactSpace (SL(2, ℝ) ⧸ Γ) := by
@@ -42,7 +44,9 @@ theorem cocompact_slTwo_quotient (Γ : Subgroup SL(2, ℝ))
       exact QuotientGroup.mk_mul_of_mem g (Γ.inv_mem γ.property)
   exact ⟨hπ ▸ hi.image continuous_quotient_mk'⟩
 
-/-- The actual cocompact surface hypothesis supplies a finite Haar fundamental domain.-/
+/-- The actual cocompact surface hypothesis supplies a finite Haar fundamental domain.
+@isnad1 id=ex.0h2v.s10.50e7edcfac4f from=translated src=- shape=aadb01c7 vocab=e97e3dc8
+-/
 theorem exists_cocompact_finite_fundamentalDomain
     [MeasurableSpace SL(2, ℝ)] [BorelSpace SL(2, ℝ)]
     (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]

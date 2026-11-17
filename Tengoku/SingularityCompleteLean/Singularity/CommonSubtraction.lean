@@ -21,7 +21,9 @@ def commonSubtraction {X : Type*} (k : ℕ → X → ℝ) (c : ℝ) (o : X) (f :
   | 0 => f
   | n+1 => fun x => commonSubtraction k c o f n x - c * commonSubtraction k c o f n o * k n x
 
-/-- The values at the normalization point follow a scalar geometric schedule.-/
+/-- The values at the normalization point follow a scalar geometric schedule.
+@isnad1 id=eq.1h6v.s6.1b87cc94b0cd from=translated src=- shape=acebf477 vocab=0f3f4b02
+-/
 theorem commonSubtraction_base {X : Type*} (k : ℕ → X → ℝ) (c : ℝ) (o : X) (f : X → ℝ)
     (hk : ∀ n, k n o = 1) (n : ℕ) :
     commonSubtraction k c o f n o = (1-c)^n * f o := by
@@ -29,7 +31,9 @@ theorem commonSubtraction_base {X : Type*} (k : ℕ → X → ℝ) (c : ℝ) (o 
   | zero => simp [commonSubtraction]
   | succ n ih => simp only [commonSubtraction, hk, mul_one, ih, pow_succ]; ring
 
-/-- Equal initial normalization makes all the removed terms identical.-/
+/-- Equal initial normalization makes all the removed terms identical.
+@isnad1 id=eq.2h8v.s6.2e8f4bf79a60 from=translated src=- shape=d986bf8d vocab=7a7f1be9
+-/
 theorem commonSubtraction_difference {X : Type*} (k : ℕ → X → ℝ) (c : ℝ) (o : X) (f g : X → ℝ)
     (hk : ∀ n, k n o = 1) (hfg : f o = g o) (n : ℕ) (x : X) :
     commonSubtraction k c o f n x - commonSubtraction k c o g n x = f x - g x := by
@@ -41,7 +45,9 @@ theorem commonSubtraction_difference {X : Type*} (k : ℕ → X → ℝ) (c : �
     simp only [commonSubtraction, hb]
     linear_combination ih
 
-/-- Local fractional removal on nested domains gives a geometric upper bound.-/
+/-- Local fractional removal on nested domains gives a geometric upper bound.
+@isnad1 id=and.7h10v.s8.6ddd60102e7d from=translated src=- shape=68465eda vocab=34733c93
+-/
 theorem commonSubtraction_geometric_bound {X : Type*} (k : ℕ → X → ℝ) (c ε : ℝ) (o : X)
     (f : X → ℝ) (S : ℕ → Set X) (N : ℕ) (_hε : 0 ≤ ε) (hε1 : ε ≤ 1)
     (hS : ∀ n < N, S (n+1) ⊆ S n) (hf : ∀ x ∈ S 0, 0 ≤ f x)
@@ -67,7 +73,9 @@ theorem commonSubtraction_geometric_bound {X : Type*} (k : ℕ → X → ℝ) (c
       _ = _ := by rw [pow_succ]; ring
 
 /-- Two equally normalized functions become exponentially close when their
-common subtraction is admissible on the same nested domains.-/
+common subtraction is admissible on the same nested domains.
+@isnad1 id=le.9h10v.s8.53b5a759b8f0 from=translated src=- shape=cf2674ad vocab=e7812ef8
+-/
 theorem commonSubtraction_contraction {X : Type*} (k : ℕ → X → ℝ) (c ε : ℝ) (o : X)
     (f g : X → ℝ) (S : ℕ → Set X) (N : ℕ) (hε : 0 ≤ ε) (hε1 : ε ≤ 1)
     (hk : ∀ n, k n o = 1) (hfg : f o = g o)
@@ -86,7 +94,9 @@ theorem commonSubtraction_contraction {X : Type*} (k : ℕ → X → ℝ) (c ε 
   constructor <;> nlinarith [hfb.1, hfb.2, hgb.1, hgb.2]
 
 /-- A two-sided boundary Harnack comparison supplies an admissible common
-removal: c=1/C removes at least the fraction ε=1/C².-/
+removal: c=1/C removes at least the fraction ε=1/C².
+@isnad1 id=and.3h4v.s7.91ee327d2433 from=translated src=- shape=9e104399 vocab=d8b90f1e
+-/
 theorem fractional_removal_of_comparison (C u b k : ℝ) (hC : 0 < C)
     (hlo : b*k/C ≤ u) (hhi : u ≤ C*(b*k)) :
     (1/C^2)*u ≤ (1/C)*b*k ∧ (1/C)*b*k ≤ u := by

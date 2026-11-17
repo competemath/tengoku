@@ -19,7 +19,9 @@ variable {Γ : Type*} [Group Γ] [MeasurableSpace Γ] [MeasurableMul Γ]
   [MeasurableSingletonClass Γ] [Countable Γ]
 
 omit [Countable Γ] in
-/-- A Markov operator sends a point source to its finitely many predecessors.-/
+/-- A Markov operator sends a point source to its finitely many predecessors.
+@isnad1 id=eq.0h4v.s13.eed070e2e649 from=translated src=- shape=1b8ec475 vocab=496d630a
+-/
 theorem rightMarkov_delta_predecessors (s : Finset Γ) (μ : Γ → ℝ) (a : Γ) :
     rightMarkov s μ (countingDelta a) =
       ∑ g ∈ s, (μ g : ℂ) • countingDelta (a * g⁻¹) := by

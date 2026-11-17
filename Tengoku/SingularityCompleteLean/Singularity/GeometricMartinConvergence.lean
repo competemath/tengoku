@@ -25,7 +25,9 @@ variable (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
 
 include hpos hmass hgen hgap in
 /-- A normalized nonnegative harmonic function dominated by a ray cluster
-function is that function, by the proved minimality theorem.-/
+function is that function, by the proved minimality theorem.
+@isnad1 id=eq.10h7v.s16.ce21235fcb5e from=translated src=- shape=51166a8e vocab=6107a9ce
+-/
 theorem rayMartinCluster_eq_of_harmonic_domination {ξ : ℝ} {H J : Γ → ℝ}
     (hH : H ∈ rayMartinCluster Γ s μ ξ) (hJ1 : J 1 = 1) (hJp : ∀ x, 0 ≤ J x)
     (hJh : ∀ x, ∑ g ∈ s, μ g * J (x * g) = J x) (D : ℝ) (hD : 0 < D)
@@ -49,7 +51,9 @@ theorem rayMartinCluster_eq_of_harmonic_domination {ξ : ℝ} {H J : Γ → ℝ}
 
 include hpos hmass hgen hgap in
 /-- Any pointwise Martin limit from an arbitrary approach to ξ equals its ray
-boundary point.-/
+boundary point.
+@isnad1 id=eq.6h6v.s16.740469adab80 from=translated src=- shape=a957d2e8 vocab=8ea2854d
+-/
 theorem real_boundary_martin_limit_eq (ξ : ℝ) (y : ℕ → Γ) (J : Γ → ℝ)
     (hy : Tendsto (fun n => ((y n • UpperHalfPlane.I : ℍ) : ℂ)) atTop (𝓝 (ξ : ℂ)))
     (hJ : ∀ x, Tendsto (fun n => martinQuotient s μ 1 x (y n)) atTop (𝓝 (J x))) :
@@ -67,7 +71,9 @@ theorem real_boundary_martin_limit_eq (ξ : ℝ) (y : ℕ → Γ) (J : Γ → �
 
 include hpos hmass hgen hgap in
 /-- Full pointwise Martin convergence along every sequence tending to a finite
-real boundary coordinate. No restriction on the approach is imposed.-/
+real boundary coordinate. No restriction on the approach is imposed.
+@isnad1 id=tendsto.5h6v.s16.3cef3e901227 from=translated src=- shape=85cdbb43 vocab=8ea2854d
+-/
 theorem real_boundary_martin_tendsto (ξ : ℝ) (y : ℕ → Γ)
     (hy : Tendsto (fun n => ((y n • UpperHalfPlane.I : ℍ) : ℂ)) atTop (𝓝 (ξ : ℂ))) (x : Γ) :
     Tendsto (fun n => martinQuotient s μ 1 x (y n)) atTop

@@ -17,7 +17,9 @@ open scoped Classical Pointwise
 
 namespace Singularity
 
-/-- A finite set of points with infinite orbits has a translate avoiding any finite set.-/
+/-- A finite set of points with infinite orbits has a translate avoiding any finite set.
+@isnad1 id=ex.3h4v.s7.b700fa8e8fdb from=translated src=- shape=9fbab4ac vocab=fa086d05
+-/
 theorem exists_translate_disjoint_of_infinite_orbits {G X : Type*} [Group G] [MulAction G X]
     (S T : Set X) (hS : S.Finite) (hT : T.Finite)
     (hinf : ∀ x ∈ S, (MulAction.orbit G x).Infinite) :

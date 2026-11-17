@@ -33,7 +33,9 @@ local notation "Kp" => rayMartinPoint Γ s μ hpos hgen hgap
 
 include hmass in
 /-- Both restricted Green vectors converge strongly along every approach to a
-finite nonzero endpoint. Their coordinates are actual Martin kernels.-/
+finite nonzero endpoint. Their coordinates are actual Martin kernels.
+@isnad1 id=ex.6h5v.s19.1b964808cb79 from=translated src=- shape=e99a7df3 vocab=4179c2ca
+-/
 theorem stripMartinVectors_limit (ξ : ℝ) (hξ : ξ ≠ 0) (x : ℕ → Γ)
     (hx : Tendsto (fun n => ((x n • UpperHalfPlane.I : ℍ) : ℂ)) atTop (𝓝 (ξ : ℂ))) :
     ∃ u v : supportedL2 A,

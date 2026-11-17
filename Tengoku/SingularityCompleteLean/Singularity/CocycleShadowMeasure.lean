@@ -25,7 +25,9 @@ variable {Γ B : Type*} [Group Γ] [MeasurableSpace B] [MulAction Γ B]
 include hq
 
 /-- Exponentiating the negative actual log cocycle recovers the inverse
-translated Radon–Nikodym derivative almost everywhere.-/
+translated Radon–Nikodym derivative almost everywhere.
+@isnad1 id=eventual.1h4v.s7.2220c426c2b6 from=translated src=- shape=2704116d vocab=8ba06202
+-/
 theorem exp_neg_stationaryLogCocycle (g : Γ) :
     ∀ᵐ ξ ∂ν, ENNReal.ofReal (Real.exp (-stationaryLogCocycle ν g ξ)) =
       stationaryDensity ν g⁻¹ ξ := by
@@ -35,7 +37,9 @@ theorem exp_neg_stationaryLogCocycle (g : Γ) :
   exact ENNReal.ofReal_toReal hf.ne
 
 /-- The mass of an image is the integral of the exponential of the negative
-logarithmic cocycle, including when the cocycle is merely measurable.-/
+logarithmic cocycle, including when the cocycle is merely measurable.
+@isnad1 id=eq.2h5v.s7.0fa1d4527855 from=translated src=- shape=4b00ab59 vocab=89a2ea1e
+-/
 theorem measure_smul_image_eq_lintegral_logCocycle (g : Γ) {E : Set B}
     (hE : MeasurableSet E) :
     ν ((fun ξ : B => g • ξ) '' E) =
@@ -54,7 +58,9 @@ theorem measure_smul_image_eq_lintegral_logCocycle (g : Γ) {E : Set B}
   exact hξ.symm
 
 /-- A cocycle magnitude estimate on a measurable set gives two-sided
-exponential bounds for its image mass.-/
+exponential bounds for its image mass.
+@isnad1 id=and.3h7v.s8.927e5ebcbf94 from=translated src=- shape=b31770cd vocab=7a0cc327
+-/
 theorem measure_smul_image_bounds_of_logCocycle (g : Γ) {E : Set B}
     (hE : MeasurableSet E) (D C : ℝ)
     (hbound : ∀ᵐ ξ ∂ν, ξ ∈ E → |stationaryLogCocycle ν g ξ - D| ≤ C) :
@@ -77,7 +83,9 @@ theorem measure_smul_image_bounds_of_logCocycle (g : Γ) {E : Set B}
       _ = _ := by simp
 
 /-- Shadow formulation: apply the local derivative estimate on the inverse
-image of the shadow. The inverse-shadow mass is retained exactly.-/
+image of the shadow. The inverse-shadow mass is retained exactly.
+@isnad1 id=and.3h7v.s8.c20ffb985b43 from=translated src=- shape=8f6741e8 vocab=8b234a2c
+-/
 theorem shadow_mass_bounds_of_logCocycle (g : Γ) {S : Set B}
     (hS : MeasurableSet S) (D C : ℝ)
     (hbound : ∀ᵐ ξ ∂ν, ξ ∈ (fun η : B => g • η) ⁻¹' S →

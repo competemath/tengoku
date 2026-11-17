@@ -24,7 +24,9 @@ variable {Γ B : Type*} [Group Γ] [MeasurableSpace B] [MulAction Γ B]
 include hq
 
 /-- Relative error in a shadow controls absolute error after pulling back.
-The uniform factor is exp(2C) times the total mass.-/
+The uniform factor is exp(2C) times the total mass.
+@isnad1 id=le.5h8v.s8.00e3e6a20a23 from=translated src=- shape=5c3372ae vocab=a1d5a975
+-/
 theorem inverse_shadow_error_le_relative (g : Γ) {S E : Set B}
     (hS : MeasurableSet S) (hE : MeasurableSet E) (hpos : 0 < ν S) (D C : ℝ)
     (hbound : ∀ᵐ ξ ∂ν, g • ξ ∈ S → |stationaryLogCocycle ν g ξ - D| ≤ C) :
@@ -64,7 +66,9 @@ theorem inverse_shadow_error_le_relative (g : Γ) {S E : Set B}
     _ = _ := by rw [← mul_assoc (Real.exp (D + C)), hproduct]
 
 /-- Relative shadow concentration implies vanishing inverse-image error.
-This supplies the error hypothesis in the return-cover construction.-/
+This supplies the error hypothesis in the return-cover construction.
+@isnad1 id=tendsto.6h8v.s8.e40e5bf32033 from=translated src=- shape=90523e03 vocab=ad83d6c6
+-/
 theorem inverse_shadow_error_tendsto_zero
     (g : ℕ → Γ) (S : ℕ → Set B) {E : Set B}
     (hS : ∀ n, MeasurableSet (S n)) (hE : MeasurableSet E)

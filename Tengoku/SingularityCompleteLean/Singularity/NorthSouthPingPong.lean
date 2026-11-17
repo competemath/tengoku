@@ -27,7 +27,9 @@ def UniformNorthSouth (g : G) (p q : X) : Prop :=
     ∀ᶠ n : ℕ in atTop, ∀ x ∉ V, g ^ n • x ∈ U
 
 omit [TopologicalSpace X] in
-/-- A forward ping-pong inclusion automatically gives the inverse inclusion.-/
+/-- A forward ping-pong inclusion automatically gives the inverse inclusion.
+@isnad1 id=le.1h5v.s7.9c32d1e792f8 from=translated src=- shape=b3bf31de vocab=6d04f618
+-/
 theorem inverse_pingPong_inclusion (g : G) (U V : Set X)
     (hf : ∀ x ∉ V, g • x ∈ U) : g⁻¹ • Uᶜ ⊆ V := by
   rintro _ ⟨x, hx, rfl⟩
@@ -37,7 +39,9 @@ theorem inverse_pingPong_inclusion (g : G) (U V : Set X)
   exact hx h
 
 /-- Large common powers of two north--south elements with four distinct endpoints
-freely generate a free subgroup.-/
+freely generate a free subgroup.
+@isnad1 id=ex.2h5v.s8.a64d71a61430 from=translated src=- shape=7697ae21 vocab=2e817000
+-/
 theorem northSouth_free_powers [T2Space X] (a : Bool → G) (p q : Bool → X)
     (hdistinct : Function.Injective (fun z : Bool × Bool => if z.2 then p z.1 else q z.1))
     (hdyn : ∀ i, UniformNorthSouth (a i) (p i) (q i)) :
@@ -67,7 +71,9 @@ theorem northSouth_free_powers [T2Space X] (a : Bool → G) (p q : Bool → X)
   · intro i
     exact inverse_pingPong_inclusion (a i ^ n) _ _ (hnmap i)
 
-/-- Uniform north--south dynamics with four distinct endpoints rules out an invariant mean.-/
+/-- Uniform north--south dynamics with four distinct endpoints rules out an invariant mean.
+@isnad1 id=not.2h5v.s6.21204098fab5 from=translated src=- shape=6387cf4e vocab=3cd72661
+-/
 theorem no_invariantMean_of_northSouth [T2Space X] (a : Bool → G) (p q : Bool → X)
     (hdistinct : Function.Injective (fun z : Bool × Bool => if z.2 then p z.1 else q z.1))
     (hdyn : ∀ i, UniformNorthSouth (a i) (p i) (q i)) : ¬HasInvariantMean G := by

@@ -25,7 +25,9 @@ open scoped Topology
 
 namespace Singularity
 
-/-- Transfer a subsequential average basin through one stable product chart.-/
+/-- Transfer a subsequential average basin through one stable product chart.
+@isnad1 id=eventual.8h13v.s8.a078e182457f from=translated src=- shape=b16aa04f vocab=8d24e059
+-/
 theorem stable_chart_birkhoffAverage_transfer {X A B : Type*}
     [PseudoMetricSpace X] [MeasurableSpace X] [BorelSpace X]
     [MeasurableSpace A] [MeasurableSpace B]
@@ -50,7 +52,9 @@ theorem stable_chart_birkhoffAverage_transfer {X A B : Type*}
     exact stable_birkhoffAverage_subsequence T f hf _ _ (hstable a a' b) ns hns c hb
   · exact ae_of_ae_map hchart.aemeasurable (href.ae_le hlim)
 
-/-- Countably many stable product charts transfer every reference basin to the candidate law.-/
+/-- Countably many stable product charts transfer every reference basin to the candidate law.
+@isnad1 id=eventual.9h15v.s8.c961ef206e6f from=translated src=- shape=fd6bdb4f vocab=ded0c43d
+-/
 theorem stable_charts_birkhoffAverage_transfer {X A B I : Type*} [Countable I]
     [PseudoMetricSpace X] [MeasurableSpace X] [BorelSpace X]
     [MeasurableSpace A] [MeasurableSpace B]
@@ -73,7 +77,9 @@ theorem stable_charts_birkhoffAverage_transfer {X A B I : Type*} [Countable I]
   exact stable_chart_birkhoffAverage_transfer T hT f hf μ (α i) (α' i) (β i) (β' i)
     (hβ i) (chart i) (hchart i) (href i) (hstable i) ns hns c hlim
 
-/-- The two invariant probabilities agree on bounded uniformly continuous observables.-/
+/-- The two invariant probabilities agree on bounded uniformly continuous observables.
+@isnad1 id=eq.10h14v.s8.892dc872805a from=translated src=- shape=8ea09ec8 vocab=fc495419
+-/
 theorem integral_eq_of_stable_product_charts {X A B I : Type*} [Countable I]
     [PseudoMetricSpace X] [MeasurableSpace X] [BorelSpace X]
     [MeasurableSpace A] [MeasurableSpace B]
@@ -96,7 +102,9 @@ theorem integral_eq_of_stable_product_charts {X A B I : Type*} [Countable I]
   exact stable_charts_birkhoffAverage_transfer T hμ.1.measurable f hf μ ν α α' β β'
     hβ chart hchart href hcover hstable ns hns.tendsto_atTop _ hlim
 
-/-- On a compact metric space the preceding one-sided chart hypothesis forces equality.-/
+/-- On a compact metric space the preceding one-sided chart hypothesis forces equality.
+@isnad1 id=eq.7h12v.s8.633f2b3aeb3a from=translated src=- shape=18345ee3 vocab=6be0777d
+-/
 theorem invariant_probability_eq_of_stable_product_charts {X A B I : Type*} [Countable I]
     [MetricSpace X] [CompactSpace X] [MeasurableSpace X] [BorelSpace X]
     [MeasurableSpace A] [MeasurableSpace B]

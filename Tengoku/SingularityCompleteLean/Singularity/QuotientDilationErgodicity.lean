@@ -21,7 +21,9 @@ open scoped MatrixGroups
 
 namespace Singularity
 
-/-- Every positive diagonal time is ergodic on a finite regular Haar quotient.-/
+/-- Every positive diagonal time is ergodic on a finite regular Haar quotient.
+@isnad1 id=ergodic.2h5v.s11.c15f2a14b7f4 from=translated src=- shape=d292b761 vocab=4af76c1a
+-/
 theorem ergodic_dilation_quotient
     [MeasurableSpace SL(2, ℝ)] [BorelSpace SL(2, ℝ)]
     (Γ : Subgroup SL(2, ℝ)) [Countable Γ] [T2Space (SL(2, ℝ) ⧸ Γ)]
@@ -39,7 +41,9 @@ theorem ergodic_dilation_quotient
   let := ergodicSMul_quotient_of_fundamentalDomain Γ ν μ hF
   exact ergodic_dilation_of_ergodic_slTwo μ τ hτ
 
-/-- For a discrete subgroup, the separation and countability conditions are automatic.-/
+/-- For a discrete subgroup, the separation and countability conditions are automatic.
+@isnad1 id=ergodic.2h5v.s11.1c1bb6538796 from=translated src=- shape=def908f0 vocab=41a8e711
+-/
 theorem ergodic_dilation_discrete_quotient
     [MeasurableSpace SL(2, ℝ)] [BorelSpace SL(2, ℝ)]
     (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
@@ -53,7 +57,9 @@ theorem ergodic_dilation_discrete_quotient
   exact ergodic_dilation_quotient Γ ν μ hF τ hτ
 
 /-- Constructing the quotient measure from a finite Haar fundamental domain supplies
-all measure and ergodicity hypotheses of the diagonal-time conclusion.-/
+all measure and ergodicity hypotheses of the diagonal-time conclusion.
+@isnad1 id=ergodic.3h4v.s11.40c5ce15f85e from=translated src=- shape=9f14abc9 vocab=5c0214de
+-/
 theorem ergodic_dilation_fundamentalDomain
     [MeasurableSpace SL(2, ℝ)] [BorelSpace SL(2, ℝ)]
     (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]

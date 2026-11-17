@@ -27,7 +27,9 @@ variable {Γ B : Type*} [Group Γ] [MeasurableSpace Γ] [MeasurableSingletonClas
 include hb hstep
 
 /-- The translated hitting probability is the conditional probability of the
-boundary event given the observed finite prefix.-/
+boundary event given the observed finite prefix.
+@isnad1 id=eventual.5h7v.s9.f0c4396b5a57 from=translated src=- shape=51794b69 vocab=616ff389
+-/
 theorem walkBoundaryLaw_condExp_event {E : Set B} (hE : MeasurableSet E) (n : ℕ) :
     (infiniteWalkLaw s μ hμ hmass)[(b ⁻¹' E).indicator (fun _ => (1 : ℝ)) |
         walkPrefixFiltration s n] =ᵐ[infiniteWalkLaw s μ hμ hmass]
@@ -61,7 +63,9 @@ theorem walkBoundaryLaw_condExp_event {E : Set B} (hE : MeasurableSet E) (n : �
 
 /-- Translated hitting probabilities converge to the boundary event indicator
 along almost every path. This is measure-theoretic concentration, independent
-of any geometric shadow theorem.-/
+of any geometric shadow theorem.
+@isnad1 id=eventual.5h6v.s9.ccadc8ce590f from=translated src=- shape=17dd047b vocab=143f02af
+-/
 theorem walkBoundaryLaw_event_concentration {E : Set B} (hE : MeasurableSet E) :
     ∀ᵐ ω ∂infiniteWalkLaw s μ hμ hmass,
       Tendsto (fun n => (walkBoundaryLaw s μ hμ hmass b

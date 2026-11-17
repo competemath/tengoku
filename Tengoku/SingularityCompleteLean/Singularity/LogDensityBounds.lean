@@ -17,7 +17,9 @@ open scoped ENNReal
 
 namespace Singularity
 
-/-- Domination by a scalar multiple gives the almost-everywhere real density bound.-/
+/-- Domination by a scalar multiple gives the almost-everywhere real density bound.
+@isnad1 id=eventual.2h4v.s6.b8f0373fdeba from=translated src=- shape=65b03134 vocab=c982e732
+-/
 theorem real_rnDeriv_le_of_le_smul {X : Type*} [MeasurableSpace X]
     (ν m : Measure X) [SigmaFinite ν] [SigmaFinite m] (C : ℝ) (hC : 0 ≤ C)
     (hdom : ν ≤ ENNReal.ofReal C • m) :
@@ -32,7 +34,9 @@ theorem real_rnDeriv_le_of_le_smul {X : Type*} [MeasurableSpace X]
   simpa only [ENNReal.toReal_ofReal hC] using ENNReal.toReal_mono ENNReal.ofReal_ne_top hx
 
 /-- Reverse domination gives the lower density bound when the measure is
-absolutely continuous; finiteness of the derivative is handled almost everywhere.-/
+absolutely continuous; finiteness of the derivative is handled almost everywhere.
+@isnad1 id=eventual.3h4v.s6.8a2ddd5a3c56 from=translated src=- shape=48d04f63 vocab=63fa7afc
+-/
 theorem real_rnDeriv_ge_of_smul_le {X : Type*} [MeasurableSpace X]
     (ν m : Measure X) [SigmaFinite ν] [SigmaFinite m] (hac : ν ≪ m)
     (c : ℝ) (hc : 0 ≤ c) (hdom : ENNReal.ofReal c • m ≤ ν) :
@@ -47,7 +51,9 @@ theorem real_rnDeriv_ge_of_smul_le {X : Type*} [MeasurableSpace X]
   filter_upwards [h, Measure.rnDeriv_lt_top ν m] with x hx hf
   simpa only [ENNReal.toReal_ofReal hc] using ENNReal.toReal_mono hf.ne hx
 
-/-- Exponential measure comparison becomes an absolute bound on the log density.-/
+/-- Exponential measure comparison becomes an absolute bound on the log density.
+@isnad1 id=eventual.2h4v.s7.b8c21d107366 from=translated src=- shape=78f4b5c4 vocab=36f681d2
+-/
 theorem log_rnDeriv_abs_le_of_exp_comparison {X : Type*} [MeasurableSpace X]
     (ν m : Measure X) [SigmaFinite ν] [SigmaFinite m] (D : ℝ)
     (hlower : ENNReal.ofReal (Real.exp (-D)) • m ≤ ν)

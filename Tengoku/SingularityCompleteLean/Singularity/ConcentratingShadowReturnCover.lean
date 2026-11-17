@@ -20,7 +20,9 @@ open scoped ENNReal Topology
 namespace Singularity
 
 /-- A finite eventual inverse-shadow cover and relative concentration produce
-a finite corrected cover by actual returns to E inside the shadows.-/
+a finite corrected cover by actual returns to E inside the shadows.
+@isnad1 id=eventual.7h9v.s9.327c3cce6f02 from=translated src=- shape=3d345feb vocab=cc2762ac
+-/
 theorem shadow_return_cover_of_relative_concentration
     {Γ B : Type*} [Group Γ] [Countable Γ] [MeasurableSpace B]
     [MulAction Γ B] [MeasurableConstSMul Γ B]
@@ -46,7 +48,9 @@ theorem shadow_return_cover_of_relative_concentration
 /-- Shrinking inverse-shadow complements toward a finite exceptional set,
 infinite boundary orbits, and relative shadow concentration construct the
 finite return cover. The shrinking and concentration properties are explicit
-geometric and differentiation inputs.-/
+geometric and differentiation inputs.
+@isnad1 id=ex.9h9v.s9.e5bae1cfd873 from=translated src=- shape=8ae297da vocab=f2c768b3
+-/
 theorem shadow_return_cover_of_finite_exceptional_set
     {Γ B : Type*} [Group Γ] [Countable Γ] [MeasurableSpace B]
     [TopologicalSpace B] [CompactSpace B] [T1Space B]
@@ -71,7 +75,9 @@ theorem shadow_return_cover_of_finite_exceptional_set
 /-- The return-cover construction with an adjustable shadow parameter. For
 each fixed parameter the cocycle constant and relative-concentration limit
 are uniform in n; shrinking toward the exceptional set is required only
-after choosing a sufficiently large parameter.-/
+after choosing a sufficiently large parameter.
+@isnad1 id=ex.9h10v.s9.fef80b539399 from=translated src=- shape=bcd1b602 vocab=01171463
+-/
 theorem shadow_return_cover_of_adjustable_family
     {Γ B I : Type*} [Group Γ] [Countable Γ] [MeasurableSpace B]
     [TopologicalSpace B] [CompactSpace B] [RegularSpace B]

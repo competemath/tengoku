@@ -25,7 +25,9 @@ def HasInvariantMean (Γ : Type*) [Group Γ] : Prop :=
     (∀ A B, Disjoint A B → m (A ∪ B) = m A + m B) ∧
     ∀ g : Γ, ∀ A, m ((fun x => g * x) '' A) = m A
 
-/-- Inversion identifies the left and right versions of invariant means.-/
+/-- Inversion identifies the left and right versions of invariant means.
+@isnad1 id=iff.0h1v.s3.6b24245122df from=translated src=- shape=aa7e0af4 vocab=e7ff43ab
+-/
 theorem hasInvariantMean_iff_right (Γ : Type*) [Group Γ] :
     HasInvariantMean Γ ↔ HasRightInvariantMean Γ := by
   have hdisj (A B : Set Γ) (hAB : Disjoint A B) : Disjoint (Inv.inv '' A) (Inv.inv '' B) :=
