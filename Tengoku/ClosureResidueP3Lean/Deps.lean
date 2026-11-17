@@ -1,0 +1,1 @@
+-- ClosureResidueP3Lean: a factory bundle (data/intake/closure-residue-p3-lean). This file only marks the library for Tengoku/All.lean.

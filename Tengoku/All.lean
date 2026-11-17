@@ -30,6 +30,7 @@ import Tengoku.GibbsMeasure
 import Tengoku.Leanforcontrol
 import Tengoku.Leanslt
 import Tengoku.FactorizationTheoryFormalization
+import Tengoku.ClosureResidueP3Lean
 import Tengoku.EntropyConstrainedMissingMass
 import Tengoku.AddCombi
 import Tengoku.LieLean

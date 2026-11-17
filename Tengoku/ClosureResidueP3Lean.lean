@@ -1,0 +1,11 @@
+import Tengoku.ClosureResidueP3Lean.P3.Basic
+import Tengoku.ClosureResidueP3Lean.P3.Closure
+import Tengoku.ClosureResidueP3Lean.P3.Coupling
+import Tengoku.ClosureResidueP3Lean.P3.Examples
+import Tengoku.ClosureResidueP3Lean.P3.Filtration
+import Tengoku.ClosureResidueP3Lean.P3.GraphIncidence
+import Tengoku.ClosureResidueP3Lean.P3.QDMR
+import Tengoku.ClosureResidueP3Lean.P3.QuadraticReturn
+import Tengoku.ClosureResidueP3Lean.P3.SaturatedStabilizer
+import Tengoku.ClosureResidueP3Lean.P3.Stabilizer
+import Tengoku.ClosureResidueP3Lean.P3.Support

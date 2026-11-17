@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "9fa6cde304ab7691388ce29ecc453cb6efb5444de6bcde3b7a91721278593668",
+ "factory_changes": {
+  "inert lines removed": 1,
+  "modules changed": 1
+ },
+ "gate2_unjudged": [],
+ "library": "closure-residue-p3-lean",
+ "lint_mode": "proposed",
+ "modules": 12,
+ "part": 1,
+ "theorems": 299
+}
