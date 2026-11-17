@@ -16,7 +16,9 @@ open scoped ComplexConjugate
 
 namespace Singularity
 
-/-- The inner-product formula for translation of an L² equivalence class.-/
+/-- The inner-product formula for translation of an L² equivalence class.
+@isnad1 id=eq.1h3v.s11.932663a375e3 from=translated src=- shape=2d8b5f77 vocab=a87c7fb6
+-/
 theorem inner_realTranslation_toLp (a : ℝ) {k : ℝ → ℂ} (hk : MemLp k 2 volume)
     (f : RealLineL2) : inner ℂ (realTranslation a (hk.toLp k)) f =
       ∫ t, conj (k (t - a)) * f t := by
@@ -28,7 +30,9 @@ theorem inner_realTranslation_toLp (a : ℝ) {k : ℝ → ℂ} (hk : MemLp k 2 v
   simp [RCLike.inner_apply, mul_comm]
 
 /-- The analysis operator constructed from the profiles has a nonzero kernel.
-No independent kernel hypothesis is needed.-/
+No independent kernel hypothesis is needed.
+@isnad1 id=ex.6h4v.s12.2f1b72654c59 from=translated src=- shape=96ec1f68 vocab=c4800fc2
+-/
 theorem translated_analysis_has_kernel {J : Type*} [Fintype J]
     {τ : ℝ} (hτ : 0 < τ) (k : J → ℝ → ℝ) (C : J → ℝ)
     (hC : ∀ j, 0 ≤ C j) (hk : ∀ j t, 0 ≤ k j t)
@@ -50,7 +54,9 @@ theorem translated_analysis_has_kernel {J : Type*} [Fintype J]
   rw [inner_realTranslation_toLp] at h
   simpa using h
 
-/-- An injective operator cannot factor through this lattice analysis operator.-/
+/-- An injective operator cannot factor through this lattice analysis operator.
+@isnad1 id=false.8h7v.s14.28aea35cc995 from=translated src=- shape=12df2ebc vocab=83957b77
+-/
 theorem impossible_translated_analysis_factorization {J : Type*} [Fintype J]
     {τ : ℝ} (hτ : 0 < τ) (k : J → ℝ → ℝ) (C : J → ℝ)
     (hC : ∀ j, 0 ≤ C j) (hk : ∀ j t, 0 ≤ k j t)

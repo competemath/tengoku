@@ -20,7 +20,9 @@ variable {Γ : Type*} [Group Γ] [MeasurableSpace Γ] [MeasurableMul Γ]
   [MeasurableSingletonClass Γ] [Countable Γ]
 
 /-- The Green kernel satisfies the lower multiplicative comparison through
-any intermediate vertex, with the diagonal Green normalizer.-/
+any intermediate vertex, with the diagonal Green normalizer.
+@isnad1 id=le.3h6v.s12.4bd93d1685a2 from=translated src=- shape=cbd05f53 vocab=c3972721
+-/
 theorem walkGreen_product_le (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1)
     (hgap : spectralRadius ℂ (rightMarkov s μ) < 1) (x u y : Γ) :

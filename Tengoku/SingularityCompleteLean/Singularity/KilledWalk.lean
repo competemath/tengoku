@@ -22,6 +22,9 @@ def killedWeight (s : Finset Γ) (μ : Γ → ℝ) (A : Set Γ) (n : ℕ) (x y :
   ∑ w : WalkWord s n, if avoidsBefore s A n x w ∧ walkEndpoint s n x w = y ∧ y ∉ A
     then walkWeight s μ n w else 0
 
+/--
+@isnad1 id=le.1h7v.s6.f498957023c6 from=translated src=- shape=cb0f5dca vocab=a614295d
+-/
 theorem killedWeight_nonneg (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (A : Set Γ) (n : ℕ) (x y : Γ) :
     0 ≤ killedWeight s μ A n x y := by
@@ -31,6 +34,9 @@ theorem killedWeight_nonneg (s : Finset Γ) (μ : Γ → ℝ)
   · exact walkWeight_nonneg s μ hμ n w
   · exact le_rfl
 
+/--
+@isnad1 id=le.1h7v.s6.46ca2b9cdfd8 from=translated src=- shape=5d2a11c0 vocab=f97022d7
+-/
 theorem killedWeight_le_transition (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (A : Set Γ) (n : ℕ) (x y : Γ) :
     killedWeight s μ A n x y ≤ transitionWeight s μ n x y := by
@@ -43,13 +49,18 @@ theorem killedWeight_le_transition (s : Finset Γ) (μ : Γ → ℝ)
     · exact walkWeight_nonneg s μ hμ n w
     · exact le_rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.5af531a9f380 from=translated src=- shape=075bddea vocab=e93aad5a
+-/
 theorem killedWeight_zero (s : Finset Γ) (μ : Γ → ℝ) (A : Set Γ) (x y : Γ) :
     killedWeight s μ A 0 x y = if x = y ∧ y ∉ A then 1 else 0 := by
   simp only [killedWeight, avoidsBefore, walkEndpoint, walkWeight, true_and]
   change (∑ _ : PUnit, if x = y ∧ y ∉ A then (1 : ℝ) else 0) = _
   simp
 
-/-- A killed path cannot start in A.-/
+/-- A killed path cannot start in A.
+@isnad1 id=eq.1h7v.s5.14b9f3e98e5e from=translated src=- shape=9cf604b0 vocab=4f7e93a5
+-/
 theorem killedWeight_of_mem (s : Finset Γ) (μ : Γ → ℝ)
     (A : Set Γ) {x : Γ} (hx : x ∈ A) (n : ℕ) (y : Γ) : killedWeight s μ A n x y = 0 := by
   cases n with
@@ -63,7 +74,9 @@ theorem killedWeight_of_mem (s : Finset Γ) (μ : Γ → ℝ)
     intro w _
     simp only [avoidsBefore, hx, not_true_eq_false, false_and, ite_false]
 
-/-- First-step decomposition for the paths avoiding A.-/
+/-- First-step decomposition for the paths avoiding A.
+@isnad1 id=eq.1h7v.s6.4e65229be102 from=translated src=- shape=d4f4c9ed vocab=51265b30
+-/
 theorem killedWeight_succ (s : Finset Γ) (μ : Γ → ℝ)
     (A : Set Γ) {x : Γ} (hx : x ∉ A) (n : ℕ) (y : Γ) :
     killedWeight s μ A (n + 1) x y = ∑ g ∈ s, μ g * killedWeight s μ A n (x * g) y := by
@@ -85,10 +98,16 @@ theorem killedWeight_succ (s : Finset Γ) (μ : Γ → ℝ)
 def killedGreen (s : Finset Γ) (μ : Γ → ℝ) (A : Set Γ) (x y : Γ) : ℝ :=
   ∑' n : ℕ, killedWeight s μ A n x y
 
+/--
+@isnad1 id=le.1h6v.s6.08fcfb0204f8 from=translated src=- shape=d6392006 vocab=2d7bb5e3
+-/
 theorem killedGreen_nonneg (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (A : Set Γ) (x y : Γ) : 0 ≤ killedGreen s μ A x y :=
   tsum_nonneg (fun n => killedWeight_nonneg s μ hμ A n x y)
 
+/--
+@isnad1 id=eq.1h6v.s5.542c0e6bbd6e from=translated src=- shape=f8b2ec23 vocab=d1efd584
+-/
 theorem killedGreen_of_mem (s : Finset Γ) (μ : Γ → ℝ)
     (A : Set Γ) {x : Γ} (hx : x ∈ A) (y : Γ) : killedGreen s μ A x y = 0 := by
   simp only [killedGreen, killedWeight_of_mem s μ A hx, tsum_zero]
@@ -99,17 +118,25 @@ variable (s : Finset Γ) (μ : Γ → ℝ) (hμ : ∀ g ∈ s, 0 ≤ μ g)
 
 include hμ hgap
 
+/--
+@isnad1 id=summable.2h6v.s12.69a6fb28768d from=translated src=- shape=b9a47d78 vocab=35a948b9
+-/
 theorem killedWeight_summable (x y : Γ) : Summable (fun n : ℕ => killedWeight s μ A n x y) := by
   apply (walkGreen_summable s μ hgap x y).of_norm_bounded_eventually_nat
   exact Filter.Eventually.of_forall (fun n => by
     rw [Real.norm_eq_abs, abs_of_nonneg (killedWeight_nonneg s μ hμ A n x y)]
     exact killedWeight_le_transition s μ hμ A n x y)
 
+/--
+@isnad1 id=le.2h6v.s12.82f1fb0320dd from=translated src=- shape=3712886a vocab=cc3aeba8
+-/
 theorem killedGreen_le_green (x y : Γ) : killedGreen s μ A x y ≤ walkGreen s μ x y :=
   Summable.tsum_le_tsum (fun n => killedWeight_le_transition s μ hμ A n x y)
     (killedWeight_summable s μ hμ hgap A x y) (walkGreen_summable s μ hgap x y)
 
-/-- The exterior Green equation, with all time-series interchanges justified.-/
+/-- The exterior Green equation, with all time-series interchanges justified.
+@isnad1 id=eq.3h6v.s12.352ebb267758 from=translated src=- shape=614cad55 vocab=b2b93288
+-/
 theorem killedGreen_first_step {x : Γ} (hx : x ∉ A) (y : Γ) :
     killedGreen s μ A x y = (if x = y then 1 else 0) +
       ∑ g ∈ s, μ g * killedGreen s μ A (x * g) y := by
@@ -126,7 +153,9 @@ theorem killedGreen_first_step {x : Γ} (hx : x ∉ A) (y : Γ) :
 
 variable [Countable Γ]
 
-/-- The killed path column is square-integrable.-/
+/-- The killed path column is square-integrable.
+@isnad1 id=memlp.2h5v.s12.943b952dab3c from=translated src=- shape=76bba64e vocab=5f792e0e
+-/
 theorem killedGreenColumn_memLp (y : Γ) :
     MemLp (fun x => (killedGreen s μ A x y : ℂ)) 2 Measure.count := by
   apply (Lp.memLp (green (rightMarkov s μ) (countingDelta y))).mono
@@ -143,15 +172,23 @@ theorem killedGreenColumn_memLp (y : Γ) :
 def killedGreenColumn (y : Γ) : GroupL2 Γ :=
   (killedGreenColumn_memLp s μ hμ hgap A y).toLp (fun x => (killedGreen s μ A x y : ℂ))
 
+/--
+@isnad1 id=eq.2h6v.s12.cc65b93ea35c from=translated src=- shape=03cbf959 vocab=4157bb6b
+-/
 theorem killedGreenColumn_apply (y x : Γ) :
     killedGreenColumn s μ hμ hgap A y x = (killedGreen s μ A x y : ℂ) :=
   Measure.ae_count_iff.mp (MemLp.coeFn_toLp (killedGreenColumn_memLp s μ hμ hgap A y)) x
 
+/--
+@isnad1 id=eq.3h6v.s12.2aeeb91bcb03 from=translated src=- shape=9bc59f54 vocab=399011ab
+-/
 theorem killedGreenColumn_boundary (y : Γ) {x : Γ} (hx : x ∈ A) :
     killedGreenColumn s μ hμ hgap A y x = 0 := by
   rw [killedGreenColumn_apply, killedGreen_of_mem s μ A hx, Complex.ofReal_zero]
 
-/-- Its defect under I-P equals δ_y outside A.-/
+/-- Its defect under I-P equals δ_y outside A.
+@isnad1 id=eq.3h6v.s13.8a68e71e4964 from=translated src=- shape=6a88f264 vocab=1522bcbe
+-/
 theorem killedGreenColumn_defect (y : Γ) {x : Γ} (hx : x ∉ A) :
     (killedGreenColumn s μ hμ hgap A y -
       rightMarkov s μ (killedGreenColumn s μ hμ hgap A y)) x = countingDelta y x := by

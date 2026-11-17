@@ -17,7 +17,9 @@ open Filter
 open scoped Topology Classical MatrixGroups UpperHalfPlane
 namespace Singularity
 
-/-- Distinct disk limits give a positive uniform separation eventually.-/
+/-- Distinct disk limits give a positive uniform separation eventually.
+@isnad1 id=ex.3h6v.s6.9ad537473258 from=translated src=- shape=90f10f92 vocab=d9d5ad35
+-/
 theorem eventually_cayley_separated {α : Type*} {l : Filter α} (x y : α → ℍ)
     (a b : ℂ) (hab : a ≠ b)
     (hx : Tendsto (fun n => halfPlaneCayley (x n)) l (𝓝 a))

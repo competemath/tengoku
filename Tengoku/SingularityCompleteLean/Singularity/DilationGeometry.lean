@@ -16,7 +16,9 @@ open scoped MatrixGroups UpperHalfPlane
 
 namespace Singularity
 
-/-- The diagonal matrix acts by positive real scaling in the upper half plane.-/
+/-- The diagonal matrix acts by positive real scaling in the upper half plane.
+@isnad1 id=eq.0h2v.s8.629531687c2d from=translated src=- shape=d0dd10bd vocab=62163686
+-/
 theorem dilationMatrix_smul (t : ℝ) (z : ℍ) :
     dilationMatrix t • z = (⟨Real.exp t, Real.exp_pos t⟩ : {r : ℝ // 0 < r}) • z := by
   apply UpperHalfPlane.ext
@@ -26,17 +28,23 @@ theorem dilationMatrix_smul (t : ℝ) (z : ℍ) :
   congr 2
   ring
 
-/-- Real parts scale by the same factor as the boundary coordinate.-/
+/-- Real parts scale by the same factor as the boundary coordinate.
+@isnad1 id=eq.0h2v.s7.838f7bcdbfb2 from=translated src=- shape=f0d36160 vocab=5651b85f
+-/
 theorem dilationMatrix_smul_re (t : ℝ) (z : ℍ) :
     (dilationMatrix t • z).re = Real.exp t * z.re := by
   rw [dilationMatrix_smul, UpperHalfPlane.pos_real_re]
 
-/-- Heights scale by exp(t).-/
+/-- Heights scale by exp(t).
+@isnad1 id=eq.0h2v.s7.618fe31aa578 from=translated src=- shape=f0d36160 vocab=a71301c0
+-/
 theorem dilationMatrix_smul_im (t : ℝ) (z : ℍ) :
     (dilationMatrix t • z).im = Real.exp t * z.im := by
   rw [dilationMatrix_smul, UpperHalfPlane.pos_real_im]
 
-/-- The vertical axis has displacement |t| under the diagonal subgroup.-/
+/-- The vertical axis has displacement |t| under the diagonal subgroup.
+@isnad1 id=eq.1h2v.s7.f009248e6a57 from=translated src=- shape=bae50df9 vocab=f1cbde9c
+-/
 theorem dilationMatrix_axis_dist (t : ℝ) (z : ℍ) (hz : z.re = 0) :
     dist z (dilationMatrix t • z) = |t| := by
   rw [UpperHalfPlane.dist_of_re_eq (by rw [dilationMatrix_smul_re, hz, mul_zero])]
@@ -45,20 +53,26 @@ theorem dilationMatrix_axis_dist (t : ℝ) (z : ℍ) (hz : z.re = 0) :
   have he : Real.log z.im - (t + Real.log z.im) = -t := by ring
   rw [he, abs_neg]
 
-/-- Integer orbit displacement along the normalized axis.-/
+/-- Integer orbit displacement along the normalized axis.
+@isnad1 id=eq.1h3v.s8.db87aaa097d2 from=translated src=- shape=bccfb893 vocab=97c70a58
+-/
 theorem dilationMatrix_zpow_axis_dist (τ : ℝ) (n : ℤ) (z : ℍ) (hz : z.re = 0) :
     dist z (dilationMatrix τ ^ n • z) = |(n : ℝ) * τ| := by
   rw [← dilationMatrix_zpow]
   exact dilationMatrix_axis_dist _ z hz
 
-/-- Dilation leaves the horizontal-to-height ratio unchanged.-/
+/-- Dilation leaves the horizontal-to-height ratio unchanged.
+@isnad1 id=eq.0h2v.s8.31b897b6003a from=translated src=- shape=7e4f625f vocab=6c5ec593
+-/
 theorem dilationMatrix_smul_ratio (t : ℝ) (z : ℍ) :
     (dilationMatrix t • z).re / (dilationMatrix t • z).im = z.re / z.im := by
   rw [dilationMatrix_smul_re, dilationMatrix_smul_im]
   exact mul_div_mul_left _ _ (Real.exp_ne_zero t)
 
 /-- Each cyclic orbit has a representative in the half-open height band
-[1, exp(τ)). This is the normalization used for a fundamental strip.-/
+[1, exp(τ)). This is the normalization used for a fundamental strip.
+@isnad1 id=ex.1h2v.s9.b229f0c11cdd from=translated src=- shape=293d005a vocab=f93e4797
+-/
 theorem exists_dilationMatrix_height_band {τ : ℝ} (hτ : 0 < τ) (z : ℍ) :
     ∃ n : ℤ, 1 ≤ (dilationMatrix τ ^ n • z).im ∧
       (dilationMatrix τ ^ n • z).im < Real.exp τ := by

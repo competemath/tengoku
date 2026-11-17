@@ -20,7 +20,9 @@ variable {Γ J : Type*} [Group Γ]
 def cyclicOrbitUnion (a : Γ) (b : J → Γ) : Set Γ :=
   Set.range (fun p : ℤ × J => a ^ p.1 * b p.2)
 
-/-- Representatives from distinct cyclic orbits give injective integer coordinates.-/
+/-- Representatives from distinct cyclic orbits give injective integer coordinates.
+@isnad1 id=injectiv.2h4v.s6.066f13771343 from=translated src=- shape=d6a596a6 vocab=3d5a6ad7
+-/
 theorem cyclicOrbit_injective (a : Γ) (b : J → Γ) (ha : ¬IsOfFinOrder a)
     (hb : ∀ j k (n : ℤ), a ^ n * b j = b k → j = k) :
     Function.Injective (fun p : ℤ × J => a ^ p.1 * b p.2) := by
@@ -48,11 +50,16 @@ def cyclicOrbitEquiv (a : Γ) (b : J → Γ) (ha : ¬IsOfFinOrder a)
       rintro ⟨x, p, hp⟩
       exact ⟨p, Subtype.ext hp⟩⟩
 
+/--
+@isnad1 id=eq.2h5v.s7.fda21a2c03a2 from=translated src=- shape=173dfd5b vocab=5ad001d3
+-/
 theorem cyclicOrbitEquiv_apply (a : Γ) (b : J → Γ) (ha : ¬IsOfFinOrder a)
     (hb : ∀ j k (n : ℤ), a ^ n * b j = b k → j = k) (p : ℤ × J) :
     (cyclicOrbitEquiv a b ha hb p : Γ) = a ^ p.1 * b p.2 := rfl
 
-/-- Multiplication by a cyclic power is integer translation of the orbit coordinate.-/
+/-- Multiplication by a cyclic power is integer translation of the orbit coordinate.
+@isnad1 id=eq.2h7v.s8.8c70761641d6 from=translated src=- shape=0863d7c4 vocab=12f4769a
+-/
 theorem cyclicOrbitEquiv_shift (a : Γ) (b : J → Γ) (ha : ¬IsOfFinOrder a)
     (hb : ∀ j k (n : ℤ), a ^ n * b j = b k → j = k) (m n : ℤ) (j : J) :
     a ^ m * (cyclicOrbitEquiv a b ha hb (n, j) : Γ) =

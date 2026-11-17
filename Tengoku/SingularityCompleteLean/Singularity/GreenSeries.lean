@@ -20,7 +20,9 @@ namespace Singularity
 
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E] [CompleteSpace E]
 
-/-- An operator spectral gap implies an eventual geometric bound on the powers.-/
+/-- An operator spectral gap implies an eventual geometric bound on the powers.
+@isnad1 id=ex.1h2v.s9.ce386c70920a from=translated src=- shape=661ebe0b vocab=1044c910
+-/
 theorem green_powers_geometric_bound (P : E →L[ℂ] E) (hgap : spectralRadius ℂ P < 1) :
     ∃ q : ℝ, 0 ≤ q ∧ q < 1 ∧ ∀ᶠ n : ℕ in atTop, ‖P ^ n‖ ≤ q ^ n := by
   obtain ⟨r, hr, hr1⟩ := exists_between hgap
@@ -42,19 +44,25 @@ theorem green_powers_geometric_bound (P : E →L[ℂ] E) (hgap : spectralRadius 
       Real.rpow_le_rpow (Real.rpow_nonneg (norm_nonneg _) _) hroot hnpos.le
     _ = r.toReal ^ n := Real.rpow_natCast _ _
 
-/-- The norms of the Green-series terms are summable.-/
+/-- The norms of the Green-series terms are summable.
+@isnad1 id=summable.1h2v.s9.e4ce7387d175 from=translated src=- shape=1a973f43 vocab=d3ef21b9
+-/
 theorem green_powers_norm_summable (P : E →L[ℂ] E) (hgap : spectralRadius ℂ P < 1) :
     Summable (fun n : ℕ => ‖P ^ n‖) := by
   obtain ⟨q, hq0, hq1, hbound⟩ := green_powers_geometric_bound P hgap
   apply (summable_geometric_of_lt_one hq0 hq1).of_norm_bounded_eventually_nat
   simpa only [norm_norm] using hbound
 
-/-- Absolute norm convergence gives convergence in the operator Banach space.-/
+/-- Absolute norm convergence gives convergence in the operator Banach space.
+@isnad1 id=summable.1h2v.s9.de48514aad58 from=translated src=- shape=8139d056 vocab=9461809d
+-/
 theorem green_powers_summable (P : E →L[ℂ] E) (hgap : spectralRadius ℂ P < 1) :
     Summable (fun n : ℕ => P ^ n) :=
   (green_powers_norm_summable P hgap).of_norm
 
-/-- The sum of the operator powers is exactly the previously constructed resolvent.-/
+/-- The sum of the operator powers is exactly the previously constructed resolvent.
+@isnad1 id=eq.1h2v.s10.bc6239fd5635 from=translated src=- shape=cc6d81de vocab=fcd29aba
+-/
 theorem green_eq_tsum (P : E →L[ℂ] E) (hgap : spectralRadius ℂ P < 1) :
     green P = ∑' n : ℕ, P ^ n := by
   have hs := green_powers_summable P hgap
@@ -66,13 +74,17 @@ theorem green_eq_tsum (P : E →L[ℂ] E) (hgap : spectralRadius ℂ P < 1) :
       change Ring.inverse (1 - P) * (1 - P) * _ = _
       rw [Ring.inverse_mul_cancel (1 - P) (one_sub_isUnit P hgap), one_mul]
 
-/-- The Green series converges in operator norm to the resolvent.-/
+/-- The Green series converges in operator norm to the resolvent.
+@isnad1 id=hassum.1h2v.s9.cb14176bdcf1 from=translated src=- shape=a6fc4fba vocab=a851a348
+-/
 theorem green_hasSum (P : E →L[ℂ] E) (hgap : spectralRadius ℂ P < 1) :
     HasSum (fun n : ℕ => P ^ n) (green P) := by
   rw [green_eq_tsum P hgap]
   exact (green_powers_summable P hgap).hasSum
 
-/-- Evaluation at a vector commutes with the norm-convergent Green series.-/
+/-- Evaluation at a vector commutes with the norm-convergent Green series.
+@isnad1 id=hassum.1h3v.s10.990cdc4329b9 from=translated src=- shape=3fb2ad52 vocab=e99a6925
+-/
 theorem green_apply_hasSum (P : E →L[ℂ] E) (hgap : spectralRadius ℂ P < 1) (v : E) :
     HasSum (fun n : ℕ => (P ^ n) v) (green P v) :=
   (ContinuousLinearMap.apply ℂ E v).hasSum (green_hasSum P hgap)

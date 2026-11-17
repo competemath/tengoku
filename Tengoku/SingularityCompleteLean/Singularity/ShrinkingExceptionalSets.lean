@@ -18,7 +18,9 @@ open scoped Topology
 
 namespace Singularity
 
-/-- A point outside the exceptional set eventually belongs to the shadows.-/
+/-- A point outside the exceptional set eventually belongs to the shadows.
+@isnad1 id=eventual.2h4v.s6.6aca02c6941a from=translated src=- shape=9126827c vocab=25446a16
+-/
 theorem eventually_mem_of_shrinking_complements {B : Type*} [TopologicalSpace B] [T1Space B]
     (T : ℕ → Set B) (Z : Set B)
     (hshrink : ∀ U : Set B, IsOpen U → Z ⊆ U → ∀ᶠ n in atTop, (T n)ᶜ ⊆ U)
@@ -34,7 +36,9 @@ theorem eventually_mem_of_shrinking_complements {B : Type*} [TopologicalSpace B]
   simp at h
 
 /-- Compactness turns orbit escape from a closed exceptional set into a
-finite corrected eventual cover of the entire space.-/
+finite corrected eventual cover of the entire space.
+@isnad1 id=ex.3h4v.s7.bbb827256636 from=translated src=- shape=9cae6906 vocab=00e43475
+-/
 theorem finite_corrected_eventual_cover_of_shrinking_complements
     {Γ B : Type*} [Group Γ] [TopologicalSpace B] [CompactSpace B] [T1Space B]
     [MulAction Γ B] [ContinuousConstSMul Γ B]
@@ -54,7 +58,9 @@ theorem finite_corrected_eventual_cover_of_shrinking_complements
   obtain ⟨haF, hξ⟩ := mem_iUnion.mp ha
   exact ⟨a, haF, eventually_mem_of_shrinking_complements T Z hshrink hξ⟩
 
-/-- Infinite orbits cannot remain inside a finite exceptional set.-/
+/-- Infinite orbits cannot remain inside a finite exceptional set.
+@isnad1 id=ex.3h4v.s7.1bcd1345c14a from=translated src=- shape=6ca06646 vocab=c0d61a12
+-/
 theorem finite_corrected_eventual_cover_of_finite_exceptional_set
     {Γ B : Type*} [Group Γ] [TopologicalSpace B] [CompactSpace B] [T1Space B]
     [MulAction Γ B] [ContinuousConstSMul Γ B]

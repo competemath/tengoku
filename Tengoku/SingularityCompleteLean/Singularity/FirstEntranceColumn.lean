@@ -20,7 +20,9 @@ namespace Singularity
 variable {Γ : Type*} [Group Γ] [MeasurableSpace Γ] [MeasurableMul Γ]
   [MeasurableSingletonClass Γ] [Countable Γ]
 
-/-- Domination by a resolvent column supplies square integrability.-/
+/-- Domination by a resolvent column supplies square integrability.
+@isnad1 id=memlp.2h5v.s12.7fbb2da3548f from=translated src=- shape=98e342ee vocab=a8628b49
+-/
 theorem firstEntranceColumn_memLp (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hgap : spectralRadius ℂ (rightMarkov s μ) < 1)
     (A : Set Γ) (a : Γ) :
@@ -41,14 +43,18 @@ def firstEntranceColumn (s : Finset Γ) (μ : Γ → ℝ)
     (A : Set Γ) (a : Γ) : GroupL2 Γ :=
   (firstEntranceColumn_memLp s μ hμ hgap A a).toLp (fun x => (firstEntranceKernel s μ A x a : ℂ))
 
-/-- Pointwise identification, valid everywhere for counting measure.-/
+/-- Pointwise identification, valid everywhere for counting measure.
+@isnad1 id=eq.2h6v.s12.0b4faf4ca244 from=translated src=- shape=ed161fc4 vocab=26be2184
+-/
 theorem firstEntranceColumn_apply (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hgap : spectralRadius ℂ (rightMarkov s μ) < 1)
     (A : Set Γ) (a x : Γ) :
     firstEntranceColumn s μ hμ hgap A a x = (firstEntranceKernel s μ A x a : ℂ) :=
   Measure.ae_count_iff.mp (MemLp.coeFn_toLp (firstEntranceColumn_memLp s μ hμ hgap A a)) x
 
-/-- The first-entrance column takes point-mass boundary values on A.-/
+/-- The first-entrance column takes point-mass boundary values on A.
+@isnad1 id=eq.3h6v.s12.8b7d0d161618 from=translated src=- shape=4fa474e8 vocab=a652cf3c
+-/
 theorem firstEntranceColumn_boundary (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hgap : spectralRadius ℂ (rightMarkov s μ) < 1)
     (A : Set Γ) (a : Γ) {x : Γ} (hx : x ∈ A) :
@@ -56,7 +62,9 @@ theorem firstEntranceColumn_boundary (s : Finset Γ) (μ : Γ → ℝ)
   rw [firstEntranceColumn_apply, firstEntranceKernel_of_mem s μ A hx, countingDelta_apply]
   split_ifs <;> simp
 
-/-- Exterior harmonicity is an equality for the actual bounded Markov operator.-/
+/-- Exterior harmonicity is an equality for the actual bounded Markov operator.
+@isnad1 id=eq.3h6v.s13.dd6480473b21 from=translated src=- shape=117c5860 vocab=f060fc1f
+-/
 theorem firstEntranceColumn_harmonic (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hgap : spectralRadius ℂ (rightMarkov s μ) < 1)
     (A : Set Γ) (a : Γ) {x : Γ} (hx : x ∉ A) :

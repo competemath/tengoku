@@ -18,7 +18,9 @@ namespace Singularity
 
 variable {X : Type*} [PseudoMetricSpace X]
 
-/-- Concatenation preserves a common jump bound and adds the numbers of steps.-/
+/-- Concatenation preserves a common jump bound and adds the numbers of steps.
+@isnad1 id=ex.3h6v.s7.e90b795e134a from=translated src=- shape=8673f5aa vocab=6b233ad2
+-/
 theorem metric_chain_append (f g : ℕ → X) (n m : ℕ) (L : ℝ)
     (hjoin : f n = g 0)
     (hf : ∀ k < n, dist (f k) (f (k + 1)) ≤ L)
@@ -42,7 +44,9 @@ theorem metric_chain_append (f g : ℕ → X) (n m : ℕ) (L : ℝ)
           ite_eq_right (show ¬k + 1 ≤ n by omega), show k + 1 - n = k - n + 1 by omega] using hj
 
 /-- An isometric real interval admits unit-step subdivision with fewer than
-length plus two steps. A positive number of steps also covers coinciding ends.-/
+length plus two steps. A positive number of steps also covers coinciding ends.
+@isnad1 id=ex.1h4v.s7.14040cdd0b69 from=translated src=- shape=cf11fded vocab=dcda857c
+-/
 theorem isometry_interval_chain (f : ℝ → X) (hf : Isometry f) (a b : ℝ) :
     ∃ (n : ℕ) (p : ℕ → X), p 0 = f a ∧ p n = f b ∧
       (n : ℝ) ≤ |b - a| + 2 ∧ ∀ k < n, dist (p k) (p (k + 1)) ≤ 1 := by

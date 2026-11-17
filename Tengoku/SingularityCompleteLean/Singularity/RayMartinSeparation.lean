@@ -18,7 +18,9 @@ open Filter
 open scoped Topology Classical MatrixGroups UpperHalfPlane
 namespace Singularity
 
-/-- Distinct limits give uniform separation of all sufficiently late cross pairs.-/
+/-- Distinct limits give uniform separation of all sufficiently late cross pairs.
+@isnad1 id=ex.3h4v.s7.4ad52eaa74b3 from=translated src=- shape=9d3acde3 vocab=59c33d11
+-/
 theorem cayley_separated_tails (x y : ℕ → ℍ) (a b : ℂ) (hab : a ≠ b)
     (hx : Tendsto (fun n => halfPlaneCayley (x n)) atTop (𝓝 a))
     (hy : Tendsto (fun n => halfPlaneCayley (y n)) atTop (𝓝 b)) :
@@ -38,7 +40,9 @@ theorem cayley_separated_tails (x y : ℕ → ℍ) (a b : ℂ) (hab : a ≠ b)
   rw [dist_comm a (halfPlaneCayley (x m))] at hh
   linarith
 
-/-- A subsequential Martin limit from η vanishes along the orbit ray to ξ≠η.-/
+/-- A subsequential Martin limit from η vanishes along the orbit ray to ξ≠η.
+@isnad1 id=tendsto.7h7v.s16.592e6c6acb5a from=translated src=- shape=024d9eb1 vocab=1b601a5d
+-/
 theorem cocompact_cross_ray_martin_limit_zero (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
     [CompactSpace (Quotient (MulAction.orbitRel Γ ℍ))]
     [MeasurableSpace Γ] [MeasurableMul Γ] [MeasurableSingletonClass Γ]
@@ -75,7 +79,9 @@ theorem cocompact_cross_ray_martin_limit_zero (Γ : Subgroup SL(2, ℝ)) [Discre
   exact squeeze_zero' (Eventually.of_forall (fun m => (hpositive _).le))
     ((eventually_ge_atTop N).mono (fun m hm => hbound m hm)) hCzero
 
-/-- Subsequential limits associated with distinct real endpoints are distinct.-/
+/-- Subsequential limits associated with distinct real endpoints are distinct.
+@isnad1 id=ne.9h9v.s16.92058e11e66e from=translated src=- shape=36f5dc42 vocab=1b601a5d
+-/
 theorem cocompact_distinct_ray_martin_limits (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
     [CompactSpace (Quotient (MulAction.orbitRel Γ ℍ))]
     [MeasurableSpace Γ] [MeasurableMul Γ] [MeasurableSingletonClass Γ]

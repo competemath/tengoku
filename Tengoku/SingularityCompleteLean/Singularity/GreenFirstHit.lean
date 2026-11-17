@@ -21,7 +21,9 @@ namespace Singularity
 variable {Γ : Type*} [Group Γ] [MeasurableSpace Γ] [MeasurableMul Γ]
   [MeasurableSingletonClass Γ] [Countable Γ]
 
-/-- The Green kernel factors through the first hit of its target vertex.-/
+/-- The Green kernel factors through the first hit of its target vertex.
+@isnad1 id=eq.3h5v.s12.077ff63d082e from=translated src=- shape=39899d99 vocab=9c0f91e9
+-/
 theorem walkGreen_first_hit (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1)
     (hgap : spectralRadius ℂ (rightMarkov s μ) < 1) (x y : Γ) :
@@ -52,7 +54,9 @@ theorem walkGreen_first_hit (s : Finset Γ) (μ : Γ → ℝ)
   apply Complex.ofReal_injective
   simpa only [Complex.ofReal_mul, mul_comm] using h
 
-/-- Every nonnegative superharmonic function bounds the Green kernel after diagonal normalization.-/
+/-- Every nonnegative superharmonic function bounds the Green kernel after diagonal normalization.
+@isnad1 id=le.5h6v.s12.4b62ad47b82c from=translated src=- shape=754bb440 vocab=c3972721
+-/
 theorem walkGreen_superharmonic_bound (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1)
     (hgap : spectralRadius ℂ (rightMarkov s μ) < 1)

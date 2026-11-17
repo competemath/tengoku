@@ -21,9 +21,15 @@ namespace Singularity
 def finiteJumpLengthBound (Γ : Subgroup SL(2, ℝ)) (z : ℍ) (s : Finset Γ) : ℝ :=
   ∑ t ∈ s, dist z (t • z)
 
+/--
+@isnad1 id=le.0h3v.s8.78a43d385298 from=translated src=- shape=1b07c00f vocab=8f9c0d11
+-/
 theorem finiteJumpLengthBound_nonneg (Γ : Subgroup SL(2, ℝ)) (z : ℍ) (s : Finset Γ) :
     0 ≤ finiteJumpLengthBound Γ z s := Finset.sum_nonneg (fun _ _ => dist_nonneg)
 
+/--
+@isnad1 id=le.1h4v.s11.2cd349e4791b from=translated src=- shape=7e1a5c28 vocab=7985c692
+-/
 theorem dist_le_finiteJumpLengthBound (Γ : Subgroup SL(2, ℝ)) (z : ℍ)
     (s : Finset Γ) {t : Γ} (ht : t ∈ s) : dist z (t • z) ≤ finiteJumpLengthBound Γ z s := by
   unfold finiteJumpLengthBound
@@ -33,14 +39,18 @@ theorem dist_le_finiteJumpLengthBound (Γ : Subgroup SL(2, ℝ)) (z : ℍ)
 def finiteJumpStrip (Γ : Subgroup SL(2, ℝ)) (z : ℍ) (s : Finset Γ) : Set Γ :=
   {g | g • z ∈ axisRatioStrip (jumpStripRadius (finiteJumpLengthBound Γ z s))}
 
-/-- The chosen strip meets every allowed path between opposite sides.-/
+/-- The chosen strip meets every allowed path between opposite sides.
+@isnad1 id=separate.2h5v.s12.b42ba3d87b90 from=translated src=- shape=0a20a4dd vocab=e7200f05
+-/
 theorem finiteJumpStrip_separates (Γ : Subgroup SL(2, ℝ)) (z : ℍ) (s : Finset Γ)
     (x y : Γ) (hx : (x • z).re < 0) (hy : 0 ≤ (y • z).re) :
     SeparatesJumpPaths s (finiteJumpStrip Γ z s) x y :=
   axisRatioStrip_separatesJumpPaths Γ z s (finiteJumpLengthBound_nonneg Γ z s)
     (fun _ ht => dist_le_finiteJumpLengthBound Γ z s ht) x y hx hy
 
-/-- With the base point i, the identity belongs to the chosen strip.-/
+/-- With the base point i, the identity belongs to the chosen strip.
+@isnad1 id=mem.0h2v.s10.d6041a7b43a1 from=translated src=- shape=1da3e7ab vocab=270f814b
+-/
 theorem one_mem_finiteJumpStrip (Γ : Subgroup SL(2, ℝ)) (s : Finset Γ) :
     (1 : Γ) ∈ finiteJumpStrip Γ UpperHalfPlane.I s := by
   change |((1 : Γ) • UpperHalfPlane.I).re / ((1 : Γ) • UpperHalfPlane.I).im| ≤ _
@@ -48,7 +58,9 @@ theorem one_mem_finiteJumpStrip (Γ : Subgroup SL(2, ℝ)) (s : Finset Γ) :
   exact (jumpStripRadius_pos (finiteJumpLengthBound_nonneg Γ UpperHalfPlane.I s)).le
 
 /-- A nonempty finite disjoint cyclic decomposition of the actual separator.
-All finiteness and path-separation assertions are conclusions, not hypotheses.-/
+All finiteness and path-separation assertions are conclusions, not hypotheses.
+@isnad1 id=ex.2h4v.s13.bf2f2292e78e from=translated src=- shape=c7d5a666 vocab=b3167bf5
+-/
 theorem finiteJumpStrip_finite_cyclic_decomposition
     (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ] (s : Finset Γ)
     (a : Γ) {τ : ℝ} (ha : (a : SL(2, ℝ)) = dilationMatrix τ) (hτ : 0 < τ) :

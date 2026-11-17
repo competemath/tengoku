@@ -20,7 +20,9 @@ namespace Singularity
 
 variable {X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y]
 
-/-- A measurable, almost everywhere positive real weight preserves the measure class.-/
+/-- A measurable, almost everywhere positive real weight preserves the measure class.
+@isnad1 id=and.2h3v.s6.cb4a955286cd from=translated src=- shape=edeab00e vocab=10682a99
+-/
 theorem positive_real_weight_measureClass (m : Measure X) (w : X → ℝ)
     (hw : Measurable w) (hp : ∀ᵐ x ∂m, 0 < w x) :
     m.withDensity (fun x => ENNReal.ofReal (w x)) ≪ m ∧
@@ -30,7 +32,9 @@ theorem positive_real_weight_measureClass (m : Measure X) (w : X → ℝ)
   filter_upwards [hp] with x hx
   exact ne_of_gt (ENNReal.ofReal_pos.mpr hx)
 
-/-- A positive weight over a nonzero measure gives a nonzero measure.-/
+/-- A positive weight over a nonzero measure gives a nonzero measure.
+@isnad1 id=ne.2h3v.s6.7af20be7c06e from=translated src=- shape=1b123176 vocab=81316e75
+-/
 theorem positive_real_weight_ne_zero (m : Measure X) [NeZero m] (w : X → ℝ)
     (hw : Measurable w) (hp : ∀ᵐ x ∂m, 0 < w x) :
     m.withDensity (fun x => ENNReal.ofReal (w x)) ≠ 0 := by
@@ -40,7 +44,9 @@ theorem positive_real_weight_ne_zero (m : Measure X) [NeZero m] (w : X → ℝ)
   exact NeZero.ne m (Measure.absolutelyContinuous_zero_iff.mp h)
 
 /-- Absolute continuity of each boundary measure gives absolute continuity of
-its weighted product relative to any positive reference-product density.-/
+its weighted product relative to any positive reference-product density.
+@isnad1 id=absolute.4h8v.s7.e658e10bd61b from=translated src=- shape=fb0500f6 vocab=f260b70b
+-/
 theorem weightedProduct_absolutelyContinuous
     (μ μ₀ : Measure X) (ν ν₀ : Measure Y) [SFinite ν] [SFinite ν₀]
     (hμ : μ ≪ μ₀) (hν : ν ≪ ν₀) (K L : X × Y → ℝ)
@@ -50,7 +56,9 @@ theorem weightedProduct_absolutelyContinuous
   (withDensity_absolutelyContinuous _ _).trans
     ((hμ.prod hν).trans (positive_real_weight_measureClass _ L hL hpL).2)
 
-/-- Equivalent marginals and positive kernels give equivalent currents.-/
+/-- Equivalent marginals and positive kernels give equivalent currents.
+@isnad1 id=and.8h8v.s8.583020317b0d from=translated src=- shape=726213f8 vocab=f260b70b
+-/
 theorem weightedProduct_measureClass
     (μ μ₀ : Measure X) (ν ν₀ : Measure Y) [SFinite ν] [SFinite ν₀]
     (hμ : μ ≪ μ₀) (hμ' : μ₀ ≪ μ) (hν : ν ≪ ν₀) (hν' : ν₀ ≪ ν)
@@ -64,7 +72,9 @@ theorem weightedProduct_measureClass
     weightedProduct_absolutelyContinuous μ₀ μ ν₀ ν hμ' hν' L K hK hpK⟩
 
 /-- Scalar equality of measures with nonnegative real densities implies the
-corresponding almost-everywhere real identity.-/
+corresponding almost-everywhere real identity.
+@isnad1 id=eventual.5h5v.s7.cb3804b5c292 from=translated src=- shape=04082a6a vocab=339ddf69
+-/
 theorem real_density_eq_of_measure_eq_smul (m : Measure X) [SigmaFinite m]
     (F L : X → ℝ) (hF : Measurable F) (hL : Measurable L)
     (hpF : ∀ᵐ x ∂m, 0 ≤ F x) (hpL : ∀ᵐ x ∂m, 0 ≤ L x) (c : ℝ≥0∞)
@@ -80,7 +90,9 @@ theorem real_density_eq_of_measure_eq_smul (m : Measure X) [SigmaFinite m]
     ENNReal.toReal_ofReal hxF, ENNReal.toReal_ofReal hxL] using ht
 
 /-- Boundary densities and a real kernel multiply to give the density of the
-weighted product with respect to the original product reference measure.-/
+weighted product with respect to the original product reference measure.
+@isnad1 id=eq.5h7v.s7.040a5332aa20 from=translated src=- shape=0629a64a vocab=546b74f1
+-/
 theorem weightedProduct_real_density (μ : Measure X) (ν : Measure Y)
     [SFinite μ] [SFinite ν] (f : X → ℝ) (g : Y → ℝ) (K : X × Y → ℝ)
     (hf : Measurable f) (hg : Measurable g) (hK : Measurable K)
@@ -98,7 +110,9 @@ theorem weightedProduct_real_density (μ : Measure X) (ν : Measure Y)
   · exact hK.ennreal_ofReal
 
 /-- Under ergodicity and invariance, positive real densities are proportional
-almost everywhere by a strictly positive real constant.-/
+almost everywhere by a strictly positive real constant.
+@isnad1 id=ex.5h5v.s8.8bf976b5cf34 from=translated src=- shape=f1faa60f vocab=d1db85a8
+-/
 theorem ergodic_current_density_identity {G : Type*} [Group G] [MulAction G X]
     [MeasurableConstSMul G X] (m : Measure X) [SigmaFinite m] [NeZero m]
     (F L : X → ℝ) (hF : Measurable F) (hL : Measurable L)

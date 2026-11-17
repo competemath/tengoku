@@ -34,13 +34,17 @@ def rightTranslation (g : Γ) : GroupL2 Γ →ₗᵢ[ℂ] GroupL2 Γ :=
 def rightMarkov (s : Finset Γ) (μ : Γ → ℝ) : GroupL2 Γ →L[ℂ] GroupL2 Γ :=
   ∑ g ∈ s, (μ g : ℂ) • (rightTranslation g).toContinuousLinearMap
 
-/-- Each right translation is an isometry on counting-measure `L²`.-/
+/-- Each right translation is an isometry on counting-measure `L²`.
+@isnad1 id=eq.0h3v.s11.0182d828790c from=translated src=- shape=f0325511 vocab=90d2fba7
+-/
 theorem rightTranslation_norm (g : Γ) (f : GroupL2 Γ) :
     ‖rightTranslation g f‖ = ‖f‖ :=
   (rightTranslation g).norm_map f
 
 /-- The Markov operator is a contraction. No amenability, symmetry, or
-semigroup-generation assumption is needed for this assertion.-/
+semigroup-generation assumption is needed for this assertion.
+@isnad1 id=le.2h4v.s12.89a17e866cf2 from=translated src=- shape=bc719741 vocab=1539d1da
+-/
 theorem rightMarkov_contraction (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1)
     (f : GroupL2 Γ) : ‖rightMarkov s μ f‖ ≤ ‖f‖ := by
@@ -57,7 +61,9 @@ theorem rightMarkov_contraction (s : Finset Γ) (μ : Γ → ℝ)
         Real.norm_eq_abs, abs_of_nonneg (hμ g hg)]
     _ = ‖f‖ := by rw [← Finset.sum_mul, hmass, one_mul]
 
-/-- The corresponding operator-norm bound.-/
+/-- The corresponding operator-norm bound.
+@isnad1 id=le.2h3v.s11.da442c290ef3 from=translated src=- shape=c6570af4 vocab=9f04b6d0
+-/
 theorem rightMarkov_norm_le_one (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1) :
     ‖rightMarkov s μ‖ ≤ 1 := by
@@ -66,7 +72,9 @@ theorem rightMarkov_norm_le_one (s : Finset Γ) (μ : Γ → ℝ)
   simpa only [one_mul] using rightMarkov_contraction s μ hμ hmass f
 
 /-- The definition has the intended pointwise formula, up to the usual
-almost-everywhere identification of `Lp` representatives.-/
+almost-everywhere identification of `Lp` representatives.
+@isnad1 id=eventual.0h4v.s12.85d21dd159af from=translated src=- shape=46876779 vocab=645bb73b
+-/
 theorem rightMarkov_apply_ae (s : Finset Γ) (μ : Γ → ℝ) (f : GroupL2 Γ) :
     (rightMarkov s μ f : Γ → ℂ) =ᵐ[Measure.count]
       fun x => ∑ g ∈ s, (μ g : ℂ) * f (x * g) := by

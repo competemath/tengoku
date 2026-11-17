@@ -18,13 +18,17 @@ open scoped Classical MatrixGroups UpperHalfPlane
 
 namespace Singularity
 
-/-- On the nonnegative axis the hyperbolic cosine is at most the exponential.-/
+/-- On the nonnegative axis the hyperbolic cosine is at most the exponential.
+@isnad1 id=le.1h1v.s4.19d20972c545 from=translated src=- shape=7d3b5169 vocab=29b9da5c
+-/
 theorem cosh_le_exp_of_nonneg (t : ℝ) (ht : 0 ≤ t) : Real.cosh t ≤ Real.exp t := by
   rw [Real.cosh_eq]
   have h := Real.exp_le_exp.mpr (show -t ≤ t by linarith)
   linarith
 
-/-- Away from zero the hyperbolic sine is bounded below exponentially.-/
+/-- Away from zero the hyperbolic sine is bounded below exponentially.
+@isnad1 id=le.1h1v.s5.c83a73893062 from=translated src=- shape=f2dbaddc vocab=cd6feb93
+-/
 theorem exp_le_four_sinh (t : ℝ) (ht : 1 ≤ t) : Real.exp t ≤ 4 * Real.sinh t := by
   have he : 2 ≤ Real.exp t := by linarith [Real.add_one_le_exp t]
   have hn : Real.exp (-t) ≤ 1 := Real.exp_le_one_iff.mpr (by linarith)
@@ -32,7 +36,9 @@ theorem exp_le_four_sinh (t : ℝ) (ht : 1 ≤ t) : Real.exp t ≤ 4 * Real.sinh
   linarith
 
 /-- Bounded triangle excess at i gives a quantitative separation in the disk,
-provided the endpoints are at least hyperbolic distance two apart.-/
+provided the endpoints are at least hyperbolic distance two apart.
+@isnad1 id=le.2h3v.s6.1f79a608cf20 from=translated src=- shape=6bd92dde vocab=5153bdba
+-/
 theorem halfPlaneCayley_dist_lower_of_excess (z w : ℍ) (D : ℝ)
     (hd : 2 ≤ dist z w)
     (hexcess : dist z UpperHalfPlane.I + dist w UpperHalfPlane.I - dist z w ≤ D) :
@@ -58,7 +64,9 @@ theorem halfPlaneCayley_dist_lower_of_excess (z w : ℍ) (D : ℝ)
     _ ≤ _ := by linarith
 
 /-- The triangle-excess separation estimate in the disk chart centered at an
-arbitrary orbit point.-/
+arbitrary orbit point.
+@isnad1 id=le.2h5v.s14.5af1f722df23 from=translated src=- shape=661a31d6 vocab=1cf39353
+-/
 theorem orbit_cayley_separation_of_excess (Γ : Subgroup SL(2, ℝ))
     (u x y : Γ) (D : ℝ) (hd : 2 ≤ dist (x • UpperHalfPlane.I) (y • UpperHalfPlane.I))
     (hexcess : dist (x • UpperHalfPlane.I) (u • UpperHalfPlane.I) +
@@ -81,7 +89,9 @@ theorem orbit_cayley_separation_of_excess (Γ : Subgroup SL(2, ℝ))
   · simpa only [hc, he] using hexcess
 
 /-- A path avoiding the open ball has exponentially small total disk movement
-per step. Only positions strictly before its endpoint need to avoid the ball.-/
+per step. Only positions strictly before its endpoint need to avoid the ball.
+@isnad1 id=le.1h6v.s13.6535f125ca76 from=translated src=- shape=0da8d836 vocab=d91c7c7e
+-/
 theorem walkEndpoint_cayley_detour_bound (Γ : Subgroup SL(2, ℝ))
     (s : Finset Γ) (R : ℝ) (n : ℕ) (x : Γ) (w : WalkWord s n)
     (hw : avoidsBefore s {g : Γ | dist (g • UpperHalfPlane.I) UpperHalfPlane.I < R}
@@ -117,7 +127,9 @@ theorem walkEndpoint_cayley_detour_bound (Γ : Subgroup SL(2, ℝ))
       _ = _ := by push_cast; ring
 
 /-- Separated disk endpoints force an exponential lower bound on the number
-of steps of a path avoiding the radius-R ball.-/
+of steps of a path avoiding the radius-R ball.
+@isnad1 id=le.2h7v.s13.e8aacc25ee26 from=translated src=- shape=028ad447 vocab=660a9262
+-/
 theorem walkEndpoint_detour_length (Γ : Subgroup SL(2, ℝ))
     (s : Finset Γ) (R δ : ℝ) (n : ℕ) (x : Γ) (w : WalkWord s n)
     (hw : avoidsBefore s {g : Γ | dist (g • UpperHalfPlane.I) UpperHalfPlane.I < R}
@@ -133,7 +145,9 @@ theorem walkEndpoint_detour_length (Γ : Subgroup SL(2, ℝ))
   apply (div_le_iff₀ hp).mpr
   simpa only [mul_assoc, he, mul_one] using hm
 
-/-- All killed transition coefficients below the geometric detour cutoff vanish.-/
+/-- All killed transition coefficients below the geometric detour cutoff vanish.
+@isnad1 id=eq.2h8v.s12.663d5c31dbad from=translated src=- shape=d9c2b577 vocab=bcfff87d
+-/
 theorem killedWeight_eq_zero_of_short_detour (Γ : Subgroup SL(2, ℝ))
     (s : Finset Γ) (μ : Γ → ℝ) (R δ : ℝ) (n : ℕ) (x y : Γ)
     (hsep : δ ≤ dist (halfPlaneCayley (x • UpperHalfPlane.I))

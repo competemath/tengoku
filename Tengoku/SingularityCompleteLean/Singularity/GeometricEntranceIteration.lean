@@ -18,7 +18,9 @@ open scoped Classical MatrixGroups UpperHalfPlane
 
 namespace Singularity
 
-/-- A reversed geometric error schedule has total mass at most one half.-/
+/-- A reversed geometric error schedule has total mass at most one half.
+@isnad1 id=le.1h2v.s7.cb449cbe71e5 from=translated src=- shape=f117861f vocab=a7bdb361
+-/
 theorem finite_geometric_errors_le_half (N : ℕ) (ε : ℕ → ℝ)
     (hε : ∀ n < N, ε n ≤ (1 / 4) * (1 / 2 : ℝ) ^ (N - 1 - n)) :
     ∑ n ∈ Finset.range N, ε n ≤ 1 / 2 := by
@@ -33,7 +35,9 @@ theorem finite_geometric_errors_le_half (N : ℕ) (ε : ℕ → ℝ)
         (by norm_num : (1 / 2 : ℝ) < 1)).sum_le_tsum (Finset.range N) (fun _ _ => by positivity)
     _ = 1 / 2 := by rw [tsum_geometric_two]; norm_num
 
-/-- Radii separated backwards by at least log 2 give the required total loss.-/
+/-- Radii separated backwards by at least log 2 give the required total loss.
+@isnad1 id=le.1h2v.s6.e6c2c10b5163 from=translated src=- shape=1c3d919c vocab=fc162c39
+-/
 theorem finite_radius_errors_le_half (N : ℕ) (r : ℕ → ℝ)
     (hr : ∀ n < N, Real.log 4 + (N - 1 - n : ℕ) * Real.log 2 ≤ r n) :
     ∑ n ∈ Finset.range N, Real.exp (-r n) ≤ 1 / 2 := by

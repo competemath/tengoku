@@ -23,16 +23,24 @@ namespace Singularity
 def logBoundaryDensity (ε : ℝ) (f : ℝ → ℝ) (t : ℝ) : ℝ :=
   Real.exp t * f (ε * Real.exp t)
 
+/--
+@isnad1 id=measurab.1h2v.s4.a4fa93d39094 from=translated src=- shape=77b3215a vocab=83e78aa8
+-/
 theorem measurable_logBoundaryDensity (ε : ℝ) (f : ℝ → ℝ) (hf : Measurable f) :
     Measurable (logBoundaryDensity ε f) := by
   unfold logBoundaryDensity
   fun_prop
 
+/--
+@isnad1 id=le.1h3v.s5.d29266b2016b from=translated src=- shape=5720592c vocab=925e0133
+-/
 theorem logBoundaryDensity_nonneg (ε : ℝ) (f : ℝ → ℝ) (hf : ∀ x, 0 ≤ f x) (t : ℝ) :
     0 ≤ logBoundaryDensity ε f t := mul_nonneg (Real.exp_pos t).le (hf _)
 
 /-- The positive-side logarithmic density is the actual pullback of the
-restricted boundary measure.-/
+restricted boundary measure.
+@isnad1 id=eq.1h1v.s6.e8a17b279412 from=translated src=- shape=06b00f69 vocab=e25f8ec3
+-/
 theorem logBoundaryDensity_positive_map (f : ℝ → ℝ) (hf : Measurable f) :
     Measure.map Real.exp (volume.withDensity
       (fun t => ENNReal.ofReal (logBoundaryDensity 1 f t))) =
@@ -46,7 +54,9 @@ theorem logBoundaryDensity_positive_map (f : ℝ → ℝ) (hf : Measurable f) :
     Pi.mul_def, Function.comp_def] using h
 
 /-- The negative-side logarithmic density includes the absolute Jacobian,
-which has the same positive value exp(t).-/
+which has the same positive value exp(t).
+@isnad1 id=eq.1h1v.s6.187d67efaf2e from=translated src=- shape=05c74efc vocab=de4f56bd
+-/
 theorem logBoundaryDensity_negative_map (f : ℝ → ℝ) (hf : Measurable f) :
     Measure.map (fun t : ℝ => -Real.exp t) (volume.withDensity
       (fun t => ENNReal.ofReal (logBoundaryDensity (-1) f t))) =
@@ -61,7 +71,9 @@ theorem logBoundaryDensity_negative_map (f : ℝ → ℝ) (hf : Measurable f) :
     Pi.mul_def, Function.comp_def] using h
 
 /-- A measurable nonnegative subprobability density is integrable and has
-Bochner integral at most one.-/
+Bochner integral at most one.
+@isnad1 id=and.3h1v.s7.0e75cc18996d from=translated src=- shape=ce52bdf3 vocab=d6302cea
+-/
 theorem real_density_integrable_of_mass_le_one (k : ℝ → ℝ) (hk : Measurable k)
     (hp : ∀ t, 0 ≤ k t)
     (hmass : (volume.withDensity (fun t => ENNReal.ofReal (k t))) univ ≤ 1) :
@@ -74,7 +86,9 @@ theorem real_density_integrable_of_mass_le_one (k : ℝ → ℝ) (hk : Measurabl
   rwa [ofReal_integral_eq_lintegral_ofReal hint hp']
 
 /-- Restricting a boundary subprobability measure to either half-line and
-passing to logarithmic coordinates preserves the mass bound.-/
+passing to logarithmic coordinates preserves the mass bound.
+@isnad1 id=and.4h2v.s7.562e4c86d49d from=translated src=- shape=0eed9512 vocab=ce2259a3
+-/
 theorem logBoundaryDensity_integrable_mass (ε : ℝ) (hε : ε = 1 ∨ ε = -1)
     (f : ℝ → ℝ) (hf : Measurable f) (hp : ∀ x, 0 ≤ f x)
     (hmass : (volume.withDensity (fun x => ENNReal.ofReal (f x))) univ ≤ 1) :
@@ -98,13 +112,18 @@ theorem logBoundaryDensity_integrable_mass (ε : ℝ) (hε : ε = 1 ∨ ε = -1)
 def dilatedBoundaryDensity (u : ℝ) (f : ℝ → ℝ) (x : ℝ) : ℝ :=
   Real.exp (-u) * f (Real.exp (-u) * x)
 
+/--
+@isnad1 id=measurab.1h2v.s4.ba2489e487d7 from=translated src=- shape=77b3215a vocab=c3160c50
+-/
 theorem measurable_dilatedBoundaryDensity (u : ℝ) (f : ℝ → ℝ) (hf : Measurable f) :
     Measurable (dilatedBoundaryDensity u f) := by
   unfold dilatedBoundaryDensity
   fun_prop
 
 /-- Dilation of the real boundary measure has the stated density, including
-its inverse Jacobian.-/
+its inverse Jacobian.
+@isnad1 id=eq.1h2v.s6.6d8e041f6c19 from=translated src=- shape=d0763601 vocab=a9fa224a
+-/
 theorem dilatedBoundaryDensity_map (u : ℝ) (f : ℝ → ℝ) (hf : Measurable f) :
     Measure.map (fun x : ℝ => Real.exp u * x)
       (volume.withDensity (fun x => ENNReal.ofReal (f x))) =
@@ -121,7 +140,9 @@ theorem dilatedBoundaryDensity_map (u : ℝ) (f : ℝ → ℝ) (hf : Measurable 
     Pi.smul_def, smul_eq_mul, ENNReal.ofReal_mul (inv_pos.mpr (Real.exp_pos u)).le] using h
 
 /-- A boundary dilation becomes an ordinary translation of each logarithmic
-density, on both sides of zero.-/
+density, on both sides of zero.
+@isnad1 id=eq.0h4v.s4.5f8b9f964ee1 from=translated src=- shape=64c07fae vocab=ed5af4ed
+-/
 theorem logBoundaryDensity_dilation (ε u : ℝ) (f : ℝ → ℝ) (t : ℝ) :
     logBoundaryDensity ε (dilatedBoundaryDensity u f) t = logBoundaryDensity ε f (t - u) := by
   have he : Real.exp t * Real.exp (-u) = Real.exp (t - u) := by
@@ -131,7 +152,9 @@ theorem logBoundaryDensity_dilation (ε u : ℝ) (f : ℝ → ℝ) (t : ℝ) :
   rw [show Real.exp (-u) * (ε * Real.exp t) = ε * (Real.exp t * Real.exp (-u)) by ring]
   ring
 
-/-- Both logarithmic parametrizations preserve null sets under pullback.-/
+/-- Both logarithmic parametrizations preserve null sets under pullback.
+@isnad1 id=quasimea.1h1v.s5.1379749bffd8 from=translated src=- shape=da23c414 vocab=f012ba9d
+-/
 theorem quasiMeasurePreserving_signedExp (ε : ℝ) (hε : ε = 1 ∨ ε = -1) :
     Measure.QuasiMeasurePreserving (fun t : ℝ => ε * Real.exp t) volume volume := by
   have hac := (positive_real_weight_measureClass volume Real.exp Real.measurable_exp
@@ -150,14 +173,18 @@ theorem quasiMeasurePreserving_signedExp (ε : ℝ) (hε : ε = 1 ∨ ε = -1) :
         ⟨hm, h.trans Measure.absolutelyContinuous_restrict⟩)
 
 /-- The logarithmic density is independent almost everywhere of the chosen
-representative of the real boundary density.-/
+representative of the real boundary density.
+@isnad1 id=eventual.2h3v.s6.5481437d3235 from=translated src=- shape=370ad819 vocab=5b0b1935
+-/
 theorem logBoundaryDensity_congr_ae (ε : ℝ) (hε : ε = 1 ∨ ε = -1)
     {f g : ℝ → ℝ} (hfg : f =ᵐ[volume] g) :
     logBoundaryDensity ε f =ᵐ[volume] logBoundaryDensity ε g := by
   filter_upwards [(quasiMeasurePreserving_signedExp ε hε).ae hfg] with t ht
   exact congrArg (fun v => Real.exp t * v) ht
 
-/-- Nonnegative density representatives for equal measures agree almost everywhere.-/
+/-- Nonnegative density representatives for equal measures agree almost everywhere.
+@isnad1 id=eventual.5h2v.s6.affb95eb87f9 from=translated src=- shape=37fc43af vocab=a9eb184f
+-/
 theorem nonnegative_real_density_unique (f g : ℝ → ℝ)
     (hf : Measurable f) (hg : Measurable g) (hpf : ∀ x, 0 ≤ f x) (hpg : ∀ x, 0 ≤ g x)
     (heq : volume.withDensity (fun x => ENNReal.ofReal (f x)) =
@@ -168,7 +195,9 @@ theorem nonnegative_real_density_unique (f g : ℝ → ℝ)
   simpa only [ENNReal.toReal_one, one_mul] using hx
 
 /-- Any nonnegative density for a dilated boundary measure has the translated
-logarithmic density. This is an a.e. statement about actual pushforward measures.-/
+logarithmic density. This is an a.e. statement about actual pushforward measures.
+@isnad1 id=eventual.6h4v.s7.4881ce4d3ae8 from=translated src=- shape=2eadb9c9 vocab=d2e065ba
+-/
 theorem logBoundaryDensity_translation_of_map (ε : ℝ) (hε : ε = 1 ∨ ε = -1)
     (u : ℝ) (f g : ℝ → ℝ) (hf : Measurable f) (hg : Measurable g)
     (hpf : ∀ x, 0 ≤ f x) (hpg : ∀ x, 0 ≤ g x)
@@ -184,7 +213,9 @@ theorem logBoundaryDensity_translation_of_map (ε : ℝ) (hε : ε = 1 ∨ ε = 
     (Eventually.of_forall (logBoundaryDensity_dilation ε u f))
 
 /-- A real-boundary Poisson bound gives the logarithmic Poisson bound on either
-side; the center changes from x to -x on the negative side.-/
+side; the center changes from x to -x on the negative side.
+@isnad1 id=le.2h6v.s6.e205c1aa34ba from=translated src=- shape=503d1420 vocab=37d78b04
+-/
 theorem logBoundaryDensity_poisson_domination (ε : ℝ) (hε : ε = 1 ∨ ε = -1)
     (f : ℝ → ℝ) (x y B : ℝ) (hdom : ∀ u, f u ≤ B * halfPlanePoisson x y u) (t : ℝ) :
     logBoundaryDensity ε f t ≤ B * logPoissonProfile (ε * x) y t := by

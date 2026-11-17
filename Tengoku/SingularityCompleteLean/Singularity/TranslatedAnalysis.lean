@@ -21,7 +21,9 @@ namespace Singularity
 variable {J : Type*} [Fintype J]
 
 /-- Finite collections of exponentially decaying profiles have uniformly
-bounded overlap under translations by a fixed positive lattice spacing.-/
+bounded overlap under translations by a fixed positive lattice spacing.
+@isnad1 id=le.4h6v.s7.cf1b5b87123b from=translated src=- shape=c1e48faf vocab=e9c68f77
+-/
 theorem translated_profiles_overlap {τ : ℝ} (hτ : 0 < τ)
     (k : J → ℝ → ℝ) (C : J → ℝ)
     (hC : ∀ j, 0 ≤ C j) (hk : ∀ j t, 0 ≤ k j t)
@@ -71,7 +73,9 @@ def translatedDensityFamily {τ : ℝ} (hτ : 0 < τ)
   overlap s t := translated_profiles_overlap hτ k C hC hk hdecay s t
 
 /-- The resulting H has exactly the lattice-analysis coordinates, with
-no boundedness or ℓ²-output hypothesis left to assume.-/
+no boundedness or ℓ²-output hypothesis left to assume.
+@isnad1 id=eq.6h7v.s12.ed7ec433af9e from=translated src=- shape=06aa2674 vocab=72134b04
+-/
 theorem translated_analysis_apply {τ : ℝ} (hτ : 0 < τ)
     (k : J → ℝ → ℝ) (C : J → ℝ)
     (hC : ∀ j, 0 ≤ C j) (hk : ∀ j t, 0 ≤ k j t)
@@ -83,7 +87,9 @@ theorem translated_analysis_apply {τ : ℝ} (hτ : 0 < τ)
       ∫ t, (k j (t - (n : ℝ) * τ) : ℂ) * f t :=
   DensityFamily.analysis_apply _ _ _
 
-/-- The corresponding bound is uniform over all inputs.-/
+/-- The corresponding bound is uniform over all inputs.
+@isnad1 id=le.6h4v.s11.7c3cc5caa2c2 from=translated src=- shape=90f33bdc vocab=0a7e01d4
+-/
 theorem translated_analysis_norm_le {τ : ℝ} (hτ : 0 < τ)
     (k : J → ℝ → ℝ) (C : J → ℝ)
     (hC : ∀ j, 0 ≤ C j) (hk : ∀ j t, 0 ≤ k j t)

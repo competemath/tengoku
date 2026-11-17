@@ -37,7 +37,9 @@ def entrancePairRemainder (s : Finset Γ) (μ : Γ → ℝ) (A : Finset Γ) (las
 variable [MeasurableSpace Γ] [MeasurableMul Γ] [MeasurableSingletonClass Γ] [Countable Γ]
 
 omit [MeasurableSpace Γ] [MeasurableMul Γ] [MeasurableSingletonClass Γ] [Countable Γ] in
-/-- A transfer preserves an inequality known only on all its successor pairs.-/
+/-- A transfer preserves an inequality known only on all its successor pairs.
+@isnad1 id=le.4h10v.s9.3d58d5f04c05 from=translated src=- shape=e94ae23e vocab=9bda7e4d
+-/
 theorem entrancePairTransfer_monoOn (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (A : Finset Γ) (last : Bool) (S S' : Set (Γ × Γ))
     (hmove : ∀ p ∈ S, ∀ a : A, (if last then (p.1, (a : Γ)) else ((a : Γ), p.2)) ∈ S')
@@ -51,7 +53,9 @@ theorem entrancePairTransfer_monoOn (s : Finset Γ) (μ : Γ → ℝ)
   · exact firstEntranceKernel_nonneg s μ hμ (A : Set Γ) p.1 a
   · exact firstEntranceKernel_nonneg _ _ (reflected_jump_nonneg s μ hμ) (A : Set Γ) p.2 a
 
-/-- The Green kernel is exactly the retained part plus the discarded part.-/
+/-- The Green kernel is exactly the retained part plus the discarded part.
+@isnad1 id=eq.3h6v.s12.f72ad7a46cb5 from=translated src=- shape=6fefc625 vocab=021bc844
+-/
 theorem entrancePairTransfer_green_decomposition (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1)
     (hgap : spectralRadius ℂ (rightMarkov s μ) < 1) (A : Finset Γ) (last : Bool) (p : Γ × Γ) :
@@ -61,7 +65,9 @@ theorem entrancePairTransfer_green_decomposition (s : Finset Γ) (μ : Γ → �
   · exact walkGreen_finite_entrance_decomposition s μ hμ hmass hgap A p.1 p.2
   · exact walkGreen_finite_last_entrance_decomposition s μ hμ hmass hgap A p.1 p.2
 
-/-- Either orientation decreases the product of Green kernels through o.-/
+/-- Either orientation decreases the product of Green kernels through o.
+@isnad1 id=le.3h7v.s12.652c6768d759 from=translated src=- shape=9ed8fca4 vocab=f4480ce1
+-/
 theorem entrancePairTransfer_product_le (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1)
     (hgap : spectralRadius ℂ (rightMarkov s μ) < 1) (A : Finset Γ) (last : Bool)

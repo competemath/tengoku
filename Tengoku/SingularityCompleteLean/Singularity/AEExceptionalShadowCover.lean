@@ -18,7 +18,9 @@ open scoped Topology
 namespace Singularity
 
 /-- The adjustable exceptional-set cover only needs containment almost
-everywhere at each sufficiently late time, rather than pointwise containment.-/
+everywhere at each sufficiently late time, rather than pointwise containment.
+@isnad1 id=ex.4h6v.s8.da87cb3e3774 from=translated src=- shape=625049a1 vocab=816f2eb8
+-/
 theorem finite_eventual_cover_of_ae_adjustable_shadows
     {Γ B I : Type*} [Group Γ] [Countable Γ] [MeasurableSpace B]
     [TopologicalSpace B] [CompactSpace B] [RegularSpace B]

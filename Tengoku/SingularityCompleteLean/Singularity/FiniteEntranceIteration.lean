@@ -21,7 +21,9 @@ open scoped Classical MatrixGroups UpperHalfPlane
 namespace Singularity
 
 /-- Actual first/last-entry transfers give a factor-two product estimate once
-their local relative errors sum to at most one half.-/
+their local relative errors sum to at most one half.
+@isnad1 id=le.10h11v.s12.3e2b74268aea from=translated src=- shape=26122448 vocab=c0384850
+-/
 theorem finite_entrance_iteration_bound {Γ : Type*} [Group Γ]
     [MeasurableSpace Γ] [MeasurableMul Γ] [MeasurableSingletonClass Γ] [Countable Γ]
     (s : Finset Γ) (μ : Γ → ℝ) (hμ : ∀ g ∈ s, 0 ≤ μ g)
@@ -53,7 +55,9 @@ theorem finite_entrance_iteration_bound {Γ : Type*} [Group Γ]
   · exact hterminal
 
 /-- The terminal comparison is automatic when the left endpoint is within
-a fixed hyperbolic distance of the center; its constant is uniform in the right endpoint.-/
+a fixed hyperbolic distance of the center; its constant is uniform in the right endpoint.
+@isnad1 id=ex.3h4v.s16.cf08cb0debce from=translated src=- shape=3d481921 vocab=9720b51c
+-/
 theorem hyperbolic_near_center_green_product_bound (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
     [MeasurableSpace Γ] [MeasurableMul Γ] [MeasurableSingletonClass Γ]
     (s : Finset Γ) (μ : Γ → ℝ) (hpos : ∀ g ∈ s, 0 < μ g)
@@ -77,7 +81,9 @@ theorem hyperbolic_near_center_green_product_bound (Γ : Subgroup SL(2, ℝ)) [D
     _ = _ := by ring
 
 /-- With terminal pairs near the center, only the geometric reachability and
-detour-error conditions remain to obtain a uniform comparison.-/
+detour-error conditions remain to obtain a uniform comparison.
+@isnad1 id=ex.4h4v.s17.6a14f68cac35 from=translated src=- shape=c308e7fc vocab=f0dd6d89
+-/
 theorem hyperbolic_finite_entrance_iteration (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
     [MeasurableSpace Γ] [MeasurableMul Γ] [MeasurableSingletonClass Γ]
     (s : Finset Γ) (μ : Γ → ℝ) (hpos : ∀ g ∈ s, 0 < μ g)

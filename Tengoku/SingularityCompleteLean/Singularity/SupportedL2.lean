@@ -19,15 +19,21 @@ namespace Singularity
 
 variable {X : Type*} [MeasurableSpace X] [MeasurableSingletonClass X]
 
-/-- Subtraction of counting-measure L² vectors is pointwise.-/
+/-- Subtraction of counting-measure L² vectors is pointwise.
+@isnad1 id=eq.0h4v.s10.31d95088534f from=translated src=- shape=785f5914 vocab=7ff2beb2
+-/
 theorem counting_sub_apply (f g : GroupL2 X) (x : X) : (f - g) x = f x - g x := by
   simpa only [countingEvaluation_apply] using (countingEvaluation x).map_sub f g
 
-/-- Addition of counting-measure L² vectors is pointwise.-/
+/-- Addition of counting-measure L² vectors is pointwise.
+@isnad1 id=eq.0h4v.s10.9c874af15d0c from=translated src=- shape=785f5914 vocab=6812cc43
+-/
 theorem counting_add_apply (f g : GroupL2 X) (x : X) : (f + g) x = f x + g x := by
   simpa only [countingEvaluation_apply] using (countingEvaluation x).map_add f g
 
-/-- Scalar multiplication of counting-measure L² vectors is pointwise.-/
+/-- Scalar multiplication of counting-measure L² vectors is pointwise.
+@isnad1 id=eq.0h4v.s12.6c81b1cb36b3 from=translated src=- shape=5289a430 vocab=eff17fbe
+-/
 theorem counting_smul_apply (c : ℂ) (f : GroupL2 X) (x : X) : (c • f) x = c * f x := by
   simpa only [countingEvaluation_apply, smul_eq_mul] using (countingEvaluation x).map_smul c f
 
@@ -42,7 +48,9 @@ def supportedL2 (A : Set X) : Submodule ℂ (GroupL2 X) where
     intro c f hf x hx
     rw [counting_smul_apply, hf x hx, mul_zero]
 
-/-- Point evaluations are continuous, so the supported subspace is closed.-/
+/-- Point evaluations are continuous, so the supported subspace is closed.
+@isnad1 id=isclosed.0h2v.s11.e32a5fa6644e from=translated src=- shape=a9ff7ac3 vocab=d2db38d0
+-/
 theorem supportedL2_closed (A : Set X) : IsClosed (supportedL2 A : Set (GroupL2 X)) := by
   have he : (supportedL2 A : Set (GroupL2 X)) =
       ⋂ x : X, ⋂ (_ : x ∉ A), {f : GroupL2 X | countingEvaluation x f = 0} := by
@@ -53,6 +61,9 @@ theorem supportedL2_closed (A : Set X) : IsClosed (supportedL2 A : Set (GroupL2 
   exact isClosed_iInter (fun x => isClosed_iInter (fun _ =>
     isClosed_eq (countingEvaluation x).continuous continuous_const))
 
+/--
+@isnad1 id=complete.0h2v.s12.de44d809b4a7 from=translated src=- shape=665134f7 vocab=35a5836c
+-/
 instance supportedL2_completeSpace (A : Set X) : CompleteSpace (supportedL2 A) :=
   (supportedL2_closed A).completeSpace_coe
 
@@ -73,7 +84,9 @@ def supportedDelta (A : Set X) (a : A) : supportedL2 A :=
 def supportedRestriction (A : Set X) : GroupL2 X →L[ℂ] supportedL2 A :=
   (supportedInclusion A).toContinuousLinearMap.adjoint
 
-/-- Restriction keeps every coordinate in A.-/
+/-- Restriction keeps every coordinate in A.
+@isnad1 id=eq.0h4v.s14.6ca5d8a540b3 from=translated src=- shape=bffb5cc2 vocab=3a4e3b7a
+-/
 theorem supportedRestriction_apply (A : Set X) (f : GroupL2 X) (a : A) :
     ((supportedRestriction A f : supportedL2 A) : GroupL2 X) a = f a := by
   have h := (supportedInclusion A).toContinuousLinearMap.adjoint_inner_right
@@ -84,7 +97,9 @@ theorem supportedRestriction_apply (A : Set X) (f : GroupL2 X) (a : A) :
     inner ℂ (countingDelta (a : X)) f at h
   simpa only [countingDelta_inner] using h
 
-/-- The restriction of an included vector is that vector.-/
+/-- The restriction of an included vector is that vector.
+@isnad1 id=eq.0h3v.s14.9730f4952fb6 from=translated src=- shape=de65b856 vocab=9842347d
+-/
 theorem supportedRestriction_inclusion (A : Set X) (f : supportedL2 A) :
     supportedRestriction A (supportedInclusion A f) = f := by
   apply Subtype.ext
@@ -95,7 +110,9 @@ theorem supportedRestriction_inclusion (A : Set X) (f : supportedL2 A) :
   · exact supportedRestriction_apply A (f : GroupL2 X) ⟨x, hx⟩
   · rw [(supportedRestriction A (supportedInclusion A f)).property x hx, f.property x hx]
 
-/-- The compressed operator retains exactly the A-coordinates of T on supported inputs.-/
+/-- The compressed operator retains exactly the A-coordinates of T on supported inputs.
+@isnad1 id=eq.0h5v.s16.ff0bdcc6dba5 from=translated src=- shape=89db7234 vocab=d6c3a72d
+-/
 theorem supported_compression_apply (A : Set X) (T : GroupL2 X →L[ℂ] GroupL2 X)
     (f : supportedL2 A) (a : A) :
     ((compression (supportedInclusion A) T f : supportedL2 A) : GroupL2 X) a =

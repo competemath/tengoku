@@ -25,12 +25,16 @@ def hyperbolicOrbitBall (R : ℝ) : Finset Γ :=
   (finite_group_vertices_in_compact Γ UpperHalfPlane.I
     (isCompact_closedBall UpperHalfPlane.I R)).toFinset
 
-/-- Membership retains group multiplicity, even if the base point has a stabilizer.-/
+/-- Membership retains group multiplicity, even if the base point has a stabilizer.
+@isnad1 id=iff.0h3v.s11.895bca4475ec from=translated src=- shape=38f26fc4 vocab=174aa429
+-/
 theorem mem_hyperbolicOrbitBall (R : ℝ) (g : Γ) :
     g ∈ hyperbolicOrbitBall Γ R ↔ dist (g • UpperHalfPlane.I) UpperHalfPlane.I ≤ R := by
   simp [hyperbolicOrbitBall, Metric.mem_closedBall]
 
-/-- A grid fiber injects into the fixed radius-two ball by a group translation.-/
+/-- A grid fiber injects into the fixed radius-two ball by a group translation.
+@isnad1 id=le.0h3v.s12.44f14b56c8ca from=translated src=- shape=650f102e vocab=b1d17325
+-/
 theorem hyperbolicOrbitGrid_fiber_card (R : ℝ) (c : ℤ × ℤ) :
     ((hyperbolicOrbitBall Γ R).filter
       (fun g => hyperbolicGrid R (g • UpperHalfPlane.I) = c)).card ≤
@@ -59,7 +63,9 @@ theorem hyperbolicOrbitGrid_fiber_card (R : ℝ) (c : ℤ × ℤ) :
       exact mul_left_cancel he
   · simp only [Finset.not_nonempty_iff_eq_empty.mp hF, Finset.card_empty, Nat.zero_le]
 
-/-- A uniform exponential bound on group vertices in hyperbolic balls.-/
+/-- A uniform exponential bound on group vertices in hyperbolic balls.
+@isnad1 id=le.1h2v.s10.826dfcc8377a from=translated src=- shape=49101b93 vocab=6275e20d
+-/
 theorem hyperbolicOrbitBall_card {R : ℝ} (hR : 0 ≤ R) :
     ((hyperbolicOrbitBall Γ R).card : ℝ) ≤
       (49 * (hyperbolicOrbitBall Γ 2).card) * Real.exp (4 * R) := by

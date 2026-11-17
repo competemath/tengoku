@@ -16,7 +16,9 @@ variable {𝕜 E F : Type*} [NontriviallyNormedField 𝕜]
   [NormedAddCommGroup E] [NormedSpace 𝕜 E]
   [NormedAddCommGroup F] [NormedSpace 𝕜 F]
 
-/-- The lower-right Schur-complement identity in bounded-operator form.-/
+/-- The lower-right Schur-complement identity in bounded-operator form.
+@isnad1 id=eq.4h11v.s11.779844a8fb84 from=translated src=- shape=1bcc2535 vocab=7c5435fc
+-/
 theorem block_inverse_identity
     (C : E →L[𝕜] F) (D V : F →L[𝕜] F)
     (X M : E →L[𝕜] E) (Y : F →L[𝕜] E)

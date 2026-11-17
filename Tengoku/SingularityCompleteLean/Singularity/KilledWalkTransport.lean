@@ -17,7 +17,9 @@ namespace Singularity
 
 variable {Γ : Type*} [Group Γ]
 
-/-- Left multiplication transports the avoidance condition by preimage.-/
+/-- Left multiplication transports the avoidance condition by preimage.
+@isnad1 id=iff.0h7v.s6.2a2bb2c01ec1 from=translated src=- shape=0a010dae vocab=1b61fc58
+-/
 theorem avoidsBefore_left (s : Finset Γ) (A : Set Γ) (n : ℕ)
     (z x : Γ) (w : WalkWord s n) :
     avoidsBefore s A n (z * x) w ↔
@@ -27,7 +29,9 @@ theorem avoidsBefore_left (s : Finset Γ) (A : Set Γ) (n : ℕ)
   | succ n ih =>
     simp only [avoidsBefore, mul_assoc, ih, Set.mem_preimage]
 
-/-- The killed transition kernel is covariant under simultaneous left translation.-/
+/-- The killed transition kernel is covariant under simultaneous left translation.
+@isnad1 id=eq.0h8v.s6.09eb53ecdb0e from=translated src=- shape=3785d599 vocab=17cd6b10
+-/
 theorem killedWeight_left (s : Finset Γ) (μ : Γ → ℝ) (A : Set Γ)
     (n : ℕ) (z x y : Γ) :
     killedWeight s μ A n (z * x) (z * y) =
@@ -35,7 +39,9 @@ theorem killedWeight_left (s : Finset Γ) (μ : Γ → ℝ) (A : Set Γ)
   simp only [killedWeight, avoidsBefore_left, walkEndpoint_left,
     mul_left_cancel_iff, Set.mem_preimage]
 
-/-- Left translation also transports the full killed Green series.-/
+/-- Left translation also transports the full killed Green series.
+@isnad1 id=eq.0h7v.s6.9cdcf4d080a4 from=translated src=- shape=7c413d73 vocab=bc4653a1
+-/
 theorem killedGreen_left (s : Finset Γ) (μ : Γ → ℝ) (A : Set Γ)
     (z x y : Γ) :
     killedGreen s μ A (z * x) (z * y) =

@@ -19,7 +19,9 @@ namespace Singularity
 variable {Γ : Type*} [Group Γ] [MeasurableSpace Γ] [MeasurableSingletonClass Γ]
   [MeasurableMul Γ]
 
-/-- Transition probabilities are bounded by the operator norm of the corresponding power.-/
+/-- Transition probabilities are bounded by the operator norm of the corresponding power.
+@isnad1 id=le.0h6v.s14.257aa918d991 from=translated src=- shape=0da030dd vocab=5c8c8f52
+-/
 theorem transitionWeight_le_power_norm (s : Finset Γ) (μ : Γ → ℝ)
     (n : ℕ) (x y : Γ) : transitionWeight s μ n x y ≤ ‖rightMarkov s μ ^ n‖ := by
   have h := (countingEvaluation_le x ((rightMarkov s μ ^ n) (countingDelta y))).trans
@@ -27,7 +29,9 @@ theorem transitionWeight_le_power_norm (s : Finset Γ) (μ : Γ → ℝ)
   rw [rightMarkov_pow_delta, countingDelta_norm, mul_one, Complex.norm_real, Real.norm_eq_abs] at h
   exact (le_abs_self _).trans h
 
-/-- A union bound controls the probability of lying in any finite set at time n.-/
+/-- A union bound controls the probability of lying in any finite set at time n.
+@isnad1 id=le.2h6v.s14.cd802f31612e from=translated src=- shape=4063ebbe vocab=9e1e4b0f
+-/
 theorem walkPosition_finite_probability_le (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1)
     (x : Γ) (n : ℕ) (A : Finset Γ) :
@@ -44,7 +48,9 @@ theorem walkPosition_finite_probability_le (s : Finset Γ) (μ : Γ → ℝ)
     _ = _ := by simp [ENNReal.ofReal_mul, ENNReal.ofReal_natCast, nsmul_eq_mul]
 
 omit [MeasurableSingletonClass Γ] in
-/-- The spectral decay rate can be chosen strictly between zero and one.-/
+/-- The spectral decay rate can be chosen strictly between zero and one.
+@isnad1 id=ex.1h3v.s14.0591e56138d1 from=translated src=- shape=3cf52a51 vocab=1c299421
+-/
 theorem markov_positive_geometric_rate (s : Finset Γ) (μ : Γ → ℝ)
     (hgap : spectralRadius ℂ (rightMarkov s μ) < 1) :
     ∃ q : ℝ, 0 < q ∧ q < 1 ∧ ∀ᶠ n : ℕ in atTop, ‖rightMarkov s μ ^ n‖ ≤ q ^ n := by
@@ -53,7 +59,9 @@ theorem markov_positive_geometric_rate (s : Finset Γ) (μ : Γ → ℝ)
   filter_upwards [hb] with n hn
   exact hn.trans (pow_le_pow_left₀ hr0 (by linarith) n)
 
-/-- Summable real upper bounds imply summability of event probabilities in a finite measure.-/
+/-- Summable real upper bounds imply summability of event probabilities in a finite measure.
+@isnad1 id=eventual.2h4v.s6.c4140690f64b from=translated src=- shape=c719e013 vocab=a9bcf133
+-/
 theorem ae_eventually_notMem_of_real_bound {Ω : Type*} [MeasurableSpace Ω]
     (ρ : Measure Ω) [IsFiniteMeasure ρ] (A : ℕ → Set Ω) (b : ℕ → ℝ)
     (hb : Summable b) (hbound : ∀ᶠ n in atTop, ρ (A n) ≤ ENNReal.ofReal (b n)) :
@@ -71,7 +79,9 @@ theorem ae_eventually_notMem_of_real_bound {Ω : Type*} [MeasurableSpace Ω]
   rw [he]
   exact ENNReal.ofReal_ne_top
 
-/-- A growth bound on finite target sets combines with spectral decay to give escape.-/
+/-- A growth bound on finite target sets combines with spectral decay to give escape.
+@isnad1 id=eventual.7h8v.s14.614e662c87b8 from=translated src=- shape=861d02d3 vocab=8e2d5015
+-/
 theorem walk_ae_avoid_slow_sets (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1) (x : Γ)
     (A : ℕ → Finset Γ) (K : ℝ) (hK : 0 ≤ K) (a q : ℝ)

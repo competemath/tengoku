@@ -33,14 +33,18 @@ def entranceOperator : supportedL2 A →L[ℂ] GroupL2 Γ :=
   (green (rightMarkov s μ)).comp ((supportedInclusion A).toContinuousLinearMap.comp
     (walkGreenCompression s μ hμ hmass hgap A).symm.toContinuousLinearMap)
 
-/-- The operator takes the prescribed boundary values.-/
+/-- The operator takes the prescribed boundary values.
+@isnad1 id=eq.3h5v.s15.033676396051 from=translated src=- shape=4344fbf0 vocab=701ed7d9
+-/
 theorem entranceOperator_boundary (u : supportedL2 A) :
     supportedRestriction A (entranceOperator s μ hμ hmass hgap A u) = u := by
   change walkGreenCompression s μ hμ hmass hgap A
     ((walkGreenCompression s μ hμ hmass hgap A).symm u) = u
   exact ContinuousLinearEquiv.apply_symm_apply _ u
 
-/-- Its values are P-harmonic outside A.-/
+/-- Its values are P-harmonic outside A.
+@isnad1 id=eq.4h6v.s15.736dbf72bdff from=translated src=- shape=19a28013 vocab=5c93610b
+-/
 theorem entranceOperator_harmonic (u : supportedL2 A) {x : Γ} (hx : x ∉ A) :
     rightMarkov s μ (entranceOperator s μ hμ hmass hgap A u) x =
       entranceOperator s μ hμ hmass hgap A u x := by
@@ -54,7 +58,9 @@ theorem entranceOperator_harmonic (u : supportedL2 A) {x : Γ} (hx : x ∉ A) :
 
 variable [Countable Γ]
 
-/-- Uniqueness identifies the operator columns with the first-entrance path columns.-/
+/-- Uniqueness identifies the operator columns with the first-entrance path columns.
+@isnad1 id=eq.3h5v.s14.acb6b7b4d212 from=translated src=- shape=979b6e49 vocab=1e444d98
+-/
 theorem entranceOperator_delta (a : A) :
     entranceOperator s μ hμ hmass hgap A (supportedDelta A a) =
       firstEntranceColumn s μ hμ hgap A (a : Γ) := by
@@ -71,7 +77,9 @@ theorem entranceOperator_delta (a : A) :
   · intro x hx
     exact firstEntranceColumn_harmonic s μ hμ hgap A (a : Γ) hx
 
-/-- The matrix entries of the bounded operator are exactly F(x,a).-/
+/-- The matrix entries of the bounded operator are exactly F(x,a).
+@isnad1 id=eq.3h6v.s14.bcd6ed4113a5 from=translated src=- shape=0e2dfe83 vocab=40fa0603
+-/
 theorem entranceOperator_coefficient (a : A) (x : Γ) :
     entranceOperator s μ hμ hmass hgap A (supportedDelta A a) x =
       (firstEntranceKernel s μ A x a : ℂ) := by

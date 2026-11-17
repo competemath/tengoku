@@ -23,7 +23,9 @@ def countingDelta (x : X) : GroupL2 X :=
   indicatorConstLp 2 (measurableSet_singleton x)
     (by rw [Measure.count_singleton]; exact ENNReal.one_ne_top) (1 : ℂ)
 
-/-- Its representative is the characteristic function of the singleton.-/
+/-- Its representative is the characteristic function of the singleton.
+@isnad1 id=eq.0h3v.s8.e5416407eb0f from=translated src=- shape=90c92b6c vocab=84417e09
+-/
 theorem countingDelta_apply (x y : X) : countingDelta x y = if y = x then 1 else 0 := by
   classical
   have h := Measure.ae_count_iff.mp (indicatorConstLp_coeFn
@@ -31,12 +33,16 @@ theorem countingDelta_apply (x y : X) : countingDelta x y = if y = x then 1 else
     (hμs := by rw [Measure.count_singleton]; exact ENNReal.one_ne_top) (c := (1 : ℂ))) y
   simpa only [countingDelta, Set.indicator_apply, Set.mem_singleton_iff] using h
 
-/-- Unit point masses have norm one.-/
+/-- Unit point masses have norm one.
+@isnad1 id=eq.0h2v.s7.d7f7a313d941 from=translated src=- shape=afff437c vocab=f41b14bd
+-/
 theorem countingDelta_norm (x : X) : ‖countingDelta x‖ = 1 := by
   rw [countingDelta, norm_indicatorConstLp (by norm_num) (by norm_num)]
   simp [measureReal_def]
 
-/-- Pairing with the unit point mass is point evaluation.-/
+/-- Pairing with the unit point mass is point evaluation.
+@isnad1 id=eq.0h3v.s9.b1d46058e335 from=translated src=- shape=a6329bf5 vocab=b1d8ce90
+-/
 theorem countingDelta_inner (x : X) (f : GroupL2 X) : inner ℂ (countingDelta x) f = f x := by
   rw [countingDelta, L2.inner_indicatorConstLp_one, integral_singleton]
   simp [measureReal_def]
@@ -44,10 +50,15 @@ theorem countingDelta_inner (x : X) (f : GroupL2 X) : inner ℂ (countingDelta x
 /-- Evaluation is bounded, as required to pass from operator to kernel convergence.-/
 def countingEvaluation (x : X) : GroupL2 X →L[ℂ] ℂ := innerSL ℂ (countingDelta x)
 
+/--
+@isnad1 id=eq.0h3v.s11.9ec868df37d8 from=translated src=- shape=e2c1a974 vocab=4d1a6f50
+-/
 theorem countingEvaluation_apply (x : X) (f : GroupL2 X) : countingEvaluation x f = f x :=
   countingDelta_inner x f
 
-/-- The usual ℓ² point-evaluation estimate.-/
+/-- The usual ℓ² point-evaluation estimate.
+@isnad1 id=le.0h3v.s9.8952fbe7d4e3 from=translated src=- shape=52942256 vocab=ede6a248
+-/
 theorem countingEvaluation_le (x : X) (f : GroupL2 X) : ‖f x‖ ≤ ‖f‖ := by
   rw [← countingDelta_inner x f]
   simpa only [countingDelta_norm, one_mul] using norm_inner_le_norm (countingDelta x) f

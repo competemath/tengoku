@@ -26,7 +26,9 @@ def SeparatesJumpPaths (s : Finset Γ) (A : Set Γ) (x y : Γ) : Prop :=
   ∀ (n : ℕ) (w : WalkWord s n),
     ¬(avoidsBefore s A n x w ∧ walkEndpoint s n x w = y ∧ y ∉ A)
 
-/-- No path surviving killing at A can connect separated endpoints.-/
+/-- No path surviving killing at A can connect separated endpoints.
+@isnad1 id=eq.1h6v.s5.85d8f6cda80e from=translated src=- shape=bff23363 vocab=a442a68e
+-/
 theorem killedGreen_eq_zero_of_separator (s : Finset Γ) (μ : Γ → ℝ)
     (A : Set Γ) (x y : Γ) (hsep : SeparatesJumpPaths s A x y) :
     killedGreen s μ A x y = 0 := by
@@ -45,14 +47,18 @@ def killedGreenOperator : GroupL2 Γ →L[ℂ] GroupL2 Γ :=
   green (rightMarkov s μ) - (entranceOperator s μ hμ hmass hgap A).comp
     ((supportedRestriction A).comp (green (rightMarkov s μ)))
 
-/-- The operator vanishes on the boundary.-/
+/-- The operator vanishes on the boundary.
+@isnad1 id=eq.3h5v.s15.106ff580fbcc from=translated src=- shape=f60210e1 vocab=3afba02b
+-/
 theorem killedGreenOperator_boundary (f : GroupL2 Γ) :
     supportedRestriction A (killedGreenOperator s μ hμ hmass hgap A f) = 0 := by
   change supportedRestriction A (green (rightMarkov s μ) f -
     entranceOperator s μ hμ hmass hgap A (supportedRestriction A (green (rightMarkov s μ) f))) = 0
   rw [map_sub, entranceOperator_boundary, sub_self]
 
-/-- Outside A its defect under I-P is the original source.-/
+/-- Outside A its defect under I-P is the original source.
+@isnad1 id=eq.4h6v.s14.a0a0ada57461 from=translated src=- shape=32b8ab78 vocab=7fda5625
+-/
 theorem killedGreenOperator_defect (f : GroupL2 Γ) {x : Γ} (hx : x ∉ A) :
     (killedGreenOperator s μ hμ hmass hgap A f -
       rightMarkov s μ (killedGreenOperator s μ hμ hmass hgap A f)) x = f x := by
@@ -68,7 +74,9 @@ theorem killedGreenOperator_defect (f : GroupL2 Γ) {x : Γ} (hx : x ∉ A) :
 
 variable [Countable Γ]
 
-/-- Dirichlet uniqueness identifies the operator with the actual killed path columns.-/
+/-- Dirichlet uniqueness identifies the operator with the actual killed path columns.
+@isnad1 id=eq.3h5v.s13.3731cc8d3810 from=translated src=- shape=1d18fa70 vocab=ee83687a
+-/
 theorem killedGreenOperator_delta (y : Γ) :
     killedGreenOperator s μ hμ hmass hgap A (countingDelta y) =
       killedGreenColumn s μ hμ hgap A y := by
@@ -86,13 +94,17 @@ theorem killedGreenOperator_delta (y : Γ) :
     rw [killedGreenOperator_defect s μ hμ hmass hgap A _ hx,
       killedGreenColumn_defect s μ hμ hgap A y hx]
 
-/-- The killed operator has the expected path-counting coefficients.-/
+/-- The killed operator has the expected path-counting coefficients.
+@isnad1 id=eq.3h6v.s13.4b49fabb03d1 from=translated src=- shape=287d0cde vocab=6c9b7e16
+-/
 theorem killedGreenOperator_coefficient (x y : Γ) :
     killedGreenOperator s μ hμ hmass hgap A (countingDelta y) x =
       (killedGreen s μ A x y : ℂ) := by
   rw [killedGreenOperator_delta, killedGreenColumn_apply]
 
-/-- Green paths decompose into the killed part and the entrance contribution.-/
+/-- Green paths decompose into the killed part and the entrance contribution.
+@isnad1 id=eq.3h6v.s15.096adee67ec7 from=translated src=- shape=bf12b7d8 vocab=cc788dcd
+-/
 theorem walkGreen_entrance_decomposition (x y : Γ) :
     (walkGreen s μ x y : ℂ) = (killedGreen s μ A x y : ℂ) +
       entranceOperator s μ hμ hmass hgap A
@@ -104,7 +116,9 @@ theorem walkGreen_entrance_decomposition (x y : Γ) :
   rw [counting_sub_apply, ← walkGreen_eq_coefficient s μ hgap] at h
   exact sub_eq_iff_eq_add.mp h
 
-/-- The separator identity in bounded-operator form, without an unjustified matrix double sum.-/
+/-- The separator identity in bounded-operator form, without an unjustified matrix double sum.
+@isnad1 id=eq.4h6v.s16.4c35e48e1dc0 from=translated src=- shape=764ec7ba vocab=2e4d2d34
+-/
 theorem walkGreen_separator_factorization (x y : Γ) (hsep : SeparatesJumpPaths s A x y) :
     (walkGreen s μ x y : ℂ) =
       green (rightMarkov s μ) (supportedInclusion A
@@ -115,7 +129,9 @@ theorem walkGreen_separator_factorization (x y : Γ) (hsep : SeparatesJumpPaths 
   exact h
 
 /-- The separator formula as an ℓ² pairing of the Green row, M_A, and Green column.
-This is the form to which the already proved strong-limit theorem applies.-/
+This is the form to which the already proved strong-limit theorem applies.
+@isnad1 id=eq.4h6v.s17.fe67820aba25 from=translated src=- shape=3b107c4b vocab=4c77bd2a
+-/
 theorem walkGreen_separator_pairing (x y : Γ) (hsep : SeparatesJumpPaths s A x y) :
     (walkGreen s μ x y : ℂ) = inner ℂ
       (supportedRestriction A ((green (rightMarkov s μ)).adjoint (countingDelta x)))

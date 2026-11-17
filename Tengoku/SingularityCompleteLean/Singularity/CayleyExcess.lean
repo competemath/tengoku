@@ -16,7 +16,9 @@ open scoped UpperHalfPlane
 namespace Singularity
 
 /-- Disk separation is at most four times the exponential of minus half
-the hyperbolic triangle excess at i.-/
+the hyperbolic triangle excess at i.
+@isnad1 id=le.0h2v.s6.3b698fbfc2e2 from=translated src=- shape=ea482dc0 vocab=16c48c3e
+-/
 theorem halfPlaneCayley_dist_upper_of_excess (z w : ℍ) :
     dist (halfPlaneCayley z) (halfPlaneCayley w) ≤
       4 * Real.exp (-(dist z UpperHalfPlane.I + dist w UpperHalfPlane.I - dist z w) / 2) := by
@@ -40,7 +42,9 @@ theorem halfPlaneCayley_dist_upper_of_excess (z w : ℍ) :
       congr 2
       ring
 
-/-- Positive disk separation bounds the hyperbolic triangle excess.-/
+/-- Positive disk separation bounds the hyperbolic triangle excess.
+@isnad1 id=le.2h3v.s6.384d8c65ca11 from=translated src=- shape=809a32b7 vocab=019c821a
+-/
 theorem hyperbolic_excess_of_cayley_separation (z w : ℍ) (δ : ℝ) (hδ : 0 < δ)
     (hsep : δ ≤ dist (halfPlaneCayley z) (halfPlaneCayley w)) :
     dist z UpperHalfPlane.I + dist w UpperHalfPlane.I - dist z w ≤ 2 * Real.log (4 / δ) := by
@@ -52,7 +56,9 @@ theorem hyperbolic_excess_of_cayley_separation (z w : ℍ) (δ : ℝ) (hδ : 0 <
   rw [Real.log_div (by norm_num) hδ.ne']
   linarith
 
-/-- Moving the center by at most E increases triangle excess by at most 2E.-/
+/-- Moving the center by at most E increases triangle excess by at most 2E.
+@isnad1 id=le.2h7v.s7.03cdb33a9856 from=translated src=- shape=a837746b vocab=c2950499
+-/
 theorem triangle_excess_change_center {X : Type*} [PseudoMetricSpace X]
     (x y o o' : X) (D E : ℝ)
     (hexcess : dist x o + dist y o - dist x y ≤ D) (hcenter : dist o o' ≤ E) :

@@ -19,13 +19,18 @@ open Filter
 open scoped Topology Classical MatrixGroups UpperHalfPlane
 namespace Singularity
 
+/--
+@isnad1 id=eq.0h3v.s4.6c9d6311bd81 from=translated src=- shape=106da2c7 vocab=ce5f8970
+-/
 theorem finiteBoundaryRay_dist_eq (ξ a b : ℝ) :
     dist (finiteBoundaryRay ξ a) (finiteBoundaryRay ξ b) = |a-b| := by
   unfold finiteBoundaryRay
   rw [dist_smul, verticalHeightRay_dist_eq]
 
 /-- Earlier and later points of the chosen orbit ray have uniformly bounded
-triangle excess at the earlier point.-/
+triangle excess at the earlier point.
+@isnad1 id=le.1h4v.s13.d821d9001fe9 from=translated src=- shape=9c371ee5 vocab=c782910f
+-/
 theorem cocompactRaySequence_triangle_excess (Γ : Subgroup SL(2, ℝ))
     [CompactSpace (Quotient (MulAction.orbitRel Γ ℍ))] (ξ : ℝ) (m n : ℕ) (hmn : m ≤ n) :
     dist UpperHalfPlane.I (cocompactRaySequence Γ ξ m • UpperHalfPlane.I) +
@@ -50,7 +55,9 @@ theorem cocompactRaySequence_triangle_excess (Γ : Subgroup SL(2, ℝ))
   linarith
 
 /-- Finite Martin quotients at earlier points of an orbit ray have uniform
-reciprocal-Green bounds, independent of the ray direction and both times.-/
+reciprocal-Green bounds, independent of the ray direction and both times.
+@isnad1 id=ex.4h3v.s16.ce9677e44ef3 from=translated src=- shape=b40c299b vocab=59e605ed
+-/
 theorem cocompact_ray_martin_bounds (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
     [CompactSpace (Quotient (MulAction.orbitRel Γ ℍ))]
     [MeasurableSpace Γ] [MeasurableMul Γ] [MeasurableSingletonClass Γ]
@@ -82,7 +89,9 @@ theorem cocompact_ray_martin_bounds (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology
     nlinarith
   · exact (div_le_iff₀ hy).mpr hlower
 
-/-- The same ray bounds hold for every subsequential Martin limit.-/
+/-- The same ray bounds hold for every subsequential Martin limit.
+@isnad1 id=ex.4h3v.s16.43f1b090fbf3 from=translated src=- shape=d44a371b vocab=3ac503aa
+-/
 theorem cocompact_ray_martin_limit_bounds (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
     [CompactSpace (Quotient (MulAction.orbitRel Γ ℍ))]
     [MeasurableSpace Γ] [MeasurableMul Γ] [MeasurableSingletonClass Γ]

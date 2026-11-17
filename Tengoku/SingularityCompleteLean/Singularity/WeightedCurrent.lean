@@ -19,7 +19,9 @@ namespace Singularity
 
 variable {X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y]
 
-/-- Transporting a density by a measurable equivalence composes it with the inverse.-/
+/-- Transporting a density by a measurable equivalence composes it with the inverse.
+@isnad1 id=eq.1h5v.s7.18ee46949c78 from=translated src=- shape=4d9ff3eb vocab=9b6c0daf
+-/
 theorem map_withDensity_equiv (e : X ≃ᵐ Y) (μ : Measure X)
     (K : X → ℝ≥0∞) (hK : Measurable K) :
     Measure.map e (μ.withDensity K) =
@@ -31,7 +33,9 @@ theorem map_withDensity_equiv (e : X ≃ᵐ Y) (μ : Measure X)
     (setLIntegral_map (μ := μ) hA (hK.comp e.symm.measurable) e.measurable).symm
 
 /-- A weighted product is invariant when its transformed kernel cancels the two
-pushforward densities. The cancellation can hold almost everywhere.-/
+pushforward densities. The cancellation can hold almost everywhere.
+@isnad1 id=eq.6h9v.s8.22391588b36a from=translated src=- shape=4f4c8c12 vocab=157a2702
+-/
 theorem weightedProduct_invariant (e : X ≃ᵐ X) (f : Y ≃ᵐ Y)
     (μ : Measure X) (ν : Measure Y) [SFinite μ] [SFinite ν]
     (rX : X → ℝ≥0∞) (rY : Y → ℝ≥0∞) (K : X × Y → ℝ≥0∞)
@@ -51,7 +55,9 @@ theorem weightedProduct_invariant (e : X ≃ᵐ X) (f : Y ≃ᵐ Y)
   · exact hK.comp (e.prodCongr f).symm.measurable
 
 /-- For real kernels, the usual division covariance cancels positive real
-pushforward densities. No integrability or finite total mass is required.-/
+pushforward densities. No integrability or finite total mass is required.
+@isnad1 id=eq.8h9v.s8.3db1ffef87ff from=translated src=- shape=bc72ef43 vocab=9b7ed3a1
+-/
 theorem weightedProduct_invariant_of_div (e : X ≃ᵐ X) (f : Y ≃ᵐ Y)
     (μ : Measure X) (ν : Measure Y) [SFinite μ] [SFinite ν]
     (rX : X → ℝ) (rY : Y → ℝ) (K : X × Y → ℝ)

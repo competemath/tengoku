@@ -18,7 +18,9 @@ namespace Singularity
 /-- A special linear matrix sending the boundary coordinate ξ to infinity.-/
 def boundaryPoleMatrix (ξ : ℝ) : SL(2, ℝ) := ⟨!![0, -1; 1, -ξ], by simp⟩
 
-/-- Its imaginary part is the unnormalized Poisson expression.-/
+/-- Its imaginary part is the unnormalized Poisson expression.
+@isnad1 id=eq.0h2v.s7.5dabb67cf402 from=translated src=- shape=471c2297 vocab=b23cf968
+-/
 theorem boundaryPoleMatrix_smul_im (ξ : ℝ) (z : ℍ) :
     (boundaryPoleMatrix ξ • z).im = z.im / ((ξ - z.re) ^ 2 + z.im ^ 2) := by
   change ((boundaryPoleMatrix ξ • z : ℍ) : ℂ).im = _
@@ -30,10 +32,15 @@ theorem boundaryPoleMatrix_smul_im (ξ : ℝ) (z : ℍ) :
 def visualPoisson (z : ℍ) (ξ : ℝ) : ℝ :=
   (boundaryPoleMatrix ξ • z).im / (boundaryPoleMatrix ξ • UpperHalfPlane.I).im
 
+/--
+@isnad1 id=lt.0h2v.s4.9cb69f05325a from=translated src=- shape=787c1379 vocab=26da0848
+-/
 theorem visualPoisson_pos (z : ℍ) (ξ : ℝ) : 0 < visualPoisson z ξ :=
   div_pos (boundaryPoleMatrix ξ • z).im_pos (boundaryPoleMatrix ξ • UpperHalfPlane.I).im_pos
 
-/-- The explicit visual Poisson formula has value one at base point i.-/
+/-- The explicit visual Poisson formula has value one at base point i.
+@isnad1 id=eq.0h2v.s6.5098071af9da from=translated src=- shape=a84f3ddf vocab=5e946567
+-/
 theorem visualPoisson_eq (z : ℍ) (ξ : ℝ) :
     visualPoisson z ξ = z.im * (1 + ξ ^ 2) / ((ξ - z.re) ^ 2 + z.im ^ 2) := by
   unfold visualPoisson
@@ -42,7 +49,9 @@ theorem visualPoisson_eq (z : ℍ) (ξ : ℝ) :
   simp only [div_div_eq_mul_div, div_one]
   ring
 
-/-- Relate the visual kernel to the normalized real-boundary density.-/
+/-- Relate the visual kernel to the normalized real-boundary density.
+@isnad1 id=eq.0h2v.s5.80e860dc3d8f from=translated src=- shape=09c8970c vocab=50b8d803
+-/
 theorem visualPoisson_eq_density (z : ℍ) (ξ : ℝ) :
     visualPoisson z ξ = (Real.pi * (1 + ξ ^ 2)) * halfPlanePoisson z.re z.im ξ := by
   rw [visualPoisson_eq]
@@ -53,11 +62,16 @@ theorem visualPoisson_eq_density (z : ℍ) (ξ : ℝ) :
 def verticalHeightRay (w : ℍ) (t : ℝ) : ℍ :=
   ⟨⟨w.re, Real.exp t * w.im⟩, mul_pos (Real.exp_pos t) w.im_pos⟩
 
+/--
+@isnad1 id=eq.0h1v.s3.9a48fc3d70f6 from=translated src=- shape=bb0110a5 vocab=48179bdb
+-/
 theorem verticalHeightRay_zero (w : ℍ) : verticalHeightRay w 0 = w := by
   apply UpperHalfPlane.ext
   apply Complex.ext <;> simp [verticalHeightRay]
 
-/-- The parameter is hyperbolic distance from the starting point for t ≥ 0.-/
+/-- The parameter is hyperbolic distance from the starting point for t ≥ 0.
+@isnad1 id=eq.1h2v.s4.7b690cdea87a from=translated src=- shape=6abd514a vocab=ca4eddc4
+-/
 theorem verticalHeightRay_dist (w : ℍ) {t : ℝ} (ht : 0 ≤ t) :
     dist w (verticalHeightRay w t) = t := by
   rw [UpperHalfPlane.dist_of_re_eq (show w.re = (verticalHeightRay w t).re from rfl)]
@@ -70,17 +84,24 @@ theorem verticalHeightRay_dist (w : ℍ) {t : ℝ} (ht : 0 ≤ t) :
 def finiteBoundaryRay (ξ t : ℝ) : ℍ :=
   (boundaryPoleMatrix ξ)⁻¹ • verticalHeightRay (boundaryPoleMatrix ξ • UpperHalfPlane.I) t
 
+/--
+@isnad1 id=eq.0h1v.s3.6a51bee28e1f from=translated src=- shape=a62063d2 vocab=71598f44
+-/
 theorem finiteBoundaryRay_zero (ξ : ℝ) : finiteBoundaryRay ξ 0 = UpperHalfPlane.I := by
   simp [finiteBoundaryRay, verticalHeightRay_zero]
 
-/-- The finite-boundary ray also has unit-speed distance from i.-/
+/-- The finite-boundary ray also has unit-speed distance from i.
+@isnad1 id=eq.1h2v.s4.ce0560cca0e7 from=translated src=- shape=1a4eade0 vocab=3d01147a
+-/
 theorem finiteBoundaryRay_dist (ξ : ℝ) {t : ℝ} (ht : 0 ≤ t) :
     dist UpperHalfPlane.I (finiteBoundaryRay ξ t) = t := by
   rw [← dist_smul (boundaryPoleMatrix ξ) UpperHalfPlane.I (finiteBoundaryRay ξ t)]
   simpa [finiteBoundaryRay] using verticalHeightRay_dist (boundaryPoleMatrix ξ • UpperHalfPlane.I) ht
 
 /-- The radial exponent is bounded above by the visual Poisson kernel.
-The bound holds at every interior point, with no strip or limiting hypothesis.-/
+The bound holds at every interior point, with no strip or limiting hypothesis.
+@isnad1 id=le.0h3v.s4.cbd930cf3a02 from=translated src=- shape=a1ab7b1d vocab=d8f61fa9
+-/
 theorem finiteBoundaryRay_poisson_bound (ξ t : ℝ) (z : ℍ) :
     Real.exp (t - dist (finiteBoundaryRay ξ t) z) ≤ visualPoisson z ξ := by
   have h := UpperHalfPlane.im_div_exp_dist_le
@@ -99,7 +120,9 @@ theorem finiteBoundaryRay_poisson_bound (ξ t : ℝ) (z : ℍ) :
         Real.exp (dist (finiteBoundaryRay ξ t) z) := by ring
     _ ≤ _ := h
 
-/-- Moving a ray point by at most D costs only exp(2D) in the uniform bound.-/
+/-- Moving a ray point by at most D costs only exp(2D) in the uniform bound.
+@isnad1 id=le.2h5v.s6.d7a7400d1ee8 from=translated src=- shape=75a61ae9 vocab=24d991ee
+-/
 theorem near_finiteBoundaryRay_poisson_bound (ξ : ℝ) {t D : ℝ} (ht : 0 ≤ t)
     (x z : ℍ) (hx : dist x (finiteBoundaryRay ξ t) ≤ D) :
     Real.exp (dist x UpperHalfPlane.I - dist x z) ≤

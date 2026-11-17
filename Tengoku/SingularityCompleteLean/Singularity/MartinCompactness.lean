@@ -34,12 +34,16 @@ variable (s : Finset Γ) (μ : Γ → ℝ) (hpos : ∀ g ∈ s, 0 < μ g)
   (hgap : spectralRadius ℂ (rightMarkov s μ) < 1)
 
 include hpos hgen hgap in
-/-- The quotient equals one at the basepoint.-/
+/-- The quotient equals one at the basepoint.
+@isnad1 id=eq.3h5v.s12.7e4441edbf58 from=translated src=- shape=0821237c vocab=78540117
+-/
 theorem martinQuotient_base (o y : Γ) : martinQuotient s μ o o y = 1 :=
   div_self (walkGreen_ne_zero s μ hpos hgen hgap o y)
 
 include hpos hgen hgap in
-/-- Each coordinate has positive lower and finite upper bounds independent of the pole.-/
+/-- Each coordinate has positive lower and finite upper bounds independent of the pole.
+@isnad1 id=ex.3h5v.s12.d3212b1102a6 from=translated src=- shape=501cc837 vocab=496be02e
+-/
 theorem martinQuotient_bounds (o z : Γ) :
     ∃ L U : ℝ, 0 < L ∧ ∀ y, L ≤ martinQuotient s μ o z y ∧ martinQuotient s μ o z y ≤ U := by
   obtain ⟨C, hC, hCy⟩ := exists_greenHarnackConstant s μ hgap hpos hgen o z
@@ -54,7 +58,9 @@ theorem martinQuotient_bounds (o z : Γ) :
   · exact (div_le_iff₀ hden).mpr (hCy y)
 
 include hgap in
-/-- Away from its pole, the finite Martin quotient is P-harmonic.-/
+/-- Away from its pole, the finite Martin quotient is P-harmonic.
+@isnad1 id=eq.2h6v.s12.a31d072797f6 from=translated src=- shape=ca54c44f vocab=82982abf
+-/
 theorem martinQuotient_harmonic_off_pole (o z y : Γ) (hzy : z ≠ y) :
     martinQuotient s μ o z y = ∑ g ∈ s, μ g * martinQuotient s μ o (z * g) y := by
   unfold martinQuotient
@@ -62,7 +68,9 @@ theorem martinQuotient_harmonic_off_pole (o z y : Γ) (hzy : z ≠ y) :
   simp only [mul_div_assoc]
 
 include hpos hgen hgap in
-/-- Pointwise limits keep the basepoint normalization.-/
+/-- Pointwise limits keep the basepoint normalization.
+@isnad1 id=eq.4h8v.s12.0f4236a2bfb7 from=translated src=- shape=f25777b9 vocab=178142ab
+-/
 theorem martin_limit_base {α : Type*} {l : Filter α} [l.NeBot]
     (o : Γ) (y : α → Γ) (H : Γ → ℝ)
     (hpoint : ∀ z, Tendsto (fun n => martinQuotient s μ o z (y n)) l (𝓝 (H z))) : H o = 1 := by
@@ -71,7 +79,9 @@ theorem martin_limit_base {α : Type*} {l : Filter α} [l.NeBot]
   exact tendsto_nhds_unique h tendsto_const_nhds
 
 include hpos hgen hgap in
-/-- The lower Harnack bound makes every pointwise limit strictly positive.-/
+/-- The lower Harnack bound makes every pointwise limit strictly positive.
+@isnad1 id=lt.4h9v.s12.eea6f5fe970e from=translated src=- shape=cf4dbe68 vocab=178142ab
+-/
 theorem martin_limit_pos {α : Type*} {l : Filter α} [l.NeBot]
     (o : Γ) (y : α → Γ) (H : Γ → ℝ)
     (hpoint : ∀ z, Tendsto (fun n => martinQuotient s μ o z (y n)) l (𝓝 (H z))) (z : Γ) :
@@ -80,7 +90,9 @@ theorem martin_limit_pos {α : Type*} {l : Filter α} [l.NeBot]
   exact hL.trans_le (ge_of_tendsto (hpoint z) (Eventually.of_forall (fun n => (hb (y n)).1)))
 
 include hgap in
-/-- When the poles escape each fixed state, the pointwise limit is harmonic.-/
+/-- When the poles escape each fixed state, the pointwise limit is harmonic.
+@isnad1 id=eq.3h9v.s12.1bc56d554e0e from=translated src=- shape=05091843 vocab=07f789f7
+-/
 theorem martin_limit_harmonic {α : Type*} {l : Filter α} [l.NeBot]
     (o : Γ) (y : α → Γ) (H : Γ → ℝ)
     (hescape : ∀ z, ∀ᶠ n in l, z ≠ y n)
@@ -94,7 +106,9 @@ theorem martin_limit_harmonic {α : Type*} {l : Filter α} [l.NeBot]
   exact tendsto_nhds_unique ((hpoint z).congr' he) hs
 
 include hpos hgen hgap in
-/-- Any sequence of poles has a subsequence whose Martin quotients converge at every state.-/
+/-- Any sequence of poles has a subsequence whose Martin quotients converge at every state.
+@isnad1 id=ex.3h5v.s12.6caaf98ad93f from=translated src=- shape=e2e4485b vocab=cc92ceb1
+-/
 theorem martinQuotient_subsequence (o : Γ) (y : ℕ → Γ) :
     ∃ H : Γ → ℝ, H o = 1 ∧ (∀ z, 0 < H z) ∧
       ∃ φ : ℕ → ℕ, StrictMono φ ∧

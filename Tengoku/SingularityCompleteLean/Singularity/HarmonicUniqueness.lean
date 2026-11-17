@@ -16,7 +16,9 @@ open MeasureTheory
 
 namespace Singularity
 
-/-- Orthogonality of the defect of a contraction forces the vector to be fixed.-/
+/-- Orthogonality of the defect of a contraction forces the vector to be fixed.
+@isnad1 id=eq.2h3v.s9.4a6726e4ad32 from=translated src=- shape=351649ca vocab=8a5d1cf2
+-/
 theorem contraction_fixed_of_defect_inner_zero {E : Type*}
     [NormedAddCommGroup E] [InnerProductSpace ℂ E]
     (P : E →L[ℂ] E) (hP : ∀ v, ‖P v‖ ≤ ‖v‖) (v : E)
@@ -31,7 +33,9 @@ theorem contraction_fixed_of_defect_inner_zero {E : Type*}
 
 variable {X : Type*} [MeasurableSpace X] [MeasurableSingletonClass X]
 
-/-- The concrete counting-measure ℓ² Dirichlet problem has at most one solution.-/
+/-- The concrete counting-measure ℓ² Dirichlet problem has at most one solution.
+@isnad1 id=eq.4h4v.s14.448a8262be42 from=translated src=- shape=18003a1a vocab=399e2dd7
+-/
 theorem harmonic_zero_of_boundary_zero (P : GroupL2 X →L[ℂ] GroupL2 X)
     (hP : ∀ v, ‖P v‖ ≤ ‖v‖) (hgap : spectralRadius ℂ P < 1)
     (A : Set X) (f : GroupL2 X) (hA : ∀ x ∈ A, f x = 0)
@@ -49,7 +53,9 @@ theorem harmonic_zero_of_boundary_zero (P : GroupL2 X →L[ℂ] GroupL2 X)
   rw [hfixed, sub_self, map_zero] at hi
   exact hi.symm
 
-/-- Two ℓ² solutions with the same boundary values and exterior harmonicity coincide.-/
+/-- Two ℓ² solutions with the same boundary values and exterior harmonicity coincide.
+@isnad1 id=eq.5h5v.s14.1ef67d337960 from=translated src=- shape=15f9dcd1 vocab=399e2dd7
+-/
 theorem harmonic_eq_of_boundary_eq (P : GroupL2 X →L[ℂ] GroupL2 X)
     (hP : ∀ v, ‖P v‖ ≤ ‖v‖) (hgap : spectralRadius ℂ P < 1)
     (A : Set X) (f g : GroupL2 X) (hA : ∀ x ∈ A, f x = g x)
@@ -62,7 +68,9 @@ theorem harmonic_eq_of_boundary_eq (P : GroupL2 X →L[ℂ] GroupL2 X)
   · intro x hx
     rw [map_sub, counting_sub_apply, counting_sub_apply, hf x hx, hg x hx]
 
-/-- The same uniqueness statement for equal inhomogeneous exterior defects.-/
+/-- The same uniqueness statement for equal inhomogeneous exterior defects.
+@isnad1 id=eq.4h5v.s14.51e8cfa9a0d9 from=translated src=- shape=072a85e8 vocab=41290e07
+-/
 theorem dirichlet_eq_of_defect_eq (P : GroupL2 X →L[ℂ] GroupL2 X)
     (hP : ∀ v, ‖P v‖ ≤ ‖v‖) (hgap : spectralRadius ℂ P < 1)
     (A : Set X) (f g : GroupL2 X) (hA : ∀ x ∈ A, f x = g x)

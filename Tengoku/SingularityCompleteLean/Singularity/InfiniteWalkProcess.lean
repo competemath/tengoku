@@ -25,30 +25,43 @@ variable {Γ : Type*} [Group Γ]
 def walkPosition (s : Finset Γ) (x : Γ) (n : ℕ) (ω : ℕ → s) : Γ :=
   walkEndpoint s n x (walkPrefix s n ω)
 
+/--
+@isnad1 id=eq.0h4v.s5.a0954773eee1 from=translated src=- shape=eda8e540 vocab=8f8b72b3
+-/
 theorem walkPosition_zero (s : Finset Γ) (x : Γ) (ω : ℕ → s) : walkPosition s x 0 ω = x := rfl
 
-/-- First-step recursion for the actual infinite-path process.-/
+/-- First-step recursion for the actual infinite-path process.
+@isnad1 id=eq.0h5v.s6.541add83960f from=translated src=- shape=79b57c80 vocab=add015da
+-/
 theorem walkPosition_succ (s : Finset Γ) (x : Γ) (n : ℕ) (ω : ℕ → s) :
     walkPosition s x (n + 1) ω = walkPosition s (x * ω 0) n (fun k => ω (k + 1)) := rfl
 
-/-- Moving the initial point translates the entire sample path on the left.-/
+/-- Moving the initial point translates the entire sample path on the left.
+@isnad1 id=eq.0h6v.s6.6793a151e93c from=translated src=- shape=cd9ffb6c vocab=13f5df33
+-/
 theorem walkPosition_left (s : Finset Γ) (z x : Γ) (n : ℕ) (ω : ℕ → s) :
     walkPosition s (z * x) n ω = z * walkPosition s x n ω :=
   walkEndpoint_left s n z x _
 
 variable [MeasurableSpace Γ] [MeasurableSingletonClass Γ]
 
-/-- All time evaluations are measurable random variables.-/
+/-- All time evaluations are measurable random variables.
+@isnad1 id=measurab.0h4v.s6.f7649fc44772 from=translated src=- shape=c36717f0 vocab=3d59c713
+-/
 theorem measurable_walkPosition (s : Finset Γ) (x : Γ) (n : ℕ) :
     Measurable (walkPosition s x n) :=
   (measurable_of_countable (walkEndpoint s n x)).comp (measurable_walkPrefix s n)
 
-/-- Visiting a prescribed vertex at a prescribed time is a measurable event.-/
+/-- Visiting a prescribed vertex at a prescribed time is a measurable event.
+@isnad1 id=measurab.0h5v.s6.9af9416e7db1 from=translated src=- shape=52a3d918 vocab=6d57696a
+-/
 theorem measurableSet_walkPosition (s : Finset Γ) (x y : Γ) (n : ℕ) :
     MeasurableSet {ω : ℕ → s | walkPosition s x n ω = y} :=
   (measurableSet_singleton y).preimage (measurable_walkPosition s x n)
 
-/-- The time-n law of the infinite walk is exactly the finite endpoint law.-/
+/-- The time-n law of the infinite walk is exactly the finite endpoint law.
+@isnad1 id=eq.2h5v.s7.47f658118b51 from=translated src=- shape=f1c1edda vocab=c0d1da26
+-/
 theorem walkPosition_law (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1) (x : Γ) (n : ℕ) :
     Measure.map (walkPosition s x n) (infiniteWalkLaw s μ hμ hmass) =
@@ -58,7 +71,9 @@ theorem walkPosition_law (s : Finset Γ) (μ : Γ → ℝ)
     infiniteWalkLaw_prefix, PMF.toMeasure_map _ _ (measurable_of_countable _)]
   rfl
 
-/-- Transition weights are probabilities on the single infinite path space.-/
+/-- Transition weights are probabilities on the single infinite path space.
+@isnad1 id=eq.2h6v.s8.157387b51feb from=translated src=- shape=da9a9940 vocab=6dc8b332
+-/
 theorem walkPosition_probability (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1) (x y : Γ) (n : ℕ) :
     infiniteWalkLaw s μ hμ hmass {ω | walkPosition s x n ω = y} =
@@ -72,13 +87,18 @@ theorem walkPosition_probability (s : Finset Γ) (μ : Γ → ℝ)
 def walkVisitCount (s : Finset Γ) (x y : Γ) (ω : ℕ → s) : ℝ≥0∞ :=
   ∑' n : ℕ, {ω | walkPosition s x n ω = y}.indicator (fun _ => 1) ω
 
+/--
+@isnad1 id=measurab.0h4v.s6.b8d9993ae304 from=translated src=- shape=b2633d21 vocab=bed2c6b0
+-/
 theorem measurable_walkVisitCount (s : Finset Γ) (x y : Γ) :
     Measurable (walkVisitCount s x y) := by
   apply Measurable.tsum
   intro n
   exact measurable_const.indicator (measurableSet_walkPosition s x y n)
 
-/-- Tonelli identifies expected visits with the sum of time-n probabilities.-/
+/-- Tonelli identifies expected visits with the sum of time-n probabilities.
+@isnad1 id=eq.2h5v.s7.52db205cb35c from=translated src=- shape=277d052a vocab=fe8688d9
+-/
 theorem lintegral_walkVisitCount (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1) (x y : Γ) :
     ∫⁻ ω, walkVisitCount s x y ω ∂infiniteWalkLaw s μ hμ hmass =
@@ -94,7 +114,9 @@ theorem lintegral_walkVisitCount (s : Finset Γ) (μ : Γ → ℝ)
 
 variable [MeasurableMul Γ]
 
-/-- Almost surely the path eventually stops visiting any given group vertex.-/
+/-- Almost surely the path eventually stops visiting any given group vertex.
+@isnad1 id=eventual.3h5v.s12.38dfeef0515a from=translated src=- shape=6f577c40 vocab=ea6a8545
+-/
 theorem walkPosition_ae_eventually_ne (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1)
     (hgap : spectralRadius ℂ (rightMarkov s μ) < 1) (x y : Γ) :
@@ -105,14 +127,18 @@ theorem walkPosition_ae_eventually_ne (s : Finset Γ) (μ : Γ → ℝ)
     (walkGreen_summable s μ hgap x y)]
   exact ENNReal.ofReal_ne_top
 
-/-- Countability puts escape from every vertex on one common full-measure set.-/
+/-- Countability puts escape from every vertex on one common full-measure set.
+@isnad1 id=eventual.3h4v.s12.749381a157bc from=translated src=- shape=965670cb vocab=d120bbb1
+-/
 theorem walkPosition_ae_transient [Countable Γ] (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1)
     (hgap : spectralRadius ℂ (rightMarkov s μ) < 1) (x : Γ) :
     ∀ᵐ ω ∂infiniteWalkLaw s μ hμ hmass, ∀ y : Γ, ∀ᶠ n in atTop, walkPosition s x n ω ≠ y :=
   ae_all_iff.mpr (fun y => walkPosition_ae_eventually_ne s μ hμ hmass hgap x y)
 
-/-- Almost every path eventually leaves every finite subset of the group.-/
+/-- Almost every path eventually leaves every finite subset of the group.
+@isnad1 id=eventual.3h4v.s12.bed26c706880 from=translated src=- shape=07e89669 vocab=d120bbb1
+-/
 theorem walkPosition_ae_escape_finite [Countable Γ] (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1)
     (hgap : spectralRadius ℂ (rightMarkov s μ) < 1) (x : Γ) :

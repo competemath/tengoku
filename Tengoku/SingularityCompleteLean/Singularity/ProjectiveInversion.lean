@@ -24,15 +24,26 @@ variable {K : Type*} [NontriviallyNormedField K]
 def projectiveInv (p : OnePoint K) : OnePoint K :=
   p.elim (0 : K) (fun x => if x = 0 then ∞ else ((x⁻¹ : K) : OnePoint K))
 
+/--
+@isnad1 id=eq.0h1v.s5.aa95a5ad0518 from=translated src=- shape=e7958aaf vocab=0e82663d
+-/
 theorem projectiveInv_infty : projectiveInv (∞ : OnePoint K) = (0 : K) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.d6126d606e3f from=translated src=- shape=46e1e8e3 vocab=a525c065
+-/
 theorem projectiveInv_coe (x : K) :
     projectiveInv (x : OnePoint K) = if x = 0 then ∞ else ((x⁻¹ : K) : OnePoint K) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.9e66cf2aea8e from=translated src=- shape=1c56491a vocab=0e82663d
+-/
 theorem projectiveInv_zero : projectiveInv ((0 : K) : OnePoint K) = ∞ := by
   simp [projectiveInv_coe]
 
-/-- The extension is an involution at every projective point.-/
+/-- The extension is an involution at every projective point.
+@isnad1 id=involuti.0h1v.s3.ddd68afb461c from=translated src=- shape=aa7e0af4 vocab=65441933
+-/
 theorem projectiveInv_involutive : Function.Involutive (projectiveInv (K := K)) := by
   intro p
   cases p with
@@ -44,7 +55,9 @@ theorem projectiveInv_involutive : Function.Involutive (projectiveInv (K := K)) 
 
 variable [ProperSpace K]
 
-/-- Near zero, punctured field inversion tends to the projective point at infinity.-/
+/-- Near zero, punctured field inversion tends to the projective point at infinity.
+@isnad1 id=tendsto.0h1v.s6.3fbb2091d2d9 from=translated src=- shape=fa3de7e6 vocab=53ec113f
+-/
 theorem projectiveInv_tendsto_zero :
     Tendsto (fun x : K => projectiveInv (x : OnePoint K)) (nhdsWithin 0 {0}ᶜ)
       (nhds (∞ : OnePoint K)) := by
@@ -57,7 +70,9 @@ theorem projectiveInv_tendsto_zero :
   simp only [mem_compl_iff, mem_singleton_iff] at hx
   simp [projectiveInv_coe, hx]
 
-/-- Projective inversion is continuous on the whole compactification.-/
+/-- Projective inversion is continuous on the whole compactification.
+@isnad1 id=continuo.0h1v.s5.e9010f84f932 from=translated src=- shape=66b9f7f3 vocab=e8162083
+-/
 theorem continuous_projectiveInv : Continuous (projectiveInv (K := K)) := by
   rw [OnePoint.continuous_iff]
   constructor

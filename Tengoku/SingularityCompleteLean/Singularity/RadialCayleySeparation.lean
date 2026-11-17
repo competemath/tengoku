@@ -16,7 +16,9 @@ noncomputable section
 open scoped UpperHalfPlane
 namespace Singularity
 
-/-- Dilation translates the radial coordinate by its logarithmic factor.-/
+/-- Dilation translates the radial coordinate by its logarithmic factor.
+@isnad1 id=eq.0h2v.s7.9f0435e11f31 from=translated src=- shape=6b95c878 vocab=f18006ea
+-/
 theorem axisRadialCoordinate_dilation (t : ℝ) (z : ℍ) :
     axisRadialCoordinate (dilationMatrix t • z) = t + axisRadialCoordinate z := by
   rw [axisRadialCoordinate_eq_log_norm, dilationMatrix_smul, UpperHalfPlane.coe_pos_real_smul,
@@ -24,7 +26,9 @@ theorem axisRadialCoordinate_dilation (t : ℝ) (z : ℍ) :
     Real.log_mul (Real.exp_ne_zero t) (norm_pos_iff.mpr z.ne_zero).ne', Real.log_exp,
     axisRadialCoordinate_eq_log_norm]
 
-/-- In the upper half-plane, adding i increases norm and gives norm at least one.-/
+/-- In the upper half-plane, adding i increases norm and gives norm at least one.
+@isnad1 id=and.0h1v.s5.555d3b843107 from=translated src=- shape=0eeeeabd vocab=98fb2c6b
+-/
 theorem cayley_denominator_norm_bounds (z : ℍ) :
     1 ≤ ‖(z : ℂ)+Complex.I‖ ∧ ‖(z : ℂ)‖ ≤ ‖(z : ℂ)+Complex.I‖ := by
   have hi := Complex.abs_im_le_norm ((z : ℂ)+Complex.I)
@@ -38,7 +42,9 @@ theorem cayley_denominator_norm_bounds (z : ℍ) :
     linarith [z.im_pos]
   · nlinarith [norm_nonneg (z : ℂ), norm_nonneg ((z : ℂ)+Complex.I), z.im_pos]
 
-/-- Small Euclidean radius gives closeness to the disk endpoint -1.-/
+/-- Small Euclidean radius gives closeness to the disk endpoint -1.
+@isnad1 id=le.0h1v.s5.e8a2993578e0 from=translated src=- shape=75714247 vocab=19eb47e2
+-/
 theorem halfPlaneCayley_dist_neg_one_le (z : ℍ) :
     dist (halfPlaneCayley z) (-1 : ℂ) ≤ 2*‖(z : ℂ)‖ := by
   have he : halfPlaneCayley z - (-1 : ℂ) = (2*(z : ℂ))/((z : ℂ)+Complex.I) := by
@@ -51,7 +57,9 @@ theorem halfPlaneCayley_dist_neg_one_le (z : ℍ) :
     (show 0 ≤ 2*‖(z : ℂ)‖ by positivity)
   simpa only [mul_one] using hh
 
-/-- Large Euclidean radius gives closeness to the disk endpoint +1.-/
+/-- Large Euclidean radius gives closeness to the disk endpoint +1.
+@isnad1 id=le.0h1v.s5.c79bb09212e4 from=translated src=- shape=1a9d9f7f vocab=cceb9870
+-/
 theorem halfPlaneCayley_dist_one_le (z : ℍ) :
     dist (halfPlaneCayley z) (1 : ℂ) ≤ 2/‖(z : ℂ)‖ := by
   have he : halfPlaneCayley z - (1 : ℂ) = (-2*Complex.I)/((z : ℂ)+Complex.I) := by
@@ -63,7 +71,9 @@ theorem halfPlaneCayley_dist_one_le (z : ℍ) :
   exact div_le_div_of_nonneg_left (by norm_num) (norm_pos_iff.mpr z.ne_zero)
     (cayley_denominator_norm_bounds z).2
 
-/-- Radial regions on opposite sides of a fixed gap have uniform disk separation.-/
+/-- Radial regions on opposite sides of a fixed gap have uniform disk separation.
+@isnad1 id=le.2h2v.s5.1b78f74fd574 from=translated src=- shape=2403b44c vocab=a51c3fa8
+-/
 theorem radial_opposite_cayley_separation (z w : ℍ)
     (hz : axisRadialCoordinate z ≤ -Real.log 4)
     (hw : Real.log 4 ≤ axisRadialCoordinate w) :
@@ -87,7 +97,9 @@ theorem radial_opposite_cayley_separation (z w : ℍ)
   rw [hends, dist_comm (-1 : ℂ) (halfPlaneCayley z)] at ht
   linarith
 
-/-- Uniform bounded excess for arbitrary points of the two radial regions.-/
+/-- Uniform bounded excess for arbitrary points of the two radial regions.
+@isnad1 id=le.2h2v.s6.d71747a2c128 from=translated src=- shape=37e3ae57 vocab=f0fa9417
+-/
 theorem radial_opposite_triangle_excess (z w : ℍ)
     (hz : axisRadialCoordinate z ≤ -Real.log 4)
     (hw : Real.log 4 ≤ axisRadialCoordinate w) :
@@ -95,7 +107,9 @@ theorem radial_opposite_triangle_excess (z w : ℍ)
   simpa only [div_one] using hyperbolic_excess_of_cayley_separation z w 1 (by norm_num)
     (radial_opposite_cayley_separation z w hz hw)
 
-/-- The same radial-region excess bound at every point of the vertical axis.-/
+/-- The same radial-region excess bound at every point of the vertical axis.
+@isnad1 id=le.2h3v.s6.2b2f0c2d9aeb from=translated src=- shape=165384de vocab=32f6b729
+-/
 theorem radial_opposite_triangle_excess_at_axis (z w : ℍ) (t : ℝ)
     (hz : axisRadialCoordinate z ≤ t-Real.log 4)
     (hw : t+Real.log 4 ≤ axisRadialCoordinate w) :
@@ -114,7 +128,9 @@ theorem radial_opposite_triangle_excess_at_axis (z w : ℍ) (t : ℝ)
   simpa only [hd, dist_smul] using hh
 
 /-- Moving the center a bounded distance from the axis preserves the uniform
-excess bound for the entire radial regions.-/
+excess bound for the entire radial regions.
+@isnad1 id=le.3h5v.s7.6cacb2df2f68 from=translated src=- shape=ca0225d5 vocab=32f6b729
+-/
 theorem radial_opposite_triangle_excess_near_axis (z w o : ℍ) (t E : ℝ)
     (hz : axisRadialCoordinate z ≤ t-Real.log 4)
     (hw : t+Real.log 4 ≤ axisRadialCoordinate w)

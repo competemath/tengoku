@@ -26,12 +26,16 @@ def euclideanMatrixOperator (m n : ℕ) :
       (EuclideanSpace ℂ (Fin n) →L[ℂ] EuclideanSpace ℂ (Fin m)) :=
   (LinearMap.toContinuousLinearMap.toLinearMap.comp Matrix.toEuclideanLin.toLinearMap).toContinuousLinearMap
 
-/-- Its coordinate formula is ordinary matrix multiplication.-/
+/-- Its coordinate formula is ordinary matrix multiplication.
+@isnad1 id=eq.0h5v.s11.1aa1783a3f00 from=translated src=- shape=16a6c787 vocab=0144be8e
+-/
 theorem euclideanMatrixOperator_apply (m n : ℕ) (A : Matrix (Fin m) (Fin n) ℂ)
     (v : EuclideanSpace ℂ (Fin n)) (j : Fin m) :
     euclideanMatrixOperator m n A v j = ∑ l, A j l * v l := rfl
 
-/-- Measurable rectangular matrices have measurable unit kernel vectors.-/
+/-- Measurable rectangular matrices have measurable unit kernel vectors.
+@isnad1 id=ex.1h3v.s8.1f3ae11d5188 from=translated src=- shape=b0d5e671 vocab=a29ce845
+-/
 theorem measurable_rectangular_kernel {Ω : Type*} [MeasurableSpace Ω] {N : ℕ}
     (A : Ω → Matrix (Fin N) (Fin (N + 1)) ℂ)
     (hA : ∀ j l, Measurable (fun ω => A ω j l)) :
@@ -60,7 +64,9 @@ def frequencyMatrix {N : ℕ} (k : Fin N → RealLineL2) (q : ℝ) (ω : ℝ) :
     Matrix (Fin N) (Fin (N + 1)) ℂ :=
   fun j l => conj ((Lp.fourierTransformₗᵢ ℝ ℂ (k j) : ℝ → ℂ) (ω + (l : ℕ) * q))
 
-/-- The actual frequency-matrix entries are measurable.-/
+/-- The actual frequency-matrix entries are measurable.
+@isnad1 id=measurab.0h5v.s7.c72cc0a445f1 from=translated src=- shape=9901dbb9 vocab=c670d17a
+-/
 theorem frequencyMatrix_measurable {N : ℕ} (k : Fin N → RealLineL2) (q : ℝ)
     (j : Fin N) (l : Fin (N + 1)) : Measurable (fun ω => frequencyMatrix k q ω j l) := by
   have h := (Lp.stronglyMeasurable (Lp.fourierTransformₗᵢ ℝ ℂ (k j))).measurable
@@ -69,7 +75,9 @@ theorem frequencyMatrix_measurable {N : ℕ} (k : Fin N → RealLineL2) (q : ℝ
   exact Complex.continuous_conj.measurable.comp (h.comp hs)
 
 /-- The measurable frequency vector required by the finite-band construction.
-No measurable-selection hypothesis is left to assume.-/
+No measurable-selection hypothesis is left to assume.
+@isnad1 id=ex.0h3v.s12.6ba943f83096 from=translated src=- shape=c8abcce6 vocab=80e91b3b
+-/
 theorem exists_frequency_unit_kernel {N : ℕ} (k : Fin N → RealLineL2) (q : ℝ) :
     ∃ v : ℝ → EuclideanSpace ℂ (Fin (N + 1)),
       Measurable v ∧ (∀ ω, ‖v ω‖ = 1) ∧

@@ -15,7 +15,9 @@ noncomputable section
 open scoped Classical MatrixGroups UpperHalfPlane
 namespace Singularity
 
-/-- Exponential-coordinate formula for distance to the normalized axis.-/
+/-- Exponential-coordinate formula for distance to the normalized axis.
+@isnad1 id=eq.0h2v.s6.adf9c6c6cda0 from=translated src=- shape=6c9853b6 vocab=bb9e100d
+-/
 theorem cosh_dist_axis (z : ℍ) (t : ℝ) :
     Real.cosh (dist z (verticalHeightRay UpperHalfPlane.I t)) =
       ((z.re ^ 2 + z.im ^ 2) * Real.exp (-t) + Real.exp t) / (2 * z.im) := by
@@ -26,7 +28,9 @@ theorem cosh_dist_axis (z : ℍ) (t : ℝ) :
   field_simp
   ring
 
-/-- Two endpoint cosines control the cosine at any axis parameter.-/
+/-- Two endpoint cosines control the cosine at any axis parameter.
+@isnad1 id=le.0h3v.s6.ab5a2167dace from=translated src=- shape=b5d6edc7 vocab=862db8ca
+-/
 theorem cosh_dist_axis_interpolation (z : ℍ) (t u : ℝ) :
     Real.cosh (dist z (verticalHeightRay UpperHalfPlane.I u)) ≤
       Real.exp (-u) * Real.cosh (dist z UpperHalfPlane.I) +
@@ -47,7 +51,9 @@ theorem cosh_dist_axis_interpolation (z : ℍ) (t u : ℝ) :
       div_le_div_of_nonneg_right hn (by positivity)
     _ = _ := by ring
 
-/-- The balanced parameter is on the segment and is close to the middle point.-/
+/-- The balanced parameter is on the segment and is close to the middle point.
+@isnad1 id=other.1h2v.s7.4d16bfe40505 from=translated src=- shape=6d70939b vocab=b1ded16d
+-/
 theorem axis_balanced_point (z : ℍ) (t : ℝ) (ht : 0 ≤ t) :
     let u := (dist z UpperHalfPlane.I - dist z (verticalHeightRay UpperHalfPlane.I t) + t) / 2
     u ∈ Set.Icc 0 t ∧
@@ -85,7 +91,9 @@ theorem axis_balanced_point (z : ℍ) (t : ℝ) (ht : 0 ≤ t) :
     _ = Real.exp (e + Real.log 4) := by rw [Real.exp_add, Real.exp_log (by norm_num : (0:ℝ)<4)]; ring
 
 /-- Every bounded-excess triple has a point on its constructed endpoint
-segment at distance at most D/2 + log 4 from the middle point.-/
+segment at distance at most D/2 + log 4 from the middle point.
+@isnad1 id=ex.1h4v.s9.f585b23a6752 from=translated src=- shape=dc290b47 vocab=e8367b85
+-/
 theorem exists_axis_point_of_triangle_excess (x o y : ℍ) (D : ℝ)
     (hexcess : dist x o + dist y o - dist x y ≤ D) :
     ∃ (g : SL(2, ℝ)) (u : ℝ),

@@ -20,14 +20,18 @@ variable {Γ : Type*} [Group Γ] [MeasurableSpace Γ] [MeasurableMul Γ]
   [MeasurableSingletonClass Γ] [Countable Γ]
 
 omit [MeasurableSpace Γ] [MeasurableMul Γ] [MeasurableSingletonClass Γ] [Countable Γ] in
-/-- Reflection preserves nonnegativity, also for zero-weight support entries.-/
+/-- Reflection preserves nonnegativity, also for zero-weight support entries.
+@isnad1 id=le.2h4v.s6.fa72489f3153 from=translated src=- shape=42e56dc1 vocab=7e46987d
+-/
 theorem reflected_jump_nonneg (s : Finset Γ) (μ : Γ → ℝ) (hμ : ∀ g ∈ s, 0 ≤ μ g) :
     ∀ g ∈ s.map ⟨Inv.inv, inv_injective⟩, 0 ≤ μ g⁻¹ := by
   intro g hg
   obtain ⟨a, ha, rfl⟩ := Finset.mem_map.mp hg
   simpa only [Function.Embedding.coeFn_mk, inv_inv] using hμ a ha
 
-/-- The reflected first-entry identity is the last-entry identity for G.-/
+/-- The reflected first-entry identity is the last-entry identity for G.
+@isnad1 id=eq.3h6v.s12.75c43e38732a from=translated src=- shape=ecf32dc9 vocab=fcfd6010
+-/
 theorem walkGreen_finite_last_entrance_decomposition (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1)
     (hgap : spectralRadius ℂ (rightMarkov s μ) < 1) (A : Finset Γ) (x y : Γ) :
@@ -40,7 +44,9 @@ theorem walkGreen_finite_last_entrance_decomposition (s : Finset Γ) (μ : Γ �
     ((reflected_jump_mass s μ).trans hmass) (reflectedMarkov_spectral_gap s μ hgap) A y x
   simpa only [reflected_walkGreen s μ hgap] using h
 
-/-- The last-entry sum is bounded by the original Green kernel.-/
+/-- The last-entry sum is bounded by the original Green kernel.
+@isnad1 id=le.3h6v.s12.665cc502186e from=translated src=- shape=7713124e vocab=0e9079d1
+-/
 theorem finite_last_entrance_green_sum_le (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1)
     (hgap : spectralRadius ℂ (rightMarkov s μ) < 1) (A : Finset Γ) (x y : Γ) :

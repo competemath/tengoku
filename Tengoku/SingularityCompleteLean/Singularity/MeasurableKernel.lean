@@ -27,7 +27,9 @@ variable {E F : Type*}
   [SecondCountableTopology E]
 
 omit [CompleteSpace F] in
-/-- Some vector in a fixed dense sequence has nonzero kernel projection.-/
+/-- Some vector in a fixed dense sequence has nonzero kernel projection.
+@isnad1 id=ex.1h3v.s8.1c09fa98ab58 from=translated src=- shape=b3bf8ab5 vocab=4f87991b
+-/
 theorem kernelProjection_denseSeq_nonzero (B : E →L[ℂ] F)
     (hker : ∃ v, v ≠ 0 ∧ B v = 0) :
     ∃ n : ℕ, kernelProjection B (denseSeq E n) ≠ 0 := by
@@ -46,7 +48,9 @@ variable [MeasurableSpace E] [BorelSpace E]
   {Ω : Type*} [MeasurableSpace Ω]
 
 /-- A measurable family with nontrivial kernels admits a measurable unit
-kernel section. The proof applies even when the kernel dimension jumps.-/
+kernel section. The proof applies even when the kernel dimension jumps.
+@isnad1 id=ex.2h4v.s9.fd6324fe0e15 from=translated src=- shape=f0f5ca3d vocab=da17d663
+-/
 theorem exists_measurable_unit_kernel {B : Ω → E →L[ℂ] F}
     (hB : Measurable B) (hker : ∀ ω, ∃ v, v ≠ 0 ∧ B ω v = 0) :
     ∃ v : Ω → E, Measurable v ∧ (∀ ω, ‖v ω‖ = 1) ∧ (∀ ω, B ω (v ω) = 0) := by
@@ -72,7 +76,9 @@ theorem exists_measurable_unit_kernel {B : Ω → E →L[ℂ] F}
     rw [map_smul, hw_ker, smul_zero]
 
 /-- Rank-nullity discharges the nonzero-kernel hypothesis for a measurable
-family whose domain has strictly larger finite dimension than its codomain.-/
+family whose domain has strictly larger finite dimension than its codomain.
+@isnad1 id=ex.2h4v.s9.11dcffe6a767 from=translated src=- shape=75dc10a7 vocab=1f3c6edb
+-/
 theorem exists_measurable_unit_kernel_of_finrank_lt
     [FiniteDimensional ℂ E] [FiniteDimensional ℂ F]
     (hdim : Module.finrank ℂ F < Module.finrank ℂ E)

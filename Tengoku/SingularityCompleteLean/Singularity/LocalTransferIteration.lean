@@ -17,7 +17,9 @@ open scoped Classical
 
 namespace Singularity
 
-/-- Local positive transfers accumulate at most the sum of their relative errors.-/
+/-- Local positive transfers accumulate at most the sum of their relative errors.
+@isnad1 id=le.9h9v.s9.16f841243760 from=translated src=- shape=5eca3d07 vocab=233049d1
+-/
 theorem local_transfer_error_bound {ι : Type*} (N : ℕ)
     (T : ℕ → (ι → ℝ) →ₗ[ℝ] (ι → ℝ)) (S : ℕ → Set ι) (ε : ℕ → ℝ)
     (G P : ι → ℝ) (C : ℝ) (hC : 0 ≤ C) (hG : ∀ z, 0 ≤ G z)
@@ -57,7 +59,9 @@ theorem local_transfer_error_bound {ι : Type*} (N : ℕ)
     rw [heq]
     nlinarith
 
-/-- Total relative loss at most one half gives a uniform factor-two comparison.-/
+/-- Total relative loss at most one half gives a uniform factor-two comparison.
+@isnad1 id=le.9h9v.s9.86b7d42426c4 from=translated src=- shape=2a358e0e vocab=2cf056e9
+-/
 theorem local_transfer_half_error_bound {ι : Type*} (N : ℕ)
     (T : ℕ → (ι → ℝ) →ₗ[ℝ] (ι → ℝ)) (S : ℕ → Set ι) (ε : ℕ → ℝ)
     (G P : ι → ℝ) (C : ℝ) (hC : 0 ≤ C) (hG : ∀ z, 0 ≤ G z)

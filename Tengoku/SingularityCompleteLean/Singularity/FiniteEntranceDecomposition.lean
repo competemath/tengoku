@@ -16,7 +16,9 @@ open scoped Classical
 
 namespace Singularity
 
-/-- Every vector supported on a finite set is the sum of its point-mass coordinates.-/
+/-- Every vector supported on a finite set is the sum of its point-mass coordinates.
+@isnad1 id=eq.0h3v.s14.7bd0248d5a5e from=translated src=- shape=9371428e vocab=9e8a344d
+-/
 theorem supportedL2_eq_sum_delta {X : Type*} [MeasurableSpace X] [MeasurableSingletonClass X]
     (A : Finset X) (u : supportedL2 (A : Set X)) :
     u = ∑ a : A, (u : GroupL2 X) a • supportedDelta (A : Set X) a := by
@@ -57,7 +59,9 @@ theorem supportedL2_eq_sum_delta {X : Type*} [MeasurableSpace X] [MeasurableSing
 variable {Γ : Type*} [Group Γ] [MeasurableSpace Γ] [MeasurableMul Γ]
   [MeasurableSingletonClass Γ] [Countable Γ]
 
-/-- A finite first-entrance operator acts by its actual path-counting kernel.-/
+/-- A finite first-entrance operator acts by its actual path-counting kernel.
+@isnad1 id=eq.3h6v.s14.a578b7dbf800 from=translated src=- shape=9bd86fab vocab=7b5da0ee
+-/
 theorem entranceOperator_finite_apply (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1)
     (hgap : spectralRadius ℂ (rightMarkov s μ) < 1) (A : Finset Γ)
@@ -75,7 +79,9 @@ theorem entranceOperator_finite_apply (s : Finset Γ) (μ : Γ → ℝ)
   rw [map_smul, map_smul]
   simp only [countingEvaluation_apply, smul_eq_mul, entranceOperator_coefficient]
 
-/-- The exact finite scalar first-entrance decomposition.-/
+/-- The exact finite scalar first-entrance decomposition.
+@isnad1 id=eq.3h6v.s12.c087d3e8c8b6 from=translated src=- shape=3d45b6a1 vocab=5c3df160
+-/
 theorem walkGreen_finite_entrance_decomposition (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1)
     (hgap : spectralRadius ℂ (rightMarkov s μ) < 1) (A : Finset Γ) (x y : Γ) :
@@ -88,7 +94,9 @@ theorem walkGreen_finite_entrance_decomposition (s : Finset Γ) (μ : Γ → ℝ
   push_cast
   simpa only [mul_comm] using h
 
-/-- Stopping on a finite set can only decrease the Green mass at a target.-/
+/-- Stopping on a finite set can only decrease the Green mass at a target.
+@isnad1 id=le.3h6v.s12.1c20fd2e37e9 from=translated src=- shape=729e083e vocab=59696778
+-/
 theorem finite_entrance_green_sum_le (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1)
     (hgap : spectralRadius ℂ (rightMarkov s μ) < 1) (A : Finset Γ) (x y : Γ) :

@@ -21,7 +21,9 @@ variable (s : Finset Γ) (μ : Γ → ℝ) (hμ : ∀ g ∈ s, 0 ≤ μ g)
   (hgap : spectralRadius ℂ (rightMarkov s μ) < 1)
 
 include hμ hgap in
-/-- Taking a specified first jump gives a lower bound for the Green function.-/
+/-- Taking a specified first jump gives a lower bound for the Green function.
+@isnad1 id=le.3h6v.s12.aaa7541a7234 from=translated src=- shape=f5c4304a vocab=6249fba3
+-/
 theorem walkGreen_jump_le (x y : Γ) {g : Γ} (hg : g ∈ s) :
     μ g * walkGreen s μ (x * g) y ≤ walkGreen s μ x y := by
   have hs : μ g * walkGreen s μ (x * g) y ≤
@@ -32,7 +34,9 @@ theorem walkGreen_jump_le (x y : Γ) {g : Γ} (hg : g ∈ s) :
   linarith
 
 include hμ hgap in
-/-- Following a fixed word and then any continuation gives the path Harnack inequality.-/
+/-- Following a fixed word and then any continuation gives the path Harnack inequality.
+@isnad1 id=le.2h7v.s12.5e926bdaae40 from=translated src=- shape=29702d67 vocab=04e8f307
+-/
 theorem walkGreen_word_le (n : ℕ) (w : WalkWord s n) (x y : Γ) :
     walkWeight s μ n w * walkGreen s μ (walkEndpoint s n x w) y ≤ walkGreen s μ x y := by
   induction n generalizing x with
@@ -45,7 +49,9 @@ theorem walkGreen_word_le (n : ℕ) (w : WalkWord s n) (x y : Γ) :
       (walkGreen_jump_le s μ hμ hgap x y w.1.property)
 
 include hgap in
-/-- Irreducibility gives comparison of Green rows uniformly in the target.-/
+/-- Irreducibility gives comparison of Green rows uniformly in the target.
+@isnad1 id=ex.3h5v.s12.5196b53888c3 from=translated src=- shape=4bc397f9 vocab=eb1f89b7
+-/
 theorem exists_greenHarnackConstant (hpos : ∀ g ∈ s, 0 < μ g)
     (hgen : Submonoid.closure (s : Set Γ) = ⊤) (x z : Γ) :
     ∃ C : ℝ, 0 < C ∧ ∀ y, walkGreen s μ z y ≤ C * walkGreen s μ x y := by

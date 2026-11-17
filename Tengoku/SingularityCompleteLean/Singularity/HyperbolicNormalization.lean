@@ -16,7 +16,9 @@ open scoped Classical MatrixGroups
 namespace Singularity
 
 /-- A trace-greater-than-two matrix with nonzero lower-left entry is an SL conjugate
-of a positive dilation.-/
+of a positive dilation.
+@isnad1 id=ex.2h1v.s9.0b99a597398b from=translated src=- shape=e10b6176 vocab=0cdccb20
+-/
 theorem exists_dilation_conjugacy_of_lowerLeft_ne_zero (g : SL(2, ℝ))
     (hT : 2 < g 0 0 + g 1 1) (hc : g 1 0 ≠ 0) :
     ∃ t : ℝ, 0 < t ∧ ∃ B : SL(2, ℝ), g = B * dilationMatrix t * B⁻¹ := by

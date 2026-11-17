@@ -20,7 +20,9 @@ def liouvilleKernel (t : ℝ) : ℝ := Real.exp (-t) / (1 + Real.exp (-t)) ^ 2
 
 def liouvilleKernelC (t : ℝ) : ℂ := liouvilleKernel t
 
-/-- The familiar hyperbolic-secant expression for the same kernel.-/
+/-- The familiar hyperbolic-secant expression for the same kernel.
+@isnad1 id=eq.0h1v.s6.c7ddecef52ab from=translated src=- shape=367d307d vocab=20b2fb29
+-/
 theorem liouvilleKernel_eq_cosh (t : ℝ) :
     liouvilleKernel t = 1 / (4 * Real.cosh (t / 2) ^ 2) := by
   have he : Real.exp (-t) = (Real.exp (t / 2))⁻¹ ^ 2 := by
@@ -33,7 +35,9 @@ theorem liouvilleKernel_eq_cosh (t : ℝ) :
   field_simp
   ring
 
-/-- The identity which permits the substitution x = exp(s).-/
+/-- The identity which permits the substitution x = exp(s).
+@isnad1 id=eq.0h2v.s6.af3cb7537af5 from=translated src=- shape=862aea81 vocab=134981a7
+-/
 theorem gammaDensity_autocorrelation_integrand (t s : ℝ) :
     gammaDensity s * gammaDensity (s - t) =
       Real.exp (-t) * (Real.exp s *
@@ -54,12 +58,16 @@ theorem gammaDensity_autocorrelation_integrand (t s : ℝ) :
           (Real.exp (-Real.exp s) * Real.exp (-(Real.exp s * Real.exp (-t)))))) := by ring
     _ = _ := by rw [he']
 
-/-- Reflection reverses the frequency in the ordinary Fourier transform.-/
+/-- Reflection reverses the frequency in the ordinary Fourier transform.
+@isnad1 id=eq.0h1v.s6.afd4a9c3e92f from=translated src=- shape=8110978f vocab=212b588a
+-/
 theorem fourier_reflected_gammaDensity (ξ : ℝ) :
     𝓕 (fun t => gammaDensityC (-t)) ξ = 𝓕 gammaDensityC (-ξ) := by
   exact Real.fourier_comp_linearIsometry (LinearIsometryEquiv.neg ℝ) gammaDensityC ξ
 
-/-- Euler's reflection formula evaluates the Gamma product explicitly.-/
+/-- Euler's reflection formula evaluates the Gamma product explicitly.
+@isnad1 id=eq.0h1v.s5.9ce915baca54 from=translated src=- shape=149f719f vocab=ee00492b
+-/
 theorem gamma_product_liouvilleMultiplier (ω : ℝ) :
     Complex.Gamma (1 - (ω : ℂ) * Complex.I) *
       Complex.Gamma (1 + (ω : ℂ) * Complex.I) = (liouvilleMultiplier ω : ℂ) := by

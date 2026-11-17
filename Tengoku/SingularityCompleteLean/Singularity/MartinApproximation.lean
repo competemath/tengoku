@@ -29,7 +29,9 @@ variable (s : Finset Γ) (μ : Γ → ℝ) (hpos : ∀ g ∈ s, 0 < μ g)
 
 omit [MeasurableSpace Γ] [MeasurableMul Γ] [MeasurableSingletonClass Γ] in
 include hgen in
-/-- Every abstract boundary point has a finite-pole approximation escaping every state.-/
+/-- Every abstract boundary point has a finite-pole approximation escaping every state.
+@isnad1 id=ex.1h5v.s7.3b874d22d419 from=translated src=- shape=b2937aca vocab=0d1db57d
+-/
 theorem martinBoundary_escaping_approximation (o : Γ) (ξ : martinBoundary s μ o) :
     ∃ y : ℕ → Γ, (∀ z, ∀ᶠ n in atTop, z ≠ y n) ∧
       ∀ z, Tendsto (fun n => martinQuotient s μ o z (y n)) atTop (𝓝 (martinBoundaryKernel s μ o z ξ)) := by
@@ -51,7 +53,9 @@ theorem martinBoundary_escaping_approximation (o : Γ) (ξ : martinBoundary s μ
   exact hn (by rw [← hzn])
 
 include hpos hgen hgap in
-/-- A pointwise harmonic limit of finite columns belongs to the actual Martin boundary.-/
+/-- A pointwise harmonic limit of finite columns belongs to the actual Martin boundary.
+@isnad1 id=mem.5h8v.s12.75041963edff from=translated src=- shape=3e9b1a12 vocab=8925f8bc
+-/
 theorem martin_limit_mem_boundary {α : Type*} {l : Filter α} [l.NeBot]
     (o : Γ) (y : α → Γ) (H : Γ → ℝ)
     (hescape : ∀ z, ∀ᶠ n in l, z ≠ y n)

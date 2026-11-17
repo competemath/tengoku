@@ -19,7 +19,9 @@ open scoped Classical MatrixGroups UpperHalfPlane
 namespace Singularity
 
 /-- Constructed shrinking orbit balls give a uniform product comparison for
-all admissible axis tubes and middle points within E of the axis origin.-/
+all admissible axis tubes and middle points within E of the axis origin.
+@isnad1 id=ex.6h4v.s16.a9dca3755249 from=translated src=- shape=94283c05 vocab=622e664d
+-/
 theorem axis_green_product_bound_of_orbit_cover (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
     [CompactSpace (Quotient (MulAction.orbitRel Γ ℍ))]
     [MeasurableSpace Γ] [MeasurableMul Γ] [MeasurableSingletonClass Γ]
@@ -80,7 +82,9 @@ theorem axis_green_product_bound_of_orbit_cover (Γ : Subgroup SL(2, ℝ)) [Disc
     exact axisPairSet_terminal Γ g E T (p N) (hp N).1 (hp N).2 hstop o ho xy hxy
 
 /-- Uniform Ancona upper bound when the middle orbit point lies within K of
-a point on the axis segment joining the two endpoints.-/
+a point on the axis segment joining the two endpoints.
+@isnad1 id=ex.4h4v.s16.deb45cfb4705 from=translated src=- shape=6541cae5 vocab=21e8f8c6
+-/
 theorem cocompact_axis_green_product_bound (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
     [CompactSpace (Quotient (MulAction.orbitRel Γ ℍ))]
     [MeasurableSpace Γ] [MeasurableMul Γ] [MeasurableSingletonClass Γ]

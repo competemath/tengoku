@@ -24,7 +24,9 @@ namespace Singularity
 
 variable {J : Type*}
 
-/-- Exponential square envelopes are summable on any finite collection of integer orbits.-/
+/-- Exponential square envelopes are summable on any finite collection of integer orbits.
+@isnad1 id=summable.1h3v.s6.caa41aed116a from=translated src=- shape=7659ac62 vocab=ad2fee23
+-/
 theorem summable_orbit_exp_sq [Fintype J] {τ : ℝ} (hτ : 0 < τ) (C : J → ℝ) :
     Summable (fun p : ℤ × J => (C p.2 * Real.exp (-τ * |(p.1 : ℝ)|)) ^ 2) := by
   apply (summable_prod_of_nonneg (fun p => sq_nonneg _)).mpr
@@ -44,6 +46,9 @@ def cyclicSupportedCoordinates (a : Γ) (b : J → Γ) (ha : ¬IsOfFinOrder a)
   supportedCoordinatesEquiv (cyclicOrbitEquiv a b ha hb)
 
 omit [MeasurableMul Γ] in
+/--
+@isnad1 id=eq.2h7v.s14.7660592998bc from=translated src=- shape=4a24efd6 vocab=22999715
+-/
 theorem cyclicSupportedCoordinates_apply (a : Γ) (b : J → Γ) (ha : ¬IsOfFinOrder a)
     (hb : ∀ j k (n : ℤ), a ^ n * b j = b k → j = k)
     (f : supportedL2 (cyclicOrbitUnion a b)) (n : ℤ) (j : J) :

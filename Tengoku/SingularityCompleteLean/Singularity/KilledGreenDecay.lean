@@ -21,7 +21,9 @@ variable {Γ : Type*} [Group Γ] [MeasurableSpace Γ] [MeasurableSingletonClass 
   [MeasurableMul Γ]
 
 omit [MeasurableSingletonClass Γ] in
-/-- A spectral gap gives a uniform geometric bound on every operator power.-/
+/-- A spectral gap gives a uniform geometric bound on every operator power.
+@isnad1 id=ex.1h3v.s14.36eaccfeb972 from=translated src=- shape=014e17f5 vocab=da61f4a5
+-/
 theorem markov_uniform_geometric_rate (s : Finset Γ) (μ : Γ → ℝ)
     (hgap : spectralRadius ℂ (rightMarkov s μ) < 1) :
     ∃ C q : ℝ, 0 < C ∧ 0 < q ∧ q < 1 ∧ ∀ n : ℕ, ‖rightMarkov s μ ^ n‖ ≤ C * q ^ n := by
@@ -42,7 +44,9 @@ theorem markov_uniform_geometric_rate (s : Finset Γ) (μ : Γ → ℝ)
     exact hm.trans (by dsimp [C]; linarith)
 
 /-- Excluding every length below N bounds the killed Green kernel by the
-geometric tail starting at N.-/
+geometric tail starting at N.
+@isnad1 id=le.6h9v.s14.552a77f796cc from=translated src=- shape=284e7dbf vocab=8f847772
+-/
 theorem killedGreen_le_geometric_tail (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hgap : spectralRadius ℂ (rightMarkov s μ) < 1)
     (C q : ℝ) (hq : 0 ≤ q) (hq1 : q < 1)
@@ -72,7 +76,9 @@ theorem killedGreen_le_geometric_tail (s : Finset Γ) (μ : Γ → ℝ)
     _ = C * q ^ N / (1 - q) := by
       rw [tsum_mul_left, tsum_geometric_of_lt_one hq hq1, div_eq_mul_inv]
 
-/-- The real cutoff version, using the first integer at least T.-/
+/-- The real cutoff version, using the first integer at least T.
+@isnad1 id=le.7h9v.s14.d282e21c4f42 from=translated src=- shape=aaed3365 vocab=22af71b7
+-/
 theorem killedGreen_le_real_cutoff (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hgap : spectralRadius ℂ (rightMarkov s μ) < 1)
     (C q : ℝ) (hC : 0 ≤ C) (hq : 0 < q) (hq1 : q < 1)

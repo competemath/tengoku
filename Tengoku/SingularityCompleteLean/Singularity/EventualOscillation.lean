@@ -17,7 +17,9 @@ open Set Filter
 namespace Singularity
 
 /-- Simultaneous lower and upper comparisons along one sequence force a bounded
-real function to be constant.-/
+real function to be constant.
+@isnad1 id=eq.5h6v.s7.4dcb8c6c3bd3 from=translated src=- shape=638c2bbe vocab=7327537d
+-/
 theorem constant_of_eventual_oscillation_comparison {X : Type*} [Nonempty X]
     (r : X → ℝ) (y : ℕ → X) (c : ℝ) (hc : 0 < c)
     (hbelow : BddBelow (range r)) (habove : BddAbove (range r))

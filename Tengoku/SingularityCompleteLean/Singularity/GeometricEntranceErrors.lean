@@ -16,7 +16,9 @@ open scoped Classical MatrixGroups UpperHalfPlane
 
 namespace Singularity
 
-/-- One geometric threshold controls the discarded mass in either orientation.-/
+/-- One geometric threshold controls the discarded mass in either orientation.
+@isnad1 id=ex.3h6v.s17.262c7f68ef68 from=translated src=- shape=6028f79a vocab=e8886793
+-/
 theorem entrancePairRemainder_relative_bound (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
     [CompactSpace (Quotient (MulAction.orbitRel Γ ℍ))]
     [MeasurableSpace Γ] [MeasurableMul Γ] [MeasurableSingletonClass Γ]

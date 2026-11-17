@@ -22,18 +22,28 @@ variable {K : Type*} [NontriviallyNormedField K]
 def projectiveAffineHomeomorph (a : K) (ha : a ≠ 0) (b : K) : OnePoint K ≃ₜ OnePoint K :=
   ((Homeomorph.mulLeft₀ a ha).trans (Homeomorph.addRight b)).onePointCongr
 
+/--
+@isnad1 id=eq.1h4v.s7.33941b542d80 from=translated src=- shape=525a1377 vocab=bb99f336
+-/
 theorem projectiveAffine_coe (a : K) (ha : a ≠ 0) (b x : K) :
     projectiveAffineHomeomorph a ha b (x : OnePoint K) = ((a * x + b : K) : OnePoint K) := rfl
 
+/--
+@isnad1 id=eq.1h3v.s7.67411949bd3b from=translated src=- shape=c5605643 vocab=ed259f8a
+-/
 theorem projectiveAffine_infty (a : K) (ha : a ≠ 0) (b : K) :
     projectiveAffineHomeomorph a ha b ∞ = ∞ := rfl
 
-/-- Nonvanishing of the inversion coefficient in the non-affine case.-/
+/-- Nonvanishing of the inversion coefficient in the non-affine case.
+@isnad1 id=ne.1h2v.s9.293bf5fa70e4 from=translated src=- shape=9ef7b1f6 vocab=2dd12c11
+-/
 theorem projectiveMobius_scale_ne_zero (g : GL (Fin 2) K) (hc : g 1 0 ≠ 0) :
     -(Matrix.det (g : Matrix (Fin 2) (Fin 2) K)) / (g 1 0 * g 1 0) ≠ 0 :=
   div_ne_zero (neg_ne_zero.mpr g.det_ne_zero) (mul_ne_zero hc hc)
 
-/-- A Möbius transformation with nonzero lower-left entry factors through inversion.-/
+/-- A Möbius transformation with nonzero lower-left entry factors through inversion.
+@isnad1 id=eq.1h3v.s10.9429f0e2ec24 from=translated src=- shape=6f4fe302 vocab=da9957a5
+-/
 theorem projectiveMobius_factor (g : GL (Fin 2) K) (hc : g 1 0 ≠ 0) (p : OnePoint K) :
     g • p = projectiveAffineHomeomorph
       (-(Matrix.det (g : Matrix (Fin 2) (Fin 2) K)) / (g 1 0 * g 1 0))
@@ -59,7 +69,9 @@ theorem projectiveMobius_factor (g : GL (Fin 2) K) (hc : g 1 0 ≠ 0) (p : OnePo
 
 variable [ProperSpace K]
 
-/-- Every algebraic GL(2) transformation of the projective line is continuous.-/
+/-- Every algebraic GL(2) transformation of the projective line is continuous.
+@isnad1 id=continuo.0h2v.s8.04b2934e64c7 from=translated src=- shape=5c2a5f4a vocab=9b681c5d
+-/
 theorem continuous_projectiveMobius (g : GL (Fin 2) K) :
     Continuous (fun p : OnePoint K => g • p) := by
   by_cases hc : g 1 0 = 0

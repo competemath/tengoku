@@ -16,7 +16,9 @@ open Filter
 open scoped Topology MatrixGroups UpperHalfPlane
 namespace Singularity
 
-/-- The standard section acts by the affine map z ↦ w.im*z+w.re.-/
+/-- The standard section acts by the affine map z ↦ w.im*z+w.re.
+@isnad1 id=eq.0h2v.s7.be6e27e55695 from=translated src=- shape=2c4bd345 vocab=98ab05d2
+-/
 theorem toSL2R_smul_coe_affine (w z : ℍ) :
     ((w.toSL2R • z : ℍ) : ℂ) = (w.im : ℂ) * (z : ℂ) + (w.re : ℂ) := by
   have hs : (Real.sqrt w.im : ℂ) ≠ 0 := by
@@ -30,7 +32,9 @@ theorem toSL2R_smul_coe_affine (w z : ℍ) :
   field_simp
   linear_combination (z : ℂ) * hs2
 
-/-- The affine section carries the vertical axis to the vertical ray through w.-/
+/-- The affine section carries the vertical axis to the vertical ray through w.
+@isnad1 id=eq.0h2v.s7.acc68839eb40 from=translated src=- shape=896d67a3 vocab=63f662e9
+-/
 theorem toSL2R_smul_axis (w : ℍ) (t : ℝ) :
     w.toSL2R • verticalHeightRay UpperHalfPlane.I t = verticalHeightRay w t := by
   apply UpperHalfPlane.ext
@@ -41,19 +45,25 @@ theorem toSL2R_smul_axis (w : ℍ) (t : ℝ) :
 def finiteBoundaryRadialChart (ξ : ℝ) : SL(2, ℝ) :=
   (boundaryPoleMatrix ξ • UpperHalfPlane.I).toSL2R⁻¹ * boundaryPoleMatrix ξ
 
-/-- Ray time is exactly the axis parameter in this chart.-/
+/-- Ray time is exactly the axis parameter in this chart.
+@isnad1 id=eq.0h2v.s7.e50795e40315 from=translated src=- shape=75c4ea12 vocab=ba183287
+-/
 theorem finiteBoundaryRadialChart_ray (ξ t : ℝ) :
     finiteBoundaryRadialChart ξ • finiteBoundaryRay ξ t = verticalHeightRay UpperHalfPlane.I t := by
   unfold finiteBoundaryRadialChart finiteBoundaryRay
   rw [mul_smul, smul_inv_smul, ← toSL2R_smul_axis, inv_smul_smul]
 
-/-- Complex formula for the pole transformation.-/
+/-- Complex formula for the pole transformation.
+@isnad1 id=eq.0h2v.s7.6e8d7a5968fd from=translated src=- shape=3d6b2c5d vocab=7791b65e
+-/
 theorem boundaryPoleMatrix_coe (ξ : ℝ) (z : ℍ) :
     ((boundaryPoleMatrix ξ • z : ℍ) : ℂ) = -((z : ℂ) - (ξ : ℂ))⁻¹ := by
   rw [UpperHalfPlane.coe_specialLinearGroup_apply]
   simp [boundaryPoleMatrix, sub_eq_add_neg, div_eq_mul_inv]
 
-/-- Every finite-boundary approach escapes in norm after the pole transformation.-/
+/-- Every finite-boundary approach escapes in norm after the pole transformation.
+@isnad1 id=tendsto.1h4v.s7.a66d1ee5c6e4 from=translated src=- shape=3b7c701c vocab=7b13bcb6
+-/
 theorem boundaryPoleMatrix_norm_tendsto {α : Type*} {l : Filter α}
     (ξ : ℝ) (z : α → ℍ) (hz : Tendsto (fun n => (z n : ℂ)) l (𝓝 (ξ : ℂ))) :
     Tendsto (fun n => ‖((boundaryPoleMatrix ξ • z n : ℍ) : ℂ)‖) l atTop := by
@@ -71,7 +81,9 @@ theorem boundaryPoleMatrix_norm_tendsto {α : Type*} {l : Filter α}
   simpa only [boundaryPoleMatrix_coe, norm_neg, norm_inv, Function.comp_def] using ht
 
 /-- Arbitrary, including tangential, approaches to ξ go to radial +infinity
-in the ray-normalized chart.-/
+in the ray-normalized chart.
+@isnad1 id=tendsto.1h4v.s7.11d7c143b69a from=translated src=- shape=70362a6b vocab=72708431
+-/
 theorem finiteBoundaryRadialChart_tendsto {α : Type*} {l : Filter α}
     (ξ : ℝ) (z : α → ℍ) (hz : Tendsto (fun n => (z n : ℂ)) l (𝓝 (ξ : ℂ))) :
     Tendsto (fun n => axisRadialCoordinate (finiteBoundaryRadialChart ξ • z n)) l atTop := by

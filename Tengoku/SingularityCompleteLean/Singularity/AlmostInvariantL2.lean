@@ -23,7 +23,9 @@ variable {Γ : Type*} [Group Γ] [MeasurableSpace Γ] [MeasurableMul Γ]
   [MeasurableSingletonClass Γ]
 
 omit [MeasurableSingletonClass Γ] in
-/-- A lower energy bound on unit vectors is equivalent to its homogeneous form.-/
+/-- A lower energy bound on unit vectors is equivalent to its homogeneous form.
+@isnad1 id=le.1h5v.s9.fdf3256baec9 from=translated src=- shape=ffb13784 vocab=d9137a3f
+-/
 theorem markovEnergy_lower_bound_of_unit (s : Finset Γ) (μ : Γ → ℝ) (c : ℝ)
     (hunit : ∀ f : GroupL2 Γ, ‖f‖ = 1 → c ≤ markovEnergy s μ f) :
     ∀ f : GroupL2 Γ, c * ‖f‖ ^ 2 ≤ markovEnergy s μ f := by
@@ -40,7 +42,9 @@ theorem markovEnergy_lower_bound_of_unit (s : Finset Γ) (μ : Γ → ℝ) (c : 
   exact (le_div_iff₀ (sq_pos_of_pos hn)).mp h
 
 omit [MeasurableSingletonClass Γ] in
-/-- Vanishing energy forces vanishing displacement under each positive-weight jump.-/
+/-- Vanishing energy forces vanishing displacement under each positive-weight jump.
+@isnad1 id=tendsto.4h5v.s11.0531188874fe from=translated src=- shape=d5a38a9d vocab=cf605c0b
+-/
 theorem tendsto_translation_of_energy (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (f : ℕ → GroupL2 Γ)
     (he : Tendsto (fun n => markovEnergy s μ (f n)) atTop (nhds 0))
@@ -58,7 +62,9 @@ theorem tendsto_translation_of_energy (s : Finset Γ) (μ : Γ → ℝ)
   simpa only [Function.comp_def, Real.sqrt_sq (norm_nonneg _), Real.sqrt_zero] using h
 
 omit [MeasurableSingletonClass Γ] in
-/-- Almost invariance under a generating support propagates to its full semigroup.-/
+/-- Almost invariance under a generating support propagates to its full semigroup.
+@isnad1 id=tendsto.2h4v.s12.461acb1f43ad from=translated src=- shape=a83c7391 vocab=162ed79d
+-/
 theorem tendsto_translation_of_mem_closure (s : Finset Γ) (f : ℕ → GroupL2 Γ)
     (hs : ∀ g ∈ s, Tendsto (fun n => ‖rightTranslation g (f n) - f n‖) atTop (nhds 0))
     {g : Γ} (hg : g ∈ Submonoid.closure (s : Set Γ)) :

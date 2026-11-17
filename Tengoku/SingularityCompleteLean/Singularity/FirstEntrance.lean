@@ -33,7 +33,9 @@ def firstEntranceWeight (s : Finset Γ) (μ : Γ → ℝ) (A : Set Γ)
   ∑ w : WalkWord s n, if avoidsBefore s A n x w ∧ walkEndpoint s n x w = a ∧ a ∈ A
     then walkWeight s μ n w else 0
 
-/-- First-entrance weights are nonnegative.-/
+/-- First-entrance weights are nonnegative.
+@isnad1 id=le.1h7v.s6.ed6b3f1c6a8b from=translated src=- shape=cb0f5dca vocab=16ff0966
+-/
 theorem firstEntranceWeight_nonneg (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (A : Set Γ) (n : ℕ) (x a : Γ) :
     0 ≤ firstEntranceWeight s μ A n x a := by
@@ -43,7 +45,9 @@ theorem firstEntranceWeight_nonneg (s : Finset Γ) (μ : Γ → ℝ)
   · exact walkWeight_nonneg s μ hμ n w
   · exact le_rfl
 
-/-- Restricting to first-entrance paths can only decrease the transition weight.-/
+/-- Restricting to first-entrance paths can only decrease the transition weight.
+@isnad1 id=le.1h7v.s6.ec075d5dd248 from=translated src=- shape=5d2a11c0 vocab=2a435cac
+-/
 theorem firstEntranceWeight_le_transition (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (A : Set Γ) (n : ℕ) (x a : Γ) :
     firstEntranceWeight s μ A n x a ≤ transitionWeight s μ n x a := by
@@ -56,14 +60,18 @@ theorem firstEntranceWeight_le_transition (s : Finset Γ) (μ : Γ → ℝ)
     · exact walkWeight_nonneg s μ hμ n w
     · exact le_rfl
 
-/-- The time-zero convention includes a starting point already in A.-/
+/-- The time-zero convention includes a starting point already in A.
+@isnad1 id=eq.0h6v.s6.469236db39f6 from=translated src=- shape=5da90d4a vocab=5e494b93
+-/
 theorem firstEntranceWeight_zero (s : Finset Γ) (μ : Γ → ℝ) (A : Set Γ) (x a : Γ) :
     firstEntranceWeight s μ A 0 x a = if x = a ∧ a ∈ A then 1 else 0 := by
   simp only [firstEntranceWeight, avoidsBefore, walkEndpoint, walkWeight, true_and]
   change (∑ _ : PUnit, if x = a ∧ a ∈ A then (1 : ℝ) else 0) = _
   simp
 
-/-- Starting inside A excludes any positive first-entrance time.-/
+/-- Starting inside A excludes any positive first-entrance time.
+@isnad1 id=eq.1h7v.s5.62fbba6ce9a7 from=translated src=- shape=0bfb060d vocab=226cb7d8
+-/
 theorem firstEntranceWeight_succ_of_mem (s : Finset Γ) (μ : Γ → ℝ)
     (A : Set Γ) {x : Γ} (hx : x ∈ A) (n : ℕ) (a : Γ) :
     firstEntranceWeight s μ A (n + 1) x a = 0 := by
@@ -71,7 +79,9 @@ theorem firstEntranceWeight_succ_of_mem (s : Finset Γ) (μ : Γ → ℝ)
   intro w _
   simp only [avoidsBefore, hx, not_true_eq_false, false_and, ite_false]
 
-/-- Outside A, first entrance after n+1 jumps is determined by the first jump.-/
+/-- Outside A, first entrance after n+1 jumps is determined by the first jump.
+@isnad1 id=eq.1h7v.s6.99439b94afad from=translated src=- shape=d4f4c9ed vocab=d0fcd428
+-/
 theorem firstEntranceWeight_succ_of_notMem (s : Finset Γ) (μ : Γ → ℝ)
     (A : Set Γ) {x : Γ} (hx : x ∉ A) (n : ℕ) (a : Γ) :
     firstEntranceWeight s μ A (n + 1) x a =
@@ -94,13 +104,17 @@ theorem firstEntranceWeight_succ_of_notMem (s : Finset Γ) (μ : Γ → ℝ)
 def firstEntranceKernel (s : Finset Γ) (μ : Γ → ℝ) (A : Set Γ) (x a : Γ) : ℝ :=
   ∑' n : ℕ, firstEntranceWeight s μ A n x a
 
-/-- Nonnegativity of the first-entrance kernel.-/
+/-- Nonnegativity of the first-entrance kernel.
+@isnad1 id=le.1h6v.s6.a7767f67fb7c from=translated src=- shape=d6392006 vocab=d9bd40e7
+-/
 theorem firstEntranceKernel_nonneg (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (A : Set Γ) (x a : Γ) :
     0 ≤ firstEntranceKernel s μ A x a :=
   tsum_nonneg (fun n => firstEntranceWeight_nonneg s μ hμ A n x a)
 
-/-- For x∈A the kernel is the identity, rather than a first-positive-return kernel.-/
+/-- For x∈A the kernel is the identity, rather than a first-positive-return kernel.
+@isnad1 id=eq.1h6v.s5.a946b4d33ea8 from=translated src=- shape=b9113a69 vocab=5da04012
+-/
 theorem firstEntranceKernel_of_mem (s : Finset Γ) (μ : Γ → ℝ)
     (A : Set Γ) {x : Γ} (hx : x ∈ A) (a : Γ) :
     firstEntranceKernel s μ A x a = if x = a then 1 else 0 := by
@@ -117,7 +131,9 @@ theorem firstEntranceKernel_of_mem (s : Finset Γ) (μ : Γ → ℝ)
 
 variable [MeasurableSpace Γ] [MeasurableMul Γ] [MeasurableSingletonClass Γ]
 
-/-- The first-entrance series converges, by domination by the Green series.-/
+/-- The first-entrance series converges, by domination by the Green series.
+@isnad1 id=summable.2h6v.s12.86190d0741a4 from=translated src=- shape=b9a47d78 vocab=a56b1a4a
+-/
 theorem firstEntranceWeight_summable (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hgap : spectralRadius ℂ (rightMarkov s μ) < 1)
     (A : Set Γ) (x a : Γ) : Summable (fun n : ℕ => firstEntranceWeight s μ A n x a) := by
@@ -126,14 +142,18 @@ theorem firstEntranceWeight_summable (s : Finset Γ) (μ : Γ → ℝ)
     rw [Real.norm_eq_abs, abs_of_nonneg (firstEntranceWeight_nonneg s μ hμ A n x a)]
     exact firstEntranceWeight_le_transition s μ hμ A n x a)
 
-/-- Entrywise domination F(x,a)≤G(x,a), with summability justified.-/
+/-- Entrywise domination F(x,a)≤G(x,a), with summability justified.
+@isnad1 id=le.2h6v.s12.2161eacbb6a7 from=translated src=- shape=3712886a vocab=48c2515e
+-/
 theorem firstEntranceKernel_le_green (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hgap : spectralRadius ℂ (rightMarkov s μ) < 1)
     (A : Set Γ) (x a : Γ) : firstEntranceKernel s μ A x a ≤ walkGreen s μ x a :=
   Summable.tsum_le_tsum (fun n => firstEntranceWeight_le_transition s μ hμ A n x a)
     (firstEntranceWeight_summable s μ hμ hgap A x a) (walkGreen_summable s μ hgap x a)
 
-/-- The first-entrance kernel is P-harmonic outside A. All sums are convergent.-/
+/-- The first-entrance kernel is P-harmonic outside A. All sums are convergent.
+@isnad1 id=eq.3h6v.s12.683d629a0fb6 from=translated src=- shape=9b453243 vocab=0bd4ceb4
+-/
 theorem firstEntranceKernel_harmonic (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hgap : spectralRadius ℂ (rightMarkov s μ) < 1)
     (A : Set Γ) {x : Γ} (hx : x ∉ A) (a : Γ) :

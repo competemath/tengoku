@@ -16,7 +16,9 @@ open scoped Classical MatrixGroups UpperHalfPlane
 
 namespace Singularity
 
-/-- A chain of N locally comparable vertices gives the lower bound C^(-N).-/
+/-- A chain of N locally comparable vertices gives the lower bound C^(-N).
+@isnad1 id=le.5h7v.s16.563e9a4fcfe9 from=translated src=- shape=f70ad204 vocab=9d22601e
+-/
 theorem walkGreen_lower_of_harnack_chain (Γ : Subgroup SL(2, ℝ))
     [MeasurableSpace Γ] [MeasurableSingletonClass Γ] [MeasurableMul Γ]
     (s : Finset Γ) (μ : Γ → ℝ) (hμ : ∀ g ∈ s, 0 ≤ μ g)
@@ -36,7 +38,9 @@ theorem walkGreen_lower_of_harnack_chain (Γ : Subgroup SL(2, ℝ))
   simpa only [mul_comm] using hh
 
 /-- Every positive semigroup-generating finite law with a spectral gap on a
-discrete cocompact group has a coarse exponential Green lower bound.-/
+discrete cocompact group has a coarse exponential Green lower bound.
+@isnad1 id=ex.3h3v.s16.534fc33cde80 from=translated src=- shape=9e719065 vocab=ef86ccf2
+-/
 theorem cocompact_walkGreen_exp_lower (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
     [CompactSpace (Quotient (MulAction.orbitRel Γ ℍ))]
     [MeasurableSpace Γ] [MeasurableSingletonClass Γ] [MeasurableMul Γ]

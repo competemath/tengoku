@@ -16,7 +16,9 @@ open scoped Classical MatrixGroups UpperHalfPlane
 namespace Singularity
 
 /-- Distances between points near two axis positions differ from their
-parameter separation by at most the sum of the two approximation radii.-/
+parameter separation by at most the sum of the two approximation radii.
+@isnad1 id=and.3h7v.s8.9989b671f47b from=translated src=- shape=7308a8d6 vocab=7b28b524
+-/
 theorem axis_nearby_distance_bounds (g : SL(2, ℝ)) (a b r₁ r₂ : ℝ) (x y : ℍ)
     (hab : a ≤ b)
     (hx : dist x (g • verticalHeightRay UpperHalfPlane.I a) ≤ r₁)
@@ -35,7 +37,9 @@ theorem axis_nearby_distance_bounds (g : SL(2, ℝ)) (a b r₁ r₂ : ℝ) (x y 
   constructor <;> linarith
 
 /-- Axis-ball triangle excess is stable when its intermediate center is
-approximated within E by an arbitrary point.-/
+approximated within E by an arbitrary point.
+@isnad1 id=le.7h10v.s9.0365915258a6 from=translated src=- shape=dc66e64b vocab=496f73fc
+-/
 theorem axis_balls_excess_near_center (g : SL(2, ℝ)) (a c b r₁ r₂ E : ℝ) (x y o : ℍ)
     (ha : a + 1 ≤ c) (hb : c + 1 ≤ b)
     (hx : dist x (g • verticalHeightRay UpperHalfPlane.I a) ≤ r₁)
@@ -47,7 +51,9 @@ theorem axis_balls_excess_near_center (g : SL(2, ℝ)) (a c b r₁ r₂ E : ℝ)
     (2 * Real.log 32) E (axis_balls_excess g a c b r₁ r₂ x y ha hb hx hy hm₁ hm₂) ho
 
 /-- Full endpoint-pair bounds for two orbit balls whose centers approximate
-opposite axis positions; the intermediate orbit center may also be approximate.-/
+opposite axis positions; the intermediate orbit center may also be approximate.
+@isnad1 id=and.9h13v.s15.b3ae804cb736 from=translated src=- shape=a1bd955d vocab=d728cab5
+-/
 theorem orbit_axis_ball_pair_geometry (Γ : Subgroup SL(2, ℝ))
     (g : SL(2, ℝ)) (a c b r₁ r₂ E : ℝ) (v u w x y : Γ)
     (ha : a + 1 ≤ c) (hb : c + 1 ≤ b)

@@ -33,14 +33,18 @@ variable (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
 
 omit [DiscreteTopology Γ] in
 include hpos hgen hgap in
-/-- Every ray has at least one cluster function.-/
+/-- Every ray has at least one cluster function.
+@isnad1 id=nonempty.3h4v.s16.c72fca7badab from=translated src=- shape=ade0242f vocab=ac47173a
+-/
 theorem rayMartinCluster_nonempty (ξ : ℝ) : (rayMartinCluster Γ s μ ξ).Nonempty := by
   obtain ⟨H, _, _, φ, hφ, hlim⟩ := martinQuotient_subsequence s μ hpos hgen hgap 1 (cocompactRaySequence Γ ξ)
   exact ⟨H, φ, hφ, hlim⟩
 
 omit [DiscreteTopology Γ] in
 include hpos hgen hgap in
-/-- Every ray cluster function is an element of the actual Martin boundary.-/
+/-- Every ray cluster function is an element of the actual Martin boundary.
+@isnad1 id=le.3h4v.s16.a572fa9b1791 from=translated src=- shape=95119349 vocab=00797967
+-/
 theorem rayMartinCluster_subset_boundary (ξ : ℝ) :
     rayMartinCluster Γ s μ ξ ⊆ martinBoundary s μ 1 := by
   intro H hH
@@ -50,7 +54,9 @@ theorem rayMartinCluster_subset_boundary (ξ : ℝ) :
     (fun z => hφ.tendsto_atTop.eventually ((cocompactRaySequence_eventually_ne Γ ξ z).mono (fun _ h => h.symm))) hlim
 
 include hpos hmass hgen hgap in
-/-- Distinct finite boundary directions have disjoint Martin cluster sets.-/
+/-- Distinct finite boundary directions have disjoint Martin cluster sets.
+@isnad1 id=disjoint.5h5v.s16.448e035d3e37 from=translated src=- shape=ca35c83b vocab=350ab807
+-/
 theorem rayMartinCluster_disjoint {ξ η : ℝ} (hξη : ξ ≠ η) :
     Disjoint (rayMartinCluster Γ s μ ξ) (rayMartinCluster Γ s μ η) := by
   apply Set.disjoint_left.mpr

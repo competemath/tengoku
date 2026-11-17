@@ -18,7 +18,9 @@ open scoped Classical UpperHalfPlane
 
 namespace Singularity
 
-/-- Euclidean coordinates of a point in the hyperbolic ball about i.-/
+/-- Euclidean coordinates of a point in the hyperbolic ball about i.
+@isnad1 id=and.1h2v.s5.338dd4200436 from=translated src=- shape=cb4295fb vocab=b941a6d4
+-/
 theorem hyperbolic_ball_coordinates {z : ℍ} {R : ℝ}
     (hz : dist z UpperHalfPlane.I ≤ R) :
     Real.exp (-R) ≤ z.im ∧ z.im ≤ Real.exp R ∧ |z.re| ≤ Real.exp R := by
@@ -34,7 +36,9 @@ theorem hyperbolic_ball_coordinates {z : ℍ} {R : ℝ}
   rw [UpperHalfPlane.coe_I, dist_eq_norm] at hd
   exact (hr.trans hd).trans (by linarith [Real.exp_le_exp.mpr hz])
 
-/-- Equal integer parts force distance at most one.-/
+/-- Equal integer parts force distance at most one.
+@isnad1 id=le.1h2v.s5.f322602fe720 from=translated src=- shape=acda7bba vocab=284ccfee
+-/
 theorem abs_sub_le_one_of_floor_eq {a b : ℝ} (h : ⌊a⌋ = ⌊b⌋) : |a - b| ≤ 1 := by
   have ha := Int.floor_le a
   have hb := Int.floor_le b
@@ -47,7 +51,9 @@ theorem abs_sub_le_one_of_floor_eq {a b : ℝ} (h : ⌊a⌋ = ⌊b⌋) : |a - b|
 def hyperbolicGrid (R : ℝ) (z : ℍ) : ℤ × ℤ :=
   (⌊Real.exp R * z.re⌋, ⌊Real.exp R * z.im⌋)
 
-/-- Equal cells in the radius-R ball have uniformly bounded hyperbolic diameter.-/
+/-- Equal cells in the radius-R ball have uniformly bounded hyperbolic diameter.
+@isnad1 id=le.3h3v.s5.8bcf1072b082 from=translated src=- shape=0e787c67 vocab=e498cacf
+-/
 theorem hyperbolicGrid_diameter {R : ℝ} {z w : ℍ}
     (hz : dist z UpperHalfPlane.I ≤ R) (hw : dist w UpperHalfPlane.I ≤ R)
     (hcell : hyperbolicGrid R z = hyperbolicGrid R w) : dist z w ≤ 2 := by
@@ -77,7 +83,9 @@ theorem hyperbolicGrid_diameter {R : ℝ} {z w : ℍ}
 def hyperbolicGridRange (R : ℝ) : Finset ℤ :=
   Finset.Icc (-⌈Real.exp (2 * R)⌉ - 1) (⌈Real.exp (2 * R)⌉ + 1)
 
-/-- The scaled coordinates have magnitude at most exp(2R).-/
+/-- The scaled coordinates have magnitude at most exp(2R).
+@isnad1 id=mem.1h2v.s5.b0f9a88de5ef from=translated src=- shape=e581b575 vocab=c8d4c636
+-/
 theorem hyperbolicGrid_mem {R : ℝ} {z : ℍ} (hz : dist z UpperHalfPlane.I ≤ R) :
     hyperbolicGrid R z ∈ (hyperbolicGridRange R) ×ˢ (hyperbolicGridRange R) := by
   obtain ⟨_, him, hre⟩ := hyperbolic_ball_coordinates hz
@@ -99,7 +107,9 @@ theorem hyperbolicGrid_mem {R : ℝ} {z : ℍ} (hz : dist z UpperHalfPlane.I ≤
     · exact_mod_cast (show (⌊Real.exp R * t⌋ : ℝ) ≤ (⌈Real.exp (2 * R)⌉ : ℝ) + 1 by linarith)
   exact Finset.mem_product.mpr ⟨bound hre, bound (by simpa [abs_of_pos z.im_pos] using him)⟩
 
-/-- The one-dimensional grid interval has at most 7 exp(2R) entries.-/
+/-- The one-dimensional grid interval has at most 7 exp(2R) entries.
+@isnad1 id=le.1h1v.s5.04bb0c152f2d from=translated src=- shape=f3b856aa vocab=7b93c8a5
+-/
 theorem hyperbolicGridRange_card {R : ℝ} (hR : 0 ≤ R) :
     ((hyperbolicGridRange R).card : ℝ) ≤ 7 * Real.exp (2 * R) := by
   have he : 1 ≤ Real.exp (2 * R) := Real.one_le_exp (by positivity)
@@ -115,7 +125,9 @@ theorem hyperbolicGridRange_card {R : ℝ} (hR : 0 ≤ R) :
   rw [hcard']
   linarith [Int.ceil_lt_add_one (Real.exp (2 * R))]
 
-/-- The grid on a hyperbolic ball has exponentially many cells.-/
+/-- The grid on a hyperbolic ball has exponentially many cells.
+@isnad1 id=le.1h1v.s6.c5a607d37db4 from=translated src=- shape=ea01dccc vocab=e3438b5e
+-/
 theorem hyperbolicGrid_card {R : ℝ} (hR : 0 ≤ R) :
     (((hyperbolicGridRange R) ×ˢ (hyperbolicGridRange R)).card : ℝ) ≤
       49 * Real.exp (4 * R) := by

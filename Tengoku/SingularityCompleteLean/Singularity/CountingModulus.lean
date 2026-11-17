@@ -20,7 +20,9 @@ namespace Singularity
 
 variable {X : Type*} [MeasurableSpace X] [MeasurableSingletonClass X] [Countable X]
 
-/-- The complex-valued pointwise modulus belongs to the same counting L² space.-/
+/-- The complex-valued pointwise modulus belongs to the same counting L² space.
+@isnad1 id=memlp.0h2v.s8.758923d04da8 from=translated src=- shape=af74ce0f vocab=7e27eb2d
+-/
 theorem memLp_counting_modulus (f : GroupL2 X) :
     MemLp (fun x => (‖f x‖ : ℂ)) 2 Measure.count := by
   apply mem_countingL2_of_bound (counting_square_summable f)
@@ -31,17 +33,24 @@ theorem memLp_counting_modulus (f : GroupL2 X) :
 def countingModulus (f : GroupL2 X) : GroupL2 X :=
   (memLp_counting_modulus f).toLp (fun x => (‖f x‖ : ℂ))
 
+/--
+@isnad1 id=eq.0h3v.s9.3c900e8d944e from=translated src=- shape=30dad78b vocab=a05e5d1c
+-/
 theorem countingModulus_apply (f : GroupL2 X) (x : X) : countingModulus f x = (‖f x‖ : ℂ) :=
   Measure.ae_count_iff.mp (memLp_counting_modulus f).coeFn_toLp x
 
-/-- Taking pointwise modulus preserves the Hilbert norm.-/
+/-- Taking pointwise modulus preserves the Hilbert norm.
+@isnad1 id=eq.0h2v.s9.ca1696a70156 from=translated src=- shape=5433a8a5 vocab=d44da81a
+-/
 theorem countingModulus_norm (f : GroupL2 X) : ‖countingModulus f‖ = ‖f‖ := by
   have hs : ‖countingModulus f‖ ^ 2 = ‖f‖ ^ 2 := by
     rw [counting_norm_sq, counting_norm_sq]
     simp only [countingModulus_apply, Complex.norm_real, Real.norm_eq_abs, abs_norm]
   nlinarith [norm_nonneg f, norm_nonneg (countingModulus f)]
 
-/-- The modulus pairing is the integral of the absolute pointwise pairing.-/
+/-- The modulus pairing is the integral of the absolute pointwise pairing.
+@isnad1 id=eq.0h3v.s10.76a0fb2b545d from=translated src=- shape=90a733ff vocab=f4ab3dcb
+-/
 theorem countingModulus_inner (f g : GroupL2 X) :
     (inner ℂ (countingModulus f) (countingModulus g)).re =
       ∫ x, ‖inner ℂ (f x) (g x)‖ ∂Measure.count := by
@@ -51,7 +60,9 @@ theorem countingModulus_inner (f g : GroupL2 X) :
   filter_upwards [] with x
   simp [countingModulus_apply]
 
-/-- Complex inner products are dominated by the positive modulus pairing.-/
+/-- Complex inner products are dominated by the positive modulus pairing.
+@isnad1 id=le.0h3v.s9.83d94aaf162e from=translated src=- shape=c1beb9cb vocab=ea8a7f36
+-/
 theorem countingModulus_inner_bound (f g : GroupL2 X) :
     ‖inner ℂ f g‖ ≤ (inner ℂ (countingModulus f) (countingModulus g)).re := by
   rw [countingModulus_inner, L2.inner_def]
@@ -60,7 +71,9 @@ theorem countingModulus_inner_bound (f g : GroupL2 X) :
 variable {Γ : Type*} [Group Γ] [MeasurableSpace Γ] [MeasurableSingletonClass Γ]
   [MeasurableMul Γ] [Countable Γ]
 
-/-- Modulus commutes with the actual right-translation representation.-/
+/-- Modulus commutes with the actual right-translation representation.
+@isnad1 id=eq.0h3v.s12.ef67845bde6e from=translated src=- shape=49ebb85d vocab=ab39e141
+-/
 theorem countingModulus_rightTranslation (g : Γ) (f : GroupL2 Γ) :
     countingModulus (rightTranslation g f) = rightTranslation g (countingModulus f) := by
   apply Lp.ext
@@ -73,7 +86,9 @@ theorem countingModulus_rightTranslation (g : Γ) (f : GroupL2 Γ) :
   exact (countingModulus_apply f (x * g)).symm
 
 omit [MeasurableSingletonClass Γ] [Countable Γ] in
-/-- Exact real-part formula for the Markov quadratic form.-/
+/-- Exact real-part formula for the Markov quadratic form.
+@isnad1 id=eq.0h4v.s13.867d2a248f6e from=translated src=- shape=54a32fd0 vocab=a1bac874
+-/
 theorem rightMarkov_inner_re (s : Finset Γ) (μ : Γ → ℝ) (f : GroupL2 Γ) :
     (inner ℂ (rightMarkov s μ f) f).re =
       ∑ g ∈ s, μ g * (inner ℂ (rightTranslation g f) f).re := by
@@ -81,7 +96,9 @@ theorem rightMarkov_inner_re (s : Finset Γ) (μ : Γ → ℝ) (f : GroupL2 Γ) 
     LinearIsometry.coe_toContinuousLinearMap, sum_inner, inner_smul_left, Complex.conj_ofReal,
     Complex.re_sum, Complex.mul_re, Complex.ofReal_re, Complex.ofReal_im, zero_mul, sub_zero]
 
-/-- Nonnegative jump weights allow control of the complex quadratic form by modulus.-/
+/-- Nonnegative jump weights allow control of the complex quadratic form by modulus.
+@isnad1 id=le.1h4v.s13.aac76ae51dff from=translated src=- shape=9863397a vocab=0f5e30f8
+-/
 theorem rightMarkov_quadratic_modulus_bound (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (f : GroupL2 Γ) :
     ‖inner ℂ (rightMarkov s μ f) f‖ ≤

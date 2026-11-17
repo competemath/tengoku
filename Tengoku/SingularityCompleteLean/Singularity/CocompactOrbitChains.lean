@@ -17,7 +17,9 @@ open scoped Classical MatrixGroups UpperHalfPlane
 namespace Singularity
 
 /-- A D-dense orbit has chains of at most 3d+7 steps, each of length at most
-2D+1, with prescribed group vertices at both ends.-/
+2D+1, with prescribed group vertices at both ends.
+@isnad1 id=ex.2h4v.s13.0e1d8bc049fc from=translated src=- shape=68562dc2 vocab=87af2280
+-/
 theorem hyperbolic_orbit_chain_of_cover (Γ : Subgroup SL(2, ℝ)) (D : ℝ) (hD : 0 ≤ D)
     (hcover : ∀ z : ℍ, ∃ g : Γ, dist (g • UpperHalfPlane.I) z ≤ D) (x y : Γ) :
     ∃ (N : ℕ) (f : ℕ → Γ), f 0 = x ∧ f N = y ∧
@@ -55,7 +57,9 @@ theorem hyperbolic_orbit_chain_of_cover (Γ : Subgroup SL(2, ℝ)) (D : ℝ) (hD
           simpa only [hpn] using hq n
         simpa [f] using hh.trans (show D ≤ 2 * D + 1 by linarith)
 
-/-- Cocompactness supplies one jump bound for short chains between all group vertices.-/
+/-- Cocompactness supplies one jump bound for short chains between all group vertices.
+@isnad1 id=ex.0h1v.s13.f84b0bbbc808 from=translated src=- shape=4efc2e81 vocab=7e43782b
+-/
 theorem cocompact_hyperbolic_orbit_chains (Γ : Subgroup SL(2, ℝ))
     [CompactSpace (Quotient (MulAction.orbitRel Γ ℍ))] :
     ∃ L : ℝ, 0 < L ∧ ∀ x y : Γ,

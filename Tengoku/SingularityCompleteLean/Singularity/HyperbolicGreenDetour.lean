@@ -21,7 +21,9 @@ open scoped Classical MatrixGroups UpperHalfPlane
 namespace Singularity
 
 /-- Exponential detour length and spectral decay bound the actual killed
-Green series, with explicit dependence on the jump and spectral constants.-/
+Green series, with explicit dependence on the jump and spectral constants.
+@isnad1 id=le.7h9v.s19.05647a1c5809 from=translated src=- shape=4cfd08c8 vocab=d9d48ecd
+-/
 theorem killedGreen_hyperbolic_detour_bound (Γ : Subgroup SL(2, ℝ))
     [MeasurableSpace Γ] [MeasurableSingletonClass Γ] [MeasurableMul Γ]
     (s : Finset Γ) (μ : Γ → ℝ) (hμ : ∀ g ∈ s, 0 ≤ μ g)
@@ -39,7 +41,9 @@ theorem killedGreen_hyperbolic_detour_bound (Γ : Subgroup SL(2, ℝ))
   exact killedWeight_eq_zero_of_short_detour Γ s μ R δ n x y hsep hn
 
 /-- Uniform positive constants give double-exponential decay for separated
-endpoints. No cocompactness, density comparison, or Martin kernel is assumed.-/
+endpoints. No cocompactness, density comparison, or Martin kernel is assumed.
+@isnad1 id=ex.3h4v.s16.626419350b32 from=translated src=- shape=3946abaa vocab=3b1ecf0c
+-/
 theorem killedGreen_hyperbolic_detour_decay (Γ : Subgroup SL(2, ℝ))
     [MeasurableSpace Γ] [MeasurableSingletonClass Γ] [MeasurableMul Γ]
     (s : Finset Γ) (μ : Γ → ℝ) (hμ : ∀ g ∈ s, 0 ≤ μ g)
@@ -56,7 +60,9 @@ theorem killedGreen_hyperbolic_detour_decay (Γ : Subgroup SL(2, ℝ))
   simpa only [neg_mul, neg_neg, mul_assoc] using
     killedGreen_hyperbolic_detour_bound Γ s μ hμ hgap C q hC.le hq hq1 hb R δ x y hsep
 
-/-- The hyperbolic ball and killed Green kernel translate together.-/
+/-- The hyperbolic ball and killed Green kernel translate together.
+@isnad1 id=eq.0h7v.s13.db2cb9887602 from=translated src=- shape=ebf8b960 vocab=4203e8e4
+-/
 theorem killedGreen_hyperbolicBall_left (Γ : Subgroup SL(2, ℝ))
     (s : Finset Γ) (μ : Γ → ℝ) (R : ℝ) (u x y : Γ) :
     killedGreen s μ {g : Γ | dist (g • UpperHalfPlane.I) (u • UpperHalfPlane.I) < R} x y =
@@ -78,7 +84,9 @@ theorem killedGreen_hyperbolicBall_left (Γ : Subgroup SL(2, ℝ))
   simpa only [mul_inv_cancel_left, he] using h
 
 /-- The same detour constants work at every orbit center. Endpoint separation
-is measured in the disk chart centered at that orbit point.-/
+is measured in the disk chart centered at that orbit point.
+@isnad1 id=ex.3h4v.s16.34cd078d46b5 from=translated src=- shape=51c25235 vocab=5ecbbcab
+-/
 theorem killedGreen_hyperbolic_detour_decay_uniform_center (Γ : Subgroup SL(2, ℝ))
     [MeasurableSpace Γ] [MeasurableSingletonClass Γ] [MeasurableMul Γ]
     (s : Finset Γ) (μ : Γ → ℝ) (hμ : ∀ g ∈ s, 0 ≤ μ g)
@@ -95,7 +103,9 @@ theorem killedGreen_hyperbolic_detour_decay_uniform_center (Γ : Subgroup SL(2, 
   exact hb R (u⁻¹ * x) (u⁻¹ * y) hsep
 
 /-- Bounded triangle excess replaces the disk-separation hypothesis by a
-condition expressed entirely in hyperbolic distances.-/
+condition expressed entirely in hyperbolic distances.
+@isnad1 id=ex.2h4v.s17.f3a79bf91b8c from=translated src=- shape=cef0d3d5 vocab=7b494283
+-/
 theorem killedGreen_hyperbolic_detour_decay_of_excess (Γ : Subgroup SL(2, ℝ))
     [MeasurableSpace Γ] [MeasurableSingletonClass Γ] [MeasurableMul Γ]
     (s : Finset Γ) (μ : Γ → ℝ) (hμ : ∀ g ∈ s, 0 ≤ μ g)
@@ -114,7 +124,9 @@ theorem killedGreen_hyperbolic_detour_decay_of_excess (Γ : Subgroup SL(2, ℝ))
   exact hb R u x y (orbit_cayley_separation_of_excess Γ u x y D hd hexcess)
 
 /-- Double-exponential decay eventually dominates every exponential rate,
-including its fixed positive prefactor.-/
+including its fixed positive prefactor.
+@isnad1 id=eventual.2h3v.s6.bdd05e3f4fec from=translated src=- shape=4fa42f31 vocab=111f6cc5
+-/
 theorem double_exponential_eventually_le (A c K : ℝ) (hA : 0 < A) (hc : 0 < c) :
     ∀ᶠ R : ℝ in atTop, A * Real.exp (-c * Real.exp R) ≤ Real.exp (-K * R) := by
   have hh := ((Real.isLittleO_pow_exp_atTop (n := 0)).const_mul_left (Real.log A)).add

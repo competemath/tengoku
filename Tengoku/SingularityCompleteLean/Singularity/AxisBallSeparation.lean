@@ -17,7 +17,9 @@ open scoped Classical MatrixGroups UpperHalfPlane
 
 namespace Singularity
 
-/-- Logarithmic height parametrizes the full vertical line isometrically.-/
+/-- Logarithmic height parametrizes the full vertical line isometrically.
+@isnad1 id=eq.0h3v.s4.36c2d7dbd304 from=translated src=- shape=b95449e2 vocab=8d7cd600
+-/
 theorem verticalHeightRay_dist_eq (w : ℍ) (s t : ℝ) :
     dist (verticalHeightRay w s) (verticalHeightRay w t) = |s - t| := by
   rw [UpperHalfPlane.dist_of_re_eq (show (verticalHeightRay w s).re = (verticalHeightRay w t).re from rfl)]
@@ -27,7 +29,9 @@ theorem verticalHeightRay_dist_eq (w : ℍ) (s t : ℝ) :
   congr 1
   ring
 
-/-- Dilation translates the logarithmic parameter on the axis through i.-/
+/-- Dilation translates the logarithmic parameter on the axis through i.
+@isnad1 id=eq.0h2v.s7.bc2aa8577e26 from=translated src=- shape=ed7dd091 vocab=947d86a6
+-/
 theorem verticalHeightRay_I_dilation (c t : ℝ) :
     dilationMatrix c • verticalHeightRay UpperHalfPlane.I t = verticalHeightRay UpperHalfPlane.I (c + t) := by
   apply UpperHalfPlane.ext
@@ -40,7 +44,9 @@ theorem verticalHeightRay_I_dilation (c t : ℝ) :
     simp [verticalHeightRay, Real.exp_add]
 
 /-- Points on opposite halves of the axis, each at least distance one from i,
-have disk separation at least one quarter.-/
+have disk separation at least one quarter.
+@isnad1 id=le.2h2v.s6.c7112f9b7192 from=translated src=- shape=56025590 vocab=f00db72f
+-/
 theorem opposite_axis_cayley_separation (a b : ℝ) (ha : a ≤ -1) (hb : 1 ≤ b) :
     1 / 4 ≤ dist (halfPlaneCayley (verticalHeightRay UpperHalfPlane.I a))
       (halfPlaneCayley (verticalHeightRay UpperHalfPlane.I b)) := by
@@ -56,7 +62,9 @@ theorem opposite_axis_cayley_separation (a b : ℝ) (ha : a ≤ -1) (hb : 1 ≤ 
   simpa only [neg_zero, zero_div, Real.exp_zero] using he
 
 /-- A ball whose radius leaves a log 64 margin from i has disk diameter from
-its axis center at most one sixteenth.-/
+its axis center at most one sixteenth.
+@isnad1 id=le.2h3v.s6.f3cd7f8a2095 from=translated src=- shape=f84206ef vocab=cce570ed
+-/
 theorem cayley_near_axis_bound (t r : ℝ) (z : ℍ)
     (hz : dist z (verticalHeightRay UpperHalfPlane.I t) ≤ r)
     (hmargin : r + Real.log 64 ≤ |t|) :
@@ -74,7 +82,9 @@ theorem cayley_near_axis_bound (t r : ℝ) (z : ℍ)
     _ = 1 / 16 := by rw [Real.exp_neg, Real.exp_log (by norm_num : (0 : ℝ) < 64)]; norm_num
 
 /-- Endpoint balls on opposite sides of i give bounded triangle excess,
-even when their radii grow, provided the logarithmic margins hold.-/
+even when their radii grow, provided the logarithmic margins hold.
+@isnad1 id=le.6h6v.s7.3f20b79860c0 from=translated src=- shape=fdc36b22 vocab=b9655db1
+-/
 theorem opposite_axis_balls_excess (a b r₁ r₂ : ℝ) (x y : ℍ)
     (ha : a ≤ -1) (hb : 1 ≤ b)
     (hx : dist x (verticalHeightRay UpperHalfPlane.I a) ≤ r₁)
@@ -92,7 +102,9 @@ theorem opposite_axis_balls_excess (a b r₁ r₂ : ℝ) (x y : ℍ)
   norm_num only [show (4 : ℝ) / (1 / 8) = 32 by norm_num] at he
   exact he
 
-/-- The same bound at any intermediate point of an isometric image of the axis.-/
+/-- The same bound at any intermediate point of an isometric image of the axis.
+@isnad1 id=le.6h8v.s9.400d7d2745b8 from=translated src=- shape=39c09dc1 vocab=496f73fc
+-/
 theorem axis_balls_excess (g : SL(2, ℝ)) (a c b r₁ r₂ : ℝ) (x y : ℍ)
     (ha : a + 1 ≤ c) (hb : c + 1 ≤ b)
     (hx : dist x (g • verticalHeightRay UpperHalfPlane.I a) ≤ r₁)

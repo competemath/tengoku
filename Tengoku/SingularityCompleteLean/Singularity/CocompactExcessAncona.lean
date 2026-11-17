@@ -15,6 +15,9 @@ noncomputable section
 open scoped Classical MatrixGroups UpperHalfPlane
 namespace Singularity
 
+/--
+@isnad1 id=ex.4h4v.s17.a68af4f4d3c2 from=translated src=- shape=3fa2a172 vocab=32d223ce
+-/
 theorem cocompact_excess_green_product_bound (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
     [CompactSpace (Quotient (MulAction.orbitRel Γ ℍ))]
     [MeasurableSpace Γ] [MeasurableMul Γ] [MeasurableSingletonClass Γ]
@@ -33,7 +36,9 @@ theorem cocompact_excess_green_product_bound (Γ : Subgroup SL(2, ℝ)) [Discret
     (x • UpperHalfPlane.I) (o • UpperHalfPlane.I) (y • UpperHalfPlane.I) D he
   exact hb g _ u hu x o y hx hy ho
 
-/-- Positive separation in the disk yields a uniform product bound at i.-/
+/-- Positive separation in the disk yields a uniform product bound at i.
+@isnad1 id=ex.5h4v.s16.70361a9ee1b2 from=translated src=- shape=06e18f40 vocab=20b2cb75
+-/
 theorem cocompact_disk_separated_green_product_bound (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
     [CompactSpace (Quotient (MulAction.orbitRel Γ ℍ))]
     [MeasurableSpace Γ] [MeasurableMul Γ] [MeasurableSingletonClass Γ]

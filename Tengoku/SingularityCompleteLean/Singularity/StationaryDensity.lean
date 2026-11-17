@@ -28,6 +28,9 @@ def stationaryDensity (ν : Measure B) (g : Γ) : B → ℝ≥0∞ :=
   (Measure.map (fun ξ : B => g • ξ) ν).rnDeriv ν
 
 omit [MeasurableConstSMul Γ B] in
+/--
+@isnad1 id=measurab.0h4v.s5.43502ed9ff2e from=translated src=- shape=e20167ed vocab=6f4555ad
+-/
 theorem measurable_stationaryDensity (ν : Measure B) (g : Γ) :
     Measurable (stationaryDensity ν g) := Measure.measurable_rnDeriv _ _
 
@@ -37,20 +40,26 @@ variable (s : Finset Γ) (μ : Γ → ℝ) (hpos : ∀ g ∈ s, 0 < μ g)
     (hstat : ν = ∑ g : s, ENNReal.ofReal (μ g) • Measure.map (fun ξ : B => (g : Γ) • ξ) ν)
 
 include hpos hgen hstat in
-/-- The stationary density reconstructs the actual translated law.-/
+/-- The stationary density reconstructs the actual translated law.
+@isnad1 id=eq.3h6v.s8.15f6a9cf4831 from=translated src=- shape=0bd4a192 vocab=00d10106
+-/
 theorem stationaryDensity_withDensity (g : Γ) :
     ν.withDensity (stationaryDensity ν g) = Measure.map (fun ξ : B => g • ξ) ν :=
   Measure.withDensity_rnDeriv_eq _ _ (stationary_translate_equivalent s μ hpos hgen ν hstat g).1
 
 include hpos hgen hstat in
-/-- Each translate has a positive finite density almost everywhere.-/
+/-- Each translate has a positive finite density almost everywhere.
+@isnad1 id=eventual.3h6v.s8.bb1d6f6fbcce from=translated src=- shape=9f3c641c vocab=06ee6d15
+-/
 theorem stationaryDensity_positive_finite (g : Γ) :
     ∀ᵐ ξ ∂ν, 0 < stationaryDensity ν g ξ ∧ stationaryDensity ν g ξ < ∞ := by
   exact (Measure.rnDeriv_pos' (stationary_translate_equivalent s μ hpos hgen ν hstat g).2).and
     (Measure.rnDeriv_lt_top _ _)
 
 omit [MeasurableConstSMul Γ B] in
-/-- The density is normalized at the identity.-/
+/-- The density is normalized at the identity.
+@isnad1 id=eventual.0h3v.s6.58f3fc864bfa from=translated src=- shape=86594067 vocab=4658a8ca
+-/
 theorem stationaryDensity_one : stationaryDensity ν (1 : Γ) =ᵐ[ν] fun _ => 1 := by
   unfold stationaryDensity
   have he : (fun ξ : B => (1 : Γ) • ξ) = id := by funext ξ; exact one_smul Γ ξ
@@ -62,7 +71,9 @@ def stationaryRealDensity (ν : Measure B) (g : Γ) (ξ : B) : ℝ :=
   (stationaryDensity ν g ξ).toReal
 
 include hpos hgen hstat in
-/-- Derivatives of actual translates satisfy the Radon–Nikodym cocycle identity.-/
+/-- Derivatives of actual translates satisfy the Radon–Nikodym cocycle identity.
+@isnad1 id=eventual.3h7v.s8.218284de48f0 from=translated src=- shape=3049afad vocab=f3e58514
+-/
 theorem stationaryDensity_cocycle (g h : Γ) :
     ∀ᵐ ξ ∂ν, stationaryDensity ν (g * h) ξ =
       stationaryDensity ν g ξ * stationaryDensity ν h (g⁻¹ • ξ) := by

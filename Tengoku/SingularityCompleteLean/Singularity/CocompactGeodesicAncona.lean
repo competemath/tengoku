@@ -16,7 +16,9 @@ noncomputable section
 open scoped Classical MatrixGroups UpperHalfPlane
 namespace Singularity
 
-/-- Recenter the axis bound at any parameter in the endpoint interval.-/
+/-- Recenter the axis bound at any parameter in the endpoint interval.
+@isnad1 id=ex.4h4v.s16.86fca2f36cfa from=translated src=- shape=6c3dcb08 vocab=7205d735
+-/
 theorem cocompact_axis_segment_green_upper (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
     [CompactSpace (Quotient (MulAction.orbitRel Γ ℍ))]
     [MeasurableSpace Γ] [MeasurableMul Γ] [MeasurableSingletonClass Γ]

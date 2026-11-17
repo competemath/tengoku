@@ -19,7 +19,9 @@ open scoped Classical Topology
 namespace Singularity
 
 /-- Orbit escape persists on a neighborhood of a closed exceptional set,
-with a finite list of correcting elements valid over the whole compact space.-/
+with a finite list of correcting elements valid over the whole compact space.
+@isnad1 id=ex.2h3v.s7.b81013f33448 from=translated src=- shape=e2558e0f vocab=98464e21
+-/
 theorem finite_corrections_avoid_exceptional_neighborhood
     {Γ B : Type*} [Group Γ] [TopologicalSpace B] [CompactSpace B] [RegularSpace B]
     [MulAction Γ B] [ContinuousConstSMul Γ B]
@@ -52,7 +54,9 @@ theorem finite_corrections_avoid_exceptional_neighborhood
     exact hbad (mem_iUnion.mpr ⟨ξ, mem_iUnion.mpr ⟨hξP, subset_closure hη⟩⟩)
 
 /-- The shadow parameter is chosen before the eventual cover. The inverse
-complements need only approach the exceptional set after enlarging shadows.-/
+complements need only approach the exceptional set after enlarging shadows.
+@isnad1 id=ex.3h5v.s7.1e0d5ef6b289 from=translated src=- shape=c341eae7 vocab=de27861b
+-/
 theorem finite_eventual_cover_of_adjustable_shadows
     {Γ B I : Type*} [Group Γ] [TopologicalSpace B] [CompactSpace B] [RegularSpace B]
     [MulAction Γ B] [ContinuousConstSMul Γ B]

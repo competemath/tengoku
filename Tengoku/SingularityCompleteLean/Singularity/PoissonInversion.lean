@@ -18,14 +18,23 @@ namespace Singularity
 
 def boundaryInversion (u : ℝ) : ℝ := -u⁻¹
 
+/--
+@isnad1 id=measurab.0h0v.s2.aa0fa09995c7 from=translated src=- shape=e3d48bcb vocab=6033df3a
+-/
 theorem measurable_boundaryInversion : Measurable boundaryInversion := by
   unfold boundaryInversion
   fun_prop
 
+/--
+@isnad1 id=involuti.0h0v.s1.0ae75d837ad6 from=translated src=- shape=25b03439 vocab=11f6df86
+-/
 theorem boundaryInversion_involutive : Function.Involutive boundaryInversion := by
   intro u
   simp [boundaryInversion]
 
+/--
+@isnad1 id=eq.0h0v.s5.f4ffaebbfae8 from=translated src=- shape=94498aa2 vocab=a069c130
+-/
 theorem boundaryInversion_image_ne_zero : boundaryInversion '' ({0}ᶜ : Set ℝ) = {0}ᶜ := by
   ext u
   constructor
@@ -35,13 +44,18 @@ theorem boundaryInversion_image_ne_zero : boundaryInversion '' ({0}ᶜ : Set ℝ
     refine ⟨boundaryInversion u, ?_, boundaryInversion_involutive u⟩
     simpa [boundaryInversion] using hu
 
+/--
+@isnad1 id=hasderiv.1h1v.s5.6ea9e39f671b from=translated src=- shape=3c80e79c vocab=893a90b5
+-/
 theorem hasDerivAt_boundaryInversion {u : ℝ} (hu : u ≠ 0) :
     HasDerivAt boundaryInversion ((u ^ 2)⁻¹) u := by
   change HasDerivAt (fun v : ℝ => -v⁻¹) ((u ^ 2)⁻¹) u
   convert! (hasDerivAt_inv hu).neg using 1
   simp
 
-/-- The inverse-square Jacobian transports Lebesgue measure through inversion.-/
+/-- The inverse-square Jacobian transports Lebesgue measure through inversion.
+@isnad1 id=eq.0h0v.s5.1b713dc271e0 from=translated src=- shape=d6686a73 vocab=86282e8c
+-/
 theorem boundaryInversion_jacobian_map :
     Measure.map boundaryInversion (volume.withDensity (fun u : ℝ => ENNReal.ofReal ((u ^ 2)⁻¹))) =
       volume := by
@@ -60,7 +74,9 @@ theorem boundaryInversion_jacobian_map :
   rw [boundaryInversion_image_ne_zero, hr] at hj
   simpa only [Pi.mul_apply, abs_inv, abs_of_nonneg (sq_nonneg (_ : ℝ))] using hj.symm
 
-/-- The distance-squared denominator identity behind inversion covariance.-/
+/-- The distance-squared denominator identity behind inversion covariance.
+@isnad1 id=eq.2h3v.s8.720d0a524c51 from=translated src=- shape=5dcfa7bd vocab=088f92d5
+-/
 theorem poisson_inversion_denominator (x : ℝ) {y u : ℝ} (hy : 0 < y) (hu : u ≠ 0) :
     (boundaryInversion u - (-x / (x ^ 2 + y ^ 2))) ^ 2 + (y / (x ^ 2 + y ^ 2)) ^ 2 =
       ((u - x) ^ 2 + y ^ 2) / (u ^ 2 * (x ^ 2 + y ^ 2)) := by
@@ -69,7 +85,9 @@ theorem poisson_inversion_denominator (x : ℝ) {y u : ℝ} (hy : 0 < y) (hu : u
   field_simp [hu, hr]
   ring
 
-/-- The Poisson kernel transforms with the inverse-square boundary Jacobian.-/
+/-- The Poisson kernel transforms with the inverse-square boundary Jacobian.
+@isnad1 id=eq.2h3v.s7.9b350bf9c6c4 from=translated src=- shape=6bf4e4a0 vocab=cc07f160
+-/
 theorem halfPlanePoisson_inversion (x : ℝ) {y : ℝ} (hy : 0 < y)
     {u : ℝ} (hu : u ≠ 0) :
     (u ^ 2)⁻¹ * halfPlanePoisson (-x / (x ^ 2 + y ^ 2)) (y / (x ^ 2 + y ^ 2))
@@ -81,7 +99,9 @@ theorem halfPlanePoisson_inversion (x : ℝ) {y : ℝ} (hy : 0 < y)
   field_simp [hu, hr, hd]
 
 /-- Inversion of the boundary transports the Poisson probability measure to
-the measure at the inverted upper-half-plane point.-/
+the measure at the inverted upper-half-plane point.
+@isnad1 id=eq.1h2v.s7.2fd4f020b440 from=translated src=- shape=53aafa48 vocab=62a4617f
+-/
 theorem halfPlanePoissonMeasure_inversion (x : ℝ) {y : ℝ} (hy : 0 < y) :
     Measure.map boundaryInversion (halfPlanePoissonMeasure x y) =
       halfPlanePoissonMeasure (-x / (x ^ 2 + y ^ 2)) (y / (x ^ 2 + y ^ 2)) := by

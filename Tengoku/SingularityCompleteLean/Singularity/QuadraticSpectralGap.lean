@@ -21,7 +21,9 @@ namespace Singularity
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E] [CompleteSpace E]
 
 omit [CompleteSpace E] in
-/-- A quadratic bound gives coercivity of every normalized resolvent.-/
+/-- A quadratic bound gives coercivity of every normalized resolvent.
+@isnad1 id=coercive.1h4v.s10.20637cb5ceca from=translated src=- shape=e2c8ed05 vocab=5e6b6ec7
+-/
 theorem quadratic_bound_coercive (P : E →L[ℂ] E) (q : ℝ)
     (hP : ∀ v, ‖inner ℂ (P v) v‖ ≤ q * ‖v‖ ^ 2) (a : ℂ) :
     Coercive (1 - a • P) (1 - ‖a‖ * q) := by
@@ -35,14 +37,18 @@ theorem quadratic_bound_coercive (P : E →L[ℂ] E) (q : ℝ)
   rw [inner_sub_left, Complex.sub_re, hself, inner_smul_left]
   nlinarith
 
-/-- Coercivity makes the normalized resolvent an invertible bounded operator.-/
+/-- Coercivity makes the normalized resolvent an invertible bounded operator.
+@isnad1 id=isunit.2h4v.s10.3545601fa2ba from=translated src=- shape=23ef85d3 vocab=d688c591
+-/
 theorem quadratic_bound_isUnit (P : E →L[ℂ] E) (q : ℝ)
     (hP : ∀ v, ‖inner ℂ (P v) v‖ ≤ q * ‖v‖ ^ 2) (a : ℂ)
     (ha : ‖a‖ * q < 1) : IsUnit (1 - a • P) := by
   apply ContinuousLinearMap.isUnit_iff_bijective.mpr
   exact ((quadratic_bound_coercive P q hP a).equiv (by linarith)).bijective
 
-/-- Every complex number outside the quadratic bound lies in the resolvent set.-/
+/-- Every complex number outside the quadratic bound lies in the resolvent set.
+@isnad1 id=mem.3h4v.s8.e215621d3800 from=translated src=- shape=56afa466 vocab=b424150e
+-/
 theorem quadratic_bound_resolvent (P : E →L[ℂ] E) {q : ℝ} (hq : 0 ≤ q)
     (hP : ∀ v, ‖inner ℂ (P v) v‖ ≤ q * ‖v‖ ^ 2) {k : ℂ} (hk : q < ‖k‖) :
     k ∈ resolventSet ℂ P := by
@@ -67,7 +73,9 @@ theorem quadratic_bound_resolvent (P : E →L[ℂ] E) {q : ℝ} (hq : 0 ≤ q)
     change k • ((1 - k⁻¹ • P) v) = w
     rw [hv, smul_smul, mul_inv_cancel₀ hk0, one_smul]
 
-/-- Every spectral value is bounded by the modulus bound on the quadratic form.-/
+/-- Every spectral value is bounded by the modulus bound on the quadratic form.
+@isnad1 id=le.3h4v.s8.05276bcde791 from=translated src=- shape=a9fa6415 vocab=e9801cf5
+-/
 theorem quadratic_bound_spectrum (P : E →L[ℂ] E) {q : ℝ} (hq : 0 ≤ q)
     (hP : ∀ v, ‖inner ℂ (P v) v‖ ≤ q * ‖v‖ ^ 2) {k : ℂ}
     (hk : k ∈ spectrum ℂ P) : ‖k‖ ≤ q := by

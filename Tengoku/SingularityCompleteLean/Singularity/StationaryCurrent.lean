@@ -18,7 +18,9 @@ open scoped ENNReal Classical
 
 namespace Singularity
 
-/-- Almost-everywhere positivity suffices for the real-kernel cancellation rule.-/
+/-- Almost-everywhere positivity suffices for the real-kernel cancellation rule.
+@isnad1 id=eq.8h9v.s9.9b32f1bb6b77 from=translated src=- shape=0475f8c3 vocab=9b7ed3a1
+-/
 theorem weightedProduct_invariant_of_div_ae {X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y]
     (e : X ≃ᵐ X) (f : Y ≃ᵐ Y) (α : Measure X) (β : Measure Y) [SFinite α] [SFinite β]
     (rX : X → ℝ) (rY : Y → ℝ) (K : X × Y → ℝ)
@@ -42,7 +44,9 @@ variable {Γ X Y : Type*} [Group Γ]
   [MeasurableSpace X] [MulAction Γ X] [MeasurableConstSMul Γ X]
   [MeasurableSpace Y] [MulAction Γ Y] [MeasurableConstSMul Γ Y]
 
-/-- The real-valued density still reconstructs the actual translated stationary law.-/
+/-- The real-valued density still reconstructs the actual translated stationary law.
+@isnad1 id=eq.3h6v.s8.0753362bf2fe from=translated src=- shape=c8dbc391 vocab=860640c3
+-/
 theorem stationaryRealDensity_withDensity (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 < μ g) (hgen : Submonoid.closure (s : Set Γ) = ⊤)
     (α : Measure X) [IsFiniteMeasure α]
@@ -55,7 +59,9 @@ theorem stationaryRealDensity_withDensity (s : Finset Γ) (μ : Γ → ℝ)
   exact ENNReal.ofReal_toReal hx.2.ne
 
 /-- A covariance law in the actual hitting derivatives yields an invariant current.
-The two marginals may be stationary for different finite jump laws.-/
+The two marginals may be stationary for different finite jump laws.
+@isnad1 id=eq.8h11v.s9.af7245d16de3 from=translated src=- shape=d18f188a vocab=34c7c1bd
+-/
 theorem stationary_weightedProduct_invariant
     (s t : Finset Γ) (μ ν : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 < μ g) (hν : ∀ g ∈ t, 0 < ν g)

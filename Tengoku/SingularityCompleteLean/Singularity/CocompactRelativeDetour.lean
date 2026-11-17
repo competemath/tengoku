@@ -20,7 +20,9 @@ namespace Singularity
 
 /-- With bounded triangle excess and endpoint distance at most B R, detours
 outside the radius-R ball contribute at most exp(-K R) of the full Green mass,
-uniformly in the orbit center and the endpoints, for all sufficiently large R.-/
+uniformly in the orbit center and the endpoints, for all sufficiently large R.
+@isnad1 id=ex.3h6v.s17.b8545bd6cbae from=translated src=- shape=02c66f12 vocab=f1796338
+-/
 theorem cocompact_relative_green_detour (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
     [CompactSpace (Quotient (MulAction.orbitRel Γ ℍ))]
     [MeasurableSpace Γ] [MeasurableSingletonClass Γ] [MeasurableMul Γ]

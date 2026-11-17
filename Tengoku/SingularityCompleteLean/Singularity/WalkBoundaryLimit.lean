@@ -20,14 +20,18 @@ namespace Singularity
 
 variable {Γ : Type*} [Group Γ]
 
-/-- Removing the first jump leaves a walk starting at the identity, translated by that jump.-/
+/-- Removing the first jump leaves a walk starting at the identity, translated by that jump.
+@isnad1 id=eq.0h4v.s7.eabd1f937d5c from=translated src=- shape=e9abaf09 vocab=add015da
+-/
 theorem walkPosition_first_step (s : Finset Γ) (n : ℕ) (ω : ℕ → s) :
     walkPosition s 1 (n + 1) ω = (ω 0 : Γ) *
       walkPosition s 1 n (fun k => ω (k + 1)) := by
   rw [walkPosition_succ, one_mul]
   simpa only [mul_one] using walkPosition_left s (ω 0 : Γ) 1 n (fun k => ω (k + 1))
 
-/-- Splitting at any deterministic time gives the multiplicative path cocycle.-/
+/-- Splitting at any deterministic time gives the multiplicative path cocycle.
+@isnad1 id=eq.0h6v.s6.af5c901b0a77 from=translated src=- shape=2499360f vocab=2b895f69
+-/
 theorem walkPosition_add (s : Finset Γ) (x : Γ) (m n : ℕ) (ω : ℕ → s) :
     walkPosition s x (m + n) ω = walkPosition s x m ω *
       walkPosition s 1 n (fun k => ω (k + m)) := by
@@ -44,7 +48,9 @@ variable {B : Type*} [TopologicalSpace B] [T2Space B] [MulAction Γ B]
     [ContinuousConstSMul Γ B]
 
 omit [MeasurableSingletonClass Γ] in
-/-- Almost-sure convergence gives the first-step relation for the limiting point.-/
+/-- Almost-sure convergence gives the first-step relation for the limiting point.
+@isnad1 id=eventual.4h6v.s9.094339251897 from=translated src=- shape=b81747c4 vocab=34af0224
+-/
 theorem walkBoundaryLimit_first_step (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1)
     (orbit : Γ → B) (horbit : ∀ g h, orbit (g * h) = g • orbit h)

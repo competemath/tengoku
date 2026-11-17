@@ -20,12 +20,16 @@ namespace Singularity
 
 abbrev SequenceL2 (ι : Type*) := lp (fun _ : ι => ℂ) 2
 
-/-- Square-sum formula for the sequence-space norm.-/
+/-- Square-sum formula for the sequence-space norm.
+@isnad1 id=eq.0h2v.s8.fc59c72f17bc from=translated src=- shape=e3612d16 vocab=c73cbda1
+-/
 theorem sequenceL2_norm_sq {ι : Type*} (f : SequenceL2 ι) :
     ‖f‖ ^ 2 = ∑' i, ‖f i‖ ^ 2 := by
   simpa using lp.norm_rpow_eq_tsum (p := 2) (by norm_num) f
 
-/-- An envelope with summable square puts the bounded function in ℓ².-/
+/-- An envelope with summable square puts the bounded function in ℓ².
+@isnad1 id=memp.2h3v.s6.24301694fbdc from=translated src=- shape=11ef2fde vocab=1fdc1727
+-/
 theorem mem_sequenceL2_of_bound {ι : Type*} {f : ι → ℂ} {b : ι → ℝ}
     (hb : Summable (fun i => b i ^ 2)) (hbound : ∀ i, ‖f i‖ ≤ b i) :
     Memℓp f 2 := by
@@ -37,7 +41,9 @@ theorem mem_sequenceL2_of_bound {ι : Type*} {f : ι → ℂ} {b : ι → ℝ}
   simpa using hs
 
 /-- Pointwise convergence and one square-summable envelope imply norm
-convergence. No countability assumption on the coordinate set is needed.-/
+convergence. No countability assumption on the coordinate set is needed.
+@isnad1 id=tendsto.3h6v.s10.21ca5908eb26 from=translated src=- shape=47d9dec5 vocab=01e5cfc6
+-/
 theorem sequenceL2_tendsto_of_dominated {ι α : Type*} {l : Filter α} [l.NeBot]
     {u : α → SequenceL2 ι} {v : SequenceL2 ι} {b : ι → ℝ}
     (hb : Summable (fun i => b i ^ 2))
@@ -69,7 +75,9 @@ theorem sequenceL2_tendsto_of_dominated {ι α : Type*} {l : Filter α} [l.NeBot
   have hroot := Real.continuous_sqrt.continuousAt.tendsto.comp hsq
   simpa only [Function.comp_def, Real.sqrt_sq (norm_nonneg _), Real.sqrt_zero] using hroot
 
-/-- The raw coordinate limit itself belongs to ℓ² and is the strong limit.-/
+/-- The raw coordinate limit itself belongs to ℓ² and is the strong limit.
+@isnad1 id=ex.3h6v.s10.7ff3daf27eab from=translated src=- shape=2ae1212c vocab=01e5cfc6
+-/
 theorem sequenceL2_limit_exists {ι α : Type*} {l : Filter α} [l.NeBot]
     {u : α → SequenceL2 ι} {v : ι → ℂ} {b : ι → ℝ}
     (hb : Summable (fun i => b i ^ 2))
@@ -82,7 +90,9 @@ theorem sequenceL2_limit_exists {ι α : Type*} {l : Filter α} [l.NeBot]
   exact ⟨w, fun _ => rfl, sequenceL2_tendsto_of_dominated hb hbound hpoint⟩
 
 /-- The precise dominated passage to the boundary pairing. Both rows may
-have different square-summable envelopes.-/
+have different square-summable envelopes.
+@isnad1 id=tendsto.6h10v.s13.1f4c88155f0d from=translated src=- shape=0990d313 vocab=5fb237ce
+-/
 theorem dominated_pairing_tendsto {ι α : Type*} {l : Filter α} [l.NeBot]
     (M : SequenceL2 ι →L[ℂ] SequenceL2 ι)
     {u v : α → SequenceL2 ι} {u₀ v₀ : SequenceL2 ι} {b c : ι → ℝ}

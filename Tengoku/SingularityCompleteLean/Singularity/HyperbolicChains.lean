@@ -16,7 +16,9 @@ open scoped Classical MatrixGroups UpperHalfPlane
 
 namespace Singularity
 
-/-- The point i can be joined to any point by at most 3d+5 unit steps.-/
+/-- The point i can be joined to any point by at most 3d+5 unit steps.
+@isnad1 id=ex.0h1v.s6.45012483d75c from=translated src=- shape=3a817b86 vocab=f5763ca1
+-/
 theorem hyperbolic_unit_chain_from_I (z : ℍ) :
     ∃ (n : ℕ) (p : ℕ → ℍ), p 0 = UpperHalfPlane.I ∧ p n = z ∧
       (n : ℝ) ≤ 3 * dist UpperHalfPlane.I z + 5 ∧
@@ -63,7 +65,9 @@ theorem hyperbolic_unit_chain_from_I (z : ℍ) :
   push_cast
   linarith
 
-/-- Isometric transport gives a uniformly short chain between any two points.-/
+/-- Isometric transport gives a uniformly short chain between any two points.
+@isnad1 id=ex.0h2v.s6.d7bd8f4d01b9 from=translated src=- shape=235447c3 vocab=b041df89
+-/
 theorem hyperbolic_unit_chain (z w : ℍ) :
     ∃ (n : ℕ) (p : ℕ → ℍ), p 0 = z ∧ p n = w ∧
       (n : ℝ) ≤ 3 * dist z w + 5 ∧ ∀ k < n, dist (p k) (p (k + 1)) ≤ 1 := by

@@ -24,7 +24,9 @@ open scoped ENNReal
 
 namespace Singularity
 
-/-- Rank-nullity, applied to the `N × (N+1)` frequency matrix.-/
+/-- Rank-nullity, applied to the `N × (N+1)` frequency matrix.
+@isnad1 id=ex.0h2v.s9.73261379fffa from=translated src=- shape=484703b6 vocab=47b1d430
+-/
 theorem frequency_matrix_has_kernel {N : ℕ}
     (B : (Fin (N + 1) → ℂ) →ₗ[ℂ] (Fin N → ℂ)) :
     ∃ v, v ≠ 0 ∧ B v = 0 := by
@@ -42,7 +44,9 @@ def liouvilleMultiplier (ω : ℝ) : ℝ :=
   if ω = 0 then 1 else Real.pi * ω / Real.sinh (Real.pi * ω)
 
 /-- This establishes positivity of the expression, not its identification
-with a Fourier transform.-/
+with a Fourier transform.
+@isnad1 id=lt.0h1v.s3.b79a31049fdb from=translated src=- shape=8a62b088 vocab=e9af1c47
+-/
 theorem liouvilleMultiplier_pos (ω : ℝ) : 0 < liouvilleMultiplier ω := by
   unfold liouvilleMultiplier
   split_ifs with h
@@ -58,7 +62,9 @@ theorem liouvilleMultiplier_pos (ω : ℝ) : 0 < liouvilleMultiplier ω := by
 abbrev RealLineL2 := Lp ℂ 2 (volume : Measure ℝ)
 
 /-- Injectivity of an `L²` operator follows from an a.e. nonzero multiplier.
-Mathlib's Fourier transform uses the `exp(-2π i x ξ)` convention.-/
+Mathlib's Fourier transform uses the `exp(-2π i x ξ)` convention.
+@isnad1 id=injectiv.2h2v.s14.3d86e8ed970b from=translated src=- shape=b4644a03 vocab=83896434
+-/
 theorem injective_of_fourier_multiplier
     (C : RealLineL2 →L[ℂ] RealLineL2) (m : ℝ → ℂ)
     (hm : ∀ᵐ ξ ∂volume, m ξ ≠ 0)
@@ -76,7 +82,9 @@ theorem injective_of_fourier_multiplier
   exact mul_left_cancel₀ hmξ hsame
 
 /-- The sign check for the multiplier in Mathlib's frequency convention.
-The factor `2π` converts angular frequency to cycles per unit length.-/
+The factor `2π` converts angular frequency to cycles per unit length.
+@isnad1 id=ne.1h2v.s5.600e9b883715 from=translated src=- shape=7bdf0a8e vocab=9f310035
+-/
 theorem liouvilleMultiplier_scaled_ne_zero {c : ℝ} (hc : 0 < c) (ξ : ℝ) :
     (↑(c * liouvilleMultiplier (2 * Real.pi * ξ)) : ℂ) ≠ 0 := by
   exact_mod_cast (mul_pos hc (liouvilleMultiplier_pos _)).ne'
@@ -88,7 +96,9 @@ variable {𝕜 E F : Type*} [NontriviallyNormedField 𝕜]
   [NormedAddCommGroup F] [NormedSpace 𝕜 F]
 
 /-- The final algebraic contradiction. Its hypotheses must be established
-for the actual boundary analysis operators before singularity follows.-/
+for the actual boundary analysis operators before singularity follows.
+@isnad1 id=false.3h7v.s10.e130243ceee6 from=translated src=- shape=50c3c385 vocab=db5f0077
+-/
 theorem impossible_factorization
     (C : E →L[𝕜] E) (H : E →L[𝕜] F)
     (M : F →L[𝕜] F) (L : F →L[𝕜] E)

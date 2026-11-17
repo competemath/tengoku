@@ -19,7 +19,9 @@ namespace Singularity
 variable {Γ B : Type*} [Group Γ] [MeasurableSpace B] [MulAction Γ B]
   [MeasurableConstSMul Γ B]
 
-/-- Quasi-invariance for all elements also gives the reverse absolute continuity.-/
+/-- Quasi-invariance for all elements also gives the reverse absolute continuity.
+@isnad1 id=absolute.1h4v.s7.3a3fd843c69a from=translated src=- shape=455982ca vocab=e4154a9f
+-/
 theorem translate_reverse_absolutelyContinuous (ν : Measure B)
     (hq : ∀ g : Γ, Measure.map (fun ξ : B => g • ξ) ν ≪ ν) (g : Γ) :
     ν ≪ Measure.map (fun ξ : B => g • ξ) ν := by
@@ -31,7 +33,9 @@ theorem translate_reverse_absolutelyContinuous (ν : Measure B)
   simpa only [he, Measure.map_id] using h
 
 /-- Actual translated Radon–Nikodym derivatives are positive and finite for any
-finite quasi-invariant measure; stationarity is unnecessary for this statement.-/
+finite quasi-invariant measure; stationarity is unnecessary for this statement.
+@isnad1 id=eventual.1h4v.s7.2e51fd2c6131 from=translated src=- shape=e202ab5b vocab=1dc3e50d
+-/
 theorem translate_realDensity_pos (ν : Measure B) [IsFiniteMeasure ν]
     (hq : ∀ g : Γ, Measure.map (fun ξ : B => g • ξ) ν ≪ ν) (g : Γ) :
     ∀ᵐ ξ ∂ν, 0 < stationaryRealDensity ν g ξ := by
@@ -39,7 +43,9 @@ theorem translate_realDensity_pos (ν : Measure B) [IsFiniteMeasure ν]
     Measure.rnDeriv_lt_top (Measure.map (fun ξ : B => g • ξ) ν) ν] with ξ hp hf
   exact ENNReal.toReal_pos hp.ne' hf.ne
 
-/-- The exact multiplicative change-of-measure identity for translated densities.-/
+/-- The exact multiplicative change-of-measure identity for translated densities.
+@isnad1 id=eventual.3h5v.s7.f12dafcf166c from=translated src=- shape=00f47d56 vocab=d77bf87f
+-/
 theorem translated_density_coboundary (ν m : Measure B) [IsFiniteMeasure ν] [IsFiniteMeasure m]
     (hac : ν ≪ m)
     (hν : ∀ g : Γ, Measure.map (fun ξ : B => g • ξ) ν ≪ ν)
@@ -59,7 +65,9 @@ theorem translated_density_coboundary (ν m : Measure B) [IsFiniteMeasure ν] [I
   simpa only [ENNReal.toReal_mul, stationaryRealDensity, stationaryDensity] using h
 
 /-- The logarithmic cocycles of absolutely continuous quasi-invariant finite
-measures differ by the logarithm of their actual density.-/
+measures differ by the logarithm of their actual density.
+@isnad1 id=eventual.3h5v.s7.4d7c030f64a1 from=translated src=- shape=f22c9806 vocab=dfda2d8a
+-/
 theorem stationaryLogCocycle_change_measure (ν m : Measure B)
     [IsFiniteMeasure ν] [IsFiniteMeasure m] (hac : ν ≪ m)
     (hν : ∀ g : Γ, Measure.map (fun ξ : B => g • ξ) ν ≪ ν)

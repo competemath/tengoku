@@ -24,7 +24,9 @@ def axisRatioStrip (R : ℝ) : Set ℍ := {z | |z.re / z.im| ≤ R}
 /-- A closed rectangle in the upper half plane, bounded away from height zero.-/
 def heightRectangle (C H : ℝ) : Set ℍ := {z | |z.re| ≤ C ∧ 1 ≤ z.im ∧ z.im ≤ H}
 
-/-- A rectangle bounded away from the real boundary is compact in ℍ.-/
+/-- A rectangle bounded away from the real boundary is compact in ℍ.
+@isnad1 id=iscompac.0h2v.s3.bd32a79011d6 from=translated src=- shape=215a98a0 vocab=daedb165
+-/
 theorem isCompact_heightRectangle (C H : ℝ) : IsCompact (heightRectangle C H) := by
   rw [UpperHalfPlane.isEmbedding_coe.isCompact_iff (f := ((↑) : ℍ → ℂ))]
   have he : ((↑) : ℍ → ℂ) '' heightRectangle C H = Icc (-C) C ×ℂ Icc 1 H := by
@@ -38,7 +40,9 @@ theorem isCompact_heightRectangle (C H : ℝ) : IsCompact (heightRectangle C H) 
   rw [he]
   exact isCompact_Icc.reProdIm isCompact_Icc
 
-/-- All integer dilations preserve the coordinate strip.-/
+/-- All integer dilations preserve the coordinate strip.
+@isnad1 id=iff.0h4v.s8.6a04c0867ee0 from=translated src=- shape=4f033936 vocab=a322cb56
+-/
 theorem dilationMatrix_zpow_mem_axisRatioStrip (R τ : ℝ) (n : ℤ) (z : ℍ) :
     dilationMatrix τ ^ n • z ∈ axisRatioStrip R ↔ z ∈ axisRatioStrip R := by
   rw [← dilationMatrix_zpow]
@@ -46,7 +50,9 @@ theorem dilationMatrix_zpow_mem_axisRatioStrip (R τ : ℝ) (n : ℤ) (z : ℍ) 
   rw [dilationMatrix_smul_ratio]
   rfl
 
-/-- The normalized part of the strip is contained in a compact rectangle.-/
+/-- The normalized part of the strip is contained in a compact rectangle.
+@isnad1 id=mem.4h3v.s6.6e980446bcdb from=translated src=- shape=a5f59f87 vocab=6ba0cfd0
+-/
 theorem axisRatioStrip_height_subset {R τ : ℝ} (hR : 0 ≤ R) (z : ℍ)
     (hz : z ∈ axisRatioStrip R) (hlo : 1 ≤ z.im) (hhi : z.im ≤ Real.exp τ) :
     z ∈ heightRectangle (R * Real.exp τ) (Real.exp τ) := by
@@ -57,7 +63,9 @@ theorem axisRatioStrip_height_subset {R τ : ℝ} (hR : 0 ≤ R) (z : ℍ)
     exact (div_le_iff₀ z.im_pos).mp hz
   exact hr.trans (mul_le_mul_of_nonneg_left hhi hR)
 
-/-- Every strip point can be moved into the fixed compact height rectangle.-/
+/-- Every strip point can be moved into the fixed compact height rectangle.
+@isnad1 id=ex.3h3v.s8.2dcd0f9e8f28 from=translated src=- shape=e61da456 vocab=39ee6453
+-/
 theorem exists_dilationMatrix_mem_heightRectangle {R τ : ℝ} (hR : 0 ≤ R) (hτ : 0 < τ)
     (z : ℍ) (hz : z ∈ axisRatioStrip R) :
     ∃ n : ℤ, dilationMatrix τ ^ n • z ∈ heightRectangle (R * Real.exp τ) (Real.exp τ) := by
@@ -65,7 +73,9 @@ theorem exists_dilationMatrix_mem_heightRectangle {R τ : ℝ} (hR : 0 ≤ R) (h
   exact ⟨n, axisRatioStrip_height_subset hR _
     ((dilationMatrix_zpow_mem_axisRatioStrip R τ n z).mpr hz) hlo hhi.le⟩
 
-/-- A half-open height band contains at most one point of each dilation orbit.-/
+/-- A half-open height band contains at most one point of each dilation orbit.
+@isnad1 id=eq.5h3v.s9.17bf0aceb53e from=translated src=- shape=3f9b6c1b vocab=f93e4797
+-/
 theorem dilationMatrix_height_band_unique {τ : ℝ} (hτ : 0 < τ) (z : ℍ)
     (hlo : 1 ≤ z.im) (hhi : z.im < Real.exp τ) (n : ℤ)
     (hnlo : 1 ≤ (dilationMatrix τ ^ n • z).im)
@@ -82,7 +92,9 @@ theorem dilationMatrix_height_band_unique {τ : ℝ} (hτ : 0 < τ) (z : ℍ)
   have hgt' : -1 < n := by exact_mod_cast hgt
   omega
 
-/-- Proper discontinuity bounds group vertices, not just distinct orbit points.-/
+/-- Proper discontinuity bounds group vertices, not just distinct orbit points.
+@isnad1 id=finite.1h3v.s11.d805e6e25140 from=translated src=- shape=14fd3ff2 vocab=efaf15f1
+-/
 theorem finite_group_vertices_in_compact (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
     (z : ℍ) {K : Set ℍ} (hK : IsCompact K) : {g : Γ | g • z ∈ K}.Finite := by
   have hf := finite_disjoint_inter_image (Γ := Γ) (K := {z}) (L := K) isCompact_singleton hK
@@ -94,7 +106,9 @@ theorem finite_group_vertices_in_compact (Γ : Subgroup SL(2, ℝ)) [DiscreteTop
 def stripRepresentatives (Γ : Subgroup SL(2, ℝ)) (z : ℍ) (R τ : ℝ) : Set Γ :=
   {g | g • z ∈ axisRatioStrip R ∧ 1 ≤ (g • z).im ∧ (g • z).im < Real.exp τ}
 
-/-- The representative set is finite for every discrete subgroup.-/
+/-- The representative set is finite for every discrete subgroup.
+@isnad1 id=finite.1h4v.s9.297b90f4fa4a from=translated src=- shape=68dba749 vocab=b899f5e1
+-/
 theorem finite_stripRepresentatives (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
     (z : ℍ) {R : ℝ} (hR : 0 ≤ R) (τ : ℝ) : (stripRepresentatives Γ z R τ).Finite := by
   apply (finite_group_vertices_in_compact Γ z
@@ -105,7 +119,9 @@ theorem finite_stripRepresentatives (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology
 /-- The point of the vertical axis at the same height as z.-/
 def verticalAxisPoint (z : ℍ) : ℍ := ⟨⟨0, z.im⟩, z.im_pos⟩
 
-/-- The coordinate strip lies within a uniformly bounded distance of the axis.-/
+/-- The coordinate strip lies within a uniformly bounded distance of the axis.
+@isnad1 id=le.1h2v.s5.c90e58a87709 from=translated src=- shape=e136dc30 vocab=0c3db786
+-/
 theorem axisRatioStrip_dist_to_axis_le {R : ℝ} (z : ℍ) (hz : z ∈ axisRatioStrip R) :
     dist z (verticalAxisPoint z) ≤ 2 * Real.arsinh (R / 2) := by
   have he : (z : ℂ) - (verticalAxisPoint z : ℂ) = (z.re : ℂ) := by
@@ -122,7 +138,9 @@ theorem axisRatioStrip_dist_to_axis_le {R : ℝ} (z : ℍ) (hz : z ∈ axisRatio
   rw [hi]
   exact div_le_div_of_nonneg_right hz (by norm_num)
 
-/-- In particular this coordinate region is a genuine bounded-width axis strip.-/
+/-- In particular this coordinate region is a genuine bounded-width axis strip.
+@isnad1 id=ex.1h2v.s6.2cf5d8a33645 from=translated src=- shape=18ca2c31 vocab=328acc55
+-/
 theorem axisRatioStrip_bounded_width {R : ℝ} (z : ℍ) (hz : z ∈ axisRatioStrip R) :
     ∃ w : ℍ, w.re = 0 ∧ dist z w ≤ 2 * Real.arsinh (R / 2) :=
   ⟨verticalAxisPoint z, rfl, axisRatioStrip_dist_to_axis_le z hz⟩

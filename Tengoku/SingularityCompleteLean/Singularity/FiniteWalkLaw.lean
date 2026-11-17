@@ -28,7 +28,9 @@ def finiteWalkLaw (s : Finset Γ) (μ : Γ → ℝ)
       walkWeight_mass s μ hmass n, ENNReal.ofReal_one])
 
 omit [Group Γ] in
-/-- Its weight at a given word is the product of that word's jump weights.-/
+/-- Its weight at a given word is the product of that word's jump weights.
+@isnad1 id=eq.2h5v.s7.ce793ed24492 from=translated src=- shape=2642e2ca vocab=0219b7ab
+-/
 theorem finiteWalkLaw_apply (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1)
     (n : ℕ) (w : WalkWord s n) :
@@ -39,7 +41,9 @@ def finiteEndpointLaw (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1) (n : ℕ) (x : Γ) : PMF Γ :=
   (finiteWalkLaw s μ hμ hmass n).map (walkEndpoint s n x)
 
-/-- Transition weights are the probabilities under the actual endpoint law.-/
+/-- Transition weights are the probabilities under the actual endpoint law.
+@isnad1 id=eq.2h6v.s6.3f054cbb2fff from=translated src=- shape=1b300170 vocab=9cf61c6b
+-/
 theorem finiteEndpointLaw_apply (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1) (n : ℕ) (x y : Γ) :
     finiteEndpointLaw s μ hμ hmass n x y = ENNReal.ofReal (transitionWeight s μ n x y) := by
@@ -55,13 +59,17 @@ theorem finiteEndpointLaw_apply (s : Finset Γ) (μ : Γ → ℝ)
     · exact walkWeight_nonneg s μ hμ n w
     · exact le_rfl
 
-/-- The real-valued probability matches the matrix coefficient notation.-/
+/-- The real-valued probability matches the matrix coefficient notation.
+@isnad1 id=eq.2h6v.s6.e282bd0fc645 from=translated src=- shape=0768634d vocab=d4ff3794
+-/
 theorem finiteEndpointLaw_toReal (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1) (n : ℕ) (x y : Γ) :
     (finiteEndpointLaw s μ hμ hmass n x y).toReal = transitionWeight s μ n x y := by
   rw [finiteEndpointLaw_apply, ENNReal.toReal_ofReal (transitionWeight_nonneg s μ hμ n x y)]
 
-/-- The Green path sum is the sum of the actual n-step endpoint probabilities.-/
+/-- The Green path sum is the sum of the actual n-step endpoint probabilities.
+@isnad1 id=eq.2h5v.s6.d4994cfe48cc from=translated src=- shape=35ce378d vocab=3ec7c97e
+-/
 theorem walkGreen_eq_sum_endpoint_probabilities (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1) (x y : Γ) :
     walkGreen s μ x y = ∑' n : ℕ, (finiteEndpointLaw s μ hμ hmass n x y).toReal := by

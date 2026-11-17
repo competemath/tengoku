@@ -17,18 +17,27 @@ open scoped ENNReal MatrixGroups UpperHalfPlane
 
 namespace Singularity
 
+/--
+@isnad1 id=eq.0h2v.s5.d524ed077bba from=translated src=- shape=065d33f4 vocab=84780813
+-/
 theorem poissonBoundaryMeasure_translate (a : ℝ) (z : ℍ) :
     Measure.map (fun u : ℝ => a + u) (poissonBoundaryMeasure z) =
       poissonBoundaryMeasure (a +ᵥ z) := by
   simpa only [poissonBoundaryMeasure, vadd_re, vadd_im] using
     halfPlanePoissonMeasure_translate z.re z.im a
 
+/--
+@isnad1 id=eq.0h2v.s7.1ca87a32596d from=translated src=- shape=31320dc7 vocab=9715c546
+-/
 theorem poissonBoundaryMeasure_dilate (a : {a : ℝ // 0 < a}) (z : ℍ) :
     Measure.map (fun u : ℝ => (a : ℝ) * u) (poissonBoundaryMeasure z) =
       poissonBoundaryMeasure (a • z) := by
   simpa only [poissonBoundaryMeasure, Real.exp_log a.property, pos_real_re, pos_real_im] using
     halfPlanePoissonMeasure_dilation z.re z.im (Real.log a.val)
 
+/--
+@isnad1 id=eq.0h1v.s7.a97f8f8bc6ab from=translated src=- shape=ef582fca vocab=c0676113
+-/
 theorem poissonBoundaryMeasure_invert (z : ℍ) :
     Measure.map boundaryInversion (poissonBoundaryMeasure z) =
       poissonBoundaryMeasure (ModularGroup.S • z) := by
@@ -38,7 +47,9 @@ theorem poissonBoundaryMeasure_invert (z : ℍ) :
   simp only [Complex.normSq_apply, pow_two, coe_re, coe_im]
 
 /-- The positive dilation/translation/inversion word used in the Bruhat
-factorization of a real special linear matrix.-/
+factorization of a real special linear matrix.
+@isnad1 id=eq.0h4v.s8.5de5a0cffd5a from=translated src=- shape=2e249be3 vocab=514f4e83
+-/
 theorem poissonBoundaryMeasure_word (a : {a : ℝ // 0 < a}) (v w : ℝ) (z : ℍ) :
     Measure.map (fun u : ℝ => w + boundaryInversion (v + (a : ℝ) * u))
       (poissonBoundaryMeasure z) =
@@ -61,11 +72,16 @@ theorem poissonBoundaryMeasure_word (a : {a : ℝ // 0 < a}) (v w : ℝ) (z : �
 def realBoundaryMobius (g : SL(2, ℝ)) (u : ℝ) : ℝ :=
   (g 0 0 * u + g 0 1) / (g 1 0 * u + g 1 1)
 
+/--
+@isnad1 id=measurab.0h1v.s4.c9c7f7588a66 from=translated src=- shape=68f90b60 vocab=c3f9bab3
+-/
 theorem measurable_realBoundaryMobius (g : SL(2, ℝ)) : Measurable (realBoundaryMobius g) := by
   unfold realBoundaryMobius
   fun_prop
 
-/-- Poisson covariance for an affine boundary word.-/
+/-- Poisson covariance for an affine boundary word.
+@isnad1 id=eq.0h3v.s7.44eac6b8638c from=translated src=- shape=44bcf171 vocab=3be8067f
+-/
 theorem poissonBoundaryMeasure_affine (a : {a : ℝ // 0 < a}) (v : ℝ) (z : ℍ) :
     Measure.map (fun u : ℝ => v + (a : ℝ) * u) (poissonBoundaryMeasure z) =
       poissonBoundaryMeasure (v +ᵥ (a • z)) := by
@@ -76,7 +92,9 @@ theorem poissonBoundaryMeasure_affine (a : {a : ℝ // 0 < a}) (v : ℝ) (z : �
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Full covariance under the real special linear group. The real-chart pole
-is a singleton of measure zero, handled explicitly in the proof.-/
+is a singleton of measure zero, handled explicitly in the proof.
+@isnad1 id=eq.0h2v.s7.e02c4cc2dd23 from=translated src=- shape=009c9978 vocab=af75a6ce
+-/
 theorem poissonBoundaryMeasure_mobius (g : SL(2, ℝ)) (z : ℍ) :
     Measure.map (realBoundaryMobius g) (poissonBoundaryMeasure z) =
       poissonBoundaryMeasure (g • z) := by

@@ -21,7 +21,9 @@ namespace Singularity
 variable {Γ : Type*} [MeasurableSpace Γ] [MeasurableSingletonClass Γ]
 
 omit [MeasurableSingletonClass Γ] in
-/-- The first jump is independent of the entire shifted sample.-/
+/-- The first jump is independent of the entire shifted sample.
+@isnad1 id=indepfun.2h3v.s8.7e2aacd96d4c from=translated src=- shape=8979bed2 vocab=b5b43e2b
+-/
 theorem infiniteWalkLaw_head_tail_independent (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1) :
     IndepFun (fun ω : ℕ → s => ω 0) (fun ω n => ω (n + 1))
@@ -36,7 +38,9 @@ theorem infiniteWalkLaw_head_tail_independent (s : Finset Γ) (μ : Γ → ℝ)
       ⟨i.val + 1, Finset.mem_image.mpr ⟨i.val, i.property, rfl⟩⟩))
 
 omit [MeasurableSingletonClass Γ] in
-/-- The joint head-tail distribution is the product of the jump and path laws.-/
+/-- The joint head-tail distribution is the product of the jump and path laws.
+@isnad1 id=eq.2h3v.s9.fc400bc94fb9 from=translated src=- shape=eda4fe04 vocab=0bd46ae5
+-/
 theorem infiniteWalkLaw_head_tail (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1) :
     Measure.map (fun ω : ℕ → s => (ω 0, fun n => ω (n + 1)))
@@ -46,7 +50,9 @@ theorem infiniteWalkLaw_head_tail (s : Finset Γ) (μ : Γ → ℝ)
     (by exact (by fun_prop : Measurable (fun ω : ℕ → s => ω 0)).aemeasurable)
     (by exact (by fun_prop : Measurable (fun ω : ℕ → s => fun n => ω (n + 1))).aemeasurable), infiniteWalkLaw_coordinate, infiniteWalkLaw_shift]
 
-/-- First-step integration with an arbitrary measurable nonnegative observable.-/
+/-- First-step integration with an arbitrary measurable nonnegative observable.
+@isnad1 id=eq.3h4v.s9.50eaf71b9228 from=translated src=- shape=4e2e8fc3 vocab=8d3a4461
+-/
 theorem infiniteWalkLaw_lintegral_head_tail (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1)
     (f : s × (ℕ → s) → ℝ≥0∞) (hf : Measurable f) :

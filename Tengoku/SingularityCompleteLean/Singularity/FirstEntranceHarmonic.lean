@@ -20,7 +20,9 @@ namespace Singularity
 
 variable {Γ : Type*} [Group Γ]
 
-/-- Finite first-hit sums are bounded by every nonnegative superharmonic function.-/
+/-- Finite first-hit sums are bounded by every nonnegative superharmonic function.
+@isnad1 id=le.3h7v.s7.9028f1d01b5d from=translated src=- shape=43a8ce31 vocab=9681b602
+-/
 theorem firstEntrance_partial_superharmonic_bound
     (s : Finset Γ) (μ : Γ → ℝ) (hμ : ∀ g ∈ s, 0 ≤ μ g)
     (h : Γ → ℝ) (hp : ∀ x, 0 ≤ h x)
@@ -52,7 +54,9 @@ theorem firstEntrance_partial_superharmonic_bound
 
 variable [MeasurableSpace Γ] [MeasurableMul Γ] [MeasurableSingletonClass Γ]
 
-/-- The full first-hit probability satisfies the optional-stopping inequality.-/
+/-- The full first-hit probability satisfies the optional-stopping inequality.
+@isnad1 id=le.4h6v.s12.8367899e0021 from=translated src=- shape=85f6a327 vocab=cd8f5426
+-/
 theorem firstEntrance_superharmonic_bound
     (s : Finset Γ) (μ : Γ → ℝ) (hμ : ∀ g ∈ s, 0 ≤ μ g)
     (hgap : spectralRadius ℂ (rightMarkov s μ) < 1)

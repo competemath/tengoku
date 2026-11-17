@@ -17,7 +17,9 @@ noncomputable section
 open scoped Classical MatrixGroups UpperHalfPlane
 namespace Singularity
 
-/-- Subdivision of an ordered real interval, with every sample inside it.-/
+/-- Subdivision of an ordered real interval, with every sample inside it.
+@isnad1 id=ex.1h2v.s7.9d50d4537fa2 from=translated src=- shape=425bef83 vocab=4d24ec20
+-/
 theorem ordered_interval_subdivision (a b : ℝ) (hab : a ≤ b) :
     ∃ (n : ℕ) (τ : ℕ → ℝ), τ 0 = a ∧ τ n = b ∧ (n : ℝ) ≤ b-a+2 ∧
       (∀ k ≤ n, a ≤ τ k ∧ τ k ≤ b) ∧ ∀ k < n, |τ (k+1)-τ k| ≤ 1 := by
@@ -45,7 +47,9 @@ theorem ordered_interval_subdivision (a b : ℝ) (hab : a ≤ b) :
     exact (div_le_one hn).mpr hlen
 
 /-- An axis tube contains a short chain of orbit vertices with prescribed ends;
-every vertex stays within the same radius of a point of the finite axis segment.-/
+every vertex stays within the same radius of a point of the finite axis segment.
+@isnad1 id=ex.5h7v.s13.97eb891abe9b from=translated src=- shape=c8aec618 vocab=a0c91435
+-/
 theorem axis_orbit_chain_with_tube (Γ : Subgroup SL(2, ℝ)) (E : ℝ) (_hE : 0 ≤ E)
     (hcover : ∀ z : ℍ, ∃ g : Γ, dist (g • UpperHalfPlane.I) z ≤ E)
     (q : SL(2, ℝ)) (a b : ℝ) (hab : a ≤ b) (x y : Γ)
@@ -111,7 +115,9 @@ theorem axis_orbit_chain_with_tube (Γ : Subgroup SL(2, ℝ)) (E : ℝ) (_hE : 0
       · exact ⟨b,⟨hab,le_rfl⟩,by simpa only [f, ite_eq_right hk0, ite_eq_right hkn] using hy⟩
 
 /-- The tube construction gives the radial depth estimate used by the original
-axis lower-bound argument.-/
+axis lower-bound argument.
+@isnad1 id=ex.5h7v.s13.a54d680d4ea1 from=translated src=- shape=960860a0 vocab=368c2587
+-/
 theorem axis_orbit_chain_of_cover (Γ : Subgroup SL(2, ℝ)) (E : ℝ) (hE : 0 ≤ E)
     (hcover : ∀ z : ℍ, ∃ g : Γ, dist (g • UpperHalfPlane.I) z ≤ E)
     (q : SL(2, ℝ)) (a b : ℝ) (hab : a ≤ b) (x y : Γ)

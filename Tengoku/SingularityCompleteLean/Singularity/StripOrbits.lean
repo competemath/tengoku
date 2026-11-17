@@ -23,13 +23,17 @@ variable (Γ : Subgroup SL(2, ℝ)) (a : Γ) {τ : ℝ}
 
 include ha
 
-/-- The subgroup action of a cyclic power agrees with the diagonal action.-/
+/-- The subgroup action of a cyclic power agrees with the diagonal action.
+@isnad1 id=eq.1h5v.s11.55308fde8697 from=translated src=- shape=33b9ea5f vocab=cd629934
+-/
 theorem subgroup_dilation_zpow_smul (n : ℤ) (z : ℍ) :
     a ^ n • z = dilationMatrix τ ^ n • z := by
   change ((a ^ n : Γ) : SL(2, ℝ)) • z = _
   rw [Subgroup.coe_zpow, ha]
 
-/-- A nontrivial normalized diagonal element has infinite order in the subgroup.-/
+/-- A nontrivial normalized diagonal element has infinite order in the subgroup.
+@isnad1 id=not.2h3v.s10.edd00028398c from=translated src=- shape=77247524 vocab=17855a85
+-/
 theorem subgroup_dilation_infinite_order (hτ : τ ≠ 0) : ¬IsOfFinOrder a := by
   apply injective_zpow_iff_not_isOfFinOrder.mp
   intro n m h
@@ -37,7 +41,9 @@ theorem subgroup_dilation_infinite_order (hτ : τ ≠ 0) : ¬IsOfFinOrder a := 
   simp only [Subgroup.coe_zpow, ha] at he
   exact injective_zpow_iff_not_isOfFinOrder.mpr (dilationMatrix_infinite_order hτ) he
 
-/-- Canonical representatives belong to distinct cyclic orbits of group vertices.-/
+/-- Canonical representatives belong to distinct cyclic orbits of group vertices.
+@isnad1 id=eq.3h8v.s12.f01c4ab6b226 from=translated src=- shape=7b777323 vocab=7cf7e65a
+-/
 theorem stripRepresentatives_disjoint (hτ : 0 < τ) (z : ℍ) (R : ℝ)
     (j k : stripRepresentatives Γ z R τ) (n : ℤ)
     (he : a ^ n * (j : Γ) = (k : Γ)) : j = k := by
@@ -49,7 +55,9 @@ theorem stripRepresentatives_disjoint (hτ : 0 < τ) (z : ℍ) (R : ℝ)
   apply Subtype.ext
   simpa using he
 
-/-- Every strip vertex belongs to a canonical representative's cyclic orbit.-/
+/-- Every strip vertex belongs to a canonical representative's cyclic orbit.
+@isnad1 id=eq.2h5v.s12.b622a8cf0602 from=translated src=- shape=057b0b9d vocab=ef57a000
+-/
 theorem stripVertices_eq_cyclicOrbitUnion (hτ : 0 < τ) (z : ℍ) (R : ℝ) :
     {g : Γ | g • z ∈ axisRatioStrip R} =
       cyclicOrbitUnion a (fun j : stripRepresentatives Γ z R τ => (j : Γ)) := by
@@ -83,12 +91,16 @@ def stripOrbitEquiv (hτ : 0 < τ) (z : ℍ) (R : ℝ) :
     (stripRepresentatives_disjoint Γ a ha hτ z R)).trans
       (Equiv.subtypeEquivRight (fun g => by rw [stripVertices_eq_cyclicOrbitUnion Γ a ha hτ z R]))
 
-/-- Its coordinate formula retains the expected a^n b_j group vertex.-/
+/-- Its coordinate formula retains the expected a^n b_j group vertex.
+@isnad1 id=eq.2h6v.s14.fc9476c33c38 from=translated src=- shape=d83cb13b vocab=b78dbccf
+-/
 theorem stripOrbitEquiv_apply (hτ : 0 < τ) (z : ℍ) (R : ℝ)
     (p : ℤ × stripRepresentatives Γ z R τ) :
     (stripOrbitEquiv Γ a ha hτ z R p : Γ) = a ^ p.1 * (p.2 : Γ) := rfl
 
-/-- The actual strip admits a finite disjoint cyclic-orbit decomposition.-/
+/-- The actual strip admits a finite disjoint cyclic-orbit decomposition.
+@isnad1 id=ex.3h5v.s12.2bdc100a30ff from=translated src=- shape=9f54da50 vocab=828a61a3
+-/
 theorem exists_finite_strip_orbits [DiscreteTopology Γ] (hτ : 0 < τ) (z : ℍ)
     {R : ℝ} (hR : 0 ≤ R) :
     ∃ (N : ℕ) (b : Fin N → Γ),

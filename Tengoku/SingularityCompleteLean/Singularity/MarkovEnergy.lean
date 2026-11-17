@@ -23,12 +23,16 @@ variable {Γ : Type*} [Group Γ] [MeasurableSpace Γ] [MeasurableMul Γ]
 def markovEnergy (s : Finset Γ) (μ : Γ → ℝ) (f : GroupL2 Γ) : ℝ :=
   ∑ g ∈ s, μ g * ‖rightTranslation g f - f‖ ^ 2
 
-/-- Translation energy is nonnegative for a probability jump law.-/
+/-- Translation energy is nonnegative for a probability jump law.
+@isnad1 id=le.1h4v.s8.c13f06db73fc from=translated src=- shape=db32a780 vocab=5e2b8ac9
+-/
 theorem markovEnergy_nonneg (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (f : GroupL2 Γ) : 0 ≤ markovEnergy s μ f :=
   Finset.sum_nonneg (fun g hg => mul_nonneg (hμ g hg) (sq_nonneg _))
 
-/-- Translation energy is homogeneous of degree two.-/
+/-- Translation energy is homogeneous of degree two.
+@isnad1 id=eq.0h5v.s11.36c5d89712b0 from=translated src=- shape=aef133cb vocab=22fc3ba8
+-/
 theorem markovEnergy_smul (s : Finset Γ) (μ : Γ → ℝ) (a : ℂ) (f : GroupL2 Γ) :
     markovEnergy s μ (a • f) = ‖a‖ ^ 2 * markovEnergy s μ f := by
   simp only [markovEnergy, map_smul, ← smul_sub, norm_smul, mul_pow, Finset.mul_sum]
@@ -39,7 +43,9 @@ theorem markovEnergy_smul (s : Finset Γ) (μ : Γ → ℝ) (a : ℂ) (f : Group
 variable [MeasurableSingletonClass Γ] [Countable Γ]
 
 omit [MeasurableSingletonClass Γ] [Countable Γ] in
-/-- The exact real-part Dirichlet identity for the possibly nonsymmetric walk.-/
+/-- The exact real-part Dirichlet identity for the possibly nonsymmetric walk.
+@isnad1 id=eq.1h4v.s12.58b942fb1d36 from=translated src=- shape=9275c6ca vocab=bd40b76c
+-/
 theorem markovEnergy_identity (s : Finset Γ) (μ : Γ → ℝ)
     (hmass : ∑ g ∈ s, μ g = 1) (f : GroupL2 Γ) :
     markovEnergy s μ f = 2 * (‖f‖ ^ 2 - (inner ℂ (rightMarkov s μ f) f).re) := by
@@ -56,7 +62,9 @@ theorem markovEnergy_identity (s : Finset Γ) (μ : Γ → ℝ)
       rw [Finset.sum_sub_distrib, ← Finset.mul_sum, ← Finset.sum_mul, ← Finset.mul_sum, hmass]
       ring
 
-/-- A uniform positive energy bound gives a strict quadratic bound on the Markov operator.-/
+/-- A uniform positive energy bound gives a strict quadratic bound on the Markov operator.
+@isnad1 id=le.3h5v.s12.fea423086edf from=translated src=- shape=8b4ce05f vocab=1c476152
+-/
 theorem rightMarkov_quadratic_bound_of_energy (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1)
     (c : ℝ) (henergy : ∀ f : GroupL2 Γ, c * ‖f‖ ^ 2 ≤ markovEnergy s μ f)

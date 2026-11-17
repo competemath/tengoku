@@ -25,6 +25,9 @@ def axisRotation (t : ℝ) : SL(2, ℝ) :=
       Matrix.cons_val_one, Matrix.cons_val_fin_one]
     nlinarith [Real.sin_sq_add_cos_sq t]⟩
 
+/--
+@isnad1 id=continuo.0h0v.s5.63fd4da4c9b4 from=translated src=- shape=8c4e1e81 vocab=186c6f67
+-/
 theorem continuous_axisRotation : Continuous axisRotation := by
   apply Continuous.subtype_mk
   apply continuous_matrix
@@ -32,12 +35,17 @@ theorem continuous_axisRotation : Continuous axisRotation := by
   fin_cases i <;> fin_cases j <;>
     first | exact Real.continuous_cos | exact Real.continuous_sin | exact Real.continuous_sin.neg
 
+/--
+@isnad1 id=eq.0h0v.s6.281097710370 from=translated src=- shape=98680116 vocab=eb39174d
+-/
 theorem axisRotation_zero : axisRotation 0 = 1 := by
   apply Matrix.SpecialLinearGroup.ext
   intro i j
   fin_cases i <;> fin_cases j <;> simp [axisRotation]
 
-/-- Every member of the rotation family fixes i.-/
+/-- Every member of the rotation family fixes i.
+@isnad1 id=eq.0h1v.s7.b7f86ef37498 from=translated src=- shape=d2a52af4 vocab=acf86cae
+-/
 theorem axisRotation_smul_I (t : ℝ) : axisRotation t • UpperHalfPlane.I = UpperHalfPlane.I := by
   apply UpperHalfPlane.ext
   rw [UpperHalfPlane.coe_specialLinearGroup_apply]
@@ -50,7 +58,9 @@ theorem axisRotation_smul_I (t : ℝ) : axisRotation t • UpperHalfPlane.I = Up
   rw [div_eq_iff hd]
   linear_combination (Real.sin t : ℂ) * Complex.I_sq
 
-/-- A quarter turn acts by z ↦ -1/z.-/
+/-- A quarter turn acts by z ↦ -1/z.
+@isnad1 id=eq.0h1v.s7.a5c8be72aaf7 from=translated src=- shape=6169a6bc vocab=28cec73c
+-/
 theorem axisRotation_quarter_coe (z : ℍ) :
     ((axisRotation (Real.pi / 2) • z : ℍ) : ℂ) = -(z : ℂ)⁻¹ := by
   rw [UpperHalfPlane.coe_specialLinearGroup_apply]
@@ -60,7 +70,9 @@ theorem axisRotation_quarter_coe (z : ℍ) :
   rw [Real.cos_pi_div_two, Real.sin_pi_div_two]
   simp
 
-/-- The quarter turn reverses the signed vertical-axis parameter.-/
+/-- The quarter turn reverses the signed vertical-axis parameter.
+@isnad1 id=eq.0h1v.s7.8a5166f52113 from=translated src=- shape=b6228436 vocab=37831d4c
+-/
 theorem axisRotation_quarter_ray (t : ℝ) :
     axisRotation (Real.pi / 2) • verticalHeightRay UpperHalfPlane.I t =
       verticalHeightRay UpperHalfPlane.I (-t) := by
@@ -71,7 +83,9 @@ theorem axisRotation_quarter_ray (t : ℝ) :
   · simp [verticalHeightRay, Complex.inv_im, Complex.normSq, Real.exp_neg]
     field_simp
 
-/-- Some rotation fixing i moves any given point to the vertical axis.-/
+/-- Some rotation fixing i moves any given point to the vertical axis.
+@isnad1 id=ex.0h1v.s7.3e1eef19be4a from=translated src=- shape=ebbd9eea vocab=cd9f779c
+-/
 theorem exists_axisRotation_re_zero (z : ℍ) :
     ∃ t : ℝ, (axisRotation t • z).re = 0 := by
   let f : ℝ → ℝ := fun t => (axisRotation t • z).re
@@ -93,7 +107,9 @@ theorem exists_axisRotation_re_zero (z : ℍ) :
     exact intermediate_value_univ 0 (Real.pi / 2) hf hh
 
 /-- Two arbitrary interior points lie on one isometric image of the vertical
-axis. The parameter difference equals their hyperbolic distance in absolute value.-/
+axis. The parameter difference equals their hyperbolic distance in absolute value.
+@isnad1 id=ex.0h2v.s8.bc5e42eedc92 from=translated src=- shape=0753d26c vocab=2cd72fbb
+-/
 theorem exists_hyperbolic_axis_through (z w : ℍ) :
     ∃ (g : SL(2, ℝ)) (t : ℝ), g • UpperHalfPlane.I = z ∧
       g • verticalHeightRay UpperHalfPlane.I t = w ∧ |t| = dist z w := by
@@ -123,7 +139,9 @@ theorem exists_hyperbolic_axis_through (z w : ℍ) :
   simpa only [verticalHeightRay_zero, zero_sub, abs_neg] using hd.symm
 
 /-- Orient the axis so the second point has parameter equal to its distance
-from the first point.-/
+from the first point.
+@isnad1 id=ex.0h2v.s8.5f18f27745ff from=translated src=- shape=b2c35443 vocab=44e53ee3
+-/
 theorem exists_oriented_hyperbolic_axis (z w : ℍ) :
     ∃ g : SL(2, ℝ), g • UpperHalfPlane.I = z ∧
       g • verticalHeightRay UpperHalfPlane.I (dist z w) = w := by
@@ -139,14 +157,18 @@ theorem exists_oriented_hyperbolic_axis (z w : ℍ) :
     · rw [mul_smul, hd, axisRotation_quarter_ray, neg_neg, hw]
 
 /-- Every isometric image of the parameterized vertical axis is a unit-speed
-geodesic line.-/
+geodesic line.
+@isnad1 id=isometry.0h1v.s7.ec0001c13950 from=translated src=- shape=28225ff2 vocab=62f4cbd6
+-/
 theorem isometry_hyperbolic_axis (g : SL(2, ℝ)) :
     Isometry (fun t : ℝ => g • verticalHeightRay UpperHalfPlane.I t) := by
   apply Isometry.of_dist_eq
   intro a b
   rw [dist_smul, verticalHeightRay_dist_eq, Real.dist_eq]
 
-/-- Every pair of points is joined by one of the constructed unit-speed lines.-/
+/-- Every pair of points is joined by one of the constructed unit-speed lines.
+@isnad1 id=ex.0h2v.s5.26cc6de2da38 from=translated src=- shape=722c45b4 vocab=61a4120e
+-/
 theorem exists_hyperbolic_geodesic_line (z w : ℍ) :
     ∃ c : ℝ → ℍ, Isometry c ∧ c 0 = z ∧ c (dist z w) = w := by
   obtain ⟨g, hg, hw⟩ := exists_oriented_hyperbolic_axis z w

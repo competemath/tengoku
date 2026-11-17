@@ -25,10 +25,15 @@ def supportedCoordinates {A : Set X} (e : ι ≃ A) (f : supportedL2 A) : Sequen
       (Subtype.val_injective.comp e.injective)) (fun _ => le_rfl)⟩
 
 omit [Countable X] in
+/--
+@isnad1 id=eq.0h6v.s12.a27548934a08 from=translated src=- shape=326da531 vocab=b10dccea
+-/
 theorem supportedCoordinates_apply {A : Set X} (e : ι ≃ A) (f : supportedL2 A) (i : ι) :
     supportedCoordinates e f i = (f : GroupL2 X) (e i) := rfl
 
-/-- Restricting the square sum to A loses no terms.-/
+/-- Restricting the square sum to A loses no terms.
+@isnad1 id=eq.0h3v.s13.5a8da0e1cedc from=translated src=- shape=f33d5325 vocab=ed781add
+-/
 theorem supported_norm_sq {A : Set X} (f : supportedL2 A) :
     ‖f‖ ^ 2 = ∑' a : A, ‖(f : GroupL2 X) a‖ ^ 2 := by
   rw [← Submodule.norm_coe, counting_norm_sq]
@@ -38,6 +43,9 @@ theorem supported_norm_sq {A : Set X} (f : supportedL2 A) :
   by_contra hxa
   exact hx (by simp [f.property x hxa])
 
+/--
+@isnad1 id=eq.0h5v.s12.6f88a519f163 from=translated src=- shape=155440e7 vocab=4c14509c
+-/
 theorem supportedCoordinates_norm {A : Set X} (e : ι ≃ A) (f : supportedL2 A) :
     ‖supportedCoordinates e f‖ = ‖f‖ := by
   have h : ‖supportedCoordinates e f‖ ^ 2 = ‖f‖ ^ 2 := by
@@ -64,16 +72,24 @@ def extendCoordinates {A : Set X} (e : ι ≃ A) (v : ι → ℂ) (x : X) : ℂ 
   if hx : x ∈ A then v (e.symm ⟨x, hx⟩) else 0
 
 omit [MeasurableSpace X] [MeasurableSingletonClass X] [Countable X] in
+/--
+@isnad1 id=eq.0h6v.s6.d2f9c94a14c1 from=translated src=- shape=7b50819b vocab=22924197
+-/
 theorem extendCoordinates_apply {A : Set X} (e : ι ≃ A) (v : ι → ℂ) (i : ι) :
     extendCoordinates e v (e i) = v i := by
   simp [extendCoordinates]
 
 omit [MeasurableSpace X] [MeasurableSingletonClass X] [Countable X] in
+/--
+@isnad1 id=eq.1h6v.s5.0ba027ad5e09 from=translated src=- shape=27873174 vocab=5e3c3b01
+-/
 theorem extendCoordinates_off {A : Set X} (e : ι ≃ A) (v : ι → ℂ)
     {x : X} (hx : x ∉ A) : extendCoordinates e v x = 0 := by
   simp [extendCoordinates, hx]
 
-/-- The zero extension of a sequence ℓ² vector belongs to counting-measure L².-/
+/-- The zero extension of a sequence ℓ² vector belongs to counting-measure L².
+@isnad1 id=memlp.0h5v.s8.9a698d90e4c3 from=translated src=- shape=53c7e302 vocab=2bd1ad74
+-/
 theorem extendCoordinates_memLp {A : Set X} (e : ι ≃ A) (v : SequenceL2 ι) :
     MemLp (extendCoordinates e v) 2 Measure.count := by
   have hs : Summable (fun i => ‖v i‖ ^ 2) := by
@@ -91,7 +107,9 @@ theorem extendCoordinates_memLp {A : Set X} (e : ι ≃ A) (v : SequenceL2 ι) :
     · simp [hx, extendCoordinates_off e v hx]
   exact mem_countingL2_of_bound hfull (fun _ => le_rfl)
 
-/-- Every sequence is the coordinate image of its zero extension.-/
+/-- Every sequence is the coordinate image of its zero extension.
+@isnad1 id=surjecti.0h4v.s13.3ab2f7d7e134 from=translated src=- shape=c3fbaa75 vocab=a5add5fc
+-/
 theorem supportedCoordinates_surjective {A : Set X} (e : ι ≃ A) :
     Function.Surjective (supportedCoordinatesIsometry e) := by
   intro v
@@ -109,6 +127,9 @@ def supportedCoordinatesEquiv {A : Set X} (e : ι ≃ A) :
   LinearIsometryEquiv.ofSurjective (supportedCoordinatesIsometry e)
     (supportedCoordinates_surjective e)
 
+/--
+@isnad1 id=eq.0h6v.s14.8ea393dbbb3e from=translated src=- shape=31627c77 vocab=db702334
+-/
 theorem supportedCoordinatesEquiv_apply {A : Set X} (e : ι ≃ A)
     (f : supportedL2 A) (i : ι) :
     supportedCoordinatesEquiv e f i = (f : GroupL2 X) (e i) := rfl
@@ -119,12 +140,17 @@ def coordinateOperator {A : Set X} (e : ι ≃ A) (M : supportedL2 A →L[ℂ] s
   (supportedCoordinatesEquiv e).toContinuousLinearEquiv.toContinuousLinearMap.comp
     (M.comp (supportedCoordinatesEquiv e).symm.toContinuousLinearEquiv.toContinuousLinearMap)
 
+/--
+@isnad1 id=eq.0h6v.s16.8e438c1ff96a from=translated src=- shape=0d610302 vocab=286f1c9a
+-/
 theorem coordinateOperator_apply {A : Set X} (e : ι ≃ A)
     (M : supportedL2 A →L[ℂ] supportedL2 A) (f : supportedL2 A) :
     coordinateOperator e M (supportedCoordinatesEquiv e f) = supportedCoordinatesEquiv e (M f) := by
   simp [coordinateOperator]
 
-/-- Changing to isometric coordinates preserves the exact operator norm.-/
+/-- Changing to isometric coordinates preserves the exact operator norm.
+@isnad1 id=eq.0h5v.s14.8cb8ec127d9c from=translated src=- shape=cbe500c0 vocab=5056a182
+-/
 theorem coordinateOperator_norm {A : Set X} (e : ι ≃ A)
     (M : supportedL2 A →L[ℂ] supportedL2 A) : ‖coordinateOperator e M‖ = ‖M‖ := by
   apply le_antisymm
@@ -139,7 +165,9 @@ theorem coordinateOperator_norm {A : Set X} (e : ι ≃ A)
     simpa only [coordinateOperator_apply, LinearIsometryEquiv.norm_map] using
       (coordinateOperator e M).le_opNorm (supportedCoordinatesEquiv e f)
 
-/-- The operator pairing is unchanged by passage to orbit coordinates.-/
+/-- The operator pairing is unchanged by passage to orbit coordinates.
+@isnad1 id=eq.0h7v.s16.cacaccf2ff48 from=translated src=- shape=6e7f9b0f vocab=cfc57ee0
+-/
 theorem coordinateOperator_pairing {A : Set X} (e : ι ≃ A)
     (M : supportedL2 A →L[ℂ] supportedL2 A) (u v : supportedL2 A) :
     inner ℂ (supportedCoordinatesEquiv e u)
@@ -147,7 +175,9 @@ theorem coordinateOperator_pairing {A : Set X} (e : ι ≃ A)
   rw [coordinateOperator_apply]
   exact (supportedCoordinatesEquiv e).inner_map_map u (M v)
 
-/-- Dominated convergence can be checked solely on enumerated A-coordinates.-/
+/-- Dominated convergence can be checked solely on enumerated A-coordinates.
+@isnad1 id=ex.3h9v.s14.72bbc164995d from=translated src=- shape=3e8e81d4 vocab=8cf910ed
+-/
 theorem supportedCoordinates_limit_exists {A : Set X} (e : ι ≃ A)
     {α : Type*} {l : Filter α} [l.NeBot] {u : α → supportedL2 A}
     {v : ι → ℂ} {b : ι → ℝ} (hb : Summable (fun i => b i ^ 2))

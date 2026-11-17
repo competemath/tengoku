@@ -20,7 +20,9 @@ namespace Singularity
 
 variable {X : Type*} [MeasurableSpace X] {μ : Measure X}
 
-/-- The L² norm of a raw function, expressed without choosing a representative.-/
+/-- The L² norm of a raw function, expressed without choosing a representative.
+@isnad1 id=eq.1h3v.s8.2134e22e3dae from=translated src=- shape=2bff9e87 vocab=da2f0a08
+-/
 theorem toL2_norm_sq {f : X → ℂ} (hf : MemLp f 2 μ) :
     ‖hf.toLp f‖ ^ 2 = ∫ x, ‖f x‖ ^ 2 ∂μ := by
   rw [norm_sq_eq_re_inner (𝕜 := ℂ), L2.inner_def,
@@ -29,7 +31,9 @@ theorem toL2_norm_sq {f : X → ℂ} (hf : MemLp f 2 μ) :
   filter_upwards [hf.coeFn_toLp] with x hx
   rw [hx, ← norm_sq_eq_re_inner (𝕜 := ℂ)]
 
-/-- Cauchy–Schwarz for complex functions represented in L².-/
+/-- Cauchy–Schwarz for complex functions represented in L².
+@isnad1 id=le.2h4v.s8.553a27dc92c0 from=translated src=- shape=1ba1c2f5 vocab=7164b96b
+-/
 theorem integral_inner_sq_le {f g : X → ℂ}
     (hf : MemLp f 2 μ) (hg : MemLp g 2 μ) :
     ‖∫ x, inner ℂ (f x) (g x) ∂μ‖ ^ 2 ≤
@@ -43,7 +47,9 @@ theorem integral_inner_sq_le {f g : X → ℂ}
     (norm_inner_le_norm (𝕜 := ℂ) (hf.toLp f) (hg.toLp g)) 2
   rwa [hi, mul_pow, toL2_norm_sq hf, toL2_norm_sq hg] at h
 
-/-- Weighted Cauchy–Schwarz, with all integrability hypotheses explicit.-/
+/-- Weighted Cauchy–Schwarz, with all integrability hypotheses explicit.
+@isnad1 id=le.4h4v.s8.f10502c74c89 from=translated src=- shape=418b9069 vocab=869a1381
+-/
 theorem weighted_cauchy_schwarz {f : X → ℂ} {k : X → ℝ}
     (hf : AEStronglyMeasurable f μ) (hk : Integrable k μ)
     (hk_nonneg : ∀ x, 0 ≤ k x)
@@ -71,7 +77,9 @@ theorem weighted_cauchy_schwarz {f : X → ℂ} {k : X → ℝ}
       _ = _ := by rw [← Complex.ofReal_pow, Real.sq_sqrt (hk_nonneg x)]
   simpa only [hi, hs_sq, hsf_sq] using integral_inner_sq_le hs hsf
 
-/-- If each density has total mass at most one, one factor disappears.-/
+/-- If each density has total mass at most one, one factor disappears.
+@isnad1 id=le.5h4v.s8.2cabcb933832 from=translated src=- shape=aa09256b vocab=869a1381
+-/
 theorem weighted_cauchy_schwarz_mass_le_one {f : X → ℂ} {k : X → ℝ}
     (hf : AEStronglyMeasurable f μ) (hk : Integrable k μ)
     (hk_nonneg : ∀ x, 0 ≤ k x) (hkmass : ∫ x, k x ∂μ ≤ 1)

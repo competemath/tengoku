@@ -17,7 +17,9 @@ open scoped BigOperators ComplexConjugate
 
 namespace Singularity
 
-/-- Translating a band integral back to the base cell.-/
+/-- Translating a band integral back to the base cell.
+@isnad1 id=eq.0h5v.s7.b4a13442ed68 from=translated src=- shape=a0a772bf vocab=f98be1dd
+-/
 theorem integral_mul_bandPiece {d : ℕ} (q : ℝ)
     (v : ℝ → EuclideanSpace ℂ (Fin d)) (a : ℝ → ℂ) (l : Fin d) :
     ∫ t, a t * bandPiece q v l t =
@@ -28,7 +30,9 @@ theorem integral_mul_bandPiece {d : ℕ} (q : ℝ)
   exact Filter.Eventually.of_forall (fun ω => by
     by_cases hω : ω ∈ Ico 0 q <;> simp [bandPiece, hω])
 
-/-- The complete change-of-variables identity, with integrability proved from L².-/
+/-- The complete change-of-variables identity, with integrability proved from L².
+@isnad1 id=eq.3h4v.s8.b3f092e1a51a from=translated src=- shape=a3e6573d vocab=908c02d9
+-/
 theorem integral_mul_finiteBand {d : ℕ} (q : ℝ)
     {v : ℝ → EuclideanSpace ℂ (Fin d)} (hv : Measurable v)
     (hnorm : ∀ ω, ‖v ω‖ = 1) {a : ℝ → ℂ} (ha : MemLp a 2 volume) :
@@ -52,7 +56,9 @@ theorem integral_mul_finiteBand {d : ℕ} (q : ℝ)
     _ = ∫ ω in Ico 0 q, ∑ l : Fin d, a (ω + (l : ℕ) * q) * v ω l :=
       (integral_finsetSum _ (fun l _ => hc l)).symm
 
-/-- Bounded modulation times the conjugate of an L² profile remains in L².-/
+/-- Bounded modulation times the conjugate of an L² profile remains in L².
+@isnad1 id=memlp.3h2v.s7.d29aafc4a115 from=translated src=- shape=81b11fdc vocab=e3fcd991
+-/
 theorem memLp_modulated_conj {h w : ℝ → ℂ} (hh : MemLp h 2 volume)
     (hw : Measurable w) (hwbound : ∀ t, ‖w t‖ ≤ 1) :
     MemLp (fun t => w t * conj (h t)) 2 volume := by
@@ -65,7 +71,9 @@ theorem memLp_modulated_conj {h w : ℝ → ℂ} (hh : MemLp h 2 volume)
     exact (mul_le_mul_of_nonneg_right (hwbound t) (norm_nonneg _)).trans_eq (one_mul _))
 
 /-- The pointwise matrix equation implies zero integrated pairing for every
-modulation which agrees across the frequency cells.-/
+modulation which agrees across the frequency cells.
+@isnad1 id=eq.7h5v.s8.317f87166682 from=translated src=- shape=33be7a78 vocab=2909d624
+-/
 theorem finiteBand_periodic_pairing_zero {d : ℕ} (q : ℝ)
     {v : ℝ → EuclideanSpace ℂ (Fin d)} (hv : Measurable v)
     (hnorm : ∀ ω, ‖v ω‖ = 1) {h w : ℝ → ℂ} (hh : MemLp h 2 volume)
@@ -82,7 +90,9 @@ theorem finiteBand_periodic_pairing_zero {d : ℕ} (q : ℝ)
       simp_rw [hperiod, mul_assoc, ← Finset.mul_sum, hker ω hω, mul_zero]
     _ = 0 := integral_zero _ _
 
-/-- Specialization to the actual Fourier sample matrix.-/
+/-- Specialization to the actual Fourier sample matrix.
+@isnad1 id=eq.6h6v.s12.174cd80bf11e from=translated src=- shape=55a1088e vocab=f21b542f
+-/
 theorem frequency_kernel_pairing_zero {N : ℕ} (k : Fin N → RealLineL2) (q : ℝ)
     {v : ℝ → EuclideanSpace ℂ (Fin (N + 1))} (hv : Measurable v)
     (hnorm : ∀ ω, ‖v ω‖ = 1)

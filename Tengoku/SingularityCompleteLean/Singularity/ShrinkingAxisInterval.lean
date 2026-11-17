@@ -31,23 +31,35 @@ def axisInterval (l r : ℝ) : ℕ → ℝ × ℝ
   | 0 => (l, r)
   | n + 1 => axisIntervalStep (axisInterval l r n)
 
+/--
+@isnad1 id=and.2h1v.s5.ad40cf18b9b7 from=translated src=- shape=ea02995e vocab=98cc9647
+-/
 theorem axisIntervalStep_nonneg (p : ℝ × ℝ) (hl : 0 ≤ p.1) (hr : 0 ≤ p.2) :
     0 ≤ (axisIntervalStep p).1 ∧ 0 ≤ (axisIntervalStep p).2 := by
   unfold axisIntervalStep
   split <;> dsimp <;> constructor <;> positivity
 
+/--
+@isnad1 id=and.2h3v.s5.a814b39c9e5e from=translated src=- shape=a3523629 vocab=6a125acf
+-/
 theorem axisInterval_nonneg (l r : ℝ) (hl : 0 ≤ l) (hr : 0 ≤ r) (n : ℕ) :
     0 ≤ (axisInterval l r n).1 ∧ 0 ≤ (axisInterval l r n).2 := by
   induction n with
   | zero => exact ⟨hl, hr⟩
   | succ n ih => exact axisIntervalStep_nonneg _ ih.1 ih.2
 
+/--
+@isnad1 id=and.2h1v.s7.d19bb9bbba77 from=translated src=- shape=671989b3 vocab=ea947965
+-/
 theorem axisIntervalStep_length_bounds (p : ℝ × ℝ) (hl : 0 ≤ p.1) (hr : 0 ≤ p.2) :
     (p.1 + p.2) / 2 ≤ (axisIntervalStep p).1 + (axisIntervalStep p).2 ∧
     (axisIntervalStep p).1 + (axisIntervalStep p).2 ≤ (3 / 4 : ℝ) * (p.1 + p.2) := by
   unfold axisIntervalStep
   split <;> dsimp <;> constructor <;> linarith
 
+/--
+@isnad1 id=le.2h3v.s6.9224194bf069 from=translated src=- shape=cf2a6222 vocab=13f7b056
+-/
 theorem axisInterval_length_le (l r : ℝ) (hl : 0 ≤ l) (hr : 0 ≤ r) (n : ℕ) :
     (axisInterval l r n).1 + (axisInterval l r n).2 ≤ (3 / 4 : ℝ)^n * (l + r) := by
   induction n with
@@ -61,7 +73,9 @@ theorem axisInterval_length_le (l r : ℝ) (hl : 0 ≤ l) (hr : 0 ≤ r) (n : �
       _ ≤ (3 / 4 : ℝ) * ((3 / 4 : ℝ)^n * (l + r)) := mul_le_mul_of_nonneg_left ih (by norm_num)
       _ = _ := by rw [pow_succ]; ring
 
-/-- Stop on first reaching a prescribed positive total length.-/
+/-- Stop on first reaching a prescribed positive total length.
+@isnad1 id=ex.3h3v.s6.5418fadaa622 from=translated src=- shape=427cdfd0 vocab=b085cab0
+-/
 theorem exists_axisInterval_stop (l r T : ℝ) (hl : 0 ≤ l) (hr : 0 ≤ r) (hT : 0 < T) :
     ∃ N : ℕ, (axisInterval l r N).1 + (axisInterval l r N).2 ≤ T ∧
       ∀ n < N, T < (axisInterval l r n).1 + (axisInterval l r n).2 := by
@@ -76,7 +90,9 @@ theorem exists_axisInterval_stop (l r T : ℝ) (hl : 0 ≤ l) (hr : 0 ≤ r) (hT
   exact lt_of_not_ge (Nat.find_min hex hn)
 
 /-- A contracting positive length schedule has a uniformly spaced backwards
-radius schedule before the stopping time.-/
+radius schedule before the stopping time.
+@isnad1 id=le.6h7v.s7.b63e055abe48 from=translated src=- shape=75053b93 vocab=3f8127a2
+-/
 theorem axisInterval_radius_schedule (l r T R δ : ℝ) (hl : 0 ≤ l) (hr : 0 ≤ r)
     (hR : 400 * R ≤ T) (hδ : 1600 * δ ≤ T) (N : ℕ)
     (hbefore : ∀ n < N, T < (axisInterval l r n).1 + (axisInterval l r n).2) :

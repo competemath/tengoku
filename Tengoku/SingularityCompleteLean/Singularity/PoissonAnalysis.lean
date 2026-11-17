@@ -31,14 +31,18 @@ def poissonDominatedDensityFamily : DensityFamily ℝ (ℤ × J) volume :=
     hk0 (fun j => poisson_dominated_integrable (x j) (hy j) (k j) (hkm j) (hk0 j) (hdom j))
     hmass (fun j t => poisson_dominated_decay (x j) (hy j) (hB j) (k j) (hdom j) t)
 
-/-- The constructed analysis map uses exactly the prescribed translated densities.-/
+/-- The constructed analysis map uses exactly the prescribed translated densities.
+@isnad1 id=eq.7h9v.s12.4b90962a6b40 from=translated src=- shape=c514d4b9 vocab=9c751fbd
+-/
 theorem poissonDominated_analysis_apply (f : RealLineL2) (n : ℤ) (j : J) :
     (poissonDominatedDensityFamily hτ k x y B hy hB hkm hk0 hmass hdom).analysis f (n, j) =
       ∫ t, (k j (t - (n : ℝ) * τ) : ℂ) * f t := by
   unfold poissonDominatedDensityFamily
   exact translated_analysis_apply _ _ _ _ _ _ _ _ f n j
 
-/-- The resulting bounded analysis operator has a nonzero kernel.-/
+/-- The resulting bounded analysis operator has a nonzero kernel.
+@isnad1 id=ex.7h6v.s12.f7a8742ac8e0 from=translated src=- shape=481191f1 vocab=3d1325b8
+-/
 theorem poissonDominated_analysis_has_kernel :
     ∃ φ : RealLineL2, φ ≠ 0 ∧
       (poissonDominatedDensityFamily hτ k x y B hy hB hkm hk0 hmass hdom).analysis φ = 0 := by

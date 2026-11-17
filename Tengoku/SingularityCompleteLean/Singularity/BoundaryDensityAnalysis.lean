@@ -36,7 +36,9 @@ def boundaryLogDensityFamily : DensityFamily ℝ (ℤ × J) volume :=
     (fun j => logBoundaryDensity_poisson_domination ε hε (f j) (x j) (y j) (B j) (hdom j))
 
 /-- Its coordinates pair against the densities of actual dilation pushforwards
-in logarithmic coordinates.-/
+in logarithmic coordinates.
+@isnad1 id=eq.8h10v.s12.f2f7aa262a0e from=translated src=- shape=c066ee46 vocab=e2d97d42
+-/
 theorem boundaryLogDensity_analysis_apply (v : RealLineL2) (n : ℤ) (j : J) :
     (boundaryLogDensityFamily ε hε hτ f x y B hf hpf hmass hy hB hdom).analysis v (n, j) =
       ∫ t, (logBoundaryDensity ε (dilatedBoundaryDensity ((n : ℝ) * τ) (f j)) t : ℂ) * v t := by
@@ -45,7 +47,9 @@ theorem boundaryLogDensity_analysis_apply (v : RealLineL2) (n : ℤ) (j : J) :
   simp only [logBoundaryDensity_dilation]
 
 /-- The finite-family lattice obstruction applies to these constructed
-boundary-density analysis operators.-/
+boundary-density analysis operators.
+@isnad1 id=ex.8h7v.s12.8b5096ff2479 from=translated src=- shape=48bfe751 vocab=ee39970b
+-/
 theorem boundaryLogDensity_analysis_has_kernel :
     ∃ v : RealLineL2, v ≠ 0 ∧
       (boundaryLogDensityFamily ε hε hτ f x y B hf hpf hmass hy hB hdom).analysis v = 0 := by
@@ -53,7 +57,9 @@ theorem boundaryLogDensity_analysis_has_kernel :
   exact poissonDominated_analysis_has_kernel _ _ _ _ _ _ _ _ _ _ _
 
 /-- Any measurable nonnegative representatives of the same orbit measures give
-the same analysis coordinates. Only equality of pushforward measures is used.-/
+the same analysis coordinates. Only equality of pushforward measures is used.
+@isnad1 id=eq.11h11v.s12.2dd24747441a from=translated src=- shape=5a36cde6 vocab=4c570e46
+-/
 theorem boundaryLogDensity_analysis_apply_of_map
     (g : ℤ → J → ℝ → ℝ) (hg : ∀ n j, Measurable (g n j))
     (hpg : ∀ n j u, 0 ≤ g n j u)

@@ -26,7 +26,9 @@ def stationaryLogCocycle (ν : Measure B) (g : Γ) (ξ : B) : ℝ :=
   -Real.log (stationaryRealDensity ν g⁻¹ ξ)
 
 omit [MeasurableConstSMul Γ B] in
-/-- Each group element defines a measurable real boundary function.-/
+/-- Each group element defines a measurable real boundary function.
+@isnad1 id=measurab.0h4v.s5.758dafc4ea60 from=translated src=- shape=e20167ed vocab=547fed60
+-/
 theorem measurable_stationaryLogCocycle (ν : Measure B) (g : Γ) :
     Measurable (stationaryLogCocycle ν g) :=
   ((measurable_stationaryDensity ν g⁻¹).ennreal_toReal.log).neg
@@ -37,7 +39,9 @@ variable (s : Finset Γ) (μ : Γ → ℝ) (hpos : ∀ g ∈ s, 0 < μ g)
   (hstat : ν = ∑ g : s, ENNReal.ofReal (μ g) • Measure.map (fun ξ : B => (g : Γ) • ξ) ν)
 
 include hpos hgen hstat in
-/-- The real-valued derivatives satisfy the multiplicative cocycle identity.-/
+/-- The real-valued derivatives satisfy the multiplicative cocycle identity.
+@isnad1 id=eventual.3h7v.s8.28ae4afc568a from=translated src=- shape=f5cf63cd vocab=d35ca996
+-/
 theorem stationaryRealDensity_cocycle (g h : Γ) :
     ∀ᵐ ξ ∂ν, stationaryRealDensity ν (g * h) ξ =
       stationaryRealDensity ν g ξ * stationaryRealDensity ν h (g⁻¹ • ξ) := by
@@ -45,7 +49,9 @@ theorem stationaryRealDensity_cocycle (g h : Γ) :
   simpa only [stationaryRealDensity, ENNReal.toReal_mul] using congrArg ENNReal.toReal hξ
 
 omit [MeasurableConstSMul Γ B] in
-/-- The logarithmic cocycle is zero at the identity almost everywhere.-/
+/-- The logarithmic cocycle is zero at the identity almost everywhere.
+@isnad1 id=eventual.0h3v.s6.7cb882b77b99 from=translated src=- shape=86594067 vocab=c3da5f0e
+-/
 theorem stationaryLogCocycle_one : stationaryLogCocycle ν (1 : Γ) =ᵐ[ν] fun _ => 0 := by
   filter_upwards [stationaryDensity_one (Γ := Γ) ν] with ξ hξ
   simp only [stationaryLogCocycle, inv_one, stationaryRealDensity, hξ,

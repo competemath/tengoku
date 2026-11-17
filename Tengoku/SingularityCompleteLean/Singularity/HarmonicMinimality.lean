@@ -22,7 +22,9 @@ variable {Γ : Type*} [Group Γ] [MeasurableSpace Γ] [MeasurableMul Γ]
   [MeasurableSingletonClass Γ] [Countable Γ]
 
 /-- A uniform H-transform hitting lower bound compares every nonnegative
-superharmonic function to H along the same sequence.-/
+superharmonic function to H along the same sequence.
+@isnad1 id=eventual.7h8v.s12.7a3a838c3633 from=translated src=- shape=53044d1e vocab=007b87cc
+-/
 theorem eventual_superharmonic_ratio_comparison (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1)
     (hgap : spectralRadius ℂ (rightMarkov s μ) < 1)
@@ -45,7 +47,9 @@ theorem eventual_superharmonic_ratio_comparison (s : Finset Γ) (μ : Γ → ℝ
   exact (div_le_div_iff₀ (hH (y n)) (hH x)).mpr hfinal
 
 /-- Every harmonic function between zero and H is a scalar multiple of H,
-provided one sequence has a uniform positive H-transform hitting lower bound.-/
+provided one sequence has a uniform positive H-transform hitting lower bound.
+@isnad1 id=ex.9h7v.s12.006391309e1b from=translated src=- shape=463fca9c vocab=cb64dfb8
+-/
 theorem harmonic_minimal_of_green_minorization (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1)
     (hgap : spectralRadius ℂ (rightMarkov s μ) < 1)

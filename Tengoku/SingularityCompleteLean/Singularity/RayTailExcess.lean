@@ -17,7 +17,9 @@ open scoped Topology Classical MatrixGroups UpperHalfPlane
 namespace Singularity
 
 /-- In any metric space, later portions of a geodesic ray have small triangle
-excess relative to a fixed point.-/
+excess relative to a fixed point.
+@isnad1 id=eventual.1h3v.s6.aaeb6b9e40f6 from=translated src=- shape=861954fa vocab=3618ea0b
+-/
 theorem geodesic_ray_eventual_triangle_excess {X : Type*} [MetricSpace X]
     (r : ℕ → X) (hr : ∀ m n : ℕ, m ≤ n → dist (r m) (r n) = (n : ℝ) - m)
     (x : X) : ∀ᶠ n in atTop, ∀ m, n ≤ m →
@@ -47,7 +49,9 @@ theorem geodesic_ray_eventual_triangle_excess {X : Type*} [MetricSpace X]
   linarith
 
 /-- The chosen cocompact orbit ray has a uniform eventual excess bound for
-every starting vertex, with a starting time that may depend on that vertex.-/
+every starting vertex, with a starting time that may depend on that vertex.
+@isnad1 id=eventual.0h3v.s13.d47a55eed823 from=translated src=- shape=f8092a46 vocab=8cf548ce
+-/
 theorem cocompactRaySequence_eventual_triangle_excess (Γ : Subgroup SL(2, ℝ))
     [CompactSpace (Quotient (MulAction.orbitRel Γ ℍ))] (ξ : ℝ) (x : Γ) :
     ∀ᶠ n in atTop, ∀ m, n ≤ m →

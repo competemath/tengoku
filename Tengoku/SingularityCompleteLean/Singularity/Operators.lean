@@ -28,7 +28,9 @@ variable {𝕜 E F : Type*} [RCLike 𝕜]
 def Coercive (T : E →L[𝕜] E) (c : ℝ) : Prop :=
   ∀ v, c * ‖v‖ ^ 2 ≤ re (inner 𝕜 (T v) v)
 
-/-- The Green coercivity identity, valid for any right inverse of `I - P`.-/
+/-- The Green coercivity identity, valid for any right inverse of `I - P`.
+@isnad1 id=eq.1h5v.s11.92b808c41d4a from=translated src=- shape=2e6a4b94 vocab=1dc58098
+-/
 theorem green_identity (P G : E →L[𝕜] E)
     (hG : ∀ v, G v - P (G v) = v) (v : E) :
     2 * re (inner 𝕜 (G v) v) - ‖v‖ ^ 2 =
@@ -40,7 +42,9 @@ theorem green_identity (P G : E →L[𝕜] E)
   linarith
 
 /-- `G = (I-P)⁻¹` is `1/2`-coercive if `P` is a contraction.
-In particular, this argument does not require laziness or symmetry.-/
+In particular, this argument does not require laziness or symmetry.
+@isnad1 id=coercive.2h4v.s10.aa704ca060b6 from=translated src=- shape=06b093d5 vocab=be79a374
+-/
 theorem green_coercive (P G : E →L[𝕜] E)
     (hP : ∀ w, ‖P w‖ ≤ ‖w‖)
     (hG : ∀ v, G v - P (G v) = v) : Coercive G (1 / 2) := by
@@ -50,7 +54,9 @@ theorem green_coercive (P G : E →L[𝕜] E)
     pow_le_pow_left₀ (norm_nonneg _) (hP _) 2
   linarith
 
-/-- Coercivity supplies the lower bound used to prove closed range.-/
+/-- Coercivity supplies the lower bound used to prove closed range.
+@isnad1 id=le.1h5v.s8.63feeb44e514 from=translated src=- shape=58a154a1 vocab=da7cf234
+-/
 theorem Coercive.norm_lower_bound {T : E →L[𝕜] E} {c : ℝ}
     (hT : Coercive T c) (v : E) : c * ‖v‖ ≤ ‖T v‖ := by
   by_cases hv : v = 0
@@ -61,7 +67,9 @@ theorem Coercive.norm_lower_bound {T : E →L[𝕜] E} {c : ℝ}
     have hc := hT v
     nlinarith
 
-/-- Coercivity implies injectivity.-/
+/-- Coercivity implies injectivity.
+@isnad1 id=injectiv.2h4v.s8.b4eec9c09a82 from=translated src=- shape=89674717 vocab=a1c64bcb
+-/
 theorem Coercive.injective {T : E →L[𝕜] E} {c : ℝ}
     (hT : Coercive T c) (hc : 0 < c) : Function.Injective T := by
   apply T.ker_eq_bot.mp
@@ -78,7 +86,9 @@ def compression [CompleteSpace E] [CompleteSpace F]
     (i : F →ₗᵢ[𝕜] E) (G : E →L[𝕜] E) : F →L[𝕜] F :=
   i.toContinuousLinearMap.adjoint.comp (G.comp i.toContinuousLinearMap)
 
-/-- Compression to a closed Hilbert subspace preserves the same coercivity constant.-/
+/-- Compression to a closed Hilbert subspace preserves the same coercivity constant.
+@isnad1 id=coercive.1h6v.s8.6a4be73ceab2 from=translated src=- shape=b136fb85 vocab=a854146c
+-/
 theorem compression_coercive [CompleteSpace E] [CompleteSpace F]
     (i : F →ₗᵢ[𝕜] E) {G : E →L[𝕜] E} {c : ℝ}
     (hG : Coercive G c) : Coercive (compression i G) c := by
@@ -86,7 +96,9 @@ theorem compression_coercive [CompleteSpace E] [CompleteSpace F]
   simpa only [compression, comp_apply, adjoint_inner_left,
     LinearIsometry.coe_toContinuousLinearMap, i.norm_map] using hG (i v)
 
-/-- Closed range follows from the quantitative lower bound.-/
+/-- Closed range follows from the quantitative lower bound.
+@isnad1 id=isclosed.2h4v.s8.e144a3cf8ef9 from=translated src=- shape=6dedb57b vocab=cef3520e
+-/
 theorem Coercive.isClosed_range [CompleteSpace E] {T : E →L[𝕜] E} {c : ℝ}
     (hT : Coercive T c) (hc : 0 < c) : IsClosed (Set.range T) := by
   have hanti : AntilipschitzWith ⟨c⁻¹, le_of_lt (inv_pos.mpr hc)⟩ T := by
@@ -96,7 +108,9 @@ theorem Coercive.isClosed_range [CompleteSpace E] {T : E →L[𝕜] E} {c : ℝ}
     exact (le_inv_mul_iff₀ hc).mpr (hT.norm_lower_bound v)
   exact hanti.isClosed_range T.uniformContinuous
 
-/-- Surjectivity: a closed range with trivial orthogonal complement is all of `E`.-/
+/-- Surjectivity: a closed range with trivial orthogonal complement is all of `E`.
+@isnad1 id=eq.2h4v.s8.ca80f29bda60 from=translated src=- shape=074393bb vocab=ca803359
+-/
 theorem Coercive.range_eq_top [CompleteSpace E] {T : E →L[𝕜] E} {c : ℝ}
     (hT : Coercive T c) (hc : 0 < c) : T.range = ⊤ := by
   have hclosed : IsClosed (T.range : Set E) := hT.isClosed_range hc
@@ -121,7 +135,9 @@ def Coercive.equiv [CompleteSpace E] {T : E →L[𝕜] E} {c : ℝ}
     (LinearMap.ker_eq_bot.mpr (hT.injective hc)) (hT.range_eq_top hc)
 
 /-- The boundary passage needs strong convergence of both vectors, not an
-unjustified interchange of an entrywise double sum with a limit.-/
+unjustified interchange of an entrywise double sum with a limit.
+@isnad1 id=tendsto.2h9v.s9.c9f59c018dd6 from=translated src=- shape=e29459f9 vocab=4175d110
+-/
 theorem pairing_tendsto {α : Type*} {l : Filter α}
     (M : E →L[𝕜] E) {u v : α → E} {u₀ v₀ : E}
     (hu : Filter.Tendsto u l (nhds u₀)) (hv : Filter.Tendsto v l (nhds v₀)) :

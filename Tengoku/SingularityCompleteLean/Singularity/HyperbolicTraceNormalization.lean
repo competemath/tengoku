@@ -18,6 +18,9 @@ namespace Singularity
 /-- A determinant-one lower triangular shear.-/
 def lowerShearMatrix (u : ℝ) : SL(2, ℝ) := ⟨!![1, 0; u, 1], by simp⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.e932b2adaf7a from=translated src=- shape=ff03d487 vocab=9d92ed9b
+-/
 theorem lowerShearMatrix_add (u v : ℝ) :
     lowerShearMatrix (u + v) = lowerShearMatrix u * lowerShearMatrix v := by
   apply Matrix.SpecialLinearGroup.ext
@@ -25,6 +28,9 @@ theorem lowerShearMatrix_add (u v : ℝ) :
   simp only [Matrix.SpecialLinearGroup.coe_mul, Matrix.mul_apply, Fin.sum_univ_two]
   fin_cases i <;> fin_cases j <;> simp [lowerShearMatrix, add_comm]
 
+/--
+@isnad1 id=eq.0h1v.s6.068a997af733 from=translated src=- shape=0aeb49a7 vocab=05fcd925
+-/
 theorem lowerShearMatrix_inv (u : ℝ) : (lowerShearMatrix u)⁻¹ = lowerShearMatrix (-u) := by
   apply inv_eq_of_mul_eq_one_right
   rw [← lowerShearMatrix_add]
@@ -32,7 +38,9 @@ theorem lowerShearMatrix_inv (u : ℝ) : (lowerShearMatrix u)⁻¹ = lowerShearM
   intro i j
   fin_cases i <;> fin_cases j <;> simp [lowerShearMatrix]
 
-/-- Explicit coordinates of the conjugate by a lower triangular shear.-/
+/-- Explicit coordinates of the conjugate by a lower triangular shear.
+@isnad1 id=eq.0h2v.s10.a75c8e2c86a7 from=translated src=- shape=437b2292 vocab=1b36de0d
+-/
 theorem lowerShearMatrix_conjugate (u : ℝ) (g : SL(2, ℝ)) :
     ((lowerShearMatrix u * g * (lowerShearMatrix u)⁻¹ : SL(2, ℝ)) :
       Matrix (Fin 2) (Fin 2) ℝ) =
@@ -43,14 +51,18 @@ theorem lowerShearMatrix_conjugate (u : ℝ) (g : SL(2, ℝ)) :
   simp only [Matrix.SpecialLinearGroup.coe_mul, Matrix.mul_apply, Fin.sum_univ_two]
   fin_cases i <;> fin_cases j <;> simp [lowerShearMatrix, add_comm] <;> ring
 
-/-- Shear conjugation preserves the two-by-two trace.-/
+/-- Shear conjugation preserves the two-by-two trace.
+@isnad1 id=eq.0h2v.s9.47494c2d99d3 from=translated src=- shape=027b5ea8 vocab=33a06f0c
+-/
 theorem lowerShearMatrix_conjugate_trace (u : ℝ) (g : SL(2, ℝ)) :
     (lowerShearMatrix u * g * (lowerShearMatrix u)⁻¹) 0 0 +
       (lowerShearMatrix u * g * (lowerShearMatrix u)⁻¹) 1 1 = g 0 0 + g 1 1 := by
   rw [lowerShearMatrix_conjugate]
   simp
 
-/-- With trace greater than two, one of two fixed shears gives nonzero lower-left entry.-/
+/-- With trace greater than two, one of two fixed shears gives nonzero lower-left entry.
+@isnad1 id=ex.2h1v.s9.36c1bf4dc2f4 from=translated src=- shape=4c0617f3 vocab=ab27d596
+-/
 theorem exists_shear_lowerLeft_ne_zero (g : SL(2, ℝ)) (hT : 2 < g 0 0 + g 1 1)
     (hc : g 1 0 = 0) :
     ∃ u : ℝ, (lowerShearMatrix u * g * (lowerShearMatrix u)⁻¹) 1 0 ≠ 0 := by
@@ -68,7 +80,9 @@ theorem exists_shear_lowerLeft_ne_zero (g : SL(2, ℝ)) (hT : 2 < g 0 0 + g 1 1)
   nlinarith
 
 /-- Every real determinant-one matrix with trace > 2 is conjugate in SL(2,ℝ)
-to the positive dilation matrix.-/
+to the positive dilation matrix.
+@isnad1 id=ex.1h1v.s9.39d290b17d19 from=translated src=- shape=66f39f66 vocab=0cdccb20
+-/
 theorem exists_dilation_conjugacy_of_trace_gt_two (g : SL(2, ℝ))
     (hT : 2 < g 0 0 + g 1 1) :
     ∃ t : ℝ, 0 < t ∧ ∃ B : SL(2, ℝ), g = B * dilationMatrix t * B⁻¹ := by

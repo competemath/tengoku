@@ -17,7 +17,9 @@ open scoped Classical MatrixGroups UpperHalfPlane
 namespace Singularity
 
 /-- A fixed hyperbolic displacement bound gives a uniform Green-row Harnack
-constant, including possible stabilizer multiplicities.-/
+constant, including possible stabilizer multiplicities.
+@isnad1 id=ex.3h4v.s16.3f64de69a404 from=translated src=- shape=f10b15e0 vocab=9720b51c
+-/
 theorem hyperbolic_uniform_greenHarnack (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
     [MeasurableSpace Γ] [MeasurableSingletonClass Γ] [MeasurableMul Γ]
     (s : Finset Γ) (μ : Γ → ℝ) (hpos : ∀ g ∈ s, 0 < μ g)
@@ -52,7 +54,9 @@ theorem hyperbolic_uniform_greenHarnack (Γ : Subgroup SL(2, ℝ)) [DiscreteTopo
   simp only [mul_inv_cancel_left, mul_one] at hleft hone
   rwa [← hleft, ← hone] at h
 
-/-- Iterating a local comparison along any finite orbit chain.-/
+/-- Iterating a local comparison along any finite orbit chain.
+@isnad1 id=le.3h8v.s13.ad29351d373f from=translated src=- shape=089c00e8 vocab=c5cc3a43
+-/
 theorem greenHarnack_along_chain (Γ : Subgroup SL(2, ℝ))
     [MeasurableSpace Γ] [MeasurableSingletonClass Γ] [MeasurableMul Γ]
     (s : Finset Γ) (μ : Γ → ℝ) (C R : ℝ) (hC : 0 ≤ C)

@@ -17,7 +17,9 @@ open scoped ComplexConjugate BigOperators
 namespace Singularity
 
 /-- Passing the integrated frequency cancellation back through the L² Fourier
-isometry gives orthogonality in the original variable.-/
+isometry gives orthogonality in the original variable.
+@isnad1 id=eq.4h6v.s13.a2e95ebc5a1f from=translated src=- shape=18346e7e vocab=8600ad05
+-/
 theorem finiteBand_inverse_orthogonal {N : ℕ} (k : Fin N → RealLineL2)
     {q : ℝ} (hq : 0 < q)
     {v : ℝ → EuclideanSpace ℂ (Fin (N + 1))} (hv : Measurable v)
@@ -46,7 +48,9 @@ theorem finiteBand_inverse_orthogonal {N : ℕ} (k : Fin N → RealLineL2)
       (fun ω l => congrArg conj (translationPhase_lattice hq.ne' n l ω))
 
 /-- Every finite family of L² functions has a nonzero vector orthogonal to all
-of its translates by a fixed positive lattice.-/
+of its translates by a fixed positive lattice.
+@isnad1 id=ex.1h3v.s12.9a4f1cf91c31 from=translated src=- shape=71de0ecc vocab=e019b854
+-/
 theorem exists_orthogonal_lattice_translates {N : ℕ} (k : Fin N → RealLineL2)
     {τ : ℝ} (hτ : 0 < τ) :
     ∃ φ : RealLineL2, φ ≠ 0 ∧
@@ -63,7 +67,9 @@ theorem exists_orthogonal_lattice_translates {N : ℕ} (k : Fin N → RealLineL2
     have h := finiteBand_inverse_orthogonal k hq hv hnorm hker n j
     simpa only [q, div_inv_eq_mul] using h
 
-/-- The same obstruction for an arbitrary finite indexing type.-/
+/-- The same obstruction for an arbitrary finite indexing type.
+@isnad1 id=ex.1h3v.s12.59a4ef11fd18 from=translated src=- shape=1740404e vocab=3c202d31
+-/
 theorem exists_orthogonal_lattice_translates_fintype {J : Type*} [Fintype J]
     (k : J → RealLineL2) {τ : ℝ} (hτ : 0 < τ) :
     ∃ φ : RealLineL2, φ ≠ 0 ∧
@@ -73,7 +79,9 @@ theorem exists_orthogonal_lattice_translates_fintype {J : Type*} [Fintype J]
   obtain ⟨φ, hφ, ho⟩ := exists_orthogonal_lattice_translates (fun j => k (e.symm j)) hτ
   exact ⟨φ, hφ, fun n j => by simpa using ho n (e j)⟩
 
-/-- The closed linear span of the translates is a proper subspace of L².-/
+/-- The closed linear span of the translates is a proper subspace of L².
+@isnad1 id=ne.1h3v.s12.ca4e5079eee9 from=translated src=- shape=f1415b70 vocab=1bf64964
+-/
 theorem lattice_translates_closed_span_ne_top {J : Type*} [Fintype J]
     (k : J → RealLineL2) {τ : ℝ} (hτ : 0 < τ) :
     (Submodule.span ℂ (Set.range (fun p : ℤ × J =>

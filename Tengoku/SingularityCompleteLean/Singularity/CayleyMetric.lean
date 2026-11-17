@@ -20,14 +20,18 @@ namespace Singularity
 /-- The Cayley coordinate mapping the upper half-plane into the unit disk.-/
 def halfPlaneCayley (z : ℍ) : ℂ := ((z : ℂ) - Complex.I) / ((z : ℂ) + Complex.I)
 
-/-- Its denominator never vanishes on the upper half-plane.-/
+/-- Its denominator never vanishes on the upper half-plane.
+@isnad1 id=ne.0h1v.s4.a463eac42341 from=translated src=- shape=ff3278d8 vocab=a9ab1e3f
+-/
 theorem halfPlaneCayley_denominator_ne_zero (z : ℍ) : (z : ℂ) + Complex.I ≠ 0 := by
   intro h
   have hi := congrArg Complex.im h
   simp only [Complex.add_im, UpperHalfPlane.coe_im, Complex.I_im, Complex.zero_im] at hi
   linarith [z.im_pos]
 
-/-- Exact difference formula for disk coordinates.-/
+/-- Exact difference formula for disk coordinates.
+@isnad1 id=eq.0h2v.s6.2fc751e82c52 from=translated src=- shape=26ffbb01 vocab=e7796f62
+-/
 theorem halfPlaneCayley_sub (z w : ℍ) :
     halfPlaneCayley z - halfPlaneCayley w =
       (2 * Complex.I) * ((z : ℂ) - (w : ℂ)) / (((z : ℂ) + Complex.I) * ((w : ℂ) + Complex.I)) := by
@@ -35,7 +39,9 @@ theorem halfPlaneCayley_sub (z w : ℍ) :
   field_simp [halfPlaneCayley_denominator_ne_zero z, halfPlaneCayley_denominator_ne_zero w]
   ring
 
-/-- The Cayley denominator encodes radial hyperbolic distance.-/
+/-- The Cayley denominator encodes radial hyperbolic distance.
+@isnad1 id=eq.0h1v.s6.31945dfb308f from=translated src=- shape=836ce49e vocab=3584a4f1
+-/
 theorem halfPlaneCayley_denominator_norm (z : ℍ) :
     ‖(z : ℂ) + Complex.I‖ = 2 * Real.sqrt z.im * Real.cosh (dist z UpperHalfPlane.I / 2) := by
   have h := UpperHalfPlane.cosh_half_dist z UpperHalfPlane.I
@@ -45,7 +51,9 @@ theorem halfPlaneCayley_denominator_norm (z : ℍ) :
   have he := (div_eq_iff hp).mp h.symm
   simpa only [mul_comm] using he
 
-/-- Exact disk distance in terms of three hyperbolic distances.-/
+/-- Exact disk distance in terms of three hyperbolic distances.
+@isnad1 id=eq.0h2v.s6.81242585d5ca from=translated src=- shape=c8943872 vocab=4c63f9b4
+-/
 theorem halfPlaneCayley_dist (z w : ℍ) :
     dist (halfPlaneCayley z) (halfPlaneCayley w) =
       Real.sinh (dist z w / 2) /
@@ -63,18 +71,24 @@ theorem halfPlaneCayley_dist (z w : ℍ) :
   have hw : Real.sqrt w.im ≠ 0 := by positivity
   field_simp
 
-/-- A simple exponential upper bound for the hyperbolic sine.-/
+/-- A simple exponential upper bound for the hyperbolic sine.
+@isnad1 id=le.0h1v.s3.1110e77f97b4 from=translated src=- shape=0fc427d2 vocab=9a1773dc
+-/
 theorem sinh_le_exp (t : ℝ) : Real.sinh t ≤ Real.exp t := by
   rw [Real.sinh_eq]
   linarith [Real.exp_pos t, Real.exp_pos (-t)]
 
-/-- A simple exponential lower bound for the hyperbolic cosine.-/
+/-- A simple exponential lower bound for the hyperbolic cosine.
+@isnad1 id=le.0h1v.s4.d476c823de10 from=translated src=- shape=ffd9fe76 vocab=72fa77cb
+-/
 theorem exp_le_two_cosh (t : ℝ) : Real.exp t ≤ 2 * Real.cosh t := by
   rw [Real.cosh_eq]
   linarith [Real.exp_pos (-t)]
 
 /-- A jump of hyperbolic length at most L is exponentially small in the disk
-coordinate as its initial point escapes from i.-/
+coordinate as its initial point escapes from i.
+@isnad1 id=le.1h3v.s6.3f37d59383dc from=translated src=- shape=520743f4 vocab=3e0047a6
+-/
 theorem halfPlaneCayley_dist_le (z w : ℍ) (L : ℝ) (hL : dist z w ≤ L) :
     dist (halfPlaneCayley z) (halfPlaneCayley w) ≤
       4 * Real.exp L * Real.exp (-dist z UpperHalfPlane.I) := by

@@ -23,7 +23,9 @@ def axisPairSet (Γ : Subgroup SL(2, ℝ)) (g : SL(2, ℝ)) (E : ℝ) (p : ℝ �
   {xy | dist (xy.1 • UpperHalfPlane.I) (g • verticalHeightRay UpperHalfPlane.I (-p.1)) ≤ p.1 / 50 + E ∧
     dist (xy.2 • UpperHalfPlane.I) (g • verticalHeightRay UpperHalfPlane.I p.2) ≤ p.2 / 50 + E}
 
-/-- Moving into the next orbit ball preserves the admissible endpoint tubes.-/
+/-- Moving into the next orbit ball preserves the admissible endpoint tubes.
+@isnad1 id=mem.5h7v.s13.5d3e836f0bf3 from=translated src=- shape=0bb9e36f vocab=53f4b655
+-/
 theorem axisPairSet_step (Γ : Subgroup SL(2, ℝ)) (g : SL(2, ℝ))
     (E : ℝ) (p : ℝ × ℝ) (hl : 0 ≤ p.1) (_hr : 0 ≤ p.2) (u a : Γ)
     (hu : dist (u • UpperHalfPlane.I)
@@ -49,7 +51,9 @@ theorem axisPairSet_step (Γ : Subgroup SL(2, ℝ)) (g : SL(2, ℝ))
     exact ⟨hxy.1, by linarith⟩
 
 /-- Every admissible pair satisfies the detour hypotheses at the cut center,
-with a fixed diameter-to-radius ratio of 800.-/
+with a fixed diameter-to-radius ratio of 800.
+@isnad1 id=and.6h6v.s14.810d55d5747e from=translated src=- shape=f9963028 vocab=966bdd8b
+-/
 theorem axisPairSet_step_geometry (Γ : Subgroup SL(2, ℝ)) (g : SL(2, ℝ))
     (E : ℝ) (hE : 0 ≤ E) (p : ℝ × ℝ) (hl : 0 ≤ p.1) (hr : 0 ≤ p.2)
     (hlarge : 400 * (E + Real.log 64 + 1) ≤ p.1 + p.2) (u : Γ)
@@ -82,7 +86,9 @@ theorem axisPairSet_step_geometry (Γ : Subgroup SL(2, ℝ)) (g : SL(2, ℝ))
   · simpa only [dist_comm] using hu
 
 /-- At the stopping time, every left endpoint is uniformly close to any
-chosen orbit point within E of axis parameter zero.-/
+chosen orbit point within E of axis parameter zero.
+@isnad1 id=le.5h7v.s13.44c80ba7baea from=translated src=- shape=2893254e vocab=dbf39bc3
+-/
 theorem axisPairSet_terminal (Γ : Subgroup SL(2, ℝ)) (g : SL(2, ℝ))
     (E T : ℝ) (p : ℝ × ℝ) (hl : 0 ≤ p.1) (hr : 0 ≤ p.2) (hsmall : p.1 + p.2 ≤ T)
     (o : Γ) (ho : dist (g • UpperHalfPlane.I) (o • UpperHalfPlane.I) ≤ E)

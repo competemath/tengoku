@@ -23,7 +23,9 @@ namespace Singularity
 variable {Γ : Type*} [Group Γ] [MeasurableSpace Γ] [MeasurableSingletonClass Γ]
   [MeasurableMul Γ]
 
-/-- Every Green row is square summable, since it is an adjoint Green column.-/
+/-- Every Green row is square summable, since it is an adjoint Green column.
+@isnad1 id=summable.1h4v.s12.f12ebc93b320 from=translated src=- shape=c7128aff vocab=a5f45623
+-/
 theorem walkGreen_row_square_summable (s : Finset Γ) (μ : Γ → ℝ)
     (hgap : spectralRadius ℂ (rightMarkov s μ) < 1) (x : Γ) :
     Summable (fun y => walkGreen s μ x y ^ 2) := by

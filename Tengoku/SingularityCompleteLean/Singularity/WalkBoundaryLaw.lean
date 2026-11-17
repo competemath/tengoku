@@ -27,7 +27,9 @@ def walkBoundaryLaw (s : Finset Γ) (μ : Γ → ℝ)
   Measure.map b (infiniteWalkLaw s μ hμ hmass)
 
 omit [MeasurableSingletonClass Γ] in
-/-- A measurable candidate boundary map has a probability distribution.-/
+/-- A measurable candidate boundary map has a probability distribution.
+@isnad1 id=isprobab.3h5v.s7.3c2c417ef325 from=translated src=- shape=c3a3a75c vocab=b31753b0
+-/
 theorem walkBoundaryLaw_probability (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1)
     (b : (ℕ → s) → B) (hb : Measurable b) :
@@ -35,7 +37,9 @@ theorem walkBoundaryLaw_probability (s : Finset Γ) (μ : Γ → ℝ)
   unfold walkBoundaryLaw
   exact (Measure.isProbabilityMeasure_map_iff hb.aemeasurable).mpr inferInstance
 
-/-- A measurable function of head and tail has the finite mixture of its section laws.-/
+/-- A measurable function of head and tail has the finite mixture of its section laws.
+@isnad1 id=eq.3h5v.s9.59cd1f165f26 from=translated src=- shape=a5b1d094 vocab=5dc35197
+-/
 theorem infiniteWalkLaw_head_tail_map (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1)
     (f : s × (ℕ → s) → B) (hf : Measurable f) :
@@ -56,7 +60,9 @@ theorem infiniteWalkLaw_head_tail_map (s : Finset Γ) (μ : Γ → ℝ)
 
 variable [Group Γ] [MulAction Γ B] [MeasurableSMul₂ Γ B]
 
-/-- The first-step boundary relation implies the stationary-measure equation.-/
+/-- The first-step boundary relation implies the stationary-measure equation.
+@isnad1 id=eq.4h5v.s9.e1b7388f7d0e from=translated src=- shape=d25e9154 vocab=03ad76e9
+-/
 theorem walkBoundaryLaw_stationary (s : Finset Γ) (μ : Γ → ℝ)
     (hμ : ∀ g ∈ s, 0 ≤ μ g) (hmass : ∑ g ∈ s, μ g = 1)
     (b : (ℕ → s) → B) (hb : Measurable b)
@@ -75,7 +81,9 @@ theorem walkBoundaryLaw_stationary (s : Finset Γ) (μ : Γ → ℝ)
   rw [Measure.map_map (measurable_const_smul _) hb]
   rfl
 
-/-- A measurable almost-sure path limit has a stationary law.-/
+/-- A measurable almost-sure path limit has a stationary law.
+@isnad1 id=eq.5h6v.s9.8b8782f94e22 from=translated src=- shape=c1567982 vocab=f66ffff7
+-/
 theorem walkBoundaryLaw_stationary_of_tendsto
     [TopologicalSpace B] [T2Space B] [ContinuousConstSMul Γ B]
     (s : Finset Γ) (μ : Γ → ℝ)

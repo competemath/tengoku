@@ -19,7 +19,9 @@ namespace Singularity
 def axisRadialCoordinate (z : ℍ) : ℝ :=
   (Real.log z.im - Real.log (boundaryPoleMatrix 0 • z).im) / 2
 
-/-- The coordinate has the elementary logarithmic-radius formula.-/
+/-- The coordinate has the elementary logarithmic-radius formula.
+@isnad1 id=eq.0h1v.s3.3fe1bde8e406 from=translated src=- shape=b663f419 vocab=0aacf567
+-/
 theorem axisRadialCoordinate_eq_log_norm (z : ℍ) :
     axisRadialCoordinate z = Real.log ‖(z : ℂ)‖ := by
   have hn : 0 < z.re ^ 2 + z.im ^ 2 := by
@@ -34,7 +36,9 @@ theorem axisRadialCoordinate_eq_log_norm (z : ℍ) :
   rw [Real.log_div z.im_pos.ne' hn.ne', he, Real.log_pow]
   ring
 
-/-- Each coordinate difference is bounded by hyperbolic distance.-/
+/-- Each coordinate difference is bounded by hyperbolic distance.
+@isnad1 id=le.0h2v.s4.f1ad8b6b0242 from=translated src=- shape=c8f3c532 vocab=df771b42
+-/
 theorem axisRadialCoordinate_dist_le (z w : ℍ) :
     |axisRadialCoordinate z - axisRadialCoordinate w| ≤ dist z w := by
   have h₁ := UpperHalfPlane.dist_log_im_le z w
@@ -45,7 +49,9 @@ theorem axisRadialCoordinate_dist_le (z w : ℍ) :
   rw [abs_le]
   constructor <;> linarith [h₁.1, h₁.2, h₂.1, h₂.2]
 
-/-- The coordinate equals the unit-speed parameter on the vertical axis.-/
+/-- The coordinate equals the unit-speed parameter on the vertical axis.
+@isnad1 id=eq.0h1v.s3.c83879dc01ef from=translated src=- shape=2a63d354 vocab=c3f581da
+-/
 theorem axisRadialCoordinate_axis (t : ℝ) :
     axisRadialCoordinate (verticalHeightRay UpperHalfPlane.I t) = t := by
   rw [axisRadialCoordinate_eq_log_norm]
@@ -54,7 +60,9 @@ theorem axisRadialCoordinate_axis (t : ℝ) :
   rw [he, norm_mul]
   simp
 
-/-- Hyperbolic balls about axis points lie between explicit coordinate levels.-/
+/-- Hyperbolic balls about axis points lie between explicit coordinate levels.
+@isnad1 id=and.1h3v.s5.1fb70509de81 from=translated src=- shape=c00a6b44 vocab=9a5b178e
+-/
 theorem axisRadialCoordinate_near_axis (z : ℍ) (t R : ℝ)
     (hz : dist z (verticalHeightRay UpperHalfPlane.I t) ≤ R) :
     t - R ≤ axisRadialCoordinate z ∧ axisRadialCoordinate z ≤ t + R := by
@@ -63,7 +71,9 @@ theorem axisRadialCoordinate_near_axis (z : ℍ) (t R : ℝ)
   constructor <;> linarith [hh.1, hh.2]
 
 /-- In every isometric coordinate chart the same finite jump bound controls
-the radial coordinate of all vertices of the group orbit.-/
+the radial coordinate of all vertices of the group orbit.
+@isnad1 id=le.1h6v.s12.1c5423afc408 from=translated src=- shape=9707729e vocab=6da545a4
+-/
 theorem axisRadialCoordinate_jump_bound (Γ : Subgroup SL(2, ℝ)) (s : Finset Γ)
     (q : SL(2, ℝ)) (z : ℍ) (x g : Γ) (hg : g ∈ s) :
     |axisRadialCoordinate (q • ((x*g) • z)) - axisRadialCoordinate (q • (x • z))| ≤

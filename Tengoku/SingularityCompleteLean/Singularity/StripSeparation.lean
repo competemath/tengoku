@@ -20,13 +20,17 @@ namespace Singularity
 /-- A convenient positive strip threshold for jumps of length at most L.-/
 def jumpStripRadius (L : ℝ) : ℝ := Real.sinh (L / 2) + 1
 
-/-- The chosen radius is positive whenever the jump bound is nonnegative.-/
+/-- The chosen radius is positive whenever the jump bound is nonnegative.
+@isnad1 id=lt.1h1v.s4.45b899b51dc8 from=translated src=- shape=a8dc2df9 vocab=da48c851
+-/
 theorem jumpStripRadius_pos {L : ℝ} (hL : 0 ≤ L) : 0 < jumpStripRadius L := by
   have hs : 0 ≤ Real.sinh (L / 2) := Real.sinh_nonneg_iff.mpr (by positivity)
   unfold jumpStripRadius
   linarith
 
-/-- Points beyond opposite strip sides cannot be joined by a bounded jump.-/
+/-- Points beyond opposite strip sides cannot be joined by a bounded jump.
+@isnad1 id=lt.3h3v.s6.04003b6031e7 from=translated src=- shape=3a6fdc1f vocab=921c29b1
+-/
 theorem opposite_ratio_sides_dist_gt {L : ℝ} (hL : 0 ≤ L) (z w : ℍ)
     (hz : z.re / z.im < -jumpStripRadius L)
     (hw : jumpStripRadius L < w.re / w.im) : L < dist z w := by
@@ -55,7 +59,9 @@ theorem opposite_ratio_sides_dist_gt {L : ℝ} (hL : 0 ≤ L) (z w : ℍ)
   unfold jumpStripRadius at hz' hw'
   nlinarith [z.im_pos, w.im_pos]
 
-/-- A path avoiding a set, including its final vertex, starts outside that set.-/
+/-- A path avoiding a set, including its final vertex, starts outside that set.
+@isnad1 id=not.2h6v.s6.f2e537cb1b17 from=translated src=- shape=07826b86 vocab=a595e780
+-/
 theorem avoidsBefore_start_not_mem {G : Type*} [Group G] (s : Finset G) (A : Set G)
     (n : ℕ) (x : G) (w : WalkWord s n) (havoid : avoidsBefore s A n x w)
     (hend : walkEndpoint s n x w ∉ A) : x ∉ A := by
@@ -63,7 +69,9 @@ theorem avoidsBefore_start_not_mem {G : Type*} [Group G] (s : Finset G) (A : Set
   | zero => exact hend
   | succ n => exact havoid.1
 
-/-- If each avoiding step preserves a side, so does every avoiding finite path.-/
+/-- If each avoiding step preserves a side, so does every avoiding finite path.
+@isnad1 id=mem.4h7v.s7.4b86cbdd275c from=translated src=- shape=b7a772e5 vocab=382dba67
+-/
 theorem avoiding_walk_stays_in_side {G : Type*} [Group G] (s : Finset G) (A U : Set G)
     (hstep : ∀ (g t : G), t ∈ s → g ∉ A → g * t ∉ A → g ∈ U → g * t ∈ U)
     (n : ℕ) (x : G) (w : WalkWord s n) (hx : x ∈ U)
@@ -77,7 +85,9 @@ theorem avoiding_walk_stays_in_side {G : Type*} [Group G] (s : Finset G) (A U : 
         (avoidsBefore_start_not_mem s A n (x * w.1) w.2 havoid.2 hend) hx)
       havoid.2 hend
 
-/-- The side-preservation criterion supplies the exact separator predicate.-/
+/-- The side-preservation criterion supplies the exact separator predicate.
+@isnad1 id=separate.3h6v.s7.5fccd3f2d019 from=translated src=- shape=b86f2f1b vocab=89a0e253
+-/
 theorem separatesJumpPaths_of_invariant_side {G : Type*} [Group G]
     (s : Finset G) (A U : Set G)
     (hstep : ∀ (g t : G), t ∈ s → g ∉ A → g * t ∉ A → g ∈ U → g * t ∈ U)
@@ -87,7 +97,9 @@ theorem separatesJumpPaths_of_invariant_side {G : Type*} [Group G]
   rw [← h.2.1]
   exact avoiding_walk_stays_in_side s A U hstep n x w hx h.1 (h.2.1 ▸ h.2.2)
 
-/-- An avoiding jump of length at most L preserves the negative side.-/
+/-- An avoiding jump of length at most L preserves the negative side.
+@isnad1 id=lt.5h3v.s6.35ac92b6b151 from=translated src=- shape=22135ad7 vocab=fbff0ac4
+-/
 theorem bounded_jump_preserves_negative_side {L : ℝ} (hL : 0 ≤ L) (z w : ℍ)
     (hd : dist z w ≤ L) (hzout : z ∉ axisRatioStrip (jumpStripRadius L))
     (hwout : w ∉ axisRatioStrip (jumpStripRadius L)) (hzneg : z.re < 0) : w.re < 0 := by
@@ -100,7 +112,9 @@ theorem bounded_jump_preserves_negative_side {L : ℝ} (hL : 0 ≤ L) (z w : ℍ
   rw [abs_of_nonneg hwratio, not_le] at hwout
   exact (not_lt_of_ge hd) (opposite_ratio_sides_dist_gt hL z w (by linarith) hwout)
 
-/-- The geometric coordinate strip separates actual subgroup jump paths.-/
+/-- The geometric coordinate strip separates actual subgroup jump paths.
+@isnad1 id=separate.4h6v.s13.5a808c9e6d52 from=translated src=- shape=67e0aa16 vocab=4de82a01
+-/
 theorem axisRatioStrip_separatesJumpPaths (Γ : Subgroup SL(2, ℝ)) (z : ℍ)
     (s : Finset Γ) {L : ℝ} (hL : 0 ≤ L)
     (hjump : ∀ t ∈ s, dist z (t • z) ≤ L) (x y : Γ)

@@ -17,7 +17,9 @@ open scoped Classical MatrixGroups UpperHalfPlane
 namespace Singularity
 
 /-- A bounded open ball contains only finitely many group vertices, with all
-stabilizer multiplicities retained.-/
+stabilizer multiplicities retained.
+@isnad1 id=finite.0h3v.s12.cf6262fd1e06 from=translated src=- shape=d2684526 vocab=8ec749cd
+-/
 theorem finite_hyperbolic_orbit_openBall (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
     (u : Γ) (R : ℝ) :
     {g : Γ | dist (g • UpperHalfPlane.I) (u • UpperHalfPlane.I) < R}.Finite := by

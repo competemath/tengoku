@@ -27,7 +27,9 @@ def bandPiece {d : ℕ} (q : ℝ) (v : ℝ → EuclideanSpace ℂ (Fin d))
 def finiteBand {d : ℕ} (q : ℝ) (v : ℝ → EuclideanSpace ℂ (Fin d)) (t : ℝ) : ℂ :=
   ∑ l, bandPiece q v l t
 
-/-- A frequency belongs to at most one of the half-open lattice cells.-/
+/-- A frequency belongs to at most one of the half-open lattice cells.
+@isnad1 id=eq.3h4v.s6.e08e1bb71873 from=translated src=- shape=5df4ce38 vocab=7bc8fcdb
+-/
 theorem band_index_unique {q : ℝ} (hq : 0 < q) {t : ℝ} {l m : ℕ}
     (hl : t - l * q ∈ Ico 0 q) (hm : t - m * q ∈ Ico 0 q) : l = m := by
   rcases lt_trichotomy l m with h | h | h
@@ -39,7 +41,9 @@ theorem band_index_unique {q : ℝ} (hq : 0 < q) {t : ℝ} {l m : ℕ}
     have hh := mul_le_mul_of_nonneg_right hn hq.le
     nlinarith [hm.2, hl.1]
 
-/-- On band l, the scalar function recovers coordinate l of the vector field.-/
+/-- On band l, the scalar function recovers coordinate l of the vector field.
+@isnad1 id=eq.2h5v.s6.db83e968c907 from=translated src=- shape=68aa9b9e vocab=40aba325
+-/
 theorem finiteBand_on_cell {d : ℕ} {q : ℝ} (hq : 0 < q)
     (v : ℝ → EuclideanSpace ℂ (Fin d)) (l : Fin d) {ω : ℝ}
     (hω : ω ∈ Ico 0 q) : finiteBand q v (ω + (l : ℕ) * q) = v ω l := by
@@ -54,13 +58,17 @@ theorem finiteBand_on_cell {d : ℕ} {q : ℝ} (hq : 0 < q)
     exact hml (Fin.ext (band_index_unique hq hm hl))
   · simp
 
-/-- Measurability of each packed coordinate.-/
+/-- Measurability of each packed coordinate.
+@isnad1 id=measurab.1h4v.s6.f463842db9af from=translated src=- shape=9bff7c6f vocab=5f10d479
+-/
 theorem bandPiece_measurable {d : ℕ} (q : ℝ) {v : ℝ → EuclideanSpace ℂ (Fin d)}
     (hv : Measurable v) (l : Fin d) : Measurable (bandPiece q v l) := by
   exact (((PiLp.continuous_apply 2 (fun _ : Fin d => ℂ) l).measurable.comp hv).indicator
     measurableSet_Ico).comp (measurable_id.sub measurable_const)
 
-/-- A measurable unit field gives square-integrable coordinate pieces.-/
+/-- A measurable unit field gives square-integrable coordinate pieces.
+@isnad1 id=memlp.2h4v.s7.5a2efeacac29 from=translated src=- shape=edee578d vocab=ebadaa0f
+-/
 theorem bandPiece_memLp {d : ℕ} (q : ℝ) {v : ℝ → EuclideanSpace ℂ (Fin d)}
     (hv : Measurable v) (hnorm : ∀ ω, ‖v ω‖ = 1) (l : Fin d) :
     MemLp (bandPiece q v l) 2 volume := by
@@ -72,12 +80,16 @@ theorem bandPiece_memLp {d : ℕ} (q : ℝ) {v : ℝ → EuclideanSpace ℂ (Fin
   have hi := (memLp_indicator_iff_restrict measurableSet_Ico).mpr hf
   exact hi.comp_measurePreserving (measurePreserving_sub_right volume ((l : ℕ) * q))
 
-/-- The packed scalar function belongs to L².-/
+/-- The packed scalar function belongs to L².
+@isnad1 id=memlp.2h3v.s7.8b1283aeeddd from=translated src=- shape=ff311637 vocab=0ec89fb1
+-/
 theorem finiteBand_memLp {d : ℕ} (q : ℝ) {v : ℝ → EuclideanSpace ℂ (Fin d)}
     (hv : Measurable v) (hnorm : ∀ ω, ‖v ω‖ = 1) : MemLp (finiteBand q v) 2 volume :=
   memLp_finsetSum Finset.univ (fun l _ => bandPiece_memLp q hv hnorm l)
 
-/-- Disjoint bands eliminate every cross term in the squared norm.-/
+/-- Disjoint bands eliminate every cross term in the squared norm.
+@isnad1 id=eq.1h4v.s6.872414a3b762 from=translated src=- shape=14b7d885 vocab=2d8a7d2e
+-/
 theorem finiteBand_norm_sq {d : ℕ} {q : ℝ} (hq : 0 < q)
     (v : ℝ → EuclideanSpace ℂ (Fin d)) (t : ℝ) :
     ‖finiteBand q v t‖ ^ 2 = ∑ l, ‖bandPiece q v l t‖ ^ 2 := by
@@ -97,7 +109,9 @@ theorem finiteBand_norm_sq {d : ℕ} {q : ℝ} (hq : 0 < q)
       exact indicator_of_notMem (fun hl => hex ⟨l, hl⟩) _
     simp [finiteBand, hz]
 
-/-- The squared mass of a translated piece is the squared mass of its base coordinate.-/
+/-- The squared mass of a translated piece is the squared mass of its base coordinate.
+@isnad1 id=eq.0h4v.s7.3b0397442f7a from=translated src=- shape=a039b682 vocab=1ee295c9
+-/
 theorem integral_bandPiece_sq {d : ℕ} (q : ℝ)
     (v : ℝ → EuclideanSpace ℂ (Fin d)) (l : Fin d) :
     ∫ t, ‖bandPiece q v l t‖ ^ 2 = ∫ ω in Ico 0 q, ‖v ω l‖ ^ 2 := by
@@ -108,7 +122,9 @@ theorem integral_bandPiece_sq {d : ℕ} (q : ℝ)
   exact Filter.Eventually.of_forall (fun t => by
     by_cases ht : t ∈ Ico 0 q <;> simp [ht])
 
-/-- Packing preserves the sum of coordinate masses.-/
+/-- Packing preserves the sum of coordinate masses.
+@isnad1 id=eq.3h3v.s7.ebaf06cb5bae from=translated src=- shape=e7fdc102 vocab=45f0e490
+-/
 theorem finiteBand_integral_norm_sq {d : ℕ} {q : ℝ} (hq : 0 < q)
     {v : ℝ → EuclideanSpace ℂ (Fin d)} (hv : Measurable v)
     (hnorm : ∀ ω, ‖v ω‖ = 1) : ∫ t, ‖finiteBand q v t‖ ^ 2 = q := by
@@ -138,14 +154,18 @@ def finiteBandL2 {d : ℕ} (q : ℝ) {v : ℝ → EuclideanSpace ℂ (Fin d)}
     (hv : Measurable v) (hnorm : ∀ ω, ‖v ω‖ = 1) : RealLineL2 :=
   (finiteBand_memLp q hv hnorm).toLp (finiteBand q v)
 
-/-- Its exact norm certifies nontriviality without a pointwise-to-a.e. shortcut.-/
+/-- Its exact norm certifies nontriviality without a pointwise-to-a.e. shortcut.
+@isnad1 id=eq.3h3v.s8.036453ec7f35 from=translated src=- shape=e3c58af8 vocab=c00a2aee
+-/
 theorem finiteBandL2_norm_sq {d : ℕ} {q : ℝ} (hq : 0 < q)
     {v : ℝ → EuclideanSpace ℂ (Fin d)} (hv : Measurable v) (hnorm : ∀ ω, ‖v ω‖ = 1) :
     ‖finiteBandL2 q hv hnorm‖ ^ 2 = q := by
   rw [finiteBandL2, toL2_norm_sq]
   exact finiteBand_integral_norm_sq hq hv hnorm
 
-/-- Positive band width gives a nonzero L² function.-/
+/-- Positive band width gives a nonzero L² function.
+@isnad1 id=ne.3h3v.s9.4f4c279aa0b4 from=translated src=- shape=fa3f3148 vocab=97f356e1
+-/
 theorem finiteBandL2_ne_zero {d : ℕ} {q : ℝ} (hq : 0 < q)
     {v : ℝ → EuclideanSpace ℂ (Fin d)} (hv : Measurable v) (hnorm : ∀ ω, ‖v ω‖ = 1) :
     finiteBandL2 q hv hnorm ≠ 0 := by

@@ -17,7 +17,9 @@ open scoped MatrixGroups UpperHalfPlane Topology Classical
 
 namespace Singularity
 
-/-- Compactness of the actual orbit quotient gives a compact covering set.-/
+/-- Compactness of the actual orbit quotient gives a compact covering set.
+@isnad1 id=ex.0h1v.s11.bc0e44553bb9 from=translated src=- shape=437427ac vocab=fd3b8ccc
+-/
 theorem exists_compact_orbit_cover (Γ : Subgroup SL(2, ℝ))
     [CompactSpace (Quotient (MulAction.orbitRel Γ ℍ))] :
     ∃ K : Set ℍ, IsCompact K ∧ ∀ z : ℍ, ∃ g : Γ, g • z ∈ K := by
@@ -42,7 +44,9 @@ theorem exists_compact_orbit_cover (Γ : Subgroup SL(2, ℝ))
   rw [hg]
   exact mem_iUnion.mpr ⟨w, mem_iUnion.mpr ⟨hwF, Metric.ball_subset_closedBall hvball⟩⟩
 
-/-- A compact covering set gives a uniform distance bound to any orbit.-/
+/-- A compact covering set gives a uniform distance bound to any orbit.
+@isnad1 id=ex.2h3v.s12.d034c6171212 from=translated src=- shape=c9df80cc vocab=fcbe819f
+-/
 theorem compact_orbit_cover_uniform_bound (Γ : Subgroup SL(2, ℝ)) (o : ℍ)
     {K : Set ℍ} (hK : IsCompact K) (hcover : ∀ z : ℍ, ∃ g : Γ, g • z ∈ K) :
     ∃ D : ℝ, 0 < D ∧ ∀ z : ℍ, ∃ g : Γ, dist (g • o) z ≤ D := by
@@ -60,7 +64,9 @@ theorem compact_orbit_cover_uniform_bound (Γ : Subgroup SL(2, ℝ)) (o : ℍ)
   rw [he]
   exact hd.trans (by linarith [le_max_left B 0])
 
-/-- The orbit of i is uniformly dense in the hyperbolic metric for a compact quotient.-/
+/-- The orbit of i is uniformly dense in the hyperbolic metric for a compact quotient.
+@isnad1 id=ex.0h1v.s11.1f53ab44fd92 from=translated src=- shape=98672439 vocab=dfce9a60
+-/
 theorem cocompact_orbit_uniform_bound (Γ : Subgroup SL(2, ℝ))
     [CompactSpace (Quotient (MulAction.orbitRel Γ ℍ))] :
     ∃ D : ℝ, 0 < D ∧ ∀ z : ℍ, ∃ g : Γ, dist (g • UpperHalfPlane.I) z ≤ D := by
@@ -68,7 +74,9 @@ theorem cocompact_orbit_uniform_bound (Γ : Subgroup SL(2, ℝ))
   exact compact_orbit_cover_uniform_bound Γ UpperHalfPlane.I hK hcover
 
 /-- Compact quotient supplies group sequences at uniformly bounded distance
-from integer-time rays, with the same bound for every finite endpoint.-/
+from integer-time rays, with the same bound for every finite endpoint.
+@isnad1 id=ex.0h1v.s11.24c89639ed02 from=translated src=- shape=178952be vocab=0cfb8728
+-/
 theorem cocompact_ray_approximations (Γ : Subgroup SL(2, ℝ))
     [CompactSpace (Quotient (MulAction.orbitRel Γ ℍ))] :
     ∃ D : ℝ, 0 < D ∧ ∀ ξ : ℝ, ∃ x : ℕ → Γ,
@@ -83,10 +91,15 @@ variable (Γ : Subgroup SL(2, ℝ)) [CompactSpace (Quotient (MulAction.orbitRel 
 /-- A single positive approximation radius for the whole cocompact orbit.-/
 def cocompactOrbitRadius : ℝ := (cocompact_orbit_uniform_bound Γ).choose
 
+/--
+@isnad1 id=lt.0h1v.s9.a3adef66e9f3 from=translated src=- shape=f3ddff20 vocab=c2d4282f
+-/
 theorem cocompactOrbitRadius_pos : 0 < cocompactOrbitRadius Γ :=
   (cocompact_orbit_uniform_bound Γ).choose_spec.1
 
-/-- Every interior point has a nearby orbit point at the chosen radius.-/
+/-- Every interior point has a nearby orbit point at the chosen radius.
+@isnad1 id=ex.0h2v.s11.a12ce9d11a55 from=translated src=- shape=1400afdb vocab=22698f13
+-/
 theorem exists_cocompactOrbit_near (z : ℍ) :
     ∃ g : Γ, dist (g • UpperHalfPlane.I) z ≤ cocompactOrbitRadius Γ :=
   (cocompact_orbit_uniform_bound Γ).choose_spec.2 z
@@ -95,19 +108,26 @@ theorem exists_cocompactOrbit_near (z : ℍ) :
 def cocompactRaySequence (ξ : ℝ) (n : ℕ) : Γ :=
   (exists_cocompactOrbit_near Γ (finiteBoundaryRay ξ (n : ℝ))).choose
 
+/--
+@isnad1 id=le.0h3v.s11.eb3c984662e8 from=translated src=- shape=366ee1af vocab=89ae994c
+-/
 theorem cocompactRaySequence_bound (ξ : ℝ) (n : ℕ) :
     dist (cocompactRaySequence Γ ξ n • UpperHalfPlane.I) (finiteBoundaryRay ξ (n : ℝ)) ≤
       cocompactOrbitRadius Γ :=
   (exists_cocompactOrbit_near Γ (finiteBoundaryRay ξ (n : ℝ))).choose_spec
 
-/-- The chosen orbit sequence converges to its prescribed finite boundary point.-/
+/-- The chosen orbit sequence converges to its prescribed finite boundary point.
+@isnad1 id=tendsto.0h2v.s11.2643293f1961 from=translated src=- shape=af518646 vocab=3a634902
+-/
 theorem cocompactRaySequence_tendsto (ξ : ℝ) :
     Tendsto (fun n => ((cocompactRaySequence Γ ξ n • UpperHalfPlane.I : ℍ) : ℂ)) atTop (𝓝 (ξ : ℂ)) :=
   near_finiteBoundaryRay_tendsto ξ (cocompactOrbitRadius Γ) (fun n : ℕ => (n : ℝ))
     tendsto_natCast_atTop_atTop (fun n => cocompactRaySequence Γ ξ n • UpperHalfPlane.I)
     (cocompactRaySequence_bound Γ ξ)
 
-/-- The chosen sequence escapes to infinite hyperbolic distance.-/
+/-- The chosen sequence escapes to infinite hyperbolic distance.
+@isnad1 id=tendsto.0h2v.s11.02179de932e7 from=translated src=- shape=4d7d788c vocab=159dfec7
+-/
 theorem cocompactRaySequence_dist_tendsto (ξ : ℝ) :
     Tendsto (fun n => dist UpperHalfPlane.I (cocompactRaySequence Γ ξ n • UpperHalfPlane.I))
       atTop atTop :=
@@ -115,7 +135,9 @@ theorem cocompactRaySequence_dist_tendsto (ξ : ℝ) :
     tendsto_natCast_atTop_atTop (fun n => Nat.cast_nonneg n)
     (fun n => cocompactRaySequence Γ ξ n • UpperHalfPlane.I) (cocompactRaySequence_bound Γ ξ)
 
-/-- Each fixed group vertex is eventually avoided by the chosen sequence.-/
+/-- Each fixed group vertex is eventually avoided by the chosen sequence.
+@isnad1 id=eventual.0h3v.s10.be82c19e0ae9 from=translated src=- shape=59b69623 vocab=e55d35fa
+-/
 theorem cocompactRaySequence_eventually_ne (ξ : ℝ) (g : Γ) :
     ∀ᶠ n in atTop, cocompactRaySequence Γ ξ n ≠ g := by
   filter_upwards [(cocompactRaySequence_dist_tendsto Γ ξ).eventually_ne_atTop
@@ -123,14 +145,18 @@ theorem cocompactRaySequence_eventually_ne (ξ : ℝ) (g : Γ) :
   intro he
   exact hn (by rw [he])
 
-/-- Nonzero endpoints eventually lie outside every fixed strip.-/
+/-- Nonzero endpoints eventually lie outside every fixed strip.
+@isnad1 id=eventual.1h3v.s11.0d19309c80ee from=translated src=- shape=1febb946 vocab=b8b4f62f
+-/
 theorem cocompactRaySequence_eventually_outside {ξ : ℝ} (hξ : ξ ≠ 0) (R : ℝ) :
     ∀ᶠ n in atTop, cocompactRaySequence Γ ξ n • UpperHalfPlane.I ∉ axisRatioStrip R :=
   near_finiteBoundaryRay_eventually_outside_strip hξ (cocompactOrbitRadius Γ) R
     (fun n : ℕ => (n : ℝ)) tendsto_natCast_atTop_atTop
     (fun n => cocompactRaySequence Γ ξ n • UpperHalfPlane.I) (cocompactRaySequence_bound Γ ξ)
 
-/-- Opposite finite endpoints yield eventually opposite orbit vertices.-/
+/-- Opposite finite endpoints yield eventually opposite orbit vertices.
+@isnad1 id=eventual.2h3v.s12.32e76fccdcba from=translated src=- shape=f27664fe vocab=dd7c9165
+-/
 theorem cocompactRaySequence_eventually_opposite {ξ η : ℝ} (hξ : ξ < 0) (hη : 0 < η) :
     ∀ᶠ n in atTop, (cocompactRaySequence Γ ξ n • UpperHalfPlane.I).re < 0 ∧
       0 ≤ (cocompactRaySequence Γ η n • UpperHalfPlane.I).re := by

@@ -18,7 +18,9 @@ open scoped ENNReal Topology
 namespace Singularity
 
 /-- When set masses tend to zero, almost no point belongs to all sufficiently
-late sets. Summability and independence are unnecessary.-/
+late sets. Summability and independence are unnecessary.
+@isnad1 id=eventual.1h3v.s6.b23d4e5212e0 from=translated src=- shape=0242dfd8 vocab=a43217db
+-/
 theorem ae_not_eventually_mem_of_measure_tendsto_zero {B : Type*} [MeasurableSpace B]
     (ν : Measure B) (A : ℕ → Set B)
     (hA : Tendsto (fun n => ν (A n)) atTop (𝓝 0)) :
@@ -37,7 +39,9 @@ theorem ae_not_eventually_mem_of_measure_tendsto_zero {B : Type*} [MeasurableSpa
   simpa only [ae_iff, not_not, he] using hu
 
 /-- Eventual membership in shadows forces membership in at least one good
-return set when the difference between shadow and return set has vanishing mass.-/
+return set when the difference between shadow and return set has vanishing mass.
+@isnad1 id=eventual.1h4v.s6.32710b37258f from=translated src=- shape=1d3e04bd vocab=b6c62e98
+-/
 theorem ae_eventual_shadow_has_return {B : Type*} [MeasurableSpace B]
     (ν : Measure B) (T E : ℕ → Set B)
     (herr : Tendsto (fun n => ν (T n \ E n)) atTop (𝓝 0)) :
@@ -50,7 +54,9 @@ theorem ae_eventual_shadow_has_return {B : Type*} [MeasurableSpace B]
 
 /-- Quasi-invariance transfers the preceding return statement through each
 correction element. An eventual finite corrected shadow cover becomes a
-finite corrected cover by actual good return sets.-/
+finite corrected cover by actual good return sets.
+@isnad1 id=eventual.3h6v.s8.1712ea10b011 from=translated src=- shape=7b855eb2 vocab=d5591657
+-/
 theorem finite_corrected_return_cover_of_vanishing_error
     {Γ B : Type*} [Group Γ] [Countable Γ] [MeasurableSpace B]
     [MulAction Γ B] [MeasurableConstSMul Γ B]

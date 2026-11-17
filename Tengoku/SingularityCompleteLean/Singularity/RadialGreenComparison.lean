@@ -17,7 +17,9 @@ open scoped Classical MatrixGroups UpperHalfPlane
 namespace Singularity
 
 /-- Uniform ordinary Green product comparison for endpoints on opposite sides
-of a radial gap, with the center close to the intermediate axis point.-/
+of a radial gap, with the center close to the intermediate axis point.
+@isnad1 id=ex.4h4v.s16.5de1b112e211 from=translated src=- shape=69f0ce96 vocab=e3746ece
+-/
 theorem cocompact_radial_separated_green_product_bound
     (Γ : Subgroup SL(2, ℝ)) [DiscreteTopology Γ]
     [CompactSpace (Quotient (MulAction.orbitRel Γ ℍ))]
