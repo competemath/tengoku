@@ -231,21 +231,25 @@ class QueueStepsSurviveTheirFailures(unittest.TestCase):
     """CodeRabbit on the port (tengoku#563): a slow release download, a failed `gh run list` or a lost race for a release each ended a step under
     `bash -e`, and the verdict then removed a group whose change was fine. Run as the shell they are."""
 
-    TIMEOUT = 'while [ "$1" = -k ]; do shift 2; done; shift; [ -n "$SHIM_TIMEOUT" ] && exit 124; exec "$@"\n'
+    TIMEOUT = (
+        'while [ "$1" = -k ]; do shift 2; done; shift\n'
+        'case "$1" in scripts/cache.sh) [ -n "$SHIM_SEED_TIMEOUT" ] && exit 124;; *) [ -n "$SHIM_TIMEOUT" ] && exit 124;; esac\n'
+        'exec "$@"\n'
+    )
     LAKE_PY = (
         "import json, os, sys\n"
         'if os.environ.get("SHIM_RESTORE_FAILS"): sys.exit(3)\n'
         'print(json.dumps({"base": "a" * 40, "tag": "cache-x", "revs": 2, "applied": [], "skipped": [], "refused": [], "seconds": 1, "base_mappings": "present"}))\n'
     )
 
-    def seed(self, **env):
-        run = step(load()["jobs"]["queue-build"], "Seed from the newest published cache")["run"]
+    def seed(self, cache_sh=None, run=None, **env):
+        run = run or step(load()["jobs"]["queue-build"], "Seed from the newest published cache")["run"]
         with tempfile.TemporaryDirectory() as d:
             root = Path(d) / "w"
             (root / "scripts").mkdir(parents=True)
             (root / ".lake" / "build").mkdir(parents=True)
             (root / ".lake" / ".cache-base").write_text("cache-x " + "a" * 40 + "\n")
-            (root / "scripts" / "cache.sh").write_text("#!/usr/bin/env bash\necho unpacked\n")
+            (root / "scripts" / "cache.sh").write_text(cache_sh or "#!/usr/bin/env bash\necho unpacked\n")
             (root / "scripts" / "cache.sh").chmod(0o755)
             (root / "scripts" / "lake_cache.py").write_text(self.LAKE_PY)
             summary = Path(d) / "summary.md"
@@ -256,6 +260,77 @@ class QueueStepsSurviveTheirFailures(unittest.TestCase):
                 (root / "base-tag.txt").read_text() if (root / "base-tag.txt").exists() else None,
                 summary.read_text() if summary.exists() else "",  # read before the temporary directory goes
             )
+
+    # 17 Nov 2026, queue run 43985705576: the seed step's `scripts/cache.sh get` died after 3 minutes with the real lines below, and the verdict removed a group
+    # whose change was fine. The step now gives the download three tries of 12 minutes.
+    REAL_RESET = (
+        'echo "fetching cache-20261116T1051Z …"\n'
+        'echo "read tcp 10.1.0.124:51780->185.199.110.133:443: read: connection reset by peer" >&2\n'
+        "exit 1\n"
+    )
+
+    def counting_cache(self, ok_from_try, count):
+        """a cache.sh that counts its calls in `count`, fails with the real lines until try `ok_from_try`, then unpacks"""
+        return (
+            "#!/usr/bin/env bash\n"
+            f'n=$(cat "{count}" 2>/dev/null || echo 0); n=$((n+1)); echo $n > "{count}"\n'
+            f'if [ "$n" -ge {ok_from_try} ]; then echo unpacked; exit 0; fi\n' + self.REAL_RESET
+        )
+
+    def tries(self, count):
+        return int(Path(count).read_text()) if Path(count).exists() else 0
+
+    def test_a_connection_reset_on_the_first_two_downloads_is_retried_and_the_step_passes(self):
+        with tempfile.TemporaryDirectory() as d:
+            count = str(Path(d) / "n")
+            r, marker, _tag, _ = self.seed(cache_sh=self.counting_cache(3, count), SEED_RETRY_PAUSE="0")
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            self.assertEqual(self.tries(count), 3)
+            self.assertIn("try 1 of 3", r.stdout)
+            self.assertIn("connection reset by peer", r.stdout)
+            self.assertFalse(marker)
+
+    def test_a_download_that_works_the_first_time_is_called_once(self):
+        with tempfile.TemporaryDirectory() as d:
+            count = str(Path(d) / "n")
+            r, *_ = self.seed(cache_sh=self.counting_cache(1, count), SEED_RETRY_PAUSE="0")
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            self.assertEqual(self.tries(count), 1)
+            self.assertNotIn("::warning::the cache download", r.stdout)
+
+    def test_a_download_that_never_works_fails_after_exactly_three_tries_and_says_so(self):
+        with tempfile.TemporaryDirectory() as d:
+            count = str(Path(d) / "n")
+            r, *_ = self.seed(cache_sh=self.counting_cache(99, count), SEED_RETRY_PAUSE="0")
+            self.assertNotEqual(r.returncode, 0)
+            self.assertEqual(self.tries(count), 3)
+            self.assertIn("could not be downloaded in 3 tries", r.stdout)
+
+    def test_a_download_that_hangs_reaches_its_cap_each_time_and_fails_after_three_tries(self):
+        with tempfile.TemporaryDirectory() as d:
+            count = str(Path(d) / "n")
+            r, *_ = self.seed(cache_sh=self.counting_cache(1, count), SHIM_SEED_TIMEOUT="1", SEED_RETRY_PAUSE="0")
+            self.assertNotEqual(r.returncode, 0)  # the shim stops every call at its cap (exit 124) before cache.sh runs
+            self.assertIn("try 3 of 3", r.stdout)
+
+    def test_every_try_has_a_twelve_minute_cap_and_the_worst_case_fits_the_job(self):
+        run = step(load()["jobs"]["queue-build"], "Seed from the newest published cache")["run"]
+        self.assertRegex(run, r"timeout -k \d+ 12m scripts/cache\.sh get")
+        job = load()["jobs"]["queue-build"]
+        worst = 3 * 12 + (20 * 1 + 20 * 2) / 60  # minutes: three tries of 12 and the two pauses of 20 and 40 seconds
+        self.assertLess(worst, 60)
+        self.assertGreaterEqual(job["timeout-minutes"], 240)
+
+    def test_mutant_the_step_as_it_was_ejects_the_group_on_the_first_reset(self):
+        run = step(load()["jobs"]["queue-build"], "Seed from the newest published cache")["run"]
+        start = run.index("seeded=0")
+        end = run.index('exit 1; fi\n', start) + len('exit 1; fi\n')
+        old_run = run[:start] + "scripts/cache.sh get 2>&1 | tail -3\n" + run[end:]
+        with tempfile.TemporaryDirectory() as d:
+            count = str(Path(d) / "n")
+            r, *_ = self.seed(cache_sh=self.counting_cache(3, count), run=old_run, SEED_RETRY_PAUSE="0")
+            self.assertNotEqual(r.returncode, 0)  # the old step fails on the first reset: this is the ejection
+            self.assertEqual(self.tries(count), 1)
 
     def test_a_restore_that_reaches_its_cap_does_not_fail_the_step_and_marks_the_merge_needs_nightly(self):
         r, marker, tag, _ = self.seed(SHIM_TIMEOUT="1")
