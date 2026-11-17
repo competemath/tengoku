@@ -20,7 +20,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 /-! ## Generators -/
 
 /-- A point `V + t • w` of a generator (`‖w‖ = 1`, `⟪w, u⟫ = k`) with `t ≥ 0` is on the upper
-nappe.-/
+nappe.
+@isnad1 id=mem.3h6v.s7.b06d4a743274 from=translated src=- shape=405b8eaa vocab=b4a7c329
+-/
 theorem gen_mem_cone {V u w : E} {k t : ℝ} (hw : ‖w‖ = 1) (hwu : ⟪w, u⟫ = k) (ht : 0 ≤ t) :
     V + t • w ∈ cone V u k := by
   show ⟪V + t • w - V, u⟫ = k * ‖V + t • w - V‖
@@ -28,7 +30,9 @@ theorem gen_mem_cone {V u w : E} {k t : ℝ} (hw : ‖w‖ = 1) (hwu : ⟪w, u�
     abs_of_nonneg ht]
   ring
 
-/-- With `t ≤ 0` the point `V + t • w` is on the lower nappe.-/
+/-- With `t ≤ 0` the point `V + t • w` is on the lower nappe.
+@isnad1 id=mem.3h6v.s7.a80dca03196b from=translated src=- shape=b78b6784 vocab=e9020a7c
+-/
 theorem gen_mem_cone_neg {V u w : E} {k t : ℝ} (hw : ‖w‖ = 1) (hwu : ⟪w, u⟫ = k)
     (ht : t ≤ 0) : V + t • w ∈ cone V (-u) k := by
   show ⟪V + t • w - V, -u⟫ = k * ‖V + t • w - V‖
@@ -36,10 +40,15 @@ theorem gen_mem_cone_neg {V u w : E} {k t : ℝ} (hw : ‖w‖ = 1) (hwu : ⟪w,
     Real.norm_eq_abs, abs_of_nonpos ht]
   ring
 
+/--
+@isnad1 id=eq.1h4v.s7.d0d88c5357dd from=translated src=- shape=dd1c7879 vocab=f489a4bf
+-/
 theorem gen_norm {V w : E} {t : ℝ} (hw : ‖w‖ = 1) : ‖V + t • w - V‖ = |t| := by
   rw [add_sub_cancel_left, norm_smul, hw, Real.norm_eq_abs, mul_one]
 
-/-- The generator in direction `w` meets the plane at parameter `t = ⟪p₀ - V, n⟫ / ⟪w, n⟫`.-/
+/-- The generator in direction `w` meets the plane at parameter `t = ⟪p₀ - V, n⟫ / ⟪w, n⟫`.
+@isnad1 id=mem.1h5v.s7.8fa4180ddb6c from=translated src=- shape=dfe63a1b vocab=4d63c691
+-/
 theorem gen_mem_plane {V w p₀ n : E} (hwn : ⟪w, n⟫ ≠ 0) :
     V + (⟪p₀ - V, n⟫ / ⟪w, n⟫) • w ∈ plane p₀ n := by
   show ⟪V + (⟪p₀ - V, n⟫ / ⟪w, n⟫) • w - p₀, n⟫ = 0
@@ -47,7 +56,9 @@ theorem gen_mem_plane {V w p₀ n : E} (hwn : ⟪w, n⟫ ≠ 0) :
     abel
   rw [this, inner_sub_left, real_inner_smul_left, div_mul_cancel₀ _ hwn, sub_self]
 
-/-- The generator direction `k u + s e`, for `e` a unit vector orthogonal to `u`.-/
+/-- The generator direction `k u + s e`, for `e` a unit vector orthogonal to `u`.
+@isnad1 id=and.4h5v.s8.0005696c9dc5 from=translated src=- shape=6c062744 vocab=ba1e5565
+-/
 theorem gen_dir {u e : E} {k s : ℝ} (hu : ‖u‖ = 1) (he : ‖e‖ = 1) (heu : ⟪e, u⟫ = 0)
     (hks : k ^ 2 + s ^ 2 = 1) : ‖k • u + s • e‖ = 1 ∧ ⟪k • u + s • e, u⟫ = k := by
   have huu : ⟪u, u⟫ = 1 := by rw [real_inner_self_eq_norm_sq, hu]; norm_num
@@ -60,7 +71,9 @@ theorem gen_dir {u e : E} {k s : ℝ} (hu : ‖u‖ = 1) (he : ‖e‖ = 1) (heu
     exact (pow_left_inj₀ (norm_nonneg _) zero_le_one two_ne_zero).1 h
   · rw [inner_add_left, real_inner_smul_left, real_inner_smul_left, huu, heu]; ring
 
-/-- In finite dimension `> #S` there is a unit vector orthogonal to every vector of `S`.-/
+/-- In finite dimension `> #S` there is a unit vector orthogonal to every vector of `S`.
+@isnad1 id=ex.1h2v.s6.63345b4dd5e3 from=translated src=- shape=99b78947 vocab=fbc6c358
+-/
 theorem exists_unit_orth [FiniteDimensional ℝ E] (S : Finset E)
     (h : S.card < Module.finrank ℝ E) : ∃ f : E, ‖f‖ = 1 ∧ ∀ x ∈ S, ⟪f, x⟫ = 0 := by
   set K := Submodule.span ℝ (S : Set E)
@@ -82,18 +95,27 @@ theorem exists_unit_orth [FiniteDimensional ℝ E] (S : Finset E)
 /-- `n - ⟪u, n⟫ u`, the component of the plane normal orthogonal to the axis.-/
 noncomputable def perpN (u n : E) : E := n - ⟪u, n⟫ • u
 
+/--
+@isnad1 id=eq.1h3v.s5.27c8b8aecfd7 from=translated src=- shape=8a6c79e7 vocab=acb78b8c
+-/
 theorem perpN_inner_u {u n : E} (hu : ‖u‖ = 1) : ⟪perpN u n, u⟫ = 0 := by
   have huu : ⟪u, u⟫ = 1 := by rw [real_inner_self_eq_norm_sq, hu]; norm_num
   have hnu : ⟪n, u⟫ = ⟪u, n⟫ := real_inner_comm _ _
   unfold perpN
   rw [inner_sub_left, real_inner_smul_left, huu, hnu, mul_one, sub_self]
 
+/--
+@isnad1 id=eq.1h3v.s6.b60d483bad1b from=translated src=- shape=0f02014f vocab=b9894760
+-/
 theorem perpN_inner_n {u n : E} (hn : ‖n‖ = 1) : ⟪perpN u n, n⟫ = 1 - ⟪u, n⟫ ^ 2 := by
   have hnn : ⟪n, n⟫ = 1 := by rw [real_inner_self_eq_norm_sq, hn]; norm_num
   unfold perpN
   rw [inner_sub_left, real_inner_smul_left, hnn]
   ring
 
+/--
+@isnad1 id=eq.2h3v.s6.4a4fac1edbf0 from=translated src=- shape=3c834e63 vocab=b9894760
+-/
 theorem perpN_norm_sq {u n : E} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1) :
     ‖perpN u n‖ ^ 2 = 1 - ⟪u, n⟫ ^ 2 := by
   have h := norm_sub_inner_smul_sq (u := n) (n := u) hn hu
@@ -101,6 +123,9 @@ theorem perpN_norm_sq {u n : E} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1) :
   rw [real_inner_comm] at h
   exact h
 
+/--
+@isnad1 id=eq.2h4v.s6.5c6d2a17ede3 from=translated src=- shape=13130d5f vocab=7c29c859
+-/
 theorem perpN_inner_orth {u n f : E} (hfu : ⟪f, u⟫ = 0) (hfn : ⟪f, n⟫ = 0) :
     ⟪perpN u n, f⟫ = 0 := by
   have h1 : ⟪n, f⟫ = 0 := by rw [real_inner_comm]; exact hfn
@@ -109,7 +134,9 @@ theorem perpN_inner_orth {u n f : E} (hfu : ⟪f, u⟫ = 0) (hfn : ⟪f, n⟫ = 
   rw [inner_sub_left, real_inner_smul_left, h1, h2, mul_zero, sub_zero]
 
 /-- The unit vectors `e = (a / ‖q‖) q + b f` (`q = perpN u n`, `f ⟂ u, n`) are orthogonal to `u`,
-with `⟪e, n⟫ = a ‖q‖`.-/
+with `⟪e, n⟫ = a ‖q‖`.
+@isnad1 id=and.6h6v.s9.89d6801710d8 from=translated src=- shape=67e234e9 vocab=373b4692
+-/
 theorem perp_dir {u n f : E} {a b : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hr : ‖perpN u n‖ ≠ 0) (hfu : ⟪f, u⟫ = 0) (hfn : ⟪f, n⟫ = 0)
     (hab : a ^ 2 + b ^ 2 * ‖f‖ ^ 2 = 1) :
@@ -134,6 +161,9 @@ theorem perp_dir {u n f : E} {a b : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
 
 /-! ## Explicit points of the section -/
 
+/--
+@isnad1 id=eq.1h5v.s6.5f3da02fe271 from=translated src=- shape=6b45d93d vocab=dc79468e
+-/
 theorem inner_sub_V_of_mem_plane {V p₀ n X : E} (hX : X ∈ plane p₀ n) :
     ⟪X - V, n⟫ = ⟪p₀ - V, n⟫ := by
   have hX' : ⟪X - p₀, n⟫ = 0 := hX
@@ -143,7 +173,9 @@ theorem inner_sub_V_of_mem_plane {V p₀ n X : E} (hX : X ∈ plane p₀ n) :
 /-- **The generator construction.** For a unit `e ⟂ u`, the generator direction
 `w = k u + s e` meets the plane (if `δ = ⟪w, n⟫ ≠ 0`) at `V + (c / δ) w`, `c = ⟪p₀ - V, n⟫`; this
 point is at distance `|c / δ|` from the apex, on the upper nappe if `c / δ ≥ 0` and on the lower
-nappe if `c / δ ≤ 0`.-/
+nappe if `c / δ ≤ 0`.
+@isnad1 id=ex.5h8v.s10.6b4b83d86c6f from=translated src=- shape=1cc0231d vocab=9fe40b4d
+-/
 theorem gen_point {V u n p₀ e : E} {k s : ℝ} (hu : ‖u‖ = 1) (he : ‖e‖ = 1) (heu : ⟪e, u⟫ = 0)
     (hks : k ^ 2 + s ^ 2 = 1) (hδ : ⟪k • u + s • e, n⟫ ≠ 0) :
     ∃ X ∈ plane p₀ n, ‖X - V‖ = |⟪p₀ - V, n⟫ / ⟪k • u + s • e, n⟫| ∧
@@ -153,6 +185,9 @@ theorem gen_point {V u n p₀ e : E} {k s : ℝ} (hu : ‖u‖ = 1) (he : ‖e�
   exact ⟨_, gen_mem_plane hδ, gen_norm hw, fun h => gen_mem_cone hw hwu h,
     fun h => gen_mem_cone_neg hw hwu h⟩
 
+/--
+@isnad1 id=mem.2h6v.s6.8944e953832d from=translated src=- shape=1935b0e6 vocab=a5d3c7bf
+-/
 theorem mem_cone2_of_le_total {V u X : E} {k t : ℝ} (h1 : 0 ≤ t → X ∈ cone V u k)
     (h2 : t ≤ 0 → X ∈ cone V (-u) k) : X ∈ cone2 V u k := by
   rcases le_total 0 t with h | h
@@ -162,7 +197,9 @@ theorem mem_cone2_of_le_total {V u X : E} {k t : ℝ} (h1 : 0 ≤ t → X ∈ co
 /-! ## Which nappe: the sign of `⟪u, n⟫ ⟪p₀ - V, n⟫` -/
 
 /-- If `sin α ≤ |⟪u, n⟫|` and the plane misses the apex, a point of the section on the upper nappe
-forces `0 < ⟪u, n⟫ ⟪p₀ - V, n⟫`.-/
+forces `0 < ⟪u, n⟫ ⟪p₀ - V, n⟫`.
+@isnad1 id=lt.8h8v.s8.ad7b3cb448e2 from=translated src=- shape=a04c1de0 vocab=39648d09
+-/
 theorem nappe_sign {V u n p₀ X : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hm : s ^ 2 ≤ ⟪u, n⟫ ^ 2)
     (hc : ⟪p₀ - V, n⟫ ≠ 0) (hX : X ∈ plane p₀ n) (hXc : X ∈ cone V u k) :
@@ -178,7 +215,9 @@ theorem nappe_sign {V u n p₀ X : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : ‖n�
   nlinarith [mul_nonneg (mul_nonneg hk.le hL) (neg_nonneg.2 h),
     mul_nonneg (sub_nonneg.2 hm) (sq_nonneg ‖X - V‖)]
 
-/-- Same on the lower nappe: `⟪u, n⟫ ⟪p₀ - V, n⟫ < 0`.-/
+/-- Same on the lower nappe: `⟪u, n⟫ ⟪p₀ - V, n⟫ < 0`.
+@isnad1 id=lt.8h8v.s8.2629c7305d6e from=translated src=- shape=a7618bf3 vocab=395bb814
+-/
 theorem nappe_sign_neg {V u n p₀ X : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hm : s ^ 2 ≤ ⟪u, n⟫ ^ 2)
     (hc : ⟪p₀ - V, n⟫ ≠ 0) (hX : X ∈ plane p₀ n) (hXc : X ∈ cone V (-u) k) :
@@ -188,7 +227,9 @@ theorem nappe_sign_neg {V u n p₀ X : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : �
   rw [inner_neg_left] at h
   linarith
 
-/-- **Meeting both nappes forces the hyperbola inequality** `|⟪u, n⟫| < sin α` (any `E`).-/
+/-- **Meeting both nappes forces the hyperbola inequality** `|⟪u, n⟫| < sin α` (any `E`).
+@isnad1 id=lt.10h9v.s8.48d543b752fd from=translated src=- shape=078e4b69 vocab=11e2c52a
+-/
 theorem abs_lt_of_both_nappes {V u n p₀ X Y : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hs : 0 < s) (hc : ⟪p₀ - V, n⟫ ≠ 0)
     (hX : X ∈ plane p₀ n) (hXc : X ∈ cone V u k) (hY : Y ∈ plane p₀ n)
@@ -199,7 +240,9 @@ theorem abs_lt_of_both_nappes {V u n p₀ X Y : E} {k s : ℝ} (hu : ‖u‖ = 1
   linarith [nappe_sign hu hn hks hk hm hc hX hXc, nappe_sign_neg hu hn hks hk hm hc hY hYc]
 
 /-- A point on the generator of direction `k u + s e`, with `e = (a / ‖q‖) q + b f`
-(`q = perpN u n`, `f ⟂ u, n`). The parameter is `c / (k m + s a ‖q‖)`.-/
+(`q = perpN u n`, `f ⟂ u, n`). The parameter is `c / (k m + s a ‖q‖)`.
+@isnad1 id=ex.8h10v.s9.5b21a88e9f40 from=translated src=- shape=f7e42f55 vocab=b21fde4f
+-/
 theorem gen_point_a {V u n p₀ f : E} {k s a b : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hr : ‖perpN u n‖ ≠ 0) (hfu : ⟪f, u⟫ = 0) (hfn : ⟪f, n⟫ = 0)
     (hab : a ^ 2 + b ^ 2 * ‖f‖ ^ 2 = 1) (hδ : k * ⟪u, n⟫ + s * (a * ‖perpN u n‖) ≠ 0) :
@@ -220,7 +263,9 @@ theorem gen_point_a {V u n p₀ f : E} {k s a b : ℝ} (hu : ‖u‖ = 1) (hn : 
 /-- **Hyperbola regime: the plane meets both nappes** (any real inner product space `E`).
 Under `|⟪u, n⟫| < sin α` and `⟪p₀ - V, n⟫ ≠ 0` there are explicit points of the section on
 `cone V u k` and on `cone V (-u) k`: the generators of direction `k u ± s q / ‖q‖`,
-`q = n - ⟪u, n⟫ u`, meet the plane at parameters of opposite signs.-/
+`q = n - ⟪u, n⟫ u`, meet the plane at parameters of opposite signs.
+@isnad1 id=and.7h7v.s8.066239c376ca from=translated src=- shape=b0c299c8 vocab=11e2c52a
+-/
 theorem hyp_both_nappes {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (_hk : 0 < k) (hs : 0 < s) (hm : |⟪u, n⟫| < s)
     (hc : ⟪p₀ - V, n⟫ ≠ 0) :
@@ -253,7 +298,9 @@ theorem hyp_both_nappes {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : �
 
 /-- **Ellipse regime: the section is non-empty** (`E` finite-dimensional, `finrank ≥ 2`).
 With the hypotheses of `dandelin_exists`, every generator of direction `k u + s e`
-(`e ⟂ u` a unit vector) meets the plane on the nappe `cone V u k`.-/
+(`e ⟂ u` a unit vector) meets the plane on the nappe `cone V u k`.
+@isnad1 id=ex.8h7v.s8.f203610668bb from=translated src=- shape=fb4d4789 vocab=c5032eb3
+-/
 theorem ellipse_nonempty [FiniteDimensional ℝ E] (hdim : 2 ≤ Module.finrank ℝ E)
     {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hs : 0 < s) (hm : s < |⟪u, n⟫|)
@@ -304,7 +351,9 @@ theorem ellipse_nonempty [FiniteDimensional ℝ E] (hdim : 2 ≤ Module.finrank 
 
 /-! ## (2) The regime characterisation -/
 
-/-- Real lemma: choice of a small nonzero `ε` near `x` (`|x| ≤ ρ`) with `|c / ε|` large.-/
+/-- Real lemma: choice of a small nonzero `ε` near `x` (`|x| ≤ ρ`) with `|c / ε|` large.
+@isnad1 id=ex.3h4v.s6.f98cfdcf6ba3 from=translated src=- shape=ad318ed4 vocab=2c477979
+-/
 theorem exists_small_eps {x ρ c R : ℝ} (hρ : 0 < ρ) (hx : |x| ≤ ρ) (hc : c ≠ 0) :
     ∃ ε : ℝ, ε ≠ 0 ∧ |ε - x| ≤ ρ ∧ R < |c / ε| := by
   have hc' : 0 < |c| := abs_pos.2 hc
@@ -328,7 +377,9 @@ theorem exists_small_eps {x ρ c R : ℝ} (hρ : 0 < ρ) (hx : |x| ≤ ρ) (hc :
 
 /-- **Failure of the ellipse inequality gives an unbounded section** (`finrank E ≥ 3`).
 If `|⟪u, n⟫| ≤ sin α` (parabola or hyperbola regime) and the plane misses the apex, the
-section `plane ∩ cone2` has points arbitrarily far from the apex.-/
+section `plane ∩ cone2` has points arbitrarily far from the apex.
+@isnad1 id=ex.8h8v.s8.75603564726c from=translated src=- shape=ee2c63e2 vocab=5bb020c3
+-/
 theorem section_unbounded [FiniteDimensional ℝ E] (hdim : 3 ≤ Module.finrank ℝ E)
     {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hs : 0 < s) (hm : |⟪u, n⟫| ≤ s)
@@ -371,7 +422,9 @@ theorem section_unbounded [FiniteDimensional ℝ E] (hdim : 3 ≤ Module.finrank
   exact ⟨X, hX, mem_cone2_of_le_total hX1 hX2, by rw [hXn]; exact hεR⟩
 
 /-- **`sin α ≤ |⟪u, n⟫|` ⇒ the section of the double cone lies in one nappe** (any `E`),
-namely `cone V u k` if `0 < ⟪u, n⟫ ⟪p₀ - V, n⟫` and `cone V (-u) k` otherwise.-/
+namely `cone V u k` if `0 < ⟪u, n⟫ ⟪p₀ - V, n⟫` and `cone V (-u) k` otherwise.
+@isnad1 id=or.7h7v.s8.af177eb8b2c1 from=translated src=- shape=582578ac vocab=df1466fc
+-/
 theorem one_nappe {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hs : 0 < s) (hm : s ≤ |⟪u, n⟫|)
     (hc : ⟪p₀ - V, n⟫ ≠ 0) :
@@ -390,7 +443,9 @@ theorem one_nappe {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ 
     · exact h'
     · exact absurd (nappe_sign_neg hu hn hks hk hm2 hc hX h') (not_lt.2 h.le)
 
-/-- **Ellipse inequality ⇒ one nappe and bounded** (any `E`).-/
+/-- **Ellipse inequality ⇒ one nappe and bounded** (any `E`).
+@isnad1 id=and.7h7v.s8.473391bbbe70 from=translated src=- shape=e341acd4 vocab=6b72649e
+-/
 theorem ellipse_regime {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hs : 0 < s) (hm : s < |⟪u, n⟫|)
     (hc : ⟪p₀ - V, n⟫ ≠ 0) :
@@ -405,7 +460,9 @@ theorem ellipse_regime {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : ‖
       (by rw [inner_neg_left, neg_mul]; linarith)
     exact ⟨Or.inr hsec, R, fun X hX hX2 => hR X hX (hsec X hX hX2)⟩
 
-/-- **Bounded ⇔ ellipse inequality** (`finrank E ≥ 3`, plane not through the apex).-/
+/-- **Bounded ⇔ ellipse inequality** (`finrank E ≥ 3`, plane not through the apex).
+@isnad1 id=iff.7h7v.s8.5244ebcc9640 from=translated src=- shape=cdf99a65 vocab=a5f0d408
+-/
 theorem bounded_iff [FiniteDimensional ℝ E] (hdim : 3 ≤ Module.finrank ℝ E)
     {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hs : 0 < s) (hc : ⟪p₀ - V, n⟫ ≠ 0) :
@@ -424,7 +481,9 @@ theorem bounded_iff [FiniteDimensional ℝ E] (hdim : 3 ≤ Module.finrank ℝ E
     linarith
 
 /-- **Regime characterisation, ellipse** (`finrank E ≥ 3`, plane not through the apex):
-`sin α < |⟪u, n⟫|` iff the section of the double cone lies in one nappe and is bounded.-/
+`sin α < |⟪u, n⟫|` iff the section of the double cone lies in one nappe and is bounded.
+@isnad1 id=iff.7h7v.s8.02329954b153 from=translated src=- shape=0a86ff9e vocab=2bfa14de
+-/
 theorem ellipse_regime_iff [FiniteDimensional ℝ E] (hdim : 3 ≤ Module.finrank ℝ E)
     {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hs : 0 < s) (hc : ⟪p₀ - V, n⟫ ≠ 0) :
@@ -440,7 +499,9 @@ theorem ellipse_regime_iff [FiniteDimensional ℝ E] (hdim : 3 ≤ Module.finran
     exact (bounded_iff hdim hu hn hks hk hs hc).2 hb
 
 /-- **Regime characterisation, hyperbola** (any `E`, plane not through the apex):
-`|⟪u, n⟫| < sin α` iff the plane meets both nappes.-/
+`|⟪u, n⟫| < sin α` iff the plane meets both nappes.
+@isnad1 id=iff.6h7v.s8.61ccf1fc2a2e from=translated src=- shape=8ad24845 vocab=11e2c52a
+-/
 theorem hyperbola_regime_iff {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hs : 0 < s) (hc : ⟪p₀ - V, n⟫ ≠ 0) :
     |⟪u, n⟫| < s ↔
@@ -449,7 +510,9 @@ theorem hyperbola_regime_iff {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn
     fun ⟨⟨_, hX, hXc⟩, ⟨_, hY, hYc⟩⟩ => abs_lt_of_both_nappes hu hn hks hk hs hc hX hXc hY hYc⟩
 
 /-- **Parabola regime** (`finrank E ≥ 3`): if `|⟪u, n⟫| = sin α` and the plane misses the
-apex, the section lies in one nappe and is unbounded.-/
+apex, the section lies in one nappe and is unbounded.
+@isnad1 id=and.8h7v.s8.23c70c666f70 from=translated src=- shape=d3765065 vocab=2bfa14de
+-/
 theorem parabola_regime [FiniteDimensional ℝ E] (hdim : 3 ≤ Module.finrank ℝ E)
     {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hs : 0 < s) (hm : |⟪u, n⟫| = s)
@@ -467,13 +530,18 @@ theorem parabola_regime [FiniteDimensional ℝ E] (hdim : 3 ≤ Module.finrank �
 
 /-! ## In `ℝ³` -/
 
+/--
+@isnad1 id=le.0h0v.s7.90986cb84415 from=translated src=- shape=2361627e vocab=03b458d5
+-/
 theorem finrank_R3 : 3 ≤ Module.finrank ℝ (EuclideanSpace ℝ (Fin 3)) :=
   le_of_eq finrank_euclideanSpace_fin.symm
 
 /-- **The regime trichotomy in `EuclideanSpace ℝ (Fin 3)`**, for a plane not through the apex:
 ellipse `sin α < |⟪u, n⟫|` ⇔ one nappe and bounded; hyperbola `|⟪u, n⟫| < sin α` ⇔ both
 nappes met; in the ellipse case with the orientation of `dandelin_exists` the section is
-non-empty.-/
+non-empty.
+@isnad1 id=and.6h6v.s11.8f6a35da29e7 from=translated src=- shape=35d3d447 vocab=a7bdf597
+-/
 theorem regime_R3 {V u n p₀ : EuclideanSpace ℝ (Fin 3)} {k s : ℝ} (hu : ‖u‖ = 1)
     (hn : ‖n‖ = 1) (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hs : 0 < s)
     (hc : ⟪p₀ - V, n⟫ ≠ 0) :

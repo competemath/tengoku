@@ -24,6 +24,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 
 /-! ## Bridges -/
 
+/--
+@isnad1 id=iff.2h5v.s6.62921fa623a5 from=translated src=- shape=5bb3bd35 vocab=85027b08
+-/
 theorem l14_mem_cone_iff {V u X : E} {α : ℝ} (hu : ‖u‖ = 1) (hα : α ∈ Set.Icc 0 Real.pi) :
     (X = V ∨ angle (X - V) u = α) ↔ X ∈ cone V u (Real.cos α) := by
   rcases eq_or_ne X V with rfl | hX
@@ -32,6 +35,9 @@ theorem l14_mem_cone_iff {V u X : E} {α : ℝ} (hu : ‖u‖ = 1) (hα : α ∈
     simp
   · rw [← mem_cone_iff_angle hu hα hX]; simp [hX]
 
+/--
+@isnad1 id=iff.2h5v.s7.1d1a9683d449 from=translated src=- shape=0192cf66 vocab=e4560b62
+-/
 theorem l14_mem_cone2_iff {V u X : E} {α : ℝ} (hu : ‖u‖ = 1) (hα : α ∈ Set.Icc 0 Real.pi) :
     (X = V ∨ angle (X - V) u = α ∨ angle (X - V) u = Real.pi - α) ↔
       X ∈ cone2 V u (Real.cos α) := by
@@ -41,12 +47,17 @@ theorem l14_mem_cone2_iff {V u X : E} {α : ℝ} (hu : ‖u‖ = 1) (hα : α �
     simp
   · rw [← mem_cone2_iff_angle hu hα hX]; simp [hX]
 
+/--
+@isnad1 id=iff.0h4v.s8.30ff7dae226e from=translated src=- shape=1254a320 vocab=208af509
+-/
 theorem l14_mem_plane_iff {p₀ n X : E} :
     X ∈ AffineSubspace.mk' p₀ (ℝ ∙ n)ᗮ ↔ X ∈ plane p₀ n := by
   rw [plane_eq_mk', SetLike.mem_coe]
 
 /-- A Mathlib tangency point of a sphere and the plane `mk' p₀ (ℝ ∙ n)ᗮ` is the projection of
-the centre, and the radius is the distance from the centre to the plane.-/
+the centre, and the radius is the distance from the centre to the plane.
+@isnad1 id=and.2h6v.s8.583c52e765fd from=translated src=- shape=38a03545 vocab=a84650c2
+-/
 theorem l14_isTangentAt_plane {p₀ n C F : E} {r : ℝ} (hn : ‖n‖ = 1)
     (h : (⟨C, r⟩ : EuclideanGeometry.Sphere E).IsTangentAt F (AffineSubspace.mk' p₀ (ℝ ∙ n)ᗮ)) :
     F = C - ⟪C - p₀, n⟫ • n ∧ |⟪C - p₀, n⟫| = r := by
@@ -80,7 +91,9 @@ theorem l14_isTangentAt_plane {p₀ n C F : E} {r : ℝ} (hn : ‖n‖ = 1)
   · rw [← hFS, e, norm_smul, hn, mul_one, Real.norm_eq_abs, hFC, abs_neg]
 
 /-- Conversely, if the centre is at distance `r` from the plane, the sphere touches the plane
-(in Mathlib's sense) at the projection of the centre.-/
+(in Mathlib's sense) at the projection of the centre.
+@isnad1 id=istangen.2h5v.s8.f7352d3fc290 from=translated src=- shape=65241aee vocab=a84650c2
+-/
 theorem l14_isTangentAt_proj {p₀ n C : E} {r : ℝ} (hn : ‖n‖ = 1) (hr : |⟪C - p₀, n⟫| = r) :
     (⟨C, r⟩ : EuclideanGeometry.Sphere E).IsTangentAt (C - ⟪C - p₀, n⟫ • n)
       (AffineSubspace.mk' p₀ (ℝ ∙ n)ᗮ) := by
@@ -91,13 +104,18 @@ theorem l14_isTangentAt_proj {p₀ n C : E} {r : ℝ} (hn : ‖n‖ = 1) (hr : |
   · rw [EuclideanGeometry.Sphere.mem_orthRadius_iff_inner_left, vsub_eq_sub, vsub_eq_sub]
     exact (tangent_of_proj hn rfl hr (l14_mem_plane_iff.1 hx) hF).2
 
+/--
+@isnad1 id=iff.1h5v.s7.d0d4a5f2da6b from=translated src=- shape=3083ce36 vocab=0da91268
+-/
 theorem l14_isTangent_plane_iff {p₀ n C : E} {r : ℝ} (hn : ‖n‖ = 1) :
     (⟨C, r⟩ : EuclideanGeometry.Sphere E).IsTangent (AffineSubspace.mk' p₀ (ℝ ∙ n)ᗮ) ↔
       |⟪C - p₀, n⟫| = r :=
   ⟨fun ⟨_, h⟩ => (l14_isTangentAt_plane hn h).2, fun h => ⟨_, l14_isTangentAt_proj hn h⟩⟩
 
 /-- Two projections of distinct axis points onto a plane not perpendicular to the axis are
-distinct.-/
+distinct.
+@isnad1 id=ne.4h7v.s9.77bad9204fed from=translated src=- shape=4a8fb0ef vocab=07c8dff6
+-/
 theorem l14_proj_ne {V u n p₀ : E} {d₁ d₂ : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hm : ⟪u, n⟫ ^ 2 < 1) (hd : d₁ ≠ d₂) :
     (V + d₁ • u) - ⟪(V + d₁ • u) - p₀, n⟫ • n ≠ (V + d₂ • u) - ⟪(V + d₂ • u) - p₀, n⟫ • n := by
@@ -117,6 +135,9 @@ theorem l14_proj_ne {V u n p₀ : E} {d₁ d₂ : ℝ} (hu : ‖u‖ = 1) (hn : 
     rw [hu] at this
     nlinarith [sq_abs ⟪u, n⟫]
 
+/--
+@isnad1 id=and.2h1v.s7.f94abceb714a from=translated src=- shape=db68dea7 vocab=0fceae81
+-/
 theorem l14_cos_sin {α : ℝ} (hα0 : 0 < α) (hα1 : α < Real.pi / 2) :
     Real.cos α ^ 2 + Real.sin α ^ 2 = 1 ∧ 0 < Real.cos α ∧ 0 < Real.sin α ∧
       α ∈ Set.Icc 0 Real.pi := by
@@ -124,7 +145,9 @@ theorem l14_cos_sin {α : ℝ} (hα0 : 0 < α) (hα1 : α < Real.pi / 2) :
     Real.sin_pos_of_pos_of_lt_pi hα0 (by linarith [Real.pi_pos]), ⟨hα0.le, by linarith [Real.pi_pos]⟩⟩
 
 /-- Bridge: the axis plane `⟪Y - V, u⟫ = b` is the Mathlib hyperplane through `V + b • u` normal
-to `u`, so `directrix` is the intersection of two Mathlib affine subspaces.-/
+to `u`, so `directrix` is the intersection of two Mathlib affine subspaces.
+@isnad1 id=eq.1h6v.s9.c617b393a4e7 from=translated src=- shape=d6459057 vocab=faa1ecaf
+-/
 theorem l14_directrix_eq {V u n p₀ : E} {b : ℝ} (hu : ‖u‖ = 1) :
     directrix V u n p₀ b =
       ((AffineSubspace.mk' p₀ (ℝ ∙ n)ᗮ ⊓ AffineSubspace.mk' (V + b • u) (ℝ ∙ u)ᗮ :
@@ -144,7 +167,9 @@ half-angle `α ∈ (0, π/2)`; plane `π` through `p₀` with unit normal `n`, l
 generator (`sin α < |⟪u, n⟫|`) and missing the apex on the side of the nappe. Among the axis
 spheres `(V + d • u, d sin α)` exactly two (`0 < d₁ < d₂`) are tangent to `π`, on opposite sides
 of it, touching it at `F₁`, `F₂`; and a point of `π` lies on the nappe iff its focal sum is the
-constant `L`.-/
+constant `L`.
+@isnad1 id=ex.6h6v.s10.b402005576e7 from=translated src=- shape=c274b3d9 vocab=a440abee
+-/
 theorem l14_dandelin_ellipse {V u n p₀ : E} {α : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hα0 : 0 < α) (hα1 : α < Real.pi / 2) (hm : Real.sin α < |⟪u, n⟫|)
     (hc : 0 < ⟪u, n⟫ * ⟪p₀ - V, n⟫) :
@@ -171,7 +196,9 @@ theorem l14_dandelin_ellipse {V u n p₀ : E} {α : ℝ} (hu : ‖u‖ = 1) (hn 
 
 /-- **Inscribed spheres (Mathlib-only form).** For `d > 0`, the axis sphere
 `(V + d • u, d sin α)` is tangent (Mathlib `IsTangentAt`) to every generator line `VX` of the
-nappe, and no point of the nappe lies inside it.-/
+nappe, and no point of the nappe lies inside it.
+@isnad1 id=and.6h6v.s8.f5679d9c831e from=translated src=- shape=1a9e5a97 vocab=1d2552a1
+-/
 theorem l14_inscribed {V u X : E} {α d : ℝ} (hu : ‖u‖ = 1) (hα0 : 0 < α)
     (hα1 : α < Real.pi / 2) (hd : 0 < d) (hX : X ≠ V) (hXα : angle (X - V) u = α) :
     (∃ T : E, (⟨V + d • u, d * Real.sin α⟩ : EuclideanGeometry.Sphere E).IsTangentAt T
@@ -185,11 +212,17 @@ theorem l14_inscribed {V u X : E} {α d : ℝ} (hu : ‖u‖ = 1) (hα0 : 0 < α
   exact le_of_sq_le_sq (by simpa using h) (norm_nonneg _) |> fun h' => by
     simpa [abs_of_pos (mul_pos hd hs)] using h'
 
+/--
+@isnad1 id=iff.2h5v.s6.473dc9b4e6a2 from=translated src=- shape=91a3c549 vocab=9c61c1ad
+-/
 theorem l14_mem_lower_iff {V u X : E} {α : ℝ} (hu : ‖u‖ = 1) (hα : α ∈ Set.Icc 0 Real.pi) :
     (X = V ∨ angle (X - V) u = Real.pi - α) ↔ X ∈ cone V (-u) (Real.cos α) := by
   rw [← l14_mem_cone_iff (by rw [norm_neg, hu]) hα, angle_neg_right]
   constructor <;> rintro (h | h) <;> first | exact Or.inl h | exact Or.inr (by linarith)
 
+/--
+@isnad1 id=lt.2h2v.s5.d2c0fcfca136 from=translated src=- shape=b8153e79 vocab=9d62249c
+-/
 theorem l14_sq_lt_one {m s : ℝ} (hs1 : s < 1) (hm : |m| ≤ s) : m ^ 2 < 1 := by
   have h0 : 0 ≤ |m| := abs_nonneg m
   nlinarith [sq_abs m]
@@ -200,7 +233,9 @@ tangent to it, one in each nappe (`d₂ < 0 < d₁`), at `F₁`, `F₂`; on the 
 `XF₂ - XF₁ = L`, on the lower nappe `XF₁ - XF₂ = L`, and a point of the plane is on the double
 cone iff `|XF₁ - XF₂| = L`. Moreover, with `e = cos β / cos α = √(1 - ⟪u,n⟫²) / cos α > 1`, a
 point of the plane is on the double cone iff `XFᵢ = e · dist(X, ℓᵢ)`, where the directrix `ℓᵢ` is
-the plane `π` intersected with the hyperplane normal to the axis at `V + dᵢ cos² α • u`.-/
+the plane `π` intersected with the hyperplane normal to the axis at `V + dᵢ cos² α • u`.
+@isnad1 id=and.6h6v.s11.b89ca0590e6d from=translated src=- shape=c5fd7878 vocab=a7fa0441
+-/
 theorem l14_dandelin_hyperbola {V u n p₀ : E} {α : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hα0 : 0 < α) (hα1 : α < Real.pi / 2) (hm : |⟪u, n⟫| < Real.sin α)
     (hc : V ∉ AffineSubspace.mk' p₀ (ℝ ∙ n)ᗮ) :
@@ -265,7 +300,9 @@ theorem l14_dandelin_hyperbola {V u n p₀ : E} {α : ℝ} (hu : ‖u‖ = 1) (h
 /-- **Focus–directrix, ellipse (Mathlib-only form).** In the ellipse regime with the plane not
 perpendicular to the axis, the eccentricity `e = √(1 - ⟪u,n⟫²)/cos α` is `< 1`, and for each
 Dandelin focus `Fᵢ` (tangency point of `(V + dᵢ • u, dᵢ sin α)`), a point of the plane is on the
-nappe iff `XFᵢ = e · dist(X, ℓᵢ)`.-/
+nappe iff `XFᵢ = e · dist(X, ℓᵢ)`.
+@isnad1 id=and.7h6v.s11.a4647972a328 from=translated src=- shape=953f3d81 vocab=07c22f7f
+-/
 theorem l14_directrix_ellipse {V u n p₀ : E} {α : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hα0 : 0 < α) (hα1 : α < Real.pi / 2) (hm : Real.sin α < |⟪u, n⟫|)
     (hc : 0 < ⟪u, n⟫ * ⟪p₀ - V, n⟫) (hm1 : |⟪u, n⟫| < 1) :
@@ -312,7 +349,9 @@ theorem l14_directrix_ellipse {V u n p₀ : E} {α : ℝ} (hu : ‖u‖ = 1) (hn
 /-- **Parabola (Mathlib-only form).** If the plane is parallel to a generator
 (`|⟪u, n⟫| = sin α`) and misses the apex on the side of the nappe, exactly one axis sphere
 `(V + d • u, d sin α)` with `d ∈ ℝ` is tangent to it, at `F`, and a point of the plane lies on the
-nappe iff `XF = dist(X, ℓ)` (eccentricity `1`).-/
+nappe iff `XF = dist(X, ℓ)` (eccentricity `1`).
+@isnad1 id=and.6h6v.s10.f75c926e6fdc from=translated src=- shape=cd5cc395 vocab=a7fa0441
+-/
 theorem l14_parabola {V u n p₀ : E} {α : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hα0 : 0 < α) (hα1 : α < Real.pi / 2) (hm : |⟪u, n⟫| = Real.sin α)
     (hc : 0 < ⟪u, n⟫ * ⟪p₀ - V, n⟫) :
@@ -343,7 +382,9 @@ theorem l14_parabola {V u n p₀ : E} {α : ℝ} (hu : ‖u‖ = 1) (hn : ‖n�
     exact directrix_converse_nappe hu hn hks hk hs hm.symm.le hc hm1 hX'
       (by rw [abs_of_pos hd]; exact h1) h2 h
 
-/-- The section of the double cone of half-angle `α` by the plane, as a Mathlib-only set.-/
+/-- The section of the double cone of half-angle `α` by the plane, as a Mathlib-only set.
+@isnad1 id=eq.2h6v.s8.eda724b848bb from=translated src=- shape=4e5a0a19 vocab=32bfcee3
+-/
 theorem l14_section_eq {V u n p₀ : E} {α : ℝ} (hu : ‖u‖ = 1) (hα : α ∈ Set.Icc 0 Real.pi) :
     ((AffineSubspace.mk' p₀ (ℝ ∙ n)ᗮ : Set E) ∩
       {X | X = V ∨ angle (X - V) u = α ∨ angle (X - V) u = Real.pi - α}) =
@@ -355,7 +396,9 @@ theorem l14_section_eq {V u n p₀ : E} {α : ℝ} (hu : ‖u‖ = 1) (hα : α 
 /-- **Regimes in `ℝ³` (Mathlib-only form).** For a plane missing the apex: `sin α < |⟪u, n⟫|`
 iff the section of the double cone lies in one nappe and is bounded; `|⟪u, n⟫| < sin α` iff the
 plane meets both nappes; and in the ellipse regime on the side of the upper nappe the section of
-that nappe is non-empty.-/
+that nappe is non-empty.
+@isnad1 id=and.5h5v.s14.bed98bce3948 from=translated src=- shape=b32283fd vocab=37eac243
+-/
 theorem l14_regime_R3 {V u n p₀ : EuclideanSpace ℝ (Fin 3)} {α : ℝ} (hu : ‖u‖ = 1)
     (hn : ‖n‖ = 1) (hα0 : 0 < α) (hα1 : α < Real.pi / 2)
     (hc : V ∉ AffineSubspace.mk' p₀ (ℝ ∙ n)ᗮ) :
@@ -410,7 +453,9 @@ theorem l14_regime_R3 {V u n p₀ : EuclideanSpace ℝ (Fin 3)} {α : ℝ} (hu :
 /-- **Planes through the apex in `ℝ³` (Mathlib-only form).** With `a = u - ⟪u,n⟫ n`: if
 `sin α < |⟪u, n⟫|` the section is `{V}`; if `|⟪u, n⟫| = sin α` it is the line `line[ℝ, V, V + a]`
 with `a ≠ 0`; if `|⟪u, n⟫| < sin α` it is the union of two lines through `V` with distinct
-directions `a ± ρ f` (`f` a unit vector orthogonal to `u` and `n`, `ρ > 0`), meeting only at `V`.-/
+directions `a ± ρ f` (`f` a unit vector orthogonal to `u` and `n`, `ρ > 0`), meeting only at `V`.
+@isnad1 id=and.4h4v.s13.85847219ed44 from=translated src=- shape=232e817e vocab=69144f33
+-/
 theorem l14_apex_R3 {V u n : EuclideanSpace ℝ (Fin 3)} {α : ℝ} (hu : ‖u‖ = 1)
     (hn : ‖n‖ = 1) (hα0 : 0 < α) (hα1 : α < Real.pi / 2) :
     (Real.sin α < |⟪u, n⟫| → (AffineSubspace.mk' V (ℝ ∙ n)ᗮ : Set _) ∩
@@ -455,22 +500,37 @@ theorem l14_apex_R3 {V u n : EuclideanSpace ℝ (Fin 3)} {α : ℝ} (hu : ‖u�
 
 /-! ## Witnesses in `EuclideanSpace ℝ (Fin 3)`, cone of half-angle `arccos (4/5)` -/
 
+/--
+@isnad1 id=eq.0h6v.s8.c173edf15ee4 from=translated src=- shape=20090b6e vocab=c1eefab0
+-/
 theorem l14w_inner3 (a b c x y z : ℝ) :
     ⟪(!₂[a, b, c] : EuclideanSpace ℝ (Fin 3)), !₂[x, y, z]⟫ = a * x + b * y + c * z := by
   simp [PiLp.inner_apply, Fin.sum_univ_three]; ring
 
+/--
+@isnad1 id=eq.0h3v.s7.e558aa36a6fa from=translated src=- shape=0ff0bbc8 vocab=494e4ac0
+-/
 theorem l14w_norm3 (a b c : ℝ) :
     ‖(!₂[a, b, c] : EuclideanSpace ℝ (Fin 3))‖ = Real.sqrt (a ^ 2 + b ^ 2 + c ^ 2) := by
   rw [EuclideanSpace.norm_eq]; simp [Fin.sum_univ_three]
 
+/--
+@isnad1 id=eq.0h6v.s8.a1312799f42c from=translated src=- shape=f6bb0407 vocab=0e27571c
+-/
 theorem l14w_sub3 (a b c x y z : ℝ) :
     (!₂[a, b, c] : EuclideanSpace ℝ (Fin 3)) - !₂[x, y, z] = !₂[a - x, b - y, c - z] := by
   ext i; fin_cases i <;> simp
 
+/--
+@isnad1 id=eq.1h3v.s7.cec76d8e00d1 from=translated src=- shape=aad7d242 vocab=b37aa3fe
+-/
 theorem l14w_unit {a b c : ℝ} (h : a ^ 2 + b ^ 2 + c ^ 2 = 1) :
     ‖(!₂[a, b, c] : EuclideanSpace ℝ (Fin 3))‖ = 1 := by
   rw [l14w_norm3, h, Real.sqrt_one]
 
+/--
+@isnad1 id=ne.1h6v.s7.406146512740 from=translated src=- shape=2131b88d vocab=4a3bc9f8
+-/
 theorem l14w_ne3 {a b c x y z : ℝ} (h : a ≠ x ∨ b ≠ y ∨ c ≠ z) :
     (!₂[a, b, c] : EuclideanSpace ℝ (Fin 3)) ≠ !₂[x, y, z] := by
   intro he
@@ -480,9 +540,15 @@ theorem l14w_ne3 {a b c x y z : ℝ} (h : a ≠ x ∨ b ≠ y ∨ c ≠ z) :
   simp at h0 h1 h2
   rcases h with h | h | h <;> contradiction
 
+/--
+@isnad1 id=mem.1h3v.s11.83a802acd2e6 from=translated src=- shape=47a56236 vocab=c1e1b6bc
+-/
 theorem l14w_mem_plane {p₀ n X : EuclideanSpace ℝ (Fin 3)} (h : ⟪X - p₀, n⟫ = 0) :
     X ∈ AffineSubspace.mk' p₀ (ℝ ∙ n)ᗮ := l14_mem_plane_iff.2 h
 
+/--
+@isnad1 id=and.0h0v.s7.4639226f9b12 from=translated src=- shape=9c61213e vocab=0312284d
+-/
 theorem l14w_alpha : 0 < Real.arccos (4 / 5) ∧ Real.arccos (4 / 5) < Real.pi / 2 ∧
     Real.sin (Real.arccos (4 / 5)) = 3 / 5 ∧ Real.cos (Real.arccos (4 / 5)) = 4 / 5 := by
   refine ⟨Real.arccos_pos.2 (by norm_num), Real.arccos_lt_pi_div_two.2 (by norm_num), ?_,
@@ -490,7 +556,9 @@ theorem l14w_alpha : 0 < Real.arccos (4 / 5) ∧ Real.arccos (4 / 5) < Real.pi /
   rw [Real.sin_arccos, show (1 : ℝ) - (4 / 5) ^ 2 = (3 / 5) ^ 2 by norm_num,
     Real.sqrt_sq (by norm_num)]
 
-/-- Angle with the axis `e₃` of a vector `(a, b, c)` of norm `r > 0` with `c = (4/5) r`.-/
+/-- Angle with the axis `e₃` of a vector `(a, b, c)` of norm `r > 0` with `c = (4/5) r`.
+@isnad1 id=eq.3h4v.s9.d452344d2ab1 from=translated src=- shape=0b1be37d vocab=800ebe82
+-/
 theorem l14w_angle {a b c r : ℝ} (hr : 0 < r) (hn : a ^ 2 + b ^ 2 + c ^ 2 = r ^ 2)
     (hc : c = 4 / 5 * r ∨ c = -(4 / 5) * r) :
     angle (!₂[a, b, c] : EuclideanSpace ℝ (Fin 3)) !₂[0, 0, 1] =
@@ -506,7 +574,9 @@ theorem l14w_angle {a b c r : ℝ} (hr : 0 < r) (hn : a ^ 2 + b ^ 2 + c ^ 2 = r 
 `α = arccos (4/5)`, plane through `e₃` with unit normal `(0, 3/5, 4/5)` (so `⟪u, n⟫ = 4/5`).
 All hypotheses hold; the two foci are distinct (a genuine ellipse, not a circle), the focal
 constant is positive, the section contains the point `(0, 12/25, 16/25) ≠ V`, and every
-directrix `π ∩ {⟪Y - V, u⟫ = b}` is non-empty (so `infDist` is not taken to `∅`).-/
+directrix `π ∩ {⟪Y - V, u⟫ = b}` is non-empty (so `infDist` is not taken to `∅`).
+@isnad1 id=and.0h0v.s14.04e01d464011 from=translated src=- shape=d65734bc vocab=0cd53f86
+-/
 theorem l14w_dandelin_ellipse :
     ‖(!₂[0, 0, 1] : EuclideanSpace ℝ (Fin 3))‖ = 1 ∧
     ‖(!₂[0, 3 / 5, 4 / 5] : EuclideanSpace ℝ (Fin 3))‖ = 1 ∧
@@ -571,15 +641,24 @@ theorem l14w_dandelin_ellipse :
         ext i; fin_cases i <;> simp
       rw [e, l14w_sub3, l14w_inner3]; ring
 
+/--
+@isnad1 id=eq.0h0v.s8.27d7288b75f1 from=translated src=- shape=9435b4d7 vocab=4a3bc9f8
+-/
 theorem l14w_V : (!₂[0, 0, 0] : EuclideanSpace ℝ (Fin 3)) = 0 := by
   ext i; fin_cases i <;> simp
 
+/--
+@isnad1 id=eq.3h4v.s9.b4f6d25ee89b from=translated src=- shape=17b60254 vocab=cefe3f14
+-/
 theorem l14w_angle_up {a b c r : ℝ} (hr : 0 < r) (hn : a ^ 2 + b ^ 2 + c ^ 2 = r ^ 2)
     (hc : c = 4 / 5 * r) :
     angle ((!₂[a, b, c] : EuclideanSpace ℝ (Fin 3)) - !₂[0, 0, 0]) !₂[0, 0, 1] =
       Real.arccos (4 / 5) := by
   rw [l14w_V, sub_zero, l14w_angle hr hn (Or.inl hc), ite_eq_left hc]
 
+/--
+@isnad1 id=eq.3h4v.s9.805c2793bc85 from=translated src=- shape=06db5de0 vocab=5fa5fcc0
+-/
 theorem l14w_angle_down {a b c r : ℝ} (hr : 0 < r) (hn : a ^ 2 + b ^ 2 + c ^ 2 = r ^ 2)
     (hc : c = -(4 / 5) * r) :
     angle ((!₂[a, b, c] : EuclideanSpace ℝ (Fin 3)) - !₂[0, 0, 0]) !₂[0, 0, 1] =
@@ -590,7 +669,9 @@ theorem l14w_angle_down {a b c r : ℝ} (hr : 0 < r) (hn : a ^ 2 + b ^ 2 + c ^ 2
 /-- **Witness for `l14_dandelin_hyperbola`.** Apex `0`, axis `e₃`, `α = arccos (4/5)`, plane
 `x = 1` (normal `e₁`, `⟪u, n⟫ = 0 < 3/5`). All hypotheses hold; the plane meets the upper nappe
 at `(1, 0, 4/3)` and the lower nappe at `(1, 0, -4/3)`; the two foci are distinct and the focal
-constant `L` is positive.-/
+constant `L` is positive.
+@isnad1 id=and.0h0v.s14.e80620e5d9d5 from=translated src=- shape=ad2be638 vocab=d0d13929
+-/
 theorem l14w_dandelin_hyperbola :
     ‖(!₂[0, 0, 1] : EuclideanSpace ℝ (Fin 3))‖ = 1 ∧
     ‖(!₂[1, 0, 0] : EuclideanSpace ℝ (Fin 3))‖ = 1 ∧
@@ -646,7 +727,9 @@ theorem l14w_dandelin_hyperbola :
 
 /-- **Witness for `l14_parabola`.** Apex `0`, axis `e₃`, `α = arccos (4/5)`, plane through `e₃`
 with unit normal `(4/5, 0, 3/5)` (so `⟪u, n⟫ = 3/5 = sin α`). All hypotheses hold, and the
-section contains the non-apex point `(3/8, 0, 1/2)` of the nappe.-/
+section contains the non-apex point `(3/8, 0, 1/2)` of the nappe.
+@isnad1 id=and.0h0v.s12.1655530730b7 from=translated src=- shape=d6fd99ae vocab=208f4170
+-/
 theorem l14w_parabola :
     ‖(!₂[0, 0, 1] : EuclideanSpace ℝ (Fin 3))‖ = 1 ∧
     ‖(!₂[4 / 5, 0, 3 / 5] : EuclideanSpace ℝ (Fin 3))‖ = 1 ∧
@@ -671,7 +754,9 @@ theorem l14w_parabola :
 three planes through the apex: normal `e₃` (`⟪u, n⟫ = 1 > 3/5`, point case), normal
 `(4/5, 0, 3/5)` (`⟪u, n⟫ = 3/5`, line case), normal `e₂` (`⟪u, n⟫ = 0 < 3/5`, two-line case).
 The point `(-3, 0, 4)` lies on the line-case section and differs from the apex; the points `(3, 0, 4)` and `(-3, 0, 4)` lie on the
-two-line section, are distinct, and differ from the apex.-/
+two-line section, are distinct, and differ from the apex.
+@isnad1 id=and.0h0v.s13.ee5702567a1c from=translated src=- shape=cd35ae87 vocab=ae1d4454
+-/
 theorem l14w_apex :
     Real.sin (Real.arccos (4 / 5)) <
       |⟪(!₂[0, 0, 1] : EuclideanSpace ℝ (Fin 3)), !₂[0, 0, 1]⟫| ∧
@@ -707,7 +792,9 @@ theorem l14w_apex :
 `l14w_dandelin_ellipse` the hypotheses of `l14_regime_R3` hold (the apex is off the plane) and
 its ellipse-regime conclusions are non-vacuous: the upper nappe meets the plane at a point
 whose angle with the axis is `α`. For `l14_inscribed`, the non-apex point `(3, 0, 4)` of the
-nappe and `d = 1` satisfy the hypotheses.-/
+nappe and `d = 1` satisfy the hypotheses.
+@isnad1 id=and.0h0v.s13.72111c2a448d from=translated src=- shape=6cfb7e0f vocab=dcad6b1e
+-/
 theorem l14w_regime_inscribed :
     (!₂[0, 0, 0] : EuclideanSpace ℝ (Fin 3)) ∉
       AffineSubspace.mk' !₂[0, 0, 1] (ℝ ∙ !₂[0, 3 / 5, 4 / 5])ᗮ ∧

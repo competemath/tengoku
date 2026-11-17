@@ -20,14 +20,18 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 /-! ## (1) Tangent lengths -/
 
 /-- Pythagoras for a tangent segment: if `F` is on the sphere `(c, r)` and `X - F ⟂ F - c`,
-then `‖X - F‖² = ‖X - c‖² - r²`.-/
+then `‖X - F‖² = ‖X - c‖² - r²`.
+@isnad1 id=eq.2h5v.s7.b7bdd24b4659 from=translated src=- shape=ab97eaa8 vocab=37719ef1
+-/
 theorem tangent_length_sq {c F X : E} {r : ℝ} (hF : ‖F - c‖ = r)
     (hperp : ⟪X - F, F - c⟫ = 0) : ‖X - F‖ ^ 2 = ‖X - c‖ ^ 2 - r ^ 2 := by
   have h : X - c = (X - F) + (F - c) := by abel
   rw [h, norm_add_sq_real, hperp, hF]
   ring
 
-/-- All tangent segments from a point to a sphere have equal length.-/
+/-- All tangent segments from a point to a sphere have equal length.
+@isnad1 id=eq.4h6v.s7.85e246a463d5 from=translated src=- shape=a50d57a5 vocab=a6cef3b5
+-/
 theorem tangent_lengths_eq {c F T X : E} {r : ℝ} (hF : ‖F - c‖ = r) (hT : ‖T - c‖ = r)
     (hF' : ⟪X - F, F - c⟫ = 0) (hT' : ⟪X - T, T - c⟫ = 0) : ‖X - F‖ = ‖X - T‖ := by
   have h1 := tangent_length_sq hF hF'
@@ -36,7 +40,9 @@ theorem tangent_lengths_eq {c F T X : E} {r : ℝ} (hF : ‖F - c‖ = r) (hT : 
   exact (pow_left_inj₀ (norm_nonneg _) (norm_nonneg _) two_ne_zero).1 this
 
 /-- Mathlib-phrased version: if `X` lies on two affine subspaces tangent to the sphere `S`
-at `F` and at `T`, then `dist X F = dist X T`.-/
+at `F` and at `T`, then `dist X F = dist X T`.
+@isnad1 id=eq.4h7v.s8.18970953858e from=translated src=- shape=96dc354f vocab=0b69c4e1
+-/
 theorem dist_eq_of_isTangentAt {S : EuclideanGeometry.Sphere E} {F T X : E}
     {π ℓ : AffineSubspace ℝ E} (hπ : S.IsTangentAt F π) (hℓ : S.IsTangentAt T ℓ)
     (hXπ : X ∈ π) (hXℓ : X ∈ ℓ) : dist X F = dist X T := by
@@ -51,7 +57,9 @@ theorem dist_eq_of_isTangentAt {S : EuclideanGeometry.Sphere E} {F T X : E}
 def cone (V u : E) (k : ℝ) : Set E := {X | ⟪X - V, u⟫ = k * ‖X - V‖}
 
 /-- Squared tangent length from a point of the cone to the inscribed sphere
-`(V + d • u, d * s)`: it is `(‖X - V‖ - d k)²`.-/
+`(V + d • u, d * s)`: it is `(‖X - V‖ - d k)²`.
+@isnad1 id=eq.3h7v.s8.45c8c33eb7a5 from=translated src=- shape=f94c5178 vocab=57bedaba
+-/
 theorem cone_tangent_sq {V u X : E} {k s d : ℝ} (hu : ‖u‖ = 1) (hks : k ^ 2 + s ^ 2 = 1)
     (hX : X ∈ cone V u k) :
     ‖X - (V + d • u)‖ ^ 2 - (d * s) ^ 2 = (‖X - V‖ - d * k) ^ 2 := by
@@ -61,13 +69,17 @@ theorem cone_tangent_sq {V u X : E} {k s d : ℝ} (hu : ‖u‖ = 1) (hks : k ^ 
     Real.norm_eq_abs, sq_abs]
   linear_combination (-d ^ 2) * hks
 
-/-- The cone never enters the open ball of an inscribed sphere.-/
+/-- The cone never enters the open ball of an inscribed sphere.
+@isnad1 id=le.3h7v.s8.c84da11a5362 from=translated src=- shape=25ca5832 vocab=84961f0e
+-/
 theorem cone_outside_sphere {V u X : E} {k s d : ℝ} (hu : ‖u‖ = 1) (hks : k ^ 2 + s ^ 2 = 1)
     (hX : X ∈ cone V u k) : (d * s) ^ 2 ≤ ‖X - (V + d • u)‖ ^ 2 := by
   have := cone_tangent_sq (d := d) hu hks hX
   nlinarith [sq_nonneg (‖X - V‖ - d * k)]
 
-/-- A point on the generator through `X`, at distance `τ` from the apex.-/
+/-- A point on the generator through `X`, at distance `τ` from the apex.
+@isnad1 id=eq.3h7v.s8.ad94594155af from=translated src=- shape=39649df9 vocab=2869e0ee
+-/
 theorem generator_dist_sq {V u X : E} {k d τ : ℝ} (hu : ‖u‖ = 1)
     (hX : X ∈ cone V u k) (ht : ‖X - V‖ ≠ 0) :
     ‖(V + (τ / ‖X - V‖) • (X - V)) - (V + d • u)‖ ^ 2 = τ ^ 2 - 2 * τ * d * k + d ^ 2 := by
@@ -83,7 +95,9 @@ theorem generator_dist_sq {V u X : E} {k d τ : ℝ} (hu : ‖u‖ = 1)
 noncomputable def tangencyPoint (V X : E) (k d : ℝ) : E :=
   V + (d * k / ‖X - V‖) • (X - V)
 
-/-- The tangency point lies on the inscribed sphere.-/
+/-- The tangency point lies on the inscribed sphere.
+@isnad1 id=eq.5h7v.s8.242745743bd0 from=translated src=- shape=ad46e10d vocab=2789f631
+-/
 theorem tangencyPoint_mem_sphere {V u X : E} {k s d : ℝ} (hu : ‖u‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hds : 0 ≤ d * s) (hX : X ∈ cone V u k) (ht : ‖X - V‖ ≠ 0) :
     ‖tangencyPoint V X k d - (V + d • u)‖ = d * s := by
@@ -93,7 +107,9 @@ theorem tangencyPoint_mem_sphere {V u X : E} {k s d : ℝ} (hu : ‖u‖ = 1)
     rw [h]; linear_combination (-d ^ 2) * hks
   exact (pow_left_inj₀ (norm_nonneg _) hds two_ne_zero).1 h2
 
-/-- The generator is tangent to the sphere at the tangency point.-/
+/-- The generator is tangent to the sphere at the tangency point.
+@isnad1 id=eq.2h6v.s7.dca6e3d697c9 from=translated src=- shape=525c01ad vocab=00ac5e2b
+-/
 theorem tangencyPoint_perp {V u X : E} {k d : ℝ}
     (hX : X ∈ cone V u k) (ht : ‖X - V‖ ≠ 0) :
     ⟪X - tangencyPoint V X k d, tangencyPoint V X k d - (V + d • u)⟫ = 0 := by
@@ -108,7 +124,9 @@ theorem tangencyPoint_perp {V u X : E} {k d : ℝ}
   field_simp
   ring
 
-/-- Distance from `X` to the tangency point along the generator.-/
+/-- Distance from `X` to the tangency point along the generator.
+@isnad1 id=eq.1h5v.s6.077ae4f84f0a from=translated src=- shape=8b790ae3 vocab=497d9455
+-/
 theorem dist_tangencyPoint {V X : E} {k d : ℝ} (ht : ‖X - V‖ ≠ 0) :
     ‖X - tangencyPoint V X k d‖ = |‖X - V‖ - d * k| := by
   unfold tangencyPoint
@@ -119,7 +137,9 @@ theorem dist_tangencyPoint {V X : E} {k d : ℝ} (ht : ‖X - V‖ ≠ 0) :
   field_simp
 
 /-- Tangent length from a point `X` of the cone, via a tangent plane touching the inscribed
-sphere `(V + d • u, d * s)` at `F`: `‖X - F‖ = |‖X - V‖ - d k|`.-/
+sphere `(V + d • u, d * s)` at `F`: `‖X - F‖ = |‖X - V‖ - d k|`.
+@isnad1 id=eq.5h8v.s8.898cdd176574 from=translated src=- shape=fad24252 vocab=200b246f
+-/
 theorem dist_tangent_eq {V u X F : E} {k s d : ℝ} (hu : ‖u‖ = 1) (hks : k ^ 2 + s ^ 2 = 1)
     (hX : X ∈ cone V u k) (hF : ‖F - (V + d • u)‖ = d * s)
     (hperp : ⟪X - F, F - (V + d • u)⟫ = 0) : ‖X - F‖ = |‖X - V‖ - d * k| := by
@@ -132,7 +152,9 @@ theorem dist_tangent_eq {V u X F : E} {k s d : ℝ} (hu : ‖u‖ = 1) (hks : k 
 
 /-- **Dandelin's theorem**, with the "between the two tangency circles" hypothesis.
 If a plane through `X` touches the two inscribed spheres `(V + dᵢ • u, dᵢ * s)` at `F₁`, `F₂`,
-then `‖X - F₁‖ + ‖X - F₂‖ = (d₂ - d₁) k`.-/
+then `‖X - F₁‖ + ‖X - F₂‖ = (d₂ - d₁) k`.
+@isnad1 id=eq.9h10v.s9.578348210416 from=translated src=- shape=00cbc9fa vocab=6be60491
+-/
 theorem dandelin_of_between {V u X F₁ F₂ : E} {k s d₁ d₂ : ℝ} (hu : ‖u‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hX : X ∈ cone V u k)
     (hF₁ : ‖F₁ - (V + d₁ • u)‖ = d₁ * s) (hF₂ : ‖F₂ - (V + d₂ • u)‖ = d₂ * s)
@@ -144,7 +166,9 @@ theorem dandelin_of_between {V u X F₁ F₂ : E} {k s d₁ d₂ : ℝ} (hu : �
   ring
 
 /-- Same statement phrased with Mathlib's `EuclideanGeometry.Sphere` and `Sphere.IsTangentAt`
-for an arbitrary affine subspace `π` (a plane) tangent to both spheres.-/
+for an arbitrary affine subspace `π` (a plane) tangent to both spheres.
+@isnad1 id=eq.12h13v.s9.59d0ffed403e from=translated src=- shape=22b890d4 vocab=91209397
+-/
 theorem dandelin_of_between_isTangentAt {V u X F₁ F₂ : E} {k s d₁ d₂ : ℝ}
     {S₁ S₂ : EuclideanGeometry.Sphere E} {π : AffineSubspace ℝ E} (hu : ‖u‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hX : X ∈ cone V u k)
@@ -167,7 +191,9 @@ theorem dandelin_of_between_isTangentAt {V u X F₁ F₂ : E} {k s d₁ d₂ : �
   ring
 
 /-- Real-algebra core of the "between" property: the Gram/Cauchy–Schwarz inequality
-`Q(t) ≥ 0` together with the two tangency equations forces `d₁ k ≤ t ≤ d₂ k`.-/
+`Q(t) ≥ 0` together with the two tangency equations forces `d₁ k ≤ t ≤ d₂ k`.
+@isnad1 id=and.8h7v.s8.63c3987c7de5 from=translated src=- shape=9517239e vocab=d8e6b3e9
+-/
 theorem between_of_gram {k s m a t d₁ d₂ : ℝ} (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k)
     (hs : 0 < s) (hd₁ : 0 < d₁) (hd : d₁ < d₂) (h₁ : a = d₁ * (m + s)) (h₂ : a = d₂ * (m - s))
     (hQ : 0 ≤ (1 - k ^ 2 - m ^ 2) * t ^ 2 + 2 * k * m * a * t - a ^ 2) :
@@ -214,7 +240,9 @@ theorem between_of_gram {k s m a t d₁ d₂ : ℝ} (hks : k ^ 2 + s ^ 2 = 1) (h
 `0 < d₁ < d₂`. The plane with unit normal `n` through `F₁ = V + d₁ • u + (d₁ s) • n` and
 `F₂ = V + d₂ • u - (d₂ s) • n` is tangent to both spheres, at `F₁` and `F₂`, with the spheres
 on opposite sides. Then every point `X` of the section plane ∩ cone satisfies
-`‖X - F₁‖ + ‖X - F₂‖ = (d₂ - d₁) cos α`.-/
+`‖X - F₁‖ + ‖X - F₂‖ = (d₂ - d₁) cos α`.
+@isnad1 id=eq.12h11v.s9.6722529e5929 from=translated src=- shape=16a723bf vocab=5e456e42
+-/
 theorem dandelin {V u n X F₁ F₂ : E} {k s d₁ d₂ : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hs : 0 < s) (hd₁ : 0 < d₁) (hd : d₁ < d₂)
     (hF₁ : F₁ = V + d₁ • u + (d₁ * s) • n) (hF₂ : F₂ = V + d₂ • u - (d₂ * s) • n)
@@ -269,7 +297,9 @@ theorem dandelin {V u n X F₁ F₂ : E} {k s d₁ d₂ : ℝ} (hu : ‖u‖ = 1
 
 /-- For `X` on the cone beyond the first tangency circle, the focal distance equals
 `1 / cos α` times the (signed) distance from `X` to the plane `⟪Y - V, u⟫ = d₁ k²` of the
-first tangency circle.-/
+first tangency circle.
+@isnad1 id=eq.7h8v.s9.f26204dfd6a6 from=translated src=- shape=f4a824cf vocab=10b5903c
+-/
 theorem focal_dist_eq_div {V u X F : E} {k s d : ℝ} (hu : ‖u‖ = 1) (hks : k ^ 2 + s ^ 2 = 1)
     (hk : 0 < k) (hX : X ∈ cone V u k) (hF : ‖F - (V + d • u)‖ = d * s)
     (hperp : ⟪X - F, F - (V + d • u)⟫ = 0) (hb : d * k ≤ ‖X - V‖) :

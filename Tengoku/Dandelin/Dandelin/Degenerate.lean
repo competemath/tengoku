@@ -28,7 +28,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 /-- **Converse of the focus–directrix property** (any regime, any `E`). If `X` is in the cutting
 plane (not perpendicular to the axis), the plane touches the axis sphere `(V + d • u, |d| s)`
 at `F`, and `‖X - F‖ = e · dist(X, ℓ)` with `ℓ = plane ∩ axisPlane V u (d k²)`,
-`e = √(1 - ⟪u, n⟫²) / cos α`, then `X` lies on the double cone.-/
+`e = √(1 - ⟪u, n⟫²) / cos α`, then `X` lies on the double cone.
+@isnad1 id=mem.9h10v.s9.10b796d77789 from=translated src=- shape=87e7f762 vocab=9dfff6fc
+-/
 theorem directrix_converse {V u n p₀ X F : E} {k s d : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hm : ⟪u, n⟫ ^ 2 < 1) (hXπ : X ∈ plane p₀ n)
     (hF : ‖F - (V + d • u)‖ = |d| * s) (hp : ⟪X - F, F - (V + d • u)⟫ = 0)
@@ -44,7 +46,9 @@ theorem directrix_converse {V u n p₀ X F : E} {k s d : ℝ} (hu : ‖u‖ = 1)
   linear_combination k ^ 2 * hA - h2
 
 /-- **Focus–directrix characterisation of the section** (any regime, any `E`): for `X` in the
-plane, `X` is on the double cone iff `‖X - F‖ = e · dist(X, ℓ)`.-/
+plane, `X` is on the double cone iff `‖X - F‖ = e · dist(X, ℓ)`.
+@isnad1 id=iff.8h10v.s9.40d8fc742e1a from=translated src=- shape=b2c0a72f vocab=9dfff6fc
+-/
 theorem mem_cone2_iff_focal_directrix {V u n p₀ X F : E} {k s d : ℝ} (hu : ‖u‖ = 1)
     (hn : ‖n‖ = 1) (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hm : ⟪u, n⟫ ^ 2 < 1)
     (hXπ : X ∈ plane p₀ n) (hF : ‖F - (V + d • u)‖ = |d| * s)
@@ -59,7 +63,9 @@ theorem mem_cone2_iff_focal_directrix {V u n p₀ X F : E} {k s d : ℝ} (hu : �
   · exact directrix_converse hu hn hks hk hm hXπ hF hp
 
 /-- In the ellipse and parabola regimes (`sin α ≤ |⟪u, n⟫|`, `0 < ⟪u, n⟫ ⟪p₀ - V, n⟫`), the
-directrix converse lands on the nappe `cone V u k` met by the plane.-/
+directrix converse lands on the nappe `cone V u k` met by the plane.
+@isnad1 id=mem.12h10v.s9.16f0fcbae5ae from=translated src=- shape=45a4c700 vocab=1f8cb150
+-/
 theorem directrix_converse_nappe {V u n p₀ X F : E} {k s d : ℝ} (hu : ‖u‖ = 1)
     (hn : ‖n‖ = 1) (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hs : 0 < s) (hm : s ≤ |⟪u, n⟫|)
     (hc : 0 < ⟪u, n⟫ * ⟪p₀ - V, n⟫) (hm1 : ⟪u, n⟫ ^ 2 < 1) (hXπ : X ∈ plane p₀ n)
@@ -85,7 +91,9 @@ theorem eq_of_mem_both_nappes {V u X : E} {k : ℝ} (hk : 0 < k) (h1 : X ∈ con
 
 /-- **Ellipse: focus–directrix characterisation** (one nappe). Under the hypotheses of
 `directrix_ellipse`, for each focus a point of the plane is on the nappe iff its focal distance
-is `e` times its distance to the corresponding directrix.-/
+is `e` times its distance to the corresponding directrix.
+@isnad1 id=ex.8h7v.s10.be30c8f722c5 from=translated src=- shape=7b597d3b vocab=1be96555
+-/
 theorem directrix_iff_ellipse {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hs : 0 < s) (hm : s < |⟪u, n⟫|)
     (hc : 0 < ⟪u, n⟫ * ⟪p₀ - V, n⟫) (hm1 : ⟪u, n⟫ ^ 2 < 1) :
@@ -110,7 +118,9 @@ theorem directrix_iff_ellipse {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (h
     exact directrix_converse_nappe hu hn hks hk hs hm.le hc hm1 hX
       (by rw [abs_of_pos (hd₁.trans hd)]; exact h1) h2 h
 
-/-- **Parabola: focus–directrix characterisation** (one nappe, `e = 1`).-/
+/-- **Parabola: focus–directrix characterisation** (one nappe, `e = 1`).
+@isnad1 id=ex.7h7v.s9.ce335e834cf2 from=translated src=- shape=47ed19c7 vocab=3ca500db
+-/
 theorem directrix_iff_parabola {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hs : 0 < s) (hm : s = |⟪u, n⟫|)
     (hc : 0 < ⟪u, n⟫ * ⟪p₀ - V, n⟫) :
@@ -130,7 +140,9 @@ theorem directrix_iff_parabola {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (
 the one-nappe converse.** In the hyperbola regime, for each focus `Fᵢ`, a point of the plane is
 on the double cone iff `‖X - Fᵢ‖ = e · dist(X, ℓᵢ)`; but this does not force the upper nappe:
 there is a point of the plane satisfying the relation for either focus which is not on
-`cone V u k` (it is on the lower nappe), and symmetrically for `cone V (-u) k`.-/
+`cone V u k` (it is on the lower nappe), and symmetrically for `cone V (-u) k`.
+@isnad1 id=ex.7h7v.s10.9a325296ce3a from=translated src=- shape=1708979c vocab=9b13018a
+-/
 theorem directrix_iff_hyperbola {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hs : 0 < s) (hm : |⟪u, n⟫| < s)
     (hc : ⟪p₀ - V, n⟫ ≠ 0) :
@@ -179,31 +191,48 @@ noncomputable def apexDir (u n : E) : E := u - ⟪u, n⟫ • n
 /-- The slope `ρ = √((1 - m²)(s² - m²)) / k` of the two generator lines in the plane.-/
 noncomputable def apexRho (m k s : ℝ) : ℝ := Real.sqrt ((1 - m ^ 2) * (s ^ 2 - m ^ 2)) / k
 
+/--
+@isnad1 id=eq.1h3v.s5.30f156c7f332 from=translated src=- shape=d284af60 vocab=959f0a46
+-/
 theorem apexDir_inner_n {u n : E} (hn : ‖n‖ = 1) : ⟪apexDir u n, n⟫ = 0 := by
   unfold apexDir
   rw [inner_sub_left, real_inner_smul_left, real_inner_self_eq_norm_sq, hn]
   ring
 
+/--
+@isnad1 id=eq.1h3v.s6.f803485b8151 from=translated src=- shape=5df64836 vocab=3c47450d
+-/
 theorem apexDir_inner_u {u n : E} (hu : ‖u‖ = 1) : ⟪apexDir u n, u⟫ = 1 - ⟪u, n⟫ ^ 2 := by
   unfold apexDir
   rw [inner_sub_left, real_inner_smul_left, real_inner_self_eq_norm_sq, hu,
     real_inner_comm u n]
   ring
 
+/--
+@isnad1 id=eq.2h3v.s6.ff7fd584ae94 from=translated src=- shape=3c834e63 vocab=3c47450d
+-/
 theorem apexDir_norm_sq {u n : E} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1) :
     ‖apexDir u n‖ ^ 2 = 1 - ⟪u, n⟫ ^ 2 := norm_sub_inner_smul_sq hu hn
 
+/--
+@isnad1 id=eq.1h4v.s6.7fc9b8da29ef from=translated src=- shape=a7d8f7c3 vocab=a25d454d
+-/
 theorem inner_apexDir_of_perp {u n w : E} (hw : ⟪w, n⟫ = 0) : ⟪w, apexDir u n⟫ = ⟪w, u⟫ := by
   unfold apexDir
   rw [inner_sub_right, real_inner_smul_right, hw, mul_zero, sub_zero]
 
+/--
+@isnad1 id=eq.2h4v.s6.71f9ba64e945 from=translated src=- shape=13130d5f vocab=a25d454d
+-/
 theorem apexDir_inner_orth {u n f : E} (hfu : ⟪f, u⟫ = 0) (hfn : ⟪f, n⟫ = 0) :
     ⟪apexDir u n, f⟫ = 0 := by
   unfold apexDir
   rw [inner_sub_left, real_inner_smul_left, real_inner_comm f u, real_inner_comm f n, hfu, hfn,
     mul_zero, sub_zero]
 
-/-- For a plane through the apex, membership is `⟪X - V, n⟫ = 0`.-/
+/-- For a plane through the apex, membership is `⟪X - V, n⟫ = 0`.
+@isnad1 id=iff.1h5v.s6.efa30afef5d0 from=translated src=- shape=f2c8ecbb vocab=dc79468e
+-/
 theorem mem_plane_iff_of_apex {V n p₀ X : E} (hc : ⟪p₀ - V, n⟫ = 0) :
     X ∈ plane p₀ n ↔ ⟪X - V, n⟫ = 0 := by
   constructor
@@ -213,7 +242,9 @@ theorem mem_plane_iff_of_apex {V n p₀ X : E} (hc : ⟪p₀ - V, n⟫ = 0) :
     have : X - p₀ = (X - V) - (p₀ - V) := by abel
     rw [this, inner_sub_left, h, hc, sub_zero]
 
-/-- Cauchy–Schwarz in the plane: for `w ⟂ n`, `⟪w, u⟫² ≤ (1 - ⟪u, n⟫²) ‖w‖²`.-/
+/-- Cauchy–Schwarz in the plane: for `w ⟂ n`, `⟪w, u⟫² ≤ (1 - ⟪u, n⟫²) ‖w‖²`.
+@isnad1 id=le.3h4v.s7.f8d6bf563c8b from=translated src=- shape=58ce55f2 vocab=35a0cefa
+-/
 theorem apex_cs {u n w : E} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1) (hw : ⟪w, n⟫ = 0) :
     ⟪w, u⟫ ^ 2 ≤ (1 - ⟪u, n⟫ ^ 2) * ‖w‖ ^ 2 := by
   have h := abs_real_inner_le_norm w (apexDir u n)
@@ -222,7 +253,9 @@ theorem apex_cs {u n w : E} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1) (hw : ⟪w, n�
   rw [sq_abs, mul_pow, apexDir_norm_sq hu hn] at h2
   linarith
 
-/-- **Plane through the apex, `sin α < |⟪u, n⟫|`: the section is the apex alone** (any `E`).-/
+/-- **Plane through the apex, `sin α < |⟪u, n⟫|`: the section is the apex alone** (any `E`).
+@isnad1 id=eq.6h7v.s7.6a9e93d5b979 from=translated src=- shape=65658b80 vocab=e17f96bc
+-/
 theorem apex_section_point {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hs : 0 < s) (hm : s < |⟪u, n⟫|) (hc : ⟪p₀ - V, n⟫ = 0) :
     plane p₀ n ∩ cone2 V u k = {V} := by
@@ -247,7 +280,9 @@ theorem apex_section_point {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn :
     simp
 
 /-- **Plane through the apex, `|⟪u, n⟫| = sin α`: the section is one generator line**, the line
-through `V` with direction `u - ⟪u, n⟫ n` (any `E`).-/
+through `V` with direction `u - ⟪u, n⟫ n` (any `E`).
+@isnad1 id=and.6h7v.s8.8b7c97dcf424 from=translated src=- shape=27063fed vocab=b833b615
+-/
 theorem apex_section_line {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hm : |⟪u, n⟫| = s) (hc : ⟪p₀ - V, n⟫ = 0) :
     apexDir u n ≠ 0 ∧
@@ -280,7 +315,9 @@ theorem apex_section_line {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : 
         Real.norm_eq_abs, mul_pow, mul_pow, sq_abs, ha2, hk2m]
       ring
 
-/-- Coordinates in the plane spanned by `apexDir u n` and a unit `f ⟂ u, n`.-/
+/-- Coordinates in the plane spanned by `apexDir u n` and a unit `f ⟂ u, n`.
+@isnad1 id=and.5h6v.s9.4be4c55c4375 from=translated src=- shape=4a7248b1 vocab=ecd9183a
+-/
 theorem apex_comb {u n f : E} {α β : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1) (hf : ‖f‖ = 1)
     (hfu : ⟪f, u⟫ = 0) (hfn : ⟪f, n⟫ = 0) :
     ⟪α • apexDir u n + β • f, n⟫ = 0 ∧
@@ -298,7 +335,9 @@ theorem apex_comb {u n f : E} {α β : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1
     ring
 
 /-- The lines `V + t (apexDir u n + σ f)` with `σ² k² = (1 - m²)(s² - m²)` lie in
-plane ∩ double cone (any `E`).-/
+plane ∩ double cone (any `E`).
+@isnad1 id=mem.8h10v.s9.bbca38a647f7 from=translated src=- shape=0c5da40b vocab=58943ea2
+-/
 theorem apex_gen_mem {V u n p₀ f : E} {k s σ : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hc : ⟪p₀ - V, n⟫ = 0) (hf : ‖f‖ = 1) (hfu : ⟪f, u⟫ = 0)
     (hfn : ⟪f, n⟫ = 0) (hσ : σ ^ 2 * k ^ 2 = (1 - ⟪u, n⟫ ^ 2) * (s ^ 2 - ⟪u, n⟫ ^ 2)) (t : ℝ) :
@@ -314,7 +353,9 @@ theorem apex_gen_mem {V u n p₀ f : E} {k s σ : ℝ} (hu : ‖u‖ = 1) (hn : 
     linear_combination (-t ^ 2) * hσ - t ^ 2 * (1 - ⟪u, n⟫ ^ 2) * hks
 
 /-- In `finrank E ≤ 3`: a vector orthogonal to `n` lies in the span of `a` and `f`, if
-`n, a, f` are nonzero and pairwise orthogonal (`‖f‖ = 1`).-/
+`n, a, f` are nonzero and pairwise orthogonal (`‖f‖ = 1`).
+@isnad1 id=eq.8h5v.s8.bb1a9fe524f1 from=translated src=- shape=ddb9aac7 vocab=8e6fe5f4
+-/
 theorem decomp_of_finrank_le_three [FiniteDimensional ℝ E] (hdim : Module.finrank ℝ E ≤ 3)
     {n a f w : E} (hn0 : n ≠ 0) (ha0 : a ≠ 0) (hf : ‖f‖ = 1) (han : ⟪a, n⟫ = 0)
     (hfn : ⟪f, n⟫ = 0) (haf : ⟪a, f⟫ = 0) (hwn : ⟪w, n⟫ = 0) :
@@ -354,6 +395,9 @@ theorem decomp_of_finrank_le_three [FiniteDimensional ℝ E] (hdim : Module.finr
   rw [Fintype.card_fin] at this
   omega
 
+/--
+@isnad1 id=eq.2h3v.s7.c831d1d32c87 from=translated src=- shape=f5aa296e vocab=ff5075f6
+-/
 theorem apexRho_sq {m k s : ℝ} (hk : 0 < k) (hP : 0 ≤ (1 - m ^ 2) * (s ^ 2 - m ^ 2)) :
     apexRho m k s ^ 2 * k ^ 2 = (1 - m ^ 2) * (s ^ 2 - m ^ 2) := by
   unfold apexRho
@@ -363,7 +407,9 @@ theorem apexRho_sq {m k s : ℝ} (hk : 0 < k) (hP : 0 ≤ (1 - m ^ 2) * (s ^ 2 -
 /-- **Plane through the apex, `|⟪u, n⟫| < sin α`, `finrank E = 3`: the section is a pair of
 distinct generator lines through `V`**, with directions `apexDir u n ± ρ f`, where `f` is a unit
 vector orthogonal to `u` and `n` and `ρ = √((1 - m²)(s² - m²)) / cos α > 0`; the two lines meet
-only at `V`.-/
+only at `V`.
+@isnad1 id=ex.7h7v.s10.a141b1aaf1ee from=translated src=- shape=6faab239 vocab=39e3e51b
+-/
 theorem apex_section_two_lines [FiniteDimensional ℝ E] (hdim : Module.finrank ℝ E = 3)
     {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1) (hks : k ^ 2 + s ^ 2 = 1)
     (hk : 0 < k) (hm : |⟪u, n⟫| < s) (hc : ⟪p₀ - V, n⟫ = 0) :
@@ -436,7 +482,9 @@ theorem apex_section_two_lines [FiniteDimensional ℝ E] (hdim : Module.finrank 
 
 /-- In any finite-dimensional `E` with `3 ≤ finrank`, for `|⟪u, n⟫| < sin α` the two generator
 lines are contained in the section of a plane through the apex. Equality needs `finrank E = 3`:
-in higher dimension the section is a quadric cone inside the cutting hyperplane (dimension `finrank E - 1`), not two lines.-/
+in higher dimension the section is a quadric cone inside the cutting hyperplane (dimension `finrank E - 1`), not two lines.
+@isnad1 id=ex.7h7v.s9.d3da76b91190 from=translated src=- shape=9fb058e7 vocab=ebaf7392
+-/
 theorem apex_two_lines_subset [FiniteDimensional ℝ E] (hdim : 3 ≤ Module.finrank ℝ E)
     {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1) (hks : k ^ 2 + s ^ 2 = 1)
     (hk : 0 < k) (hm : |⟪u, n⟫| < s) (hc : ⟪p₀ - V, n⟫ = 0) :
@@ -463,7 +511,9 @@ theorem apex_two_lines_subset [FiniteDimensional ℝ E] (hdim : 3 ≤ Module.fin
     exact apex_gen_mem hu hn hks hc hf hfu hfn (by rw [neg_sq]; exact hρ2) t
 
 /-- **Degenerate sections in `ℝ³`** (plane through the apex): a point, one generator line, or
-two generator lines through `V`, according as `sin α < |⟪u, n⟫|`, `= `, `>`.-/
+two generator lines through `V`, according as `sin α < |⟪u, n⟫|`, `= `, `>`.
+@isnad1 id=and.6h6v.s12.5fed77144927 from=translated src=- shape=9ae281bf vocab=2cf2b8f7
+-/
 theorem apex_section_R3 {V u n p₀ : EuclideanSpace ℝ (Fin 3)} {k s : ℝ} (hu : ‖u‖ = 1)
     (hn : ‖n‖ = 1) (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hs : 0 < s)
     (hc : ⟪p₀ - V, n⟫ = 0) :

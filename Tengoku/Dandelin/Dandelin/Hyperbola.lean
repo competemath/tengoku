@@ -23,7 +23,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 def cone2 (V u : E) (k : ℝ) : Set E := {X | ⟪X - V, u⟫ ^ 2 = k ^ 2 * ‖X - V‖ ^ 2}
 
 /-- The double cone is the union of the nappe `cone V u k` and the opposite nappe
-`cone V (-u) k`.-/
+`cone V (-u) k`.
+@isnad1 id=iff.0h5v.s6.3def1a8be936 from=translated src=- shape=47032f4f vocab=2ef98222
+-/
 theorem mem_cone2_iff {V u X : E} {k : ℝ} :
     X ∈ cone2 V u k ↔ X ∈ cone V u k ∨ X ∈ cone V (-u) k := by
   show ⟪X - V, u⟫ ^ 2 = k ^ 2 * ‖X - V‖ ^ 2 ↔
@@ -31,7 +33,9 @@ theorem mem_cone2_iff {V u X : E} {k : ℝ} :
   rw [inner_neg_right, ← mul_pow, sq_eq_sq_iff_eq_or_eq_neg, neg_eq_iff_eq_neg]
 
 /-- Tangent length from a point of the nappe `cone V u k` to an axis sphere
-`(V + d • u, |d| s)` with `d` of either sign: `‖X - F‖ = |‖X - V‖ - d k|`.-/
+`(V + d • u, |d| s)` with `d` of either sign: `‖X - F‖ = |‖X - V‖ - d k|`.
+@isnad1 id=eq.5h8v.s8.a2bea0ba430a from=translated src=- shape=29d92c01 vocab=200b246f
+-/
 theorem dist_tangent_eq_abs {V u X F : E} {k s d : ℝ} (hu : ‖u‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hX : X ∈ cone V u k) (hF : ‖F - (V + d • u)‖ = |d| * s)
     (hperp : ⟪X - F, F - (V + d • u)⟫ = 0) : ‖X - F‖ = |‖X - V‖ - d * k| := by
@@ -42,7 +46,9 @@ theorem dist_tangent_eq_abs {V u X F : E} {k s d : ℝ} (hu : ‖u‖ = 1)
     rw [sq_abs, h1, e]; linarith [h2]
   exact (pow_left_inj₀ (norm_nonneg _) (abs_nonneg _) two_ne_zero).1 h3
 
-/-- Cauchy–Schwarz after projecting out the axis (as in the proof of `dandelin`).-/
+/-- Cauchy–Schwarz after projecting out the axis (as in the proof of `dandelin`).
+@isnad1 id=le.3h5v.s8.61d903282cd0 from=translated src=- shape=99b9f3ab vocab=6dcc1a1b
+-/
 theorem gram_ineq {u n w : E} {k : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hwu : ⟪w, u⟫ = k * ‖w‖) :
     0 ≤ (1 - k ^ 2 - ⟪u, n⟫ ^ 2) * ‖w‖ ^ 2 + 2 * k * ⟪u, n⟫ * ⟪w, n⟫ * ‖w‖
@@ -59,7 +65,9 @@ theorem gram_ineq {u n w : E} {k : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
   nlinarith [hcs]
 
 /-- Real-algebra core: on the upper nappe, a point of a hyperbola-regime plane is beyond the
-tangency circle of the upper sphere, `d₁ k ≤ ‖X - V‖`.-/
+tangency circle of the upper sphere, `d₁ k ≤ ‖X - V‖`.
+@isnad1 id=le.9h6v.s8.3176bfdd7b60 from=translated src=- shape=bd34a9c7 vocab=a93c5883
+-/
 theorem hyp_between {k s m a t d₁ : ℝ} (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k)
     (hs : 0 < s) (hm1 : -s < m) (hm2 : m < s) (hd₁ : 0 < d₁) (h₁ : a = d₁ * (m + s))
     (ht : 0 ≤ t) (hQ : 0 ≤ (1 - k ^ 2 - m ^ 2) * t ^ 2 + 2 * k * m * a * t - a ^ 2) :
@@ -84,7 +92,9 @@ theorem hyp_between {k s m a t d₁ : ℝ} (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k
 /-! ## Parameters and tangency in the hyperbola regime -/
 
 /-- **Exactly two axis spheres `(V + d • u, |d| s)` are tangent to the plane** in the hyperbola
-regime `-s < ⟪u, n⟫ < s`: `d = d₁ = c/(m+s)` or `d = d₂ = c/(m-s)`.-/
+regime `-s < ⟪u, n⟫ < s`: `d = d₁ = c/(m+s)` or `d = d₂ = c/(m-s)`.
+@isnad1 id=iff.3h7v.s7.7b5fc4c4aeb5 from=translated src=- shape=6a1d69b4 vocab=755ee8a2
+-/
 theorem hyp_tangent_iff {V u n p₀ : E} {s : ℝ} (hs : 0 < s) (hm1 : -s < ⟪u, n⟫)
     (hm2 : ⟪u, n⟫ < s) (d : ℝ) :
     |⟪(V + d • u) - p₀, n⟫| = |d| * s ↔ d = param₁ V u n p₀ s ∨ d = param₂ V u n p₀ s := by
@@ -110,14 +120,22 @@ theorem hyp_tangent_iff {V u n p₀ : E} {s : ℝ} (hs : 0 < s) (hm1 : -s < ⟪u
     · right; linear_combination h1
     · left; linear_combination h2
 
+/--
+@isnad1 id=lt.2h6v.s6.17978fbe5c13 from=translated src=- shape=2c064a08 vocab=4c20bc6c
+-/
 theorem hyp_param₁_pos {V u n p₀ : E} {s : ℝ} (hm1 : -s < ⟪u, n⟫) (hc : 0 < ⟪p₀ - V, n⟫) :
     0 < param₁ V u n p₀ s := div_pos hc (by linarith)
 
+/--
+@isnad1 id=lt.2h6v.s6.72ae9b4d0354 from=translated src=- shape=444276c2 vocab=7ff78d0c
+-/
 theorem hyp_param₂_neg {V u n p₀ : E} {s : ℝ} (hm2 : ⟪u, n⟫ < s) (hc : 0 < ⟪p₀ - V, n⟫) :
     param₂ V u n p₀ s < 0 := div_neg_of_pos_of_neg hc (by linarith)
 
 /-- Squared tangent length from any point `X` (not necessarily on the cone) to an axis sphere
-`(V + d • u, |d| s)` touched at `F` by a plane through `X`.-/
+`(V + d • u, |d| s)` touched at `F` by a plane through `X`.
+@isnad1 id=eq.4h8v.s9.9ae53a267ad1 from=translated src=- shape=15d0371e vocab=8bd0cdb6
+-/
 theorem focal_sq {V u X F : E} {k s d : ℝ} (hu : ‖u‖ = 1) (hks : k ^ 2 + s ^ 2 = 1)
     (hF : ‖F - (V + d • u)‖ = |d| * s) (hp : ⟪X - F, F - (V + d • u)⟫ = 0) :
     ‖X - F‖ ^ 2 = ‖X - V‖ ^ 2 - 2 * d * ⟪X - V, u⟫ + d ^ 2 * k ^ 2 := by
@@ -134,7 +152,9 @@ theorem focal_sq {V u X F : E} {k s d : ℝ} (hu : ‖u‖ = 1) (hks : k ^ 2 + s
 
 /-- **Upper nappe.** In the hyperbola regime, with spheres `(V + dᵢ • u, |dᵢ| s)`,
 `d₂ < 0 < d₁`, `⟪p₀ - V, n⟫ = d₁ (⟪u,n⟫ + s)`, touched at `Fᵢ` by the cutting plane: every `X` of
-plane ∩ `cone V u k` has `‖X - F₂‖ - ‖X - F₁‖ = (d₁ - d₂) cos α`.-/
+plane ∩ `cone V u k` has `‖X - F₂‖ - ‖X - F₁‖ = (d₁ - d₂) cos α`.
+@isnad1 id=eq.16h12v.s9.a97d2b62bdd4 from=translated src=- shape=ec734bb3 vocab=a0f7c094
+-/
 theorem hyp_upper {V u n p₀ X F₁ F₂ : E} {k s d₁ d₂ : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hs : 0 < s) (hm1 : -s < ⟪u, n⟫)
     (hm2 : ⟪u, n⟫ < s) (hd₁ : 0 < d₁) (hd₂ : d₂ < 0) (hc : ⟪p₀ - V, n⟫ = d₁ * (⟪u, n⟫ + s))
@@ -155,7 +175,9 @@ theorem hyp_upper {V u n p₀ X F₁ F₂ : E} {k s d₁ d₂ : ℝ} (hu : ‖u�
     abs_of_nonneg (show 0 ≤ ‖X - V‖ - d₁ * k by linarith)]
   ring
 
-/-- **Lower nappe** (`cone V (-u) k`): `‖X - F₁‖ - ‖X - F₂‖ = (d₁ - d₂) cos α`.-/
+/-- **Lower nappe** (`cone V (-u) k`): `‖X - F₁‖ - ‖X - F₂‖ = (d₁ - d₂) cos α`.
+@isnad1 id=eq.16h12v.s9.d7c9c80d7d0b from=translated src=- shape=9d311dff vocab=a0f7c094
+-/
 theorem hyp_lower {V u n p₀ X F₁ F₂ : E} {k s d₁ d₂ : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hs : 0 < s) (hm1 : -s < ⟪u, n⟫)
     (hm2 : ⟪u, n⟫ < s) (hd₁ : 0 < d₁) (hd₂ : d₂ < 0) (hc₂ : ⟪p₀ - V, n⟫ = d₂ * (⟪u, n⟫ - s))
@@ -173,7 +195,9 @@ theorem hyp_lower {V u n p₀ X F₁ F₂ : E} {k s d₁ d₂ : ℝ} (hu : ‖u�
 
 /-! ## Converse -/
 
-/-- Real-algebra core of the hyperbola converse.-/
+/-- Real-algebra core of the hyperbola converse.
+@isnad1 id=eq.5h8v.s8.f4b21fdca7f0 from=translated src=- shape=3c882dd2 vocab=3f072e55
+-/
 theorem hyp_converse_alg {A B t p k d₁ d₂ e : ℝ} (hd : d₁ ≠ d₂) (he : e ^ 2 = 1)
     (hA2 : A ^ 2 = t ^ 2 - 2 * d₁ * p + d₁ ^ 2 * k ^ 2)
     (hB2 : B ^ 2 = t ^ 2 - 2 * d₂ * p + d₂ ^ 2 * k ^ 2)
@@ -190,7 +214,9 @@ theorem hyp_converse_alg {A B t p k d₁ d₂ e : ℝ} (hd : d₁ ≠ d₂) (he 
 
 /-- **Converse**: if planes through `X` touch the axis spheres `(V + dᵢ • u, |dᵢ| s)`
 (`d₁ ≠ d₂`) at `F₁`, `F₂`, and `|‖X - F₁‖ - ‖X - F₂‖| = (d₁ - d₂) cos α`, then `X` is on the
-double cone.-/
+double cone.
+@isnad1 id=mem.8h10v.s9.6cc6f7f6c0a7 from=translated src=- shape=f5eba246 vocab=0271de2f
+-/
 theorem hyp_converse {V u X F₁ F₂ : E} {k s d₁ d₂ : ℝ} (hu : ‖u‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hd : d₁ ≠ d₂)
     (hF₁ : ‖F₁ - (V + d₁ • u)‖ = |d₁| * s) (hp₁ : ⟪X - F₁, F₁ - (V + d₁ • u)⟫ = 0)
@@ -206,15 +232,23 @@ theorem hyp_converse {V u X F₁ F₂ : E} {k s d₁ d₂ : ℝ} (hu : ‖u‖ =
 
 /-! ## Directrix on both nappes -/
 
+/--
+@isnad1 id=eq.0h2v.s3.a18760795fd1 from=translated src=- shape=395f08e8 vocab=1eff1a2b
+-/
 theorem ecc_neg (m k : ℝ) : ecc (-m) k = ecc m k := by unfold ecc; rw [neg_sq]
 
+/--
+@isnad1 id=eq.0h4v.s5.56f52b0ff9f9 from=translated src=- shape=cf3154f8 vocab=9524e550
+-/
 theorem axisPlane_neg (V u : E) (b : ℝ) : axisPlane V (-u) (-b) = axisPlane V u b := by
   ext Y
   show ⟪Y - V, -u⟫ = -b ↔ ⟪Y - V, u⟫ = b
   rw [inner_neg_right, neg_inj]
 
 /-- Focus–directrix property for an axis sphere `(V + d • u, |d| s)` of either sign of `d`,
-on the nappe `cone V u k`.-/
+on the nappe `cone V u k`.
+@isnad1 id=eq.9h10v.s9.751549ed1142 from=translated src=- shape=83d67088 vocab=1be96555
+-/
 theorem focal_dist_eq_ecc_mul_abs {V u n p₀ X F : E} {k s d : ℝ} (hu : ‖u‖ = 1)
     (hn : ‖n‖ = 1) (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hm : ⟪u, n⟫ ^ 2 < 1)
     (hXπ : X ∈ plane p₀ n) (hX : X ∈ cone V u k) (hF : ‖F - (V + d • u)‖ = |d| * s)
@@ -227,7 +261,9 @@ theorem focal_dist_eq_ecc_mul_abs {V u n p₀ X F : E} {k s d : ℝ} (hu : ‖u�
     abs_of_pos hk]
   field_simp
 
-/-- Focus–directrix property on the opposite nappe `cone V (-u) k`.-/
+/-- Focus–directrix property on the opposite nappe `cone V (-u) k`.
+@isnad1 id=eq.9h10v.s9.4f8418958e7d from=translated src=- shape=4030e6d7 vocab=6dd2a5e7
+-/
 theorem focal_dist_eq_ecc_mul_lower {V u n p₀ X F : E} {k s d : ℝ} (hu : ‖u‖ = 1)
     (hn : ‖n‖ = 1) (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hm : ⟪u, n⟫ ^ 2 < 1)
     (hXπ : X ∈ plane p₀ n) (hX : X ∈ cone V (-u) k) (hF : ‖F - (V + d • u)‖ = |d| * s)
@@ -242,7 +278,9 @@ theorem focal_dist_eq_ecc_mul_lower {V u n p₀ X F : E} {k s d : ℝ} (hu : ‖
 
 /-! ## Main corollary: the hyperbola from the cone and the plane alone -/
 
-/-- The focal constant in closed form: `d₁ - d₂ = 2 s c / (s² - m²)`.-/
+/-- The focal constant in closed form: `d₁ - d₂ = 2 s c / (s² - m²)`.
+@isnad1 id=eq.2h6v.s7.ed675784b486 from=translated src=- shape=80a6e2e0 vocab=fbb137bd
+-/
 theorem hyp_param_sub {V u n p₀ : E} {s : ℝ} (hm1 : -s < ⟪u, n⟫) (hm2 : ⟪u, n⟫ < s) :
     param₁ V u n p₀ s - param₂ V u n p₀ s =
       2 * s * ⟪p₀ - V, n⟫ / (s ^ 2 - ⟪u, n⟫ ^ 2) := by
@@ -255,7 +293,9 @@ theorem hyp_param_sub {V u n p₀ : E} {s : ℝ} (hm1 : -s < ⟪u, n⟫) (hm2 : 
   rw [div_sub_div _ _ h1 h2, div_eq_div_iff (mul_ne_zero h1 h2) h3]
   ring
 
-/-- Reorient the normal so that `0 < ⟪p₀ - V, n'⟫`, in the hyperbola regime.-/
+/-- Reorient the normal so that `0 < ⟪p₀ - V, n'⟫`, in the hyperbola regime.
+@isnad1 id=ex.3h6v.s8.07d17728c8f1 from=translated src=- shape=bc994a0e vocab=85c7e743
+-/
 theorem hyp_orient {V u n p₀ : E} {s : ℝ} (hn : ‖n‖ = 1) (hm : |⟪u, n⟫| < s)
     (hc : ⟪p₀ - V, n⟫ ≠ 0) :
     ∃ n' : E, ‖n'‖ = 1 ∧ plane p₀ n' = plane p₀ n ∧ -s < ⟪u, n'⟫ ∧ ⟪u, n'⟫ < s ∧
@@ -281,7 +321,9 @@ nappe); the tangency points `Fᵢ` (projections of the centres) lie in the plane
 nappe `‖X - F₂‖ - ‖X - F₁‖ = (d₁ - d₂) cos α`, on the lower nappe
 `‖X - F₁‖ - ‖X - F₂‖ = (d₁ - d₂) cos α`; a point of the plane is on the double cone iff
 `|‖X - F₁‖ - ‖X - F₂‖| = (d₁ - d₂) cos α` (section = hyperbola, both branches); and every point
-of the section satisfies the focus–directrix property for both foci.-/
+of the section satisfies the focus–directrix property for both foci.
+@isnad1 id=and.7h7v.s10.9135774db84f from=translated src=- shape=bc39ddd2 vocab=9b13018a
+-/
 theorem dandelin_hyperbola {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hs : 0 < s) (hm : |⟪u, n⟫| < s)
     (hc : ⟪p₀ - V, n⟫ ≠ 0) :

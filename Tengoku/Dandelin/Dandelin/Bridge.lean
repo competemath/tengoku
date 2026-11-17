@@ -24,7 +24,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 /-! ## The cone -/
 
 /-- Angle form: for `k = cos α` with `0 ≤ α ≤ π`, a point `X ≠ V` is on the nappe iff the
-generator `VX` makes angle `α` with the axis `u`.-/
+generator `VX` makes angle `α` with the axis `u`.
+@isnad1 id=iff.3h5v.s6.ab0a912278d5 from=translated src=- shape=a890c922 vocab=85027b08
+-/
 theorem mem_cone_iff_angle {V u X : E} {α : ℝ} (hu : ‖u‖ = 1) (hα : α ∈ Set.Icc 0 Real.pi)
     (hX : X ≠ V) : X ∈ cone V u (Real.cos α) ↔ angle (X - V) u = α := by
   have hn : ‖X - V‖ ≠ 0 := norm_ne_zero_iff.2 (sub_ne_zero.2 hX)
@@ -39,7 +41,9 @@ theorem mem_cone_iff_angle {V u X : E} {α : ℝ} (hu : ‖u‖ = 1) (hα : α �
     rw [this, div_mul_cancel₀ _ hn]
 
 /-- Angle form of the double cone: `X ≠ V` is on `cone2` iff `VX` makes angle `α` or `π - α`
-with the axis.-/
+with the axis.
+@isnad1 id=iff.3h5v.s7.46bcc1f58358 from=translated src=- shape=46dd5c1b vocab=e4560b62
+-/
 theorem mem_cone2_iff_angle {V u X : E} {α : ℝ} (hu : ‖u‖ = 1) (hα : α ∈ Set.Icc 0 Real.pi)
     (hX : X ≠ V) :
     X ∈ cone2 V u (Real.cos α) ↔ angle (X - V) u = α ∨ angle (X - V) u = Real.pi - α := by
@@ -48,7 +52,9 @@ theorem mem_cone2_iff_angle {V u X : E} {α : ℝ} (hu : ‖u‖ = 1) (hα : α 
   constructor <;> rintro (h | h) <;> first | exact Or.inl h | exact Or.inr (by linarith)
 
 /-- Generator (parametric) form: every point `V + t • w` with `t ≥ 0`, `‖w‖ = 1` and
-`⟪w, u⟫ = k` lies on the nappe.-/
+`⟪w, u⟫ = k` lies on the nappe.
+@isnad1 id=mem.3h6v.s7.b06d4a743274 from=translated src=- shape=405b8eaa vocab=b4a7c329
+-/
 theorem generator_mem_cone {V u w : E} {k t : ℝ} (hw : ‖w‖ = 1) (hwu : ⟪w, u⟫ = k)
     (ht : 0 ≤ t) : V + t • w ∈ cone V u k := by
   show ⟪V + t • w - V, u⟫ = k * ‖V + t • w - V‖
@@ -57,7 +63,9 @@ theorem generator_mem_cone {V u w : E} {k t : ℝ} (hw : ‖w‖ = 1) (hwu : ⟪
   ring
 
 /-- Conversely, every point `X ≠ V` of the nappe is `V + t • w` with `t > 0` and `w` a unit
-vector with `⟪w, u⟫ = k` (the unit direction of the generator).-/
+vector with `⟪w, u⟫ = k` (the unit direction of the generator).
+@isnad1 id=ex.2h5v.s7.92f0c332caf8 from=translated src=- shape=ee5c9284 vocab=090a5aee
+-/
 theorem exists_generator_of_mem_cone {V u X : E} {k : ℝ} (hX : X ∈ cone V u k) (hXV : X ≠ V) :
     ∃ t : ℝ, 0 < t ∧ ∃ w : E, ‖w‖ = 1 ∧ ⟪w, u⟫ = k ∧ X = V + t • w := by
   have hX' : ⟪X - V, u⟫ = k * ‖X - V‖ := hX
@@ -70,10 +78,14 @@ theorem exists_generator_of_mem_cone {V u X : E} {k : ℝ} (hX : X ∈ cone V u 
 
 /-! ## The plane -/
 
-/-- Membership in `plane` is the normal equation `⟪X - p₀, n⟫ = 0`.-/
+/-- Membership in `plane` is the normal equation `⟪X - p₀, n⟫ = 0`.
+@isnad1 id=iff.0h4v.s6.b38d74ac6c50 from=translated src=- shape=8a7b6d2a vocab=dc79468e
+-/
 theorem mem_plane_iff {p₀ n X : E} : X ∈ plane p₀ n ↔ ⟪X - p₀, n⟫ = 0 := Iff.rfl
 
-/-- `plane p₀ n` is Mathlib's affine subspace through `p₀` with direction `n^⊥`.-/
+/-- `plane p₀ n` is Mathlib's affine subspace through `p₀` with direction `n^⊥`.
+@isnad1 id=eq.0h3v.s7.4130c96c333a from=translated src=- shape=00ed3a90 vocab=9bdd2abf
+-/
 theorem plane_eq_mk' (p₀ n : E) :
     plane p₀ n = (AffineSubspace.mk' p₀ (ℝ ∙ n)ᗮ : Set E) := by
   ext X
@@ -83,7 +95,9 @@ theorem plane_eq_mk' (p₀ n : E) :
 
 /-! ## Tangency points as Mathlib tangencies -/
 
-/-- `tangencyPoint V X k d` lies on the generator line through `V` and `X`.-/
+/-- `tangencyPoint V X k d` lies on the generator line through `V` and `X`.
+@isnad1 id=mem.0h5v.s7.2490b719da4a from=translated src=- shape=12603af8 vocab=a7d047c8
+-/
 theorem tangencyPoint_mem_line (V X : E) (k d : ℝ) :
     tangencyPoint V X k d ∈ line[ℝ, V, X] := by
   have : tangencyPoint V X k d = AffineMap.lineMap V X (d * k / ‖X - V‖) := by
@@ -92,7 +106,9 @@ theorem tangencyPoint_mem_line (V X : E) (k d : ℝ) :
   exact AffineMap.lineMap_mem_affineSpan_pair _ _ _
 
 /-- The generator line `VX` is tangent to the inscribed sphere `(V + d • u, d s)` at
-`tangencyPoint V X k d` (point on the sphere, radius perpendicular to the line).-/
+`tangencyPoint V X k d` (point on the sphere, radius perpendicular to the line).
+@isnad1 id=istangen.5h7v.s8.19d4002bb3a3 from=translated src=- shape=d5a51d55 vocab=810e5ae9
+-/
 theorem isTangentAt_tangencyPoint {V u X : E} {k s d : ℝ} (hu : ‖u‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hds : 0 ≤ d * s) (hX : X ∈ cone V u k) (ht : ‖X - V‖ ≠ 0) :
     (⟨V + d • u, d * s⟩ : EuclideanGeometry.Sphere E).IsTangentAt (tangencyPoint V X k d)
@@ -116,7 +132,9 @@ theorem isTangentAt_tangencyPoint {V u X : E} {k s d : ℝ} (hu : ‖u‖ = 1)
     · exact tangencyPoint_perp hX ht
 
 /-- The small Dandelin sphere `(V + d₁ • u, d₁ s)` touches the cutting plane exactly at
-`focus₁` (Mathlib tangency to the plane as an affine subspace).-/
+`focus₁` (Mathlib tangency to the plane as an affine subspace).
+@isnad1 id=istangen.4h6v.s8.f52a713e5c63 from=translated src=- shape=cba7510b vocab=90097456
+-/
 theorem isTangentAt_focus₁ {V u n p₀ : E} {s : ℝ} (hn : ‖n‖ = 1) (hs : 0 < s)
     (hm : s < ⟪u, n⟫) (hc : 0 < ⟪p₀ - V, n⟫) :
     (⟨V + param₁ V u n p₀ s • u, param₁ V u n p₀ s * s⟩ : EuclideanGeometry.Sphere E).IsTangentAt
@@ -132,7 +150,9 @@ theorem isTangentAt_focus₁ {V u n p₀ : E} {s : ℝ} (hn : ‖n‖ = 1) (hs :
     exact (tangent_of_proj hn (focus₁_eq_proj (V := V) (p₀ := p₀) hs hm) hr ((hpl x).1 hx) hF).2
 
 /-- The large Dandelin sphere `(V + d₂ • u, d₂ s)` touches the cutting plane exactly at
-`focus₂`.-/
+`focus₂`.
+@isnad1 id=istangen.4h6v.s8.f3e0932db773 from=translated src=- shape=cba7510b vocab=a75da8a9
+-/
 theorem isTangentAt_focus₂ {V u n p₀ : E} {s : ℝ} (hn : ‖n‖ = 1) (hs : 0 < s)
     (hm : s < ⟪u, n⟫) (hc : 0 < ⟪p₀ - V, n⟫) :
     (⟨V + param₂ V u n p₀ s • u, param₂ V u n p₀ s * s⟩ : EuclideanGeometry.Sphere E).IsTangentAt

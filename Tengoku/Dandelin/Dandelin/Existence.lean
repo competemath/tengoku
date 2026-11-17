@@ -34,7 +34,9 @@ noncomputable def focus₁ (V u n p₀ : E) (s : ℝ) : E :=
 noncomputable def focus₂ (V u n p₀ : E) (s : ℝ) : E :=
   V + param₂ V u n p₀ s • u - (param₂ V u n p₀ s * s) • n
 
-/-- Signed distance from an axis point to the plane.-/
+/-- Signed distance from an axis point to the plane.
+@isnad1 id=eq.0h6v.s7.e3c6e1a1832b from=translated src=- shape=44a00764 vocab=6d2a9980
+-/
 theorem inner_center_sub (V u n p₀ : E) (d : ℝ) :
     ⟪(V + d • u) - p₀, n⟫ = d * ⟪u, n⟫ - ⟪p₀ - V, n⟫ := by
   have h : (V + d • u) - p₀ = d • u - (p₀ - V) := by abel
@@ -44,17 +46,29 @@ section params
 
 variable {V u n p₀ : E} {s : ℝ}
 
+/--
+@isnad1 id=eq.2h6v.s6.7646c95efdb6 from=translated src=- shape=2cf27f14 vocab=15a49cf4
+-/
 theorem param₁_mul (hs : 0 < s) (hm : s < ⟪u, n⟫) :
     param₁ V u n p₀ s * (⟪u, n⟫ + s) = ⟪p₀ - V, n⟫ := by
   unfold param₁; field_simp [show ⟪u, n⟫ + s ≠ 0 by linarith]
 
+/--
+@isnad1 id=eq.1h6v.s6.5c82a5096394 from=translated src=- shape=8d1197c6 vocab=fb053b0d
+-/
 theorem param₂_mul (hm : s < ⟪u, n⟫) :
     param₂ V u n p₀ s * (⟪u, n⟫ - s) = ⟪p₀ - V, n⟫ := by
   unfold param₂; field_simp [show ⟪u, n⟫ - s ≠ 0 by linarith]
 
+/--
+@isnad1 id=lt.3h6v.s6.4635a6ef65f8 from=translated src=- shape=5f41948e vocab=7228ecf6
+-/
 theorem param₁_pos (hs : 0 < s) (hm : s < ⟪u, n⟫) (hc : 0 < ⟪p₀ - V, n⟫) :
     0 < param₁ V u n p₀ s := div_pos hc (by linarith)
 
+/--
+@isnad1 id=lt.3h6v.s6.840784661a43 from=translated src=- shape=a9681eea vocab=d3b27f11
+-/
 theorem param₁_lt_param₂ (hs : 0 < s) (hm : s < ⟪u, n⟫) (hc : 0 < ⟪p₀ - V, n⟫) :
     param₁ V u n p₀ s < param₂ V u n p₀ s := by
   unfold param₁ param₂
@@ -62,7 +76,9 @@ theorem param₁_lt_param₂ (hs : 0 < s) (hm : s < ⟪u, n⟫) (hc : 0 < ⟪p�
 
 /-- **Exactly two inscribed spheres are tangent to the plane**: an axis sphere
 `(V + d • u, d s)` is tangent to the plane (distance from centre to plane = radius) iff
-`d = d₁` or `d = d₂`; and `d₁ ≠ d₂`.-/
+`d = d₁` or `d = d₂`; and `d₁ ≠ d₂`.
+@isnad1 id=iff.3h7v.s8.d6d63870076f from=translated src=- shape=84091a49 vocab=bdd478de
+-/
 theorem tangent_iff (hs : 0 < s) (hm : s < ⟪u, n⟫) (hc : 0 < ⟪p₀ - V, n⟫) (d : ℝ) :
     |⟪(V + d • u) - p₀, n⟫| = d * s ↔ d = param₁ V u n p₀ s ∨ d = param₂ V u n p₀ s := by
   have h1 := param₁_mul (V := V) (p₀ := p₀) hs hm
@@ -89,7 +105,9 @@ theorem tangent_iff (hs : 0 < s) (hm : s < ⟪u, n⟫) (hc : 0 < ⟪p₀ - V, n�
     · rw [abs_of_pos (by nlinarith [mul_pos hp2 hs])]; linear_combination h2
 
 /-- The two sphere centres lie strictly on opposite sides of the plane: signed distances
-`-d₁ s < 0 < d₂ s`.-/
+`-d₁ s < 0 < d₂ s`.
+@isnad1 id=and.2h6v.s8.79418cf7010c from=translated src=- shape=d1031447 vocab=0c15c824
+-/
 theorem opposite_sides (hs : 0 < s) (hm : s < ⟪u, n⟫) :
     ⟪(V + param₁ V u n p₀ s • u) - p₀, n⟫ = -(param₁ V u n p₀ s * s) ∧
     ⟪(V + param₂ V u n p₀ s • u) - p₀, n⟫ = param₂ V u n p₀ s * s := by
@@ -100,18 +118,25 @@ theorem opposite_sides (hs : 0 < s) (hm : s < ⟪u, n⟫) :
   · linear_combination h1
   · linear_combination h2
 
-/-- `F₁` is the orthogonal projection of the small centre onto the plane.-/
+/-- `F₁` is the orthogonal projection of the small centre onto the plane.
+@isnad1 id=eq.2h6v.s8.d2b71691c3b3 from=translated src=- shape=14eb77f0 vocab=947ddb2c
+-/
 theorem focus₁_eq_proj (hs : 0 < s) (hm : s < ⟪u, n⟫) :
     focus₁ V u n p₀ s = (V + param₁ V u n p₀ s • u)
       - ⟪(V + param₁ V u n p₀ s • u) - p₀, n⟫ • n := by
   rw [(opposite_sides (V := V) (p₀ := p₀) hs hm).1, focus₁, neg_smul, sub_neg_eq_add]
 
-/-- `F₂` is the orthogonal projection of the large centre onto the plane.-/
+/-- `F₂` is the orthogonal projection of the large centre onto the plane.
+@isnad1 id=eq.2h6v.s8.846b5fd41c47 from=translated src=- shape=14eb77f0 vocab=d74107c0
+-/
 theorem focus₂_eq_proj (hs : 0 < s) (hm : s < ⟪u, n⟫) :
     focus₂ V u n p₀ s = (V + param₂ V u n p₀ s • u)
       - ⟪(V + param₂ V u n p₀ s • u) - p₀, n⟫ • n := by
   rw [(opposite_sides (V := V) (p₀ := p₀) hs hm).2, focus₂]
 
+/--
+@isnad1 id=mem.3h6v.s6.0fc5d9748ff2 from=translated src=- shape=c31d0a37 vocab=d262485d
+-/
 theorem focus₁_mem (hn : ‖n‖ = 1) (hs : 0 < s) (hm : s < ⟪u, n⟫) :
     focus₁ V u n p₀ s ∈ plane p₀ n := by
   have hnn : ⟪n, n⟫ = 1 := by rw [real_inner_self_eq_norm_sq, hn]; norm_num
@@ -121,6 +146,9 @@ theorem focus₁_mem (hn : ‖n‖ = 1) (hs : 0 < s) (hm : s < ⟪u, n⟫) :
   rw [e, inner_add_left, real_inner_smul_left, hnn, (opposite_sides hs hm).1]
   ring
 
+/--
+@isnad1 id=mem.3h6v.s6.60f2969a479c from=translated src=- shape=c31d0a37 vocab=eee16d0a
+-/
 theorem focus₂_mem (hn : ‖n‖ = 1) (hs : 0 < s) (hm : s < ⟪u, n⟫) :
     focus₂ V u n p₀ s ∈ plane p₀ n := by
   have hnn : ⟪n, n⟫ = 1 := by rw [real_inner_self_eq_norm_sq, hn]; norm_num
@@ -134,7 +162,9 @@ end params
 
 /-! ## Converse: the ellipse lies on the cone -/
 
-/-- Real-algebra core of the converse.-/
+/-- Real-algebra core of the converse.
+@isnad1 id=eq.8h7v.s8.aefa3f1a4132 from=translated src=- shape=d40cf942 vocab=d8e6b3e9
+-/
 theorem converse_alg {A B t p k d₁ d₂ : ℝ} (hk : 0 < k) (hd₁ : 0 < d₁) (hd : d₁ < d₂)
     (hA : 0 ≤ A) (ht : 0 ≤ t) (hA2 : A ^ 2 = t ^ 2 - 2 * d₁ * p + d₁ ^ 2 * k ^ 2)
     (hB2 : B ^ 2 = t ^ 2 - 2 * d₂ * p + d₂ ^ 2 * k ^ 2) (hsum : A + B = (d₂ - d₁) * k) :
@@ -153,7 +183,9 @@ theorem converse_alg {A B t p k d₁ d₂ : ℝ} (hk : 0 < k) (hd₁ : 0 < d₁)
   · nlinarith [mul_nonneg hk.le ht]
 
 /-- **Converse of Dandelin's theorem.** With the tangent configuration of `dandelin`, every
-point `X` of the plane with `‖X - F₁‖ + ‖X - F₂‖ = (d₂ - d₁) k` lies on the cone.-/
+point `X` of the plane with `‖X - F₁‖ + ‖X - F₂‖ = (d₂ - d₁) k` lies on the cone.
+@isnad1 id=mem.11h11v.s9.d1c8c9070fd0 from=translated src=- shape=7a3fb144 vocab=5e456e42
+-/
 theorem dandelin_converse {V u n X F₁ F₂ : E} {k s d₁ d₂ : ℝ} (hn : ‖n‖ = 1)
     (hu : ‖u‖ = 1) (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hd₁ : 0 < d₁) (hd : d₁ < d₂)
     (hF₁ : F₁ = V + d₁ • u + (d₁ * s) • n) (hF₂ : F₂ = V + d₂ • u - (d₂ * s) • n)
@@ -188,6 +220,9 @@ theorem dandelin_converse {V u n X F₁ F₂ : E} {k s d₁ d₂ : ℝ} (hn : �
 
 /-! ## Hypothesis-light corollaries -/
 
+/--
+@isnad1 id=eq.2h5v.s6.2b66d7183ad6 from=translated src=- shape=60b3816b vocab=dc79468e
+-/
 theorem inner_sub_eq_zero_of_mem {p₀ n X Y : E} (hX : X ∈ plane p₀ n) (hY : Y ∈ plane p₀ n) :
     ⟪X - Y, n⟫ = 0 := by
   have hX' : ⟪X - p₀, n⟫ = 0 := hX
@@ -195,12 +230,17 @@ theorem inner_sub_eq_zero_of_mem {p₀ n X Y : E} (hX : X ∈ plane p₀ n) (hY 
   have : X - Y = (X - p₀) - (Y - p₀) := by abel
   rw [this, inner_sub_left, hX', hY', sub_zero]
 
+/--
+@isnad1 id=eq.0h3v.s5.ec71d905a2e1 from=translated src=- shape=1436d61e vocab=8eb88ec1
+-/
 theorem plane_neg (p₀ n : E) : plane p₀ (-n) = plane p₀ n := by
   ext X; simp [plane, inner_neg_right]
 
 /-- **Section = ellipse** (normalised orientation `sin α < ⟪u, n⟫`, `0 < ⟪p₀ - V, n⟫`).
 A point of the plane is on the cone iff its focal distances to `F₁`, `F₂` sum to
-`(d₂ - d₁) cos α`.-/
+`(d₂ - d₁) cos α`.
+@isnad1 id=iff.8h8v.s8.3cd0922ed9b5 from=translated src=- shape=2cb7f570 vocab=485c0844
+-/
 theorem mem_cone_iff_of_normalised {V u n p₀ X : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hs : 0 < s) (hm : s < ⟪u, n⟫)
     (hc : 0 < ⟪p₀ - V, n⟫) (hX : X ∈ plane p₀ n) :
@@ -228,7 +268,9 @@ Conclusion: there are `0 < d₁ < d₂` such that the axis sphere `(V + d • u,
 the plane (distance from the centre to the plane equals the radius) iff `d = d₁` or `d = d₂`;
 the two centres are on opposite sides of the plane; there are points `F₁`, `F₂` of the plane,
 the orthogonal projections of the two centres (hence the tangency points); and a point of the
-plane lies on the cone iff `‖X - F₁‖ + ‖X - F₂‖ = (d₂ - d₁) cos α`.-/
+plane lies on the cone iff `‖X - F₁‖ + ‖X - F₂‖ = (d₂ - d₁) cos α`.
+@isnad1 id=ex.7h7v.s10.64b0e47e4292 from=translated src=- shape=58bef107 vocab=2df738ca
+-/
 theorem dandelin_exists {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hs : 0 < s) (hm : s < |⟪u, n⟫|)
     (hc : 0 < ⟪u, n⟫ * ⟪p₀ - V, n⟫) :
@@ -275,7 +317,9 @@ theorem dandelin_exists {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : �
     rw [← hpl] at hX
     exact mem_cone_iff_of_normalised hu hn' hks hk hs hm' hc' hX
 
-/-- Under the bounded-section condition the section `plane ∩ cone` is bounded.-/
+/-- Under the bounded-section condition the section `plane ∩ cone` is bounded.
+@isnad1 id=ex.7h7v.s8.0849739247e2 from=translated src=- shape=16425650 vocab=5ea793b9
+-/
 theorem section_bounded {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hs : 0 < s) (hm : s < |⟪u, n⟫|)
     (hc : 0 < ⟪u, n⟫ * ⟪p₀ - V, n⟫) :

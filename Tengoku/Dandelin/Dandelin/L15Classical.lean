@@ -203,12 +203,20 @@ def classical_Conics3_c : Prop := ∀ (d : AffineSubspace ℝ E2) (hd : Module.f
 
 /-! ### Comparer bridges (NEW) -/
 
+/--
+@isnad1 id=eq.0h1v.s7.1fe631b903b2 from=translated src=- shape=7cc9aef6 vocab=808e958f
+-/
 lemma l15_inner_self (x : E3) : inner ℝ x x = ‖x‖ ^ 2 := real_inner_self_eq_norm_sq x
 
+/--
+@isnad1 id=eq.1h1v.s7.b66fe13c2adf from=translated src=- shape=f85089fb vocab=d4486203
+-/
 lemma l15_unit {x : E3} (hx : x ≠ 0) : ‖‖x‖⁻¹ • x‖ = 1 := by
   rw [norm_smul, norm_inv, norm_norm, inv_mul_cancel₀ (norm_ne_zero_iff.2 hx)]
 
-/-- Normal form of a plane of `E3`.-/
+/-- Normal form of a plane of `E3`.
+@isnad1 id=ex.1h1v.s12.68bdb86f40e0 from=translated src=- shape=f45907a7 vocab=237bd824
+-/
 lemma l15_plane_normal (P : AffineSubspace ℝ E3) (hP : Module.finrank ℝ P.direction = 2) :
     ∃ p₀ n : E3, ‖n‖ = 1 ∧ p₀ ∈ P ∧ P.direction = (ℝ ∙ n)ᗮ ∧
       ∀ X : E3, X ∈ P ↔ inner ℝ (X - p₀) n = 0 := by
@@ -240,7 +248,9 @@ lemma l15_plane_normal (P : AffineSubspace ℝ E3) (hP : Module.finrank ℝ P.di
   rw [← AffineSubspace.vsub_right_mem_direction_iff_mem hp₀, heq,
     Submodule.mem_orthogonal_singleton_iff_inner_left, vsub_eq_sub]
 
-/-- The angle between the axis and the plane.-/
+/-- The angle between the axis and the plane.
+@isnad1 id=and.3h3v.s10.59ed0392c994 from=translated src=- shape=973a06be vocab=bc311e05
+-/
 lemma l15_planeAxisAngle {u n : E3} (hu : u ≠ 0) (hn : ‖n‖ = 1) (P : AffineSubspace ℝ E3)
     (hdir : P.direction = (ℝ ∙ n)ᗮ) :
     Real.cos (planeAxisAngle u P) = √(1 - inner ℝ (‖u‖⁻¹ • u) n ^ 2) ∧
@@ -279,7 +289,9 @@ lemma l15_planeAxisAngle {u n : E3} (hu : u ≠ 0) (hn : ‖n‖ = 1) (P : Affin
   rw [hcos] at this
   linarith [Real.sqrt_nonneg (1 - inner ℝ e n ^ 2)]
 
-/-- Writer cone = repository double cone with unit axis.-/
+/-- Writer cone = repository double cone with unit axis.
+@isnad1 id=iff.3h4v.s8.2a656c9b9e70 from=translated src=- shape=19f99305 vocab=8952d565
+-/
 lemma l15_cone_eq {V u : E3} (hu : u ≠ 0) {α : ℝ} (hα0 : 0 ≤ α) (hα1 : α ≤ π) (X : E3) :
     X ∈ cone V u α ↔ X ∈ Dandelin.cone2 V (‖u‖⁻¹ • u) (Real.cos α) := by
   have he : ‖‖u‖⁻¹ • u‖ = 1 := l15_unit hu
@@ -292,7 +304,9 @@ lemma l15_cone_eq {V u : E3} (hu : u ≠ 0) {α : ℝ} (hα0 : 0 ≤ α) (hα1 :
   · rw [Dandelin.mem_cone2_iff_angle he ⟨hα0, hα1⟩ hX, angle_smul_right_of_pos _ _ hpos]
     simp only [cone, Set.mem_ofPred_eq, hX, false_or, vsub_eq_sub]
 
-/-- Generators, parametrised by a unit direction.-/
+/-- Generators, parametrised by a unit direction.
+@isnad1 id=ex.2h4v.s10.ccdbd4a008fe from=translated src=- shape=bbf27c43 vocab=5d6353b4
+-/
 lemma l15_generator_param {V u : E3} (hu : u ≠ 0) {α : ℝ} {g : AffineSubspace ℝ E3}
     (hg : IsGenerator V u α g) :
     ∃ w : E3, ‖w‖ = 1 ∧ inner ℝ w (‖u‖⁻¹ • u) = Real.cos α ∧
@@ -317,7 +331,9 @@ lemma l15_generator_param {V u : E3} (hu : u ≠ 0) {α : ℝ} {g : AffineSubspa
       rw [AffineMap.lineMap_apply, vadd_eq_add, vadd_eq_add, vsub_eq_sub, smul_smul]
       abel
 
-/-- Every unit direction with `⟪w, û⟫ = cos α` gives a generator.-/
+/-- Every unit direction with `⟪w, û⟫ = cos α` gives a generator.
+@isnad1 id=isgenera.5h4v.s9.08358ee22a89 from=translated src=- shape=0763cc4b vocab=a3de600b
+-/
 lemma l15_generator_of_unit {V u w : E3} (hu : u ≠ 0) {α : ℝ} (hα0 : 0 ≤ α) (hα1 : α ≤ π)
     (hw : ‖w‖ = 1) (hwu : inner ℝ w (‖u‖⁻¹ • u) = Real.cos α) :
     IsGenerator V u α line[ℝ, V, w +ᵥ V] := by
@@ -328,7 +344,9 @@ lemma l15_generator_of_unit {V u w : E3} (hu : u ≠ 0) {α : ℝ} (hα0 : 0 ≤
     InnerProductGeometry.angle_le_pi _ _⟩ ⟨hα0, hα1⟩
   rw [cos_angle, hw, l15_unit hu, hwu]; ring
 
-/-- Plane–sphere: a singleton intersection means tangency at the foot of the centre.-/
+/-- Plane–sphere: a singleton intersection means tangency at the foot of the centre.
+@isnad1 id=and.4h6v.s11.213f59fe6f2f from=translated src=- shape=5c813009 vocab=2a8bd61d
+-/
 lemma l15_plane_sphere {P : AffineSubspace ℝ E3} {p₀ n : E3} (hn : ‖n‖ = 1)
     (hPn : ∀ X : E3, X ∈ P ↔ inner ℝ (X - p₀) n = 0) (Q F : E3) (r : ℝ) (hr : 0 < r)
     (h : (P : Set E3) ∩ Metric.sphere Q r = {F}) :
@@ -396,7 +414,9 @@ lemma l15_plane_sphere {P : AffineSubspace ℝ E3} {p₀ n : E3} (hn : ‖n‖ =
   have : ‖F - F₀‖ ^ 2 = 0 := by linarith
   exact sub_eq_zero.1 (norm_eq_zero.1 (pow_eq_zero_iff two_ne_zero |>.1 this))
 
-/-- Converse: distance = radius gives the singleton intersection at the foot.-/
+/-- Converse: distance = radius gives the singleton intersection at the foot.
+@isnad1 id=eq.3h5v.s11.3475e24a27b5 from=translated src=- shape=18035179 vocab=44980528
+-/
 lemma l15_plane_sphere_conv {P : AffineSubspace ℝ E3} {p₀ n : E3} (hn : ‖n‖ = 1)
     (hPn : ∀ X : E3, X ∈ P ↔ inner ℝ (X - p₀) n = 0) (Q : E3) (r : ℝ)
     (h : |inner ℝ (Q - p₀) n| = r) :
@@ -435,6 +455,9 @@ lemma l15_plane_sphere_conv {P : AffineSubspace ℝ E3} {p₀ n : E3} (hn : ‖n
     have hr0 : 0 ≤ r := h ▸ abs_nonneg _
     exact (pow_left_inj₀ (norm_nonneg _) hr0 two_ne_zero).1 (by linarith)
 
+/--
+@isnad1 id=iff.0h3v.s10.2024be4b54a3 from=translated src=- shape=d040bbda vocab=6ee3ea82
+-/
 lemma l15_line_mem (V w X : E3) : X ∈ line[ℝ, V, w +ᵥ V] ↔ ∃ t : ℝ, X = V + t • w := by
   rw [mem_affineSpan_pair_iff_exists_lineMap_eq]
   constructor
@@ -448,7 +471,9 @@ lemma l15_line_mem (V w X : E3) : X ∈ line[ℝ, V, w +ᵥ V] ↔ ∃ t : ℝ, 
     abel
 
 /-- Line–sphere: for a line `V + t w` (`‖w‖ = 1`) and a sphere `(Q, r)`, `r > 0`, the
-intersection is a singleton iff `‖Q - V‖² - ⟪Q - V, w⟫² = r²`.-/
+intersection is a singleton iff `‖Q - V‖² - ⟪Q - V, w⟫² = r²`.
+@isnad1 id=iff.3h5v.s9.2473a53476fd from=translated src=- shape=0c946b5b vocab=95e92dcd
+-/
 lemma l15_line_sphere (V w Q : E3) (hw : ‖w‖ = 1) (r : ℝ) (hr : 0 < r) (g : Set E3)
     (hg : ∀ X, X ∈ g ↔ ∃ t : ℝ, X = V + t • w) :
     (∃ x, g ∩ Metric.sphere Q r = {x}) ↔ ‖Q - V‖ ^ 2 - inner ℝ (Q - V) w ^ 2 = r ^ 2 := by
@@ -502,14 +527,18 @@ lemma l15_line_sphere (V w Q : E3) (hw : ‖w‖ = 1) (r : ℝ) (hr : 0 < r) (g 
     · rintro rfl
       exact ⟨(hg _).2 ⟨a, rfl⟩, (key a).2 (by rw [sub_self, hD]; ring)⟩
 
-/-- Setup constants for the cone.-/
+/-- Setup constants for the cone.
+@isnad1 id=and.2h1v.s6.7dcda6c37289 from=translated src=- shape=e2412b58 vocab=0bb11799
+-/
 lemma l15_ks {α : ℝ} (hα0 : 0 < α) (hα1 : α < π / 2) :
     0 < Real.cos α ∧ 0 < Real.sin α ∧ Real.cos α ^ 2 + Real.sin α ^ 2 = 1 :=
   ⟨Real.cos_pos_of_mem_Ioo ⟨by linarith, hα1⟩,
     Real.sin_pos_of_pos_of_lt_pi hα0 (by linarith [Real.pi_pos]), Real.cos_sq_add_sin_sq α⟩
 
 /-- **Classification of spheres tangent to the cone along a circle** (writer's notion): they are
-exactly the axis spheres `(V + d û, |d| sin α)`, `d ≠ 0`.-/
+exactly the axis spheres `(V + d û, |d| sin α)`, `d ≠ 0`.
+@isnad1 id=iff.3h5v.s9.571cdd6762c3 from=translated src=- shape=343754bb vocab=178eb6d8
+-/
 lemma l15_tangent_cone_iff {V u : E3} (hu : u ≠ 0) {α : ℝ} (hα0 : 0 < α) (hα1 : α < π / 2)
     (S : Sphere E3) (C : Set E3) :
     TangentToConeAlong V u α S C ↔
@@ -600,17 +629,26 @@ lemma l15_tangent_cone_iff {V u : E3} (hu : u ≠ 0) {α : ℝ} (hα0 : 0 < α) 
 
 /-! ### Setup lemmas -/
 
+/--
+@isnad1 id=ne.2h4v.s11.696185a0fd60 from=translated src=- shape=ca2df400 vocab=8bedc9e4
+-/
 lemma l15_vnot {P : AffineSubspace ℝ E3} {p₀ n V : E3}
     (hPn : ∀ X : E3, X ∈ P ↔ inner ℝ (X - p₀) n = 0) (hVP : V ∉ P) :
     inner ℝ (p₀ - V) n ≠ 0 := by
   intro h; apply hVP
   rw [hPn, show V - p₀ = -(p₀ - V) by abel, inner_neg_left, h, neg_zero]
 
+/--
+@isnad1 id=le.2h2v.s7.d0b4e4f34cce from=translated src=- shape=bc9b6ee1 vocab=c90172f1
+-/
 lemma l15_m_sq_le {e n : E3} (he : ‖e‖ = 1) (hn : ‖n‖ = 1) : inner ℝ e n ^ 2 ≤ 1 := by
   have := abs_real_inner_le_norm e n
   rw [he, hn, mul_one] at this
   nlinarith [abs_nonneg (inner ℝ e n), sq_abs (inner ℝ e n)]
 
+/--
+@isnad1 id=lt.7h3v.s7.78b87ab388af from=translated src=- shape=73f0e570 vocab=1698243f
+-/
 lemma l15_regime_ell {α β m : ℝ} (hα0 : 0 < α) (hα1 : α < π / 2) (hβ0 : 0 ≤ β) (hβ1 : β ≤ π / 2)
     (hm1 : m ^ 2 ≤ 1) (hcos : Real.cos β = √(1 - m ^ 2)) (h : α < β) : Real.sin α < |m| := by
   obtain ⟨hk, hs, hks⟩ := l15_ks hα0 hα1
@@ -621,6 +659,9 @@ lemma l15_regime_ell {α β m : ℝ} (hα0 : 0 < α) (hα1 : α < π / 2) (hβ0 
   by_contra h3; push_neg at h3
   nlinarith [abs_nonneg m, sq_abs m]
 
+/--
+@isnad1 id=lt.6h3v.s7.df4fe668feef from=translated src=- shape=30d7988d vocab=1698243f
+-/
 lemma l15_regime_hyp {α β m : ℝ} (hα0 : 0 < α) (hα1 : α < π / 2) (hβ0 : 0 ≤ β)
     (hm1 : m ^ 2 ≤ 1) (hcos : Real.cos β = √(1 - m ^ 2)) (h : β < α) : |m| < Real.sin α := by
   obtain ⟨hk, hs, hks⟩ := l15_ks hα0 hα1
@@ -631,6 +672,9 @@ lemma l15_regime_hyp {α β m : ℝ} (hα0 : 0 < α) (hα1 : α < π / 2) (hβ0 
   by_contra h3; push_neg at h3
   nlinarith [abs_nonneg m, sq_abs m]
 
+/--
+@isnad1 id=eq.5h3v.s6.243426070143 from=translated src=- shape=b5522a40 vocab=1698243f
+-/
 lemma l15_regime_par {α β m : ℝ} (hα0 : 0 < α) (hα1 : α < π / 2)
     (hm1 : m ^ 2 ≤ 1) (hcos : Real.cos β = √(1 - m ^ 2)) (h : β = α) : |m| = Real.sin α := by
   obtain ⟨hk, hs, hks⟩ := l15_ks hα0 hα1
@@ -639,6 +683,9 @@ lemma l15_regime_par {α β m : ℝ} (hα0 : 0 < α) (hα1 : α < π / 2)
   have : |m| ^ 2 = Real.sin α ^ 2 := by rw [sq_abs]; linarith
   exact (pow_left_inj₀ (abs_nonneg m) hs.le two_ne_zero).1 this
 
+/--
+@isnad1 id=lt.3h2v.s6.e47cb94f97fd from=translated src=- shape=82ac3c27 vocab=b6e500c1
+-/
 lemma l15_noncirc {β m : ℝ} (hcos : Real.cos β = √(1 - m ^ 2)) (h0 : 0 ≤ β) (h : β < π / 2) :
     m ^ 2 < 1 := by
   have : 0 < Real.cos β := Real.cos_pos_of_mem_Ioo ⟨by linarith, h⟩
@@ -649,7 +696,9 @@ lemma l15_noncirc {β m : ℝ} (hcos : Real.cos β = √(1 - m ^ 2)) (h0 : 0 ≤
 /-- The axis sphere with parameter `d`.-/
 def l15_S (V e : E3) (s d : ℝ) : Sphere E3 := ⟨V + d • e, |d| * s⟩
 
-/-- Data of a writer Dandelin configuration.-/
+/-- Data of a writer Dandelin configuration.
+@isnad1 id=ex.8h10v.s11.90335be736cb from=translated src=- shape=6d7c4ef9 vocab=97069756
+-/
 lemma l15_dandelin_data {V u : E3} (hu : u ≠ 0) {α : ℝ} (hα0 : 0 < α) (hα1 : α < π / 2)
     {P : AffineSubspace ℝ E3} {p₀ n : E3} (hn : ‖n‖ = 1)
     (hPn : ∀ X : E3, X ∈ P ↔ inner ℝ (X - p₀) n = 0) {e : E3} (he_def : e = ‖u‖⁻¹ • u)
@@ -667,7 +716,9 @@ lemma l15_dandelin_data {V u : E3} (hu : u ≠ 0) {α : ℝ} (hα0 : 0 < α) (h�
   refine ⟨d, hd, EuclideanGeometry.Sphere.ext hc hrad, habs, by rw [hFeq, hc], ?_⟩
   rw [hCeq, hc, hrad]
 
-/-- Conversely, every parameter solving the tangency equation gives a Dandelin sphere.-/
+/-- Conversely, every parameter solving the tangency equation gives a Dandelin sphere.
+@isnad1 id=isdandel.8h8v.s10.1a42f13c0166 from=translated src=- shape=8a6d7885 vocab=af164c9f
+-/
 lemma l15_mk_dandelin {V u : E3} (hu : u ≠ 0) {α : ℝ} (hα0 : 0 < α) (hα1 : α < π / 2)
     {P : AffineSubspace ℝ E3} {p₀ n : E3} (hn : ‖n‖ = 1)
     (hPn : ∀ X : E3, X ∈ P ↔ inner ℝ (X - p₀) n = 0) {e : E3} (he_def : e = ‖u‖⁻¹ • u)
@@ -679,6 +730,9 @@ lemma l15_mk_dandelin {V u : E3} (hu : u ≠ 0) {α : ℝ} (hα0 : 0 < α) (hα1
   show |inner ℝ ((V + d • e) - p₀) n| = |d| * Real.sin α
   rw [Dandelin.inner_center_sub]; exact htan
 
+/--
+@isnad1 id=or.5h6v.s7.a7c7e6a4ba0b from=translated src=- shape=d672eea7 vocab=024755d8
+-/
 lemma l15_two_roots {m c s d d₁ d₂ : ℝ} (hL : m ^ 2 - s ^ 2 ≠ 0) (hne : d₁ ≠ d₂)
     (h : |d * m - c| = |d| * s) (h₁ : |d₁ * m - c| = |d₁| * s) (h₂ : |d₂ * m - c| = |d₂| * s) :
     d = d₁ ∨ d = d₂ := by
@@ -704,6 +758,9 @@ lemma l15_two_roots {m c s d d₁ d₂ : ℝ} (hL : m ^ 2 - s ^ 2 ≠ 0) (hne : 
     · exact absurd h'' hL
     · exact sub_eq_zero.1 h''
 
+/--
+@isnad1 id=soppside.3h5v.s11.df4689ee7426 from=translated src=- shape=05775a65 vocab=eb687ed9
+-/
 lemma l15_sOppSide {P : AffineSubspace ℝ E3} {p₀ n : E3} (hp₀ : p₀ ∈ P)
     (hPn : ∀ X : E3, X ∈ P ↔ inner ℝ (X - p₀) n = 0) (x y : E3)
     (h : inner ℝ (x - p₀) n * inner ℝ (y - p₀) n < 0) : P.SOppSide x y := by
@@ -723,6 +780,9 @@ lemma l15_sOppSide {P : AffineSubspace ℝ E3} {p₀ n : E3} (hp₀ : p₀ ∈ P
   · rw [vsub_eq_sub, vsub_eq_sub, add_sub_cancel_left]
     exact SameRay.sameRay_nonneg_smul_right _ ht
 
+/--
+@isnad1 id=insidena.4h5v.s8.84e93c1bf1b6 from=translated src=- shape=a23cd4e4 vocab=c810f522
+-/
 lemma l15_inside_pos {V u e : E3} (hu : u ≠ 0) (he_def : e = ‖u‖⁻¹ • u) {α d : ℝ}
     (hα0 : 0 < α) (hd : 0 < d) : InsideNappe V u α 1 (V + d • e) := by
   have hpos : 0 < ‖u‖⁻¹ := inv_pos.2 (norm_pos_iff.2 hu)
@@ -738,6 +798,9 @@ lemma l15_inside_pos {V u e : E3} (hu : u ≠ 0) (he_def : e = ‖u‖⁻¹ • 
       InnerProductGeometry.angle_smul_left_of_pos _ _ hpos, InnerProductGeometry.angle_self hu]
     exact hα0
 
+/--
+@isnad1 id=insidena.4h5v.s8.59511f6ceaa4 from=translated src=- shape=76d1e40c vocab=3ae16085
+-/
 lemma l15_inside_neg {V u e : E3} (hu : u ≠ 0) (he_def : e = ‖u‖⁻¹ • u) {α d : ℝ}
     (hα0 : 0 < α) (hd : d < 0) : InsideNappe V u α (-1) (V + d • e) := by
   have hpos : 0 < ‖u‖⁻¹ := inv_pos.2 (norm_pos_iff.2 hu)
@@ -754,7 +817,9 @@ lemma l15_inside_neg {V u e : E3} (hu : u ≠ 0) (he_def : e = ‖u‖⁻¹ • 
       he_def, InnerProductGeometry.angle_smul_left_of_pos _ _ hpos, InnerProductGeometry.angle_self hu]
     exact hα0
 
-/-- A point of a generator lying on the axis sphere with parameter `d`.-/
+/-- A point of a generator lying on the axis sphere with parameter `d`.
+@isnad1 id=eq.5h7v.s9.538ff30ad1c4 from=translated src=- shape=06985733 vocab=5e15f08a
+-/
 lemma l15_gen_on_sphere {V w e : E3} {k s d t : ℝ} (hw : ‖w‖ = 1) (he : ‖e‖ = 1)
     (hwe : inner ℝ w e = k) (hks : k ^ 2 + s ^ 2 = 1)
     (h : V + t • w ∈ Metric.sphere (V + d • e) (|d| * s)) : t = d * k := by
@@ -767,7 +832,9 @@ lemma l15_gen_on_sphere {V w e : E3} {k s d t : ℝ} (hw : ‖w‖ = 1) (he : �
   have : (t - d * k) ^ 2 = 0 := by linear_combination h2 + d ^ 2 * hks
   exact sub_eq_zero.1 (pow_eq_zero_iff two_ne_zero |>.1 this)
 
-/-- Generator segment between two axis spheres.-/
+/-- Generator segment between two axis spheres.
+@isnad1 id=eq.9h9v.s11.5254dd83781a from=translated src=- shape=48577db6 vocab=462763fb
+-/
 lemma l15_gen_segment {V u : E3} (hu : u ≠ 0) {α : ℝ} (hα0 : 0 < α) (hα1 : α < π / 2)
     {e : E3} (he_def : e = ‖u‖⁻¹ • u) (g : AffineSubspace ℝ E3) (hg : IsGenerator V u α g)
     (d₁ d₂ : ℝ) (Y₁ Y₂ : E3) (hY₁ : Y₁ ∈ (g : Set E3)) (hY₂ : Y₂ ∈ (g : Set E3))
@@ -785,7 +852,9 @@ lemma l15_gen_segment {V u : E3} (hu : u ≠ 0) {α : ℝ} (hα0 : 0 < α) (hα1
   rw [dist_eq_norm, show V + t₁ • w - (V + t₂ • w) = (t₁ - t₂) • w by rw [sub_smul]; abel,
     norm_smul, hw, mul_one, e1, e2, Real.norm_eq_abs, ← sub_mul, abs_mul, abs_of_pos hk]
 
-/-- Unit vector along `F₂ - F₁` in the plane (any unit plane vector if `F₁ = F₂`).-/
+/-- Unit vector along `F₂ - F₁` in the plane (any unit plane vector if `F₁ = F₂`).
+@isnad1 id=ex.3h4v.s9.858b689eaa4a from=translated src=- shape=c85ffb63 vocab=5e9c050c
+-/
 lemma l15_plane_dir {p₀ n F₁ F₂ : E3} (hn : ‖n‖ = 1) (h₁ : inner ℝ (F₁ - p₀) n = 0)
     (h₂ : inner ℝ (F₂ - p₀) n = 0) :
     ∃ v : E3, ‖v‖ = 1 ∧ inner ℝ v n = 0 ∧ F₂ - F₁ = ‖F₂ - F₁‖ • v := by
@@ -798,7 +867,9 @@ lemma l15_plane_dir {p₀ n F₁ F₂ : E3} (hn : ‖n‖ = 1) (h₁ : inner ℝ
   · refine ⟨‖F₂ - F₁‖⁻¹ • (F₂ - F₁), l15_unit h, by rw [real_inner_smul_left, h12, mul_zero], ?_⟩
     rw [smul_smul, mul_inv_cancel₀ (norm_ne_zero_iff.2 h), one_smul]
 
-/-- Major axis = diameter.-/
+/-- Major axis = diameter.
+@isnad1 id=isgreate.6h7v.s12.2abba04f0002 from=translated src=- shape=8b4c8117 vocab=abf4e71e
+-/
 lemma l15_isGreatest {P : AffineSubspace ℝ E3} {p₀ n : E3} (hn : ‖n‖ = 1)
     (hPn : ∀ X : E3, X ∈ P ↔ inner ℝ (X - p₀) n = 0) (Q : Set E3) (F₁ F₂ : E3) (K : ℝ)
     (hF₁ : F₁ ∈ P) (hF₂ : F₂ ∈ P)
@@ -842,6 +913,9 @@ lemma l15_isGreatest {P : AffineSubspace ℝ E3} {p₀ n : E3} (hn : ‖n‖ = 1
 
 /-! ### Orientation and classification -/
 
+/--
+@isnad1 id=ex.4h4v.s9.bdaa7fede2c1 from=translated src=- shape=b10f9da0 vocab=bdb53b02
+-/
 lemma l15_orient {e n : E3} (he : ‖e‖ = 1) {c s : ℝ} (hc : c ≠ 0) (hs : 0 < s)
     (hm : s < |inner ℝ e n|) :
     ∃ σ : ℝ, ∃ e' : E3, (σ = 1 ∨ σ = -1) ∧ e' = σ • e ∧ ‖e'‖ = 1 ∧
@@ -853,25 +927,39 @@ lemma l15_orient {e n : E3} (he : ‖e‖ = 1) {c s : ℝ} (hc : c ≠ 0) (hs : 
     · rw [inner_neg_left]; linarith
   · exact ⟨1, e, Or.inl rfl, by rw [one_smul], he, hm, h⟩
 
+/--
+@isnad1 id=and.1h1v.s5.136c4d7ff5cb from=translated src=- shape=58d13dcc vocab=06dd7d32
+-/
 lemma l15_sigma_sq {σ : ℝ} (hσ : σ = 1 ∨ σ = -1) : σ * σ = 1 ∧ |σ| = 1 := by
   rcases hσ with rfl | rfl <;> norm_num
 
+/--
+@isnad1 id=eq.2h5v.s8.7d2ab688a97a from=translated src=- shape=85fb9881 vocab=b96628e6
+-/
 lemma l15_center {V e e' : E3} {σ d : ℝ} (hσ : σ = 1 ∨ σ = -1) (he' : e' = σ • e) :
     V + d • e = V + (σ * d) • e' := by
   rw [he', smul_smul, show σ * d * σ = (σ * σ) * d by ring, (l15_sigma_sq hσ).1, one_mul]
 
+/--
+@isnad1 id=eq.2h6v.s7.5a6b2ee7d403 from=translated src=- shape=3f23fe1e vocab=6e460b81
+-/
 lemma l15_S_eq {V e e' : E3} {σ s d : ℝ} (hσ : σ = 1 ∨ σ = -1) (he' : e' = σ • e) :
     l15_S V e s d = l15_S V e' s (σ * d) := by
   unfold l15_S
   rw [← l15_center hσ he', abs_mul, (l15_sigma_sq hσ).2, one_mul]
 
+/--
+@isnad1 id=iff.2h6v.s8.09f3409c5208 from=translated src=- shape=20eaaa33 vocab=7019221b
+-/
 lemma l15_cone2_sigma {V e e' X : E3} {σ k : ℝ} (hσ : σ = 1 ∨ σ = -1) (he' : e' = σ • e) :
     X ∈ Dandelin.cone2 V e k ↔ X ∈ Dandelin.cone2 V e' k := by
   show inner ℝ (X - V) e ^ 2 = k ^ 2 * ‖X - V‖ ^ 2 ↔ inner ℝ (X - V) e' ^ 2 = k ^ 2 * ‖X - V‖ ^ 2
   rw [he', real_inner_smul_right, mul_pow,
     show σ ^ 2 = 1 by rcases hσ with rfl | rfl <;> norm_num, one_mul]
 
-/-- Writer Dandelin spheres = axis spheres solving the tangency equation (any orientation).-/
+/-- Writer Dandelin spheres = axis spheres solving the tangency equation (any orientation).
+@isnad1 id=iff.8h10v.s11.1a56b7a4bf85 from=translated src=- shape=3a965448 vocab=9e69db9a
+-/
 lemma l15_dandelin_iff {V u : E3} (hu : u ≠ 0) {α : ℝ} (hα0 : 0 < α) (hα1 : α < π / 2)
     {P : AffineSubspace ℝ E3} {p₀ n : E3} (hn : ‖n‖ = 1)
     (hPn : ∀ X : E3, X ∈ P ↔ inner ℝ (X - p₀) n = 0) {e : E3} (he_def : e = ‖u‖⁻¹ • u)
@@ -898,7 +986,9 @@ lemma l15_dandelin_iff {V u : E3} (hu : u ≠ 0) {α : ℝ} (hα0 : 0 < α) (hα
       rw [he', real_inner_smul_left]; ring
     rw [h3, abs_mul σ d, (l15_sigma_sq hσ).2, one_mul]; exact htan
 
-/-- Data of a writer Dandelin sphere in a given orientation.-/
+/-- Data of a writer Dandelin sphere in a given orientation.
+@isnad1 id=and.11h13v.s11.13e208fad1ab from=translated src=- shape=ff99bd75 vocab=ca8d6dee
+-/
 lemma l15_data' {V u : E3} (hu : u ≠ 0) {α : ℝ} (hα0 : 0 < α) (hα1 : α < π / 2)
     {P : AffineSubspace ℝ E3} {p₀ n : E3} (hn : ‖n‖ = 1)
     (hPn : ∀ X : E3, X ∈ P ↔ inner ℝ (X - p₀) n = 0) {e : E3} (he_def : e = ‖u‖⁻¹ • u)
@@ -917,6 +1007,9 @@ lemma l15_data' {V u : E3} (hu : u ≠ 0) {α : ℝ} (hα0 : 0 < α) (hα1 : α 
 
 /-! ### Ellipse package -/
 
+/--
+@isnad1 id=ex.11h9v.s12.9f345e11c7ff from=translated src=- shape=33a65961 vocab=a531b9cc
+-/
 lemma l15_ell_pkg {V u : E3} (hu : u ≠ 0) {α : ℝ} (hα0 : 0 < α) (hα1 : α < π / 2)
     {P : AffineSubspace ℝ E3} {p₀ n : E3} (hn : ‖n‖ = 1)
     (hPn : ∀ X : E3, X ∈ P ↔ inner ℝ (X - p₀) n = 0) {e : E3} (he_def : e = ‖u‖⁻¹ • u)
@@ -975,7 +1068,9 @@ lemma l15_ell_pkg {V u : E3} (hu : u ≠ 0) {α : ℝ} (hα0 : 0 < α) (hα1 : �
       (by rw [finrank_euclideanSpace_fin]; norm_num) he'n hn hks hk hs hm hc
     exact ⟨X, (hPn X).2 hX, (hconeiff X ((hPn X).2 hX)).2 hXc⟩
 
-/-- Common writer setup.-/
+/-- Common writer setup.
+@isnad1 id=ex.3h3v.s12.ad9d9e8a6391 from=translated src=- shape=2df2e64f vocab=6dcaf763
+-/
 lemma l15_setup {V u : E3} (hu : u ≠ 0) (P : AffineSubspace ℝ E3)
     (hP : Module.finrank ℝ P.direction = 2) (hVP : V ∉ P) :
     ∃ p₀ n e : E3, ‖n‖ = 1 ∧ p₀ ∈ P ∧ (∀ X : E3, X ∈ P ↔ inner ℝ (X - p₀) n = 0) ∧
@@ -989,6 +1084,9 @@ lemma l15_setup {V u : E3} (hu : u ≠ 0) (P : AffineSubspace ℝ E3)
 
 /-! ### Comparison theorems: Conics1 -/
 
+/--
+@isnad1 id=classica.0h0v.s0.f5e5f7788a28 from=translated src=- shape=45709ebd vocab=f5e5f778
+-/
 theorem cov_Conics1_a : classical_Conics1_a := by
   intro V u hu α hα0 hα1 P hP hVP hβ
   obtain ⟨hk, hs, hks⟩ := l15_ks hα0 hα1
@@ -1019,7 +1117,9 @@ theorem cov_Conics1_a : classical_Conics1_a := by
         exact l15_inside_neg hu he_def hα0 (by linarith)
   · exact l15_sOppSide hp₀ hPn _ _ hopp
 
-/-- Generator segment for either orientation.-/
+/-- Generator segment for either orientation.
+@isnad1 id=eq.11h11v.s11.9e1f44ae2244 from=translated src=- shape=d3849351 vocab=4d07d232
+-/
 lemma l15_gen_segment' {V u : E3} (hu : u ≠ 0) {α : ℝ} (hα0 : 0 < α) (hα1 : α < π / 2)
     {e : E3} (he_def : e = ‖u‖⁻¹ • u) {σ : ℝ} {e' : E3} (hσ : σ = 1 ∨ σ = -1)
     (he' : e' = σ • e) (g : AffineSubspace ℝ E3) (hg : IsGenerator V u α g)
@@ -1037,6 +1137,9 @@ lemma l15_gen_segment' {V u : E3} (hu : u ≠ 0) {α : ℝ} (hα0 : 0 < α) (hα
   rw [l15_gen_segment hu hα0 hα1 he_def g hg _ _ Y₁ Y₂ hY₁ hY₂ hS₁ hS₂, ← mul_sub, abs_mul,
     ha, one_mul]
 
+/--
+@isnad1 id=classica.0h0v.s0.b3add0f87afa from=translated src=- shape=45709ebd vocab=b3add0f8
+-/
 theorem cov_Conics1_b : classical_Conics1_b := by
   intro V u hu α hα0 hα1 P hP hVP hβ S₁ S₂ hS C₁ C₂ F₁ F₂ hC₁ hC₂ hF₁ hF₂
   obtain ⟨hk, hs, hks⟩ := l15_ks hα0 hα1
@@ -1083,6 +1186,9 @@ theorem cov_Conics1_b : classical_Conics1_b := by
 
 /-! ### Conics2 (hyperbola) -/
 
+/--
+@isnad1 id=ex.9h7v.s13.906f365f1c19 from=translated src=- shape=7c1cbb4e vocab=4661b26b
+-/
 lemma l15_hyp_pkg {V u : E3} (hu : u ≠ 0) {α : ℝ} (hα0 : 0 < α) (hα1 : α < π / 2)
     {P : AffineSubspace ℝ E3} {p₀ n : E3} (hn : ‖n‖ = 1)
     (hPn : ∀ X : E3, X ∈ P ↔ inner ℝ (X - p₀) n = 0) {e : E3} (he_def : e = ‖u‖⁻¹ • u)
@@ -1131,6 +1237,9 @@ lemma l15_hyp_pkg {V u : E3} (hu : u ≠ 0) {α : ℝ} (hα0 : 0 < α) (hα1 : �
   · obtain ⟨X, hX, hXc⟩ := hX; exact ⟨X, (hPn X).2 hX, hXc⟩
   · obtain ⟨Y, hY, hYc⟩ := hY; exact ⟨Y, (hPn Y).2 hY, hYc⟩
 
+/--
+@isnad1 id=classica.0h0v.s0.fe50701a39ec from=translated src=- shape=45709ebd vocab=fe50701a
+-/
 theorem cov_Conics2_a : classical_Conics2_a := by
   intro V u hu α hα0 hα1 P hP hVP hβ
   obtain ⟨hk, hs, hks⟩ := l15_ks hα0 hα1
@@ -1148,6 +1257,9 @@ theorem cov_Conics2_a : classical_Conics2_a := by
   · linarith [sub_eq_zero.1 h3]
   · exact he0 h3
 
+/--
+@isnad1 id=mem.3h4v.s8.b114b916b39c from=translated src=- shape=9295dcda vocab=173be6a1
+-/
 lemma l15_cone_of_double {V e X : E3} {k : ℝ} (hk : 0 < k)
     (h2 : X ∈ Dandelin.cone2 V e k) (hpos : 0 < inner ℝ (X - V) e) :
     X ∈ Dandelin.cone V e k := by
@@ -1158,6 +1270,9 @@ lemma l15_cone_of_double {V e X : E3} {k : ℝ} (hk : 0 < k)
     rw [inner_neg_right] at h'
     nlinarith [norm_nonneg (X - V)]
 
+/--
+@isnad1 id=mem.3h4v.s8.260ccf33f0d6 from=translated src=- shape=b0ebd1f4 vocab=26e8cc5f
+-/
 lemma l15_cone_of_double_neg {V e X : E3} {k : ℝ} (hk : 0 < k)
     (h2 : X ∈ Dandelin.cone2 V e k) (hneg : inner ℝ (X - V) e < 0) :
     X ∈ Dandelin.cone V (-e) k := by
@@ -1167,11 +1282,17 @@ lemma l15_cone_of_double_neg {V e X : E3} {k : ℝ} (hk : 0 < k)
     nlinarith [norm_nonneg (X - V)]
   · exact h
 
+/--
+@isnad1 id=eq.2h4v.s9.3fd8b744c93a from=translated src=- shape=73c90f2e vocab=f1041bfd
+-/
 lemma l15_inner_u {V u e X : E3} (hu : u ≠ 0) (he_def : e = ‖u‖⁻¹ • u) :
     inner ℝ (X - V) u = ‖u‖ * inner ℝ (X - V) e := by
   rw [he_def, real_inner_smul_right, ← mul_assoc, mul_inv_cancel₀ (norm_ne_zero_iff.2 hu),
     one_mul]
 
+/--
+@isnad1 id=classica.0h0v.s0.e192e88022da from=translated src=- shape=45709ebd vocab=e192e880
+-/
 theorem cov_Conics2_b : classical_Conics2_b := by
   intro V u hu α hα0 hα1 P hP hVP hβ S₁ S₂ hS C₁ C₂ F₁ F₂ hC₁ hC₂ hF₁ hF₂
   obtain ⟨hk, hs, hks⟩ := l15_ks hα0 hα1
@@ -1296,7 +1417,9 @@ theorem cov_Conics2_b : classical_Conics2_b := by
 
 /-! ### Conics3 -/
 
-/-- A generator point on the contact circle.-/
+/-- A generator point on the contact circle.
+@isnad1 id=mem.7h6v.s9.d1a006419252 from=translated src=- shape=b0bbcdfc vocab=686d883b
+-/
 lemma l15_circle_pt {V u e w : E3} (hu : u ≠ 0) (he_def : e = ‖u‖⁻¹ • u) (he : ‖e‖ = 1)
     {α d : ℝ} (hα0 : 0 < α) (hα1 : α < π / 2) (hw : ‖w‖ = 1)
     (hwe : inner ℝ w e = Real.cos α) :
@@ -1320,7 +1443,9 @@ lemma l15_circle_pt {V u e w : E3} (hu : u ≠ 0) (he_def : e = ‖u‖⁻¹ •
       mul_one, mul_pow, sq_abs]
     ring
 
-/-- The affine span of the contact circle is the plane of the circle.-/
+/-- The affine span of the contact circle is the plane of the circle.
+@isnad1 id=eq.6h5v.s10.5291de54b52b from=translated src=- shape=2b2a7e03 vocab=62dc42f3
+-/
 lemma l15_span_circle {V u e : E3} (hu : u ≠ 0) (he_def : e = ‖u‖⁻¹ • u) (he : ‖e‖ = 1)
     {α d : ℝ} (hα0 : 0 < α) (hα1 : α < π / 2) (hd : d ≠ 0) :
     ((affineSpan ℝ (Metric.sphere (V + d • e) (|d| * Real.sin α) ∩ cone V u α) :
@@ -1390,6 +1515,9 @@ lemma l15_span_circle {V u e : E3} (hu : u ≠ 0) (he_def : e = ‖u‖⁻¹ •
   ext Y
   rw [SetLike.mem_coe, hPiC]
   rfl
+/--
+@isnad1 id=eq.7h8v.s12.571973eafcfe from=translated src=- shape=ca7e32b7 vocab=5190f012
+-/
 lemma l15_directrix_eq {V u e : E3} (hu : u ≠ 0) (he_def : e = ‖u‖⁻¹ • u) (he : ‖e‖ = 1)
     {α d : ℝ} (hα0 : 0 < α) (hα1 : α < π / 2) (hd : d ≠ 0) {P : AffineSubspace ℝ E3} {p₀ n : E3}
     (hPn : ∀ X : E3, X ∈ P ↔ inner ℝ (X - p₀) n = 0) :
@@ -1403,6 +1531,9 @@ lemma l15_directrix_eq {V u e : E3} (hu : u ≠ 0) (he_def : e = ‖u‖⁻¹ �
   rw [SetLike.mem_coe, AffineSubspace.mem_inf_iff, h2, hPn]
   rfl
 
+/--
+@isnad1 id=classica.0h0v.s0.eed9c14ed241 from=translated src=- shape=45709ebd vocab=eed9c14e
+-/
 theorem cov_Conics3_obligation : classical_Conics3_obligation := by
   intro V u hu α hα0 hα1 P hP hVP hβ S C F hC hF
   obtain ⟨hk, hs, hks⟩ := l15_ks hα0 hα1
@@ -1473,10 +1604,16 @@ theorem cov_Conics3_obligation : classical_Conics3_obligation := by
       · rw [show p + r • f - V = (p - V) + r • f by abel, inner_add_left, hpe,
           real_inner_smul_left, hfe]; ring
 
+/--
+@isnad1 id=eq.1h3v.s5.84f095931666 from=translated src=- shape=43d8db72 vocab=6d00c364
+-/
 lemma l15_ecc_eq {α β m : ℝ} (hcos : Real.cos β = √(1 - m ^ 2)) :
     Dandelin.ecc m (Real.cos α) = Real.cos β / Real.cos α := by
   rw [Dandelin.ecc, hcos]
 
+/--
+@isnad1 id=classica.0h0v.s0.fe0ab512f52e from=translated src=- shape=45709ebd vocab=fe0ab512
+-/
 theorem cov_Conics3_a : classical_Conics3_a := by
   intro V u hu α hα0 hα1 P hP hVP hβ S C F hC hF X hX
   obtain ⟨hk, hs, hks⟩ := l15_ks hα0 hα1
@@ -1494,6 +1631,9 @@ theorem cov_Conics3_a : classical_Conics3_a := by
   have := (Dandelin.mem_cone2_iff_focal_directrix he hn hks hk hm hXP h1 h2).1 hX2
   rw [dist_eq_norm, this, hCe, l15_directrix_eq hu he_def he hα0 hα1 hd hPn, l15_ecc_eq hcos]
 
+/--
+@isnad1 id=classica.0h0v.s0.01cb1c2f24c9 from=translated src=- shape=45709ebd vocab=01cb1c2f
+-/
 theorem cov_Conics3_b : classical_Conics3_b := by
   intro V u hu α hα0 hα1 P hP hVP hβ S C F hC hF
   obtain ⟨hk, hs, hks⟩ := l15_ks hα0 hα1
@@ -1530,6 +1670,9 @@ theorem cov_Conics3_b : classical_Conics3_b := by
   · rw [one_lt_div hk]
     exact Real.cos_lt_cos_of_nonneg_of_le_pi hβ0 hαI1 h
 
+/--
+@isnad1 id=classica.0h0v.s0.d9e810bdfc43 from=translated src=- shape=45709ebd vocab=d9e810bd
+-/
 theorem cov_Conics3_parabola_unique : classical_Conics3_parabola_unique := by
   intro V u hu α hα0 hα1 P hP hVP hβ
   obtain ⟨hk, hs, hks⟩ := l15_ks hα0 hα1

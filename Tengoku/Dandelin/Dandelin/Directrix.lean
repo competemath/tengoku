@@ -30,7 +30,9 @@ def directrix (V u n p₀ : E) (b : ℝ) : Set E := plane p₀ n ∩ axisPlane V
 noncomputable def ecc (m k : ℝ) : ℝ := Real.sqrt (1 - m ^ 2) / k
 
 /-- The tangency circle of the inscribed sphere `(V + d • u, d s)` lies in the plane
-`⟪Y - V, u⟫ = d k²`.-/
+`⟪Y - V, u⟫ = d k²`.
+@isnad1 id=mem.2h6v.s6.ac6b56282515 from=translated src=- shape=52a5e8b0 vocab=7a384282
+-/
 theorem tangencyPoint_mem_axisPlane {V u X : E} {k d : ℝ} (hX : X ∈ cone V u k)
     (ht : ‖X - V‖ ≠ 0) : tangencyPoint V X k d ∈ axisPlane V u (d * k ^ 2) := by
   have hX' : ⟪X - V, u⟫ = k * ‖X - V‖ := hX
@@ -39,13 +41,18 @@ theorem tangencyPoint_mem_axisPlane {V u X : E} {k d : ℝ} (hX : X ∈ cone V u
   rw [add_sub_cancel_left, real_inner_smul_left, hX']
   field_simp
 
+/--
+@isnad1 id=eq.2h3v.s7.fe1a101bf21b from=translated src=- shape=7d8d6765 vocab=2f24b188
+-/
 theorem norm_sub_inner_smul_sq {u n : E} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1) :
     ‖u - ⟪u, n⟫ • n‖ ^ 2 = 1 - ⟪u, n⟫ ^ 2 := by
   rw [norm_sub_sq_real, real_inner_smul_right, norm_smul, hu, hn, Real.norm_eq_abs, mul_one,
     sq_abs]
   ring
 
-/-- Distance from a point to the plane `⟪Y - V, u⟫ = b`.-/
+/-- Distance from a point to the plane `⟪Y - V, u⟫ = b`.
+@isnad1 id=eq.1h5v.s6.5fc870662e06 from=translated src=- shape=bb2ad81c vocab=a7c89e5f
+-/
 theorem infDist_axisPlane {V u X : E} {b : ℝ} (hu : ‖u‖ = 1) :
     Metric.infDist X (axisPlane V u b) = |⟪X - V, u⟫ - b| := by
   have huu : ⟪u, u⟫ = 1 := by rw [real_inner_self_eq_norm_sq, hu]; norm_num
@@ -70,7 +77,9 @@ theorem infDist_axisPlane {V u X : E} {b : ℝ} (hu : ‖u‖ = 1) :
 
 /-- **Distance to the directrix.** For `X` in the cutting plane (`⟪u, n⟫² < 1`, i.e. the plane
 is not perpendicular to the axis), the distance from `X` to the line
-`plane p₀ n ∩ axisPlane V u b` is `|⟪X - V, u⟫ - b| / √(1 - ⟪u, n⟫²)`.-/
+`plane p₀ n ∩ axisPlane V u b` is `|⟪X - V, u⟫ - b| / √(1 - ⟪u, n⟫²)`.
+@isnad1 id=eq.4h7v.s7.b80742008515 from=translated src=- shape=f6983b8e vocab=5a68112c
+-/
 theorem infDist_directrix {V u n p₀ X : E} {b : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hm : ⟪u, n⟫ ^ 2 < 1) (hX : X ∈ plane p₀ n) :
     Metric.infDist X (directrix V u n p₀ b) =
@@ -122,7 +131,9 @@ theorem infDist_directrix {V u n p₀ X : E} {b : ℝ} (hu : ‖u‖ = 1) (hn : 
       _ ≤ ‖X - Z‖ * ‖u - m • n‖ := abs_real_inner_le_norm _ _
       _ = ‖X - Z‖ * r := by rw [hw]
 
-/-- Focal distance = distance to the plane of the tangency circle, divided by `cos α`.-/
+/-- Focal distance = distance to the plane of the tangency circle, divided by `cos α`.
+@isnad1 id=eq.6h8v.s8.890a5e616f13 from=translated src=- shape=8b3d8831 vocab=9c3019bd
+-/
 theorem focal_dist_eq_infDist_axisPlane {V u X F : E} {k s d : ℝ} (hu : ‖u‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hX : X ∈ cone V u k)
     (hF : ‖F - (V + d • u)‖ = d * s) (hperp : ⟪X - F, F - (V + d • u)⟫ = 0) :
@@ -133,7 +144,9 @@ theorem focal_dist_eq_infDist_axisPlane {V u X F : E} {k s d : ℝ} (hu : ‖u�
   field_simp
 
 /-- For `X` in the cutting plane, `dist(X, σ) = sin(angle(π, σ)) · dist(X, ℓ)`, where
-`sin(angle(π, σ)) = √(1 - ⟪u, n⟫²)`.-/
+`sin(angle(π, σ)) = √(1 - ⟪u, n⟫²)`.
+@isnad1 id=eq.4h7v.s7.cd7d895caab7 from=translated src=- shape=661dafec vocab=293230b1
+-/
 theorem infDist_axisPlane_eq_mul {V u n p₀ X : E} {b : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hm : ⟪u, n⟫ ^ 2 < 1) (hX : X ∈ plane p₀ n) :
     Metric.infDist X (axisPlane V u b) =
@@ -146,7 +159,9 @@ theorem infDist_axisPlane_eq_mul {V u n p₀ X : E} {b : ℝ} (hu : ‖u‖ = 1)
 perpendicular to the axis (`⟪u, n⟫² < 1`), and an inscribed sphere `(V + d • u, d s)` tangent
 at `F` to a plane through `X` (e.g. the cutting plane). For `X` on plane ∩ cone,
 `‖X - F‖ = e · dist(X, ℓ)` with `ℓ = plane p₀ n ∩ axisPlane V u (d k²)` and
-`e = ecc ⟪u, n⟫ k = √(1 - ⟪u, n⟫²) / cos α`.-/
+`e = ecc ⟪u, n⟫ k = √(1 - ⟪u, n⟫²) / cos α`.
+@isnad1 id=eq.9h10v.s9.3f9c1aa94423 from=translated src=- shape=bf2fb3f2 vocab=cfae6338
+-/
 theorem focal_dist_eq_ecc_mul {V u n p₀ X F : E} {k s d : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hm : ⟪u, n⟫ ^ 2 < 1) (hXπ : X ∈ plane p₀ n)
     (hX : X ∈ cone V u k) (hF : ‖F - (V + d • u)‖ = d * s)
@@ -159,6 +174,9 @@ theorem focal_dist_eq_ecc_mul {V u n p₀ X F : E} {k s d : ℝ} (hu : ‖u‖ =
 
 /-! ## The eccentricity -/
 
+/--
+@isnad1 id=iff.3h3v.s6.bd3da00e6e98 from=translated src=- shape=95c5c909 vocab=cce56f21
+-/
 theorem ecc_lt_one_iff {m k s : ℝ} (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hs : 0 < s) :
     ecc m k < 1 ↔ s < |m| := by
   unfold ecc
@@ -167,12 +185,18 @@ theorem ecc_lt_one_iff {m k s : ℝ} (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hs 
   rw [this]
   constructor <;> intro h <;> nlinarith
 
+/--
+@isnad1 id=eq.3h3v.s6.a007ba3365c7 from=translated src=- shape=403d0781 vocab=cce56f21
+-/
 theorem ecc_eq_one {m k s : ℝ} (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hm : s = |m|) :
     ecc m k = 1 := by
   unfold ecc
   rw [← sq_abs m, ← hm, show 1 - s ^ 2 = k ^ 2 by linarith, Real.sqrt_sq hk.le,
     div_self hk.ne']
 
+/--
+@isnad1 id=iff.3h3v.s6.1b888a92c47a from=translated src=- shape=d382ea85 vocab=cce56f21
+-/
 theorem one_lt_ecc_iff {m k s : ℝ} (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hs : 0 < s) :
     1 < ecc m k ↔ |m| < s := by
   unfold ecc
@@ -183,6 +207,9 @@ theorem one_lt_ecc_iff {m k s : ℝ} (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hs 
 
 /-! ## Corollaries from the cone and the plane alone -/
 
+/--
+@isnad1 id=mem.1h4v.s7.be91e758fcc0 from=translated src=- shape=c8a1fb99 vocab=35470d0e
+-/
 theorem proj_mem_plane {C p₀ n : E} (hn : ‖n‖ = 1) : C - ⟪C - p₀, n⟫ • n ∈ plane p₀ n := by
   have hnn : ⟪n, n⟫ = 1 := by rw [real_inner_self_eq_norm_sq, hn]; norm_num
   show ⟪C - ⟪C - p₀, n⟫ • n - p₀, n⟫ = 0
@@ -190,7 +217,9 @@ theorem proj_mem_plane {C p₀ n : E} (hn : ‖n‖ = 1) : C - ⟪C - p₀, n⟫
   rw [this, inner_sub_left, real_inner_smul_left, hnn, mul_one, sub_self]
 
 /-- If `F` is the projection of `C` onto the plane and `|⟪C - p₀, n⟫| = r`, then `F` is on the
-sphere `(C, r)` and `X - F ⟂ F - C` for every `X` of the plane (tangency).-/
+sphere `(C, r)` and `X - F ⟂ F - C` for every `X` of the plane (tangency).
+@isnad1 id=and.5h7v.s8.6edba1a1a4db from=translated src=- shape=bc43edcf vocab=40f0f3ed
+-/
 theorem tangent_of_proj {C p₀ n F X : E} {r : ℝ} (hn : ‖n‖ = 1)
     (hF : F = C - ⟪C - p₀, n⟫ • n) (hr : |⟪C - p₀, n⟫| = r) (hX : X ∈ plane p₀ n)
     (hFπ : F ∈ plane p₀ n) : ‖F - C‖ = r ∧ ⟪X - F, F - C⟫ = 0 := by
@@ -204,7 +233,9 @@ theorem tangent_of_proj {C p₀ n F X : E} {r : ℝ} (hn : ‖n‖ = 1)
 bounded-section condition of `dandelin_exists` (`sin α < |⟪u, n⟫|`,
 `0 < ⟪u, n⟫ ⟪p₀ - V, n⟫`) and `⟪u, n⟫² < 1` (not a circle): `e < 1`, and for both Dandelin
 spheres `(V + dᵢ • u, dᵢ s)`, with foci `Fᵢ` (projections of the centres), every point `X` of
-plane ∩ cone satisfies `‖X - Fᵢ‖ = e · dist(X, ℓᵢ)`, `ℓᵢ = plane ∩ axisPlane V u (dᵢ k²)`.-/
+plane ∩ cone satisfies `‖X - Fᵢ‖ = e · dist(X, ℓᵢ)`, `ℓᵢ = plane ∩ axisPlane V u (dᵢ k²)`.
+@isnad1 id=and.8h7v.s10.7ffab8cf1453 from=translated src=- shape=ccd602da vocab=1be96555
+-/
 theorem directrix_ellipse {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hs : 0 < s) (hm : s < |⟪u, n⟫|)
     (hc : 0 < ⟪u, n⟫ * ⟪p₀ - V, n⟫) (hm1 : ⟪u, n⟫ ^ 2 < 1) :
@@ -227,7 +258,9 @@ theorem directrix_ellipse {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : 
 
 /-! ## Parabola -/
 
-/-- Reorient the normal so that `0 ≤ ⟪u, n'⟫` and `0 < ⟪p₀ - V, n'⟫`.-/
+/-- Reorient the normal so that `0 ≤ ⟪u, n'⟫` and `0 < ⟪p₀ - V, n'⟫`.
+@isnad1 id=ex.2h5v.s8.5cfb3a878fd5 from=translated src=- shape=e31e2610 vocab=cf606bf1
+-/
 theorem exists_orient {V u n p₀ : E} (hn : ‖n‖ = 1) (hc : 0 < ⟪u, n⟫ * ⟪p₀ - V, n⟫) :
     ∃ n' : E, ‖n'‖ = 1 ∧ plane p₀ n' = plane p₀ n ∧ ⟪u, n'⟫ = |⟪u, n⟫| ∧
       0 < ⟪p₀ - V, n'⟫ ∧ (∀ C : E, |⟪C - p₀, n'⟫| = |⟪C - p₀, n⟫|) := by
@@ -245,7 +278,9 @@ theorem exists_orient {V u n p₀ : E} (hn : ‖n‖ = 1) (hc : 0 < ⟪u, n⟫ *
 (`sin α = |⟪u, n⟫|`) and misses the apex on the nappe side (`0 < ⟪u, n⟫ ⟪p₀ - V, n⟫`), then
 `e = 1`, there is exactly one inscribed sphere `(V + d • u, d s)` tangent to the plane, and
 every `X` of plane ∩ cone is equidistant from the focus `F` and the directrix
-`ℓ = plane ∩ axisPlane V u (d k²)`.-/
+`ℓ = plane ∩ axisPlane V u (d k²)`.
+@isnad1 id=and.7h7v.s9.bb8a4667305d from=translated src=- shape=e395afa0 vocab=1be96555
+-/
 theorem directrix_parabola {V u n p₀ : E} {k s : ℝ} (hu : ‖u‖ = 1) (hn : ‖n‖ = 1)
     (hks : k ^ 2 + s ^ 2 = 1) (hk : 0 < k) (hs : 0 < s) (hm : s = |⟪u, n⟫|)
     (hc : 0 < ⟪u, n⟫ * ⟪p₀ - V, n⟫) :
