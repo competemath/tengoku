@@ -1,0 +1,1 @@
+-- LeanDescriptiveSetTheory: a factory bundle (data/intake/lean-descriptive-set-theory). This file only marks the library for Tengoku/All.lean.
