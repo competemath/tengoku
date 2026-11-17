@@ -134,7 +134,9 @@ variable {𝕜 E F : Type*} [NontriviallyNormedField 𝕜]
   [NormedAddCommGroup F] [NormedSpace 𝕜 F]
 
 /-- A smooth function on the punctured space whose every iterated derivative is little-oh of the
-distance to the origin extends smoothly across the origin, with zero Taylor series there.-/
+distance to the origin extends smoothly across the origin, with zero Taylor series there.
+@isnad1 id=contdiff.3h4v.s8.10fbb090f020 from=translated src=- shape=1d5affa5 vocab=55885844
+-/
 theorem at_zero_of_iteratedFDeriv_isLittleO {f : E → F}
     (hf : ∀ x ≠ 0, ContDiffAt 𝕜 ∞ f x) (hzero : f 0 = 0)
     (hflat : ∀ m : ℕ, (iteratedFDeriv 𝕜 m f) =o[𝓝[≠] 0] (id : E → E)) :
@@ -192,7 +194,9 @@ theorem at_zero_of_iteratedFDeriv_isLittleO {f : E → F}
   exact hp.contDiffOn.contDiffAt univ_mem
 
 /-- A smooth function with zero Taylor series at the origin is little-oh of every power of the
-distance to the origin.-/
+distance to the origin.
+@isnad1 id=islittle.2h5v.s9.6796777aeb39 from=translated src=- shape=0cf6651e vocab=c8bbe7f3
+-/
 theorem isLittleO_norm_pow_of_iteratedFDeriv_zero [NormedSpace ℝ E] [NormedSpace ℝ F]
     {f : E → F} (hf : ContDiff ℝ ∞ f)
     (hzero : ∀ m : ℕ, iteratedFDeriv ℝ m f 0 = 0) (m n : ℕ) :
@@ -220,7 +224,9 @@ theorem isLittleO_norm_pow_of_iteratedFDeriv_zero [NormedSpace ℝ E] [NormedSpa
       simpa [hzero m] using h
 
 /-- Composing on the right preserves a zero Taylor series at the origin, provided the inner
-function fixes the origin.-/
+function fixes the origin.
+@isnad1 id=eq.4h6v.s9.5e15f06b7cda from=translated src=- shape=a8574a7c vocab=1f87f6f3
+-/
 theorem iteratedFDeriv_comp_zero_of_outer [NormedSpace ℝ E] [NormedSpace ℝ F]
     {G : Type*} [NormedAddCommGroup G] [NormedSpace ℝ G] {g : F → G} {f : E → F}
     (hg : ContDiff ℝ ∞ g) (hf : ContDiff ℝ ∞ f) (hf0 : f 0 = 0)
@@ -251,7 +257,9 @@ theorem iteratedFDeriv_comp_zero_of_outer [NormedSpace ℝ E] [NormedSpace ℝ F
   · exact norm_nonneg _
 
 /-- Multiplying a smooth scalar-valued function with zero Taylor series by another smooth
-function preserves its zero Taylor series.-/
+function preserves its zero Taylor series.
+@isnad1 id=eq.3h4v.s9.b43fcd5ca408 from=translated src=- shape=1e6e7184 vocab=43ce6882
+-/
 theorem iteratedFDeriv_mul_zero_of_left [NormedSpace ℝ E] {f g : E → ℝ}
     (hf : ContDiff ℝ ∞ f) (hg : ContDiff ℝ ∞ g)
     (hzero : ∀ m : ℕ, iteratedFDeriv ℝ m f 0 = 0) (n : ℕ) :
@@ -276,17 +284,28 @@ def flatRpowExp (a c x : ℝ) : ℝ :=
 
 namespace flatRpowExp
 
+/--
+@isnad1 id=eq.1h3v.s4.dc6c1cbe4633 from=translated src=- shape=84fcc214 vocab=0bc2bacf
+-/
 theorem zero_of_nonpos (a c : ℝ) {x : ℝ} (hx : x ≤ 0) : flatRpowExp a c x = 0 := by
   simp [flatRpowExp, hx]
 
+/--
+@isnad1 id=eq.0h2v.s4.e8d23cdb8737 from=translated src=- shape=9bf57cd7 vocab=3d9cbecd
+-/
 @[simp]
 theorem zero (a c : ℝ) : flatRpowExp a c 0 = 0 := zero_of_nonpos a c le_rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.e5c086776dad from=translated src=- shape=d765327e vocab=e2bdbe43
+-/
 theorem of_pos (a c : ℝ) {x : ℝ} (hx : 0 < x) :
     flatRpowExp a c x = exp (-c * x ^ (-a)) := by
   simp [flatRpowExp, hx.not_ge]
 
-/-- Exponential decay at zero dominates every real power.-/
+/-- Exponential decay at zero dominates every real power.
+@isnad1 id=tendsto.2h3v.s6.3ca86a7651d4 from=translated src=- shape=49c633e5 vocab=13ecd6d6
+-/
 theorem tendsto_rpow_mul_zero {a c : ℝ} (ha : 0 < a) (hc : 0 < c) (s : ℝ) :
     Tendsto (fun x : ℝ ↦ x ^ s * flatRpowExp a c x) (𝓝[>] 0) (𝓝 0) := by
   have ht : Tendsto (fun x : ℝ ↦ x ^ (-a)) (𝓝[>] 0) atTop :=
@@ -415,7 +434,9 @@ private theorem sum_iteratedDeriv_zero {a c : ℝ} (ha : 0 < a) (hc : 0 < c)
       rw [hderiv]
       exact ih q
 
-/-- Multiplying `flatRpowExp a c` by an arbitrary real power preserves smoothness.-/
+/-- Multiplying `flatRpowExp a c` by an arbitrary real power preserves smoothness.
+@isnad1 id=contdiff.2h4v.s6.c3cf946a14cc from=translated src=- shape=c90532f2 vocab=7539a38d
+-/
 @[fun_prop]
 theorem rpow_mul_contDiff {a c : ℝ} (ha : 0 < a) (hc : 0 < c) (s : ℝ) {n : ℕ∞} :
     ContDiff ℝ n (fun x ↦ x ^ s * flatRpowExp a c x) := by
@@ -423,7 +444,9 @@ theorem rpow_mul_contDiff {a c : ℝ} (ha : 0 < a) (hc : 0 < c) (s : ℝ) {n : �
   funext x
   simp [sum, term]
 
-/-- Every iterated derivative of `x ^ s * flatRpowExp a c x` vanishes at the origin.-/
+/-- Every iterated derivative of `x ^ s * flatRpowExp a c x` vanishes at the origin.
+@isnad1 id=eq.2h4v.s8.ac2443d15d1b from=translated src=- shape=cc90e0b6 vocab=42a1d1f9
+-/
 theorem rpow_mul_iteratedFDeriv_zero {a c : ℝ} (ha : 0 < a) (hc : 0 < c) (s : ℝ)
     (n : ℕ) : iteratedFDeriv ℝ n (fun x ↦ x ^ s * flatRpowExp a c x) 0 = 0 := by
   have hfun : (fun x ↦ x ^ s * flatRpowExp a c x) =
@@ -434,12 +457,16 @@ theorem rpow_mul_iteratedFDeriv_zero {a c : ℝ} (ha : 0 < a) (hc : 0 < c) (s : 
     sum_iteratedDeriv_zero ha hc]
   simp
 
-/-- Every iterated derivative of `flatRpowExp a c` vanishes at the origin.-/
+/-- Every iterated derivative of `flatRpowExp a c` vanishes at the origin.
+@isnad1 id=eq.2h3v.s8.7b80f5f6d9e4 from=translated src=- shape=c19b8472 vocab=129c4c9e
+-/
 theorem iteratedFDeriv_zero {a c : ℝ} (ha : 0 < a) (hc : 0 < c) (n : ℕ) :
     iteratedFDeriv ℝ n (flatRpowExp a c) 0 = 0 := by
   simpa using rpow_mul_iteratedFDeriv_zero ha hc 0 n
 
-/-- `flatRpowExp a c` is smooth when both parameters are positive.-/
+/-- `flatRpowExp a c` is smooth when both parameters are positive.
+@isnad1 id=contdiff.2h3v.s5.5f137266acd4 from=translated src=- shape=b4b3c75f vocab=c09f58ab
+-/
 @[fun_prop]
 theorem contDiff {a c : ℝ} (ha : 0 < a) (hc : 0 < c) {n : ℕ∞} :
     ContDiff ℝ n (flatRpowExp a c) := by
@@ -470,13 +497,17 @@ open Matrix
 
 namespace EuclideanHypersurface
 
-/-- The bundled Euclidean cross product agrees with the coordinate cross product.-/
+/-- The bundled Euclidean cross product agrees with the coordinate cross product.
+@isnad1 id=eq.0h2v.s12.c83e4602d9b0 from=translated src=- shape=72464970 vocab=5e3c532d
+-/
 theorem euclideanCross_apply (a b : ℝ³) :
     euclideanCross a b =
       WithLp.toLp 2 (crossProduct (WithLp.ofLp a) (WithLp.ofLp b)) :=
   rfl
 
-/-- Swapping the arguments of the cross product negates it.-/
+/-- Swapping the arguments of the cross product negates it.
+@isnad1 id=eq.0h2v.s13.b471c6adb107 from=translated src=- shape=de7c690f vocab=3a950fd4
+-/
 @[simp]
 theorem euclideanCross_anticomm (a b : ℝ³) :
     -euclideanCross a b = euclideanCross b a := by
@@ -484,24 +515,32 @@ theorem euclideanCross_anticomm (a b : ℝ³) :
   change WithLp.toLp 2 (-crossProduct (WithLp.ofLp a) (WithLp.ofLp b)) = _
   exact congrArg (WithLp.toLp 2) (cross_anticomm (WithLp.ofLp a) (WithLp.ofLp b))
 
-/-- A vector has zero cross product with itself.-/
+/-- A vector has zero cross product with itself.
+@isnad1 id=eq.0h1v.s12.e40be2b2b434 from=translated src=- shape=b41eaf4a vocab=d455bbea
+-/
 @[simp]
 theorem euclideanCross_self (a : ℝ³) : euclideanCross a a = 0 := by
   simp [euclideanCross_apply]
 
-/-- The cross product is orthogonal to its left input.-/
+/-- The cross product is orthogonal to its left input.
+@isnad1 id=eq.0h2v.s12.6d4ee51472b2 from=translated src=- shape=f137e54e vocab=bcb74676
+-/
 @[simp]
 theorem euclideanCross_inner_left (a b : ℝ³) : inner ℝ (euclideanCross a b) a = 0 := by
   simp [euclideanCross_apply, EuclideanSpace.inner_eq_star_dotProduct,
     dot_self_cross]
 
-/-- The cross product is orthogonal to its right input.-/
+/-- The cross product is orthogonal to its right input.
+@isnad1 id=eq.0h2v.s12.4d5baaf9902e from=translated src=- shape=e04a6401 vocab=bcb74676
+-/
 @[simp]
 theorem euclideanCross_inner_right (a b : ℝ³) : inner ℝ (euclideanCross a b) b = 0 := by
   simp [euclideanCross_apply, EuclideanSpace.inner_eq_star_dotProduct,
     dot_cross_self]
 
-/-- The inner product of two cross products is the corresponding Gram-determinant expression.-/
+/-- The inner product of two cross products is the corresponding Gram-determinant expression.
+@isnad1 id=eq.0h4v.s13.c11b457dc810 from=translated src=- shape=105d4d76 vocab=f07fc8cc
+-/
 theorem inner_euclideanCross_euclideanCross (a b c d : ℝ³) :
     inner ℝ (euclideanCross a b) (euclideanCross c d) =
       inner ℝ a c * inner ℝ b d - inner ℝ a d * inner ℝ b c := by
@@ -509,7 +548,9 @@ theorem inner_euclideanCross_euclideanCross (a b c d : ℝ³) :
     cross_dot_cross]
   rw [mul_comm (WithLp.ofLp c ⬝ᵥ WithLp.ofLp b)]
 
-/-- The right-nested vector triple-product identity.-/
+/-- The right-nested vector triple-product identity.
+@isnad1 id=eq.0h3v.s13.a17d630b3247 from=translated src=- shape=8bab245b vocab=6c96e2e5
+-/
 theorem euclideanCross_cross (u v w : ℝ³) :
     euclideanCross u (euclideanCross v w) =
       inner ℝ u w • v - inner ℝ u v • w := by
@@ -521,7 +562,9 @@ theorem euclideanCross_cross (u v w : ℝ³) :
     dotProduct_comm (WithLp.ofLp v) (WithLp.ofLp u)]
   rfl
 
-/-- A cross product is nonzero exactly when its two inputs are linearly independent.-/
+/-- A cross product is nonzero exactly when its two inputs are linearly independent.
+@isnad1 id=iff.0h2v.s12.3aaaa905fa55 from=translated src=- shape=6f4d3a1c vocab=cfe1fe9c
+-/
 theorem euclideanCross_ne_zero_iff_linearIndependent (a b : ℝ³) :
     euclideanCross a b ≠ 0 ↔ LinearIndependent ℝ ![a, b] := by
   let e := WithLp.linearEquiv 2 ℝ (Fin 3 → ℝ)
@@ -534,7 +577,9 @@ theorem euclideanCross_ne_zero_iff_linearIndependent (a b : ℝ³) :
     fin_cases i <;> simp
   exact hf ▸ e.toLinearMap.linearIndependent_iff_of_injOn e.injective.injOn
 
-/-- The cross product of two vectors orthogonal to a unit vector is parallel to that vector.-/
+/-- The cross product of two vectors orthogonal to a unit vector is parallel to that vector.
+@isnad1 id=eq.3h3v.s13.a59bdb068f7a from=translated src=- shape=fd252fac vocab=7f46aade
+-/
 theorem euclideanCross_eq_inner_smul_of_orthogonal
     (p x y : ℝ³) (hp : ‖p‖ = 1) (hx : inner ℝ p x = 0) (hy : inner ℝ p y = 0) :
     euclideanCross x y = inner ℝ (euclideanCross x y) p • p := by
@@ -568,17 +613,25 @@ namespace EuclideanHypersurface
 variable {V E : Type*} [TopologicalSpace V] [AddCommGroup V] [Module ℝ V]
   [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 
+/--
+@isnad1 id=eq.0h5v.s9.1772ba531625 from=translated src=- shape=c817dc6b vocab=7c0e8083
+-/
 @[simp]
 theorem firstFundamentalFormAt_apply (dF : V →L[ℝ] E) (v w : V) :
     firstFundamentalFormAt dF v w = inner ℝ (dF v) (dF w) :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.df0668f10bbf from=translated src=- shape=f5b74a4a vocab=25f4e698
+-/
 @[simp]
 theorem secondFundamentalFormAt_apply (dn dF : V →L[ℝ] E) (v w : V) :
     secondFundamentalFormAt dn dF v w = -inner ℝ (dn v) (dF w) :=
   rfl
 
-/-- If `dn = c • dF`, the point is umbilic with scalar `-c` under our sign convention.-/
+/-- If `dn = c • dF`, the point is umbilic with scalar `-c` under our sign convention.
+@isnad1 id=isumbili.1h5v.s8.ab708c7fab91 from=translated src=- shape=37a12761 vocab=745c0fba
+-/
 theorem isUmbilic_of_normal_deriv_eq_smul
     (dF dn : V →L[ℝ] E) (c : ℝ) (h : dn = c • dF) :
     IsUmbilic V E dF dn := by
@@ -588,7 +641,9 @@ theorem isUmbilic_of_normal_deriv_eq_smul
   rw [h, _root_.smul_apply, real_inner_smul_left, neg_mul]
 
 /-- If `dn` is tangent to the immersion, umbilicity is equivalent to `dn` being a scalar multiple
-of `dF`.-/
+of `dF`.
+@isnad1 id=iff.1h4v.s9.7acc4202ba6c from=translated src=- shape=746bfb81 vocab=6eb990c9
+-/
 theorem isUmbilic_iff_normal_deriv_eq_smul
     (dF dn : V →L[ℝ] E) (htangent : dn.range ≤ dF.range) :
     IsUmbilic V E dF dn ↔ ∃ c : ℝ, dn = c • dF := by
@@ -632,7 +687,9 @@ open scoped EuclideanGeometry EuclideanSpace Manifold RealInnerProductSpace
 namespace EuclideanHypersurface
 
 /-- The basis induced by the tangent-bundle trivialization at its base point agrees with the
-standard model basis.-/
+standard model basis.
+@isnad1 id=eq.0h2v.s13.973c51a13d1c from=translated src=- shape=66c413dd vocab=f16d0ead
+-/
 theorem sphereTangentBasis_apply (p : sphere (0 : ℝ³) 1) (i : Fin 2) :
     sphereTangentBasis p i = PiLp.basisFun 2 ℝ (Fin 2) i := by
   simp only [sphereTangentBasis, Bundle.Trivialization.basisAt, Module.Basis.map_apply,
@@ -677,7 +734,9 @@ private theorem mfderiv_inclusion_sphereTangentBasis_apply
   rfl
 
 /-- The standard model basis maps to an orthonormal frame under the derivative of the sphere
-inclusion.-/
+inclusion.
+@isnad1 id=eq.0h3v.s15.67a66b3bd7e5 from=translated src=- shape=bba0865d vocab=8311745d
+-/
 @[simp]
 theorem inner_mfderiv_inclusion_sphereTangentBasis
     (p : sphere (0 : ℝ³) 1) (i j : Fin 2) :
@@ -700,7 +759,9 @@ theorem inner_mfderiv_inclusion_sphereTangentBasis
   exact orthonormal_iff_ite.mp (EuclideanSpace.basisFun (Fin 2) ℝ).orthonormal i j
 
 /-- The derivative of the sphere inclusion maps the standard model basis to an orthonormal
-family.-/
+family.
+@isnad1 id=orthonor.0h1v.s14.a5b6b91f4151 from=translated src=- shape=5ee2c2bd vocab=7cc9575d
+-/
 theorem orthonormal_mfderiv_inclusion_sphereTangentBasis (p : sphere (0 : ℝ³) 1) :
     Orthonormal ℝ fun i : Fin 2 ↦
       (show ℝ³ from mvfderiv (𝓡 2)
@@ -744,7 +805,9 @@ private theorem sphere_inclusion_orientation_factor_sq (p : sphere (0 : ℝ³) 1
       rw [inner_euclideanCross_euclideanCross]
       simp [hON.norm_eq_one, hON.inner_eq_zero]
 
-/-- The raw canonical normal of the standard sphere inclusion is the radial vector.-/
+/-- The raw canonical normal of the standard sphere inclusion is the radial vector.
+@isnad1 id=eq.0h1v.s9.3f88b823c3cf from=translated src=- shape=648041c5 vocab=16e5b320
+-/
 @[simp]
 theorem sphereNormalRaw_inclusion (p : sphere (0 : ℝ³) 1) :
     sphereNormalRaw (fun q : sphere (0 : ℝ³) 1 ↦ (q : ℝ³)) p = (p : ℝ³) := by
@@ -758,7 +821,9 @@ theorem sphereNormalRaw_inclusion (p : sphere (0 : ℝ³) 1) :
     smul_smul, ← pow_two,
     show s ^ 2 = 1 from sphere_inclusion_orientation_factor_sq p, one_smul]
 
-/-- The raw canonical normal is orthogonal to every image tangent vector.-/
+/-- The raw canonical normal is orthogonal to every image tangent vector.
+@isnad1 id=eq.0h3v.s13.731d331aa165 from=translated src=- shape=098c76d0 vocab=ae4bc1ff
+-/
 @[simp]
 theorem inner_sphereNormalRaw_mfderiv
     (F : sphere (0 : ℝ³) 1 → ℝ³) (p : sphere (0 : ℝ³) 1)
@@ -775,7 +840,9 @@ theorem inner_sphereNormalRaw_mfderiv
   rw [real_inner_smul_left, ← b.sum_repr v, map_sum]
   simp [Fin.sum_univ_two, map_smul, inner_add_right, real_inner_smul_right]
 
-/-- The canonical normal is orthogonal to every image tangent vector, even at a non-immersion.-/
+/-- The canonical normal is orthogonal to every image tangent vector, even at a non-immersion.
+@isnad1 id=eq.0h3v.s13.737b98e44a82 from=translated src=- shape=098c76d0 vocab=77b7e01d
+-/
 @[simp]
 theorem inner_sphereNormal_mfderiv
     (F : sphere (0 : ℝ³) 1 → ℝ³) (p : sphere (0 : ℝ³) 1)
@@ -806,14 +873,18 @@ private theorem sphereNormalRaw_ne_zero_iff
       (LinearMap.ker_eq_bot_of_injective hF)
 
 /-- The canonical normal is nonzero exactly at the points where the manifold derivative is
-injective.-/
+injective.
+@isnad1 id=iff.0h2v.s13.a6d6bf486ac7 from=translated src=- shape=51b8930a vocab=590dfb93
+-/
 theorem sphereNormal_ne_zero_iff
     (F : sphere (0 : ℝ³) 1 → ℝ³) (p : sphere (0 : ℝ³) 1) :
     sphereNormal F p ≠ 0 ↔ Function.Injective (mvfderiv (𝓡 2) F p) := by
   simpa [sphereNormal, NormedSpace.normalize_eq_zero_iff] using
     sphereNormalRaw_ne_zero_iff F p
 
-/-- At an immersion point, the canonical normal has unit length.-/
+/-- At an immersion point, the canonical normal has unit length.
+@isnad1 id=eq.1h2v.s13.69f3b4e0abcc from=translated src=- shape=5768d028 vocab=243e0908
+-/
 theorem norm_sphereNormal_of_injective
     (F : sphere (0 : ℝ³) 1 → ℝ³) (p : sphere (0 : ℝ³) 1)
     (hF : Function.Injective (mvfderiv (𝓡 2) F p)) :
@@ -821,7 +892,9 @@ theorem norm_sphereNormal_of_injective
   simpa [sphereNormal] using
     NormedSpace.norm_normalize ((sphereNormalRaw_ne_zero_iff F p).mpr hF)
 
-/-- Normalizing a positive multiple of the radial vector recovers the radial vector.-/
+/-- Normalizing a positive multiple of the radial vector recovers the radial vector.
+@isnad1 id=eq.2h3v.s9.dac43205edfa from=translated src=- shape=e92094e3 vocab=3d0aed6a
+-/
 theorem sphereNormal_eq_of_raw_eq_pos_smul
     (F : sphere (0 : ℝ³) 1 → ℝ³) (p : sphere (0 : ℝ³) 1) (c : ℝ) (hc : 0 < c)
     (hraw : sphereNormalRaw F p = c • (p : ℝ³)) :
@@ -830,7 +903,9 @@ theorem sphereNormal_eq_of_raw_eq_pos_smul
     NormedSpace.normalize_eq_self_of_norm_eq_one (norm_eq_of_mem_sphere p)]
 
 /-- A radially tangent map whose derivative is positively coercive relative to the standard
-sphere inclusion has the outward radial canonical normal.-/
+sphere inclusion has the outward radial canonical normal.
+@isnad1 id=eq.3h3v.s15.3c9c3817a20b from=translated src=- shape=6e88e144 vocab=1aa5aa4d
+-/
 theorem sphereNormal_eq_radial_of_coercive
     (F : sphere (0 : ℝ³) 1 → ℝ³) (p : sphere (0 : ℝ³) 1) (c : ℝ) (hc : 0 < c)
     (hnormal : ∀ v, inner ℝ (p : ℝ³)
@@ -893,7 +968,9 @@ theorem sphereNormal_eq_radial_of_coercive
       (norm_eq_of_mem_sphere p) (hnormal (b 0)) (hnormal (b 1)),
     real_inner_smul_right, smul_smul, mul_comm]
 
-/-- The canonical normal of the standard sphere inclusion points radially outward.-/
+/-- The canonical normal of the standard sphere inclusion points radially outward.
+@isnad1 id=eq.0h1v.s9.d6c6eac1d837 from=translated src=- shape=648041c5 vocab=60d8c0e9
+-/
 @[simp]
 theorem sphereNormal_inclusion (p : sphere (0 : ℝ³) 1) :
     sphereNormal (fun q : sphere (0 : ℝ³) 1 ↦ (q : ℝ³)) p = (p : ℝ³) := by
@@ -1054,7 +1131,9 @@ private theorem det_tangentCoordChange_ne_zero
     LinearMap.ker_eq_bot_of_injective (tangentCoordChange_injective p q hq)
 
 /-- At an immersion point, a locally `C^n` map has a locally `C^m` canonical unit normal when
-`m + 1 ≤ n`.-/
+`m + 1 ≤ n`.
+@isnad1 id=contmdif.3h4v.s13.080afdea8f5a from=translated src=- shape=6cf90ceb vocab=cede9c12
+-/
 theorem contMDiffAt_sphereNormal_of_le
     {m n : WithTop ℕ∞} (F : sphere (0 : ℝ³) 1 → ℝ³) (p : sphere (0 : ℝ³) 1)
     (hF : ContMDiffAt (𝓡 2) (𝓡 3) n F p) (hmn : m + 1 ≤ n)
@@ -1073,7 +1152,9 @@ theorem contMDiffAt_sphereNormal_of_le
     NormedSpace.normalize_smul_of_pos
       (sq_pos_of_ne_zero (det_tangentCoordChange_ne_zero p q hq))]
 
-/-- At an immersion point, a locally `C^(m + 1)` map has a locally `C^m` canonical unit normal.-/
+/-- At an immersion point, a locally `C^(m + 1)` map has a locally `C^m` canonical unit normal.
+@isnad1 id=contmdif.2h3v.s13.95afe3a44caf from=translated src=- shape=b1159d09 vocab=e51eef24
+-/
 theorem contMDiffAt_sphereNormal
     {m : WithTop ℕ∞} (F : sphere (0 : ℝ³) 1 → ℝ³) (p : sphere (0 : ℝ³) 1)
     (hF : ContMDiffAt (𝓡 2) (𝓡 3) (m + 1) F p)
@@ -1082,7 +1163,9 @@ theorem contMDiffAt_sphereNormal
   contMDiffAt_sphereNormal_of_le F p hF le_rfl himm
 
 /-- A `C^n` immersion of the unit two-sphere has a `C^m` canonical unit normal when
-`m + 1 ≤ n`.-/
+`m + 1 ≤ n`.
+@isnad1 id=contmdif.3h3v.s13.a8050524c971 from=translated src=- shape=bd0c7c16 vocab=76049baa
+-/
 theorem contMDiff_sphereNormal_of_le
     {m n : WithTop ℕ∞} (F : sphere (0 : ℝ³) 1 → ℝ³)
     (hF : ContMDiff (𝓡 2) (𝓡 3) n F) (hmn : m + 1 ≤ n)
@@ -1090,7 +1173,9 @@ theorem contMDiff_sphereNormal_of_le
     ContMDiff (𝓡 2) (𝓡 3) m (sphereNormal F) :=
   fun p ↦ contMDiffAt_sphereNormal_of_le F p (hF p) hmn (himm p)
 
-/-- A `C^(m + 1)` immersion of the unit two-sphere has a `C^m` canonical unit normal.-/
+/-- A `C^(m + 1)` immersion of the unit two-sphere has a `C^m` canonical unit normal.
+@isnad1 id=contmdif.2h2v.s13.5feda3cd67cb from=translated src=- shape=9e77da4d vocab=336bb9ba
+-/
 theorem contMDiff_sphereNormal
     {m : WithTop ℕ∞} (F : sphere (0 : ℝ³) 1 → ℝ³)
     (hF : ContMDiff (𝓡 2) (𝓡 3) (m + 1) F)
@@ -1123,13 +1208,17 @@ noncomputable def radialExtension (h : sphere (0 : E) 1 → ℝ) (x : E) : ℝ :
   if hx : x = 0 then 0
   else ‖x‖ * h ⟨‖x‖⁻¹ • x, by simp [norm_smul, hx]⟩
 
-/-- The radial extension restricts to the original function on the unit sphere.-/
+/-- The radial extension restricts to the original function on the unit sphere.
+@isnad1 id=eq.0h3v.s7.dc6b8c524f2b from=translated src=- shape=46c02b59 vocab=72f7c674
+-/
 @[simp]
 theorem radialExtension_coe (h : sphere (0 : E) 1 → ℝ) (p : sphere (0 : E) 1) :
     radialExtension h (p : E) = h p := by
   simp [radialExtension, ne_zero_of_mem_unit_sphere p, norm_eq_of_mem_sphere p]
 
-/-- The radial extension is positively homogeneous of degree one.-/
+/-- The radial extension is positively homogeneous of degree one.
+@isnad1 id=eq.1h4v.s7.5b4193c37370 from=translated src=- shape=3e98545a vocab=4d180ffe
+-/
 theorem radialExtension_smul_of_pos (h : sphere (0 : E) 1 → ℝ) (x : E) {t : ℝ}
     (ht : 0 < t) : radialExtension h (t • x) = t * radialExtension h x := by
   by_cases hx : x = 0
@@ -1162,7 +1251,9 @@ noncomputable def homogeneousGradient [CompleteSpace E]
   ∇ H (p : E)
 
 /-- Euler's identity for a differentiable function that is positively homogeneous of degree
-one. This is the contact identity underlying the support-gradient construction.-/
+one. This is the contact identity underlying the support-gradient construction.
+@isnad1 id=eq.2h3v.s8.aa6d7b7812b4 from=translated src=- shape=65032d4d vocab=4ea6b795
+-/
 theorem inner_homogeneousGradient [CompleteSpace E] (H : E → ℝ) (p : sphere (0 : E) 1)
     (hH : DifferentiableAt ℝ H (p : E))
     (hhom : ∀ (t : ℝ), 0 < t → H (t • (p : E)) = t * H p) :
@@ -1216,7 +1307,9 @@ theorem eq_homogeneousGradient_of_global_support [CompleteSpace E] (H : E → �
   rw [homogeneousGradient, inner_gradient_left, hderiv, innerSL_apply_apply]
 
 /-- The gradient of a differentiable convex function that is positively homogeneous of degree
-one lies below that function in every direction.-/
+one lies below that function in every direction.
+@isnad1 id=le.3h4v.s8.84f2d28d260c from=translated src=- shape=91f6f2ed vocab=483490f0
+-/
 theorem inner_homogeneousGradient_le [CompleteSpace E] (H : E → ℝ)
     (p : sphere (0 : E) 1) (y : E)
     (hconvex : ConvexOn ℝ univ H) (hH : DifferentiableAt ℝ H (p : E))
@@ -1243,7 +1336,9 @@ theorem inner_homogeneousGradient_le [CompleteSpace E] (H : E → ℝ)
   rw [homogeneousGradient, inner_gradient_left]
   linarith
 
-/-- Stereographic charts based at antipodal unit vectors are related by radial inversion.-/
+/-- Stereographic charts based at antipodal unit vectors are related by radial inversion.
+@isnad1 id=eq.3h3v.s10.df3bc2917798 from=translated src=- shape=d60abc2e vocab=8c5e04ac
+-/
 theorem stereoToFun_stereoInvFunAux_neg {v w : E} (hv : ‖v‖ = 1)
     (hw : w ∈ (ℝ ∙ v)ᗮ) (hw0 : w ≠ 0) :
     stereoToFun v (stereoInvFunAux (-v) w) =
@@ -1280,19 +1375,25 @@ theorem stereoToFun_stereoInvFunAux_neg {v w : E} (hv : ‖v‖ = 1)
 def body (h : sphere (0 : E) 1 → ℝ) : Set E :=
   {x | ∀ p : sphere (0 : E) 1, inner ℝ (p : E) x ≤ h p}
 
-/-- A support-function body is convex.-/
+/-- A support-function body is convex.
+@isnad1 id=convex.0h2v.s7.7c45519b7320 from=translated src=- shape=f625b513 vocab=6b21b844
+-/
 theorem body_convex (h : sphere (0 : E) 1 → ℝ) : Convex ℝ (body h) := by
   rw [body, ofPred_forall]
   exact convex_iInter fun p ↦
     convex_halfSpace_le (innerSL ℝ (p : E)).toLinearMap.isLinear (h p)
 
-/-- A support-function body is closed.-/
+/-- A support-function body is closed.
+@isnad1 id=isclosed.0h2v.s6.af4a2d83c93b from=translated src=- shape=f99a8314 vocab=4224935e
+-/
 theorem body_isClosed (h : sphere (0 : E) 1 → ℝ) : IsClosed (body h) := by
   rw [body, ofPred_forall]
   exact isClosed_iInter fun p ↦ isClosed_Iic.preimage (innerSL ℝ (p : E)).continuous
 
 /-- If `h` is bounded below by a positive constant, its support-function body has nonempty
-interior.-/
+interior.
+@isnad1 id=nonempty.2h3v.s6.cc2f187357ee from=translated src=- shape=0a23f98a vocab=9acc4d13
+-/
 theorem body_interior_nonempty (h : sphere (0 : E) 1 → ℝ) {r : ℝ} (hr : 0 < r)
     (hlower : ∀ p, r ≤ h p) : (interior (body h)).Nonempty := by
   have hball : ball (0 : E) r ⊆ body h := by
@@ -1305,7 +1406,9 @@ theorem body_interior_nonempty (h : sphere (0 : E) 1 → ℝ) {r : ℝ} (hr : 0 
   refine ⟨0, mem_interior_iff_mem_nhds.mpr ?_⟩
   exact Filter.mem_of_superset (ball_mem_nhds 0 hr) hball
 
-/-- A uniform upper bound on `h` bounds its support-function body.-/
+/-- A uniform upper bound on `h` bounds its support-function body.
+@isnad1 id=isbounde.1h3v.s6.523949874923 from=translated src=- shape=233d3d89 vocab=dddc81ba
+-/
 theorem body_isBounded (h : sphere (0 : E) 1 → ℝ) {R : ℝ} (hupper : ∀ p, h p ≤ R) :
     Bornology.IsBounded (body h) := by
   rw [Metric.isBounded_iff_subset_closedBall (0 : E)]
@@ -1328,19 +1431,25 @@ theorem body_isBounded (h : sphere (0 : E) 1 → ℝ) {R : ℝ} (hupper : ∀ p,
     exact (hp.trans (hupper p)).trans (le_max_left _ _)
 
 /-- In a proper real inner-product space, a uniformly upper-bounded support function cuts out a
-compact body.-/
+compact body.
+@isnad1 id=iscompac.1h3v.s6.832f9e5a11c7 from=translated src=- shape=52908ba9 vocab=735b1aee
+-/
 theorem body_isCompact [ProperSpace E] (h : sphere (0 : E) 1 → ℝ) {R : ℝ}
     (hupper : ∀ p, h p ≤ R) : IsCompact (body h) :=
   Metric.isCompact_iff_isClosed_bounded.mpr ⟨body_isClosed h, body_isBounded h hupper⟩
 
-/-- A continuous function on the unit sphere cuts out a compact support-function body.-/
+/-- A continuous function on the unit sphere cuts out a compact support-function body.
+@isnad1 id=iscompac.1h2v.s7.24b1ce0adb84 from=translated src=- shape=bf03007f vocab=05b13dda
+-/
 theorem body_isCompact_of_continuous [ProperSpace E] (h : sphere (0 : E) 1 → ℝ)
     (hh : Continuous h) : IsCompact (body h) := by
   obtain ⟨R, hR⟩ := (isCompact_range hh).bddAbove
   exact body_isCompact h fun p ↦ hR ⟨p, rfl⟩
 
 /-- Every boundary point of a closed convex body with nonempty interior admits an outward unit
-supporting normal.-/
+supporting normal.
+@isnad1 id=ex.4h3v.s8.f7f9db954283 from=translated src=- shape=c95bb830 vocab=0e849af9
+-/
 theorem exists_unit_supporting_normal {K : Set E} (hconvex : Convex ℝ K)
     [CompleteSpace E] (hclosed : IsClosed K) (hinterior : (interior K).Nonempty) {x : E}
     (hx : x ∈ frontier K) :
@@ -1372,7 +1481,9 @@ theorem exists_unit_supporting_normal {K : Set E} (hconvex : Convex ℝ K)
     mul_le_mul_of_nonneg_left hfy (inv_nonneg.mpr (norm_nonneg v))
 
 /-- Pointwise contact and cross-support inequalities place every parametrized point in the
-support-function body and make it attain the corresponding supporting hyperplane.-/
+support-function body and make it attain the corresponding supporting hyperplane.
+@isnad1 id=and.2h4v.s8.4c6218940a8a from=translated src=- shape=8a7c7ca2 vocab=fe937487
+-/
 theorem contact_mem_body (h : sphere (0 : E) 1 → ℝ) (F : sphere (0 : E) 1 → E)
     (hcontact : ∀ p, inner ℝ (F p) (p : E) = h p)
     (hcross : ∀ (p q : sphere (0 : E) 1), inner ℝ (F p) (q : E) ≤ h q) :
@@ -1383,7 +1494,9 @@ theorem contact_mem_body (h : sphere (0 : E) 1 → ℝ) (F : sphere (0 : E) 1 �
   · simpa [real_inner_comm] using hcross p q
   · simpa [real_inner_comm] using hx p
 
-/-- A parametrized contact point lies on the frontier of the support-function body.-/
+/-- A parametrized contact point lies on the frontier of the support-function body.
+@isnad1 id=mem.2h4v.s8.f12bed0f946e from=translated src=- shape=87e2d048 vocab=34108f02
+-/
 theorem contact_mem_frontier (h : sphere (0 : E) 1 → ℝ) (F : sphere (0 : E) 1 → E)
     (hcontact : ∀ p, inner ℝ (F p) (p : E) = h p)
     (hcross : ∀ (p q : sphere (0 : E) 1), inner ℝ (F p) (q : E) ≤ h q) :
@@ -1415,7 +1528,9 @@ theorem contact_mem_frontier (h : sphere (0 : E) 1 → ℝ) (F : sphere (0 : E) 
   linarith
 
 /-- If every exposed contact face is the prescribed singleton, the contact parametrization covers
-the whole frontier of its support-function body.-/
+the whole frontier of its support-function body.
+@isnad1 id=eq.4h3v.s9.2e266ff30e11 from=translated src=- shape=1bbe2d96 vocab=afa5e87d
+-/
 theorem range_eq_frontier_of_unique_contact [CompleteSpace E]
     (h : sphere (0 : E) 1 → ℝ) (F : sphere (0 : E) 1 → E)
     (hcontact : ∀ p, inner ℝ (F p) (p : E) = h p)
@@ -1460,7 +1575,9 @@ theorem eq_contact_of_tangent_orthogonal (h : sphere (0 : E) 1 → ℝ)
     (htangent (x - F p) hdisplacement))
 
 /-- First variation at every exposed contact point, together with contact and cross-support,
-forces a parametrization to cover the whole frontier.-/
+forces a parametrization to cover the whole frontier.
+@isnad1 id=eq.4h3v.s9.d203a48d3e40 from=translated src=- shape=f32dbdec vocab=5b94b006
+-/
 theorem range_eq_frontier_of_first_variation [CompleteSpace E]
     (h : sphere (0 : E) 1 → ℝ) (F : sphere (0 : E) 1 → E)
     (hcontact : ∀ p, inner ℝ (F p) (p : E) = h p)
@@ -1474,7 +1591,9 @@ theorem range_eq_frontier_of_first_variation [CompleteSpace E]
     eq_contact_of_tangent_orthogonal h F hcontact hxeq (hstationary p x hx hxeq)
 
 /-- Contact, cross-support, and first variation produce the compact convex body represented by a
-support function. This packages the set-theoretic part of the support-gradient construction.-/
+support function. This packages the set-theoretic part of the support-gradient construction.
+@isnad1 id=ex.6h4v.s10.daa3a7ef865f from=translated src=- shape=a700f185 vocab=1f7da1a5
+-/
 theorem exists_compact_body_of_first_variation [ProperSpace E] [CompleteSpace E]
     (h : sphere (0 : E) 1 → ℝ) (F : sphere (0 : E) 1 → E)
     (hh : Continuous h) {r : ℝ} (hr : 0 < r) (hlower : ∀ p, r ≤ h p)
@@ -1492,7 +1611,9 @@ theorem exists_compact_body_of_first_variation [ProperSpace E] [CompleteSpace E]
       (body_interior_nonempty h hr hlower) hstationary, ?_⟩
   exact contact_mem_body h F hcontact hcross
 
-/-- Strict cross-support separates the parametrizing normals, so the contact map is injective.-/
+/-- Strict cross-support separates the parametrizing normals, so the contact map is injective.
+@isnad1 id=injectiv.2h3v.s8.ef9acd66f0ba from=translated src=- shape=8012c8eb vocab=42831107
+-/
 theorem injective_of_strictCross (h : sphere (0 : E) 1 → ℝ)
     (F : sphere (0 : E) 1 → E)
     (hcontact : ∀ p, inner ℝ (F p) (p : E) = h p)
@@ -1504,7 +1625,9 @@ theorem injective_of_strictCross (h : sphere (0 : E) 1 → ℝ)
   rw [hpq, hcontact q] at hpq_strict
   exact (lt_irrefl _ hpq_strict)
 
-/-- A continuous strict contact parametrization of the unit sphere is a topological embedding.-/
+/-- A continuous strict contact parametrization of the unit sphere is a topological embedding.
+@isnad1 id=isembedd.3h3v.s9.cc7aa84575e5 from=translated src=- shape=094d5365 vocab=8e116475
+-/
 theorem isEmbedding_of_strictCross [ProperSpace E] (h : sphere (0 : E) 1 → ℝ)
     (F : sphere (0 : E) 1 → E) (hF : Continuous F)
     (hcontact : ∀ p, inner ℝ (F p) (p : E) = h p)
@@ -1542,7 +1665,9 @@ noncomputable def counterexampleSeed (z : ℂ) : ℝ :=
   -Real.cos (2 * z.re) / 4 + 3 * Real.cos (2 * z.im) / 10 -
     Real.cos (4 * z.im) / 32 + Real.sin z.re * Real.sin z.im
 
-/-- The seed is invariant under the sign ambiguity of a square root.-/
+/-- The seed is invariant under the sign ambiguity of a square root.
+@isnad1 id=eq.0h1v.s3.037de67e7048 from=translated src=- shape=8fc7e33b vocab=da56f22b
+-/
 theorem counterexampleSeed_neg (z : ℂ) : counterexampleSeed (-z) = counterexampleSeed z := by
   simp [counterexampleSeed]
 
@@ -1556,7 +1681,9 @@ noncomputable def counterexample (k : ℕ) (z : ℂ) : ℝ :=
   r ^ 2 * Real.exp (-Real.rpow r (-(1 : ℝ) / 4) * Real.exp (-(r ^ 2))) *
       counterexampleSeed w / (1 + r ^ 2) + 10 ^ 10
 
-/-- Every member of the family takes the constant support value at the origin.-/
+/-- Every member of the family takes the constant support value at the origin.
+@isnad1 id=eq.0h1v.s5.b223fcdf2f53 from=translated src=- shape=915aef48 vocab=8872b834
+-/
 theorem counterexample_zero (k : ℕ) : counterexample k 0 = 10 ^ 10 := by
   simp [counterexample]
 
@@ -1577,7 +1704,9 @@ noncomputable def counterexampleSphereChart (z : ℂ) : sphere (0 : ℝ³) 1 :=
     (2 • Complex.orthonormalBasisOneI.repr z)
 
 /-- The origin of the planar chart represents the south pole. This test fixes the scale and sign
-convention in `counterexampleSphereChart`.-/
+convention in `counterexampleSphereChart`.
+@isnad1 id=eq.0h0v.s9.1cd48e602570 from=translated src=- shape=3671f725 vocab=ca4b6d67
+-/
 theorem counterexampleSphereChart_zero :
     counterexampleSphereChart 0 = -counterexampleNorthPole := by
   apply Subtype.ext
@@ -1619,7 +1748,9 @@ namespace CaratheodoryLoewnerCounterexample
 
 noncomputable section
 
-/-- The trigonometric seed is smooth as a real-valued function of the complex variable.-/
+/-- The trigonometric seed is smooth as a real-valued function of the complex variable.
+@isnad1 id=contdiff.0h0v.s5.bfd5e551f766 from=translated src=- shape=352d7a74 vocab=86956fc0
+-/
 theorem counterexampleSeed_contDiff : ContDiff ℝ ∞ counterexampleSeed := by
   unfold counterexampleSeed
   have hre : ContDiff ℝ ∞ (fun z : ℂ ↦ z.re) := by
@@ -1963,7 +2094,9 @@ private lemma counterexampleSeed_eq_of_sq_eq_sq {z w : ℂ} (h : z ^ 2 = w ^ 2) 
   · rw [h, counterexampleSeed_neg]
 
 /-- The seed identifies the principal half-integral power with the smooth alternate branch based
-at `-z`. This pointwise identity is useful for differentiating at points on the branch cut.-/
+at `-z`. This pointwise identity is useful for differentiating at points on the branch cut.
+@isnad1 id=eq.0h2v.s6.4698a9329d1e from=translated src=- shape=e61f3d97 vocab=bb2fea1b
+-/
 theorem counterexampleSeed_cpow_eq_alt (k : ℕ) (z : ℂ) :
     counterexampleSeed (z ^ ((k : ℂ) / 2)) =
       counterexampleSeed ((Complex.I ^ k) * ((-z) ^ ((k : ℂ) / 2))) :=
@@ -2174,7 +2307,9 @@ private theorem radialAmplitude_mul_oscillatory_iteratedFDeriv_zero (k m : ℕ) 
   exact tendsto_nhds_unique' (NormedField.nhdsNE_neBot (0 : ℂ)) hcontinuous' hzero
 
 /-- Away from the origin the principal-power formula is smooth. For odd `k`, evenness of the seed
-removes the sign jump of the chosen square-root branch.-/
+removes the sign jump of the chosen square-root branch.
+@isnad1 id=contdiff.1h2v.s5.8070c9a9c636 from=translated src=- shape=88ae26cb vocab=57f9ccea
+-/
 theorem counterexample_contDiffAt_of_ne_zero (k : ℕ) {z : ℂ} (hz : z ≠ 0) :
     ContDiffAt ℝ ∞ (counterexample k) z := by
   have hstar : ContDiffAt ℝ ∞ (fun w : ℂ ↦ star w) z := by
@@ -2206,14 +2341,18 @@ private theorem counterexample_contDiffAt_zero_all (k : ℕ) :
   · exact counterexample_eq_radialAmplitude k z hz
 
 /-- At the origin the nonconstant part of `counterexample k` is flat: exponential decay dominates
-the algebraic growth of every derivative of the oscillatory factor.-/
+the algebraic growth of every derivative of the oscillatory factor.
+@isnad1 id=contdiff.1h1v.s5.30b92fbdba40 from=translated src=- shape=dd49c729 vocab=84257de5
+-/
 theorem counterexample_contDiffAt_zero (k : ℕ) (hk : 0 < k) :
     ContDiffAt ℝ ∞ (counterexample k) 0 := by
   cases k with
   | zero => omega
   | succ k => exact counterexample_contDiffAt_zero_all (k + 1)
 
-/-- The first Fréchet derivative of the counterexample vanishes at the origin.-/
+/-- The first Fréchet derivative of the counterexample vanishes at the origin.
+@isnad1 id=eq.1h1v.s9.789e6a6b6b01 from=translated src=- shape=72b01d78 vocab=edd5387c
+-/
 theorem counterexample_fderiv_zero (k : ℕ) (hk : 0 < k) :
     fderiv ℝ (counterexample k) 0 = 0 := by
   cases k with
@@ -2252,7 +2391,9 @@ private theorem counterexample_fderiv_fderiv_zero_all (k : ℕ) :
     Matrix.cons_val_zero, Matrix.cons_val_one] using happ
 
 /-- The second Fréchet derivative of the counterexample vanishes at the origin. This is the
-flatness consequence used in the index computation.-/
+flatness consequence used in the index computation.
+@isnad1 id=eq.1h1v.s11.ba6ca576cdc4 from=translated src=- shape=422c373f vocab=1213aa9e
+-/
 theorem counterexample_fderiv_fderiv_zero (k : ℕ) (hk : 0 < k) :
     fderiv ℝ (fun w ↦ fderiv ℝ (counterexample k) w) 0 = 0 := by
   cases k with
@@ -2260,7 +2401,9 @@ theorem counterexample_fderiv_fderiv_zero (k : ℕ) (hk : 0 < k) :
   | succ k => exact counterexample_fderiv_fderiv_zero_all (k + 1)
 
 /-- Each positive member of the announced family is smooth on the whole complex plane, including
-at the origin. The flat exponential factor is essential at the origin.-/
+at the origin. The flat exponential factor is essential at the origin.
+@isnad1 id=contdiff.1h1v.s5.5ea5cfd94aa4 from=translated src=- shape=8772077c vocab=5e483bc4
+-/
 theorem counterexample_contDiff (k : ℕ) (hk : 0 < k) : ContDiff ℝ ∞ (counterexample k) := by
   rw [contDiff_iff_contDiffAt]
   intro z
