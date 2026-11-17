@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "568d60f27499317ff4a5d199e5f0cac0108cae5d7a00f738bd3899610321b0cf",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "singularity-complete-lean",
+ "lint_mode": "proposed",
+ "modules": 156,
+ "part": 1,
+ "theorems": 650
+}

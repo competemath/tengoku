@@ -76,6 +76,7 @@ import Tengoku.ErdosUnitDistance1
 import Tengoku.ErdosLean
 import Tengoku.AclGeom
 import Tengoku.Certifyinginvariantsnf
+import Tengoku.SingularityCompleteLean
 import Tengoku.LanaOrbicurveCores
 import Tengoku.AsymptoticTrianglePacking
 import Tengoku.Primenumbertheoremand
