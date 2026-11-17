@@ -28,7 +28,9 @@ open scoped Classical in
 `f 1 = 1`, the sum of `f` over those `1 ≤ m ≤ N` all of whose prime factors lie in a finite
 set `P` of primes is at most the product over `p ∈ P` of the truncated local sums
 `∑_{e ≤ E} f(p^e)`, provided `N < 2^(E+1)` (so that every prime power dividing some `m ≤ N`
-has exponent at most `E`).-/
+has exponent at most `E`).
+@isnad1 id=le.5h4v.s8.794325997daf from=translated src=- shape=28a99054 vocab=a34582fc
+-/
 theorem sum_smooth_le_prod (f : ℕ → ℝ) (hf0 : ∀ n, 0 ≤ f n) (hf1 : f 1 = 1)
     (hmul : ∀ m n : ℕ, Nat.Coprime m n → f (m * n) = f m * f n) (N E : ℕ)
     (hE : N < 2 ^ (E + 1)) :
@@ -126,7 +128,9 @@ theorem sum_smooth_le_prod (f : ℕ → ℝ) (hf0 : ∀ n, 0 ≤ f n) (hf1 : f 1
 
 /-- **Euler-product majorisation.**  For a nonnegative multiplicative `f` with `f 1 = 1`,
 the sum of `f` over `1 ≤ m ≤ N` is at most the product over the primes `p ≤ N` of the
-truncated local sums `∑_{e ≤ E} f(p^e)`, provided `N < 2^(E+1)`.-/
+truncated local sums `∑_{e ≤ E} f(p^e)`, provided `N < 2^(E+1)`.
+@isnad1 id=le.4h3v.s7.1e27924d78c6 from=translated src=- shape=4ecfbdfe vocab=23afdb53
+-/
 theorem sum_Icc_le_prod_primesBelow (f : ℕ → ℝ) (hf0 : ∀ n, 0 ≤ f n) (hf1 : f 1 = 1)
     (hmul : ∀ m n : ℕ, Nat.Coprime m n → f (m * n) = f m * f n) (N E : ℕ)
     (hE : N < 2 ^ (E + 1)) :
@@ -149,7 +153,9 @@ theorem sum_Icc_le_prod_primesBelow (f : ℕ → ℝ) (hf0 : ∀ n, 0 ≤ f n) (
 
 /-! ## The first sum -/
 
-/-- The local sum of the majorant at a prime is at most `1 + gLoc p/(p-1)`.-/
+/-- The local sum of the majorant at a prime is at most `1 + gLoc p/(p-1)`.
+@isnad1 id=le.1h2v.s6.93b4f71248bc from=translated src=- shape=f5c456a3 vocab=8ceb8070
+-/
 theorem local_sum_gMaj_le {p : ℕ} (hp : p.Prime) (E : ℕ) :
     ∑ e ∈ Finset.range (E + 1), gMaj (p ^ e) / (p ^ e : ℝ) ≤ 1 + gLoc p / ((p : ℝ) - 1) := by
   have hp2 : (2 : ℝ) ≤ (p : ℝ) := by exact_mod_cast hp.two_le
@@ -184,7 +190,9 @@ theorem local_sum_gMaj_le {p : ℕ} (hp : p.Prime) (E : ℕ) :
   linarith
 
 /-- `gLoc p/(p-1) ≤ 2/p + 9/p²` for every prime `p` with `χ₅(p) = 1` (all such primes are
-`≥ 11`).-/
+`≥ 11`).
+@isnad1 id=le.2h1v.s7.db1c1efa938c from=translated src=- shape=06b624cb vocab=a39a1aae
+-/
 theorem gLoc_div_le {p : ℕ} (hp : p.Prime) (hchi : p % 5 = 1 ∨ p % 5 = 4) :
     gLoc p / ((p : ℝ) - 1) ≤ 2 / (p : ℝ) + 9 / (p : ℝ) ^ 2 := by
   have h11 : (11 : ℕ) ≤ p := eleven_le_of_chi5_eq_one hp ((chi5_eq_one_iff p).mpr hchi)
@@ -195,7 +203,9 @@ theorem gLoc_div_le {p : ℕ} (hp : p.Prime) (hchi : p % 5 = 1 ∨ p % 5 = 4) :
   rw [e, div_mul_eq_mul_div, le_div_iff₀ (by positivity)]
   nlinarith [sq_nonneg ((p : ℝ) - 11)]
 
-/-- `∑_{2 ≤ n ≤ N} 1/n² ≤ 1`.-/
+/-- `∑_{2 ≤ n ≤ N} 1/n² ≤ 1`.
+@isnad1 id=le.0h1v.s5.ead97195be33 from=translated src=- shape=151cdf33 vocab=7f95fb3f
+-/
 theorem sum_inv_sq_Icc_le (N : ℕ) : ∑ n ∈ Finset.Icc 2 N, (1 : ℝ) / (n : ℝ) ^ 2 ≤ 1 := by
   have key : ∀ M : ℕ, 1 ≤ M → ∑ n ∈ Finset.Icc 2 M, (1 : ℝ) / (n : ℝ) ^ 2 ≤ 1 - 1 / (M : ℝ) := by
     intro M hM
@@ -224,7 +234,9 @@ theorem sum_inv_sq_Icc_le (N : ℕ) : ∑ n ∈ Finset.Icc 2 N, (1 : ℝ) / (n :
     have : (0 : ℝ) ≤ 1 / (N : ℝ) := by positivity
     linarith
 
-/-- `∑_{p ≤ N} 1/p² ≤ 1`.-/
+/-- `∑_{p ≤ N} 1/p² ≤ 1`.
+@isnad1 id=le.0h1v.s6.e4562a4ecafd from=translated src=- shape=41e73d2c vocab=2a77fe8c
+-/
 theorem sum_inv_sq_primes_le (N : ℕ) :
     ∑ p ∈ Nat.primesBelow (N + 1), (1 : ℝ) / (p : ℝ) ^ 2 ≤ 1 := by
   refine le_trans (Finset.sum_le_sum_of_subset_of_nonneg ?_ ?_) (sum_inv_sq_Icc_le N)
@@ -235,7 +247,9 @@ theorem sum_inv_sq_primes_le (N : ℕ) :
 
 open scoped Classical in
 /-- The sum of the local weights over all primes `p ≤ N`, reduced to the reciprocal sum over
-the primes with `χ₅(p) = 1`.-/
+the primes with `χ₅(p) = 1`.
+@isnad1 id=le.0h1v.s7.e3e2dfaf1a68 from=translated src=- shape=4fe9eaee vocab=9b8e276c
+-/
 theorem sum_gLoc_div_le (N : ℕ) :
     ∑ p ∈ Nat.primesBelow (N + 1), gLoc p / ((p : ℝ) - 1)
       ≤ 2 * (∑ p ∈ Finset.Icc 1 N with (Nat.Prime p ∧ chi5 p = 1), (1 : ℝ) / p) + 10 := by
@@ -301,7 +315,9 @@ open scoped Classical in
 /-- **UNCONDITIONAL.**  (The Mertens/`χ₅` input it uses, `sum_inv_primes_chi5`, is proved
 unconditionally in `FactorialHypergraph/MertensSecond.lean`; this docstring previously said
 "CONDITIONAL", which was stale.)
-`∑_{m ≤ N} R(m) h(m)/m ≪ 1 + log N`, uniformly in `N ≥ 1`.-/
+`∑_{m ≤ N} R(m) h(m)/m ≪ 1 + log N`, uniformly in `N ≥ 1`.
+@isnad1 id=ex.0h0v.s6.4c40f006740a from=translated src=- shape=f343f769 vocab=331105ca
+-/
 theorem sum_gMaj_div_le :
     ∃ C : ℝ, 0 < C ∧ ∀ N : ℕ, 1 ≤ N →
       ∑ m ∈ Finset.Icc 1 N, gMaj m / (m : ℝ) ≤ C * (1 + Real.log N) := by
@@ -390,7 +406,9 @@ theorem sum_gMaj_div_le :
 
 /-! ## The second sum -/
 
-/-- `∑_{b ≤ B} 1/√b ≤ 2 √B`.-/
+/-- `∑_{b ≤ B} 1/√b ≤ 2 √B`.
+@isnad1 id=le.0h1v.s5.93b91b184729 from=translated src=- shape=e5ed4a91 vocab=dadceeed
+-/
 theorem sum_inv_sqrt_le (B : ℕ) :
     ∑ b ∈ Finset.Icc 1 B, 1 / Real.sqrt b ≤ 2 * Real.sqrt B := by
   induction B with
@@ -409,7 +427,9 @@ theorem sum_inv_sqrt_le (B : ℕ) :
     push_cast at ih
     linarith
 
-/-- `∑_{a ≤ N} 1/a ≤ 1 + log N`.-/
+/-- `∑_{a ≤ N} 1/a ≤ 1 + log N`.
+@isnad1 id=le.0h1v.s5.632c805f13ac from=translated src=- shape=d1a1014a vocab=e138e725
+-/
 theorem sum_inv_le_one_add_log (N : ℕ) :
     ∑ a ∈ Finset.Icc 1 N, (1 : ℝ) / a ≤ 1 + Real.log N := by
   have h := harmonic_le_one_add_log N
@@ -417,7 +437,9 @@ theorem sum_inv_le_one_add_log (N : ℕ) :
   push_cast at h
   simpa [one_div] using h
 
-/-- **Unconditional.**  `∑_{m ≤ N} R(m)/√m ≤ 2 √N (1 + log N)`.-/
+/-- **Unconditional.**  `∑_{m ≤ N} R(m)/√m ≤ 2 √N (1 + log N)`.
+@isnad1 id=le.0h1v.s6.36fd089c851a from=translated src=- shape=bc711b2a vocab=1670222d
+-/
 theorem sum_rootCount_div_sqrt_le (N : ℕ) :
     ∑ m ∈ Finset.Icc 1 N, (rootCount m : ℝ) / Real.sqrt m
       ≤ 2 * Real.sqrt N * (1 + Real.log N) := by

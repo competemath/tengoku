@@ -95,6 +95,9 @@ open Finset
 /-- The primes `≤ n`.-/
 def primesLE (n : ℕ) : Finset ℕ := (Finset.range (n + 1)).filter Nat.Prime
 
+/--
+@isnad1 id=iff.0h2v.s4.8140de3d97a7 from=translated src=- shape=583813cb vocab=2a46ffd7
+-/
 lemma mem_primesLE {n p : ℕ} : p ∈ primesLE n ↔ p ≤ n ∧ p.Prime := by
   simp [primesLE, Finset.mem_filter, Finset.mem_range]
 
@@ -127,12 +130,18 @@ noncomputable def smoothSet (N : ℕ) : Finset ℕ :=
     (fun i => (N : ℝ) / Real.log N < (i : ℝ) ∧ ∀ q : ℕ, q.Prime → q ∣ fq i → q ≤ i)
 
 open scoped Classical in
+/--
+@isnad1 id=iff.0h2v.s6.c80451dff214 from=translated src=- shape=9d7de13e vocab=da8ac87f
+-/
 lemma mem_smoothSet {N i : ℕ} :
     i ∈ smoothSet N ↔
       (1 ≤ i ∧ i ≤ N) ∧ (N : ℝ) / Real.log N < (i : ℝ) ∧
         ∀ q : ℕ, q.Prime → q ∣ fq i → q ≤ i := by
   simp [smoothSet, Finset.mem_filter, Finset.mem_Icc, and_assoc]
 
+/--
+@isnad1 id=le.0h1v.s4.ba5f8748036e from=translated src=- shape=73d95e72 vocab=2da99931
+-/
 lemma smoothSet_subset (N : ℕ) : smoothSet N ⊆ Finset.Icc 1 N := by
   classical
   intro i hi
@@ -140,25 +149,42 @@ lemma smoothSet_subset (N : ℕ) : smoothSet N ⊆ Finset.Icc 1 N := by
 
 /-! ## Elementary facts about `fq` -/
 
+/--
+@isnad1 id=lt.0h1v.s3.581bb2c04661 from=translated src=- shape=8a62b088 vocab=efcc9207
+-/
 lemma fq_pos (i : ℕ) : 0 < fq i := by
   simp only [fq]; positivity
 
+/--
+@isnad1 id=ne.0h1v.s3.734108893978 from=translated src=- shape=b14ee516 vocab=c4cc2721
+-/
 lemma fq_ne_zero (i : ℕ) : fq i ≠ 0 := (fq_pos i).ne'
 
+/--
+@isnad1 id=le.1h2v.s4.8fd8e3e91370 from=translated src=- shape=6bee9d27 vocab=5e966a57
+-/
 lemma fq_mono {i j : ℕ} (h : i ≤ j) : fq i ≤ fq j := by
   simp only [fq]
   have : i ^ 2 ≤ j ^ 2 := Nat.pow_le_pow_left h 2
   omega
 
+/--
+@isnad1 id=le.0h1v.s4.1c81dec36e89 from=translated src=- shape=9a470a5e vocab=3d4ddd6a
+-/
 lemma sq_le_fq (i : ℕ) : i ^ 2 ≤ fq i := by simp only [fq]; omega
 
+/--
+@isnad1 id=le.1h1v.s5.623aedce7ce8 from=translated src=- shape=95757b40 vocab=3d4ddd6a
+-/
 lemma fq_le_cube {N : ℕ} (hN : 4 ≤ N) : fq N ≤ N ^ 3 := by
   simp only [fq]
   nlinarith [hN, sq_nonneg N]
 
 /-! ## Root counting -/
 
-/-- `ρ(p) ≤ 2` for every prime `p`.-/
+/-- `ρ(p) ≤ 2` for every prime `p`.
+@isnad1 id=le.1h1v.s3.4bc2ad00a338 from=translated src=- shape=fdf4e94d vocab=d46660f8
+-/
 theorem rootCount_le_two {p : ℕ} (hp : p.Prime) : rootCount p ≤ 2 := by
   classical
   refine card_le_two_of_dvd_fq_lt hp _ ?_ ?_ <;>
@@ -167,7 +193,9 @@ theorem rootCount_le_two {p : ℕ} (hp : p.Prime) : rootCount p ≤ 2 := by
       tauto
 
 /-- A set of pairwise incongruent (modulo `pᵃ`) roots of `f` modulo `pᵃ` injects into the
-set of roots of `f` modulo `p`; hence it has at most `ρ(p)` elements.-/
+set of roots of `f` modulo `p`; hence it has at most `ρ(p)` elements.
+@isnad1 id=le.5h3v.s6.3da62b5d3b91 from=translated src=- shape=ef253e4c vocab=bd2b9f6b
+-/
 theorem card_le_rootCount {p a : ℕ} (hp : p.Prime) (hp5 : p ≠ 5) (ha : 1 ≤ a)
     (s : Finset ℕ) (hincong : ∀ i ∈ s, ∀ j ∈ s, i ≡ j [MOD p ^ a] → i = j)
     (hdvd : ∀ i ∈ s, p ^ a ∣ fq i) : s.card ≤ rootCount p := by
@@ -188,7 +216,9 @@ theorem card_le_rootCount {p a : ℕ} (hp : p.Prime) (hp5 : p ≠ 5) (ha : 1 ≤
     exact hincong i hi' j hj' (fq_unique_lift hp hp5 ha (hdvd i hi') (hdvd j hj') h1)
 
 /-- The counting step of Lemma 3.2, in the sharp form with `ρ(p)`:
-at most `(N/pᵃ + 1)·ρ(p)` indices `1 ≤ i ≤ N` satisfy `pᵃ ∣ f(i)`.-/
+at most `(N/pᵃ + 1)·ρ(p)` indices `1 ≤ i ≤ N` satisfy `pᵃ ∣ f(i)`.
+@isnad1 id=le.4h4v.s7.fba3697527ff from=translated src=- shape=258ae04d vocab=aa99c75a
+-/
 theorem card_dvd_fq_le_rootCount {p a : ℕ} (hp : p.Prime) (hp5 : p ≠ 5) (ha : 1 ≤ a)
     (N : ℕ) (E : Finset ℕ) (hE : E ⊆ Finset.Icc 1 N) :
     (E.filter (fun i => p ^ a ∣ fq i)).card ≤ (N / p ^ a + 1) * rootCount p := by
@@ -225,7 +255,9 @@ theorem card_dvd_fq_le_rootCount {p a : ℕ} (hp : p.Prime) (hp5 : p ≠ 5) (ha 
 /-! ## The multiplicity bound -/
 
 /-- For a prime `p ≠ 5`, the total multiplicity of `p` in `∏_{i ∈ E} f(i)`, for any set of
-indices `E ⊆ [1,N]`, is at most `ρ(p)·(N/(p-1) + log_p f(N))`.-/
+indices `E ⊆ [1,N]`, is at most `ρ(p)·(N/(p-1) + log_p f(N))`.
+@isnad1 id=le.3h3v.s6.55839ce16c0d from=translated src=- shape=cb3fd17e vocab=7a3dd6a9
+-/
 theorem sum_factorization_le {p : ℕ} (hp : p.Prime) (hp5 : p ≠ 5) (N : ℕ) (E : Finset ℕ)
     (hE : E ⊆ Finset.Icc 1 N) :
     ∑ i ∈ E, (fq i).factorization p ≤ rootCount p * (N / (p - 1) + Nat.log p (fq N)) := by
@@ -257,7 +289,9 @@ theorem sum_factorization_le {p : ℕ} (hp : p.Prime) (hp5 : p ≠ 5) (N : ℕ) 
         have := Nat.geom_sum_Ico_le hp.two_le N b
         exact Nat.mul_le_mul_right _ (by omega)
 
-/-- `25 ∤ f(i)`, so the multiplicity of `5` in `∏_{i ∈ E} f(i)` is at most `#E`.-/
+/-- `25 ∤ f(i)`, so the multiplicity of `5` in `∏_{i ∈ E} f(i)` is at most `#E`.
+@isnad1 id=le.0h1v.s5.715e52143b8c from=translated src=- shape=b4a18a2a vocab=bf37bacc
+-/
 theorem sum_factorization_five_le (E : Finset ℕ) :
     ∑ i ∈ E, (fq i).factorization 5 ≤ E.card := by
   classical
@@ -272,7 +306,9 @@ theorem sum_factorization_five_le (E : Finset ℕ) :
 
 /-! ## `log n` as a sum over primes -/
 
-/-- `log n = ∑_{p ∈ S} v_p(n) log p` for any finset `S` containing the prime factors.-/
+/-- `log n = ∑_{p ∈ S} v_p(n) log p` for any finset `S` containing the prime factors.
+@isnad1 id=eq.3h2v.s6.addad1fec1da from=translated src=- shape=60b85346 vocab=3d25b5fa
+-/
 theorem log_eq_sum_factorization {n : ℕ} (hn : n ≠ 0) {S : Finset ℕ}
     (hSp : ∀ p ∈ S, p.Prime) (hS : n.primeFactors ⊆ S) :
     Real.log n = ∑ p ∈ S, ((n.factorization p : ℕ) : ℝ) * Real.log p := by
@@ -290,6 +326,9 @@ theorem log_eq_sum_factorization {n : ℕ} (hn : n ≠ 0) {S : Finset ℕ}
     have : (0 : ℝ) < (p : ℝ) := by exact_mod_cast lt_of_lt_of_le (by norm_num) hp2
     positivity
 
+/--
+@isnad1 id=le.1h2v.s5.25aa7bc2e0c4 from=translated src=- shape=2ac0bfb5 vocab=85f5e979
+-/
 lemma primeFactors_fq_subset {N i : ℕ} (hi : i ∈ smoothSet N) :
     (fq i).primeFactors ⊆ primesLE N := by
   classical
@@ -301,7 +340,9 @@ lemma primeFactors_fq_subset {N i : ℕ} (hi : i ∈ smoothSet N) :
 
 /-! ## The product upper bound -/
 
-/-- The elementary bound `log_p f(N) · log p ≤ 3 log N`.-/
+/-- The elementary bound `log_p f(N) · log p ≤ 3 log N`.
+@isnad1 id=le.2h2v.s5.05fe4295e1d2 from=translated src=- shape=c0d7a9ba vocab=1e7cd92a
+-/
 lemma natLog_mul_log_le {p N : ℕ} (hp : p.Prime) (hN : 4 ≤ N) :
     ((Nat.log p (fq N) : ℕ) : ℝ) * Real.log p ≤ 3 * Real.log N := by
   have hNpos : (0 : ℝ) < (N : ℝ) := by
@@ -326,7 +367,9 @@ lemma natLog_mul_log_le {p N : ℕ} (hp : p.Prime) (hN : 4 ≤ N) :
   push_cast at h5
   linarith
 
-/-- **Upper bound for `log Q_N`.**  `log ∏_{i ∈ E_N} f(i) ≤ N log N + (C+16) N`.-/
+/-- **Upper bound for `log Q_N`.**  `log ∏_{i ∈ E_N} f(i) ≤ N log N + (C+16) N`.
+@isnad1 id=le.4h2v.s7.92ae58483f54 from=translated src=- shape=6cb54d28 vocab=f4797c9c
+-/
 theorem logProd_upper {C : ℝ}
     (hC : ∀ N : ℕ, 2 ≤ N →
       ∑ p ∈ primesLE N, (rootCount p : ℝ) * Real.log p / ((p : ℝ) - 1) ≤ Real.log N + C)
@@ -458,7 +501,9 @@ theorem logProd_upper {C : ℝ}
 /-! ## The product lower bound -/
 
 /-- **Lower bound for `log Q_N`.**  Each `i ∈ E_N` exceeds `N / log N`, so
-`log f(i) ≥ 2 log N - 2 log log N`.-/
+`log f(i) ≥ 2 log N - 2 log log N`.
+@isnad1 id=le.2h1v.s6.066d75b0d031 from=translated src=- shape=e6747d16 vocab=1f68739c
+-/
 theorem logProd_lower {N : ℕ} (hN : 2 ≤ N) (hlog : 0 < Real.log N) :
     ((smoothSet N).card : ℝ) * (2 * Real.log N - 2 * Real.log (Real.log N))
       ≤ ∑ i ∈ smoothSet N, Real.log (fq i) := by
@@ -487,7 +532,9 @@ theorem logProd_lower {N : ℕ} (hN : 2 ≤ N) (hlog : 0 < Real.log N) :
         rw [Finset.sum_const, nsmul_eq_mul]
     _ ≤ ∑ i ∈ smoothSet N, Real.log (fq i) := Finset.sum_le_sum hkey
 
-/-- Comparing the two bounds: the smooth set has at most `0.52 N` elements.-/
+/-- Comparing the two bounds: the smooth set has at most `0.52 N` elements.
+@isnad1 id=le.4h2v.s7.d8afd5576548 from=translated src=- shape=6bbcf3b6 vocab=cec3353c
+-/
 theorem card_smoothSet_le {C₃ : ℝ} {N : ℕ} (hC₃ : 0 ≤ C₃) (hN : 2 ≤ N)
     (hlogbig : 50 * C₃ + 20000 ≤ Real.log N)
     (hupper : ∑ i ∈ smoothSet N, Real.log (fq i) ≤ (N : ℝ) * Real.log N + C₃ * N) :
@@ -525,7 +572,9 @@ noncomputable def discardSet (N y : ℕ) : Finset ℕ :=
   (Finset.Icc 1 N).filter (fun i => ∃ q : ℕ, q.Prime ∧ q ∣ fq i ∧ i < q ∧ q ≤ y)
 
 /-- **The discard step**, with the threshold constant `c` and the constant `κ` of the
-prime-counting bound left as parameters: at most `(2κ/c)·N` indices are discarded.-/
+prime-counting bound left as parameters: at most `(2κ/c)·N` indices are discarded.
+@isnad1 id=le.6h4v.s7.d0b8f46c5306 from=translated src=- shape=5534c80a vocab=76aa4758
+-/
 theorem card_discard_le {N y : ℕ} {c kap : ℝ} (hc : 8 ≤ c) (hkap : 0 ≤ kap)
     (hlogN : 9 ≤ Real.log N) (hNy : N ≤ y)
     (hy : (y : ℝ) ≤ (N : ℝ) * Real.log N / c)
@@ -567,7 +616,9 @@ theorem card_discard_le {N y : ℕ} {c kap : ℝ} (hc : 8 ≤ c) (hkap : 0 ≤ k
 /-! ## The set of small indices -/
 
 open scoped Classical in
-/-- The indices `i ≤ N/log N`, which are excluded at the start of the argument.-/
+/-- The indices `i ≤ N/log N`, which are excluded at the start of the argument.
+@isnad1 id=le.1h1v.s7.0ea8d9c8a72f from=translated src=- shape=87f83b69 vocab=cb344044
+-/
 theorem card_small_indices_le {N : ℕ} (hlog : 100 ≤ Real.log N) :
     (((Finset.Icc 1 N).filter (fun i : ℕ => ¬ ((N : ℝ) / Real.log N < (i : ℝ)))).card : ℝ)
       ≤ 0.01 * (N : ℝ) := by
@@ -611,7 +662,9 @@ one gets `#{1 ≤ i ≤ N : P⁺(f(i)) > i log i / c} ≥ N/5` for all large `N`
 
 The three excluded families of indices contribute `0.01 N` (small indices), `0.52 N`
 (smooth indices) and `(2κ/c) N ≤ 0.27 N` (the discard step), and
-`1 - 0.01 - 0.52 - 0.27 = 0.2`.-/
+`1 - 0.01 - 0.52 - 0.27 = 0.2`.
+@isnad1 id=ex.7h2v.s8.f5032d6e80b1 from=translated src=- shape=d462585c vocab=724ef1dc
+-/
 theorem largePrimeFactor_of_estimates {c kap : ℝ} (hc : 8 ≤ c) (hc' : c ≤ 1000)
     (hkap1 : 1 ≤ kap) (hkap2 : kap ≤ 2) (hnum : 2 * kap / c ≤ 0.27)
     (hmert : ∃ C : ℝ, 0 ≤ C ∧ ∀ N : ℕ, 2 ≤ N →
@@ -713,7 +766,9 @@ manuscript's own threshold constant** `1/8`:
 This is the exact statement of the manuscript.  It needs the sharper prime-counting bound
 `π(y) ≤ 1.02 y/log y` (the field `LargePrimeInputs.primeCountingUpper`), because with the
 threshold constant `8` the discard step removes `2κ/8 · N` indices, and `0.27` requires
-`κ ≤ 1.08`.-/
+`κ ≤ 1.08`.
+@isnad1 id=ex.1h0v.s5.628245e07620 from=translated src=- shape=f1c3e7ec vocab=37cb2281
+-/
 theorem largePrimeFactor_of_inputs_eight (h : LargePrimeInputs) :
     ∃ N₀ : ℕ, ∀ N : ℕ, N₀ ≤ N → (N : ℝ) / 5 ≤ ((largePrimeFactorSetC 8 N).card : ℝ) :=
   largePrimeFactor_of_estimates (by norm_num) (by norm_num) (by norm_num) (by norm_num)
@@ -722,7 +777,9 @@ theorem largePrimeFactor_of_inputs_eight (h : LargePrimeInputs) :
 /-- **CONDITIONAL on `LargePrimeInputs`.**  The analytic input (A2), i.e. the field
 `AnalyticInputs.largePrimeFactor`, in the form used in this development (threshold
 constant `40`; see `largePrimeFactorSet`).  It follows from the manuscript's own form,
-since raising the threshold constant only enlarges the counted set.-/
+since raising the threshold constant only enlarges the counted set.
+@isnad1 id=ex.1h0v.s5.af9c730f5b64 from=translated src=- shape=a4eae582 vocab=54642fd4
+-/
 theorem largePrimeFactor_of_inputs (h : LargePrimeInputs) :
     ∃ N₀ : ℕ, ∀ N : ℕ, N₀ ≤ N → (N : ℝ) / 5 ≤ ((largePrimeFactorSet N).card : ℝ) := by
   obtain ⟨N₀, hN₀⟩ := largePrimeFactor_of_inputs_eight h
@@ -730,7 +787,9 @@ theorem largePrimeFactor_of_inputs (h : LargePrimeInputs) :
   exact_mod_cast Nat.cast_le.mpr (Finset.card_le_card (largePrimeFactorSet8_subset N))
 
 /-- Since (A1) is proved in `PrimeSupply.lean` and (A2) follows from `LargePrimeInputs`,
-a bundle of analytic inputs now only needs `LargePrimeInputs` and (A3).-/
+a bundle of analytic inputs now only needs `LargePrimeInputs` and (A3).
+@isnad1 id=analytic.2h0v.s7.73f6cf5092c4 from=translated src=- shape=6f71aad5 vocab=6ecf0c0c
+-/
 theorem AnalyticInputs.of_largePrimeInputs (h : LargePrimeInputs)
     (h3 : ∃ C₀ : ℝ, 1 ≤ C₀ ∧ ∃ L₀ : ℕ, ∀ α : ℝ, 0 < α → α ≤ 1 / 2 →
       ∀ L : ℕ, L₀ ≤ L →

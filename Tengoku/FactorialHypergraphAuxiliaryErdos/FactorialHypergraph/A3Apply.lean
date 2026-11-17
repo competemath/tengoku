@@ -30,7 +30,9 @@ open Finset
 
 /-! ## Auxiliary counting lemmas -/
 
-/-- `∑_{d ≤ M} τ(d) ≤ M (1 + log M)`.-/
+/-- `∑_{d ≤ M} τ(d) ≤ M (1 + log M)`.
+@isnad1 id=le.0h1v.s5.474b144961c8 from=translated src=- shape=0591c961 vocab=5405fab6
+-/
 theorem sum_card_divisors_le (M : ℕ) :
     ∑ d ∈ Finset.Icc 1 M, ((d.divisors.card : ℕ) : ℝ) ≤ (M : ℝ) * (1 + Real.log M) := by
   classical
@@ -57,7 +59,9 @@ theorem sum_card_divisors_le (M : ℕ) :
     _ ≤ (M : ℝ) * (1 + Real.log M) :=
         mul_le_mul_of_nonneg_left (sum_inv_le_one_add_log M) (by positivity)
 
-/-- The root count is multiplicative on squarefree products of distinct primes.-/
+/-- The root count is multiplicative on squarefree products of distinct primes.
+@isnad1 id=eq.1h1v.s5.9cb5aeead749 from=translated src=- shape=ed3dca48 vocab=79277536
+-/
 theorem rootCount_prod_primes (S : Finset ℕ) (hS : ∀ ℓ ∈ S, Nat.Prime ℓ) :
     rootCount (∏ ℓ ∈ S, ℓ) = ∏ ℓ ∈ S, rootCount ℓ := by
   classical
@@ -74,7 +78,9 @@ theorem rootCount_prod_primes (S : Finset ℕ) (hS : ∀ ℓ ∈ S, Nat.Prime �
       rootCount_mul_of_coprime hp.ne_zero (Finset.prod_pos (fun ℓ hl => (hS' ℓ hl).pos)).ne' hcop,
       ih hS']
 
-/-- Counting fibrewise: `#{t ∈ s : Q (f t)} = ∑_{n ∈ f(s), Q n} #{t ∈ s : f t = n}`.-/
+/-- Counting fibrewise: `#{t ∈ s : Q (f t)} = ∑_{n ∈ f(s), Q n} #{t ∈ s : f t = n}`.
+@isnad1 id=eq.0h3v.s6.a2e0b577f519 from=translated src=- shape=99144065 vocab=f0166f87
+-/
 theorem card_filter_comp_eq_sum (s : Finset ℕ) (f : ℕ → ℕ) (Q : ℕ → Prop) [DecidablePred Q] :
     ((s.filter (fun t => Q (f t))).card : ℝ)
       = ∑ n ∈ (s.image f).filter Q, ((s.filter (fun t => f t = n)).card : ℝ) := by
@@ -98,7 +104,9 @@ theorem card_filter_comp_eq_sum (s : Finset ℕ) (f : ℕ → ℕ) (Q : ℕ → 
 
 /-! ## Coprimality of the sieve divisors -/
 
-/-- Every divisor of `∏ P` is coprime to `m`.-/
+/-- Every divisor of `∏ P` is coprime to `m`.
+@isnad1 id=and.1h3v.s5.d2678ceb0e54 from=translated src=- shape=dee611d4 vocab=3aab1cbe
+-/
 theorem coprime_of_mem_sieveDivisors {m d : ℕ} {z : ℝ}
     (hd : d ∈ sieveDivisors (sievePrimes m z)) : Nat.Coprime d m ∧ 0 < d := by
   classical
@@ -123,7 +131,9 @@ open scoped Classical in
   `#{t ∈ T : G(t) prime, G(t) > L} ≤ C (H · V_m(z) + ∑_{d ∣ ∏P, d ≤ D} ρ(d))`.
 
 The constant `C` is absolute (it depends only on the three absolute constants fed to the
-sieve theorem).-/
+sieve theorem).
+@isnad1 id=ex.1h0v.s7.24bab1efcc86 from=translated src=- shape=cd1bc355 vocab=e32ed693
+-/
 theorem sieve_bound_single (hs : UpperBoundSieveDimOne) :
     ∃ C : ℝ, 0 < C ∧ ∀ (L m a : ℕ) (z D : ℝ), 0 < m → a < m → m ∣ fq a →
       2 ≤ z → z ≤ (L : ℝ) → z ^ (10 : ℕ) ≤ D →
@@ -255,7 +265,9 @@ theorem sieve_bound_single (hs : UpperBoundSieveDimOne) :
 
 /-! ## Summing the remainders -/
 
-/-- `∑_{d ∣ ∏P, d ≤ D} ρ(d) ≤ D (1 + log D)`, using `ρ(d) ≤ τ(d)` and `∑_{d ≤ M} τ(d) ≤ M(1+log M)`.-/
+/-- `∑_{d ∣ ∏P, d ≤ D} ρ(d) ≤ D (1 + log D)`, using `ρ(d) ≤ τ(d)` and `∑_{d ≤ M} τ(d) ≤ M(1+log M)`.
+@isnad1 id=le.1h3v.s6.3f64cd9f52b5 from=translated src=- shape=ec6d73a2 vocab=07c9c3c6
+-/
 theorem sum_rootCount_sieveDivisors_le (m : ℕ) (z D : ℝ) (hD : 1 ≤ D) :
     ∑ d ∈ sieveDivisors (sievePrimes m z) with (((d : ℕ) : ℝ) ≤ D), (rootCount d : ℝ)
       ≤ D * (1 + Real.log D) := by
@@ -285,7 +297,9 @@ theorem sum_rootCount_sieveDivisors_le (m : ℕ) (z D : ℝ) (hD : 1 ≤ D) :
 
 /-! ### Elementary real-analytic auxiliaries -/
 
-/-- `H / log H ≤ 8 L /(m log L)` when `H ≤ 2L/m` and `log L / 4 ≤ log H`.-/
+/-- `H / log H ≤ 8 L /(m log L)` when `H ≤ 2L/m` and `log L / 4 ≤ log H`.
+@isnad1 id=le.6h3v.s7.9e55c068f0e2 from=translated src=- shape=8707265d vocab=3910d10d
+-/
 theorem div_log_le_aux {L m HR : ℝ} (hL0 : 0 < L) (hmR0 : 0 < m)
     (hHR2 : HR ≤ 2 * L / m) (hlogL100 : (100:ℝ) ≤ Real.log L)
     (hlogHRlow : Real.log L / 4 ≤ Real.log HR) (hlogHRpos : 0 < Real.log HR) :
@@ -298,7 +312,9 @@ theorem div_log_le_aux {L m HR : ℝ} (hL0 : 0 < L) (hmR0 : 0 < m)
   have hHRm : HR * m ≤ 2 * L := (le_div_iff₀ hmR0).mp hHR2
   nlinarith [hHRm, hlogHRlow, hL0, hlogL100, hlogHRpos]
 
-/-- Combining a main term and a remainder term into a single constant.-/
+/-- Combining a main term and a remainder term into a single constant.
+@isnad1 id=le.5h5v.s7.97505e65f001 from=translated src=- shape=3bd718f8 vocab=62f9b668
+-/
 theorem combine_terms_aux {A B X Y C : ℝ} (hA : A ≤ 160 * C * X) (hB : B ≤ 4 * Y)
     (hX0 : 0 ≤ X) (hY0 : 0 ≤ Y) (hC : 0 < C) : A + B ≤ (160 * C + 4) * (X + Y) := by
   nlinarith [mul_nonneg (mul_nonneg (by norm_num : (0:ℝ) ≤ 160) hC.le) hY0,
@@ -311,7 +327,9 @@ open scoped Classical in
 
 The manuscript's estimate `S_{a,m} ≪ H h(m)/log L + H^{1/2} log L` with `H ≍ L/m`, uniformly
 for `1 ≤ m ≤ √L` and every root `a` of `f` modulo `m`.  The sieve is applied with
-`z = H^{1/20}` and `D = H^{1/2}` exactly as in the manuscript.-/
+`z = H^{1/20}` and `D = H^{1/2}` exactly as in the manuscript.
+@isnad1 id=ex.1h0v.s7.fd45920cbea4 from=translated src=- shape=4cf8d5b2 vocab=72dbea85
+-/
 theorem card_prime_values_le (hs : UpperBoundSieveDimOne) :
     ∃ C : ℝ, 0 < C ∧ ∃ L₀ : ℕ, ∀ L : ℕ, L₀ ≤ L → ∀ m : ℕ, 0 < m → (m : ℝ) ≤ Real.sqrt L →
       ∀ a : ℕ, a < m → m ∣ fq a →

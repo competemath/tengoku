@@ -41,7 +41,9 @@ open Finset
 
 /-! ## `∑_{n ≤ N} log n ≥ N log N - N` -/
 
-/-- `N log N - N ≤ ∑_{n ≤ N} log n`, by induction, using `log (1 + 1/N) ≤ 1/N`.-/
+/-- `N log N - N ≤ ∑_{n ≤ N} log n`, by induction, using `log (1 + 1/N) ≤ 1/N`.
+@isnad1 id=le.0h1v.s5.9d7107a94536 from=translated src=- shape=6602d48f vocab=af57af8c
+-/
 theorem sum_log_ge (N : ℕ) :
     (N : ℝ) * Real.log N - N ≤ ∑ n ∈ Finset.Icc 1 N, Real.log n := by
   induction N with
@@ -71,7 +73,9 @@ theorem sum_log_ge (N : ℕ) :
 
 /-! ## Mertens' first theorem, lower bound, von Mangoldt form -/
 
-/-- **Mertens' first theorem (lower bound).**  `log N - 1 ≤ ∑_{n ≤ N} Λ(n)/n`.-/
+/-- **Mertens' first theorem (lower bound).**  `log N - 1 ≤ ∑_{n ≤ N} Λ(n)/n`.
+@isnad1 id=le.1h1v.s6.9fd5f99174d1 from=translated src=- shape=76cb8a61 vocab=56367326
+-/
 theorem sum_vonMangoldt_div_ge {N : ℕ} (hN : 1 ≤ N) :
     Real.log N - 1 ≤ ∑ n ∈ Finset.Icc 1 N, ArithmeticFunction.vonMangoldt n / n := by
   have hN0 : (0 : ℝ) < N := by exact_mod_cast hN
@@ -97,7 +101,9 @@ theorem sum_vonMangoldt_div_ge {N : ℕ} (hN : 1 ≤ N) :
 
 /-! ## A geometric tail -/
 
-/-- `∑_{k = 2}^{M} x^{-k} ≤ 1/(x(x-1))` for `x ≥ 2`.-/
+/-- `∑_{k = 2}^{M} x^{-k} ≤ 1/(x(x-1))` for `x ≥ 2`.
+@isnad1 id=le.1h2v.s6.0fbd8f8b9269 from=translated src=- shape=4f277464 vocab=ade78e87
+-/
 theorem sum_inv_pow_Icc_le {x : ℝ} (hx : 2 ≤ x) (M : ℕ) :
     ∑ k ∈ Finset.Icc 2 M, (x ^ k)⁻¹ ≤ (x * (x - 1))⁻¹ := by
   have hx0 : (0 : ℝ) < x := by linarith
@@ -125,7 +131,9 @@ theorem sum_inv_pow_Icc_le {x : ℝ} (hx : 2 ≤ x) (M : ℕ) :
 
 open scoped Classical in
 /-- The contribution of the proper prime powers, `∑_{n ≤ N, n not prime} Λ(n)/n`, is bounded
-uniformly in `N`: it is at most `∑_{p ≤ N} log p/(p(p-1))`.-/
+uniformly in `N`: it is at most `∑_{p ≤ N} log p/(p(p-1))`.
+@isnad1 id=ex.0h0v.s6.3680187a975a from=translated src=- shape=8927be56 vocab=b72b5349
+-/
 theorem sum_vonMangoldt_nonprime_le :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ N : ℕ,
       ∑ n ∈ (Finset.Icc 1 N).filter (fun n => ¬ Nat.Prime n),
@@ -241,7 +249,9 @@ theorem sum_vonMangoldt_nonprime_le :
 /-! ## Mertens' first theorem, lower bound, prime form -/
 
 open scoped Classical in
-/-- The primes up to `N`, as a filter of `Icc 1 N`.-/
+/-- The primes up to `N`, as a filter of `Icc 1 N`.
+@isnad1 id=eq.0h1v.s4.57a49ce7df76 from=translated src=- shape=8ea750c2 vocab=553aa03e
+-/
 theorem filter_prime_Icc_eq (N : ℕ) :
     (Finset.Icc 1 N).filter (fun n => Nat.Prime n) = primesLE N := by
   ext p
@@ -251,7 +261,9 @@ theorem filter_prime_Icc_eq (N : ℕ) :
   · rintro ⟨h1, h2⟩; exact ⟨⟨h2.one_lt.le.trans' (by norm_num), h1⟩, h2⟩
 
 open scoped Classical in
-/-- Splitting the von Mangoldt sum into its prime part and its prime-power part.-/
+/-- Splitting the von Mangoldt sum into its prime part and its prime-power part.
+@isnad1 id=eq.0h1v.s7.3926c6b71039 from=translated src=- shape=11f73894 vocab=32f25e55
+-/
 theorem sum_vonMangoldt_split (N : ℕ) :
     ∑ n ∈ Finset.Icc 1 N, ArithmeticFunction.vonMangoldt n / n
       = (∑ p ∈ primesLE N, Real.log p / p)
@@ -265,7 +277,9 @@ theorem sum_vonMangoldt_split (N : ℕ) :
   rw [ArithmeticFunction.vonMangoldt_apply_prime (mem_primesLE.mp hp).2]
 
 /-- **Mertens' first theorem, prime form, lower bound.**
-`log N - C ≤ ∑_{p ≤ N} log p / p`, with an absolute `C`.-/
+`log N - C ≤ ∑_{p ≤ N} log p / p`, with an absolute `C`.
+@isnad1 id=ex.0h0v.s6.4f08d3b25388 from=translated src=- shape=eaaa6f33 vocab=7a5fbfed
+-/
 theorem sum_log_div_prime_ge :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ N : ℕ, 1 ≤ N →
       Real.log N - C ≤ ∑ p ∈ primesLE N, Real.log p / p := by
@@ -281,7 +295,9 @@ theorem sum_log_div_prime_ge :
 /-! ## The root-weighted Mertens estimates in the `1/p` normalisation -/
 
 open scoped Classical in
-/-- The character-twisted prime sum `∑_{p ≤ N} χ₅(p) log p / p` is bounded.-/
+/-- The character-twisted prime sum `∑_{p ≤ N} χ₅(p) log p / p` is bounded.
+@isnad1 id=ex.0h0v.s5.ea4faf836238 from=translated src=- shape=8efffc3e vocab=f0830324
+-/
 theorem chi5_prime_sum_bounded :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ N : ℕ,
       |∑ p ∈ primesLE N, chi5 p * Real.log p / p| ≤ C := by
@@ -319,7 +335,9 @@ theorem chi5_prime_sum_bounded :
 
 /-- **The root-weighted Mertens lower bound.**
 `log N - C ≤ ∑_{p ≤ N} ρ(p) log p / p`, with an absolute `C`; here `ρ = rootCount` is the
-number of roots of `f(t) = t² + 3t + 1` modulo `p`, and `ρ(p) = 1 + χ₅(p)`.-/
+number of roots of `f(t) = t² + 3t + 1` modulo `p`, and `ρ(p) = 1 + χ₅(p)`.
+@isnad1 id=ex.0h0v.s6.b530fae4664d from=translated src=- shape=2421a2ec vocab=c50896ea
+-/
 theorem mertensRoots_lower :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ N : ℕ, 1 ≤ N →
       Real.log N - C ≤ ∑ p ∈ primesLE N, (rootCount p : ℝ) * Real.log p / p := by
@@ -341,7 +359,9 @@ theorem mertensRoots_lower :
   linarith
 
 /-- The root-weighted Mertens **upper** bound in the `1/p` normalisation (a weakening of
-`mertensRoots_unconditional`, which is stated with `1/(p-1)`).-/
+`mertensRoots_unconditional`, which is stated with `1/(p-1)`).
+@isnad1 id=ex.0h0v.s6.65c865a99d17 from=translated src=- shape=c181c43b vocab=f2dcce57
+-/
 theorem mertensRoots_upper_div_p :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ N : ℕ, 2 ≤ N →
       ∑ p ∈ primesLE N, (rootCount p : ℝ) * Real.log p / p ≤ Real.log N + C := by

@@ -52,22 +52,36 @@ open Finset
 def chi5 (n : ℕ) : ℝ :=
   if n % 5 = 1 ∨ n % 5 = 4 then 1 else if n % 5 = 2 ∨ n % 5 = 3 then -1 else 0
 
+/--
+@isnad1 id=eq.1h2v.s5.2794fcf51134 from=translated src=- shape=8ef3ec23 vocab=d23a4d44
+-/
 lemma chi5_congr {m n : ℕ} (h : m % 5 = n % 5) : chi5 m = chi5 n := by
   simp only [chi5, h]
 
+/--
+@isnad1 id=le.0h1v.s4.e1bc6224e1d1 from=translated src=- shape=562e4a6d vocab=01e557cc
+-/
 lemma abs_chi5_le_one (n : ℕ) : |chi5 n| ≤ 1 := by
   simp only [chi5]
   split_ifs <;> simp
 
+/--
+@isnad1 id=le.0h1v.s4.e13d23966535 from=translated src=- shape=51aeb660 vocab=e9ad714f
+-/
 lemma chi5_nonneg_one_add (n : ℕ) : 0 ≤ 1 + chi5 n := by
   simp only [chi5]
   split_ifs <;> norm_num
 
+/--
+@isnad1 id=le.0h1v.s4.033a41a80a66 from=translated src=- shape=5d131662 vocab=e9ad714f
+-/
 lemma chi5_one_add_le_two (n : ℕ) : 1 + chi5 n ≤ 2 := by
   simp only [chi5]
   split_ifs <;> norm_num
 
-/-- `χ₅` is completely multiplicative.-/
+/-- `χ₅` is completely multiplicative.
+@isnad1 id=eq.0h2v.s4.cfc57909d351 from=translated src=- shape=0438c7a3 vocab=7eef2ec1
+-/
 theorem chi5_mul (m n : ℕ) : chi5 (m * n) = chi5 m * chi5 n := by
   have e1 : chi5 m = chi5 (m % 5) := chi5_congr (by omega)
   have e2 : chi5 n = chi5 (n % 5) := chi5_congr (by omega)
@@ -77,7 +91,9 @@ theorem chi5_mul (m n : ℕ) : chi5 (m * n) = chi5 m * chi5 n := by
   rw [e1, e2, e3]
   interval_cases h1 : (m % 5) <;> interval_cases h2 : (n % 5) <;> norm_num [chi5]
 
-/-- The exact value of the partial sums of `χ₅`.-/
+/-- The exact value of the partial sums of `χ₅`.
+@isnad1 id=eq.0h1v.s6.869498539107 from=translated src=- shape=6df5ed12 vocab=bbf7c62d
+-/
 theorem sum_chi5_eq (N : ℕ) :
     ∑ n ∈ Finset.Icc 1 N, chi5 n = if N % 5 = 1 then 1 else if N % 5 = 3 then -1 else 0 := by
   induction N with
@@ -92,12 +108,16 @@ theorem sum_chi5_eq (N : ℕ) :
         norm_num [chi5]
         try omega
 
-/-- The partial sums of `χ₅` are bounded by `1`.-/
+/-- The partial sums of `χ₅` are bounded by `1`.
+@isnad1 id=le.0h1v.s5.a8bcdf2ec0d2 from=translated src=- shape=fb5d2195 vocab=98df7952
+-/
 theorem abs_sum_chi5_le (N : ℕ) : |∑ n ∈ Finset.Icc 1 N, chi5 n| ≤ 1 := by
   rw [sum_chi5_eq]
   split_ifs <;> norm_num
 
-/-- The sums of `χ₅` over an interval are bounded by `2`.-/
+/-- The sums of `χ₅` over an interval are bounded by `2`.
+@isnad1 id=le.0h2v.s5.799cd14204a4 from=translated src=- shape=cbaa21d3 vocab=b7526d3c
+-/
 theorem abs_sum_chi5_Ioc_le (M N : ℕ) : |∑ n ∈ Finset.Ioc M N, chi5 n| ≤ 2 := by
   rcases le_or_gt M N with h | h
   · have hcons := Finset.sum_Ioc_consecutive (fun n => chi5 n) (Nat.zero_le M) h
@@ -125,7 +145,9 @@ noncomputable def T (N : ℕ) : ℝ := ∑ n ∈ Finset.Icc 1 N, chi5 n * Real.l
 noncomputable def U (N : ℕ) : ℝ :=
   ∑ n ∈ Finset.Icc 1 N, chi5 n * ArithmeticFunction.vonMangoldt n / n
 
-/-- Tail estimate for `S`, by the Dirichlet test.-/
+/-- Tail estimate for `S`, by the Dirichlet test.
+@isnad1 id=le.2h2v.s6.e78ddf07ccfb from=translated src=- shape=245ccec6 vocab=d37189b0
+-/
 theorem abs_S_sub_S_le {M N : ℕ} (hM : 1 ≤ M) (hMN : M ≤ N) :
     |S N - S M| ≤ 2 / (M + 1) := by
   have hIcc : ∀ k : ℕ, Finset.Icc 1 k = Finset.Ioc 0 k := fun _ => rfl
@@ -147,7 +169,9 @@ theorem abs_S_sub_S_le {M N : ℕ} (hM : 1 ≤ M) (hMN : M ≤ N) :
       linarith)
   simpa only [div_eq_mul_inv, one_mul, Nat.cast_add, Nat.cast_one] using h
 
-/-- `T` is bounded.-/
+/-- `T` is bounded.
+@isnad1 id=le.0h1v.s4.9841ffa6dd13 from=translated src=- shape=562e4a6d vocab=196c669e
+-/
 theorem abs_T_le (N : ℕ) : |T N| ≤ 2 := by
   have hIcc : ∀ k : ℕ, Finset.Icc 1 k = Finset.Ioc 0 k := fun _ => rfl
   have hanti : ∀ n : ℕ, 2 < n → Real.log ((n : ℝ) + 1) / ((n : ℝ) + 1) ≤ Real.log n / n := by
@@ -184,7 +208,9 @@ theorem abs_T_le (N : ℕ) : |T N| ≤ 2 := by
     linarith
 
 /-- **Explicit positivity of `L(1, χ₅)` at the level of partial sums.**
-For `N ≥ 5` one has `S N ≥ 1/12`; here `S 5 = 5/12` and the tail is at most `1/3`.-/
+For `N ≥ 5` one has `S N ≥ 1/12`; here `S 5 = 5/12` and the tail is at most `1/3`.
+@isnad1 id=le.1h1v.s5.54c9ce48fb92 from=translated src=- shape=2f4bf609 vocab=d76725ba
+-/
 theorem S_ge {N : ℕ} (hN : 5 ≤ N) : (1 : ℝ) / 12 ≤ S N := by
   have h5 : S 5 = 5 / 12 := by norm_num [S, chi5, Finset.sum_Icc_succ_top]
   have h := abs_S_sub_S_le (M := 5) (N := N) (by norm_num) hN
@@ -195,7 +221,9 @@ theorem S_ge {N : ℕ} (hN : 5 ≤ N) : (1 : ℝ) / 12 ≤ S N := by
 
 /-! ## The Shapiro argument -/
 
-/-- The divisor identity `T N = ∑_{d ≤ N} (χ₅(d) Λ(d)/d) · S(N/d)`.-/
+/-- The divisor identity `T N = ∑_{d ≤ N} (χ₅(d) Λ(d)/d) · S(N/d)`.
+@isnad1 id=eq.0h1v.s6.f4759ba887f4 from=translated src=- shape=246c2011 vocab=490d5edd
+-/
 theorem T_eq_sum (N : ℕ) :
     T N = ∑ d ∈ Finset.Icc 1 N,
       (chi5 d * ArithmeticFunction.vonMangoldt d / d) * S (N / d) := by
@@ -230,7 +258,9 @@ theorem T_eq_sum (N : ℕ) :
   ring
 
 /-- **Mertens' theorem for `χ₅`, von Mangoldt form.**  The twisted sums
-`∑_{n ≤ N} χ₅(n) Λ(n)/n` are bounded uniformly in `N`.-/
+`∑_{n ≤ N} χ₅(n) Λ(n)/n` are bounded uniformly in `N`.
+@isnad1 id=le.0h1v.s6.d652541336e8 from=translated src=- shape=7b0fd87f vocab=6e046304
+-/
 theorem abs_U_le (N : ℕ) : |U N| ≤ 12 * (2 + 2 * (Real.log 4 + 4)) := by
   have hlog4 : (0 : ℝ) ≤ Real.log 4 := Real.log_nonneg (by norm_num)
   have hlog4' : Real.log 4 ≤ 1.4 := by
@@ -316,7 +346,9 @@ theorem abs_U_le (N : ℕ) : |U N| ≤ 12 * (2 + 2 * (Real.log 4 + 4)) := by
     have hprod : S N * |U N| = |S N * U N| := by rw [abs_mul, abs_of_pos hSpos]
     nlinarith [abs_nonneg (U N), hSU, hprod, hS]
 
-/-- The conclusion in the form used later.-/
+/-- The conclusion in the form used later.
+@isnad1 id=ex.0h0v.s6.7a2bcaa0bbd1 from=translated src=- shape=caea6c4f vocab=3ce2f373
+-/
 theorem chi5_vonMangoldt_sum_bounded :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ N : ℕ,
       |∑ n ∈ Finset.Icc 1 N, chi5 n * ArithmeticFunction.vonMangoldt n / n| ≤ C :=

@@ -47,20 +47,26 @@ def MertensProgressions : Prop :=
       |(∑ p ∈ Finset.Icc 1 N with (Nat.Prime p ∧ p % q = r % q), (1 : ℝ) / p)
         - Real.log (Real.log N) / (q.totient : ℝ)| ≤ C
 
-/-- The primes counted by `χ₅ = 1` are exactly those in the two residue classes `±1 (mod 5)`.-/
+/-- The primes counted by `χ₅ = 1` are exactly those in the two residue classes `±1 (mod 5)`.
+@isnad1 id=iff.0h1v.s5.66cde7146dbc from=translated src=- shape=6c399478 vocab=d23a4d44
+-/
 theorem chi5_eq_one_iff (n : ℕ) : chi5 n = 1 ↔ (n % 5 = 1 ∨ n % 5 = 4) := by
   unfold chi5
   have h : n % 5 < 5 := Nat.mod_lt _ (by norm_num)
   interval_cases h5 : (n % 5) <;> norm_num
 
-/-- Every prime `p` with `χ₅(p) = 1` satisfies `p ≥ 11`.-/
+/-- Every prime `p` with `χ₅(p) = 1` satisfies `p ≥ 11`.
+@isnad1 id=le.2h1v.s4.4cc12dec688a from=translated src=- shape=6629c1ae vocab=b50e1358
+-/
 theorem eleven_le_of_chi5_eq_one {p : ℕ} (hp : p.Prime) (h : chi5 p = 1) : 11 ≤ p := by
   by_contra hlt
   push_neg at hlt
   interval_cases p <;> simp_all (config := { decide := true }) [chi5_eq_one_iff]
 
 /-- **The Mertens input in the form used below.**  Conditional on `MertensProgressions`, the
-sum of the reciprocals of the primes `p ≤ N` with `χ₅(p) = 1` is `(log log N)/2 + O(1)`.-/
+sum of the reciprocals of the primes `p ≤ N` with `χ₅(p) = 1` is `(log log N)/2 + O(1)`.
+@isnad1 id=ex.1h0v.s7.603c5a0204b5 from=translated src=- shape=eeeeb833 vocab=17f8933c
+-/
 theorem sum_inv_primes_chi5_of_progressions (h : MertensProgressions) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ N : ℕ, 3 ≤ N →
       |(∑ p ∈ Finset.Icc 1 N with (Nat.Prime p ∧ chi5 p = 1), (1 : ℝ) / p)
@@ -115,7 +121,9 @@ an elementary argument (Mertens' first theorem in both directions, the elementar
 `|∑_{n ≤ N} χ₅(n)Λ(n)/n| ≤ C`, and summation by parts).  Consequently the hypothesis
 `MertensProgressions` is **no longer used anywhere** in the development: it is kept only as a
 record of what the manuscript's proof appeals to, and the sieve estimate (A3) now depends on
-the sieve theorem `UpperBoundSieveDimOne` alone.-/
+the sieve theorem `UpperBoundSieveDimOne` alone.
+@isnad1 id=ex.0h0v.s7.bf6a5daaa9d1 from=translated src=- shape=7f877ea0 vocab=81c18c6c
+-/
 theorem sum_inv_primes_chi5 :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ N : ℕ, 3 ≤ N →
       |(∑ p ∈ Finset.Icc 1 N with (Nat.Prime p ∧ chi5 p = 1), (1 : ℝ) / p)

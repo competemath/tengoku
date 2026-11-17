@@ -34,6 +34,9 @@ def Tset (L m a : ℕ) : Finset ℕ :=
 /-- `G_{a,m}(t) = f(a + m t)/m`.-/
 def Gpoly (m a t : ℕ) : ℕ := fq (a + m * t) / m
 
+/--
+@isnad1 id=iff.1h4v.s6.308031342d1b from=translated src=- shape=8cdeac1a vocab=a5fd8b1e
+-/
 theorem mem_Tset {L m a t : ℕ} (hm : 0 < m) :
     t ∈ Tset L m a ↔ (1 ≤ a + m * t ∧ a + m * t ≤ L) := by
   constructor
@@ -43,18 +46,24 @@ theorem mem_Tset {L m a t : ℕ} (hm : 0 < m) :
     have : t ≤ m * t := Nat.le_mul_of_pos_left t hm
     omega
 
-/-- `m` divides `f(a + m t)` whenever it divides `f(a)`.-/
+/-- `m` divides `f(a + m t)` whenever it divides `f(a)`.
+@isnad1 id=dvd.1h3v.s5.1a2c63cf3ae8 from=translated src=- shape=17cd5415 vocab=291b3165
+-/
 theorem dvd_fq_add_mul {m a : ℕ} (hdvd : m ∣ fq a) (t : ℕ) : m ∣ fq (a + m * t) := by
   have h : a + m * t ≡ a [MOD m] := by
     simp [Nat.ModEq, Nat.add_mul_mod_self_left]
   exact Nat.modEq_zero_iff_dvd.mp ((fq_modEq h).trans (Nat.modEq_zero_iff_dvd.mpr hdvd))
 
-/-- `m · G(t) = f(a + m t)`.-/
+/-- `m · G(t) = f(a + m t)`.
+@isnad1 id=eq.1h3v.s5.1777cec3d1d2 from=translated src=- shape=4e29f239 vocab=365c211d
+-/
 theorem Gpoly_spec {m a : ℕ} (hdvd : m ∣ fq a) (t : ℕ) :
     m * Gpoly m a t = fq (a + m * t) :=
   Nat.mul_div_cancel' (dvd_fq_add_mul hdvd t)
 
-/-- The manuscript's explicit form `G(t) = m t² + (2a+3) t + f(a)/m`.-/
+/-- The manuscript's explicit form `G(t) = m t² + (2a+3) t + f(a)/m`.
+@isnad1 id=eq.2h3v.s6.5937f92c44c5 from=translated src=- shape=5a039c00 vocab=404e3f5a
+-/
 theorem Gpoly_eq {m a : ℕ} (hm : 0 < m) (_hdvd : m ∣ fq a) (t : ℕ) :
     Gpoly m a t = m * t ^ 2 + (2 * a + 3) * t + fq a / m := by
   have h : fq (a + m * t) = m * (m * t ^ 2 + (2 * a + 3) * t) + fq a := by
@@ -62,7 +71,9 @@ theorem Gpoly_eq {m a : ℕ} (hm : 0 < m) (_hdvd : m ∣ fq a) (t : ℕ) :
   unfold Gpoly
   rw [h, Nat.mul_add_div hm]
 
-/-- Positivity of `G`.-/
+/-- Positivity of `G`.
+@isnad1 id=lt.2h3v.s5.e676e3809d15 from=translated src=- shape=1ff4a8c6 vocab=30b4b76d
+-/
 theorem Gpoly_pos {m a : ℕ} (_hm : 0 < m) (hdvd : m ∣ fq a) (t : ℕ) : 0 < Gpoly m a t := by
   by_contra hcon
   push_neg at hcon
@@ -71,7 +82,9 @@ theorem Gpoly_pos {m a : ℕ} (_hm : 0 < m) (hdvd : m ∣ fq a) (t : ℕ) : 0 < 
   rw [h0, Nat.mul_zero] at this
   exact (fq_pos (a + m * t)).ne this
 
-/-- **Discriminant 5.**  `4 m G(t) + 5 = (2(a + m t) + 3)²`.-/
+/-- **Discriminant 5.**  `4 m G(t) + 5 = (2(a + m t) + 3)²`.
+@isnad1 id=eq.1h3v.s6.baea168b9e81 from=translated src=- shape=e2020668 vocab=204e239c
+-/
 theorem Gpoly_discriminant {m a : ℕ} (hdvd : m ∣ fq a) (t : ℕ) :
     4 * m * Gpoly m a t + 5 = (2 * (a + m * t) + 3) ^ 2 := by
   calc 4 * m * Gpoly m a t + 5 = 4 * (m * Gpoly m a t) + 5 := by ring
@@ -79,7 +92,9 @@ theorem Gpoly_discriminant {m a : ℕ} (hdvd : m ∣ fq a) (t : ℕ) :
     _ = (2 * (a + m * t) + 3) ^ 2 := four_mul_fq_add_five _
 
 /-- **Primitivity of `G`.**  No prime divides all three coefficients of `G`; indeed the
-square of such a prime would divide `(2a+3)² - 4 f(a) = 5`.-/
+square of such a prime would divide `(2a+3)² - 4 f(a) = 5`.
+@isnad1 id=not.5h3v.s6.d01573206dc9 from=translated src=- shape=5ae5f917 vocab=e6bb3b72
+-/
 theorem Gpoly_primitive {m a : ℕ} (_hm : 0 < m) (hdvd : m ∣ fq a) {p : ℕ} (hp : p.Prime)
     (h1 : p ∣ m) (h2 : p ∣ 2 * a + 3) : ¬ (p ∣ fq a / m) := by
   intro h3
@@ -102,7 +117,9 @@ theorem Gpoly_primitive {m a : ℕ} (_hm : 0 < m) (hdvd : m ∣ fq a) {p : ℕ} 
 
 /-! ## The interval structure and the length `H` -/
 
-/-- `T_{a,m}` is an interval of integers.-/
+/-- `T_{a,m}` is an interval of integers.
+@isnad1 id=eq.1h3v.s6.280f0151f2ff from=translated src=- shape=40840750 vocab=c0dc179d
+-/
 theorem Tset_eq_Ico (L m a : ℕ) (hm : 0 < m) :
     Tset L m a =
       Finset.Ico (if a = 0 then 1 else 0) (if a ≤ L then (L - a) / m + 1 else 0) := by
@@ -138,12 +155,16 @@ theorem Tset_eq_Ico (L m a : ℕ) (hm : 0 < m) :
     · rintro ⟨-, h2⟩; omega
     · rintro ⟨-, h2⟩; omega
 
-/-- `T_{a,m}` is an interval of integers (existential form).-/
+/-- `T_{a,m}` is an interval of integers (existential form).
+@isnad1 id=ex.1h3v.s5.ba4001411766 from=translated src=- shape=d8f88493 vocab=9d1c327f
+-/
 theorem Tset_exists_Ico (L m a : ℕ) (hm : 0 < m) :
     ∃ t₀ t₁ : ℕ, Tset L m a = Finset.Ico t₀ t₁ :=
   ⟨_, _, Tset_eq_Ico L m a hm⟩
 
-/-- Elementary bounds for the natural-number quotient.-/
+/-- Elementary bounds for the natural-number quotient.
+@isnad1 id=and.1h2v.s6.bb35bc20ff65 from=translated src=- shape=64a3939c vocab=54cd24a2
+-/
 theorem nat_div_bounds (x m : ℕ) (hm : 0 < m) :
     ((x / m : ℕ) : ℝ) ≤ (x : ℝ) / (m : ℝ) ∧ (x : ℝ) / (m : ℝ) < ((x / m : ℕ) : ℝ) + 1 := by
   have hmR : (0 : ℝ) < (m : ℝ) := by exact_mod_cast hm
@@ -155,7 +176,9 @@ theorem nat_div_bounds (x m : ℕ) (hm : 0 < m) :
   rw [div_lt_iff₀ hmR]
   nlinarith
 
-/-- `H ≤ L/m + 1`.-/
+/-- `H ≤ L/m + 1`.
+@isnad1 id=le.1h3v.s5.28612186c126 from=translated src=- shape=31395d49 vocab=61f850de
+-/
 theorem card_Tset_le (L m a : ℕ) (hm : 0 < m) :
     ((Tset L m a).card : ℝ) ≤ (L : ℝ) / (m : ℝ) + 1 := by
   have hmR : (0 : ℝ) < (m : ℝ) := by exact_mod_cast hm
@@ -182,7 +205,9 @@ theorem card_Tset_le (L m a : ℕ) (hm : 0 < m) :
     rw [h0]
     positivity
 
-/-- `H ≥ L/m - 1`.-/
+/-- `H ≥ L/m - 1`.
+@isnad1 id=le.2h3v.s6.fb8d0a9d63af from=translated src=- shape=c69cca6b vocab=36e5d692
+-/
 theorem le_card_Tset (L m a : ℕ) (hm : 0 < m) (ham : a < m) :
     (L : ℝ) / (m : ℝ) - 1 ≤ ((Tset L m a).card : ℝ) := by
   have hmR : (0 : ℝ) < (m : ℝ) := by exact_mod_cast hm
@@ -217,7 +242,9 @@ theorem le_card_Tset (L m a : ℕ) (hm : 0 < m) (ham : a < m) :
 
 /-! ## Counting an interval in a residue class -/
 
-/-- Exactly one element of a window of `d` consecutive integers lies in a given class.-/
+/-- Exactly one element of a window of `d` consecutive integers lies in a given class.
+@isnad1 id=eq.2h3v.s6.1d369bafe08c from=translated src=- shape=b81415c1 vocab=dcf38567
+-/
 theorem card_window (u d r : ℕ) (hd : 0 < d) (hr : r < d) :
     ((Finset.Ico u (u + d)).filter (fun t => t % d = r)).card = 1 := by
   classical
@@ -248,7 +275,9 @@ theorem card_window (u d r : ℕ) (hd : 0 < d) (hr : r < d) :
   simp only [Finset.mem_filter] at hy
   exact hinj hy.1 ht (by show y % d = t % d; rw [hy.2, htr])
 
-/-- At most one element of a window of length `≤ d` lies in a given class.-/
+/-- At most one element of a window of length `≤ d` lies in a given class.
+@isnad1 id=le.1h4v.s6.1002570402b8 from=translated src=- shape=308037c2 vocab=ac3f0b74
+-/
 theorem card_window_le (u s d r : ℕ) (hs : s ≤ d) :
     ((Finset.Ico u (u + s)).filter (fun t => t % d = r)).card ≤ 1 := by
   classical
@@ -260,7 +289,9 @@ theorem card_window_le (u s d r : ℕ) (hs : s ≤ d) :
   have := Int.eq_zero_of_abs_lt_dvd hdvd (by rw [abs_lt]; omega)
   omega
 
-/-- Splitting an interval into `q` full periods and a remainder.-/
+/-- Splitting an interval into `q` full periods and a remainder.
+@isnad1 id=eq.2h5v.s7.5cc0e471055b from=translated src=- shape=40664f11 vocab=9aa0b287
+-/
 theorem card_block (d r : ℕ) (hd : 0 < d) (hr : r < d) (q : ℕ) : ∀ u s : ℕ,
     ((Finset.Ico u (u + (d * q + s))).filter (fun t => t % d = r)).card
       = q + ((Finset.Ico (u + d * q) (u + d * q + s)).filter (fun t => t % d = r)).card := by
@@ -284,7 +315,9 @@ theorem card_block (d r : ℕ) (hd : 0 < d) (hr : r < d) (q : ℕ) : ∀ u s : �
     omega
 
 /-- Counting the elements of an interval in a fixed residue class: the count differs from
-`(length)/d` by at most `1`.-/
+`(length)/d` by at most `1`.
+@isnad1 id=le.2h4v.s6.01234c8bf080 from=translated src=- shape=ccacd81d vocab=07010b8b
+-/
 theorem abs_card_Ico_mod_sub_le (t₀ t₁ d r : ℕ) (hd : 0 < d) (hr : r < d) :
     |((((Finset.Ico t₀ t₁).filter (fun t => t % d = r)).card : ℝ)) -
       ((Finset.Ico t₀ t₁).card : ℝ) / (d : ℝ)| ≤ 1 := by
@@ -328,7 +361,9 @@ theorem abs_card_Ico_mod_sub_le (t₀ t₁ d r : ℕ) (hd : 0 < d) (hr : r < d) 
 /-! ## The local counting formula -/
 
 /-- The number of residues `r mod d` with `d ∣ G(r)` equals `ρ(d) = rootCount d`, for `d`
-coprime to `m`: the affine substitution `t ↦ a + m t` is a bijection modulo `d`.-/
+coprime to `m`: the affine substitution `t ↦ a + m t` is a bijection modulo `d`.
+@isnad1 id=eq.4h3v.s6.bc6fe71d99de from=translated src=- shape=bc391ad4 vocab=48f9faee
+-/
 theorem card_roots_Gpoly {m a d : ℕ} (_hm : 0 < m) (hdvd : m ∣ fq a) (hd : 0 < d)
     (hcop : Nat.Coprime d m) :
     ((Finset.range d).filter (fun r => d ∣ Gpoly m a r)).card = rootCount d := by
@@ -382,7 +417,9 @@ theorem card_roots_Gpoly {m a d : ℕ} (_hm : 0 < m) (hdvd : m ∣ fq a) (hd : 0
     exact (dvd_fq_congr hcong).mpr hs.2
 
 /-- **The local counting formula** `#{t ∈ T : d ∣ G(t)} = H ρ(d)/d + r_d` with
-`|r_d| ≤ ρ(d)`, for every `d ≥ 1` coprime to `m`.-/
+`|r_d| ≤ ρ(d)`, for every `d ≥ 1` coprime to `m`.
+@isnad1 id=le.4h4v.s6.2e2e8a59d76d from=translated src=- shape=d3423d59 vocab=0356788a
+-/
 theorem abs_card_dvd_Gpoly_sub_le {L m a d : ℕ} (hm : 0 < m) (hdvd : m ∣ fq a) (hd : 0 < d)
     (hcop : Nat.Coprime d m) :
     |(((Tset L m a).filter (fun t => d ∣ Gpoly m a t)).card : ℝ)

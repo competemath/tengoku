@@ -39,7 +39,9 @@ open Finset
 /-! ## The divisor swap -/
 
 /-- **Dirichlet's divisor swap.**  For any `g : ℕ → ℕ → ℝ`,
-`∑_{n ≤ N} ∑_{d ∣ n} g d (n/d) = ∑_{d ≤ N} ∑_{m ≤ N/d} g d m`.-/
+`∑_{n ≤ N} ∑_{d ∣ n} g d (n/d) = ∑_{d ≤ N} ∑_{m ≤ N/d} g d m`.
+@isnad1 id=eq.0h2v.s6.64ff47dbea61 from=translated src=- shape=854b8641 vocab=cdc66166
+-/
 theorem sum_Icc_divisors_swap (N : ℕ) (g : ℕ → ℕ → ℝ) :
     ∑ n ∈ Finset.Icc 1 N, ∑ d ∈ n.divisors, g d (n / d)
       = ∑ d ∈ Finset.Icc 1 N, ∑ m ∈ Finset.Icc 1 (N / d), g d m := by
@@ -107,7 +109,9 @@ theorem sum_Icc_divisors_swap (N : ℕ) (g : ℕ → ℕ → ℝ) :
 
 /-! ## Mertens' first theorem (upper bound), von Mangoldt form -/
 
-/-- `∑_{n ≤ N} log n = ∑_{d ≤ N} Λ(d) ⌊N/d⌋`.-/
+/-- `∑_{n ≤ N} log n = ∑_{d ≤ N} Λ(d) ⌊N/d⌋`.
+@isnad1 id=eq.0h1v.s6.e0236481d350 from=translated src=- shape=5aa3bb6c vocab=2929c71f
+-/
 theorem sum_log_eq_sum_vonMangoldt_mul_floor (N : ℕ) :
     ∑ n ∈ Finset.Icc 1 N, Real.log n
       = ∑ d ∈ Finset.Icc 1 N, ArithmeticFunction.vonMangoldt d * ((N / d : ℕ) : ℝ) := by
@@ -118,7 +122,9 @@ theorem sum_log_eq_sum_vonMangoldt_mul_floor (N : ℕ) :
     Finset.sum_congr rfl fun n _ => ArithmeticFunction.vonMangoldt_sum.symm, h]
   exact Finset.sum_congr rfl fun d _ => mul_comm _ _
 
-/-- Chebyshev's upper bound in the form `∑_{n ≤ N} Λ(n) ≤ (log 4 + 4) N`.-/
+/-- Chebyshev's upper bound in the form `∑_{n ≤ N} Λ(n) ≤ (log 4 + 4) N`.
+@isnad1 id=le.0h1v.s6.393df2f4222b from=translated src=- shape=e9a84ef4 vocab=7dc1c7b1
+-/
 theorem sum_vonMangoldt_le (N : ℕ) :
     ∑ n ∈ Finset.Icc 1 N, ArithmeticFunction.vonMangoldt n ≤ (Real.log 4 + 4) * N := by
   have h := Chebyshev.psi_le_const_mul_self (x := (N : ℝ)) (by positivity)
@@ -127,7 +133,9 @@ theorem sum_vonMangoldt_le (N : ℕ) :
 
 /-- **Mertens' first theorem (upper bound).**  `∑_{n ≤ N} Λ(n)/n ≤ log N + (log 4 + 4)`.
 This is elementary: it uses only `∑_{n ≤ N} log n ≤ N log N`, the identity
-`∑_{n ≤ N} log n = ∑_{d ≤ N} Λ(d) ⌊N/d⌋` and Chebyshev's bound.-/
+`∑_{n ≤ N} log n = ∑_{d ≤ N} Λ(d) ⌊N/d⌋` and Chebyshev's bound.
+@isnad1 id=le.1h1v.s6.7eaad4e801e9 from=translated src=- shape=8d85ff0e vocab=f5b40dc3
+-/
 theorem sum_vonMangoldt_div_le {N : ℕ} (hN : 1 ≤ N) :
     ∑ n ∈ Finset.Icc 1 N, ArithmeticFunction.vonMangoldt n / n
       ≤ Real.log N + (Real.log 4 + 4) := by
@@ -164,14 +172,18 @@ theorem sum_vonMangoldt_div_le {N : ℕ} (hN : 1 ≤ N) :
 
 /-! ## The discrete Dirichlet test -/
 
-/-- Telescoping sum.-/
+/-- Telescoping sum.
+@isnad1 id=eq.1h3v.s6.70a68a9022a6 from=translated src=- shape=aa4b3c2d vocab=f3c8d589
+-/
 theorem sum_Ico_sub_succ (f : ℕ → ℝ) {a b : ℕ} (h : a ≤ b) :
     ∑ n ∈ Finset.Ico a b, (f n - f (n + 1)) = f a - f b := by
   induction b, h using Nat.le_induction with
   | base => simp
   | succ b hab ih => rw [Finset.sum_Ico_succ_top (by omega), ih]; ring
 
-/-- Summation by parts on `Ioc M N`.-/
+/-- Summation by parts on `Ioc M N`.
+@isnad1 id=eq.1h4v.s7.952682ccce73 from=translated src=- shape=6004e1e6 vocab=99383b29
+-/
 theorem sum_Ioc_by_parts (c f : ℕ → ℝ) (M : ℕ) {N : ℕ} (hMN : M ≤ N) :
     ∑ n ∈ Finset.Ioc M N, c n * f n
       = (∑ n ∈ Finset.Ioc M N, c n) * f N
@@ -186,7 +198,9 @@ theorem sum_Ioc_by_parts (c f : ℕ → ℝ) (M : ℕ) {N : ℕ} (hMN : M ≤ N)
 
 /-- **Discrete Dirichlet test.**  If all partial sums `∑_{M < n ≤ m} c n` are bounded in
 absolute value by `B`, and `f` is nonnegative and antitone on `(M, ∞)`, then
-`|∑_{M < n ≤ N} c n f n| ≤ B · f (M+1)`.-/
+`|∑_{M < n ≤ N} c n f n| ≤ B · f (M+1)`.
+@isnad1 id=le.3h5v.s7.e71aa45070a5 from=translated src=- shape=02b8920c vocab=c35f4098
+-/
 theorem abs_sum_mul_le_of_antitone {c f : ℕ → ℝ} {B : ℝ} {M N : ℕ}
     (hpart : ∀ m, |∑ n ∈ Finset.Ioc M m, c n| ≤ B)
     (hf0 : ∀ n, M < n → 0 ≤ f n) (hanti : ∀ n, M < n → f (n + 1) ≤ f n) :
@@ -219,7 +233,9 @@ theorem abs_sum_mul_le_of_antitone {c f : ℕ → ℝ} {B : ℝ} {M N : ℕ}
 
 /-! ## A convergent correction series -/
 
-/-- `∑_{p ≤ N} log p /(p (p-1))` is bounded uniformly in `N`.-/
+/-- `∑_{p ≤ N} log p /(p (p-1))` is bounded uniformly in `N`.
+@isnad1 id=ex.0h0v.s6.d9f9edbf3e2e from=translated src=- shape=b4a16dac vocab=4a9c4a55
+-/
 theorem sum_log_div_mul_pred_bounded :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ N : ℕ,
       ∑ p ∈ primesLE N, Real.log p / ((p : ℝ) * ((p : ℝ) - 1)) ≤ C := by

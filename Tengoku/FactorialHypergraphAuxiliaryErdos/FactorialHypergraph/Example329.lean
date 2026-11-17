@@ -16,7 +16,9 @@ import Tengoku.FactorialHypergraphAuxiliaryErdos.FactorialHypergraph.Definitions
 
 namespace FactorialHypergraph
 
-/-- `329` is `5`-rough: none of the primes `2, 3, 5` divides `329 = 7 · 47`.-/
+/-- `329` is `5`-rough: none of the primes `2, 3, 5` divides `329 = 7 · 47`.
+@isnad1 id=isrough.0h0v.s3.74dfd644759a from=translated src=- shape=6d6f5044 vocab=caa948d9
+-/
 theorem isRough_five_329 : IsRough 5 329 := by
   intro p hp hpd
   by_contra hcon
@@ -24,25 +26,33 @@ theorem isRough_five_329 : IsRough 5 329 := by
   have h2 := hp.two_le
   interval_cases p <;> revert hpd <;> decide
 
-/-- The factorial differences `329 - k!`, `1 ≤ k ≤ 5`, are all composite.-/
+/-- The factorial differences `329 - k!`, `1 ≤ k ≤ 5`, are all composite.
+@isnad1 id=and.2h1v.s5.874226c94069 from=translated src=- shape=cf77d068 vocab=9d947ff5
+-/
 theorem factorial_differences_329 :
     ∀ k, 1 ≤ k → k ≤ 5 → ¬ (329 - k.factorial).Prime ∧ 1 < 329 - k.factorial := by
   intro k hk1 hk5
   interval_cases k <;>
     refine ⟨by norm_num [Nat.factorial], by norm_num [Nat.factorial]⟩
 
-/-- **The auxiliary conditions for `L = 5`, `n = 329`.**-/
+/-- **The auxiliary conditions for `L = 5`, `n = 329`.**
+@isnad1 id=and.0h0v.s6.71b242472131 from=translated src=- shape=f5cdf1d5 vocab=9ecbf7b2
+-/
 theorem example_L5_n329 :
     Nat.factorial 5 < 329 ∧ 329 ≤ Nat.factorial 6 ∧ IsRough 5 329 ∧
       ∀ k, 1 ≤ k → k ≤ 5 → ¬ (329 - k.factorial).Prime ∧ 1 < 329 - k.factorial :=
   ⟨by decide, by decide, isRough_five_329, factorial_differences_329⟩
 
-/-- `329` belongs to the finite set counted by the quantitative theorem for `L = 5`.-/
+/-- `329` belongs to the finite set counted by the quantitative theorem for `L = 5`.
+@isnad1 id=mem.0h0v.s4.7ff2d9d830a6 from=translated src=- shape=2b69e613 vocab=645ad072
+-/
 theorem mem_goodSet_329 : 329 ∈ goodSet 5 := by
   rw [mem_goodSet]
   refine ⟨⟨by decide, by decide⟩, isRough_five_329, factorial_differences_329⟩
 
-/-- In particular the set counted by the quantitative theorem is nonempty for `L = 5`.-/
+/-- In particular the set counted by the quantitative theorem is nonempty for `L = 5`.
+@isnad1 id=nonempty.0h0v.s3.c91819fa3343 from=translated src=- shape=bd55b264 vocab=6cecc64f
+-/
 theorem goodSet_five_nonempty : (goodSet 5).Nonempty := ⟨329, mem_goodSet_329⟩
 
 end FactorialHypergraph

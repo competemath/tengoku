@@ -30,7 +30,9 @@ open Finset
 
 /-- CONDITIONAL.  Combining the large-prime-factor input (A2) with the sieve corollary,
 at least `9L/100` indices `i` with `2 ≤ i ≤ L - 2` carry a prime `q i ∣ f(i)` with
-`L < q i < 2 L^{2-α₀}`.-/
+`L < q i < 2 L^{2-α₀}`.
+@isnad1 id=ex.4h1v.s8.20b336370ec3 from=translated src=- shape=af36f9c9 vocab=05659f5a
+-/
 theorem exists_good_indices (h : AnalyticInputs) {α₀ : ℝ} (hα0 : 0 < α₀) (hα1 : α₀ ≤ 1 / 2)
     (hsieve : ∃ L₀ : ℕ, ∀ L : ℕ, L₀ ≤ L → ((smallCofactorSet α₀ L).card : ℝ) ≤ (L : ℝ) / 500) :
     ∃ L₀ : ℕ, ∀ L : ℕ, L₀ ≤ L → ∃ (S : Finset ℕ) (q : ℕ → ℕ),
@@ -174,7 +176,9 @@ theorem exists_good_indices (h : AnalyticInputs) {α₀ : ℝ} (hα0 : 0 < α₀
 
 /-- The independent-set step of Proposition 5.1: the auxiliary conflict graph on the good
 indices has maximum degree at most `3`, so a quarter of them can be selected with pairwise
-distinct primes and pairwise disjoint designated pairs `{i, i+2}`.-/
+distinct primes and pairwise disjoint designated pairs `{i, i+2}`.
+@isnad1 id=ex.2h3v.s7.c5999d72b25b from=translated src=- shape=bea108ba vocab=5060512a
+-/
 theorem exists_disjoint_pairs {L : ℕ} (S : Finset ℕ) (q : ℕ → ℕ)
     (hS : ∀ i ∈ S, 2 ≤ i ∧ i + 2 ≤ L ∧ (q i).Prime ∧ q i ∣ fq i ∧ L < q i) (_hL : 5 < L) :
     ∃ I ⊆ S, (S.card : ℝ) ≤ 4 * (I.card : ℝ) ∧
@@ -295,7 +299,9 @@ theorem exists_disjoint_pairs {L : ℕ} (S : Finset ℕ) (q : ℕ → ℕ)
 /-! ## Step 3: assigning primes to the uncovered indices -/
 
 /-- The complement of the selected pairs inside `V_L` has exactly `L - 1 - 2|I|`
-elements.-/
+elements.
+@isnad1 id=eq.2h2v.s7.f03a41296398 from=translated src=- shape=40d6493d vocab=42fd6bf7
+-/
 theorem card_complement_pairs {L : ℕ} (I : Finset ℕ)
     (hI : ∀ i ∈ I, 2 ≤ i ∧ i + 2 ≤ L)
     (hdisj : ∀ i ∈ I, ∀ j ∈ I, i ≠ j → i + 2 ≠ j ∧ j + 2 ≠ i) :
@@ -325,7 +331,9 @@ theorem card_complement_pairs {L : ℕ} (I : Finset ℕ)
 
 /-- CONDITIONAL (via the prime-supply input (A1)).  Distinct primes in
 `(L, 20 L log L]`, avoiding a prescribed set `T` of at most `L` primes, can be assigned
-injectively to any set `U` of at most `L` indices.-/
+injectively to any set `U` of at most `L` indices.
+@isnad1 id=ex.3h3v.s7.5520b8847d70 from=translated src=- shape=494ed4b6 vocab=47abb79c
+-/
 theorem exists_prime_assignment {L : ℕ} (U T : Finset ℕ)
     (hsupply : 2 * L ≤ (primesIn L ⌈20 * (L : ℝ) * Real.log L⌉₊).card)
     (hT : T.card ≤ L) (hU : U.card ≤ L) :
@@ -352,7 +360,9 @@ theorem exists_prime_assignment {L : ℕ} (U T : Finset ℕ)
 
 /-! ## Step 4: assembling the rainbow edge cover -/
 
-/-- Assembling a rainbow edge cover out of the selected pairs and the individual primes.-/
+/-- Assembling a rainbow edge cover out of the selected pairs and the individual primes.
+@isnad1 id=ex.6h5v.s8.b91b4b59858e from=translated src=- shape=1a434297 vocab=ce669d47
+-/
 theorem exists_cover_from_data {L : ℕ} (I : Finset ℕ) (q : ℕ → ℕ) (U : Finset ℕ) (r : ℕ → ℕ)
     (hI : ∀ i ∈ I, 2 ≤ i ∧ i + 2 ≤ L ∧ (q i).Prime ∧ q i ∣ fq i ∧ L < q i ∧ q i < L.factorial)
     (hqinj : ∀ i ∈ I, ∀ j ∈ I, i ≠ j → q i ≠ q j)
@@ -466,7 +476,9 @@ number theorem; here it is supplied by the unconditional Chebyshev-type bound
 The manuscript writes the bound with the real number `20 L log L`; since the prime supply
 is stated for the integer ceiling `⌈20 L log L⌉`, the constant obtained here is `21`
 instead of `20`.  This is the only deviation, and it does not affect any later statement:
-Proposition 2.6 is not used in the proof of Theorem 1.1.-/
+Proposition 2.6 is not used in the proof of Theorem 1.1.
+@isnad1 id=ex.0h0v.s6.42a418ebfa57 from=translated src=- shape=235d45d6 vocab=4e169a9f
+-/
 theorem baseline_cover_cost :
     ∃ L₀ : ℕ, ∀ L : ℕ, L₀ ≤ L →
       kappa L ≤ ((L : ℝ) - 1) * Real.log (21 * (L : ℝ) * Real.log L) := by
@@ -547,7 +559,9 @@ theorem baseline_cover_cost :
 
 set_option maxHeartbeats 1000000 in
 /-- CONDITIONAL.  Proposition 5.1 of the manuscript: for a fixed `δ > 0` and all large `L`
-there is a rainbow edge cover of weight at most `(1-δ) L log L`.-/
+there is a rainbow edge cover of weight at most `(1-δ) L log L`.
+@isnad1 id=ex.1h0v.s6.82b7375eb2b4 from=translated src=- shape=cf2457e5 vocab=7b6b77ea
+-/
 theorem exists_lowweight_cover (h : AnalyticInputs) :
     ∃ δ : ℝ, 0 < δ ∧ δ < 1 ∧ ∃ L₀ : ℕ, ∀ L : ℕ, L₀ ≤ L →
       ∃ C : RainbowCover L, C.weight ≤ (1 - δ) * L * Real.log L := by
@@ -714,7 +728,9 @@ theorem exists_lowweight_cover (h : AnalyticInputs) :
   nlinarith [hsum1, hsum2, e4, e5, e2, hC, hD, hlogpos, hLpos]
 
 /-- CONDITIONAL.  **Theorem 1.1** of the manuscript: `κ(L) ≤ (1-δ) L log L` for an
-absolute `δ > 0` and all sufficiently large `L`.-/
+absolute `δ > 0` and all sufficiently large `L`.
+@isnad1 id=ex.1h0v.s6.009d10bf0b29 from=translated src=- shape=37d1c810 vocab=8cfbfc82
+-/
 theorem cover_cost (h : AnalyticInputs) :
     ∃ δ : ℝ, 0 < δ ∧ ∃ L₀ : ℕ, ∀ L : ℕ, L₀ ≤ L → kappa L ≤ (1 - δ) * L * Real.log L := by
   obtain ⟨δ, hδ0, hδ1, L₀, hL₀⟩ := exists_lowweight_cover h
@@ -728,7 +744,9 @@ theorem cover_cost (h : AnalyticInputs) :
 /-! ## Step 6: from the low-weight cover to a small modulus -/
 
 /-- A cover of weight at most `(1-δ) L log L` has modulus at most `((L+1)!)^{1-δ/2}`
-once `log L ≥ 4/δ` (and `L ≥ 1`).-/
+once `log L ≥ 4/δ` (and `L ≥ 1`).
+@isnad1 id=le.5h3v.s7.ad138f8a6cac from=translated src=- shape=d86ae4f9 vocab=e2d06cde
+-/
 theorem modulus_le_of_weight {L : ℕ} (C : RainbowCover L) {δ : ℝ} (hδ0 : 0 < δ) (hδ1 : δ < 1)
     (hL1 : 1 ≤ L) (hlog : 4 / δ ≤ Real.log L)
     (hw : C.weight ≤ (1 - δ) * L * Real.log L) :
@@ -759,7 +777,9 @@ theorem modulus_le_of_weight {L : ℕ} (C : RainbowCover L) {δ : ℝ} (hδ0 : 0
 problem), as a cardinality statement for the filtered `Finset` `goodSet L`:  for an
 absolute `η > 0` and all large `L`, at least `X^η / (100 log L)` integers
 `n ∈ (2·L!, X]`, `X = (L+1)!`, are `L`-rough and have `n - k!` composite for all
-`1 ≤ k ≤ L`.-/
+`1 ≤ k ≤ L`.
+@isnad1 id=ex.1h0v.s6.c248ac520610 from=translated src=- shape=8f903af4 vocab=c0031455
+-/
 theorem main_quantitative (h : AnalyticInputs) :
     ∃ η : ℝ, 0 < η ∧ ∃ L₁ : ℕ, ∀ L : ℕ, L₁ ≤ L →
       ((L + 1).factorial : ℝ) ^ η / (100 * Real.log L) ≤ ((goodSet L).card : ℝ) := by
@@ -786,7 +806,9 @@ theorem main_quantitative (h : AnalyticInputs) :
 large `L` there is an integer `n ∈ (L!, (L+1)!]`, all of whose prime factors exceed `L`,
 such that `n - k!` is composite for every `1 ≤ k ≤ L`.
 
-This is *not* Erdős Problem 1059: nothing is claimed about `n` being prime.-/
+This is *not* Erdős Problem 1059: nothing is claimed about `n` being prime.
+@isnad1 id=ex.1h0v.s6.13846b8852d9 from=translated src=- shape=a694296a vocab=6e9000db
+-/
 theorem auxiliary_erdos_problem (h : AnalyticInputs) :
     ∃ L₀ : ℕ, ∀ L : ℕ, L₀ ≤ L → ∃ n : ℕ,
       L.factorial < n ∧

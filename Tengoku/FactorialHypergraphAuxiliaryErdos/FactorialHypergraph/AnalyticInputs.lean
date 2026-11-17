@@ -43,6 +43,9 @@ open Finset
 /-- The primes in the interval `(a, b]`.-/
 def primesIn (a b : ℕ) : Finset ℕ := (Finset.Ioc a b).filter Nat.Prime
 
+/--
+@isnad1 id=iff.0h3v.s5.72216d0cc619 from=translated src=- shape=cc9ff479 vocab=cae68cdb
+-/
 lemma mem_primesIn {a b q : ℕ} : q ∈ primesIn a b ↔ (a < q ∧ q ≤ b) ∧ q.Prime := by
   simp [primesIn, Finset.mem_filter, Finset.mem_Ioc, and_assoc]
 
@@ -83,19 +86,27 @@ noncomputable def smallCofactorSet (α : ℝ) (L : ℕ) : Finset ℕ :=
     (fun i => ∃ m q : ℕ, q.Prime ∧ fq i = m * q ∧ (m : ℝ) ≤ (L : ℝ) ^ α ∧ L < q)
 
 open scoped Classical in
+/--
+@isnad1 id=iff.0h3v.s6.0f7ce081e565 from=translated src=- shape=e9e663d4 vocab=a4fa2a30
+-/
 lemma mem_largePrimeFactorSetC {c : ℝ} {N i : ℕ} :
     i ∈ largePrimeFactorSetC c N ↔
       (1 ≤ i ∧ i ≤ N) ∧ ∃ q : ℕ, q.Prime ∧ q ∣ fq i ∧ (i : ℝ) * Real.log i / c < q := by
   simp [largePrimeFactorSetC, Finset.mem_filter, Finset.mem_Icc, and_assoc]
 
 open scoped Classical in
+/--
+@isnad1 id=iff.0h2v.s6.9acc548183d4 from=translated src=- shape=627086fd vocab=d1c9722f
+-/
 lemma mem_largePrimeFactorSet {N i : ℕ} :
     i ∈ largePrimeFactorSet N ↔
       (1 ≤ i ∧ i ≤ N) ∧ ∃ q : ℕ, q.Prime ∧ q ∣ fq i ∧ (i : ℝ) * Real.log i / 40 < q :=
   mem_largePrimeFactorSetC
 
 /-- Raising the threshold constant enlarges the set: a prime factor exceeding
-`i log i / c` also exceeds `i log i / c'` when `c ≤ c'`.-/
+`i log i / c` also exceeds `i log i / c'` when `c ≤ c'`.
+@isnad1 id=le.2h3v.s5.b7fbc045e9eb from=translated src=- shape=5c354c76 vocab=e558d000
+-/
 lemma largePrimeFactorSetC_subset {c c' : ℝ} (hc : 0 < c) (hcc : c ≤ c') (N : ℕ) :
     largePrimeFactorSetC c N ⊆ largePrimeFactorSetC c' N := by
   classical
@@ -107,12 +118,17 @@ lemma largePrimeFactorSetC_subset {c c' : ℝ} (hc : 0 < c) (hcc : c ≤ c') (N 
   have hi0 : (0 : ℝ) ≤ (i : ℝ) := Nat.cast_nonneg i
   gcongr
 
-/-- The manuscript's threshold implies the one used here.-/
+/-- The manuscript's threshold implies the one used here.
+@isnad1 id=le.0h1v.s4.a77a0a8f1f0e from=translated src=- shape=a2d7c87f vocab=7565a5d2
+-/
 lemma largePrimeFactorSet8_subset (N : ℕ) :
     largePrimeFactorSetC 8 N ⊆ largePrimeFactorSet N :=
   largePrimeFactorSetC_subset (by norm_num) (by norm_num) N
 
 open scoped Classical in
+/--
+@isnad1 id=iff.0h3v.s6.1df8c93f9c7e from=translated src=- shape=767251ed vocab=fda174a2
+-/
 lemma mem_smallCofactorSet {α : ℝ} {L i : ℕ} :
     i ∈ smallCofactorSet α L ↔
       (1 ≤ i ∧ i ≤ L) ∧
@@ -146,7 +162,9 @@ by choosing `α₀ = 1/(1000 C₀)` and letting `L` be large. -/
 
 /-- CONDITIONAL (on `AnalyticInputs`).  The corollary of the sieve estimate used in the
 construction of the low-weight cover: for some fixed `α₀ ∈ (0, 1/2]` the exceptional set
-`E_{α₀}(L)` has at most `L/500` elements once `L` is large.-/
+`E_{α₀}(L)` has at most `L/500` elements once `L` is large.
+@isnad1 id=ex.1h0v.s6.0b4fd1ba28c4 from=translated src=- shape=bb90f7dd vocab=eb124f42
+-/
 theorem sieve_corollary (h : AnalyticInputs) :
     ∃ α₀ : ℝ, 0 < α₀ ∧ α₀ ≤ 1 / 2 ∧ ∃ L₀ : ℕ, ∀ L : ℕ, L₀ ≤ L →
       ((smallCofactorSet α₀ L).card : ℝ) ≤ (L : ℝ) / 500 := by

@@ -40,7 +40,9 @@ open Finset ArithmeticFunction
 
 /-! ## Mertens' first theorem, two-sided -/
 
-/-- `∑_{n ≤ N} log n = log N!`.-/
+/-- `∑_{n ≤ N} log n = log N!`.
+@isnad1 id=eq.0h1v.s4.7eb7c28065b1 from=translated src=- shape=d4e16248 vocab=bfa1afcb
+-/
 theorem sum_log_eq_log_factorial (N : ℕ) :
     ∑ n ∈ Finset.Icc 1 N, Real.log n = Real.log (N.factorial : ℝ) := by
   induction N with
@@ -52,7 +54,9 @@ theorem sum_log_eq_log_factorial (N : ℕ) :
     rw [Real.log_mul (by positivity) (by positivity)]
     ring
 
-/-- **Mertens' first theorem, lower bound.**  `∑_{n ≤ N} Λ(n)/n ≥ log N - 1`.-/
+/-- **Mertens' first theorem, lower bound.**  `∑_{n ≤ N} Λ(n)/n ≥ log N - 1`.
+@isnad1 id=le.1h1v.s6.9fd5f99174d1 from=translated src=- shape=76cb8a61 vocab=56367326
+-/
 theorem sum_vonMangoldt_div_ge {N : ℕ} (hN : 1 ≤ N) :
     Real.log N - 1 ≤ ∑ n ∈ Finset.Icc 1 N, vonMangoldt n / n := by
   have hN0 : (0 : ℝ) < N := by exact_mod_cast hN
@@ -80,7 +84,9 @@ theorem sum_vonMangoldt_div_ge {N : ℕ} (hN : 1 ≤ N) :
 
 /-! ## From von Mangoldt sums to sums over the primes -/
 
-/-- Geometric series bound: `∑_{i < n} r^i ≤ 1/(1-r)` for `0 ≤ r < 1`.-/
+/-- Geometric series bound: `∑_{i < n} r^i ≤ 1/(1-r)` for `0 ≤ r < 1`.
+@isnad1 id=le.2h2v.s6.3af8a87d1c95 from=translated src=- shape=e5f27e19 vocab=5604d48c
+-/
 theorem geom_range_le {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) (n : ℕ) :
     ∑ i ∈ Finset.range n, r ^ i ≤ 1 / (1 - r) := by
   have hpos : 0 < 1 - r := by linarith
@@ -90,11 +96,16 @@ theorem geom_range_le {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) (n : ℕ) :
   rw [heq, div_le_div_iff_of_pos_right hpos]
   nlinarith [pow_nonneg hr0 n]
 
+/--
+@isnad1 id=le.2h1v.s6.433bfc332251 from=translated src=- shape=9a5f6916 vocab=39238a67
+-/
 theorem one_add_le_one_div {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) : 1 + r ≤ 1 / (1 - r) := by
   rw [le_div_iff₀ (by linarith)]
   nlinarith
 
-/-- Geometric tail bound: `∑_{k = 2}^{M} r^k ≤ r²/(1-r)` for `0 ≤ r < 1`.-/
+/-- Geometric tail bound: `∑_{k = 2}^{M} r^k ≤ r²/(1-r)` for `0 ≤ r < 1`.
+@isnad1 id=le.2h2v.s6.6e2f352a893e from=translated src=- shape=8d5a8841 vocab=219306b2
+-/
 theorem geom_tail_le {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) (M : ℕ) :
     ∑ k ∈ Finset.Icc 2 M, r ^ k ≤ r ^ 2 / (1 - r) := by
   have hpos : 0 < 1 - r := by linarith
@@ -125,12 +136,17 @@ noncomputable def primeLogSum (N : ℕ) : ℝ := ∑ p ∈ primesLE N, Real.log 
 /-- The `χ₅`-twisted prime sum `∑_{p ≤ N} χ₅(p) log p / p`.-/
 noncomputable def primeChiLogSum (N : ℕ) : ℝ := ∑ p ∈ primesLE N, chi5 p * Real.log p / p
 
+/--
+@isnad1 id=le.0h1v.s4.31656cd35841 from=translated src=- shape=73d95e72 vocab=7453ed7c
+-/
 lemma primesLE_subset_Icc (N : ℕ) : primesLE N ⊆ Finset.Icc 1 N := by
   intro p hp
   obtain ⟨hpN, hpp⟩ := mem_primesLE.mp hp
   exact Finset.mem_Icc.mpr ⟨hpp.one_lt.le.trans' (by norm_num), hpN⟩
 
-/-- The contribution of the proper prime powers `p^k`, `k ≥ 2`, to `∑_{n ≤ N} Λ(n)/n`.-/
+/-- The contribution of the proper prime powers `p^k`, `k ≥ 2`, to `∑_{n ≤ N} Λ(n)/n`.
+@isnad1 id=le.0h1v.s6.d90b2288530b from=translated src=- shape=2cb8373e vocab=7595b0ad
+-/
 theorem sum_sdiff_vonMangoldt_div_le (N : ℕ) :
     ∑ n ∈ (Finset.Icc 1 N) \ primesLE N, vonMangoldt n / n
       ≤ ∑ p ∈ primesLE N, Real.log p / ((p : ℝ) * ((p : ℝ) - 1)) := by
@@ -206,7 +222,9 @@ theorem sum_sdiff_vonMangoldt_div_le (N : ℕ) :
         mul_le_mul_of_nonneg_left hgeom hlogp
     _ = Real.log p / ((p : ℝ) * ((p : ℝ) - 1)) := by field_simp
 
-/-- Splitting the von Mangoldt sum into its prime part and its prime-power part.-/
+/-- Splitting the von Mangoldt sum into its prime part and its prime-power part.
+@isnad1 id=eq.0h1v.s6.1170fcfec4b3 from=translated src=- shape=0e5a3596 vocab=c5d8991f
+-/
 theorem vonMangoldt_sum_split (N : ℕ) :
     ∑ n ∈ Finset.Icc 1 N, vonMangoldt n / n
       = primeLogSum N + ∑ n ∈ (Finset.Icc 1 N) \ primesLE N, vonMangoldt n / n := by
@@ -216,7 +234,9 @@ theorem vonMangoldt_sum_split (N : ℕ) :
   rw [heq, Finset.sum_sdiff_eq_sub (primesLE_subset_Icc N)]
   ring
 
-/-- Splitting the twisted von Mangoldt sum into its prime part and its prime-power part.-/
+/-- Splitting the twisted von Mangoldt sum into its prime part and its prime-power part.
+@isnad1 id=eq.0h1v.s6.cad23dde4b7f from=translated src=- shape=ce5518c0 vocab=efa50822
+-/
 theorem chi5_vonMangoldt_sum_split (N : ℕ) :
     U N = primeChiLogSum N + ∑ n ∈ (Finset.Icc 1 N) \ primesLE N, chi5 n * vonMangoldt n / n := by
   classical
@@ -225,7 +245,9 @@ theorem chi5_vonMangoldt_sum_split (N : ℕ) :
   rw [U, heq, Finset.sum_sdiff_eq_sub (primesLE_subset_Icc N)]
   ring
 
-/-- **Mertens' first theorem for primes, two-sided.**  `∑_{p ≤ N} log p/p = log N + O(1)`.-/
+/-- **Mertens' first theorem for primes, two-sided.**  `∑_{p ≤ N} log p/p = log N + O(1)`.
+@isnad1 id=ex.0h0v.s5.da2a79f20092 from=translated src=- shape=6341ca38 vocab=4cc89605
+-/
 theorem abs_primeLogSum_sub_log_le :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ N : ℕ, 1 ≤ N → |primeLogSum N - Real.log N| ≤ C := by
   obtain ⟨C₂, hC₂0, hC₂⟩ := sum_log_div_mul_pred_bounded
@@ -244,7 +266,9 @@ theorem abs_primeLogSum_sub_log_le :
   rw [abs_le]
   constructor <;> linarith
 
-/-- **Mertens' theorem for `χ₅`, prime form.**  `∑_{p ≤ N} χ₅(p) log p/p = O(1)`.-/
+/-- **Mertens' theorem for `χ₅`, prime form.**  `∑_{p ≤ N} χ₅(p) log p/p = O(1)`.
+@isnad1 id=ex.0h0v.s4.2a02c9deb715 from=translated src=- shape=7a77041c vocab=8c9e9af5
+-/
 theorem abs_primeChiLogSum_le :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ N : ℕ, |primeChiLogSum N| ≤ C := by
   obtain ⟨C₂, hC₂0, hC₂⟩ := sum_log_div_mul_pred_bounded
@@ -285,6 +309,9 @@ noncomputable def cPrime (n : ℕ) : ℝ := if n.Prime then Real.log n / n else 
 /-- The twisted coefficient sequence `χ₅(p) log p / p` supported on the primes.-/
 noncomputable def cChi (n : ℕ) : ℝ := if n.Prime then chi5 n * Real.log n / n else 0
 
+/--
+@isnad1 id=eq.0h1v.s4.02cca472bab6 from=translated src=- shape=f9ef3fbf vocab=1535ae2b
+-/
 lemma filter_prime_Ioc (n : ℕ) : (Finset.Ioc 1 n).filter Nat.Prime = primesLE n := by
   ext p
   simp only [Finset.mem_filter, Finset.mem_Ioc, mem_primesLE]
@@ -292,26 +319,44 @@ lemma filter_prime_Ioc (n : ℕ) : (Finset.Ioc 1 n).filter Nat.Prime = primesLE 
   · rintro ⟨⟨_, h2⟩, hp⟩; exact ⟨h2, hp⟩
   · rintro ⟨h1, hp⟩; exact ⟨⟨hp.one_lt, h1⟩, hp⟩
 
+/--
+@isnad1 id=eq.0h1v.s4.cbebb794bd7c from=translated src=- shape=67d8c090 vocab=64486ce8
+-/
 lemma sum_cPrime (n : ℕ) : ∑ k ∈ Finset.Ioc 1 n, cPrime k = primeLogSum n := by
   classical
   rw [primeLogSum, ← filter_prime_Ioc n, Finset.sum_filter]
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.3f4988e9f0bc from=translated src=- shape=67d8c090 vocab=9c7a5347
+-/
 lemma sum_cChi (n : ℕ) : ∑ k ∈ Finset.Ioc 1 n, cChi k = primeChiLogSum n := by
   classical
   rw [primeChiLogSum, ← filter_prime_Ioc n, Finset.sum_filter]
   rfl
 
+/--
+@isnad1 id=lt.1h1v.s4.6826d060d30e from=translated src=- shape=998257d8 vocab=d08708e8
+-/
 lemma log_pos_of_two_le {n : ℕ} (hn : 2 ≤ n) : 0 < Real.log n :=
   Real.log_pos (by exact_mod_cast hn)
 
+/--
+@isnad1 id=le.1h1v.s4.e9cac9747880 from=translated src=- shape=c4fa598c vocab=a0466d8a
+-/
 lemma log_two_le_log {n : ℕ} (hn : 2 ≤ n) : Real.log 2 ≤ Real.log n :=
   Real.log_le_log (by norm_num) (by exact_mod_cast hn)
 
+/--
+@isnad1 id=le.1h1v.s4.564046ffa303 from=translated src=- shape=7f2e781e vocab=c95d238e
+-/
 lemma invLog_nonneg {n : ℕ} (_hn : 2 ≤ n) : 0 ≤ invLog n := by
   rw [invLog]
   positivity
 
+/--
+@isnad1 id=le.1h1v.s4.b3f3a694c588 from=translated src=- shape=9ecf2f99 vocab=ec3d881a
+-/
 lemma invLog_antitone {n : ℕ} (hn : 2 ≤ n) : invLog (n + 1) ≤ invLog n := by
   have h1 : 0 < Real.log n := log_pos_of_two_le hn
   have h2 : Real.log n ≤ Real.log (n + 1 : ℕ) := by
@@ -320,6 +365,9 @@ lemma invLog_antitone {n : ℕ} (hn : 2 ≤ n) : invLog (n + 1) ≤ invLog n := 
   rw [invLog, invLog]
   exact one_div_le_one_div_of_le h1 h2
 
+/--
+@isnad1 id=eq.0h1v.s5.6fe6dcdb5995 from=translated src=- shape=37a574de vocab=e6376bf5
+-/
 lemma sum_cPrime_invLog (N : ℕ) :
     ∑ n ∈ Finset.Ioc 1 N, cPrime n * invLog n = ∑ p ∈ primesLE N, (1 : ℝ) / p := by
   classical
@@ -336,6 +384,9 @@ lemma sum_cPrime_invLog (N : ℕ) :
     field_simp
   · simp [cPrime, hp]
 
+/--
+@isnad1 id=eq.0h1v.s5.d7f8d01360af from=translated src=- shape=fb49de5b vocab=50468122
+-/
 lemma sum_cChi_invLog (N : ℕ) :
     ∑ n ∈ Finset.Ioc 1 N, cChi n * invLog n = ∑ p ∈ primesLE N, chi5 p / p := by
   classical
@@ -354,7 +405,9 @@ lemma sum_cChi_invLog (N : ℕ) :
 
 /-! ## The twisted sum `∑_{p ≤ N} χ₅(p)/p` is bounded -/
 
-/-- **`∑_{p ≤ N} χ₅(p)/p = O(1)`**, unconditionally.-/
+/-- **`∑_{p ≤ N} χ₅(p)/p = O(1)`**, unconditionally.
+@isnad1 id=ex.0h0v.s5.f6d4ea410ca2 from=translated src=- shape=57d158e4 vocab=527858a0
+-/
 theorem abs_sum_chi5_div_primes_le :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ N : ℕ, |∑ p ∈ primesLE N, chi5 p / p| ≤ C := by
   obtain ⟨C₁, hC₁0, hC₁⟩ := abs_primeChiLogSum_le
@@ -374,7 +427,9 @@ theorem abs_sum_chi5_div_primes_le :
 
 /-! ## Mertens' second theorem -/
 
-/-- The elementary two-sided comparison `(b-a)/b ≤ log b - log a ≤ (b-a)/a`.-/
+/-- The elementary two-sided comparison `(b-a)/b ≤ log b - log a ≤ (b-a)/a`.
+@isnad1 id=and.2h2v.s6.e72f1a916e21 from=translated src=- shape=fefb1522 vocab=a957b093
+-/
 lemma log_sub_log_bounds {a b : ℝ} (ha : 0 < a) (hab : a ≤ b) :
     (b - a) / b ≤ Real.log b - Real.log a ∧ Real.log b - Real.log a ≤ (b - a) / a := by
   have hb : 0 < b := lt_of_lt_of_le ha hab
@@ -391,7 +446,9 @@ lemma log_sub_log_bounds {a b : ℝ} (ha : 0 < a) (hab : a ≤ b) :
     linarith
 
 /-- The successive differences of `log log` are bounded below by the summation-by-parts
-terms.-/
+terms.
+@isnad1 id=le.1h1v.s6.94b04ae8e15f from=translated src=- shape=b7a9c67e vocab=71ce1307
+-/
 lemma term_le_loglog_diff {n : ℕ} (hn : 2 ≤ n) :
     Real.log n * (invLog n - invLog (n + 1))
       ≤ Real.log (Real.log (n + 1 : ℕ)) - Real.log (Real.log n) := by
@@ -407,7 +464,9 @@ lemma term_le_loglog_diff {n : ℕ} (hn : 2 ≤ n) :
   rw [hid]
   exact (log_sub_log_bounds ha hab).1
 
-/-- ... and above, with an error which is summable.-/
+/-- ... and above, with an error which is summable.
+@isnad1 id=le.1h1v.s7.0d57e5c67b40 from=translated src=- shape=5452a7d7 vocab=bc11d7b2
+-/
 lemma loglog_diff_le_term {n : ℕ} (hn : 2 ≤ n) :
     Real.log (Real.log (n + 1 : ℕ)) - Real.log (Real.log n)
       ≤ Real.log n * (invLog n - invLog (n + 1))
@@ -455,7 +514,9 @@ lemma loglog_diff_le_term {n : ℕ} (hn : 2 ≤ n) :
   have := (log_sub_log_bounds ha hab).2
   linarith [hgap, hfrac]
 
-/-- `∑_{2 ≤ n < N} 1/n² ≤ 1`.-/
+/-- `∑_{2 ≤ n < N} 1/n² ≤ 1`.
+@isnad1 id=le.0h1v.s5.c2c4088526d0 from=translated src=- shape=151cdf33 vocab=858bb345
+-/
 lemma sum_inv_sq_Ico_le (N : ℕ) : ∑ n ∈ Finset.Ico 2 N, (1 : ℝ) / (n : ℝ) ^ 2 ≤ 1 := by
   rcases le_or_gt 2 N with hN | hN
   · have key : ∀ n ∈ Finset.Ico 2 N,
@@ -480,7 +541,9 @@ lemma sum_inv_sq_Ico_le (N : ℕ) : ∑ n ∈ Finset.Ico 2 N, (1 : ℝ) / (n : �
     rw [this]
     norm_num
 
-/-- **Mertens' second theorem.**  `∑_{p ≤ N} 1/p = log log N + O(1)`, unconditionally.-/
+/-- **Mertens' second theorem.**  `∑_{p ≤ N} 1/p = log log N + O(1)`, unconditionally.
+@isnad1 id=ex.0h0v.s6.a87a5be34ede from=translated src=- shape=4e9140c6 vocab=f8e32379
+-/
 theorem abs_sum_inv_primes_sub_loglog_le :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ N : ℕ, 2 ≤ N →
       |(∑ p ∈ primesLE N, (1 : ℝ) / p) - Real.log (Real.log N)| ≤ C := by
@@ -584,6 +647,9 @@ theorem abs_sum_inv_primes_sub_loglog_le :
 
 /-! ## The reciprocal sum over the primes with `χ₅(p) = 1` -/
 
+/--
+@isnad1 id=or.0h1v.s5.6f3f99bc4f47 from=translated src=- shape=0192d30b vocab=bc0ab048
+-/
 lemma chi5_values (n : ℕ) : chi5 n = 1 ∨ chi5 n = -1 ∨ chi5 n = 0 := by
   unfold chi5
   split_ifs <;> simp
@@ -598,11 +664,16 @@ lemma eq_five_of_chi5_eq_zero {p : ℕ} (hp : p.Prime) (h : chi5 p = 0) : p = 5 
   have hdvd : (5 : ℕ) ∣ p := Nat.dvd_of_mod_eq_zero hmod
   exact ((Nat.prime_dvd_prime_iff_eq (by norm_num) hp).mp hdvd).symm
 
+/--
+@isnad1 id=eq.0h0v.s3.7b1ffc4ff102 from=translated src=- shape=1ac31801 vocab=66c66aaf
+-/
 lemma chi5_five : chi5 5 = 0 := by unfold chi5; norm_num
 
 /-- **The Mertens input of the sieve estimate, proved unconditionally.**  This is the
 statement previously carried as a consequence of the hypothesis `MertensProgressions`:
-`∑_{p ≤ N, χ₅(p) = 1} 1/p = (log log N)/2 + O(1)`.-/
+`∑_{p ≤ N, χ₅(p) = 1} 1/p = (log log N)/2 + O(1)`.
+@isnad1 id=ex.0h0v.s7.bf6a5daaa9d1 from=translated src=- shape=7f877ea0 vocab=81c18c6c
+-/
 theorem sum_inv_primes_chi5_unconditional :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ N : ℕ, 3 ≤ N →
       |(∑ p ∈ Finset.Icc 1 N with (Nat.Prime p ∧ chi5 p = 1), (1 : ℝ) / p)

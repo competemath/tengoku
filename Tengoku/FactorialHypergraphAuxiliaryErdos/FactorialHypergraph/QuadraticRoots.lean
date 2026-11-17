@@ -33,25 +33,36 @@ namespace FactorialHypergraph
 
 open Finset
 
+/--
+@isnad1 id=fact.0h0v.s2.4bcaaa0995da from=translated src=- shape=8d7dbbf6 vocab=c1c9ca6d
+-/
 instance fact_prime_five : Fact (Nat.Prime 5) := ⟨by norm_num⟩
 
 /-! ## The discriminant identity -/
 
-/-- **Equation (3.4)**: `(2i+3)² = 4 f(i) + 5`, over `ℕ`.-/
+/-- **Equation (3.4)**: `(2i+3)² = 4 f(i) + 5`, over `ℕ`.
+@isnad1 id=eq.0h1v.s6.c5843be6d47b from=translated src=- shape=ce2dcbd0 vocab=b70d7b44
+-/
 theorem four_mul_fq_add_five (i : ℕ) : 4 * fq i + 5 = (2 * i + 3) ^ 2 := by
   simp only [fq]; ring
 
-/-- **Equation (3.4)** over `ℤ`.-/
+/-- **Equation (3.4)** over `ℤ`.
+@isnad1 id=eq.0h1v.s6.b8366fef0586 from=translated src=- shape=1b1dabbb vocab=85af4b90
+-/
 theorem four_mul_fq_add_five_int (t : ℤ) : 4 * (t ^ 2 + 3 * t + 1) + 5 = (2 * t + 3) ^ 2 := by
   ring
 
-/-- The value of `f` viewed in `ℤ`.-/
+/-- The value of `f` viewed in `ℤ`.
+@isnad1 id=eq.0h1v.s6.fe07478f2f2c from=translated src=- shape=dd852268 vocab=50429fc9
+-/
 theorem fq_cast (i : ℕ) : ((fq i : ℕ) : ℤ) = (i : ℤ) ^ 2 + 3 * (i : ℤ) + 1 := by
   simp only [fq]; push_cast; ring
 
 /-! ## The primes `2` and `5` -/
 
-/-- `f` has no root modulo `2`: `f(i)` is always odd.-/
+/-- `f` has no root modulo `2`: `f(i)` is always odd.
+@isnad1 id=not.0h1v.s3.44d6cbb9989f from=translated src=- shape=4a9f68c3 vocab=8591f1cb
+-/
 theorem two_not_dvd_fq (i : ℕ) : ¬ (2 ∣ fq i) := by
   intro h
   have h0 : ((fq i : ℕ) : ZMod 2) = 0 := (ZMod.natCast_eq_zero_iff _ _).mpr h
@@ -62,7 +73,9 @@ theorem two_not_dvd_fq (i : ℕ) : ¬ (2 ∣ fq i) := by
   revert x
   decide
 
-/-- `5 ∣ f(i)` if and only if `i ≡ 1 (mod 5)`.-/
+/-- `5 ∣ f(i)` if and only if `i ≡ 1 (mod 5)`.
+@isnad1 id=iff.0h1v.s5.d94f03729cfd from=translated src=- shape=6d7318a1 vocab=9860d8cf
+-/
 theorem five_dvd_fq_iff (i : ℕ) : 5 ∣ fq i ↔ i % 5 = 1 := by
   constructor
   · intro h
@@ -86,11 +99,15 @@ theorem five_dvd_fq_iff (i : ℕ) : 5 ∣ fq i ↔ i % 5 = 1 := by
       decide
     exact (ZMod.natCast_eq_zero_iff _ _).mp h0
 
-/-- **Equation (3.6)**: `f(1 + 5t) = 5(1 + 5t + 5t²)`.-/
+/-- **Equation (3.6)**: `f(1 + 5t) = 5(1 + 5t + 5t²)`.
+@isnad1 id=eq.0h1v.s6.1566a8088004 from=translated src=- shape=61496d43 vocab=b70d7b44
+-/
 theorem fq_one_add_five_mul (t : ℕ) : fq (1 + 5 * t) = 5 * (1 + 5 * t + 5 * t ^ 2) := by
   simp only [fq]; ring
 
-/-- The root of `f` modulo `5` does not lift to a root modulo `25`.-/
+/-- The root of `f` modulo `5` does not lift to a root modulo `25`.
+@isnad1 id=not.0h1v.s3.ffa8e02bcb7f from=translated src=- shape=4a9f68c3 vocab=8591f1cb
+-/
 theorem not_twentyfive_dvd_fq (i : ℕ) : ¬ (25 ∣ fq i) := by
   intro h
   have h5 : (5 : ℕ) ∣ fq i := dvd_trans (by norm_num) h
@@ -106,7 +123,9 @@ theorem not_twentyfive_dvd_fq (i : ℕ) : ¬ (25 ∣ fq i) := by
 
 /-! ## Simple roots and the Hensel step -/
 
-/-- Every root of `f` modulo a prime `p ≠ 5` is simple: `p ∤ f'(i) = 2i + 3`.-/
+/-- Every root of `f` modulo a prime `p ≠ 5` is simple: `p ∤ f'(i) = 2i + 3`.
+@isnad1 id=not.3h2v.s5.83fb958de07b from=translated src=- shape=44a6890c vocab=29be787b
+-/
 theorem not_dvd_deriv_of_dvd_fq {p i : ℕ} (hp : p.Prime) (hp5 : p ≠ 5) (h : p ∣ fq i) :
     ¬ p ∣ (2 * i + 3) := by
   intro hd
@@ -118,7 +137,9 @@ theorem not_dvd_deriv_of_dvd_fq {p i : ℕ} (hp : p.Prime) (hp5 : p ≠ 5) (h : 
     simpa using this
   exact hp5 ((Nat.prime_dvd_prime_iff_eq hp (by norm_num)).mp h5)
 
-/-- Auxiliary form of the Hensel step, with the two indices ordered.-/
+/-- Auxiliary form of the Hensel step, with the two indices ordered.
+@isnad1 id=modeq.7h4v.s6.59c775a8ab04 from=translated src=- shape=da88917b vocab=22acc785
+-/
 theorem fq_unique_lift_aux {p a i j : ℕ} (hp : p.Prime) (hp5 : p ≠ 5) (ha : 1 ≤ a)
     (hji : j ≤ i) (hi : p ^ a ∣ fq i) (hj : p ^ a ∣ fq j) (hij : i ≡ j [MOD p]) :
     i ≡ j [MOD p ^ a] := by
@@ -150,7 +171,9 @@ theorem fq_unique_lift_aux {p a i j : ℕ} (hp : p.Prime) (hp5 : p ≠ 5) (ha : 
 /-- **The Hensel step.**  A root of `f` modulo a prime `p ≠ 5` has at most one lift to a
 root modulo `pᵃ`: if `pᵃ` divides both `f(i)` and `f(j)` and `i ≡ j (mod p)`, then already
 `i ≡ j (mod pᵃ)`.  Together with `card_rootsMod_eq_one_add_chi` this is the statement
-that `f` has exactly `ρ(p)` root classes modulo every power `pᵃ`, `p ≠ 2, 5`.-/
+that `f` has exactly `ρ(p)` root classes modulo every power `pᵃ`, `p ≠ 2, 5`.
+@isnad1 id=modeq.6h4v.s6.18ae2d5ca47d from=translated src=- shape=27fb8026 vocab=22acc785
+-/
 theorem fq_unique_lift {p a i j : ℕ} (hp : p.Prime) (hp5 : p ≠ 5) (ha : 1 ≤ a)
     (hi : p ^ a ∣ fq i) (hj : p ^ a ∣ fq j) (hij : i ≡ j [MOD p]) : i ≡ j [MOD p ^ a] := by
   rcases le_total j i with h | h
@@ -166,7 +189,9 @@ noncomputable def rootsMod (p : ℕ) [NeZero p] : Finset (ZMod p) :=
   Finset.univ.filter (fun x : ZMod p => x ^ 2 + 3 * x + 1 = 0)
 
 /-- **Equation (3.5)**, first form: for an odd prime `p`, the number of roots of `f`
-modulo `p` is `1 + (5/p)`, where `(5/p)` is the Legendre symbol.-/
+modulo `p` is `1 + (5/p)`, where `(5/p)` is the Legendre symbol.
+@isnad1 id=eq.1h1v.s5.a1f3927a20da from=translated src=- shape=def9f760 vocab=a9d8b2b6
+-/
 theorem card_rootsMod (p : ℕ) [Fact p.Prime] (hp2 : p ≠ 2) :
     ((rootsMod p).card : ℤ) = legendreSym p 5 + 1 := by
   classical
@@ -212,7 +237,9 @@ theorem card_rootsMod (p : ℕ) [Fact p.Prime] (hp2 : p ≠ 2) :
 
 /-- **Equation (3.5)**: `ρ(p) = 1 + χ₅(p)` for every odd prime `p`, where
 `χ₅(p) = (p/5)` is the quadratic residue character modulo `5`; it equals `(5/p)` by
-quadratic reciprocity, since `5 ≡ 1 (mod 4)`.-/
+quadratic reciprocity, since `5 ≡ 1 (mod 4)`.
+@isnad1 id=eq.1h1v.s5.5a2b888e5987 from=translated src=- shape=f3467bc2 vocab=a9d8b2b6
+-/
 theorem card_rootsMod_eq_one_add_chi (p : ℕ) [Fact p.Prime] (hp2 : p ≠ 2) :
     ((rootsMod p).card : ℤ) = 1 + legendreSym 5 p := by
   have hr : legendreSym p ((5 : ℕ) : ℤ) = legendreSym 5 ((p : ℕ) : ℤ) :=
@@ -222,7 +249,9 @@ theorem card_rootsMod_eq_one_add_chi (p : ℕ) [Fact p.Prime] (hp2 : p ≠ 2) :
   ring
 
 /-- `ρ(p) = 2` exactly for the primes `p ≡ ±1 (mod 5)`; for the remaining primes
-`p ≠ 2, 5` one has `ρ(p) = 0`, so `ρ(p) ∈ {0, 2}`.-/
+`p ≠ 2, 5` one has `ρ(p) = 0`, so `ρ(p) ∈ {0, 2}`.
+@isnad1 id=iff.2h1v.s6.194668afb7f4 from=translated src=- shape=b951531f vocab=abab5f67
+-/
 theorem card_rootsMod_eq_two_iff (p : ℕ) [Fact p.Prime] (hp2 : p ≠ 2) (hp5 : p ≠ 5) :
     (rootsMod p).card = 2 ↔ (p % 5 = 1 ∨ p % 5 = 4) := by
   have hp' : Nat.Prime p := Fact.out
@@ -252,7 +281,9 @@ theorem card_rootsMod_eq_two_iff (p : ℕ) [Fact p.Prime] (hp2 : p ≠ 2) (hp5 :
     rw [hchi] at hcard
     omega
 
-/-- `ρ(p) ∈ {0, 2}` for every prime `p ≠ 2, 5`.-/
+/-- `ρ(p) ∈ {0, 2}` for every prime `p ≠ 2, 5`.
+@isnad1 id=or.2h1v.s5.ff35c9fb2fe0 from=translated src=- shape=548f91a8 vocab=7a7384f4
+-/
 theorem card_rootsMod_eq_zero_or_two (p : ℕ) [Fact p.Prime] (hp2 : p ≠ 2) (hp5 : p ≠ 5) :
     (rootsMod p).card = 0 ∨ (rootsMod p).card = 2 := by
   by_cases h : p % 5 = 1 ∨ p % 5 = 4
@@ -281,13 +312,17 @@ The elementary counting step of the proof of Lemma 3.2: since `f` has at most `�
 root classes modulo `pᵃ` (by `card_rootsMod_eq_zero_or_two` together with the Hensel step
 `fq_unique_lift`), at most `2(N/pᵃ + 1)` indices `i ≤ N` satisfy `pᵃ ∣ f(i)`. -/
 
-/-- `f` respects congruences.-/
+/-- `f` respects congruences.
+@isnad1 id=modeq.1h3v.s4.caaf18d4db18 from=translated src=- shape=2f743f1e vocab=437c889d
+-/
 theorem fq_modEq {m i j : ℕ} (h : i ≡ j [MOD m]) : fq i ≡ fq j [MOD m] := by
   simp only [fq]
   exact ((h.pow 2).add ((Nat.ModEq.refl 3).mul h)).add (Nat.ModEq.refl 1)
 
 /-- A set of pairwise incongruent (modulo `pᵃ`) roots of `f` modulo `pᵃ` injects into the
-set of roots of `f` modulo `p`.-/
+set of roots of `f` modulo `p`.
+@isnad1 id=le.4h3v.s7.35cab072dd88 from=translated src=- shape=2cc5358a vocab=80336667
+-/
 theorem card_le_card_rootsMod {p a : ℕ} [Fact p.Prime] (hp5 : p ≠ 5) (ha : 1 ≤ a)
     (s : Finset ℕ) (hincong : ∀ i ∈ s, ∀ j ∈ s, i ≡ j [MOD p ^ a] → i = j)
     (hdvd : ∀ i ∈ s, p ^ a ∣ fq i) : s.card ≤ (rootsMod p).card := by
@@ -308,7 +343,9 @@ theorem card_le_card_rootsMod {p a : ℕ} [Fact p.Prime] (hp5 : p ≠ 5) (ha : 1
     have h1 : i ≡ j [MOD p] := (ZMod.natCast_eq_natCast_iff _ _ _).mp hij
     exact hincong i hi' j hj' (fq_unique_lift hp' hp5 ha (hdvd i hi') (hdvd j hj') h1)
 
-/-- The number of indices `1 ≤ i ≤ N` in a fixed residue class modulo `M`.-/
+/-- The number of indices `1 ≤ i ≤ N` in a fixed residue class modulo `M`.
+@isnad1 id=le.0h3v.s6.36cfdc136b55 from=translated src=- shape=c7e3f477 vocab=9a7a49ec
+-/
 theorem card_filter_mod_le (M N r : ℕ) :
     ((Finset.Icc 1 N).filter (fun i => i % M = r)).card ≤ N / M + 1 := by
   classical
@@ -330,7 +367,9 @@ theorem card_filter_mod_le (M N r : ℕ) :
   simpa [Nat.card_Icc] using h
 
 /-- **The counting step of Lemma 3.2.**  For a prime `p ≠ 2, 5` and `a ≥ 1`, at most
-`ρ(p)·(N/pᵃ + 1) ≤ 2(N/pᵃ + 1)` indices `1 ≤ i ≤ N` satisfy `pᵃ ∣ f(i)`.-/
+`ρ(p)·(N/pᵃ + 1) ≤ 2(N/pᵃ + 1)` indices `1 ≤ i ≤ N` satisfy `pᵃ ∣ f(i)`.
+@isnad1 id=le.3h3v.s7.b9e884b2e011 from=translated src=- shape=f4eed40d vocab=cffe15b0
+-/
 theorem card_dvd_fq_le {p a : ℕ} [Fact p.Prime] (hp2 : p ≠ 2) (hp5 : p ≠ 5) (ha : 1 ≤ a)
     (N : ℕ) : ((Finset.Icc 1 N).filter (fun i => p ^ a ∣ fq i)).card ≤ (N / p ^ a + 1) * 2 := by
   classical
@@ -371,7 +410,9 @@ theorem card_dvd_fq_le {p a : ℕ} [Fact p.Prime] (hp2 : p ≠ 2) (hp5 : p ≠ 5
 and the resulting bound for the number of indices whose largest prime factor is small
 (the "discard step" in the proof of Lemma 3.2). -/
 
-/-- For every prime `q`, at most two indices `i < q` satisfy `q ∣ f(i)`.-/
+/-- For every prime `q`, at most two indices `i < q` satisfy `q ∣ f(i)`.
+@isnad1 id=le.3h2v.s5.2c7fa5977c81 from=translated src=- shape=e8e11967 vocab=40049f28
+-/
 theorem card_le_two_of_dvd_fq_lt {q : ℕ} (hq : q.Prime) (s : Finset ℕ)
     (hs : ∀ i ∈ s, i < q) (hdvd : ∀ i ∈ s, q ∣ fq i) : s.card ≤ 2 := by
   classical
@@ -403,7 +444,9 @@ theorem card_le_two_of_dvd_fq_lt {q : ℕ} (hq : q.Prime) (s : Finset ℕ)
 
 open scoped Classical in
 /-- **The discard step of Lemma 3.2.**  The number of indices `1 ≤ i ≤ N` for which `f(i)`
-has a prime factor `q` with `i < q ≤ y` is at most `2π(y)`.-/
+has a prime factor `q` with `i < q ≤ y` is at most `2π(y)`.
+@isnad1 id=le.0h2v.s6.b9b9991c02fb from=translated src=- shape=c4b9163e vocab=dd89abd4
+-/
 theorem card_small_largest_prime_factor_le (N y : ℕ) :
     ((Finset.Icc 1 N).filter
         (fun i => ∃ q : ℕ, q.Prime ∧ q ∣ fq i ∧ i < q ∧ q ≤ y)).card

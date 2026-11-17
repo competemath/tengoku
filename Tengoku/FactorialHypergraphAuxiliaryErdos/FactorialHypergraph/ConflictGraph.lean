@@ -22,7 +22,9 @@ variable {α : Type*} [Fintype α] [DecidableEq α]
 /-! ## Greedy proper colouring -/
 
 /-- **Greedy colouring.**  A finite graph in which every vertex has degree at most `D`
-admits a proper colouring with `D + 1` colours.-/
+admits a proper colouring with `D + 1` colours.
+@isnad1 id=ex.1h3v.s6.db3c6ab2183c from=translated src=- shape=6d6d8262 vocab=8803225f
+-/
 theorem exists_proper_coloring (G : SimpleGraph α) [DecidableRel G.Adj] (D : ℕ)
     (hdeg : ∀ v, G.degree v ≤ D) :
     ∃ c : α → Fin (D + 1), ∀ x y, G.Adj x y → c x ≠ c y := by
@@ -78,7 +80,9 @@ theorem exists_proper_coloring (G : SimpleGraph α) [DecidableRel G.Adj] (D : �
 
 /-- **Weighted independent-set lemma** (Proposition 2.8).  If the conflict graph has
 maximum degree at most `D` and all weights are nonnegative, then some independent set
-carries at least a `1/(D+1)` fraction of the total weight.-/
+carries at least a `1/(D+1)` fraction of the total weight.
+@isnad1 id=ex.1h4v.s7.6b7052accf11 from=translated src=- shape=713fcf10 vocab=4aea9dc8
+-/
 theorem exists_indepSet_weight (G : SimpleGraph α) [DecidableRel G.Adj] (D : ℕ)
     (hdeg : ∀ v, G.degree v ≤ D) (w : α → ℝ) :
     ∃ s : Finset α, (∀ x ∈ s, ∀ y ∈ s, ¬ G.Adj x y) ∧
@@ -110,7 +114,9 @@ theorem exists_indepSet_weight (G : SimpleGraph α) [DecidableRel G.Adj] (D : �
   rw [mul_comm, div_mul_cancel₀ _ (ne_of_gt hD)] at this
   exact lt_irrefl _ this
 
-/-- Unit-weight form of the independent-set lemma.-/
+/-- Unit-weight form of the independent-set lemma.
+@isnad1 id=ex.1h3v.s7.3738362bd7c1 from=translated src=- shape=a0933bc6 vocab=ef1b04f2
+-/
 theorem exists_indepSet_card (G : SimpleGraph α) [DecidableRel G.Adj] (D : ℕ)
     (hdeg : ∀ v, G.degree v ≤ D) :
     ∃ s : Finset α, (∀ x ∈ s, ∀ y ∈ s, ¬ G.Adj x y) ∧
@@ -135,7 +141,9 @@ def conflictGraph {ι : Type*} (col : ι → ℕ) (B : ι → Finset ℕ) : Simp
   loopless := ⟨fun _ h => h.1 rfl⟩
 
 /-- An independent set of the conflict graph consists of members with pairwise distinct
-colours and pairwise disjoint designated subsets.-/
+colours and pairwise disjoint designated subsets.
+@isnad1 id=and.1h4v.s7.4bdad4aed8d8 from=translated src=- shape=f291d5d8 vocab=472842b0
+-/
 theorem indepSet_conflictGraph {ι : Type*} [DecidableEq ι] (col : ι → ℕ) (B : ι → Finset ℕ)
     (s : Finset ι) (hs : ∀ x ∈ s, ∀ y ∈ s, ¬ (conflictGraph col B).Adj x y) :
     (∀ x ∈ s, ∀ y ∈ s, x ≠ y → col x ≠ col y) ∧

@@ -32,6 +32,9 @@ open Finset
 
 /-! ## Compositeness from a proper divisor -/
 
+/--
+@isnad1 id=not.3h2v.s4.3597fbf43602 from=translated src=- shape=fe9089f4 vocab=bf2cfb0f
+-/
 theorem not_prime_of_proper_divisor {N d : ℕ} (hd : d ∣ N) (h1 : 1 < d) (h2 : d < N) :
     ¬ N.Prime := by
   intro hN
@@ -42,7 +45,9 @@ theorem not_prime_of_proper_divisor {N d : ℕ} (hd : d ∣ N) (h1 : 1 < d) (h2 
 variable {L : ℕ}
 
 /-- Every prime dividing the modulus of a rainbow edge cover exceeds `L`, so the modulus
-is coprime to the primorial `W = ∏_{p ≤ L} p`.-/
+is coprime to the primorial `W = ∏_{p ≤ L} p`.
+@isnad1 id=coprime.0h2v.s3.06177d42f2c4 from=translated src=- shape=21b2ee1c vocab=1d306116
+-/
 theorem coprime_modulus_primorial (C : RainbowCover L) :
     Nat.Coprime C.modulus (primorial L) := by
   rw [RainbowCover.modulus_eq_prod]
@@ -58,7 +63,9 @@ theorem coprime_modulus_primorial (C : RainbowCover L) :
   omega
 
 /-- In any residue class modulo `P > 0` there is a representative just above a given
-threshold `c`, namely inside `(c, c + 2P]`.-/
+threshold `c`, namely inside `(c, c + 2P]`.
+@isnad1 id=ex.1h3v.s6.d9c93b45f45e from=translated src=- shape=810553ef vocab=76b4f2f2
+-/
 theorem exists_base {c P : ℕ} (hP : 0 < P) (r : ℕ) :
     ∃ base : ℕ, c < base ∧ base ≤ c + 2 * P ∧ base % P = r % P := by
   refine ⟨P * (c / P) + P + r % P, ?_, ?_, ?_⟩
@@ -73,7 +80,9 @@ theorem exists_base {c P : ℕ} (hP : 0 < P) (r : ℕ) :
 
 /-- **Arithmetic core.**  For `L ≥ 3` and a rainbow edge cover `C`, all the integers in a
 single arithmetic progression of modulus `P = M(C)·W` starting just above `2·L!` are
-`L`-rough and have all their factorial differences composite.-/
+`L`-rough and have all their factorial differences composite.
+@isnad1 id=ex.1h2v.s7.18972196cd50 from=translated src=- shape=58073ea5 vocab=ae7bb6a2
+-/
 theorem exists_progression (hL : 3 ≤ L) (C : RainbowCover L) :
     ∃ base : ℕ, 2 * L.factorial < base ∧
       base ≤ 2 * L.factorial + 2 * (C.modulus * primorial L) ∧
@@ -163,7 +172,9 @@ theorem exists_progression (hL : 3 ≤ L) (C : RainbowCover L) :
 /-! ## Counting the resulting integers -/
 
 /-- Every arithmetic progression of modulus `P = M(C)·W` inside `(2·L!, (L+1)!]` supplies
-`m` distinct elements of `goodSet L`.-/
+`m` distinct elements of `goodSet L`.
+@isnad1 id=le.2h3v.s6.1ae4b8b7fe1d from=translated src=- shape=fe862211 vocab=3cc29c05
+-/
 theorem card_goodSet_ge (hL : 3 ≤ L) (C : RainbowCover L) (m : ℕ)
     (hm : 2 * L.factorial + 2 * (C.modulus * primorial L)
         + m * (C.modulus * primorial L) ≤ (L + 1).factorial) :
@@ -193,7 +204,9 @@ set_option maxHeartbeats 1000000 in
 /-- **Transference theorem** (Theorem 6.1, with the explicitly recorded exponent loss
 `η ↦ η/2` coming from the elementary replacement of Mertens' theorem by
 `W ≤ 4^L`).  Any rainbow edge cover with modulus at most `X^{1-η}`, `X = (L+1)!`,
-produces at least `X^{η/2}/(100 log L)` integers of `goodSet L`.-/
+produces at least `X^{η/2}/(100 log L)` integers of `goodSet L`.
+@isnad1 id=ex.2h1v.s7.80d4be6d0b0f from=translated src=- shape=01244fbe vocab=b6b93c19
+-/
 theorem transference (η : ℝ) (hη0 : 0 < η) (hη1 : η < 1) :
     ∃ L₀ : ℕ, ∀ L, L₀ ≤ L → ∀ C : RainbowCover L,
       (C.modulus : ℝ) ≤ ((L + 1).factorial : ℝ) ^ (1 - η) →

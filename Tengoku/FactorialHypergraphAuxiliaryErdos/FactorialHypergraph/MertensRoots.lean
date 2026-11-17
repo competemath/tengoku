@@ -41,7 +41,9 @@ open Finset
 
 /-! ## `ρ(p) = 1 + χ₅(p)` -/
 
-/-- `rootCount p` counts the roots of `f` in `ZMod p`.-/
+/-- `rootCount p` counts the roots of `f` in `ZMod p`.
+@isnad1 id=eq.0h1v.s4.4997e181b808 from=translated src=- shape=7be9435a vocab=fba5cbc5
+-/
 theorem rootCount_eq_card_rootsMod (p : ℕ) [Fact p.Prime] :
     rootCount p = (rootsMod p).card := by
   classical
@@ -71,7 +73,9 @@ theorem rootCount_eq_card_rootsMod (p : ℕ) [Fact p.Prime] :
       exact (ZMod.natCast_eq_zero_iff _ _).mp hzero
     · simp [ZMod.natCast_val, ZMod.cast_id]
 
-/-- The Legendre symbol `(n/5)`, as a real number, is `χ₅(n)`.-/
+/-- The Legendre symbol `(n/5)`, as a real number, is `χ₅(n)`.
+@isnad1 id=eq.0h1v.s4.135f8bcd1eef from=translated src=- shape=7f196e56 vocab=21a8a802
+-/
 theorem legendreSym_five_eq_chi5 (n : ℕ) : ((legendreSym 5 n : ℤ) : ℝ) = chi5 n := by
   have hmod : legendreSym 5 (n : ℤ) = legendreSym 5 ((n % 5 : ℕ) : ℤ) := by
     rw [legendreSym.mod 5 (n : ℤ)]
@@ -81,7 +85,9 @@ theorem legendreSym_five_eq_chi5 (n : ℕ) : ((legendreSym 5 n : ℤ) : ℝ) = c
   rcases h5 with h | h | h | h | h <;> rw [h] <;> norm_num [chi5, h]
 
 /-- **Equation (3.5) for every prime.**  `ρ(p) = 1 + χ₅(p)`, including `p = 2` (`ρ = 0`)
-and `p = 5` (`ρ = 1`).-/
+and `p = 5` (`ρ = 1`).
+@isnad1 id=eq.1h1v.s4.1fe72dadb0c1 from=translated src=- shape=1c7cec57 vocab=db0af8b0
+-/
 theorem rootCount_eq_one_add_chi5 {p : ℕ} (hp : p.Prime) :
     (rootCount p : ℝ) = 1 + chi5 p := by
   rcases eq_or_ne p 2 with rfl | hp2
@@ -97,7 +103,9 @@ theorem rootCount_eq_one_add_chi5 {p : ℕ} (hp : p.Prime) :
 
 /-! ## The estimate -/
 
-/-- **The field `LargePrimeInputs.mertensRoots`, verbatim, proved unconditionally.**-/
+/-- **The field `LargePrimeInputs.mertensRoots`, verbatim, proved unconditionally.**
+@isnad1 id=ex.0h0v.s6.58dfbb3f270e from=translated src=- shape=76ffb18f vocab=8902d8bf
+-/
 theorem mertensRoots_unconditional :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ N : ℕ, 2 ≤ N →
       ∑ p ∈ primesLE N, (rootCount p : ℝ) * Real.log p / ((p : ℝ) - 1)
@@ -171,7 +179,9 @@ theorem mertensRoots_unconditional :
 
 /-- **CONDITIONAL on the Chebyshev-type bound `π(y) ≤ 1.02 y / log y`** (the remaining
 field `primeCountingUpper`), the whole structure `LargePrimeInputs` is available: the
-field `mertensRoots` is now unconditional.-/
+field `mertensRoots` is now unconditional.
+@isnad1 id=largepri.1h0v.s5.ff4a5e6b0b7d from=translated src=- shape=8fc93cb2 vocab=2db35e93
+-/
 theorem largePrimeInputs_of_primeCountingUpper
     (h : ∃ y₀ : ℕ, ∀ y : ℕ, y₀ ≤ y → ((primesLE y).card : ℝ) ≤ 1.02 * (y : ℝ) / Real.log y) :
     LargePrimeInputs :=

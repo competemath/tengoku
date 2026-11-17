@@ -26,7 +26,9 @@ open Finset
 
 open scoped Classical in
 /-- **Unconditional dimension condition (κ = 1).**  Uniformly for every finite set `P` of
-primes and every `w ≥ 2`.-/
+primes and every `w ≥ 2`.
+@isnad1 id=ex.0h0v.s6.6f837886c2e9 from=translated src=- shape=faeeef84 vocab=9b747b3d
+-/
 theorem dimension_condition :
     ∃ C₁ : ℝ, 0 ≤ C₁ ∧ ∀ P : Finset ℕ, (∀ ℓ ∈ P, Nat.Prime ℓ) → ∀ w : ℝ, 2 ≤ w →
       ∑ ℓ ∈ P with (((ℓ : ℕ) : ℝ) ≤ w), (rootCount ℓ : ℝ) * Real.log ℓ / (ℓ : ℝ)
@@ -83,7 +85,9 @@ Unlike the anchored form `dimension_condition` (its special case `w₁ = 2`, up 
 of the constant), this bounds the *local* dimension of the sieve on every dyadic range, and
 it is what the fundamental lemma of sieve theory actually assumes.  Its proof needs the
 two-sided Mertens estimate: the upper bound `mertensRoots_upper_div_p` at `w₂` and the
-lower bound `mertensRoots_lower` at `w₁`, both unconditional.-/
+lower bound `mertensRoots_lower` at `w₁`, both unconditional.
+@isnad1 id=ex.0h0v.s7.daeff085fd9b from=translated src=- shape=3547c20e vocab=5d7a8348
+-/
 theorem dimension_condition_interval :
     ∃ C₁ : ℝ, 0 ≤ C₁ ∧ ∀ P : Finset ℕ, (∀ ℓ ∈ P, Nat.Prime ℓ) → ∀ w₁ w₂ : ℝ, 2 ≤ w₁ → w₁ ≤ w₂ →
       ∑ ℓ ∈ P with (w₁ < ((ℓ : ℕ) : ℝ) ∧ ((ℓ : ℕ) : ℝ) ≤ w₂),
@@ -159,11 +163,16 @@ theorem dimension_condition_interval :
 noncomputable def sievePrimes (m : ℕ) (z : ℝ) : Finset ℕ :=
   (Finset.range (⌊z⌋₊ + 1)).filter (fun ℓ => Nat.Prime ℓ ∧ ¬ (ℓ ∣ 10 * m))
 
+/--
+@isnad1 id=iff.0h3v.s5.ac2ab6dbed05 from=translated src=- shape=0612f54e vocab=0f0bec31
+-/
 theorem mem_sievePrimes {m ℓ : ℕ} {z : ℝ} :
     ℓ ∈ sievePrimes m z ↔ ℓ ≤ ⌊z⌋₊ ∧ Nat.Prime ℓ ∧ ¬ (ℓ ∣ 10 * m) := by
   simp [sievePrimes, Finset.mem_filter, Finset.mem_range]
 
-/-- A prime not dividing `10 m` is neither `2` nor `5`.-/
+/-- A prime not dividing `10 m` is neither `2` nor `5`.
+@isnad1 id=and.1h3v.s5.508bf5200b2e from=translated src=- shape=1b43e012 vocab=f0f1e77f
+-/
 theorem ne_two_five_of_mem_sievePrimes {m ℓ : ℕ} {z : ℝ} (h : ℓ ∈ sievePrimes m z) :
     ℓ ≠ 2 ∧ ℓ ≠ 5 := by
   obtain ⟨-, -, h10⟩ := mem_sievePrimes.mp h
@@ -171,7 +180,9 @@ theorem ne_two_five_of_mem_sievePrimes {m ℓ : ℕ} {z : ℝ} (h : ℓ ∈ siev
   · rintro rfl; exact h10 (Dvd.dvd.mul_right (by norm_num) m)
   · rintro rfl; exact h10 (Dvd.dvd.mul_right (by norm_num) m)
 
-/-- The root count of a prime in the sieve set is `2` when `χ₅ = 1` and `0` otherwise.-/
+/-- The root count of a prime in the sieve set is `2` when `χ₅ = 1` and `0` otherwise.
+@isnad1 id=ite.1h3v.s7.107e910e41cf from=translated src=- shape=b306de38 vocab=d5029012
+-/
 theorem rootCount_of_mem_sievePrimes {m ℓ : ℕ} {z : ℝ} (h : ℓ ∈ sievePrimes m z) :
     (if ℓ % 5 = 1 ∨ ℓ % 5 = 4 then rootCount ℓ = 2 else rootCount ℓ = 0) := by
   obtain ⟨-, hp, -⟩ := mem_sievePrimes.mp h
@@ -186,7 +197,9 @@ noncomputable def sieveProduct (m : ℕ) (z : ℝ) : ℝ :=
   ∏ ℓ ∈ sievePrimes m z, (1 - (rootCount ℓ : ℝ) / (ℓ : ℝ))
 
 open scoped Classical in
-/-- Only the primes with `χ₅ = 1` contribute to the sieve product.-/
+/-- Only the primes with `χ₅ = 1` contribute to the sieve product.
+@isnad1 id=eq.0h2v.s7.419fdfc27a6f from=translated src=- shape=4404c9fe vocab=1fb3b84d
+-/
 theorem sieveProduct_eq_chi (m : ℕ) (z : ℝ) :
     sieveProduct m z = ∏ ℓ ∈ sievePrimes m z with (ℓ % 5 = 1 ∨ ℓ % 5 = 4),
       (1 - 2 / (ℓ : ℝ)) := by
@@ -197,7 +210,9 @@ theorem sieveProduct_eq_chi (m : ℕ) (z : ℝ) :
   · rw [h]; norm_num
   · rw [h]; norm_num
 
-/-- Each factor of the sieve product lies in `(0, 1]`.-/
+/-- Each factor of the sieve product lies in `(0, 1]`.
+@isnad1 id=and.1h3v.s6.c680be9c1753 from=translated src=- shape=6aa3b980 vocab=eb7796e9
+-/
 theorem sieveProduct_factor_mem {m ℓ : ℕ} {z : ℝ} (hℓ : ℓ ∈ sievePrimes m z) :
     0 < 1 - (rootCount ℓ : ℝ) / (ℓ : ℝ) ∧ 1 - (rootCount ℓ : ℝ) / (ℓ : ℝ) ≤ 1 := by
   obtain ⟨-, hp, -⟩ := mem_sievePrimes.mp hℓ
@@ -217,9 +232,15 @@ theorem sieveProduct_factor_mem {m ℓ : ℕ} {z : ℝ} (hℓ : ℓ ∈ sievePri
       linarith
   · rw [h]; norm_num
 
+/--
+@isnad1 id=lt.0h2v.s4.9bb699fbd74b from=translated src=- shape=787c1379 vocab=b636e3b8
+-/
 theorem sieveProduct_pos {m : ℕ} {z : ℝ} : 0 < sieveProduct m z :=
   Finset.prod_pos (fun _l hl => (sieveProduct_factor_mem hl).1)
 
+/--
+@isnad1 id=le.0h2v.s4.b666d27d239d from=translated src=- shape=4f17ad3b vocab=7f511193
+-/
 theorem sieveProduct_le_one {m : ℕ} {z : ℝ} : sieveProduct m z ≤ 1 := by
   calc sieveProduct m z ≤ ∏ _ℓ ∈ sievePrimes m z, (1 : ℝ) :=
         Finset.prod_le_prod (fun ℓ hl => (sieveProduct_factor_mem hl).1.le)
@@ -227,7 +248,9 @@ theorem sieveProduct_le_one {m : ℕ} {z : ℝ} : sieveProduct m z ≤ 1 := by
     _ = 1 := Finset.prod_const_one
 
 open scoped Classical in
-/-- Deleting from the sieve product the primes dividing `m` costs at most a factor `h(m)`.-/
+/-- Deleting from the sieve product the primes dividing `m` costs at most a factor `h(m)`.
+@isnad1 id=le.1h2v.s5.223ae6720271 from=translated src=- shape=d8d52b8b vocab=b1e46942
+-/
 theorem sieveProduct_le_mul_hFactor (m : ℕ) (hm : 0 < m) (z : ℝ) :
     sieveProduct m z ≤ sieveProduct 1 z * hFactor m := by
   set Q1 := (sievePrimes 1 z).filter (fun ℓ => ℓ % 5 = 1 ∨ ℓ % 5 = 4) with hQ1
@@ -321,7 +344,9 @@ open scoped Classical in
 /-- **UNCONDITIONAL.**  (The Mertens/`χ₅` input it uses, `sum_inv_primes_chi5`, is proved
 unconditionally in `FactorialHypergraph/MertensSecond.lean`; this docstring previously said
 "CONDITIONAL", which was stale.)
-`V_1(z) ≤ C / log z` for `z ≥ 16`.-/
+`V_1(z) ≤ C / log z` for `z ≥ 16`.
+@isnad1 id=ex.0h0v.s5.2e131291b366 from=translated src=- shape=6b294aa3 vocab=fc3c39dc
+-/
 theorem sieveProduct_one_le :
     ∃ C : ℝ, 0 < C ∧ ∀ z : ℝ, 16 ≤ z → sieveProduct 1 z ≤ C / Real.log z := by
   obtain ⟨C, hC0, hCN⟩ := sum_inv_primes_chi5
@@ -420,7 +445,9 @@ open scoped Classical in
 /-- **UNCONDITIONAL.**  (The Mertens/`χ₅` input it uses, `sum_inv_primes_chi5`, is proved
 unconditionally in `FactorialHypergraph/MertensSecond.lean`; this docstring previously said
 "CONDITIONAL", which was stale.)
-`V_m(z) ≤ C h(m)/log z`, uniformly in `m ≥ 1` and `z ≥ 16`.-/
+`V_m(z) ≤ C h(m)/log z`, uniformly in `m ≥ 1` and `z ≥ 16`.
+@isnad1 id=ex.0h0v.s6.6ca3f771319e from=translated src=- shape=a85076d8 vocab=b1ed8304
+-/
 theorem sieveProduct_le :
     ∃ C : ℝ, 0 < C ∧ ∀ m : ℕ, 0 < m → ∀ z : ℝ, 16 ≤ z →
       sieveProduct m z ≤ C * hFactor m / Real.log z := by

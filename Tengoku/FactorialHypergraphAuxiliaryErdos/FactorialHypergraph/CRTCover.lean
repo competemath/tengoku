@@ -18,15 +18,22 @@ variable {L : ℕ}
 
 namespace RainbowCover
 
-/-- The modulus of a rainbow edge cover is the product of the selected primes.-/
+/-- The modulus of a rainbow edge cover is the product of the selected primes.
+@isnad1 id=eq.0h2v.s4.4eec6a731b4b from=translated src=- shape=e429021f vocab=898bedcb
+-/
 theorem modulus_eq_prod (C : RainbowCover L) : C.modulus = ∏ q ∈ C.Q, q := rfl
 
+/--
+@isnad1 id=lt.0h2v.s4.a025b812cf79 from=translated src=- shape=179c2224 vocab=9a517ec8
+-/
 theorem modulus_pos (C : RainbowCover L) : 0 < C.modulus := by
   refine Finset.prod_pos ?_
   intro q hq
   exact (C.prime_mem q hq).pos
 
-/-- The logarithm of the modulus of a rainbow edge cover equals its weight.-/
+/-- The logarithm of the modulus of a rainbow edge cover equals its weight.
+@isnad1 id=eq.0h2v.s4.9d84a6b9ed04 from=translated src=- shape=b4042f72 vocab=0d6ede98
+-/
 theorem log_modulus_eq_weight (C : RainbowCover L) :
     Real.log (C.modulus : ℝ) = C.weight := by
   rw [modulus_eq_prod, weight]
@@ -34,7 +41,9 @@ theorem log_modulus_eq_weight (C : RainbowCover L) :
   exact Real.log_prod (fun q hq => by
     exact_mod_cast Nat.cast_ne_zero.mpr (C.prime_mem q hq).pos.ne')
 
-/-- The selected residues are nonzero modulo their colour.-/
+/-- The selected residues are nonzero modulo their colour.
+@isnad1 id=not.1h3v.s4.ede6e598fe3a from=translated src=- shape=2bc93285 vocab=8c55e5a6
+-/
 theorem not_dvd_res (C : RainbowCover L) {q : ℕ} (hq : q ∈ C.Q) : ¬ (q ∣ C.res q) := by
   obtain ⟨k, hk⟩ := C.fiber_nonempty q hq
   rw [mem_fiber] at hk
@@ -47,14 +56,18 @@ theorem not_dvd_res (C : RainbowCover L) {q : ℕ} (hq : q ∈ C.Q) : ¬ (q ∣ 
   have := C.lt_mem q hq
   omega
 
-/-- The primes of a rainbow edge cover are pairwise coprime.-/
+/-- The primes of a rainbow edge cover are pairwise coprime.
+@isnad1 id=pairwise.0h2v.s4.635ed55956e1 from=translated src=- shape=83bf2c79 vocab=a164681c
+-/
 theorem pairwise_coprime (C : RainbowCover L) :
     (↑C.Q : Set ℕ).Pairwise (Function.onFun Nat.Coprime id) := by
   intro x hx y hy hxy
   exact (Nat.coprime_primes (C.prime_mem x hx) (C.prime_mem y hy)).mpr hxy
 
 /-- **Chinese remainder theorem for a rainbow edge cover.**  There is a residue class
-`A` modulo `M(C)`, coprime to `M(C)`, with `A ≡ res q (mod q)` for every colour `q`.-/
+`A` modulo `M(C)`, coprime to `M(C)`, with `A ≡ res q (mod q)` for every colour `q`.
+@isnad1 id=ex.0h2v.s5.02d2892a0848 from=translated src=- shape=64015834 vocab=791dcf49
+-/
 theorem exists_crt_class (C : RainbowCover L) :
     ∃ A : ℕ, (∀ q ∈ C.Q, A ≡ C.res q [MOD q]) ∧ Nat.Coprime A C.modulus := by
   obtain ⟨A, hA⟩ := Nat.chineseRemainderOfFinset C.res id C.Q
@@ -101,7 +114,9 @@ end CoveringSystem
 /-- **From rainbow edge covers to covering congruences** (first half of Proposition 2.7).
 A rainbow edge cover yields a compatible system of covering congruences with the same
 prime set, hence with the same modulus `M(C) = ∏_{q ∈ Q} q` and
-`log M = w(C)`.-/
+`log M = w(C)`.
+@isnad1 id=ex.0h2v.s5.cc0dab9aed3d from=translated src=- shape=40617271 vocab=dbd8d65a
+-/
 theorem exists_coveringSystem_of_cover (C : RainbowCover L) :
     ∃ S : CoveringSystem L, S.Q = C.Q ∧ S.modulus = C.modulus ∧
       Real.log (S.modulus : ℝ) = C.weight := by
@@ -124,7 +139,9 @@ theorem exists_coveringSystem_of_cover (C : RainbowCover L) :
 
 /-- **From covering congruences to rainbow edge covers** (second half of Proposition 2.7).
 A compatible system of covering congruences yields a rainbow edge cover with the same
-prime set, hence of weight `log M`.-/
+prime set, hence of weight `log M`.
+@isnad1 id=ex.0h2v.s5.8790df20779f from=translated src=- shape=ffb65205 vocab=dbd8d65a
+-/
 theorem exists_cover_of_coveringSystem (S : CoveringSystem L) :
     ∃ C : RainbowCover L, C.Q = S.Q ∧ C.modulus = S.modulus ∧
       C.weight = Real.log (S.modulus : ℝ) := by
@@ -151,6 +168,9 @@ def coveringModuli (L : ℕ) : Set ℕ := {M | ∃ S : CoveringSystem L, S.modul
 (equal to `0` if there is none).-/
 noncomputable def Mmin (L : ℕ) : ℕ := sInf (coveringModuli L)
 
+/--
+@isnad1 id=eq.0h1v.s4.c1e13de3fe51 from=translated src=- shape=db65b5ee vocab=5f6ac918
+-/
 theorem coverWeights_eq_image (L : ℕ) :
     coverWeights L = (fun M : ℕ => Real.log (M : ℝ)) '' (coveringModuli L) := by
   ext w
@@ -162,14 +182,18 @@ theorem coverWeights_eq_image (L : ℕ) :
     obtain ⟨C, -, -, hw⟩ := exists_cover_of_coveringSystem S
     exact ⟨C, hw⟩
 
-/-- The modulus of a compatible system of covering congruences is positive.-/
+/-- The modulus of a compatible system of covering congruences is positive.
+@isnad1 id=lt.0h2v.s4.2e08aa51be54 from=translated src=- shape=179c2224 vocab=c01288d2
+-/
 theorem CoveringSystem.modulus_pos (S : CoveringSystem L) : 0 < S.modulus := by
   refine Finset.prod_pos ?_
   intro q hq
   exact (S.prime_mem q hq).pos
 
 /-- **Proposition 2.7 (equivalence with covering congruences), quantitative form.**
-Whenever a compatible system of covering congruences exists, `κ(L) = log M_min(L)`.-/
+Whenever a compatible system of covering congruences exists, `κ(L) = log M_min(L)`.
+@isnad1 id=eq.1h1v.s4.edca8404e720 from=translated src=- shape=46052f87 vocab=bfa74b64
+-/
 theorem kappa_eq_log_Mmin (hne : (coveringModuli L).Nonempty) :
     kappa L = Real.log ((Mmin L : ℕ) : ℝ) := by
   have hmem : Mmin L ∈ coveringModuli L := Nat.sInf_mem hne
@@ -187,7 +211,9 @@ theorem kappa_eq_log_Mmin (hne : (coveringModuli L).Nonempty) :
     exact Real.log_le_log (by exact_mod_cast hpos _ hmem) (by exact_mod_cast hle M hM)
 
 /-- `κ(L) ≤ log M(C)` for every rainbow edge cover `C`: the weight of any cover is an
-upper bound for the minimum weight.-/
+upper bound for the minimum weight.
+@isnad1 id=le.0h2v.s4.80296a35b307 from=translated src=- shape=d3b65e96 vocab=2cbfe70e
+-/
 theorem kappa_le_of_cover (C : RainbowCover L) : kappa L ≤ Real.log (C.modulus : ℝ) := by
   rw [C.log_modulus_eq_weight]
   refine csInf_le ⟨0, ?_⟩ ⟨C, rfl⟩

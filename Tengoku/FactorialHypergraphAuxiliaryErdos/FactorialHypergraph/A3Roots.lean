@@ -34,17 +34,27 @@ open Finset
 
 /-! ## Basic values and multiplicativity of `R = rootCount` -/
 
+/--
+@isnad1 id=eq.0h0v.s3.cac8f7c0739f from=translated src=- shape=3c26ae4f vocab=08eb0318
+-/
 theorem rootCount_one : rootCount 1 = 1 := by decide
 
+/--
+@isnad1 id=eq.0h0v.s3.467617459000 from=translated src=- shape=3c26ae4f vocab=08eb0318
+-/
 theorem rootCount_zero : rootCount 0 = 0 := by decide
 
-/-- Divisibility of `f` only depends on the residue class.-/
+/-- Divisibility of `f` only depends on the residue class.
+@isnad1 id=iff.1h3v.s4.eb69dd70079d from=translated src=- shape=090a6c61 vocab=e938fc7e
+-/
 theorem dvd_fq_congr {d i j : ℕ} (h : i ≡ j [MOD d]) : d ∣ fq i ↔ d ∣ fq j := by
   constructor <;> intro hd
   · exact Nat.modEq_zero_iff_dvd.mp (((fq_modEq h).symm).trans (Nat.modEq_zero_iff_dvd.mpr hd))
   · exact Nat.modEq_zero_iff_dvd.mp ((fq_modEq h).trans (Nat.modEq_zero_iff_dvd.mpr hd))
 
-/-- **Multiplicativity of the root count** (Chinese remainder theorem).-/
+/-- **Multiplicativity of the root count** (Chinese remainder theorem).
+@isnad1 id=eq.3h2v.s5.5dc3401bdce4 from=translated src=- shape=e73a6713 vocab=09437e37
+-/
 theorem rootCount_mul_of_coprime {m n : ℕ} (hm : m ≠ 0) (hn : n ≠ 0) (h : Nat.Coprime m n) :
     rootCount (m * n) = rootCount m * rootCount n := by
   classical
@@ -84,7 +94,9 @@ theorem rootCount_mul_of_coprime {m n : ℕ} (hm : m ≠ 0) (hn : n ≠ 0) (h : 
     · simp [e1, e2]
 
 /-- Multiplicativity of `R`, in the form required by `Nat.multiplicative_factorization`
-(the degenerate cases involving `0` are covered as well).-/
+(the degenerate cases involving `0` are covered as well).
+@isnad1 id=eq.1h2v.s4.32a4e6599477 from=translated src=- shape=20e9f6dc vocab=09437e37
+-/
 theorem rootCount_mul (x y : ℕ) (h : Nat.Coprime x y) :
     rootCount (x * y) = rootCount x * rootCount y := by
   rcases Nat.eq_zero_or_pos x with rfl | hx
@@ -97,7 +109,9 @@ theorem rootCount_mul (x y : ℕ) (h : Nat.Coprime x y) :
 
 /-! ## Prime powers -/
 
-/-- `R(2^e) = 0` for `e ≥ 1`: `f` has no root modulo `2`.-/
+/-- `R(2^e) = 0` for `e ≥ 1`: `f` has no root modulo `2`.
+@isnad1 id=eq.1h1v.s5.fef5037bd57e from=translated src=- shape=5b7fbb38 vocab=0373b48e
+-/
 theorem rootCount_two_pow {e : ℕ} (he : 1 ≤ e) : rootCount (2 ^ e) = 0 := by
   classical
   unfold rootCount
@@ -105,10 +119,14 @@ theorem rootCount_two_pow {e : ℕ} (he : 1 ≤ e) : rootCount (2 ^ e) = 0 := by
   intro a _ hcon
   exact two_not_dvd_fq a (dvd_trans (dvd_pow_self 2 (by omega)) hcon)
 
-/-- `R(5) = 1`.-/
+/-- `R(5) = 1`.
+@isnad1 id=eq.0h0v.s3.e8be263c385b from=translated src=- shape=3c26ae4f vocab=08eb0318
+-/
 theorem rootCount_five : rootCount 5 = 1 := by decide
 
-/-- `R(5^e) = 0` for `e ≥ 2`: the root modulo `5` does not lift to `25`.-/
+/-- `R(5^e) = 0` for `e ≥ 2`: the root modulo `5` does not lift to `25`.
+@isnad1 id=eq.1h1v.s5.43e1de74b3c2 from=translated src=- shape=5b7fbb38 vocab=0373b48e
+-/
 theorem rootCount_five_pow {e : ℕ} (he : 2 ≤ e) : rootCount (5 ^ e) = 0 := by
   classical
   unfold rootCount
@@ -120,7 +138,9 @@ theorem rootCount_five_pow {e : ℕ} (he : 2 ≤ e) : rootCount (5 ^ e) = 0 := b
   exact pow_dvd_pow 5 he
 
 /-- **Hensel's step.**  For `p ≠ 5` the number of roots modulo `p^e` is at most the number of
-roots modulo `p`.-/
+roots modulo `p`.
+@isnad1 id=le.3h2v.s5.53abf1d2c077 from=translated src=- shape=35559e9f vocab=4cd88ef1
+-/
 theorem rootCount_prime_pow_le {p e : ℕ} (hp : p.Prime) (hp5 : p ≠ 5) (he : 1 ≤ e) :
     rootCount (p ^ e) ≤ rootCount p := by
   classical
@@ -131,7 +151,9 @@ theorem rootCount_prime_pow_le {p e : ℕ} (hp : p.Prime) (hp5 : p ≠ 5) (he : 
   · intro i hi
     exact (Finset.mem_filter.mp hi).2
 
-/-- `R(p^e) ≤ 2` for every prime `p` and every `e ≥ 1`.-/
+/-- `R(p^e) ≤ 2` for every prime `p` and every `e ≥ 1`.
+@isnad1 id=le.2h2v.s5.15dd675494f4 from=translated src=- shape=4506e651 vocab=4cd88ef1
+-/
 theorem rootCount_prime_pow_le_two {p e : ℕ} (hp : p.Prime) (he : 1 ≤ e) :
     rootCount (p ^ e) ≤ 2 := by
   by_cases hp5 : p = 5
@@ -142,7 +164,9 @@ theorem rootCount_prime_pow_le_two {p e : ℕ} (hp : p.Prime) (he : 1 ≤ e) :
     · simp [rootCount_five_pow h]
   · exact le_trans (rootCount_prime_pow_le hp hp5 he) (rootCount_le_two hp)
 
-/-- For a prime `p ≠ 5` with `χ₅(p) ≠ 1` there is no root modulo `p^e`.-/
+/-- For a prime `p ≠ 5` with `χ₅(p) ≠ 1` there is no root modulo `p^e`.
+@isnad1 id=eq.4h2v.s5.89bb5afc21e2 from=translated src=- shape=d267827d vocab=b011cd70
+-/
 theorem rootCount_prime_pow_eq_zero {p e : ℕ} (hp : p.Prime) (hp5 : p ≠ 5)
     (hchi : chi5 p ≠ 1) (he : 1 ≤ e) : rootCount (p ^ e) = 0 := by
   have hzero : rootCount p = 0 := by
@@ -160,7 +184,9 @@ theorem rootCount_prime_pow_eq_zero {p e : ℕ} (hp : p.Prime) (hp5 : p ≠ 5)
   have := rootCount_prime_pow_le hp hp5 he
   omega
 
-/-- For a prime `p` with `χ₅(p) = 1` we have `R(p) = 2`.-/
+/-- For a prime `p` with `χ₅(p) = 1` we have `R(p) = 2`.
+@isnad1 id=eq.2h1v.s4.6553a2058e28 from=translated src=- shape=ad0b5770 vocab=5a461d69
+-/
 theorem rootCount_prime_eq_two {p : ℕ} (hp : p.Prime) (hchi : chi5 p = 1) :
     rootCount p = 2 := by
   have h := rootCount_eq_one_add_chi5 hp
@@ -168,12 +194,16 @@ theorem rootCount_prime_eq_two {p : ℕ} (hp : p.Prime) (hchi : chi5 p = 1) :
   have : (rootCount p : ℝ) = 2 := by linarith
   exact_mod_cast this
 
-/-- The factorisation of the root count into prime-power contributions.-/
+/-- The factorisation of the root count into prime-power contributions.
+@isnad1 id=eq.1h1v.s5.8d1d4d0b468c from=translated src=- shape=c5cb44e1 vocab=587fd205
+-/
 theorem rootCount_eq_factorization_prod {m : ℕ} (hm : m ≠ 0) :
     rootCount m = m.factorization.prod (fun p k => rootCount (p ^ k)) :=
   Nat.multiplicative_factorization rootCount rootCount_mul rootCount_one hm
 
-/-- **`R(m) ≤ τ(m)`.**-/
+/-- **`R(m) ≤ τ(m)`.**
+@isnad1 id=le.1h1v.s4.b2f5229e4d67 from=translated src=- shape=6e4c468c vocab=c6e079e9
+-/
 theorem rootCount_le_card_divisors {m : ℕ} (hm : m ≠ 0) :
     rootCount m ≤ m.divisors.card := by
   classical
@@ -201,6 +231,9 @@ noncomputable def gLoc (p : ℕ) : ℝ :=
 /-- The multiplicative majorant `gMaj(m) = ∏_{p ∣ m} gLoc p ≥ R(m) h(m)`.-/
 noncomputable def gMaj (m : ℕ) : ℝ := ∏ p ∈ m.primeFactors, gLoc p
 
+/--
+@isnad1 id=le.1h1v.s4.7eb49d4b2d14 from=translated src=- shape=a124ee4e vocab=f076cd54
+-/
 theorem gLoc_nonneg {p : ℕ} (hp : p.Prime) : 0 ≤ gLoc p := by
   unfold gLoc
   split_ifs with h1 h2
@@ -211,21 +244,35 @@ theorem gLoc_nonneg {p : ℕ} (hp : p.Prime) : 0 ≤ gLoc p := by
   · norm_num
   · norm_num
 
+/--
+@isnad1 id=le.0h1v.s3.19696a864945 from=translated src=- shape=b9369acb vocab=9b14d29a
+-/
 theorem gMaj_nonneg (m : ℕ) : 0 ≤ gMaj m :=
   Finset.prod_nonneg (fun _p hp => gLoc_nonneg (Nat.prime_of_mem_primeFactors hp))
 
+/--
+@isnad1 id=eq.0h0v.s3.98b5d49321aa from=translated src=- shape=1ac31801 vocab=011002fa
+-/
 theorem gMaj_one : gMaj 1 = 1 := by simp [gMaj]
 
+/--
+@isnad1 id=eq.3h2v.s5.f16c5d2f568f from=translated src=- shape=bd0c92a1 vocab=f960c5a3
+-/
 theorem gMaj_mul_of_coprime {m n : ℕ} (hm : m ≠ 0) (hn : n ≠ 0) (h : Nat.Coprime m n) :
     gMaj (m * n) = gMaj m * gMaj n := by
   unfold gMaj
   rw [Nat.primeFactors_mul hm hn, Finset.prod_union (Nat.Coprime.disjoint_primeFactors h)]
 
+/--
+@isnad1 id=eq.2h2v.s5.a98ab12db40d from=translated src=- shape=ccc98cba vocab=fcb0c7d7
+-/
 theorem gMaj_prime_pow {p e : ℕ} (hp : p.Prime) (he : 1 ≤ e) : gMaj (p ^ e) = gLoc p := by
   unfold gMaj
   rw [Nat.primeFactors_pow p (by omega), hp.primeFactors, Finset.prod_singleton]
 
-/-- Each factor of `h` is at least `1`.-/
+/-- Each factor of `h` is at least `1`.
+@isnad1 id=le.0h1v.s3.5588ae69a79d from=translated src=- shape=b9369acb vocab=baa4229d
+-/
 theorem one_le_hFactor {m : ℕ} : 1 ≤ hFactor m := by
   classical
   have key : ∀ p ∈ m.primeFactors.filter (fun p => p % 5 = 1 ∨ p % 5 = 4),
@@ -245,9 +292,14 @@ theorem one_le_hFactor {m : ℕ} : 1 ≤ hFactor m := by
   calc (1 : ℝ) = ∏ _p ∈ m.primeFactors with (_p % 5 = 1 ∨ _p % 5 = 4), (1 : ℝ) := by simp
     _ ≤ hFactor m := Finset.prod_le_prod (fun _ _ => zero_le_one) key
 
+/--
+@isnad1 id=le.0h1v.s3.e3a5eb74ac36 from=translated src=- shape=b9369acb vocab=baa4229d
+-/
 theorem hFactor_nonneg {m : ℕ} : 0 ≤ hFactor m := le_trans zero_le_one one_le_hFactor
 
-/-- **The majorant property.**  `R(m) · h(m) ≤ gMaj(m)` for every `m ≥ 1`.-/
+/-- **The majorant property.**  `R(m) · h(m) ≤ gMaj(m)` for every `m ≥ 1`.
+@isnad1 id=le.1h1v.s4.c35ac07ca330 from=translated src=- shape=c7637014 vocab=36c09e78
+-/
 theorem rootCount_mul_hFactor_le {m : ℕ} (hm : m ≠ 0) :
     (rootCount m : ℝ) * hFactor m ≤ gMaj m := by
   classical

@@ -48,7 +48,9 @@ namespace FactorialHypergraph
 /-! ## (A3) from the sieve theorem -/
 
 /-- **(A3), CONDITIONAL** on the dimension-one upper-bound sieve, and on nothing else.
-The statement is the field `AnalyticInputs.smallCofactorSieve`, verbatim.-/
+The statement is the field `AnalyticInputs.smallCofactorSieve`, verbatim.
+@isnad1 id=ex.1h0v.s7.b0a2927ac071 from=translated src=- shape=2cb3e592 vocab=1bb2be06
+-/
 theorem smallCofactorSieve_conditional (hs : UpperBoundSieveDimOne) :
     ∃ C₀ : ℝ, 1 ≤ C₀ ∧ ∃ L₀ : ℕ, ∀ α : ℝ, 0 < α → α ≤ 1 / 2 →
       ∀ L : ℕ, L₀ ≤ L →
@@ -59,21 +61,27 @@ theorem smallCofactorSieve_conditional (hs : UpperBoundSieveDimOne) :
 /-! ## The full bundle of analytic inputs -/
 
 /-- **CONDITIONAL** on the dimension-one upper-bound sieve alone: the whole structure
-`AnalyticInputs`.  (A1) and (A2) contribute no hypothesis, both being proved in Lean.-/
+`AnalyticInputs`.  (A1) and (A2) contribute no hypothesis, both being proved in Lean.
+@isnad1 id=analytic.1h0v.s1.a6553d60e797 from=translated src=- shape=1d48f1ac vocab=5218f849
+-/
 theorem AnalyticInputs.of_sieve_theorem (hs : UpperBoundSieveDimOne) : AnalyticInputs :=
   AnalyticInputs.of_smallCofactorSieve (smallCofactorSieve_of_inputs hs)
 
 /-! ## The manuscript's theorems, conditional on the sieve theorem -/
 
 /-- **Theorem 1.1 (cover cost), CONDITIONAL** on the dimension-one upper-bound sieve:
-`κ(L) ≤ (1 - δ) L log L` for some fixed `δ > 0` and all large `L`.-/
+`κ(L) ≤ (1 - δ) L log L` for some fixed `δ > 0` and all large `L`.
+@isnad1 id=ex.1h0v.s6.1d4a236a0861 from=translated src=- shape=37d1c810 vocab=d0823562
+-/
 theorem cover_cost_of_sieve_theorem (hs : UpperBoundSieveDimOne) :
     ∃ δ : ℝ, 0 < δ ∧ ∃ L₀ : ℕ, ∀ L : ℕ, L₀ ≤ L → kappa L ≤ (1 - δ) * L * Real.log L :=
   cover_cost (AnalyticInputs.of_sieve_theorem hs)
 
 /-- **Theorem 1.2 (quantitative auxiliary theorem), CONDITIONAL** on the dimension-one
 upper-bound sieve: for some `η > 0` and all large `L`,
-`#(goodSet L) ≥ ((L+1)!)^η / (100 log L)`.-/
+`#(goodSet L) ≥ ((L+1)!)^η / (100 log L)`.
+@isnad1 id=ex.1h0v.s6.509b91bfebfc from=translated src=- shape=8f903af4 vocab=2f9e779e
+-/
 theorem main_quantitative_of_sieve_theorem (hs : UpperBoundSieveDimOne) :
     ∃ η : ℝ, 0 < η ∧ ∃ L₁ : ℕ, ∀ L : ℕ, L₁ ≤ L →
       ((L + 1).factorial : ℝ) ^ η / (100 * Real.log L) ≤ ((goodSet L).card : ℝ) :=
@@ -83,7 +91,9 @@ theorem main_quantitative_of_sieve_theorem (hs : UpperBoundSieveDimOne) :
 upper-bound sieve: for every large `L` there is an `L`-rough integer `n ∈ (L!, (L+1)!]` such
 that `n - k!` is a composite number `> 1` for every `1 ≤ k ≤ L`.
 
-This is **not** Erdős Problem 1059: no primality of `n` is asserted.-/
+This is **not** Erdős Problem 1059: no primality of `n` is asserted.
+@isnad1 id=ex.1h0v.s6.f4520e22b409 from=translated src=- shape=a694296a vocab=4060eda3
+-/
 theorem auxiliary_erdos_problem_of_sieve_theorem (hs : UpperBoundSieveDimOne) :
     ∃ L₀ : ℕ, ∀ L : ℕ, L₀ ≤ L → ∃ n : ℕ,
       L.factorial < n ∧

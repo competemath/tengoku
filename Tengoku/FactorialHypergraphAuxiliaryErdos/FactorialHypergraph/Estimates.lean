@@ -14,7 +14,9 @@ open Finset
 
 /-! ## A Stirling-type lower bound for factorials -/
 
-/-- `nⁿ / eⁿ ≤ n!`, an elementary consequence of `nⁿ/n! ≤ eⁿ`.-/
+/-- `nⁿ / eⁿ ≤ n!`, an elementary consequence of `nⁿ/n! ≤ eⁿ`.
+@isnad1 id=le.0h1v.s5.7788bb9e9463 from=translated src=- shape=a1b22607 vocab=38f987ca
+-/
 theorem pow_div_exp_le_factorial (n : ℕ) :
     ((n : ℝ) ^ n) / Real.exp n ≤ (n.factorial : ℝ) := by
   have hsum : ∑ i ∈ Finset.range (n + 1), ((n : ℝ) ^ i / (i.factorial : ℝ)) ≤ Real.exp n :=
@@ -32,7 +34,9 @@ theorem pow_div_exp_le_factorial (n : ℕ) :
   rw [div_le_iff₀ hfac] at h
   linarith [h]
 
-/-- `log (n!) ≥ n log n - n`.-/
+/-- `log (n!) ≥ n log n - n`.
+@isnad1 id=le.0h1v.s5.129724901644 from=translated src=- shape=f8055452 vocab=25518754
+-/
 theorem log_factorial_ge (n : ℕ) :
     (n : ℝ) * Real.log n - n ≤ Real.log (n.factorial : ℝ) := by
   rcases Nat.eq_zero_or_pos n with rfl | hn
@@ -46,7 +50,9 @@ theorem log_factorial_ge (n : ℕ) :
         rw [Real.log_div (by positivity) (Real.exp_ne_zero _), Real.log_pow, Real.log_exp]
     _ ≤ Real.log (n.factorial : ℝ) := this
 
-/-- `log ((L+1)!) ≥ L log L - 2L` for `L ≥ 1`.-/
+/-- `log ((L+1)!) ≥ L log L - 2L` for `L ≥ 1`.
+@isnad1 id=le.1h1v.s6.715380bbf83e from=translated src=- shape=c863f1aa vocab=178a4727
+-/
 theorem log_factorial_succ_ge {L : ℕ} (hL : 1 ≤ L) :
     (L : ℝ) * Real.log L - 2 * L ≤ Real.log (((L + 1).factorial : ℝ)) := by
   have h := log_factorial_ge (L + 1)
@@ -60,7 +66,9 @@ theorem log_factorial_succ_ge {L : ℕ} (hL : 1 ≤ L) :
   linarith
 
 /-- `2 L³ ≤ L!` for `L ≥ 8`; used to check that the primes selected by the construction
-are smaller than `L!`, as required by the definition of a rainbow edge cover.-/
+are smaller than `L!`, as required by the definition of a rainbow edge cover.
+@isnad1 id=le.1h1v.s5.f1f55fb53c09 from=translated src=- shape=daa75778 vocab=bf88f0e0
+-/
 theorem two_mul_cube_le_factorial {L : ℕ} (hL : 8 ≤ L) : 2 * L ^ 3 ≤ L.factorial := by
   induction L with
   | zero => omega
@@ -77,7 +85,9 @@ theorem two_mul_cube_le_factorial {L : ℕ} (hL : 8 ≤ L) : 2 * L ^ 3 ≤ L.fac
 
 /-! ## Logarithm bounds -/
 
-/-- `log t ≤ 2 √t` for `t > 0`.-/
+/-- `log t ≤ 2 √t` for `t > 0`.
+@isnad1 id=le.1h1v.s5.40e189de859e from=translated src=- shape=07dccf84 vocab=71d83edf
+-/
 theorem log_le_two_sqrt {t : ℝ} (ht : 0 < t) : Real.log t ≤ 2 * Real.sqrt t := by
   have hsq : Real.sqrt t > 0 := Real.sqrt_pos.mpr ht
   have h1 : Real.log (Real.sqrt t) ≤ Real.sqrt t - 1 := Real.log_le_sub_one_of_pos hsq
@@ -85,7 +95,9 @@ theorem log_le_two_sqrt {t : ℝ} (ht : 0 < t) : Real.log t ≤ 2 * Real.sqrt t 
   linarith
 
 /-- The elementary threshold inequality used in the weight bookkeeping of Proposition 5.1:
-once `t ≥ (1840/a)²` one has `log 2 + log 21 + log t ≤ (a/80) t`.-/
+once `t ≥ (1840/a)²` one has `log 2 + log 21 + log t ≤ (a/80) t`.
+@isnad1 id=le.3h2v.s7.f6c5bc0eed64 from=translated src=- shape=0e282fd3 vocab=e0c65887
+-/
 theorem log_threshold_bound {a t : ℝ} (ha : 0 < a) (ha1 : a ≤ 1) (ht : (1840 / a) ^ 2 ≤ t) :
     Real.log 2 + Real.log 21 + Real.log t ≤ a / 80 * t := by
   have h1840 : 0 < 1840 / a := by positivity
@@ -112,7 +124,9 @@ theorem log_threshold_bound {a t : ℝ} (ha : 0 < a) (ha1 : a ≤ 1) (ht : (1840
     rw [← hss]; nlinarith
   linarith
 
-/-- `log (log x) ≤ 2 √(log x)` for `x > 1`.-/
+/-- `log (log x) ≤ 2 √(log x)` for `x > 1`.
+@isnad1 id=le.1h1v.s5.2ab823c6a00a from=translated src=- shape=ac144992 vocab=71d83edf
+-/
 theorem log_log_le_two_sqrt_log {x : ℝ} (hx : 1 < x) :
     Real.log (Real.log x) ≤ 2 * Real.sqrt (Real.log x) :=
   log_le_two_sqrt (Real.log_pos hx)

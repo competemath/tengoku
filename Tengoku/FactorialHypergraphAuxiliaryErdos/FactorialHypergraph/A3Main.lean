@@ -34,6 +34,9 @@ open Finset
 /-! ## The union bound over complementary factors and roots -/
 
 open scoped Classical in
+/--
+@isnad1 id=le.1h3v.s7.cd31a64f77fc from=translated src=- shape=02a4ecad vocab=f5a9c684
+-/
 theorem card_smallCofactorSet_le_sum (α : ℝ) (L Y : ℕ)
     (hY : ∀ m : ℕ, 1 ≤ m → (m : ℝ) ≤ (L : ℝ) ^ α → m ≤ Y) :
     (smallCofactorSet α L).card
@@ -84,6 +87,9 @@ theorem card_smallCofactorSet_le_sum (α : ℝ) (L Y : ℕ)
         exact le_trans Finset.card_biUnion_le (Finset.sum_le_sum (fun a _ => Finset.card_image_le))
 
 open scoped Classical in
+/--
+@isnad1 id=ex.1h0v.s7.b0a2927ac071 from=translated src=- shape=2cb3e592 vocab=1bb2be06
+-/
 theorem smallCofactorSieve_of_inputs (hs : UpperBoundSieveDimOne) :
     ∃ C₀ : ℝ, 1 ≤ C₀ ∧ ∃ L₀ : ℕ, ∀ α : ℝ, 0 < α → α ≤ 1 / 2 →
       ∀ L : ℕ, L₀ ≤ L →

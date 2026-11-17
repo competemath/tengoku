@@ -24,6 +24,9 @@ open Finset
 /-- The vertex set `V_L = {2, 3, …, L}` of the factorial-residue hypergraph.-/
 def V (L : ℕ) : Finset ℕ := Finset.Icc 2 L
 
+/--
+@isnad1 id=iff.0h2v.s5.8974fdaa163f from=translated src=- shape=32220d22 vocab=da4db291
+-/
 lemma mem_V {L k : ℕ} : k ∈ V L ↔ 2 ≤ k ∧ k ≤ L := by
   simp [V, Finset.mem_Icc]
 
@@ -33,6 +36,9 @@ lemma mem_V {L k : ℕ} : k ∈ V L ↔ 2 ≤ k ∧ k ≤ L := by
 to the factorial-residue edge `e_{q,a}` of colour `q`.-/
 def fiber (L q a : ℕ) : Finset ℕ := (V L).filter (fun k => k.factorial ≡ a [MOD q])
 
+/--
+@isnad1 id=iff.0h4v.s5.60bc5d49135f from=translated src=- shape=faad4ba2 vocab=57ea11dd
+-/
 lemma mem_fiber {L q a k : ℕ} :
     k ∈ fiber L q a ↔ k ∈ V L ∧ k.factorial ≡ a [MOD q] := by
   simp [fiber, Finset.mem_filter]
@@ -96,6 +102,9 @@ noncomputable def goodSet (L : ℕ) : Finset ℕ :=
     (fun n => IsRough L n ∧ ∀ k, 1 ≤ k → k ≤ L → ¬ (n - k.factorial).Prime ∧ 1 < n - k.factorial)
 
 open scoped Classical in
+/--
+@isnad1 id=iff.0h2v.s6.cdef7792c9ff from=translated src=- shape=e712ba32 vocab=cdf24980
+-/
 lemma mem_goodSet {L n : ℕ} :
     n ∈ goodSet L ↔
       (2 * L.factorial < n ∧ n ≤ (L + 1).factorial) ∧
@@ -103,7 +112,9 @@ lemma mem_goodSet {L n : ℕ} :
       ∀ k, 1 ≤ k → k ≤ L → ¬ (n - k.factorial).Prime ∧ 1 < n - k.factorial := by
   simp [goodSet, Finset.mem_filter, Finset.mem_Ioc, and_assoc]
 
-/-- `L`-roughness follows from a lower bound on the least prime factor.-/
+/-- `L`-roughness follows from a lower bound on the least prime factor.
+@isnad1 id=isrough.1h2v.s3.357abdfda62c from=translated src=- shape=e54cd45b vocab=5b44171e
+-/
 lemma isRough_of_lt_minFac {L n : ℕ} (h : L < n.minFac) : IsRough L n := by
   intro p hp hpn
   exact lt_of_lt_of_le h (Nat.minFac_le_of_dvd hp.two_le hpn)

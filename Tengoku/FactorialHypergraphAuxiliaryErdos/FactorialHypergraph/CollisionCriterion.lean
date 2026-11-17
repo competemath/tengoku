@@ -18,7 +18,9 @@ open Finset
 
 /-! ## Ascending products of consecutive integers -/
 
-/-- `i! · ∏_{r = i+1}^{j} r = j!` for `i ≤ j`.-/
+/-- `i! · ∏_{r = i+1}^{j} r = j!` for `i ≤ j`.
+@isnad1 id=eq.1h2v.s5.e77a1d734cb3 from=translated src=- shape=029f4ef4 vocab=86a6708a
+-/
 lemma factorial_mul_prod_Ioc {i j : ℕ} (h : i ≤ j) :
     i.factorial * ∏ r ∈ Finset.Ioc i j, r = j.factorial := by
   induction j with
@@ -38,7 +40,9 @@ lemma factorial_mul_prod_Ioc {i j : ℕ} (h : i ≤ j) :
 /-! ## The key identity -/
 
 /-- The key identity `(i+2)! - i! = i!·(i² + 3i + 1)` of the manuscript, over `ℕ`
-(natural subtraction is harmless since `i! ≤ (i+2)!`).-/
+(natural subtraction is harmless since `i! ≤ (i+2)!`).
+@isnad1 id=eq.0h1v.s5.a9ae91f55536 from=translated src=- shape=5ea3f2aa vocab=356a48df
+-/
 theorem factorial_add_two_sub_factorial (i : ℕ) :
     (i + 2).factorial - i.factorial = i.factorial * fq i := by
   have h : (i + 2).factorial = i.factorial * (i ^ 2 + 3 * i + 2) := by
@@ -48,7 +52,9 @@ theorem factorial_add_two_sub_factorial (i : ℕ) :
     ring
   omega
 
-/-- The key identity over `ℤ`, free of truncated subtraction.-/
+/-- The key identity over `ℤ`, free of truncated subtraction.
+@isnad1 id=eq.0h1v.s6.64571b49115c from=translated src=- shape=61b285e3 vocab=9c98e79d
+-/
 theorem factorial_add_two_sub_factorial_int (i : ℕ) :
     ((i + 2).factorial : ℤ) - (i.factorial : ℤ) = (i.factorial : ℤ) * (i ^ 2 + 3 * i + 1) := by
   have h : ((i + 2).factorial : ℤ) = (i.factorial : ℤ) * (i ^ 2 + 3 * i + 2) := by
@@ -60,7 +66,9 @@ theorem factorial_add_two_sub_factorial_int (i : ℕ) :
 
 /-- **Collision criterion** (Proposition 2.4).  For `2 ≤ i ≤ j ≤ L` and a prime `q > L`,
 the factorials `i!` and `j!` collide modulo `q` exactly when the ascending product
-`∏_{r=i+1}^{j} r` is `1` modulo `q`, equivalently when `q` divides that product minus one.-/
+`∏_{r=i+1}^{j} r` is `1` modulo `q`, equivalently when `q` divides that product minus one.
+@isnad1 id=and.4h4v.s6.5a6f585abeb9 from=translated src=- shape=aaa94031 vocab=00b6cee2
+-/
 theorem collision_criterion {L i j q : ℕ} (hq : q.Prime) (hqL : L < q)
     (hij : i ≤ j) (hjL : j ≤ L) :
     (i.factorial ≡ j.factorial [MOD q] ↔ (∏ r ∈ Finset.Ioc i j, r) ≡ 1 [MOD q]) ∧
@@ -99,7 +107,9 @@ theorem collision_criterion {L i j q : ℕ} (hq : q.Prime) (hqL : L < q)
     push_cast
     exact (dvd_sub_comm)
 
-/-- A prime dividing `f(i) = i² + 3i + 1` forces the collision `i! ≡ (i+2)! (mod q)`.-/
+/-- A prime dividing `f(i) = i² + 3i + 1` forces the collision `i! ≡ (i+2)! (mod q)`.
+@isnad1 id=modeq.1h2v.s4.6615771b57bc from=translated src=- shape=fb0862a1 vocab=42495fc9
+-/
 theorem factorial_modEq_of_dvd_fq {i q : ℕ} (h : q ∣ fq i) :
     i.factorial ≡ (i + 2).factorial [MOD q] := by
   rw [Nat.modEq_iff_dvd, factorial_add_two_sub_factorial_int]
@@ -109,7 +119,9 @@ theorem factorial_modEq_of_dvd_fq {i q : ℕ} (h : q ∣ fq i) :
   exact Dvd.dvd.mul_left this _
 
 /-- Consequently, both `i` and `i+2` lie in the fibre `E_{q, i!}` whenever
-`q ∣ f(i)` and `2 ≤ i`, `i + 2 ≤ L`.-/
+`q ∣ f(i)` and `2 ≤ i`, `i + 2 ≤ L`.
+@isnad1 id=and.3h3v.s6.96e776c452a7 from=translated src=- shape=44d396ba vocab=06bb976e
+-/
 theorem pair_mem_fiber {L i q : ℕ} (h : q ∣ fq i) (hi : 2 ≤ i) (hiL : i + 2 ≤ L) :
     i ∈ fiber L q i.factorial ∧ (i + 2) ∈ fiber L q i.factorial := by
   refine ⟨?_, ?_⟩

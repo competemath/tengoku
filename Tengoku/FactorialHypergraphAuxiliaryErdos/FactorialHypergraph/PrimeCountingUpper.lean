@@ -154,7 +154,9 @@ open Filter Chebyshev
 
 /-! ## Matching the conventions of `LargePrimeFactors.lean` -/
 
-/-- The project's counting function `#{p ≤ n : p prime}` is mathlib's `Nat.primeCounting`.-/
+/-- The project's counting function `#{p ≤ n : p prime}` is mathlib's `Nat.primeCounting`.
+@isnad1 id=eq.0h1v.s3.a1783137de3d from=translated src=- shape=f5f172d0 vocab=bf1a77ef
+-/
 lemma card_primesLE_eq_primeCounting (n : ℕ) : (primesLE n).card = Nat.primeCounting n := by
   simp [primesLE, Nat.primeCounting, Nat.primeCounting', Nat.count_eq_card_filter_range]
 
@@ -165,7 +167,9 @@ then `π(x) ≤ b x / log x` for all large real `x`.
 
 The proof is Abel summation (`Chebyshev.primeCounting_eq_theta_div_log_add_integral`)
 together with the mathlib estimate `Chebyshev.integral_theta_div_log_sq_isLittleO`,
-which shows that the secondary term is `o(x / log x)`.-/
+which shows that the secondary term is `o(x / log x)`.
+@isnad1 id=eventual.2h2v.s6.5ee7e0ef095e from=translated src=- shape=5dc0c498 vocab=a999b41d
+-/
 theorem eventually_primeCounting_le_of_theta_le' {b c : ℝ} (hc : c < b)
     (hθ : ∀ᶠ x : ℝ in atTop, θ x ≤ c * x) :
     ∀ᶠ x : ℝ in atTop, ((⌊x⌋₊.primeCounting : ℝ)) ≤ b * x / Real.log x := by
@@ -187,14 +191,18 @@ theorem eventually_primeCounting_le_of_theta_le' {b c : ℝ} (hc : c < b)
     rw [hε]; linarith
   linarith
 
-/-- **Real-variable form** with the constant `1.02` required by the field.-/
+/-- **Real-variable form** with the constant `1.02` required by the field.
+@isnad1 id=eventual.2h1v.s6.317db41815de from=translated src=- shape=1dd575aa vocab=7ba42013
+-/
 theorem eventually_primeCounting_le_of_theta_le {c : ℝ} (hc : c < 1.02)
     (hθ : ∀ᶠ x : ℝ in atTop, θ x ≤ c * x) :
     ∀ᶠ x : ℝ in atTop, ((⌊x⌋₊.primeCounting : ℝ)) ≤ 1.02 * x / Real.log x :=
   eventually_primeCounting_le_of_theta_le' hc hθ
 
 /-- **Natural-number form, general constant.**  If `θ x ≤ c x` eventually and `c < b`,
-then `#{p ≤ y : p prime} ≤ b y / log y` for all large natural `y`.-/
+then `#{p ≤ y : p prime} ≤ b y / log y` for all large natural `y`.
+@isnad1 id=ex.2h2v.s6.f9e4d468cfc2 from=translated src=- shape=fc046859 vocab=929fb2b7
+-/
 theorem primeCountingUpper_const_of_theta_le {b c : ℝ} (hc : c < b)
     (hθ : ∀ᶠ x : ℝ in atTop, θ x ≤ c * x) :
     ∃ y₀ : ℕ, ∀ y : ℕ, y₀ ≤ y →
@@ -207,7 +215,9 @@ theorem primeCountingUpper_const_of_theta_le {b c : ℝ} (hc : c < b)
   rwa [card_primesLE_eq_primeCounting]
 
 /-- **The field `LargePrimeInputs.primeCountingUpper`, verbatim, from the missing
-estimate (M).**  Everything except the hypothesis `hθ` is proved unconditionally.-/
+estimate (M).**  Everything except the hypothesis `hθ` is proved unconditionally.
+@isnad1 id=ex.2h1v.s6.a36f75412f7a from=translated src=- shape=c69063e9 vocab=89d2baf1
+-/
 theorem primeCountingUpper_of_theta_le {c : ℝ} (hc : c < 1.02)
     (hθ : ∀ᶠ x : ℝ in atTop, θ x ≤ c * x) :
     ∃ y₀ : ℕ, ∀ y : ℕ, y₀ ≤ y →
@@ -225,7 +235,9 @@ The constant `1.3863` is a value *strictly greater* than `log 4 = 1.38629…`; m
 Chebyshev input is `θ(x) ≤ (log 4) x`, and the passage from `θ` to `π` yields only
 `log 4 + ε` for an arbitrary `ε > 0`, so the exact coefficient `log 4` is **not** claimed
 for `π`.  In any case the constant is *not* below `1.02`, which is precisely why the
-manuscript's constant `8` in Lemma 3.2 remains conditional.-/
+manuscript's constant `8` in Lemma 3.2 remains conditional.
+@isnad1 id=ex.0h0v.s5.cf850263eaeb from=translated src=- shape=594f7c34 vocab=5388cc8c
+-/
 theorem primeCountingUpper_log4 :
     ∃ y₀ : ℕ, ∀ y : ℕ, y₀ ≤ y →
       ((primesLE y).card : ℝ) ≤ 1.3863 * (y : ℝ) / Real.log y := by
@@ -245,7 +257,9 @@ This is the form used downstream (see `largePrimeFactor_fortieth`).  It is delib
 stated with the round constant `κ = 2` rather than with `log 4 = 1.38629…`: mathlib's
 Chebyshev input is `θ(x) ≤ (log 4) x`, and the passage from `θ` to `π` costs an
 arbitrarily small but positive amount, so no *exact* coefficient `log 4` is claimed for
-`π`; any constant `> log 4` is available, and `2` leaves a wide margin.-/
+`π`; any constant `> log 4` is available, and `2` leaves a wide margin.
+@isnad1 id=ex.0h0v.s5.2318d1ff5d23 from=translated src=- shape=2481ad11 vocab=0727ac2e
+-/
 theorem primeCountingUpper_two :
     ∃ y₀ : ℕ, ∀ y : ℕ, y₀ ≤ y →
       ((primesLE y).card : ℝ) ≤ 2 * (y : ℝ) / Real.log y := by
@@ -261,7 +275,9 @@ theorem primeCountingUpper_two :
 /-! ## The missing estimate (M) from the Prime Number Theorem -/
 
 /-- The Prime Number Theorem in the form `θ x / x → 1` implies the missing estimate (M)
-with the constant `c = 1.01 < 1.02`.-/
+with the constant `c = 1.01 < 1.02`.
+@isnad1 id=eventual.1h0v.s5.439f1e5d23cb from=translated src=- shape=64f2fc7f vocab=e084d18f
+-/
 theorem theta_le_of_pnt_theta (h : Tendsto (fun x : ℝ => θ x / x) atTop (nhds 1)) :
     ∀ᶠ x : ℝ in atTop, θ x ≤ 1.01 * x := by
   have hlt : ∀ᶠ x : ℝ in atTop, θ x / x < 1.01 :=
@@ -271,7 +287,9 @@ theorem theta_le_of_pnt_theta (h : Tendsto (fun x : ℝ => θ x / x) atTop (nhds
   nlinarith
 
 /-- The Prime Number Theorem in the form `ψ x / x → 1` implies the missing estimate (M)
-with the constant `c = 1.01 < 1.02` (using `Chebyshev.theta_le_psi`).-/
+with the constant `c = 1.01 < 1.02` (using `Chebyshev.theta_le_psi`).
+@isnad1 id=eventual.1h0v.s5.97d34941070b from=translated src=- shape=5517d6b2 vocab=62cfc873
+-/
 theorem theta_le_of_pnt_psi (h : Tendsto (fun x : ℝ => ψ x / x) atTop (nhds 1)) :
     ∀ᶠ x : ℝ in atTop, θ x ≤ 1.01 * x := by
   have hlt : ∀ᶠ x : ℝ in atTop, ψ x / x < 1.01 :=
@@ -309,7 +327,9 @@ def WienerIkeharaTheorem : Prop :=
     Filter.Tendsto (fun x : ℝ => (∑ n ∈ Finset.range ⌊x⌋₊, f n) / x) atTop (nhds A)
 
 /-- Wiener–Ikehara applied to the von Mangoldt function (via mathlib's analytic
-continuation of `-ζ'/ζ` past `s = 1`) gives `∑_{n < x} Λ n ∼ x`.-/
+continuation of `-ζ'/ζ` past `s = 1`) gives `∑_{n < x} Λ n ∼ x`.
+@isnad1 id=tendsto.1h0v.s5.d60627f7c7d2 from=translated src=- shape=acb9bf07 vocab=6fc18f18
+-/
 theorem vonMangoldt_sum_div_tendsto_one_of_wienerIkehara (hWI : WienerIkeharaTheorem) :
     Tendsto (fun x : ℝ => (∑ n ∈ Finset.range ⌊x⌋₊, ArithmeticFunction.vonMangoldt n) / x)
       atTop (nhds 1) := by
@@ -328,7 +348,9 @@ theorem vonMangoldt_sum_div_tendsto_one_of_wienerIkehara (hWI : WienerIkeharaThe
   intro s hs
   simpa [hres] using h hs
 
-/-- **The Prime Number Theorem in the `ψ`-form, from Wiener–Ikehara.**-/
+/-- **The Prime Number Theorem in the `ψ`-form, from Wiener–Ikehara.**
+@isnad1 id=tendsto.1h0v.s5.0c579a3440c2 from=translated src=- shape=83fe7ca4 vocab=219a8085
+-/
 theorem psi_div_tendsto_one_of_wienerIkehara (hWI : WienerIkeharaTheorem) :
     Tendsto (fun x : ℝ => ψ x / x) atTop (nhds 1) := by
   have h1 := vonMangoldt_sum_div_tendsto_one_of_wienerIkehara hWI
@@ -355,7 +377,9 @@ theorem psi_div_tendsto_one_of_wienerIkehara (hWI : WienerIkeharaTheorem) :
 
 /-- **CONDITIONAL** on the Wiener–Ikehara Tauberian theorem — and on nothing else: the
 field `LargePrimeInputs.primeCountingUpper`,
-`∃ y₀, ∀ y ≥ y₀, #{p ≤ y : p prime} ≤ 1.02 · y / log y`.-/
+`∃ y₀, ∀ y ≥ y₀, #{p ≤ y : p prime} ≤ 1.02 · y / log y`.
+@isnad1 id=ex.1h0v.s5.0c8628c892b2 from=translated src=- shape=c2af34a9 vocab=a011dd37
+-/
 theorem primeCountingUpper_of_wienerIkehara (hWI : WienerIkeharaTheorem) :
     ∃ y₀ : ℕ, ∀ y : ℕ, y₀ ≤ y →
       ((primesLE y).card : ℝ) ≤ 1.02 * (y : ℝ) / Real.log y :=
@@ -364,7 +388,9 @@ theorem primeCountingUpper_of_wienerIkehara (hWI : WienerIkeharaTheorem) :
 
 /-- The same statement as `primeCountingUpper_of_wienerIkehara`, with the Wiener–Ikehara
 hypothesis written out inline rather than through the abbreviation
-`WienerIkeharaTheorem`.-/
+`WienerIkeharaTheorem`.
+@isnad1 id=ex.1h0v.s8.c8dff2bbacdb from=translated src=- shape=5bc68391 vocab=bff4985d
+-/
 theorem primeCountingUpper_of_wienerIkehara'
     (hWI : ∀ (f : ℕ → ℝ) (A : ℝ) (F : ℂ → ℂ), (∀ n, 0 ≤ f n) →
       (∀ s : ℂ, 1 < s.re → LSeriesSummable (fun n => (f n : ℂ)) s) →
@@ -376,14 +402,18 @@ theorem primeCountingUpper_of_wienerIkehara'
   primeCountingUpper_of_wienerIkehara hWI
 
 /-- **CONDITIONAL** on the Prime Number Theorem in the `θ`-form: the field
-`LargePrimeInputs.primeCountingUpper`.-/
+`LargePrimeInputs.primeCountingUpper`.
+@isnad1 id=ex.1h0v.s6.9b3163476d0e from=translated src=- shape=3d23cea8 vocab=e941f9d9
+-/
 theorem primeCountingUpper_of_pnt_theta (h : Tendsto (fun x : ℝ => θ x / x) atTop (nhds 1)) :
     ∃ y₀ : ℕ, ∀ y : ℕ, y₀ ≤ y →
       ((primesLE y).card : ℝ) ≤ 1.02 * (y : ℝ) / Real.log y :=
   primeCountingUpper_of_theta_le (by norm_num) (theta_le_of_pnt_theta h)
 
 /-- **CONDITIONAL** on the Prime Number Theorem in the `ψ`-form: the field
-`LargePrimeInputs.primeCountingUpper`.-/
+`LargePrimeInputs.primeCountingUpper`.
+@isnad1 id=ex.1h0v.s6.cbc1fdaf8e24 from=translated src=- shape=3d23cea8 vocab=62c0fd9b
+-/
 theorem primeCountingUpper_of_pnt_psi (h : Tendsto (fun x : ℝ => ψ x / x) atTop (nhds 1)) :
     ∃ y₀ : ℕ, ∀ y : ℕ, y₀ ≤ y →
       ((primesLE y).card : ℝ) ≤ 1.02 * (y : ℝ) / Real.log y :=
@@ -391,7 +421,9 @@ theorem primeCountingUpper_of_pnt_psi (h : Tendsto (fun x : ℝ => ψ x / x) atT
 
 /-- **CONDITIONAL** on the Prime Number Theorem in the `π`-form
 `π(x) log x / x → 1`: the field `LargePrimeInputs.primeCountingUpper`.  (Here no
-Chebyshev function is needed at all.)-/
+Chebyshev function is needed at all.)
+@isnad1 id=ex.1h0v.s6.19d3ed4404fa from=translated src=- shape=1d9c7eea vocab=eb6e330f
+-/
 theorem primeCountingUpper_of_pnt_primeCounting
     (h : Tendsto (fun x : ℝ => (⌊x⌋₊.primeCounting : ℝ) * Real.log x / x) atTop (nhds 1)) :
     ∃ y₀ : ℕ, ∀ y : ℕ, y₀ ≤ y →

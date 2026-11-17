@@ -33,7 +33,9 @@ def piCard (B : ℕ) : ℕ := ((Finset.range (B + 1)).filter Nat.Prime).card
 /-! ## The central binomial coefficient bound -/
 
 /-- `C(2n, n) ≤ (2n)^{π(2n)}`: the central binomial coefficient is the product of its
-prime power divisors, each of which is at most `2n`.-/
+prime power divisors, each of which is at most `2n`.
+@isnad1 id=le.1h1v.s5.94e997a1dec7 from=translated src=- shape=546b3c5e vocab=32053974
+-/
 theorem centralBinom_le_pow (n : ℕ) (hn : 0 < n) :
     n.centralBinom ≤ (2 * n) ^ piCard (2 * n) := by
   classical
@@ -63,7 +65,9 @@ theorem centralBinom_le_pow (n : ℕ) (hn : 0 < n) :
         Nat.pow_le_pow_right (by omega) (Finset.card_le_card h3)
 
 /-- **Chebyshev-type lower bound**, logarithmic form:
-`n log 4 < log n + π(2n) log(2n)` for `n ≥ 4`.-/
+`n log 4 < log n + π(2n) log(2n)` for `n ≥ 4`.
+@isnad1 id=lt.1h1v.s6.e4d144483e2e from=translated src=- shape=72e8bc93 vocab=0f082590
+-/
 theorem chebyshev_log_lower {n : ℕ} (hn : 4 ≤ n) :
     (n : ℝ) * Real.log 4 < Real.log n + (piCard (2 * n) : ℝ) * Real.log ((2 * n : ℕ) : ℝ) := by
   have hcb : n.centralBinom ≤ (2 * n) ^ piCard (2 * n) := centralBinom_le_pow n (by omega)
@@ -86,7 +90,9 @@ theorem chebyshev_log_lower {n : ℕ} (hn : 4 ≤ n) :
 
 /-! ## Counting the primes in an interval -/
 
-/-- All primes up to `B` are either at most `L` or lie in `(L, B]`.-/
+/-- All primes up to `B` are either at most `L` or lie in `(L, B]`.
+@isnad1 id=le.0h2v.s5.a81451732a7b from=translated src=- shape=c8e7c258 vocab=d1cbd4e7
+-/
 theorem piCard_le_add_primesIn (L B : ℕ) : piCard B ≤ (L + 1) + (primesIn L B).card := by
   classical
   have hsub : (Finset.range (B + 1)).filter Nat.Prime
@@ -100,7 +106,9 @@ theorem piCard_le_add_primesIn (L B : ℕ) : piCard B ≤ (L + 1) + (primesIn L 
     _ ≤ (Finset.range (L + 1)).card + (primesIn L B).card := Finset.card_union_le _ _
     _ = (L + 1) + (primesIn L B).card := by rw [Finset.card_range]
 
-/-- `π` is monotone.-/
+/-- `π` is monotone.
+@isnad1 id=le.1h2v.s4.66a4fc2244c4 from=translated src=- shape=6bee9d27 vocab=b6d36d60
+-/
 theorem piCard_mono {a b : ℕ} (hab : a ≤ b) : piCard a ≤ piCard b := by
   refine Finset.card_le_card ?_
   intro p hp
@@ -114,7 +122,9 @@ set_option maxHeartbeats 1000000 in
 For all sufficiently large `L` there are at least `2L` primes in `(L, ⌈20 L log L⌉]`.
 
 The manuscript deduces this from the prime number theorem; the proof given here uses only
-the elementary Chebyshev-type lower bound `chebyshev_log_lower`.-/
+the elementary Chebyshev-type lower bound `chebyshev_log_lower`.
+@isnad1 id=ex.0h0v.s6.07a4f49b13cc from=translated src=- shape=740a059a vocab=abf9df28
+-/
 theorem prime_supply :
     ∃ L₀ : ℕ, ∀ L : ℕ, L₀ ≤ L →
       2 * L ≤ (primesIn L ⌈20 * (L : ℝ) * Real.log L⌉₊).card := by
@@ -224,7 +234,9 @@ theorem prime_supply :
   omega
 
 /-- Since the prime supply (A1) is now proved unconditionally, a bundle of analytic inputs
-only requires the two remaining inputs (A2) and (A3).-/
+only requires the two remaining inputs (A2) and (A3).
+@isnad1 id=analytic.2h0v.s7.12a607abb069 from=translated src=- shape=59143e1a vocab=d90070a7
+-/
 theorem AnalyticInputs.of_two
     (h2 : ∃ N₀ : ℕ, ∀ N : ℕ, N₀ ≤ N → (N : ℝ) / 5 ≤ ((largePrimeFactorSet N).card : ℝ))
     (h3 : ∃ C₀ : ℝ, 1 ≤ C₀ ∧ ∃ L₀ : ℕ, ∀ α : ℝ, 0 < α → α ≤ 1 / 2 →

@@ -40,18 +40,24 @@ namespace FactorialHypergraph
 
 /-- **CONDITIONAL on the Wiener–Ikehara Tauberian theorem** (and on nothing else): the
 structure `LargePrimeInputs`.  Its field `mertensRoots` is unconditional
-(`mertensRoots_unconditional`); only `primeCountingUpper` uses the hypothesis.-/
+(`mertensRoots_unconditional`); only `primeCountingUpper` uses the hypothesis.
+@isnad1 id=largepri.1h0v.s1.a8141ab7bd8c from=translated src=- shape=1d48f1ac vocab=11921044
+-/
 theorem largePrimeInputs_of_wienerIkehara (hWI : WienerIkeharaTheorem) : LargePrimeInputs :=
   largePrimeInputs_of_primeCountingUpper (primeCountingUpper_of_wienerIkehara hWI)
 
 /-- **CONDITIONAL on the Wiener–Ikehara Tauberian theorem**: the analytic input (A2),
 i.e. Lemma 3.2 of the manuscript, verbatim as the field
-`AnalyticInputs.largePrimeFactor`.-/
+`AnalyticInputs.largePrimeFactor`.
+@isnad1 id=ex.1h0v.s5.1d237c96ebe7 from=translated src=- shape=a4eae582 vocab=87a6aed6
+-/
 theorem largePrimeFactor_of_wienerIkehara (hWI : WienerIkeharaTheorem) :
     ∃ N₀ : ℕ, ∀ N : ℕ, N₀ ≤ N → (N : ℝ) / 5 ≤ ((largePrimeFactorSet N).card : ℝ) :=
   largePrimeFactor_of_inputs (largePrimeInputs_of_wienerIkehara hWI)
 
-/-- **CONDITIONAL on the prime number theorem in the `ψ`-form**: the analytic input (A2).-/
+/-- **CONDITIONAL on the prime number theorem in the `ψ`-form**: the analytic input (A2).
+@isnad1 id=ex.1h0v.s6.4fb737b5396e from=translated src=- shape=2334a70d vocab=5e421e1c
+-/
 theorem largePrimeFactor_of_pnt_psi
     (h : Filter.Tendsto (fun x : ℝ => Chebyshev.psi x / x) Filter.atTop (nhds 1)) :
     ∃ N₀ : ℕ, ∀ N : ℕ, N₀ ≤ N → (N : ℝ) / 5 ≤ ((largePrimeFactorSet N).card : ℝ) :=
@@ -60,7 +66,9 @@ theorem largePrimeFactor_of_pnt_psi
 
 /-- **CONDITIONAL on the Chebyshev-type bound `θ(x) ≤ c x` with some `c < 1.02`**: the
 analytic input (A2).  This is the weakest hypothesis under which (A2) is currently
-available.-/
+available.
+@isnad1 id=ex.2h1v.s6.7aa3ab65ce0b from=translated src=- shape=cbae8c32 vocab=e2dce26a
+-/
 theorem largePrimeFactor_of_theta_le {c : ℝ} (hc : c < 1.02)
     (hθ : ∀ᶠ x : ℝ in Filter.atTop, Chebyshev.theta x ≤ c * x) :
     ∃ N₀ : ℕ, ∀ N : ℕ, N₀ ≤ N → (N : ℝ) / 5 ≤ ((largePrimeFactorSet N).card : ℝ) :=
@@ -69,7 +77,9 @@ theorem largePrimeFactor_of_theta_le {c : ℝ} (hc : c < 1.02)
 
 /-- **CONDITIONAL on Wiener–Ikehara and on the sieve estimate (A3)**: the full bundle
 `AnalyticInputs`.  (A1) is unconditional (`PrimeSupply.lean`), (A2) needs only the
-`π`-bound, and (A3) is untouched by this file.-/
+`π`-bound, and (A3) is untouched by this file.
+@isnad1 id=analytic.2h0v.s7.a58c6ff384f9 from=translated src=- shape=6f71aad5 vocab=fb34568a
+-/
 theorem AnalyticInputs.of_wienerIkehara (hWI : WienerIkeharaTheorem)
     (h3 : ∃ C₀ : ℝ, 1 ≤ C₀ ∧ ∃ L₀ : ℕ, ∀ α : ℝ, 0 < α → α ≤ 1 / 2 →
       ∀ L : ℕ, L₀ ≤ L →
@@ -102,7 +112,9 @@ coefficient `log 4` for `π` is claimed anywhere in this development. -/
 Only the unconditional prime-counting bound `π(y) ≤ 2 y/log y` (`primeCountingUpper_two`,
 from mathlib's `θ(x) ≤ (log 4) x`) and the project's unconditional Mertens estimate
 `mertensRoots_unconditional` are used; no Tauberian theorem and no form of the prime number
-theorem.  The numerical check is `2κ/c = 2·2/40 = 0.1 ≤ 0.27`.-/
+theorem.  The numerical check is `2κ/c = 2·2/40 = 0.1 ≤ 0.27`.
+@isnad1 id=ex.0h0v.s5.6613055f45c9 from=translated src=- shape=babaa6f8 vocab=d73923b4
+-/
 theorem largePrimeFactor_fortieth :
     ∃ N₀ : ℕ, ∀ N : ℕ, N₀ ≤ N → (N : ℝ) / 5 ≤ ((largePrimeFactorSet N).card : ℝ) := by
   have h := largePrimeFactor_of_estimates (c := 40) (kap := 2)
@@ -112,19 +124,25 @@ theorem largePrimeFactor_fortieth :
 
 /-- **CONDITIONAL on `LargePrimeInputs`** (i.e. on `π(y) ≤ 1.02 y/log y`).  Lemma 3.2 with
 the manuscript's own threshold constant `8`.  This statement is *not* unconditional; see
-`largePrimeFactor_fortieth` for the unconditional weakening actually used downstream.-/
+`largePrimeFactor_fortieth` for the unconditional weakening actually used downstream.
+@isnad1 id=ex.1h0v.s5.628245e07620 from=translated src=- shape=f1c3e7ec vocab=37cb2281
+-/
 theorem largePrimeFactor_eighth (h : LargePrimeInputs) :
     ∃ N₀ : ℕ, ∀ N : ℕ, N₀ ≤ N → (N : ℝ) / 5 ≤ ((largePrimeFactorSetC 8 N).card : ℝ) :=
   largePrimeFactor_of_inputs_eight h
 
-/-- Retained name for `largePrimeFactor_fortieth` (the threshold constant is `40`).-/
+/-- Retained name for `largePrimeFactor_fortieth` (the threshold constant is `40`).
+@isnad1 id=ex.0h0v.s5.6613055f45c9 from=translated src=- shape=babaa6f8 vocab=d73923b4
+-/
 theorem largePrimeFactor_unconditional :
     ∃ N₀ : ℕ, ∀ N : ℕ, N₀ ≤ N → (N : ℝ) / 5 ≤ ((largePrimeFactorSet N).card : ℝ) :=
   largePrimeFactor_fortieth
 
 /-- **UNCONDITIONAL in (A1) and (A2).**  The bundle `AnalyticInputs` needs only the sieve
 estimate (A3): the prime supply (A1) is proved in `PrimeSupply.lean` and the large
-prime factor estimate (A2) is `largePrimeFactor_fortieth`.-/
+prime factor estimate (A2) is `largePrimeFactor_fortieth`.
+@isnad1 id=analytic.1h0v.s7.8ede3986e1f2 from=translated src=- shape=4b767756 vocab=ad8e417a
+-/
 theorem AnalyticInputs.of_smallCofactorSieve
     (h3 : ∃ C₀ : ℝ, 1 ≤ C₀ ∧ ∃ L₀ : ℕ, ∀ α : ℝ, 0 < α → α ≤ 1 / 2 →
       ∀ L : ℕ, L₀ ≤ L →

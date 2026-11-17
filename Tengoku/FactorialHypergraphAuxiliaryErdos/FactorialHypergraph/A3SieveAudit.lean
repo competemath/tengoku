@@ -52,7 +52,9 @@ open Finset
 
 /-! ## The index set of the remainder sum -/
 
-/-- A product of distinct primes is squarefree.-/
+/-- A product of distinct primes is squarefree.
+@isnad1 id=squarefr.1h1v.s5.2b36290e512a from=translated src=- shape=9a76a190 vocab=1752327d
+-/
 theorem squarefree_prod_primes {P : Finset ℕ} (hP : ∀ ℓ ∈ P, Nat.Prime ℓ) :
     Squarefree (∏ ℓ ∈ P, ℓ) := by
   classical
@@ -69,7 +71,9 @@ theorem squarefree_prod_primes {P : Finset ℕ} (hP : ∀ ℓ ∈ P, Nat.Prime �
 
 /-- **`d ∣ P` in the sense of the source.**  For a finite set `P` of primes, the Lean index
 set `sieveDivisors P` of the remainder sum is exactly the set of divisors of `∏_{ℓ ∈ P} ℓ`,
-i.e. the set of squarefree numbers all of whose prime factors lie in `P`.-/
+i.e. the set of squarefree numbers all of whose prime factors lie in `P`.
+@isnad1 id=iff.1h2v.s5.ad8e6a7945a6 from=translated src=- shape=30958eb1 vocab=e8c6d15e
+-/
 theorem mem_sieveDivisors_iff {P : Finset ℕ} (hP : ∀ ℓ ∈ P, Nat.Prime ℓ) (d : ℕ) :
     d ∈ sieveDivisors P ↔ d ∣ ∏ ℓ ∈ P, ℓ := by
   classical
@@ -92,7 +96,9 @@ theorem mem_sieveDivisors_iff {P : Finset ℕ} (hP : ∀ ℓ ∈ P, Nat.Prime �
 
 /-- **The anchored dimension hypothesis is redundant.**  For a finite set `P` of primes and a
 local density with `rho ℓ / ℓ ≤ 1`, the interval form of the dimension-one condition implies
-the anchored form, with the *same* constant `C₁`.-/
+the anchored form, with the *same* constant `C₁`.
+@isnad1 id=le.4h4v.s8.61dc1279efa7 from=translated src=- shape=da7ce0d3 vocab=786dafb8
+-/
 theorem dim_anchored_of_interval {P : Finset ℕ} {rho : ℕ → ℝ} {C₁ : ℝ}
     (hP : ∀ ℓ ∈ P, Nat.Prime ℓ) (hloc : ∀ ℓ ∈ P, rho ℓ / (ℓ : ℝ) ≤ 1)
     (hI : ∀ w₁ w₂ : ℝ, 2 ≤ w₁ → w₁ ≤ w₂ →
@@ -193,7 +199,9 @@ def UpperBoundSieveDimOneInterval : Prop :=
 
 /-- **The anchored hypothesis carries no strength.**  The interface actually used in the
 project is *equivalent* to the interface that assumes only the interval (Axiom 2′-shaped)
-dimension condition.-/
+dimension condition.
+@isnad1 id=iff.0h0v.s1.aac4dc4ff845 from=translated src=- shape=25b03439 vocab=8de288fa
+-/
 theorem upperBoundSieveDimOne_iff_interval :
     UpperBoundSieveDimOne ↔ UpperBoundSieveDimOneInterval := by
   classical
@@ -216,7 +224,9 @@ theorem upperBoundSieveDimOne_iff_interval :
 
 /-- **The range `w₂ ≤ max P` of the source is not a restriction.**  If the interval condition
 holds for `2 ≤ w₁ ≤ w₂ ≤ y` and all primes of `P` are `≤ y`, then it holds for all
-`2 ≤ w₁ ≤ w₂`.-/
+`2 ≤ w₁ ≤ w₂`.
+@isnad1 id=le.5h6v.s8.4301d302b340 from=translated src=- shape=c3d4960c vocab=dd429bea
+-/
 theorem interval_condition_of_bounded_range {P : Finset ℕ} {rho : ℕ → ℝ} {C₁ y : ℝ}
     (hC₁ : 0 ≤ C₁) (hPy : ∀ ℓ ∈ P, ((ℓ : ℕ) : ℝ) ≤ y)
     (h : ∀ w₁ w₂ : ℝ, 2 ≤ w₁ → w₁ ≤ w₂ → w₂ ≤ y →
@@ -257,10 +267,15 @@ theorem interval_condition_of_bounded_range {P : Finset ℕ} {rho : ℕ → ℝ}
 
 /-! ## Nonnegativity of the ingredients -/
 
+/--
+@isnad1 id=le.1h2v.s5.64582e293ac6 from=translated src=- shape=29905e04 vocab=919fea8b
+-/
 theorem total_mass_nonneg {A : Finset ℕ} {a : ℕ → ℝ} (ha : ∀ n, 0 ≤ a n) :
     0 ≤ ∑ n ∈ A, a n := Finset.sum_nonneg (fun n _ => ha n)
 
-/-- `V = ∏_{ℓ ∈ P} (1 - rho ℓ / ℓ)` is nonnegative (indeed each factor is `≥ ε > 0`).-/
+/-- `V = ∏_{ℓ ∈ P} (1 - rho ℓ / ℓ)` is nonnegative (indeed each factor is `≥ ε > 0`).
+@isnad1 id=le.2h3v.s6.61cc62d42b5e from=translated src=- shape=9ca4f433 vocab=aae71751
+-/
 theorem sieve_product_nonneg {P : Finset ℕ} {rho : ℕ → ℝ} {ε : ℝ} (hε : 0 < ε)
     (h : ∀ ℓ ∈ P, rho ℓ / (ℓ : ℝ) ≤ 1 - ε) :
     0 ≤ ∏ ℓ ∈ P, (1 - rho ℓ / (ℓ : ℝ)) := by
@@ -268,6 +283,9 @@ theorem sieve_product_nonneg {P : Finset ℕ} {rho : ℕ → ℝ} {ε : ℝ} (h�
   have := h ℓ hl
   linarith
 
+/--
+@isnad1 id=le.0h6v.s6.2477e0d21b24 from=translated src=- shape=891e1d2b vocab=829b8405
+-/
 theorem remainder_sum_nonneg (P : Finset ℕ) (A : Finset ℕ) (a : ℕ → ℝ) (rho : ℕ → ℝ) (X D : ℝ) :
     0 ≤ ∑ d ∈ sieveDivisors P with (((d : ℕ) : ℝ) ≤ D),
         |(∑ n ∈ A with (d ∣ n), a n) - X * rho d / (d : ℝ)| := by
@@ -278,7 +296,9 @@ theorem remainder_sum_nonneg (P : Finset ℕ) (A : Finset ℕ) (a : ℕ → ℝ)
 
 open scoped Classical in
 /-- **The empty prime set, for which the source's `y = max P` is undefined, needs no external
-input.**  When `P = ∅` the conclusion of the interface holds outright for every `C ≥ 1`.-/
+input.**  When `P = ∅` the conclusion of the interface holds outright for every `C ≥ 1`.
+@isnad1 id=le.3h6v.s8.0aa13a8115fe from=translated src=- shape=d5d2ce5f vocab=b8e131ac
+-/
 theorem sieve_conclusion_of_empty (A : Finset ℕ) (a : ℕ → ℝ) (rho : ℕ → ℝ) (X D C : ℝ)
     (ha : ∀ n, 0 ≤ a n) (hX : X = ∑ n ∈ A, a n) (hC : 1 ≤ C) :
     ∑ n ∈ A with (∀ ℓ ∈ (∅ : Finset ℕ), ¬ (ℓ ∣ n)), a n
@@ -299,7 +319,9 @@ theorem sieve_conclusion_of_empty (A : Finset ℕ) (a : ℕ → ℝ) (rho : ℕ 
 
 open scoped Classical in
 /-- **The Lean sifted sum is exactly `S(A, P) = ∑_{(n, P) = 1} a_n`.**  For a finite set `P` of
-primes, "no prime of `P` divides `n`" is the same condition as `(n, ∏_{ℓ ∈ P} ℓ) = 1`.-/
+primes, "no prime of `P` divides `n`" is the same condition as `(n, ∏_{ℓ ∈ P} ℓ) = 1`.
+@isnad1 id=eq.1h3v.s7.1849d6195654 from=translated src=- shape=3d3570be vocab=b9b7734e
+-/
 theorem sifted_sum_eq_coprime_sum {P : Finset ℕ} (hP : ∀ ℓ ∈ P, Nat.Prime ℓ)
     (A : Finset ℕ) (a : ℕ → ℝ) :
     ∑ n ∈ A with (∀ ℓ ∈ P, ¬ (ℓ ∣ n)), a n
@@ -320,7 +342,9 @@ theorem sifted_sum_eq_coprime_sum {P : Finset ℕ} (hP : ∀ ℓ ∈ P, Nat.Prim
 /-! ## The `u = 10` specialisation -/
 
 /-- `u = 10`: `y = max P ≤ z` gives `y ^ 10 ≤ z ^ 10 ≤ D`, so the source's remainder range
-`d ≤ y ^ u` is contained in the Lean remainder range `d ≤ D`.-/
+`d ≤ y ^ u` is contained in the Lean remainder range `d ≤ D`.
+@isnad1 id=and.3h3v.s7.c095bf4c0eb7 from=translated src=- shape=eedc2bd3 vocab=8ef25e50
+-/
 theorem level_max_pow_le {P : Finset ℕ} (hne : P.Nonempty) {z D : ℝ}
     (hPle : ∀ ℓ ∈ P, ((ℓ : ℕ) : ℝ) ≤ z) (hD : z ^ (10 : ℕ) ≤ D) :
     ((P.max' hne : ℕ) : ℝ) ^ (10 : ℕ) ≤ z ^ (10 : ℕ) ∧
@@ -331,7 +355,9 @@ theorem level_max_pow_le {P : Finset ℕ} (hne : P.Nonempty) {z D : ℝ}
   exact ⟨h1, le_trans h1 hD⟩
 
 /-- Monotonicity of the remainder sum in the level: the source remainder sum, truncated at
-`y ^ 10`, is bounded by the Lean remainder sum, truncated at `D ≥ y ^ 10`.-/
+`y ^ 10`, is bounded by the Lean remainder sum, truncated at `D ≥ y ^ 10`.
+@isnad1 id=le.2h4v.s6.dc007aa3b4a5 from=translated src=- shape=2f503e81 vocab=1372fd67
+-/
 theorem remainder_sum_mono (P : Finset ℕ) (f : ℕ → ℝ) (hf : ∀ d, 0 ≤ f d) {D₁ D₂ : ℝ}
     (h : D₁ ≤ D₂) :
     ∑ d ∈ sieveDivisors P with (((d : ℕ) : ℝ) ≤ D₁), f d
@@ -343,7 +369,9 @@ theorem remainder_sum_mono (P : Finset ℕ) (f : ℕ → ℝ) (hf : ∀ d, 0 ≤
   exact Finset.mem_filter.mpr ⟨hd1, le_trans hd2 h⟩
 
 /-- The error factor of Theorem 18.11(a) at the fixed value `u = 10`:
-`u ^ (-u/2) = 10 ^ (-5) = 1/100000`.-/
+`u ^ (-u/2) = 10 ^ (-5) = 1/100000`.
+@isnad1 id=eq.0h0v.s6.1b998143d96a from=translated src=- shape=c2ee8059 vocab=22bf663f
+-/
 theorem u_ten_error : (10 : ℝ) ^ (-(10 : ℝ) / 2) = 1 / 100000 := by
   rw [show (-(10 : ℝ) / 2) = ((-5 : ℤ) : ℝ) by norm_num, Real.rpow_intCast]
   norm_num
@@ -351,7 +379,9 @@ theorem u_ten_error : (10 : ℝ) ^ (-(10 : ℝ) / 2) = 1 / 100000 := by
 /-- **From an asymptotic equality to a one-sided bound with an explicit constant.**  If
 `S ≤ (1 + θ) M + c R` with `M, R ≥ 0` — the shape produced by Theorem 18.11(a) with
 `u = 10`, where `θ` is the implied constant times `10 ^ (-5)` and `c` is the implied constant
-of the remainder term — then `S ≤ max (1 + θ) c · (M + R)`.-/
+of the remainder term — then `S ≤ max (1 + θ) c · (M + R)`.
+@isnad1 id=le.3h5v.s6.000de624c8e0 from=translated src=- shape=386f973c vocab=30ad22ac
+-/
 theorem one_sided_of_asymptotic {S M R θ c : ℝ} (hM : 0 ≤ M) (hR : 0 ≤ R)
     (h : S ≤ (1 + θ) * M + c * R) :
     S ≤ max (1 + θ) c * (M + R) := by
@@ -362,7 +392,9 @@ theorem one_sided_of_asymptotic {S M R θ c : ℝ} (hM : 0 ≤ M) (hR : 0 ≤ R)
   nlinarith
 
 /-- The sieve parameters of the application: with `z = H ^ (1/20)` and `D = H ^ (1/2)` one has
-`z ^ 10 = D` exactly, so `u = 10` is admissible with equality.-/
+`z ^ 10 = D` exactly, so `u = 10` is admissible with equality.
+@isnad1 id=eq.1h1v.s6.aaa30ab22ce5 from=translated src=- shape=f7364ae8 vocab=ffba070c
+-/
 theorem level_eq_of_application {H : ℝ} (hH : 0 < H) :
     (H ^ ((1 : ℝ) / 20)) ^ (10 : ℕ) = H ^ ((1 : ℝ) / 2) := by
   rw [← Real.rpow_natCast (H ^ ((1 : ℝ) / 20)) 10, ← Real.rpow_mul hH.le]
