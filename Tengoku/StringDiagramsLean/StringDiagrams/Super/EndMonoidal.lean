@@ -63,47 +63,70 @@ instance instMonoidalCategoryStruct : MonoidalCategoryStruct (SuperEnd R A) wher
   leftUnitor _ := Iso.refl _
   rightUnitor _ := Iso.refl _
 
-/-- `F ⊗ G = F ∘ G`.-/
+/-- `F ⊗ G = F ∘ G`.
+@isnad1 id=eq.0h4v.s7.5b595ac21f8a from=translated src=- shape=0f83ffd3 vocab=a7b08164
+-/
 theorem tensorObj_def (F G : SuperEnd R A) :
     toSuperfunctor (F ⊗ G) = (toSuperfunctor G).comp (toSuperfunctor F) := rfl
 
-/-- `(F y)_λ = F(y_λ)`.-/
+/-- `(F y)_λ = F(y_λ)`.
+@isnad1 id=eq.0h8v.s8.0d22c4702e58 from=translated src=- shape=466b3266 vocab=9de2ff2a
+-/
 theorem whiskerLeft_app (F : SuperEnd R A) {G K : SuperEnd R A} (y : G ⟶ K) (p : ZMod 2)
     (X : A) : (F ◁ y).app p X = (toSuperfunctor F).map (y.app p X) := rfl
 
-/-- `(x G)_λ = x_{Gλ}`.-/
+/-- `(x G)_λ = x_{Gλ}`.
+@isnad1 id=eq.0h8v.s8.22fd5cba1e9b from=translated src=- shape=de6e1c87 vocab=b0581413
+-/
 theorem whiskerRight_app {F H : SuperEnd R A} (x : F ⟶ H) (G : SuperEnd R A) (p : ZMod 2)
     (X : A) : (x ▷ G).app p X = x.app p ((toSuperfunctor G).obj X) := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.1ab99cdec986 from=translated src=- shape=538ba86f vocab=ba2af50f
+-/
 theorem whiskerLeft_whiskerLeft (F G : Superfunctor R A A) {H K : Superfunctor R A A}
     (y : H ⟶ K) :
     Superfunctor.whiskerLeft G (Superfunctor.whiskerLeft F y) =
       Superfunctor.whiskerLeft (G.comp F) y :=
   Superfunctor.hom_ext fun _ _ => rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.72179a3c4d17 from=translated src=- shape=5514c11d vocab=adc97b88
+-/
 theorem whiskerLeft_whiskerRight (F : Superfunctor R A A) {G K : Superfunctor R A A}
     (y : G ⟶ K) (H : Superfunctor R A A) :
     Superfunctor.whiskerLeft F (Superfunctor.whiskerRight y H) =
       Superfunctor.whiskerRight (Superfunctor.whiskerLeft F y) H :=
   Superfunctor.hom_ext fun _ _ => rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.367135320176 from=translated src=- shape=3cc87b49 vocab=46bce25b
+-/
 theorem whiskerRight_whiskerRight {F G : Superfunctor R A A} (x : F ⟶ G)
     (H K : Superfunctor R A A) :
     Superfunctor.whiskerRight x (H.comp K) =
       Superfunctor.whiskerRight (Superfunctor.whiskerRight x H) K :=
   Superfunctor.hom_ext fun _ _ => rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.f7753cc72f51 from=translated src=- shape=76b163ae vocab=4d59376e
+-/
 theorem whiskerLeft_id' {G H : Superfunctor R A A} (x : G ⟶ H) :
     Superfunctor.whiskerLeft (Superfunctor.id R A) x = x :=
   Superfunctor.hom_ext fun _ _ => rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.4c46801c73e8 from=translated src=- shape=9df96f0a vocab=915a3aa6
+-/
 theorem whiskerRight_id' {G H : Superfunctor R A A} (x : G ⟶ H) :
     Superfunctor.whiskerRight x (Superfunctor.id R A) = x :=
   Superfunctor.hom_ext fun _ _ => rfl
 
 /-- **Brundan–Ellis, Example 1.5(ii).** The paper's tensor product of supernatural
 transformations `x : F ⇒ G`, `y : H ⇒ K` is `(x ⊗ y)_λ = x_{Kλ} ∘ F y_λ`, i.e. the horizontal
-composite `Superfunctor.hcomp y x`.-/
+composite `Superfunctor.hcomp y x`.
+@isnad1 id=eq.0h8v.s8.6d5a85ce9cfd from=translated src=- shape=0aa3f155 vocab=6fcffd7f
+-/
 theorem superTensorHom_eq {F G H K : SuperEnd R A} (x : F ⟶ G) (y : H ⟶ K) :
     MonoidalSupercategory.superTensorHom x y = Superfunctor.hcomp y x := rfl
 

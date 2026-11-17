@@ -43,13 +43,25 @@ namespace Obj
 /-- Horizontal composite `u ⊗ u'` of objects (the start of `u` is kept).-/
 def tensor (u u' : Obj S) : Obj S := ⟨u.start, u.word ++ u'.word⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.c06434eba904 from=translated src=- shape=666f5ea5 vocab=0b7307d5
+-/
 @[simp] theorem tensor_start (u u' : Obj S) : (u.tensor u').start = u.start := rfl
+/--
+@isnad1 id=eq.0h3v.s5.1bd9040c4b80 from=translated src=- shape=1efb42dc vocab=9125a666
+-/
 @[simp] theorem tensor_word (u u' : Obj S) : (u.tensor u').word = u.word ++ u'.word := rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.24a6d5a8a02b from=translated src=- shape=addeeded vocab=3a318de2
+-/
 theorem whisker_whisker (a u' u : Obj S) (v' v : List S.Colour) :
     (a.whisker u' v').whisker u v = a.whisker (u.tensor u') (v' ++ v) := by
   ext <;> simp [whisker, tensor, List.append_assoc]
 
+/--
+@isnad1 id=whiskero.2h6v.s5.2b323afdcee2 from=translated src=- shape=942dfa78 vocab=e7c9d260
+-/
 theorem WhiskerOK.trans {a u' u : Obj S} {v' v : List S.Colour} (h' : a.WhiskerOK u' v')
     (h : (a.whisker u' v').WhiskerOK u v) : a.WhiskerOK (u.tensor u') (v' ++ v) := by
   obtain ⟨hu', hue', hv'⟩ := h'
@@ -65,6 +77,9 @@ theorem WhiskerOK.trans {a u' u : Obj S} {v' v : List S.Colour} (h' : a.WhiskerO
 
 end Obj
 
+/--
+@isnad1 id=eq.0h6v.s5.c7699840fdc8 from=translated src=- shape=fc3dfe6d vocab=793d7d6d
+-/
 theorem Layer.whisker_whisker (L : Layer S) (u' u : Obj S) (v' v : List S.Colour) :
     (L.whisker u' v').whisker u v = L.whisker (u.tensor u') (v' ++ v) := by
   simp [Layer.whisker, Obj.tensor, List.append_assoc]
@@ -73,6 +88,9 @@ namespace Diagram
 
 variable {a b : Obj S}
 
+/--
+@isnad1 id=eq.2h8v.s7.27b481566b0f from=translated src=- shape=dc843bd0 vocab=f08e3e9d
+-/
 theorem whisker_whisker (f : a ⟶ b) (u' u : Obj S) (v' v : List S.Colour)
     (h' : a.WhiskerOK u' v') (h : (a.whisker u' v').WhiskerOK u v) :
     whisker (whisker f u' v' h') u v h =
@@ -80,6 +98,9 @@ theorem whisker_whisker (f : a ⟶ b) (u' u : Obj S) (v' v : List S.Colour)
         (Obj.whisker_whisker _ _ _ _ _).symm := by
   ext; simp [Function.comp_def, Layer.whisker_whisker]
 
+/--
+@isnad1 id=eq.3h8v.s7.bcc165c52e06 from=translated src=- shape=882a117f vocab=d9665277
+-/
 theorem whisker_cast {a' b' : Obj S} (f : a ⟶ b) (ha : a = a') (hb : b = b') (u : Obj S)
     (v : List S.Colour) (hw : a'.WhiskerOK u v) :
     whisker (cast f ha hb) u v hw =
@@ -101,40 +122,63 @@ def whisk (f : LinDiagram R a b) (u : Obj S) (v : List S.Colour) :
     LinDiagram R (a.whisker u v) (b.whisker u v) :=
   if h : a.WhiskerOK u v then whisker f u v h else 0
 
+/--
+@isnad1 id=eq.1h7v.s6.463c476f8924 from=translated src=- shape=b16604ae vocab=278488db
+-/
 theorem whisk_of_ok (f : LinDiagram R a b) {u : Obj S} {v : List S.Colour}
     (h : a.WhiskerOK u v) : whisk f u v = whisker f u v h := dite_eq_left h
 
+/--
+@isnad1 id=eq.1h7v.s7.84b045f01f71 from=translated src=- shape=8775ba7f vocab=d960d24a
+-/
 theorem whisk_of_not_ok (f : LinDiagram R a b) {u : Obj S} {v : List S.Colour}
     (h : ¬ a.WhiskerOK u v) : whisk f u v = 0 := dite_eq_right h
 
+/--
+@isnad1 id=eq.0h8v.s8.8526922760fa from=translated src=- shape=a5a49525 vocab=0a0fb9bb
+-/
 theorem whisk_add (f g : LinDiagram R a b) (u : Obj S) (v : List S.Colour) :
     whisk (f + g) u v = whisk f u v + whisk g u v := by
   by_cases h : a.WhiskerOK u v
   · simp only [whisk_of_ok _ h, whisker_add]
   · simp only [whisk_of_not_ok _ h, add_zero]
 
+/--
+@isnad1 id=eq.0h8v.s9.16b0bf857740 from=translated src=- shape=a6f81948 vocab=42c05c7e
+-/
 theorem whisk_smul (r : R) (f : LinDiagram R a b) (u : Obj S) (v : List S.Colour) :
     whisk (r • f) u v = r • whisk f u v := by
   by_cases h : a.WhiskerOK u v
   · simp only [whisk_of_ok _ h, whisker_smul]
   · simp only [whisk_of_not_ok _ h, smul_zero]
 
+/--
+@isnad1 id=eq.0h8v.s8.9f76a44c097b from=translated src=- shape=a5a49525 vocab=4833be3b
+-/
 theorem whisk_sub (f g : LinDiagram R a b) (u : Obj S) (v : List S.Colour) :
     whisk (f - g) u v = whisk f u v - whisk g u v := by
   by_cases h : a.WhiskerOK u v
   · simp only [whisk_of_ok _ h, whisker_sub]
   · simp only [whisk_of_not_ok _ h, sub_zero]
 
+/--
+@isnad1 id=eq.0h6v.s7.4e3b1b2892f1 from=translated src=- shape=6b59424b vocab=02263b31
+-/
 theorem whisk_zero (u : Obj S) (v : List S.Colour) : whisk (0 : LinDiagram R a b) u v = 0 := by
   simpa using whisk_smul (0 : R) (0 : LinDiagram R a b) u v
 
 /-- A nonzero linear combination of diagrams from `a` to `b` transfers whiskerability from
-`a` to `b`.-/
+`a` to `b`.
+@isnad1 id=whiskero.2h7v.s6.8a7b4f46770a from=translated src=- shape=4f597b33 vocab=fcb125d4
+-/
 theorem whiskerOK_of_ne_zero {f : LinDiagram R a b} (hf : f ≠ 0) {u : Obj S}
     {v : List S.Colour} (h : a.WhiskerOK u v) : b.WhiskerOK u v := by
   obtain ⟨d, -⟩ := Finsupp.ne_iff.mp hf
   exact (Diagram.chain d).whiskerOK h
 
+/--
+@isnad1 id=eq.2h9v.s7.7daba097ddd9 from=translated src=- shape=259cc2c1 vocab=d232fddf
+-/
 theorem whisker_comp (f : LinDiagram R a b) (g : LinDiagram R b c) (u : Obj S)
     (v : List S.Colour) (ha : a.WhiskerOK u v) (hb : b.WhiskerOK u v) :
     whisker (f ≫ g) u v ha = whisker f u v ha ≫ whisker g u v hb := by
@@ -154,6 +198,9 @@ theorem whisker_comp (f : LinDiagram R a b) (g : LinDiagram R b c) (u : Obj S)
       erw [h₁, whisker_single, whisker_single, whisker_single, h₂, Diagram.whisker_comp]
       rfl
 
+/--
+@isnad1 id=eq.0h9v.s7.3ecbbe4ca861 from=translated src=- shape=5ec4b1b5 vocab=8eee4f55
+-/
 theorem whisk_comp (f : LinDiagram R a b) (g : LinDiagram R b c) (u : Obj S)
     (v : List S.Colour) : whisk (f ≫ g) u v = whisk f u v ≫ whisk g u v := by
   by_cases ha : a.WhiskerOK u v
@@ -163,15 +210,24 @@ theorem whisk_comp (f : LinDiagram R a b) (g : LinDiagram R b c) (u : Obj S)
       rw [whisk_of_ok _ ha, whisk_of_ok _ ha, whisk_of_ok _ hb, whisker_comp _ _ _ _ ha hb]
   · rw [whisk_of_not_ok _ ha, whisk_of_not_ok _ ha, Limits.zero_comp]
 
+/--
+@isnad1 id=eq.1h5v.s6.95faf90ba972 from=translated src=- shape=690861de vocab=90401f94
+-/
 theorem whisk_id (a : Obj S) (u : Obj S) (v : List S.Colour) (h : a.WhiskerOK u v) :
     whisk (𝟙 (Free.of R a)) u v = 𝟙 (Free.of R (a.whisker u v)) := by
   rw [whisk_of_ok _ h]
   exact whisker_single _ _ _ _ _
 
+/--
+@isnad1 id=eq.2h7v.s7.afaad44c2393 from=translated src=- shape=3f247e93 vocab=f99162e7
+-/
 theorem cast_eq_comp {a' b' : Obj S} (f : LinDiagram R a b) (ha : a = a') (hb : b = b') :
     cast f ha hb = eqToHom (by rw [ha]) ≫ f ≫ eqToHom (by rw [hb]) := by
   subst ha hb; simp
 
+/--
+@isnad1 id=eq.2h9v.s7.990130b62045 from=translated src=- shape=b5ff9b41 vocab=4ff9d75f
+-/
 theorem whisker_whisker (f : LinDiagram R a b) (u' u : Obj S) (v' v : List S.Colour)
     (h' : a.WhiskerOK u' v') (h : (a.whisker u' v').WhiskerOK u v) :
     whisker (whisker f u' v' h') u v h =
@@ -191,6 +247,9 @@ namespace Presentation
 
 variable {R : Type w} [CommRing R] (P : Presentation.{w, v} S R)
 
+/--
+@isnad1 id=mem.1h8v.s9.c94930caf840 from=translated src=- shape=14611ee1 vocab=4a1d831f
+-/
 theorem whisk_mem_ideal {a b : Obj S} {f : LinDiagram R a b} (hf : f ∈ P.ideal a b)
     (u : Obj S) (v : List S.Colour) : LinDiagram.whisk f u v ∈ P.ideal _ _ := by
   induction hf using Submodule.span_induction with
@@ -221,58 +280,93 @@ def whisk {a b : Obj S} (f : P.obj a ⟶ P.obj b) (u : Obj S) (v : List S.Colour
       rw [lin_eq_iff, ← LinDiagram.whisk_sub]
       exact P.whisk_mem_ideal h' u v) f
 
+/--
+@isnad1 id=eq.0h8v.s7.29195329a81f from=translated src=- shape=1167c3bf vocab=40d30607
+-/
 @[simp] theorem whisk_lin {a b : Obj S} (f : LinDiagram R a b) (u : Obj S) (v : List S.Colour) :
     P.whisk (P.lin f) u v = P.lin (LinDiagram.whisk f u v) := rfl
 
+/--
+@isnad1 id=eq.1h8v.s7.270157e95fbf from=translated src=- shape=aab3c160 vocab=38acd4cc
+-/
 theorem whisk_diag {a b : Obj S} (f : a ⟶ b) (u : Obj S) (v : List S.Colour)
     (h : a.WhiskerOK u v) : P.whisk (P.diag f) u v = P.diag (Diagram.whisker f u v h) := by
   rw [diag, whisk_lin, LinDiagram.whisk_of_ok _ h, LinDiagram.whisker_of, lin_of]
 
+/--
+@isnad1 id=ex.0h6v.s7.1511a0ad8cb9 from=translated src=- shape=f18e3ce0 vocab=e054e845
+-/
 theorem lin_surjective {a b : Obj S} (f : P.obj a ⟶ P.obj b) : ∃ g, P.lin g = f :=
   P.linFunctor.map_surjective f
 
+/--
+@isnad1 id=eq.0h10v.s8.d2b0dc1c571c from=translated src=- shape=79ccb8b7 vocab=bbce647e
+-/
 theorem whisk_comp {a b c : Obj S} (f : P.obj a ⟶ P.obj b) (g : P.obj b ⟶ P.obj c) (u : Obj S)
     (v : List S.Colour) : P.whisk (f ≫ g) u v = P.whisk f u v ≫ P.whisk g u v := by
   obtain ⟨f, rfl⟩ := P.lin_surjective f
   obtain ⟨g, rfl⟩ := P.lin_surjective g
   rw [← lin_comp, whisk_lin, whisk_lin, whisk_lin, LinDiagram.whisk_comp, lin_comp]
 
+/--
+@isnad1 id=eq.1h6v.s7.7d01b2421f12 from=translated src=- shape=b3f39e1f vocab=52f6c76f
+-/
 theorem whisk_id (a : Obj S) (u : Obj S) (v : List S.Colour) (h : a.WhiskerOK u v) :
     P.whisk (𝟙 (P.obj a)) u v = 𝟙 _ := by
   rw [← lin_id, whisk_lin, LinDiagram.whisk_id a u v h, lin_id]
 
+/--
+@isnad1 id=eq.0h9v.s10.d5374fa91586 from=translated src=- shape=cf5cf5a6 vocab=ca2abf1b
+-/
 theorem whisk_add {a b : Obj S} (f g : P.obj a ⟶ P.obj b) (u : Obj S) (v : List S.Colour) :
     P.whisk (f + g) u v = P.whisk f u v + P.whisk g u v := by
   obtain ⟨f, rfl⟩ := P.lin_surjective f
   obtain ⟨g, rfl⟩ := P.lin_surjective g
   rw [← lin_add, whisk_lin, whisk_lin, whisk_lin, LinDiagram.whisk_add, lin_add]
 
+/--
+@isnad1 id=eq.0h9v.s11.ffea9abc3287 from=translated src=- shape=cad3f9f2 vocab=3627a9c6
+-/
 theorem whisk_smul {a b : Obj S} (r : R) (f : P.obj a ⟶ P.obj b) (u : Obj S)
     (v : List S.Colour) : P.whisk (r • f) u v = r • P.whisk f u v := by
   obtain ⟨f, rfl⟩ := P.lin_surjective f
   rw [← lin_smul, whisk_lin, whisk_lin, LinDiagram.whisk_smul, lin_smul]
 
+/--
+@isnad1 id=eq.0h9v.s9.b052d8f42bf7 from=translated src=- shape=cf5cf5a6 vocab=2151f41a
+-/
 theorem whisk_sub {a b : Obj S} (f g : P.obj a ⟶ P.obj b) (u : Obj S) (v : List S.Colour) :
     P.whisk (f - g) u v = P.whisk f u v - P.whisk g u v := by
   obtain ⟨f, rfl⟩ := P.lin_surjective f
   obtain ⟨g, rfl⟩ := P.lin_surjective g
   rw [← lin_sub, whisk_lin, whisk_lin, whisk_lin, LinDiagram.whisk_sub, lin_sub]
 
+/--
+@isnad1 id=eq.0h7v.s8.1237f554631a from=translated src=- shape=6a6c66ae vocab=a75a681a
+-/
 theorem whisk_zero {a b : Obj S} (u : Obj S) (v : List S.Colour) :
     P.whisk (0 : P.obj a ⟶ P.obj b) u v = 0 := by
   rw [← P.lin_zero, whisk_lin, LinDiagram.whisk_zero, lin_zero]
 
+/--
+@isnad1 id=eq.1h5v.s7.da0788526683 from=translated src=- shape=1e81d23d vocab=1943df63
+-/
 @[simp] theorem lin_eqToHom {a b : Obj S} (h : a = b) :
     P.lin (eqToHom (congrArg (Free.of R) h)) = eqToHom (congrArg P.obj h) := by
   subst h; exact P.lin_id a
 
+/--
+@isnad1 id=eq.2h7v.s7.b9e383ea7fae from=translated src=- shape=97b0160a vocab=e350914c
+-/
 theorem whisk_eqToHom {a b : Obj S} (h : a = b) (u : Obj S) (v : List S.Colour)
     (hw : a.WhiskerOK u v) :
     P.whisk (eqToHom (congrArg P.obj h)) u v =
       eqToHom (congrArg P.obj (congrArg (Obj.whisker · u v) h)) := by
   subst h; exact P.whisk_id a u v hw
 
-/-- Whiskering twice is whiskering once by the composite objects.-/
+/-- Whiskering twice is whiskering once by the composite objects.
+@isnad1 id=eq.2h10v.s9.65ad217bf837 from=translated src=- shape=d0961c7a vocab=3c730ae2
+-/
 theorem whisk_whisk {a b : Obj S} (f : P.obj a ⟶ P.obj b) (u' u : Obj S) (v' v : List S.Colour)
     (h' : a.WhiskerOK u' v') (h : (a.whisker u' v').WhiskerOK u v) :
     P.whisk (P.whisk f u' v') u v =

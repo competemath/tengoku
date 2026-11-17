@@ -116,7 +116,9 @@ instance (a b : DegreeZero2 R B) : Linear R (a ⟶ b) :=
 instance (a b : DegreeZero2 R B) : Supercategory R (a ⟶ b) :=
   inferInstanceAs (Supercategory R (DegreeZero R (a.as ⟶ b.as)))
 
-/-- The 2-morphisms of degree zero of a graded 2-supercategory form a 2-supercategory.-/
+/-- The 2-morphisms of degree zero of a graded 2-supercategory form a 2-supercategory.
+@isnad1 id=twosuper.0h2v.s7.b5b8961ec4ba from=translated src=- shape=cc013b43 vocab=c95e9c9c
+-/
 instance twoSupercategory : TwoSupercategory R (DegreeZero2 R B) where
   whiskerLeft_id f g := DegreeZero.hom_ext (TwoSupercategory.whiskerLeft_id (R := R) f.obj g.obj)
   whiskerLeft_comp f _ _ _ η θ := DegreeZero.hom_ext

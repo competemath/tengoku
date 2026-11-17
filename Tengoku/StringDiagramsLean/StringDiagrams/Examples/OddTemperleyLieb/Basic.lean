@@ -63,14 +63,29 @@ instance : Subsingleton sig.Region := inferInstanceAs (Subsingleton Unit)
 
 instance : Inhabited sig.Region := inferInstanceAs (Inhabited Unit)
 
+/--
+@isnad1 id=eq.0h0v.s3.50b35ce20616 from=translated src=- shape=5da1c04a vocab=39c1f98e
+-/
 @[simp] theorem sig_dom_cup : sig.dom .cup = [] := rfl
+/--
+@isnad1 id=eq.0h0v.s3.72f26f0156d3 from=translated src=- shape=ff72bcf2 vocab=68d4b420
+-/
 @[simp] theorem sig_cod_cup : sig.cod .cup = [(), ()] := rfl
+/--
+@isnad1 id=eq.0h0v.s3.81f65b7f5375 from=translated src=- shape=ff72bcf2 vocab=f946550a
+-/
 @[simp] theorem sig_dom_cap : sig.dom .cap = [(), ()] := rfl
+/--
+@isnad1 id=eq.0h0v.s3.d2d01b850402 from=translated src=- shape=5da1c04a vocab=4863e390
+-/
 @[simp] theorem sig_cod_cap : sig.cod .cap = [] := rfl
 
 /-- `n` strands.-/
 def strands (n : ℕ) : Obj sig := ⟨(), List.replicate n ()⟩
 
+/--
+@isnad1 id=eq.1h2v.s4.00ad3f965f16 from=translated src=- shape=e398ba07 vocab=b2277449
+-/
 theorem list_unit_ext {l₁ l₂ : List Unit} (h : l₁.length = l₂.length) : l₁ = l₂ := by
   induction l₁ generalizing l₂ with
   | nil => cases l₂ with
@@ -80,13 +95,22 @@ theorem list_unit_ext {l₁ l₂ : List Unit} (h : l₁.length = l₂.length) : 
     | nil => simp at h
     | cons b l₂ => rw [ih (by simpa using h)]
 
+/--
+@isnad1 id=iff.0h2v.s4.11265a23ca5c from=translated src=- shape=4461476d vocab=b2277449
+-/
 @[simp] theorem list_unit_eq_iff {l₁ l₂ : List Unit} : l₁ = l₂ ↔ l₁.length = l₂.length :=
   ⟨congrArg List.length, list_unit_ext⟩
 
+/--
+@isnad1 id=eq.1h2v.s4.782fdb157360 from=translated src=- shape=f7a71f81 vocab=0b98bbe2
+-/
 theorem obj_ext {a b : Obj sig} (h : a.word.length = b.word.length) : a = b :=
   Obj.ext (Subsingleton.elim (α := Unit) _ _) (list_unit_ext h)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h1v.s3.78014c1e88d2 from=translated src=- shape=986d32f9 vocab=35d1009c
+-/
 @[simp] theorem strands_word_length (n : ℕ) : (strands n).word.length = n := by
   simp [strands]
 
@@ -145,7 +169,9 @@ def pres : Presentation sig R where
   rel := relation R δ
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The relations are homogeneous for the parity.-/
+/-- The relations are homogeneous for the parity.
+@isnad1 id=isparity.0h2v.s3.462bb42e782e from=translated src=- shape=d5a3ba75 vocab=725bdeb6
+-/
 theorem isParityHomogeneous : (pres R δ).IsParityHomogeneous := by
   intro r
   cases r
@@ -169,7 +195,9 @@ abbrev supercategory : Supercategory R (STL R δ) :=
   (pres R δ).supercategory (isParityHomogeneous R δ)
 
 /-- **Example 1.17(iii).** `STL(δ)` is a monoidal supercategory (strict, by
-`Presentation.isStrict`).-/
+`Presentation.isStrict`).
+@isnad1 id=monoidal.0h2v.s6.8e576e3d96b8 from=translated src=- shape=101348a6 vocab=18aa3253
+-/
 theorem monoidalSupercategory :
     letI := supercategory R δ
     MonoidalSupercategory R (STL R δ) :=
@@ -180,12 +208,16 @@ abbrev X (n : ℕ) : STL R δ := (pres R δ).obj (strands n)
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Tensor product of objects adds numbers of strands; in particular `X n` is the `n`-fold
-tensor power of the generating object `X 1`.-/
+tensor power of the generating object `X 1`.
+@isnad1 id=eq.0h4v.s6.7d030e871997 from=translated src=- shape=84025777 vocab=7e0da9ae
+-/
 theorem X_tensor (m n : ℕ) : X R δ m ⊗ X R δ n = X R δ (m + n) := by
   rw [Presentation.obj_tensor]
   exact congrArg _ (obj_ext (by simp [strands, Obj.tensor]))
 
-/-- The unit object is `X 0`.-/
+/-- The unit object is `X 0`.
+@isnad1 id=eq.0h2v.s5.ca9adbe56ac8 from=translated src=- shape=acf6527a vocab=1ab534d1
+-/
 theorem X_zero : 𝟙_ (STL R δ) = X R δ 0 := rfl
 
 /-- The identity `e_n` of `n`.-/
@@ -202,11 +234,16 @@ variable {R δ}
 def shift (i : ℕ) : Obj sig := ⟨(), List.replicate i ()⟩
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h4v.s5.363cf9ad7d8a from=translated src=- shape=27756486 vocab=ba59cf15
+-/
 theorem whisk_eq {w i k n : ℕ} (h : i + w + k = n) :
     (strands w).whisker (shift i) (List.replicate k ()) = strands n :=
   obj_ext (by simp [strands, shift, Obj.whisker]; omega)
 
-/-- A relation whiskered by `i` strands on the left and `k` on the right, retyped.-/
+/-- A relation whiskered by `i` strands on the left and `k` on the right, retyped.
+@isnad1 id=eq.2h7v.s8.ec5c773d26a5 from=translated src=- shape=8ba0749f vocab=3cbb89fd
+-/
 theorem relation_at (r : Rel) (i k : ℕ) {a b : Obj sig}
     (ha : (strands r.width).whisker (shift i) (List.replicate k ()) = a)
     (hb : (strands r.width).whisker (shift i) (List.replicate k ()) = b) :
@@ -226,20 +263,34 @@ def cap (n i : ℕ) : X R δ (n + 2) ⟶ X R δ n :=
 
 variable {R δ}
 
+/--
+@isnad1 id=eq.1h4v.s6.9c322d02257d from=translated src=- shape=c530a537 vocab=86f538f0
+-/
 theorem cup_def {n i : ℕ} (h : i ≤ n) : cup R δ n i = (pres R δ).diag (dcup h) :=
   dite_eq_left h
 
+/--
+@isnad1 id=eq.1h4v.s6.6fb9ef1a8962 from=translated src=- shape=6a1a5021 vocab=34771bb7
+-/
 theorem cap_def {n i : ℕ} (h : i ≤ n) : cap R δ n i = (pres R δ).diag (dcap h) :=
   dite_eq_left h
 
+/--
+@isnad1 id=eq.1h4v.s8.cba944cb2e52 from=translated src=- shape=69f116dd vocab=a73ce954
+-/
 theorem cup_of_lt {n i : ℕ} (h : n < i) : cup R δ n i = 0 := dite_eq_right (by omega)
 
+/--
+@isnad1 id=eq.1h4v.s8.b450770e34c8 from=translated src=- shape=730e5ee0 vocab=e91b2ba1
+-/
 theorem cap_of_lt {n i : ℕ} (h : n < i) : cap R δ n i = 0 := dite_eq_right (by omega)
 
 /-! ## The relations at symbolic positions -/
 
 set_option backward.isDefEq.respectTransparency false in
-/-- `cup_{i+1} ≫ cap_i = 1`.-/
+/-- `cup_{i+1} ≫ cap_i = 1`.
+@isnad1 id=eq.1h4v.s7.71b86351d712 from=translated src=- shape=c00ea074 vocab=27772bef
+-/
 theorem zigzagA_at {n i : ℕ} (h : i + 1 ≤ n) : cup R δ n (i + 1) ≫ cap R δ n i = 𝟙 _ := by
   have key := relation_at (R := R) (δ := δ) .zigzagA i (n - i - 1) (a := strands n)
     (b := strands n) (whisk_eq (by simp [Rel.width]; omega))
@@ -252,7 +303,9 @@ theorem zigzagA_at {n i : ℕ} (h : i + 1 ≤ n) : cup R δ n (i + 1) ≫ cap R 
   · rfl
 
 set_option backward.isDefEq.respectTransparency false in
-/-- `cup_i ≫ cap_{i+1} = ε = -1`.-/
+/-- `cup_i ≫ cap_{i+1} = ε = -1`.
+@isnad1 id=eq.1h4v.s8.0e3e8a8839cf from=translated src=- shape=e5afaca1 vocab=3470d8fd
+-/
 theorem zigzagB_at {n i : ℕ} (h : i + 1 ≤ n) : cup R δ n i ≫ cap R δ n (i + 1) = -𝟙 _ := by
   have key := relation_at (R := R) (δ := δ) .zigzagB i (n - i - 1) (a := strands n)
     (b := strands n) (whisk_eq (by simp [Rel.width]; omega))
@@ -265,7 +318,9 @@ theorem zigzagB_at {n i : ℕ} (h : i + 1 ≤ n) : cup R δ n i ≫ cap R δ n (
   · rfl
 
 set_option backward.isDefEq.respectTransparency false in
-/-- `cup_i ≫ cap_i = δ`.-/
+/-- `cup_i ≫ cap_i = δ`.
+@isnad1 id=eq.1h4v.s10.bbccb6694b2d from=translated src=- shape=c530994e vocab=d83c2ddf
+-/
 theorem loop_at {n i : ℕ} (h : i ≤ n) : cup R δ n i ≫ cap R δ n i = δ • 𝟙 _ := by
   have key := relation_at (R := R) (δ := δ) .loop i (n - i) (a := strands n)
     (b := strands n) (whisk_eq (by simp [Rel.width]; omega))
@@ -281,7 +336,9 @@ theorem loop_at {n i : ℕ} (h : i ≤ n) : cup R δ n i ≫ cap R δ n i = δ �
 
 /-! ## The super interchange law for the generators -/
 
-/-- The interchange law for two layers, with its Koszul sign.-/
+/-- The interchange law for two layers, with its Koszul sign.
+@isnad1 id=eq.2h8v.s9.fe0e0814f773 from=translated src=- shape=46aaf3c9 vocab=798c8c8c
+-/
 theorem diag_eq_of_swap {a b : Obj sig} {f f' : a ⟶ b} (L M : Layer sig)
     (hf : Diagram.layers f = [L.wr M.dom.word, M.wl L.cod])
     (hf' : Diagram.layers f' = [M.wl L.dom, L.wr M.cod.word]) :
@@ -299,7 +356,9 @@ theorem diag_eq_of_swap {a b : Obj sig} {f f' : a ⟶ b} (L M : Layer sig)
       (congrArg _ (Presentation.diag_eq_of_layers_eq _ (by rw [hf']; rfl))))
 
 set_option backward.isDefEq.respectTransparency false in
-/-- Two caps anticommute: `cap_j ≫ cap_i = -(cap_i ≫ cap_{j-2})` for `i + 2 ≤ j`.-/
+/-- Two caps anticommute: `cap_j ≫ cap_i = -(cap_i ≫ cap_{j-2})` for `i + 2 ≤ j`.
+@isnad1 id=eq.2h5v.s9.92e7451c2536 from=translated src=- shape=0c6031f3 vocab=e33881b3
+-/
 theorem cap_cap {n i j : ℕ} (hij : i + 2 ≤ j) (hj : j ≤ n + 2) :
     cap R δ (n + 2) j ≫ cap R δ n i = -(cap R δ (n + 2) i ≫ cap R δ n (j - 2)) := by
   rw [cap_def hj, cap_def (show i ≤ n by omega), cap_def (show i ≤ n + 2 by omega),
@@ -314,7 +373,9 @@ theorem cap_cap {n i j : ℕ} (hij : i + 2 ≤ j) (hj : j ≤ n + 2) :
   rw [key, neg_neg]
 
 set_option backward.isDefEq.respectTransparency false in
-/-- Two cups anticommute: `cup_{j-2} ≫ cup_i = -(cup_i ≫ cup_j)` for `i + 2 ≤ j`.-/
+/-- Two cups anticommute: `cup_{j-2} ≫ cup_i = -(cup_i ≫ cup_j)` for `i + 2 ≤ j`.
+@isnad1 id=eq.2h5v.s9.aa45f1087d22 from=translated src=- shape=6b880f38 vocab=8ea15288
+-/
 theorem cup_cup {n i j : ℕ} (hij : i + 2 ≤ j) (hj : j ≤ n + 2) :
     cup R δ n (j - 2) ≫ cup R δ (n + 2) i = -(cup R δ n i ≫ cup R δ (n + 2) j) := by
   rw [cup_def (show j - 2 ≤ n by omega), cup_def (show i ≤ n + 2 by omega),
@@ -330,7 +391,9 @@ theorem cup_cup {n i j : ℕ} (hij : i + 2 ≤ j) (hj : j ≤ n + 2) :
 
 set_option backward.isDefEq.respectTransparency false in
 /-- A cup on the left and a cap on the right anticommute:
-`cup_i ≫ cap_j = -(cap_{j-2} ≫ cup_i)` for `i + 2 ≤ j`.-/
+`cup_i ≫ cap_j = -(cap_{j-2} ≫ cup_i)` for `i + 2 ≤ j`.
+@isnad1 id=eq.2h5v.s9.60d2cdf96f12 from=translated src=- shape=ec8aa80e vocab=c72b6301
+-/
 theorem cup_cap {n i j : ℕ} (hij : i + 2 ≤ j) (hj : j ≤ n + 2) :
     cup R δ (n + 2) i ≫ cap R δ (n + 2) j = -(cap R δ n (j - 2) ≫ cup R δ n i) := by
   rw [cup_def (show i ≤ n + 2 by omega), cap_def hj, cap_def (show j - 2 ≤ n by omega),
@@ -346,7 +409,9 @@ theorem cup_cap {n i j : ℕ} (hij : i + 2 ≤ j) (hj : j ≤ n + 2) :
 
 set_option backward.isDefEq.respectTransparency false in
 /-- A cap on the left and a cup on the right anticommute:
-`cup_j ≫ cap_i = -(cap_i ≫ cup_{j-2})` for `i + 2 ≤ j`.-/
+`cup_j ≫ cap_i = -(cap_i ≫ cup_{j-2})` for `i + 2 ≤ j`.
+@isnad1 id=eq.2h5v.s9.83c0dd79f97c from=translated src=- shape=69db6086 vocab=c72b6301
+-/
 theorem cap_cup {n i j : ℕ} (hij : i + 2 ≤ j) (hj : j ≤ n + 2) :
     cup R δ (n + 2) j ≫ cap R δ (n + 2) i = -(cap R δ n i ≫ cup R δ n (j - 2)) := by
   rw [cup_def hj, cap_def (show i ≤ n + 2 by omega), cap_def (show i ≤ n by omega),

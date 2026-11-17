@@ -44,25 +44,40 @@ variable {S : Signature.{u₀, u₁, u₂}}
 /-- An object is well formed when its word is well formed from its starting region.-/
 def Obj.Ok (a : Obj S) : Prop := S.ok a.start a.word
 
+/--
+@isnad1 id=ok.1h2v.s3.418d7dabcf53 from=translated src=- shape=08ded1e7 vocab=e2fc53af
+-/
 theorem Layer.Valid.dom_obj_ok {L : Layer S} (h : L.Valid) : L.dom.Ok := by
   simp only [Obj.Ok, Layer.dom, Signature.ok_append, Signature.endR_append]
   rw [h.left_end, h.dom_end]
   exact ⟨⟨h.left_ok, h.dom_ok⟩, h.right_ok⟩
 
+/--
+@isnad1 id=ok.1h2v.s3.2b8459bc936b from=translated src=- shape=08ded1e7 vocab=864a0637
+-/
 theorem Layer.Valid.cod_obj_ok {L : Layer S} (h : L.Valid) : L.cod.Ok := by
   simp only [Obj.Ok, Layer.cod, Signature.ok_append, Signature.endR_append]
   rw [h.left_end, h.cod_end]
   exact ⟨⟨h.left_ok, h.cod_ok⟩, h.right_ok⟩
 
+/--
+@isnad1 id=ok.2h4v.s4.ba0b1c438ea4 from=translated src=- shape=496545ce vocab=de38958c
+-/
 theorem Chain.ok {a b : Obj S} {ls : List (Layer S)} (h : Chain a ls b) (ha : a.Ok) : b.Ok := by
   induction ls generalizing a with
   | nil => cases h; exact ha
   | cons L ls ih => exact ih h.2.2 h.1.cod_obj_ok
 
+/--
+@isnad1 id=chain.3h6v.s5.00d82c67f0f0 from=translated src=- shape=069f9056 vocab=32f70985
+-/
 theorem Chain.congr {a a' b b' : Obj S} {ls : List (Layer S)} (h : Chain a ls b) (ha : a = a')
     (hb : b = b') : Chain a' ls b' := by
   subst ha hb; exact h
 
+/--
+@isnad1 id=and.1h5v.s5.64c0b5593932 from=translated src=- shape=966ebc83 vocab=29907734
+-/
 theorem Chain.of_append {a b : Obj S} {ls ms : List (Layer S)} (h : Chain a (ls ++ ms) b) :
     Chain a ls (Chain.target a ls) ∧ Chain (Chain.target a ls) ms b := by
   induction ls generalizing a with
@@ -72,13 +87,17 @@ theorem Chain.of_append {a b : Obj S} {ls ms : List (Layer S)} (h : Chain a (ls 
     obtain ⟨h₁, h₂⟩ := ih hc
     exact ⟨⟨hv, rfl, h₁⟩, h₂⟩
 
-/-- The target of a chain is determined by its source and its layers.-/
+/-- The target of a chain is determined by its source and its layers.
+@isnad1 id=eq.2h5v.s5.eca880db5a5d from=translated src=- shape=6127e4d1 vocab=32f70985
+-/
 theorem Chain.target_unique {a b b' : Obj S} {ls : List (Layer S)} (h : Chain a ls b)
     (h' : Chain a ls b') : b = b' :=
   (Chain.target_eq h).symm.trans (Chain.target_eq h')
 
 /-- Two chains with the same layers ending at the same object start at the same object, unless
-there are no layers.-/
+there are no layers.
+@isnad1 id=eq.3h5v.s5.cc1209d3e3ff from=translated src=- shape=d7154af8 vocab=30b31c98
+-/
 theorem Chain.source_eq {a a' b : Obj S} {ls : List (Layer S)} (hne : ls ≠ [])
     (h : Chain a ls b) (h' : Chain a' ls b) : a = a' := by
   cases ls with
@@ -89,12 +108,17 @@ namespace Presentation
 
 variable {R : Type w} [CommRing R] (P : Presentation.{w, v} S R)
 
+/--
+@isnad1 id=eq.2h8v.s7.aa939aa146e6 from=translated src=- shape=804c0017 vocab=35894a5a
+-/
 theorem diag_mk_append {a b c : Obj S} {ls ms : List (Layer S)} (h₁ : Chain a ls b)
     (h₂ : Chain b ms c) :
     P.diag (Diagram.mk (ls ++ ms) (h₁.append h₂)) = P.diag (Diagram.mk ls h₁) ≫ P.diag (Diagram.mk ms h₂) := by
   rw [← P.diag_comp]; rfl
 
-/-- Retyping: diagrams with the same layers between equal objects have the same image.-/
+/-- Retyping: diagrams with the same layers between equal objects have the same image.
+@isnad1 id=eq.5h11v.s7.cc4276e2cd3c from=translated src=- shape=f15f5b36 vocab=c38a1ddd
+-/
 theorem diag_eq_of_diag_eq_of_layers {a b a' b' : Obj S} (f₁ f₂ : a ⟶ b) (g₁ g₂ : a' ⟶ b')
     (ha : a = a') (hb : b = b') (h₁ : Diagram.layers f₁ = Diagram.layers g₁)
     (h₂ : Diagram.layers f₂ = Diagram.layers g₂) (h : P.diag g₁ = P.diag g₂) :
@@ -103,7 +127,9 @@ theorem diag_eq_of_diag_eq_of_layers {a b a' b' : Obj S} (f₁ f₂ : a ⟶ b) (
   rw [P.diag_eq_of_layers_eq h₁, P.diag_eq_of_layers_eq h₂, h]
 
 /-- Replacing a block `Z` of layers by a block `Z'` with the same image does not change the image
-of a diagram.-/
+of a diagram.
+@isnad1 id=eq.3h11v.s8.c869847651f4 from=translated src=- shape=e6ce8f04 vocab=ca5eeb86
+-/
 theorem diag_eq_of_layers_eq_append {a b : Obj S} (f₁ f₂ : a ⟶ b) (X Y Z Z' : List (Layer S))
     (h₁ : Diagram.layers f₁ = X ++ Z ++ Y) (h₂ : Diagram.layers f₂ = X ++ Z' ++ Y)
     (hZ : ∀ (c d : Obj S) (g₁ g₂ : c ⟶ d), Chain a X c → Diagram.layers g₁ = Z →
@@ -160,6 +186,9 @@ structure SideBySideOK (a b : Obj S) : Prop where
 
 variable {u m v}
 
+/--
+@isnad1 id=and.1h6v.s5.43dd4db3152d from=translated src=- shape=5dbb6ab5 vocab=47592afd
+-/
 theorem SideBySideOK.parts {a b : Obj S} (h : SideBySideOK u m v a b) :
     S.ok u.start u.word ∧ a.Ok ∧ S.ok a.endR m ∧ b.Ok ∧ S.ok b.endR v := by
   obtain ⟨hok, hu, hm⟩ := h
@@ -170,6 +199,9 @@ theorem SideBySideOK.parts {a b : Obj S} (h : SideBySideOK u m v a b) :
   rw [ha, hm] at h₄ h₅
   exact ⟨h₁, h₂, h₃, h₄, h₅⟩
 
+/--
+@isnad1 id=sidebysi.7h6v.s6.92f8be6d330a from=translated src=- shape=f2645d39 vocab=5e2190a6
+-/
 theorem SideBySideOK.of_ok {a b : Obj S} (hu : S.ok u.start u.word) (ha : a.Ok)
     (hm : S.ok a.endR m) (hb : b.Ok) (hv : S.ok b.endR v) (hua : u.endR = a.start)
     (hmb : S.endR a.endR m = b.start) : SideBySideOK u m v a b := by
@@ -180,7 +212,9 @@ theorem SideBySideOK.of_ok {a b : Obj S} (hu : S.ok u.start u.word) (ha : a.Ok)
   exact ⟨⟨⟨⟨hu, ha⟩, hm⟩, hb⟩, hv⟩
 
 /-- Replacing `a` by the target of a chain from `a`, and `b` by the target of a chain from `b`,
-preserves `SideBySideOK`.-/
+preserves `SideBySideOK`.
+@isnad1 id=sidebysi.3h10v.s5.42ee7670d86b from=translated src=- shape=185da9d4 vocab=09ba8df8
+-/
 theorem SideBySideOK.chain {a a' b b' : Obj S} (h : SideBySideOK u m v a b) {F G : List (Layer S)}
     (hF : Chain a F a') (hG : Chain b G b') : SideBySideOK u m v a' b' := by
   obtain ⟨hu, ha, hm, hb, hv⟩ := h.parts
@@ -188,6 +222,9 @@ theorem SideBySideOK.chain {a a' b b' : Obj S} (h : SideBySideOK u m v a b) {F G
     (by rw [hG.endR_eq]; exact hv) (by rw [hF.start_eq]; exact h.left_end)
     (by rw [hF.endR_eq, hG.start_eq]; exact h.mid_end)
 
+/--
+@isnad1 id=chain.2h8v.s5.c208546eace0 from=translated src=- shape=39a67d9e vocab=2b6be5fb
+-/
 theorem chain_leftLayers {a a' e : Obj S} {F : List (Layer S)} (hF : Chain a F a')
     (h : SideBySideOK u m v a e) :
     Chain (sbs u m v a e) (leftLayers u m v F e) (sbs u m v a' e) := by
@@ -198,6 +235,9 @@ theorem chain_leftLayers {a a' e : Obj S} {F : List (Layer S)} (hF : Chain a F a
     exact ⟨⟨hm, he⟩, hv⟩
   exact (hF.whisker hw).congr (by simp [Obj.whisker]) (by simp [Obj.whisker])
 
+/--
+@isnad1 id=chain.2h8v.s5.d0769824e550 from=translated src=- shape=2b64e8e2 vocab=d6b81ae8
+-/
 theorem chain_rightLayers {b b' c : Obj S} {G : List (Layer S)} (hG : Chain b G b')
     (h : SideBySideOK u m v c b) :
     Chain (sbs u m v c b) (rightLayers u m v G c) (sbs u m v c b') := by
@@ -213,7 +253,9 @@ theorem chain_rightLayers {b b' c : Obj S} {G : List (Layer S)} (hG : Chain b G 
 
 variable (u m v)
 
-/-- One layer `M` on the right moves below a diagram `F` on the left.-/
+/-- One layer `M` on the right moves below a diagram `F` on the left.
+@isnad1 id=eq.6h12v.s8.874c51711654 from=translated src=- shape=74e3b992 vocab=282e8b14
+-/
 theorem diag_interchange_layer_right {a a' : Obj S} {F : List (Layer S)} (hF : Chain a F a')
     {M : Layer S} (hM : M.Valid) (heven : ∀ L ∈ F, S.odd L.gen = false ∨ S.odd M.gen = false)
     (h : SideBySideOK u m v a M.dom)
@@ -272,7 +314,9 @@ theorem diag_interchange_layer_right {a a' : Obj S} {F : List (Layer S)} (hF : C
 regions: for chains of layers `F` from `a` to `a'` and `G` from `b` to `b'` placed as
 `u ⊗ F ⊗ m ⊗ G ⊗ v`, where every generator of `F` or every generator of `G` facing it is even,
 the diagram applying `F` and then `G` and the one applying `G` and then `F` have the same image
-in the presented category.-/
+in the presented category.
+@isnad1 id=eq.6h14v.s8.be1da1c87986 from=translated src=- shape=526e6400 vocab=decd559e
+-/
 theorem diag_interchange_layers_of_even {a a' b b' : Obj S} {F G : List (Layer S)}
     (hF : Chain a F a') (hG : Chain b G b')
     (heven : ∀ L ∈ F, ∀ M ∈ G, S.odd L.gen = false ∨ S.odd M.gen = false)

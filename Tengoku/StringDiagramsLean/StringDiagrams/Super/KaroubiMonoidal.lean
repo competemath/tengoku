@@ -53,14 +53,23 @@ section Perm
 variable {ι κ μ : Type} [Fintype ι] [Fintype κ] [Fintype μ] {X : ι → D} {Y : κ → D}
   {Z : μ → D}
 
+/--
+@isnad1 id=eq.0h8v.s7.47956c5bc49b from=translated src=- shape=cc6721de vocab=7e070097
+-/
 @[simp] theorem permMat_apply_self (e : ι ≃ κ) (φ : ∀ i, X i ⟶ Y (e i)) (i : ι) :
     permMat e φ i (e i) = φ i := by
   simp [permMat]
 
+/--
+@isnad1 id=eq.1h9v.s8.c9eff653e702 from=translated src=- shape=d634f0b6 vocab=7e070097
+-/
 theorem permMat_apply_of_ne (e : ι ≃ κ) (φ : ∀ i, X i ⟶ Y (e i)) {i : ι} {j : κ} (h : e i ≠ j) :
     permMat e φ i j = 0 := by
   simp [permMat, h]
 
+/--
+@isnad1 id=eq.0h11v.s7.7e345a1a76d3 from=translated src=- shape=83148026 vocab=c43fa71f
+-/
 @[simp] theorem permMat_comp_apply (e : ι ≃ κ) (φ : ∀ i, X i ⟶ Y (e i)) {N : Mat_ D}
     (g : (⟨κ, Y⟩ : Mat_ D) ⟶ N) (i : ι) (k : N.ι) :
     (permMat e φ ≫ g) i k = φ i ≫ g (e i) k := by
@@ -70,6 +79,9 @@ theorem permMat_apply_of_ne (e : ι ≃ κ) (φ : ∀ i, X i ⟶ Y (e i)) {i : �
   · intro j _ hj; rw [permMat_apply_of_ne e φ (Ne.symm hj), zero_comp]
   · intro h; exact absurd (Finset.mem_univ _) h
 
+/--
+@isnad1 id=eq.0h11v.s7.d75c3c335ab7 from=translated src=- shape=19181eb4 vocab=c43fa71f
+-/
 @[simp] theorem comp_permMat_apply (e : ι ≃ κ) (φ : ∀ i, X i ⟶ Y (e i)) {M : Mat_ D}
     (f : M ⟶ (⟨ι, X⟩ : Mat_ D)) (m : M.ι) (i : ι) :
     (f ≫ permMat e φ) m (e i) = f m i ≫ φ i := by
@@ -80,13 +92,18 @@ theorem permMat_apply_of_ne (e : ι ≃ κ) (φ : ∀ i, X i ⟶ Y (e i)) {i : �
   · intro h; exact absurd (Finset.mem_univ _) h
 
 omit [Fintype ι] in
-/-- Morphisms into `⟨κ, Y⟩` are determined by their entries at `(m, e i)`.-/
+/-- Morphisms into `⟨κ, Y⟩` are determined by their entries at `(m, e i)`.
+@isnad1 id=eq.1h8v.s7.c92e3600e0f3 from=translated src=- shape=a485e422 vocab=97408f9b
+-/
 theorem hom_ext_equiv (e : ι ≃ κ) {M : Mat_ D} {f g : M ⟶ (⟨κ, Y⟩ : Mat_ D)}
     (h : ∀ m i, f m (e i) = g m (e i)) : f = g := by
   ext m j
   have := h m (e.symm j)
   rwa [e.apply_symm_apply] at this
 
+/--
+@isnad1 id=eq.2h9v.s8.19a86415452c from=translated src=- shape=ef3fbb14 vocab=ec9167a8
+-/
 theorem permMat_congr {e e' : ι ≃ κ} (he : ∀ i, e i = e' i) (φ : ∀ i, X i ⟶ Y (e i))
     (φ' : ∀ i, X i ⟶ Y (e' i)) (hφ : ∀ i, φ i ≫ eqToHom (congrArg Y (he i)) = φ' i) :
     permMat e φ = permMat e' φ' := by
@@ -99,6 +116,9 @@ theorem permMat_congr {e e' : ι ≃ κ} (he : ∀ i, e i = e' i) (φ : ∀ i, X
     simp
   · rw [permMat_apply_of_ne e φ h, permMat_apply_of_ne e' φ' (by rwa [← he i])]
 
+/--
+@isnad1 id=eq.2h5v.s7.fa562defba7c from=translated src=- shape=35f346ea vocab=d223c081
+-/
 theorem permMat_eq_id (e : ι ≃ ι) (he : ∀ i, e i = i) (φ : ∀ i, X i ⟶ X (e i))
     (hφ : ∀ i, φ i ≫ eqToHom (congrArg X (he i)) = 𝟙 (X i)) :
     permMat e φ = 𝟙 (⟨ι, X⟩ : Mat_ D) := by
@@ -110,10 +130,16 @@ theorem permMat_eq_id (e : ι ≃ ι) (he : ∀ i, e i = i) (φ : ∀ i, X i ⟶
     rw [dite_eq_left (he i), hφ i]
   · rw [CategoryTheory.Mat_.id_apply_of_ne _ _ _ h, permMat_apply_of_ne e φ (by rwa [he i])]
 
+/--
+@isnad1 id=eq.0h3v.s6.7d4a274b1e32 from=translated src=- shape=38d7e7e8 vocab=f9fd1aec
+-/
 theorem id_eq_permMat (ι : Type) [Fintype ι] (X : ι → D) :
     𝟙 (⟨ι, X⟩ : Mat_ D) = permMat (Equiv.refl ι) (fun i => 𝟙 (X i)) :=
   (permMat_eq_id (Equiv.refl ι) (fun _ => rfl) (fun i => 𝟙 (X i)) (fun _ => by simp)).symm
 
+/--
+@isnad1 id=eq.0h11v.s8.2307e48ac61c from=translated src=- shape=378c83de vocab=80ce1724
+-/
 theorem permMat_comp_permMat (e : ι ≃ κ) (φ : ∀ i, X i ⟶ Y (e i)) (e' : κ ≃ μ)
     (ψ : ∀ j, Y j ⟶ Z (e' j)) :
     permMat e φ ≫ permMat e' ψ = permMat (e.trans e') (fun i => φ i ≫ ψ (e i)) := by
@@ -128,6 +154,9 @@ theorem permMat_comp_permMat (e : ι ≃ κ) (φ : ∀ i, X i ⟶ Y (e i)) (e' :
     exact (permMat_apply_of_ne (e.trans e') (fun i => φ i ≫ ψ (e i))
       (fun h'' => h ((e.trans e').injective h''))).symm
 
+/--
+@isnad1 id=eq.0h2v.s6.a78c2f09ba4a from=translated src=- shape=210599cb vocab=cc34ac95
+-/
 theorem id_eq_permMat' (M : Mat_ D) : 𝟙 M = permMat (Equiv.refl M.ι) (fun i => 𝟙 (M.X i)) :=
   id_eq_permMat M.ι M.X
 
@@ -148,12 +177,18 @@ def tensorHom {M M' N N' : Mat_ D} (f : M ⟶ M') (g : N ⟶ N') :
   fun x y => f x.1 y.1 ⊗ₘ g x.2 y.2
 
 omit [MonoidalPreadditive D] in
+/--
+@isnad1 id=eq.0h9v.s7.c6105d64ddcf from=translated src=- shape=90d0a5db vocab=4795ad24
+-/
 @[simp] theorem tensorHom_apply {M M' N N' : Mat_ D} (f : M ⟶ M') (g : N ⟶ N')
     (x : M.ι × N.ι) (y : M'.ι × N'.ι) : tensorHom f g x y = f x.1 y.1 ⊗ₘ g x.2 y.2 := rfl
 
 /-- The unit object: `𝟙_ D` as a one-by-one matrix.-/
 def unit : Mat_ D := ⟨PUnit, fun _ => 𝟙_ D⟩
 
+/--
+@isnad1 id=eq.0h13v.s8.a235a8efe576 from=translated src=- shape=ee5d352b vocab=56a226a5
+-/
 theorem tensorHom_permMat {ι κ ι' κ' : Type} [Fintype ι] [Fintype κ] [Fintype ι'] [Fintype κ']
     {X : ι → D} {Y : κ → D} {X' : ι' → D} {Y' : κ' → D} (e : ι ≃ κ) (φ : ∀ i, X i ⟶ Y (e i))
     (e' : ι' ≃ κ') (ψ : ∀ i, X' i ⟶ Y' (e' i)) :
@@ -236,11 +271,17 @@ instance instMonoidalCategoryStruct : MonoidalCategoryStruct (Mat_ D) where
   rightUnitor := rightUnitor
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s6.6011ce8e0dd8 from=translated src=- shape=39cd7cf5 vocab=bd1f5cbb
+-/
 theorem tensorHom_id_id (M N : Mat_ D) : tensorHom (𝟙 M) (𝟙 N) = 𝟙 (tensorObj M N) := by
   rw [id_eq_permMat' M, id_eq_permMat' N, tensorHom_permMat]
   exact permMat_eq_id _ (fun _ => rfl) _ fun _ => by simp
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h11v.s7.4e35cc2db145 from=translated src=- shape=a0bd34b7 vocab=a7ea5176
+-/
 theorem tensorHom_comp {M₁ M₂ M₃ N₁ N₂ N₃ : Mat_ D} (f₁ : M₁ ⟶ M₂) (f₂ : N₁ ⟶ N₂)
     (g₁ : M₂ ⟶ M₃) (g₂ : N₂ ⟶ N₃) :
     tensorHom (f₁ ≫ g₁) (f₂ ≫ g₂) = tensorHom f₁ f₂ ≫ tensorHom g₁ g₂ := by
@@ -323,13 +364,22 @@ instance instMonoidalCategory : MonoidalCategory (Mat_ D) :=
       exact MonoidalCategory.triangle _ _)
 
 omit [MonoidalPreadditive D] in
+/--
+@isnad1 id=eq.0h3v.s5.8d19b3654655 from=translated src=- shape=ae4c639b vocab=09d55b0b
+-/
 theorem tensorObj_def (M N : Mat_ D) : M ⊗ N = tensorObj M N := rfl
 
 omit [MonoidalPreadditive D] in
+/--
+@isnad1 id=eq.0h7v.s7.f9cc64ac3837 from=translated src=- shape=1ca2108d vocab=61b04bc5
+-/
 theorem tensorHom_def' {M M' N N' : Mat_ D} (f : M ⟶ M') (g : N ⟶ N') : f ⊗ₘ g = tensorHom f g :=
   rfl
 
 omit [MonoidalPreadditive D] in
+/--
+@isnad1 id=eq.0h1v.s5.a7e9422abd87 from=translated src=- shape=f8645ba6 vocab=ec0c43ae
+-/
 theorem tensorUnit_def : 𝟙_ (Mat_ D) = unit := rfl
 
 end Monoidal
@@ -360,6 +410,9 @@ def tensorHom {P P' Q Q' : Karoubi C} (f : P ⟶ P') (g : Q ⟶ Q') :
 @[simps]
 def unit : Karoubi C := ⟨𝟙_ C, 𝟙 _, by simp⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.33de9e7bd36e from=translated src=- shape=882e2f87 vocab=684aa4bc
+-/
 @[reassoc]
 theorem tensor_p_idem (P Q : Karoubi C) : (P.p ⊗ₘ Q.p) ≫ (P.p ⊗ₘ Q.p) = P.p ⊗ₘ Q.p := by
   rw [tensorHom_comp_tensorHom, P.idem, Q.idem]
@@ -442,7 +495,9 @@ instance instMonoidalCategoryStruct : MonoidalCategoryStruct (Karoubi C) where
   rightUnitor := rightUnitor
 
 omit [MonoidalCategory C] in
-/-- `(φ ≫ E) ≫ (ψ ≫ E') = (φ ≫ ψ) ≫ E'` when `E ≫ ψ = ψ ≫ E'` and `E'` is idempotent.-/
+/-- `(φ ≫ E) ≫ (ψ ≫ E') = (φ ≫ ψ) ≫ E'` when `E ≫ ψ = ψ ≫ E'` and `E'` is idempotent.
+@isnad1 id=eq.2h10v.s7.71b93789c7e6 from=translated src=- shape=78fc6eb8 vocab=3864ac9d
+-/
 theorem sandwich {X Y Z W : C} (φ : X ⟶ Y) (E : Y ⟶ Y) (ψ : Y ⟶ Z) (E' : Z ⟶ Z)
     (h : E ≫ ψ = ψ ≫ E') (hE' : E' ≫ E' = E') (W' : Z ⟶ W) :
     (φ ≫ E) ≫ (ψ ≫ E') ≫ W' = (φ ≫ ψ) ≫ E' ≫ W' := by
@@ -450,6 +505,9 @@ theorem sandwich {X Y Z W : C} (φ : X ⟶ Y) (E : Y ⟶ Y) (ψ : Y ⟶ Z) (E' :
   rw [reassoc_of% h, reassoc_of% hE']
 
 omit [MonoidalCategory C] in
+/--
+@isnad1 id=eq.2h8v.s7.79afac5c87b2 from=translated src=- shape=537dfe7b vocab=3864ac9d
+-/
 theorem sandwich' {X Y Z : C} (φ : X ⟶ Y) (E : Y ⟶ Y) (ψ : Y ⟶ Z) (E' : Z ⟶ Z)
     (h : E ≫ ψ = ψ ≫ E') (hE' : E' ≫ E' = E') :
     (φ ≫ E) ≫ (ψ ≫ E') = (φ ≫ ψ) ≫ E' := by
@@ -532,23 +590,47 @@ instance instMonoidalCategory : MonoidalCategory (Karoubi C) :=
       simp only [tensorHom_id, id_tensorHom]
       exact MonoidalCategory.triangle _ _))
 
+/--
+@isnad1 id=eq.0h3v.s5.5398dbdf5951 from=translated src=- shape=67e63fbc vocab=fdd10e30
+-/
 theorem tensorObj_def (P Q : Karoubi C) : P ⊗ Q = tensorObj P Q := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.4bece3804eea from=translated src=- shape=80949d89 vocab=bea19189
+-/
 @[simp] theorem tensorObj_X' (P Q : Karoubi C) : (P ⊗ Q).X = P.X ⊗ Q.X := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.ca6afe04e16c from=translated src=- shape=a8c74133 vocab=b54a80c7
+-/
 @[simp] theorem tensorObj_p' (P Q : Karoubi C) : (P ⊗ Q).p = P.p ⊗ₘ Q.p := rfl
 
+/--
+@isnad1 id=eq.0h7v.s7.546dbacf6b8d from=translated src=- shape=21d0de80 vocab=936edce1
+-/
 @[simp] theorem tensorHom_f' {P P' Q Q' : Karoubi C} (f : P ⟶ P') (g : Q ⟶ Q') :
     (f ⊗ₘ g).f = f.f ⊗ₘ g.f := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.768ca5e8811a from=translated src=- shape=bab03a3a vocab=6dfb83a6
+-/
 @[simp] theorem whiskerLeft_f (P : Karoubi C) {Q Q' : Karoubi C} (g : Q ⟶ Q') :
     (P ◁ g).f = P.p ⊗ₘ g.f := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.2438338f8deb from=translated src=- shape=413e9add vocab=a24036b8
+-/
 @[simp] theorem whiskerRight_f {P P' : Karoubi C} (f : P ⟶ P') (Q : Karoubi C) :
     (f ▷ Q).f = f.f ⊗ₘ Q.p := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.b752de9185fd from=translated src=- shape=87bcbefc vocab=10ce8902
+-/
 @[simp] theorem tensorUnit_X : (𝟙_ (Karoubi C)).X = 𝟙_ C := rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.978dacccbff6 from=translated src=- shape=45299a36 vocab=65d35df2
+-/
 @[simp] theorem tensorUnit_p : (𝟙_ (Karoubi C)).p = 𝟙 (𝟙_ C) := rfl
 
 end Karoubi

@@ -53,6 +53,9 @@ instance : Subsingleton sig.Region := inferInstanceAs (Subsingleton Unit)
 /-- `n` strands.-/
 def strands (n : ℕ) : Obj sig := ⟨(), List.replicate n ()⟩
 
+/--
+@isnad1 id=eq.1h2v.s4.00ad3f965f16 from=translated src=- shape=e398ba07 vocab=b2277449
+-/
 theorem list_unit_ext {l₁ l₂ : List Unit} (h : l₁.length = l₂.length) : l₁ = l₂ := by
   induction l₁ generalizing l₂ with
   | nil => cases l₂ with
@@ -62,9 +65,15 @@ theorem list_unit_ext {l₁ l₂ : List Unit} (h : l₁.length = l₂.length) : 
     | nil => simp at h
     | cons b l₂ => rw [ih (by simpa using h)]
 
+/--
+@isnad1 id=iff.0h2v.s4.11265a23ca5c from=translated src=- shape=4461476d vocab=b2277449
+-/
 @[simp] theorem list_unit_eq_iff {l₁ l₂ : List Unit} : l₁ = l₂ ↔ l₁.length = l₂.length :=
   ⟨congrArg List.length, list_unit_ext⟩
 
+/--
+@isnad1 id=eq.1h2v.s4.67b408669b38 from=translated src=- shape=f7a71f81 vocab=6ca49a44
+-/
 theorem obj_ext {a b : Obj sig} (h : a.word.length = b.word.length) : a = b :=
   Obj.ext (Subsingleton.elim (α := Unit) _ _) (list_unit_ext h)
 
@@ -121,10 +130,16 @@ variable {R}
 def shift (i : ℕ) : Obj sig := ⟨(), List.replicate i ()⟩
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h3v.s5.8229105af411 from=translated src=- shape=2e2617af vocab=227b806b
+-/
 theorem whisker_strands {w i n : ℕ} (h : i + w ≤ n) :
     (strands w).whisker (shift i) (List.replicate (n - i - w) ()) = strands n :=
   obj_ext (by simp [strands, shift, Obj.whisker]; omega)
 
+/--
+@isnad1 id=eq.1h5v.s8.043301ca122c from=translated src=- shape=91c560c2 vocab=a60f6333
+-/
 theorem relation_at (r : Rel) {n i : ℕ} (h : i + r.width ≤ n) :
     (pres R δ).lin (LinDiagram.cast (LinDiagram.whisker (relation R δ r) (shift i)
       (List.replicate (n - i - r.width) ()) (Obj.whiskerOK_of_subsingleton _ _ _))
@@ -132,7 +147,9 @@ theorem relation_at (r : Rel) {n i : ℕ} (h : i + r.width ≤ n) :
   (pres R δ).lin_rel_cast r (shift i) _ _ _ _
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The loop relation at position `i` in width `m`.-/
+/-- The loop relation at position `i` in width `m`.
+@isnad1 id=eq.1h4v.s10.2c4ced5d9d5f from=translated src=- shape=d5adeaa6 vocab=c79b8c5d
+-/
 theorem loop_at {m i : ℕ} (h : i ≤ m) :
     (pres R δ).diag (dcup h) ≫ (pres R δ).diag (dcap h) = δ • 𝟙 _ := by
   have key := relation_at δ .loop (n := m) (i := i) (by simp [Rel.width]; omega)
@@ -146,7 +163,9 @@ theorem loop_at {m i : ℕ} (h : i ≤ m) :
   · congr 1
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The zigzag relation `cup_{i+1} ≫ cap_i = 1` in width `m`.-/
+/-- The zigzag relation `cup_{i+1} ≫ cap_i = 1` in width `m`.
+@isnad1 id=eq.1h4v.s8.f2ee3180390f from=translated src=- shape=74f2fa69 vocab=505e1dc5
+-/
 theorem zigzagA_at {m i : ℕ} (h : i + 1 ≤ m) :
     (pres R δ).diag (dcup (i := i + 1) h) ≫ (pres R δ).diag (dcap (i := i) (by omega)) = 𝟙 _ := by
   have key := relation_at δ .zigzagA (n := m) (i := i) (by simp [Rel.width]; omega)
@@ -158,7 +177,9 @@ theorem zigzagA_at {m i : ℕ} (h : i + 1 ≤ m) :
   · rfl
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The zigzag relation `cup_i ≫ cap_{i+1} = 1` in width `m`.-/
+/-- The zigzag relation `cup_i ≫ cap_{i+1} = 1` in width `m`.
+@isnad1 id=eq.1h4v.s8.aa901b46316e from=translated src=- shape=b7c077a5 vocab=505e1dc5
+-/
 theorem zigzagB_at {m i : ℕ} (h : i + 1 ≤ m) :
     (pres R δ).diag (dcup (i := i) (by omega)) ≫ (pres R δ).diag (dcap (i := i + 1) h) = 𝟙 _ := by
   have key := relation_at δ .zigzagB (n := m) (i := i) (by simp [Rel.width]; omega)
@@ -175,9 +196,15 @@ theorem zigzagB_at {m i : ℕ} (h : i + 1 ≤ m) :
 def e (m i : ℕ) : End ((pres R δ).obj (strands (m + 2))) :=
   if h : i ≤ m then (pres R δ).diag (dcap h) ≫ (pres R δ).diag (dcup h) else 0
 
+/--
+@isnad1 id=eq.1h4v.s7.66eb4b88c17c from=translated src=- shape=242f4e1a vocab=4c4a0a72
+-/
 theorem e_def {m i : ℕ} (h : i ≤ m) :
     e δ m i = (pres R δ).diag (dcap h) ≫ (pres R δ).diag (dcup h) := dite_eq_left h
 
+/--
+@isnad1 id=eq.0h4v.s9.9a28e937a344 from=translated src=- shape=17536e60 vocab=2fa185b7
+-/
 theorem e_mul_self (m i : ℕ) : e δ m i * e δ m i = δ • e δ m i := by
   by_cases h : i ≤ m
   · rw [e_def δ h, End.mul_def]
@@ -186,6 +213,9 @@ theorem e_mul_self (m i : ℕ) : e δ m i * e δ m i = δ • e δ m i := by
       Category.id_comp, Linear.comp_smul]
   · simp [e, h]
 
+/--
+@isnad1 id=eq.1h4v.s9.ef3ff623e0a0 from=translated src=- shape=ee988656 vocab=15134cb0
+-/
 theorem e_mul_e_succ_mul_e {m i : ℕ} (h : i + 1 ≤ m) :
     e δ m i * e δ m (i + 1) * e δ m i = e δ m i := by
   rw [e_def δ (show i ≤ m by omega), e_def δ h, End.mul_def, End.mul_def]
@@ -194,6 +224,9 @@ theorem e_mul_e_succ_mul_e {m i : ℕ} (h : i + 1 ≤ m) :
     Category.id_comp, ← Category.assoc ((pres R δ).diag (dcup _)) ((pres R δ).diag (dcap _)),
     zigzagA_at δ h, Category.id_comp]
 
+/--
+@isnad1 id=eq.1h4v.s9.6e7059f847bc from=translated src=- shape=b2ce9bab vocab=15134cb0
+-/
 theorem e_succ_mul_e_mul_e_succ {m i : ℕ} (h : i + 1 ≤ m) :
     e δ m (i + 1) * e δ m i * e δ m (i + 1) = e δ m (i + 1) := by
   rw [e_def δ (show i ≤ m by omega), e_def δ h, End.mul_def, End.mul_def]

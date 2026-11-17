@@ -42,31 +42,64 @@ instance (a b : TwoSOp R B) : Preadditive (a ⟶ b) := SOp.preadditive
 instance (a b : TwoSOp R B) : Linear R (a ⟶ b) := SOp.linear
 instance (a b : TwoSOp R B) : Supercategory R (a ⟶ b) := SOp.supercategory
 
+/--
+@isnad1 id=eq.0h9v.s9.bf48a505a31d from=translated src=- shape=4cf48f89 vocab=8ce99d86
+-/
 @[simp] theorem unsop_comp₂ {a b : TwoSOp R B} {f g h : a ⟶ b}
     (η : f ⟶ g) (θ : g ⟶ h) :
     SOp.unsop (η ≫ θ) = SOp.compC (R := R) (SOp.unsop η) (SOp.unsop θ) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.816149f5e12e from=translated src=- shape=ab0fb58e vocab=5d6b2787
+-/
 @[simp] theorem id_unop (a : TwoSOp R B) : SOp.unop (𝟙 a : a ⟶ a) = 𝟙 a.unop := rfl
+/--
+@isnad1 id=eq.0h7v.s8.ca8a409d768b from=translated src=- shape=46f735e2 vocab=9c5cfeff
+-/
 @[simp] theorem comp_unop {a b c : TwoSOp R B} (f : a ⟶ b) (g : b ⟶ c) :
     SOp.unop (f ≫ g) = SOp.unop f ≫ SOp.unop g := rfl
+/--
+@isnad1 id=eq.0h9v.s9.dc9ef98b0ad7 from=translated src=- shape=ee77105e vocab=842b84a7
+-/
 @[simp] theorem unsop_whiskerLeft {a b c : TwoSOp R B} (f : a ⟶ b)
     {g h : b ⟶ c} (η : g ⟶ h) : SOp.unsop (f ◁ η) = SOp.unop f ◁ SOp.unsop η := rfl
+/--
+@isnad1 id=eq.0h9v.s9.8fd0f5399046 from=translated src=- shape=4a285778 vocab=421bdf46
+-/
 @[simp] theorem unsop_whiskerRight {a b c : TwoSOp R B} {f g : a ⟶ b}
     (η : f ⟶ g) (h : b ⟶ c) : SOp.unsop (η ▷ h) = SOp.unsop η ▷ SOp.unop h := rfl
+/--
+@isnad1 id=eq.0h9v.s9.b9e399ad168a from=translated src=- shape=a398ab9d vocab=2a8cd96d
+-/
 @[simp] theorem unsop_associator_hom {a b c d : TwoSOp R B}
     (f : a ⟶ b) (g : b ⟶ c) (h : c ⟶ d) :
     SOp.unsop (associator f g h).hom =
       (associator (SOp.unop f) (SOp.unop g) (SOp.unop h)).inv := rfl
+/--
+@isnad1 id=eq.0h9v.s9.5eb3c808e237 from=translated src=- shape=359be32c vocab=2a8cd96d
+-/
 @[simp] theorem unsop_associator_inv {a b c d : TwoSOp R B}
     (f : a ⟶ b) (g : b ⟶ c) (h : c ⟶ d) :
     SOp.unsop (associator f g h).inv =
       (associator (SOp.unop f) (SOp.unop g) (SOp.unop h)).hom := rfl
+/--
+@isnad1 id=eq.0h5v.s9.50315a4f5386 from=translated src=- shape=1ab1977c vocab=88911d6b
+-/
 @[simp] theorem unsop_leftUnitor_hom {a b : TwoSOp R B} (f : a ⟶ b) :
     SOp.unsop (leftUnitor f).hom = (leftUnitor (SOp.unop f)).inv := rfl
+/--
+@isnad1 id=eq.0h5v.s9.a26d2601d789 from=translated src=- shape=3720d41f vocab=88911d6b
+-/
 @[simp] theorem unsop_leftUnitor_inv {a b : TwoSOp R B} (f : a ⟶ b) :
     SOp.unsop (leftUnitor f).inv = (leftUnitor (SOp.unop f)).hom := rfl
+/--
+@isnad1 id=eq.0h5v.s9.557da4dfa177 from=translated src=- shape=a970363c vocab=7e0ea92e
+-/
 @[simp] theorem unsop_rightUnitor_hom {a b : TwoSOp R B} (f : a ⟶ b) :
     SOp.unsop (rightUnitor f).hom = (rightUnitor (SOp.unop f)).inv := rfl
+/--
+@isnad1 id=eq.0h5v.s9.80c3ff7ad3df from=translated src=- shape=935c3c9a vocab=7e0ea92e
+-/
 @[simp] theorem unsop_rightUnitor_inv {a b : TwoSOp R B} (f : a ⟶ b) :
     SOp.unsop (rightUnitor f).inv = (rightUnitor (SOp.unop f)).hom := rfl
 end TwoSOp

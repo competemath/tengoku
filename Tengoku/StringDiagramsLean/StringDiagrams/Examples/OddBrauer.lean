@@ -85,6 +85,9 @@ instance : Inhabited sig.Region := inferInstanceAs (Inhabited Unit)
 /-- `n` strands.-/
 def strands (n : ℕ) : Obj sig := ⟨(), List.replicate n ()⟩
 
+/--
+@isnad1 id=eq.1h2v.s4.00ad3f965f16 from=translated src=- shape=e398ba07 vocab=b2277449
+-/
 theorem list_unit_ext {l₁ l₂ : List Unit} (h : l₁.length = l₂.length) : l₁ = l₂ := by
   induction l₁ generalizing l₂ with
   | nil => cases l₂ with
@@ -94,9 +97,15 @@ theorem list_unit_ext {l₁ l₂ : List Unit} (h : l₁.length = l₂.length) : 
     | nil => simp at h
     | cons b l₂ => rw [ih (by simpa using h)]
 
+/--
+@isnad1 id=iff.0h2v.s4.11265a23ca5c from=translated src=- shape=4461476d vocab=b2277449
+-/
 @[simp] theorem list_unit_eq_iff {l₁ l₂ : List Unit} : l₁ = l₂ ↔ l₁.length = l₂.length :=
   ⟨congrArg List.length, list_unit_ext⟩
 
+/--
+@isnad1 id=eq.1h2v.s4.9bf6fc191b19 from=translated src=- shape=f7a71f81 vocab=e2024d48
+-/
 theorem obj_ext {a b : Obj sig} (h : a.word.length = b.word.length) : a = b :=
   Obj.ext (Subsingleton.elim (α := Unit) _ _) (list_unit_ext h)
 
@@ -180,7 +189,9 @@ def pres : Presentation sig R where
   rel := relation R
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The relations are homogeneous for the parity.-/
+/-- The relations are homogeneous for the parity.
+@isnad1 id=isparity.0h1v.s3.0d243b8ea821 from=translated src=- shape=06892e53 vocab=0bab9078
+-/
 theorem isParityHomogeneous : (pres R).IsParityHomogeneous := by
   intro r
   cases r
@@ -198,7 +209,9 @@ theorem isParityHomogeneous : (pres R).IsParityHomogeneous := by
     all_goals simp [dcup, dcross, Presentation.parityDeg, sig]
 
 /-- The odd Brauer supercategory is a monoidal supercategory (strict, by
-`Presentation.isStrict`).-/
+`Presentation.isStrict`).
+@isnad1 id=monoidal.0h1v.s6.4ca96bd9f44a from=translated src=- shape=6cc46cb3 vocab=224a9234
+-/
 theorem monoidalSupercategory :
     letI := (pres R).supercategory (isParityHomogeneous R)
     MonoidalSupercategory R (pres R).Presented :=
@@ -212,11 +225,16 @@ variable {R}
 def shift (i : ℕ) : Obj sig := ⟨(), List.replicate i ()⟩
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h4v.s5.c97e3115fe67 from=translated src=- shape=27756486 vocab=416c32dd
+-/
 theorem whisk_eq {w i k n : ℕ} (h : i + w + k = n) :
     (strands w).whisker (shift i) (List.replicate k ()) = strands n :=
   obj_ext (by simp [strands, shift, Obj.whisker]; omega)
 
-/-- A relation whiskered by `i` strands on the left and `k` on the right, retyped.-/
+/-- A relation whiskered by `i` strands on the left and `k` on the right, retyped.
+@isnad1 id=eq.2h6v.s8.04f08368253b from=translated src=- shape=9cc16427 vocab=df897f8b
+-/
 theorem relation_at (r : Rel) (i k : ℕ) {a b : Obj sig}
     (ha : (strands r.dom).whisker (shift i) (List.replicate k ()) = a)
     (hb : (strands r.cod).whisker (shift i) (List.replicate k ()) = b) :
@@ -240,17 +258,28 @@ def cross (n i : ℕ) : (pres R).obj (strands n) ⟶ (pres R).obj (strands n) :=
 
 variable {R}
 
+/--
+@isnad1 id=eq.1h3v.s6.de607941768c from=translated src=- shape=48095e9a vocab=4e78ae76
+-/
 theorem cup_def {n i : ℕ} (h : i ≤ n) : cup R n i = (pres R).diag (dcup h) := dite_eq_left h
 
+/--
+@isnad1 id=eq.1h3v.s6.53401acee7a1 from=translated src=- shape=c3e6334b vocab=4c89a1b2
+-/
 theorem cap_def {n i : ℕ} (h : i ≤ n) : cap R n i = (pres R).diag (dcap h) := dite_eq_left h
 
+/--
+@isnad1 id=eq.1h3v.s6.eeae042fe611 from=translated src=- shape=5e86782b vocab=22466922
+-/
 theorem cross_def {n i : ℕ} (h : i + 2 ≤ n) : cross R n i = (pres R).diag (dcross h) :=
   dite_eq_left h
 
 /-! ## The relations at symbolic positions -/
 
 set_option backward.isDefEq.respectTransparency false in
-/-- `cup_{i+1} ≫ cap_i = 1`.-/
+/-- `cup_{i+1} ≫ cap_i = 1`.
+@isnad1 id=eq.1h3v.s7.0d98529e2787 from=translated src=- shape=2c5a2f93 vocab=9d95113e
+-/
 theorem zigzagA_at {n i : ℕ} (h : i + 1 ≤ n) : cup R n (i + 1) ≫ cap R n i = 𝟙 _ := by
   have key := relation_at (R := R) .zigzagA i (n - i - 1) (a := strands n) (b := strands n)
     (whisk_eq (by simp [Rel.dom]; omega)) (whisk_eq (by simp [Rel.cod]; omega))
@@ -262,7 +291,9 @@ theorem zigzagA_at {n i : ℕ} (h : i + 1 ≤ n) : cup R n (i + 1) ≫ cap R n i
   · rfl
 
 set_option backward.isDefEq.respectTransparency false in
-/-- `cup_i ≫ cap_{i+1} = -1`.-/
+/-- `cup_i ≫ cap_{i+1} = -1`.
+@isnad1 id=eq.1h3v.s9.347966814694 from=translated src=- shape=397663d5 vocab=670021b3
+-/
 theorem zigzagB_at {n i : ℕ} (h : i + 1 ≤ n) : cup R n i ≫ cap R n (i + 1) = -𝟙 _ := by
   have key := relation_at (R := R) .zigzagB i (n - i - 1) (a := strands n) (b := strands n)
     (whisk_eq (by simp [Rel.dom]; omega)) (whisk_eq (by simp [Rel.cod]; omega))
@@ -274,7 +305,9 @@ theorem zigzagB_at {n i : ℕ} (h : i + 1 ≤ n) : cup R n i ≫ cap R n (i + 1)
   · rfl
 
 set_option backward.isDefEq.respectTransparency false in
-/-- A strand slides through a cup: `cup_i ≫ s_{i+1} = cup_{i+1} ≫ s_i`.-/
+/-- A strand slides through a cup: `cup_i ≫ s_{i+1} = cup_{i+1} ≫ s_i`.
+@isnad1 id=eq.1h3v.s8.213dc43cced0 from=translated src=- shape=782f548d vocab=0f9d6da3
+-/
 theorem slide_at {n i : ℕ} (h : i + 1 ≤ n) :
     cup R n i ≫ cross R (n + 2) (i + 1) = cup R n (i + 1) ≫ cross R (n + 2) i := by
   have key := relation_at (R := R) .slide i (n - i - 1) (a := strands n) (b := strands (n + 2))
@@ -288,7 +321,9 @@ theorem slide_at {n i : ℕ} (h : i + 1 ≤ n) :
   · simp [dcup, dcross, shift, Layer.whisker, Rel.dom, sig]; try omega
 
 set_option backward.isDefEq.respectTransparency false in
-/-- `cup ≫ s = cup`.-/
+/-- `cup ≫ s = cup`.
+@isnad1 id=eq.1h3v.s7.dc99121d93f5 from=translated src=- shape=360ac9d3 vocab=0f9d6da3
+-/
 theorem crossCup_at {n i : ℕ} (h : i ≤ n) : cup R n i ≫ cross R (n + 2) i = cup R n i := by
   have key := relation_at (R := R) .crossCup i (n - i - 0) (a := strands n) (b := strands (n + 2))
     (whisk_eq (by simp [Rel.dom]; omega)) (whisk_eq (by simp [Rel.cod]; omega))
@@ -300,7 +335,9 @@ theorem crossCup_at {n i : ℕ} (h : i ≤ n) : cup R n i ≫ cross R (n + 2) i 
   · simp [dcup, shift, Layer.whisker, Rel.dom, sig]; try omega
 
 set_option backward.isDefEq.respectTransparency false in
-/-- `s ≫ s = 1`.-/
+/-- `s ≫ s = 1`.
+@isnad1 id=eq.1h3v.s7.d98ca2c43e35 from=translated src=- shape=af33ce60 vocab=cec1e9e3
+-/
 theorem crossSq_at {n i : ℕ} (h : i + 2 ≤ n) : cross R n i ≫ cross R n i = 𝟙 _ := by
   have key := relation_at (R := R) .crossSq i (n - i - 2) (a := strands n) (b := strands n)
     (whisk_eq (by simp [Rel.dom]; omega)) (whisk_eq (by simp [Rel.cod]; omega))
@@ -313,7 +350,9 @@ theorem crossSq_at {n i : ℕ} (h : i + 2 ≤ n) : cross R n i ≫ cross R n i =
 
 /-! ## The super interchange law for the generators -/
 
-/-- The interchange law for two layers, with its Koszul sign.-/
+/-- The interchange law for two layers, with its Koszul sign.
+@isnad1 id=eq.2h7v.s9.f4caed21ee5a from=translated src=- shape=41822a1b vocab=ca0194b8
+-/
 theorem diag_eq_of_swap {a b : Obj sig} {f f' : a ⟶ b} (L M : Layer sig)
     (hf : Diagram.layers f = [L.wr M.dom.word, M.wl L.cod])
     (hf' : Diagram.layers f' = [M.wl L.dom, L.wr M.cod.word]) :
@@ -330,7 +369,9 @@ theorem diag_eq_of_swap {a b : Obj sig} {f f' : a ⟶ b} (L M : Layer sig)
       (congrArg _ (Presentation.diag_eq_of_layers_eq _ (by rw [hf']; rfl))))
 
 set_option backward.isDefEq.respectTransparency false in
-/-- Two caps anticommute: `cap_j ≫ cap_i = -(cap_i ≫ cap_{j-2})` for `i + 2 ≤ j`.-/
+/-- Two caps anticommute: `cap_j ≫ cap_i = -(cap_i ≫ cap_{j-2})` for `i + 2 ≤ j`.
+@isnad1 id=eq.2h4v.s9.d8ad0ab284fe from=translated src=- shape=e663e4e3 vocab=084ff55d
+-/
 theorem cap_cap {n i j : ℕ} (hij : i + 2 ≤ j) (hj : j ≤ n + 2) :
     cap R (n + 2) j ≫ cap R n i = -(cap R (n + 2) i ≫ cap R n (j - 2)) := by
   rw [cap_def hj, cap_def (show i ≤ n by omega), cap_def (show i ≤ n + 2 by omega),
@@ -345,7 +386,9 @@ theorem cap_cap {n i j : ℕ} (hij : i + 2 ≤ j) (hj : j ≤ n + 2) :
   rw [key, neg_neg]
 
 set_option backward.isDefEq.respectTransparency false in
-/-- Two cups anticommute: `cup_{j-2} ≫ cup_i = -(cup_i ≫ cup_j)` for `i + 2 ≤ j`.-/
+/-- Two cups anticommute: `cup_{j-2} ≫ cup_i = -(cup_i ≫ cup_j)` for `i + 2 ≤ j`.
+@isnad1 id=eq.2h4v.s9.7ea7fc95c469 from=translated src=- shape=00589fbc vocab=c4d353b5
+-/
 theorem cup_cup {n i j : ℕ} (hij : i + 2 ≤ j) (hj : j ≤ n + 2) :
     cup R n (j - 2) ≫ cup R (n + 2) i = -(cup R n i ≫ cup R (n + 2) j) := by
   rw [cup_def (show j - 2 ≤ n by omega), cup_def (show i ≤ n + 2 by omega),
@@ -361,7 +404,9 @@ theorem cup_cup {n i j : ℕ} (hij : i + 2 ≤ j) (hj : j ≤ n + 2) :
 
 set_option backward.isDefEq.respectTransparency false in
 /-- A cup on the left and a cap on the right anticommute:
-`cup_i ≫ cap_j = -(cap_{j-2} ≫ cup_i)` for `i + 2 ≤ j`.-/
+`cup_i ≫ cap_j = -(cap_{j-2} ≫ cup_i)` for `i + 2 ≤ j`.
+@isnad1 id=eq.2h4v.s9.c419269b91b4 from=translated src=- shape=0ebed613 vocab=0ceca837
+-/
 theorem cup_cap {n i j : ℕ} (hij : i + 2 ≤ j) (hj : j ≤ n + 2) :
     cup R (n + 2) i ≫ cap R (n + 2) j = -(cap R n (j - 2) ≫ cup R n i) := by
   rw [cup_def (show i ≤ n + 2 by omega), cap_def hj, cap_def (show j - 2 ≤ n by omega),
@@ -377,7 +422,9 @@ theorem cup_cap {n i j : ℕ} (hij : i + 2 ≤ j) (hj : j ≤ n + 2) :
 
 set_option backward.isDefEq.respectTransparency false in
 /-- A cap on the right commutes with a crossing on the left:
-`cap_j ≫ s_i = s_i ≫ cap_j` for `i + 2 ≤ j`.-/
+`cap_j ≫ s_i = s_i ≫ cap_j` for `i + 2 ≤ j`.
+@isnad1 id=eq.2h4v.s8.310272d4e9ca from=translated src=- shape=48bc4327 vocab=dd32d79f
+-/
 theorem cap_cross {n i j : ℕ} (hij : i + 2 ≤ j) (hj : j ≤ n) :
     cap R n j ≫ cross R n i = cross R (n + 2) i ≫ cap R n j := by
   rw [cap_def hj, cross_def (show i + 2 ≤ n by omega), cross_def (show i + 2 ≤ n + 2 by omega)]
@@ -392,7 +439,9 @@ theorem cap_cross {n i j : ℕ} (hij : i + 2 ≤ j) (hj : j ≤ n) :
 
 set_option backward.isDefEq.respectTransparency false in
 /-- A crossing on the right commutes with a cap on the left:
-`s_{i+2} ≫ cap_j = cap_j ≫ s_i` for `j ≤ i`.-/
+`s_{i+2} ≫ cap_j = cap_j ≫ s_i` for `j ≤ i`.
+@isnad1 id=eq.2h4v.s8.e8bd785536fc from=translated src=- shape=6d019960 vocab=dd32d79f
+-/
 theorem cross_cap {n i j : ℕ} (hji : j ≤ i) (hi : i + 2 ≤ n) :
     cross R (n + 2) (i + 2) ≫ cap R n j = cap R n j ≫ cross R n i := by
   rw [cap_def (show j ≤ n by omega), cross_def hi, cross_def (show i + 2 + 2 ≤ n + 2 by omega)]
@@ -407,7 +456,9 @@ theorem cross_cap {n i j : ℕ} (hji : j ≤ i) (hi : i + 2 ≤ n) :
 
 /-! ## The computation of Example 1.5(iii) -/
 
-/-- The composite `Z = cup₀ ≫ cup₁ ≫ cap₃ ≫ cap₂` on two strands is `-1`.-/
+/-- The composite `Z = cup₀ ≫ cup₁ ≫ cap₃ ≫ cap₂` on two strands is `-1`.
+@isnad1 id=eq.0h1v.s9.65fbc63043f5 from=translated src=- shape=37faeeb2 vocab=4fbd7c0a
+-/
 theorem zigzag_two : cup R 2 0 ≫ cup R 4 1 ≫ cap R 4 3 ≫ cap R 2 2 = -𝟙 _ := by
   have e1 : cup R 4 1 ≫ cap R 4 3 = -(cap R 2 1 ≫ cup R 2 1) :=
     cup_cap (n := 2) (i := 1) (j := 3) (by norm_num) (by norm_num)
@@ -418,7 +469,9 @@ theorem zigzag_two : cup R 2 0 ≫ cup R 4 1 ≫ cap R 4 3 ≫ cap R 2 2 = -𝟙
     Category.comp_id, neg_neg]
   rw [e2]
 
-/-- The rotated cap relation `cup₀ ≫ cup₁ ≫ s₀ ≫ cap₀ = -cup₀` from two to four strands.-/
+/-- The rotated cap relation `cup₀ ≫ cup₁ ≫ s₀ ≫ cap₀ = -cup₀` from two to four strands.
+@isnad1 id=eq.0h1v.s9.08e4c53b3f40 from=translated src=- shape=45045965 vocab=889e716f
+-/
 theorem rotate_crossCup : cup R 2 0 ≫ cup R 4 1 ≫ cross R 6 0 ≫ cap R 4 0 = -cup R 2 0 := by
   have f1 : cup R 4 1 ≫ cross R 6 0 = cup R 4 0 ≫ cross R 6 1 :=
     (slide_at (n := 4) (i := 0) (by norm_num)).symm
@@ -434,7 +487,9 @@ theorem rotate_crossCup : cup R 2 0 ≫ cup R 4 1 ≫ cross R 6 0 ≫ cap R 4 0 
   simp only [Preadditive.neg_comp, Category.assoc]
   rw [reassoc_of% f3, f4, reassoc_of% f5, f6]
 
-/-- **Example 1.5(iii)**: a cap on top of a crossing is minus the cap, `s ≫ cap = -cap`.-/
+/-- **Example 1.5(iii)**: a cap on top of a crossing is minus the cap, `s ≫ cap = -cap`.
+@isnad1 id=eq.0h1v.s9.a7ed1f968a27 from=translated src=- shape=36ae3cd3 vocab=2afb102c
+-/
 theorem cross_comp_cap : cross R 2 0 ≫ cap R 0 0 = -cap R 0 0 := by
   have g1 : cap R 2 2 ≫ cross R 2 0 = cross R 4 0 ≫ cap R 2 2 :=
     cap_cross (n := 2) (i := 0) (j := 2) le_rfl le_rfl
@@ -462,20 +517,26 @@ theorem cross_comp_cap : cross R 2 0 ≫ cap R 0 0 = -cap R 0 0 := by
 /-- The bubble `cup ≫ cap`.-/
 def bubble : End ((pres R).obj (strands 0)) := cup R 0 0 ≫ cap R 0 0
 
-/-- The bubble equals minus itself.-/
+/-- The bubble equals minus itself.
+@isnad1 id=eq.0h1v.s6.92c3dfd80197 from=translated src=- shape=8b818f60 vocab=f58c84fc
+-/
 theorem bubble_eq_neg : bubble (R := R) = -bubble := by
   have h : cup R 0 0 ≫ cross R 2 0 = cup R 0 0 := crossCup_at (n := 0) (i := 0) le_rfl
   calc bubble (R := R) = (cup R 0 0 ≫ cross R 2 0) ≫ cap R 0 0 := by rw [h]; rfl
     _ = -bubble := by rw [Category.assoc, cross_comp_cap, Preadditive.comp_neg]; rfl
 
-/-- Twice the bubble is zero, over any commutative ring.-/
+/-- Twice the bubble is zero, over any commutative ring.
+@isnad1 id=eq.0h1v.s8.16f298e6e662 from=translated src=- shape=a4a54545 vocab=73a4ed16
+-/
 theorem two_smul_bubble : (2 : R) • bubble (R := R) = 0 := by
   rw [two_smul]
   nth_rewrite 1 [bubble_eq_neg]
   exact neg_add_cancel _
 
 /-- **Example 1.5(iii)**: if `2` is invertible in the ground ring (e.g. over a field of
-characteristic different from `2`), the bubble vanishes.-/
+characteristic different from `2`), the bubble vanishes.
+@isnad1 id=eq.1h1v.s7.ec0dc36eeedc from=translated src=- shape=6229b613 vocab=cb547446
+-/
 theorem bubble_eq_zero (h2 : IsUnit (2 : R)) : bubble (R := R) = 0 := by
   have := two_smul_bubble (R := R)
   rwa [h2.smul_eq_zero] at this

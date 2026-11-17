@@ -47,12 +47,17 @@ variable {R C} [GradedMonoidalSupercategory R C]
 
 omit [MonoidalSupercategory R C] in
 /-- The tensor product `f ⊗ g = (f ⊗ 1) ∘ (1 ⊗ g)` of homogeneous morphisms is homogeneous,
-with degrees adding.-/
+with degrees adding.
+@isnad1 id=mem.2h10v.s9.2c38adf514f6 from=translated src=- shape=ff3e0869 vocab=1bc28605
+-/
 theorem superTensorHom_mem_degree {X X' Y Y' : C} {m n : ℤ} {f : X ⟶ X'} {g : Y ⟶ Y'}
     (hf : f ∈ degree (R := R) X X' m) (hg : g ∈ degree (R := R) Y Y' n) :
     MonoidalSupercategory.superTensorHom f g ∈ degree (R := R) (X ⊗ Y) (X' ⊗ Y') (n + m) :=
   comp_mem_degree (whiskerLeft_mem_degree X hg) (whiskerRight_mem_degree Y' hf)
 
+/--
+@isnad1 id=mem.2h10v.s9.157ef8d4ce0a from=translated src=- shape=a163b20f vocab=886b0f37
+-/
 theorem tensorHom_mem_degree {X X' Y Y' : C} {m n : ℤ} {f : X ⟶ X'} {g : Y ⟶ Y'}
     (hf : f ∈ degree (R := R) X X' m) (hg : g ∈ degree (R := R) Y Y' n) :
     f ⊗ₘ g ∈ degree (R := R) (X ⊗ Y) (X' ⊗ Y') (m + n) := by

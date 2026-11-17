@@ -41,7 +41,9 @@ variable {R : Type w} [CommRing R]
   {D : Type w₃} [Category.{w₄} D] [Preadditive D] [Linear R D] [Supercategory R D]
   {E : Type w₅} [Category.{w₆} E] [Preadditive E] [Linear R E] [Supercategory R E]
 
-/-- A superfunctor preserves parities (`IsSuperfunctor.map_mem`).-/
+/-- A superfunctor preserves parities (`IsSuperfunctor.map_mem`).
+@isnad1 id=mem.1h8v.s9.94f2cc11df61 from=translated src=- shape=47570ddd vocab=6f9078b9
+-/
 theorem map_mem (F : C ⥤ D) [F.Additive] [F.Linear R] [IsSuperfunctor R F] {X Y : C}
     {p : ZMod 2} {f : X ⟶ Y} (hf : f ∈ parity (R := R) X Y p) :
     F.map f ∈ parity (R := R) (F.obj X) (F.obj Y) p :=
@@ -49,6 +51,9 @@ theorem map_mem (F : C ⥤ D) [F.Additive] [F.Linear R] [IsSuperfunctor R F] {X 
 
 section Superfunctor
 
+/--
+@isnad1 id=eq.0h8v.s9.0c94858e6960 from=translated src=- shape=4380a608 vocab=d4a04bef
+-/
 theorem map_proj (F : C ⥤ D) [F.Additive] [F.Linear R] [IsSuperfunctor R F] (p : ZMod 2) {X Y : C}
     (f : X ⟶ Y) :
     F.map (proj R p f) = proj R p (F.map f) := by
@@ -58,6 +63,9 @@ theorem map_proj (F : C ⥤ D) [F.Additive] [F.Linear R] [IsSuperfunctor R F] (p
     · rw [proj_of_mem_ne hg h, proj_of_mem_ne (map_mem F hg) h, F.map_zero]
   · rw [map_add, F.map_add, hg, hh, F.map_add, map_add]
 
+/--
+@isnad1 id=eq.0h8v.s9.9000a91d14f9 from=translated src=- shape=4380a608 vocab=95712653
+-/
 theorem map_twist (F : C ⥤ D) [F.Additive] [F.Linear R] [IsSuperfunctor R F] (p : ZMod 2)
     {X Y : C} (f : X ⟶ Y) :
     F.map (twist R p f) = twist R p (F.map f) := by
@@ -77,7 +85,9 @@ structure IsSupernatural (p : ZMod 2) {F G : C ⥤ D} (x : ∀ X, F.obj X ⟶ G.
     F.map f ≫ x Y = sign R (p * q) • (x X ≫ G.map f)
 
 /-- The homogeneous components of a supernatural transformation are homogeneous supernatural
-transformations.-/
+transformations.
+@isnad1 id=issupern.0h7v.s7.e265282c82f9 from=translated src=- shape=5f303025 vocab=0d871baf
+-/
 theorem SuperNatTrans.isSupernatural {F G : C ⥤ D} (t : SuperNatTrans R F G) (p : ZMod 2) :
     IsSupernatural R p (t.app p) where
   mem := t.app_mem p
@@ -97,6 +107,9 @@ def IsSupernatural.toSuperNatTrans {F G : C ⥤ D} {p : ZMod 2} {x : ∀ X, F.ob
     · subst h; rw [hx.naturality hf, koszulSign_smul (R := R)]
     · simp
 
+/--
+@isnad1 id=ishomoge.1h7v.s7.ef82e16d6aab from=translated src=- shape=03856a80 vocab=0c133113
+-/
 theorem IsSupernatural.toSuperNatTrans_isHomogeneous {F G : C ⥤ D} {p : ZMod 2}
     {x : ∀ X, F.obj X ⟶ G.obj X} (hx : IsSupernatural R p x) :
     hx.toSuperNatTrans.IsHomogeneous p := fun q hq => by
@@ -106,7 +119,9 @@ section
 
 variable {F G H : C ⥤ D}
 
-/-- The supernaturality condition for arbitrary (inhomogeneous) morphisms.-/
+/-- The supernaturality condition for arbitrary (inhomogeneous) morphisms.
+@isnad1 id=eq.1h10v.s8.b496b5b38cda from=translated src=- shape=27d44093 vocab=9d42c5fa
+-/
 theorem IsSupernatural.naturality_twist [F.Additive] [G.Additive] [G.Linear R] {p : ZMod 2}
     {x : ∀ X, F.obj X ⟶ G.obj X}
     (hx : IsSupernatural R p x) {X Y : C} (f : X ⟶ Y) :
@@ -115,6 +130,9 @@ theorem IsSupernatural.naturality_twist [F.Additive] [G.Additive] [G.Linear R] {
   · rw [hx.naturality hg, twist_of_mem p hg, G.map_smul, Linear.comp_smul]
   · rw [F.map_add, Preadditive.add_comp, hg, hh, map_add, G.map_add, Preadditive.comp_add]
 
+/--
+@isnad1 id=issupern.2h7v.s9.a4cae9bd4eff from=translated src=- shape=9b5606b5 vocab=dfce548b
+-/
 theorem IsSupernatural.of_twist [G.Linear R] {p : ZMod 2} {x : ∀ X, F.obj X ⟶ G.obj X}
     (mem : ∀ X, x X ∈ parity (R := R) (F.obj X) (G.obj X) p)
     (nat : ∀ {X Y : C} (f : X ⟶ Y), F.map f ≫ x Y = x X ≫ G.map (twist R p f)) :
@@ -122,7 +140,9 @@ theorem IsSupernatural.of_twist [G.Linear R] {p : ZMod 2} {x : ∀ X, F.obj X �
   mem := mem
   naturality hf := by rw [nat, twist_of_mem p hf, G.map_smul, Linear.comp_smul]
 
-/-- Even supernatural transformations are natural.-/
+/-- Even supernatural transformations are natural.
+@isnad1 id=eq.1h9v.s8.1eed00d18960 from=translated src=- shape=7b565450 vocab=f983a8fd
+-/
 theorem IsSupernatural.naturality_zero [F.Additive] [G.Additive] [G.Linear R]
     {x : ∀ X, F.obj X ⟶ G.obj X}
     (hx : IsSupernatural R 0 x) {X Y : C} (f : X ⟶ Y) : F.map f ≫ x Y = x X ≫ G.map f := by
@@ -136,16 +156,23 @@ def IsSupernatural.toNatTrans [F.Additive] [G.Additive] [G.Linear R] {x : ∀ X,
   app := x
   naturality _ _ f := hx.naturality_zero f
 
-/-- A natural transformation with even components is an even supernatural transformation.-/
+/-- A natural transformation with even components is an even supernatural transformation.
+@isnad1 id=issupern.1h6v.s9.4a8928be5091 from=translated src=- shape=df84a34a vocab=99e1b060
+-/
 theorem isSupernatural_of_natTrans [G.Linear R] (x : F ⟶ G)
     (mem : ∀ X, x.app X ∈ parity (R := R) (F.obj X) (G.obj X) 0) :
     IsSupernatural R 0 x.app :=
   IsSupernatural.of_twist mem fun f => by rw [twist_zero, x.naturality]
 
+/--
+@isnad1 id=issupern.0h4v.s7.156be8097d6a from=translated src=- shape=5edad0f8 vocab=cb5025e1
+-/
 theorem isSupernatural_id [F.Linear R] : IsSupernatural R 0 fun X => 𝟙 (F.obj X) :=
   IsSupernatural.of_twist (fun X => id_mem _) fun f => by simp
 
-/-- Vertical composition of supernatural transformations adds parities.-/
+/-- Vertical composition of supernatural transformations adds parities.
+@isnad1 id=issupern.2h10v.s8.e2fcd24c01ec from=translated src=- shape=5b73f890 vocab=b733d358
+-/
 theorem IsSupernatural.comp [F.Additive] [G.Additive] [G.Linear R] [H.Additive] [H.Linear R]
     {p q : ZMod 2} {x : ∀ X, F.obj X ⟶ G.obj X}
     {y : ∀ X, G.obj X ⟶ H.obj X} (hx : IsSupernatural R p x) (hy : IsSupernatural R q y) :
@@ -154,7 +181,9 @@ theorem IsSupernatural.comp [F.Additive] [G.Additive] [G.Linear R] [H.Additive] 
     rw [← Category.assoc, hx.naturality_twist, Category.assoc, hy.naturality_twist,
       add_comm p q, twist_add, Category.assoc]
 
-/-- Whiskering a supernatural transformation by a superfunctor on the outside.-/
+/-- Whiskering a supernatural transformation by a superfunctor on the outside.
+@isnad1 id=issupern.1h9v.s8.1ba0aef6715d from=translated src=- shape=cd222637 vocab=546b5fb0
+-/
 theorem IsSupernatural.whiskerRight [F.Additive] [G.Additive] [G.Linear R] {p : ZMod 2}
     {x : ∀ X, F.obj X ⟶ G.obj X} (hx : IsSupernatural R p x) (K : D ⥤ E) [K.Additive]
     [K.Linear R] [IsSuperfunctor R K] :
@@ -164,7 +193,9 @@ theorem IsSupernatural.whiskerRight [F.Additive] [G.Additive] [G.Linear R] {p : 
     simp only [Functor.comp_map]
     rw [← K.map_comp, hx.naturality hf, K.map_smul, K.map_comp]
 
-/-- Whiskering a supernatural transformation by a superfunctor on the inside.-/
+/-- Whiskering a supernatural transformation by a superfunctor on the inside.
+@isnad1 id=issupern.1h9v.s7.8f1fa8014f76 from=translated src=- shape=5bbe7f51 vocab=fb0474ea
+-/
 theorem IsSupernatural.whiskerLeft {B : Type*} [Category B] [Preadditive B] [Linear R B]
     [Supercategory R B] {p : ZMod 2} {x : ∀ X, F.obj X ⟶ G.obj X} (hx : IsSupernatural R p x)
     (K : B ⥤ C) [K.Additive] [K.Linear R] [IsSuperfunctor R K] :
@@ -176,6 +207,9 @@ end
 
 /-! ## Faithful superfunctors reflect parity -/
 
+/--
+@isnad1 id=mem.1h8v.s9.d3fee8ba67b2 from=translated src=- shape=f0bbfe01 vocab=7393cfd4
+-/
 theorem mem_of_map_mem (F : C ⥤ D) [F.Additive] [F.Linear R] [IsSuperfunctor R F] [F.Faithful]
     {X Y : C} {p : ZMod 2} {f : X ⟶ Y} (hf : F.map f ∈ parity (R := R) (F.obj X) (F.obj Y) p) :
     f ∈ parity (R := R) X Y p := by
@@ -216,7 +250,9 @@ structure Superequivalence (F : C ⥤ D) where
 attribute [instance] Superequivalence.inverse_additive Superequivalence.inverse_linear
   Superequivalence.inverse_isSuperfunctor
 
-/-- A superequivalence is evenly dense.-/
+/-- A superequivalence is evenly dense.
+@isnad1 id=evenlyde.0h5v.s6.e86fe2f26ee3 from=translated src=- shape=18bbb76d vocab=cfd30a7c
+-/
 theorem Superequivalence.evenlyDense {F : C ⥤ D} (e : Superequivalence R F) :
     EvenlyDense R F := fun Y => ⟨e.inverse.obj Y, e.counitIso.app Y, e.counitIso_mem Y⟩
 
@@ -233,6 +269,9 @@ def EvenlyDense.iso (Y : D) : F.obj (hF.obj F Y) ≅ Y := (hF Y).choose_spec.cho
 
 omit [Preadditive C] [Linear R C] [Supercategory R C] [F.Additive] [F.Linear R]
   [IsSuperfunctor R F] [F.Full] [F.Faithful] in
+/--
+@isnad1 id=mem.1h5v.s9.fb339bfdcd97 from=translated src=- shape=5bf81507 vocab=75e55181
+-/
 theorem EvenlyDense.iso_mem (Y : D) :
     (hF.iso F Y).hom ∈ parity (R := R) (F.obj (hF.obj F Y)) Y 0 :=
   (hF Y).choose_spec.choose_spec
@@ -246,14 +285,23 @@ def EvenlyDense.inverse : D ⥤ C where
   map_comp f g := F.map_injective (by simp)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=additive.1h4v.s6.e2f4d61a0a38 from=translated src=- shape=c3b4b848 vocab=617f074d
+-/
 instance EvenlyDense.inverse_additive : (hF.inverse F).Additive where
   map_add := F.map_injective (by simp)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=linear.1h4v.s7.a400739a807d from=translated src=- shape=9faaf376 vocab=fe623df9
+-/
 instance EvenlyDense.inverse_linear : (hF.inverse F).Linear R where
   map_smul _ _ := F.map_injective (by simp [F.map_smul])
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=issuperf.1h4v.s7.5a753c12b593 from=translated src=- shape=6f0709f5 vocab=a8cabb3a
+-/
 instance EvenlyDense.inverse_isSuperfunctor : IsSuperfunctor R (hF.inverse F) where
   map_mem {Y Y' p g} hg := by
     apply mem_of_map_mem F

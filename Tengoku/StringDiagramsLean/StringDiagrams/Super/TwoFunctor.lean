@@ -124,9 +124,15 @@ attribute [reassoc] map₂_comp mapComp_naturality_left mapComp_naturality_right
 
 variable (F : TwoSuperfunctor R B C)
 
+/--
+@isnad1 id=eq.0h8v.s10.9558ae5db2c6 from=translated src=- shape=6818ebfe vocab=6e625201
+-/
 @[simp] theorem map₂_zero {a b : B} (f g : a ⟶ b) : F.map₂ (0 : f ⟶ g) = 0 := by
   rw [← zero_smul R (0 : f ⟶ g), F.map₂_smul, zero_smul]
 
+/--
+@isnad1 id=eq.0h9v.s10.ebce52b23cf0 from=translated src=- shape=c8a4614a vocab=8f24ef44
+-/
 @[simp] theorem map₂_neg {a b : B} {f g : a ⟶ b} (η : f ⟶ g) : F.map₂ (-η) = -F.map₂ η := by
   rw [← neg_one_smul R η, F.map₂_smul, neg_one_smul]
 
@@ -156,7 +162,9 @@ def map₂Iso {a b : B} {f g : a ⟶ b} (e : f ≅ g) : F.map f ≅ F.map g wher
   inv_hom_id := by rw [← F.map₂_comp, e.inv_hom_id, F.map₂_id]
 
 /-- `c` is an even supernatural transformation on `ℋom(μ, ν) ⊠ ℋom(λ, μ)`: for 2-morphisms
-`x : F ⇒ H` and `y : G ⇒ K`, `c ∘ (ℝy)(ℝx) = ℝ(yx) ∘ c`.-/
+`x : F ⇒ H` and `y : G ⇒ K`, `c ∘ (ℝy)(ℝx) = ℝ(yx) ∘ c`.
+@isnad1 id=eq.0h13v.s10.77a8f9516f63 from=translated src=- shape=853867f9 vocab=495852a6
+-/
 theorem mapComp_naturality {a b c : B} {f f' : a ⟶ b} {g g' : b ⟶ c} (η : f ⟶ f')
     (θ : g ⟶ g') :
     hcomp (F.map₂ η) (F.map₂ θ) ≫ (F.mapComp f' g').hom =
@@ -274,13 +282,22 @@ instance : Category (TwoNatTrans F G) where
 
 variable {θ θ' θ'' : TwoNatTrans F G}
 
+/--
+@isnad1 id=eq.1h9v.s9.ad2d7ad4284f from=translated src=- shape=263fe92b vocab=3e5ba97e
+-/
 @[ext]
 theorem hom_ext {α β : θ ⟶ θ'} (h : ∀ a, α.app a = β.app a) : α = β :=
   Supermodification.ext (funext h)
 
+/--
+@isnad1 id=eq.0h7v.s9.de35ad09731d from=translated src=- shape=1d992e26 vocab=35f9976e
+-/
 @[simp] theorem id_app (θ : TwoNatTrans F G) (a : B) :
     (𝟙 θ : θ ⟶ θ).app a = 𝟙 (θ.X a) := rfl
 
+/--
+@isnad1 id=eq.0h11v.s9.bed5a0568946 from=translated src=- shape=06d4dfaf vocab=1cdeab6b
+-/
 @[simp] theorem comp_app (α : θ ⟶ θ') (β : θ' ⟶ θ'') (a : B) :
     (α ≫ β).app a = α.app a ≫ β.app a := rfl
 
@@ -320,20 +337,44 @@ instance : SMul ℤ (θ ⟶ θ') where
     simp only [← Int.cast_smul_eq_zsmul R]; rw [smul_whiskerRight (R := R), whiskerLeft_smul (R := R),
       Linear.comp_smul, Linear.smul_comp, α.naturality]⟩
 
+/--
+@isnad1 id=eq.0h8v.s10.bdaa3df14acc from=translated src=- shape=2a62f190 vocab=3e5ba97e
+-/
 @[simp] theorem zero_app (a : B) : (0 : θ ⟶ θ').app a = 0 := rfl
 
+/--
+@isnad1 id=eq.0h10v.s11.6876ac88e176 from=translated src=- shape=4812ab7f vocab=7b2d209f
+-/
 @[simp] theorem add_app (α β : θ ⟶ θ') (a : B) : (α + β).app a = α.app a + β.app a := rfl
 
+/--
+@isnad1 id=eq.0h9v.s10.8b76079ab75b from=translated src=- shape=4544eb5e vocab=f4d356a2
+-/
 @[simp] theorem neg_app (α : θ ⟶ θ') (a : B) : (-α).app a = -α.app a := rfl
 
+/--
+@isnad1 id=eq.0h10v.s11.3d697ae899a1 from=translated src=- shape=4812ab7f vocab=4e0264ec
+-/
 @[simp] theorem sub_app (α β : θ ⟶ θ') (a : B) : (α - β).app a = α.app a - β.app a := rfl
 
+/--
+@isnad1 id=eq.0h10v.s12.e110909ec42b from=translated src=- shape=d67aafa9 vocab=96486ce3
+-/
 @[simp] theorem smul_app (r : R) (α : θ ⟶ θ') (a : B) : (r • α).app a = r • α.app a := rfl
 
+/--
+@isnad1 id=eq.0h10v.s11.d2d49a0c64ae from=translated src=- shape=30e19304 vocab=e0d0716c
+-/
 @[simp] theorem nsmul_app (n : ℕ) (α : θ ⟶ θ') (a : B) : (n • α).app a = n • α.app a := rfl
 
+/--
+@isnad1 id=eq.0h10v.s11.1089e54dffad from=translated src=- shape=30e19304 vocab=c3734109
+-/
 @[simp] theorem zsmul_app (n : ℤ) (α : θ ⟶ θ') (a : B) : (n • α).app a = n • α.app a := rfl
 
+/--
+@isnad1 id=injectiv.0h7v.s9.f842b56f59cf from=translated src=- shape=2baa87fe vocab=809f0093
+-/
 theorem app_injective : Function.Injective (fun (α : θ ⟶ θ') (a : B) => α.app a) :=
   fun _ _ h => Supermodification.ext h
 
@@ -369,6 +410,9 @@ def parityHom (p : ZMod 2) : Submodule R (θ ⟶ θ') where
   add_mem' hα hβ a := Submodule.add_mem _ (hα a) (hβ a)
   smul_mem' r _ hα a := Submodule.smul_mem _ r (hα a)
 
+/--
+@isnad1 id=iff.0h9v.s11.2ab50bb541d8 from=translated src=- shape=0c93c37b vocab=8b756db6
+-/
 theorem mem_parityHom {p : ZMod 2} {α : θ ⟶ θ'} :
     α ∈ parityHom θ θ' p ↔ ∀ a, α.app a ∈ parity (R := R) (θ.X a) (θ'.X a) p := Iff.rfl
 
@@ -386,6 +430,9 @@ def projHom (p : ZMod 2) (α : θ ⟶ θ') : θ ⟶ θ' where
     rw [add_zero] at h4
     rw [h1, h2, ← h3, ← h4, α.naturality]
 
+/--
+@isnad1 id=eq.0h10v.s11.b73d0e90b667 from=translated src=- shape=7c2e65ff vocab=b71a951f
+-/
 @[simp] theorem projHom_app (p : ZMod 2) (α : θ ⟶ θ') (a : B) :
     (projHom p α).app a = proj R p (α.app a) := rfl
 
@@ -409,6 +456,9 @@ instance : Supercategory R (TwoNatTrans F G) where
   id_mem θ a := id_mem _
   comp_mem hα hβ a := comp_mem (hα a) (hβ a)
 
+/--
+@isnad1 id=iff.0h9v.s11.ac3b96c0280a from=translated src=- shape=c2e9bf43 vocab=cef48188
+-/
 theorem mem_parity_iff {p : ZMod 2} {α : θ ⟶ θ'} :
     α ∈ parity (R := R) θ θ' p ↔ ∀ a, α.app a ∈ parity (R := R) (θ.X a) (θ'.X a) p :=
   Iff.rfl
@@ -491,7 +541,9 @@ def natIsoOfEvenIso {C D : SCat.{w, v₁, u₁} R} {F G : C ⟶ D} (e : F ≅ G)
 set_option backward.isDefEq.respectTransparency false in
 /-- **Definition 1.1(iv) and Definition 2.2(i).** A superfunctor is a superequivalence of
 supercategories (`Supercategory.Superequivalence`) if and only if it is a superequivalence
-in the 2-supercategory `𝔖ℭ𝔞𝔱`.-/
+in the 2-supercategory `𝔖ℭ𝔞𝔱`.
+@isnad1 id=iff.0h4v.s7.570c7c36f841 from=translated src=- shape=bf0be6bd vocab=2d773325
+-/
 theorem isSuperequivalence_iff {C D : SCat.{w, v₁, u₁} R} (F : C ⟶ D) :
     TwoSupercategory.IsSuperequivalence R F ↔ Nonempty (Superequivalence R F.toFunctor) := by
   constructor

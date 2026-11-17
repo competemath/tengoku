@@ -62,30 +62,54 @@ variable {a b c : Obj S}
 /-- The degree of a diagram: the sum of the degrees of the generators in its layers.-/
 def degree (f : a ⟶ b) : A := ((layers f).map fun L => deg L.gen).sum
 
+/--
+@isnad1 id=eq.1h6v.s6.c96b73c3ae28 from=translated src=- shape=21f3c1bd vocab=86e36da9
+-/
 theorem degree_mk (ls : List (Layer S)) (h : Chain a ls b) :
     degree deg (mk ls h) = (ls.map fun L => deg L.gen).sum := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.43e3b5017d0a from=translated src=- shape=9a8da430 vocab=a7e6f81d
+-/
 @[simp] theorem degree_id (a : Obj S) : degree deg (𝟙 a) = 0 := by
   simp [degree]
 
+/--
+@isnad1 id=eq.0h8v.s6.49994e4e8d4c from=translated src=- shape=bdbdc321 vocab=ed298271
+-/
 @[simp] theorem degree_comp (f : a ⟶ b) (g : b ⟶ c) :
     degree deg (f ≫ g) = degree deg f + degree deg g := by
   simp [degree]
 
+/--
+@isnad1 id=eq.1h5v.s5.208f8772d3aa from=translated src=- shape=24abffeb vocab=4ce9dd7e
+-/
 @[simp] theorem degree_eqToHom (h : a = b) : degree deg (eqToHom h) = 0 := by
   simp [degree]
 
+/--
+@isnad1 id=eq.1h4v.s5.4e5376a7b2f3 from=translated src=- shape=2f2a4af2 vocab=0ba3f28f
+-/
 @[simp] theorem degree_ofLayer (L : Layer S) (hv : L.Valid) :
     degree deg (ofLayer L hv) = deg L.gen := by
   simp [degree]
 
+/--
+@isnad1 id=eq.3h6v.s5.2508ac76cf25 from=translated src=- shape=3f27618f vocab=1ed2588b
+-/
 @[simp] theorem degree_layer (L : Layer S) (hv : L.Valid) (ha : L.dom = a) (hb : L.cod = b) :
     degree deg (layer L hv ha hb) = deg L.gen := by
   simp [degree]
 
+/--
+@isnad1 id=eq.2h8v.s6.84c888c5f2f5 from=translated src=- shape=454b5d1d vocab=33014bd7
+-/
 @[simp] theorem degree_cast {a' b' : Obj S} (f : a ⟶ b) (ha : a = a') (hb : b = b') :
     degree deg (cast f ha hb) = degree deg f := rfl
 
+/--
+@isnad1 id=eq.1h8v.s6.126c04c7a919 from=translated src=- shape=779426d3 vocab=08997769
+-/
 @[simp] theorem degree_whisker (f : a ⟶ b) (u : Obj S) (v : List S.Colour)
     (hw : a.WhiskerOK u v) : degree deg (whisker f u v hw) = degree deg f := by
   simp [degree, Function.comp_def, Layer.whisker]
@@ -96,10 +120,16 @@ namespace InterchangeData
 
 variable {x : InterchangeData S}
 
+/--
+@isnad1 id=eq.1h4v.s5.470bc041dc55 from=translated src=- shape=faa778d3 vocab=155b4098
+-/
 @[simp] theorem degree_ghDiagram (hx : x.Valid) :
     Diagram.degree deg (ghDiagram hx) = deg x.g + deg x.h := by
   simp [ghDiagram, Diagram.degree_mk, gh₁, gh₂]
 
+/--
+@isnad1 id=eq.1h4v.s5.c596decbad10 from=translated src=- shape=faa778d3 vocab=1216fa40
+-/
 @[simp] theorem degree_hgDiagram (hx : x.Valid) :
     Diagram.degree deg (hgDiagram hx) = deg x.g + deg x.h := by
   simp [hgDiagram, Diagram.degree_mk, hg₁, hg₂, add_comm]
@@ -125,6 +155,9 @@ variable {a b c : Obj S}
 /-- A linear combination of diagrams, viewed as a finitely supported function on diagrams.-/
 abbrev toFinsupp (f : LinDiagram R a b) : (a ⟶ b) →₀ R := f
 
+/--
+@isnad1 id=iff.0h8v.s8.fa53677adac7 from=translated src=- shape=47316beb vocab=67442183
+-/
 theorem mem_homDeg_iff {f : LinDiagram R a b} {d : A} :
     f ∈ homDeg R deg a b d ↔
       ∀ g : a ⟶ b, f.toFinsupp g ≠ 0 → Diagram.degree deg g = d := by
@@ -132,22 +165,36 @@ theorem mem_homDeg_iff {f : LinDiagram R a b} {d : A} :
   exact ⟨fun h g hg => h (Finsupp.mem_support_iff.mpr hg),
     fun h g hg => h g (Finsupp.mem_support_iff.mp hg)⟩
 
+/--
+@isnad1 id=mem.0h8v.s8.f1c2ab31e2bb from=translated src=- shape=c22d07ab vocab=73ef8954
+-/
 theorem single_mem_homDeg (g : a ⟶ b) (r : R) :
     (Finsupp.single g r : LinDiagram R a b) ∈ homDeg R deg a b (Diagram.degree deg g) :=
   Finsupp.single_mem_supported R r rfl
 
+/--
+@isnad1 id=mem.0h7v.s8.b70b97ade753 from=translated src=- shape=7ff732e5 vocab=7ff00be2
+-/
 theorem of_mem_homDeg (g : a ⟶ b) :
     (of g : LinDiagram R a b) ∈ homDeg R deg a b (Diagram.degree deg g) :=
   single_mem_homDeg g 1
 
+/--
+@isnad1 id=mem.1h8v.s8.892f73defc2c from=translated src=- shape=c00c7cad vocab=7ff00be2
+-/
 theorem of_mem_homDeg' {g : a ⟶ b} {d : A} (h : Diagram.degree deg g = d) :
     (of g : LinDiagram R a b) ∈ homDeg R deg a b d :=
   h ▸ of_mem_homDeg g
 
+/--
+@isnad1 id=mem.0h5v.s8.abcbc3ce3a1e from=translated src=- shape=3982b082 vocab=417f8ce4
+-/
 theorem id_mem_homDeg (a : Obj S) : 𝟙 (Free.of R a) ∈ homDeg R deg a a 0 :=
   of_mem_homDeg' (g := 𝟙 a) (Diagram.degree_id deg a)
 
-/-- Composition of homogeneous linear combinations adds degrees.-/
+/-- Composition of homogeneous linear combinations adds degrees.
+@isnad1 id=mem.2h11v.s9.f48b63b82622 from=translated src=- shape=fc5ec07d vocab=b66d3b97
+-/
 theorem comp_mem_homDeg {f : LinDiagram R a b} {g : LinDiagram R b c} {d e : A}
     (hf : f ∈ homDeg R deg a b d) (hg : g ∈ homDeg R deg b c e) :
     f ≫ g ∈ homDeg R deg a c (d + e) := by
@@ -169,7 +216,9 @@ theorem comp_mem_homDeg {f : LinDiagram R a b} {g : LinDiagram R b c} {d e : A}
   | smul r y _ hy => rw [Linear.smul_comp]; exact Submodule.smul_mem _ r hy
 
 /-- Relabelling the diagrams of a linear combination by a degree-preserving map preserves
-homogeneity.-/
+homogeneity.
+@isnad1 id=mem.2h11v.s9.e72f99199b4f from=translated src=- shape=be5a2b6c vocab=65cc29c7
+-/
 theorem mapDomain_mem_homDeg {a' b' : Obj S} (φ : (a ⟶ b) → (a' ⟶ b'))
     (hφ : ∀ g, Diagram.degree deg (φ g) = Diagram.degree deg g) {f : LinDiagram R a b} {d : A}
     (hf : f ∈ homDeg R deg a b d) :
@@ -181,17 +230,26 @@ theorem mapDomain_mem_homDeg {a' b' : Obj S} (φ : (a ⟶ b) → (a' ⟶ b'))
   show Diagram.degree deg (φ g') = d
   rw [hφ]; exact hf hg'
 
+/--
+@isnad1 id=mem.2h10v.s9.cecb5e5f2ae9 from=translated src=- shape=ac5c8777 vocab=b1f36b39
+-/
 theorem whisker_mem_homDeg {f : LinDiagram R a b} {d : A} (hf : f ∈ homDeg R deg a b d)
     (u : Obj S) (v : List S.Colour) (hw : a.WhiskerOK u v) :
     whisker f u v hw ∈ homDeg R deg _ _ d :=
   mapDomain_mem_homDeg _ (fun g => Diagram.degree_whisker deg g u v hw) hf
 
+/--
+@isnad1 id=mem.1h10v.s9.7fa1f36946d0 from=translated src=- shape=df7706f3 vocab=89b1b111
+-/
 theorem whisk_mem_homDeg {f : LinDiagram R a b} {d : A} (hf : f ∈ homDeg R deg a b d)
     (u : Obj S) (v : List S.Colour) : whisk f u v ∈ homDeg R deg _ _ d := by
   by_cases h : a.WhiskerOK u v
   · rw [whisk_of_ok _ h]; exact whisker_mem_homDeg hf u v h
   · rw [whisk_of_not_ok _ h]; exact Submodule.zero_mem _
 
+/--
+@isnad1 id=mem.3h10v.s9.923eb804740c from=translated src=- shape=35fa9ee5 vocab=b758aef4
+-/
 theorem cast_mem_homDeg {a' b' : Obj S} {f : LinDiagram R a b} {d : A}
     (hf : f ∈ homDeg R deg a b d) (ha : a = a') (hb : b = b') :
     cast f ha hb ∈ homDeg R deg a' b' d :=
@@ -207,9 +265,15 @@ def homogeneousComponent (d : A) : LinDiagram R a b →ₗ[R] LinDiagram R a b w
   map_smul' _ _ := Finsupp.filter_smul
 
 open Classical in
+/--
+@isnad1 id=eq.0h8v.s9.24e88d8d9cb6 from=translated src=- shape=207cbc05 vocab=9eab2404
+-/
 theorem homogeneousComponent_apply (d : A) (f : LinDiagram R a b) :
     homogeneousComponent deg d f = Finsupp.filter (fun g => Diagram.degree deg g = d) f := rfl
 
+/--
+@isnad1 id=mem.0h8v.s9.0f83d7b2a91f from=translated src=- shape=bd7b5a97 vocab=2dc03cbf
+-/
 theorem homogeneousComponent_mem (d : A) (f : LinDiagram R a b) :
     homogeneousComponent deg d f ∈ homDeg R deg a b d := by
   classical
@@ -218,12 +282,18 @@ theorem homogeneousComponent_mem (d : A) (f : LinDiagram R a b) :
   by_contra h
   exact hg (Finsupp.filter_apply_neg _ _ h)
 
+/--
+@isnad1 id=eq.1h8v.s9.07b52f8503cf from=translated src=- shape=cc101d76 vocab=2dc03cbf
+-/
 theorem homogeneousComponent_of_mem {f : LinDiagram R a b} {d : A}
     (hf : f ∈ homDeg R deg a b d) : homogeneousComponent deg d f = f := by
   classical
   rw [homogeneousComponent_apply, Finsupp.filter_eq_self_iff]
   exact (mem_homDeg_iff.mp hf)
 
+/--
+@isnad1 id=eq.2h9v.s9.81882f1d3bc8 from=translated src=- shape=88ceaec3 vocab=2dc03cbf
+-/
 theorem homogeneousComponent_of_mem_of_ne {f : LinDiagram R a b} {d e : A}
     (hf : f ∈ homDeg R deg a b e) (h : e ≠ d) : homogeneousComponent deg d f = 0 := by
   classical
@@ -232,7 +302,9 @@ theorem homogeneousComponent_of_mem_of_ne {f : LinDiagram R a b} {d e : A}
   by_contra h'
   exact h ((mem_homDeg_iff.mp hf g h').symm.trans hg)
 
-/-- A linear combination of diagrams is the sum of its homogeneous components.-/
+/-- A linear combination of diagrams is the sum of its homogeneous components.
+@isnad1 id=eq.0h7v.s9.48a58a60b4dc from=translated src=- shape=1c16c15e vocab=e23f9712
+-/
 theorem sum_homogeneousComponent [DecidableEq A] (f : LinDiagram R a b) :
     ∑ d ∈ (Finsupp.support f.toFinsupp).image (Diagram.degree deg),
       homogeneousComponent deg d f = f := by
@@ -252,7 +324,9 @@ end LinDiagram
 
 namespace InterchangeData
 
-/-- The interchange relation is homogeneous.-/
+/-- The interchange relation is homogeneous.
+@isnad1 id=mem.1h5v.s8.bbae1531f0c9 from=translated src=- shape=8485af6e vocab=180ee462
+-/
 theorem rel_mem_homDeg (deg : S.Gen → A) (R : Type w) [CommRing R] {x : InterchangeData S}
     (hx : x.Valid) :
     rel R hx ∈ LinDiagram.homDeg R deg x.dom x.cod (deg x.g + deg x.h) :=
@@ -274,6 +348,9 @@ def IsHomogeneous : Prop :=
 
 variable {P} {deg}
 
+/--
+@isnad1 id=ex.1h6v.s8.407f32bf1713 from=translated src=- shape=afcfeee9 vocab=4970d080
+-/
 theorem IsHomogeneous.allRel (hP : P.IsHomogeneous deg) (k : P.AllRel) :
     ∃ d, k.rel ∈ LinDiagram.homDeg R deg k.dom k.cod d := by
   cases k with
@@ -283,7 +360,9 @@ theorem IsHomogeneous.allRel (hP : P.IsHomogeneous deg) (k : P.AllRel) :
 variable {a b c : Obj S}
 
 /-- An element of the ideal that is homogeneous, composed on both sides with arbitrary linear
-combinations: all its homogeneous components lie in the ideal.-/
+combinations: all its homogeneous components lie in the ideal.
+@isnad1 id=mem.2h14v.s10.f7b0edc11ac3 from=translated src=- shape=c40f0350 vocab=964d0238
+-/
 theorem homogeneousComponent_comp_comp_mem_ideal {a' b' : Obj S} {W : LinDiagram R a' b'}
     {e : A} (hW : W ∈ LinDiagram.homDeg R deg a' b' e) (hWI : W ∈ P.ideal a' b')
     (pre : LinDiagram R a a') (post : LinDiagram R b' b) (d : A) :
@@ -310,7 +389,9 @@ theorem homogeneousComponent_comp_comp_mem_ideal {a' b' : Obj S} {W : LinDiagram
         erw [key]; exact Submodule.zero_mem _
 
 /-- For a homogeneous presentation, the tensor ideal is homogeneous: it is closed under taking
-homogeneous components.-/
+homogeneous components.
+@isnad1 id=mem.2h9v.s10.46036274fbcf from=translated src=- shape=af72c5bd vocab=827c6f7e
+-/
 theorem homogeneousComponent_mem_ideal (hP : P.IsHomogeneous deg) {f : LinDiagram R a b}
     (hf : f ∈ P.ideal a b) (d : A) : LinDiagram.homogeneousComponent deg d f ∈ P.ideal a b := by
   induction hf using Submodule.span_induction with
@@ -333,6 +414,9 @@ def linMap (a b : Obj S) : LinDiagram R a b →ₗ[R] (P.obj a ⟶ P.obj b) wher
   map_add' := P.lin_add
   map_smul' := P.lin_smul
 
+/--
+@isnad1 id=eq.0h6v.s9.87cda565fbfd from=translated src=- shape=8d8958eb vocab=4532d265
+-/
 @[simp] theorem linMap_apply (f : LinDiagram R a b) : P.linMap a b f = P.lin f := rfl
 
 variable (deg)
@@ -344,28 +428,45 @@ def homDeg (a b : Obj S) (d : A) : Submodule R (P.obj a ⟶ P.obj b) :=
 
 variable {P deg}
 
+/--
+@isnad1 id=iff.0h9v.s10.c65b0400b811 from=translated src=- shape=628d475e vocab=80655a0f
+-/
 theorem mem_homDeg_iff {x : P.obj a ⟶ P.obj b} {d : A} :
     x ∈ P.homDeg deg a b d ↔ ∃ f ∈ LinDiagram.homDeg R deg a b d, P.lin f = x :=
   Submodule.mem_map
 
+/--
+@isnad1 id=mem.1h9v.s10.a473ce91b603 from=translated src=- shape=b4967d05 vocab=80655a0f
+-/
 theorem lin_mem_homDeg {f : LinDiagram R a b} {d : A}
     (hf : f ∈ LinDiagram.homDeg R deg a b d) : P.lin f ∈ P.homDeg deg a b d :=
   mem_homDeg_iff.mpr ⟨f, hf, rfl⟩
 
 variable (P) in
+/--
+@isnad1 id=mem.0h8v.s9.c3fcb6c7f9da from=translated src=- shape=fa142c00 vocab=b52dd510
+-/
 theorem diag_mem_homDeg (g : a ⟶ b) : P.diag g ∈ P.homDeg deg a b (Diagram.degree deg g) :=
   lin_mem_homDeg (LinDiagram.of_mem_homDeg g)
 
+/--
+@isnad1 id=mem.1h9v.s9.7e47791f0d09 from=translated src=- shape=6731ef2d vocab=b52dd510
+-/
 theorem diag_mem_homDeg' {g : a ⟶ b} {d : A} (h : Diagram.degree deg g = d) :
     P.diag g ∈ P.homDeg deg a b d :=
   h ▸ P.diag_mem_homDeg g
 
 variable (P deg) in
+/--
+@isnad1 id=mem.0h6v.s9.d582bc438c73 from=translated src=- shape=ff49e495 vocab=af2753ff
+-/
 theorem id_mem_homDeg (a : Obj S) : 𝟙 (P.obj a) ∈ P.homDeg deg a a 0 :=
   P.lin_id a ▸ lin_mem_homDeg (LinDiagram.id_mem_homDeg a)
 
 /-- Composition in the presented category adds degrees:
-`homDeg d ≫ homDeg e ⊆ homDeg (d + e)`.-/
+`homDeg d ≫ homDeg e ⊆ homDeg (d + e)`.
+@isnad1 id=mem.2h12v.s11.a0a8b4b6b005 from=translated src=- shape=121bb50f vocab=d751eab3
+-/
 theorem comp_mem_homDeg {f : P.obj a ⟶ P.obj b} {g : P.obj b ⟶ P.obj c} {d e : A}
     (hf : f ∈ P.homDeg deg a b d) (hg : g ∈ P.homDeg deg b c e) :
     f ≫ g ∈ P.homDeg deg a c (d + e) := by
@@ -374,7 +475,9 @@ theorem comp_mem_homDeg {f : P.obj a ⟶ P.obj b} {g : P.obj b ⟶ P.obj c} {d e
   rw [← lin_comp]
   exact lin_mem_homDeg (LinDiagram.comp_mem_homDeg hf' hg')
 
-/-- Whiskering preserves degrees.-/
+/-- Whiskering preserves degrees.
+@isnad1 id=mem.1h11v.s10.f374d24450f8 from=translated src=- shape=1fbfb75d vocab=fd6a973e
+-/
 theorem whisk_mem_homDeg {f : P.obj a ⟶ P.obj b} {d : A} (hf : f ∈ P.homDeg deg a b d)
     (u : Obj S) (v : List S.Colour) : P.whisk f u v ∈ P.homDeg deg _ _ d := by
   obtain ⟨f, hf', rfl⟩ := mem_homDeg_iff.mp hf
@@ -382,7 +485,9 @@ theorem whisk_mem_homDeg {f : P.obj a ⟶ P.obj b} {d : A} (hf : f ∈ P.homDeg 
   exact lin_mem_homDeg (LinDiagram.whisk_mem_homDeg hf' u v)
 
 variable (P deg) in
-/-- Without any hypothesis on the presentation, the homogeneous parts span each Hom-space.-/
+/-- Without any hypothesis on the presentation, the homogeneous parts span each Hom-space.
+@isnad1 id=eq.0h7v.s10.c01000e91778 from=translated src=- shape=c206b856 vocab=ba9ed8a3
+-/
 theorem iSup_homDeg (a b : Obj S) : ⨆ d, P.homDeg deg a b d = ⊤ := by
   rw [eq_top_iff]
   rintro x -
@@ -414,29 +519,43 @@ def homogeneousComponent (hP : P.IsHomogeneous deg) (d : A) :
     show P.lin _ = r • P.lin _
     rw [map_smul, lin_smul]
 
+/--
+@isnad1 id=eq.1h9v.s10.a54c1b02b3ad from=translated src=- shape=0dbc9084 vocab=408a6380
+-/
 @[simp] theorem homogeneousComponent_lin (hP : P.IsHomogeneous deg) (d : A)
     (f : LinDiagram R a b) :
     homogeneousComponent hP d (P.lin f) = P.lin (LinDiagram.homogeneousComponent deg d f) := rfl
 
+/--
+@isnad1 id=mem.1h9v.s10.a7f59912a23a from=translated src=- shape=68670a7e vocab=5735cc72
+-/
 theorem homogeneousComponent_mem (hP : P.IsHomogeneous deg) (d : A) (x : P.obj a ⟶ P.obj b) :
     homogeneousComponent hP d x ∈ P.homDeg deg a b d := by
   obtain ⟨x, rfl⟩ := P.lin_surjective x
   rw [homogeneousComponent_lin]
   exact lin_mem_homDeg (LinDiagram.homogeneousComponent_mem d x)
 
+/--
+@isnad1 id=eq.2h9v.s10.6b905a60ea9f from=translated src=- shape=4d5484ac vocab=5735cc72
+-/
 theorem homogeneousComponent_of_mem (hP : P.IsHomogeneous deg) {d : A}
     {x : P.obj a ⟶ P.obj b} (hx : x ∈ P.homDeg deg a b d) :
     homogeneousComponent hP d x = x := by
   obtain ⟨f, hf, rfl⟩ := mem_homDeg_iff.mp hx
   rw [homogeneousComponent_lin, LinDiagram.homogeneousComponent_of_mem hf]
 
+/--
+@isnad1 id=eq.3h10v.s10.34c0922acbda from=translated src=- shape=00aee618 vocab=5735cc72
+-/
 theorem homogeneousComponent_of_mem_of_ne (hP : P.IsHomogeneous deg) {d e : A}
     {x : P.obj a ⟶ P.obj b} (hx : x ∈ P.homDeg deg a b e) (h : e ≠ d) :
     homogeneousComponent hP d x = 0 := by
   obtain ⟨f, hf, rfl⟩ := mem_homDeg_iff.mp hx
   rw [homogeneousComponent_lin, LinDiagram.homogeneousComponent_of_mem_of_ne hf h, lin_zero]
 
-/-- For a homogeneous presentation, the homogeneous parts of a Hom-space are independent.-/
+/-- For a homogeneous presentation, the homogeneous parts of a Hom-space are independent.
+@isnad1 id=isupinde.1h7v.s8.61918a5a1436 from=translated src=- shape=9fdc63d0 vocab=43266227
+-/
 theorem iSupIndep_homDeg (hP : P.IsHomogeneous deg) (a b : Obj S) :
     iSupIndep (P.homDeg deg a b) := by
   intro d
@@ -449,7 +568,9 @@ theorem iSupIndep_homDeg (hP : P.IsHomogeneous deg) (a b : Obj S) :
   exact hker hx'
 
 /-- **Graded Hom-spaces.** For a homogeneous presentation, every Hom-space of the presented
-category is the internal direct sum of its homogeneous parts `P.homDeg deg a b d`.-/
+category is the internal direct sum of its homogeneous parts `P.homDeg deg a b d`.
+@isnad1 id=isintern.1h7v.s9.d14e8896a78f from=translated src=- shape=153217eb vocab=9eb82ac4
+-/
 theorem isInternal_homDeg [DecidableEq A] (hP : P.IsHomogeneous deg) (a b : Obj S) :
     DirectSum.IsInternal (P.homDeg deg a b) :=
   DirectSum.isInternal_submodule_of_iSupIndep_of_iSup_eq_top (iSupIndep_homDeg hP a b)
@@ -462,7 +583,9 @@ def decomposition [DecidableEq A] (hP : P.IsHomogeneous deg) (a b : Obj S) :
     DirectSum.Decomposition (P.homDeg deg a b) :=
   (isInternal_homDeg hP a b).chooseDecomposition
 
-/-- The components of the decomposition are the projections `homogeneousComponent`.-/
+/-- The components of the decomposition are the projections `homogeneousComponent`.
+@isnad1 id=eq.1h9v.s14.bea4d61537d5 from=translated src=- shape=39015fad vocab=66a59e84
+-/
 theorem decompose_apply [DecidableEq A] (hP : P.IsHomogeneous deg) (x : P.obj a ⟶ P.obj b)
     (d : A) :
     letI := decomposition hP a b

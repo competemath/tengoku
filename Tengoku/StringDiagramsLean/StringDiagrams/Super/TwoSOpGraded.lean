@@ -25,7 +25,9 @@ variable {R : Type r} [CommRing R] {B : Type u} [BicategoryStruct.{w, v} B]
 instance (a b : TwoSOp R B) : GradedSupercategory R (a ⟶ b) := SOp.gradedSupercategory
 
 omit [GradedTwoSupercategory R B] in
-/-- The internal integer degree is unchanged, not negated.-/
+/-- The internal integer degree is unchanged, not negated.
+@isnad1 id=iff.0h8v.s11.84323e430465 from=translated src=- shape=9dbb0732 vocab=664ad40b
+-/
 theorem mem_degree_iff {a b : TwoSOp R B} {f g : a ⟶ b} {n : ℤ} {η : f ⟶ g} :
     η ∈ degree (R := R) f g n ↔
       SOp.unsop η ∈ degree (R := R) (SOp.unop g) (SOp.unop f) n := Iff.rfl

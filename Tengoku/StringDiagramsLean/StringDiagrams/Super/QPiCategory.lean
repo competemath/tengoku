@@ -89,14 +89,18 @@ namespace QPiCategory
 
 variable {R} {C : Type w₁} [Category.{w₂} C] [Preadditive C] [Linear R C] [QPiCategory R C]
 
-/-- The triangle identities say `Q ii = jj Q`.-/
+/-- The triangle identities say `Q ii = jj Q`.
+@isnad1 id=eq.0h3v.s8.5b896c8c684e from=translated src=- shape=9c517612 vocab=c74ffeb8
+-/
 theorem Q_map_ii (X : C) :
     (Q (R := R)).map ((ii (R := R)).hom.app X) = (jj (R := R)).hom.app ((Q (R := R)).obj X) := by
   rw [← cancel_epi ((Q (R := R)).map ((ii (R := R)).inv.app X)), ← Functor.map_comp,
     Iso.inv_hom_id_app, left_triangle]
   exact (Q (R := R)).map_id _
 
-/-- The triangle identities say `ii Q⁻¹ = Q⁻¹ jj`.-/
+/-- The triangle identities say `ii Q⁻¹ = Q⁻¹ jj`.
+@isnad1 id=eq.0h3v.s8.80a928506ce5 from=translated src=- shape=d6ad452e vocab=c74ffeb8
+-/
 theorem ii_Qinv (X : C) :
     (ii (R := R)).hom.app ((Qinv (R := R)).obj X) = (Qinv (R := R)).map ((jj (R := R)).hom.app X) := by
   rw [← cancel_epi ((ii (R := R)).inv.app ((Qinv (R := R)).obj X)), Iso.inv_hom_id_app,
@@ -151,6 +155,9 @@ def IsCompatible {F : C ⥤ D} (hF : QPiFunctorData R F) : Prop :=
   PiFunctor.IsPiNatural R (hF.toPiFunctor.comp (QPiCategory.Q_pi (R := R) (C := D)))
     ((QPiCategory.Q_pi (R := R) (C := C)).comp hF.toPiFunctor) hF.γ.hom
 
+/--
+@isnad1 id=iff.0h5v.s10.1526a616d2ed from=translated src=- shape=c42244ac vocab=c74bf9c9
+-/
 theorem IsCompatible.iff {F : C ⥤ D} (hF : QPiFunctorData R F) :
     hF.IsCompatible R ↔ ∀ X : C,
       (QPiCategory.Q_pi (R := R) (C := D)).β.hom.app (F.obj X) ≫
@@ -162,7 +169,9 @@ theorem IsCompatible.iff {F : C ⥤ D} (hF : QPiFunctorData R F) :
   simp only [PiFunctor.comp_β, NatIso.ofComponents_hom_app, Iso.trans_hom, Iso.app_hom,
     Functor.mapIso_hom, Category.assoc]
 
-/-- Compatibility is invariant under `(Q, Π)`-natural isomorphisms.-/
+/-- Compatibility is invariant under `(Q, Π)`-natural isomorphisms.
+@isnad1 id=iscompat.2h8v.s7.3600dc8872f3 from=translated src=- shape=b88189ba vocab=64881656
+-/
 theorem IsCompatible.of_iso {F G : C ⥤ D} {hF : QPiFunctorData R F} {hG : QPiFunctorData R G}
     (x : F ≅ G) (hx : IsQPiNatural R hF hG x.hom) (hc : hG.IsCompatible R) :
     hF.IsCompatible R := by
@@ -264,9 +273,15 @@ abbrev IsQPiNatural {F G : C ⥤ D} (hF : QPiFunctor R F) (hG : QPiFunctor R G) 
     Prop :=
   QPiFunctorData.IsQPiNatural R hF.toQPiFunctorData hG.toQPiFunctorData x
 
+/--
+@isnad1 id=isqpinat.0h5v.s6.a9f31dc85387 from=translated src=- shape=0eb371a5 vocab=09d43699
+-/
 theorem isQPiNatural_id {F : C ⥤ D} (hF : QPiFunctor R F) : IsQPiNatural R hF hF (𝟙 F) :=
   ⟨PiFunctor.isPiNatural_id hF.toPiFunctor, fun X => by simp⟩
 
+/--
+@isnad1 id=isqpinat.2h11v.s7.a4c53680d6eb from=translated src=- shape=6b580f5b vocab=78a55ab8
+-/
 theorem IsQPiNatural.comp {F G H : C ⥤ D} {hF : QPiFunctor R F} {hG : QPiFunctor R G}
     {hH : QPiFunctor R H} {x : F ⟶ G} {y : G ⟶ H} (hx : IsQPiNatural R hF hG x)
     (hy : IsQPiNatural R hG hH y) : IsQPiNatural R hF hH (x ≫ y) :=
@@ -299,18 +314,33 @@ instance instPiSupercategory : PiSupercategory R (DegreeZero R A) where
       naturality := fun hf => Subtype.ext
         ((PiSupercategory.ζ_isSupernatural (R := R) (C := A)).naturality hf) }
 
+/--
+@isnad1 id=eq.0h3v.s7.d23e2ba6ee1c from=translated src=- shape=43a7bdf4 vocab=3117a53e
+-/
 @[simp] theorem pi_obj (X : DegreeZero R A) :
     (PiSupercategory.pi (R := R)).obj X = ⟨(PiSupercategory.pi (R := R)).obj X.obj⟩ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.6cffea692f59 from=translated src=- shape=886899fd vocab=23f3f56b
+-/
 @[simp] theorem pi_map_val {X Y : DegreeZero R A} (f : X ⟶ Y) :
     ((PiSupercategory.pi (R := R)).map f).1 = (PiSupercategory.pi (R := R)).map f.1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.d25d505b6864 from=translated src=- shape=fcdbb226 vocab=0abb3842
+-/
 @[simp] theorem ζ_hom_val (X : DegreeZero R A) :
     (PiSupercategory.ζ (R := R) X).hom.1 = (PiSupercategory.ζ (R := R) X.obj).hom := rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.c0ad6358d373 from=translated src=- shape=efd46e1d vocab=e5122f2a
+-/
 @[simp] theorem ζ_inv_val (X : DegreeZero R A) :
     (PiSupercategory.ζ (R := R) X).inv.1 = (PiSupercategory.ζ (R := R) X.obj).inv := rfl
 
+/--
+@isnad1 id=eq.0h3v.s11.873e3a17bc02 from=translated src=- shape=c4feb16b vocab=8d92e6b5
+-/
 theorem ξ_hom_val (X : DegreeZero R A) :
     (PiSupercategory.ξ (R := R) X).hom.1 = (PiSupercategory.ξ (R := R) X.obj).hom := rfl
 
@@ -364,18 +394,33 @@ instance instQPiCategory : QPiCategory R (GUnderlying R A) where
     rw [← QPiSupercategory.ii_Qinv, Iso.inv_hom_id]
   Q_pi := Underlying.piFunctor (R := R) (DegreeZero.map (R := R) (QPiSupercategory.Q (R := R)))
 
+/--
+@isnad1 id=eq.0h3v.s8.66b59e8417b1 from=translated src=- shape=eb067716 vocab=b687099e
+-/
 @[simp] theorem Q_obj (X : GUnderlying R A) :
     (QPiCategory.Q (R := R)).obj X = ⟨⟨(QPiSupercategory.Q (R := R)).obj X.obj.obj⟩⟩ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s14.f4a9abd81559 from=translated src=- shape=def2880c vocab=3a7d2821
+-/
 @[simp] theorem Q_map_val {X Y : GUnderlying R A} (f : X ⟶ Y) :
     ((QPiCategory.Q (R := R)).map f).1.1 = (QPiSupercategory.Q (R := R)).map f.1.1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s14.e630cfcae92c from=translated src=- shape=38abd4c9 vocab=fd05f971
+-/
 @[simp] theorem ii_hom_app_val (X : GUnderlying R A) :
     ((QPiCategory.ii (R := R)).hom.app X).1.1 = (ii (R := R) X.obj.obj).hom := rfl
 
+/--
+@isnad1 id=eq.0h3v.s14.c32870cc0588 from=translated src=- shape=38abd4c9 vocab=6385db66
+-/
 @[simp] theorem jj_hom_app_val (X : GUnderlying R A) :
     ((QPiCategory.jj (R := R)).hom.app X).1.1 = (jj (R := R) X.obj.obj).hom := rfl
 
+/--
+@isnad1 id=eq.0h3v.s15.291616320e03 from=translated src=- shape=72608059 vocab=29e66708
+-/
 @[simp] theorem β_Q_hom_app_val (X : GUnderlying R A) :
     ((QPiCategory.Q_pi (R := R) (C := GUnderlying R A)).β.hom.app X).1.1 =
       (PiSupercategory.β R (QPiSupercategory.Q (R := R) (C := A)) X.obj.obj).hom := rfl
@@ -405,10 +450,16 @@ def qpiFunctor (F : A ⥤ B) [F.Additive] [F.Linear R] [IsGradedSuperfunctor R F
     apply Underlying.hom_ext; apply DegreeZero.hom_ext
     exact QPiSupercategory.β_γ_compat F X.obj.obj
 
+/--
+@isnad1 id=eq.0h5v.s15.b84d7a54d099 from=translated src=- shape=6bf3a0fb vocab=cee79a24
+-/
 @[simp] theorem qpiFunctor_β_hom_app_val (F : A ⥤ B) [F.Additive] [F.Linear R]
     [IsGradedSuperfunctor R F] (X : GUnderlying R A) :
     ((qpiFunctor (R := R) F).β.hom.app X).1.1 = (PiSupercategory.β R F X.obj.obj).hom := rfl
 
+/--
+@isnad1 id=eq.0h5v.s14.9d76ab321191 from=translated src=- shape=ff1cbb49 vocab=0e1d079d
+-/
 @[simp] theorem qpiFunctor_γ_hom_app_val (F : A ⥤ B) [F.Additive] [F.Linear R]
     [IsGradedSuperfunctor R F] (X : GUnderlying R A) :
     ((qpiFunctor (R := R) F).γ.hom.app X).1.1 = (γ R F X.obj.obj).hom := rfl
@@ -423,13 +474,18 @@ def natTrans {F G : A ⥤ B} [F.Additive] [F.Linear R] [IsGradedSuperfunctor R F
     (hx.toIsSupernatural.naturality_zero f.1.1))
 
 omit [QPiSupercategory R A] [QPiSupercategory R B] in
+/--
+@isnad1 id=eq.1h7v.s13.6c621a78eff2 from=translated src=- shape=1258fe53 vocab=f374bb4d
+-/
 @[simp] theorem natTrans_app_val {F G : A ⥤ B} [F.Additive] [F.Linear R]
     [IsGradedSuperfunctor R F] [G.Additive] [G.Linear R] [IsGradedSuperfunctor R G]
     {x : ∀ X, F.obj X ⟶ G.obj X} (hx : IsGradedSupernatural R 0 0 x) (X : GUnderlying R A) :
     ((natTrans (R := R) hx).app X).1.1 = x X.obj.obj := rfl
 
 /-- **(6.3), `𝔼` on 2-morphisms** (Brundan–Ellis, Corollary 6.7(iii)): the natural
-transformation is `(Q, Π)`-natural.-/
+transformation is `(Q, Π)`-natural.
+@isnad1 id=isqpinat.1h6v.s9.fe12a0c7863e from=translated src=- shape=c6eeb0cf vocab=3928b068
+-/
 theorem isQPiNatural {F G : A ⥤ B} [F.Additive] [F.Linear R] [IsGradedSuperfunctor R F]
     [G.Additive] [G.Linear R] [IsGradedSuperfunctor R G] {x : ∀ X, F.obj X ⟶ G.obj X}
     (hx : IsGradedSupernatural R 0 0 x) :
@@ -439,13 +495,17 @@ theorem isQPiNatural {F G : A ⥤ B} [F.Additive] [F.Linear R] [IsGradedSuperfun
     fun X => Underlying.hom_ext (DegreeZero.hom_ext
       (γ_naturality_supernatural F G hx.toIsSupernatural X.obj.obj).symm)⟩
 
-/-- **(6.3)**, `𝔼` preserves the `β`-isomorphisms of composites.-/
+/-- **(6.3)**, `𝔼` preserves the `β`-isomorphisms of composites.
+@isnad1 id=eq.0h7v.s13.bd9c00719b2d from=translated src=- shape=dbc5d4a2 vocab=92b4aca3
+-/
 theorem qpiFunctor_comp_β (F : A ⥤ B) [F.Additive] [F.Linear R] [IsGradedSuperfunctor R F]
     (G : B ⥤ B') [G.Additive] [G.Linear R] [IsGradedSuperfunctor R G] (X : GUnderlying R A) :
     (qpiFunctor (R := R) (F ⋙ G)).β.hom.app X = ((qpiFunctor (R := R) F).comp (qpiFunctor (R := R) G)).β.hom.app X :=
   Underlying.hom_ext (DegreeZero.hom_ext (PiSupercategory.β_comp F G X.obj.obj))
 
-/-- **(6.3)**, `𝔼` preserves the `γ`-isomorphisms of composites.-/
+/-- **(6.3)**, `𝔼` preserves the `γ`-isomorphisms of composites.
+@isnad1 id=eq.0h7v.s12.43b0dc7e8cd2 from=translated src=- shape=8f3f1a0f vocab=cec52fd5
+-/
 theorem qpiFunctor_comp_γ (F : A ⥤ B) [F.Additive] [F.Linear R] [IsGradedSuperfunctor R F]
     (G : B ⥤ B') [G.Additive] [G.Linear R] [IsGradedSuperfunctor R G] (X : GUnderlying R A) :
     (qpiFunctor (R := R) (F ⋙ G)).γ.hom.app X = ((qpiFunctor (R := R) F).comp (qpiFunctor (R := R) G)).γ.hom.app X :=

@@ -48,9 +48,15 @@ variable {A : Type*} [CommRing A]
 /-- The integer powers of a unit, as elements of the ring.-/
 abbrev xz (x : Aˣ) (k : ℤ) : A := ((x ^ k : Aˣ) : A)
 
+/--
+@isnad1 id=eq.0h4v.s5.a2ca7cd8f965 from=translated src=- shape=9fd62c95 vocab=021ba4f6
+-/
 theorem xz_mul_xz (x : Aˣ) (a b : ℤ) : xz x a * xz x b = xz x (a + b) := by
   rw [xz, xz, xz, ← Units.val_mul, ← zpow_add]
 
+/--
+@isnad1 id=eq.1h4v.s5.1eae45540c94 from=translated src=- shape=9bb8cc03 vocab=a9dbddaa
+-/
 theorem xz_congr (x : Aˣ) {a b : ℤ} (h : a = b) : xz x a = xz x b := by rw [h]
 
 /-- The `π`-deformed quantum integer `[n]_{x,π} = Σ_{r < n} π^r x^{n-1-2r}`; for `n + 1` this is
@@ -60,22 +66,35 @@ def qbracket (x : Aˣ) (π : A) (n : ℕ) : A :=
 
 variable (x : Aˣ) (π : A)
 
+/--
+@isnad1 id=eq.0h3v.s5.b49853da8199 from=translated src=- shape=702ead98 vocab=6c2578f4
+-/
 @[simp] theorem qbracket_zero : qbracket x π 0 = 0 := by simp [qbracket]
 
+/--
+@isnad1 id=eq.0h3v.s5.9a0c1db0a5b8 from=translated src=- shape=702ead98 vocab=6c2578f4
+-/
 @[simp] theorem qbracket_one : qbracket x π 1 = 1 := by simp [qbracket]
 
+/--
+@isnad1 id=eq.0h3v.s6.a7b2f84df7a8 from=translated src=- shape=d54bb3ca vocab=fd96473d
+-/
 theorem qbracket_two : qbracket x π 2 = xz x 1 + π * xz x (-1) := by
   simp only [qbracket, sum_range_succ, range_zero, sum_empty, pow_zero, one_mul, zero_add,
     pow_one, Nat.cast_ofNat, Nat.cast_zero, Nat.cast_one]
   congr 2
 
-/-- (1.10): `[n + 1]_{x,π} = x^n + π x^{n-2} + ⋯ + π^n x^{-n}`.-/
+/-- (1.10): `[n + 1]_{x,π} = x^n + π x^{n-2} + ⋯ + π^n x^{-n}`.
+@isnad1 id=eq.0h4v.s7.d64e5dc1ce5d from=translated src=- shape=3b6ece94 vocab=1b8d1f8b
+-/
 theorem qbracket_succ_eq (n : ℕ) :
     qbracket x π (n + 1) = ∑ r ∈ range (n + 1), π ^ r * xz x ((n : ℤ) - 2 * r) := by
   refine sum_congr rfl fun r _ => ?_
   congr 2; push_cast; ring
 
-/-- The recurrence `[n + 1][2] = [n + 2] + π [n]`: the case `m = 1` of (1.11).-/
+/-- The recurrence `[n + 1][2] = [n + 2] + π [n]`: the case `m = 1` of (1.11).
+@isnad1 id=eq.0h4v.s6.368e8ff5d532 from=translated src=- shape=f996f32c vocab=18f55765
+-/
 theorem qbracket_succ_mul_two (n : ℕ) :
     qbracket x π (n + 1) * qbracket x π 2 = qbracket x π (n + 2) + π * qbracket x π n := by
   have ha : ∑ r ∈ range (n + 1), π ^ r * xz x (((n + 1 : ℕ) : ℤ) - 1 - 2 * r) * xz x 1 =
@@ -99,7 +118,9 @@ theorem qbracket_succ_mul_two (n : ℕ) :
   rw [hb, qbracket, qbracket, sum_range_succ (n := n + 1)]
   ring
 
-/-- (1.11): `[n + 1][m + 1] = Σ_{r=0}^{m} π^r [n + m - 2r + 1]` for `m ≤ n`.-/
+/-- (1.11): `[n + 1][m + 1] = Σ_{r=0}^{m} π^r [n + m - 2r + 1]` for `m ≤ n`.
+@isnad1 id=eq.1h5v.s7.5a5edcd1d887 from=translated src=- shape=9f19edaa vocab=e1d6c43f
+-/
 theorem qbracket_mul_of_le (m n : ℕ) (h : m ≤ n) :
     qbracket x π (n + 1) * qbracket x π (m + 1) =
       ∑ r ∈ range (m + 1), π ^ r * qbracket x π (n + m - 2 * r + 1) := by
@@ -147,7 +168,9 @@ theorem qbracket_mul_of_le (m n : ℕ) (h : m ≤ n) :
       ring_nf
 
 /-- **(1.11)** (Clebsch–Gordan for `U_q(osp(1|2))`):
-`[n + 1][m + 1] = Σ_{r=0}^{min(m,n)} π^r [n + m - 2r + 1]`.-/
+`[n + 1][m + 1] = Σ_{r=0}^{min(m,n)} π^r [n + m - 2r + 1]`.
+@isnad1 id=eq.0h5v.s7.d7d9b675dfb6 from=translated src=- shape=f1872716 vocab=d4ef96c3
+-/
 theorem qbracket_mul (m n : ℕ) :
     qbracket x π (n + 1) * qbracket x π (m + 1) =
       ∑ r ∈ range (min m n + 1), π ^ r * qbracket x π (n + m - 2 * r + 1) := by
@@ -156,7 +179,9 @@ theorem qbracket_mul (m n : ℕ) :
   · rw [min_eq_right h, mul_comm, qbracket_mul_of_le x π n m h, add_comm n m]
 
 /-- **(1.12)**, corrected: `(Σ_{n ≥ 0} [n + 1]_{x,π} tⁿ) · (1 - [2]_{x,π} t + π t²) = 1` in
-`A⟦t⟧`.-/
+`A⟦t⟧`.
+@isnad1 id=eq.0h3v.s8.d5ff5f588642 from=translated src=- shape=ac89ee84 vocab=047f183b
+-/
 theorem qbracket_genFun_mul :
     PowerSeries.mk (fun n => qbracket x π (n + 1)) *
       (1 - PowerSeries.C (qbracket x π 2) * PowerSeries.X +
@@ -179,7 +204,9 @@ theorem qbracket_genFun_mul :
     have := qbracket_succ_mul_two x π (k + 1)
     linear_combination -this
 
-/-- (1.12), in the form with `[n]`: `(Σ_{n ≥ 0} [n]_{x,π} tⁿ) · (1 - [2]_{x,π} t + π t²) = t`.-/
+/-- (1.12), in the form with `[n]`: `(Σ_{n ≥ 0} [n]_{x,π} tⁿ) · (1 - [2]_{x,π} t + π t²) = t`.
+@isnad1 id=eq.0h3v.s8.69f6b996e862 from=translated src=- shape=50d11a4c vocab=047f183b
+-/
 theorem qbracket_genFun_mul' :
     PowerSeries.mk (fun n => qbracket x π n) *
       (1 - PowerSeries.C (qbracket x π 2) * PowerSeries.X +
@@ -192,7 +219,9 @@ theorem qbracket_genFun_mul' :
     | succ k => rw [mul_comm, PowerSeries.coeff_succ_mul_X]; simp
   rw [this, mul_assoc, qbracket_genFun_mul, mul_one]
 
-/-- The closed form: `(x - π x⁻¹) [n]_{x,π} = xⁿ - πⁿ x⁻ⁿ`.-/
+/-- The closed form: `(x - π x⁻¹) [n]_{x,π} = xⁿ - πⁿ x⁻ⁿ`.
+@isnad1 id=eq.0h4v.s7.bac660513aeb from=translated src=- shape=4983aa06 vocab=518410a7
+-/
 theorem qbracket_mul_eq (n : ℕ) :
     (xz x 1 - π * xz x (-1)) * qbracket x π n = xz x n - π ^ n * xz x (-(n : ℤ)) := by
   have := sum_range_sub (fun r => -(π ^ r * xz x ((n : ℤ) - 2 * r))) n
@@ -214,24 +243,32 @@ theorem qbracket_mul_eq (n : ℕ) :
 (`qint_mul_eq`).-/
 abbrev qint (q : Aˣ) (n : ℕ) : A := qbracket q (-1) n
 
-/-- `(q - ε q⁻¹) [n] = qⁿ - (εq)⁻ⁿ` with `ε = -1`.-/
+/-- `(q - ε q⁻¹) [n] = qⁿ - (εq)⁻ⁿ` with `ε = -1`.
+@isnad1 id=eq.0h3v.s7.1436c9c981ec from=translated src=- shape=bc0ef6a8 vocab=d2c914d5
+-/
 theorem qint_mul_eq (q : Aˣ) (n : ℕ) :
     ((q : A) + ((q⁻¹ : Aˣ) : A)) * qint q n = xz q n - (-1) ^ n * xz q (-(n : ℤ)) := by
   have := qbracket_mul_eq q (-1) n
   simp only [xz, zpow_one, zpow_neg, zpow_one, neg_one_mul, sub_neg_eq_add] at this ⊢
   exact this
 
-/-- `[2] = q - q⁻¹`, so that `δ = -[2] = -(q + ε q⁻¹)`.-/
+/-- `[2] = q - q⁻¹`, so that `δ = -[2] = -(q + ε q⁻¹)`.
+@isnad1 id=eq.0h2v.s6.75f15780fda9 from=translated src=- shape=befd432a vocab=2bdf87e2
+-/
 theorem qint_two (q : Aˣ) : qint q 2 = (q : A) - ((q⁻¹ : Aˣ) : A) := by
   rw [qint, qbracket_two]; simp [xz]; ring
 
 /-- The recurrence `[n][2] = [n + 1] + ε [n - 1]` (`ε = -1`) for `n ≥ 1`, used in the proof of
-Theorem A.3.-/
+Theorem A.3.
+@isnad1 id=eq.0h3v.s6.c51410504bce from=translated src=- shape=d678ec2e vocab=35f50b73
+-/
 theorem qint_mul_two (q : Aˣ) (n : ℕ) :
     qint q (n + 1) * qint q 2 = qint q (n + 2) - qint q n := by
   rw [qint, qbracket_succ_mul_two]; ring
 
-/-- If `q` is not a root of unity, then `[n] ≠ 0` for every `n ≥ 1`.-/
+/-- If `q` is not a root of unity, then `[n] ≠ 0` for every `n ≥ 1`.
+@isnad1 id=ne.2h3v.s7.98b1a83ad432 from=translated src=- shape=69665a75 vocab=1ead4866
+-/
 theorem qint_ne_zero {q : Aˣ} (hq : ∀ n : ℕ, 0 < n → q ^ n ≠ 1) {n : ℕ} (hn : 0 < n) :
     qint q n ≠ 0 := by
   intro h

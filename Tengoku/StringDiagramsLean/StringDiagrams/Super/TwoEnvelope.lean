@@ -105,35 +105,71 @@ open Envelope
 
 variable {a b c d : TwoEnvelope R B}
 
+/--
+@isnad1 id=eq.0h7v.s8.1aa1753752ae from=translated src=- shape=377b9cfd vocab=3f94f052
+-/
 @[simp] theorem comp_par (f : a ⟶ b) (g : b ⟶ c) : (f ≫ g).par = f.par + g.par := rfl
 
+/--
+@isnad1 id=eq.0h7v.s7.f115ee4f2342 from=translated src=- shape=f13667c8 vocab=62d6e63b
+-/
 @[simp] theorem comp_obj (f : a ⟶ b) (g : b ⟶ c) : (f ≫ g).obj = f.obj ≫ g.obj := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.bb0b1d9cf6b2 from=translated src=- shape=935c8d78 vocab=4149b288
+-/
 @[simp] theorem id_par (a : TwoEnvelope R B) : (𝟙 a : a ⟶ a).par = 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.284436739642 from=translated src=- shape=d2477159 vocab=a210a8e1
+-/
 @[simp] theorem id_obj (a : TwoEnvelope R B) : (𝟙 a : a ⟶ a).obj = 𝟙 a.as := rfl
 
+/--
+@isnad1 id=eq.0h9v.s11.e1cd2f9c2f11 from=translated src=- shape=39a5a777 vocab=cc34796f
+-/
 theorem toHom_whiskerLeft (f : a ⟶ b) {g h : b ⟶ c} (η : g ⟶ h) :
     toHom (f ◁ η) = f.obj ◁ twist R f.par (toHom η) := rfl
 
+/--
+@isnad1 id=eq.0h9v.s11.f0ee5db4f174 from=translated src=- shape=43b65de0 vocab=2eb4a463
+-/
 theorem toHom_whiskerRight {f g : a ⟶ b} (η : f ⟶ g) (h : b ⟶ c) :
     toHom (η ▷ h) = toHom (twist R h.par η) ▷ h.obj := rfl
 
+/--
+@isnad1 id=eq.0h9v.s9.e68b83830d58 from=translated src=- shape=0d309cc4 vocab=cc2f243b
+-/
 @[simp] theorem toHom_associator_hom (f : a ⟶ b) (g : b ⟶ c) (h : c ⟶ d) :
     toHom (associator f g h).hom = (associator f.obj g.obj h.obj).hom := rfl
 
+/--
+@isnad1 id=eq.0h9v.s9.5c8dbb7a1f6a from=translated src=- shape=b489560a vocab=72c73909
+-/
 @[simp] theorem toHom_associator_inv (f : a ⟶ b) (g : b ⟶ c) (h : c ⟶ d) :
     toHom (associator f g h).inv = (associator f.obj g.obj h.obj).inv := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.c73888dd372b from=translated src=- shape=6e198c85 vocab=e9f928b3
+-/
 @[simp] theorem toHom_leftUnitor_hom (f : a ⟶ b) :
     toHom (leftUnitor f).hom = (leftUnitor f.obj).hom := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.c55aae724f76 from=translated src=- shape=b6e12cbe vocab=eb96fea1
+-/
 @[simp] theorem toHom_leftUnitor_inv (f : a ⟶ b) :
     toHom (leftUnitor f).inv = (leftUnitor f.obj).inv := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.27e559613e8b from=translated src=- shape=8da12cc0 vocab=b616b89a
+-/
 @[simp] theorem toHom_rightUnitor_hom (f : a ⟶ b) :
     toHom (rightUnitor f).hom = (rightUnitor f.obj).hom := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.0d2a3283460f from=translated src=- shape=405d3edd vocab=660da6b4
+-/
 @[simp] theorem toHom_rightUnitor_inv (f : a ⟶ b) :
     toHom (rightUnitor f).inv = (rightUnitor f.obj).inv := rfl
 
@@ -150,13 +186,17 @@ open Envelope TwoSupercategory
 
 variable {a b c d e : TwoEnvelope R B}
 
-/-- `Πᵃ F ◁ y = (-1)^{a|y|} (F ◁ y)` for `y` of parity `r` in `B`.-/
+/-- `Πᵃ F ◁ y = (-1)^{a|y|} (F ◁ y)` for `y` of parity `r` in `B`.
+@isnad1 id=eq.1h10v.s12.59e289fb0c5b from=translated src=- shape=50a934bd vocab=761be919
+-/
 theorem toHom_whiskerLeft_of_mem (f : a ⟶ b) {g h : b ⟶ c} {η : g ⟶ h} {r : ZMod 2}
     (hη : toHom η ∈ parity (R := R) g.obj h.obj r) :
     toHom (f ◁ η) = sign R (f.par * r) • (f.obj ◁ toHom η) := by
   rw [toHom_whiskerLeft, twist_of_mem _ hη, TwoSupercategory.whiskerLeft_smul]
 
-/-- `x ▷ Πᵇ G = (-1)^{b(|x| + a + c)} (x ▷ G)` for `x : Πᵃ F ⇒ Πᶜ H` of parity `r` in `B`.-/
+/-- `x ▷ Πᵇ G = (-1)^{b(|x| + a + c)} (x ▷ G)` for `x : Πᵃ F ⇒ Πᶜ H` of parity `r` in `B`.
+@isnad1 id=eq.1h10v.s12.de3594ee319d from=translated src=- shape=d00802a3 vocab=0d39af4a
+-/
 theorem toHom_whiskerRight_of_mem {f g : a ⟶ b} {η : f ⟶ g} {r : ZMod 2}
     (hη : toHom η ∈ parity (R := R) f.obj g.obj r) (h : b ⟶ c) :
     toHom (η ▷ h) = sign R (h.par * (r + (f.par + g.par))) • (toHom η ▷ h.obj) := by
@@ -165,12 +205,18 @@ theorem toHom_whiskerRight_of_mem {f g : a ⟶ b} {η : f ⟶ g} {r : ZMod 2}
   congr 2
   ring
 
+/--
+@isnad1 id=mem.1h10v.s12.95ecdd22c503 from=translated src=- shape=682aee0a vocab=75fb7aa5
+-/
 theorem toHom_whiskerLeft_mem (f : a ⟶ b) {g h : b ⟶ c} {η : g ⟶ h} {r : ZMod 2}
     (hη : toHom η ∈ parity (R := R) g.obj h.obj r) :
     toHom (f ◁ η) ∈ parity (R := R) (f.obj ≫ g.obj) (f.obj ≫ h.obj) r := by
   rw [toHom_whiskerLeft_of_mem f hη]
   exact Submodule.smul_mem _ _ (TwoSupercategory.whiskerLeft_mem _ hη)
 
+/--
+@isnad1 id=mem.1h10v.s12.f5e9c0681d91 from=translated src=- shape=c323aa12 vocab=a833e4df
+-/
 theorem toHom_whiskerRight_mem {f g : a ⟶ b} {η : f ⟶ g} {r : ZMod 2}
     (hη : toHom η ∈ parity (R := R) f.obj g.obj r) (h : b ⟶ c) :
     toHom (η ▷ h) ∈ parity (R := R) (f.obj ≫ h.obj) (g.obj ≫ h.obj) r := by
@@ -178,42 +224,66 @@ theorem toHom_whiskerRight_mem {f g : a ⟶ b} {η : f ⟶ g} {r : ZMod 2}
   exact Submodule.smul_mem _ _ (TwoSupercategory.whiskerRight_mem _ hη)
 
 omit [TwoSupercategory R B] in
+/--
+@isnad1 id=eq.1h9v.s9.1f789cd5952b from=translated src=- shape=870ef4d1 vocab=cccad58d
+-/
 theorem toHom_whiskerLeft_of_par_zero (f : a ⟶ b) (hf : f.par = 0) {g h : b ⟶ c}
     (η : g ⟶ h) : toHom (f ◁ η) = f.obj ◁ toHom η := by
   rw [toHom_whiskerLeft, hf, twist_zero]
 
 omit [TwoSupercategory R B] in
+/--
+@isnad1 id=eq.1h9v.s9.6ff3c5a4446d from=translated src=- shape=5c29f62a vocab=cc4465d4
+-/
 theorem toHom_whiskerRight_of_par_zero {f g : a ⟶ b} (η : f ⟶ g) (h : b ⟶ c) (hh : h.par = 0) :
     toHom (η ▷ h) = toHom η ▷ h.obj := by
   rw [toHom_whiskerRight, hh, twist_zero]
 
+/--
+@isnad1 id=eq.1h9v.s10.76333629d0b0 from=translated src=- shape=e26503ef vocab=75fb7aa5
+-/
 theorem toHom_whiskerLeft_of_even (f : a ⟶ b) {g h : b ⟶ c} {η : g ⟶ h}
     (hη : toHom η ∈ parity (R := R) g.obj h.obj 0) : toHom (f ◁ η) = f.obj ◁ toHom η := by
   rw [toHom_whiskerLeft_of_mem f hη, mul_zero, sign_zero, one_smul]
 
+/--
+@isnad1 id=eq.2h9v.s11.e03fd34d15ce from=translated src=- shape=f9e68537 vocab=ee21a0fd
+-/
 theorem toHom_whiskerRight_of_even {f g : a ⟶ b} {η : f ⟶ g}
     (hη : toHom η ∈ parity (R := R) f.obj g.obj 0) (h : b ⟶ c) (hfg : f.par = g.par) :
     toHom (η ▷ h) = toHom η ▷ h.obj := by
   rw [toHom_whiskerRight_of_mem hη, hfg, zmod2_add_self, add_zero, mul_zero, sign_zero,
     one_smul]
 
+/--
+@isnad1 id=eq.0h10v.s11.b85850ab1a76 from=translated src=- shape=469b62cd vocab=a011d3c7
+-/
 theorem whiskerLeft_add' (f : a ⟶ b) {g h : b ⟶ c} (η θ : g ⟶ h) :
     f ◁ (η + θ) = f ◁ η + f ◁ θ := by
   apply hom_ext
   rw [toHom_add, toHom_whiskerLeft, toHom_whiskerLeft, toHom_whiskerLeft, toHom_add, map_add,
     TwoSupercategory.whiskerLeft_add (R := R)]
 
+/--
+@isnad1 id=eq.0h10v.s11.53a1f79902e6 from=translated src=- shape=97e81f5e vocab=52722e48
+-/
 theorem add_whiskerRight' {f g : a ⟶ b} (η θ : f ⟶ g) (h : b ⟶ c) :
     (η + θ) ▷ h = η ▷ h + θ ▷ h := by
   apply hom_ext
   rw [toHom_add, toHom_whiskerRight, toHom_whiskerRight, toHom_whiskerRight, map_add, toHom_add,
     TwoSupercategory.add_whiskerRight (R := R)]
 
+/--
+@isnad1 id=eq.0h8v.s9.f316692f315d from=translated src=- shape=dd44a9df vocab=cb247c9f
+-/
 theorem whiskerLeft_zero' (f : a ⟶ b) {g h : b ⟶ c} : f ◁ (0 : g ⟶ h) = 0 := by
   have := whiskerLeft_add' f (0 : g ⟶ h) 0
   rw [add_zero] at this
   exact (add_eq_left.1 this.symm)
 
+/--
+@isnad1 id=eq.0h8v.s9.ddab586d5113 from=translated src=- shape=037892e6 vocab=ef448ac8
+-/
 theorem zero_whiskerRight' {f g : a ⟶ b} (h : b ⟶ c) : (0 : f ⟶ g) ▷ h = 0 := by
   have := add_whiskerRight' (0 : f ⟶ g) 0 h
   rw [add_zero] at this
@@ -221,7 +291,9 @@ theorem zero_whiskerRight' {f g : a ⟶ b} (h : b ⟶ c) : (0 : f ⟶ g) ▷ h =
 
 /-- **Definition 4.4**, formula (4.4): for `x : Πᵃ F ⇒ Πᶜ H` and `y : Πᵇ G ⇒ Πᵈ K` homogeneous
 in `B`, the horizontal composite in `𝔄_π` is
-`y_b^d x_a^c = (-1)^{b|x| + |y|c + bc + ab} (yx)_{a+b}^{c+d}`.-/
+`y_b^d x_a^c = (-1)^{b|x| + |y|c + bc + ab} (yx)_{a+b}^{c+d}`.
+@isnad1 id=eq.2h13v.s13.29eec886c7d2 from=translated src=- shape=ee900828 vocab=4846ace0
+-/
 theorem toHom_hcomp {f h : a ⟶ b} {g k : b ⟶ c} {x : f ⟶ h} {y : g ⟶ k} {px py : ZMod 2}
     (hx : toHom x ∈ parity (R := R) f.obj h.obj px)
     (hy : toHom y ∈ parity (R := R) g.obj k.obj py) :
@@ -237,7 +309,9 @@ theorem toHom_hcomp {f h : a ⟶ b} {g k : b ⟶ c} {x : f ⟶ h} {y : g ⟶ k} 
 `x : Πᵃ F ⇒ Πᵈ F'`, `y : Πᵇ G ⇒ Πᵉ G'`, `z : Πᶜ H ⇒ Πᶠ H'`, the signs in
 `(z_c^f y_b^e) x_a^d = (-1)^{c|y|+|z|e+ce+bc+(b+c)|x|+(|y|+|z|)d+(b+c)d+a(b+c)} ((zy)x)` and
 `z_c^f (y_b^e x_a^d) = (-1)^{b|x|+|y|d+bd+ab+c(|x|+|y|)+|z|(d+e)+c(d+e)+(a+b)c} (z(yx))`
-agree.-/
+agree.
+@isnad1 id=eq.0h8v.s11.6698048b322f from=translated src=- shape=66c6c797 vocab=bf73672e
+-/
 theorem associator_sign_eq (a b c d e x y z : ZMod 2) :
     c * y + z * e + c * e + b * c + (b + c) * x + (y + z) * d + (b + c) * d + a * (b + c) =
       b * x + y * d + b * d + a * b + c * (x + y) + z * (d + e) + c * (d + e) + (a + b) * c := by
@@ -255,15 +329,23 @@ variable (R) in
 def ζ (a : TwoEnvelope R B) : π R a ≅ 𝟙 a := isoOfIso (Iso.refl (𝟙 a.as))
 
 omit [TwoSupercategory R B] in
+/--
+@isnad1 id=mem.0h3v.s10.1f9c39ce81f1 from=translated src=- shape=22fe8775 vocab=33dbb17a
+-/
 theorem ζ_hom_mem (a : TwoEnvelope R B) : (ζ R a).hom ∈ parity (R := R) (π R a) (𝟙 a) 1 := by
   rw [mem_parity_iff]
   show 𝟙 (𝟙 a.as) ∈ parity (R := R) (𝟙 a.as) (𝟙 a.as) (1 + (1 + 0))
   exact id_mem _
 
 omit [TwoSupercategory R B] in
+/--
+@isnad1 id=eq.0h3v.s8.1f3daac8d6b8 from=translated src=- shape=9ecd49c2 vocab=126bb59f
+-/
 @[simp] theorem toHom_ζ_hom (a : TwoEnvelope R B) : toHom (ζ R a).hom = 𝟙 (𝟙 a.as) := rfl
 
-/-- **Definition 4.4.** `ξ_λ := ζ_λ ζ_λ : π_λ π_λ ⇒ 𝟙_λ 𝟙_λ` is minus the identity.-/
+/-- **Definition 4.4.** `ξ_λ := ζ_λ ζ_λ : π_λ π_λ ⇒ 𝟙_λ 𝟙_λ` is minus the identity.
+@isnad1 id=eq.0h3v.s10.4659a71cd609 from=translated src=- shape=3df4ade6 vocab=a8358488
+-/
 theorem toHom_ξ (a : TwoEnvelope R B) :
     toHom (hcomp (ζ R a).hom (ζ R a).hom) = -𝟙 (𝟙 a.as ≫ 𝟙 a.as) := by
   rw [toHom_hcomp (x := (ζ R a).hom) (y := (ζ R a).hom) (px := 0) (py := 0) (id_mem (𝟙 a.as))
@@ -283,7 +365,9 @@ def PiComplete : Prop :=
   ∀ a : B, ∃ (p : a ⟶ a) (e : p ≅ 𝟙 a), e.hom ∈ parity (R := R) p (𝟙 a) 1
 
 /-- In a Π-complete 2-supercategory every morphism supercategory is Π-complete: `F : λ → μ` is
-the target of the odd 2-isomorphism `π_λ F ≅ 𝟙_λ F ≅ F`.-/
+the target of the odd 2-isomorphism `π_λ F ≅ 𝟙_λ F ≅ F`.
+@isnad1 id=picomple.1h4v.s7.a2fa4efdec69 from=translated src=- shape=9f90aed4 vocab=d5f1e79a
+-/
 theorem piComplete_hom (h : PiComplete R B) (x y : B) : Envelope.PiComplete R (x ⟶ y) := by
   intro f
   obtain ⟨p, e, he⟩ := h x
@@ -303,7 +387,9 @@ theorem piComplete_hom (h : PiComplete R B) (x y : B) : Envelope.PiComplete R (x
 
 /-- **Lemma 4.6.** The canonical 2-superfunctor `𝕁 : 𝔄 → 𝔄_π` (the identity on objects, so
 that it is a 2-superequivalence exactly when it induces superequivalences on all morphism
-supercategories) is a 2-superequivalence if and only if `𝔄` is Π-complete.-/
+supercategories) is a 2-superequivalence if and only if `𝔄` is Π-complete.
+@isnad1 id=iff.0h2v.s8.7f276193bda6 from=translated src=- shape=7a36559f vocab=bbf14d03
+-/
 theorem superequivalenceJ_iff :
     (∀ x y : B, Nonempty (Superequivalence R (Envelope.J R (x ⟶ y)))) ↔ PiComplete R B := by
   constructor

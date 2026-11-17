@@ -24,7 +24,9 @@ variable {ι : Type*} [AddAction ℤ ι]
   (hf : ∀ (i : ι) (n : ℤ), n +ᵥ i = i → n = 0)
 
 include hσ hc hf in
-/-- An involution commuting with a free integer action has no twisted fixed points.-/
+/-- An involution commuting with a free integer action has no twisted fixed points.
+@isnad1 id=eq.4h4v.s7.6863619a529f from=translated src=- shape=4097157d vocab=421b8ee8
+-/
 theorem parity_shift_rigid (i : ι) (n : ℤ) (h : σ i = n +ᵥ i) : n = 0 := by
   have hn : (n + n) +ᵥ i = i := by
     rw [add_vadd, ← h, ← hc, ← h, hσ]
@@ -38,14 +40,18 @@ def orbitParity : Orbit (ι := ι) → Orbit (ι := ι) :=
     exact ⟨n, (hc n j).symm.trans (congrArg σ hn)⟩)
 
 include hσ in
-/-- Parity still squares to the identity after quotienting integer shifts.-/
+/-- Parity still squares to the identity after quotienting integer shifts.
+@isnad1 id=involuti.2h2v.s6.10a21e25e5f3 from=translated src=- shape=9e440647 vocab=7f8211e4
+-/
 theorem orbitParity_involutive : Function.Involutive (orbitParity σ hc) := by
   intro o
   induction o using Quotient.inductionOn with
   | h i => change Quotient.mk _ (σ (σ i)) = Quotient.mk _ i; rw [hσ]
 
 include hσ hf in
-/-- A parity-fixed shift orbit consists of parity-fixed representatives.-/
+/-- A parity-fixed shift orbit consists of parity-fixed representatives.
+@isnad1 id=iff.3h3v.s7.c8fc44b13967 from=translated src=- shape=7115e023 vocab=8a9fd0de
+-/
 theorem orbitParity_fixed_iff (i : ι) :
     orbitParity σ hc (Quotient.mk _ i) = Quotient.mk _ i ↔ σ i = i := by
   constructor
@@ -65,7 +71,9 @@ def paritySection (o : Orbit (ι := ι)) : ι :=
   if orbitParity σ hc o < o then σ (orbitParity σ hc o).out else o.out
 
 include hσ in
-/-- The chosen representative has the prescribed integer-shift orbit.-/
+/-- The chosen representative has the prescribed integer-shift orbit.
+@isnad1 id=eq.2h3v.s6.4aa86ede2cbb from=translated src=- shape=d927f8ac vocab=f99974c0
+-/
 theorem paritySection_spec (o : Orbit (ι := ι)) :
     Quotient.mk (AddAction.orbitRel ℤ ι) (paritySection σ hc o) = o := by
   classical
@@ -76,7 +84,9 @@ theorem paritySection_spec (o : Orbit (ι := ι)) :
   · exact Quotient.out_eq o
 
 include hσ hf in
-/-- The section is equivariant for parity, including fixed orbits.-/
+/-- The section is equivariant for parity, including fixed orbits.
+@isnad1 id=eq.3h3v.s7.63302fdff5ed from=translated src=- shape=95b68670 vocab=b284181d
+-/
 theorem paritySection_parity (o : Orbit (ι := ι)) :
     paritySection σ hc (orbitParity σ hc o) = σ (paritySection σ hc o) := by
   classical
@@ -131,6 +141,9 @@ def ofSection (b : Basis ι ℤ M)
     change (T n : LaurentPolynomial ℤ) • b ((0 : ℤ) +ᵥ r o) = b (n +ᵥ r o)
     simpa only [zero_vadd] using hb n (r o))
 
+/--
+@isnad1 id=eq.3h5v.s8.1b0aa74a27a8 from=translated src=- shape=5f5642af vocab=935b2030
+-/
 @[simp] theorem ofSection_apply (b : Basis ι ℤ M)
     (hb : ∀ n i, (T n : LaurentPolynomial ℤ) • b i = b (n +ᵥ i))
     (r : Orbit (ι := ι) → ι)
@@ -149,7 +162,9 @@ def parityCompatibleBasis (b : Basis ι ℤ M)
     Basis (Orbit (ι := ι)) (LaurentPolynomial ℤ) M :=
   ofSection hf b hb (paritySection σ hc) (paritySection_spec σ hσ hc)
 
-/-- Parity permutes the normalized Laurent basis without grading factors.-/
+/-- Parity permutes the normalized Laurent basis without grading factors.
+@isnad1 id=eq.5h6v.s8.90eb1e7a40b8 from=translated src=- shape=eb6e4410 vocab=b18b1d3d
+-/
 theorem parityCompatibleBasis_parity (b : Basis ι ℤ M)
     (hb : ∀ n i, (T n : LaurentPolynomial ℤ) • b i = b (n +ᵥ i))
     (p : M → M) (hp : ∀ i, p (b i) = b (σ i)) (o : Orbit (ι := ι)) :

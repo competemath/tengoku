@@ -41,8 +41,14 @@ def bsum : List 𝒞 → 𝒞
   | [] => 0
   | X :: l => X ⊞ bsum l
 
+/--
+@isnad1 id=eq.0h1v.s5.a12b81b590d2 from=translated src=- shape=3e1b5683 vocab=4118740c
+-/
 @[simp] theorem bsum_nil : bsum ([] : List 𝒞) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.04909193d19b from=translated src=- shape=4e99fae7 vocab=afd4ade8
+-/
 @[simp] theorem bsum_cons (X : 𝒞) (l : List 𝒞) : bsum (X :: l) = (X ⊞ bsum l) := rfl
 
 /-- `bsum (l₁ ++ l₂) ≅ bsum l₁ ⊞ bsum l₂`.-/
@@ -70,13 +76,18 @@ def fromBsum {A : 𝒞} : (l : List (Piece A)) → (bsum (l.map Piece.obj) ⟶ A
   | p :: l => biprod.desc p.b (fromBsum l)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s7.b54f34fa1473 from=translated src=- shape=e51e1fbb vocab=8b098e26
+-/
 theorem toBsum_comp_fromBsum {A : 𝒞} (l : List (Piece A)) :
     toBsum l ≫ fromBsum l = (l.map fun p => p.a ≫ p.b).sum := by
   induction l with
   | nil => simp [toBsum, fromBsum]
   | cons p l ih => simp [toBsum, fromBsum, ih]
 
-/-- A resolution of the identity exhibits a retract of a sum.-/
+/-- A resolution of the identity exhibits a retract of a sum.
+@isnad1 id=eq.1h3v.s7.93eb0544b56e from=translated src=- shape=e80d639e vocab=2a9d089f
+-/
 theorem retract_bsum_of_sum_eq_id {A : 𝒞} (l : List (Piece A))
     (h : (l.map fun p => p.a ≫ p.b).sum = 𝟙 A) : toBsum l ≫ fromBsum l = 𝟙 A := by
   rw [toBsum_comp_fromBsum, h]
@@ -87,6 +98,9 @@ def Orthogonal {A : 𝒞} : List (Piece A) → Prop
   | p :: l => p.b ≫ p.a = 𝟙 _ ∧ (∀ q ∈ l, p.b ≫ q.a = 0 ∧ q.b ≫ p.a = 0) ∧ Orthogonal l
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h3v.s7.181beadc2c2d from=translated src=- shape=64d5aeab vocab=8d00c6dd
+-/
 theorem fromBsum_comp_toBsum {A : 𝒞} (l : List (Piece A)) (h : Orthogonal l) :
     fromBsum l ≫ toBsum l = 𝟙 _ := by
   induction l with
@@ -133,7 +147,9 @@ def IsSchur (P : 𝒞) : Prop := ∀ f : P ⟶ P, ∃ c : k, f = c • 𝟙 P
 
 set_option backward.isDefEq.respectTransparency false in
 /-- **Splitting.** A retract of an iterated biproduct of Schur objects is isomorphic to the
-iterated biproduct of a sublist.-/
+iterated biproduct of a sublist.
+@isnad1 id=ex.2h6v.s7.4469c3a2fb01 from=translated src=- shape=20291216 vocab=e56c220a
+-/
 theorem iso_bsum_of_retract (L : List 𝒞) (hL : ∀ P ∈ L, IsSchur (k := k) P) :
     ∀ (Z : 𝒞) (σ : Z ⟶ bsum L) (τ : bsum L ⟶ Z), σ ≫ τ = 𝟙 Z →
       ∃ L' : List 𝒞, L'.Sublist L ∧ Nonempty (Z ≅ bsum L') := by

@@ -62,6 +62,9 @@ def symm {f : a ⟶ b} {g : b ⟶ a} (P : f ⊣⊢ g) : g ⊣⊢ f where
   left := P.right
   right := P.left
 
+/--
+@isnad1 id=eq.0h6v.s5.71d84128d0a1 from=translated src=- shape=8e5415bf vocab=5c81f2a9
+-/
 @[simp]
 theorem symm_symm {f : a ⟶ b} {g : b ⟶ a} (P : f ⊣⊢ g) : P.symm.symm = P := rfl
 
@@ -80,9 +83,15 @@ def comp {f₁ : a ⟶ b} {g₁ : b ⟶ a} {f₂ : b ⟶ c} {g₂ : c ⟶ b} (P 
   left := P.left.comp Q.left
   right := Q.right.comp P.right
 
+/--
+@isnad1 id=eq.0h2v.s5.abb2fb5f14ab from=translated src=- shape=d4a24d4f vocab=e286c98c
+-/
 @[simp]
 theorem symm_id (a : B) : (id a).symm = id a := rfl
 
+/--
+@isnad1 id=eq.0h10v.s7.493dd1936c2a from=translated src=- shape=3a2ad74f vocab=4aaa1be4
+-/
 @[simp]
 theorem symm_comp {f₁ : a ⟶ b} {g₁ : b ⟶ a} {f₂ : b ⟶ c} {g₂ : c ⟶ b}
     (P : f₁ ⊣⊢ g₁) (Q : f₂ ⊣⊢ g₂) : (P.comp Q).symm = Q.symm.comp P.symm := rfl
@@ -103,12 +112,18 @@ the adjunctions `g ⊣ f` and `g' ⊣ f'` is `α`.-/
 def leftMate (P : f ⊣⊢ g) (P' : f' ⊣⊢ g') : (f ⟶ f') ≃ (g' ⟶ g) :=
   (conjugateEquiv P.right P'.right).symm
 
+/--
+@isnad1 id=eq.0h10v.s10.51f7228eaf46 from=translated src=- shape=4e15a31f vocab=11eed09d
+-/
 theorem rightMate_apply (P : f ⊣⊢ g) (P' : f' ⊣⊢ g') (α : f ⟶ f') :
     rightMate P P' α =
       (ρ_ _).inv ≫ g' ◁ P.left.unit ≫ g' ◁ α ▷ g ≫ (α_ _ _ _).inv ≫
         P'.left.counit ▷ g ≫ (λ_ _).hom :=
   conjugateEquiv_apply' _ _ α
 
+/--
+@isnad1 id=eq.0h10v.s10.ddb3fce44dd1 from=translated src=- shape=9fc95c73 vocab=443d254e
+-/
 theorem leftMate_apply (P : f ⊣⊢ g) (P' : f' ⊣⊢ g') (α : f ⟶ f') :
     leftMate P P' α =
       (λ_ _).inv ≫ P.right.unit ▷ g' ≫ (α_ _ _ _).hom ≫ g ◁ α ▷ g' ≫
@@ -126,6 +141,9 @@ def doubleMate (P : f ⊣⊢ g) (P' : f' ⊣⊢ g') (α : f ⟶ f') : f ⟶ f' :
 def IsCyclic (P : f ⊣⊢ g) (P' : f' ⊣⊢ g') (α : f ⟶ f') : Prop :=
   rightMate P P' α = leftMate P P' α
 
+/--
+@isnad1 id=iff.0h10v.s7.e6abd5f18d63 from=translated src=- shape=9716aeae vocab=dc8c9bbb
+-/
 theorem isCyclic_iff_doubleMate_eq (P : f ⊣⊢ g) (P' : f' ⊣⊢ g') (α : f ⟶ f') :
     IsCyclic P P' α ↔ doubleMate P P' α = α := by
   rw [IsCyclic, doubleMate, Equiv.symm_apply_eq, eq_comm]

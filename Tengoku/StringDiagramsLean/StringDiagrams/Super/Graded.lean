@@ -102,25 +102,39 @@ def dproj (n : ℤ) {X Y : C} : (X ⟶ Y) →ₗ[R] (X ⟶ Y) :=
     (DirectSum.component R ℤ (fun m => degree (R := R) X Y m) n) ∘ₗ
       (DirectSum.decomposeLinearEquiv (degree (R := R) X Y)).toLinearMap
 
+/--
+@isnad1 id=eq.0h6v.s12.3ff21682bf58 from=translated src=- shape=7e745e6b vocab=da27c4f3
+-/
 theorem dproj_apply (n : ℤ) {X Y : C} (f : X ⟶ Y) :
     letI := degreeDecomposition R X Y
     dproj R n f = (DirectSum.decompose (degree (R := R) X Y) f n : X ⟶ Y) := rfl
 
+/--
+@isnad1 id=mem.0h6v.s8.665a42e1c726 from=translated src=- shape=50688999 vocab=d9a0d32c
+-/
 theorem dproj_mem (n : ℤ) {X Y : C} (f : X ⟶ Y) : dproj R n f ∈ degree (R := R) X Y n :=
   letI := degreeDecomposition R X Y
   (DirectSum.decompose (degree (R := R) X Y) f n).2
 
+/--
+@isnad1 id=eq.1h6v.s8.771cbfe9eebb from=translated src=- shape=1dce3dde vocab=d9a0d32c
+-/
 theorem dproj_of_mem {n : ℤ} {X Y : C} {f : X ⟶ Y} (hf : f ∈ degree (R := R) X Y n) :
     dproj R n f = f :=
   letI := degreeDecomposition R X Y
   DirectSum.decompose_of_mem_same _ hf
 
+/--
+@isnad1 id=eq.2h7v.s9.0da39ef39e6a from=translated src=- shape=3730b388 vocab=d9a0d32c
+-/
 theorem dproj_of_mem_ne {m n : ℤ} {X Y : C} {f : X ⟶ Y} (hf : f ∈ degree (R := R) X Y m)
     (h : m ≠ n) : dproj R n f = 0 :=
   letI := degreeDecomposition R X Y
   DirectSum.decompose_of_mem_ne _ hf h
 
-/-- Induction on morphisms via homogeneous ones.-/
+/-- Induction on morphisms via homogeneous ones.
+@isnad1 id=var.0h9v.s8.2489f68a08e9 from=translated src=- shape=3c467f27 vocab=eb0392a8
+-/
 @[elab_as_elim]
 theorem induction_on_degree {X Y : C} {P : (X ⟶ Y) → Prop} (f : X ⟶ Y) (zero : P 0)
     (hom : ∀ (n : ℤ) (g : X ⟶ Y), g ∈ degree (R := R) X Y n → P g)
@@ -129,7 +143,9 @@ theorem induction_on_degree {X Y : C} {P : (X ⟶ Y) → Prop} (f : X ⟶ Y) (ze
   DirectSum.Decomposition.inductionOn (degree (R := R) X Y) zero (fun g => hom _ _ g.2) add f
 
 /-- A morphism all of whose components other than the degree-`n` one vanish has degree
-`n`.-/
+`n`.
+@isnad1 id=mem.1h6v.s9.7ac0ff004356 from=translated src=- shape=b3eb0c9b vocab=d9a0d32c
+-/
 theorem mem_degree_of_dproj {n : ℤ} {X Y : C} {f : X ⟶ Y}
     (h : ∀ m, m ≠ n → dproj R m f = 0) : f ∈ degree (R := R) X Y n := by
   let := degreeDecomposition R X Y
@@ -145,7 +161,9 @@ theorem mem_degree_of_dproj {n : ℤ} {X Y : C} {f : X ⟶ Y}
   rw [Equiv.symm_apply_apply, DirectSum.decompose_symm_of] at this
   rw [this]; exact Submodule.coe_mem _
 
-/-- The parity projections preserve the degree projections.-/
+/-- The parity projections preserve the degree projections.
+@isnad1 id=eq.0h7v.s9.2ae508cca653 from=translated src=- shape=a6b50092 vocab=e797921c
+-/
 theorem proj_dproj (p : ZMod 2) (n : ℤ) {X Y : C} (f : X ⟶ Y) :
     proj R p (dproj R n f) = dproj R n (proj R p f) := by
   refine induction_on_degree (R := R) f (by simp) (fun m g hg => ?_) (fun g h hg hh => ?_)
@@ -155,16 +173,24 @@ theorem proj_dproj (p : ZMod 2) (n : ℤ) {X Y : C} (f : X ⟶ Y) :
     · rw [dproj_of_mem_ne hg h, dproj_of_mem_ne (proj_mem_degree p hg) h, map_zero]
   · rw [map_add, map_add, hg, hh, map_add, map_add]
 
+/--
+@isnad1 id=mem.1h7v.s9.fa39aef94409 from=translated src=- shape=013831d4 vocab=c2fb1bf1
+-/
 theorem twist_mem_degree (p : ZMod 2) {n : ℤ} {X Y : C} {f : X ⟶ Y}
     (hf : f ∈ degree (R := R) X Y n) : twist R p f ∈ degree (R := R) X Y n := by
   rw [twist_apply]
   exact Submodule.add_mem _ (proj_mem_degree 0 hf)
     (Submodule.smul_mem _ _ (proj_mem_degree 1 hf))
 
+/--
+@isnad1 id=mem.0h5v.s7.78049dc57abb from=translated src=- shape=c0c91d10 vocab=3dab98bc
+-/
 theorem zero_mem_degree {X Y : C} (n : ℤ) : (0 : X ⟶ Y) ∈ degree (R := R) X Y n :=
   Submodule.zero_mem _
 
-/-- The inverse of an isomorphism of degree `n` has degree `-n`.-/
+/-- The inverse of an isomorphism of degree `n` has degree `-n`.
+@isnad1 id=mem.1h6v.s8.1e992c68e3b7 from=translated src=- shape=bb5c9f3b vocab=fe320837
+-/
 theorem inv_mem_degree {n : ℤ} {X Y : C} (e : X ≅ Y) (he : e.hom ∈ degree (R := R) X Y n) :
     e.inv ∈ degree (R := R) Y X (-n) := by
   apply mem_degree_of_dproj
@@ -189,7 +215,9 @@ def bidegree (X Y : C) (np : ℤ × ZMod 2) : Submodule R (X ⟶ Y) :=
   degree (R := R) X Y np.1 ⊓ parity (R := R) X Y np.2
 
 /-- **Definition 6.1.** The encoding is that of `GSVec`-enrichment: each morphism module is
-the internal direct sum of the bihomogeneous parts `V_{n,p} = degree n ⊓ parity p`.-/
+the internal direct sum of the bihomogeneous parts `V_{n,p} = degree n ⊓ parity p`.
+@isnad1 id=isintern.0h4v.s7.4bade9c919ac from=translated src=- shape=fca10094 vocab=75c948f8
+-/
 theorem isInternal_bigrading (X Y : C) : DirectSum.IsInternal (bidegree (R := R) X Y) := by
   classical
   let := degreeDecomposition R X Y
@@ -239,20 +267,32 @@ class IsGradedSuperfunctor (F : C ⥤ D) [F.Additive] [F.Linear R] : Prop
   map_mem_degree : ∀ {X Y : C} {n : ℤ} {f : X ⟶ Y}, f ∈ degree (R := R) X Y n →
     F.map f ∈ degree (R := R) (F.obj X) (F.obj Y) n
 
+/--
+@isnad1 id=isgraded.0h2v.s5.2adb031fd59e from=translated src=- shape=8750e5e8 vocab=c2fc1106
+-/
 instance IsGradedSuperfunctor.id : IsGradedSuperfunctor R (𝟭 C) where
   map_mem_degree hf := hf
 
+/--
+@isnad1 id=isgraded.0h6v.s7.237d2db2d8d4 from=translated src=- shape=2da02037 vocab=bfd74721
+-/
 instance IsGradedSuperfunctor.comp (F : C ⥤ D) (G : D ⥤ E) [F.Additive] [F.Linear R]
     [G.Additive] [G.Linear R] [IsGradedSuperfunctor R F] [IsGradedSuperfunctor R G] :
     IsGradedSuperfunctor R (F ⋙ G) where
   map_mem_degree hf := IsGradedSuperfunctor.map_mem_degree (R := R) (F := G)
     (IsGradedSuperfunctor.map_mem_degree (F := F) hf)
 
+/--
+@isnad1 id=mem.1h8v.s9.a7eaefcb8ff4 from=translated src=- shape=bb2dacbc vocab=c2689770
+-/
 theorem map_mem_degree (F : C ⥤ D) [F.Additive] [F.Linear R] [IsGradedSuperfunctor R F]
     {X Y : C} {n : ℤ} {f : X ⟶ Y} (hf : f ∈ degree (R := R) X Y n) :
     F.map f ∈ degree (R := R) (F.obj X) (F.obj Y) n :=
   IsGradedSuperfunctor.map_mem_degree hf
 
+/--
+@isnad1 id=eq.0h8v.s9.d0a0f870aa02 from=translated src=- shape=88b70d0e vocab=8dd10f98
+-/
 theorem map_dproj (F : C ⥤ D) [F.Additive] [F.Linear R] [IsGradedSuperfunctor R F] (n : ℤ)
     {X Y : C} (f : X ⟶ Y) : F.map (dproj R n f) = dproj R n (F.map f) := by
   refine induction_on_degree (R := R) f (by simp) (fun m g hg => ?_) (fun g h hg hh => ?_)
@@ -261,7 +301,9 @@ theorem map_dproj (F : C ⥤ D) [F.Additive] [F.Linear R] [IsGradedSuperfunctor 
     · rw [dproj_of_mem_ne hg h, dproj_of_mem_ne (map_mem_degree F hg) h, F.map_zero]
   · rw [map_add, F.map_add, hg, hh, F.map_add, map_add]
 
-/-- Faithful graded superfunctors reflect degrees.-/
+/-- Faithful graded superfunctors reflect degrees.
+@isnad1 id=mem.1h8v.s9.6073bea141af from=translated src=- shape=966119b4 vocab=97e7200c
+-/
 theorem mem_degree_of_map_mem (F : C ⥤ D) [F.Additive] [F.Linear R] [IsGradedSuperfunctor R F]
     [F.Faithful] {X Y : C} {n : ℤ} {f : X ⟶ Y}
     (hf : F.map f ∈ degree (R := R) (F.obj X) (F.obj Y) n) : f ∈ degree (R := R) X Y n :=
@@ -284,6 +326,9 @@ structure IsGradedSupernatural (p : ZMod 2) (n : ℤ) {F G : C ⥤ D}
 variable {F G H : C ⥤ D}
 
 omit [GradedSupercategory R C] in
+/--
+@isnad1 id=isgraded.0h4v.s7.b778e759fb19 from=translated src=- shape=a79982c8 vocab=1dfa713c
+-/
 theorem isGradedSupernatural_id [F.Linear R] :
     IsGradedSupernatural R 0 0 fun X => 𝟙 (F.obj X) :=
   ⟨isSupernatural_id, fun _ => id_mem_degree _⟩
@@ -344,6 +389,9 @@ def GradedEvenlyDense (F : C ⥤ D) : Prop :=
   ∀ Y : D, ∃ (X : C) (e : F.obj X ≅ Y),
     e.hom ∈ parity (R := R) (F.obj X) Y 0 ∧ e.hom ∈ degree (R := R) (F.obj X) Y 0
 
+/--
+@isnad1 id=gradedev.0h5v.s6.706faf6f4474 from=translated src=- shape=bb8bfe14 vocab=87ed4914
+-/
 theorem GradedSuperequivalence.gradedEvenlyDense {F : C ⥤ D} (e : GradedSuperequivalence R F) :
     GradedEvenlyDense R F := fun Y =>
   ⟨e.inverse.obj Y, e.counitIso.app Y, e.counitIso_mem Y, e.counitIso_mem_degree Y⟩
@@ -361,12 +409,18 @@ def GradedEvenlyDense.iso (Y : D) : F.obj (hF.obj F Y) ≅ Y := (hF Y).choose_sp
 
 omit [Preadditive C] [Linear R C] [Supercategory R C] [GradedSupercategory R C] [F.Additive]
   [F.Linear R] [IsGradedSuperfunctor R F] [F.Full] [F.Faithful] in
+/--
+@isnad1 id=mem.1h5v.s9.70e2b1761578 from=translated src=- shape=28d71f16 vocab=0c8537fd
+-/
 theorem GradedEvenlyDense.iso_mem (Y : D) :
     (hF.iso F Y).hom ∈ parity (R := R) (F.obj (hF.obj F Y)) Y 0 :=
   (hF Y).choose_spec.choose_spec.1
 
 omit [Preadditive C] [Linear R C] [Supercategory R C] [GradedSupercategory R C] [F.Additive]
   [F.Linear R] [IsGradedSuperfunctor R F] [F.Full] [F.Faithful] in
+/--
+@isnad1 id=mem.1h5v.s9.45b73a769b24 from=translated src=- shape=c37025e6 vocab=21b67304
+-/
 theorem GradedEvenlyDense.iso_mem_degree (Y : D) :
     (hF.iso F Y).hom ∈ degree (R := R) (F.obj (hF.obj F Y)) Y 0 :=
   (hF Y).choose_spec.choose_spec.2
@@ -380,14 +434,23 @@ def GradedEvenlyDense.inverse : D ⥤ C where
   map_comp f g := F.map_injective (by simp)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=additive.1h4v.s6.80140015568f from=translated src=- shape=85ed0d7c vocab=f7601cd8
+-/
 instance GradedEvenlyDense.inverse_additive : (hF.inverse F).Additive where
   map_add := F.map_injective (by simp)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=linear.1h4v.s7.d46b038c798c from=translated src=- shape=70e13f1f vocab=d3ba3a4f
+-/
 instance GradedEvenlyDense.inverse_linear : (hF.inverse F).Linear R where
   map_smul _ _ := F.map_injective (by simp [F.map_smul])
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=isgraded.1h4v.s7.f6882a79ecbf from=translated src=- shape=8197b9e8 vocab=be6111aa
+-/
 instance GradedEvenlyDense.inverse_isGraded : IsGradedSuperfunctor R (hF.inverse F) where
   map_mem {Y Y' p g} hg := by
     apply mem_of_map_mem F
@@ -447,11 +510,20 @@ instance : Category (DegreeZero R C) where
   comp_id f := Subtype.ext (Category.comp_id f.1)
   assoc f g h := Subtype.ext (Category.assoc f.1 g.1 h.1)
 
+/--
+@isnad1 id=eq.1h6v.s9.2bcaaf3f3ce8 from=translated src=- shape=89e68acd vocab=f3db6519
+-/
 @[ext] theorem hom_ext {X Y : DegreeZero R C} {f g : X ⟶ Y} (h : f.1 = g.1) : f = g :=
   Subtype.ext h
 
+/--
+@isnad1 id=eq.0h3v.s8.94a654e625ed from=translated src=- shape=391bd36c vocab=a823beb3
+-/
 @[simp] theorem id_val (X : DegreeZero R C) : (𝟙 X : X ⟶ X).1 = 𝟙 X.obj := rfl
 
+/--
+@isnad1 id=eq.0h7v.s10.15fccb69b081 from=translated src=- shape=b4e05003 vocab=c871f0a5
+-/
 @[simp] theorem comp_val {X Y Z : DegreeZero R C} (f : X ⟶ Y) (g : Y ⟶ Z) :
     (f ≫ g).1 = f.1 ≫ g.1 := rfl
 
@@ -465,14 +537,29 @@ instance : Linear R (DegreeZero R C) where
   smul_comp _ _ _ r f g := Subtype.ext (Linear.smul_comp _ _ _ r f.1 g.1)
   comp_smul _ _ _ f r g := Subtype.ext (Linear.comp_smul _ _ _ f.1 r g.1)
 
+/--
+@isnad1 id=eq.0h6v.s10.5f748d635350 from=translated src=- shape=380e9637 vocab=cddfd113
+-/
 @[simp] theorem add_val {X Y : DegreeZero R C} (f g : X ⟶ Y) : (f + g).1 = f.1 + g.1 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.3de7cba2d91c from=translated src=- shape=76949877 vocab=67b3c174
+-/
 @[simp] theorem neg_val {X Y : DegreeZero R C} (f : X ⟶ Y) : (-f).1 = -f.1 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.b1beb7260ac1 from=translated src=- shape=26afd2b5 vocab=f3db6519
+-/
 @[simp] theorem zero_val {X Y : DegreeZero R C} : (0 : X ⟶ Y).1 = 0 := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.bc56e789a158 from=translated src=- shape=380e9637 vocab=391a8d06
+-/
 @[simp] theorem sub_val {X Y : DegreeZero R C} (f g : X ⟶ Y) : (f - g).1 = f.1 - g.1 := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.9bfcacd1c123 from=translated src=- shape=b7311345 vocab=1f5bae73
+-/
 @[simp] theorem smul_val {X Y : DegreeZero R C} (r : R) (f : X ⟶ Y) : (r • f).1 = r • f.1 :=
   rfl
 
@@ -480,6 +567,9 @@ instance : Linear R (DegreeZero R C) where
 def parityZ (X Y : DegreeZero R C) (p : ZMod 2) : Submodule R (X ⟶ Y) :=
   (parity (R := R) X.obj Y.obj p).comap (degree (R := R) X.obj Y.obj 0).subtype
 
+/--
+@isnad1 id=iff.0h6v.s10.1ba5b7064e03 from=translated src=- shape=fc492ac2 vocab=84ea4bca
+-/
 theorem mem_parityZ {X Y : DegreeZero R C} {p : ZMod 2} {f : X ⟶ Y} :
     f ∈ parityZ X Y p ↔ f.1 ∈ parity (R := R) X.obj Y.obj p := Iff.rfl
 

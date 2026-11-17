@@ -35,6 +35,9 @@ def Functor.mapEndAlgHom (F : C ⥤ D) [F.Additive] [F.Linear R] (X : C) :
     End X →ₐ[R] End (F.obj X) :=
   AlgHom.ofLinearMap (F.mapLinearMap R) (F.map_id X) fun f g => F.map_comp g f
 
+/--
+@isnad1 id=eq.0h6v.s8.4ee2b3da9137 from=translated src=- shape=304bf5a2 vocab=4b53973e
+-/
 @[simp] theorem Functor.mapEndAlgHom_apply (F : C ⥤ D) [F.Additive] [F.Linear R] {X : C}
     (f : End X) : F.mapEndAlgHom R X f = F.map f := rfl
 
@@ -52,9 +55,15 @@ def Iso.conjAlgEquiv {X Y : C} (e : X ≅ Y) : End X ≃ₐ[R] End Y :=
         rw [Linear.smul_comp, Linear.comp_smul] }
     (e.conj.map_one) (fun f g => e.conj.map_mul f g)
 
+/--
+@isnad1 id=eq.0h6v.s7.51622891f4e2 from=translated src=- shape=84500c6a vocab=22b6c693
+-/
 @[simp] theorem Iso.conjAlgEquiv_apply {X Y : C} (e : X ≅ Y) (f : End X) :
     Iso.conjAlgEquiv R e f = e.inv ≫ f ≫ e.hom := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.154b1816cdfb from=translated src=- shape=d42ae5a2 vocab=e8ca3cde
+-/
 @[simp] theorem Iso.conjAlgEquiv_symm_apply {X Y : C} (e : X ≅ Y) (f : End Y) :
     (Iso.conjAlgEquiv R e).symm f = e.hom ≫ f ≫ e.inv := rfl
 
@@ -68,9 +77,15 @@ variable {R : Type w} [CommRing R]
 def endAlgEquiv (M : ModuleCat.{v} R) : CategoryTheory.End M ≃ₐ[R] Module.End R M :=
   AlgEquiv.ofRingEquiv (f := endRingEquiv M) fun _ => rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.db8e44aaf9d4 from=translated src=- shape=0ace88bd vocab=9ec12a76
+-/
 @[simp] theorem endAlgEquiv_apply (M : ModuleCat.{v} R) (f : CategoryTheory.End M) :
     endAlgEquiv M f = f.hom := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.ad145a4922d6 from=translated src=- shape=507aee79 vocab=5376c6a4
+-/
 @[simp] theorem endAlgEquiv_symm_apply (M : ModuleCat.{v} R) (f : Module.End R M) :
     (endAlgEquiv M).symm f = ofHom f := rfl
 
@@ -87,6 +102,9 @@ def Functor.mapModuleHom (F : C ⥤ ModuleCat.{v} R) [F.Additive] [F.Linear R] (
     (X ⟶ Y) →ₗ[R] (F.obj X →ₗ[R] F.obj Y) :=
   ModuleCat.homLinearEquiv.toLinearMap ∘ₗ F.mapLinearMap R
 
+/--
+@isnad1 id=eq.0h6v.s10.4c88052c050f from=translated src=- shape=732913c8 vocab=51887dbc
+-/
 @[simp] theorem Functor.mapModuleHom_apply (F : C ⥤ ModuleCat.{v} R) [F.Additive] [F.Linear R]
     {X Y : C} (f : X ⟶ Y) : F.mapModuleHom R X Y f = (F.map f).hom := rfl
 
@@ -96,9 +114,15 @@ def Functor.mapModuleEnd (F : C ⥤ ModuleCat.{v} R) [F.Additive] [F.Linear R] (
     End X →ₐ[R] Module.End R (F.obj X) :=
   (ModuleCat.endAlgEquiv (F.obj X)).toAlgHom.comp (F.mapEndAlgHom R X)
 
+/--
+@isnad1 id=eq.0h5v.s9.f2af9a356b80 from=translated src=- shape=be7977a6 vocab=add47b31
+-/
 @[simp] theorem Functor.mapModuleEnd_apply (F : C ⥤ ModuleCat.{v} R) [F.Additive] [F.Linear R]
     {X : C} (f : End X) : F.mapModuleEnd R X f = (F.map f).hom := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.d914bd68fef2 from=translated src=- shape=75a3c33b vocab=98395618
+-/
 theorem Functor.mapModuleEnd_apply_apply (F : C ⥤ ModuleCat.{v} R) [F.Additive] [F.Linear R]
     {X : C} (f : End X) (x : F.obj X) : F.mapModuleEnd R X f x = (F.map f).hom x := rfl
 
@@ -110,6 +134,9 @@ def Functor.mapModuleEndOfIso (F : C ⥤ ModuleCat.{v} R) [F.Additive] [F.Linear
   ((ModuleCat.endAlgEquiv M).toAlgHom.comp (Iso.conjAlgEquiv R e).toAlgHom).comp
     (F.mapEndAlgHom R X)
 
+/--
+@isnad1 id=eq.0h7v.s9.1a5e1db45094 from=translated src=- shape=27b03b5a vocab=23e73e33
+-/
 @[simp] theorem Functor.mapModuleEndOfIso_apply (F : C ⥤ ModuleCat.{v} R) [F.Additive]
     [F.Linear R] {X : C} {M : ModuleCat.{v} R} (e : F.obj X ≅ M) (f : End X) :
     F.mapModuleEndOfIso R e f = (e.inv ≫ F.map f ≫ e.hom).hom := rfl

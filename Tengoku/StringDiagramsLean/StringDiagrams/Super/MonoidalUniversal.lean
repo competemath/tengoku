@@ -72,6 +72,9 @@ section Helpers
 
 variable (R) in
 include R in
+/--
+@isnad1 id=eq.0h6v.s7.53c0d9de4a76 from=translated src=- shape=d5e55ac3 vocab=8563a48b
+-/
 @[reassoc]
 theorem inv_hom_whiskerRight' {X Y : B} (e : X ≅ Y) (Z : B) :
     e.inv ▷ Z ≫ e.hom ▷ Z = 𝟙 (Y ⊗ Z) := by
@@ -80,6 +83,9 @@ theorem inv_hom_whiskerRight' {X Y : B} (e : X ≅ Y) (Z : B) :
 
 variable (R) in
 include R in
+/--
+@isnad1 id=eq.0h6v.s7.e4527abfbd32 from=translated src=- shape=d246776e vocab=8563a48b
+-/
 @[reassoc]
 theorem hom_inv_whiskerRight' {X Y : B} (e : X ≅ Y) (Z : B) :
     e.hom ▷ Z ≫ e.inv ▷ Z = 𝟙 (X ⊗ Z) := by
@@ -88,6 +94,9 @@ theorem hom_inv_whiskerRight' {X Y : B} (e : X ≅ Y) (Z : B) :
 
 variable (R) in
 include R in
+/--
+@isnad1 id=eq.0h6v.s7.8e58c4ac8d39 from=translated src=- shape=45c056f8 vocab=6e9cfa26
+-/
 @[reassoc]
 theorem whiskerLeft_inv_hom' (Z : B) {X Y : B} (e : X ≅ Y) :
     Z ◁ e.inv ≫ Z ◁ e.hom = 𝟙 (Z ⊗ Y) := by
@@ -96,6 +105,9 @@ theorem whiskerLeft_inv_hom' (Z : B) {X Y : B} (e : X ≅ Y) :
 
 variable (R) in
 include R in
+/--
+@isnad1 id=eq.0h6v.s7.dcb3544f9fbe from=translated src=- shape=2c31cf41 vocab=6e9cfa26
+-/
 @[reassoc]
 theorem whiskerLeft_hom_inv' (Z : B) {X Y : B} (e : X ≅ Y) :
     Z ◁ e.hom ≫ Z ◁ e.inv = 𝟙 (Z ⊗ X) := by
@@ -105,7 +117,9 @@ theorem whiskerLeft_hom_inv' (Z : B) {X Y : B} (e : X ≅ Y) :
 variable (R) in
 include R in
 /-- The interchange law without sign when the left morphism is even and the right one is
-arbitrary.-/
+arbitrary.
+@isnad1 id=eq.1h8v.s8.fe5a4a34b0c8 from=translated src=- shape=a4f12256 vocab=062264f3
+-/
 theorem interchange_even_left' {X X' Y Y' : B} {f : X ⟶ X'} (hf : f ∈ parity (R := R) X X' 0)
     (g : Y ⟶ Y') : f ▷ Y ≫ X' ◁ g = X ◁ g ≫ f ▷ Y' := by
   refine Supercategory.induction_on (R := R) g ?_ (fun q g hg => ?_) (fun g h hg hh => ?_)
@@ -118,7 +132,9 @@ theorem interchange_even_left' {X X' Y Y' : B} {f : X ⟶ X'} (hf : f ∈ parity
 variable (R) in
 include R in
 /-- The interchange law without sign when the right morphism is even and the left one is
-arbitrary.-/
+arbitrary.
+@isnad1 id=eq.1h8v.s8.fb7d4de36190 from=translated src=- shape=d0deb002 vocab=062264f3
+-/
 theorem interchange_even_right' {X X' Y Y' : B} (f : X ⟶ X') {g : Y ⟶ Y'}
     (hg : g ∈ parity (R := R) Y Y' 0) : f ▷ Y ≫ X' ◁ g = X ◁ g ≫ f ▷ Y' := by
   refine Supercategory.induction_on (R := R) f ?_ (fun q f hf => ?_) (fun f h hf hh => ?_)
@@ -130,6 +146,9 @@ theorem interchange_even_right' {X X' Y Y' : B} (f : X ⟶ X') {g : Y ⟶ Y'}
 
 variable (R) in
 include R in
+/--
+@isnad1 id=eq.0h10v.s7.eca16b703133 from=translated src=- shape=019d4c32 vocab=53864d5a
+-/
 theorem whiskerLeft_comp_comp (X : B) {Y Z W V : B} (f : Y ⟶ Z) (g : Z ⟶ W) (h : X ⊗ W ⟶ V) :
     X ◁ f ≫ X ◁ g ≫ h = X ◁ (f ≫ g) ≫ h := by
   rw [MonoidalSupercategory.whiskerLeft_comp (R := R), Category.assoc]
@@ -175,6 +194,9 @@ def extendμInv (X Y : Envelope R A) : (F̃).obj (X ⊗ Y) ⟶ (F̃).obj X ⊗ (
 
 set_option backward.isDefEq.respectTransparency false in
 omit [MonoidalSupercategory R A] in
+/--
+@isnad1 id=eq.0h7v.s9.04aa018ae866 from=translated src=- shape=42ef488d vocab=7cf52beb
+-/
 theorem extendμ_extendμInv (X Y : Envelope R A) : extendμ cF X Y ≫ extendμInv cF X Y = 𝟙 _ := by
   simp only [extendμ, extendμInv, Category.assoc, Iso.inv_hom_id_assoc, Iso.hom_inv_id_assoc,
     whiskerLeft_hom_inv'_assoc R, hom_inv_whiskerRight' R]
@@ -182,6 +204,9 @@ theorem extendμ_extendμInv (X Y : Envelope R A) : extendμ cF X Y ≫ extendμ
 
 set_option backward.isDefEq.respectTransparency false in
 omit [MonoidalSupercategory R A] in
+/--
+@isnad1 id=eq.0h7v.s8.b64ff3a0a9ff from=translated src=- shape=b1fb0267 vocab=7cf52beb
+-/
 theorem extendμInv_extendμ (X Y : Envelope R A) : extendμInv cF X Y ≫ extendμ cF X Y = 𝟙 _ := by
   simp only [extendμ, extendμInv, Category.assoc, inv_hom_whiskerRight'_assoc R,
     whiskerLeft_inv_hom'_assoc R, Iso.inv_hom_id_assoc,
@@ -196,6 +221,9 @@ def extendμIso (X Y : Envelope R A) : (F̃).obj X ⊗ (F̃).obj Y ≅ (F̃).obj
   inv_hom_id := extendμInv_extendμ cF X Y
 
 omit [MonoidalSupercategory R A] in
+/--
+@isnad1 id=mem.0h7v.s10.a4380ed5ffa9 from=translated src=- shape=5f8b7c77 vocab=2a59f9e7
+-/
 theorem extendμ_mem (X Y : Envelope R A) :
     extendμ cF X Y ∈ parity (R := R) _ _ 0 := by
   have h1 := MonoidalSupercategory.whiskerRight_mem ((F̃).obj Y)
@@ -211,6 +239,9 @@ theorem extendμ_mem (X Y : Envelope R A) :
   exact this
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h9v.s9.90a453dba1bd from=translated src=- shape=7ed9e2d9 vocab=08f7d1fd
+-/
 theorem extendμ_naturality_left {X X' : Envelope R A} (u : X ⟶ X') (Y : Envelope R A) :
     (F̃).map u ▷ (F̃).obj Y ≫ extendμ cF X' Y = extendμ cF X Y ≫ (F̃).map (u ▷ Y) := by
   refine induction_on' (R := R) u ?_ (fun r u hu => ?_) (fun u v hu hv => ?_)
@@ -230,6 +261,9 @@ theorem extendμ_naturality_left {X X' : Envelope R A} (u : X ⟶ X') (Y : Envel
       Functor.map_add, Preadditive.add_comp, Preadditive.comp_add, hu, hv]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h9v.s9.2096150c2e11 from=translated src=- shape=e81049c3 vocab=0eb9cb44
+-/
 theorem extendμ_naturality_right (X : Envelope R A) {Y Y' : Envelope R A} (v : Y ⟶ Y') :
     (F̃).obj X ◁ (F̃).map v ≫ extendμ cF X Y' = extendμ cF X Y ≫ (F̃).map (X ◁ v) := by
   refine induction_on' (R := R) v ?_ (fun r v hv => ?_) (fun u v hu hv => ?_)
@@ -255,13 +289,18 @@ theorem extendμ_naturality_right (X : Envelope R A) {Y Y' : Envelope R A} (v : 
       Functor.map_add, Preadditive.add_comp, Preadditive.comp_add, hu, hv]
 
 omit [MonoidalSupercategory R A] in
-/-- On objects `Π⁰λ`, `Π⁰μ` the coherence map `c̃` is `c`.-/
+/-- On objects `Π⁰λ`, `Π⁰μ` the coherence map `c̃` is `c`.
+@isnad1 id=eq.0h7v.s8.dd99f6769fd4 from=translated src=- shape=915aff8c vocab=608be613
+-/
 theorem extendμ_J (x y : A) : extendμ cF ((J R A).obj x) ((J R A).obj y) = (cF.μIso x y).hom := by
   show 𝟙 (F.obj x) ▷ F.obj y ≫ F.obj x ◁ 𝟙 (F.obj y) ≫ (cF.μIso x y).hom ≫ 𝟙 _ = _
   rw [MonoidalSupercategory.id_whiskerRight (R := R), MonoidalSupercategory.whiskerLeft_id (R := R),
     Category.id_comp, Category.id_comp, Category.comp_id]
 
 omit [MonoidalSupercategory R A] in
+/--
+@isnad1 id=eq.0h8v.s9.8d99cb4a9970 from=translated src=- shape=29c0af4a vocab=608be613
+-/
 theorem extendμ_J_tensor_left (x y z : A) :
     extendμ cF ((J R A).obj x ⊗ (J R A).obj y) ((J R A).obj z) = (cF.μIso (x ⊗ y) z).hom := by
   show 𝟙 (F.obj (x ⊗ y)) ▷ F.obj z ≫ F.obj (x ⊗ y) ◁ 𝟙 (F.obj z) ≫ (cF.μIso (x ⊗ y) z).hom ≫
@@ -270,6 +309,9 @@ theorem extendμ_J_tensor_left (x y z : A) :
     Category.id_comp, Category.id_comp, Category.comp_id]
 
 omit [MonoidalSupercategory R A] in
+/--
+@isnad1 id=eq.0h8v.s9.933b1542a1af from=translated src=- shape=9ed3b2ba vocab=608be613
+-/
 theorem extendμ_J_tensor_right (x y z : A) :
     extendμ cF ((J R A).obj x) ((J R A).obj y ⊗ (J R A).obj z) = (cF.μIso x (y ⊗ z)).hom := by
   show 𝟙 (F.obj x) ▷ F.obj (y ⊗ z) ≫ F.obj x ◁ 𝟙 (F.obj (y ⊗ z)) ≫ (cF.μIso x (y ⊗ z)).hom ≫
@@ -280,7 +322,9 @@ theorem extendμ_J_tensor_right (x y z : A) :
 omit [Preadditive A] [Linear R A] [Supercategory R A] [F.Additive] [F.Linear R]
   [IsSuperfunctor R F] [MonoidalCategoryStruct A] [MonoidalSupercategory R A]
   [MonoidalCategoryStruct B] [MonoidalSupercategory R B] in
-/-- On morphisms between objects `Π⁰λ`, `F̃` is `F`.-/
+/-- On morphisms between objects `Π⁰λ`, `F̃` is `F`.
+@isnad1 id=eq.0h7v.s8.98fc12977592 from=translated src=- shape=50412cee vocab=4ffb8103
+-/
 theorem extend_map_J {x y : A} (f : (J R A).obj x ⟶ (J R A).obj y) :
     (F̃).map f = F.map (toHom f) := by
   show 𝟙 _ ≫ F.map (toHom f) ≫ 𝟙 _ = _
@@ -295,6 +339,9 @@ def assocR (X Y Z : Envelope R A) : ((F̃).obj X ⊗ (F̃).obj Y) ⊗ (F̃).obj 
   (α_ ((F̃).obj X) ((F̃).obj Y) ((F̃).obj Z)).hom ≫ (F̃).obj X ◁ extendμ cF Y Z ≫
     extendμ cF X (Y ⊗ Z)
 
+/--
+@isnad1 id=eq.0h10v.s10.13b1571f8f71 from=translated src=- shape=bc5ff4ac vocab=42f278be
+-/
 theorem assocR_nat₁ {X X' : Envelope R A} (u : X ⟶ X') (Y Z : Envelope R A) :
     ((F̃).map u ▷ (F̃).obj Y) ▷ (F̃).obj Z ≫ assocR cF X' Y Z =
       assocR cF X Y Z ≫ (F̃).map (u ▷ (Y ⊗ Z)) := by
@@ -304,6 +351,9 @@ theorem assocR_nat₁ {X X' : Envelope R A} (u : X ⟶ X') (Y Z : Envelope R A) 
     extendμ_naturality_left]
   simp only [Category.assoc]
 
+/--
+@isnad1 id=eq.0h10v.s10.03cb41d4b9ce from=translated src=- shape=43eb032a vocab=a7185f83
+-/
 theorem assocR_nat₂ (X : Envelope R A) {Y Y' : Envelope R A} (v : Y ⟶ Y') (Z : Envelope R A) :
     ((F̃).obj X ◁ (F̃).map v) ▷ (F̃).obj Z ≫ assocR cF X Y' Z =
       assocR cF X Y Z ≫ (F̃).map (X ◁ (v ▷ Z)) := by
@@ -313,6 +363,9 @@ theorem assocR_nat₂ (X : Envelope R A) {Y Y' : Envelope R A} (v : Y ⟶ Y') (Z
     extendμ_naturality_right]
   simp only [Category.assoc]
 
+/--
+@isnad1 id=eq.0h10v.s10.7a6460a22dd1 from=translated src=- shape=2bdf059f vocab=c205873e
+-/
 theorem assocR_nat₃ (X Y : Envelope R A) {Z Z' : Envelope R A} (w : Z ⟶ Z') :
     ((F̃).obj X ⊗ (F̃).obj Y) ◁ (F̃).map w ≫ assocR cF X Y Z' =
       assocR cF X Y Z ≫ (F̃).map (X ◁ (Y ◁ w)) := by
@@ -350,7 +403,9 @@ variable {R : Type w} [CommRing R]
 
 omit [MonoidalSupercategory R A] [MonoidalSupercategory R B] [PiSupercategory R B] in
 /-- The components of a monoidal natural transformation form an even supernatural
-transformation.-/
+transformation.
+@isnad1 id=issupern.0h8v.s8.11a6d7059065 from=translated src=- shape=6cfedadd vocab=7030d9e8
+-/
 theorem isSupernatural_monoidalNatTrans {C : Type*} [Category C] [Preadditive C] [Linear R C]
     [Supercategory R C] [MonoidalCategoryStruct C] {F G : C ⥤ B} [F.Additive] [F.Linear R]
     [IsSuperfunctor R F] [G.Additive] [G.Linear R] [IsSuperfunctor R G]
@@ -359,7 +414,9 @@ theorem isSupernatural_monoidalNatTrans {C : Type*} [Category C] [Preadditive C]
   isSupernatural_of_natTrans x.toNatTrans x.app_mem
 
 omit [MonoidalSupercategory R A] [MonoidalSupercategory R B] [PiSupercategory R B] in
-/-- Monoidal natural transformations with the same components are equal.-/
+/-- Monoidal natural transformations with the same components are equal.
+@isnad1 id=eq.1h9v.s8.43aa340459b9 from=translated src=- shape=1db6a262 vocab=0673d8d0
+-/
 theorem monoidalNatTrans_eq {C : Type*} [Category C] [Preadditive C] [Linear R C]
     [Supercategory R C] [MonoidalCategoryStruct C] {F G : C ⥤ B} [F.Additive] [F.Linear R]
     [IsSuperfunctor R F] [G.Additive] [G.Linear R] [IsSuperfunctor R G]
@@ -375,23 +432,34 @@ def extendNatTrans (x : MonoidalNatTrans R cF cG) : extend R F ⟶ extend R G :=
   (isSupernatural_extendNat (isSupernatural_monoidalNatTrans x)).toNatTrans
 
 omit [MonoidalSupercategory R A] [MonoidalSupercategory R B] in
+/--
+@isnad1 id=eq.0h9v.s8.de7c16b37d9c from=translated src=- shape=60507546 vocab=e25dd365
+-/
 @[simp] theorem extendNatTrans_app (x : MonoidalNatTrans R cF cG) (X : Envelope R A) :
     (extendNatTrans x).app X = extendNat R F G 0 x.toNatTrans.app X :=
   IsSupernatural.toNatTrans_app _ X
 
 omit [MonoidalSupercategory R A] [MonoidalSupercategory R B] in
+/--
+@isnad1 id=eq.0h9v.s8.1cecd08a1a6a from=translated src=- shape=804f3a26 vocab=a1021ef0
+-/
 theorem extendNatTrans_app_J (x : MonoidalNatTrans R cF cG) (y : A) :
     (extendNatTrans x).app ((J R A).obj y) = x.toNatTrans.app y := by
   rw [extendNatTrans_app, extendNat_zero_par]
 
 omit [MonoidalSupercategory R A] [MonoidalSupercategory R B] in
+/--
+@isnad1 id=mem.0h9v.s10.5aae91dc347b from=translated src=- shape=c53e52e4 vocab=5ecf9a25
+-/
 theorem extendNatTrans_app_mem (x : MonoidalNatTrans R cF cG) (X : Envelope R A) :
     (extendNatTrans x).app X ∈ parity (R := R) _ _ 0 :=
   (isSupernatural_extendNat (isSupernatural_monoidalNatTrans x)).mem X
 
 omit [MonoidalSupercategory R A] [MonoidalSupercategory R B] [PiSupercategory R B] in
 /-- **Lemma 4.7(ii), monoidal case, uniqueness.** A monoidal natural transformation
-`F̃ ⇒ G̃` is determined by its components at the objects `Π⁰λ`.-/
+`F̃ ⇒ G̃` is determined by its components at the objects `Π⁰λ`.
+@isnad1 id=eq.1h9v.s9.786846e66d43 from=translated src=- shape=49d876fa vocab=290a1e6e
+-/
 theorem monoidalNatTrans_ext {F' G' : Envelope R A ⥤ B} [F'.Additive] [F'.Linear R]
     [IsSuperfunctor R F'] [G'.Additive] [G'.Linear R] [IsSuperfunctor R G']
     {cF' : MonoidalSuperfunctor R F'} {cG' : MonoidalSuperfunctor R G'}
@@ -415,11 +483,17 @@ variable {R : Type w} [CommRing R]
   {H : Envelope R A ⥤ B} [H.Additive] [H.Linear R] [IsSuperfunctor R H]
 
 omit [MonoidalSupercategory R A] [MonoidalSupercategory R B] in
+/--
+@isnad1 id=eq.0h6v.s8.a579228aed69 from=translated src=- shape=ba035ecc vocab=599a1c60
+-/
 theorem J_map_whiskerRight {x y : A} (f : x ⟶ y) (z : A) :
     (J R A).map f ▷ (J R A).obj z = (J R A).map (f ▷ z) :=
   hom_ext (toHom_whiskerRight_of_par_zero _ _ rfl)
 
 omit [MonoidalSupercategory R A] [MonoidalSupercategory R B] in
+/--
+@isnad1 id=eq.0h6v.s8.da9b350e4e35 from=translated src=- shape=1beda4b5 vocab=c94ee37b
+-/
 theorem J_map_whiskerLeft (z : A) {x y : A} (f : x ⟶ y) :
     (J R A).obj z ◁ (J R A).map f = (J R A).map (z ◁ f) :=
   hom_ext (toHom_whiskerLeft_of_par_zero _ rfl _)
@@ -447,6 +521,9 @@ variable [PiSupercategory R B]
 
 omit [MonoidalCategoryStruct A] [MonoidalSupercategory R A] [MonoidalCategoryStruct B]
   [MonoidalSupercategory R B] in
+/--
+@isnad1 id=eq.0h5v.s8.af9344c3e3b1 from=translated src=- shape=eeeccfb8 vocab=43030b94
+-/
 theorem extendRestrictIso_hom_app_J (x : A) :
     (extendRestrictIso H).hom.app ((J R A).obj x) = 𝟙 _ := by
   show 𝟙 _ ≫ H.map (𝟙 _) = _
@@ -456,6 +533,9 @@ theorem extendRestrictIso_hom_app_J (x : A) :
 omit [MonoidalCategoryStruct A] [MonoidalSupercategory R A] [MonoidalCategoryStruct B]
   [MonoidalSupercategory R B] in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s8.00970c05daac from=translated src=- shape=29855494 vocab=fb154100
+-/
 theorem extendRestrictIso_inv_app_J (x : A) :
     (extendRestrictIso H).inv.app ((J R A).obj x) = 𝟙 _ := by
   have := (extendRestrictIso H).hom_inv_id_app ((J R A).obj x)
@@ -464,6 +544,9 @@ theorem extendRestrictIso_inv_app_J (x : A) :
 
 omit [MonoidalCategoryStruct A] [MonoidalSupercategory R A] [MonoidalCategoryStruct B]
   [MonoidalSupercategory R B] in
+/--
+@isnad1 id=mem.0h5v.s10.350481a42181 from=translated src=- shape=c279b787 vocab=23fed0fb
+-/
 theorem extendRestrictIso_inv_mem (X : Envelope R A) :
     (extendRestrictIso H).inv.app X ∈ parity (R := R) _ _ 0 := by
   have := inv_mem ((extendRestrictIso H).app X) (extendRestrictIso_hom_mem H X)

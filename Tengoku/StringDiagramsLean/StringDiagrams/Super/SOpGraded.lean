@@ -26,7 +26,9 @@ def unsopEquiv (X Y : SOp R C) : (X ⟶ Y) ≃ₗ[R] (Y.unop ⟶ X.unop) where
   right_inv _ := rfl
 
 omit [GradedSupercategory R C] in
-/-- Parity projections commute with `unsop`.-/
+/-- Parity projections commute with `unsop`.
+@isnad1 id=eq.0h6v.s10.6ecb0f6867ec from=translated src=- shape=b167f28f vocab=9a6fe048
+-/
 theorem unsop_proj (p : ZMod 2) {X Y : SOp R C} (f : X ⟶ Y) :
     unsop (proj R p f) = proj R p (unsop f) := by
   refine Supercategory.induction_on (R := R) f ?_ (fun q g hg => ?_) ?_

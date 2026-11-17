@@ -27,7 +27,9 @@ variable (k : Type*) {E : Type*} [Field k] [Ring E] [Algebra k E] [FiniteDimensi
 
 include k
 
-/-- In a finite-dimensional algebra, a left-invertible element is a unit.-/
+/-- In a finite-dimensional algebra, a left-invertible element is a unit.
+@isnad1 id=isunit.1h4v.s6.75cf466f72c4 from=translated src=- shape=92322a86 vocab=34438f8c
+-/
 theorem isUnit_of_mul_eq_one_left {g f : E} (h : g * f = 1) : IsUnit f := by
   have hinj : Injective (LinearMap.mulLeft k f) := fun x y hxy => by
     have := congrArg (g * ·) hxy
@@ -38,7 +40,9 @@ theorem isUnit_of_mul_eq_one_left {g f : E} (h : g * f = 1) : IsUnit f := by
   exact ⟨⟨f, g, by rw [hgy, hy'], h⟩, rfl⟩
 
 /-- **Fitting's lemma for algebras.** In a finite-dimensional `k`-algebra whose only idempotents
-are `0` and `1`, every element is nilpotent or a unit.-/
+are `0` and `1`, every element is nilpotent or a unit.
+@isnad1 id=or.1h3v.s6.a81766f0a8f3 from=translated src=- shape=53cc2343 vocab=070916f4
+-/
 theorem isNilpotent_or_isUnit_of_idempotent
     (h : ∀ e : E, IsIdempotentElem e → e = 0 ∨ e = 1) (f : E) : IsNilpotent f ∨ IsUnit f := by
   obtain ⟨n, hn, hn1⟩ := ((LinearMap.mulRight k f).eventually_isCompl_ker_pow_range_pow.and

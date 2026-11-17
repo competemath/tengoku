@@ -138,6 +138,9 @@ section
 variable {a b c : B}
 
 omit [TwoSupercategory R B] in
+/--
+@isnad1 id=mem.0h3v.s9.01ee9f097caa from=translated src=- shape=5e2d83a8 vocab=d7585f94
+-/
 theorem ζ_inv_mem (a : B) : (ζ (R := R) a).inv ∈ parity (R := R) (𝟙 a) (pi (R := R) a) 1 :=
   inv_mem _ (ζ_hom_mem a)
 
@@ -150,17 +153,25 @@ def β (f : a ⟶ b) : f ≫ pi (R := R) b ≅ pi (R := R) a ≫ f :=
   whiskerLeftIso (R := R) f (ζ (R := R) b) ≪≫ rightUnitor f ≪≫ (leftUnitor f).symm ≪≫
     whiskerRightIso (R := R) (ζ (R := R) a).symm f
 
+/--
+@isnad1 id=eq.0h5v.s9.2481b21e81d8 from=translated src=- shape=b4ec2d55 vocab=4586f89e
+-/
 theorem β_hom (f : a ⟶ b) : (β (R := R) f).hom =
     f ◁ (ζ (R := R) b).hom ≫ (rightUnitor f).hom ≫ (leftUnitor f).inv ≫
       (ζ (R := R) a).inv ▷ f := by
   simp [β]
 
+/--
+@isnad1 id=eq.0h5v.s9.5995ac4decec from=translated src=- shape=732f607c vocab=4586f89e
+-/
 theorem β_inv (f : a ⟶ b) : (β (R := R) f).inv =
     (ζ (R := R) a).hom ▷ f ≫ (leftUnitor f).hom ≫ (rightUnitor f).inv ≫
       f ◁ (ζ (R := R) b).inv := by
   simp [β]
 
-/-- **Lemma 3.2.** `β_F` is even.-/
+/-- **Lemma 3.2.** `β_F` is even.
+@isnad1 id=mem.0h5v.s10.7a160e079245 from=translated src=- shape=90cb4c82 vocab=21c572c2
+-/
 theorem β_hom_mem (f : a ⟶ b) :
     (β (R := R) f).hom ∈ parity (R := R) (f ≫ pi (R := R) b) (pi (R := R) a ≫ f) 0 := by
   rw [β_hom]
@@ -170,7 +181,9 @@ theorem β_hom_mem (f : a ⟶ b) :
   simpa [Category.assoc] using! h
 
 /-- `β_F` followed by `ζ_λ F` is `ζ_μ` on the other side: `ζ_λ F ∘ β_F = F ζ_μ` up to unitors.
-This says that `ζ` is an (odd) morphism from `(π, β)` to the unit of the Drinfeld center.-/
+This says that `ζ` is an (odd) morphism from `(π, β)` to the unit of the Drinfeld center.
+@isnad1 id=eq.0h5v.s9.d1eb2e8b9ba3 from=translated src=- shape=1f07c7c2 vocab=4586f89e
+-/
 @[reassoc]
 theorem β_hom_comp_ζ (f : a ⟶ b) :
     (β (R := R) f).hom ≫ (ζ (R := R) a).hom ▷ f =
@@ -179,7 +192,9 @@ theorem β_hom_comp_ζ (f : a ⟶ b) :
 
 /-- **Lemma 3.2**, the paper's formula `β_F = -ζ_μ F ζ_λ⁻¹`: minus the horizontal composite of
 `ζ_λ⁻¹ : 1_λ ⇒ π_λ` and `F ζ_μ : F ≫ π_μ ⇒ F ≫ 1_μ`, composed with the unitors
-`F ≫ π_μ ≅ 1_λ ≫ F ≫ π_μ` and `π_λ ≫ F ≫ 1_μ ≅ π_λ ≫ F`.-/
+`F ≫ π_μ ≅ 1_λ ≫ F ≫ π_μ` and `π_λ ≫ F ≫ 1_μ ≅ π_λ ≫ F`.
+@isnad1 id=eq.0h5v.s10.d4fbe536bfab from=translated src=- shape=67388ed8 vocab=d680af72
+-/
 theorem β_hom_eq_neg_hcomp (f : a ⟶ b) :
     (β (R := R) f).hom = -((leftUnitor (f ≫ pi (R := R) b)).inv ≫
       hcomp (ζ (R := R) a).inv (f ◁ (ζ (R := R) b).hom) ≫ pi (R := R) a ◁ (rightUnitor f).hom) := by
@@ -192,7 +207,9 @@ theorem β_hom_eq_neg_hcomp (f : a ⟶ b) :
   rw [h, ← leftUnitor_inv_naturality_assoc R, β_hom]
 
 /-- **Lemma 3.2, equation (3.1).** `β` is natural: `x π_λ ∘ β_F = β_G ∘ π_μ x` for every
-2-morphism `x : F ⇒ G`.-/
+2-morphism `x : F ⇒ G`.
+@isnad1 id=eq.0h7v.s9.4fc98f9563b4 from=translated src=- shape=bfd5d269 vocab=794eb2fe
+-/
 theorem β_naturality {f g : a ⟶ b} (x : f ⟶ g) :
     (β (R := R) f).hom ≫ pi (R := R) a ◁ x = x ▷ pi (R := R) b ≫ (β (R := R) g).hom := by
   refine induction_on (R := R) x (by simp [zero_whiskerRight R, whiskerLeft_zero R])
@@ -217,21 +234,31 @@ def ξ (a : B) : pi (R := R) a ≫ pi (R := R) a ≅ 𝟙 a :=
   whiskerRightIso (R := R) (ζ (R := R) a) (pi (R := R) a) ≪≫ leftUnitor (pi (R := R) a) ≪≫
     ζ (R := R) a
 
+/--
+@isnad1 id=eq.0h3v.s9.dffc1272bd83 from=translated src=- shape=9e61aeba vocab=a3d730e9
+-/
 theorem ξ_hom (a : B) : (ξ (R := R) a).hom =
     (ζ (R := R) a).hom ▷ pi (R := R) a ≫ (leftUnitor (pi (R := R) a)).hom ≫ (ζ (R := R) a).hom := by
   simp [ξ]
 
+/--
+@isnad1 id=eq.0h3v.s9.11900dbfb033 from=translated src=- shape=a1c3cfe2 vocab=8d2c2b03
+-/
 theorem ξ_inv (a : B) : (ξ (R := R) a).inv =
     (ζ (R := R) a).inv ≫ (leftUnitor (pi (R := R) a)).inv ≫ (ζ (R := R) a).inv ▷ pi (R := R) a := by
   simp [ξ]
 
 /-- `ξ_λ` is the horizontal composite `ζ_λ ζ_λ : π_λ π_λ ⇒ 1_λ 1_λ`, followed by the unitor
-`1_λ 1_λ ≅ 1_λ`.-/
+`1_λ 1_λ ≅ 1_λ`.
+@isnad1 id=eq.0h3v.s8.04d3c3908b03 from=translated src=- shape=3c359609 vocab=1e96bfd2
+-/
 theorem ξ_hom_eq_hcomp (a : B) : (ξ (R := R) a).hom =
     hcomp (ζ (R := R) a).hom (ζ (R := R) a).hom ≫ (leftUnitor (𝟙 a)).hom := by
   rw [ξ_hom, hcomp, Category.assoc, leftUnitor_naturality R]
 
-/-- **Lemma 3.2(iv).** `ξ_λ` is even.-/
+/-- **Lemma 3.2(iv).** `ξ_λ` is even.
+@isnad1 id=mem.0h3v.s10.45a6921c1013 from=translated src=- shape=7234446d vocab=866604ef
+-/
 theorem ξ_hom_mem (a : B) :
     (ξ (R := R) a).hom ∈ parity (R := R) (pi (R := R) a ≫ pi (R := R) a) (𝟙 a) 0 := by
   rw [ξ_hom]
@@ -287,7 +314,9 @@ def homPiRight : PiSupercategory R (a ⟶ b) where
 variable (a b) in
 /-- **Lemma 3.2.** `β_{μ,λ}` is an even supernatural isomorphism `π_μ - ⇒ - π_λ` between the
 superfunctors `ℋom(λ, μ) → ℋom(λ, μ)` given by horizontal composition with `π_μ` and
-`π_λ`.-/
+`π_λ`.
+@isnad1 id=issupern.0h4v.s8.d3f6fa339f77 from=translated src=- shape=4d66f054 vocab=6b0d4378
+-/
 theorem β_isSupernatural :
     IsSupernatural R 0 (F := postcomp R (a := a) (pi (R := R) b))
       (G := precomp R (c := b) (pi (R := R) a)) fun f => (β (R := R) f).hom where
@@ -298,7 +327,9 @@ theorem β_isSupernatural :
     exact (β_naturality x).symm
 
 /-- **Lemma 3.2(i).** `(β_{ν,λ})_{GF} = G (β_{μ,λ})_F ∘ (β_{ν,μ})_G F`, i.e.
-`β_{F ≫ G} = α ≫ F ◁ β_G ≫ α⁻¹ ≫ β_F ▷ G ≫ α`.-/
+`β_{F ≫ G} = α ≫ F ◁ β_G ≫ α⁻¹ ≫ β_F ▷ G ≫ α`.
+@isnad1 id=eq.0h7v.s10.8152375d75e3 from=translated src=- shape=9c58885d vocab=54ce0f7a
+-/
 theorem β_comp (f : a ⟶ b) (g : b ⟶ c) :
     (β (R := R) (f ≫ g)).hom =
       (associator f g (pi (R := R) c)).hom ≫ f ◁ (β (R := R) g).hom ≫
@@ -312,7 +343,9 @@ theorem β_comp (f : a ⟶ b) (g : b ⟶ c) :
     whiskerLeft_inv_hom_assoc R, associator_naturality_left R, ← leftUnitor_comp_inv_assoc R,
     ← associator_naturality_right_assoc R, ← rightUnitor_comp_assoc R]
 
-/-- **Lemma 3.2(ii).** `(β_{λ,λ})_{1_λ} = 1_{π_λ}`, i.e. `β_{1_λ} = λ_{π_λ} ≫ ρ_{π_λ}⁻¹`.-/
+/-- **Lemma 3.2(ii).** `(β_{λ,λ})_{1_λ} = 1_{π_λ}`, i.e. `β_{1_λ} = λ_{π_λ} ≫ ρ_{π_λ}⁻¹`.
+@isnad1 id=eq.0h3v.s8.12a28f998de5 from=translated src=- shape=418c6ebd vocab=a30d79fc
+-/
 theorem β_id (a : B) :
     (β (R := R) (𝟙 a)).hom = (leftUnitor (pi (R := R) a)).hom ≫ (rightUnitor (pi (R := R) a)).inv := by
   rw [β_hom, ← unitors_equal R, Iso.hom_inv_id_assoc, id_whiskerLeft (R := R),
@@ -320,7 +353,9 @@ theorem β_id (a : B) :
     Iso.inv_hom_id_assoc, Iso.hom_inv_id_assoc]
 
 /-- **Lemma 3.2(iii).** `π_λ ζ_λ = -ζ_λ π_λ`, i.e.
-`ζ_λ ▷ π_λ ≫ λ_{π_λ} = -(π_λ ◁ ζ_λ ≫ ρ_{π_λ})`.-/
+`ζ_λ ▷ π_λ ≫ λ_{π_λ} = -(π_λ ◁ ζ_λ ≫ ρ_{π_λ})`.
+@isnad1 id=eq.0h3v.s10.c1b5dc4a82be from=translated src=- shape=b5cc7829 vocab=9c68a572
+-/
 theorem pi_whisker_ζ (a : B) :
     (ζ (R := R) a).hom ▷ pi (R := R) a ≫ (leftUnitor (pi (R := R) a)).hom =
       -(pi (R := R) a ◁ (ζ (R := R) a).hom ≫ (rightUnitor (pi (R := R) a)).hom) := by
@@ -330,7 +365,9 @@ theorem pi_whisker_ζ (a : B) :
   apply (cancel_mono ((ζ (R := R) a).hom ≫ (leftUnitor (𝟙 a)).inv)).1
   simpa only [Category.assoc, Preadditive.neg_comp] using h
 
-/-- **Lemma 3.2(iii).** `(β_{λ,λ})_{π_λ} = -1_{π_λ²}`.-/
+/-- **Lemma 3.2(iii).** `(β_{λ,λ})_{π_λ} = -1_{π_λ²}`.
+@isnad1 id=eq.0h3v.s9.2a4846671bd0 from=translated src=- shape=66ce2df0 vocab=2d2653fa
+-/
 theorem β_pi (a : B) : (β (R := R) (pi (R := R) a)).hom = -𝟙 _ := by
   have h : pi (R := R) a ◁ (ζ (R := R) a).hom ≫ (rightUnitor (pi (R := R) a)).hom =
       -((ζ (R := R) a).hom ▷ pi (R := R) a ≫ (leftUnitor (pi (R := R) a)).hom) := by
@@ -341,7 +378,9 @@ theorem β_pi (a : B) : (β (R := R) (pi (R := R) a)).hom = -𝟙 _ := by
 
 /-- **Lemma 3.2(iv).** `ξ_μ F ξ_λ⁻¹ = (β_{μ,λ})_F π_λ ∘ π_μ (β_{μ,λ})_F` in
 `Hom(π_μ² F, F π_λ²)`, where `ξ_μ F ξ_λ⁻¹ = F ◁ ξ_μ ≫ ρ_F ≫ λ_F⁻¹ ≫ ξ_λ⁻¹ ▷ F` (both
-factors are even, so the order of the horizontal composition does not matter).-/
+factors are even, so the order of the horizontal composition does not matter).
+@isnad1 id=eq.0h5v.s10.e36fdfb8785e from=translated src=- shape=b00ad3da vocab=9a134ced
+-/
 theorem ξ_comm (f : a ⟶ b) :
     f ◁ (ξ (R := R) b).hom ≫ (rightUnitor f).hom ≫ (leftUnitor f).inv ≫ (ξ (R := R) a).inv ▷ f =
       (associator f (pi (R := R) b) (pi (R := R) b)).inv ≫ (β (R := R) f).hom ▷ pi (R := R) b ≫
@@ -391,6 +430,9 @@ variable {R}
 `Π-𝔖ℭ𝔞𝔱`.-/
 def piHom (A : PiSCat.{w₁, v, u} R) : A ⟶ A := ⟨PiSupercategory.pi (R := R) (C := A)⟩
 
+/--
+@isnad1 id=issupern.0h2v.s8.27887bfea66c from=translated src=- shape=c4198223 vocab=58a244e2
+-/
 theorem ζ_inv_isSupernatural (A : PiSCat.{w₁, v, u} R) :
     IsSupernatural R 1 (F := 𝟭 A) (G := PiSupercategory.pi (R := R) (C := A))
       fun X => (PiSupercategory.ζ (R := R) X).inv :=
@@ -415,15 +457,27 @@ instance instPiTwoSupercategory : PiTwoSupercategory R (PiSCat.{w₁, v, u} R) w
   ζ_hom_mem A :=
     Superfunctor.IsSupernatural.toSuperNatTrans_mem (PiSupercategory.ζ_isSupernatural (R := R) (C := A))
 
+/--
+@isnad1 id=eq.0h3v.s9.e97ca340ecbe from=translated src=- shape=b8d38bf2 vocab=4e105b45
+-/
 @[simp] theorem ζ_hom_app_one (A : PiSCat.{w₁, v, u} R) (X : A) :
     (PiTwoSupercategory.ζ (R := R) A).hom.app 1 X = (PiSupercategory.ζ (R := R) X).hom := rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.62ce33b1f3a2 from=translated src=- shape=ff36471f vocab=950469f5
+-/
 @[simp] theorem ζ_hom_app_zero (A : PiSCat.{w₁, v, u} R) (X : A) :
     (PiTwoSupercategory.ζ (R := R) A).hom.app 0 X = 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.6486eb02d924 from=translated src=- shape=ea100d11 vocab=50ac9b2f
+-/
 @[simp] theorem ζ_inv_app_one (A : PiSCat.{w₁, v, u} R) (X : A) :
     (PiTwoSupercategory.ζ (R := R) A).inv.app 1 X = (PiSupercategory.ζ (R := R) X).inv := rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.1261dea90353 from=translated src=- shape=6292522c vocab=e62e06dd
+-/
 @[simp] theorem ζ_inv_app_zero (A : PiSCat.{w₁, v, u} R) (X : A) :
     (PiTwoSupercategory.ζ (R := R) A).inv.app 0 X = 0 := rfl
 
@@ -433,30 +487,42 @@ section Corollary
 
 variable {A B C : PiSCat.{w₁, v, u} R}
 
+/--
+@isnad1 id=eq.0h3v.s7.e677344b942a from=translated src=- shape=6af477ef vocab=e92996a4
+-/
 @[simp] theorem piHom_obj (X : A.carrier) :
     Superfunctor.obj (PiTwoSupercategory.pi (R := R) A) X = (PiSupercategory.pi (R := R)).obj X :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.8554a58ab16b from=translated src=- shape=1f12697c vocab=81d1572a
+-/
 @[simp] theorem piHom_map {X Y : A.carrier} (f : X ⟶ Y) :
     Superfunctor.map (PiTwoSupercategory.pi (R := R) A) f = (PiSupercategory.pi (R := R)).map f :=
   rfl
 
 set_option backward.isDefEq.respectTransparency false in
 /-- In `Π-𝔖ℭ𝔞𝔱`, the components of `β_F` of Lemma 3.2 are those of `β_F` of Corollary 3.3
-(`PiSupercategory.β`).-/
+(`PiSupercategory.β`).
+@isnad1 id=eq.0h5v.s10.32cda73b1968 from=translated src=- shape=d1321007 vocab=41bc2871
+-/
 theorem β_app_zero (F : A ⟶ B) (X : A.carrier) :
     (PiTwoSupercategory.β (R := R) F).hom.app 0 X = (PiSupercategory.β R F.toFunctor X).hom := by
   simp [PiTwoSupercategory.β_hom, PiSupercategory.β_hom]
 
 set_option backward.isDefEq.respectTransparency false in
 /-- In `Π-𝔖ℭ𝔞𝔱`, the components of `ξ` of Lemma 3.2 are those of `ξ` of (1.4)
-(`PiSupercategory.ξ`).-/
+(`PiSupercategory.ξ`).
+@isnad1 id=eq.0h3v.s9.5503ca63f24b from=translated src=- shape=13e28f9f vocab=4cb7e4ee
+-/
 theorem ξ_app_zero (A : PiSCat.{w₁, v, u} R) (X : A.carrier) :
     (PiTwoSupercategory.ξ (R := R) A).hom.app 0 X = (PiSupercategory.ξ (R := R) X).hom := by
   simp [PiTwoSupercategory.ξ_hom, PiSupercategory.ξ_hom]
 
 /-- **Corollary 3.3(iv)**, derived from Lemma 3.2(iii): `β_Π = -1_{Π²}`. (Proved directly as
-`PiSupercategory.β_pi`.)-/
+`PiSupercategory.β_pi`.)
+@isnad1 id=eq.0h3v.s11.90186689966d from=translated src=- shape=7422f526 vocab=8e25d108
+-/
 theorem β_pi (A : PiSCat.{w₁, v, u} R) (X : A.carrier) :
     (PiSupercategory.β R (PiSupercategory.pi (R := R) (C := A.carrier)) X).hom = -𝟙 _ := by
   have h := congrArg (fun t => t.app 0 X) (PiTwoSupercategory.β_pi (R := R) A)

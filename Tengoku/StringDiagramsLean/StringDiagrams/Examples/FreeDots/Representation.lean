@@ -34,6 +34,9 @@ variable (R : Type u) [CommRing R]
 /-- Multiplication by the variable `X i`.-/
 def mulX (i : ℕ) : MvPolynomial ℕ R →ₗ[R] MvPolynomial ℕ R := LinearMap.mulLeft R (X i)
 
+/--
+@isnad1 id=eq.0h3v.s7.277e4d894d8a from=translated src=- shape=1148858c vocab=faf09365
+-/
 @[simp] theorem mulX_apply (i : ℕ) (f : MvPolynomial ℕ R) : mulX R i f = X i * f := rfl
 
 /-- The operator of a layer: multiplication by the variable indexed by the number of strands

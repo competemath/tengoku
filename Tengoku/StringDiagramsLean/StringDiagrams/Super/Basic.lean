@@ -58,23 +58,41 @@ variable {R : Type w} [CommRing R] {C : Type w₁} [Category.{w₂} C] [Preaddit
 /-- A morphism is homogeneous of parity `p`.-/
 def IsHomogeneous {X Y : C} (f : X ⟶ Y) (p : ZMod 2) : Prop := f ∈ parity (R := R) X Y p
 
+/--
+@isnad1 id=ishomoge.0h3v.s6.7daffe092791 from=translated src=- shape=b2b97ce4 vocab=fce66b53
+-/
 theorem parity_id (X : C) : IsHomogeneous (R := R) (𝟙 X) 0 := id_mem X
 
+/--
+@isnad1 id=ishomoge.2h9v.s7.857d817ac5fc from=translated src=- shape=8d07f44e vocab=ce9682e8
+-/
 theorem parity_comp {X Y Z : C} {p q : ZMod 2} {f : X ⟶ Y} {g : Y ⟶ Z}
     (hf : IsHomogeneous (R := R) f p) (hg : IsHomogeneous (R := R) g q) :
     IsHomogeneous (R := R) (f ≫ g) (p + q) := comp_mem hf hg
 
+/--
+@isnad1 id=ishomoge.0h5v.s6.69b260e9b804 from=translated src=- shape=a65a9740 vocab=41ccdb83
+-/
 theorem zero_isHomogeneous {X Y : C} (p : ZMod 2) : IsHomogeneous (R := R) (0 : X ⟶ Y) p :=
   Submodule.zero_mem _
 
+/--
+@isnad1 id=ishomoge.2h7v.s7.b4e6f54ffdb7 from=translated src=- shape=5968163d vocab=22fdcccf
+-/
 theorem IsHomogeneous.add {X Y : C} {p : ZMod 2} {f g : X ⟶ Y} (hf : IsHomogeneous (R := R) f p)
     (hg : IsHomogeneous (R := R) g p) : IsHomogeneous (R := R) (f + g) p :=
   Submodule.add_mem _ hf hg
 
+/--
+@isnad1 id=ishomoge.1h7v.s8.3d2b30391cd8 from=translated src=- shape=f52dd43a vocab=31ba98e8
+-/
 theorem IsHomogeneous.smul {X Y : C} {p : ZMod 2} {f : X ⟶ Y} (r : R)
     (hf : IsHomogeneous (R := R) f p) : IsHomogeneous (R := R) (r • f) p :=
   Submodule.smul_mem _ r hf
 
+/--
+@isnad1 id=ishomoge.1h6v.s7.c66c5f69ebcc from=translated src=- shape=85bb634b vocab=2c9181d4
+-/
 theorem IsHomogeneous.neg {X Y : C} {p : ZMod 2} {f : X ⟶ Y} (hf : IsHomogeneous (R := R) f p) :
     IsHomogeneous (R := R) (-f) p :=
   Submodule.neg_mem _ hf
@@ -105,11 +123,16 @@ def supercategory (hP : P.IsParityHomogeneous) : Supercategory R P.Presented whe
   id_mem X := P.id_mem_homDeg (parityDeg S) X.as
   comp_mem hf hg := comp_mem_homDeg hf hg
 
+/--
+@isnad1 id=eq.1h6v.s8.1d24f2ae1cf6 from=translated src=- shape=7f913f8a vocab=e5a3b5ed
+-/
 theorem supercategory_parity (hP : P.IsParityHomogeneous) (a b : Obj S) (p : ZMod 2) :
     letI := P.supercategory hP
     Supercategory.parity (R := R) (P.obj a) (P.obj b) p = P.homDeg (parityDeg S) a b p := rfl
 
-/-- The class of a diagram is homogeneous of parity its number of odd generators.-/
+/-- The class of a diagram is homogeneous of parity its number of odd generators.
+@isnad1 id=ishomoge.1h6v.s7.557aded28c30 from=translated src=- shape=d4766caa vocab=a568b6e0
+-/
 theorem diag_isHomogeneous (hP : P.IsParityHomogeneous) {a b : Obj S} (f : a ⟶ b) :
     letI := P.supercategory hP
     Supercategory.IsHomogeneous (R := R) (P.diag f) (Diagram.degree (parityDeg S) f) :=

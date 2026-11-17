@@ -64,16 +64,22 @@ namespace IsVNRegular
 variable {X Y : 𝒞} {f : X ⟶ Y}
 
 omit [Preadditive 𝒞] in
-/-- A regular monomorphism is a split monomorphism.-/
+/-- A regular monomorphism is a split monomorphism.
+@isnad1 id=eq.1h5v.s6.03d188b0ee85 from=translated src=- shape=ac68fb64 vocab=dd34b978
+-/
 theorem comp_eq_id_of_mono {g : Y ⟶ X} (h : f ≫ g ≫ f = f) [Mono f] : f ≫ g = 𝟙 X := by
   rw [← cancel_mono f, Category.assoc, h, Category.id_comp]
 
 omit [Preadditive 𝒞] in
-/-- A regular epimorphism is a split epimorphism.-/
+/-- A regular epimorphism is a split epimorphism.
+@isnad1 id=eq.1h5v.s6.761a804e39a8 from=translated src=- shape=3d8bacf9 vocab=b50bef18
+-/
 theorem comp_eq_id_of_epi {g : Y ⟶ X} (h : f ≫ g ≫ f = f) [Epi f] : g ≫ f = 𝟙 Y := by
   rw [← cancel_epi f, h, Category.comp_id]
 
-/-- `𝟙 X - f ≫ g` is an idempotent.-/
+/-- `𝟙 X - f ≫ g` is an idempotent.
+@isnad1 id=eq.1h5v.s8.35f0fc6a9cf4 from=translated src=- shape=65255a29 vocab=de7ba901
+-/
 theorem idem_left {g : Y ⟶ X} (h : f ≫ g ≫ f = f) :
     (𝟙 X - f ≫ g) ≫ (𝟙 X - f ≫ g) = 𝟙 X - f ≫ g := by
   simp only [Preadditive.sub_comp, Preadditive.comp_sub, Category.id_comp, Category.comp_id,
@@ -81,7 +87,9 @@ theorem idem_left {g : Y ⟶ X} (h : f ≫ g ≫ f = f) :
   rw [← Category.assoc g f, ← Category.assoc f, h]
   abel
 
-/-- `𝟙 Y - g ≫ f` is an idempotent.-/
+/-- `𝟙 Y - g ≫ f` is an idempotent.
+@isnad1 id=eq.1h5v.s8.573a91a2a306 from=translated src=- shape=c9900b41 vocab=de7ba901
+-/
 theorem idem_right {g : Y ⟶ X} (h : f ≫ g ≫ f = f) :
     (𝟙 Y - g ≫ f) ≫ (𝟙 Y - g ≫ f) = 𝟙 Y - g ≫ f := by
   simp only [Preadditive.sub_comp, Preadditive.comp_sub, Category.id_comp, Category.comp_id,
@@ -151,7 +159,9 @@ def normalEpi {g : Y ⟶ X} (h : f ≫ g ≫ f = f) [Epi f] : NormalEpi f where
 end IsVNRegular
 
 variable (𝒞) in
-/-- If every morphism is regular and idempotents split, kernels exist.-/
+/-- If every morphism is regular and idempotents split, kernels exist.
+@isnad1 id=haskerne.1h1v.s5.43208f1e2e78 from=translated src=- shape=e2483998 vocab=b90eb43b
+-/
 theorem hasKernels_of_isVNRegular [IsIdempotentComplete 𝒞]
     (H : ∀ {X Y : 𝒞} (f : X ⟶ Y), IsVNRegular f) : HasKernels 𝒞 where
   has_limit f := by
@@ -161,7 +171,9 @@ theorem hasKernels_of_isVNRegular [IsIdempotentComplete 𝒞]
     exact HasLimit.mk ⟨_, IsVNRegular.kernelIsLimit hg i r hir hri⟩
 
 variable (𝒞) in
-/-- If every morphism is regular and idempotents split, cokernels exist.-/
+/-- If every morphism is regular and idempotents split, cokernels exist.
+@isnad1 id=hascoker.1h1v.s5.77137cd5f9b2 from=translated src=- shape=e2483998 vocab=5d5c26f6
+-/
 theorem hasCokernels_of_isVNRegular [IsIdempotentComplete 𝒞]
     (H : ∀ {X Y : 𝒞} (f : X ⟶ Y), IsVNRegular f) : HasCokernels 𝒞 where
   has_colimit f := by
@@ -171,6 +183,9 @@ theorem hasCokernels_of_isVNRegular [IsIdempotentComplete 𝒞]
     exact HasColimit.mk ⟨_, IsVNRegular.cokernelIsColimit hg i r hir hri⟩
 
 variable (𝒞) in
+/--
+@isnad1 id=isnormal.1h1v.s5.2ebc8bbcd8ff from=translated src=- shape=a30f7d40 vocab=0d7bc39c
+-/
 theorem isNormalMonoCategory_of_isVNRegular (H : ∀ {X Y : 𝒞} (f : X ⟶ Y), IsVNRegular f) :
     IsNormalMonoCategory 𝒞 where
   normalMonoOfMono f _ := by
@@ -178,6 +193,9 @@ theorem isNormalMonoCategory_of_isVNRegular (H : ∀ {X Y : 𝒞} (f : X ⟶ Y),
     exact ⟨IsVNRegular.normalMono hg⟩
 
 variable (𝒞) in
+/--
+@isnad1 id=isnormal.1h1v.s5.78e98cd96bc0 from=translated src=- shape=a30f7d40 vocab=b4bac39a
+-/
 theorem isNormalEpiCategory_of_isVNRegular (H : ∀ {X Y : 𝒞} (f : X ⟶ Y), IsVNRegular f) :
     IsNormalEpiCategory 𝒞 where
   normalEpiOfEpi f _ := by
@@ -200,7 +218,9 @@ end Regular
 
 /-! ## Generalized inverses of linear maps -/
 
-/-- Over a field, every linear map `φ` has a generalized inverse `ψ`: `φ ∘ ψ ∘ φ = φ`.-/
+/-- Over a field, every linear map `φ` has a generalized inverse `ψ`: `φ ∘ ψ ∘ φ = φ`.
+@isnad1 id=ex.0h4v.s8.cce3ff116ffb from=translated src=- shape=5da6de99 vocab=d532bbd3
+-/
 theorem LinearMap.exists_comp_comp_eq_self {k : Type w} [Field k] {V W : Type*} [AddCommGroup V]
     [Module k V] [AddCommGroup W] [Module k W] (φ : V →ₗ[k] W) :
     ∃ ψ : W →ₗ[k] V, φ ∘ₗ ψ ∘ₗ φ = φ := by
@@ -242,7 +262,9 @@ variable {k S} (hS : OrthogonalSchurGenerators k S)
 include hS
 
 /-- A family of linear maps `Hom(S i, X) → Hom(S i, Y)` commutes with precomposition by the
-morphisms between the objects `S i`.-/
+morphisms between the objects `S i`.
+@isnad1 id=eq.1h11v.s9.3967e638dd99 from=translated src=- shape=9ed5a521 vocab=4ffcca49
+-/
 theorem comp_apply_eq {X Y : 𝒞} (φ : ∀ i, (S i ⟶ X) →ₗ[k] (S i ⟶ Y)) {i j : ι}
     (u : S i ⟶ S j) (v : S j ⟶ X) : u ≫ φ j v = φ i (u ≫ v) := by
   by_cases hij : i = j
@@ -254,7 +276,9 @@ theorem comp_apply_eq {X Y : 𝒞} (φ : ∀ i, (S i ⟶ X) →ₗ[k] (S i ⟶ Y
 set_option backward.isDefEq.respectTransparency false in
 omit hS [Field k] [Linear k 𝒞] in
 /-- Morphisms out of a biproduct of generators are determined by the maps they induce on the
-`Hom(S i, -)`.-/
+`Hom(S i, -)`.
+@isnad1 id=eq.2h7v.s7.c43828c449e4 from=translated src=- shape=83be66c3 vocab=49da1251
+-/
 theorem hom_ext_bsum {Y : 𝒞} (L : List 𝒞) (hL : ∀ P ∈ L, ∃ i, P = S i) {f f' : bsum L ⟶ Y}
     (h : ∀ i (u : S i ⟶ bsum L), u ≫ f = u ≫ f') : f = f' := by
   induction L with
@@ -266,7 +290,9 @@ theorem hom_ext_bsum {Y : 𝒞} (L : List 𝒞) (hL : ∀ P ∈ L, ∃ i, P = S 
     · exact ih (fun Q hQ => hL Q (by simp [hQ])) fun i u => by
         rw [← Category.assoc, ← Category.assoc]; exact h i (u ≫ biprod.inr)
 
-/-- Morphisms are determined by the maps they induce on the `Hom(S i, -)`.-/
+/-- Morphisms are determined by the maps they induce on the `Hom(S i, -)`.
+@isnad1 id=eq.2h8v.s7.911ba75087c9 from=translated src=- shape=9a8df70e vocab=c8a6ee5d
+-/
 theorem hom_ext_of_gen {X Y : 𝒞} {f f' : X ⟶ Y}
     (h : ∀ i (u : S i ⟶ X), u ≫ f = u ≫ f') : f = f' := by
   obtain ⟨L, hL, ⟨e⟩⟩ := hS.exists_iso_bsum X
@@ -275,7 +301,9 @@ theorem hom_ext_of_gen {X Y : 𝒞} {f f' : X ⟶ Y}
     rw [← Category.assoc, ← Category.assoc]; exact h i (u ≫ e.inv)
 
 set_option backward.isDefEq.respectTransparency false in
-/-- Every family of linear maps `Hom(S i, bsum L) → Hom(S i, Y)` is induced by a morphism.-/
+/-- Every family of linear maps `Hom(S i, bsum L) → Hom(S i, Y)` is induced by a morphism.
+@isnad1 id=ex.2h7v.s9.1ea8f10b089f from=translated src=- shape=0f932fcf vocab=905c61bc
+-/
 theorem exists_hom_bsum {Y : 𝒞} (L : List 𝒞) (hL : ∀ P ∈ L, ∃ i, P = S i)
     (φ : ∀ i, (S i ⟶ bsum L) →ₗ[k] (S i ⟶ Y)) :
     ∃ f : bsum L ⟶ Y, ∀ i (u : S i ⟶ bsum L), u ≫ f = φ i u := by
@@ -301,7 +329,9 @@ theorem exists_hom_bsum {Y : 𝒞} (L : List 𝒞) (hL : ∀ P ∈ L, ∃ i, P =
       rw [Category.assoc]
     rw [← hu, map_add, Preadditive.add_comp, h1, h2]
 
-/-- Every family of linear maps `Hom(S i, X) → Hom(S i, Y)` is induced by a morphism.-/
+/-- Every family of linear maps `Hom(S i, X) → Hom(S i, Y)` is induced by a morphism.
+@isnad1 id=ex.1h7v.s9.e7c88993fed8 from=translated src=- shape=e252154c vocab=4ffcca49
+-/
 theorem exists_hom_of_gen {X Y : 𝒞} (φ : ∀ i, (S i ⟶ X) →ₗ[k] (S i ⟶ Y)) :
     ∃ f : X ⟶ Y, ∀ i (u : S i ⟶ X), u ≫ f = φ i u := by
   obtain ⟨L, hL, ⟨e⟩⟩ := hS.exists_iso_bsum X
@@ -311,7 +341,9 @@ theorem exists_hom_of_gen {X Y : 𝒞} (φ : ∀ i, (S i ⟶ X) →ₗ[k] (S i �
   change φ i ((u ≫ e.hom) ≫ e.inv) = φ i u
   rw [Category.assoc, e.hom_inv_id, Category.comp_id]
 
-/-- **Every morphism is von Neumann regular.**-/
+/-- **Every morphism is von Neumann regular.**
+@isnad1 id=isvnregu.1h7v.s6.fcdb70360c66 from=translated src=- shape=a104c156 vocab=dcf7baa1
+-/
 theorem isVNRegular_of_gen {X Y : 𝒞} (f : X ⟶ Y) : IsVNRegular f := by
   choose ψ hψ using fun i => LinearMap.exists_comp_comp_eq_self (Linear.rightComp k (S i) f)
   obtain ⟨g, hg⟩ := hS.exists_hom_of_gen ψ

@@ -38,7 +38,9 @@ private theorem horizontal_compC {a b c : B} {f g : a ⟶ b} {h i : b ⟶ c}
       Preadditive.add_comp, hη, hη']
 
 /-- Horizontal composition in `𝔄^{sop}` is horizontal composition in `𝔄` after `unsop`.
-The proof uses Koszul cancellation, not definitional equality.-/
+The proof uses Koszul cancellation, not definitional equality.
+@isnad1 id=eq.0h11v.s9.ea1774aab043 from=translated src=- shape=4ce79258 vocab=663874b1
+-/
 theorem unsop_hcomp {a b c : TwoSOp R B} {f g : a ⟶ b} {h i : b ⟶ c}
     (η : f ⟶ g) (θ : h ⟶ i) :
     SOp.unsop (hcomp η θ) = hcomp (SOp.unsop η) (SOp.unsop θ) := by
@@ -46,7 +48,9 @@ theorem unsop_hcomp {a b c : TwoSOp R B} {f g : a ⟶ b} {h i : b ⟶ c}
     SOp.unsop η ▷ SOp.unop i ≫ SOp.unop f ◁ SOp.unsop θ
   exact horizontal_compC _ _
 
-/-- The vertical odd/odd composite retains its minus sign.-/
+/-- The vertical odd/odd composite retains its minus sign.
+@isnad1 id=eq.2h9v.s11.9009d98d0739 from=translated src=- shape=a2d9a3a7 vocab=b4f47787
+-/
 theorem unsop_comp_odd {a b : TwoSOp R B} {f g h : a ⟶ b} {η : f ⟶ g} {θ : g ⟶ h}
     (hη : η ∈ parity (R := R) f g 1) (hθ : θ ∈ parity (R := R) g h 1) :
     SOp.unsop (η ≫ θ) = -(SOp.unsop θ ≫ SOp.unsop η) := by

@@ -117,6 +117,9 @@ instance (obj : C → C) (e : ∀ X, obj X ≅ X) : (conjFunctor obj e).Linear R
   map_smul _ _ := by simp
 
 omit [GradedSupercategory R C] in
+/--
+@isnad1 id=issuperf.1h4v.s8.811edb655832 from=translated src=- shape=479af042 vocab=a11cf5cd
+-/
 theorem conjFunctor_isSuperfunctor (obj : C → C) (e : ∀ X, obj X ≅ X)
     (he : ∀ X, (e X).hom ∈ parity (R := R) (obj X) X 0) :
     IsSuperfunctor R (conjFunctor obj e) where
@@ -127,6 +130,9 @@ theorem conjFunctor_isSuperfunctor (obj : C → C) (e : ∀ X, obj X ≅ X)
 
 set_option backward.isDefEq.respectTransparency false in
 omit [GradedSupercategory R C] in
+/--
+@isnad1 id=issupern.1h4v.s8.2c50d1dae7d3 from=translated src=- shape=36c58752 vocab=53179816
+-/
 theorem conjFunctor_isSupernatural (obj : C → C) (e : ∀ X, obj X ≅ X)
     (he : ∀ X, (e X).hom ∈ parity (R := R) (obj X) X 0) :
     IsSupernatural R 0 (F := conjFunctor obj e) (G := 𝟭 C) fun X => (e X).hom :=
@@ -169,63 +175,105 @@ local notation "𝐐⁻" => QPiSupercategory.Qinv (R := R) (C := C)
 
 /-! ## Basic properties -/
 
+/--
+@isnad1 id=mem.0h3v.s9.29abadc60c35 from=translated src=- shape=20571333 vocab=714a7e6e
+-/
 theorem ζ_hom_mem_degree (X : C) :
     (PiSupercategory.ζ (R := R) X).hom ∈ degree (R := R) (𝚷.obj X) X 0 :=
   ζ_mem_degree X
 
+/--
+@isnad1 id=mem.0h3v.s9.5dbb22c89d30 from=translated src=- shape=48d4bd9d vocab=bea7d9ea
+-/
 theorem ζ_inv_mem_degree (X : C) :
     (PiSupercategory.ζ (R := R) X).inv ∈ degree (R := R) X (𝚷.obj X) 0 := by
   simpa using inv_mem_degree _ (ζ_mem_degree (R := R) X)
 
+/--
+@isnad1 id=mem.0h3v.s9.102b8e482727 from=translated src=- shape=6a2b9ca7 vocab=4734daae
+-/
 theorem σ_hom_mem (X : C) : (σ (R := R) X).hom ∈ parity (R := R) (𝐐.obj X) X 0 :=
   (σ_isSupernatural (R := R)).mem X
 
+/--
+@isnad1 id=mem.0h3v.s9.1d2bd0ea825e from=translated src=- shape=8e314bef vocab=b1b2a6d1
+-/
 theorem σ_inv_mem (X : C) : (σ (R := R) X).inv ∈ parity (R := R) X (𝐐.obj X) 0 :=
   inv_mem _ (σ_hom_mem X)
 
+/--
+@isnad1 id=mem.0h3v.s8.21e58df6fbc5 from=translated src=- shape=2a3a4041 vocab=cadac5a5
+-/
 theorem σ_hom_mem_degree (X : C) : (σ (R := R) X).hom ∈ degree (R := R) (𝐐.obj X) X (-1) :=
   σ_mem_degree X
 
+/--
+@isnad1 id=mem.0h3v.s8.7a7c41b44678 from=translated src=- shape=0bb25aae vocab=7f2b98a2
+-/
 theorem σ_inv_mem_degree (X : C) : (σ (R := R) X).inv ∈ degree (R := R) X (𝐐.obj X) 1 := by
   simpa using inv_mem_degree _ (σ_mem_degree (R := R) X)
 
+/--
+@isnad1 id=mem.0h3v.s9.59e0a46f91ad from=translated src=- shape=6a2b9ca7 vocab=12c4d919
+-/
 theorem σbar_hom_mem (X : C) : (σbar (R := R) X).hom ∈ parity (R := R) (𝐐⁻.obj X) X 0 :=
   (σbar_isSupernatural (R := R)).mem X
 
+/--
+@isnad1 id=mem.0h3v.s9.dfd45ff58efd from=translated src=- shape=8e314bef vocab=c3864455
+-/
 theorem σbar_inv_mem (X : C) : (σbar (R := R) X).inv ∈ parity (R := R) X (𝐐⁻.obj X) 0 :=
   inv_mem _ (σbar_hom_mem X)
 
+/--
+@isnad1 id=mem.0h3v.s8.6084c8ae3b6c from=translated src=- shape=7bbaeb80 vocab=71504657
+-/
 theorem σbar_hom_mem_degree (X : C) :
     (σbar (R := R) X).hom ∈ degree (R := R) (𝐐⁻.obj X) X 1 :=
   σbar_mem_degree X
 
+/--
+@isnad1 id=mem.0h3v.s8.a321fbc7070b from=translated src=- shape=3dbd4258 vocab=4a53bfdc
+-/
 theorem σbar_inv_mem_degree (X : C) :
     (σbar (R := R) X).inv ∈ degree (R := R) X (𝐐⁻.obj X) (-1) :=
   inv_mem_degree _ (σbar_mem_degree (R := R) X)
 
-/-- Naturality of `σ` (for all morphisms, since `σ` is even).-/
+/-- Naturality of `σ` (for all morphisms, since `σ` is even).
+@isnad1 id=eq.0h5v.s7.193db42acd6d from=translated src=- shape=7eb5401d vocab=4ecf8f47
+-/
 @[reassoc]
 theorem σ_naturality {X Y : C} (f : X ⟶ Y) :
     𝐐.map f ≫ (σ (R := R) Y).hom = (σ (R := R) X).hom ≫ f :=
   (σ_isSupernatural (R := R)).naturality_zero f
 
+/--
+@isnad1 id=eq.0h5v.s7.5c43a369ee2b from=translated src=- shape=7eb5401d vocab=0c76c27d
+-/
 @[reassoc]
 theorem σbar_naturality {X Y : C} (f : X ⟶ Y) :
     𝐐⁻.map f ≫ (σbar (R := R) Y).hom = (σbar (R := R) X).hom ≫ f :=
   (σbar_isSupernatural (R := R)).naturality_zero f
 
-/-- The action of `Q` on morphisms is conjugation by `σ`.-/
+/-- The action of `Q` on morphisms is conjugation by `σ`.
+@isnad1 id=eq.0h5v.s7.766b4c6edfd0 from=translated src=- shape=83c3dc56 vocab=7630e8ad
+-/
 theorem Q_map_eq {X Y : C} (f : X ⟶ Y) :
     𝐐.map f = (σ (R := R) X).hom ≫ f ≫ (σ (R := R) Y).inv := by
   rw [← σ_naturality_assoc, Iso.hom_inv_id, Category.comp_id]
 
-/-- The action of `Q⁻¹` on morphisms is conjugation by `σ̄`.-/
+/-- The action of `Q⁻¹` on morphisms is conjugation by `σ̄`.
+@isnad1 id=eq.0h5v.s7.750688eee4ad from=translated src=- shape=83c3dc56 vocab=b2d09cc0
+-/
 theorem Qinv_map_eq {X Y : C} (f : X ⟶ Y) :
     𝐐⁻.map f = (σbar (R := R) X).hom ≫ f ≫ (σbar (R := R) Y).inv := by
   rw [← σbar_naturality_assoc, Iso.hom_inv_id, Category.comp_id]
 
 /-! ## `Π`, `Q` and `Q⁻¹` are graded superfunctors -/
 
+/--
+@isnad1 id=isgraded.0h2v.s6.b5735acd9463 from=translated src=- shape=f399fd35 vocab=6afe7051
+-/
 instance pi_isGraded : IsGradedSuperfunctor R 𝚷 where
   map_mem_degree {X Y n f} hf := by
     rw [PiSupercategory.pi_map_eq]
@@ -233,6 +281,9 @@ instance pi_isGraded : IsGradedSuperfunctor R 𝚷 where
       (twist_mem_degree 1 hf)) (ζ_inv_mem_degree (R := R) Y)
     simpa using this
 
+/--
+@isnad1 id=isgraded.0h2v.s6.c492bca77e90 from=translated src=- shape=810ec620 vocab=4006fdbd
+-/
 instance Q_isGraded : IsGradedSuperfunctor R 𝐐 where
   map_mem_degree {X Y n f} hf := by
     rw [Q_map_eq]
@@ -240,6 +291,9 @@ instance Q_isGraded : IsGradedSuperfunctor R 𝐐 where
       (σ_inv_mem_degree (R := R) Y)
     rwa [show -1 + n + 1 = n by ring, Category.assoc] at this
 
+/--
+@isnad1 id=isgraded.0h2v.s6.bf720b3e378d from=translated src=- shape=810ec620 vocab=8078c1db
+-/
 instance Qinv_isGraded : IsGradedSuperfunctor R 𝐐⁻ where
   map_mem_degree {X Y n f} hf := by
     rw [Qinv_map_eq]
@@ -249,6 +303,9 @@ instance Qinv_isGraded : IsGradedSuperfunctor R 𝐐⁻ where
 
 /-! ## Corollary 6.7(i) -/
 
+/--
+@isnad1 id=mem.0h3v.s9.a6e3aca89e9b from=translated src=- shape=9d2cada1 vocab=36c1b920
+-/
 theorem ξ_hom_mem_degree (X : C) :
     (PiSupercategory.ξ (R := R) X).hom ∈ degree (R := R) (𝚷.obj (𝚷.obj X)) X 0 := by
   rw [PiSupercategory.ξ_hom]
@@ -263,58 +320,92 @@ def ii (X : C) : 𝐐⁻.obj (𝐐.obj X) ≅ X := σbar (R := R) (𝐐.obj X) �
 `σ_{Q⁻¹ X} ≫ σ̄_X` (`= Q(σ̄_X) ≫ σ_X`, `jj_hom_eq`).-/
 def jj (X : C) : 𝐐.obj (𝐐⁻.obj X) ≅ X := σ (R := R) (𝐐⁻.obj X) ≪≫ σbar (R := R) X
 
+/--
+@isnad1 id=eq.0h3v.s8.d8ababf0837f from=translated src=- shape=296d9056 vocab=cf65272f
+-/
 theorem ii_hom (X : C) :
     (ii (R := R) X).hom = (σbar (R := R) (𝐐.obj X)).hom ≫ (σ (R := R) X).hom := rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.62b3ff474007 from=translated src=- shape=296d9056 vocab=68b4b49c
+-/
 theorem jj_hom (X : C) :
     (jj (R := R) X).hom = (σ (R := R) (𝐐⁻.obj X)).hom ≫ (σbar (R := R) X).hom := rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.380baff1f3c3 from=translated src=- shape=ceb4b184 vocab=127dd571
+-/
 theorem ii_hom_eq (X : C) :
     (ii (R := R) X).hom = 𝐐⁻.map (σ (R := R) X).hom ≫ (σbar (R := R) X).hom :=
   (σbar_naturality _).symm
 
+/--
+@isnad1 id=eq.0h3v.s8.d5a9f915d3be from=translated src=- shape=ceb4b184 vocab=d7a34abc
+-/
 theorem jj_hom_eq (X : C) :
     (jj (R := R) X).hom = 𝐐.map (σbar (R := R) X).hom ≫ (σ (R := R) X).hom :=
   (σ_naturality _).symm
 
+/--
+@isnad1 id=mem.0h3v.s9.6f81e40ffd71 from=translated src=- shape=00161493 vocab=8c87288e
+-/
 theorem ii_hom_mem (X : C) : (ii (R := R) X).hom ∈ parity (R := R) _ X 0 := by
   have h := comp_mem (σbar_hom_mem (R := R) (𝐐.obj X)) (σ_hom_mem (R := R) X)
   rw [add_zero] at h
   exact h
 
+/--
+@isnad1 id=mem.0h3v.s9.6e617f742484 from=translated src=- shape=fead24aa vocab=f1ac64ee
+-/
 theorem ii_hom_mem_degree (X : C) : (ii (R := R) X).hom ∈ degree (R := R) _ X 0 := by
   have h := comp_mem_degree (σbar_hom_mem_degree (R := R) (𝐐.obj X))
     (σ_hom_mem_degree (R := R) X)
   rw [add_neg_cancel] at h
   exact h
 
+/--
+@isnad1 id=mem.0h3v.s9.7859f5113d03 from=translated src=- shape=00161493 vocab=57cb450a
+-/
 theorem jj_hom_mem (X : C) : (jj (R := R) X).hom ∈ parity (R := R) _ X 0 := by
   have h := comp_mem (σ_hom_mem (R := R) (𝐐⁻.obj X)) (σbar_hom_mem (R := R) X)
   rw [add_zero] at h
   exact h
 
+/--
+@isnad1 id=mem.0h3v.s9.cabbd820c763 from=translated src=- shape=fead24aa vocab=5b9eb15d
+-/
 theorem jj_hom_mem_degree (X : C) : (jj (R := R) X).hom ∈ degree (R := R) _ X 0 := by
   have h := comp_mem_degree (σ_hom_mem_degree (R := R) (𝐐⁻.obj X))
     (σbar_hom_mem_degree (R := R) X)
   rw [neg_add_cancel] at h
   exact h
 
+/--
+@isnad1 id=eq.0h5v.s8.f8e014c88a3c from=translated src=- shape=f681579b vocab=04806693
+-/
 @[reassoc]
 theorem ii_naturality {X Y : C} (f : X ⟶ Y) :
     𝐐⁻.map (𝐐.map f) ≫ (ii (R := R) Y).hom = (ii (R := R) X).hom ≫ f := by
   rw [ii_hom, ii_hom, σbar_naturality_assoc, σ_naturality, Category.assoc]
 
+/--
+@isnad1 id=eq.0h5v.s8.a0e30ea0dd26 from=translated src=- shape=f681579b vocab=171a78a6
+-/
 @[reassoc]
 theorem jj_naturality {X Y : C} (f : X ⟶ Y) :
     𝐐.map (𝐐⁻.map f) ≫ (jj (R := R) Y).hom = (jj (R := R) X).hom ≫ f := by
   rw [jj_hom, jj_hom, σ_naturality_assoc, σbar_naturality, Category.assoc]
 
-/-- **Corollary 6.7(i).** `Q ii = jj Q`.-/
+/-- **Corollary 6.7(i).** `Q ii = jj Q`.
+@isnad1 id=eq.0h3v.s8.edebae570a7c from=translated src=- shape=a59abb25 vocab=38ddb560
+-/
 theorem Q_map_ii (X : C) : 𝐐.map (ii (R := R) X).hom = (jj (R := R) (𝐐.obj X)).hom := by
   rw [Q_map_eq, ii_hom, jj_hom]
   simp
 
-/-- **Corollary 6.7(i).** `ii Q⁻¹ = Q⁻¹ jj`.-/
+/-- **Corollary 6.7(i).** `ii Q⁻¹ = Q⁻¹ jj`.
+@isnad1 id=eq.0h3v.s8.df095872cf88 from=translated src=- shape=b6ea7955 vocab=38ddb560
+-/
 theorem ii_Qinv (X : C) : (ii (R := R) (𝐐⁻.obj X)).hom = 𝐐⁻.map (jj (R := R) X).hom := by
   rw [Qinv_map_eq, ii_hom, jj_hom]
   simp
@@ -334,8 +425,14 @@ def qEquivalence : C ≌ C where
     simp only [Functor.id_obj, NatIso.ofComponents_hom_app, Iso.symm_hom]
     rw [← Q_map_ii, ← Functor.map_comp, Iso.inv_hom_id, CategoryTheory.Functor.map_id]
 
+/--
+@isnad1 id=eq.0h2v.s6.49862a95e640 from=translated src=- shape=e31630b9 vocab=28f28b5c
+-/
 @[simp] theorem qEquivalence_functor : (qEquivalence (R := R) (C := C)).functor = 𝐐 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.5f852ec388c0 from=translated src=- shape=e31630b9 vocab=d7f5aaf5
+-/
 @[simp] theorem qEquivalence_inverse : (qEquivalence (R := R) (C := C)).inverse = 𝐐⁻ := rfl
 
 /-- The adjunction `Q ⊣ Q⁻¹` with unit `ii⁻¹` and counit `jj` (Corollary 6.7(i)).-/
@@ -348,7 +445,9 @@ variable {D : Type w₃} [Category.{w₄} D] [Preadditive D] [Linear R D] [Super
   {E : Type w₅} [Category.{w₆} E] [Preadditive E] [Linear R E] [Supercategory R E]
   [GradedSupercategory R E] [QPiSupercategory R E]
 
-/-- **Corollary 6.7(ii).** `β_F` is even of degree zero.-/
+/-- **Corollary 6.7(ii).** `β_F` is even of degree zero.
+@isnad1 id=mem.0h5v.s10.444752cbe1a1 from=translated src=- shape=30e200e9 vocab=8ae91f8e
+-/
 theorem β_hom_mem_degree (F : C ⥤ D) [F.Additive] [F.Linear R] [IsGradedSuperfunctor R F]
     (X : C) :
     (PiSupercategory.β R F X).hom ∈ degree (R := R) _ _ 0 := by
@@ -362,24 +461,38 @@ variable (R) in
 def γ (F : C ⥤ D) (X : C) : (Q (R := R)).obj (F.obj X) ≅ F.obj ((Q (R := R)).obj X) :=
   σ (R := R) (F.obj X) ≪≫ F.mapIso (σ (R := R) X).symm
 
+/--
+@isnad1 id=eq.0h5v.s8.120cb3d61b30 from=translated src=- shape=900a1627 vocab=bdd5152d
+-/
 theorem γ_hom (F : C ⥤ D) (X : C) :
     (γ R F X).hom = (σ (R := R) (F.obj X)).hom ≫ F.map (σ (R := R) X).inv := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.30734dfab7e5 from=translated src=- shape=d3b832c5 vocab=bdd5152d
+-/
 theorem γ_inv (F : C ⥤ D) (X : C) :
     (γ R F X).inv = F.map (σ (R := R) X).hom ≫ (σ (R := R) (F.obj X)).inv := rfl
 
-/-- The literal formula `γ_F = σ' F σ⁻¹`: its component is `Q'(F(σ_X⁻¹)) ≫ σ'_{F Q X}`.-/
+/-- The literal formula `γ_F = σ' F σ⁻¹`: its component is `Q'(F(σ_X⁻¹)) ≫ σ'_{F Q X}`.
+@isnad1 id=eq.0h5v.s8.143111a4f469 from=translated src=- shape=09fd0202 vocab=bdd5152d
+-/
 theorem γ_hom_eq (F : C ⥤ D) (X : C) :
     (γ R F X).hom = (Q (R := R)).map (F.map (σ (R := R) X).inv) ≫
       (σ (R := R) (F.obj ((Q (R := R)).obj X))).hom := by
   rw [σ_naturality, γ_hom]
 
+/--
+@isnad1 id=mem.0h5v.s10.9716a96e7202 from=translated src=- shape=f58dc4bf vocab=62849fd8
+-/
 theorem γ_hom_mem (F : C ⥤ D) [F.Additive] [F.Linear R] [IsSuperfunctor R F] (X : C) :
     (γ R F X).hom ∈ parity (R := R) _ _ 0 := by
   have h := comp_mem (σ_hom_mem (R := R) (F.obj X)) (map_mem F (σ_inv_mem (R := R) X))
   rw [add_zero] at h
   exact h
 
+/--
+@isnad1 id=mem.0h5v.s9.d3a40f412375 from=translated src=- shape=c2d99714 vocab=902c394c
+-/
 theorem γ_hom_mem_degree (F : C ⥤ D) [F.Additive] [F.Linear R] [IsGradedSuperfunctor R F]
     (X : C) : (γ R F X).hom ∈ degree (R := R) _ _ 0 := by
   have h := comp_mem_degree (σ_hom_mem_degree (R := R) (F.obj X))
@@ -387,7 +500,9 @@ theorem γ_hom_mem_degree (F : C ⥤ D) [F.Additive] [F.Linear R] [IsGradedSuper
   rw [neg_add_cancel] at h
   exact h
 
-/-- **Corollary 6.7(ii).** `γ_F` is natural.-/
+/-- **Corollary 6.7(ii).** `γ_F` is natural.
+@isnad1 id=eq.0h7v.s9.bac54753a8ce from=translated src=- shape=3cf14cc2 vocab=a2dafa94
+-/
 @[reassoc]
 theorem γ_naturality (F : C ⥤ D) {X Y : C} (f : X ⟶ Y) :
     (Q (R := R)).map (F.map f) ≫ (γ R F Y).hom = (γ R F X).hom ≫ F.map ((Q (R := R)).map f) := by
@@ -398,7 +513,9 @@ theorem γ_naturality (F : C ⥤ D) {X Y : C} (f : X ⟶ Y) :
 def γIso (F : C ⥤ D) : F ⋙ Q (R := R) ≅ Q (R := R) ⋙ F :=
   NatIso.ofComponents (fun X => γ R F X) fun f => γ_naturality F f
 
-/-- **Corollary 6.7(ii).** `γ_Π = β_Q⁻¹`.-/
+/-- **Corollary 6.7(ii).** `γ_Π = β_Q⁻¹`.
+@isnad1 id=eq.0h3v.s8.b297dfe0e3e0 from=translated src=- shape=58f49a8f vocab=884823c9
+-/
 theorem γ_pi (X : C) :
     (γ R (PiSupercategory.pi (R := R)) X).hom = (PiSupercategory.β R 𝐐 X).inv := by
   rw [← cancel_mono (PiSupercategory.β R 𝐐 X).hom, Iso.inv_hom_id, γ_hom,
@@ -407,23 +524,31 @@ theorem γ_pi (X : C) :
   simp
 
 /-- **Corollary 6.7(iii)** (with the misprint corrected, see the module documentation): for a
-supernatural transformation `x : F ⇒ G` of parity `p`, `γ_G ∘ Q' x = x Q ∘ γ_F`.-/
+supernatural transformation `x : F ⇒ G` of parity `p`, `γ_G ∘ Q' x = x Q ∘ γ_F`.
+@isnad1 id=eq.1h8v.s9.9656bc6cb26c from=translated src=- shape=e06948ac vocab=dc2546c4
+-/
 theorem γ_naturality_supernatural (F G : C ⥤ D) [F.Additive] [G.Additive] [G.Linear R]
     {p : ZMod 2} {x : ∀ X, F.obj X ⟶ G.obj X} (hx : IsSupernatural R p x) (X : C) :
     (Q (R := R)).map (x X) ≫ (γ R G X).hom = (γ R F X).hom ≫ x ((Q (R := R)).obj X) := by
   rw [γ_hom, γ_hom, σ_naturality_assoc, Category.assoc, hx.naturality (σ_inv_mem (R := R) X),
     mul_zero, sign_zero, one_smul]
 
-/-- **Corollary 6.7(iv).** `γ_{GF} = G γ_F ∘ γ_G F`.-/
+/-- **Corollary 6.7(iv).** `γ_{GF} = G γ_F ∘ γ_G F`.
+@isnad1 id=eq.0h7v.s9.4f7b2dcbce42 from=translated src=- shape=a2eeb7a7 vocab=2e1641e9
+-/
 theorem γ_comp (F : C ⥤ D) (G : D ⥤ E) (X : C) :
     (γ R (F ⋙ G) X).hom = (γ R G (F.obj X)).hom ≫ G.map (γ R F X).hom := by
   simp [γ_hom]
 
-/-- **Corollary 6.7(iv).** `γ_I = 1`.-/
+/-- **Corollary 6.7(iv).** `γ_I = 1`.
+@isnad1 id=eq.0h3v.s7.7c80bfe4eb9d from=translated src=- shape=7b8ac70e vocab=e2ee54c8
+-/
 theorem γ_id (X : C) : (γ R (𝟭 C) X).hom = 𝟙 _ := by
   simp [γ_hom]
 
-/-- **Corollary 6.7(iv).** `γ_Q = 1`.-/
+/-- **Corollary 6.7(iv).** `γ_Q = 1`.
+@isnad1 id=eq.0h3v.s7.d6cf77879392 from=translated src=- shape=0c425269 vocab=080333f5
+-/
 theorem γ_Q (X : C) : (γ R 𝐐 X).hom = 𝟙 _ := by
   rw [γ_hom, Q_map_eq]
   simp
@@ -431,7 +556,9 @@ theorem γ_Q (X : C) : (γ R 𝐐 X).hom = 𝟙 _ := by
 /-- The compatibility of `γ_F` with `β`: `γ_F Π ∘ Q' β_F ∘ β_{Q'} F = F β_Q ∘ β_F Q ∘ Π' γ_F`
 in `Hom(Π' Q' F, F Q Π)` (this identity is needed in Theorem 6.13; it is not listed among the
 axioms of a `(Q, Π)`-functor in the printed Definition 6.12(ii), and it is the axiom added to
-the definition adopted in `StringDiagrams.QPiFunctor`, see `QPiFunctorData.IsCompatible`).-/
+the definition adopted in `StringDiagrams.QPiFunctor`, see `QPiFunctorData.IsCompatible`).
+@isnad1 id=eq.0h5v.s10.944f27bffbbd from=translated src=- shape=9fdcc5f2 vocab=46cb231b
+-/
 theorem β_γ_compat (F : C ⥤ D) [F.Additive] [F.Linear R] [IsSuperfunctor R F] (X : C) :
     (PiSupercategory.β R (Q (R := R) (C := D)) (F.obj X)).hom ≫
         (Q (R := R)).map (PiSupercategory.β R F X).hom ≫ (γ R F ((PiSupercategory.pi (R := R)).obj X)).hom =
@@ -490,6 +617,9 @@ def σPow : ∀ (m : ℤ) (X : C), qPow R m X ≅ X
   | Int.ofNat n => σPowNat R n
   | Int.negSucc n => σbarPowNat R (n + 1)
 
+/--
+@isnad1 id=mem.0h4v.s8.9652ae22dbb1 from=translated src=- shape=5572268b vocab=00ac78f2
+-/
 theorem σPowNat_hom_mem (n : ℕ) (X : C) :
     (σPowNat R n X).hom ∈ parity (R := R) _ X 0 := by
   induction n with
@@ -499,6 +629,9 @@ theorem σPowNat_hom_mem (n : ℕ) (X : C) :
     rw [add_zero] at h
     exact h
 
+/--
+@isnad1 id=mem.0h4v.s8.d412df2cec2b from=translated src=- shape=54ddeda3 vocab=710a8426
+-/
 theorem σPowNat_hom_mem_degree (n : ℕ) (X : C) :
     (σPowNat R n X).hom ∈ degree (R := R) _ X (-n) := by
   induction n with
@@ -507,6 +640,9 @@ theorem σPowNat_hom_mem_degree (n : ℕ) (X : C) :
     have := comp_mem_degree (σ_hom_mem_degree (R := R) (qPowNat R n X)) ih
     rwa [show (-1 + -(n : ℤ)) = -((n + 1 : ℕ) : ℤ) by push_cast; ring] at this
 
+/--
+@isnad1 id=mem.0h4v.s8.2516bd3c4ec8 from=translated src=- shape=5572268b vocab=e30519c3
+-/
 theorem σbarPowNat_hom_mem (n : ℕ) (X : C) :
     (σbarPowNat R n X).hom ∈ parity (R := R) _ X 0 := by
   induction n with
@@ -516,6 +652,9 @@ theorem σbarPowNat_hom_mem (n : ℕ) (X : C) :
     rw [add_zero] at h
     exact h
 
+/--
+@isnad1 id=mem.0h4v.s8.02d7debd2c12 from=translated src=- shape=a52f2d3a vocab=266d2bca
+-/
 theorem σbarPowNat_hom_mem_degree (n : ℕ) (X : C) :
     (σbarPowNat R n X).hom ∈ degree (R := R) _ X n := by
   induction n with
@@ -524,14 +663,23 @@ theorem σbarPowNat_hom_mem_degree (n : ℕ) (X : C) :
     have := comp_mem_degree (σbar_hom_mem_degree (R := R) (qinvPowNat R n X)) ih
     rwa [show (1 + (n : ℤ)) = ((n + 1 : ℕ) : ℤ) by push_cast; ring] at this
 
+/--
+@isnad1 id=mem.0h4v.s8.8503cbe8cc9e from=translated src=- shape=86482587 vocab=a74afc13
+-/
 theorem σPow_hom_mem (m : ℤ) (X : C) : (σPow R m X).hom ∈ parity (R := R) _ X 0 := by
   cases m with
   | ofNat n => exact σPowNat_hom_mem n X
   | negSucc n => exact σbarPowNat_hom_mem (n + 1) X
 
+/--
+@isnad1 id=mem.0h4v.s8.0e5e0429e221 from=translated src=- shape=eeda4b28 vocab=5eb90db2
+-/
 theorem σPow_inv_mem (m : ℤ) (X : C) : (σPow R m X).inv ∈ parity (R := R) X _ 0 :=
   inv_mem _ (σPow_hom_mem m X)
 
+/--
+@isnad1 id=mem.0h4v.s8.01eb80d74da7 from=translated src=- shape=e28ee81c vocab=5d305b0c
+-/
 theorem σPow_hom_mem_degree (m : ℤ) (X : C) : (σPow R m X).hom ∈ degree (R := R) _ X (-m) := by
   cases m with
   | ofNat n => exact σPowNat_hom_mem_degree n X
@@ -539,11 +687,20 @@ theorem σPow_hom_mem_degree (m : ℤ) (X : C) : (σPow R m X).hom ∈ degree (R
     have := σbarPowNat_hom_mem_degree (R := R) (n + 1) X
     rwa [show ((n + 1 : ℕ) : ℤ) = -Int.negSucc n by rw [Int.neg_negSucc]] at this
 
+/--
+@isnad1 id=mem.0h4v.s8.4652abf6f923 from=translated src=- shape=402daa7e vocab=0197133c
+-/
 theorem σPow_inv_mem_degree (m : ℤ) (X : C) : (σPow R m X).inv ∈ degree (R := R) X _ m := by
   simpa using inv_mem_degree _ (σPow_hom_mem_degree (R := R) m X)
 
+/--
+@isnad1 id=eq.0h3v.s6.9bf336ebfb24 from=translated src=- shape=11998652 vocab=905d72ee
+-/
 @[simp] theorem qPow_zero (X : C) : qPow R 0 X = X := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.7e84e24b069f from=translated src=- shape=65818cc5 vocab=1301361e
+-/
 @[simp] theorem σPow_zero (X : C) : σPow R 0 X = Iso.refl X := rfl
 
 end QPiSupercategory

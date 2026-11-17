@@ -41,6 +41,9 @@ instance : Subsingleton sig.Region := inferInstanceAs (Subsingleton Unit)
 /-- `n` strands.-/
 def strands (n : ℕ) : Obj sig := ⟨(), List.replicate n ()⟩
 
+/--
+@isnad1 id=eq.1h2v.s4.00ad3f965f16 from=translated src=- shape=e398ba07 vocab=b2277449
+-/
 theorem list_unit_ext {l₁ l₂ : List Unit} (h : l₁.length = l₂.length) : l₁ = l₂ := by
   induction l₁ generalizing l₂ with
   | nil => cases l₂ with
@@ -50,12 +53,21 @@ theorem list_unit_ext {l₁ l₂ : List Unit} (h : l₁.length = l₂.length) : 
     | nil => simp at h
     | cons b l₂ => rw [ih (by simpa using h)]
 
+/--
+@isnad1 id=iff.0h2v.s4.4925f4f566cf from=translated src=- shape=e735bf39 vocab=3ea2284b
+-/
 @[simp] theorem word_eq_iff {l₁ l₂ : List sig.Colour} : l₁ = l₂ ↔ l₁.length = l₂.length :=
   ⟨congrArg List.length, list_unit_ext⟩
 
+/--
+@isnad1 id=iff.0h2v.s4.11265a23ca5c from=translated src=- shape=4461476d vocab=b2277449
+-/
 @[simp] theorem list_unit_eq_iff {l₁ l₂ : List Unit} : l₁ = l₂ ↔ l₁.length = l₂.length :=
   ⟨congrArg List.length, list_unit_ext⟩
 
+/--
+@isnad1 id=eq.1h2v.s4.a82d6d999f26 from=translated src=- shape=f7a71f81 vocab=6af69722
+-/
 theorem obj_ext {a b : Obj sig} (h : a.word.length = b.word.length) : a = b :=
   Obj.ext (Subsingleton.elim (α := Unit) _ _) (list_unit_ext h)
 
@@ -63,10 +75,16 @@ theorem obj_ext {a b : Obj sig} (h : a.word.length = b.word.length) : a = b :=
 def lay (n i : ℕ) : Layer sig := ⟨(), List.replicate i (), .dot, List.replicate (n - i - 1) ()⟩
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h2v.s4.df1ae938af93 from=translated src=- shape=686180eb vocab=388ffc53
+-/
 theorem lay_dom {n i : ℕ} (h : i < n) : (lay n i).dom = strands n :=
   obj_ext (by simp [lay, Layer.dom, strands, sig]; omega)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h2v.s4.34d47c47415e from=translated src=- shape=686180eb vocab=e9d36709
+-/
 theorem lay_cod {n i : ℕ} (h : i < n) : (lay n i).cod = strands n :=
   obj_ext (by simp [lay, Layer.cod, strands, sig]; omega)
 
@@ -87,12 +105,18 @@ def pres : Presentation sig R where
 def x (n i : ℕ) : End ((pres R).obj (strands n)) :=
   if h : i < n then (pres R).diag (dlay h) else 0
 
+/--
+@isnad1 id=eq.1h3v.s6.9693789084f0 from=translated src=- shape=3e7b601d vocab=0f2dd598
+-/
 theorem x_def {n i : ℕ} (h : i < n) : x R n i = (pres R).diag (dlay h) := dite_eq_left h
 
 /-- `i` strands, used to whisker on the left.-/
 def shift (i : ℕ) : Obj sig := ⟨(), List.replicate i ()⟩
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s8.4165d75cebf6 from=translated src=- shape=a8bd34cd vocab=602a57a1
+-/
 theorem x_mul_x_self (n i : ℕ) : x R n i * x R n i = 0 := by
   by_cases h : i < n
   · have key := (pres R).lin_rel_cast () (shift i) (List.replicate (n - i - 1) ())
@@ -107,7 +131,9 @@ theorem x_mul_x_self (n i : ℕ) : x R n i * x R n i = 0 := by
   · rw [x, dite_eq_right h, mul_zero]
 
 set_option backward.isDefEq.respectTransparency false in
-/-- Distinct dots anticommute: the super interchange law with two odd generators.-/
+/-- Distinct dots anticommute: the super interchange law with two odd generators.
+@isnad1 id=eq.1h4v.s8.0545feffe200 from=translated src=- shape=a5be293d vocab=7daa0c1e
+-/
 theorem x_mul_x_anticomm {n i j : ℕ} (hij : i < j) : x R n i * x R n j = -(x R n j * x R n i) := by
   by_cases hj : j < n
   · let d : InterchangeData sig := ⟨(), .dot, List.replicate (j - i - 1) (), .dot⟩

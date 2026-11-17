@@ -54,23 +54,40 @@ def Move.ncross : Move α → ℕ
 /-- The number of crossings of a diagram.-/
 def ncross (D : List (Move α)) : ℕ := (D.map Move.ncross).sum
 
+/--
+@isnad1 id=eq.0h1v.s3.f5be78b454ca from=translated src=- shape=d9710dfd vocab=ddb3254a
+-/
 @[simp] theorem ncross_nil : ncross ([] : List (Move α)) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.2e3781114f62 from=translated src=- shape=82b3498f vocab=7b9c0ad5
+-/
 @[simp] theorem ncross_cons (m : Move α) (D : List (Move α)) :
     ncross (m :: D) = m.ncross + ncross D := by
   simp [ncross]
 
+/--
+@isnad1 id=eq.0h3v.s5.467373dda630 from=translated src=- shape=3337fb9e vocab=b9a2d9f0
+-/
 @[simp] theorem ncross_append (D E : List (Move α)) : ncross (D ++ E) = ncross D + ncross E := by
   simp [ncross]
 
+/--
+@isnad1 id=eq.1h3v.s4.0ab34b911af7 from=translated src=- shape=2e66215c vocab=19db365c
+-/
 theorem Step.ncross_eq {L R : List (Move α)} (h : Step L R) : ncross L = ncross R := by
   cases h <;> simp [Move.ncross]
 
+/--
+@isnad1 id=eq.1h3v.s4.1f1829eb0585 from=translated src=- shape=2e66215c vocab=9bc2bd34
+-/
 theorem Rw.ncross_eq {X Y : List (Move α)} (h : Rw X Y) : ncross X = ncross Y := by
   obtain ⟨A, B, L, R, hs, rfl, rfl⟩ := h
   simp [hs.ncross_eq]
 
-/-- Equivalent diagrams have the same number of crossings.-/
+/-- Equivalent diagrams have the same number of crossings.
+@isnad1 id=eq.1h3v.s4.0303a5202064 from=translated src=- shape=2e66215c vocab=925901ac
+-/
 theorem Equiv.ncross_eq {X Y : List (Move α)} (h : Equiv X Y) : ncross X = ncross Y := by
   induction h with
   | rel X Y h => exact h.ncross_eq
@@ -98,18 +115,28 @@ def eval : (l : List α) → (D : List (Move α)) → (F.obj l ⟶ F.obj (D.fold
   | _, [] => 𝟙 _
   | l, m :: D => F.map l m ≫ eval (lstep d l m) D
 
+/--
+@isnad1 id=eq.0h5v.s6.be58cc6059e5 from=translated src=- shape=e2a29ee9 vocab=4d8112c5
+-/
 @[simp] theorem eval_nil (l : List α) : F.eval l [] = 𝟙 _ := rfl
 
+/--
+@isnad1 id=eq.0h7v.s7.961f4b711f10 from=translated src=- shape=9954a507 vocab=aae9cc96
+-/
 @[simp] theorem eval_cons (l : List α) (m : Move α) (D : List (Move α)) :
     F.eval l (m :: D) = F.map l m ≫ F.eval (lstep d l m) D := rfl
 
-/-- The image of a diagram depends on the boundary word only up to transport.-/
+/-- The image of a diagram depends on the boundary word only up to transport.
+@isnad1 id=eq.1h7v.s7.06ecf97b3d6e from=translated src=- shape=51b7bb2d vocab=86b436cf
+-/
 theorem eval_congr {l l' : List α} (h : l = l') (D : List (Move α)) :
     F.eval l D ≫ eqToHom (congrArg F.obj (congrArg (D.foldl (lstep d)) h)) =
       eqToHom (congrArg F.obj h) ≫ F.eval l' D := by
   subst h; simp
 
-/-- The image of a concatenation of diagrams is the composite of their images.-/
+/-- The image of a concatenation of diagrams is the composite of their images.
+@isnad1 id=eq.0h7v.s8.d30767820a6b from=translated src=- shape=661ecd93 vocab=50b95861
+-/
 theorem eval_append (l : List α) (D E : List (Move α)) :
     F.eval l (D ++ E) = F.eval l D ≫ F.eval (D.foldl (lstep d) l) E ≫
       eqToHom (congrArg F.obj (List.foldl_append).symm) := by
@@ -144,10 +171,16 @@ namespace Filtration
 
 variable {F} (Φ : F.Filtration)
 
+/--
+@isnad1 id=mem.2h10v.s9.ccc317c9597d from=translated src=- shape=b337b80a vocab=4d372650
+-/
 theorem comp_eqToHom_mem {n : ℕ} {l l' l'' : List α} {x : F.obj l ⟶ F.obj l'} (h : l' = l'')
     (hx : x ∈ Φ.sub n l l') : x ≫ eqToHom (congrArg F.obj h) ∈ Φ.sub n l l'' := by
   subst h; simpa using hx
 
+/--
+@isnad1 id=mem.2h10v.s9.b82ee9340430 from=translated src=- shape=111c02ec vocab=08b93033
+-/
 theorem eval_comp_mem {n : ℕ} {l₀ l : List α} {x : F.obj l₀ ⟶ F.obj l} (hx : x ∈ Φ.sub n l₀ l)
     {D : List (Move α)} (hf : Fits l.length D) :
     x ≫ F.eval l D ∈ Φ.sub (n + ncross D) l₀ (D.foldl (lstep d) l) := by
@@ -165,6 +198,9 @@ theorem eval_comp_mem {n : ℕ} {l₀ l : List α} {x : F.obj l₀ ⟶ F.obj l} 
     rw [← Category.assoc]
     exact this
 
+/--
+@isnad1 id=mem.2h10v.s9.0d977d7486c7 from=translated src=- shape=1e95ecb0 vocab=08b93033
+-/
 theorem mem_eval_comp {n : ℕ} {l l' : List α} {D : List (Move α)}
     {x : F.obj (D.foldl (lstep d) l) ⟶ F.obj l'} (hx : x ∈ Φ.sub n _ l') (hf : Fits l.length D) :
     F.eval l D ≫ x ∈ Φ.sub (ncross D + n) l l' := by
@@ -184,15 +220,23 @@ def Near (n : ℕ) (l : List α) (X Y : List (Move α)) : Prop :=
   ∀ e : X.foldl (lstep d) l = Y.foldl (lstep d) l,
     F.eval l X ≫ eqToHom (congrArg F.obj e) - F.eval l Y ∈ Φ.sub n l (Y.foldl (lstep d) l)
 
-/-- For the trivial filtration, `Near` is equality of the images.-/
+/-- For the trivial filtration, `Near` is equality of the images.
+@isnad1 id=iff.0h8v.s7.822626e13f21 from=translated src=- shape=f6c05833 vocab=e57c2419
+-/
 theorem near_bot_iff {n : ℕ} {l : List α} {X Y : List (Move α)} :
     (Filtration.bot F).Near n l X Y ↔ ∀ e : X.foldl (lstep d) l = Y.foldl (lstep d) l,
       F.eval l X ≫ eqToHom (congrArg F.obj e) = F.eval l Y := by
   simp only [Near, Filtration.bot, AddSubgroup.mem_bot, sub_eq_zero]
 
+/--
+@isnad1 id=near.0h8v.s5.33c4ad28073b from=translated src=- shape=8fd26322 vocab=42c1dd90
+-/
 theorem Near.refl (n : ℕ) (l : List α) (X : List (Move α)) : Φ.Near n l X X := by
   intro e; simp
 
+/--
+@isnad1 id=near.2h9v.s6.3cfb949d2851 from=translated src=- shape=eabd40f9 vocab=9cc224d8
+-/
 theorem Near.symm {n : ℕ} {l : List α} {X Y : List (Move α)} (h : Φ.Near n l X Y)
     (e : X.foldl (lstep d) l = Y.foldl (lstep d) l) : Φ.Near n l Y X := by
   intro e'
@@ -200,6 +244,9 @@ theorem Near.symm {n : ℕ} {l : List α} {X Y : List (Move α)} (h : Φ.Near n 
   convert this using 1
   simp [Preadditive.sub_comp]
 
+/--
+@isnad1 id=near.4h10v.s7.8c76806257ff from=translated src=- shape=f73817e0 vocab=9cc224d8
+-/
 theorem Near.trans {n : ℕ} {l : List α} {X Y Z : List (Move α)} (h : Φ.Near n l X Y)
     (h' : Φ.Near n l Y Z) (e : X.foldl (lstep d) l = Y.foldl (lstep d) l)
     (e' : Y.foldl (lstep d) l = Z.foldl (lstep d) l) : Φ.Near n l X Z := by
@@ -208,7 +255,9 @@ theorem Near.trans {n : ℕ} {l : List α} {X Y Z : List (Move α)} (h : Φ.Near
   convert this using 1
   simp [Preadditive.sub_comp]
 
-/-- A common first move.-/
+/-- A common first move.
+@isnad1 id=near.2h10v.s6.8239d91c9e45 from=translated src=- shape=300199ba vocab=3cd15a15
+-/
 theorem Near.cons {n : ℕ} {l : List α} {X Y : List (Move α)} {m : Move α}
     (h : Φ.Near n (lstep d l m) X Y) (hm : m.Ok l.length) :
     Φ.Near (m.ncross + n) l (m :: X) (m :: Y) := by
@@ -217,7 +266,9 @@ theorem Near.cons {n : ℕ} {l : List α} {X Y : List (Move α)} {m : Move α}
   rw [Preadditive.comp_sub, ← Category.assoc] at this
   exact this
 
-/-- A common prefix.-/
+/-- A common prefix.
+@isnad1 id=near.2h10v.s7.152fc2bdd55b from=translated src=- shape=8818fb6a vocab=3af782eb
+-/
 theorem Near.prefix {n : ℕ} {l : List α} {X Y : List (Move α)} (A : List (Move α))
     (h : Φ.Near n (A.foldl (lstep d) l) X Y) (hA : Fits l.length A) :
     Φ.Near (ncross A + n) l (A ++ X) (A ++ Y) := by
@@ -230,6 +281,9 @@ theorem Near.prefix {n : ℕ} {l : List α} {X Y : List (Move α)} (A : List (Mo
     rw [ncross_cons, Nat.add_assoc]
     exact this
 
+/--
+@isnad1 id=eq.3h10v.s8.6ebececd3fff from=translated src=- shape=545c18eb vocab=5739d495
+-/
 theorem comp_sub_comp_eq {X Y Y' Z Z' : C} (f : X ⟶ Y) (f' : X ⟶ Y') (g : Y ⟶ Z) (g' : Y' ⟶ Z')
     (h : Y = Y') (h' : Z = Z') (hg : g ≫ eqToHom h' = eqToHom h ≫ g') :
     (f ≫ g) ≫ eqToHom h' - f' ≫ g' = (f ≫ eqToHom h - f') ≫ g' := by
@@ -237,7 +291,9 @@ theorem comp_sub_comp_eq {X Y Y' Z Z' : C} (f : X ⟶ Y) (f' : X ⟶ Y') (g : Y 
   simp only [eqToHom_refl, Category.comp_id, Category.id_comp] at hg ⊢
   rw [hg, Preadditive.sub_comp]
 
-/-- A common suffix.-/
+/-- A common suffix.
+@isnad1 id=near.3h10v.s7.535d9d8c0b6e from=translated src=- shape=7043742e vocab=3af782eb
+-/
 theorem Near.append {n : ℕ} {l : List α} {X Y : List (Move α)} (h : Φ.Near n l X Y)
     (e : X.foldl (lstep d) l = Y.foldl (lstep d) l) (B : List (Move α))
     (hB : Fits (Y.foldl (lstep d) l).length B) :
@@ -261,6 +317,9 @@ def Respects : Prop :=
 
 variable {Φ}
 
+/--
+@isnad1 id=near.3h8v.s6.fa64bb0b68d2 from=translated src=- shape=4caad1ad vocab=9f4ffb62
+-/
 theorem Respects.near_rw (hΦ : Φ.Respects) {l : List α} {X Y : List (Move α)} (h : Rw X Y)
     (hf : Fits l.length X) : Φ.Near (ncross X) l X Y := by
   obtain ⟨A, B, L, R, hs, rfl, rfl⟩ := h
@@ -281,7 +340,9 @@ theorem Respects.near_rw (hΦ : Φ.Respects) {l : List α} {X Y : List (Move α)
 
 /-- **Equivalent diagrams have equal images modulo lower order terms.** If the filtration
 respects the moves, then for equivalent diagrams `X` and `Y` fitting on the boundary word `l`,
-the images of `X` and `Y` agree modulo terms of order less than the number of crossings of `X`.-/
+the images of `X` and `Y` agree modulo terms of order less than the number of crossings of `X`.
+@isnad1 id=near.3h8v.s6.d9573ff60433 from=translated src=- shape=4caad1ad vocab=0ad65264
+-/
 theorem near_of_equiv (hΦ : Φ.Respects) {l : List α} {X Y : List (Move α)} (h : Equiv X Y)
     (hf : Fits l.length X) : Φ.Near (ncross X) l X Y := by
   induction h with
@@ -303,7 +364,9 @@ theorem near_of_equiv (hΦ : Φ.Respects) {l : List α} {X Y : List (Move α)} (
 image of every diagram `D` fitting on the empty boundary word agrees, modulo terms of order less
 than the number of crossings of `D`, with the image of a diagram containing a double crossing,
 with the image of a diagram containing a curl, or with the image of the canonical diagram of the
-final pairing of `D`.-/
+final pairing of `D`.
+@isnad1 id=or.2h6v.s7.888318e27ddf from=translated src=- shape=6c31eaf5 vocab=9b205561
+-/
 theorem near_canon_or_reducible (hΦ : Φ.Respects) {D : List (Move α)} (hf : Fits 0 D) :
     (∃ A B : List (Move α), ∃ p : ℕ,
         Φ.Near (ncross D) [] D (A ++ [.cross p, .cross p] ++ B)) ∨

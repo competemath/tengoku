@@ -34,16 +34,31 @@ variable {l m : P.Bicat} {x y z : l ⟶ m}
 /-- A 2-morphism of `P.Bicat` as a morphism of the presented category.-/
 abbrev toHom (f : x ⟶ y) : P.obj x.obj ⟶ P.obj y.obj := f
 
+/--
+@isnad1 id=eq.0h10v.s8.d7c2a60c576a from=translated src=- shape=0325e409 vocab=0a690c6e
+-/
 theorem comp_def (f : x ⟶ y) (g : y ⟶ z) :
     f ≫ g = ((toHom f ≫ toHom g : P.obj x.obj ⟶ P.obj z.obj) : x ⟶ z) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.6b3440ad1adc from=translated src=- shape=fb31e412 vocab=450e1410
+-/
 theorem id_def (x : l ⟶ m) : 𝟙 x = ((𝟙 (P.obj x.obj) : P.obj x.obj ⟶ P.obj x.obj) : x ⟶ x) :=
   rfl
 
+/--
+@isnad1 id=eq.0h10v.s8.edadec03ee19 from=translated src=- shape=52e1149f vocab=0a690c6e
+-/
 theorem toHom_comp (f : x ⟶ y) (g : y ⟶ z) : toHom (f ≫ g) = toHom f ≫ toHom g := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.908500c80436 from=translated src=- shape=6b42cdfc vocab=68cdec55
+-/
 theorem toHom_id (x : l ⟶ m) : toHom (𝟙 x) = 𝟙 (P.obj x.obj) := rfl
 
+/--
+@isnad1 id=eq.1h7v.s8.13cce542d932 from=translated src=- shape=36de17f7 vocab=36556786
+-/
 theorem toHom_eqToHom (h : x = y) :
     toHom (eqToHom h) = eqToHom (congrArg (fun z : l ⟶ m => P.obj z.obj) h) := by
   subst h; rfl

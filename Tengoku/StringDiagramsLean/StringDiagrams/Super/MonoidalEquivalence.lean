@@ -100,7 +100,9 @@ variable [MonoidalSupercategory R D]
 
 omit [MonoidalSupercategory R D] in
 /-- Two monoidal natural transformations are equal if their underlying natural
-transformations are.-/
+transformations are.
+@isnad1 id=eq.1h9v.s8.294bd1a207f9 from=translated src=- shape=2c9d484a vocab=128391d1
+-/
 theorem ext' {x y : MonoidalNatTrans R cF cG} (h : x.toNatTrans = y.toNatTrans) : x = y := by
   cases x; cases y; subst h; rfl
 
@@ -174,9 +176,15 @@ def ofNatIso (x : MonoidalNatTrans R cF cG) (e : F ≅ G) (h : e.hom = x.toNatTr
   hom_inv_id := by change x.toNatTrans ≫ e.inv = 𝟙 F; rw [← h, Iso.hom_inv_id]
   inv_hom_id := by change e.inv ≫ x.toNatTrans = 𝟙 G; rw [← h, Iso.inv_hom_id]
 
+/--
+@isnad1 id=eq.1h9v.s8.37114c2d20d6 from=translated src=- shape=e82a73b1 vocab=73869ca8
+-/
 @[simp] theorem ofNatIso_hom (x : MonoidalNatTrans R cF cG) (e : F ≅ G) (h : e.hom = x.toNatTrans) :
     (ofNatIso x e h).hom = x := rfl
 
+/--
+@isnad1 id=eq.1h9v.s8.76922d8825c1 from=translated src=- shape=3e61981e vocab=9ab51097
+-/
 @[simp] theorem ofNatIso_inv_toNatTrans (x : MonoidalNatTrans R cF cG) (e : F ≅ G)
     (h : e.hom = x.toNatTrans) : (ofNatIso x e h).inv.toNatTrans = e.inv := rfl
 

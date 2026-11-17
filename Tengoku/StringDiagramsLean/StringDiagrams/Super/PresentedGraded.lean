@@ -36,7 +36,9 @@ variable {S : Signature.{u₀, u₁, u₂}} {R : Type w} [CommRing R] {P : Prese
 
 namespace Presentation
 
-/-- The homogeneous components for one grading preserve the homogeneous parts for another.-/
+/-- The homogeneous components for one grading preserve the homogeneous parts for another.
+@isnad1 id=mem.2h12v.s11.918379fc4b5b from=translated src=- shape=8906c004 vocab=5735cc72
+-/
 theorem homogeneousComponent_mem_homDeg {A B : Type*} [AddCommMonoid A] [AddCommMonoid B]
     {deg : S.Gen → A} {deg' : S.Gen → B} (hP : P.IsHomogeneous deg) {a b : Obj S} (d : A)
     {e : B} {x : P.obj a ⟶ P.obj b} (hx : x ∈ P.homDeg deg' a b e) :
@@ -53,7 +55,9 @@ theorem homogeneousComponent_mem_homDeg {A B : Type*} [AddCommMonoid A] [AddComm
   exact hf g (Finsupp.mem_support_iff.mp (Finset.mem_filter.mp hmem).1)
 
 /-- The parity projections of the hom supercategories of `P.Bicat` are the homogeneous
-components for the parity grading.-/
+components for the parity grading.
+@isnad1 id=eq.1h9v.s11.54234eb80d11 from=translated src=- shape=22e4124f vocab=49fffcec
+-/
 theorem Bicat.proj_eq_homogeneousComponent (hP : P.IsParityHomogeneous) {l m : P.Bicat}
     {a b : l ⟶ m} (p : ZMod 2) (x : a ⟶ b) :
     letI := Bicat.supercategory hP l m
@@ -73,7 +77,9 @@ theorem Bicat.proj_eq_homogeneousComponent (hP : P.IsParityHomogeneous) {l m : P
 
 variable (deg : S.Gen → ℤ)
 
-/-- The coherence isomorphisms of `P.Bicat` (equalities of words) have degree `0`.-/
+/-- The coherence isomorphisms of `P.Bicat` (equalities of words) have degree `0`.
+@isnad1 id=mem.1h9v.s9.b1c39a522652 from=translated src=- shape=bc5e16e2 vocab=b894f79c
+-/
 theorem Bicat.isoOfEq_hom_mem_homDeg {A : Type*} [AddCommMonoid A] (deg : S.Gen → A)
     {l m : P.Bicat} {a b : l ⟶ m} (e : Bicat.Hom.obj a = Bicat.Hom.obj b) :
     ((Bicat.isoOfEq e).hom : a ⟶ b) ∈ P.homDeg deg (Bicat.Hom.obj a) (Bicat.Hom.obj b) 0 :=

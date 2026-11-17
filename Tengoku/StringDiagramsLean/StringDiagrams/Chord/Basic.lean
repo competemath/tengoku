@@ -62,8 +62,14 @@ variable {β : Type*}
 /-- The transposition of `p` and `p + 1`.-/
 def tau (p i : ℕ) : ℕ := if i = p then p + 1 else if i = p + 1 then p else i
 
+/--
+@isnad1 id=eq.0h2v.s3.dfaad2c3e939 from=translated src=- shape=94dc243a vocab=16663ba3
+-/
 theorem tau_tau (p i : ℕ) : tau p (tau p i) = i := by unfold tau; split_ifs <;> omega
 
+/--
+@isnad1 id=iff.0h3v.s4.2378e3ec412b from=translated src=- shape=518d04df vocab=16663ba3
+-/
 theorem tau_inj {p i j : ℕ} : tau p i = tau p j ↔ i = j :=
   ⟨fun h => by rw [← tau_tau p i, h, tau_tau], fun h => h ▸ rfl⟩
 
@@ -80,15 +86,27 @@ def insAt (s : List β) (g : ℕ) (x y : β) : List β := s.take g ++ x :: y :: 
 /-- The position in `s` of the entry at position `i` of `rmAt s r`.-/
 def rmIdx (r i : ℕ) : ℕ := if i < r then i else i + 2
 
+/--
+@isnad1 id=eq.0h3v.s4.81fc9c09a286 from=translated src=- shape=13c8322a vocab=ddadfb6f
+-/
 @[simp] theorem length_swapAt (s : List β) (p : ℕ) : (swapAt s p).length = s.length := by
   unfold swapAt; split_ifs <;> simp
 
+/--
+@isnad1 id=eq.1h3v.s5.61e8a5b9af99 from=translated src=- shape=4d433513 vocab=4742e00a
+-/
 theorem length_rmAt (s : List β) {r : ℕ} (h : r + 2 ≤ s.length) :
     (rmAt s r).length = s.length - 2 := by simp [rmAt]; omega
 
+/--
+@isnad1 id=eq.1h5v.s5.3d426c234c5b from=translated src=- shape=4202b1e4 vocab=0f993640
+-/
 theorem length_insAt (s : List β) {g : ℕ} (h : g ≤ s.length) (x y : β) :
     (insAt s g x y).length = s.length + 2 := by simp [insAt]; omega
 
+/--
+@isnad1 id=eq.1h4v.s6.7b8a19279a59 from=translated src=- shape=6256dea8 vocab=40b20b69
+-/
 theorem getElem?_swapAt (s : List β) {p : ℕ} (hp : p + 1 < s.length) (i : ℕ) :
     (swapAt s p)[i]? = s[tau p i]? := by
   have hp' : p < s.length := by omega
@@ -97,12 +115,18 @@ theorem getElem?_swapAt (s : List β) {p : ℕ} (hp : p + 1 < s.length) (i : ℕ
   · simp [swapAt, hp, tau, hp']
   · simp [swapAt, hp, tau, h1, h2, Ne.symm h1, Ne.symm h2]
 
+/--
+@isnad1 id=eq.1h4v.s6.626a8d54bf24 from=translated src=- shape=e305753f vocab=858a344a
+-/
 theorem getElem?_rmAt (s : List β) {r : ℕ} (hr : r + 2 ≤ s.length) (i : ℕ) :
     (rmAt s r)[i]? = s[rmIdx r i]? := by
   simp only [rmAt, rmIdx, List.getElem?_append, List.length_take, List.getElem?_take,
     List.getElem?_drop]
   split_ifs <;> first | rfl | (congr 1; omega)
 
+/--
+@isnad1 id=eq.1h6v.s7.8903bb1a06ca from=translated src=- shape=0198a98f vocab=79c527ef
+-/
 theorem getElem?_insAt (s : List β) {g : ℕ} (hg : g ≤ s.length) (x y : β) (i : ℕ) :
     (insAt s g x y)[i]? = if i < g then s[i]? else if i = g then some x
       else if i = g + 1 then some y else s[i - 2]? := by
@@ -116,30 +140,51 @@ theorem getElem?_insAt (s : List β) {g : ℕ} (hg : g ≤ s.length) (x y : β) 
     rw [show g + 2 + m - g = m + 2 by omega, show g + 2 + m - 2 = g + m by omega]
     simp [List.getElem?_drop]
 
+/--
+@isnad1 id=iff.0h3v.s4.7537c513ca51 from=translated src=- shape=518d04df vocab=b8f42c5b
+-/
 theorem rmIdx_lt_iff (r : ℕ) {i j : ℕ} : rmIdx r i < rmIdx r j ↔ i < j := by
   unfold rmIdx; split_ifs <;> omega
 
+/--
+@isnad1 id=iff.0h3v.s4.df31632649eb from=translated src=- shape=518d04df vocab=764de5a0
+-/
 theorem rmIdx_inj {r i j : ℕ} : rmIdx r i = rmIdx r j ↔ i = j := by
   unfold rmIdx; split_ifs <;> omega
 
+/--
+@isnad1 id=iff.2h3v.s6.640d0e6613bd from=translated src=- shape=a2083584 vocab=f9a103b0
+-/
 theorem tau_lt_iff (p : ℕ) {i j : ℕ} (h : ¬ (i = p ∧ j = p + 1)) (h' : ¬ (i = p + 1 ∧ j = p)) :
     tau p i < tau p j ↔ i < j := by unfold tau; split_ifs <;> omega
 
+/--
+@isnad1 id=eq.0h3v.s4.333f6d16549e from=translated src=- shape=8da93ded vocab=1fa81ee4
+-/
 theorem swapAt_swapAt (s : List β) (p : ℕ) : swapAt (swapAt s p) p = s := by
   by_cases hp : p + 1 < s.length
   · apply List.ext_getElem?; intro i
     rw [getElem?_swapAt _ (by simpa using hp), getElem?_swapAt _ hp, tau_tau]
   · simp [swapAt, hp]
 
+/--
+@isnad1 id=eq.1h3v.s5.49588f7a9956 from=translated src=- shape=68fd07ea vocab=bc1c8446
+-/
 theorem swapAt_of_le (s : List β) {p : ℕ} (hp : ¬ p + 1 < s.length) : swapAt s p = s := by
   simp [swapAt, hp]
 
+/--
+@isnad1 id=eq.1h5v.s5.b89863b7aa05 from=translated src=- shape=70fe8314 vocab=62e9ffa7
+-/
 theorem rmAt_insAt (s : List β) (g : ℕ) (x y : β) (hg : g ≤ s.length) :
     rmAt (insAt s g x y) g = s := by
   apply List.ext_getElem?; intro i
   rw [getElem?_rmAt _ (by rw [length_insAt s hg]; omega), getElem?_insAt s hg]
   unfold rmIdx; split_ifs <;> first | rfl | omega
 
+/--
+@isnad1 id=eq.1h3v.s6.9a9c6ab72baf from=translated src=- shape=e1bd03eb vocab=6a82d913
+-/
 theorem insAt_rmAt (s : List β) {r : ℕ} (hr : r + 1 < s.length) :
     insAt (rmAt s r) r s[r] s[r + 1] = s := by
   have hl := length_rmAt s (r := r) (by omega)
@@ -172,42 +217,81 @@ def Valid (s : List (ℕ × α)) : Prop := ∀ i < s.length, ∃! j, Same s i j
 
 variable {s : List (ℕ × α)}
 
+/--
+@isnad1 id=iff.0h3v.s4.74bc7996d30a from=translated src=- shape=c3f4f2d9 vocab=3c31150e
+-/
 theorem idAt_ne_none_iff {i : ℕ} : idAt s i ≠ none ↔ i < s.length := by
   simp [idAt]
 
+/--
+@isnad1 id=same.1h4v.s4.229ab86358ca from=translated src=- shape=454673c0 vocab=33dead2b
+-/
 theorem Same.symm {i j : ℕ} (h : Same s i j) : Same s j i :=
   ⟨h.1.symm, h.2.2 ▸ h.2.1, h.2.2.symm⟩
 
+/--
+@isnad1 id=iff.0h4v.s4.7329bb1ff271 from=translated src=- shape=0c141bd9 vocab=33dead2b
+-/
 theorem same_comm {i j : ℕ} : Same s i j ↔ Same s j i := ⟨Same.symm, Same.symm⟩
 
+/--
+@isnad1 id=lt.1h4v.s4.28788cce08e7 from=translated src=- shape=113bd70b vocab=6056e7bf
+-/
 theorem Same.lt_left {i j : ℕ} (h : Same s i j) : i < s.length := idAt_ne_none_iff.1 h.2.1
 
+/--
+@isnad1 id=lt.1h4v.s4.1f4312614c79 from=translated src=- shape=b1dba191 vocab=6056e7bf
+-/
 theorem Same.lt_right {i j : ℕ} (h : Same s i j) : j < s.length := h.symm.lt_left
 
+/--
+@isnad1 id=ne.1h4v.s4.b1ad5e0094e7 from=translated src=- shape=58542aab vocab=33dead2b
+-/
 theorem Same.ne {i j : ℕ} (h : Same s i j) : i ≠ j := h.1
 
+/--
+@isnad1 id=eq.3h5v.s5.d776372c67e5 from=translated src=- shape=dcc8a5a9 vocab=9e356fc8
+-/
 theorem Valid.unique (hv : Valid s) {i j j' : ℕ} (h : Same s i j) (h' : Same s i j') : j = j' :=
   (hv i h.lt_left).unique h h'
 
+/--
+@isnad1 id=ex.2h3v.s5.83d96ece5d38 from=translated src=- shape=2c6e4a0a vocab=e69ef2de
+-/
 theorem Valid.exists (hv : Valid s) {i : ℕ} (hi : i < s.length) : ∃ j, Same s i j :=
   (hv i hi).exists
 
+/--
+@isnad1 id=eq.1h4v.s5.f7b165724362 from=translated src=- shape=cfe4747e vocab=33cd9907
+-/
 theorem idAt_swapAt {p : ℕ} (hp : p + 1 < s.length) (i : ℕ) :
     idAt (swapAt s p) i = idAt s (tau p i) := by
   simp [idAt, getElem?_swapAt s hp]
 
+/--
+@isnad1 id=iff.1h5v.s5.903297aacf36 from=translated src=- shape=ffac1b28 vocab=870b0a8c
+-/
 theorem same_swapAt {p : ℕ} (hp : p + 1 < s.length) {i j : ℕ} :
     Same (swapAt s p) i j ↔ Same s (tau p i) (tau p j) := by
   simp only [Same, idAt_swapAt hp, ne_eq, tau_inj]
 
+/--
+@isnad1 id=eq.1h4v.s5.67144686dfc4 from=translated src=- shape=cfe4747e vocab=ee9c0f00
+-/
 theorem idAt_rmAt {r : ℕ} (hr : r + 2 ≤ s.length) (i : ℕ) :
     idAt (rmAt s r) i = idAt s (rmIdx r i) := by
   simp [idAt, getElem?_rmAt s hr]
 
+/--
+@isnad1 id=iff.1h5v.s5.28bb8b6d5835 from=translated src=- shape=ffac1b28 vocab=94288730
+-/
 theorem same_rmAt {r : ℕ} (hr : r + 2 ≤ s.length) {i j : ℕ} :
     Same (rmAt s r) i j ↔ Same s (rmIdx r i) (rmIdx r j) := by
   simp only [Same, idAt_rmAt hr, ne_eq, rmIdx_inj]
 
+/--
+@isnad1 id=valid.2h3v.s5.6cb527a75974 from=translated src=- shape=111dacec vocab=eaaf558d
+-/
 theorem Valid.swapAt (hv : Valid s) {p : ℕ} (hp : p + 1 < s.length) :
     Valid (Chord.swapAt s p) := by
   intro i hi
@@ -220,6 +304,9 @@ theorem Valid.swapAt (hv : Valid s) {p : ℕ} (hp : p + 1 < s.length) :
     rw [same_swapAt hp] at hk'
     rw [← hu _ hk', tau_tau]
 
+/--
+@isnad1 id=valid.2h3v.s5.13c016a3de6a from=translated src=- shape=95c5bbf5 vocab=107a6885
+-/
 theorem Valid.rmAt (hv : Valid s) {r : ℕ} (hadj : Same s r (r + 1)) :
     Valid (Chord.rmAt s r) := by
   have hr : r + 2 ≤ s.length := hadj.lt_right
@@ -246,12 +333,18 @@ theorem Valid.rmAt (hv : Valid s) {r : ℕ} (hadj : Same s r (r + 1)) :
     have := hu _ hk'
     unfold rmIdx at this; split_ifs at this ⊢ <;> omega
 
+/--
+@isnad1 id=eq.1h7v.s7.0b564b0ffa67 from=translated src=- shape=60d5c897 vocab=795b120b
+-/
 theorem idAt_insAt {g : ℕ} (hg : g ≤ s.length) (k : ℕ) (a b : α) (i : ℕ) :
     idAt (insAt s g (k, a) (k, b)) i = if i < g then idAt s i else if i = g then some k
       else if i = g + 1 then some k else idAt s (i - 2) := by
   simp only [idAt, getElem?_insAt s hg]
   split_ifs <;> rfl
 
+/--
+@isnad1 id=iff.2h8v.s7.108a5bd5da20 from=translated src=- shape=97e47d8f vocab=9d912f12
+-/
 theorem same_insAt_iff {g : ℕ} (hg : g ≤ s.length) {k : ℕ} (hk : ∀ x ∈ s, x.1 ≠ k) (a b : α)
     {i j : ℕ} : Same (insAt s g (k, a) (k, b)) i j ↔
       ((i = g ∧ j = g + 1) ∨ (i = g + 1 ∧ j = g) ∨
@@ -277,6 +370,9 @@ theorem same_insAt_iff {g : ℕ} (hg : g ≤ s.length) {k : ℕ} (hk : ∀ x ∈
       · subst e; split_ifs at h5 <;> omega
       · split_ifs at h6 h7 ⊢ <;> first | omega | exact ⟨h6, h7⟩
 
+/--
+@isnad1 id=valid.3h6v.s6.7e4d79f0dcc9 from=translated src=- shape=27250d0b vocab=332b7968
+-/
 theorem Valid.insAt (hv : Valid s) {g : ℕ} (hg : g ≤ s.length) {k : ℕ} (hk : ∀ x ∈ s, x.1 ≠ k)
     (a b : α) : Valid (Chord.insAt s g (k, a) (k, b)) := by
   intro i hi
@@ -330,6 +426,9 @@ noncomputable def crSet (s : List (ℕ × α)) : Finset (ℕ × ℕ × ℕ × �
 /-- The crossing number of a pairing: the number of pairs of interleaved arcs.-/
 noncomputable def cr (s : List (ℕ × α)) : ℕ := (crSet s).card
 
+/--
+@isnad1 id=iff.0h3v.s6.f69c32b3e2e6 from=translated src=- shape=04b0250b vocab=a92e281c
+-/
 theorem mem_crSet {x : ℕ × ℕ × ℕ × ℕ} : x ∈ crSet s ↔ Cr4 s x.1 x.2.1 x.2.2.1 x.2.2.2 := by
   simp only [crSet, Finset.mem_filter, Finset.mem_product, Finset.mem_range, and_iff_right_iff_imp]
   intro h
@@ -339,7 +438,9 @@ theorem mem_crSet {x : ℕ × ℕ × ℕ × ℕ} : x ∈ crSet s ↔ Cr4 s x.1 x
 def Ilv (s : List (ℕ × α)) (q : ℕ) : Prop :=
   ∃ i j k l, Cr4 s i j k l ∧ ((i = q ∧ j = q + 1) ∨ (j = q ∧ k = q + 1) ∨ (k = q ∧ l = q + 1))
 
-/-- In a pairing, whether the arcs at `q` and `q + 1` (with partners `a` and `b`) interleave.-/
+/-- In a pairing, whether the arcs at `q` and `q + 1` (with partners `a` and `b`) interleave.
+@isnad1 id=iff.3h5v.s6.bffb5187383d from=translated src=- shape=734ad021 vocab=c7266b76
+-/
 theorem ilv_iff (hv : Valid s) {q a b : ℕ} (ha : Same s q a) (hb : Same s (q + 1) b) :
     Ilv s q ↔ (q + 1 < a ∧ a < b) ∨ (b < q ∧ q + 1 < a) ∨ (a < b ∧ b < q) := by
   constructor
@@ -354,12 +455,18 @@ theorem ilv_iff (hv : Valid s) {q a b : ℕ} (ha : Same s q a) (hb : Same s (q +
     · exact ⟨a, b, q, q + 1, ⟨by omega, by omega, by omega, ha.symm, hb.symm⟩,
         Or.inr (Or.inr ⟨rfl, rfl⟩)⟩
 
+/--
+@isnad1 id=lt.1h3v.s5.d18dce6474c7 from=translated src=- shape=5d8b4431 vocab=bd7117b5
+-/
 theorem Ilv.lt (h : Ilv s q) : q + 1 < s.length := by
   obtain ⟨i, j, k, l, ⟨h1, h2, h3, h4, h5⟩, h | h | h⟩ := h <;> obtain ⟨rfl, rfl⟩ := h
   · exact h5.lt_left
   · exact h4.lt_right
   · exact h5.lt_right
 
+/--
+@isnad1 id=not.2h3v.s5.c331d96e14b0 from=translated src=- shape=4add44de vocab=0ff72045
+-/
 theorem Ilv.not_same (hv : Valid s) (h : Ilv s q) : ¬ Same s q (q + 1) := by
   intro hq
   obtain ⟨a, ha⟩ := hv.exists (show q < s.length by have := h.lt; omega)
@@ -369,7 +476,9 @@ theorem Ilv.not_same (hv : Valid s) (h : Ilv s q) : ¬ Same s q (q + 1) := by
   rw [ilv_iff hv ha hb] at h
   omega
 
-/-- The partners of `q` and `q + 1` after exchanging them.-/
+/-- The partners of `q` and `q + 1` after exchanging them.
+@isnad1 id=and.4h5v.s6.bfab3e50b2f7 from=translated src=- shape=e2db41b9 vocab=4a1fc1c9
+-/
 theorem swapAt_partners {p : ℕ} (hp : p + 1 < s.length) {a b : ℕ} (ha : Same s p a)
     (hb : Same s (p + 1) b) (hab : ¬ Same s p (p + 1)) :
     Same (swapAt s p) p b ∧ Same (swapAt s p) (p + 1) a := by
@@ -382,7 +491,9 @@ theorem swapAt_partners {p : ℕ} (hp : p + 1 < s.length) {a b : ℕ} (ha : Same
   rw [same_swapAt hp, same_swapAt hp, ta, tb, t1, t2]
   exact ⟨hb, ha⟩
 
-/-- Exchanging two adjacent endpoints of different arcs toggles their interleaving.-/
+/-- Exchanging two adjacent endpoints of different arcs toggles their interleaving.
+@isnad1 id=iff.3h3v.s6.e525f1300e2c from=translated src=- shape=536bb259 vocab=71982f6e
+-/
 theorem ilv_swapAt_iff (hv : Valid s) {p : ℕ} (hp : p + 1 < s.length)
     (hab : ¬ Same s p (p + 1)) : Ilv (swapAt s p) p ↔ ¬ Ilv s p := by
   obtain ⟨a, ha⟩ := hv.exists (show p < s.length by omega)
@@ -395,6 +506,9 @@ theorem ilv_swapAt_iff (hv : Valid s) {p : ℕ} (hp : p + 1 < s.length)
   have := ha.ne; have := hb.ne
   omega
 
+/--
+@isnad1 id=le.1h3v.s5.aaecfec080a9 from=translated src=- shape=065d98e8 vocab=c30edd97
+-/
 theorem cr_rmAt_le {r : ℕ} (hr : r + 2 ≤ s.length) : cr (rmAt s r) ≤ cr s := by
   unfold cr
   refine Finset.card_le_card_of_injOn (fun x => (rmIdx r x.1, rmIdx r x.2.1, rmIdx r x.2.2.1,
@@ -407,6 +521,9 @@ theorem cr_rmAt_le {r : ℕ} (hr : r + 2 ≤ s.length) : cr (rmAt s r) ≤ cr s 
     obtain ⟨h1, h2, h3, h4⟩ := h
     exact Prod.ext h1 (Prod.ext h2 (Prod.ext h3 h4))
 
+/--
+@isnad1 id=lt.2h3v.s5.3e2ce8a4d70d from=translated src=- shape=59f68c67 vocab=4daba6df
+-/
 theorem cr_swapAt_lt (hv : Valid s) {p : ℕ} (h : Ilv s p) : cr (swapAt s p) < cr s := by
   have hp := h.lt
   have hn : ¬ Ilv (swapAt s p) p := by
@@ -486,16 +603,31 @@ def Equiv : List (Move α) → List (Move α) → Prop := Relation.EqvGen Rw
 
 namespace Equiv
 
+/--
+@isnad1 id=equiv.0h2v.s3.bee9304e9a40 from=translated src=- shape=6b94285b vocab=fdfe8253
+-/
 @[refl] theorem refl (X : List (Move α)) : Equiv X X := Relation.EqvGen.refl X
 
+/--
+@isnad1 id=equiv.1h3v.s4.c38a7c28863d from=translated src=- shape=05d9f031 vocab=fdfe8253
+-/
 theorem symm {X Y : List (Move α)} (h : Equiv X Y) : Equiv Y X := Relation.EqvGen.symm _ _ h
 
+/--
+@isnad1 id=equiv.2h4v.s4.9b379282ca0c from=translated src=- shape=71427ac3 vocab=fdfe8253
+-/
 theorem trans {X Y Z : List (Move α)} (h : Equiv X Y) (h' : Equiv Y Z) : Equiv X Z :=
   Relation.EqvGen.trans _ _ _ h h'
 
+/--
+@isnad1 id=equiv.1h3v.s4.b26c537b86d9 from=translated src=- shape=ff8a713a vocab=95802e2d
+-/
 theorem of_step {L R : List (Move α)} (h : Step L R) : Equiv L R :=
   Relation.EqvGen.rel _ _ ⟨[], [], L, R, h, by simp, by simp⟩
 
+/--
+@isnad1 id=equiv.1h4v.s5.597dda0833f6 from=translated src=- shape=6135112a vocab=0a4bb1e1
+-/
 theorem append_right {X Y : List (Move α)} (h : Equiv X Y) (Z : List (Move α)) :
     Equiv (X ++ Z) (Y ++ Z) := by
   induction h with
@@ -506,6 +638,9 @@ theorem append_right {X Y : List (Move α)} (h : Equiv X Y) (Z : List (Move α))
   | symm _ _ _ ih => exact ih.symm
   | trans _ _ _ _ _ ih ih' => exact ih.trans ih'
 
+/--
+@isnad1 id=equiv.1h4v.s5.6dd73edfc86b from=translated src=- shape=c508e986 vocab=0a4bb1e1
+-/
 theorem append_left {X Y : List (Move α)} (h : Equiv X Y) (Z : List (Move α)) :
     Equiv (Z ++ X) (Z ++ Y) := by
   induction h with
@@ -516,7 +651,9 @@ theorem append_left {X Y : List (Move α)} (h : Equiv X Y) (Z : List (Move α)) 
   | symm _ _ _ ih => exact ih.symm
   | trans _ _ _ _ _ ih ih' => exact ih.trans ih'
 
-/-- A move in context.-/
+/-- A move in context.
+@isnad1 id=equiv.1h5v.s6.e57e9b760ea2 from=translated src=- shape=f69287a2 vocab=3d88bc58
+-/
 theorem step_mid {L R : List (Move α)} (h : Step L R) (A B : List (Move α)) :
     Equiv (A ++ L ++ B) (A ++ R ++ B) :=
   ((of_step h).append_left A).append_right B
@@ -529,6 +666,9 @@ def Reducible (D : List (Move α)) : Prop :=
   ∃ A B : List (Move α), ∃ p : ℕ, (Equiv D (A ++ [.cross p, .cross p] ++ B)) ∨
     ∃ a : α, Equiv D (A ++ [.cup p a, .cross p] ++ B)
 
+/--
+@isnad1 id=reducibl.2h3v.s4.94ae15613083 from=translated src=- shape=48d4a5ae vocab=3025ec74
+-/
 theorem Reducible.of_equiv {D D' : List (Move α)} (h : Reducible D') (e : Equiv D D') :
     Reducible D := by
   obtain ⟨A, B, p, h⟩ := h
@@ -537,6 +677,9 @@ theorem Reducible.of_equiv {D D' : List (Move α)} (h : Reducible D') (e : Equiv
   · exact Or.inl (e.trans h)
   · exact Or.inr ⟨a, e.trans h⟩
 
+/--
+@isnad1 id=reducibl.1h3v.s5.858d4ae0f67b from=translated src=- shape=934a1a75 vocab=f5958e9c
+-/
 theorem Reducible.append {D : List (Move α)} (h : Reducible D) (Z : List (Move α)) :
     Reducible (D ++ Z) := by
   obtain ⟨A, B, p, h⟩ := h
@@ -551,6 +694,9 @@ def Opn (s : List (ℕ × α)) (q : ℕ) : Prop := ∃ j, q < j ∧ Same s q j
 /-- Position `q` is the right end of its arc.-/
 def Cls (s : List (ℕ × α)) (q : ℕ) : Prop := ∃ j, j < q ∧ Same s q j
 
+/--
+@isnad1 id=ilv.4h3v.s5.6ae0aa4328f7 from=translated src=- shape=5420a7a0 vocab=3d97edb4
+-/
 theorem ilv_of_opn_cls {s : List (ℕ × α)} (hv : Valid s) {q : ℕ} (hn : ¬ Same s q (q + 1))
     (ho : Opn s q) (hc : Cls s (q + 1)) : Ilv s q := by
   obtain ⟨a, hqa, ha⟩ := ho
@@ -580,6 +726,9 @@ decreasing_by
       (Nat.find_spec h').2)
     rw [length_swapAt]; omega
 
+/--
+@isnad1 id=eq.3h3v.s7.6b9779d07b5c from=translated src=- shape=1d02f946 vocab=f7f67d9a
+-/
 theorem canon_adj {s : List (ℕ × α)} (hv : Valid s) {r : ℕ} (hr : Same s r (r + 1))
     (hmin : ∀ r' < r, ¬ Same s r' (r' + 1)) :
     canon s = canon (rmAt s r) ++ [.cup r (s[r]'hr.lt_left).2] := by
@@ -591,6 +740,9 @@ theorem canon_adj {s : List (ℕ × α)} (hv : Valid s) {r : ℕ} (hr : Same s r
   subst e
   rfl
 
+/--
+@isnad1 id=ex.3h2v.s7.18d79bef280a from=translated src=- shape=4e1db16c vocab=a5c340ec
+-/
 theorem canon_cross {s : List (ℕ × α)} (hv : Valid s) (hno : ∀ r, ¬ Same s r (r + 1))
     (hne : s ≠ []) : ∃ q, Opn s q ∧ Cls s (q + 1) ∧ canon s = canon (swapAt s q) ++ [.cross q] ∧
       ∀ q' < q, ¬ (Opn s q' ∧ Cls s (q' + 1)) := by
@@ -615,6 +767,9 @@ theorem canon_cross {s : List (ℕ × α)} (hv : Valid s) (hno : ∀ r, ¬ Same 
     fun q' hq' => Nat.find_min h' hq'⟩
   rw [canon, dite_eq_left hv, dite_eq_right h, dite_eq_left h']
 
+/--
+@isnad1 id=eq.0h1v.s3.f2dd9fff0cce from=translated src=- shape=e81cac93 vocab=adb6b3b0
+-/
 theorem canon_nil : canon ([] : List (ℕ × α)) = [] := by
   classical
   have hv : Valid ([] : List (ℕ × α)) := fun i hi => by simp at hi

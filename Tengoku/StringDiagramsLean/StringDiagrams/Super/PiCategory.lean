@@ -54,19 +54,34 @@ variable {R} {C : Type w₁} [Category.{w₂} C] [Preadditive C] [Linear R C] [P
 /-- The component `ξ_X : Π² X ≅ X`.-/
 def ξApp (X : C) : (pi (R := R)).obj ((pi (R := R)).obj X) ≅ X := (ξ (R := R)).app X
 
+/--
+@isnad1 id=eq.0h3v.s7.85887529eebe from=translated src=- shape=e9e15828 vocab=27b0e515
+-/
 theorem ξApp_hom (X : C) : (ξApp (R := R) X).hom = (ξ (R := R)).hom.app X := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.9d79075619d7 from=translated src=- shape=5bd5287b vocab=4206ed28
+-/
 theorem ξApp_inv (X : C) : (ξApp (R := R) X).inv = (ξ (R := R)).inv.app X := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.72538aabe6de from=translated src=- shape=3bcd7a8f vocab=e7f24d96
+-/
 @[reassoc]
 theorem ξApp_naturality {X Y : C} (f : X ⟶ Y) :
     (pi (R := R)).map ((pi (R := R)).map f) ≫ (ξApp (R := R) Y).hom = (ξApp (R := R) X).hom ≫ f :=
   (ξ (R := R)).hom.naturality f
 
+/--
+@isnad1 id=eq.0h3v.s8.a44d58969fbd from=translated src=- shape=3bf430d5 vocab=ae1ed164
+-/
 theorem ξApp_pi (X : C) :
     (ξApp (R := R) ((pi (R := R)).obj X)).hom = (pi (R := R)).map (ξApp (R := R) X).hom :=
   ξ_pi X
 
+/--
+@isnad1 id=eq.0h3v.s8.5f16258af1c2 from=translated src=- shape=be889b56 vocab=0f3f5991
+-/
 theorem ξ_inv_pi (X : C) :
     (ξ (R := R)).inv.app ((pi (R := R)).obj X) = (pi (R := R)).map ((ξ (R := R)).inv.app X) := by
   rw [← cancel_mono ((ξ (R := R)).hom.app _), Iso.inv_hom_id_app, ξ_pi, ← Functor.map_comp,
@@ -140,9 +155,15 @@ def IsPiNatural {F G : C ⥤ D} (hF : PiFunctor R F) (hG : PiFunctor R G) (x : F
   ∀ X : C, hF.β.hom.app X ≫ x.app ((PiCategory.pi (R := R)).obj X) =
     (PiCategory.pi (R := R)).map (x.app X) ≫ hG.β.hom.app X
 
+/--
+@isnad1 id=ispinatu.0h5v.s6.de3dba30854e from=translated src=- shape=0eb371a5 vocab=2b60179f
+-/
 theorem isPiNatural_id {F : C ⥤ D} (hF : PiFunctor R F) : IsPiNatural R hF hF (𝟙 F) :=
   fun X => by simp
 
+/--
+@isnad1 id=ispinatu.2h11v.s7.e325e9b667dd from=translated src=- shape=6b580f5b vocab=b87cab2b
+-/
 theorem IsPiNatural.comp {F G H : C ⥤ D} {hF : PiFunctor R F} {hG : PiFunctor R G}
     {hH : PiFunctor R H} {x : F ⟶ G} {y : G ⟶ H} (hx : IsPiNatural R hF hG x)
     (hy : IsPiNatural R hG hH y) : IsPiNatural R hF hH (x ≫ y) := fun X => by

@@ -43,6 +43,9 @@ def xmlEntity? : List Char → Option (Char × List Char)
   | 'a' :: 'p' :: 'o' :: 's' :: ';' :: rest => some ('\'', rest)
   | _ => none
 
+/--
+@isnad1 id=lt.1h3v.s5.53bb6eb52576 from=translated src=- shape=9295cca4 vocab=595fd2b2
+-/
 theorem xmlEntity?_length {cs rest : List Char} {d : Char} (h : xmlEntity? cs = some (d, rest)) :
     rest.length < cs.length := by
   unfold xmlEntity? at h
@@ -64,10 +67,16 @@ termination_by l => l.length
 /-- Undo `xmlEscape`.-/
 def xmlUnescape (s : String) : String := String.ofList (xmlUnescapeAux s.toList)
 
+/--
+@isnad1 id=eq.1h2v.s4.48f3db03d709 from=translated src=- shape=ad3a33b3 vocab=34f28bf9
+-/
 theorem xmlUnescapeAux_cons {c : Char} (h : c ≠ '&') (cs : List Char) :
     xmlUnescapeAux (c :: cs) = c :: xmlUnescapeAux cs := by
   rw [xmlUnescapeAux]; simp [h]
 
+/--
+@isnad1 id=eq.0h2v.s4.9a1045471cc8 from=translated src=- shape=93ce4391 vocab=25934e2d
+-/
 theorem xmlUnescapeAux_escapeChar_append (c : Char) (rest : List Char) :
     xmlUnescapeAux (xmlEscapeChar c ++ rest) = c :: xmlUnescapeAux rest := by
   unfold xmlEscapeChar
@@ -76,7 +85,9 @@ theorem xmlUnescapeAux_escapeChar_append (c : Char) (rest : List Char) :
     | (rwa [List.singleton_append, xmlUnescapeAux_cons])
     | (simp only [List.cons_append, List.nil_append]; rw [xmlUnescapeAux]; rfl)
 
-/-- Unescaping inverts escaping.-/
+/-- Unescaping inverts escaping.
+@isnad1 id=eq.0h1v.s3.5024cfb730d4 from=translated src=- shape=47dcad53 vocab=35dfd125
+-/
 @[simp] theorem xmlUnescape_xmlEscape (s : String) : xmlUnescape (xmlEscape s) = s := by
   suffices h : ∀ l : List Char, xmlUnescapeAux (l.flatMap xmlEscapeChar) = l by
     rw [xmlUnescape, xmlEscape, String.toList_ofList, h, String.ofList_toList]

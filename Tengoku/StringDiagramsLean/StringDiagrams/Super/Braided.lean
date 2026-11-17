@@ -54,7 +54,9 @@ variable {R C} [BraidedMonoidalSupercategory R C]
 attribute [reassoc] braiding_naturality_right braiding_naturality_left
 
 /-- Naturality of the braiding for the paper's tensor product `f ⊗ g = (1 ⊗ g)(f ⊗ 1)` of
-homogeneous morphisms: `c ∘ (f ⊗ g) = (-1)^{|f||g|} (g ⊗ f) ∘ c`.-/
+homogeneous morphisms: `c ∘ (f ⊗ g) = (-1)^{|f||g|} (g ⊗ f) ∘ c`.
+@isnad1 id=eq.2h10v.s9.7e1178f1edce from=translated src=- shape=08efa207 vocab=0f340fe4
+-/
 theorem braiding_naturality {X X' Y Y' : C} {p q : ZMod 2} {f : X ⟶ X'} {g : Y ⟶ Y'}
     (hf : f ∈ parity (R := R) X X' p) (hg : g ∈ parity (R := R) Y Y' q) :
     MonoidalSupercategory.superTensorHom f g ≫ (braiding (R := R) X' Y').hom =

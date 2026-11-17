@@ -36,7 +36,9 @@ variable {R : Type w₁} [CommRing R] {B : Type u} [BicategoryStruct.{w, v} B]
 namespace TwoNatTrans
 
 /-- The coherence axiom of Definition 2.2(iii) for a 2-natural transformation `𝕀 ⇒ 𝕀`, solved
-for `x_{GF}`: `x_{f ≫ g} = α ∘ (f ◁ x_g) ∘ α⁻¹ ∘ (x_f ▷ g) ∘ α`.-/
+for `x_{GF}`: `x_{f ≫ g} = α ∘ (f ◁ x_g) ∘ α⁻¹ ∘ (x_f ▷ g) ∘ α`.
+@isnad1 id=eq.0h8v.s11.85eeeec2cab5 from=translated src=- shape=3fbe6bb0 vocab=58ee379f
+-/
 theorem EndId.x_comp' (θ : EndId R B) {a b c : B} (f : a ⟶ b) (g : b ⟶ c) :
     θ.x (f ≫ g) = (BicategoryStruct.associator f g (θ.X c)).hom ≫ f ◁ θ.x g ≫
       (BicategoryStruct.associator f (θ.X b) g).inv ≫ θ.x f ▷ g ≫ (BicategoryStruct.associator (θ.X a) f g).hom := by
@@ -56,7 +58,9 @@ variable (X Y : DrinfeldCenter R B)
 abbrev braidingApp (a : B) : (X ⊗ Y).toTwoNatTrans.X a ⟶ (Y ⊗ X).toTwoNatTrans.X a :=
   X.toTwoNatTrans.x (Y.toTwoNatTrans.X a)
 
-/-- The supermodification condition for the braiding.-/
+/-- The supermodification condition for the braiding.
+@isnad1 id=eq.0h7v.s11.c7a1c0677f24 from=translated src=- shape=21f12375 vocab=441d1eee
+-/
 theorem braidingApp_naturality {a b : B} (f : a ⟶ b) :
     (X ⊗ Y).toTwoNatTrans.x f ≫ braidingApp X Y a ▷ (TwoSuperfunctor.id R B).map f =
       (TwoSuperfunctor.id R B).map f ◁ braidingApp X Y b ≫ (Y ⊗ X).toTwoNatTrans.x f := by
@@ -108,6 +112,9 @@ def braiding : X ⊗ Y ≅ Y ⊗ X where
     have := X.isStrong (Y.toTwoNatTrans.X a)
     exact IsIso.inv_hom_id _
 
+/--
+@isnad1 id=eq.0h5v.s9.3ad39485a9c3 from=translated src=- shape=c729c0f3 vocab=06b24f40
+-/
 @[simp] theorem braiding_hom_app (a : B) :
     (braiding X Y).hom.app a = X.toTwoNatTrans.x (Y.toTwoNatTrans.X a) := rfl
 

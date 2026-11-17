@@ -69,52 +69,96 @@ def word (ρ : S.Region) : List α → List S.Colour
 /-- The object of the word `l` with the region `ρ` on its right.-/
 def obj (ρ : S.Region) (l : List α) : Obj S := ⟨Λ.lreg ρ l, Λ.word ρ l⟩
 
+/--
+@isnad1 id=eq.0h4v.s4.6993e13a30b4 from=translated src=- shape=db26e149 vocab=a033ff56
+-/
 @[simp] theorem lreg_nil (ρ : S.Region) : Λ.lreg ρ [] = ρ := rfl
+/--
+@isnad1 id=eq.0h4v.s4.2d81c179d0aa from=translated src=- shape=8f2bb8e1 vocab=ee220233
+-/
 @[simp] theorem word_nil (ρ : S.Region) : Λ.word ρ [] = [] := rfl
+/--
+@isnad1 id=eq.0h6v.s5.76dc04465f56 from=translated src=- shape=081b049b vocab=aadc97bd
+-/
 @[simp] theorem lreg_cons (ρ : S.Region) (a : α) (l : List α) :
     Λ.lreg ρ (a :: l) = S.colourSrc (Λ.col a (Λ.lreg ρ l)) := rfl
+/--
+@isnad1 id=eq.0h6v.s5.7309872fe96a from=translated src=- shape=5265ae33 vocab=c9726c7f
+-/
 @[simp] theorem word_cons (ρ : S.Region) (a : α) (l : List α) :
     Λ.word ρ (a :: l) = Λ.col a (Λ.lreg ρ l) :: Λ.word ρ l := rfl
+/--
+@isnad1 id=eq.0h5v.s4.164fbafe13fc from=translated src=- shape=3d58de9c vocab=8c6aed3c
+-/
 @[simp] theorem obj_start (ρ : S.Region) (l : List α) : (Λ.obj ρ l).start = Λ.lreg ρ l := rfl
+/--
+@isnad1 id=eq.0h5v.s5.d7d0324b82d5 from=translated src=- shape=2b284f0f vocab=376644f8
+-/
 @[simp] theorem obj_word (ρ : S.Region) (l : List α) : (Λ.obj ρ l).word = Λ.word ρ l := rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.f5ebb740da52 from=translated src=- shape=110db7ad vocab=1b957cca
+-/
 @[simp] theorem lreg_append (ρ : S.Region) (l t : List α) :
     Λ.lreg ρ (l ++ t) = Λ.lreg (Λ.lreg ρ t) l := by
   induction l with
   | nil => rfl
   | cons a l ih => simp [ih]
 
+/--
+@isnad1 id=eq.0h6v.s6.a2b024508990 from=translated src=- shape=c7c710bd vocab=4bba9f00
+-/
 @[simp] theorem word_append (ρ : S.Region) (l t : List α) :
     Λ.word ρ (l ++ t) = Λ.word (Λ.lreg ρ t) l ++ Λ.word ρ t := by
   induction l with
   | nil => rfl
   | cons a l ih => simp [ih]
 
+/--
+@isnad1 id=eq.0h5v.s4.3c57ee0cd0be from=translated src=- shape=0c33b0bb vocab=432af616
+-/
 @[simp] theorem length_word (ρ : S.Region) (l : List α) : (Λ.word ρ l).length = l.length := by
   induction l with
   | nil => rfl
   | cons a l ih => simp [ih]
 
+/--
+@isnad1 id=ok.0h5v.s4.2432f2b7bc46 from=translated src=- shape=ce8e1437 vocab=c3ed1732
+-/
 theorem ok_word (ρ : S.Region) (l : List α) : S.ok (Λ.lreg ρ l) (Λ.word ρ l) := by
   induction l with
   | nil => trivial
   | cons a l ih => exact ⟨rfl, by rw [Λ.col_tgt]; exact ih⟩
 
+/--
+@isnad1 id=eq.0h5v.s5.4c9d5b843a74 from=translated src=- shape=884b2460 vocab=ae2ec27f
+-/
 theorem endR_word (ρ : S.Region) (l : List α) : S.endR (Λ.lreg ρ l) (Λ.word ρ l) = ρ := by
   induction l with
   | nil => rfl
   | cons a l ih => simp only [word_cons, lreg_cons, Signature.endR_cons, Λ.col_tgt, ih]
 
+/--
+@isnad1 id=ok.0h5v.s4.90e72b99f5c4 from=translated src=- shape=81624a77 vocab=7da226c8
+-/
 theorem obj_ok (ρ : S.Region) (l : List α) : (Λ.obj ρ l).Ok := Λ.ok_word ρ l
 
+/--
+@isnad1 id=eq.0h5v.s4.84df29bb5ecc from=translated src=- shape=8be717f1 vocab=2eb01963
+-/
 @[simp] theorem obj_endR (ρ : S.Region) (l : List α) : (Λ.obj ρ l).endR = ρ := Λ.endR_word ρ l
 
-/-- A word with a subword `w` is the subword whiskered by the letters on either side.-/
+/-- A word with a subword `w` is the subword whiskered by the letters on either side.
+@isnad1 id=eq.0h7v.s6.49fd07dea680 from=translated src=- shape=23c533fe vocab=fa781814
+-/
 theorem obj_append3 (ρ : S.Region) (u w t : List α) :
     Λ.obj ρ (u ++ w ++ t) =
       (Λ.obj (Λ.lreg ρ t) w).whisker (Λ.obj (Λ.lreg ρ (w ++ t)) u) (Λ.word ρ t) := by
   simp [obj, Obj.whisker]
 
+/--
+@isnad1 id=whiskero.0h7v.s5.d9cc7f1355a7 from=translated src=- shape=2969005b vocab=b1ecf416
+-/
 theorem whiskerOK (ρ : S.Region) (u w t : List α) :
     (Λ.obj (Λ.lreg ρ t) w).WhiskerOK (Λ.obj (Λ.lreg ρ (w ++ t)) u) (Λ.word ρ t) :=
   ⟨Λ.ok_word _ _, by simp [Obj.endR, endR_word], by rw [obj_endR]; exact Λ.ok_word ρ t⟩
@@ -142,16 +186,24 @@ namespace RegionChordGens
 variable {Λ : Letters S α} {d : α → α} (G : RegionChordGens Λ d)
 
 include G in
+/--
+@isnad1 id=eq.0h7v.s5.924780ac0ccf from=translated src=- shape=c608a0ef vocab=fb12de5b
+-/
 theorem lreg_cup (ρ : S.Region) (a : α) : Λ.lreg ρ [a, d a] = ρ :=
   (G.chain_cup ρ a).start_eq
 
 include G in
-/-- `lreg_cup` in simp normal form.-/
+/-- `lreg_cup` in simp normal form.
+@isnad1 id=eq.0h7v.s5.424b0f82d231 from=translated src=- shape=07739c53 vocab=01d54642
+-/
 @[simp] theorem src_cup (ρ : S.Region) (a : α) :
     S.colourSrc (Λ.col a (S.colourSrc (Λ.col (d a) ρ))) = ρ :=
   G.lreg_cup ρ a
 
 include G in
+/--
+@isnad1 id=eq.0h8v.s5.3fceb2f27509 from=translated src=- shape=b2229302 vocab=fb12de5b
+-/
 theorem lreg_cross (ρ : S.Region) (a b : α) : Λ.lreg ρ [b, a] = Λ.lreg ρ [a, b] :=
   (G.chain_cross ρ a b).start_eq
 
@@ -166,11 +218,17 @@ def moveLayers (ρ : S.Region) (l : List α) : Move α → List (Layer S)
         (·.whisker (Λ.obj (Λ.lreg ρ (l.drop p)) (l.take p)) (Λ.word ρ (l.drop (p + 2))))
     else []
 
+/--
+@isnad1 id=eq.1h10v.s6.220ab540f293 from=translated src=- shape=15f4ebdd vocab=8a1a7f7a
+-/
 theorem moveLayers_cup (ρ : S.Region) (u t : List α) (a : α) {g : ℕ} (hg : u.length = g) :
     G.moveLayers ρ (u ++ t) (.cup g a) =
       (G.cup (Λ.lreg ρ t) a).map (·.whisker (Λ.obj (Λ.lreg ρ t) u) (Λ.word ρ t)) := by
   subst hg; simp [moveLayers]
 
+/--
+@isnad1 id=eq.1h11v.s6.bd1b0b4682ff from=translated src=- shape=c5c1ba04 vocab=78abac1a
+-/
 theorem moveLayers_cross (ρ : S.Region) (u : List α) (x y : α) (t : List α) {p : ℕ}
     (hp : u.length = p) :
     G.moveLayers ρ (u ++ x :: y :: t) (.cross p) =
@@ -186,6 +244,9 @@ theorem moveLayers_cross (ρ : S.Region) (u : List α) (x y : α) (t : List α) 
   rw [e₁, e₂, e₃]
   simp
 
+/--
+@isnad1 id=chain.0h8v.s5.6ccd416e785d from=translated src=- shape=e6615f12 vocab=e76ccae9
+-/
 theorem chain_moveLayers (ρ : S.Region) (l : List α) (m : Move α) :
     Chain (Λ.obj ρ l) (G.moveLayers ρ l m) (Λ.obj ρ (lstep d l m)) := by
   cases m with
@@ -224,7 +285,9 @@ theorem chain_moveLayers (ρ : S.Region) (l : List α) (m : Move α) :
       simp [lstep, swapAt_of_le l h]
 
 include G in
-/-- A move does not change the region on the left.-/
+/-- A move does not change the region on the left.
+@isnad1 id=eq.0h8v.s5.d512109876b8 from=translated src=- shape=673aeb78 vocab=810e1f2d
+-/
 @[simp] theorem lreg_lstep (ρ : S.Region) (l : List α) (m : Move α) :
     Λ.lreg ρ (lstep d l m) = Λ.lreg ρ l :=
   (G.chain_moveLayers ρ l m).start_eq
@@ -234,12 +297,18 @@ def layersOf (ρ : S.Region) : List α → List (Move α) → List (Layer S)
   | _, [] => []
   | l, m :: D => G.moveLayers ρ l m ++ layersOf ρ (lstep d l m) D
 
+/--
+@isnad1 id=chain.0h8v.s5.de5b3f2ff8e5 from=translated src=- shape=8e92ceaa vocab=17811923
+-/
 theorem chain_layersOf (ρ : S.Region) (l : List α) (D : List (Move α)) :
     Chain (Λ.obj ρ l) (G.layersOf ρ l D) (Λ.obj ρ (D.foldl (lstep d) l)) := by
   induction D generalizing l with
   | nil => rfl
   | cons m D ih => exact (G.chain_moveLayers ρ l m).append (ih _)
 
+/--
+@isnad1 id=eq.0h9v.s6.5f613b51a27b from=translated src=- shape=a13139d0 vocab=71a25b96
+-/
 theorem layersOf_pair (ρ : S.Region) (l : List α) (m₁ m₂ : Move α) :
     G.layersOf ρ l [m₁, m₂] = G.moveLayers ρ l m₁ ++ G.moveLayers ρ (lstep d l m₁) m₂ := by
   simp [layersOf]
@@ -252,7 +321,9 @@ abbrev interp (ρ : S.Region) : MoveInterp d P.Presented where
   obj l := P.obj (Λ.obj ρ l)
   map l m := P.diag ⟨G.moveLayers ρ l m, G.chain_moveLayers ρ l m⟩
 
-/-- The image of a chord diagram is the class of the diagram with its layers.-/
+/-- The image of a chord diagram is the class of the diagram with its layers.
+@isnad1 id=eq.0h10v.s8.1b80d134ae30 from=translated src=- shape=cdcd3be0 vocab=bbb6e1df
+-/
 theorem eval_interp (ρ : S.Region) (l : List α) (D : List (Move α)) :
     (G.interp P ρ).eval l D = P.diag ⟨G.layersOf ρ l D, G.chain_layersOf ρ l D⟩ := by
   induction D generalizing l with
@@ -261,7 +332,9 @@ theorem eval_interp (ρ : S.Region) (l : List α) (D : List (Move α)) :
     rw [MoveInterp.eval_cons, ih]
     exact (P.diag_comp _ _).symm
 
-/-- The image of a chord diagram, retyped, is the class of any diagram with its layers.-/
+/-- The image of a chord diagram, retyped, is the class of any diagram with its layers.
+@isnad1 id=eq.2h12v.s9.09fb35b0ed41 from=translated src=- shape=b06a145d vocab=8a75a579
+-/
 theorem eval_comp_eqToHom_eq (ρ : S.Region) {l : List α} {X Y : List (Move α)}
     (e : X.foldl (lstep d) l = Y.foldl (lstep d) l)
     (f : Λ.obj ρ l ⟶ Λ.obj ρ (Y.foldl (lstep d) l)) (hf : Diagram.layers f = G.layersOf ρ l X) :
@@ -278,7 +351,9 @@ theorem eval_comp_eqToHom_eq (ρ : S.Region) {l : List α} {X Y : List (Move α)
   rfl
 
 /-- To show that two chord diagrams have the same image, it suffices to compare classes of
-diagrams with their layers.-/
+diagrams with their layers.
+@isnad1 id=near.1h13v.s8.0dcd698acf1a from=translated src=- shape=150eb58a vocab=82e8ef8a
+-/
 theorem near_of_diag_eq (ρ : S.Region) (Φ : (G.interp P ρ).Filtration) {n : ℕ} {l : List α}
     {X Y : List (Move α)}
     (h : ∀ f₁ f₂ : Λ.obj ρ l ⟶ Λ.obj ρ (Y.foldl (lstep d) l),
@@ -292,6 +367,9 @@ theorem near_of_diag_eq (ρ : S.Region) (Φ : (G.interp P ρ).Filtration) {n : �
 
 /-! ## Moves on a subword -/
 
+/--
+@isnad1 id=eq.1h10v.s7.1efd01c3fb88 from=translated src=- shape=09717e4f vocab=dccdf517
+-/
 theorem moveLayers_shift (ρ : S.Region) (u w t : List α) {m : Move α} (hm : m.Ok w.length) :
     G.moveLayers ρ (u ++ w ++ t) (m.shift u.length) =
       (G.moveLayers (Λ.lreg ρ t) w m).map
@@ -310,6 +388,9 @@ theorem moveLayers_shift (ρ : S.Region) (u w t : List α) {m : Move α} (hm : m
       Move.shift, G.moveLayers_cross _ _ _ _ _ (by simp), G.moveLayers_cross _ _ _ _ _ rfl]
     simp [Layer.whisker, Letters.obj, List.append_assoc]
 
+/--
+@isnad1 id=eq.1h10v.s7.5f5330c67fe8 from=translated src=- shape=913559d4 vocab=4d4917e9
+-/
 theorem layersOf_shift (ρ : S.Region) (u t : List α) {w : List α} {D : List (Move α)}
     (hf : Fits w.length D) :
     G.layersOf ρ (u ++ w ++ t) (D.map (Move.shift u.length)) =
@@ -325,6 +406,9 @@ theorem layersOf_shift (ρ : S.Region) (u t : List α) {w : List α} {D : List (
     congr 3
     simp only [Letters.lreg_append, G.lreg_lstep]
 
+/--
+@isnad1 id=eq.1h9v.s5.fb4b0db3b99f from=translated src=- shape=1566e340 vocab=8f85a6af
+-/
 theorem moveLayers_even (ρ : S.Region) (l : List α) (m : Move α) :
     ∀ L ∈ G.moveLayers ρ l m, S.odd L.gen = false := by
   intro L hL
@@ -343,7 +427,9 @@ theorem moveLayers_even (ρ : S.Region) (l : List α) (m : Move α) :
 
 /-- **Moves on disjoint subwords commute exactly** (the interchange law): for moves `m₁` on
 `w₁` and `m₂` on `w₂` in the word `u ++ w₁ ++ mid ++ w₂ ++ t`, applying `m₁` and then `m₂`
-or `m₂` and then `m₁` gives diagrams with the same image.-/
+or `m₂` and then `m₁` gives diagrams with the same image.
+@isnad1 id=eq.7h21v.s8.38352779086c from=translated src=- shape=4bbe91d1 vocab=c6010737
+-/
 theorem diag_sep (ρ : S.Region) (u w₁ mid w₂ t : List α) {m₁ m₂ : Move α}
     (h₁ : m₁.Ok w₁.length) (h₂ : m₂.Ok w₂.length) {l : List α}
     (hl : l = u ++ w₁ ++ mid ++ w₂ ++ t) {X Y : List (Move α)}
@@ -402,7 +488,9 @@ theorem diag_sep (ρ : S.Region) (u w₁ mid w₂ t : List α) {m₁ m₂ : Move
 
 variable (ρ : S.Region) (Φ : (G.interp P ρ).Filtration)
 
-/-- Distant crossings commute.-/
+/-- Distant crossings commute.
+@isnad1 id=near.2h13v.s7.e9e7849d08be from=translated src=- shape=ce7506d1 vocab=5dd670a6
+-/
 theorem near_xx {n p p' : ℕ} (hp : p + 2 ≤ p') {l : List α}
     (hf : Fits l.length ([.cross p, .cross p'] : List (Move α))) :
     Φ.Near n l [.cross p, .cross p'] [.cross p', .cross p] := by
@@ -416,7 +504,9 @@ theorem near_xx {n p p' : ℕ} (hp : p + 2 ≤ p') {l : List α}
     (by simp [Move.Ok]) (by simp [Move.Ok]) (by simp)
     (by simp [Move.shift, lstep, swapAt]; omega) (by simp [Move.shift]; omega) f₁ f₂ h₁ h₂
 
-/-- A crossing commutes with a cup to its right.-/
+/-- A crossing commutes with a cup to its right.
+@isnad1 id=near.2h14v.s7.3005aaed7efd from=translated src=- shape=d0974acb vocab=761f99e9
+-/
 theorem near_xuL {n p g : ℕ} (a : α) (hp : p + 2 ≤ g) {l : List α}
     (hf : Fits l.length [.cross p, (.cup g a : Move α)]) :
     Φ.Near n l [.cross p, .cup g a] [.cup g a, .cross p] := by
@@ -430,7 +520,9 @@ theorem near_xuL {n p g : ℕ} (a : α) (hp : p + 2 ≤ g) {l : List α}
     (by simp [Move.Ok]) (by simp [Move.Ok]) (by simp)
     (by simp [Move.shift, lstep, swapAt]; omega) (by simp [Move.shift]; omega) f₁ f₂ h₁ h₂
 
-/-- A crossing commutes with a cup to its left.-/
+/-- A crossing commutes with a cup to its left.
+@isnad1 id=near.2h14v.s7.2874171461ae from=translated src=- shape=33ea911f vocab=761f99e9
+-/
 theorem near_xuR {n p g : ℕ} (a : α) (hg : g ≤ p) {l : List α}
     (hf : Fits l.length [.cross p, (.cup g a : Move α)]) :
     Φ.Near n l [.cross p, .cup g a] [.cup g a, .cross (p + 2)] := by
@@ -443,7 +535,9 @@ theorem near_xuR {n p g : ℕ} (a : α) (hg : g ≤ p) {l : List α}
     (by simp [Move.Ok]) (by simp [Move.Ok]) (by simp)
     (by simp [Move.shift, lstep, insAt]; omega) (by simp [Move.shift]) f₂ f₁ h₂ h₁).symm
 
-/-- Two cups commute.-/
+/-- Two cups commute.
+@isnad1 id=near.2h15v.s7.0d3f296e3009 from=translated src=- shape=a475e0a5 vocab=b909e416
+-/
 theorem near_uu {n g g' : ℕ} (a b : α) (hg : g' ≤ g) {l : List α}
     (hf : Fits l.length [(.cup g a : Move α), .cup g' b]) :
     Φ.Near n l [.cup g a, .cup g' b] [.cup g' b, .cup (g + 2) a] := by
@@ -463,12 +557,21 @@ end RegionChordGens
 /-- The total weight of a list of layers.-/
 def layerWeight (wt : S.Gen → ℕ) (ls : List (Layer S)) : ℕ := (ls.map fun L => wt L.gen).sum
 
+/--
+@isnad1 id=eq.0h2v.s4.1a78a69d5fd1 from=translated src=- shape=68ec7373 vocab=3736d0b2
+-/
 @[simp] theorem layerWeight_nil (wt : S.Gen → ℕ) : layerWeight wt ([] : List (Layer S)) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.28e1668927c6 from=translated src=- shape=0dc22bcf vocab=c03ec613
+-/
 @[simp] theorem layerWeight_cons (wt : S.Gen → ℕ) (L : Layer S) (ls : List (Layer S)) :
     layerWeight wt (L :: ls) = wt L.gen + layerWeight wt ls := by
   simp [layerWeight]
 
+/--
+@isnad1 id=eq.0h5v.s5.efcc5222cc7d from=translated src=- shape=b48b3d3e vocab=2086a39f
+-/
 @[simp] theorem layerWeight_map_whisker (wt : S.Gen → ℕ) (ls : List (Layer S)) (u : Obj S)
     (v : List S.Colour) : layerWeight wt (ls.map (·.whisker u v)) = layerWeight wt ls := by
   simp [layerWeight, Layer.whisker, Function.comp_def]
@@ -478,7 +581,9 @@ namespace LayerFiltration
 variable {R : Type w} [CommRing R] {P : Presentation.{w, v} S R} {wt : S.Gen → ℕ}
   (Q : LayerFiltration P wt)
 
-/-- Precomposition with a diagram raises the order by its total weight.-/
+/-- Precomposition with a diagram raises the order by its total weight.
+@isnad1 id=mem.2h11v.s10.ff6bedd7e0f0 from=translated src=- shape=49876a4f vocab=6886e142
+-/
 theorem diag_comp_mem {n : ℕ} {a b c : Obj S} {ls : List (Layer S)} (h : Chain a ls b)
     {x : P.obj b ⟶ P.obj c} (hx : x ∈ Q.sub n b c) :
     P.diag ⟨ls, h⟩ ≫ x ∈ Q.sub (layerWeight wt ls + n) a c := by
@@ -493,7 +598,9 @@ theorem diag_comp_mem {n : ℕ} {a b c : Obj S} {ls : List (Layer S)} (h : Chain
     rw [e, P.diag_comp, Category.assoc, layerWeight_cons, Nat.add_assoc]
     exact Q.layer_comp_mem hv (ih hc)
 
-/-- Postcomposition with a diagram raises the order by its total weight.-/
+/-- Postcomposition with a diagram raises the order by its total weight.
+@isnad1 id=mem.2h11v.s10.f7b48c08b801 from=translated src=- shape=ea92d103 vocab=6886e142
+-/
 theorem comp_diag_mem {n : ℕ} {a b c : Obj S} {ls : List (Layer S)} (h : Chain a ls b)
     {x : P.obj c ⟶ P.obj a} (hx : x ∈ Q.sub n c a) :
     x ≫ P.diag ⟨ls, h⟩ ∈ Q.sub (n + layerWeight wt ls) c b := by
@@ -508,7 +615,9 @@ theorem comp_diag_mem {n : ℕ} {a b c : Obj S} {ls : List (Layer S)} (h : Chain
     rw [e, P.diag_comp, ← Category.assoc, layerWeight_cons, ← Nat.add_assoc]
     exact ih hc (Q.comp_layer_mem hv hx)
 
-/-- Differences of diagrams with prescribed layers, between equal objects.-/
+/-- Differences of diagrams with prescribed layers, between equal objects.
+@isnad1 id=mem.5h14v.s10.d8548d9a07f0 from=translated src=- shape=1b285edc vocab=3c7561cf
+-/
 theorem sub_mem_of_layers {n : ℕ} {a b a' b' : Obj S} (ha : a = a') (hb : b = b')
     (f₁ f₂ : a ⟶ b) (g₁ g₂ : a' ⟶ b') (h₁ : Diagram.layers f₁ = Diagram.layers g₁)
     (h₂ : Diagram.layers f₂ = Diagram.layers g₂) (h : P.diag g₁ - P.diag g₂ ∈ Q.sub n a' b') :
@@ -523,6 +632,9 @@ namespace RegionChordGens
 variable {Λ : Letters S α} {d : α → α} (G : RegionChordGens Λ d)
   {R : Type w} [CommRing R] {P : Presentation.{w, v} S R} {wt : S.Gen → ℕ}
 
+/--
+@isnad1 id=eq.3h9v.s6.b3e6db19da91 from=translated src=- shape=fce38aad vocab=9c28ae9d
+-/
 theorem layerWeight_moveLayers (hcup : ∀ ρ a, layerWeight wt (G.cup ρ a) = 0)
     (hcross : ∀ ρ a b, layerWeight wt (G.cross ρ a b) = 1) (ρ : S.Region) {l : List α}
     {m : Move α} (hm : m.Ok l.length) : layerWeight wt (G.moveLayers ρ l m) = m.ncross := by
@@ -546,13 +658,18 @@ def toFiltration (ρ : S.Region) (Q : LayerFiltration P wt)
     exact Q.comp_diag_mem _ hx
 
 include G in
+/--
+@isnad1 id=eq.0h8v.s5.16196170b2f4 from=translated src=- shape=d3816812 vocab=d8e8abae
+-/
 theorem lreg_foldl (ρ : S.Region) (l : List α) (D : List (Move α)) :
     Λ.lreg ρ (D.foldl (lstep d) l) = Λ.lreg ρ l :=
   (G.chain_layersOf ρ l D).start_eq
 
 /-- Moves applied to a subword: if two diagrams have equal images modulo `Q.sub n` on the word
 `w` (with the region on its right that of `t`), then so do the shifted diagrams on
-`u ++ w ++ t`, since the filtration is closed under whiskering.-/
+`u ++ w ++ t`, since the filtration is closed under whiskering.
+@isnad1 id=near.5h16v.s8.0751f49c3a30 from=translated src=- shape=aeb4b362 vocab=63f10b12
+-/
 theorem near_shift (Q : LayerFiltration P wt) (hcup : ∀ ρ a, layerWeight wt (G.cup ρ a) = 0)
     (hcross : ∀ ρ a b, layerWeight wt (G.cross ρ a b) = 1) (ρ : S.Region) {n : ℕ}
     {w : List α} {X Y : List (Move α)} (u t : List α)
@@ -584,7 +701,9 @@ filtration `Q` compatible with single layers and with whiskering, such that cups
 weight `0` and crossings total weight `1`, the braid relation on three strands modulo
 `Q.sub 3` and the pitchfork move on one strand modulo `Q.sub 1`, in every region, imply that all
 chord moves hold, in every position, modulo lower order terms (the distant commutations hold
-exactly, by the interchange law).-/
+exactly, by the interchange law).
+@isnad1 id=respects.4h10v.s8.4336124845bf from=translated src=- shape=14953491 vocab=f7d0ae25
+-/
 theorem respects (Q : LayerFiltration P wt) (hcup : ∀ ρ a, layerWeight wt (G.cup ρ a) = 0)
     (hcross : ∀ ρ a b, layerWeight wt (G.cross ρ a b) = 1)
     (hbraid : ∀ (ρ : S.Region) (a b c : α), (G.toFiltration ρ Q hcup hcross).Near 3 [a, b, c]
@@ -627,7 +746,9 @@ theorem respects (Q : LayerFiltration P wt) (hcup : ∀ ρ a, layerWeight wt (G.
 `respects`, the image of every chord diagram `D` on the empty boundary word (with the region `ρ`)
 agrees, modulo terms of order less than its number of crossings, with the image of a diagram
 containing a double crossing, with the image of a diagram containing a curl, or with the image
-of the canonical diagram of its final pairing.-/
+of the canonical diagram of its final pairing.
+@isnad1 id=or.5h11v.s9.93e6513d80b4 from=translated src=- shape=1a87c7aa vocab=69ff9556
+-/
 theorem near_canon_or_reducible (Q : LayerFiltration P wt)
     (hcup : ∀ ρ a, layerWeight wt (G.cup ρ a) = 0)
     (hcross : ∀ ρ a b, layerWeight wt (G.cross ρ a b) = 1)
@@ -657,11 +778,17 @@ def letters (S : Signature.{u₀, u₁, u₂}) [Subsingleton S.Region] : Letters
   col a _ := a
   col_tgt _ _ := Subsingleton.elim _ _
 
+/--
+@isnad1 id=eq.0h3v.s4.a4de6a5d4746 from=translated src=- shape=fe6ec239 vocab=f0611943
+-/
 @[simp] theorem letters_word (ρ : S.Region) (l : List S.Colour) : (letters S).word ρ l = l := by
   induction l with
   | nil => rfl
   | cons a l ih => rw [Letters.word_cons, ih]; rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.4ad5a9805110 from=translated src=- shape=68e7f07e vocab=06e0692a
+-/
 theorem letters_obj (ρ : S.Region) (l : List S.Colour) : (letters S).obj ρ l = ⟨ρ, l⟩ :=
   Obj.ext (Subsingleton.elim _ _) (letters_word ρ l)
 

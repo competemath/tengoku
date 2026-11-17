@@ -46,33 +46,54 @@ def Chain : Obj S → List (Layer S) → Obj S → Prop
   | a, [], b => a = b
   | a, L :: ls, b => L.Valid ∧ L.dom = a ∧ Chain L.cod ls b
 
+/--
+@isnad1 id=iff.0h3v.s4.1282a0fed568 from=translated src=- shape=a0948acf vocab=4e55641a
+-/
 @[simp] theorem chain_nil (a b : Obj S) : Chain a [] b ↔ a = b := Iff.rfl
 
+/--
+@isnad1 id=iff.0h5v.s5.cd7c3de9e8b4 from=translated src=- shape=c99c260f vocab=250c3fa2
+-/
 @[simp] theorem chain_cons (a b : Obj S) (L : Layer S) (ls : List (Layer S)) :
     Chain a (L :: ls) b ↔ L.Valid ∧ L.dom = a ∧ Chain L.cod ls b := Iff.rfl
 
+/--
+@isnad1 id=chain.2h6v.s5.9f9329d20610 from=translated src=- shape=b6104e6e vocab=b1210c6d
+-/
 theorem Chain.append {a b c : Obj S} {ls ms : List (Layer S)} (h₁ : Chain a ls b)
     (h₂ : Chain b ms c) : Chain a (ls ++ ms) c := by
   induction ls generalizing a with
   | nil => cases h₁; exact h₂
   | cons L ls ih => exact ⟨h₁.1, h₁.2.1, ih h₁.2.2⟩
 
+/--
+@isnad1 id=eq.1h4v.s4.8ecb67592003 from=translated src=- shape=7ab3af88 vocab=e6019ac9
+-/
 theorem Chain.start_eq {a b : Obj S} {ls : List (Layer S)} (h : Chain a ls b) :
     b.start = a.start := by
   induction ls generalizing a with
   | nil => cases h; rfl
   | cons L ls ih => rw [ih h.2.2, ← h.2.1]; rfl
 
+/--
+@isnad1 id=eq.1h4v.s4.c2337bebc221 from=translated src=- shape=7ab3af88 vocab=14259da5
+-/
 theorem Chain.endR_eq {a b : Obj S} {ls : List (Layer S)} (h : Chain a ls b) :
     b.endR = a.endR := by
   induction ls generalizing a with
   | nil => cases h; rfl
   | cons L ls ih => rw [ih h.2.2, h.1.endR_eq, h.2.1]
 
+/--
+@isnad1 id=whiskero.2h6v.s5.a62a28803082 from=translated src=- shape=7bc46389 vocab=e464794e
+-/
 theorem Chain.whiskerOK {a b : Obj S} {ls : List (Layer S)} (h : Chain a ls b)
     {u : Obj S} {v : List S.Colour} (hw : a.WhiskerOK u v) : b.WhiskerOK u v :=
   ⟨hw.1, by rw [h.start_eq]; exact hw.2.1, by rw [h.endR_eq]; exact hw.2.2⟩
 
+/--
+@isnad1 id=chain.2h6v.s5.c01c6ad5fa57 from=translated src=- shape=c16225fd vocab=ebdf4acd
+-/
 theorem Chain.whisker {a b : Obj S} {ls : List (Layer S)} (h : Chain a ls b)
     {u : Obj S} {v : List S.Colour} (hw : a.WhiskerOK u v) :
     Chain (a.whisker u v) (ls.map (·.whisker u v)) (b.whisker u v) := by
@@ -101,12 +122,18 @@ def Chain.target (a : Obj S) : List (Layer S) → Obj S
   | [] => a
   | L :: ls => Chain.target L.cod ls
 
+/--
+@isnad1 id=eq.1h4v.s4.45a7d630cc2d from=translated src=- shape=d863c579 vocab=21c1be90
+-/
 theorem Chain.target_eq {a b : Obj S} {ls : List (Layer S)} (h : Chain a ls b) :
     Chain.target a ls = b := by
   induction ls generalizing a with
   | nil => exact h
   | cons L ls ih => exact ih h.2.2
 
+/--
+@isnad1 id=eq.0h4v.s5.6faeb1bb23f0 from=translated src=- shape=9fbdc34f vocab=0329554a
+-/
 @[simp] theorem Chain.target_append_singleton (a : Obj S) (ls : List (Layer S)) (L : Layer S) :
     Chain.target a (ls ++ [L]) = L.cod := by
   induction ls generalizing a with
@@ -133,27 +160,48 @@ variable {a b c : Obj S}
 /-- The list of layers of a diagram, from bottom to top.-/
 def layers (f : a ⟶ b) : List (Layer S) := f.1
 
+/--
+@isnad1 id=chain.0h4v.s4.55c39f802136 from=translated src=- shape=3ea79c58 vocab=d95e705d
+-/
 theorem chain (f : a ⟶ b) : Chain a (layers f) b := f.2
 
 /-- Build a diagram from a list of layers and a typing proof.-/
 def mk (ls : List (Layer S)) (h : Chain a ls b) : a ⟶ b := ⟨ls, h⟩
 
+/--
+@isnad1 id=eq.1h4v.s5.4a0781a88053 from=translated src=- shape=587f9f2a vocab=121cfb68
+-/
 @[simp] theorem layers_mk (ls : List (Layer S)) (h : Chain a ls b) :
     layers (mk ls h) = ls := rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.e108c79390d9 from=translated src=- shape=b0a61dcd vocab=845f6d1f
+-/
 @[ext] theorem ext {f g : a ⟶ b} (h : layers f = layers g) : f = g := Subtype.ext h
 
+/--
+@isnad1 id=eq.0h2v.s4.1b97f44d151c from=translated src=- shape=a3e32963 vocab=90412340
+-/
 @[simp] theorem layers_id (a : Obj S) : layers (𝟙 a) = [] := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.efebd22a3020 from=translated src=- shape=ca97e224 vocab=fe407910
+-/
 @[simp] theorem layers_comp (f : a ⟶ b) (g : b ⟶ c) : layers (f ≫ g) = layers f ++ layers g :=
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.d96834181cae from=translated src=- shape=7961f612 vocab=f109a92f
+-/
 @[simp] theorem layers_eqToHom (h : a = b) : layers (eqToHom h) = [] := by
   subst h; rfl
 
 /-- A single well-formed layer as a diagram.-/
 def ofLayer (L : Layer S) (hv : L.Valid) : L.dom ⟶ L.cod := ⟨[L], hv, rfl, rfl⟩
 
+/--
+@isnad1 id=eq.1h2v.s5.9a29348a8ead from=translated src=- shape=38812287 vocab=ca991057
+-/
 @[simp] theorem layers_ofLayer (L : Layer S) (hv : L.Valid) : layers (ofLayer L hv) = [L] :=
   rfl
 
@@ -161,6 +209,9 @@ def ofLayer (L : Layer S) (hv : L.Valid) : L.dom ⟶ L.cod := ⟨[L], hv, rfl, r
 def layer (L : Layer S) (hv : L.Valid) (ha : L.dom = a) (hb : L.cod = b) : a ⟶ b :=
   ⟨[L], hv, ha, hb⟩
 
+/--
+@isnad1 id=eq.3h4v.s5.a2f7f019e61a from=translated src=- shape=cf1521e5 vocab=15fe3f72
+-/
 @[simp] theorem layers_layer (L : Layer S) (hv : L.Valid) (ha : L.dom = a) (hb : L.cod = b) :
     layers (layer L hv ha hb) = [L] := rfl
 
@@ -168,22 +219,40 @@ def layer (L : Layer S) (hv : L.Valid) (ha : L.dom = a) (hb : L.cod = b) : a ⟶
 def cast {a' b' : Obj S} (f : a ⟶ b) (ha : a = a') (hb : b = b') : a' ⟶ b' :=
   mk (layers f) (ha ▸ hb ▸ chain f)
 
+/--
+@isnad1 id=eq.2h6v.s5.a6e3ba0d1edd from=translated src=- shape=16e3d8de vocab=90c2ea6f
+-/
 @[simp] theorem layers_cast {a' b' : Obj S} (f : a ⟶ b) (ha : a = a') (hb : b = b') :
     layers (cast f ha hb) = layers f := rfl
 
+/--
+@isnad1 id=eq.2h6v.s6.e81f12e83955 from=translated src=- shape=06548724 vocab=a2d8654b
+-/
 theorem cast_eq {a' b' : Obj S} (f : a ⟶ b) (ha : a = a') (hb : b = b') :
     cast f ha hb = eqToHom ha.symm ≫ f ≫ eqToHom hb := by
   ext; simp
 
+/--
+@isnad1 id=eq.0h4v.s5.43a0166da077 from=translated src=- shape=628ff701 vocab=3c7d2a13
+-/
 @[simp] theorem cast_rfl (f : a ⟶ b) : cast f rfl rfl = f := rfl
 
+/--
+@isnad1 id=eq.4h8v.s6.12e0f0b2c040 from=translated src=- shape=f28b4285 vocab=7ae65a10
+-/
 @[simp] theorem cast_cast {a' b' a'' b'' : Obj S} (f : a ⟶ b) (ha : a = a') (hb : b = b')
     (ha' : a' = a'') (hb' : b' = b'') :
     cast (cast f ha hb) ha' hb' = cast f (ha.trans ha') (hb.trans hb') := rfl
 
+/--
+@isnad1 id=eq.3h9v.s7.639be73053bf from=translated src=- shape=42ebc3ae vocab=6792b899
+-/
 theorem cast_comp {a' b' c' : Obj S} (f : a ⟶ b) (g : b ⟶ c) (ha : a = a') (hb : b = b')
     (hc : c = c') : cast (f ≫ g) ha hc = cast f ha hb ≫ cast g hb hc := rfl
 
+/--
+@isnad1 id=eq.2h4v.s6.86538274da54 from=translated src=- shape=5d94a363 vocab=2c301c85
+-/
 @[simp] theorem cast_id {a' a'' : Obj S} (ha : a = a') (ha' : a = a'') :
     cast (𝟙 a) ha' ha = eqToHom (ha'.symm.trans ha) := by
   ext; simp
@@ -231,12 +300,21 @@ def whisker (f : a ⟶ b) (u : Obj S) (v : List S.Colour) (hw : a.WhiskerOK u v)
     a.whisker u v ⟶ b.whisker u v :=
   ⟨(layers f).map (·.whisker u v), (chain f).whisker hw⟩
 
+/--
+@isnad1 id=eq.1h6v.s6.62309b416283 from=translated src=- shape=9a2dcc28 vocab=1991e829
+-/
 @[simp] theorem layers_whisker (f : a ⟶ b) (u : Obj S) (v : List S.Colour)
     (hw : a.WhiskerOK u v) : layers (whisker f u v hw) = (layers f).map (·.whisker u v) := rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.ceb131faadee from=translated src=- shape=02648458 vocab=2e57dde6
+-/
 theorem whisker_id (u : Obj S) (v : List S.Colour) (hw : a.WhiskerOK u v) :
     whisker (𝟙 a) u v hw = 𝟙 _ := rfl
 
+/--
+@isnad1 id=eq.1h8v.s7.cb62580ea5bf from=translated src=- shape=4c6814f8 vocab=652aa11f
+-/
 theorem whisker_comp (f : a ⟶ b) (g : b ⟶ c) (u : Obj S) (v : List S.Colour)
     (hw : a.WhiskerOK u v) :
     whisker (f ≫ g) u v hw = whisker f u v hw ≫ whisker g u v ((chain f).whiskerOK hw) := by

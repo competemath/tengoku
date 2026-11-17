@@ -46,36 +46,57 @@ section Lists
 
 variable {β : Type*}
 
+/--
+@isnad1 id=eq.0h5v.s5.1b51c389d5cb from=translated src=- shape=45d1cab3 vocab=d1490d50
+-/
 theorem swapAt_append_cons_cons (u : List β) (x y : β) (t : List β) :
     swapAt (u ++ x :: y :: t) u.length = u ++ y :: x :: t := by
   have h : u.length + 1 < (u ++ x :: y :: t).length := by simp
   rw [swapAt, dite_eq_left h]
   simp [List.set_append_right]
 
+/--
+@isnad1 id=ex.1h3v.s6.f0772ce73c01 from=translated src=- shape=746dd67a vocab=05ed9350
+-/
 theorem exists_eq_append_cons_cons {l : List β} {p : ℕ} (h : p + 1 < l.length) :
     ∃ u x y t, l = u ++ x :: y :: t ∧ u.length = p := by
   refine ⟨l.take p, l[p], l[p + 1], l.drop (p + 2), ?_, by simp; omega⟩
   conv_lhs => rw [← List.take_append_drop p l]
   rw [List.drop_eq_getElem_cons (by omega), List.drop_eq_getElem_cons (by omega)]
 
+/--
+@isnad1 id=ex.1h3v.s5.d7770ebe310e from=translated src=- shape=e5661c36 vocab=3dd56ebd
+-/
 theorem exists_eq_append {l : List β} {g : ℕ} (h : g ≤ l.length) :
     ∃ u t, l = u ++ t ∧ u.length = g :=
   ⟨l.take g, l.drop g, (List.take_append_drop g l).symm, by simp; omega⟩
 
 variable {α : Type*} (d : α → α)
 
+/--
+@isnad1 id=eq.0h5v.s5.c24009a54809 from=translated src=- shape=7aa1fa9f vocab=aec6dee6
+-/
 theorem lstep_cup_append (u t : List α) (a : α) :
     lstep d (u ++ t) (.cup u.length a) = u ++ a :: d a :: t := by
   simp [lstep, insAt]
 
+/--
+@isnad1 id=eq.1h6v.s6.234a9cd5a810 from=translated src=- shape=19784297 vocab=277998d0
+-/
 theorem lstep_cup_append' (u t : List α) (a : α) {g : ℕ} (hg : u.length = g) :
     lstep d (u ++ t) (.cup g a) = u ++ a :: d a :: t := by
   subst hg; exact lstep_cup_append d u t a
 
+/--
+@isnad1 id=eq.1h7v.s6.1572f3111ed4 from=translated src=- shape=eb15ad18 vocab=adc3b9d0
+-/
 theorem lstep_cross_append' (u : List α) (x y : α) (t : List α) {p : ℕ} (hp : u.length = p) :
     lstep d (u ++ x :: y :: t) (.cross p) = u ++ y :: x :: t := by
   subst hp; exact swapAt_append_cons_cons u x y t
 
+/--
+@isnad1 id=eq.0h6v.s6.3cd89fd39c82 from=translated src=- shape=2514738a vocab=d8064e15
+-/
 theorem lstep_cross_append (u : List α) (x y : α) (t : List α) :
     lstep d (u ++ x :: y :: t) (.cross u.length) = u ++ y :: x :: t :=
   swapAt_append_cons_cons u x y t
@@ -85,9 +106,15 @@ def Move.shift (k : ℕ) : Move α → Move α
   | .cup g a => .cup (k + g) a
   | .cross p => .cross (k + p)
 
+/--
+@isnad1 id=ok.1h5v.s5.f3b6eecd87f8 from=translated src=- shape=572fda68 vocab=a531a37d
+-/
 theorem Move.ok_shift {n : ℕ} (k m' : ℕ) {m : Move α} (hm : m.Ok n) : (m.shift k).Ok (k + n + m') := by
   cases m <;> simp only [Move.shift, Move.Ok] at hm ⊢ <;> omega
 
+/--
+@isnad1 id=eq.1h6v.s6.99423b75477e from=translated src=- shape=62ee404c vocab=7513b737
+-/
 theorem lstep_shift (u l v : List α) {m : Move α} (hm : m.Ok l.length) :
     lstep d (u ++ l ++ v) (m.shift u.length) = u ++ lstep d l m ++ v := by
   cases m with
@@ -105,6 +132,9 @@ theorem lstep_shift (u l v : List α) {m : Move α} (hm : m.Ok l.length) :
     simp only [List.length_append, List.append_assoc] at this
     simp only [Move.shift, List.append_assoc, List.cons_append, this, lstep_cross_append]
 
+/--
+@isnad1 id=eq.1h6v.s6.17a895eda6cd from=translated src=- shape=d9fd5b53 vocab=c2818072
+-/
 theorem foldl_shift (u v : List α) {l : List α} {D : List (Move α)} (hf : Fits l.length D) :
     (D.map (Move.shift u.length)).foldl (lstep d) (u ++ l ++ v) = u ++ D.foldl (lstep d) l ++ v := by
   induction D generalizing l with
@@ -115,11 +145,17 @@ theorem foldl_shift (u v : List α) {l : List α} {D : List (Move α)} (hf : Fit
     simp only [List.map_cons, List.foldl_cons, lstep_shift d u l v hm]
     exact ih hf
 
+/--
+@isnad1 id=eq.0h5v.s5.05766e1a350d from=translated src=- shape=ee30fded vocab=b6633ef3
+-/
 theorem Move.len_shift (k j n : ℕ) (m : Move α) : (m.shift k).len (k + n + j) = k + m.len n + j := by
   cases m with
   | cup g a => simp only [Move.shift, Move.len]; omega
   | cross p => rfl
 
+/--
+@isnad1 id=fits.1h5v.s5.51323ca03e83 from=translated src=- shape=600f4f1b vocab=a7eaeefb
+-/
 theorem fits_shift (k j : ℕ) {n : ℕ} {D : List (Move α)} (hf : Fits n D) :
     Fits (k + n + j) (D.map (Move.shift k)) := by
   induction D generalizing n with
@@ -162,16 +198,25 @@ def moveLayers (l : List S.Colour) : Move S.Colour → List (Layer S)
     if h : p + 1 < l.length then [⟨r₀, l.take p, G.cross l[p] l[p + 1], l.drop (p + 2)⟩] else []
 
 omit [Subsingleton S.Region] in
+/--
+@isnad1 id=eq.1h8v.s6.b882b3dd2614 from=translated src=- shape=d8612378 vocab=46f181b6
+-/
 theorem moveLayers_cup' (u t : List S.Colour) (a : S.Colour) {g : ℕ} (hg : u.length = g) :
     G.moveLayers r₀ (u ++ t) (.cup g a) = [⟨r₀, u, G.cup a, t⟩] := by
   subst hg; simp [moveLayers]
 
 omit [Subsingleton S.Region] in
+/--
+@isnad1 id=eq.0h7v.s6.6c1c0c2261c6 from=translated src=- shape=d5a0bdca vocab=feea0272
+-/
 theorem moveLayers_cup (u t : List S.Colour) (a : S.Colour) :
     G.moveLayers r₀ (u ++ t) (.cup u.length a) = [⟨r₀, u, G.cup a, t⟩] := by
   simp [moveLayers]
 
 omit [Subsingleton S.Region] in
+/--
+@isnad1 id=eq.0h8v.s6.4e726925b6c8 from=translated src=- shape=5b11c2cf vocab=c452a311
+-/
 theorem moveLayers_cross (u : List S.Colour) (x y : S.Colour) (t : List S.Colour) :
     G.moveLayers r₀ (u ++ x :: y :: t) (.cross u.length) = [⟨r₀, u, G.cross x y, t⟩] := by
   have h : u.length + 1 < (u ++ x :: y :: t).length := by simp
@@ -183,10 +228,16 @@ theorem moveLayers_cross (u : List S.Colour) (x y : S.Colour) (t : List S.Colour
   · rw [show u.length + 2 = u.length + 2 from rfl, List.drop_length_add_append]; rfl
 
 omit [Subsingleton S.Region] in
+/--
+@isnad1 id=eq.1h9v.s6.6cb70306e7ff from=translated src=- shape=2fe5f34d vocab=9b3bc57e
+-/
 theorem moveLayers_cross' (u : List S.Colour) (x y : S.Colour) (t : List S.Colour) {p : ℕ}
     (hp : u.length = p) : G.moveLayers r₀ (u ++ x :: y :: t) (.cross p) = [⟨r₀, u, G.cross x y, t⟩] := by
   subst hp; exact G.moveLayers_cross r₀ u x y t
 
+/--
+@isnad1 id=chain.0h6v.s5.f66a315a1870 from=translated src=- shape=3d4a0ba1 vocab=dea5c6cf
+-/
 theorem chain_moveLayers (l : List S.Colour) (m : Move S.Colour) :
     Chain ⟨r₀, l⟩ (G.moveLayers r₀ l m) ⟨r₀, lstep d l m⟩ := by
   cases m with
@@ -209,6 +260,9 @@ def layersOf : List S.Colour → List (Move S.Colour) → List (Layer S)
   | _, [] => []
   | l, m :: D => G.moveLayers r₀ l m ++ layersOf (lstep d l m) D
 
+/--
+@isnad1 id=chain.0h6v.s5.c34107e08c3b from=translated src=- shape=edc10cca vocab=8d99ad01
+-/
 theorem chain_layersOf (l : List S.Colour) (D : List (Move S.Colour)) :
     Chain ⟨r₀, l⟩ (G.layersOf r₀ l D) ⟨r₀, D.foldl (lstep d) l⟩ := by
   induction D generalizing l with
@@ -223,7 +277,9 @@ abbrev interp : MoveInterp d P.Presented where
   obj l := P.obj ⟨r₀, l⟩
   map l m := P.diag ⟨G.moveLayers r₀ l m, G.chain_moveLayers r₀ l m⟩
 
-/-- The image of a chord diagram is the class of the diagram with its layers.-/
+/-- The image of a chord diagram is the class of the diagram with its layers.
+@isnad1 id=eq.0h8v.s8.1b7b75caf7b6 from=translated src=- shape=085c9a4e vocab=bddb2351
+-/
 theorem eval_interp (l : List S.Colour) (D : List (Move S.Colour)) :
     (G.interp r₀ P).eval l D = P.diag ⟨G.layersOf r₀ l D, G.chain_layersOf r₀ l D⟩ := by
   induction D generalizing l with
@@ -234,7 +290,9 @@ theorem eval_interp (l : List S.Colour) (D : List (Move S.Colour)) :
 
 /-! ## Retyping classes of diagrams given by their layers -/
 
-/-- The image of a chord diagram, retyped, is the class of any diagram with its layers.-/
+/-- The image of a chord diagram, retyped, is the class of any diagram with its layers.
+@isnad1 id=eq.2h10v.s9.970c8cc7c84a from=translated src=- shape=c898b684 vocab=19241e39
+-/
 theorem eval_comp_eqToHom_eq {l : List S.Colour} {X Y : List (Move S.Colour)}
     (e : X.foldl (lstep d) l = Y.foldl (lstep d) l)
     (f : (⟨r₀, l⟩ : Obj S) ⟶ ⟨r₀, Y.foldl (lstep d) l⟩) (hf : Diagram.layers f = G.layersOf r₀ l X) :
@@ -251,17 +309,26 @@ theorem eval_comp_eqToHom_eq {l : List S.Colour} {X Y : List (Move S.Colour)}
   rfl
 
 omit [Subsingleton S.Region] in
+/--
+@isnad1 id=eq.2h8v.s7.c3be61237e3f from=translated src=- shape=a746afa2 vocab=389729ad
+-/
 theorem diag_comp_eqToHom_of_layers_eq {a b b' : Obj S} (f : a ⟶ b) (f' : a ⟶ b') (h : b = b')
     (hl : Diagram.layers f = Diagram.layers f') :
     P.diag f ≫ eqToHom (congrArg P.obj h) = P.diag f' := by
   subst h; simpa using P.diag_eq_of_layers_eq hl
 
 omit [Subsingleton S.Region] in
+/--
+@isnad1 id=eq.2h7v.s7.6b9423c05394 from=translated src=- shape=d7df1705 vocab=95bad074
+-/
 theorem diag_mk_congr {a b : Obj S} {ls ls' : List (Layer S)} (h : Chain a ls b) (e : ls = ls') :
     P.diag ⟨ls, h⟩ = P.diag ⟨ls', e ▸ h⟩ := by
   subst e; rfl
 
 omit [Subsingleton S.Region] in
+/--
+@isnad1 id=eq.1h6v.s8.673c2268c8e5 from=translated src=- shape=eb6fe379 vocab=52e86015
+-/
 theorem diag_mk_singleton {a b : Obj S} (L : Layer S) (h : Chain a [L] b) :
     P.diag ⟨[L], h⟩ = eqToHom (congrArg P.obj h.2.1.symm) ≫
       P.diag (Diagram.ofLayer L h.1) ≫ eqToHom (congrArg P.obj h.2.2) := by
@@ -306,20 +373,32 @@ def bot (P : Presentation.{w, v} S R) (wt : S.Gen → ℕ) : LayerFiltration P w
 
 variable (Q : LayerFiltration P wt)
 
+/--
+@isnad1 id=mem.2h10v.s10.80f4f8c67481 from=translated src=- shape=f6204001 vocab=5fa7cb4b
+-/
 theorem eqToHom_comp_mem {n : ℕ} {a a' b : Obj S} (h : a' = a) {x : P.obj a ⟶ P.obj b}
     (hx : x ∈ Q.sub n a b) : eqToHom (congrArg P.obj h) ≫ x ∈ Q.sub n a' b := by
   subst h; simpa using hx
 
+/--
+@isnad1 id=mem.2h10v.s10.300c039e9368 from=translated src=- shape=6b6a51b3 vocab=5fa7cb4b
+-/
 theorem comp_eqToHom_mem {n : ℕ} {a b b' : Obj S} (h : b = b') {x : P.obj a ⟶ P.obj b}
     (hx : x ∈ Q.sub n a b) : x ≫ eqToHom (congrArg P.obj h) ∈ Q.sub n a b' := by
   subst h; simpa using hx
 
+/--
+@isnad1 id=mem.4h11v.s10.f38bd7188ba6 from=translated src=- shape=6821ec8a vocab=ec983966
+-/
 theorem layer_comp_mem' {n : ℕ} {L : Layer S} (hv : L.Valid) {a b c : Obj S} (ha : L.dom = a)
     (hb : L.cod = b) {x : P.obj b ⟶ P.obj c} (hx : x ∈ Q.sub n b c) :
     (eqToHom (congrArg P.obj ha.symm) ≫ P.diag (Diagram.ofLayer L hv) ≫
       eqToHom (congrArg P.obj hb)) ≫ x ∈ Q.sub (wt L.gen + n) a c := by
   subst ha hb; simpa using Q.layer_comp_mem hv hx
 
+/--
+@isnad1 id=mem.4h11v.s10.123083915dd5 from=translated src=- shape=d57c2044 vocab=ec983966
+-/
 theorem comp_layer_mem' {n : ℕ} {L : Layer S} (hv : L.Valid) {a b c : Obj S} (ha : L.dom = a)
     (hb : L.cod = b) {x : P.obj c ⟶ P.obj a} (hx : x ∈ Q.sub n c a) :
     x ≫ eqToHom (congrArg P.obj ha.symm) ≫ P.diag (Diagram.ofLayer L hv) ≫
@@ -333,6 +412,9 @@ namespace ChordGens
 variable {d : S.Colour → S.Colour} (G : ChordGens S d) [Subsingleton S.Region] (r₀ : S.Region)
   {R : Type w} [CommRing R] {P : Presentation.{w, v} S R} {wt : S.Gen → ℕ}
 
+/--
+@isnad1 id=eq.1h9v.s8.3bb76519bff7 from=translated src=- shape=97a2dd16 vocab=4f95ec69
+-/
 theorem map_interp_of_singleton {l : List S.Colour} {m : Move S.Colour} {L : Layer S}
     (h : G.moveLayers r₀ l m = [L]) :
     (G.interp r₀ P).map l m = eqToHom (congrArg P.obj ((h ▸ G.chain_moveLayers r₀ l m :
@@ -343,6 +425,9 @@ theorem map_interp_of_singleton {l : List S.Colour} {m : Move S.Colour} {L : Lay
   exact diag_mk_congr P _ h
 
 omit [Subsingleton S.Region] in
+/--
+@isnad1 id=ex.1h6v.s5.e21c3aab2856 from=translated src=- shape=992b8cc2 vocab=fde56af7
+-/
 theorem moveLayers_eq_singleton {l : List S.Colour} {m : Move S.Colour} (hm : m.Ok l.length) :
     ∃ L, G.moveLayers r₀ l m = [L] := by
   cases m with
@@ -353,7 +438,9 @@ theorem moveLayers_eq_singleton {l : List S.Colour} {m : Move S.Colour} (hm : m.
 
 variable (P) in
 /-- To show that two chord diagrams have the same image, it suffices to compare classes of
-diagrams with their layers.-/
+diagrams with their layers.
+@isnad1 id=near.1h11v.s8.4264549e72df from=translated src=- shape=2190eef2 vocab=7b6f32ef
+-/
 theorem near_of_diag_eq (Φ : (G.interp r₀ P).Filtration) {n : ℕ} {l : List S.Colour}
     {X Y : List (Move S.Colour)}
     (h : ∀ f₁ f₂ : (⟨r₀, l⟩ : Obj S) ⟶ ⟨r₀, Y.foldl (lstep d) l⟩,
@@ -366,12 +453,17 @@ theorem near_of_diag_eq (Φ : (G.interp r₀ P).Filtration) {n : ℕ} {l : List 
   exact zero_mem _
 
 omit [Subsingleton S.Region] in
+/--
+@isnad1 id=eq.0h7v.s6.d6cd78015811 from=translated src=- shape=bcd995f9 vocab=a14b8aa9
+-/
 theorem layersOf_pair (l : List S.Colour) (m₁ m₂ : Move S.Colour) :
     G.layersOf r₀ l [m₁, m₂] = G.moveLayers r₀ l m₁ ++ G.moveLayers r₀ (lstep d l m₁) m₂ := by
   simp [layersOf]
 
 variable (P) in
-/-- Distant crossings commute (the interchange law).-/
+/-- Distant crossings commute (the interchange law).
+@isnad1 id=near.2h11v.s7.645688822f3c from=translated src=- shape=167e677f vocab=beb860bf
+-/
 theorem near_xx (Φ : (G.interp r₀ P).Filtration) {n p p' : ℕ} (hp : p + 2 ≤ p')
     {l : List S.Colour} (hf : Fits l.length ([.cross p, .cross p'] : List (Move S.Colour))) :
     Φ.Near n l [.cross p, .cross p'] [.cross p', .cross p] := by
@@ -396,7 +488,9 @@ theorem near_xx (Φ : (G.interp r₀ P).Filtration) {n p p' : ℕ} (hp : p + 2 �
     simp [G.cross_dom, G.cross_cod]
 
 variable (P) in
-/-- A crossing commutes with a cup to its right (the interchange law).-/
+/-- A crossing commutes with a cup to its right (the interchange law).
+@isnad1 id=near.2h12v.s7.6bdd9f43947b from=translated src=- shape=d5e15000 vocab=50d39389
+-/
 theorem near_xuL (Φ : (G.interp r₀ P).Filtration) {n p g : ℕ} (a : S.Colour) (hp : p + 2 ≤ g)
     {l : List S.Colour} (hf : Fits l.length [.cross p, (.cup g a : Move S.Colour)]) :
     Φ.Near n l [.cross p, .cup g a] [.cup g a, .cross p] := by
@@ -421,7 +515,9 @@ theorem near_xuL (Φ : (G.interp r₀ P).Filtration) {n p g : ℕ} (a : S.Colour
     simp [G.cross_dom, G.cup_cod]
 
 variable (P) in
-/-- A crossing commutes with a cup to its left (the interchange law).-/
+/-- A crossing commutes with a cup to its left (the interchange law).
+@isnad1 id=near.2h12v.s7.f0921505ee8b from=translated src=- shape=e6427fc1 vocab=50d39389
+-/
 theorem near_xuR (Φ : (G.interp r₀ P).Filtration) {n p g : ℕ} (a : S.Colour) (hg : g ≤ p)
     {l : List S.Colour} (hf : Fits l.length [.cross p, (.cup g a : Move S.Colour)]) :
     Φ.Near n l [.cross p, .cup g a] [.cup g a, .cross (p + 2)] := by
@@ -444,7 +540,9 @@ theorem near_xuR (Φ : (G.interp r₀ P).Filtration) {n p g : ℕ} (a : S.Colour
     simp [G.cross_cod, G.cup_dom]
 
 variable (P) in
-/-- Two cups commute (the interchange law).-/
+/-- Two cups commute (the interchange law).
+@isnad1 id=near.2h13v.s7.1d2fc0d108d5 from=translated src=- shape=ea384019 vocab=280ee251
+-/
 theorem near_uu (Φ : (G.interp r₀ P).Filtration) {n g g' : ℕ} (a b : S.Colour) (hg : g' ≤ g)
     {l : List S.Colour} (hf : Fits l.length [(.cup g a : Move S.Colour), .cup g' b]) :
     Φ.Near n l [.cup g a, .cup g' b] [.cup g' b, .cup (g + 2) a] := by
@@ -496,6 +594,9 @@ def toFiltration (Q : LayerFiltration P wt) (hcup : ∀ a, wt (G.cup a) = 0)
     exact Q.comp_layer_mem' hc.1 hc.2.1 hc.2.2 hx
 
 omit [Subsingleton S.Region] in
+/--
+@isnad1 id=eq.1h8v.s6.30f981e72c0a from=translated src=- shape=b85aa394 vocab=64fd2566
+-/
 theorem moveLayers_shift (u l v : List S.Colour) {m : Move S.Colour} (hm : m.Ok l.length) :
     G.moveLayers r₀ (u ++ l ++ v) (m.shift u.length) =
       (G.moveLayers r₀ l m).map (·.whisker ⟨r₀, u⟩ v) := by
@@ -514,6 +615,9 @@ theorem moveLayers_shift (u l v : List S.Colour) {m : Move S.Colour} (hm : m.Ok 
     simp [Layer.whisker]
 
 omit [Subsingleton S.Region] in
+/--
+@isnad1 id=eq.1h8v.s6.084c91efb8dd from=translated src=- shape=b8b6c111 vocab=2b28d6c3
+-/
 theorem layersOf_shift (u v : List S.Colour) {l : List S.Colour} {D : List (Move S.Colour)}
     (hf : Fits l.length D) :
     G.layersOf r₀ (u ++ l ++ v) (D.map (Move.shift u.length)) =
@@ -528,7 +632,9 @@ theorem layersOf_shift (u v : List S.Colour) {l : List S.Colour} {D : List (Move
 
 /-- Moves applied to a subword: if two diagrams have equal images modulo `Q.sub n` on the
 boundary word `l`, then so do the shifted diagrams on `u ++ l ++ v`, since the filtration is
-closed under whiskering.-/
+closed under whiskering.
+@isnad1 id=near.5h14v.s8.de7f9bbc8fa2 from=translated src=- shape=9e3de1e3 vocab=2291eff0
+-/
 theorem near_shift (Q : LayerFiltration P wt) (hcup : ∀ a, wt (G.cup a) = 0)
     (hcross : ∀ a b, wt (G.cross a b) = 1) {n : ℕ} {l : List S.Colour}
     {X Y : List (Move S.Colour)} (h : (G.toFiltration r₀ Q hcup hcross).Near n l X Y)
@@ -568,7 +674,9 @@ theorem near_shift (Q : LayerFiltration P wt) (hcup : ∀ a, wt (G.cup a) = 0)
 compatible with single layers (cups of weight `0`, crossings of weight `1`) and with
 whiskering, the braid relation on three strands modulo `Q.sub 3` and the pitchfork move on one
 strand modulo `Q.sub 1` imply that all chord moves hold, in every position, modulo lower order
-terms (the distant commutations hold exactly, by the interchange law).-/
+terms (the distant commutations hold exactly, by the interchange law).
+@isnad1 id=respects.4h8v.s8.57f047876d2f from=translated src=- shape=c3b20272 vocab=97c0dbc6
+-/
 theorem respects (Q : LayerFiltration P wt) (hcup : ∀ a, wt (G.cup a) = 0)
     (hcross : ∀ a b, wt (G.cross a b) = 1)
     (hbraid : ∀ a b c : S.Colour, (G.toFiltration r₀ Q hcup hcross).Near 3 [a, b, c]
@@ -611,7 +719,9 @@ theorem respects (Q : LayerFiltration P wt) (hcup : ∀ a, wt (G.cup a) = 0)
 the image of every chord diagram `D` on the empty boundary word agrees, modulo terms of order
 less than its number of crossings, with the image of a diagram containing a double crossing,
 with the image of a diagram containing a curl, or with the image of the canonical diagram of its
-final pairing.-/
+final pairing.
+@isnad1 id=or.5h9v.s9.17468209fa1d from=translated src=- shape=df828010 vocab=ff5bf914
+-/
 theorem near_canon_or_reducible (Q : LayerFiltration P wt) (hcup : ∀ a, wt (G.cup a) = 0)
     (hcross : ∀ a b, wt (G.cross a b) = 1)
     (hbraid : ∀ a b c : S.Colour, (G.toFiltration r₀ Q hcup hcross).Near 3 [a, b, c]

@@ -31,7 +31,9 @@ open CategoryTheory Supercategory
 
 universe w v u v₁ u₁ v₂ u₂
 
-/-- Induction on `ℤ` from `0` by a two-sided step.-/
+/-- Induction on `ℤ` from `0` by a two-sided step.
+@isnad1 id=var.1h3v.s5.37b042183fa1 from=translated src=- shape=f9bec466 vocab=92f6bef1
+-/
 theorem Int.forall_of_step {P : ℤ → Prop} (h0 : P 0) (step : ∀ i, P (i + 1) ↔ P i) (i : ℤ) :
     P i := by
   induction i using Int.induction_on with
@@ -59,8 +61,14 @@ def id : ShiftFunctor R d d where
   γ := Iso.refl _
   γ_mem _ := id_mem _
 
+/--
+@isnad1 id=eq.0h3v.s6.09d11a2e629f from=translated src=- shape=459acc1a vocab=3be57001
+-/
 @[simp] theorem id_F : (id d).F = 𝟭 S := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.bfe93906c790 from=translated src=- shape=7ec28bdf vocab=9d95fa26
+-/
 @[simp] theorem id_γ_hom_app (X : S) : (id d).γ.hom.app X = 𝟙 (d.Q.obj X) := by
   simp [id]
 
@@ -73,28 +81,46 @@ def comp (Φ : ShiftFunctor R d d') (Ψ : ShiftFunctor R d' d'') : ShiftFunctor 
     have := comp_mem (Ψ.γ_mem (Φ.F.obj X)) (map_mem Ψ.F (Φ.γ_mem X))
     simpa using this
 
+/--
+@isnad1 id=eq.0h9v.s7.d7bbd2faf22d from=translated src=- shape=9c989366 vocab=a6132f1c
+-/
 @[simp] theorem comp_F (Φ : ShiftFunctor R d d') (Ψ : ShiftFunctor R d' d'') :
     (Φ.comp Ψ).F = Φ.F ⋙ Ψ.F := rfl
 
+/--
+@isnad1 id=eq.0h10v.s10.8f0667afa23a from=translated src=- shape=5d02e14e vocab=56c57678
+-/
 theorem comp_γ_hom_app (Φ : ShiftFunctor R d d') (Ψ : ShiftFunctor R d' d'') (X : S) :
     (Φ.comp Ψ).γ.hom.app X = Ψ.γ.hom.app (Φ.F.obj X) ≫ Ψ.F.map (Φ.γ.hom.app X) := by
   simp [comp]
 
+/--
+@isnad1 id=eq.0h10v.s10.d130bccc88ff from=translated src=- shape=0abb5870 vocab=ff969c4b
+-/
 theorem comp_γ_inv_app (Φ : ShiftFunctor R d d') (Ψ : ShiftFunctor R d' d'') (X : S) :
     (Φ.comp Ψ).γ.inv.app X = Ψ.F.map (Φ.γ.inv.app X) ≫ Ψ.γ.inv.app (Φ.F.obj X) := by
   simp [comp]
 
 /-! ## The isomorphisms `Γⁱ` of identities and composites -/
 
+/--
+@isnad1 id=eq.0h7v.s8.9a6062ec3579 from=translated src=- shape=9298a302 vocab=12243de7
+-/
 theorem Γ_zero_hom_app (Φ : ShiftFunctor R d d') (X : S) : (Φ.Γ 0).hom.app X = 𝟙 _ := by
   show 𝟙 _ ≫ 𝟙 _ = _
   exact Category.id_comp _
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h7v.s8.2b043d832ae8 from=translated src=- shape=8e688e59 vocab=bcb7a54b
+-/
 theorem Γ_zero_inv_app (Φ : ShiftFunctor R d d') (X : S) : (Φ.Γ 0).inv.app X = 𝟙 _ := by
   rw [← cancel_epi ((Φ.Γ 0).hom.app X), Iso.hom_inv_id_app, Γ_zero_hom_app, Category.comp_id]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s8.748bc1a722c2 from=translated src=- shape=e9ddfa1a vocab=571df354
+-/
 theorem Γ_id_hom_app (i : ℤ) (X : S) : ((id d).Γ i).hom.app X = 𝟙 ((d.pow i).obj X) := by
   refine Int.forall_of_step (P := fun i => ((id d).Γ i).hom.app X = 𝟙 ((d.pow i).obj X))
     (Γ_zero_hom_app _ X) (fun i => ?_) i
@@ -109,10 +135,16 @@ theorem Γ_id_hom_app (i : ℤ) (X : S) : ((id d).Γ i).hom.app X = 𝟙 ((d.pow
     simp
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s8.f5ac7ed7ff4a from=translated src=- shape=f7272704 vocab=8765d8c4
+-/
 theorem Γ_id_inv_app (i : ℤ) (X : S) : ((id d).Γ i).inv.app X = 𝟙 ((d.pow i).obj X) := by
   rw [← cancel_epi (((id d).Γ i).hom.app X), Iso.hom_inv_id_app, Γ_id_hom_app]
   exact (Category.id_comp _).symm
 
+/--
+@isnad1 id=eq.0h11v.s10.1ad2c7ec9e12 from=translated src=- shape=c931c3ca vocab=723d7609
+-/
 theorem Γ_comp_hom_app (Φ : ShiftFunctor R d d') (Ψ : ShiftFunctor R d' d'') (i : ℤ) (X : S) :
     ((Φ.comp Ψ).Γ i).hom.app X = (Ψ.Γ i).hom.app (Φ.F.obj X) ≫ Ψ.F.map ((Φ.Γ i).hom.app X) := by
   refine Int.forall_of_step (P := fun i => ((Φ.comp Ψ).Γ i).hom.app X =
@@ -136,6 +168,9 @@ theorem Γ_comp_hom_app (Φ : ShiftFunctor R d d') (Ψ : ShiftFunctor R d' d'') 
     · intro h; rw [h]; rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h11v.s10.d852870f31bd from=translated src=- shape=168f7658 vocab=37865b84
+-/
 theorem Γ_comp_inv_app (Φ : ShiftFunctor R d d') (Ψ : ShiftFunctor R d' d'') (i : ℤ) (X : S) :
     ((Φ.comp Ψ).Γ i).inv.app X = Ψ.F.map ((Φ.Γ i).inv.app X) ≫ (Ψ.Γ i).inv.app (Φ.F.obj X) := by
   rw [← cancel_epi (((Φ.comp Ψ).Γ i).hom.app X), Iso.hom_inv_id_app, Γ_comp_hom_app]
@@ -144,14 +179,23 @@ theorem Γ_comp_inv_app (Φ : ShiftFunctor R d d') (Ψ : ShiftFunctor R d' d'') 
   erw [CategoryTheory.Functor.map_id, Category.id_comp, Iso.hom_inv_id_app]
   rfl
 
+/--
+@isnad1 id=eq.0h10v.s12.72e4b1b578b5 from=translated src=- shape=7454a83c vocab=88185ea4
+-/
 @[simp] theorem famMapₗ_apply (Φ : ShiftFunctor R d d') {m : ℤ} {X Y : S} (f : d.Fam R m X Y) :
     ((Φ.famMapₗ m X Y f : d'.Fam R m (Φ.F.obj X) (Φ.F.obj Y)) : d'.FamAll _ _) =
       Φ.famMap f.1 := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.7bc5eed7db73 from=translated src=- shape=d6551fd2 vocab=b19abec9
+-/
 theorem famMap_id {X Y : S} (f : d.FamAll X Y) : (id d).famMap f = f := by
   ext i j
   simp [famMap, Γ_id_hom_app, Γ_id_inv_app]
 
+/--
+@isnad1 id=eq.0h12v.s8.9fe79197a6f4 from=translated src=- shape=4e768a26 vocab=0e9ebe50
+-/
 theorem famMap_comp (Φ : ShiftFunctor R d d') (Ψ : ShiftFunctor R d' d'') {X Y : S}
     (f : d.FamAll X Y) : (Φ.comp Ψ).famMap f = Ψ.famMap (Φ.famMap f) := by
   ext i j
@@ -166,12 +210,20 @@ def self : ShiftFunctor R d d where
   γ := Iso.refl _
   γ_mem _ := id_mem _
 
+/--
+@isnad1 id=eq.0h3v.s6.341f95801b07 from=translated src=- shape=e68a4923 vocab=a0766315
+-/
 @[simp] theorem self_F : (self d).F = d.Q := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.3fe324c4e69e from=translated src=- shape=329fb568 vocab=9aa848df
+-/
 @[simp] theorem self_γ_hom_app (X : S) : (self d).γ.hom.app X = 𝟙 _ := rfl
 
 set_option backward.isDefEq.respectTransparency false in
-/-- `Γⁱ` of `(Q, 1)` is the comparison `Qⁱ Q ≅ Qⁱ⁺¹ ≅ Q Qⁱ`.-/
+/-- `Γⁱ` of `(Q, 1)` is the comparison `Qⁱ Q ≅ Qⁱ⁺¹ ≅ Q Qⁱ`.
+@isnad1 id=eq.0h5v.s9.449c4a896788 from=translated src=- shape=6ed29dc8 vocab=da3c8b0a
+-/
 theorem Γ_self_hom_app (i : ℤ) (X : S) :
     ((self d).Γ i).hom.app X ≫ (d.succ i).hom.app X = (d.comm i).hom.app X := by
   refine Int.forall_of_step (P := fun i => ((self d).Γ i).hom.app X ≫ (d.succ i).hom.app X =
@@ -191,7 +243,9 @@ theorem Γ_self_hom_app (i : ℤ) (X : S) :
 
 /-- A family of morphisms natural with respect to even morphisms and compatible with `γ` is
 compatible with all the `Γⁱ` (the version of `ShiftFunctor.Γ_hom_app_comp_app` for
-supernatural transformations).-/
+supernatural transformations).
+@isnad1 id=eq.2h10v.s11.4cd0b1e162e1 from=translated src=- shape=34b09259 vocab=3f5a52c5
+-/
 theorem Γ_hom_app_comp_of_even {Φ Ψ : ShiftFunctor R d d'} (x : ∀ X, Φ.F.obj X ⟶ Ψ.F.obj X)
     (hnat : ∀ {X Y : S} (g : X ⟶ Y), g ∈ parity (R := R) X Y 0 →
       Φ.F.map g ≫ x Y = x X ≫ Ψ.F.map g)
@@ -221,6 +275,9 @@ theorem Γ_hom_app_comp_of_even {Φ Ψ : ShiftFunctor R d d'} (x : ∀ X, Φ.F.o
     rw [e1, e2, cancel_epi, cancel_mono]
     exact ⟨fun h => d'.Q.map_injective h, fun h => by rw [h]⟩
 
+/--
+@isnad1 id=eq.2h10v.s11.8452f097726b from=translated src=- shape=f3ac22d8 vocab=73bbb0a5
+-/
 theorem Γ_inv_app_comp_of_even {Φ Ψ : ShiftFunctor R d d'} (x : ∀ X, Φ.F.obj X ⟶ Ψ.F.obj X)
     (hnat : ∀ {X Y : S} (g : X ⟶ Y), g ∈ parity (R := R) X Y 0 →
       Φ.F.map g ≫ x Y = x X ≫ Ψ.F.map g)
@@ -246,6 +303,9 @@ variable {R : Type w} [CommRing R]
 /-! ## Functoriality of `Orbit.map` -/
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h12v.s9.cd3f55469430 from=translated src=- shape=0460c079 vocab=09ec3165
+-/
 theorem map_map_comp (Φ : ShiftFunctor R d d') (Ψ : ShiftFunctor R d' d'') {X Y : Orbit d}
     (x : X ⟶ Y) : (map Ψ).map ((map Φ).map x) = (map (Φ.comp Ψ)).map x := by
   induction x using Hom.induction_on with
@@ -258,6 +318,9 @@ theorem map_map_comp (Φ : ShiftFunctor R d d') (Ψ : ShiftFunctor R d' d'') {X 
     exact Subtype.ext (famMap_comp Φ Ψ f.1).symm
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h9v.s8.765977952187 from=translated src=- shape=1d03fb7f vocab=ea1d2fea
+-/
 theorem map_comp (Φ : ShiftFunctor R d d') (Ψ : ShiftFunctor R d' d'') :
     map (Φ.comp Ψ) = map Φ ⋙ map Ψ :=
   CategoryTheory.Functor.ext (fun _ => rfl) fun X Y x => by
@@ -265,6 +328,9 @@ theorem map_comp (Φ : ShiftFunctor R d d') (Ψ : ShiftFunctor R d' d'') :
     exact (map_map_comp Φ Ψ x).symm
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h6v.s8.40ef5ef0ff7b from=translated src=- shape=903389c0 vocab=420d37f1
+-/
 theorem map_map_id {X Y : Orbit d} (x : X ⟶ Y) : (map (ShiftFunctor.id d)).map x = x := by
   induction x using Hom.induction_on with
   | zero => simp
@@ -274,7 +340,9 @@ theorem map_map_id {X Y : Orbit d} (x : X ⟶ Y) : (map (ShiftFunctor.id d)).map
     congr 1
     exact Subtype.ext (famMap_id f.1)
 
-/-- `Orbit.map` depends only on the functor and on `γ`.-/
+/-- `Orbit.map` depends only on the functor and on `γ`.
+@isnad1 id=eq.2h7v.s9.1bacaf47ab14 from=translated src=- shape=466f4f31 vocab=0ccea87a
+-/
 theorem map_congr {Φ Ψ : ShiftFunctor R d d'} (hF : Φ.F = Ψ.F)
     (hγ : ∀ X, Φ.γ.hom.app X ≫ eqToHom (congrArg (fun F : S ⥤ S' => F.obj (d.Q.obj X)) hF) =
       eqToHom (congrArg (fun F : S ⥤ S' => d'.Q.obj (F.obj X)) hF) ≫ Ψ.γ.hom.app X) :
@@ -292,13 +360,17 @@ theorem map_congr {Φ Ψ : ShiftFunctor R d d'} (hF : Φ.F = Ψ.F)
 
 set_option backward.isDefEq.respectTransparency false in
 /-- `Orbit.map Φ` on the morphisms of degree zero coming from `S` (`Orbit.ι_comp_map`,
-componentwise).-/
+componentwise).
+@isnad1 id=eq.0h9v.s9.8840c3b08cdc from=translated src=- shape=15a6d627 vocab=a08cbe55
+-/
 theorem map_ι_map (Φ : ShiftFunctor R d d') {X Y : S} (g : X ⟶ Y) :
     (map Φ).map ((ι d).map g) = (ι d').map (Φ.F.map g) := by
   have := CategoryTheory.Functor.congr_hom (ι_comp_map Φ) g
   simpa only [Functor.comp_map, eqToHom_refl, Category.comp_id, Category.id_comp] using this
 
-/-- The naturality of `Orbit.mapNat`, componentwise.-/
+/-- The naturality of `Orbit.mapNat`, componentwise.
+@isnad1 id=eq.1h11v.s10.366dcf91fd14 from=translated src=- shape=64720ecd vocab=2105cfc2
+-/
 theorem map_map_comp_ι_map {Φ Ψ : ShiftFunctor R d d'} (x : Φ.F ⟶ Ψ.F)
     (hx : ∀ X, Φ.γ.hom.app X ≫ x.app (d.Q.obj X) = d'.Q.map (x.app X) ≫ Ψ.γ.hom.app X)
     {X Y : Orbit d} (z : X ⟶ Y) :
@@ -306,7 +378,9 @@ theorem map_map_comp_ι_map {Φ Ψ : ShiftFunctor R d d'} (x : Φ.F ⟶ Ψ.F)
   (mapNat x hx).naturality z
 
 /-- `Orbit.map` depends only on the functor and on `γ`, with the functor equality given
-objectwise.-/
+objectwise.
+@isnad1 id=eq.3h7v.s10.e1cddf0e4a0a from=translated src=- shape=f813b23d vocab=cbd77ad6
+-/
 theorem map_congr' {Φ Ψ : ShiftFunctor R d d'} (hobj : ∀ X, Φ.F.obj X = Ψ.F.obj X)
     (hmap : ∀ {X Y : S} (g : X ⟶ Y),
       Φ.F.map g = eqToHom (hobj X) ≫ Ψ.F.map g ≫ eqToHom (hobj Y).symm)
@@ -317,14 +391,22 @@ theorem map_congr' {Φ Ψ : ShiftFunctor R d d'} (hobj : ∀ X, Φ.F.obj X = Ψ.
 
 /-! ## The isomorphisms `σ` -/
 
-/-- `Orbit.map Φ` carries `σ_X` to `σ_{F X}`, up to `γ`.-/
+/-- `Orbit.map Φ` carries `σ_X` to `σ_{F X}`, up to `γ`.
+@isnad1 id=eq.0h4v.s8.b4df9223fcec from=translated src=- shape=72dbb45e vocab=54b6574a
+-/
 theorem _root_.StringDiagrams.ShiftData.succ_zero_hom_app (X : S) :
     (d.succ 0).hom.app X = 𝟙 (d.Q.obj X) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.d36aafeb196c from=translated src=- shape=b358724c vocab=e2002354
+-/
 theorem _root_.StringDiagrams.ShiftData.succ_zero_inv_app (X : S) :
     (d.succ 0).inv.app X = 𝟙 (d.Q.obj X) := rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h7v.s10.f0fdb2282494 from=translated src=- shape=411aca24 vocab=48d773d1
+-/
 theorem map_σIso_hom (Φ : ShiftFunctor R d d') (X : Orbit d) :
     (map Φ).map (σIso X).hom =
       (ι d').map (Φ.γ.inv.app X.obj) ≫ (σIso (⟨Φ.F.obj X.obj⟩ : Orbit d')).hom := by
@@ -344,6 +426,9 @@ theorem map_σIso_hom (Φ : ShiftFunctor R d d') (X : Orbit d) :
   exact (Category.comp_id _).symm
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h7v.s10.42917e0343a9 from=translated src=- shape=66c9b5b7 vocab=48d773d1
+-/
 theorem map_σIso_inv (Φ : ShiftFunctor R d d') (X : Orbit d) :
     (map Φ).map (σIso X).inv =
       (σIso (⟨Φ.F.obj X.obj⟩ : Orbit d')).inv ≫ (ι d').map (Φ.γ.hom.app X.obj) := by
@@ -354,7 +439,9 @@ theorem map_σIso_inv (Φ : ShiftFunctor R d d') (X : Orbit d) :
 
 set_option backward.isDefEq.respectTransparency false in
 /-- `σ` is natural with respect to the functor `Orbit.map (ShiftFunctor.self d)` induced by
-`(Q, 1)`; equivalently, this functor is the functor `Q` of the orbit supercategory.-/
+`(Q, 1)`; equivalently, this functor is the functor `Q` of the orbit supercategory.
+@isnad1 id=eq.0h6v.s9.d98d8391b32f from=translated src=- shape=dd915aa4 vocab=49354a0c
+-/
 theorem map_self_comp_σIso_hom {X Y : Orbit d} (z : X ⟶ Y) :
     (map (ShiftFunctor.self d)).map z ≫ (σIso Y).hom = (σIso X).hom ≫ z := by
   induction z using Hom.induction_on with
@@ -387,7 +474,9 @@ set_option backward.isDefEq.respectTransparency false in
 /-- **Supernatural transformations of orbit functors.** A homogeneous supernatural
 transformation `x : F ⇒ G` of parity `p` compatible with `γ` induces a supernatural
 transformation `ι x : F̃ ⇒ G̃` of parity `p`: for a morphism `z` of parity `q` of the orbit
-supercategory, `F̃ z ∘ ι x = (-1)^{pq} ι x ∘ G̃ z`.-/
+supercategory, `F̃ z ∘ ι x = (-1)^{pq} ι x ∘ G̃ z`.
+@isnad1 id=eq.3h13v.s12.404dc6e96ed1 from=translated src=- shape=97828174 vocab=0befe401
+-/
 theorem map_map_comp_ι {Φ Ψ : ShiftFunctor R d d'} {p : ZMod 2} {x : ∀ X, Φ.F.obj X ⟶ Ψ.F.obj X}
     (hx : IsSupernatural R p x)
     (hγ : ∀ X, Φ.γ.hom.app X ≫ x (d.Q.obj X) = d'.Q.map (x X) ≫ Ψ.γ.hom.app X)

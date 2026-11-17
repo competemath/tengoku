@@ -184,19 +184,26 @@ variable {R : Type w₁} [CommRing R] {B : Type u} [BicategoryStruct.{w, v} B]
 def hcomp {a b c : B} {f g : a ⟶ b} {h i : b ⟶ c} (x : f ⟶ g) (y : h ⟶ i) : f ≫ h ⟶ g ≫ i :=
   x ▷ h ≫ g ◁ y
 
+/--
+@isnad1 id=mem.2h13v.s11.4f5cfdc138f8 from=translated src=- shape=b6454687 vocab=4521190b
+-/
 theorem hcomp_mem {a b c : B} {f g : a ⟶ b} {h i : b ⟶ c} {p q : ZMod 2} {x : f ⟶ g}
     {y : h ⟶ i} (hx : x ∈ parity (R := R) f g p) (hy : y ∈ parity (R := R) h i q) :
     hcomp x y ∈ parity (R := R) (f ≫ h) (g ≫ i) (p + q) :=
   comp_mem (whiskerRight_mem h hx) (whiskerLeft_mem g hy)
 
-/-- The other expression of the horizontal composite: `yx = (-1)^{|x||y|} iy ∘ xf`.-/
+/-- The other expression of the horizontal composite: `yx = (-1)^{|x||y|} iy ∘ xf`.
+@isnad1 id=eq.2h13v.s10.f291df054591 from=translated src=- shape=5fdcbafe vocab=a9450c6e
+-/
 theorem hcomp_eq {a b c : B} {f g : a ⟶ b} {h i : b ⟶ c} {p q : ZMod 2} {x : f ⟶ g}
     {y : h ⟶ i} (hx : x ∈ parity (R := R) f g p) (hy : y ∈ parity (R := R) h i q) :
     hcomp x y = koszulSign p q • (f ◁ y ≫ x ▷ i) :=
   super_interchange hx hy
 
 /-- **The super interchange law** in a 2-supercategory (Brundan–Ellis, Section 2):
-`(vu) ∘ (yx) = (-1)^{|u||y|} (v ∘ y)(u ∘ x)`.-/
+`(vu) ∘ (yx) = (-1)^{|u||y|} (v ∘ y)(u ∘ x)`.
+@isnad1 id=eq.2h17v.s10.7587f3a8a706 from=translated src=- shape=7de9a657 vocab=2ebfd3fe
+-/
 theorem hcomp_comp_hcomp {a b c : B} {f g k : a ⟶ b} {h i l : b ⟶ c} {pu py : ZMod 2}
     (x : f ⟶ g) (u : g ⟶ k) (y : h ⟶ i) (v : i ⟶ l) (hu : u ∈ parity (R := R) g k pu)
     (hy : y ∈ parity (R := R) h i py) :
@@ -214,10 +221,16 @@ variable (R B) in
 def NoOdd : Prop := ∀ (a b : B) (f g : a ⟶ b), parity (R := R) f g 1 = ⊥
 
 omit [TwoSupercategory R B] in
+/--
+@isnad1 id=mem.1h7v.s9.8777e7b7a655 from=translated src=- shape=d23d81b5 vocab=200063b6
+-/
 theorem mem_parity_zero_of_noOdd (hB : NoOdd R B) {a b : B} {f g : a ⟶ b} (η : f ⟶ g) :
     η ∈ parity (R := R) f g 0 :=
   MonoidalSupercategory.mem_parity_zero_of_noOdd (C := a ⟶ b) (hB a b) η
 
+/--
+@isnad1 id=eq.1h11v.s8.d8fe1802dcc0 from=translated src=- shape=d7864f80 vocab=828f92a7
+-/
 theorem whisker_exchange_of_noOdd (hB : NoOdd R B) {a b c : B} {f g : a ⟶ b} {h i : b ⟶ c}
     (η : f ⟶ g) (θ : h ⟶ i) : f ◁ θ ≫ η ▷ i = η ▷ h ≫ g ◁ θ := by
   rw [super_interchange (mem_parity_zero_of_noOdd hB η) (mem_parity_zero_of_noOdd hB θ),
@@ -247,7 +260,9 @@ def toBicategory (hB : NoOdd R B) : Bicategory.{w, v} B where
   pentagon := pentagon (R := R)
   triangle := triangle (R := R)
 
-/-- A strict 2-supercategory without odd 2-morphisms is a strict bicategory.-/
+/-- A strict 2-supercategory without odd 2-morphisms is a strict bicategory.
+@isnad1 id=strict.1h2v.s6.244ea0656633 from=translated src=- shape=9c494a8a vocab=006425d2
+-/
 theorem toBicategory_strict [BicategoryStruct.Strict B] (hB : NoOdd R B) :
     letI := toBicategory R hB
     Bicategory.Strict B :=

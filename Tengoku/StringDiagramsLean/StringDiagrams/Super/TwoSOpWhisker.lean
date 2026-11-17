@@ -22,12 +22,18 @@ namespace SOp
 variable {R : Type r} [CommRing R] {C : Type u} [Category.{v} C]
   [Preadditive C] [Linear R C] [Supercategory R C]
 
+/--
+@isnad1 id=eq.1h7v.s8.251d61344dac from=translated src=- shape=6197966d vocab=8abc65c3
+-/
 theorem compC_even_left {X Y Z : C} {f : Y ⟶ X}
     (hf : f ∈ parity (R := R) Y X 0) (g : Z ⟶ Y) :
     compC (R := R) f g = g ≫ f := by
   unfold compC
   rw [twist_one_of_mem hf, sign_zero, one_smul, ← Preadditive.add_comp, proj_add_proj]
 
+/--
+@isnad1 id=eq.1h7v.s8.04c6ae91b917 from=translated src=- shape=81df5c04 vocab=8abc65c3
+-/
 theorem compC_even_right {X Y Z : C} (f : Y ⟶ X) {g : Z ⟶ Y}
     (hg : g ∈ parity (R := R) Z Y 0) : compC (R := R) f g = g ≫ f := by
   unfold compC

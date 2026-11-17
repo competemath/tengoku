@@ -28,7 +28,9 @@ variable {R : Type*} [CommRing R] (δ : R)
 
 set_option backward.isDefEq.respectTransparency false in
 /-- The interchange law of `pres R δ` for two diagrams with the layers of the two sides of an
-interchange: `L` (on the left) below `M` (on the right), and `M` below `L`.-/
+interchange: `L` (on the left) below `M` (on the right), and `M` below `L`.
+@isnad1 id=eq.2h8v.s7.15af838130d6 from=translated src=- shape=586f765a vocab=4407d4c5
+-/
 theorem diag_eq_of_swap {a b : Obj sig} {f f' : a ⟶ b} (L M : Layer sig)
     (hf : Diagram.layers f = [L.wr M.dom.word, M.wl L.cod])
     (hf' : Diagram.layers f' = [M.wl L.dom, L.wr M.cod.word]) :
@@ -49,7 +51,9 @@ theorem diag_eq_of_swap {a b : Obj sig} {f f' : a ⟶ b} (L M : Layer sig)
 abbrev gl (l : ℕ) (g : Gen) (r : ℕ) : Layer sig := ⟨(), List.replicate l (), g, List.replicate r ()⟩
 
 set_option backward.isDefEq.respectTransparency false in
-/-- Two caps: `cap_j` then `cap_i` equals `cap_i` then `cap_{j-2}`, for `i + 2 ≤ j`.-/
+/-- Two caps: `cap_j` then `cap_i` equals `cap_i` then `cap_{j-2}`, for `i + 2 ≤ j`.
+@isnad1 id=eq.2h5v.s9.127886ae4a7c from=translated src=- shape=75aa941e vocab=7fe9e4f0
+-/
 @[reassoc]
 theorem cap_cap_interchange {n i j : ℕ} (hij : i + 2 ≤ j) (hj : j ≤ n + 2) :
     (pres R δ).diag (dcap (m := n + 2) (i := j) hj) ≫ (pres R δ).diag (dcap (m := n) (i := i) (by omega)) =
@@ -61,7 +65,9 @@ theorem cap_cap_interchange {n i j : ℕ} (hij : i + 2 ≤ j) (hj : j ≤ n + 2)
     simp [dcap, lay, Layer.wr, Layer.wl, Layer.dom, Layer.cod, sig] <;> omega
 
 set_option backward.isDefEq.respectTransparency false in
-/-- Two cups: `cup_{j-2}` then `cup_i` equals `cup_i` then `cup_j`, for `i + 2 ≤ j`.-/
+/-- Two cups: `cup_{j-2}` then `cup_i` equals `cup_i` then `cup_j`, for `i + 2 ≤ j`.
+@isnad1 id=eq.2h5v.s9.f82b02e7387d from=translated src=- shape=468cb0f0 vocab=0ec8cdde
+-/
 @[reassoc]
 theorem cup_cup_interchange {n i j : ℕ} (hij : i + 2 ≤ j) (hj : j ≤ n + 2) :
     (pres R δ).diag (dcup (m := n) (i := j - 2) (by omega)) ≫
@@ -75,7 +81,9 @@ theorem cup_cup_interchange {n i j : ℕ} (hij : i + 2 ≤ j) (hj : j ≤ n + 2)
 
 set_option backward.isDefEq.respectTransparency false in
 /-- A cup on the right passing a cap on the left: `cup_j` then `cap_i` equals `cap_i` then
-`cup_{j-2}`, for `i + 2 ≤ j`.-/
+`cup_{j-2}`, for `i + 2 ≤ j`.
+@isnad1 id=eq.2h5v.s9.57bc18d60b26 from=translated src=- shape=cedf18e8 vocab=2359c6f6
+-/
 @[reassoc]
 theorem cap_cup_interchange {n i j : ℕ} (hij : i + 2 ≤ j) (hj : j ≤ n + 2) :
     (pres R δ).diag (dcup (m := n + 2) (i := j) hj) ≫
@@ -89,7 +97,9 @@ theorem cap_cup_interchange {n i j : ℕ} (hij : i + 2 ≤ j) (hj : j ≤ n + 2)
 
 set_option backward.isDefEq.respectTransparency false in
 /-- A cap on the right passing a cup on the left: `cap_{j-2}` then `cup_i` equals `cup_i` then
-`cap_j`, for `i + 2 ≤ j`.-/
+`cap_j`, for `i + 2 ≤ j`.
+@isnad1 id=eq.2h5v.s9.206b332cb049 from=translated src=- shape=3c416921 vocab=2359c6f6
+-/
 @[reassoc]
 theorem cup_cap_interchange {n i j : ℕ} (hij : i + 2 ≤ j) (hj : j ≤ n + 2) :
     (pres R δ).diag (dcap (m := n) (i := j - 2) (by omega)) ≫
@@ -101,7 +111,9 @@ theorem cup_cap_interchange {n i j : ℕ} (hij : i + 2 ≤ j) (hj : j ≤ n + 2)
   apply diag_eq_of_swap δ (gl i .cup 0) (gl (j - 2 - i) .cap (n + 2 - j)) <;>
     simp [dcup, dcap, lay, Layer.wr, Layer.wl, Layer.dom, Layer.cod, sig] <;> omega
 
-/-- Far commutativity: `e_i e_j = e_j e_i` for `i + 2 ≤ j`, in every width.-/
+/-- Far commutativity: `e_i e_j = e_j e_i` for `i + 2 ≤ j`, in every width.
+@isnad1 id=eq.1h5v.s9.34aff6f1f806 from=translated src=- shape=2f4f8a29 vocab=15134cb0
+-/
 theorem e_mul_e_comm {m i j : ℕ} (hij : i + 2 ≤ j) : e δ m i * e δ m j = e δ m j * e δ m i := by
   by_cases hj : j ≤ m
   · obtain ⟨n, rfl⟩ : ∃ n, m = n + 2 := ⟨m - 2, by omega⟩
@@ -111,7 +123,9 @@ theorem e_mul_e_comm {m i j : ℕ} (hij : i + 2 ≤ j) : e δ m i * e δ m j = e
       cup_cup_interchange δ hij hj, cup_cap_interchange_assoc δ hij hj]
   · simp [e, hj]
 
-/-- Far commutativity: `e_i e_j = e_j e_i` whenever `i` and `j` differ by at least `2`.-/
+/-- Far commutativity: `e_i e_j = e_j e_i` whenever `i` and `j` differ by at least `2`.
+@isnad1 id=eq.1h5v.s9.bc3b3ef0e674 from=translated src=- shape=ef134e52 vocab=15134cb0
+-/
 theorem e_mul_e_comm_of_far {m i j : ℕ} (h : i + 2 ≤ j ∨ j + 2 ≤ i) :
     e δ m i * e δ m j = e δ m j * e δ m i := by
   rcases h with h | h

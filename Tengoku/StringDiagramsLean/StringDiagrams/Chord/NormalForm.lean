@@ -30,11 +30,17 @@ section CupLast
 
 variable {α : Type*}
 
+/--
+@isnad1 id=eq.3h5v.s6.9405a4bc9fa9 from=translated src=- shape=396cb878 vocab=7012fb3b
+-/
 theorem getElem_eq_of_getElem? {β : Type*} {l l' : List β} {i j : ℕ} (hi : i < l.length)
     (hj : j < l'.length) (h : l[i]? = l'[j]?) : l[i] = l'[j] := by
   rw [List.getElem?_eq_getElem hi, List.getElem?_eq_getElem hj] at h
   exact Option.some.inj h
 
+/--
+@isnad1 id=eq.2h4v.s6.0d8e3598cc27 from=translated src=- shape=bb0f3dad vocab=452628f3
+-/
 theorem rmAt_rmAt {β : Type*} (s : List β) {r₀ m : ℕ} (h : r₀ ≤ m) (hl : m + 4 ≤ s.length) :
     rmAt (rmAt s (m + 2)) r₀ = rmAt (rmAt s r₀) m := by
   apply List.ext_getElem?; intro i
@@ -43,7 +49,9 @@ theorem rmAt_rmAt {β : Type*} (s : List β) {r₀ m : ℕ} (h : r₀ ≤ m) (hl
   congr 1; unfold rmIdx; split_ifs <;> omega
 
 /-- In a pairing, the cup of any adjacent arc can be taken as the last move of the
-canonical diagram.-/
+canonical diagram.
+@isnad1 id=equiv.2h3v.s6.78a3fc17930c from=translated src=- shape=d5a64841 vocab=a74dbc80
+-/
 theorem canon_cup {s : List (ℕ × α)} (hv : Valid s) {r : ℕ} (hr : Same s r (r + 1)) :
     Equiv (canon s) (canon (rmAt s r) ++ [.cup r (s[r]'hr.lt_left).2]) := by
   induction' hn : s.length using Nat.strong_induction_on with n ih generalizing s r
@@ -93,12 +101,24 @@ section CrossLast
 
 variable {α : Type*}
 
+/--
+@isnad1 id=eq.0h1v.s4.2177dbe8cf9e from=translated src=- shape=b0694980 vocab=54626090
+-/
 theorem tau_left (p : ℕ) : tau p p = p + 1 := by simp [tau]
 
+/--
+@isnad1 id=eq.0h1v.s4.8e9bdaaff949 from=translated src=- shape=c1ce8500 vocab=54626090
+-/
 theorem tau_right (p : ℕ) : tau p (p + 1) = p := by simp [tau]
 
+/--
+@isnad1 id=eq.2h2v.s5.87c4371fd82d from=translated src=- shape=096d780d vocab=54626090
+-/
 theorem tau_of_ne {p i : ℕ} (h1 : i ≠ p) (h2 : i ≠ p + 1) : tau p i = i := by simp [tau, h1, h2]
 
+/--
+@isnad1 id=eq.2h4v.s6.5a5c82a6e54b from=translated src=- shape=b76dddae vocab=edbe4c87
+-/
 theorem swapAt_comm {β : Type*} (s : List β) {p p' : ℕ} (h : p + 2 ≤ p') (hl : p' + 1 < s.length) :
     swapAt (swapAt s p) p' = swapAt (swapAt s p') p := by
   apply List.ext_getElem?; intro i
@@ -106,6 +126,9 @@ theorem swapAt_comm {β : Type*} (s : List β) {p p' : ℕ} (h : p + 2 ≤ p') (
     getElem?_swapAt _ (by simp; omega), getElem?_swapAt _ (by omega)]
   congr 1; unfold tau; split_ifs <;> omega
 
+/--
+@isnad1 id=eq.0h2v.s5.0b93251a8748 from=translated src=- shape=ea65b136 vocab=54626090
+-/
 theorem tau_braid (p i : ℕ) : tau p (tau (p + 1) (tau p i)) = tau (p + 1) (tau p (tau (p + 1) i)) := by
   rcases (show i = p ∨ i = p + 1 ∨ i = p + 1 + 1 ∨ (i ≠ p ∧ i ≠ p + 1 ∧ i ≠ p + 1 + 1) by omega) with
     rfl | rfl | rfl | ⟨h1, h2, h3⟩
@@ -114,6 +137,9 @@ theorem tau_braid (p i : ℕ) : tau p (tau (p + 1) (tau p i)) = tau (p + 1) (tau
   · simp (disch := omega) only [tau_right, tau_of_ne]
   · simp (disch := omega) only [tau_of_ne]
 
+/--
+@isnad1 id=eq.1h3v.s6.6ad1ea465dbf from=translated src=- shape=e3b388b7 vocab=bc1c8446
+-/
 theorem swapAt_braid {β : Type*} (s : List β) {p : ℕ} (hl : p + 2 < s.length) :
     swapAt (swapAt (swapAt s p) (p + 1)) p = swapAt (swapAt (swapAt s (p + 1)) p) (p + 1) := by
   apply List.ext_getElem?; intro i
@@ -122,6 +148,9 @@ theorem swapAt_braid {β : Type*} (s : List β) {p : ℕ} (hl : p + 2 < s.length
     getElem?_swapAt _ (by simp; omega), getElem?_swapAt _ (by omega)]
   rw [tau_braid]
 
+/--
+@isnad1 id=eq.3h5v.s6.c27e598090b4 from=translated src=- shape=18755412 vocab=fadc88e3
+-/
 theorem rmAt_swapAt {β : Type*} (s : List β) {q q' r : ℕ}
     (h : (q + 2 ≤ r ∧ q' = q) ∨ (r + 2 ≤ q ∧ q' + 2 = q))
     (hq : q + 1 < s.length) (hr : r + 2 ≤ s.length) :
@@ -131,6 +160,9 @@ theorem rmAt_swapAt {β : Type*} (s : List β) {q q' r : ℕ}
     getElem?_swapAt _ (by rw [length_rmAt _ hr]; omega), getElem?_rmAt _ hr]
   congr 1; unfold tau rmIdx; split_ifs <;> omega
 
+/--
+@isnad1 id=eq.1h3v.s6.a681631f9e80 from=translated src=- shape=20f0777b vocab=75fac8f3
+-/
 theorem rmAt_swapAt_pitch {β : Type*} (s : List β) {q : ℕ} (hl : q + 2 < s.length) :
     rmAt (swapAt s q) (q + 1) = rmAt (swapAt s (q + 1)) q := by
   apply List.ext_getElem?; intro i
@@ -138,11 +170,16 @@ theorem rmAt_swapAt_pitch {β : Type*} (s : List β) {q : ℕ} (hl : q + 2 < s.l
     getElem?_rmAt _ (by simp; omega), getElem?_swapAt _ (by omega)]
   congr 1; unfold tau rmIdx; split_ifs <;> omega
 
+/--
+@isnad1 id=eq.3h4v.s6.d1d43ea27c19 from=translated src=- shape=ad6b8476 vocab=089af913
+-/
 theorem swapAt_getElem? {β : Type*} (s : List β) {p i : ℕ} (hp : p + 1 < s.length) (h1 : i ≠ p)
     (h2 : i ≠ p + 1) : (swapAt s p)[i]? = s[i]? := by
   rw [getElem?_swapAt s hp, tau_of_ne h1 h2]
 
-/-- A partner in a swapped state.-/
+/-- A partner in a swapped state.
+@isnad1 id=same.2h5v.s5.1884f8279041 from=translated src=- shape=21ad0e98 vocab=870b0a8c
+-/
 theorem same_swapAt_of {s : List (ℕ × α)} {p x y : ℕ} (hp : p + 1 < s.length)
     (h : Same s (tau p x) y) : Same (swapAt s p) x (tau p y) := by
   rw [same_swapAt hp, tau_tau]; exact h
@@ -156,6 +193,9 @@ def ExHyp (n : ℕ) : Prop :=
   ∀ t : List (ℕ × α), t.length + cr t < n → Valid t → ∀ q, Ilv t q →
     Equiv (canon t) (canon (swapAt t q) ++ [.cross q])
 
+/--
+@isnad1 id=equiv.4h4v.s6.dfb5467b752a from=translated src=- shape=8c1f3a07 vocab=968d4a30
+-/
 theorem ExHyp.apply {n : ℕ} (ih : ExHyp (α := α) n) {t : List (ℕ × α)} (hv : Valid t) {q : ℕ}
     (h : Ilv t q) (hn : t.length + cr t < n) :
     Equiv (canon t) (canon (swapAt t q) ++ [.cross q]) := ih t hn hv q h
@@ -166,7 +206,9 @@ section CrossLastCases
 
 variable {α : Type*}
 
-/-- `canon_ilv`, the case of a pairing with an adjacent arc.-/
+/-- `canon_ilv`, the case of a pairing with an adjacent arc.
+@isnad1 id=equiv.4h4v.s6.dfad2eb794a0 from=translated src=- shape=6c9909df vocab=335d662e
+-/
 theorem ex_adj {t : List (ℕ × α)} (hv : Valid t) {q r : ℕ} (h : Ilv t q)
     (hr : Same t r (r + 1)) (ih : ExHyp (α := α) (t.length + cr t)) :
     Equiv (canon t) (canon (swapAt t q) ++ [.cross q]) := by
@@ -218,12 +260,17 @@ theorem ex_adj {t : List (ℕ × α)} (hv : Valid t) {q r : ℕ} (h : Ilv t q)
   · simpa using Equiv.step_mid (Step.xuR (t[r]'hr.lt_left).2 (show r ≤ q' by omega))
       (canon (swapAt (rmAt t r) q')) []
 
+/--
+@isnad1 id=or.0h2v.s6.bb3cb88d8c0b from=translated src=- shape=0fe34555 vocab=54626090
+-/
 theorem tau_cases (p i : ℕ) : (i = p ∧ tau p i = p + 1) ∨ (i = p + 1 ∧ tau p i = p) ∨
     (i ≠ p ∧ i ≠ p + 1 ∧ tau p i = i) := by
   unfold tau; split_ifs <;> omega
 
 /-- Exchanging two adjacent endpoints away from `q, q + 1` does not change whether the arcs at
-`q, q + 1` interleave, unless these are the two arcs exchanged.-/
+`q, q + 1` interleave, unless these are the two arcs exchanged.
+@isnad1 id=iff.6h6v.s7.c4c2151fba5a from=translated src=- shape=31355f3e vocab=e8b7755a
+-/
 theorem ilv_swapAt_of_ne {t : List (ℕ × α)} (hv : Valid t) {p q a b : ℕ}
     (hp : p + 1 < t.length) (far : q + 2 ≤ p ∨ p + 2 ≤ q) (ha : Same t q a)
     (hb : Same t (q + 1) b) (hpair : ¬ (a = p ∧ b = p + 1) ∧ ¬ (a = p + 1 ∧ b = p)) :
@@ -239,7 +286,9 @@ theorem ilv_swapAt_of_ne {t : List (ℕ × α)} (hv : Valid t) {p q a b : ℕ}
     rcases tau_cases p b with ⟨h4, h5⟩ | ⟨h4, h5⟩ | ⟨h4, h4', h5⟩ <;>
     rw [h2, h5] <;> constructor <;> intro <;> omega
 
-/-- `canon_ilv`, the case of crossings at distant positions.-/
+/-- `canon_ilv`, the case of crossings at distant positions.
+@isnad1 id=equiv.8h4v.s7.dd9cad61100d from=translated src=- shape=a046a66f vocab=535cc406
+-/
 theorem ex_far {t : List (ℕ × α)} (hv : Valid t) {q q₀ : ℕ} (h : Ilv t q)
     (hno : ∀ r, ¬ Same t r (r + 1)) (ho : Opn t q₀) (hc : Cls t (q₀ + 1))
     (hcanon : canon t = canon (swapAt t q₀) ++ [.cross q₀])
@@ -282,7 +331,9 @@ theorem ex_far {t : List (ℕ × α)} (hv : Valid t) {q q₀ : ℕ} (h : Ilv t q
   · simpa using (Equiv.step_mid (Step.xx (α := α) hf) (canon (swapAt (swapAt t q) q₀)) []).symm
 
 /-- `canon_ilv`, the case `q = q₀ + 1`. Either the arc at `q₀` ends at `q₀ + 2` (a pitchfork
-move) or the three arcs at `q₀, q₀ + 1, q₀ + 2` pairwise interleave (a braid move).-/
+move) or the three arcs at `q₀, q₀ + 1, q₀ + 2` pairwise interleave (a braid move).
+@isnad1 id=equiv.7h3v.s7.71459c6ff536 from=translated src=- shape=e1bba1c1 vocab=569d8eb4
+-/
 theorem ex_right {t : List (ℕ × α)} (hv : Valid t) {q₀ : ℕ} (h : Ilv t (q₀ + 1))
     (hno : ∀ r, ¬ Same t r (r + 1)) (ho : Opn t q₀) (hc : Cls t (q₀ + 1))
     (hcanon : canon t = canon (swapAt t q₀) ++ [.cross q₀])
@@ -404,7 +455,9 @@ theorem ex_right {t : List (ℕ × α)} (hv : Valid t) {q₀ : ℕ} (h : Ilv t (
     exact s1.trans (s2.trans (s3.trans (s4.trans s5)))
 
 /-- `canon_ilv`, the case `q + 1 = q₀`: a pitchfork move or a braid move, mirror to
-`ex_right`.-/
+`ex_right`.
+@isnad1 id=equiv.7h3v.s7.5ef0e2a7e6c7 from=translated src=- shape=780cbdb3 vocab=569d8eb4
+-/
 theorem ex_left {t : List (ℕ × α)} (hv : Valid t) {P : ℕ} (h : Ilv t P)
     (hno : ∀ r, ¬ Same t r (r + 1)) (ho : Opn t (P + 1)) (hc : Cls t (P + 1 + 1))
     (hcanon : canon t = canon (swapAt t (P + 1)) ++ [.cross (P + 1)])
@@ -523,7 +576,9 @@ theorem ex_left {t : List (ℕ × α)} (hv : Valid t) {P : ℕ} (h : Ilv t P)
     exact s1.trans (s2.trans (s3.trans (s4.trans s5)))
 
 /-- In a pairing, if the arcs at `q` and `q + 1` interleave, the crossing at `q` can be
-taken as the last move of the canonical diagram.-/
+taken as the last move of the canonical diagram.
+@isnad1 id=equiv.2h3v.s5.1aea86aa727b from=translated src=- shape=17bd19ed vocab=5b3d0417
+-/
 theorem canon_ilv {t : List (ℕ × α)} (hv : Valid t) {q : ℕ} (h : Ilv t q) :
     Equiv (canon t) (canon (swapAt t q) ++ [.cross q]) := by
   suffices H : ∀ n, ExHyp (α := α) n from H _ t (Nat.lt_succ_self _) hv q h
@@ -581,32 +636,50 @@ def run (D : List (Move α)) : List (ℕ × α) := D.foldl (step d) []
 
 variable {d}
 
+/--
+@isnad1 id=eq.0h4v.s5.116da9bd65df from=translated src=- shape=2e40477f vocab=42d55e87
+-/
 theorem length_step (s : List (ℕ × α)) (m : Move α) : (step d s m).length = m.len s.length := by
   cases m with
   | cup g a => simp [step, Move.len, insAt]; omega
   | cross p => simp [step, Move.len]
 
+/--
+@isnad1 id=iff.0h4v.s5.7d76b2c2662d from=translated src=- shape=c6be13ae vocab=396ef9d7
+-/
 theorem fits_append : ∀ (n : ℕ) (D E : List (Move α)),
     Fits n (D ++ E) ↔ Fits n D ∧ Fits (D.foldl Move.len n) E
   | n, [], E => by simp [Fits]
   | n, m :: D, E => by
     simp only [List.cons_append, Fits, List.foldl_cons, fits_append _ D E, and_assoc]
 
+/--
+@isnad1 id=eq.0h4v.s5.e605135d7910 from=translated src=- shape=8ea5bb8e vocab=3c0e918e
+-/
 theorem length_foldl_step : ∀ (s : List (ℕ × α)) (D : List (Move α)),
     (D.foldl (step d) s).length = D.foldl Move.len s.length
   | s, [] => rfl
   | s, m :: D => by
     simp only [List.foldl_cons, length_foldl_step _ D, length_step]
 
+/--
+@isnad1 id=eq.0h4v.s5.14be24065571 from=translated src=- shape=56ce0bec vocab=b49a96a9
+-/
 theorem run_append (D E : List (Move α)) : run d (D ++ E) = E.foldl (step d) (run d D) := by
   simp [run, List.foldl_append]
 
+/--
+@isnad1 id=iff.0h4v.s6.321d67849bc1 from=translated src=- shape=6069760e vocab=1c2d5ac4
+-/
 theorem fits_snoc {D : List (Move α)} {m : Move α} :
     Fits 0 (D ++ [m]) ↔ Fits 0 D ∧ m.Ok (run d D).length := by
   rw [fits_append]
   simp only [Fits, and_true]
   rw [show D.foldl Move.len 0 = (run d D).length by rw [run, length_foldl_step]; rfl]
 
+/--
+@isnad1 id=mem.1h4v.s4.5a7d05827b84 from=translated src=- shape=060d142e vocab=75c8db7a
+-/
 theorem mem_swapAt {β : Type*} {s : List β} {p : ℕ} {x : β} (h : x ∈ swapAt s p) : x ∈ s := by
   by_cases hp : p + 1 < s.length
   · rw [List.mem_iff_getElem?] at h ⊢
@@ -617,6 +690,9 @@ theorem mem_swapAt {β : Type*} {s : List β} {p : ℕ} {x : β} (h : x ∈ swap
 /-- The invariant of states reached by diagrams: a pairing with ids below the length.-/
 def Inv (s : List (ℕ × α)) : Prop := Valid s ∧ ∀ x ∈ s, x.1 < s.length
 
+/--
+@isnad1 id=inv.2h4v.s5.4a4cf75a2d2b from=translated src=- shape=51d70b5b vocab=ed523c4a
+-/
 theorem Inv.step {s : List (ℕ × α)} (hs : Inv s) {m : Move α} (hm : m.Ok s.length) :
     Inv (step d s m) := by
   cases m with
@@ -637,6 +713,9 @@ theorem Inv.step {s : List (ℕ × α)} (hs : Inv s) {m : Move α} (hm : m.Ok s.
     have hx' : x ∈ swapAt s p := hx
     exact hs.2 x (mem_swapAt hx')
 
+/--
+@isnad1 id=inv.1h3v.s4.2b47f324735e from=translated src=- shape=020daa3d vocab=8d1e974e
+-/
 theorem inv_run : ∀ {D : List (Move α)}, Fits 0 D → Inv (run d D) := by
   intro D
   induction D using List.reverseRecOn with
@@ -649,7 +728,9 @@ theorem inv_run : ∀ {D : List (Move α)}, Fits 0 D → Inv (run d D) := by
 
 /-- **The normal form theorem.** Every diagram of cups and crossings is either reducible
 (equivalent to a diagram containing a double crossing or a curl) or equivalent to the canonical
-diagram of its final pairing.-/
+diagram of its final pairing.
+@isnad1 id=or.1h3v.s5.dde47769d310 from=translated src=- shape=86e6bdba vocab=f540bd02
+-/
 theorem equiv_canon_or_reducible : ∀ {D : List (Move α)}, Fits 0 D →
     Reducible D ∨ Equiv D (canon (run d D)) := by
   intro D

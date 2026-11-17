@@ -78,28 +78,49 @@ def endR : S.Region → List S.Colour → S.Region
 
 variable {S}
 
+/--
+@isnad1 id=ok.0h2v.s3.7144ea385c91 from=translated src=- shape=39a197f2 vocab=975991ef
+-/
 @[simp] theorem ok_nil (r : S.Region) : S.ok r [] := trivial
 
+/--
+@isnad1 id=iff.0h4v.s5.2515c126959f from=translated src=- shape=af54a142 vocab=fdad992e
+-/
 @[simp] theorem ok_cons (r : S.Region) (c : S.Colour) (w : List S.Colour) :
     S.ok r (c :: w) ↔ S.colourSrc c = r ∧ S.ok (S.colourTgt c) w := Iff.rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.5e6ad04d01e2 from=translated src=- shape=582cfbec vocab=ae2326f0
+-/
 @[simp] theorem endR_nil (r : S.Region) : S.endR r [] = r := rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.63fafa9d6633 from=translated src=- shape=a3bb7b0e vocab=85cd8f5d
+-/
 @[simp] theorem endR_cons (r : S.Region) (c : S.Colour) (w : List S.Colour) :
     S.endR r (c :: w) = S.endR (S.colourTgt c) w := rfl
 
+/--
+@isnad1 id=iff.0h4v.s5.6ae8f78d8810 from=translated src=- shape=89279007 vocab=68f17d1c
+-/
 @[simp] theorem ok_append (r : S.Region) (w w' : List S.Colour) :
     S.ok r (w ++ w') ↔ S.ok r w ∧ S.ok (S.endR r w) w' := by
   induction w generalizing r with
   | nil => simp
   | cons c w ih => simp [ih, and_assoc]
 
+/--
+@isnad1 id=eq.0h4v.s5.b1d0676546a3 from=translated src=- shape=dcf9d60c vocab=9c1622f3
+-/
 @[simp] theorem endR_append (r : S.Region) (w w' : List S.Colour) :
     S.endR r (w ++ w') = S.endR (S.endR r w) w' := by
   induction w generalizing r with
   | nil => rfl
   | cons c w ih => simp [ih]
 
+/--
+@isnad1 id=ok.0h3v.s4.6f7b10d5a3b4 from=translated src=- shape=0f081125 vocab=63c3283d
+-/
 theorem ok_of_subsingleton [Subsingleton S.Region] (r : S.Region) (w : List S.Colour) :
     S.ok r w := by
   induction w generalizing r with
@@ -127,6 +148,9 @@ namespace Obj
 /-- The rightmost region of an object.-/
 def endR (a : Obj S) : S.Region := S.endR a.start a.word
 
+/--
+@isnad1 id=eq.0h3v.s4.0858a6a7117d from=translated src=- shape=d0b72e3e vocab=9ea5a9b7
+-/
 @[simp] theorem endR_mk (r : S.Region) (w : List S.Colour) :
     (⟨r, w⟩ : Obj S).endR = S.endR r w := rfl
 
@@ -134,9 +158,15 @@ def endR (a : Obj S) : S.Region := S.endR a.start a.word
 def whisker (a : Obj S) (u : Obj S) (v : List S.Colour) : Obj S :=
   ⟨u.start, u.word ++ a.word ++ v⟩
 
+/--
+@isnad1 id=eq.0h4v.s4.4fc20f888b65 from=translated src=- shape=3ef99c9f vocab=6fd6d8c4
+-/
 @[simp] theorem whisker_start (a u : Obj S) (v : List S.Colour) :
     (a.whisker u v).start = u.start := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.eb56d83734de from=translated src=- shape=34eded75 vocab=832e788a
+-/
 @[simp] theorem whisker_word (a u : Obj S) (v : List S.Colour) :
     (a.whisker u v).word = u.word ++ a.word ++ v := rfl
 
@@ -145,6 +175,9 @@ right preserves well-formedness of layers with domain `a`.-/
 def WhiskerOK (a u : Obj S) (v : List S.Colour) : Prop :=
   S.ok u.start u.word ∧ u.endR = a.start ∧ S.ok a.endR v
 
+/--
+@isnad1 id=whiskero.0h4v.s4.4a1ad3189f9c from=translated src=- shape=81b67243 vocab=c593a109
+-/
 theorem whiskerOK_of_subsingleton [Subsingleton S.Region] (a u : Obj S) (v : List S.Colour) :
     a.WhiskerOK u v :=
   ⟨Signature.ok_of_subsingleton _ _, Subsingleton.elim _ _, Signature.ok_of_subsingleton _ _⟩
@@ -172,9 +205,21 @@ def dom (L : Layer S) : Obj S := ⟨L.start, L.left ++ S.dom L.gen ++ L.right⟩
 /-- The top boundary of a layer.-/
 def cod (L : Layer S) : Obj S := ⟨L.start, L.left ++ S.cod L.gen ++ L.right⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.8f88520fbdf8 from=translated src=- shape=d6576abc vocab=45dee502
+-/
 @[simp] theorem dom_start (L : Layer S) : L.dom.start = L.start := rfl
+/--
+@isnad1 id=eq.0h2v.s4.75b74c2f7371 from=translated src=- shape=d6576abc vocab=1633209b
+-/
 @[simp] theorem cod_start (L : Layer S) : L.cod.start = L.start := rfl
+/--
+@isnad1 id=eq.0h2v.s5.9e603d2dc99c from=translated src=- shape=9be7cf57 vocab=939a6f3a
+-/
 @[simp] theorem dom_word (L : Layer S) : L.dom.word = L.left ++ S.dom L.gen ++ L.right := rfl
+/--
+@isnad1 id=eq.0h2v.s5.0c80dce088e8 from=translated src=- shape=9be7cf57 vocab=a4dc1111
+-/
 @[simp] theorem cod_word (L : Layer S) : L.cod.word = L.left ++ S.cod L.gen ++ L.right := rfl
 
 /-- A layer is well formed when all its regions match up.-/
@@ -187,6 +232,9 @@ structure Valid (L : Layer S) : Prop where
   cod_end : S.endR (S.left L.gen) (S.cod L.gen) = S.right L.gen
   right_ok : S.ok (S.right L.gen) L.right
 
+/--
+@isnad1 id=valid.0h2v.s3.7714fe6b711a from=translated src=- shape=699d2451 vocab=20010ed2
+-/
 theorem valid_of_subsingleton [Subsingleton S.Region] (L : Layer S) : L.Valid where
   left_ok := Signature.ok_of_subsingleton _ _
   left_end := Subsingleton.elim _ _
@@ -196,14 +244,23 @@ theorem valid_of_subsingleton [Subsingleton S.Region] (L : Layer S) : L.Valid wh
   cod_end := Subsingleton.elim _ _
   right_ok := Signature.ok_of_subsingleton _ _
 
+/--
+@isnad1 id=eq.1h2v.s4.d48b3b8c70e3 from=translated src=- shape=b725a867 vocab=53afdd05
+-/
 theorem Valid.endR_dom {L : Layer S} (h : L.Valid) :
     L.dom.endR = S.endR (S.right L.gen) L.right := by
   simp [Obj.endR, h.left_end, h.dom_end]
 
+/--
+@isnad1 id=eq.1h2v.s4.f555874869d2 from=translated src=- shape=b725a867 vocab=be6e001d
+-/
 theorem Valid.endR_cod {L : Layer S} (h : L.Valid) :
     L.cod.endR = S.endR (S.right L.gen) L.right := by
   simp [Obj.endR, h.left_end, h.cod_end]
 
+/--
+@isnad1 id=eq.1h2v.s4.a29761d12515 from=translated src=- shape=c9984ee0 vocab=27d567af
+-/
 theorem Valid.endR_eq {L : Layer S} (h : L.Valid) : L.cod.endR = L.dom.endR := by
   rw [h.endR_dom, h.endR_cod]
 
@@ -211,14 +268,23 @@ theorem Valid.endR_eq {L : Layer S} (h : L.Valid) : L.cod.endR = L.dom.endR := b
 def whisker (L : Layer S) (u : Obj S) (v : List S.Colour) : Layer S :=
   ⟨u.start, u.word ++ L.left, L.gen, L.right ++ v⟩
 
+/--
+@isnad1 id=eq.0h4v.s4.b44d67e00815 from=translated src=- shape=f1b1f72b vocab=4a333775
+-/
 @[simp] theorem whisker_dom (L : Layer S) (u : Obj S) (v : List S.Colour) :
     (L.whisker u v).dom = L.dom.whisker u v := by
   simp [whisker, dom, Obj.whisker, List.append_assoc]
 
+/--
+@isnad1 id=eq.0h4v.s4.4c9d2e179782 from=translated src=- shape=f1b1f72b vocab=5b6b0311
+-/
 @[simp] theorem whisker_cod (L : Layer S) (u : Obj S) (v : List S.Colour) :
     (L.whisker u v).cod = L.cod.whisker u v := by
   simp [whisker, cod, Obj.whisker, List.append_assoc]
 
+/--
+@isnad1 id=valid.2h4v.s4.9da787a43376 from=translated src=- shape=7c022d92 vocab=338dbe22
+-/
 theorem Valid.whisker {L : Layer S} (h : L.Valid) {u : Obj S} {v : List S.Colour}
     (hw : L.dom.WhiskerOK u v) : (L.whisker u v).Valid := by
   obtain ⟨hu, hue, hv⟩ := hw

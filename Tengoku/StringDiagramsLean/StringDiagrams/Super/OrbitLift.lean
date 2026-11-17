@@ -52,16 +52,28 @@ namespace Trivialization
 
 variable {d : ShiftData R C} (t : d.Trivialization)
 
+/--
+@isnad1 id=mem.0h5v.s9.16f3f8549519 from=translated src=- shape=bd66a3bf vocab=473cf867
+-/
 theorem σ_inv_mem (X : C) : (t.σ X).inv ∈ parity (R := R) X (d.Q.obj X) 0 :=
   inv_mem _ (t.σ_mem X)
 
+/--
+@isnad1 id=mem.0h5v.s8.6f9f90d897c7 from=translated src=- shape=daea383d vocab=4c84dec5
+-/
 theorem σ_inv_mem_degree (X : C) : (t.σ X).inv ∈ degree (R := R) X (d.Q.obj X) 1 := by
   simpa using inv_mem_degree _ (t.σ_mem_degree X)
 
+/--
+@isnad1 id=eq.0h7v.s7.6a787f7df866 from=translated src=- shape=292a4c9d vocab=fe041121
+-/
 theorem Q_map_eq {X Y : C} (f : X ⟶ Y) : d.Q.map f = (t.σ X).hom ≫ f ≫ (t.σ Y).inv := by
   rw [← reassoc_of% (t.σ_naturality f), Iso.hom_inv_id, Category.comp_id]
 
 include t in
+/--
+@isnad1 id=mem.0h6v.s10.eca442e21753 from=translated src=- shape=091a6342 vocab=2081897c
+-/
 theorem succ_hom_mem_degree (i : ℤ) (X : C) :
     (d.succ i).hom.app X ∈ degree (R := R) _ _ 0 := by
   rcases i with n | (_ | n)
@@ -71,6 +83,9 @@ theorem succ_hom_mem_degree (i : ℤ) (X : C) :
     exact t.counit_mem_degree _
 
 include t in
+/--
+@isnad1 id=mem.0h6v.s10.b1cfefd40d47 from=translated src=- shape=76c4351c vocab=428f2a2d
+-/
 theorem succ_inv_mem_degree (i : ℤ) (X : C) :
     (d.succ i).inv.app X ∈ degree (R := R) _ _ 0 := by
   simpa using inv_mem_degree ((d.succ i).app X) (t.succ_hom_mem_degree i X)
@@ -106,9 +121,14 @@ def τ : ∀ (i : ℤ) (X : C), (d.pow i).obj X ≅ X
   | Int.ofNat n, X => τNat t n X
   | Int.negSucc n, X => τNeg t n X
 
+/--
+@isnad1 id=eq.0h5v.s7.e2acf60bfc07 from=translated src=- shape=b92a0c4c vocab=9d0ea916
+-/
 theorem τ_zero (X : C) : τ t 0 X = Iso.refl _ := rfl
 
-/-- The recursion of `τ`: `τ_{i+1} = τ_i ∘ σ ∘ (Q Qⁱ ≅ Qⁱ⁺¹)⁻¹`.-/
+/-- The recursion of `τ`: `τ_{i+1} = τ_i ∘ σ ∘ (Q Qⁱ ≅ Qⁱ⁺¹)⁻¹`.
+@isnad1 id=eq.0h6v.s9.564117d87f06 from=translated src=- shape=339ca607 vocab=3685e1fd
+-/
 theorem τ_succ (i : ℤ) (X : C) :
     (τ t (i + 1) X).hom = (d.succ i).inv.app X ≫ (t.σ ((d.pow i).obj X)).hom ≫ (τ t i X).hom := by
   rcases i with n | (_ | n)
@@ -125,6 +145,9 @@ theorem τ_succ (i : ℤ) (X : C) :
     rw [Iso.hom_inv_id_assoc, Iso.inv_hom_id_app_assoc]
     rcases n with _ | n <;> rfl
 
+/--
+@isnad1 id=and.0h6v.s9.0ba5d8273223 from=translated src=- shape=095f7422 vocab=3e9f9dc0
+-/
 theorem τNat_hom_mem (n : ℕ) (X : C) :
     (τNat t n X).hom ∈ parity (R := R) _ _ 0 ∧ (τNat t n X).hom ∈ degree (R := R) _ _ (-n) := by
   induction n with
@@ -134,6 +157,9 @@ theorem τNat_hom_mem (n : ℕ) (X : C) :
     have := comp_mem_degree (t.σ_mem_degree _) ih.2
     rwa [show (-1 + -(n : ℤ)) = -((n + 1 : ℕ) : ℤ) by push_cast; ring] at this
 
+/--
+@isnad1 id=and.0h6v.s10.37222937a55e from=translated src=- shape=7e1e4877 vocab=a67e61aa
+-/
 theorem τNeg_hom_mem (n : ℕ) (X : C) :
     (τNeg t n X).hom ∈ parity (R := R) _ _ 0 ∧
       (τNeg t n X).hom ∈ degree (R := R) _ _ ((n : ℤ) + 1) := by
@@ -153,7 +179,9 @@ theorem τNeg_hom_mem (n : ℕ) (X : C) :
         (comp_mem_degree (t.counit_mem_degree ((d.powNeg (n + 1)).obj X)) ih.2)
       rwa [show (1 + (0 + ((n : ℤ) + 1))) = ((n + 1 : ℕ) : ℤ) + 1 by push_cast; ring] at this
 
-/-- `τ_i` is even of degree `-i`.-/
+/-- `τ_i` is even of degree `-i`.
+@isnad1 id=and.0h6v.s9.8e6c11e43c4d from=translated src=- shape=adab3d35 vocab=e4d5df58
+-/
 theorem τ_hom_mem (i : ℤ) (X : C) :
     (τ t i X).hom ∈ parity (R := R) _ _ 0 ∧ (τ t i X).hom ∈ degree (R := R) _ _ (-i) := by
   rcases i with n | n
@@ -162,11 +190,17 @@ theorem τ_hom_mem (i : ℤ) (X : C) :
     have := (τNeg_hom_mem t n X).2
     rwa [show ((n : ℤ) + 1) = -Int.negSucc n by rw [Int.neg_negSucc]; push_cast; ring] at this
 
+/--
+@isnad1 id=and.0h6v.s9.49410192dc33 from=translated src=- shape=f1dcf607 vocab=5374eab7
+-/
 theorem τ_inv_mem (i : ℤ) (X : C) :
     (τ t i X).inv ∈ parity (R := R) _ _ 0 ∧ (τ t i X).inv ∈ degree (R := R) _ _ i := by
   refine ⟨inv_mem _ (τ_hom_mem t i X).1, ?_⟩
   simpa using inv_mem_degree (R := R) _ (τ_hom_mem t i X).2
 
+/--
+@isnad1 id=eq.0h6v.s9.e0a95e697bbd from=translated src=- shape=710afb32 vocab=3685e1fd
+-/
 theorem τ_succ_inv (i : ℤ) (X : C) :
     (τ t (i + 1) X).inv = (τ t i X).inv ≫ (t.σ ((d.pow i).obj X)).inv ≫ (d.succ i).hom.app X := by
   rw [← cancel_epi (τ t (i + 1) X).hom, Iso.hom_inv_id, τ_succ]
@@ -178,12 +212,17 @@ variable {t} {X Y : C}
 def val (t : d.Trivialization) (f : d.FamAll X Y) (i j : ℤ) : X ⟶ Y :=
   (τ t i X).inv ≫ f i j ≫ (τ t j Y).hom
 
-/-- All entries of a compatible family give the same morphism.-/
+/-- All entries of a compatible family give the same morphism.
+@isnad1 id=eq.1h10v.s8.b6e0dc604a80 from=translated src=- shape=a37a6239 vocab=a9be81f8
+-/
 theorem val_succ {m : ℤ} {f : d.FamAll X Y} (hf : f ∈ d.Fam R m X Y) (i j : ℤ) :
     val t f (i + 1) (j + 1) = val t f i j := by
   rw [val, val, τ_succ_inv, τ_succ, Fam.compat hf, t.Q_map_eq]
   simp
 
+/--
+@isnad1 id=eq.2h10v.s8.14d25fce6252 from=translated src=- shape=5ecd332b vocab=949e9f29
+-/
 theorem val_eq {m : ℤ} {f : d.FamAll X Y} (hf : f ∈ d.Fam R m X Y) {i j : ℤ}
     (h : i - j = m) : val t f i j = val t f 0 (-m) := by
   have key : ∀ k : ℤ, val t f (0 + k) (-m + k) = val t f 0 (-m) := by
@@ -196,9 +235,15 @@ theorem val_eq {m : ℤ} {f : d.FamAll X Y} (hf : f ∈ d.Fam R m X Y) {i j : �
         show -m + -(k : ℤ) = -m + (-(k : ℤ) - 1) + 1 by ring, val_succ hf]
   rw [← key i, show 0 + i = i by ring, show -m + i = j by omega]
 
+/--
+@isnad1 id=eq.0h8v.s7.584c0494ffd3 from=translated src=- shape=164d715b vocab=e6dc7a48
+-/
 theorem val_zero (f : d.FamAll X Y) (j : ℤ) : val t f 0 j = f 0 j ≫ (τ t j Y).hom := by
   rw [val, τ_zero]; simp
 
+/--
+@isnad1 id=eq.0h12v.s7.11d047a561b6 from=translated src=- shape=7012d80b vocab=b0085b25
+-/
 theorem val_famComp (m : ℤ) {Z : C} (f : d.FamAll X Y) (g : d.FamAll Y Z) (i k : ℤ) :
     val t (d.famComp m f g) i k = val t f i (i - m) ≫ val t g (i - m) k := by
   rw [val, val, val, famComp]
@@ -220,6 +265,9 @@ def evalFam (m : ℤ) (X Y : C) : d.Fam R m X Y →ₗ[R] (X ⟶ Y) where
 def evalL (X Y : C) : d.Hom X Y →ₗ[R] (X ⟶ Y) :=
   DirectSum.toModule R ℤ (X ⟶ Y) fun m => evalFam t m X Y
 
+/--
+@isnad1 id=eq.0h8v.s10.0e487f5011bd from=translated src=- shape=c2f02ce4 vocab=579cebb2
+-/
 theorem evalL_lof {m : ℤ} (f : d.Fam R m X Y) :
     evalL t X Y (d.lof m X Y f) = val t f.1 0 (-m) := by
   rw [evalL, ShiftData.lof]
@@ -228,6 +276,9 @@ theorem evalL_lof {m : ℤ} (f : d.Fam R m X Y) :
 
 variable {t}
 
+/--
+@isnad1 id=mem.1h10v.s9.84a396956db9 from=translated src=- shape=ee8e99d6 vocab=56745e4d
+-/
 theorem val_mem {p : ZMod 2} {f : d.FamAll X Y} (i j : ℤ)
     (hf : f i j ∈ parity (R := R) _ _ p) : val t f i j ∈ parity (R := R) _ _ p := by
   have := comp_mem (comp_mem (τ_inv_mem t i X).1 hf) (τ_hom_mem t j Y).1
@@ -267,8 +318,14 @@ def eval : Orbit d ⥤ C where
         rw [compL_lof_lof, evalL_lof, evalL_lof, evalL_lof, famCompₗ_apply, val_famComp,
           val_eq g.2 (show 0 - m - -(m + n) = n by ring), zero_sub]
 
+/--
+@isnad1 id=eq.0h5v.s6.4b1d6c5a1e6c from=translated src=- shape=b284a090 vocab=80aca709
+-/
 @[simp] theorem eval_obj (X : Orbit d) : (eval t).obj X = X.obj := rfl
 
+/--
+@isnad1 id=eq.0h8v.s11.8b3a19b02be2 from=translated src=- shape=ed7ec6c1 vocab=110df0d2
+-/
 theorem eval_map_lof {X Y : Orbit d} {m : ℤ} (f : d.Fam R m X.obj Y.obj) :
     (eval t).map (d.lof m X.obj Y.obj f : X ⟶ Y) = val t f.1 0 (-m) :=
   evalL_lof t f
@@ -291,7 +348,9 @@ instance : IsSuperfunctor R (eval t) where
       rw [projHom_lof, eval_map_lof]
       exact val_mem 0 (-m) (proj_mem _ _)
 
-/-- The evaluation is the identity on `C` in degree zero.-/
+/-- The evaluation is the identity on `C` in degree zero.
+@isnad1 id=eq.0h7v.s8.f77f4a17d2f7 from=translated src=- shape=c62f28ac vocab=8bfa92f3
+-/
 theorem eval_ι_map {X Y : C} (f : X ⟶ Y) : (eval t).map ((ι d).map f) = f := by
   rw [ι_map]
   refine (eval_map_lof t (X := (⟨X⟩ : Orbit _)) (Y := ⟨Y⟩) _).trans ?_
@@ -313,6 +372,9 @@ def IsTrivCompatible : Prop :=
 
 variable {t t' Ψ}
 
+/--
+@isnad1 id=eq.1h10v.s9.60c920236d01 from=translated src=- shape=3387f4d1 vocab=a3e3efaa
+-/
 theorem Γ_inv_τ (h : IsTrivCompatible t t' Ψ) (i : ℤ) (Z : C) :
     (Ψ.Γ i).inv.app Z ≫ (τ t' i (Ψ.F.obj Z)).hom = Ψ.F.map (τ t i Z).hom := by
   refine Int.forall_of_step (P := fun i => (Ψ.Γ i).inv.app Z ≫ (τ t' i (Ψ.F.obj Z)).hom =
@@ -335,7 +397,9 @@ theorem Γ_inv_τ (h : IsTrivCompatible t t' Ψ) (i : ℤ) (Z : C) :
     exact ⟨fun e => (cancel_epi _).1 e, fun e => by rw [e]⟩
 
 set_option backward.isDefEq.respectTransparency false in
-/-- **Naturality of the evaluation** with respect to morphisms of trivialized shift data.-/
+/-- **Naturality of the evaluation** with respect to morphisms of trivialized shift data.
+@isnad1 id=eq.1h11v.s9.f901ff31c7d1 from=translated src=- shape=48246f93 vocab=f32aa2a4
+-/
 theorem eval_map_map (h : IsTrivCompatible t t' Ψ) {X Y : Orbit d} (x : X ⟶ Y) :
     (eval t').map ((map Ψ).map x) = Ψ.F.map ((eval t).map x) := by
   induction x using Hom.induction_on with
@@ -371,8 +435,14 @@ def lift (Φ : ShiftFunctor R d' d) : Orbit d' ⥤ C :=
 
 variable (Φ : ShiftFunctor R d' d)
 
+/--
+@isnad1 id=eq.0h8v.s7.fdf0d5aded42 from=translated src=- shape=8b26b314 vocab=e9b7fdf6
+-/
 @[simp] theorem lift_obj (X : Orbit d') : (lift t Φ).obj X = Φ.F.obj X.obj := rfl
 
+/--
+@isnad1 id=eq.0h10v.s8.8df425e1f969 from=translated src=- shape=0d66aca7 vocab=fd421f61
+-/
 theorem lift_map {X Y : Orbit d'} (x : X ⟶ Y) :
     (lift t Φ).map x = (eval t).map ((map Φ).map x) := rfl
 
@@ -383,10 +453,16 @@ instance : (lift t Φ).Linear R := inferInstanceAs ((map Φ ⋙ eval t).Linear R
 instance : IsSuperfunctor R (lift t Φ) := inferInstanceAs (IsSuperfunctor R (map Φ ⋙ eval t))
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h10v.s8.d394f5f15dac from=translated src=- shape=88bc165a vocab=ca17c535
+-/
 theorem lift_ι_map {X Y : S} (f : X ⟶ Y) : (lift t Φ).map ((ι d').map f) = Φ.F.map f := by
   rw [lift_map, map_ι_map, eval_ι_map]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h11v.s12.8c6fdc7eeb1e from=translated src=- shape=877aa2ea vocab=ca96e496
+-/
 theorem lift_map_lof {X Y : Orbit d'} {m : ℤ} (f : d'.Fam R m X.obj Y.obj) :
     (lift t Φ).map (d'.lof m X.obj Y.obj f : X ⟶ Y) =
       Φ.F.map (f.1 0 (-m)) ≫ (Φ.Γ (-m)).inv.app Y.obj ≫ (τ t (-m) (Φ.F.obj Y.obj)).hom := by
@@ -400,7 +476,9 @@ theorem lift_map_lof {X Y : Orbit d'} {m : ℤ} (f : d'.Fam R m X.obj Y.obj) :
 variable {Φ}
 
 include t in
-/-- If `Φ.F` takes values in degree zero and `γ` has degree zero, so do the `Γⁱ`.-/
+/-- If `Φ.F` takes values in degree zero and `γ` has degree zero, so do the `Γⁱ`.
+@isnad1 id=mem.2h9v.s11.36896c67258b from=translated src=- shape=e44ebe5d vocab=961de64a
+-/
 theorem Γ_hom_mem_degree (hP : ∀ {X Y : S} (f : X ⟶ Y), Φ.F.map f ∈ degree (R := R) _ _ 0)
     (hγ : ∀ X : S, Φ.γ.hom.app X ∈ degree (R := R) _ _ 0) (i : ℤ) (X : S) :
     (Φ.Γ i).hom.app X ∈ degree (R := R) _ _ 0 := by
@@ -434,11 +512,17 @@ theorem Γ_hom_mem_degree (hP : ∀ {X Y : S} (f : X ⟶ Y), Φ.F.map f ∈ degr
       simpa using this
 
 include t in
+/--
+@isnad1 id=mem.2h9v.s11.4b394865e35b from=translated src=- shape=1a389289 vocab=f1a5e2aa
+-/
 theorem Γ_inv_mem_degree (hP : ∀ {X Y : S} (f : X ⟶ Y), Φ.F.map f ∈ degree (R := R) _ _ 0)
     (hγ : ∀ X : S, Φ.γ.hom.app X ∈ degree (R := R) _ _ 0) (i : ℤ) (X : S) :
     (Φ.Γ i).inv.app X ∈ degree (R := R) _ _ 0 := by
   simpa using inv_mem_degree ((Φ.Γ i).app X) (Γ_hom_mem_degree t hP hγ i X)
 
+/--
+@isnad1 id=mem.2h11v.s12.73b687cb9190 from=translated src=- shape=6b74d506 vocab=bdd1fa7c
+-/
 theorem lift_map_lof_mem_degree (hP : ∀ {X Y : S} (f : X ⟶ Y), Φ.F.map f ∈ degree (R := R) _ _ 0)
     (hγ : ∀ X : S, Φ.γ.hom.app X ∈ degree (R := R) _ _ 0) {X Y : Orbit d'} {m : ℤ}
     (f : d'.Fam R m X.obj Y.obj) :
@@ -448,13 +532,18 @@ theorem lift_map_lof_mem_degree (hP : ∀ {X Y : S} (f : X ⟶ Y), Φ.F.map f �
     (Γ_inv_mem_degree t hP hγ (-m) Y.obj) (τ_hom_mem t (-m) (Φ.F.obj Y.obj)).2)
   simpa using! this
 
-/-- **The lift is graded** when `Φ.F` takes values in degree zero and `γ` has degree zero.-/
+/-- **The lift is graded** when `Φ.F` takes values in degree zero and `γ` has degree zero.
+@isnad1 id=mem.3h11v.s12.47b2452e85b3 from=translated src=- shape=abedf9ea vocab=9a8be0a0
+-/
 theorem lift_map_mem_degree (hP : ∀ {X Y : S} (f : X ⟶ Y), Φ.F.map f ∈ degree (R := R) _ _ 0)
     (hγ : ∀ X : S, Φ.γ.hom.app X ∈ degree (R := R) _ _ 0) {X Y : Orbit d'} {n : ℤ} {x : X ⟶ Y}
     (hx : x ∈ degree (R := R) X Y n) : (lift t Φ).map x ∈ degree (R := R) _ _ n := by
   obtain ⟨f, rfl⟩ := hx
   exact lift_map_lof_mem_degree t hP hγ f
 
+/--
+@isnad1 id=eq.2h11v.s13.202ea4210ed0 from=translated src=- shape=760476ca vocab=1467659d
+-/
 theorem dproj_lift_map (hP : ∀ {X Y : S} (f : X ⟶ Y), Φ.F.map f ∈ degree (R := R) _ _ 0)
     (hγ : ∀ X : S, Φ.γ.hom.app X ∈ degree (R := R) _ _ 0) {X Y : Orbit d'} (n : ℤ)
     (x : X ⟶ Y) :
@@ -475,7 +564,9 @@ theorem dproj_lift_map (hP : ∀ {X Y : S} (f : X ⟶ Y), Φ.F.map f ∈ degree 
         map_zero]
       exact ((lift t Φ).map_zero _ _).symm
 
-/-- **The lift is faithful** when `Φ.F` is.-/
+/-- **The lift is faithful** when `Φ.F` is.
+@isnad1 id=eq.3h11v.s11.37b32ae4062f from=translated src=- shape=eba9d2f2 vocab=7f0fe621
+-/
 theorem lift_map_injective [Φ.F.Faithful]
     (hP : ∀ {X Y : S} (f : X ⟶ Y), Φ.F.map f ∈ degree (R := R) _ _ 0)
     (hγ : ∀ X : S, Φ.γ.hom.app X ∈ degree (R := R) _ _ 0) {X Y : Orbit d'} {x y : X ⟶ Y}
@@ -489,6 +580,9 @@ theorem lift_map_injective [Φ.F.Faithful]
     (d'.component n X.obj Y.obj y).2 (i₀ := 0) (j₀ := -n) (by ring) (Φ.F.map_injective h2.symm))
 
 omit [GradedSupercategory R C] in
+/--
+@isnad1 id=eq.0h9v.s9.24f9667575e5 from=translated src=- shape=13a05f8d vocab=9ed64a97
+-/
 theorem F_map_Q_map {X Y : S} (f : X ⟶ Y) :
     Φ.F.map (d'.Q.map f) = Φ.γ.inv.app X ≫ d.Q.map (Φ.F.map f) ≫ Φ.γ.hom.app Y := by
   have n := Φ.γ.hom.naturality f
@@ -500,6 +594,9 @@ def conj (Φ : ShiftFunctor R d' d) {X Y : S} (g : Φ.F.obj X ⟶ Φ.F.obj Y) (i
     Φ.F.obj ((d'.pow i).obj X) ⟶ Φ.F.obj ((d'.pow j).obj Y) :=
   (Φ.Γ i).inv.app X ≫ (τ t i (Φ.F.obj X)).hom ≫ g ≫ (τ t j (Φ.F.obj Y)).inv ≫ (Φ.Γ j).hom.app Y
 
+/--
+@isnad1 id=mem.4h13v.s12.f211477667b0 from=translated src=- shape=b19a73d0 vocab=3b566e54
+-/
 theorem conj_mem_degree (Φ : ShiftFunctor R d' d)
     (hP : ∀ {X Y : S} (f : X ⟶ Y), Φ.F.map f ∈ degree (R := R) _ _ 0)
     (hγ : ∀ X : S, Φ.γ.hom.app X ∈ degree (R := R) _ _ 0) {X Y : S}
@@ -517,7 +614,9 @@ variable (hP : ∀ {X Y : S} (f : X ⟶ Y), Φ.F.map f ∈ degree (R := R) _ _ 0
 
 set_option backward.isDefEq.respectTransparency false in
 include hP hγ hsurj in
-/-- **The lift is full** when `Φ.F` is faithful with image all the morphisms of degree zero.-/
+/-- **The lift is full** when `Φ.F` is faithful with image all the morphisms of degree zero.
+@isnad1 id=ex.3h10v.s11.2eafec7ade4d from=translated src=- shape=f9a3ac44 vocab=8d163675
+-/
 theorem lift_map_surjective [Φ.F.Faithful] {X Y : Orbit d'}
     (g : Φ.F.obj X.obj ⟶ Φ.F.obj Y.obj) : ∃ x : X ⟶ Y, (lift t Φ).map x = g := by
   refine induction_on_degree (R := R) g ⟨0, Functor.map_zero _ _ _⟩ (fun n g hg => ?_)

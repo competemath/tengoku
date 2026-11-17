@@ -143,15 +143,27 @@ def ofOplax (η : idU R B ⟶ idU R B)
     rw [h]
     simp
 
+/--
+@isnad1 id=eq.1h4v.s17.82c0550f62c7 from=translated src=- shape=163b602e vocab=476ceaf7
+-/
 @[simp] theorem ofOplax_X (η : idU R B ⟶ idU R B) (nat) (a : B) :
     (ofOplax η nat).X a = (η.app ⟨a⟩).obj := rfl
 
+/--
+@isnad1 id=eq.1h6v.s18.1172f1932a49 from=translated src=- shape=d6340af5 vocab=60af3bb6
+-/
 @[simp] theorem ofOplax_x (η : idU R B ⟶ idU R B) (nat) {a b : B}
     (f : a ⟶ b) : (ofOplax η nat).x f = (η.naturality (Underlying2.hom1 f)).1 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.c0c6724ee8a9 from=translated src=- shape=11e5479f vocab=3b74f0f3
+-/
 @[simp] theorem toOplax_app (θ : EndId R B) (a : Underlying2 R B) :
     (toOplax θ).app a = ⟨θ.X a.obj⟩ := rfl
 
+/--
+@isnad1 id=eq.0h6v.s16.1f6b572770d4 from=translated src=- shape=c066feca vocab=ca48ed3a
+-/
 @[simp] theorem toOplax_naturality (θ : EndId R B) {a b : Underlying2 R B} (f : a ⟶ b) :
     ((toOplax θ).naturality f).1 = θ.x f.obj := rfl
 
@@ -225,20 +237,38 @@ instance : Supercategory R (DrinfeldCenter R B) where
 
 variable {X Y Z X' Y' Z' : DrinfeldCenter R B}
 
+/--
+@isnad1 id=eq.1h6v.s9.a0589358e1dd from=translated src=- shape=a5fab114 vocab=8df13e45
+-/
 @[ext]
 theorem hom_ext {f g : X ⟶ Y} (h : ∀ a, f.app a = g.app a) : f = g :=
   TwoNatTrans.hom_ext h
 
+/--
+@isnad1 id=eq.0h4v.s9.bcb4b61c29f5 from=translated src=- shape=ce0776a8 vocab=b77065ee
+-/
 @[simp] theorem id_app (X : DrinfeldCenter R B) (a : B) :
     (𝟙 X : X ⟶ X).app a = 𝟙 (X.toTwoNatTrans.X a) := rfl
 
+/--
+@isnad1 id=eq.0h8v.s9.014d5a7b0739 from=translated src=- shape=9d129f7b vocab=27e4d074
+-/
 @[simp] theorem comp_app (f : X ⟶ Y) (g : Y ⟶ Z) (a : B) : (f ≫ g).app a = f.app a ≫ g.app a :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s11.083eedf3bbc3 from=translated src=- shape=901f2072 vocab=bef5f8da
+-/
 @[simp] theorem add_app (f g : X ⟶ Y) (a : B) : (f + g).app a = f.app a + g.app a := rfl
 
+/--
+@isnad1 id=eq.0h7v.s13.16cb6738cf9a from=translated src=- shape=5cb78f97 vocab=782d2e6d
+-/
 @[simp] theorem smul_app (r : R) (f : X ⟶ Y) (a : B) : (r • f).app a = r • f.app a := rfl
 
+/--
+@isnad1 id=iff.0h6v.s12.1d58ab613d4d from=translated src=- shape=30671749 vocab=1ce4eeef
+-/
 theorem mem_parity_iff {p : ZMod 2} {f : X ⟶ Y} :
     f ∈ parity (R := R) X Y p ↔
       ∀ a, f.app a ∈ parity (R := R) (X.toTwoNatTrans.X a) (Y.toTwoNatTrans.X a) p := Iff.rfl
@@ -283,9 +313,15 @@ def tensorObj (X Y : DrinfeldCenter R B) : DrinfeldCenter R B where
               (associator (Y.toTwoNatTrans.X a) (X.toTwoNatTrans.X a) f).inv)
     infer_instance
 
+/--
+@isnad1 id=eq.0h5v.s8.1b234fc875df from=translated src=- shape=500dbb49 vocab=45ce7317
+-/
 @[simp] theorem tensorObj_X (X Y : DrinfeldCenter R B) (a : B) :
     (tensorObj X Y).toTwoNatTrans.X a = Y.toTwoNatTrans.X a ≫ X.toTwoNatTrans.X a := rfl
 
+/--
+@isnad1 id=eq.0h7v.s12.ef540da20113 from=translated src=- shape=54e0c22b vocab=47f7c96c
+-/
 theorem tensorObj_x (X Y : DrinfeldCenter R B) {a b : B} (f : a ⟶ b) :
     (tensorObj X Y).toTwoNatTrans.x f =
       (associator f (Y.toTwoNatTrans.X b) (X.toTwoNatTrans.X b)).inv ≫
@@ -306,8 +342,14 @@ def tensorUnit : DrinfeldCenter R B where
     change IsIso ((rightUnitor f).hom ≫ (leftUnitor f).inv)
     infer_instance
 
+/--
+@isnad1 id=eq.0h3v.s7.c812c7f08cd2 from=translated src=- shape=ce0c85fb vocab=cb5e5a66
+-/
 @[simp] theorem tensorUnit_X (a : B) : (tensorUnit R B).toTwoNatTrans.X a = 𝟙 a := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.db97d41af8c1 from=translated src=- shape=62419cda vocab=69ffa71c
+-/
 theorem tensorUnit_x {a b : B} (f : a ⟶ b) :
     (tensorUnit R B).toTwoNatTrans.x f = (rightUnitor f).hom ≫ (leftUnitor f).inv := rfl
 
@@ -361,9 +403,15 @@ def whiskerRight {X X' : DrinfeldCenter R B} (α : X ⟶ X') (Y : DrinfeldCenter
       whisker_exchange_of_even_left_assoc (Y.toTwoNatTrans.x_mem f),
       ← associator_inv_naturality_right_assoc R]
 
+/--
+@isnad1 id=eq.0h7v.s9.d368c2762522 from=translated src=- shape=b7632afd vocab=28c6bd25
+-/
 @[simp] theorem whiskerLeft_app (X : DrinfeldCenter R B) {Y Y' : DrinfeldCenter R B}
     (β : Y ⟶ Y') (a : B) : (whiskerLeft X β).app a = β.app a ▷ X.toTwoNatTrans.X a := rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.6cd98d206801 from=translated src=- shape=57bb46ad vocab=aa0a89f5
+-/
 @[simp] theorem whiskerRight_app {X X' : DrinfeldCenter R B} (α : X ⟶ X')
     (Y : DrinfeldCenter R B) (a : B) :
     (whiskerRight α Y).app a = Y.toTwoNatTrans.X a ◁ α.app a := rfl
@@ -395,25 +443,43 @@ def rightUnitor (X : DrinfeldCenter R B) : tensorObj X (tensorUnit R B) ≅ X :=
   isoMk <| isoOfModificationIso (θ := (tensorObj X (tensorUnit R B)).toTwoNatTrans)
     (θ' := X.toTwoNatTrans) (Bicategory.leftUnitor X.toTwoNatTrans.toOplax)
 
+/--
+@isnad1 id=eq.0h6v.s10.08554742cbbb from=translated src=- shape=2f56bca8 vocab=7de2c865
+-/
 @[simp] theorem associator_hom_app (X Y Z : DrinfeldCenter R B) (a : B) :
     (associator X Y Z).hom.app a =
       (BicategoryStruct.associator (Z.toTwoNatTrans.X a) (Y.toTwoNatTrans.X a)
         (X.toTwoNatTrans.X a)).inv := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.17f9f214f129 from=translated src=- shape=47bbc752 vocab=7de2c865
+-/
 @[simp] theorem associator_inv_app (X Y Z : DrinfeldCenter R B) (a : B) :
     (associator X Y Z).inv.app a =
       (BicategoryStruct.associator (Z.toTwoNatTrans.X a) (Y.toTwoNatTrans.X a)
         (X.toTwoNatTrans.X a)).hom := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.986fbc32d183 from=translated src=- shape=8056b32b vocab=f4bc2f84
+-/
 @[simp] theorem leftUnitor_hom_app (X : DrinfeldCenter R B) (a : B) :
     (leftUnitor X).hom.app a = (BicategoryStruct.rightUnitor (X.toTwoNatTrans.X a)).hom := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.d200e1763cae from=translated src=- shape=b765f22d vocab=601737bb
+-/
 @[simp] theorem leftUnitor_inv_app (X : DrinfeldCenter R B) (a : B) :
     (leftUnitor X).inv.app a = (BicategoryStruct.rightUnitor (X.toTwoNatTrans.X a)).inv := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.dc9d93d48109 from=translated src=- shape=bc908eb5 vocab=fab70b11
+-/
 @[simp] theorem rightUnitor_hom_app (X : DrinfeldCenter R B) (a : B) :
     (rightUnitor X).hom.app a = (BicategoryStruct.leftUnitor (X.toTwoNatTrans.X a)).hom := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.5bda02ffe3e1 from=translated src=- shape=67ea48a5 vocab=5fe91db2
+-/
 @[simp] theorem rightUnitor_inv_app (X : DrinfeldCenter R B) (a : B) :
     (rightUnitor X).inv.app a = (BicategoryStruct.leftUnitor (X.toTwoNatTrans.X a)).inv := rfl
 
@@ -432,39 +498,69 @@ section Simp
 
 open MonoidalCategory
 
+/--
+@isnad1 id=eq.0h5v.s8.56c67a192481 from=translated src=- shape=1f1675fc vocab=035d02ab
+-/
 @[simp] theorem tensor_X (X Y : DrinfeldCenter R B) (a : B) :
     (X ⊗ Y).toTwoNatTrans.X a = Y.toTwoNatTrans.X a ≫ X.toTwoNatTrans.X a := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.94492acb130c from=translated src=- shape=5da95f71 vocab=2005ed8b
+-/
 @[simp] theorem unit_X (a : B) : (𝟙_ (DrinfeldCenter R B)).toTwoNatTrans.X a = 𝟙 a := rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.4052342bfaac from=translated src=- shape=0eb7c1d4 vocab=fa16d7b3
+-/
 @[simp] theorem mwhiskerLeft_app (X : DrinfeldCenter R B) {Y Y' : DrinfeldCenter R B}
     (β : Y ⟶ Y') (a : B) :
     (MonoidalCategoryStruct.whiskerLeft X β).app a = β.app a ▷ X.toTwoNatTrans.X a := rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.b6ba09ab6acb from=translated src=- shape=68d0a52f vocab=e8934ef6
+-/
 @[simp] theorem mwhiskerRight_app {X X' : DrinfeldCenter R B} (α : X ⟶ X')
     (Y : DrinfeldCenter R B) (a : B) :
     (MonoidalCategoryStruct.whiskerRight α Y).app a = Y.toTwoNatTrans.X a ◁ α.app a := rfl
 
+/--
+@isnad1 id=eq.0h9v.s10.2b26ba8427d0 from=translated src=- shape=227610b7 vocab=86eedae5
+-/
 @[simp] theorem tensorHom_app {X₁ Y₁ X₂ Y₂ : DrinfeldCenter R B} (f : X₁ ⟶ Y₁) (g : X₂ ⟶ Y₂)
     (a : B) : (f ⊗ₘ g).app a =
       X₂.toTwoNatTrans.X a ◁ f.app a ≫ g.app a ▷ Y₁.toTwoNatTrans.X a := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.b62e7fca8d51 from=translated src=- shape=17442b7d vocab=5da11dc3
+-/
 @[simp] theorem massociator_hom_app (X Y Z : DrinfeldCenter R B) (a : B) :
     (α_ X Y Z).hom.app a =
       (BicategoryStruct.associator (Z.toTwoNatTrans.X a) (Y.toTwoNatTrans.X a)
         (X.toTwoNatTrans.X a)).inv := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.2f77c1c38fd6 from=translated src=- shape=dc816740 vocab=5da11dc3
+-/
 @[simp] theorem massociator_inv_app (X Y Z : DrinfeldCenter R B) (a : B) :
     (α_ X Y Z).inv.app a =
       (BicategoryStruct.associator (Z.toTwoNatTrans.X a) (Y.toTwoNatTrans.X a)
         (X.toTwoNatTrans.X a)).hom := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.f60b8798590e from=translated src=- shape=0bc8d945 vocab=75280a23
+-/
 @[simp] theorem mleftUnitor_hom_app (X : DrinfeldCenter R B) (a : B) :
     (λ_ X).hom.app a = (BicategoryStruct.rightUnitor (X.toTwoNatTrans.X a)).hom := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.03715715cbb4 from=translated src=- shape=aa1d142e vocab=03d7b003
+-/
 @[simp] theorem mrightUnitor_hom_app (X : DrinfeldCenter R B) (a : B) :
     (ρ_ X).hom.app a = (BicategoryStruct.leftUnitor (X.toTwoNatTrans.X a)).hom := rfl
 
+/--
+@isnad1 id=eq.0h7v.s11.22eae1c87424 from=translated src=- shape=ec8d41f7 vocab=a0a54296
+-/
 @[simp] theorem zsmul_app (n : ℤ) (f : X ⟶ Y) (a : B) : (n • f).app a = n • f.app a := rfl
 
 end Simp
@@ -540,8 +636,14 @@ def centerObj : DrinfeldCenter R B where
         simp }
   isStrong f := (inferInstance : IsIso (β (R := R) f).hom)
 
+/--
+@isnad1 id=eq.0h3v.s7.adae84775a5c from=translated src=- shape=a1e3b40e vocab=6a081458
+-/
 @[simp] theorem centerObj_X (a : B) : (centerObj R B).toTwoNatTrans.X a = pi (R := R) a := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.3b1c7639b6a3 from=translated src=- shape=ed7641df vocab=8accd66a
+-/
 @[simp] theorem centerObj_x {a b : B} (f : a ⟶ b) :
     (centerObj R B).toTwoNatTrans.x f = (β (R := R) f).hom := rfl
 
@@ -564,6 +666,9 @@ def centerζ : centerObj R B ≅ 𝟙_ (DrinfeldCenter R B) where
   hom_inv_id := hom_ext fun a => (ζ (R := R) a).hom_inv_id
   inv_hom_id := hom_ext fun a => (ζ (R := R) a).inv_hom_id
 
+/--
+@isnad1 id=mem.0h2v.s10.9a2b319a6e4d from=translated src=- shape=79166ce9 vocab=152bbf47
+-/
 theorem centerζ_hom_mem :
     (centerζ R B).hom ∈ parity (R := R) (centerObj R B) (𝟙_ (DrinfeldCenter R B)) 1 :=
   fun a => ζ_hom_mem (R := R) a
@@ -599,6 +704,9 @@ def centerξ : centerObj R B ⊗ centerObj R B ≅ 𝟙_ (DrinfeldCenter R B) wh
   hom_inv_id := hom_ext fun a => (ξ (R := R) a).hom_inv_id
   inv_hom_id := hom_ext fun a => (ξ (R := R) a).inv_hom_id
 
+/--
+@isnad1 id=mem.0h2v.s10.22d1f489a9ba from=translated src=- shape=cf630e19 vocab=4c4f9978
+-/
 theorem centerξ_hom_mem :
     (centerξ R B).hom ∈
       parity (R := R) (centerObj R B ⊗ centerObj R B) (𝟙_ (DrinfeldCenter R B)) 0 :=
@@ -606,7 +714,9 @@ theorem centerξ_hom_mem :
 
 /-- `ξ = ζζ` in the Drinfeld center: the component of `centerξ` is the tensor product (in the
 sense of the paper, `MonoidalSupercategory.superTensorHom`) of `ζ` with itself, followed by
-the unitor.-/
+the unitor.
+@isnad1 id=eq.0h2v.s9.ea56cfc1cccd from=translated src=- shape=865a4994 vocab=b76ccb22
+-/
 theorem centerξ_hom_eq :
     (centerξ R B).hom = MonoidalSupercategory.superTensorHom (centerζ R B).hom (centerζ R B).hom ≫
       (λ_ (𝟙_ (DrinfeldCenter R B))).hom :=
@@ -622,7 +732,9 @@ end PiTwoSupercategory
 namespace DrinfeldCenter
 
 /-- Two objects of the Drinfeld center with the same 1-morphisms `X_λ` and the same
-2-morphisms `x_F` (up to the resulting identifications) are equal.-/
+2-morphisms `x_F` (up to the resulting identifications) are equal.
+@isnad1 id=eq.2h4v.s11.658a1f4ccd37 from=translated src=- shape=e5c05568 vocab=6e5dbdd6
+-/
 theorem ext_of_eq {P Q : DrinfeldCenter R B} (hX : P.toTwoNatTrans.X = Q.toTwoNatTrans.X)
     (hx : ∀ {a b : B} (f : a ⟶ b), P.toTwoNatTrans.x f =
       eqToHom (by rw [hX]) ≫ Q.toTwoNatTrans.x f ≫ eqToHom (by rw [hX])) :
@@ -636,7 +748,9 @@ theorem ext_of_eq {P Q : DrinfeldCenter R B} (hX : P.toTwoNatTrans.X = Q.toTwoNa
   funext a b f
   exact hx f
 
-/-- The components of an `eqToHom` in the Drinfeld center are `eqToHom`s.-/
+/-- The components of an `eqToHom` in the Drinfeld center are `eqToHom`s.
+@isnad1 id=eq.1h5v.s9.04a1a1221c8b from=translated src=- shape=6b8b5478 vocab=2a796fab
+-/
 theorem eqToHom_app {P Q : DrinfeldCenter R B} (h : P = Q) (a : B) :
     (eqToHom h : P ⟶ Q).app a = eqToHom (by rw [h]) := by
   subst h
@@ -645,7 +759,9 @@ theorem eqToHom_app {P Q : DrinfeldCenter R B} (h : P = Q) (a : B) :
 variable [BicategoryStruct.Strict B]
 
 /-- In the Drinfeld center of a strict 2-supercategory, `(X ⊗ Y) ⊗ Z = X ⊗ (Y ⊗ Z)`: both
-have components `Z_λ ≫ Y_λ ≫ X_λ` and `(x ⊗ y ⊗ z)_F = x_F y_F z_F`.-/
+have components `Z_λ ≫ Y_λ ≫ X_λ` and `(x ⊗ y ⊗ z)_F = x_F y_F z_F`.
+@isnad1 id=eq.0h5v.s7.a5c4d4740da2 from=translated src=- shape=db8ac854 vocab=ce4f305e
+-/
 theorem tensor_assoc (X Y Z : DrinfeldCenter R B) :
     tensorObj (tensorObj X Y) Z = tensorObj X (tensorObj Y Z) := by
   refine ext_of_eq (funext fun a => (Strict.assoc _ _ _).symm) fun {a b} f => ?_
@@ -656,7 +772,9 @@ theorem tensor_assoc (X Y Z : DrinfeldCenter R B) :
     eqToHom_trans_assoc]
   erw [eqToHom_trans_assoc, eqToHom_trans]
 
-/-- In the Drinfeld center of a strict 2-supercategory, `1 ⊗ X = X`.-/
+/-- In the Drinfeld center of a strict 2-supercategory, `1 ⊗ X = X`.
+@isnad1 id=eq.0h3v.s7.cebee10f314c from=translated src=- shape=0c998a6c vocab=b224cde0
+-/
 theorem unit_tensor (X : DrinfeldCenter R B) : tensorObj (tensorUnit R B) X = X := by
   refine ext_of_eq (funext fun a => Strict.comp_id _) fun {a b} f => ?_
   simp only [tensorObj_x, tensorUnit_x, tensorUnit_X, whiskerRight_id (R := R),
@@ -665,7 +783,9 @@ theorem unit_tensor (X : DrinfeldCenter R B) : tensorObj (tensorUnit R B) X = X 
     eqToHom_trans_assoc]
   rfl
 
-/-- In the Drinfeld center of a strict 2-supercategory, `X ⊗ 1 = X`.-/
+/-- In the Drinfeld center of a strict 2-supercategory, `X ⊗ 1 = X`.
+@isnad1 id=eq.0h3v.s7.374b1af1f2e5 from=translated src=- shape=a5eddeb5 vocab=b224cde0
+-/
 theorem tensor_unit (X : DrinfeldCenter R B) : tensorObj X (tensorUnit R B) = X := by
   refine ext_of_eq (funext fun a => Strict.id_comp _) fun {a b} f => ?_
   simp only [tensorObj_x, tensorUnit_x, tensorUnit_X, id_whiskerLeft (R := R),

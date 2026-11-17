@@ -81,14 +81,29 @@ def toHom {X Y : Envelope R C} (f : X ⟶ Y) : X.obj ⟶ Y.obj := f
 /-- The morphism `f_a^b : Πᵃ λ ⟶ Πᵇ μ` of the envelope given by `f : λ ⟶ μ`.-/
 def ofHom {X Y : Envelope R C} (f : X.obj ⟶ Y.obj) : X ⟶ Y := f
 
+/--
+@isnad1 id=eq.0h5v.s5.5c332c4cae23 from=translated src=- shape=9b23f8cb vocab=1aaaad61
+-/
 @[simp] theorem toHom_ofHom {X Y : Envelope R C} (f : X.obj ⟶ Y.obj) : toHom (ofHom f) = f := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.b677800247b8 from=translated src=- shape=cf9e571a vocab=66fb4c4f
+-/
 @[simp] theorem ofHom_toHom {X Y : Envelope R C} (f : X ⟶ Y) : ofHom (toHom f) = f := rfl
 
+/--
+@isnad1 id=eq.1h6v.s6.ee4a5e1fb1c6 from=translated src=- shape=ac049b79 vocab=e7916379
+-/
 @[ext] theorem hom_ext {X Y : Envelope R C} {f g : X ⟶ Y} (h : toHom f = toHom g) : f = g := h
 
+/--
+@isnad1 id=eq.0h3v.s5.3dc251dbf5df from=translated src=- shape=0a4448cb vocab=1facbca0
+-/
 @[simp] theorem toHom_id (X : Envelope R C) : toHom (𝟙 X) = 𝟙 X.obj := rfl
 
+/--
+@isnad1 id=eq.0h7v.s6.0c005f69c3dd from=translated src=- shape=b12e32ec vocab=154cd65f
+-/
 @[simp] theorem toHom_comp {X Y Z : Envelope R C} (f : X ⟶ Y) (g : Y ⟶ Z) :
     toHom (f ≫ g) = toHom f ≫ toHom g := rfl
 
@@ -117,11 +132,20 @@ instance : Preadditive (Envelope R C) where
   add_comp _ _ _ f f' g := Preadditive.add_comp (C := C) _ _ _ f f' g
   comp_add _ _ _ f g g' := Preadditive.comp_add (C := C) _ _ _ f g g'
 
+/--
+@isnad1 id=eq.0h6v.s8.d505c1c7b1a4 from=translated src=- shape=cd69edf9 vocab=44f2b68a
+-/
 @[simp] theorem toHom_add {X Y : Envelope R C} (f g : X ⟶ Y) : toHom (f + g) = toHom f + toHom g :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.9a2efaf0f874 from=translated src=- shape=f6e41ce6 vocab=2d0be289
+-/
 @[simp] theorem toHom_zero {X Y : Envelope R C} : toHom (0 : X ⟶ Y) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.801fae6df1e5 from=translated src=- shape=906eeb33 vocab=b60be093
+-/
 @[simp] theorem toHom_neg {X Y : Envelope R C} (f : X ⟶ Y) : toHom (-f) = -toHom f := rfl
 
 variable [CommRing R] [Linear R C]
@@ -131,6 +155,9 @@ instance : Linear R (Envelope R C) where
   smul_comp _ _ _ r f g := Linear.smul_comp (C := C) _ _ _ r f g
   comp_smul _ _ _ f r g := Linear.comp_smul (C := C) _ _ _ f r g
 
+/--
+@isnad1 id=eq.0h6v.s9.980140e4686a from=translated src=- shape=4037c1ee vocab=3d304201
+-/
 @[simp] theorem toHom_smul {X Y : Envelope R C} (r : R) (f : X ⟶ Y) : toHom (r • f) = r • toHom f :=
   rfl
 
@@ -138,6 +165,9 @@ instance : Linear R (Envelope R C) where
 
 variable [Supercategory R C]
 
+/--
+@isnad1 id=isintern.0h5v.s8.86996a8a3728 from=translated src=- shape=d6f5af3c vocab=7fc96766
+-/
 theorem isInternal_shift (X Y : C) (s : ZMod 2) :
     DirectSum.IsInternal fun p => parity (R := R) X Y (p + s) := by
   have h := (DirectSum.isInternal_submodule_iff_iSupIndep_and_iSup_eq_top _).1
@@ -160,17 +190,25 @@ instance : Supercategory R (Envelope R C) where
       by ring, zmod2_add_self, add_zero] at this
     exact this
 
+/--
+@isnad1 id=iff.0h6v.s9.f367f72bd3ca from=translated src=- shape=e0fcceee vocab=6d583477
+-/
 theorem mem_parity_iff {X Y : Envelope R C} {f : X ⟶ Y} {p : ZMod 2} :
     f ∈ parity (R := R) X Y p ↔ toHom f ∈ parity (R := R) X.obj Y.obj (p + (X.par + Y.par)) :=
   Iff.rfl
 
+/--
+@isnad1 id=mem.1h6v.s9.fb79a200caa3 from=translated src=- shape=6092f3fa vocab=471e74b0
+-/
 theorem ofHom_mem {X Y : Envelope R C} {f : X.obj ⟶ Y.obj} {q : ZMod 2}
     (hf : f ∈ parity (R := R) X.obj Y.obj q) :
     ofHom f ∈ parity (R := R) X Y (q + (X.par + Y.par)) := by
   rw [mem_parity_iff, toHom_ofHom, add_assoc, zmod2_add_self, add_zero]
   exact hf
 
-/-- The parity components in the envelope are shifted components in `C`.-/
+/-- The parity components in the envelope are shifted components in `C`.
+@isnad1 id=eq.0h6v.s10.a30cb57bd0ca from=translated src=- shape=02cef15c vocab=438a9b93
+-/
 theorem toHom_proj (p : ZMod 2) {X Y : Envelope R C} (f : X ⟶ Y) :
     toHom (proj R p f) = proj R (p + (X.par + Y.par)) (toHom f) := by
   set s := X.par + Y.par
@@ -185,7 +223,9 @@ theorem toHom_proj (p : ZMod 2) {X Y : Envelope R C} (f : X ⟶ Y) :
   rfl
 
 /-- The twist in the envelope: `f_a^b ↦ (-1)^{p(a+b)} (f')_a^b` where `f'` is the twist in
-`C`.-/
+`C`.
+@isnad1 id=eq.0h6v.s10.b84c7ef8e337 from=translated src=- shape=f20a2777 vocab=c53437d4
+-/
 theorem toHom_twist (p : ZMod 2) {X Y : Envelope R C} (f : X ⟶ Y) :
     toHom (twist R p f) = sign R (p * (X.par + Y.par)) • twist R p (toHom f) := by
   rw [twist_apply, twist_apply, toHom_add, toHom_smul, toHom_proj, toHom_proj]
@@ -200,6 +240,9 @@ theorem toHom_twist (p : ZMod 2) {X Y : Envelope R C} (f : X ⟶ Y) :
 def ζIso (X : Envelope R C) : (⟨X.par + 1, X.obj⟩ : Envelope R C) ≅ X :=
   isoOfIso (Iso.refl X.obj)
 
+/--
+@isnad1 id=mem.0h3v.s11.6835cf827c26 from=translated src=- shape=997a976b vocab=b5e858af
+-/
 theorem ζIso_mem (X : Envelope R C) :
     (ζIso X).hom ∈ parity (R := R) (⟨X.par + 1, X.obj⟩ : Envelope R C) X 1 := by
   rw [mem_parity_iff]
@@ -213,19 +256,33 @@ theorem ζIso_mem (X : Envelope R C) :
 instance : PiSupercategory R (Envelope R C) :=
   PiSupercategory.ofIso (fun X => ⟨X.par + 1, X.obj⟩) ζIso ζIso_mem
 
+/--
+@isnad1 id=eq.0h3v.s7.6dc86a22b02b from=translated src=- shape=3f30e4cc vocab=6026a837
+-/
 @[simp] theorem pi_obj (X : Envelope R C) :
     (PiSupercategory.pi (R := R)).obj X = ⟨X.par + 1, X.obj⟩ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.b7708ca4228d from=translated src=- shape=1d6207a5 vocab=7386ae2e
+-/
 theorem ζ_eq (X : Envelope R C) : PiSupercategory.ζ (R := R) X = ζIso X := rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.b26c840d52ca from=translated src=- shape=c85833e3 vocab=338b2fdb
+-/
 @[simp] theorem toHom_ζ_hom (X : Envelope R C) :
     toHom (PiSupercategory.ζ (R := R) X).hom = 𝟙 X.obj := rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.80b5e4795efe from=translated src=- shape=20321127 vocab=ba95d1e6
+-/
 @[simp] theorem toHom_ζ_inv (X : Envelope R C) :
     toHom (PiSupercategory.ζ (R := R) X).inv = 𝟙 X.obj := rfl
 
 /-- The action of `Π` on morphisms of the envelope:
-`Π(f_a^b) = (-1)^{a+b} (f₀ - f₁)_{a+1}^{b+1}`.-/
+`Π(f_a^b) = (-1)^{a+b} (f₀ - f₁)_{a+1}^{b+1}`.
+@isnad1 id=eq.0h5v.s10.ed49c106132d from=translated src=- shape=8f08056c vocab=d176ca07
+-/
 theorem toHom_pi_map {X Y : Envelope R C} (f : X ⟶ Y) :
     toHom ((PiSupercategory.pi (R := R)).map f) =
       sign R (X.par + Y.par) • twist R 1 (toHom f) := by
@@ -266,12 +323,18 @@ instance : (J R C).Faithful where
 /-- The morphism `(1_λ)_0^a : Π⁰ λ ⟶ Πᵃ λ`, of parity `a`.-/
 def shiftIso (X : Envelope R C) : (J R C).obj X.obj ≅ X := isoOfIso (Iso.refl X.obj)
 
+/--
+@isnad1 id=mem.0h3v.s9.8ebb3c218a44 from=translated src=- shape=cf362b15 vocab=dce9c638
+-/
 theorem shiftIso_hom_mem (X : Envelope R C) :
     (shiftIso X).hom ∈ parity (R := R) ((J R C).obj X.obj) X X.par := by
   rw [mem_parity_iff]
   show 𝟙 X.obj ∈ parity (R := R) X.obj X.obj (X.par + (0 + X.par))
   rw [zero_add, zmod2_add_self]; exact id_mem X.obj
 
+/--
+@isnad1 id=mem.0h3v.s9.2db1202760ff from=translated src=- shape=669d541b vocab=31f39e7f
+-/
 theorem shiftIso_inv_mem (X : Envelope R C) :
     (shiftIso X).inv ∈ parity (R := R) X ((J R C).obj X.obj) X.par :=
   inv_mem _ (shiftIso_hom_mem X)
@@ -283,7 +346,9 @@ variable (R C) in
 (Brundan–Ellis, Lemma 4.1).-/
 def PiComplete : Prop := ∀ X : C, ∃ (Y : C) (e : Y ≅ X), e.hom ∈ parity (R := R) Y X 1
 
-/-- A Π-supercategory is Π-complete.-/
+/-- A Π-supercategory is Π-complete.
+@isnad1 id=picomple.0h2v.s5.2c9ab18b0e12 from=translated src=- shape=968c7464 vocab=21b1ea48
+-/
 theorem piComplete_of_piSupercategory [PiSupercategory R C] : PiComplete R C :=
   fun X => ⟨_, PiSupercategory.ζ (R := R) X, PiSupercategory.ζ_hom_mem X⟩
 
@@ -295,7 +360,9 @@ def PiComplete.piSupercategory (h : PiComplete R C) : PiSupercategory R C :=
     (fun X => (h X).choose_spec.choose_spec)
 
 set_option backward.isDefEq.respectTransparency false in
-/-- **Lemma 4.1**, even density: `J` is evenly dense if and only if `A` is Π-complete.-/
+/-- **Lemma 4.1**, even density: `J` is evenly dense if and only if `A` is Π-complete.
+@isnad1 id=iff.0h2v.s6.6b796b396865 from=translated src=- shape=03f5a689 vocab=ad7cc365
+-/
 theorem J_evenlyDense_iff : EvenlyDense R (J R C) ↔ PiComplete R C := by
   constructor
   · intro h X
@@ -317,7 +384,9 @@ def superequivalenceJ (h : PiComplete R C) : Superequivalence R (J R C) :=
   Superequivalence.ofFullyFaithful (J R C) (J_evenlyDense_iff.2 h)
 
 /-- **Lemma 4.1** ("only if"): if `J : A → A_π` is a superequivalence then `A` is
-Π-complete.-/
+Π-complete.
+@isnad1 id=picomple.0h3v.s6.cd05c344a0e5 from=translated src=- shape=cbd76043 vocab=c52669ca
+-/
 theorem piComplete_of_superequivalence (e : Superequivalence R (J R C)) : PiComplete R C :=
   J_evenlyDense_iff.1 e.evenlyDense
 
@@ -342,20 +411,38 @@ def ζPow : ∀ (a : ZMod 2) (X : B), piPow R a X ≅ X
   | ⟨1, _⟩, X => PiSupercategory.ζ (R := R) X
   | ⟨_ + 2, h⟩, _ => absurd h (by simp)
 
+/--
+@isnad1 id=eq.0h3v.s6.76703eda9cbb from=translated src=- shape=f544c246 vocab=ee33813f
+-/
 @[simp] theorem piPow_zero (X : B) : piPow R 0 X = X := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.61e8e06e6d91 from=translated src=- shape=88eb6a84 vocab=8b092f8e
+-/
 @[simp] theorem piPow_one (X : B) : piPow R 1 X = (PiSupercategory.pi (R := R)).obj X := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.6704a19252e6 from=translated src=- shape=93c5b329 vocab=8e27f669
+-/
 @[simp] theorem ζPow_zero (X : B) : ζPow R 0 X = Iso.refl X := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.aedeacab218a from=translated src=- shape=7cab3470 vocab=d978cc6f
+-/
 @[simp] theorem ζPow_one (X : B) : ζPow R 1 X = PiSupercategory.ζ (R := R) X := rfl
 
+/--
+@isnad1 id=mem.0h4v.s8.f039de99183a from=translated src=- shape=f592f7a2 vocab=e271ce46
+-/
 theorem ζPow_hom_mem (a : ZMod 2) (X : B) :
     (ζPow R a X).hom ∈ parity (R := R) (piPow R a X) X a := by
   rcases parity_eq_zero_or_one a with rfl | rfl
   · exact id_mem X
   · exact PiSupercategory.ζ_hom_mem X
 
+/--
+@isnad1 id=mem.0h4v.s8.c5a46c1953f4 from=translated src=- shape=8dcacfab vocab=20858188
+-/
 theorem ζPow_inv_mem (a : ZMod 2) (X : B) :
     (ζPow R a X).inv ∈ parity (R := R) X (piPow R a X) a :=
   inv_mem _ (ζPow_hom_mem a X)
@@ -392,13 +479,18 @@ instance : IsSuperfunctor R (extend R F) where
 
 omit [Preadditive C] [Linear R C] [Supercategory R C] [F.Additive] [F.Linear R]
   [IsSuperfunctor R F] in
+/--
+@isnad1 id=eq.0h7v.s7.72ab811204eb from=translated src=- shape=af81f447 vocab=d2dfa3c2
+-/
 theorem extend_map_J_map {X Y : C} (f : X ⟶ Y) : (extend R F).map ((J R C).map f) = F.map f :=
   show (ζPow R 0 (F.obj X)).hom ≫ F.map f ≫ (ζPow R 0 (F.obj Y)).inv = F.map f by simp
 
 omit [Preadditive C] [Linear R C] [Supercategory R C] [F.Additive] [F.Linear R]
   [IsSuperfunctor R F] in
 set_option backward.isDefEq.respectTransparency false in
-/-- **Lemma 4.2(i).** `F = F̃ J`.-/
+/-- **Lemma 4.2(i).** `F = F̃ J`.
+@isnad1 id=eq.0h4v.s6.e5a5af86a689 from=translated src=- shape=cf778a1e vocab=4fe3f539
+-/
 theorem J_comp_extend : J R C ⋙ extend R F = F :=
   CategoryTheory.Functor.ext (fun _ => rfl) (fun X Y f => by
     simp only [Functor.comp_map, eqToHom_refl, Category.comp_id, Category.id_comp]
@@ -419,7 +511,9 @@ def extendNat (p : ZMod 2) (x : ∀ X, F.obj X ⟶ G.obj X) (X : Envelope R C) :
 omit [F.Additive] [F.Linear R] [IsSuperfunctor R F] [G.Additive] [G.Linear R]
   [IsSuperfunctor R G] in
 set_option backward.isDefEq.respectTransparency false in
-/-- **Lemma 4.2(ii).** `x̃` is a supernatural transformation of the same parity.-/
+/-- **Lemma 4.2(ii).** `x̃` is a supernatural transformation of the same parity.
+@isnad1 id=issupern.1h7v.s7.d60eb2034044 from=translated src=- shape=13153e2c vocab=a1cab267
+-/
 theorem isSupernatural_extendNat {p : ZMod 2} {x : ∀ X, F.obj X ⟶ G.obj X}
     (hx : IsSupernatural R p x) :
     IsSupernatural R p (F := extend R F) (G := extend R G) (extendNat R F G p x) where
@@ -442,7 +536,9 @@ theorem isSupernatural_extendNat {p : ZMod 2} {x : ∀ X, F.obj X ⟶ G.obj X}
 omit [Preadditive C] [Linear R C] [Supercategory R C] [F.Additive] [F.Linear R]
   [IsSuperfunctor R F] [G.Additive] [G.Linear R] [IsSuperfunctor R G] in
 set_option backward.isDefEq.respectTransparency false in
-/-- **Lemma 4.2(ii).** `x̃ J = x`.-/
+/-- **Lemma 4.2(ii).** `x̃ J = x`.
+@isnad1 id=eq.0h8v.s7.6e48c20c86cc from=translated src=- shape=7f821710 vocab=d95e21da
+-/
 @[simp] theorem extendNat_zero_par (p : ZMod 2) (x : ∀ X, F.obj X ⟶ G.obj X) (X : C) :
     extendNat R F G p x ((J R C).obj X) = x X := by
   show sign R (0 * p) • ((ζPow R 0 (F.obj X)).hom ≫ x X ≫ (ζPow R 0 (G.obj X)).inv) = x X
@@ -472,7 +568,9 @@ theorem eq_of_restrict_eq {H K : Envelope R C ⥤ B} [H.Additive] [H.Linear R] [
 
 set_option backward.isDefEq.respectTransparency false in
 variable (R F) in
-/-- **Theorem 4.3**, functoriality: `1̃ = 1`.-/
+/-- **Theorem 4.3**, functoriality: `1̃ = 1`.
+@isnad1 id=eq.0h4v.s8.eae24b68fc0c from=translated src=- shape=1efe13c2 vocab=808735c2
+-/
 theorem extendNat_id :
     extendNat R F F 0 (fun X => 𝟙 (F.obj X)) = fun X => 𝟙 ((extend R F).obj X) :=
   (eq_of_restrict_eq (isSupernatural_extendNat isSupernatural_id) isSupernatural_id
@@ -480,7 +578,9 @@ theorem extendNat_id :
 
 set_option backward.isDefEq.respectTransparency false in
 omit [IsSuperfunctor R G] in
-/-- **Theorem 4.3**, functoriality: `(x ≫ y)~ = x̃ ≫ ỹ`.-/
+/-- **Theorem 4.3**, functoriality: `(x ≫ y)~ = x̃ ≫ ỹ`.
+@isnad1 id=eq.2h10v.s9.1d87aec0eccc from=translated src=- shape=c1eef117 vocab=c8a92f57
+-/
 theorem extendNat_comp {H : C ⥤ B} [H.Additive] [H.Linear R] [IsSuperfunctor R H]
     {p q : ZMod 2} {x : ∀ X, F.obj X ⟶ G.obj X} {y : ∀ X, G.obj X ⟶ H.obj X}
     (hx : IsSupernatural R p x) (hy : IsSupernatural R q y) :
@@ -493,6 +593,9 @@ theorem extendNat_comp {H : C ⥤ B} [H.Additive] [H.Linear R] [IsSuperfunctor R
 omit [Preadditive C] [Linear R C] [Supercategory R C] [F.Additive] [F.Linear R]
   [IsSuperfunctor R F] [G.Additive] [G.Linear R] [IsSuperfunctor R G] in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h8v.s9.f9536911f688 from=translated src=- shape=3146e07b vocab=3a5d6520
+-/
 theorem extendNat_add {p : ZMod 2} (x y : ∀ X, F.obj X ⟶ G.obj X) :
     extendNat R F G p (x + y) = extendNat R F G p x + extendNat R F G p y := by
   funext X; simp [extendNat, Preadditive.add_comp, Preadditive.comp_add, smul_add]
@@ -500,6 +603,9 @@ theorem extendNat_add {p : ZMod 2} (x y : ∀ X, F.obj X ⟶ G.obj X) :
 omit [Preadditive C] [Linear R C] [Supercategory R C] [F.Additive] [F.Linear R]
   [IsSuperfunctor R F] [G.Additive] [G.Linear R] [IsSuperfunctor R G] in
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h8v.s10.3f1552ae1696 from=translated src=- shape=febb6fb8 vocab=52bdaafd
+-/
 theorem extendNat_smul {p : ZMod 2} (r : R) (x : ∀ X, F.obj X ⟶ G.obj X) :
     extendNat R F G p (r • x) = r • extendNat R F G p x := by
   funext X; simp [extendNat, smul_comm r]
@@ -520,6 +626,9 @@ def extendRestrictIso (H : Envelope R C ⥤ B) [H.Additive] [H.Linear R] [IsSupe
         simp [shiftIso]
         exact (Category.comp_id _).trans (Category.id_comp _).symm))
 
+/--
+@isnad1 id=mem.0h5v.s10.1fcbabe8324a from=translated src=- shape=ff96a8a1 vocab=0052857c
+-/
 theorem extendRestrictIso_hom_mem (H : Envelope R C ⥤ B) [H.Additive] [H.Linear R]
     [IsSuperfunctor R H] (X : Envelope R C) :
     (extendRestrictIso H).hom.app X ∈
@@ -558,16 +667,27 @@ instance (F : C ⥤ D) [F.Additive] [F.Linear R] [IsSuperfunctor R F] :
   map_mem hf := map_mem (R := R) F hf
 
 omit [CommRing R] [Preadditive C] [Preadditive D] in
+/--
+@isnad1 id=eq.0h4v.s6.bab85b618063 from=translated src=- shape=a6cbaca3 vocab=fee409ff
+-/
 theorem J_comp_map (F : C ⥤ D) : J R C ⋙ map R F = F ⋙ J R D := rfl
 
 omit [CommRing R] [Preadditive C] in
+/--
+@isnad1 id=eq.0h2v.s5.2d51304d6b93 from=translated src=- shape=3c6480e7 vocab=d325f231
+-/
 theorem map_id : map R (𝟭 C) = 𝟭 (Envelope R C) := rfl
 
 omit [CommRing R] [Preadditive C] [Preadditive D] in
+/--
+@isnad1 id=eq.0h6v.s6.8af24b14bc76 from=translated src=- shape=249a1769 vocab=39af3c22
+-/
 theorem map_comp {E : Type*} [Category E] (F : C ⥤ D) (G : D ⥤ E) :
     map R (F ⋙ G) = map R F ⋙ map R G := rfl
 
-/-- `F_π` commutes with `Π` on the nose.-/
+/-- `F_π` commutes with `Π` on the nose.
+@isnad1 id=eq.0h5v.s7.3c125c65eca9 from=translated src=- shape=9021b745 vocab=9139e2cf
+-/
 theorem map_pi_obj (F : C ⥤ D) (X : Envelope R C) :
     (map R F).obj ((PiSupercategory.pi (R := R)).obj X) =
       (PiSupercategory.pi (R := R)).obj ((map R F).obj X) := rfl

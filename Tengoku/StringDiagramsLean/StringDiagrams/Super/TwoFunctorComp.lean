@@ -133,7 +133,9 @@ namespace TwoNatTrans
 variable {F G H : TwoSuperfunctor R B C}
 
 omit [TwoSupercategory R B] in
-/-- The first coherence condition of a 2-natural transformation, solved for `x_{GF}`.-/
+/-- The first coherence condition of a 2-natural transformation, solved for `x_{GF}`.
+@isnad1 id=eq.0h11v.s12.d5249f399bb6 from=translated src=- shape=6d74f789 vocab=0b127ca2
+-/
 theorem x_comp_eq (θ : TwoNatTrans F G) {a b c : B} (f : a ⟶ b) (g : b ⟶ c) :
     θ.x (f ≫ g) = (F.mapComp f g).inv ▷ θ.X c ≫ (associator (F.map f) (F.map g) (θ.X c)).hom ≫
       F.map f ◁ θ.x g ≫ (associator (F.map f) (θ.X b) (G.map g)).inv ≫ θ.x f ▷ G.map g ≫
@@ -141,7 +143,9 @@ theorem x_comp_eq (θ : TwoNatTrans F G) {a b c : B} (f : a ⟶ b) (g : b ⟶ c)
   rw [← θ.x_comp, inv_hom_whiskerRight_assoc R]
 
 omit [TwoSupercategory R B] in
-/-- The second coherence condition of a 2-natural transformation, solved for `x_{1_λ}`.-/
+/-- The second coherence condition of a 2-natural transformation, solved for `x_{1_λ}`.
+@isnad1 id=eq.0h7v.s11.d7648aa60869 from=translated src=- shape=c787fa86 vocab=9480dc35
+-/
 theorem x_id_eq (θ : TwoNatTrans F G) (a : B) :
     θ.x (𝟙 a) = (F.mapId a).inv ▷ θ.X a ≫ (leftUnitor (θ.X a)).hom ≫
       (rightUnitor (θ.X a)).inv ≫ θ.X a ◁ (G.mapId a).hom := by
@@ -149,7 +153,9 @@ theorem x_id_eq (θ : TwoNatTrans F G) (a : B) :
   simp only [Iso.inv_hom_id_assoc, inv_hom_whiskerRight_assoc R, Iso.hom_inv_id_assoc]
 
 omit [TwoSupercategory R B] [TwoSupercategory R C] in
-/-- Two 2-natural transformations with the same components are equal.-/
+/-- Two 2-natural transformations with the same components are equal.
+@isnad1 id=eq.2h7v.s10.9c202ffddb3d from=translated src=- shape=58b6a6e2 vocab=632d1adb
+-/
 theorem ext_of_eq {θ θ' : TwoNatTrans F G} (hX : θ.X = θ'.X)
     (hx : ∀ {a b : B} (f : a ⟶ b), θ.x f = eqToHom (by rw [hX]) ≫ θ'.x f ≫ eqToHom (by rw [hX])) :
     θ = θ' := by
@@ -182,9 +188,15 @@ def toOplaxTrans (θ : TwoNatTrans F G) : F.toOplax ⟶ G.toOplax where
     rw [x_comp_eq]
     simp only [Category.assoc, whiskerLeft_hom_inv R, Category.comp_id])
 
+/--
+@isnad1 id=eq.0h7v.s10.3405d5298749 from=translated src=- shape=7256a838 vocab=e589836f
+-/
 @[simp] theorem toOplaxTrans_app (θ : TwoNatTrans F G) (a : Underlying2 R B) :
     ((toOplaxTrans θ).app a).obj = θ.X a.obj := rfl
 
+/--
+@isnad1 id=eq.0h9v.s16.9e34d5537165 from=translated src=- shape=c1ba8927 vocab=5ff17807
+-/
 @[simp] theorem toOplaxTrans_naturality (θ : TwoNatTrans F G) {a b : Underlying2 R B}
     (f : a ⟶ b) : ((toOplaxTrans θ).naturality f).1 = θ.x f.obj := rfl
 
@@ -239,8 +251,14 @@ def id : TwoNatTrans F F :=
       ((rightUnitor _).hom ≫ (leftUnitor _).inv) ≫ 𝟙 _ ◁ F.map₂ ε
     rw [rightUnitor_naturality_assoc R, leftUnitor_inv_naturality R, Category.assoc])
 
+/--
+@isnad1 id=eq.0h5v.s8.0494a37414be from=translated src=- shape=baddd3ed vocab=9cdf3227
+-/
 @[simp] theorem id_X (a : B) : (id F).X a = 𝟙 (F.obj a) := rfl
 
+/--
+@isnad1 id=eq.0h7v.s10.f80700ad1d06 from=translated src=- shape=4e651334 vocab=3335d36e
+-/
 theorem id_x {a b : B} (f : a ⟶ b) :
     (id F).x f = (rightUnitor (F.map f)).hom ≫ (leftUnitor (F.map f)).inv := rfl
 
@@ -261,9 +279,15 @@ def vcomp (θ : TwoNatTrans F G) (θ' : TwoNatTrans G H) : TwoNatTrans F H :=
       associator_inv_naturality_right R]
     simp only [Category.assoc])
 
+/--
+@isnad1 id=eq.0h9v.s8.ef96191c56b6 from=translated src=- shape=122294db vocab=b617c2e7
+-/
 @[simp] theorem vcomp_X (θ : TwoNatTrans F G) (θ' : TwoNatTrans G H) (a : B) :
     (vcomp θ θ').X a = θ.X a ≫ θ'.X a := rfl
 
+/--
+@isnad1 id=eq.0h11v.s12.d64f7b4a1277 from=translated src=- shape=cc3e29b6 vocab=2657e942
+-/
 theorem vcomp_x (θ : TwoNatTrans F G) (θ' : TwoNatTrans G H) {a b : B} (f : a ⟶ b) :
     (vcomp θ θ').x f = (associator (F.map f) (θ.X b) (θ'.X b)).inv ≫ θ.x f ▷ θ'.X b ≫
       (associator (θ.X a) (G.map f) (θ'.X b)).hom ≫ θ.X a ◁ θ'.x f ≫

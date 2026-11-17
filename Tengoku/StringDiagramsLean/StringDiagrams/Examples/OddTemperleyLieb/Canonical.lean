@@ -42,18 +42,30 @@ def canon : (n : ℕ) → List (Fin 2) → (X R δ 0 ⟶ X R δ n)
   | 1, _ => 0
   | n + 2, w => canon n (del (firstPair w) w) ≫ cup R δ n (firstPair w)
 
+/--
+@isnad1 id=eq.0h3v.s6.d7b4c61ea376 from=translated src=- shape=7d617d9c vocab=e3c30bc5
+-/
 theorem canon_zero (w : List (Fin 2)) : canon R δ 0 w = 𝟙 _ := by rw [canon]
 
+/--
+@isnad1 id=eq.0h4v.s7.180f51e96e10 from=translated src=- shape=2661ccbc vocab=761c4dcb
+-/
 theorem canon_succ_succ (n : ℕ) (w : List (Fin 2)) :
     canon R δ (n + 2) w = canon R δ n (del (firstPair w) w) ≫ cup R δ n (firstPair w) := by
   rw [canon]
 
 /-! ## List lemmas for the first adjacent pair -/
 
+/--
+@isnad1 id=eq.0h4v.s7.4687ec1ef039 from=translated src=- shape=ce1cf45b vocab=4b711665
+-/
 theorem rep_add (i j : ℕ) (c : Fin 2) (r : List (Fin 2)) :
     List.replicate (i + j) c ++ r = List.replicate i c ++ (List.replicate j c ++ r) := by
   rw [List.replicate_add, List.append_assoc]
 
+/--
+@isnad1 id=eq.0h6v.s7.7a5ff009bf36 from=translated src=- shape=50cfd0ad vocab=88f70708
+-/
 theorem ins_rep_add (p k : ℕ) (a b c : Fin 2) (r : List (Fin 2)) :
     ins (p + k) a b (List.replicate p c ++ r) = List.replicate p c ++ ins k a b r := by
   induction p with
@@ -63,6 +75,9 @@ theorem ins_rep_add (p k : ℕ) (a b c : Fin 2) (r : List (Fin 2)) :
       List.cons_append]
     simp only [TemperleyLieb.Rep.ins, ih]
 
+/--
+@isnad1 id=and.1h3v.s8.1ac3f278f41e from=translated src=- shape=7c5ea146 vocab=d3ff6b9e
+-/
 theorem firstPair_ins_le {p i : ℕ} (r : List (Fin 2)) (hi : i ≤ p + 1) :
     firstPair (ins i 0 1 (List.replicate p 0 ++ 0 :: 1 :: r)) = i ∧
       del i (ins i 0 1 (List.replicate p 0 ++ 0 :: 1 :: r)) =
@@ -75,6 +90,9 @@ theorem firstPair_ins_le {p i : ℕ} (r : List (Fin 2)) (hi : i ≤ p + 1) :
   rw [e, ins_rep]
   exact firstPair_rep i _
 
+/--
+@isnad1 id=and.2h3v.s8.0f5b2b938e87 from=translated src=- shape=ba994b75 vocab=78aae0d2
+-/
 theorem firstPair_ins_ge {p i : ℕ} (r : List (Fin 2)) (hi : p + 2 ≤ i)
     (hr : i ≤ p + 2 + r.length) :
     firstPair (ins i 0 1 (List.replicate p 0 ++ 0 :: 1 :: r)) = p ∧
@@ -93,7 +111,9 @@ theorem firstPair_ins_ge {p i : ℕ} (r : List (Fin 2)) (hi : p + 2 ≤ i)
 
 /-! ## Closure under cups -/
 
-/-- `canon n w ≫ cup_i = ± canon (n + 2) (ins i 0 1 w)`.-/
+/-- `canon n w ≫ cup_i = ± canon (n + 2) (ins i 0 1 w)`.
+@isnad1 id=pmeq.3h5v.s8.973b9ec30394 from=translated src=- shape=856ba452 vocab=9495ce10
+-/
 theorem canon_comp_cup (n : ℕ) : ∀ (w : List (Fin 2)), IsDyck w → w.length = n →
     ∀ i ≤ n, PmEq (canon R δ n w ≫ cup R δ n i) (canon R δ (n + 2) (ins i 0 1 w)) := by
   induction n using Nat.strong_induction_on with
@@ -135,7 +155,9 @@ theorem canon_comp_cup (n : ℕ) : ∀ (w : List (Fin 2)), IsDyck w → w.length
 /-- The scalar of a cap: `δ` if it closes a loop, `1` otherwise.-/
 def loopPow (b : Bool) : ℕ := if b then 1 else 0
 
-/-- `canon (n + 2) w ≫ cap_i = ± δ^{[loop]} canon n (capT i w)`.-/
+/-- `canon (n + 2) w ≫ cap_i = ± δ^{[loop]} canon n (capT i w)`.
+@isnad1 id=and.3h5v.s10.f96d75764350 from=translated src=- shape=4e11eb66 vocab=55ae6e39
+-/
 theorem canon_comp_cap (n : ℕ) : ∀ (w : List (Fin 2)), IsDyck w → w.length = n + 2 →
     ∀ i ≤ n, IsDyck (capT i w) ∧
       PmEq (canon R δ (n + 2) w ≫ cap R δ n i)
@@ -235,15 +257,27 @@ def trackW : List (Fin 2) → List Step → List (Fin 2) × ℕ
   | w, .cup i :: u => trackW (ins i 0 1 w) u
   | w, .cap i :: u => ((trackW (capT i w) u).1, (trackW (capT i w) u).2 + loopPow (loopT i w))
 
+/--
+@isnad1 id=eq.0h1v.s5.23d8e74f8e02 from=translated src=- shape=dab8151d vocab=a9d7697b
+-/
 @[simp] theorem trackW_nil (w : List (Fin 2)) : trackW w [] = (w, 0) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.df4d9822eeb3 from=translated src=- shape=2cb5a2ff vocab=21af0e13
+-/
 @[simp] theorem trackW_cup (w : List (Fin 2)) (i : ℕ) (u : List Step) :
     trackW w (.cup i :: u) = trackW (ins i 0 1 w) u := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.892ea6220f38 from=translated src=- shape=4e204506 vocab=1e8f843e
+-/
 @[simp] theorem trackW_cap (w : List (Fin 2)) (i : ℕ) (u : List Step) :
     trackW w (.cap i :: u) =
       ((trackW (capT i w) u).1, (trackW (capT i w) u).2 + loopPow (loopT i w)) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.05a878ce4d0c from=translated src=- shape=03f09ab4 vocab=cbbcdf9b
+-/
 theorem trackW_append (w : List (Fin 2)) (u v : List Step) :
     trackW w (u ++ v) = ((trackW (trackW w u).1 v).1, (trackW (trackW w u).1 v).2 + (trackW w u).2) := by
   induction u generalizing w with
@@ -253,7 +287,9 @@ theorem trackW_append (w : List (Fin 2)) (u v : List Step) :
 set_option backward.isDefEq.respectTransparency false in
 /-- **Tracking.** For a crossingless matching `w` of `k` points and a valid word `u` from `k`
 strands, `canon k w ≫ evW u = ± δ^ℓ canon (trackW w u)`, where `trackW w u = (w', ℓ)` is obtained
-by following the arcs through the cups and caps of `u` and `ℓ` is the number of closed loops.-/
+by following the arcs through the cups and caps of `u` and `ℓ` is the number of closed loops.
+@isnad1 id=and.3h5v.s10.2b23fe53320c from=translated src=- shape=ffdde931 vocab=765d2efc
+-/
 theorem canon_comp_evW (u : List Step) : ∀ (k : ℕ) (w : List (Fin 2)), IsDyck w → w.length = k →
     Valid k u → IsDyck (trackW w u).1 ∧ (trackW w u).1.length = ht k u ∧
       PmEq (canon R δ k w ≫ evW R δ k u (ht k u))
@@ -289,7 +325,9 @@ theorem canon_comp_evW (u : List Step) : ∀ (k : ℕ) (w : List (Fin 2)), IsDyc
 /-- The crossingless matchings of `N` points, given by their Dyck sequences.-/
 abbrev DyckSeq (N : ℕ) : Type := {w : List (Fin 2) // IsDyck w ∧ w.length = N}
 
-/-- **Spanning (Theorem A.2 for `m = 0`).** The canonical cup diagrams span `Hom(0, N)`.-/
+/-- **Spanning (Theorem A.2 for `m = 0`).** The canonical cup diagrams span `Hom(0, N)`.
+@isnad1 id=eq.0h3v.s9.ff8cd8640631 from=translated src=- shape=c295b678 vocab=d3cd002a
+-/
 theorem span_canon (N : ℕ) :
     Submodule.span R (Set.range fun w : DyckSeq N => canon R δ N w.1) = ⊤ := by
   rw [Submodule.eq_top_iff']

@@ -48,11 +48,20 @@ instance : Category (Underlying R C) where
   comp_id f := Subtype.ext (Category.comp_id f.1)
   assoc f g h := Subtype.ext (Category.assoc f.1 g.1 h.1)
 
+/--
+@isnad1 id=eq.1h6v.s9.8b182272d51d from=translated src=- shape=0d539bb5 vocab=e950d231
+-/
 @[ext] theorem hom_ext {X Y : Underlying R C} {f g : X ⟶ Y} (h : f.1 = g.1) : f = g :=
   Subtype.ext h
 
+/--
+@isnad1 id=eq.0h3v.s8.9449b9bc7df4 from=translated src=- shape=9391aea5 vocab=c0b8aa72
+-/
 @[simp] theorem id_val (X : Underlying R C) : (𝟙 X : X ⟶ X).1 = 𝟙 X.obj := rfl
 
+/--
+@isnad1 id=eq.0h7v.s10.c6350e21ca6a from=translated src=- shape=96bea763 vocab=f628d811
+-/
 @[simp] theorem comp_val {X Y Z : Underlying R C} (f : X ⟶ Y) (g : Y ⟶ Z) :
     (f ≫ g).1 = f.1 ≫ g.1 := rfl
 
@@ -66,14 +75,29 @@ instance : Linear R (Underlying R C) where
   smul_comp _ _ _ r f g := Subtype.ext (Linear.smul_comp _ _ _ r f.1 g.1)
   comp_smul _ _ _ f r g := Subtype.ext (Linear.comp_smul _ _ _ f.1 r g.1)
 
+/--
+@isnad1 id=eq.0h6v.s10.7344df56a18a from=translated src=- shape=7dc4abc0 vocab=6f1f19c0
+-/
 @[simp] theorem add_val {X Y : Underlying R C} (f g : X ⟶ Y) : (f + g).1 = f.1 + g.1 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.b9d65047e35c from=translated src=- shape=a58aa862 vocab=f60e87a1
+-/
 @[simp] theorem neg_val {X Y : Underlying R C} (f : X ⟶ Y) : (-f).1 = -f.1 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.e50587cc1c18 from=translated src=- shape=4cf9da8a vocab=e950d231
+-/
 @[simp] theorem zero_val {X Y : Underlying R C} : (0 : X ⟶ Y).1 = 0 := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.998f79c4b045 from=translated src=- shape=7dc4abc0 vocab=cfe8ab24
+-/
 @[simp] theorem sub_val {X Y : Underlying R C} (f g : X ⟶ Y) : (f - g).1 = f.1 - g.1 := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.66f97452262c from=translated src=- shape=219dafca vocab=ea7b0c9c
+-/
 @[simp] theorem smul_val {X Y : Underlying R C} (r : R) (f : X ⟶ Y) : (r • f).1 = r • f.1 := rfl
 
 variable (R C) in
@@ -103,6 +127,9 @@ def map (F : C ⥤ D) [F.Additive] [F.Linear R] [IsSuperfunctor R F] :
   map_id X := Subtype.ext (F.map_id X.obj)
   map_comp f g := Subtype.ext (F.map_comp f.1 g.1)
 
+/--
+@isnad1 id=eq.0h7v.s11.370aecf1c606 from=translated src=- shape=91ac37b5 vocab=fb4dc97b
+-/
 @[simp] theorem map_map_val (F : C ⥤ D) [F.Additive] [F.Linear R] [IsSuperfunctor R F]
     {X Y : Underlying R C}
     (f : X ⟶ Y) : ((map (R := R) F).map f).1 = F.map f.1 := rfl
@@ -134,18 +161,33 @@ instance instPiCategory : PiCategory R (Underlying R C) where
   ξ := NatIso.ofComponents ξUnd fun f => Subtype.ext (PiSupercategory.ξ_naturality f.1)
   ξ_pi X := Subtype.ext (PiSupercategory.ξ_pi X.obj)
 
+/--
+@isnad1 id=eq.0h3v.s7.8a77c530f73c from=translated src=- shape=082a454c vocab=f9125530
+-/
 @[simp] theorem pi_obj (X : Underlying R C) :
     (PiCategory.pi (R := R)).obj X = ⟨(PiSupercategory.pi (R := R)).obj X.obj⟩ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.379a44b3b3cd from=translated src=- shape=62ddc898 vocab=2de2b977
+-/
 @[simp] theorem pi_map_val {X Y : Underlying R C} (f : X ⟶ Y) :
     ((PiCategory.pi (R := R)).map f).1 = (PiSupercategory.pi (R := R)).map f.1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s11.cc10910bd114 from=translated src=- shape=2f18d644 vocab=75ffb8da
+-/
 @[simp] theorem ξ_hom_app_val (X : Underlying R C) :
     ((PiCategory.ξ (R := R)).hom.app X).1 = (PiSupercategory.ξ (R := R) X.obj).hom := rfl
 
+/--
+@isnad1 id=eq.0h3v.s11.f48e32dd27ae from=translated src=- shape=836dbf27 vocab=f9fabee8
+-/
 @[simp] theorem ξApp_hom_val (X : Underlying R C) :
     (PiCategory.ξApp (R := R) X).hom.1 = (PiSupercategory.ξ (R := R) X.obj).hom := rfl
 
+/--
+@isnad1 id=eq.0h3v.s11.27ab5dcd40e6 from=translated src=- shape=39f68b9f vocab=58204ef5
+-/
 @[simp] theorem ξ_inv_app_val (X : Underlying R C) :
     ((PiCategory.ξ (R := R)).inv.app X).1 = (PiSupercategory.ξ (R := R) X.obj).inv := rfl
 
@@ -160,6 +202,9 @@ def piFunctor (F : C ⥤ D) [F.Additive] [F.Linear R] [IsSuperfunctor R F] :
     fun f => Subtype.ext (PiSupercategory.β_naturality F f.1)
   comm X := Subtype.ext (PiSupercategory.β_comm F X.obj)
 
+/--
+@isnad1 id=eq.0h5v.s12.ff12157ee623 from=translated src=- shape=a9e46504 vocab=19aae3e9
+-/
 @[simp] theorem piFunctor_β_hom_app_val (F : C ⥤ D) [F.Additive] [F.Linear R]
     [IsSuperfunctor R F] (X : Underlying R C) :
     ((piFunctor F).β.hom.app X).1 = (PiSupercategory.β R F X.obj).hom := rfl
@@ -172,6 +217,9 @@ def natTrans {F G : C ⥤ D} [F.Additive] [F.Linear R] [IsSuperfunctor R F] [G.A
   app X := ⟨x X.obj, hx.mem X.obj⟩
   naturality _ _ f := Subtype.ext (hx.naturality_zero f.1)
 
+/--
+@isnad1 id=ispinatu.1h6v.s8.2ed961e636e7 from=translated src=- shape=48ca695f vocab=84dbaff4
+-/
 theorem isPiNatural {F G : C ⥤ D} [F.Additive] [F.Linear R] [IsSuperfunctor R F] [G.Additive]
     [G.Linear R] [IsSuperfunctor R G] {x : ∀ X, F.obj X ⟶ G.obj X} (hx : IsSupernatural R 0 x) :
     PiFunctor.IsPiNatural R (piFunctor F) (piFunctor G) (natTrans hx) := fun X =>

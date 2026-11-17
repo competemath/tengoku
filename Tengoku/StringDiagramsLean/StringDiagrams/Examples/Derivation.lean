@@ -41,6 +41,9 @@ def D : LocalDerivation sig R where
   δ _ := LinDiagram.of (ofGen Gen.dot ≫ ofGen Gen.dot)
   hasParity _ := LinDiagram.hasParity_of rfl
 
+/--
+@isnad1 id=compatib.0h1v.s3.34cbf46fece4 from=translated src=- shape=7eca0aab vocab=b5307751
+-/
 theorem compatible : (D R).Compatible (pres R) :=
   ⟨fun i => i.elim, fun i => i.elim⟩
 
@@ -52,12 +55,17 @@ abbrev d (n : ℕ) : End ((pres R).obj (strands n)) →ₗ[R] End ((pres R).obj 
 def x (n i : ℕ) : End ((pres R).obj (strands n)) :=
   if h : i < n then (pres R).diag (dlay h) else 0
 
+/--
+@isnad1 id=eq.1h3v.s6.1eb8837e1f26 from=translated src=- shape=fbbdc9db vocab=e844e1dd
+-/
 theorem x_eq_lin {n i : ℕ} (h : i < n) :
     (pres R).lin (LinDiagram.of (dlay h)) = x R n i := by
   rw [x, dite_eq_left h]; rfl
 
 set_option backward.isDefEq.respectTransparency false in
-/-- `d(x_i) = x_i²`: Ellis–Qi (2.18).-/
+/-- `d(x_i) = x_i²`: Ellis–Qi (2.18).
+@isnad1 id=eq.0h3v.s9.6fb76eb8cf8e from=translated src=- shape=66e170da vocab=66594c9b
+-/
 theorem d_x (n i : ℕ) : d R n (x R n i) = x R n i * x R n i := by
   by_cases h : i < n
   · rw [x, dite_eq_left h, Presentation.derivEnd_apply, dlay,
@@ -67,7 +75,9 @@ theorem d_x (n i : ℕ) : d R n (x R n i) = x R n i * x R n i := by
     simp [lay, Layer.whisker, Signature.genLayer]
   · simp [x, dite_eq_right h]
 
-/-- The Leibniz rule on a product of two dots: `d(x_i x_j) = x_i² x_j - x_i x_j²`.-/
+/-- The Leibniz rule on a product of two dots: `d(x_i x_j) = x_i² x_j - x_i x_j²`.
+@isnad1 id=eq.0h4v.s10.906bdaa8adfa from=translated src=- shape=4327822a vocab=952075e9
+-/
 theorem d_x_mul_x (n i j : ℕ) :
     d R n (x R n i * x R n j) = x R n i * x R n i * x R n j - x R n i * (x R n j * x R n j) := by
   by_cases h : i < n
@@ -76,6 +86,9 @@ theorem d_x_mul_x (n i j : ℕ) :
   · simp [x, dite_eq_right h]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h1v.s10.7081355a5004 from=translated src=- shape=8e0afe20 vocab=18d0a476
+-/
 theorem d_ofGen_ofGen :
     (pres R).deriv (compatible R) ((pres R).diag (ofGen Gen.dot)) =
       (pres R).diag (ofGen Gen.dot) ≫ (pres R).diag (ofGen Gen.dot) := by
@@ -84,7 +97,9 @@ theorem d_ofGen_ofGen :
   rw [Presentation.lin_of, Presentation.diag_comp]
 
 set_option backward.isDefEq.respectTransparency false in
-/-- `d² = 0`, checked on the generator.-/
+/-- `d² = 0`, checked on the generator.
+@isnad1 id=eq.0h4v.s11.a43642178d61 from=translated src=- shape=f217cc9e vocab=3d5989f4
+-/
 theorem d_d {a b : Obj sig} (f : (pres R).obj a ⟶ (pres R).obj b) :
     (pres R).deriv (compatible R) ((pres R).deriv (compatible R) f) = 0 := by
   refine Presentation.deriv_deriv_eq_zero _ _ (fun g => ?_) f
@@ -95,6 +110,9 @@ theorem d_d {a b : Obj sig} (f : (pres R).obj a ⟶ (pres R).obj b) :
   show ((-1 : R) ^ 1) • _ + _ = 0
   rw [pow_one, neg_one_smul, Category.assoc, neg_add_cancel]
 
+/--
+@isnad1 id=eq.0h3v.s9.8b4609d79233 from=translated src=- shape=6d5a6d56 vocab=ff7b37eb
+-/
 theorem d_d_x (n i : ℕ) : d R n (d R n (x R n i)) = 0 := d_d R _
 
 end StringDiagrams.SkewPolynomial
@@ -111,6 +129,9 @@ def D : LocalDerivation sig R where
   δ g := LinDiagram.of (𝟙 (sig.genDom g))
   hasParity g := LinDiagram.hasParity_of (by rw [show sig.odd g = true from rfl]; simp [oddCount])
 
+/--
+@isnad1 id=eq.1h3v.s5.7006f31600d8 from=translated src=- shape=6e7f0e4e vocab=e637180e
+-/
 theorem derivDiag_dlay {n i : ℕ} (h : i < n) :
     (D R).derivDiag (dlay h) = 𝟙 (Free.of R (strands n)) := by
   rw [dlay, LocalDerivation.derivDiag_layer_of _ _ _ _ _ (𝟙 (sig.genDom Gen.dot)) rfl]
@@ -118,7 +139,9 @@ theorem derivDiag_dlay {n i : ℕ} (h : i < n) :
   congr 1
 
 /-- `δ(dot) = 1` is compatible with the relation `dot ≫ dot = 0`: already in the free
-category, `d(dot ≫ dot) = -(1 ≫ dot) + dot ≫ 1 = 0`.-/
+category, `d(dot ≫ dot) = -(1 ≫ dot) + dot ≫ 1 = 0`.
+@isnad1 id=compatib.0h1v.s3.44142d98c68a from=translated src=- shape=7eca0aab vocab=cbe806c9
+-/
 theorem compatible : (D R).Compatible (pres R) := by
   refine ⟨fun _ => ⟨2, LinDiagram.hasParity_of rfl⟩, fun _ => ?_⟩
   show (pres R).lin ((D R).derivFree (LinDiagram.of (dlay _ ≫ dlay _))) = 0
@@ -131,18 +154,26 @@ theorem compatible : (D R).Compatible (pres R) := by
 abbrev d (n : ℕ) : End ((pres R).obj (strands n)) →ₗ[R] End ((pres R).obj (strands n)) :=
   (pres R).derivEnd (compatible R) (strands n)
 
+/--
+@isnad1 id=eq.1h3v.s9.7334df2fa5a5 from=translated src=- shape=205e5894 vocab=193a45c1
+-/
 theorem d_x {n i : ℕ} (h : i < n) : d R n (x R n i) = 1 := by
   rw [x_def R h, Presentation.derivEnd_apply, Presentation.deriv_diag, derivDiag_dlay,
     Presentation.lin_id]
   rfl
 
+/--
+@isnad1 id=eq.2h4v.s9.eeea838523e1 from=translated src=- shape=fc270525 vocab=2f63a05b
+-/
 theorem d_x_mul_x {n i j : ℕ} (hi : i < n) (hj : j < n) :
     d R n (x R n i * x R n j) = x R n j - x R n i := by
   rw [Presentation.deriv_mul _ _ _ _ (LinDiagram.hasParity_of (p := 1) rfl)
       (x_def R hi).symm, d_x R hi, d_x R hj, pow_one, neg_one_smul, one_mul, mul_one,
     sub_eq_add_neg]
 
-/-- `d² = 0`, checked on the generator: `d(d(dot)) = d(1) = 0`.-/
+/-- `d² = 0`, checked on the generator: `d(d(dot)) = d(1) = 0`.
+@isnad1 id=eq.0h4v.s11.6bbd679c56e2 from=translated src=- shape=f217cc9e vocab=7c51a281
+-/
 theorem d_d {a b : Obj sig} (f : (pres R).obj a ⟶ (pres R).obj b) :
     (pres R).deriv (compatible R) ((pres R).deriv (compatible R) f) = 0 := by
   refine Presentation.deriv_deriv_eq_zero _ _ (fun g => ?_) f

@@ -28,7 +28,9 @@ variable {k C : Type*} [CommRing k] [Category C] [Preadditive C]
 def EndBoundedBelow (X : C) : Prop :=
   ∃ N : ℤ, ∀ n < N, degree (R := k) X X n = ⊥
 
-/-- Homogeneous powers have the expected degree.-/
+/-- Homogeneous powers have the expected degree.
+@isnad1 id=mem.1h6v.s8.778c70f082d1 from=translated src=- shape=8dcf25ce vocab=7ce71b1d
+-/
 theorem end_pow_mem_degree {X : C} {f : End X} {m : ℤ}
     (hf : f ∈ degree (R := k) X X m) (n : ℕ) :
     f ^ n ∈ degree (R := k) X X ((n : ℤ) * m) := by
@@ -39,7 +41,9 @@ theorem end_pow_mem_degree {X : C} {f : End X} {m : ℤ}
       using comp_mem_degree hf ih
 
 /-- A homogeneous automorphism of a nonzero bounded-below object has
-nonnegative degree. Apply the same statement to its inverse to get degree zero.-/
+nonnegative degree. Apply the same statement to its inverse to get degree zero.
+@isnad1 id=le.3h5v.s7.3af83a35f974 from=translated src=- shape=571dce93 vocab=0c4ccb7e
+-/
 theorem iso_degree_nonneg {X : C} (hX : ¬ Limits.IsZero X)
     (hB : EndBoundedBelow (k := k) X) (e : X ≅ X) {m : ℤ}
     (he : e.hom ∈ degree (R := k) X X m) : 0 ≤ m := by
@@ -69,7 +73,9 @@ theorem iso_degree_nonneg {X : C} (hX : ¬ Limits.IsZero X)
     exact h.symm
   exact hX ((Limits.IsZero.iff_id_eq_zero X).2 hid)
 
-/-- Homogeneous automorphisms of nonzero bounded-below objects have degree zero.-/
+/-- Homogeneous automorphisms of nonzero bounded-below objects have degree zero.
+@isnad1 id=eq.3h5v.s7.4636f285473a from=translated src=- shape=b076d7a2 vocab=780e07ff
+-/
 theorem iso_degree_eq_zero {X : C} (hX : ¬ Limits.IsZero X)
     (hB : EndBoundedBelow (k := k) X) (e : X ≅ X) {m : ℤ}
     (he : e.hom ∈ degree (R := k) X X m) : m = 0 := by
@@ -78,7 +84,9 @@ theorem iso_degree_eq_zero {X : C} (hX : ¬ Limits.IsZero X)
   omega
 
 /-- Integer-shift rigidity. The isomorphism is explicitly degree zero;
-the ungraded shift isomorphism `σPow` is not such an isomorphism.-/
+the ungraded shift isomorphism `σPow` is not such an isomorphism.
+@isnad1 id=eq.3h5v.s8.e1a8706afe72 from=translated src=- shape=1d865484 vocab=78c87b5c
+-/
 theorem qPow_iso_degree_zero {X : C} [QPiSupercategory k C]
     (hX : ¬ Limits.IsZero X) (hB : EndBoundedBelow (k := k) X)
     (m : ℤ) (e : QPiSupercategory.qPow k m X ≅ X)

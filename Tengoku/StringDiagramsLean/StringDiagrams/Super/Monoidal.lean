@@ -136,24 +136,39 @@ section Linear
 variable (R)
 include R
 
+/--
+@isnad1 id=eq.0h5v.s7.acf0031b78a5 from=translated src=- shape=685f85df vocab=a432f061
+-/
 theorem whiskerLeft_zero (X : C) {Y Z : C} : X ◁ (0 : Y ⟶ Z) = 0 := by
   have h := whiskerLeft_add (R := R) X (0 : Y ⟶ Z) 0
   rw [add_zero] at h
   exact left_eq_add.mp h
 
+/--
+@isnad1 id=eq.0h5v.s7.26f2e67694f0 from=translated src=- shape=b194282e vocab=a0cc616d
+-/
 theorem zero_whiskerRight {X Y : C} (Z : C) : (0 : X ⟶ Y) ▷ Z = 0 := by
   have h := add_whiskerRight (R := R) (0 : X ⟶ Y) 0 Z
   rw [add_zero] at h
   exact left_eq_add.mp h
 
+/--
+@isnad1 id=eq.0h6v.s8.a6e6399efaf9 from=translated src=- shape=95e27ef5 vocab=63be9c7b
+-/
 theorem whiskerLeft_neg (X : C) {Y Z : C} (f : Y ⟶ Z) : X ◁ (-f) = -(X ◁ f) := by
   refine eq_neg_of_add_eq_zero_left ?_
   rw [← whiskerLeft_add (R := R), neg_add_cancel, whiskerLeft_zero R]
 
+/--
+@isnad1 id=eq.0h6v.s8.3db0dbb28bf5 from=translated src=- shape=f01035aa vocab=8588b13f
+-/
 theorem neg_whiskerRight {X Y : C} (f : X ⟶ Y) (Z : C) : (-f) ▷ Z = -(f ▷ Z) := by
   refine eq_neg_of_add_eq_zero_left ?_
   rw [← add_whiskerRight (R := R), neg_add_cancel, zero_whiskerRight R]
 
+/--
+@isnad1 id=eq.0h7v.s8.81aa2578fcd4 from=translated src=- shape=5c961bc2 vocab=97e5c3d6
+-/
 theorem whiskerLeft_zsmul (X : C) {Y Z : C} (n : ℤ) (f : Y ⟶ Z) : X ◁ (n • f) = n • (X ◁ f) := by
   induction n using Int.induction_on with
   | zero => simp [whiskerLeft_zero R]
@@ -162,6 +177,9 @@ theorem whiskerLeft_zsmul (X : C) {Y Z : C} (n : ℤ) (f : Y ⟶ Z) : X ◁ (n �
     rw [sub_smul, sub_smul, sub_eq_add_neg, sub_eq_add_neg, one_smul, one_smul,
       whiskerLeft_add (R := R), ih, whiskerLeft_neg R]
 
+/--
+@isnad1 id=eq.0h7v.s8.91e520743711 from=translated src=- shape=96caa360 vocab=d399555a
+-/
 theorem zsmul_whiskerRight {X Y : C} (n : ℤ) (f : X ⟶ Y) (Z : C) : (n • f) ▷ Z = n • (f ▷ Z) := by
   induction n using Int.induction_on with
   | zero => simp [zero_whiskerRight R]
@@ -174,6 +192,9 @@ end Linear
 
 variable (R) in
 include R in
+/--
+@isnad1 id=eq.0h4v.s6.b73fc0b89358 from=translated src=- shape=5440eb32 vocab=3faba1c3
+-/
 theorem tensor_id (X Y : C) : 𝟙 X ⊗ₘ 𝟙 Y = 𝟙 (X ⊗ Y) := by
   rw [tensorHom_def (R := R), id_whiskerRight (R := R), whiskerLeft_id (R := R),
     Category.comp_id]
@@ -185,27 +206,36 @@ first: `X₁ ◁ g ≫ f ▷ Y₂`.-/
 def superTensorHom {X₁ Y₁ X₂ Y₂ : C} (f : X₁ ⟶ Y₁) (g : X₂ ⟶ Y₂) : X₁ ⊗ X₂ ⟶ Y₁ ⊗ Y₂ :=
   X₁ ◁ g ≫ f ▷ Y₂
 
-/-- The tensor product of homogeneous morphisms is homogeneous, with parities adding.-/
+/-- The tensor product of homogeneous morphisms is homogeneous, with parities adding.
+@isnad1 id=mem.2h10v.s9.ad96c333384a from=translated src=- shape=2414a490 vocab=15e49a9e
+-/
 theorem superTensorHom_mem {X₁ Y₁ X₂ Y₂ : C} {p q : ZMod 2} {f : X₁ ⟶ Y₁} {g : X₂ ⟶ Y₂}
     (hf : f ∈ parity (R := R) X₁ Y₁ p) (hg : g ∈ parity (R := R) X₂ Y₂ q) :
     superTensorHom f g ∈ parity (R := R) (X₁ ⊗ X₂) (Y₁ ⊗ Y₂) (p + q) := by
   rw [add_comm]
   exact comp_mem (whiskerLeft_mem X₁ hg) (whiskerRight_mem Y₂ hf)
 
+/--
+@isnad1 id=mem.2h10v.s9.f77e1d3be3e1 from=translated src=- shape=b6a8755a vocab=add37e4c
+-/
 theorem tensorHom_mem {X₁ Y₁ X₂ Y₂ : C} {p q : ZMod 2} {f : X₁ ⟶ Y₁} {g : X₂ ⟶ Y₂}
     (hf : f ∈ parity (R := R) X₁ Y₁ p) (hg : g ∈ parity (R := R) X₂ Y₂ q) :
     f ⊗ₘ g ∈ parity (R := R) (X₁ ⊗ X₂) (Y₁ ⊗ Y₂) (p + q) := by
   rw [tensorHom_def (R := R)]
   exact comp_mem (whiskerRight_mem X₂ hf) (whiskerLeft_mem Y₁ hg)
 
-/-- Mathlib's `tensorHom` and the paper's tensor product differ by the Koszul sign.-/
+/-- Mathlib's `tensorHom` and the paper's tensor product differ by the Koszul sign.
+@isnad1 id=eq.2h10v.s9.4db6f63fc103 from=translated src=- shape=1e89cfc2 vocab=5301d709
+-/
 theorem tensorHom_eq_superTensorHom {X₁ Y₁ X₂ Y₂ : C} {p q : ZMod 2} {f : X₁ ⟶ Y₁}
     {g : X₂ ⟶ Y₂} (hf : f ∈ parity (R := R) X₁ Y₁ p) (hg : g ∈ parity (R := R) X₂ Y₂ q) :
     f ⊗ₘ g = koszulSign p q • superTensorHom f g := by
   rw [tensorHom_def (R := R), super_interchange hf hg, superTensorHom]
 
 /-- **The super interchange law** (Brundan–Ellis (1.1)): for homogeneous morphisms,
-`(f ⊗ g) ∘ (h ⊗ k) = (-1)^{|g||h|} (f ∘ h) ⊗ (g ∘ k)`, for the paper's tensor product.-/
+`(f ⊗ g) ∘ (h ⊗ k) = (-1)^{|g||h|} (f ∘ h) ⊗ (g ∘ k)`, for the paper's tensor product.
+@isnad1 id=eq.2h14v.s9.2bcb893085d8 from=translated src=- shape=bbcba9fa vocab=4529e010
+-/
 theorem superTensorHom_comp_superTensorHom {X₁ Y₁ Z₁ X₂ Y₂ Z₂ : C} {pg ph : ZMod 2}
     (h : X₁ ⟶ Y₁) (k : X₂ ⟶ Y₂) (f : Y₁ ⟶ Z₁) (g : Y₂ ⟶ Z₂)
     (hh : h ∈ parity (R := R) X₁ Y₁ ph) (hg : g ∈ parity (R := R) Y₂ Z₂ pg) :
@@ -217,7 +247,9 @@ theorem superTensorHom_comp_superTensorHom {X₁ Y₁ Z₁ X₂ Y₂ Z₂ : C} {
   simp only [Category.assoc]
 
 /-- The super interchange law for Mathlib's `tensorHom`:
-`(h ⊗ k) ≫ (f ⊗ g) = (-1)^{|f||k|} (h ≫ f) ⊗ (k ≫ g)`.-/
+`(h ⊗ k) ≫ (f ⊗ g) = (-1)^{|f||k|} (h ≫ f) ⊗ (k ≫ g)`.
+@isnad1 id=eq.2h14v.s9.193f7369db1f from=translated src=- shape=de951c29 vocab=a4d47b36
+-/
 theorem tensorHom_comp_tensorHom {X₁ Y₁ Z₁ X₂ Y₂ Z₂ : C} {pf pk : ZMod 2}
     (h : X₁ ⟶ Y₁) (k : X₂ ⟶ Y₂) (f : Y₁ ⟶ Z₁) (g : Y₂ ⟶ Z₂)
     (hf : f ∈ parity (R := R) Y₁ Z₁ pf) (hk : k ∈ parity (R := R) X₂ Y₂ pk) :
@@ -228,18 +260,25 @@ theorem tensorHom_comp_tensorHom {X₁ Y₁ Z₁ X₂ Y₂ Z₂ : C} {pf pk : ZM
     comp_whiskerRight (R := R)]
   simp only [Category.assoc]
 
-/-- The interchange law without sign when one of the morphisms is even.-/
+/-- The interchange law without sign when one of the morphisms is even.
+@isnad1 id=eq.2h9v.s9.f9f3f77f98d5 from=translated src=- shape=bc3a6c20 vocab=062264f3
+-/
 theorem interchange_of_even_left {X X' Y Y' : C} {q : ZMod 2} {f : X ⟶ X'} {g : Y ⟶ Y'}
     (hf : f ∈ parity (R := R) X X' 0) (hg : g ∈ parity (R := R) Y Y' q) :
     f ▷ Y ≫ X' ◁ g = X ◁ g ≫ f ▷ Y' := by
   rw [super_interchange hf hg, koszulSign_zero_left, one_smul]
 
+/--
+@isnad1 id=eq.2h9v.s9.dcbdbecf8215 from=translated src=- shape=9339451d vocab=062264f3
+-/
 theorem interchange_of_even_right {X X' Y Y' : C} {p : ZMod 2} {f : X ⟶ X'} {g : Y ⟶ Y'}
     (hf : f ∈ parity (R := R) X X' p) (hg : g ∈ parity (R := R) Y Y' 0) :
     f ▷ Y ≫ X' ◁ g = X ◁ g ≫ f ▷ Y' := by
   rw [super_interchange hf hg, koszulSign_zero_right, one_smul]
 
-/-- Odd morphisms anti-commute past each other.-/
+/-- Odd morphisms anti-commute past each other.
+@isnad1 id=eq.2h8v.s9.2d37a3b4fe63 from=translated src=- shape=da3683ba vocab=db102857
+-/
 theorem interchange_of_odd {X X' Y Y' : C} {f : X ⟶ X'} {g : Y ⟶ Y'}
     (hf : f ∈ parity (R := R) X X' 1) (hg : g ∈ parity (R := R) Y Y' 1) :
     f ▷ Y ≫ X' ◁ g = -(X ◁ g ≫ f ▷ Y') := by
@@ -254,7 +293,9 @@ variable (R C) in
 def NoOdd : Prop := ∀ X Y : C, parity (R := R) X Y 1 = ⊥
 
 omit [MonoidalCategoryStruct C] [MonoidalSupercategory R C] in
-/-- Without odd morphisms, every morphism is even.-/
+/-- Without odd morphisms, every morphism is even.
+@isnad1 id=mem.1h5v.s8.492aeefb8207 from=translated src=- shape=47d96d3b vocab=104735a7
+-/
 theorem mem_parity_zero_of_noOdd (h : NoOdd R C) {X Y : C} (f : X ⟶ Y) :
     f ∈ parity (R := R) X Y 0 := by
   have hf : f ∈ ⨆ q, parity (R := R) X Y q := by
@@ -269,7 +310,9 @@ theorem eq_zero_of_noOdd (h : NoOdd R C) {X Y : C} {f : X ⟶ Y}
     (hf : f ∈ parity (R := R) X Y 1) : f = 0 := by
   rw [h X Y] at hf; exact (Submodule.mem_bot R).mp hf
 
-/-- Without odd morphisms, the interchange law holds for all morphisms.-/
+/-- Without odd morphisms, the interchange law holds for all morphisms.
+@isnad1 id=eq.1h8v.s7.2021cfa8bf8e from=translated src=- shape=eefcf472 vocab=0ad107c5
+-/
 theorem whisker_exchange_of_noOdd (h : NoOdd R C) {X X' Y Y' : C} (f : X ⟶ X') (g : Y ⟶ Y') :
     X ◁ g ≫ f ▷ Y' = f ▷ Y ≫ X' ◁ g :=
   (interchange_of_even_left (mem_parity_zero_of_noOdd h f) (mem_parity_zero_of_noOdd h g)).symm
@@ -295,6 +338,9 @@ def toMonoidalCategory (h : NoOdd R C) : MonoidalCategory C where
   pentagon := pentagon (R := R)
   triangle := triangle (R := R)
 
+/--
+@isnad1 id=monoidal.1h2v.s6.072d52fd1db1 from=translated src=- shape=c66b896a vocab=1c3e4dd8
+-/
 theorem toMonoidalPreadditive (h : NoOdd R C) :
     letI := toMonoidalCategory R h
     MonoidalPreadditive C :=
@@ -304,6 +350,9 @@ theorem toMonoidalPreadditive (h : NoOdd R C) :
     whiskerLeft_add := whiskerLeft_add (R := R) _
     add_whiskerRight f g := add_whiskerRight (R := R) f g _ }
 
+/--
+@isnad1 id=monoidal.1h2v.s6.8228c70019cb from=translated src=- shape=9ed09501 vocab=a23c5642
+-/
 theorem toMonoidalLinear (h : NoOdd R C) :
     letI := toMonoidalCategory R h
     letI := toMonoidalPreadditive h
@@ -322,7 +371,9 @@ section OfMonoidal
 variable {R C}
 
 /-- A monoidal `R`-linear category in the sense of Mathlib, on a supercategory without odd
-morphisms, is a monoidal supercategory.-/
+morphisms, is a monoidal supercategory.
+@isnad1 id=monoidal.1h2v.s6.a62787986d18 from=translated src=- shape=4cceac98 vocab=8bd737c3
+-/
 theorem MonoidalSupercategory.ofMonoidalCategory [MonoidalCategory C] [MonoidalPreadditive C]
     [MonoidalLinear R C] (h : MonoidalSupercategory.NoOdd R C) : MonoidalSupercategory R C where
   tensorHom_def := MonoidalCategory.tensorHom_def

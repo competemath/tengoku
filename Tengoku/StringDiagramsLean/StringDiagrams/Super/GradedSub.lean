@@ -50,7 +50,9 @@ section Indep
 
 variable {R : Type w} [CommRing R]
 
-/-- A family of submodules is independent if it is so after an injective linear map.-/
+/-- A family of submodules is independent if it is so after an injective linear map.
+@isnad1 id=isupinde.2h6v.s7.c6507230b70a from=translated src=- shape=66bdc2d2 vocab=3de2cded
+-/
 theorem iSupIndep_comap_of_injective {ι : Type*} {M N : Type*} [AddCommGroup M] [Module R M]
     [AddCommGroup N] [Module R N] {p : ι → Submodule R N} (hp : iSupIndep p) (f : M →ₗ[R] N)
     (hf : Function.Injective f) : iSupIndep fun i => (p i).comap f := by
@@ -65,7 +67,9 @@ theorem iSupIndep_comap_of_injective {ι : Type*} {M N : Type*} [AddCommGroup M]
 
 /-- A family of submodules `deg n` of `M` is independent if there are linear maps
 `ev a : M → N a` which are jointly injective, and independent families `E a n` of submodules
-of `N a` with `ev a (deg n) ⊆ E a n`.-/
+of `N a` with `ev a (deg n) ⊆ E a n`.
+@isnad1 id=isupinde.3h8v.s8.b9a9082a1dd7 from=translated src=- shape=71a91afd vocab=95f50ca2
+-/
 theorem iSupIndep_of_eval {ι : Type*} {M : Type*} [AddCommGroup M] [Module R M]
     (deg : ι → Submodule R M) {A : Type*} {N : A → Type*} [∀ a, AddCommGroup (N a)]
     [∀ a, Module R (N a)] (ev : ∀ a, M →ₗ[R] N a) (E : ∀ a, ι → Submodule R (N a))
@@ -87,7 +91,9 @@ theorem iSupIndep_of_eval {ι : Type*} {M : Type*} [AddCommGroup M] [Module R M]
   exact Submodule.disjoint_def.1 (iSupIndep_def.1 (hE a) i) _ h1 h2
 
 /-- A family of submodules `P i` is independent if there are linear maps `π i` which are the
-identity on `P i` and vanish on `P j` for `j ≠ i`.-/
+identity on `P i` and vanish on `P j` for `j ≠ i`.
+@isnad1 id=isupinde.2h5v.s8.1e7a87ed353d from=translated src=- shape=d4cbbb76 vocab=fcffcfdf
+-/
 theorem iSupIndep_of_projections {ι M : Type*} [AddCommGroup M] [Module R M]
     (P : ι → Submodule R M) (π : ι → M →ₗ[R] M)
     (h_same : ∀ i, P i ≤ LinearMap.eqLocus (π i) LinearMap.id)
@@ -103,7 +109,9 @@ theorem iSupIndep_of_projections {ι M : Type*} [AddCommGroup M] [Module R M]
 
 /-- Two decompositions `𝒜`, `ℬ` of a module such that each `𝒜 i` is stable under the
 projections onto the `ℬ j` form a bigrading: the module is the internal direct sum of the
-`𝒜 i ⊓ ℬ j`.-/
+`𝒜 i ⊓ ℬ j`.
+@isnad1 id=isintern.1h6v.s10.c5867b4eb1e0 from=translated src=- shape=209c4f0f vocab=10724045
+-/
 theorem isInternal_inf_of_decompose_mem {ι κ M : Type*} [AddCommGroup M] [Module R M]
     [DecidableEq ι] [DecidableEq κ] (𝒜 : ι → Submodule R M) (ℬ : κ → Submodule R M)
     [DirectSum.Decomposition 𝒜] [DirectSum.Decomposition ℬ]
@@ -180,20 +188,31 @@ variable {R C} {J : Type u} (𝒟 : GradedHomFamily R C J)
 morphisms.-/
 def hom (i j : J) : Submodule R (𝒟.obj i ⟶ 𝒟.obj j) := ⨆ n, 𝒟.deg i j n
 
+/--
+@isnad1 id=mem.1h8v.s9.0460c3577a5d from=translated src=- shape=13aa6c32 vocab=71e2263e
+-/
 theorem mem_hom_of_mem {i j : J} {n : ℤ} {f : 𝒟.obj i ⟶ 𝒟.obj j} (hf : f ∈ 𝒟.deg i j n) :
     f ∈ 𝒟.hom i j :=
   Submodule.mem_iSup_of_mem n hf
 
-/-- Induction on morphisms of `⨁ₙ Hom(i, j)ₙ` via homogeneous ones.-/
+/-- Induction on morphisms of `⨁ₙ Hom(i, j)ₙ` via homogeneous ones.
+@isnad1 id=var.1h11v.s10.23070893ef32 from=translated src=- shape=6e173609 vocab=f9a0d9b9
+-/
 @[elab_as_elim]
 theorem hom_induction {i j : J} {motive : (𝒟.obj i ⟶ 𝒟.obj j) → Prop} {f : 𝒟.obj i ⟶ 𝒟.obj j}
     (hf : f ∈ 𝒟.hom i j) (mem : ∀ (n : ℤ) (g : 𝒟.obj i ⟶ 𝒟.obj j), g ∈ 𝒟.deg i j n → motive g)
     (zero : motive 0) (add : ∀ g h, motive g → motive h → motive (g + h)) : motive f :=
   Submodule.iSup_induction (𝒟.deg i j) (motive := motive) hf mem zero add
 
+/--
+@isnad1 id=mem.0h5v.s8.ce742ab7b1ff from=translated src=- shape=72fc6432 vocab=90a2e3fa
+-/
 theorem id_mem_hom (i : J) : 𝟙 (𝒟.obj i) ∈ 𝒟.hom i i :=
   𝒟.mem_hom_of_mem (𝒟.id_mem i)
 
+/--
+@isnad1 id=mem.2h9v.s10.3fbee65f703b from=translated src=- shape=a1fa85ca vocab=d17bb593
+-/
 theorem comp_mem_hom {i j k : J} {f : 𝒟.obj i ⟶ 𝒟.obj j} {g : 𝒟.obj j ⟶ 𝒟.obj k}
     (hf : f ∈ 𝒟.hom i j) (hg : g ∈ 𝒟.hom j k) : f ≫ g ∈ 𝒟.hom i k := by
   refine 𝒟.hom_induction hf (fun m f hf => ?_) (by simp) (fun f f' h h' => ?_)
@@ -202,12 +221,18 @@ theorem comp_mem_hom {i j k : J} {f : 𝒟.obj i ⟶ 𝒟.obj j} {g : 𝒟.obj j
     rw [Preadditive.comp_add]; exact Submodule.add_mem _ h h'
   · rw [Preadditive.add_comp]; exact Submodule.add_mem _ h h'
 
+/--
+@isnad1 id=mem.1h8v.s10.43c86b4839fa from=translated src=- shape=ebccf391 vocab=cf321826
+-/
 theorem proj_mem_hom (p : ZMod 2) {i j : J} {f : 𝒟.obj i ⟶ 𝒟.obj j} (hf : f ∈ 𝒟.hom i j) :
     proj R p f ∈ 𝒟.hom i j := by
   refine 𝒟.hom_induction hf (fun n g hg => 𝒟.mem_hom_of_mem (𝒟.proj_mem p hg)) (by simp)
     (fun g g' h h' => ?_)
   rw [map_add]; exact Submodule.add_mem _ h h'
 
+/--
+@isnad1 id=mem.1h9v.s10.0cc3ee97df94 from=translated src=- shape=69f831d5 vocab=5366e757
+-/
 theorem twist_mem (p : ZMod 2) {i j : J} {n : ℤ} {f : 𝒟.obj i ⟶ 𝒟.obj j}
     (hf : f ∈ 𝒟.deg i j n) : twist R p f ∈ 𝒟.deg i j n := by
   rw [twist_apply]
@@ -237,11 +262,20 @@ instance : Category (GradedSubcategory 𝒟) where
   comp_id f := Subtype.ext (Category.comp_id f.1)
   assoc f g h := Subtype.ext (Category.assoc f.1 g.1 h.1)
 
+/--
+@isnad1 id=eq.1h8v.s10.bbfbf42401d4 from=translated src=- shape=4666b709 vocab=f8d2d16e
+-/
 @[ext] theorem hom_ext {X Y : GradedSubcategory 𝒟} {f g : X ⟶ Y} (h : f.1 = g.1) : f = g :=
   Subtype.ext h
 
+/--
+@isnad1 id=eq.0h5v.s9.d9bc71ed12ac from=translated src=- shape=baadc6c7 vocab=f66e3600
+-/
 @[simp] theorem id_val (X : GradedSubcategory 𝒟) : (𝟙 X : X ⟶ X).1 = 𝟙 (𝒟.obj X.as) := rfl
 
+/--
+@isnad1 id=eq.0h9v.s11.27e2e7c668c1 from=translated src=- shape=12760862 vocab=0d24ca64
+-/
 @[simp] theorem comp_val {X Y Z : GradedSubcategory 𝒟} (f : X ⟶ Y) (g : Y ⟶ Z) :
     (f ≫ g).1 = f.1 ≫ g.1 := rfl
 
@@ -255,14 +289,29 @@ instance : Linear R (GradedSubcategory 𝒟) where
   smul_comp _ _ _ r f g := Subtype.ext (Linear.smul_comp _ _ _ r f.1 g.1)
   comp_smul _ _ _ f r g := Subtype.ext (Linear.comp_smul _ _ _ f.1 r g.1)
 
+/--
+@isnad1 id=eq.0h8v.s11.a5dae5b183af from=translated src=- shape=05edd6b1 vocab=1e7d4bb8
+-/
 @[simp] theorem add_val {X Y : GradedSubcategory 𝒟} (f g : X ⟶ Y) : (f + g).1 = f.1 + g.1 := rfl
 
+/--
+@isnad1 id=eq.0h7v.s11.59eefd64b1a9 from=translated src=- shape=14baefcf vocab=0cea796c
+-/
 @[simp] theorem neg_val {X Y : GradedSubcategory 𝒟} (f : X ⟶ Y) : (-f).1 = -f.1 := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.ac5b7a03c36f from=translated src=- shape=0b2f8105 vocab=f8d2d16e
+-/
 @[simp] theorem zero_val {X Y : GradedSubcategory 𝒟} : (0 : X ⟶ Y).1 = 0 := rfl
 
+/--
+@isnad1 id=eq.0h8v.s11.917960180551 from=translated src=- shape=05edd6b1 vocab=f1090f41
+-/
 @[simp] theorem sub_val {X Y : GradedSubcategory 𝒟} (f g : X ⟶ Y) : (f - g).1 = f.1 - g.1 := rfl
 
+/--
+@isnad1 id=eq.0h8v.s12.a38564044c84 from=translated src=- shape=81de89ea vocab=6896b343
+-/
 @[simp] theorem smul_val {X Y : GradedSubcategory 𝒟} (r : R) (f : X ⟶ Y) :
     (r • f).1 = r • f.1 := rfl
 
@@ -270,6 +319,9 @@ instance : Linear R (GradedSubcategory 𝒟) where
 def parityHom (X Y : GradedSubcategory 𝒟) (p : ZMod 2) : Submodule R (X ⟶ Y) :=
   (parity (R := R) (𝒟.obj X.as) (𝒟.obj Y.as) p).comap (𝒟.hom X.as Y.as).subtype
 
+/--
+@isnad1 id=iff.0h8v.s11.f16db64c2c33 from=translated src=- shape=f1e5062f vocab=7b077d51
+-/
 theorem mem_parityHom {X Y : GradedSubcategory 𝒟} {p : ZMod 2} {f : X ⟶ Y} :
     f ∈ parityHom X Y p ↔ f.1 ∈ parity (R := R) (𝒟.obj X.as) (𝒟.obj Y.as) p := Iff.rfl
 
@@ -293,9 +345,15 @@ instance : Supercategory R (GradedSubcategory 𝒟) where
   id_mem X := mem_parityHom.2 (id_mem (𝒟.obj X.as))
   comp_mem hf hg := mem_parityHom.2 (comp_mem (mem_parityHom.1 hf) (mem_parityHom.1 hg))
 
+/--
+@isnad1 id=iff.0h8v.s11.de44390f53a9 from=translated src=- shape=963c4395 vocab=47206fd9
+-/
 theorem mem_parity_iff {X Y : GradedSubcategory 𝒟} {p : ZMod 2} {f : X ⟶ Y} :
     f ∈ parity (R := R) X Y p ↔ f.1 ∈ parity (R := R) (𝒟.obj X.as) (𝒟.obj Y.as) p := Iff.rfl
 
+/--
+@isnad1 id=eq.0h8v.s11.fcc1d3862c63 from=translated src=- shape=d2d3c1ca vocab=abeb427a
+-/
 theorem proj_val (p : ZMod 2) {X Y : GradedSubcategory 𝒟} (f : X ⟶ Y) :
     (proj R p f).1 = proj R p f.1 := by
   have e : f = ⟨proj R p f.1, 𝒟.proj_mem_hom p f.2⟩ +
@@ -307,6 +365,9 @@ theorem proj_val (p : ZMod 2) {X Y : GradedSubcategory 𝒟} (f : X ⟶ Y) :
 def degreeHom (X Y : GradedSubcategory 𝒟) (n : ℤ) : Submodule R (X ⟶ Y) :=
   (𝒟.deg X.as Y.as n).comap (𝒟.hom X.as Y.as).subtype
 
+/--
+@isnad1 id=iff.0h8v.s11.37245dedb24b from=translated src=- shape=2e8d61ae vocab=c2850a36
+-/
 theorem mem_degreeHom {X Y : GradedSubcategory 𝒟} {n : ℤ} {f : X ⟶ Y} :
     f ∈ degreeHom X Y n ↔ f.1 ∈ 𝒟.deg X.as Y.as n := Iff.rfl
 
@@ -333,9 +394,15 @@ def homMk {X Y : GradedSubcategory 𝒟} {n : ℤ} (f : 𝒟.obj X.as ⟶ 𝒟.o
     (hf : f ∈ 𝒟.deg X.as Y.as n) : X ⟶ Y :=
   ⟨f, 𝒟.mem_hom_of_mem hf⟩
 
+/--
+@isnad1 id=eq.1h8v.s10.5779d0bb97d6 from=translated src=- shape=a2eba044 vocab=adda7383
+-/
 @[simp] theorem homMk_val {X Y : GradedSubcategory 𝒟} {n : ℤ} (f : 𝒟.obj X.as ⟶ 𝒟.obj Y.as)
     (hf : f ∈ 𝒟.deg X.as Y.as n) : (homMk f hf).1 = f := rfl
 
+/--
+@isnad1 id=mem.1h8v.s10.f688c5955d20 from=translated src=- shape=3b2951a3 vocab=3eb36961
+-/
 theorem homMk_mem_degree {X Y : GradedSubcategory 𝒟} {n : ℤ} (f : 𝒟.obj X.as ⟶ 𝒟.obj Y.as)
     (hf : f ∈ 𝒟.deg X.as Y.as n) : homMk f hf ∈ GradedSupercategory.degree (R := R) X Y n :=
   hf

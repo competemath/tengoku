@@ -62,16 +62,37 @@ instance [CategoryTheory.Linear R C] : Module R (MatEnd X) :=
 instance : CoeFun (MatEnd X) (fun _ => ∀ i j : ι, X i ⟶ X j) := ⟨id⟩
 
 omit [Preadditive C] in
+/--
+@isnad1 id=eq.1h5v.s5.64f74487696c from=translated src=- shape=5830ee28 vocab=f7b37a53
+-/
 @[ext] theorem ext {f g : MatEnd X} (h : ∀ i j, f i j = g i j) : f = g :=
   funext fun i => funext fun j => h i j
 
+/--
+@isnad1 id=eq.0h7v.s7.76ebb8ededb4 from=translated src=- shape=6624c2fa vocab=387e686e
+-/
 @[simp] theorem add_apply (f g : MatEnd X) (i j : ι) : (f + g) i j = f i j + g i j := rfl
+/--
+@isnad1 id=eq.0h7v.s7.277884633c0a from=translated src=- shape=6624c2fa vocab=503a72f4
+-/
 @[simp] theorem sub_apply (f g : MatEnd X) (i j : ι) : (f - g) i j = f i j - g i j := rfl
+/--
+@isnad1 id=eq.0h6v.s7.9300cc366012 from=translated src=- shape=0a59d5b5 vocab=d67bbbb5
+-/
 @[simp] theorem neg_apply (f : MatEnd X) (i j : ι) : (-f) i j = -f i j := rfl
+/--
+@isnad1 id=eq.0h5v.s6.f1778678a854 from=translated src=- shape=30b56475 vocab=14b8ccb4
+-/
 @[simp] theorem zero_apply (i j : ι) : (0 : MatEnd X) i j = 0 := rfl
+/--
+@isnad1 id=eq.0h8v.s9.0c5a6fdc8a49 from=translated src=- shape=2459e759 vocab=3c302296
+-/
 @[simp] theorem smul_apply [CategoryTheory.Linear R C] (r : R) (f : MatEnd X) (i j : ι) :
     (r • f) i j = r • f i j := rfl
 
+/--
+@isnad1 id=eq.0h8v.s6.9938b375dbb2 from=translated src=- shape=07d67486 vocab=212ef3d4
+-/
 theorem sum_apply {α : Type*} (s : Finset α) (f : α → MatEnd X) (i j : ι) :
     (∑ a ∈ s, f a) i j = ∑ a ∈ s, f a i j := by
   induction s using Finset.cons_induction with
@@ -87,6 +108,9 @@ def entry [CategoryTheory.Linear R C] (i j : ι) : MatEnd X →ₗ[R] (X i ⟶ X
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.ae7d05147e6a from=translated src=- shape=8f22939b vocab=c3e1e1ed
+-/
 @[simp] theorem entry_apply [CategoryTheory.Linear R C] (i j : ι) (f : MatEnd X) :
     entry R i j f = f i j := rfl
 
@@ -99,28 +123,49 @@ def single (i j : ι) (f : X i ⟶ X j) : MatEnd X := fun i' j' =>
   if h : i' = i ∧ j' = j then eqToHom (congrArg X h.1) ≫ f ≫ eqToHom (congrArg X h.2.symm)
   else 0
 
+/--
+@isnad1 id=eq.0h6v.s5.d8e43bf9bba6 from=translated src=- shape=27a91209 vocab=af43a615
+-/
 @[simp] theorem single_apply_self (i j : ι) (f : X i ⟶ X j) : single i j f i j = f := by
   simp [single]
 
+/--
+@isnad1 id=eq.1h8v.s6.2b9aa3ec3196 from=translated src=- shape=8c53f137 vocab=af43a615
+-/
 theorem single_apply_of_ne {i j i' j' : ι} (f : X i ⟶ X j) (h : ¬ (i' = i ∧ j' = j)) :
     single i j f i' j' = 0 := by
   simp [single, h]
 
+/--
+@isnad1 id=eq.0h8v.s7.3973eea6845f from=translated src=- shape=8435e1ac vocab=3c18c9ff
+-/
 theorem single_apply (i j : ι) (f : X i ⟶ X j) (i' j' : ι) :
     single i j f i' j' = if h : i' = i ∧ j' = j then
       eqToHom (congrArg X h.1) ≫ f ≫ eqToHom (congrArg X h.2.symm) else 0 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.d0a4b5d84e31 from=translated src=- shape=dcdcb857 vocab=dd478226
+-/
 @[simp] theorem single_zero (i j : ι) : single i j (0 : X i ⟶ X j) = 0 := by
   ext i' j'; simp [single_apply]
 
+/--
+@isnad1 id=eq.0h7v.s8.23d424e9fdc6 from=translated src=- shape=c019eca6 vocab=776b08ae
+-/
 theorem single_add (i j : ι) (f g : X i ⟶ X j) :
     single i j (f + g) = single i j f + single i j g := by
   ext i' j'; simp only [single_apply, add_apply]; split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h8v.s9.02bd70fa6f34 from=translated src=- shape=f6855cec vocab=635231f1
+-/
 theorem single_smul [CategoryTheory.Linear R C] (i j : ι) (r : R) (f : X i ⟶ X j) :
     single i j (r • f) = r • single i j f := by
   ext i' j'; simp only [single_apply, smul_apply]; split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h8v.s7.4f8de107c8ab from=translated src=- shape=23fd3d6f vocab=bee2537c
+-/
 theorem single_sum {α : Type*} (s : Finset α) (i j : ι) (f : α → (X i ⟶ X j)) :
     single i j (∑ a ∈ s, f a) = ∑ a ∈ s, single i j (f a) := by
   induction s using Finset.cons_induction with
@@ -134,13 +179,22 @@ def singleₗ [CategoryTheory.Linear R C] (i j : ι) : (X i ⟶ X j) →ₗ[R] M
   map_add' := single_add i j
   map_smul' r f := single_smul i j r f
 
+/--
+@isnad1 id=eq.0h7v.s8.a91fe000516a from=translated src=- shape=f257c8c5 vocab=d578c695
+-/
 @[simp] theorem singleₗ_apply [CategoryTheory.Linear R C] (i j : ι) (f : X i ⟶ X j) :
     singleₗ R i j f = single i j f := rfl
 
+/--
+@isnad1 id=eq.1h7v.s6.1e22e9351947 from=translated src=- shape=13eeee4e vocab=a635d7a7
+-/
 theorem single_eqToHom {i j j' : ι} (f : X i ⟶ X j) (h : j = j') :
     single i j' (f ≫ eqToHom (congrArg X h)) = single i j f := by
   subst h; simp
 
+/--
+@isnad1 id=eq.1h7v.s6.122451058164 from=translated src=- shape=1d21d63d vocab=a635d7a7
+-/
 theorem single_eqToHom_left {i i' j : ι} (f : X i ⟶ X j) (h : i' = i) :
     single i' j (eqToHom (congrArg X h) ≫ f) = single i j f := by
   subst h; simp
@@ -149,11 +203,20 @@ theorem single_eqToHom_left {i i' j : ι} (f : X i ⟶ X j) (h : i' = i) :
 
 instance : One (MatEnd X) := ⟨fun i j => if h : i = j then eqToHom (congrArg X h) else 0⟩
 
+/--
+@isnad1 id=eq.0h5v.s7.e004a775ecc3 from=translated src=- shape=e9aaafe4 vocab=093d747c
+-/
 theorem one_apply (i j : ι) :
     (1 : MatEnd X) i j = if h : i = j then eqToHom (congrArg X h) else 0 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.c8ea24f121b9 from=translated src=- shape=0f7420fd vocab=7dac01bb
+-/
 @[simp] theorem one_apply_self (i : ι) : (1 : MatEnd X) i i = 𝟙 _ := by simp [one_apply]
 
+/--
+@isnad1 id=eq.1h5v.s6.0091e0033ab9 from=translated src=- shape=69beb89d vocab=a8095c93
+-/
 theorem one_apply_of_ne {i j : ι} (h : i ≠ j) : (1 : MatEnd X) i j = 0 := by
   simp [one_apply, h]
 
@@ -162,6 +225,9 @@ variable [Fintype ι]
 instance : Mul (MatEnd X) := ⟨fun f g i l => ∑ j, g i j ≫ f j l⟩
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h7v.s7.e7581408fdbe from=translated src=- shape=b06d47ad vocab=fef10646
+-/
 theorem mul_apply (f g : MatEnd X) (i l : ι) : (f * g) i l = ∑ j, g i j ≫ f j l := rfl
 
 omit [DecidableEq ι] in
@@ -205,6 +271,9 @@ instance [CategoryTheory.Linear R C] : Algebra R (MatEnd X) :=
       ext i l; simp only [mul_apply, smul_apply, Finset.smul_sum]
       exact Finset.sum_congr rfl fun j _ => Linear.smul_comp _ _ _ _ _ _)
 
+/--
+@isnad1 id=eq.0h8v.s7.add3135727b3 from=translated src=- shape=6b4a54f1 vocab=33b109de
+-/
 theorem single_mul_single (i j l : ι) (f : X i ⟶ X j) (g : X j ⟶ X l) :
     single j l g * single i j f = single i l (f ≫ g) := by
   ext i' l'
@@ -224,6 +293,9 @@ theorem single_mul_single (i j l : ι) (f : X i ⟶ X j) (g : X j ⟶ X l) :
     exact Finset.sum_eq_zero fun j' _ => by
       rw [single_apply_of_ne (i' := i') f (fun h => hi h.1), Limits.zero_comp]
 
+/--
+@isnad1 id=eq.1h9v.s7.e046b41c401f from=translated src=- shape=f0f22893 vocab=290d5223
+-/
 theorem single_mul_single_of_ne {i j j' l : ι} (f : X i ⟶ X j) (g : X j' ⟶ X l) (h : j ≠ j') :
     single j' l g * single i j f = 0 := by
   ext i' l'
@@ -233,6 +305,9 @@ theorem single_mul_single_of_ne {i j j' l : ι} (f : X i ⟶ X j) (g : X j' ⟶ 
   · subst hm; rw [single_apply_of_ne (i' := m) g (fun h' => h h'.1), Limits.comp_zero]
   · rw [single_apply_of_ne (j' := m) f (fun h' => hm h'.2), Limits.zero_comp]
 
+/--
+@isnad1 id=eq.0h3v.s6.fc3baf0946f7 from=translated src=- shape=32a167f0 vocab=d50ab2eb
+-/
 theorem one_eq_sum_single : (1 : MatEnd X) = ∑ i, single i i (𝟙 (X i)) := by
   ext i j
   rw [sum_apply, Finset.sum_eq_single i]
@@ -247,13 +322,21 @@ theorem one_eq_sum_single : (1 : MatEnd X) = ∑ i, single i i (𝟙 (X i)) := b
 /-- The diagonal idempotent `single i i (𝟙 (X i))`: the projection onto the summand `X i`.-/
 abbrev idem (i : ι) : MatEnd X := single i i (𝟙 (X i))
 
+/--
+@isnad1 id=eq.0h4v.s6.d7631b28f480 from=translated src=- shape=947c0205 vocab=a0ac0e32
+-/
 theorem idem_mul_idem (i : ι) : (idem i : MatEnd X) * idem i = idem i := by
   rw [single_mul_single, Category.comp_id]
 
+/--
+@isnad1 id=isidempo.0h4v.s5.fa23e47f9036 from=translated src=- shape=f382ba77 vocab=dc30e459
+-/
 theorem isIdempotentElem_idem (i : ι) : IsIdempotentElem (idem i : MatEnd X) :=
   idem_mul_idem i
 
-/-- The corners of `MatEnd X`: `idem j * f * idem i` is the entry `f i j`, as a matrix unit.-/
+/-- The corners of `MatEnd X`: `idem j * f * idem i` is the entry `f i j`, as a matrix unit.
+@isnad1 id=eq.0h6v.s6.86c29a99d991 from=translated src=- shape=a42477ff vocab=577dd1cb
+-/
 theorem idem_mul_mul_idem (f : MatEnd X) (i j : ι) :
     idem j * f * idem i = single i j (f i j) := by
   ext i' j'
@@ -267,6 +350,9 @@ theorem idem_mul_mul_idem (f : MatEnd X) (i j : ι) :
     · simp [hj]
   · simp [hi]
 
+/--
+@isnad1 id=eq.0h9v.s7.f3da1ecef6a5 from=translated src=- shape=feddd0d6 vocab=eccde314
+-/
 theorem single_mul {i j : ι} (f : X i ⟶ X j) (g : MatEnd X) (i' l : ι) :
     (g * single i j f) i' l = if h : i' = i then eqToHom (congrArg X h) ≫ f ≫ g j l else 0 := by
   rw [mul_apply, Finset.sum_eq_single j]
@@ -276,6 +362,9 @@ theorem single_mul {i j : ι} (f : X i ⟶ X j) (g : MatEnd X) (i' l : ι) :
   · intro b _ hb; rw [single_apply_of_ne _ (fun h => hb h.2), Limits.zero_comp]
   · simp
 
+/--
+@isnad1 id=eq.0h9v.s7.6392e861e24d from=translated src=- shape=368c9a1a vocab=ebf0bfe9
+-/
 theorem mul_single {j l : ι} (f : X j ⟶ X l) (g : MatEnd X) (i l' : ι) :
     (single j l f * g) i l' = if h : l' = l then g i j ≫ f ≫ eqToHom (congrArg X h.symm) else 0 := by
   rw [mul_apply, Finset.sum_eq_single j]
@@ -318,6 +407,9 @@ def map (F : C ⥤ D) [F.Additive] [F.Linear R] (X : ι → C) :
     · subst h; simp
     · simp [one_apply_of_ne h]
 
+/--
+@isnad1 id=eq.0h9v.s8.0af267db6bd2 from=translated src=- shape=58999563 vocab=1d94e093
+-/
 @[simp] theorem map_apply (F : C ⥤ D) [F.Additive] [F.Linear R] (f : MatEnd X) (i j : ι) :
     map R F X f i j = F.map (f i j) := rfl
 
@@ -370,6 +462,9 @@ def biproductAlgEquiv : End (⨁ Y) ≃ₐ[R] MatEnd Y where
     change biproduct.ι Y i ≫ (r • 𝟙 (⨁ Y)) ≫ biproduct.π Y j = r • (1 : MatEnd Y) i j
     rw [Linear.smul_comp, Linear.comp_smul, Category.id_comp, biproduct.ι_π, one_apply]
 
+/--
+@isnad1 id=eq.0h7v.s8.bcbb4882f4fd from=translated src=- shape=d3df57d2 vocab=0bf4a78e
+-/
 @[simp] theorem biproductAlgEquiv_apply (f : End (⨁ Y)) (i j : J) :
     biproductAlgEquiv R Y f i j = biproduct.ι Y i ≫ f ≫ biproduct.π Y j := rfl
 
@@ -405,10 +500,16 @@ def blockMapₗ (T : BlockTransport R e Y Z) (φ : ∀ t, A →ₐ[R] MatEnd (Y 
   map_smul' c r := by
     simp only [map_smul, smul_apply, single_smul, Finset.smul_sum, RingHom.id_apply]
 
+/--
+@isnad1 id=eq.0h13v.s10.7dd70c9688b1 from=translated src=- shape=230ef22f vocab=76790a08
+-/
 theorem blockMapₗ_apply (T : BlockTransport R e Y Z) (φ : ∀ t, A →ₐ[R] MatEnd (Y t)) (r : A) :
     blockMapₗ T φ r = ∑ t, ∑ i, ∑ j, single (e (t, i)) (e (t, j)) (T.F t i j (φ t r i j)) :=
   rfl
 
+/--
+@isnad1 id=eq.0h12v.s8.8e6ab02b759e from=translated src=- shape=b48fcc26 vocab=15ebeb03
+-/
 theorem blockMapₗ_one (T : BlockTransport R e Y Z) (φ : ∀ t, A →ₐ[R] MatEnd (Y t)) :
     blockMapₗ T φ 1 = 1 := by
   rw [blockMapₗ_apply, one_eq_sum_single]
@@ -422,6 +523,9 @@ theorem blockMapₗ_one (T : BlockTransport R e Y Z) (φ : ∀ t, A →ₐ[R] Ma
   simp only [h1, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
   rw [← Fintype.sum_prod_type', ← e.sum_comp]
 
+/--
+@isnad1 id=eq.0h14v.s9.31f7e20e6cac from=translated src=- shape=ca599bd1 vocab=b6222f55
+-/
 theorem blockMapₗ_mul (T : BlockTransport R e Y Z) (φ : ∀ t, A →ₐ[R] MatEnd (Y t))
     (r r' : A) : blockMapₗ T φ (r * r') = blockMapₗ T φ r * blockMapₗ T φ r' := by
   simp only [blockMapₗ_apply, Finset.sum_mul, Finset.mul_sum]

@@ -21,6 +21,9 @@ universe w₁ w₂ w₃ w₄ v₁ v₂ v₃ v₄ u₁ u₂ u₃ u₄
 
 namespace Oplax.OplaxTrans
 
+/--
+@isnad1 id=eq.0h10v.s14.ad5dcb1cb6b0 from=translated src=- shape=07170767 vocab=fe6d01e4
+-/
 theorem map₂_associator_inv' {B : Type u₁} [Bicategory.{w₁, v₁} B] {C : Type u₂}
     [Bicategory.{w₂, v₂} C] (H : Pseudofunctor B C) {a b c d : B} (f : a ⟶ b) (g : b ⟶ c)
     (h : c ⟶ d) :
@@ -149,6 +152,9 @@ with `η_{p_λ} ∘ j_F η_λ ∘ e_{η_λ} = η_λ j_G` (the Π-2-naturality co
 5.2(iii) for `(π, β)`). Whiskering preserves this condition, with the composite `j` of
 `PiTwoFunctor.comp`. -/
 
+/--
+@isnad1 id=eq.1h15v.s14.a584850dd415 from=translated src=- shape=1d44108c vocab=afab2cde
+-/
 theorem precomp_central {pB : ∀ a : B, a ⟶ a} {pC : ∀ a : C, a ⟶ a} {pD : ∀ a : D, a ⟶ a}
     (eD : ∀ {a b : D} (f : a ⟶ b), f ≫ pD b ⟶ pD a ≫ f)
     (P : Pseudofunctor B C) {F G : Pseudofunctor C D}
@@ -167,6 +173,9 @@ theorem precomp_central {pB : ∀ a : B, a ⟶ a} {pC : ∀ a : C, a ⟶ a} {pD 
   rw [comp_whiskerRight, Category.assoc, h1, reassoc_of% (hη (P.obj a)),
     whiskerLeft_comp]
 
+/--
+@isnad1 id=eq.2h16v.s15.e196bbbde16d from=translated src=- shape=0daa1ec4 vocab=82bfa159
+-/
 theorem postcomp_central {pC : ∀ a : C, a ⟶ a} {pD : ∀ a : D, a ⟶ a} {pE : ∀ a : E, a ⟶ a}
     (eD : ∀ {a b : D} (f : a ⟶ b), f ≫ pD b ⟶ pD a ≫ f)
     (eE : ∀ {a b : E} (f : a ⟶ b), f ≫ pE b ⟶ pE a ≫ f)

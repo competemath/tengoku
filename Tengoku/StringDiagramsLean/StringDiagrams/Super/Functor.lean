@@ -46,40 +46,68 @@ namespace Supercategory
 
 /-! ## The Koszul sign -/
 
-/-- A parity is `0` or `1`.-/
+/-- A parity is `0` or `1`.
+@isnad1 id=or.0h1v.s7.bc72bed5d0ad from=translated src=- shape=a99d14a3 vocab=c87b9854
+-/
 theorem parity_eq_zero_or_one (p : ZMod 2) : p = 0 ∨ p = 1 := by
   revert p; decide
 
 /-- The Koszul sign `(-1)^{pq}` of two parities.-/
 def koszulSign (p q : ZMod 2) : ℤ := if p = 1 ∧ q = 1 then -1 else 1
 
+/--
+@isnad1 id=eq.0h1v.s6.61f7a296e502 from=translated src=- shape=1523927d vocab=a84a6c4d
+-/
 @[simp] theorem koszulSign_zero_left (q : ZMod 2) : koszulSign 0 q = 1 := by
   simp [koszulSign]
 
+/--
+@isnad1 id=eq.0h1v.s6.47704a0da411 from=translated src=- shape=8b0ab7a3 vocab=a84a6c4d
+-/
 @[simp] theorem koszulSign_zero_right (p : ZMod 2) : koszulSign p 0 = 1 := by
   simp [koszulSign]
 
+/--
+@isnad1 id=eq.0h0v.s6.18105499c287 from=translated src=- shape=4841793f vocab=63550221
+-/
 @[simp] theorem koszulSign_one_one : koszulSign 1 1 = -1 := by
   simp [koszulSign]
 
+/--
+@isnad1 id=eq.0h2v.s4.23f3f8369ddb from=translated src=- shape=376c686a vocab=a84a6c4d
+-/
 theorem koszulSign_comm (p q : ZMod 2) : koszulSign p q = koszulSign q p := by
   revert p q; decide
 
+/--
+@isnad1 id=eq.0h3v.s6.ea5ce860e2b9 from=translated src=- shape=8d3f8eb4 vocab=d9b44f1a
+-/
 theorem koszulSign_add_left (p p' q : ZMod 2) :
     koszulSign (p + p') q = koszulSign p q * koszulSign p' q := by
   revert p p' q; decide
 
+/--
+@isnad1 id=eq.0h3v.s6.9fed3438355a from=translated src=- shape=3560c9cd vocab=d9b44f1a
+-/
 theorem koszulSign_add_right (p q q' : ZMod 2) :
     koszulSign p (q + q') = koszulSign p q * koszulSign p q' := by
   revert p q q'; decide
 
+/--
+@isnad1 id=eq.0h2v.s5.c9a43085a9b9 from=translated src=- shape=51ae6a03 vocab=08f7b410
+-/
 theorem koszulSign_mul_self (p q : ZMod 2) : koszulSign p q * koszulSign p q = 1 := by
   revert p q; decide
 
+/--
+@isnad1 id=or.0h2v.s7.632f93aceced from=translated src=- shape=4701474c vocab=a84a6c4d
+-/
 theorem koszulSign_eq_one_or (p q : ZMod 2) : koszulSign p q = 1 ∨ (p = 1 ∧ q = 1) := by
   revert p q; decide
 
-/-- The Koszul sign of two natural numbers, viewed as parities, is `(-1)^(n m)`.-/
+/-- The Koszul sign of two natural numbers, viewed as parities, is `(-1)^(n m)`.
+@isnad1 id=eq.0h2v.s7.c51a4aad649d from=translated src=- shape=7be5fbf9 vocab=5d48c3f9
+-/
 theorem koszulSign_natCast (n m : ℕ) : koszulSign (n : ZMod 2) (m : ZMod 2) = (-1) ^ (n * m) := by
   rcases Nat.even_or_odd n with hn | hn <;> rcases Nat.even_or_odd m with hm | hm
   · rw [(ZMod.natCast_eq_zero_iff_even.mpr hn), koszulSign_zero_left, (hn.mul_right m).neg_one_pow]
@@ -88,6 +116,9 @@ theorem koszulSign_natCast (n m : ℕ) : koszulSign (n : ZMod 2) (m : ZMod 2) = 
   · rw [(ZMod.natCast_eq_one_iff_odd.mpr hn), (ZMod.natCast_eq_one_iff_odd.mpr hm), koszulSign_one_one,
       (hn.mul hm).neg_one_pow]
 
+/--
+@isnad1 id=eq.0h4v.s5.4f5bc9d8324e from=translated src=- shape=516b58aa vocab=969da4ee
+-/
 theorem koszulSign_smul_smul {M : Type*} [AddCommGroup M] (p q : ZMod 2) (x : M) :
     koszulSign p q • koszulSign p q • x = x := by
   rw [smul_smul, koszulSign_mul_self, one_smul]
@@ -110,14 +141,23 @@ class IsSuperfunctor (F : C ⥤ D) [F.Additive] [F.Linear R] : Prop where
   map_mem : ∀ {X Y : C} {p : ZMod 2} {f : X ⟶ Y}, f ∈ parity (R := R) X Y p →
     F.map f ∈ parity (R := R) (F.obj X) (F.obj Y) p
 
+/--
+@isnad1 id=ishomoge.1h8v.s7.563728c38a61 from=translated src=- shape=44181852 vocab=bba9fed3
+-/
 theorem IsSuperfunctor.map_isHomogeneous (F : C ⥤ D) [F.Additive] [F.Linear R]
     [IsSuperfunctor R F] {X Y : C} {p : ZMod 2} {f : X ⟶ Y}
     (hf : IsHomogeneous (R := R) f p) : IsHomogeneous (R := R) (F.map f) p :=
   IsSuperfunctor.map_mem hf
 
+/--
+@isnad1 id=issuperf.0h2v.s5.ad91c6046078 from=translated src=- shape=8451093b vocab=893a6f93
+-/
 instance IsSuperfunctor.id : IsSuperfunctor R (𝟭 C) where
   map_mem hf := hf
 
+/--
+@isnad1 id=issuperf.0h6v.s7.3e8b4977f38c from=translated src=- shape=2d7cfd21 vocab=78c2c1d1
+-/
 instance IsSuperfunctor.comp (F : C ⥤ D) (G : D ⥤ E) [F.Additive] [F.Linear R] [G.Additive]
     [G.Linear R] [IsSuperfunctor R F] [IsSuperfunctor R G] : IsSuperfunctor R (F ⋙ G) where
   map_mem hf := IsSuperfunctor.map_mem (R := R) (F := G) (IsSuperfunctor.map_mem (F := F) hf)
@@ -171,10 +211,19 @@ def id (F : C ⥤ D) : SuperNatTrans R F F where
     · subst h; simp
     · simp
 
+/--
+@isnad1 id=eq.0h5v.s7.75f3d0b90061 from=translated src=- shape=461560e8 vocab=03c64ceb
+-/
 @[simp] theorem id_app_zero (F : C ⥤ D) (X : C) : (id (R := R) F).app 0 X = 𝟙 (F.obj X) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.ab5c3e5b06d6 from=translated src=- shape=2020caa5 vocab=453e4224
+-/
 @[simp] theorem id_app_one (F : C ⥤ D) (X : C) : (id (R := R) F).app 1 X = 0 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.869c0267dd9c from=translated src=- shape=687370e4 vocab=0d7d7f15
+-/
 theorem id_total (F : C ⥤ D) (X : C) : (id (R := R) F).total X = 𝟙 (F.obj X) := by
   simp [total]
 
@@ -197,6 +246,9 @@ def vcomp (x : SuperNatTrans R F G) (y : SuperNatTrans R G H) : SuperNatTrans R 
     have e : ∀ r : ZMod 2, 1 + (r + 1) = r := by decide
     rw [Preadditive.comp_add, key, key, Preadditive.add_comp, smul_add, zero_add, e]
 
+/--
+@isnad1 id=eq.0h9v.s7.1c0d1b823cc9 from=translated src=- shape=f35ed6ed vocab=c81be018
+-/
 theorem vcomp_total (x : SuperNatTrans R F G) (y : SuperNatTrans R G H) (X : C) :
     (x.vcomp y).total X = x.total X ≫ y.total X := by
   simp only [total, vcomp, Preadditive.add_comp, Preadditive.comp_add]
@@ -217,6 +269,9 @@ def toNatTrans [F.Additive] [G.Additive] (x : SuperNatTrans R F G) : F ⟶ G whe
     · intro g₁ g₂ h₁ h₂
       simp only [Functor.map_add, Preadditive.add_comp, Preadditive.comp_add, h₁, h₂]
 
+/--
+@isnad1 id=eq.0h7v.s7.145b37f858e8 from=translated src=- shape=7db533d8 vocab=840f3241
+-/
 @[simp] theorem toNatTrans_app [F.Additive] [G.Additive] (x : SuperNatTrans R F G) (X : C) : x.toNatTrans.app X = x.app 0 X :=
   rfl
 
@@ -234,6 +289,9 @@ def ofNatTrans [F.Additive] [F.Linear R] [G.Additive] [G.Linear R] (α : F ⟶ G
     · subst hp; simp [α.naturality]
     · simp
 
+/--
+@isnad1 id=ishomoge.1h6v.s9.03b71a48eecf from=translated src=- shape=06330062 vocab=e927df5b
+-/
 theorem ofNatTrans_isHomogeneous [F.Additive] [F.Linear R] [G.Additive] [G.Linear R]
     (α : F ⟶ G) (h : ∀ X, α.app X ∈ parity (R := R) (F.obj X) (G.obj X) 0) :
     (ofNatTrans α h).IsHomogeneous 0 := by
@@ -241,6 +299,9 @@ theorem ofNatTrans_isHomogeneous [F.Additive] [F.Linear R] [G.Additive] [G.Linea
   funext X
   simp [ofNatTrans, hq]
 
+/--
+@isnad1 id=eq.1h6v.s9.5f12595089c6 from=translated src=- shape=52efafe8 vocab=9598788c
+-/
 @[simp] theorem ofNatTrans_toNatTrans [F.Additive] [F.Linear R] [G.Additive] [G.Linear R]
     (α : F ⟶ G) (h : ∀ X, α.app X ∈ parity (R := R) (F.obj X) (G.obj X) 0) :
     (ofNatTrans α h).toNatTrans = α := by

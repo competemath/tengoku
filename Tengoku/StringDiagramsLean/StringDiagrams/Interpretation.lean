@@ -52,6 +52,9 @@ def mapChain : (a : Obj S) → (ls : List (Layer S)) → (b : Obj S) → Chain a
   | _, L :: ls, b, h => eqToHom (congrArg I.obj h.2.1.symm) ≫ I.layer L h.1 ≫
       mapChain L.cod ls b h.2.2
 
+/--
+@isnad1 id=eq.2h8v.s7.c297397ee200 from=translated src=- shape=880ff7b6 vocab=76e52a4c
+-/
 theorem mapChain_append {a b c : Obj S} {ls ms : List (Layer S)} (h₁ : Chain a ls b)
     (h₂ : Chain b ms c) :
     I.mapChain a (ls ++ ms) c (h₁.append h₂) = I.mapChain a ls b h₁ ≫ I.mapChain b ms c h₂ := by
@@ -66,28 +69,45 @@ def functor : Obj S ⥤ D where
   map_id _ := by simp [mapChain]
   map_comp f g := I.mapChain_append (Diagram.chain f) (Diagram.chain g)
 
+/--
+@isnad1 id=eq.0h4v.s5.29b59ef6fdb6 from=translated src=- shape=374e0896 vocab=14b0eab2
+-/
 @[simp] theorem functor_obj (a : Obj S) : I.functor.obj a = I.obj a := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.4f99564973e5 from=translated src=- shape=1744d04d vocab=fa6f63c1
+-/
 theorem functor_map (f : a ⟶ b) :
     I.functor.map f = I.mapChain a (Diagram.layers f) b (Diagram.chain f) := rfl
 
+/--
+@isnad1 id=eq.3h6v.s7.4b30523b3579 from=translated src=- shape=67c62c38 vocab=539b2cde
+-/
 @[simp] theorem functor_map_layer (L : Layer S) (hv : L.Valid) {a b : Obj S} (ha : L.dom = a)
     (hb : L.cod = b) :
     I.functor.map (Diagram.layer L hv ha hb) =
       eqToHom (congrArg I.obj ha.symm) ≫ I.layer L hv ≫ eqToHom (congrArg I.obj hb) := rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.53016472ac1f from=translated src=- shape=39ff8792 vocab=2d528b0b
+-/
 theorem functor_map_ofLayer (L : Layer S) (hv : L.Valid) :
     I.functor.map (Diagram.ofLayer L hv) = I.layer L hv := by
   show eqToHom (congrArg I.obj rfl) ≫ I.layer L hv ≫ eqToHom (congrArg I.obj rfl) = _
   simp
 
-/-- The image of a diagram given by an explicit list of layers.-/
+/-- The image of a diagram given by an explicit list of layers.
+@isnad1 id=eq.1h7v.s7.fddade09d2bd from=translated src=- shape=e44cb236 vocab=221cd5ef
+-/
 theorem functor_map_mk_cons {a b : Obj S} (L : Layer S) (ls : List (Layer S))
     (h : Chain a (L :: ls) b) :
     I.functor.map (Diagram.mk (L :: ls) h) =
       eqToHom (congrArg I.obj h.2.1.symm) ≫ I.layer L h.1 ≫
         I.functor.map (Diagram.mk ls h.2.2) := rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.a5bb5d99f901 from=translated src=- shape=8821bdf5 vocab=26994fd1
+-/
 theorem functor_map_mk_nil {a b : Obj S} (h : Chain a [] b) :
     I.functor.map (Diagram.mk [] h) = eqToHom (congrArg I.obj h) := rfl
 

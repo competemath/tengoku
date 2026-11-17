@@ -65,6 +65,9 @@ variable {a b c : Obj S}
 /-- A single diagram with coefficient `1`.-/
 abbrev of (f : a ⟶ b) : LinDiagram R a b := Finsupp.single f 1
 
+/--
+@isnad1 id=eq.0h7v.s6.debe99f2cc51 from=translated src=- shape=83228551 vocab=624e6a6e
+-/
 theorem of_comp (f : a ⟶ b) (g : b ⟶ c) : (of (f ≫ g) : LinDiagram R a c) = of f ≫ of g := by
   have := Free.single_comp_single R (Obj S) f g (1 : R) 1
   rw [one_mul] at this
@@ -75,32 +78,53 @@ def whisker (f : LinDiagram R a b) (u : Obj S) (v : List S.Colour)
     (hw : a.WhiskerOK u v) : LinDiagram R (a.whisker u v) (b.whisker u v) :=
   Finsupp.mapDomain (fun d => Diagram.whisker d u v hw) f
 
+/--
+@isnad1 id=eq.1h8v.s7.4fe0cc53c91d from=translated src=- shape=dd53f6c2 vocab=9b429a5d
+-/
 @[simp] theorem whisker_single (f : a ⟶ b) (r : R) (u : Obj S) (v : List S.Colour)
     (hw : a.WhiskerOK u v) :
     whisker (Finsupp.single f r : LinDiagram R a b) u v hw =
       Finsupp.single (Diagram.whisker f u v hw) r :=
   Finsupp.mapDomain_single
 
+/--
+@isnad1 id=eq.1h7v.s6.09ac4b66de04 from=translated src=- shape=24b0b653 vocab=650941d3
+-/
 @[simp] theorem whisker_of (f : a ⟶ b) (u : Obj S) (v : List S.Colour) (hw : a.WhiskerOK u v) :
     whisker (of f : LinDiagram R a b) u v hw = of (Diagram.whisker f u v hw) :=
   Finsupp.mapDomain_single
 
+/--
+@isnad1 id=eq.1h6v.s7.79b572803b6c from=translated src=- shape=f48baa90 vocab=042ddb10
+-/
 @[simp] theorem whisker_zero (u : Obj S) (v : List S.Colour) (hw : a.WhiskerOK u v) :
     whisker (0 : LinDiagram R a b) u v hw = 0 :=
   Finsupp.mapDomain_zero
 
+/--
+@isnad1 id=eq.1h8v.s8.cc3182bc9400 from=translated src=- shape=d6f37d89 vocab=06c91885
+-/
 theorem whisker_sub (f g : LinDiagram R a b) (u : Obj S) (v : List S.Colour)
     (hw : a.WhiskerOK u v) : whisker (f - g) u v hw = whisker f u v hw - whisker g u v hw :=
   (Finsupp.lmapDomain R R _).map_sub f g
 
+/--
+@isnad1 id=eq.1h7v.s8.660e0f18f243 from=translated src=- shape=a3079ccf vocab=66b4f53c
+-/
 theorem whisker_neg (f : LinDiagram R a b) (u : Obj S) (v : List S.Colour)
     (hw : a.WhiskerOK u v) : whisker (-f) u v hw = -whisker f u v hw :=
   (Finsupp.lmapDomain R R _).map_neg f
 
+/--
+@isnad1 id=eq.1h8v.s8.6c9fcb06a982 from=translated src=- shape=d6f37d89 vocab=6d8593ca
+-/
 theorem whisker_add (f g : LinDiagram R a b) (u : Obj S) (v : List S.Colour)
     (hw : a.WhiskerOK u v) : whisker (f + g) u v hw = whisker f u v hw + whisker g u v hw :=
   Finsupp.mapDomain_add
 
+/--
+@isnad1 id=eq.1h8v.s9.e62b20f84f22 from=translated src=- shape=03d2fc49 vocab=e04fc8ef
+-/
 theorem whisker_smul (r : R) (f : LinDiagram R a b) (u : Obj S) (v : List S.Colour)
     (hw : a.WhiskerOK u v) : whisker (r • f) u v hw = r • whisker f u v hw :=
   Finsupp.mapDomain_smul _ _
@@ -110,30 +134,51 @@ def cast {a' b' : Obj S} (f : LinDiagram R a b) (ha : a = a') (hb : b = b') :
     LinDiagram R a' b' :=
   Finsupp.mapDomain (fun d => Diagram.cast d ha hb) f
 
+/--
+@isnad1 id=eq.2h8v.s7.4db48a30e338 from=translated src=- shape=f9a3c717 vocab=3a41f0a2
+-/
 @[simp] theorem cast_single {a' b' : Obj S} (f : a ⟶ b) (r : R) (ha : a = a') (hb : b = b') :
     cast (Finsupp.single f r : LinDiagram R a b) ha hb = Finsupp.single (Diagram.cast f ha hb) r :=
   Finsupp.mapDomain_single
 
+/--
+@isnad1 id=eq.2h7v.s6.20b6b8f425d9 from=translated src=- shape=dfa4270b vocab=4a9e5d7a
+-/
 @[simp] theorem cast_of {a' b' : Obj S} (f : a ⟶ b) (ha : a = a') (hb : b = b') :
     cast (of f : LinDiagram R a b) ha hb = of (Diagram.cast f ha hb) :=
   Finsupp.mapDomain_single
 
+/--
+@isnad1 id=eq.2h8v.s7.0c8efc860132 from=translated src=- shape=25f72d1a vocab=1ac42764
+-/
 @[simp] theorem cast_add {a' b' : Obj S} (f g : LinDiagram R a b) (ha : a = a') (hb : b = b') :
     cast (f + g) ha hb = cast f ha hb + cast g ha hb :=
   Finsupp.mapDomain_add
 
+/--
+@isnad1 id=eq.2h8v.s7.39aa69a8f53a from=translated src=- shape=25f72d1a vocab=bc3544a3
+-/
 @[simp] theorem cast_sub {a' b' : Obj S} (f g : LinDiagram R a b) (ha : a = a') (hb : b = b') :
     cast (f - g) ha hb = cast f ha hb - cast g ha hb :=
   (Finsupp.lmapDomain R R _).map_sub f g
 
+/--
+@isnad1 id=eq.2h7v.s7.f5d440d91199 from=translated src=- shape=7a321ab4 vocab=e69cc66b
+-/
 @[simp] theorem cast_neg {a' b' : Obj S} (f : LinDiagram R a b) (ha : a = a') (hb : b = b') :
     cast (-f) ha hb = -cast f ha hb :=
   (Finsupp.lmapDomain R R _).map_neg f
 
+/--
+@isnad1 id=eq.2h8v.s9.317b084acddd from=translated src=- shape=75aa0a80 vocab=9aab5524
+-/
 @[simp] theorem cast_smul {a' b' : Obj S} (r : R) (f : LinDiagram R a b) (ha : a = a')
     (hb : b = b') : cast (r • f) ha hb = r • cast f ha hb :=
   Finsupp.mapDomain_smul _ _
 
+/--
+@isnad1 id=eq.0h5v.s5.b5726c39abc0 from=translated src=- shape=e8eee6a1 vocab=30f54a2b
+-/
 @[simp] theorem cast_rfl (f : LinDiagram R a b) : cast f rfl rfl = f := by
   simp only [cast]; exact Finsupp.mapDomain_id
 
@@ -181,6 +226,9 @@ structure Valid : Prop where
   hg₁ : x.hg₁.Valid
   hg₂ : x.hg₂.Valid
 
+/--
+@isnad1 id=valid.0h2v.s3.8bc4132e70df from=translated src=- shape=b8d9a049 vocab=0e4f1542
+-/
 theorem valid_of_subsingleton [Subsingleton S.Region] : x.Valid :=
   ⟨Layer.valid_of_subsingleton _, Layer.valid_of_subsingleton _,
     Layer.valid_of_subsingleton _, Layer.valid_of_subsingleton _⟩
@@ -259,6 +307,9 @@ inductive IdealGen : ∀ {a b : Obj S}, LinDiagram R a b → Prop
 def ideal (a b : Obj S) : Submodule R (LinDiagram R a b) :=
   Submodule.span R {f | P.IdealGen f}
 
+/--
+@isnad1 id=mem.1h8v.s9.05f292e9d66c from=translated src=- shape=437a1fed vocab=c08496fd
+-/
 theorem comp_mem_ideal {a b c : Obj S} (g : LinDiagram R a b) {f : LinDiagram R b c}
     (hf : f ∈ P.ideal b c) : g ≫ f ∈ P.ideal a c := by
   induction hf using Submodule.span_induction with
@@ -271,6 +322,9 @@ theorem comp_mem_ideal {a b c : Obj S} (g : LinDiagram R a b) {f : LinDiagram R 
   | add x y _ _ hx hy => rw [Preadditive.comp_add]; exact Submodule.add_mem _ hx hy
   | smul r x _ hx => rw [Linear.comp_smul]; exact Submodule.smul_mem _ r hx
 
+/--
+@isnad1 id=mem.1h8v.s9.dc379ebec1b5 from=translated src=- shape=8587f10d vocab=c08496fd
+-/
 theorem mem_ideal_comp {a b c : Obj S} {f : LinDiagram R a b} (hf : f ∈ P.ideal a b)
     (g : LinDiagram R b c) : f ≫ g ∈ P.ideal a c := by
   induction hf using Submodule.span_induction with
@@ -283,6 +337,9 @@ theorem mem_ideal_comp {a b c : Obj S} {f : LinDiagram R a b} (hf : f ∈ P.idea
   | add x y _ _ hx hy => rw [Preadditive.add_comp]; exact Submodule.add_mem _ hx hy
   | smul r x _ hx => rw [Linear.smul_comp]; exact Submodule.smul_mem _ r hx
 
+/--
+@isnad1 id=mem.1h6v.s9.a9f161a7133d from=translated src=- shape=97ab2423 vocab=9ab1ce1e
+-/
 theorem whisker_rel_mem_ideal (k : P.AllRel) (u : Obj S) (v : List S.Colour)
     (hw : k.dom.WhiskerOK u v) : LinDiagram.whisker k.rel u v hw ∈ P.ideal _ _ := by
   apply Submodule.subset_span
@@ -304,12 +361,18 @@ instance : Congruence P.homRel where
   comp_right := fun g h => by
     rw [homRel, ← Preadditive.sub_comp]; exact P.mem_ideal_comp h g
 
+/--
+@isnad1 id=homrel.0h11v.s9.f62af1d691fc from=translated src=- shape=50e5972b vocab=f9f34441
+-/
 theorem homRel_add : ∀ ⦃X Y : Free R (Obj S)⦄ (f₁ f₂ g₁ g₂ : X ⟶ Y) (_ : P.homRel f₁ f₂)
     (_ : P.homRel g₁ g₂), P.homRel (f₁ + g₁) (f₂ + g₂) := by
   intro X Y f₁ f₂ g₁ g₂ h₁ h₂
   unfold homRel at *
   rw [add_sub_add_comm]; exact Submodule.add_mem _ h₁ h₂
 
+/--
+@isnad1 id=homrel.0h9v.s10.842e1c3c6b5e from=translated src=- shape=b2f4ae66 vocab=ac17075f
+-/
 theorem homRel_smul : ∀ (a : R) ⦃X Y : Free R (Obj S)⦄ (f₁ f₂ : X ⟶ Y) (_ : P.homRel f₁ f₂),
     P.homRel (a • f₁) (a • f₂) := by
   intro a X Y f₁ f₂ h
@@ -395,61 +458,106 @@ def layer (L : Layer S) (hv : L.Valid) {a b : Obj S} (ha : L.dom = a)
     (hb : L.cod = b) : P.obj a ⟶ P.obj b :=
   P.diag (Diagram.layer L hv ha hb)
 
+/--
+@isnad1 id=eq.0h8v.s7.45c94973d34f from=translated src=- shape=b9e91ae2 vocab=4d274011
+-/
 @[simp] theorem lin_comp {a b c : Obj S} (f : LinDiagram R a b) (g : LinDiagram R b c) :
     P.lin (f ≫ g) = P.lin f ≫ P.lin g := P.linFunctor.map_comp f g
 
+/--
+@isnad1 id=eq.0h7v.s9.133ac166cf6a from=translated src=- shape=e477e441 vocab=4f46063d
+-/
 @[simp] theorem lin_add {a b : Obj S} (f g : LinDiagram R a b) :
     P.lin (f + g) = P.lin f + P.lin g := P.linFunctor.map_add
 
+/--
+@isnad1 id=eq.0h7v.s9.ba40522905ea from=translated src=- shape=e477e441 vocab=c8d49617
+-/
 @[simp] theorem lin_sub {a b : Obj S} (f g : LinDiagram R a b) :
     P.lin (f - g) = P.lin f - P.lin g := P.linFunctor.map_sub
 
+/--
+@isnad1 id=eq.0h6v.s8.1ab7df5dae79 from=translated src=- shape=302f9748 vocab=71af03be
+-/
 @[simp] theorem lin_neg {a b : Obj S} (f : LinDiagram R a b) :
     P.lin (-f) = -P.lin f := P.linFunctor.map_neg
 
+/--
+@isnad1 id=eq.0h5v.s8.64658a13800a from=translated src=- shape=a2753072 vocab=b5635b32
+-/
 @[simp] theorem lin_zero {a b : Obj S} : P.lin (0 : LinDiagram R a b) = 0 :=
   P.linFunctor.map_zero _ _
 
+/--
+@isnad1 id=eq.0h7v.s10.da9e4395cfa4 from=translated src=- shape=0b329e0e vocab=7f14da05
+-/
 @[simp] theorem lin_smul {a b : Obj S} (r : R) (f : LinDiagram R a b) :
     P.lin (r • f) = r • P.lin f := P.linFunctor.map_smul r f
 
+/--
+@isnad1 id=eq.0h4v.s6.2e873756a37d from=translated src=- shape=298c0a41 vocab=118f5f95
+-/
 @[simp] theorem lin_id (a : Obj S) : P.lin (𝟙 (Free.of R a)) = 𝟙 (P.obj a) :=
   P.linFunctor.map_id _
 
+/--
+@isnad1 id=eq.0h7v.s10.94d217fc376b from=translated src=- shape=05de3f72 vocab=43c4c3ac
+-/
 theorem lin_single {a b : Obj S} (f : a ⟶ b) (r : R) :
     P.lin (Finsupp.single f r : LinDiagram R a b) = r • P.diag f := by
   rw [diag, ← lin_smul]; congr 1; exact (Finsupp.smul_single_one f r).symm
 
+/--
+@isnad1 id=eq.0h8v.s7.b1dd9dc6b405 from=translated src=- shape=794dd1f5 vocab=0fb71842
+-/
 @[simp] theorem diag_comp {a b c : Obj S} (f : a ⟶ b) (g : b ⟶ c) :
     P.diag (f ≫ g) = P.diag f ≫ P.diag g := by
   rw [diag, LinDiagram.of_comp, lin_comp]; rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.6136445ecf00 from=translated src=- shape=7407c551 vocab=e4db381b
+-/
 @[simp] theorem diag_id (a : Obj S) : P.diag (𝟙 a) = 𝟙 (P.obj a) := P.lin_id a
 
+/--
+@isnad1 id=eq.1h7v.s6.350f548d023e from=translated src=- shape=f0634325 vocab=c38a1ddd
+-/
 theorem diag_eq_of_layers_eq {a b : Obj S} {f g : a ⟶ b}
     (h : Diagram.layers f = Diagram.layers g) : P.diag f = P.diag g := by
   rw [Diagram.ext h]
 
+/--
+@isnad1 id=iff.0h7v.s8.893a80e05ec2 from=translated src=- shape=ef866bd0 vocab=65e13436
+-/
 theorem lin_eq_iff {a b : Obj S} (f g : LinDiagram R a b) :
     P.lin f = P.lin g ↔ f - g ∈ P.ideal a b :=
   CategoryTheory.Quotient.functor_map_eq_iff P.homRel f g
 
-/-- Every whiskered relation holds in the presented category.-/
+/-- Every whiskered relation holds in the presented category.
+@isnad1 id=eq.1h6v.s8.d017b51839b9 from=translated src=- shape=bc66cfd2 vocab=2dc846b4
+-/
 theorem lin_rel (i : P.Rel) (u : Obj S) (v : List S.Colour) (hw : (P.dom i).WhiskerOK u v) :
     P.lin (LinDiagram.whisker (P.rel i) u v hw) = 0 := by
   rw [← P.lin_zero, lin_eq_iff, sub_zero]
   exact P.whisker_rel_mem_ideal (.user i) u v hw
 
 /-- Every whiskered relation holds in the presented category, typed along equalities of
-objects. This is the form used to transport a relation to a symbolic position.-/
+objects. This is the form used to transport a relation to a symbolic position.
+@isnad1 id=eq.3h8v.s8.7c0395a2e4a6 from=translated src=- shape=11358ff4 vocab=34c78489
+-/
 theorem lin_rel_cast (i : P.Rel) (u : Obj S) (v : List S.Colour) (hw : (P.dom i).WhiskerOK u v)
     {a b : Obj S} (ha : (P.dom i).whisker u v = a) (hb : (P.cod i).whisker u v = b) :
     P.lin (LinDiagram.cast (LinDiagram.whisker (P.rel i) u v hw) ha hb) = 0 := by
   subst ha hb; rw [LinDiagram.cast_rfl]; exact P.lin_rel i u v hw
 
+/--
+@isnad1 id=eq.0h6v.s6.08d3bc2c4f84 from=translated src=- shape=13fac63c vocab=79d2f646
+-/
 @[simp] theorem lin_of {a b : Obj S} (f : a ⟶ b) : P.lin (LinDiagram.of f) = P.diag f := rfl
 
-/-- Every whiskered instance of the interchange law holds in the presented category.-/
+/-- Every whiskered instance of the interchange law holds in the presented category.
+@isnad1 id=eq.2h6v.s8.60f87102d65c from=translated src=- shape=bd4e692e vocab=7e5177d2
+-/
 theorem lin_interchange (x : InterchangeData S) (hx : x.Valid) (u : Obj S) (v : List S.Colour)
     (hw : x.dom.WhiskerOK u v) :
     P.lin (LinDiagram.whisker (InterchangeData.rel R hx) u v hw) = 0 := by
@@ -457,14 +565,18 @@ theorem lin_interchange (x : InterchangeData S) (hx : x.Valid) (u : Obj S) (v : 
   exact P.whisker_rel_mem_ideal (.interchange x hx) u v hw
 
 /-- Every whiskered instance of the interchange law holds in the presented category, typed
-along equalities of objects.-/
+along equalities of objects.
+@isnad1 id=eq.4h8v.s8.d1d7e3c24a34 from=translated src=- shape=7994e8a7 vocab=925758c0
+-/
 theorem lin_interchange_cast (x : InterchangeData S) (hx : x.Valid) (u : Obj S)
     (v : List S.Colour) (hw : x.dom.WhiskerOK u v) {a b : Obj S} (ha : x.dom.whisker u v = a)
     (hb : x.cod.whisker u v = b) :
     P.lin (LinDiagram.cast (LinDiagram.whisker (InterchangeData.rel R hx) u v hw) ha hb) = 0 := by
   subst ha hb; rw [LinDiagram.cast_rfl]; exact P.lin_interchange x hx u v hw
 
-/-- The interchange law at a whiskered, retyped position, in terms of diagrams.-/
+/-- The interchange law at a whiskered, retyped position, in terms of diagrams.
+@isnad1 id=eq.4h8v.s10.ea202d760768 from=translated src=- shape=3ac64194 vocab=9ba1f751
+-/
 theorem diag_interchange (x : InterchangeData S) (hx : x.Valid) (u : Obj S)
     (v : List S.Colour) (hw : x.dom.WhiskerOK u v) {a b : Obj S} (ha : x.dom.whisker u v = a)
     (hb : x.cod.whisker u v = b) :

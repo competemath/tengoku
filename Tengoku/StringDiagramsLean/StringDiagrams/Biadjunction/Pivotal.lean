@@ -63,15 +63,27 @@ chosen biadjunctions.-/
 def rotate (α : f ⟶ f') : dual f' ⟶ dual f :=
   rightMate (biadj f) (biadj f') α
 
+/--
+@isnad1 id=eq.0h6v.s9.81f038884718 from=translated src=- shape=b5a024fc vocab=cebe5f89
+-/
 theorem rotate_eq_rightMate (α : f ⟶ f') : rotate α = rightMate (biadj f) (biadj f') α := rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.b58147e83567 from=translated src=- shape=b5a024fc vocab=47daa10e
+-/
 theorem rotate_eq_leftMate (α : f ⟶ f') : rotate α = leftMate (biadj f) (biadj f') α :=
   isCyclic α
 
+/--
+@isnad1 id=eq.0h4v.s7.ba4a5667b41d from=translated src=- shape=58a7e1dc vocab=2912ba1f
+-/
 @[simp]
 theorem rotate_id (f : a ⟶ b) : rotate (𝟙 f) = 𝟙 (dual f) :=
   rightMate_id _
 
+/--
+@isnad1 id=eq.0h8v.s8.bfa8ece706d9 from=translated src=- shape=e3f7a14f vocab=290add7e
+-/
 @[simp]
 theorem rotate_comp (α : f ⟶ f') (β : f' ⟶ f'') : rotate (α ≫ β) = rotate β ≫ rotate α :=
   rightMate_comp _ _ _ α β
@@ -80,9 +92,15 @@ theorem rotate_comp (α : f ⟶ f') (β : f' ⟶ f'') : rotate (α ≫ β) = rot
 def rotateEquiv (f f' : a ⟶ b) : (f ⟶ f') ≃ (dual f' ⟶ dual f) :=
   rightMate (biadj f) (biadj f')
 
+/--
+@isnad1 id=eq.0h6v.s9.ac5e31f8a63e from=translated src=- shape=dc12a5c6 vocab=aaa80d64
+-/
 @[simp]
 theorem rotateEquiv_apply (α : f ⟶ f') : rotateEquiv f f' α = rotate α := rfl
 
+/--
+@isnad1 id=injectiv.0h5v.s7.e766e15b1e75 from=translated src=- shape=4857785f vocab=e53f0076
+-/
 theorem rotate_injective : Function.Injective (rotate : (f ⟶ f') → (dual f' ⟶ dual f)) :=
   (rotateEquiv f f').injective
 
@@ -95,20 +113,26 @@ def rotateFunctor (a b : B) : (a ⟶ b)ᵒᵖ ⥤ (b ⟶ a) where
   map_comp _ _ := rotate_comp _ _
 
 /-- Rotating back with the exchanged biadjunctions (in the direction of the right mate)
-recovers the original 2-morphism.-/
+recovers the original 2-morphism.
+@isnad1 id=eq.0h6v.s9.1ffa20654bed from=translated src=- shape=3f723a67 vocab=886e07b6
+-/
 @[simp]
 theorem rightMate_symm_rotate (α : f ⟶ f') :
     rightMate (biadj f').symm (biadj f).symm (rotate α) = α := by
   rw [rotate_eq_leftMate, rightMate_symm_leftMate]
 
 /-- Rotating back with the exchanged biadjunctions (in the direction of the left mate)
-recovers the original 2-morphism.-/
+recovers the original 2-morphism.
+@isnad1 id=eq.0h6v.s9.1274dfad4623 from=translated src=- shape=3f723a67 vocab=1372c98b
+-/
 @[simp]
 theorem leftMate_symm_rotate (α : f ⟶ f') :
     leftMate (biadj f').symm (biadj f).symm (rotate α) = α :=
   leftMate_symm_rightMate _ _ α
 
-/-- The rotation of `α` is cyclic for the exchanged biadjunctions.-/
+/-- The rotation of `α` is cyclic for the exchanged biadjunctions.
+@isnad1 id=iscyclic.0h6v.s7.439daded1adf from=translated src=- shape=e6445922 vocab=5cd06d6d
+-/
 theorem isCyclic_rotate (α : f ⟶ f') : IsCyclic (biadj f').symm (biadj f).symm (rotate α) :=
   (isCyclic α).rightMate
 
@@ -123,16 +147,23 @@ adjoints of `dual f`.-/
 def pivotalIso (f : a ⟶ b) : f ≅ dual (dual f) :=
   conjugateIsoEquiv (biadj f).right (biadj (dual f)).left (Iso.refl _)
 
+/--
+@isnad1 id=eq.0h4v.s9.0a6b1ba631d5 from=translated src=- shape=f6d68649 vocab=cf94dd11
+-/
 theorem pivotalIso_hom (f : a ⟶ b) :
     (pivotalIso f).hom = rightMate (biadj (dual f)) (biadj f).symm (𝟙 (dual f)) := rfl
 
-/-- Rotating twice is conjugation by the canonical comparisons `f ≅ dual (dual f)`.-/
+/-- Rotating twice is conjugation by the canonical comparisons `f ≅ dual (dual f)`.
+@isnad1 id=eq.0h6v.s8.9ff2959d5497 from=translated src=- shape=d2e09971 vocab=81045f70
+-/
 theorem rotate_rotate {f f' : a ⟶ b} (α : f ⟶ f') :
     rotate (rotate α) = (pivotalIso f).inv ≫ α ≫ (pivotalIso f').hom := by
   rw [rotate, rightMate_eq_comp' _ (biadj f').symm _ (biadj f).symm, rightMate_symm_rotate]
   rfl
 
-/-- The canonical comparison `f ≅ dual (dual f)` is natural.-/
+/-- The canonical comparison `f ≅ dual (dual f)` is natural.
+@isnad1 id=eq.0h6v.s8.b56ea4cde7b3 from=translated src=- shape=38e55a8a vocab=fa2685d3
+-/
 theorem pivotalIso_hom_naturality {f f' : a ⟶ b} (α : f ⟶ f') :
     α ≫ (pivotalIso f').hom = (pivotalIso f).hom ≫ rotate (rotate α) := by
   rw [rotate_rotate, Iso.hom_inv_id_assoc]
@@ -148,14 +179,18 @@ section Whisker
 def dualCompIso (f : a ⟶ b) (h : b ⟶ c) : dual (f ≫ h) ≅ dual h ≫ dual f :=
   conjugateIsoEquiv (biadj (f ≫ h)).left ((biadj f).comp (biadj h)).left (Iso.refl _)
 
-/-- Rotation commutes with right whiskering, up to the canonical comparisons.-/
+/-- Rotation commutes with right whiskering, up to the canonical comparisons.
+@isnad1 id=eq.0h8v.s8.e4fa95090816 from=translated src=- shape=2fcb5f34 vocab=5e398e30
+-/
 theorem rotate_whiskerRight {f f' : a ⟶ b} (α : f ⟶ f') (h : b ⟶ c) :
     rotate (α ▷ h) = (dualCompIso f' h).hom ≫ dual h ◁ rotate α ≫ (dualCompIso f h).inv := by
   rw [rotate, rightMate_eq_comp' _ ((biadj f).comp (biadj h)) _ ((biadj f').comp (biadj h)),
     rightMate_whiskerRight]
   rfl
 
-/-- Rotation commutes with left whiskering, up to the canonical comparisons.-/
+/-- Rotation commutes with left whiskering, up to the canonical comparisons.
+@isnad1 id=eq.0h8v.s8.b85530e06270 from=translated src=- shape=b4fbcb82 vocab=5e398e30
+-/
 theorem rotate_whiskerLeft (h : c ⟶ a) {f f' : a ⟶ b} (α : f ⟶ f') :
     rotate (h ◁ α) = (dualCompIso h f').hom ≫ rotate α ▷ dual h ≫ (dualCompIso h f).inv := by
   rw [rotate, rightMate_eq_comp' _ ((biadj h).comp (biadj f)) _ ((biadj h).comp (biadj f')),
@@ -176,22 +211,32 @@ abbrev rightTrace (α : f ⟶ f) : 𝟙 a ⟶ 𝟙 a := (biadj f).rightTrace α
 /-- The left trace for the chosen biadjunction.-/
 abbrev leftTrace (α : f ⟶ f) : 𝟙 b ⟶ 𝟙 b := (biadj f).leftTrace α
 
+/--
+@isnad1 id=eq.0h7v.s7.3625f6ec5be9 from=translated src=- shape=677a6854 vocab=6cbaf008
+-/
 theorem rightTrace_comp_comm (α : f ⟶ f') (β : f' ⟶ f) :
     rightTrace (α ≫ β) = rightTrace (β ≫ α) :=
   rightTrace_comp_comm_of_isCyclic_left (isCyclic α) β
 
+/--
+@isnad1 id=eq.0h7v.s7.85421914fc63 from=translated src=- shape=ff03e9cf vocab=1b1a68a0
+-/
 theorem leftTrace_comp_comm (α : f ⟶ f') (β : f' ⟶ f) :
     leftTrace (α ≫ β) = leftTrace (β ≫ α) :=
   leftTrace_comp_comm_of_isCyclic_left (isCyclic α) β
 
 /-- The right trace of `α` is the left trace of its rotation, for the exchanged
-biadjunction.-/
+biadjunction.
+@isnad1 id=eq.0h5v.s7.25ac4a18c8e9 from=translated src=- shape=12a2fe7a vocab=7a70dd92
+-/
 theorem rightTrace_eq_leftTrace_rotate (α : f ⟶ f) :
     rightTrace α = (biadj f).symm.leftTrace (rotate α) :=
   rightTrace_eq_leftTrace_rightMate _ α
 
 /-- The left trace of `α` is the right trace of its rotation, for the exchanged
-biadjunction.-/
+biadjunction.
+@isnad1 id=eq.0h5v.s7.ce068a9d5501 from=translated src=- shape=3822393c vocab=9cf49881
+-/
 theorem leftTrace_eq_rightTrace_rotate (α : f ⟶ f) :
     leftTrace α = (biadj f).symm.rightTrace (rotate α) :=
   leftTrace_eq_rightTrace_rightMate _ α

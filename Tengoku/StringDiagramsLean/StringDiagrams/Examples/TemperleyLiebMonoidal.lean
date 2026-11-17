@@ -36,13 +36,17 @@ abbrev TL : Type _ := (pres R δ).Presented
 abbrev TL.obj (n : ℕ) : TL R δ := (pres R δ).obj (strands n)
 
 set_option backward.isDefEq.respectTransparency false in
-/-- Tensor product of objects adds numbers of strands.-/
+/-- Tensor product of objects adds numbers of strands.
+@isnad1 id=eq.0h4v.s6.6235740d4299 from=translated src=- shape=84025777 vocab=ce3bf07a
+-/
 theorem TL.obj_tensor (m n : ℕ) : TL.obj R δ m ⊗ TL.obj R δ n = TL.obj R δ (m + n) := by
   rw [TL.obj, TL.obj, Presentation.obj_tensor]
   congr 1
   exact obj_ext (by simp [strands, Obj.tensor])
 
-/-- The unit object is the empty object.-/
+/-- The unit object is the empty object.
+@isnad1 id=eq.0h2v.s5.62e8b88eea99 from=translated src=- shape=acf6527a vocab=0fd8ae63
+-/
 theorem TL.obj_zero : 𝟙_ (TL R δ) = TL.obj R δ 0 := rfl
 
 /-- The cup `∅ → 1 ⊗ 1` in the free 2-category.-/
@@ -53,11 +57,19 @@ def cupD : (Obj.unit : Obj sig) ⟶ (strands 1).tensor (strands 1) :=
 def capD : (strands 1).tensor (strands 1) ⟶ (Obj.unit : Obj sig) :=
   dcap (m := 0) (i := 0) le_rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.a9705ac914c4 from=translated src=- shape=8a51f230 vocab=dae37f68
+-/
 theorem strands_one_tensor_unit : (strands 1).tensor Obj.unit = strands 1 := rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.6356d86bd96b from=translated src=- shape=0d913f39 vocab=dae37f68
+-/
 theorem unit_tensor_strands_one : (Obj.unit : Obj sig).tensor (strands 1) = strands 1 := rfl
 
-/-- The zigzag `(1 ⊗ cup) ≫ (cap ⊗ 1) = 1` in the form required by `ExactPairing`.-/
+/-- The zigzag `(1 ⊗ cup) ≫ (cap ⊗ 1) = 1` in the form required by `ExactPairing`.
+@isnad1 id=eq.0h2v.s9.bc5d39a1713e from=translated src=- shape=362d5624 vocab=e25d96a7
+-/
 theorem coevaluation_evaluation :
     (pres R δ).wL (strands 1) ((pres R δ).diag cupD) ≫
         eqToHom (congrArg (pres R δ).obj
@@ -73,7 +85,9 @@ theorem coevaluation_evaluation :
   · simp [Presentation.diag_eqToHom]
   · rfl
 
-/-- The zigzag `(cup ⊗ 1) ≫ (1 ⊗ cap) = 1` in the form required by `ExactPairing`.-/
+/-- The zigzag `(cup ⊗ 1) ≫ (1 ⊗ cap) = 1` in the form required by `ExactPairing`.
+@isnad1 id=eq.0h2v.s9.7fe51079c8d6 from=translated src=- shape=14f62ce1 vocab=e25d96a7
+-/
 theorem evaluation_coevaluation :
     (pres R δ).wR ((pres R δ).diag cupD) (strands 1) ≫
         eqToHom (congrArg (pres R δ).obj
@@ -96,13 +110,19 @@ instance exactPairing : ExactPairing (TL.obj R δ 1) (TL.obj R δ 1) where
   coevaluation_evaluation' := coevaluation_evaluation R δ
   evaluation_coevaluation' := evaluation_coevaluation R δ
 
-/-- The coevaluation of the exact pairing is the cup.-/
+/-- The coevaluation of the exact pairing is the cup.
+@isnad1 id=eq.0h2v.s8.6fe20588d2fe from=translated src=- shape=0a68ba33 vocab=2995dbae
+-/
 theorem coevaluation_eq : η_ (TL.obj R δ 1) (TL.obj R δ 1) = (pres R δ).diag cupD := rfl
 
-/-- The evaluation of the exact pairing is the cap.-/
+/-- The evaluation of the exact pairing is the cap.
+@isnad1 id=eq.0h2v.s8.44bef5d52e53 from=translated src=- shape=3a8a5b0e vocab=5436af45
+-/
 theorem evaluation_eq : ε_ (TL.obj R δ 1) (TL.obj R δ 1) = (pres R δ).diag capD := rfl
 
-/-- The loop value: evaluation after coevaluation is `δ`.-/
+/-- The loop value: evaluation after coevaluation is `δ`.
+@isnad1 id=eq.0h2v.s11.386586255363 from=translated src=- shape=63062da7 vocab=d071f340
+-/
 theorem coevaluation_comp_evaluation :
     η_ (TL.obj R δ 1) (TL.obj R δ 1) ≫ ε_ (TL.obj R δ 1) (TL.obj R δ 1) = δ • 𝟙 (𝟙_ (TL R δ)) :=
   loop_at δ (m := 0) (i := 0) le_rfl

@@ -65,6 +65,9 @@ variable (V : GradedSuperspace k)
 
 /-! ## Homogeneous components -/
 
+/--
+@isnad1 id=mem.1h5v.s8.f89571d1fd5d from=translated src=- shape=6d960490 vocab=fc57c16b
+-/
 theorem proj_mem (p : ZMod 2) {n : ℤ} {v : V.toSVec} (hv : v ∈ V.deg n) :
     V.toSVec.proj p v ∈ V.deg n := by
   rcases parity_eq_zero_or_one p with rfl | rfl
@@ -82,16 +85,24 @@ def dproj (n : ℤ) : V.toSVec →ₗ[k] V.toSVec :=
   (V.deg n).subtype ∘ₗ (DirectSum.component k ℤ (fun m => V.deg m) n) ∘ₗ
     (DirectSum.decomposeLinearEquiv V.deg).toLinearMap
 
+/--
+@isnad1 id=eq.1h4v.s8.1e8af10b9c87 from=translated src=- shape=7e63e30f vocab=13d8139d
+-/
 theorem dproj_of_mem {n : ℤ} {v : V.toSVec} (hv : v ∈ V.deg n) : V.dproj n v = v :=
   letI := V.degreeDecomposition
   DirectSum.decompose_of_mem_same _ hv
 
+/--
+@isnad1 id=eq.2h5v.s8.359ce7b2e17e from=translated src=- shape=5d1bda30 vocab=13d8139d
+-/
 theorem dproj_of_mem_ne {m n : ℤ} {v : V.toSVec} (hv : v ∈ V.deg m) (h : m ≠ n) :
     V.dproj n v = 0 :=
   letI := V.degreeDecomposition
   DirectSum.decompose_of_mem_ne _ hv h
 
-/-- Induction on vectors via homogeneous ones.-/
+/-- Induction on vectors via homogeneous ones.
+@isnad1 id=var.0h7v.s8.fe4fd976726a from=translated src=- shape=08e2295e vocab=4c145428
+-/
 @[elab_as_elim]
 theorem induction_on_deg {P : V.toSVec → Prop} (v : V.toSVec) (zero : P 0)
     (hom : ∀ (n : ℤ) (w : V.toSVec), w ∈ V.deg n → P w) (add : ∀ w w', P w → P w' → P (w + w')) :
@@ -103,7 +114,9 @@ theorem induction_on_deg {P : V.toSVec → Prop} (v : V.toSVec) (zero : P 0)
 def bideg (np : ℤ × ZMod 2) : Submodule k V.toSVec := V.deg np.1 ⊓ V.toSVec.part np.2
 
 /-- A graded superspace is the direct sum `⨁_{(n,p)} V_{n,p}` of its bihomogeneous
-components: the `ℤ`- and `ℤ/2`-gradings are independent.-/
+components: the `ℤ`- and `ℤ/2`-gradings are independent.
+@isnad1 id=isintern.0h2v.s7.8bb4e0754b08 from=translated src=- shape=38bccd76 vocab=d8365818
+-/
 theorem isInternal_bideg : DirectSum.IsInternal V.bideg := by
   classical
   refine (DirectSum.isInternal_submodule_iff_iSupIndep_and_iSup_eq_top _).2 ⟨?_, ?_⟩
@@ -151,13 +164,18 @@ def degHom (n : ℤ) : Submodule k (V.toSVec ⟶ W.toSVec) where
 
 variable {W}
 
-/-- The parity components of a homogeneous linear map are homogeneous of the same degree.-/
+/-- The parity components of a homogeneous linear map are homogeneous of the same degree.
+@isnad1 id=mem.1h6v.s10.68752cb6c96f from=translated src=- shape=cb37e824 vocab=1b24b504
+-/
 theorem homProj_mem_degHom (p : ZMod 2) {n : ℤ} {f : V.toSVec ⟶ W.toSVec}
     (hf : f ∈ degHom V W n) : SVec.homProj p f ∈ degHom V W n := fun m v hv => by
   rw [SVec.homProj_apply]
   exact Submodule.add_mem _ (W.proj_mem _ (hf m _ (V.proj_mem 0 hv)))
     (W.proj_mem _ (hf m _ (V.proj_mem 1 hv)))
 
+/--
+@isnad1 id=mem.1h6v.s10.d74871e33ef3 from=translated src=- shape=d6671288 vocab=7ca2543b
+-/
 theorem proj_mem_degHom (p : ZMod 2) {n : ℤ} {f : V.toSVec ⟶ W.toSVec}
     (hf : f ∈ degHom V W n) : proj k p f ∈ degHom V W n := by
   rw [SVec.proj_eq_homProj]; exact homProj_mem_degHom p hf
@@ -169,7 +187,9 @@ def evalHom (v : V.toSVec) : (V.toSVec ⟶ W.toSVec) →ₗ[k] W.toSVec where
   map_smul' _ _ := rfl
 
 variable (V W) in
-/-- The homogeneous linear maps of distinct degrees are independent.-/
+/-- The homogeneous linear maps of distinct degrees are independent.
+@isnad1 id=isupinde.0h3v.s7.7184735da3a6 from=translated src=- shape=bc763b6d vocab=91951fcb
+-/
 theorem iSupIndep_degHom : iSupIndep (degHom V W) := by
   refine iSupIndep_of_eval (degHom V W) (A := Σ m : ℤ, V.deg m) (N := fun _ => W.toSVec)
     (fun x => evalHom (x.2 : V.toSVec)) (fun x n => W.deg (x.1 + n))
@@ -216,10 +236,19 @@ def shift (a : ℤ) : GradedSuperspace k where
     exact V.isInternal_deg.submodule_iSup_eq_top
   odd_mem hv := V.odd_mem hv
 
+/--
+@isnad1 id=eq.0h3v.s4.e61fe0bd051a from=translated src=- shape=5f39cfeb vocab=5c75f3e1
+-/
 @[simp] theorem shift_toSVec (a : ℤ) : (V.shift a).toSVec = V.toSVec := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.02021af96573 from=translated src=- shape=9648756b vocab=6d7ca354
+-/
 @[simp] theorem shift_deg (a n : ℤ) : (V.shift a).deg n = V.deg (n + a) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.69a26f473a87 from=translated src=- shape=baa51a71 vocab=37af95e4
+-/
 @[simp] theorem piObj_deg (n : ℤ) : V.piObj.deg n = V.deg n := rfl
 
 end GradedSuperspace
@@ -238,6 +267,9 @@ open GradedSuperspace GradedSubcategory
 /-- A graded superspace, as an object of `GSVec k`.-/
 abbrev of (V : GradedSuperspace k) : GSVec k := ⟨V⟩
 
+/--
+@isnad1 id=iff.0h5v.s11.99face1505f4 from=translated src=- shape=18a35542 vocab=9d1b82ea
+-/
 theorem mem_parity_iff {V W : GSVec k} {p : ZMod 2} {f : V ⟶ W} :
     f ∈ parity (R := k) V W p ↔ f.1 ∈ SVec.parityHom V.as.toSVec W.as.toSVec p := Iff.rfl
 
@@ -248,9 +280,15 @@ def ζIso (V : GradedSuperspace k) : of V.piObj ≅ of V :=
   isoMk (SVec.ζIso V.toSVec) (m := 0) (n := 0) (fun m v hv => by rw [add_zero]; exact hv)
     (fun m v hv => by rw [add_zero]; exact hv)
 
+/--
+@isnad1 id=mem.0h2v.s10.9d1e996fcd3a from=translated src=- shape=b633833a vocab=3ea19b71
+-/
 theorem ζIso_hom_mem (V : GradedSuperspace k) : (ζIso V).hom ∈ parity (R := k) _ _ 1 :=
   SVec.ζIso_hom_mem V.toSVec
 
+/--
+@isnad1 id=mem.0h2v.s10.6a86368e0e42 from=translated src=- shape=68d04842 vocab=a975b9c4
+-/
 theorem ζIso_hom_mem_degree (V : GradedSuperspace k) :
     (ζIso V).hom ∈ GradedSupercategory.degree (R := k) _ _ 0 := fun m v hv => by
   rw [add_zero]; exact hv
@@ -278,15 +316,27 @@ def σbarIso (V : GradedSuperspace k) : of (qinvObj V) ≅ of V :=
   isoMk (Iso.refl V.toSVec) (m := 1) (n := -1) (fun m v hv => hv)
     (fun m v hv => by rw [shift_deg, neg_add_cancel_right]; exact hv)
 
+/--
+@isnad1 id=mem.0h2v.s10.5be249de082e from=translated src=- shape=b633833a vocab=1c6893d9
+-/
 theorem σIso_hom_mem (V : GradedSuperspace k) : (σIso V).hom ∈ parity (R := k) _ _ 0 :=
   mem_parity_iff.2 (id_mem V.toSVec)
 
+/--
+@isnad1 id=mem.0h2v.s10.afb3b87360e2 from=translated src=- shape=968e4613 vocab=9f55946f
+-/
 theorem σIso_hom_mem_degree (V : GradedSuperspace k) :
     (σIso V).hom ∈ GradedSupercategory.degree (R := k) _ _ (-1) := fun _ _ hv => hv
 
+/--
+@isnad1 id=mem.0h2v.s10.a29529bf4fb0 from=translated src=- shape=b633833a vocab=04cce3ca
+-/
 theorem σbarIso_hom_mem (V : GradedSuperspace k) : (σbarIso V).hom ∈ parity (R := k) _ _ 0 :=
   mem_parity_iff.2 (id_mem V.toSVec)
 
+/--
+@isnad1 id=mem.0h2v.s10.f9465da0593b from=translated src=- shape=68d04842 vocab=10dd3de9
+-/
 theorem σbarIso_hom_mem_degree (V : GradedSuperspace k) :
     (σbarIso V).hom ∈ GradedSupercategory.degree (R := k) _ _ 1 := fun _ _ hv => hv
 

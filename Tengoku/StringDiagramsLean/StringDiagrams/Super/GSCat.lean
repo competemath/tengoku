@@ -92,8 +92,14 @@ def comp (F : GradedSuperfunctor R A B) (G : GradedSuperfunctor R B C) :
   toSuperfunctor := F.toSuperfunctor.comp G.toSuperfunctor
   isGraded := inferInstanceAs (IsGradedSuperfunctor R (F.toFunctor ⋙ G.toFunctor))
 
+/--
+@isnad1 id=eq.0h2v.s6.0a3936e5809a from=translated src=- shape=65aeb547 vocab=7fab4d62
+-/
 @[simp] theorem id_toSuperfunctor : (id R A).toSuperfunctor = Superfunctor.id R A := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.7a6b7da0cbfa from=translated src=- shape=91a8792b vocab=ed016cc6
+-/
 @[simp] theorem comp_toSuperfunctor (F : GradedSuperfunctor R A B) (G : GradedSuperfunctor R B C) :
     (F.comp G).toSuperfunctor = F.toSuperfunctor.comp G.toSuperfunctor := rfl
 
@@ -108,6 +114,9 @@ def degNat (F G : GradedSuperfunctor R A B) (n : ℤ) :
   smul_mem' r x hx p X := by
     rw [Superfunctor.smul_app]; exact Submodule.smul_mem _ _ (hx p X)
 
+/--
+@isnad1 id=iff.0h7v.s10.b60a9ca7ca71 from=translated src=- shape=3c12af11 vocab=7110211f
+-/
 theorem mem_degNat_iff {F G : GradedSuperfunctor R A B} {n : ℤ}
     {x : F.toSuperfunctor ⟶ G.toSuperfunctor} :
     x ∈ degNat F G n ↔ ∀ (p : ZMod 2) (X : A), x.app p X ∈ degree (R := R) (F.obj X) (G.obj X) n :=
@@ -120,6 +129,9 @@ def evalNat (F G : GradedSuperfunctor R A B) (p : ZMod 2) (X : A) :
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+/--
+@isnad1 id=isupinde.0h5v.s9.7e6bf7065dff from=translated src=- shape=f49cb193 vocab=cb81c01e
+-/
 theorem iSupIndep_degNat (F G : GradedSuperfunctor R A B) : iSupIndep (degNat F G) := by
   refine iSupIndep_of_eval (degNat F G) (A := ZMod 2 × A) (N := fun pX => F.obj pX.2 ⟶ G.obj pX.2)
     (fun pX => evalNat F G pX.1 pX.2) (fun pX n => degree (R := R) (F.obj pX.2) (G.obj pX.2) n)
@@ -129,11 +141,17 @@ theorem iSupIndep_degNat (F G : GradedSuperfunctor R A B) : iSupIndep (degNat F 
   · intro x hx
     exact Superfunctor.hom_ext fun p X => hx (p, X)
 
+/--
+@isnad1 id=mem.1h9v.s11.35b76ec319fb from=translated src=- shape=25f87893 vocab=06662446
+-/
 theorem whiskerLeft_mem_degNat (F : GradedSuperfunctor R A B) {G K : GradedSuperfunctor R B C}
     {n : ℤ} {y : G.toSuperfunctor ⟶ K.toSuperfunctor} (hy : y ∈ degNat G K n) :
     Superfunctor.whiskerLeft F.toSuperfunctor y ∈ degNat (F.comp G) (F.comp K) n :=
   fun p X => hy p (F.obj X)
 
+/--
+@isnad1 id=mem.1h9v.s11.0e1d975d46c9 from=translated src=- shape=d881c510 vocab=d30625e2
+-/
 theorem whiskerRight_mem_degNat {F H : GradedSuperfunctor R A B} {n : ℤ}
     {x : F.toSuperfunctor ⟶ H.toSuperfunctor} (hx : x ∈ degNat F H n)
     (G : GradedSuperfunctor R B C) :
@@ -163,6 +181,9 @@ def family : GradedHomFamily R (Superfunctor R A B) (GradedSuperfunctor R A B) w
   indep := iSupIndep_degNat
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=mem.1h8v.s12.86bfb94634b6 from=translated src=- shape=83d3f660 vocab=3210902c
+-/
 theorem whiskerLeft_mem_hom (F : GradedSuperfunctor R A B) {G K : GradedSuperfunctor R B C}
     {y : G.toSuperfunctor ⟶ K.toSuperfunctor} (hy : y ∈ (family R B C).hom G K) :
     Superfunctor.whiskerLeft F.toSuperfunctor y ∈ (family R A C).hom (F.comp G) (F.comp K) := by
@@ -175,6 +196,9 @@ theorem whiskerLeft_mem_hom (F : GradedSuperfunctor R A B) {G K : GradedSuperfun
     rw [Superfunctor.whiskerLeft_add]; exact Submodule.add_mem _ hy hz
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=mem.1h8v.s12.5ca1de6bc536 from=translated src=- shape=fc062ab9 vocab=42aa3420
+-/
 theorem whiskerRight_mem_hom {F H : GradedSuperfunctor R A B}
     {x : F.toSuperfunctor ⟶ H.toSuperfunctor} (hx : x ∈ (family R A B).hom F H)
     (G : GradedSuperfunctor R B C) :
@@ -203,7 +227,9 @@ abbrev of (F : GradedSuperfunctor R A B) : GradedHom R A B := ⟨F⟩
 
 /-- The morphisms of degree `n` of `ℋom(A, B)` are the supernatural transformations whose
 parity components are homogeneous supernatural transformations of degree `n`
-(Definition 6.1).-/
+(Definition 6.1).
+@isnad1 id=iff.0h7v.s13.06b136596ca6 from=translated src=- shape=c841b549 vocab=194a9a04
+-/
 theorem mem_degree_iff {F G : GradedHom R A B} {n : ℤ} {x : F ⟶ G} :
     x ∈ degree (R := R) F G n ↔ ∀ p : ZMod 2, IsGradedSupernatural R p n (x.1.app p) :=
   ⟨fun h p => ⟨x.1.isSupernatural p, h p⟩, fun h p X => (h p).mem_degree X⟩
@@ -218,15 +244,24 @@ def ofHomogeneous {F G : GradedHom R A B} {p : ZMod 2} {n : ℤ}
     · exact hx.mem_degree X
     · exact Submodule.zero_mem _
 
+/--
+@isnad1 id=eq.1h10v.s13.6d24384be4b0 from=translated src=- shape=92771e56 vocab=6e582950
+-/
 @[simp] theorem ofHomogeneous_app {F G : GradedHom R A B} {p : ZMod 2} {n : ℤ}
     {x : ∀ X, F.as.obj X ⟶ G.as.obj X} (hx : IsGradedSupernatural R p n x) (q : ZMod 2) (X : A) :
     (ofHomogeneous hx).1.app q X = if q = p then x X else 0 := rfl
 
+/--
+@isnad1 id=mem.1h8v.s11.80a7cafb2fc5 from=translated src=- shape=69d46744 vocab=753ba3af
+-/
 theorem ofHomogeneous_mem {F G : GradedHom R A B} {p : ZMod 2} {n : ℤ}
     {x : ∀ X, F.as.obj X ⟶ G.as.obj X} (hx : IsGradedSupernatural R p n x) :
     ofHomogeneous hx ∈ parity (R := R) F G p :=
   Superfunctor.IsSupernatural.toSuperNatTrans_mem hx.toIsSupernatural
 
+/--
+@isnad1 id=mem.1h8v.s11.aa7e06436b0a from=translated src=- shape=ee7139b3 vocab=b11017be
+-/
 theorem ofHomogeneous_mem_degree {F G : GradedHom R A B} {p : ZMod 2} {n : ℤ}
     {x : ∀ X, F.as.obj X ⟶ G.as.obj X} (hx : IsGradedSupernatural R p n x) :
     ofHomogeneous hx ∈ degree (R := R) F G n :=
@@ -246,11 +281,17 @@ def isoOfHomogeneous {F G : GradedHom R A B} {p : ZMod 2} {n : ℤ}
     (fun X => by rcases parity_eq_zero_or_one p with rfl | rfl <;> simp)
     (fun X => by rcases parity_eq_zero_or_one p with rfl | rfl <;> simp))
 
+/--
+@isnad1 id=eq.2h8v.s10.3d7822246677 from=translated src=- shape=fbf1179f vocab=4f354b11
+-/
 @[simp] theorem isoOfHomogeneous_hom {F G : GradedHom R A B} {p : ZMod 2} {n : ℤ}
     {x : ∀ X, F.as.obj X ≅ G.as.obj X} (hx : IsGradedSupernatural R p n fun X => (x X).hom)
     (hx' : IsGradedSupernatural R p (-n) fun X => (x X).inv) :
     (isoOfHomogeneous hx hx').hom = ofHomogeneous hx := rfl
 
+/--
+@isnad1 id=eq.2h8v.s10.f721fd061879 from=translated src=- shape=b505f253 vocab=4f354b11
+-/
 @[simp] theorem isoOfHomogeneous_inv {F G : GradedHom R A B} {p : ZMod 2} {n : ℤ}
     {x : ∀ X, F.as.obj X ≅ G.as.obj X} (hx : IsGradedSupernatural R p n fun X => (x X).hom)
     (hx' : IsGradedSupernatural R p (-n) fun X => (x X).inv) :
@@ -306,34 +347,63 @@ instance (A B : GSCat.{w, v, u} R) : Supercategory R (A ⟶ B) :=
 instance (A B : GSCat.{w, v, u} R) : GradedSupercategory R (A ⟶ B) :=
   inferInstanceAs (GradedSupercategory R (GradedHom R A B))
 
+/--
+@isnad1 id=eq.0h3v.s6.de212c468698 from=translated src=- shape=68bfd8f2 vocab=4d962969
+-/
 theorem hom_def (A B : GSCat.{w, v, u} R) : (A ⟶ B) = GradedHom R A B := rfl
 
+/--
+@isnad1 id=eq.0h8v.s16.8dfdfa4f6257 from=translated src=- shape=e98539d3 vocab=3bfc3bf5
+-/
 @[simp] theorem whiskerLeft_val {A B C : GSCat.{w, v, u} R} (F : A ⟶ B) {G K : B ⟶ C}
     (y : G ⟶ K) : (F ◁ y).1 = Superfunctor.whiskerLeft F.as.toSuperfunctor y.1 := rfl
 
+/--
+@isnad1 id=eq.0h8v.s16.46720695cfe8 from=translated src=- shape=c8ab3cab vocab=cf54a08a
+-/
 @[simp] theorem whiskerRight_val {A B C : GSCat.{w, v, u} R} {F H : A ⟶ B} (x : F ⟶ H)
     (G : B ⟶ C) : (x ▷ G).1 = Superfunctor.whiskerRight x.1 G.as.toSuperfunctor := rfl
 
+/--
+@isnad1 id=eq.0h8v.s8.b3447ca8fcdd from=translated src=- shape=019c06be vocab=80dacb07
+-/
 @[simp] theorem associator_hom {A B C D : GSCat.{w, v, u} R} (F : A ⟶ B) (G : B ⟶ C)
     (H : C ⟶ D) : (associator F G H).hom = 𝟙 (F ≫ G ≫ H) := rfl
 
+/--
+@isnad1 id=eq.0h8v.s8.eafb25ab0d94 from=translated src=- shape=d6acb92e vocab=17813ca7
+-/
 @[simp] theorem associator_inv {A B C D : GSCat.{w, v, u} R} (F : A ⟶ B) (G : B ⟶ C)
     (H : C ⟶ D) : (associator F G H).inv = 𝟙 (F ≫ G ≫ H) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.8ea79bb2b820 from=translated src=- shape=4a3d7ab8 vocab=44f9e6e3
+-/
 @[simp] theorem leftUnitor_hom {A B : GSCat.{w, v, u} R} (F : A ⟶ B) :
     (leftUnitor F).hom = 𝟙 F := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.16a818cc6993 from=translated src=- shape=342726aa vocab=793e0b6d
+-/
 @[simp] theorem leftUnitor_inv {A B : GSCat.{w, v, u} R} (F : A ⟶ B) :
     (leftUnitor F).inv = 𝟙 F := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.bbc8a1a670b9 from=translated src=- shape=2929adf1 vocab=0420c78c
+-/
 @[simp] theorem rightUnitor_hom {A B : GSCat.{w, v, u} R} (F : A ⟶ B) :
     (rightUnitor F).hom = 𝟙 F := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.04ab3497cd92 from=translated src=- shape=14a7ed85 vocab=112cfac8
+-/
 @[simp] theorem rightUnitor_inv {A B : GSCat.{w, v, u} R} (F : A ⟶ B) :
     (rightUnitor F).inv = 𝟙 F := rfl
 
 /-- **Brundan–Ellis, §6 (after Definition 6.2).** Graded supercategories, graded superfunctors
-and graded supernatural transformations form a 2-supercategory `𝔊𝔖ℭ𝔞𝔱`.-/
+and graded supernatural transformations form a 2-supercategory `𝔊𝔖ℭ𝔞𝔱`.
+@isnad1 id=twosuper.0h1v.s4.b347dde2fbea from=translated src=- shape=84bfdc15 vocab=a392053b
+-/
 instance instTwoSupercategory : TwoSupercategory R (GSCat.{w, v, u} R) where
   whiskerLeft_id F G := Subtype.ext
     (TwoSupercategory.whiskerLeft_id (R := R) (B := SCat R) F.as.toSuperfunctor G.as.toSuperfunctor)
@@ -378,7 +448,9 @@ instance instTwoSupercategory : TwoSupercategory R (GSCat.{w, v, u} R) where
   rightUnitor_hom_mem _ := id_mem _
 
 /-- **Brundan–Ellis, §6 (after Definition 6.2).** `𝔊𝔖ℭ𝔞𝔱` is a graded 2-supercategory: the
-whiskerings preserve degrees.-/
+whiskerings preserve degrees.
+@isnad1 id=gradedtw.0h1v.s4.ca1b1d88920c from=translated src=- shape=84bfdc15 vocab=b6f2b10c
+-/
 instance instGradedTwoSupercategory : GradedTwoSupercategory R (GSCat.{w, v, u} R) where
   whiskerLeft_mem_degree F _ _ _ _ hη := whiskerLeft_mem_degNat F.as hη
   whiskerRight_mem_degree h hη := whiskerRight_mem_degNat hη h.as
@@ -434,11 +506,16 @@ instance (A B : QPiGSCat.{w, v, u} R) : Supercategory R (A ⟶ B) :=
 instance (A B : QPiGSCat.{w, v, u} R) : GradedSupercategory R (A ⟶ B) :=
   inferInstanceAs (GradedSupercategory R (A.toGSCat ⟶ B.toGSCat))
 
+/--
+@isnad1 id=eq.0h3v.s7.c76c2f42a409 from=translated src=- shape=8a7be96d vocab=640b3f31
+-/
 theorem hom_def (A B : QPiGSCat.{w, v, u} R) : (A ⟶ B) = GradedHom R A B := rfl
 
 /-- **Brundan–Ellis, §6 (after Definition 6.5).** Graded `(Q, Π)`-supercategories, graded
 superfunctors and graded supernatural transformations form a 2-supercategory
-`(Q, Π)-𝔊𝔖ℭ𝔞𝔱`.-/
+`(Q, Π)-𝔊𝔖ℭ𝔞𝔱`.
+@isnad1 id=twosuper.0h1v.s4.c7c6179e4376 from=translated src=- shape=84bfdc15 vocab=fb2baccd
+-/
 instance instTwoSupercategory : TwoSupercategory R (QPiGSCat.{w, v, u} R) where
   whiskerLeft_id F G := TwoSupercategory.whiskerLeft_id (R := R) (B := GSCat R) F G
   whiskerLeft_comp F _ _ _ y z := TwoSupercategory.whiskerLeft_comp (R := R) (B := GSCat R) F y z
@@ -462,7 +539,9 @@ instance instTwoSupercategory : TwoSupercategory R (QPiGSCat.{w, v, u} R) where
   leftUnitor_hom_mem F := TwoSupercategory.leftUnitor_hom_mem (B := GSCat R) F
   rightUnitor_hom_mem F := TwoSupercategory.rightUnitor_hom_mem (B := GSCat R) F
 
-/-- `(Q, Π)-𝔊𝔖ℭ𝔞𝔱` is a graded 2-supercategory.-/
+/-- `(Q, Π)-𝔊𝔖ℭ𝔞𝔱` is a graded 2-supercategory.
+@isnad1 id=gradedtw.0h1v.s4.338126f182c7 from=translated src=- shape=84bfdc15 vocab=317af831
+-/
 instance instGradedTwoSupercategory : GradedTwoSupercategory R (QPiGSCat.{w, v, u} R) where
   whiskerLeft_mem_degree F _ _ _ _ hη :=
     GradedTwoSupercategory.whiskerLeft_mem_degree (R := R) (B := GSCat R) F hη
@@ -475,7 +554,9 @@ instance instGradedTwoSupercategory : GradedTwoSupercategory R (QPiGSCat.{w, v, 
   rightUnitor_hom_mem_degree F :=
     GradedTwoSupercategory.rightUnitor_hom_mem_degree (R := R) (B := GSCat R) F
 
-/-- `(Q, Π)-𝔊𝔖ℭ𝔞𝔱` is a strict 2-supercategory.-/
+/-- `(Q, Π)-𝔊𝔖ℭ𝔞𝔱` is a strict 2-supercategory.
+@isnad1 id=strict.0h1v.s3.d6921007cdfd from=translated src=- shape=1666ae32 vocab=fe9c9414
+-/
 instance instStrict : BicategoryStruct.Strict (QPiGSCat.{w, v, u} R) where
   id_comp _ := rfl
   comp_id _ := rfl
@@ -502,18 +583,27 @@ section Iso
 variable {C : Type u} [Category.{v} C] [Preadditive C] [Linear R C] [Supercategory R C]
   [GradedSupercategory R C] [QPiSupercategory R C]
 
+/--
+@isnad1 id=issupern.0h2v.s7.142f7977ce9f from=translated src=- shape=e7ef18b8 vocab=68000364
+-/
 theorem ζ_inv_isSupernatural :
     IsSupernatural R 1 (F := 𝟭 C) (G := PiSupercategory.pi (R := R)) fun X =>
       (PiSupercategory.ζ (R := R) X).inv :=
   IsSupernatural.of_twist (fun X => ζ_inv_mem X) fun {X Y} f => by
     rw [pi_map_eq, twist_twist, Iso.inv_hom_id_assoc]; rfl
 
+/--
+@isnad1 id=issupern.0h2v.s7.d141cf3cd0cb from=translated src=- shape=dae3716c vocab=a76ba2c8
+-/
 theorem σ_inv_isSupernatural :
     IsSupernatural R 0 (F := 𝟭 C) (G := QPiSupercategory.Q (R := R)) fun X =>
       (QPiSupercategory.σ (R := R) X).inv :=
   IsSupernatural.of_twist (fun X => σ_inv_mem X) fun {X Y} f => by
     rw [twist_zero, Q_map_eq, Iso.inv_hom_id_assoc]; rfl
 
+/--
+@isnad1 id=issupern.0h2v.s7.382ff332d34d from=translated src=- shape=dae3716c vocab=bee67e6d
+-/
 theorem σbar_inv_isSupernatural :
     IsSupernatural R 0 (F := 𝟭 C) (G := QPiSupercategory.Qinv (R := R)) fun X =>
       (QPiSupercategory.σbar (R := R) X).inv :=
@@ -524,31 +614,49 @@ end Iso
 
 variable (A : QPiGSCat.{w, v, u} R)
 
+/--
+@isnad1 id=isgraded.0h2v.s9.38abfacbcb60 from=translated src=- shape=1570846c vocab=6a5faf0d
+-/
 theorem ζ_hom_isGradedSupernatural :
     IsGradedSupernatural R 1 0 (F := PiSupercategory.pi (R := R) (C := A)) (G := 𝟭 A) fun X =>
       (PiSupercategory.ζ (R := R) X).hom :=
   ⟨PiSupercategory.ζ_isSupernatural, fun X => ζ_hom_mem_degree X⟩
 
+/--
+@isnad1 id=isgraded.0h2v.s9.b02a369a53bd from=translated src=- shape=202b247f vocab=a544157c
+-/
 theorem ζ_inv_isGradedSupernatural :
     IsGradedSupernatural R 1 (-0) (F := 𝟭 A) (G := PiSupercategory.pi (R := R)) fun X =>
       (PiSupercategory.ζ (R := R) X).inv :=
   ⟨ζ_inv_isSupernatural, fun X => by rw [neg_zero]; exact ζ_inv_mem_degree X⟩
 
+/--
+@isnad1 id=isgraded.0h2v.s8.1fa2cceb1063 from=translated src=- shape=8684bcb5 vocab=a1dd8189
+-/
 theorem σ_hom_isGradedSupernatural :
     IsGradedSupernatural R 0 (-1) (F := QPiSupercategory.Q (R := R) (C := A)) (G := 𝟭 A) fun X =>
       (QPiSupercategory.σ (R := R) X).hom :=
   ⟨QPiSupercategory.σ_isSupernatural, fun X => σ_hom_mem_degree X⟩
 
+/--
+@isnad1 id=isgraded.0h2v.s8.ca95ff4a71a1 from=translated src=- shape=f80e1b10 vocab=0eab690e
+-/
 theorem σ_inv_isGradedSupernatural :
     IsGradedSupernatural R 0 (-(-1)) (F := 𝟭 A) (G := QPiSupercategory.Q (R := R)) fun X =>
       (QPiSupercategory.σ (R := R) X).inv :=
   ⟨σ_inv_isSupernatural, fun X => by rw [neg_neg]; exact σ_inv_mem_degree X⟩
 
+/--
+@isnad1 id=isgraded.0h2v.s8.c84892d99cab from=translated src=- shape=e4751da8 vocab=35c504be
+-/
 theorem σbar_hom_isGradedSupernatural :
     IsGradedSupernatural R 0 1 (F := QPiSupercategory.Qinv (R := R) (C := A)) (G := 𝟭 A) fun X =>
       (QPiSupercategory.σbar (R := R) X).hom :=
   ⟨QPiSupercategory.σbar_isSupernatural, fun X => σbar_hom_mem_degree X⟩
 
+/--
+@isnad1 id=isgraded.0h2v.s8.aa9f08df2753 from=translated src=- shape=5f0f23cb vocab=d4c9f223
+-/
 theorem σbar_inv_isGradedSupernatural :
     IsGradedSupernatural R 0 (-1) (F := 𝟭 A) (G := QPiSupercategory.Qinv (R := R)) fun X =>
       (QPiSupercategory.σbar (R := R) X).inv :=
@@ -593,12 +701,21 @@ instance instQPiTwoSupercategory : QPiTwoSupercategory R (QPiGSCat.{w, v, u} R) 
   σbar_hom_mem A := ofHomogeneous_mem (σbar_hom_isGradedSupernatural A)
   σbar_hom_mem_degree A := ofHomogeneous_mem_degree (σbar_hom_isGradedSupernatural A)
 
+/--
+@isnad1 id=eq.0h3v.s15.f869a0b98997 from=translated src=- shape=89a68fa0 vocab=db6d3e20
+-/
 @[simp] theorem ζ_hom_app_one (A : QPiGSCat.{w, v, u} R) (X : A) :
     (PiTwoSupercategory.ζ (R := R) A).hom.1.app 1 X = (PiSupercategory.ζ (R := R) X).hom := rfl
 
+/--
+@isnad1 id=eq.0h3v.s15.68991f340702 from=translated src=- shape=7a259974 vocab=2277d713
+-/
 @[simp] theorem σ_hom_app_zero (A : QPiGSCat.{w, v, u} R) (X : A) :
     (QPiTwoSupercategory.σ (R := R) A).hom.1.app 0 X = (QPiSupercategory.σ (R := R) X).hom := rfl
 
+/--
+@isnad1 id=eq.0h3v.s15.7f95133103ec from=translated src=- shape=7a259974 vocab=f91c4c1b
+-/
 @[simp] theorem σbar_hom_app_zero (A : QPiGSCat.{w, v, u} R) (X : A) :
     (QPiTwoSupercategory.σbar (R := R) A).hom.1.app 0 X =
       (QPiSupercategory.σbar (R := R) X).hom := rfl

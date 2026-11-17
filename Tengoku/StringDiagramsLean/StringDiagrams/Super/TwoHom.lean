@@ -87,14 +87,22 @@ namespace TwoNatTrans
 variable {F G H I : TwoSuperfunctor R B C}
 
 omit [TwoSupercategory R B] in
-/-- The components of an `eqToHom` between 2-natural transformations are `eqToHom`s.-/
+/-- The components of an `eqToHom` between 2-natural transformations are `eqToHom`s.
+@isnad1 id=eq.1h8v.s9.21ff03f6aa04 from=translated src=- shape=414e2e93 vocab=c28a89b0
+-/
 theorem eqToHom_app {θ θ' : TwoNatTrans F G} (h : θ = θ') (a : B) :
     (eqToHom h).app a = eqToHom (congrArg (fun ψ => TwoNatTrans.X ψ a) h) := by
   subst h; rfl
 
+/--
+@isnad1 id=eq.0h8v.s9.b34d676a3223 from=translated src=- shape=d26f682a vocab=e6d656cf
+-/
 theorem toOplaxTrans_vcomp (θ : TwoNatTrans F G) (ψ : TwoNatTrans G H) :
     toOplaxTrans (vcomp θ ψ) = toOplaxTrans θ ≫ toOplaxTrans ψ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.426e9f05a12a from=translated src=- shape=c5cec281 vocab=8ad5fc93
+-/
 theorem toOplaxTrans_id : toOplaxTrans (id F) = 𝟙 F.toOplax := rfl
 
 /-- A modification of the associated oplax transformations (whose components are even) as a
@@ -157,9 +165,15 @@ def whiskerRight {θ θ' : TwoNatTrans F G} (α : θ ⟶ θ') (ψ : TwoNatTrans 
       ← associator_naturality_left_assoc R, ← comp_whiskerRight'_assoc R, hα,
       comp_whiskerRight'_assoc R, ← associator_inv_naturality_middle_assoc R]
 
+/--
+@isnad1 id=eq.0h11v.s9.9cb8c58534f9 from=translated src=- shape=c86d0dbf vocab=733fce67
+-/
 @[simp] theorem whiskerLeft_app (θ : TwoNatTrans F G) {ψ ψ' : TwoNatTrans G H} (α : ψ ⟶ ψ')
     (a : B) : (whiskerLeft θ α).app a = θ.X a ◁ α.app a := rfl
 
+/--
+@isnad1 id=eq.0h11v.s9.0d1c0d291c31 from=translated src=- shape=f6b448ee vocab=2a1236ab
+-/
 @[simp] theorem whiskerRight_app {θ θ' : TwoNatTrans F G} (α : θ ⟶ θ') (ψ : TwoNatTrans G H)
     (a : B) : (whiskerRight α ψ).app a = α.app a ▷ ψ.X a := rfl
 
@@ -179,25 +193,43 @@ def leftUnitor (θ : TwoNatTrans F G) : vcomp (id F) θ ≅ θ :=
 def rightUnitor (θ : TwoNatTrans F G) : vcomp θ (id G) ≅ θ :=
   isoOfOplaxModificationIso (θ := vcomp θ (id G)) (θ' := θ) (Bicategory.rightUnitor θ.toOplaxTrans)
 
+/--
+@isnad1 id=eq.0h11v.s10.f825395b608e from=translated src=- shape=2466ec5c vocab=4ced491f
+-/
 @[simp] theorem associator_hom_app (θ : TwoNatTrans F G) (ψ : TwoNatTrans G H)
     (φ : TwoNatTrans H I) (a : B) :
     (associator θ ψ φ).hom.app a = (BicategoryStruct.associator (θ.X a) (ψ.X a) (φ.X a)).hom :=
   rfl
 
+/--
+@isnad1 id=eq.0h11v.s10.c729328b70ab from=translated src=- shape=7ff9d311 vocab=45a3babb
+-/
 @[simp] theorem associator_inv_app (θ : TwoNatTrans F G) (ψ : TwoNatTrans G H)
     (φ : TwoNatTrans H I) (a : B) :
     (associator θ ψ φ).inv.app a = (BicategoryStruct.associator (θ.X a) (ψ.X a) (φ.X a)).inv :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.a18e2461cec1 from=translated src=- shape=0922a768 vocab=255e0222
+-/
 @[simp] theorem leftUnitor_hom_app (θ : TwoNatTrans F G) (a : B) :
     (leftUnitor θ).hom.app a = (BicategoryStruct.leftUnitor (θ.X a)).hom := rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.6cc027126aa9 from=translated src=- shape=7f44e39c vocab=164a43cd
+-/
 @[simp] theorem leftUnitor_inv_app (θ : TwoNatTrans F G) (a : B) :
     (leftUnitor θ).inv.app a = (BicategoryStruct.leftUnitor (θ.X a)).inv := rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.f1503057c003 from=translated src=- shape=6e15120f vocab=5877aede
+-/
 @[simp] theorem rightUnitor_hom_app (θ : TwoNatTrans F G) (a : B) :
     (rightUnitor θ).hom.app a = (BicategoryStruct.rightUnitor (θ.X a)).hom := rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.85952c948a3a from=translated src=- shape=876f02ad vocab=a48dfd9c
+-/
 @[simp] theorem rightUnitor_inv_app (θ : TwoNatTrans F G) (a : B) :
     (rightUnitor θ).inv.app a = (BicategoryStruct.rightUnitor (θ.X a)).inv := rfl
 
@@ -232,42 +264,84 @@ instance (F G : TwoSuperfunctor R B C) : Supercategory R (F ⟶ G) :=
 
 variable {F G H I : TwoSuperfunctor R B C}
 
+/--
+@isnad1 id=eq.0h5v.s8.ebe5e402d292 from=translated src=- shape=c1682dc8 vocab=aadde5d4
+-/
 theorem hom_def (F G : TwoSuperfunctor R B C) : (F ⟶ G) = TwoNatTrans F G := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.5c1f870b4f7d from=translated src=- shape=42666a3a vocab=3330aab3
+-/
 theorem id_def (F : TwoSuperfunctor R B C) : 𝟙 F = TwoNatTrans.id F := rfl
 
+/--
+@isnad1 id=eq.0h8v.s8.47c10d655ac4 from=translated src=- shape=c37dd57a vocab=664af21f
+-/
 theorem comp_def (θ : F ⟶ G) (ψ : G ⟶ H) : θ ≫ ψ = TwoNatTrans.vcomp θ ψ := rfl
 
+/--
+@isnad1 id=eq.0h9v.s9.aaf78a63ea17 from=translated src=- shape=545d7438 vocab=6af06efe
+-/
 @[simp] theorem comp_X (θ : F ⟶ G) (ψ : G ⟶ H) (a : B) :
     TwoNatTrans.X (θ ≫ ψ) a = θ.X a ≫ ψ.X a := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.0a331c170ee7 from=translated src=- shape=16a237c0 vocab=043c1cfd
+-/
 @[simp] theorem id_X (F : TwoSuperfunctor R B C) (a : B) :
     TwoNatTrans.X (𝟙 F) a = 𝟙 (F.obj a) := rfl
 
+/--
+@isnad1 id=eq.0h11v.s10.c7d7b868d7bf from=translated src=- shape=19ead7f1 vocab=692211db
+-/
 @[simp] theorem whiskerLeft_app (θ : F ⟶ G) {ψ ψ' : G ⟶ H} (α : ψ ⟶ ψ') (a : B) :
     (θ ◁ α).app a = θ.X a ◁ α.app a := rfl
 
+/--
+@isnad1 id=eq.0h11v.s10.31cadee05b19 from=translated src=- shape=db9ad08f vocab=9f66757b
+-/
 @[simp] theorem whiskerRight_app {θ θ' : F ⟶ G} (α : θ ⟶ θ') (ψ : G ⟶ H) (a : B) :
     (α ▷ ψ).app a = α.app a ▷ ψ.X a := rfl
 
+/--
+@isnad1 id=eq.0h11v.s10.9502449a32ad from=translated src=- shape=091ae0cf vocab=6b955872
+-/
 @[simp] theorem associator_hom_app (θ : F ⟶ G) (ψ : G ⟶ H) (φ : H ⟶ I) (a : B) :
     (associator θ ψ φ).hom.app a = (associator (θ.X a) (ψ.X a) (φ.X a)).hom := rfl
 
+/--
+@isnad1 id=eq.0h11v.s10.7a83775f1f08 from=translated src=- shape=d6a2b662 vocab=8dc3fb99
+-/
 @[simp] theorem associator_inv_app (θ : F ⟶ G) (ψ : G ⟶ H) (φ : H ⟶ I) (a : B) :
     (associator θ ψ φ).inv.app a = (associator (θ.X a) (ψ.X a) (φ.X a)).inv := rfl
 
+/--
+@isnad1 id=eq.0h7v.s10.bf5b66348abc from=translated src=- shape=1a88bb25 vocab=61611828
+-/
 @[simp] theorem leftUnitor_hom_app (θ : F ⟶ G) (a : B) :
     (leftUnitor θ).hom.app a = (leftUnitor (θ.X a)).hom := rfl
 
+/--
+@isnad1 id=eq.0h7v.s10.d61e9fb083e2 from=translated src=- shape=a4844b26 vocab=2fe8bb81
+-/
 @[simp] theorem leftUnitor_inv_app (θ : F ⟶ G) (a : B) :
     (leftUnitor θ).inv.app a = (leftUnitor (θ.X a)).inv := rfl
 
+/--
+@isnad1 id=eq.0h7v.s10.aa94697ed3a6 from=translated src=- shape=8b0f1903 vocab=abe808bc
+-/
 @[simp] theorem rightUnitor_hom_app (θ : F ⟶ G) (a : B) :
     (rightUnitor θ).hom.app a = (rightUnitor (θ.X a)).hom := rfl
 
+/--
+@isnad1 id=eq.0h7v.s10.cf1fd29daf85 from=translated src=- shape=44e49c38 vocab=8491382a
+-/
 @[simp] theorem rightUnitor_inv_app (θ : F ⟶ G) (a : B) :
     (rightUnitor θ).inv.app a = (rightUnitor (θ.X a)).inv := rfl
 
+/--
+@isnad1 id=iff.0h9v.s12.9d42a44754c3 from=translated src=- shape=feaba35a vocab=680812c2
+-/
 theorem mem_parity_iff {θ θ' : F ⟶ G} {p : ZMod 2} {α : θ ⟶ θ'} :
     α ∈ parity (R := R) θ θ' p ↔ ∀ a, α.app a ∈ parity (R := R) (θ.X a) (θ'.X a) p :=
   Iff.rfl
@@ -279,7 +353,9 @@ section Strict
 variable [BicategoryStruct.Strict C]
 
 open BicategoryStruct.Strict in
-/-- For strict `𝔅`, the identity 2-natural transformation is a strict left unit.-/
+/-- For strict `𝔅`, the identity 2-natural transformation is a strict left unit.
+@isnad1 id=eq.0h6v.s8.b80e899958f2 from=translated src=- shape=75906caa vocab=12da0e20
+-/
 theorem id_comp_of_strict (θ : F ⟶ G) : 𝟙 F ≫ θ = θ := by
   change TwoNatTrans.vcomp (TwoNatTrans.id F) θ = θ
   refine TwoNatTrans.ext_of_eq (funext fun a => by
@@ -290,7 +366,9 @@ theorem id_comp_of_strict (θ : F ⟶ G) : 𝟙 F ≫ θ = θ := by
     eqToHom_trans_assoc]
 
 open BicategoryStruct.Strict in
-/-- For strict `𝔅`, the identity 2-natural transformation is a strict right unit.-/
+/-- For strict `𝔅`, the identity 2-natural transformation is a strict right unit.
+@isnad1 id=eq.0h6v.s8.c682d4eabefa from=translated src=- shape=7150ff79 vocab=12da0e20
+-/
 theorem comp_id_of_strict (θ : F ⟶ G) : θ ≫ 𝟙 G = θ := by
   change TwoNatTrans.vcomp θ (TwoNatTrans.id G) = θ
   refine TwoNatTrans.ext_of_eq (funext fun a => by
@@ -301,7 +379,9 @@ theorem comp_id_of_strict (θ : F ⟶ G) : θ ≫ 𝟙 G = θ := by
     eqToHom_trans_assoc]
 
 open BicategoryStruct.Strict in
-/-- For strict `𝔅`, the composition of 2-natural transformations is strictly associative.-/
+/-- For strict `𝔅`, the composition of 2-natural transformations is strictly associative.
+@isnad1 id=eq.0h10v.s9.2f193e8ae521 from=translated src=- shape=e6cdc000 vocab=076fcfb1
+-/
 theorem assoc_of_strict (θ : F ⟶ G) (ψ : G ⟶ H) (φ : H ⟶ I) :
     (θ ≫ ψ) ≫ φ = θ ≫ ψ ≫ φ := by
   change TwoNatTrans.vcomp (TwoNatTrans.vcomp θ ψ) φ = TwoNatTrans.vcomp θ (TwoNatTrans.vcomp ψ φ)
@@ -328,11 +408,17 @@ variable (R) in
 1-morphism between them (Brundan–Ellis, Definition 2.2).-/
 def Superequivalent (a b : B) : Prop := ∃ f : a ⟶ b, IsSuperequivalence R f
 
+/--
+@isnad1 id=superequ.0h3v.s6.83382233b06e from=translated src=- shape=fff91a44 vocab=0dfe6ed8
+-/
 theorem Superequivalent.refl (a : B) : Superequivalent R a a :=
   ⟨𝟙 a, 𝟙 a, leftUnitor (𝟙 a), leftUnitor (𝟙 a), leftUnitor_hom_mem (R := R) _,
     leftUnitor_hom_mem (R := R) _⟩
 
 omit [TwoSupercategory R B] in
+/--
+@isnad1 id=superequ.1h4v.s6.dbcf66b3f33f from=translated src=- shape=c92dfde8 vocab=e98df9fb
+-/
 theorem Superequivalent.symm {a b : B} (h : Superequivalent R a b) : Superequivalent R b a := by
   obtain ⟨f, g, e₁, e₂, h₁, h₂⟩ := h
   exact ⟨g, f, e₂, e₁, h₂, h₁⟩
@@ -346,7 +432,9 @@ namespace TwoSuperfunctor
 variable {F G : TwoSuperfunctor R B C}
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The components of a superequivalence in `𝔥𝔬𝔪(𝔄, 𝔅)` are superequivalences in `𝔅`.-/
+/-- The components of a superequivalence in `𝔥𝔬𝔪(𝔄, 𝔅)` are superequivalences in `𝔅`.
+@isnad1 id=issupere.1h7v.s8.dad216cc3320 from=translated src=- shape=8c7880fa vocab=baec56dd
+-/
 theorem IsSuperequivalence.app {θ : F ⟶ G} (h : IsSuperequivalence R θ) (a : B) :
     IsSuperequivalence R (θ.X a) := by
   obtain ⟨ψ, e₁, e₂, h₁, h₂⟩ := h
@@ -378,7 +466,9 @@ structure IsLocalTwoSuperequivalence (F : TwoSuperfunctor R B C) : Prop where
   essSurj (c : C) : ∃ a : B, Superequivalent R (F.obj a) c
 
 /-- A 2-superequivalence is essentially surjective up to superequivalence: if `ℝ ∘ 𝕊 ⇒ 𝕀` is a
-superequivalence in `𝔥𝔬𝔪(𝔅, 𝔅)`, its component at `ν` is a superequivalence `ℝ(𝕊ν) → ν`.-/
+superequivalence in `𝔥𝔬𝔪(𝔅, 𝔅)`, its component at `ν` is a superequivalence `ℝ(𝕊ν) → ν`.
+@isnad1 id=ex.1h5v.s7.42455649e753 from=translated src=- shape=d00de34c vocab=cb86b77f
+-/
 theorem IsTwoSuperequivalence.essSurj {F : TwoSuperfunctor R B C} (h : F.IsTwoSuperequivalence)
     (c : C) : ∃ a : B, Superequivalent R (F.obj a) c := by
   obtain ⟨G, -, θ, hθ⟩ := h
@@ -424,33 +514,43 @@ theorem eq_of_whiskerRight {f : a ⟶ b} {g : b ⟶ a} (e : f ≫ g ≅ 𝟙 a)
     whisker_exchange_of_even_right_assoc η he, whiskerLeft_inv_hom_assoc R,
     rightUnitor_naturality R, Iso.inv_hom_id_assoc]
 
-/-- If `g f ≅ 1` via an even 2-isomorphism, `η ↦ f ◁ η` is injective.-/
+/-- If `g f ≅ 1` via an even 2-isomorphism, `η ↦ f ◁ η` is injective.
+@isnad1 id=injectiv.1h10v.s10.1159b09e3d92 from=translated src=- shape=b626a0e0 vocab=6d749131
+-/
 theorem whiskerLeft_injective_of_iso {f : a ⟶ b} {g : b ⟶ a} (e : g ≫ f ≅ 𝟙 b)
     (he : e.hom ∈ parity (R := R) (g ≫ f) (𝟙 b) 0) {h h' : b ⟶ c} :
     Function.Injective (fun η : h ⟶ h' => f ◁ η) := fun η η' hη => by
   have hη : f ◁ η = f ◁ η' := hη
   rw [eq_of_whiskerLeft e he η, eq_of_whiskerLeft e he η', hη]
 
-/-- If `f g ≅ 1` via an even 2-isomorphism, `η ↦ η ▷ f` is injective.-/
+/-- If `f g ≅ 1` via an even 2-isomorphism, `η ↦ η ▷ f` is injective.
+@isnad1 id=injectiv.1h10v.s10.e2d3b0e226bd from=translated src=- shape=c16bfc0f vocab=6499447a
+-/
 theorem whiskerRight_injective_of_iso {f : a ⟶ b} {g : b ⟶ a} (e : f ≫ g ≅ 𝟙 a)
     (he : e.hom ∈ parity (R := R) (f ≫ g) (𝟙 a) 0) {h h' : c ⟶ a} :
     Function.Injective (fun η : h ⟶ h' => η ▷ f) := fun η η' hη => by
   have hη : η ▷ f = η' ▷ f := hη
   rw [eq_of_whiskerRight e he η, eq_of_whiskerRight e he η', hη]
 
-/-- Left whiskering by a superequivalence is injective on 2-morphisms.-/
+/-- Left whiskering by a superequivalence is injective on 2-morphisms.
+@isnad1 id=injectiv.1h8v.s8.467d6c9dc296 from=translated src=- shape=5bbd9fae vocab=01a32044
+-/
 theorem IsSuperequivalence.whiskerLeft_injective {f : a ⟶ b} (hf : IsSuperequivalence R f)
     {h h' : b ⟶ c} : Function.Injective (fun η : h ⟶ h' => f ◁ η) := by
   obtain ⟨g, -, e₂, -, h₂⟩ := hf
   exact whiskerLeft_injective_of_iso e₂ h₂
 
-/-- Right whiskering by a superequivalence is injective on 2-morphisms.-/
+/-- Right whiskering by a superequivalence is injective on 2-morphisms.
+@isnad1 id=injectiv.1h8v.s8.6b3744546c83 from=translated src=- shape=508a03d8 vocab=bf50b1b8
+-/
 theorem IsSuperequivalence.whiskerRight_injective {f : a ⟶ b} (hf : IsSuperequivalence R f)
     {h h' : c ⟶ a} : Function.Injective (fun η : h ⟶ h' => η ▷ f) := by
   obtain ⟨g, e₁, -, h₁, -⟩ := hf
   exact whiskerRight_injective_of_iso e₁ h₁
 
-/-- Left whiskering by a superequivalence is surjective on 2-morphisms.-/
+/-- Left whiskering by a superequivalence is surjective on 2-morphisms.
+@isnad1 id=surjecti.1h8v.s8.a89823f4b653 from=translated src=- shape=5bbd9fae vocab=2bd8de27
+-/
 theorem IsSuperequivalence.whiskerLeft_surjective {f : a ⟶ b} (hf : IsSuperequivalence R f)
     {h h' : b ⟶ c} : Function.Surjective (fun η : h ⟶ h' => f ◁ η) := by
   obtain ⟨g, e₁, e₂, h₁, h₂⟩ := hf
@@ -465,7 +565,9 @@ theorem IsSuperequivalence.whiskerLeft_surjective {f : a ⟶ b} (hf : IsSuperequ
     Category.comp_id, hom_inv_whiskerRight_assoc R] at key'
   exact key'
 
-/-- Right whiskering by a superequivalence is surjective on 2-morphisms.-/
+/-- Right whiskering by a superequivalence is surjective on 2-morphisms.
+@isnad1 id=surjecti.1h8v.s8.1d9cd96cb10f from=translated src=- shape=508a03d8 vocab=0c77830e
+-/
 theorem IsSuperequivalence.whiskerRight_surjective {f : a ⟶ b} (hf : IsSuperequivalence R f)
     {h h' : c ⟶ a} : Function.Surjective (fun η : h ⟶ h' => η ▷ f) := by
   obtain ⟨g, e₁, e₂, h₁, h₂⟩ := hf
@@ -531,7 +633,9 @@ namespace TwoSuperfunctor
 
 variable {F' G' : TwoSuperfunctor R B C}
 
-/-- An isomorphism `θ₁ ≅ θ₂` in `ℋom(ℝ, 𝕊)` conjugates the 2-morphisms `x` of `θ₁` and `θ₂`.-/
+/-- An isomorphism `θ₁ ≅ θ₂` in `ℋom(ℝ, 𝕊)` conjugates the 2-morphisms `x` of `θ₁` and `θ₂`.
+@isnad1 id=eq.0h11v.s10.f61c862428d5 from=translated src=- shape=972a2b72 vocab=3736356c
+-/
 theorem x_eq_of_iso {θ₁ θ₂ : F' ⟶ G'} (e : θ₁ ≅ θ₂) {a b : B} (f : a ⟶ b) :
     θ₁.x f = F'.map f ◁ e.hom.app b ≫ θ₂.x f ≫ e.inv.app a ▷ G'.map f := by
   have h : e.hom.app a ≫ e.inv.app a = 𝟙 _ := by
@@ -547,7 +651,9 @@ private def appIso {θ₁ θ₂ : F' ⟶ G'} (e : θ₁ ≅ θ₂) (a : B) : θ�
   inv_hom_id := by rw [← TwoNatTrans.comp_app, e.inv_hom_id]; rfl
 
 /-- The 2-morphism `x_F` of a 2-natural transformation isomorphic in `ℋom(ℝ, 𝕊)` to one with
-invertible `x_F` is invertible.-/
+invertible `x_F` is invertible.
+@isnad1 id=isiso.0h11v.s9.6b0b6b32e646 from=translated src=- shape=55178b51 vocab=a96b6b6f
+-/
 theorem isIso_x_of_iso {θ₁ θ₂ : F' ⟶ G'} (e : θ₁ ≅ θ₂) {a b : B} (f : a ⟶ b)
     [IsIso (θ₂.x f)] : IsIso (θ₁.x f) := by
   rw [x_eq_of_iso e f]
@@ -557,14 +663,18 @@ theorem isIso_x_of_iso {θ₁ θ₂ : F' ⟶ G'} (e : θ₁ ≅ θ₂) {a b : B}
     (whiskerRightIso (R := R) (appIso e a).symm (G'.map f)).isIso_hom
   infer_instance
 
-/-- The 2-morphisms `x_F = λ_F⁻¹ ∘ ρ_F` of the identity 2-natural transformation are invertible.-/
+/-- The 2-morphisms `x_F = λ_F⁻¹ ∘ ρ_F` of the identity 2-natural transformation are invertible.
+@isnad1 id=isiso.0h7v.s9.2c81c81eb9fb from=translated src=- shape=7a856fe8 vocab=1cbf126c
+-/
 theorem isIso_id_x (F' : TwoSuperfunctor R B C) {a b : B} (f : a ⟶ b) :
     IsIso (TwoNatTrans.x (𝟙 F') f) := by
   rw [id_def, TwoNatTrans.id_x]
   exact (rightUnitor (F'.map f) ≪≫ (leftUnitor (F'.map f)).symm).isIso_hom
 
 /-- The 2-morphisms `x_F` of a superequivalence `(X, x)` in `𝔥𝔬𝔪(𝔄, 𝔅)` are invertible, i.e. a
-superequivalence in `𝔥𝔬𝔪(𝔄, 𝔅)` is a strong 2-natural transformation.-/
+superequivalence in `𝔥𝔬𝔪(𝔄, 𝔅)` is a strong 2-natural transformation.
+@isnad1 id=isiso.1h9v.s9.a1d25c779333 from=translated src=- shape=084f8e9c vocab=b141364c
+-/
 theorem IsSuperequivalence.isIso_x {θ : F' ⟶ G'} (hθ : IsSuperequivalence R θ) {a b : B}
     (f : a ⟶ b) : IsIso (θ.x f) := by
   obtain ⟨θ', e₁, e₂, h₁, h₂⟩ := hθ
@@ -615,7 +725,9 @@ theorem IsSuperequivalence.isIso_x {θ : F' ⟶ G'} (hθ : IsSuperequivalence R 
     _ = r := by rw [reassoc_of% hl]
   exact ⟨r, hr, hlr ▸ hl⟩
 
-/-- A superequivalence in `𝔥𝔬𝔪(𝔄, 𝔅)` is a strong 2-natural transformation.-/
+/-- A superequivalence in `𝔥𝔬𝔪(𝔄, 𝔅)` is a strong 2-natural transformation.
+@isnad1 id=isstrong.1h6v.s8.5c9af9f85dc8 from=translated src=- shape=bbd4a411 vocab=6f99ac9c
+-/
 theorem IsSuperequivalence.isStrong {θ : F' ⟶ G'} (hθ : IsSuperequivalence R θ) :
     TwoNatTrans.IsStrong θ :=
   fun f => IsSuperequivalence.isIso_x hθ f
@@ -626,7 +738,9 @@ variable {F : TwoSuperfunctor R B C} {G : TwoSuperfunctor R C B}
 
 omit [TwoSupercategory R C] in
 /-- If `𝕊 ∘ ℝ` is superequivalent to `𝕀` in `𝔥𝔬𝔪(𝔄, 𝔄)`, then `ℝ` is faithful on 2-morphisms:
-for a superequivalence `(X, x) : 𝕊ℝ ⇒ 𝕀`, `η X_λ = x_G ∘ X_μ (𝕊ℝη) ∘ x_F⁻¹`.-/
+for a superequivalence `(X, x) : 𝕊ℝ ⇒ 𝕀`, `η X_λ = x_G ∘ X_μ (𝕊ℝη) ∘ x_F⁻¹`.
+@isnad1 id=injectiv.1h9v.s9.7addc3fdf72b from=translated src=- shape=32322933 vocab=6ddecd44
+-/
 theorem map₂_injective_of_superequivalent
     (h : Superequivalent R (F.comp G) (TwoSuperfunctor.id R B)) {a b : B} {f g : a ⟶ b} :
     Function.Injective (F.map₂ : (f ⟶ g) → (F.map f ⟶ F.map g)) := by
@@ -644,7 +758,9 @@ theorem map₂_injective_of_superequivalent
 
 omit [TwoSupercategory R C] in
 /-- If `𝕊 ∘ ℝ` is superequivalent to `𝕀` in `𝔥𝔬𝔪(𝔄, 𝔄)` and `𝕊` is faithful on 2-morphisms,
-then `ℝ` is full on 2-morphisms.-/
+then `ℝ` is full on 2-morphisms.
+@isnad1 id=surjecti.2h9v.s10.9822c5a38fb5 from=translated src=- shape=684120ee vocab=5c46405f
+-/
 theorem map₂_surjective_of_superequivalent
     (h : Superequivalent R (F.comp G) (TwoSuperfunctor.id R B)) {a b : B}
     (hG : ∀ {f g : F.obj a ⟶ F.obj b},
@@ -668,7 +784,9 @@ omit [TwoSupercategory R C] in
 2-morphisms, then every 1-morphism `K : ℝλ → ℝμ` is evenly isomorphic to one of the form `ℝF`:
 for a superequivalence `(X, x) : 𝕊ℝ ⇒ 𝕀` with quasi-inverse `(X', x')`, take
 `F = X_μ (𝕊K) X'_λ`; then `𝕊ℝF ≅ 𝕊K` since `x_F` is invertible, and `𝕊` reflects even
-isomorphisms.-/
+isomorphisms.
+@isnad1 id=evenlyde.1h7v.s9.975dfd5c2599 from=translated src=- shape=915ec805 vocab=89aa2bd5
+-/
 theorem evenlyDense_of_superequivalent
     (h : Superequivalent R (F.comp G) (TwoSuperfunctor.id R B)) (a b : B)
     [(G.mapFunctor (F.obj a) (F.obj b)).Full] [(G.mapFunctor (F.obj a) (F.obj b)).Faithful] :
@@ -705,7 +823,9 @@ theorem evenlyDense_of_superequivalent
 /-- **Brundan–Ellis, Definition 2.2**, one direction of the equivalence of the two formulations:
 a 2-superequivalence `ℝ` (with `𝕊ℝ`, `ℝ𝕊` superequivalent to the identities) induces
 superequivalences `ℋom_𝔄(λ, μ) → ℋom_𝔅(ℝλ, ℝμ)` and is essentially surjective up to
-superequivalence.-/
+superequivalence.
+@isnad1 id=islocalt.1h4v.s7.408a3b4f82c3 from=translated src=- shape=f2bb36d4 vocab=b304d083
+-/
 theorem IsTwoSuperequivalence.isLocalTwoSuperequivalence {F : TwoSuperfunctor R B C}
     (h : F.IsTwoSuperequivalence) : F.IsLocalTwoSuperequivalence := by
   have h₀ := h
@@ -726,7 +846,9 @@ theorem IsTwoSuperequivalence.isLocalTwoSuperequivalence {F : TwoSuperfunctor R 
   exact ⟨Superequivalence.ofFullyFaithful _ (evenlyDense_of_superequivalent hFG a b)⟩
 
 /-- 2-superequivalent 2-supercategories (first formulation of Definition 2.2) are
-2-superequivalent in the second formulation.-/
+2-superequivalent in the second formulation.
+@isnad1 id=localtwo.1h3v.s7.bdc7cc3ebc10 from=translated src=- shape=1bef7caa vocab=5f92d5a2
+-/
 theorem TwoSuperequivalent.localTwoSuperequivalent (h : TwoSuperequivalent R B C) :
     LocalTwoSuperequivalent R B C := by
   obtain ⟨F, hF⟩ := h

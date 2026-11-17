@@ -66,18 +66,30 @@ def comp {x y z : B} (k : x ⟶ y) (l : y ⟶ z) : map E k ≫ map E l ≅ map E
 def id (x : B) : map E (𝟙 x) ≅ 𝟙 (X x) :=
   whiskerLeftIso (E x).hom (λ_ (E x).inv) ≪≫ (E x).unit.symm
 
+/--
+@isnad1 id=eq.0h6v.s10.16b477960684 from=translated src=- shape=0be10824 vocab=d4c92cc8
+-/
 theorem counitNat_hom {x y : B} (k : x ⟶ y) :
     (counitNat E k).hom = 𝟙 _ ⊗≫ (E x).hom ◁ k ◁ (E y).counit.hom ⊗≫ 𝟙 _ := by
   simp [counitNat]; bicategory
 
+/--
+@isnad1 id=eq.0h8v.s11.965eb7620b8d from=translated src=- shape=f2818579 vocab=4026bdb9
+-/
 theorem comp_hom {x y z : B} (k : x ⟶ y) (l : y ⟶ z) :
     (comp E k l).hom = 𝟙 _ ⊗≫ (E x).hom ◁ k ◁ (E y).counit.hom ▷ l ▷ (E z).inv ⊗≫ 𝟙 _ := by
   simp [comp, counitNat]; bicategory
 
+/--
+@isnad1 id=eq.0h8v.s11.fa6521536192 from=translated src=- shape=f11df038 vocab=5d4f2b89
+-/
 theorem comp_inv {x y z : B} (k : x ⟶ y) (l : y ⟶ z) :
     (comp E k l).inv = 𝟙 _ ⊗≫ (E x).hom ◁ k ◁ (E y).counit.inv ▷ l ▷ (E z).inv ⊗≫ 𝟙 _ := by
   simp [comp, counitNat]; bicategory
 
+/--
+@isnad1 id=eq.0h4v.s8.ec8409796592 from=translated src=- shape=2a724c28 vocab=fd72582b
+-/
 theorem id_hom (x : B) :
     (id E x).hom = 𝟙 _ ⊗≫ (E x).unit.inv := by
   simp [id]; bicategory
@@ -88,6 +100,9 @@ section Triangle
 
 variable {a b : B} (e : a ≌ b)
 
+/--
+@isnad1 id=eq.0h4v.s9.74b754389c5f from=translated src=- shape=26576f1e vocab=1fd7863b
+-/
 theorem whiskerLeft_counit :
     e.hom ◁ e.counit.hom = 𝟙 _ ⊗≫ e.unit.inv ▷ e.hom ⊗≫ 𝟙 _ := by
   calc
@@ -96,6 +111,9 @@ theorem whiskerLeft_counit :
     _ = 𝟙 _ ⊗≫ e.unit.inv ▷ e.hom ⊗≫ leftZigzag e.unit.hom e.counit.hom := by bicategory
     _ = _ := by rw [e.left_triangle_hom]; bicategory
 
+/--
+@isnad1 id=eq.0h4v.s9.70b0d58f36de from=translated src=- shape=7dd4359a vocab=1fd7863b
+-/
 theorem counit_whiskerRight :
     e.counit.hom ▷ e.inv = 𝟙 _ ⊗≫ e.inv ◁ e.unit.inv ⊗≫ 𝟙 _ := by
   calc
@@ -104,6 +122,9 @@ theorem counit_whiskerRight :
     _ = 𝟙 _ ⊗≫ e.inv ◁ e.unit.inv ⊗≫ rightZigzag e.unit.hom e.counit.hom := by bicategory
     _ = _ := by rw [e.right_triangle_hom]; bicategory
 
+/--
+@isnad1 id=eq.0h4v.s9.168f53adceed from=translated src=- shape=95a73092 vocab=1fd7863b
+-/
 theorem whiskerLeft_counit_inv :
     e.hom ◁ e.counit.inv = 𝟙 _ ⊗≫ e.unit.hom ▷ e.hom ⊗≫ 𝟙 _ := by
   calc
@@ -116,6 +137,9 @@ theorem whiskerLeft_counit_inv :
       simp only [leftZigzagIso_inv, Iso.trans_inv, Iso.symm_inv] at this
       rw [this]; bicategory
 
+/--
+@isnad1 id=eq.0h4v.s9.cc10740aa771 from=translated src=- shape=235c7ebf vocab=1fd7863b
+-/
 theorem counit_inv_whiskerRight :
     e.counit.inv ▷ e.inv = 𝟙 _ ⊗≫ e.inv ◁ e.unit.hom ⊗≫ 𝟙 _ := by
   calc
@@ -132,11 +156,20 @@ end Triangle
 
 /-! ### Naturality -/
 
+/--
+@isnad1 id=eq.0h6v.s7.c76ab2df9f15 from=translated src=- shape=5987675a vocab=a58c6564
+-/
 @[simp] theorem map₂_id {x y : B} (k : x ⟶ y) : map₂ E (𝟙 k) = 𝟙 _ := by simp [map₂]
 
+/--
+@isnad1 id=eq.0h10v.s8.d0c5d0956e87 from=translated src=- shape=295acb68 vocab=0fb15239
+-/
 @[simp] theorem map₂_comp {x y : B} {k k' k'' : x ⟶ y} (η : k ⟶ k') (θ : k' ⟶ k'') :
     map₂ E (η ≫ θ) = map₂ E η ≫ map₂ E θ := by simp [map₂]
 
+/--
+@isnad1 id=eq.0h8v.s9.96c302bac93d from=translated src=- shape=bfce53f8 vocab=c3e6440b
+-/
 @[reassoc]
 theorem counitNat_naturality {x y : B} {k k' : x ⟶ y} (η : k ⟶ k') :
     map₂ E η ▷ (E y).hom ≫ (counitNat E k').hom = (counitNat E k).hom ≫ (E x).hom ◁ η := by
@@ -146,6 +179,9 @@ theorem counitNat_naturality {x y : B} {k k' : x ⟶ y} (η : k ⟶ k') :
       bicategory
     _ = _ := by rw [← whisker_exchange]; bicategory
 
+/--
+@isnad1 id=eq.0h10v.s9.309e3edae4c1 from=translated src=- shape=2023bdf8 vocab=e26f41a0
+-/
 @[reassoc]
 theorem comp_naturality_left {x y z : B} {k k' : x ⟶ y} (η : k ⟶ k') (l : y ⟶ z) :
     map₂ E η ▷ map E l ≫ (comp E k' l).hom = (comp E k l).hom ≫ map₂ E (η ▷ l) := by
@@ -156,6 +192,9 @@ theorem comp_naturality_left {x y z : B} {k k' : x ⟶ y} (η : k ⟶ k') (l : y
       bicategory
     _ = _ := by rw [← whisker_exchange]; bicategory
 
+/--
+@isnad1 id=eq.0h10v.s9.6daeb3dfb217 from=translated src=- shape=9a60a8d2 vocab=5d869721
+-/
 @[reassoc]
 theorem comp_naturality_right {x y z : B} (k : x ⟶ y) {l l' : y ⟶ z} (η : l ⟶ l') :
     map E k ◁ map₂ E η ≫ (comp E k l').hom = (comp E k l).hom ≫ map₂ E (k ◁ η) := by
@@ -168,6 +207,9 @@ theorem comp_naturality_right {x y z : B} (k : x ⟶ y) {l l' : y ⟶ z} (η : l
 
 /-! ### Coherence -/
 
+/--
+@isnad1 id=eq.0h10v.s10.317aaeb3dfc2 from=translated src=- shape=7082bb5a vocab=e3c87bde
+-/
 theorem comp_associator {x y z t : B} (k : x ⟶ y) (l : y ⟶ z) (m : z ⟶ t) :
     (comp E k l).hom ▷ map E m ≫ (comp E (k ≫ l) m).hom ≫ map₂ E (α_ k l m).hom =
       (α_ _ _ _).hom ≫ map E k ◁ (comp E l m).hom ≫ (comp E k (l ≫ m)).hom := by
@@ -178,6 +220,9 @@ theorem comp_associator {x y z t : B} (k : x ⟶ y) (l : y ⟶ z) (m : z ⟶ t) 
       bicategory
     _ = _ := by rw [← whisker_exchange]; bicategory
 
+/--
+@isnad1 id=eq.0h6v.s9.0910203c60e9 from=translated src=- shape=661175e2 vocab=c89f4f0c
+-/
 theorem comp_leftUnitor {x y : B} (k : x ⟶ y) :
     (comp E (𝟙 x) k).hom ≫ map₂ E (λ_ k).hom = (id E x).hom ▷ map E k ≫ (λ_ (map E k)).hom := by
   rw [comp_hom, id_hom, map₂]
@@ -185,6 +230,9 @@ theorem comp_leftUnitor {x y : B} (k : x ⟶ y) :
     _ = 𝟙 _ ⊗≫ ((E x).hom ◁ (E x).counit.hom) ▷ (k ≫ (E y).inv) ⊗≫ 𝟙 _ := by bicategory
     _ = _ := by rw [whiskerLeft_counit]; bicategory
 
+/--
+@isnad1 id=eq.0h6v.s9.b4c870f90c48 from=translated src=- shape=584ab88a vocab=d901c178
+-/
 theorem comp_rightUnitor {x y : B} (k : x ⟶ y) :
     (comp E k (𝟙 y)).hom ≫ map₂ E (ρ_ k).hom = map E k ◁ (id E y).hom ≫ (ρ_ (map E k)).hom := by
   rw [comp_hom, id_hom, map₂]
@@ -222,10 +270,16 @@ def pseudofunctor : Pseudofunctor B B where
 def unitNat {x y : B} (k : x ⟶ y) : k ≫ (E y).inv ≅ (E x).inv ≫ map E k :=
   (λ_ _).symm ≪≫ whiskerRightIso (E x).counit.symm _ ≪≫ α_ _ _ _
 
+/--
+@isnad1 id=eq.0h6v.s9.be4f0115fd04 from=translated src=- shape=e7c38013 vocab=a72650de
+-/
 theorem unitNat_hom {x y : B} (k : x ⟶ y) :
     (unitNat E k).hom = 𝟙 _ ⊗≫ (E x).counit.inv ▷ (k ≫ (E y).inv) ⊗≫ 𝟙 _ := by
   simp [unitNat]; bicategory
 
+/--
+@isnad1 id=eq.0h8v.s9.76e32ced2801 from=translated src=- shape=780ef2fe vocab=c90a5d9d
+-/
 @[reassoc]
 theorem unitNat_naturality {x y : B} {k k' : x ⟶ y} (η : k ⟶ k') :
     η ▷ (E y).inv ≫ (unitNat E k').hom = (unitNat E k).hom ≫ (E x).inv ◁ map₂ E η := by
@@ -234,6 +288,9 @@ theorem unitNat_naturality {x y : B} {k k' : x ⟶ y} (η : k ⟶ k') :
     _ = 𝟙 _ ⊗≫ (𝟙 x ◁ η ≫ (E x).counit.inv ▷ k') ▷ (E y).inv ⊗≫ 𝟙 _ := by bicategory
     _ = _ := by rw [whisker_exchange]; bicategory
 
+/--
+@isnad1 id=eq.0h4v.s9.4517a6032ec0 from=translated src=- shape=286ed622 vocab=d0fb78f6
+-/
 theorem counitNat_id (x : B) :
     (counitNat E (𝟙 x)).hom ≫ (E x).hom ◁ 𝟙 (𝟙 x) =
       (id E x).hom ▷ (E x).hom ≫ (λ_ (E x).hom).hom ≫ (ρ_ (E x).hom).inv := by
@@ -242,6 +299,9 @@ theorem counitNat_id (x : B) :
     _ = 𝟙 _ ⊗≫ (E x).hom ◁ (E x).counit.hom ⊗≫ 𝟙 _ := by bicategory
     _ = _ := by rw [whiskerLeft_counit]; bicategory
 
+/--
+@isnad1 id=eq.0h8v.s10.99fc4f03cad5 from=translated src=- shape=384534ac vocab=ace97001
+-/
 theorem counitNat_comp {x y z : B} (k : x ⟶ y) (l : y ⟶ z) :
     (counitNat E (k ≫ l)).hom ≫ (E x).hom ◁ 𝟙 (k ≫ l) =
       (comp E k l).inv ▷ (E z).hom ≫ (α_ _ _ _).hom ≫ map E k ◁ (counitNat E l).hom ≫
@@ -258,6 +318,9 @@ theorem counitNat_comp {x y z : B} (k : x ⟶ y) (l : y ⟶ z) :
       rw [← whisker_exchange]; bicategory
     _ = _ := by rw [Iso.inv_hom_id]; bicategory
 
+/--
+@isnad1 id=eq.0h4v.s9.c02dc60c9269 from=translated src=- shape=42ac305d vocab=92c7dbf9
+-/
 theorem unitNat_id (x : B) :
     (unitNat E (𝟙 x)).hom ≫ (E x).inv ◁ (id E x).hom =
       𝟙 (𝟙 x) ▷ (E x).inv ≫ (λ_ (E x).inv).hom ≫ (ρ_ (E x).inv).inv := by
@@ -269,6 +332,9 @@ theorem unitNat_id (x : B) :
       rw [counit_inv_whiskerRight]; bicategory
     _ = _ := by rw [Iso.hom_inv_id]; bicategory
 
+/--
+@isnad1 id=eq.0h8v.s11.00d2377985da from=translated src=- shape=ad458e82 vocab=0658ad8d
+-/
 theorem unitNat_comp {x y z : B} (k : x ⟶ y) (l : y ⟶ z) :
     (unitNat E (k ≫ l)).hom ≫ (E x).inv ◁ (comp E k l).inv =
       𝟙 (k ≫ l) ▷ (E z).inv ≫ (α_ _ _ _).hom ≫ k ◁ (unitNat E l).hom ≫
@@ -280,6 +346,9 @@ theorem unitNat_comp {x y z : B} (k : x ⟶ y) (l : y ⟶ z) :
       bicategory
     _ = _ := by rw [← whisker_exchange]; bicategory
 
+/--
+@isnad1 id=eq.0h6v.s11.0a8f13e6ec56 from=translated src=- shape=70fc2c3b vocab=2357f2f2
+-/
 theorem counitNat_unitNat {x y : B} (k : x ⟶ y) :
     map E k ◁ (E y).unit.inv ≫ (ρ_ (map E k)).hom ≫ (λ_ (map E k)).inv =
       ((α_ _ _ _).inv ≫ (counitNat E k).hom ▷ (E y).inv ≫ (α_ _ _ _).hom ≫
@@ -298,6 +367,9 @@ theorem counitNat_unitNat {x y : B} (k : x ⟶ y) :
       rw [Iso.hom_inv_id]; bicategory
     _ = _ := by rw [counit_whiskerRight]; bicategory
 
+/--
+@isnad1 id=eq.0h6v.s10.7f0e54cd8553 from=translated src=- shape=7506c172 vocab=9b727e84
+-/
 theorem unitNat_counitNat {x y : B} (k : x ⟶ y) :
     k ◁ (E y).counit.hom ≫ (ρ_ k).hom ≫ (λ_ k).inv =
       ((α_ _ _ _).inv ≫ (unitNat E k).hom ▷ (E y).hom ≫ (α_ _ _ _).hom ≫
@@ -370,12 +442,21 @@ variable {𝒳 : Type u₁} [Bicategory.{w₁, v₁} 𝒳] {𝒴 : Type u₂} [B
 def K2 {a b c : 𝒳} (f : a ⟶ b) (g : b ⟶ c) : pmap f ≫ pmap g ≅ Q.map f ≫ Q.map g :=
   whiskerRightIso (κ f) (pmap g) ≪≫ whiskerLeftIso (Q.map f) (κ g)
 
+/--
+@isnad1 id=eq.0h10v.s12.2f2fc82da95c from=translated src=- shape=6ef65ec5 vocab=51a53789
+-/
 theorem K2_hom {a b c : 𝒳} (f : a ⟶ b) (g : b ⟶ c) :
     (K2 Q pmap κ f g).hom = (κ f).hom ▷ pmap g ≫ Q.map f ◁ (κ g).hom := rfl
 
+/--
+@isnad1 id=eq.0h10v.s12.a6c45ee89e9a from=translated src=- shape=cc28a1a6 vocab=52ac7e52
+-/
 theorem K2_inv {a b c : 𝒳} (f : a ⟶ b) (g : b ⟶ c) :
     (K2 Q pmap κ f g).inv = Q.map f ◁ (κ g).inv ≫ (κ f).inv ▷ pmap g := rfl
 
+/--
+@isnad1 id=eq.0h12v.s13.5f4fcd5d5d18 from=translated src=- shape=d8034daf vocab=822f5e09
+-/
 @[reassoc]
 theorem K2_whiskerLeft {a b c : 𝒳} (f : a ⟶ b) {g h : b ⟶ c} (X : Q.map g ⟶ Q.map h) :
     (K2 Q pmap κ f g).inv ≫ pmap f ◁ ((κ g).hom ≫ X ≫ (κ h).inv) ≫ (K2 Q pmap κ f h).hom =
@@ -394,6 +475,9 @@ theorem K2_whiskerLeft {a b c : 𝒳} (f : a ⟶ b) {g h : b ⟶ c} (X : Q.map g
       rw [Iso.inv_hom_id]; bicategory
     _ = _ := by rw [Iso.inv_hom_id, Iso.inv_hom_id]; bicategory
 
+/--
+@isnad1 id=eq.0h12v.s13.cf522b07592e from=translated src=- shape=62605091 vocab=ac70e587
+-/
 @[reassoc]
 theorem K2_whiskerRight {a b c : 𝒳} {f g : a ⟶ b} (h : b ⟶ c) (X : Q.map f ⟶ Q.map g) :
     (K2 Q pmap κ f h).inv ≫ ((κ f).hom ≫ X ≫ (κ g).inv) ▷ pmap h ≫ (K2 Q pmap κ g h).hom =
@@ -409,6 +493,9 @@ theorem K2_whiskerRight {a b c : 𝒳} {f g : a ⟶ b} (h : b ⟶ c) (X : Q.map 
       rw [whisker_exchange]; bicategory
     _ = _ := by rw [Iso.inv_hom_id, Iso.inv_hom_id, Iso.inv_hom_id]; bicategory
 
+/--
+@isnad1 id=eq.0h12v.s14.1eb2a908131a from=translated src=- shape=063163e3 vocab=f6b67c6d
+-/
 @[reassoc]
 theorem K2_assoc {a b c d : 𝒳} (f : a ⟶ b) (g : b ⟶ c) (h : c ⟶ d) :
     (Q.map f ≫ Q.map g) ◁ (κ h).inv ≫ (K2 Q pmap κ f g).inv ▷ pmap h ≫ (α_ _ _ _).hom ≫
@@ -426,6 +513,9 @@ theorem K2_assoc {a b c d : 𝒳} (f : a ⟶ b) (g : b ⟶ c) (h : c ⟶ d) :
       rw [Iso.inv_hom_id]; bicategory
     _ = _ := by rw [Iso.inv_hom_id]; bicategory
 
+/--
+@isnad1 id=eq.0h12v.s14.e236ce8d23fc from=translated src=- shape=9d72d96c vocab=6a691373
+-/
 @[reassoc]
 theorem K2_comp_left {a b c d : 𝒳} (f : a ⟶ b) (g : b ⟶ c) (h : c ⟶ d) :
     (K2 Q pmap κ (f ≫ g) h).inv ≫
@@ -436,6 +526,9 @@ theorem K2_comp_left {a b c d : 𝒳} (f : a ⟶ b) (g : b ⟶ c) (h : c ⟶ d) 
   simp only [Category.assoc, comp_whiskerRight, inv_hom_whiskerRight_assoc]
   rw [whisker_exchange_assoc]
 
+/--
+@isnad1 id=eq.0h12v.s14.67215a9b832c from=translated src=- shape=941db2e0 vocab=6a691373
+-/
 @[reassoc]
 theorem K2_comp_right {a b c d : 𝒳} (f : a ⟶ b) (g : b ⟶ c) (h : c ⟶ d) :
     pmap f ◁ ((K2 Q pmap κ g h).hom ≫ (Q.mapComp g h).inv ≫ (κ (g ≫ h)).inv) ≫
@@ -479,12 +572,18 @@ def copy : Pseudofunctor 𝒳 𝒴 where
     simp only [← whiskerLeft_comp_assoc, Iso.inv_hom_id_assoc]
     rw [← whisker_exchange_assoc, rightUnitor_naturality]
 
+/--
+@isnad1 id=eq.0h10v.s13.84bd6bfc519c from=translated src=- shape=7e532858 vocab=7aea5eb0
+-/
 theorem copy_mapComp_inv {a b c : 𝒳} (f : a ⟶ b) (g : b ⟶ c) :
     ((copy Q pmap κ).mapComp f g).inv =
       (κ f).hom ▷ pmap g ≫ Q.map f ◁ (κ g).hom ≫ (Q.mapComp f g).inv ≫ (κ (f ≫ g)).inv := by
   simp only [copy_mapComp, Iso.trans_inv, Iso.symm_inv, K2_hom, Category.assoc]
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s12.21ad3b1b3a01 from=translated src=- shape=658e3be0 vocab=f684b47c
+-/
 theorem copy_mapId_inv (a : 𝒳) :
     ((copy Q pmap κ).mapId a).inv = (Q.mapId a).inv ≫ (κ (𝟙 a)).inv :=
   rfl
@@ -496,6 +595,9 @@ open Oplax OplaxTrans
 variable {H : OplaxFunctor 𝒳 𝒴}
 
 omit [Bicategory 𝒳] in
+/--
+@isnad1 id=eq.0h20v.s10.6b40096246ae from=translated src=- shape=062c78f9 vocab=4dcc7173
+-/
 theorem transLeft_aux {A B C A' B' C' : 𝒴} {qf pf : A ⟶ B} {qg pg : B ⟶ C} (kf : pf ≅ qf)
     (kg : pg ≅ qg) {sa : A ⟶ A'} {sb : B ⟶ B'} {sc : C ⟶ C'} {hf : A' ⟶ B'} {hg : B' ⟶ C'}
     (nf : qf ≫ sb ⟶ sa ≫ hf) (ng : qg ≫ sc ⟶ sb ≫ hg) :
@@ -512,6 +614,9 @@ theorem transLeft_aux {A B C A' B' C' : 𝒴} {qf pf : A ⟶ B} {qg pg : B ⟶ C
     _ = _ := by rw [Iso.inv_hom_id, Iso.inv_hom_id]; bicategory
 
 omit [Bicategory 𝒳] in
+/--
+@isnad1 id=eq.0h20v.s10.c8ea3fd52d4f from=translated src=- shape=423668dc vocab=4dcc7173
+-/
 theorem transRight_aux {A B C A' B' C' : 𝒴} {qf pf : A' ⟶ B'} {qg pg : B' ⟶ C'}
     (kf : pf ≅ qf) (kg : pg ≅ qg) {ta : A ⟶ A'} {tb : B ⟶ B'} {tc : C ⟶ C'} {hf : A ⟶ B}
     {hg : B ⟶ C} (nf : hf ≫ tb ⟶ ta ≫ qf) (ng : hg ≫ tc ⟶ tb ≫ qg) :
@@ -589,6 +694,9 @@ def transRight (τ : OplaxTrans H Q.toOplax) : OplaxTrans H (copy Q pmap κ).toO
     exact congrArg (H.mapComp f g ▷ τ.app c ≫ ·) (transRight_aux (κ f) (κ g) _ _)
 
 omit [Bicategory 𝒳] in
+/--
+@isnad1 id=eq.1h17v.s11.54aaa70931e5 from=translated src=- shape=1425fe41 vocab=b05a61c1
+-/
 theorem modLeftRight_aux {A B M N : 𝒴} {qf pf : A ⟶ B} (k : pf ≅ qf) {sa : A ⟶ M}
     {sb : B ⟶ N} {ta : M ⟶ A} {tb : N ⟶ B} {hf : M ⟶ N} (nσ : qf ≫ sb ⟶ sa ≫ hf)
     (nτ : hf ≫ tb ⟶ ta ≫ qf) (Γa : sa ≫ ta ⟶ 𝟙 A) (Γb : sb ≫ tb ⟶ 𝟙 B)
@@ -613,6 +721,9 @@ theorem modLeftRight_aux {A B M N : 𝒴} {qf pf : A ⟶ B} (k : pf ≅ qf) {sa 
     _ = _ := by rw [Iso.hom_inv_id]; bicategory
 
 omit [Bicategory 𝒳] in
+/--
+@isnad1 id=eq.0h15v.s10.7a4709c977f2 from=translated src=- shape=e96e339c vocab=4dcc7173
+-/
 theorem modRightLeft_aux {A B M N : 𝒴} {qf pf : A ⟶ B} (k : pf ≅ qf) {sa : A ⟶ M}
     {sb : B ⟶ N} {ta : M ⟶ A} {tb : N ⟶ B} {hf : M ⟶ N} (nσ : qf ≫ sb ⟶ sa ≫ hf)
     (nτ : hf ≫ tb ⟶ ta ≫ qf) :
@@ -676,6 +787,9 @@ variable {𝔅 : Type u₁} [Bicategory.{w₁, v₁} 𝔅] {𝒞 : Type u₂} [B
     𝔉.map (gmap (f ≫ g)) ≅ 𝔉.map (gmap f) ≫ 𝔉.map (gmap g))
 
 include pre_map in
+/--
+@isnad1 id=eq.2h10v.s11.bb8fde9ce0a7 from=translated src=- shape=17ea6ec1 vocab=43268ec4
+-/
 theorem map₂_injective {a b : 𝔅} {f g : a ⟶ b} {x y : f ⟶ g} (h : 𝔉.map₂ x = 𝔉.map₂ y) :
     x = y := by
   rw [← pre_map x, ← pre_map y, h]
@@ -747,6 +861,9 @@ variable (map₂_id' : ∀ {x y : 𝒳} (f : x ⟶ y), map₂' (𝟙 f) = 𝟙 _
         (ρ_ _).hom)
 
 include map_pre in
+/--
+@isnad1 id=eq.9h15v.s16.f09245c8c8cc from=translated src=- shape=95e6d5ce vocab=4ce79668
+-/
 theorem map₂_lift_mapComp_inv {x y z : 𝒳} (f : x ⟶ y) (g : y ⟶ z) :
     𝔉.map₂ ((lift 𝔉 pre map_pre pre_map gobj gmap map₂' mapId' mapComp' map₂_id' map₂_comp'
       map₂_whisker_left' map₂_whisker_right' map₂_associator' map₂_left_unitor'
@@ -755,6 +872,9 @@ theorem map₂_lift_mapComp_inv {x y z : 𝒳} (f : x ⟶ y) (g : y ⟶ z) :
   map_pre _
 
 include map_pre in
+/--
+@isnad1 id=eq.9h15v.s16.b5f87de0d0f2 from=translated src=- shape=f0b3c450 vocab=4ce79668
+-/
 theorem map₂_lift_mapComp_hom {x y z : 𝒳} (f : x ⟶ y) (g : y ⟶ z) :
     𝔉.map₂ ((lift 𝔉 pre map_pre pre_map gobj gmap map₂' mapId' mapComp' map₂_id' map₂_comp'
       map₂_whisker_left' map₂_whisker_right' map₂_associator' map₂_left_unitor'
@@ -763,6 +883,9 @@ theorem map₂_lift_mapComp_hom {x y z : 𝒳} (f : x ⟶ y) (g : y ⟶ z) :
   map_pre _
 
 include map_pre in
+/--
+@isnad1 id=eq.9h11v.s16.3987a0f628cc from=translated src=- shape=418cc163 vocab=28c30918
+-/
 theorem map₂_lift_mapId_hom (x : 𝒳) :
     𝔉.map₂ ((lift 𝔉 pre map_pre pre_map gobj gmap map₂' mapId' mapComp' map₂_id' map₂_comp'
       map₂_whisker_left' map₂_whisker_right' map₂_associator' map₂_left_unitor'
@@ -771,6 +894,9 @@ theorem map₂_lift_mapId_hom (x : 𝒳) :
   map_pre _
 
 include map_pre in
+/--
+@isnad1 id=eq.9h11v.s16.7b0b9b445364 from=translated src=- shape=cb37dfcf vocab=28c30918
+-/
 theorem map₂_lift_mapId_inv (x : 𝒳) :
     𝔉.map₂ ((lift 𝔉 pre map_pre pre_map gobj gmap map₂' mapId' mapComp' map₂_id' map₂_comp'
       map₂_whisker_left' map₂_whisker_right' map₂_associator' map₂_left_unitor'
@@ -802,6 +928,9 @@ variable {𝔅 : Type u₁} [Bicategory.{w₁, v₁} 𝔅] {𝒞 : Type u₂} [B
   (t : ∀ a, S.obj a ⟶ S'.obj a) (κ : ∀ a, 𝔉.map (t a) ≅ σapp a)
 
 omit [Bicategory 𝒳] in
+/--
+@isnad1 id=eq.0h10v.s14.ad5dcb1cb6b0 from=translated src=- shape=07170767 vocab=fe6d01e4
+-/
 theorem map₂_associator_inv {a b c d : 𝔅} (f : a ⟶ b) (g : b ⟶ c) (h : c ⟶ d) :
     𝔉.map₂ (α_ f g h).inv = (𝔉.mapComp f (g ≫ h)).hom ≫ 𝔉.map f ◁ (𝔉.mapComp g h).hom ≫
       (α_ _ _ _).inv ≫ (𝔉.mapComp f g).inv ▷ 𝔉.map h ≫ (𝔉.mapComp (f ≫ g) h).inv := by
@@ -926,6 +1055,9 @@ def modApp (a : 𝒳) : 𝔉.map (t a ≫ t' a) ≅ 𝔉.map (𝟙 (S.obj a)) :=
     (𝔉.mapId _).symm
 
 omit [Bicategory 𝒳] in
+/--
+@isnad1 id=eq.1h23v.s11.d1482da0111b from=translated src=- shape=edef9e92 vocab=b05a61c1
+-/
 theorem modApp_aux {A B M N : 𝒞} {sf : A ⟶ B} {sf' : M ⟶ N} {ta sa : A ⟶ M} {tb sb : B ⟶ N}
     {ta' sa' : M ⟶ A} {tb' sb' : N ⟶ B} (ka : ta ≅ sa) (kb : tb ≅ sb) (ka' : ta' ≅ sa')
     (kb' : tb' ≅ sb') (nσ : sf ≫ sb ⟶ sa ≫ sf') (nσ' : sf' ≫ sb' ⟶ sa' ≫ sf)

@@ -32,7 +32,9 @@ section
 variable {c d : B} {l₁ l₂ : c ⟶ d} {r₁ r₂ : d ⟶ c} (adj₁ : l₁ ⊣ r₁) (adj₂ : l₂ ⊣ r₂)
 
 /-- Sliding a 2-morphism between left adjoints through the units: its conjugate appears on
-the right adjoints.-/
+the right adjoints.
+@isnad1 id=eq.0h10v.s9.ab5d4903793b from=translated src=- shape=84700c8f vocab=af3208f2
+-/
 theorem unit_comp_whiskerRight_eq (α : l₂ ⟶ l₁) :
     adj₂.unit ≫ α ▷ r₂ = adj₁.unit ≫ l₁ ◁ conjugateEquiv adj₁ adj₂ α := by
   rw [conjugateEquiv_apply']
@@ -50,7 +52,9 @@ theorem unit_comp_whiskerRight_eq (α : l₂ ⟶ l₁) :
       rw [adj₁.left_triangle]; bicategory
 
 /-- Sliding a 2-morphism between left adjoints through the counits: its conjugate appears
-on the right adjoints.-/
+on the right adjoints.
+@isnad1 id=eq.0h10v.s9.94574380e55f from=translated src=- shape=a8c10f3c vocab=a41feb45
+-/
 theorem whiskerLeft_comp_counit_eq (α : l₂ ⟶ l₁) :
     r₁ ◁ α ≫ adj₁.counit = conjugateEquiv adj₁ adj₂ α ▷ l₂ ≫ adj₂.counit := by
   rw [conjugateEquiv_apply']
@@ -67,7 +71,9 @@ theorem whiskerLeft_comp_counit_eq (α : l₂ ⟶ l₁) :
     _ = _ := by
       rw [adj₂.left_triangle]; bicategory
 
-/-- Whiskering by `l₁` after the unit of `l₁ ⊣ r₁` is injective.-/
+/-- Whiskering by `l₁` after the unit of `l₁ ⊣ r₁` is injective.
+@isnad1 id=eq.1h9v.s8.9bf3be5abcfd from=translated src=- shape=c17b405c vocab=168c93ef
+-/
 theorem unit_comp_whiskerLeft_injective {r₂ : d ⟶ c} {β β' : r₁ ⟶ r₂}
     (h : adj₁.unit ≫ l₁ ◁ β = adj₁.unit ≫ l₁ ◁ β') : β = β' := by
   have key : ∀ γ : r₁ ⟶ r₂, γ = (ρ_ _).inv ≫ r₁ ◁ (adj₁.unit ≫ l₁ ◁ γ) ≫ (α_ _ _ _).inv ≫
@@ -82,22 +88,31 @@ theorem unit_comp_whiskerLeft_injective {r₂ : d ⟶ c} {β β' : r₁ ⟶ r₂
         rw [← whisker_exchange]; bicategory
   rw [key β, key β', h]
 
-/-- The conjugate of `α` is characterized by the unit equation.-/
+/-- The conjugate of `α` is characterized by the unit equation.
+@isnad1 id=eq.1h11v.s9.b9c10716091f from=translated src=- shape=b01119fd vocab=af3208f2
+-/
 theorem conjugateEquiv_eq_of_unit (α : l₂ ⟶ l₁) (β : r₁ ⟶ r₂)
     (h : adj₂.unit ≫ α ▷ r₂ = adj₁.unit ≫ l₁ ◁ β) : conjugateEquiv adj₁ adj₂ α = β :=
   unit_comp_whiskerLeft_injective adj₁ (by rw [← unit_comp_whiskerRight_eq, h])
 
+/--
+@isnad1 id=iff.0h11v.s9.bd0ba7b40c81 from=translated src=- shape=f278e8f4 vocab=af3208f2
+-/
 theorem conjugateEquiv_eq_iff_unit (α : l₂ ⟶ l₁) (β : r₁ ⟶ r₂) :
     conjugateEquiv adj₁ adj₂ α = β ↔ adj₂.unit ≫ α ▷ r₂ = adj₁.unit ≫ l₁ ◁ β :=
   ⟨fun h => h ▸ unit_comp_whiskerRight_eq adj₁ adj₂ α, conjugateEquiv_eq_of_unit adj₁ adj₂ α β⟩
 
-/-- Sliding through the units, stated for the inverse conjugate.-/
+/-- Sliding through the units, stated for the inverse conjugate.
+@isnad1 id=eq.0h10v.s9.b27ae714e67c from=translated src=- shape=be766e2c vocab=9be306eb
+-/
 theorem unit_comp_whiskerLeft_eq (β : r₁ ⟶ r₂) :
     adj₁.unit ≫ l₁ ◁ β = adj₂.unit ≫ (conjugateEquiv adj₁ adj₂).symm β ▷ r₂ := by
   conv_lhs => rw [← Equiv.apply_symm_apply (conjugateEquiv adj₁ adj₂) β]
   rw [unit_comp_whiskerRight_eq]
 
-/-- Sliding through the counits, stated for the inverse conjugate.-/
+/-- Sliding through the counits, stated for the inverse conjugate.
+@isnad1 id=eq.0h10v.s9.98578ed7df5c from=translated src=- shape=0d7f4994 vocab=341ec6dc
+-/
 theorem whiskerRight_comp_counit_eq (β : r₁ ⟶ r₂) :
     β ▷ l₂ ≫ adj₂.counit = r₁ ◁ (conjugateEquiv adj₁ adj₂).symm β ≫ adj₁.counit := by
   conv_lhs => rw [← Equiv.apply_symm_apply (conjugateEquiv adj₁ adj₂) β]
@@ -110,7 +125,9 @@ section Whisker
 variable {c d e : B}
 
 /-- Conjugation with respect to composite adjunctions commutes with right whiskering of left
-adjoints, which becomes left whiskering of right adjoints.-/
+adjoints, which becomes left whiskering of right adjoints.
+@isnad1 id=eq.0h14v.s10.4a3d98f6012e from=translated src=- shape=6efc3489 vocab=a53620cb
+-/
 theorem conjugateEquiv_whiskerRight {l₁ l₂ : c ⟶ d} {r₁ r₂ : d ⟶ c} (adj₁ : l₁ ⊣ r₁)
     (adj₂ : l₂ ⊣ r₂) {f : d ⟶ e} {g : e ⟶ d} (adj : f ⊣ g) (α : l₂ ⟶ l₁) :
     conjugateEquiv (adj₁.comp adj) (adj₂.comp adj) (α ▷ f) =
@@ -130,7 +147,9 @@ theorem conjugateEquiv_whiskerRight {l₁ l₂ : c ⟶ d} {r₁ r₂ : d ⟶ c} 
       rw [whisker_exchange]; bicategory
 
 /-- Conjugation with respect to composite adjunctions commutes with left whiskering of left
-adjoints, which becomes right whiskering of right adjoints.-/
+adjoints, which becomes right whiskering of right adjoints.
+@isnad1 id=eq.0h14v.s10.a2df174df181 from=translated src=- shape=4fb2d239 vocab=a53620cb
+-/
 theorem conjugateEquiv_whiskerLeft {l₁ l₂ : c ⟶ d} {r₁ r₂ : d ⟶ c} (adj₁ : l₁ ⊣ r₁)
     (adj₂ : l₂ ⊣ r₂) {f : e ⟶ c} {g : c ⟶ e} (adj : f ⊣ g) (α : l₂ ⟶ l₁) :
     conjugateEquiv (adj.comp adj₁) (adj.comp adj₂) (f ◁ α) =
@@ -144,12 +163,18 @@ theorem conjugateEquiv_whiskerLeft {l₁ l₂ : c ⟶ d} {r₁ r₂ : d ⟶ c} (
     _ = _ := by
       rw [h]; bicategory
 
+/--
+@isnad1 id=eq.0h14v.s10.9fdf02a92632 from=translated src=- shape=bc535a47 vocab=8e7f179e
+-/
 theorem conjugateEquiv_symm_whiskerLeft {l₁ l₂ : c ⟶ d} {r₁ r₂ : d ⟶ c} (adj₁ : l₁ ⊣ r₁)
     (adj₂ : l₂ ⊣ r₂) {f : d ⟶ e} {g : e ⟶ d} (adj : f ⊣ g) (β : r₁ ⟶ r₂) :
     (conjugateEquiv (adj₁.comp adj) (adj₂.comp adj)).symm (g ◁ β) =
       (conjugateEquiv adj₁ adj₂).symm β ▷ f := by
   rw [Equiv.symm_apply_eq, conjugateEquiv_whiskerRight, Equiv.apply_symm_apply]
 
+/--
+@isnad1 id=eq.0h14v.s10.dde268ba76d6 from=translated src=- shape=064c6bee vocab=8e7f179e
+-/
 theorem conjugateEquiv_symm_whiskerRight {l₁ l₂ : c ⟶ d} {r₁ r₂ : d ⟶ c} (adj₁ : l₁ ⊣ r₁)
     (adj₂ : l₂ ⊣ r₂) {f : e ⟶ c} {g : c ⟶ e} (adj : f ⊣ g) (β : r₁ ⟶ r₂) :
     (conjugateEquiv (adj.comp adj₁) (adj.comp adj₂)).symm (β ▷ g) =

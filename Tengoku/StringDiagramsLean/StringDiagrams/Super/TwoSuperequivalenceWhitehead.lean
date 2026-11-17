@@ -66,7 +66,9 @@ namespace TwoSupercategory
 
 open Bicategory in
 /-- Superequivalent objects of a 2-supercategory are equivalent in the underlying bicategory
-(of even 2-morphisms), by an adjoint equivalence.-/
+(of even 2-morphisms), by an adjoint equivalence.
+@isnad1 id=nonempty.1h4v.s7.28f00f591bf6 from=translated src=- shape=4a18c22b vocab=e621f826
+-/
 theorem Superequivalent.nonempty_equivalence {a b : C} (h : Superequivalent R a b) :
     Nonempty ((⟨a⟩ : Underlying2 R C) ≌ ⟨b⟩) := by
   obtain ⟨f, g, e₁, e₂, h₁, h₂⟩ := h
@@ -97,23 +99,44 @@ def toPseudo (F : TwoSuperfunctor R B C) :
 
 variable (F : TwoSuperfunctor R B C)
 
+/--
+@isnad1 id=eq.0h5v.s9.53ad3a27086b from=translated src=- shape=546075da vocab=0fdbf7df
+-/
 @[simp] theorem toPseudo_obj (a : Underlying2 R B) : F.toPseudo.obj a = ⟨F.obj a.obj⟩ := rfl
 
+/--
+@isnad1 id=eq.0h7v.s10.e5c4bdeeb4d8 from=translated src=- shape=05ff6d46 vocab=f3688fea
+-/
 @[simp] theorem toPseudo_map_obj {a b : Underlying2 R B} (f : a ⟶ b) :
     (F.toPseudo.map f).obj = F.map f.obj := rfl
 
+/--
+@isnad1 id=eq.0h9v.s16.a9230411d3b8 from=translated src=- shape=394f6d10 vocab=edd4dc2a
+-/
 @[simp] theorem toPseudo_map₂_val {a b : Underlying2 R B} {f g : a ⟶ b} (η : f ⟶ g) :
     (F.toPseudo.map₂ η).1 = F.map₂ η.1 := rfl
 
+/--
+@isnad1 id=eq.0h9v.s16.1f8c7d8d2cb9 from=translated src=- shape=52e7d251 vocab=638b5907
+-/
 @[simp] theorem toPseudo_mapComp_hom_val {a b c : Underlying2 R B} (f : a ⟶ b) (g : b ⟶ c) :
     (F.toPseudo.mapComp f g).hom.1 = (F.mapComp f.obj g.obj).inv := rfl
 
+/--
+@isnad1 id=eq.0h9v.s16.d5f3fc37cbda from=translated src=- shape=4284d37f vocab=638b5907
+-/
 @[simp] theorem toPseudo_mapComp_inv_val {a b c : Underlying2 R B} (f : a ⟶ b) (g : b ⟶ c) :
     (F.toPseudo.mapComp f g).inv.1 = (F.mapComp f.obj g.obj).hom := rfl
 
+/--
+@isnad1 id=eq.0h5v.s16.7768608923fb from=translated src=- shape=7dbb76fe vocab=12d6290e
+-/
 @[simp] theorem toPseudo_mapId_hom_val (a : Underlying2 R B) :
     (F.toPseudo.mapId a).hom.1 = (F.mapId a.obj).inv := rfl
 
+/--
+@isnad1 id=eq.0h5v.s16.f114e99e29d4 from=translated src=- shape=cdae464a vocab=12d6290e
+-/
 @[simp] theorem toPseudo_mapId_inv_val (a : Underlying2 R B) :
     (F.toPseudo.mapId a).inv.1 = (F.mapId a.obj).hom := rfl
 
@@ -132,16 +155,25 @@ def pre {a b : B} {f g : a ⟶ b} (x : F.map f ⟶ F.map g) : f ⟶ g :=
   (hF.se a b).fullyFaithful.preimage x
 
 omit [TwoSupercategory R B] [TwoSupercategory R C] in
+/--
+@isnad1 id=eq.1h9v.s9.cb7ebd8bddea from=translated src=- shape=28824a81 vocab=b5b33a42
+-/
 @[simp] theorem map₂_pre {a b : B} {f g : a ⟶ b} (x : F.map f ⟶ F.map g) :
     F.map₂ (hF.pre x) = x :=
   (hF.se a b).fullyFaithful.map_preimage x
 
 omit [TwoSupercategory R B] [TwoSupercategory R C] in
+/--
+@isnad1 id=injectiv.1h8v.s8.57cba1d89040 from=translated src=- shape=6d520533 vocab=7ef7a66c
+-/
 theorem map₂_injective {a b : B} {f g : a ⟶ b} :
     Function.Injective (F.map₂ : (f ⟶ g) → (F.map f ⟶ F.map g)) :=
   fun _ _ h => (hF.se a b).fullyFaithful.map_injective h
 
 omit [TwoSupercategory R B] [TwoSupercategory R C] in
+/--
+@isnad1 id=mem.2h10v.s11.e535877272ba from=translated src=- shape=f18bcb67 vocab=14e09764
+-/
 theorem pre_mem {a b : B} {f g : a ⟶ b} {p : ZMod 2} {x : F.map f ⟶ F.map g}
     (hx : x ∈ parity (R := R) (F.map f) (F.map g) p) : hF.pre x ∈ parity (R := R) f g p := by
   have := (hF.se a b).fullyFaithful.faithful
@@ -158,6 +190,9 @@ def liftIso {a b : B} (k : F.obj a ⟶ F.obj b) : F.map (hF.lift k) ≅ k :=
   (hF.se a b).counitIso.app k
 
 omit [TwoSupercategory R B] [TwoSupercategory R C] in
+/--
+@isnad1 id=mem.1h7v.s11.5ce1d5219aa3 from=translated src=- shape=69cf99c5 vocab=f96e1c2b
+-/
 theorem liftIso_hom_mem {a b : B} (k : F.obj a ⟶ F.obj b) :
     (hF.liftIso k).hom ∈ parity (R := R) _ _ 0 :=
   (hF.se a b).counitIso_mem k
@@ -206,18 +241,30 @@ def preU {a b : Underlying2 R B} {f g : a ⟶ b} (x : F.toPseudo.map f ⟶ F.toP
     f ⟶ g :=
   ⟨hF.pre x.1, hF.pre_mem x.2⟩
 
+/--
+@isnad1 id=eq.1h9v.s12.fd8c9e0f6021 from=translated src=- shape=dd268a04 vocab=e6116707
+-/
 @[simp] theorem map₂_preU {a b : Underlying2 R B} {f g : a ⟶ b}
     (x : F.toPseudo.map f ⟶ F.toPseudo.map g) : F.toPseudo.map₂ (hF.preU x) = x :=
   Subtype.ext (hF.map₂_pre x.1)
 
 omit [TwoSupercategory R B] [TwoSupercategory R C] in
+/--
+@isnad1 id=eq.1h9v.s8.04e388e302b8 from=translated src=- shape=43ec1297 vocab=2c6d9fe9
+-/
 @[simp] theorem pre_map₂ {a b : B} {f g : a ⟶ b} (x : f ⟶ g) : hF.pre (F.map₂ x) = x :=
   (hF.se a b).fullyFaithful.preimage_map x
 
+/--
+@isnad1 id=eq.1h9v.s9.9f072140e5df from=translated src=- shape=c4abed4b vocab=d0b7108f
+-/
 @[simp] theorem preU_map₂ {a b : Underlying2 R B} {f g : a ⟶ b} (x : f ⟶ g) :
     hF.preU (F.toPseudo.map₂ x) = x :=
   Subtype.ext (hF.pre_map₂ x.1)
 
+/--
+@isnad1 id=injectiv.1h8v.s11.cda364f9109d from=translated src=- shape=a5fa5408 vocab=1e76e8ce
+-/
 theorem map₂U_injective {a b : Underlying2 R B} {f g : a ⟶ b} :
     Function.Injective (F.toPseudo.map₂ : (f ⟶ g) → _) := fun _ _ h =>
   Subtype.ext (hF.map₂_injective (congrArg Subtype.val h))
@@ -232,6 +279,9 @@ def pseudoInv : Pseudofunctor (Underlying2 R C) (Underlying2 R B) :=
     (fun η l => hF.Qc.map₂_whisker_right η l) (fun k l m => hF.Qc.map₂_associator k l m)
     (fun k => hF.Qc.map₂_left_unitor k) (fun k => hF.Qc.map₂_right_unitor k)
 
+/--
+@isnad1 id=eq.1h9v.s14.6c745b25154c from=translated src=- shape=ad98dee2 vocab=5bad5571
+-/
 theorem map₂_pseudoInv_mapComp_inv {c d f : Underlying2 R C} (k : c ⟶ d) (l : d ⟶ f) :
     F.toPseudo.map₂ (hF.pseudoInv.mapComp k l).inv =
       (F.toPseudo.mapComp (hF.mapU k) (hF.mapU l)).hom ≫ (hF.Qc.mapComp k l).inv :=
@@ -243,6 +293,9 @@ theorem map₂_pseudoInv_mapComp_inv {c d f : Underlying2 R C} (k : c ⟶ d) (l 
       fun k l m => hF.Qc.map₂_associator k l m, fun k => hF.Qc.map₂_left_unitor k,
       fun k => hF.Qc.map₂_right_unitor k]
 
+/--
+@isnad1 id=eq.1h9v.s14.9629e9281f74 from=translated src=- shape=f9819c5e vocab=5bad5571
+-/
 theorem map₂_pseudoInv_mapComp_hom {c d f : Underlying2 R C} (k : c ⟶ d) (l : d ⟶ f) :
     F.toPseudo.map₂ (hF.pseudoInv.mapComp k l).hom =
       (hF.Qc.mapComp k l).hom ≫ (F.toPseudo.mapComp (hF.mapU k) (hF.mapU l)).inv :=
@@ -254,6 +307,9 @@ theorem map₂_pseudoInv_mapComp_hom {c d f : Underlying2 R C} (k : c ⟶ d) (l 
       fun k l m => hF.Qc.map₂_associator k l m, fun k => hF.Qc.map₂_left_unitor k,
       fun k => hF.Qc.map₂_right_unitor k]
 
+/--
+@isnad1 id=eq.1h5v.s14.282fae33da67 from=translated src=- shape=7ac20572 vocab=c8ab556d
+-/
 theorem map₂_pseudoInv_mapId_hom (c : Underlying2 R C) :
     F.toPseudo.map₂ (hF.pseudoInv.mapId c).hom =
       (hF.Qc.mapId c).hom ≫ (F.toPseudo.mapId ⟨hF.obj c.obj⟩).inv :=
@@ -283,6 +339,9 @@ abbrev e' (c : C) : c ⟶ F.obj (hF.obj c) := (hF.E ⟨c⟩).inv.obj
 abbrev ε (c : C) : hF.e' c ≫ hF.e c ⟶ 𝟙 c := (hF.E ⟨c⟩).counit.hom.1
 
 omit [TwoSupercategory R B] in
+/--
+@isnad1 id=mem.1h5v.s10.a3b44080f95e from=translated src=- shape=7ccc96ae vocab=0e76c8e9
+-/
 theorem ε_mem (c : C) : hF.ε c ∈ parity (R := R) _ _ 0 := (hF.E ⟨c⟩).counit.hom.2
 
 /-- `(e_ν ≫ k ≫ e'_ν') ≫ e_ν' ⇒ e_ν ≫ k`, contracting by the counit.-/
@@ -292,10 +351,16 @@ def nu {c d : C} (k : c ⟶ d) : (hF.e c ≫ k ≫ hF.e' d) ≫ hF.e d ⟶ hF.e 
       (BicategoryStruct.rightUnitor k).hom)
 
 omit [TwoSupercategory R B] in
+/--
+@isnad1 id=eq.1h7v.s13.1163fb874e8a from=translated src=- shape=e8d90d90 vocab=b581ea8e
+-/
 theorem nu_eq {c d : C} (k : c ⟶ d) :
     hF.nu k = (ConjPseudofunctor.counitNat hF.E (Underlying2.hom1 (R := R) k)).hom.1 := rfl
 
 omit [TwoSupercategory R B] in
+/--
+@isnad1 id=eq.1h9v.s11.dce0dcb97abc from=translated src=- shape=6c2b92e5 vocab=e5639760
+-/
 @[reassoc]
 theorem nu_naturality {c d : C} {k k' : c ⟶ d} (η : k ⟶ k') :
     (hF.e c ◁ (η ▷ hF.e' d)) ▷ hF.e d ≫ hF.nu k' = hF.nu k ≫ hF.e c ◁ η := by
@@ -307,6 +372,9 @@ theorem nu_naturality {c d : C} {k k' : c ⟶ d} (η : k ⟶ k') :
   simp only [Category.assoc]
 
 omit [TwoSupercategory R B] in
+/--
+@isnad1 id=mem.1h7v.s12.9f9a283805bd from=translated src=- shape=19a78ff8 vocab=01542292
+-/
 theorem nu_mem {c d : C} (k : c ⟶ d) : hF.nu k ∈ parity (R := R) _ _ 0 :=
   (ConjPseudofunctor.counitNat hF.E (Underlying2.hom1 (R := R) k)).hom.2
 
@@ -318,11 +386,17 @@ def mu {c d f : C} (k : c ⟶ d) (l : d ⟶ f) :
     (BicategoryStruct.associator _ _ _).hom ≫ hF.e c ◁ (BicategoryStruct.associator k l _).inv
 
 omit [TwoSupercategory R B] in
+/--
+@isnad1 id=eq.1h9v.s13.e30f2fba78bf from=translated src=- shape=250e107e vocab=bbb8ce41
+-/
 theorem mu_eq {c d f : C} (k : c ⟶ d) (l : d ⟶ f) :
     hF.mu k l = (ConjPseudofunctor.comp hF.E (Underlying2.hom1 (R := R) k)
       (Underlying2.hom1 (R := R) l)).hom.1 := rfl
 
 omit [TwoSupercategory R B] in
+/--
+@isnad1 id=eq.1h11v.s12.8929717cb8be from=translated src=- shape=43294554 vocab=4d5088de
+-/
 @[reassoc]
 theorem mu_naturality_left {c d f : C} {k k' : c ⟶ d} (η : k ⟶ k') (l : d ⟶ f) :
     (hF.e c ◁ (η ▷ hF.e' d)) ▷ (hF.e d ≫ l ≫ hF.e' f) ≫ hF.mu k' l =
@@ -333,6 +407,9 @@ theorem mu_naturality_left {c d f : C} {k k' : c ⟶ d} (η : k ⟶ k') (l : d �
   simp only [Category.assoc]
 
 omit [TwoSupercategory R B] in
+/--
+@isnad1 id=eq.1h11v.s12.c85e1468c221 from=translated src=- shape=af223749 vocab=4d5088de
+-/
 @[reassoc]
 theorem mu_naturality_right {c d f : C} (k : c ⟶ d) {l l' : d ⟶ f} (η : l ⟶ l') :
     (hF.e c ≫ k ≫ hF.e' d) ◁ (hF.e d ◁ (η ▷ hF.e' f)) ≫ hF.mu k l' =
@@ -346,6 +423,9 @@ theorem mu_naturality_right {c d f : C} (k : c ⟶ d) {l l' : d ⟶ f} (η : l �
 abbrev εinv (c : C) : 𝟙 c ⟶ hF.e' c ≫ hF.e c := (hF.E ⟨c⟩).counit.inv.1
 
 omit [TwoSupercategory R B] in
+/--
+@isnad1 id=mem.1h5v.s10.8a009524ff9f from=translated src=- shape=1d7622bc vocab=be4acce0
+-/
 theorem εinv_mem (c : C) : hF.εinv c ∈ parity (R := R) _ _ 0 := (hF.E ⟨c⟩).counit.inv.2
 
 /-- `k ≫ e'_ν' ⇒ e'_ν ≫ (e_ν ≫ k ≫ e'_ν')`, inserting `e'_ν ≫ e_ν` by the inverse counit.-/
@@ -354,10 +434,16 @@ def unu {c d : C} (k : c ⟶ d) : k ≫ hF.e' d ⟶ hF.e' c ≫ (hF.e c ≫ k �
     (BicategoryStruct.associator _ _ _).hom
 
 omit [TwoSupercategory R B] in
+/--
+@isnad1 id=eq.1h7v.s13.db500196c7ca from=translated src=- shape=1f3e280f vocab=a4a44a89
+-/
 theorem unu_eq {c d : C} (k : c ⟶ d) :
     hF.unu k = (ConjPseudofunctor.unitNat hF.E (Underlying2.hom1 (R := R) k)).hom.1 := rfl
 
 omit [TwoSupercategory R B] in
+/--
+@isnad1 id=eq.1h9v.s11.963cd52e6407 from=translated src=- shape=19879475 vocab=0a06259a
+-/
 @[reassoc]
 theorem unu_naturality {c d : C} {k k' : c ⟶ d} (η : k ⟶ k') :
     η ▷ hF.e' d ≫ hF.unu k' = hF.unu k ≫ hF.e' c ◁ (hF.e c ◁ (η ▷ hF.e' d)) := by
@@ -374,11 +460,17 @@ section Inverse
 open BicategoryStruct TwoSupercategory
 
 omit [TwoSupercategory R B] [TwoSupercategory R C] hF in
+/--
+@isnad1 id=eq.0h11v.s10.1248907a916c from=translated src=- shape=3ee34726 vocab=d0574c84
+-/
 theorem map₂_whiskerRight_eq {a b c : B} {f g : a ⟶ b} (η : f ⟶ g) (h : b ⟶ c) :
     F.map₂ (η ▷ h) = (F.mapComp f h).inv ≫ F.map₂ η ▷ F.map h ≫ (F.mapComp g h).hom := by
   rw [F.mapComp_naturality_left, Iso.inv_hom_id_assoc]
 
 omit [TwoSupercategory R B] [TwoSupercategory R C] hF in
+/--
+@isnad1 id=eq.0h11v.s10.4f0e909230c0 from=translated src=- shape=3a116e71 vocab=916f28b1
+-/
 theorem map₂_whiskerLeft_eq {a b c : B} (f : a ⟶ b) {g h : b ⟶ c} (η : g ⟶ h) :
     F.map₂ (f ◁ η) = (F.mapComp f g).inv ≫ F.map f ◁ F.map₂ η ≫ (F.mapComp f h).hom := by
   rw [F.mapComp_naturality_right, Iso.inv_hom_id_assoc]
@@ -392,6 +484,9 @@ def invMap₂ {c d : C} {k k' : c ⟶ d} (η : k ⟶ k') : hF.invMap k ⟶ hF.in
   hF.pre ((hF.liftIso _).hom ≫ hF.e c ◁ (η ▷ hF.e' d) ≫ (hF.liftIso _).inv)
 
 omit [TwoSupercategory R B] in
+/--
+@isnad1 id=eq.1h9v.s11.f82222b48df8 from=translated src=- shape=f8bbef8c vocab=818adbbc
+-/
 theorem map₂_invMap₂ {c d : C} {k k' : c ⟶ d} (η : k ⟶ k') :
     F.map₂ (hF.invMap₂ η) =
       (hF.liftIso _).hom ≫ hF.e c ◁ (η ▷ hF.e' d) ≫ (hF.liftIso _).inv :=
@@ -407,10 +502,16 @@ def invMapComp {c d f : C} (k : c ⟶ d) (l : d ⟶ f) :
   inv_hom_id := congrArg Subtype.val
     (hF.pseudoInv.mapComp (Underlying2.hom1 k) (Underlying2.hom1 l)).hom_inv_id
 
+/--
+@isnad1 id=mem.1h9v.s12.6cf20406aea1 from=translated src=- shape=cc6a9540 vocab=1dab37e0
+-/
 theorem invMapComp_hom_mem {c d f : C} (k : c ⟶ d) (l : d ⟶ f) :
     (hF.invMapComp k l).hom ∈ parity (R := R) _ _ 0 :=
   (hF.pseudoInv.mapComp (Underlying2.hom1 k) (Underlying2.hom1 l)).inv.2
 
+/--
+@isnad1 id=eq.1h9v.s13.9084debf703b from=translated src=- shape=dc9945de vocab=1b77c55d
+-/
 theorem map₂_invMapComp_hom {c d f : C} (k : c ⟶ d) (l : d ⟶ f) :
     F.map₂ (hF.invMapComp k l).hom =
       (F.mapComp _ _).inv ≫ (hF.liftIso _).hom ▷ F.map (hF.invMap l) ≫
@@ -428,6 +529,9 @@ def invMapId (c : C) : 𝟙 (hF.obj c) ≅ hF.invMap (𝟙 c) where
   hom_inv_id := congrArg Subtype.val (hF.pseudoInv.mapId ⟨c⟩).inv_hom_id
   inv_hom_id := congrArg Subtype.val (hF.pseudoInv.mapId ⟨c⟩).hom_inv_id
 
+/--
+@isnad1 id=mem.1h5v.s11.0237d0ac7a08 from=translated src=- shape=9f475d9f vocab=b635e77c
+-/
 theorem invMapId_hom_mem (c : C) : (hF.invMapId c).hom ∈ parity (R := R) _ _ 0 :=
   (hF.pseudoInv.mapId ⟨c⟩).inv.2
 
@@ -508,10 +612,16 @@ section Counit
 
 open Bicategory Oplax
 
+/--
+@isnad1 id=eq.1h9v.s12.3870d505bade from=translated src=- shape=0e94d0aa vocab=7bffb10e
+-/
 theorem compOplax_map₂ {c d : Underlying2 R C} {k k' : c ⟶ d} (η : k ⟶ k') :
     (hF.inverse.comp F).toOplax.map₂ η = hF.Qc.map₂ η :=
   Subtype.ext (hF.map₂_invMap₂ η.1)
 
+/--
+@isnad1 id=eq.1h9v.s12.1438a705bfe6 from=translated src=- shape=86018d6d vocab=f537920f
+-/
 theorem compOplax_mapComp {c d f : Underlying2 R C} (k : c ⟶ d) (l : d ⟶ f) :
     (hF.inverse.comp F).toOplax.mapComp k l = (hF.Qc.mapComp k l).hom := by
   apply Subtype.ext
@@ -522,6 +632,9 @@ theorem compOplax_mapComp {c d f : Underlying2 R C} (k : c ⟶ d) (l : d ⟶ f) 
   exact (Category.assoc _ _ _).trans
     ((congrArg (_ ≫ ·) (F.mapComp _ _).hom_inv_id).trans (Category.comp_id _))
 
+/--
+@isnad1 id=eq.1h5v.s12.2e6ea58d75c8 from=translated src=- shape=7476d1c9 vocab=8630170f
+-/
 theorem compOplax_mapId (c : Underlying2 R C) :
     (hF.inverse.comp F).toOplax.mapId c = (hF.Qc.mapId c).hom := by
   apply Subtype.ext
@@ -615,14 +728,18 @@ def unitCounitIso :
 /-- The counit as a 1-morphism of `𝔥𝔬𝔪(𝔅, 𝔅)`.-/
 abbrev counitHom : hF.inverse.comp F ⟶ TwoSuperfunctor.id R C := hF.counit
 
-/-- The counit `ℝ ∘ 𝕊 ⇒ 𝕀` is a superequivalence in `𝔥𝔬𝔪(𝔅, 𝔅)`.-/
+/-- The counit `ℝ ∘ 𝕊 ⇒ 𝕀` is a superequivalence in `𝔥𝔬𝔪(𝔅, 𝔅)`.
+@isnad1 id=issupere.1h4v.s8.1acd72f9e9df from=translated src=- shape=acedfb19 vocab=38089747
+-/
 theorem counit_isSuperequivalence : TwoSupercategory.IsSuperequivalence R hF.counitHom :=
   ⟨hF.unit, TwoNatTrans.isoOfOplaxModificationIso hF.counitUnitIso,
     TwoNatTrans.isoOfOplaxModificationIso hF.unitCounitIso,
     fun a => (hF.counitUnitIso.hom.as.app ⟨a⟩).2,
     fun a => (hF.unitCounitIso.hom.as.app ⟨a⟩).2⟩
 
-/-- `ℝ ∘ 𝕊` is superequivalent to the identity in `𝔥𝔬𝔪(𝔅, 𝔅)`.-/
+/-- `ℝ ∘ 𝕊` is superequivalent to the identity in `𝔥𝔬𝔪(𝔅, 𝔅)`.
+@isnad1 id=superequ.1h4v.s8.1eb4278adea9 from=translated src=- shape=212bff42 vocab=1196cc31
+-/
 theorem superequivalent_inverse_comp :
     TwoSupercategory.Superequivalent R (hF.inverse.comp F) (TwoSuperfunctor.id R C) :=
   ⟨hF.counitHom, hF.counit_isSuperequivalence⟩
@@ -640,6 +757,9 @@ open Bicategory Oplax
 open scoped Oplax.OplaxTrans
 
 omit [TwoSupercategory R B] [TwoSupercategory R C] hF in
+/--
+@isnad1 id=eq.5h19v.s10.f96cc6da1aef from=translated src=- shape=226f7271 vocab=f643602d
+-/
 theorem natId_aux {𝒞 : Type*} [Bicategory 𝒞] {X Y : 𝒞} {σ : X ⟶ Y} {m m0 m1 : X ⟶ X}
     {m' m1' : Y ⟶ Y} (n : m ≫ σ ⟶ σ ≫ m') (n0 : m0 ≫ σ ⟶ σ ≫ 𝟙 Y) (i : m ⟶ m0)
     (i' : m' ⟶ 𝟙 Y) (j : m0 ⟶ 𝟙 X) (j' : 𝟙 Y ⟶ 𝟙 Y) (k : m ⟶ m1) (l : m1 ⟶ 𝟙 X)
@@ -651,6 +771,9 @@ theorem natId_aux {𝒞 : Type*} [Bicategory 𝒞] {X Y : 𝒞} {σ : X ⟶ Y} {
     h1]
 
 omit [TwoSupercategory R B] [TwoSupercategory R C] hF in
+/--
+@isnad1 id=eq.5h31v.s11.02c6af7108ce from=translated src=- shape=ecba75cd vocab=a944ccc1
+-/
 theorem natComp_aux {𝒞 : Type*} [Bicategory 𝒞] {A B' C' A' B'' C'' : 𝒞} {sa : A ⟶ A'}
     {sb : B' ⟶ B''} {sc : C' ⟶ C''} {pf : A ⟶ B'} {pg : B' ⟶ C'} {pfg p0 p1 : A ⟶ C'}
     {qf : A' ⟶ B''} {qg : B'' ⟶ C''} {qfg q1 : A' ⟶ C''}
@@ -667,6 +790,9 @@ theorem natComp_aux {𝒞 : Type*} [Bicategory 𝒞] {A B' C' A' B'' C'' : 𝒞}
   rw [h4, h3, comp_whiskerRight, Category.assoc, ← h2, hc', whiskerLeft_id, Category.comp_id]
   exact h1.symm
 
+/--
+@isnad1 id=eq.1h5v.s12.aa485934f434 from=translated src=- shape=360c401a vocab=b1c02b60
+-/
 theorem comp_inverse_mapId_eq (a : B) :
     F.map₂ ((F.comp hF.inverse).mapId a).inv ≫ (F.mapId _).inv =
       F.map₂ (hF.inverse.map₂ (F.mapId a).inv) ≫ ((hF.inverse.comp F).mapId (F.obj a)).inv := by
@@ -675,6 +801,9 @@ theorem comp_inverse_mapId_eq (a : B) :
   rw [F.map₂_comp]
   exact Category.assoc _ _ _
 
+/--
+@isnad1 id=eq.1h9v.s13.4ae2c2521b57 from=translated src=- shape=ed766338 vocab=e5d1598d
+-/
 theorem comp_inverse_mapComp_eq {a b c : B} (f : a ⟶ b) (g : b ⟶ c) :
     F.map₂ ((F.comp hF.inverse).mapComp f g).inv ≫ (F.mapComp _ _).inv =
       F.map₂ (hF.inverse.map₂ (F.mapComp f g).inv) ≫
@@ -685,12 +814,18 @@ theorem comp_inverse_mapComp_eq {a b c : B} (f : a ⟶ b) (g : b ⟶ c) :
   rw [F.map₂_comp]
   exact Category.assoc _ _ _
 
+/--
+@isnad1 id=eq.1h5v.s14.b5408b90e48f from=translated src=- shape=f9f4d951 vocab=9f0c1b17
+-/
 theorem compOplax_mapId_eq (a : Underlying2 R B) :
     F.toPseudo.map₂ ((F.comp hF.inverse).toOplax.mapId a) ≫ (F.toPseudo.mapId _).hom =
       (hF.inverse.comp F).toOplax.map₂ (F.toPseudo.mapId a).hom ≫
         (hF.inverse.comp F).toOplax.mapId (F.toPseudo.obj a) :=
   Subtype.ext (hF.comp_inverse_mapId_eq a.obj)
 
+/--
+@isnad1 id=eq.1h9v.s15.a662feff6321 from=translated src=- shape=3b3887ae vocab=124f0c24
+-/
 theorem compOplax_mapComp_eq {a b c : Underlying2 R B} (f : a ⟶ b) (g : b ⟶ c) :
     F.toPseudo.map₂ ((F.comp hF.inverse).toOplax.mapComp f g) ≫
         (F.toPseudo.mapComp _ _).hom =
@@ -710,11 +845,17 @@ abbrev θnat {a b : Underlying2 R B} (f : a ⟶ b) :
       hF.θapp a ≫ F.toPseudo.map ((TwoSuperfunctor.id R B).toOplax.map f) :=
   hF.counitOplax.naturality (F.toPseudo.map f)
 
+/--
+@isnad1 id=eq.1h9v.s15.a70976ed3c98 from=translated src=- shape=2b6f87a3 vocab=158a3114
+-/
 theorem θnat_nat {a b : Underlying2 R B} {f g : a ⟶ b} (β : f ⟶ g) :
     F.toPseudo.map₂ ((F.comp hF.inverse).toOplax.map₂ β) ▷ hF.θapp b ≫ hF.θnat g =
       hF.θnat f ≫ hF.θapp a ◁ F.toPseudo.map₂ ((TwoSuperfunctor.id R B).toOplax.map₂ β) :=
   hF.counitOplax.naturality_naturality (F.toPseudo.map₂ β)
 
+/--
+@isnad1 id=eq.1h5v.s16.de4346f7988f from=translated src=- shape=1cb44847 vocab=145f05fc
+-/
 theorem θnat_id (a : Underlying2 R B) :
     hF.θnat (𝟙 a) ≫ hF.θapp a ◁ (F.toPseudo.map₂ ((TwoSuperfunctor.id R B).toOplax.mapId a) ≫
         (F.toPseudo.mapId _).hom) =
@@ -729,6 +870,9 @@ theorem θnat_id (a : Underlying2 R B) :
       exact Category.id_comp _))
     rfl
 
+/--
+@isnad1 id=eq.1h9v.s18.307d063ac00d from=translated src=- shape=2d5945f6 vocab=c7e849ff
+-/
 theorem θnat_comp {a b c : Underlying2 R B} (f : a ⟶ b) (g : b ⟶ c) :
     hF.θnat (f ≫ g) ≫ hF.θapp a ◁ (F.toPseudo.map₂ ((TwoSuperfunctor.id R B).toOplax.mapComp f g) ≫
         (F.toPseudo.mapComp _ _).hom) =
@@ -748,6 +892,9 @@ theorem θnat_comp {a b c : Underlying2 R B} (f : a ⟶ b) (g : b ⟶ c) :
     rfl
 
 omit [TwoSupercategory R B] [TwoSupercategory R C] hF in
+/--
+@isnad1 id=eq.5h19v.s10.fcaf945fbc9b from=translated src=- shape=4ee7f58e vocab=f643602d
+-/
 theorem natId_aux' {𝒞 : Type*} [Bicategory 𝒞] {X Y : 𝒞} {σ : X ⟶ Y} {m' m1' : X ⟶ X}
     {m m0 m1 : Y ⟶ Y} (n : m' ≫ σ ⟶ σ ≫ m) (n0 : 𝟙 X ≫ σ ⟶ σ ≫ m0) (i' : m' ⟶ 𝟙 X)
     (i : m ⟶ m0) (j : m0 ⟶ 𝟙 Y) (j' : 𝟙 X ⟶ 𝟙 X) (k : m ⟶ m1) (l : m1 ⟶ 𝟙 Y)
@@ -759,6 +906,9 @@ theorem natId_aux' {𝒞 : Type*} [Bicategory 𝒞] {X Y : 𝒞} {σ : X ⟶ Y} 
     id_whiskerRight, Category.id_comp]
 
 omit [TwoSupercategory R B] [TwoSupercategory R C] hF in
+/--
+@isnad1 id=eq.5h31v.s11.6414e5ce28c6 from=translated src=- shape=cf2130c8 vocab=a944ccc1
+-/
 theorem natComp_aux' {𝒞 : Type*} [Bicategory 𝒞] {A B' C' A' B'' C'' : 𝒞} {sa : A ⟶ A'}
     {sb : B' ⟶ B''} {sc : C' ⟶ C''} {pf : A ⟶ B'} {pg : B' ⟶ C'} {pfg p1 : A ⟶ C'}
     {qf : A' ⟶ B''} {qg : B'' ⟶ C''} {qfg q0 q1 : A' ⟶ C''}
@@ -787,11 +937,17 @@ abbrev θ'nat {a b : Underlying2 R B} (f : a ⟶ b) :
       hF.θ'app a ≫ F.toPseudo.map ((F.comp hF.inverse).toOplax.map f) :=
   hF.unitOplax.naturality (F.toPseudo.map f)
 
+/--
+@isnad1 id=eq.1h9v.s15.3286c64dbe17 from=translated src=- shape=24036192 vocab=48a1fc98
+-/
 theorem θ'nat_nat {a b : Underlying2 R B} {f g : a ⟶ b} (β : f ⟶ g) :
     F.toPseudo.map₂ ((TwoSuperfunctor.id R B).toOplax.map₂ β) ▷ hF.θ'app b ≫ hF.θ'nat g =
       hF.θ'nat f ≫ hF.θ'app a ◁ F.toPseudo.map₂ ((F.comp hF.inverse).toOplax.map₂ β) :=
   hF.unitOplax.naturality_naturality (F.toPseudo.map₂ β)
 
+/--
+@isnad1 id=eq.1h5v.s16.e2362f90cd6b from=translated src=- shape=d6e54c51 vocab=8ad9bfc3
+-/
 theorem θ'nat_id (a : Underlying2 R B) :
     hF.θ'nat (𝟙 a) ≫ hF.θ'app a ◁ (F.toPseudo.map₂ ((F.comp hF.inverse).toOplax.mapId a) ≫
         (F.toPseudo.mapId _).hom) =
@@ -806,6 +962,9 @@ theorem θ'nat_id (a : Underlying2 R B) :
       exact Category.id_comp _))
     rfl
 
+/--
+@isnad1 id=eq.1h9v.s18.d77795f24f62 from=translated src=- shape=ba7e331d vocab=0b0c84a1
+-/
 theorem θ'nat_comp {a b c : Underlying2 R B} (f : a ⟶ b) (g : b ⟶ c) :
     hF.θ'nat (f ≫ g) ≫ hF.θ'app a ◁ (F.toPseudo.map₂ ((F.comp hF.inverse).toOplax.mapComp f g) ≫
         (F.toPseudo.mapComp _ _).hom) =
@@ -879,12 +1038,18 @@ section UnitBSuper
 open BicategoryStruct TwoSupercategory
 open scoped Oplax.OplaxTrans
 
+/--
+@isnad1 id=eq.1h7v.s17.81ba827fae34 from=translated src=- shape=0d57d4e1 vocab=e83ab77d
+-/
 theorem map₂_θOplax_nat {a b : B} (f : a ⟶ b) :
     F.map₂ (hF.θOplax.naturality (Underlying2.hom1 f)).1 =
       (F.mapComp _ _).inv ≫ F.map (hF.inverse.map (F.map f)) ◁ (hF.liftIso _).hom ≫
         hF.counit.x (F.map f) ≫ (hF.liftIso _).inv ▷ F.map f ≫ (F.mapComp _ _).hom :=
   hF.map₂_pre _
 
+/--
+@isnad1 id=eq.1h7v.s17.955d38c62c7a from=translated src=- shape=b0ddf89f vocab=73726838
+-/
 theorem map₂_θ'Oplax_nat {a b : B} (f : a ⟶ b) :
     F.map₂ (hF.θ'Oplax.naturality (Underlying2.hom1 f)).1 =
       (F.mapComp _ _).inv ≫ F.map f ◁ (hF.liftIso _).hom ≫
@@ -893,6 +1058,9 @@ theorem map₂_θ'Oplax_nat {a b : B} (f : a ⟶ b) :
   hF.map₂_pre _
 
 omit [TwoSupercategory R B] in
+/--
+@isnad1 id=eq.6h24v.s13.8b603b17bf8f from=translated src=- shape=1edc549f vocab=0b9453b5
+-/
 theorem nat_lift_aux {a' b' a b : B} {sf sg : a' ⟶ b'} {ta : a' ⟶ a} {tb : b' ⟶ b}
     {f g : a ⟶ b} {ea : F.obj a' ⟶ F.obj a} {eb : F.obj b' ⟶ F.obj b} (sε : sf ⟶ sg)
     (ε : f ⟶ g) (nf : sf ≫ tb ⟶ ta ≫ f) (ng : sg ≫ tb ⟶ ta ≫ g) (ℓa : F.map ta ≅ ea)
@@ -928,7 +1096,9 @@ def invUnit : TwoNatTrans (TwoSuperfunctor.id R B) (F.comp hF.inverse) :=
 /-- `𝕊 ∘ ℝ ⇒ 𝕀` as a 1-morphism of `𝔥𝔬𝔪(𝔄, 𝔄)`.-/
 abbrev invCounitHom : F.comp hF.inverse ⟶ TwoSuperfunctor.id R B := hF.invCounit
 
-/-- The 2-natural transformation `𝕊 ∘ ℝ ⇒ 𝕀` is a superequivalence in `𝔥𝔬𝔪(𝔄, 𝔄)`.-/
+/-- The 2-natural transformation `𝕊 ∘ ℝ ⇒ 𝕀` is a superequivalence in `𝔥𝔬𝔪(𝔄, 𝔄)`.
+@isnad1 id=issupere.1h4v.s8.3b90f6e9868d from=translated src=- shape=54582ec5 vocab=2bbeff71
+-/
 theorem invCounit_isSuperequivalence : IsSuperequivalence R hF.invCounitHom :=
   ⟨hF.invUnit,
     TwoNatTrans.isoOfOplaxModificationIso (θ := TwoNatTrans.vcomp hF.invCounit hF.invUnit)
@@ -938,14 +1108,18 @@ theorem invCounit_isSuperequivalence : IsSuperequivalence R hF.invCounitHom :=
     fun a => (hF.θθ'Iso.hom.as.app ⟨a⟩).2,
     fun a => (hF.θ'θIso.hom.as.app ⟨a⟩).2⟩
 
-/-- `𝕊 ∘ ℝ` is superequivalent to the identity in `𝔥𝔬𝔪(𝔄, 𝔄)`.-/
+/-- `𝕊 ∘ ℝ` is superequivalent to the identity in `𝔥𝔬𝔪(𝔄, 𝔄)`.
+@isnad1 id=superequ.1h4v.s8.a4df01a7ed42 from=translated src=- shape=94082d71 vocab=1196cc31
+-/
 theorem superequivalent_comp_inverse :
     Superequivalent R (F.comp hF.inverse) (TwoSuperfunctor.id R B) :=
   ⟨hF.invCounitHom, hF.invCounit_isSuperequivalence⟩
 
 /-- **Brundan–Ellis, Definition 2.2**, the second formulation implies the first: a 2-superfunctor
 which is a superequivalence on morphism supercategories and essentially surjective up to
-superequivalence is a 2-superequivalence, with quasi-inverse `hF.inverse`.-/
+superequivalence is a 2-superequivalence, with quasi-inverse `hF.inverse`.
+@isnad1 id=istwosup.1h4v.s7.53d4adbbc7f9 from=translated src=- shape=f2bb36d4 vocab=b304d083
+-/
 theorem isTwoSuperequivalence : F.IsTwoSuperequivalence :=
   ⟨hF.inverse, hF.superequivalent_comp_inverse, hF.superequivalent_inverse_comp⟩
 
@@ -953,14 +1127,18 @@ end UnitBSuper
 
 end IsLocalTwoSuperequivalence
 
-/-- **Brundan–Ellis, Definition 2.2**: the two formulations of a 2-superequivalence agree.-/
+/-- **Brundan–Ellis, Definition 2.2**: the two formulations of a 2-superequivalence agree.
+@isnad1 id=iff.0h4v.s7.d28e492d4b2d from=translated src=- shape=ca71d3b2 vocab=b304d083
+-/
 theorem isTwoSuperequivalence_iff_isLocalTwoSuperequivalence (F : TwoSuperfunctor R B C) :
     F.IsTwoSuperequivalence ↔ F.IsLocalTwoSuperequivalence :=
   ⟨IsTwoSuperequivalence.isLocalTwoSuperequivalence,
     IsLocalTwoSuperequivalence.isTwoSuperequivalence⟩
 
 /-- 2-supercategories which are 2-superequivalent in the second formulation of Definition 2.2
-are 2-superequivalent in the first.-/
+are 2-superequivalent in the first.
+@isnad1 id=twosuper.1h3v.s7.d29b091c313b from=translated src=- shape=1bef7caa vocab=5f92d5a2
+-/
 theorem LocalTwoSuperequivalent.twoSuperequivalent (h : LocalTwoSuperequivalent R B C) :
     TwoSuperequivalent R B C := by
   obtain ⟨F, hF⟩ := h
@@ -968,7 +1146,9 @@ theorem LocalTwoSuperequivalent.twoSuperequivalent (h : LocalTwoSuperequivalent 
 
 variable (R B C) in
 /-- **Brundan–Ellis, Definition 2.2**: the two notions of 2-superequivalent 2-supercategories
-agree.-/
+agree.
+@isnad1 id=iff.0h3v.s7.85aff1fbb6c0 from=translated src=- shape=f16e8cb0 vocab=5f92d5a2
+-/
 theorem twoSuperequivalent_iff_localTwoSuperequivalent :
     TwoSuperequivalent R B C ↔ LocalTwoSuperequivalent R B C :=
   ⟨TwoSuperequivalent.localTwoSuperequivalent, LocalTwoSuperequivalent.twoSuperequivalent⟩

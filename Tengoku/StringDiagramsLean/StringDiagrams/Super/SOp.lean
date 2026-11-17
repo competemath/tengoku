@@ -45,6 +45,9 @@ variable {R : Type w} [CommRing R] {C : Type w₁} [Category.{w₂} C] [Preaddit
 def compC {X Y Z : C} (f : Y ⟶ X) (g : Z ⟶ Y) : Z ⟶ X :=
   proj R 0 g ≫ f + proj R 1 g ≫ twist R 1 f
 
+/--
+@isnad1 id=eq.2h9v.s9.8d7e97b98db5 from=translated src=- shape=2ff6659d vocab=e6810dcf
+-/
 theorem compC_of_mem {X Y Z : C} {p q : ZMod 2} {f : Y ⟶ X} {g : Z ⟶ Y}
     (hf : f ∈ parity (R := R) Y X p) (hg : g ∈ parity (R := R) Z Y q) :
     compC (R := R) f g = sign R (p * q) • (g ≫ f) := by
@@ -55,34 +58,55 @@ theorem compC_of_mem {X Y Z : C} {p q : ZMod 2} {f : Y ⟶ X} {g : Z ⟶ Y}
   · rw [proj_of_mem hg, proj_of_mem_ne hg (by decide), Limits.zero_comp, zero_add,
       twist_one_of_mem hf, Linear.comp_smul, mul_one]
 
+/--
+@isnad1 id=eq.0h8v.s8.65fb04f78f22 from=translated src=- shape=a7ce48f2 vocab=7e2c5846
+-/
 theorem compC_add {X Y Z : C} (f : Y ⟶ X) (g g' : Z ⟶ Y) :
     compC (R := R) f (g + g') = compC (R := R) f g + compC (R := R) f g' := by
   unfold compC
   rw [map_add, map_add, Preadditive.add_comp, Preadditive.add_comp]
   abel
 
+/--
+@isnad1 id=eq.0h8v.s8.9e1b85a48344 from=translated src=- shape=ef023a64 vocab=7e2c5846
+-/
 theorem add_compC {X Y Z : C} (f f' : Y ⟶ X) (g : Z ⟶ Y) :
     compC (R := R) (f + f') g = compC (R := R) f g + compC (R := R) f' g := by
   unfold compC
   rw [map_add, Preadditive.comp_add, Preadditive.comp_add]
   abel
 
+/--
+@isnad1 id=eq.0h8v.s9.ce6bb4e3e170 from=translated src=- shape=9221802e vocab=87454a07
+-/
 theorem compC_smul {X Y Z : C} (f : Y ⟶ X) (r : R) (g : Z ⟶ Y) :
     compC (R := R) f (r • g) = r • compC (R := R) f g := by
   unfold compC
   rw [map_smul, map_smul, Linear.smul_comp, Linear.smul_comp, smul_add]
 
+/--
+@isnad1 id=eq.0h8v.s9.addc273125c0 from=translated src=- shape=8e239038 vocab=87454a07
+-/
 theorem smul_compC {X Y Z : C} (r : R) (f : Y ⟶ X) (g : Z ⟶ Y) :
     compC (R := R) (r • f) g = r • compC (R := R) f g := by
   unfold compC
   rw [map_smul, Linear.comp_smul, Linear.comp_smul, smul_add]
 
+/--
+@isnad1 id=eq.0h6v.s7.8f53c3e9ea56 from=translated src=- shape=957433da vocab=15a06742
+-/
 theorem compC_zero {X Y Z : C} (f : Y ⟶ X) : compC (R := R) f (0 : Z ⟶ Y) = 0 := by
   rw [← zero_smul R (0 : Z ⟶ Y), compC_smul, zero_smul]
 
+/--
+@isnad1 id=eq.0h6v.s7.694dbb3096ec from=translated src=- shape=f8aba631 vocab=15a06742
+-/
 theorem zero_compC {X Y Z : C} (g : Z ⟶ Y) : compC (R := R) (0 : Y ⟶ X) g = 0 := by
   rw [← zero_smul R (0 : Y ⟶ X), smul_compC, zero_smul]
 
+/--
+@isnad1 id=eq.0h9v.s7.b5d945e43536 from=translated src=- shape=13a867de vocab=15a06742
+-/
 theorem compC_assoc {W X Y Z : C} (f : X ⟶ W) (g : Y ⟶ X) (h : Z ⟶ Y) :
     compC (R := R) (compC (R := R) f g) h = compC (R := R) f (compC (R := R) g h) := by
   refine induction_on (R := R) f (by simp only [zero_compC]) (fun p f hf => ?_)
@@ -128,19 +152,36 @@ def sop {X Y : C} (f : X ⟶ Y) : (⟨Y⟩ : SOp R C) ⟶ ⟨X⟩ := ⟨f⟩
 /-- A morphism of `SOp R C`, viewed as a morphism of `C`.-/
 def unsop {X Y : SOp R C} (f : X ⟶ Y) : Y.unop ⟶ X.unop := Hom.unsop f
 
+/--
+@isnad1 id=eq.0h5v.s6.ef21f91b0afd from=translated src=- shape=c14b1ad8 vocab=f6c24b85
+-/
 @[simp] theorem unsop_sop {X Y : C} (f : X ⟶ Y) : unsop (sop (R := R) f) = f := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.6129f8715dbc from=translated src=- shape=1aee92e5 vocab=182be737
+-/
 @[simp] theorem sop_unsop {X Y : C} (f : (⟨Y⟩ : SOp R C) ⟶ ⟨X⟩) : sop (unsop f) = f := rfl
 
+/--
+@isnad1 id=eq.1h6v.s7.8768ce4bc33f from=translated src=- shape=ed9711ed vocab=88d4fb87
+-/
 @[ext]
 theorem hom_ext {X Y : SOp R C} {f g : X ⟶ Y} (h : unsop f = unsop g) : f = g := Hom.ext h
 
+/--
+@isnad1 id=eq.0h7v.s7.39a568a1a872 from=translated src=- shape=50191f58 vocab=28c299d2
+-/
 theorem unsop_comp {X Y Z : SOp R C} (f : X ⟶ Y) (g : Y ⟶ Z) :
     unsop (f ≫ g) = compC (R := R) (unsop f) (unsop g) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.f59dea1ec24f from=translated src=- shape=f96d3e64 vocab=06ae2598
+-/
 @[simp] theorem unsop_id (X : SOp R C) : unsop (𝟙 X) = 𝟙 X.unop := rfl
 
-/-- **The composition law of `𝒜^{sop}`**: `f^{sop} ∘ g^{sop} = (-1)^{|f||g|} (g ∘ f)^{sop}`.-/
+/-- **The composition law of `𝒜^{sop}`**: `f^{sop} ∘ g^{sop} = (-1)^{|f||g|} (g ∘ f)^{sop}`.
+@isnad1 id=eq.2h9v.s10.7ab87d1766c7 from=translated src=- shape=c1a1d183 vocab=120589e9
+-/
 theorem comp_of_mem {X Y Z : SOp R C} {p q : ZMod 2} {f : X ⟶ Y} {g : Y ⟶ Z}
     (hf : unsop f ∈ parity (R := R) Y.unop X.unop p)
     (hg : unsop g ∈ parity (R := R) Z.unop Y.unop q) :
@@ -150,9 +191,15 @@ theorem comp_of_mem {X Y Z : SOp R C} {p q : ZMod 2} {f : X ⟶ Y} {g : Y ⟶ Z}
 /-- A morphism of `C`, as a morphism of `SOp R C` between the same objects.-/
 def mk' {X Y : SOp R C} (f : Y.unop ⟶ X.unop) : X ⟶ Y := ⟨f⟩
 
+/--
+@isnad1 id=eq.0h5v.s6.be5ac0e92ffc from=translated src=- shape=5c8174ba vocab=8623ab16
+-/
 @[simp] theorem unsop_mk' {X Y : SOp R C} (f : Y.unop ⟶ X.unop) : unsop (mk' (X := X) (Y := Y) f) = f :=
   rfl
 
+/--
+@isnad1 id=injectiv.0h4v.s6.795c56247586 from=translated src=- shape=1ac23ccd vocab=8e0b599d
+-/
 theorem unsop_injective {X Y : SOp R C} : Function.Injective (unsop (X := X) (Y := Y)) :=
   fun _ _ h => hom_ext h
 
@@ -164,10 +211,25 @@ instance (X Y : SOp R C) : SMul ℕ (X ⟶ Y) := ⟨fun n f => ⟨n • unsop f�
 instance (X Y : SOp R C) : SMul ℤ (X ⟶ Y) := ⟨fun n f => ⟨n • unsop f⟩⟩
 instance (X Y : SOp R C) : SMul R (X ⟶ Y) := ⟨fun r f => ⟨r • unsop f⟩⟩
 
+/--
+@isnad1 id=eq.0h6v.s8.a5db63e51333 from=translated src=- shape=4feb1068 vocab=c472757c
+-/
 @[simp] theorem unsop_add {X Y : SOp R C} (f g : X ⟶ Y) : unsop (f + g) = unsop f + unsop g := rfl
+/--
+@isnad1 id=eq.0h6v.s9.17fc5b9dadeb from=translated src=- shape=ce63c0eb vocab=ca20acec
+-/
 @[simp] theorem unsop_smul {X Y : SOp R C} (r : R) (f : X ⟶ Y) : unsop (r • f) = r • unsop f := rfl
+/--
+@isnad1 id=eq.0h4v.s7.366951f76283 from=translated src=- shape=db066410 vocab=88d4fb87
+-/
 @[simp] theorem unsop_zero {X Y : SOp R C} : unsop (0 : X ⟶ Y) = 0 := rfl
+/--
+@isnad1 id=eq.0h5v.s7.fe78576a01b3 from=translated src=- shape=2ecd22d4 vocab=75468488
+-/
 @[simp] theorem unsop_neg {X Y : SOp R C} (f : X ⟶ Y) : unsop (-f) = -unsop f := rfl
+/--
+@isnad1 id=eq.0h6v.s8.9ba7860ab51d from=translated src=- shape=4feb1068 vocab=7adfdc1c
+-/
 @[simp] theorem unsop_sub {X Y : SOp R C} (f g : X ⟶ Y) : unsop (f - g) = unsop f - unsop g := rfl
 
 instance homAddCommGroup (X Y : SOp R C) : AddCommGroup (X ⟶ Y) :=
@@ -199,6 +261,9 @@ instance linear : Linear R (SOp R C) where
   smul_comp _ _ _ r f g := hom_ext (smul_compC (R := R) r (unsop f) (unsop g))
   comp_smul _ _ _ f r g := hom_ext (compC_smul (R := R) (unsop f) r (unsop g))
 
+/--
+@isnad1 id=eq.1h4v.s6.b6c7ffca699e from=translated src=- shape=5757f861 vocab=12861668
+-/
 theorem unsop_eqToHom {X Y : SOp R C} (h : X = Y) :
     unsop (eqToHom h) = eqToHom (congrArg SOp.unop h).symm := by
   subst h; rfl
@@ -231,6 +296,9 @@ instance supercategory : Supercategory R (SOp R C) where
     rw [compC_of_mem hf' hg', add_comm]
     exact Submodule.smul_mem _ _ (comp_mem hg' hf')
 
+/--
+@isnad1 id=iff.0h6v.s9.1c69ec386edf from=translated src=- shape=5784304c vocab=3d8ee1bb
+-/
 theorem mem_parity_iff {X Y : SOp R C} {p : ZMod 2} {f : X ⟶ Y} :
     f ∈ parity (R := R) X Y p ↔ unsop f ∈ parity (R := R) Y.unop X.unop p := Iff.rfl
 
@@ -240,7 +308,9 @@ theorem mem_parity_iff {X Y : SOp R C} {p : ZMod 2} {f : X ⟶ Y} :
 
 variable {D : Type w₃} [Category.{w₄} D] [Preadditive D] [Linear R D] [Supercategory R D]
 
-/-- A linear functor commutes with the parity projections if it preserves parities.-/
+/-- A linear functor commutes with the parity projections if it preserves parities.
+@isnad1 id=eq.1h8v.s10.ca26d7e4e6ed from=translated src=- shape=660285c7 vocab=d0cf197d
+-/
 theorem proj_map (F : C ⥤ D) [F.Additive] [F.Linear R]
     (hF : ∀ {X Y : C} {p : ZMod 2} {f : X ⟶ Y}, f ∈ parity (R := R) X Y p →
       F.map f ∈ parity (R := R) (F.obj X) (F.obj Y) p)

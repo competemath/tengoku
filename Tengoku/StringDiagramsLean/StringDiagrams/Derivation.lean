@@ -88,6 +88,9 @@ def genCod (g : S.Gen) : Obj S := ⟨S.left g, S.cod g⟩
 
 end Signature
 
+/--
+@isnad1 id=whiskero.1h2v.s4.2ef27016f93f from=translated src=- shape=c6bece8b vocab=d16772ab
+-/
 theorem Layer.Valid.genWhiskerOK {L : Layer S} (hv : L.Valid) :
     (S.genDom L.gen).WhiskerOK ⟨L.start, L.left⟩ L.right := by
   refine ⟨hv.left_ok, hv.left_end, ?_⟩
@@ -98,24 +101,42 @@ namespace Diagram
 
 variable {a b c : Obj S}
 
+/--
+@isnad1 id=eq.0h3v.s5.2e10230b5c8b from=translated src=- shape=7caa1974 vocab=9b76341c
+-/
 theorem oddCountList_append (ls ms : List (Layer S)) :
     oddCountList (ls ++ ms) = oddCountList ls + oddCountList ms := by
   simp [oddCountList, List.filter_append]
 
+/--
+@isnad1 id=eq.0h4v.s5.9ed9cc007471 from=translated src=- shape=ac245678 vocab=3461852d
+-/
 @[simp] theorem oddCountList_map_whisker (ls : List (Layer S)) (u : Obj S) (v : List S.Colour) :
     oddCountList (ls.map (·.whisker u v)) = oddCountList ls := by
   simp [oddCountList, List.filter_map, Function.comp_def, Layer.whisker]
 
+/--
+@isnad1 id=eq.0h2v.s4.c632d4eb27c8 from=translated src=- shape=fa66a00c vocab=e7654b92
+-/
 theorem oddCountList_singleton (L : Layer S) : oddCountList [L] = (S.odd L.gen).toNat := by
   cases h : S.odd L.gen <;> simp [oddCountList, h]
 
+/--
+@isnad1 id=eq.0h6v.s6.4f8255748139 from=translated src=- shape=ab8ed00f vocab=4cf44a92
+-/
 theorem oddCount_comp (f : a ⟶ b) (g : b ⟶ c) : oddCount (f ≫ g) = oddCount f + oddCount g :=
   oddCountList_append _ _
 
+/--
+@isnad1 id=eq.1h6v.s5.34cf50072cc9 from=translated src=- shape=e789c5c1 vocab=fd985bd6
+-/
 @[simp] theorem oddCount_whisker (f : a ⟶ b) (u : Obj S) (v : List S.Colour)
     (hw : a.WhiskerOK u v) : oddCount (whisker f u v hw) = oddCount f :=
   oddCountList_map_whisker _ _ _
 
+/--
+@isnad1 id=eq.2h6v.s5.56ea93b9702f from=translated src=- shape=67505965 vocab=610012bb
+-/
 @[simp] theorem oddCount_cast {a' b' : Obj S} (f : a ⟶ b) (ha : a = a') (hb : b = b') :
     oddCount (cast f ha hb) = oddCount f := rfl
 
@@ -132,22 +153,37 @@ modulo `2`.-/
 def HasParity (F : LinDiagram R a b) (p : ℕ) : Prop :=
   ∀ d ∈ Finsupp.support F, Diagram.oddCount d % 2 = p % 2
 
+/--
+@isnad1 id=hasparit.0h5v.s6.5177c607fea5 from=translated src=- shape=c0d201c5 vocab=7adb8626
+-/
 theorem hasParity_zero (p : ℕ) : HasParity (0 : LinDiagram R a b) p := by
   intro d hd; simp at hd
 
+/--
+@isnad1 id=hasparit.1h7v.s6.10abb5e52546 from=translated src=- shape=6554ef02 vocab=b13bae7f
+-/
 theorem hasParity_single {d : a ⟶ b} {p : ℕ} (h : Diagram.oddCount d % 2 = p % 2) (r : R) :
     HasParity (Finsupp.single d r : LinDiagram R a b) p := by
   intro e he
   rw [Finset.mem_singleton.mp (Finsupp.support_single_subset he)]; exact h
 
+/--
+@isnad1 id=hasparit.1h6v.s6.ba9a46dad5a2 from=translated src=- shape=874edd8f vocab=08847d90
+-/
 theorem hasParity_of {d : a ⟶ b} {p : ℕ} (h : Diagram.oddCount d % 2 = p % 2) :
     HasParity (of d : LinDiagram R a b) p :=
   hasParity_single h 1
 
+/--
+@isnad1 id=hasparit.1h7v.s8.8fc5506afe15 from=translated src=- shape=71dc654b vocab=6d8c595e
+-/
 theorem HasParity.smul {F : LinDiagram R a b} {p : ℕ} (hF : F.HasParity p) (r : R) :
     HasParity (r • F) p :=
   fun d hd => hF d (Finsupp.support_smul hd)
 
+/--
+@isnad1 id=hasparit.2h7v.s7.1184c3e88e54 from=translated src=- shape=7d29f8de vocab=c2f764e7
+-/
 theorem HasParity.add {F G : LinDiagram R a b} {p : ℕ} (hF : F.HasParity p) (hG : G.HasParity p) :
     HasParity (F + G) p := by
   classical
@@ -161,6 +197,9 @@ def parityInv : LinDiagram R a b →ₗ[R] LinDiagram R a b :=
   Finsupp.linearCombination R (fun d : a ⟶ b => ((-1 : R) ^ Diagram.oddCount d) • of d)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h6v.s9.39d99fc006f5 from=translated src=- shape=9df266d7 vocab=efa67e9b
+-/
 theorem parityInv_single (d : a ⟶ b) (r : R) :
     parityInv (Finsupp.single d r : LinDiagram R a b) =
       ((-1 : R) ^ Diagram.oddCount d) • (Finsupp.single d r : LinDiagram R a b) := by
@@ -168,11 +207,17 @@ theorem parityInv_single (d : a ⟶ b) (r : R) :
     ((-1 : R) ^ Diagram.oddCount d) • (of d : LinDiagram R a b)) r d).trans ?_
   rw [smul_comm, Finsupp.smul_single_one]
 
+/--
+@isnad1 id=eq.0h5v.s9.6858d5530da9 from=translated src=- shape=dd48b3a7 vocab=c47eb474
+-/
 theorem parityInv_of (d : a ⟶ b) :
     parityInv (of d : LinDiagram R a b) = ((-1 : R) ^ Diagram.oddCount d) • of d :=
   parityInv_single d 1
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h6v.s9.4622621d9333 from=translated src=- shape=4b882d09 vocab=229b971f
+-/
 theorem parityInv_eq_of_hasParity {F : LinDiagram R a b} {p : ℕ} (hF : F.HasParity p) :
     parityInv F = ((-1 : R) ^ p) • F := by
   conv_lhs => rw [← Finsupp.sum_single F]
@@ -181,22 +226,37 @@ theorem parityInv_eq_of_hasParity {F : LinDiagram R a b} {p : ℕ} (hF : F.HasPa
   refine Finsupp.sum_congr fun d hd => ?_
   rw [parityInv_single, neg_one_pow_eq_pow_mod_two, hF d hd, ← neg_one_pow_eq_pow_mod_two]
 
+/--
+@isnad1 id=eq.0h6v.s8.02f802e42f9d from=translated src=- shape=d15f898f vocab=343cef42
+-/
 theorem single_eq_smul_of (d : a ⟶ b) (r : R) :
     (Finsupp.single d r : LinDiagram R a b) = r • of d :=
   (Finsupp.smul_single_one d r).symm
 
+/--
+@isnad1 id=eq.0h8v.s10.4e7dc9d1142a from=translated src=- shape=7a82ebd2 vocab=169fe017
+-/
 theorem smul_comp_lin (r : R) (F : LinDiagram R a b) (G : LinDiagram R b c) :
     (r • F) ≫ G = r • (F ≫ G) := Linear.smul_comp _ _ _ _ _ _
 
+/--
+@isnad1 id=eq.0h8v.s10.0a3f631b6936 from=translated src=- shape=3055377b vocab=169fe017
+-/
 theorem comp_smul_lin (F : LinDiagram R a b) (r : R) (G : LinDiagram R b c) :
     F ≫ (r • G) = r • (F ≫ G) := Linear.comp_smul _ _ _ _ _ _
 
+/--
+@isnad1 id=eq.0h9v.s7.7976590872f2 from=translated src=- shape=5e5a8bfa vocab=97b0f9d6
+-/
 theorem single_comp_single (d : a ⟶ b) (e : b ⟶ c) (r s : R) :
     (Finsupp.single d r ≫ Finsupp.single e s : Free.of R a ⟶ Free.of R c) =
       Finsupp.single (d ≫ e) (r * s) :=
   Free.single_comp_single R (Obj S) d e r s
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h7v.s10.7f8aff5f9575 from=translated src=- shape=2a574ffc vocab=8c9131e7
+-/
 theorem parityInv_comp (F : LinDiagram R a b) (G : LinDiagram R b c) :
     parityInv (F ≫ G) = parityInv F ≫ parityInv G := by
   induction F using Finsupp.induction_linear with
@@ -213,6 +273,9 @@ theorem parityInv_comp (F : LinDiagram R a b) (G : LinDiagram R b c) :
         pow_add, mul_comm ((-1 : R) ^ _)]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s9.d19c1ca8a152 from=translated src=- shape=4c216756 vocab=cc89d904
+-/
 theorem parityInv_parityInv (F : LinDiagram R a b) : parityInv (parityInv F) = F := by
   induction F using Finsupp.induction_linear with
   | zero => simp
@@ -222,6 +285,9 @@ theorem parityInv_parityInv (F : LinDiagram R a b) : parityInv (parityInv F) = F
       neg_one_sq, one_pow, one_smul]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h7v.s10.5304e0489d41 from=translated src=- shape=1bf3878b vocab=fb5537f6
+-/
 theorem parityInv_whisker (F : LinDiagram R a b) (u : Obj S) (v : List S.Colour)
     (hw : a.WhiskerOK u v) : parityInv (whisker F u v hw) = whisker (parityInv F) u v hw := by
   induction F using Finsupp.induction_linear with
@@ -231,6 +297,9 @@ theorem parityInv_whisker (F : LinDiagram R a b) (u : Obj S) (v : List S.Colour)
     rw [whisker_single, parityInv_single, parityInv_single, whisker_smul, whisker_single,
       Diagram.oddCount_whisker]
 
+/--
+@isnad1 id=eq.2h7v.s9.b9e91493727c from=translated src=- shape=45509576 vocab=3fa91fc8
+-/
 theorem parityInv_cast {a' b' : Obj S} (F : LinDiagram R a b) (ha : a = a') (hb : b = b') :
     parityInv (cast F ha hb) = cast (parityInv F) ha hb := by
   subst ha hb; simp
@@ -245,21 +314,36 @@ types agree only up to equality of objects. -/
 def toList : LinDiagram R a b →ₗ[R] (List (Layer S) →₀ R) :=
   Finsupp.lmapDomain R R (Diagram.layers (a := a) (b := b))
 
+/--
+@isnad1 id=eq.0h5v.s8.6421cf75ae8a from=translated src=- shape=1e4badbf vocab=778bcd4e
+-/
 theorem toList_apply (F : LinDiagram R a b) :
     toList F = Finsupp.mapDomain Diagram.layers F := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.192f1e9b65a5 from=translated src=- shape=0efd4ed4 vocab=50864a2c
+-/
 theorem toList_single (d : a ⟶ b) (r : R) :
     toList (Finsupp.single d r : LinDiagram R a b) = Finsupp.single (Diagram.layers d) r :=
   Finsupp.mapDomain_single
 
+/--
+@isnad1 id=eq.0h5v.s8.553e58330865 from=translated src=- shape=f3c07546 vocab=d13509b1
+-/
 theorem toList_of (d : a ⟶ b) :
     toList (of d : LinDiagram R a b) = Finsupp.single (Diagram.layers d) 1 :=
   toList_single d 1
 
+/--
+@isnad1 id=injectiv.0h4v.s8.0773d04b536b from=translated src=- shape=1857b089 vocab=fb78d503
+-/
 theorem toList_injective : Function.Injective (toList : LinDiagram R a b → _) :=
   Finsupp.mapDomain_injective fun _ _ h => Diagram.ext h
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h9v.s9.ecb26be31973 from=translated src=- shape=bb975821 vocab=778bcd4e
+-/
 theorem toList_mapDomain {a' b' : Obj S} (φ : (a ⟶ b) → (a' ⟶ b'))
     (ψ : List (Layer S) → List (Layer S)) (h : ∀ d, Diagram.layers (φ d) = ψ (Diagram.layers d))
     (F : LinDiagram R a b) :
@@ -268,17 +352,26 @@ theorem toList_mapDomain {a' b' : Obj S} (φ : (a ⟶ b) → (a' ⟶ b'))
   congr 1; funext d; exact h d
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.2h7v.s9.a9ac0b3cba1a from=translated src=- shape=0cb0e82f vocab=c7092506
+-/
 theorem toList_cast {a' b' : Obj S} (F : LinDiagram R a b) (ha : a = a') (hb : b = b') :
     toList (cast F ha hb) = toList F := by
   rw [cast, toList_mapDomain (fun d => Diagram.cast d ha hb) id (fun _ => rfl),
     Finsupp.mapDomain_id]
 
+/--
+@isnad1 id=eq.1h7v.s9.3ad59775194b from=translated src=- shape=6ccf2980 vocab=1aa8f113
+-/
 theorem toList_whisker (F : LinDiagram R a b) (u : Obj S) (v : List S.Colour)
     (hw : a.WhiskerOK u v) :
     toList (whisker F u v hw) = Finsupp.mapDomain (List.map (·.whisker u v)) (toList F) :=
   toList_mapDomain _ _ (fun _ => rfl) F
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h7v.s9.64a4b24ddacb from=translated src=- shape=f5f011ef vocab=20e76431
+-/
 theorem toList_comp_of (F : LinDiagram R a b) (g : b ⟶ c) :
     toList (F ≫ of g) = Finsupp.mapDomain (· ++ Diagram.layers g) (toList F) := by
   induction F using Finsupp.induction_linear with
@@ -289,6 +382,9 @@ theorem toList_comp_of (F : LinDiagram R a b) (g : b ⟶ c) :
       Diagram.layers_comp]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h7v.s9.e41d0155a5c6 from=translated src=- shape=ec860599 vocab=20e76431
+-/
 theorem toList_of_comp (f : a ⟶ b) (G : LinDiagram R b c) :
     toList (of f ≫ G) = Finsupp.mapDomain (Diagram.layers f ++ ·) (toList G) := by
   induction G using Finsupp.induction_linear with
@@ -303,6 +399,9 @@ def parityList : (List (Layer S) →₀ R) →ₗ[R] (List (Layer S) →₀ R) :
   Finsupp.linearCombination R
     (fun l => ((-1 : R) ^ Diagram.oddCountList l) • Finsupp.single l (1 : R))
 
+/--
+@isnad1 id=eq.0h4v.s9.c25c23ef2ee1 from=translated src=- shape=25e4ee1e vocab=5c4c54e5
+-/
 theorem parityList_single (l : List (Layer S)) (r : R) :
     parityList (Finsupp.single l r) = ((-1 : R) ^ Diagram.oddCountList l) • Finsupp.single l r := by
   refine (Finsupp.linearCombination_single R (v := fun l : List (Layer S) =>
@@ -310,6 +409,9 @@ theorem parityList_single (l : List (Layer S)) (r : R) :
   rw [smul_comm, Finsupp.smul_single_one]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s10.7d0e691982f0 from=translated src=- shape=7b6d01d4 vocab=267de334
+-/
 theorem toList_parityInv (F : LinDiagram R a b) : toList (parityInv F) = parityList (toList F) := by
   induction F using Finsupp.induction_linear with
   | zero => simp
@@ -317,6 +419,9 @@ theorem toList_parityInv (F : LinDiagram R a b) : toList (parityInv F) = parityL
   | single d r =>
     rw [parityInv_single, map_smul, toList_single, parityList_single]; rfl
 
+/--
+@isnad1 id=eq.1h5v.s9.72503d3f8168 from=translated src=- shape=1d59a6fb vocab=7be666bb
+-/
 theorem parityList_mapDomain (φ : List (Layer S) → List (Layer S)) (k : ℕ)
     (hφ : ∀ l, Diagram.oddCountList (φ l) = Diagram.oddCountList l + k)
     (X : List (Layer S) →₀ R) :
@@ -357,8 +462,14 @@ def derivL : List (Layer S) → (List (Layer S) →₀ R)
         (toList (D.δ L.gen)) +
       Finsupp.mapDomain (L :: ·) (derivL ls)
 
+/--
+@isnad1 id=eq.0h3v.s6.221539608098 from=translated src=- shape=fb764f19 vocab=65558b0b
+-/
 @[simp] theorem derivL_nil : D.derivL [] = 0 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.e4dddbe26676 from=translated src=- shape=893915b4 vocab=6a55379a
+-/
 theorem derivL_cons (L : Layer S) (ls : List (Layer S)) :
     D.derivL (L :: ls) = ((-1 : R) ^ oddCountList ls) •
       Finsupp.mapDomain (fun l => l.map (·.whisker ⟨L.start, L.left⟩ L.right) ++ ls)
@@ -369,6 +480,9 @@ theorem derivL_cons (L : Layer S) (ls : List (Layer S)) :
 def layerDeriv (L : Layer S) (hv : L.Valid) : LinDiagram R L.dom L.cod :=
   LinDiagram.whisker (D.δ L.gen) ⟨L.start, L.left⟩ L.right hv.genWhiskerOK
 
+/--
+@isnad1 id=eq.1h4v.s9.bcd59fa3ed38 from=translated src=- shape=bd7c7971 vocab=74795541
+-/
 theorem toList_layerDeriv (L : Layer S) (hv : L.Valid) :
     toList (D.layerDeriv L hv) =
       Finsupp.mapDomain (List.map (·.whisker ⟨L.start, L.left⟩ L.right)) (toList (D.δ L.gen)) :=
@@ -383,6 +497,9 @@ def derivList : (a : Obj S) → (ls : List (Layer S)) → (b : Obj S) → Chain 
       (((-1 : R) ^ oddCountList ls) • (D.layerDeriv L h.1 ≫ of (Diagram.mk ls h.2.2)) +
         of (Diagram.ofLayer L h.1) ≫ derivList L.cod ls b h.2.2) h.2.1 rfl
 
+/--
+@isnad1 id=eq.1h6v.s8.94a0f159c914 from=translated src=- shape=62a62212 vocab=d711465f
+-/
 theorem toList_derivList (a : Obj S) (ls : List (Layer S)) (b : Obj S) (h : Chain a ls b) :
     toList (D.derivList a ls b h) = D.derivL ls := by
   induction ls generalizing a with
@@ -396,6 +513,9 @@ theorem toList_derivList (a : Obj S) (ls : List (Layer S)) (b : Obj S) (h : Chai
 def derivDiag (d : a ⟶ b) : LinDiagram R a b :=
   D.derivList a (Diagram.layers d) b (Diagram.chain d)
 
+/--
+@isnad1 id=eq.0h6v.s8.413df7e5f691 from=translated src=- shape=2592df1e vocab=2570446a
+-/
 theorem toList_derivDiag (d : a ⟶ b) : toList (D.derivDiag d) = D.derivL (Diagram.layers d) :=
   D.toList_derivList _ _ _ _
 
@@ -403,14 +523,22 @@ theorem toList_derivDiag (d : a ⟶ b) : toList (D.derivDiag d) = D.derivL (Diag
 def derivFree : LinDiagram R a b →ₗ[R] LinDiagram R a b :=
   Finsupp.linearCombination R D.derivDiag
 
+/--
+@isnad1 id=eq.0h7v.s9.38d6f53e224a from=translated src=- shape=7e392cbf vocab=666c5081
+-/
 theorem derivFree_single (d : a ⟶ b) (r : R) :
     D.derivFree (Finsupp.single d r : LinDiagram R a b) = r • D.derivDiag d :=
   Finsupp.linearCombination_single R r d
 
+/--
+@isnad1 id=eq.0h6v.s8.4a32279aa65e from=translated src=- shape=70456b57 vocab=1b7a9f08
+-/
 @[simp] theorem derivFree_of (d : a ⟶ b) : D.derivFree (of d : LinDiagram R a b) = D.derivDiag d := by
   rw [derivFree_single, one_smul]
 
-/-- The derivative of a single layer is the whiskered value of `δ` on its generator.-/
+/-- The derivative of a single layer is the whiskered value of `δ` on its generator.
+@isnad1 id=eq.3h6v.s6.772244206ee3 from=translated src=- shape=48f97261 vocab=bf42ff4a
+-/
 theorem derivDiag_layer (L : Layer S) (hv : L.Valid) (ha : L.dom = a) (hb : L.cod = b) :
     D.derivDiag (Diagram.layer L hv ha hb) = LinDiagram.cast (D.layerDeriv L hv) ha hb := by
   apply toList_injective
@@ -419,20 +547,31 @@ theorem derivDiag_layer (L : Layer S) (hv : L.Valid) (ha : L.dom = a) (hb : L.co
   simp only [List.append_nil]
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The derivative of a single layer whose generator has a single diagram as value.-/
+/-- The derivative of a single layer whose generator has a single diagram as value.
+@isnad1 id=eq.4h7v.s7.9ca978cbcb9e from=translated src=- shape=d3f4f7f0 vocab=e3bf84f0
+-/
 theorem derivDiag_layer_of (L : Layer S) (hv : L.Valid) (ha : L.dom = a) (hb : L.cod = b)
     (d : S.genDom L.gen ⟶ S.genCod L.gen) (hd : D.δ L.gen = of d) :
     D.derivDiag (Diagram.layer L hv ha hb) =
       of (Diagram.cast (Diagram.whisker d ⟨L.start, L.left⟩ L.right hv.genWhiskerOK) ha hb) := by
   rw [derivDiag_layer, layerDeriv, hd, whisker_of, cast_of]
 
+/--
+@isnad1 id=eq.0h4v.s6.e328c0055bd4 from=translated src=- shape=a27f1ac1 vocab=d10ec189
+-/
 theorem derivDiag_id (a : Obj S) : D.derivDiag (𝟙 a) = (0 : LinDiagram R a a) := rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.1b48fc1cd7cf from=translated src=- shape=6f4df6ca vocab=d468d869
+-/
 theorem derivDiag_eqToHom (h : a = b) : D.derivDiag (eqToHom h) = (0 : LinDiagram R a b) := by
   subst h; rfl
 
 /-! ### The Leibniz rule -/
 
+/--
+@isnad1 id=eq.0h5v.s8.9a2b380a0bc6 from=translated src=- shape=b19dde6a vocab=71c72118
+-/
 theorem derivL_append (ls ms : List (Layer S)) :
     D.derivL (ls ++ ms) = ((-1 : R) ^ oddCountList ms) •
       Finsupp.mapDomain (· ++ ms) (D.derivL ls) + Finsupp.mapDomain (ls ++ ·) (D.derivL ms) := by
@@ -447,7 +586,9 @@ theorem derivL_append (ls ms : List (Layer S)) :
     rw [mul_comm ((-1 : R) ^ oddCountList ms)]
     abel
 
-/-- The Leibniz rule for diagrams: `d(f ≫ g) = (-1)^{|g|} d f ≫ g + f ≫ d g`.-/
+/-- The Leibniz rule for diagrams: `d(f ≫ g) = (-1)^{|g|} d f ≫ g + f ≫ d g`.
+@isnad1 id=eq.0h8v.s10.9d69d501cc98 from=translated src=- shape=171bd323 vocab=1b1f5b37
+-/
 theorem derivDiag_comp (f : a ⟶ b) (g : b ⟶ c) :
     D.derivDiag (f ≫ g) =
       ((-1 : R) ^ oddCount g) • (D.derivDiag f ≫ of g) + of f ≫ D.derivDiag g := by
@@ -457,6 +598,9 @@ theorem derivDiag_comp (f : a ⟶ b) (g : b ⟶ c) :
   rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h10v.s11.5602df218fb6 from=translated src=- shape=56f1c0d7 vocab=165bdbf8
+-/
 theorem derivFree_single_comp_single (d : a ⟶ b) (e : b ⟶ c) (r s : R) :
     D.derivFree ((Finsupp.single d r : LinDiagram R a b) ≫ (Finsupp.single e s : LinDiagram R b c)) =
       D.derivFree (Finsupp.single d r : LinDiagram R a b) ≫
@@ -468,7 +612,9 @@ theorem derivFree_single_comp_single (d : a ⟶ b) (e : b ⟶ c) (r s : R) :
   rw [LinDiagram.comp_smul_lin, LinDiagram.smul_comp_lin, smul_smul, smul_smul]
   module
 
-/-- The Leibniz rule for the free linear 2-category: `d(F ≫ G) = d F ≫ σ G + F ≫ d G`.-/
+/-- The Leibniz rule for the free linear 2-category: `d(F ≫ G) = d F ≫ σ G + F ≫ d G`.
+@isnad1 id=eq.0h8v.s11.c14430038398 from=translated src=- shape=720fce03 vocab=0b7fcb0f
+-/
 theorem derivFree_comp (F : LinDiagram R a b) (G : LinDiagram R b c) :
     D.derivFree (F ≫ G) = D.derivFree F ≫ parityInv G + F ≫ D.derivFree G := by
   induction F using Finsupp.induction_linear with
@@ -488,6 +634,9 @@ theorem derivFree_comp (F : LinDiagram R a b) (G : LinDiagram R b c) :
 
 /-! ### Whiskering and retyping -/
 
+/--
+@isnad1 id=eq.0h6v.s6.4772632e89d9 from=translated src=- shape=041e7520 vocab=bb45cc5c
+-/
 theorem derivL_map_whisker (ls : List (Layer S)) (u : Obj S) (v : List S.Colour) :
     D.derivL (ls.map (·.whisker u v)) =
       Finsupp.mapDomain (List.map (·.whisker u v)) (D.derivL ls) := by
@@ -504,13 +653,18 @@ theorem derivL_map_whisker (ls : List (Layer S)) (u : Obj S) (v : List S.Colour)
     intro X _
     simp [Layer.whisker, List.append_assoc]
 
+/--
+@isnad1 id=eq.1h8v.s6.53e240baeffb from=translated src=- shape=ba0b7621 vocab=e08c7522
+-/
 theorem derivDiag_whisker (d : a ⟶ b) (u : Obj S) (v : List S.Colour) (hw : a.WhiskerOK u v) :
     D.derivDiag (Diagram.whisker d u v hw) = LinDiagram.whisker (D.derivDiag d) u v hw := by
   apply toList_injective
   rw [toList_derivDiag, toList_whisker, toList_derivDiag, layers_whisker, derivL_map_whisker]
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The derivation commutes with whiskering: identity strands are even.-/
+/-- The derivation commutes with whiskering: identity strands are even.
+@isnad1 id=eq.1h8v.s10.cab8a0683a98 from=translated src=- shape=5e740ffb vocab=cc8dc621
+-/
 theorem derivFree_whisker (F : LinDiagram R a b) (u : Obj S) (v : List S.Colour)
     (hw : a.WhiskerOK u v) :
     D.derivFree (LinDiagram.whisker F u v hw) = LinDiagram.whisker (D.derivFree F) u v hw := by
@@ -520,18 +674,27 @@ theorem derivFree_whisker (F : LinDiagram R a b) (u : Obj S) (v : List S.Colour)
   | single d r =>
     rw [whisker_single, derivFree_single, derivFree_single, whisker_smul, derivDiag_whisker]
 
+/--
+@isnad1 id=eq.0h8v.s10.9f0393cff057 from=translated src=- shape=ba0f6d7c vocab=eeaf5eed
+-/
 theorem derivFree_whisk (F : LinDiagram R a b) (u : Obj S) (v : List S.Colour) :
     D.derivFree (LinDiagram.whisk F u v) = LinDiagram.whisk (D.derivFree F) u v := by
   by_cases h : a.WhiskerOK u v
   · rw [whisk_of_ok _ h, whisk_of_ok _ h, derivFree_whisker]
   · rw [whisk_of_not_ok _ h, whisk_of_not_ok _ h, map_zero]
 
+/--
+@isnad1 id=eq.2h8v.s9.7094cfaf34ce from=translated src=- shape=50dce2f2 vocab=e52173fb
+-/
 theorem derivFree_cast {a' b' : Obj S} (F : LinDiagram R a b) (ha : a = a') (hb : b = b') :
     D.derivFree (LinDiagram.cast F ha hb) = LinDiagram.cast (D.derivFree F) ha hb := by
   subst ha hb; simp
 
 /-! ### The derivation is odd -/
 
+/--
+@isnad1 id=eq.0h4v.s9.559ddcf584f3 from=translated src=- shape=2f5748b1 vocab=9a31694d
+-/
 theorem parityList_derivL (ls : List (Layer S)) :
     parityList (D.derivL ls) = -(((-1 : R) ^ oddCountList ls) • D.derivL ls) := by
   induction ls with
@@ -554,6 +717,9 @@ theorem parityList_derivL (ls : List (Layer S)) :
     simp only [smul_add, smul_neg, smul_smul, pow_add, pow_one, Finsupp.mapDomain_smul]
     module
 
+/--
+@isnad1 id=eq.0h6v.s9.0e69735306f3 from=translated src=- shape=af26e9f8 vocab=02ba26c6
+-/
 theorem parityInv_derivDiag (d : a ⟶ b) :
     parityInv (D.derivDiag d) = -(((-1 : R) ^ oddCount d) • D.derivDiag d) := by
   apply toList_injective
@@ -561,7 +727,9 @@ theorem parityInv_derivDiag (d : a ⟶ b) :
   rfl
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The derivation is odd: `σ ∘ d = - d ∘ σ`.-/
+/-- The derivation is odd: `σ ∘ d = - d ∘ σ`.
+@isnad1 id=eq.0h6v.s10.d267b8377aea from=translated src=- shape=c160c3ca vocab=bf140fbd
+-/
 theorem parityInv_derivFree (F : LinDiagram R a b) :
     parityInv (D.derivFree F) = -D.derivFree (parityInv F) := by
   induction F using Finsupp.induction_linear with
@@ -571,7 +739,9 @@ theorem parityInv_derivFree (F : LinDiagram R a b) :
     rw [derivFree_single, map_smul, parityInv_derivDiag, parityInv_single, map_smul,
       derivFree_single, smul_neg, smul_smul, smul_smul, mul_comm]
 
-/-- The square of the derivation is an even derivation.-/
+/-- The square of the derivation is an even derivation.
+@isnad1 id=eq.0h8v.s11.f0374b4d4a3e from=translated src=- shape=63635469 vocab=fca95d45
+-/
 theorem derivFree_derivFree_comp (F : LinDiagram R a b) (G : LinDiagram R b c) :
     D.derivFree (D.derivFree (F ≫ G)) =
       D.derivFree (D.derivFree F) ≫ G + F ≫ D.derivFree (D.derivFree G) := by
@@ -592,6 +762,9 @@ def genLayer (g : S.Gen) : Layer S := ⟨S.left g, [], g, []⟩
 
 end Signature
 
+/--
+@isnad1 id=eq.0h3v.s4.5eecf6cb9c54 from=translated src=- shape=09a64ab1 vocab=bb33a4b8
+-/
 theorem Layer.whisker_nil_nil [Subsingleton S.Region] (L : Layer S) (r : S.Region) :
     L.whisker ⟨r, []⟩ [] = L :=
   Layer.ext (Subsingleton.elim _ _) rfl rfl (List.append_nil _)
@@ -606,20 +779,35 @@ def ofGen (g : S.Gen) : S.genDom g ⟶ S.genCod g :=
     (by simp [Signature.genLayer, Layer.dom, Signature.genDom])
     (by simp [Signature.genLayer, Layer.cod, Signature.genCod])
 
+/--
+@isnad1 id=eq.0h2v.s5.1aae6106d73c from=translated src=- shape=a638819c vocab=87bb7a16
+-/
 @[simp] theorem layers_ofGen (g : S.Gen) : layers (ofGen g) = [S.genLayer g] := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.d963e081358c from=translated src=- shape=6bdd3fb7 vocab=49bd120a
+-/
 @[simp] theorem oddCount_ofGen (g : S.Gen) : oddCount (ofGen g) = (S.odd g).toNat :=
   oddCountList_singleton _
 
+/--
+@isnad1 id=eq.0h5v.s5.2dbdd12b5313 from=translated src=- shape=2912670a vocab=1ece6e87
+-/
 @[simp] theorem oddCount_whiskerL {b b' : Obj S} (a : Obj S) (g : b ⟶ b') :
     oddCount (whiskerL a g) = oddCount g :=
   oddCountList_map_wl _ _
 
+/--
+@isnad1 id=eq.0h5v.s5.bc99b274f347 from=translated src=- shape=91e7364c vocab=6ed324a9
+-/
 @[simp] theorem oddCount_whiskerR {a a' : Obj S} (f : a ⟶ a') (b : Obj S) :
     oddCount (whiskerR f b) = oddCount f :=
   oddCountList_map_wr _ _
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h2v.s6.a6a05696e468 from=translated src=- shape=8d4294a1 vocab=db91ea66
+-/
 theorem ofLayer_eq_whisker_ofGen (L : Layer S) (hv : L.Valid) :
     ofLayer L hv = whisker (ofGen L.gen) ⟨L.start, L.left⟩ L.right hv.genWhiskerOK := by
   ext; simp [Signature.genLayer, Layer.whisker]
@@ -646,10 +834,16 @@ def rightCod : Obj S := x.midObj.tensor (S.genCod x.h)
 /-- The right generator with the middle strands on its left.-/
 def rightGen : x.rightDom ⟶ x.rightCod := whiskerL x.midObj (ofGen x.h)
 
+/--
+@isnad1 id=eq.0h2v.s4.6e50415e5d25 from=translated src=- shape=08f00593 vocab=db47160b
+-/
 theorem tensor_dom : (S.genDom x.g).tensor x.rightDom = x.dom :=
   Obj.ext (Subsingleton.elim _ _)
     (by simp [Obj.tensor, rightDom, midObj, Signature.genDom, InterchangeData.dom])
 
+/--
+@isnad1 id=eq.0h2v.s4.bd6d3b51857f from=translated src=- shape=08f00593 vocab=32d16a6c
+-/
 theorem tensor_cod : (S.genCod x.g).tensor x.rightCod = x.cod :=
   Obj.ext (Subsingleton.elim _ _)
     (by simp [Obj.tensor, rightCod, midObj, Signature.genCod, InterchangeData.cod])
@@ -673,6 +867,9 @@ def rightBelow (e : S.genDom x.h ⟶ S.genCod x.h) : x.dom ⟶ x.cod :=
     x.tensor_dom x.tensor_cod
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s7.cc77ae580762 from=translated src=- shape=62b4355a vocab=7084f191
+-/
 theorem layers_leftBelow (f : S.genDom x.g ⟶ S.genCod x.g) :
     layers (x.leftBelow f) =
       (layers f).map (·.whisker ⟨x.start, []⟩ (x.mid ++ S.dom x.h)) ++ [x.gh₂] := by
@@ -685,6 +882,9 @@ theorem layers_leftBelow (f : S.genDom x.g ⟶ S.genCod x.g) :
       (by simp [Layer.wl, Signature.genLayer, Signature.genCod, midObj, gh₂]) rfl rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s6.51f73414e4d4 from=translated src=- shape=e72f053c vocab=3a5d6ba6
+-/
 theorem layers_leftAbove (f : S.genDom x.g ⟶ S.genCod x.g) :
     layers (x.leftAbove f) =
       x.hg₁ :: (layers f).map (·.whisker ⟨x.start, []⟩ (x.mid ++ S.cod x.h)) := by
@@ -696,6 +896,9 @@ theorem layers_leftAbove (f : S.genDom x.g ⟶ S.genCod x.g) :
   · exact List.map_congr_left fun L _ => Layer.ext (Subsingleton.elim _ _) rfl rfl rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s6.adacadae5e1f from=translated src=- shape=86bbb3f7 vocab=9d1eb3da
+-/
 theorem layers_rightAbove (e : S.genDom x.h ⟶ S.genCod x.h) :
     layers (x.rightAbove e) =
       x.gh₁ :: (layers e).map (·.whisker ⟨x.start, S.cod x.g ++ x.mid⟩ []) := by
@@ -709,6 +912,9 @@ theorem layers_rightAbove (e : S.genDom x.h ⟶ S.genCod x.h) :
       (by simp [Layer.wl, Layer.whisker, Signature.genCod, midObj]) rfl (by simp [Layer.wl, Layer.whisker])
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s7.b8cc5c81605b from=translated src=- shape=44848963 vocab=00f3402c
+-/
 theorem layers_rightBelow (e : S.genDom x.h ⟶ S.genCod x.h) :
     layers (x.rightBelow e) =
       (layers e).map (·.whisker ⟨x.start, S.dom x.g ++ x.mid⟩ []) ++ [x.hg₂] := by
@@ -723,6 +929,9 @@ theorem layers_rightBelow (e : S.genDom x.h ⟶ S.genCod x.h) :
         hg₂])
 
 omit [Subsingleton S.Region] in
+/--
+@isnad1 id=eq.1h2v.s5.e2c506e4a905 from=translated src=- shape=7e7aa715 vocab=4a33eb29
+-/
 theorem oddCount_gh_eq_hg (hx : x.Valid) : oddCount (ghDiagram hx) = oddCount (hgDiagram hx) := by
   show oddCountList [x.gh₁, x.gh₂] = oddCountList [x.hg₁, x.hg₂]
   rw [oddCountList_cons, oddCountList_cons x.hg₁, oddCountList_singleton, oddCountList_singleton,
@@ -730,6 +939,9 @@ theorem oddCount_gh_eq_hg (hx : x.Valid) : oddCount (ghDiagram hx) = oddCount (h
   exact add_comm _ _
 
 omit [Subsingleton S.Region] in
+/--
+@isnad1 id=eq.0h3v.s6.aef16f50a698 from=translated src=- shape=f21f41fd vocab=edcec997
+-/
 theorem sign_eq (R : Type w) [CommRing R] :
     ((x.sign : ℤ) : R) = (-1 : R) ^ ((S.odd x.g).toNat * (S.odd x.h).toNat) := by
   unfold sign
@@ -747,6 +959,9 @@ section Monoidal
 
 variable [Subsingleton S.Region]
 
+/--
+@isnad1 id=eq.0h4v.s5.6cea80b19253 from=translated src=- shape=581a58e5 vocab=0a4852da
+-/
 theorem derivDiag_ofGen (g : S.Gen) : D.derivDiag (ofGen g) = D.δ g := by
   apply toList_injective
   rw [toList_derivDiag, layers_ofGen, derivL_cons, derivL_nil, Finsupp.mapDomain_zero, add_zero,
@@ -759,6 +974,9 @@ theorem derivDiag_ofGen (g : S.Gen) : D.derivDiag (ofGen g) = D.δ g := by
   rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h4v.s9.f3401fecf7bf from=translated src=- shape=bfd500ad vocab=1d07d8e8
+-/
 theorem derivDiag_gh (x : InterchangeData S) (hx : x.Valid) :
     D.derivDiag (InterchangeData.ghDiagram hx) =
       ((-1 : R) ^ (S.odd x.h).toNat) • Finsupp.mapDomain x.leftBelow (D.δ x.g) +
@@ -775,6 +993,9 @@ theorem derivDiag_gh (x : InterchangeData S) (hx : x.Valid) :
   rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h4v.s9.8bdd16f05ccb from=translated src=- shape=bfd500ad vocab=c567159b
+-/
 theorem derivDiag_hg (x : InterchangeData S) (hx : x.Valid) :
     D.derivDiag (InterchangeData.hgDiagram hx) =
       ((-1 : R) ^ (S.odd x.g).toNat) • Finsupp.mapDomain x.rightBelow (D.δ x.h) +
@@ -792,7 +1013,9 @@ theorem derivDiag_hg (x : InterchangeData S) (hx : x.Valid) :
 
 variable (P : Presentation.{w, v} S R)
 
-/-- The interchange law for arbitrary diagrams, retyped along equalities of objects.-/
+/-- The interchange law for arbitrary diagrams, retyped along equalities of objects.
+@isnad1 id=eq.2h11v.s10.0866b06b6551 from=translated src=- shape=19d5c95d vocab=cf81cc9d
+-/
 theorem diag_cast_interchange {a a' b b' c c' : Obj S} (f : a ⟶ a') (g : b ⟶ b')
     (hc : a.tensor b = c) (hc' : a'.tensor b' = c') :
     P.diag (cast (whiskerR f b ≫ whiskerL a' g) hc hc') =
@@ -805,7 +1028,9 @@ theorem diag_cast_interchange {a a' b b' c c' : Obj S} (f : a ⟶ a') (g : b ⟶
 set_option backward.isDefEq.respectTransparency false in
 omit [Subsingleton S.Region] in
 /-- If `φ d = k • ψ d` in the presented category for every diagram `d` in the support of `F`,
-then the same holds for `F`.-/
+then the same holds for `F`.
+@isnad1 id=eq.1h11v.s11.65e50c7a2595 from=translated src=- shape=2f8e2343 vocab=d660b835
+-/
 theorem lin_mapDomain_eq_smul {a b c d : Obj S} (φ ψ : (a ⟶ b) → (c ⟶ d))
     (F : LinDiagram R a b) (k : R)
     (h : ∀ e ∈ Finsupp.support F, P.diag (φ e) = k • P.diag (ψ e)) :
@@ -820,13 +1045,18 @@ theorem lin_mapDomain_eq_smul {a b c d : Obj S} (φ ψ : (a ⟶ b) → (c ⟶ d)
   rw [hF, hF, Finsupp.smul_sum]
   exact Finsupp.sum_congr fun e he => by rw [h e he, smul_comm]
 
+/--
+@isnad1 id=eq.1h3v.s7.ccaa24800768 from=translated src=- shape=215fd2b9 vocab=dd80fb4f
+-/
 theorem neg_one_pow_of_mod {m n : ℕ} (h : m % 2 = n % 2) : (-1 : R) ^ m = (-1) ^ n := by
   rw [neg_one_pow_eq_pow_mod_two, h, ← neg_one_pow_eq_pow_mod_two]
 
 set_option backward.isDefEq.respectTransparency false in
 /-- The crux of descent: the derivation of an instance of the super interchange law vanishes
 in the presented category. This uses that `δ g` has parity `|g| + 1` and the Koszul sign of
-the Leibniz rule.-/
+the Leibniz rule.
+@isnad1 id=eq.1h5v.s9.c9f4995a9993 from=translated src=- shape=838aa6ca vocab=7f761043
+-/
 theorem lin_derivFree_interchange (x : InterchangeData S) (hx : x.Valid) :
     P.lin (D.derivFree (InterchangeData.rel R hx)) = 0 := by
   have h₁ : P.lin (Finsupp.mapDomain x.leftBelow (D.δ x.g) : LinDiagram R x.dom x.cod) =
@@ -864,6 +1094,9 @@ variable {D P}
 
 set_option backward.isDefEq.respectTransparency false in
 omit [Subsingleton S.Region] in
+/--
+@isnad1 id=ex.1h5v.s10.e2a37fb835e5 from=translated src=- shape=c7289b52 vocab=7292562e
+-/
 theorem Compatible.parityInv_allRel (hP : D.Compatible P) (k : P.AllRel) :
     ∃ p : ℕ, parityInv k.rel = ((-1 : R) ^ p) • k.rel := by
   cases k with
@@ -876,6 +1109,9 @@ theorem Compatible.parityInv_allRel (hP : D.Compatible P) (k : P.AllRel) :
     rw [InterchangeData.rel, map_sub, map_smul, parityInv_of, parityInv_of,
       x.oddCount_gh_eq_hg hx, smul_sub, smul_comm]
 
+/--
+@isnad1 id=mem.1h5v.s10.f42c8e744132 from=translated src=- shape=598c9d6f vocab=f8b31c4c
+-/
 theorem Compatible.derivFree_allRel_mem_ideal (hP : D.Compatible P) (k : P.AllRel) :
     D.derivFree k.rel ∈ P.ideal k.dom k.cod := by
   have h : P.lin (D.derivFree k.rel) = 0 := by
@@ -886,7 +1122,9 @@ theorem Compatible.derivFree_allRel_mem_ideal (hP : D.Compatible P) (k : P.AllRe
   exact h
 
 variable (D P) in
-/-- Descent: a derivation compatible with a presentation preserves its tensor ideal.-/
+/-- Descent: a derivation compatible with a presentation preserves its tensor ideal.
+@isnad1 id=mem.2h7v.s10.1bf9c031d3b5 from=translated src=- shape=17f0443c vocab=ac9b9e89
+-/
 theorem derivFree_mem_ideal (hP : D.Compatible P) {a b : Obj S} {F : LinDiagram R a b}
     (hF : F ∈ P.ideal a b) : D.derivFree F ∈ P.ideal a b := by
   induction hF using Submodule.span_induction with
@@ -940,44 +1178,68 @@ def deriv : (P.obj a ⟶ P.obj b) →ₗ[R] (P.obj a ⟶ P.obj b) where
     show P.lin (D.derivFree (r • f)) = r • P.lin (D.derivFree f)
     rw [map_smul, lin_smul]
 
+/--
+@isnad1 id=eq.1h7v.s10.b7836c2e5a8a from=translated src=- shape=75e3b9f7 vocab=b33e37b6
+-/
 @[simp] theorem deriv_lin (F : LinDiagram R a b) : P.deriv hP (P.lin F) = P.lin (D.derivFree F) :=
   rfl
 
+/--
+@isnad1 id=eq.1h7v.s10.324c2c8663f0 from=translated src=- shape=5e18aec6 vocab=beffa349
+-/
 theorem deriv_diag (d : a ⟶ b) : P.deriv hP (P.diag d) = P.lin (D.derivDiag d) := by
   rw [diag, deriv_lin, derivFree_of]
 
-/-- The value of the derivation on a generator.-/
+/-- The value of the derivation on a generator.
+@isnad1 id=eq.1h5v.s10.53324173abac from=translated src=- shape=4e16bb3a vocab=5668abd8
+-/
 theorem deriv_ofGen (g : S.Gen) : P.deriv hP (P.diag (ofGen g)) = P.lin (D.δ g) := by
   rw [deriv_diag, derivDiag_ofGen]
 
+/--
+@isnad1 id=eq.4h7v.s10.3bc833e183a1 from=translated src=- shape=10483968 vocab=a4df71ec
+-/
 theorem deriv_layer (L : Layer S) (hv : L.Valid) (ha : L.dom = a) (hb : L.cod = b) :
     P.deriv hP (P.diag (Diagram.layer L hv ha hb)) =
       P.lin (LinDiagram.cast (D.layerDeriv L hv) ha hb) := by
   rw [deriv_diag, derivDiag_layer]
 
+/--
+@isnad1 id=eq.5h8v.s10.4b4d324c43c0 from=translated src=- shape=057bbe71 vocab=319a8308
+-/
 theorem deriv_layer_of (L : Layer S) (hv : L.Valid) (ha : L.dom = a) (hb : L.cod = b)
     (d : S.genDom L.gen ⟶ S.genCod L.gen) (hd : D.δ L.gen = LinDiagram.of d) :
     P.deriv hP (P.diag (Diagram.layer L hv ha hb)) =
       P.diag (Diagram.cast (Diagram.whisker d ⟨L.start, L.left⟩ L.right hv.genWhiskerOK) ha hb) := by
   rw [deriv_diag, derivDiag_layer_of D L hv ha hb d hd, lin_of]
 
+/--
+@isnad1 id=eq.1h5v.s10.5da43629e447 from=translated src=- shape=f37f5703 vocab=dee77012
+-/
 theorem deriv_id (a : Obj S) : P.deriv hP (𝟙 (P.obj a)) = 0 := by
   rw [← diag_id, deriv_diag, derivDiag_id, lin_zero]
 
-/-- The Leibniz rule with an arbitrary lower factor.-/
+/-- The Leibniz rule with an arbitrary lower factor.
+@isnad1 id=eq.1h9v.s11.8e8cd6d430ba from=translated src=- shape=cbf33e54 vocab=1e757648
+-/
 theorem deriv_comp_lin (F : LinDiagram R a b) (G : LinDiagram R b c) :
     P.deriv hP (P.lin F ≫ P.lin G) =
       P.deriv hP (P.lin F) ≫ P.lin (parityInv G) + P.lin F ≫ P.deriv hP (P.lin G) := by
   rw [← lin_comp, deriv_lin, derivFree_comp, lin_add, lin_comp, lin_comp]; rfl
 
 /-- The Leibniz rule `d(f ≫ g) = (-1)^{|g|} d f ≫ g + f ≫ d g` for `g` homogeneous of parity
-`p`.-/
+`p`.
+@isnad1 id=eq.2h10v.s12.8b05ee76cae3 from=translated src=- shape=91875482 vocab=109773c4
+-/
 theorem deriv_comp (f : P.obj a ⟶ P.obj b) {G : LinDiagram R b c} {p : ℕ} (hG : G.HasParity p) :
     P.deriv hP (f ≫ P.lin G) =
       ((-1 : R) ^ p) • (P.deriv hP f ≫ P.lin G) + f ≫ P.deriv hP (P.lin G) := by
   obtain ⟨F, rfl⟩ := P.lin_surjective f
   rw [deriv_comp_lin, parityInv_eq_of_hasParity hG, lin_smul, Linear.comp_smul]
 
+/--
+@isnad1 id=eq.1h9v.s12.b58844e08db1 from=translated src=- shape=2bd3ea2c vocab=35adbd40
+-/
 theorem deriv_comp_diag (f : P.obj a ⟶ P.obj b) (g : b ⟶ c) :
     P.deriv hP (f ≫ P.diag g) =
       ((-1 : R) ^ oddCount g) • (P.deriv hP f ≫ P.diag g) + f ≫ P.deriv hP (P.diag g) :=
@@ -986,10 +1248,15 @@ theorem deriv_comp_diag (f : P.obj a ⟶ P.obj b) (g : b ⟶ c) :
 /-- The derivation on the endomorphism algebra `End (P.obj a)`.-/
 def derivEnd (a : Obj S) : End (P.obj a) →ₗ[R] End (P.obj a) := P.deriv hP
 
+/--
+@isnad1 id=eq.1h6v.s10.d5c62c66c1f0 from=translated src=- shape=76ddb2f5 vocab=2bc54875
+-/
 theorem derivEnd_apply (f : End (P.obj a)) : P.derivEnd hP a f = P.deriv hP f := rfl
 
 /-- The super Leibniz rule of Ellis–Qi (2.3) in an endomorphism algebra, where
-`f * g = g ≫ f`: `d(f g) = d(f) g + (-1)^{|f|} f d(g)` for `f` homogeneous of parity `p`.-/
+`f * g = g ≫ f`: `d(f g) = d(f) g + (-1)^{|f|} f d(g)` for `f` homogeneous of parity `p`.
+@isnad1 id=eq.3h9v.s10.13dbc3a46c91 from=translated src=- shape=efa6a42b vocab=60920783
+-/
 theorem deriv_mul (f g : End (P.obj a)) {F : LinDiagram R a a} {p : ℕ} (hF : F.HasParity p)
     (hf : P.lin F = f) :
     P.derivEnd hP a (f * g) = P.derivEnd hP a f * g + ((-1 : R) ^ p) • (f * P.derivEnd hP a g) := by
@@ -997,13 +1264,17 @@ theorem deriv_mul (f g : End (P.obj a)) {F : LinDiagram R a a} {p : ℕ} (hF : F
   rw [End.mul_def, End.mul_def, End.mul_def, derivEnd_apply, derivEnd_apply, derivEnd_apply,
     P.deriv_comp hP g hF, add_comm]
 
-/-- The derivation commutes with whiskering.-/
+/-- The derivation commutes with whiskering.
+@isnad1 id=eq.1h9v.s11.30ed27b8fcee from=translated src=- shape=6ac24557 vocab=49607380
+-/
 theorem deriv_whisk (f : P.obj a ⟶ P.obj b) (u : Obj S) (v : List S.Colour) :
     P.deriv hP (P.whisk f u v) = P.whisk (P.deriv hP f) u v := by
   obtain ⟨F, rfl⟩ := P.lin_surjective f
   rw [whisk_lin, deriv_lin, deriv_lin, whisk_lin, derivFree_whisk]
 
-/-- The square of the derivation is an even derivation.-/
+/-- The square of the derivation is an even derivation.
+@isnad1 id=eq.1h9v.s12.84113a3e8aa0 from=translated src=- shape=9ec82ae1 vocab=873ef85c
+-/
 theorem deriv_deriv_comp (f : P.obj a ⟶ P.obj b) (g : P.obj b ⟶ P.obj c) :
     P.deriv hP (P.deriv hP (f ≫ g)) =
       P.deriv hP (P.deriv hP f) ≫ g + f ≫ P.deriv hP (P.deriv hP g) := by
@@ -1013,7 +1284,9 @@ theorem deriv_deriv_comp (f : P.obj a ⟶ P.obj b) (g : P.obj b ⟶ P.obj c) :
   rfl
 
 set_option backward.isDefEq.respectTransparency false in
-/-- `d² = 0` can be checked on generators.-/
+/-- `d² = 0` can be checked on generators.
+@isnad1 id=eq.2h7v.s12.db05e69c3d5c from=translated src=- shape=8a296e03 vocab=879ec7a9
+-/
 theorem deriv_deriv_eq_zero
     (h : ∀ g : S.Gen, P.deriv hP (P.deriv hP (P.diag (ofGen g))) = 0) {a b : Obj S}
     (f : P.obj a ⟶ P.obj b) : P.deriv hP (P.deriv hP f) = 0 := by

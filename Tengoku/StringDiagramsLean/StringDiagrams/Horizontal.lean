@@ -50,6 +50,9 @@ namespace Obj
 /-- An object is well formed when its regions match up.-/
 def WF (a : Obj S) : Prop := S.ok a.start a.word
 
+/--
+@isnad1 id=iff.0h3v.s4.17ae502403a6 from=translated src=- shape=60cc7b0c vocab=cec3c8cd
+-/
 @[simp] theorem wf_mk (r : S.Region) (w : List S.Colour) : (⟨r, w⟩ : Obj S).WF ↔ S.ok r w :=
   Iff.rfl
 
@@ -60,39 +63,61 @@ structure Composable (a b : Obj S) : Prop where
   endR_eq : a.endR = b.start
   right_wf : b.WF
 
+/--
+@isnad1 id=ok.1h3v.s4.1f8a0c70fb28 from=translated src=- shape=c20c86f4 vocab=dc7b52cb
+-/
 theorem Composable.ok_endR {a b : Obj S} (h : a.Composable b) : S.ok a.endR b.word :=
   h.endR_eq ▸ h.right_wf
 
+/--
+@isnad1 id=eq.0h3v.s4.9ab6de2d02d4 from=translated src=- shape=5ead6958 vocab=feda959f
+-/
 theorem endR_tensor (a b : Obj S) : (a.tensor b).endR = S.endR a.endR b.word := by
   simp [endR, tensor]
 
+/--
+@isnad1 id=eq.1h3v.s4.966d4b1e88eb from=translated src=- shape=5c36602a vocab=aeec782a
+-/
 theorem Composable.endR_tensor {a b : Obj S} (h : a.Composable b) :
     (a.tensor b).endR = b.endR := by
   rw [Obj.endR_tensor, h.endR_eq]; rfl
 
+/--
+@isnad1 id=wf.1h3v.s4.a0a6707ddc24 from=translated src=- shape=00fbc756 vocab=8c7e64d0
+-/
 theorem Composable.wf_tensor {a b : Obj S} (h : a.Composable b) : (a.tensor b).WF := by
   show S.ok a.start (a.word ++ b.word)
   rw [Signature.ok_append]; exact ⟨h.left_wf, h.ok_endR⟩
 
 end Obj
 
+/--
+@isnad1 id=wf.1h2v.s3.ab983be79f05 from=translated src=- shape=08ded1e7 vocab=a2e03b10
+-/
 theorem Layer.Valid.wf_dom {L : Layer S} (h : L.Valid) : L.dom.WF := by
   show S.ok L.start (L.left ++ S.dom L.gen ++ L.right)
   simp only [Signature.ok_append, Signature.endR_append, h.left_end, h.dom_end]
   exact ⟨⟨h.left_ok, h.dom_ok⟩, h.right_ok⟩
 
+/--
+@isnad1 id=wf.1h2v.s3.4ce2134f423b from=translated src=- shape=08ded1e7 vocab=85901b2a
+-/
 theorem Layer.Valid.wf_cod {L : Layer S} (h : L.Valid) : L.cod.WF := by
   show S.ok L.start (L.left ++ S.cod L.gen ++ L.right)
   simp only [Signature.ok_append, Signature.endR_append, h.left_end, h.cod_end]
   exact ⟨⟨h.left_ok, h.cod_ok⟩, h.right_ok⟩
 
-/-- Diagrams preserve well-formedness of objects.-/
+/-- Diagrams preserve well-formedness of objects.
+@isnad1 id=wf.2h4v.s4.912c0915af8d from=translated src=- shape=496545ce vocab=6ce50d0e
+-/
 theorem Chain.wf {a b : Obj S} {ls : List (Layer S)} (h : Chain a ls b) (ha : a.WF) : b.WF := by
   induction ls generalizing a with
   | nil => cases h; exact ha
   | cons L ls ih => exact ih h.2.2 h.1.wf_cod
 
-/-- Every layer of a diagram starts in the starting region of the diagram.-/
+/-- Every layer of a diagram starts in the starting region of the diagram.
+@isnad1 id=eq.2h5v.s5.dca00c919ca8 from=translated src=- shape=1b760e49 vocab=04c589b4
+-/
 theorem Chain.start_of_mem {a b : Obj S} {ls : List (Layer S)} (h : Chain a ls b) {L : Layer S}
     (hL : L ∈ ls) : L.start = a.start := by
   induction ls generalizing a with
@@ -108,12 +133,16 @@ namespace Obj.Composable
 
 variable {a a' b b' : Obj S}
 
-/-- Composability is preserved by a diagram on the left.-/
+/-- Composability is preserved by a diagram on the left.
+@isnad1 id=composab.1h5v.s5.be8dbbbffbac from=translated src=- shape=874304bb vocab=a418dc2e
+-/
 theorem map_left (h : a.Composable b) (f : a ⟶ a') : a'.Composable b :=
   ⟨(Diagram.chain f).wf h.left_wf, by rw [(Diagram.chain f).endR_eq]; exact h.endR_eq,
     h.right_wf⟩
 
-/-- Composability is preserved by a diagram on the right.-/
+/-- Composability is preserved by a diagram on the right.
+@isnad1 id=composab.1h5v.s5.6223e6f569f0 from=translated src=- shape=1e2e6d5d vocab=a418dc2e
+-/
 theorem map_right (h : a.Composable b) (g : b ⟶ b') : a.Composable b' :=
   ⟨h.left_wf, by rw [(Diagram.chain g).start_eq]; exact h.endR_eq,
     (Diagram.chain g).wf h.right_wf⟩
@@ -124,6 +153,9 @@ end Obj.Composable
 
 namespace Layer
 
+/--
+@isnad1 id=valid.2h3v.s4.62e0a19f8a4b from=translated src=- shape=90f19e17 vocab=b9eb2a14
+-/
 theorem Valid.wr {L : Layer S} (h : L.Valid) {v : List S.Colour} (hv : S.ok L.dom.endR v) :
     (L.wr v).Valid where
   left_ok := h.left_ok
@@ -136,6 +168,9 @@ theorem Valid.wr {L : Layer S} (h : L.Valid) {v : List S.Colour} (hv : S.ok L.do
     show S.ok (S.right L.gen) (L.right ++ v)
     rw [Signature.ok_append, ← h.endR_dom]; exact ⟨h.right_ok, hv⟩
 
+/--
+@isnad1 id=valid.3h3v.s5.2f923e9dabf7 from=translated src=- shape=a91e7ab9 vocab=ff06b5ab
+-/
 theorem Valid.wl {L : Layer S} (h : L.Valid) {w : Obj S} (hw : w.WF) (he : w.endR = L.start) :
     (L.wl w).Valid where
   left_ok := by
@@ -154,7 +189,9 @@ theorem Valid.wl {L : Layer S} (h : L.Valid) {w : Obj S} (hw : w.WF) (he : w.end
 
 end Layer
 
-/-- Right whiskering of a chain, for general regions.-/
+/-- Right whiskering of a chain, for general regions.
+@isnad1 id=chain.2h5v.s5.ec1e83a86ae4 from=translated src=- shape=0f27d2ce vocab=17d214d6
+-/
 theorem Chain.rwhisker {a a' : Obj S} {ls : List (Layer S)} (h : Chain a ls a') (b : Obj S)
     (hb : S.ok a.endR b.word) :
     Chain (a.tensor b) (ls.map (·.wr b.word)) (a'.tensor b) := by
@@ -164,7 +201,9 @@ theorem Chain.rwhisker {a a' : Obj S} {ls : List (Layer S)} (h : Chain a ls a') 
     obtain ⟨hv, rfl, hc⟩ := h
     exact ⟨hv.wr hb, L.wr_dom b, by rw [L.wr_cod]; exact ih hc (by rwa [hv.endR_eq])⟩
 
-/-- Left whiskering of a chain, for general regions.-/
+/-- Left whiskering of a chain, for general regions.
+@isnad1 id=chain.3h5v.s5.7ad08a98b26d from=translated src=- shape=9330a923 vocab=b8479b10
+-/
 theorem Chain.lwhisker {b b' : Obj S} {ls : List (Layer S)} (h : Chain b ls b') (a : Obj S)
     (ha : a.WF) (he : a.endR = b.start) :
     Chain (a.tensor b) (ls.map (·.wl a)) (a.tensor b') := by
@@ -188,36 +227,64 @@ def rwhisker (f : a ⟶ a') (b : Obj S) (h : a.Composable b) : a.tensor b ⟶ a'
 def lwhisker (a : Obj S) (g : b ⟶ b') (h : a.Composable b) : a.tensor b ⟶ a.tensor b' :=
   mk ((layers g).map (·.wl a)) ((chain g).lwhisker a h.left_wf h.endR_eq)
 
+/--
+@isnad1 id=eq.1h5v.s6.b18adf0a40a9 from=translated src=- shape=e5dedba6 vocab=58ab938e
+-/
 @[simp] theorem layers_rwhisker (f : a ⟶ a') (b : Obj S) (h : a.Composable b) :
     layers (rwhisker f b h) = (layers f).map (·.wr b.word) := rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.60bc966ca592 from=translated src=- shape=ef55a5cd vocab=09c71fbf
+-/
 @[simp] theorem layers_lwhisker (a : Obj S) (g : b ⟶ b') (h : a.Composable b) :
     layers (lwhisker a g h) = (layers g).map (·.wl a) := rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.e60bd7ecc72c from=translated src=- shape=7e7f47d1 vocab=ca934042
+-/
 theorem rwhisker_id (a b : Obj S) (h : a.Composable b) : rwhisker (𝟙 a) b h = 𝟙 _ := rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.3769f57b816b from=translated src=- shape=6336c858 vocab=078a0617
+-/
 theorem lwhisker_id (a b : Obj S) (h : a.Composable b) : lwhisker a (𝟙 b) h = 𝟙 _ := rfl
 
+/--
+@isnad1 id=eq.2h7v.s6.8679fc5725b5 from=translated src=- shape=bcb787b6 vocab=edd0cd57
+-/
 theorem rwhisker_comp (f : a ⟶ a') (f' : a' ⟶ a'') (b : Obj S) (h : a.Composable b)
     (h' : a'.Composable b) : rwhisker (f ≫ f') b h = rwhisker f b h ≫ rwhisker f' b h' := by
   ext; simp
 
+/--
+@isnad1 id=eq.2h7v.s6.9aac7934b717 from=translated src=- shape=f7683877 vocab=ba50c2f9
+-/
 theorem lwhisker_comp (a : Obj S) (g : b ⟶ b') (g' : b' ⟶ b'') (h : a.Composable b)
     (h' : a.Composable b') : lwhisker a (g ≫ g') h = lwhisker a g h ≫ lwhisker a g' h' := by
   ext; simp
 
-/-- For monoidal signatures, `rwhisker` is `whiskerR`.-/
+/-- For monoidal signatures, `rwhisker` is `whiskerR`.
+@isnad1 id=eq.1h5v.s6.4972e6cbf4e4 from=translated src=- shape=87fbc1e2 vocab=47b1fc24
+-/
 theorem rwhisker_eq_whiskerR [Subsingleton S.Region] (f : a ⟶ a') (b : Obj S)
     (h : a.Composable b) : rwhisker f b h = whiskerR f b := rfl
 
-/-- For monoidal signatures, `lwhisker` is `whiskerL`.-/
+/-- For monoidal signatures, `lwhisker` is `whiskerL`.
+@isnad1 id=eq.1h5v.s6.6ac4111952e6 from=translated src=- shape=bfb56189 vocab=97f1bac5
+-/
 theorem lwhisker_eq_whiskerL [Subsingleton S.Region] (a : Obj S) (g : b ⟶ b')
     (h : a.Composable b) : lwhisker a g h = whiskerL a g := rfl
 
+/--
+@isnad1 id=eq.1h5v.s5.00fef89364b8 from=translated src=- shape=6d9ac043 vocab=c14b8dea
+-/
 @[simp] theorem oddCount_rwhisker (f : a ⟶ a') (b : Obj S) (h : a.Composable b) :
     oddCount (rwhisker f b h) = oddCount f :=
   oddCountList_map_wr _ _
 
+/--
+@isnad1 id=eq.1h5v.s5.4c92a0ec5621 from=translated src=- shape=aa5026bb vocab=c2923422
+-/
 @[simp] theorem oddCount_lwhisker (a : Obj S) (g : b ⟶ b') (h : a.Composable b) :
     oddCount (lwhisker a g h) = oddCount g :=
   oddCountList_map_wl _ _
@@ -234,6 +301,9 @@ generators are the right strands of `L` followed by the left strands of `M`.-/
 def ofLayers (L M : Layer S) : InterchangeData S :=
   ⟨S.left L.gen, L.gen, L.right ++ M.left, M.gen⟩
 
+/--
+@isnad1 id=valid.3h3v.s5.d25c33290cb8 from=translated src=- shape=ae9f70f0 vocab=9b732a18
+-/
 theorem valid_ofLayers {L M : Layer S} (hL : L.Valid) (hM : M.Valid)
     (h : L.dom.endR = M.start) : (ofLayers L M).Valid := by
   have hRM : S.endR (S.right L.gen) L.right = M.start := by rw [← hL.endR_dom, h]
@@ -255,7 +325,9 @@ open Diagram
 
 variable {a a' b b' : Obj S}
 
-/-- The interchange law for two single layers, for general regions.-/
+/-- The interchange law for two single layers, for general regions.
+@isnad1 id=eq.5h5v.s9.ba23c8e1391c from=translated src=- shape=3f7bf6d9 vocab=7b652d4a
+-/
 theorem diag_swap_layers_of_composable (L M : Layer S) (hL : L.Valid) (hM : M.Valid)
     (h : L.dom.Composable M.dom) (h₁ : L.cod.Composable M.dom) (h₂ : L.dom.Composable M.cod) :
     P.diag (rwhisker (ofLayer L hL) M.dom h ≫ lwhisker L.cod (ofLayer M hM) h₁) =
@@ -291,7 +363,9 @@ theorem diag_swap_layers_of_composable (L M : Layer S) (hL : L.Valid) (hM : M.Va
       InterchangeData.hgDiagram, InterchangeData.gh₁, InterchangeData.gh₂, InterchangeData.hg₁,
       InterchangeData.hg₂, Layer.whisker, Layer.wr, Layer.wl, Layer.dom, Layer.cod]
 
-/-- Moving a single layer on the right past a diagram on the left, for general regions.-/
+/-- Moving a single layer on the right past a diagram on the left, for general regions.
+@isnad1 id=eq.4h7v.s9.e40129f3f2c4 from=translated src=- shape=87e31a8e vocab=01bf9111
+-/
 theorem diag_swap_layer_right_of_composable (f : a ⟶ a') (M : Layer S) (hM : M.Valid)
     (h : a.Composable M.dom) (h₁ : a'.Composable M.dom) (h₂ : a.Composable M.cod) :
     P.diag (rwhisker f M.dom h ≫ lwhisker a' (ofLayer M hM) h₁) =
@@ -319,7 +393,9 @@ theorem diag_swap_layer_right_of_composable (f : a ⟶ a') (M : Layer S) (hM : M
       smul_smul, ← P.diag_comp, Category.assoc, add_mul, pow_add, mul_comm]
 
 /-- The interchange law for arbitrary diagrams, for general regions, with the composability
-hypotheses at all four corners given separately.-/
+hypotheses at all four corners given separately.
+@isnad1 id=eq.3h9v.s9.b1655b84c81a from=translated src=- shape=60bada43 vocab=b40bec5a
+-/
 theorem diag_interchange_of_composable' (f : a ⟶ a') (g : b ⟶ b') (h : a.Composable b)
     (h₁ : a'.Composable b) (h₂ : a.Composable b') :
     P.diag (rwhisker f b h ≫ lwhisker a' g h₁) =
@@ -349,7 +425,9 @@ theorem diag_interchange_of_composable' (f : a ⟶ a') (g : b ⟶ b') (h : a.Com
 
 /-- The interchange law for arbitrary diagrams, for general regions: if `a` ends in the
 region where `b` starts (and both are well formed), then for `f : a ⟶ a'` and `g : b ⟶ b'`,
-`(f ⊗ 1_b) ≫ (1_{a'} ⊗ g) = (-1)^{|f||g|} (1_a ⊗ g) ≫ (f ⊗ 1_{b'})`.-/
+`(f ⊗ 1_b) ≫ (1_{a'} ⊗ g) = (-1)^{|f||g|} (1_a ⊗ g) ≫ (f ⊗ 1_{b'})`.
+@isnad1 id=eq.1h9v.s9.814c1cacd4b4 from=translated src=- shape=170297d4 vocab=08000d9b
+-/
 theorem diag_interchange_of_composable (f : a ⟶ a') (g : b ⟶ b') (h : a.Composable b) :
     P.diag (rwhisker f b h ≫ lwhisker a' g (h.map_left f)) =
       ((-1 : ℤ) ^ (oddCount f * oddCount g)) •

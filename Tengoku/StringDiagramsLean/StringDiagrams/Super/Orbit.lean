@@ -64,10 +64,16 @@ abbrev Q : S ⥤ S := d.e.functor
 /-- `Q⁻¹`.-/
 abbrev Qi : S ⥤ S := d.e.inverse
 
+/--
+@isnad1 id=mem.0h4v.s9.38aa5bb28020 from=translated src=- shape=a2c7568e vocab=9770680a
+-/
 theorem unit_inv_mem (X : S) :
     d.e.unitIso.inv.app X ∈ parity (R := R) (d.Qi.obj (d.Q.obj X)) X 0 :=
   inv_mem (d.e.unitIso.app X) (d.unit_mem X)
 
+/--
+@isnad1 id=mem.0h4v.s9.1145de0e018f from=translated src=- shape=a9fbcb83 vocab=02c69b08
+-/
 theorem counit_inv_mem (X : S) :
     d.e.counitIso.inv.app X ∈ parity (R := R) X (d.Q.obj (d.Qi.obj X)) 0 :=
   inv_mem (d.e.counitIso.app X) (d.counit_mem X)
@@ -83,45 +89,75 @@ abbrev powNeg : ℕ → S ⥤ S := EquivalencePowers.powNeg d.e
 /-- `Qⁱ`, `i ∈ ℤ`.-/
 abbrev pow : ℤ → S ⥤ S := EquivalencePowers.pow d.e
 
+/--
+@isnad1 id=additive.0h4v.s5.22441dfe59cd from=translated src=- shape=1889a2cd vocab=58d87971
+-/
 instance powNat_additive : ∀ n, (d.powNat n).Additive
   | 0 => inferInstanceAs (𝟭 S).Additive
   | n + 1 => by have := powNat_additive n; exact inferInstanceAs (d.powNat n ⋙ d.Q).Additive
 
+/--
+@isnad1 id=linear.0h4v.s6.f41f2240aeb1 from=translated src=- shape=c72b38cc vocab=6c8ae31d
+-/
 instance powNat_linear : ∀ n, (d.powNat n).Linear R
   | 0 => inferInstanceAs ((𝟭 S).Linear R)
   | n + 1 => by have := powNat_linear n; exact inferInstanceAs ((d.powNat n ⋙ d.Q).Linear R)
 
+/--
+@isnad1 id=issuperf.0h4v.s6.81d59dca0e67 from=translated src=- shape=c72b38cc vocab=f6e7302d
+-/
 instance powNat_isSuperfunctor : ∀ n, IsSuperfunctor R (d.powNat n)
   | 0 => inferInstanceAs (IsSuperfunctor R (𝟭 S))
   | n + 1 => by
     have := powNat_isSuperfunctor n; exact inferInstanceAs (IsSuperfunctor R (d.powNat n ⋙ d.Q))
 
+/--
+@isnad1 id=additive.0h4v.s5.4931716b2a3c from=translated src=- shape=1889a2cd vocab=1139ec63
+-/
 instance powNeg_additive : ∀ n, (d.powNeg n).Additive
   | 0 => inferInstanceAs (𝟭 S).Additive
   | n + 1 => by have := powNeg_additive n; exact inferInstanceAs (d.powNeg n ⋙ d.Qi).Additive
 
+/--
+@isnad1 id=linear.0h4v.s6.fa1e0205dff0 from=translated src=- shape=c72b38cc vocab=43f2db8a
+-/
 instance powNeg_linear : ∀ n, (d.powNeg n).Linear R
   | 0 => inferInstanceAs ((𝟭 S).Linear R)
   | n + 1 => by have := powNeg_linear n; exact inferInstanceAs ((d.powNeg n ⋙ d.Qi).Linear R)
 
+/--
+@isnad1 id=issuperf.0h4v.s6.34958b878d58 from=translated src=- shape=c72b38cc vocab=c11bf838
+-/
 instance powNeg_isSuperfunctor : ∀ n, IsSuperfunctor R (d.powNeg n)
   | 0 => inferInstanceAs (IsSuperfunctor R (𝟭 S))
   | n + 1 => by
     have := powNeg_isSuperfunctor n
     exact inferInstanceAs (IsSuperfunctor R (d.powNeg n ⋙ d.Qi))
 
+/--
+@isnad1 id=additive.0h4v.s5.a6a7932b626a from=translated src=- shape=1889a2cd vocab=18763d53
+-/
 instance pow_additive : ∀ i, (d.pow i).Additive
   | Int.ofNat n => d.powNat_additive n
   | Int.negSucc n => d.powNeg_additive (n + 1)
 
+/--
+@isnad1 id=linear.0h4v.s6.e969958653d7 from=translated src=- shape=c72b38cc vocab=4034be1b
+-/
 instance pow_linear : ∀ i, (d.pow i).Linear R
   | Int.ofNat n => d.powNat_linear n
   | Int.negSucc n => d.powNeg_linear (n + 1)
 
+/--
+@isnad1 id=issuperf.0h4v.s6.7cbb455ca523 from=translated src=- shape=c72b38cc vocab=612073ed
+-/
 instance pow_isSuperfunctor : ∀ i, IsSuperfunctor R (d.pow i)
   | Int.ofNat n => d.powNat_isSuperfunctor n
   | Int.negSucc n => d.powNeg_isSuperfunctor (n + 1)
 
+/--
+@isnad1 id=eq.0h3v.s6.a5de65c22849 from=translated src=- shape=3bef1b5a vocab=4d86b999
+-/
 @[simp] theorem pow_zero : d.pow 0 = 𝟭 S := rfl
 
 /-! ## The isomorphisms `Q Qⁱ ≅ Qⁱ⁺¹` -/
@@ -131,6 +167,9 @@ counit for `i < 0`.-/
 abbrev succ : ∀ i : ℤ, d.pow i ⋙ d.Q ≅ d.pow (i + 1) := EquivalencePowers.succ d.e
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=mem.0h5v.s10.a312f33698c2 from=translated src=- shape=f63a961c vocab=40aeaf6e
+-/
 theorem succ_hom_mem (i : ℤ) (X : S) :
     (d.succ i).hom.app X ∈ parity (R := R) (d.Q.obj ((d.pow i).obj X)) ((d.pow (i + 1)).obj X) 0 := by
   rcases i with n | (_ | n)
@@ -142,6 +181,9 @@ theorem succ_hom_mem (i : ℤ) (X : S) :
       rw [Category.id_comp, Category.comp_id]; rfl
     rw [h]; exact d.counit_mem _
 
+/--
+@isnad1 id=mem.0h5v.s10.694ae7848ab3 from=translated src=- shape=f26292c6 vocab=c39532a6
+-/
 theorem succ_inv_mem (i : ℤ) (X : S) :
     (d.succ i).inv.app X ∈ parity (R := R) ((d.pow (i + 1)).obj X) (d.Q.obj ((d.pow i).obj X)) 0 :=
   inv_mem ((d.succ i).app X) (d.succ_hom_mem i X)
@@ -165,11 +207,17 @@ def comm : ∀ i : ℤ, d.Q ⋙ d.pow i ≅ d.pow (i + 1)
   | Int.negSucc 0 => d.commNeg 0
   | Int.negSucc (n + 1) => d.commNeg (n + 1)
 
+/--
+@isnad1 id=eq.0h4v.s8.80a5b277bbd9 from=translated src=- shape=c53c885d vocab=5a4d5686
+-/
 theorem comm_zero_hom_app (X : S) : (d.comm 0).hom.app X = 𝟙 (d.Q.obj X) := by
   show 𝟙 _ ≫ 𝟙 _ = _
   exact Category.id_comp _
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=mem.0h5v.s10.c50ced868e64 from=translated src=- shape=d3c1a10e vocab=0bc4dda5
+-/
 theorem commNat_hom_mem (n : ℕ) (X : S) :
     (d.commNat n).hom.app X ∈ parity (R := R) ((d.powNat n).obj (d.Q.obj X)) ((d.powNat (n + 1)).obj X) 0 := by
   induction n with
@@ -179,6 +227,9 @@ theorem commNat_hom_mem (n : ℕ) (X : S) :
       Category.id_comp _
     rw [h]; exact map_mem d.Q ih
 
+/--
+@isnad1 id=mem.0h5v.s10.ed744dd4a459 from=translated src=- shape=71cc0c29 vocab=80bb8e25
+-/
 theorem commNeg_hom_mem (n : ℕ) (X : S) :
     (d.commNeg n).hom.app X ∈ parity (R := R) ((d.powNeg (n + 1)).obj (d.Q.obj X)) ((d.powNeg n).obj X) 0 := by
   induction n with
@@ -190,6 +241,9 @@ theorem commNeg_hom_mem (n : ℕ) (X : S) :
       Category.id_comp _
     rw [h]; exact map_mem d.Qi ih
 
+/--
+@isnad1 id=mem.0h5v.s10.cfc91b87258d from=translated src=- shape=febf1776 vocab=00c0c3a6
+-/
 theorem comm_hom_mem (i : ℤ) (X : S) :
     (d.comm i).hom.app X ∈ parity (R := R) ((d.pow i).obj (d.Q.obj X)) ((d.pow (i + 1)).obj X) 0 := by
   rcases i with n | (_ | n)
@@ -197,17 +251,26 @@ theorem comm_hom_mem (i : ℤ) (X : S) :
   · exact d.commNeg_hom_mem 0 X
   · exact d.commNeg_hom_mem (n + 1) X
 
+/--
+@isnad1 id=mem.0h5v.s10.44ce5893ca61 from=translated src=- shape=bd540741 vocab=2af907b9
+-/
 theorem comm_inv_mem (i : ℤ) (X : S) :
     (d.comm i).inv.app X ∈ parity (R := R) ((d.pow (i + 1)).obj X) ((d.pow i).obj (d.Q.obj X)) 0 :=
   inv_mem ((d.comm i).app X) (d.comm_hom_mem i X)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s8.810fd007e811 from=translated src=- shape=7b761d32 vocab=ba03664b
+-/
 theorem succ_negSucc_succ_hom_app (n : ℕ) (X : S) :
     (d.succ (Int.negSucc (n + 1))).hom.app X = d.e.counitIso.hom.app ((d.powNeg (n + 1)).obj X) := by
   show 𝟙 _ ≫ _ ≫ 𝟙 _ = _
   rw [Category.id_comp, Category.comp_id]; rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s8.fc130ca98c8c from=translated src=- shape=c982f142 vocab=d831a9c8
+-/
 theorem succ_negSucc_succ_inv_app (n : ℕ) (X : S) :
     (d.succ (Int.negSucc (n + 1))).inv.app X = d.e.counitIso.inv.app ((d.powNeg (n + 1)).obj X) := by
   rw [← cancel_mono ((d.succ (Int.negSucc (n + 1))).hom.app X), Iso.inv_hom_id_app,
@@ -215,6 +278,9 @@ theorem succ_negSucc_succ_inv_app (n : ℕ) (X : S) :
   exact (Iso.inv_hom_id_app d.e.counitIso _).symm
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s9.0a2e12764495 from=translated src=- shape=af8adee9 vocab=4cb4fdae
+-/
 theorem commNeg_succ_hom_app (n : ℕ) (X : S) :
     (d.commNeg (n + 1)).hom.app X = d.Qi.map ((d.commNeg n).hom.app X) := by
   show 𝟙 _ ≫ _ = _
@@ -222,7 +288,9 @@ theorem commNeg_succ_hom_app (n : ℕ) (X : S) :
 
 /-- The compatibility of `comm` with `succ`: `Qⁱ⁺¹ Q ≅ Qⁱ⁺²` is obtained from `Qⁱ Q ≅ Qⁱ⁺¹` by
 applying `Q` and the isomorphisms `succ`. For `i = -1` this is the triangle identity of the
-adjoint equivalence.-/
+adjoint equivalence.
+@isnad1 id=eq.0h5v.s10.756993271ec8 from=translated src=- shape=a3c1111c vocab=dcb85d03
+-/
 theorem comm_succ (i : ℤ) (X : S) :
     (d.comm (i + 1)).hom.app X =
       (d.succ i).inv.app (d.Q.obj X) ≫ d.Q.map ((d.comm i).hom.app X) ≫ (d.succ (i + 1)).hom.app X := by
@@ -261,17 +329,32 @@ instance (X Y : S) : Module R (d.FamAll X Y) :=
 
 variable {d}
 
+/--
+@isnad1 id=eq.0h9v.s9.da5b46b5ac47 from=translated src=- shape=43bfed9f vocab=fd5d36c7
+-/
 @[simp] theorem FamAll.add_apply {X Y : S} (f g : d.FamAll X Y) (i j : ℤ) :
     (f + g) i j = f i j + g i j := rfl
 
+/--
+@isnad1 id=eq.0h9v.s10.35980b5b7f4c from=translated src=- shape=e5278202 vocab=56d47fb5
+-/
 @[simp] theorem FamAll.smul_apply {X Y : S} (r : R) (f : d.FamAll X Y) (i j : ℤ) :
     (r • f) i j = r • f i j := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.26c5c89cb577 from=translated src=- shape=ac478ea8 vocab=453ed88d
+-/
 @[simp] theorem FamAll.zero_apply {X Y : S} (i j : ℤ) : (0 : d.FamAll X Y) i j = 0 := rfl
 
+/--
+@isnad1 id=eq.0h8v.s8.a9615674bf61 from=translated src=- shape=e1cd5028 vocab=e870cc42
+-/
 @[simp] theorem FamAll.neg_apply {X Y : S} (f : d.FamAll X Y) (i j : ℤ) : (-f) i j = -f i j :=
   rfl
 
+/--
+@isnad1 id=eq.1h7v.s7.4a6998c94bf1 from=translated src=- shape=acdd4eb5 vocab=453ed88d
+-/
 @[ext] theorem FamAll.ext {X Y : S} {f g : d.FamAll X Y} (h : ∀ i j, f i j = g i j) : f = g :=
   funext fun i => funext fun j => h i j
 
@@ -302,6 +385,9 @@ variable {d}
 theorem Fam.eq_zero {m : ℤ} {X Y : S} {f : d.FamAll X Y} (hf : f ∈ d.Fam R m X Y) {i j : ℤ}
     (h : i - j ≠ m) : f i j = 0 := hf.1 i j h
 
+/--
+@isnad1 id=eq.1h9v.s9.4693b0ff7241 from=translated src=- shape=a14277a8 vocab=8280fdd2
+-/
 theorem Fam.compat {m : ℤ} {X Y : S} {f : d.FamAll X Y} (hf : f ∈ d.Fam R m X Y) (i j : ℤ) :
     f (i + 1) (j + 1) = (d.succ i).inv.app X ≫ d.Q.map (f i j) ≫ (d.succ j).hom.app Y :=
   hf.2 i j
@@ -314,6 +400,9 @@ def famComp (m : ℤ) {X Y Z : S} (f : d.FamAll X Y) (g : d.FamAll Y Z) : d.FamA
 
 variable {d}
 
+/--
+@isnad1 id=mem.2h10v.s9.46c0b662c348 from=translated src=- shape=7e2459a2 vocab=71b66638
+-/
 theorem famComp_mem {m n : ℤ} {X Y Z : S} {f : d.FamAll X Y} {g : d.FamAll Y Z}
     (hf : f ∈ d.Fam R m X Y) (hg : g ∈ d.Fam R n Y Z) : d.famComp m f g ∈ d.Fam R (m + n) X Z := by
   refine ⟨fun i k h => ?_, fun i k => ?_⟩
@@ -328,8 +417,14 @@ variable (d)
 def idFam (X : S) : d.FamAll X X :=
   fun i j => if h : i = j then eqToHom (congrArg (fun k => (d.pow k).obj X) h) else 0
 
+/--
+@isnad1 id=eq.0h5v.s6.e64cba508039 from=translated src=- shape=e2e472d8 vocab=1f11a15a
+-/
 theorem idFam_self (X : S) (i : ℤ) : d.idFam X i i = 𝟙 _ := by simp [idFam]
 
+/--
+@isnad1 id=mem.0h4v.s7.6b1e2f23b20a from=translated src=- shape=04651f46 vocab=d28a2e41
+-/
 theorem idFam_mem (X : S) : d.idFam X ∈ d.Fam R 0 X X := by
   refine ⟨fun i j h => ?_, fun i j => ?_⟩
   · rw [idFam, dite_eq_right (by omega)]
@@ -337,11 +432,17 @@ theorem idFam_mem (X : S) : d.idFam X ∈ d.Fam R 0 X X := by
     · subst h; simp [idFam_self]
     · rw [idFam, idFam, dite_eq_right h, dite_eq_right (by omega)]; simp
 
+/--
+@isnad1 id=eq.0h6v.s6.c4d0f2d8024e from=translated src=- shape=2e42d3f1 vocab=36d941d6
+-/
 theorem famComp_idFam_left {X Y : S} (f : d.FamAll X Y) : d.famComp 0 (d.idFam X) f = f := by
   ext i k
   simp only [famComp]
   rw [show i - 0 = i by ring, idFam_self, Category.id_comp]
 
+/--
+@isnad1 id=eq.1h7v.s8.5b1758bfbcf8 from=translated src=- shape=7be57660 vocab=4883dc29
+-/
 theorem famComp_idFam_right {m : ℤ} {X Y : S} {f : d.FamAll X Y} (hf : f ∈ d.Fam R m X Y) :
     d.famComp m f (d.idFam Y) = f := by
   ext i k
@@ -350,6 +451,9 @@ theorem famComp_idFam_right {m : ℤ} {X Y : S} {f : d.FamAll X Y} (hf : f ∈ d
   · subst h; simp
   · rw [dite_eq_right h, Limits.comp_zero, Fam.eq_zero hf (by omega)]
 
+/--
+@isnad1 id=eq.0h12v.s7.f20dedb28cb9 from=translated src=- shape=21404679 vocab=8db7dd50
+-/
 theorem famComp_assoc (m n : ℤ) {W X Y Z : S} (f : d.FamAll W X) (g : d.FamAll X Y)
     (h : d.FamAll Y Z) :
     d.famComp (m + n) (d.famComp m f g) h = d.famComp m f (d.famComp n g h) := by
@@ -371,6 +475,9 @@ def famCompₗ (m n : ℤ) (X Y Z : S) :
       simp [famComp, Preadditive.comp_add]))
     (fun r f g => Subtype.ext (FamAll.ext fun i k => by simp [famComp]))
 
+/--
+@isnad1 id=eq.0h10v.s13.48d71f004118 from=translated src=- shape=03ab63e1 vocab=38af49ce
+-/
 @[simp] theorem famCompₗ_apply (m n : ℤ) {X Y Z : S} (f : d.Fam R m X Y) (g : d.Fam R n Y Z) :
     ((d.famCompₗ m n X Y Z f g : d.Fam R (m + n) X Z) : d.FamAll X Z) = d.famComp m f.1 g.1 := rfl
 
@@ -395,20 +502,32 @@ def lof (m : ℤ) (X Y : S) : d.Fam R m X Y →ₗ[R] d.Hom X Y :=
 def component (m : ℤ) (X Y : S) : d.Hom X Y →ₗ[R] d.Fam R m X Y :=
   DirectSum.component R ℤ (fun m => d.Fam R m X Y) m
 
+/--
+@isnad1 id=eq.0h7v.s11.add29218845b from=translated src=- shape=645292fb vocab=a4b53143
+-/
 @[simp] theorem component_lof_self (m : ℤ) {X Y : S} (f : d.Fam R m X Y) :
     d.component m X Y (d.lof m X Y f) = f :=
   DirectSum.component.lof_self (M := fun m => d.Fam R m X Y) R m f
 
+/--
+@isnad1 id=eq.1h8v.s11.96fed4d13e50 from=translated src=- shape=5e0918f6 vocab=a4b53143
+-/
 theorem component_lof_of_ne {m n : ℤ} {X Y : S} (f : d.Fam R m X Y) (h : m ≠ n) :
     d.component n X Y (d.lof m X Y f) = 0 :=
   (DirectSum.component.of (M := fun m => d.Fam R m X Y) R n m f).trans (dite_eq_right h)
 
 variable {d}
 
+/--
+@isnad1 id=eq.1h7v.s11.da8d0547a4e4 from=translated src=- shape=d11be646 vocab=1d107160
+-/
 @[ext] theorem Hom.ext {X Y : S} {x y : d.Hom X Y}
     (h : ∀ m, d.component m X Y x = d.component m X Y y) : x = y :=
   DirectSum.ext (β := fun m => d.Fam R m X Y) h
 
+/--
+@isnad1 id=var.0h10v.s10.c690ea6de9f5 from=translated src=- shape=7db02d85 vocab=39b8cb84
+-/
 @[elab_as_elim]
 theorem Hom.induction_on {X Y : S} {motive : d.Hom X Y → Prop} (x : d.Hom X Y) (zero : motive 0)
     (lof : ∀ m f, motive (d.lof m X Y f)) (add : ∀ x y, motive x → motive y → motive (x + y)) :
@@ -421,6 +540,9 @@ theorem Hom.induction_on {X Y : S} {motive : d.Hom X Y → Prop} (x : d.Hom X Y)
 
 variable (d)
 
+/--
+@isnad1 id=eq.2h9v.s11.980ac26b0cc3 from=translated src=- shape=ed92a04d vocab=0ea3fa9a
+-/
 theorem lof_congr {X Y : S} {i j : ℤ} (h : i = j) {a : d.Fam R i X Y} {b : d.Fam R j X Y}
     (hab : (a : d.FamAll X Y) = b) : d.lof i X Y a = d.lof j X Y b := by
   subst h; congr 1; exact Subtype.ext hab
@@ -431,6 +553,9 @@ def compL (X Y Z : S) : d.Hom X Y →ₗ[R] d.Hom Y Z →ₗ[R] d.Hom X Z :=
     LinearMap.flip (DirectSum.toModule R ℤ (d.Fam R m X Y →ₗ[R] d.Hom X Z) fun n =>
       ((d.famCompₗ m n X Y Z).flip).compr₂ (d.lof (m + n) X Z))
 
+/--
+@isnad1 id=eq.0h10v.s13.046a02f050b0 from=translated src=- shape=12e0b7ac vocab=6f9e5c1f
+-/
 theorem compL_lof_lof {m n : ℤ} {X Y Z : S} (f : d.Fam R m X Y) (g : d.Fam R n Y Z) :
     d.compL X Y Z (d.lof m X Y f) (d.lof n Y Z g) = d.lof (m + n) X Z (d.famCompₗ m n X Y Z f g) := by
   simp only [compL, lof]
@@ -440,6 +565,9 @@ theorem compL_lof_lof {m n : ℤ} {X Y Z : S} (f : d.Fam R m X Y) (g : d.Fam R n
 /-- The identity morphism.-/
 def idHom (X : S) : d.Hom X X := d.lof 0 X X ⟨d.idFam X, d.idFam_mem X⟩
 
+/--
+@isnad1 id=eq.0h6v.s10.4ba9136f72e1 from=translated src=- shape=6ac9e262 vocab=327082df
+-/
 theorem id_compL {X Y : S} (x : d.Hom X Y) : d.compL X X Y (d.idHom X) x = x := by
   induction x using Hom.induction_on with
   | zero => simp
@@ -448,6 +576,9 @@ theorem id_compL {X Y : S} (x : d.Hom X Y) : d.compL X X Y (d.idHom X) x = x := 
     exact d.lof_congr (zero_add m) (by simp [famComp_idFam_left])
   | add x y hx hy => rw [map_add, hx, hy]
 
+/--
+@isnad1 id=eq.0h6v.s10.1dc1c9376d55 from=translated src=- shape=dea3dbbf vocab=327082df
+-/
 theorem compL_id {X Y : S} (x : d.Hom X Y) : d.compL X Y Y x (d.idHom Y) = x := by
   induction x using Hom.induction_on with
   | zero => simp
@@ -456,6 +587,9 @@ theorem compL_id {X Y : S} (x : d.Hom X Y) : d.compL X Y Y x (d.idHom Y) = x := 
     exact d.lof_congr (add_zero m) (by simp [famComp_idFam_right d f.2])
   | add x y hx hy => rw [map_add, LinearMap.add_apply, hx, hy]
 
+/--
+@isnad1 id=eq.0h10v.s12.6bb3681eaf96 from=translated src=- shape=f54584e1 vocab=84ca9a68
+-/
 theorem compL_assoc {W X Y Z : S} (x : d.Hom W X) (y : d.Hom X Y) (z : d.Hom Y Z) :
     d.compL W Y Z (d.compL W X Y x y) z = d.compL W X Z x (d.compL X Y Z y z) := by
   induction x using Hom.induction_on with
@@ -473,6 +607,9 @@ theorem compL_assoc {W X Y Z : S} (x : d.Hom W X) (y : d.Hom X Y) (z : d.Hom Y Z
         simp only [compL_lof_lof]
         exact d.lof_congr (add_assoc m n p) (by simp [famComp_assoc])
 
+/--
+@isnad1 id=eq.0h10v.s12.9273cd34690a from=translated src=- shape=8feeb381 vocab=0dbce994
+-/
 theorem compL_lof_lof' {m n : ℤ} {X Y Z : S} (f : d.Fam R m X Y) (g : d.Fam R n Y Z) :
     d.compL X Y Z (d.lof m X Y f) (d.lof n Y Z g) =
       d.lof (m + n) X Z ⟨d.famComp m f.1 g.1, famComp_mem f.2 g.2⟩ :=
@@ -498,6 +635,9 @@ def famProj (p : ZMod 2) (m : ℤ) (X Y : S) : d.Fam R m X Y →ₗ[R] d.Fam R m
   map_add' f g := Subtype.ext (FamAll.ext fun i j => map_add _ _ _)
   map_smul' r f := Subtype.ext (FamAll.ext fun i j => map_smul _ _ _)
 
+/--
+@isnad1 id=eq.0h10v.s11.6f098de7f7dd from=translated src=- shape=dcca63e1 vocab=b688657e
+-/
 @[simp] theorem famProj_apply (p : ZMod 2) {m : ℤ} {X Y : S} (f : d.Fam R m X Y) (i j : ℤ) :
     (d.famProj R p m X Y f).1 i j = proj R p (f.1 i j) := rfl
 
@@ -506,12 +646,18 @@ variable (R) in
 def projHom (p : ZMod 2) (X Y : S) : d.Hom X Y →ₗ[R] d.Hom X Y :=
   DirectSum.toModule R ℤ (d.Hom X Y) fun m => d.lof m X Y ∘ₗ d.famProj R p m X Y
 
+/--
+@isnad1 id=eq.0h8v.s12.8c236af92bb2 from=translated src=- shape=1a274b4e vocab=a418a32a
+-/
 theorem projHom_lof (p : ZMod 2) {m : ℤ} {X Y : S} (f : d.Fam R m X Y) :
     d.projHom R p X Y (d.lof m X Y f) = d.lof m X Y (d.famProj R p m X Y f) := by
   rw [projHom, lof]
   erw [DirectSum.toModule_lof]
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s12.c8a8d2d4140b from=translated src=- shape=6266a815 vocab=6a3cc81b
+-/
 theorem component_projHom (p : ZMod 2) (m : ℤ) {X Y : S} (x : d.Hom X Y) :
     d.component m X Y (d.projHom R p X Y x) = d.famProj R p m X Y (d.component m X Y x) := by
   induction x using Hom.induction_on with
@@ -535,20 +681,32 @@ def parityHom (X Y : S) (p : ZMod 2) : Submodule R (d.Hom X Y) where
     simp only [map_smul, Submodule.coe_smul, FamAll.smul_apply]
     exact Submodule.smul_mem _ _ (hx m i j)
 
+/--
+@isnad1 id=mem.0h7v.s9.8d86cb77de74 from=translated src=- shape=c431d507 vocab=c7456e2f
+-/
 theorem projHom_mem (p : ZMod 2) {X Y : S} (x : d.Hom X Y) : d.projHom R p X Y x ∈ d.parityHom R X Y p :=
   fun m i j => by rw [component_projHom, famProj_apply]; exact proj_mem _ _
 
+/--
+@isnad1 id=eq.1h7v.s9.d4897f286995 from=translated src=- shape=1caeb043 vocab=c7456e2f
+-/
 theorem projHom_of_mem {p : ZMod 2} {X Y : S} {x : d.Hom X Y} (hx : x ∈ d.parityHom R X Y p) :
     d.projHom R p X Y x = x :=
   Hom.ext fun m => Subtype.ext (FamAll.ext fun i j => by
     rw [component_projHom, famProj_apply, proj_of_mem (hx m i j)])
 
+/--
+@isnad1 id=eq.0h6v.s9.bca3124e4228 from=translated src=- shape=c84f49a2 vocab=50440006
+-/
 theorem projHom_add_projHom {X Y : S} (x : d.Hom X Y) :
     d.projHom R 0 X Y x + d.projHom R 1 X Y x = x :=
   Hom.ext fun m => Subtype.ext (FamAll.ext fun i j => by
     rw [map_add, component_projHom, component_projHom]
     exact proj_add_proj _)
 
+/--
+@isnad1 id=mem.0h10v.s11.30e6d5335375 from=translated src=- shape=8d84df30 vocab=f4513b64
+-/
 theorem compL_projHom_mem (p q : ZMod 2) {X Y Z : S} (x : d.Hom X Y) (y : d.Hom Y Z) :
     d.compL X Y Z (d.projHom R p X Y x) (d.projHom R q Y Z y) ∈ d.parityHom R X Z (p + q) := by
   induction x using Hom.induction_on with
@@ -567,6 +725,9 @@ theorem compL_projHom_mem (p q : ZMod 2) {X Y Z : S} (x : d.Hom X Y) (y : d.Hom 
         exact comp_mem (proj_mem _ _) (proj_mem _ _)
       · rw [d.component_lof_of_ne _ h]; exact Submodule.zero_mem _
 
+/--
+@isnad1 id=mem.2h10v.s10.20a5fc41c32c from=translated src=- shape=3c05e4b5 vocab=f6801a87
+-/
 theorem compL_mem {p q : ZMod 2} {X Y Z : S} {x : d.Hom X Y} {y : d.Hom Y Z}
     (hx : x ∈ d.parityHom R X Y p) (hy : y ∈ d.parityHom R Y Z q) :
     d.compL X Y Z x y ∈ d.parityHom R X Z (p + q) := by
@@ -579,6 +740,9 @@ variable (R) in
 /-- The morphisms of degree `n`: the families of degree `n`.-/
 def degreeHom (X Y : S) (n : ℤ) : Submodule R (d.Hom X Y) := LinearMap.range (d.lof n X Y)
 
+/--
+@isnad1 id=isintern.0h5v.s7.4910884066c4 from=translated src=- shape=2b81cebf vocab=f850f27f
+-/
 theorem isInternal_degreeHom (X Y : S) : DirectSum.IsInternal (d.degreeHom R X Y) := by
   rw [DirectSum.isInternal_submodule_iff_iSupIndep_and_iSup_eq_top]
   constructor
@@ -608,9 +772,15 @@ theorem isInternal_degreeHom (X Y : S) : DirectSum.IsInternal (d.degreeHom R X Y
 def diagFam {X Y : S} (φ : ∀ i : ℤ, (d.pow i).obj X ⟶ (d.pow i).obj Y) : d.FamAll X Y :=
   fun i j => if h : i = j then φ i ≫ eqToHom (congrArg (fun k => (d.pow k).obj Y) h) else 0
 
+/--
+@isnad1 id=eq.0h7v.s7.d60027f5e3e4 from=translated src=- shape=3ce9f256 vocab=8fcc8e28
+-/
 theorem diagFam_self {X Y : S} (φ : ∀ i : ℤ, (d.pow i).obj X ⟶ (d.pow i).obj Y) (i : ℤ) :
     d.diagFam φ i i = φ i := by simp [diagFam]
 
+/--
+@isnad1 id=mem.1h6v.s9.3d0af6fe2ed3 from=translated src=- shape=291c336c vocab=6b54fc9d
+-/
 theorem diagFam_mem {X Y : S} {φ : ∀ i : ℤ, (d.pow i).obj X ⟶ (d.pow i).obj Y}
     (hφ : ∀ i, φ (i + 1) = (d.succ i).inv.app X ≫ d.Q.map (φ i) ≫ (d.succ i).hom.app Y) :
     d.diagFam φ ∈ d.Fam R 0 X Y := by
@@ -620,6 +790,9 @@ theorem diagFam_mem {X Y : S} {φ : ∀ i : ℤ, (d.pow i).obj X ⟶ (d.pow i).o
     · subst h; rw [diagFam_self, diagFam_self, hφ]
     · rw [diagFam, diagFam, dite_eq_right h, dite_eq_right (by omega)]; simp
 
+/--
+@isnad1 id=eq.0h8v.s8.7422465958c4 from=translated src=- shape=f6d1f029 vocab=a496364a
+-/
 theorem famComp_diagFam {X Y Z : S} (φ : ∀ i : ℤ, (d.pow i).obj X ⟶ (d.pow i).obj Y)
     (ψ : ∀ i : ℤ, (d.pow i).obj Y ⟶ (d.pow i).obj Z) :
     d.famComp 0 (d.diagFam φ) (d.diagFam ψ) = d.diagFam fun i => φ i ≫ ψ i := by
@@ -640,6 +813,9 @@ def mapFam {X Y : S} (g : X ⟶ Y) : d.Fam R 0 X Y :=
 /-! ## Families are determined by one entry -/
 
 variable {d} in
+/--
+@isnad1 id=eq.3h11v.s7.ced01ca3caf5 from=translated src=- shape=f5004ebe vocab=453ed88d
+-/
 theorem FamAll.congr_entry {X Y : S} {f g : d.FamAll X Y} {i j i' j' : ℤ} (hi : i = i')
     (hj : j = j') (h : f i j = g i j) : f i' j' = g i' j' := by
   subst hi hj; exact h
@@ -679,12 +855,21 @@ def famσinv (X : S) : d.FamAll X (d.Q.obj X) :=
   fun i j => if h : i = j + 1 then
     eqToHom (congrArg (fun k => (d.pow k).obj X) h) ≫ (d.comm j).inv.app X else 0
 
+/--
+@isnad1 id=eq.0h5v.s8.0e878e4ddc96 from=translated src=- shape=f09c5933 vocab=44349583
+-/
 theorem famσ_succ (X : S) (i : ℤ) : d.famσ X i (i + 1) = (d.comm i).hom.app X := by
   simp [famσ]
 
+/--
+@isnad1 id=eq.0h5v.s8.51b578e984c9 from=translated src=- shape=10c017be vocab=d0af92cd
+-/
 theorem famσinv_succ (X : S) (j : ℤ) : d.famσinv X (j + 1) j = (d.comm j).inv.app X := by
   simp [famσinv]
 
+/--
+@isnad1 id=mem.0h4v.s8.8c65e2f99ed0 from=translated src=- shape=23100ea5 vocab=c53e990a
+-/
 theorem famσ_mem (X : S) : d.famσ X ∈ d.Fam R (-1) (d.Q.obj X) X := by
   refine ⟨fun i j h => ?_, fun i j => ?_⟩
   · rw [famσ, dite_eq_right (by omega)]
@@ -693,6 +878,9 @@ theorem famσ_mem (X : S) : d.famσ X ∈ d.Fam R (-1) (d.Q.obj X) X := by
       rw [famσ_succ, famσ_succ, d.comm_succ]
     · rw [famσ, famσ, dite_eq_right h, dite_eq_right (by omega)]; simp
 
+/--
+@isnad1 id=mem.0h4v.s8.738a8c8584f2 from=translated src=- shape=14a6c963 vocab=ac3011bf
+-/
 theorem famσinv_mem (X : S) : d.famσinv X ∈ d.Fam R 1 X (d.Q.obj X) := by
   refine ⟨fun i j h => ?_, fun i j => ?_⟩
   · rw [famσinv, dite_eq_right (by omega)]
@@ -706,6 +894,9 @@ theorem famσinv_mem (X : S) : d.famσinv X ∈ d.Fam R 1 X (d.Q.obj X) := by
       rfl
     · rw [famσinv, famσinv, dite_eq_right h, dite_eq_right (by omega)]; simp
 
+/--
+@isnad1 id=eq.0h4v.s7.889cf0c797ad from=translated src=- shape=0da0d95e vocab=aea01bf0
+-/
 theorem famComp_famσ_famσinv (X : S) :
     d.famComp (-1) (d.famσ X) (d.famσinv X) = d.idFam (d.Q.obj X) := by
   ext i k
@@ -715,6 +906,9 @@ theorem famComp_famσ_famσinv (X : S) :
   · subst h; rw [famσinv_succ, Iso.hom_inv_id_app, idFam_self]; rfl
   · rw [famσinv, dite_eq_right (by omega), Limits.comp_zero, idFam, dite_eq_right h]
 
+/--
+@isnad1 id=eq.0h4v.s6.8bca36ae353b from=translated src=- shape=ceffb79c vocab=ab79fcfa
+-/
 theorem famComp_famσinv_famσ (X : S) :
     d.famComp 1 (d.famσinv X) (d.famσ X) = d.idFam X := by
   ext i k
@@ -751,6 +945,9 @@ instance : Category (Orbit d) where
   comp_id f := d.compL_id f
   assoc f g h := d.compL_assoc f g h
 
+/--
+@isnad1 id=eq.0h4v.s7.7bf9c8faaadd from=translated src=- shape=258a677f vocab=abe1c8e2
+-/
 theorem id_def (X : Orbit d) : 𝟙 X = d.idHom X.obj := rfl
 
 instance : Preadditive (Orbit d) where
@@ -791,9 +988,15 @@ instance : Supercategory R (Orbit d) where
     · rw [id_def, idHom, d.component_lof_of_ne _ (Ne.symm h)]; exact Submodule.zero_mem _
   comp_mem hf hg := d.compL_mem hf hg
 
+/--
+@isnad1 id=iff.0h7v.s10.74d1c295c480 from=translated src=- shape=cb696935 vocab=38d3d63b
+-/
 theorem mem_parity_iff {X Y : Orbit d} {p : ZMod 2} {f : X ⟶ Y} :
     f ∈ parity (R := R) X Y p ↔ f ∈ d.parityHom R X.obj Y.obj p := Iff.rfl
 
+/--
+@isnad1 id=eq.0h7v.s10.ba131cf1b7d2 from=translated src=- shape=bc0427bc vocab=3a61711a
+-/
 theorem proj_eq {X Y : Orbit d} (p : ZMod 2) (f : X ⟶ Y) :
     proj R p f = d.projHom R p X.obj Y.obj f :=
   proj_eq_of_add (h := d.projHom R (p + 1) X.obj Y.obj f)
@@ -839,6 +1042,9 @@ def ι : S ⥤ Orbit d where
     rw [famComp_diagFam]
     simp
 
+/--
+@isnad1 id=eq.0h6v.s10.c98ec4149a9f from=translated src=- shape=60a6ca9e vocab=c85872b9
+-/
 theorem ι_map (d : ShiftData R S) {X Y : S} (g : X ⟶ Y) :
     ((ι d).map g : (⟨X⟩ : Orbit d) ⟶ ⟨Y⟩) = d.lof 0 X Y (d.mapFam g) := rfl
 
@@ -869,6 +1075,9 @@ instance : IsSuperfunctor R (ι d) where
       · exact Submodule.zero_mem _
     · rw [d.component_lof_of_ne _ (Ne.symm h)]; exact Submodule.zero_mem _
 
+/--
+@isnad1 id=mem.0h6v.s10.a1faf82a30f3 from=translated src=- shape=dd9e6d4c vocab=708b1a7f
+-/
 theorem ι_map_mem_degree {X Y : S} (g : X ⟶ Y) :
     (ι d).map g ∈ GradedSupercategory.degree (R := R) ((ι d).obj X) ((ι d).obj Y) 0 :=
   ⟨_, rfl⟩
@@ -893,6 +1102,9 @@ instance : (ιZ d).Linear R where
 instance : IsSuperfunctor R (ιZ d) where
   map_mem hf := map_mem (R := R) (ι d) hf
 
+/--
+@isnad1 id=eq.2h8v.s12.9c07cf89b01f from=translated src=- shape=fc59cb22 vocab=1e176ded
+-/
 theorem _root_.StringDiagrams.ShiftData.component_zero_compL {X Y Z : S} {x : d.Hom X Y}
     {y : d.Hom Y Z} (hx : x ∈ d.degreeHom R X Y 0) (hy : y ∈ d.degreeHom R Y Z 0) :
     d.component 0 X Z (d.compL X Y Z x y) =
@@ -905,6 +1117,9 @@ theorem _root_.StringDiagrams.ShiftData.component_zero_compL {X Y Z : S} {x : d.
       d.lof_congr (add_zero 0) rfl]
   simp only [component_lof_self]
 
+/--
+@isnad1 id=eq.0h6v.s13.b704ae99e8b6 from=translated src=- shape=7e704d08 vocab=742bd734
+-/
 theorem degreeZero_eq_lof {X Y : Orbit d} (x : (⟨X⟩ : DegreeZero R (Orbit d)) ⟶ ⟨Y⟩) :
     x.1 = d.lof 0 X.obj Y.obj (d.component 0 X.obj Y.obj x.1) := by
   obtain ⟨f, hf⟩ := x.2
@@ -924,6 +1139,9 @@ def π₀ : DegreeZero R (Orbit d) ⥤ S where
     rw [d.component_zero_compL x.2 y.2]
     rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.a434fee696c8 from=translated src=- shape=16005c16 vocab=5c450294
+-/
 theorem π₀_comp_ιZ_map {X Y : Orbit d} (x : (⟨X⟩ : DegreeZero R (Orbit d)) ⟶ ⟨Y⟩) :
     (ιZ d).map ((π₀ d).map x) = x := by
   apply DegreeZero.hom_ext
@@ -934,6 +1152,9 @@ theorem π₀_comp_ιZ_map {X Y : Orbit d} (x : (⟨X⟩ : DegreeZero R (Orbit d
     (i₀ := 0) (j₀ := 0) rfl ?_)
   simp [mapFam, diagFam_self]; rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.39df286633d1 from=translated src=- shape=90de708a vocab=a0e02318
+-/
 theorem ιZ_comp_π₀_map {X Y : S} (g : X ⟶ Y) : (π₀ d).map ((ιZ d).map g) = g := by
   show (d.component 0 _ _ (d.lof 0 _ _ (d.mapFam g))).1 0 0 = g
   rw [component_lof_self]
@@ -962,6 +1183,9 @@ variable [PiSupercategory R S]
 def ζIso (X : Orbit d) : (⟨(PiSupercategory.pi (R := R)).obj X.obj⟩ : Orbit d) ≅ X :=
   (ι d).mapIso (PiSupercategory.ζ (R := R) X.obj)
 
+/--
+@isnad1 id=mem.0h4v.s10.6b030cc0e1f4 from=translated src=- shape=583e9e57 vocab=8f6823e3
+-/
 theorem ζIso_hom_mem (X : Orbit d) :
     (ζIso X).hom ∈ parity (R := R) (⟨(PiSupercategory.pi (R := R)).obj X.obj⟩ : Orbit d) X 1 :=
   map_mem (ι d) (PiSupercategory.ζ_hom_mem X.obj)
@@ -971,13 +1195,21 @@ induced from `S`.-/
 instance instPiSupercategory : PiSupercategory R (Orbit d) :=
   PiSupercategory.ofIso (fun X => ⟨(PiSupercategory.pi (R := R)).obj X.obj⟩) ζIso ζIso_hom_mem
 
+/--
+@isnad1 id=eq.0h4v.s7.0c8121ecb3a1 from=translated src=- shape=2a796d98 vocab=a93cfb38
+-/
 theorem ζ_eq (X : Orbit d) : PiSupercategory.ζ (R := R) X = ζIso X := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.6c86d7aaf61d from=translated src=- shape=6894dba3 vocab=5fe62a3b
+-/
 @[simp] theorem pi_obj (X : Orbit d) :
     (PiSupercategory.pi (R := R)).obj X = ⟨(PiSupercategory.pi (R := R)).obj X.obj⟩ := rfl
 
 set_option backward.isDefEq.respectTransparency false in
-/-- `Π` commutes with `ι`.-/
+/-- `Π` commutes with `ι`.
+@isnad1 id=eq.0h6v.s9.e40266b74ed4 from=translated src=- shape=97bed3fd vocab=e810ecf7
+-/
 theorem pi_map_ι {X Y : S} (g : X ⟶ Y) :
     (PiSupercategory.pi (R := R)).map ((ι d).map g) =
       (ι d).map ((PiSupercategory.pi (R := R)).map g) := by
@@ -987,7 +1219,9 @@ theorem pi_map_ι {X Y : S} (g : X ⟶ Y) :
   rfl
 
 set_option backward.isDefEq.respectTransparency false in
-/-- `ξ = ζζ` of the orbit supercategory is `ξ` of `S`.-/
+/-- `ξ = ζζ` of the orbit supercategory is `ξ` of `S`.
+@isnad1 id=eq.0h4v.s9.58f107054669 from=translated src=- shape=ad9bd955 vocab=82d71933
+-/
 theorem ξ_hom_eq (X : S) :
     (PiSupercategory.ξ (R := R) (⟨X⟩ : Orbit d)).hom = (ι d).map (PiSupercategory.ξ (R := R) X).hom := by
   rw [PiSupercategory.ξ_hom, PiSupercategory.ξ_hom, ζ_eq, ζIso, Functor.mapIso_hom]
@@ -1011,6 +1245,9 @@ def σIso (X : Orbit d) : (⟨d.Q.obj X.obj⟩ : Orbit d) ≅ X where
     rw [compL_lof_lof]
     exact d.lof_congr (by norm_num) (by rw [famCompₗ_apply]; exact d.famComp_famσinv_famσ _)
 
+/--
+@isnad1 id=mem.0h4v.s10.6e01b400782a from=translated src=- shape=6a6afa81 vocab=c9495d2f
+-/
 theorem σIso_hom_mem (X : Orbit d) :
     (σIso X).hom ∈ parity (R := R) (⟨d.Q.obj X.obj⟩ : Orbit d) X 0 := by
   intro m i j
@@ -1023,12 +1260,17 @@ theorem σIso_hom_mem (X : Orbit d) :
     · exact Submodule.zero_mem _
   · rw [d.component_lof_of_ne _ (Ne.symm h)]; exact Submodule.zero_mem _
 
+/--
+@isnad1 id=mem.0h4v.s10.798431f93e87 from=translated src=- shape=025b0719 vocab=f97fac13
+-/
 theorem σIso_hom_mem_degree (X : Orbit d) :
     (σIso X).hom ∈ GradedSupercategory.degree (R := R) (⟨d.Q.obj X.obj⟩ : Orbit d) X (-1) :=
   ⟨_, rfl⟩
 
 set_option backward.isDefEq.respectTransparency false in
-/-- `σ` is natural with respect to the morphisms of `S`: `σ_Y ∘ ι(Q g) = ι(g) ∘ σ_X`.-/
+/-- `σ` is natural with respect to the morphisms of `S`: `σ_Y ∘ ι(Q g) = ι(g) ∘ σ_X`.
+@isnad1 id=eq.0h6v.s9.0c92bae25451 from=translated src=- shape=3aadd0e7 vocab=b5fcec45
+-/
 theorem σIso_hom_naturality {X Y : S} (g : X ⟶ Y) :
     (σIso ((ι d).obj X)).hom ≫ (ι d).map g = (ι d).map (d.Q.map g) ≫ (σIso ((ι d).obj Y)).hom := by
   show d.compL _ _ _ (d.lof (-1) _ _ _) (d.lof 0 _ _ _) = d.compL _ _ _ (d.lof 0 _ _ _) (d.lof (-1) _ _ _)
@@ -1049,12 +1291,18 @@ theorem σIso_hom_naturality {X Y : S} (g : X ⟶ Y) :
 def σbarIso (X : Orbit d) : (⟨d.Qi.obj X.obj⟩ : Orbit d) ≅ X :=
   (σIso (⟨d.Qi.obj X.obj⟩ : Orbit d)).symm ≪≫ (ι d).mapIso (d.e.counitIso.app X.obj)
 
+/--
+@isnad1 id=mem.0h4v.s10.2a3cfcee3780 from=translated src=- shape=6a6afa81 vocab=71c5beb7
+-/
 theorem σbarIso_hom_mem (X : Orbit d) :
     (σbarIso X).hom ∈ parity (R := R) (⟨d.Qi.obj X.obj⟩ : Orbit d) X 0 := by
   have := comp_mem (inv_mem _ (σIso_hom_mem (⟨d.Qi.obj X.obj⟩ : Orbit d)))
     (map_mem (ι d) (d.counit_mem X.obj))
   simpa [σbarIso] using! this
 
+/--
+@isnad1 id=mem.0h4v.s10.6d8bdc6c8a0c from=translated src=- shape=2e0218af vocab=80ea9eaa
+-/
 theorem σbarIso_hom_mem_degree (X : Orbit d) :
     (σbarIso X).hom ∈ GradedSupercategory.degree (R := R) (⟨d.Qi.obj X.obj⟩ : Orbit d) X 1 := by
   have := GradedSupercategory.comp_mem_degree
@@ -1071,11 +1319,17 @@ instance instQPiSupercategory [PiSupercategory R S] : QPiSupercategory R (Orbit 
     (fun X => ⟨d.Qi.obj X.obj⟩) σbarIso σbarIso_hom_mem σbarIso_hom_mem_degree
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h6v.s9.3c6011768d40 from=translated src=- shape=ef338ee5 vocab=44678444
+-/
 theorem Q_map_ι [PiSupercategory R S] {X Y : S} (g : X ⟶ Y) :
     (QPiSupercategory.Q (R := R) (C := Orbit d)).map ((ι d).map g) = (ι d).map (d.Q.map g) := by
   show (σIso _).hom ≫ (ι d).map g ≫ (σIso _).inv = _
   rw [reassoc_of% (σIso_hom_naturality g), Iso.hom_inv_id, Category.comp_id]
 
+/--
+@isnad1 id=eq.0h4v.s7.fe3c09d2c81b from=translated src=- shape=5d8ccdc6 vocab=47cdc432
+-/
 @[simp] theorem Q_obj [PiSupercategory R S] (X : Orbit d) :
     (QPiSupercategory.Q (R := R) (C := Orbit d)).obj X = ⟨d.Q.obj X.obj⟩ := rfl
 
@@ -1115,6 +1369,9 @@ def ΓNat : ∀ n : ℕ, Φ.F ⋙ d'.powNat n ≅ d.powNat n ⋙ Φ.F
       (Functor.associator _ _ _).symm
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h8v.s10.74105e851f6b from=translated src=- shape=5adadaca vocab=24f8226c
+-/
 theorem ΓNat_succ_hom_app (n : ℕ) (X : S) :
     (Φ.ΓNat (n + 1)).hom.app X = d'.Q.map ((Φ.ΓNat n).hom.app X) ≫ Φ.γ.hom.app ((d.powNat n).obj X) := by
   show 𝟙 _ ≫ _ ≫ 𝟙 _ ≫ _ ≫ 𝟙 _ = _
@@ -1150,12 +1407,17 @@ def Γ : ∀ i : ℤ, Φ.F ⋙ d'.pow i ≅ d.pow i ⋙ Φ.F
   | Int.ofNat n => Φ.ΓNat n
   | Int.negSucc n => Φ.ΓNeg n
 
+/--
+@isnad1 id=eq.0h7v.s7.05e522f6fbf3 from=translated src=- shape=7e90be53 vocab=f4484a5b
+-/
 theorem Γ_negSucc (n : ℕ) : Φ.Γ (Int.negSucc n) = Φ.ΓNegAux n (Φ.Γ (Int.negSucc n + 1)) := by
   rcases n with _ | n <;> rfl
 
 set_option backward.isDefEq.respectTransparency false in
 /-- The recursion (the paper's definition of `γ_F^n`):
-`Γⁱ⁺¹ = F(Q Qⁱ ≅ Qⁱ⁺¹) ∘ γ_{Qⁱ} ∘ Q' Γⁱ ∘ (Q' Q'ⁱ ≅ Q'ⁱ⁺¹)⁻¹`.-/
+`Γⁱ⁺¹ = F(Q Qⁱ ≅ Qⁱ⁺¹) ∘ γ_{Qⁱ} ∘ Q' Γⁱ ∘ (Q' Q'ⁱ ≅ Q'ⁱ⁺¹)⁻¹`.
+@isnad1 id=eq.0h8v.s10.0dedcd28ce22 from=translated src=- shape=fe544d5e vocab=6ce7650f
+-/
 theorem Γ_succ_hom_app (i : ℤ) (X : S) :
     (Φ.Γ (i + 1)).hom.app X = (d'.succ i).inv.app (Φ.F.obj X) ≫ d'.Q.map ((Φ.Γ i).hom.app X) ≫
       Φ.γ.hom.app ((d.pow i).obj X) ≫ Φ.F.map ((d.succ i).hom.app X) := by
@@ -1170,6 +1432,9 @@ theorem Γ_succ_hom_app (i : ℤ) (X : S) :
     rw [← Φ.F.map_comp, Iso.inv_hom_id_app]
     erw [CategoryTheory.Functor.map_id, Category.comp_id]
 
+/--
+@isnad1 id=eq.0h8v.s10.6f9e93eaa45e from=translated src=- shape=d27ada97 vocab=6ce7650f
+-/
 theorem Γ_succ_inv_app (i : ℤ) (X : S) :
     (Φ.Γ (i + 1)).inv.app X = Φ.F.map ((d.succ i).inv.app X) ≫ Φ.γ.inv.app ((d.pow i).obj X) ≫
       d'.Q.map ((Φ.Γ i).inv.app X) ≫ (d'.succ i).hom.app (Φ.F.obj X) := by
@@ -1181,6 +1446,9 @@ theorem Γ_succ_inv_app (i : ℤ) (X : S) :
   erw [CategoryTheory.Functor.map_id, Category.id_comp, Iso.inv_hom_id_app]
   rfl
 
+/--
+@isnad1 id=mem.0h8v.s10.a74727016f9d from=translated src=- shape=b8de8324 vocab=e294dbd9
+-/
 theorem ΓNat_hom_mem (n : ℕ) (X : S) : (Φ.ΓNat n).hom.app X ∈ parity (R := R) _ _ 0 := by
   induction n with
   | zero => show 𝟙 _ ≫ 𝟙 _ ∈ _; simpa using! id_mem (R := R) (Φ.F.obj X)
@@ -1189,6 +1457,9 @@ theorem ΓNat_hom_mem (n : ℕ) (X : S) : (Φ.ΓNat n).hom.app X ∈ parity (R :
     simpa using! comp_mem (map_mem d'.Q ih) (Φ.γ_mem _)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=mem.0h8v.s10.0c13e3a88a38 from=translated src=- shape=36c90f8b vocab=1d3c1fc8
+-/
 theorem Γ_hom_mem (i : ℤ) (X : S) : (Φ.Γ i).hom.app X ∈ parity (R := R) _ _ 0 := by
   have step : ∀ (n : ℕ), (Φ.Γ (Int.negSucc n + 1)).hom.app X ∈ parity (R := R) _ _ 0 →
       (Φ.Γ (Int.negSucc n)).hom.app X ∈ parity (R := R) _ _ 0 := by
@@ -1207,6 +1478,9 @@ theorem Γ_hom_mem (i : ℤ) (X : S) : (Φ.Γ i).hom.app X ∈ parity (R := R) _
     | zero => exact step 0 (Φ.ΓNat_hom_mem 0 X)
     | succ n ih => exact step (n + 1) ih
 
+/--
+@isnad1 id=mem.0h8v.s10.3ae6f1e8af5d from=translated src=- shape=8abc7bc2 vocab=57c279c5
+-/
 theorem Γ_inv_mem (i : ℤ) (X : S) : (Φ.Γ i).inv.app X ∈ parity (R := R) _ _ 0 :=
   inv_mem ((Φ.Γ i).app X) (Φ.Γ_hom_mem i X)
 
@@ -1216,6 +1490,9 @@ theorem Γ_inv_mem (i : ℤ) (X : S) : (Φ.Γ i).inv.app X ∈ parity (R := R) _
 def famMap {X Y : S} (f : d.FamAll X Y) : d'.FamAll (Φ.F.obj X) (Φ.F.obj Y) :=
   fun i j => (Φ.Γ i).hom.app X ≫ Φ.F.map (f i j) ≫ (Φ.Γ j).inv.app Y
 
+/--
+@isnad1 id=mem.1h10v.s10.4f111ec63161 from=translated src=- shape=3e36065e vocab=4b87beed
+-/
 theorem famMap_mem {m : ℤ} {X Y : S} {f : d.FamAll X Y} (hf : f ∈ d.Fam R m X Y) :
     Φ.famMap f ∈ d'.Fam R m (Φ.F.obj X) (Φ.F.obj Y) := by
   refine ⟨fun i j h => by rw [famMap, Fam.eq_zero hf h]; simp, fun i j => ?_⟩
@@ -1238,17 +1515,26 @@ def famMapₗ : d.Fam R m X Y →ₗ[R] d'.Fam R m (Φ.F.obj X) (Φ.F.obj Y) whe
     simp [famMap, Preadditive.add_comp, Preadditive.comp_add])
   map_smul' r f := Subtype.ext (FamAll.ext fun i j => by simp [famMap])
 
+/--
+@isnad1 id=eq.0h12v.s8.f57d02322036 from=translated src=- shape=6c91bf9e vocab=87c8e7f5
+-/
 theorem famMap_famComp (m : ℤ) {X Y Z : S} (f : d.FamAll X Y) (g : d.FamAll Y Z) :
     Φ.famMap (d.famComp m f g) = d'.famComp m (Φ.famMap f) (Φ.famMap g) := by
   ext i k
   simp [famMap, famComp]
 
+/--
+@isnad1 id=eq.0h7v.s7.c9c4e8e4e593 from=translated src=- shape=8e8e1f98 vocab=e08ba3d2
+-/
 theorem famMap_idFam (X : S) : Φ.famMap (d.idFam X) = d'.idFam (Φ.F.obj X) := by
   ext i j
   by_cases h : i = j
   · subst h; simp [famMap, idFam_self]
   · simp [famMap, idFam, h]
 
+/--
+@isnad1 id=eq.0h9v.s10.30d3958db75e from=translated src=- shape=601d59e0 vocab=890d22ca
+-/
 theorem famMap_mapFam {X Y : S} (g : X ⟶ Y) :
     Φ.famMap (d.mapFam g).1 = (d'.mapFam (Φ.F.map g)).1 := by
   ext i j
@@ -1267,6 +1553,9 @@ def mapL : d.Hom X Y →ₗ[R] d'.Hom (Φ.F.obj X) (Φ.F.obj Y) :=
   DirectSum.toModule R ℤ (d'.Hom (Φ.F.obj X) (Φ.F.obj Y)) fun m =>
     d'.lof m (Φ.F.obj X) (Φ.F.obj Y) ∘ₗ Φ.famMapₗ m X Y
 
+/--
+@isnad1 id=eq.0h10v.s13.dc55150af58e from=translated src=- shape=5a245c71 vocab=41f563c4
+-/
 theorem mapL_lof {m : ℤ} {X Y : S} (f : d.Fam R m X Y) :
     Φ.mapL X Y (d.lof m X Y f) = d'.lof m (Φ.F.obj X) (Φ.F.obj Y) (Φ.famMapₗ m X Y f) := by
   rw [mapL, ShiftData.lof]
@@ -1274,7 +1563,9 @@ theorem mapL_lof {m : ℤ} {X Y : S} (f : d.Fam R m X Y) :
   rfl
 
 /-- A natural transformation `x : F ⟶ G` compatible with `γ` (`γ_F ≫ x Q = Q' x ≫ γ_G`) is
-compatible with all the `Γⁱ`, `i ∈ ℤ`.-/
+compatible with all the `Γⁱ`, `i ∈ ℤ`.
+@isnad1 id=eq.1h10v.s10.fab260c7ffc9 from=translated src=- shape=96b7044f vocab=ce37a5c3
+-/
 theorem Γ_hom_app_comp_app {Ψ : ShiftFunctor R d d'} (x : Φ.F ⟶ Ψ.F)
     (hx : ∀ X, Φ.γ.hom.app X ≫ x.app (d.Q.obj X) = d'.Q.map (x.app X) ≫ Ψ.γ.hom.app X)
     (i : ℤ) (X : S) :
@@ -1349,6 +1640,9 @@ def map (Φ : ShiftFunctor R d d') : Orbit d ⥤ Orbit d' where
         congr 1
         exact Subtype.ext (Φ.famMap_famComp m f.1 g.1)
 
+/--
+@isnad1 id=eq.0h10v.s14.6c02f2293074 from=translated src=- shape=9c02c6c4 vocab=09f978cb
+-/
 theorem map_map_lof (Φ : ShiftFunctor R d d') {X Y : Orbit d} {m : ℤ} (f : d.Fam R m X.obj Y.obj) :
     (map Φ).map (d.lof m X.obj Y.obj f : X ⟶ Y) = d'.lof m _ _ (Φ.famMapₗ m X.obj Y.obj f) :=
   Φ.mapL_lof f
@@ -1383,7 +1677,9 @@ instance (Φ : ShiftFunctor R d d') : IsGradedSuperfunctor R (map Φ) where
     exact ⟨_, (map_map_lof Φ f).symm⟩
 
 set_option backward.isDefEq.respectTransparency false in
-/-- `map Φ` extends `F`: `F̃ ∘ ι = ι ∘ F`.-/
+/-- `map Φ` extends `F`: `F̃ ∘ ι = ι ∘ F`.
+@isnad1 id=eq.0h6v.s7.99d101964318 from=translated src=- shape=5a9d975a vocab=88fd75a7
+-/
 theorem ι_comp_map (Φ : ShiftFunctor R d d') : ι d ⋙ map Φ = Φ.F ⋙ ι d' :=
   CategoryTheory.Functor.ext (fun _ => rfl) fun X Y g => by
     simp only [Functor.comp_map, eqToHom_refl, Category.comp_id, Category.id_comp]

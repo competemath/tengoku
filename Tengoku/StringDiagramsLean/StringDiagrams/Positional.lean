@@ -80,7 +80,9 @@ variable {R : Type w} [CommRing R] (P : Presentation.{w, v} S R)
 /-- **The interchange law at an arbitrary position.** Let `f₁` be the diagram applying `g`
 and then `h`, and `f₂` the diagram applying `h` and then `g`, where `g` and `h` sit side by
 side (`g` on the left, separated by the strands `m`, with the strands `l` on the left and `v`
-on the right). Then `f₁ = (-1)^{|g||h|} f₂` in the presented category.-/
+on the right). Then `f₁ = (-1)^{|g||h|} f₂` in the presented category.
+@isnad1 id=eq.2h13v.s10.df639bab3ee9 from=translated src=- shape=f86dac3c vocab=3703ef75
+-/
 theorem diag_interchange_of_layers {a b : Obj S} (r : S.Region) (l m v : List S.Colour)
     (g h : S.Gen) (f₁ f₂ : a ⟶ b)
     (h₁ : Diagram.layers f₁ = [⟨r, l, g, m ++ S.dom h ++ v⟩, ⟨r, l ++ S.cod g ++ m, h, v⟩])
@@ -130,7 +132,9 @@ theorem diag_interchange_of_layers {a b : Obj S} (r : S.Region) (l m v : List S.
   · simp [h₂, x, u, L, M, InterchangeData.ofLayers, InterchangeData.hgDiagram,
       InterchangeData.hg₁, InterchangeData.hg₂, Layer.whisker]
 
-/-- The interchange law at an arbitrary position, when one of the two generators is even.-/
+/-- The interchange law at an arbitrary position, when one of the two generators is even.
+@isnad1 id=eq.3h13v.s8.f889b1ca3a8d from=translated src=- shape=d712edc3 vocab=fa892a87
+-/
 theorem diag_interchange_of_layers_of_even {a b : Obj S} (r : S.Region) (l m v : List S.Colour)
     (g h : S.Gen) (hgh : S.odd g = false ∨ S.odd h = false) (f₁ f₂ : a ⟶ b)
     (h₁ : Diagram.layers f₁ = [⟨r, l, g, m ++ S.dom h ++ v⟩, ⟨r, l ++ S.cod g ++ m, h, v⟩])
@@ -139,7 +143,9 @@ theorem diag_interchange_of_layers_of_even {a b : Obj S} (r : S.Region) (l m v :
   rw [P.diag_interchange_of_layers r l m v g h f₁ f₂ h₁ h₂]
   rcases hgh with hg | hh <;> simp [*]
 
-/-- The interchange law at an arbitrary position, for two odd generators.-/
+/-- The interchange law at an arbitrary position, for two odd generators.
+@isnad1 id=eq.4h13v.s9.b16ae81c7acd from=translated src=- shape=6c27c317 vocab=cfa79f0a
+-/
 theorem diag_interchange_of_layers_of_odd {a b : Obj S} (r : S.Region) (l m v : List S.Colour)
     (g h : S.Gen) (hg : S.odd g = true) (hh : S.odd h = true) (f₁ f₂ : a ⟶ b)
     (h₁ : Diagram.layers f₁ = [⟨r, l, g, m ++ S.dom h ++ v⟩, ⟨r, l ++ S.cod g ++ m, h, v⟩])
@@ -162,6 +168,9 @@ def linAlgHom (a : Obj S) : End (Free.of R a) →ₐ[R] End (P.obj a) where
     rw [P.lin_smul]
     exact congrArg (r • ·) (P.lin_id a)
 
+/--
+@isnad1 id=eq.0h5v.s8.d8cf6837b583 from=translated src=- shape=2729cd8b vocab=e53a7edd
+-/
 @[simp] theorem linAlgHom_apply (a : Obj S) (f : End (Free.of R a)) : P.linAlgHom a f = P.lin f :=
   rfl
 
@@ -178,6 +187,9 @@ def whiskAlgHom (a u : Obj S) (v : List S.Colour) (hw : a.WhiskerOK u v) :
     rw [P.whisk_smul]
     exact congrArg (r • ·) (P.whisk_id a u v hw)
 
+/--
+@isnad1 id=eq.1h7v.s8.d7a787f6a55e from=translated src=- shape=d613ffdb vocab=20721013
+-/
 @[simp] theorem whiskAlgHom_apply (a u : Obj S) (v : List S.Colour) (hw : a.WhiskerOK u v)
     (f : End (P.obj a)) : P.whiskAlgHom a u v hw f = P.whisk f u v := rfl
 
@@ -201,6 +213,9 @@ def whiskerAlgHom (a u : Obj S) (v : List S.Colour) (hw : a.WhiskerOK u v) :
     rw [whisker_smul]
     exact congrArg (r • ·) (whisker_single _ _ _ _ _)
 
+/--
+@isnad1 id=eq.1h6v.s9.97b7046f30c7 from=translated src=- shape=78201d04 vocab=6a3ab11c
+-/
 @[simp] theorem whiskerAlgHom_apply (a u : Obj S) (v : List S.Colour) (hw : a.WhiskerOK u v)
     (f : End (Free.of R a)) : whiskerAlgHom R a u v hw f = whisker f u v hw := rfl
 

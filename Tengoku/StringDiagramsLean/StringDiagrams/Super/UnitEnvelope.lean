@@ -75,6 +75,9 @@ def homEquiv (a b : ZMod 2) : (P k a ⟶ P k b) ≃ₗ[k] k where
     show r * 1 = r
     rw [mul_one]
 
+/--
+@isnad1 id=eq.0h4v.s10.3f7fceac89a7 from=translated src=- shape=242e92ac vocab=fcaa33c0
+-/
 @[simp] theorem homEquiv_symm_apply (a b : ZMod 2) (r : k) :
     (homEquiv (k := k) a b).symm r = r • one a b := rfl
 

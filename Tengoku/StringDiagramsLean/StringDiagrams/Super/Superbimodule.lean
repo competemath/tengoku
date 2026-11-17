@@ -78,7 +78,9 @@ def IsHom (V W : SuperBimodule 𝒜 ℬ) (f : V.toSVec ⟶ W.toSVec) : Prop :=
   (∀ (p : ZMod 2) (a : A), a ∈ 𝒜 p → V.lact a ≫ f = twist k p f ≫ W.lact a) ∧
     ∀ b : B, V.ract b ≫ f = f ≫ W.ract b
 
-/-- For homogeneous `f`, the condition is `f(a v b) = (-1)^{|f||a|} a f(v) b`.-/
+/-- For homogeneous `f`, the condition is `f(a v b) = (-1)^{|f||a|} a f(v) b`.
+@isnad1 id=iff.1h9v.s11.fc3a98453fde from=translated src=- shape=eeff027c vocab=7ae5afbb
+-/
 theorem isHom_iff_of_mem {V W : SuperBimodule 𝒜 ℬ} {q : ZMod 2} {f : V.toSVec ⟶ W.toSVec}
     (hf : f ∈ parity (R := k) V.toSVec W.toSVec q) :
     IsHom V W f ↔ (∀ (p : ZMod 2) (a : A), a ∈ 𝒜 p →
@@ -101,10 +103,16 @@ def homSubmodule : Submodule k (V.toSVec ⟶ W.toSVec) where
 
 variable {V W}
 
+/--
+@isnad1 id=ishom.0h6v.s7.c97cad22fde3 from=translated src=- shape=fd9c727d vocab=a8cb394b
+-/
 theorem isHom_id (V : SuperBimodule 𝒜 ℬ) : IsHom V V (𝟙 V.toSVec) :=
   ⟨fun p a _ => by rw [twist_id, Category.comp_id, Category.id_comp],
     fun b => by rw [Category.comp_id, Category.id_comp]⟩
 
+/--
+@isnad1 id=ishom.2h10v.s8.93b885a66b6e from=translated src=- shape=d707cbc0 vocab=6b35de0f
+-/
 theorem IsHom.comp {U V W : SuperBimodule 𝒜 ℬ} {f : U.toSVec ⟶ V.toSVec}
     {g : V.toSVec ⟶ W.toSVec} (hf : IsHom U V f) (hg : IsHom V W g) : IsHom U W (f ≫ g) :=
   ⟨fun p a ha => by
@@ -122,11 +130,20 @@ instance : Category (SuperBimodule 𝒜 ℬ) where
   comp_id f := Subtype.ext (Category.comp_id f.1)
   assoc f g h := Subtype.ext (Category.assoc f.1 g.1 h.1)
 
+/--
+@isnad1 id=eq.1h9v.s10.bf27040ddfd1 from=translated src=- shape=946171f8 vocab=58ad9b58
+-/
 @[ext] theorem hom_ext {V W : SuperBimodule 𝒜 ℬ} {f g : V ⟶ W} (h : f.1 = g.1) : f = g :=
   Subtype.ext h
 
+/--
+@isnad1 id=eq.0h6v.s9.7242947ad6b0 from=translated src=- shape=84cf3c6a vocab=15907b1a
+-/
 @[simp] theorem id_val (V : SuperBimodule 𝒜 ℬ) : (𝟙 V : V ⟶ V).1 = 𝟙 V.toSVec := rfl
 
+/--
+@isnad1 id=eq.0h10v.s11.4e81410a7b8a from=translated src=- shape=1db59462 vocab=7086d2bc
+-/
 @[simp] theorem comp_val {U V W : SuperBimodule 𝒜 ℬ} (f : U ⟶ V) (g : V ⟶ W) :
     (f ≫ g).1 = f.1 ≫ g.1 := rfl
 
@@ -140,8 +157,14 @@ instance : Linear k (SuperBimodule 𝒜 ℬ) where
   smul_comp _ _ _ r f g := Subtype.ext (Linear.smul_comp _ _ _ r f.1 g.1)
   comp_smul _ _ _ f r g := Subtype.ext (Linear.comp_smul _ _ _ f.1 r g.1)
 
+/--
+@isnad1 id=eq.0h9v.s11.6d98b91cc1b9 from=translated src=- shape=4c08be38 vocab=2a17b7f2
+-/
 @[simp] theorem add_val {V W : SuperBimodule 𝒜 ℬ} (f g : V ⟶ W) : (f + g).1 = f.1 + g.1 := rfl
 
+/--
+@isnad1 id=eq.0h9v.s11.4e993a90507a from=translated src=- shape=06f0665c vocab=cadb6308
+-/
 @[simp] theorem smul_val {V W : SuperBimodule 𝒜 ℬ} (r : k) (f : V ⟶ W) : (r • f).1 = r • f.1 :=
   rfl
 
@@ -149,7 +172,9 @@ section
 
 variable [GradedAlgebra ℬ]
 
-/-- The right action commutes with the parity components of a homomorphism.-/
+/-- The right action commutes with the parity components of a homomorphism.
+@isnad1 id=eq.1h10v.s11.ac746e19e68c from=translated src=- shape=d56fed0e vocab=3c9762f6
+-/
 theorem IsHom.ract_comp_proj {f : V.toSVec ⟶ W.toSVec} (hf : IsHom V W f) (q : ZMod 2) (b : B) :
     V.ract b ≫ proj k q f = proj k q f ≫ W.ract b := by
   refine DirectSum.Decomposition.inductionOn ℬ (motive := fun b => V.ract b ≫ proj k q f =
@@ -159,7 +184,9 @@ theorem IsHom.ract_comp_proj {f : V.toSVec ⟶ W.toSVec} (hf : IsHom V W f) (q :
       proj_comp_of_mem_right q f (W.ract_mem r b b.2)] at h
   · simp only [map_add, Preadditive.add_comp, Preadditive.comp_add, h, h']
 
-/-- The parity components of a superbimodule homomorphism are superbimodule homomorphisms.-/
+/-- The parity components of a superbimodule homomorphism are superbimodule homomorphisms.
+@isnad1 id=ishom.1h9v.s10.941bf9f4b928 from=translated src=- shape=8d4949eb vocab=5a340f36
+-/
 theorem IsHom.proj {f : V.toSVec ⟶ W.toSVec} (hf : IsHom V W f) (q : ZMod 2) :
     IsHom V W (proj k q f) := by
   refine ⟨fun p a ha => ?_, hf.ract_comp_proj q⟩
@@ -200,6 +227,9 @@ instance instSupercategory : Supercategory k (SuperBimodule 𝒜 ℬ) where
   comp_mem hf hg := Submodule.mem_comap.2
     (Supercategory.comp_mem (C := SVec k) (Submodule.mem_comap.1 hf) (Submodule.mem_comap.1 hg))
 
+/--
+@isnad1 id=iff.0h9v.s11.879de5edf667 from=translated src=- shape=a21cb396 vocab=86ababd6
+-/
 theorem mem_parity_iff {V W : SuperBimodule 𝒜 ℬ} {p : ZMod 2} {f : V ⟶ W} :
     f ∈ parity (R := k) V W p ↔ f.1 ∈ parity (R := k) V.toSVec W.toSVec p := by
   exact Submodule.mem_comap
@@ -210,6 +240,9 @@ variable [GradedAlgebra 𝒜]
 
 /-! ## The parity shift (Example 1.8) -/
 
+/--
+@isnad1 id=eq.0h8v.s11.c5267c877752 from=translated src=- shape=81a8ee5f vocab=60e9a07b
+-/
 theorem twist_lact_comp_ract (V : SuperBimodule 𝒜 ℬ) (a : A) (b : B) :
     twist k 1 (V.lact a) ≫ V.ract b = V.ract b ≫ twist k 1 (V.lact a) := by
   refine DirectSum.Decomposition.inductionOn 𝒜 (motive := fun a =>

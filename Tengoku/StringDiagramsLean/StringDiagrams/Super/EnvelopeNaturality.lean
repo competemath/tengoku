@@ -51,12 +51,16 @@ variable {B : Type w₅} [Category.{w₆} B] [Preadditive B] [Linear R B] [Super
   [PiSupercategory R B]
 
 variable (R) in
-/-- **Theorem 4.3, naturality in `A`.** `(F ∘ K)~ = F̃ ∘ K_π`.-/
+/-- **Theorem 4.3, naturality in `A`.** `(F ∘ K)~ = F̃ ∘ K_π`.
+@isnad1 id=eq.0h6v.s8.be20b2366681 from=translated src=- shape=57a96748 vocab=74e82d30
+-/
 theorem extend_comp_left (K : A' ⥤ A) [K.Additive] [K.Linear R] [IsSuperfunctor R K]
     (F : A ⥤ B) [F.Additive] [F.Linear R] [IsSuperfunctor R F] :
     extend R (K ⋙ F) = map R K ⋙ extend R F := rfl
 
-/-- **Theorem 4.3, naturality in `A`**, for supernatural transformations: `(xK)~ = x̃ K_π`.-/
+/-- **Theorem 4.3, naturality in `A`**, for supernatural transformations: `(xK)~ = x̃ K_π`.
+@isnad1 id=eq.0h8v.s9.f140f825cd33 from=translated src=- shape=56134327 vocab=ab8f97d5
+-/
 theorem extendSuperNatTrans_whiskerLeft (K : Superfunctor R A' A) {F G : Superfunctor R A B}
     (x : F ⟶ G) :
     extendSuperNatTrans (Superfunctor.whiskerLeft K x) =
@@ -74,7 +78,9 @@ def _root_.StringDiagrams.Supercategory.Superfunctor.precompose (K : Superfuncto
 set_option backward.isDefEq.respectTransparency false in
 variable (R A B) in
 /-- **Theorem 4.3, naturality in `A`.** The superequivalences `ℋom(A, νB) → ℋom(A_π, B)`
-commute strictly with precomposition: `(- ∘ K)~ = -~ ∘ K_π`.-/
+commute strictly with precomposition: `(- ∘ K)~ = -~ ∘ K_π`.
+@isnad1 id=eq.0h5v.s9.218063ef3fe6 from=translated src=- shape=ad875a15 vocab=51e673e2
+-/
 theorem extendHom_precompose (K : Superfunctor R A' A) :
     extendHom R A B ⋙ Superfunctor.precompose ⟨map R K.toFunctor⟩ =
       Superfunctor.precompose K ⋙ extendHom R A' B :=
@@ -94,24 +100,37 @@ def βPow (L : B ⥤ B') : ∀ (a : ZMod 2) (Y : B), piPow R a (L.obj Y) ≅ L.o
   | ⟨1, _⟩, Y => PiSupercategory.β R L Y
   | ⟨_ + 2, h⟩, _ => absurd h (by simp)
 
+/--
+@isnad1 id=eq.0h5v.s8.7f6fdd610f94 from=translated src=- shape=51b9350c vocab=11809790
+-/
 @[simp] theorem βPow_zero (L : B ⥤ B') (Y : B) : βPow R L 0 Y = Iso.refl _ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.2c4a5affeed9 from=translated src=- shape=a26f8d2b vocab=22493741
+-/
 @[simp] theorem βPow_one (L : B ⥤ B') (Y : B) : βPow R L 1 Y = PiSupercategory.β R L Y := rfl
 
+/--
+@isnad1 id=mem.0h6v.s9.b08894ac8519 from=translated src=- shape=a1a7bea8 vocab=d63ac159
+-/
 theorem βPow_hom_mem (L : B ⥤ B') [L.Additive] [L.Linear R] [IsSuperfunctor R L] (a : ZMod 2)
     (Y : B) : (βPow R L a Y).hom ∈ parity (R := R) _ _ 0 := by
   rcases parity_eq_zero_or_one a with rfl | rfl
   · exact id_mem _
   · exact PiSupercategory.β_hom_mem L Y
 
-/-- `ζᵃ_{Lμ} = L(ζᵃ_μ) ∘ βᵃ_L`.-/
+/-- `ζᵃ_{Lμ} = L(ζᵃ_μ) ∘ βᵃ_L`.
+@isnad1 id=eq.0h6v.s8.19731fbec76e from=translated src=- shape=9dd71b41 vocab=6e2436a3
+-/
 theorem ζPow_map (L : B ⥤ B') (a : ZMod 2) (Y : B) :
     (ζPow R a (L.obj Y)).hom = (βPow R L a Y).hom ≫ L.map (ζPow R a Y).hom := by
   rcases parity_eq_zero_or_one a with rfl | rfl
   · simp
   · simp [PiSupercategory.β_hom]
 
-/-- `(ζᵃ_{Lμ})⁻¹ ∘ βᵃ_L = L((ζᵃ_μ)⁻¹)`.-/
+/-- `(ζᵃ_{Lμ})⁻¹ ∘ βᵃ_L = L((ζᵃ_μ)⁻¹)`.
+@isnad1 id=eq.0h6v.s8.ced1251d0e36 from=translated src=- shape=9125ebf8 vocab=9a778c68
+-/
 @[reassoc]
 theorem ζPow_inv_map (L : B ⥤ B') (a : ZMod 2) (Y : B) :
     (ζPow R a (L.obj Y)).inv ≫ (βPow R L a Y).hom = L.map (ζPow R a Y).inv := by
@@ -129,16 +148,24 @@ def extendCompIso (F : A ⥤ B) [F.Additive] [F.Linear R] [IsSuperfunctor R F] (
     simp only [extend_map, Functor.comp_obj, Functor.comp_map, Functor.map_comp, Category.assoc,
       ζPow_inv_map, ζPow_map]
 
+/--
+@isnad1 id=eq.0h7v.s9.6ddc347f6e4b from=translated src=- shape=cb592c4e vocab=6143ef58
+-/
 theorem extendCompIso_hom_app (F : A ⥤ B) [F.Additive] [F.Linear R] [IsSuperfunctor R F]
     (L : B ⥤ B') [L.Additive] [L.Linear R] [IsSuperfunctor R L] (X : Envelope R A) :
     (extendCompIso R F L).hom.app X = (βPow R L X.par (F.obj X.obj)).hom := rfl
 
+/--
+@isnad1 id=mem.0h7v.s10.322b6adfc91c from=translated src=- shape=88d7328d vocab=15c1a9f8
+-/
 theorem extendCompIso_hom_mem (F : A ⥤ B) [F.Additive] [F.Linear R] [IsSuperfunctor R F]
     (L : B ⥤ B') [L.Additive] [L.Linear R] [IsSuperfunctor R L] (X : Envelope R A) :
     (extendCompIso R F L).hom.app X ∈ parity (R := R) _ _ 0 :=
   βPow_hom_mem L X.par (F.obj X.obj)
 
-/-- On `Π⁰λ` the isomorphism `(L ∘ F)~ ≅ L ∘ F̃` is the identity.-/
+/-- On `Π⁰λ` the isomorphism `(L ∘ F)~ ≅ L ∘ F̃` is the identity.
+@isnad1 id=eq.0h7v.s9.fe26a5bd405e from=translated src=- shape=6962ce40 vocab=9021da89
+-/
 theorem extendCompIso_hom_app_J (F : A ⥤ B) [F.Additive] [F.Linear R] [IsSuperfunctor R F]
     (L : B ⥤ B') [L.Additive] [L.Linear R] [IsSuperfunctor R L] (X : A) :
     (extendCompIso R F L).hom.app ((J R A).obj X) = 𝟙 _ := rfl

@@ -60,14 +60,26 @@ def toElem {X Y : SuperalgebraCat 𝒜} (f : X ⟶ Y) : A := f
 /-- The morphism given by an element of `A`.-/
 def ofElem {X Y : SuperalgebraCat 𝒜} (a : A) : X ⟶ Y := a
 
+/--
+@isnad1 id=eq.0h6v.s6.84851d139a92 from=translated src=- shape=9190286b vocab=7da2d0c1
+-/
 @[simp] theorem toElem_ofElem {X Y : SuperalgebraCat 𝒜} (a : A) : toElem (ofElem a : X ⟶ Y) = a :=
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s7.405ec2dd8547 from=translated src=- shape=110dcdde vocab=8dcad5b4
+-/
 @[simp] theorem toElem_comp {X Y Z : SuperalgebraCat 𝒜} (f : X ⟶ Y) (g : Y ⟶ Z) :
     toElem (f ≫ g) = toElem g * toElem f := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.d70d44a7d8f9 from=translated src=- shape=a5deeb96 vocab=81777508
+-/
 @[simp] theorem toElem_id (X : SuperalgebraCat 𝒜) : toElem (𝟙 X) = 1 := rfl
 
+/--
+@isnad1 id=eq.1h7v.s7.9652edfd51ad from=translated src=- shape=e1fc4f63 vocab=d1263732
+-/
 theorem hom_ext {X Y : SuperalgebraCat 𝒜} {f g : X ⟶ Y} (h : toElem f = toElem g) : f = g := h
 
 instance : Preadditive (SuperalgebraCat 𝒜) where
@@ -80,9 +92,15 @@ instance : Linear k (SuperalgebraCat 𝒜) where
   smul_comp _ _ _ r f g := mul_smul_comm r (g : A) f
   comp_smul _ _ _ f r g := smul_mul_assoc r (g : A) f
 
+/--
+@isnad1 id=eq.0h7v.s8.d0613e761842 from=translated src=- shape=a3871e52 vocab=97ddcc39
+-/
 @[simp] theorem toElem_add {X Y : SuperalgebraCat 𝒜} (f g : X ⟶ Y) :
     toElem (f + g) = toElem f + toElem g := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.b76e46692ea0 from=translated src=- shape=235c8157 vocab=b43229fc
+-/
 @[simp] theorem toElem_smul {X Y : SuperalgebraCat 𝒜} (r : k) (f : X ⟶ Y) :
     toElem (r • f) = r • toElem f := rfl
 
@@ -96,6 +114,9 @@ instance instSupercategory : Supercategory k (SuperalgebraCat 𝒜) where
   comp_mem {_ _ _ p q f g} hf hg := by
     rw [add_comm]; exact SetLike.GradedMul.mul_mem hg hf
 
+/--
+@isnad1 id=iff.0h7v.s9.ae254a0ba86f from=translated src=- shape=2c27e46e vocab=983736d6
+-/
 theorem mem_parity_iff {X Y : SuperalgebraCat 𝒜} {p : ZMod 2} {f : X ⟶ Y} :
     f ∈ parity (R := k) X Y p ↔ toElem f ∈ 𝒜 p := Iff.rfl
 
@@ -107,8 +128,14 @@ variable (k) in
 /-- The grading of `k` concentrated in even parity.-/
 def trivialGrading : ZMod 2 → Submodule k k := fun p => if p = 0 then ⊤ else ⊥
 
+/--
+@isnad1 id=eq.0h1v.s7.934ad17903b9 from=translated src=- shape=fde7d8b1 vocab=e0250323
+-/
 @[simp] theorem trivialGrading_zero : trivialGrading k 0 = ⊤ := ite_eq_left rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.906be07a103c from=translated src=- shape=fde7d8b1 vocab=2b204e43
+-/
 @[simp] theorem trivialGrading_one : trivialGrading k 1 = ⊥ := ite_eq_right (by decide)
 
 instance : SetLike.GradedMonoid (trivialGrading k) where
@@ -120,6 +147,9 @@ instance : SetLike.GradedMonoid (trivialGrading k) where
       · simp only [trivialGrading_one, Submodule.mem_bot] at hb; simp [hb]
     · simp only [trivialGrading_one, Submodule.mem_bot] at ha; simp [ha]
 
+/--
+@isnad1 id=isintern.0h1v.s6.4bbbb97a1b93 from=translated src=- shape=aa2a5d0a vocab=f5ff535d
+-/
 theorem isInternal_trivialGrading : DirectSum.IsInternal (trivialGrading k) := by
   rw [DirectSum.isInternal_submodule_iff_isCompl _ (i := 0) (j := 1) (by decide)
     (by ext p; rcases parity_eq_zero_or_one p with rfl | rfl <;> simp)]
@@ -139,6 +169,9 @@ namespace UnitSupercat
 
 open SuperalgebraCat
 
+/--
+@isnad1 id=mem.0h4v.s9.b4d4f5447d7d from=translated src=- shape=4d27974b vocab=0f499ab7
+-/
 theorem mem_parity_zero {X Y : UnitSupercat k} (f : X ⟶ Y) : f ∈ parity (R := k) X Y 0 := by
   rw [mem_parity_iff, trivialGrading_zero]; trivial
 
@@ -155,6 +188,9 @@ instance instMonoidalCategoryStruct : MonoidalCategoryStruct (UnitSupercat k) wh
   leftUnitor _ := Iso.refl _
   rightUnitor _ := Iso.refl _
 
+/--
+@isnad1 id=eq.0h7v.s8.de989007780d from=translated src=- shape=044cf690 vocab=53ecc387
+-/
 theorem tensorHom_eq {X₁ Y₁ X₂ Y₂ : UnitSupercat k} (f : X₁ ⟶ Y₁) (g : X₂ ⟶ Y₂) :
     toElem (f ⊗ₘ g) = toElem f * toElem g := by
   change toElem g * toElem f = _
@@ -198,9 +234,15 @@ instance : IsSuperfunctor k (toSVec k) where
       exact LinearMap.ext fun v => (map_smul (SVec.unit.proj q) (toElem f) v).symm
     · rw [eq_zero_of_mem_parity_one hf, Functor.map_zero]; exact Submodule.zero_mem _
 
+/--
+@isnad1 id=eq.0h5v.s8.eb105d3b9ee3 from=translated src=- shape=66147c08 vocab=02729a6e
+-/
 theorem toSVec_map_apply {X Y : UnitSupercat k} (f : X ⟶ Y) (r : k) :
     (toSVec k).map f r = toElem f * r := rfl
 
+/--
+@isnad1 id=mem.0h4v.s8.ee3dd82085a0 from=translated src=- shape=fb214053 vocab=b006bd7c
+-/
 theorem toSVec_map_mem {X Y : UnitSupercat k} (f : X ⟶ Y) :
     (toSVec k).map f ∈ SVec.parityHom SVec.unit SVec.unit 0 :=
   IsSuperfunctor.map_mem (F := toSVec k) (mem_parity_zero f)

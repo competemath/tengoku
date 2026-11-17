@@ -383,29 +383,50 @@ namespace DSL
 
 section Lex
 
+/--
+@isnad1 id=iff.0h1v.s4.9f7095d6a5a4 from=translated src=- shape=accfd700 vocab=e9486144
+-/
 theorem isNameChar_iff {c : Char} :
     isNameChar c = true ↔ specialTok? c = none ∧ c.isWhitespace = false := by
   simp [isNameChar, Option.isNone_iff_eq_none]
 
+/--
+@isnad1 id=iff.0h1v.s4.297fe77c2bc2 from=translated src=- shape=ecbab181 vocab=aeb00323
+-/
 theorem validName_iff {s : String} :
     validName s = true ↔ s.toList ≠ [] ∧ s.toList.all isNameChar = true := by
   simp [validName]
 
+/--
+@isnad1 id=eq.1h2v.s4.27eeafd9fce2 from=translated src=- shape=cfe88ac1 vocab=728e907b
+-/
 theorem flush_of_ne_nil {l : List Char} (h : l ≠ []) (ts : List Tok) :
     flush l ts = .ident (String.ofList l) :: ts := by
   cases l with
   | nil => exact absurd rfl h
   | cons _ _ => rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.1a09a2af662c from=translated src=- shape=b458c1aa vocab=ebcfcd6c
+-/
 @[simp] theorem flush_nil (ts : List Tok) : flush [] ts = ts := rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.5a678d29296e from=translated src=- shape=995663a7 vocab=4fc68910
+-/
 theorem lexAux_special {c : Char} {t : Tok} (h : specialTok? c = some t) (cs acc : List Char) :
     lexAux (c :: cs) acc = flush acc (t :: lexAux cs []) := by
   simp [lexAux, h]
 
+/--
+@isnad1 id=eq.0h2v.s4.addc3394984d from=translated src=- shape=c2cf67ff vocab=50c57303
+-/
 theorem lexAux_space (cs acc : List Char) : lexAux (' ' :: cs) acc = flush acc (lexAux cs []) := by
   simp [lexAux, specialTok?]
 
+/--
+@isnad1 id=eq.1h3v.s5.02d8c075d2b2 from=translated src=- shape=74e9f3bd vocab=4be82443
+-/
 theorem lexAux_append_name : ∀ (n : List Char), n.all isNameChar = true →
     ∀ (rest acc : List Char), lexAux (n ++ rest) acc = lexAux rest (acc ++ n)
   | [], _, rest, acc => by simp
@@ -420,6 +441,9 @@ def Tok.isIdent : Tok → Bool
   | .ident _ => true
   | _ => false
 
+/--
+@isnad1 id=ex.1h1v.s4.949b5df67ffe from=translated src=- shape=e6bbbf32 vocab=ec34dca9
+-/
 theorem Tok.chars_of_not_ident {t : Tok} (ht : t.isIdent = false) :
     ∃ c, t.chars = [c] ∧ specialTok? c = some t := by
   cases t <;> first | exact ⟨_, rfl, rfl⟩ | simp [Tok.isIdent] at ht
@@ -429,15 +453,24 @@ def renderTail (t : Tok) : List Tok → List Char
   | [] => []
   | t' :: ts => (if space t t' then [' '] else []) ++ render (t' :: ts)
 
+/--
+@isnad1 id=eq.0h2v.s4.6fc9ea29a727 from=translated src=- shape=5d7b6258 vocab=4abe69b3
+-/
 theorem render_cons (t : Tok) (ts : List Tok) : render (t :: ts) = t.chars ++ renderTail t ts := by
   cases ts <;> simp [render, renderTail]
 
+/--
+@isnad1 id=eq.1h3v.s5.0232e7925f5d from=translated src=- shape=ddb41698 vocab=cf878b01
+-/
 theorem lexAux_render_of_not_ident {t : Tok} (ht : t.isIdent = false) (ts : List Tok)
     (acc : List Char) :
     lexAux (render (t :: ts)) acc = flush acc (lexAux (render (t :: ts)) []) := by
   obtain ⟨c, hc, hct⟩ := Tok.chars_of_not_ident ht
   rw [render_cons, hc, List.singleton_append, lexAux_special hct, lexAux_special hct, flush_nil]
 
+/--
+@isnad1 id=eq.1h2v.s4.83dd967d62b2 from=translated src=- shape=ad042033 vocab=b4f10f9a
+-/
 theorem lexAux_renderTail_nil (t : Tok) (ts : List Tok) (ih : lexAux (render ts) [] = ts) :
     lexAux (renderTail t ts) [] = ts := by
   cases ts with
@@ -448,7 +481,9 @@ theorem lexAux_renderTail_nil (t : Tok) (ts : List Tok) (ih : lexAux (render ts)
     · rw [List.singleton_append, lexAux_space, flush_nil, ih]
     · rw [List.nil_append, ih]
 
-/-- Lexing inverts rendering on well-formed token lists.-/
+/-- Lexing inverts rendering on well-formed token lists.
+@isnad1 id=eq.1h1v.s4.8e2eed71debe from=translated src=- shape=e7a0967a vocab=76f1c027
+-/
 theorem lexAux_render : ∀ ts : List Tok, ts.all Tok.wf = true → lexAux (render ts) [] = ts
   | [], _ => rfl
   | t :: ts, h => by
@@ -475,6 +510,9 @@ theorem lexAux_render : ∀ ts : List Tok, ts.all Tok.wf = true → lexAux (rend
       rw [Tok.chars, List.singleton_append, lexAux_special rfl, flush_nil,
         lexAux_renderTail_nil _ _ ih]
 
+/--
+@isnad1 id=eq.1h1v.s4.268f1af795e0 from=translated src=- shape=6948a30b vocab=5ff760d9
+-/
 theorem lex_mk_render {ts : List Tok} (h : ts.all Tok.wf = true) :
     lex (String.ofList (render ts)) = ts := by
   rw [lex, String.toList_ofList]; exact lexAux_render ts h
@@ -483,12 +521,21 @@ end Lex
 
 section Numerals
 
+/--
+@isnad1 id=eq.0h1v.s3.5c27dae8d94b from=translated src=- shape=d8823979 vocab=8e7fb1c6
+-/
 theorem isNameChar_digitChar (d : ℕ) : isNameChar (digitChar d) = true := by
   unfold digitChar; split <;> decide
 
+/--
+@isnad1 id=eq.1h1v.s4.0da7c61ebb2c from=translated src=- shape=4024a77f vocab=65c37ce6
+-/
 theorem charDigit_digitChar {d : ℕ} (h : d < 10) : charDigit? (digitChar d) = some d := by
   interval_cases d <;> rfl
 
+/--
+@isnad1 id=eq.1h2v.s6.edb1178ac304 from=translated src=- shape=14877cf6 vocab=2acf4cd2
+-/
 theorem readDigits_map_digitChar :
     ∀ (L : List ℕ), (∀ d ∈ L, d < 10) → ∀ acc,
       readDigits acc (L.map digitChar) = some (L.foldl (fun a d => 10 * a + d) acc)
@@ -497,6 +544,9 @@ theorem readDigits_map_digitChar :
     simp only [List.map_cons, readDigits, charDigit_digitChar (h d (by simp)), List.foldl_cons]
     exact readDigits_map_digitChar L (fun d hd => h d (by simp [hd])) _
 
+/--
+@isnad1 id=eq.0h2v.s6.317b191bdbdb from=translated src=- shape=13ba9bc3 vocab=37b8ad1d
+-/
 theorem foldl_reverse_eq_ofDigits :
     ∀ (L : List ℕ) (acc : ℕ),
       L.reverse.foldl (fun a d => 10 * a + d) acc = acc * 10 ^ L.length + Nat.ofDigits 10 L
@@ -506,12 +556,18 @@ theorem foldl_reverse_eq_ofDigits :
     simp only [List.foldl_cons, List.foldl_nil, List.length_cons, Nat.ofDigits_cons, pow_succ]
     ring
 
+/--
+@isnad1 id=ne.0h1v.s3.7cfe02fc98fb from=translated src=- shape=8b9e0ca6 vocab=ca42b33c
+-/
 theorem natChars_ne_nil (n : ℕ) : natChars n ≠ [] := by
   unfold natChars
   split
   · simp
   · simpa [Nat.digits_ne_nil_iff_ne_zero]
 
+/--
+@isnad1 id=eq.0h1v.s3.79e9e770d8fc from=translated src=- shape=edb93955 vocab=612691e7
+-/
 theorem parseNat_natChars (n : ℕ) : parseNat? (natChars n) = some n := by
   have hne := natChars_ne_nil n
   have : parseNat? (natChars n) = readDigits 0 (natChars n) := by
@@ -526,6 +582,9 @@ theorem parseNat_natChars (n : ℕ) : parseNat? (natChars n) = some n := by
       (List.mem_reverse.1 hd)), foldl_reverse_eq_ofDigits, Nat.ofDigits_digits]
     simp
 
+/--
+@isnad1 id=eq.0h1v.s3.076d6a286087 from=translated src=- shape=0986eec1 vocab=77d08b0b
+-/
 theorem validName_natChars (n : ℕ) : validName (String.ofList (natChars n)) = true :=
   validName_iff.2 ⟨by rw [String.toList_ofList]; exact natChars_ne_nil n, by
     rw [String.toList_ofList]; unfold natChars; split
@@ -540,6 +599,9 @@ variable {S : Signature.{u₀, u₁, u₂}} [DSLNames S] [LawfulDSLNames S]
 
 open DSLNames LawfulDSLNames
 
+/--
+@isnad1 id=eq.0h3v.s4.728c86b0de2e from=translated src=- shape=449efd71 vocab=0d3fc5cf
+-/
 theorem printToks_wf (a : Obj S) (ls : List (Layer S)) : (printToks a ls).all Tok.wf = true := by
   have hobj : (objToks a).all Tok.wf = true := by
     simp only [objToks, List.all_append, Bool.and_eq_true]
@@ -566,10 +628,16 @@ theorem printToks_wf (a : Obj S) (ls : List (Layer S)) : (printToks a ls).all To
   · simp [hobj, hls, Tok.wf]
 
 omit [LawfulDSLNames S] in
+/--
+@isnad1 id=eq.1h4v.s5.30cabe82eeca from=translated src=- shape=1d2cdd79 vocab=eb1a6b5e
+-/
 theorem lookupRegion_of_eq {n : String} {r : S.Region} (h : regionOfName? n = some r)
     (ts : List Tok) : lookupRegion n ts = .ok (r, ts) := by
   simp [lookupRegion, h]
 
+/--
+@isnad1 id=eq.0h3v.s6.cfb27e3d7263 from=translated src=- shape=75cae47e vocab=4fb9c58f
+-/
 theorem parseRegion_objToks (a : Obj S) (rest : List Tok) :
     parseRegion (S := S) (objToks a ++ rest) = .ok (a.start, wordToks a.word ++ rest) := by
   have hl := regionOfName_regionName a.start
@@ -582,6 +650,9 @@ theorem parseRegion_objToks (a : Obj S) (rest : List Tok) :
     split <;> exact lookupRegion_of_eq hl _
   · exact lookupRegion_of_eq hl _
 
+/--
+@isnad1 id=eq.0h3v.s6.8e3071672540 from=translated src=- shape=0998d0f9 vocab=1d072a66
+-/
 theorem parseColours_map (w : List S.Colour) (rest : List Tok) :
     parseColours (S := S) ((w.map fun c => .ident (colourName c)) ++ .rbrack :: rest) =
       .ok (w, rest) := by
@@ -589,6 +660,9 @@ theorem parseColours_map (w : List S.Colour) (rest : List Tok) :
   | nil => rfl
   | cons c w ih => simp [parseColours, colourOfName_colourName, ih]
 
+/--
+@isnad1 id=eq.0h3v.s5.71e5cce528e3 from=translated src=- shape=4f3d0b66 vocab=0b62b1ad
+-/
 theorem parseWord_wordToks (w : List S.Colour) (rest : List Tok) :
     parseWord (S := S) (wordToks w ++ rest) = .ok (w, rest) := by
   unfold wordToks
@@ -605,6 +679,9 @@ theorem parseWord_wordToks (w : List S.Colour) (rest : List Tok) :
 
 variable [DecidableEq S.Colour]
 
+/--
+@isnad1 id=eq.2h3v.s6.7b759c90e295 from=translated src=- shape=0d583652 vocab=bfdca99e
+-/
 theorem parseLayer_eq {r₀ : S.Region} {L : Layer S} (hv : L.Valid) (hs : L.start = r₀) :
     parseLayer r₀ L.dom.word (genName L.gen) (String.ofList (natChars L.left.length)) = .ok L := by
   have hw : L.dom.word = L.left ++ (S.dom L.gen ++ L.right) := by simp
@@ -615,6 +692,9 @@ theorem parseLayer_eq {r₀ : S.Region} {L : Layer S} (hv : L.Valid) (hs : L.sta
   simp only [Nat.le_add_right, ↓reduceIte, Except.ok.injEq]
   cases L; subst hs; rfl
 
+/--
+@isnad1 id=eq.2h4v.s6.c401db568372 from=translated src=- shape=6a8bc767 vocab=a4f2ea55
+-/
 theorem parseLayers_layersToks :
     ∀ (ls : List (Layer S)) (a b : Obj S), Chain a ls b → ls ≠ [] →
       parseLayers a.start a.word (layersToks ls) = .ok ls
@@ -632,6 +712,9 @@ theorem parseLayers_layersToks :
       simp only [Layer.cod_word, List.append_assoc] at ih
       simp [layersToks, layerToks, parseLayers, hL, ih]
 
+/--
+@isnad1 id=eq.1h4v.s5.a518077af56d from=translated src=- shape=6294a82c vocab=47bebfd4
+-/
 theorem parseToks_printToks {a b : Obj S} {ls : List (Layer S)} (h : Chain a ls b) :
     parseToks (printToks a ls) = .ok (a, ls) := by
   unfold printToks
@@ -646,7 +729,9 @@ theorem parseToks_printToks {a b : Obj S} {ls : List (Layer S)} (h : Chain a ls 
       parseLayers_layersToks _ a b h (List.cons_ne_nil _ _)]
 
 /-- **Round trip.** For lawful names, parsing the printed form of a well-typed layer list
-returns the source object and the layers.-/
+returns the source object and the layers.
+@isnad1 id=eq.1h4v.s5.7347f7d1b3fa from=translated src=- shape=6294a82c vocab=d5b8c1e4
+-/
 theorem parse_print {a b : Obj S} {ls : List (Layer S)} (h : Chain a ls b) :
     parse (print a ls) = .ok (a, ls) := by
   rw [parse, print, lex_mk_render (printToks_wf a ls), parseToks_printToks h]
@@ -687,7 +772,9 @@ def parseHom (a b : Obj S) (s : String) : Except String (a ⟶ b) :=
     else .error "the source object does not match"
 
 /-- **Round trip for typed diagrams.** For lawful names, `parseHom a b` inverts `printHom`
-on diagrams `a ⟶ b`.-/
+on diagrams `a ⟶ b`.
+@isnad1 id=eq.0h4v.s6.d9765776089c from=translated src=- shape=3a67a123 vocab=d779525d
+-/
 theorem parseHom_printHom [LawfulDSLNames S] {a b : Obj S} (f : a ⟶ b) :
     parseHom a b (printHom f) = .ok f := by
   simp only [parseHom, printHom, parse_print (Diagram.chain f), ↓reduceIte,

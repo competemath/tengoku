@@ -55,6 +55,9 @@ def extendSuperNatTrans {F G : Superfunctor R A B} (x : F ⟶ G) :
   superNatTransOf (fun p => extendNat R F.toFunctor G.toFunctor p (x.app p))
     (fun p => isSupernatural_extendNat (x.isSupernatural p))
 
+/--
+@isnad1 id=eq.0h8v.s9.b096e67014ea from=translated src=- shape=cc8c8e66 vocab=34d040b4
+-/
 @[simp] theorem extendSuperNatTrans_app {F G : Superfunctor R A B} (x : F ⟶ G) (p : ZMod 2)
     (X : Envelope R A) :
     (extendSuperNatTrans x).app p X = extendNat R F.toFunctor G.toFunctor p (x.app p) X := rfl
@@ -147,6 +150,9 @@ def extendRestrictSuperIso (H : Superfunctor R (Envelope R A) B) :
       simp [SuperNatTrans.ofNatTrans])
     (fun X => by simp [SuperNatTrans.ofNatTrans])
 
+/--
+@isnad1 id=evenlyde.0h3v.s8.8ddab961d126 from=translated src=- shape=8a645ee3 vocab=4ddcaf9d
+-/
 theorem extendHom_evenlyDense : EvenlyDense R (extendHom R A B) := fun H =>
   ⟨⟨J R A ⋙ H.toFunctor⟩, extendRestrictSuperIso H, by
     rw [Superfunctor.mem_parity_iff]

@@ -55,9 +55,15 @@ instance instBraidedCategory : BraidedCategory (Underlying R C) where
   hexagon_reverse X Y Z :=
     Subtype.ext (BraidedMonoidalSupercategory.hexagon_reverse (R := R) X.obj Y.obj Z.obj)
 
+/--
+@isnad1 id=eq.0h4v.s10.fe4b718825bd from=translated src=- shape=ff59dc86 vocab=f5826ec6
+-/
 @[simp] theorem braiding_hom_val (X Y : Underlying R C) :
     (β_ X Y).hom.1 = (BraidedMonoidalSupercategory.braiding (R := R) X.obj Y.obj).hom := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.7e75db11a52f from=translated src=- shape=364ef13a vocab=ae2c1278
+-/
 @[simp] theorem braiding_inv_val (X Y : Underlying R C) :
     (β_ X Y).inv.1 = (BraidedMonoidalSupercategory.braiding (R := R) X.obj Y.obj).inv := rfl
 
@@ -71,7 +77,9 @@ variable {k : Type u} [CommRing k]
 
 /-! ## Homogeneous tensors of three factors -/
 
-/-- Linear maps out of `(U ⊗ V) ⊗ W` agreeing on tensors of homogeneous vectors are equal.-/
+/-- Linear maps out of `(U ⊗ V) ⊗ W` agreeing on tensors of homogeneous vectors are equal.
+@isnad1 id=eq.1h7v.s12.900cfec5ea95 from=translated src=- shape=481a8175 vocab=c61c8985
+-/
 theorem ext_tensor₃ {U V W : SVec k} {M : Type u} [AddCommGroup M] [Module k M]
     {f g : (U ⊗[k] V) ⊗[k] W →ₗ[k] M}
     (h : ∀ p q r (u : U) (v : V) (w : W), u ∈ U.part p → v ∈ V.part q → w ∈ W.part r →
@@ -84,7 +92,9 @@ theorem ext_tensor₃ {U V W : SVec k} {M : Type u} [AddCommGroup M] [Module k M
   rw [← proj_apply_add W w, tmul_add, map_add, map_add]
   exact congrArg₂ (· + ·) (LinearMap.congr_fun (key 0) x) (LinearMap.congr_fun (key 1) x)
 
-/-- Linear maps out of `U ⊗ (V ⊗ W)` agreeing on tensors of homogeneous vectors are equal.-/
+/-- Linear maps out of `U ⊗ (V ⊗ W)` agreeing on tensors of homogeneous vectors are equal.
+@isnad1 id=eq.1h7v.s12.73f1c848f584 from=translated src=- shape=fb369151 vocab=c61c8985
+-/
 theorem ext_tensor₃' {U V W : SVec k} {M : Type u} [AddCommGroup M] [Module k M]
     {f g : U ⊗[k] (V ⊗[k] W) →ₗ[k] M}
     (h : ∀ p q r (u : U) (v : V) (w : W), u ∈ U.part p → v ∈ V.part q → w ∈ W.part r →
@@ -106,7 +116,9 @@ def braidingMap (V W : SVec k) : tensorObj V W ⟶ tensorObj W V :=
     (map (V.proj 0) LinearMap.id + map (V.proj 1) (W.sgn 1)))
 
 /-- **Brundan–Ellis, §1.2.** `c_{V,W}(v ⊗ w) = (-1)^{|v||w|} w ⊗ v` for homogeneous
-`v` and `w`.-/
+`v` and `w`.
+@isnad1 id=eq.2h7v.s9.5e498ea3ef4f from=translated src=- shape=992ef32f vocab=531943ee
+-/
 theorem braidingMap_tmul {V W : SVec k} {p q : ZMod 2} {v : V} {w : W} (hv : v ∈ V.part p)
     (hw : w ∈ W.part q) : braidingMap V W (v ⊗ₜ w) = sign k (p * q) • (w ⊗ₜ v) := by
   change TensorProduct.comm k V W
@@ -118,7 +130,9 @@ theorem braidingMap_tmul {V W : SVec k} {p q : ZMod 2} {v : V} {w : W} (hv : v �
   · simp
   · simp [smul_tmul']
 
-/-- The braiding is even.-/
+/-- The braiding is even.
+@isnad1 id=mem.0h3v.s8.9978493ebfb2 from=translated src=- shape=4de6d92b vocab=02df35a6
+-/
 theorem braidingMap_mem (V W : SVec k) :
     braidingMap V W ∈ parityHom (tensorObj V W) (tensorObj W V) 0 := by
   intro r
@@ -131,7 +145,9 @@ theorem braidingMap_mem (V W : SVec k) :
   · rw [braidingMap_tmul hv hw]
   · rw [smul_zero]; exact map_zero (toLinearMap (braidingMap V W))
 
-/-- **The braiding is symmetric:** `c_{W,V} ∘ c_{V,W} = 1`.-/
+/-- **The braiding is symmetric:** `c_{W,V} ∘ c_{V,W} = 1`.
+@isnad1 id=eq.0h3v.s6.cc31d34c9b01 from=translated src=- shape=a31b35e9 vocab=d8714f6b
+-/
 theorem braidingMap_comp_braidingMap (V W : SVec k) :
     braidingMap V W ≫ braidingMap W V = 𝟙 (tensorObj V W) :=
   ext_tensor fun p q v w hv hw => by
@@ -148,7 +164,9 @@ def braidingIso (V W : SVec k) : tensorObj V W ≅ tensorObj W V where
   inv_hom_id := braidingMap_comp_braidingMap W V
 
 /-- Naturality of the braiding in the second variable: `c_{X,Z} ∘ (1_X ⊗ f) = (f ⊗ 1_X) ∘ c_{X,Y}`
-(for homogeneous `f`, both sides send `x ⊗ y` to `(-1)^{|x||y|} f(y) ⊗ x`).-/
+(for homogeneous `f`, both sides send `x ⊗ y` to `(-1)^{|x||y|} f(y) ⊗ x`).
+@isnad1 id=eq.0h5v.s7.08decda597c0 from=translated src=- shape=d1d8d217 vocab=b0726599
+-/
 theorem braidingMap_naturality_right (X : SVec k) {Y Z : SVec k} (f : Y ⟶ Z) :
     whiskerLeft X f ≫ braidingMap X Z = braidingMap X Y ≫ whiskerRight f X := by
   refine Supercategory.induction_on (R := k) f ?_ ?_ ?_
@@ -166,7 +184,9 @@ theorem braidingMap_naturality_right (X : SVec k) {Y Z : SVec k} (f : Y ⟶ Z) :
     rw [whiskerLeft_add, Preadditive.add_comp, hf, hf', whiskerRight_add, Preadditive.comp_add]
 
 /-- Naturality of the braiding in the first variable: `c_{Y,Z} ∘ (f ⊗ 1_Z) = (1_Z ⊗ f) ∘ c_{X,Z}`
-(for homogeneous `f`, both sides send `x ⊗ z` to `(-1)^{(|x| + |f|)|z|} z ⊗ f(x)`).-/
+(for homogeneous `f`, both sides send `x ⊗ z` to `(-1)^{(|x| + |f|)|z|} z ⊗ f(x)`).
+@isnad1 id=eq.0h5v.s7.e162ec9a74b8 from=translated src=- shape=bf6f67fd vocab=b0726599
+-/
 theorem braidingMap_naturality_left {X Y : SVec k} (f : X ⟶ Y) (Z : SVec k) :
     whiskerRight f Z ≫ braidingMap Y Z = braidingMap X Z ≫ whiskerLeft Z f := by
   refine Supercategory.induction_on (R := k) f ?_ ?_ ?_
@@ -184,7 +204,9 @@ theorem braidingMap_naturality_left {X Y : SVec k} (f : X ⟶ Y) (Z : SVec k) :
     rw [whiskerRight_add, Preadditive.add_comp, hf, hf', whiskerLeft_add, Preadditive.comp_add]
 
 /-- The first hexagon axiom: both sides send `(x ⊗ y) ⊗ z` to
-`(-1)^{|x|(|y| + |z|)} y ⊗ (z ⊗ x)`.-/
+`(-1)^{|x|(|y| + |z|)} y ⊗ (z ⊗ x)`.
+@isnad1 id=eq.0h4v.s9.2fb3166488b9 from=translated src=- shape=7323282c vocab=0ac8f1e4
+-/
 theorem hexagon_forward (X Y Z : SVec k) :
     (α_ X Y Z).hom ≫ braidingMap X (tensorObj Y Z) ≫ (α_ Y Z X).hom =
       whiskerRight (braidingMap X Y) Z ≫ (α_ Y X Z).hom ≫ whiskerLeft Y (braidingMap X Z) := by
@@ -199,7 +221,9 @@ theorem hexagon_forward (X Y Z : SVec k) :
     braidingMap_tmul hx hz, tmul_smul, smul_smul, ← sign_add, mul_add]
 
 /-- The second hexagon axiom: both sides send `x ⊗ (y ⊗ z)` to
-`(-1)^{(|x| + |y|)|z|} (z ⊗ x) ⊗ y`.-/
+`(-1)^{(|x| + |y|)|z|} (z ⊗ x) ⊗ y`.
+@isnad1 id=eq.0h4v.s9.aaed319816c6 from=translated src=- shape=c03d3ee2 vocab=bb0c01db
+-/
 theorem hexagon_reverse (X Y Z : SVec k) :
     (α_ X Y Z).inv ≫ braidingMap (tensorObj X Y) Z ≫ (α_ Z X Y).inv =
       whiskerLeft X (braidingMap Y Z) ≫ (α_ X Z Y).inv ≫ whiskerRight (braidingMap X Z) Y := by
@@ -223,7 +247,9 @@ instance instBraidedMonoidalSupercategory : BraidedMonoidalSupercategory k (SVec
   hexagon_forward := hexagon_forward
   hexagon_reverse := hexagon_reverse
 
-/-- **The braiding of `SVec k` is symmetric:** `c_{W,V} ∘ c_{V,W} = 1`.-/
+/-- **The braiding of `SVec k` is symmetric:** `c_{W,V} ∘ c_{V,W} = 1`.
+@isnad1 id=eq.0h3v.s7.fb5039e22dbd from=translated src=- shape=cfc40097 vocab=f47082b9
+-/
 theorem braiding_hom_comp_braiding_hom (V W : SVec k) :
     (BraidedMonoidalSupercategory.braiding (R := k) V W).hom ≫
       (BraidedMonoidalSupercategory.braiding (R := k) W V).hom = 𝟙 (V ⊗ W) :=

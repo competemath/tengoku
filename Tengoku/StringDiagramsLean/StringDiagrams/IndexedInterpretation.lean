@@ -60,15 +60,26 @@ def endList (i : ι) : List (Layer S) → End (X i)
   | [] => 1
   | L :: ls => endList i ls * A L i
 
+/--
+@isnad1 id=eq.0h6v.s6.457833194d42 from=translated src=- shape=ffb1f16f vocab=3efa0f75
+-/
 @[simp] theorem endList_nil (i : ι) : endList A i [] = 1 := rfl
 
+/--
+@isnad1 id=eq.0h8v.s6.ff904a852d38 from=translated src=- shape=4533b09d vocab=deafb3af
+-/
 @[simp] theorem endList_cons (i : ι) (L : Layer S) (ls : List (Layer S)) :
     endList A i (L :: ls) = endList A i ls * A L i := rfl
 
-/-- A single layer: no trailing `1 *`. The priority makes `simp` prefer it to `endList_cons`.-/
+/-- A single layer: no trailing `1 *`. The priority makes `simp` prefer it to `endList_cons`.
+@isnad1 id=eq.0h7v.s5.52a7c5ae2fa2 from=translated src=- shape=35fc0a4a vocab=3dedfe0c
+-/
 @[simp 1100] theorem endList_singleton (i : ι) (L : Layer S) : endList A i [L] = A L i :=
   one_mul _
 
+/--
+@isnad1 id=eq.0h8v.s7.48bc6b9323ef from=translated src=- shape=4fdfa837 vocab=b1469d65
+-/
 @[simp] theorem endList_append (i : ι) (ls ms : List (Layer S)) :
     endList A i (ls ++ ms) = endList A i ms * endList A i ls := by
   induction ls with
@@ -79,13 +90,17 @@ end EndList
 
 /-! ## The transport lemma -/
 
-/-- Along a chain of index-preserving layers the index is constant.-/
+/-- Along a chain of index-preserving layers the index is constant.
+@isnad1 id=eq.2h6v.s5.d0b3984aac1d from=translated src=- shape=adf261f7 vocab=14508426
+-/
 theorem Chain.index_eq {κ : Obj S → ι} (hκ : ∀ L : Layer S, L.Valid → κ L.cod = κ L.dom) :
     ∀ {a b : Obj S} {ls : List (Layer S)}, Chain a ls b → κ b = κ a
   | _, _, [], h => by cases h; rfl
   | _, _, L :: _, ⟨hv, hd, hc⟩ => by rw [Chain.index_eq hκ hc, hκ L hv, hd]
 
-/-- Diagrams of index-preserving layers preserve the index.-/
+/-- Diagrams of index-preserving layers preserve the index.
+@isnad1 id=eq.1h6v.s5.2c5b7c4d0c72 from=translated src=- shape=e47b5f0b vocab=d6b51766
+-/
 theorem Diagram.index_eq {κ : Obj S → ι} (hκ : ∀ L : Layer S, L.Valid → κ L.cod = κ L.dom)
     {a b : Obj S} (f : a ⟶ b) : κ b = κ a :=
   Chain.index_eq hκ (Diagram.chain f)
@@ -104,7 +119,9 @@ def LayerTransport : Prop :=
 
 variable {I hobj hκ}
 
-/-- **Transport lemma for chains of layers.**-/
+/-- **Transport lemma for chains of layers.**
+@isnad1 id=eq.6h11v.s7.1aa23c10f7f4 from=translated src=- shape=30542aac vocab=b01568f6
+-/
 theorem mapChain_transport (hA : I.LayerTransport (A := A) hobj hκ) :
     ∀ {a b : Obj S} {ls : List (Layer S)} (h : Chain a ls b) {i : ι} (ha : κ a = i)
       (hb : κ b = i),
@@ -121,7 +138,9 @@ theorem mapChain_transport (hA : I.LayerTransport (A := A) hobj hκ) :
 
 /-- **Transport lemma.** For an interpretation `I` with `I.obj a = X (κ a)` whose layers are,
 after transport, the endomorphisms `A L (κ L.dom)`, the image of a diagram `f : a ⟶ b` with
-`κ a = κ b = i`, transported to `X i`, is the product of the endomorphisms of its layers.-/
+`κ a = κ b = i`, transported to `X i`, is the product of the endomorphisms of its layers.
+@isnad1 id=eq.5h11v.s7.0e6ad1177677 from=translated src=- shape=54cc7c5c vocab=7b114630
+-/
 theorem map_transport (hA : I.LayerTransport (A := A) hobj hκ) {a b : Obj S} (f : a ⟶ b)
     {i : ι} (ha : κ a = i) (hb : κ b = i) :
     eqToHom ((hobj a).trans (congrArg X ha)).symm ≫ I.functor.map f ≫
@@ -136,14 +155,22 @@ def ofEnd (κ : Obj S → ι) (X : ι → D) (A : Layer S → ∀ i, End (X i))
   obj a := X (κ a)
   layer L hv := A L (κ L.dom) ≫ eqToHom (congrArg X (hκ L hv).symm)
 
+/--
+@isnad1 id=eq.1h7v.s6.7e6a830858d4 from=translated src=- shape=0c34f00f vocab=8ac46a0d
+-/
 @[simp] theorem ofEnd_obj (a : Obj S) : (ofEnd κ X A hκ).obj a = X (κ a) := rfl
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=layertra.1h6v.s6.83149b57a3bf from=translated src=- shape=1a1cd84c vocab=8afd40eb
+-/
 theorem ofEnd_layerTransport :
     (ofEnd κ X A hκ).LayerTransport (A := A) (fun _ => rfl) hκ := fun L hv => by
   simp [ofEnd]
 
-/-- The image of a diagram under `ofEnd`, transported to `X i`.-/
+/-- The image of a diagram under `ofEnd`, transported to `X i`.
+@isnad1 id=eq.3h10v.s7.4f8e9d712653 from=translated src=- shape=f5b237e0 vocab=d31933ca
+-/
 theorem ofEnd_map_transport {a b : Obj S} (f : a ⟶ b) {i : ι} (ha : κ a = i) (hb : κ b = i) :
     eqToHom (congrArg X ha).symm ≫ (ofEnd κ X A hκ).functor.map f ≫ eqToHom (congrArg X hb) =
       endList A i (Diagram.layers f) :=
@@ -151,7 +178,9 @@ theorem ofEnd_map_transport {a b : Obj S} (f : a ⟶ b) {i : ι} (ha : κ a = i)
     (hobj := fun _ => rfl) ofEnd_layerTransport f ha hb
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The image of an endomorphism diagram under `ofEnd`.-/
+/-- The image of an endomorphism diagram under `ofEnd`.
+@isnad1 id=eq.1h8v.s7.f94161490e04 from=translated src=- shape=68205881 vocab=d6106167
+-/
 theorem ofEnd_map_end {a : Obj S} (f : a ⟶ a) :
     (ofEnd κ X A hκ).functor.map f = endList A (κ a) (Diagram.layers f) := by
   simpa using ofEnd_map_transport (hκ := hκ) (A := A) f rfl rfl
@@ -179,28 +208,42 @@ section LinEndLemmas
 
 variable (i : ι) {a b : Obj S}
 
+/--
+@isnad1 id=eq.0h11v.s9.857d5ede9987 from=translated src=- shape=ec9c6060 vocab=375b7007
+-/
 @[simp] theorem linEnd_single (d : a ⟶ b) (r : R) :
     linEnd A i (Finsupp.single d r : LinDiagram R a b) = r • endList A i (Diagram.layers d) :=
   Finsupp.linearCombination_single R r d
 
+/--
+@isnad1 id=eq.0h10v.s9.d2f9375059c0 from=translated src=- shape=5b0e0638 vocab=7877d2f9
+-/
 @[simp] theorem linEnd_of (d : a ⟶ b) :
     linEnd A i (LinDiagram.of d : LinDiagram R a b) = endList A i (Diagram.layers d) := by
   rw [LinDiagram.of, linEnd_single, one_smul]
 
 variable (u : Obj S) (v : List S.Colour)
 
+/--
+@isnad1 id=eq.0h13v.s9.4455832510b7 from=translated src=- shape=8048f3cc vocab=6619c61f
+-/
 @[simp] theorem linEndW_single (d : a ⟶ b) (r : R) :
     linEndW A i u v (Finsupp.single d r : LinDiagram R a b) =
       r • endList A i ((Diagram.layers d).map (·.whisker u v)) :=
   Finsupp.linearCombination_single R r d
 
+/--
+@isnad1 id=eq.0h12v.s9.3aec52226096 from=translated src=- shape=60662479 vocab=da17ac86
+-/
 @[simp] theorem linEndW_of (d : a ⟶ b) :
     linEndW A i u v (LinDiagram.of d : LinDiagram R a b) =
       endList A i ((Diagram.layers d).map (·.whisker u v)) := by
   rw [LinDiagram.of, linEndW_single, one_smul]
 
 set_option backward.isDefEq.respectTransparency false in
-/-- Evaluating a whiskered linear combination is whiskered evaluation.-/
+/-- Evaluating a whiskered linear combination is whiskered evaluation.
+@isnad1 id=eq.1h12v.s9.a125b2960a8a from=translated src=- shape=6821c0ce vocab=fccc0b38
+-/
 theorem linEnd_whisker (Y : LinDiagram R a b) (hw : a.WhiskerOK u v) :
     linEnd A i (LinDiagram.whisker Y u v hw) = linEndW A i u v Y := by
   rw [linEnd, LinDiagram.whisker, Finsupp.linearCombination_mapDomain]
@@ -216,7 +259,9 @@ variable {I : Interpretation S D} {κ : Obj S → ι} {A}
 end Interpretation
 
 /-- The whiskered linear evaluation of an interchange relation: the two orders of the layers
-of `g` (left) and `h` (right), with the Koszul sign.-/
+of `g` (left) and `h` (right), with the Koszul sign.
+@isnad1 id=eq.1h10v.s9.747af689f819 from=translated src=- shape=c02e517a vocab=1ca41a54
+-/
 theorem linEndW_interchange (x : InterchangeData S) (hx : x.Valid) (u : Obj S)
     (v : List S.Colour) (i : ι) :
     linEndW A i u v (InterchangeData.rel R hx) =
@@ -233,7 +278,9 @@ theorem linEndW_interchange (x : InterchangeData S) (hx : x.Valid) (u : Obj S)
 /-- The interchange part of the soundness hypotheses from a commutation hypothesis: for all
 generators `g`, `g'` separated by the word `m`, with `l` to the left and `r` to the right,
 the endomorphisms of the two layers commute up to the Koszul sign, at the index of the
-source.-/
+source.
+@isnad1 id=eq.1h11v.s10.5b27059c22eb from=translated src=- shape=ed086402 vocab=0834d56b
+-/
 theorem linEndW_interchange_eq_zero {κ : Obj S → ι}
     (hcomm : ∀ (s : S.Region) (l m r : List S.Colour) (g g' : S.Gen),
       let i := κ ⟨s, l ++ (S.dom g ++ (m ++ (S.dom g' ++ r)))⟩

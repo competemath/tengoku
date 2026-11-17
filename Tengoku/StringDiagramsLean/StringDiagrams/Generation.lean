@@ -39,7 +39,9 @@ theorem eq_layer_comp {L : Layer S} {ls : List (Layer S)} (h : Chain a (L :: ls)
     mk (L :: ls) h = layer L h.1 h.2.1 rfl ≫ mk ls h.2.2 := by
   ext; simp
 
-/-- The empty diagram is an identity, retyped.-/
+/-- The empty diagram is an identity, retyped.
+@isnad1 id=eq.1h3v.s5.c4052ff31f24 from=translated src=- shape=db2eac10 vocab=34106527
+-/
 theorem mk_nil (h : Chain a [] b) : mk [] h = eqToHom h := by
   obtain rfl : a = b := h
   rfl
@@ -51,7 +53,9 @@ namespace Presentation
 variable {R : Type w} [CommRing R] (P : Presentation.{w, v} S R)
 
 /-- Induction on morphisms of the presented category: classes of diagrams, sums, scalar
-multiples.-/
+multiples.
+@isnad1 id=var.0h11v.s11.cc22db3c9195 from=translated src=- shape=3cdb17b8 vocab=19928533
+-/
 theorem hom_induction {a b : Obj S} {p : (P.obj a ⟶ P.obj b) → Prop}
     (diag : ∀ d : a ⟶ b, p (P.diag d)) (zero : p 0) (add : ∀ f g, p f → p g → p (f + g))
     (smul : ∀ (r : R) f, p f → p (r • f)) (f : P.obj a ⟶ P.obj b) : p f := by
@@ -62,7 +66,9 @@ theorem hom_induction {a b : Obj S} {p : (P.obj a ⟶ P.obj b) → Prop}
   | add f g hf hg => rw [lin_add]; exact add _ _ hf hg
   | single d r => exact (congrArg p (P.lin_single d r)).mpr (smul r _ (diag d))
 
-/-- Induction on diagrams: retyped identities, and a layer followed by a diagram.-/
+/-- Induction on diagrams: retyped identities, and a layer followed by a diagram.
+@isnad1 id=var.0h9v.s7.1eea86fc70de from=translated src=- shape=e7a2c792 vocab=336d13d6
+-/
 theorem diag_induction {p : ∀ {a b : Obj S}, (P.obj a ⟶ P.obj b) → Prop}
     (nil : ∀ {a b : Obj S} (h : a = b), p (P.diag (eqToHom h)))
     (cons : ∀ {b : Obj S} (L : Layer S) (hv : L.Valid) (d : L.cod ⟶ b),
@@ -77,7 +83,9 @@ theorem diag_induction {p : ∀ {a b : Obj S}, (P.obj a ⟶ P.obj b) → Prop}
     obtain ⟨hv, rfl, hc⟩ := h
     exact cons L hv _ (ih hc)
 
-/-- Induction on morphisms of the presented category via layers.-/
+/-- Induction on morphisms of the presented category via layers.
+@isnad1 id=var.0h13v.s11.9b64ebe1e02e from=translated src=- shape=0ba0209a vocab=c8b958f0
+-/
 theorem hom_induction_layers {p : ∀ {a b : Obj S}, (P.obj a ⟶ P.obj b) → Prop}
     (nil : ∀ {a b : Obj S} (h : a = b), p (P.diag (eqToHom h)))
     (layer : ∀ (L : Layer S) (hv : L.Valid), p (P.diag (Diagram.ofLayer L hv)))
@@ -93,7 +101,9 @@ theorem hom_induction_layers {p : ∀ {a b : Obj S}, (P.obj a ⟶ P.obj b) → P
     zero add smul f
 
 /-- `R`-linear maps out of a Hom module of the presented category agree if they agree on
-classes of diagrams.-/
+classes of diagrams.
+@isnad1 id=eq.1h8v.s10.530808caae0e from=translated src=- shape=7fbdb60b vocab=144d5e7b
+-/
 theorem linearMap_ext_diag {a b : Obj S} {M : Type*} [AddCommGroup M] [Module R M]
     {φ ψ : (P.obj a ⟶ P.obj b) →ₗ[R] M} (h : ∀ d : a ⟶ b, φ (P.diag d) = ψ (P.diag d)) :
     φ = ψ := by
@@ -161,7 +171,9 @@ theorem eq_zero_of_mem_of_not_mem {a b : Obj S} (ha : a ∈ C) (hb : b ∉ C)
 
 /-- **Generation by layers.** If every layer with source in `C` has target in `C`, then every
 morphism between objects of `C` lies in any family of submodules that contains the
-identities and the single layers with source in `C` and is closed under composition.-/
+identities and the single layers with source in `C` and is closed under composition.
+@isnad1 id=mem.6h8v.s12.141ea38be41f from=translated src=- shape=eea9873d vocab=e4daf8a9
+-/
 theorem mem_of_layers (M : ∀ a b : Obj S, Submodule R (P.obj a ⟶ P.obj b))
     (hid : ∀ a ∈ C, 𝟙 (P.obj a) ∈ M a a)
     (hcomp : ∀ {a b c : Obj S}, a ∈ C → b ∈ C → c ∈ C → ∀ (f : P.obj a ⟶ P.obj b)

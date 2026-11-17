@@ -55,12 +55,17 @@ def tensorPiece (rs : ℤ × ℤ) : Submodule k (V.toSVec ⊗[k] W.toSVec) :=
 def tensorDeg (n : ℤ) : Submodule k (V.toSVec ⊗[k] W.toSVec) :=
   ⨆ (rs : ℤ × ℤ) (_ : rs.1 + rs.2 = n), V.tensorPiece W rs
 
+/--
+@isnad1 id=mem.2h7v.s10.ca72a28fc556 from=translated src=- shape=0f7960b5 vocab=d3de4e48
+-/
 theorem tmul_mem_tensorDeg {r s : ℤ} {v : V.toSVec} {w : W.toSVec} (hv : v ∈ V.deg r)
     (hw : w ∈ W.deg s) : v ⊗ₜ w ∈ V.tensorDeg W (r + s) :=
   Submodule.mem_iSup_of_mem (r, s)
     (Submodule.mem_iSup_of_mem rfl (Submodule.apply_mem_map₂ _ hv hw))
 
-/-- `(V ⊗ W)ₙ` is spanned by the `v ⊗ w` with `v ∈ Vᵣ`, `w ∈ Wₛ`, `r + s = n`.-/
+/-- `(V ⊗ W)ₙ` is spanned by the `v ⊗ w` with `v ∈ Vᵣ`, `w ∈ Wₛ`, `r + s = n`.
+@isnad1 id=iff.0h5v.s11.bf507f3948a7 from=translated src=- shape=50df8c02 vocab=66330bfc
+-/
 theorem tensorDeg_le_iff {n : ℤ} {S : Submodule k (V.toSVec ⊗[k] W.toSVec)} :
     V.tensorDeg W n ≤ S ↔
       ∀ (r s : ℤ), r + s = n → ∀ v ∈ V.deg r, ∀ w ∈ W.deg s, v ⊗ₜ w ∈ S :=
@@ -77,6 +82,9 @@ def tensorProj (n : ℤ) : V.toSVec ⊗[k] W.toSVec →ₗ[k] V.toSVec ⊗[k] W.
       TensorProduct.map (DirectSum.decomposeLinearEquiv V.deg).toLinearMap
         (DirectSum.decomposeLinearEquiv W.deg).toLinearMap
 
+/--
+@isnad1 id=eq.2h8v.s10.ee50a89c800f from=translated src=- shape=139026c2 vocab=4cb3dfb6
+-/
 theorem tensorProj_tmul (n r s : ℤ) {v : V.toSVec} {w : W.toSVec} (hv : v ∈ V.deg r)
     (hw : w ∈ W.deg s) : V.tensorProj W n (v ⊗ₜ w) = if r + s = n then v ⊗ₜ w else 0 := by
   let := V.degreeDecomposition
@@ -92,32 +100,50 @@ theorem tensorProj_tmul (n r s : ℤ) {v : V.toSVec} {w : W.toSVec} (hv : v ∈ 
   · simp
   · rfl
 
+/--
+@isnad1 id=le.1h5v.s10.8ef25c571724 from=translated src=- shape=b1ddd595 vocab=0adf63c3
+-/
 theorem tensorPiece_le_eqLocus (n : ℤ) (rs : ℤ × ℤ) (h : rs.1 + rs.2 = n) :
     V.tensorPiece W rs ≤ LinearMap.eqLocus (V.tensorProj W n) LinearMap.id :=
   Submodule.map₂_le.2 fun v hv w hw => LinearMap.mem_eqLocus.2 (by
     rw [TensorProduct.mk_apply, tensorProj_tmul V W n rs.1 rs.2 hv hw, ite_eq_left h]; rfl)
 
+/--
+@isnad1 id=le.1h5v.s10.3d00a4e7a730 from=translated src=- shape=426c2db2 vocab=5ec72a14
+-/
 theorem tensorPiece_le_ker (n : ℤ) (rs : ℤ × ℤ) (h : rs.1 + rs.2 ≠ n) :
     V.tensorPiece W rs ≤ LinearMap.ker (V.tensorProj W n) :=
   Submodule.map₂_le.2 fun v hv w hw => LinearMap.mem_ker.2 (by
     rw [TensorProduct.mk_apply, tensorProj_tmul V W n rs.1 rs.2 hv hw, ite_eq_right h])
 
+/--
+@isnad1 id=eq.1h5v.s10.9070212c08a5 from=translated src=- shape=80080950 vocab=bdf0e2d2
+-/
 theorem tensorProj_of_mem {n : ℤ} {x : V.toSVec ⊗[k] W.toSVec} (hx : x ∈ V.tensorDeg W n) :
     V.tensorProj W n x = x :=
   LinearMap.mem_eqLocus.1
     ((iSup₂_le fun rs hrs => tensorPiece_le_eqLocus V W n rs hrs : V.tensorDeg W n ≤ _) hx)
 
+/--
+@isnad1 id=eq.2h6v.s11.20ea1a345c1b from=translated src=- shape=5af38540 vocab=bdf0e2d2
+-/
 theorem tensorProj_of_mem_ne {m n : ℤ} (h : m ≠ n) {x : V.toSVec ⊗[k] W.toSVec}
     (hx : x ∈ V.tensorDeg W m) : V.tensorProj W n x = 0 :=
   LinearMap.mem_ker.1 ((iSup₂_le fun rs hrs =>
     tensorPiece_le_ker V W n rs fun e => h (hrs.symm.trans e) : V.tensorDeg W m ≤ _) hx)
 
+/--
+@isnad1 id=isupinde.0h3v.s8.f812dbb2e23b from=translated src=- shape=948c4b19 vocab=58e9c5cb
+-/
 theorem iSupIndep_tensorDeg : iSupIndep (V.tensorDeg W) :=
   iSupIndep_of_projections _ (V.tensorProj W)
     (fun n => iSup₂_le fun rs hrs => tensorPiece_le_eqLocus V W n rs hrs)
     (fun n _ hmn => iSup₂_le fun rs hrs =>
       tensorPiece_le_ker V W n rs fun h => hmn (hrs.symm.trans h))
 
+/--
+@isnad1 id=mem.1h5v.s8.28dfa011ad64 from=translated src=- shape=6d960490 vocab=4867e8dc
+-/
 theorem sgn_mem {b : ZMod 2} {n : ℤ} {v : V.toSVec} (hv : v ∈ V.deg n) : V.toSVec.sgn b v ∈ V.deg n := by
   rw [SVec.sgn_apply]
   exact Submodule.add_mem _ (V.proj_mem 0 hv) (Submodule.smul_mem _ _ (V.proj_mem 1 hv))
@@ -141,10 +167,19 @@ def unit : GradedSuperspace k where
     change (0 : k) ∈ _
     exact Submodule.zero_mem _
 
+/--
+@isnad1 id=eq.0h1v.s4.668b4503495a from=translated src=- shape=9dd68f90 vocab=cf0d01b8
+-/
 @[simp] theorem unit_toSVec : (unit : GradedSuperspace k).toSVec = SVec.unit := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.2a7172fa9841 from=translated src=- shape=d39064ef vocab=968fdba2
+-/
 theorem unit_deg (n : ℤ) : (unit : GradedSuperspace k).deg n = if n = 0 then ⊤ else ⊥ := rfl
 
+/--
+@isnad1 id=mem.0h2v.s7.6f54bb82b1fe from=translated src=- shape=8ceae5d7 vocab=5896b436
+-/
 theorem mem_unit_deg_zero (r : (unit : GradedSuperspace k).toSVec) :
     r ∈ (unit : GradedSuperspace k).deg 0 := by
   rw [unit_deg, ite_eq_left rfl]; trivial

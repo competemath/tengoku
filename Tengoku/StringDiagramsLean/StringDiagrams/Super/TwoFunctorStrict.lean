@@ -31,7 +31,9 @@ namespace Supercategory
 variable {R : Type w} [CommRing R] {C : Type u₁} [Category.{v₁} C] [Preadditive C] [Linear R C]
   [Supercategory R C]
 
-/-- `eqToHom`s are even.-/
+/-- `eqToHom`s are even.
+@isnad1 id=mem.1h4v.s8.7fac4fe6ed3d from=translated src=- shape=a54b64de vocab=9a7df9b0
+-/
 theorem eqToHom_mem {X Y : C} (h : X = Y) : eqToHom h ∈ parity (R := R) X Y 0 := by
   subst h; exact id_mem _
 
@@ -45,19 +47,27 @@ variable {R : Type w} [CommRing R] {B : Type u₁} [BicategoryStruct.{w₁, v₁
 
 variable (R) in
 include R in
+/--
+@isnad1 id=eq.1h8v.s8.ee78da9759a0 from=translated src=- shape=3eee5085 vocab=4f51ff30
+-/
 theorem whiskerLeft_eqToHom {a b c : B} (f : a ⟶ b) {g h : b ⟶ c} (e : g = h) :
     f ◁ eqToHom e = eqToHom (congrArg (f ≫ ·) e) := by
   subst e; simp [whiskerLeft_id (R := R)]
 
 variable (R) in
 include R in
+/--
+@isnad1 id=eq.1h8v.s8.a76d2ce417b6 from=translated src=- shape=b26437eb vocab=2be7c71b
+-/
 theorem eqToHom_whiskerRight {a b c : B} {f g : a ⟶ b} (e : f = g) (h : b ⟶ c) :
     eqToHom e ▷ h = eqToHom (congrArg (· ≫ h) e) := by
   subst e; simp [id_whiskerRight (R := R)]
 
 end TwoSupercategory
 
-/-- The inverses of heterogeneously equal isomorphisms are heterogeneously equal.-/
+/-- The inverses of heterogeneously equal isomorphisms are heterogeneously equal.
+@isnad1 id=heq.3h7v.s6.26ab7dfef1f2 from=translated src=- shape=a5baf868 vocab=1220e247
+-/
 theorem _root_.CategoryTheory.Iso.inv_heq_of_hom_heq {C : Type u₁} [Category.{v₁} C]
     {X Y X' Y' : C} (e : X ≅ Y) (e' : X' ≅ Y') (hX : X = X') (hY : Y = Y')
     (h : HEq e.hom e'.hom) : HEq e.inv e'.inv := by
@@ -115,24 +125,39 @@ def map₂Iso {a b : B} {f g : a ⟶ b} (e : f ≅ g) : F.map f ≅ F.map g wher
   hom_inv_id := by rw [← F.map₂_comp, e.hom_inv_id, F.map₂_id]
   inv_hom_id := by rw [← F.map₂_comp, e.inv_hom_id, F.map₂_id]
 
+/--
+@isnad1 id=eq.0h11v.s10.d51ccf15b4ca from=translated src=- shape=b53811aa vocab=907b67c7
+-/
 theorem map₂_whiskerLeft_eq {a b c : B} (f : a ⟶ b) {g h : b ⟶ c} (η : g ⟶ h) :
     F.map₂ (f ◁ η) = eqToHom (F.map_comp f g) ≫ F.map f ◁ F.map₂ η ≫
       eqToHom (F.map_comp f h).symm :=
   (conj_eqToHom_iff_heq _ _ (F.map_comp f g) (F.map_comp f h)).2 (F.map₂_whiskerLeft f η)
 
+/--
+@isnad1 id=eq.0h11v.s10.6e629ccba57c from=translated src=- shape=6047f6d5 vocab=8a62da3b
+-/
 theorem map₂_whiskerRight_eq {a b c : B} {f g : a ⟶ b} (η : f ⟶ g) (h : b ⟶ c) :
     F.map₂ (η ▷ h) = eqToHom (F.map_comp f h) ≫ F.map₂ η ▷ F.map h ≫
       eqToHom (F.map_comp g h).symm :=
   (conj_eqToHom_iff_heq _ _ (F.map_comp f h) (F.map_comp g h)).2 (F.map₂_whiskerRight η h)
 
+/--
+@isnad1 id=eq.0h11v.s8.9c403aef81d5 from=translated src=- shape=5d0d128c vocab=ca50d86e
+-/
 theorem map_comp_comp_left {a b c d : B} (f : a ⟶ b) (g : b ⟶ c) (h : c ⟶ d) :
     F.map ((f ≫ g) ≫ h) = (F.map f ≫ F.map g) ≫ F.map h := by
   rw [F.map_comp, F.map_comp]
 
+/--
+@isnad1 id=eq.0h11v.s8.6ca48d1ab052 from=translated src=- shape=13571497 vocab=ca50d86e
+-/
 theorem map_comp_comp_right {a b c d : B} (f : a ⟶ b) (g : b ⟶ c) (h : c ⟶ d) :
     F.map (f ≫ g ≫ h) = F.map f ≫ F.map g ≫ F.map h := by
   rw [F.map_comp, F.map_comp]
 
+/--
+@isnad1 id=eq.0h11v.s11.676b3b0e0961 from=translated src=- shape=49007e50 vocab=a0c21f22
+-/
 theorem map₂_associator_inv_eq {a b c d : B} (f : a ⟶ b) (g : b ⟶ c) (h : c ⟶ d) :
     F.map₂ (associator f g h).inv = eqToHom (F.map_comp_comp_right f g h) ≫
       (associator (F.map f) (F.map g) (F.map h)).inv ≫
@@ -141,17 +166,29 @@ theorem map₂_associator_inv_eq {a b c d : B} (f : a ⟶ b) (g : b ⟶ c) (h : 
     (Iso.inv_heq_of_hom_heq (F.map₂Iso (associator f g h)) (associator (F.map f) (F.map g) (F.map h))
       (F.map_comp_comp_left f g h) (F.map_comp_comp_right f g h) (F.map₂_associator f g h))
 
+/--
+@isnad1 id=eq.0h7v.s8.b5e2ace25c4f from=translated src=- shape=57196237 vocab=1ef330fc
+-/
 theorem map_id_comp {a b : B} (f : a ⟶ b) : F.map (𝟙 a ≫ f) = 𝟙 (F.obj a) ≫ F.map f := by
   rw [F.map_comp, F.map_id]
 
+/--
+@isnad1 id=eq.0h7v.s8.c38f8e922c78 from=translated src=- shape=6a1e1a1e vocab=1ef330fc
+-/
 theorem map_comp_id {a b : B} (f : a ⟶ b) : F.map (f ≫ 𝟙 b) = F.map f ≫ 𝟙 (F.obj b) := by
   rw [F.map_comp, F.map_id]
 
+/--
+@isnad1 id=eq.0h7v.s10.c9b30234377c from=translated src=- shape=297d69e6 vocab=19e383e9
+-/
 theorem map₂_leftUnitor_eq {a b : B} (f : a ⟶ b) :
     F.map₂ (leftUnitor f).hom = eqToHom (F.map_id_comp f) ≫ (leftUnitor (F.map f)).hom ≫
       eqToHom rfl :=
   (conj_eqToHom_iff_heq _ _ (F.map_id_comp f) rfl).2 (F.map₂_leftUnitor f)
 
+/--
+@isnad1 id=eq.0h7v.s10.f33cbbd926c7 from=translated src=- shape=4c02aa78 vocab=939c7f3a
+-/
 theorem map₂_rightUnitor_eq {a b : B} (f : a ⟶ b) :
     F.map₂ (rightUnitor f).hom = eqToHom (F.map_comp_id f) ≫ (rightUnitor (F.map f)).hom ≫
       eqToHom rfl :=
@@ -189,21 +226,38 @@ def toTwoSuperfunctor : TwoSuperfunctor R B C where
     simp only [eqToIso.hom, whiskerLeft_eqToHom R, F.map₂_rightUnitor_eq, eqToHom_trans_assoc,
       eqToHom_refl, Category.id_comp, Category.comp_id]
 
+/--
+@isnad1 id=eq.0h5v.s7.aa0529e9799f from=translated src=- shape=f4bf4c25 vocab=8efddf45
+-/
 @[simp] theorem toTwoSuperfunctor_obj (a : B) : F.toTwoSuperfunctor.obj a = F.obj a := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.6baed4388e24 from=translated src=- shape=5a29b3ef vocab=b104bcfe
+-/
 @[simp] theorem toTwoSuperfunctor_map {a b : B} (f : a ⟶ b) :
     F.toTwoSuperfunctor.map f = F.map f := rfl
 
+/--
+@isnad1 id=eq.0h9v.s9.8e0b5e53bc69 from=translated src=- shape=3d925536 vocab=d0ca7ed7
+-/
 @[simp] theorem toTwoSuperfunctor_map₂ {a b : B} {f g : a ⟶ b} (η : f ⟶ g) :
     F.toTwoSuperfunctor.map₂ η = F.map₂ η := rfl
 
+/--
+@isnad1 id=eq.0h9v.s9.602222c94415 from=translated src=- shape=eb68c817 vocab=b0cce367
+-/
 theorem toTwoSuperfunctor_mapComp {a b c : B} (f : a ⟶ b) (g : b ⟶ c) :
     F.toTwoSuperfunctor.mapComp f g = eqToIso (F.map_comp f g).symm := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.d1641f5cb038 from=translated src=- shape=ea118d73 vocab=0423318f
+-/
 theorem toTwoSuperfunctor_mapId (a : B) :
     F.toTwoSuperfunctor.mapId a = eqToIso (F.map_id a).symm := rfl
 
-/-- The 2-superfunctor with strict data is strict.-/
+/-- The 2-superfunctor with strict data is strict.
+@isnad1 id=isstrict.0h4v.s7.6c9b1b843f2d from=translated src=- shape=9f247feb vocab=782bffbd
+-/
 theorem isStrict : F.toTwoSuperfunctor.IsStrict where
   map_comp := F.map_comp
   map_id := F.map_id

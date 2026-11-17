@@ -42,6 +42,9 @@ variable {S : Signature.{u₀, u₁, u₂}}
 
 /-! ## Parities of diagrams -/
 
+/--
+@isnad1 id=eq.0h4v.s7.39bf455c02b9 from=translated src=- shape=dc6e1cbe vocab=9644691b
+-/
 theorem Diagram.degree_parityDeg {a b : Obj S} (f : a ⟶ b) :
     Diagram.degree (Presentation.parityDeg S) f = (Diagram.oddCount f : ZMod 2) := by
   obtain ⟨ls, h⟩ := f
@@ -55,14 +58,18 @@ theorem Diagram.degree_parityDeg {a b : Obj S} (f : a ⟶ b) :
     by_cases hL : S.odd L.gen <;>
       simp [Presentation.parityDeg, Diagram.oddCountList, hL]
 
-/-- The Koszul sign of two diagrams of parities `p` and `q`.-/
+/-- The Koszul sign of two diagrams of parities `p` and `q`.
+@isnad1 id=eq.2h9v.s7.6a8d8a434790 from=translated src=- shape=96c961f3 vocab=019e45d2
+-/
 theorem Diagram.neg_one_pow_oddCount {a b a' b' : Obj S} (f : a ⟶ b) (g : a' ⟶ b')
     {p q : ZMod 2} (hf : Diagram.degree (Presentation.parityDeg S) f = p)
     (hg : Diagram.degree (Presentation.parityDeg S) g = q) :
     (-1 : ℤ) ^ (Diagram.oddCount f * Diagram.oddCount g) = koszulSign p q := by
   rw [← koszulSign_natCast, ← Diagram.degree_parityDeg, ← Diagram.degree_parityDeg, hf, hg]
 
-/-- An even signature has parity-homogeneous presentations only.-/
+/-- An even signature has parity-homogeneous presentations only.
+@isnad1 id=isparity.0h3v.s4.d1e182d20876 from=translated src=- shape=ab696773 vocab=0010edbf
+-/
 theorem Presentation.isParityHomogeneous_of_isEven [S.IsEven] {R : Type w} [CommRing R]
     (P : Presentation.{w, v} S R) : P.IsParityHomogeneous := by
   intro i
@@ -77,7 +84,9 @@ variable {R : Type w} [CommRing R] (P : Presentation.{w, v} S R)
 
 variable {P} in
 /-- Induction on a homogeneous morphism of the presented category: it suffices to treat
-classes of diagrams of the given degree, `0`, sums and scalar multiples.-/
+classes of diagrams of the given degree, `0`, sums and scalar multiples.
+@isnad1 id=var.1h14v.s11.45501e5c048a from=translated src=- shape=f09f7d24 vocab=6276cfec
+-/
 theorem homDeg_induction {A : Type*} [AddCommMonoid A] {deg : S.Gen → A} {a b : Obj S} {d : A}
     {motive : (P.obj a ⟶ P.obj b) → Prop}
     (diag : ∀ f : a ⟶ b, Diagram.degree deg f = d → motive (P.diag f)) (zero : motive 0)
@@ -96,12 +105,17 @@ theorem homDeg_induction {A : Type*} [AddCommMonoid A] {deg : S.Gen → A} {a b 
   | smul r y _ hy => rw [lin_smul]; exact smul r _ hy
 
 variable {P} in
+/--
+@isnad1 id=mem.1h7v.s9.b4cf7f0cf9c6 from=translated src=- shape=acad081f vocab=9afcae9c
+-/
 theorem eqToHom_mem_homDeg {A : Type*} [AddCommMonoid A] (deg : S.Gen → A) {a b : Obj S}
     (h : P.obj a = P.obj b) : eqToHom h ∈ P.homDeg deg a b 0 := by
   rw [P.eqToHom_obj h]
   exact diag_mem_homDeg' (Diagram.degree_eqToHom deg _)
 
-/-- Whiskering on the left preserves parities.-/
+/-- Whiskering on the left preserves parities.
+@isnad1 id=mem.1h10v.s10.87b68bbdcbe4 from=translated src=- shape=513bcadf vocab=abe0152c
+-/
 theorem wL_mem {A : Type*} [AddCommMonoid A] (deg : S.Gen → A) (a : Obj S) {b b' : Obj S}
     {d : A} {g : P.obj b ⟶ P.obj b'} (hg : g ∈ P.homDeg deg b b' d) :
     P.wL a g ∈ P.homDeg deg (a.tensor b) (a.tensor b') d := by
@@ -110,7 +124,9 @@ theorem wL_mem {A : Type*} [AddCommMonoid A] (deg : S.Gen → A) (a : Obj S) {b 
       (eqToHom_mem_homDeg (P := P) deg (congrArg P.obj (Obj.tensor_eq_whisker_nil a b').symm)))
   rwa [zero_add, add_zero] at this
 
-/-- Right whiskering (for objects starting in a region `r`) preserves parities.-/
+/-- Right whiskering (for objects starting in a region `r`) preserves parities.
+@isnad1 id=mem.3h11v.s10.67ce5c4d6e35 from=translated src=- shape=b52bce94 vocab=3ca003b7
+-/
 theorem wRAt_mem {A : Type*} [AddCommMonoid A] (deg : S.Gen → A) (r : S.Region) {a a' : Obj S}
     {d : A} {f : P.obj a ⟶ P.obj a'} (hf : f ∈ P.homDeg deg a a' d) (b : Obj S)
     (ha : a.start = r) (ha' : a'.start = r) :
@@ -122,7 +138,9 @@ theorem wRAt_mem {A : Type*} [AddCommMonoid A] (deg : S.Gen → A) (r : S.Region
   rwa [zero_add, add_zero] at this
 
 /-- The super interchange law for homogeneous morphisms of the presented category, for
-general regions.-/
+general regions.
+@isnad1 id=eq.5h12v.s11.08f1e739647c from=translated src=- shape=1fbb1764 vocab=51513fc7
+-/
 theorem wRAt_comp_wL_super {a a' b b' : Obj S} {r : S.Region} (h : a.Composable b)
     {p q : ZMod 2} {f : P.obj a ⟶ P.obj a'} {g : P.obj b ⟶ P.obj b'}
     (hf : f ∈ P.homDeg (parityDeg S) a a' p) (hg : g ∈ P.homDeg (parityDeg S) b b' q)
@@ -146,7 +164,9 @@ section Monoidal
 
 variable [Subsingleton S.Region] [Inhabited S.Region]
 
-/-- Right whiskering preserves parities.-/
+/-- Right whiskering preserves parities.
+@isnad1 id=mem.1h10v.s10.a37242e34efa from=translated src=- shape=48257202 vocab=9e903a5b
+-/
 theorem wR_mem {A : Type*} [AddCommMonoid A] (deg : S.Gen → A) {a a' : Obj S} {d : A}
     {f : P.obj a ⟶ P.obj a'} (hf : f ∈ P.homDeg deg a a' d) (b : Obj S) :
     P.wR f b ∈ P.homDeg deg (a.tensor b) (a'.tensor b) d := by
@@ -156,7 +176,9 @@ theorem wR_mem {A : Type*} [AddCommMonoid A] (deg : S.Gen → A) {a a' : Obj S} 
   rwa [zero_add, add_zero] at this
 
 /-- The super interchange law for homogeneous morphisms of the presented category of a
-monoidal signature: `(f ⊗ 1) ≫ (1 ⊗ g) = (-1)^{|f||g|} (1 ⊗ g) ≫ (f ⊗ 1)`.-/
+monoidal signature: `(f ⊗ 1) ≫ (1 ⊗ g) = (-1)^{|f||g|} (1 ⊗ g) ≫ (f ⊗ 1)`.
+@isnad1 id=eq.2h11v.s11.1c8e55ba071a from=translated src=- shape=acd6fa40 vocab=0384c415
+-/
 theorem wR_comp_wL_super {a a' b b' : Obj S} {p q : ZMod 2} {f : P.obj a ⟶ P.obj a'}
     {g : P.obj b ⟶ P.obj b'} (hf : f ∈ P.homDeg (parityDeg S) a a' p)
     (hg : g ∈ P.homDeg (parityDeg S) b b' q) :
@@ -178,7 +200,9 @@ variable {P}
 
 /-- **Presented monoidal supercategories.** For a monoidal signature, with odd generators
 allowed, and parity-homogeneous relations, the presented category is a monoidal supercategory
-(Brundan–Ellis, Definition 1.4), with the data `Presentation.instMonoidalCategoryStruct`.-/
+(Brundan–Ellis, Definition 1.4), with the data `Presentation.instMonoidalCategoryStruct`.
+@isnad1 id=monoidal.1h3v.s6.ed66b2a853b1 from=translated src=- shape=2f72b043 vocab=25fc2172
+-/
 theorem monoidalSupercategory (hP : P.IsParityHomogeneous) :
     letI := P.supercategory hP
     MonoidalSupercategory R P.Presented :=
@@ -210,7 +234,9 @@ theorem monoidalSupercategory (hP : P.IsParityHomogeneous) :
       eqToHom_mem_homDeg (P := P) _ (congrArg P.obj (Obj.tensor_unit _)) }
 
 variable (P) in
-/-- The presented monoidal structure is strict.-/
+/-- The presented monoidal structure is strict.
+@isnad1 id=isstrict.0h3v.s5.b80b800dadef from=translated src=- shape=9aeb6ae1 vocab=fa82df54
+-/
 instance isStrict : MonoidalSupercategory.IsStrict P.Presented where
   tensor_assoc X Y Z := P.tensor_assoc_obj X Y Z
   unit_tensor X := P.unit_tensor_obj X
@@ -221,7 +247,9 @@ instance isStrict : MonoidalSupercategory.IsStrict P.Presented where
 
 set_option backward.isDefEq.respectTransparency false in
 omit [Subsingleton S.Region] [Inhabited S.Region] in
-/-- For an even signature there are no odd morphisms.-/
+/-- For an even signature there are no odd morphisms.
+@isnad1 id=noodd.0h3v.s5.7c0aaa0d3d0e from=translated src=- shape=95b1698a vocab=72e65367
+-/
 theorem noOdd_of_isEven [S.IsEven] :
     letI := P.supercategory P.isParityHomogeneous_of_isEven
     MonoidalSupercategory.NoOdd R P.Presented := by
@@ -235,7 +263,9 @@ theorem noOdd_of_isEven [S.IsEven] :
   exact absurd hf (by decide)
 
 /-- For an even signature, the Mathlib monoidal structure obtained from the monoidal
-supercategory structure is the existing instance `Presentation.instMonoidalCategory`.-/
+supercategory structure is the existing instance `Presentation.instMonoidalCategory`.
+@isnad1 id=eq.0h3v.s6.f7f256197b84 from=translated src=- shape=4792ee5d vocab=24683db1
+-/
 theorem toMonoidalCategory_eq [S.IsEven] :
     letI := P.supercategory P.isParityHomogeneous_of_isEven
     letI := P.monoidalSupercategory P.isParityHomogeneous_of_isEven
@@ -290,7 +320,9 @@ end Bicat
 variable {P}
 
 variable (P) in
-/-- The presented 2-supercategory is strict.-/
+/-- The presented 2-supercategory is strict.
+@isnad1 id=strict.0h3v.s4.1b548c154b4c from=translated src=- shape=f9c9a832 vocab=3199ce41
+-/
 instance Bicat.instStrict : BicategoryStruct.Strict P.Bicat where
   id_comp a := Bicat.Hom.ext (Obj.nil_tensor (Bicat.Hom.start_eq a))
   comp_id _ := Bicat.Hom.ext (Obj.tensor_nil _ _)
@@ -299,7 +331,9 @@ instance Bicat.instStrict : BicategoryStruct.Strict P.Bicat where
   rightUnitor_eqToIso _ := Bicat.isoOfEq_eq_eqToIso _ _
   associator_eqToIso _ _ _ := Bicat.isoOfEq_eq_eqToIso _ _
 
-/-- For an even signature there are no odd 2-morphisms.-/
+/-- For an even signature there are no odd 2-morphisms.
+@isnad1 id=noodd.0h3v.s5.f5c55b304061 from=translated src=- shape=95b1698a vocab=93d96973
+-/
 theorem Bicat.noOdd_of_isEven [S.IsEven] :
     letI := Bicat.supercategory P.isParityHomogeneous_of_isEven
     TwoSupercategory.NoOdd R P.Bicat := by

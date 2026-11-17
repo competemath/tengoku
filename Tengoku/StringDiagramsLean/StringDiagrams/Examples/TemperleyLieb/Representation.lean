@@ -55,7 +55,9 @@ open CategoryTheory
 /-- Basis words of `V^{⊗n}`: lists of length `n` over `Fin 2`.-/
 abbrev Word (n : ℕ) : Type := {w : List (Fin 2) // w.length = n}
 
-/-- `Word n` has `2 ^ n` elements.-/
+/-- `Word n` has `2 ^ n` elements.
+@isnad1 id=eq.0h1v.s5.678584a0af79 from=translated src=- shape=b7e95caf vocab=791b26a1
+-/
 theorem card_word (n : ℕ) : Fintype.card (List.Vector (Fin 2) n) = 2 ^ n := by
   simp [card_vector]
 
@@ -71,6 +73,9 @@ def del : ℕ → List (Fin 2) → List (Fin 2)
   | _ + 1, [] => []
   | p + 1, x :: w => x :: del p w
 
+/--
+@isnad1 id=eq.0h4v.s5.d6f736169de9 from=translated src=- shape=a20e4272 vocab=fac36b6f
+-/
 @[simp] theorem length_ins (p : ℕ) (a b : Fin 2) (w : List (Fin 2)) :
     (ins p a b w).length = w.length + 2 := by
   induction p generalizing w with
@@ -79,6 +84,9 @@ def del : ℕ → List (Fin 2) → List (Fin 2)
     | nil => simp [ins]
     | cons x w => simp [ins, ih]
 
+/--
+@isnad1 id=eq.1h2v.s6.22afaeb43c2e from=translated src=- shape=d987dc62 vocab=ef1a17ea
+-/
 theorem length_del {p : ℕ} {w : List (Fin 2)} (h : p + 2 ≤ w.length) :
     (del p w).length + 2 = w.length := by
   induction p generalizing w with
@@ -87,6 +95,9 @@ theorem length_del {p : ℕ} {w : List (Fin 2)} (h : p + 2 ≤ w.length) :
     | nil => simp at h
     | cons x w => simp [del]; have := ih (w := w) (by simp at h; omega); omega
 
+/--
+@isnad1 id=eq.2h5v.s6.bee8a2584fb5 from=translated src=- shape=6c6f9490 vocab=80b7062a
+-/
 theorem getD_ins_lt {p q : ℕ} (a b : Fin 2) {w : List (Fin 2)} (hq : q < p) (hp : p ≤ w.length) :
     (ins p a b w).getD q 0 = w.getD q 0 := by
   induction p generalizing w q with
@@ -97,6 +108,9 @@ theorem getD_ins_lt {p q : ℕ} (a b : Fin 2) {w : List (Fin 2)} (hq : q < p) (h
       | zero => simp [ins]
       | succ q => simp only [ins, List.getD_cons_succ]; exact ih (by omega) (by simp at hp; omega)
 
+/--
+@isnad1 id=eq.1h4v.s6.579b03797fdf from=translated src=- shape=0fc1fe8b vocab=49d4742a
+-/
 @[simp] theorem getD_ins_self (p : ℕ) (a b : Fin 2) {w : List (Fin 2)} (hp : p ≤ w.length) :
     (ins p a b w).getD p 0 = a := by
   induction p generalizing w with
@@ -105,6 +119,9 @@ theorem getD_ins_lt {p q : ℕ} (a b : Fin 2) {w : List (Fin 2)} (hq : q < p) (h
     | nil => simp at hp
     | cons x w => simp only [ins, List.getD_cons_succ]; exact ih (by simp at hp; omega)
 
+/--
+@isnad1 id=eq.1h4v.s6.cc1fd05a48a6 from=translated src=- shape=fdefca6d vocab=5fc51ddb
+-/
 @[simp] theorem getD_ins_succ (p : ℕ) (a b : Fin 2) {w : List (Fin 2)} (hp : p ≤ w.length) :
     (ins p a b w).getD (p + 1) 0 = b := by
   induction p generalizing w with
@@ -113,6 +130,9 @@ theorem getD_ins_lt {p q : ℕ} (a b : Fin 2) {w : List (Fin 2)} (hq : q < p) (h
     | nil => simp at hp
     | cons x w => simp only [ins, List.getD_cons_succ]; exact ih (by simp at hp; omega)
 
+/--
+@isnad1 id=eq.2h5v.s6.2da94efd7e34 from=translated src=- shape=4ef6a2d7 vocab=5fc51ddb
+-/
 theorem getD_ins_ge {p q : ℕ} (a b : Fin 2) {w : List (Fin 2)} (hq : p ≤ q) (hp : p ≤ w.length) :
     (ins p a b w).getD (q + 2) 0 = w.getD q 0 := by
   induction p generalizing w q with
@@ -124,6 +144,9 @@ theorem getD_ins_ge {p q : ℕ} (a b : Fin 2) {w : List (Fin 2)} (hq : p ≤ q) 
       simp only [ins, show q + 1 + 2 = (q + 2) + 1 by omega, List.getD_cons_succ]
       exact ih (by omega) (by simp at hp; omega)
 
+/--
+@isnad1 id=eq.2h3v.s6.44af2ca8e9b1 from=translated src=- shape=a141e1e7 vocab=b82afb53
+-/
 theorem getD_del_lt {p q : ℕ} {w : List (Fin 2)} (hq : q < p) (hp : p + 2 ≤ w.length) :
     (del p w).getD q 0 = w.getD q 0 := by
   induction p generalizing w q with
@@ -134,6 +157,9 @@ theorem getD_del_lt {p q : ℕ} {w : List (Fin 2)} (hq : q < p) (hp : p + 2 ≤ 
       | zero => simp [del]
       | succ q => simp only [del, List.getD_cons_succ]; exact ih (by omega) (by simp at hp; omega)
 
+/--
+@isnad1 id=eq.1h3v.s6.ea20b19655fc from=translated src=- shape=7dc70ee2 vocab=05e7f420
+-/
 theorem getD_del_ge {p q : ℕ} {w : List (Fin 2)} (hq : p ≤ q) :
     (del p w).getD q 0 = w.getD (q + 2) 0 := by
   induction p generalizing w q with
@@ -145,6 +171,9 @@ theorem getD_del_ge {p q : ℕ} {w : List (Fin 2)} (hq : p ≤ q) :
       simp only [del, show q + 1 + 2 = (q + 2) + 1 by omega, List.getD_cons_succ]
       exact ih (by omega)
 
+/--
+@isnad1 id=eq.1h4v.s5.db2244e67f6f from=translated src=- shape=489f1e7b vocab=2835894f
+-/
 @[simp] theorem del_ins (p : ℕ) (a b : Fin 2) {w : List (Fin 2)} (hp : p ≤ w.length) :
     del p (ins p a b w) = w := by
   induction p generalizing w with
@@ -153,6 +182,9 @@ theorem getD_del_ge {p q : ℕ} {w : List (Fin 2)} (hq : p ≤ q) :
     | nil => simp at hp
     | cons x w => simp only [ins, del]; rw [ih (by simp at hp; omega)]
 
+/--
+@isnad1 id=eq.1h4v.s6.1f996ee6dee8 from=translated src=- shape=a13cf0fa vocab=fe8bd706
+-/
 theorem del_succ_ins {p : ℕ} (a b : Fin 2) {w : List (Fin 2)} (hp : p < w.length) :
     del (p + 1) (ins p a b w) = w.set p a := by
   induction p generalizing w with
@@ -163,6 +195,9 @@ theorem del_succ_ins {p : ℕ} (a b : Fin 2) {w : List (Fin 2)} (hp : p < w.leng
     | nil => simp at hp
     | cons x w => simp only [ins, del, List.set_cons_succ]; rw [ih (by simp at hp; omega)]
 
+/--
+@isnad1 id=eq.1h4v.s6.907a4db7f771 from=translated src=- shape=57b22015 vocab=fe8bd706
+-/
 theorem del_ins_succ {p : ℕ} (a b : Fin 2) {w : List (Fin 2)} (hp : p < w.length) :
     del p (ins (p + 1) a b w) = w.set p b := by
   induction p generalizing w with
@@ -173,10 +208,16 @@ theorem del_ins_succ {p : ℕ} (a b : Fin 2) {w : List (Fin 2)} (hp : p < w.leng
     | nil => simp at hp
     | cons x w => simp only [ins, del, List.set_cons_succ]; rw [ih (by simp at hp; omega)]
 
+/--
+@isnad1 id=eq.1h2v.s6.4f852ce9d760 from=translated src=- shape=555f04ca vocab=96179572
+-/
 theorem set_getD_self {p : ℕ} {w : List (Fin 2)} (hp : p < w.length) : w.set p (w.getD p 0) = w := by
   rw [List.getD_eq_getElem?_getD, List.getElem?_eq_getElem hp, Option.getD_some]
   exact List.set_getElem_self hp
 
+/--
+@isnad1 id=eq.1h7v.s6.38ec9a368fb6 from=translated src=- shape=909001e2 vocab=44545515
+-/
 theorem ins_ins {p k : ℕ} (a b c d : Fin 2) {w : List (Fin 2)} (h : p + k ≤ w.length) :
     ins (p + 2 + k) c d (ins p a b w) = ins p a b (ins (p + k) c d w) := by
   induction p generalizing w with
@@ -188,6 +229,9 @@ theorem ins_ins {p k : ℕ} (a b c d : Fin 2) {w : List (Fin 2)} (h : p + k ≤ 
         ins]
       rw [ih (by simp at h; omega)]
 
+/--
+@isnad1 id=eq.1h3v.s6.281a09c20da9 from=translated src=- shape=a642c3bf vocab=ef1a17ea
+-/
 theorem del_del {p k : ℕ} {w : List (Fin 2)} (h : p + k + 4 ≤ w.length) :
     del p (del (p + 2 + k) w) = del (p + k) (del p w) := by
   induction p generalizing w with
@@ -205,6 +249,9 @@ theorem del_del {p k : ℕ} {w : List (Fin 2)} (h : p + k + 4 ≤ w.length) :
         del]
       rw [ih (by simp at h; omega)]
 
+/--
+@isnad1 id=eq.1h5v.s6.0f86b23a3222 from=translated src=- shape=7214fe47 vocab=6eeb5600
+-/
 theorem del_ins_far {p k : ℕ} (a b : Fin 2) {w : List (Fin 2)} (h : p + k + 2 ≤ w.length) :
     del (p + 2 + k) (ins p a b w) = ins p a b (del (p + k) w) := by
   induction p generalizing w with
@@ -216,6 +263,9 @@ theorem del_ins_far {p k : ℕ} (a b : Fin 2) {w : List (Fin 2)} (h : p + k + 2 
         ins, del]
       rw [ih (by simp at h; omega)]
 
+/--
+@isnad1 id=eq.1h5v.s6.e804b1da1f87 from=translated src=- shape=5378e269 vocab=6eeb5600
+-/
 theorem del_ins_far' {p k : ℕ} (c d : Fin 2) {w : List (Fin 2)} (h : p + 2 + k ≤ w.length) :
     del p (ins (p + 2 + k) c d w) = ins (p + k) c d (del p w) := by
   induction p generalizing w with
@@ -259,9 +309,15 @@ def capOp (p : ℕ) : Fn R →ₗ[R] Fn R where
   map_smul' r F := by funext w; simp only [Pi.smul_apply, smul_eq_mul, RingHom.id_apply,
     Finset.mul_sum, mul_left_comm]
 
+/--
+@isnad1 id=eq.0h4v.s8.95c0cb1be052 from=translated src=- shape=f49af16a vocab=b490c02f
+-/
 @[simp] theorem cupOp_apply (p : ℕ) (F : Fn R) (w : List (Fin 2)) :
     cupOp R p F w = cupCoeff R (w.getD p 0) (w.getD (p + 1) 0) * F (del p w) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.ac8094b693bb from=translated src=- shape=04037910 vocab=d7f2e1ec
+-/
 @[simp] theorem capOp_apply (p : ℕ) (F : Fn R) (w : List (Fin 2)) :
     capOp R p F w = ∑ a : Fin 2, ∑ b : Fin 2, capCoeff R a b * F (ins p a b w) := rfl
 
@@ -276,8 +332,14 @@ def evalLayers : List (Layer sig) → (Fn R →ₗ[R] Fn R)
   | [] => LinearMap.id
   | L :: ls => evalLayers ls ∘ₗ op R L
 
+/--
+@isnad1 id=eq.0h1v.s7.843506e5f159 from=translated src=- shape=4e0f9545 vocab=4edcc091
+-/
 @[simp] theorem evalLayers_nil : evalLayers R [] = LinearMap.id := rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.f0b127f9ac1b from=translated src=- shape=4c8ad06c vocab=2e2a8e1e
+-/
 @[simp] theorem evalLayers_cons (L : Layer sig) (ls : List (Layer sig)) :
     evalLayers R (L :: ls) = evalLayers R ls ∘ₗ op R L := rfl
 
@@ -289,6 +351,9 @@ variable {R}
 def Agree (n : ℕ) (F F' : Fn R) : Prop := ∀ w : List (Fin 2), w.length = n → F w = F' w
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=agree.1h4v.s9.a4a1e1d7fbf5 from=translated src=- shape=f8404d01 vocab=afe7dbff
+-/
 theorem op_agree (L : Layer sig) {F F' : Fn R} (h : Agree L.dom.word.length F F') :
     Agree L.cod.word.length (op R L F) (op R L F') := by
   obtain ⟨s, l, g, r⟩ := L
@@ -305,6 +370,9 @@ theorem op_agree (L : Layer sig) {F F' : Fn R} (h : Agree L.dom.word.length F F'
     refine Finset.sum_congr rfl fun a _ => Finset.sum_congr rfl fun b _ => ?_
     rw [h _ (by simp [sig]; omega)]
 
+/--
+@isnad1 id=agree.2h6v.s9.c17820bc7341 from=translated src=- shape=5d4ecd3a vocab=99200f51
+-/
 theorem evalLayers_agree {a b : Obj sig} {ls : List (Layer sig)} (hc : Chain a ls b)
     {F F' : Fn R} (h : Agree a.word.length F F') :
     Agree b.word.length (evalLayers R ls F) (evalLayers R ls F') := by
@@ -324,9 +392,15 @@ def ext (n : ℕ) : (Word n → R) →ₗ[R] Fn R where
   map_add' f g := by funext w; by_cases h : w.length = n <;> simp [h]
   map_smul' r f := by funext w; by_cases h : w.length = n <;> simp [h]
 
+/--
+@isnad1 id=eq.1h4v.s8.2d8ad6d8ae88 from=translated src=- shape=83c36ad6 vocab=ff7a563b
+-/
 theorem ext_apply_of_length {n : ℕ} (f : Word n → R) {w : List (Fin 2)} (h : w.length = n) :
     ext R n f w = f ⟨w, h⟩ := dite_eq_left h
 
+/--
+@isnad1 id=eq.0h4v.s8.2e4704df8405 from=translated src=- shape=c9d82b71 vocab=68704b3d
+-/
 @[simp] theorem ext_apply_word {n : ℕ} (f : Word n → R) (w : Word n) : ext R n f w.1 = f w :=
   dite_eq_left w.2
 
@@ -336,6 +410,9 @@ def res (n : ℕ) : Fn R →ₗ[R] (Word n → R) where
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.75346301f24b from=translated src=- shape=76af5df3 vocab=02817ab1
+-/
 @[simp] theorem res_apply (n : ℕ) (F : Fn R) (w : Word n) : res R n F w = F w.1 := rfl
 
 /-- The restriction of an operator on `Fn R` to words of lengths `n` (source) and `m`
@@ -343,6 +420,9 @@ def res (n : ℕ) : Fn R →ₗ[R] (Word n → R) where
 def restrict (n m : ℕ) (T : Fn R →ₗ[R] Fn R) : (Word n → R) →ₗ[R] (Word m → R) :=
   res R m ∘ₗ T ∘ₗ ext R n
 
+/--
+@isnad1 id=eq.0h6v.s10.b1bdf0bee1d6 from=translated src=- shape=f8d8e756 vocab=e34f1817
+-/
 @[simp] theorem restrict_apply (n m : ℕ) (T : Fn R →ₗ[R] Fn R) (f : Word n → R) (w : Word m) :
     restrict R n m T f w = T (ext R n f) w.1 := rfl
 
@@ -358,11 +438,26 @@ def loc : LocalInterpretation sig R (Fn R) (fun n => Word n → R) where
   res_op_ext_res L _ := LinearMap.ext fun _ => funext fun w =>
     op_agree L (fun _ hw => ext_apply_of_length R _ hw) w.1 w.2
 
+/--
+@isnad1 id=eq.0h2v.s7.4f7e39c29d17 from=translated src=- shape=49a8ea21 vocab=f07c4704
+-/
 @[simp] theorem loc_κ (a : Obj sig) : (loc R).κ a = a.word.length := rfl
+/--
+@isnad1 id=eq.0h2v.s8.7555eab27b40 from=translated src=- shape=4beb551d vocab=8388675a
+-/
 @[simp] theorem loc_ext (n : ℕ) : (loc R).ext n = ext R n := rfl
+/--
+@isnad1 id=eq.0h2v.s8.167d6b5b2ee8 from=translated src=- shape=22608cf6 vocab=f16d0d83
+-/
 @[simp] theorem loc_res (n : ℕ) : (loc R).res n = res R n := rfl
+/--
+@isnad1 id=eq.0h2v.s8.e72c8c7e5299 from=translated src=- shape=f05c800e vocab=48836215
+-/
 @[simp] theorem loc_op (L : Layer sig) : (loc R).op L = op R L := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.09027c76ae9e from=translated src=- shape=9c2ab63e vocab=e4b947ac
+-/
 theorem loc_opList (ls : List (Layer sig)) : (loc R).opList ls = evalLayers R ls := by
   induction ls with
   | nil => rfl
@@ -372,6 +467,9 @@ theorem loc_opList (ls : List (Layer sig)) : (loc R).opList ls = evalLayers R ls
 goes to the restriction of its operator.-/
 def interp : Interpretation sig (ModuleCat R) := (loc R).interp
 
+/--
+@isnad1 id=eq.1h6v.s10.cecf6942289c from=translated src=- shape=b508bac5 vocab=feacc815
+-/
 theorem mapChain_apply {a b : Obj sig} (ls : List (Layer sig)) (h : Chain a ls b)
     (f : Word a.word.length → R) (w : Word b.word.length) :
     ((interp R).mapChain a ls b h).hom f w = evalLayers R ls (ext R _ f) w.1 := by
@@ -380,7 +478,9 @@ theorem mapChain_apply {a b : Obj sig} (ls : List (Layer sig)) (h : Chain a ls b
   rfl
 
 /-- The functor of the interpretation on a diagram: the composite of the layer operators,
-evaluated on words of the target length.-/
+evaluated on words of the target length.
+@isnad1 id=eq.0h6v.s10.fd709d706863 from=translated src=- shape=950dbbbd vocab=67f85781
+-/
 theorem map_apply {a b : Obj sig} (d : a ⟶ b) (f : Word a.word.length → R)
     (w : Word b.word.length) :
     ((interp R).functor.map d).hom f w = evalLayers R (Diagram.layers d) (ext R _ f) w.1 :=
@@ -390,18 +490,28 @@ theorem map_apply {a b : Obj sig} (d : a ⟶ b) (f : Word a.word.length → R)
 
 variable {R}
 
+/--
+@isnad1 id=eq.0h4v.s7.13d2072295c9 from=translated src=- shape=f9205250 vocab=1210b302
+-/
 @[simp] theorem op_cup (s : Unit) (l r : List Unit) : op R ⟨s, l, .cup, r⟩ = cupOp R l.length := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.2cdf802c755e from=translated src=- shape=f9205250 vocab=3bacea8d
+-/
 @[simp] theorem op_cap (s : Unit) (l r : List Unit) : op R ⟨s, l, .cap, r⟩ = capOp R l.length := rfl
 
-/-- The loop relation: `cap_p ∘ cup_p = -2`.-/
+/-- The loop relation: `cap_p ∘ cup_p = -2`.
+@isnad1 id=eq.1h4v.s9.6cd3c127e1fb from=translated src=- shape=fa7ad0bd vocab=192ca20a
+-/
 theorem loop_op {p : ℕ} (F : Fn R) {w : List (Fin 2)} (hp : p ≤ w.length) :
     capOp R p (cupOp R p F) w = -2 * F w := by
   simp only [capOp_apply, cupOp_apply, getD_ins_self _ _ _ hp, getD_ins_succ _ _ _ hp,
     del_ins _ _ _ hp, Fin.sum_univ_two, cupCoeff, capCoeff]
   simp; ring
 
-/-- The zigzag relation `cap_p ∘ cup_{p+1} = 1`.-/
+/-- The zigzag relation `cap_p ∘ cup_{p+1} = 1`.
+@isnad1 id=eq.1h4v.s9.e9b500b26ead from=translated src=- shape=951a56ae vocab=3a5beacd
+-/
 theorem zigzagA_op {p : ℕ} (F : Fn R) {w : List (Fin 2)} (hp : p < w.length) :
     capOp R p (cupOp R (p + 1) F) w = F w := by
   have e : F w = F (w.set p (w.getD p 0)) := by rw [set_getD_self hp]
@@ -410,7 +520,9 @@ theorem zigzagA_op {p : ℕ} (F : Fn R) {w : List (Fin 2)} (hp : p < w.length) :
   generalize w.getD p 0 = c
   fin_cases c <;> simp [Fin.sum_univ_two, cupCoeff, capCoeff]
 
-/-- The zigzag relation `cap_{p+1} ∘ cup_p = 1`.-/
+/-- The zigzag relation `cap_{p+1} ∘ cup_p = 1`.
+@isnad1 id=eq.1h4v.s9.589767d700e1 from=translated src=- shape=4f308477 vocab=3a5beacd
+-/
 theorem zigzagB_op {p : ℕ} (F : Fn R) {w : List (Fin 2)} (hp : p < w.length) :
     capOp R (p + 1) (cupOp R p F) w = F w := by
   have e : F w = F (w.set p (w.getD p 0)) := by rw [set_getD_self hp]
@@ -419,13 +531,17 @@ theorem zigzagB_op {p : ℕ} (F : Fn R) {w : List (Fin 2)} (hp : p < w.length) :
   generalize w.getD p 0 = c
   fin_cases c <;> simp [Fin.sum_univ_two, cupCoeff, capCoeff]
 
-/-- Interchange of two caps.-/
+/-- Interchange of two caps.
+@isnad1 id=eq.1h5v.s10.60f1791b85dc from=translated src=- shape=f10feecb vocab=40a9f84a
+-/
 theorem cap_cap_op {p k : ℕ} (F : Fn R) {w : List (Fin 2)} (h : p + k ≤ w.length) :
     capOp R (p + k) (capOp R p F) w = capOp R p (capOp R (p + 2 + k) F) w := by
   simp only [capOp_apply, ins_ins _ _ _ _ h, Fin.sum_univ_two]
   ring
 
-/-- Interchange of two cups.-/
+/-- Interchange of two cups.
+@isnad1 id=eq.1h5v.s10.286bb5f1247f from=translated src=- shape=c59f6cdb vocab=e8216661
+-/
 theorem cup_cup_op {p k : ℕ} (F : Fn R) {w : List (Fin 2)} (h : p + k + 4 ≤ w.length) :
     cupOp R (p + 2 + k) (cupOp R p F) w = cupOp R p (cupOp R (p + k) F) w := by
   simp only [cupOp_apply]
@@ -435,7 +551,9 @@ theorem cup_cup_op {p k : ℕ} (F : Fn R) {w : List (Fin 2)} (h : p + k + 4 ≤ 
     show p + k + 2 = p + 2 + k by omega, show p + k + 1 + 2 = p + 2 + k + 1 by omega, del_del h]
   ring
 
-/-- Interchange of a cap (on the left) and a cup (on the right).-/
+/-- Interchange of a cap (on the left) and a cup (on the right).
+@isnad1 id=eq.1h5v.s10.f1b5f2e68fa6 from=translated src=- shape=7c681e26 vocab=91cdae75
+-/
 theorem cap_cup_op {p k : ℕ} (F : Fn R) {w : List (Fin 2)} (h : p + k + 2 ≤ w.length) :
     cupOp R (p + k) (capOp R p F) w = capOp R p (cupOp R (p + 2 + k) F) w := by
   simp only [cupOp_apply, capOp_apply]
@@ -445,7 +563,9 @@ theorem cap_cup_op {p k : ℕ} (F : Fn R) {w : List (Fin 2)} (h : p + k + 2 ≤ 
     getD_ins_ge _ _ (show p ≤ p + k + 1 by omega) (show p ≤ w.length by omega), Fin.sum_univ_two]
   ring
 
-/-- Interchange of a cup (on the left) and a cap (on the right).-/
+/-- Interchange of a cup (on the left) and a cap (on the right).
+@isnad1 id=eq.1h5v.s10.047cc981d908 from=translated src=- shape=a624daca vocab=91cdae75
+-/
 theorem cup_cap_op {p k : ℕ} (F : Fn R) {w : List (Fin 2)} (h : p + 2 + k ≤ w.length) :
     capOp R (p + 2 + k) (cupOp R p F) w = cupOp R p (capOp R (p + k) F) w := by
   simp only [cupOp_apply, capOp_apply, del_ins_far' _ _ h,
@@ -455,9 +575,21 @@ theorem cup_cap_op {p k : ℕ} (F : Fn R) {w : List (Fin 2)} (h : p + 2 + k ≤ 
 
 /-! ## Soundness -/
 
+/--
+@isnad1 id=eq.0h0v.s3.4ce8376b8dee from=translated src=- shape=5da1c04a vocab=b6373ecc
+-/
 @[simp] theorem sig_dom_cup : sig.dom .cup = [] := rfl
+/--
+@isnad1 id=eq.0h0v.s3.76ac3e5bd95e from=translated src=- shape=ff72bcf2 vocab=3c096779
+-/
 @[simp] theorem sig_cod_cup : sig.cod .cup = [(), ()] := rfl
+/--
+@isnad1 id=eq.0h0v.s3.7664d0e03055 from=translated src=- shape=ff72bcf2 vocab=a4f580c9
+-/
 @[simp] theorem sig_dom_cap : sig.dom .cap = [(), ()] := rfl
+/--
+@isnad1 id=eq.0h0v.s3.7042752df229 from=translated src=- shape=5da1c04a vocab=0cf37852
+-/
 @[simp] theorem sig_cod_cap : sig.cod .cap = [] := rfl
 
 variable (R)
@@ -466,6 +598,9 @@ variable (R)
 
 variable {R}
 
+/--
+@isnad1 id=and.2h6v.s6.ccad83f55630 from=translated src=- shape=3becec6a vocab=fccc8565
+-/
 theorem ins_inj {p : ℕ} {a b a' b' : Fin 2} {w : List (Fin 2)} (hp : p ≤ w.length)
     (h : ins p a b w = ins p a' b' w) : a = a' ∧ b = b' := by
   have h₁ := congrArg (fun l => l.getD p 0) h

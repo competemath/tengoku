@@ -114,24 +114,42 @@ namespace PreadditiveBicategory
 variable {B : Type u₁} [Bicategory.{w₁, v₁} B] [∀ a b : B, Preadditive (a ⟶ b)]
   [PreadditiveBicategory B]
 
+/--
+@isnad1 id=additive.0h5v.s6.a73bfc6a7e07 from=translated src=- shape=bc3d8430 vocab=96384a07
+-/
 instance postcomp_additive (a : B) {b c : B} (g : b ⟶ c) : (postcomp a g).Additive where
   map_add := add_whiskerRight _ _ _
 
+/--
+@isnad1 id=additive.0h5v.s6.137ead1f995d from=translated src=- shape=0b3b71bc vocab=284f4599
+-/
 instance precomp_additive (c : B) {a b : B} (f : a ⟶ b) : (precomp c f).Additive where
   map_add := whiskerLeft_add _ _ _
 
+/--
+@isnad1 id=eq.0h8v.s9.d9f4abb3b983 from=translated src=- shape=5bf7c421 vocab=810c9a0e
+-/
 theorem whiskerLeft_neg {a b c : B} (f : a ⟶ b) {g h : b ⟶ c} (η : g ⟶ h) :
     f ◁ (-η) = -(f ◁ η) :=
   (precomp c f).map_neg
 
+/--
+@isnad1 id=eq.0h8v.s9.a01ea5588283 from=translated src=- shape=60ca4d88 vocab=16a5fec2
+-/
 theorem neg_whiskerRight {a b c : B} {f g : a ⟶ b} (η : f ⟶ g) (h : b ⟶ c) :
     (-η) ▷ h = -(η ▷ h) :=
   (postcomp a h).map_neg
 
+/--
+@isnad1 id=eq.0h7v.s8.a54972753279 from=translated src=- shape=90e73a8b vocab=8e665c71
+-/
 @[simp] theorem whiskerLeft_zero {a b c : B} (f : a ⟶ b) {g h : b ⟶ c} :
     f ◁ (0 : g ⟶ h) = 0 :=
   (precomp c f).map_zero _ _
 
+/--
+@isnad1 id=eq.0h7v.s8.8e8eaf6e7e1c from=translated src=- shape=7a99e96a vocab=bad141ca
+-/
 @[simp] theorem zero_whiskerRight {a b c : B} {f g : a ⟶ b} (h : b ⟶ c) :
     (0 : f ⟶ g) ▷ h = 0 :=
   (postcomp a h).map_zero _ _
@@ -144,9 +162,15 @@ variable {R : Type w} [CommRing R] {B : Type u₁} [Bicategory.{w₁, v₁} B]
   [∀ a b : B, Preadditive (a ⟶ b)] [∀ a b : B, Linear R (a ⟶ b)] [PreadditiveBicategory B]
   [LinearBicategory R B]
 
+/--
+@isnad1 id=linear.0h6v.s7.c82bb33994a2 from=translated src=- shape=256d08f0 vocab=61e07c29
+-/
 instance postcomp_linear (a : B) {b c : B} (g : b ⟶ c) : (postcomp a g).Linear R where
   map_smul η r := smul_whiskerRight r η g
 
+/--
+@isnad1 id=linear.0h6v.s7.6e05743a4134 from=translated src=- shape=6e895839 vocab=54cd57c4
+-/
 instance precomp_linear (c : B) {a b : B} (f : a ⟶ b) : (precomp c f).Linear R where
   map_smul η r := whiskerLeft_smul f r η
 
@@ -162,17 +186,25 @@ local notation "𝛑" => PiTwoCategory.pi (R := R)
 local notation "𝛃" => PiTwoCategory.β (R := R)
 local notation "𝛏" => PiTwoCategory.ξ (R := R)
 
+/--
+@isnad1 id=eq.0h7v.s9.c0ceb56eeafb from=translated src=- shape=71698309 vocab=27c55d9f
+-/
 theorem β_inv_naturality {a b : B} {f g : a ⟶ b} (η : f ⟶ g) :
     𝛑 a ◁ η ≫ (𝛃 g).inv = (𝛃 f).inv ≫ η ▷ 𝛑 b := by
   rw [Iso.eq_inv_comp, ← Category.assoc, β_naturality, Category.assoc, Iso.hom_inv_id,
     Category.comp_id]
 
+/--
+@isnad1 id=eq.0h3v.s9.e8cb9d00c0ba from=translated src=- shape=cf0d7b83 vocab=d59892c7
+-/
 theorem β_pi_inv (a : B) : (𝛃 (𝛑 a)).inv = -𝟙 _ := by
   rw [← cancel_epi (𝛃 (𝛑 a)).hom, Iso.hom_inv_id, β_pi]
   simp
 
 /-- `ξ_μ π_μ = π_μ ξ_μ`, in the form `π_μ ◁ ξ_μ ≫ ρ = α⁻¹ ≫ ξ_μ ▷ π_μ ≫ λ` (from `β_pi` and
-`ξ_comm`, as in the paper after Definition 5.2(i)).-/
+`ξ_comm`, as in the paper after Definition 5.2(i)).
+@isnad1 id=eq.0h3v.s10.158ac6da8906 from=translated src=- shape=cb2b94f5 vocab=a4d7a537
+-/
 theorem whiskerLeft_ξ_pi (a : B) :
     𝛑 a ◁ (𝛏 a).hom ≫ (ρ_ (𝛑 a)).hom =
       (α_ (𝛑 a) (𝛑 a) (𝛑 a)).inv ≫ (𝛏 a).hom ▷ 𝛑 a ≫ (λ_ (𝛑 a)).hom := by
@@ -188,13 +220,22 @@ theorem whiskerLeft_ξ_pi (a : B) :
 def ξHom {a b : B} (f : a ⟶ b) : (f ≫ 𝛑 b) ≫ 𝛑 b ≅ f :=
   α_ f (𝛑 b) (𝛑 b) ≪≫ whiskerLeftIso f (𝛏 b) ≪≫ ρ_ f
 
+/--
+@isnad1 id=eq.0h5v.s9.feec864cf51c from=translated src=- shape=4b3dc8ad vocab=39dc9970
+-/
 theorem ξHom_hom {a b : B} (f : a ⟶ b) :
     (ξHom (R := R) f).hom = (α_ f (𝛑 b) (𝛑 b)).hom ≫ f ◁ (𝛏 b).hom ≫ (ρ_ f).hom := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.f9fe0604f032 from=translated src=- shape=edbe72fc vocab=ef3a852a
+-/
 theorem ξHom_inv {a b : B} (f : a ⟶ b) :
     (ξHom (R := R) f).inv = (ρ_ f).inv ≫ f ◁ (𝛏 b).inv ≫ (α_ f (𝛑 b) (𝛑 b)).inv := by
   simp [ξHom]
 
+/--
+@isnad1 id=eq.0h7v.s9.3043ccc523c0 from=translated src=- shape=cc068dcd vocab=66fc09df
+-/
 @[reassoc]
 theorem ξHom_naturality {a b : B} {f g : a ⟶ b} (η : f ⟶ g) :
     η ▷ 𝛑 b ▷ 𝛑 b ≫ (ξHom (R := R) g).hom = (ξHom (R := R) f).hom ≫ η := by
@@ -202,6 +243,9 @@ theorem ξHom_naturality {a b : B} {f g : a ⟶ b} (η : f ⟶ g) :
     rightUnitor_naturality]
   simp only [Category.assoc]
 
+/--
+@isnad1 id=eq.0h5v.s8.0f89aa6d0e58 from=translated src=- shape=5a9b5d11 vocab=66fc09df
+-/
 theorem ξHom_pi {a b : B} (f : a ⟶ b) :
     (ξHom (R := R) (f ≫ 𝛑 b)).hom = (ξHom (R := R) f).hom ▷ 𝛑 b := by
   have key : (f ≫ 𝛑 b) ◁ (𝛏 b).hom ≫ (ρ_ (f ≫ 𝛑 b)).hom =
@@ -217,20 +261,38 @@ instance homPiCategory (a b : B) : PiCategory R (a ⟶ b) where
   ξ := NatIso.ofComponents (fun f => ξHom (R := R) f) fun η => ξHom_naturality η
   ξ_pi f := ξHom_pi f
 
+/--
+@isnad1 id=eq.0h5v.s7.c81d92145e9f from=translated src=- shape=ec6e91dc vocab=acd12133
+-/
 @[simp] theorem pi_obj {a b : B} (f : a ⟶ b) : (PiCategory.pi (R := R)).obj f = f ≫ 𝛑 b := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.2889ce4c47d6 from=translated src=- shape=6bb93ea6 vocab=dbd6b2e6
+-/
 @[simp] theorem pi_map {a b : B} {f g : a ⟶ b} (η : f ⟶ g) :
     (PiCategory.pi (R := R)).map η = η ▷ 𝛑 b := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.d169b7d7b289 from=translated src=- shape=89580e26 vocab=d5007f17
+-/
 @[simp] theorem ξApp_hom {a b : B} (f : a ⟶ b) :
     (PiCategory.ξApp (R := R) f).hom = (ξHom (R := R) f).hom := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.a7253986cc32 from=translated src=- shape=bbac6a33 vocab=e12af9e8
+-/
 @[simp] theorem ξApp_inv {a b : B} (f : a ⟶ b) :
     (PiCategory.ξApp (R := R) f).inv = (ξHom (R := R) f).inv := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.6e4c150763f5 from=translated src=- shape=939e9e4b vocab=dddd3ae1
+-/
 @[simp] theorem ξ_hom_app {a b : B} (f : a ⟶ b) :
     (PiCategory.ξ (R := R) (C := a ⟶ b)).hom.app f = (ξHom (R := R) f).hom := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.0a61e806cf56 from=translated src=- shape=df8e9adc vocab=f5c69546
+-/
 @[simp] theorem ξ_inv_app {a b : B} (f : a ⟶ b) :
     (PiCategory.ξ (R := R) (C := a ⟶ b)).inv.app f = (ξHom (R := R) f).inv := rfl
 
@@ -297,12 +359,18 @@ instance (a b : Underlying2 R A) : Preadditive (a ⟶ b) :=
 instance (a b : Underlying2 R A) : Linear R (a ⟶ b) :=
   inferInstanceAs (Linear R (Underlying R (a.obj ⟶ b.obj)))
 
+/--
+@isnad1 id=preaddit.0h2v.s6.fc5dac7bf807 from=translated src=- shape=5fb0044b vocab=31f19eaa
+-/
 instance instPreadditiveBicategory : PreadditiveBicategory (Underlying2 R A) where
   whiskerLeft_add f _ _ η θ :=
     Subtype.ext (TwoSupercategory.whiskerLeft_add (R := R) f.obj η.1 θ.1)
   add_whiskerRight η θ h :=
     Subtype.ext (TwoSupercategory.add_whiskerRight (R := R) η.1 θ.1 h.obj)
 
+/--
+@isnad1 id=linearbi.0h2v.s7.14a64d788e45 from=translated src=- shape=c314beaa vocab=35a36516
+-/
 instance instLinearBicategory : LinearBicategory R (Underlying2 R A) where
   whiskerLeft_smul f _ _ r η := Subtype.ext (TwoSupercategory.whiskerLeft_smul f.obj r η.1)
   smul_whiskerRight r η h := Subtype.ext (TwoSupercategory.smul_whiskerRight r η.1 h.obj)
@@ -322,18 +390,33 @@ instance instPiTwoCategory : PiTwoCategory R (Underlying2 R A) where
   ξ a := Underlying.isoMk (PiTwoSupercategory.ξ (R := R) a.obj) (PiTwoSupercategory.ξ_hom_mem a.obj)
   ξ_comm f := Subtype.ext (PiTwoSupercategory.ξ_comm f.obj)
 
+/--
+@isnad1 id=eq.0h3v.s7.f4d56eedfdae from=translated src=- shape=e525cc8d vocab=c8032f9c
+-/
 @[simp] theorem pi_obj (a : Underlying2 R A) :
     (PiTwoCategory.pi (R := R) a).obj = PiTwoSupercategory.pi (R := R) a.obj := rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.c422a8ddb7f8 from=translated src=- shape=7c70e893 vocab=9d7701b3
+-/
 @[simp] theorem β_hom_val {a b : Underlying2 R A} (f : a ⟶ b) :
     (PiTwoCategory.β (R := R) f).hom.1 = (PiTwoSupercategory.β (R := R) f.obj).hom := rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.00a2f81860c6 from=translated src=- shape=e01ab375 vocab=e386797d
+-/
 @[simp] theorem β_inv_val {a b : Underlying2 R A} (f : a ⟶ b) :
     (PiTwoCategory.β (R := R) f).inv.1 = (PiTwoSupercategory.β (R := R) f.obj).inv := rfl
 
+/--
+@isnad1 id=eq.0h3v.s12.8ac6b182d185 from=translated src=- shape=6e724d10 vocab=05401d6d
+-/
 @[simp] theorem ξ_hom_val (a : Underlying2 R A) :
     (PiTwoCategory.ξ (R := R) a).hom.1 = (PiTwoSupercategory.ξ (R := R) a.obj).hom := rfl
 
+/--
+@isnad1 id=eq.0h3v.s12.104a1cb454d6 from=translated src=- shape=81aa9c00 vocab=55490b98
+-/
 @[simp] theorem ξ_inv_val (a : Underlying2 R A) :
     (PiTwoCategory.ξ (R := R) a).inv.1 = (PiTwoSupercategory.ξ (R := R) a.obj).inv := rfl
 
@@ -404,10 +487,16 @@ def jIso (a : A) : 𝛑 (F.obj a) ≅ F.map (𝛑 a) :=
   𝛇 (F.obj a) ≪≫ F.mapId a ≪≫ F.map₂Iso (𝛇 a).symm
 
 omit [TwoSupercategory R A] [TwoSupercategory R A'] in
+/--
+@isnad1 id=eq.0h5v.s10.7032bda4614c from=translated src=- shape=50225825 vocab=d32c630b
+-/
 theorem jIso_hom (a : A) :
     (F.jIso a).hom = (𝛇 (F.obj a)).hom ≫ (F.mapId a).hom ≫ F.map₂ (𝛇 a).inv := rfl
 
 omit [TwoSupercategory R A] [TwoSupercategory R A'] in
+/--
+@isnad1 id=mem.0h5v.s11.bc9660599499 from=translated src=- shape=11998c19 vocab=2b30f289
+-/
 theorem jIso_hom_mem (a : A) :
     (F.jIso a).hom ∈ Supercategory.parity (R := R) (𝛑 (F.obj a)) (F.map (𝛑 a)) 0 := by
   have := Supercategory.comp_mem (Supercategory.comp_mem
@@ -416,7 +505,9 @@ theorem jIso_hom_mem (a : A) :
   simpa [jIso_hom] using! this
 
 omit [TwoSupercategory R A] [TwoSupercategory R A'] in
-/-- `ℝζ_λ ∘ j = i ∘ ζ_{ℝλ}`: the defining property of `j`.-/
+/-- `ℝζ_λ ∘ j = i ∘ ζ_{ℝλ}`: the defining property of `j`.
+@isnad1 id=eq.0h5v.s10.48e606e2173f from=translated src=- shape=7354a61c vocab=98bdbd85
+-/
 @[reassoc]
 theorem jIso_hom_comp_map₂_ζ (a : A) :
     (F.jIso a).hom ≫ F.map₂ (𝛇 a).hom = (𝛇 (F.obj a)).hom ≫ (F.mapId a).hom := by
@@ -424,12 +515,17 @@ theorem jIso_hom_comp_map₂_ζ (a : A) :
     Category.comp_id]
 
 omit [TwoSupercategory R A] [TwoSupercategory R A'] in
+/--
+@isnad1 id=eq.0h5v.s10.362dbf27076e from=translated src=- shape=c0415f8d vocab=d32c630b
+-/
 @[reassoc]
 theorem mapId_hom_comp_map₂_ζ_inv (a : A) :
     (F.mapId a).hom ≫ F.map₂ (𝛇 a).inv = (𝛇 (F.obj a)).inv ≫ (F.jIso a).hom := by
   rw [jIso_hom, Iso.inv_hom_id_assoc]
 
-/-- The first axiom of Definition 5.2(ii) for `E₂ ℝ`.-/
+/-- The first axiom of Definition 5.2(ii) for `E₂ ℝ`.
+@isnad1 id=eq.0h7v.s11.8e1ea22d6b36 from=translated src=- shape=d8c04099 vocab=750c71cb
+-/
 theorem jβ_comm {a b : A} (f : a ⟶ b) :
     F.map f ◁ (F.jIso b).hom ≫ (F.mapComp f (𝛑 b)).hom ≫
         F.map₂ (PiTwoSupercategory.β (R := R) f).hom =
@@ -456,7 +552,9 @@ theorem jβ_comm {a b : A} (f : a ⟶ b) :
   rw [← F.mapComp_naturality_left, ← comp_whiskerRight'_assoc R, mapId_hom_comp_map₂_ζ_inv,
     comp_whiskerRight'_assoc R]
 
-/-- The second axiom of Definition 5.2(ii) for `E₂ ℝ`.-/
+/-- The second axiom of Definition 5.2(ii) for `E₂ ℝ`.
+@isnad1 id=eq.0h5v.s11.c5702e372117 from=translated src=- shape=8f714d6d vocab=e8098209
+-/
 theorem jξ_comm (a : A) :
     (F.jIso a).hom ▷ 𝛑 (F.obj a) ≫ F.map (𝛑 a) ◁ (F.jIso a).hom ≫
         (F.mapComp (𝛑 a) (𝛑 a)).hom ≫ F.map₂ (PiTwoSupercategory.ξ (R := R) a).hom =
@@ -483,6 +581,9 @@ def toPiTwoFunctor : PiTwoFunctor R F.toPseudofunctor where
   β_comm f := Subtype.ext (F.jβ_comm f.obj)
   ξ_comm a := Subtype.ext (F.jξ_comm a.obj)
 
+/--
+@isnad1 id=eq.0h5v.s16.28f3644945e2 from=translated src=- shape=ea52760c vocab=9eef4eae
+-/
 @[simp] theorem toPiTwoFunctor_j_hom_val (a : Underlying2 R A) :
     (F.toPiTwoFunctor.j a).hom.1 = (F.jIso a.obj).hom := rfl
 
@@ -509,7 +610,9 @@ local notation "𝛇" => PiTwoSupercategory.ζ (R := R)
 
 /-- **Brundan–Ellis, (5.6).** `𝔼₂(X, x) = (X̲, x̲)` (the oplax transformation
 `TwoNatTrans.toOplaxTrans` of the underlying bicategories) is Π-2-natural: the coherence axiom of
-Definition 5.2(iii) holds.-/
+Definition 5.2(iii) holds.
+@isnad1 id=ispitwon.0h6v.s8.a4f6f6bd5c29 from=translated src=- shape=b5f7c9f4 vocab=1a6f8694
+-/
 theorem isPiTwoNatural :
     F.toPiTwoFunctor.IsPiTwoNatural G.toPiTwoFunctor θ.toOplaxTrans := fun a => Subtype.ext (by
   change (PiTwoSupercategory.β (R := R) (θ.X a.obj)).hom ≫ (F.jIso a.obj).hom ▷ θ.X a.obj ≫

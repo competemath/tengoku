@@ -63,7 +63,9 @@ variable {F : C ⥤ D} (e : Superequivalence R F)
 def fullyFaithful : F.FullyFaithful :=
   (CategoryTheory.Equivalence.mk F e.inverse e.unitIso e.counitIso).fullyFaithfulFunctor
 
-/-- Naturality of the counit: `F (G g) = ε_Y⁻¹ ∘ g ∘ ε_X`.-/
+/-- Naturality of the counit: `F (G g) = ε_Y⁻¹ ∘ g ∘ ε_X`.
+@isnad1 id=eq.0h8v.s9.0aa1077ab640 from=translated src=- shape=f9c292c8 vocab=2e82d066
+-/
 theorem map_inverse_map {X Y : D} (g : X ⟶ Y) :
     F.map (e.inverse.map g) = e.counitIso.hom.app X ≫ g ≫ e.counitIso.inv.app Y := by
   have h := e.counitIso.hom.naturality g
@@ -79,12 +81,17 @@ def adjointUnitIso : 𝟭 C ≅ F ⋙ e.inverse :=
   NatIso.ofComponents (fun X => e.fullyFaithful.preimageIso (e.counitIso.app (F.obj X)).symm)
     (fun f => e.fullyFaithful.map_injective (by simp [map_inverse_map]))
 
+/--
+@isnad1 id=eq.0h6v.s8.1a5a9efce8fe from=translated src=- shape=5f397438 vocab=14e12dab
+-/
 theorem map_adjointUnitIso_hom_app (X : C) :
     F.map ((adjointUnitIso e).hom.app X) = e.counitIso.inv.app (F.obj X) := by
   simp
 
 /-- If the unit and counit of `e` already satisfy the triangle identity, the adjusted unit is
-the unit of `e`.-/
+the unit of `e`.
+@isnad1 id=eq.1h5v.s8.ef0f3543483c from=translated src=- shape=054b7b1b vocab=22d94fbf
+-/
 theorem adjointUnitIso_eq
     (h : ∀ X, F.map (e.unitIso.hom.app X) ≫ e.counitIso.hom.app (F.obj X) = 𝟙 (F.obj X)) :
     e.adjointUnitIso = e.unitIso := by
@@ -95,6 +102,9 @@ theorem adjointUnitIso_eq
   rfl
 
 variable [F.Additive] [F.Linear R] [IsSuperfunctor R F] in
+/--
+@isnad1 id=mem.0h6v.s9.34138b0de4b5 from=translated src=- shape=cd39d6b8 vocab=89337d25
+-/
 theorem adjointUnitIso_hom_app_mem (X : C) :
     (adjointUnitIso e).hom.app X ∈ parity (R := R) X (e.inverse.obj (F.obj X)) 0 := by
   have := e.fullyFaithful.faithful
@@ -114,6 +124,9 @@ variable [MonoidalSupercategory R D]
 
 variable (R) in
 include R in
+/--
+@isnad1 id=eq.1h7v.s7.145ef95be688 from=translated src=- shape=ec8c2f14 vocab=7ae2c153
+-/
 @[reassoc]
 theorem whiskerLeft_comp_eq_id (Z : D) {X Y : D} {f : X ⟶ Y} {g : Y ⟶ X} (h : f ≫ g = 𝟙 X) :
     Z ◁ f ≫ Z ◁ g = 𝟙 (Z ⊗ X) := by
@@ -121,6 +134,9 @@ theorem whiskerLeft_comp_eq_id (Z : D) {X Y : D} {f : X ⟶ Y} {g : Y ⟶ X} (h 
 
 variable (R) in
 include R in
+/--
+@isnad1 id=eq.1h7v.s7.e772dac52fb9 from=translated src=- shape=af37f06c vocab=0f8f076f
+-/
 @[reassoc]
 theorem whiskerRight_comp_eq_id {X Y : D} {f : X ⟶ Y} {g : Y ⟶ X} (h : f ≫ g = 𝟙 X) (Z : D) :
     f ▷ Z ≫ g ▷ Z = 𝟙 (X ⊗ Z) := by
@@ -129,7 +145,9 @@ theorem whiskerRight_comp_eq_id {X Y : D} {f : X ⟶ Y} {g : Y ⟶ X} (h : f ≫
 variable (R) in
 include R in
 /-- The interchange law without sign when the left morphism is even and the right one is
-arbitrary.-/
+arbitrary.
+@isnad1 id=eq.1h8v.s8.fe5a4a34b0c8 from=translated src=- shape=a4f12256 vocab=062264f3
+-/
 @[reassoc]
 theorem interchange_even_left {X X' Y Y' : D} {f : X ⟶ X'} (hf : f ∈ parity (R := R) X X' 0)
     (g : Y ⟶ Y') : f ▷ Y ≫ X' ◁ g = X ◁ g ≫ f ▷ Y' := by
@@ -142,7 +160,9 @@ theorem interchange_even_left {X X' Y Y' : D} {f : X ⟶ X'} (hf : f ∈ parity 
 variable (R) in
 include R in
 /-- The interchange law without sign when the right morphism is even and the left one is
-arbitrary.-/
+arbitrary.
+@isnad1 id=eq.1h8v.s8.fb7d4de36190 from=translated src=- shape=d0deb002 vocab=062264f3
+-/
 @[reassoc]
 theorem interchange_even_right {X X' Y Y' : D} (f : X ⟶ X') {g : Y ⟶ Y'}
     (hg : g ∈ parity (R := R) Y Y' 0) : f ▷ Y ≫ X' ◁ g = X ◁ g ≫ f ▷ Y' := by
@@ -160,13 +180,18 @@ section Counit
 
 variable [MonoidalSupercategory R D] {F : C ⥤ D} (e : Superequivalence R F)
 
-/-- The counit is even, so it satisfies the interchange law without sign.-/
+/-- The counit is even, so it satisfies the interchange law without sign.
+@isnad1 id=eq.0h9v.s9.37fea56e4bfe from=translated src=- shape=3ee22336 vocab=25857069
+-/
 @[reassoc]
 theorem counit_interchange (A : D) {Y Y' : D} (g : Y ⟶ Y') :
     F.obj (e.inverse.obj A) ◁ g ≫ (e.counitIso.hom.app A : F.obj (e.inverse.obj A) ⟶ A) ▷ Y' =
       (e.counitIso.hom.app A : F.obj (e.inverse.obj A) ⟶ A) ▷ Y ≫ A ◁ g :=
   (MonoidalSupercategory.interchange_even_left R (e.counitIso_mem A) g).symm
 
+/--
+@isnad1 id=eq.0h7v.s9.4ff07bd78efb from=translated src=- shape=d1c0ed6e vocab=25857069
+-/
 @[reassoc]
 theorem counit_interchange_hom (A B : D) :
     F.obj (e.inverse.obj A) ◁ (e.counitIso.hom.app B : F.obj (e.inverse.obj B) ⟶ B) ≫
@@ -175,6 +200,9 @@ theorem counit_interchange_hom (A B : D) :
         A ◁ (e.counitIso.hom.app B : F.obj (e.inverse.obj B) ⟶ B) :=
   (MonoidalSupercategory.interchange_even_left R (e.counitIso_mem A) _).symm
 
+/--
+@isnad1 id=eq.0h7v.s9.2f00e723e1bd from=translated src=- shape=eda5f5f7 vocab=2639863f
+-/
 @[reassoc]
 theorem counit_interchange_inv (A B : D) :
     F.obj (e.inverse.obj A) ◁ (e.counitIso.inv.app B : B ⟶ F.obj (e.inverse.obj B)) ≫
@@ -183,12 +211,18 @@ theorem counit_interchange_inv (A B : D) :
         A ◁ (e.counitIso.inv.app B : B ⟶ F.obj (e.inverse.obj B)) :=
   (MonoidalSupercategory.interchange_even_left R (e.counitIso_mem A) _).symm
 
+/--
+@isnad1 id=eq.0h7v.s8.9e6d3280e77b from=translated src=- shape=584a0363 vocab=462bd78d
+-/
 @[reassoc]
 theorem whiskerLeft_counit_inv_hom (A B : D) :
     A ◁ (e.counitIso.inv.app B : B ⟶ F.obj (e.inverse.obj B)) ≫
       A ◁ (e.counitIso.hom.app B : F.obj (e.inverse.obj B) ⟶ B) = 𝟙 (A ⊗ B) :=
   MonoidalSupercategory.whiskerLeft_comp_eq_id R A (e.counitIso.inv_hom_id_app B)
 
+/--
+@isnad1 id=eq.0h7v.s8.b09a8426d049 from=translated src=- shape=2f9faa9d vocab=9e7f097b
+-/
 @[reassoc]
 theorem counit_inv_hom_whiskerRight (A B : D) :
     (e.counitIso.inv.app A : A ⟶ F.obj (e.inverse.obj A)) ▷ B ≫
@@ -208,19 +242,25 @@ namespace MonoidalSuperfunctor
 variable {F : C ⥤ D} [F.Additive] [F.Linear R] [IsSuperfunctor R F]
   (cF : MonoidalSuperfunctor R F)
 
-/-- `F(f ⊗ 1) = c_F ∘ (F f ⊗ 1) ∘ c_F⁻¹`.-/
+/-- `F(f ⊗ 1) = c_F ∘ (F f ⊗ 1) ∘ c_F⁻¹`.
+@isnad1 id=eq.0h9v.s8.f8b1ac407fe1 from=translated src=- shape=58216cac vocab=3400bffd
+-/
 theorem map_whiskerRight {X Y : C} (f : X ⟶ Y) (Z : C) :
     F.map (f ▷ Z) = (cF.μIso X Z).inv ≫ F.map f ▷ F.obj Z ≫ (cF.μIso Y Z).hom := by
   rw [cF.μ_natural_left, Iso.inv_hom_id_assoc]
 
-/-- `F(1 ⊗ f) = c_F ∘ (1 ⊗ F f) ∘ c_F⁻¹`.-/
+/-- `F(1 ⊗ f) = c_F ∘ (1 ⊗ F f) ∘ c_F⁻¹`.
+@isnad1 id=eq.0h9v.s8.04dc6df1372a from=translated src=- shape=f9923668 vocab=ce8b5640
+-/
 theorem map_whiskerLeft (Z : C) {X Y : C} (f : X ⟶ Y) :
     F.map (Z ◁ f) = (cF.μIso Z X).inv ≫ F.obj Z ◁ F.map f ≫ (cF.μIso Z Y).hom := by
   rw [cF.μ_natural_right, Iso.inv_hom_id_assoc]
 
 variable [MonoidalSupercategory R D]
 
-/-- The image of the associator under a monoidal superfunctor.-/
+/-- The image of the associator under a monoidal superfunctor.
+@isnad1 id=eq.0h8v.s9.c102a77b3624 from=translated src=- shape=80d9d539 vocab=9f36e477
+-/
 theorem map_associator_hom (X Y Z : C) :
     F.map (α_ X Y Z).hom = (cF.μIso (X ⊗ Y) Z).inv ≫ (cF.μIso X Y).inv ▷ F.obj Z ≫
       (α_ (F.obj X) (F.obj Y) (F.obj Z)).hom ≫ F.obj X ◁ (cF.μIso Y Z).hom ≫
@@ -229,7 +269,9 @@ theorem map_associator_hom (X Y Z : C) :
     ← MonoidalSupercategory.comp_whiskerRight (R := R), Iso.inv_hom_id,
     MonoidalSupercategory.id_whiskerRight (R := R), Category.id_comp, Iso.inv_hom_id_assoc]
 
-/-- The image of the left unitor under a monoidal superfunctor.-/
+/-- The image of the left unitor under a monoidal superfunctor.
+@isnad1 id=eq.0h6v.s8.0420bb049c35 from=translated src=- shape=1b3d5ca6 vocab=81397c37
+-/
 theorem map_leftUnitor_hom (X : C) :
     F.map (λ_ X).hom =
       (cF.μIso (𝟙_ C) X).inv ≫ cF.εIso.inv ▷ F.obj X ≫ (λ_ (F.obj X)).hom := by
@@ -237,7 +279,9 @@ theorem map_leftUnitor_hom (X : C) :
     ← MonoidalSupercategory.comp_whiskerRight (R := R), Iso.inv_hom_id,
     MonoidalSupercategory.id_whiskerRight (R := R), Category.id_comp, Iso.inv_hom_id_assoc]
 
-/-- The image of the right unitor under a monoidal superfunctor.-/
+/-- The image of the right unitor under a monoidal superfunctor.
+@isnad1 id=eq.0h6v.s8.6ed76e3a8ec5 from=translated src=- shape=1a5a2846 vocab=3dba265c
+-/
 theorem map_rightUnitor_hom (X : C) :
     F.map (ρ_ X).hom =
       (cF.μIso X (𝟙_ C)).inv ≫ F.obj X ◁ cF.εIso.inv ≫ (ρ_ (F.obj X)).hom := by
@@ -260,6 +304,9 @@ variable {F : C ⥤ D} [F.Additive] [F.Linear R] [IsSuperfunctor R F]
 def inverseε : F.obj (𝟙_ C) ≅ F.obj (e.inverse.obj (𝟙_ D)) :=
   cF.εIso.symm ≪≫ (e.counitIso.app (𝟙_ D)).symm
 
+/--
+@isnad1 id=mem.0h6v.s9.a741dc871a06 from=translated src=- shape=1c9f5321 vocab=cc3a4e6e
+-/
 theorem inverseε_hom_mem : (inverseε cF e).hom ∈ parity (R := R) _ _ 0 := by
   have h := comp_mem (inv_mem _ cF.ε_mem) (inv_mem (e.counitIso.app (𝟙_ D)) (e.counitIso_mem _))
   simpa using h
@@ -286,6 +333,9 @@ def inverseμ (X Y : D) :
       MonoidalSupercategory.whiskerLeft_comp_eq_id_assoc R _ (e.counitIso.inv_hom_id_app Y),
       Iso.hom_inv_id_app, Functor.comp_obj]
 
+/--
+@isnad1 id=mem.0h8v.s10.91014f619521 from=translated src=- shape=2091b42f vocab=1feef64b
+-/
 theorem inverseμ_hom_mem (X Y : D) :
     (inverseμ cF e X Y).hom ∈ parity (R := R) _ _ 0 := by
   have h := comp_mem (inv_mem _ (cF.μ_mem _ _)) (comp_mem
@@ -370,12 +420,16 @@ def inverseMonoidal : MonoidalSuperfunctor R e.inverse where
     rw [counit_interchange_inv_assoc, whiskerLeft_counit_inv_hom_assoc, reassoc_of% h]
     simp only [Iso.hom_inv_id_app, Functor.comp_obj, Category.comp_id]
 
-/-- `F(c_G) = ε⁻¹ ∘ (ε ⊗ ε) ∘ c_F⁻¹`.-/
+/-- `F(c_G) = ε⁻¹ ∘ (ε ⊗ ε) ∘ c_F⁻¹`.
+@isnad1 id=eq.0h8v.s9.4315f6dac109 from=translated src=- shape=28638110 vocab=5d16de1c
+-/
 theorem map_inverseMonoidal_μIso_hom (X Y : D) :
     F.map ((inverseMonoidal cF e).μIso X Y).hom = (inverseμ cF e X Y).hom :=
   e.fullyFaithful.map_preimage _
 
-/-- `F(i_G) = ε⁻¹ ∘ i_F⁻¹`.-/
+/-- `F(i_G) = ε⁻¹ ∘ i_F⁻¹`.
+@isnad1 id=eq.0h6v.s8.113748b200c2 from=translated src=- shape=2a50de0a vocab=cb303396
+-/
 theorem map_inverseMonoidal_εIso_hom :
     F.map (inverseMonoidal cF e).εIso.hom = (inverseε cF e).hom :=
   e.fullyFaithful.map_preimage _
@@ -442,19 +496,37 @@ def ofSuperequivalence (cF : MonoidalSuperfunctor R F) (e : Superequivalence R F
 
 variable (cF : MonoidalSuperfunctor R F) (e : Superequivalence R F)
 
+/--
+@isnad1 id=eq.0h6v.s7.0bcf32965afa from=translated src=- shape=733c740b vocab=71f0095e
+-/
 @[simp] theorem ofSuperequivalence_functor : (ofSuperequivalence cF e).functor = F := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.5a191113dc14 from=translated src=- shape=0063438b vocab=e05cf626
+-/
 @[simp] theorem ofSuperequivalence_inverse : (ofSuperequivalence cF e).inverse = e.inverse := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.4c69f1cc5bbd from=translated src=- shape=f1faf394 vocab=99cc0cbe
+-/
 theorem ofSuperequivalence_functorMonoidal :
     (ofSuperequivalence cF e).functorMonoidal = cF := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.878f88a86a78 from=translated src=- shape=fa0deac0 vocab=9db65d62
+-/
 theorem ofSuperequivalence_inverseMonoidal :
     (ofSuperequivalence cF e).inverseMonoidal = e.inverseMonoidal cF := rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.c2464b4aa6c2 from=translated src=- shape=68c12ef5 vocab=65e4840e
+-/
 theorem ofSuperequivalence_unitIso_toNatIso :
     (ofSuperequivalence cF e).unitIso.toNatIso = e.adjointUnitIso := rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.fc4d8a663d58 from=translated src=- shape=a7c9d8a6 vocab=ce2bbe82
+-/
 theorem ofSuperequivalence_counitIso_toNatIso :
     (ofSuperequivalence cF e).counitIso.toNatIso = e.counitIso := rfl
 
@@ -462,7 +534,9 @@ end
 
 /-- **Brundan–Ellis, after Definition 1.4.** Monoidal supercategories are monoidally
 superequivalent if and only if there is a monoidal superfunctor between them which is a
-superequivalence of the underlying supercategories.-/
+superequivalence of the underlying supercategories.
+@isnad1 id=iff.0h3v.s7.bf878caab443 from=translated src=- shape=1381d847 vocab=7c68bb0f
+-/
 theorem nonempty_iff_exists_superequivalence :
     Nonempty (MonoidalSuperequivalence R C D) ↔
       ∃ (F : C ⥤ D) (_ : F.Additive) (_ : F.Linear R) (_ : IsSuperfunctor R F),

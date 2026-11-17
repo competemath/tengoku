@@ -51,6 +51,9 @@ variable {R : Type w} [CommRing R] {C : Type w₁} [Category.{w₂} C] [Preaddit
 
 variable (R) in
 include R in
+/--
+@isnad1 id=eq.0h7v.s8.e5848f6e74f6 from=translated src=- shape=a6d78d2a vocab=99a15271
+-/
 theorem associator_naturality_left {X X' : C} (f : X ⟶ X') (Y Z : C) :
     (f ▷ Y) ▷ Z ≫ (α_ X' Y Z).hom = (α_ X Y Z).hom ≫ f ▷ (Y ⊗ Z) := by
   have h := associator_naturality (R := R) f (𝟙 Y) (𝟙 Z)
@@ -60,6 +63,9 @@ theorem associator_naturality_left {X X' : C} (f : X ⟶ X') (Y Z : C) :
 
 variable (R) in
 include R in
+/--
+@isnad1 id=eq.0h7v.s8.2c42e4c8d601 from=translated src=- shape=9fa124eb vocab=859e29ba
+-/
 theorem associator_naturality_middle (X : C) {Y Y' : C} (g : Y ⟶ Y') (Z : C) :
     (X ◁ g) ▷ Z ≫ (α_ X Y' Z).hom = (α_ X Y Z).hom ≫ X ◁ (g ▷ Z) := by
   have h := associator_naturality (R := R) (𝟙 X) g (𝟙 Z)
@@ -70,6 +76,9 @@ theorem associator_naturality_middle (X : C) {Y Y' : C} (g : Y ⟶ Y') (Z : C) :
 
 variable (R) in
 include R in
+/--
+@isnad1 id=eq.0h7v.s8.b8fbfe910289 from=translated src=- shape=fef4b5ef vocab=cbabe48d
+-/
 theorem associator_naturality_right (X Y : C) {Z Z' : C} (h : Z ⟶ Z') :
     (X ⊗ Y) ◁ h ≫ (α_ X Y Z').hom = (α_ X Y Z).hom ≫ X ◁ (Y ◁ h) := by
   have e := associator_naturality (R := R) (𝟙 X) (𝟙 Y) h
@@ -81,7 +90,9 @@ end MonoidalSupercategory
 
 /-- Associator naturality from naturality in each variable separately, for any monoidal
 structure whose whiskerings are functorial and whose tensor product of morphisms is
-`f ▷ _ ≫ _ ◁ g`.-/
+`f ▷ _ ≫ _ ◁ g`.
+@isnad1 id=eq.6h10v.s10.40bcf169a44a from=translated src=- shape=573b5dcf vocab=6873f13b
+-/
 theorem MonoidalSupercategory.associator_naturality_of_whiskers {C : Type w₁} [Category.{w₂} C]
     [MonoidalCategoryStruct C]
     (tensorHom_def : ∀ {X₁ Y₁ X₂ Y₂ : C} (f : X₁ ⟶ Y₁) (g : X₂ ⟶ Y₂),
@@ -109,7 +120,9 @@ variable {R : Type w} [CommRing R] {C : Type w₁} [Category.{w₂} C] [Preaddit
   [Supercategory R C]
 
 omit [CommRing R] in
-/-- Induction on morphisms of the envelope via morphisms homogeneous in `C`.-/
+/-- Induction on morphisms of the envelope via morphisms homogeneous in `C`.
+@isnad1 id=var.0h9v.s9.18094553b91d from=translated src=- shape=355f3c74 vocab=4b75632b
+-/
 @[elab_as_elim]
 theorem induction_on' [CommRing R] [Linear R C] [Supercategory R C] {X Y : Envelope R C}
     {P : (X ⟶ Y) → Prop} (f : X ⟶ Y) (zero : P 0)
@@ -135,45 +148,86 @@ instance instMonoidalCategoryStruct : MonoidalCategoryStruct (Envelope R C) wher
   leftUnitor X := isoOfIso (λ_ X.obj)
   rightUnitor X := isoOfIso (ρ_ X.obj)
 
+/--
+@isnad1 id=eq.0h4v.s7.a0820f4bf0f9 from=translated src=- shape=bc363ee9 vocab=557cc85e
+-/
 @[simp] theorem tensorObj_par (X Y : Envelope R C) : (X ⊗ Y).par = X.par + Y.par := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.78a43c4e46cb from=translated src=- shape=4b7501a5 vocab=660cf3af
+-/
 @[simp] theorem tensorObj_obj (X Y : Envelope R C) : (X ⊗ Y).obj = X.obj ⊗ Y.obj := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.9d4d4ab93116 from=translated src=- shape=13c357f0 vocab=0a1d6940
+-/
 @[simp] theorem tensorUnit_par : (𝟙_ (Envelope R C)).par = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.a1ed4efd6901 from=translated src=- shape=2beab820 vocab=6d7d5a4f
+-/
 @[simp] theorem tensorUnit_obj : (𝟙_ (Envelope R C)).obj = 𝟙_ C := rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.dee7302b38ca from=translated src=- shape=9b2df8c3 vocab=63ff7291
+-/
 theorem toHom_whiskerLeft (X : Envelope R C) {Y Y' : Envelope R C} (g : Y ⟶ Y') :
     toHom (X ◁ g) = X.obj ◁ toHom (twist R X.par g) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.6b20b72c8d67 from=translated src=- shape=d5b0f85c vocab=0ec5609a
+-/
 theorem toHom_whiskerRight {X X' : Envelope R C} (f : X ⟶ X') (Y : Envelope R C) :
     toHom (f ▷ Y) = twist R Y.par (toHom f) ▷ Y.obj := rfl
 
+/--
+@isnad1 id=eq.0h8v.s8.e3d422ac2a0a from=translated src=- shape=7781c207 vocab=4f945adf
+-/
 theorem tensorHom_def' {X₁ Y₁ X₂ Y₂ : Envelope R C} (f : X₁ ⟶ Y₁) (g : X₂ ⟶ Y₂) :
     f ⊗ₘ g = f ▷ X₂ ≫ Y₁ ◁ g := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.85ba22f6d61c from=translated src=- shape=04830cd5 vocab=269d659f
+-/
 @[simp] theorem toHom_associator_hom (X Y Z : Envelope R C) :
     toHom (α_ X Y Z).hom = (α_ X.obj Y.obj Z.obj).hom := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.5b5962eb8d20 from=translated src=- shape=dfd76757 vocab=61c73665
+-/
 @[simp] theorem toHom_associator_inv (X Y Z : Envelope R C) :
     toHom (α_ X Y Z).inv = (α_ X.obj Y.obj Z.obj).inv := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.1037f5e38a1e from=translated src=- shape=752e6f0d vocab=c3079819
+-/
 @[simp] theorem toHom_leftUnitor_hom (X : Envelope R C) :
     toHom (λ_ X).hom = (λ_ X.obj).hom := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.ce16d89df117 from=translated src=- shape=3eb832f0 vocab=98c3c086
+-/
 @[simp] theorem toHom_leftUnitor_inv (X : Envelope R C) :
     toHom (λ_ X).inv = (λ_ X.obj).inv := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.b8583c69c096 from=translated src=- shape=bec1344b vocab=ccc7bbfa
+-/
 @[simp] theorem toHom_rightUnitor_hom (X : Envelope R C) :
     toHom (ρ_ X).hom = (ρ_ X.obj).hom := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.8b8825f76230 from=translated src=- shape=fb72788b vocab=ca34aede
+-/
 @[simp] theorem toHom_rightUnitor_inv (X : Envelope R C) :
     toHom (ρ_ X).inv = (ρ_ X.obj).inv := rfl
 
 variable [MonoidalSupercategory R C]
 
 /-- `Πᵃ λ ◁ g = (-1)^{a|g|} (λ ◁ g)` for `g : Πᶜ μ ⟶ Πᵈ ν` of parity `r` in `A` (so of
-parity `r + c + d` in `A_π`).-/
+parity `r + c + d` in `A_π`).
+@isnad1 id=eq.1h7v.s10.68830200270d from=translated src=- shape=d232e552 vocab=28c993ab
+-/
 theorem toHom_whiskerLeft_of_mem (X : Envelope R C) {Y Y' : Envelope R C} {g : Y ⟶ Y'}
     {r : ZMod 2} (hg : toHom g ∈ parity (R := R) Y.obj Y'.obj r) :
     toHom (X ◁ g) = sign R (X.par * (r + (Y.par + Y'.par))) • (X.obj ◁ toHom g) := by
@@ -182,18 +236,26 @@ theorem toHom_whiskerLeft_of_mem (X : Envelope R C) {Y Y' : Envelope R C} {g : Y
   congr 2
   ring
 
-/-- `f ▷ Πᶜ μ = (-1)^{|f|c} (f ▷ μ)` for `f` of parity `r` in `A`.-/
+/-- `f ▷ Πᶜ μ = (-1)^{|f|c} (f ▷ μ)` for `f` of parity `r` in `A`.
+@isnad1 id=eq.1h7v.s10.f2d8d7842ff2 from=translated src=- shape=b6360f91 vocab=087473cb
+-/
 theorem toHom_whiskerRight_of_mem {X X' : Envelope R C} {f : X ⟶ X'} {r : ZMod 2}
     (hf : toHom f ∈ parity (R := R) X.obj X'.obj r) (Y : Envelope R C) :
     toHom (f ▷ Y) = sign R (Y.par * r) • (toHom f ▷ Y.obj) := by
   rw [toHom_whiskerRight, twist_of_mem _ hf, MonoidalSupercategory.smul_whiskerRight]
 
+/--
+@isnad1 id=mem.1h7v.s9.5889687c1f18 from=translated src=- shape=3e131a38 vocab=50f17bbf
+-/
 theorem toHom_whiskerLeft_mem (X : Envelope R C) {Y Y' : Envelope R C} {g : Y ⟶ Y'}
     {r : ZMod 2} (hg : toHom g ∈ parity (R := R) Y.obj Y'.obj r) :
     toHom (X ◁ g) ∈ parity (R := R) (X.obj ⊗ Y.obj) (X.obj ⊗ Y'.obj) r := by
   rw [toHom_whiskerLeft_of_mem X hg]
   exact Submodule.smul_mem _ _ (MonoidalSupercategory.whiskerLeft_mem _ hg)
 
+/--
+@isnad1 id=mem.1h7v.s9.f85c3ced38b8 from=translated src=- shape=a929f58f vocab=765bbbc8
+-/
 theorem toHom_whiskerRight_mem {X X' : Envelope R C} {f : X ⟶ X'} {r : ZMod 2}
     (hf : toHom f ∈ parity (R := R) X.obj X'.obj r) (Y : Envelope R C) :
     toHom (f ▷ Y) ∈ parity (R := R) (X.obj ⊗ Y.obj) (X'.obj ⊗ Y.obj) r := by
@@ -201,49 +263,74 @@ theorem toHom_whiskerRight_mem {X X' : Envelope R C} {f : X ⟶ X'} {r : ZMod 2}
   exact Submodule.smul_mem _ _ (MonoidalSupercategory.whiskerRight_mem _ hf)
 
 omit [MonoidalSupercategory R C] in
-/-- Whiskering by an object of parity shift `0`.-/
+/-- Whiskering by an object of parity shift `0`.
+@isnad1 id=eq.1h6v.s8.e0a6105f6fcc from=translated src=- shape=696a103f vocab=0438f2b2
+-/
 theorem toHom_whiskerLeft_of_par_zero (X : Envelope R C) (hX : X.par = 0) {Y Y' : Envelope R C}
     (g : Y ⟶ Y') : toHom (X ◁ g) = X.obj ◁ toHom g := by
   rw [toHom_whiskerLeft, hX, twist_zero]
 
 omit [MonoidalSupercategory R C] in
+/--
+@isnad1 id=eq.1h6v.s8.9e38673c5c2e from=translated src=- shape=0470e411 vocab=8e487308
+-/
 theorem toHom_whiskerRight_of_par_zero {X X' : Envelope R C} (f : X ⟶ X') (Y : Envelope R C)
     (hY : Y.par = 0) : toHom (f ▷ Y) = toHom f ▷ Y.obj := by
   rw [toHom_whiskerRight, hY, twist_zero]
 
-/-- Whiskering a morphism that is even both in `A` and in `A_π`.-/
+/-- Whiskering a morphism that is even both in `A` and in `A_π`.
+@isnad1 id=eq.2h6v.s9.0ca0fd1e633d from=translated src=- shape=91bfa05a vocab=ed3741a2
+-/
 theorem toHom_whiskerLeft_of_even (X : Envelope R C) {Y Y' : Envelope R C} {g : Y ⟶ Y'}
     (hg : toHom g ∈ parity (R := R) Y.obj Y'.obj 0) (hY : Y.par = Y'.par) :
     toHom (X ◁ g) = X.obj ◁ toHom g := by
   rw [toHom_whiskerLeft_of_mem X hg, hY, zmod2_add_self, add_zero, mul_zero, sign_zero, one_smul]
 
+/--
+@isnad1 id=eq.1h6v.s9.f88a5c761c9f from=translated src=- shape=3f222c58 vocab=765bbbc8
+-/
 theorem toHom_whiskerRight_of_even {X X' : Envelope R C} {f : X ⟶ X'}
     (hf : toHom f ∈ parity (R := R) X.obj X'.obj 0) (Y : Envelope R C) :
     toHom (f ▷ Y) = toHom f ▷ Y.obj := by
   rw [toHom_whiskerRight_of_mem hf, mul_zero, sign_zero, one_smul]
 
+/--
+@isnad1 id=eq.0h7v.s9.0b5f4fff6add from=translated src=- shape=dc6e7c51 vocab=fe1d8d8e
+-/
 theorem whiskerLeft_add' (X : Envelope R C) {Y Y' : Envelope R C} (f g : Y ⟶ Y') :
     X ◁ (f + g) = X ◁ f + X ◁ g := by
   apply hom_ext
   rw [toHom_add, toHom_whiskerLeft, toHom_whiskerLeft, toHom_whiskerLeft, map_add, toHom_add,
     MonoidalSupercategory.whiskerLeft_add (R := R)]
 
+/--
+@isnad1 id=eq.0h7v.s9.3e35524eccae from=translated src=- shape=4a805620 vocab=2c79f5d7
+-/
 theorem add_whiskerRight' {X X' : Envelope R C} (f g : X ⟶ X') (Y : Envelope R C) :
     (f + g) ▷ Y = f ▷ Y + g ▷ Y := by
   apply hom_ext
   rw [toHom_add, toHom_whiskerRight, toHom_whiskerRight, toHom_whiskerRight, toHom_add, map_add,
     MonoidalSupercategory.add_whiskerRight (R := R)]
 
+/--
+@isnad1 id=eq.0h5v.s8.4657e83524c0 from=translated src=- shape=f83ebf81 vocab=8e350070
+-/
 theorem whiskerLeft_zero' (X : Envelope R C) {Y Y' : Envelope R C} :
     X ◁ (0 : Y ⟶ Y') = 0 := by
   apply hom_ext
   rw [toHom_whiskerLeft, map_zero, toHom_zero, MonoidalSupercategory.whiskerLeft_zero R]; rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.758e8d0bbb63 from=translated src=- shape=7da118ad vocab=69b2b85a
+-/
 theorem zero_whiskerRight' {X X' : Envelope R C} (Y : Envelope R C) :
     (0 : X ⟶ X') ▷ Y = 0 := by
   apply hom_ext
   rw [toHom_whiskerRight, toHom_zero, map_zero, MonoidalSupercategory.zero_whiskerRight R]; rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.7c1e6798a2da from=translated src=- shape=a8607cfb vocab=9a5a49b7
+-/
 theorem associator_naturality_left' {X X' : Envelope R C} (f : X ⟶ X') (Y Z : Envelope R C) :
     (f ▷ Y) ▷ Z ≫ (α_ X' Y Z).hom = (α_ X Y Z).hom ≫ f ▷ (Y ⊗ Z) := by
   refine induction_on' (R := R) f ?_ (fun r f hf => ?_) (fun f g hf hg => ?_)
@@ -261,6 +348,9 @@ theorem associator_naturality_left' {X X' : Envelope R C} (f : X ⟶ X') (Y Z : 
   · rw [add_whiskerRight', add_whiskerRight', add_whiskerRight', Preadditive.add_comp,
       Preadditive.comp_add, hf, hg]
 
+/--
+@isnad1 id=eq.0h7v.s9.5709340b9528 from=translated src=- shape=64f95c43 vocab=1c9f04ef
+-/
 theorem associator_naturality_middle' (X : Envelope R C) {Y Y' : Envelope R C} (g : Y ⟶ Y')
     (Z : Envelope R C) :
     (X ◁ g) ▷ Z ≫ (α_ X Y' Z).hom = (α_ X Y Z).hom ≫ X ◁ (g ▷ Z) := by
@@ -283,6 +373,9 @@ theorem associator_naturality_middle' (X : Envelope R C) {Y Y' : Envelope R C} (
   · rw [whiskerLeft_add', add_whiskerRight', add_whiskerRight', whiskerLeft_add',
       Preadditive.add_comp, Preadditive.comp_add, hf, hg]
 
+/--
+@isnad1 id=eq.0h7v.s9.def8a7dff82e from=translated src=- shape=008dba31 vocab=1117c22e
+-/
 theorem associator_naturality_right' (X Y : Envelope R C) {Z Z' : Envelope R C} (h : Z ⟶ Z') :
     (X ⊗ Y) ◁ h ≫ (α_ X Y Z').hom = (α_ X Y Z).hom ≫ X ◁ (Y ◁ h) := by
   refine induction_on' (R := R) h ?_ (fun r h hh => ?_) (fun f g hf hg => ?_)
@@ -304,7 +397,9 @@ theorem associator_naturality_right' (X Y : Envelope R C) {Z Z' : Envelope R C} 
 
 /-- **Definition 1.16**, the sign formula: for `f : Πᵃ λ ⟶ Πᵇ μ` and `g : Πᶜ ν ⟶ Πᵈ ρ`
 homogeneous (in `A`) of parities `|f|`, `|g|`, the paper's tensor product is
-`f_a^b ⊗ g_c^d = (-1)^{a|g| + |f|d + ad + ac} (f ⊗ g)_{a+c}^{b+d}`.-/
+`f_a^b ⊗ g_c^d = (-1)^{a|g| + |f|d + ad + ac} (f ⊗ g)_{a+c}^{b+d}`.
+@isnad1 id=eq.2h10v.s11.c09eb08f76d8 from=translated src=- shape=3c899c7f vocab=afaf0188
+-/
 theorem toHom_superTensorHom {X X' Y Y' : Envelope R C} {f : X ⟶ X'} {g : Y ⟶ Y'}
     {pf pg : ZMod 2} (hf : toHom f ∈ parity (R := R) X.obj X'.obj pf)
     (hg : toHom g ∈ parity (R := R) Y.obj Y'.obj pg) :
@@ -327,6 +422,9 @@ def piUnit : Envelope R C := ⟨1, 𝟙_ C⟩
 def ζUnit : piUnit R C ≅ 𝟙_ (Envelope R C) := isoOfIso (Iso.refl (𝟙_ C))
 
 omit [MonoidalSupercategory R C] in
+/--
+@isnad1 id=mem.0h2v.s9.1329fa85995f from=translated src=- shape=ccd3c2f4 vocab=0a1a1e77
+-/
 theorem ζUnit_hom_mem : (ζUnit (R := R) (C := C)).hom ∈ parity (R := R) _ _ 1 := by
   rw [mem_parity_iff]
   show 𝟙 (𝟙_ C) ∈ parity (R := R) (𝟙_ C) (𝟙_ C) (1 + (1 + 0))

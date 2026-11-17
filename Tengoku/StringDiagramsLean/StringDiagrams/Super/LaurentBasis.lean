@@ -31,7 +31,9 @@ def regroup (b : Basis (ι × ℤ) ℤ M) :
     ((Finsupp.curryLinearEquiv ℤ).symm.trans b.repr.symm)
 
 omit [Module (LaurentPolynomial ℤ) M] in
-/-- The regrouping sends a single Laurent monomial to its integral basis vector.-/
+/-- The regrouping sends a single Laurent monomial to its integral basis vector.
+@isnad1 id=eq.0h6v.s8.f83f97210926 from=translated src=- shape=2236ccdc vocab=03cc39ba
+-/
 theorem regroup_single (b : Basis (ι × ℤ) ℤ M) (i : ι) (n : ℤ) (a : ℤ) :
     regroup b (Finsupp.single i (AddMonoidAlgebra.single n a)) = a • b (i, n) := by
   classical
@@ -66,6 +68,9 @@ def ofProduct (b : Basis (ι × ℤ) ℤ M)
     rw [hf]
     exact (regroup b).bijective)).symm
 
+/--
+@isnad1 id=eq.1h4v.s8.e5a230bca011 from=translated src=- shape=8d6a6915 vocab=59c966fe
+-/
 @[simp] theorem ofProduct_apply (b : Basis (ι × ℤ) ℤ M)
     (hb : ∀ i n, (T n : LaurentPolynomial ℤ) • b (i, 0) = b (i, n)) (i : ι) :
     ofProduct b hb i = b (i, 0) := by
@@ -101,7 +106,9 @@ def orbitEquiv (hfree : ∀ (i : ι) (n : ℤ), n +ᵥ i = i → n = 0) :
       exact ⟨(o, n), hn⟩)
 
 /-- A lower bound on the integers fixing each point forces a free action.
-This is the group-action form of integer-shift rigidity.-/
+This is the group-action form of integer-shift rigidity.
+@isnad1 id=eq.2h3v.s6.6b56aa612d53 from=translated src=- shape=2ad1455b vocab=1c5cf081
+-/
 theorem free_of_boundedBelow
     (h : ∀ i : ι, ∃ N : ℤ, ∀ n : ℤ, n +ᵥ i = i → N ≤ n) :
     ∀ (i : ι) (n : ℤ), n +ᵥ i = i → n = 0 := by
@@ -139,6 +146,9 @@ def ofOrbits (b : Basis ι ℤ M)
     change (T n : LaurentPolynomial ℤ) • b ((0 : ℤ) +ᵥ o.out) = b (n +ᵥ o.out)
     simpa only [zero_vadd] using hb n o.out)
 
+/--
+@isnad1 id=eq.2h4v.s8.ba4c26425eb1 from=translated src=- shape=92cc76c3 vocab=4d375b34
+-/
 @[simp] theorem ofOrbits_apply (b : Basis ι ℤ M)
     (hb : ∀ n i, (T n : LaurentPolynomial ℤ) • b i = b (n +ᵥ i))
     (hfree : ∀ (i : ι) (n : ℤ), n +ᵥ i = i → n = 0)

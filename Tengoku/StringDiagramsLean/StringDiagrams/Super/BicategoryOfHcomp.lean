@@ -98,15 +98,23 @@ abbrev hcomp₂ {a b c : B} {f g : a ⟶ b} {h i : b ⟶ c} (η : f ⟶ g) (θ :
     f ≫ h ⟶ g ≫ i :=
   η ▷ h ≫ g ◁ θ
 
+/--
+@isnad1 id=eq.0h6v.s7.ec4d314b76a3 from=translated src=- shape=f93368cc vocab=68e49a3f
+-/
 theorem hcomp₂_id_id {a b c : B} (f : a ⟶ b) (h : b ⟶ c) : hcomp₂ (𝟙 f) (𝟙 h) = 𝟙 (f ≫ h) := by
   simp [hcomp₂]
 
+/--
+@isnad1 id=eq.0h14v.s8.8da47912d162 from=translated src=- shape=e5cf6253 vocab=3151828a
+-/
 theorem hcomp₂_comp {a b c : B} {f g k : a ⟶ b} {h i l : b ⟶ c} (η : f ⟶ g) (η' : g ⟶ k)
     (θ : h ⟶ i) (θ' : i ⟶ l) : hcomp₂ (η ≫ η') (θ ≫ θ') = hcomp₂ η θ ≫ hcomp₂ η' θ' := by
   simp only [hcomp₂, comp_whiskerRight, Bicategory.whiskerLeft_comp, Category.assoc]
   rw [whisker_exchange_assoc]
 
-/-- The naturality of the associator with respect to horizontal composition.-/
+/-- The naturality of the associator with respect to horizontal composition.
+@isnad1 id=eq.0h14v.s9.1ac2d6e6fbdb from=translated src=- shape=5d3a1a05 vocab=befa100b
+-/
 theorem hcomp₂_hcomp₂_associator {a b c d : B} {f f' : a ⟶ b} {g g' : b ⟶ c} {h h' : c ⟶ d}
     (η : f ⟶ f') (θ : g ⟶ g') (ι : h ⟶ h') :
     hcomp₂ (hcomp₂ η θ) ι ≫ (α_ f' g' h').hom = (α_ f g h).hom ≫ hcomp₂ η (hcomp₂ θ ι) := by
@@ -114,15 +122,24 @@ theorem hcomp₂_hcomp₂_associator {a b c d : B} {f f' : a ⟶ b} {g g' : b �
   rw [associator_naturality_right, associator_naturality_middle_assoc,
     associator_naturality_left_assoc]
 
+/--
+@isnad1 id=eq.0h14v.s9.50c0dfa5bcdd from=translated src=- shape=b8b42468 vocab=05b6dfe3
+-/
 theorem hcomp₂_hcomp₂_associator_inv {a b c d : B} {f f' : a ⟶ b} {g g' : b ⟶ c} {h h' : c ⟶ d}
     (η : f ⟶ f') (θ : g ⟶ g') (ι : h ⟶ h') :
     hcomp₂ η (hcomp₂ θ ι) ≫ (α_ f' g' h').inv = (α_ f g h).inv ≫ hcomp₂ (hcomp₂ η θ) ι := by
   rw [Iso.comp_inv_eq, Category.assoc, hcomp₂_hcomp₂_associator, Iso.inv_hom_id_assoc]
 
+/--
+@isnad1 id=eq.0h8v.s7.a554e743b725 from=translated src=- shape=617438b9 vocab=6f8d0399
+-/
 theorem hcomp₂_id_left {a b c : B} (f : a ⟶ b) {h i : b ⟶ c} (θ : h ⟶ i) :
     hcomp₂ (𝟙 f) θ = f ◁ θ := by
   simp [hcomp₂]
 
+/--
+@isnad1 id=eq.0h8v.s7.5f2d8713d4c7 from=translated src=- shape=89690942 vocab=f29fe60b
+-/
 theorem hcomp₂_id_right {a b c : B} {f g : a ⟶ b} (η : f ⟶ g) (h : b ⟶ c) :
     hcomp₂ η (𝟙 h) = η ▷ h := by
   simp [hcomp₂]
