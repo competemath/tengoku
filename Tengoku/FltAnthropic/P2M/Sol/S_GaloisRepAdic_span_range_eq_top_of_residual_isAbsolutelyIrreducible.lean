@@ -1,0 +1,106 @@
+import Tengoku.FltAnthropic.Definitions.Def_GaloisRep_Adic
+import Tengoku.FltAnthropic.Theorems.Thm_ResidualGaloisRep_isAbsolutelyIrreducible_iff_span_eq_top
+import Tengoku.Seed.RingTheory.Nakayama
+import Tengoku.Seed.RingTheory.TensorProduct.Free
+import Tengoku.Seed.LinearAlgebra.Matrix.ToLin
+import Tengoku.Seed.LinearAlgebra.FreeModule.Finite.Matrix
+import Tengoku.Seed.RingTheory.LocalRing.MaximalIdeal.Basic
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_GaloisRepAdic_span_range_eq_top_of_residual_isAbsolutelyIrreducible.lean`: wrote out 2 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_export`, 1 `p2m_open`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_GaloisRepAdic_span_range_eq_top_of_residual_isAbsolutelyIrreducible
+
+set_option autoImplicit false
+
+open scoped TensorProduct
+open IsLocalRing
+
+namespace GaloisRepAdic
+export _root_.Tengoku.FltAnthropic.GaloisRepAdic (residual finrank_eq ρ V)
+open _root_.Tengoku.FltAnthropic.GaloisRepAdic
+
+variable {A : Type} [CommRing A] [IsLocalRing A]
+
+/--
+@isnad1 id=mem.1h3v.s12.bf678ac48c07 from=translated src=- shape=15d988b0 vocab=8840a028
+-/
+theorem ctp_mem_smul_top_of_baseChange_eq_zero (ρ : GaloisRepAdic A) (f : Module.End A ρ.V)
+    (hf : f.baseChange (ResidueField A) = 0) :
+    f ∈ (maximalIdeal A) • (⊤ : Submodule A (Module.End A ρ.V)) := by
+  classical
+  let b := Module.finBasisOfFinrankEq A ρ.V ρ.finrank_eq
+  have hM : LinearMap.toMatrix (Algebra.TensorProduct.basis (ResidueField A) b)
+      (Algebra.TensorProduct.basis (ResidueField A) b) (f.baseChange (ResidueField A)) = 0 := by
+    rw [hf, map_zero]
+  rw [LinearMap.toMatrix_baseChange] at hM
+  have hent : ∀ i j, LinearMap.toMatrix b b f i j ∈ maximalIdeal A := by
+    intro i j
+    have hij := congrFun (congrFun hM i) j
+    rw [Matrix.map_apply, ResidueField.algebraMap_eq, Matrix.zero_apply,
+      residue_eq_zero_iff] at hij
+    exact hij
+  have hf' : f = ∑ i, ∑ j, LinearMap.toMatrix b b f i j •
+      (LinearMap.toMatrix b b).symm (Matrix.single i j (1 : A)) := by
+    apply (LinearMap.toMatrix b b).injective
+    simp only [map_sum, map_smul, LinearEquiv.apply_symm_apply, Matrix.smul_single,
+      smul_eq_mul, mul_one]
+    exact Matrix.matrix_eq_sum_single _
+  rw [hf']
+  exact Submodule.sum_mem _ fun i _ => Submodule.sum_mem _ fun j _ =>
+    Submodule.smul_mem_smul (hent i j) Submodule.mem_top
+
+/--
+@isnad1 id=ex.1h3v.s13.27a3248c0c42 from=translated src=- shape=b82933e5 vocab=c49d28e9
+-/
+theorem ctp_exists_mem_span_baseChange_eq (ρ : GaloisRepAdic A)
+    (h : Submodule.span (ResidueField A)
+      (Set.range fun σ => (ρ.ρ σ).baseChange (ResidueField A)) =
+        (⊤ : Submodule (ResidueField A) (Module.End (ResidueField A) (ResidueField A ⊗[A] ρ.V))))
+    (f : Module.End A ρ.V) :
+    ∃ g ∈ Submodule.span A (Set.range ⇑ρ.ρ),
+      g.baseChange (ResidueField A) = f.baseChange (ResidueField A) := by
+  suffices H : ∀ x ∈ Submodule.span (ResidueField A)
+      (Set.range fun σ => (ρ.ρ σ).baseChange (ResidueField A)),
+      ∃ g ∈ Submodule.span A (Set.range ⇑ρ.ρ), g.baseChange (ResidueField A) = x from
+    H _ (h ▸ Submodule.mem_top)
+  intro x hx
+  induction hx using Submodule.span_induction with
+  | mem x hx =>
+    obtain ⟨σ, rfl⟩ := hx
+    exact ⟨ρ.ρ σ, Submodule.subset_span ⟨σ, rfl⟩, rfl⟩
+  | zero => exact ⟨0, Submodule.zero_mem _, LinearMap.baseChange_zero⟩
+  | add x y _ _ hx hy =>
+    obtain ⟨g₁, hg₁, rfl⟩ := hx
+    obtain ⟨g₂, hg₂, rfl⟩ := hy
+    exact ⟨g₁ + g₂, Submodule.add_mem _ hg₁ hg₂, LinearMap.baseChange_add _ _⟩
+  | smul c x _ hx =>
+    obtain ⟨g, hg, rfl⟩ := hx
+    obtain ⟨a, rfl⟩ := residue_surjective c
+    refine ⟨a • g, Submodule.smul_mem _ a hg, ?_⟩
+    rw [LinearMap.baseChange_smul, ← ResidueField.algebraMap_eq, algebraMap_smul]
+
+end GaloisRepAdic
+
+open _root_.Tengoku.FltAnthropic.GaloisRepAdic _root_.P2MW.S_GaloisRepAdic_span_range_eq_top_of_residual_isAbsolutelyIrreducible.GaloisRepAdic in
+/--
+@isnad1 id=eq.1h2v.s10.a8d417a6767d from=translated src=- shape=86d22dcf vocab=fe12068d
+-/
+theorem solution
+    {A : Type} [CommRing A] [IsLocalRing A] (ρ : GaloisRepAdic A)
+    (h : ρ.residual.IsAbsolutelyIrreducible) :
+    Submodule.span A (Set.range ⇑ρ.ρ) = ⊤ := by
+  rw [ResidualGaloisRep.isAbsolutelyIrreducible_iff_span_eq_top] at h
+  change Submodule.span (ResidueField A)
+      (Set.range fun σ => (ρ.ρ σ).baseChange (ResidueField A)) =
+        (⊤ : Submodule (ResidueField A)
+          (Module.End (ResidueField A) (ResidueField A ⊗[A] ρ.V))) at h
+  refine top_le_iff.mp (Submodule.le_of_le_smul_of_le_jacobson_bot Module.Finite.fg_top
+    (maximalIdeal_le_jacobson ⊥) ?_)
+  intro f _
+  obtain ⟨g, hg, hfg⟩ := ctp_exists_mem_span_baseChange_eq ρ h f
+  have hker : f - g ∈ (maximalIdeal A) • (⊤ : Submodule A (Module.End A ρ.V)) :=
+    ctp_mem_smul_top_of_baseChange_eq_zero ρ (f - g)
+      (by rw [LinearMap.baseChange_sub]; exact sub_eq_zero.mpr hfg.symm)
+  exact Submodule.mem_sup.mpr ⟨g, hg, f - g, hker, add_sub_cancel g f⟩
+-- Tengoku: root names of this library moved to Tengoku.FltAnthropic so they do not collide with other libraries (generated)

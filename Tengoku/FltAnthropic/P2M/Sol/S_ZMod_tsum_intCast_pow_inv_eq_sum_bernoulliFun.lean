@@ -1,0 +1,125 @@
+import Tengoku
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_ZMod_tsum_intCast_pow_inv_eq_sum_bernoulliFun.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_ZMod_tsum_intCast_pow_inv_eq_sum_bernoulliFun
+
+set_option autoImplicit false
+
+open Real Complex
+open scoped Nat
+
+namespace CardC0
+
+variable {N : ℕ} [NeZero N] {k : ℕ}
+
+/--
+@isnad1 id=hassum.1h3v.s7.3db7c4d68b69 from=translated src=- shape=53f710e6 vocab=65905ded
+-/
+lemma hasSum_twisted (hk : 2 ≤ k) (r : ZMod N) :
+    HasSum (fun d : ℤ => ZMod.stdAddChar (r * (d : ZMod N)) * ((d : ℂ) ^ k)⁻¹)
+      (-(2 * π * I) ^ k / k ! * (bernoulliFun k ((r.val : ℝ) / N) : ℂ)) := by
+  have hx : ((r.val : ℝ) / N) ∈ Set.Icc (0 : ℝ) 1 := by
+    refine ⟨by positivity, ?_⟩
+    rw [div_le_one (by exact_mod_cast NeZero.pos N)]
+    exact_mod_cast (ZMod.val_lt r).le
+  have h := hasSum_one_div_pow_mul_fourier_mul_bernoulliFun hk hx
+  refine h.congr_fun fun d => ?_
+  rw [fourier_coe_apply, one_div, mul_comm]
+  congr 1
+  have : (r * (d : ZMod N) : ZMod N) = (((r.val : ℤ) * d : ℤ) : ZMod N) := by
+    simp
+  rw [this, ZMod.stdAddChar_coe]
+  congr 1
+  push_cast
+  ring
+
+/--
+@isnad1 id=summable.1h1v.s5.afb91317f40c from=translated src=- shape=eb052c90 vocab=44618283
+-/
+lemma summable_inv_pow (hk : 2 ≤ k) : Summable fun d : ℤ => ((d : ℂ) ^ k)⁻¹ := by
+  have : Summable fun d : ℤ => (1 : ℝ) / (d : ℝ) ^ k := Real.summable_one_div_int_pow.mpr (by omega)
+  have := (this.map Complex.ofRealCLM Complex.ofRealCLM.continuous)
+  refine this.congr fun d => ?_
+  simp
+
+/--
+@isnad1 id=eq.0h2v.s6.da52a5d51aa0 from=translated src=- shape=86fd08a5 vocab=6b61d454
+-/
+lemma norm_stdAddChar (x : ZMod N) : ‖ZMod.stdAddChar x‖ = 1 := by
+  rw [ZMod.stdAddChar_apply]
+  exact Circle.norm_coe _
+
+/--
+@isnad1 id=summable.1h3v.s7.fe65a30a2981 from=translated src=- shape=e5159c1d vocab=6cb108a6
+-/
+lemma summable_twisted (hk : 2 ≤ k) (r : ZMod N) :
+    Summable fun d : ℤ => ZMod.stdAddChar (r * (d : ZMod N)) * ((d : ℂ) ^ k)⁻¹ := by
+  refine Summable.of_norm_bounded (g := fun d : ℤ => ‖((d : ℂ) ^ k)⁻¹‖) (summable_inv_pow hk).norm ?_
+  intro d
+  rw [norm_mul, norm_stdAddChar, one_mul]
+
+/--
+@isnad1 id=eq.0h3v.s8.36e95b4f1644 from=translated src=- shape=e6cb9c1b vocab=9d3fb2a2
+-/
+lemma indicator_eq_sum (a b : ZMod N) :
+    (if b = a then (1 : ℂ) else 0) =
+      (N : ℂ)⁻¹ * ∑ r : ZMod N, ZMod.stdAddChar (-(r * a)) * ZMod.stdAddChar (r * b) := by
+  have h := AddChar.sum_mulShift (b - a) (ZMod.isPrimitive_stdAddChar N)
+  simp only [ZMod.card, sub_eq_zero] at h
+  have h2 : ∑ r : ZMod N, ZMod.stdAddChar (-(r * a)) * ZMod.stdAddChar (r * b) =
+      ∑ r : ZMod N, ZMod.stdAddChar (r * (b - a)) := by
+    refine Finset.sum_congr rfl fun r _ => ?_
+    rw [← AddChar.map_add_eq_mul]
+    congr 1; ring
+  rw [h2, h]
+  have hN : (N : ℂ) ≠ 0 := by exact_mod_cast NeZero.ne N
+  split_ifs <;> simp [hN]
+
+/--
+@isnad1 id=eq.1h3v.s8.386d6772ebe2 from=translated src=- shape=7697108a vocab=c5f3709b
+-/
+theorem main (hk : 2 ≤ k) (a : ZMod N) :
+    ∑' d : {d : ℤ // (d : ZMod N) = a}, ((d : ℂ) ^ k)⁻¹ =
+      -(2 * π * I) ^ k / (k ! * N) *
+        ∑ r : ZMod N, ZMod.stdAddChar (-(r * a)) * (bernoulliFun k ((r.val : ℝ) / N) : ℂ) := by
+
+  have h1 : ∑' d : {d : ℤ // (d : ZMod N) = a}, ((d : ℂ) ^ k)⁻¹ =
+      ∑' d : ℤ, (if (d : ZMod N) = a then (1 : ℂ) else 0) * ((d : ℂ) ^ k)⁻¹ := by
+    rw [show (∑' d : {d : ℤ // (d : ZMod N) = a}, ((d : ℂ) ^ k)⁻¹) =
+        ∑' d : ({d : ℤ | (d : ZMod N) = a} : Set ℤ), ((d : ℂ) ^ k)⁻¹ from rfl,
+      tsum_subtype {d : ℤ | (d : ZMod N) = a} (fun d : ℤ => ((d : ℂ) ^ k)⁻¹)]
+    refine tsum_congr fun d => ?_
+    simp only [Set.indicator_apply, Set.mem_ofPred_eq]
+    split_ifs <;> simp
+  rw [h1]
+
+  have h2 : ∀ d : ℤ, (if (d : ZMod N) = a then (1 : ℂ) else 0) * ((d : ℂ) ^ k)⁻¹ =
+      ∑ r : ZMod N, ((N : ℂ)⁻¹ * ZMod.stdAddChar (-(r * a))) *
+        (ZMod.stdAddChar (r * (d : ZMod N)) * ((d : ℂ) ^ k)⁻¹) := by
+    intro d
+    rw [indicator_eq_sum a, Finset.mul_sum, Finset.sum_mul]
+    refine Finset.sum_congr rfl fun r _ => ?_
+    ring
+  simp_rw [h2]
+  rw [Summable.tsum_finsetSum (fun r _ => (summable_twisted hk r).mul_left _)]
+  simp_rw [tsum_mul_left]
+
+  rw [Finset.mul_sum]
+  refine Finset.sum_congr rfl fun r _ => ?_
+  rw [(hasSum_twisted hk r).tsum_eq]
+  have hN : (N : ℂ) ≠ 0 := by exact_mod_cast NeZero.ne N
+  field_simp
+
+end CardC0
+
+/--
+@isnad1 id=eq.1h3v.s8.386d6772ebe2 from=translated src=- shape=7697108a vocab=c5f3709b
+-/
+theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 2 ≤ k)
+    (a : ZMod N) :
+    ∑' d : {d : ℤ // (d : ZMod N) = a}, ((d : ℂ) ^ k)⁻¹ =
+      -(2 * π * I) ^ k / (k ! * N) *
+        ∑ r : ZMod N, ZMod.stdAddChar (-(r * a)) * (bernoulliFun k ((r.val : ℝ) / N) : ℂ) :=
+  CardC0.main hk a

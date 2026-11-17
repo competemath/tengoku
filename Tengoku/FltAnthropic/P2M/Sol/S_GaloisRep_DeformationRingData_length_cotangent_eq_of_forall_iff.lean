@@ -1,0 +1,187 @@
+import Tengoku.FltAnthropic.Definitions.Def_GaloisRep_DeformationRingData
+import Tengoku.Seed.RingTheory.Ideal.Cotangent
+import Tengoku.Seed.RingTheory.Length
+import Tengoku.Seed.LinearAlgebra.TensorProduct.Tower
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_GaloisRep_DeformationRingData_length_cotangent_eq_of_forall_iff.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_GaloisRep_DeformationRingData_length_cotangent_eq_of_forall_iff
+
+set_option autoImplicit false
+
+namespace K2cEngine
+
+open scoped TensorProduct
+
+section BaseChange
+
+variable {A B C : Type} [CommRing A] [IsLocalRing A] [CommRing B] [IsLocalRing B]
+  [CommRing C] [IsLocalRing C]
+
+/--
+@isnad1 id=isequiv.1h2v.s6.515666027d89 from=translated src=- shape=6db13134 vocab=b76cb9e9
+-/
+theorem isEquiv_baseChangeAlong_id (ρ : GaloisRepAdic A) (h : IsLocalHom (RingHom.id A)) :
+    (ρ.baseChangeAlong (RingHom.id A) h).IsEquiv ρ := by
+  let e : A ⊗[A] ρ.V ≃ₗ[A] ρ.V := TensorProduct.lid A ρ.V
+  have key : ∀ σ, e.toLinearMap ∘ₗ (ρ.ρ σ).baseChange A = ρ.ρ σ ∘ₗ e.toLinearMap := by
+    intro σ
+    refine TensorProduct.ext' fun (a : A) (v : ρ.V) => ?_
+    simp only [LinearMap.comp_apply, LinearEquiv.coe_toLinearMap, LinearMap.baseChange_tmul, e,
+      TensorProduct.lid_tmul, map_smul]
+  refine ⟨{ toLinearEquiv := e, map_apply := fun σ x => ?_ }⟩
+  exact LinearMap.congr_fun (key σ) x
+
+/--
+@isnad1 id=isequiv.3h5v.s7.ac381e666cf4 from=translated src=- shape=40413129 vocab=5ee489ab
+-/
+theorem isEquiv_baseChangeAlong_congr (ρ : GaloisRepAdic A) {φ φ' : A →+* B} (e : φ = φ')
+    (h : IsLocalHom φ) (h' : IsLocalHom φ') :
+    (ρ.baseChangeAlong φ h).IsEquiv (ρ.baseChangeAlong φ' h') := by
+  subst e
+  exact ⟨GaloisRepAdic.Equiv.refl _⟩
+
+/--
+@isnad1 id=isequiv.3h6v.s8.515963d0e8d5 from=translated src=- shape=be4f68af vocab=640c7d82
+-/
+theorem isEquiv_baseChangeAlong_comp (φ : A →+* B) (hφ : IsLocalHom φ) (ψ : B →+* C)
+    (hψ : IsLocalHom ψ) (hψφ : IsLocalHom (ψ.comp φ)) (ρ : GaloisRepAdic A) :
+    ((ρ.baseChangeAlong φ hφ).baseChangeAlong ψ hψ).IsEquiv (ρ.baseChangeAlong (ψ.comp φ) hψφ) := by
+  letI : Algebra A B := φ.toAlgebra
+  letI : Algebra B C := ψ.toAlgebra
+  letI : Algebra A C := (ψ.comp φ).toAlgebra
+  haveI : IsScalarTower A B C := IsScalarTower.of_algebraMap_eq (fun _ => rfl)
+  let e := TensorProduct.AlgebraTensorModule.cancelBaseChange A B C C ρ.V
+  have key : ∀ σ, e.toLinearMap ∘ₗ ((ρ.ρ σ).baseChange B).baseChange C =
+      (ρ.ρ σ).baseChange C ∘ₗ e.toLinearMap := by
+    intro σ
+    refine TensorProduct.AlgebraTensorModule.ext fun (c : C) (y : B ⊗[A] ρ.V) => ?_
+    induction y using TensorProduct.induction_on with
+    | zero => simp only [TensorProduct.tmul_zero, map_zero]
+    | tmul b v =>
+      simp only [LinearMap.comp_apply, LinearEquiv.coe_toLinearMap, LinearMap.baseChange_tmul, e,
+        TensorProduct.AlgebraTensorModule.cancelBaseChange_tmul]
+    | add y z hy hz => simp only [TensorProduct.tmul_add, map_add, hy, hz]
+  refine ⟨{ toLinearEquiv := e, map_apply := fun σ x => ?_ }⟩
+  exact LinearMap.congr_fun (key σ) x
+
+end BaseChange
+
+section Iso
+
+variable {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪]
+  [IsAdicComplete (IsLocalRing.maximalIdeal 𝒪) 𝒪]
+  {ρbar : ResidualGaloisRep (IsLocalRing.ResidueField 𝒪)}
+  {𝒟₀ 𝒟' : ∀ ⦃A : Type⦄ [CommRing A] [IsLocalRing A] [Algebra 𝒪 A], GaloisRepAdic A → Prop}
+
+/--
+@isnad1 id=ex.3h7v.s10.4ef4e8c24434 from=translated src=- shape=6f7f105f vocab=75832446
+-/
+theorem exists_algEquiv
+    (h : ∀ ⦃A : Type⦄ [CommRing A] [IsLocalRing A] [Algebra 𝒪 A] (ρ : GaloisRepAdic A), 𝒟' ρ ↔ 𝒟₀ ρ)
+    (D₀ : GaloisRep.DeformationRingData 𝒪 ρbar 𝒟₀) (D' : GaloisRep.DeformationRingData 𝒪 ρbar 𝒟')
+    (θ : D'.R →ₐ[𝒪] D₀.R) (hθ : IsLocalHom (θ : D'.R →+* D₀.R))
+    (hθρ : (D'.ρ.baseChangeAlong (θ : D'.R →+* D₀.R) hθ).IsEquiv D₀.ρ) :
+    ∃ e : D'.R ≃ₐ[𝒪] D₀.R, (e : D'.R →ₐ[𝒪] D₀.R) = θ := by
+
+  obtain ⟨ψ, ⟨hψ, hψρ⟩, -⟩ := D₀.universal D'.R D'.residue_surjective D'.ρ
+    ((h D'.ρ).mp D'.isOfType) D'.residual_isEquiv
+
+  have h₁ : θ.comp ψ = AlgHom.id 𝒪 D₀.R := by
+    have hcomp : IsLocalHom ((θ : D'.R →+* D₀.R).comp (ψ : D₀.R →+* D'.R)) := inferInstance
+    refine (D₀.universal D₀.R D₀.residue_surjective D₀.ρ D₀.isOfType D₀.residual_isEquiv).unique
+      ?_ ?_
+    · refine ⟨(by rw [AlgHom.comp_toRingHom]; exact hcomp), ?_⟩
+      obtain ⟨e₁⟩ := isEquiv_baseChangeAlong_comp (ψ : D₀.R →+* D'.R) hψ (θ : D'.R →+* D₀.R) hθ
+        hcomp D₀.ρ
+      obtain ⟨e₂⟩ := hψρ
+      obtain ⟨e₃⟩ := hθρ
+      obtain ⟨e₀⟩ := isEquiv_baseChangeAlong_congr D₀.ρ (AlgHom.comp_toRingHom θ ψ)
+        (by rw [AlgHom.comp_toRingHom]; exact hcomp) hcomp
+      exact ⟨e₀.trans (e₁.symm.trans ((e₂.baseChangeAlong _ hθ).trans e₃))⟩
+    · refine ⟨(by rw [AlgHom.id_toRingHom]; infer_instance), ?_⟩
+      obtain ⟨e₀⟩ := isEquiv_baseChangeAlong_congr D₀.ρ (AlgHom.id_toRingHom 𝒪 D₀.R)
+        (by rw [AlgHom.id_toRingHom]; infer_instance) inferInstance
+      obtain ⟨e₁⟩ := isEquiv_baseChangeAlong_id D₀.ρ inferInstance
+      exact ⟨e₀.trans e₁⟩
+
+  have h₂ : ψ.comp θ = AlgHom.id 𝒪 D'.R := by
+    have hcomp : IsLocalHom ((ψ : D₀.R →+* D'.R).comp (θ : D'.R →+* D₀.R)) := inferInstance
+    refine (D'.universal D'.R D'.residue_surjective D'.ρ D'.isOfType D'.residual_isEquiv).unique
+      ?_ ?_
+    · refine ⟨(by rw [AlgHom.comp_toRingHom]; exact hcomp), ?_⟩
+      obtain ⟨e₁⟩ := isEquiv_baseChangeAlong_comp (θ : D'.R →+* D₀.R) hθ (ψ : D₀.R →+* D'.R) hψ
+        hcomp D'.ρ
+      obtain ⟨e₂⟩ := hθρ
+      obtain ⟨e₃⟩ := hψρ
+      obtain ⟨e₀⟩ := isEquiv_baseChangeAlong_congr D'.ρ (AlgHom.comp_toRingHom ψ θ)
+        (by rw [AlgHom.comp_toRingHom]; exact hcomp) hcomp
+      exact ⟨e₀.trans (e₁.symm.trans ((e₂.baseChangeAlong _ hψ).trans e₃))⟩
+    · refine ⟨(by rw [AlgHom.id_toRingHom]; infer_instance), ?_⟩
+      obtain ⟨e₀⟩ := isEquiv_baseChangeAlong_congr D'.ρ (AlgHom.id_toRingHom 𝒪 D'.R)
+        (by rw [AlgHom.id_toRingHom]; infer_instance) inferInstance
+      obtain ⟨e₁⟩ := isEquiv_baseChangeAlong_id D'.ρ inferInstance
+      exact ⟨e₀.trans e₁⟩
+  exact ⟨AlgEquiv.ofAlgHom θ ψ h₁ h₂, rfl⟩
+
+end Iso
+
+section Cotangent
+
+variable {R A B : Type} [CommRing R] [CommRing A] [CommRing B] [Algebra R A] [Algebra R B]
+
+noncomputable def cotangentEquivOfAlgEquiv (e : A ≃ₐ[R] B) (J : Ideal B) :
+    (J.comap (e : A →ₐ[R] B)).Cotangent ≃ₗ[R] J.Cotangent := by
+  refine LinearEquiv.ofLinearMap
+    (Ideal.mapCotangent (J.comap (e : A →ₐ[R] B)) J (e : A →ₐ[R] B) le_rfl)
+    (Ideal.mapCotangent J (J.comap (e : A →ₐ[R] B)) (e.symm : B →ₐ[R] A) ?_) ?_ ?_
+  · intro b hb
+    show e (e.symm b) ∈ J
+    rw [e.apply_symm_apply]
+    exact hb
+  · apply LinearMap.ext
+    intro x
+    obtain ⟨x, rfl⟩ := Ideal.toCotangent_surjective J x
+    rw [LinearMap.comp_apply, Ideal.mapCotangent_toCotangent, Ideal.mapCotangent_toCotangent,
+      LinearMap.id_apply]
+    congr 1
+    ext
+    simp
+  · apply LinearMap.ext
+    intro x
+    obtain ⟨x, rfl⟩ := Ideal.toCotangent_surjective _ x
+    rw [LinearMap.comp_apply, Ideal.mapCotangent_toCotangent, Ideal.mapCotangent_toCotangent,
+      LinearMap.id_apply]
+    congr 1
+    ext
+    simp
+
+end Cotangent
+
+end K2cEngine
+
+open K2cEngine in
+/--
+@isnad1 id=eq.3h8v.s11.e90c83b33161 from=translated src=- shape=832d1f82 vocab=25d30f51
+-/
+theorem solution
+    {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪]
+    [IsAdicComplete (IsLocalRing.maximalIdeal 𝒪) 𝒪]
+    {ρbar : ResidualGaloisRep (IsLocalRing.ResidueField 𝒪)}
+    {𝒟₀ 𝒟' : ∀ ⦃A : Type⦄ [CommRing A] [IsLocalRing A] [Algebra 𝒪 A], GaloisRepAdic A → Prop}
+    (h : ∀ ⦃A : Type⦄ [CommRing A] [IsLocalRing A] [Algebra 𝒪 A] (ρ : GaloisRepAdic A), 𝒟' ρ ↔ 𝒟₀ ρ)
+    (D₀ : GaloisRep.DeformationRingData 𝒪 ρbar 𝒟₀) (D' : GaloisRep.DeformationRingData 𝒪 ρbar 𝒟')
+    (θ : D'.R →ₐ[𝒪] D₀.R) (hθ : IsLocalHom (θ : D'.R →+* D₀.R))
+    (hθρ : (D'.ρ.baseChangeAlong (θ : D'.R →+* D₀.R) hθ).IsEquiv D₀.ρ)
+    (x₀ : D₀.R →ₐ[𝒪] 𝒪) :
+    Module.length 𝒪 (RingHom.ker (x₀.comp θ)).Cotangent =
+      Module.length 𝒪 (RingHom.ker x₀).Cotangent := by
+  obtain ⟨e, he⟩ := exists_algEquiv h D₀ D' θ hθ hθρ
+  subst he
+  have hker : RingHom.ker (x₀.comp (e : D'.R →ₐ[𝒪] D₀.R)) =
+      (RingHom.ker x₀).comap (e : D'.R →ₐ[𝒪] D₀.R) :=
+    Ideal.ext fun _ => Iff.rfl
+  rw [hker]
+  exact (cotangentEquivOfAlgEquiv e (RingHom.ker x₀)).length_eq
+-- Tengoku: root names of this library moved to Tengoku.FltAnthropic so they do not collide with other libraries (generated)

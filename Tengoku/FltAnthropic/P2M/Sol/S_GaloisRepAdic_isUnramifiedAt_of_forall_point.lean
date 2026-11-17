@@ -1,0 +1,40 @@
+import Tengoku
+import Tengoku.FltAnthropic.Definitions.Def_GaloisRep_Adic
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_GaloisRepAdic_isUnramifiedAt_of_forall_point.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_GaloisRepAdic_isUnramifiedAt_of_forall_point
+
+set_option autoImplicit false
+
+/--
+@isnad1 id=isunrami.3h6v.s8.1ddc911b1b06 from=translated src=- shape=8b844d84 vocab=723b47f8
+-/
+theorem solution
+    {P : Type} [CommRing P] [IsLocalRing P] {ι : Type} {A : ι → Type}
+    [∀ i, CommRing (A i)] [∀ i, IsLocalRing (A i)]
+    (χ : ∀ i, P →+* A i) (hχ : ∀ i, IsLocalHom (χ i))
+    (hinj : ∀ x, (∀ i, χ i x = 0) → x = 0)
+    (ρ : GaloisRepAdic P) {q : ℕ}
+    (h : ∀ i, (ρ.baseChangeAlong (χ i) (hχ i)).IsUnramifiedAt q) :
+    ρ.IsUnramifiedAt q := by
+  classical
+  intro Q hQ σ hσ
+  let e : Module.Basis (Fin 2) P ρ.V := Module.finBasisOfFinrankEq P ρ.V ρ.finrank_eq
+
+  have key : ∀ (k : ι) (i j : Fin 2), χ k (LinearMap.toMatrix e e (ρ.ρ σ - 1) i j) = 0 := by
+    intro k i j
+    letI : Algebra P (A k) := (χ k).toAlgebra
+    have h1 : ((ρ.ρ σ - 1).baseChange (A k)) = 0 := by
+      rw [LinearMap.baseChange_sub, LinearMap.baseChange_one]
+      exact sub_eq_zero.mpr (h k Q hQ σ hσ)
+    have h2 := congrArg (fun T => LinearMap.toMatrix (Algebra.TensorProduct.basis (A k) e)
+      (Algebra.TensorProduct.basis (A k) e) T i j) h1
+    simp only [LinearMap.toMatrix_baseChange, Matrix.map_apply, map_zero, Matrix.zero_apply] at h2
+    rw [RingHom.algebraMap_toAlgebra] at h2
+    exact h2
+  have hzero : ρ.ρ σ - 1 = 0 :=
+    (LinearMap.toMatrix e e).map_eq_zero_iff.mp (Matrix.ext fun i j => hinj _ fun k => key k i j)
+  exact sub_eq_zero.mp hzero
+-- Tengoku: root names of this library moved to Tengoku.FltAnthropic so they do not collide with other libraries (generated)

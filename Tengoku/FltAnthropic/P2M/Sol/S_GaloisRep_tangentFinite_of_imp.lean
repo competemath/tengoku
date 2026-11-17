@@ -1,0 +1,57 @@
+import Tengoku.FltAnthropic.Definitions.Def_GaloisRep_DeformationCondition
+import Tengoku.FltAnthropic.Definitions.Def_GaloisRep_LocalConditions
+import Tengoku.FltAnthropic.Definitions.Def_GaloisRep_Flat
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_GaloisRep_tangentFinite_of_imp.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_GaloisRep_tangentFinite_of_imp
+
+open IsLocalRing
+
+set_option autoImplicit false
+
+open GaloisRep
+
+/--
+@isnad1 id=tangentf.1h5v.s7.d00fdcd56c35 from=translated src=- shape=c9854ff4 vocab=3a5df965
+-/
+theorem solution (𝒪 : Type) [CommRing 𝒪] [IsLocalRing 𝒪]
+    (ρbar : ResidualGaloisRep (ResidueField 𝒪))
+    (𝒟 𝒟' : ∀ ⦃A : Type⦄ [CommRing A] [IsLocalRing A] [Algebra 𝒪 A], GaloisRepAdic A → Prop)
+    (h : ∀ ⦃A : Type⦄ [CommRing A] [IsLocalRing A] [Algebra 𝒪 A] (ρ : GaloisRepAdic A), 𝒟 ρ → 𝒟' ρ)
+    (hfin : TangentFinite 𝒪 ρbar 𝒟') : TangentFinite 𝒪 ρbar 𝒟 := by
+  unfold TangentFinite at hfin ⊢
+  letI : Algebra 𝒪 (DualNumber (IsLocalRing.ResidueField 𝒪)) :=
+    ((algebraMap (IsLocalRing.ResidueField 𝒪) (DualNumber (IsLocalRing.ResidueField 𝒪))).comp
+      (algebraMap 𝒪 (IsLocalRing.ResidueField 𝒪))).toAlgebra
+  letI : Algebra (IsLocalRing.ResidueField 𝒪)
+      (IsLocalRing.ResidueField (DualNumber (IsLocalRing.ResidueField 𝒪))) :=
+    ((IsLocalRing.residue (DualNumber (IsLocalRing.ResidueField 𝒪))).comp
+      (algebraMap (IsLocalRing.ResidueField 𝒪) (DualNumber (IsLocalRing.ResidueField 𝒪)))).toAlgebra
+  set s : Setoid {ρ : GaloisRepAdic (DualNumber (IsLocalRing.ResidueField 𝒪)) //
+      𝒟 ρ ∧ ρ.residual.IsEquiv
+        (ρbar.baseChange (IsLocalRing.ResidueField (DualNumber (IsLocalRing.ResidueField 𝒪))))} :=
+    ⟨fun ρ ρ' => ρ.1.IsEquiv ρ'.1, ⟨fun ρ => ⟨GaloisRepAdic.Equiv.refl ρ.1⟩,
+        fun ⟨e⟩ => ⟨e.symm⟩, fun ⟨e⟩ ⟨e'⟩ => ⟨e.trans e'⟩⟩⟩ with hs
+  set s' : Setoid {ρ : GaloisRepAdic (DualNumber (IsLocalRing.ResidueField 𝒪)) //
+      𝒟' ρ ∧ ρ.residual.IsEquiv
+        (ρbar.baseChange (IsLocalRing.ResidueField (DualNumber (IsLocalRing.ResidueField 𝒪))))} :=
+    ⟨fun ρ ρ' => ρ.1.IsEquiv ρ'.1, ⟨fun ρ => ⟨GaloisRepAdic.Equiv.refl ρ.1⟩,
+        fun ⟨e⟩ => ⟨e.symm⟩, fun ⟨e⟩ ⟨e'⟩ => ⟨e.trans e'⟩⟩⟩ with hs'
+  let f : {ρ : GaloisRepAdic (DualNumber (IsLocalRing.ResidueField 𝒪)) //
+      𝒟 ρ ∧ ρ.residual.IsEquiv
+        (ρbar.baseChange (IsLocalRing.ResidueField (DualNumber (IsLocalRing.ResidueField 𝒪))))} →
+      {ρ : GaloisRepAdic (DualNumber (IsLocalRing.ResidueField 𝒪)) //
+      𝒟' ρ ∧ ρ.residual.IsEquiv
+        (ρbar.baseChange (IsLocalRing.ResidueField (DualNumber (IsLocalRing.ResidueField 𝒪))))} :=
+    fun ρ => ⟨ρ.1, h ρ.1 ρ.2.1, ρ.2.2⟩
+  have hf : ∀ a b, s.r a b → s'.r (f a) (f b) := fun _ _ e => e
+  refine Finite.of_injective (Quotient.map' (s₁ := s) (s₂ := s') f hf) ?_
+  intro x y hxy
+  induction x using Quotient.inductionOn' with | h x => ?_
+  induction y using Quotient.inductionOn' with | h y => ?_
+  have hxy' : (Quotient.mk'' (f x) : Quotient s') = Quotient.mk'' (f y) := hxy
+  have hr : @Setoid.r _ s' (f x) (f y) := Quotient.exact' hxy'
+  exact Quotient.sound' (hr : @Setoid.r _ s x y)
+-- Tengoku: root names of this library moved to Tengoku.FltAnthropic so they do not collide with other libraries (generated)

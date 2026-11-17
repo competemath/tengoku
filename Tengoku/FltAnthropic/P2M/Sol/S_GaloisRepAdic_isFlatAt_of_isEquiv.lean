@@ -1,0 +1,52 @@
+import Tengoku.FltAnthropic.Definitions.Def_GaloisRep_Flat
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_GaloisRepAdic_isFlatAt_of_isEquiv.lean`: wrote out 2 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_export`, 1 `p2m_open`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_GaloisRepAdic_isFlatAt_of_isEquiv
+
+namespace GaloisRepAdic
+export _root_.Tengoku.FltAnthropic.GaloisRepAdic (levelAction IsFlatAt IsEquiv mk V)
+namespace FlatSol
+open _root_.Tengoku.FltAnthropic.GaloisRepAdic
+
+variable {A : Type} [CommRing A] [IsLocalRing A]
+
+/--
+@isnad1 id=isflatat.2h4v.s5.2ba1d17331d1 from=translated src=- shape=fadfb841 vocab=bdacb1a4
+-/
+theorem isFlatAt_of_isEquiv {ρ₁ ρ₂ : GaloisRepAdic A} (e : ρ₁.IsEquiv ρ₂) {p : ℕ}
+    (h : ρ₁.IsFlatAt p) : ρ₂.IsFlatAt p := by
+  obtain ⟨e⟩ := e
+  refine ⟨h.1, fun I hI => ?_⟩
+  obtain ⟨H, _, _, hfin, hflat, hcocomm, eH, hmul, hgal⟩ := h.2 I hI
+
+  have hmap : (I • (⊤ : Submodule A ρ₁.V)).map (e.toLinearEquiv : ρ₁.V →ₗ[A] ρ₂.V) =
+      I • (⊤ : Submodule A ρ₂.V) := by
+    rw [Submodule.map_smul'', Submodule.map_top, LinearEquiv.range]
+
+  let E : (ρ₁.V ⧸ (I • (⊤ : Submodule A ρ₁.V))) ≃ₗ[A] (ρ₂.V ⧸ (I • (⊤ : Submodule A ρ₂.V))) :=
+    Submodule.Quotient.equiv _ _ e.toLinearEquiv hmap
+
+  have hE : ∀ (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ)
+      (x : ρ₁.V ⧸ (I • (⊤ : Submodule A ρ₁.V))),
+      E (ρ₁.levelAction I σ x) = ρ₂.levelAction I σ (E x) := fun σ x =>
+    Submodule.Quotient.induction_on _ x fun v =>
+      congrArg (Submodule.Quotient.mk (p := I • (⊤ : Submodule A ρ₂.V))) (e.map_apply σ v)
+  refine ⟨H, _, _, hfin, hflat, hcocomm, eH.trans E.toEquiv, fun f g => ?_, fun σ f g hfg => ?_⟩
+  · change E (eH (f * g)) = E (eH f) + E (eH g)
+    rw [hmul, map_add]
+  · change E (eH g) = ρ₂.levelAction I σ (E (eH f))
+    rw [hgal σ f g hfg, hE]
+
+end GaloisRepAdic.FlatSol
+
+/--
+@isnad1 id=isflatat.2h4v.s5.2ba1d17331d1 from=translated src=- shape=fadfb841 vocab=bdacb1a4
+-/
+theorem solution
+    {A : Type} [CommRing A] [IsLocalRing A]
+    {ρ₁ ρ₂ : GaloisRepAdic A} (e : ρ₁.IsEquiv ρ₂) {p : ℕ}
+    (h : ρ₁.IsFlatAt p) : ρ₂.IsFlatAt p :=
+  GaloisRepAdic.FlatSol.isFlatAt_of_isEquiv e h
+-- Tengoku: root names of this library moved to Tengoku.FltAnthropic so they do not collide with other libraries (generated)
