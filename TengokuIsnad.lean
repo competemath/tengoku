@@ -310,8 +310,8 @@ partial def reduceUnused (e : Expr) : Expr :=
 def haveStatement (t : Expr) : MetaM (Array Expr) := do
   let t ← instantiateMVars t
   unless (← isProp t) do return #[]
-  let t ← zetaReduce t
   let lctx ← getLCtx
+  -- everything the statement depends on: the variables, their types, and for a `let` variable its value too
   let mut need : Std.HashSet FVarId := {}
   let mut frontier : Array Expr := #[t]
   while !frontier.isEmpty do
@@ -320,9 +320,12 @@ def haveStatement (t : Expr) : MetaM (Array Expr) := do
     for id in (collectFVars {} e).fvarIds do
       if need.contains id then continue
       need := need.insert id
-      if let some d := lctx.find? id then frontier := frontier.push d.type
-  let xs := lctx.getFVars.filter fun x => need.contains x.fvarId! && !((lctx.find? x.fvarId!).get!.isLet)
-  return #[← instantiateMVars (← mkForallFVars xs t)]
+      if let some d := lctx.find? id then
+        frontier := frontier.push d.type
+        if d.isLet then frontier := frontier.push d.value
+  let xs := lctx.getFVars.filter fun x => need.contains x.fvarId!
+  -- abstract with the `let` variables included (they become `let` binders), then zeta-reduce: no `let` variable is left free and every dependency is closed
+  return #[← zetaReduce (← instantiateMVars (← mkForallFVars xs t))]
 
 /-- The statements of the `have`s of a proof (after the reduction), each closed, in order of appearance. -/
 partial def collectHaves (e : Expr) : MetaM (Array Expr) := do

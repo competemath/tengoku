@@ -525,6 +525,8 @@ def waypoints_ok(d: Path, exe: str | None) -> bool:
         and w.get("padded") == w.get("two_haves") == w.get("reordered")
         and "none_here" not in w
         and len(w.get("with_local", [])) == 1
+        and len(w.get("with_let", [])) == 1
+        and w["with_let"][0].startswith("eq.0h1v.")  # closed over n alone: the let variable is reduced away, not left free
     )
 
 
