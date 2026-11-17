@@ -34,7 +34,9 @@ namespace LeanEval.Geometry.PlatonicClassification
 open ConvexPolytope
 
 /-- **LA SECONDA FACCETTA**: in un politopo full-dim di ℝ³ ogni spigolo di
-una faccetta sta anche in un'altra faccetta.-/
+una faccetta sta anche in un'altra faccetta.
+@isnad1 id=ex.6h3v.s7.9ec9446256a0 from=translated src=- shape=0b6b392a vocab=10181603
+-/
 theorem seconda_faccetta (P : ConvexPolytope 3) (hfull : P.IsFullDim)
     {δ : Set (E 3)} (hδ : P.IsFace δ) (hdδ : faceDim δ = 1)
     {A : Set (E 3)} (hA : P.IsFace A) (hdA : faceDim A = 2) (hδA : δ ⊆ A) :

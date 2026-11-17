@@ -47,13 +47,18 @@ def simpleSubgroup (P : ConvexPolytope n) (hreg : P.IsRegular)
     (F : P.Flag) : Subgroup (symGroup P) :=
   Subgroup.closure (Set.range (simpleGen P hreg F))
 
+/--
+@isnad1 id=mem.1h4v.s11.67780cde8b3e from=translated src=- shape=f4a1ac82 vocab=7a82adf8
+-/
 theorem simpleGen_mem (P : ConvexPolytope n) (hreg : P.IsRegular)
     (F : P.Flag) (i : Fin n) :
     simpleGen P hreg F i ∈ simpleSubgroup P hreg F :=
   Subgroup.subset_closure ⟨i, rfl⟩
 
 /-- Il passo che fa crescere la parola: moltiplicare a destra per `rᵢ`
-equivale a fare la mossa `i` sulla bandiera raggiunta.-/
+equivale a fare la mossa `i` sulla bandiera raggiunta.
+@isnad1 id=eq.1h5v.s11.0e809fdd538a from=translated src=- shape=0bfc5949 vocab=e4b9cbee
+-/
 theorem act_mul_simpleGen (P : ConvexPolytope n) (hreg : P.IsRegular)
     (F : P.Flag) (w : symGroup P) (i : Fin n) :
     act P (w * simpleGen P hreg F i) F =

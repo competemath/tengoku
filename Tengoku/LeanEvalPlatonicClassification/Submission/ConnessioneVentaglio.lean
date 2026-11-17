@@ -47,6 +47,9 @@ instance : DecidableEq (SpigoloPer P v) := Classical.decEq _
 noncomputable def altro (hv : v ∈ P.vertices) (e : SpigoloPer P v) : E 3 :=
   Classical.choose (spigolo_segmento P e.property.1 e.property.2.1 hv e.property.2.2)
 
+/--
+@isnad1 id=and.1h3v.s8.b2812ecf6631 from=translated src=- shape=b3f12844 vocab=f0465809
+-/
 theorem altro_spec (hv : v ∈ P.vertices) (e : SpigoloPer P v) :
     altro P v hv e ∈ P.vertices ∧ altro P v hv e ∈ e.val ∧
       altro P v hv e ≠ v ∧
@@ -59,6 +62,9 @@ noncomputable def taglio (hv : v ∈ P.vertices) (l : E 3 →L[ℝ] ℝ) (c : �
     (e : SpigoloPer P v) : E 3 :=
   v + ((l v - c) / (l v - l (altro P v hv e))) • (altro P v hv e - v)
 
+/--
+@isnad1 id=and.3h5v.s11.16a2242e6b55 from=translated src=- shape=c525839f vocab=de1fb279
+-/
 theorem taglio_fatti (hv : v ∈ P.vertices) (l : E 3 →L[ℝ] ℝ) (c : ℝ)
     (hc : c < l v) (e : SpigoloPer P v)
     (ha : l (altro P v hv e) < c) :
@@ -112,7 +118,9 @@ theorem taglio_fatti (hv : v ∈ P.vertices) (l : E 3 →L[ℝ] ℝ) (c : ℝ)
 
 end SpigoloPer
 
-/-- Un livello che separa `v` da tutti gli altri vertici.-/
+/-- Un livello che separa `v` da tutti gli altri vertici.
+@isnad1 id=ex.2h2v.s10.9b21c6db6868 from=translated src=- shape=21037c56 vocab=a63d5155
+-/
 theorem esiste_livello_separatore (P : ConvexPolytope 3) (hfull : P.IsFullDim)
     {v : E 3} (hv : v ∈ P.vertices) :
     ∃ l : E 3 →L[ℝ] ℝ, ∃ c : ℝ,
@@ -155,7 +163,9 @@ theorem esiste_livello_separatore (P : ConvexPolytope 3) (hfull : P.IsFullDim)
   linarith
 
 /-- In una faccetta, dato uno dei due spigoli per `v`, esiste un unico
-altro spigolo per `v`.-/
+altro spigolo per `v`.
+@isnad1 id=ex.5h4v.s8.24f42309b761 from=translated src=- shape=d2bca929 vocab=9e48c06b
+-/
 theorem unico_altro_spigolo_nella_faccetta (P : ConvexPolytope 3)
     {v : E 3} (hv : v ∈ P.vertices)
     {A : Set (E 3)} (hA : P.IsFace A) (hdA : faceDim A = 2) (hvA : v ∈ A)
@@ -193,7 +203,9 @@ theorem unico_altro_spigolo_nella_faccetta (P : ConvexPolytope 3)
     he_g he_d hg_d e.property.2.2 hvg d.property.2.2
 
 /-- Due spigoli per lo stesso vertice che hanno un secondo punto comune
-coincidono.-/
+coincidono.
+@isnad1 id=eq.9h5v.s7.6834ada94d34 from=translated src=- shape=0247bdc3 vocab=bc0862b7
+-/
 theorem spigoli_eq_of_punto_comune (P : ConvexPolytope 3) {v x : E 3}
     {e d : Set (E 3)}
     (he : P.IsFace e) (hde : faceDim e = 1) (hve : v ∈ e)
@@ -228,7 +240,9 @@ theorem spigoli_eq_of_punto_comune (P : ConvexPolytope 3) {v x : E 3}
   omega
 
 /-- Due faccette distinte che contengono lo stesso spigolo si intersecano
-esattamente in quello spigolo.-/
+esattamente in quello spigolo.
+@isnad1 id=eq.9h4v.s7.b5a16f96112d from=translated src=- shape=e7d7e86f vocab=baebf168
+-/
 theorem intersezione_faccette_eq_spigolo (P : ConvexPolytope 3)
     {e A B : Set (E 3)}
     (he : P.IsFace e) (hde : faceDim e = 1)
@@ -269,7 +283,9 @@ theorem intersezione_faccette_eq_spigolo (P : ConvexPolytope 3)
     omega
   · exact heint
 
-/-- Attraversamenti di spigoli distinti sono distinti.-/
+/-- Attraversamenti di spigoli distinti sono distinti.
+@isnad1 id=ne.5h6v.s10.1a41579baf25 from=translated src=- shape=70c508f8 vocab=77e0b1fc
+-/
 theorem tagli_distinti (P : ConvexPolytope 3) {v : E 3} (hv : v ∈ P.vertices)
     (l : E 3 →L[ℝ] ℝ) (c : ℝ) (hc : c < l v)
     (e d : SpigoloPer P v) (hed : e ≠ d)
@@ -295,7 +311,9 @@ theorem tagli_distinti (P : ConvexPolytope 3) {v : E 3} (hv : v ∈ P.vertices)
 
 /-- Il cono della sezione nel punto che attraversa uno spigolo comune a due
 faccette. Le due direzioni sono quelle verso gli altri spigoli delle due
-faccette.-/
+faccette.
+@isnad1 id=ex.17h10v.s11.82342b1236db from=translated src=- shape=aaff968d vocab=f8c3b00d
+-/
 theorem cono_al_taglio (P : ConvexPolytope 3) {v : E 3} (hv : v ∈ P.vertices)
     (l : E 3 →L[ℝ] ℝ) (c : ℝ) (hc : c < l v)
     (hvert : ∀ u ∈ P.vertices, u ≠ v → l u < c)
@@ -512,7 +530,9 @@ structure StellaSpigolo (P : ConvexPolytope 3) (v : E 3)
   heBne : eB ≠ e
 
 /-- Ogni spigolo per un vertice di un politopo 3D full-dimensional ha una
-stella completa.-/
+stella completa.
+@isnad1 id=nonempty.2h3v.s6.7481117d397d from=translated src=- shape=328d8f86 vocab=b83d8711
+-/
 theorem stella_spigolo_esiste (P : ConvexPolytope 3) (hfull : P.IsFullDim)
     {v : E 3} (hv : v ∈ P.vertices) (e : SpigoloPer P v) :
     Nonempty (StellaSpigolo P v e) := by
@@ -553,7 +573,9 @@ noncomputable def stellaSpigolo (P : ConvexPolytope 3) (hfull : P.IsFullDim)
     StellaSpigolo P v e :=
   Classical.choice (stella_spigolo_esiste P hfull hv e)
 
-/-- Principio locale-globale sulla sezione, ricavato dal cono al taglio.-/
+/-- Principio locale-globale sulla sezione, ricavato dal cono al taglio.
+@isnad1 id=le.6h8v.s12.1cba93a9241e from=translated src=- shape=ed8a52a4 vocab=3dc9b62e
+-/
 theorem locale_globale_taglio (P : ConvexPolytope 3) {v : E 3}
     (hv : v ∈ P.vertices) (l : E 3 →L[ℝ] ℝ) (c : ℝ) (hc : c < l v)
     (hvert : ∀ u ∈ P.vertices, u ≠ v → l u < c)
@@ -592,7 +614,9 @@ def CondividonoFaccetta (P : ConvexPolytope 3) (v : E 3)
   ∃ A : Set (E 3), P.IsFace A ∧ faceDim A = 2 ∧ e.val ⊆ A ∧ d.val ⊆ A
 
 /-- In un politopo full-dimensional di `ℝ³`, ogni vertice appartiene ad
-almeno tre faccette a due a due distinte.-/
+almeno tre faccette a due a due distinte.
+@isnad1 id=ex.2h2v.s8.ce16eb587d93 from=translated src=- shape=8a3d8926 vocab=24ed806a
+-/
 theorem tre_faccette_al_vertice_conn (P : ConvexPolytope 3) (hfull : P.IsFullDim)
     {v : E 3} (hv : v ∈ P.vertices) :
     ∃ A B C : Set (E 3),

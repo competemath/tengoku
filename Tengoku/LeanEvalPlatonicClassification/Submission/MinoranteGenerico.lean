@@ -27,7 +27,9 @@ namespace LeanEval.Geometry.PlatonicClassification
 open ConvexPolytope
 
 /-- **IL MINORANTE GENERICO**: `k` politopi regolari a due a due non
-simili danno `k ≤ platonicCount d`.-/
+simili danno `k ≤ platonicCount d`.
+@isnad1 id=le.1h3v.s5.5bf14761f934 from=translated src=- shape=4775b52e vocab=70d1ae38
+-/
 theorem le_platonicCount (d k : ℕ) (F : Fin k → regularPolytopes d)
     (hdist : ∀ i j : Fin k, i ≠ j → ¬ regularSimilar d (F i) (F j)) :
     (k : ℕ∞) ≤ platonicCount d := by
@@ -55,7 +57,9 @@ theorem le_platonicCount (d k : ℕ) (F : Fin k → regularPolytopes d)
     _ ≤ _ := Set.encard_le_encard hsub
 
 /-- La forma d'uso quando i testimoni sono dati da una funzione con un
-invariante che li separa (per esempio il numero di vertici).-/
+invariante che li separa (per esempio il numero di vertici).
+@isnad1 id=le.2h5v.s6.ceb16ec367a8 from=translated src=- shape=5d054740 vocab=97442faf
+-/
 theorem le_platonicCount_di_invariante (d k : ℕ)
     (F : Fin k → regularPolytopes d) {α : Type*}
     (inv : regularPolytopes d → α)

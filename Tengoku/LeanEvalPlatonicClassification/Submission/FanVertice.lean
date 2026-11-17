@@ -40,9 +40,15 @@ def asFinite {n : ℕ} (P : ConvexPolytope n) : FiniteConvexPolytope (E n) where
   nonempty := P.vertices_nonempty
   vertices_eq_extremePoints := P.vertices_eq_extremePoints
 
+/--
+@isnad1 id=eq.0h2v.s6.8184b7d97759 from=translated src=- shape=54677779 vocab=11d55aad
+-/
 @[simp] theorem asFinite_toSet {n : ℕ} (P : ConvexPolytope n) :
     P.asFinite.toSet = P.toSet := rfl
 
+/--
+@isnad1 id=iff.0h2v.s7.477a24c245c8 from=translated src=- shape=3f094771 vocab=0b8e29a7
+-/
 @[simp] theorem asFinite_isFacet_iff (P : ConvexPolytope 3) (A : Set (E 3)) :
     P.asFinite.IsFacet A ↔ P.IsFace A ∧ faceDim A = 2 := Iff.rfl
 
@@ -56,6 +62,9 @@ def facetOrbit {P : ConvexPolytope 3} {q : ℕ} (σ : Isom 3) (F : P.Flag)
     (i : Fin q) : Set (E 3) :=
   iteratedFacet σ F i.val
 
+/--
+@isnad1 id=eq.0h3v.s5.b514da359b0e from=translated src=- shape=5b38378b vocab=d2f53d79
+-/
 @[simp] theorem iteratedFacet_zero {P : ConvexPolytope 3} (σ : Isom 3)
     (F : P.Flag) : iteratedFacet σ F 0 = F.face 2 := by
   simp [iteratedFacet]
@@ -82,6 +91,9 @@ def EdgeInAtMostTwoFacets (P : ConvexPolytope 3) (v : E 3) : Prop :=
     A ≠ B → v ∈ A → v ∈ B → v ∈ C →
     ∀ ⦃x : E 3⦄, x ∈ A ∩ B → x ≠ v → x ∈ C → C = A ∨ C = B
 
+/--
+@isnad1 id=ne.1h2v.s5.99fae519b497 from=translated src=- shape=d7c76052 vocab=a2268a62
+-/
 theorem finRotate_ne_self {q : ℕ} (hq : 2 ≤ q) (i : Fin q) :
     finRotate q i ≠ i := by
   cases q with

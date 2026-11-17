@@ -30,6 +30,9 @@ def tridiag (c : ℕ → ℝ) (k : ℕ) : Matrix (Fin k) (Fin k) ℝ :=
     else if (j : ℕ) + 1 = (i : ℕ) then - c j
     else 0)
 
+/--
+@isnad1 id=eq.0h4v.s7.ab4314ffa4aa from=translated src=- shape=295b191d vocab=3fa9ed19
+-/
 theorem tridiag_apply (c : ℕ → ℝ) (k : ℕ) (i j : Fin k) :
     tridiag c k i j =
       if i = j then 1
@@ -37,7 +40,9 @@ theorem tridiag_apply (c : ℕ → ℝ) (k : ℕ) (i j : Fin k) :
       else if (j : ℕ) + 1 = (i : ℕ) then - c j
       else 0 := rfl
 
-/-- Rimuovendo l'ultima riga e colonna si ottiene `tridiag (k+1)`.-/
+/-- Rimuovendo l'ultima riga e colonna si ottiene `tridiag (k+1)`.
+@isnad1 id=eq.0h2v.s7.ceff3f34a6a7 from=translated src=- shape=95dfdbe5 vocab=df9cbeae
+-/
 theorem tridiag_submatrix_last (c : ℕ → ℝ) (k : ℕ) :
     (tridiag c (k+2)).submatrix (Fin.last (k+1)).succAbove (Fin.last (k+1)).succAbove
       = tridiag c (k+1) := by
@@ -47,7 +52,9 @@ theorem tridiag_submatrix_last (c : ℕ → ℝ) (k : ℕ) :
 
 /-- **Il minore laterale**: cancellando la riga `k` e la colonna `k+1` dalla
 tridiagonale `(k+2)×(k+2)`, il determinante vale `-cₖ · det(tridiag k)`.
-Espansione di Laplace sull'ultima riga: unica entrata non nulla `(k,k) = -cₖ`.-/
+Espansione di Laplace sull'ultima riga: unica entrata non nulla `(k,k) = -cₖ`.
+@isnad1 id=eq.0h2v.s7.76a31a17bc39 from=translated src=- shape=20a6c932 vocab=82f01ccc
+-/
 theorem minore_laterale (c : ℕ → ℝ) (k : ℕ) :
     ((tridiag c (k+2)).submatrix (Fin.last k).castSucc.succAbove
       (Fin.last (k+1)).succAbove).det = - c k * (tridiag c k).det := by
@@ -101,7 +108,9 @@ theorem minore_laterale (c : ℕ → ℝ) (k : ℕ) :
   · simp
 
 /-- **Il passo della ricorrenza**: `Dₖ₊₂ = Dₖ₊₁ − cₖ²·Dₖ` per il determinante
-tridiagonale, via espansione sull'ultima colonna e il minore laterale.-/
+tridiagonale, via espansione sull'ultima colonna e il minore laterale.
+@isnad1 id=eq.0h2v.s7.8c0ed1765ec3 from=translated src=- shape=584ff7f9 vocab=aece86b1
+-/
 theorem det_tridiag_succ_succ (c : ℕ → ℝ) (k : ℕ) :
     (tridiag c (k+2)).det = (tridiag c (k+1)).det - (c k)^2 * (tridiag c k).det := by
   rw [Matrix.det_succ_column _ (Fin.last (k+1)), Fin.sum_univ_castSucc, Fin.sum_univ_castSucc]
@@ -133,7 +142,9 @@ theorem det_tridiag_succ_succ (c : ℕ → ℝ) (k : ℕ) :
     rw [show (k+1) + (k+1) = 2*(k+1) by ring, pow_mul]; norm_num
   rw [hs1, hs2]; ring
 
-/-- **S4 — il determinante tridiagonale è il minore di Gram.**-/
+/-- **S4 — il determinante tridiagonale è il minore di Gram.**
+@isnad1 id=eq.0h2v.s4.306b37c42fbb from=translated src=- shape=4179de08 vocab=d8cfe67d
+-/
 theorem det_tridiagonale (c : ℕ → ℝ) (k : ℕ) :
     (tridiag c k).det = minoreGram c k := by
   induction k using Nat.twoStepInduction with

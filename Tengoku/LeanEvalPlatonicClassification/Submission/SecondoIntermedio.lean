@@ -16,6 +16,9 @@ open ConvexPolytope
 
 variable {n : Nat}
 
+/--
+@isnad1 id=ex.2h3v.s10.4e8c7c048442 from=translated src=- shape=efb262c8 vocab=80ffd29a
+-/
 theorem normale_relativa {A B : Set (E n)} (hAB : A <= B)
     (hrank : faceDim B = faceDim A + 1) :
     Exists fun w : E n =>
@@ -42,6 +45,9 @@ theorem normale_relativa {A B : Set (E n)} (hAB : A <= B)
     exact Subtype.ext h
   exact Exists.intro (w : E n) (And.intro w.property hwval)
 
+/--
+@isnad1 id=ex.6h5v.s7.67eb59ae568d from=translated src=- shape=c47eb041 vocab=cc8c267c
+-/
 theorem pivot_relativo (P : ConvexPolytope n) {A B : Set (E n)}
     (hA : P.IsFace A) (hB : P.IsFace B)
     (hrank : faceDim B = faceDim A + 2)
@@ -272,6 +278,9 @@ theorem pivot_relativo (P : ConvexPolytope n) {A B : Set (E n)}
         rw [inner_neg_left, inner_neg_left]
         linarith)))
 
+/--
+@isnad1 id=ex.6h5v.s7.67eb59ae568d from=translated src=- shape=c47eb041 vocab=cc8c267c
+-/
 theorem secondo_intermedio (P : ConvexPolytope n) {A B : Set (E n)}
     (hA : P.IsFace A) (hB : P.IsFace B)
     (hrank : faceDim B = faceDim A + 2)
@@ -280,6 +289,9 @@ theorem secondo_intermedio (P : ConvexPolytope n) {A B : Set (E n)}
       And (P.IsFace C') (And (A < C') (And (C' < B) (Ne C' C))) := by
   exact pivot_relativo P hA hB hrank hC hAC hCB
 
+/--
+@isnad1 id=existsun.6h5v.s7.621737d94caa from=translated src=- shape=109e8bf1 vocab=80605cc2
+-/
 theorem existsUnique_other_middle (P : ConvexPolytope n)
     {A B : Set (E n)} (hA : P.IsFace A) (hB : P.IsFace B)
     (hrank : faceDim B = faceDim A + 2)

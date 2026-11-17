@@ -35,7 +35,9 @@ open ConvexPolytope
 
 variable {n : ℕ}
 
-/-- Un vertice del politopo è estremo in ogni faccia che lo contiene.-/
+/-- Un vertice del politopo è estremo in ogni faccia che lo contiene.
+@isnad1 id=mem.3h4v.s7.91aa400af49d from=translated src=- shape=e4f64b34 vocab=0605ac62
+-/
 theorem vertice_estremo_in_faccia (P : ConvexPolytope n) {f : Set (E n)}
     (hf : P.IsFace f) {w : E n} (hwV : w ∈ P.vertices) (hwf : w ∈ f) :
     w ∈ f.extremePoints ℝ := by
@@ -48,7 +50,9 @@ theorem vertice_estremo_in_faccia (P : ConvexPolytope n) {f : Set (E n)}
   exact hex.2 (face_subset_toSet P hf hx) (face_subset_toSet P hf hy) hseg
 
 /-- Uno spigolo con un vertice del politopo è il segmento fino a un secondo
-estremo.-/
+estremo.
+@isnad1 id=ex.4h4v.s7.9b3847fa4848 from=translated src=- shape=45a8eba4 vocab=27c1b389
+-/
 theorem spigolo_segmento (P : ConvexPolytope n) {e : Set (E n)}
     (he : P.IsFace e) (hde : faceDim e = 1)
     {w : E n} (hwV : w ∈ P.vertices) (hwe : w ∈ e) :
@@ -181,7 +185,9 @@ theorem spigolo_segmento (P : ConvexPolytope n) {e : Set (E n)}
       exact hconv.segment_subset hwe hae
 
 /-- **IL CONO AL VERTICE DEL POLIGONO**: al vertice w con spigoli [w,a] e
-[w,b] distinti, ogni punto del poligono è w + s(a−w) + t(b−w) con s,t ≥ 0.-/
+[w,b] distinti, ogni punto del poligono è w + s(a−w) + t(b−w) con s,t ≥ 0.
+@isnad1 id=ex.16h8v.s10.9d3e9399ad4c from=translated src=- shape=521b5447 vocab=2e6fdb25
+-/
 theorem cono_al_vertice (Q : ConvexPolytope n)
     (hdim : Module.finrank ℝ (vectorSpan ℝ Q.toSet) = 2)
     {w : E n} (hwV : w ∈ Q.vertices)
@@ -329,7 +335,9 @@ theorem cono_al_vertice (Q : ConvexPolytope n)
   exact ⟨c 0, c 1, hs, ht, hzval⟩
 
 /-- **LOCALE-GLOBALE**: un funzionale che al vertice w non cresce verso i
-due estremi vicini è massimo su tutto il poligono in w.-/
+due estremi vicini è massimo su tutto il poligono in w.
+@isnad1 id=le.18h9v.s11.9ddc854602ec from=translated src=- shape=d3f4cffc vocab=8575e75e
+-/
 theorem locale_globale (Q : ConvexPolytope n)
     (hdim : Module.finrank ℝ (vectorSpan ℝ Q.toSet) = 2)
     {w : E n} (hwV : w ∈ Q.vertices)

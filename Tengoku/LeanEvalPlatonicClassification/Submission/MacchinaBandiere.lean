@@ -35,13 +35,17 @@ open ConvexPolytope
 
 variable {n : ℕ}
 
-/-- L'identità è una simmetria.-/
+/-- L'identità è una simmetria.
+@isnad1 id=issymmet.0h2v.s7.2af77a98300c from=translated src=- shape=267375f7 vocab=61c0d184
+-/
 theorem isSymmetry_refl (P : ConvexPolytope n) :
     P.isSymmetry (AffineIsometryEquiv.refl ℝ (E n)) := by
   rw [ConvexPolytope.isSymmetry]
   simp
 
-/-- L'identità agisce banalmente sulle bandiere.-/
+/-- L'identità agisce banalmente sulle bandiere.
+@isnad1 id=eq.0h3v.s7.6a44a9de6162 from=translated src=- shape=747417c0 vocab=cdbe2785
+-/
 theorem mapFlag_refl (P : ConvexPolytope n) (F : P.Flag) :
     mapFlag P (isSymmetry_refl P) F = F := by
   apply flag_ext

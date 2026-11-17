@@ -39,7 +39,9 @@ open ConvexPolytope
 
 variable {n : ℕ}
 
-/-- Un vertice del politopo dentro un segmento ne è un estremo.-/
+/-- Un vertice del politopo dentro un segmento ne è un estremo.
+@isnad1 id=or.5h6v.s7.64cc065923d6 from=translated src=- shape=1f1c666b vocab=a9e50259
+-/
 theorem vertice_estremo_del_segmento (P : ConvexPolytope n)
     {e : Set (E n)} (he : P.IsFace e)
     {a b : E n} (hseg : e = segment ℝ a b) (hab : a ≠ b)

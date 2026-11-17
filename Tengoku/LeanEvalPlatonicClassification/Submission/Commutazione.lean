@@ -31,7 +31,9 @@ open ConvexPolytope
 variable {n : ℕ}
 
 /-- **La commutazione lontana delle mosse**: per `i + 2 ≤ j`,
-`adj_i (adj_j F) = adj_j (adj_i F)`.-/
+`adj_i (adj_j F) = adj_j (adj_i F)`.
+@isnad1 id=eq.2h5v.s6.7b3dc38e5c4f from=translated src=- shape=c925905a vocab=27c96b6a
+-/
 theorem adjacentFlag_comm (P : ConvexPolytope n) (hfull : P.IsFullDim)
     (F : P.Flag) {i j : Fin n} (hij : (i : ℕ) + 2 ≤ (j : ℕ)) :
     adjacentFlag P hfull (adjacentFlag P hfull F j) i =
@@ -140,7 +142,9 @@ theorem adjacentFlag_comm (P : ConvexPolytope n) (hfull : P.IsFullDim)
     adjacentFlag_eq_of_isAdjacent P hfull j hHA
   rw [← e1, ← e2]
 
-/-- La commutazione nelle due direzioni (`|i − j| ≥ 2`).-/
+/-- La commutazione nelle due direzioni (`|i − j| ≥ 2`).
+@isnad1 id=eq.2h5v.s6.2708e661844f from=translated src=- shape=5ab0a730 vocab=27c96b6a
+-/
 theorem adjacentFlag_comm_far (P : ConvexPolytope n) (hfull : P.IsFullDim)
     (F : P.Flag) {i j : Fin n}
     (hij : (i : ℕ) + 2 ≤ (j : ℕ) ∨ (j : ℕ) + 2 ≤ (i : ℕ)) :

@@ -27,12 +27,21 @@ variable {A : Type*} [NormedAddCommGroup A] [InnerProductSpace ℝ A]
 
 local notation "φ" => Real.goldenRatio
 
+/--
+@isnad1 id=eq.0h0v.s4.9dcb06fbeb49 from=translated src=- shape=b3e66441 vocab=cc66d9f9
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.golden_invI : φ⁻¹ = φ - 1 := by
   rw [Real.inv_goldenRatio]
   linarith [Real.goldenRatio_add_goldenConj]
 
+/--
+@isnad1 id=lt.0h0v.s3.267a2c64fe74 from=translated src=- shape=62e5f382 vocab=b2a104af
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.golden_inv_posI : 0 < φ⁻¹ := inv_pos.mpr Real.goldenRatio_pos
 
+/--
+@isnad1 id=eq.0h0v.s5.30eb00443692 from=translated src=- shape=28ce7b61 vocab=5a76c882
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.golden_inv_nfI : 2 / (1 + Real.sqrt 5) = φ - 1 := by
   have hs : Real.sqrt 5 ^ 2 = 5 := Real.sq_sqrt (by norm_num)
   have hd : 1 + Real.sqrt 5 ≠ 0 := by positivity
@@ -40,13 +49,22 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.golden_inv_nfI : 2 / (1 + 
   field_simp
   nlinarith
 
+/--
+@isnad1 id=eq.0h0v.s5.01db373415d4 from=translated src=- shape=1dc66942 vocab=f1a4693c
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.golden_sqrt_fiveI : Real.sqrt 5 = 2 * φ - 1 := by
   rw [Real.goldenRatio]
   ring
 
+/--
+@isnad1 id=eq.0h0v.s5.ea9ef7bcc835 from=translated src=- shape=fe6c4183 vocab=421c5835
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.golden_den_selfI : (1 + Real.sqrt 5) / (1 + Real.sqrt 5) = 1 := by
   field_simp
 
+/--
+@isnad1 id=eq.3h2v.s8.4515c5c0c19b from=translated src=- shape=cdd7b04e vocab=2aa62595
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.E3_extI {u v : E3} (h0 : u 0 = v 0) (h1 : u 1 = v 1)
     (h2 : u 2 = v 2) : u = v := by
   ext i
@@ -74,6 +92,9 @@ open Classical in
 def _root_.Tengoku.LeanEvalPlatonicClassification.verticiIcosa : Finset E3 :=
   {a0I, a1I, a2I, a3I, b0I, b1I, b2I, b3I, c0I, c1I, c2I, c3I}
 
+/--
+@isnad1 id=eq.1h1v.s6.b719b11cdc70 from=translated src=- shape=33a9f368 vocab=1ba0e2c4
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.norm_verticiIcosa : ∀ v ∈ verticiIcosa, ‖v‖ = Real.sqrt (φ + 2) := by
   intro v hv
   simp only [verticiIcosa, Finset.mem_insert, Finset.mem_singleton] at hv
@@ -84,6 +105,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.norm_verticiIcosa : ∀ v 
   all_goals congr 1
   all_goals norm_num <;> nlinarith [Real.goldenRatio_sq]
 
+/--
+@isnad1 id=eq.1h4v.s7.8ba8e447e686 from=translated src=- shape=3c79d8e4 vocab=bd3cbdd4
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.cosferico_extremePoints_icosa {B : Type*} [NormedAddCommGroup B]
     [InnerProductSpace ℝ B] [Nontrivial B]
     (x : B) (r : ℝ) (V : Set B) (hV : V ⊆ sphere x r) :
@@ -112,6 +136,9 @@ def _root_.Tengoku.LeanEvalPlatonicClassification.icosaedro : FiniteConvexPolyto
 
 def _root_.Tengoku.LeanEvalPlatonicClassification.spaceBasisPoints : Fin 4 → E3 := ![a3I, a1I, a2I, b3I]
 
+/--
+@isnad1 id=affinein.0h0v.s8.370a4e468eb3 from=translated src=- shape=7e71be5a vocab=38be8de7
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.spaceBasisPoints_affineIndependent :
     AffineIndependent ℝ spaceBasisPoints := by
   rw [affineIndependent_iff_eq_of_fintype_affineCombination_eq]
@@ -138,11 +165,17 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.spaceBasisPoints_affineInd
   have e0 : u 0 = v 0 := by linarith
   fin_cases i <;> assumption
 
+/--
+@isnad1 id=le.0h0v.s4.36596f3dfba9 from=translated src=- shape=75b2c703 vocab=14fef64c
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.range_spaceBasisPoints_subset :
     Set.range spaceBasisPoints ⊆ (verticiIcosa : Set E3) := by
   rintro x ⟨i, rfl⟩
   fin_cases i <;> simp [spaceBasisPoints, verticiIcosa]
 
+/--
+@isnad1 id=eq.0h0v.s10.eba2485ea3ae from=translated src=- shape=774ba165 vocab=2ce0375b
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.icosaedro_finrank :
     Module.finrank ℝ (vectorSpan ℝ (icosaedro.vertices : Set E3)) = 3 := by
   change Module.finrank ℝ (vectorSpan ℝ (verticiIcosa : Set E3)) = 3
@@ -164,6 +197,9 @@ def _root_.Tengoku.LeanEvalPlatonicClassification.F₀I : Set E3 := convexHull �
 
 def _root_.Tengoku.LeanEvalPlatonicClassification.lato : ℝ := 2
 
+/--
+@isnad1 id=lt.0h0v.s3.5a1bd5e67a99 from=translated src=- shape=ff3a10fc vocab=c995a825
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.lato_pos : 0 < lato := by norm_num [lato]
 
 def _root_.Tengoku.LeanEvalPlatonicClassification.supportLI : E3 →L[ℝ] ℝ :=
@@ -171,17 +207,29 @@ def _root_.Tengoku.LeanEvalPlatonicClassification.supportLI : E3 →L[ℝ] ℝ :
   (PiLp.proj (p := 2) (β := fun _ : Fin 3 => ℝ) 1 : E3 →L[ℝ] ℝ) +
   (PiLp.proj (p := 2) (β := fun _ : Fin 3 => ℝ) 2 : E3 →L[ℝ] ℝ)
 
+/--
+@isnad1 id=eq.0h1v.s9.f6e16a76491d from=translated src=- shape=7f512f4c vocab=e48576b0
+-/
 @[simp] theorem _root_.Tengoku.LeanEvalPlatonicClassification.supportL_applyI (z : E3) : supportLI z = z 0 + z 1 + z 2 := by
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s8.e390e09844f9 from=translated src=- shape=00dc9ee7 vocab=5ff963ad
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.supportL_faceCycleI (i : Fin 3) :
     supportLI (faceCycleI i) = φ + 1 := by
   fin_cases i <;> simp [faceCycleI, a3I, b3I, c3I, supportLI] <;> ring
 
+/--
+@isnad1 id=mem.0h1v.s4.9816fa36f419 from=translated src=- shape=a46a3632 vocab=391f9c69
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.faceCycle_mem_verticesI (i : Fin 3) :
     faceCycleI i ∈ (verticiIcosa : Set E3) := by
   fin_cases i <;> simp [faceCycleI, verticiIcosa]
 
+/--
+@isnad1 id=injectiv.0h0v.s3.69ae03c6ea7f from=translated src=- shape=bfe16b09 vocab=80e58571
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.faceCycle_injectiveI : Function.Injective faceCycleI := by
   intro i j hij
   fin_cases i <;> fin_cases j
@@ -191,6 +239,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.faceCycle_injectiveI : Fun
   all_goals norm_num [faceCycleI, a3I, b3I, c3I] at h0 h1
   all_goals nlinarith [Real.goldenRatio_pos, Real.one_lt_goldenRatio]
 
+/--
+@isnad1 id=le.1h1v.s8.f30a34609989 from=translated src=- shape=d683e783 vocab=e61e5f37
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.supportL_vertices_leI (v : E3) (hv : v ∈ verticiIcosa) :
     supportLI v ≤ φ + 1 := by
   have hp := Real.goldenRatio_pos
@@ -205,6 +256,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.supportL_vertices_leI (v :
     Function.comp_apply, Matrix.cons_val_zero, Matrix.cons_val_succ] at *
   all_goals nlinarith [Real.goldenRatio_sq]
 
+/--
+@isnad1 id=mem.2h1v.s8.092ff1c55187 from=translated src=- shape=205389f6 vocab=7d16a97c
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.supportL_eq_imp_faceCycleI (v : E3) (hv : v ∈ verticiIcosa)
     (heq : supportLI v = φ + 1) : v ∈ Set.range faceCycleI := by
   have hp := Real.goldenRatio_pos
@@ -221,14 +275,23 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.supportL_eq_imp_faceCycleI
     Function.comp_apply, Matrix.cons_val_zero, Matrix.cons_val_succ] at heq
   all_goals nlinarith [Real.goldenRatio_sq]
 
+/--
+@isnad1 id=nonempty.0h0v.s1.57f28200f5cd from=translated src=- shape=25b03439 vocab=31ac945b
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.F₀_nonemptyI : F₀I.Nonempty := by
   exact ⟨a3I, subset_convexHull ℝ (Set.range faceCycleI) ⟨0, rfl⟩⟩
 
+/--
+@isnad1 id=le.0h0v.s6.aef8a41c003f from=translated src=- shape=0ab70a54 vocab=1acde3a1
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.F₀_subset_icosaedro : F₀I ⊆ icosaedro.toSet := by
   apply convexHull_mono
   rintro z ⟨i, rfl⟩
   exact faceCycle_mem_verticesI i
 
+/--
+@isnad1 id=le.1h1v.s8.219fd8a18c4e from=translated src=- shape=6a4d503a vocab=34159aea
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.supportL_polytope_leI (z : E3) (hz : z ∈ icosaedro.toSet) :
     supportLI z ≤ φ + 1 := by
   have hc : ConvexOn ℝ Set.univ supportLI :=
@@ -237,6 +300,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.supportL_polytope_leI (z :
     (Set.subset_univ (s := (verticiIcosa : Set E3))) hz
   exact hzv.trans (supportL_vertices_leI v hv)
 
+/--
+@isnad1 id=eq.1h1v.s8.55d9b836d425 from=translated src=- shape=d683e783 vocab=e903bb9e
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.supportL_eq_on_F₀I (z : E3) (hz : z ∈ F₀I) :
     supportLI z = φ + 1 := by
   have hc : ConvexOn ℝ Set.univ supportLI :=
@@ -251,6 +317,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.supportL_eq_on_F₀I (z : 
   rw [supportL_faceCycleI j] at hvz
   exact le_antisymm hzu hvz
 
+/--
+@isnad1 id=mem.2h1v.s8.331e06360ccc from=translated src=- shape=f92d9fd0 vocab=89a747c1
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.mem_F₀_of_mem_polytope_support_eqI (z : E3) (hz : z ∈ icosaedro.toSet)
     (hzeq : supportLI z = φ + 1) : z ∈ F₀I := by
   classical
@@ -325,6 +394,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.mem_F₀_of_mem_polytope_s
         rw [← Finset.sum_subtype verticiIcosa (by simp) (fun y => w y • y)]
       _ = z := hsum
 
+/--
+@isnad1 id=isexpose.0h0v.s8.4f0ee3f36d96 from=translated src=- shape=ff65ec80 vocab=d909fbd0
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.F₀_isExposedI : IsExposed ℝ icosaedro.toSet F₀I := by
   intro _hne
   refine ⟨supportLI, ?_⟩
@@ -344,6 +416,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.F₀_isExposedI : IsExpose
     have hhi := supportL_polytope_leI z hzP
     exact mem_F₀_of_mem_polytope_support_eqI z hzP (le_antisymm hhi hlo)
 
+/--
+@isnad1 id=affinein.0h0v.s8.3981ebb7ae02 from=translated src=- shape=7e71be5a vocab=5af589f1
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.faceCycle_affineIndependent : AffineIndependent ℝ faceCycleI := by
   rw [affineIndependent_iff_eq_of_fintype_affineCombination_eq]
   intro u v hu hv huv
@@ -367,10 +442,16 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.faceCycle_affineIndependen
   have e2 : u 2 = v 2 := by linarith
   fin_cases i <;> assumption
 
+/--
+@isnad1 id=eq.0h0v.s10.bea0ceab9bd7 from=translated src=- shape=9278a3b4 vocab=4b1a9361
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.F₀_finrankI : Module.finrank ℝ (vectorSpan ℝ F₀I) = 2 := by
   rw [F₀I, ← direction_affineSpan, affineSpan_convexHull, direction_affineSpan]
   exact faceCycle_affineIndependent.finrank_vectorSpan (n := 2) (by simp)
 
+/--
+@isnad1 id=isfacet.0h0v.s6.95e4015a3a5f from=translated src=- shape=54c8eceb vocab=7ad45270
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.F₀_isFacetI : icosaedro.IsFacet F₀I :=
   ⟨⟨F₀_isExposedI, F₀_nonemptyI⟩, F₀_finrankI⟩
 
@@ -381,8 +462,17 @@ def _root_.Tengoku.LeanEvalPlatonicClassification.coordinateLinear : E3 ≃ₗ�
 
 def _root_.Tengoku.LeanEvalPlatonicClassification.κ : E3 ≃ᵃⁱ[ℝ] E3 := coordinateLinear.toAffineIsometryEquiv
 
+/--
+@isnad1 id=eq.0h1v.s10.ee573df8b54f from=translated src=- shape=afa6c3c1 vocab=14ba403a
+-/
 @[simp] theorem _root_.Tengoku.LeanEvalPlatonicClassification.kappa_apply_zero (z : E3) : κ z 0 = z 2 := rfl
+/--
+@isnad1 id=eq.0h1v.s10.1d7e9bd6b2d7 from=translated src=- shape=afa6c3c1 vocab=14ba403a
+-/
 @[simp] theorem _root_.Tengoku.LeanEvalPlatonicClassification.kappa_apply_one (z : E3) : κ z 1 = z 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s10.6c231eeb0f0e from=translated src=- shape=afa6c3c1 vocab=14ba403a
+-/
 @[simp] theorem _root_.Tengoku.LeanEvalPlatonicClassification.kappa_apply_two (z : E3) : κ z 2 = z 1 := rfl
 
 /-! ## Rotazione aurea di ordine cinque attorno ad `a3` -/
@@ -422,9 +512,15 @@ def _root_.Tengoku.LeanEvalPlatonicClassification.rhoLinearI : E3 ≃ₗᵢ[ℝ]
 
 def _root_.Tengoku.LeanEvalPlatonicClassification.ρI : E3 ≃ᵃⁱ[ℝ] E3 := rhoLinearI.toAffineIsometryEquiv
 
+/--
+@isnad1 id=eq.0h1v.s10.d8fe86dff083 from=translated src=- shape=8145cf1c vocab=ccf1b0bc
+-/
 @[simp] theorem _root_.Tengoku.LeanEvalPlatonicClassification.rho_applyI (z : E3) : ρI z = rhoFormulaI z := rfl
 
 set_option maxHeartbeats 1000000 in
+/--
+@isnad1 id=and.0h0v.s13.bd0389a7249c from=translated src=- shape=7b2c233f vocab=01ceaee8
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.rho_vertex_actionsI :
     ρI a0I = a0I ∧ ρI a1I = c1I ∧ ρI a2I = c2I ∧ ρI a3I = a3I ∧
     ρI b0I = c0I ∧ ρI b1I = b0I ∧ ρI b2I = b3I ∧ ρI b3I = c3I ∧
@@ -440,8 +536,14 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.rho_vertex_actionsI :
   all_goals try rw [golden_sqrt_fiveI] at *
   all_goals nlinarith [Real.goldenRatio_sq]
 
+/--
+@isnad1 id=eq.0h0v.s10.fdcf59372dcf from=translated src=- shape=6bc53fa2 vocab=e5c76dc8
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.rho_a3 : ρI a3I = a3I := rho_vertex_actionsI.2.2.2.1
 
+/--
+@isnad1 id=mem.1h1v.s10.663f16fae4cb from=translated src=- shape=7a298a1d vocab=088a523b
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.rho_verticesI (v : E3) (hv : v ∈ verticiIcosa) :
     ρI v ∈ verticiIcosa := by
   rcases rho_vertex_actionsI with
@@ -452,6 +554,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.rho_verticesI (v : E3) (hv
   all_goals simp [ha0, ha1, ha2, ha3, hb0, hb1, hb2, hb3,
     hc0, hc1, hc2, hc3]
 
+/--
+@isnad1 id=eq.1h1v.s11.e41ce6522a46 from=translated src=- shape=14668c1a vocab=c01dc778
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.image_verticiIcosa_eq_of_maps (g : E3 ≃ᵃⁱ[ℝ] E3)
     (hmap : ∀ v ∈ verticiIcosa, g v ∈ verticiIcosa) :
     (⇑g) '' (verticiIcosa : Set E3) = (verticiIcosa : Set E3) := by
@@ -461,6 +566,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.image_verticiIcosa_eq_of_m
   · rw [Set.ncard_image_of_injective _ g.injective]
   · exact verticiIcosa.finite_toSet
 
+/--
+@isnad1 id=eq.1h1v.s11.a229f159cfdb from=translated src=- shape=5e7b972f vocab=938196ad
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.preserves_icosaedro_of_image_vertices (g : E3 ≃ᵃⁱ[ℝ] E3)
     (hv : (⇑g) '' (verticiIcosa : Set E3) = (verticiIcosa : Set E3)) :
     (⇑g) '' icosaedro.toSet = icosaedro.toSet := by
@@ -471,10 +579,16 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.preserves_icosaedro_of_ima
     AffineMap.image_convexHull g.toAffineIsometry.toAffineMap _
   rw [haff, hv]
 
+/--
+@isnad1 id=eq.0h0v.s10.a1a973356158 from=translated src=- shape=0bc3b51f vocab=297b2b72
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.rho_image_verticesI :
     (⇑ρI) '' (verticiIcosa : Set E3) = (verticiIcosa : Set E3) :=
   image_verticiIcosa_eq_of_maps ρI rho_verticesI
 
+/--
+@isnad1 id=eq.0h0v.s10.13908b970585 from=translated src=- shape=05619176 vocab=b722dfa5
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.rho_preserves_polytopeI :
     (⇑ρI) '' icosaedro.toSet = icosaedro.toSet :=
   preserves_icosaedro_of_image_vertices ρI rho_image_verticesI
@@ -483,10 +597,25 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.rho_preserves_polytopeI :
 
 def _root_.Tengoku.LeanEvalPlatonicClassification.neighbor : Fin 5 → E3 := ![b3I, c3I, a1I, c1I, b2I]
 
+/--
+@isnad1 id=eq.0h0v.s6.bd2bf9a44a84 from=translated src=- shape=2cc6ab26 vocab=bbe8dd6b
+-/
 @[simp] theorem _root_.Tengoku.LeanEvalPlatonicClassification.rotate5_zero : finRotate 5 (0 : Fin 5) = 1 := rfl
+/--
+@isnad1 id=eq.0h0v.s6.17d9d06d20f8 from=translated src=- shape=2cc6ab26 vocab=bbe8dd6b
+-/
 @[simp] theorem _root_.Tengoku.LeanEvalPlatonicClassification.rotate5_one : finRotate 5 (1 : Fin 5) = 2 := rfl
+/--
+@isnad1 id=eq.0h0v.s6.49cf4b7c3451 from=translated src=- shape=2cc6ab26 vocab=bbe8dd6b
+-/
 @[simp] theorem _root_.Tengoku.LeanEvalPlatonicClassification.rotate5_two : finRotate 5 (2 : Fin 5) = 3 := rfl
+/--
+@isnad1 id=eq.0h0v.s6.a4426cae6b89 from=translated src=- shape=2cc6ab26 vocab=bbe8dd6b
+-/
 @[simp] theorem _root_.Tengoku.LeanEvalPlatonicClassification.rotate5_three : finRotate 5 (3 : Fin 5) = 4 := rfl
+/--
+@isnad1 id=eq.0h0v.s6.4acf10731b5c from=translated src=- shape=2cc6ab26 vocab=bbe8dd6b
+-/
 @[simp] theorem _root_.Tengoku.LeanEvalPlatonicClassification.rotate5_four : finRotate 5 (4 : Fin 5) = 0 := rfl
 
 def _root_.Tengoku.LeanEvalPlatonicClassification.fanCycle (i : Fin 5) : Fin 3 → E3 :=
@@ -495,12 +624,18 @@ def _root_.Tengoku.LeanEvalPlatonicClassification.fanCycle (i : Fin 5) : Fin 3 �
 def _root_.Tengoku.LeanEvalPlatonicClassification.fanFaceI (i : Fin 5) : Set E3 :=
   convexHull ℝ (Set.range (fanCycle i))
 
+/--
+@isnad1 id=eq.0h0v.s4.611d28f57665 from=translated src=- shape=751e5260 vocab=3642c242
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.fanFace_zero : fanFaceI 0 = F₀I := by
   have h : fanCycle 0 = faceCycleI := by
     funext j
     fin_cases j <;> rfl
   rw [fanFaceI, F₀I, h]
 
+/--
+@isnad1 id=eq.0h1v.s10.5a4b8b3a9c1f from=translated src=- shape=6ebb8b81 vocab=1985b536
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.rho_neighbor (i : Fin 5) :
     ρI (neighbor i) = neighbor (finRotate 5 i) := by
   rcases rho_vertex_actionsI with
@@ -512,6 +647,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.rho_neighbor (i : Fin 5) :
   · exact hc1
   · exact hb2
 
+/--
+@isnad1 id=eq.0h2v.s10.0ef65f0c8624 from=translated src=- shape=a7e81202 vocab=f6773618
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.rho_fanCycle (i : Fin 5) (j : Fin 3) :
     ρI (fanCycle i j) = fanCycle (finRotate 5 i) j := by
   fin_cases j
@@ -521,6 +659,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.rho_fanCycle (i : Fin 5) (
       neighbor (finRotate 5 (finRotate 5 i))
     exact rho_neighbor _
 
+/--
+@isnad1 id=eq.0h1v.s10.b0ebe642c498 from=translated src=- shape=90d03a30 vocab=203724fd
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.rho_image_fanCycle (i : Fin 5) :
     (⇑ρI) '' Set.range (fanCycle i) =
       Set.range (fanCycle (finRotate 5 i)) := by
@@ -532,6 +673,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.rho_image_fanCycle (i : Fi
   · rintro ⟨j, rfl⟩
     refine ⟨fanCycle i j, Set.mem_range_self _, rho_fanCycle i j⟩
 
+/--
+@isnad1 id=eq.0h1v.s10.7d51fd84d923 from=translated src=- shape=67147a53 vocab=bdda6ac3
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.rho_image_fanFace (i : Fin 5) :
     (⇑ρI) '' fanFaceI i = fanFaceI (finRotate 5 i) := by
   change (⇑ρI) '' convexHull ℝ (Set.range (fanCycle i)) =
@@ -545,6 +689,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.rho_image_fanFace (i : Fin
     _ = convexHull ℝ (Set.range (fanCycle (finRotate 5 i))) := by
       rw [rho_image_fanCycle]
 
+/--
+@isnad1 id=isfacet.0h1v.s6.718ff52c14db from=translated src=- shape=58d06a47 vocab=0bae8278
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.fanFace_isFacet (i : Fin 5) : icosaedro.IsFacet (fanFaceI i) := by
   fin_cases i
   · simpa [fanFace_zero] using F₀_isFacetI
@@ -587,6 +734,9 @@ def _root_.Tengoku.LeanEvalPlatonicClassification.fanSupport4 : E3 →L[ℝ] ℝ
 def _root_.Tengoku.LeanEvalPlatonicClassification.fanSupport : Fin 5 → (E3 →L[ℝ] ℝ) :=
   ![fanSupport0, fanSupport1, fanSupport2, fanSupport3, fanSupport4]
 
+/--
+@isnad1 id=eq.0h2v.s8.42489dd8e61d from=translated src=- shape=c0411597 vocab=bfa5d835
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.fanSupport_fanCycle (i : Fin 5) (j : Fin 3) :
     fanSupport i (fanCycle i j) = φ + 1 := by
   fin_cases i <;> fin_cases j
@@ -601,6 +751,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.fanSupport_fanCycle (i : F
   all_goals try simp only [golden_inv_nfI, golden_den_selfI] at *
   all_goals nlinarith [Real.goldenRatio_sq]
 
+/--
+@isnad1 id=eq.1h2v.s8.c54334dad416 from=translated src=- shape=0cb817ec vocab=7c412c9c
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.fanFace_support (i : Fin 5) (z : E3) (hz : z ∈ fanFaceI i) :
     fanSupport i z = φ + 1 := by
   have hc : ConvexOn ℝ Set.univ (fanSupport i) :=
@@ -615,16 +768,28 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.fanFace_support (i : Fin 5
   rw [fanSupport_fanCycle i k] at hvz
   exact le_antisymm hzu hvz
 
+/--
+@isnad1 id=mem.0h1v.s4.bc9d21e7d06d from=translated src=- shape=15a27d57 vocab=01756df0
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.a3_mem_fanFace (i : Fin 5) : a3I ∈ fanFaceI i := by
   exact subset_convexHull ℝ (Set.range (fanCycle i)) ⟨0, rfl⟩
 
+/--
+@isnad1 id=mem.0h1v.s4.e2c4b9607c7c from=translated src=- shape=68445637 vocab=9ed7ce3a
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.neighbor_mem_fanFace (i : Fin 5) : neighbor i ∈ fanFaceI i := by
   exact subset_convexHull ℝ (Set.range (fanCycle i)) ⟨1, rfl⟩
 
+/--
+@isnad1 id=mem.0h1v.s6.5032afb42210 from=translated src=- shape=e6f331b8 vocab=f28c928e
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.next_neighbor_mem_fanFace (i : Fin 5) :
     neighbor (finRotate 5 i) ∈ fanFaceI i := by
   exact subset_convexHull ℝ (Set.range (fanCycle i)) ⟨2, rfl⟩
 
+/--
+@isnad1 id=ne.0h1v.s3.f5d4ae8a40ad from=translated src=- shape=1b7cfd8e vocab=dc92a0ec
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.neighbor_ne_a3 (i : Fin 5) : neighbor i ≠ a3I := by
   intro h
   fin_cases i
@@ -641,11 +806,17 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.neighbor_ne_a3 (i : Fin 5)
   · have h1 := congrArg (fun z : E3 => z 1) h
     norm_num [neighbor, a3I, b2I] at h1
 
+/--
+@isnad1 id=ex.0h1v.s6.0c10dc2d8592 from=translated src=- shape=d90e0a80 vocab=1d0e3781
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.fanFace_spigoloI (i : Fin 5) :
     ∃ x, x ≠ a3I ∧ x ∈ fanFaceI i ∩ fanFaceI (finRotate 5 i) := by
   refine ⟨neighbor (finRotate 5 i), neighbor_ne_a3 _,
     next_neighbor_mem_fanFace i, neighbor_mem_fanFace _⟩
 
+/--
+@isnad1 id=injectiv.0h0v.s3.95bf6d0b9701 from=translated src=- shape=b032868b vocab=f1d1f781
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.fanFace_injectiveI : Function.Injective fanFaceI := by
   intro i j hij
   have hm0 : neighbor i ∈ fanFaceI j := hij ▸ neighbor_mem_fanFace i
@@ -667,6 +838,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.fanFace_injectiveI : Funct
   all_goals nlinarith [Real.goldenRatio_sq, Real.goldenRatio_pos]
 
 set_option maxHeartbeats 1000000 in
+/--
+@isnad1 id=or.3h3v.s7.cd7826c543ee from=translated src=- shape=4279677a vocab=1d0e3781
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.fanFace_spigolo_dueI (i j : Fin 5) (z : E3)
     (hz : z ∈ fanFaceI i ∩ fanFaceI (finRotate 5 i)) (hz_ne : z ≠ a3I)
     (hzj : z ∈ fanFaceI j) : j = i ∨ j = finRotate 5 i := by
@@ -694,6 +868,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.fanFace_spigolo_dueI (i j 
 /-! ## Completezza locale del fan -/
 
 open Classical in
+/--
+@isnad1 id=eq.1h1v.s8.62067fd0e33e from=translated src=- shape=d419a73e vocab=660ad34a
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.icosa_exposedFace_eq_convexHull_vertices {F : Set E3}
     (hF : icosaedro.IsFace F) :
     F = convexHull ℝ
@@ -725,87 +902,135 @@ def _root_.Tengoku.LeanEvalPlatonicClassification.e₀I : E3 := WithLp.toLp 2 ![
 def _root_.Tengoku.LeanEvalPlatonicClassification.e₁I : E3 := WithLp.toLp 2 ![0, 1, 0]
 def _root_.Tengoku.LeanEvalPlatonicClassification.e₂I : E3 := WithLp.toLp 2 ![0, 0, 1]
 
+/--
+@isnad1 id=eq.0h1v.s9.eaeb01d92164 from=translated src=- shape=d469c5d5 vocab=c88f6fb1
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.E3_decompI (z : E3) :
     z = z 0 • e₀I + z 1 • e₁I + z 2 • e₂I := by
   apply E3_extI <;> simp [e₀I, e₁I, e₂I]
 
+/--
+@isnad1 id=eq.0h2v.s11.1c912a034ca1 from=translated src=- shape=7901ac12 vocab=8bc6bdc1
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.functional_apply_coordsI (l : E3 →L[ℝ] ℝ) (z : E3) :
     l z = z 0 * l e₀I + z 1 * l e₁I + z 2 * l e₂I := by
   conv_lhs => rw [E3_decompI z]
   simp only [map_add, map_smul, smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h1v.s10.9b4606b697ed from=translated src=- shape=abd3caa1 vocab=e889f392
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.functional_a0 (l : E3 →L[ℝ] ℝ) :
     l a0I = -l e₀I - φ * l e₂I := by
   rw [functional_apply_coordsI]
   simp [a0I]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s10.132fe31660d8 from=translated src=- shape=abd3caa1 vocab=fcaf674c
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.functional_a1 (l : E3 →L[ℝ] ℝ) :
     l a1I = -l e₀I + φ * l e₂I := by
   rw [functional_apply_coordsI]
   simp [a1I]
 
+/--
+@isnad1 id=eq.0h1v.s10.c8c5814f52d2 from=translated src=- shape=d107acfb vocab=f7f3f53b
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.functional_a2 (l : E3 →L[ℝ] ℝ) :
     l a2I = l e₀I - φ * l e₂I := by
   rw [functional_apply_coordsI]
   simp [a2I]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s10.7c879f71f3a0 from=translated src=- shape=d107acfb vocab=241db18a
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.functional_a3 (l : E3 →L[ℝ] ℝ) :
     l a3I = l e₀I + φ * l e₂I := by
   rw [functional_apply_coordsI]
   simp [a3I]
 
+/--
+@isnad1 id=eq.0h1v.s10.3fc432306ac0 from=translated src=- shape=fbb3662c vocab=30c8c90b
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.functional_b0I (l : E3 →L[ℝ] ℝ) :
     l b0I = -φ * l e₀I - l e₁I := by
   rw [functional_apply_coordsI]
   simp [b0I]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s10.937b4ccf9a3e from=translated src=- shape=fbb3662c vocab=d0be890d
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.functional_b1I (l : E3 →L[ℝ] ℝ) :
     l b1I = -φ * l e₀I + l e₁I := by
   rw [functional_apply_coordsI]
   simp [b1I]
 
+/--
+@isnad1 id=eq.0h1v.s10.b708996f6463 from=translated src=- shape=143a0d84 vocab=25b79336
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.functional_b2I (l : E3 →L[ℝ] ℝ) :
     l b2I = φ * l e₀I - l e₁I := by
   rw [functional_apply_coordsI]
   simp [b2I]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s10.db5b1e84ff86 from=translated src=- shape=143a0d84 vocab=a0dad0e4
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.functional_b3I (l : E3 →L[ℝ] ℝ) :
     l b3I = φ * l e₀I + l e₁I := by
   rw [functional_apply_coordsI]
   simp [b3I]
 
+/--
+@isnad1 id=eq.0h1v.s10.bca633dd9736 from=translated src=- shape=fbb3662c vocab=4e5dcd95
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.functional_c0I (l : E3 →L[ℝ] ℝ) :
     l c0I = -φ * l e₁I - l e₂I := by
   rw [functional_apply_coordsI]
   simp [c0I]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s10.f4263b65054c from=translated src=- shape=fbb3662c vocab=1814d8a1
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.functional_c1I (l : E3 →L[ℝ] ℝ) :
     l c1I = -φ * l e₁I + l e₂I := by
   rw [functional_apply_coordsI]
   simp [c1I]
 
+/--
+@isnad1 id=eq.0h1v.s10.a46f35378e3a from=translated src=- shape=143a0d84 vocab=815da7f8
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.functional_c2I (l : E3 →L[ℝ] ℝ) :
     l c2I = φ * l e₁I - l e₂I := by
   rw [functional_apply_coordsI]
   simp [c2I]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s10.f828574ccf35 from=translated src=- shape=143a0d84 vocab=36a056ed
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.functional_c3I (l : E3 →L[ℝ] ℝ) :
     l c3I = φ * l e₁I + l e₂I := by
   rw [functional_apply_coordsI]
   simp [c3I]
 
+/--
+@isnad1 id=mem.0h2v.s4.3d2b889e7321 from=translated src=- shape=942fb345 vocab=8db5d0b2
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.fanCycle_mem_vertices (i : Fin 5) (j : Fin 3) :
     fanCycle i j ∈ (verticiIcosa : Set E3) := by
   fin_cases i <;> fin_cases j
   all_goals norm_num [Fin.add_def, fanCycle, neighbor, verticiIcosa]
 
 set_option maxHeartbeats 1000000 in
+/--
+@isnad1 id=mem.2h2v.s8.4d2676d83b25 from=translated src=- shape=aea9314e vocab=1066404b
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.fanSupport_eq_imp_fanCycle (i : Fin 5) (v : E3)
     (hv : v ∈ verticiIcosa) (heq : fanSupport i v = φ + 1) :
     v ∈ Set.range (fanCycle i) := by
@@ -827,6 +1052,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.fanSupport_eq_imp_fanCycle
   all_goals try simp only [golden_inv_nfI, golden_den_selfI] at heq
   all_goals nlinarith [Real.goldenRatio_sq]
 
+/--
+@isnad1 id=ex.2h2v.s11.ef07c6385e2b from=translated src=- shape=38f6a7f7 vocab=c87a851e
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.functional_shape (i : Fin 5) (l : E3 →L[ℝ] ℝ)
     (hi : l (neighbor i) = l a3I)
     (hin : l (neighbor (finRotate 5 i)) = l a3I) :
@@ -928,6 +1156,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.functional_shape (i : Fin 
     rw [eb, ec]
     linear_combination (-z 0 * l e₀I) * hs
 
+/--
+@isnad1 id=and.1h1v.s13.e96aeb5c5df4 from=translated src=- shape=dd606304 vocab=9d8a9fea
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.nonadjacent_neighbor_relations (l : E3 →L[ℝ] ℝ)
     (hmax : ∀ v ∈ verticiIcosa, l v ≤ l a3I) :
     (l b3I = l a3I → l a1I = l a3I → l c3I = l a3I) ∧
@@ -1014,6 +1245,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.nonadjacent_neighbor_relat
     linarith
 
 set_option maxHeartbeats 1000000 in
+/--
+@isnad1 id=or.3h2v.s13.1bedea124356 from=translated src=- shape=06133458 vocab=9d8a9fea
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.local_maximizer_dichotomyI (l : E3 →L[ℝ] ℝ)
     (hmax : ∀ v ∈ verticiIcosa, l v ≤ l a3I)
     (v : E3) (hv : v ∈ verticiIcosa) (heq : l v = l a3I) :
@@ -1135,6 +1369,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.local_maximizer_dichotomyI
     aesop
   · aesop
 
+/--
+@isnad1 id=eq.0h0v.s10.92e43a740d54 from=translated src=- shape=8514afa1 vocab=e261c74c
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.icosaedro_toSet_finrank :
     Module.finrank ℝ (vectorSpan ℝ icosaedro.toSet) = 3 := by
   rw [FiniteConvexPolytope.toSet, ← direction_affineSpan,
@@ -1142,6 +1379,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.icosaedro_toSet_finrank :
   exact icosaedro_finrank
 
 open Classical in
+/--
+@isnad1 id=eq.4h4v.s11.9425eb44bf02 from=translated src=- shape=93fbfe8c vocab=3d47cd2c
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.facet_eq_fanFace_of_shape {F : Set E3} {l : E3 →L[ℝ] ℝ}
     (hFS : F = convexHull ℝ
       (((icosaedro.vertices.filter (· ∈ F)) : Finset E3) : Set E3))
@@ -1182,6 +1422,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.facet_eq_fanFace_of_shape 
   rfl
 
 set_option maxHeartbeats 2000000 in
+/--
+@isnad1 id=ex.2h1v.s6.0a320ea49842 from=translated src=- shape=f2cf1dc8 vocab=1772ce95
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.incident_facet_classificationI {F : Set E3}
     (hF : icosaedro.IsFacet F) (ha3 : a3I ∈ F) :
     ∃ i : Fin 5, F = fanFaceI i := by
@@ -1431,28 +1674,67 @@ def _root_.Tengoku.LeanEvalPlatonicClassification.τxI : E3 ≃ᵃⁱ[ℝ] E3 :=
 def _root_.Tengoku.LeanEvalPlatonicClassification.τyI : E3 ≃ᵃⁱ[ℝ] E3 := segnoYI.toAffineIsometryEquiv
 def _root_.Tengoku.LeanEvalPlatonicClassification.τzI : E3 ≃ᵃⁱ[ℝ] E3 := segnoZI.toAffineIsometryEquiv
 
+/--
+@isnad1 id=eq.0h1v.s10.823ff0f2f118 from=translated src=- shape=cdb8af4a vocab=39eeffb2
+-/
 @[simp] theorem _root_.Tengoku.LeanEvalPlatonicClassification.tauX_zeroI (z : E3) : τxI z 0 = -z 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s10.655619037bad from=translated src=- shape=afa6c3c1 vocab=dd546f1a
+-/
 @[simp] theorem _root_.Tengoku.LeanEvalPlatonicClassification.tauX_oneI (z : E3) : τxI z 1 = z 1 := rfl
+/--
+@isnad1 id=eq.0h1v.s10.ed6c5cf12af2 from=translated src=- shape=afa6c3c1 vocab=dd546f1a
+-/
 @[simp] theorem _root_.Tengoku.LeanEvalPlatonicClassification.tauX_twoI (z : E3) : τxI z 2 = z 2 := rfl
+/--
+@isnad1 id=eq.0h1v.s10.d9018cad3440 from=translated src=- shape=afa6c3c1 vocab=79602c10
+-/
 @[simp] theorem _root_.Tengoku.LeanEvalPlatonicClassification.tauY_zeroI (z : E3) : τyI z 0 = z 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s10.244678d51680 from=translated src=- shape=cdb8af4a vocab=5a81f36e
+-/
 @[simp] theorem _root_.Tengoku.LeanEvalPlatonicClassification.tauY_oneI (z : E3) : τyI z 1 = -z 1 := rfl
+/--
+@isnad1 id=eq.0h1v.s10.950df48a06c7 from=translated src=- shape=afa6c3c1 vocab=79602c10
+-/
 @[simp] theorem _root_.Tengoku.LeanEvalPlatonicClassification.tauY_twoI (z : E3) : τyI z 2 = z 2 := rfl
+/--
+@isnad1 id=eq.0h1v.s10.916a09add49c from=translated src=- shape=afa6c3c1 vocab=a4348c82
+-/
 @[simp] theorem _root_.Tengoku.LeanEvalPlatonicClassification.tauZ_zeroI (z : E3) : τzI z 0 = z 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s10.bde23c2819af from=translated src=- shape=afa6c3c1 vocab=a4348c82
+-/
 @[simp] theorem _root_.Tengoku.LeanEvalPlatonicClassification.tauZ_oneI (z : E3) : τzI z 1 = z 1 := rfl
+/--
+@isnad1 id=eq.0h1v.s10.1c23d014b1d0 from=translated src=- shape=cdb8af4a vocab=e88b73e7
+-/
 @[simp] theorem _root_.Tengoku.LeanEvalPlatonicClassification.tauZ_twoI (z : E3) : τzI z 2 = -z 2 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s10.7e313ce75d94 from=translated src=- shape=441ab4ae vocab=8014e4dd
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.tauX_formulaI (z : E3) :
     τxI z = WithLp.toLp 2 ![-z 0, z 1, z 2] := by
   apply E3_extI <;> rfl
 
+/--
+@isnad1 id=eq.0h1v.s10.cdf01dc7b114 from=translated src=- shape=e7733c6a vocab=f53a36c7
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.tauY_formulaI (z : E3) :
     τyI z = WithLp.toLp 2 ![z 0, -z 1, z 2] := by
   apply E3_extI <;> rfl
 
+/--
+@isnad1 id=eq.0h1v.s10.b189de4b80f0 from=translated src=- shape=b3d2a5fb vocab=19da965b
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.tauZ_formulaI (z : E3) :
     τzI z = WithLp.toLp 2 ![z 0, z 1, -z 2] := by
   apply E3_extI <;> rfl
 
+/--
+@isnad1 id=and.0h0v.s13.adc059a67f10 from=translated src=- shape=9f108659 vocab=9f9a5e21
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.kappa_vertex_actions :
     κ a0I = b0I ∧ κ a1I = b2I ∧ κ a2I = b1I ∧ κ a3I = b3I ∧
     κ b0I = c0I ∧ κ b1I = c1I ∧ κ b2I = c2I ∧ κ b3I = c3I ∧
@@ -1461,6 +1743,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.kappa_vertex_actions :
   all_goals apply E3_extI
   all_goals simp [a0I, a1I, a2I, a3I, b0I, b1I, b2I, b3I, c0I, c1I, c2I, c3I]
 
+/--
+@isnad1 id=mem.1h1v.s10.515fe06c746d from=translated src=- shape=7a298a1d vocab=b04fe61e
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.kappa_vertices (v : E3) (hv : v ∈ verticiIcosa) :
     κ v ∈ verticiIcosa := by
   rcases kappa_vertex_actions with
@@ -1471,6 +1756,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.kappa_vertices (v : E3) (h
   all_goals simp [ha0, ha1, ha2, ha3, hb0, hb1, hb2, hb3,
     hc0, hc1, hc2, hc3]
 
+/--
+@isnad1 id=mem.1h1v.s10.49d61158fc63 from=translated src=- shape=7a298a1d vocab=5d26a63a
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.tauX_verticesI (v : E3) (hv : v ∈ verticiIcosa) :
     τxI v ∈ verticiIcosa := by
   simp only [verticiIcosa, Finset.mem_insert, Finset.mem_singleton] at hv ⊢
@@ -1479,6 +1767,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.tauX_verticesI (v : E3) (h
   all_goals simp [tauX_formulaI, a0I, a1I, a2I, a3I, b0I, b1I, b2I, b3I,
     c0I, c1I, c2I, c3I]
 
+/--
+@isnad1 id=mem.1h1v.s10.d7336dc74aaf from=translated src=- shape=7a298a1d vocab=75436b47
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.tauY_verticesI (v : E3) (hv : v ∈ verticiIcosa) :
     τyI v ∈ verticiIcosa := by
   simp only [verticiIcosa, Finset.mem_insert, Finset.mem_singleton] at hv ⊢
@@ -1487,6 +1778,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.tauY_verticesI (v : E3) (h
   all_goals simp [tauY_formulaI, a0I, a1I, a2I, a3I, b0I, b1I, b2I, b3I,
     c0I, c1I, c2I, c3I]
 
+/--
+@isnad1 id=mem.1h1v.s10.21a868845f97 from=translated src=- shape=7a298a1d vocab=c42166ba
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.tauZ_verticesI (v : E3) (hv : v ∈ verticiIcosa) :
     τzI v ∈ verticiIcosa := by
   simp only [verticiIcosa, Finset.mem_insert, Finset.mem_singleton] at hv ⊢
@@ -1495,38 +1789,65 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.tauZ_verticesI (v : E3) (h
   all_goals simp [tauZ_formulaI, a0I, a1I, a2I, a3I, b0I, b1I, b2I, b3I,
     c0I, c1I, c2I, c3I]
 
+/--
+@isnad1 id=eq.0h0v.s10.36f3fe2ddcf7 from=translated src=- shape=0bc3b51f vocab=2f62308b
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.kappa_image_vertices :
     (⇑κ) '' (verticiIcosa : Set E3) = (verticiIcosa : Set E3) :=
   image_verticiIcosa_eq_of_maps κ kappa_vertices
 
+/--
+@isnad1 id=eq.0h0v.s10.9406e1c6f8c8 from=translated src=- shape=0bc3b51f vocab=f6029968
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.tauX_image_verticesI :
     (⇑τxI) '' (verticiIcosa : Set E3) = (verticiIcosa : Set E3) :=
   image_verticiIcosa_eq_of_maps τxI tauX_verticesI
 
+/--
+@isnad1 id=eq.0h0v.s10.3c49151a0c22 from=translated src=- shape=0bc3b51f vocab=bc7a8d44
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.tauY_image_verticesI :
     (⇑τyI) '' (verticiIcosa : Set E3) = (verticiIcosa : Set E3) :=
   image_verticiIcosa_eq_of_maps τyI tauY_verticesI
 
+/--
+@isnad1 id=eq.0h0v.s10.26b754cfbc96 from=translated src=- shape=0bc3b51f vocab=345d4a8e
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.tauZ_image_verticesI :
     (⇑τzI) '' (verticiIcosa : Set E3) = (verticiIcosa : Set E3) :=
   image_verticiIcosa_eq_of_maps τzI tauZ_verticesI
 
+/--
+@isnad1 id=eq.0h0v.s10.a393a5875128 from=translated src=- shape=05619176 vocab=18b4ebc6
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.kappa_preserves_polytope :
     (⇑κ) '' icosaedro.toSet = icosaedro.toSet :=
   preserves_icosaedro_of_image_vertices κ kappa_image_vertices
 
+/--
+@isnad1 id=eq.0h0v.s10.2c2bf2a655c5 from=translated src=- shape=05619176 vocab=70f4032d
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.tauX_preserves_polytopeI :
     (⇑τxI) '' icosaedro.toSet = icosaedro.toSet :=
   preserves_icosaedro_of_image_vertices τxI tauX_image_verticesI
 
+/--
+@isnad1 id=eq.0h0v.s10.59befbeb0145 from=translated src=- shape=05619176 vocab=35aac66f
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.tauY_preserves_polytopeI :
     (⇑τyI) '' icosaedro.toSet = icosaedro.toSet :=
   preserves_icosaedro_of_image_vertices τyI tauY_image_verticesI
 
+/--
+@isnad1 id=eq.0h0v.s10.8cecee0c591b from=translated src=- shape=05619176 vocab=af6833b5
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.tauZ_preserves_polytopeI :
     (⇑τzI) '' icosaedro.toSet = icosaedro.toSet :=
   preserves_icosaedro_of_image_vertices τzI tauZ_image_verticesI
 
+/--
+@isnad1 id=eq.2h2v.s12.db5ac2c3988d from=translated src=- shape=8484ebe5 vocab=178a04bd
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.preserves_transI (f g : E3 ≃ᵃⁱ[ℝ] E3)
     (hf : (⇑f) '' icosaedro.toSet = icosaedro.toSet)
     (hg : (⇑g) '' icosaedro.toSet = icosaedro.toSet) :
@@ -1537,6 +1858,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.preserves_transI (f g : E3
         rfl,
     hf, hg]
 
+/--
+@isnad1 id=ex.1h1v.s11.6d7e19236660 from=translated src=- shape=a04d9e78 vocab=f1ba9c69
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.icosaedro_vertex_transitive (v : E3) (hv : v ∈ icosaedro.vertices) :
     ∃ g : E3 ≃ᵃⁱ[ℝ] E3,
       (⇑g) '' icosaedro.toSet = icosaedro.toSet ∧ g a3I = v := by

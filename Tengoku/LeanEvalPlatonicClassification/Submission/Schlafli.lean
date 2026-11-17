@@ -52,6 +52,9 @@ noncomputable def schlafli (P : ConvexPolytope n) (hreg : P.IsRegular)
   fun i =>
     if hi : (i : ℕ) + 1 < n then schlafliDi P hreg F i hi else 0
 
+/--
+@isnad1 id=eq.2h4v.s5.dbe22e65d12a from=translated src=- shape=0544674b vocab=3be70ecf
+-/
 theorem schlafli_apply (P : ConvexPolytope n) (hreg : P.IsRegular)
     (F : P.Flag) (i : Fin n) (hi : (i : ℕ) + 1 < n) :
     schlafli P hreg F i = schlafliDi P hreg F i hi := by

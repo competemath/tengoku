@@ -20,7 +20,9 @@ namespace Tengoku.LeanEvalPlatonicClassification.FiniteConvexPolytope
 variable {A : Type*} [NormedAddCommGroup A] [InnerProductSpace ℝ A]
 
 /-- Il fatto puntuale: un'isometria affine deforma un funzionale lineare in un
-funzionale lineare più una costante.-/
+funzionale lineare più una costante.
+@isnad1 id=ex.0h3v.s9.38a12c9ae9f7 from=translated src=- shape=8363e0c7 vocab=dffec0ba
+-/
 theorem funzionale_coniugato (g : A ≃ᵃⁱ[ℝ] A) (l : A →L[ℝ] ℝ) :
     ∃ (l' : A →L[ℝ] ℝ) (c : ℝ), ∀ x : A, l (g.symm x) = l' x + c := by
   refine ⟨l.comp (g.symm.toAffineIsometry.linearIsometry.toContinuousLinearMap),
@@ -33,7 +35,9 @@ theorem funzionale_coniugato (g : A ≃ᵃⁱ[ℝ] A) (l : A →L[ℝ] ℝ) :
   rw [hdec, map_add]
   rfl
 
-/-- L'esposizione si trasporta lungo un'isometria affine.-/
+/-- L'esposizione si trasporta lungo un'isometria affine.
+@isnad1 id=isexpose.1h4v.s8.eb3e9ce437a0 from=translated src=- shape=a7af8740 vocab=d1141a20
+-/
 theorem isExposed_image (g : A ≃ᵃⁱ[ℝ] A) {s F : Set A}
     (hF : IsExposed ℝ s F) : IsExposed ℝ ((⇑g) '' s) ((⇑g) '' F) := by
   intro hne
@@ -63,7 +67,9 @@ theorem isExposed_image (g : A ≃ᵃⁱ[ℝ] A) {s F : Set A}
     rw [chiave, chiave] at h
     linarith
 
-/-- L'immagine sotto il coniugio: (g σ g⁻¹) '' X = g '' (σ '' (g⁻¹ '' X)).-/
+/-- L'immagine sotto il coniugio: (g σ g⁻¹) '' X = g '' (σ '' (g⁻¹ '' X)).
+@isnad1 id=eq.0h4v.s9.b66cba88b2f5 from=translated src=- shape=5f3d8b4b vocab=cc4e4406
+-/
 theorem immagine_coniugata (g σ : A ≃ᵃⁱ[ℝ] A) (X : Set A) :
     (⇑((g.symm.trans σ).trans g)) '' X
       = (⇑g) '' ((⇑σ) '' ((⇑g.symm) '' X)) := by
@@ -76,7 +82,9 @@ theorem immagine_coniugata (g σ : A ≃ᵃⁱ[ℝ] A) (X : Set A) :
     refine ⟨x, hx, ?_⟩
     simp [AffineIsometryEquiv.coe_trans, Function.comp]
 
-/-- La preservazione passa all'inversa.-/
+/-- La preservazione passa all'inversa.
+@isnad1 id=eq.1h3v.s8.5b8b49b70d37 from=translated src=- shape=1a9d5aef vocab=4e1b5821
+-/
 theorem preserva_symm (g : A ≃ᵃⁱ[ℝ] A) {s : Set A} (hg : (⇑g) '' s = s) :
     (⇑g.symm) '' s = s := by
   conv_lhs => rw [← hg]
@@ -87,7 +95,9 @@ section FinDim
 
 variable [FiniteDimensional ℝ A]
 
-/-- Metà della invarianza del rango: l'immagine non lo aumenta.-/
+/-- Metà della invarianza del rango: l'immagine non lo aumenta.
+@isnad1 id=le.0h3v.s10.f5cc6224b901 from=translated src=- shape=639ab640 vocab=be39072a
+-/
 theorem finrank_vectorSpan_image_le (g : A ≃ᵃⁱ[ℝ] A) (F : Set A) :
     Module.finrank ℝ (vectorSpan ℝ ((⇑g) '' F))
       ≤ Module.finrank ℝ (vectorSpan ℝ F) := by
@@ -107,7 +117,9 @@ theorem finrank_vectorSpan_image_le (g : A ≃ᵃⁱ[ℝ] A) (F : Set A) :
   rw [himg, ← LinearIsometry.coe_toLinearMap, Submodule.span_image]
   exact Submodule.finrank_map_le _ _
 
-/-- Il rango dello span direzionale è invariante per isometrie affini.-/
+/-- Il rango dello span direzionale è invariante per isometrie affini.
+@isnad1 id=eq.0h3v.s10.3390b4a22d3f from=translated src=- shape=639ab640 vocab=ea3eb34d
+-/
 theorem finrank_vectorSpan_image (g : A ≃ᵃⁱ[ℝ] A) (F : Set A) :
     Module.finrank ℝ (vectorSpan ℝ ((⇑g) '' F))
       = Module.finrank ℝ (vectorSpan ℝ F) := by
@@ -119,7 +131,9 @@ theorem finrank_vectorSpan_image (g : A ≃ᵃⁱ[ℝ] A) (F : Set A) :
   rwa [hgs] at h2
 
 /-- Una faccetta trasportata da un'isometria che preserva il politopo è una
-faccetta.-/
+faccetta.
+@isnad1 id=isfacet.2h4v.s8.1079f16252e5 from=translated src=- shape=82817f5c vocab=e14bfe9e
+-/
 theorem isFacet_image (P : FiniteConvexPolytope A) (g : A ≃ᵃⁱ[ℝ] A)
     (hg : (⇑g) '' P.toSet = P.toSet) {F : Set A} (hF : P.IsFacet F) :
     P.IsFacet ((⇑g) '' F) := by
@@ -129,7 +143,9 @@ theorem isFacet_image (P : FiniteConvexPolytope A) (g : A ≃ᵃⁱ[ℝ] A)
   · rw [finrank_vectorSpan_image]
     exact hF.2
 
-/-- Il coniugio degli iterati: (g ∘ ρ ∘ g⁻¹)ⁿ (g x) = g (ρⁿ x).-/
+/-- Il coniugio degli iterati: (g ∘ ρ ∘ g⁻¹)ⁿ (g x) = g (ρⁿ x).
+@isnad1 id=eq.0h5v.s9.66c49daf4be1 from=translated src=- shape=c2f2bacf vocab=da0024ea
+-/
 theorem iterato_coniugato (g ρ : A ≃ᵃⁱ[ℝ] A) (n : ℕ) (x : A) :
     (⇑((g.symm.trans ρ).trans g))^[n] (g x) = g ((⇑ρ)^[n] x) := by
   induction n generalizing x with
@@ -141,7 +157,9 @@ theorem iterato_coniugato (g ρ : A ≃ᵃⁱ[ℝ] A) (n : ℕ) (x : A) :
     rw [hstep, ih]
 
 /-- LA FACCETTA REGOLARE SI TRASPORTA: con g isometria che preserva il politopo,
-g '' F è regolare dello stesso tipo e lato.-/
+g '' F è regolare dello stesso tipo e lato.
+@isnad1 id=isregula.2h6v.s8.da2830707a80 from=translated src=- shape=73e5aae8 vocab=ba7e4194
+-/
 theorem isRegularFacet_image (P : FiniteConvexPolytope A) (g : A ≃ᵃⁱ[ℝ] A)
     (hg : (⇑g) '' P.toSet = P.toSet) {F : Set A} {p : ℕ} {ℓ : ℝ}
     (hF : P.IsRegularFacet F p ℓ) : P.IsRegularFacet ((⇑g) '' F) p ℓ := by
@@ -189,7 +207,9 @@ theorem isRegularFacet_image (P : FiniteConvexPolytope A) (g : A ≃ᵃⁱ[ℝ] 
     exact hdist
 
 /-- IL FAN SI TRASPORTA: se v è q-ciclico e g preserva il politopo,
-g v è q-ciclico.-/
+g v è q-ciclico.
+@isnad1 id=iscyclic.2h5v.s8.5fd79dcafb8d from=translated src=- shape=39ca5c77 vocab=7320df9d
+-/
 theorem isCyclicVertex_image (P : FiniteConvexPolytope A) (g : A ≃ᵃⁱ[ℝ] A)
     (hg : (⇑g) '' P.toSet = P.toSet) {v : A} {q : ℕ}
     (hv : P.IsCyclicVertex v q) : P.IsCyclicVertex (g v) q := by

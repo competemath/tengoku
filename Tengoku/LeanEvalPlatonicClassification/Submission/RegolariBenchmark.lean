@@ -28,6 +28,9 @@ open ConvexPolytope
 
 /-! ## Il simplesso tetraedrale -/
 
+/--
+@isnad1 id=eq.1h4v.s7.8ba8e447e686 from=translated src=- shape=3c79d8e4 vocab=bd3cbdd4
+-/
 theorem cosferico_extremePoints {A : Type*} [NormedAddCommGroup A]
     [InnerProductSpace ℝ A] [Nontrivial A]
     (x : A) (r : ℝ) (V : Set A) (hV : V ⊆ sphere x r) :
@@ -42,6 +45,9 @@ theorem cosferico_extremePoints {A : Type*} [NormedAddCommGroup A]
   exact inter_extremePoints_subset_extremePoints_of_subset hball
     ⟨subset_convexHull ℝ V hv, hsfera⟩
 
+/--
+@isnad1 id=eq.1h1v.s6.9c5f5f989976 from=translated src=- shape=3bc45c0e vocab=285fb170
+-/
 theorem norm_vertici : ∀ v ∈ verticiTetra, ‖v‖ = Real.sqrt 3 := by
   intro v hv
   have hcasi : v = w0 ∨ v = w1 ∨ v = w2 ∨ v = w3 := by
@@ -76,11 +82,26 @@ def tetraedroB : ConvexPolytope 3 where
 
 def w : Fin 4 → E3 := ![w0, w1, w2, w3]
 
+/--
+@isnad1 id=eq.0h0v.s4.a43dfd8e4541 from=translated src=- shape=fdee698a vocab=127ae13e
+-/
 @[simp] theorem w_apply_zero : w 0 = w0 := rfl
+/--
+@isnad1 id=eq.0h0v.s4.043d749fb418 from=translated src=- shape=fdee698a vocab=db95e0ee
+-/
 @[simp] theorem w_apply_one : w 1 = w1 := rfl
+/--
+@isnad1 id=eq.0h0v.s4.5fb733db5fda from=translated src=- shape=fdee698a vocab=7a116910
+-/
 @[simp] theorem w_apply_two : w 2 = w2 := rfl
+/--
+@isnad1 id=eq.0h0v.s4.21593c958603 from=translated src=- shape=fdee698a vocab=6054bb97
+-/
 @[simp] theorem w_apply_three : w 3 = w3 := rfl
 
+/--
+@isnad1 id=affinein.0h0v.s8.5bdf28233b22 from=translated src=- shape=7e71be5a vocab=be8cdb20
+-/
 theorem w_affineIndependent : AffineIndependent ℝ w := by
   rw [affineIndependent_iff_eq_of_fintype_affineCombination_eq]
   intro a b ha hb hab
@@ -109,10 +130,16 @@ theorem w_affineIndependent : AffineIndependent ℝ w := by
   · simpa using e2
   · simpa using e3
 
+/--
+@isnad1 id=injectiv.0h0v.s3.62ca4ed92d2a from=translated src=- shape=bfe16b09 vocab=2cc66da3
+-/
 theorem w_injective : Function.Injective w := w_affineIndependent.injective
 
 def wEmb : Fin 4 ↪ E3 := ⟨w, w_injective⟩
 
+/--
+@isnad1 id=eq.0h0v.s4.1a62d9c4ac58 from=translated src=- shape=1fff6147 vocab=46390566
+-/
 theorem verticiTetra_eq_map : verticiTetra = Finset.univ.map wEmb := by
   ext x
   simp only [verticiTetra, Finset.mem_insert, Finset.mem_singleton,
@@ -126,12 +153,18 @@ theorem verticiTetra_eq_map : verticiTetra = Finset.univ.map wEmb := by
   · rintro ⟨i, rfl⟩
     fin_cases i <;> simp [wEmb, w]
 
+/--
+@isnad1 id=eq.0h0v.s5.80b572bdd6c5 from=translated src=- shape=2e39ab60 vocab=1f5dba9e
+-/
 theorem range_w_eq_vertices : Set.range w = (tetraedroB.vertices : Set E3) := by
   change Set.range w = (verticiTetra : Set E3)
   rw [verticiTetra_eq_map]
   ext x
   simp [wEmb]
 
+/--
+@isnad1 id=eq.0h0v.s10.bc1ae2a4ffa6 from=translated src=- shape=21513468 vocab=5585de5b
+-/
 theorem tetraedroB_finrank :
     Module.finrank ℝ (vectorSpan ℝ (tetraedroB.vertices : Set E3)) = 3 := by
   rw [← range_w_eq_vertices]
@@ -140,6 +173,9 @@ theorem tetraedroB_finrank :
 /-! ## Classificazione di tutte le facce che possono comparire in una bandiera -/
 
 open Classical in
+/--
+@isnad1 id=eq.1h1v.s7.c65e771154c5 from=translated src=- shape=ae6620d6 vocab=d549587b
+-/
 theorem exposedFace_eq_convexHull_vertices {F : Set E3}
     (hF : tetraedroB.IsFace F) :
     F = convexHull ℝ ((tetraedroB.vertices.filter (· ∈ F) : Finset E3) : Set E3) := by
@@ -166,6 +202,9 @@ theorem exposedFace_eq_convexHull_vertices {F : Set E3}
     _ = convexHull ℝ
         ((tetraedroB.vertices.filter (· ∈ F) : Finset E3) : Set E3) := rfl
 
+/--
+@isnad1 id=affinein.0h0v.s8.4becb67958d7 from=translated src=- shape=05f72523 vocab=253e053c
+-/
 theorem affineIndependent_vertices :
     AffineIndependent ℝ
       ((↑) : {x // x ∈ (tetraedroB.vertices : Set E3)} → E3) := by
@@ -177,6 +216,9 @@ def faceIndices (F : Set E3) : Finset (Fin 4) :=
   Finset.univ.filter fun i => w i ∈ F
 
 open Classical in
+/--
+@isnad1 id=eq.0h1v.s5.699d4e3710da from=translated src=- shape=37239d15 vocab=76379889
+-/
 theorem filtered_vertices_eq_map (F : Set E3) :
     tetraedroB.vertices.filter (· ∈ F) = (faceIndices F).map wEmb := by
   classical
@@ -194,11 +236,17 @@ theorem filtered_vertices_eq_map (F : Set E3) :
     exact Finset.mem_filter.mpr
       ⟨Finset.mem_map.mpr ⟨i, Finset.mem_univ _, rfl⟩, hiF⟩
 
+/--
+@isnad1 id=eq.1h1v.s7.3ee193f80e88 from=translated src=- shape=7aadedf2 vocab=8553653f
+-/
 theorem face_eq_hull_indices {F : Set E3} (hF : tetraedroB.IsFace F) :
     F = convexHull ℝ (((faceIndices F).map wEmb : Finset E3) : Set E3) := by
   rw [← filtered_vertices_eq_map]
   exact exposedFace_eq_convexHull_vertices hF
 
+/--
+@isnad1 id=eq.1h1v.s5.37c52edd8502 from=translated src=- shape=b0b0d9b0 vocab=43209998
+-/
 theorem faceIndices_card {F : Set E3} (hF : tetraedroB.IsFace F) :
     (faceIndices F).card = ConvexPolytope.faceDim F + 1 := by
   classical
@@ -232,6 +280,9 @@ theorem faceIndices_card {F : Set E3} (hF : tetraedroB.IsFace F) :
   change S.card = ConvexPolytope.faceDim F + 1
   simpa using hdim.symm
 
+/--
+@isnad1 id=le.1h2v.s5.f6614d199edd from=translated src=- shape=3d230e3c vocab=10abddd9
+-/
 theorem faceIndices_mono {F G : Set E3} (h : F ⊆ G) :
     faceIndices F ⊆ faceIndices G := by
   intro i hi
@@ -244,6 +295,9 @@ structure FlagTriple (F : tetraedroB.Flag) where
   face_one : F.face 1 = convexHull ℝ ({w (idx 0), w (idx 1)} : Set E3)
   face_two : F.face 2 = convexHull ℝ ({w (idx 0), w (idx 1), w (idx 2)} : Set E3)
 
+/--
+@isnad1 id=nonempty.0h1v.s3.bb6b3f8b301f from=translated src=- shape=3c53bb5d vocab=88c9911c
+-/
 theorem flag_has_triple (F : tetraedroB.Flag) : Nonempty (FlagTriple F) := by
   classical
   let S0 := faceIndices (F.face 0)
@@ -312,6 +366,9 @@ theorem flag_has_triple (F : tetraedroB.Flag) : Nonempty (FlagTriple F) := by
 
 /-! ## Ogni permutazione dei quattro vertici è una isometria -/
 
+/--
+@isnad1 id=eq.0h6v.s8.cf176a9a1198 from=translated src=- shape=69d52b78 vocab=c1eefab0
+-/
 theorem inner_toLp (a b c d e f : ℝ) :
     inner ℝ (WithLp.toLp 2 ![a, b, c] : E3)
       (WithLp.toLp 2 ![d, e, f] : E3) = a * d + b * e + c * f := by
@@ -325,6 +382,9 @@ theorem inner_toLp (a b c d e f : ℝ) :
     show (![d, e, f] : Fin 3 → ℝ) 2 = f from rfl]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s7.026f8723482e from=translated src=- shape=d801e625 vocab=198f8b6f
+-/
 theorem inner_w (i j : Fin 4) :
     inner ℝ (w i) (w j) = if i = j then 3 else -1 := by
   by_cases hij : i = j
@@ -341,6 +401,9 @@ theorem inner_w (i j : Fin 4) :
 def axis (σ : Equiv.Perm (Fin 4)) (j : Fin 3) : E3 :=
   (2 : ℝ)⁻¹ • (w (σ 0) + w (σ j.succ))
 
+/--
+@isnad1 id=orthonor.0h1v.s6.7ad5311d0b33 from=translated src=- shape=b288e7dc vocab=c6812517
+-/
 theorem axis_orthonormal (σ : Equiv.Perm (Fin 4)) : Orthonormal ℝ (axis σ) := by
   rw [orthonormal_iff_ite]
   intro i j
@@ -365,15 +428,24 @@ def axisBasis (σ : Equiv.Perm (Fin 4)) : OrthonormalBasis (Fin 3) ℝ E3 :=
   OrthonormalBasis.mk (axis_orthonormal σ)
     ((axis_orthonormal σ).linearIndependent.span_eq_top_of_card_eq_finrank (by simp [E3])).ge
 
+/--
+@isnad1 id=eq.0h2v.s7.7dd8f7d2363c from=translated src=- shape=eaa7dad6 vocab=7f9deebb
+-/
 @[simp] theorem axisBasis_apply (σ : Equiv.Perm (Fin 4)) (j : Fin 3) :
     axisBasis σ j = axis σ j := by
   simp only [axisBasis]
   rw [OrthonormalBasis.coe_mk]
 
+/--
+@isnad1 id=eq.0h0v.s7.77e28f2c2409 from=translated src=- shape=c69a548c vocab=e561f074
+-/
 theorem sum_w : ∑ i : Fin 4, w i = 0 := by
   ext j
   fin_cases j <;> simp [w, w0, w1, w2, w3, Fin.sum_univ_four]
 
+/--
+@isnad1 id=eq.0h1v.s8.c8058983d69d from=translated src=- shape=026db51f vocab=7a57fa88
+-/
 theorem sum_w_tail (σ : Equiv.Perm (Fin 4)) :
     ∑ j : Fin 3, w (σ j.succ) = -w (σ 0) := by
   have hall : ∑ i : Fin 4, w (σ i) = 0 := by
@@ -382,6 +454,9 @@ theorem sum_w_tail (σ : Equiv.Perm (Fin 4)) :
   rw [Fin.sum_univ_succ] at hall
   exact eq_neg_of_add_eq_zero_right hall
 
+/--
+@isnad1 id=eq.0h1v.s7.4206cbaab812 from=translated src=- shape=4c0d5b06 vocab=27626c73
+-/
 theorem sum_axis (σ : Equiv.Perm (Fin 4)) :
     ∑ j : Fin 3, axis σ j = w (σ 0) := by
   rw [show (∑ j : Fin 3, axis σ j) =
@@ -394,6 +469,9 @@ theorem sum_axis (σ : Equiv.Perm (Fin 4)) :
 def tetraLinear (σ : Equiv.Perm (Fin 4)) : E3 ≃ₗᵢ[ℝ] E3 :=
   (axisBasis (Equiv.refl (Fin 4))).equiv (axisBasis σ) (Equiv.refl (Fin 3))
 
+/--
+@isnad1 id=eq.0h2v.s10.4383a15c3d36 from=translated src=- shape=acc51970 vocab=72e8f442
+-/
 theorem tetraLinear_axis (σ : Equiv.Perm (Fin 4)) (j : Fin 3) :
     tetraLinear σ (axis (Equiv.refl (Fin 4)) j) = axis σ j := by
   rw [← axisBasis_apply (Equiv.refl (Fin 4)) j, ← axisBasis_apply σ j]
@@ -401,6 +479,9 @@ theorem tetraLinear_axis (σ : Equiv.Perm (Fin 4)) (j : Fin 3) :
     (axisBasis (Equiv.refl (Fin 4))).equiv_apply_basis
       (axisBasis σ) (Equiv.refl (Fin 3)) j
 
+/--
+@isnad1 id=eq.0h1v.s10.520c3ac03804 from=translated src=- shape=8879b372 vocab=fb67346f
+-/
 theorem tetraLinear_vertex_zero (σ : Equiv.Perm (Fin 4)) :
     tetraLinear σ (w 0) = w (σ 0) := by
   have hbase : ∑ j : Fin 3, axis (Equiv.refl (Fin 4)) j = w 0 := by
@@ -409,6 +490,9 @@ theorem tetraLinear_vertex_zero (σ : Equiv.Perm (Fin 4)) :
   simp_rw [tetraLinear_axis]
   exact sum_axis σ
 
+/--
+@isnad1 id=eq.0h2v.s10.a831583b7cb2 from=translated src=- shape=d646e9a6 vocab=fb67346f
+-/
 theorem tetraLinear_vertex (σ : Equiv.Perm (Fin 4)) (i : Fin 4) :
     tetraLinear σ (w i) = w (σ i) := by
   refine Fin.cases ?_ (fun j => ?_) i
@@ -424,9 +508,15 @@ theorem tetraLinear_vertex (σ : Equiv.Perm (Fin 4)) (i : Fin 4) :
 def tetraIsom (σ : Equiv.Perm (Fin 4)) : ConvexPolytope.Isom 3 :=
   (tetraLinear σ).toAffineIsometryEquiv
 
+/--
+@isnad1 id=eq.0h2v.s9.26b884c12c4c from=translated src=- shape=03277bd8 vocab=704c0af5
+-/
 theorem tetraIsom_vertex (σ : Equiv.Perm (Fin 4)) (i : Fin 4) :
     tetraIsom σ (w i) = w (σ i) := tetraLinear_vertex σ i
 
+/--
+@isnad1 id=eq.0h1v.s9.cab5e0738fa1 from=translated src=- shape=64b50732 vocab=f5467a5b
+-/
 theorem tetraIsom_image_vertices (σ : Equiv.Perm (Fin 4)) :
     (⇑(tetraIsom σ)) '' (tetraedroB.vertices : Set E3) =
       (tetraedroB.vertices : Set E3) := by
@@ -440,28 +530,43 @@ theorem tetraIsom_image_vertices (σ : Equiv.Perm (Fin 4)) :
     refine ⟨w (σ.symm i), Set.mem_range_self _, ?_⟩
     rw [tetraIsom_vertex, σ.apply_symm_apply]
 
+/--
+@isnad1 id=eq.0h2v.s10.81246d501d34 from=translated src=- shape=9fbc1ddd vocab=17c3f631
+-/
 theorem tetraIsom_image_hull (σ : Equiv.Perm (Fin 4)) (S : Set E3) :
     (⇑(tetraIsom σ)) '' convexHull ℝ S =
       convexHull ℝ ((⇑(tetraIsom σ)) '' S) := by
   simpa only [AffineEquiv.coe_toAffineMap, AffineIsometryEquiv.coe_toAffineEquiv] using
     (tetraIsom σ).toAffineEquiv.toAffineMap.image_convexHull S
 
+/--
+@isnad1 id=issymmet.0h1v.s4.35b58b0cce7c from=translated src=- shape=4171c4c5 vocab=4e885f47
+-/
 theorem tetraIsom_symmetry (σ : Equiv.Perm (Fin 4)) :
     tetraedroB.isSymmetry (tetraIsom σ) := by
   change (⇑(tetraIsom σ)) '' convexHull ℝ (tetraedroB.vertices : Set E3) =
     convexHull ℝ (tetraedroB.vertices : Set E3)
   rw [tetraIsom_image_hull, tetraIsom_image_vertices]
 
+/--
+@isnad1 id=eq.0h2v.s9.c5b4e7ff9689 from=translated src=- shape=244d6295 vocab=23c7203c
+-/
 theorem image_vertex_set_one (σ : Equiv.Perm (Fin 4)) (a : Fin 4) :
     (⇑(tetraIsom σ)) '' ({w a} : Set E3) = {w (σ a)} := by
   ext x
   simp [tetraIsom_vertex]
 
+/--
+@isnad1 id=eq.0h3v.s9.edce45d7668c from=translated src=- shape=4f998a3a vocab=f2c3ba5b
+-/
 theorem image_vertex_set_two (σ : Equiv.Perm (Fin 4)) (a b : Fin 4) :
     (⇑(tetraIsom σ)) '' ({w a, w b} : Set E3) = {w (σ a), w (σ b)} := by
   ext x
   simp [tetraIsom_vertex, eq_comm]
 
+/--
+@isnad1 id=eq.0h4v.s9.4b27d66e99eb from=translated src=- shape=8cd12f04 vocab=f2c3ba5b
+-/
 theorem image_vertex_set_three (σ : Equiv.Perm (Fin 4)) (a b c : Fin 4) :
     (⇑(tetraIsom σ)) '' ({w a, w b, w c} : Set E3) =
       {w (σ a), w (σ b), w (σ c)} := by
@@ -470,6 +575,9 @@ theorem image_vertex_set_three (σ : Equiv.Perm (Fin 4)) (a b c : Fin 4) :
 
 /-! ## CONSEGNA -/
 
+/--
+@isnad1 id=isregula.0h0v.s2.f1e53d8dc3aa from=translated src=- shape=cef8a6bf vocab=957e0c2e
+-/
 theorem tetraedroB_isRegular : tetraedroB.IsRegular := by
   refine ⟨?_, ?_⟩
   · rw [ConvexPolytope.IsFullDim, ConvexPolytope.dim,
@@ -509,6 +617,9 @@ open ConvexPolytope
 
 /-! ## Trasporto affine delle facce e delle dimensioni -/
 
+/--
+@isnad1 id=isexpose.1h3v.s10.bc01592e050b from=translated src=- shape=90dcd794 vocab=b3d6917a
+-/
 theorem isExposed_image_isom (φ : ConvexPolytope.Isom 3) {A B : Set E3}
     (h : IsExposed ℝ A B) : IsExposed ℝ ((⇑φ) '' A) ((⇑φ) '' B) := by
   intro hne
@@ -543,6 +654,9 @@ theorem isExposed_image_isom (φ : ConvexPolytope.Isom 3) {A B : Set E3}
     rw [hl' y, hl' a] at hle
     linarith
 
+/--
+@isnad1 id=eq.0h2v.s9.4c14cedfb4d2 from=translated src=- shape=ce92e1f8 vocab=cd0bc3bd
+-/
 theorem faceDim_image_isom (φ : ConvexPolytope.Isom 3) (F : Set E3) :
     ConvexPolytope.faceDim ((⇑φ) '' F) = ConvexPolytope.faceDim F := by
   unfold ConvexPolytope.faceDim
@@ -552,6 +666,9 @@ theorem faceDim_image_isom (φ : ConvexPolytope.Isom 3) (F : Set E3) :
   rw [← hmap]
   exact φ.toAffineEquiv.linear.finrank_map_eq (vectorSpan ℝ F)
 
+/--
+@isnad1 id=isface.2h3v.s9.f61af49757a2 from=translated src=- shape=e7a90b9c vocab=e6524bd3
+-/
 theorem isFace_image_isom {P : ConvexPolytope 3} (φ : ConvexPolytope.Isom 3)
     (hφ : P.isSymmetry φ) {F : Set E3} (hF : P.IsFace F) :
     P.IsFace ((⇑φ) '' F) := by
@@ -559,10 +676,16 @@ theorem isFace_image_isom {P : ConvexPolytope 3} (φ : ConvexPolytope.Isom 3)
   rw [← hφ]
   exact isExposed_image_isom φ hF.1
 
+/--
+@isnad1 id=issymmet.0h1v.s7.5a332a5c5aaa from=translated src=- shape=f9481e54 vocab=b5b76b6c
+-/
 theorem symmetry_refl (P : ConvexPolytope 3) :
     P.isSymmetry (AffineIsometryEquiv.refl ℝ E3) := by
   exact Set.image_id _
 
+/--
+@isnad1 id=issymmet.2h3v.s9.2e3cfe7118e1 from=translated src=- shape=a19cbe0a vocab=b22a4e65
+-/
 theorem symmetry_trans {P : ConvexPolytope 3} {φ ψ : ConvexPolytope.Isom 3}
     (hφ : P.isSymmetry φ) (hψ : P.isSymmetry ψ) :
     P.isSymmetry (φ.trans ψ) := by
@@ -573,6 +696,9 @@ theorem symmetry_trans {P : ConvexPolytope 3} {φ ψ : ConvexPolytope.Isom 3}
       rfl
     _ = P.toSet := by rw [hφ, hψ]
 
+/--
+@isnad1 id=issymmet.1h2v.s8.69c6a79f74f7 from=translated src=- shape=f8ced7a9 vocab=750311ac
+-/
 theorem symmetry_symm {P : ConvexPolytope 3} {φ : ConvexPolytope.Isom 3}
     (hφ : P.isSymmetry φ) : P.isSymmetry φ.symm := by
   unfold ConvexPolytope.isSymmetry at *
@@ -580,6 +706,9 @@ theorem symmetry_symm {P : ConvexPolytope 3} {φ : ConvexPolytope.Isom 3}
     (⇑φ.symm) '' P.toSet = (⇑φ.symm) '' ((⇑φ) '' P.toSet) := by rw [hφ]
     _ = P.toSet := φ.toEquiv.symm_image_image P.toSet
 
+/--
+@isnad1 id=ex.2h2v.s6.a96181997584 from=translated src=- shape=788475e0 vocab=67876aed
+-/
 theorem zeroFace_is_vertex {P : ConvexPolytope 3} {F : Set E3}
     (hF : P.IsFace F) (hd : ConvexPolytope.faceDim F = 0) :
     ∃ v : E3, F = {v} ∧ v ∈ P.vertices := by
@@ -616,27 +745,51 @@ def ottaedroB : ConvexPolytope 3 where
   vertices_nonempty := ⟨o0, by simp [verticiOtta]⟩
   vertices_eq_extremePoints := ottaedro.vertices_eq_extremePoints
 
+/--
+@isnad1 id=eq.0h0v.s4.ba29bb856830 from=translated src=- shape=7856eb6e vocab=794012b3
+-/
 @[simp] theorem cuboB_vertices : cuboB.vertices = verticiCubo := rfl
+/--
+@isnad1 id=eq.0h0v.s4.c9b421145fda from=translated src=- shape=7856eb6e vocab=dd8ba411
+-/
 @[simp] theorem ottaedroB_vertices : ottaedroB.vertices = verticiOtta := rfl
 
+/--
+@isnad1 id=eq.0h0v.s6.fc2284db72d4 from=translated src=- shape=ccbd1ac2 vocab=cb5816f1
+-/
 theorem cuboB_toSet : cuboB.toSet = cubo.toSet := rfl
+/--
+@isnad1 id=eq.0h0v.s6.b326dfb2fd3b from=translated src=- shape=ccbd1ac2 vocab=23b749d3
+-/
 theorem ottaedroB_toSet : ottaedroB.toSet = ottaedro.toSet := rfl
 
+/--
+@isnad1 id=isface.1h1v.s6.c3e42e11be93 from=translated src=- shape=441ee730 vocab=8e795a65
+-/
 theorem cuboB_face_to_old {F : Set E3} (hF : cuboB.IsFace F) : cubo.IsFace F := by
   simpa only [ConvexPolytope.IsFace, FiniteConvexPolytope.IsFace,
     cuboB_toSet] using hF
 
+/--
+@isnad1 id=isface.1h1v.s6.6764be084a20 from=translated src=- shape=441ee730 vocab=6d69be98
+-/
 theorem ottaedroB_face_to_old {F : Set E3} (hF : ottaedroB.IsFace F) :
     ottaedro.IsFace F := by
   simpa only [ConvexPolytope.IsFace, FiniteConvexPolytope.IsFace,
     ottaedroB_toSet] using hF
 
+/--
+@isnad1 id=isfulldi.0h0v.s2.9e930825e070 from=translated src=- shape=cef8a6bf vocab=4579fb88
+-/
 theorem cuboB_fullDim : cuboB.IsFullDim := by
   rw [ConvexPolytope.IsFullDim, ConvexPolytope.dim,
     ConvexPolytope.toSet, ← direction_affineSpan,
     affineSpan_convexHull, direction_affineSpan]
   exact cubo_finrank
 
+/--
+@isnad1 id=isfulldi.0h0v.s2.a8444776e059 from=translated src=- shape=cef8a6bf vocab=3ebe17f8
+-/
 theorem ottaedroB_fullDim : ottaedroB.IsFullDim := by
   rw [ConvexPolytope.IsFullDim, ConvexPolytope.dim,
     ConvexPolytope.toSet, ← direction_affineSpan,
@@ -657,6 +810,9 @@ def inverseFaceNormalization {P : ConvexPolytope 3} {C : Set E3}
   symmetry := symmetry_symm hg
   image_eq := g.toEquiv.symm_image_image C
 
+/--
+@isnad1 id=issymmet.1h1v.s10.611cea2ba140 from=translated src=- shape=42451a28 vocab=fa566555
+-/
 theorem cuboB_linear_symmetry (g : E3 ≃ₗᵢ[ℝ] E3)
     (hv : (⇑g) '' (verticiCubo : Set E3) = (verticiCubo : Set E3)) :
     cuboB.isSymmetry g.toAffineIsometryEquiv := by
@@ -664,6 +820,9 @@ theorem cuboB_linear_symmetry (g : E3 ≃ₗᵢ[ℝ] E3)
   rw [cuboB_toSet]
   exact preserva_toSet_di_vertici g hv
 
+/--
+@isnad1 id=issymmet.1h1v.s10.a4dbfcf43f4b from=translated src=- shape=42451a28 vocab=065d1e85
+-/
 theorem ottaedroB_linear_symmetry (g : E3 ≃ₗᵢ[ℝ] E3)
     (hv : (⇑g) '' (verticiOtta : Set E3) = (verticiOtta : Set E3)) :
     ottaedroB.isSymmetry g.toAffineIsometryEquiv := by
@@ -674,6 +833,9 @@ theorem ottaedroB_linear_symmetry (g : E3 ≃ₗᵢ[ℝ] E3)
 abbrev cuboBaseFace : Set E3 := convexHull ℝ (facciaX1 : Set E3)
 abbrev ottaBaseFace : Set E3 := convexHull ℝ (facciaOtta : Set E3)
 
+/--
+@isnad1 id=nonempty.2h1v.s5.4c4cb6e5f03d from=translated src=- shape=a2aca6b6 vocab=1caa8dd2
+-/
 theorem cubo_facet_normalization {F : Set E3} (hF : cuboB.IsFace F)
     (hd : ConvexPolytope.faceDim F = 2) :
     Nonempty (FaceNormalization cuboB F cuboBaseFace) := by
@@ -705,6 +867,9 @@ theorem cubo_facet_normalization {F : Set E3} (hF : cuboB.IsFace F)
     exact ⟨inverseFaceNormalization portaZm.toAffineIsometryEquiv
       (cuboB_linear_symmetry portaZm portaZm_vertset)⟩
 
+/--
+@isnad1 id=nonempty.2h1v.s5.877b73f5cae3 from=translated src=- shape=a2aca6b6 vocab=1799bab6
+-/
 theorem otta_facet_normalization {F : Set E3} (hF : ottaedroB.IsFace F)
     (hd : ConvexPolytope.faceDim F = 2) :
     Nonempty (FaceNormalization ottaedroB F ottaBaseFace) := by
@@ -752,6 +917,9 @@ theorem otta_facet_normalization {F : Set E3} (hF : ottaedroB.IsFace F)
 
 /-! ## Normalizzazione del vertice dentro la faccetta base -/
 
+/--
+@isnad1 id=eq.0h0v.s10.d261956a53bb from=translated src=- shape=02b1662a vocab=6ca239fc
+-/
 theorem rotFacciaX_vertset :
     (⇑rotFacciaX) '' (verticiCubo : Set E3) = (verticiCubo : Set E3) := by
   have hc4 : rotFacciaX c4 = c6 := by
@@ -793,6 +961,9 @@ theorem rotFacciaX_vertset :
     · exact ⟨c4, by simp [verticiCubo], hc4⟩
     · exact ⟨c6, by simp [verticiCubo], hc6⟩
 
+/--
+@isnad1 id=or.2h1v.s6.2762771a02f4 from=translated src=- shape=230590e7 vocab=10504b2c
+-/
 theorem cubo_base_vertex_cases {v : E3} (hv : v ∈ cuboB.vertices)
     (hvF : v ∈ cuboBaseFace) : v = c0 ∨ v = c2 ∨ v = c3 ∨ v = c1 := by
   have hvCube : v ∈ cubo.toSet := by
@@ -804,6 +975,9 @@ theorem cubo_base_vertex_cases {v : E3} (hv : v ∈ cuboB.vertices)
   rw [argmax_verticiX] at hm
   simpa [facciaX1] using hm
 
+/--
+@isnad1 id=or.2h1v.s6.1752b981998b from=translated src=- shape=3d0fb6fa vocab=8333f3af
+-/
 theorem otta_base_vertex_cases {v : E3} (hv : v ∈ ottaedroB.vertices)
     (hvF : v ∈ ottaBaseFace) : v = o0 ∨ v = o1 ∨ v = o2 := by
   have hvOtta : v ∈ ottaedro.toSet := by
@@ -844,6 +1018,9 @@ def extendFacetNormalization {P : ConvexPolytope 3} {F0 F2 C2 : Set E3}
         rfl
       _ = C2 := by rw [n.image_eq, hrC]
 
+/--
+@isnad1 id=nonempty.0h1v.s6.b37edbf49f2c from=translated src=- shape=de54633f vocab=b00c0766
+-/
 theorem cubo_vertex_facet_normalization (F : cuboB.Flag) :
     Nonempty (VertexFacetNormalization cuboB (F.face 0) (F.face 2)
       ({c0} : Set E3) cuboBaseFace) := by
@@ -911,6 +1088,9 @@ theorem cubo_vertex_facet_normalization (F : cuboB.Flag) :
       (cuboB_linear_symmetry rotFacciaX rotFacciaX_vertset)
       rotAffX_preserva_F₀ rotX_c1⟩
 
+/--
+@isnad1 id=nonempty.0h1v.s6.50916ceadef2 from=translated src=- shape=de54633f vocab=6ec9ebd4
+-/
 theorem otta_vertex_facet_normalization (F : ottaedroB.Flag) :
     Nonempty (VertexFacetNormalization ottaedroB (F.face 0) (F.face 2)
       ({o0} : Set E3) ottaBaseFace) := by
@@ -957,6 +1137,9 @@ theorem otta_vertex_facet_normalization (F : ottaedroB.Flag) :
 
 /-! ## Classificazione dello spigolo nella bandiera normalizzata -/
 
+/--
+@isnad1 id=le.3h1v.s5.e6a85a488f0b from=translated src=- shape=4bfa4fd0 vocab=668733c8
+-/
 theorem cubo_three_base_vertices_rank {H : Set E3}
     (h0 : c0 ∈ H) (h1 : c1 ∈ H) (h2 : c2 ∈ H) :
     2 ≤ ConvexPolytope.faceDim H := by
@@ -976,6 +1159,9 @@ theorem cubo_three_base_vertices_rank {H : Set E3}
     2 = Module.finrank ℝ (Submodule.span ℝ (Set.range ![d1, d2])) := h2rank.symm
     _ ≤ Module.finrank ℝ (vectorSpan ℝ H) := Submodule.finrank_mono hsub
 
+/--
+@isnad1 id=le.3h1v.s5.738bd7aa0b38 from=translated src=- shape=4bfa4fd0 vocab=f99b10ed
+-/
 theorem otta_three_base_vertices_rank {H : Set E3}
     (h0 : o0 ∈ H) (h1 : o1 ∈ H) (h2 : o2 ∈ H) :
     2 ≤ ConvexPolytope.faceDim H := by
@@ -997,6 +1183,9 @@ theorem otta_three_base_vertices_rank {H : Set E3}
         (Submodule.span ℝ (Set.range ![dOtta1, dOtta2])) := h2rank.symm
     _ ≤ Module.finrank ℝ (vectorSpan ℝ H) := Submodule.finrank_mono hsub
 
+/--
+@isnad1 id=or.4h1v.s8.5980cf42bace from=translated src=- shape=b3534bc0 vocab=52fca57b
+-/
 theorem cubo_base_edge_cases {H : Set E3} (hH : cuboB.IsFace H)
     (hd : ConvexPolytope.faceDim H = 1) (hc0 : c0 ∈ H)
     (hsubBase : H ⊆ cuboBaseFace) :
@@ -1119,6 +1308,9 @@ theorem cubo_base_edge_cases {H : Set E3} (hH : cuboB.IsFace H)
       rw [vectorSpan_singleton] at hd
       norm_num at hd
 
+/--
+@isnad1 id=or.4h1v.s8.8ebc79a1fc10 from=translated src=- shape=b3534bc0 vocab=42142c8d
+-/
 theorem otta_base_edge_cases {H : Set E3} (hH : ottaedroB.IsFace H)
     (hd : ConvexPolytope.faceDim H = 1) (ho0 : o0 ∈ H)
     (hsubBase : H ⊆ ottaBaseFace) :
@@ -1187,6 +1379,9 @@ theorem otta_base_edge_cases {H : Set E3} (hH : ottaedroB.IsFace H)
 
 /-! ## Lo scambio finale dei due spigoli della faccetta base -/
 
+/--
+@isnad1 id=and.0h0v.s12.5712395a487f from=translated src=- shape=8546784c vocab=b2f8c95c
+-/
 theorem scambioYZ_cubo_actions :
     scambioYZ c0 = c0 ∧ scambioYZ c1 = c2 ∧ scambioYZ c2 = c1 ∧
     scambioYZ c3 = c3 ∧ scambioYZ c4 = c4 ∧ scambioYZ c5 = c6 ∧
@@ -1196,6 +1391,9 @@ theorem scambioYZ_cubo_actions :
       simp [scambioYZ, c0, c1, c2, c3, c4, c5, c6, c7,
         Equiv.swap_apply_def, LinearIsometryEquiv.piLpCongrLeft])
 
+/--
+@isnad1 id=and.0h0v.s12.c569746b0425 from=translated src=- shape=b929b863 vocab=a7dd2eeb
+-/
 theorem scambioYZ_otta_actions :
     scambioYZ o0 = o0 ∧ scambioYZ o1 = o2 ∧ scambioYZ o2 = o1 ∧
     scambioYZ o3 = o3 ∧ scambioYZ o4 = o5 ∧ scambioYZ o5 = o4 := by
@@ -1204,6 +1402,9 @@ theorem scambioYZ_otta_actions :
       simp [scambioYZ, o0, o1, o2, o3, o4, o5,
         Equiv.swap_apply_def, LinearIsometryEquiv.piLpCongrLeft])
 
+/--
+@isnad1 id=eq.0h0v.s10.38040b31d5b4 from=translated src=- shape=02b1662a vocab=71aee826
+-/
 theorem scambioYZ_cubo_vertset :
     (⇑scambioYZ) '' (verticiCubo : Set E3) = (verticiCubo : Set E3) := by
   ext z
@@ -1228,6 +1429,9 @@ theorem scambioYZ_cubo_vertset :
     · exact ⟨c5, by simp [verticiCubo], scambioYZ_cubo_actions.2.2.2.2.2.1⟩
     · exact ⟨c7, by simp [verticiCubo], scambioYZ_cubo_actions.2.2.2.2.2.2.2⟩
 
+/--
+@isnad1 id=eq.0h0v.s10.f3affcb10c3b from=translated src=- shape=02b1662a vocab=bd9deae8
+-/
 theorem scambioYZ_otta_vertset :
     (⇑scambioYZ) '' (verticiOtta : Set E3) = (verticiOtta : Set E3) := by
   ext z
@@ -1249,11 +1453,17 @@ theorem scambioYZ_otta_vertset :
     · exact ⟨o5, by simp [verticiOtta], scambioYZ_otta_actions.2.2.2.2.2⟩
     · exact ⟨o4, by simp [verticiOtta], scambioYZ_otta_actions.2.2.2.2.1⟩
 
+/--
+@isnad1 id=eq.0h2v.s10.68984f2e7153 from=translated src=- shape=edd964b9 vocab=99b52869
+-/
 theorem image_convexHull_isom (φ : ConvexPolytope.Isom 3) (S : Set E3) :
     (⇑φ) '' convexHull ℝ S = convexHull ℝ ((⇑φ) '' S) := by
   simpa only [AffineEquiv.coe_toAffineMap, AffineIsometryEquiv.coe_toAffineEquiv] using
     φ.toAffineEquiv.toAffineMap.image_convexHull S
 
+/--
+@isnad1 id=eq.0h0v.s10.2b061d4a22ce from=translated src=- shape=e2e0ce6f vocab=52aa6aad
+-/
 theorem scambioYZ_cubo_base :
     (⇑scambioYZ.toAffineIsometryEquiv) '' cuboBaseFace = cuboBaseFace := by
   rw [image_convexHull_isom]
@@ -1274,6 +1484,9 @@ theorem scambioYZ_cubo_base :
     · exact ⟨c3, by simp [facciaX1], scambioYZ_cubo_actions.2.2.2.1⟩
     · exact ⟨c2, by simp [facciaX1], scambioYZ_cubo_actions.2.2.1⟩
 
+/--
+@isnad1 id=eq.0h0v.s10.08b95cbf1d27 from=translated src=- shape=e2e0ce6f vocab=75725915
+-/
 theorem scambioYZ_otta_base :
     (⇑scambioYZ.toAffineIsometryEquiv) '' ottaBaseFace = ottaBaseFace := by
   rw [image_convexHull_isom]
@@ -1297,6 +1510,9 @@ abbrev cuboOtherEdge : Set E3 := convexHull ℝ ({c0, c2} : Set E3)
 abbrev ottaBaseEdge : Set E3 := convexHull ℝ ({o0, o1} : Set E3)
 abbrev ottaOtherEdge : Set E3 := convexHull ℝ ({o0, o2} : Set E3)
 
+/--
+@isnad1 id=eq.0h0v.s10.1151c633cb67 from=translated src=- shape=e2e0ce6f vocab=72421c57
+-/
 theorem scambioYZ_cubo_edge :
     (⇑scambioYZ.toAffineIsometryEquiv) '' cuboOtherEdge = cuboBaseEdge := by
   rw [image_convexHull_isom]
@@ -1304,6 +1520,9 @@ theorem scambioYZ_cubo_edge :
   ext z
   simp [scambioYZ_cubo_actions.1, scambioYZ_cubo_actions.2.2.1, eq_comm]
 
+/--
+@isnad1 id=eq.0h0v.s10.a45a4ee037b7 from=translated src=- shape=e2e0ce6f vocab=a86bd6bb
+-/
 theorem scambioYZ_otta_edge :
     (⇑scambioYZ.toAffineIsometryEquiv) '' ottaOtherEdge = ottaBaseEdge := by
   rw [image_convexHull_isom]
@@ -1352,6 +1571,9 @@ def finishFlagNormalization {P : ConvexPolytope 3} (F : P.Flag)
         rfl
       _ = C2 := by rw [p.image_two, hr2]
 
+/--
+@isnad1 id=nonempty.0h1v.s4.83c523dc5211 from=translated src=- shape=327fb562 vocab=63879e86
+-/
 theorem cubo_flag_normalization (F : cuboB.Flag) :
     Nonempty (FlagNormalization F ({c0} : Set E3) cuboBaseEdge cuboBaseFace) := by
   let p := (cubo_vertex_facet_normalization F).some
@@ -1382,6 +1604,9 @@ theorem cubo_flag_normalization (F : cuboB.Flag) :
         rw [h]
         exact scambioYZ_cubo_edge)⟩
 
+/--
+@isnad1 id=nonempty.0h1v.s4.539f133ae9fc from=translated src=- shape=327fb562 vocab=6d4179ff
+-/
 theorem otta_flag_normalization (F : ottaedroB.Flag) :
     Nonempty (FlagNormalization F ({o0} : Set E3) ottaBaseEdge ottaBaseFace) := by
   let p := (otta_vertex_facet_normalization F).some
@@ -1412,6 +1637,9 @@ theorem otta_flag_normalization (F : ottaedroB.Flag) :
         rw [h]
         exact scambioYZ_otta_edge)⟩
 
+/--
+@isnad1 id=eq.1h3v.s11.e1d36a985496 from=translated src=- shape=774fa5c0 vocab=6239504c
+-/
 theorem symm_image_eq_of_image_eq (φ : ConvexPolytope.Isom 3)
     {A C : Set E3} (h : (⇑φ) '' A = C) : (⇑φ.symm) '' C = A := by
   calc
@@ -1425,6 +1653,9 @@ theorem symm_image_eq_of_image_eq (φ : ConvexPolytope.Isom 3)
       · intro hx
         exact ⟨φ x, ⟨x, hx, rfl⟩, φ.symm_apply_apply x⟩
 
+/--
+@isnad1 id=eq.2h5v.s11.f6282fb051d0 from=translated src=- shape=9110edb7 vocab=22705a84
+-/
 theorem image_between_normalizations {φ ψ : ConvexPolytope.Isom 3}
     {A B C : Set E3} (hφ : (⇑φ) '' A = C) (hψ : (⇑ψ) '' B = C) :
     (⇑(φ.trans ψ.symm)) '' A = B := by
@@ -1437,6 +1668,9 @@ theorem image_between_normalizations {φ ψ : ConvexPolytope.Isom 3}
 
 /-! ## CONSEGNA -/
 
+/--
+@isnad1 id=isregula.0h0v.s2.fa496ce32b45 from=translated src=- shape=cef8a6bf vocab=fd21b3eb
+-/
 theorem cuboB_isRegular : cuboB.IsRegular := by
   refine ⟨cuboB_fullDim, ?_⟩
   intro F G
@@ -1449,6 +1683,9 @@ theorem cuboB_isRegular : cuboB.IsRegular := by
   · exact image_between_normalizations f.image_one g.image_one
   · exact image_between_normalizations f.image_two g.image_two
 
+/--
+@isnad1 id=isregula.0h0v.s2.6d886a166d95 from=translated src=- shape=cef8a6bf vocab=11ef269e
+-/
 theorem ottaedroB_isRegular : ottaedroB.IsRegular := by
   refine ⟨ottaedroB_fullDim, ?_⟩
   intro F G
@@ -1478,14 +1715,29 @@ def icosaedroB : ConvexPolytope 3 where
   vertices_nonempty := icosaedro.nonempty
   vertices_eq_extremePoints := icosaedro.vertices_eq_extremePoints
 
+/--
+@isnad1 id=eq.0h0v.s4.c9037b2c6a94 from=translated src=- shape=7856eb6e vocab=7585be04
+-/
 @[simp] theorem dodecaedroB_vertices : dodecaedroB.vertices = verticiDodeca := rfl
+/--
+@isnad1 id=eq.0h0v.s4.4ddd4145e603 from=translated src=- shape=7856eb6e vocab=21d367b0
+-/
 @[simp] theorem icosaedroB_vertices : icosaedroB.vertices = verticiIcosa := rfl
 
+/--
+@isnad1 id=eq.0h0v.s6.1f88e391080e from=translated src=- shape=ccbd1ac2 vocab=257151f4
+-/
 theorem dodecaedroB_toSet : dodecaedroB.toSet = dodecaedro.toSet := rfl
+/--
+@isnad1 id=eq.0h0v.s6.dc3367c81cae from=translated src=- shape=ccbd1ac2 vocab=38a78e2b
+-/
 theorem icosaedroB_toSet : icosaedroB.toSet = icosaedro.toSet := rfl
 
 /-! ## Trasporto affine e ponti con i testimoni di fase 1b -/
 
+/--
+@isnad1 id=isexpose.1h3v.s10.bc01592e050b from=translated src=- shape=90dcd794 vocab=b3d6917a
+-/
 theorem isExposed_image_isom (φ : ConvexPolytope.Isom 3) {A B : Set E3}
     (h : IsExposed ℝ A B) : IsExposed ℝ ((⇑φ) '' A) ((⇑φ) '' B) := by
   intro hne
@@ -1520,6 +1772,9 @@ theorem isExposed_image_isom (φ : ConvexPolytope.Isom 3) {A B : Set E3}
     rw [hl' y, hl' a] at hle
     linarith
 
+/--
+@isnad1 id=eq.0h2v.s9.4c14cedfb4d2 from=translated src=- shape=ce92e1f8 vocab=cd0bc3bd
+-/
 theorem faceDim_image_isom (φ : ConvexPolytope.Isom 3) (F : Set E3) :
     ConvexPolytope.faceDim ((⇑φ) '' F) = ConvexPolytope.faceDim F := by
   unfold ConvexPolytope.faceDim
@@ -1529,6 +1784,9 @@ theorem faceDim_image_isom (φ : ConvexPolytope.Isom 3) (F : Set E3) :
   rw [← hmap]
   exact φ.toAffineEquiv.linear.finrank_map_eq (vectorSpan ℝ F)
 
+/--
+@isnad1 id=isface.2h3v.s9.f61af49757a2 from=translated src=- shape=e7a90b9c vocab=e6524bd3
+-/
 theorem isFace_image_isom {P : ConvexPolytope 3} (φ : ConvexPolytope.Isom 3)
     (hφ : P.isSymmetry φ) {F : Set E3} (hF : P.IsFace F) :
     P.IsFace ((⇑φ) '' F) := by
@@ -1536,10 +1794,16 @@ theorem isFace_image_isom {P : ConvexPolytope 3} (φ : ConvexPolytope.Isom 3)
   rw [← hφ]
   exact isExposed_image_isom φ hF.1
 
+/--
+@isnad1 id=issymmet.0h1v.s7.5a332a5c5aaa from=translated src=- shape=f9481e54 vocab=b5b76b6c
+-/
 theorem symmetry_refl (P : ConvexPolytope 3) :
     P.isSymmetry (AffineIsometryEquiv.refl ℝ E3) := by
   exact Set.image_id _
 
+/--
+@isnad1 id=issymmet.2h3v.s9.2e3cfe7118e1 from=translated src=- shape=a19cbe0a vocab=b22a4e65
+-/
 theorem symmetry_trans {P : ConvexPolytope 3} {φ ψ : ConvexPolytope.Isom 3}
     (hφ : P.isSymmetry φ) (hψ : P.isSymmetry ψ) :
     P.isSymmetry (φ.trans ψ) := by
@@ -1550,6 +1814,9 @@ theorem symmetry_trans {P : ConvexPolytope 3} {φ ψ : ConvexPolytope.Isom 3}
       rfl
     _ = P.toSet := by rw [hφ, hψ]
 
+/--
+@isnad1 id=issymmet.1h2v.s8.69c6a79f74f7 from=translated src=- shape=f8ced7a9 vocab=750311ac
+-/
 theorem symmetry_symm {P : ConvexPolytope 3} {φ : ConvexPolytope.Isom 3}
     (hφ : P.isSymmetry φ) : P.isSymmetry φ.symm := by
   unfold ConvexPolytope.isSymmetry at *
@@ -1557,6 +1824,9 @@ theorem symmetry_symm {P : ConvexPolytope 3} {φ : ConvexPolytope.Isom 3}
     (⇑φ.symm) '' P.toSet = (⇑φ.symm) '' ((⇑φ) '' P.toSet) := by rw [hφ]
     _ = P.toSet := φ.toEquiv.symm_image_image P.toSet
 
+/--
+@isnad1 id=ex.2h2v.s6.a96181997584 from=translated src=- shape=788475e0 vocab=67876aed
+-/
 theorem zeroFace_is_vertex {P : ConvexPolytope 3} {F : Set E3}
     (hF : P.IsFace F) (hd : ConvexPolytope.faceDim F = 0) :
     ∃ v : E3, F = {v} ∧ v ∈ P.vertices := by
@@ -1581,32 +1851,50 @@ theorem zeroFace_is_vertex {P : ConvexPolytope 3} {F : Set E3}
   rw [ConvexPolytope.toSet, ← P.vertices_eq_extremePoints] at hvext
   exact hvext
 
+/--
+@isnad1 id=isface.1h1v.s6.1b988cb2711a from=translated src=- shape=441ee730 vocab=2d6d6305
+-/
 theorem dodecaedroB_face_to_old {F : Set E3} (hF : dodecaedroB.IsFace F) :
     dodecaedro.IsFace F := by
   simpa only [ConvexPolytope.IsFace, FiniteConvexPolytope.IsFace,
     dodecaedroB_toSet] using hF
 
+/--
+@isnad1 id=isface.1h1v.s6.97e55d303507 from=translated src=- shape=441ee730 vocab=4b617d51
+-/
 theorem icosaedroB_face_to_old {F : Set E3} (hF : icosaedroB.IsFace F) :
     icosaedro.IsFace F := by
   simpa only [ConvexPolytope.IsFace, FiniteConvexPolytope.IsFace,
     icosaedroB_toSet] using hF
 
+/--
+@isnad1 id=issymmet.1h1v.s10.13b957515205 from=translated src=- shape=25c2299c vocab=f1b08ba5
+-/
 theorem dodecaedroB_symmetry {g : E3 ≃ᵃⁱ[ℝ] E3}
     (hg : (⇑g) '' dodecaedro.toSet = dodecaedro.toSet) :
     dodecaedroB.isSymmetry g := by
   simpa only [ConvexPolytope.isSymmetry, dodecaedroB_toSet] using hg
 
+/--
+@isnad1 id=issymmet.1h1v.s10.9e1c142030f7 from=translated src=- shape=25c2299c vocab=a085b83f
+-/
 theorem icosaedroB_symmetry {g : E3 ≃ᵃⁱ[ℝ] E3}
     (hg : (⇑g) '' icosaedro.toSet = icosaedro.toSet) :
     icosaedroB.isSymmetry g := by
   simpa only [ConvexPolytope.isSymmetry, icosaedroB_toSet] using hg
 
+/--
+@isnad1 id=isfulldi.0h0v.s2.f19811217bb3 from=translated src=- shape=cef8a6bf vocab=d4f2ddc4
+-/
 theorem dodecaedroB_fullDim : dodecaedroB.IsFullDim := by
   rw [ConvexPolytope.IsFullDim, ConvexPolytope.dim,
     ConvexPolytope.toSet, ← direction_affineSpan,
     affineSpan_convexHull, direction_affineSpan]
   exact dodecaedro_finrank
 
+/--
+@isnad1 id=isfulldi.0h0v.s2.61025088585b from=translated src=- shape=cef8a6bf vocab=54487072
+-/
 theorem icosaedroB_fullDim : icosaedroB.IsFullDim := by
   rw [ConvexPolytope.IsFullDim, ConvexPolytope.dim,
     ConvexPolytope.toSet, ← direction_affineSpan,
@@ -1644,6 +1932,9 @@ def finishVertexFacetNormalization {P : ConvexPolytope 3} (F : P.Flag)
         rfl
       _ = C2 := by rw [hq2, hr2]
 
+/--
+@isnad1 id=eq.1h3v.s11.e1d36a985496 from=translated src=- shape=774fa5c0 vocab=6239504c
+-/
 theorem symm_image_eq_of_image_eq (φ : ConvexPolytope.Isom 3)
     {A C : Set E3} (h : (⇑φ) '' A = C) : (⇑φ.symm) '' C = A := by
   calc
@@ -1651,6 +1942,9 @@ theorem symm_image_eq_of_image_eq (φ : ConvexPolytope.Isom 3)
       exact congrArg (fun S : Set E3 => (⇑φ.symm) '' S) h.symm
     _ = A := φ.toEquiv.symm_image_image A
 
+/--
+@isnad1 id=nonempty.0h1v.s5.6b1cfbd5185b from=translated src=- shape=4686de03 vocab=b3cf17e7
+-/
 theorem dodecaedro_vertex_facet_normalization (F : dodecaedroB.Flag) :
     Nonempty (VertexFacetNormalization F ({a7} : Set E3) (fanFace 0)) := by
   obtain ⟨v, hF0, hv⟩ := zeroFace_is_vertex (F.isFace 0) (by
@@ -1704,6 +1998,9 @@ theorem dodecaedro_vertex_facet_normalization (F : dodecaedroB.Flag) :
       simpa using sigma_image_fanFace (2 : Fin 3)
     exact ⟨finishVertexFacetNormalization F g.symm hgB hg0 hi σ hsB hs0 hs2⟩
 
+/--
+@isnad1 id=nonempty.0h1v.s5.3b27d9e42761 from=translated src=- shape=4686de03 vocab=d4014f2d
+-/
 theorem icosaedro_vertex_facet_normalization (F : icosaedroB.Flag) :
     Nonempty (VertexFacetNormalization F ({a3I} : Set E3) (fanFaceI 0)) := by
   obtain ⟨v, hF0, hv⟩ := zeroFace_is_vertex (F.isFace 0) (by
@@ -1797,6 +2094,9 @@ theorem icosaedro_vertex_facet_normalization (F : icosaedroB.Flag) :
 
 def dodecaCornerTriple : Fin 3 → E3 := ![a7, b3, c3D]
 
+/--
+@isnad1 id=affinein.0h0v.s8.5369c122ec05 from=translated src=- shape=7e71be5a vocab=68658fa8
+-/
 theorem dodecaCornerTriple_affineIndependent :
     AffineIndependent ℝ dodecaCornerTriple := by
   rw [affineIndependent_iff_eq_of_fintype_affineCombination_eq]
@@ -1850,6 +2150,9 @@ theorem dodecaCornerTriple_affineIndependent :
     nlinarith [Real.goldenRatio_sq]
   fin_cases i <;> assumption
 
+/--
+@isnad1 id=le.3h1v.s5.95bc8adbc304 from=translated src=- shape=4bfa4fd0 vocab=800ca3df
+-/
 theorem dodecaedro_corner_three_rank {H : Set E3}
     (h0 : a7 ∈ H) (h1 : b3 ∈ H) (h2 : c3D ∈ H) :
     2 ≤ ConvexPolytope.faceDim H := by
@@ -1867,6 +2170,9 @@ theorem dodecaedro_corner_three_rank {H : Set E3}
     _ ≤ Module.finrank ℝ (vectorSpan ℝ H) :=
       Submodule.finrank_mono (vectorSpan_mono ℝ hsub)
 
+/--
+@isnad1 id=le.3h1v.s5.efa1659366fb from=translated src=- shape=4bfa4fd0 vocab=ebb890a1
+-/
 theorem dodecaedro_base_three_rank {H : Set E3}
     (h0 : a7 ∈ H) (h1 : b3 ∈ H) (h2 : b1 ∈ H) :
     2 ≤ ConvexPolytope.faceDim H := by
@@ -1887,6 +2193,9 @@ theorem dodecaedro_base_three_rank {H : Set E3}
 abbrev dodecaedroBaseEdge : Set E3 := convexHull ℝ ({a7, b3} : Set E3)
 abbrev dodecaedroOtherEdge : Set E3 := convexHull ℝ ({a7, c3D} : Set E3)
 
+/--
+@isnad1 id=or.4h1v.s6.7b3fc62d1c1e from=translated src=- shape=e3b7f8c3 vocab=05aea5ec
+-/
 theorem dodecaedro_base_edge_cases {H : Set E3} (hH : dodecaedroB.IsFace H)
     (hd : ConvexPolytope.faceDim H = 1) (ha7 : a7 ∈ H)
     (hsubBase : H ⊆ fanFace 0) :
@@ -2065,6 +2374,9 @@ theorem dodecaedro_base_edge_cases {H : Set E3} (hH : dodecaedroB.IsFace H)
       rw [vectorSpan_singleton] at hd
       norm_num at hd
 
+/--
+@isnad1 id=le.3h1v.s5.535353441288 from=translated src=- shape=4bfa4fd0 vocab=d16a58e5
+-/
 theorem icosaedro_base_three_rank {H : Set E3}
     (h0 : a3I ∈ H) (h1 : b3I ∈ H) (h2 : c3I ∈ H) :
     2 ≤ ConvexPolytope.faceDim H := by
@@ -2085,6 +2397,9 @@ theorem icosaedro_base_three_rank {H : Set E3}
 abbrev icosaedroBaseEdge : Set E3 := convexHull ℝ ({a3I, b3I} : Set E3)
 abbrev icosaedroOtherEdge : Set E3 := convexHull ℝ ({a3I, c3I} : Set E3)
 
+/--
+@isnad1 id=or.4h1v.s6.c1eb10d5e806 from=translated src=- shape=e3b7f8c3 vocab=e267da90
+-/
 theorem icosaedro_base_edge_cases {H : Set E3} (hH : icosaedroB.IsFace H)
     (hd : ConvexPolytope.faceDim H = 1) (ha3 : a3I ∈ H)
     (hsubBase : H ⊆ fanFaceI 0) :
@@ -2161,6 +2476,9 @@ theorem icosaedro_base_edge_cases {H : Set E3} (hH : icosaedroB.IsFace H)
 
 /-! ## Le riflessioni dei due spigoli canonici -/
 
+/--
+@isnad1 id=eq.0h2v.s10.68984f2e7153 from=translated src=- shape=edd964b9 vocab=99b52869
+-/
 theorem image_convexHull_isom (φ : ConvexPolytope.Isom 3) (S : Set E3) :
     (⇑φ) '' convexHull ℝ S = convexHull ℝ ((⇑φ) '' S) := by
   simpa only [AffineEquiv.coe_toAffineMap, AffineIsometryEquiv.coe_toAffineEquiv] using
@@ -2168,17 +2486,26 @@ theorem image_convexHull_isom (φ : ConvexPolytope.Isom 3) (S : Set E3) :
 
 def dodecaEdgeFlip : E3 ≃ᵃⁱ[ℝ] E3 := τy.trans (ρ.trans ρ)
 
+/--
+@isnad1 id=issymmet.0h0v.s3.5435453c7ea4 from=translated src=- shape=fb58fac9 vocab=cd5fd063
+-/
 theorem dodecaEdgeFlip_symmetry : dodecaedroB.isSymmetry dodecaEdgeFlip := by
   exact symmetry_trans (dodecaedroB_symmetry tauY_preserves_polytope)
     (symmetry_trans (dodecaedroB_symmetry rho_preserves_polytope)
       (dodecaedroB_symmetry rho_preserves_polytope))
 
+/--
+@isnad1 id=and.0h0v.s12.dbe3ad9303ea from=translated src=- shape=ddb13025 vocab=56c88e28
+-/
 theorem dodeca_tauY_face_actions :
     τy x0 = x3 ∧ τy x1 = x2 ∧ τy x2 = x1 ∧ τy x3 = x0 ∧ τy x4 = x4 := by
   refine ⟨?_, ?_, ?_, ?_, ?_⟩
   all_goals apply E3_ext
   all_goals simp [x0, x1, x2, x3, x4, a7, b3, b1, a5, c3D]
 
+/--
+@isnad1 id=and.0h0v.s12.642c53973a9c from=translated src=- shape=bd1151b5 vocab=009ad1d5
+-/
 theorem dodecaEdgeFlip_actions :
     dodecaEdgeFlip x0 = x0 ∧ dodecaEdgeFlip x1 = x4 ∧
       dodecaEdgeFlip x2 = x3 ∧ dodecaEdgeFlip x3 = x2 ∧
@@ -2196,12 +2523,21 @@ theorem dodecaEdgeFlip_actions :
   · change ρ (ρ (τy x4)) = x1
     rw [h4, rho_x4, rho_x0]
 
+/--
+@isnad1 id=eq.0h0v.s10.b0dffb6c9637 from=translated src=- shape=6bc53fa2 vocab=cbf454e9
+-/
 theorem dodecaEdgeFlip_zero : dodecaEdgeFlip a7 = a7 := by
   simpa [x0] using dodecaEdgeFlip_actions.1
 
+/--
+@isnad1 id=eq.0h0v.s10.d49c6e8ac64a from=translated src=- shape=6bc53fa2 vocab=d518dd21
+-/
 theorem dodecaEdgeFlip_c3 : dodecaEdgeFlip c3D = b3 := by
   simpa [x1, x4] using dodecaEdgeFlip_actions.2.2.2.2
 
+/--
+@isnad1 id=eq.0h0v.s10.fd7432754bf1 from=translated src=- shape=245d13ed vocab=9d31d555
+-/
 theorem dodecaEdgeFlip_base :
     (⇑dodecaEdgeFlip) '' fanFace 0 = fanFace 0 := by
   change (⇑dodecaEdgeFlip) '' F₀D = F₀D
@@ -2224,6 +2560,9 @@ theorem dodecaEdgeFlip_base :
     · exact ⟨faceCycle 2, ⟨2, rfl⟩, dodecaEdgeFlip_actions.2.2.1⟩
     · exact ⟨faceCycle 1, ⟨1, rfl⟩, dodecaEdgeFlip_actions.2.1⟩
 
+/--
+@isnad1 id=eq.0h0v.s10.ab2ca75446f3 from=translated src=- shape=9139f438 vocab=6fb8f707
+-/
 theorem dodecaEdgeFlip_edge :
     (⇑dodecaEdgeFlip) '' dodecaedroOtherEdge = dodecaedroBaseEdge := by
   rw [image_convexHull_isom]
@@ -2233,17 +2572,26 @@ theorem dodecaEdgeFlip_edge :
 
 def icosaEdgeFlip : E3 ≃ᵃⁱ[ℝ] E3 := τyI.trans (ρI.trans ρI)
 
+/--
+@isnad1 id=issymmet.0h0v.s3.925ef8459482 from=translated src=- shape=fb58fac9 vocab=bec5bfa3
+-/
 theorem icosaEdgeFlip_symmetry : icosaedroB.isSymmetry icosaEdgeFlip := by
   exact symmetry_trans (icosaedroB_symmetry tauY_preserves_polytopeI)
     (symmetry_trans (icosaedroB_symmetry rho_preserves_polytopeI)
       (icosaedroB_symmetry rho_preserves_polytopeI))
 
+/--
+@isnad1 id=and.0h0v.s11.e79b9f5ec0a8 from=translated src=- shape=13746505 vocab=0f22ed3a
+-/
 theorem icosa_tauY_actions :
     τyI a3I = a3I ∧ τyI b3I = b2I ∧ τyI c3I = c1I := by
   refine ⟨?_, ?_, ?_⟩
   all_goals apply E3_extI
   all_goals simp [a3I, b3I, b2I, c3I, c1I]
 
+/--
+@isnad1 id=and.0h0v.s11.eb13e48f9d3c from=translated src=- shape=49b71b5a vocab=52973fbf
+-/
 theorem icosaEdgeFlip_actions :
     icosaEdgeFlip a3I = a3I ∧ icosaEdgeFlip b3I = c3I ∧
       icosaEdgeFlip c3I = b3I := by
@@ -2262,9 +2610,15 @@ theorem icosaEdgeFlip_actions :
   · change ρI (ρI (τyI c3I)) = b3I
     rw [h2, hc1, hb2]
 
+/--
+@isnad1 id=eq.0h0v.s10.4f1d6e259479 from=translated src=- shape=6bc53fa2 vocab=e9a45571
+-/
 theorem icosaEdgeFlip_zero : icosaEdgeFlip a3I = a3I :=
   icosaEdgeFlip_actions.1
 
+/--
+@isnad1 id=eq.0h0v.s10.079f69b31476 from=translated src=- shape=245d13ed vocab=c800a8d7
+-/
 theorem icosaEdgeFlip_base :
     (⇑icosaEdgeFlip) '' fanFaceI 0 = fanFaceI 0 := by
   rw [fanFace_zero, F₀I, image_convexHull_isom]
@@ -2282,6 +2636,9 @@ theorem icosaEdgeFlip_base :
     · exact ⟨faceCycleI 2, ⟨2, rfl⟩, icosaEdgeFlip_actions.2.2⟩
     · exact ⟨faceCycleI 1, ⟨1, rfl⟩, icosaEdgeFlip_actions.2.1⟩
 
+/--
+@isnad1 id=eq.0h0v.s10.686ad9174bb3 from=translated src=- shape=9139f438 vocab=8e77f055
+-/
 theorem icosaEdgeFlip_edge :
     (⇑icosaEdgeFlip) '' icosaedroOtherEdge = icosaedroBaseEdge := by
   rw [image_convexHull_isom]
@@ -2327,6 +2684,9 @@ def finishFlagNormalization {P : ConvexPolytope 3} (F : P.Flag)
         rfl
       _ = C2 := by rw [p.image_two, hr2]
 
+/--
+@isnad1 id=nonempty.0h1v.s5.536b527cb1a3 from=translated src=- shape=739a8bff vocab=834cf2eb
+-/
 theorem dodecaedro_flag_normalization (F : dodecaedroB.Flag) :
     Nonempty (FlagNormalization F ({a7} : Set E3)
       dodecaedroBaseEdge (fanFace 0)) := by
@@ -2356,6 +2716,9 @@ theorem dodecaedro_flag_normalization (F : dodecaedroB.Flag) :
       dodecaEdgeFlip_symmetry (by simp [dodecaEdgeFlip_zero])
       dodecaEdgeFlip_base (by rw [h]; exact dodecaEdgeFlip_edge)⟩
 
+/--
+@isnad1 id=nonempty.0h1v.s5.780321486a90 from=translated src=- shape=739a8bff vocab=79f8abe0
+-/
 theorem icosaedro_flag_normalization (F : icosaedroB.Flag) :
     Nonempty (FlagNormalization F ({a3I} : Set E3)
       icosaedroBaseEdge (fanFaceI 0)) := by
@@ -2385,6 +2748,9 @@ theorem icosaedro_flag_normalization (F : icosaedroB.Flag) :
       icosaEdgeFlip_symmetry (by simp [icosaEdgeFlip_zero])
       icosaEdgeFlip_base (by rw [h]; exact icosaEdgeFlip_edge)⟩
 
+/--
+@isnad1 id=eq.2h5v.s11.f6282fb051d0 from=translated src=- shape=9110edb7 vocab=22705a84
+-/
 theorem image_between_normalizations {φ ψ : ConvexPolytope.Isom 3}
     {A B C : Set E3} (hφ : (⇑φ) '' A = C) (hψ : (⇑ψ) '' B = C) :
     (⇑(φ.trans ψ.symm)) '' A = B := by
@@ -2397,6 +2763,9 @@ theorem image_between_normalizations {φ ψ : ConvexPolytope.Isom 3}
 
 /-! ## CONSEGNA -/
 
+/--
+@isnad1 id=isregula.0h0v.s2.3109c38fe6f0 from=translated src=- shape=cef8a6bf vocab=a3e43d25
+-/
 theorem dodecaedroB_isRegular : dodecaedroB.IsRegular := by
   refine ⟨dodecaedroB_fullDim, ?_⟩
   intro F G
@@ -2410,6 +2779,9 @@ theorem dodecaedroB_isRegular : dodecaedroB.IsRegular := by
   · exact image_between_normalizations f.image_one g.image_one
   · exact image_between_normalizations f.image_two g.image_two
 
+/--
+@isnad1 id=isregula.0h0v.s2.06088cf3f0ed from=translated src=- shape=cef8a6bf vocab=4d31d16c
+-/
 theorem icosaedroB_isRegular : icosaedroB.IsRegular := by
   refine ⟨icosaedroB_fullDim, ?_⟩
   intro F G
@@ -2427,13 +2799,30 @@ end F12
 
 /-! ## IL TEOREMA FINALE DELLA FASE 2 -/
 
+/--
+@isnad1 id=isregula.0h0v.s2.90b83812aba1 from=translated src=- shape=cef8a6bf vocab=06d1ea3c
+-/
 theorem tetraedroBM_isRegular : tetraedroBM.IsRegular := F10.tetraedroB_isRegular
+/--
+@isnad1 id=isregula.0h0v.s2.ce44a1ea78f3 from=translated src=- shape=cef8a6bf vocab=acb17640
+-/
 theorem cuboBM_isRegular : cuboBM.IsRegular := F11.cuboB_isRegular
+/--
+@isnad1 id=isregula.0h0v.s2.d7397b47b938 from=translated src=- shape=cef8a6bf vocab=9249e8da
+-/
 theorem ottaedroBM_isRegular : ottaedroBM.IsRegular := F11.ottaedroB_isRegular
+/--
+@isnad1 id=isregula.0h0v.s2.f7dcb80864d3 from=translated src=- shape=cef8a6bf vocab=e947bd7a
+-/
 theorem dodecaedroBM_isRegular : dodecaedroBM.IsRegular := F12.dodecaedroB_isRegular
+/--
+@isnad1 id=isregula.0h0v.s2.eb9230d68271 from=translated src=- shape=cef8a6bf vocab=6d587dfc
+-/
 theorem icosaedroBM_isRegular : icosaedroBM.IsRegular := F12.icosaedroB_isRegular
 
-/-- `5 ≤ platonicCount 3`, sul contratto del benchmark lean-eval.-/
+/-- `5 ≤ platonicCount 3`, sul contratto del benchmark lean-eval.
+@isnad1 id=le.0h0v.s4.23bbdbb39734 from=translated src=- shape=4dcb44f2 vocab=d9cf66a7
+-/
 theorem cinque_le_platonicCount3 : 5 ≤ platonicCount 3 :=
   cinque_le_platonicCount3_di tetraedroBM_isRegular cuboBM_isRegular
     ottaedroBM_isRegular dodecaedroBM_isRegular icosaedroBM_isRegular

@@ -55,6 +55,9 @@ noncomputable def linearImagePolytope (P : ConvexPolytope n)
       vertices_eq_extremePoints := by
         rw [hKV, hVset] }
 
+/--
+@isnad1 id=eq.0h4v.s9.94a41750f633 from=translated src=- shape=4f18fabc vocab=a148d9bb
+-/
 theorem linearImagePolytope_toSet (P : ConvexPolytope n)
     (f : E n →L[ℝ] E m) :
     (linearImagePolytope P f).toSet = f '' P.toSet := by
@@ -89,6 +92,9 @@ theorem linearImagePolytope_toSet (P : ConvexPolytope n)
 /-! Orthogonal projection to `Uᵌ ∩ W` is the concrete quotient of `W`
 by `U`.  The point of the next lemma is the exact fibre statement; no
 ambient full-dimensionality is used. -/
+/--
+@isnad1 id=iff.2h5v.s11.08ceac7cf329 from=translated src=- shape=b63f69db vocab=8d8d9683
+-/
 theorem relative_starProjection_fiber
     {U W : Submodule ℝ (E n)} (hUW : U ≤ W) {x y : E n}
     (hxyW : x - y ∈ W) :
@@ -135,6 +141,9 @@ theorem relative_starProjection_fiber
     rw [map_sub] at hzero
     exact sub_eq_zero.mp hzero
 
+/--
+@isnad1 id=mem.2h4v.s11.f71af998cb03 from=translated src=- shape=0d0094c4 vocab=8d8d9683
+-/
 theorem relative_sub_starProjection_mem
     {U W : Submodule ℝ (E n)} (hUW : U ≤ W) {z : E n} (hzW : z ∈ W) :
     z - (U.orthogonal ⊓ W).starProjection z ∈ U := by
@@ -145,6 +154,9 @@ theorem relative_sub_starProjection_mem
   apply (relative_starProjection_fiber hUW hdiffW).mp
   exact (V.starProjection_eq_self_iff.mpr hpV).symm
 
+/--
+@isnad1 id=other.2h6v.s13.fb2e752d3720 from=translated src=- shape=03e275f5 vocab=9d41909a
+-/
 theorem relative_lift_isFace (P : ConvexPolytope n)
     {A B : Set (E n)} (_hA : P.IsFace A) (hB : P.IsFace B)
     (e : ↥((vectorSpan ℝ A).orthogonal ⊓ vectorSpan ℝ B) ≃L[ℝ] E 3)

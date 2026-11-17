@@ -16,7 +16,9 @@ variable {n : ℕ}
 
 /-- Se il prodotto delle due riflessioni lineari ha periodo `m`, il
 prodotto scalare dei normali è, a segno vicino, il coseno di un multiplo
-di `π / m`.  Non si richiede che `m` sia il periodo minimo.-/
+di `π / m`.  Non si richiede che `m` sia il periodo minimo.
+@isnad1 id=ex.6h5v.s9.25f46afec7c5 from=translated src=- shape=3d6b80e2 vocab=e1714499
+-/
 theorem coseno_di_ordine {α β : E n} (hα : ‖α‖ = 1) (hβ : ‖β‖ = 1)
     (hind : ∀ t : ℝ, β ≠ t • α) (m : ℕ) (hm : 2 ≤ m)
     (s : E n → E n)
@@ -209,7 +211,9 @@ theorem coseno_di_ordine {α β : E n} (hα : ‖α‖ = 1) (hβ : ‖β‖ = 1)
 
 /-- Versione senza ipotesi di indipendenza. Se i normali sono paralleli,
 la conclusione è il caso `k = 0`; altrimenti si applica
-`coseno_di_ordine`.-/
+`coseno_di_ordine`.
+@isnad1 id=ex.5h5v.s9.fabecc61e485 from=translated src=- shape=c149b301 vocab=e1714499
+-/
 theorem coseno_di_ordine_generale {α β : E n} (hα : ‖α‖ = 1)
     (hβ : ‖β‖ = 1) (m : ℕ) (hm : 2 ≤ m) (s : E n → E n)
     (hs : ∀ x, s x = (x - (2 * ⟪β, x⟫ : ℝ) • β) -
@@ -239,7 +243,9 @@ theorem coseno_di_ordine_generale {α β : E n} (hα : ‖α‖ = 1)
       simp [hinner, htm1]
 
 /-- Un multiplo `kπ/m`, con `k < m`, può essere ripiegato in
-`[0, π/2]` senza cambiare il valore assoluto del coseno.-/
+`[0, π/2]` senza cambiare il valore assoluto del coseno.
+@isnad1 id=ex.2h2v.s6.3d97fe6f99ca from=translated src=- shape=2644577a vocab=e72ac798
+-/
 theorem ripiega_coseno {m k : ℕ} (hm : 0 < m) (hk : k < m) :
     ∃ l : ℕ, l < m ∧
       |Real.cos (k * Real.pi / (m : ℝ))| =

@@ -304,21 +304,33 @@ private theorem isExposed_argmax_24 (s : Finset E4) (l : E4 →L[ℝ] ℝ)
         (s : Set E4) := by simpa [hlx] using harg
     rwa [hset] at hxarg
 
+/--
+@isnad1 id=isface.0h0v.s3.2336f319179e from=translated src=- shape=fb58fac9 vocab=edfe6bf5
+-/
 theorem F0_24_isFace : ventiquattro.IsFace F0_24 := by
   refine ⟨?_, ⟨v0_24, subset_convexHull ℝ _ (by simp [generatoriF0_24])⟩⟩
   exact isExposed_argmax_24 generatoriF0_24 l0_24 3
     (by simp [generatoriF0_24]) argmax_l0_24 li_toSet_le.1
 
+/--
+@isnad1 id=isface.0h0v.s3.38c7ebba5df9 from=translated src=- shape=fb58fac9 vocab=707f20ac
+-/
 theorem F1_24_isFace : ventiquattro.IsFace F1_24 := by
   refine ⟨?_, ⟨v0_24, subset_convexHull ℝ _ (by simp [generatoriF1_24])⟩⟩
   exact isExposed_argmax_24 generatoriF1_24 l1_24 3
     (by simp [generatoriF1_24]) argmax_l1_24 li_toSet_le.2.1
 
+/--
+@isnad1 id=isface.0h0v.s3.77247d9e603b from=translated src=- shape=fb58fac9 vocab=e963ae5a
+-/
 theorem F2_24_isFace : ventiquattro.IsFace F2_24 := by
   refine ⟨?_, ⟨v0_24, subset_convexHull ℝ _ (by simp [generatoriF2_24])⟩⟩
   exact isExposed_argmax_24 generatoriF2_24 l2_24 2
     (by simp [generatoriF2_24]) argmax_l2_24 li_toSet_le.2.2.1
 
+/--
+@isnad1 id=isface.0h0v.s3.6a1a37cdcc78 from=translated src=- shape=fb58fac9 vocab=8b101c77
+-/
 theorem F3_24_isFace : ventiquattro.IsFace F3_24 := by
   refine ⟨?_, ⟨v0_24, subset_convexHull ℝ _ (by simp [generatoriF3_24])⟩⟩
   exact isExposed_argmax_24 generatoriF3_24 l3_24 2
@@ -393,6 +405,9 @@ private theorem range_p2_24 :
     · exact ⟨1, rfl⟩
     · exact ⟨2, rfl⟩
 
+/--
+@isnad1 id=eq.0h0v.s3.210d1bbec3c2 from=translated src=- shape=e67f34a4 vocab=7098c81e
+-/
 theorem faceDim_F0_24 : faceDim F0_24 = 0 := by
   rw [F0_24, generatoriF0_24]
   simpa using faceDim_singleton v0_24
@@ -403,6 +418,9 @@ private theorem v0_ne_v1_24 : v0_24 ≠ v1_24 := by
   norm_num [v0_24, v1_24, vertVentiquattro, segnoVentiquattro,
     Fin.ext_iff] at hc
 
+/--
+@isnad1 id=eq.0h0v.s3.f18c9738592e from=translated src=- shape=e67f34a4 vocab=2d5d8b17
+-/
 theorem faceDim_F1_24 : faceDim F1_24 = 1 := by
   have hgen : (generatoriF1_24 : Set E4) = {v0_24, v1_24} := by
     ext x
@@ -413,6 +431,9 @@ theorem faceDim_F1_24 : faceDim F1_24 = 1 := by
   apply finrank_span_singleton
   exact vsub_ne_zero.mpr v0_ne_v1_24.symm
 
+/--
+@isnad1 id=eq.0h0v.s3.4b54517aa167 from=translated src=- shape=e67f34a4 vocab=0095d88a
+-/
 theorem faceDim_F2_24 : faceDim F2_24 = 2 := by
   unfold faceDim
   rw [F2_24, ← direction_affineSpan, affineSpan_convexHull,
@@ -450,6 +471,9 @@ private theorem finrank_ker_l3_24 :
   have hR : Module.finrank ℝ ℝ = 1 := Module.finrank_self ℝ
   omega
 
+/--
+@isnad1 id=eq.0h0v.s3.7dcc94dd5b60 from=translated src=- shape=e67f34a4 vocab=35495aa1
+-/
 theorem faceDim_F3_24 : faceDim F3_24 = 3 := by
   unfold faceDim
   apply le_antisymm
@@ -469,6 +493,9 @@ theorem faceDim_F3_24 : faceDim F3_24 = 3 := by
       _ ≤ Module.finrank ℝ (vectorSpan ℝ F3_24) :=
         Submodule.finrank_mono hsub
 
+/--
+@isnad1 id=lt.0h0v.s4.f6eb58f6fce5 from=translated src=- shape=836e6cbb vocab=259a1854
+-/
 theorem F0_ssubset_F1_24 : F0_24 ⊂ F1_24 := by
   apply Set.ssubset_iff_subset_ne.mpr
   constructor
@@ -482,6 +509,9 @@ theorem F0_ssubset_F1_24 : F0_24 ⊂ F1_24 := by
     rw [h, faceDim_F1_24] at this
     omega
 
+/--
+@isnad1 id=lt.0h0v.s4.e0face8fae5d from=translated src=- shape=836e6cbb vocab=ec2df46d
+-/
 theorem F1_ssubset_F2_24 : F1_24 ⊂ F2_24 := by
   apply Set.ssubset_iff_subset_ne.mpr
   constructor
@@ -495,6 +525,9 @@ theorem F1_ssubset_F2_24 : F1_24 ⊂ F2_24 := by
     rw [h, faceDim_F2_24] at this
     omega
 
+/--
+@isnad1 id=lt.0h0v.s4.d7b9be2c05bc from=translated src=- shape=836e6cbb vocab=9b54c8b0
+-/
 theorem F2_ssubset_F3_24 : F2_24 ⊂ F3_24 := by
   apply Set.ssubset_iff_subset_ne.mpr
   constructor
@@ -581,6 +614,9 @@ private theorem segnoPerm_image_verticiVentiquattro_24
     · rw [Finset.card_image_of_injective _ (segnoPerm 4 σ ε).injective]
   rw [← Finset.coe_image, hfin]
 
+/--
+@isnad1 id=issymmet.0h2v.s5.26dfdbdbf3f1 from=translated src=- shape=f9d131f8 vocab=3cce3c85
+-/
 theorem segnoPerm_isSymmetry_ventiquattro
     (σ : Equiv.Perm (Fin 4)) (ε : Fin 4 → ({-1, 1} : Set ℝ)) :
     ventiquattro.isSymmetry (segnoPerm 4 σ ε) := by
@@ -611,12 +647,21 @@ def r1_24 : Isom 4 := segnoPerm 4 (Equiv.swap 0 1) segnoUno_24
 /-- Parete 3: cambia il segno della coordinata 3.-/
 def r3_24 : Isom 4 := segnoPerm 4 (Equiv.refl (Fin 4)) segnoQuarta_24
 
+/--
+@isnad1 id=issymmet.0h0v.s3.e4eff6cf25bc from=translated src=- shape=fb58fac9 vocab=9dac6432
+-/
 theorem r0_24_isSymmetry : ventiquattro.isSymmetry r0_24 :=
   segnoPerm_isSymmetry_ventiquattro _ _
 
+/--
+@isnad1 id=issymmet.0h0v.s3.86bd7995d32e from=translated src=- shape=fb58fac9 vocab=13ee7875
+-/
 theorem r1_24_isSymmetry : ventiquattro.isSymmetry r1_24 :=
   segnoPerm_isSymmetry_ventiquattro _ _
 
+/--
+@isnad1 id=issymmet.0h0v.s3.758bc465304d from=translated src=- shape=fb58fac9 vocab=3bd3314b
+-/
 theorem r3_24_isSymmetry : ventiquattro.isSymmetry r3_24 :=
   segnoPerm_refl_isSymmetry segnoQuarta_24
 
@@ -763,6 +808,9 @@ private theorem r3_moves_F3_24 : (r3_24 : E4 → E4) '' F3_24 ≠ F3_24 := by
   rw [l3_r3_v3_24] at this
   norm_num at this
 
+/--
+@isnad1 id=flagadja.0h0v.s5.520d8d2fbfd1 from=translated src=- shape=95e6f9d5 vocab=a8149a79
+-/
 theorem r0_24_flagAdjacent :
     FlagAdjacentAt ventiquattro ventiquattroFlag
       (mapFlag ventiquattro r0_24_isSymmetry ventiquattroFlag) 0 := by
@@ -775,6 +823,9 @@ theorem r0_24_flagAdjacent :
     · exact r0_image_F3_24
   · exact r0_moves_F0_24
 
+/--
+@isnad1 id=flagadja.0h0v.s5.b7eb3d5734c2 from=translated src=- shape=95e6f9d5 vocab=54bb749b
+-/
 theorem r1_24_flagAdjacent :
     FlagAdjacentAt ventiquattro ventiquattroFlag
       (mapFlag ventiquattro r1_24_isSymmetry ventiquattroFlag) 1 := by
@@ -787,6 +838,9 @@ theorem r1_24_flagAdjacent :
     · exact r1_image_F3_24
   · exact r1_moves_F1_24
 
+/--
+@isnad1 id=flagadja.0h0v.s5.cb4dd30c2e5a from=translated src=- shape=95e6f9d5 vocab=12a14fd6
+-/
 theorem r3_24_flagAdjacent :
     FlagAdjacentAt ventiquattro ventiquattroFlag
       (mapFlag ventiquattro r3_24_isSymmetry ventiquattroFlag) 3 := by
@@ -968,6 +1022,9 @@ private theorem r2_image_verticiVentiquattro_24 :
     · rw [Finset.card_image_of_injective _ r2_24.injective]
   rw [← Finset.coe_image, hfin]
 
+/--
+@isnad1 id=issymmet.0h0v.s3.02726360da8a from=translated src=- shape=fb58fac9 vocab=d3011f00
+-/
 theorem r2_24_isSymmetry : ventiquattro.isSymmetry r2_24 := by
   rw [ConvexPolytope.isSymmetry, ConvexPolytope.toSet]
   calc
@@ -1024,6 +1081,9 @@ private theorem r2_moves_F2_24 : (r2_24 : E4 → E4) '' F2_24 ≠ F2_24 := by
   rw [l2_v3_24] at this
   norm_num at this
 
+/--
+@isnad1 id=flagadja.0h0v.s5.f0a2fc92827c from=translated src=- shape=95e6f9d5 vocab=45dd6039
+-/
 theorem r2_24_flagAdjacent :
     FlagAdjacentAt ventiquattro ventiquattroFlag
       (mapFlag ventiquattro r2_24_isSymmetry ventiquattroFlag) 2 := by

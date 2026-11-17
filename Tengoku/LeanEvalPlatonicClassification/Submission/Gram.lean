@@ -50,7 +50,9 @@ open ConvexPolytope
 
 variable {n : ℕ}
 
-/-- La diagonale della Gram.-/
+/-- La diagonale della Gram.
+@isnad1 id=eq.1h2v.s6.572d404a9233 from=translated src=- shape=adf6615d vocab=68be66f6
+-/
 theorem gram_diagonale {α : E n} (hα : ‖α‖ = 1) : ⟪α, α⟫ = 1 := by
   rw [real_inner_self_eq_norm_sq, hα]
   norm_num

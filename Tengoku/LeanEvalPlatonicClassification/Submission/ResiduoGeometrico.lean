@@ -19,7 +19,9 @@ open ConvexPolytope
 
 variable {n : ℕ}
 
-/-- Il centroide dei vertici del politopo è fissato da ogni sua simmetria.-/
+/-- Il centroide dei vertici del politopo è fissato da ogni sua simmetria.
+@isnad1 id=eq.2h3v.s9.cbfdbfb93021 from=translated src=- shape=72d52c41 vocab=524d3a52
+-/
 theorem centro_fisso (P : ConvexPolytope n) (hreg : P.IsRegular)
     {φ : Isom n} (hφ : P.isSymmetry φ) :
     φ (Finset.centroid ℝ P.vertices id) = Finset.centroid ℝ P.vertices id := by
@@ -32,7 +34,9 @@ theorem centro_fisso (P : ConvexPolytope n) (hreg : P.IsRegular)
     (centroide_di_faccia_fissato P hφ (toSet_isFace P) hφ)
 
 /-- Se le due riflessioni fissano `O`, fissano anche `O + y` quando `y`
-è ortogonale a entrambi i normali.-/
+è ortogonale a entrambi i normali.
+@isnad1 id=and.10h10v.s11.4a839bc04e7b from=translated src=- shape=3e6876fb vocab=7cda6243
+-/
 theorem parte_lineare_preserva (P : ConvexPolytope n) (hreg : P.IsRegular)
     (F : P.Flag) (i : Fin n) (hi : (i : ℕ) + 1 < n)
     {αi pi αj pj : E n} (hαi : ‖αi‖ = 1) (hαj : ‖αj‖ = 1)
@@ -60,7 +64,9 @@ theorem parte_lineare_preserva (P : ConvexPolytope n) (hreg : P.IsRegular)
       hz, add_zero, hzj, sub_zero]
 
 /-- Il fissaggio di un punto sopravvive alla proiezione sul piano dei
-due normali, effettuata rispetto a un centro fisso.-/
+due normali, effettuata rispetto a un centro fisso.
+@isnad1 id=eq.9h11v.s13.8c085d3c1c57 from=translated src=- shape=51dd0cc8 vocab=d1f9cbb7
+-/
 theorem proiettato_fissato (P : ConvexPolytope n) (hreg : P.IsRegular)
     (F : P.Flag) (i : Fin n) (hi : (i : ℕ) + 1 < n)
     {αi pi αj pj : E n} (hαi : ‖αi‖ = 1) (hαj : ‖αj‖ = 1)
@@ -108,7 +114,9 @@ theorem proiettato_fissato (P : ConvexPolytope n) (hreg : P.IsRegular)
     zero_smul, sub_zero]
 
 /-- Il non fissaggio di un punto sopravvive alla proiezione sul piano dei
-due normali, effettuata rispetto a un centro fisso.-/
+due normali, effettuata rispetto a un centro fisso.
+@isnad1 id=ne.9h11v.s13.38382e3e7a44 from=translated src=- shape=611bf396 vocab=d1f9cbb7
+-/
 theorem proiettato_non_fissato (P : ConvexPolytope n) (hreg : P.IsRegular)
     (F : P.Flag) (i : Fin n) (hi : (i : ℕ) + 1 < n)
     {αi pi αj pj : E n} (hαi : ‖αi‖ = 1) (hαj : ‖αj‖ = 1)
@@ -166,7 +174,9 @@ theorem proiettato_non_fissato (P : ConvexPolytope n) (hreg : P.IsRegular)
   rw [← hprojected_inner]
   linarith
 
-/-- I due normali e i due vettori proiettati appartengono al piano `V`.-/
+/-- I due normali e i due vettori proiettati appartengono al piano `V`.
+@isnad1 id=and.1h7v.s13.81c4f4b170c1 from=translated src=- shape=6ed698ca vocab=99f9d9a4
+-/
 theorem proiettati_in_V {αi αj : E n} (V : Submodule ℝ (E n))
     (hVspan : V = Submodule.span ℝ {αi, αj}) (O c₁ cnext : E n) :
     αi ∈ V ∧ αj ∈ V ∧
@@ -185,7 +195,9 @@ theorem proiettati_in_V {αi αj : E n} (V : Submodule ℝ (E n))
       (V.orthogonalProjectionOnto (cnext - O)).property
 
 /-- Due vettori non paralleli, il primo dei quali è unitario, generano un
-sottospazio di finrank due.-/
+sottospazio di finrank due.
+@isnad1 id=eq.2h3v.s9.7f0fd7c3af38 from=translated src=- shape=50c7c618 vocab=4141835d
+-/
 theorem finrank_span_normali {αi αj : E n} (hαi : ‖αi‖ = 1)
     (hind : ∀ t : ℝ, αj ≠ t • αi) :
     Module.finrank ℝ (Submodule.span ℝ ({αi, αj} : Set (E n))) = 2 := by

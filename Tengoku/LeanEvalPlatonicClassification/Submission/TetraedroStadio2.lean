@@ -12,6 +12,9 @@ noncomputable section
 
 abbrev _root_.Tengoku.LeanEvalPlatonicClassification.E3 := EuclideanSpace ℝ (Fin 3)
 
+/--
+@isnad1 id=eq.1h4v.s7.8ba8e447e686 from=translated src=- shape=3c79d8e4 vocab=bd3cbdd4
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.cosferico_extremePoints {A : Type*} [NormedAddCommGroup A]
     [InnerProductSpace ℝ A] [Nontrivial A]
     (x : A) (r : ℝ) (V : Set A) (hV : V ⊆ sphere x r) :
@@ -34,6 +37,9 @@ def _root_.Tengoku.LeanEvalPlatonicClassification.w3 : E3 := WithLp.toLp 2 ![-1,
 open Classical in
 def _root_.Tengoku.LeanEvalPlatonicClassification.verticiTetra : Finset E3 := {w0, w1, w2, w3}
 
+/--
+@isnad1 id=eq.0h3v.s7.5fdaa67f4b62 from=translated src=- shape=bc44a84a vocab=494e4ac0
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.norma_toLp (a b c : ℝ) :
     ‖(WithLp.toLp 2 ![a, b, c] : E3)‖ = Real.sqrt (a ^ 2 + b ^ 2 + c ^ 2) := by
   rw [EuclideanSpace.norm_eq]
@@ -44,6 +50,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.norma_toLp (a b c : ℝ) :
     show (![a, b, c] : Fin 3 → ℝ) 1 = b from rfl,
     show (![a, b, c] : Fin 3 → ℝ) 2 = c from rfl]
 
+/--
+@isnad1 id=eq.1h1v.s6.9c5f5f989976 from=translated src=- shape=3bc45c0e vocab=285fb170
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.norm_vertici : ∀ v ∈ verticiTetra, ‖v‖ = Real.sqrt 3 := by
   intro v hv
   have hcasi : v = w0 ∨ v = w1 ∨ v = w2 ∨ v = w3 := by
@@ -76,11 +85,26 @@ def _root_.Tengoku.LeanEvalPlatonicClassification.tetraedro : FiniteConvexPolyto
 
 def _root_.Tengoku.LeanEvalPlatonicClassification.w : Fin 4 → E3 := ![w0, w1, w2, w3]
 
+/--
+@isnad1 id=eq.0h0v.s4.d59fd54e6a86 from=translated src=- shape=fdee698a vocab=18c11e4b
+-/
 @[simp] theorem _root_.Tengoku.LeanEvalPlatonicClassification.w_apply_zero : w 0 = w0 := rfl
+/--
+@isnad1 id=eq.0h0v.s4.95c50156144f from=translated src=- shape=fdee698a vocab=e5541724
+-/
 @[simp] theorem _root_.Tengoku.LeanEvalPlatonicClassification.w_apply_one : w 1 = w1 := rfl
+/--
+@isnad1 id=eq.0h0v.s4.df5b122795d6 from=translated src=- shape=fdee698a vocab=b1ca6fb3
+-/
 @[simp] theorem _root_.Tengoku.LeanEvalPlatonicClassification.w_apply_two : w 2 = w2 := rfl
+/--
+@isnad1 id=eq.0h0v.s4.76a3afb8bb52 from=translated src=- shape=fdee698a vocab=aa2364f0
+-/
 @[simp] theorem _root_.Tengoku.LeanEvalPlatonicClassification.w_apply_three : w 3 = w3 := rfl
 
+/--
+@isnad1 id=affinein.0h0v.s8.c11bf0b496a6 from=translated src=- shape=7e71be5a vocab=bbeb1ec4
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.w_affineIndependent : AffineIndependent ℝ w := by
   rw [affineIndependent_iff_eq_of_fintype_affineCombination_eq]
   intro a b ha hb hab
@@ -109,10 +133,16 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.w_affineIndependent : Affi
   · simpa using e2
   · simpa using e3
 
+/--
+@isnad1 id=injectiv.0h0v.s3.321fba3143f8 from=translated src=- shape=bfe16b09 vocab=65261403
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.w_injective : Function.Injective w := w_affineIndependent.injective
 
 def _root_.Tengoku.LeanEvalPlatonicClassification.wEmb : Fin 4 ↪ E3 := ⟨w, w_injective⟩
 
+/--
+@isnad1 id=eq.0h0v.s4.712696c0e6c6 from=translated src=- shape=005f93a2 vocab=3f3b2505
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.verticiTetra_eq_map : verticiTetra = Finset.univ.map wEmb := by
   ext x
   simp only [verticiTetra, Finset.mem_insert, Finset.mem_singleton,
@@ -126,6 +156,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.verticiTetra_eq_map : vert
   · rintro ⟨i, rfl⟩
     fin_cases i <;> simp [wEmb, w]
 
+/--
+@isnad1 id=eq.0h0v.s4.64f60a91cb49 from=translated src=- shape=75b2c703 vocab=09cae4e0
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.range_w_eq_vertices : Set.range w = (verticiTetra : Set E3) := by
   rw [verticiTetra_eq_map]
   ext x
@@ -139,8 +172,14 @@ def _root_.Tengoku.LeanEvalPlatonicClassification.tetraBasis : AffineBasis (Fin 
       ⟨w 0, Set.mem_range_self 0⟩).2
     exact w_affineIndependent.vectorSpan_eq_top_of_card_eq_finrank_add_one (by simp)
 
+/--
+@isnad1 id=eq.0h1v.s9.41c6cb38d5ea from=translated src=- shape=d38ba8b0 vocab=e0a691d5
+-/
 @[simp] theorem _root_.Tengoku.LeanEvalPlatonicClassification.tetraBasis_apply (i : Fin 4) : tetraBasis i = w i := rfl
 
+/--
+@isnad1 id=eq.0h0v.s9.1fdc3a0fc3ab from=translated src=- shape=dc71d321 vocab=505b1fea
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.range_tetraBasis_eq_vertices :
     Set.range tetraBasis = (tetraedro.vertices : Set E3) := by
   change Set.range w = (verticiTetra : Set E3)
@@ -152,17 +191,29 @@ def _root_.Tengoku.LeanEvalPlatonicClassification.faceVertices (k : Fin 4) : Fin
 def _root_.Tengoku.LeanEvalPlatonicClassification.tetraFace (k : Fin 4) : Set E3 :=
   convexHull ℝ (faceVertices k : Set E3)
 
+/--
+@isnad1 id=le.0h1v.s4.79cca2b10f0a from=translated src=- shape=a2f0bcd3 vocab=f04aaede
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.faceVertices_subset (k : Fin 4) : faceVertices k ⊆ verticiTetra := by
   rw [verticiTetra_eq_map]
   exact Finset.map_subset_map.mpr (Finset.erase_subset _ _)
 
+/--
+@isnad1 id=eq.0h1v.s4.840eebda9ed2 from=translated src=- shape=ae9651fe vocab=c00b9219
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.faceVertices_card (k : Fin 4) : (faceVertices k).card = 3 := by
   simp [faceVertices]
 
+/--
+@isnad1 id=nonempty.0h1v.s3.5f7bf0b33f4e from=translated src=- shape=f3e6f14a vocab=38c38f8d
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.tetraFace_nonempty (k : Fin 4) : (tetraFace k).Nonempty := by
   apply Set.Nonempty.mono (subset_convexHull ℝ (faceVertices k : Set E3))
   simpa only [Finset.coe_nonempty] using (Finset.card_pos.mp (by simp [faceVertices_card k]))
 
+/--
+@isnad1 id=eq.0h1v.s10.f20ff0f36547 from=translated src=- shape=d7f8c8d5 vocab=d14fb3ae
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.tetraFace_finrank (k : Fin 4) :
     Module.finrank ℝ (vectorSpan ℝ (tetraFace k)) = 2 := by
   rw [tetraFace, ← direction_affineSpan, affineSpan_convexHull, direction_affineSpan]
@@ -173,6 +224,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.tetraFace_finrank (k : Fin
   exact w_affineIndependent.finrank_vectorSpan_image_finset
     (s := Finset.univ.erase k) (n := 2) (by simp)
 
+/--
+@isnad1 id=iff.0h2v.s10.10aed50a3ab4 from=translated src=- shape=abd98b50 vocab=d7d21d09
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.mem_tetraFace_iff (k : Fin 4) (x : E3) :
     x ∈ tetraFace k ↔
       x ∈ tetraedro.toSet ∧ tetraBasis.coord k x = 0 := by
@@ -224,6 +278,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.mem_tetraFace_iff (k : Fin
                 (f := fun i => tetraBasis.coord i x • tetraBasis i) (by simp [hxk])
         _ = x := tetraBasis.linear_combination_coord_eq_self x
 
+/--
+@isnad1 id=isexpose.0h1v.s8.e2c791cfb374 from=translated src=- shape=2934168a vocab=f2d1334c
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.tetraFace_isExposed (k : Fin 4) :
     IsExposed ℝ tetraedro.toSet (tetraFace k) := by
   intro _hne
@@ -277,15 +334,24 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.tetraFace_isExposed (k : F
     simp [hjk.symm] at hle
     linarith
 
+/--
+@isnad1 id=isfacet.0h1v.s6.d454c86e60d7 from=translated src=- shape=58d06a47 vocab=63b5c089
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.tetraFace_isFacet (k : Fin 4) : tetraedro.IsFacet (tetraFace k) := by
   exact ⟨⟨tetraFace_isExposed k, tetraFace_nonempty k⟩, tetraFace_finrank k⟩
 
+/--
+@isnad1 id=eq.0h1v.s6.86f73c1282de from=translated src=- shape=93df2467 vocab=ed0d61da
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.faceVertices_eq_erase (k : Fin 4) :
     faceVertices k = verticiTetra.erase (w k) := by
   rw [faceVertices, Finset.map_erase, ← verticiTetra_eq_map]
   rfl
 
 open Classical in
+/--
+@isnad1 id=eq.1h1v.s8.8f11db88c9e5 from=translated src=- shape=d419a73e vocab=2bb56da6
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.exposedFace_eq_convexHull_vertices {F : Set E3}
     (hF : tetraedro.IsFace F) :
     F = convexHull ℝ ((tetraedro.vertices.filter (· ∈ F) : Finset E3) : Set E3) := by
@@ -312,12 +378,18 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.exposedFace_eq_convexHull_
     _ = convexHull ℝ
         ((tetraedro.vertices.filter (· ∈ F) : Finset E3) : Set E3) := rfl
 
+/--
+@isnad1 id=affinein.0h0v.s8.bd4d755dbed5 from=translated src=- shape=0d5c9307 vocab=d8098ae3
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.affineIndependent_vertices :
     AffineIndependent ℝ
       ((↑) : {x // x ∈ (tetraedro.vertices : Set E3)} → E3) := by
   rw [← range_tetraBasis_eq_vertices]
   exact tetraBasis.ind.range
 
+/--
+@isnad1 id=ex.1h1v.s6.a6f53a49fe1b from=translated src=- shape=fbbec5b8 vocab=67eb4c9e
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.facet_classification {F : Set E3} (hF : tetraedro.IsFacet F) :
     ∃ k : Fin 4, F = tetraFace k := by
   classical
@@ -431,24 +503,42 @@ def _root_.Tengoku.LeanEvalPlatonicClassification.τ : Fin 4 → Equiv.Perm (Fin
 def _root_.Tengoku.LeanEvalPlatonicClassification.opp : Fin 4 → Fin 3 → Fin 4 :=
   ![![1, 2, 3], ![0, 3, 2], ![0, 1, 3], ![0, 2, 1]]
 
+/--
+@isnad1 id=eq.0h1v.s6.acf9bf5be7f5 from=translated src=- shape=b7c5c06e vocab=edcec7af
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.τ_fixed (k : Fin 4) : τ k k = k := by
   fin_cases k <;> rfl
 
+/--
+@isnad1 id=ne.0h2v.s4.c30ff2eeb888 from=translated src=- shape=863660e4 vocab=01153f17
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.opp_ne (k : Fin 4) (i : Fin 3) : opp k i ≠ k := by
   fin_cases k <;> fin_cases i <;> decide
 
+/--
+@isnad1 id=injectiv.0h1v.s4.9e950ec9de6d from=translated src=- shape=bac0a165 vocab=aa7a6910
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.opp_injective (k : Fin 4) : Function.Injective (opp k) := by
   intro i j hij
   fin_cases k <;> fin_cases i <;> fin_cases j <;> simp_all [opp]
 
+/--
+@isnad1 id=ex.1h2v.s5.8778161ef29d from=translated src=- shape=19bf2012 vocab=01153f17
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.opp_complete (k j : Fin 4) (hjk : j ≠ k) : ∃ i : Fin 3, opp k i = j := by
   fin_cases k <;> fin_cases j <;> simp_all [opp]
   all_goals first | exact ⟨0, rfl⟩ | exact ⟨1, rfl⟩ | exact ⟨2, rfl⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.11555db1b369 from=translated src=- shape=7ed4e130 vocab=ba8d35a0
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.τ_opp (k : Fin 4) (i : Fin 3) :
     τ k (opp k i) = opp k (finRotate 3 i) := by
   fin_cases k <;> fin_cases i <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.b20b5d88bacb from=translated src=- shape=f706fb6b vocab=25e3af39
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.rot_vertex (k i : Fin 4) : rot k (w i) = w (τ k i) := by
   have hm1 : (-1 : Fin 3) = 2 := by decide
   have h21 : (2 - 1 : Fin 3) = 1 := by decide
@@ -456,9 +546,15 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.rot_vertex (k i : Fin 4) :
     simp [rot, rotLinear, rot0Linear, flip1, flip2, flip3,
       w, w0, w1, w2, w3, τ, τ0, τ1, τ2, τ3, hm1, h21]
 
+/--
+@isnad1 id=eq.0h1v.s10.7e6965619f1d from=translated src=- shape=7d6fee41 vocab=e811a4e3
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.rot_fixed (k : Fin 4) : rot k (w k) = w k := by
   rw [rot_vertex, τ_fixed]
 
+/--
+@isnad1 id=eq.0h1v.s10.bfabdffd0cdb from=translated src=- shape=7ac53442 vocab=904ac59d
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.rot_image_vertices (k : Fin 4) :
     (⇑(rot k)) '' (tetraedro.vertices : Set E3) =
       (tetraedro.vertices : Set E3) := by
@@ -472,6 +568,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.rot_image_vertices (k : Fi
     refine ⟨w ((τ k).symm i), Set.mem_range_self _, ?_⟩
     rw [rot_vertex, (τ k).apply_symm_apply]
 
+/--
+@isnad1 id=eq.0h1v.s10.9b4bfc6dfbc2 from=translated src=- shape=c08ff654 vocab=68f8496e
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.rot_preserves_polytope (k : Fin 4) :
     (⇑(rot k)) '' tetraedro.toSet = tetraedro.toSet := by
   change (⇑(rot k)) '' convexHull ℝ (tetraedro.vertices : Set E3) =
@@ -486,6 +585,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.rot_preserves_polytope (k 
     _ = convexHull ℝ (tetraedro.vertices : Set E3) := by
       rw [rot_image_vertices]
 
+/--
+@isnad1 id=eq.0h2v.s10.89735caf125e from=translated src=- shape=4ec52a3a vocab=b6d2bd62
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.rot_image_faceVertices (k a : Fin 4) :
     (⇑(rot k)) '' (faceVertices a : Set E3) =
       (faceVertices (τ k a) : Set E3) := by
@@ -512,6 +614,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.rot_image_faceVertices (k 
     · rw [rot_vertex, (τ k).apply_symm_apply]
       rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.fa52478201c2 from=translated src=- shape=2d51fa4e vocab=d1db3b79
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.rot_image_tetraFace (k a : Fin 4) :
     (⇑(rot k)) '' tetraFace a = tetraFace (τ k a) := by
   change (⇑(rot k)) '' convexHull ℝ (faceVertices a : Set E3) =
@@ -530,12 +635,18 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.rot_image_tetraFace (k a :
 
 def _root_.Tengoku.LeanEvalPlatonicClassification.edgeLength : ℝ := Real.sqrt 8
 
+/--
+@isnad1 id=lt.0h0v.s3.a43d7fcfb706 from=translated src=- shape=ff3a10fc vocab=a7d79b97
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.edgeLength_pos : 0 < edgeLength := by
   dsimp [edgeLength]
   positivity
 
 /-! ## I fan ciclici ai quattro vertici -/
 
+/--
+@isnad1 id=iff.0h2v.s5.af305035bd13 from=translated src=- shape=0b1bf834 vocab=6f9a5d6f
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.vertex_mem_tetraFace_iff (i a : Fin 4) :
     w i ∈ tetraFace a ↔ i ≠ a := by
   constructor
@@ -549,6 +660,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.vertex_mem_tetraFace_iff (
     exact Finset.mem_map.mpr
       ⟨i, Finset.mem_erase.mpr ⟨hia, Finset.mem_univ _⟩, rfl⟩
 
+/--
+@isnad1 id=injectiv.0h0v.s3.5db10d8887e3 from=translated src=- shape=b032868b vocab=ce2100b4
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.tetraFace_injective : Function.Injective tetraFace := by
   intro a b hab
   by_contra habne
@@ -556,6 +670,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.tetraFace_injective : Func
   rw [← hab] at hmem
   exact (vertex_mem_tetraFace_iff a a).1 hmem rfl
 
+/--
+@isnad1 id=mem.0h2v.s4.4972405b9bd8 from=translated src=- shape=7aa90588 vocab=1754a368
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.vertex_mem_incident_face (k : Fin 4) (i : Fin 3) :
     w k ∈ tetraFace (opp k i) :=
   (vertex_mem_tetraFace_iff k (opp k i)).2 (opp_ne k i).symm
@@ -563,27 +680,42 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.vertex_mem_incident_face (
 def _root_.Tengoku.LeanEvalPlatonicClassification.thirdOpp (k : Fin 4) (i : Fin 3) : Fin 4 :=
   opp k (finRotate 3 (finRotate 3 i))
 
+/--
+@isnad1 id=ne.0h2v.s4.f307e620d0fd from=translated src=- shape=863660e4 vocab=d75891b9
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.thirdOpp_ne_vertex (k : Fin 4) (i : Fin 3) : thirdOpp k i ≠ k :=
   opp_ne k _
 
+/--
+@isnad1 id=ne.0h2v.s4.7a1f35d6ffd0 from=translated src=- shape=ba312d2c vocab=11c7ce14
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.thirdOpp_ne_current (k : Fin 4) (i : Fin 3) :
     thirdOpp k i ≠ opp k i := by
   intro h
   have := opp_injective k h
   fin_cases i <;> contradiction
 
+/--
+@isnad1 id=ne.0h2v.s6.39ba89be036d from=translated src=- shape=566721f7 vocab=22cc3147
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.thirdOpp_ne_next (k : Fin 4) (i : Fin 3) :
     thirdOpp k i ≠ opp k (finRotate 3 i) := by
   intro h
   have := opp_injective k h
   fin_cases i <;> contradiction
 
+/--
+@isnad1 id=or.2h3v.s7.421eacecfe93 from=translated src=- shape=1024fa8f vocab=bbe8dd6b
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.fin3_cycle_exhausts (i j : Fin 3) (hji : j ≠ i)
     (hjr : j ≠ finRotate 3 i) (t : Fin 3) :
     t = i ∨ t = finRotate 3 i ∨ t = j := by
   fin_cases i <;> fin_cases j <;> simp_all
   all_goals fin_cases t <;> simp
 
+/--
+@isnad1 id=eq.1h2v.s5.fdcb9223945a from=translated src=- shape=0530115c vocab=1754a368
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.three_incident_faces_meet_at_vertex (k : Fin 4) (x : E3)
     (hx : ∀ i : Fin 3, x ∈ tetraFace (opp k i)) : x = w k := by
   have hzero (a : Fin 4) (hak : a ≠ k) : tetraBasis.coord a x = 0 := by

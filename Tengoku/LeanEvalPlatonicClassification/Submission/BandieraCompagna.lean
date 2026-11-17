@@ -32,13 +32,17 @@ open ConvexPolytope
 
 variable {n : ℕ}
 
-/-- La dimensione di un singoletto è 0.-/
+/-- La dimensione di un singoletto è 0.
+@isnad1 id=eq.0h2v.s4.5e65a51d3bed from=translated src=- shape=c0659fb0 vocab=271dbaa8
+-/
 theorem faceDim_singleton (v : E n) : faceDim ({v} : Set (E n)) = 0 := by
   show Module.finrank ℝ (vectorSpan ℝ ({v} : Set (E n))) = 0
   rw [vectorSpan_singleton]
   simp
 
-/-- Una faccia diversa dal corpo lascia fuori almeno un vertice.-/
+/-- Una faccia diversa dal corpo lascia fuori almeno un vertice.
+@isnad1 id=ex.2h3v.s5.9eb345ab3dbb from=translated src=- shape=c6d5ef24 vocab=ddbe2347
+-/
 theorem exists_vertex_notMem_of_ne_toSet (P : ConvexPolytope n) {f : Set (E n)}
     (hf : P.IsFace f) (hne : f ≠ P.toSet) :
     ∃ w ∈ P.vertices, w ∉ f := by

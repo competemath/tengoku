@@ -37,7 +37,9 @@ open ConvexPolytope
 variable {n : ℕ}
 
 /-- Estensionalità delle bandiere: la catena di facce determina la
-bandiera (gli altri campi sono proposizioni).-/
+bandiera (gli altri campi sono proposizioni).
+@isnad1 id=eq.1h4v.s5.0012118a28fd from=translated src=- shape=2f68e499 vocab=f3e0fbfe
+-/
 theorem flag_ext {P : ConvexPolytope n} {F G : P.Flag}
     (h : F.face = G.face) : F = G := by
   cases F with
@@ -52,7 +54,9 @@ theorem flag_ext {P : ConvexPolytope n} {F G : P.Flag}
 `P.toSet` per il rango massimo. In entrambi i casi: una faccia di
 dimensione `i+1` sopra `F.face i`, sotto tutte le facce dei ranghi
 superiori, e massimale fra le facce di dimensione `i` incastrate
-nella coda della bandiera.-/
+nella coda della bandiera.
+@isnad1 id=ex.1h4v.s7.152b977b9474 from=translated src=- shape=32ba09bf vocab=d3b5db87
+-/
 theorem faccia_sopra (P : ConvexPolytope n) (hfull : P.IsFullDim)
     (F : P.Flag) (i : Fin n) :
     ∃ B : Set (E n), P.IsFace B ∧ faceDim B = (i : ℕ) + 1 ∧
@@ -114,7 +118,9 @@ theorem faccia_sopra (P : ConvexPolytope n) (hfull : P.IsFullDim)
 /-- **Il teorema dell'adiacenza**: per ogni bandiera `F` di un politopo
 pieno e ogni rango `i`, esiste un'unica bandiera adiacente a `F` in `i`.
 È il primo cancello del motore Coxeter: la mossa elementare sulle
-bandiere è ben definita e involutiva.-/
+bandiere è ben definita e involutiva.
+@isnad1 id=existsun.1h4v.s4.3583359d2880 from=translated src=- shape=77f77825 vocab=de7e2352
+-/
 theorem existsUnique_flag_adjacent (P : ConvexPolytope n)
     (hfull : P.IsFullDim) (F : P.Flag) (i : Fin n) :
     ∃! G : P.Flag, FlagAdjacentAt P F G i := by

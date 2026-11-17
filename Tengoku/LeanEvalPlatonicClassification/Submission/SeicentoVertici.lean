@@ -34,6 +34,9 @@ noncomputable def vertA (i : Fin 4) (b : Bool) : E 4 :=
   (EuclideanSpace.equiv (Fin 4) ℝ).symm
     (fun j => if j = i then (if b then 1 else -1) else 0)
 
+/--
+@isnad1 id=eq.0h3v.s6.ec159d13deca from=translated src=- shape=80ba5af4 vocab=faf8bc50
+-/
 @[simp] theorem vertA_apply (i : Fin 4) (b : Bool) (j : Fin 4) :
     vertA i b j = if j = i then (if b then (1 : ℝ) else -1) else 0 := by
   simp [vertA]
@@ -43,6 +46,9 @@ noncomputable def vertB (s : Fin 4 → Bool) : E 4 :=
   (EuclideanSpace.equiv (Fin 4) ℝ).symm
     (fun j => if s j then 1 / 2 else -(1 / 2))
 
+/--
+@isnad1 id=eq.0h2v.s6.fd1d77557617 from=translated src=- shape=3f4cc58c vocab=79a00a06
+-/
 @[simp] theorem vertB_apply (s : Fin 4 → Bool) (j : Fin 4) :
     vertB s j = if s j then (1 / 2 : ℝ) else -(1 / 2) := by
   simp [vertB]
@@ -56,14 +62,23 @@ noncomputable def segnoC (s : Fin 3 → Bool) : Fin 4 → ℝ :=
   ![if s 0 then 1 else -1, if s 1 then 1 else -1,
     if s 2 then 1 else -1, 1]
 
+/--
+@isnad1 id=eq.0h2v.s4.bc347c031227 from=translated src=- shape=8ac8adb9 vocab=d10e01b7
+-/
 theorem segnoC_abs (s : Fin 3 → Bool) (k : Fin 4) :
     |segnoC s k| = 1 := by
   fin_cases k <;> simp [segnoC] <;> split_ifs <;> norm_num
 
+/--
+@isnad1 id=eq.0h2v.s5.fbd92a94b4b8 from=translated src=- shape=b4164dab vocab=31074a61
+-/
 theorem segnoC_sq (s : Fin 3 → Bool) (k : Fin 4) :
     segnoC s k ^ 2 = 1 := by
   fin_cases k <;> simp [segnoC] <;> split_ifs <;> norm_num
 
+/--
+@isnad1 id=le.0h1v.s4.7e1d67d0c361 from=translated src=- shape=de9abb23 vocab=c5941728
+-/
 theorem baseC_nonneg (k : Fin 4) : 0 ≤ baseC k := by
   have hv := aureo_valori_ordinati
   fin_cases k
@@ -76,7 +91,9 @@ theorem baseC_nonneg (k : Fin 4) : 0 ≤ baseC k := by
   · show (0 : ℝ) ≤ 0
     exact le_rfl
 
-/-- I quattro valori assoluti del blocco aureo sono distinti.-/
+/-- I quattro valori assoluti del blocco aureo sono distinti.
+@isnad1 id=injectiv.0h0v.s3.47c7be7b61ec from=translated src=- shape=bfe16b09 vocab=8ff90e49
+-/
 theorem baseC_injective : Function.Injective baseC := by
   have hv := aureo_valori_ordinati
   intro k k' h
@@ -93,13 +110,18 @@ noncomputable def vertC (σ : alternatingGroup (Fin 4))
     (fun j => segnoC s ((σ : Equiv.Perm (Fin 4)).symm j) *
       baseC ((σ : Equiv.Perm (Fin 4)).symm j))
 
+/--
+@isnad1 id=eq.0h3v.s9.bd33a59508a8 from=translated src=- shape=0de02669 vocab=18d7dd90
+-/
 @[simp] theorem vertC_apply (σ : alternatingGroup (Fin 4))
     (s : Fin 3 → Bool) (j : Fin 4) :
     vertC σ s j = segnoC s ((σ : Equiv.Perm (Fin 4)).symm j) *
       baseC ((σ : Equiv.Perm (Fin 4)).symm j) := by
   simp [vertC]
 
-/-- Il valore del blocco C nella posizione `σ k` è `±(valore k)`.-/
+/-- Il valore del blocco C nella posizione `σ k` è `±(valore k)`.
+@isnad1 id=eq.0h3v.s8.0dfd86a53147 from=translated src=- shape=34d73f37 vocab=e4e00b95
+-/
 theorem vertC_at (σ : alternatingGroup (Fin 4)) (s : Fin 3 → Bool)
     (k : Fin 4) :
     vertC σ s ((σ : Equiv.Perm (Fin 4)) k) = segnoC s k * baseC k := by
@@ -107,6 +129,9 @@ theorem vertC_at (σ : alternatingGroup (Fin 4)) (s : Fin 3 → Bool)
 
 /-! ## Le norme: tutti sulla sfera unitaria -/
 
+/--
+@isnad1 id=eq.0h2v.s6.8f36573c1f3b from=translated src=- shape=082d759b vocab=df841b9d
+-/
 theorem norm_vertA (i : Fin 4) (b : Bool) : ‖vertA i b‖ = 1 := by
   have hsq : ‖vertA i b‖ ^ 2 = 1 := by
     rw [EuclideanSpace.norm_sq_eq]
@@ -120,6 +145,9 @@ theorem norm_vertA (i : Fin 4) (b : Bool) : ‖vertA i b‖ = 1 := by
   have hnn : 0 ≤ ‖vertA i b‖ := norm_nonneg _
   nlinarith [hsq]
 
+/--
+@isnad1 id=eq.0h1v.s6.1f6ae900840f from=translated src=- shape=3a464964 vocab=4cab28d4
+-/
 theorem norm_vertB (s : Fin 4 → Bool) : ‖vertB s‖ = 1 := by
   have hsq : ‖vertB s‖ ^ 2 = 1 := by
     rw [EuclideanSpace.norm_sq_eq]
@@ -133,6 +161,9 @@ theorem norm_vertB (s : Fin 4 → Bool) : ‖vertB s‖ = 1 := by
   have hnn : 0 ≤ ‖vertB s‖ := norm_nonneg _
   nlinarith [hsq]
 
+/--
+@isnad1 id=eq.0h2v.s7.4829a9fac871 from=translated src=- shape=52dfff24 vocab=6f902a41
+-/
 theorem norm_vertC (σ : alternatingGroup (Fin 4)) (s : Fin 3 → Bool) :
     ‖vertC σ s‖ = 1 := by
   have hsq : ‖vertC σ s‖ ^ 2 = 1 := by
@@ -162,6 +193,9 @@ theorem norm_vertC (σ : alternatingGroup (Fin 4)) (s : Fin 3 → Bool) :
 
 /-! ## Iniettività dei tre blocchi -/
 
+/--
+@isnad1 id=lt.0h1v.s4.13adc365468f from=translated src=- shape=9a4b31c0 vocab=cabe6a00
+-/
 theorem baseC_lt_one (k : Fin 4) : baseC k < 1 := by
   have hv := aureo_valori_ordinati
   fin_cases k
@@ -174,6 +208,9 @@ theorem baseC_lt_one (k : Fin 4) : baseC k < 1 := by
   · show (0 : ℝ) < 1
     norm_num
 
+/--
+@isnad1 id=lt.0h1v.s4.ee5328ff9a49 from=translated src=- shape=0252f147 vocab=24053cd5
+-/
 theorem baseC_pos_tre (m : Fin 3) : 0 < baseC ⟨(m : ℕ), by omega⟩ := by
   have hv := aureo_valori_ordinati
   fin_cases m
@@ -184,6 +221,9 @@ theorem baseC_pos_tre (m : Fin 3) : 0 < baseC ⟨(m : ℕ), by omega⟩ := by
   · show (0 : ℝ) < (aureo - 1) / 2
     linarith [hv.1]
 
+/--
+@isnad1 id=injectiv.0h0v.s5.4abda040f252 from=translated src=- shape=b4e34b09 vocab=de8c6e67
+-/
 theorem vertA_injective :
     Function.Injective (fun p : Fin 4 × Bool => vertA p.1 p.2) := by
   rintro ⟨i, b⟩ ⟨i', b'⟩ h
@@ -200,6 +240,9 @@ theorem vertA_injective :
     | rfl
     | (exfalso; norm_num at h2)
 
+/--
+@isnad1 id=injectiv.0h0v.s4.7fba5a2a03b7 from=translated src=- shape=6e6692b1 vocab=cdc08741
+-/
 theorem vertB_injective : Function.Injective vertB := by
   intro s s' h
   funext j
@@ -211,7 +254,9 @@ theorem vertB_injective : Function.Injective vertB := by
       | (exfalso; norm_num at h1)
 
 /-- L'iniettività del blocco aureo: la permutazione si legge dai valori
-assoluti, i segni dai valori non nulli.-/
+assoluti, i segni dai valori non nulli.
+@isnad1 id=injectiv.0h0v.s8.688434ea6723 from=translated src=- shape=3e84d5f1 vocab=d8cab68f
+-/
 theorem vertC_injective :
     Function.Injective (fun p :
       alternatingGroup (Fin 4) × (Fin 3 → Bool) => vertC p.1 p.2) := by
@@ -274,6 +319,9 @@ theorem vertC_injective :
 
 /-! ## Le disgiunzioni fra i blocchi -/
 
+/--
+@isnad1 id=ne.0h3v.s4.439d8790f0cf from=translated src=- shape=68af074f vocab=b969a4f7
+-/
 theorem vertA_ne_vertB (i : Fin 4) (b : Bool) (s : Fin 4 → Bool) :
     vertA i b ≠ vertB s := by
   intro h
@@ -282,6 +330,9 @@ theorem vertA_ne_vertB (i : Fin 4) (b : Bool) (s : Fin 4 → Bool) :
   simp only [vertA_apply, vertB_apply, ite_eq_right hj] at h1
   cases hs : s j <;> rw [hs] at h1 <;> norm_num at h1
 
+/--
+@isnad1 id=ne.0h4v.s7.ae43f5c6594b from=translated src=- shape=c951dcb8 vocab=15f72d99
+-/
 theorem vertA_ne_vertC (i : Fin 4) (b : Bool)
     (σ : alternatingGroup (Fin 4)) (s : Fin 3 → Bool) :
     vertA i b ≠ vertC σ s := by
@@ -294,6 +345,9 @@ theorem vertA_ne_vertC (i : Fin 4) (b : Bool)
   have hlt := baseC_lt_one ((σ : Equiv.Perm (Fin 4)).symm i)
   cases b <;> norm_num at habs <;> linarith [hlt]
 
+/--
+@isnad1 id=ne.0h3v.s7.265f2a2f0a10 from=translated src=- shape=5c265ee7 vocab=7b7fcbc2
+-/
 theorem vertB_ne_vertC (s : Fin 4 → Bool)
     (σ : alternatingGroup (Fin 4)) (t : Fin 3 → Bool) :
     vertB s ≠ vertC σ t := by
@@ -320,6 +374,9 @@ noncomputable def seicentoVertici : Finset (E 4) :=
       (fun p => vertC p.1 p.2))
 
 open Classical in
+/--
+@isnad1 id=eq.1h1v.s6.ebee9b28e8fe from=translated src=- shape=306de394 vocab=c4e72a1d
+-/
 theorem norm_mem_seicentoVertici {v : E 4}
     (hv : v ∈ seicentoVertici) : ‖v‖ = 1 := by
   simp only [seicentoVertici, Finset.mem_union, Finset.mem_image,
@@ -333,6 +390,9 @@ theorem norm_mem_seicentoVertici {v : E 4}
     exact norm_vertC p.1 p.2
 
 open Classical in
+/--
+@isnad1 id=nonempty.0h0v.s3.a016118feffb from=translated src=- shape=06f63001 vocab=29929cd4
+-/
 theorem seicentoVertici_nonempty : seicentoVertici.Nonempty := by
   refine ⟨vertB (fun _ => true), ?_⟩
   simp only [seicentoVertici, Finset.mem_union, Finset.mem_image,
@@ -340,7 +400,9 @@ theorem seicentoVertici_nonempty : seicentoVertici.Nonempty := by
   exact Or.inl (Or.inr ⟨fun _ => true, rfl⟩)
 
 open Classical in
-/-- **LA CARDINALITÀ**: `8 + 16 + 96 = 120`.-/
+/-- **LA CARDINALITÀ**: `8 + 16 + 96 = 120`.
+@isnad1 id=eq.0h0v.s3.d714f0bd31a3 from=translated src=- shape=415057c6 vocab=be0fb6f7
+-/
 theorem card_seicentoVertici : seicentoVertici.card = 120 := by
   rw [seicentoVertici]
   have hdisjAB : Disjoint
@@ -382,6 +444,9 @@ theorem card_seicentoVertici : seicentoVertici.card = 120 := by
   norm_num [Nat.factorial]
 
 open Classical in
+/--
+@isnad1 id=eq.0h0v.s8.13bc4714e28e from=translated src=- shape=c466b020 vocab=f3b79eaa
+-/
 theorem seicentoVertici_eq_extremePoints :
     ((seicentoVertici : Finset (E 4)) : Set (E 4)) =
       Set.extremePoints ℝ
@@ -405,11 +470,16 @@ noncomputable def seicento : ConvexPolytope 4 :=
   ⟨seicentoVertici, seicentoVertici_nonempty,
     seicentoVertici_eq_extremePoints⟩
 
-/-- La cardinalità dei vertici del 600-cell.-/
+/-- La cardinalità dei vertici del 600-cell.
+@isnad1 id=eq.0h0v.s4.2cd93e35dd47 from=translated src=- shape=1538b06e vocab=3b428414
+-/
 theorem card_seicento_vertices : seicento.vertices.card = 120 :=
   card_seicentoVertici
 
 open Classical in
+/--
+@isnad1 id=mem.0h2v.s5.f0db9baf3014 from=translated src=- shape=220a9e72 vocab=c049d8ba
+-/
 theorem vertA_mem_seicento_toSet (i : Fin 4) (b : Bool) :
     vertA i b ∈ seicento.toSet := by
   apply subset_convexHull ℝ _
@@ -420,7 +490,9 @@ theorem vertA_mem_seicento_toSet (i : Fin 4) (b : Bool) :
   exact_mod_cast hmem
 
 /-- **PIENA DIMENSIONALITÀ**: le differenze `±eᵢ` del blocco A generano
-tutto `E 4`.-/
+tutto `E 4`.
+@isnad1 id=isfulldi.0h0v.s2.578ab9bd9e3e from=translated src=- shape=cef8a6bf vocab=cca79e8b
+-/
 theorem seicento_isFullDim : seicento.IsFullDim := by
   let W : Submodule ℝ (E 4) := vectorSpan ℝ seicento.toSet
   have hbasis : ∀ i : Fin 4,

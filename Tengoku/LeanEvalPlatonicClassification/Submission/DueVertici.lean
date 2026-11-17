@@ -14,7 +14,9 @@ open ConvexPolytope
 
 variable {n : Nat}
 
-/-- A zero-dimensional nonempty face is a singleton at a vertex.-/
+/-- A zero-dimensional nonempty face is a singleton at a vertex.
+@isnad1 id=ex.2h3v.s6.7d90c40c2954 from=translated src=- shape=557b8d54 vocab=850770c7
+-/
 theorem punto_di_faccia0_e_vertice (P : ConvexPolytope n)
     {F : Set (E n)} (hF : P.IsFace F) (hdF : faceDim F = 0) :
     Exists fun v : E n =>
@@ -29,7 +31,9 @@ theorem punto_di_faccia0_e_vertice (P : ConvexPolytope n)
   rw [ConvexPolytope.toSet, hvertices.symm] at hvext
   exact hvext
 
-/-- The only vertices of a segment-face are its endpoints, in any rank.-/
+/-- The only vertices of a segment-face are its endpoints, in any rank.
+@isnad1 id=or.4h6v.s7.41102c207d3e from=translated src=- shape=0e3bde13 vocab=a9e50259
+-/
 theorem vertice_in_segmento_estremo_generico (P : ConvexPolytope n)
     {delta : Set (E n)} (hdelta : P.IsFace delta) {x y z : E n}
     (hseg : delta = segment Real x y)
@@ -50,7 +54,9 @@ theorem vertice_in_segmento_estremo_generico (P : ConvexPolytope n)
       x hxdelta y hydelta hzseg
   exact hends.imp Eq.symm Eq.symm
 
-/-- Every edge has exactly one zero-face different from a fixed zero-face.-/
+/-- Every edge has exactly one zero-face different from a fixed zero-face.
+@isnad1 id=existsun.5h4v.s7.bd7846f97841 from=translated src=- shape=04114555 vocab=69f112ec
+-/
 theorem due_vertici_per_spigolo (P : ConvexPolytope n)
     {delta : Set (E n)} (hdelta : P.IsFace delta)
     (hddelta : faceDim delta = 1)

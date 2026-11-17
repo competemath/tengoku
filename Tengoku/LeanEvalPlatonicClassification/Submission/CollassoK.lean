@@ -28,7 +28,9 @@ noncomputable def centroideFaccia (P : ConvexPolytope n) (f : Set (E n)) : E n :
 
 /-- Una simmetria manda il centroide di una faccia nel centroide della
 faccia immagine.  È la versione non stazionaria di
-`centroide_di_faccia_fissato`.-/
+`centroide_di_faccia_fissato`.
+@isnad1 id=eq.4h5v.s9.e49a516857f5 from=translated src=- shape=1d053215 vocab=4d8b38ee
+-/
 theorem centroide_di_faccia_mandato (P : ConvexPolytope n)
     {φ : Isom n} (hφ : P.isSymmetry φ) {f g : Set (E n)}
     (hf : P.IsFace f) (hg : P.IsFace g) (hfg : (⇑φ) '' f = g) :
@@ -81,7 +83,9 @@ theorem centroide_di_faccia_mandato (P : ConvexPolytope n)
   simpa only [centroideFaccia, s, t] using hmap.trans hcentroid
 
 /-- Il prodotto `rᵢ rᵢ₊₁` manda il centroide della faccia di rango `i`
-nel centroide dell'altra faccia di rango `i` della bandiera adiacente.-/
+nel centroide dell'altra faccia di rango `i` della bandiera adiacente.
+@isnad1 id=eq.2h4v.s9.5a6731bcbc40 from=translated src=- shape=e3278b4a vocab=9a7dd7cf
+-/
 theorem orbita_passo_combinatorio (P : ConvexPolytope n) (hreg : P.IsRegular)
     (F : P.Flag) (i : Fin n) (hi : (i : ℕ) + 1 < n) :
     simpleReflection P hreg F i
@@ -165,7 +169,9 @@ structure DatiMezzoPasso (P : ConvexPolytope n) (hreg : P.IsRegular)
 /-! ## Riparazione simmetrica dell'interfaccia di proiezione -/
 
 /-- Versione generica di `proiettato_fissato`, utilizzabile anche per
-la seconda riflessione.-/
+la seconda riflessione.
+@isnad1 id=eq.5h7v.s9.591a90930aa2 from=translated src=- shape=7ffded55 vocab=2ac5f26c
+-/
 theorem proiettato_fissato_da_formula
     {α p O c : E n} {r : E n → E n} (hα : ‖α‖ = 1)
     (hr : ∀ x, r x = x - (2 * ⟪α, x - p⟫ : ℝ) • α)
@@ -202,7 +208,9 @@ theorem proiettato_fissato_da_formula
     zero_smul, sub_zero]
 
 /-- Versione generica di `proiettato_non_fissato`, utilizzabile anche
-per la seconda riflessione.-/
+per la seconda riflessione.
+@isnad1 id=ne.5h7v.s9.51252f84a832 from=translated src=- shape=79e1a11b vocab=2ac5f26c
+-/
 theorem proiettato_non_fissato_da_formula
     {α p O c : E n} {r : E n → E n} (hα : ‖α‖ = 1)
     (hr : ∀ x, r x = x - (2 * ⟪α, x - p⟫ : ℝ) • α)

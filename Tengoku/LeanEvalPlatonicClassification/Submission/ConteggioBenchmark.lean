@@ -22,16 +22,24 @@ open ConvexPolytope
 def classe (d : ℕ) (P : regularPolytopes d) : Set (regularPolytopes d) :=
   {Q | regularSimilar d P Q}
 
+/--
+@isnad1 id=mem.0h2v.s6.c854287e4e99 from=translated src=- shape=dc6b39b5 vocab=3eccdefe
+-/
 theorem classe_mem_quoziente (d : ℕ) (P : regularPolytopes d) :
     classe d P ∈ {S : Set (regularPolytopes d) |
       ∃ P', S = {Q : regularPolytopes d | regularSimilar d P' Q}} :=
   ⟨P, rfl⟩
 
+/--
+@isnad1 id=mem.0h2v.s4.87111b84d47d from=translated src=- shape=8971aa3f vocab=849aac0f
+-/
 theorem self_mem_classe (d : ℕ) (P : regularPolytopes d) :
     P ∈ classe d P :=
   similar_refl (P : ConvexPolytope d)
 
-/-- Classi uguali ⟹ i rappresentanti sono simili.-/
+/-- Classi uguali ⟹ i rappresentanti sono simili.
+@isnad1 id=similar.1h3v.s6.330316967fba from=translated src=- shape=5b6cc8e5 vocab=2f535526
+-/
 theorem similar_of_classe_eq {d : ℕ} {P Q : regularPolytopes d}
     (h : classe d P = classe d Q) :
     ConvexPolytope.Similar (P : ConvexPolytope d) (Q : ConvexPolytope d) := by
@@ -39,7 +47,9 @@ theorem similar_of_classe_eq {d : ℕ} {P Q : regularPolytopes d}
   rw [← h] at hQ
   exact hQ
 
-/-- IL MOTORE: cinque regolari a coppie non simili ⟹ 5 ≤ platonicCount 3.-/
+/-- IL MOTORE: cinque regolari a coppie non simili ⟹ 5 ≤ platonicCount 3.
+@isnad1 id=le.5h0v.s5.710af1e0d1d9 from=translated src=- shape=8edb896a vocab=ed67947b
+-/
 theorem cinque_le_platonicCount3_di
     (hT : tetraedroBM.IsRegular) (hC : cuboBM.IsRegular)
     (hO : ottaedroBM.IsRegular) (hD : dodecaedroBM.IsRegular)

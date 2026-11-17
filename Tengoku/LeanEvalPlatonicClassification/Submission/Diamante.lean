@@ -30,7 +30,9 @@ open ConvexPolytope
 
 variable {n : ℕ}
 
-/-- Estrazione dell'espositore di una faccia: appartenenza e massimalità.-/
+/-- Estrazione dell'espositore di una faccia: appartenenza e massimalità.
+@isnad1 id=ex.1h3v.s10.55be99b1e68f from=translated src=- shape=0788ae67 vocab=87461f67
+-/
 theorem espositore_di_faccia (P : ConvexPolytope n) {g : Set (E n)}
     (hg : P.IsFace g) :
     ∃ l : E n →L[ℝ] ℝ,
@@ -45,14 +47,18 @@ theorem espositore_di_faccia (P : ConvexPolytope n) {g : Set (E n)}
     rw [hl]
     exact ⟨hq, hmax⟩
 
-/-- La retta per due punti distinti ha direzione di rango 1.-/
+/-- La retta per due punti distinti ha direzione di rango 1.
+@isnad1 id=eq.1h3v.s10.7bdca9308257 from=translated src=- shape=8894dc58 vocab=f1efe27a
+-/
 theorem finrank_direction_retta {v x : E n} (hvx : v ≠ x) :
     Module.finrank ℝ ((affineSpan ℝ ({v, x} : Set (E n))).direction) = 1 := by
   rw [direction_affineSpan, vectorSpan_pair]
   exact finrank_span_singleton (vsub_ne_zero.mpr hvx)
 
 /-- Un insieme di rango ≤ 1 contenente due punti distinti ha per span affine
-la retta per quei due punti.-/
+la retta per quei due punti.
+@isnad1 id=eq.4h4v.s10.a1686e9e72c5 from=translated src=- shape=21253c04 vocab=65ca8138
+-/
 theorem affineSpan_eq_retta {g : Set (E n)} {v x : E n} (hvx : v ≠ x)
     (hvg : v ∈ g) (hxg : x ∈ g)
     (hdim : Module.finrank ℝ (vectorSpan ℝ g) ≤ 1) :
@@ -74,7 +80,9 @@ theorem affineSpan_eq_retta {g : Set (E n)} {v x : E n} (hvx : v ≠ x)
     ⟨v, subset_affineSpan ℝ _ (Set.mem_insert v {x}),
       subset_affineSpan ℝ _ hvg⟩).symm
 
-/-- In un insieme di rango 2 c'è un punto fuori da ogni retta.-/
+/-- In un insieme di rango 2 c'è un punto fuori da ogni retta.
+@isnad1 id=ex.2h4v.s9.5a8ff7753dec from=translated src=- shape=894ca419 vocab=97d6fbcd
+-/
 theorem punto_fuori_retta {g : Set (E n)} (v x : E n) (hvx : v ≠ x)
     (hdim : faceDim g = 2) :
     ∃ p ∈ g, p ∉ affineSpan ℝ ({v, x} : Set (E n)) := by
@@ -91,7 +99,9 @@ theorem punto_fuori_retta {g : Set (E n)} (v x : E n) (hvx : v ≠ x)
   omega
 
 /-- Se due facce distinte di dimensione 2 condividono due punti distinti,
-un punto dell'una fuori dalla retta comune non sta nell'altra.-/
+un punto dell'una fuori dalla retta comune non sta nell'altra.
+@isnad1 id=not.12h7v.s9.c52d7ba5d255 from=translated src=- shape=800566b0 vocab=22a33264
+-/
 theorem fuori_dalla_terza (P : ConvexPolytope n) {Φ Ψ : Set (E n)} {v x : E n}
     (hΦ : P.IsFace Φ) (hΨ : P.IsFace Ψ) (hne : Φ ≠ Ψ)
     (hdΦ : faceDim Φ = 2) (hdΨ : faceDim Ψ = 2) (hvx : v ≠ x)
@@ -119,7 +129,9 @@ theorem fuori_dalla_terza (P : ConvexPolytope n) {Φ Ψ : Set (E n)} {v x : E n}
   exact subset_affineSpan ℝ _ ⟨hpΦ, hpΨ⟩
 
 /-- Il valore dell'espositore su un punto di un'altra faccia, fuori dalla
-retta comune, è strettamente sotto il massimo.-/
+retta comune, è strettamente sotto il massimo.
+@isnad1 id=lt.14h8v.s11.4a0e0d4e6e97 from=translated src=- shape=90453b39 vocab=3d4b7ac0
+-/
 theorem strict_su_terza (P : ConvexPolytope n) {Φ Ψ : Set (E n)} {v x : E n}
     {lΦ : E n →L[ℝ] ℝ}
     (hΦ : P.IsFace Φ) (hΨ : P.IsFace Ψ) (hne : Φ ≠ Ψ)
@@ -139,7 +151,9 @@ theorem strict_su_terza (P : ConvexPolytope n) {Φ Ψ : Set (E n)} {v x : E n}
       (fun z hz => le_trans ((hmem v hvΦ).2 z hz) (le_of_eq h.symm))
     exact fuori_dalla_terza P hΦ hΨ hne hdΦ hdΨ hvx hvΦ hxΦ hvΨ hxΨ hpΨ hpL hpΦ
 
-/-- Da `gi·a + gj·b = 0` con `a, b < 0` e `gi, gj ≠ 0` segue `gi·gj < 0`.-/
+/-- Da `gi·a + gj·b = 0` con `a, b < 0` e `gi, gj ≠ 0` segue `gi·gj < 0`.
+@isnad1 id=lt.5h4v.s6.3b2f292d1465 from=translated src=- shape=2c508a7d vocab=348220d6
+-/
 theorem segno_opposto {gi gj a b : ℝ} (hrel : gi * a + gj * b = 0)
     (ha : a < 0) (hb : b < 0) (hgi : gi ≠ 0) (hgj : gj ≠ 0) :
     gi * gj < 0 := by
@@ -160,7 +174,9 @@ theorem segno_opposto {gi gj a b : ℝ} (hrel : gi * a + gj * b = 0)
     exact mul_neg_of_pos_of_neg h h3
 
 /-- **IL DIAMANTE, forma forte**: in un politopo di ℝ³ tre faccette a due a
-due distinte non possono condividere due punti distinti.-/
+due distinte non possono condividere due punti distinti.
+@isnad1 id=false.16h6v.s8.b9194acac77e from=translated src=- shape=52633d6b vocab=bc0862b7
+-/
 theorem diamante (P : ConvexPolytope 3) {A B C : Set (E 3)}
     (hA : P.IsFace A) (hdA : faceDim A = 2)
     (hB : P.IsFace B) (hdB : faceDim B = 2)
@@ -336,7 +352,9 @@ theorem diamante (P : ConvexPolytope 3) {A B C : Set (E 3)}
   nlinarith [hpos, hβγ, sq_nonneg (gc 0)]
 
 /-- **Uno spigolo sta in al più due faccette** — la forma quantificata
-attesa dal predicato `EdgeInAtMostTwoFacets` del fascicolo sul fan.-/
+attesa dal predicato `EdgeInAtMostTwoFacets` del fascicolo sul fan.
+@isnad1 id=or.13h6v.s8.7bc0f7aa8852 from=translated src=- shape=a409870c vocab=343d2c03
+-/
 theorem spigolo_in_due_faccette (P : ConvexPolytope 3) (v : E 3)
     ⦃A B C : Set (E 3)⦄
     (hA : P.IsFace A) (hdA : faceDim A = 2)

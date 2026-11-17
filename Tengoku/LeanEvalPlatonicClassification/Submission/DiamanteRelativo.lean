@@ -15,6 +15,9 @@ open ConvexPolytope
 
 variable {n : Nat}
 
+/--
+@isnad1 id=eq.3h3v.s9.133d515c0993 from=translated src=- shape=d5ec353e vocab=2dc73c8e
+-/
 theorem affineSpan_eq_of_subset_of_faceDim_eq {f g : Set (E n)}
     (hf : f.Nonempty) (hfg : f ⊆ g) (hdim : faceDim f = faceDim g) :
     affineSpan Real f = affineSpan Real g := by
@@ -39,6 +42,9 @@ theorem affineSpan_eq_of_subset_of_faceDim_eq {f g : Set (E n)}
   have := AffineSubspace.vadd_mem_of_mem_direction hy_dir haff
   simpa using this
 
+/--
+@isnad1 id=ex.1h3v.s9.3ab7022446f3 from=translated src=- shape=2df3bb29 vocab=e38d1194
+-/
 theorem exists_point_outside_affineSpan_of_faceDim_lt {f g : Set (E n)}
     (hlt : faceDim f < faceDim g) :
     ∃ p ∈ g, p ∉ affineSpan Real f := by
@@ -54,6 +60,9 @@ theorem exists_point_outside_affineSpan_of_faceDim_lt {f g : Set (E n)}
       Module.finrank Real (vectorSpan Real g) := hlt
   exact (not_lt_of_ge hrank) hlt'
 
+/--
+@isnad1 id=not.10h6v.s9.cf117aad13bc from=translated src=- shape=b54d66a1 vocab=bfe3b44e
+-/
 theorem fuori_dalla_terza_relativo (P : ConvexPolytope n)
     {A Ci Cj : Set (E n)}
     (hA : P.IsFace A) (hCi : P.IsFace Ci) (hCj : P.IsFace Cj)
@@ -85,6 +94,9 @@ theorem fuori_dalla_terza_relativo (P : ConvexPolytope n)
   rw [haff_eq]
   exact subset_affineSpan Real (Ci ∩ Cj) ⟨hpi, hpj⟩
 
+/--
+@isnad1 id=ex.8h6v.s12.73ae16db6f07 from=translated src=- shape=4f909ab3 vocab=6d4599cf
+-/
 theorem proiezione_tre_vettori
     {U W : Submodule Real (E n)} (hUW : U ≤ W)
     (hdim : Module.finrank Real W = Module.finrank Real U + 2)
@@ -146,6 +158,9 @@ theorem proiezione_tre_vettori
   exact ⟨q1, q2, q3, ⟨hq1perp, hq1W⟩, ⟨hq2perp, hq2W⟩,
     ⟨hq3perp, hq3W⟩, hq1ne, hq2ne, hq3ne, hq1d, hq2d, hq3d, hdimV⟩
 
+/--
+@isnad1 id=not.4h5v.s10.f81cb9b6c7d8 from=translated src=- shape=21745e4c vocab=87b61cb0
+-/
 theorem conteggio_dimensionale {V : Submodule Real (E n)}
     (hdim : Module.finrank Real V = 2) {q1 q2 q3 : E n}
     (hq1 : q1 ∈ V) (hq2 : q2 ∈ V) (hq3 : q3 ∈ V) :
@@ -168,6 +183,9 @@ theorem conteggio_dimensionale {V : Submodule Real (E n)}
   have hle := Submodule.finrank_mono hspan
   omega
 
+/--
+@isnad1 id=or.12h7v.s8.4c334e0dd3d5 from=translated src=- shape=facb750d vocab=cc8c267c
+-/
 theorem atMostTwo_middle_faces (P : ConvexPolytope n) {A B : Set (E n)}
     (hA : P.IsFace A) (hB : P.IsFace B)
     (hrank : faceDim B = faceDim A + 2)

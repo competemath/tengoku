@@ -13,7 +13,9 @@ open ComplexConjugate
 
 variable {n : ℕ}
 
-/-- Conjugating a linear isometry by a linear isometric equivalence preserves its order.-/
+/-- Conjugating a linear isometry by a linear isometric equivalence preserves its order.
+@isnad1 id=eq.0h3v.s10.ed56e05b5938 from=translated src=- shape=55c4762c vocab=8e3ffa42
+-/
 theorem massimo_consecutivo_order_conj
     {W : Type*} [NormedAddCommGroup W] [InnerProductSpace ℝ W]
     (e : W ≃ₗᵢ[ℝ] ℂ) (R : W ≃ₗᵢ[ℝ] W) :
@@ -44,7 +46,9 @@ theorem massimo_consecutivo_order_conj
     rw [h] at hp
     simpa using hp
 
-/-- Powers commute with the conjugacy used in `massimo_consecutivo_order_conj`.-/
+/-- Powers commute with the conjugacy used in `massimo_consecutivo_order_conj`.
+@isnad1 id=eq.0h5v.s11.7d62f25cc1a4 from=translated src=- shape=b91a82c7 vocab=965a1770
+-/
 theorem massimo_consecutivo_conj_pow_apply
     {W : Type*} [NormedAddCommGroup W] [InnerProductSpace ℝ W]
     (e : W ≃ₗᵢ[ℝ] ℂ) (R : W ≃ₗᵢ[ℝ] W) (q : ℕ) (x : W) :
@@ -57,7 +61,9 @@ theorem massimo_consecutivo_conj_pow_apply
           ((e.symm.trans (R.trans e)) (e x)) = e ((R ^ q) (R x))
       rw [show (e.symm.trans (R.trans e)) (e x) = e (R x) by simp, ih]
 
-/-- A conjugation followed by a rotation is an involution.-/
+/-- A conjugation followed by a rotation is an involution.
+@isnad1 id=eq.0h1v.s11.1fa250a5799e from=translated src=- shape=c564e4da vocab=3893063a
+-/
 theorem massimo_consecutivo_conj_rotation_sq (a : Circle) :
     (Complex.conjLIE.trans (rotation a)) ^ 2 = 1 := by
   apply LinearIsometryEquiv.ext
@@ -73,7 +79,9 @@ theorem massimo_consecutivo_conj_rotation_sq (a : Circle) :
   simpa [pow_two, LinearIsometryEquiv.coe_mul, Function.comp_apply,
     LinearIsometryEquiv.trans_apply, rotation_apply, Complex.conjLIE_apply] using hz
 
-/-- Algebraic form of the phase constraint `Re (a*b) = Re b` on the unit circle.-/
+/-- Algebraic form of the phase constraint `Re (a*b) = Re b` on the unit circle.
+@isnad1 id=ex.4h2v.s8.181dd77e661e from=translated src=- shape=8bfefee4 vocab=8e4c2a56
+-/
 theorem massimo_consecutivo_phase (a : Circle) (b : ℂ)
     (ha1 : (a : ℂ) ≠ 1) (ham1 : (a : ℂ) ≠ -1)
     (hb : b ≠ 0) (heq : ((a : ℂ) * b).re = b.re) :
@@ -116,7 +124,9 @@ theorem massimo_consecutivo_phase (a : Circle) (b : ℂ)
   rw [hrepr, hc]
   simp
 
-/-- Extract the coprime exponent of a circle element of exact order `m`.-/
+/-- Extract the coprime exponent of a circle element of exact order `m`.
+@isnad1 id=ex.2h2v.s7.7005d454c8b0 from=translated src=- shape=20bb5869 vocab=6000beee
+-/
 theorem massimo_consecutivo_primitive_index {m : ℕ} (hm : 3 ≤ m)
     (a : Circle) (hord : orderOf a = m) :
     ∃ k : ℕ, 1 ≤ k ∧ k ≤ m - 1 ∧ Nat.Coprime k m ∧
@@ -140,7 +150,9 @@ theorem massimo_consecutivo_primitive_index {m : ℕ} (hm : 3 ≤ m)
   field_simp
 
 /-- Multiplication by a coprime residue sends every non-endpoint residue to a time
-between `2` and `m-1`.-/
+between `2` and `m-1`.
+@isnad1 id=lt.8h5v.s7.f10d58359852 from=translated src=- shape=3b71326e vocab=b6d1e3e9
+-/
 theorem massimo_consecutivo_zmod {m k j : ℕ} (hm : 3 ≤ m)
     (hklt : k < m) (hjlt : j < m) (hcop : Nat.Coprime k m)
     (hj0 : j ≠ 0) (hjk : j ≠ k) (ζ b : ℂ) (hζm : ζ ^ m = 1)
@@ -183,7 +195,9 @@ theorem massimo_consecutivo_zmod {m k j : ℕ} (hm : 3 ≤ m)
   rw [← hp]
   exact hlt t (by omega) (by omega)
 
-/-- The real part of the orbit after solving the phase constraint.-/
+/-- The real part of the orbit after solving the phase constraint.
+@isnad1 id=eq.3h6v.s8.b57864151dfc from=translated src=- shape=17f36faf vocab=78975498
+-/
 theorem massimo_consecutivo_value {m k : ℕ} (hm : 3 ≤ m)
     (c : ℝ) (b ζ : ℂ)
     (hζ : ζ = Complex.exp (2 * (Real.pi : ℂ) * Complex.I / (m : ℂ)))
@@ -235,7 +249,9 @@ theorem massimo_consecutivo_value {m k : ℕ} (hm : 3 ≤ m)
   rw [hsub, hx, Real.cos_add, Real.cos_sub]
   ring
 
-/-- The three explicit choices of residue force the primitive exponent to be an endpoint.-/
+/-- The three explicit choices of residue force the primitive exponent to be an endpoint.
+@isnad1 id=or.5h3v.s7.3c58ea51c465 from=translated src=- shape=4f5244e5 vocab=9ab897e9
+-/
 theorem massimo_consecutivo_index_endpoints {m k : ℕ} (hm : 3 ≤ m)
     (hkpos : 1 ≤ k) (hklt : k < m) (d : ℝ) (hd : d ≠ 0)
     (hmax : ∀ j : ℕ, j < m → j ≠ 0 → j ≠ k →
@@ -348,7 +364,9 @@ theorem massimo_consecutivo_index_endpoints {m k : ℕ} (hm : 3 ≤ m)
     dsimp only [y] at hcos
     nlinarith
 
-/-- A primitive root whose real projection has two consecutive strict maxima has exponent `±1`.-/
+/-- A primitive root whose real projection has two consecutive strict maxima has exponent `±1`.
+@isnad1 id=eq.5h4v.s9.1df9f3b2fdd2 from=translated src=- shape=7a212b4d vocab=e4036da1
+-/
 theorem massimo_consecutivo_complex (a : Circle) (m : ℕ) (hm : 3 ≤ m)
     (hord : orderOf a = m) (z : ℂ) (hz : z ≠ 0) (w : ℂ)
     (heq : (((a : ℂ) * z) * conj w).re = (z * conj w).re)
@@ -471,7 +489,9 @@ theorem massimo_consecutivo_complex (a : Circle) (m : ℕ) (hm : 3 ≤ m)
     simpa using Real.cos_nat_mul_two_pi_sub (2 * Real.pi / (m : ℝ)) 1
 
 /-- If two consecutive orbit points are the unique maxima of a linear functional,
-the step is the elementary angle of the regular `m`-gon.-/
+the step is the elementary angle of the regular `m`-gon.
+@isnad1 id=eq.6h6v.s14.78eccefe4913 from=translated src=- shape=c6dc3b49 vocab=d1726e55
+-/
 theorem massimo_consecutivo {V : Submodule ℝ (E n)} (hV : Module.finrank ℝ V = 2)
     (R : V ≃ₗᵢ[ℝ] V) (m : ℕ) (hm : 3 ≤ m) (hord : orderOf R = m)
     (v : V) (hv : v ≠ 0) (u : V)

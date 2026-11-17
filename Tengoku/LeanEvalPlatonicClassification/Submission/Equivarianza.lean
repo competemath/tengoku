@@ -29,7 +29,9 @@ open ConvexPolytope
 
 variable {n : ℕ}
 
-/-- Le esposizioni si trasportano lungo le isometrie affini (ogni `n`).-/
+/-- Le esposizioni si trasportano lungo le isometrie affini (ogni `n`).
+@isnad1 id=isexpose.1h4v.s9.05ca66334ae4 from=translated src=- shape=660188b2 vocab=42cf4040
+-/
 theorem isExposed_image_isomN (φ : Isom n) {A B : Set (E n)}
     (h : IsExposed ℝ A B) : IsExposed ℝ ((⇑φ) '' A) ((⇑φ) '' B) := by
   intro hne
@@ -64,7 +66,9 @@ theorem isExposed_image_isomN (φ : Isom n) {A B : Set (E n)}
     rw [hl' y, hl' a] at hle
     linarith
 
-/-- Le isometrie affini preservano la dimensione delle facce (ogni `n`).-/
+/-- Le isometrie affini preservano la dimensione delle facce (ogni `n`).
+@isnad1 id=eq.0h3v.s8.c21f663d8625 from=translated src=- shape=6d27aa17 vocab=d69146d0
+-/
 theorem faceDim_image_isomN (φ : Isom n) (F : Set (E n)) :
     faceDim ((⇑φ) '' F) = faceDim F := by
   unfold ConvexPolytope.faceDim
@@ -74,7 +78,9 @@ theorem faceDim_image_isomN (φ : Isom n) (F : Set (E n)) :
   rw [← hmap]
   exact φ.toAffineEquiv.linear.finrank_map_eq (vectorSpan ℝ F)
 
-/-- Una simmetria trasporta facce in facce (ogni `n`).-/
+/-- Una simmetria trasporta facce in facce (ogni `n`).
+@isnad1 id=isface.2h4v.s8.63c5ae8381d1 from=translated src=- shape=57875d79 vocab=c3c455b7
+-/
 theorem isFace_image_isomN {P : ConvexPolytope n} (φ : Isom n)
     (hφ : P.isSymmetry φ) {F : Set (E n)} (hF : P.IsFace F) :
     P.IsFace ((⇑φ) '' F) := by
@@ -82,12 +88,16 @@ theorem isFace_image_isomN {P : ConvexPolytope n} (φ : Isom n)
   rw [← hφ]
   exact isExposed_image_isomN φ hF.1
 
-/-- L'identità è una simmetria (ogni `n`).-/
+/-- L'identità è una simmetria (ogni `n`).
+@isnad1 id=issymmet.0h2v.s7.2af77a98300c from=translated src=- shape=267375f7 vocab=61c0d184
+-/
 theorem symmetry_reflN (P : ConvexPolytope n) :
     P.isSymmetry (AffineIsometryEquiv.refl ℝ (E n)) :=
   Set.image_id _
 
-/-- Le simmetrie sono chiuse per composizione (ogni `n`).-/
+/-- Le simmetrie sono chiuse per composizione (ogni `n`).
+@isnad1 id=issymmet.2h4v.s8.30a5bd1d5558 from=translated src=- shape=edb2860f vocab=b22a4e65
+-/
 theorem symmetry_transN {P : ConvexPolytope n} {φ ψ : Isom n}
     (hφ : P.isSymmetry φ) (hψ : P.isSymmetry ψ) :
     P.isSymmetry (φ.trans ψ) := by
@@ -98,7 +108,9 @@ theorem symmetry_transN {P : ConvexPolytope n} {φ ψ : Isom n}
       rfl
     _ = P.toSet := by rw [hφ, hψ]
 
-/-- Le simmetrie sono chiuse per inversa (ogni `n`).-/
+/-- Le simmetrie sono chiuse per inversa (ogni `n`).
+@isnad1 id=issymmet.1h3v.s8.0e72ea943d29 from=translated src=- shape=a0cfe3d7 vocab=750311ac
+-/
 theorem symmetry_symmN {P : ConvexPolytope n} {φ : Isom n}
     (hφ : P.isSymmetry φ) : P.isSymmetry φ.symm := by
   unfold ConvexPolytope.isSymmetry at *
@@ -122,11 +134,16 @@ noncomputable def mapFlag (P : ConvexPolytope n) {φ : Isom n}
     intro heq
     exact hparts.2 ((Set.image_injective.mpr φ.injective) heq)
 
+/--
+@isnad1 id=eq.1h5v.s8.70cc442c5e37 from=translated src=- shape=7058fa8e vocab=e3c87fd9
+-/
 @[simp] theorem mapFlag_face (P : ConvexPolytope n) {φ : Isom n}
     (hφ : P.isSymmetry φ) (F : P.Flag) (k : Fin n) :
     (mapFlag P hφ F).face k = (⇑φ) '' F.face k := rfl
 
-/-- L'adiacenza è equivariante: l'azione conserva la relazione.-/
+/-- L'adiacenza è equivariante: l'azione conserva la relazione.
+@isnad1 id=flagadja.2h6v.s5.86be96ac2dc4 from=translated src=- shape=da1b0665 vocab=7bf545b1
+-/
 theorem flagAdjacentAt_map (P : ConvexPolytope n) {φ : Isom n}
     (hφ : P.isSymmetry φ) {F G : P.Flag} {i : Fin n}
     (h : FlagAdjacentAt P F G i) :
@@ -142,7 +159,9 @@ theorem flagAdjacentAt_map (P : ConvexPolytope n) {φ : Isom n}
 /-- **EQUIVARIANZA DELLA MOSSA**: la mossa di adiacenza commuta con
 l'azione delle simmetrie. Il cuore: per l'unicità, l'immagine
 dell'adiacente — che è adiacente all'immagine — È l'adiacente
-dell'immagine.-/
+dell'immagine.
+@isnad1 id=eq.2h5v.s5.97dc415fb037 from=translated src=- shape=2b9876c3 vocab=a19bdded
+-/
 theorem mapFlag_adjacentFlag (P : ConvexPolytope n) (hfull : P.IsFullDim)
     {φ : Isom n} (hφ : P.isSymmetry φ) (F : P.Flag) (i : Fin n) :
     mapFlag P hφ (adjacentFlag P hfull F i) =

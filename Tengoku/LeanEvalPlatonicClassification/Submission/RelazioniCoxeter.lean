@@ -35,13 +35,17 @@ open ConvexPolytope
 
 variable {n : ℕ}
 
-/-- L'immagine lungo una composizione è la composizione delle immagini.-/
+/-- L'immagine lungo una composizione è la composizione delle immagini.
+@isnad1 id=eq.0h4v.s11.ca4539d8319f from=translated src=- shape=2712a6dc vocab=bf4a9681
+-/
 theorem image_trans_isom (φ ψ : Isom n) (S : Set (E n)) :
     (⇑(φ.trans ψ)) '' S = (⇑ψ) '' ((⇑φ) '' S) := by
   rw [Set.image_image]
   rfl
 
-/-- Le riflessioni semplici non sono l'identità.-/
+/-- Le riflessioni semplici non sono l'identità.
+@isnad1 id=not.1h4v.s8.5cfe8737dad4 from=translated src=- shape=f14b5e0f vocab=331009a5
+-/
 theorem simpleReflection_ne_id (P : ConvexPolytope n) (hreg : P.IsRegular)
     (F : P.Flag) (i : Fin n) :
     ¬ (∀ x : E n, simpleReflection P hreg F i x = x) := by

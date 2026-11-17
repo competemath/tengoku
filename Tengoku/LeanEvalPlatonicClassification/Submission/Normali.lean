@@ -28,7 +28,9 @@ open ConvexPolytope
 
 variable {n : ℕ}
 
-/-- Una retta ortogonale a un iperpiano contiene un vettore unitario.-/
+/-- Una retta ortogonale a un iperpiano contiene un vettore unitario.
+@isnad1 id=ex.1h2v.s10.08aacecab779 from=translated src=- shape=4af5db81 vocab=018837da
+-/
 theorem esiste_unitario_ortogonale {W : Submodule ℝ (E n)}
     (hW : Module.finrank ℝ W + 1 = n) :
     ∃ α : E n, ‖α‖ = 1 ∧ α ∈ Wᗮ ∧ Wᗮ = ℝ ∙ α := by

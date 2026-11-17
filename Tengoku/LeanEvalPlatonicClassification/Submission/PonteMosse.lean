@@ -38,7 +38,9 @@ open ConvexPolytope
 variable {n : ℕ}
 
 /-- **Il ponte**: la commutazione nel gruppo dà la commutazione delle
-mosse.-/
+mosse.
+@isnad1 id=eq.3h5v.s12.fd1ead5d7edd from=translated src=- shape=1337b68c vocab=c6c9f4a9
+-/
 theorem mosse_commutano_di_riflessioni (P : ConvexPolytope n)
     (hreg : P.IsRegular) (F : P.Flag) {i j : Fin n} (hij : i ≠ j)
     (hcomm : simpleGen P hreg F i * simpleGen P hreg F j =

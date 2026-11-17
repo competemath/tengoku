@@ -33,7 +33,9 @@ variable {n : ℕ}
 
 /-- Una faccetta che contiene un vertice assegnato.  È la versione
 radicata di `facet_exists`: l'invariante `v ∈ f` è preservato quando
-`interpolazione` fa salire la faccia corrente.-/
+`interpolazione` fa salire la faccia corrente.
+@isnad1 id=ex.2h4v.s10.9b8a90c1d0f2 from=translated src=- shape=0736f0ad vocab=59909029
+-/
 theorem facet_exists_at_vertex (P : ConvexPolytope n) {d : ℕ}
     (hdim : Module.finrank ℝ (vectorSpan ℝ P.toSet) = d + 1)
     {v : E n} (hv : v ∈ P.vertices) :
@@ -76,7 +78,9 @@ theorem facet_exists_at_vertex (P : ConvexPolytope n) {d : ℕ}
           omega
 
 /-- Catena completa radicata in un vertice.  A differenza di
-`chain_exists`, conserva esplicitamente `c 0 = {v}`.-/
+`chain_exists`, conserva esplicitamente `c 0 = {v}`.
+@isnad1 id=ex.2h4v.s10.50a40d5b5710 from=translated src=- shape=c6bc2ed4 vocab=b7061d44
+-/
 theorem chain_exists_at_vertex (P : ConvexPolytope n) :
     ∀ d : ℕ, Module.finrank ℝ (vectorSpan ℝ P.toSet) = d →
     ∀ v : E n, v ∈ P.vertices →
@@ -148,7 +152,9 @@ theorem chain_exists_at_vertex (P : ConvexPolytope n) :
           exact hc'2 j k hjk hklt
 
 /-- Ogni vertice di un politopo pieno di dimensione ambiente positiva
-radica una bandiera, in dimensione arbitraria.-/
+radica una bandiera, in dimensione arbitraria.
+@isnad1 id=ex.3h3v.s6.479410b3c8cf from=translated src=- shape=26722ad2 vocab=f32e7b0d
+-/
 theorem bandiera_al_vertice_generica (P : ConvexPolytope n)
     (hfull : P.IsFullDim) (hn : 0 < n) {v : E n} (hv : v ∈ P.vertices) :
     ∃ F : P.Flag, F.face ⟨0, hn⟩ = {v} := by

@@ -19,7 +19,9 @@ namespace LeanEval.Geometry.PlatonicClassification
 open ConvexPolytope
 
 /-- **Il lemma locale del fan è un teorema**: in ogni politopo di ℝ³, per
-ogni punto `v`, uno spigolo sta in al più due faccette.-/
+ogni punto `v`, uno spigolo sta in al più due faccette.
+@isnad1 id=edgeinat.0h2v.s4.b63851b0899e from=translated src=- shape=1a1b9d4f vocab=4245018e
+-/
 theorem edgeInAtMostTwoFacets_vale (P : ConvexPolytope 3) (v : E 3) :
     ConvexPolytope.EdgeInAtMostTwoFacets P v := by
   intro A B C hA hdA hB hdB hC hdC hAB hvA hvB hvC x hx hxv hxC

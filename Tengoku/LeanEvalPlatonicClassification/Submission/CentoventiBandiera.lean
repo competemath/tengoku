@@ -2615,21 +2615,33 @@ private theorem isExposed_argmax_120 (s : Finset E4) (l : E4 →L[ℝ] ℝ)
         (s : Set E4) := by simpa [hlx] using harg
     rwa [hset] at hxarg
 
+/--
+@isnad1 id=isface.0h0v.s3.3cc20de2e84d from=translated src=- shape=fb58fac9 vocab=98556ba6
+-/
 theorem F0_120_isFace : centoventi.IsFace F0_120 := by
   refine ⟨?_, ⟨v0_120, subset_convexHull ℝ _ (by simp [generatoriF0_120])⟩⟩
   exact isExposed_argmax_120 generatoriF0_120 l0_120 8
     (by simp [generatoriF0_120]) argmax_l0_120 li_toSet_le.1
 
+/--
+@isnad1 id=isface.0h0v.s3.b0ac00c01b1d from=translated src=- shape=fb58fac9 vocab=74e89986
+-/
 theorem F1_120_isFace : centoventi.IsFace F1_120 := by
   refine ⟨?_, ⟨v0_120, subset_convexHull ℝ _ (by simp [generatoriF1_120])⟩⟩
   exact isExposed_argmax_120 generatoriF1_120 l1_120 (6 + 6 * aureo)
     (by simp [generatoriF1_120]) argmax_l1_120 li_toSet_le.2.1
 
+/--
+@isnad1 id=isface.0h0v.s3.bbdf94639ac1 from=translated src=- shape=fb58fac9 vocab=4bbb3095
+-/
 theorem F2_120_isFace : centoventi.IsFace F2_120 := by
   refine ⟨?_, ⟨v0_120, subset_convexHull ℝ _ (by simp [generatoriF2_120])⟩⟩
   exact isExposed_argmax_120 generatoriF2_120 l2_120 (2 + 4 * aureo)
     (by simp [generatoriF2_120]) argmax_l2_120 li_toSet_le.2.2.1
 
+/--
+@isnad1 id=isface.0h0v.s3.8f6dc53e2f78 from=translated src=- shape=fb58fac9 vocab=906c5742
+-/
 theorem F3_120_isFace : centoventi.IsFace F3_120 := by
   refine ⟨?_, ⟨v0_120, subset_convexHull ℝ _ (by
     exact_mod_cast (by
@@ -2718,6 +2730,9 @@ private theorem p3_120_affineIndependent : AffineIndependent ℝ p3_120 := by
   · exact e2
   · exact e3
 
+/--
+@isnad1 id=eq.0h0v.s3.77eb2a3c6a71 from=translated src=- shape=e67f34a4 vocab=f9b9cb26
+-/
 theorem faceDim_F0_120 : faceDim F0_120 = 0 := by
   rw [F0_120, generatoriF0_120]
   simpa using faceDim_singleton v0_120
@@ -2750,6 +2765,9 @@ private theorem w2_ne_w1_120 : w2_120 ≠ w1_120 := by
   simp at hc
   nlinarith [aureo_bounds.1]
 
+/--
+@isnad1 id=eq.0h0v.s3.2cd0905283d7 from=translated src=- shape=e67f34a4 vocab=ce323b33
+-/
 theorem faceDim_F1_120 : faceDim F1_120 = 1 := by
   have hgen : (generatoriF1_120 : Set E4) = {v0_120, w0_120} := by
     ext x
@@ -2799,6 +2817,9 @@ private theorem l3_eq_on_F3_120 {x : E4} (hx : x ∈ F3_120) :
     (convex_halfSpace_ge (LinearMap.isLinear l3_120.toLinearMap)
       (2 + 4 * aureo)) hx
 
+/--
+@isnad1 id=lt.0h0v.s4.454738d5603a from=translated src=- shape=836e6cbb vocab=bb8acdab
+-/
 theorem F0_ssubset_F1_120 : F0_120 ⊂ F1_120 := by
   apply Set.ssubset_iff_subset_ne.mpr
   constructor
@@ -2812,6 +2833,9 @@ theorem F0_ssubset_F1_120 : F0_120 ⊂ F1_120 := by
     rw [h, faceDim_F1_120] at hd
     omega
 
+/--
+@isnad1 id=lt.0h0v.s4.edbeaf051cde from=translated src=- shape=836e6cbb vocab=c5b7e2a2
+-/
 theorem F1_ssubset_F2_120 : F1_120 ⊂ F2_120 := by
   apply Set.ssubset_iff_subset_ne.mpr
   constructor
@@ -2845,6 +2869,9 @@ private theorem generatorsF2_subset_generatorsF3 :
   · exact_mod_cast (by
       simpa [cellVertex120] using cellVertex_mem_generatoriF3 8)
 
+/--
+@isnad1 id=lt.0h0v.s4.8215b028d5de from=translated src=- shape=836e6cbb vocab=f7080c10
+-/
 theorem F2_ssubset_F3_120 : F2_120 ⊂ F3_120 := by
   apply Set.ssubset_iff_subset_ne.mpr
   constructor
@@ -2882,6 +2909,9 @@ private theorem finrank_ker_l3_120 :
   have hR : Module.finrank ℝ ℝ = 1 := Module.finrank_self ℝ
   omega
 
+/--
+@isnad1 id=eq.0h0v.s3.df17c508975f from=translated src=- shape=e67f34a4 vocab=904d7b6b
+-/
 theorem faceDim_F3_120 : faceDim F3_120 = 3 := by
   unfold faceDim
   apply le_antisymm
@@ -2909,6 +2939,9 @@ theorem faceDim_F3_120 : faceDim F3_120 = 3 := by
       _ ≤ Module.finrank ℝ (vectorSpan ℝ F3_120) :=
         Submodule.finrank_mono hsub
 
+/--
+@isnad1 id=eq.0h0v.s3.9a32dfc79246 from=translated src=- shape=e67f34a4 vocab=a2f16b23
+-/
 theorem faceDim_F2_120 : faceDim F2_120 = 2 := by
   have hlo := faceDim_lt_of_ssubset centoventi
     F1_120_isFace F2_120_isFace F1_ssubset_F2_120
@@ -5425,6 +5458,9 @@ private theorem r2_image_vertices120 :
     · rw [Finset.card_image_of_injective _ r2_120.injective]
   rw [← Finset.coe_image, hfin]
 
+/--
+@isnad1 id=issymmet.0h0v.s3.72e68d56adaf from=translated src=- shape=fb58fac9 vocab=59c16e2a
+-/
 theorem r2_120_isSymmetry : centoventi.isSymmetry r2_120 := by
   rw [ConvexPolytope.isSymmetry, ConvexPolytope.toSet]
   calc
@@ -8966,6 +9002,9 @@ private theorem r0_image_vertices120 :
     · rw [Finset.card_image_of_injective _ r0_120.injective]
   rw [← Finset.coe_image, hfin]
 
+/--
+@isnad1 id=issymmet.0h0v.s3.c01439bcbb76 from=translated src=- shape=fb58fac9 vocab=f2445d43
+-/
 theorem r0_120_isSymmetry : centoventi.isSymmetry r0_120 := by
   rw [ConvexPolytope.isSymmetry, ConvexPolytope.toSet]
   calc
@@ -9174,9 +9213,15 @@ def r1_120 : Isom 4 := flip120 3
 /-- Parete 3: negazione della terza coordinata.-/
 def r3_120 : Isom 4 := flip120 2
 
+/--
+@isnad1 id=issymmet.0h0v.s3.a5bca83c8c7d from=translated src=- shape=fb58fac9 vocab=da7d84f7
+-/
 theorem r1_120_isSymmetry : centoventi.isSymmetry r1_120 :=
   flip120_isSymmetry 3
 
+/--
+@isnad1 id=issymmet.0h0v.s3.6e69cc3ff1b7 from=translated src=- shape=fb58fac9 vocab=1e894cd3
+-/
 theorem r3_120_isSymmetry : centoventi.isSymmetry r3_120 :=
   flip120_isSymmetry 2
 
@@ -9452,6 +9497,9 @@ private theorem r3_moves_F3_120 :
   rw [l3_r3_cellVertex1] at hl
   norm_num at hl
 
+/--
+@isnad1 id=flagadja.0h0v.s5.d63fa8b4081d from=translated src=- shape=95e6f9d5 vocab=ffb659d5
+-/
 theorem r0_120_flagAdjacent :
     FlagAdjacentAt centoventi centoventiFlag
       (mapFlag centoventi r0_120_isSymmetry centoventiFlag) 0 := by
@@ -9464,6 +9512,9 @@ theorem r0_120_flagAdjacent :
     · exact r0_image_F3_120
   · exact r0_moves_F0_120
 
+/--
+@isnad1 id=flagadja.0h0v.s5.02dd0c2c57f6 from=translated src=- shape=95e6f9d5 vocab=b63e4370
+-/
 theorem r1_120_flagAdjacent :
     FlagAdjacentAt centoventi centoventiFlag
       (mapFlag centoventi r1_120_isSymmetry centoventiFlag) 1 := by
@@ -9476,6 +9527,9 @@ theorem r1_120_flagAdjacent :
     · exact r1_image_F3_120
   · exact r1_moves_F1_120
 
+/--
+@isnad1 id=flagadja.0h0v.s5.86e9d4352d5d from=translated src=- shape=95e6f9d5 vocab=98aa5e6d
+-/
 theorem r2_120_flagAdjacent :
     FlagAdjacentAt centoventi centoventiFlag
       (mapFlag centoventi r2_120_isSymmetry centoventiFlag) 2 := by
@@ -9488,6 +9542,9 @@ theorem r2_120_flagAdjacent :
     · exact r2_image_F3_120
   · exact r2_moves_F2_120
 
+/--
+@isnad1 id=flagadja.0h0v.s5.81811f6ab2df from=translated src=- shape=95e6f9d5 vocab=0e7b973b
+-/
 theorem r3_120_flagAdjacent :
     FlagAdjacentAt centoventi centoventiFlag
       (mapFlag centoventi r3_120_isSymmetry centoventiFlag) 3 := by

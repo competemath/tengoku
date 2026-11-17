@@ -36,7 +36,9 @@ def rightFour (m : ℕ → ℕ) (L : ℕ) : Prop :=
 def doubleFour (m : ℕ → ℕ) (L : ℕ) : Prop :=
   m 0 = 4 ∧ (∀ i, 1 ≤ i → i < L - 1 → m i = 3) ∧ m (L - 1) = 4
 
-/-- **Ogni posizione interna è forzata a 3.**-/
+/-- **Ogni posizione interna è forzata a 3.**
+@isnad1 id=eq.4h3v.s5.e1022ef28f03 from=translated src=- shape=8482677d vocab=c7331135
+-/
 theorem interna_tre (m : ℕ → ℕ) (L : ℕ) (hL : 4 ≤ L)
     (hwin : FinestraPattern m L) (i : ℕ) (hi1 : 1 ≤ i) (hiL : i + 1 < L) :
     m i = 3 := by
@@ -50,7 +52,9 @@ theorem interna_tre (m : ℕ → ℕ) (L : ℕ) (hL : 4 ≤ L)
     rcases hw with ⟨_, _, h2, _⟩ | ⟨_, _, h2, _⟩ | ⟨_, _, h2, _⟩ <;>
       (rw [he] at h2; exact h2)
 
-/-- **La propagazione**: la stringa è una delle quattro forme.-/
+/-- **La propagazione**: la stringa è una delle quattro forme.
+@isnad1 id=or.2h2v.s5.fe698849f351 from=translated src=- shape=5bcbb644 vocab=a3efcb02
+-/
 theorem propagazione (m : ℕ → ℕ) (L : ℕ) (hL : 4 ≤ L)
     (hwin : FinestraPattern m L) :
     allThree m L ∨ leftFour m L ∨ rightFour m L ∨ doubleFour m L := by

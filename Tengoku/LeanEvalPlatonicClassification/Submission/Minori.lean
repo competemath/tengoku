@@ -33,10 +33,19 @@ noncomputable def minoreGram (c : ℕ → ℝ) : ℕ → ℝ
   | 1 => 1
   | (k + 2) => minoreGram c (k + 1) - (c k) ^ 2 * minoreGram c k
 
+/--
+@isnad1 id=eq.0h1v.s4.c77e6d94f1ec from=translated src=- shape=777ad2f6 vocab=54f22e9e
+-/
 @[simp] theorem minoreGram_zero (c : ℕ → ℝ) : minoreGram c 0 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.4a2d0e5c1eb3 from=translated src=- shape=777ad2f6 vocab=54f22e9e
+-/
 @[simp] theorem minoreGram_one (c : ℕ → ℝ) : minoreGram c 1 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.a27dd42d61c8 from=translated src=- shape=65cea163 vocab=e196675a
+-/
 theorem minoreGram_succ_succ (c : ℕ → ℝ) (k : ℕ) :
     minoreGram c (k + 2) =
       minoreGram c (k + 1) - (c k) ^ 2 * minoreGram c k := rfl

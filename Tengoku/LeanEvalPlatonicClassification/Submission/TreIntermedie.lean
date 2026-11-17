@@ -14,6 +14,9 @@ open ConvexPolytope
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=ex.1h2v.s6.07f683c24b40 from=translated src=- shape=470f1385 vocab=cfa63a3f
+-/
 theorem tre_vertici_di_poligono (P : ConvexPolytope n)
     (hdim : faceDim P.toSet = 2) :
     ∃ u v w : Set (E n),

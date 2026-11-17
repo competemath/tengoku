@@ -29,7 +29,9 @@ open ConvexPolytope
 
 variable {n : ℕ}
 
-/-- Il corpo è una faccia di sé stesso (esposto dal funzionale nullo).-/
+/-- Il corpo è una faccia di sé stesso (esposto dal funzionale nullo).
+@isnad1 id=isface.0h2v.s3.c4a50b547cb7 from=translated src=- shape=e4b23468 vocab=e282d17e
+-/
 theorem toSet_isFace (P : ConvexPolytope n) : P.IsFace P.toSet := by
   constructor
   · intro _
@@ -39,14 +41,18 @@ theorem toSet_isFace (P : ConvexPolytope n) : P.IsFace P.toSet := by
   · obtain ⟨v, hv⟩ := P.vertices_nonempty
     exact ⟨v, subset_convexHull ℝ _ (by exact_mod_cast hv)⟩
 
-/-- Ogni faccia sta nel corpo.-/
+/-- Ogni faccia sta nel corpo.
+@isnad1 id=le.1h3v.s4.d4a6add19979 from=translated src=- shape=098b4414 vocab=2f9c3bf9
+-/
 theorem face_subset_toSet (P : ConvexPolytope n) {f : Set (E n)}
     (hf : P.IsFace f) : f ⊆ P.toSet := by
   obtain ⟨l, hl⟩ := hf.1 hf.2
   rw [hl]
   exact fun z hz => hz.1
 
-/-- S4a: ogni politopo di dimensione ≥ 1 ha una faccetta (dim esattamente d−1).-/
+/-- S4a: ogni politopo di dimensione ≥ 1 ha una faccetta (dim esattamente d−1).
+@isnad1 id=ex.1h2v.s11.e85655e59905 from=translated src=- shape=409b34c9 vocab=dee458c3
+-/
 theorem facet_exists (P : ConvexPolytope n)
     (hd : 1 ≤ Module.finrank ℝ (vectorSpan ℝ P.toSet)) :
     ∃ f : Set (E n), P.IsFace f ∧
@@ -83,7 +89,9 @@ theorem facet_exists (P : ConvexPolytope n)
       exact ih f' hf' (by omega) (by omega)
 
 /-- S4b: la catena completa — per ogni politopo, una successione di facce di
-dimensioni esatte 0,…,d−1, strettamente crescente.-/
+dimensioni esatte 0,…,d−1, strettamente crescente.
+@isnad1 id=ex.1h3v.s10.555614e9f8c9 from=translated src=- shape=d03d2238 vocab=076b6740
+-/
 theorem chain_exists (P : ConvexPolytope n) :
     ∀ d : ℕ, Module.finrank ℝ (vectorSpan ℝ P.toSet) = d →
     ∃ c : ℕ → Set (E n),
@@ -142,7 +150,9 @@ theorem chain_exists (P : ConvexPolytope n) :
         simp only [ite_eq_right hkm, ite_eq_right hjm]
         exact hc'2 j k hjk hklt
 
-/-- S4: LE BANDIERE ESISTONO — ogni politopo full-dimensionale ha una Flag.-/
+/-- S4: LE BANDIERE ESISTONO — ogni politopo full-dimensionale ha una Flag.
+@isnad1 id=nonempty.1h2v.s3.78ed6d87abb6 from=translated src=- shape=0467682d vocab=221ec7f1
+-/
 theorem flag_exists (P : ConvexPolytope n) (hfull : P.IsFullDim) :
     Nonempty (P.Flag) := by
   classical

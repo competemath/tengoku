@@ -20,7 +20,9 @@ residuo.  Formulare l'appartenenza a `V` esplicitamente è essenziale: nello
 spazio ambiente la tesi è falsa già in dimensione tre. -/
 
 /-- In un piano euclideo, ruotare entrambe le coppie di rette di novanta
-gradi conserva, in valore assoluto, il loro coseno normalizzato.-/
+gradi conserva, in valore assoluto, il loro coseno normalizzato.
+@isnad1 id=eq.9h6v.s11.b83e6b75ae71 from=translated src=- shape=4c2f2a9f vocab=9afb90ca
+-/
 theorem coseno_da_ortogonalita_nel_piano
     {V : Submodule ℝ (E n)} (hdim : Module.finrank ℝ V = 2)
     {α β u v : E n}
@@ -61,7 +63,9 @@ theorem coseno_da_ortogonalita_nel_piano
   ring
 
 /-- Un punto fisso della riflessione descritta dalla formula affine dà un
-vettore, rispetto a un altro punto fisso, ortogonale alla normale.-/
+vettore, rispetto a un altro punto fisso, ortogonale alla normale.
+@isnad1 id=eq.4h6v.s8.b2fcd3c62470 from=translated src=- shape=747f9033 vocab=3541b184
+-/
 theorem inner_sub_eq_zero_of_fixed_reflection
     {α p O x : E n} {r : E n → E n} (hα : ‖α‖ = 1)
     (hr : ∀ z, r z = z - (2 * ⟪α, z - p⟫ : ℝ) • α)
@@ -85,7 +89,9 @@ theorem inner_sub_eq_zero_of_fixed_reflection
 
 /-- Firma effettiva del Bersaglio 1.  `V` è il piano lineare del residuo;
 le quattro ipotesi di appartenenza sono il ponte geometrico che non è
-conseguenza delle sole equazioni di punto fisso nello spazio ambiente.-/
+conseguenza delle sole equazioni di punto fisso nello spazio ambiente.
+@isnad1 id=eq.17h12v.s12.3e528bd64c5f from=translated src=- shape=d75c6e41 vocab=b200b9e8
+-/
 theorem coseno_da_centroidi (P : ConvexPolytope n) (hreg : P.IsRegular)
     (F : P.Flag) (i : Fin n) (hi : (i : ℕ) + 1 < n)
     {αi pi αj pj : E n} (hαi : ‖αi‖ = 1) (hαj : ‖αj‖ = 1)
@@ -113,7 +119,9 @@ theorem coseno_da_centroidi (P : ConvexPolytope n) (hreg : P.IsRegular)
 /-- Una volta certificato il mezzo passo, la conclusione cercata segue per
 cancellazione delle due norme, che sono non nulle grazie alle ipotesi di
 non fissità.  Questo lemma registra che non resta alcun ulteriore ostacolo
-algebrico dopo il Bersaglio 2.-/
+algebrico dopo il Bersaglio 2.
+@isnad1 id=eq.18h12v.s12.28ca3e4f2e20 from=translated src=- shape=512057d8 vocab=36262218
+-/
 theorem rotazione_elementare_da_centroidi
     (P : ConvexPolytope n) (hreg : P.IsRegular)
     (F : P.Flag) (i : Fin n) (hi : (i : ℕ) + 1 < n)

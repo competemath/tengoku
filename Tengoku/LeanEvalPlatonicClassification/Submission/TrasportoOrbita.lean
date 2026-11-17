@@ -64,7 +64,9 @@ private theorem simpleSubgroup_conj_exists
       simp
 
 /-- Una coniugazione affine delle riflessioni semplici trasporta
-esattamente l'orbita puntuale del sottogruppo semplice.-/
+esattamente l'orbita puntuale del sottogruppo semplice.
+@isnad1 id=eq.3h7v.s12.84f42955ad6d from=translated src=- shape=1131416c vocab=9a2e59c0
+-/
 theorem simpleVertexOrbit_conj
     (P Q : ConvexPolytope n) (hregP : P.IsRegular) (hregQ : Q.IsRegular)
     (F : P.Flag) (G : Q.Flag) (Φ : E n ≃ᵃⁱ[ℝ] E n)
@@ -102,7 +104,9 @@ theorem simpleVertexOrbit_conj
       _ = u := hwu
 
 /-- Se tutte le riflessioni semplici fissano un punto, la sua orbita
-sotto il sottogruppo da esse generato e' il singoletto di quel punto.-/
+sotto il sottogruppo da esse generato e' il singoletto di quel punto.
+@isnad1 id=eq.2h4v.s8.6d7da24685d6 from=translated src=- shape=7eb93f12 vocab=b6609656
+-/
 theorem simpleVertexOrbit_eq_singleton_of_fixed
     (P : ConvexPolytope n) (hreg : P.IsRegular)
     (F : P.Flag) (v : E n)

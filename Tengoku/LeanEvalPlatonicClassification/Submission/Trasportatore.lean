@@ -33,7 +33,9 @@ open ConvexPolytope
 
 variable {n : ℕ}
 
-/-- L'azione rispetta la composizione delle simmetrie.-/
+/-- L'azione rispetta la composizione delle simmetrie.
+@isnad1 id=eq.2h5v.s9.5d4efc7f5346 from=translated src=- shape=cb972875 vocab=c3a930ab
+-/
 theorem mapFlag_trans (P : ConvexPolytope n) {φ ψ : Isom n}
     (hφ : P.isSymmetry φ) (hψ : P.isSymmetry ψ) (F : P.Flag) :
     mapFlag P hψ (mapFlag P hφ F) =
@@ -44,7 +46,9 @@ theorem mapFlag_trans (P : ConvexPolytope n) {φ ψ : Isom n}
   rw [Set.image_image]
   rfl
 
-/-- L'inversa disfa l'azione.-/
+/-- L'inversa disfa l'azione.
+@isnad1 id=eq.1h4v.s8.dbad4596f42b from=translated src=- shape=f79a02f9 vocab=4b88c092
+-/
 theorem mapFlag_symm_mapFlag (P : ConvexPolytope n) {φ : Isom n}
     (hφ : P.isSymmetry φ) (F : P.Flag) :
     mapFlag P (symmetry_symmN hφ) (mapFlag P hφ F) = F := by
@@ -59,11 +63,16 @@ noncomputable def transporter (P : ConvexPolytope n) (hreg : P.IsRegular)
     (F G : P.Flag) : Isom n :=
   (hreg.2 F G).choose
 
+/--
+@isnad1 id=issymmet.1h4v.s4.71a735704ac1 from=translated src=- shape=34987f2a vocab=d62ff8c5
+-/
 theorem transporter_isSymmetry (P : ConvexPolytope n) (hreg : P.IsRegular)
     (F G : P.Flag) : P.isSymmetry (transporter P hreg F G) :=
   (hreg.2 F G).choose_spec.1
 
-/-- Il trasportatore porta davvero `F` in `G`.-/
+/-- Il trasportatore porta davvero `F` in `G`.
+@isnad1 id=eq.1h4v.s5.fd6c836a8f22 from=translated src=- shape=d2c71a04 vocab=25862a89
+-/
 theorem transporter_mapFlag (P : ConvexPolytope n) (hreg : P.IsRegular)
     (F G : P.Flag) :
     mapFlag P (transporter_isSymmetry P hreg F G) F = G := by
@@ -78,19 +87,26 @@ noncomputable def simpleReflection (P : ConvexPolytope n)
     (hreg : P.IsRegular) (F : P.Flag) (i : Fin n) : Isom n :=
   transporter P hreg F (adjacentFlag P hreg.1 F i)
 
+/--
+@isnad1 id=issymmet.1h4v.s4.df0a25f13357 from=translated src=- shape=fde477e1 vocab=638034ba
+-/
 theorem simpleReflection_isSymmetry (P : ConvexPolytope n)
     (hreg : P.IsRegular) (F : P.Flag) (i : Fin n) :
     P.isSymmetry (simpleReflection P hreg F i) :=
   transporter_isSymmetry P hreg F (adjacentFlag P hreg.1 F i)
 
-/-- `rᵢ` manda la bandiera base nella sua adiacente al rango `i`.-/
+/-- `rᵢ` manda la bandiera base nella sua adiacente al rango `i`.
+@isnad1 id=eq.1h4v.s5.9f5f7287713a from=translated src=- shape=f347a082 vocab=7039e1a6
+-/
 theorem simpleReflection_mapFlag (P : ConvexPolytope n)
     (hreg : P.IsRegular) (F : P.Flag) (i : Fin n) :
     mapFlag P (simpleReflection_isSymmetry P hreg F i) F =
       adjacentFlag P hreg.1 F i :=
   transporter_mapFlag P hreg F (adjacentFlag P hreg.1 F i)
 
-/-- `rᵢ` scambia la bandiera base con la sua adiacente.-/
+/-- `rᵢ` scambia la bandiera base con la sua adiacente.
+@isnad1 id=eq.1h4v.s5.91a1e1213a97 from=translated src=- shape=fe82e9b7 vocab=7039e1a6
+-/
 theorem simpleReflection_swaps (P : ConvexPolytope n)
     (hreg : P.IsRegular) (F : P.Flag) (i : Fin n) :
     mapFlag P (simpleReflection_isSymmetry P hreg F i)
@@ -100,7 +116,9 @@ theorem simpleReflection_swaps (P : ConvexPolytope n)
     simpleReflection_mapFlag P hreg F i]
   exact adjacentFlag_involutive P hreg.1 F i
 
-/-- **`rᵢ` due volte fissa la bandiera**: il germe di `rᵢ² = 1`.-/
+/-- **`rᵢ` due volte fissa la bandiera**: il germe di `rᵢ² = 1`.
+@isnad1 id=eq.1h4v.s5.77ca99da4582 from=translated src=- shape=8d418bcd vocab=707341bb
+-/
 theorem simpleReflection_sq_fixes (P : ConvexPolytope n)
     (hreg : P.IsRegular) (F : P.Flag) (i : Fin n) :
     mapFlag P (simpleReflection_isSymmetry P hreg F i)

@@ -20,7 +20,9 @@ open ConvexPolytope
 
 variable {n : ℕ}
 
-/-- Una simmetria del politopo ne permuta l'insieme dei vertici.-/
+/-- Una simmetria del politopo ne permuta l'insieme dei vertici.
+@isnad1 id=eq.1h3v.s8.36e8d9a73b71 from=translated src=- shape=cc0bd38b vocab=90aecbb8
+-/
 theorem simmetria_permuta_vertici (P : ConvexPolytope n) {φ : Isom n}
     (hφ : P.isSymmetry φ) :
     (⇑φ) '' (P.vertices : Set (E n)) = (P.vertices : Set (E n)) := by
@@ -33,7 +35,9 @@ theorem simmetria_permuta_vertici (P : ConvexPolytope n) {φ : Isom n}
   rw [hφ]
 
 open Classical in
-/-- Su una faccia fissata, una simmetria permuta i vertici della faccia.-/
+/-- Su una faccia fissata, una simmetria permuta i vertici della faccia.
+@isnad1 id=eq.2h4v.s9.1a47b17edba9 from=translated src=- shape=b282db75 vocab=7293bca5
+-/
 theorem simmetria_permuta_vertici_faccia (P : ConvexPolytope n)
     {φ : Isom n} (hφ : P.isSymmetry φ) {f : Set (E n)}
     (hfix : (⇑φ) '' f = f) :
@@ -65,7 +69,9 @@ theorem simmetria_permuta_vertici_faccia (P : ConvexPolytope n)
     exact ⟨hxV, hx'f⟩
 
 open Classical in
-/-- Il centroide dei vertici di una faccia fissata è un punto fisso.-/
+/-- Il centroide dei vertici di una faccia fissata è un punto fisso.
+@isnad1 id=eq.3h4v.s10.26c7300f2789 from=translated src=- shape=387d21cc vocab=1420e856
+-/
 theorem centroide_di_faccia_fissato (P : ConvexPolytope n)
     {φ : Isom n} (hφ : P.isSymmetry φ) {f : Set (E n)}
     (hf : P.IsFace f) (hfix : (⇑φ) '' f = f) :
@@ -91,7 +97,9 @@ theorem centroide_di_faccia_fissato (P : ConvexPolytope n)
   · simpa [s] using simmetria_permuta_vertici_faccia P hφ hfix
 
 open Classical in
-/-- Il centroide dei vertici di una faccia appartiene alla faccia.-/
+/-- Il centroide dei vertici di una faccia appartiene alla faccia.
+@isnad1 id=mem.1h3v.s8.08647c8ca37c from=translated src=- shape=a9fc88e9 vocab=f10e2b7b
+-/
 theorem centroide_mem_faccia (P : ConvexPolytope n) {f : Set (E n)}
     (hf : P.IsFace f) :
     Finset.centroid ℝ (P.vertices.filter (fun x => x ∈ f)) id ∈ f := by
@@ -103,7 +111,9 @@ theorem centroide_mem_faccia (P : ConvexPolytope n) {f : Set (E n)}
 
 open Classical in
 /-- Il centroide di una faccia non appartiene allo span affine di una
-sottofaccia propria.-/
+sottofaccia propria.
+@isnad1 id=not.3h4v.s10.196605eb4388 from=translated src=- shape=82eeed2c vocab=7c76d025
+-/
 theorem centroide_fuori_da_span_sottofaccia (P : ConvexPolytope n)
     {g f : Set (E n)} (hg : P.IsFace g) (hf : P.IsFace f)
     (hgf : g ⊂ f) :

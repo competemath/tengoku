@@ -13,6 +13,9 @@ open ConvexPolytope
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=eq.2h5v.s8.62aa7bb34632 from=translated src=- shape=3553c947 vocab=70de7fdb
+-/
 theorem simpleReflection_fissa_facce (P : ConvexPolytope n) (hreg : P.IsRegular)
     (F : P.Flag) (i : Fin n) {k : Fin n} (hk : k ≠ i) :
     (⇑(simpleReflection P hreg F i)) '' F.face k = F.face k := by
@@ -35,12 +38,18 @@ noncomputable def centroidiBandieraCorpo (P : ConvexPolytope n) (F : P.Flag) :
       Finset.centroid ℝ (P.vertices.filter (fun x => x ∈ F.face k)) id)
 
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s8.f54fb5daeca6 from=translated src=- shape=cf307391 vocab=5d3e862f
+-/
 @[simp] theorem centroidiBandieraCorpo_last (P : ConvexPolytope n) (F : P.Flag) :
     centroidiBandieraCorpo P F (Fin.last n) =
       Finset.centroid ℝ (P.vertices.filter (fun x => x ∈ P.toSet)) id := by
   simp [centroidiBandieraCorpo]
 
 open Classical in
+/--
+@isnad1 id=eq.0h4v.s8.9afa22f257d3 from=translated src=- shape=38ee0ec8 vocab=6312ed79
+-/
 @[simp] theorem centroidiBandieraCorpo_castSucc (P : ConvexPolytope n)
     (F : P.Flag) (k : Fin n) :
     centroidiBandieraCorpo P F k.castSucc =

@@ -52,6 +52,9 @@ structure PolytopeFace (P : ConvexPolytope n) where
   carrier : Set (E n)
   isFace : P.IsFace carrier
 
+/--
+@isnad1 id=eq.1h6v.s5.01e5ea885578 from=translated src=- shape=bd9a41e6 vocab=f3eca42c
+-/
 @[ext]
 theorem PositiveVertexStarFace.ext
     {P : ConvexPolytope n} {B : Set (E n)} {v : E n}
@@ -62,6 +65,9 @@ theorem PositiveVertexStarFace.ext
   cases h
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.b2e7c8a6b0ec from=translated src=- shape=0f6ad357 vocab=9b156b2f
+-/
 @[ext]
 theorem PolytopeFace.ext {P : ConvexPolytope n}
     {F G : PolytopeFace P} (h : F.carrier = G.carrier) : F = G := by
@@ -99,7 +105,9 @@ namespace VertexFigureGaloisData
 
 variable {P : ConvexPolytope n} {B : Set (E n)} {v : E n}
 
-/-- La faccia superiore dello star corrisponde al corpo intero della figura.-/
+/-- La faccia superiore dello star corrisponde al corpo intero della figura.
+@isnad1 id=eq.3h5v.s7.c289ff5c8548 from=translated src=- shape=c3ead782 vocab=e4019739
+-/
 theorem map_top_eq_toSet (D : VertexFigureGaloisData P B v)
     (hB : P.IsFace B) (hvB : v ∈ B) (hdB : 1 ≤ faceDim B) :
     (D.faceEquiv
@@ -127,7 +135,9 @@ theorem map_top_eq_toSet (D : VertexFigureGaloisData P B v)
   · exact himage
 
 /-- La dimensione intrinseca della figura è esattamente una in meno della
-dimensione della faccia di base.-/
+dimensione della faccia di base.
+@isnad1 id=eq.3h5v.s6.c8d569948d75 from=translated src=- shape=42be884a vocab=bac1a219
+-/
 theorem figure_dim_add_one (D : VertexFigureGaloisData P B v)
     (hB : P.IsFace B) (hvB : v ∈ B) (hdB : 1 ≤ faceDim B) :
     faceDim D.figure.toSet + 1 = faceDim B := by

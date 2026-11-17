@@ -13,7 +13,9 @@ namespace LeanEval.Geometry.PlatonicClassification
 
 open ConvexPolytope
 
-/-- The two vertices over one coordinate are opposites.-/
+/-- The two vertices over one coordinate are opposites.
+@isnad1 id=eq.0h3v.s6.51299be50b3f from=translated src=- shape=5384bda7 vocab=51233066
+-/
 theorem vertOrto_not_eq_neg {d : ℕ} (i : Fin d) (b : Bool) :
     vertOrto (i, !b) = -vertOrto (i, b) := by
   ext k
@@ -21,7 +23,9 @@ theorem vertOrto_not_eq_neg {d : ℕ} (i : Fin d) (b : Bool) :
 
 open Classical in
 /-- A proper face of the cross-polytope contains at most one of the two
-vertices over each coordinate.-/
+vertices over each coordinate.
+@isnad1 id=eq.5h5v.s7.10548f1ba296 from=translated src=- shape=41729c34 vocab=3ff2cfc5
+-/
 theorem ortoplesse_face_no_antipodi (d : ℕ) (hd : 1 ≤ d)
     {f : Set (E d)} (hf : (ortoplesse d hd).IsFace f) (hproper : faceDim f < d)
     {i : Fin d} {b c : Bool}
@@ -81,7 +85,9 @@ theorem ortoplesse_face_no_antipodi (d : ℕ) (hd : 1 ≤ d)
 
 open Classical in
 /-- The vertices contained in a proper face of the cross-polytope are
-linearly, hence affinely, independent.-/
+linearly, hence affinely, independent.
+@isnad1 id=affinein.3h2v.s8.8c7c226c3335 from=translated src=- shape=a6383254 vocab=0981b3e9
+-/
 theorem ortoplesse_face_affineIndependent (d : ℕ) (hd : 1 ≤ d)
     {f : Set (E d)} (hf : (ortoplesse d hd).IsFace f) (hproper : faceDim f < d) :
     AffineIndependent ℝ
@@ -137,7 +143,9 @@ theorem ortoplesse_face_affineIndependent (d : ℕ) (hd : 1 ≤ d)
   exact (mul_eq_zero.mp hsum').resolve_right hxnonzero
 
 open Classical in
-/-- Every proper face of the cross-polytope is a simplex.-/
+/-- Every proper face of the cross-polytope is a simplex.
+@isnad1 id=eq.3h2v.s6.58036907d797 from=translated src=- shape=ea561391 vocab=99af8544
+-/
 theorem ortoplesse_face_card (d : ℕ) (hd : 1 ≤ d)
     {f : Set (E d)} (hf : (ortoplesse d hd).IsFace f) (hproper : faceDim f < d) :
     ((ortoplesse d hd).vertices.filter (· ∈ f)).card = faceDim f + 1 := by
@@ -169,6 +177,9 @@ theorem ortoplesse_face_card (d : ℕ) (hd : 1 ≤ d)
 def finPredSame {d : ℕ} (k : Fin d) (_hk : k.val ≠ 0) : Fin d :=
   ⟨k.val - 1, lt_of_le_of_lt (Nat.sub_le _ _) k.isLt⟩
 
+/--
+@isnad1 id=eq.1h2v.s5.46c15a448d8d from=translated src=- shape=23704ed7 vocab=261ba4e5
+-/
 @[simp] theorem finPredSame_val {d : ℕ} (k : Fin d) (hk : k.val ≠ 0) :
     (finPredSame k hk).val = k.val - 1 := rfl
 
@@ -184,6 +195,9 @@ noncomputable def ortoplesseFlagPrev (d : ℕ) (hd : 1 ≤ d)
     ortoplesseFlagVertices d hd F (finPredSame k hk)
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s5.81b9a5301f6c from=translated src=- shape=97810871 vocab=ccf49493
+-/
 theorem ortoplesseFlagVertices_card (d : ℕ) (hd : 1 ≤ d)
     (F : (ortoplesse d hd).Flag) (k : Fin d) :
     (ortoplesseFlagVertices d hd F k).card = k.val + 1 := by
@@ -194,6 +208,9 @@ theorem ortoplesseFlagVertices_card (d : ℕ) (hd : 1 ≤ d)
     ortoplesse_face_card d hd (F.isFace k) hproper
 
 open Classical in
+/--
+@isnad1 id=le.2h4v.s5.0b52d1041eac from=translated src=- shape=b1fc39e9 vocab=58def086
+-/
 theorem ortoplesseFlagVertices_mono (d : ℕ) (hd : 1 ≤ d)
     (F : (ortoplesse d hd).Flag) {i j : Fin d} (hij : i ≤ j) :
     ortoplesseFlagVertices d hd F i ⊆ ortoplesseFlagVertices d hd F j := by
@@ -205,6 +222,9 @@ theorem ortoplesseFlagVertices_mono (d : ℕ) (hd : 1 ≤ d)
   · exact (F.strict_mono i j hij).1 hv.2
 
 open Classical in
+/--
+@isnad1 id=nonempty.1h3v.s6.b2be28571632 from=translated src=- shape=68e0eda3 vocab=8a2fb6bf
+-/
 theorem ortoplesseFlagStep_nonempty (d : ℕ) (hd : 1 ≤ d)
     (F : (ortoplesse d hd).Flag) (k : Fin d) :
     (ortoplesseFlagVertices d hd F k \ ortoplesseFlagPrev d hd F k).Nonempty := by
@@ -239,6 +259,9 @@ noncomputable def ortoplesseFlagNew (d : ℕ) (hd : 1 ≤ d)
   (ortoplesseFlagStep_nonempty d hd F k).choose
 
 open Classical in
+/--
+@isnad1 id=mem.1h3v.s5.72761e47daa9 from=translated src=- shape=9979f4fa vocab=2fa919fa
+-/
 theorem ortoplesseFlagNew_mem (d : ℕ) (hd : 1 ≤ d)
     (F : (ortoplesse d hd).Flag) (k : Fin d) :
     ortoplesseFlagNew d hd F k ∈ ortoplesseFlagVertices d hd F k :=
@@ -246,6 +269,9 @@ theorem ortoplesseFlagNew_mem (d : ℕ) (hd : 1 ≤ d)
     (ortoplesseFlagStep_nonempty d hd F k).choose_spec).1
 
 open Classical in
+/--
+@isnad1 id=not.1h3v.s5.344a0ed948b5 from=translated src=- shape=4d048094 vocab=15c5d151
+-/
 theorem ortoplesseFlagNew_not_prev (d : ℕ) (hd : 1 ≤ d)
     (F : (ortoplesse d hd).Flag) (k : Fin d) :
     ortoplesseFlagNew d hd F k ∉ ortoplesseFlagPrev d hd F k :=
@@ -253,6 +279,9 @@ theorem ortoplesseFlagNew_not_prev (d : ℕ) (hd : 1 ≤ d)
     (ortoplesseFlagStep_nonempty d hd F k).choose_spec).2
 
 open Classical in
+/--
+@isnad1 id=injectiv.1h2v.s4.ba9ede2696a4 from=translated src=- shape=e63742cb vocab=ee97dba7
+-/
 theorem ortoplesseFlagNew_injective (d : ℕ) (hd : 1 ≤ d)
     (F : (ortoplesse d hd).Flag) :
     Function.Injective (ortoplesseFlagNew d hd F) := by
@@ -289,6 +318,9 @@ theorem ortoplesseFlagNew_injective (d : ℕ) (hd : 1 ≤ d)
     exact hinot (hij.symm ▸ hjmem)
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s6.1030d54b7975 from=translated src=- shape=95a6b99b vocab=c6b08796
+-/
 theorem ortoplesseFlagVertices_eq_image_Iic (d : ℕ) (hd : 1 ≤ d)
     (F : (ortoplesse d hd).Flag) (k : Fin d) :
     ortoplesseFlagVertices d hd F k =
@@ -312,6 +344,9 @@ noncomputable def ortoplesseFlagCode (d : ℕ) (hd : 1 ≤ d)
       (Finset.mem_filter.mp (ortoplesseFlagNew_mem d hd F k)).1)).choose
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s5.9f9b4ad35bbb from=translated src=- shape=caeac899 vocab=bb5a11b5
+-/
 theorem ortoplesseFlagCode_spec (d : ℕ) (hd : 1 ≤ d)
     (F : (ortoplesse d hd).Flag) (k : Fin d) :
     vertOrto (ortoplesseFlagCode d hd F k) = ortoplesseFlagNew d hd F k :=
@@ -320,6 +355,9 @@ theorem ortoplesseFlagCode_spec (d : ℕ) (hd : 1 ≤ d)
       (Finset.mem_filter.mp (ortoplesseFlagNew_mem d hd F k)).1)).choose_spec
 
 open Classical in
+/--
+@isnad1 id=injectiv.1h2v.s5.e59043235735 from=translated src=- shape=ae57f651 vocab=255b28d9
+-/
 theorem ortoplesseFlagCode_fst_injective (d : ℕ) (hd : 1 ≤ d)
     (F : (ortoplesse d hd).Flag) :
     Function.Injective (fun k => (ortoplesseFlagCode d hd F k).1) := by
@@ -356,6 +394,9 @@ noncomputable def ortoplesseFlagIndexEquiv (d : ℕ) (hd : 1 ≤ d)
     ((Fintype.bijective_iff_injective_and_card _).2
       ⟨ortoplesseFlagCode_fst_injective d hd F, rfl⟩)
 
+/--
+@isnad1 id=eq.1h3v.s5.884cd357b70e from=translated src=- shape=61962cc4 vocab=6ba65ad3
+-/
 @[simp] theorem ortoplesseFlagIndexEquiv_apply (d : ℕ) (hd : 1 ≤ d)
     (F : (ortoplesse d hd).Flag) (k : Fin d) :
     ortoplesseFlagIndexEquiv d hd F k = (ortoplesseFlagCode d hd F k).1 := rfl
@@ -374,6 +415,9 @@ noncomputable def ortoplesseFlagSign (d : ℕ) (hd : 1 ≤ d)
     ⟨1, by simp⟩ else ⟨-1, by simp⟩
 
 open Classical in
+/--
+@isnad1 id=eq.1h4v.s8.abc61a59e6ed from=translated src=- shape=ff579bac vocab=05b66a92
+-/
 theorem ortoplesseFlagIsom_new (d : ℕ) (hd : 1 ≤ d)
     (F G : (ortoplesse d hd).Flag) (k : Fin d) :
     segnoPerm d (ortoplesseFlagPerm d hd F G) (ortoplesseFlagSign d hd F G)
@@ -406,6 +450,9 @@ theorem ortoplesseFlagIsom_new (d : ℕ) (hd : 1 ≤ d)
   cases b <;> cases c <;> norm_num
 
 open Classical in
+/--
+@isnad1 id=eq.1h4v.s8.4c7e58d4e3f3 from=translated src=- shape=57ff0196 vocab=bbb712bc
+-/
 theorem ortoplesseFlagIsom_image_vertices (d : ℕ) (hd : 1 ≤ d)
     (F G : (ortoplesse d hd).Flag) (k : Fin d) :
     Finset.image
@@ -424,6 +471,9 @@ theorem ortoplesseFlagIsom_image_vertices (d : ℕ) (hd : 1 ≤ d)
       ortoplesseFlagIsom_new d hd F G j⟩
 
 open Classical in
+/--
+@isnad1 id=eq.1h4v.s8.8153b40c90fd from=translated src=- shape=c15392f4 vocab=a86c1681
+-/
 theorem ortoplesseFlagIsom_image_face (d : ℕ) (hd : 1 ≤ d)
     (F G : (ortoplesse d hd).Flag) (k : Fin d) :
     (segnoPerm d (ortoplesseFlagPerm d hd F G) (ortoplesseFlagSign d hd F G) :
@@ -446,6 +496,9 @@ theorem ortoplesseFlagIsom_image_face (d : ℕ) (hd : 1 ≤ d)
       rfl
 
 open Classical in
+/--
+@isnad1 id=isregula.1h1v.s4.5d2a533a1281 from=translated src=- shape=dd19ab6e vocab=880d585f
+-/
 theorem ortoplesse_isRegular (d : ℕ) (hd : 1 ≤ d) : (ortoplesse d hd).IsRegular := by
   refine ⟨ortoplesse_isFullDim d hd, ?_⟩
   intro F G
@@ -453,7 +506,9 @@ theorem ortoplesse_isRegular (d : ℕ) (hd : 1 ≤ d) : (ortoplesse d hd).IsRegu
     segnoPerm_isSymmetry d hd _ _, ?_⟩
   exact ortoplesseFlagIsom_image_face d hd F G
 
-/-- The cross-polytope is one of the regular polytopes counted in dimension `d`.-/
+/-- The cross-polytope is one of the regular polytopes counted in dimension `d`.
+@isnad1 id=mem.1h1v.s4.f5efed45ca34 from=translated src=- shape=3ed95865 vocab=e7eb3f4c
+-/
 theorem ortoplesse_mem_regularPolytopes (d : ℕ) (hd : 1 ≤ d) :
     ortoplesse d hd ∈ regularPolytopes d :=
   ortoplesse_isRegular d hd

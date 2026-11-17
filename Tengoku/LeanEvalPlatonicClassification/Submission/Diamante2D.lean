@@ -28,7 +28,9 @@ open ConvexPolytope
 
 variable {n : ℕ}
 
-/-- Una faccia di dimensione ≥ 1 contenente `v` contiene un punto ≠ `v`.-/
+/-- Una faccia di dimensione ≥ 1 contenente `v` contiene un punto ≠ `v`.
+@isnad1 id=ex.1h3v.s5.c5be5c7e2cbf from=translated src=- shape=882eaad9 vocab=89485c3b
+-/
 theorem faccia_ha_secondo_punto {g : Set (E n)} (hd : faceDim g = 1)
     {v : E n} : ∃ p ∈ g, p ≠ v := by
   by_contra hall
@@ -42,7 +44,9 @@ theorem faccia_ha_secondo_punto {g : Set (E n)} (hd : faceDim g = 1)
   have hd' : Module.finrank ℝ (vectorSpan ℝ g) = 1 := hd
   omega
 
-/-- Due punti distinti in una faccia forzano rango ≥ 1.-/
+/-- Due punti distinti in una faccia forzano rango ≥ 1.
+@isnad1 id=le.3h4v.s10.bf8dc273b42d from=translated src=- shape=644a365d vocab=eb45a103
+-/
 theorem finrank_pos_di_due {g : Set (E n)} {v p : E n}
     (hv : v ∈ g) (hp : p ∈ g) (hne : p ≠ v) :
     1 ≤ Module.finrank ℝ (vectorSpan ℝ g) := by
@@ -57,7 +61,9 @@ theorem finrank_pos_di_due {g : Set (E n)} {v p : E n}
   exact h1
 
 /-- **IL DIAMANTE 2D**: in un politopo di rango 2, tre spigoli a due a due
-distinti non possono passare tutti per lo stesso punto.-/
+distinti non possono passare tutti per lo stesso punto.
+@isnad1 id=false.13h6v.s10.98b6ebfc5c9d from=translated src=- shape=9a9ba4dd vocab=dd9c5d98
+-/
 theorem diamante_poligono (R : ConvexPolytope n)
     (hdim : Module.finrank ℝ (vectorSpan ℝ R.toSet) = 2)
     {e₁ e₂ e₃ : Set (E n)}

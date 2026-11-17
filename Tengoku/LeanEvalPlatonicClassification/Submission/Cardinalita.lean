@@ -20,7 +20,9 @@ Qui il mattone aritmetico. La disuguaglianza chiave è `2d < 2^d` per
 
 namespace LeanEval.Geometry.PlatonicClassification
 
-/-- Per `d ≥ 3`, il doppio è strettamente minore della potenza.-/
+/-- Per `d ≥ 3`, il doppio è strettamente minore della potenza.
+@isnad1 id=lt.1h1v.s5.600b08a58561 from=translated src=- shape=63c02f1f vocab=2a3f5b88
+-/
 theorem due_mul_lt_two_pow : ∀ d : ℕ, 3 ≤ d → 2 * d < 2 ^ d := by
   intro d hd
   induction d with
@@ -38,13 +40,17 @@ theorem due_mul_lt_two_pow : ∀ d : ℕ, 3 ≤ d → 2 * d < 2 ^ d := by
         _ = 2 ^ (n + 1) := by ring
 
 /-- **LE TRE CARDINALITÀ SONO DISTINTE** per `d ≥ 5`:
-simplesso `d+1`, ortoplesso `2d`, ipercubo `2^d`.-/
+simplesso `d+1`, ortoplesso `2d`, ipercubo `2^d`.
+@isnad1 id=and.1h1v.s6.ce918e94615c from=translated src=- shape=0addf515 vocab=3f16b8dd
+-/
 theorem cardinalita_distinte (d : ℕ) (hd : 5 ≤ d) :
     d + 1 < 2 * d ∧ 2 * d < 2 ^ d := by
   refine ⟨by omega, due_mul_lt_two_pow d (by omega)⟩
 
 /-- La funzione che assegna a ciascuno dei tre il proprio numero di
-vertici è iniettiva.-/
+vertici è iniettiva.
+@isnad1 id=injectiv.1h1v.s6.7f1ea4e3be44 from=translated src=- shape=dd7807c4 vocab=61802828
+-/
 theorem card_tre_iniettiva (d : ℕ) (hd : 5 ≤ d) :
     Function.Injective (fun i : Fin 3 => ![d + 1, 2 * d, 2 ^ d] i) := by
   obtain ⟨h1, h2⟩ := cardinalita_distinte d hd

@@ -19,7 +19,9 @@ noncomputable def rhoLineare (P : ConvexPolytope n) (hreg : P.IsRegular)
     (F : P.Flag) (i : Fin n) (hi : (i : ℕ) + 1 < n) : E n ≃ₗᵢ[ℝ] E n :=
   ((((rhoSimple P hreg F i hi : symGroup P) : Isom n)).linearIsometryEquiv)
 
-/-- Formula esplicita della parte lineare di `rhoSimple`.-/
+/-- Formula esplicita della parte lineare di `rhoSimple`.
+@isnad1 id=eq.4h9v.s11.684e2a8787c4 from=translated src=- shape=43a5aa39 vocab=248a03bb
+-/
 theorem rhoLineare_formula (P : ConvexPolytope n) (hreg : P.IsRegular)
     (F : P.Flag) (i : Fin n) (hi : (i : ℕ) + 1 < n)
     {αi pi αj pj : E n}
@@ -53,7 +55,9 @@ theorem rhoLineare_formula (P : ConvexPolytope n) (hreg : P.IsRegular)
 /-! ## Libertà dell'orbita ciclica sulla faccia di rango `i` -/
 
 /-- Ogni potenza di `rhoSimple` fissa le facce della bandiera base di
-rango diverso dai due ranghi adiacenti coinvolti.-/
+rango diverso dai due ranghi adiacenti coinvolti.
+@isnad1 id=eq.4h6v.s11.a04c9b59ae76 from=translated src=- shape=d1207248 vocab=7a9e95f0
+-/
 theorem rhoSimple_pow_fissa_faccia (P : ConvexPolytope n)
     (hreg : P.IsRegular) (F : P.Flag) (i : Fin n)
     (hi : (i : ℕ) + 1 < n) (k : Fin n)
@@ -88,7 +92,9 @@ theorem rhoSimple_pow_fissa_faccia (P : ConvexPolytope n)
         _ = F.face k := by rw [hg, iht]
 
 /-- Un passo di `rhoSimple` manda la faccia di rango `i` nell'altra
-faccia di rango `i` contenuta nello stesso lato di rango `i+1`.-/
+faccia di rango `i` contenuta nello stesso lato di rango `i+1`.
+@isnad1 id=eq.2h4v.s9.fc88f1e93dde from=translated src=- shape=d0742905 vocab=727abff7
+-/
 theorem rhoSimple_manda_faccia (P : ConvexPolytope n)
     (hreg : P.IsRegular) (F : P.Flag) (i : Fin n)
     (hi : (i : ℕ) + 1 < n) :
@@ -122,6 +128,9 @@ noncomputable def rieszResiduo (V : Submodule ℝ (E n))
     (l : E n →L[ℝ] ℝ) : V :=
   (InnerProductSpace.toDual ℝ V).symm (l.comp V.subtypeL)
 
+/--
+@isnad1 id=eq.0h4v.s10.8c0357c92d50 from=translated src=- shape=a6d7ab0d vocab=2ad2dd05
+-/
 theorem rieszResiduo_spec (V : Submodule ℝ (E n))
     (l : E n →L[ℝ] ℝ) (z : V) :
     ⟪(rieszResiduo V l : E n), (z : E n)⟫ = l (z : E n) := by
@@ -129,7 +138,9 @@ theorem rieszResiduo_spec (V : Submodule ℝ (E n))
   rw [rieszResiduo, InnerProductSpace.toDual_symm_apply]
   rfl
 
-/-- Facce distinte della stessa dimensione hanno centroidi distinti.-/
+/-- Facce distinte della stessa dimensione hanno centroidi distinti.
+@isnad1 id=ne.4h4v.s5.e984af74244a from=translated src=- shape=b6ac9eea vocab=cade1f0e
+-/
 theorem centroidi_facce_distinte (P : ConvexPolytope n)
     {f g : Set (E n)} (hf : P.IsFace f) (hg : P.IsFace g)
     (hdim : faceDim f = faceDim g) (hne : f ≠ g) :
@@ -151,7 +162,9 @@ theorem centroidi_facce_distinte (P : ConvexPolytope n)
   exact hout (subset_affineSpan ℝ (f ∩ g) hcfg)
 
 /-- L'ortogonalità richiesta dal mezzo passo è la forma bilineare
-dell'uguaglianza dei primi due valori.-/
+dell'uguaglianza dei primi due valori.
+@isnad1 id=eq.1h6v.s13.087ac5cf646e from=translated src=- shape=23e99a1e vocab=d8916c7d
+-/
 theorem perp_del_lato (V : Submodule ℝ (E n)) (O c₁ cnext : E n)
     (R : V ≃ₗᵢ[ℝ] V)
     (heq : ⟪(vettoreProiettato V O cnext : E n),

@@ -34,7 +34,9 @@ open ConvexPolytope
 variable {n : ℕ}
 
 /-- Nello span di rango ≥ 2 c'è un vettore non nullo ortogonale a una
-direzione data.-/
+direzione data.
+@isnad1 id=ex.1h3v.s9.ad0c845d3b2b from=translated src=- shape=5b8a333c vocab=2bfca0f6
+-/
 theorem esiste_ortogonale_nello_span {W : Submodule ℝ (E n)}
     (hW : 2 ≤ Module.finrank ℝ W) (d : E n) :
     ∃ w : E n, w ∈ W ∧ w ≠ 0 ∧ ⟪w, d⟫ = 0 := by
@@ -61,7 +63,9 @@ theorem esiste_ortogonale_nello_span {W : Submodule ℝ (E n)}
     exact h2
 
 /-- **IL SECONDO SPIGOLO**: in un poligono ogni vertice con uno spigolo ne
-ha un secondo, diverso.-/
+ha un secondo, diverso.
+@isnad1 id=ex.5h4v.s10.813a5f0c26a5 from=translated src=- shape=8c295d73 vocab=210984e8
+-/
 theorem secondo_spigolo (Q : ConvexPolytope n)
     (hdim : Module.finrank ℝ (vectorSpan ℝ Q.toSet) = 2)
     {v : E n} (hv : v ∈ Q.vertices)

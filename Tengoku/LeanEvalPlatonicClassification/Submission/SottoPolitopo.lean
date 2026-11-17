@@ -57,12 +57,17 @@ noncomputable def facePolytope (P : ConvexPolytope n) {f : Set (E n)}
       exact ⟨by exact_mod_cast h1, hxf⟩
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s4.d91798b16917 from=translated src=- shape=f1988138 vocab=990c6a60
+-/
 theorem facePolytope_toSet (P : ConvexPolytope n) {f : Set (E n)}
     (hf : P.IsFace f) : (facePolytope P hf).toSet = f :=
   (face_eq_hull_vertices P hf).symm
 
 open Classical in
-/-- Eredità (su): una faccia del sotto-politopo è una faccia del politopo.-/
+/-- Eredità (su): una faccia del sotto-politopo è una faccia del politopo.
+@isnad1 id=isface.2h4v.s4.c798d2232929 from=translated src=- shape=f99a0e4e vocab=c5b70415
+-/
 theorem isFace_of_facePolytope (P : ConvexPolytope n) {f : Set (E n)}
     (hf : P.IsFace f) {g : Set (E n)}
     (hg : (facePolytope P hf).IsFace g) : P.IsFace g := by
@@ -72,7 +77,9 @@ theorem isFace_of_facePolytope (P : ConvexPolytope n) {f : Set (E n)}
   exact isFace_of_isExposed_isFace P hf h1 hg.2
 
 open Classical in
-/-- Eredità (giù): una faccia di P contenuta in f è faccia del sotto-politopo.-/
+/-- Eredità (giù): una faccia di P contenuta in f è faccia del sotto-politopo.
+@isnad1 id=isface.3h4v.s5.10add068a0cf from=translated src=- shape=9cd2536a vocab=d1af3055
+-/
 theorem facePolytope_isFace_of (P : ConvexPolytope n) {f : Set (E n)}
     (hf : P.IsFace f) {g : Set (E n)} (hg : P.IsFace g)
     (hsub : g ⊆ f) : (facePolytope P hf).IsFace g := by

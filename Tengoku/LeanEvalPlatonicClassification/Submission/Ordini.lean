@@ -30,7 +30,9 @@ open ConvexPolytope
 
 variable {n : ℕ}
 
-/-- L'essere simmetria dipende solo dalla funzione sottostante.-/
+/-- L'essere simmetria dipende solo dalla funzione sottostante.
+@isnad1 id=issymmet.2h4v.s9.a88560b8f60d from=translated src=- shape=b13a97d9 vocab=befcffc9
+-/
 theorem isSymmetry_congr (P : ConvexPolytope n) {φ ψ : Isom n}
     (h : ∀ x, φ x = ψ x) (hφ : P.isSymmetry φ) : P.isSymmetry ψ := by
   unfold ConvexPolytope.isSymmetry at *
@@ -50,6 +52,9 @@ def symGroup (P : ConvexPolytope n) : Subgroup (Isom n) where
     refine isSymmetry_congr P (φ := a.symm) (fun x => rfl)
       (symmetry_symmN ha)
 
+/--
+@isnad1 id=iff.0h3v.s8.9609d02d3b18 from=translated src=- shape=783f8f72 vocab=aad6aa5d
+-/
 @[simp] theorem mem_symGroup (P : ConvexPolytope n) {φ : Isom n} :
     φ ∈ symGroup P ↔ P.isSymmetry φ := Iff.rfl
 
@@ -58,7 +63,9 @@ noncomputable def simpleGen (P : ConvexPolytope n) (hreg : P.IsRegular)
     (F : P.Flag) (i : Fin n) : symGroup P :=
   ⟨simpleReflection P hreg F i, simpleReflection_isSymmetry P hreg F i⟩
 
-/-- **rᵢ ≠ 1**: i generatori non sono banali.-/
+/-- **rᵢ ≠ 1**: i generatori non sono banali.
+@isnad1 id=ne.1h4v.s10.043235d738c9 from=translated src=- shape=295c840e vocab=f1d7ec02
+-/
 theorem simpleGen_ne_one (P : ConvexPolytope n) (hreg : P.IsRegular)
     (F : P.Flag) (i : Fin n) : simpleGen P hreg F i ≠ 1 := by
   intro h

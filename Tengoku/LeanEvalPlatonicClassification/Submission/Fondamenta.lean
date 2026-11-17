@@ -111,7 +111,9 @@ end Tengoku.LeanEvalPlatonicClassification.FiniteConvexPolytope
 
 /-- Due faccette distinte passanti per un punto estremo si incontrano, da quel
 punto, lungo un'unica semiretta: due loro punti non estremi hanno vettori
-radiali positivamente proporzionali.-/
+radiali positivamente proporzionali.
+@isnad1 id=ex.10h7v.s8.ed0a6d4f01ac from=translated src=- shape=49492435 vocab=cfdddcca
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.intersezione_spigolo_semiretta (P : FiniteConvexPolytope A)
     {F G : Set A} (hF : P.IsFacet F) (hG : P.IsFacet G) (hFG : F ≠ G)
     {v : A} (hvF : v ∈ F) (hvG : v ∈ G)
@@ -245,7 +247,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.intersezione_spigolo_semir
   exact ⟨c, lt_of_le_of_ne hc_nonneg (Ne.symm hc0), hrel⟩
 
 /-- La simmetria ciclica manda lo spigolo fra due faccette consecutive nello
-spigolo successivo del fan.-/
+spigolo successivo del fan.
+@isnad1 id=eq.0h6v.s8.9100412ddacd from=translated src=- shape=b58461de vocab=c3e4ce2a
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.spigolo_trasportato (P : FiniteConvexPolytope A) {v : A} {q : ℕ}
     (D : P.CyclicVertexData v q) (i : Fin q) :
     (⇑D.σ) '' (D.faccetta i ∩ D.faccetta (finRotate q i)) =
@@ -253,7 +257,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.spigolo_trasportato (P : F
   rw [Set.image_inter D.σ.injective, D.ruota i, D.ruota (finRotate q i)]
 
 /-- Il trasporto ciclico di un punto non vertice dello spigolo resta sullo
-spigolo successivo, resta distinto dal vertice e conserva la distanza da esso.-/
+spigolo successivo, resta distinto dal vertice e conserva la distanza da esso.
+@isnad1 id=and.2h7v.s9.5529f27ddd6a from=translated src=- shape=2dafec6f vocab=c3a1ff51
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.punto_spigolo_trasportato (P : FiniteConvexPolytope A) {v : A} {q : ℕ}
     (D : P.CyclicVertexData v q) (i : Fin q) {x : A} :
     x ∈ D.faccetta i ∩ D.faccetta (finRotate q i) → x ≠ v →
@@ -276,7 +282,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.punto_spigolo_trasportato 
 strettamente minore su ogni punto non vertice degli spigoli che non le
 appartengono. L'esclusione è scritta come `j ≠ i` e `finRotate q j ≠ i`, cioè
 nega precisamente i due modi in cui lo spigolo `j` può appartenere alla
-faccetta `i`.-/
+faccetta `i`.
+@isnad1 id=ex.0h6v.s9.5bd21a2ee370 from=translated src=- shape=f62c7b53 vocab=22a279cd
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.funzionale_faccetta (P : FiniteConvexPolytope A) {v : A} {q : ℕ}
     (D : P.CyclicVertexData v q) (i : Fin q) :
     ∃ l : A →L[ℝ] ℝ,
@@ -336,7 +344,9 @@ section FanNelloSpazio
 
 open Tengoku.LeanEvalPlatonicClassification.FiniteConvexPolytope
 
-/-- finRotate non ha punti fissi (q ≥ 2).-/
+/-- finRotate non ha punti fissi (q ≥ 2).
+@isnad1 id=ne.1h2v.s5.99fae519b497 from=translated src=- shape=d7c76052 vocab=a2268a62
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.finRotate_ne_self {q : ℕ} (hq : 2 ≤ q) (i : Fin q) :
     finRotate q i ≠ i := by
   obtain ⟨m, rfl⟩ : ∃ m, q = m + 2 := ⟨q - 2, by omega⟩
@@ -349,7 +359,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.finRotate_ne_self {q : ℕ
   have := congrArg Fin.val hone
   simp at this
 
-/-- finRotate applicato due volte non torna (q ≥ 3).-/
+/-- finRotate applicato due volte non torna (q ≥ 3).
+@isnad1 id=ne.1h2v.s6.e8ed7d76957e from=translated src=- shape=ccc450e4 vocab=a2268a62
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.finRotate_due_ne {q : ℕ} (hq : 3 ≤ q) (i : Fin q) :
     finRotate q (finRotate q i) ≠ i := by
   obtain ⟨m, rfl⟩ : ∃ m, q = m + 3 := ⟨q - 3, by omega⟩
@@ -373,6 +385,9 @@ noncomputable def _root_.Tengoku.LeanEvalPlatonicClassification.punto (P : Finit
     (D : P.CyclicVertexData v q) (i : Fin q) : A :=
   (D.spigolo i).choose
 
+/--
+@isnad1 id=and.0h6v.s6.da1f4965e6e9 from=translated src=- shape=ea2151de vocab=006729b0
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.punto_spec (P : FiniteConvexPolytope A) (v : A) {q : ℕ}
     (D : P.CyclicVertexData v q) (i : Fin q) :
     punto P v D i ≠ v ∧
@@ -384,6 +399,9 @@ noncomputable def _root_.Tengoku.LeanEvalPlatonicClassification.dir (P : FiniteC
     (D : P.CyclicVertexData v q) (i : Fin q) : A :=
   ‖punto P v D i - v‖⁻¹ • (punto P v D i - v)
 
+/--
+@isnad1 id=eq.0h6v.s5.ad41f3a32bf8 from=translated src=- shape=c915a14c vocab=0117d5cb
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.dir_unitaria (P : FiniteConvexPolytope A) (v : A) {q : ℕ}
     (D : P.CyclicVertexData v q) (i : Fin q) : ‖dir P v D i‖ = 1 := by
   have h := (punto_spec P v D i).1
@@ -391,14 +409,18 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.dir_unitaria (P : FiniteCo
     norm_ne_zero_iff.mpr (sub_ne_zero.mpr h)
   rw [dir, norm_smul, norm_inv, norm_norm, inv_mul_cancel₀ hne]
 
-/-- Le faccette sono convesse.-/
+/-- Le faccette sono convesse.
+@isnad1 id=convex.0h6v.s6.d05cf93dc900 from=translated src=- shape=80e48688 vocab=b732c6e3
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.faccetta_convessa (P : FiniteConvexPolytope A) {v : A} {q : ℕ}
     (D : P.CyclicVertexData v q) (i : Fin q) : Convex ℝ (D.faccetta i) :=
   (D.isFacet i).1.1.convex (convex_convexHull ℝ _)
 
 /-- INIETTIVITÀ DELLE DIREZIONI: due spigoli distinti non condividono la
 semiretta da v. Il punto più vicino cade nella faccetta sbagliata e
-`spigolo_due` chiude. Non serve l'estremalità di v.-/
+`spigolo_due` chiude. Non serve l'estremalità di v.
+@isnad1 id=injectiv.1h5v.s5.6e45157058bc from=translated src=- shape=b656c3c4 vocab=e1a5a82b
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.dir_iniettiva (P : FiniteConvexPolytope A) (v : A) {q : ℕ}
     (hq : 3 ≤ q) (D : P.CyclicVertexData v q) :
     Function.Injective (dir P v D) := by
@@ -495,7 +517,9 @@ theorem _root_.Tengoku.LeanEvalPlatonicClassification.dir_iniettiva (P : FiniteC
       · exact h2 h
 
 /-- IL PASSO DEL FAN NELLO SPAZIO: la parte lineare di σ manda la direzione
-dello spigolo i in quella dello spigolo i+1 (via A1 + A2).-/
+dello spigolo i in quella dello spigolo i+1 (via A1 + A2).
+@isnad1 id=eq.2h6v.s8.b798dff7f0d0 from=translated src=- shape=fdf837cb vocab=645aa9fe
+-/
 theorem _root_.Tengoku.LeanEvalPlatonicClassification.dir_passo (P : FiniteConvexPolytope A) (v : A) {q : ℕ}
     (hq : 3 ≤ q) (D : P.CyclicVertexData v q)
     (hvex : v ∈ P.toSet.extremePoints ℝ) (i : Fin q) :

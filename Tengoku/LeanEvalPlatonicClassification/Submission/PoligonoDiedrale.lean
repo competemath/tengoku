@@ -13,6 +13,9 @@ open ConvexPolytope
 
 set_option maxHeartbeats 200000
 
+/--
+@isnad1 id=eq.2h2v.s7.1af70f613dd2 from=translated src=- shape=11489ea2 vocab=03ab6c6b
+-/
 theorem E2_ext {u v : E2} (h0 : u 0 = v 0) (h1 : u 1 = v 1) : u = v := by
   ext i
   fin_cases i
@@ -52,12 +55,18 @@ def rotLinear (theta : Real) :
 def rotIsom (theta : Real) : Isom 2 :=
   (rotLinear theta).toAffineIsometryEquiv
 
+/--
+@isnad1 id=eq.0h2v.s9.d0bfeaa1764e from=translated src=- shape=5e4b469c vocab=01aaba14
+-/
 @[simp] theorem rotIsom_apply (theta : Real) (z : E2) :
     rotIsom theta z = rotFormula theta z := by
   change rotLinear theta z = rotFormula theta z
   rw [rotLinear, LinearIsometry.toLinearIsometryEquiv_apply]
   rfl
 
+/--
+@isnad1 id=or.1h3v.s6.6e22939d892b from=translated src=- shape=e47e75a9 vocab=65d9b10d
+-/
 theorem poligonoAngolo_add {n : Nat} (hn : Not (n = 0)) (k j : Fin n) :
     poligonoAngolo n (k + j) =
         poligonoAngolo n k + poligonoAngolo n j \/
@@ -78,6 +87,9 @@ theorem poligonoAngolo_add {n : Nat} (hn : Not (n = 0)) (k j : Fin n) :
     push_cast
     field_simp
 
+/--
+@isnad1 id=eq.1h3v.s9.9e13b8a6ca39 from=translated src=- shape=dc7dbb62 vocab=6b4ed0bf
+-/
 theorem rotIsom_vertex_add {n : Nat} (hn : Not (n = 0)) (j k : Fin n) :
     rotIsom (poligonoAngolo n j) (poligonoVertice n k) =
       poligonoVertice n (k + j) := by
@@ -115,11 +127,17 @@ def reflLinear : LinearIsometryEquiv (RingHom.id Real) E2 E2 :=
 
 def refl2 : Isom 2 := reflLinear.toAffineIsometryEquiv
 
+/--
+@isnad1 id=eq.0h1v.s9.d7fca339eb9c from=translated src=- shape=cef36d56 vocab=1b1c95a3
+-/
 @[simp] theorem refl2_apply (z : E2) : refl2 z = reflFormula z := by
   change reflLinear z = reflFormula z
   rw [reflLinear, LinearIsometry.toLinearIsometryEquiv_apply]
   rfl
 
+/--
+@isnad1 id=or.1h2v.s6.d83bde0e4e7a from=translated src=- shape=88a313fe vocab=b6377e70
+-/
 theorem poligonoAngolo_neg {n : Nat} (hn : Not (n = 0)) (k : Fin n) :
     poligonoAngolo n (-k) = -poligonoAngolo n k \/
       poligonoAngolo n (-k) = 2 * Real.pi - poligonoAngolo n k := by
@@ -142,6 +160,9 @@ theorem poligonoAngolo_neg {n : Nat} (hn : Not (n = 0)) (k : Fin n) :
     push_cast [Nat.cast_sub (Nat.le_of_lt k.isLt)]
     field_simp
 
+/--
+@isnad1 id=eq.1h2v.s9.889e84a0fc5c from=translated src=- shape=e0f7d4d6 vocab=ae069bd4
+-/
 theorem refl2_vertex_neg {n : Nat} (hn : Not (n = 0)) (k : Fin n) :
     refl2 (poligonoVertice n k) = poligonoVertice n (-k) := by
   apply E2_ext
@@ -151,17 +172,26 @@ theorem refl2_vertex_neg {n : Nat} (hn : Not (n = 0)) (k : Fin n) :
   all_goals rw [h]
   all_goals simp [Real.cos_sub, Real.sin_sub]
 
+/--
+@isnad1 id=eq.1h1v.s4.a343b35cb792 from=translated src=- shape=acc8e69e vocab=44ee77c4
+-/
 theorem verticiPoligono_eq_range {n : Nat} (hn : Not (n = 0)) :
     (verticiPoligono n : Set E2) = Set.range (poligonoVertice n) := by
   ext x
   simp [verticiPoligono, hn]
 
+/--
+@isnad1 id=eq.0h2v.s10.2c2ca5ea5998 from=translated src=- shape=edd964b9 vocab=44c5d8be
+-/
 theorem affineIsom_image_convexHull (g : Isom 2) (S : Set E2) :
     (g : E2 -> E2) '' convexHull Real S =
       convexHull Real ((g : E2 -> E2) '' S) := by
   simpa only [AffineEquiv.coe_toAffineMap, AffineIsometryEquiv.coe_toAffineEquiv] using
     g.toAffineEquiv.toAffineMap.image_convexHull S
 
+/--
+@isnad1 id=eq.1h2v.s9.3757364c153e from=translated src=- shape=0b6689d0 vocab=886314eb
+-/
 theorem rotIsom_image_vertices {n : Nat} (hn : Not (n = 0)) (j : Fin n) :
     (rotIsom (poligonoAngolo n j) : E2 -> E2) ''
         (verticiPoligono n : Set E2) =
@@ -193,6 +223,9 @@ theorem rotIsom_image_vertices {n : Nat} (hn : Not (n = 0)) (j : Fin n) :
         have hkj : k - j + j = k := sub_add_cancel k j
         rw [hkj])
 
+/--
+@isnad1 id=eq.1h1v.s9.6fbc53a3da04 from=translated src=- shape=dd14ed18 vocab=2b6b3969
+-/
 theorem refl2_image_vertices {n : Nat} (hn : Not (n = 0)) :
     (refl2 : E2 -> E2) '' (verticiPoligono n : Set E2) =
       (verticiPoligono n : Set E2) := by
@@ -221,6 +254,9 @@ theorem refl2_image_vertices {n : Nat} (hn : Not (n = 0)) :
       exact And.intro (Set.mem_range_self _) (by
         rw [refl2_vertex_neg hn, neg_neg])
 
+/--
+@isnad1 id=issymmet.1h2v.s4.0b3938d23dbb from=translated src=- shape=38eaac7b vocab=5ca8c6d2
+-/
 theorem rotIsom_symmetry {n : Nat} (hn : Not (n = 0)) (j : Fin n) :
     (poligono n).isSymmetry (rotIsom (poligonoAngolo n j)) := by
   change (rotIsom (poligonoAngolo n j) : E2 -> E2) ''
@@ -228,12 +264,18 @@ theorem rotIsom_symmetry {n : Nat} (hn : Not (n = 0)) (j : Fin n) :
     convexHull Real (verticiPoligono n : Set E2)
   rw [affineIsom_image_convexHull, rotIsom_image_vertices hn]
 
+/--
+@isnad1 id=issymmet.1h1v.s4.daa88714d63c from=translated src=- shape=ef6d0764 vocab=b19171a4
+-/
 theorem refl2_symmetry {n : Nat} (hn : Not (n = 0)) :
     (poligono n).isSymmetry refl2 := by
   change (refl2 : E2 -> E2) '' convexHull Real (verticiPoligono n : Set E2) =
     convexHull Real (verticiPoligono n : Set E2)
   rw [affineIsom_image_convexHull, refl2_image_vertices hn]
 
+/--
+@isnad1 id=ex.2h2v.s6.627d8c01e45f from=translated src=- shape=788475e0 vocab=32eb810e
+-/
 theorem zeroFace_is_vertex2 {P : ConvexPolytope 2} {F : Set E2}
     (hF : P.IsFace F) (hd : faceDim F = 0) :
     Exists fun v : E2 => And (F = {v}) (Membership.mem P.vertices v) := by
@@ -271,6 +313,9 @@ structure PolygonFlagData (n : Nat) (F : (poligono n).Flag) where
   face_one : F.face 1 = segment Real
     (poligonoVertice n i) (poligonoVertice n j)
 
+/--
+@isnad1 id=nonempty.1h2v.s4.cf9767d8d42a from=translated src=- shape=4cb1f6ca vocab=01b71943
+-/
 theorem polygon_flag_data (n : Nat) (hn : 3 <= n)
     (F : (poligono n).Flag) : Nonempty (PolygonFlagData n F) := by
   have hn0 : Not (n = 0) := by omega
@@ -313,6 +358,9 @@ theorem polygon_flag_data (n : Nat) (hn : 3 <= n)
             rw [hi, hj]
             exact ha.2.2.2
 
+/--
+@isnad1 id=isexpose.1h3v.s10.ed92bf3eab25 from=translated src=- shape=90dcd794 vocab=5d19737c
+-/
 theorem isExposed_image_isom2 (g : Isom 2) {A B : Set E2}
     (h : IsExposed Real A B) :
     IsExposed Real ((g : E2 -> E2) '' A) ((g : E2 -> E2) '' B) := by
@@ -376,6 +424,9 @@ theorem isExposed_image_isom2 (g : Isom 2) {A B : Set E2}
               rw [hl' y, hl' a] at hle
               linarith
 
+/--
+@isnad1 id=isface.2h3v.s9.58204615f74a from=translated src=- shape=e7a90b9c vocab=ba013b5b
+-/
 theorem isFace_image_isom2 {P : ConvexPolytope 2} (g : Isom 2)
     (hg : P.isSymmetry g) {F : Set E2} (hF : P.IsFace F) :
     P.IsFace ((g : E2 -> E2) '' F) := by
@@ -386,6 +437,9 @@ theorem isFace_image_isom2 {P : ConvexPolytope 2} (g : Isom 2)
   case right =>
     exact hF.2.image _
 
+/--
+@isnad1 id=issymmet.2h3v.s9.86c6de85df15 from=translated src=- shape=a19cbe0a vocab=b22a4e65
+-/
 theorem symmetry_trans2 {P : ConvexPolytope 2} {g h : Isom 2}
     (hg : P.isSymmetry g) (hh : P.isSymmetry h) :
     P.isSymmetry (g.trans h) := by
@@ -400,6 +454,9 @@ theorem symmetry_trans2 {P : ConvexPolytope 2} {g h : Isom 2}
 def dihIsom (n : Nat) (j : Fin n) : Isom 2 :=
   refl2.trans (rotIsom (poligonoAngolo n j))
 
+/--
+@isnad1 id=eq.1h3v.s9.27a60add785f from=translated src=- shape=0068550e vocab=b3205ee8
+-/
 theorem dihIsom_vertex {n : Nat} (hn : Not (n = 0)) (j k : Fin n) :
     dihIsom n j (poligonoVertice n k) =
       poligonoVertice n (-k + j) := by
@@ -408,20 +465,32 @@ theorem dihIsom_vertex {n : Nat} (hn : Not (n = 0)) (j k : Fin n) :
       (refl2 (poligonoVertice n k)) = _
   rw [refl2_vertex_neg hn, rotIsom_vertex_add hn]
 
+/--
+@isnad1 id=issymmet.1h2v.s4.664cfa8aadb0 from=translated src=- shape=ba65a6b1 vocab=e36ffd0f
+-/
 theorem dihIsom_symmetry {n : Nat} (hn : Not (n = 0)) (j : Fin n) :
     (poligono n).isSymmetry (dihIsom n j) := by
   exact symmetry_trans2 (refl2_symmetry hn) (rotIsom_symmetry hn j)
 
+/--
+@isnad1 id=eq.0h2v.s10.254b1d1530d9 from=translated src=- shape=d7c9e109 vocab=5d80cb7c
+-/
 theorem isom_image_singleton (g : Isom 2) (a : E2) :
     (g : E2 -> E2) '' ({a} : Set E2) = {g a} := by
   ext x
   simp
 
+/--
+@isnad1 id=eq.0h3v.s10.ae51ea0f15cf from=translated src=- shape=5a665310 vocab=aa485252
+-/
 theorem isom_image_segment (g : Isom 2) (a b : E2) :
     (g : E2 -> E2) '' segment Real a b = segment Real (g a) (g b) := by
   simpa only [AffineEquiv.coe_toAffineMap, AffineIsometryEquiv.coe_toAffineEquiv] using
     image_segment Real g.toAffineEquiv.toAffineMap a b
 
+/--
+@isnad1 id=mem.1h2v.s7.a2f2665068b5 from=translated src=- shape=8c6533f6 vocab=9b4d6927
+-/
 theorem vertex_mem_extremePoints2 {P : ConvexPolytope 2} {v : E2}
     (hv : Membership.mem P.vertices v) :
     Membership.mem (P.toSet.extremePoints Real) v := by
@@ -429,6 +498,9 @@ theorem vertex_mem_extremePoints2 {P : ConvexPolytope 2} {v : E2}
   rw [P.vertices_eq_extremePoints] at hv'
   exact hv'
 
+/--
+@isnad1 id=eq.5h4v.s8.935a39d00896 from=translated src=- shape=5e8433c1 vocab=c8922d3e
+-/
 theorem segment_other_endpoint_eq {P : ConvexPolytope 2} {a b c : E2}
     (ha : Membership.mem P.vertices a) (hb : Membership.mem P.vertices b)
     (hc : Membership.mem P.vertices c) (hca : Not (c = a))
@@ -447,6 +519,9 @@ theorem segment_other_endpoint_eq {P : ConvexPolytope 2} {a b c : E2}
   | inl hac => exact False.elim (hca hac.symm)
   | inr hbc => exact hbc
 
+/--
+@isnad1 id=eq.4h3v.s6.ade4a6e84c92 from=translated src=- shape=c038a767 vocab=1d5f0783
+-/
 theorem fin_eq_of_double_eq_zero {n : Nat} [NeZero n] (x y : Fin n)
     (hx : x + x = 0) (hy : y + y = 0)
     (hx0 : Not (x = 0)) (hy0 : Not (y = 0)) : x = y := by
@@ -474,11 +549,17 @@ theorem fin_eq_of_double_eq_zero {n : Nat} [NeZero n] (x y : Fin n)
 def reflIndex {n : Nat} (c k : Fin n) : Fin n :=
   -k + (c + c)
 
+/--
+@isnad1 id=eq.0h2v.s4.c51aa5a38da0 from=translated src=- shape=39de0193 vocab=3eab4d97
+-/
 theorem reflIndex_center {n : Nat} [NeZero n] (c : Fin n) :
     reflIndex c c = c := by
   unfold reflIndex
   abel
 
+/--
+@isnad1 id=eq.0h3v.s4.47a37f3ba5b7 from=translated src=- shape=4ff092bb vocab=3eab4d97
+-/
 theorem reflIndex_involutive {n : Nat} [NeZero n] (c k : Fin n) :
     reflIndex c (reflIndex c k) = k := by
   unfold reflIndex
@@ -487,16 +568,25 @@ theorem reflIndex_involutive {n : Nat} [NeZero n] (c k : Fin n) :
 def centerRefl (n : Nat) (c : Fin n) : Isom 2 :=
   dihIsom n (c + c)
 
+/--
+@isnad1 id=eq.1h3v.s9.9956f6016e70 from=translated src=- shape=d129157c vocab=58aaf9f5
+-/
 theorem centerRefl_vertex {n : Nat} (hn : Not (n = 0)) (c k : Fin n) :
     centerRefl n c (poligonoVertice n k) =
       poligonoVertice n (reflIndex c k) := by
   letI : NeZero n := { out := hn }
   exact dihIsom_vertex hn (c + c) k
 
+/--
+@isnad1 id=issymmet.1h2v.s4.fc32b6209e71 from=translated src=- shape=ba65a6b1 vocab=418a988b
+-/
 theorem centerRefl_symmetry {n : Nat} (hn : Not (n = 0)) (c : Fin n) :
     (poligono n).isSymmetry (centerRefl n c) :=
   dihIsom_symmetry hn (c + c)
 
+/--
+@isnad1 id=eq.1h2v.s7.c594899e08c3 from=translated src=- shape=f885c9c2 vocab=92f81e07
+-/
 theorem faceDim_segment_eq_one {a b : E2} (hab : Not (a = b)) :
     faceDim (segment Real a b) = 1 := by
   unfold faceDim
@@ -504,6 +594,9 @@ theorem faceDim_segment_eq_one {a b : E2} (hab : Not (a = b)) :
   apply finrank_span_singleton
   exact vsub_ne_zero.mpr (Ne.symm hab)
 
+/--
+@isnad1 id=not.3h3v.s9.d7a3fc7e28a4 from=translated src=- shape=32ac00b2 vocab=d2a44c55
+-/
 theorem centerRefl_moves_edge (n : Nat) (hn : 3 <= n) (c d : Fin n)
     (hcd : Not (c = d))
     (he : (poligono n).IsFace
@@ -647,6 +740,9 @@ theorem centerRefl_moves_edge (n : Nat) (hn : 3 <= n) (c d : Fin n)
           apply hq.2.2.2
           rw [hqseg, hdk]
 
+/--
+@isnad1 id=isregula.1h1v.s4.f48894742697 from=translated src=- shape=400e5100 vocab=12231056
+-/
 theorem poligono_isRegular (n : Nat) (hn : 3 <= n) :
     (poligono n).IsRegular := by
   constructor

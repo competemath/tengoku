@@ -32,7 +32,9 @@ variable {n : ℕ}
 open Classical in
 /-- Versione crescente del perno parametrico. Nel caso in cui la faccia
 costruita sia tutto il corpo, conserva la costanza del funzionale sui
-vertici.-/
+vertici.
+@isnad1 id=ex.5h6v.s10.9ce7a2828573 from=translated src=- shape=1f352b67 vocab=1c42d253
+-/
 theorem perno_parametrico_crescente (P : ConvexPolytope n) {f : Set (E n)}
     (_hf : P.IsFace f) (l : E n →L[ℝ] ℝ)
     (hl : f = {x ∈ P.toSet | ∀ y ∈ P.toSet, l y ≤ l x})
@@ -213,7 +215,9 @@ theorem perno_parametrico_crescente (P : ConvexPolytope n) {f : Set (E n)}
 open Classical in
 /-- Perno parametrico senza scelta di orientazione. Il coefficiente della
 perturbazione e' non nullo; puo' essere negativo quando `w` va orientato nel
-verso opposto.-/
+verso opposto.
+@isnad1 id=ex.5h6v.s10.30f85b131939 from=translated src=- shape=4c14c2fb vocab=1c42d253
+-/
 theorem perno_parametrico (P : ConvexPolytope n) {f : Set (E n)}
     (hf : P.IsFace f) (l : E n →L[ℝ] ℝ)
     (hl : f = {x ∈ P.toSet | ∀ y ∈ P.toSet, l y ≤ l x})
@@ -256,7 +260,9 @@ theorem perno_parametrico (P : ConvexPolytope n) {f : Set (E n)}
 
 open Classical in
 /-- Un vettore non nullo nella direzione affine del politopo induce un
-funzionale interno non costante sui vertici.-/
+funzionale interno non costante sui vertici.
+@isnad1 id=ex.3h4v.s9.c43436ffa187 from=translated src=- shape=ae79df07 vocab=eb1e2142
+-/
 theorem exists_vertex_inner_ne (P : ConvexPolytope n) {p w : E n}
     (hp : p ∈ P.toSet) (hw : w ∈ vectorSpan ℝ P.toSet) (hwne : w ≠ 0) :
     ∃ v ∈ P.vertices, inner ℝ w v ≠ inner ℝ w p := by
@@ -290,7 +296,9 @@ theorem exists_vertex_inner_ne (P : ConvexPolytope n) {p w : E n}
 
 open Classical in
 /-- S3: tra una faccia e un politopo con salto di dimensione almeno due
-esiste una faccia intermedia propria.-/
+esiste una faccia intermedia propria.
+@isnad1 id=ex.2h3v.s10.6dc3247385d9 from=translated src=- shape=ee4cfd4c vocab=89d3e494
+-/
 theorem interpolazione (P : ConvexPolytope n) {f : Set (E n)}
     (hf : P.IsFace f)
     (hgap : faceDim f + 2 ≤

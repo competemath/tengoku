@@ -16,6 +16,9 @@ namespace LeanEval.Geometry.PlatonicClassification
 
 open ConvexPolytope
 
+/--
+@isnad1 id=le.12h6v.s7.c49a5375ccd9 from=translated src=- shape=da41be9c vocab=426cb163
+-/
 theorem sei_le_platonicCount_quattro_di
     (P₁ P₂ P₃ P₄ P₅ P₆ : ConvexPolytope 4)
     (h₁ : P₁.IsRegular) (h₂ : P₂.IsRegular) (h₃ : P₃.IsRegular)

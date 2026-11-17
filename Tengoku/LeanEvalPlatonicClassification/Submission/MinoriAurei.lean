@@ -23,7 +23,9 @@ noncomputable section
 
 namespace LeanEval.Geometry.PlatonicClassification
 
-/-- Stime numeriche su `√5`, per i conti di positività.-/
+/-- Stime numeriche su `√5`, per i conti di positività.
+@isnad1 id=and.0h0v.s5.d3957f12cad7 from=translated src=- shape=9dc1eaa1 vocab=18350630
+-/
 theorem sqrt_five_bounds : 2.23 < Real.sqrt 5 ∧ Real.sqrt 5 < 2.24 := by
   constructor
   · have : (2.23 : ℝ) ^ 2 < 5 := by norm_num

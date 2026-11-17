@@ -73,11 +73,17 @@ noncomputable def sostituisci (P : ConvexPolytope n) (F : P.Flag)
       · rw [Function.update_of_ne hj, Function.update_of_ne hk]
         exact F.strict_mono j k hjk
 
+/--
+@isnad1 id=eq.4h5v.s7.994b8c12b66b from=translated src=- shape=b117ded3 vocab=57c7fdc9
+-/
 @[simp] theorem sostituisci_face_self (P : ConvexPolytope n) (F : P.Flag)
     (i : Fin n) (C : Set (E n)) (hC hdim hsotto hsopra) :
     (sostituisci P F i C hC hdim hsotto hsopra).face i = C :=
   Function.update_self ..
 
+/--
+@isnad1 id=eq.5h6v.s7.a60ffdadcff0 from=translated src=- shape=6cef348b vocab=57c7fdc9
+-/
 @[simp] theorem sostituisci_face_ne (P : ConvexPolytope n) (F : P.Flag)
     (i : Fin n) (C : Set (E n)) (hC hdim hsotto hsopra)
     {j : Fin n} (hj : j ≠ i) :
@@ -85,7 +91,9 @@ noncomputable def sostituisci (P : ConvexPolytope n) (F : P.Flag)
   Function.update_of_ne hj _ _
 
 /-- Le facce sotto la sostituita restano dentro: la catena sotto `i` è
-già dentro `F.face (i-1) ⊂ C` quando `C` viene dal diamante.-/
+già dentro `F.face (i-1) ⊂ C` quando `C` viene dal diamante.
+@isnad1 id=lt.3h7v.s6.a8a1f63ed662 from=translated src=- shape=63ef888d vocab=483ea7ce
+-/
 theorem catena_sotto (P : ConvexPolytope n) (F : P.Flag) {i : Fin n}
     {C : Set (E n)} {im : Fin n} (him : (im : ℕ) + 1 = (i : ℕ))
     (hAC : F.face im ⊂ C) :

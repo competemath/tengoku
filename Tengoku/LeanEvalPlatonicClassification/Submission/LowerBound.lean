@@ -27,7 +27,9 @@ namespace LeanEval.Geometry.PlatonicClassification
 
 open ConvexPolytope
 
-/-- **Il lower bound da tre testimoni con vertici distinti.**-/
+/-- **Il lower bound da tre testimoni con vertici distinti.**
+@isnad1 id=le.4h4v.s7.0e1191506953 from=translated src=- shape=e0606471 vocab=c85b1c3a
+-/
 theorem tre_le_platonicCount (d : ℕ) (hd : 5 ≤ d)
     (Ps Po Pi : regularPolytopes d)
     (hs : (Ps : ConvexPolytope d).vertices.card = d + 1)

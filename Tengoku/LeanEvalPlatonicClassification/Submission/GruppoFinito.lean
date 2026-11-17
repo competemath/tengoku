@@ -32,7 +32,9 @@ open ConvexPolytope
 variable {n : ℕ}
 
 /-- **Le bandiere sono in numero finito**: una bandiera è determinata
-dalla sua catena, e le facce sono finite.-/
+dalla sua catena, e le facce sono finite.
+@isnad1 id=finite.0h2v.s3.a553b7412362 from=translated src=- shape=1f8e965c vocab=a6e03cae
+-/
 theorem flag_finite (P : ConvexPolytope n) : Finite P.Flag := by
   haveI : Finite {f : Set (E n) // P.IsFace f} :=
     Set.Finite.to_subtype (facce_finite P)

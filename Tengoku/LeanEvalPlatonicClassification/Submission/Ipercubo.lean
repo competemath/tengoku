@@ -19,10 +19,16 @@ open ConvexPolytope
 noncomputable def vertIper {d : ℕ} (s : Fin d → Bool) : E d :=
   (EuclideanSpace.equiv (Fin d) ℝ).symm (fun i => if s i then 1 else -1)
 
+/--
+@isnad1 id=eq.0h3v.s6.e70bc46aa001 from=translated src=- shape=2a6d3d76 vocab=ef02b187
+-/
 @[simp] theorem vertIper_apply {d : ℕ} (s : Fin d → Bool) (i : Fin d) :
     vertIper s i = if s i then (1 : ℝ) else -1 := by
   simp [vertIper]
 
+/--
+@isnad1 id=injectiv.0h1v.s3.c8991f83ff32 from=translated src=- shape=cae58d9e vocab=d73b4369
+-/
 theorem vertIper_injective {d : ℕ} :
     Function.Injective (vertIper (d := d)) := by
   intro s t h
@@ -35,14 +41,23 @@ theorem vertIper_injective {d : ℕ} :
 noncomputable def verticiIper (d : ℕ) : Finset (E d) :=
   (Finset.univ : Finset (Fin d → Bool)).image vertIper
 
+/--
+@isnad1 id=iff.0h2v.s5.a6163fa0be0c from=translated src=- shape=e94fbf03 vocab=13a4a269
+-/
 theorem mem_verticiIper {d : ℕ} {x : E d} :
     x ∈ verticiIper d ↔ ∃ s : Fin d → Bool, vertIper s = x := by
   simp [verticiIper]
 
+/--
+@isnad1 id=eq.0h1v.s4.30bd8c090a6b from=translated src=- shape=142fa872 vocab=1b6902d1
+-/
 theorem card_verticiIper (d : ℕ) : (verticiIper d).card = 2 ^ d := by
   rw [verticiIper, Finset.card_image_of_injective _ vertIper_injective]
   simp
 
+/--
+@isnad1 id=eq.0h2v.s5.20772d2385f8 from=translated src=- shape=ef4bd259 vocab=dba4d30b
+-/
 theorem norm_sq_vertIper {d : ℕ} (s : Fin d → Bool) :
     ‖vertIper s‖ ^ 2 = d := by
   rw [EuclideanSpace.norm_sq_eq]
@@ -54,11 +69,17 @@ theorem norm_sq_vertIper {d : ℕ} (s : Fin d → Bool) :
   simp_rw [hone]
   simp
 
+/--
+@isnad1 id=eq.0h2v.s5.8ccd9f0ce998 from=translated src=- shape=5cf75ec9 vocab=6d074647
+-/
 theorem norm_vertIper {d : ℕ} (s : Fin d → Bool) :
     ‖vertIper s‖ = Real.sqrt d := by
   rw [← sq_eq_sq₀ (norm_nonneg _) (Real.sqrt_nonneg _), norm_sq_vertIper]
   simp
 
+/--
+@isnad1 id=eq.0h1v.s8.ddc34ce47341 from=translated src=- shape=4133bf23 vocab=9b7dabd4
+-/
 theorem verticiIper_eq_extremePoints (d : ℕ) :
     ((verticiIper d : Finset (E d)) : Set (E d)) =
       Set.extremePoints ℝ
@@ -90,6 +111,9 @@ theorem verticiIper_eq_extremePoints (d : ℕ) :
     obtain ⟨s, rfl⟩ := hv'
     exact norm_vertIper s
 
+/--
+@isnad1 id=nonempty.0h1v.s2.5e5e7be9058f from=translated src=- shape=fc2c1e2b vocab=0a1f7a55
+-/
 theorem verticiIper_nonempty (d : ℕ) : (verticiIper d).Nonempty := by
   refine ⟨vertIper (fun _ => true), mem_verticiIper.mpr ?_⟩
   exact ⟨fun _ => true, rfl⟩
@@ -98,6 +122,9 @@ theorem verticiIper_nonempty (d : ℕ) : (verticiIper d).Nonempty := by
 noncomputable def ipercubo (d : ℕ) (_hd : 1 ≤ d) : ConvexPolytope d :=
   ⟨verticiIper d, verticiIper_nonempty d, verticiIper_eq_extremePoints d⟩
 
+/--
+@isnad1 id=eq.1h1v.s5.8cd81f0c32c2 from=translated src=- shape=e99c7004 vocab=596c74b8
+-/
 theorem card_ipercubo (d : ℕ) (hd : 1 ≤ d) :
     (ipercubo d hd).vertices.card = 2 ^ d :=
   card_verticiIper d
@@ -106,14 +133,23 @@ theorem card_ipercubo (d : ℕ) (hd : 1 ≤ d) :
 def boolFlip {d : ℕ} (s : Fin d → Bool) (i : Fin d) : Fin d → Bool :=
   Function.update s i (!s i)
 
+/--
+@isnad1 id=eq.0h3v.s4.4ae3266da977 from=translated src=- shape=a8b1eedc vocab=c019ad2b
+-/
 @[simp] theorem boolFlip_same {d : ℕ} (s : Fin d → Bool) (i : Fin d) :
     boolFlip s i i = !s i := by
   simp [boolFlip]
 
+/--
+@isnad1 id=eq.1h4v.s4.1296f0a873d4 from=translated src=- shape=097cc06a vocab=9fd92f3d
+-/
 @[simp] theorem boolFlip_ne {d : ℕ} (s : Fin d → Bool) {i j : Fin d} (h : j ≠ i) :
     boolFlip s i j = s j := by
   simp [boolFlip, h]
 
+/--
+@isnad1 id=eq.0h3v.s8.178ec62f516e from=translated src=- shape=0cb75c35 vocab=d9ce100f
+-/
 theorem vertIper_sub_flip {d : ℕ} (s : Fin d → Bool) (i : Fin d) :
     vertIper s - vertIper (boolFlip s i) =
       (if s i then (2 : ℝ) else -2) •
@@ -125,6 +161,9 @@ theorem vertIper_sub_flip {d : ℕ} (s : Fin d → Bool) (i : Fin d) :
       simp [hsi, EuclideanSpace.basisFun_apply] <;> norm_num
   · cases s i <;> simp [hji, EuclideanSpace.basisFun_apply]
 
+/--
+@isnad1 id=isfulldi.1h1v.s4.be09f6b7786f from=translated src=- shape=dd19ab6e vocab=8dd05700
+-/
 theorem ipercubo_isFullDim (d : ℕ) (hd : 1 ≤ d) :
     (ipercubo d hd).IsFullDim := by
   let W : Submodule ℝ (E d) := vectorSpan ℝ (ipercubo d hd).toSet
@@ -153,6 +192,9 @@ theorem ipercubo_isFullDim (d : ℕ) (hd : 1 ≤ d) :
   rw [hW, finrank_top, finrank_euclideanSpace]
   simp
 
+/--
+@isnad1 id=iff.0h2v.s7.bbb11168d5cf from=translated src=- shape=572fa642 vocab=36748ba2
+-/
 theorem mem_verticiIper_iff {d : ℕ} {x : E d} :
     x ∈ verticiIper d ↔ ∀ i : Fin d, x i = 1 ∨ x i = -1 := by
   constructor
@@ -179,11 +221,17 @@ theorem mem_verticiIper_iff {d : ℕ} {x : E d} :
       rw [vertIper_apply, hs, hi]
       simp
 
+/--
+@isnad1 id=eq.0h5v.s9.8f1ffac8c3f0 from=translated src=- shape=c82f2483 vocab=3e12287b
+-/
 @[simp] theorem segnoLinear_apply_coord (d : ℕ) (σ : Equiv.Perm (Fin d))
     (ε : Fin d → ({-1, 1} : Set ℝ)) (x : E d) (i : Fin d) :
     segnoLinear d σ ε x (σ i) = (ε i : ℝ) * x i := by
   simp [segnoLinear]
 
+/--
+@isnad1 id=mem.1h4v.s8.97a3f7597fdc from=translated src=- shape=f64f7770 vocab=49bd044b
+-/
 theorem segnoPerm_mem_verticiIper (d : ℕ) (σ : Equiv.Perm (Fin d))
     (ε : Fin d → ({-1, 1} : Set ℝ)) {v : E d}
     (hv : v ∈ verticiIper d) : segnoPerm d σ ε v ∈ verticiIper d := by
@@ -200,6 +248,9 @@ theorem segnoPerm_mem_verticiIper (d : ℕ) (σ : Equiv.Perm (Fin d))
   rcases hs with hs | hs <;> rcases hv i with hv | hv <;>
     rw [hs, hv] <;> norm_num
 
+/--
+@isnad1 id=eq.0h3v.s8.f2254b76c547 from=translated src=- shape=978ce022 vocab=facdd21b
+-/
 theorem segnoPerm_image_verticiIper (d : ℕ) (σ : Equiv.Perm (Fin d))
     (ε : Fin d → ({-1, 1} : Set ℝ)) :
     (segnoPerm d σ ε : E d → E d) '' (verticiIper d : Set (E d)) =
@@ -214,6 +265,9 @@ theorem segnoPerm_image_verticiIper (d : ℕ) (σ : Equiv.Perm (Fin d))
     · rw [Finset.card_image_of_injective _ (segnoPerm d σ ε).injective]
   rw [← Finset.coe_image, hfin]
 
+/--
+@isnad1 id=issymmet.1h3v.s5.7c061c594142 from=translated src=- shape=51726dd5 vocab=5dda75f3
+-/
 theorem segnoPerm_isSymmetry_ipercubo (d : ℕ) (hd : 1 ≤ d)
     (σ : Equiv.Perm (Fin d)) (ε : Fin d → ({-1, 1} : Set ℝ)) :
     (ipercubo d hd).isSymmetry (segnoPerm d σ ε) := by
@@ -233,9 +287,15 @@ theorem segnoPerm_isSymmetry_ipercubo (d : ℕ) (hd : 1 ≤ d)
 def boolMix {d : ℕ} (a b m : Fin d → Bool) : Fin d → Bool :=
   fun i => if m i then a i else b i
 
+/--
+@isnad1 id=eq.0h5v.s5.cec5345c0384 from=translated src=- shape=004556be vocab=5596a30d
+-/
 @[simp] theorem boolMix_apply {d : ℕ} (a b m : Fin d → Bool) (i : Fin d) :
     boolMix a b m i = if m i then a i else b i := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.853a6b090ed5 from=translated src=- shape=f81c63d9 vocab=be64e66e
+-/
 theorem vertIper_mix_add {d : ℕ} (a b m : Fin d → Bool) :
     vertIper (boolMix a b m) + vertIper (boolMix a b (fun i => !(m i))) =
       vertIper a + vertIper b := by
@@ -247,7 +307,9 @@ theorem vertIper_mix_add {d : ℕ} (a b m : Fin d → Bool) :
 
 open Classical in
 /-- Le facce dell'ipercubo sono chiuse rispetto al mescolamento indipendente
-delle coordinate di due loro vertici.-/
+delle coordinate di due loro vertici.
+@isnad1 id=mem.4h5v.s6.e0cfa89291e3 from=translated src=- shape=a8b378dc vocab=fa599ee5
+-/
 theorem ipercubo_face_mix (d : ℕ) (hd : 1 ≤ d) {f : Set (E d)}
     (hf : (ipercubo d hd).IsFace f) {a b : Fin d → Bool}
     (haF : vertIper a ∈ f) (hbF : vertIper b ∈ f) (m : Fin d → Bool) :
@@ -292,12 +354,18 @@ noncomputable def iperFaceFree {d : ℕ} (f : Set (E d)) (s : Fin d → Bool) :
   Finset.univ.filter (fun i => ∃ t : Fin d → Bool, vertIper t ∈ f ∧ t i ≠ s i)
 
 open Classical in
+/--
+@isnad1 id=iff.0h4v.s6.bbe91efa3323 from=translated src=- shape=394ec3c7 vocab=0a5ca9f8
+-/
 theorem mem_iperFaceFree {d : ℕ} {f : Set (E d)} {s : Fin d → Bool} {i : Fin d} :
     i ∈ iperFaceFree f s ↔
       ∃ t : Fin d → Bool, vertIper t ∈ f ∧ t i ≠ s i := by
   simp [iperFaceFree]
 
 open Classical in
+/--
+@isnad1 id=mem.4h4v.s6.fefa4fea05c9 from=translated src=- shape=0d237841 vocab=29db60b3
+-/
 theorem ipercubo_face_singleFlip (d : ℕ) (hd : 1 ≤ d) {f : Set (E d)}
     (hf : (ipercubo d hd).IsFace f) {s : Fin d → Bool} (hs : vertIper s ∈ f)
     {i : Fin d} (hi : i ∈ iperFaceFree f s) :
@@ -319,11 +387,17 @@ theorem ipercubo_face_singleFlip (d : ℕ) (hd : 1 ≤ d) {f : Set (E d)}
 def boolPatch {d : ℕ} (s t : Fin d → Bool) (A : Finset (Fin d)) : Fin d → Bool :=
   fun i => if i ∈ A then t i else s i
 
+/--
+@isnad1 id=eq.0h5v.s5.1b6d045dd46f from=translated src=- shape=b06e95a0 vocab=5e20243e
+-/
 @[simp] theorem boolPatch_apply {d : ℕ} (s t : Fin d → Bool)
     (A : Finset (Fin d)) (i : Fin d) :
     boolPatch s t A i = if i ∈ A then t i else s i := rfl
 
 open Classical in
+/--
+@isnad1 id=mem.4h5v.s6.66161ea6e36a from=translated src=- shape=615933e9 vocab=792a69e6
+-/
 theorem ipercubo_face_patch (d : ℕ) (hd : 1 ≤ d) {f : Set (E d)}
     (hf : (ipercubo d hd).IsFace f) {s : Fin d → Bool} (hs : vertIper s ∈ f)
     (t : Fin d → Bool) {A : Finset (Fin d)} (hA : A ⊆ iperFaceFree f s) :
@@ -363,7 +437,9 @@ theorem ipercubo_face_patch (d : ℕ) (hd : 1 ≤ d) {f : Set (E d)}
 
 open Classical in
 /-- Classificazione dei vertici di una faccia: fuori dalle coordinate libere
-tutti i segni coincidono con quelli del vertice base.-/
+tutti i segni coincidono con quelli del vertice base.
+@isnad1 id=iff.3h4v.s6.229a0e2ca8d5 from=translated src=- shape=e77a4081 vocab=73f036a5
+-/
 theorem vertIper_mem_face_iff (d : ℕ) (hd : 1 ≤ d) {f : Set (E d)}
     (hf : (ipercubo d hd).IsFace f) {s : Fin d → Bool} (hs : vertIper s ∈ f)
     (t : Fin d → Bool) :
@@ -387,12 +463,18 @@ noncomputable def iperCoordSpan {d : ℕ} (A : Finset (Fin d)) : Submodule ℝ (
   Submodule.span ℝ
     ((fun i : Fin d => (EuclideanSpace.basisFun (Fin d) ℝ) i) '' (A : Set (Fin d)))
 
+/--
+@isnad1 id=mem.1h3v.s8.35bbf7241866 from=translated src=- shape=57058b1a vocab=bc24f458
+-/
 theorem basis_mem_iperCoordSpan {d : ℕ} {A : Finset (Fin d)} {i : Fin d}
     (hi : i ∈ A) :
     (EuclideanSpace.basisFun (Fin d) ℝ) i ∈ iperCoordSpan A := by
   apply Submodule.subset_span
   exact ⟨i, by exact_mod_cast hi, rfl⟩
 
+/--
+@isnad1 id=mem.1h3v.s8.ad28cfa0c86d from=translated src=- shape=4563039e vocab=fc89614b
+-/
 theorem mem_iperCoordSpan_of_eq_zero {d : ℕ} {A : Finset (Fin d)} {x : E d}
     (hx : ∀ i ∉ A, x i = 0) : x ∈ iperCoordSpan A := by
   rw [← (EuclideanSpace.basisFun (Fin d) ℝ).sum_repr x]
@@ -406,6 +488,9 @@ theorem mem_iperCoordSpan_of_eq_zero {d : ℕ} {A : Finset (Fin d)} {x : E d}
     rw [hrepr, zero_smul]
     exact (iperCoordSpan A).zero_mem
 
+/--
+@isnad1 id=eq.0h2v.s8.84b64cda07f3 from=translated src=- shape=f421085c vocab=a74f1ede
+-/
 theorem finrank_iperCoordSpan {d : ℕ} (A : Finset (Fin d)) :
     Module.finrank ℝ (iperCoordSpan A) = A.card := by
   let b : {i : Fin d // i ∈ A} → E d :=
@@ -428,7 +513,9 @@ theorem finrank_iperCoordSpan {d : ℕ} (A : Finset (Fin d)) :
 
 open Classical in
 /-- Il sottospazio direttore di una faccia dell'ipercubo è generato
-esattamente dagli assi delle sue coordinate libere.-/
+esattamente dagli assi delle sue coordinate libere.
+@isnad1 id=eq.3h3v.s8.c87aba432010 from=translated src=- shape=8999a13e vocab=e97d6139
+-/
 theorem ipercubo_face_vectorSpan (d : ℕ) (hd : 1 ≤ d) {f : Set (E d)}
     (hf : (ipercubo d hd).IsFace f) {s : Fin d → Bool} (hs : vertIper s ∈ f) :
     vectorSpan ℝ f = iperCoordSpan (iperFaceFree f s) := by
@@ -471,6 +558,9 @@ theorem ipercubo_face_vectorSpan (d : ℕ) (hd : 1 ≤ d) {f : Set (E d)}
     · simp [hsi] at hdiff
       simpa [EuclideanSpace.basisFun_apply] using hdiff
 
+/--
+@isnad1 id=eq.3h3v.s5.3c6b065c77d4 from=translated src=- shape=01858d1e vocab=a08cf7d6
+-/
 theorem ipercubo_face_free_card (d : ℕ) (hd : 1 ≤ d) {f : Set (E d)}
     (hf : (ipercubo d hd).IsFace f) {s : Fin d → Bool} (hs : vertIper s ∈ f) :
     (iperFaceFree f s).card = faceDim f := by
@@ -478,6 +568,9 @@ theorem ipercubo_face_free_card (d : ℕ) (hd : 1 ≤ d) {f : Set (E d)}
   rw [ipercubo_face_vectorSpan d hd hf hs, finrank_iperCoordSpan]
 
 open Classical in
+/--
+@isnad1 id=nonempty.2h2v.s5.69844aa82352 from=translated src=- shape=e6e7dc3d vocab=d1c5cd56
+-/
 theorem ipercubo_face_vertices_nonempty (d : ℕ) (hd : 1 ≤ d) {f : Set (E d)}
     (hf : (ipercubo d hd).IsFace f) :
     ((ipercubo d hd).vertices.filter (· ∈ f)).Nonempty := by
@@ -502,6 +595,9 @@ noncomputable def ipercuboFlagBaseCode (d : ℕ) (hd : 1 ≤ d)
   exact (mem_verticiIper.mp hv).choose
 
 open Classical in
+/--
+@isnad1 id=mem.1h2v.s5.f4307cde970d from=translated src=- shape=2564397d vocab=f6e9d251
+-/
 theorem ipercuboFlagBaseCode_spec (d : ℕ) (hd : 1 ≤ d)
     (F : (ipercubo d hd).Flag) :
     vertIper (ipercuboFlagBaseCode d hd F) ∈ F.face ⟨0, hd⟩ := by
@@ -514,6 +610,9 @@ theorem ipercuboFlagBaseCode_spec (d : ℕ) (hd : 1 ≤ d)
     exact (mem_verticiIper.mp hvV).choose_spec
   rwa [hcode]
 
+/--
+@isnad1 id=mem.1h3v.s5.fb798402d33d from=translated src=- shape=668d0f65 vocab=1cd3acc8
+-/
 theorem ipercuboFlagBaseCode_mem (d : ℕ) (hd : 1 ≤ d)
     (F : (ipercubo d hd).Flag) (k : Fin d) :
     vertIper (ipercuboFlagBaseCode d hd F) ∈ F.face k := by
@@ -533,6 +632,9 @@ noncomputable def ipercuboFlagFree (d : ℕ) (hd : 1 ≤ d)
     (F : (ipercubo d hd).Flag) (k : Fin d) : Finset (Fin d) :=
   iperFaceFree (F.face k) (ipercuboFlagBaseCode d hd F)
 
+/--
+@isnad1 id=eq.1h3v.s5.0b0879989621 from=translated src=- shape=ad6566e9 vocab=f658af57
+-/
 theorem ipercuboFlagFree_card (d : ℕ) (hd : 1 ≤ d)
     (F : (ipercubo d hd).Flag) (k : Fin d) :
     (ipercuboFlagFree d hd F k).card = k.val := by
@@ -540,6 +642,9 @@ theorem ipercuboFlagFree_card (d : ℕ) (hd : 1 ≤ d)
     (ipercuboFlagBaseCode_mem d hd F k), F.dim_eq]
 
 open Classical in
+/--
+@isnad1 id=le.2h4v.s5.91ba2c51f27c from=translated src=- shape=2e2ede62 vocab=2d0e9f55
+-/
 theorem ipercuboFlagFree_mono (d : ℕ) (hd : 1 ≤ d)
     (F : (ipercubo d hd).Flag) {i j : Fin d} (hij : i ≤ j) :
     ipercuboFlagFree d hd F i ⊆ ipercuboFlagFree d hd F j := by
@@ -560,6 +665,9 @@ noncomputable def ipercuboFlagNextFree (d : ℕ) (hd : 1 ≤ d)
   else Finset.univ
 
 open Classical in
+/--
+@isnad1 id=le.1h3v.s5.69cf9fe41726 from=translated src=- shape=6015b798 vocab=9d159e77
+-/
 theorem ipercuboFlagFree_subset_next (d : ℕ) (hd : 1 ≤ d)
     (F : (ipercubo d hd).Flag) (k : Fin d) :
     ipercuboFlagFree d hd F k ⊆ ipercuboFlagNextFree d hd F k := by
@@ -570,6 +678,9 @@ theorem ipercuboFlagFree_subset_next (d : ℕ) (hd : 1 ≤ d)
   · simp [ipercuboFlagNextFree, hk]
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s5.fa992593a1c0 from=translated src=- shape=ce5d2aa9 vocab=50f82a76
+-/
 theorem ipercuboFlagNextFree_card (d : ℕ) (hd : 1 ≤ d)
     (F : (ipercubo d hd).Flag) (k : Fin d) :
     (ipercuboFlagNextFree d hd F k).card = k.val + 1 := by
@@ -579,6 +690,9 @@ theorem ipercuboFlagNextFree_card (d : ℕ) (hd : 1 ≤ d)
     simp [ipercuboFlagNextFree, heq]
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s5.a1ddccc25334 from=translated src=- shape=2254ac08 vocab=eb60ab6f
+-/
 theorem ipercuboFlagStep_card (d : ℕ) (hd : 1 ≤ d)
     (F : (ipercubo d hd).Flag) (k : Fin d) :
     (ipercuboFlagNextFree d hd F k \ ipercuboFlagFree d hd F k).card = 1 := by
@@ -592,6 +706,9 @@ noncomputable def ipercuboFlagCoord (d : ℕ) (hd : 1 ≤ d)
   (Finset.card_pos.mp (by rw [ipercuboFlagStep_card d hd F k]; omega)).choose
 
 open Classical in
+/--
+@isnad1 id=mem.1h3v.s5.617b9866ae3a from=translated src=- shape=90358d3f vocab=0e73cc6f
+-/
 theorem ipercuboFlagCoord_mem_next (d : ℕ) (hd : 1 ≤ d)
     (F : (ipercubo d hd).Flag) (k : Fin d) :
     ipercuboFlagCoord d hd F k ∈ ipercuboFlagNextFree d hd F k :=
@@ -599,6 +716,9 @@ theorem ipercuboFlagCoord_mem_next (d : ℕ) (hd : 1 ≤ d)
     (Finset.card_pos.mp (by rw [ipercuboFlagStep_card d hd F k]; omega)).choose_spec).1
 
 open Classical in
+/--
+@isnad1 id=not.1h3v.s5.96d1423e963d from=translated src=- shape=806fdbb1 vocab=b7d31a6c
+-/
 theorem ipercuboFlagCoord_not_free (d : ℕ) (hd : 1 ≤ d)
     (F : (ipercubo d hd).Flag) (k : Fin d) :
     ipercuboFlagCoord d hd F k ∉ ipercuboFlagFree d hd F k :=
@@ -606,6 +726,9 @@ theorem ipercuboFlagCoord_not_free (d : ℕ) (hd : 1 ≤ d)
     (Finset.card_pos.mp (by rw [ipercuboFlagStep_card d hd F k]; omega)).choose_spec).2
 
 open Classical in
+/--
+@isnad1 id=mem.2h4v.s5.e9cbbf3afa97 from=translated src=- shape=88dd1b27 vocab=a25d01cb
+-/
 theorem ipercuboFlagCoord_mem_free_of_lt (d : ℕ) (hd : 1 ≤ d)
     (F : (ipercubo d hd).Flag) {i j : Fin d} (hij : i < j) :
     ipercuboFlagCoord d hd F i ∈ ipercuboFlagFree d hd F j := by
@@ -619,6 +742,9 @@ theorem ipercuboFlagCoord_mem_free_of_lt (d : ℕ) (hd : 1 ≤ d)
   · exact hmem
 
 open Classical in
+/--
+@isnad1 id=injectiv.1h2v.s4.ae18065175b0 from=translated src=- shape=13b2492a vocab=9c9d1fc1
+-/
 theorem ipercuboFlagCoord_injective (d : ℕ) (hd : 1 ≤ d)
     (F : (ipercubo d hd).Flag) :
     Function.Injective (ipercuboFlagCoord d hd F) := by
@@ -637,11 +763,17 @@ noncomputable def ipercuboFlagCoordEquiv (d : ℕ) (hd : 1 ≤ d)
     ((Fintype.bijective_iff_injective_and_card _).2
       ⟨ipercuboFlagCoord_injective d hd F, rfl⟩)
 
+/--
+@isnad1 id=eq.1h3v.s5.0492fc6c38c1 from=translated src=- shape=d78a172c vocab=dbf83e1f
+-/
 @[simp] theorem ipercuboFlagCoordEquiv_apply (d : ℕ) (hd : 1 ≤ d)
     (F : (ipercubo d hd).Flag) (k : Fin d) :
     ipercuboFlagCoordEquiv d hd F k = ipercuboFlagCoord d hd F k := rfl
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s5.dccaadfe4680 from=translated src=- shape=6415c914 vocab=95f40da1
+-/
 theorem ipercuboFlagFree_eq_image_Iio (d : ℕ) (hd : 1 ≤ d)
     (F : (ipercubo d hd).Flag) (k : Fin d) :
     ipercuboFlagFree d hd F k =
@@ -676,6 +808,9 @@ noncomputable def iperAgreeEquiv {d : ℕ} (A : Finset (Fin d)) (s : Fin d → B
     simp [i.2]
 
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s7.745c8158f829 from=translated src=- shape=0ba75639 vocab=a9e42674
+-/
 theorem card_signs_agree {d : ℕ} (A : Finset (Fin d)) (s : Fin d → Bool) :
     ((Finset.univ : Finset (Fin d → Bool)).filter
       (fun t => ∀ i, i ∉ A → t i = s i)).card = 2 ^ A.card := by
@@ -709,6 +844,9 @@ noncomputable def ipercuboFlagVertices (d : ℕ) (hd : 1 ≤ d)
   (ipercubo d hd).vertices.filter (· ∈ F.face k)
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s7.c9ab2e90b2fc from=translated src=- shape=b35775be vocab=35f26264
+-/
 theorem ipercuboFlagVertices_eq_image_codes (d : ℕ) (hd : 1 ≤ d)
     (F : (ipercubo d hd).Flag) (k : Fin d) :
     ipercuboFlagVertices d hd F k =
@@ -726,6 +864,9 @@ theorem ipercuboFlagVertices_eq_image_codes (d : ℕ) (hd : 1 ≤ d)
     exact Finset.mem_filter.mpr ⟨mem_verticiIper.mpr ⟨t, rfl⟩, htF⟩
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s5.3969f1f293be from=translated src=- shape=3c352402 vocab=256b45e6
+-/
 theorem ipercuboFlagVertices_card (d : ℕ) (hd : 1 ≤ d)
     (F : (ipercubo d hd).Flag) (k : Fin d) :
     (ipercuboFlagVertices d hd F k).card = 2 ^ k.val := by
@@ -749,6 +890,9 @@ noncomputable def ipercuboFlagPerm (d : ℕ) (hd : 1 ≤ d)
   (ipercuboFlagCoordEquiv d hd F).symm.trans
     (ipercuboFlagCoordEquiv d hd G)
 
+/--
+@isnad1 id=eq.1h4v.s6.b824934d3605 from=translated src=- shape=83700450 vocab=0838eb04
+-/
 @[simp] theorem ipercuboFlagPerm_coord (d : ℕ) (hd : 1 ≤ d)
     (F G : (ipercubo d hd).Flag) (k : Fin d) :
     ipercuboFlagPerm d hd F G (ipercuboFlagCoord d hd F k) =
@@ -760,6 +904,9 @@ noncomputable def ipercuboFlagPerm (d : ℕ) (hd : 1 ≤ d)
   rfl
 
 open Classical in
+/--
+@isnad1 id=iff.1h5v.s6.017a677a9df3 from=translated src=- shape=687faad7 vocab=fac32113
+-/
 theorem ipercuboFlagPerm_mem_free_iff (d : ℕ) (hd : 1 ≤ d)
     (F G : (ipercubo d hd).Flag) (k : Fin d) (i : Fin d) :
     ipercuboFlagPerm d hd F G i ∈ ipercuboFlagFree d hd G k ↔
@@ -787,6 +934,9 @@ noncomputable def ipercuboFlagSign (d : ℕ) (hd : 1 ≤ d)
     ⟨1, by simp⟩ else ⟨-1, by simp⟩
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s8.dcebd8d99065 from=translated src=- shape=f9de2786 vocab=cb0364ed
+-/
 theorem ipercuboFlagIsom_base (d : ℕ) (hd : 1 ≤ d)
     (F G : (ipercubo d hd).Flag) :
     segnoPerm d (ipercuboFlagPerm d hd F G) (ipercuboFlagSign d hd F G)
@@ -811,6 +961,9 @@ theorem ipercuboFlagIsom_base (d : ℕ) (hd : 1 ≤ d)
       simp [hF, hG]
 
 open Classical in
+/--
+@isnad1 id=mem.2h5v.s8.de9f359a470e from=translated src=- shape=0649bb1b vocab=2c61fd63
+-/
 theorem ipercuboFlagIsom_mem_vertices (d : ℕ) (hd : 1 ≤ d)
     (F G : (ipercubo d hd).Flag) (k : Fin d) {v : E d}
     (hv : v ∈ ipercuboFlagVertices d hd F k) :
@@ -861,6 +1014,9 @@ theorem ipercuboFlagIsom_mem_vertices (d : ℕ) (hd : 1 ≤ d)
     (ipercuboFlagBaseCode_mem d hd G k) u).mpr hufree
 
 open Classical in
+/--
+@isnad1 id=eq.1h4v.s8.d4e978a729a7 from=translated src=- shape=57ff0196 vocab=cd14917b
+-/
 theorem ipercuboFlagIsom_image_vertices (d : ℕ) (hd : 1 ≤ d)
     (F G : (ipercubo d hd).Flag) (k : Fin d) :
     Finset.image
@@ -877,6 +1033,9 @@ theorem ipercuboFlagIsom_image_vertices (d : ℕ) (hd : 1 ≤ d)
       ipercuboFlagVertices_card, ipercuboFlagVertices_card]
 
 open Classical in
+/--
+@isnad1 id=eq.1h4v.s8.fa71bc13a5bb from=translated src=- shape=c15392f4 vocab=5129de69
+-/
 theorem ipercuboFlagIsom_image_face (d : ℕ) (hd : 1 ≤ d)
     (F G : (ipercubo d hd).Flag) (k : Fin d) :
     (segnoPerm d (ipercuboFlagPerm d hd F G) (ipercuboFlagSign d hd F G) :
@@ -899,6 +1058,9 @@ theorem ipercuboFlagIsom_image_face (d : ℕ) (hd : 1 ≤ d)
       rfl
 
 open Classical in
+/--
+@isnad1 id=isregula.1h1v.s4.f256f8324ef8 from=translated src=- shape=dd19ab6e vocab=009421d3
+-/
 theorem ipercubo_isRegular (d : ℕ) (hd : 1 ≤ d) :
     (ipercubo d hd).IsRegular := by
   refine ⟨ipercubo_isFullDim d hd, ?_⟩
@@ -907,6 +1069,9 @@ theorem ipercubo_isRegular (d : ℕ) (hd : 1 ≤ d) :
     segnoPerm_isSymmetry_ipercubo d hd _ _, ?_⟩
   exact ipercuboFlagIsom_image_face d hd F G
 
+/--
+@isnad1 id=mem.1h1v.s4.b496a8a4cfa1 from=translated src=- shape=3ed95865 vocab=0cc931b6
+-/
 theorem ipercubo_mem_regularPolytopes (d : ℕ) (hd : 1 ≤ d) :
     ipercubo d hd ∈ regularPolytopes d :=
   ipercubo_isRegular d hd

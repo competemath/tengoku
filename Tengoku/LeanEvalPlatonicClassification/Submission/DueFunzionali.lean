@@ -21,7 +21,9 @@ namespace LeanEval.Geometry.PlatonicClassification
 
 variable {n : ℕ}
 
-/-- Dalla codimensione ≥ 2: due vettori indipendenti in W ⊓ Uᗮ.-/
+/-- Dalla codimensione ≥ 2: due vettori indipendenti in W ⊓ Uᗮ.
+@isnad1 id=ex.2h3v.s11.14b6fb63104b from=translated src=- shape=6ce0c4f1 vocab=9e162425
+-/
 theorem exists_two_orthogonal_indep {U W : Submodule ℝ (E n)}
     (hUW : U ≤ W) (hcodim : Module.finrank ℝ U + 2 ≤ Module.finrank ℝ W) :
     ∃ w₁ w₂ : E n, w₁ ∈ W ∧ w₂ ∈ W ∧

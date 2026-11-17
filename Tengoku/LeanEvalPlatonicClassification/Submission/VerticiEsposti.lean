@@ -27,7 +27,9 @@ open ConvexPolytope
 variable {n : ℕ}
 
 open Classical in
-/-- Un vertice non sta nell'hull degli altri vertici.-/
+/-- Un vertice non sta nell'hull degli altri vertici.
+@isnad1 id=not.1h3v.s8.874deec981b4 from=translated src=- shape=7937d77e vocab=cb04f43f
+-/
 theorem vertex_notMem_hull_erase (P : ConvexPolytope n) {v : E n}
     (hv : v ∈ P.vertices) :
     v ∉ convexHull ℝ ((P.vertices.erase v : Finset (E n)) : Set (E n)) := by
@@ -57,7 +59,9 @@ theorem vertex_notMem_hull_erase (P : ConvexPolytope n) {v : E n}
   exact (Finset.mem_erase.mp this).1 rfl
 
 open Classical in
-/-- Q1: ogni vertice è una faccia (esposta, non vuota) del politopo.-/
+/-- Q1: ogni vertice è una faccia (esposta, non vuota) del politopo.
+@isnad1 id=isface.1h3v.s5.270e2b085c5b from=translated src=- shape=0fcd0598 vocab=7defd84a
+-/
 theorem vertex_isFace (P : ConvexPolytope n) {v : E n}
     (hv : v ∈ P.vertices) : P.IsFace ({v} : Set (E n)) := by
   classical

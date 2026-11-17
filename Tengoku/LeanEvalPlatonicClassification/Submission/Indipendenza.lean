@@ -42,7 +42,9 @@ variable {n : ℕ}
 
 /-- **Biortogonalità ⟹ indipendenza lineare.** Se `⟪α i, v k⟫` si annulla
 fuori dalla diagonale e non si annulla sulla diagonale, la famiglia `α`
-è linearmente indipendente.-/
+è linearmente indipendente.
+@isnad1 id=linearin.2h4v.s8.e6bec0a39b12 from=translated src=- shape=9be41e8e vocab=043691b0
+-/
 theorem linearIndependent_of_biorthogonal {ι : Type*} [Fintype ι]
     [DecidableEq ι] (α v : ι → E n)
     (hdiag : ∀ i, ⟪α i, v i⟫ ≠ (0 : ℝ))
@@ -67,7 +69,9 @@ theorem linearIndependent_of_biorthogonal {ι : Type*} [Fintype ι]
   exact (mul_eq_zero.mp happ).resolve_right (hdiag i)
 
 /-- La matrice di Gram di una famiglia libera è definita positiva:
-la forma quadratica associata si annulla solo sul vettore nullo.-/
+la forma quadratica associata si annulla solo sul vettore nullo.
+@isnad1 id=eq.2h5v.s7.4de06013100b from=translated src=- shape=d6ce8dea vocab=cf3006e4
+-/
 theorem gram_definita_positiva {ι : Type*} [Fintype ι] (α : ι → E n)
     (hind : LinearIndependent ℝ α) (g : ι → ℝ)
     (hzero : ∀ j, ∑ i, g i * ⟪α i, α j⟫ = (0 : ℝ)) :

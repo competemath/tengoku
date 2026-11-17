@@ -22,16 +22,25 @@ open ConvexPolytope
 noncomputable def vertOrto {d : ℕ} (p : Fin d × Bool) : E d :=
   EuclideanSpace.single p.1 (if p.2 then (1 : ℝ) else (-1 : ℝ))
 
+/--
+@isnad1 id=eq.0h3v.s6.74e77963a3a8 from=translated src=- shape=685e5783 vocab=4d0567cd
+-/
 theorem vertOrto_apply {d : ℕ} (p : Fin d × Bool) (k : Fin d) :
     vertOrto p k = if k = p.1 then (if p.2 then (1 : ℝ) else (-1 : ℝ))
       else 0 := by
   unfold vertOrto
   rw [PiLp.single_apply]
 
+/--
+@isnad1 id=eq.0h2v.s6.758274c53b3b from=translated src=- shape=529877dd vocab=4d0567cd
+-/
 @[simp] theorem vertOrto_self {d : ℕ} (p : Fin d × Bool) :
     vertOrto p p.1 = if p.2 then (1 : ℝ) else (-1 : ℝ) := by
   simp [vertOrto_apply]
 
+/--
+@isnad1 id=injectiv.0h1v.s3.747e13be67f0 from=translated src=- shape=daf3eb8d vocab=23ddbd24
+-/
 theorem vertOrto_injective {d : ℕ} :
     Function.Injective (vertOrto (d := d)) := by
   rintro ⟨i, s⟩ ⟨j, t⟩ hpq
@@ -53,25 +62,40 @@ theorem vertOrto_injective {d : ℕ} :
 noncomputable def verticiOrto (d : ℕ) : Finset (E d) :=
   (Finset.univ : Finset (Fin d × Bool)).image vertOrto
 
+/--
+@isnad1 id=iff.0h2v.s5.78902f09ba1e from=translated src=- shape=35c55a94 vocab=aa531c4b
+-/
 theorem mem_verticiOrto {d : ℕ} {x : E d} :
     x ∈ verticiOrto d ↔ ∃ p : Fin d × Bool, vertOrto p = x := by
   simp [verticiOrto]
 
+/--
+@isnad1 id=eq.0h1v.s4.905e653d7df2 from=translated src=- shape=142fa872 vocab=cac2d59d
+-/
 theorem card_verticiOrto (d : ℕ) : (verticiOrto d).card = 2 * d := by
   rw [verticiOrto, Finset.card_image_of_injective _ vertOrto_injective]
   simp [Fintype.card_prod, Fintype.card_bool, Fintype.card_fin]
   omega
 
+/--
+@isnad1 id=nonempty.1h1v.s4.49e57402761b from=translated src=- shape=61782199 vocab=b2a1bb0e
+-/
 theorem verticiOrto_nonempty {d : ℕ} (hd : 0 < d) :
     (verticiOrto d).Nonempty := by
   refine ⟨vertOrto (⟨0, hd⟩, true), ?_⟩
   exact mem_verticiOrto.mpr ⟨(⟨0, hd⟩, true), rfl⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.2319776b5abe from=translated src=- shape=b347578b vocab=ca65569b
+-/
 theorem norm_vertOrto {d : ℕ} (p : Fin d × Bool) : ‖vertOrto p‖ = 1 := by
   rw [vertOrto]
   rw [PiLp.norm_single]
   split <;> norm_num
 
+/--
+@isnad1 id=eq.1h4v.s7.8ba8e447e686 from=translated src=- shape=3c79d8e4 vocab=bd3cbdd4
+-/
 theorem cosferico_extremePoints {A : Type*} [NormedAddCommGroup A]
     [InnerProductSpace ℝ A] [Nontrivial A]
     (x : A) (r : ℝ) (V : Set A) (hV : V ⊆ sphere x r) :
@@ -86,6 +110,9 @@ theorem cosferico_extremePoints {A : Type*} [NormedAddCommGroup A]
   exact inter_extremePoints_subset_extremePoints_of_subset hball
     ⟨subset_convexHull ℝ V hv, hsfera⟩
 
+/--
+@isnad1 id=eq.0h1v.s8.71a718f5d9f9 from=translated src=- shape=4133bf23 vocab=2e9d6ebc
+-/
 theorem verticiOrto_eq_extremePoints (d : ℕ) :
     ((verticiOrto d : Finset (E d)) : Set (E d)) =
       Set.extremePoints ℝ
@@ -113,11 +140,16 @@ theorem verticiOrto_eq_extremePoints (d : ℕ) :
 noncomputable def ortoplesse (d : ℕ) (hd : 1 ≤ d) : ConvexPolytope d :=
   ⟨verticiOrto d, verticiOrto_nonempty hd, verticiOrto_eq_extremePoints d⟩
 
+/--
+@isnad1 id=eq.1h1v.s5.2af5fad18caa from=translated src=- shape=e99c7004 vocab=0716407a
+-/
 theorem card_ortoplesse (d : ℕ) (hd : 1 ≤ d) :
     (ortoplesse d hd).vertices.card = 2 * d := by
   exact card_verticiOrto d
 
-/-- L'ortoplesse genera affineamente tutto `E d`.-/
+/-- L'ortoplesse genera affineamente tutto `E d`.
+@isnad1 id=isfulldi.1h1v.s4.ce52172aa9e8 from=translated src=- shape=dd19ab6e vocab=869487ca
+-/
 theorem ortoplesse_isFullDim (d : ℕ) (hd : 1 ≤ d) :
     (ortoplesse d hd).IsFullDim := by
   let W : Submodule ℝ (E d) := vectorSpan ℝ (ortoplesse d hd).toSet
@@ -153,6 +185,9 @@ noncomputable def isometriaSegno (s : ({-1, 1} : Set ℝ)) : ℝ ≃ₗᵢ[ℝ] 
   if (s : ℝ) = 1 then LinearIsometryEquiv.refl ℝ ℝ
   else LinearIsometryEquiv.neg ℝ
 
+/--
+@isnad1 id=eq.0h2v.s7.3197e2fa21b4 from=translated src=- shape=ceb088dc vocab=7f1ca54d
+-/
 @[simp] theorem isometriaSegno_apply (s : ({-1, 1} : Set ℝ)) (x : ℝ) :
     isometriaSegno s x = (s : ℝ) * x := by
   unfold isometriaSegno
@@ -180,16 +215,25 @@ noncomputable def segnoPerm (d : ℕ) (σ : Equiv.Perm (Fin d))
     (ε : Fin d → ({-1, 1} : Set ℝ)) : Isom d :=
   (segnoLinear d σ ε).toAffineIsometryEquiv
 
+/--
+@isnad1 id=eq.0h5v.s9.52c4d1886076 from=translated src=- shape=8978cd19 vocab=c2f1955c
+-/
 @[simp] theorem segnoLinear_single (d : ℕ) (σ : Equiv.Perm (Fin d))
     (ε : Fin d → ({-1, 1} : Set ℝ)) (i : Fin d) (a : ℝ) :
     segnoLinear d σ ε (EuclideanSpace.single i a) =
       EuclideanSpace.single (σ i) ((ε i : ℝ) * a) := by
   simp [segnoLinear]
 
+/--
+@isnad1 id=eq.0h4v.s10.9fd3a801aca3 from=translated src=- shape=bae41fc3 vocab=1f5a5f5d
+-/
 @[simp] theorem segnoPerm_apply (d : ℕ) (σ : Equiv.Perm (Fin d))
     (ε : Fin d → ({-1, 1} : Set ℝ)) (x : E d) :
     segnoPerm d σ ε x = segnoLinear d σ ε x := rfl
 
+/--
+@isnad1 id=mem.1h4v.s8.ef92b53a3312 from=translated src=- shape=f64f7770 vocab=67ee8cfe
+-/
 theorem segnoPerm_mem_verticiOrto (d : ℕ) (σ : Equiv.Perm (Fin d))
     (ε : Fin d → ({-1, 1} : Set ℝ)) {v : E d}
     (hv : v ∈ verticiOrto d) : segnoPerm d σ ε v ∈ verticiOrto d := by
@@ -211,6 +255,9 @@ theorem segnoPerm_mem_verticiOrto (d : ℕ) (σ : Equiv.Perm (Fin d))
     refine ⟨(σ i, true), ?_⟩
     simp [vertOrto, hs]
 
+/--
+@isnad1 id=eq.0h3v.s8.602e978346f3 from=translated src=- shape=978ce022 vocab=3d6713fb
+-/
 theorem segnoPerm_image_verticiOrto (d : ℕ) (σ : Equiv.Perm (Fin d))
     (ε : Fin d → ({-1, 1} : Set ℝ)) :
     (segnoPerm d σ ε : E d → E d) '' (verticiOrto d : Set (E d)) =
@@ -225,6 +272,9 @@ theorem segnoPerm_image_verticiOrto (d : ℕ) (σ : Equiv.Perm (Fin d))
     · rw [Finset.card_image_of_injective _ (segnoPerm d σ ε).injective]
   rw [← Finset.coe_image, hfin]
 
+/--
+@isnad1 id=issymmet.1h3v.s5.9288703817dd from=translated src=- shape=51726dd5 vocab=f31c6bb7
+-/
 theorem segnoPerm_isSymmetry (d : ℕ) (hd : 1 ≤ d)
     (σ : Equiv.Perm (Fin d)) (ε : Fin d → ({-1, 1} : Set ℝ)) :
     (ortoplesse d hd).isSymmetry (segnoPerm d σ ε) := by

@@ -16,7 +16,9 @@ variable {n : ℕ}
 
 /-- Se il periodo `m` del prodotto di due riflessioni è minimo, il
 coefficiente angolare prodotto da `coseno_di_ordine` è coprimo con
-`m`.-/
+`m`.
+@isnad1 id=and.9h6v.s9.172d819410ca from=translated src=- shape=1689989d vocab=f1753366
+-/
 theorem coefficiente_angolare_coprimo {α β : E n}
     (hα : ‖α‖ = 1) (hβ : ‖β‖ = 1)
     (hind : ∀ t : ℝ, β ≠ t • α)
@@ -362,7 +364,9 @@ theorem coefficiente_angolare_coprimo {α β : E n}
     omega
 
 /-- I segni di due normali unitari possono sempre essere scelti in modo
-che il loro prodotto scalare sia non positivo.-/
+che il loro prodotto scalare sia non positivo.
+@isnad1 id=ex.6h8v.s10.f623699d7d8e from=translated src=- shape=f21b7b1d vocab=9762462a
+-/
 theorem normali_orientabili (P : ConvexPolytope n) (hreg : P.IsRegular)
     (F : P.Flag) (i : Fin n) (hi : (i : ℕ) + 1 < n)
     {αi pi αj pj : E n} (hαi : ‖αi‖ = 1) (hαj : ‖αj‖ = 1)

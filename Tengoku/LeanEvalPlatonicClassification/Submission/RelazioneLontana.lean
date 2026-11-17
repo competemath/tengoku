@@ -32,7 +32,9 @@ open ConvexPolytope
 variable {n : ℕ}
 
 /-- **La relazione lontana sulle bandiere**: per `i + 2 ≤ j`,
-`rᵢ rⱼ rᵢ rⱼ` riporta la bandiera base in sé.-/
+`rᵢ rⱼ rᵢ rⱼ` riporta la bandiera base in sé.
+@isnad1 id=eq.2h5v.s6.bf30f5940e6e from=translated src=- shape=2298f9c5 vocab=5f492121
+-/
 theorem simpleReflection_far_comm_fixes (P : ConvexPolytope n)
     (hreg : P.IsRegular) (F : P.Flag) {i j : Fin n}
     (hij : (i : ℕ) + 2 ≤ (j : ℕ)) :

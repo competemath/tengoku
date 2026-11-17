@@ -19,7 +19,9 @@ open ConvexPolytope
 
 variable {n : ℕ}
 
-/-- I punti estremi si trasportano lungo un'equivalenza affine.-/
+/-- I punti estremi si trasportano lungo un'equivalenza affine.
+@isnad1 id=eq.0h3v.s11.3e8ecafa5c1b from=translated src=- shape=e7cbc633 vocab=f41d3b34
+-/
 theorem extremePoints_image_affineEquiv (T : E n ≃ᵃ[ℝ] E n) (s : Set (E n)) :
     Set.extremePoints ℝ ((⇑T) '' s) = (⇑T) '' Set.extremePoints ℝ s := by
   have hseg : ∀ u v : E n,
@@ -55,10 +57,15 @@ noncomputable def similMap (a : ℝ) (ha : 0 < a) (φ : Isom n) : E n ≃ᵃ[ℝ
   φ.toAffineEquiv.trans
     (LinearEquiv.smulOfNeZero ℝ (E n) a (ne_of_gt ha)).toAffineEquiv
 
+/--
+@isnad1 id=eq.1h4v.s10.9fc13c426126 from=translated src=- shape=8eb97d14 vocab=ce9757de
+-/
 theorem similMap_apply (a : ℝ) (ha : 0 < a) (φ : Isom n) (x : E n) :
     similMap a ha φ x = a • (φ x) := rfl
 
-/-- |vertices| è invariante per similitudine.-/
+/-- |vertices| è invariante per similitudine.
+@isnad1 id=eq.1h3v.s4.cd81de135e83 from=translated src=- shape=adb0ccf6 vocab=84a8cac8
+-/
 theorem vertices_card_of_similar {P Q : ConvexPolytope n}
     (h : Similar P Q) : Q.vertices.card = P.vertices.card := by
   classical
@@ -79,7 +86,9 @@ theorem vertices_card_of_similar {P Q : ConvexPolytope n}
   rw [hfin]
   exact Finset.card_image_of_injective _ (similMap a ha φ).injective
 
-/-- La similitudine è riflessiva.-/
+/-- La similitudine è riflessiva.
+@isnad1 id=similar.0h2v.s3.03955c861288 from=translated src=- shape=f3577ae2 vocab=75ba4155
+-/
 theorem similar_refl (P : ConvexPolytope n) : Similar P P := by
   refine ⟨1, one_pos, AffineIsometryEquiv.refl ℝ (E n), ?_⟩
   simp

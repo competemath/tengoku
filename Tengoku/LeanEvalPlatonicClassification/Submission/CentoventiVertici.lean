@@ -44,6 +44,9 @@ noncomputable def vertP2 (i : Fin 4) (s : Fin 4 → Bool) : E 4 :=
     (fun j => (if s j then 1 else -1) *
       (if j = i then Real.sqrt 5 else 1))
 
+/--
+@isnad1 id=eq.0h3v.s7.3a468411d2c5 from=translated src=- shape=ddaf9110 vocab=9d0275dd
+-/
 @[simp] theorem vertP2_apply (i : Fin 4) (s : Fin 4 → Bool) (j : Fin 4) :
     vertP2 i s j = (if s j then (1 : ℝ) else -1) *
       (if j = i then Real.sqrt 5 else 1) := by
@@ -55,6 +58,9 @@ noncomputable def vertP3 (i : Fin 4) (s : Fin 4 → Bool) : E 4 :=
     (fun j => (if s j then 1 else -1) *
       (if j = i then 2 - aureo else aureo))
 
+/--
+@isnad1 id=eq.0h3v.s7.3c3face72b74 from=translated src=- shape=2920018b vocab=3579625c
+-/
 @[simp] theorem vertP3_apply (i : Fin 4) (s : Fin 4 → Bool) (j : Fin 4) :
     vertP3 i s j = (if s j then (1 : ℝ) else -1) *
       (if j = i then 2 - aureo else aureo) := by
@@ -66,6 +72,9 @@ noncomputable def vertP4 (i : Fin 4) (s : Fin 4 → Bool) : E 4 :=
     (fun j => (if s j then 1 else -1) *
       (if j = i then aureo + 1 else aureo - 1))
 
+/--
+@isnad1 id=eq.0h3v.s7.e84885ed29e3 from=translated src=- shape=14815629 vocab=f9417da2
+-/
 @[simp] theorem vertP4_apply (i : Fin 4) (s : Fin 4 → Bool) (j : Fin 4) :
     vertP4 i s j = (if s j then (1 : ℝ) else -1) *
       (if j = i then aureo + 1 else aureo - 1) := by
@@ -90,10 +99,16 @@ noncomputable def segnoPieno (s : Fin 4 → Bool) : Fin 4 → ℝ :=
   ![if s 0 then 1 else -1, if s 1 then 1 else -1,
     if s 2 then 1 else -1, if s 3 then 1 else -1]
 
+/--
+@isnad1 id=eq.0h2v.s5.d56f7a62b29b from=translated src=- shape=b4164dab vocab=044a4b04
+-/
 theorem segnoZeroTesta_sq (s : Fin 3 → Bool) (k : Fin 4) :
     segnoZeroTesta s k ^ 2 = 1 := by
   fin_cases k <;> simp [segnoZeroTesta] <;> split_ifs <;> norm_num
 
+/--
+@isnad1 id=eq.0h2v.s5.847a97daf7b9 from=translated src=- shape=b4164dab vocab=69f80227
+-/
 theorem segnoPieno_sq (s : Fin 4 → Bool) (k : Fin 4) :
     segnoPieno s k ^ 2 = 1 := by
   fin_cases k <;> simp [segnoPieno] <;> split_ifs <;> norm_num
@@ -119,18 +134,27 @@ noncomputable def vertP7 (σ : alternatingGroup (Fin 4))
     (fun j => segnoPieno s ((σ : Equiv.Perm (Fin 4)).symm j) *
       base7 ((σ : Equiv.Perm (Fin 4)).symm j))
 
+/--
+@isnad1 id=eq.0h3v.s9.525666867fb2 from=translated src=- shape=0de02669 vocab=bb10e3a5
+-/
 @[simp] theorem vertP5_apply (σ : alternatingGroup (Fin 4))
     (s : Fin 3 → Bool) (j : Fin 4) :
     vertP5 σ s j = segnoZeroTesta s ((σ : Equiv.Perm (Fin 4)).symm j) *
       base5 ((σ : Equiv.Perm (Fin 4)).symm j) := by
   simp [vertP5]
 
+/--
+@isnad1 id=eq.0h3v.s9.382790caca49 from=translated src=- shape=0de02669 vocab=2c513461
+-/
 @[simp] theorem vertP6_apply (σ : alternatingGroup (Fin 4))
     (s : Fin 3 → Bool) (j : Fin 4) :
     vertP6 σ s j = segnoZeroTesta s ((σ : Equiv.Perm (Fin 4)).symm j) *
       base6 ((σ : Equiv.Perm (Fin 4)).symm j) := by
   simp [vertP6]
 
+/--
+@isnad1 id=eq.0h3v.s9.7a67d176e144 from=translated src=- shape=0de02669 vocab=41b4a4e2
+-/
 @[simp] theorem vertP7_apply (σ : alternatingGroup (Fin 4))
     (s : Fin 4 → Bool) (j : Fin 4) :
     vertP7 σ s j = segnoPieno s ((σ : Equiv.Perm (Fin 4)).symm j) *
@@ -139,12 +163,18 @@ noncomputable def vertP7 (σ : alternatingGroup (Fin 4))
 
 /-! ## Le norme: tutti su sfera di raggio `2√2` (norma quadra 8) -/
 
+/--
+@isnad1 id=eq.0h1v.s6.be9676d2b46a from=translated src=- shape=7b9ddabb vocab=146586ac
+-/
 theorem norm_sq_vertP1 (c : CodiceVentiquattro) : ‖vertP1 c‖ ^ 2 = 8 := by
   rw [vertP1, norm_smul, norm_vertVentiquattro]
   rw [Real.norm_eq_abs]
   rw [mul_pow, sq_abs, Real.sq_sqrt (by norm_num : (0:ℝ) ≤ 2)]
   norm_num
 
+/--
+@isnad1 id=eq.0h2v.s6.23961bd84357 from=translated src=- shape=ca0e4976 vocab=12239c55
+-/
 theorem norm_sq_vertP2 (i : Fin 4) (s : Fin 4 → Bool) :
     ‖vertP2 i s‖ ^ 2 = 8 := by
   rw [EuclideanSpace.norm_sq_eq]
@@ -165,6 +195,9 @@ theorem norm_sq_vertP2 (i : Fin 4) (s : Fin 4 → Bool) :
   simp_rw [hterm]
   fin_cases i <;> rw [Fin.sum_univ_four] <;> simp <;> norm_num
 
+/--
+@isnad1 id=eq.0h2v.s6.de1ef4e24513 from=translated src=- shape=ca0e4976 vocab=8cfed055
+-/
 theorem norm_sq_vertP3 (i : Fin 4) (s : Fin 4 → Bool) :
     ‖vertP3 i s‖ ^ 2 = 8 := by
   rw [EuclideanSpace.norm_sq_eq]
@@ -183,6 +216,9 @@ theorem norm_sq_vertP3 (i : Fin 4) (s : Fin 4 → Bool) :
   simp_rw [hterm]
   fin_cases i <;> rw [Fin.sum_univ_four] <;> simp <;> nlinarith [aureo_sq]
 
+/--
+@isnad1 id=eq.0h2v.s6.98b12270501e from=translated src=- shape=ca0e4976 vocab=4b7683e7
+-/
 theorem norm_sq_vertP4 (i : Fin 4) (s : Fin 4 → Bool) :
     ‖vertP4 i s‖ ^ 2 = 8 := by
   rw [EuclideanSpace.norm_sq_eq]
@@ -201,6 +237,9 @@ theorem norm_sq_vertP4 (i : Fin 4) (s : Fin 4 → Bool) :
   simp_rw [hterm]
   fin_cases i <;> rw [Fin.sum_univ_four] <;> simp <;> nlinarith [aureo_sq]
 
+/--
+@isnad1 id=eq.2h3v.s9.6852d2cca61a from=translated src=- shape=1d2a736f vocab=74f45fb5
+-/
 theorem norm_sq_perm_block {sg : Fin 4 → ℝ} {bs : Fin 4 → ℝ}
     (σ : alternatingGroup (Fin 4))
     (hsg : ∀ k, sg k ^ 2 = 1)
@@ -220,6 +259,9 @@ theorem norm_sq_perm_block {sg : Fin 4 → ℝ} {bs : Fin 4 → ℝ}
   rw [Fin.sum_univ_four]
   exact htot
 
+/--
+@isnad1 id=eq.0h2v.s7.682fb6399cd7 from=translated src=- shape=e72b7806 vocab=4ec5005d
+-/
 theorem norm_sq_vertP5 (σ : alternatingGroup (Fin 4))
     (s : Fin 3 → Bool) : ‖vertP5 σ s‖ ^ 2 = 8 := by
   rw [EuclideanSpace.norm_sq_eq]
@@ -232,6 +274,9 @@ theorem norm_sq_vertP5 (σ : alternatingGroup (Fin 4))
   rw [h0, h1, h2, h3]
   nlinarith [aureo_sq]
 
+/--
+@isnad1 id=eq.0h2v.s7.b83b02e970df from=translated src=- shape=e72b7806 vocab=2893501b
+-/
 theorem norm_sq_vertP6 (σ : alternatingGroup (Fin 4))
     (s : Fin 3 → Bool) : ‖vertP6 σ s‖ ^ 2 = 8 := by
   rw [EuclideanSpace.norm_sq_eq]
@@ -244,6 +289,9 @@ theorem norm_sq_vertP6 (σ : alternatingGroup (Fin 4))
   rw [h0, h1, h2, h3, Real.sq_sqrt (by norm_num : (0:ℝ) ≤ 5)]
   nlinarith [aureo_sq]
 
+/--
+@isnad1 id=eq.0h2v.s7.1a915783b004 from=translated src=- shape=e72b7806 vocab=39944ebd
+-/
 theorem norm_sq_vertP7 (σ : alternatingGroup (Fin 4))
     (s : Fin 4 → Bool) : ‖vertP7 σ s‖ ^ 2 = 8 := by
   rw [EuclideanSpace.norm_sq_eq]
@@ -259,7 +307,9 @@ theorem norm_sq_vertP7 (σ : alternatingGroup (Fin 4))
 /-! ## Iniettività: due pattern generali, sette istanze -/
 
 /-- Iniettività del pattern posizionale: valore speciale `a` in posizione
-`i`, valore comune `b` altrove, segni liberi.-/
+`i`, valore comune `b` altrove, segni liberi.
+@isnad1 id=injectiv.3h2v.s11.6ab1ef412601 from=translated src=- shape=cb8bac7b vocab=5b7df472
+-/
 theorem inj_posizionale {a b : ℝ} (ha : 0 < a) (hb : 0 < b) (hab : a ≠ b) :
     Function.Injective (fun p : Fin 4 × (Fin 4 → Bool) =>
       ((EuclideanSpace.equiv (Fin 4) ℝ).symm
@@ -301,7 +351,9 @@ theorem inj_posizionale {a b : ℝ} (ha : 0 < a) (hb : 0 < b) (hab : a ≠ b) :
   rw [hss]
 
 /-- Iniettività del pattern permutativo: base con valori assoluti
-distinti, segni recuperabili dalle coordinate non nulle.-/
+distinti, segni recuperabili dalle coordinate non nulle.
+@isnad1 id=injectiv.4h3v.s11.71628489aaed from=translated src=- shape=f567e1bb vocab=b7a580f3
+-/
 theorem inj_permutativo {S : Type*} (bs : Fin 4 → ℝ) (sg : S → Fin 4 → ℝ)
     (hbs_nn : ∀ k, 0 ≤ bs k)
     (hbs_inj : ∀ k k' : Fin 4, bs k = bs k' → k = k')
@@ -342,7 +394,9 @@ theorem inj_permutativo {S : Type*} (bs : Fin 4 → ℝ) (sg : S → Fin 4 → �
     exact mul_right_cancel₀ hbk h1
   rw [hs]
 
-/-- Recupero dei segni per il pattern zero-in-testa (slot 1,2,3 attivi).-/
+/-- Recupero dei segni per il pattern zero-in-testa (slot 1,2,3 attivi).
+@isnad1 id=eq.4h3v.s7.e86ecde06c08 from=translated src=- shape=b9e1856a vocab=8fd31c8f
+-/
 theorem rec_segnoZeroTesta {bs : Fin 4 → ℝ}
     (h1 : bs 1 ≠ 0) (h2 : bs 2 ≠ 0) (h3 : bs 3 ≠ 0) :
     ∀ s s' : Fin 3 → Bool,
@@ -376,7 +430,9 @@ theorem rec_segnoZeroTesta {bs : Fin 4 → ℝ}
         | rfl
         | (exfalso; rw [hs, hs'] at h0; norm_num at h0)
 
-/-- Recupero dei segni per il pattern pieno (tutti gli slot attivi).-/
+/-- Recupero dei segni per il pattern pieno (tutti gli slot attivi).
+@isnad1 id=eq.2h3v.s6.ff67a19668b0 from=translated src=- shape=8340b7da vocab=fe7efd26
+-/
 theorem rec_segnoPieno {bs : Fin 4 → ℝ} (hbs : ∀ k, bs k ≠ 0) :
     ∀ s s' : Fin 4 → Bool,
       (∀ k, bs k ≠ 0 → segnoPieno s k = segnoPieno s' k) → s = s' := by
@@ -418,14 +474,23 @@ theorem rec_segnoPieno {bs : Fin 4 → ℝ} (hbs : ∀ k, bs k ≠ 0) :
 
 /-! ## Le sette iniettività -/
 
+/--
+@isnad1 id=eq.0h2v.s4.2882188e4ede from=translated src=- shape=8ac8adb9 vocab=a9d23f2c
+-/
 theorem segnoZeroTesta_abs (s : Fin 3 → Bool) (k : Fin 4) :
     |segnoZeroTesta s k| = 1 := by
   fin_cases k <;> simp [segnoZeroTesta] <;> split_ifs <;> norm_num
 
+/--
+@isnad1 id=eq.0h2v.s4.fda647f5add8 from=translated src=- shape=8ac8adb9 vocab=13e0248b
+-/
 theorem segnoPieno_abs (s : Fin 4 → Bool) (k : Fin 4) :
     |segnoPieno s k| = 1 := by
   fin_cases k <;> simp [segnoPieno] <;> split_ifs <;> norm_num
 
+/--
+@isnad1 id=le.0h1v.s4.bc17843f4d43 from=translated src=- shape=de9abb23 vocab=10cddf90
+-/
 theorem base5_nonneg (k : Fin 4) : 0 ≤ base5 k := by
   have hb := aureo_bounds
   fin_cases k
@@ -437,6 +502,9 @@ theorem base5_nonneg (k : Fin 4) : 0 ≤ base5 k := by
   · show (0 : ℝ) ≤ aureo + 1
     linarith [hb.1]
 
+/--
+@isnad1 id=le.0h1v.s4.5bd44c832669 from=translated src=- shape=de9abb23 vocab=605bd9ca
+-/
 theorem base6_nonneg (k : Fin 4) : 0 ≤ base6 k := by
   have hb := aureo_bounds
   fin_cases k
@@ -448,6 +516,9 @@ theorem base6_nonneg (k : Fin 4) : 0 ≤ base6 k := by
   · show (0 : ℝ) ≤ Real.sqrt 5
     exact Real.sqrt_nonneg 5
 
+/--
+@isnad1 id=le.0h1v.s4.5fbdc384edbe from=translated src=- shape=de9abb23 vocab=749d8987
+-/
 theorem base7_nonneg (k : Fin 4) : 0 ≤ base7 k := by
   have hb := aureo_bounds
   fin_cases k
@@ -460,6 +531,9 @@ theorem base7_nonneg (k : Fin 4) : 0 ≤ base7 k := by
   · show (0 : ℝ) ≤ 2
     norm_num
 
+/--
+@isnad1 id=eq.1h2v.s4.3c853adb9431 from=translated src=- shape=e8c15deb vocab=4d9511ca
+-/
 theorem base5_inj : ∀ k k' : Fin 4, base5 k = base5 k' → k = k' := by
   have hb := aureo_bounds
   intro k k' h
@@ -469,6 +543,9 @@ theorem base5_inj : ∀ k k' : Fin 4, base5 k = base5 k' → k = k' := by
       | (exfalso; simp [base5] at h; done)
       | (exfalso; simp [base5] at h; nlinarith [hb.1, hb.2])
 
+/--
+@isnad1 id=eq.1h2v.s4.149b57d59075 from=translated src=- shape=e8c15deb vocab=1be5e3af
+-/
 theorem base6_inj : ∀ k k' : Fin 4, base6 k = base6 k' → k = k' := by
   have hb := aureo_bounds
   obtain ⟨lo, hi⟩ := sqrt_five_bounds
@@ -479,6 +556,9 @@ theorem base6_inj : ∀ k k' : Fin 4, base6 k = base6 k' → k = k' := by
       | (exfalso; simp [base6] at h; done)
       | (exfalso; simp [base6] at h; nlinarith [hb.1, hb.2, lo, hi])
 
+/--
+@isnad1 id=eq.1h2v.s4.b4976a4984b5 from=translated src=- shape=e8c15deb vocab=7be3362d
+-/
 theorem base7_inj : ∀ k k' : Fin 4, base7 k = base7 k' → k = k' := by
   have hb := aureo_bounds
   intro k k' h
@@ -488,11 +568,17 @@ theorem base7_inj : ∀ k k' : Fin 4, base7 k = base7 k' → k = k' := by
       | (exfalso; simp [base7] at h; done)
       | (exfalso; simp [base7] at h; nlinarith [hb.1, hb.2])
 
+/--
+@isnad1 id=injectiv.0h0v.s3.b7fa23978ca5 from=translated src=- shape=d3a93718 vocab=efc51a86
+-/
 theorem vertP1_injective : Function.Injective vertP1 := by
   intro c c' h
   apply vertVentiquattro_injective
   exact smul_right_injective (E 4) (by norm_num : (2 : ℝ) ≠ 0) h
 
+/--
+@isnad1 id=injectiv.0h0v.s6.7697e3972363 from=translated src=- shape=b020afa6 vocab=1d916067
+-/
 theorem vertP2_injective :
     Function.Injective (fun p : Fin 4 × (Fin 4 → Bool) =>
       vertP2 p.1 p.2) := by
@@ -500,6 +586,9 @@ theorem vertP2_injective :
   obtain ⟨lo, hi⟩ := sqrt_five_bounds
   exact inj_posizionale h5 one_pos (by intro h; linarith)
 
+/--
+@isnad1 id=injectiv.0h0v.s6.59c9bb92bf9f from=translated src=- shape=b020afa6 vocab=fcebd8e2
+-/
 theorem vertP3_injective :
     Function.Injective (fun p : Fin 4 × (Fin 4 → Bool) =>
       vertP3 p.1 p.2) := by
@@ -507,6 +596,9 @@ theorem vertP3_injective :
   exact inj_posizionale (by linarith [hb.2]) aureo_pos
     (by intro h; linarith [hb.1, hb.2])
 
+/--
+@isnad1 id=injectiv.0h0v.s6.80e846a1d600 from=translated src=- shape=b020afa6 vocab=8ed0b7a0
+-/
 theorem vertP4_injective :
     Function.Injective (fun p : Fin 4 × (Fin 4 → Bool) =>
       vertP4 p.1 p.2) := by
@@ -514,6 +606,9 @@ theorem vertP4_injective :
   exact inj_posizionale (by linarith [hb.1]) aureo_sub_one_pos
     (by intro h; linarith [hb.1])
 
+/--
+@isnad1 id=injectiv.0h0v.s8.ce0d6812ebfc from=translated src=- shape=3e84d5f1 vocab=47d189c5
+-/
 theorem vertP5_injective :
     Function.Injective (fun p :
       alternatingGroup (Fin 4) × (Fin 3 → Bool) => vertP5 p.1 p.2) := by
@@ -525,6 +620,9 @@ theorem vertP5_injective :
       (by show (1 : ℝ) ≠ 0; norm_num)
       (by show aureo + 1 ≠ 0; intro h; linarith [hb.1]))
 
+/--
+@isnad1 id=injectiv.0h0v.s8.84c6af5293c9 from=translated src=- shape=3e84d5f1 vocab=0a5b67b4
+-/
 theorem vertP6_injective :
     Function.Injective (fun p :
       alternatingGroup (Fin 4) × (Fin 3 → Bool) => vertP6 p.1 p.2) := by
@@ -537,6 +635,9 @@ theorem vertP6_injective :
       (by show aureo ≠ 0; intro h; linarith [hb.1])
       (by show Real.sqrt 5 ≠ 0; intro h; linarith))
 
+/--
+@isnad1 id=injectiv.0h0v.s8.a1b8b41bf1e5 from=translated src=- shape=3e84d5f1 vocab=c2af76c4
+-/
 theorem vertP7_injective :
     Function.Injective (fun p :
       alternatingGroup (Fin 4) × (Fin 4 → Bool) => vertP7 p.1 p.2) := by
@@ -558,13 +659,22 @@ theorem vertP7_injective :
 
 /-! ## Range dei valori assoluti e testimoni per le disgiunzioni -/
 
+/--
+@isnad1 id=eq.0h1v.s4.689ce2f36bd3 from=translated src=- shape=562e4a6d vocab=5dab1f6e
+-/
 theorem abs_segnoVentiquattro (b : Bool) : |segnoVentiquattro b| = 1 := by
   cases b <;> simp [segnoVentiquattro] <;> norm_num
 
+/--
+@isnad1 id=eq.0h2v.s7.528ccd982c1c from=translated src=- shape=0a1efeba vocab=77eb31e2
+-/
 theorem vertP1_coord (c : CodiceVentiquattro) (j : Fin 4) :
     vertP1 c j = 2 * vertVentiquattro c j := by
   rw [vertP1, PiLp.smul_apply, smul_eq_mul]
 
+/--
+@isnad1 id=or.0h2v.s7.f0d8b33399ca from=translated src=- shape=05abdeb2 vocab=67f57783
+-/
 theorem vertP1_range (c : CodiceVentiquattro) (j : Fin 4) :
     |vertP1 c j| = 0 ∨ |vertP1 c j| = 2 := by
   rw [vertP1_coord, abs_mul, vertVentiquattro_apply]
@@ -581,12 +691,18 @@ theorem vertP1_range (c : CodiceVentiquattro) (j : Fin 4) :
       left
       norm_num
 
+/--
+@isnad1 id=eq.0h1v.s6.72d4989a8d17 from=translated src=- shape=6a7a9117 vocab=50bf82bb
+-/
 theorem vertP1_testimone (c : CodiceVentiquattro) :
     |vertP1 c (indicePrimoVentiquattro c)| = 2 := by
   rw [vertP1_coord, vertVentiquattro_apply_primo, abs_mul,
     abs_segnoVentiquattro]
   norm_num
 
+/--
+@isnad1 id=ex.0h1v.s6.d5f17cab96d9 from=translated src=- shape=21441992 vocab=67f57783
+-/
 theorem vertP1_testimone_zero (c : CodiceVentiquattro) :
     ∃ j, |vertP1 c j| = 0 := by
   classical
@@ -606,6 +722,9 @@ theorem vertP1_testimone_zero (c : CodiceVentiquattro) :
     ite_eq_right hj.1, ite_eq_right hj.2, add_zero]
   norm_num
 
+/--
+@isnad1 id=or.0h3v.s7.f21379686ba6 from=translated src=- shape=205311e5 vocab=1b7a4d00
+-/
 theorem vertP2_range (i : Fin 4) (s : Fin 4 → Bool) (j : Fin 4) :
     |vertP2 i s j| = 1 ∨ |vertP2 i s j| = Real.sqrt 5 := by
   rw [vertP2_apply, abs_mul]
@@ -620,6 +739,9 @@ theorem vertP2_range (i : Fin 4) (s : Fin 4 → Bool) (j : Fin 4) :
     rw [ite_eq_right hji]
     norm_num
 
+/--
+@isnad1 id=eq.0h2v.s6.7dc640dad5a5 from=translated src=- shape=98e15901 vocab=1b7a4d00
+-/
 theorem vertP2_testimone (i : Fin 4) (s : Fin 4 → Bool) :
     |vertP2 i s i| = Real.sqrt 5 := by
   rw [vertP2_apply, ite_eq_left rfl, abs_mul]
@@ -628,6 +750,9 @@ theorem vertP2_testimone (i : Fin 4) (s : Fin 4 → Bool) :
   rw [hsg, one_mul]
   exact abs_of_nonneg (Real.sqrt_nonneg 5)
 
+/--
+@isnad1 id=ex.0h2v.s6.66323287d7cc from=translated src=- shape=c06cf930 vocab=5cfcf23e
+-/
 theorem vertP2_testimone_uno (i : Fin 4) (s : Fin 4 → Bool) :
     ∃ j, |vertP2 i s j| = 1 := by
   obtain ⟨j, hj⟩ := exists_ne i
@@ -638,6 +763,9 @@ theorem vertP2_testimone_uno (i : Fin 4) (s : Fin 4 → Bool) :
   rw [hsg]
   norm_num
 
+/--
+@isnad1 id=or.0h3v.s7.5cf6abcc2d87 from=translated src=- shape=5682a07d vocab=555cd7f7
+-/
 theorem vertP3_range (i : Fin 4) (s : Fin 4 → Bool) (j : Fin 4) :
     |vertP3 i s j| = 2 - aureo ∨ |vertP3 i s j| = aureo := by
   have hb := aureo_bounds
@@ -653,6 +781,9 @@ theorem vertP3_range (i : Fin 4) (s : Fin 4 → Bool) (j : Fin 4) :
     rw [ite_eq_right hji]
     exact abs_of_nonneg (by linarith [hb.1])
 
+/--
+@isnad1 id=eq.0h2v.s7.9180ddabe1d8 from=translated src=- shape=373c68aa vocab=555cd7f7
+-/
 theorem vertP3_testimone (i : Fin 4) (s : Fin 4 → Bool) :
     |vertP3 i s i| = 2 - aureo := by
   have hb := aureo_bounds
@@ -662,6 +793,9 @@ theorem vertP3_testimone (i : Fin 4) (s : Fin 4 → Bool) :
   rw [hsg, one_mul]
   exact abs_of_nonneg (by linarith [hb.2])
 
+/--
+@isnad1 id=ex.0h2v.s6.a963fe04ddfb from=translated src=- shape=56c7b03e vocab=0160584f
+-/
 theorem vertP3_testimone_aureo (i : Fin 4) (s : Fin 4 → Bool) :
     ∃ j, |vertP3 i s j| = aureo := by
   have hb := aureo_bounds
@@ -673,6 +807,9 @@ theorem vertP3_testimone_aureo (i : Fin 4) (s : Fin 4 → Bool) :
   rw [hsg, one_mul]
   exact abs_of_nonneg (by linarith [hb.1])
 
+/--
+@isnad1 id=or.0h3v.s7.7e5e9f8cf716 from=translated src=- shape=3fd991a1 vocab=0d8fb0e1
+-/
 theorem vertP4_range (i : Fin 4) (s : Fin 4 → Bool) (j : Fin 4) :
     |vertP4 i s j| = aureo - 1 ∨ |vertP4 i s j| = aureo + 1 := by
   have hb := aureo_bounds
@@ -688,6 +825,9 @@ theorem vertP4_range (i : Fin 4) (s : Fin 4 → Bool) (j : Fin 4) :
     rw [ite_eq_right hji]
     exact abs_of_nonneg (by linarith [hb.1])
 
+/--
+@isnad1 id=eq.0h2v.s6.6f454bfc0b16 from=translated src=- shape=d9241e17 vocab=2215d1de
+-/
 theorem vertP4_testimone (i : Fin 4) (s : Fin 4 → Bool) :
     |vertP4 i s i| = aureo + 1 := by
   have hb := aureo_bounds
@@ -697,6 +837,9 @@ theorem vertP4_testimone (i : Fin 4) (s : Fin 4 → Bool) :
   rw [hsg, one_mul]
   exact abs_of_nonneg (by linarith [hb.1])
 
+/--
+@isnad1 id=ex.0h2v.s7.74b86a343dde from=translated src=- shape=47e9cdea vocab=c8d64b06
+-/
 theorem vertP4_testimone_inv (i : Fin 4) (s : Fin 4 → Bool) :
     ∃ j, |vertP4 i s j| = aureo - 1 := by
   have hb := aureo_bounds
@@ -708,7 +851,9 @@ theorem vertP4_testimone_inv (i : Fin 4) (s : Fin 4 → Bool) :
   rw [hsg, one_mul]
   exact abs_of_nonneg (by linarith [hb.1])
 
-/-- Il valore assoluto di un blocco permutativo in posizione `σ k`.-/
+/-- Il valore assoluto di un blocco permutativo in posizione `σ k`.
+@isnad1 id=eq.2h4v.s9.ed6c8b35e8bd from=translated src=- shape=a3c93d17 vocab=f4617edb
+-/
 theorem perm_at_abs {sg : Fin 4 → ℝ} {bs : Fin 4 → ℝ}
     (σ : alternatingGroup (Fin 4))
     (hsg : ∀ k, |sg k| = 1) (hnn : ∀ k, 0 ≤ bs k) (k : Fin 4) :
@@ -718,6 +863,9 @@ theorem perm_at_abs {sg : Fin 4 → ℝ} {bs : Fin 4 → ℝ}
   rw [Equiv.symm_apply_apply, abs_mul, hsg, one_mul,
     abs_of_nonneg (hnn k)]
 
+/--
+@isnad1 id=or.0h3v.s8.da43a06a6845 from=translated src=- shape=d0508033 vocab=3b908855
+-/
 theorem vertP5_range (σ : alternatingGroup (Fin 4)) (s : Fin 3 → Bool)
     (j : Fin 4) :
     |vertP5 σ s j| = 0 ∨ |vertP5 σ s j| = 2 - aureo ∨
@@ -734,6 +882,9 @@ theorem vertP5_range (σ : alternatingGroup (Fin 4)) (s : Fin 3 → Bool)
     · exact Or.inr (Or.inr (Or.inr rfl))
   exact hk _
 
+/--
+@isnad1 id=ex.0h2v.s7.c1c8ab7996eb from=translated src=- shape=c4726c37 vocab=18bda3df
+-/
 theorem vertP5_testimone_zero (σ : alternatingGroup (Fin 4))
     (s : Fin 3 → Bool) : ∃ j, |vertP5 σ s j| = 0 := by
   refine ⟨(σ : Equiv.Perm (Fin 4)) 0, ?_⟩
@@ -742,6 +893,9 @@ theorem vertP5_testimone_zero (σ : alternatingGroup (Fin 4))
   rw [this]
   rfl
 
+/--
+@isnad1 id=ex.0h2v.s7.d38a260bd8d3 from=translated src=- shape=c4726c37 vocab=18bda3df
+-/
 theorem vertP5_testimone_uno (σ : alternatingGroup (Fin 4))
     (s : Fin 3 → Bool) : ∃ j, |vertP5 σ s j| = 1 := by
   refine ⟨(σ : Equiv.Perm (Fin 4)) 2, ?_⟩
@@ -750,6 +904,9 @@ theorem vertP5_testimone_uno (σ : alternatingGroup (Fin 4))
   rw [this]
   rfl
 
+/--
+@isnad1 id=or.0h3v.s8.dbb88f04fad8 from=translated src=- shape=783cdecd vocab=0dca29df
+-/
 theorem vertP6_range (σ : alternatingGroup (Fin 4)) (s : Fin 3 → Bool)
     (j : Fin 4) :
     |vertP6 σ s j| = 0 ∨ |vertP6 σ s j| = aureo - 1 ∨
@@ -766,6 +923,9 @@ theorem vertP6_range (σ : alternatingGroup (Fin 4)) (s : Fin 3 → Bool)
     · exact Or.inr (Or.inr (Or.inr rfl))
   exact hk _
 
+/--
+@isnad1 id=ex.0h2v.s7.cf1e622b0a73 from=translated src=- shape=0f56fcb0 vocab=2c5b076a
+-/
 theorem vertP6_testimone (σ : alternatingGroup (Fin 4))
     (s : Fin 3 → Bool) : ∃ j, |vertP6 σ s j| = Real.sqrt 5 := by
   refine ⟨(σ : Equiv.Perm (Fin 4)) 3, ?_⟩
@@ -774,6 +934,9 @@ theorem vertP6_testimone (σ : alternatingGroup (Fin 4))
   rw [this]
   rfl
 
+/--
+@isnad1 id=or.0h3v.s8.1832957ddb8e from=translated src=- shape=16ad7afd vocab=c0b15068
+-/
 theorem vertP7_range (σ : alternatingGroup (Fin 4)) (s : Fin 4 → Bool)
     (j : Fin 4) :
     |vertP7 σ s j| = aureo - 1 ∨ |vertP7 σ s j| = 1 ∨
@@ -792,6 +955,9 @@ theorem vertP7_range (σ : alternatingGroup (Fin 4)) (s : Fin 4 → Bool)
 
 /-! ## Le ventun disgiunzioni fra le famiglie -/
 
+/--
+@isnad1 id=ne.0h3v.s4.07e5d194ac9d from=translated src=- shape=00d1103e vocab=0aae445d
+-/
 theorem vertP1_ne_vertP2 (c : CodiceVentiquattro) (i : Fin 4)
     (s : Fin 4 → Bool) : vertP1 c ≠ vertP2 i s := by
   intro h
@@ -801,6 +967,9 @@ theorem vertP1_ne_vertP2 (c : CodiceVentiquattro) (i : Fin 4)
   rcases vertP2_range i s (indicePrimoVentiquattro c) with hr | hr <;>
     rw [ht] at hr <;> linarith
 
+/--
+@isnad1 id=ne.0h3v.s4.9d1d557f7b89 from=translated src=- shape=00d1103e vocab=38957def
+-/
 theorem vertP1_ne_vertP3 (c : CodiceVentiquattro) (i : Fin 4)
     (s : Fin 4 → Bool) : vertP1 c ≠ vertP3 i s := by
   intro h
@@ -810,6 +979,9 @@ theorem vertP1_ne_vertP3 (c : CodiceVentiquattro) (i : Fin 4)
   rcases vertP3_range i s (indicePrimoVentiquattro c) with hr | hr <;>
     rw [ht] at hr <;> linarith [hb.1, hb.2]
 
+/--
+@isnad1 id=ne.0h3v.s4.290583badc3b from=translated src=- shape=00d1103e vocab=28ab9261
+-/
 theorem vertP1_ne_vertP4 (c : CodiceVentiquattro) (i : Fin 4)
     (s : Fin 4 → Bool) : vertP1 c ≠ vertP4 i s := by
   intro h
@@ -819,6 +991,9 @@ theorem vertP1_ne_vertP4 (c : CodiceVentiquattro) (i : Fin 4)
   rcases vertP4_range i s (indicePrimoVentiquattro c) with hr | hr <;>
     rw [ht] at hr <;> linarith [hb.1, hb.2]
 
+/--
+@isnad1 id=ne.0h3v.s6.5947f94ad625 from=translated src=- shape=04aa1b85 vocab=63d0c153
+-/
 theorem vertP1_ne_vertP5 (c : CodiceVentiquattro)
     (σ : alternatingGroup (Fin 4)) (s : Fin 3 → Bool) :
     vertP1 c ≠ vertP5 σ s := by
@@ -829,6 +1004,9 @@ theorem vertP1_ne_vertP5 (c : CodiceVentiquattro)
   rcases vertP5_range σ s (indicePrimoVentiquattro c) with
     hr | hr | hr | hr <;> rw [ht] at hr <;> linarith [hb.1, hb.2]
 
+/--
+@isnad1 id=ne.0h3v.s6.006270f576bf from=translated src=- shape=04aa1b85 vocab=3ff596ff
+-/
 theorem vertP1_ne_vertP6 (c : CodiceVentiquattro)
     (σ : alternatingGroup (Fin 4)) (s : Fin 3 → Bool) :
     vertP1 c ≠ vertP6 σ s := by
@@ -840,6 +1018,9 @@ theorem vertP1_ne_vertP6 (c : CodiceVentiquattro)
   rcases vertP6_range σ s (indicePrimoVentiquattro c) with
     hr | hr | hr | hr <;> rw [ht] at hr <;> linarith [hb.1, hb.2]
 
+/--
+@isnad1 id=ne.0h3v.s6.a0710a1ef29b from=translated src=- shape=04aa1b85 vocab=9c20c94a
+-/
 theorem vertP1_ne_vertP7 (c : CodiceVentiquattro)
     (σ : alternatingGroup (Fin 4)) (s : Fin 4 → Bool) :
     vertP1 c ≠ vertP7 σ s := by
@@ -850,6 +1031,9 @@ theorem vertP1_ne_vertP7 (c : CodiceVentiquattro)
   rcases vertP7_range σ s j with hr | hr | hr | hr <;>
     rw [hj] at hr <;> linarith [hb.1, hb.2]
 
+/--
+@isnad1 id=ne.0h4v.s5.670c00b7ac9c from=translated src=- shape=fadd8250 vocab=6267ac18
+-/
 theorem vertP2_ne_vertP3 (i : Fin 4) (s : Fin 4 → Bool) (i' : Fin 4)
     (s' : Fin 4 → Bool) : vertP2 i s ≠ vertP3 i' s' := by
   intro h
@@ -860,6 +1044,9 @@ theorem vertP2_ne_vertP3 (i : Fin 4) (s : Fin 4 → Bool) (i' : Fin 4)
   rcases vertP3_range i' s' i with hr | hr <;>
     rw [ht] at hr <;> linarith [hb.1, hb.2]
 
+/--
+@isnad1 id=ne.0h4v.s5.1689a8d593a3 from=translated src=- shape=fadd8250 vocab=ff3299f9
+-/
 theorem vertP2_ne_vertP4 (i : Fin 4) (s : Fin 4 → Bool) (i' : Fin 4)
     (s' : Fin 4 → Bool) : vertP2 i s ≠ vertP4 i' s' := by
   intro h
@@ -870,6 +1057,9 @@ theorem vertP2_ne_vertP4 (i : Fin 4) (s : Fin 4 → Bool) (i' : Fin 4)
   rcases vertP4_range i' s' i with hr | hr <;>
     rw [ht] at hr <;> linarith [hb.1, hb.2]
 
+/--
+@isnad1 id=ne.0h4v.s7.9b04eb82610c from=translated src=- shape=2f622fde vocab=288b3f24
+-/
 theorem vertP2_ne_vertP5 (i : Fin 4) (s : Fin 4 → Bool)
     (σ : alternatingGroup (Fin 4)) (s' : Fin 3 → Bool) :
     vertP2 i s ≠ vertP5 σ s' := by
@@ -881,6 +1071,9 @@ theorem vertP2_ne_vertP5 (i : Fin 4) (s : Fin 4 → Bool)
   rcases vertP5_range σ s' i with hr | hr | hr | hr <;>
     rw [ht] at hr <;> linarith [hb.1, hb.2]
 
+/--
+@isnad1 id=ne.0h4v.s7.494ec93af337 from=translated src=- shape=2f622fde vocab=1a905e95
+-/
 theorem vertP2_ne_vertP6 (i : Fin 4) (s : Fin 4 → Bool)
     (σ : alternatingGroup (Fin 4)) (s' : Fin 3 → Bool) :
     vertP2 i s ≠ vertP6 σ s' := by
@@ -892,6 +1085,9 @@ theorem vertP2_ne_vertP6 (i : Fin 4) (s : Fin 4 → Bool)
   rcases vertP6_range σ s' j with hr | hr | hr | hr <;>
     rw [hj] at hr <;> linarith [hb.1, hb.2]
 
+/--
+@isnad1 id=ne.0h4v.s7.589c570fa2f9 from=translated src=- shape=2f622fde vocab=a0c8e1bc
+-/
 theorem vertP2_ne_vertP7 (i : Fin 4) (s : Fin 4 → Bool)
     (σ : alternatingGroup (Fin 4)) (s' : Fin 4 → Bool) :
     vertP2 i s ≠ vertP7 σ s' := by
@@ -903,6 +1099,9 @@ theorem vertP2_ne_vertP7 (i : Fin 4) (s : Fin 4 → Bool)
   rcases vertP7_range σ s' i with hr | hr | hr | hr <;>
     rw [ht] at hr <;> linarith [hb.1, hb.2]
 
+/--
+@isnad1 id=ne.0h4v.s5.1ec4743b3c48 from=translated src=- shape=fadd8250 vocab=5eb2148a
+-/
 theorem vertP3_ne_vertP4 (i : Fin 4) (s : Fin 4 → Bool) (i' : Fin 4)
     (s' : Fin 4 → Bool) : vertP3 i s ≠ vertP4 i' s' := by
   intro h
@@ -912,6 +1111,9 @@ theorem vertP3_ne_vertP4 (i : Fin 4) (s : Fin 4 → Bool) (i' : Fin 4)
   rcases vertP4_range i' s' i with hr | hr <;>
     rw [ht] at hr <;> linarith [hb.1, hb.2]
 
+/--
+@isnad1 id=ne.0h4v.s7.1c9b5de78f44 from=translated src=- shape=2f622fde vocab=3b138b2f
+-/
 theorem vertP3_ne_vertP5 (i : Fin 4) (s : Fin 4 → Bool)
     (σ : alternatingGroup (Fin 4)) (s' : Fin 3 → Bool) :
     vertP3 i s ≠ vertP5 σ s' := by
@@ -922,6 +1124,9 @@ theorem vertP3_ne_vertP5 (i : Fin 4) (s : Fin 4 → Bool)
   rcases vertP5_range σ s' j with hr | hr | hr | hr <;>
     rw [hj] at hr <;> linarith [hb.1, hb.2]
 
+/--
+@isnad1 id=ne.0h4v.s7.26d3e81618cb from=translated src=- shape=2f622fde vocab=9d11a0ed
+-/
 theorem vertP3_ne_vertP6 (i : Fin 4) (s : Fin 4 → Bool)
     (σ : alternatingGroup (Fin 4)) (s' : Fin 3 → Bool) :
     vertP3 i s ≠ vertP6 σ s' := by
@@ -933,6 +1138,9 @@ theorem vertP3_ne_vertP6 (i : Fin 4) (s : Fin 4 → Bool)
   rcases vertP6_range σ s' i with hr | hr | hr | hr <;>
     rw [ht] at hr <;> linarith [hb.1, hb.2]
 
+/--
+@isnad1 id=ne.0h4v.s7.762d5f9d3b54 from=translated src=- shape=2f622fde vocab=30d5b656
+-/
 theorem vertP3_ne_vertP7 (i : Fin 4) (s : Fin 4 → Bool)
     (σ : alternatingGroup (Fin 4)) (s' : Fin 4 → Bool) :
     vertP3 i s ≠ vertP7 σ s' := by
@@ -943,6 +1151,9 @@ theorem vertP3_ne_vertP7 (i : Fin 4) (s : Fin 4 → Bool)
   rcases vertP7_range σ s' i with hr | hr | hr | hr <;>
     rw [ht] at hr <;> linarith [hb.1, hb.2]
 
+/--
+@isnad1 id=ne.0h4v.s7.9eeaf5649519 from=translated src=- shape=2f622fde vocab=e4d05509
+-/
 theorem vertP4_ne_vertP5 (i : Fin 4) (s : Fin 4 → Bool)
     (σ : alternatingGroup (Fin 4)) (s' : Fin 3 → Bool) :
     vertP4 i s ≠ vertP5 σ s' := by
@@ -953,6 +1164,9 @@ theorem vertP4_ne_vertP5 (i : Fin 4) (s : Fin 4 → Bool)
   rcases vertP5_range σ s' j with hr | hr | hr | hr <;>
     rw [hj] at hr <;> linarith [hb.1, hb.2]
 
+/--
+@isnad1 id=ne.0h4v.s7.53e0a0556955 from=translated src=- shape=2f622fde vocab=4987a80f
+-/
 theorem vertP4_ne_vertP6 (i : Fin 4) (s : Fin 4 → Bool)
     (σ : alternatingGroup (Fin 4)) (s' : Fin 3 → Bool) :
     vertP4 i s ≠ vertP6 σ s' := by
@@ -964,6 +1178,9 @@ theorem vertP4_ne_vertP6 (i : Fin 4) (s : Fin 4 → Bool)
   rcases vertP6_range σ s' i with hr | hr | hr | hr <;>
     rw [ht] at hr <;> linarith [hb.1, hb.2]
 
+/--
+@isnad1 id=ne.0h4v.s7.05dfc5de2a69 from=translated src=- shape=2f622fde vocab=acd150d8
+-/
 theorem vertP4_ne_vertP7 (i : Fin 4) (s : Fin 4 → Bool)
     (σ : alternatingGroup (Fin 4)) (s' : Fin 4 → Bool) :
     vertP4 i s ≠ vertP7 σ s' := by
@@ -974,6 +1191,9 @@ theorem vertP4_ne_vertP7 (i : Fin 4) (s : Fin 4 → Bool)
   rcases vertP7_range σ s' i with hr | hr | hr | hr <;>
     rw [ht] at hr <;> linarith [hb.1, hb.2]
 
+/--
+@isnad1 id=ne.0h4v.s7.10173bf64dbf from=translated src=- shape=7c472ecd vocab=87330604
+-/
 theorem vertP5_ne_vertP6 (σ : alternatingGroup (Fin 4))
     (s : Fin 3 → Bool) (σ' : alternatingGroup (Fin 4))
     (s' : Fin 3 → Bool) : vertP5 σ s ≠ vertP6 σ' s' := by
@@ -985,6 +1205,9 @@ theorem vertP5_ne_vertP6 (σ : alternatingGroup (Fin 4))
   rcases vertP6_range σ' s' j with hr | hr | hr | hr <;>
     rw [hj] at hr <;> linarith [hb.1, hb.2]
 
+/--
+@isnad1 id=ne.0h4v.s7.41541daed950 from=translated src=- shape=7c472ecd vocab=fe91269e
+-/
 theorem vertP5_ne_vertP7 (σ : alternatingGroup (Fin 4))
     (s : Fin 3 → Bool) (σ' : alternatingGroup (Fin 4))
     (s' : Fin 4 → Bool) : vertP5 σ s ≠ vertP7 σ' s' := by
@@ -995,6 +1218,9 @@ theorem vertP5_ne_vertP7 (σ : alternatingGroup (Fin 4))
   rcases vertP7_range σ' s' j with hr | hr | hr | hr <;>
     rw [hj] at hr <;> linarith [hb.1, hb.2]
 
+/--
+@isnad1 id=ne.0h4v.s7.1d175e422b8e from=translated src=- shape=7c472ecd vocab=dc32131c
+-/
 theorem vertP6_ne_vertP7 (σ : alternatingGroup (Fin 4))
     (s : Fin 3 → Bool) (σ' : alternatingGroup (Fin 4))
     (s' : Fin 4 → Bool) : vertP6 σ s ≠ vertP7 σ' s' := by
@@ -1029,6 +1255,9 @@ noncomputable def centoventiVertici : Finset (E 4) :=
       (fun p => vertP7 p.1 p.2))
 
 open Classical in
+/--
+@isnad1 id=eq.1h1v.s6.da1f579606b6 from=translated src=- shape=79ed8e37 vocab=5f04d326
+-/
 theorem norm_sq_mem_centoventiVertici {v : E 4}
     (hv : v ∈ centoventiVertici) : ‖v‖ ^ 2 = 8 := by
   simp only [centoventiVertici, Finset.mem_union, Finset.mem_image,
@@ -1044,6 +1273,9 @@ theorem norm_sq_mem_centoventiVertici {v : E 4}
   · rw [← hp]; exact norm_sq_vertP7 p.1 p.2
 
 open Classical in
+/--
+@isnad1 id=nonempty.0h0v.s3.e5af7f458060 from=translated src=- shape=06f63001 vocab=44f8c257
+-/
 theorem centoventiVertici_nonempty : centoventiVertici.Nonempty := by
   refine ⟨vertP1 (codiceVentiquattro 0 1 (by norm_num) true true), ?_⟩
   simp only [centoventiVertici, Finset.mem_union, Finset.mem_image,
@@ -1052,7 +1284,9 @@ theorem centoventiVertici_nonempty : centoventiVertici.Nonempty := by
     ⟨_, rfl⟩)))))
 
 open Classical in
-/-- **LA CARDINALITÀ**: `24+64+64+64+96+96+192 = 600`.-/
+/-- **LA CARDINALITÀ**: `24+64+64+64+96+96+192 = 600`.
+@isnad1 id=eq.0h0v.s3.f88e49b8f8f8 from=translated src=- shape=415057c6 vocab=ea065600
+-/
 theorem card_centoventiVertici : centoventiVertici.card = 600 := by
   rw [centoventiVertici]
   -- disgiunzioni progressive
@@ -1241,6 +1475,9 @@ theorem card_centoventiVertici : centoventiVertici.card = 600 := by
   norm_num [Nat.factorial]
 
 open Classical in
+/--
+@isnad1 id=eq.0h0v.s8.79d8c5fe61e0 from=translated src=- shape=c466b020 vocab=ede16a48
+-/
 theorem centoventiVertici_eq_extremePoints :
     ((centoventiVertici : Finset (E 4)) : Set (E 4)) =
       Set.extremePoints ℝ
@@ -1270,11 +1507,16 @@ noncomputable def centoventi : ConvexPolytope 4 :=
   ⟨centoventiVertici, centoventiVertici_nonempty,
     centoventiVertici_eq_extremePoints⟩
 
-/-- La cardinalità dei vertici del 120-cell.-/
+/-- La cardinalità dei vertici del 120-cell.
+@isnad1 id=eq.0h0v.s4.2e0a3b302d05 from=translated src=- shape=1538b06e vocab=d00001c4
+-/
 theorem card_centoventi_vertices : centoventi.vertices.card = 600 :=
   card_centoventiVertici
 
 open Classical in
+/--
+@isnad1 id=mem.0h2v.s5.3e23a7cd9775 from=translated src=- shape=90a5d296 vocab=ba2a649e
+-/
 theorem vertP2_mem_centoventi_toSet (i : Fin 4) (s : Fin 4 → Bool) :
     vertP2 i s ∈ centoventi.toSet := by
   apply subset_convexHull ℝ _
@@ -1286,7 +1528,9 @@ theorem vertP2_mem_centoventi_toSet (i : Fin 4) (s : Fin 4 → Bool) :
   exact_mod_cast hmem
 
 /-- **PIENA DIMENSIONALITÀ**: i flip di segno del blocco P2 danno i
-generatori.-/
+generatori.
+@isnad1 id=isfulldi.0h0v.s2.e8272ff95148 from=translated src=- shape=cef8a6bf vocab=3809cce0
+-/
 theorem centoventi_isFullDim : centoventi.IsFullDim := by
   classical
   let W : Submodule ℝ (E 4) := vectorSpan ℝ centoventi.toSet

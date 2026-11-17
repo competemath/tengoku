@@ -43,7 +43,9 @@ def testimoneAlto (d : ℕ) (hd : 1 ≤ d) : Fin 3 → regularPolytopes d :=
     ⟨ortoplesse d hd, ortoplesse_mem_regularPolytopes d hd⟩,
     ⟨ipercubo d hd, ipercubo_mem_regularPolytopes d hd⟩]
 
-/-- Simili ⟹ stessa classe (versione dimension-free).-/
+/-- Simili ⟹ stessa classe (versione dimension-free).
+@isnad1 id=eq.1h3v.s5.6a25db73f387 from=translated src=- shape=bd8ab2af vocab=cd9ae297
+-/
 theorem classe_eq_of_similar_gen {d : ℕ} {P Q : regularPolytopes d}
     (h : regularSimilar d P Q) : classe d P = classe d Q := by
   ext R
@@ -54,7 +56,9 @@ theorem classe_eq_of_similar_gen {d : ℕ} {P Q : regularPolytopes d}
     exact similar_trans h hR
 
 /-- **IL MAGGIORANTE CONDIZIONALE d≥5**: se ogni regolare è simile a un
-testimone, le classi sono al più tre.-/
+testimone, le classi sono al più tre.
+@isnad1 id=le.2h1v.s5.2368b08b7253 from=translated src=- shape=45a2678a vocab=732a6632
+-/
 theorem platonicCount_le_tre_di {d : ℕ} (hd : 1 ≤ d)
     (hrig : ∀ P : regularPolytopes d,
       ∃ i : Fin 3, regularSimilar d P (testimoneAlto d hd i)) :
@@ -78,7 +82,9 @@ theorem platonicCount_le_tre_di {d : ℕ} (hd : 1 ≤ d)
 
 /-- **L'EQUAZIONE FINALE CONDIZIONALE d≥5**: rigidità ⟹
 `platonicCount d = 3`.  Combina il maggiorante con il minorante
-incondizionato `three_le_platonicCount`.-/
+incondizionato `three_le_platonicCount`.
+@isnad1 id=eq.3h1v.s5.1a39186307f0 from=translated src=- shape=51937ea7 vocab=732a6632
+-/
 theorem platonicCount_eq_tre_di {d : ℕ} (hd1 : 1 ≤ d) (hd : 5 ≤ d)
     (hrig : ∀ P : regularPolytopes d,
       ∃ i : Fin 3, regularSimilar d P (testimoneAlto d hd1 i)) :

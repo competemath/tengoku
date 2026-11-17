@@ -26,7 +26,9 @@ namespace LeanEval.Geometry.PlatonicClassification
 open ConvexPolytope
 
 /-- **IL LOWER BOUND, INCONDIZIONATO.** Per `d ≥ 5` esistono almeno tre
-politopi regolari a meno di similarità.-/
+politopi regolari a meno di similarità.
+@isnad1 id=le.1h1v.s4.517e260bd6e7 from=translated src=- shape=7f2e781e vocab=d9cf66a7
+-/
 theorem three_le_platonicCount (d : ℕ) (hd : 5 ≤ d) :
     (3 : ℕ∞) ≤ platonicCount d := by
   have hd1 : 1 ≤ d := by omega

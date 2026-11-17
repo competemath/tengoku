@@ -35,13 +35,17 @@ def FlagStep (P : ConvexPolytope n) (F G : P.Flag) : Prop :=
 def GalleryConnected (P : ConvexPolytope n) (F G : P.Flag) : Prop :=
   Relation.ReflTransGen (FlagStep P) F G
 
-/-- La mossa elementare è simmetrica.-/
+/-- La mossa elementare è simmetrica.
+@isnad1 id=flagstep.1h4v.s4.0dc5b2d6d4d6 from=translated src=- shape=9149ee81 vocab=e8321b6c
+-/
 theorem flagStep_symm (P : ConvexPolytope n) {F G : P.Flag}
     (h : FlagStep P F G) : FlagStep P G F := by
   obtain ⟨i, hi⟩ := h
   exact ⟨i, flagAdjacentAt_symm P hi⟩
 
-/-- Le simmetrie trasportano mosse in mosse.-/
+/-- Le simmetrie trasportano mosse in mosse.
+@isnad1 id=flagstep.2h5v.s5.eb34b0b2b6aa from=translated src=- shape=db5bf84b vocab=1454eda2
+-/
 theorem flagStep_map (P : ConvexPolytope n) {φ : Isom n}
     (hφ : P.isSymmetry φ) {F G : P.Flag} (h : FlagStep P F G) :
     FlagStep P (mapFlag P hφ F) (mapFlag P hφ G) := by

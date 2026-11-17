@@ -31,10 +31,16 @@ abbrev segnoPrimoVentiquattro (c : CodiceVentiquattro) : Bool := c.2.1
 
 abbrev segnoSecondoVentiquattro (c : CodiceVentiquattro) : Bool := c.2.2
 
+/--
+@isnad1 id=lt.0h1v.s4.8c80c3c12bb6 from=translated src=- shape=39692a2b vocab=df369684
+-/
 theorem indicePrimo_lt_indiceSecondo (c : CodiceVentiquattro) :
     indicePrimoVentiquattro c < indiceSecondoVentiquattro c :=
   c.1.2
 
+/--
+@isnad1 id=ne.0h1v.s3.c3bd4a433312 from=translated src=- shape=39692a2b vocab=3faae265
+-/
 theorem indicePrimo_ne_indiceSecondo (c : CodiceVentiquattro) :
     indicePrimoVentiquattro c ≠ indiceSecondoVentiquattro c :=
   ne_of_lt (indicePrimo_lt_indiceSecondo c)
@@ -42,18 +48,30 @@ theorem indicePrimo_ne_indiceSecondo (c : CodiceVentiquattro) :
 def segnoVentiquattro (b : Bool) : ℝ :=
   if b then 1 else -1
 
+/--
+@isnad1 id=ne.0h1v.s3.bfaa7f8f729d from=translated src=- shape=a311c14d vocab=2337f519
+-/
 @[simp] theorem segnoVentiquattro_ne_zero (b : Bool) :
     segnoVentiquattro b ≠ 0 := by
   cases b <;> norm_num [segnoVentiquattro]
 
+/--
+@isnad1 id=eq.0h1v.s3.a0e0d8dd720e from=translated src=- shape=562e4a6d vocab=26abe8a1
+-/
 @[simp] theorem norm_segnoVentiquattro (b : Bool) :
     ‖segnoVentiquattro b‖ = 1 := by
   cases b <;> norm_num [segnoVentiquattro]
 
+/--
+@isnad1 id=eq.0h1v.s4.9650f8920e0d from=translated src=- shape=7bab346c vocab=dacc8464
+-/
 @[simp] theorem mul_self_segnoVentiquattro (b : Bool) :
     segnoVentiquattro b * segnoVentiquattro b = 1 := by
   cases b <;> norm_num [segnoVentiquattro]
 
+/--
+@isnad1 id=injectiv.0h0v.s2.5fe2bff169de from=translated src=- shape=54c8eceb vocab=0c7d0b98
+-/
 theorem segnoVentiquattro_injective :
     Function.Injective segnoVentiquattro := by
   intro b c h
@@ -68,18 +86,30 @@ def codiceVentiquattro (i j : Fin 4) (hij : i < j)
     (si sj : Bool) : CodiceVentiquattro :=
   (⟨(i, j), hij⟩, (si, sj))
 
+/--
+@isnad1 id=eq.1h4v.s5.cf547d1deb36 from=translated src=- shape=563fbf00 vocab=7b46434c
+-/
 @[simp] theorem indicePrimo_codiceVentiquattro (i j : Fin 4) (hij : i < j)
     (si sj : Bool) :
     indicePrimoVentiquattro (codiceVentiquattro i j hij si sj) = i := rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.600b5e4b59d3 from=translated src=- shape=d17bfd95 vocab=2b579bf4
+-/
 @[simp] theorem indiceSecondo_codiceVentiquattro (i j : Fin 4) (hij : i < j)
     (si sj : Bool) :
     indiceSecondoVentiquattro (codiceVentiquattro i j hij si sj) = j := rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.3f9b292ede6a from=translated src=- shape=80da84a0 vocab=35b84676
+-/
 @[simp] theorem segnoPrimo_codiceVentiquattro (i j : Fin 4) (hij : i < j)
     (si sj : Bool) :
     segnoPrimoVentiquattro (codiceVentiquattro i j hij si sj) = si := rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.f4aceb299bcb from=translated src=- shape=982d69fd vocab=3bd7b459
+-/
 @[simp] theorem segnoSecondo_codiceVentiquattro (i j : Fin 4) (hij : i < j)
     (si sj : Bool) :
     segnoSecondoVentiquattro (codiceVentiquattro i j hij si sj) = sj := rfl
@@ -91,6 +121,9 @@ def vertVentiquattro (c : CodiceVentiquattro) : E 4 :=
     EuclideanSpace.single (indiceSecondoVentiquattro c)
       (segnoVentiquattro (segnoSecondoVentiquattro c))
 
+/--
+@isnad1 id=eq.0h2v.s6.11a8eb4c9bf9 from=translated src=- shape=e5431e48 vocab=35db7519
+-/
 theorem vertVentiquattro_apply (c : CodiceVentiquattro) (k : Fin 4) :
     vertVentiquattro c k =
       (if k = indicePrimoVentiquattro c then
@@ -99,16 +132,25 @@ theorem vertVentiquattro_apply (c : CodiceVentiquattro) (k : Fin 4) :
           segnoVentiquattro (segnoSecondoVentiquattro c) else 0) := by
   simp [vertVentiquattro]
 
+/--
+@isnad1 id=eq.0h1v.s5.8acac39da679 from=translated src=- shape=8905823c vocab=5b09169f
+-/
 @[simp] theorem vertVentiquattro_apply_primo (c : CodiceVentiquattro) :
     vertVentiquattro c (indicePrimoVentiquattro c) =
       segnoVentiquattro (segnoPrimoVentiquattro c) := by
   simp [vertVentiquattro_apply, indicePrimo_ne_indiceSecondo c]
 
+/--
+@isnad1 id=eq.0h1v.s5.b9f520279298 from=translated src=- shape=8905823c vocab=fb9da9cf
+-/
 @[simp] theorem vertVentiquattro_apply_secondo (c : CodiceVentiquattro) :
     vertVentiquattro c (indiceSecondoVentiquattro c) =
       segnoVentiquattro (segnoSecondoVentiquattro c) := by
   simp [vertVentiquattro_apply, (indicePrimo_ne_indiceSecondo c).symm]
 
+/--
+@isnad1 id=iff.0h2v.s6.9a19032535e0 from=translated src=- shape=72ba0b8d vocab=ab67eb6d
+-/
 theorem vertVentiquattro_apply_ne_zero_iff (c : CodiceVentiquattro) (k : Fin 4) :
     vertVentiquattro c k ≠ 0 ↔
       k = indicePrimoVentiquattro c ∨ k = indiceSecondoVentiquattro c := by
@@ -120,6 +162,9 @@ theorem vertVentiquattro_apply_ne_zero_iff (c : CodiceVentiquattro) (k : Fin 4) 
       simp [hk₁]
     · simp [vertVentiquattro_apply, hk₁, hk₂]
 
+/--
+@isnad1 id=eq.4h2v.s5.23d45553ad4a from=translated src=- shape=c8cf2b38 vocab=b5aea14a
+-/
 theorem codiceVentiquattro_ext {c d : CodiceVentiquattro}
     (h₁ : indicePrimoVentiquattro c = indicePrimoVentiquattro d)
     (h₂ : indiceSecondoVentiquattro c = indiceSecondoVentiquattro d)
@@ -136,6 +181,9 @@ theorem codiceVentiquattro_ext {c d : CodiceVentiquattro}
   subst sj'
   rfl
 
+/--
+@isnad1 id=and.1h2v.s5.9dd77e06acdd from=translated src=- shape=2555a48b vocab=0bb6e231
+-/
 theorem vertVentiquattro_pair_eq_of_eq {c d : CodiceVentiquattro}
     (h : vertVentiquattro c = vertVentiquattro d) :
     indicePrimoVentiquattro c = indicePrimoVentiquattro d ∧
@@ -170,6 +218,9 @@ theorem vertVentiquattro_pair_eq_of_eq {c d : CodiceVentiquattro}
     · exfalso
       exact indicePrimo_ne_indiceSecondo c (hi.trans hj.symm)
 
+/--
+@isnad1 id=injectiv.0h0v.s3.77e040d3ddf9 from=translated src=- shape=d3a93718 vocab=f15dc1c0
+-/
 theorem vertVentiquattro_injective :
     Function.Injective vertVentiquattro := by
   intro c d h
@@ -190,10 +241,16 @@ theorem vertVentiquattro_injective :
 def verticiVentiquattro : Finset (E 4) :=
   (Finset.univ : Finset CodiceVentiquattro).image vertVentiquattro
 
+/--
+@isnad1 id=iff.0h1v.s5.d81a5f9d4131 from=translated src=- shape=897fd71a vocab=cd06afa9
+-/
 theorem mem_verticiVentiquattro {x : E 4} :
     x ∈ verticiVentiquattro ↔ ∃ c : CodiceVentiquattro, vertVentiquattro c = x := by
   simp [verticiVentiquattro]
 
+/--
+@isnad1 id=eq.0h0v.s7.6523dceebcaa from=translated src=- shape=b0ae1d2b vocab=850c2423
+-/
 theorem card_coppiaVentiquattro : Fintype.card CoppiaVentiquattro = 6 := by
   rw [Fintype.card_subtype]
   have h :
@@ -207,21 +264,33 @@ theorem card_coppiaVentiquattro : Fintype.card CoppiaVentiquattro = 6 := by
   rw [h]
   simp
 
+/--
+@isnad1 id=eq.0h0v.s7.15128e74e259 from=translated src=- shape=b0ae1d2b vocab=32582dbe
+-/
 theorem card_codiceVentiquattro : Fintype.card CodiceVentiquattro = 24 := by
   rw [Fintype.card_prod, Fintype.card_prod, card_coppiaVentiquattro]
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s3.0ce194300e5f from=translated src=- shape=415057c6 vocab=3c8b4f7f
+-/
 theorem card_ventiquattro : verticiVentiquattro.card = 24 := by
   rw [verticiVentiquattro,
     Finset.card_image_of_injective _ vertVentiquattro_injective]
   exact card_codiceVentiquattro
 
+/--
+@isnad1 id=nonempty.0h0v.s3.315033c27395 from=translated src=- shape=06f63001 vocab=f8877e24
+-/
 theorem verticiVentiquattro_nonempty : verticiVentiquattro.Nonempty := by
   refine ⟨vertVentiquattro
     (codiceVentiquattro (0 : Fin 4) (1 : Fin 4) (by norm_num) true true), ?_⟩
   exact mem_verticiVentiquattro.mpr
     ⟨codiceVentiquattro (0 : Fin 4) (1 : Fin 4) (by norm_num) true true, rfl⟩
 
+/--
+@isnad1 id=eq.0h1v.s6.51dc8689ccdc from=translated src=- shape=7b9ddabb vocab=45da75bd
+-/
 theorem norm_sq_vertVentiquattro (c : CodiceVentiquattro) :
     ‖vertVentiquattro c‖ ^ 2 = 2 := by
   let i := indicePrimoVentiquattro c
@@ -237,6 +306,9 @@ theorem norm_sq_vertVentiquattro (c : CodiceVentiquattro) :
   simp [si, sj, PiLp.norm_single]
   norm_num
 
+/--
+@isnad1 id=eq.1h3v.s7.c79e29e2d047 from=translated src=- shape=7af2d40a vocab=84390e8a
+-/
 theorem vertVentiquattro_sub_flip_primo (i j : Fin 4) (hij : i < j)
     (sj : Bool) :
     vertVentiquattro (codiceVentiquattro i j hij true sj) -
@@ -262,6 +334,9 @@ theorem vertVentiquattro_sub_flip_primo (i j : Fin 4) (hij : i < j)
       | (all_goals decide; done)
       | (all_goals tauto; done)
 
+/--
+@isnad1 id=eq.1h3v.s7.22fad51157ac from=translated src=- shape=84f89a88 vocab=84390e8a
+-/
 theorem vertVentiquattro_sub_flip_secondo (i j : Fin 4) (hij : i < j)
     (si : Bool) :
     vertVentiquattro (codiceVentiquattro i j hij si true) -
@@ -287,11 +362,17 @@ theorem vertVentiquattro_sub_flip_secondo (i j : Fin 4) (hij : i < j)
       | (all_goals decide; done)
       | (all_goals tauto; done)
 
+/--
+@isnad1 id=eq.0h1v.s5.d7b3bc89f689 from=translated src=- shape=188b318a vocab=a13885d7
+-/
 theorem norm_vertVentiquattro (c : CodiceVentiquattro) :
     ‖vertVentiquattro c‖ = Real.sqrt 2 := by
   rw [← sq_eq_sq₀ (norm_nonneg _) (Real.sqrt_nonneg _),
     norm_sq_vertVentiquattro c, Real.sq_sqrt (by norm_num : (0 : ℝ) ≤ 2)]
 
+/--
+@isnad1 id=eq.0h0v.s8.36a0c4d4c5f8 from=translated src=- shape=c466b020 vocab=0eef63b0
+-/
 theorem verticiVentiquattro_eq_extremePoints :
     ((verticiVentiquattro : Finset (E 4)) : Set (E 4)) =
       Set.extremePoints ℝ
@@ -320,11 +401,16 @@ def ventiquattro : ConvexPolytope 4 :=
   ⟨verticiVentiquattro, verticiVentiquattro_nonempty,
     verticiVentiquattro_eq_extremePoints⟩
 
+/--
+@isnad1 id=eq.0h0v.s4.4e0d31dd7893 from=translated src=- shape=1538b06e vocab=0964c848
+-/
 theorem card_politope_ventiquattro :
     ventiquattro.vertices.card = 24 :=
   card_ventiquattro
 
-/-- Il 24-cell genera affineamente tutto `E 4`.-/
+/-- Il 24-cell genera affineamente tutto `E 4`.
+@isnad1 id=isfulldi.0h0v.s2.c33c1b5173a9 from=translated src=- shape=cef8a6bf vocab=fca13ba5
+-/
 theorem ventiquattro_isFullDim : ventiquattro.IsFullDim := by
   let W : Submodule ℝ (E 4) := vectorSpan ℝ ventiquattro.toSet
   have mem_toSet (c : CodiceVentiquattro) :
@@ -396,6 +482,9 @@ theorem ventiquattro_isFullDim : ventiquattro.IsFullDim := by
 def segnoBoolDaReale (s : ({-1, 1} : Set ℝ)) (b : Bool) : Bool :=
   if (s : ℝ) = 1 then b else !b
 
+/--
+@isnad1 id=eq.0h2v.s6.d924417d8b3f from=translated src=- shape=4d606ca1 vocab=23594683
+-/
 theorem segnoBoolDaReale_spec (s : ({-1, 1} : Set ℝ)) (b : Bool) :
     segnoVentiquattro (segnoBoolDaReale s b) =
       (s : ℝ) * segnoVentiquattro b := by
@@ -412,6 +501,9 @@ theorem segnoBoolDaReale_spec (s : ({-1, 1} : Set ℝ)) (b : Bool) :
     rw [hs]
     cases b <;> norm_num [segnoVentiquattro]
 
+/--
+@isnad1 id=eq.0h2v.s9.76d0536b05d8 from=translated src=- shape=3468f6f8 vocab=70af8d6f
+-/
 theorem segnoPerm_refl_vertVentiquattro
     (ε : Fin 4 → ({-1, 1} : Set ℝ)) (c : CodiceVentiquattro) :
     segnoPerm 4 (Equiv.refl (Fin 4)) ε (vertVentiquattro c) =
@@ -428,6 +520,9 @@ theorem segnoPerm_refl_vertVentiquattro
     indiceSecondo_codiceVentiquattro, segnoPrimo_codiceVentiquattro,
     segnoSecondo_codiceVentiquattro, segnoBoolDaReale_spec]
 
+/--
+@isnad1 id=mem.1h2v.s9.8aa9362573ed from=translated src=- shape=4c5e1521 vocab=81510e54
+-/
 theorem segnoPerm_refl_mem_verticiVentiquattro
     (ε : Fin 4 → ({-1, 1} : Set ℝ)) {v : E 4}
     (hv : v ∈ verticiVentiquattro) :
@@ -443,6 +538,9 @@ theorem segnoPerm_refl_mem_verticiVentiquattro
         (segnoSecondoVentiquattro c)), ?_⟩
   exact (segnoPerm_refl_vertVentiquattro ε c).symm
 
+/--
+@isnad1 id=eq.0h1v.s9.d5ff5347bbf9 from=translated src=- shape=c980a7a8 vocab=0eed2ba9
+-/
 theorem segnoPerm_refl_image_verticiVentiquattro
     (ε : Fin 4 → ({-1, 1} : Set ℝ)) :
     (segnoPerm 4 (Equiv.refl (Fin 4)) ε : E 4 → E 4) ''
@@ -461,7 +559,9 @@ theorem segnoPerm_refl_image_verticiVentiquattro
         (segnoPerm 4 (Equiv.refl (Fin 4)) ε).injective]
   rw [← Finset.coe_image, hfin]
 
-/-- Simmetrie parziali: cambi indipendenti di segno delle coordinate.-/
+/-- Simmetrie parziali: cambi indipendenti di segno delle coordinate.
+@isnad1 id=issymmet.0h1v.s5.39e487627aab from=translated src=- shape=b80341b3 vocab=927fe150
+-/
 theorem segnoPerm_refl_isSymmetry
     (ε : Fin 4 → ({-1, 1} : Set ℝ)) :
     ventiquattro.isSymmetry (segnoPerm 4 (Equiv.refl (Fin 4)) ε) := by

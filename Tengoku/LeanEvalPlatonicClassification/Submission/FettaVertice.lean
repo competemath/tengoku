@@ -48,30 +48,49 @@ variable {Q : ConvexPolytope n} {v : E n} (D : DatiFetta Q v)
 def attra (w : E n) : E n :=
   v + ((D.l v - D.c) / (D.l v - D.l w)) • (w - v)
 
+/--
+@isnad1 id=lt.1h5v.s8.6f64b39e8061 from=translated src=- shape=2b295d24 vocab=337a028b
+-/
 theorem sep_of_mem_erase {w : E n} (hw : w ∈ Q.vertices.erase v) :
     D.l w < D.c :=
   D.hsep w (Finset.mem_of_mem_erase hw) (Finset.ne_of_mem_erase hw)
 
+/--
+@isnad1 id=lt.0h4v.s8.9d15e67d13c5 from=translated src=- shape=63f59460 vocab=d7056e34
+-/
 theorem numpos : 0 < D.l v - D.c := by linarith [D.hvc]
 
+/--
+@isnad1 id=lt.1h5v.s9.e29f04679101 from=translated src=- shape=4c6b0b0c vocab=d7056e34
+-/
 theorem denpos {w : E n} (hwc : D.l w < D.c) : 0 < D.l v - D.l w := by
   linarith [D.hvc]
 
+/--
+@isnad1 id=lt.1h5v.s10.8c9e6eb1498f from=translated src=- shape=978c50f2 vocab=3be871da
+-/
 theorem tau_pos {w : E n} (hwc : D.l w < D.c) :
     0 < (D.l v - D.c) / (D.l v - D.l w) :=
   div_pos D.numpos (D.denpos hwc)
 
+/--
+@isnad1 id=lt.1h5v.s10.7cfcf978fe25 from=translated src=- shape=81f905e2 vocab=3be871da
+-/
 theorem tau_lt_one {w : E n} (hwc : D.l w < D.c) :
     (D.l v - D.c) / (D.l v - D.l w) < 1 := by
   rw [div_lt_one (D.denpos hwc)]
   linarith
 
-/-- La differenza radiale dell'attraversamento.-/
+/-- La differenza radiale dell'attraversamento.
+@isnad1 id=eq.0h5v.s10.2f2bb442250d from=translated src=- shape=a3a9630f vocab=ab274d00
+-/
 theorem attra_sub (w : E n) :
     D.attra w - v = ((D.l v - D.c) / (D.l v - D.l w)) • (w - v) := by
   rw [attra, add_sub_cancel_left]
 
-/-- L'attraversamento sta al livello `c`.-/
+/-- L'attraversamento sta al livello `c`.
+@isnad1 id=eq.1h5v.s9.3dab35e05c83 from=translated src=- shape=d0c45375 vocab=6f65e341
+-/
 theorem attra_level {w : E n} (hwc : D.l w < D.c) :
     D.l (D.attra w) = D.c := by
   have hden : D.l v - D.l w ≠ 0 := ne_of_gt (D.denpos hwc)
@@ -81,7 +100,9 @@ theorem attra_level {w : E n} (hwc : D.l w < D.c) :
       = D.l v - D.c := div_mul_cancel₀ _ hden
   nlinarith [hcancel]
 
-/-- L'attraversamento sta sul segmento `[v, w]`.-/
+/-- L'attraversamento sta sul segmento `[v, w]`.
+@isnad1 id=mem.1h5v.s8.b6d261492793 from=translated src=- shape=1345c327 vocab=e81ec307
+-/
 theorem attra_mem_segment {w : E n} (hwc : D.l w < D.c) :
     D.attra w ∈ segment ℝ v w := by
   refine ⟨1 - (D.l v - D.c) / (D.l v - D.l w),
@@ -90,14 +111,18 @@ theorem attra_mem_segment {w : E n} (hwc : D.l w < D.c) :
   rw [attra]
   match_scalars <;> ring
 
-/-- L'attraversamento è distinto dal vertice.-/
+/-- L'attraversamento è distinto dal vertice.
+@isnad1 id=ne.1h5v.s8.0c7e68304de6 from=translated src=- shape=c1b342d8 vocab=6f65e341
+-/
 theorem attra_ne {w : E n} (hwc : D.l w < D.c) : D.attra w ≠ v := by
   intro h
   have := D.attra_level hwc
   rw [h] at this
   linarith [D.hvc]
 
-/-- L'attraversamento appartiene al corpo del politopo.-/
+/-- L'attraversamento appartiene al corpo del politopo.
+@isnad1 id=mem.2h5v.s8.1dc8eabb3eff from=translated src=- shape=8db0164f vocab=5d8a6183
+-/
 theorem attra_mem_toSet {w : E n} (hwV : w ∈ Q.vertices)
     (hwc : D.l w < D.c) : D.attra w ∈ Q.toSet := by
   have hvT : v ∈ Q.toSet := subset_convexHull ℝ _ (by exact_mod_cast D.hv)
@@ -108,12 +133,20 @@ theorem attra_mem_toSet {w : E n} (hwV : w ∈ Q.vertices)
 /-- I generatori finiti della fetta: gli attraversamenti degli altri vertici.-/
 def gen : Finset (E n) := (Q.vertices.erase v).image D.attra
 
+/--
+@isnad1 id=nonempty.0h4v.s4.b45a3173a00f from=translated src=- shape=46b66405 vocab=4ed8d4d5
+-/
 theorem gen_nonempty : D.gen.Nonempty := D.hW.image D.attra
 
+/--
+@isnad1 id=mem.1h5v.s7.4b464cc22ceb from=translated src=- shape=a87faa80 vocab=8e4a1618
+-/
 theorem mem_gen_of_mem_erase {w : E n} (hw : w ∈ Q.vertices.erase v) :
     D.attra w ∈ D.gen := Finset.mem_image_of_mem D.attra hw
 
-/-- **LA FETTA È L'HULL DEGLI ATTRAVERSAMENTI.**-/
+/-- **LA FETTA È L'HULL DEGLI ATTRAVERSAMENTI.**
+@isnad1 id=eq.0h4v.s8.26114ae330c9 from=translated src=- shape=3b5ab6b0 vocab=9cf7a70a
+-/
 theorem fetta_eq_hull :
     Q.toSet ∩ {x | D.l x = D.c} = convexHull ℝ (D.gen : Set (E n)) := by
   classical
@@ -211,7 +244,9 @@ theorem fetta_eq_hull :
 /-! ## La fetta come politopo -/
 
 /-- Krein–Milman finito: l'hull dei punti estremi dell'hull dei generatori
-è l'hull dei generatori.  (L'hull finito è compatto e chiuso.)-/
+è l'hull dei generatori.  (L'hull finito è compatto e chiuso.)
+@isnad1 id=eq.0h4v.s9.5e8400312cf0 from=translated src=- shape=40a1495e vocab=35cf7943
+-/
 theorem hull_ext :
     convexHull ℝ ((convexHull ℝ (D.gen : Set (E n))).extremePoints ℝ)
       = convexHull ℝ (D.gen : Set (E n)) := by
@@ -228,12 +263,16 @@ theorem hull_ext :
         (hfin.isClosed_convexHull ℝ).closure_eq.symm
     _ = convexHull ℝ (D.gen : Set (E n)) := hKM
 
-/-- I punti estremi della fetta formano un insieme finito.-/
+/-- I punti estremi della fetta formano un insieme finito.
+@isnad1 id=finite.0h4v.s8.abd0f1632b43 from=translated src=- shape=28042972 vocab=80b281dc
+-/
 theorem ext_finite :
     ((convexHull ℝ (D.gen : Set (E n))).extremePoints ℝ).Finite :=
   D.gen.finite_toSet.subset extremePoints_convexHull_subset
 
-/-- I punti estremi della fetta sono non vuoti.-/
+/-- I punti estremi della fetta sono non vuoti.
+@isnad1 id=nonempty.0h4v.s8.a55309e4bd2b from=translated src=- shape=28042972 vocab=d94166c5
+-/
 theorem ext_nonempty :
     ((convexHull ℝ (D.gen : Set (E n))).extremePoints ℝ).Nonempty := by
   by_contra hempty
@@ -256,7 +295,9 @@ def politopo : ConvexPolytope n where
   vertices_eq_extremePoints := by
     rw [Set.Finite.coe_toFinset, D.hull_ext]
 
-/-- Il corpo del politopo-fetta è esattamente la fetta.-/
+/-- Il corpo del politopo-fetta è esattamente la fetta.
+@isnad1 id=eq.0h4v.s8.0c376f7fc1f7 from=translated src=- shape=0af0de4b vocab=73a888b8
+-/
 theorem politopo_toSet :
     D.politopo.toSet = Q.toSet ∩ {x | D.l x = D.c} := by
   have h1 : D.politopo.toSet = convexHull ℝ
@@ -268,7 +309,9 @@ theorem politopo_toSet :
 /-! ## Il trasferimento delle facce -/
 
 /-- Una faccia di dimensione positiva che contiene `v` contiene un altro
-vertice.-/
+vertice.
+@isnad1 id=ex.3h4v.s7.f65f1dc3e729 from=translated src=- shape=7c4f5b37 vocab=dd00a384
+-/
 theorem esiste_vertice_altro {F : Set (E n)} (hF : Q.IsFace F) (hvF : v ∈ F)
     (hdF : 1 ≤ faceDim F) : ∃ w ∈ Q.vertices.erase v, w ∈ F := by
   classical
@@ -293,7 +336,9 @@ theorem esiste_vertice_altro {F : Set (E n)} (hF : Q.IsFace F) (hvF : v ∈ F)
   omega
 
 /-- **AVANTI**: la fetta di una faccia dello star è una faccia del
-politopo-fetta, esposta dallo stesso funzionale.-/
+politopo-fetta, esposta dallo stesso funzionale.
+@isnad1 id=isface.3h5v.s8.c30888c00a49 from=translated src=- shape=9df1b7d0 vocab=ee0acd59
+-/
 theorem faccia_fetta {F : Set (E n)} (hF : Q.IsFace F) (hvF : v ∈ F)
     (hdF : 1 ≤ faceDim F) :
     D.politopo.IsFace (F ∩ {x | D.l x = D.c}) := by
@@ -326,7 +371,9 @@ theorem faccia_fetta {F : Set (E n)} (hF : Q.IsFace F) (hvF : v ∈ F)
 
 /-- **MONOTONIA**: se la fetta di `F₁` sta nella fetta di `F₂`, allora
 `F₁ ⊆ F₂`.  Il punto di attraversamento è interno al segmento `[v, w]`, e
-un funzionale massimo lì è massimo anche in `w`.-/
+un funzionale massimo lì è massimo anche in `w`.
+@isnad1 id=le.5h6v.s9.f26ff326a9e5 from=translated src=- shape=f4587c8f vocab=62fa00dc
+-/
 theorem fetta_mono {F₁ F₂ : Set (E n)} (hF₁ : Q.IsFace F₁) (hvF₁ : v ∈ F₁)
     (hF₂ : Q.IsFace F₂) (hvF₂ : v ∈ F₂)
     (hsub : F₁ ∩ {x | D.l x = D.c} ⊆ F₂ ∩ {x | D.l x = D.c}) :
@@ -373,7 +420,9 @@ theorem fetta_mono {F₁ F₂ : Set (E n)} (hF₁ : Q.IsFace F₁) (hvF₁ : v �
 /-- **INDIETRO**: ogni faccia del politopo-fetta è la fetta di una faccia
 dello star.  Il funzionale è `g + t⋆ · l` con `t⋆ = (M − g v)/(l v − c)`:
 sui vertici `w` con `p(w)` argmax il rapporto incrementale vale
-esattamente `t⋆`, sugli altri è strettamente minore.-/
+esattamente `t⋆`, sugli altri è strettamente minore.
+@isnad1 id=ex.1h5v.s8.de0db37a0969 from=translated src=- shape=78e4dd5a vocab=ee0acd59
+-/
 theorem faccia_dalla_fetta {G : Set (E n)} (hG : D.politopo.IsFace G) :
     ∃ F : Set (E n), Q.IsFace F ∧ v ∈ F ∧ 1 ≤ faceDim F ∧
       F ∩ {x | D.l x = D.c} = G := by
@@ -482,7 +531,9 @@ theorem faccia_dalla_fetta {G : Set (E n)} (hG : D.politopo.IsFace G) :
 /-- **LO SHIFT DIMENSIONALE**: la fetta di una faccia dello star ha
 dimensione esattamente una in meno.  `vectorSpan F` si spezza come
 `vectorSpan (F ∩ H) ⊔ ℝ·(p(w₀) − v)`: i due addendi si intersecano solo
-nell'origine perché il primo sta nel nucleo di `l` e il secondo no.-/
+nell'origine perché il primo sta nel nucleo di `l` e il secondo no.
+@isnad1 id=eq.3h5v.s8.5505eb43530a from=translated src=- shape=3045664f vocab=4534d8ee
+-/
 theorem fetta_faceDim {F : Set (E n)} (hF : Q.IsFace F) (hvF : v ∈ F)
     (hdF : 1 ≤ faceDim F) :
     faceDim (F ∩ {x | D.l x = D.c}) + 1 = faceDim F := by

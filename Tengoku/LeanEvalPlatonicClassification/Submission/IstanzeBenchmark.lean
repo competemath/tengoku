@@ -64,6 +64,9 @@ noncomputable def decCubo (x : E3) : Fin 8 :=
      else
       (if 0 < (WithLp.ofLp x) 2 then 6 else 7))
 
+/--
+@isnad1 id=eq.0h1v.s4.b37dd7e9e283 from=translated src=- shape=848cd2ae vocab=fe20106f
+-/
 theorem decCubo_famCubo : ∀ i, decCubo (famCubo i) = i := by
   intro i
   fin_cases i
@@ -71,9 +74,15 @@ theorem decCubo_famCubo : ∀ i, decCubo (famCubo i) = i := by
   all_goals try decide
   all_goals try norm_num
 
+/--
+@isnad1 id=injectiv.0h0v.s3.d6f08a38d229 from=translated src=- shape=bfe16b09 vocab=703a70d2
+-/
 theorem famCubo_iniettiva : Function.Injective famCubo :=
   Function.LeftInverse.injective decCubo_famCubo
 
+/--
+@isnad1 id=eq.0h0v.s4.f762bbf65aaa from=translated src=- shape=1538b06e vocab=db669995
+-/
 theorem card_cubo : cuboBM.vertices.card = 8 := by
   show verticiCubo.card = 8
   have h : verticiCubo = Finset.univ.image famCubo := by
@@ -108,6 +117,9 @@ noncomputable def decOtta (x : E3) : Fin 6 :=
   else if (WithLp.ofLp x) 1 < 0 then 4
   else 5
 
+/--
+@isnad1 id=eq.0h1v.s4.b45123eae7a0 from=translated src=- shape=848cd2ae vocab=913ea7ba
+-/
 theorem decOtta_famOtta : ∀ i, decOtta (famOtta i) = i := by
   intro i
   fin_cases i
@@ -115,9 +127,15 @@ theorem decOtta_famOtta : ∀ i, decOtta (famOtta i) = i := by
   all_goals try decide
   all_goals try norm_num
 
+/--
+@isnad1 id=injectiv.0h0v.s3.e9781010a779 from=translated src=- shape=bfe16b09 vocab=0d0f8680
+-/
 theorem famOtta_iniettiva : Function.Injective famOtta :=
   Function.LeftInverse.injective decOtta_famOtta
 
+/--
+@isnad1 id=eq.0h0v.s4.102be4bf971d from=translated src=- shape=1538b06e vocab=97400ce8
+-/
 theorem card_otta : ottaedroBM.vertices.card = 6 := by
   show verticiOtta.card = 6
   have h : verticiOtta = Finset.univ.image famOtta := by
@@ -137,6 +155,9 @@ theorem card_otta : ottaedroBM.vertices.card = 6 := by
   rw [h, Finset.card_image_of_injective _ famOtta_iniettiva]
   simp
 
+/--
+@isnad1 id=eq.0h0v.s4.17efdd779fff from=translated src=- shape=1538b06e vocab=ecbca6a2
+-/
 theorem card_tetra : tetraedroBM.vertices.card = 4 := by
   show verticiTetra.card = 4
   rw [verticiTetra_eq_map, Finset.card_map]
@@ -167,6 +188,9 @@ noncomputable def decDodeca (x : E3) : Fin 20 :=
       (if 0 < (WithLp.ofLp x) 1 then (if 0 < (WithLp.ofLp x) 2 then 3 else 2)
        else (if 0 < (WithLp.ofLp x) 2 then 1 else 0)))
 
+/--
+@isnad1 id=eq.0h1v.s4.94b4a1fccc9b from=translated src=- shape=848cd2ae vocab=bdb2c8bf
+-/
 theorem decDodeca_famDodeca : ∀ i, decDodeca (famDodeca i) = i := by
   have hphi : (0:ℝ) < Real.goldenRatio := Real.goldenRatio_pos
   have hphii : (0:ℝ) < Real.goldenRatio⁻¹ := inv_pos.mpr hphi
@@ -176,9 +200,15 @@ theorem decDodeca_famDodeca : ∀ i, decDodeca (famDodeca i) = i := by
   all_goals try norm_num [hphi, hphii]
   all_goals (have hsum : (0:ℝ) < 1 + Real.sqrt 5 := (by positivity); have hdiv : (0:ℝ) < 2 / (1 + Real.sqrt 5) := (by positivity); first | rfl | linarith [Real.goldenRatio_pos, hsum, hdiv] | (intro hng; linarith [Real.goldenRatio_pos, hsum, hdiv]) | (split_ifs <;> first | rfl | (exfalso; linarith [Real.goldenRatio_pos, hsum, hdiv])))
 
+/--
+@isnad1 id=injectiv.0h0v.s3.199f61904daf from=translated src=- shape=bfe16b09 vocab=45241696
+-/
 theorem famDodeca_iniettiva : Function.Injective famDodeca :=
   Function.LeftInverse.injective decDodeca_famDodeca
 
+/--
+@isnad1 id=eq.0h0v.s3.3edc75da83ce from=translated src=- shape=b3c4969c vocab=870451fc
+-/
 theorem card_dodeca : verticiDodeca.card = 20 := by
   have h : verticiDodeca = Finset.univ.image famDodeca := by
     ext z
@@ -249,6 +279,9 @@ noncomputable def decIcosa (x : E3) : Fin 12 :=
     (if 0 < (WithLp.ofLp x) 0 then (if 0 < (WithLp.ofLp x) 1 then 7 else 6)
      else (if 0 < (WithLp.ofLp x) 1 then 5 else 4))
 
+/--
+@isnad1 id=eq.0h1v.s4.4acc8e1dd83a from=translated src=- shape=848cd2ae vocab=c5e6640d
+-/
 theorem decIcosa_famIcosa : ∀ i, decIcosa (famIcosa i) = i := by
   have hphi : (0:ℝ) < Real.goldenRatio := Real.goldenRatio_pos
   have hphii : (0:ℝ) < Real.goldenRatio⁻¹ := inv_pos.mpr hphi
@@ -258,9 +291,15 @@ theorem decIcosa_famIcosa : ∀ i, decIcosa (famIcosa i) = i := by
   all_goals try norm_num [hphi, hphii]
   all_goals (have hsum : (0:ℝ) < 1 + Real.sqrt 5 := (by positivity); have hdiv : (0:ℝ) < 2 / (1 + Real.sqrt 5) := (by positivity); first | rfl | linarith [Real.goldenRatio_pos, hsum, hdiv] | (intro hng; linarith [Real.goldenRatio_pos, hsum, hdiv]) | (split_ifs <;> first | rfl | (exfalso; linarith [Real.goldenRatio_pos, hsum, hdiv])))
 
+/--
+@isnad1 id=injectiv.0h0v.s3.8dc15b4f34be from=translated src=- shape=bfe16b09 vocab=c214cfbb
+-/
 theorem famIcosa_iniettiva : Function.Injective famIcosa :=
   Function.LeftInverse.injective decIcosa_famIcosa
 
+/--
+@isnad1 id=eq.0h0v.s3.65a104a2bf1a from=translated src=- shape=b3c4969c vocab=7c655c11
+-/
 theorem card_icosa : verticiIcosa.card = 12 := by
   have h : verticiIcosa = Finset.univ.image famIcosa := by
     ext z
@@ -301,6 +340,9 @@ theorem card_icosa : verticiIcosa.card = 12 := by
 
 /-! ## Le dieci non-similarità -/
 
+/--
+@isnad1 id=not.0h0v.s3.a43052bb30c8 from=translated src=- shape=8034a0a0 vocab=16c31846
+-/
 theorem non_simili_tetraedro_cubo : ¬ ConvexPolytope.Similar tetraedroBM cuboBM := by
   intro h
   have hc := vertices_card_of_similar h
@@ -308,6 +350,9 @@ theorem non_simili_tetraedro_cubo : ¬ ConvexPolytope.Similar tetraedroBM cuboBM
     show (tetraedroBM).vertices.card = _ from card_tetra] at hc
   norm_num at hc
 
+/--
+@isnad1 id=not.0h0v.s3.c586119c51ab from=translated src=- shape=8034a0a0 vocab=050b32a7
+-/
 theorem non_simili_tetraedro_ottaedro : ¬ ConvexPolytope.Similar tetraedroBM ottaedroBM := by
   intro h
   have hc := vertices_card_of_similar h
@@ -315,6 +360,9 @@ theorem non_simili_tetraedro_ottaedro : ¬ ConvexPolytope.Similar tetraedroBM ot
     show (tetraedroBM).vertices.card = _ from card_tetra] at hc
   norm_num at hc
 
+/--
+@isnad1 id=not.0h0v.s3.0ff5f16815f0 from=translated src=- shape=8034a0a0 vocab=43a39360
+-/
 theorem non_simili_tetraedro_dodecaedro : ¬ ConvexPolytope.Similar tetraedroBM dodecaedroBM := by
   intro h
   have hc := vertices_card_of_similar h
@@ -322,6 +370,9 @@ theorem non_simili_tetraedro_dodecaedro : ¬ ConvexPolytope.Similar tetraedroBM 
     show (tetraedroBM).vertices.card = _ from card_tetra] at hc
   norm_num at hc
 
+/--
+@isnad1 id=not.0h0v.s3.c2ff7338cb13 from=translated src=- shape=8034a0a0 vocab=3783a9b1
+-/
 theorem non_simili_tetraedro_icosaedro : ¬ ConvexPolytope.Similar tetraedroBM icosaedroBM := by
   intro h
   have hc := vertices_card_of_similar h
@@ -329,6 +380,9 @@ theorem non_simili_tetraedro_icosaedro : ¬ ConvexPolytope.Similar tetraedroBM i
     show (tetraedroBM).vertices.card = _ from card_tetra] at hc
   norm_num at hc
 
+/--
+@isnad1 id=not.0h0v.s3.055d05efeb7e from=translated src=- shape=8034a0a0 vocab=86efd37e
+-/
 theorem non_simili_cubo_ottaedro : ¬ ConvexPolytope.Similar cuboBM ottaedroBM := by
   intro h
   have hc := vertices_card_of_similar h
@@ -336,6 +390,9 @@ theorem non_simili_cubo_ottaedro : ¬ ConvexPolytope.Similar cuboBM ottaedroBM :
     show (cuboBM).vertices.card = _ from card_cubo] at hc
   norm_num at hc
 
+/--
+@isnad1 id=not.0h0v.s3.b017ce804267 from=translated src=- shape=8034a0a0 vocab=bdf3fb97
+-/
 theorem non_simili_cubo_dodecaedro : ¬ ConvexPolytope.Similar cuboBM dodecaedroBM := by
   intro h
   have hc := vertices_card_of_similar h
@@ -343,6 +400,9 @@ theorem non_simili_cubo_dodecaedro : ¬ ConvexPolytope.Similar cuboBM dodecaedro
     show (cuboBM).vertices.card = _ from card_cubo] at hc
   norm_num at hc
 
+/--
+@isnad1 id=not.0h0v.s3.2f47930f0a50 from=translated src=- shape=8034a0a0 vocab=99b90c1c
+-/
 theorem non_simili_cubo_icosaedro : ¬ ConvexPolytope.Similar cuboBM icosaedroBM := by
   intro h
   have hc := vertices_card_of_similar h
@@ -350,6 +410,9 @@ theorem non_simili_cubo_icosaedro : ¬ ConvexPolytope.Similar cuboBM icosaedroBM
     show (cuboBM).vertices.card = _ from card_cubo] at hc
   norm_num at hc
 
+/--
+@isnad1 id=not.0h0v.s3.8fc0fdece1da from=translated src=- shape=8034a0a0 vocab=e001a53c
+-/
 theorem non_simili_ottaedro_dodecaedro : ¬ ConvexPolytope.Similar ottaedroBM dodecaedroBM := by
   intro h
   have hc := vertices_card_of_similar h
@@ -357,6 +420,9 @@ theorem non_simili_ottaedro_dodecaedro : ¬ ConvexPolytope.Similar ottaedroBM do
     show (ottaedroBM).vertices.card = _ from card_otta] at hc
   norm_num at hc
 
+/--
+@isnad1 id=not.0h0v.s3.e2591f825406 from=translated src=- shape=8034a0a0 vocab=10057730
+-/
 theorem non_simili_ottaedro_icosaedro : ¬ ConvexPolytope.Similar ottaedroBM icosaedroBM := by
   intro h
   have hc := vertices_card_of_similar h
@@ -364,6 +430,9 @@ theorem non_simili_ottaedro_icosaedro : ¬ ConvexPolytope.Similar ottaedroBM ico
     show (ottaedroBM).vertices.card = _ from card_otta] at hc
   norm_num at hc
 
+/--
+@isnad1 id=not.0h0v.s3.4c528b355f9c from=translated src=- shape=8034a0a0 vocab=673b19f8
+-/
 theorem non_simili_dodecaedro_icosaedro : ¬ ConvexPolytope.Similar dodecaedroBM icosaedroBM := by
   intro h
   have hc := vertices_card_of_similar h

@@ -36,14 +36,18 @@ open ConvexPolytope
 
 variable {n : ℕ}
 
-/-- La componente di un vettore ortogonale a un unitario.-/
+/-- La componente di un vettore ortogonale a un unitario.
+@isnad1 id=eq.1h3v.s8.a44482145184 from=translated src=- shape=82854a19 vocab=871ca769
+-/
 theorem inner_comp_ortogonale {α v : E n} (hα : ‖α‖ = 1) :
     ⟪α, v - (⟪α, v⟫ : ℝ) • α⟫ = 0 := by
   rw [inner_sub_right, real_inner_smul_right, real_inner_self_eq_norm_sq,
     hα]
   ring
 
-/-- Un vettore ortogonale a tutta la giacitura è multiplo del normale.-/
+/-- Un vettore ortogonale a tutta la giacitura è multiplo del normale.
+@isnad1 id=eq.2h3v.s8.dbaa2d3a7525 from=translated src=- shape=4f61a761 vocab=642f2024
+-/
 theorem multiplo_del_normale {α w : E n} (hα : ‖α‖ = 1)
     (hw : ∀ v : E n, ⟪α, v⟫ = 0 → ⟪w, v⟫ = 0) :
     w = (⟪α, w⟫ : ℝ) • α := by

@@ -29,7 +29,9 @@ variable {n : ℕ}
 
 open Classical in
 /-- Ogni faccia (esposta, non vuota) di un politopo è l'hull dei vertici che
-contiene: il pattern del tetraedro, in forma generale sul contratto.-/
+contiene: il pattern del tetraedro, in forma generale sul contratto.
+@isnad1 id=eq.1h3v.s7.66e3bf559225 from=translated src=- shape=1179214f vocab=5394cfd6
+-/
 theorem face_eq_hull_vertices (P : ConvexPolytope n) {f : Set (E n)}
     (hf : P.IsFace f) :
     f = convexHull ℝ ((P.vertices.filter (· ∈ f) : Finset (E n)) : Set (E n)) := by
@@ -57,7 +59,9 @@ theorem face_eq_hull_vertices (P : ConvexPolytope n) {f : Set (E n)}
         ((P.vertices.filter (· ∈ f) : Finset (E n)) : Set (E n)) := rfl
 
 open Classical in
-/-- Un funzionale limitato sui vertici è limitato sul corpo.-/
+/-- Un funzionale limitato sui vertici è limitato sul corpo.
+@isnad1 id=le.2h5v.s9.674d468a9d55 from=translated src=- shape=da6d73c3 vocab=3709c6dc
+-/
 theorem le_su_toSet (P : ConvexPolytope n) (g : E n →L[ℝ] ℝ) {c : ℝ}
     (hv : ∀ v ∈ (P.vertices : Set (E n)), g v ≤ c) :
     ∀ x ∈ P.toSet, g x ≤ c := by
@@ -67,7 +71,9 @@ theorem le_su_toSet (P : ConvexPolytope n) (g : E n →L[ℝ] ℝ) {c : ℝ}
     (convex_halfSpace_le (LinearMap.isLinear g.toLinearMap) c) hx
 
 /-- Q0, IL LEMMA-CHIAVE: una faccia esposta non vuota di una faccia di un
-politopo è una faccia del politopo.-/
+politopo è una faccia del politopo.
+@isnad1 id=isface.3h4v.s7.2c4cf3c6ff94 from=translated src=- shape=0ac70822 vocab=109087e4
+-/
 theorem isFace_of_isExposed_isFace (P : ConvexPolytope n)
     {f e : Set (E n)} (hf : P.IsFace f) (he : IsExposed ℝ f e)
     (hene : e.Nonempty) : P.IsFace e := by

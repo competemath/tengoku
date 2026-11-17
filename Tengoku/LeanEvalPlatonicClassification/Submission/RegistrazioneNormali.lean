@@ -22,7 +22,9 @@ namespace LeanEval.Geometry.PlatonicClassification
 
 variable {n ι : ℕ}
 
-/-- Le relazioni lineari si trasportano lungo l'uguaglianza delle Gram.-/
+/-- Le relazioni lineari si trasportano lungo l'uguaglianza delle Gram.
+@isnad1 id=eq.2h5v.s8.0082409af41c from=translated src=- shape=55f6df42 vocab=cf8561e7
+-/
 theorem relazioni_trasportate_da_gram_dim {u w : Fin ι → E n}
     (hgram : ∀ i j, ⟪u i, u j⟫ = ⟪w i, w j⟫)
     (a : Fin ι → ℝ) (h : ∑ i, a i • u i = 0) :
@@ -34,14 +36,18 @@ theorem relazioni_trasportate_da_gram_dim {u w : Fin ι → E n}
     rw [← real_inner_self_eq_norm_sq, hinter, h]; simp
   exact norm_eq_zero.mp (sq_eq_zero_iff.mp hnorm)
 
-/-- I prodotti interni di combinazioni lineari coincidono sotto Gram uguali.-/
+/-- I prodotti interni di combinazioni lineari coincidono sotto Gram uguali.
+@isnad1 id=eq.1h6v.s9.eab0db7aef73 from=translated src=- shape=0bb490af vocab=cf8561e7
+-/
 theorem inner_somme_da_gram_dim {u w : Fin ι → E n}
     (hgram : ∀ i j, ⟪u i, u j⟫ = ⟪w i, w j⟫) (a b : Fin ι → ℝ) :
     ⟪∑ i, a i • w i, ∑ j, b j • w j⟫ = ⟪∑ i, a i • u i, ∑ j, b j • u j⟫ := by
   classical
   simp_rw [sum_inner, inner_sum, real_inner_smul_left, real_inner_smul_right, ← hgram]
 
-/-- Lo span pieno si trasporta lungo l'uguaglianza delle Gram.-/
+/-- Lo span pieno si trasporta lungo l'uguaglianza delle Gram.
+@isnad1 id=eq.2h4v.s9.38bd985e10a9 from=translated src=- shape=0a484e52 vocab=8347ec45
+-/
 theorem span_trasportato_da_gram_dim {u w : Fin ι → E n}
     (hspanU : Submodule.span ℝ (Set.range u) = ⊤)
     (hgram : ∀ i j, ⟪u i, u j⟫ = ⟪w i, w j⟫) :
@@ -71,7 +77,9 @@ theorem span_trasportato_da_gram_dim {u w : Fin ι → E n}
   simpa only [lw, Fintype.range_linearCombination] using htopW
 
 /-- **U1 — registrazione dei sistemi semplici**: due famiglie di vettori in `E n` con
-la stessa matrice di Gram e span pieno sono registrate da una isometria lineare.-/
+la stessa matrice di Gram e span pieno sono registrate da una isometria lineare.
+@isnad1 id=ex.3h4v.s11.c375c8f6d1a6 from=translated src=- shape=f4202a16 vocab=f637186c
+-/
 theorem isometria_da_gram_dim {u w : Fin ι → E n}
     (hspanU : Submodule.span ℝ (Set.range u) = ⊤)
     (hspanW : Submodule.span ℝ (Set.range w) = ⊤)

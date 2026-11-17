@@ -35,7 +35,9 @@ open ConvexPolytope
 variable {n : ℕ}
 
 /-- Il livello separatore esiste per ogni vertice di un politopo di
-dimensione positiva.-/
+dimensione positiva.
+@isnad1 id=nonempty.2h3v.s5.e7c193e0fb9a from=translated src=- shape=758eb13e vocab=bbdf512a
+-/
 theorem esiste_datiFetta (Q : ConvexPolytope n) {v : E n}
     (hv : v ∈ Q.vertices) (hdQ : 1 ≤ faceDim Q.toSet) :
     Nonempty (DatiFetta Q v) := by
@@ -84,7 +86,9 @@ theorem esiste_datiFetta (Q : ConvexPolytope n) {v : E n}
 /-- **LA FIGURA AL VERTICE ESISTE.**  Il sotto-kill-gate della campagna
 è chiuso: ogni intervallo di facce sopra un vertice ammette una vera
 figura al vertice con la corrispondenza di Galois e lo shift
-dimensionale.-/
+dimensionale.
+@isnad1 id=vertexfi.0h0v.s0.18b5a8f48a42 from=translated src=- shape=45709ebd vocab=18b5a8f4
+-/
 theorem vertexFigure_galois_exists : VertexFigureGaloisExists := by
   intro n P B hB v hv hdB
   classical

@@ -32,13 +32,18 @@ arbitraria).-/
 def classeSim (d : ℕ) (P : regularPolytopes d) : Set (regularPolytopes d) :=
   {Q | regularSimilar d P Q}
 
+/--
+@isnad1 id=mem.0h2v.s6.a774b9d43c80 from=translated src=- shape=dc6b39b5 vocab=60d07b20
+-/
 theorem classeSim_mem_quoziente (d : ℕ) (P : regularPolytopes d) :
     classeSim d P ∈ {S : Set (regularPolytopes d) |
       ∃ P', S = {Q : regularPolytopes d | regularSimilar d P' Q}} :=
   ⟨P, rfl⟩
 
 /-- Politopi regolari con un numero diverso di vertici stanno in classi
-distinte.-/
+distinte.
+@isnad1 id=ne.1h3v.s6.828a07aae64d from=translated src=- shape=9e6f64c3 vocab=ed506f3a
+-/
 theorem classeSim_ne_of_card_ne {d : ℕ} {P Q : regularPolytopes d}
     (h : (P : ConvexPolytope d).vertices.card ≠
       (Q : ConvexPolytope d).vertices.card) :
@@ -51,7 +56,9 @@ theorem classeSim_ne_of_card_ne {d : ℕ} {P Q : regularPolytopes d}
 
 /-- **IL CONTEGGIO INFINITO**: una famiglia di politopi regolari con
 cardinalità dei vertici iniettiva dà infinite classi, dunque
-`platonicCount d = ⊤`.-/
+`platonicCount d = ⊤`.
+@isnad1 id=eq.1h2v.s5.c8c59fa63287 from=translated src=- shape=a2e5a72b vocab=1ab850d0
+-/
 theorem platonicCount_eq_top (d : ℕ) (F : ℕ → regularPolytopes d)
     (hcard : Function.Injective
       (fun n => (F n : ConvexPolytope d).vertices.card)) :

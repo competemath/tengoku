@@ -26,7 +26,9 @@ open ConvexPolytope
 variable {n : ℕ}
 
 open Classical in
-/-- S3b: tra facce, l'inclusione stretta forza la dimensione stretta.-/
+/-- S3b: tra facce, l'inclusione stretta forza la dimensione stretta.
+@isnad1 id=lt.3h4v.s6.162ae6f9d485 from=translated src=- shape=4e9286d7 vocab=3d5e8a82
+-/
 theorem faceDim_lt_of_ssubset (P : ConvexPolytope n) {f g : Set (E n)}
     (hf : P.IsFace f) (hg : P.IsFace g) (hsub : f ⊂ g) :
     faceDim f < faceDim g := by

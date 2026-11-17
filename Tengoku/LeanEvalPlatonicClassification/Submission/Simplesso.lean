@@ -25,10 +25,16 @@ open ConvexPolytope
 def simplexOne (d : ℕ) : E (d + 1) :=
   ∑ i : Fin (d + 1), EuclideanSpace.single i (1 : ℝ)
 
+/--
+@isnad1 id=eq.0h2v.s6.09919446cb92 from=translated src=- shape=891eeed3 vocab=1883af8a
+-/
 @[simp] theorem simplexOne_apply (d : ℕ) (i : Fin (d + 1)) :
     simplexOne d i = 1 := by
   simp [simplexOne]
 
+/--
+@isnad1 id=ne.0h1v.s7.21c24c5b1748 from=translated src=- shape=99adc771 vocab=4d50c6ab
+-/
 theorem simplexOne_ne_zero (d : ℕ) : simplexOne d ≠ 0 := by
   intro h
   have h0 := congrArg (fun x : E (d + 1) => x 0) h
@@ -39,12 +45,18 @@ noncomputable def simplexCoordPerm (d : ℕ) (σ : Equiv.Perm (Fin (d + 1))) :
     E (d + 1) ≃ₗᵢ[ℝ] E (d + 1) :=
   LinearIsometryEquiv.piLpCongrLeft 2 ℝ ℝ σ
 
+/--
+@isnad1 id=eq.0h4v.s10.66d8f034d7a2 from=translated src=- shape=84c21747 vocab=447d9175
+-/
 @[simp] theorem simplexCoordPerm_single (d : ℕ)
     (σ : Equiv.Perm (Fin (d + 1))) (i : Fin (d + 1)) (a : ℝ) :
     simplexCoordPerm d σ (EuclideanSpace.single i a) =
       EuclideanSpace.single (σ i) a := by
   simp [simplexCoordPerm]
 
+/--
+@isnad1 id=eq.0h2v.s10.194ba5460085 from=translated src=- shape=ef36af3b vocab=b54d43e4
+-/
 @[simp] theorem simplexCoordPerm_one (d : ℕ)
     (σ : Equiv.Perm (Fin (d + 1))) :
     simplexCoordPerm d σ (simplexOne d) = simplexOne d := by
@@ -83,6 +95,9 @@ noncomputable def simplexRawVert (d : ℕ) (k : Fin (d + 1)) :
 noncomputable def vertSimplesso (d : ℕ) (k : Fin (d + 1)) : E d :=
   simplexHyperplaneEquiv d (simplexRawVert d k)
 
+/--
+@isnad1 id=injectiv.0h1v.s9.50dd9775b631 from=translated src=- shape=6a21da69 vocab=091e8bb5
+-/
 theorem simplexRawVert_injective (d : ℕ) :
     Function.Injective (simplexRawVert d) := by
   intro i j hij
@@ -97,6 +112,9 @@ theorem simplexRawVert_injective (d : ℕ) :
   by_contra hne
   simp [hne] at hi
 
+/--
+@isnad1 id=injectiv.0h1v.s4.c54c8b07fa97 from=translated src=- shape=704cff23 vocab=badc15a0
+-/
 theorem vertSimplesso_injective (d : ℕ) :
     Function.Injective (vertSimplesso d) :=
   (simplexHyperplaneEquiv d).injective.comp (simplexRawVert_injective d)
@@ -105,15 +123,24 @@ theorem vertSimplesso_injective (d : ℕ) :
 noncomputable def verticiSimplesso (d : ℕ) : Finset (E d) :=
   (Finset.univ : Finset (Fin (d + 1))).image (vertSimplesso d)
 
+/--
+@isnad1 id=iff.0h2v.s5.3b45dff49878 from=translated src=- shape=e114a40d vocab=ae5e9e78
+-/
 theorem mem_verticiSimplesso {d : ℕ} {x : E d} :
     x ∈ verticiSimplesso d ↔ ∃ k : Fin (d + 1), vertSimplesso d k = x := by
   simp [verticiSimplesso]
 
+/--
+@isnad1 id=eq.0h1v.s4.b11f80815acc from=translated src=- shape=70c10c0d vocab=d2097fc5
+-/
 theorem card_verticiSimplesso (d : ℕ) : (verticiSimplesso d).card = d + 1 := by
   rw [verticiSimplesso,
     Finset.card_image_of_injective _ (vertSimplesso_injective d)]
   simp
 
+/--
+@isnad1 id=affinein.0h1v.s12.dbee7fb074ba from=translated src=- shape=40243d88 vocab=e69ab226
+-/
 theorem simplexRawVert_affineIndependent (d : ℕ) :
     AffineIndependent ℝ (simplexRawVert d) := by
   have hb : LinearIndependent ℝ
@@ -145,17 +172,26 @@ theorem simplexRawVert_affineIndependent (d : ℕ) :
   apply AffineIndependent.of_comp (simplexHyperplane d).subtype.toAffineMap
   simpa [Function.comp_def, simplexRawVert] using hat
 
+/--
+@isnad1 id=affinein.0h1v.s7.fee0ae273a0f from=translated src=- shape=e8ff49b8 vocab=69bacc00
+-/
 theorem vertSimplesso_affineIndependent (d : ℕ) :
     AffineIndependent ℝ (vertSimplesso d) := by
   exact (simplexHyperplaneEquiv d).toLinearEquiv.toAffineEquiv.affineIndependent_iff.mpr
     (simplexRawVert_affineIndependent d)
 
+/--
+@isnad1 id=eq.0h1v.s5.5704299c43f0 from=translated src=- shape=cac76bd9 vocab=8c8e36f6
+-/
 theorem verticiSimplesso_coe_eq_range (d : ℕ) :
     ((verticiSimplesso d : Finset (E d)) : Set (E d)) =
       Set.range (vertSimplesso d) := by
   ext x
   simp [verticiSimplesso]
 
+/--
+@isnad1 id=eq.0h3v.s11.bf167299ecf6 from=translated src=- shape=453e1f89 vocab=596b026e
+-/
 theorem norm_simplexRawVert_eq (d : ℕ) (i j : Fin (d + 1)) :
     ‖simplexRawVert d i‖ = ‖simplexRawVert d j‖ := by
   let σ : Equiv.Perm (Fin (d + 1)) := Equiv.swap i j
@@ -169,6 +205,9 @@ theorem norm_simplexRawVert_eq (d : ℕ) (i j : Fin (d + 1)) :
       congr 1
       simp [L, σ, simplexRawVert]
 
+/--
+@isnad1 id=le.0h1v.s7.3f666b8fd531 from=translated src=- shape=205e2901 vocab=4fc055d5
+-/
 theorem vertSimplesso_cospherical (d : ℕ) :
     (Set.range (vertSimplesso d)) ⊆ sphere 0 ‖vertSimplesso d 0‖ := by
   rintro _ ⟨k, rfl⟩
@@ -176,6 +215,9 @@ theorem vertSimplesso_cospherical (d : ℕ) :
   simp only [vertSimplesso, LinearIsometryEquiv.norm_map]
   exact norm_simplexRawVert_eq d k 0
 
+/--
+@isnad1 id=eq.0h1v.s8.06d910757071 from=translated src=- shape=4133bf23 vocab=f2b656b8
+-/
 theorem verticiSimplesso_eq_extremePoints (d : ℕ) :
     ((verticiSimplesso d : Finset (E d)) : Set (E d)) =
       Set.extremePoints ℝ
@@ -212,11 +254,16 @@ noncomputable def simplesso (d : ℕ) (hd : 1 ≤ d) : ConvexPolytope d := by
     ⟨vertSimplesso d k, mem_verticiSimplesso.mpr ⟨k, rfl⟩⟩,
     verticiSimplesso_eq_extremePoints d⟩
 
+/--
+@isnad1 id=eq.1h1v.s5.5422c53ebb99 from=translated src=- shape=6ed9e32b vocab=9aa840a1
+-/
 theorem card_simplesso (d : ℕ) (hd : 1 ≤ d) :
     (simplesso d hd).vertices.card = d + 1 :=
   card_verticiSimplesso d
 
-/-- Il simplesso genera affineamente tutto `E d`.-/
+/-- Il simplesso genera affineamente tutto `E d`.
+@isnad1 id=isfulldi.1h1v.s4.75308f318f1a from=translated src=- shape=dd19ab6e vocab=cae15218
+-/
 theorem simplesso_isFullDim (d : ℕ) (hd : 1 ≤ d) :
     (simplesso d hd).IsFullDim := by
   have hspan : vectorSpan ℝ (Set.range (vertSimplesso d)) = ⊤ :=
@@ -230,6 +277,9 @@ theorem simplesso_isFullDim (d : ℕ) (hd : 1 ≤ d) :
     verticiSimplesso_coe_eq_range, hspan, finrank_top, finrank_euclideanSpace]
   simp
 
+/--
+@isnad1 id=affinein.0h1v.s8.75528fbd4df8 from=translated src=- shape=e86ec20e vocab=f14b1a8e
+-/
 theorem verticiSimplesso_affineIndependent_set (d : ℕ) :
     AffineIndependent ℝ
       ((↑) : {x // x ∈
@@ -238,7 +288,9 @@ theorem verticiSimplesso_affineIndependent_set (d : ℕ) :
   exact (vertSimplesso_affineIndependent d).range
 
 open Classical in
-/-- Ogni sottoinsieme dei vertici del simplesso è affinemente indipendente.-/
+/-- Ogni sottoinsieme dei vertici del simplesso è affinemente indipendente.
+@isnad1 id=affinein.1h2v.s8.106662785221 from=translated src=- shape=85469edc vocab=7b68ac7a
+-/
 theorem simplesso_face_affineIndependent (d : ℕ) (hd : 1 ≤ d)
     {f : Set (E d)} :
     AffineIndependent ℝ
@@ -250,7 +302,9 @@ theorem simplesso_face_affineIndependent (d : ℕ) (hd : 1 ≤ d)
   exact (Finset.mem_filter.mp (by exact_mod_cast hx)).1
 
 open Classical in
-/-- Una faccia del simplesso ha esattamente `faceDim + 1` vertici.-/
+/-- Una faccia del simplesso ha esattamente `faceDim + 1` vertici.
+@isnad1 id=eq.2h2v.s6.0d6bf5f693a4 from=translated src=- shape=85c171fc vocab=1cba6b33
+-/
 theorem simplesso_face_card (d : ℕ) (hd : 1 ≤ d)
     {f : Set (E d)} (hf : (simplesso d hd).IsFace f) :
     ((simplesso d hd).vertices.filter (· ∈ f)).card = faceDim f + 1 := by
@@ -279,6 +333,9 @@ theorem simplesso_face_card (d : ℕ) (hd : 1 ≤ d)
   change S.card = faceDim f + 1
   simpa using hdim.symm
 
+/--
+@isnad1 id=mem.1h3v.s11.9a473aeb52ab from=translated src=- shape=c0dafedd vocab=a70fbffc
+-/
 theorem simplexCoordPerm_mem_hyperplane (d : ℕ)
     (σ : Equiv.Perm (Fin (d + 1))) {x : E (d + 1)}
     (hx : x ∈ simplexHyperplane d) :
@@ -318,6 +375,9 @@ noncomputable def simplexHyperplanePerm (d : ℕ)
     change ‖simplexCoordPerm d σ (x : E (d + 1))‖ = ‖(x : E (d + 1))‖
     exact (simplexCoordPerm d σ).norm_map x
 
+/--
+@isnad1 id=eq.0h3v.s13.1304644bbbf6 from=translated src=- shape=7bf026ef vocab=593bc1c5
+-/
 @[simp] theorem simplexHyperplanePerm_raw (d : ℕ)
     (σ : Equiv.Perm (Fin (d + 1))) (k : Fin (d + 1)) :
     simplexHyperplanePerm d σ (simplexRawVert d k) =
@@ -336,16 +396,25 @@ noncomputable def simplexPerm (d : ℕ)
     (σ : Equiv.Perm (Fin (d + 1))) : Isom d :=
   (simplexLinearPerm d σ).toAffineIsometryEquiv
 
+/--
+@isnad1 id=eq.0h3v.s9.6f645009c4a6 from=translated src=- shape=7b16ea61 vocab=1527cc13
+-/
 @[simp] theorem simplexLinearPerm_vert (d : ℕ)
     (σ : Equiv.Perm (Fin (d + 1))) (k : Fin (d + 1)) :
     simplexLinearPerm d σ (vertSimplesso d k) = vertSimplesso d (σ k) := by
   simp [simplexLinearPerm, vertSimplesso]
 
+/--
+@isnad1 id=eq.0h3v.s8.a47abb210a72 from=translated src=- shape=fffba23e vocab=1aea660d
+-/
 @[simp] theorem simplexPerm_vert (d : ℕ)
     (σ : Equiv.Perm (Fin (d + 1))) (k : Fin (d + 1)) :
     simplexPerm d σ (vertSimplesso d k) = vertSimplesso d (σ k) := by
   exact simplexLinearPerm_vert d σ k
 
+/--
+@isnad1 id=eq.0h2v.s8.fdfd238bf43f from=translated src=- shape=ef89ed2a vocab=1bda366e
+-/
 theorem simplexPerm_image_vertici (d : ℕ)
     (σ : Equiv.Perm (Fin (d + 1))) :
     (simplexPerm d σ : E d → E d) '' (verticiSimplesso d : Set (E d)) =
@@ -359,6 +428,9 @@ theorem simplexPerm_image_vertici (d : ℕ)
     refine ⟨vertSimplesso d (σ.symm k), ⟨σ.symm k, rfl⟩, ?_⟩
     simp
 
+/--
+@isnad1 id=issymmet.1h2v.s5.7b3b504da2ff from=translated src=- shape=8033e828 vocab=7e6e9523
+-/
 theorem simplexPerm_isSymmetry (d : ℕ) (hd : 1 ≤ d)
     (σ : Equiv.Perm (Fin (d + 1))) :
     (simplesso d hd).isSymmetry (simplexPerm d σ) := by
@@ -386,6 +458,9 @@ noncomputable def simplessoFlagPrev (d : ℕ) (hd : 1 ≤ d)
     simplessoFlagVertices d hd F (finPredSame k hk)
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s5.43c761ac80b3 from=translated src=- shape=97810871 vocab=439a62b6
+-/
 theorem simplessoFlagVertices_card (d : ℕ) (hd : 1 ≤ d)
     (F : (simplesso d hd).Flag) (k : Fin d) :
     (simplessoFlagVertices d hd F k).card = k.val + 1 := by
@@ -393,6 +468,9 @@ theorem simplessoFlagVertices_card (d : ℕ) (hd : 1 ≤ d)
     simplesso_face_card d hd (F.isFace k)
 
 open Classical in
+/--
+@isnad1 id=le.2h4v.s5.dde5ab83af42 from=translated src=- shape=b1fc39e9 vocab=13d6da9d
+-/
 theorem simplessoFlagVertices_mono (d : ℕ) (hd : 1 ≤ d)
     (F : (simplesso d hd).Flag) {i j : Fin d} (hij : i ≤ j) :
     simplessoFlagVertices d hd F i ⊆ simplessoFlagVertices d hd F j := by
@@ -404,6 +482,9 @@ theorem simplessoFlagVertices_mono (d : ℕ) (hd : 1 ≤ d)
   · exact (F.strict_mono i j hij).1 hv.2
 
 open Classical in
+/--
+@isnad1 id=nonempty.1h3v.s6.cb71c4295e0b from=translated src=- shape=68e0eda3 vocab=04ea2b1c
+-/
 theorem simplessoFlagStep_nonempty (d : ℕ) (hd : 1 ≤ d)
     (F : (simplesso d hd).Flag) (k : Fin d) :
     (simplessoFlagVertices d hd F k \ simplessoFlagPrev d hd F k).Nonempty := by
@@ -439,6 +520,9 @@ noncomputable def simplessoFlagNew (d : ℕ) (hd : 1 ≤ d)
   (simplessoFlagStep_nonempty d hd F k).choose
 
 open Classical in
+/--
+@isnad1 id=mem.1h3v.s5.7754298a9677 from=translated src=- shape=9979f4fa vocab=5374aabc
+-/
 theorem simplessoFlagNew_mem (d : ℕ) (hd : 1 ≤ d)
     (F : (simplesso d hd).Flag) (k : Fin d) :
     simplessoFlagNew d hd F k ∈ simplessoFlagVertices d hd F k :=
@@ -446,6 +530,9 @@ theorem simplessoFlagNew_mem (d : ℕ) (hd : 1 ≤ d)
     (simplessoFlagStep_nonempty d hd F k).choose_spec).1
 
 open Classical in
+/--
+@isnad1 id=not.1h3v.s5.25db8fafa161 from=translated src=- shape=4d048094 vocab=fff53ee2
+-/
 theorem simplessoFlagNew_not_prev (d : ℕ) (hd : 1 ≤ d)
     (F : (simplesso d hd).Flag) (k : Fin d) :
     simplessoFlagNew d hd F k ∉ simplessoFlagPrev d hd F k :=
@@ -453,6 +540,9 @@ theorem simplessoFlagNew_not_prev (d : ℕ) (hd : 1 ≤ d)
     (simplessoFlagStep_nonempty d hd F k).choose_spec).2
 
 open Classical in
+/--
+@isnad1 id=injectiv.1h2v.s4.915444fde042 from=translated src=- shape=e63742cb vocab=079a7eb9
+-/
 theorem simplessoFlagNew_injective (d : ℕ) (hd : 1 ≤ d)
     (F : (simplesso d hd).Flag) :
     Function.Injective (simplessoFlagNew d hd F) := by
@@ -489,6 +579,9 @@ theorem simplessoFlagNew_injective (d : ℕ) (hd : 1 ≤ d)
     exact hinot (hij.symm ▸ hjmem)
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s6.00e05c846e94 from=translated src=- shape=95a6b99b vocab=6226895e
+-/
 theorem simplessoFlagVertices_eq_image_Iic (d : ℕ) (hd : 1 ≤ d)
     (F : (simplesso d hd).Flag) (k : Fin d) :
     simplessoFlagVertices d hd F k =
@@ -512,6 +605,9 @@ noncomputable def simplessoFlagCode (d : ℕ) (hd : 1 ≤ d)
       (Finset.mem_filter.mp (simplessoFlagNew_mem d hd F k)).1)).choose
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s5.2d14270ec196 from=translated src=- shape=caeac899 vocab=cf6851a4
+-/
 theorem simplessoFlagCode_spec (d : ℕ) (hd : 1 ≤ d)
     (F : (simplesso d hd).Flag) (k : Fin d) :
     vertSimplesso d (simplessoFlagCode d hd F k) =
@@ -521,6 +617,9 @@ theorem simplessoFlagCode_spec (d : ℕ) (hd : 1 ≤ d)
       (Finset.mem_filter.mp (simplessoFlagNew_mem d hd F k)).1)).choose_spec
 
 open Classical in
+/--
+@isnad1 id=injectiv.1h2v.s5.e975fbf55beb from=translated src=- shape=b2fa1a8a vocab=5dbaa714
+-/
 theorem simplessoFlagCode_injective (d : ℕ) (hd : 1 ≤ d)
     (F : (simplesso d hd).Flag) :
     Function.Injective (simplessoFlagCode d hd F) := by
@@ -538,6 +637,9 @@ noncomputable def simplessoFlagPerm (d : ℕ) (hd : 1 ≤ d)
     (simplessoFlagCode_injective d hd G)).choose
 
 open Classical in
+/--
+@isnad1 id=eq.1h4v.s7.ffd2ab7eed91 from=translated src=- shape=8a7b2c5e vocab=88c5ed1b
+-/
 theorem simplessoFlagPerm_spec (d : ℕ) (hd : 1 ≤ d)
     (F G : (simplesso d hd).Flag) (k : Fin d) :
     simplessoFlagPerm d hd F G (simplessoFlagCode d hd F k) =
@@ -548,6 +650,9 @@ theorem simplessoFlagPerm_spec (d : ℕ) (hd : 1 ≤ d)
     (simplessoFlagCode_injective d hd G)).choose_spec k
 
 open Classical in
+/--
+@isnad1 id=eq.1h4v.s8.5cec665e60e4 from=translated src=- shape=bb619ad7 vocab=2c51e741
+-/
 theorem simplessoFlagIsom_new (d : ℕ) (hd : 1 ≤ d)
     (F G : (simplesso d hd).Flag) (k : Fin d) :
     simplexPerm d (simplessoFlagPerm d hd F G)
@@ -558,6 +663,9 @@ theorem simplessoFlagIsom_new (d : ℕ) (hd : 1 ≤ d)
     simplexPerm_vert, simplessoFlagPerm_spec]
 
 open Classical in
+/--
+@isnad1 id=eq.1h4v.s8.30b51a50cdc0 from=translated src=- shape=a4c32065 vocab=d95259e1
+-/
 theorem simplessoFlagIsom_image_vertices (d : ℕ) (hd : 1 ≤ d)
     (F G : (simplesso d hd).Flag) (k : Fin d) :
     Finset.image (simplexPerm d (simplessoFlagPerm d hd F G))
@@ -575,6 +683,9 @@ theorem simplessoFlagIsom_image_vertices (d : ℕ) (hd : 1 ≤ d)
       simplessoFlagIsom_new d hd F G j⟩
 
 open Classical in
+/--
+@isnad1 id=eq.1h4v.s8.e160a9fcbbf6 from=translated src=- shape=a8413261 vocab=3ced4531
+-/
 theorem simplessoFlagIsom_image_face (d : ℕ) (hd : 1 ≤ d)
     (F G : (simplesso d hd).Flag) (k : Fin d) :
     (simplexPerm d (simplessoFlagPerm d hd F G) : E d → E d) '' F.face k =
@@ -597,6 +708,9 @@ theorem simplessoFlagIsom_image_face (d : ℕ) (hd : 1 ≤ d)
       rfl
 
 open Classical in
+/--
+@isnad1 id=isregula.1h1v.s4.2fb6e7dfab25 from=translated src=- shape=dd19ab6e vocab=85d28c61
+-/
 theorem simplesso_isRegular (d : ℕ) (hd : 1 ≤ d) :
     (simplesso d hd).IsRegular := by
   refine ⟨simplesso_isFullDim d hd, ?_⟩
@@ -605,6 +719,9 @@ theorem simplesso_isRegular (d : ℕ) (hd : 1 ≤ d) :
     simplexPerm_isSymmetry d hd _, ?_⟩
   exact simplessoFlagIsom_image_face d hd F G
 
+/--
+@isnad1 id=mem.1h1v.s4.621d7620ed7b from=translated src=- shape=3ed95865 vocab=f1e3d880
+-/
 theorem simplesso_mem_regularPolytopes (d : ℕ) (hd : 1 ≤ d) :
     simplesso d hd ∈ regularPolytopes d :=
   simplesso_isRegular d hd

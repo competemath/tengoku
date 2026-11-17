@@ -52,6 +52,9 @@ noncomputable def muovi (g : Isom n) (P : ConvexPolytope n) :
     congr 1
     exact P.vertices_eq_extremePoints
 
+/--
+@isnad1 id=eq.0h3v.s8.6d103fc4b360 from=translated src=- shape=638f0944 vocab=33bd391d
+-/
 theorem muovi_toSet (g : Isom n) (P : ConvexPolytope n) :
     (muovi g P).toSet = (g : E n → E n) '' P.toSet := by
   classical
@@ -70,14 +73,18 @@ theorem muovi_toSet (g : Isom n) (P : ConvexPolytope n) :
   rw [← h1]
   rfl
 
-/-- **MUOVERE NON CAMBIA LA CLASSE DI SIMILARITÀ**.-/
+/-- **MUOVERE NON CAMBIA LA CLASSE DI SIMILARITÀ**.
+@isnad1 id=similar.0h3v.s3.93fa61ea0b1c from=translated src=- shape=e2696eeb vocab=42dfe747
+-/
 theorem similar_muovi (g : Isom n) (P : ConvexPolytope n) :
     Similar P (muovi g P) := by
   refine ⟨1, one_pos, g, ?_⟩
   rw [muovi_toSet]
   simp
 
-/-- I vertici del politopo mosso sono le immagini dei vertici.-/
+/-- I vertici del politopo mosso sono le immagini dei vertici.
+@isnad1 id=mem.1h4v.s8.59ac135a77ab from=translated src=- shape=ffb72334 vocab=3aa36782
+-/
 theorem mem_vertices_muovi (g : Isom n) (P : ConvexPolytope n) {v : E n}
     (hv : v ∈ P.vertices) : g v ∈ (muovi g P).vertices :=
   Finset.mem_image_of_mem _ hv

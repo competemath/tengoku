@@ -31,11 +31,16 @@ triangolo.-/
 def famigliaPoligoni (n : ℕ) : regularPolytopes 2 :=
   ⟨poligono (n + 3), poligono_isRegular (n + 3) (by omega)⟩
 
+/--
+@isnad1 id=eq.0h1v.s6.f309a0ecacde from=translated src=- shape=72751817 vocab=85d2a6e0
+-/
 @[simp] theorem famigliaPoligoni_card (n : ℕ) :
     (famigliaPoligoni n : ConvexPolytope 2).vertices.card = n + 3 :=
   poligono_card (n + 3) (by omega)
 
-/-- **NEL PIANO I POLITOPI REGOLARI SONO INFINITI.**-/
+/-- **NEL PIANO I POLITOPI REGOLARI SONO INFINITI.**
+@isnad1 id=eq.0h0v.s3.6881ff124bc8 from=translated src=- shape=9ff2389b vocab=ca231b3e
+-/
 theorem platonicCount_two : platonicCount 2 = ⊤ := by
   refine platonicCount_eq_top 2 famigliaPoligoni ?_
   intro m n hmn

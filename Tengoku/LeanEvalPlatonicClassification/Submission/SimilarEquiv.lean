@@ -46,16 +46,24 @@ noncomputable def coniugioScala (a : ℝ) (ha : a ≠ 0) (ρ : Isom n) : Isom n 
       rw [h4, h2, smul_sub]
       abel)
 
+/--
+@isnad1 id=eq.1h4v.s9.ae304871c306 from=translated src=- shape=2a3e6f52 vocab=7f4f86e5
+-/
 @[simp] theorem coniugioScala_apply (a : ℝ) (ha : a ≠ 0) (ρ : Isom n)
     (x : E n) : coniugioScala a ha ρ x = a • ρ (a⁻¹ • x) := rfl
 
+/--
+@isnad1 id=eq.1h4v.s9.9a0ff59fd75e from=translated src=- shape=fcfb2666 vocab=770f15df
+-/
 theorem coniugioScala_smul (a : ℝ) (ha : a ≠ 0) (ρ : Isom n) (x : E n) :
     coniugioScala a ha ρ (a • x) = a • ρ x := by
   rw [coniugioScala_apply]
   congr 1
   rw [smul_smul, inv_mul_cancel₀ ha, one_smul]
 
-/-- La similarità è simmetrica.-/
+/-- La similarità è simmetrica.
+@isnad1 id=similar.1h3v.s4.c818526484e3 from=translated src=- shape=26022270 vocab=75ba4155
+-/
 theorem similar_symm {P Q : ConvexPolytope n} (h : Similar P Q) :
     Similar Q P := by
   obtain ⟨a, ha, φ, hQ⟩ := h
@@ -79,7 +87,9 @@ theorem similar_symm {P Q : ConvexPolytope n} (h : Similar P Q) :
     rw [hid y]
     exact hy
 
-/-- La similarità è transitiva.-/
+/-- La similarità è transitiva.
+@isnad1 id=similar.2h4v.s4.b0cac4350820 from=translated src=- shape=de5dbc67 vocab=75ba4155
+-/
 theorem similar_trans {P Q R : ConvexPolytope n}
     (h1 : Similar P Q) (h2 : Similar Q R) : Similar P R := by
   obtain ⟨a, ha, φ, hQ⟩ := h1

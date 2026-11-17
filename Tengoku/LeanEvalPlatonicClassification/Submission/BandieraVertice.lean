@@ -31,7 +31,9 @@ open ConvexPolytope
 
 variable {n : ℕ}
 
-/-- Una faccia di dimensione 0 è un singoletto.-/
+/-- Una faccia di dimensione 0 è un singoletto.
+@isnad1 id=ex.2h2v.s5.ffb14788ba43 from=translated src=- shape=27b0971a vocab=cc75b297
+-/
 theorem faccia_dim0_singoletto {f : Set (E n)} (hne : f.Nonempty)
     (hd : faceDim f = 0) : ∃ x, f = {x} := by
   obtain ⟨x, hx⟩ := hne
@@ -54,7 +56,9 @@ theorem faccia_dim0_singoletto {f : Set (E n)} (hne : f.Nonempty)
     exact hx
 
 /-- Per ogni vertice di un politopo full-dim di ℝ³ c'è una bandiera che
-parte da quel vertice.-/
+parte da quel vertice.
+@isnad1 id=ex.2h2v.s7.bf552914e556 from=translated src=- shape=01785ae4 vocab=cb5300d2
+-/
 theorem bandiera_al_vertice (P : ConvexPolytope 3) (hfull : P.IsFullDim)
     {v : E 3} (hv : v ∈ P.vertices) :
     ∃ F : P.Flag, F.face 0 = {v} := by
@@ -183,7 +187,9 @@ theorem bandiera_al_vertice (P : ConvexPolytope 3) (hfull : P.IsFullDim)
       · exact hvg
       · exact heg
 
-/-- Le facce di un politopo sono finite.-/
+/-- Le facce di un politopo sono finite.
+@isnad1 id=finite.0h2v.s4.06cdf73e42f3 from=translated src=- shape=19b63571 vocab=c06b1e62
+-/
 theorem facce_finite (P : ConvexPolytope n) :
     {f : Set (E n) | P.IsFace f}.Finite := by
   classical

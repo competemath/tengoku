@@ -19,7 +19,9 @@ namespace PlatoniciL3
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 
 /-- Il massimo di un funzionale su un hull finito è raggiunto solo con pesi
-concentrati sui generatori argmax: y sta nell'hull dei generatori argmax.-/
+concentrati sui generatori argmax: y sta nell'hull dei generatori argmax.
+@isnad1 id=mem.2h4v.s9.90f75eeff0e3 from=translated src=- shape=aaf7fb13 vocab=561014a3
+-/
 theorem faccia_argmax (s : Finset E) (l : E →L[ℝ] ℝ) {y : E}
     (hy : y ∈ convexHull ℝ (s : Set E))
     (hmax : ∀ w ∈ convexHull ℝ (s : Set E), l w ≤ l y) :
