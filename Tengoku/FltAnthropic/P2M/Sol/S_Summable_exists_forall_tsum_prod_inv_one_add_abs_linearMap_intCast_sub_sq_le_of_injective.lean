@@ -11,9 +11,15 @@ namespace LatticeSumAux
 
 noncomputable def hker (m : ℤ) : ℝ := (1 + |(m : ℝ)|)⁻¹ ^ 2
 
+/--
+@isnad1 id=le.0h1v.s3.6cc3d544e237 from=translated src=- shape=b9369acb vocab=86062ba9
+-/
 theorem hker_nonneg (m : ℤ) : 0 ≤ hker m := by
   unfold hker; positivity
 
+/--
+@isnad1 id=summable.0h0v.s3.812fee54393a from=translated src=- shape=ef4b497d vocab=d6fe2d50
+-/
 theorem summable_hker : Summable hker := by
   have h0 : Summable (fun n : ℕ => (((n + 1 : ℕ) : ℝ) ^ 2)⁻¹) :=
     (summable_nat_add_iff (f := fun m : ℕ => ((m : ℝ) ^ 2)⁻¹) 1).mpr
@@ -28,6 +34,9 @@ theorem summable_hker : Summable hker := by
   · refine hnat.congr fun n => ?_
     simp only [hker, Int.cast_neg, Int.cast_natCast, abs_neg, Nat.abs_cast]
 
+/--
+@isnad1 id=le.0h1v.s6.690b2029e226 from=translated src=- shape=470ae82e vocab=44d690c2
+-/
 theorem inv_one_add_abs_sq_le (x : ℝ) :
     (1 + |x|)⁻¹ ^ 2 ≤ 4 * hker ⌊x⌋ := by
   unfold hker
@@ -54,9 +63,15 @@ theorem inv_one_add_abs_sq_le (x : ℝ) :
 
 noncomputable def G {r : ℕ} (n : Fin r → ℤ) : ℝ := ∏ i, hker (n i)
 
+/--
+@isnad1 id=le.0h2v.s4.ef49087354bf from=translated src=- shape=f12e8c04 vocab=fcae7005
+-/
 theorem G_nonneg {r : ℕ} (n : Fin r → ℤ) : 0 ≤ G n :=
   Finset.prod_nonneg fun _ _ => hker_nonneg _
 
+/--
+@isnad1 id=le.0h2v.s5.33c3e7fa77b2 from=translated src=- shape=50b4281a vocab=a3cc498d
+-/
 theorem sum_G_le {r : ℕ} (T : Finset (Fin r → ℤ)) :
     ∑ n ∈ T, G n ≤ (∑' m, hker m) ^ r := by
   have hS : ∀ s : Finset ℤ, ∑ m ∈ s, hker m ≤ ∑' m, hker m := fun s =>
@@ -90,10 +105,16 @@ noncomputable def φ {a r : ℕ} (A : (Fin a → ℝ) →ₗ[ℝ] (Fin r → ℝ
     (k : Fin a → ℤ) : Fin r → ℤ :=
   fun i => ⌊A (fun j => (k j : ℝ)) i - t i⌋
 
+/--
+@isnad1 id=le.0h5v.s6.89608de1e05e from=translated src=- shape=b08a7a83 vocab=f2626405
+-/
 theorem F_nonneg {a r : ℕ} (A : (Fin a → ℝ) →ₗ[ℝ] (Fin r → ℝ)) (t : Fin r → ℝ)
     (k : Fin a → ℤ) : 0 ≤ F A t k :=
   Finset.prod_nonneg fun i _ => by positivity
 
+/--
+@isnad1 id=le.0h5v.s6.d221dfa8dd3b from=translated src=- shape=cada8dc0 vocab=77c0f606
+-/
 theorem F_le {a r : ℕ} (A : (Fin a → ℝ) →ₗ[ℝ] (Fin r → ℝ)) (t : Fin r → ℝ)
     (k : Fin a → ℤ) : F A t k ≤ 4 ^ r * G (φ A t k) := by
   unfold F G φ
@@ -104,6 +125,9 @@ theorem F_le {a r : ℕ} (A : (Fin a → ℝ) →ₗ[ℝ] (Fin r → ℝ)) (t : 
     _ = 4 ^ r * ∏ i, hker ⌊A (fun j => (k j : ℝ)) i - t i⌋ := by
         rw [Finset.prod_mul_distrib, Finset.prod_const, Finset.card_univ, Fintype.card_fin]
 
+/--
+@isnad1 id=le.1h7v.s8.b90e824269f1 from=translated src=- shape=aa9ffbe7 vocab=b39a11bd
+-/
 theorem card_fiber_le {a r : ℕ} (A : (Fin a → ℝ) →ₗ[ℝ] (Fin r → ℝ)) (t : Fin r → ℝ)
     (C : NNReal) (hC : AntilipschitzWith C A) (u : Finset (Fin a → ℤ)) (n : Fin r → ℤ) :
     (u.filter (fun k => φ A t k = n)).card ≤ (2 * ⌈(C : ℝ)⌉₊ + 1) ^ a := by
@@ -149,6 +173,9 @@ theorem card_fiber_le {a r : ℕ} (A : (Fin a → ℝ) →ₗ[ℝ] (Fin r → �
         omega
     _ = (2 * R + 1) ^ a := by rw [Finset.prod_const, Finset.card_univ, Fintype.card_fin]
 
+/--
+@isnad1 id=le.1h6v.s8.1c2f0ea96418 from=translated src=- shape=70c69423 vocab=4076dbe7
+-/
 theorem sum_F_le {a r : ℕ} (A : (Fin a → ℝ) →ₗ[ℝ] (Fin r → ℝ)) (t : Fin r → ℝ)
     (C : NNReal) (hC : AntilipschitzWith C A) (u : Finset (Fin a → ℤ)) :
     ∑ k ∈ u, F A t k ≤
@@ -171,6 +198,9 @@ theorem sum_F_le {a r : ℕ} (A : (Fin a → ℝ) →ₗ[ℝ] (Fin r → ℝ)) (
 
 end LatticeSumAux
 
+/--
+@isnad1 id=ex.1h3v.s9.86b3679814e2 from=translated src=- shape=06523862 vocab=956ba073
+-/
 theorem solution
     (a r : ℕ) (A : (Fin a → ℝ) →ₗ[ℝ] (Fin r → ℝ)) (hA : Function.Injective A) :
     ∃ K : ℝ, ∀ t : Fin r → ℝ,

@@ -41,23 +41,38 @@ def coeffC (h : GL (Fin 2) ℝ) : ℂ :=
   2 * Real.pi * (2 * (((Matrix.GeneralLinearGroup.det h : ℝˣ) : ℝ) : ℂ) /
     (((h 0 0 + h 1 1 : ℝ) : ℂ) + ((h 1 0 - h 0 1 : ℝ) : ℂ) * Complex.I))
 
+/--
+@isnad1 id=eq.0h1v.s9.a5c1c05f0978 from=translated src=- shape=dab11df3 vocab=04939a81
+-/
 theorem det_val (x : GL (Fin 2) ℝ) :
     ((Matrix.GeneralLinearGroup.det x : ℝˣ) : ℝ) = x 0 0 * x 1 1 - x 0 1 * x 1 0 := by
   show (x : Matrix (Fin 2) (Fin 2) ℝ).det = _
   rw [Matrix.det_fin_two]
 
+/--
+@isnad1 id=eq.0h0v.s6.55cbd6dc901a from=translated src=- shape=9fc39e72 vocab=f00ff530
+-/
 theorem S_I : S UpperHalfPlane.I = 1 := by
   apply Units.ext; ext i j
   fin_cases i <;> fin_cases j <;> simp [UpperHalfPlane.I_im, UpperHalfPlane.I_re]
 
+/--
+@isnad1 id=eq.0h0v.s8.36e15d1de9f9 from=translated src=- shape=613379ad vocab=d4f7c0f7
+-/
 theorem eps_mul_eps : eps * eps = 1 := by
   apply Units.ext
   show (!![(1 : ℝ), 0; 0, -1] : Matrix (Fin 2) (Fin 2) ℝ) * !![(1 : ℝ), 0; 0, -1] = 1
   ext i j; fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h0v.s8.1fcfd4193298 from=translated src=- shape=8020c063 vocab=32f9b4d5
+-/
 theorem det_eps : ((Matrix.GeneralLinearGroup.det eps : ℝˣ) : ℝ) = -1 := by
   rw [det_val]; simp
 
+/--
+@isnad1 id=eq.0h1v.s8.a1bf270d5921 from=translated src=- shape=8aeb048b vocab=bc0811fc
+-/
 theorem det_rot (θ : ℝ) : ((Matrix.GeneralLinearGroup.det (rot θ) : ℝˣ) : ℝ) = 1 := by
   rw [det_val]; simp; nlinarith [Real.cos_sq_add_sin_sq θ]
 
@@ -69,6 +84,9 @@ structure Good (F : GL (Fin 2) ℝ → ℂ) : Prop where
   hol : ∀ m : GL (Fin 2) ℝ, MDifferentiable 𝓘(ℂ) 𝓘(ℂ) fun z : UpperHalfPlane =>
     ((z.im : ℝ) : ℂ)⁻¹ * F (m * S z)
 
+/--
+@isnad1 id=good.1h2v.s7.132e12996455 from=translated src=- shape=226390cb vocab=46025d42
+-/
 theorem Good.left {F : GL (Fin 2) ℝ → ℂ} (hF : Good F) (g : GL (Fin 2) ℝ) :
     Good (fun x => F (g * x)) where
   cont := hF.cont.comp (continuous_const.mul continuous_id)
@@ -79,14 +97,23 @@ theorem Good.left {F : GL (Fin 2) ℝ → ℂ} (hF : Good F) (g : GL (Fin 2) ℝ
 def fC (F : GL (Fin 2) ℝ → ℂ) : ℂ → ℂ :=
   (fun z : UpperHalfPlane => ((z.im : ℝ) : ℂ)⁻¹ * F (S z)) ∘ UpperHalfPlane.ofComplex
 
+/--
+@isnad1 id=eq.0h2v.s5.8cc6aee3bc3d from=translated src=- shape=6d35f5f1 vocab=43455da6
+-/
 theorem fC_coe (F : GL (Fin 2) ℝ → ℂ) (z : UpperHalfPlane) :
     fC F (z : ℂ) = ((z.im : ℝ) : ℂ)⁻¹ * F (S z) := by
   simp [fC, UpperHalfPlane.ofComplex_apply]
 
+/--
+@isnad1 id=eq.0h1v.s6.bb73bf3bb4c4 from=translated src=- shape=40df083d vocab=9e9db130
+-/
 theorem fC_I (F : GL (Fin 2) ℝ → ℂ) : fC F Complex.I = F 1 := by
   rw [show (Complex.I : ℂ) = ((UpperHalfPlane.I : UpperHalfPlane) : ℂ) from rfl, fC_coe, S_I]
   simp [UpperHalfPlane.I_im]
 
+/--
+@isnad1 id=differen.1h1v.s6.bc421f2849e8 from=translated src=- shape=6a568f52 vocab=d629aecb
+-/
 theorem differentiableOn_fC {F : GL (Fin 2) ℝ → ℂ} (hF : Good F) :
     DifferentiableOn ℂ (fC F) {z : ℂ | 0 < z.im} := by
   have h := hF.hol 1
@@ -100,6 +127,9 @@ variable (x : GL (Fin 2) ℝ) (hx : 0 < ((Matrix.GeneralLinearGroup.det x : ℝ�
 def nsq : ℝ := (x 1 0 : ℝ) ^ 2 + (x 1 1 : ℝ) ^ 2
 
 include hx in
+/--
+@isnad1 id=lt.1h1v.s8.a3a8ff96d5c1 from=translated src=- shape=e61b1ae0 vocab=7b06325b
+-/
 theorem nsq_pos : 0 < nsq x := by
   unfold nsq
   by_contra h
@@ -111,12 +141,21 @@ theorem nsq_pos : 0 < nsq x := by
 def lam : ℝ := Real.sqrt (nsq x)
 
 include hx in
+/--
+@isnad1 id=lt.1h1v.s8.a5a30d8280d9 from=translated src=- shape=e61b1ae0 vocab=4d346799
+-/
 theorem lam_pos : 0 < lam x := Real.sqrt_pos.mpr (nsq_pos x hx)
 
 include hx in
+/--
+@isnad1 id=eq.1h1v.s8.c38345332f8c from=translated src=- shape=cc13d93f vocab=c0fa2745
+-/
 theorem lam_sq : lam x ^ 2 = nsq x := Real.sq_sqrt (nsq_pos x hx).le
 
 include hx in
+/--
+@isnad1 id=eq.1h1v.s9.bf8166b13a0a from=translated src=- shape=d8fed70f vocab=55c775f1
+-/
 theorem rotpar : ((x 1 1 : ℝ) / lam x) ^ 2 + (-(x 1 0 : ℝ) / lam x) ^ 2 = 1 := by
   have hl := lam_pos x hx
   have hl2 := lam_sq x hx
@@ -127,12 +166,18 @@ theorem rotpar : ((x 1 1 : ℝ) / lam x) ^ 2 + (-(x 1 0 : ℝ) / lam x) ^ 2 = 1 
 def pt : UpperHalfPlane := x • UpperHalfPlane.I
 
 include hx in
+/--
+@isnad1 id=eq.1h1v.s9.1b89e35324ee from=translated src=- shape=e76e4ce5 vocab=1c6411e2
+-/
 theorem coe_pt : ((pt x : UpperHalfPlane) : ℂ)
     = ((x 0 0 : ℝ) * Complex.I + (x 0 1 : ℝ)) / ((x 1 0 : ℝ) * Complex.I + (x 1 1 : ℝ)) := by
   unfold pt
   rw [UpperHalfPlane.coe_smul_of_det_pos hx]
   simp [UpperHalfPlane.num, UpperHalfPlane.denom]
 
+/--
+@isnad1 id=ne.1h2v.s6.b485d76e7eef from=translated src=- shape=c82bf538 vocab=b1cb2cb1
+-/
 theorem denomC_ne (C D : ℝ) (h : C ^ 2 + D ^ 2 ≠ 0) : (C : ℂ) * Complex.I + (D : ℂ) ≠ 0 := by
   intro h0
   have hre := congrArg Complex.re h0
@@ -141,6 +186,9 @@ theorem denomC_ne (C D : ℝ) (h : C ^ 2 + D ^ 2 ≠ 0) : (C : ℂ) * Complex.I 
   apply h; rw [hre, him]; ring
 
 include hx in
+/--
+@isnad1 id=eq.1h1v.s9.81105ac2e10d from=translated src=- shape=1b7efc88 vocab=3f1aac6f
+-/
 theorem pt_re : (pt x).re = ((x 0 1 : ℝ) * x 1 1 + (x 0 0 : ℝ) * x 1 0) / nsq x := by
   have hden := denomC_ne (x 1 0 : ℝ) (x 1 1 : ℝ) (nsq_pos x hx).ne'
   have h := coe_pt x hx
@@ -153,6 +201,9 @@ theorem pt_re : (pt x).re = ((x 0 1 : ℝ) * x 1 1 + (x 0 0 : ℝ) * x 1 0) / ns
   ring
 
 include hx in
+/--
+@isnad1 id=eq.1h1v.s9.448a3cdbbd9c from=translated src=- shape=b454ccd0 vocab=c748c6f2
+-/
 theorem pt_im : (pt x).im = ((Matrix.GeneralLinearGroup.det x : ℝˣ) : ℝ) / nsq x := by
   have hden := denomC_ne (x 1 0 : ℝ) (x 1 1 : ℝ) (nsq_pos x hx).ne'
   have h := coe_pt x hx
@@ -166,6 +217,9 @@ theorem pt_im : (pt x).im = ((Matrix.GeneralLinearGroup.det x : ℝˣ) : ℝ) / 
 
 include hx in
 
+/--
+@isnad1 id=eq.1h1v.s10.013e68e88b9e from=translated src=- shape=03758c49 vocab=b326697e
+-/
 theorem decomp :
     x = S (pt x) * R ((x 1 1 : ℝ) / lam x) (-(x 1 0 : ℝ) / lam x) (rotpar x hx) *
       Matrix.GeneralLinearGroup.scalar (Fin 2) (Units.mk0 (lam x) (lam_pos x hx).ne') := by
@@ -193,6 +247,9 @@ theorem decomp :
 
 end Decomp
 
+/--
+@isnad1 id=eq.2h2v.s9.3767a594562f from=translated src=- shape=e12c076d vocab=0dae6d6c
+-/
 theorem af {F : GL (Fin 2) ℝ → ℂ} (hF : Good F) (x : GL (Fin 2) ℝ)
     (hx : 0 < ((Matrix.GeneralLinearGroup.det x : ℝˣ) : ℝ)) :
     F x = (((Matrix.GeneralLinearGroup.det x : ℝˣ) : ℝ) : ℂ) * fC F ((pt x : UpperHalfPlane) : ℂ) /
@@ -249,19 +306,31 @@ def Nf (ζ : ℂ) : ℂ := (ζ + 1) * P + (1 - ζ) * Complex.I
 
 def Mob (ζ : ℂ) : ℂ := Nf P ζ / Yf P ζ
 
+/--
+@isnad1 id=eq.0h1v.s6.354e4b7606ba from=translated src=- shape=c349bad4 vocab=7de4ef35
+-/
 theorem norm_sq_onePlus : ‖1 + Complex.I * P‖ ^ 2 = (1 - P.im) ^ 2 + P.re ^ 2 := by
   rw [Complex.sq_norm, Complex.normSq_apply]; simp; ring
 
+/--
+@isnad1 id=eq.0h1v.s6.1f7c4f805938 from=translated src=- shape=d512ac36 vocab=7de4ef35
+-/
 theorem norm_sq_oneMinus : ‖1 - Complex.I * P‖ ^ 2 = (1 + P.im) ^ 2 + P.re ^ 2 := by
   rw [Complex.sq_norm, Complex.normSq_apply]; simp; ring
 
 include hP in
+/--
+@isnad1 id=lt.1h1v.s6.79a7d891c4c9 from=translated src=- shape=e38e3e08 vocab=2820d250
+-/
 theorem norm_lt : ‖1 + Complex.I * P‖ < ‖1 - Complex.I * P‖ := by
   have h1 := norm_sq_onePlus P
   have h2 := norm_sq_oneMinus P
   nlinarith [norm_nonneg (1 + Complex.I * P), norm_nonneg (1 - Complex.I * P)]
 
 include hP in
+/--
+@isnad1 id=ne.1h1v.s5.03f2fc42501f from=translated src=- shape=01ee9eab vocab=7f826018
+-/
 theorem oneMinus_ne : 1 - Complex.I * P ≠ 0 := by
   intro h
   have := norm_lt P hP
@@ -271,12 +340,18 @@ theorem oneMinus_ne : 1 - Complex.I * P ≠ 0 := by
 def rad : ℝ := (‖1 - Complex.I * P‖ + 1) / (‖1 + Complex.I * P‖ + 1)
 
 include hP in
+/--
+@isnad1 id=lt.1h1v.s4.7d5928e89827 from=translated src=- shape=f1eeeb7c vocab=064c031c
+-/
 theorem one_lt_rad : 1 < rad P := by
   unfold rad
   rw [lt_div_iff₀ (by positivity)]
   linarith [norm_lt P hP]
 
 include hP in
+/--
+@isnad1 id=lt.2h2v.s6.f3794b6b3937 from=translated src=- shape=aa328a3d vocab=a91cb432
+-/
 theorem key_lt {ζ : ℂ} (hζ : ‖ζ‖ < rad P) : ‖1 + Complex.I * P‖ * ‖ζ‖ < ‖1 - Complex.I * P‖ := by
   have hlt := norm_lt P hP
   unfold rad at hζ
@@ -293,6 +368,9 @@ theorem key_lt {ζ : ℂ} (hζ : ‖ζ‖ < rad P) : ‖1 + Complex.I * P‖ * �
           nlinarith
 
 include hP in
+/--
+@isnad1 id=ne.2h2v.s5.e3d3ab21e65d from=translated src=- shape=18f71ae1 vocab=8601a2ab
+-/
 theorem Yf_ne {ζ : ℂ} (hζ : ‖ζ‖ < rad P) : Yf P ζ ≠ 0 := by
   intro h
   have hk := key_lt P hP hζ
@@ -303,6 +381,9 @@ theorem Yf_ne {ζ : ℂ} (hζ : ‖ζ‖ < rad P) : Yf P ζ ≠ 0 := by
   rw [hn] at hk
   linarith
 
+/--
+@isnad1 id=eq.0h2v.s7.f8bcaa2c2c54 from=translated src=- shape=abaaceee vocab=1b5944ea
+-/
 theorem im_formula (ζ : ℂ) :
     (Nf P ζ * (starRingEnd ℂ) (Yf P ζ)).im
       = ((1 + P.im) ^ 2 + P.re ^ 2) - ((1 - P.im) ^ 2 + P.re ^ 2) * (ζ.re ^ 2 + ζ.im ^ 2) := by
@@ -311,6 +392,9 @@ theorem im_formula (ζ : ℂ) :
   ring
 
 include hP in
+/--
+@isnad1 id=lt.2h2v.s5.0e0899ae2978 from=translated src=- shape=5a773236 vocab=8e24786d
+-/
 theorem Mob_im_pos {ζ : ℂ} (hζ : ‖ζ‖ < rad P) : 0 < (Mob P ζ).im := by
   have hY := Yf_ne P hP hζ
   have hk := key_lt P hP hζ
@@ -333,45 +417,75 @@ theorem Mob_im_pos {ζ : ℂ} (hζ : ‖ζ‖ < rad P) : 0 < (Mob P ζ).im := by
   nlinarith [mul_nonneg ha hz]
 
 include hP in
+/--
+@isnad1 id=eq.1h1v.s4.880d85fd3633 from=translated src=- shape=fcb392c1 vocab=9a1a3bb9
+-/
 theorem Mob_zero : Mob P 0 = Complex.I := by
   unfold Mob Nf Yf
   rw [div_eq_iff (by simpa using oneMinus_ne P hP)]
   ring_nf; rw [Complex.I_sq]; ring
 
+/--
+@isnad1 id=differen.0h1v.s6.87c2ac1a5ac1 from=translated src=- shape=55d61ed8 vocab=647c7702
+-/
 theorem differentiableOn_Yf : Differentiable ℂ (Yf P) := by
   unfold Yf; fun_prop
 
+/--
+@isnad1 id=differen.0h1v.s6.c75e8179044a from=translated src=- shape=55d61ed8 vocab=3cf788d1
+-/
 theorem differentiableOn_Nf : Differentiable ℂ (Nf P) := by
   unfold Nf; fun_prop
 
 include hP in
+/--
+@isnad1 id=differen.1h1v.s6.5ce6eef0e7a2 from=translated src=- shape=39fed6e4 vocab=a7abf86b
+-/
 theorem differentiableOn_Mob : DifferentiableOn ℂ (Mob P) (ball 0 (rad P)) := by
   intro ζ hζ
   have hζ' : ‖ζ‖ < rad P := by simpa using hζ
   exact (((differentiableOn_Nf P).differentiableAt).div ((differentiableOn_Yf P).differentiableAt)
     (Yf_ne P hP hζ')).differentiableWithinAt
 
+/--
+@isnad1 id=eq.0h1v.s5.d23c96fbcd5f from=translated src=- shape=c0034535 vocab=42732acc
+-/
 theorem cos_uform (θ : ℝ) :
     ((Real.cos θ : ℝ) : ℂ) = (cexp (θ * Complex.I) + (cexp (θ * Complex.I))⁻¹) / 2 := by
   rw [Complex.ofReal_cos, ← Complex.exp_neg, eq_div_iff two_ne_zero, mul_comm, Complex.two_cos, neg_mul]
 
+/--
+@isnad1 id=eq.0h1v.s6.eee72f955e6b from=translated src=- shape=b1b878e3 vocab=e4a44ade
+-/
 theorem sin_uform (θ : ℝ) :
     ((Real.sin θ : ℝ) : ℂ) = ((cexp (θ * Complex.I))⁻¹ - cexp (θ * Complex.I)) * Complex.I / 2 := by
   rw [Complex.ofReal_sin, ← Complex.exp_neg, eq_div_iff two_ne_zero, mul_comm, Complex.two_sin, neg_mul]
 
+/--
+@isnad1 id=eq.1h2v.s7.b96e62e3cca2 from=translated src=- shape=60443828 vocab=a0df769b
+-/
 theorem denom_uform (u : ℂ) (hu : u ≠ 0) :
     (u + u⁻¹) / 2 - ((u⁻¹ - u) * Complex.I / 2) * P = u⁻¹ * Yf P (u ^ 2) / 2 := by
   unfold Yf; field_simp; ring
 
+/--
+@isnad1 id=eq.1h2v.s7.7407bf71b659 from=translated src=- shape=2c3a1275 vocab=ba9193f9
+-/
 theorem num_uform (u : ℂ) (hu : u ≠ 0) :
     (u + u⁻¹) / 2 * P + (u⁻¹ - u) * Complex.I / 2 = u⁻¹ * Nf P (u ^ 2) / 2 := by
   unfold Nf; field_simp
 
 end Mobius
 
+/--
+@isnad1 id=eq.0h1v.s5.d85c10fe0d5e from=translated src=- shape=4cfa00f8 vocab=e186743e
+-/
 theorem exp_sq_eq_circleMap (θ : ℝ) : cexp (θ * Complex.I) ^ 2 = circleMap 0 1 (2 * θ) := by
   rw [circleMap, ← Complex.exp_nat_mul]; push_cast; ring_nf
 
+/--
+@isnad1 id=eq.2h2v.s7.4fb0073103b1 from=translated src=- shape=e6d4e9d2 vocab=dde56acb
+-/
 theorem integral_doubled {H : ℂ → ℂ} {r : ℝ} (hr : 1 < r) (hH : DifferentiableOn ℂ H (ball 0 r)) :
     ∫ θ in (0 : ℝ)..2 * Real.pi, H (cexp (θ * Complex.I) ^ 2) = 2 * Real.pi * H 0 := by
   set f : ℝ → ℂ := fun θ => H (circleMap 0 1 θ) with hf
@@ -405,6 +519,9 @@ theorem integral_doubled {H : ℂ → ℂ} {r : ℝ} (hr : 1 < r) (hH : Differen
   push_cast
   ring
 
+/--
+@isnad1 id=eq.2h2v.s7.eab56ca6776f from=translated src=- shape=e0ff62c5 vocab=dde56acb
+-/
 theorem integral_doubled_mul {H : ℂ → ℂ} {r : ℝ} (hr : 1 < r) (hH : DifferentiableOn ℂ H (ball 0 r)) :
     ∫ θ in (0 : ℝ)..2 * Real.pi, cexp (θ * Complex.I) ^ 2 * H (cexp (θ * Complex.I) ^ 2) = 0 := by
   have h := integral_doubled (H := fun η => η * H η) hr ((differentiableOn_id).mul hH)
@@ -417,6 +534,9 @@ variable {F : GL (Fin 2) ℝ → ℂ} (hF : Good F) (h : GL (Fin 2) ℝ)
 
 def Pt : ℂ := ((pt h : UpperHalfPlane) : ℂ)
 
+/--
+@isnad1 id=lt.0h1v.s5.fa5b214e8bd8 from=translated src=- shape=c125fb72 vocab=3055ecdd
+-/
 theorem Pt_im_pos : 0 < (Pt h).im := (pt h).im_pos
 
 def Hh : ℂ → ℂ := fun ζ =>
@@ -424,6 +544,9 @@ def Hh : ℂ → ℂ := fun ζ =>
     * fC F (Mob (Pt h) ζ) / Yf (Pt h) ζ
 
 include hF hh in
+/--
+@isnad1 id=differen.2h2v.s8.1e46528742a9 from=translated src=- shape=84ea76a2 vocab=aed67fb2
+-/
 theorem differentiableOn_Hh : DifferentiableOn ℂ (Hh h (F := F)) (ball 0 (rad (Pt h))) := by
   have hP := Pt_im_pos h
   unfold Hh
@@ -433,6 +556,9 @@ theorem differentiableOn_Hh : DifferentiableOn ℂ (Hh h (F := F)) (ball 0 (rad 
   exact Mob_im_pos _ hP (by simpa using hζ)
 
 include hh in
+/--
+@isnad1 id=eq.1h2v.s10.8b8521a94872 from=translated src=- shape=442c65bc vocab=9ba9097b
+-/
 theorem Hh_zero : Hh h (F := F) 0
     = 2 * (((Matrix.GeneralLinearGroup.det h : ℝˣ) : ℝ) : ℂ) * F 1 /
       ((((h 1 0 : ℝ) : ℂ) * Complex.I + ((h 1 1 : ℝ) : ℂ)) * (1 - Complex.I * Pt h)) := by
@@ -447,18 +573,27 @@ theorem Hh_zero : Hh h (F := F) 0
 
 include hh in
 
+/--
+@isnad1 id=eq.1h4v.s9.da9e0616db69 from=translated src=- shape=02d1c23e vocab=de6319f4
+-/
 theorem rot_mul_apply (θ : ℝ) (i j : Fin 2) :
     ((rot θ * h : GL (Fin 2) ℝ) i j : ℝ)
       = (rot θ) i 0 * h 0 j + (rot θ) i 1 * h 1 j := by
   show ((rot θ : Matrix (Fin 2) (Fin 2) ℝ) * (h : Matrix (Fin 2) (Fin 2) ℝ)) i j = _
   rw [Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=and.0h1v.s8.4bc67c971209 from=translated src=- shape=de120ee3 vocab=80fe36ea
+-/
 theorem rot_apply (θ : ℝ) :
     ((rot θ) 0 0 : ℝ) = Real.cos θ ∧ ((rot θ) 0 1 : ℝ) = Real.sin θ ∧
       ((rot θ) 1 0 : ℝ) = -Real.sin θ ∧ ((rot θ) 1 1 : ℝ) = Real.cos θ := by
   refine ⟨rfl, rfl, rfl, rfl⟩
 
 include hh in
+/--
+@isnad1 id=eq.1h2v.s10.f906beeca4e1 from=translated src=- shape=ba622510 vocab=c5de2468
+-/
 theorem det_rot_mul (θ : ℝ) :
     ((Matrix.GeneralLinearGroup.det (rot θ * h) : ℝˣ) : ℝ)
       = ((Matrix.GeneralLinearGroup.det h : ℝˣ) : ℝ) := by
@@ -466,6 +601,9 @@ theorem det_rot_mul (θ : ℝ) :
 
 include hh in
 
+/--
+@isnad1 id=eq.1h2v.s9.0d90bb65510b from=translated src=- shape=53e13a6c vocab=237c4d3f
+-/
 theorem coe_pt_rot_mul (θ : ℝ) :
     ((pt (rot θ * h) : UpperHalfPlane) : ℂ)
       = (((Real.cos θ : ℝ) : ℂ) * Pt h + ((Real.sin θ : ℝ) : ℂ)) /
@@ -477,6 +615,9 @@ theorem coe_pt_rot_mul (θ : ℝ) :
   simp [UpperHalfPlane.num, UpperHalfPlane.denom]
 
 include hh in
+/--
+@isnad1 id=eq.1h1v.s9.ed0e99e4cfcc from=translated src=- shape=39a47570 vocab=2e7ffe47
+-/
 theorem Pt_mul_denom :
     Pt h * (((h 1 0 : ℝ) : ℂ) * Complex.I + ((h 1 1 : ℝ) : ℂ))
       = ((h 0 0 : ℝ) : ℂ) * Complex.I + ((h 0 1 : ℝ) : ℂ) := by
@@ -486,6 +627,9 @@ theorem Pt_mul_denom :
 
 include hF hh in
 
+/--
+@isnad1 id=eq.2h3v.s9.6cd5c8f60795 from=translated src=- shape=f84ba88b vocab=782d8909
+-/
 theorem pointwise (θ : ℝ) :
     cexp (-(θ * Complex.I)) * F (rot θ * h) = Hh h (F := F) (cexp (θ * Complex.I) ^ 2) := by
   have hP := Pt_im_pos h
@@ -533,6 +677,9 @@ theorem pointwise (θ : ℝ) :
 
 include hF hh in
 
+/--
+@isnad1 id=eq.2h2v.s9.d2841dd68cb8 from=translated src=- shape=e7e06de0 vocab=650fbad3
+-/
 theorem integral_pos :
     (∫ θ in (0 : ℝ)..2 * Real.pi, cexp (-(θ * Complex.I)) * F (rot θ * h)) = coeffC h * F 1 := by
   have hP := Pt_im_pos h
@@ -555,6 +702,9 @@ theorem integral_pos :
 
 include hF hh in
 
+/--
+@isnad1 id=eq.2h2v.s9.ab86dc9ec0f2 from=translated src=- shape=e591b0c7 vocab=c6c13ce9
+-/
 theorem integral_neg_weight :
     (∫ θ in (0 : ℝ)..2 * Real.pi, cexp (θ * Complex.I) * F (rot θ * h)) = 0 := by
   have hP := Pt_im_pos h
@@ -569,6 +719,9 @@ theorem integral_neg_weight :
 
 end Core
 
+/--
+@isnad1 id=differen.1h2v.s8.84861665bc96 from=translated src=- shape=733a4acf vocab=96b814f8
+-/
 theorem differentiableAt_conj_negConj {f : ℂ → ℂ} {z : ℂ}
     (hf : DifferentiableAt ℂ f (-(starRingEnd ℂ) z)) :
     DifferentiableAt ℂ (fun w => (starRingEnd ℂ) (f (-(starRingEnd ℂ) w))) z := by
@@ -600,14 +753,23 @@ theorem differentiableAt_conj_negConj {f : ℂ → ℂ} {z : ℂ}
 def negConj (z : UpperHalfPlane) : UpperHalfPlane :=
   ⟨-(starRingEnd ℂ) (z : ℂ), by simpa using z.im_pos⟩
 
+/--
+@isnad1 id=eq.0h1v.s3.441ab63d48c0 from=translated src=- shape=8d4cac31 vocab=c856819f
+-/
 theorem negConj_im (z : UpperHalfPlane) : (negConj z).im = z.im := by
   show (-(starRingEnd ℂ) (z : ℂ)).im = z.im
   simp
 
+/--
+@isnad1 id=eq.0h1v.s3.2405c5e869fc from=translated src=- shape=d2189a58 vocab=0d5891d4
+-/
 theorem negConj_re (z : UpperHalfPlane) : (negConj z).re = -z.re := by
   show (-(starRingEnd ℂ) (z : ℂ)).re = -z.re
   simp
 
+/--
+@isnad1 id=eq.0h1v.s8.591d970eca23 from=translated src=- shape=21997f9d vocab=fffe4ae9
+-/
 theorem S_mul_eps (z : UpperHalfPlane) : S z * eps = eps * S (negConj z) := by
   apply Units.ext
   show (!![(z.im : ℝ), (z.re : ℝ); 0, 1] : Matrix (Fin 2) (Fin 2) ℝ) * !![(1 : ℝ), 0; 0, -1]
@@ -615,6 +777,9 @@ theorem S_mul_eps (z : UpperHalfPlane) : S z * eps = eps * S (negConj z) := by
   rw [negConj_im, negConj_re]
   ext i j; fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.1h2v.s8.a3197cf481d7 from=translated src=- shape=76e0e785 vocab=a292fea8
+-/
 theorem R_mul_eps (a b : ℝ) (hab : a ^ 2 + b ^ 2 = 1) :
     R a b hab * eps = eps * R a (-b) (by simpa using hab) := by
   apply Units.ext
@@ -622,6 +787,9 @@ theorem R_mul_eps (a b : ℝ) (hab : a ^ 2 + b ^ 2 = 1) :
     = !![(1 : ℝ), 0; 0, -1] * !![a, -b; -(-b), a]
   ext i j; fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h1v.s9.28a35c5783fa from=translated src=- shape=2eea0c6e vocab=93e007a1
+-/
 theorem scalar_mul_eps (t : ℝˣ) :
     Matrix.GeneralLinearGroup.scalar (Fin 2) t * eps = eps * Matrix.GeneralLinearGroup.scalar (Fin 2) t := by
   apply Units.ext
@@ -629,6 +797,9 @@ theorem scalar_mul_eps (t : ℝˣ) :
     = !![(1 : ℝ), 0; 0, -1] * Matrix.scalar (Fin 2) (t : ℝ)
   exact (Matrix.scalar_commute (t : ℝ) (fun r => mul_comm _ r) _).eq
 
+/--
+@isnad1 id=good.1h1v.s7.f4a0b6ae602e from=translated src=- shape=46343891 vocab=4342c2cb
+-/
 theorem Good.conjEps {F : GL (Fin 2) ℝ → ℂ} (hF : Good F) :
     Good (fun x => (starRingEnd ℂ) (F (x * eps))) where
   cont := Complex.continuous_conj.comp (hF.cont.comp (continuous_id.mul continuous_const))
@@ -667,6 +838,9 @@ end Q1WtOneProj
 end
 
 open Q1WtOneProj in
+/--
+@isnad1 id=eq.4h3v.s11.c18b9390198d from=translated src=- shape=528707fb vocab=3e5af4a0
+-/
 theorem solution
     (F : GL (Fin 2) ℝ → ℂ) (hF : Continuous F)
     (hrot : ∀ (g : GL (Fin 2) ℝ) (a b : ℝ) (hab : a ^ 2 + b ^ 2 = 1),

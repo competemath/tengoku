@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry TensorProduct
 
+/--
+@isnad1 id=charzero.0h3v.s6.117f69ae51c6 from=translated src=- shape=613fa9a1 vocab=27ff17ea
+-/
 theorem AlgebraicGeometry.charZero_functionField_of_hom_spec_of_charZero
     (X : Scheme.{0}) [IsIntegral X]
     (C : Type) [Field C] [CharZero C] (f : Spec (CommRingCat.of C) ⟶ X) :

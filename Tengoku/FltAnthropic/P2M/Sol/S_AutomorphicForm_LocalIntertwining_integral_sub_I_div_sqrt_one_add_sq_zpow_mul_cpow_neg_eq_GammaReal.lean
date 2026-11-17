@@ -459,6 +459,9 @@ end M4aP2DGK.ArchRealWeight
 
 end
 
+/--
+@isnad1 id=eq.1h2v.s8.d44d6d79c85f from=translated src=- shape=2a661e80 vocab=65ae4658
+-/
 theorem solution
     (k : ℤ) (s : ℂ) (hs : 0 < s.re) :
     ∫ x : ℝ, (((x : ℂ) - Complex.I) / ((Real.sqrt (1 + x ^ 2) : ℝ) : ℂ)) ^ k

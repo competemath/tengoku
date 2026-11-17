@@ -12,6 +12,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry TopologicalSpace
 
 universe u
 
+/--
+@isnad1 id=eq.1h8v.s7.2b21354f5c45 from=translated src=- shape=e67500cb vocab=04d5b256
+-/
 theorem solution
     {k : Type u} [Field k] {X Y : Scheme.{u}} (fX : X ⟶ Spec (.of k)) (fY : Y ⟶ Spec (.of k))
     [LocallyOfFiniteType fX] [LocallyOfFiniteType fY] [IsIntegral X] [IsIntegral Y]

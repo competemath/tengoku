@@ -7,6 +7,9 @@ namespace P2MW.S_Associated_of_pow_eq_units_mul_pow
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=associat.2h5v.s6.ac77f09fdde4 from=translated src=- shape=b884d31e vocab=2783b609
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsDomain R] [UniqueFactorizationMonoid R]
     (a b : R) (n : ℕ) (hn : n ≠ 0) (u : Rˣ) (h : a ^ n = (u : R) * b ^ n) :

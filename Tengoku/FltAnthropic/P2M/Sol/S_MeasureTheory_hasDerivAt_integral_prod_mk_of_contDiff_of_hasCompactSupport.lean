@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=and.2h2v.s9.843d5904d970 from=translated src=- shape=69be7bc9 vocab=615fc432
+-/
 theorem solution
     {n : ℕ} (Φ : ℝ × (Fin n → ℝ) → ℂ) (hΦ : ContDiff ℝ (⊤ : ℕ∞) Φ) (hΦc : HasCompactSupport Φ) :
     ContDiff ℝ (⊤ : ℕ∞) (fun p : ℝ × (Fin n → ℝ) => deriv (fun t : ℝ => Φ (t, p.2)) p.1) ∧

@@ -16,6 +16,9 @@ noncomputable section
 
 namespace IntArchR
 
+/--
+@isnad1 id=eq.0h1v.s5.b16483fbc8dd from=translated src=- shape=26327751 vocab=4647deb8
+-/
 theorem norm_sub_I (x : ℝ) : ‖(x : ℂ) - Complex.I‖ = Real.sqrt (1 + x ^ 2) := by
   rw [← Real.sqrt_sq (norm_nonneg ((x : ℂ) - Complex.I)), Complex.sq_norm, Complex.normSq_apply]
   congr 1
@@ -23,17 +26,26 @@ theorem norm_sub_I (x : ℝ) : ‖(x : ℂ) - Complex.I‖ = Real.sqrt (1 + x ^ 
     Complex.I_im, zero_sub]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s6.c9597f056b2d from=translated src=- shape=203dd8d5 vocab=339f4cd1
+-/
 theorem norm_unit (x : ℝ) :
     ‖((x : ℂ) - Complex.I) / ((Real.sqrt (1 + x ^ 2) : ℝ) : ℂ)‖ = 1 := by
   have hpos : 0 < Real.sqrt (1 + x ^ 2) := Real.sqrt_pos.2 (by positivity)
   rw [norm_div, norm_sub_I, Complex.norm_real, Real.norm_eq_abs, abs_of_pos hpos, div_self hpos.ne']
 
+/--
+@isnad1 id=ne.0h1v.s5.4c880071d108 from=translated src=- shape=e4a6e928 vocab=b989ef1b
+-/
 theorem unit_ne_zero (x : ℝ) : ((x : ℂ) - Complex.I) / ((Real.sqrt (1 + x ^ 2) : ℝ) : ℂ) ≠ 0 := by
   intro h
   have h1 := norm_unit x
   rw [h, norm_zero] at h1
   exact zero_ne_one h1
 
+/--
+@isnad1 id=integrab.1h2v.s7.920b1c27e3e6 from=translated src=- shape=86b75e17 vocab=6ea6c4b1
+-/
 theorem integrable_realFactor (k : ℤ) (s : ℂ) (hs : 0 < s.re) :
     Integrable (fun x : ℝ => (((x : ℂ) - Complex.I) / ((Real.sqrt (1 + x ^ 2) : ℝ) : ℂ)) ^ k
       * (((1 + x ^ 2 : ℝ) : ℂ)) ^ (-(s + 1 / 2))) := by
@@ -55,6 +67,9 @@ theorem integrable_realFactor (k : ℤ) (s : ℂ) (hs : 0 < s.re) :
         Complex.norm_cpow_eq_rpow_re_of_pos (by positivity), hre, Real.norm_eq_abs, sq_abs]
     exact heq.le
 
+/--
+@isnad1 id=eq.0h3v.s7.a3db99520fe4 from=translated src=- shape=66ef2763 vocab=c11b0117
+-/
 theorem norm_realFactor_eq (k : ℤ) (σ y : ℝ) :
     ‖(((y : ℂ) - Complex.I) / ((Real.sqrt (1 + y ^ 2) : ℝ) : ℂ)) ^ k
         * (((1 + y ^ 2 : ℝ) : ℂ)) ^ (-((σ : ℂ) + 1 / 2))‖ = (1 + y ^ 2) ^ (-(σ + 1 / 2)) := by
@@ -62,6 +77,9 @@ theorem norm_realFactor_eq (k : ℤ) (σ y : ℝ) :
   rw [norm_mul, norm_zpow, norm_unit y, one_zpow, one_mul,
     Complex.norm_cpow_eq_rpow_re_of_pos (by positivity), hre]
 
+/--
+@isnad1 id=le.0h5v.s8.409ca49a13a1 from=translated src=- shape=d9aa92f2 vocab=c0564ed8
+-/
 theorem floor (a b c d x : ℝ) :
     (a * d - b * c) ^ 2 * (1 + x ^ 2)
       ≤ (a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2) * ((a + x * c) ^ 2 + (b + x * d) ^ 2) := by
@@ -76,6 +94,9 @@ theorem floor (a b c d x : ℝ) :
     rw [this]; nlinarith [sq_nonneg (a * P + b * Q)]
   nlinarith [s1, s2]
 
+/--
+@isnad1 id=lt.1h4v.s7.63f2fcd4cddf from=translated src=- shape=5174b688 vocab=5233fd79
+-/
 theorem entries_pos {a b c d : ℝ} (hdet : a * d - b * c ≠ 0) :
     0 < a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2 := by
   have h := floor a b c d 0
@@ -84,6 +105,9 @@ theorem entries_pos {a b c d : ℝ} (hdet : a * d - b * c ≠ 0) :
   have hS : 0 ≤ a ^ 2 + b ^ 2 := by positivity
   nlinarith [h, hD, hS, sq_nonneg c, sq_nonneg d]
 
+/--
+@isnad1 id=integrab.2h6v.s8.9566c94ffad0 from=translated src=- shape=ad41a096 vocab=7a825d16
+-/
 theorem main (a b c d : ℝ) (hdet : a * d - b * c ≠ 0) (k : ℤ) (σ : ℝ) (hσ : 0 < σ) :
     Integrable (fun x : ℝ =>
       (((|a * d - b * c| : ℝ) : ℂ) ^ ((σ : ℂ) + 1 / 2) * ((|a + x * c| : ℝ) : ℂ) ^ (-(2 * (σ : ℂ) + 1)))
@@ -169,6 +193,9 @@ end IntArchR
 
 end
 
+/--
+@isnad1 id=other.2h6v.s8.70b286291e65 from=translated src=- shape=53ec94a7 vocab=7a825d16
+-/
 theorem solution
     (a b c d : ℝ) (_hdet : a * d - b * c ≠ 0) (k : ℤ) (σ : ℝ) (_hσ : 0 < σ) :
     let atom : ℝ → ℝ → ℂ := fun σ x =>

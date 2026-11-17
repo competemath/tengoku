@@ -18,28 +18,46 @@ namespace ARCHW3R
 def atom (k : ℤ) (σ x : ℝ) : ℂ :=
   ((((x : ℝ) : ℂ) - Complex.I) / ((Real.sqrt (1 + x ^ 2) : ℝ) : ℂ)) ^ k * (((1 + x ^ 2 : ℝ) : ℂ)) ^ (-((σ : ℂ) + 1 / 2))
 
+/--
+@isnad1 id=lt.0h1v.s5.17bc9c77b017 from=translated src=- shape=b7e566ab vocab=65df512c
+-/
 theorem one_add_sq_pos (x : ℝ) : 0 < 1 + x ^ 2 := by positivity
 
+/--
+@isnad1 id=eq.0h1v.s6.c9597f056b2d from=translated src=- shape=203dd8d5 vocab=339f4cd1
+-/
 theorem norm_phase (x : ℝ) : ‖(((x : ℝ) : ℂ) - Complex.I) / ((Real.sqrt (1 + x ^ 2) : ℝ) : ℂ)‖ = 1 := by
   have h1 : ‖((x : ℝ) : ℂ) - Complex.I‖ = Real.sqrt (1 + x ^ 2) := by
     rw [Complex.norm_eq_sqrt_sq_add_sq]; congr 1; simp; ring
   have h2 : Real.sqrt (1 + x ^ 2) ≠ 0 := (Real.sqrt_pos.mpr (one_add_sq_pos x)).ne'
   rw [norm_div, h1, Complex.norm_real, Real.norm_of_nonneg (Real.sqrt_nonneg _), div_self h2]
 
+/--
+@isnad1 id=eq.0h3v.s6.d144d94037a2 from=translated src=- shape=fd7727c9 vocab=63ca6c5d
+-/
 theorem norm_atom (k : ℤ) (σ x : ℝ) : ‖atom k σ x‖ = (1 + x ^ 2) ^ (-(σ + 1 / 2)) := by
   rw [atom, norm_mul, norm_zpow, norm_phase, one_zpow, one_mul,
     Complex.norm_cpow_eq_rpow_re_of_pos (one_add_sq_pos x)]
   congr 1
   simp
 
+/--
+@isnad1 id=le.1h3v.s6.4a1521474758 from=translated src=- shape=456c4e41 vocab=49feb494
+-/
 theorem norm_atom_le (k : ℤ) {σ : ℝ} (hσ : 1 / 2 ≤ σ) (x : ℝ) : ‖atom k σ x‖ ≤ (1 + x ^ 2)⁻¹ := by
   rw [norm_atom, ← Real.rpow_neg_one]
   exact Real.rpow_le_rpow_of_exponent_le (by nlinarith [sq_nonneg x]) (by linarith)
 
+/--
+@isnad1 id=continuo.0h0v.s6.d46f8ef2ed7d from=translated src=- shape=255ddb1a vocab=26ac8894
+-/
 theorem continuous_phase : Continuous fun x : ℝ => (((x : ℝ) : ℂ) - Complex.I) / ((Real.sqrt (1 + x ^ 2) : ℝ) : ℂ) := by
   refine Continuous.div (by fun_prop) (by fun_prop) fun x => ?_
   exact_mod_cast (Real.sqrt_pos.mpr (one_add_sq_pos x)).ne'
 
+/--
+@isnad1 id=continuo.0h2v.s4.9199a9dbf5be from=translated src=- shape=a17f733d vocab=1cc094fa
+-/
 theorem continuous_atom (k : ℤ) (σ : ℝ) : Continuous (atom k σ) := by
   unfold atom
   refine Continuous.mul (continuous_phase.zpow₀ k fun x => Or.inl ?_) ?_
@@ -50,13 +68,22 @@ theorem continuous_atom (k : ℤ) (σ : ℝ) : Continuous (atom k σ) := by
   · refine Continuous.cpow (by fun_prop) continuous_const fun x => ?_
     exact_mod_cast Complex.ofReal_mem_slitPlane.mpr (one_add_sq_pos x)
 
+/--
+@isnad1 id=integrab.1h2v.s6.438996d6d6a0 from=translated src=- shape=d40922b7 vocab=3619e8bb
+-/
 theorem integrable_atom (k : ℤ) {σ : ℝ} (hσ : 1 / 2 ≤ σ) : Integrable (atom k σ) :=
   Integrable.mono' integrable_inv_one_add_sq (continuous_atom k σ).aestronglyMeasurable
     (ae_of_all _ (norm_atom_le k hσ))
 
+/--
+@isnad1 id=le.0h3v.s6.5ee1acfca70d from=translated src=- shape=acb0adc4 vocab=cef4cf1d
+-/
 theorem sq_le (c' d' x : ℝ) : (c' * x + d') ^ 2 ≤ (c' ^ 2 + d' ^ 2) * (1 + x ^ 2) := by
   nlinarith [sq_nonneg (c' - d' * x)]
 
+/--
+@isnad1 id=integrab.1h4v.s7.7a127504e987 from=translated src=- shape=3d0e73a7 vocab=8a16ce34
+-/
 theorem integrable_weighted (c' d' : ℝ) (k : ℤ) {σ : ℝ} (hσ : 1 / 2 < σ) :
     Integrable fun x : ℝ => ((((c' * x + d') ^ 2) ^ (σ - 1 / 2) : ℝ) : ℂ) * atom k σ x := by
   set t : ℝ := σ - 1 / 2 with ht
@@ -79,6 +106,9 @@ theorem integrable_weighted (c' d' : ℝ) (k : ℤ) {σ : ℝ} (hσ : 1 / 2 < σ
           mul_le_mul_of_nonneg_right h1 (Real.rpow_nonneg (one_add_sq_pos x).le _)
       _ = K ^ t * (1 + x ^ 2)⁻¹ := by rw [mul_assoc, h2]
 
+/--
+@isnad1 id=eq.2h6v.s8.595f97f1f578 from=translated src=- shape=324f7ef3 vocab=9b0f9b5b
+-/
 theorem jacobian_identity (a b c d : ℝ) (hdet : a * d - b * c ≠ 0) {σ : ℝ} (hσ : 1 / 2 < σ) (x : ℝ) :
     (((|a * d - b * c| / (a + x * c) ^ 2 : ℝ)) : ℂ)
         * (((((-c / Real.sqrt |a * d - b * c|) * ((b + x * d) / (a + x * c)) + d / Real.sqrt |a * d - b * c|) ^ 2)
@@ -122,6 +152,9 @@ theorem jacobian_identity (a b c d : ℝ) (hdet : a * d - b * c ≠ 0) {σ : ℝ
             ← Real.rpow_mul (abs_nonneg t), Real.rpow_neg (abs_nonneg t), div_eq_mul_inv]
           congr 2; ring
 
+/--
+@isnad1 id=and.1h5v.s8.459a0e272852 from=translated src=- shape=0f7c7de8 vocab=74944334
+-/
 theorem main (a b c d : ℝ) (hdet : a * d - b * c ≠ 0) (k : ℤ) :
     (∃ C : ℝ, ∀ σ : ℝ, 1 / 2 < σ → σ ≤ 1 → ‖∫ x, atom k σ x‖ ≤ C) ∧
     Tendsto (fun σ : ℝ =>
@@ -165,6 +198,9 @@ end ARCHW3R
 
 end
 
+/--
+@isnad1 id=other.1h5v.s9.acb7cbc93f07 from=translated src=- shape=cca98f65 vocab=a689b738
+-/
 theorem solution
     (a b c d : ℝ) (_hdet : a * d - b * c ≠ 0) (k : ℤ) :
     let atom : ℝ → ℝ → ℂ := fun σ x =>

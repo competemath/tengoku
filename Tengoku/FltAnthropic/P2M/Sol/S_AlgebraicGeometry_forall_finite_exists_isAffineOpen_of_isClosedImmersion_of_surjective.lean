@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=ex.3h4v.s8.e04e42b01153 from=translated src=- shape=58a6379c vocab=d704fb84
+-/
 theorem solution
     {Z X : Scheme.{u}} (f : Z ⟶ X) [IsClosedImmersion f] [Surjective f]
     (hAff : ∀ U : X.Opens, IsAffineOpen (f ⁻¹ᵁ U) → IsAffineOpen U)

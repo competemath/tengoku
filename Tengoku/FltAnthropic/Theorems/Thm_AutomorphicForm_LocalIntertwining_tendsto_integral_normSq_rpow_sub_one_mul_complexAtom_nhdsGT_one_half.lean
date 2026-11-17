@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open MeasureTheory Filter Topology
 
+/--
+@isnad1 id=tendsto.2h5v.s8.bd1df0c45e69 from=translated src=- shape=e49185ae vocab=ce53a3ea
+-/
 theorem AutomorphicForm.LocalIntertwining.tendsto_integral_normSq_rpow_sub_one_mul_complexAtom_nhdsGT_one_half
     (c' d' : ℂ) (_h : c' ≠ 0 ∨ d' ≠ 0) (a b m : ℕ) (_habm : a + b ≤ m) :
     Tendsto (fun σ : ℝ =>

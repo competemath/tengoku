@@ -12,6 +12,9 @@ universe u
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 open scoped TensorProduct
 
+/--
+@isnad1 id=finite.1h5v.s9.efc0a475886d from=translated src=- shape=d982574e vocab=ff073039
+-/
 theorem solution
     {κ Ω : Type u} [Field κ] [Field Ω] [Algebra κ Ω]
     {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of κ)) [LocallyOfFiniteType f]

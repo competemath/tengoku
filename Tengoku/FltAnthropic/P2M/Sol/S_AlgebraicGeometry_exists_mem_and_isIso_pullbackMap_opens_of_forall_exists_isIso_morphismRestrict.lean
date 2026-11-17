@@ -10,6 +10,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 namespace K63H2
 
+/--
+@isnad1 id=ex.2h5v.s9.d3a5eb0ab83a from=translated src=- shape=ccd3ffb2 vocab=400760f2
+-/
 theorem exists_mem_and_preimage_le_of_isClosedMap {X Y : Scheme.{0}} (q : X ⟶ Y)
     (hq : IsClosedMap q.base) (y : Y) (W : X.Opens) (hW : ∀ x : X, q.base x = y → x ∈ W) :
     ∃ V : Y.Opens, y ∈ V ∧ q ⁻¹ᵁ V ≤ W := by
@@ -20,6 +23,9 @@ theorem exists_mem_and_preimage_le_of_isClosedMap {X Y : Scheme.{0}} (q : X ⟶ 
     by_contra hxW
     exact hx ⟨x, hxW, rfl⟩
 
+/--
+@isnad1 id=ispullba.1h8v.s7.2b71e6c9e529 from=translated src=- shape=e7b1672e vocab=801363fd
+-/
 theorem isPullback_fst_map_fst {X Y Z W : Scheme.{0}} (p : Z ⟶ Y) (q : X ⟶ Y) (h : Z ⟶ X)
     (w : h ≫ q = p) (g : W ⟶ Y) :
     IsPullback (pullback.fst p g)
@@ -37,6 +43,9 @@ theorem isPullback_fst_map_fst {X Y Z W : Scheme.{0}} (p : Z ⟶ Y) (q : X ⟶ Y
 
 end K63H2
 
+/--
+@isnad1 id=ex.2h7v.s9.467066863b2f from=translated src=- shape=0ecb7fff vocab=a3969622
+-/
 theorem solution
     {X Y Z : Scheme.{0}} (p : Z ⟶ Y) (q : X ⟶ Y) (h : Z ⟶ X) (w : h ≫ q = p)
     [IsProper p] [Flat p] [LocallyOfFinitePresentation p]

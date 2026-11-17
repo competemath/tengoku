@@ -14,6 +14,9 @@ open AlgebraicGeometry CategoryTheory
 
 universe u
 
+/--
+@isnad1 id=eq.3h10v.s9.6a8dc5bf3651 from=translated src=- shape=aae1f7cf vocab=5fe522c2
+-/
 theorem piece (p : ℕ) [Fact p.Prime] {X Y : Scheme.{0}}
     (fX : X ⟶ Spec (CommRingCat.of (ZMod p))) (fY : Y ⟶ Spec (CommRingCat.of (ZMod p)))
     (FX : X ⟶ X) (FY : Y ⟶ Y)
@@ -41,6 +44,9 @@ theorem piece (p : ℕ) [Fact p.Prime] {X Y : Scheme.{0}}
       infer_instance
     exact (isInitialOfIsEmpty (X := Spec R)).hom_ext _ _
 
+/--
+@isnad1 id=eq.5h8v.s9.cf4e90f5ec6f from=translated src=- shape=adc41053 vocab=90839eb0
+-/
 theorem main (p : ℕ) [Fact p.Prime] {X Y : Scheme.{0}}
     (fX : X ⟶ Spec (CommRingCat.of (ZMod p))) (fY : Y ⟶ Spec (CommRingCat.of (ZMod p)))
     (FX : X ⟶ X) (FY : Y ⟶ Y) (hFXb : FX ≫ fX = fX) (hFYb : FY ≫ fY = fY)
@@ -58,6 +64,9 @@ end Ws23.FrobNat
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=eq.5h8v.s9.cf4e90f5ec6f from=translated src=- shape=adc41053 vocab=90839eb0
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] {X Y : Scheme.{0}}
     (fX : X ⟶ Spec (CommRingCat.of (ZMod p))) (fY : Y ⟶ Spec (CommRingCat.of (ZMod p)))

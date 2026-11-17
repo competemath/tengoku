@@ -10,6 +10,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_AutomorphicForm_ComplexIwasawa_contDiff_an
 
 open scoped ContDiff
 
+/--
+@isnad1 id=and.1h1v.s8.866db192d3c4 from=translated src=- shape=510de950 vocab=0f76e9c3
+-/
 theorem AutomorphicForm.ComplexIwasawa.contDiff_and_exists_bound_iteratedFDeriv_kC_apply
     {g : Matrix (Fin 2) (Fin 2) ℂ} (hg : g.det ≠ 0) :
     (∀ i j : Fin 2, ContDiff ℝ ∞ (fun w => kC g w i j)) ∧

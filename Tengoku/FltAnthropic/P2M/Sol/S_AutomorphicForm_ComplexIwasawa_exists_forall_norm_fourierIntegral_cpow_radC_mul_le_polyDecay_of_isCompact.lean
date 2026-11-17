@@ -63,6 +63,9 @@ end B2bCKit
 
 open scoped Nat in
 
+/--
+@isnad1 id=ex.8h6v.s12.a72a66059a66 from=translated src=- shape=fc581bf1 vocab=e1e50e60
+-/
 theorem solution
     (𝒢 : Set (Matrix (Fin 2) (Fin 2) ℂ)) (h𝒢 : IsCompact 𝒢) (hdet : ∀ g ∈ 𝒢, g.det ≠ 0)
     (U : Set ℂ) (hU : IsCompact U) (hU2 : ∀ u ∈ U, 2 < u.re)

@@ -15,6 +15,9 @@ open scoped MatrixGroups
 
 namespace ArtinEulerRhoProof
 
+/--
+@isnad1 id=eq.2h2v.s8.30e460303f52 from=translated src=- shape=243f6e59 vocab=7ca03062
+-/
 theorem tsum_coeff_inv_mul_eval (E : ℂ[X]) (hE : E.coeff 0 = 1) (x : ℂ)
     (hsum : Summable fun k : ℕ => ‖PowerSeries.coeff k ((E : PowerSeries ℂ)⁻¹) * x ^ k‖) :
     (∑' k : ℕ, PowerSeries.coeff k ((E : PowerSeries ℂ)⁻¹) * x ^ k) * E.eval x = 1 := by
@@ -55,6 +58,9 @@ theorem tsum_coeff_inv_mul_eval (E : ℂ[X]) (hE : E.coeff 0 = 1) (x : ℂ)
   rw [tsum_congr hinner]
   exact tsum_ite_eq 0 1
 
+/--
+@isnad1 id=ne.2h2v.s7.b154d54dc685 from=translated src=- shape=1ded7449 vocab=3f551545
+-/
 theorem eval_ne_zero_of_summable (E : ℂ[X]) (hE : E.coeff 0 = 1) (x : ℂ)
     (hsum : Summable fun k : ℕ => ‖PowerSeries.coeff k ((E : PowerSeries ℂ)⁻¹) * x ^ k‖) :
     E.eval x ≠ 0 := by
@@ -63,6 +69,9 @@ theorem eval_ne_zero_of_summable (E : ℂ[X]) (hE : E.coeff 0 = 1) (x : ℂ)
   rw [h, mul_zero] at this
   exact zero_ne_one this
 
+/--
+@isnad1 id=hassum.2h2v.s8.9486a9d2310d from=translated src=- shape=17b6f7f6 vocab=27353105
+-/
 theorem hasSum_coeff_inv (E : ℂ[X]) (hE : E.coeff 0 = 1) (x : ℂ)
     (hsum : Summable fun k : ℕ => ‖PowerSeries.coeff k ((E : PowerSeries ℂ)⁻¹) * x ^ k‖) :
     HasSum (fun k : ℕ => PowerSeries.coeff k ((E : PowerSeries ℂ)⁻¹) * x ^ k) (E.eval x)⁻¹ := by
@@ -77,17 +86,26 @@ variable {n : ℕ}
 
 local notation "Γℚ" => (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ)
 
+/--
+@isnad1 id=eq.0h3v.s8.a272549f32b8 from=translated src=- shape=ba1a2ddf vocab=0d4bf0a3
+-/
 theorem coeffPrimePow_zero (ρ : Γℚ →* GL (Fin n) ℂ) (p : ℕ) : ArtinL.coeffPrimePow ρ p 0 = 1 := by
   unfold ArtinL.coeffPrimePow
   rw [PowerSeries.coeff_zero_eq_constantCoeff_apply, PowerSeries.constantCoeff_inv,
     Polynomial.constantCoeff_coe, ArtinL.coeff_eulerFactor_zero, inv_one]
 
+/--
+@isnad1 id=eq.1h4v.s8.c96f8708b7f8 from=translated src=- shape=bb126597 vocab=3182ddf5
+-/
 theorem coeff_prime_pow (ρ : Γℚ →* GL (Fin n) ℂ) {p : ℕ} (hp : p.Prime) (k : ℕ) :
     ArtinL.coeff ρ (p ^ k) = ArtinL.coeffPrimePow ρ p k := by
   unfold ArtinL.coeff
   rw [ite_eq_right (pow_ne_zero k hp.ne_zero), Nat.Prime.factorization_pow hp,
     Finsupp.prod_single_index (coeffPrimePow_zero ρ p)]
 
+/--
+@isnad1 id=eq.1h4v.s8.419adfd4f0d5 from=translated src=- shape=c6e51ed9 vocab=d9ec481e
+-/
 theorem coeff_mul_of_coprime (ρ : Γℚ →* GL (Fin n) ℂ) {a b : ℕ} (hab : Nat.Coprime a b) :
     ArtinL.coeff ρ (a * b) = ArtinL.coeff ρ a * ArtinL.coeff ρ b := by
   rcases Nat.eq_zero_or_pos a with rfl | ha
@@ -100,11 +118,17 @@ theorem coeff_mul_of_coprime (ρ : Γℚ →* GL (Fin n) ℂ) {a b : ℕ} (hab :
   rw [Nat.support_factorization, Nat.support_factorization]
   exact hab.disjoint_primeFactors
 
+/--
+@isnad1 id=eq.0h3v.s5.e8bf77b47813 from=translated src=- shape=ab709254 vocab=cb498106
+-/
 theorem natCast_pow_cpow (m e : ℕ) (z : ℂ) : (((m ^ e : ℕ)) : ℂ) ^ z = ((m : ℂ) ^ z) ^ e := by
   induction e with
   | zero => rw [pow_zero, pow_zero, Nat.cast_one, Complex.one_cpow]
   | succ e ih => rw [pow_succ, Nat.cast_mul, Complex.natCast_mul_natCast_cpow, ih, pow_succ]
 
+/--
+@isnad1 id=eq.1h5v.s8.082520380f3a from=translated src=- shape=48ab5fea vocab=089991c8
+-/
 theorem term_mul_of_coprime (ρ : Γℚ →* GL (Fin n) ℂ) (s : ℂ) {a b : ℕ} (hab : Nat.Coprime a b) :
     LSeries.term (ArtinL.coeff ρ) s (a * b) =
       LSeries.term (ArtinL.coeff ρ) s a * LSeries.term (ArtinL.coeff ρ) s b := by
@@ -116,16 +140,25 @@ theorem term_mul_of_coprime (ρ : Γℚ →* GL (Fin n) ℂ) (s : ℂ) {a b : �
     LSeries.term_of_ne_zero hb.ne', coeff_mul_of_coprime ρ hab, Nat.cast_mul,
     Complex.natCast_mul_natCast_cpow, mul_div_mul_comm]
 
+/--
+@isnad1 id=eq.0h3v.s8.7b95a030e986 from=translated src=- shape=d91ee18d vocab=dd8b6c3d
+-/
 theorem term_one (ρ : Γℚ →* GL (Fin n) ℂ) (s : ℂ) : LSeries.term (ArtinL.coeff ρ) s 1 = 1 := by
   rw [LSeries.term_of_ne_zero one_ne_zero, ArtinL.coeff_one, Nat.cast_one, Complex.one_cpow,
     div_one]
 
+/--
+@isnad1 id=eq.1h5v.s8.2048140e1053 from=translated src=- shape=6ae15649 vocab=e6a68385
+-/
 theorem term_prime_pow (ρ : Γℚ →* GL (Fin n) ℂ) (s : ℂ) {p : ℕ} (hp : p.Prime) (k : ℕ) :
     LSeries.term (ArtinL.coeff ρ) s (p ^ k) =
       ArtinL.coeffPrimePow ρ p k * ((p : ℂ) ^ (-s)) ^ k := by
   rw [LSeries.term_of_ne_zero (pow_ne_zero k hp.ne_zero), coeff_prime_pow ρ hp, div_eq_mul_inv,
     ← Complex.cpow_neg, natCast_pow_cpow]
 
+/--
+@isnad1 id=summable.2h4v.s9.46e650b03249 from=translated src=- shape=4e1a8393 vocab=6c6e5c17
+-/
 theorem summable_norm_coeffPrimePow (ρ : Γℚ →* GL (Fin n) ℂ) {s : ℂ}
     (hsum : LSeriesSummable (ArtinL.coeff ρ) s) {p : ℕ} (hp : p.Prime) :
     Summable fun k : ℕ =>
@@ -136,6 +169,9 @@ theorem summable_norm_coeffPrimePow (ρ : Γℚ →* GL (Fin n) ℂ) {s : ℂ}
   rw [term_prime_pow ρ s hp]
   rfl
 
+/--
+@isnad1 id=and.2h4v.s9.4aa1606a3736 from=translated src=- shape=b35139d2 vocab=da6dbbe9
+-/
 theorem local_part (ρ : Γℚ →* GL (Fin n) ℂ) {s : ℂ} (hsum : LSeriesSummable (ArtinL.coeff ρ) s)
     {p : ℕ} (hp : p.Prime) :
     HasSum (fun e : ℕ => ArtinL.coeffPrimePow ρ p e * ((p : ℂ) ^ (-s)) ^ e)
@@ -145,6 +181,9 @@ theorem local_part (ρ : Γℚ →* GL (Fin n) ℂ) {s : ℂ} (hsum : LSeriesSum
     eval_ne_zero_of_summable _ (ArtinL.coeff_eulerFactor_zero ρ p) _
       (summable_norm_coeffPrimePow ρ hsum hp)⟩
 
+/--
+@isnad1 id=hasprod.1h3v.s8.1ba9775c5c0f from=translated src=- shape=fa74182e vocab=90bcccf5
+-/
 theorem global_part (ρ : Γℚ →* GL (Fin n) ℂ) {s : ℂ} (hsum : LSeriesSummable (ArtinL.coeff ρ) s) :
     HasProd (fun p : Nat.Primes => ((ArtinL.eulerFactor ρ p).eval ((p : ℂ) ^ (-s)))⁻¹)
       (ArtinL.LSeries ρ s) := by
@@ -160,6 +199,9 @@ theorem global_part (ρ : Γℚ →* GL (Fin n) ℂ) {s : ℂ} (hsum : LSeriesSu
 
 end ArtinEulerRhoProof
 
+/--
+@isnad1 id=and.1h3v.s9.9936cf95a8e1 from=translated src=- shape=8dfec03b vocab=ec8c273f
+-/
 theorem solution {n : ℕ}
     (ρ : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) →* GL (Fin n) ℂ)
     {s : ℂ} (hsum : LSeriesSummable (ArtinL.coeff ρ) s) :

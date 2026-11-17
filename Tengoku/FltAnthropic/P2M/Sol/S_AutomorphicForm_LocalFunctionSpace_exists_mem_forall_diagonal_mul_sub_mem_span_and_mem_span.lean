@@ -365,6 +365,9 @@ end KirillovBumpAux
 
 open KirillovBumpAux in
 
+/--
+@isnad1 id=ex.3h5v.s14.50c4c275fd43 from=translated src=- shape=ab1640bd vocab=b9446ec3
+-/
 theorem solution
     (p : IsDedekindDomain.HeightOneSpectrum (NumberField.RingOfIntegers ℚ))
     (S : Submodule ℂ (GL (Fin 2) (p.adicCompletion ℚ) → ℂ))

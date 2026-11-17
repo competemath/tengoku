@@ -17,6 +17,9 @@ export _root_.AlgebraicGeometry (Spec IsIntegral Scheme geometrically_iff_of_com
 namespace Ws35Q1
 open _root_.AlgebraicGeometry
 
+/--
+@isnad1 id=connecte.1h1v.s12.96ef24a5ac59 from=translated src=- shape=3004363b vocab=4439ed48
+-/
 theorem connectedSpace_of_forall_isIdempotentElem {X : Scheme.{u}} [Nontrivial Γ(X, ⊤)]
     (h : ∀ e : Γ(X, ⊤), IsIdempotentElem e → e = 0 ∨ e = 1) : ConnectedSpace X := by
   classical
@@ -84,6 +87,9 @@ theorem connectedSpace_of_forall_isIdempotentElem {X : Scheme.{u}} [Nontrivial �
       have : (0 : Γ(X, V)) = 1 := by rw [← he'V, h1, map_one]
       exact zero_ne_one this
 
+/--
+@isnad1 id=connecte.1h3v.s11.a166a7d7facf from=translated src=- shape=43a5449a vocab=2fa01a97
+-/
 theorem connectedSpace_of_bijective {K : Type u} [Field K] {X : Scheme.{u}} (φ : K →+* Γ(X, ⊤))
     (hφ : Function.Bijective φ) : ConnectedSpace X := by
   haveI : Nontrivial Γ(X, ⊤) := hφ.1.nontrivial
@@ -96,6 +102,9 @@ theorem connectedSpace_of_bijective {K : Type u} [Field K] {X : Scheme.{u}} (φ 
   · left; exact map_zero φ
   · right; exact map_one φ
 
+/--
+@isnad1 id=isclosed.0h0v.s2.0e54191f25fb from=translated src=- shape=d923e9be vocab=84114d96
+-/
 scoped instance isClosedUnderIsomorphisms_isIntegral :
     ObjectProperty.IsClosedUnderIsomorphisms (C := Scheme.{u}) (fun X : Scheme.{u} => IsIntegral X) :=
   ⟨fun e h => by haveI := h; exact IsIntegral.of_isIso e.hom⟩
@@ -105,6 +114,9 @@ open scoped _root_.P2MW.S_AlgebraicGeometry_geometricallyConnected_of_bijective_
 open scoped _root_.P2MW.S_AlgebraicGeometry_geometricallyConnected_of_bijective_algebraMap_sections.AlgebraicGeometry
 
 open AlgebraicGeometry.Ws35Q1 in
+/--
+@isnad1 id=geometri.1h3v.s13.fe9332669eaa from=translated src=- shape=86d6f7d1 vocab=1c00b515
+-/
 theorem solution
     {R : Type u} [CommRing R] {C : Scheme.{u}} (c : C ⟶ Spec (CommRingCat.of R))
     (hH0 : ∀ (A : Type u) [CommRing A] [Algebra R A],

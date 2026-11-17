@@ -10,6 +10,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_AutomorphicForm_ComplexIwasawa_continuousO
 open Set MeasureTheory
 set_option autoImplicit false
 
+/--
+@isnad1 id=other.0h2v.s9.642ee2dc4546 from=translated src=- shape=51dd2bfc vocab=e0b4b84b
+-/
 theorem AutomorphicForm.ComplexIwasawa.continuousOn_differentiableOn_norm_le_polyDecay_weightFourierIntegral (a b : ℕ) :
     let j : ℂ → ℂ → ℂ := fun w ζ => ∫ z : ℂ, z ^ a * (starRingEnd ℂ) z ^ b * (((1 + ‖z‖ ^ 2 : ℝ) : ℂ)) ^ (-w)
           * Complex.exp (-(((4 * Real.pi * (ζ * z).re : ℝ) : ℂ) * Complex.I))

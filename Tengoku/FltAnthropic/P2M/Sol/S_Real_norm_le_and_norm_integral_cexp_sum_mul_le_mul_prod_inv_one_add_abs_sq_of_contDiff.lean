@@ -16,24 +16,45 @@ variable {r : ℕ}
 
 def box (r : ℕ) (R : ℝ) : Set (Fin r → ℝ) := Set.pi Set.univ fun _ => Set.Icc (-R) R
 
+/--
+@isnad1 id=iff.0h3v.s5.652eff243201 from=translated src=- shape=35487927 vocab=89b18e12
+-/
 theorem mem_box_iff {R : ℝ} {x : Fin r → ℝ} : x ∈ box r R ↔ ∀ k, |x k| ≤ R := by
   simp only [box, Set.mem_univ_pi, Set.mem_Icc, abs_le]
 
+/--
+@isnad1 id=iff.0h3v.s5.c2252ac46101 from=translated src=- shape=528a3e33 vocab=22c32f92
+-/
 theorem not_mem_box_iff {R : ℝ} {x : Fin r → ℝ} : x ∉ box r R ↔ ∃ k, R < |x k| := by
   rw [mem_box_iff]; push Not; rfl
 
+/--
+@isnad1 id=iscompac.0h2v.s4.670fe45b6e72 from=translated src=- shape=663d86fd vocab=f670c51e
+-/
 theorem isCompact_box (R : ℝ) : IsCompact (box r R) :=
   isCompact_univ_pi fun _ => isCompact_Icc
 
+/--
+@isnad1 id=isclosed.0h2v.s4.8f8fe5151686 from=translated src=- shape=663d86fd vocab=57407b65
+-/
 theorem isClosed_box (R : ℝ) : IsClosed (box r R) := (isCompact_box R).isClosed
 
+/--
+@isnad1 id=measurab.0h2v.s4.35bc8d5045d8 from=translated src=- shape=663d86fd vocab=1dcc77db
+-/
 theorem measurableSet_box (R : ℝ) : MeasurableSet (box r R) := (isClosed_box R).measurableSet
 
+/--
+@isnad1 id=eq.1h2v.s6.505660e72d64 from=translated src=- shape=3b6fe014 vocab=61b4aef4
+-/
 theorem volume_box {R : ℝ} (hR : 0 ≤ R) : volume (box r R) = ENNReal.ofReal ((2 * R) ^ r) := by
   rw [box, volume_pi_pi]
   simp only [Real.volume_Icc, sub_neg_eq_add, Finset.prod_const, Finset.card_univ, Fintype.card_fin]
   rw [← two_mul, ENNReal.ofReal_pow (by positivity)]
 
+/--
+@isnad1 id=eq.1h2v.s6.7fa56a5fbfff from=translated src=- shape=b21e8771 vocab=75bb9111
+-/
 theorem volume_real_box {R : ℝ} (hR : 0 ≤ R) : volume.real (box r R) = (2 * R) ^ r := by
   rw [Measure.real, volume_box hR, ENNReal.toReal_ofReal (by positivity)]
 
@@ -43,26 +64,41 @@ theorem eq_zero_of_not_mem (hsupp : ∀ x : Fin r → ℝ, (∃ k, R < |x k|) �
     {x : Fin r → ℝ} (hx : x ∉ box r R) : g x = 0 :=
   hsupp x (not_mem_box_iff.mp hx)
 
+/--
+@isnad1 id=le.1h3v.s6.53c9e217ff3d from=translated src=- shape=f5370f6d vocab=6eb253cd
+-/
 theorem support_subset (hsupp : ∀ x : Fin r → ℝ, (∃ k, R < |x k|) → g x = 0) :
     Function.support g ⊆ box r R := by
   intro x hx
   by_contra h
   exact hx (eq_zero_of_not_mem hsupp h)
 
+/--
+@isnad1 id=le.1h3v.s6.78b8b5e051d8 from=translated src=- shape=f5370f6d vocab=d6e78ab4
+-/
 theorem tsupport_subset (hsupp : ∀ x : Fin r → ℝ, (∃ k, R < |x k|) → g x = 0) :
     tsupport g ⊆ box r R :=
   closure_minimal (support_subset hsupp) (isClosed_box R)
 
+/--
+@isnad1 id=hascompa.1h3v.s6.399ba69fa2c1 from=translated src=- shape=70cef9f6 vocab=a27b5f21
+-/
 theorem hasCompactSupport (hsupp : ∀ x : Fin r → ℝ, (∃ k, R < |x k|) → g x = 0) :
     HasCompactSupport g :=
   HasCompactSupport.intro (isCompact_box R) fun _ hx => eq_zero_of_not_mem hsupp hx
 
+/--
+@isnad1 id=eq.2h5v.s9.c254a0b7d82f from=translated src=- shape=f175c119 vocab=d8ff5cbd
+-/
 theorem iteratedFDeriv_eq_zero (hsupp : ∀ x : Fin r → ℝ, (∃ k, R < |x k|) → g x = 0) (n : ℕ)
     {x : Fin r → ℝ} (hx : x ∉ box r R) : iteratedFDeriv ℝ n g x = 0 := by
   have h : x ∉ Function.support (iteratedFDeriv ℝ n g) := fun h =>
     hx (tsupport_subset hsupp (support_iteratedFDeriv_subset n h))
   simpa [Function.mem_support] using h
 
+/--
+@isnad1 id=le.2h6v.s9.028022fabb9e from=translated src=- shape=8c0d2669 vocab=6549eafc
+-/
 theorem norm_iteratedFDeriv_le_indicator (hsupp : ∀ x : Fin r → ℝ, (∃ k, R < |x k|) → g x = 0)
     {n : ℕ} (hM : ∀ x, ‖iteratedFDeriv ℝ n g x‖ ≤ M) (x : Fin r → ℝ) :
     ‖iteratedFDeriv ℝ n g x‖ ≤ (box r R).indicator (fun _ => M) x := by
@@ -70,12 +106,18 @@ theorem norm_iteratedFDeriv_le_indicator (hsupp : ∀ x : Fin r → ℝ, (∃ k,
   · rw [Set.indicator_of_mem hx]; exact hM x
   · rw [Set.indicator_of_notMem hx, iteratedFDeriv_eq_zero hsupp n hx, norm_zero]
 
+/--
+@isnad1 id=integrab.3h5v.s10.4680bc56b072 from=translated src=- shape=8cb8be1c vocab=cb243bb1
+-/
 theorem integrable_iteratedFDeriv {N : ℕ∞} (hg : ContDiff ℝ N g)
     (hsupp : ∀ x : Fin r → ℝ, (∃ k, R < |x k|) → g x = 0) {n : ℕ} (hn : (n : ℕ∞) ≤ N) :
     Integrable (iteratedFDeriv ℝ n g) :=
   (hg.continuous_iteratedFDeriv (by exact_mod_cast hn)).integrable_of_hasCompactSupport
     ((hasCompactSupport hsupp).iteratedFDeriv n)
 
+/--
+@isnad1 id=le.3h5v.s9.824cebc2ca21 from=translated src=- shape=1acd0c18 vocab=d0d161f9
+-/
 theorem integral_norm_iteratedFDeriv_le (hR : 0 ≤ R)
     (hsupp : ∀ x : Fin r → ℝ, (∃ k, R < |x k|) → g x = 0)
     {n : ℕ} (hM : ∀ x, ‖iteratedFDeriv ℝ n g x‖ ≤ M) :
@@ -94,9 +136,15 @@ noncomputable def dotL (r : ℕ) : (Fin r → ℝ) →L[ℝ] (Fin r → ℝ) →
   ∑ k : Fin r, (ContinuousLinearMap.proj k : (Fin r → ℝ) →L[ℝ] ℝ).smulRight
     (ContinuousLinearMap.proj k : (Fin r → ℝ) →L[ℝ] ℝ)
 
+/--
+@isnad1 id=eq.0h3v.s9.13b15a9e3937 from=translated src=- shape=522ad7ed vocab=d3281aae
+-/
 theorem dotL_apply (v w : Fin r → ℝ) : dotL r v w = ∑ k, v k * w k := by
   simp [dotL, sum_apply]
 
+/--
+@isnad1 id=eq.0h3v.s9.50d5c4e4ed91 from=translated src=- shape=a800a5cf vocab=d32b9f35
+-/
 theorem dotL_single (k : Fin r) (w : Fin r → ℝ) : dotL r (Pi.single k 1) w = w k := by
   classical
   rw [dotL_apply]
@@ -105,6 +153,9 @@ theorem dotL_single (k : Fin r) (w : Fin r → ℝ) : dotL r (Pi.single k 1) w =
 noncomputable abbrev four (g : (Fin r → ℝ) → ℂ) : (Fin r → ℝ) → ℂ :=
   VectorFourier.fourierIntegral 𝐞 volume (dotL r).toLinearMap₁₂ g
 
+/--
+@isnad1 id=eq.0h3v.s7.cbf2538b1fc1 from=translated src=- shape=25e266b6 vocab=4a5e76d8
+-/
 theorem integral_kernel_eq_four (g : (Fin r → ℝ) → ℂ) (ξ : Fin r → ℝ) :
     ∫ x : Fin r → ℝ, Complex.exp (-(2 * Real.pi * Complex.I * ((∑ k, ξ k * x k : ℝ) : ℂ))) * g x =
       four g ξ := by
@@ -118,6 +169,9 @@ theorem integral_kernel_eq_four (g : (Fin r → ℝ) → ℂ) (ξ : Fin r → �
   push_cast
   ring_nf
 
+/--
+@isnad1 id=le.4h6v.s9.e0db2ce11ad8 from=translated src=- shape=787bee65 vocab=3cd18770
+-/
 theorem key (hR : 0 ≤ R) (hg : ContDiff ℝ ((2 * r : ℕ) : ℕ∞) g)
     (hsupp : ∀ x : Fin r → ℝ, (∃ k, R < |x k|) → g x = 0)
     (hM : ∀ n : ℕ, n ≤ 2 * r → ∀ x : Fin r → ℝ, ‖iteratedFDeriv ℝ n g x‖ ≤ M)
@@ -175,6 +229,9 @@ theorem key (hR : 0 ≤ R) (hg : ContDiff ℝ ((2 * r : ℕ) : ℕ∞) g)
   rw [← hnormR, ← Hm]
   exact hnormL
 
+/--
+@isnad1 id=le.4h5v.s9.a962edfb4881 from=translated src=- shape=13ed6817 vocab=b1182374
+-/
 theorem prod_mul_norm_four_le (hR : 0 ≤ R) (hg : ContDiff ℝ ((2 * r : ℕ) : ℕ∞) g)
     (hsupp : ∀ x : Fin r → ℝ, (∃ k, R < |x k|) → g x = 0)
     (hM : ∀ n : ℕ, n ≤ 2 * r → ∀ x : Fin r → ℝ, ‖iteratedFDeriv ℝ n g x‖ ≤ M) (ξ : Fin r → ℝ) :
@@ -198,6 +255,9 @@ theorem prod_mul_norm_four_le (hR : 0 ≤ R) (hg : ContDiff ℝ ((2 * r : ℕ) :
         push_cast
         ring
 
+/--
+@isnad1 id=le.0h1v.s7.7dd395b9a362 from=translated src=- shape=e7f15cc4 vocab=1b93302d
+-/
 theorem inv_one_add_le (t : ℝ) : (1 + 4 * Real.pi ^ 2 * t ^ 2)⁻¹ ≤ 2 * (1 + |t|)⁻¹ ^ 2 := by
   have hpi : (1 : ℝ) ≤ Real.pi ^ 2 := by nlinarith [Real.pi_gt_three]
   have h1 : 0 < 1 + |t| := by positivity
@@ -211,6 +271,9 @@ theorem inv_one_add_le (t : ℝ) : (1 + 4 * Real.pi ^ 2 * t ^ 2)⁻¹ ≤ 2 * (1
     _ = 2 * ((1 + |t|) ^ 2)⁻¹ := div_eq_mul_inv _ _
     _ = 2 * (1 + |t|)⁻¹ ^ 2 := by rw [inv_pow]
 
+/--
+@isnad1 id=le.1h3v.s7.9ffd509e436d from=translated src=- shape=a4a5fee3 vocab=c19f5577
+-/
 theorem one_le_mul_prod {x : Fin r → ℝ} (hx : x ∈ box r R) :
     1 ≤ (1 + R) ^ (2 * r) * ∏ k, (1 + |x k|)⁻¹ ^ 2 := by
   rw [mem_box_iff] at hx
@@ -224,6 +287,9 @@ theorem one_le_mul_prod {x : Fin r → ℝ} (hx : x ∈ box r R) :
   rw [inv_pow, ← div_eq_mul_inv, one_le_div (by positivity)]
   exact pow_le_pow_left₀ h0.le (by linarith : 1 + |x k| ≤ 1 + R) 2
 
+/--
+@isnad1 id=and.4h4v.s9.21d9fce44ae8 from=translated src=- shape=3ce94ea3 vocab=affcc120
+-/
 theorem main (hR : 0 ≤ R) (hg : ContDiff ℝ ((2 * r : ℕ) : ℕ∞) g)
     (hsupp : ∀ x : Fin r → ℝ, (∃ k, R < |x k|) → g x = 0)
     (hM : ∀ n : ℕ, n ≤ 2 * r → ∀ x : Fin r → ℝ, ‖iteratedFDeriv ℝ n g x‖ ≤ M) :
@@ -270,6 +336,9 @@ theorem main (hR : 0 ≤ R) (hg : ContDiff ℝ ((2 * r : ℕ) : ℕ∞) g)
 
 end R4WinBox
 
+/--
+@isnad1 id=and.4h4v.s9.21d9fce44ae8 from=translated src=- shape=3ce94ea3 vocab=affcc120
+-/
 theorem solution
     {r : ℕ} (g : (Fin r → ℝ) → ℂ) (R M : ℝ) (hR : 0 ≤ R)
     (hg : ContDiff ℝ ((2 * r : ℕ) : ℕ∞) g)

@@ -11,6 +11,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=isintegr.0h4v.s6.2c9cb8231fd8 from=translated src=- shape=abc47d8c vocab=c7919be6
+-/
 theorem solution
     {A : Type u} [CommRing A] [IsDomain A] (L : Type u) [Field L] [Algebra A L] [IsFractionRing A L]
     {X : Scheme.{u}} (f : X ⟶ Spec (.of A)) [Flat f]

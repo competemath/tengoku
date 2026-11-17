@@ -12,6 +12,9 @@ open CategoryTheory AlgebraicGeometry Topology
 
 universe u
 
+/--
+@isnad1 id=mem.3h5v.s9.823c64a4b1ef from=translated src=- shape=1e75394c vocab=0f67389c
+-/
 theorem solution
     {X Y : Scheme.{u}} (f : X ⟶ Y) [LocallyOfFinitePresentation f] [QuasiCompact f]
     [CompactSpace Y] [QuasiSeparatedSpace Y] {C : Set X} (hC : Topology.IsConstructible C)

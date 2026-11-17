@@ -9,6 +9,9 @@ set_option autoImplicit false
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 universe u
 
+/--
+@isnad1 id=isaffine.2h7v.s8.3e3aab04c1ea from=translated src=- shape=33fe2cde vocab=d2bf0f42
+-/
 theorem solution
     {X Y S : Scheme.{u}} [IsAffine S] (f : X ⟶ S) (g : Y ⟶ S)
     {U : X.Opens} (hU : IsAffineOpen U) {V : Y.Opens} (hV : IsAffineOpen V) :

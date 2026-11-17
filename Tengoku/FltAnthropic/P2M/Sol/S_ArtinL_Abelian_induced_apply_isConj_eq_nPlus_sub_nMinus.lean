@@ -19,6 +19,9 @@ namespace ArtinArchProof
 
 variable {F : Type u} [Field F] [NumberField F] [IsGalois ℚ F]
 
+/--
+@isnad1 id=bijectiv.0h2v.s7.640777d35097 from=translated src=- shape=2e12342a vocab=db3a4d28
+-/
 theorem comp_bijective (φ : F →+* ℂ) :
     Function.Bijective fun y : F ≃ₐ[ℚ] F => φ.comp (y : F →+* F) := by
   have hinj : Function.Injective fun y : F ≃ₐ[ℚ] F => φ.comp (y : F →+* F) := by
@@ -29,12 +32,18 @@ theorem comp_bijective (φ : F →+* ℂ) :
   refine (Fintype.bijective_iff_injective_and_card _).mpr ⟨hinj, ?_⟩
   rw [← Nat.card_eq_fintype_card, IsGalois.card_aut_eq_finrank, NumberField.Embeddings.card]
 
+/--
+@isnad1 id=ex.0h3v.s7.d532a3eb4534 from=translated src=- shape=2c843148 vocab=017c05be
+-/
 theorem exists_eq_comp (φ φ' : F →+* ℂ) : ∃ y : F ≃ₐ[ℚ] F, φ' = φ.comp (y : F →+* F) := by
   obtain ⟨y, hy⟩ := (comp_bijective φ).2 φ'
   exact ⟨y, hy.symm⟩
 
 omit [IsGalois ℚ F] in
 
+/--
+@isnad1 id=eq.1h3v.s9.152d628246b4 from=translated src=- shape=03e8e573 vocab=c86ad069
+-/
 theorem mul_self_eq_one_of_isConj {φ : F →+* ℂ} {σ : F ≃ₐ[ℚ] F}
     (hσ : ComplexEmbedding.IsConj φ σ) : σ * σ = 1 := by
   apply AlgEquiv.ext
@@ -50,9 +59,15 @@ def emb (φ : F →+* ℂ) (x : F ≃ₐ[ℚ] F) : fixK H →+* ℂ :=
   (φ.comp (x : F →+* F)).comp (algebraMap (fixK H) F)
 
 omit [IsGalois ℚ F] in
+/--
+@isnad1 id=eq.0h5v.s9.ecc4ded3a3a9 from=translated src=- shape=6158442b vocab=6dd946ae
+-/
 theorem emb_apply (φ : F →+* ℂ) (x : F ≃ₐ[ℚ] F) (k : fixK H) : emb H φ x k = φ (x k) := rfl
 
 omit [IsGalois ℚ F] in
+/--
+@isnad1 id=iff.0h3v.s9.4626e877c39a from=translated src=- shape=d5192ee2 vocab=891cf919
+-/
 theorem mem_iff_forall_apply (g : F ≃ₐ[ℚ] F) : g ∈ H ↔ ∀ k : fixK H, g k = k := by
   constructor
   · intro hg k
@@ -63,6 +78,9 @@ theorem mem_iff_forall_apply (g : F ≃ₐ[ℚ] F) : g ∈ H ↔ ∀ k : fixK H,
     exact hg ⟨z, hz⟩
 
 omit [IsGalois ℚ F] in
+/--
+@isnad1 id=iff.0h5v.s10.a7fd2af9396f from=translated src=- shape=c88b4179 vocab=be7eba03
+-/
 theorem emb_eq_iff (φ : F →+* ℂ) (x y : F ≃ₐ[ℚ] F) : emb H φ x = emb H φ y ↔ x⁻¹ * y ∈ H := by
   rw [mem_iff_forall_apply]
   constructor
@@ -84,6 +102,9 @@ theorem emb_eq_iff (φ : F →+* ℂ) (x y : F ≃ₐ[ℚ] F) : emb H φ x = emb
     exact this.symm
 
 omit [IsGalois ℚ F] in
+/--
+@isnad1 id=iff.1h5v.s10.d7ecee03fa14 from=translated src=- shape=21388730 vocab=e40dc0c6
+-/
 theorem isReal_emb_iff {φ : F →+* ℂ} {σ : F ≃ₐ[ℚ] F} (hσ : ComplexEmbedding.IsConj φ σ)
     (x : F ≃ₐ[ℚ] F) : ComplexEmbedding.IsReal (emb H φ x) ↔ x⁻¹ * σ * x ∈ H := by
   have hx := hσ.comp x
@@ -102,6 +123,9 @@ theorem isReal_emb_iff {φ : F →+* ℂ} {σ : F ≃ₐ[ℚ] F} (hσ : ComplexE
 
 omit [IsGalois ℚ F] in
 
+/--
+@isnad1 id=le.0h4v.s10.baf3f8877e8d from=translated src=- shape=f364473c vocab=d60ed431
+-/
 theorem card_fiber_le (φ : F →+* ℂ) (ρ : fixK H →+* ℂ) :
     (Finset.univ.filter fun x : F ≃ₐ[ℚ] F => emb H φ x = ρ).card ≤ Fintype.card H := by
   set S := Finset.univ.filter fun x : F ≃ₐ[ℚ] F => emb H φ x = ρ with hS
@@ -121,11 +145,17 @@ theorem card_fiber_le (φ : F →+* ℂ) (ρ : fixK H →+* ℂ) :
     simp only [dite_eq_left hyS, dite_eq_left hy'S, Subtype.mk.injEq] at h
     exact mul_left_cancel h
 
+/--
+@isnad1 id=eq.0h2v.s10.ec9b8f91830a from=translated src=- shape=f2bbf680 vocab=9cb5ee8e
+-/
 theorem card_gal_eq : Fintype.card (F ≃ₐ[ℚ] F) = Fintype.card (fixK H →+* ℂ) * Fintype.card H := by
   rw [← Nat.card_eq_fintype_card, IsGalois.card_aut_eq_finrank, NumberField.Embeddings.card,
     ← Nat.card_eq_fintype_card (α := H), ← IntermediateField.finrank_fixedField_eq_card H,
     Module.finrank_mul_finrank]
 
+/--
+@isnad1 id=eq.0h4v.s10.6e63b505026e from=translated src=- shape=0241adb5 vocab=70ac3183
+-/
 theorem card_fiber_eq (φ : F →+* ℂ) (ρ : fixK H →+* ℂ) :
     (Finset.univ.filter fun x : F ≃ₐ[ℚ] F => emb H φ x = ρ).card = Fintype.card H := by
   have hsum : ∑ ρ' : fixK H →+* ℂ, (Finset.univ.filter fun x : F ≃ₐ[ℚ] F => emb H φ x = ρ').card =
@@ -135,6 +165,9 @@ theorem card_fiber_eq (φ : F →+* ℂ) (ρ : fixK H →+* ℂ) :
     exact card_gal_eq H
   exact (Finset.sum_eq_sum_iff_of_le fun ρ' _ => card_fiber_le H φ ρ').mp hsum ρ (Finset.mem_univ ρ)
 
+/--
+@isnad1 id=eq.0h4v.s10.df5e5fd8495a from=translated src=- shape=b33e5c1f vocab=4cf2f8a7
+-/
 theorem sum_comp_emb (φ : F →+* ℂ) (g : (fixK H →+* ℂ) → ℂ) :
     ∑ x : F ≃ₐ[ℚ] F, g (emb H φ x) = (Nat.card H : ℂ) * ∑ ρ : fixK H →+* ℂ, g ρ := by
   rw [← Finset.sum_fiberwise_of_maps_to' (g := emb H φ) (t := Finset.univ)
@@ -151,15 +184,24 @@ def toGalK (g : F ≃ₐ[ℚ] F) (hg : g ∈ H) : F ≃ₐ[fixK H] F :=
     ⟨g, by rw [IntermediateField.fixingSubgroup_fixedField H]; exact hg⟩
 
 omit [IsGalois ℚ F] in
+/--
+@isnad1 id=eq.1h3v.s9.2b3123082088 from=translated src=- shape=28ce8bc7 vocab=decfc675
+-/
 theorem coe_toGalK (g : F ≃ₐ[ℚ] F) (hg : g ∈ H) : ((toGalK H g hg : F ≃ₐ[fixK H] F) : F →+* F) =
     (g : F →+* F) := RingHom.ext fun _ => rfl
 
 omit [IsGalois ℚ F] in
+/--
+@isnad1 id=eq.1h4v.s12.c6fe16a5aec0 from=translated src=- shape=5b62ae16 vocab=5b5a015e
+-/
 theorem ψχ_toGalK (g : F ≃ₐ[ℚ] F) (hg : g ∈ H) : ψχ H χ (toGalK H g hg) = χ ⟨g, hg⟩ :=
   ArtinL.Abelian.ofSubgroup_fixingSubgroupEquiv H χ ⟨g, hg⟩
 
 omit [IsGalois ℚ F] in
 
+/--
+@isnad1 id=eq.2h6v.s10.16c4b74291d4 from=translated src=- shape=06bd82b4 vocab=bd1e8b3d
+-/
 theorem restrictScalars_eq_of_isConj {φ : F →+* ℂ} {σ : F ≃ₐ[ℚ] F}
     (hσ : ComplexEmbedding.IsConj φ σ) (y : F ≃ₐ[ℚ] F) (τ : F ≃ₐ[fixK H] F)
     (hτ : ComplexEmbedding.IsConj (φ.comp (y : F →+* F)) τ) :
@@ -170,6 +212,9 @@ theorem restrictScalars_eq_of_isConj {φ : F →+* ℂ} {σ : F ≃ₐ[ℚ] F}
     rfl
   exact h1.ext (hσ.comp y)
 
+/--
+@isnad1 id=iff.2h6v.s12.75f589f48662 from=translated src=- shape=0c1c837e vocab=546eaade
+-/
 theorem isPlusAt_iff {φ : F →+* ℂ} {σ : F ≃ₐ[ℚ] F} (hσ : ComplexEmbedding.IsConj φ σ)
     (x : F ≃ₐ[ℚ] F) (hx : x⁻¹ * σ * x ∈ H) :
     ArtinL.Abelian.IsPlusAt (ψχ H χ) (mk (emb H φ x)) ↔ χ ⟨x⁻¹ * σ * x, hx⟩ = 1 := by
@@ -218,6 +263,9 @@ theorem isPlusAt_iff {φ : F →+* ℂ} {σ : F ≃ₐ[ℚ] F} (hσ : ComplexEmb
       rfl
 
 omit [IsGalois ℚ F] in
+/--
+@isnad1 id=or.2h6v.s13.e2ecbdf68d73 from=translated src=- shape=37a6e9e4 vocab=c00ab028
+-/
 theorem coe_apply_eq_one_or {φ : F →+* ℂ} {σ : F ≃ₐ[ℚ] F} (hσ : ComplexEmbedding.IsConj φ σ)
     (x : F ≃ₐ[ℚ] F) (hx : x⁻¹ * σ * x ∈ H) :
     ((χ ⟨x⁻¹ * σ * x, hx⟩ : ℂˣ) : ℂ) = 1 ∨ ((χ ⟨x⁻¹ * σ * x, hx⟩ : ℂˣ) : ℂ) = -1 := by
@@ -235,6 +283,9 @@ def gAux (ρ : fixK H →+* ℂ) : ℂ :=
     (if ArtinL.Abelian.IsPlusAt (ψχ H χ) (mk ρ) then 1 else -1)
   else 0
 
+/--
+@isnad1 id=eq.1h6v.s13.622790bbbe11 from=translated src=- shape=bce505ae vocab=0c4ec6de
+-/
 theorem summand_eq {φ : F →+* ℂ} {σ : F ≃ₐ[ℚ] F} (hσ : ComplexEmbedding.IsConj φ σ)
     (x : F ≃ₐ[ℚ] F) :
     (if hx : x⁻¹ * σ * x ∈ H then (((χ ⟨x⁻¹ * σ * x, hx⟩ : ℂˣ) : ℂ)) else 0) =
@@ -253,6 +304,9 @@ theorem summand_eq {φ : F →+* ℂ} {σ : F ≃ₐ[ℚ] F} (hσ : ComplexEmbed
 
 omit [IsGalois ℚ F] in
 
+/--
+@isnad1 id=eq.0h3v.s11.906f56ee0d3e from=translated src=- shape=7c3e2d3b vocab=56ec7bd6
+-/
 theorem natCard_real_and (P : InfinitePlace (fixK H) → Prop) :
     Nat.card {v : InfinitePlace (fixK H) // v.IsReal ∧ P v} =
       (Finset.univ.filter fun ρ : fixK H →+* ℂ => ComplexEmbedding.IsReal ρ ∧ P (mk ρ)).card := by
@@ -269,12 +323,18 @@ theorem natCard_real_and (P : InfinitePlace (fixK H) → Prop) :
   rw [← Nat.card_congr (e₁.trans (e₂.trans e₃)), Nat.card_eq_fintype_card, Fintype.card_subtype]
 
 omit [IsGalois ℚ F] in
+/--
+@isnad1 id=eq.0h3v.s11.168a33de4c11 from=translated src=- shape=df24101e vocab=7fbfdd51
+-/
 theorem nPlus_eq :
     ArtinL.Abelian.nPlus (ψχ H χ) = (Finset.univ.filter fun ρ : fixK H →+* ℂ =>
       ComplexEmbedding.IsReal ρ ∧ ArtinL.Abelian.IsPlusAt (ψχ H χ) (mk ρ)).card :=
   natCard_real_and H _
 
 omit [IsGalois ℚ F] in
+/--
+@isnad1 id=eq.0h3v.s11.d8e8b6d6690d from=translated src=- shape=812b1f23 vocab=f5ab72f9
+-/
 theorem nMinus_eq :
     ArtinL.Abelian.nMinus (ψχ H χ) = (Finset.univ.filter fun ρ : fixK H →+* ℂ =>
       ComplexEmbedding.IsReal ρ ∧ ¬ ArtinL.Abelian.IsPlusAt (ψχ H χ) (mk ρ)).card := by
@@ -286,6 +346,9 @@ theorem nMinus_eq :
   omega
 
 omit [IsGalois ℚ F] in
+/--
+@isnad1 id=eq.0h3v.s11.6202ab6f8e55 from=translated src=- shape=96e100f0 vocab=30b9843a
+-/
 theorem sum_gAux :
     ∑ ρ : fixK H →+* ℂ, gAux H χ ρ =
       (ArtinL.Abelian.nPlus (ψχ H χ) : ℂ) - ArtinL.Abelian.nMinus (ψχ H χ) := by
@@ -303,6 +366,9 @@ theorem sum_gAux :
   simp_rw [h]
   rw [Finset.sum_sub_distrib, Finset.sum_boole, Finset.sum_boole, nPlus_eq, nMinus_eq]
 
+/--
+@isnad1 id=eq.1h5v.s13.93d9266ffc1e from=translated src=- shape=9f270b4d vocab=f87686e8
+-/
 theorem main {φ : F →+* ℂ} {σ : F ≃ₐ[ℚ] F} (hσ : ComplexEmbedding.IsConj φ σ) :
     (Nat.card H : ℂ)⁻¹ *
         ∑ x : F ≃ₐ[ℚ] F, (if hx : x⁻¹ * σ * x ∈ H then (((χ ⟨x⁻¹ * σ * x, hx⟩ : ℂˣ) : ℂ)) else 0) =
@@ -317,6 +383,9 @@ end ArtinArchProof
 
 open scoped Classical in
 
+/--
+@isnad1 id=eq.1h5v.s13.80aae7d17a2a from=translated src=- shape=ca0d1c67 vocab=f87686e8
+-/
 theorem solution
     {F : Type u} [Field F] [NumberField F] [IsGalois ℚ F]
     (φ : F →+* ℂ) (σ : F ≃ₐ[ℚ] F) (hσ : ComplexEmbedding.IsConj φ σ)

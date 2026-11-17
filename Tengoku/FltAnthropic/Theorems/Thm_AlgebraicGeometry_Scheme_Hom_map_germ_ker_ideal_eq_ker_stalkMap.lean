@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry TopologicalSpace
 
+/--
+@isnad1 id=eq.1h5v.s13.bce9cd9a354e from=translated src=- shape=3bc5215d vocab=3287d5da
+-/
 theorem AlgebraicGeometry.Scheme.Hom.map_germ_ker_ideal_eq_ker_stalkMap {X Y : Scheme.{u}} (σ : Y ⟶ X) [IsClosedImmersion σ]
     (y : Y) (U : X.affineOpens) (hx : σ.base y ∈ (U : X.Opens)) :
     Ideal.map (X.presheaf.germ (U : X.Opens) (σ.base y) hx).hom (σ.ker.ideal U) = RingHom.ker (σ.stalkMap y).hom := by exact @_root_.P2MW.S_AlgebraicGeometry_Scheme_Hom_map_germ_ker_ideal_eq_ker_stalkMap.solution X Y σ _ y U hx

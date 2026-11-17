@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry TensorProduct
 
+/--
+@isnad1 id=ex.1h5v.s8.8442e8352e3a from=translated src=- shape=d144fc6c vocab=372b1275
+-/
 theorem AlgebraicGeometry.isDomain_functionField_tensorProduct_of_isIntegral_pullback
     (M : ℕ) [NeZero M]
     (X : Scheme.{0}) [IsIntegral X] (πX : X ⟶ Spec (CommRingCat.of (Localization.Away ((M : ℕ) : ℤ))))

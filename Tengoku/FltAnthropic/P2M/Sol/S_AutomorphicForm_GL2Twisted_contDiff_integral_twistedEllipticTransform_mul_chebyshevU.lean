@@ -1077,6 +1077,9 @@ open scoped _root_.P2MW.S_AutomorphicForm_GL2Twisted_contDiff_integral_twistedEl
 
 open TwistedEllipticModes in
 
+/--
+@isnad1 id=and.3h3v.s11.11e1f86466c9 from=translated src=- shape=418ab4ba vocab=334ac338
+-/
 theorem solution
     (P : Type) [NormedAddCommGroup P] [NormedSpace ℝ P]
     (Φ : (Fin 2 → Fin 2 → ℂ) × P → ℂ) (hΦ : ContDiff ℝ (⊤ : ℕ∞) Φ) (hΦc : HasCompactSupport Φ)

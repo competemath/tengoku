@@ -13,6 +13,9 @@ open CategoryTheory AlgebraicGeometry TensorProduct
 
 namespace ProdCotangentSpec
 
+/--
+@isnad1 id=eq.0h3v.s7.2d9f344486f4 from=translated src=- shape=d7dd8210 vocab=46d9f209
+-/
 lemma map_maximalIdeal_of_iso {R S : CommRingCat.{u}} [IsLocalRing R] [IsLocalRing S] (e : R ≅ S) :
     (IsLocalRing.maximalIdeal R).map e.hom.hom = IsLocalRing.maximalIdeal S := by
   have hsurj : Function.Surjective e.hom.hom := e.commRingCatIsoToRingEquiv.surjective
@@ -26,6 +29,9 @@ lemma map_maximalIdeal_of_iso {R S : CommRingCat.{u}} [IsLocalRing R] [IsLocalRi
     · exact fun hu ↦ hu.map _
   rw [← hcomap, Ideal.map_comap_of_surjective _ hsurj]
 
+/--
+@isnad1 id=eq.1h8v.s8.fca53f825c0c from=translated src=- shape=e9716a4b vocab=78d96220
+-/
 lemma map_stalk_eq {R₁ S₁ R₂ S₂ : CommRingCat.{u}} [IsLocalRing R₁] [IsLocalRing R₂]
     (u : R₁ ⟶ S₁) (v : R₂ ⟶ S₂) (eL : R₁ ≅ R₂) (eR : S₁ ≅ S₂) (h : eL.hom ≫ v ≫ eR.inv = u) :
     (IsLocalRing.maximalIdeal R₁).map u.hom =
@@ -39,15 +45,27 @@ variable {k : Type u} [Field k] {A B : Type u} [CommRing A] [CommRing B] [Algebr
 noncomputable def ε : A ⊗[k] B →ₐ[k] k :=
   Algebra.TensorProduct.lift εA εB (fun _ _ ↦ Commute.all _ _)
 
+/--
+@isnad1 id=surjecti.0h3v.s6.e0a84871d799 from=translated src=- shape=4b4293b6 vocab=8d1871c9
+-/
 lemma εA_surjective : Function.Surjective εA := fun c ↦ ⟨algebraMap k A c, by simp⟩
+/--
+@isnad1 id=surjecti.0h3v.s6.e0a84871d799 from=translated src=- shape=4b4293b6 vocab=8d1871c9
+-/
 lemma εB_surjective : Function.Surjective εB := fun c ↦ ⟨algebraMap k B c, by simp⟩
 
+/--
+@isnad1 id=eq.0h5v.s9.07e47f379422 from=translated src=- shape=adbfd030 vocab=cdb6b62d
+-/
 lemma ε_eq_comp : (ε εA εB : A ⊗[k] B →ₐ[k] k) =
     (Algebra.TensorProduct.lmul' k (S := k)).comp (Algebra.TensorProduct.map εA εB) := by
   ext a
   · simp [ε]
   · simp [ε]
 
+/--
+@isnad1 id=eq.0h5v.s10.f578d0fe6f7d from=translated src=- shape=cc2e0b86 vocab=b1fa443e
+-/
 theorem ker_ε :
     RingHom.ker (ε εA εB : A ⊗[k] B →ₐ[k] k) =
       (RingHom.ker εA).map (Algebra.TensorProduct.includeLeft : A →ₐ[k] A ⊗[k] B) ⊔
@@ -75,18 +93,27 @@ theorem ker_ε :
     change (Algebra.TensorProduct.map εA εB) t = 0 at h
     rw [h, map_zero]
 
+/--
+@isnad1 id=ismaxima.0h5v.s8.d62babc69ccb from=translated src=- shape=fc691963 vocab=66225a78
+-/
 scoped instance isMaximal_ker_ε : (RingHom.ker (ε εA εB : A ⊗[k] B →ₐ[k] k)).IsMaximal :=
   RingHom.ker_isMaximal_of_surjective _ fun c ↦ ⟨algebraMap k _ c, AlgHom.commutes _ c⟩
 
 noncomputable def qpt : PrimeSpectrum (A ⊗[k] B) :=
   ⟨RingHom.ker (ε εA εB : A ⊗[k] B →ₐ[k] k), inferInstance⟩
 
+/--
+@isnad1 id=eq.0h5v.s9.d80bfcd0e2c7 from=translated src=- shape=e0707c0f vocab=fd6ca048
+-/
 lemma comap_includeLeft_ker :
     (RingHom.ker (ε εA εB : A ⊗[k] B →ₐ[k] k)).comap
       (Algebra.TensorProduct.includeLeftRingHom : A →+* A ⊗[k] B) = RingHom.ker εA := by
   ext a
   simp [RingHom.mem_ker, ε, Algebra.TensorProduct.includeLeftRingHom_apply]
 
+/--
+@isnad1 id=eq.0h5v.s9.6055cb3b06f2 from=translated src=- shape=26b326ed vocab=435de86e
+-/
 lemma comap_includeRight_ker :
     (RingHom.ker (ε εA εB : A ⊗[k] B →ₐ[k] k)).comap
       ((Algebra.TensorProduct.includeRight : B →ₐ[k] A ⊗[k] B).toRingHom) = RingHom.ker εB := by
@@ -102,6 +129,9 @@ noncomputable abbrev p₂ : Spec (CommRingCat.of (A ⊗[k] B)) ⟶ Spec (CommRin
 
 set_option backward.isDefEq.respectTransparency false in
 
+/--
+@isnad1 id=eq.0h5v.s15.1acd8b2b0e39 from=translated src=- shape=27d969d6 vocab=635eedae
+-/
 theorem maximalIdeal_stalk_eq :
     IsLocalRing.maximalIdeal ((Spec (CommRingCat.of (A ⊗[k] B))).presheaf.stalk (qpt εA εB)) =
       (IsLocalRing.maximalIdeal ((Spec (CommRingCat.of A)).presheaf.stalk (p₁ (k := k) (A := A) (B := B)
@@ -164,6 +194,9 @@ open CategoryTheory.Limits
 variable {k : Type u} [Field k] {A B : Type u} [CommRing A] [CommRing B] [Algebra k A] [Algebra k B]
   (εA : A →ₐ[k] k) (εB : B →ₐ[k] k)
 
+/--
+@isnad1 id=eq.1h7v.s9.3f7983391c6f from=translated src=- shape=0f090b21 vocab=e15d9f3d
+-/
 lemma transport {P₀ S₀ X₁ X₂ : CommRingCat.{u}} [IsLocalRing P₀] [IsLocalRing S₀] [IsLocalRing X₁]
     [IsLocalRing X₂] (θ : P₀ ⟶ S₀) [IsIso θ] (u₁ : X₁ ⟶ P₀) (u₂ : X₂ ⟶ P₀)
     (h : IsLocalRing.maximalIdeal S₀ = (IsLocalRing.maximalIdeal X₁).map (u₁ ≫ θ).hom ⊔
@@ -180,6 +213,9 @@ lemma transport {P₀ S₀ X₁ X₂ : CommRingCat.{u}} [IsLocalRing P₀] [IsLo
 
 set_option backward.isDefEq.respectTransparency false in
 
+/--
+@isnad1 id=eq.2h5v.s17.2d93dffaea0b from=translated src=- shape=c3989106 vocab=c7abdf4e
+-/
 theorem spec_case
     (hx : Spec.map (CommRingCat.ofHom εA.toRingHom) ≫
         Spec.map (CommRingCat.ofHom (algebraMap k A)) = 𝟙 _)
@@ -267,6 +303,9 @@ open CategoryTheory.Limits ProdCotangentSpec
 
 set_option backward.isDefEq.respectTransparency false in
 
+/--
+@isnad1 id=eq.2h7v.s15.5edd958464d9 from=translated src=- shape=6151e937 vocab=a434985d
+-/
 theorem main {k : Type u} [Field k] {X Y : Scheme.{u}}
     (fX : X ⟶ Spec (CommRingCat.of k)) (fY : Y ⟶ Spec (CommRingCat.of k))
     (x : Spec (CommRingCat.of k) ⟶ X) (hx : x ≫ fX = 𝟙 _)
@@ -389,6 +428,9 @@ theorem main {k : Type u} [Field k] {X Y : Scheme.{u}}
 end ProdCotangentGeneral
 open scoped _root_.P2MW.S_AlgebraicGeometry_maximalIdeal_stalk_pullback_eq_map_stalkMap_fst_sup_map_stalkMap_snd_of_section.ProdCotangentSpec
 
+/--
+@isnad1 id=eq.2h7v.s15.5edd958464d9 from=translated src=- shape=6151e937 vocab=a434985d
+-/
 theorem solution
     {k : Type u} [Field k] {X Y : Scheme.{u}}
     (fX : X ⟶ Spec (CommRingCat.of k)) (fY : Y ⟶ Spec (CommRingCat.of k))

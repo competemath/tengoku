@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.Definitions.Def_AutomorphicForm_ConstantTerm
 namespace P2MW.S_AutomorphicForm_constantTerm_add
 open AutomorphicForm MeasureTheory
 
+/--
+@isnad1 id=eq.2h7v.s7.6440bfa04334 from=translated src=- shape=e61178cb vocab=04ae24d2
+-/
 theorem solution {Q : Type*} [MeasurableSpace Q] {G : Type*} [Group G]
     (μ : Measure Q) (u : Q → G) {f₁ f₂ : G → ℂ} (g : G)
     (h₁ : Integrable (constantTermIntegrand u f₁ g) μ)

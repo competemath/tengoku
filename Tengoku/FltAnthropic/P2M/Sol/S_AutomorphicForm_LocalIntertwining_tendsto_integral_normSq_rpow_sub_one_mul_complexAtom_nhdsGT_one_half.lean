@@ -16,17 +16,29 @@ namespace ARCHA4C
 def atom (a b m : ℕ) (σ : ℝ) (z : ℂ) : ℂ :=
   z ^ a * (starRingEnd ℂ) z ^ b * (((1 + ‖z‖ ^ 2 : ℝ) : ℂ)) ^ (-(2 * (σ : ℂ) + 1) - ((m : ℂ)) / 2)
 
+/--
+@isnad1 id=lt.0h1v.s5.2c020e684e4f from=translated src=- shape=3f2b734f vocab=cecca3b4
+-/
 theorem one_add_sq_pos (z : ℂ) : 0 < 1 + ‖z‖ ^ 2 := by positivity
 
+/--
+@isnad1 id=eq.0h2v.s7.74d700a1f0fd from=translated src=- shape=f4209c07 vocab=88b6f114
+-/
 theorem exponent_cast (σ : ℝ) (m : ℕ) :
     (-(2 * (σ : ℂ) + 1) - ((m : ℂ)) / 2) = (((-(2 * σ + 1) - (m : ℝ) / 2 : ℝ)) : ℂ) := by
   push_cast; ring
 
+/--
+@isnad1 id=eq.0h5v.s7.b468cc0de26a from=translated src=- shape=d2f30a5f vocab=29293c4a
+-/
 theorem norm_atom (a b m : ℕ) (σ : ℝ) (z : ℂ) :
     ‖atom a b m σ z‖ = ‖z‖ ^ (a + b) * (1 + ‖z‖ ^ 2) ^ (-(2 * σ + 1) - (m : ℝ) / 2) := by
   rw [atom, norm_mul, norm_mul, norm_pow, norm_pow, Complex.norm_conj, ← pow_add, exponent_cast,
     Complex.norm_cpow_eq_rpow_re_of_pos (one_add_sq_pos z), Complex.ofReal_re]
 
+/--
+@isnad1 id=le.0h2v.s6.b8adf315c602 from=translated src=- shape=5babcd8a vocab=76c00b32
+-/
 theorem norm_pow_le (z : ℂ) (n : ℕ) : ‖z‖ ^ n ≤ (1 + ‖z‖ ^ 2) ^ ((n : ℝ) / 2) := by
   have h : ‖z‖ ≤ Real.sqrt (1 + ‖z‖ ^ 2) := Real.le_sqrt_of_sq_le (by linarith [sq_nonneg ‖z‖])
   calc ‖z‖ ^ n ≤ (Real.sqrt (1 + ‖z‖ ^ 2)) ^ n := pow_le_pow_left₀ (norm_nonneg _) h n
@@ -34,6 +46,9 @@ theorem norm_pow_le (z : ℂ) (n : ℕ) : ‖z‖ ^ n ≤ (1 + ‖z‖ ^ 2) ^ ((
         rw [Real.sqrt_eq_rpow, ← Real.rpow_natCast, ← Real.rpow_mul (by positivity)]
         congr 1; ring
 
+/--
+@isnad1 id=le.1h5v.s6.9d96fb45a42c from=translated src=- shape=b91a0bfa vocab=950ae050
+-/
 theorem norm_atom_le (a b m : ℕ) (habm : a + b ≤ m) (σ : ℝ) (z : ℂ) :
     ‖atom a b m σ z‖ ≤ (1 + ‖z‖ ^ 2) ^ (-(2 * σ + 1)) := by
   have hX : 0 < 1 + ‖z‖ ^ 2 := one_add_sq_pos z
@@ -49,12 +64,18 @@ theorem norm_atom_le (a b m : ℕ) (habm : a + b ≤ m) (σ : ℝ) (z : ℂ) :
     _ = (1 + ‖z‖ ^ 2) ^ (-(2 * σ + 1)) := by
         rw [← Real.rpow_add hX]; congr 1; ring
 
+/--
+@isnad1 id=continuo.0h4v.s5.35b893f45024 from=translated src=- shape=eeba7bce vocab=06cef210
+-/
 theorem continuous_atom (a b m : ℕ) (σ : ℝ) : Continuous (atom a b m σ) := by
   unfold atom
   refine Continuous.mul (by fun_prop) ?_
   refine Continuous.cpow (by fun_prop) continuous_const fun z => ?_
   exact_mod_cast Complex.ofReal_mem_slitPlane.mpr (one_add_sq_pos z)
 
+/--
+@isnad1 id=le.0h3v.s7.25abec3098c0 from=translated src=- shape=fc1bcf40 vocab=e6247f5a
+-/
 theorem normSq_le (c' d' z : ℂ) : ‖c' * z + d'‖ ^ 2 ≤ (‖c'‖ ^ 2 + ‖d'‖ ^ 2) * (1 + ‖z‖ ^ 2) := by
   have h1 : ‖c' * z + d'‖ ≤ ‖c'‖ * ‖z‖ + ‖d'‖ := by
     refine (norm_add_le _ _).trans ?_; rw [norm_mul]
@@ -62,12 +83,18 @@ theorem normSq_le (c' d' z : ℂ) : ‖c' * z + d'‖ ^ 2 ≤ (‖c'‖ ^ 2 + �
   calc ‖c' * z + d'‖ ^ 2 ≤ (‖c'‖ * ‖z‖ + ‖d'‖) ^ 2 := pow_le_pow_left₀ (norm_nonneg _) h1 2
     _ ≤ (‖c'‖ ^ 2 + ‖d'‖ ^ 2) * (1 + ‖z‖ ^ 2) := by nlinarith [sq_nonneg (‖c'‖ - ‖d'‖ * ‖z‖)]
 
+/--
+@isnad1 id=le.3h2v.s5.6ff54dce4287 from=translated src=- shape=ca2ebdbc vocab=c5f81665
+-/
 theorem rpow_le_max (K t : ℝ) (hK : 0 ≤ K) (ht0 : 0 ≤ t) (ht1 : t ≤ 1) : K ^ t ≤ max 1 K := by
   rcases le_or_gt K 1 with h | h
   · exact (Real.rpow_le_one hK h ht0).trans (le_max_left _ _)
   · refine (Real.rpow_le_rpow_of_exponent_le h.le ht1).trans ?_
     rw [Real.rpow_one]; exact le_max_right _ _
 
+/--
+@isnad1 id=le.3h7v.s8.8f5e1b346411 from=translated src=- shape=e2b58d13 vocab=3498fcf7
+-/
 theorem norm_F_le {c' d' : ℂ} (a b m : ℕ) (habm : a + b ≤ m) {σ : ℝ} (hσ : 1 / 2 < σ) (hσ1 : σ ≤ 1) (z : ℂ) :
     ‖((((‖c' * z + d'‖ ^ 2) ^ (2 * σ - 1) - 1 : ℝ)) : ℂ) * atom a b m σ z‖
       ≤ (max 1 (‖c'‖ ^ 2 + ‖d'‖ ^ 2) + 1) * (1 + ‖z‖ ^ 2) ^ (-(2 : ℝ)) := by
@@ -100,6 +127,9 @@ theorem norm_F_le {c' d' : ℂ} (a b m : ℕ) (habm : a + b ≤ m) {σ : ℝ} (h
     _ ≤ max 1 K * (1 + ‖z‖ ^ 2) ^ (-(2 : ℝ)) + (1 + ‖z‖ ^ 2) ^ (-(2 : ℝ)) := by rw [h1]; linarith [h2]
     _ = (max 1 K + 1) * (1 + ‖z‖ ^ 2) ^ (-(2 : ℝ)) := by ring
 
+/--
+@isnad1 id=tendsto.2h6v.s7.c594b74837e1 from=translated src=- shape=7ee653bd vocab=553e1112
+-/
 theorem tendsto_F {c' d' : ℂ} (a b m : ℕ) (habm : a + b ≤ m) {z : ℂ} (hz : c' * z + d' ≠ 0) :
     Tendsto (fun σ : ℝ => ((((‖c' * z + d'‖ ^ 2) ^ (2 * σ - 1) - 1 : ℝ)) : ℂ) * atom a b m σ z)
       (𝓝[>] (1 / 2 : ℝ)) (𝓝 0) := by
@@ -124,12 +154,18 @@ theorem tendsto_F {c' d' : ℂ} (a b m : ℕ) (habm : a + b ≤ m) {z : ℂ} (hz
   have hσ' : (1 / 2 : ℝ) < σ := hσ
   exact Real.rpow_le_one_of_one_le_of_nonpos (by linarith [sq_nonneg ‖z‖]) (by linarith)
 
+/--
+@isnad1 id=integrab.0h1v.s6.d044b85b1baa from=translated src=- shape=5b96379e vocab=670f275d
+-/
 theorem integrable_bound (C : ℝ) : Integrable fun z : ℂ => C * (1 + ‖z‖ ^ 2) ^ (-(2 : ℝ)) := by
   have := integrable_rpow_neg_one_add_norm_sq (E := ℂ) (μ := volume) (r := 4)
     (by rw [Complex.finrank_real_complex]; norm_num)
   refine (this.congr (ae_of_all _ fun z => ?_)).const_mul C
   norm_num
 
+/--
+@isnad1 id=tendsto.2h5v.s8.87be7a19bee4 from=translated src=- shape=3bad0061 vocab=761b5b37
+-/
 theorem main (c' d' : ℂ) (h : c' ≠ 0 ∨ d' ≠ 0) (a b m : ℕ) (habm : a + b ≤ m) :
     Tendsto (fun σ : ℝ =>
         ∫ z : ℂ, ((((‖c' * z + d'‖ ^ 2) ^ (2 * σ - 1) - 1 : ℝ)) : ℂ) * atom a b m σ z)
@@ -163,6 +199,9 @@ end ARCHA4C
 
 end
 
+/--
+@isnad1 id=tendsto.2h5v.s8.bd1df0c45e69 from=translated src=- shape=e49185ae vocab=ce53a3ea
+-/
 theorem solution
     (c' d' : ℂ) (_h : c' ≠ 0 ∨ d' ≠ 0) (a b m : ℕ) (_habm : a + b ≤ m) :
     Tendsto (fun σ : ℝ =>

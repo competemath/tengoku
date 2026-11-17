@@ -26,6 +26,9 @@ theorem eq_univ_of_isClopen_of_section {X S : Scheme.{u}} (g : X ⟶ S) (Z : Set
 
 end Ws23G2
 
+/--
+@isnad1 id=isiso.3h6v.s8.83b8a1248622 from=translated src=- shape=65eb9b83 vocab=1fdf21c0
+-/
 theorem solution
     {X Y Z : Scheme} (p : X ⟶ Y) (hconn : ∀ y : Y, _root_.IsConnected (p.base ⁻¹' {y}))
     (e : Y ⟶ X) (he : e ≫ p = 𝟙 Y)

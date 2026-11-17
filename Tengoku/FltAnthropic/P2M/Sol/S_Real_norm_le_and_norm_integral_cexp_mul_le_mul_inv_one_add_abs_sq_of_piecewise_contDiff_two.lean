@@ -13,6 +13,9 @@ namespace R4WinKink
 
 noncomputable def cst (ξ : ℝ) : ℂ := -(2 * Real.pi * Complex.I * ξ)
 
+/--
+@isnad1 id=eq.0h2v.s6.53835df74ffc from=translated src=- shape=487c1f02 vocab=0bc8ad9b
+-/
 theorem kernel_eq (ξ x : ℝ) :
     Complex.exp (-(2 * Real.pi * Complex.I * ((ξ * x : ℝ) : ℂ))) = Complex.exp (cst ξ * x) := by
   unfold cst
@@ -20,23 +23,38 @@ theorem kernel_eq (ξ x : ℝ) :
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h2v.s4.16573f8d99a1 from=translated src=- shape=3788a8b9 vocab=d0ab4f77
+-/
 theorem norm_exp_cst (ξ x : ℝ) : ‖Complex.exp (cst ξ * x)‖ = 1 := by
   rw [show cst ξ * x = ((-(2 * Real.pi * ξ * x) : ℝ) : ℂ) * Complex.I by
     unfold cst; push_cast; ring]
   exact Complex.norm_exp_ofReal_mul_I _
 
+/--
+@isnad1 id=ne.1h1v.s4.fe90ff0da871 from=translated src=- shape=20a1293d vocab=5c4062ba
+-/
 theorem cst_ne_zero {ξ : ℝ} (hξ : ξ ≠ 0) : cst ξ ≠ 0 := by
   unfold cst
   simp [Real.pi_ne_zero, Complex.I_ne_zero, hξ]
 
+/--
+@isnad1 id=eq.0h1v.s6.4eaae86de0da from=translated src=- shape=3ab82757 vocab=6630683c
+-/
 theorem norm_cst_sq (ξ : ℝ) : ‖cst ξ ^ 2‖ = (2 * Real.pi * |ξ|) ^ 2 := by
   rw [norm_pow]
   unfold cst
   simp [Complex.norm_real, abs_of_pos Real.pi_pos]
 
+/--
+@isnad1 id=continuo.0h1v.s5.d789f0818c18 from=translated src=- shape=64e91efb vocab=6903ddda
+-/
 theorem continuous_exp_cst (c : ℂ) : Continuous fun y : ℝ => Complex.exp (c * y) := by
   fun_prop
 
+/--
+@isnad1 id=hasderiv.1h2v.s6.5332cfad04ec from=translated src=- shape=fe4debe6 vocab=ba18eeda
+-/
 theorem hasDerivAt_exp_div (c : ℂ) (hc : c ≠ 0) (x : ℝ) :
     HasDerivAt (fun y : ℝ => Complex.exp (c * y) / c) (Complex.exp (c * x)) x := by
   have h1 : HasDerivAt (fun w : ℂ => c * w) c (x : ℂ) := by
@@ -48,6 +66,9 @@ theorem hasDerivAt_exp_div (c : ℂ) (hc : c ≠ 0) (x : ℝ) :
   · rfl
   field_simp
 
+/--
+@isnad1 id=eq.3h4v.s8.481fc16c9e01 from=translated src=- shape=9219f95c vocab=58fd0c8b
+-/
 theorem ibp_once (u : ℝ → ℂ) (hu : Differentiable ℝ u) (hu' : Continuous (deriv u))
     (c : ℂ) (hc : c ≠ 0) (a b : ℝ) :
     ∫ x in a..b, u x * Complex.exp (c * x) =
@@ -68,9 +89,15 @@ theorem ibp_once (u : ℝ → ℂ) (hu : Differentiable ℝ u) (hu' : Continuous
   rw [h2]
   field_simp
 
+/--
+@isnad1 id=eq.0h1v.s7.5399fe1b6e3a from=translated src=- shape=0351daa9 vocab=2fbdde00
+-/
 theorem iteratedDeriv_two_eq (h : ℝ → ℂ) : iteratedDeriv 2 h = deriv (deriv h) := by
   rw [iteratedDeriv_succ, iteratedDeriv_one]
 
+/--
+@isnad1 id=eq.2h4v.s8.2c470244556b from=translated src=- shape=bb4bee63 vocab=801fa219
+-/
 theorem ibp_twice (h : ℝ → ℂ) (hh : ContDiff ℝ 2 h) (c : ℂ) (hc : c ≠ 0) (a b : ℝ) :
     ∫ x in a..b, h x * Complex.exp (c * x) =
       (h b * Complex.exp (c * b) - h a * Complex.exp (c * a)) / c
@@ -89,6 +116,9 @@ theorem ibp_twice (h : ℝ → ℂ) (hh : ContDiff ℝ 2 h) (c : ℂ) (hc : c �
   field_simp
   ring
 
+/--
+@isnad1 id=eq.3h4v.s6.8b8ced12a692 from=translated src=- shape=96b49bbc vocab=659f8cb0
+-/
 theorem iteratedDeriv_eq_zero_of_isOpen {h : ℝ → ℂ} {S : Set ℝ} (hS : IsOpen S)
     (hz : ∀ x ∈ S, h x = 0) (n : ℕ) {x : ℝ} (hx : x ∈ S) : iteratedDeriv n h x = 0 := by
   have hev : h =ᶠ[nhds x] (fun _ => (0 : ℂ)) :=
@@ -97,6 +127,9 @@ theorem iteratedDeriv_eq_zero_of_isOpen {h : ℝ → ℂ} {S : Set ℝ} (hS : Is
   rw [h1, iteratedDeriv_const]
   simp
 
+/--
+@isnad1 id=eq.5h4v.s7.a75c358855fa from=translated src=- shape=33ec013d vocab=83b1c77e
+-/
 theorem iteratedDeriv_eq_zero_of_mem_closure {h : ℝ → ℂ} (hh : ContDiff ℝ 2 h) {S : Set ℝ}
     (hS : IsOpen S) (hz : ∀ x ∈ S, h x = 0) (n : ℕ) (hn : (n : WithTop ℕ∞) ≤ 2) {x : ℝ}
     (hx : x ∈ closure S) : iteratedDeriv n h x = 0 := by
@@ -105,6 +138,9 @@ theorem iteratedDeriv_eq_zero_of_mem_closure {h : ℝ → ℂ} (hh : ContDiff �
   have hsub : S ⊆ {y : ℝ | iteratedDeriv n h y = 0} := fun y hy => iteratedDeriv_eq_zero_of_isOpen hS hz n hy
   exact hclosed.closure_subset_iff.mpr hsub hx
 
+/--
+@isnad1 id=and.2h2v.s7.16d4f61017b7 from=translated src=- shape=409635ab vocab=3819f5ab
+-/
 theorem right_edge {gp : ℝ → ℂ} (hgp : ContDiff ℝ 2 gp) {R : ℝ} (hz : ∀ x, R < x → gp x = 0) :
     gp R = 0 ∧ deriv gp R = 0 := by
   have hcl : R ∈ closure (Set.Ioi R) := by
@@ -115,6 +151,9 @@ theorem right_edge {gp : ℝ → ℂ} (hgp : ContDiff ℝ 2 gp) {R : ℝ} (hz : 
   rw [iteratedDeriv_one] at h1
   exact ⟨h0, h1⟩
 
+/--
+@isnad1 id=and.2h2v.s7.04d1c4a25e17 from=translated src=- shape=01320af2 vocab=b3a32017
+-/
 theorem left_edge {gm : ℝ → ℂ} (hgm : ContDiff ℝ 2 gm) {R : ℝ} (hz : ∀ x, x < -R → gm x = 0) :
     gm (-R) = 0 ∧ deriv gm (-R) = 0 := by
   have hcl : -R ∈ closure (Set.Iio (-R)) := by
@@ -125,22 +164,34 @@ theorem left_edge {gm : ℝ → ℂ} (hgm : ContDiff ℝ 2 gm) {R : ℝ} (hz : �
   rw [iteratedDeriv_one] at h1
   exact ⟨h0, h1⟩
 
+/--
+@isnad1 id=lt.1h2v.s4.744ad95ac8f4 from=translated src=- shape=e3a6d85f vocab=3aa78d74
+-/
 theorem lt_abs_of_not_mem_Icc {R x : ℝ} (hx : x ∉ Set.Icc (-R) R) : R < |x| := by
   rw [Set.mem_Icc, not_and_or, not_le, not_le] at hx
   rcases hx with hx | hx
   · exact lt_abs.mpr (Or.inr (by linarith))
   · exact lt_abs.mpr (Or.inl hx)
 
+/--
+@isnad1 id=le.1h2v.s6.6ae84f24fd1e from=translated src=- shape=80766f04 vocab=873430eb
+-/
 theorem window_le {R x : ℝ} (hx : |x| ≤ R) : (1 : ℝ) ≤ (1 + R) ^ 2 * (1 + |x|)⁻¹ ^ 2 := by
   have h1 : 0 < 1 + |x| := by positivity
   rw [inv_pow, ← div_eq_mul_inv, le_div_iff₀ (by positivity), one_mul]
   exact pow_le_pow_left₀ h1.le (by linarith) 2
 
+/--
+@isnad1 id=le.1h1v.s6.55d683ea4c56 from=translated src=- shape=3d470433 vocab=31ba0678
+-/
 theorem window_ge_quarter_of_le_one {ξ : ℝ} (hξ : |ξ| ≤ 1) : (1 : ℝ) / 4 ≤ (1 + |ξ|)⁻¹ ^ 2 := by
   have h1 : 0 < 1 + |ξ| := by positivity
   rw [inv_pow, ← one_div, div_le_div_iff₀ (by norm_num) (by positivity), one_mul, one_mul]
   nlinarith [abs_nonneg ξ]
 
+/--
+@isnad1 id=le.1h1v.s6.4b591e1fbcad from=translated src=- shape=4344e28f vocab=873430eb
+-/
 theorem inv_sq_le_window_of_one_le {ξ : ℝ} (hξ : 1 ≤ |ξ|) : (ξ ^ 2)⁻¹ ≤ 4 * (1 + |ξ|)⁻¹ ^ 2 := by
   have h1 : 0 < 1 + |ξ| := by positivity
   have hξ0 : 0 < ξ ^ 2 := by nlinarith [abs_nonneg ξ, sq_abs ξ]
@@ -152,6 +203,9 @@ section Pasted
 
 variable {g gm gp : ℝ → ℂ} {R M₀ M₂ J : ℝ}
 
+/--
+@isnad1 id=eq.2h3v.s6.a46028633517 from=translated src=- shape=48380b78 vocab=d6248b85
+-/
 theorem g_eq_ite (hm : ∀ x, x ≤ 0 → g x = gm x) (hp : ∀ x, 0 ≤ x → g x = gp x) :
     g = fun x => if x ≤ 0 then gm x else gp x := by
   funext x
@@ -159,6 +213,9 @@ theorem g_eq_ite (hm : ∀ x, x ≤ 0 → g x = gm x) (hp : ∀ x, 0 ≤ x → g
   · exact hm x hx
   · exact hp x (le_of_lt (lt_of_not_ge hx))
 
+/--
+@isnad1 id=continuo.4h3v.s7.0dad4f104106 from=translated src=- shape=4669fb83 vocab=72696356
+-/
 theorem continuous_g (hgm : ContDiff ℝ 2 gm) (hgp : ContDiff ℝ 2 gp)
     (hm : ∀ x, x ≤ 0 → g x = gm x) (hp : ∀ x, 0 ≤ x → g x = gp x) : Continuous g := by
   rw [g_eq_ite hm hp]
@@ -166,6 +223,9 @@ theorem continuous_g (hgm : ContDiff ℝ 2 gm) (hgp : ContDiff ℝ 2 gp)
   intro x hx
   rw [← hm x (le_of_eq hx), ← hp x (ge_of_eq hx)]
 
+/--
+@isnad1 id=and.4h3v.s7.df9d3244d07a from=translated src=- shape=3fee1f9b vocab=ce9a8128
+-/
 theorem integrable_and_integral_norm_le (hR : 0 ≤ R) {h : ℝ → ℂ} {M : ℝ} (hc : Continuous h)
     (hh : ∀ x, ‖h x‖ ≤ M) (hz : ∀ x, R < |x| → h x = 0) :
     Integrable h ∧ ∫ x, ‖h x‖ ≤ 2 * R * M := by
@@ -186,6 +246,9 @@ theorem integrable_and_integral_norm_le (hR : 0 ≤ R) {h : ℝ → ℂ} {M : �
         rw [max_eq_left (by linarith)]
         ring
 
+/--
+@isnad1 id=le.4h4v.s7.48e87ee8dbb4 from=translated src=- shape=38e9bc64 vocab=dd3cd376
+-/
 theorem norm_transform_le_L1 (hR : 0 ≤ R) (hc : Continuous g) (hM₀ : ∀ x, ‖g x‖ ≤ M₀)
     (hsupp : ∀ x, R < |x| → g x = 0) (ξ : ℝ) :
     ‖∫ x : ℝ, Complex.exp (cst ξ * x) * g x‖ ≤ 2 * R * M₀ := by
@@ -195,6 +258,9 @@ theorem norm_transform_le_L1 (hR : 0 ≤ R) (hc : Continuous g) (hM₀ : ∀ x, 
   congr 1; ext x
   rw [norm_mul, norm_exp_cst, one_mul]
 
+/--
+@isnad1 id=eq.7h5v.s9.9591c760d2e7 from=translated src=- shape=4dde6834 vocab=780988e6
+-/
 theorem transform_eq_corner (hR : 0 ≤ R) (hgm : ContDiff ℝ 2 gm) (hgp : ContDiff ℝ 2 gp)
     (hm : ∀ x, x ≤ 0 → g x = gm x) (hp : ∀ x, 0 ≤ x → g x = gp x)
     (hsupp : ∀ x, R < |x| → g x = 0) {ξ : ℝ} (hξ : ξ ≠ 0) :
@@ -248,6 +314,9 @@ theorem transform_eq_corner (hR : 0 ≤ R) (hgm : ContDiff ℝ 2 gm) (hgp : Cont
   field_simp
   ring
 
+/--
+@isnad1 id=le.10h7v.s9.2851b1d45e2a from=translated src=- shape=f5b86a6b vocab=287316e2
+-/
 theorem norm_transform_le_of_one_le (hR : 0 ≤ R) (hgm : ContDiff ℝ 2 gm) (hgp : ContDiff ℝ 2 gp)
     (hm : ∀ x, x ≤ 0 → g x = gm x) (hp : ∀ x, 0 ≤ x → g x = gp x)
     (hsupp : ∀ x, R < |x| → g x = 0)
@@ -301,6 +370,9 @@ end R4WinKink
 
 open R4WinKink in
 
+/--
+@isnad1 id=and.10h7v.s9.91db1d6ec3a6 from=translated src=- shape=ba1781b2 vocab=b5bf9b25
+-/
 theorem solution
     (g gm gp : ℝ → ℂ) (R M₀ M₂ J : ℝ) (hR : 0 ≤ R)
     (hgm : ContDiff ℝ 2 gm) (hgp : ContDiff ℝ 2 gp)

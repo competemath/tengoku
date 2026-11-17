@@ -13,6 +13,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=ex.0h1v.s8.2796bd9ae5a9 from=translated src=- shape=2cd9a5a3 vocab=ec97eb06
+-/
 theorem _root_.Tengoku.FltAnthropic.exists_abelInverse_linear_contDiff_eq_zero_of_le_integral_div_sqrt_sub_eq
     (P : Type) [NormedAddCommGroup P] [NormedSpace ℝ P] :
     ∃ T : (ℝ → ℂ) → (ℝ → ℂ),

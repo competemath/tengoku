@@ -425,6 +425,9 @@ private theorem level_eq {r T : ℝ} (hr : 0 < r) (hT : 2 * r ≤ T) :
 
 end ConstantFibrePairing
 
+/--
+@isnad1 id=eq.3h3v.s8.da21f4aa8fce from=translated src=- shape=9b31cda2 vocab=d05f85d2
+-/
 theorem solution
     (k : ℕ) (hk : 2 ≤ k) (r T : ℝ) (hr : 0 < r) (hT : 2 * r ≤ T) :
     (∫ θ in (0 : ℝ)..Real.pi,

@@ -15,6 +15,9 @@ namespace TorsorSmoothAux
 
 variable {κ : Type u} [Field κ] [IsAlgClosed κ]
 
+/--
+@isnad1 id=locallyq.0h3v.s5.b9255f1245a5 from=translated src=- shape=d9e20a57 vocab=28499e56
+-/
 theorem locallyQuasiFinite_of_etale {E : Scheme.{u}} (fE : E ⟶ Spec (CommRingCat.of κ)) [Etale fE] :
     LocallyQuasiFinite fE := by
   rw [HasRingHomProperty.iff_appLE (P := @LocallyQuasiFinite)]
@@ -25,6 +28,9 @@ theorem locallyQuasiFinite_of_etale {E : Scheme.{u}} (fE : E ⟶ Spec (CommRingC
   change Algebra.QuasiFinite _ _
   infer_instance
 
+/--
+@isnad1 id=ex.0h4v.s8.559ea47b3977 from=translated src=- shape=aacba61f vocab=69ff62ae
+-/
 theorem exists_openImmersion_specPoint {E : Scheme.{u}} (fE : E ⟶ Spec (CommRingCat.of κ)) [Etale fE] (e : E) :
     ∃ (y : Spec (CommRingCat.of κ) ⟶ E), IsOpenImmersion y ∧ y ≫ fE = 𝟙 _ ∧ e ∈ Set.range y.base := by
   classical
@@ -89,6 +95,9 @@ theorem exists_openImmersion_specPoint {E : Scheme.{u}} (fE : E ⟶ Spec (CommRi
 
 end TorsorSmoothAux
 
+/--
+@isnad1 id=isreduce.1h7v.s7.31310b40a49c from=translated src=- shape=bf67f9ba vocab=2ed02894
+-/
 theorem solution
     {κ : Type u} [Field κ] [IsAlgClosed κ] {X Y E : Scheme.{u}}
     (f : X ⟶ Y) (g : E ⟶ Y) (fE : E ⟶ Spec (CommRingCat.of κ)) [Etale fE]

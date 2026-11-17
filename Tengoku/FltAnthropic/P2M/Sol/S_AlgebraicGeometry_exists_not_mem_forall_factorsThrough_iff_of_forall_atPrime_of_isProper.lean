@@ -18,6 +18,9 @@ noncomputable abbrev φ {S : Type} [CommRing S] {A : Scheme.{0}} (f : A ⟶ Spec
     S →+* Γ(A, V.1) :=
   ((Scheme.ΓSpecIso (CommRingCat.of S)).inv ≫ f.appLE ⊤ V.1 le_top).hom
 
+/--
+@isnad1 id=isnoethe.0h4v.s9.0138c3d84726 from=translated src=- shape=8ae65b38 vocab=60645395
+-/
 theorem isNoetherianRing_chart {S : Type} [CommRing S] [IsNoetherianRing S] {A : Scheme.{0}}
     (f : A ⟶ Spec (CommRingCat.of S)) [LocallyOfFiniteType f] (V : A.affineOpens) : IsNoetherianRing Γ(A, V.1) := by
   have hft : RingHom.FiniteType (f.appLE ⊤ V.1 le_top).hom :=
@@ -28,6 +31,9 @@ theorem isNoetherianRing_chart {S : Type} [CommRing S] [IsNoetherianRing S] {A :
   haveI : Algebra.FiniteType Γ(Spec (CommRingCat.of S), ⊤) Γ(A, V.1) := hft
   exact Algebra.FiniteType.isNoetherianRing Γ(Spec (CommRingCat.of S), ⊤) Γ(A, V.1)
 
+/--
+@isnad1 id=iff.0h6v.s7.7df0b00d7251 from=translated src=- shape=9062c7d0 vocab=995fc73a
+-/
 theorem factorsThrough_iff {A Z : Scheme.{0}} (ι : Z ⟶ A) [IsClosedImmersion ι] (U : A.Opens)
     {T : Scheme.{0}} (ψ' : T ⟶ U) :
     (∃ k : T ⟶ Z, k ≫ ι = ψ' ≫ U.ι) ↔ ι.ker.comap U.ι ≤ ψ'.ker := by
@@ -42,6 +48,9 @@ theorem factorsThrough_iff {A Z : Scheme.{0}} (ι : Z ⟶ A) [IsClosedImmersion 
 end L4CS
 
 open L4CS in
+/--
+@isnad1 id=ex.1h8v.s10.73623cfb9794 from=translated src=- shape=311d3e64 vocab=0b67db18
+-/
 theorem solution
     {S : Type} [CommRing S] [IsNoetherianRing S] {A : Scheme.{0}} (f : A ⟶ Spec (CommRingCat.of S)) [IsProper f]
     {Z₁ Z₂ : Scheme.{0}} (ι₁ : Z₁ ⟶ A) (ι₂ : Z₂ ⟶ A) [IsClosedImmersion ι₁] [IsClosedImmersion ι₂]

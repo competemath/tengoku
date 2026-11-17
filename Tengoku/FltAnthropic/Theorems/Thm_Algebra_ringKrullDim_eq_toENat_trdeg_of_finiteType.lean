@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Algebra_ringKrullDim_eq_toENat_trdeg_of_fi
 
 universe u v
 
+/--
+@isnad1 id=eq.0h2v.s6.df3f38741346 from=translated src=- shape=36e2e795 vocab=eabd9f88
+-/
 theorem Algebra.ringKrullDim_eq_toENat_trdeg_of_finiteType
     (k : Type u) (A : Type v) [Field k] [CommRing A] [IsDomain A] [Algebra k A]
     [Algebra.FiniteType k A] :

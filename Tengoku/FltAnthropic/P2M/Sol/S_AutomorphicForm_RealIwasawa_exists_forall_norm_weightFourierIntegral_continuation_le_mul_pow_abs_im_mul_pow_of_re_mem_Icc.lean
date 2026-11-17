@@ -38,6 +38,9 @@ def F (k : ℤ) (w : ℂ) (t x : ℝ) : ℂ := u x ^ k * B x ^ (-w) * E t x
 
 def jj (k : ℤ) (w : ℂ) (t : ℝ) : ℂ := ∫ x : ℝ, F k w t x
 
+/--
+@isnad1 id=and.0h1v.s8.b89bb6269534 from=translated src=- shape=53fc1761 vocab=5b77451e
+-/
 theorem base (k : ℤ) :
     ContinuousOn (fun p : ℂ × ℝ => jj k p.1 p.2) ({w : ℂ | 1 / 2 < w.re} ×ˢ Set.univ) ∧
     (∀ t : ℝ, DifferentiableOn ℂ (fun w : ℂ => jj k w t) {w : ℂ | 1 / 2 < w.re}) ∧
@@ -45,76 +48,139 @@ theorem base (k : ℤ) :
       ∀ w ∈ K, ∀ t : ℝ, ‖jj k w t‖ ≤ C * (1 + |t|) ^ (-(N : ℝ))) :=
   AutomorphicForm.RealIwasawa.continuousOn_differentiableOn_norm_le_polyDecay_weightFourierIntegral k
 
+/--
+@isnad1 id=ne.1h1v.s4.f6ba5b0120f1 from=translated src=- shape=20a1293d vocab=f881eae4
+-/
 theorem cI_ne_zero {t : ℝ} (ht : t ≠ 0) : cI t ≠ 0 :=
   mul_ne_zero (Complex.ofReal_ne_zero.mpr (mul_ne_zero (mul_ne_zero two_ne_zero Real.pi_ne_zero) ht))
     Complex.I_ne_zero
 
+/--
+@isnad1 id=eq.0h1v.s5.63b36cd712fb from=translated src=- shape=5d8f6291 vocab=85ea78b0
+-/
 theorem norm_cI (t : ℝ) : ‖cI t‖ = 2 * Real.pi * |t| := by
   rw [cI, norm_mul, Complex.norm_I, mul_one, Complex.norm_real, Real.norm_eq_abs, abs_mul,
     abs_of_pos (by positivity : (0:ℝ) < 2 * Real.pi)]
 
+/--
+@isnad1 id=lt.0h1v.s5.17bc9c77b017 from=translated src=- shape=b7e566ab vocab=65df512c
+-/
 theorem one_add_sq_pos (x : ℝ) : 0 < 1 + x ^ 2 := by positivity
 
+/--
+@isnad1 id=lt.0h1v.s5.2b99a925531c from=translated src=- shape=2f69cd06 vocab=08bd26e6
+-/
 theorem sqrt_pos' (x : ℝ) : 0 < Real.sqrt (1 + x ^ 2) := Real.sqrt_pos.mpr (one_add_sq_pos x)
 
+/--
+@isnad1 id=ne.0h1v.s3.5dfd07addaa4 from=translated src=- shape=a311c14d vocab=34f0ef7a
+-/
 theorem S_ne_zero (x : ℝ) : S x ≠ 0 := Complex.ofReal_ne_zero.mpr (sqrt_pos' x).ne'
 
+/--
+@isnad1 id=ne.0h1v.s3.c17df9c1ac42 from=translated src=- shape=a311c14d vocab=79b38ab7
+-/
 theorem B_ne_zero (x : ℝ) : B x ≠ 0 := Complex.ofReal_ne_zero.mpr (one_add_sq_pos x).ne'
 
+/--
+@isnad1 id=mem.0h1v.s3.fbad45852276 from=translated src=- shape=e95f144f vocab=cf3c40f2
+-/
 theorem B_mem_slitPlane (x : ℝ) : B x ∈ Complex.slitPlane :=
   Complex.ofReal_mem_slitPlane.mpr (one_add_sq_pos x)
 
+/--
+@isnad1 id=ne.0h1v.s4.9a024acd6d43 from=translated src=- shape=ff3278d8 vocab=b116a67a
+-/
 theorem sub_I_ne_zero (x : ℝ) : ((x : ℝ) : ℂ) - Complex.I ≠ 0 := by
   intro h
   have := congrArg Complex.im h
   simp at this
 
+/--
+@isnad1 id=ne.0h1v.s3.4f5f0f36509e from=translated src=- shape=a311c14d vocab=9b51047f
+-/
 theorem u_ne_zero (x : ℝ) : u x ≠ 0 := div_ne_zero (sub_I_ne_zero x) (S_ne_zero x)
 
+/--
+@isnad1 id=eq.0h1v.s4.190237e152ab from=translated src=- shape=1ea879dc vocab=45c7a176
+-/
 theorem S_sq (x : ℝ) : S x ^ 2 = B x := by
   rw [S, B, ← Complex.ofReal_pow, Real.sq_sqrt (one_add_sq_pos x).le]
 
+/--
+@isnad1 id=eq.0h1v.s5.038e74450d19 from=translated src=- shape=52b52209 vocab=9f64aebd
+-/
 theorem B_eq_mul (x : ℝ) : B x = (((x : ℝ) : ℂ) - Complex.I) * (((x : ℝ) : ℂ) + Complex.I) := by
   have hI : Complex.I * Complex.I = -1 := Complex.I_mul_I
   rw [B]
   push_cast
   linear_combination hI
 
+/--
+@isnad1 id=eq.0h1v.s5.c0b17dc31cb3 from=translated src=- shape=1167cd25 vocab=3c482629
+-/
 theorem S_eq_cpow (x : ℝ) : S x = B x ^ ((1 / 2 : ℂ)) := by
   rw [S, B, Real.sqrt_eq_rpow, Complex.ofReal_cpow (one_add_sq_pos x).le]
   norm_num
 
+/--
+@isnad1 id=eq.0h1v.s4.23201d829f2b from=translated src=- shape=48c5eec1 vocab=4b5dc225
+-/
 theorem u_inv (x : ℝ) : (u x)⁻¹ = (((x : ℝ) : ℂ) + Complex.I) / S x := by
   rw [u, inv_div, div_eq_div_iff (sub_I_ne_zero x) (S_ne_zero x), ← sq, S_sq, B_eq_mul]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s5.db474289ac30 from=translated src=- shape=cabdab33 vocab=71e7b3e4
+-/
 theorem u_add_inv (x : ℝ) : u x + (u x)⁻¹ = 2 * ((x : ℝ) : ℂ) / S x := by
   rw [u_inv, u, ← add_div]
   congr 1
   ring
 
+/--
+@isnad1 id=eq.0h1v.s5.b16483fbc8dd from=translated src=- shape=26327751 vocab=4647deb8
+-/
 theorem norm_sub_I (x : ℝ) : ‖((x : ℝ) : ℂ) - Complex.I‖ = Real.sqrt (1 + x ^ 2) := by
   have h : ((x : ℝ) : ℂ) - Complex.I = (x : ℂ) + ((-1 : ℝ) : ℂ) * Complex.I := by push_cast; ring
   rw [h, ← Real.sqrt_sq (norm_nonneg _), Complex.sq_norm, Complex.normSq_add_mul_I]
   congr 1; ring
 
+/--
+@isnad1 id=eq.0h1v.s3.9cd19d0bc46a from=translated src=- shape=0cfb200e vocab=7f7a63a9
+-/
 theorem norm_u (x : ℝ) : ‖u x‖ = 1 := by
   rw [u, norm_div, norm_sub_I, S, Complex.norm_real, Real.norm_of_nonneg (Real.sqrt_nonneg _),
     div_self (sqrt_pos' x).ne']
 
+/--
+@isnad1 id=eq.0h2v.s6.feda79fb3030 from=translated src=- shape=67bb851f vocab=e97c485d
+-/
 theorem norm_B_cpow (w : ℂ) (x : ℝ) : ‖B x ^ (-w)‖ = (1 + x ^ 2) ^ (-w.re) := by
   rw [B, Complex.norm_cpow_eq_rpow_re_of_pos (one_add_sq_pos x), Complex.neg_re]
 
+/--
+@isnad1 id=eq.0h2v.s4.b1d70b88a09c from=translated src=- shape=18e50d40 vocab=ade49a9d
+-/
 theorem norm_E (t x : ℝ) : ‖E t x‖ = 1 := by
   rw [E, ← neg_mul, ← Complex.ofReal_neg, Complex.norm_exp_ofReal_mul_I]
 
+/--
+@isnad1 id=eq.0h4v.s5.a6ba297bdd7f from=translated src=- shape=cf68462d vocab=8c569af3
+-/
 theorem norm_F (k : ℤ) (w : ℂ) (t x : ℝ) : ‖F k w t x‖ = (1 + x ^ 2) ^ (-w.re) := by
   rw [F, norm_mul, norm_mul, norm_zpow, norm_u, one_zpow, norm_B_cpow, norm_E, one_mul, mul_one]
 
+/--
+@isnad1 id=le.1h5v.s6.edd9d81d50d9 from=translated src=- shape=9dfecad9 vocab=cb213268
+-/
 theorem norm_F_le (k : ℤ) {σ : ℝ} {w : ℂ} (hw : σ ≤ w.re) (t x : ℝ) : ‖F k w t x‖ ≤ (1 + x ^ 2) ^ (-σ) := by
   rw [norm_F]
   exact Real.rpow_le_rpow_of_exponent_le (by nlinarith [sq_nonneg x]) (neg_le_neg hw)
 
+/--
+@isnad1 id=integrab.1h1v.s6.200e56bcb6dc from=translated src=- shape=b0faa9b1 vocab=25b2ad06
+-/
 theorem integrable_dom {σ : ℝ} (hσ : 1 / 2 < σ) : Integrable (fun x : ℝ => (1 + x ^ 2) ^ (-σ)) := by
   have h := integrable_rpow_neg_one_add_norm_sq (E := ℝ) (μ := volume) (r := 2 * σ)
     (by rw [Module.finrank_self]; push_cast; linarith)
@@ -123,30 +189,51 @@ theorem integrable_dom {σ : ℝ} (hσ : 1 / 2 < σ) : Integrable (fun x : ℝ =
   congr 1
   ring
 
+/--
+@isnad1 id=continuo.0h0v.s4.dd7c5a3e41a8 from=translated src=- shape=54c8eceb vocab=d2632c5d
+-/
 theorem continuous_S : Continuous S :=
   Complex.continuous_ofReal.comp (Real.continuous_sqrt.comp (continuous_const.add (continuous_pow 2)))
 
+/--
+@isnad1 id=continuo.0h0v.s4.b981c92ecd40 from=translated src=- shape=54c8eceb vocab=b7943cbc
+-/
 theorem continuous_u : Continuous u := by
   unfold u
   exact (Complex.continuous_ofReal.sub continuous_const).div continuous_S (fun x => S_ne_zero x)
 
+/--
+@isnad1 id=continuo.0h0v.s4.5405d57f96e3 from=translated src=- shape=54c8eceb vocab=1aa4e1e9
+-/
 theorem continuous_B : Continuous B := by
   unfold B
   exact Complex.continuous_ofReal.comp (continuous_const.add (continuous_pow 2))
 
+/--
+@isnad1 id=continuo.0h1v.s4.f8cb7eb6cbc9 from=translated src=- shape=9bb0b988 vocab=f8565fa7
+-/
 theorem continuous_E (t : ℝ) : Continuous (E t) := by
   unfold E
   fun_prop
 
+/--
+@isnad1 id=continuo.0h3v.s5.e02ea1130302 from=translated src=- shape=043c21df vocab=2193cea8
+-/
 theorem continuous_F_x (k : ℤ) (w : ℂ) (t : ℝ) : Continuous (fun x => F k w t x) := by
   unfold F
   refine ((continuous_u.zpow₀ k (fun x => Or.inl (u_ne_zero x))).mul ?_).mul (continuous_E t)
   exact continuous_B.cpow continuous_const (fun x => B_mem_slitPlane x)
 
+/--
+@isnad1 id=integrab.1h3v.s6.3c03c59af865 from=translated src=- shape=3648bc98 vocab=b6f5c853
+-/
 theorem integrable_F (k : ℤ) {w : ℂ} (hw : 1 / 2 < w.re) (t : ℝ) : Integrable (fun x => F k w t x) :=
   (integrable_dom hw).mono' (continuous_F_x k w t).aestronglyMeasurable
     (Filter.Eventually.of_forall fun x => norm_F_le k le_rfl t x)
 
+/--
+@isnad1 id=and.1h3v.s6.2acfbf38108d from=translated src=- shape=51d2c43b vocab=da4eb733
+-/
 theorem tendsto_norm_F (k : ℤ) {w : ℂ} (hw : 0 < w.re) (t : ℝ) :
     Filter.Tendsto (fun x => F k w t x) Filter.atBot (𝓝 0) ∧
     Filter.Tendsto (fun x => F k w t x) Filter.atTop (𝓝 0) := by
@@ -166,10 +253,16 @@ theorem tendsto_norm_F (k : ℤ) {w : ℂ} (hw : 0 < w.re) (t : ℝ) :
     simp_rw [norm_F]
     exact hr.comp htop
 
+/--
+@isnad1 id=hasderiv.0h1v.s6.29f41695baad from=translated src=- shape=d36d724c vocab=2be9bb17
+-/
 theorem hasDerivAt_one_add_sq (x : ℝ) : HasDerivAt (fun y : ℝ => 1 + y ^ 2) (2 * x) x := by
   have h := (hasDerivAt_pow 2 x).const_add 1
   simpa using h
 
+/--
+@isnad1 id=hasderiv.0h1v.s6.82234db5666c from=translated src=- shape=7fc66d2e vocab=ae937b36
+-/
 theorem hasDerivAt_S (x : ℝ) : HasDerivAt S (((x : ℝ) : ℂ) / S x) x := by
   have h2 := ((hasDerivAt_one_add_sq x).sqrt (one_add_sq_pos x).ne').ofReal_comp
   show HasDerivAt (fun y : ℝ => ((Real.sqrt (1 + y ^ 2) : ℝ) : ℂ)) _ x
@@ -178,6 +271,9 @@ theorem hasDerivAt_S (x : ℝ) : HasDerivAt S (((x : ℝ) : ℂ) / S x) x := by
   push_cast
   field_simp
 
+/--
+@isnad1 id=hasderiv.0h1v.s6.fe146a2e46b2 from=translated src=- shape=6fc56895 vocab=feb93956
+-/
 theorem hasDerivAt_u (x : ℝ) : HasDerivAt u (Complex.I * u x / B x) x := by
   have h0 : HasDerivAt (fun y : ℝ => ((y : ℝ) : ℂ)) 1 x := by
     simpa using (hasDerivAt_id x).ofReal_comp
@@ -192,6 +288,9 @@ theorem hasDerivAt_u (x : ℝ) : HasDerivAt u (Complex.I * u x / B x) x := by
   rw [eq_comm, sub_eq_iff_eq_add, one_mul, ← mul_div_assoc, ← mul_div_assoc, ← add_div, eq_div_iff hS]
   linear_combination hS2
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.4d96ca932e3f from=translated src=- shape=dedd2676 vocab=36fe912b
+-/
 theorem hasDerivAt_u_zpow (k : ℤ) (x : ℝ) :
     HasDerivAt (fun y => u y ^ k) ((k : ℂ) * Complex.I * u x ^ k / B x) x := by
   have h := (hasDerivAt_zpow k (u x) (Or.inl (u_ne_zero x))).comp x (hasDerivAt_u x)
@@ -202,9 +301,15 @@ theorem hasDerivAt_u_zpow (k : ℤ) (x : ℝ) :
   rw [zpow_sub_one₀ (u_ne_zero x)]
   linear_combination (-((k : ℂ) * Complex.I * u x ^ k / B x)) * huinv
 
+/--
+@isnad1 id=hasderiv.0h1v.s6.6713c114d965 from=translated src=- shape=c42d80d3 vocab=1ff03f03
+-/
 theorem hasDerivAt_B (x : ℝ) : HasDerivAt B (((2 * x : ℝ)) : ℂ) x :=
   (hasDerivAt_one_add_sq x).ofReal_comp
 
+/--
+@isnad1 id=hasderiv.0h2v.s7.625ba5cf3c8f from=translated src=- shape=63e5a5d4 vocab=b1e63fa5
+-/
 theorem hasDerivAt_B_cpow (w : ℂ) (x : ℝ) :
     HasDerivAt (fun y => B y ^ (-w)) (-w * B x ^ (-w - 1) * (((2 * x : ℝ)) : ℂ)) x := by
   have h := (Complex.hasStrictDerivAt_cpow_const (c := -w) (B_mem_slitPlane x)).hasDerivAt.comp x
@@ -213,6 +318,9 @@ theorem hasDerivAt_B_cpow (w : ℂ) (x : ℝ) :
   rw [e]
   exact h
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.d84cf8ed3526 from=translated src=- shape=a95487d2 vocab=ca34b0fa
+-/
 theorem hasDerivAt_E (t x : ℝ) : HasDerivAt (E t) (E t x * (-cI t)) x := by
   have h0 : HasDerivAt (fun y : ℝ => 2 * Real.pi * t * y) (2 * Real.pi * t) x := by
     simpa using (hasDerivAt_id x).const_mul (2 * Real.pi * t)
@@ -223,10 +331,16 @@ theorem hasDerivAt_E (t x : ℝ) : HasDerivAt (E t) (E t x * (-cI t)) x := by
 def G' (k : ℤ) (w : ℂ) (x : ℝ) : ℂ :=
   (k : ℂ) * Complex.I * u x ^ k / B x * B x ^ (-w) + u x ^ k * (-w * B x ^ (-w - 1) * (((2 * x : ℝ)) : ℂ))
 
+/--
+@isnad1 id=hasderiv.0h3v.s6.3aea38d05c57 from=translated src=- shape=47f7fbe6 vocab=aa2ba3a7
+-/
 theorem hasDerivAt_G (k : ℤ) (w : ℂ) (x : ℝ) :
     HasDerivAt (fun y => u y ^ k * B y ^ (-w)) (G' k w x) x :=
   (hasDerivAt_u_zpow k x).mul (hasDerivAt_B_cpow w x)
 
+/--
+@isnad1 id=eq.0h4v.s7.11342702e9e0 from=translated src=- shape=b5b4d328 vocab=2d61be65
+-/
 theorem G'_mul_E (k : ℤ) (w : ℂ) (t x : ℝ) :
     G' k w x * E t x
       = (k : ℂ) * Complex.I * F k (w + 1) t x - w * (F (k + 1) (w + 1 / 2) t x + F (k - 1) (w + 1 / 2) t x) := by
@@ -251,6 +365,9 @@ theorem G'_mul_E (k : ℤ) (w : ℂ) (t x : ℝ) :
   linear_combination ((k : ℂ) * Complex.I * u x ^ k * B x ^ (-w - 1) * E t x) * hBinv
     + (w * u x ^ k * B x ^ (-w - 1) * E t x) * e8
 
+/--
+@isnad1 id=eq.1h3v.s7.f98ab6e47ee0 from=translated src=- shape=e36d016e vocab=2f1aa60a
+-/
 theorem recur (k : ℤ) {w : ℂ} (hw : 1 / 2 < w.re) (t : ℝ) :
     cI t * jj k w t = (k : ℂ) * Complex.I * jj k (w + 1) t
       - w * (jj (k + 1) (w + 1 / 2) t + jj (k - 1) (w + 1 / 2) t) := by
@@ -298,16 +415,28 @@ theorem recur (k : ℤ) {w : ℂ} (hw : 1 / 2 < w.re) (t : ℝ) :
 
 def H (n : ℕ) : Set ℂ := {w : ℂ | 1 / 2 - (n : ℝ) / 2 < w.re}
 
+/--
+@isnad1 id=isopen.0h1v.s4.150b96ae094b from=translated src=- shape=1a6c1393 vocab=6d0c23ab
+-/
 theorem isOpen_H (n : ℕ) : IsOpen (H n) := isOpen_lt continuous_const Complex.continuous_re
 
+/--
+@isnad1 id=eq.0h0v.s5.07a5f52205ec from=translated src=- shape=266d8527 vocab=86545705
+-/
 theorem H_zero : H 0 = {w : ℂ | 1 / 2 < w.re} := by
   ext w; simp [H]
 
+/--
+@isnad1 id=mem.1h2v.s5.eb129c27f029 from=translated src=- shape=8298995e vocab=eb53d23d
+-/
 theorem add_one_mem_H {n : ℕ} {w : ℂ} (hw : w ∈ H (n + 1)) : w + 1 ∈ H n := by
   simp only [H, mem_ofPred_eq, Complex.add_re, Complex.one_re] at hw ⊢
   push_cast at hw
   linarith
 
+/--
+@isnad1 id=mem.1h2v.s6.6257a22d3149 from=translated src=- shape=27ff8a20 vocab=357abcd0
+-/
 theorem add_half_mem_H {n : ℕ} {w : ℂ} (hw : w ∈ H (n + 1)) : w + 1 / 2 ∈ H n := by
   simp only [H, mem_ofPred_eq, Complex.add_re] at hw ⊢
   have h : ((1 : ℂ) / 2).re = 1 / 2 := by norm_num
@@ -315,6 +444,9 @@ theorem add_half_mem_H {n : ℕ} {w : ℂ} (hw : w ∈ H (n + 1)) : w + 1 / 2 �
   push_cast at hw
   linarith
 
+/--
+@isnad1 id=le.1h2v.s4.98ea62e71982 from=translated src=- shape=49beed39 vocab=2c579d02
+-/
 theorem H_mono {m n : ℕ} (h : m ≤ n) : H m ⊆ H n := by
   intro w hw
   simp only [H, mem_ofPred_eq] at hw ⊢
@@ -326,12 +458,21 @@ def J : ℕ → ℤ → ℂ → ℝ → ℂ
   | n + 1, k, w, t => (cI t)⁻¹ * ((k : ℂ) * Complex.I * J n k (w + 1) t
       - w * (J n (k + 1) (w + 1 / 2) t + J n (k - 1) (w + 1 / 2) t))
 
+/--
+@isnad1 id=eq.0h3v.s4.b6ff531631f0 from=translated src=- shape=8170c8c0 vocab=735f6876
+-/
 theorem J_zero (k : ℤ) (w : ℂ) (t : ℝ) : J 0 k w t = jj k w t := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.86666697e721 from=translated src=- shape=3766533b vocab=eb925307
+-/
 theorem J_succ (n : ℕ) (k : ℤ) (w : ℂ) (t : ℝ) :
     J (n + 1) k w t = (cI t)⁻¹ * ((k : ℂ) * Complex.I * J n k (w + 1) t
       - w * (J n (k + 1) (w + 1 / 2) t + J n (k - 1) (w + 1 / 2) t)) := rfl
 
+/--
+@isnad1 id=eq.2h4v.s5.d02c223ce358 from=translated src=- shape=293599bb vocab=63458796
+-/
 theorem J_succ_eq (n : ℕ) : ∀ (k : ℤ) (w : ℂ) (t : ℝ), w ∈ H n → t ≠ 0 →
     J (n + 1) k w t = J n k w t := by
   induction n with
@@ -346,6 +487,9 @@ theorem J_succ_eq (n : ℕ) : ∀ (k : ℤ) (w : ℂ) (t : ℝ), w ∈ H n → t
       ih (k + 1) (w + 1 / 2) t (add_half_mem_H hw) ht, ih (k - 1) (w + 1 / 2) t (add_half_mem_H hw) ht]
     exact (J_succ n k w t).symm
 
+/--
+@isnad1 id=eq.3h5v.s5.946e22d1f578 from=translated src=- shape=f28d8b79 vocab=17ca1dd3
+-/
 theorem J_eq_of_le {m n : ℕ} (h : m ≤ n) (k : ℤ) (w : ℂ) (t : ℝ) (hw : w ∈ H m) (ht : t ≠ 0) :
     J n k w t = J m k w t := by
   obtain ⟨d, rfl⟩ := Nat.exists_eq_add_of_le h
@@ -355,6 +499,9 @@ theorem J_eq_of_le {m n : ℕ} (h : m ≤ n) (k : ℤ) (w : ℂ) (t : ℝ) (hw :
     rw [show m + (d + 1) = (m + d) + 1 from by ring, J_succ_eq (m + d) k w t (H_mono (Nat.le_add_right m d) hw) ht]
     exact ih (Nat.le_add_right m d)
 
+/--
+@isnad1 id=differen.1h3v.s6.4b0fd249da9c from=translated src=- shape=aaed556d vocab=b761a93d
+-/
 theorem J_differentiableOn (n : ℕ) : ∀ (k : ℤ) (t : ℝ), t ≠ 0 →
     DifferentiableOn ℂ (fun w => J n k w t) (H n) := by
   induction n with
@@ -373,6 +520,9 @@ theorem J_differentiableOn (n : ℕ) : ∀ (k : ℤ) (t : ℝ), t ≠ 0 →
       - w * (J n (k + 1) (w + 1 / 2) t + J n (k - 1) (w + 1 / 2) t))) (H (n + 1))
     exact ((h1.const_mul _).sub (differentiableOn_id.mul (h2.add h3))).const_mul _
 
+/--
+@isnad1 id=le.1h1v.s5.ef4757cbfe0d from=translated src=- shape=dfc7164c vocab=d73e7c30
+-/
 theorem norm_inv_cI_le {t : ℝ} (ht : t ≠ 0) : ‖(cI t)⁻¹‖ ≤ max 1 |t|⁻¹ := by
   rw [norm_inv, norm_cI]
   refine le_trans ?_ (le_max_right _ _)
@@ -385,6 +535,9 @@ def nw (w : ℂ) : ℕ := ⌈1 - 2 * w.re⌉₊ + 1
 
 def Jg (k : ℤ) (w : ℂ) (t : ℝ) : ℂ := J (nw w) k w t
 
+/--
+@isnad1 id=le.1h1v.s6.6cb8765b1bf7 from=translated src=- shape=3906b286 vocab=f8d416af
+-/
 theorem norm_inv_cI_le'' {t : ℝ} (ht : 1 ≤ |t|) : ‖(cI t)⁻¹‖ ≤ 2 * (1 + |t|)⁻¹ := by
   rw [norm_inv, norm_cI]
   have ht' : 0 < |t| := by linarith
@@ -397,6 +550,9 @@ theorem norm_inv_cI_le'' {t : ℝ} (ht : 1 ≤ |t|) : ‖(cI t)⁻¹‖ ≤ 2 * 
   rw [show 2 * (1 + |t|)⁻¹ * |t| = (2 * |t|) / (1 + |t|) by ring, le_div_iff₀ hpos]
   linarith
 
+/--
+@isnad1 id=le.2h4v.s6.58da32a5a072 from=translated src=- shape=884c8aab vocab=662f652b
+-/
 theorem jj_norm_le (k : ℤ) {σ : ℝ} (hσ : 1 / 2 < σ) {w : ℂ} (hw : σ ≤ w.re) (t : ℝ) :
     ‖jj k w t‖ ≤ ∫ x : ℝ, (1 + x ^ 2) ^ (-σ) := by
   unfold jj
@@ -404,6 +560,9 @@ theorem jj_norm_le (k : ℤ) {σ : ℝ} (hσ : 1 / 2 < σ) {w : ℂ} (hw : σ �
   exact integral_mono_of_nonneg (Filter.Eventually.of_forall fun _ => norm_nonneg _) (integrable_dom hσ)
     (Filter.Eventually.of_forall fun x => norm_F_le k hw t x)
 
+/--
+@isnad1 id=le.2h3v.s6.315c532f0963 from=translated src=- shape=ade7fa17 vocab=f0535296
+-/
 theorem norm_le_of_strip {σ₁ σ₂ : ℝ} {w : ℂ} (hw1 : σ₁ ≤ w.re) (hw2 : w.re ≤ σ₂) :
     ‖w‖ ≤ (max |σ₁| |σ₂| + 1) * (1 + |w.im|) := by
   have h1 : ‖w‖ ≤ |w.re| + |w.im| := Complex.norm_le_abs_re_add_abs_im w
@@ -414,15 +573,24 @@ theorem norm_le_of_strip {σ₁ σ₂ : ℝ} {w : ℂ} (hw1 : σ₁ ≤ w.re) (h
   have h3 : 0 ≤ max |σ₁| |σ₂| := le_trans (abs_nonneg _) (le_max_left _ _)
   nlinarith [abs_nonneg w.im]
 
+/--
+@isnad1 id=eq.0h2v.s6.45092bb1e8d0 from=translated src=- shape=2f582ee0 vocab=c34856ee
+-/
 theorem rpow_neg_succ (t : ℝ) (N : ℕ) :
     (1 + |t|) ^ (-((N + 1 : ℕ) : ℝ)) = (1 + |t|) ^ (-(N : ℝ)) * (1 + |t|)⁻¹ := by
   have h : (0 : ℝ) < 1 + |t| := by positivity
   rw [show (-((N + 1 : ℕ) : ℝ)) = -(N : ℝ) + (-1) by push_cast; ring, Real.rpow_add h, Real.rpow_neg_one]
 
+/--
+@isnad1 id=le.1h2v.s6.8693b481ef55 from=translated src=- shape=4551f10b vocab=7d3eba09
+-/
 theorem rpow_neg_nat_ge {t : ℝ} (ht : |t| < 1) (N : ℕ) : (2 : ℝ)⁻¹ ^ N ≤ (1 + |t|) ^ (-(N : ℝ)) := by
   rw [Real.rpow_neg (by positivity), Real.rpow_natCast, ← inv_pow]
   exact pow_le_pow_left₀ (by norm_num) (by rw [inv_le_inv₀ (by norm_num) (by positivity)]; linarith [abs_nonneg t]) N
 
+/--
+@isnad1 id=ex.1h4v.s7.e93303231747 from=translated src=- shape=5854a50b vocab=52392bcc
+-/
 theorem strip_base (N : ℕ) : ∀ (k : ℤ) (σ₁ σ₂ : ℝ), 1 / 2 < σ₁ → ∃ C : ℝ, 0 < C ∧
     ∀ w : ℂ, σ₁ ≤ w.re → w.re ≤ σ₂ → ∀ t : ℝ, t ≠ 0 →
       ‖jj k w t‖ ≤ C * (1 + |w.im|) ^ N * (1 + |t|) ^ (-(N : ℝ)) := by
@@ -505,6 +673,9 @@ theorem strip_base (N : ℕ) : ∀ (k : ℤ) (σ₁ σ₂ : ℝ), 1 / 2 < σ₁ 
             apply mul_le_mul_of_nonneg_right _ (by positivity)
             linarith [show (0:ℝ) ≤ 2 * (|(k : ℝ)| * C₁ + R * (C₂ + C₃) + 1) by positivity]
 
+/--
+@isnad1 id=ex.1h5v.s7.4c03dbb286bb from=translated src=- shape=cf781744 vocab=7f8d664b
+-/
 theorem strip_tower (n : ℕ) : ∀ (k : ℤ) (σ₁ σ₂ : ℝ), 1 / 2 - (n : ℝ) / 2 < σ₁ → ∀ N : ℕ, ∃ (A : ℕ) (C : ℝ), 0 < C ∧
     ∀ w : ℂ, σ₁ ≤ w.re → w.re ≤ σ₂ → ∀ t : ℝ, t ≠ 0 →
       ‖J n k w t‖ ≤ C * (1 + |w.im|) ^ A * (max 1 |t|⁻¹) ^ n * (1 + |t|) ^ (-(N : ℝ)) := by
@@ -578,6 +749,9 @@ theorem strip_tower (n : ℕ) : ∀ (k : ℤ) (σ₁ σ₂ : ℝ), 1 / 2 - (n : 
 
 end Ws31.ArchR
 
+/--
+@isnad1 id=other.0h3v.s8.5c21e5d3d777 from=translated src=- shape=ea5633d0 vocab=a087c616
+-/
 theorem solution
     (k : ℤ) (σ₁ σ₂ : ℝ) :
     let j : ℂ → ℝ → ℂ := fun w t => ∫ x : ℝ, ((((x : ℝ) : ℂ) - Complex.I) / ((Real.sqrt (1 + x ^ 2) : ℝ) : ℂ)) ^ k

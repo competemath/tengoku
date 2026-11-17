@@ -13,6 +13,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry TopologicalSpace
 
 namespace ResidueOrdAux
 
+/--
+@isnad1 id=isiso.1h3v.s7.ac4ef3ba0a11 from=translated src=- shape=fbf1d671 vocab=0aa28adf
+-/
 theorem isIso_of_isClosedImmersion_of_surjective_of_isReduced {Z Y : Scheme.{u}} (f : Z ⟶ Y)
     [IsClosedImmersion f] [IsReduced Y] (hf : Function.Surjective f.base) : IsIso f := by
   rw [IsClosedImmersion.isIso_iff_ker_eq_bot, ← le_bot_iff, ← Scheme.nilradical_eq_bot (X := Y),
@@ -23,6 +26,9 @@ theorem isIso_of_isClosedImmersion_of_surjective_of_isReduced {Z Y : Scheme.{u}}
   show z ∈ ((f.ker).support : Set Y)
   rw [h]; trivial
 
+/--
+@isnad1 id=isiso.2h6v.s10.c3f0ea3647f3 from=translated src=- shape=d4f0dd0d vocab=e6448597
+-/
 theorem isIso_stalkMap_of_isClosedImmersion_of_not_mem_range {Z M₁ M₂ : Scheme.{u}} [IsReduced Z]
     (i₁ : M₁ ⟶ Z) (i₂ : M₂ ⟶ Z) [IsClosedImmersion i₁] [IsClosedImmersion i₂]
     (hcover : ∀ z : Z, z ∈ Set.range i₁.base ∨ z ∈ Set.range i₂.base)
@@ -57,6 +63,9 @@ theorem isIso_stalkMap_of_isClosedImmersion_of_not_mem_range {Z M₁ M₂ : Sche
 
 end ResidueOrdAux
 
+/--
+@isnad1 id=isiso.2h6v.s10.c3f0ea3647f3 from=translated src=- shape=d4f0dd0d vocab=e6448597
+-/
 theorem solution
     {Z M₁ M₂ : Scheme.{u}} [IsReduced Z]
     (i₁ : M₁ ⟶ Z) (i₂ : M₂ ⟶ Z) [IsClosedImmersion i₁] [IsClosedImmersion i₂]

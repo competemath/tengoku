@@ -9,6 +9,9 @@ set_option autoImplicit false
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 universe u
 
+/--
+@isnad1 id=eq.0h5v.s14.86ccf1297e8f from=translated src=- shape=00086f80 vocab=59f62bf7
+-/
 theorem AlgebraicGeometry.closure_range_pullback_fst_appTop_union_range_snd_appTop_eq_top
     {S : Scheme.{u}} [IsAffine S] {A B : CommRingCat.{u}} (a : Spec A ⟶ S) (b : Spec B ⟶ S) :
     Subring.closure

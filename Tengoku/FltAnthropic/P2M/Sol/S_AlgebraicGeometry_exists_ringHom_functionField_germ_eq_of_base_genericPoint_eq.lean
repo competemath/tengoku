@@ -11,6 +11,9 @@ open CategoryTheory AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=ex.1h3v.s13.0abbea5bec30 from=translated src=- shape=d9bab488 vocab=7b257c18
+-/
 theorem solution
     {X Y : Scheme.{u}} [IsIntegral X] [IsIntegral Y] (f : Y ⟶ X)
     (hf : f.base (genericPoint Y) = genericPoint X) :

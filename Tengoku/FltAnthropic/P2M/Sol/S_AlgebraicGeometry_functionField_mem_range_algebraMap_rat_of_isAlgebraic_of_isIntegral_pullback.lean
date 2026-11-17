@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=ex.1h5v.s8.57242aa5884c from=translated src=- shape=4f512291 vocab=772bde41
+-/
 theorem solution
     (M : ℕ) [NeZero M]
     (X : Scheme.{0}) [IsIntegral X] (πX : X ⟶ Spec (CommRingCat.of (Localization.Away ((M : ℕ) : ℤ))))

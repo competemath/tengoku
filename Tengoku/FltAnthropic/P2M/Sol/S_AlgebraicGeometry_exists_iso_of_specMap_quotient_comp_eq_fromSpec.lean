@@ -14,6 +14,9 @@ open _root_.CategoryTheory open _root_.AlgebraicGeometry open _root_.AlgebraicGe
 
 universe u
 
+/--
+@isnad1 id=ex.4h6v.s16.a49bfa7dee88 from=translated src=- shape=375ea5a8 vocab=1c5addb8
+-/
 theorem solution
     {T' : Type u} [CommRing T'] (I : Ideal T') (hI2 : I * I = ⊥)
     {Y : Scheme.{u}} (qY : Y ⟶ Spec (CommRingCat.of T')) (U : Y.Opens) (hU : IsAffineOpen U)

@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Ideal_exists_not_mem_forall_map_eq_map_of_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.3h7v.s9.be8b7e97ddbe from=translated src=- shape=7ad4479d vocab=56e13bd1
+-/
 theorem Ideal.exists_not_mem_forall_map_eq_map_of_isLocalization_of_map_eq_map_of_fg
     {S B : Type} [CommRing S] [CommRing B] (φ : S →+* B) (𝔭 : Ideal S) [𝔭.IsPrime]
     (Bₚ : Type) [CommRing Bₚ] [Algebra B Bₚ] [IsLocalization (𝔭.primeCompl.map φ.toMonoidHom) Bₚ]

@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry TensorProduct
 
+/--
+@isnad1 id=not.5h4v.s8.779f50537a23 from=translated src=- shape=dfcc1ff9 vocab=1c86a2bd
+-/
 theorem solution
     (Y : Scheme.{u}) (y : ↥Y) (Z₁ Z₂ : Set ↥Y)
     (hZ₁ : Z₁ ∈ irreducibleComponents ↥Y) (hZ₂ : Z₂ ∈ irreducibleComponents ↥Y)

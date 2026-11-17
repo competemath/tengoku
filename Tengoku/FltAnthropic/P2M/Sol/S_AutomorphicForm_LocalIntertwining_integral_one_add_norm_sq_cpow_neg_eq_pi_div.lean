@@ -18,6 +18,9 @@ namespace ArchComplex
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=eq.0h1v.s6.4aede83f7bdc from=translated src=- shape=fff0c3cc vocab=8ecac512
+-/
 theorem setIntegral_Ioi_comp_one_add (h : ℝ → ℂ) :
     ∫ y in Ioi (0 : ℝ), h (1 + y) = ∫ t in Ioi (1 : ℝ), h t := by
   have hfun : (fun y => (Ioi (0 : ℝ)).indicator (fun y => h (1 + y)) y)
@@ -35,6 +38,9 @@ theorem setIntegral_Ioi_comp_one_add (h : ℝ → ℂ) :
         integral_add_left_eq_self (fun t => (Ioi (1 : ℝ)).indicator h t) 1
     _ = ∫ t in Ioi (1 : ℝ), h t := integral_indicator measurableSet_Ioi
 
+/--
+@isnad1 id=eq.1h1v.s6.c386b8fcfc5b from=translated src=- shape=db15fac8 vocab=8f6afdea
+-/
 theorem integral_one_add_cpow_neg {a : ℂ} (ha : 1 < a.re) :
     ∫ y in Ioi (0 : ℝ), ((1 + y : ℝ) : ℂ) ^ (-a) = 1 / (a - 1) := by
   have h1 : ∫ y in Ioi (0 : ℝ), ((1 + y : ℝ) : ℂ) ^ (-a) = ∫ t in Ioi (1 : ℝ), ((t : ℝ) : ℂ) ^ (-a) :=
@@ -42,6 +48,9 @@ theorem integral_one_add_cpow_neg {a : ℂ} (ha : 1 < a.re) :
   rw [h1, integral_Ioi_cpow_of_lt (by rw [Complex.neg_re]; linarith) zero_lt_one, Complex.ofReal_one,
     Complex.one_cpow, show (-a + 1 : ℂ) = -(a - 1) by ring, div_neg, neg_div, neg_neg]
 
+/--
+@isnad1 id=eq.1h1v.s7.b32da1c2710d from=translated src=- shape=e4afe9aa vocab=311e8a26
+-/
 theorem integral_radial {a : ℂ} (ha : 1 < a.re) :
     ∫ r in Ioi (0 : ℝ), (r : ℂ) * ((1 + r ^ 2 : ℝ) : ℂ) ^ (-a) = 1 / (2 * (a - 1)) := by
   have hsub : ∫ x in Ioi (0 : ℝ), (|(2 : ℝ)| * x ^ ((2 : ℝ) - 1)) • ((1 + x ^ (2 : ℝ) : ℝ) : ℂ) ^ (-a)
@@ -59,6 +68,9 @@ theorem integral_radial {a : ℂ} (ha : 1 < a.re) :
       = (2 : ℂ)⁻¹ * (2 * ∫ r in Ioi (0 : ℝ), (r : ℂ) * ((1 + r ^ 2 : ℝ) : ℂ) ^ (-a)) := by ring
   rw [hI, hsub, one_div, one_div, ← mul_inv]
 
+/--
+@isnad1 id=eq.1h1v.s7.284c9157f80b from=translated src=- shape=ac39396e vocab=67b6c3c6
+-/
 theorem integral_value {s : ℂ} (hs : 0 < s.re) :
     ∫ z : ℂ, ((1 + ‖z‖ ^ 2 : ℝ) : ℂ) ^ (-(2 * s + 1)) = (Real.pi : ℂ) / (2 * s) := by
   have ha : 1 < (2 * s + 1).re := by
@@ -99,6 +111,9 @@ end M4aP2DGK.ArchComplex
 
 end
 
+/--
+@isnad1 id=eq.1h1v.s7.284c9157f80b from=translated src=- shape=ac39396e vocab=67b6c3c6
+-/
 theorem solution
     (s : ℂ) (hs : 0 < s.re) :
     ∫ z : ℂ, ((1 + ‖z‖ ^ 2 : ℝ) : ℂ) ^ (-(2 * s + 1)) = (Real.pi : ℂ) / (2 * s) :=

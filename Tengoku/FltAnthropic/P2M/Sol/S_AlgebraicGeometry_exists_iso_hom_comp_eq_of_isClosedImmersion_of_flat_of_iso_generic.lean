@@ -20,6 +20,9 @@ noncomputable def genericToSpecTensor (A : Type) [CommRing A] [Algebra R A] :
       Spec (CommRingCat.of (K ⊗[R] A)) :=
   (pullbackSpecIso R A K).hom ≫ Spec.map (CommRingCat.ofHom (Algebra.TensorProduct.comm R K A).toRingHom)
 
+/--
+@isnad1 id=eq.0h3v.s9.f0d7e1d40c60 from=translated src=- shape=92d543b1 vocab=8684aa99
+-/
 theorem genericToSpecTensor_comp_includeRight (A : Type) [CommRing A] [Algebra R A] :
     genericToSpecTensor K A ≫ Spec.map (CommRingCat.ofHom (Algebra.TensorProduct.includeRight.toRingHom : A →+* K ⊗[R] A)) =
       pullback.fst (Spec.map (CommRingCat.ofHom (algebraMap R A))) (Spec.map (CommRingCat.ofHom (algebraMap R K))) := by
@@ -41,6 +44,9 @@ set_option autoImplicit false
 open scoped TensorProduct
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=ex.3h9v.s10.15d410bcbbcf from=translated src=- shape=4b2f5717 vocab=0974953a
+-/
 theorem solution
     {R : Type} [CommRing R] [IsDomain R] (K : Type) [Field K] [Algebra R K] [IsFractionRing R K]
     {Y : Scheme.{0}} (f : Y ⟶ Spec (CommRingCat.of R))

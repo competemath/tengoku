@@ -10,6 +10,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=isiso.0h7v.s9.930696c97631 from=translated src=- shape=dc053e2a vocab=181fd825
+-/
 theorem solution
     {S S' Z X : Scheme.{u}} (z : Z ⟶ S) (f : X ⟶ S) (ι : S' ⟶ S) :
     IsIso

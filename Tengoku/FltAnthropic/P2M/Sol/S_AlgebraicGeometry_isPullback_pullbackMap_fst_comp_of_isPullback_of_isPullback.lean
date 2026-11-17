@@ -11,6 +11,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=ispullba.2h13v.s7.b1674f14a953 from=translated src=- shape=4d8276f1 vocab=d0e88458
+-/
 theorem solution
     {S S' A₁ X₁ A U : Scheme.{u}} (f₁ : A₁ ⟶ S) (g₁ : X₁ ⟶ S) (ι : S' ⟶ S)
     (f : A ⟶ S') (g : U ⟶ S') (a : A ⟶ A₁) (u : U ⟶ X₁)

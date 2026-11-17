@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=hassum.3h3v.s9.622726f24bbb from=translated src=- shape=48b77b8e vocab=cd33f0b8
+-/
 theorem MeasureTheory.hasSum_fourierCoeff_pi_mul_cexp_of_continuous_of_periodic_of_summable
     {c : ℕ} (F : (Fin c → ℝ) → ℂ) (hF : Continuous F)
     (hper : ∀ (θ : Fin c → ℝ) (j : Fin c), F (θ + Pi.single j 1) = F θ)

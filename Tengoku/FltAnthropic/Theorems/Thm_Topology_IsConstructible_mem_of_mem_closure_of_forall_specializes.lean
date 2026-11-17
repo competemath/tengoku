@@ -11,6 +11,9 @@ open Topology
 
 universe u
 
+/--
+@isnad1 id=mem.3h3v.s5.f9f58168bf25 from=translated src=- shape=387f4c10 vocab=6d785e0a
+-/
 theorem Topology.IsConstructible.mem_of_mem_closure_of_forall_specializes
     {X : Type u} [TopologicalSpace X] {s : Set X} (hs : Topology.IsConstructible s)
     {x : X} (hx : x ∈ closure s) (hgen : ∀ y ∈ s, x ⤳ y) : x ∈ s := by exact @_root_.P2MW.S_Topology_IsConstructible_mem_of_mem_closure_of_forall_specializes.solution X _ s hs x hx hgen

@@ -30,6 +30,9 @@ private theorem conj_eq_div_of_mul_conj_eq_of_mul_conj_eq {a b c : ℂ}
   · rw [← div_eq_mul_inv, eq_div_iff hb, mul_comm (starRingEnd ℂ b) b]
     exact h2
 
+/--
+@isnad1 id=and.3h3v.s7.3f4b950e3f3c from=translated src=- shape=64dcc9c5 vocab=c792d885
+-/
 theorem solution
     (a b : ℂ) (c : ℝ) (hc : 0 < c)
     (h1 : a * starRingEnd ℂ b = (c : ℂ) * starRingEnd ℂ a) (h2 : ‖b‖ = c) :

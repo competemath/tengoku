@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace
 
+/--
+@isnad1 id=smooth.1h3v.s9.51ef37b943d4 from=translated src=- shape=a44b9e13 vocab=b11d57c6
+-/
 theorem solution
     {X S : Scheme.{u}} (f : X ⟶ S) [LocallyOfFinitePresentation f] [JacobsonSpace ↑X]
     (h : ∀ x : ↑X, IsClosed ({x} : Set ↑X) → (f.stalkMap x).hom.FormallySmooth) :

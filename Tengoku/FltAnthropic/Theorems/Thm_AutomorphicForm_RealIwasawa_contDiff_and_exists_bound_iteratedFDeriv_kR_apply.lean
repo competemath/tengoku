@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_AutomorphicForm_RealIwasawa_contDiff_and_e
 
 open scoped ContDiff
 
+/--
+@isnad1 id=and.1h1v.s10.a45dac6dff9e from=translated src=- shape=5f7d738d vocab=c4aeb885
+-/
 theorem AutomorphicForm.RealIwasawa.contDiff_and_exists_bound_iteratedFDeriv_kR_apply
     {g : Matrix (Fin 2) (Fin 2) ℝ} (hg : g.det ≠ 0) :
     (∀ i j : Fin 2, ContDiff ℝ ∞

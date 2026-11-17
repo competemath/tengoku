@@ -11,6 +11,9 @@ open AlgebraicGeometry CategoryTheory
 
 universe u
 
+/--
+@isnad1 id=locallyo.1h6v.s6.79756c0629f0 from=translated src=- shape=cf896c65 vocab=d5d4c113
+-/
 theorem solution
     {X Y S : Scheme.{u}} (f : X ⟶ S) (g : Y ⟶ S) (h : X ⟶ Y) (w : h ≫ g = f)
     [LocallyOfFiniteType f] [LocallyOfFiniteType g] [IsLocallyNoetherian S] :

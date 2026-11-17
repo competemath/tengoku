@@ -793,6 +793,9 @@ end SplitRealisation
 
 open AutomorphicForm AutomorphicForm.GL2Real
 
+/--
+@isnad1 id=ex.0h1v.s13.9b2605a396f6 from=translated src=- shape=5e08fc9d vocab=aa87c832
+-/
 theorem solution
     (P : Type) [NormedAddCommGroup P] [NormedSpace ℝ P] :
     ∃ I : (ℝ × ℝ → ℂ) → ((Fin 2 → Fin 2 → ℝ) → ℂ),

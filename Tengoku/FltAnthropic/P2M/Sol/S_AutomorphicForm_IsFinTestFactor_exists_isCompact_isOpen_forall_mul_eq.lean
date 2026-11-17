@@ -120,6 +120,9 @@ private theorem exists_compact_open_subgroup_of_isFinTestFactor (K : Type) [Fiel
 
 end RightInvariance
 
+/--
+@isnad1 id=ex.1h2v.s11.493ca064a43c from=translated src=- shape=9a414410 vocab=d9fb249e
+-/
 theorem solution (K : Type) [Field K]
     [NumberField K] (ff : GL (Fin 2) (FiniteAdeleRing (𝓞 K) K) → ℂ) (hff : IsFinTestFactor K ff) :
     ∃ U : Subgroup (GL (Fin 2) (FiniteAdeleRing (𝓞 K) K)),

@@ -24,6 +24,9 @@ theorem eq_span_of_le_span_sup_sq {S : Type*} [CommRing S] [IsLocalRing S] {I : 
     exact hI
   exact Submodule.le_of_le_smul_of_le_jacobson_bot hfg hjac (by rwa [Ideal.smul_eq_mul, ← pow_two])
 
+/--
+@isnad1 id=eq.1h4v.s8.b84ab8a65b72 from=translated src=- shape=885dfae1 vocab=a7103fb1
+-/
 theorem maximalIdeal_eq_ker_sup_map {A S : Type*} [CommRing A] [IsLocalRing A] [CommRing S] [IsLocalRing S]
     (ι : A →+* S) (π : S →+* A) (hπ : ∀ a, π (ι a) = a) :
     maximalIdeal S = RingHom.ker π ⊔ (maximalIdeal A).map ι := by

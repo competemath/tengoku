@@ -1104,6 +1104,9 @@ open scoped _root_.P2MW.S_AutomorphicForm_GL2Twisted_twistedEllipticTransform_co
 
 open TwistedEllipticContinuity in
 
+/--
+@isnad1 id=and.3h2v.s10.d7a141c4ddb2 from=translated src=- shape=2e7a0a3e vocab=a3b4fca9
+-/
 theorem solution
     (P : Type) [NormedAddCommGroup P]
     (Φ : (Fin 2 → Fin 2 → ℂ) × P → ℂ) (hΦ : Continuous Φ) (hΦc : HasCompactSupport Φ)

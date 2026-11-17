@@ -15,6 +15,9 @@ universe u
 namespace AlgebraicGeometry export _root_.AlgebraicGeometry (Spec.map_comp Surjective Scheme.toSpecΓ_naturality_assoc Scheme.Hom Scheme.Hom.app SurjectiveOnStalks.stalkMap_surjective Spec Spec.map Scheme.ΓSpecIso_inv_naturality Scheme Scheme.Hom.comp_appTop IsClosedImmersion.spec_of_surjective IsClosedImmersion Scheme.Hom.comp_app exists_isAffineOpen_mem_and_subset SurjectiveOnStalks toSpecΓ_SpecMap_ΓSpecIso_inv IsAffineOpen Scheme.Hom.ker_apply Scheme.ΓSpecIso Scheme.Hom.map_germ_ker_ideal_eq_ker_stalkMap) namespace IsAffineOpen export _root_.AlgebraicGeometry.IsAffineOpen (fromSpec_preimage_self fromSpec_app_self fromSpec fromSpec_toSpecΓ_assoc) end AlgebraicGeometry.IsAffineOpen
 open scoped _root_.AlgebraicGeometry _root_.AlgebraicGeometry.IsAffineOpen in
 
+/--
+@isnad1 id=eq.1h4v.s12.0142d50e2f45 from=translated src=- shape=b7e65104 vocab=1f25b8e5
+-/
 theorem AlgebraicGeometry.IsAffineOpen.fromSpec_comp_eq_specMap_of_hom_spec
     {O : Type u} [CommRing O] {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of O)) {U : X.Opens} (hU : IsAffineOpen U) :
     hU.fromSpec ≫ f = Spec.map (CommRingCat.ofHom ((X.presheaf.map (homOfLE (le_top : U ≤ ⊤)).op).hom.comp
@@ -22,6 +25,9 @@ theorem AlgebraicGeometry.IsAffineOpen.fromSpec_comp_eq_specMap_of_hom_spec
   simp only [CommRingCat.ofHom_comp, CommRingCat.ofHom_hom, Spec.map_comp]
   rw [← hU.fromSpec_toSpecΓ_assoc, ← Scheme.toSpecΓ_naturality_assoc, toSpecΓ_SpecMap_ΓSpecIso_inv, Category.comp_id]
 
+/--
+@isnad1 id=and.2h9v.s14.5285debd8d2f from=translated src=- shape=cf4158c8 vocab=c0189168
+-/
 theorem solution
     {O κ : Type u} [CommRing O] [CommRing κ] (q : O →+* κ) (hq : Function.Surjective q)
     {X Y : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of O)) (g : Y ⟶ X) (t : Y ⟶ Spec (CommRingCat.of κ))

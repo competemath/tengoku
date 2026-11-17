@@ -10,6 +10,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=locallyq.2h4v.s6.fc0f04604699 from=translated src=- shape=9871284a vocab=227ac778
+-/
 theorem solution
     {S X : Scheme.{u}} (f : X ⟶ S) (h : X ⟶ X) (hcomm : h ≫ f = f)
     (hfib : ∀ s : S, LocallyQuasiFinite (schemeFibreEndo f h hcomm s)) :

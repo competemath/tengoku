@@ -76,6 +76,9 @@ private theorem integrable_maj (F : Type) [Field F] [NumberField F] :
   unfold maj
   exact h
 
+/--
+@isnad1 id=ex.1h3v.s10.dd9be99dcd6d from=translated src=- shape=2d01ade2 vocab=6865add7
+-/
 theorem main (F : Type) [Field F] [NumberField F]
     (kdat : {w : InfinitePlace F // w.IsReal} → ℤ)
     (abm : {w : InfinitePlace F // w.IsComplex} → ℕ × ℕ × ℕ)
@@ -103,6 +106,9 @@ end W4ARCH
 end
 
 open scoped Classical in
+/--
+@isnad1 id=ex.1h3v.s10.dd9be99dcd6d from=translated src=- shape=2d01ade2 vocab=6865add7
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F]
     (kdat : {w : InfinitePlace F // w.IsReal} → ℤ)

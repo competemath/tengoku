@@ -22,12 +22,18 @@ open TensorProduct
 
 namespace IsReducedOfSmoothFieldAux
 
+/--
+@isnad1 id=isreduce.0h2v.s5.ef717c6c92cd from=translated src=- shape=962998db vocab=4c7e4ece
+-/
 theorem etale_isReduced (K A : Type*) [Field K] [CommRing A] [Algebra K A]
     [Algebra.Etale K A] : IsReduced A := by
   haveI : Algebra.FormallyUnramified K A := inferInstance
   haveI : Algebra.EssFiniteType K A := inferInstance
   exact Algebra.FormallyUnramified.isReduced_of_field K A
 
+/--
+@isnad1 id=isreduce.1h3v.s6.9d5ca306e1dd from=translated src=- shape=b29ca70b vocab=cd91e770
+-/
 theorem isStandardSmooth_isReduced_of_isDomain
     {R A : Type u} [CommRing R] [CommRing A] [IsDomain R] {φ : R →+* A}
     (hφ : φ.IsStandardSmooth) : IsReduced A := by
@@ -45,6 +51,9 @@ theorem isStandardSmooth_isReduced_of_isDomain
       (IsFractionRing.injective (MvPolynomial (Fin n) R)
         (FractionRing (MvPolynomial (Fin n) R))))
 
+/--
+@isnad1 id=isreduce.1h3v.s6.74d8970281ca from=translated src=- shape=b29ca70b vocab=83af59b1
+-/
 theorem smooth_isReduced_of_isDomain
     {R A : Type u} [CommRing R] [CommRing A] [IsDomain R] {φ : R →+* A}
     (hφ : φ.Smooth) : IsReduced A := by
@@ -65,6 +74,9 @@ section SchemeLevel
 
 open AlgebraicGeometry CategoryTheory
 
+/--
+@isnad1 id=isreduce.1h3v.s5.268f1c8bfc0c from=translated src=- shape=6cb0ac8b vocab=62474dde
+-/
 theorem solution {k : Type u} [Field k]
     {Z : Scheme.{u}} {g : Z ⟶ Spec (.of k)} (hg : Smooth g) : IsReduced Z := by
   haveI := hg

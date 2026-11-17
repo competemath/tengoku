@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=isopenim.0h3v.s4.3423be24c03a from=translated src=- shape=d492d1ea vocab=210ac28b
+-/
 theorem solution
     {X Y : Scheme.{u}} (f : X ⟶ Y) [Etale f] [UniversallyInjective f] :
     IsOpenImmersion f := by

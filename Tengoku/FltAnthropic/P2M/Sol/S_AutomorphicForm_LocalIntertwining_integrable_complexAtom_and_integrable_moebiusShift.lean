@@ -16,6 +16,9 @@ noncomputable section
 
 namespace IntArchC
 
+/--
+@isnad1 id=integrab.2h4v.s8.52eb26c3dce7 from=translated src=- shape=e75c3baf vocab=1de131b3
+-/
 theorem integrable_complexFactor (a b m : ℕ) (habm : a + b ≤ m) (s : ℂ) (hs : 0 < s.re) :
     Integrable (fun z : ℂ => z ^ a * (starRingEnd ℂ) z ^ b
       * (((1 + ‖z‖ ^ 2 : ℝ) : ℂ)) ^ (-(2 * s + 1) - (m : ℂ) / 2)) := by
@@ -50,6 +53,9 @@ theorem integrable_complexFactor (a b m : ℕ) (habm : a + b ≤ m) (s : ℂ) (h
       _ = ((1 : ℝ) + ‖z‖ ^ 2) ^ (-(2 * (2 * s.re + 1)) / 2) := by
           rw [← Real.rpow_add hBpos]; congr 1; ring
 
+/--
+@isnad1 id=le.1h5v.s8.51b3d9659b22 from=translated src=- shape=4f31dbca vocab=51a0c7d0
+-/
 theorem norm_complexFactor_le (a b m : ℕ) (habm : a + b ≤ m) (σ : ℝ) (y : ℂ) :
     ‖y ^ a * (starRingEnd ℂ) y ^ b * (((1 + ‖y‖ ^ 2 : ℝ) : ℂ)) ^ (-(2 * (σ : ℂ) + 1) - (m : ℂ) / 2)‖
       ≤ (1 + ‖y‖ ^ 2) ^ (-(2 * σ + 1)) := by
@@ -78,6 +84,9 @@ theorem norm_complexFactor_le (a b m : ℕ) (habm : a + b ≤ m) (σ : ℝ) (y :
     _ = (1 + ‖y‖ ^ 2) ^ (-(2 * σ + 1)) := by
         rw [← Real.rpow_add hBpos]; congr 1; ring
 
+/--
+@isnad1 id=le.0h5v.s8.badb16a9c120 from=translated src=- shape=324db082 vocab=bd509a7d
+-/
 theorem floor (a b c d z : ℂ) :
     ‖a * d - b * c‖ ^ 2 * (1 + ‖z‖ ^ 2)
       ≤ (‖a‖ ^ 2 + ‖b‖ ^ 2 + ‖c‖ ^ 2 + ‖d‖ ^ 2) * (‖a + z * c‖ ^ 2 + ‖b + z * d‖ ^ 2) := by
@@ -111,6 +120,9 @@ theorem floor (a b c d z : ℂ) :
           nlinarith [sq_nonneg (‖a‖ * ‖P‖ - ‖b‖ * ‖Q‖)]
   nlinarith [s1, s2]
 
+/--
+@isnad1 id=lt.1h4v.s7.fefb8f91e34e from=translated src=- shape=038aec20 vocab=b4275928
+-/
 theorem entries_pos {a b c d : ℂ} (hdet : a * d - b * c ≠ 0) :
     0 < ‖a‖ ^ 2 + ‖b‖ ^ 2 + ‖c‖ ^ 2 + ‖d‖ ^ 2 := by
   have h := floor a b c d 0
@@ -119,6 +131,9 @@ theorem entries_pos {a b c d : ℂ} (hdet : a * d - b * c ≠ 0) :
   have hS : 0 ≤ ‖a‖ ^ 2 + ‖b‖ ^ 2 := by positivity
   nlinarith [h, hD, hS, sq_nonneg ‖c‖, sq_nonneg ‖d‖]
 
+/--
+@isnad1 id=integrab.3h8v.s9.4212e8e59589 from=translated src=- shape=aa6a9a42 vocab=e3a4f40c
+-/
 theorem main (a b c d : ℂ) (hdet : a * d - b * c ≠ 0) (a₀ b₀ m : ℕ) (habm : a₀ + b₀ ≤ m)
     (σ : ℝ) (hσ : 0 < σ) :
     Integrable (fun z : ℂ =>
@@ -209,6 +224,9 @@ end IntArchC
 
 end
 
+/--
+@isnad1 id=other.3h8v.s9.6810ade73e0b from=translated src=- shape=be4200b8 vocab=e3a4f40c
+-/
 theorem solution
     (a b c d : ℂ) (_hdet : a * d - b * c ≠ 0) (a₀ b₀ m : ℕ) (_habm : a₀ + b₀ ≤ m) (σ : ℝ) (_hσ : 0 < σ) :
     let atom : ℝ → ℂ → ℂ := fun σ z =>

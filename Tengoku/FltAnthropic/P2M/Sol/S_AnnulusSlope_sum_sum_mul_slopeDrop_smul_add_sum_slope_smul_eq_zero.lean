@@ -19,6 +19,9 @@ def slope (g : ℕ → ℤ) (d : ℕ) : ℤ := g d - g (d - 1)
 
 def drop (g : ℕ → ℤ) (d : ℕ) : ℤ := slope g d - slope g (d + 1)
 
+/--
+@isnad1 id=eq.1h2v.s6.cb53d79d74db from=translated src=- shape=3972c7fd vocab=d862a6c3
+-/
 theorem sum_mul_drop_eq (g : ℕ → ℤ) (e : ℕ) (he : 1 ≤ e) :
     ∑ d ∈ Ico 1 e, (d : ℤ) * drop g d = (g e - g 0) - (e : ℤ) * slope g e := by
   induction e, he using Nat.le_induction with
@@ -28,6 +31,9 @@ theorem sum_mul_drop_eq (g : ℕ → ℤ) (e : ℕ) (he : 1 ≤ e) :
       simp only [drop, slope, Nat.add_sub_cancel, Nat.cast_add, Nat.cast_one]
       ring
 
+/--
+@isnad1 id=eq.4h7v.s8.2fd3058c7504 from=translated src=- shape=44e5ec2b vocab=b1f9edde
+-/
 theorem lattice_identity {S : Type*} [Fintype S] {M : Type*} [AddCommGroup M]
     (coord : S → M) (v : M) (e : S → ℕ) (he : ∀ s, 1 ≤ e s)
     (hv : ∀ s, (e s : ℤ) • coord s = v) (hsum : ∑ s, coord s = 0)
@@ -43,6 +49,9 @@ theorem lattice_identity {S : Type*} [Fintype S] {M : Type*} [AddCommGroup M]
 end AnnulusSlope
 
 open Finset BigOperators in
+/--
+@isnad1 id=eq.4h7v.s8.9dec441d9cda from=translated src=- shape=55e6b943 vocab=347ddb12
+-/
 theorem solution
     {S : Type u} [Fintype S] {M : Type v} [AddCommGroup M]
     (coord : S → M) (v : M) (e : S → ℕ) (he : ∀ s, 1 ≤ e s)

@@ -11,6 +11,9 @@ set_option autoImplicit false
 open MeasureTheory
 open scoped ContDiff FourierTransform
 
+/--
+@isnad1 id=ex.8h6v.s12.a91271cc64e1 from=translated src=- shape=410549b1 vocab=d0ca0813
+-/
 theorem AutomorphicForm.RealIwasawa.exists_forall_norm_fourierIntegral_cpow_rad_mul_le_polyDecay_of_isCompact
     (𝒢 : Set (Matrix (Fin 2) (Fin 2) ℝ)) (h𝒢 : IsCompact 𝒢) (hdet : ∀ g ∈ 𝒢, g.det ≠ 0)
     (U : Set ℂ) (hU : IsCompact U) (hU1 : ∀ u ∈ U, 1 < u.re)

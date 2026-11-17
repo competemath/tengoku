@@ -11,6 +11,9 @@ open CategoryTheory AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=eq.2h4v.s8.7c34b77277b5 from=translated src=- shape=2b35457e vocab=97b0401b
+-/
 theorem AlgebraicGeometry.topologicalKrullDim_eq_ringKrullDim_of_isAffineOpen_of_isIntegral
     {k : Type u} [Field k] {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of k))
     [IsIntegral X] [LocallyOfFiniteType f] {U : X.Opens} (hU : IsAffineOpen U)

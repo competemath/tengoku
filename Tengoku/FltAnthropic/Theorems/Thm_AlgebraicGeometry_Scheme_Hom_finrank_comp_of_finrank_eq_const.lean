@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=eq.1h7v.s6.0c59e158108c from=translated src=- shape=5b1b1db2 vocab=a8efba0b
+-/
 theorem AlgebraicGeometry.Scheme.Hom.finrank_comp_of_finrank_eq_const
     {X Y Z : Scheme.{u}} (f : X ⟶ Y) (g : Y ⟶ Z) [IsFinite f] [Flat f] [IsFinite g] [Flat g]
     (m : ℕ) (hf : ∀ y : Y, f.finrank y = m) (z : Z) :

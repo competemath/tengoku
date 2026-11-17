@@ -8,6 +8,9 @@ set_option autoImplicit false
 universe u
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry TensorProduct
 
+/--
+@isnad1 id=finite.0h3v.s11.287f9d183c1c from=translated src=- shape=0125dfec vocab=fca5c13e
+-/
 theorem solution
     {R : Type u} [CommRing R] {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of R))
     [IsProper f] [IsAffineHom f] :

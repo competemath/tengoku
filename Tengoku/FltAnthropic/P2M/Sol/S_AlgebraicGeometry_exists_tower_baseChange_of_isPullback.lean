@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=ex.3h8v.s12.8c0b993edcf5 from=translated src=- shape=90ad9bf3 vocab=52aed7d4
+-/
 theorem solution
     (𝒪 : Type u) [CommRing 𝒪] (π : 𝒪)
     (X : ℕ → Scheme.{u}) (xb : ∀ n : ℕ, X n ⟶ Spec (CommRingCat.of (𝒪 ⧸ Ideal.span {π ^ (n + 1)})))

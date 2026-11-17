@@ -15,6 +15,9 @@ namespace ArchReal
 
 open MeasureTheory Set Complex
 
+/--
+@isnad1 id=eq.2h2v.s7.942192a8792a from=translated src=- shape=6e7b52c2 vocab=6048f096
+-/
 theorem scaledGammaIntegral {a : ℂ} (ha : 0 < a.re) {r : ℝ} (hr : 0 < r) :
     ∫ t in Ioi (0 : ℝ), ((Real.exp (-(r * t)) : ℝ) : ℂ) * ((t : ℝ) : ℂ) ^ (a - 1)
       = ((r : ℝ) : ℂ) ^ (-a) * Complex.Gamma a := by
@@ -79,6 +82,9 @@ theorem scaledGammaIntegral {a : ℂ} (ha : 0 < a.re) {r : ℝ} (hr : 0 < r) :
         (by simpa using Complex.GammaIntegral_convergent ha)
     exact hcomp.smul r
 
+/--
+@isnad1 id=eq.1h2v.s7.c6d8327f953e from=translated src=- shape=de1989ea vocab=76711d8b
+-/
 theorem cpow_neg_eq_gamma_inv_mul_integral {a : ℂ} (ha : 0 < a.re) (x : ℝ) :
     (((1 + x ^ 2 : ℝ)) : ℂ) ^ (-a)
       = (Complex.Gamma a)⁻¹ *
@@ -88,6 +94,9 @@ theorem cpow_neg_eq_gamma_inv_mul_integral {a : ℂ} (ha : 0 < a.re) (x : ℝ) :
   rw [scaledGammaIntegral ha hx, mul_comm (((1 + x ^ 2 : ℝ) : ℂ) ^ (-a)) (Complex.Gamma a),
     ← mul_assoc, inv_mul_cancel₀ (Complex.Gamma_ne_zero_of_re_pos ha), one_mul]
 
+/--
+@isnad1 id=integrab.2h2v.s6.50c5ea96d0fc from=translated src=- shape=8e9b5626 vocab=6ad81451
+-/
 theorem integrableOn_scaledGamma {a : ℂ} (ha : 0 < a.re) {r : ℝ} (hr : 0 < r) :
     IntegrableOn (fun t : ℝ => ((Real.exp (-(r * t)) : ℝ) : ℂ) * ((t : ℝ) : ℂ) ^ (a - 1))
       (Ioi 0) := by
@@ -116,6 +125,9 @@ theorem integrableOn_scaledGamma {a : ℂ} (ha : 0 < a.re) {r : ℝ} (hr : 0 < r
     ← Complex.cpow_add _ _ hrne,
     show ((1 : ℂ) - a) + (a - 1) = 0 by ring, Complex.cpow_zero, one_mul]
 
+/--
+@isnad1 id=integrab.1h1v.s6.200e56bcb6dc from=translated src=- shape=b0faa9b1 vocab=25b2ad06
+-/
 theorem integrable_one_add_sq_rpow_neg {c : ℝ} (hc : 1 / 2 < c) :
     Integrable (fun x : ℝ => (1 + x ^ 2) ^ (-c)) := by
   have hpt : ∀ x : ℝ, (0 : ℝ) < 1 + x ^ 2 := fun x => by positivity
@@ -167,6 +179,9 @@ theorem integrable_one_add_sq_rpow_neg {c : ℝ} (hc : 1 / 2 < c) :
   rw [← integrableOn_univ]
   exact hunion.mono_set hcover.symm.subset
 
+/--
+@isnad1 id=integrab.1h1v.s7.035811f97efc from=translated src=- shape=eb6ff7d8 vocab=4c7837ee
+-/
 theorem integrable_uncurry_kernel {a : ℂ} (ha : 1 / 2 < a.re) :
     Integrable (Function.uncurry fun (x : ℝ) (t : ℝ) =>
         ((Real.exp (-((1 + x ^ 2) * t)) : ℝ) : ℂ) * ((t : ℝ) : ℂ) ^ (a - 1))
@@ -216,6 +231,9 @@ theorem integrable_uncurry_kernel {a : ℂ} (ha : 1 / 2 < a.re) :
     rw [hval x, one_div, ← Real.rpow_neg_one, ← Real.rpow_mul (hpt x).le,
       neg_one_mul, mul_comm]
 
+/--
+@isnad1 id=eq.1h1v.s7.06fe9b1e5b61 from=translated src=- shape=5d8a11f6 vocab=cddbc3ae
+-/
 theorem integral_cpow_neg_one_add_sq {a : ℂ} (ha : 1 / 2 < a.re) :
     ∫ x : ℝ, (((1 + x ^ 2 : ℝ)) : ℂ) ^ (-a)
       = (Real.pi : ℂ) ^ (1 / 2 : ℂ) * Complex.Gamma (a - 1 / 2) / Complex.Gamma a := by
@@ -293,6 +311,9 @@ theorem integral_cpow_neg_one_add_sq {a : ℂ} (ha : 1 / 2 < a.re) :
   rw [h1, h2, MeasureTheory.setIntegral_congr_fun measurableSet_Ioi h3, h4]
   field_simp
 
+/--
+@isnad1 id=eq.1h1v.s7.a8c3b61a1e01 from=translated src=- shape=988a6219 vocab=34b78af3
+-/
 theorem arch_integral_value {s : ℂ} (hs : 0 < s.re) :
     ∫ x : ℝ, (((1 + x ^ 2 : ℝ)) : ℂ) ^ (-(s + 1 / 2))
       = (Real.pi : ℂ) ^ (1 / 2 : ℂ) * Complex.Gamma s / Complex.Gamma (s + 1 / 2) := by
@@ -303,6 +324,9 @@ theorem arch_integral_value {s : ℂ} (hs : 0 < s.re) :
   rw [integral_cpow_neg_one_add_sq ha,
     show (s + 1 / 2 - 1 / 2 : ℂ) = s by ring]
 
+/--
+@isnad1 id=eq.0h1v.s5.093d7968c095 from=translated src=- shape=b9e60f6a vocab=1a82ebc5
+-/
 theorem gammaR_two_mul (s : ℂ) :
     Gammaℝ (2 * s) = (Real.pi : ℂ) ^ (-s) * Complex.Gamma s := by
   rw [Gammaℝ]
@@ -310,6 +334,9 @@ theorem gammaR_two_mul (s : ℂ) :
   · congr 1; ring
   · congr 1; ring
 
+/--
+@isnad1 id=eq.0h1v.s6.2c4c7b6dd7aa from=translated src=- shape=605a7e99 vocab=d09936e2
+-/
 theorem gammaR_two_mul_add_one (s : ℂ) :
     Gammaℝ (2 * s + 1) = (Real.pi : ℂ) ^ (-s - 1/2) * Complex.Gamma (s + 1/2) := by
   rw [Gammaℝ]
@@ -317,6 +344,9 @@ theorem gammaR_two_mul_add_one (s : ℂ) :
   · congr 1; ring
   · congr 1; ring
 
+/--
+@isnad1 id=eq.0h1v.s7.14dec39d9f93 from=translated src=- shape=1e37460c vocab=397354e8
+-/
 theorem sqrtpi_gamma_mul_gammaR : ∀ s : ℂ,
     (Real.pi : ℂ) ^ (1/2 : ℂ) * Complex.Gamma s * Gammaℝ (2 * s + 1)
       = Complex.Gamma (s + 1/2) * Gammaℝ (2 * s) := by
@@ -337,6 +367,9 @@ theorem sqrtpi_gamma_mul_gammaR : ∀ s : ℂ,
         rw [hfold]
     _ = Complex.Gamma (s + 1/2) * ((Real.pi : ℂ) ^ (-s) * Complex.Gamma s) := by ring
 
+/--
+@isnad1 id=eq.1h1v.s7.9e22f76bced4 from=translated src=- shape=74621093 vocab=f4c6a7a1
+-/
 theorem integral_value_gammaR {s : ℂ} (hs : 0 < s.re) :
     ∫ x : ℝ, ((1 + x ^ 2 : ℝ) : ℂ) ^ (-(s + 1 / 2))
       = Complex.Gammaℝ (2 * s) / Complex.Gammaℝ (2 * s + 1) := by
@@ -358,6 +391,9 @@ end M4aP2DGK.ArchReal
 
 end
 
+/--
+@isnad1 id=eq.1h1v.s7.9e22f76bced4 from=translated src=- shape=74621093 vocab=f4c6a7a1
+-/
 theorem solution
     (s : ℂ) (hs : 0 < s.re) :
     ∫ x : ℝ, ((1 + x ^ 2 : ℝ) : ℂ) ^ (-(s + 1 / 2))

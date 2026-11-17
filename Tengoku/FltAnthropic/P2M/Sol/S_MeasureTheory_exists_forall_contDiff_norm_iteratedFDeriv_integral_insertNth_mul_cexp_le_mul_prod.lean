@@ -18,10 +18,22 @@ abbrev X (n : ℕ) := Fin n → ℝ
 
 def box (n : ℕ) (R : ℝ) : Set (X n) := Set.Icc (fun _ => -R) (fun _ => R)
 
+/--
+@isnad1 id=iscompac.0h2v.s4.49236cbf634a from=translated src=- shape=4fe5e5f8 vocab=d95bc303
+-/
 lemma isCompact_box (R : ℝ) : IsCompact (box n R) := isCompact_Icc
+/--
+@isnad1 id=measurab.0h2v.s4.8257f2fe2845 from=translated src=- shape=4fe5e5f8 vocab=1e053fda
+-/
 lemma measurableSet_box (R : ℝ) : MeasurableSet (box n R) := measurableSet_Icc
+/--
+@isnad1 id=lt.0h2v.s6.8411bb5c7de8 from=translated src=- shape=05a6cac3 vocab=3d54e8a8
+-/
 lemma volume_box_lt_top (R : ℝ) : volume (box n R) < ⊤ := (isCompact_box R).measure_lt_top
 
+/--
+@isnad1 id=ex.1h3v.s5.dc0e76f85342 from=translated src=- shape=04901214 vocab=861b8706
+-/
 lemma not_mem_box {R : ℝ} {x : X n} (hx : x ∉ box n R) : ∃ i, R < |x i| := by
   by_contra h
   push_neg at h
@@ -30,11 +42,17 @@ lemma not_mem_box {R : ℝ} {x : X n} (hx : x ∉ box n R) : ∃ i, R < |x i| :=
 noncomputable def ex (ξ : X n) (x : X n) : ℂ :=
   Complex.exp (-(2 * Real.pi * Complex.I * ((∑ i, ξ i * x i : ℝ) : ℂ)))
 
+/--
+@isnad1 id=eq.0h3v.s4.31f52c7d73c1 from=translated src=- shape=b799a142 vocab=7c63de9d
+-/
 lemma norm_ex (ξ x : X n) : ‖ex ξ x‖ = 1 := by
   rw [ex, Complex.norm_exp]
   have : (-(2 * Real.pi * Complex.I * ((∑ i, ξ i * x i : ℝ) : ℂ))).re = 0 := by simp [Complex.mul_re]
   rw [this, Real.exp_zero]
 
+/--
+@isnad1 id=continuo.0h2v.s5.d7db03eb72a7 from=translated src=- shape=60d29fdb vocab=3e4b5993
+-/
 lemma continuous_ex (ξ : X n) : Continuous (ex ξ) := by
   unfold ex
   refine Complex.continuous_exp.comp (Continuous.neg (continuous_const.mul
@@ -49,15 +67,24 @@ structure IsWin (R : ℝ) (V : Q × X n → ℂ) : Prop where
 private noncomputable def _root_.PMDK6B.dir (u : Q × X n) (V : Q × X n → ℂ) : Q × X n → ℂ := fun q => fderiv ℝ V q u
 
 export _root_.PMDK6B (dir)
+/--
+@isnad1 id=isopen.0h2v.s6.9f84d724fdb8 from=translated src=- shape=63894e33 vocab=0b11a6e4
+-/
 lemma isOpen_outx (R : ℝ) : IsOpen {q : Q × X n | ∃ i, R < |q.2 i|} := by
   have : {q : Q × X n | ∃ i, R < |q.2 i|} = ⋃ i, {q | R < |q.2 i|} := by ext q; simp
   rw [this]
   exact isOpen_iUnion fun i => isOpen_lt continuous_const
     (continuous_abs.comp ((continuous_apply i).comp continuous_snd))
 
+/--
+@isnad1 id=isopen.0h2v.s6.5328c553a3e0 from=translated src=- shape=7ece752b vocab=ef017b6b
+-/
 lemma isOpen_outs (R : ℝ) : IsOpen {q : Q × X n | R < |q.1.1|} :=
   isOpen_lt continuous_const (continuous_abs.comp (continuous_fst.comp continuous_fst))
 
+/--
+@isnad1 id=eq.3h5v.s9.ff88457eb097 from=translated src=- shape=13150787 vocab=d84885c2
+-/
 lemma fderiv_eq_zero_of_open {V : Q × X n → ℂ} {O : Set (Q × X n)} (hO : IsOpen O)
     (hV : ∀ q ∈ O, V q = 0) (q : Q × X n) (hq : q ∈ O) (u : Q × X n) : fderiv ℝ V q u = 0 := by
   have hev : V =ᶠ[nhds q] (fun _ => (0 : ℂ)) := by
@@ -65,6 +92,9 @@ lemma fderiv_eq_zero_of_open {V : Q × X n → ℂ} {O : Set (Q × X n)} (hO : I
     exact hV q' hq'
   rw [hev.fderiv_eq]; simp
 
+/--
+@isnad1 id=iswin.1h4v.s4.ee17721cb413 from=translated src=- shape=b70ed802 vocab=a3c90804
+-/
 lemma IsWin.dir {R : ℝ} {V : Q × X n → ℂ} (hV : IsWin R V) (u : Q × X n) : IsWin R (dir u V) where
   smooth := ((contDiff_infty_iff_fderiv.1 hV.smooth).2).clm_apply contDiff_const
   suppx := fun q hq => fderiv_eq_zero_of_open (isOpen_outx R) (fun q' hq' => hV.suppx q' hq') q hq u
@@ -75,15 +105,24 @@ noncomputable def Ψ (ξ : X n) (V : Q × X n → ℂ) (p : Q) : ℂ := ∫ x, V
 noncomputable def dV (V : Q × X n → ℂ) (q : Q × X n) : Q →L[ℝ] ℂ :=
   (fderiv ℝ V q).comp (ContinuousLinearMap.inl ℝ Q (X n))
 
+/--
+@isnad1 id=continuo.1h2v.s8.72ace85562eb from=translated src=- shape=c4912633 vocab=dcbc67c8
+-/
 lemma continuous_dV {V : Q × X n → ℂ} (hV : ContDiff ℝ (⊤ : ℕ∞) V) : Continuous (dV V) :=
   (((contDiff_infty_iff_fderiv.1 hV).2).continuous).clm_comp continuous_const
 
+/--
+@isnad1 id=hasfderi.1h4v.s8.4617769d3703 from=translated src=- shape=d64c19d6 vocab=3bc4d027
+-/
 lemma hasFDerivAt_slice {V : Q × X n → ℂ} (hV : ContDiff ℝ (⊤ : ℕ∞) V) (p : Q) (x : X n) :
     HasFDerivAt (fun p' : Q => V (p', x)) (dV V (p, x)) p := by
   have hd : HasFDerivAt V (fderiv ℝ V (p, x)) (p, x) :=
     (hV.differentiable (by simp)).differentiableAt.hasFDerivAt
   exact hd.comp p (hasFDerivAt_prodMk_left p x)
 
+/--
+@isnad1 id=eq.2h5v.s8.5dfd165a2f67 from=translated src=- shape=3686afa7 vocab=935561cb
+-/
 lemma dV_eq_zero {R : ℝ} {V : Q × X n → ℂ} (hV : IsWin R V) (p : Q) (x : X n) (hx : x ∉ box n R) :
     dV V (p, x) = 0 := by
   have hev : V =ᶠ[nhds (p, x)] (fun _ => (0 : ℂ)) := by
@@ -92,16 +131,25 @@ lemma dV_eq_zero {R : ℝ} {V : Q × X n → ℂ} (hV : IsWin R V) (p : Q) (x : 
   simp only [dV, hev.fderiv_eq, fderiv_const]
   simp
 
+/--
+@isnad1 id=ex.1h5v.s7.461d7853c7fd from=translated src=- shape=8535e952 vocab=3c19a7cf
+-/
 lemma exists_local_bound {Y : Type*} [NormedAddCommGroup Y] {F : Q × X n → Y} (hF : Continuous F)
     (p₀ : Q) (R : ℝ) : ∃ C : ℝ, 0 ≤ C ∧ ∀ p ∈ Metric.closedBall p₀ 1, ∀ x ∈ box n R, ‖F (p, x)‖ ≤ C := by
   obtain ⟨C, hC⟩ := ((isCompact_closedBall p₀ (1 : ℝ)).prod (isCompact_box (n := n) R)).exists_bound_of_continuousOn
     hF.continuousOn
   exact ⟨max C 0, le_max_right _ _, fun p hp x hx => (hC (p, x) (Set.mem_prod.mpr ⟨hp, hx⟩)).trans (le_max_left _ _)⟩
 
+/--
+@isnad1 id=integrab.2h4v.s7.2b36180199be from=translated src=- shape=68891ef0 vocab=ad9e0c8a
+-/
 lemma integrable_of_supp {Y : Type*} [NormedAddCommGroup Y] {f : X n → Y} (hf : Continuous f) {R : ℝ}
     (hsupp : ∀ x, x ∉ box n R → f x = 0) : Integrable f := by
   refine hf.integrable_of_hasCompactSupport (HasCompactSupport.intro (isCompact_box R) hsupp)
 
+/--
+@isnad1 id=hasfderi.1h5v.s9.301ee23bbb1c from=translated src=- shape=194b85a4 vocab=8c7d5bb2
+-/
 lemma hasFDerivAt_Ψ {R : ℝ} {V : Q × X n → ℂ} (hV : IsWin R V) (ξ : X n) (p₀ : Q) :
     HasFDerivAt (Ψ ξ V) (∫ x, ex ξ x • dV V (p₀, x)) p₀ := by
   have hVc : Continuous V := hV.smooth.continuous
@@ -130,6 +178,9 @@ lemma hasFDerivAt_Ψ {R : ℝ} {V : Q × X n → ℂ} (hV : IsWin R V) (ξ : X n
     ((integrableOn_const (volume_box_lt_top R).ne).integrable_indicator (measurableSet_box R))
     (ae_of_all _ fun x p _ => (hasFDerivAt_slice hV.smooth p x).const_smul (ex ξ x))
 
+/--
+@isnad1 id=eq.1h6v.s9.bedc5c1a946c from=translated src=- shape=34ea4344 vocab=01a5bdea
+-/
 lemma fderiv_Ψ_apply {R : ℝ} {V : Q × X n → ℂ} (hV : IsWin R V) (ξ : X n) (p : Q) (v : Q) :
     fderiv ℝ (Ψ ξ V) p v = Ψ ξ (dir (v, (0 : X n)) V) p := by
   rw [(hasFDerivAt_Ψ hV ξ p).fderiv]
@@ -145,9 +196,15 @@ lemma fderiv_Ψ_apply {R : ℝ} {V : Q × X n → ℂ} (hV : IsWin R V) (ξ : X 
   simp only [Ψ, dir, dV, FunLike.coe_smul, Pi.smul_apply, ContinuousLinearMap.coe_comp,
     Function.comp_apply, ContinuousLinearMap.inl_apply, smul_eq_mul, mul_comm]
 
+/--
+@isnad1 id=differen.1h4v.s7.143b99aefc22 from=translated src=- shape=4dbdfbe6 vocab=7a8229ad
+-/
 lemma differentiable_Ψ {R : ℝ} {V : Q × X n → ℂ} (hV : IsWin R V) (ξ : X n) :
     Differentiable ℝ (Ψ ξ V) := fun p => (hasFDerivAt_Ψ hV ξ p).differentiableAt
 
+/--
+@isnad1 id=contdiff.1h5v.s6.8caf88755c2b from=translated src=- shape=5109d34a vocab=72ae5802
+-/
 lemma contDiff_Ψ_nat (R : ℝ) (ξ : X n) : ∀ (i : ℕ) (V : Q × X n → ℂ), IsWin R V → ContDiff ℝ i (Ψ ξ V) := by
   intro i
   induction i with
@@ -164,6 +221,9 @@ lemma contDiff_Ψ_nat (R : ℝ) (ξ : X n) : ∀ (i : ℕ) (V : Q × X n → ℂ
     rw [this]
     exact ih _ (hV.dir _)
 
+/--
+@isnad1 id=contdiff.1h4v.s6.c24465b84d4d from=translated src=- shape=782f5e88 vocab=c2463810
+-/
 lemma contDiff_Ψ {R : ℝ} {V : Q × X n → ℂ} (hV : IsWin R V) (ξ : X n) : ContDiff ℝ (⊤ : ℕ∞) (Ψ ξ V) :=
   contDiff_infty.2 fun i => contDiff_Ψ_nat R ξ i V hV
 
@@ -172,10 +232,16 @@ private noncomputable def _root_.PMDK6B.DDX : (ℓ : ℕ) → (Fin ℓ → Q) �
   | ℓ + 1, u, V => DDX ℓ (Fin.init u) (dir (u (Fin.last ℓ), (0 : X n)) V)
 
 export _root_.PMDK6B (DDX)
+/--
+@isnad1 id=iswin.1h5v.s4.273288a560df from=translated src=- shape=862ea0e5 vocab=1b66432d
+-/
 lemma IsWin.DDX {R : ℝ} : ∀ (ℓ : ℕ) (u : Fin ℓ → Q) {V : Q × X n → ℂ}, IsWin R V → IsWin R (DDX ℓ u V)
   | 0, _, _, hV => hV
   | ℓ + 1, u, _, hV => IsWin.DDX ℓ (Fin.init u) (hV.dir _)
 
+/--
+@isnad1 id=eq.1h7v.s8.16094a578f9e from=translated src=- shape=48b3d64a vocab=f7a8038c
+-/
 lemma iteratedFDeriv_Ψ_apply {R : ℝ} (ξ : X n) : ∀ (ℓ : ℕ) (V : Q × X n → ℂ),
     IsWin R V → ∀ (p : Q) (u : Fin ℓ → Q), (iteratedFDeriv ℝ ℓ (Ψ ξ V) p) u = Ψ ξ (DDX ℓ u V) p := by
   intro ℓ
@@ -201,6 +267,9 @@ lemma iteratedFDeriv_Ψ_apply {R : ℝ} (ξ : X n) : ∀ (ℓ : ℕ) (V : Q × X
     rw [h3, ih _ (hV.dir _) p (Fin.init u)]
     rfl
 
+/--
+@isnad1 id=le.1h5v.s10.74abbb7f0fd7 from=translated src=- shape=54e36e55 vocab=96832912
+-/
 lemma norm_iteratedFDeriv_dir_le {V : Q × X n → ℂ} (hV : ContDiff ℝ (⊤ : ℕ∞) V)
     (w : Q × X n) (j : ℕ) (q : Q × X n) :
     ‖iteratedFDeriv ℝ j (dir w V) q‖ ≤ ‖w‖ * ‖iteratedFDeriv ℝ (j + 1) V q‖ := by
@@ -217,6 +286,9 @@ lemma norm_iteratedFDeriv_dir_le {V : Q × X n → ℂ} (hV : ContDiff ℝ (⊤ 
         rw [hL, ContinuousLinearMap.apply_apply, mul_comm]
         exact f.le_opNorm w
 
+/--
+@isnad1 id=le.1h7v.s10.8c443acbda88 from=translated src=- shape=69d34bcd vocab=2cca700f
+-/
 lemma norm_iteratedFDeriv_DDX_le {R : ℝ} : ∀ (ℓ : ℕ) (u : Fin ℓ → Q) {V : Q × X n → ℂ}, IsWin R V →
     ∀ (j : ℕ) (q : Q × X n), ‖iteratedFDeriv ℝ j (DDX ℓ u V) q‖ ≤ (∏ i, ‖u i‖) * ‖iteratedFDeriv ℝ (j + ℓ) V q‖
   | 0, u, V, hV, j, q => by simp [DDX]
@@ -238,6 +310,9 @@ lemma norm_iteratedFDeriv_DDX_le {R : ℝ} : ∀ (ℓ : ℕ) (u : Fin ℓ → Q)
 
 def vX (i : Fin n) : Q × X n := ((0 : Q), (Pi.single i (1 : ℝ) : X n))
 
+/--
+@isnad1 id=eq.0h2v.s5.d4c216d2ca49 from=translated src=- shape=90a8ac69 vocab=a20b7901
+-/
 lemma norm_single (i : Fin n) : ‖(Pi.single i (1 : ℝ) : X n)‖ = 1 := by
   refine le_antisymm ?_ ?_
   · refine (pi_norm_le_iff_of_nonneg zero_le_one).mpr fun i' => ?_
@@ -247,10 +322,16 @@ lemma norm_single (i : Fin n) : ‖(Pi.single i (1 : ℝ) : X n)‖ = 1 := by
   · have := norm_le_pi_norm (Pi.single i (1 : ℝ) : X n) i
     simpa using this
 
+/--
+@isnad1 id=eq.0h2v.s5.f012b71e9fb5 from=translated src=- shape=da1a2e14 vocab=17690a62
+-/
 lemma norm_vX (i : Fin n) : ‖(vX i : Q × X n)‖ = 1 := by
   simp only [vX, Prod.norm_def, norm_zero]
   rw [max_eq_right (norm_nonneg _), norm_single]
 
+/--
+@isnad1 id=le.1h5v.s10.cfa529decabe from=translated src=- shape=20863cea vocab=68f8e947
+-/
 lemma norm_iteratedFDeriv_dX2_le {V : Q × X n → ℂ} (hV : ContDiff ℝ (⊤ : ℕ∞) V) (a : Fin n) (j : ℕ)
     (q : Q × X n) : ‖iteratedFDeriv ℝ j (dir (vX a) (dir (vX a) V)) q‖ ≤ ‖iteratedFDeriv ℝ (j + 2) V q‖ := by
   have hV' : ContDiff ℝ (⊤ : ℕ∞) (dir (vX a) V) := ((contDiff_infty_iff_fderiv.1 hV).2).clm_apply contDiff_const
@@ -259,6 +340,9 @@ lemma norm_iteratedFDeriv_dX2_le {V : Q × X n → ℂ} (hV : ContDiff ℝ (⊤ 
         mul_le_mul_of_nonneg_left (norm_iteratedFDeriv_dir_le hV _ (j + 1) q) (norm_nonneg _)
     _ = ‖iteratedFDeriv ℝ (j + 2) V q‖ := by rw [norm_vX]; ring_nf
 
+/--
+@isnad1 id=eq.0h5v.s7.5c9305a44756 from=translated src=- shape=f1bc3a0f vocab=3e91fb52
+-/
 lemma ex_sub_smul (ξ : X n) (x : X n) (i : Fin n) (τ : ℝ) :
     ex ξ (x - τ • Pi.single i 1) = ex ξ x * Complex.exp (2 * Real.pi * Complex.I * (ξ i) * τ) := by
   unfold ex
@@ -274,6 +358,9 @@ lemma ex_sub_smul (ξ : X n) (x : X n) (i : Fin n) (τ : ℝ) :
   push_cast
   ring
 
+/--
+@isnad1 id=eq.2h4v.s9.fbafe11a762e from=translated src=- shape=98e90ffe vocab=96c3d90a
+-/
 lemma integral_fderiv_mul_ex (g : X n → ℂ) (hg : ContDiff ℝ (⊤ : ℕ∞) g) (hgc : HasCompactSupport g)
     (ξ : X n) (i : Fin n) :
     ∫ x, fderiv ℝ g x (Pi.single i 1) * ex ξ x = (2 * Real.pi * Complex.I * (ξ i)) * ∫ x, g x * ex ξ x := by
@@ -363,10 +450,16 @@ lemma integral_fderiv_mul_ex (g : X n → ℂ) (hg : ContDiff ℝ (⊤ : ℕ∞)
   rw [this]
   simp
 
+/--
+@isnad1 id=hascompa.1h4v.s5.eb1176d63c08 from=translated src=- shape=1b05eed7 vocab=cd5dd381
+-/
 lemma hasCompactSupport_slice {R : ℝ} {U : Q × X n → ℂ} (hU : IsWin R U) (p : Q) :
     HasCompactSupport (fun x : X n => U (p, x)) :=
   HasCompactSupport.intro (isCompact_box R) (fun x hx => hU.suppx (p, x) (not_mem_box hx))
 
+/--
+@isnad1 id=eq.1h6v.s6.63a6390211c8 from=translated src=- shape=4042f016 vocab=852b5f57
+-/
 lemma Ψ_dX {R : ℝ} {U : Q × X n → ℂ} (hU : IsWin R U) (ξ : X n) (i : Fin n) (p : Q) :
     Ψ ξ (dir (vX i) U) p = (2 * Real.pi * Complex.I * (ξ i)) * Ψ ξ U p := by
   have hg : ContDiff ℝ (⊤ : ℕ∞) (fun x : X n => U (p, x)) := hU.smooth.comp (contDiff_const.prodMk contDiff_id)
@@ -382,6 +475,9 @@ lemma Ψ_dX {R : ℝ} {U : Q × X n → ℂ} (hU : IsWin R U) (ξ : X n) (i : Fi
   simp_rw [hderiv] at key
   exact key
 
+/--
+@isnad1 id=eq.2h6v.s6.4cd58b70f81c from=translated src=- shape=3c4c9e93 vocab=386af61a
+-/
 lemma norm_Ψ_eq {R : ℝ} {U : Q × X n → ℂ} (hU : IsWin R U) (ξ : X n) (i : Fin n) (hi : ξ i ≠ 0) (p : Q) :
     ‖Ψ ξ U p‖ = ‖Ψ ξ (dir (vX i) (dir (vX i) U)) p‖ * ((2 * Real.pi * |ξ i|) ^ 2)⁻¹ := by
   rw [Ψ_dX (hU.dir _) ξ i p, Ψ_dX hU ξ i p]
@@ -396,6 +492,9 @@ lemma norm_Ψ_eq {R : ℝ} {U : Q × X n → ℂ} (hU : IsWin R U) (ξ : X n) (i
     positivity
   field_simp
 
+/--
+@isnad1 id=le.2h6v.s7.e79ff6f6eba2 from=translated src=- shape=38bbbe16 vocab=0c484195
+-/
 lemma norm_Ψ_le_of_bound {R : ℝ} {U : Q × X n → ℂ} (hU : IsWin R U) (ξ : X n) (p : Q) {C : ℝ}
     (hC : ∀ x, ‖U (p, x)‖ ≤ C) : ‖Ψ ξ U p‖ ≤ C * (volume (box n R)).toReal := by
   unfold Ψ
@@ -406,6 +505,9 @@ lemma norm_Ψ_le_of_bound {R : ℝ} {U : Q × X n → ℂ} (hU : IsWin R U) (ξ 
     (fun x _ => by rw [norm_mul, norm_ex, mul_one]; exact hC x)
   simpa [Measure.real] using this
 
+/--
+@isnad1 id=le.4h8v.s9.ddd91038ad28 from=translated src=- shape=7e553d2f vocab=1c251208
+-/
 lemma decay {R : ℝ} (ξ : X n) (p : Q) :
     ∀ (S : Finset (Fin n)), (∀ j ∈ S, ξ j ≠ 0) →
       ∀ (k : ℕ) (C : ℝ) (U : Q × X n → ℂ), IsWin R U → 2 * S.card ≤ k →
@@ -438,6 +540,9 @@ lemma decay {R : ℝ} (ξ : X n) (p : Q) :
       _ = C * (volume (box n R)).toReal * (((2 * Real.pi * |ξ a|) ^ 2)⁻¹ * ∏ j ∈ S, ((2 * Real.pi * |ξ j|) ^ 2)⁻¹) := by
           ring
 
+/--
+@isnad1 id=le.0h2v.s7.9dbbfd622507 from=translated src=- shape=76b448c1 vocab=ca97fb7c
+-/
 lemma prod_filter_le (ξ : X n) :
     ∏ j ∈ Finset.univ.filter (fun j => 1 ≤ |ξ j|), ((2 * Real.pi * |ξ j|) ^ 2)⁻¹ ≤
       4 ^ n * ∏ j, (1 + |ξ j|)⁻¹ ^ 2 := by
@@ -481,9 +586,15 @@ noncomputable def A : Q × X n →L[ℝ] (Fin (n + 1) → ℝ) × ℝ :=
           · simp [Fin.insertNth_apply_succAbove]
         · simp }
 
+/--
+@isnad1 id=eq.0h3v.s9.92ec11c7a662 from=translated src=- shape=f60036ad vocab=5a229042
+-/
 lemma A_apply (q : Q × X n) :
     A k q = ((Fin.insertNth (α := fun _ => ℝ) k q.1.1 q.2 : Fin (n + 1) → ℝ), q.1.2) := rfl
 
+/--
+@isnad1 id=le.0h2v.s9.053feab6e33f from=translated src=- shape=d0994f9e vocab=5d5ad5ad
+-/
 lemma norm_A_le : ‖(A k : Q × X n →L[ℝ] (Fin (n + 1) → ℝ) × ℝ)‖ ≤ 1 := by
   refine ContinuousLinearMap.opNorm_le_bound _ zero_le_one fun q => ?_
   rw [one_mul, A_apply, Prod.norm_def]
@@ -497,6 +608,9 @@ lemma norm_A_le : ‖(A k : Q × X n →L[ℝ] (Fin (n + 1) → ℝ) × ℝ)‖ 
   · simp only [Fin.insertNth_apply_same]; exact h11.trans h1
   · simp only [Fin.insertNth_apply_succAbove]; exact (norm_le_pi_norm q.2 i').trans h2
 
+/--
+@isnad1 id=le.2h6v.s11.12de0a50d580 from=translated src=- shape=bfecebda vocab=af0ea0f1
+-/
 lemma norm_iteratedFDeriv_comp_A_le {g : (Fin (n + 1) → ℝ) × ℝ → ℂ} (hg : ContDiff ℝ (⊤ : ℕ∞) g)
     {M : ℝ} (ℓ : ℕ) (hM : ∀ p, ‖iteratedFDeriv ℝ ℓ g p‖ ≤ M) (q : Q × X n) :
     ‖iteratedFDeriv ℝ ℓ (g ∘ (A k)) q‖ ≤ M := by
@@ -512,6 +626,9 @@ end Insert
 
 end PMDK6B
 
+/--
+@isnad1 id=ex.1h4v.s11.b805dcfff0f3 from=translated src=- shape=77109327 vocab=e253581b
+-/
 theorem solution
     (n N : ℕ) (k : Fin (n + 1)) (R : ℝ) (hR : 0 ≤ R) :
     ∃ K : ℝ, 0 ≤ K ∧ ∀ (g : (Fin (n + 1) → ℝ) × ℝ → ℂ), ContDiff ℝ (⊤ : ℕ∞) g →

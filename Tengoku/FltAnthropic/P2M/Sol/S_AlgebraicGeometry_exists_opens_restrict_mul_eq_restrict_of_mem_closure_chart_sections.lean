@@ -13,6 +13,9 @@ universe u
 
 namespace ChartPresentation
 
+/--
+@isnad1 id=isaffine.1h7v.s9.a430682ea970 from=translated src=- shape=c3169558 vocab=6f185eb3
+-/
 theorem isAffineOpen_V
     {R : Type u} [CommRing R] {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of R))
     (C : Type u) [CommRing C] [Algebra R C] (ι : Spec (CommRingCat.of C) ⟶ X) [IsOpenImmersion ι]

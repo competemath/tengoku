@@ -13,11 +13,17 @@ namespace K2Reg
 
 noncomputable def ch (c t : ℝ) : ℂ := Complex.exp (-(2 * Real.pi * Complex.I * ((c * t : ℝ) : ℂ)))
 
+/--
+@isnad1 id=eq.0h2v.s4.c8817715cbc9 from=translated src=- shape=18e50d40 vocab=79678811
+-/
 lemma norm_ch (c t : ℝ) : ‖ch c t‖ = 1 := by
   unfold ch
   rw [Complex.norm_exp]
   simp
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.69208ef92cfa from=translated src=- shape=e55c9925 vocab=a1364502
+-/
 lemma hasDerivAt_ch (c t : ℝ) : HasDerivAt (ch c) (-(2 * Real.pi * Complex.I * c) * ch c t) t := by
   unfold ch
   have h1 : HasDerivAt (fun t : ℝ => (((c * t : ℝ)) : ℂ)) (c : ℂ) t := by
@@ -30,9 +36,15 @@ lemma hasDerivAt_ch (c t : ℝ) : HasDerivAt (ch c) (-(2 * Real.pi * Complex.I *
   convert h3 using 1
   ring
 
+/--
+@isnad1 id=continuo.0h1v.s4.7212904fb641 from=translated src=- shape=9bb0b988 vocab=d523c981
+-/
 lemma continuous_ch (c : ℝ) : Continuous (ch c) := by
   unfold ch; fun_prop
 
+/--
+@isnad1 id=eq.0h2v.s4.bed96074fe3e from=translated src=- shape=caaebdb2 vocab=4f7deada
+-/
 lemma ch_int_add_one (m : ℤ) (θ : ℝ) : ch m (θ + 1) = ch m θ := by
   unfold ch
   have : (((m : ℝ) * (θ + 1) : ℝ) : ℂ) = ((m : ℝ) * θ : ℝ) + (m : ℂ) := by
@@ -46,6 +58,9 @@ lemma ch_int_add_one (m : ℤ) (θ : ℝ) : ch m (θ + 1) = ch m θ := by
     ring
   rw [h1, mul_one]
 
+/--
+@isnad1 id=eq.0h4v.s6.59bb326ed2d9 from=translated src=- shape=b5e40742 vocab=c60adfbd
+-/
 lemma kernel_eq (ξ : ℝ) (m : ℤ) (x θ : ℝ) :
     Complex.exp (-(2 * Real.pi * Complex.I * ((ξ * x + m * θ : ℝ) : ℂ))) = ch ξ x * ch m θ := by
   unfold ch
@@ -59,9 +74,15 @@ variable {F : ℝ × ℝ → ℂ}
 noncomputable def D {n : ℕ} (w : Fin n → ℝ × ℝ) (F : ℝ × ℝ → ℂ) (p : ℝ × ℝ) : ℂ :=
   iteratedFDeriv ℝ n F p w
 
+/--
+@isnad1 id=eq.0h2v.s4.c31923b81a22 from=translated src=- shape=447114e0 vocab=0d7ee027
+-/
 lemma D_zero (F : ℝ × ℝ → ℂ) (p : ℝ × ℝ) : D (Fin.elim0 : Fin 0 → ℝ × ℝ) F p = F p := by
   simp [D]
 
+/--
+@isnad1 id=continuo.2h3v.s7.ff0fd471ba60 from=translated src=- shape=c1c9d4dd vocab=91d71b8b
+-/
 lemma continuous_D (hF : ContDiff ℝ 4 F) {n : ℕ} (hn : n ≤ 4) (w : Fin n → ℝ × ℝ) :
     Continuous (D w F) := by
   unfold D
@@ -69,6 +90,9 @@ lemma continuous_D (hF : ContDiff ℝ 4 F) {n : ℕ} (hn : n ≤ 4) (w : Fin n �
     hF.continuous_iteratedFDeriv (by exact_mod_cast hn)
   exact (continuous_eval_const w).comp h
 
+/--
+@isnad1 id=le.1h4v.s8.f1ce2373f4d8 from=translated src=- shape=9e30cc02 vocab=88184f6e
+-/
 lemma norm_D_le (F : ℝ × ℝ → ℂ) {n : ℕ} (w : Fin n → ℝ × ℝ) (hw : ∀ i, ‖w i‖ ≤ 1) (p : ℝ × ℝ) :
     ‖D w F p‖ ≤ ‖iteratedFDeriv ℝ n F p‖ := by
   unfold D
@@ -79,6 +103,9 @@ lemma norm_D_le (F : ℝ × ℝ → ℂ) {n : ℕ} (w : Fin n → ℝ × ℝ) (h
         exact Finset.prod_le_one (fun i _ => norm_nonneg _) (fun i _ => hw i)
     _ = ‖iteratedFDeriv ℝ n F p‖ := mul_one _
 
+/--
+@isnad1 id=and.2h4v.s9.771170ebe335 from=translated src=- shape=86b501af vocab=6ee7e30c
+-/
 lemma hasFDerivAt_D (hF : ContDiff ℝ 4 F) {n : ℕ} (hn : n < 4) (w : Fin n → ℝ × ℝ) (p : ℝ × ℝ) :
     HasFDerivAt (D w F) (fderiv ℝ (D w F) p) p ∧
       ∀ v : ℝ × ℝ, fderiv ℝ (D w F) p v = D (Fin.cons v w) F p := by
@@ -92,6 +119,9 @@ lemma hasFDerivAt_D (hF : ContDiff ℝ 4 F) {n : ℕ} (hn : n < 4) (w : Fin n �
   rw [fderiv_continuousMultilinear_apply_const_apply hd w v, iteratedFDeriv_succ_apply_left]
   simp only [Fin.cons_zero, Fin.tail_cons]
 
+/--
+@isnad1 id=hasderiv.2h5v.s7.4fd7ba608567 from=translated src=- shape=623034d0 vocab=1eedf811
+-/
 lemma hasDerivAt_D_x (hF : ContDiff ℝ 4 F) {n : ℕ} (hn : n < 4) (w : Fin n → ℝ × ℝ) (x θ : ℝ) :
     HasDerivAt (fun x => D w F (x, θ)) (D (Fin.cons ((1 : ℝ), (0 : ℝ)) w) F (x, θ)) x := by
   obtain ⟨h1, h2⟩ := hasFDerivAt_D hF hn w (x, θ)
@@ -101,6 +131,9 @@ lemma hasDerivAt_D_x (hF : ContDiff ℝ 4 F) {n : ℕ} (hn : n < 4) (w : Fin n �
   rw [h2] at this
   exact this
 
+/--
+@isnad1 id=hasderiv.2h5v.s7.fce0a7bd17d9 from=translated src=- shape=dfbb8f9f vocab=1eedf811
+-/
 lemma hasDerivAt_D_θ (hF : ContDiff ℝ 4 F) {n : ℕ} (hn : n < 4) (w : Fin n → ℝ × ℝ) (x θ : ℝ) :
     HasDerivAt (fun θ => D w F (x, θ)) (D (Fin.cons ((0 : ℝ), (1 : ℝ)) w) F (x, θ)) θ := by
   obtain ⟨h1, h2⟩ := hasFDerivAt_D hF hn w (x, θ)
@@ -110,6 +143,9 @@ lemma hasDerivAt_D_θ (hF : ContDiff ℝ 4 F) {n : ℕ} (hn : n < 4) (w : Fin n 
   rw [h2] at this
   exact this
 
+/--
+@isnad1 id=eq.2h5v.s6.6fc4707d7391 from=translated src=- shape=048e1008 vocab=2233eab4
+-/
 lemma D_eq_zero (R : ℝ) (hsupp : ∀ p : ℝ × ℝ, R < |p.1| → F p = 0) {n : ℕ} (w : Fin n → ℝ × ℝ)
     (p : ℝ × ℝ) (hp : R < |p.1|) : D w F p = 0 := by
   unfold D
@@ -122,6 +158,9 @@ lemma D_eq_zero (R : ℝ) (hsupp : ∀ p : ℝ × ℝ, R < |p.1| → F p = 0) {n
   rw [this, iteratedFDeriv_fun_zero]
   simp
 
+/--
+@isnad1 id=eq.1h5v.s6.6cc1a186c50a from=translated src=- shape=c61b9798 vocab=99c8a098
+-/
 lemma D_add_one (hper : ∀ p : ℝ × ℝ, F (p.1, p.2 + 1) = F p) {n : ℕ} (w : Fin n → ℝ × ℝ)
     (x θ : ℝ) : D w F (x, θ + 1) = D w F (x, θ) := by
   unfold D
@@ -136,6 +175,9 @@ lemma D_add_one (hper : ∀ p : ℝ × ℝ, F (p.1, p.2 + 1) = F p) {n : ℕ} (w
   rw [this] at h
   rw [h]
 
+/--
+@isnad1 id=eq.5h4v.s8.1646834108af from=translated src=- shape=a4c4ce30 vocab=73766a03
+-/
 lemma ibp_x (R : ℝ) (ξ : ℝ) (v v' : ℝ → ℂ) (hv : ∀ x, HasDerivAt v (v' x) x)
     (hvc : Continuous v) (hv'c : Continuous v')
     (hv0 : ∀ x, R < |x| → v x = 0) (hv'0 : ∀ x, R < |x| → v' x = 0) :
@@ -170,6 +212,9 @@ lemma ibp_x (R : ℝ) (ξ : ℝ) (v v' : ℝ → ℂ) (hv : ∀ x, HasDerivAt v 
   funext x
   ring
 
+/--
+@isnad1 id=eq.3h3v.s8.775f10b37902 from=translated src=- shape=978eb6bc vocab=6e77fcde
+-/
 lemma ibp_θ (m : ℤ) (v v' : ℝ → ℂ) (hv : ∀ θ, HasDerivAt v (v' θ) θ)
     (hv'c : Continuous v') (hper : v 1 = v 0) :
     ∫ θ in Ico (0 : ℝ) 1, ch m θ * v' θ =
@@ -206,6 +251,9 @@ variable (R : ℝ) (hF : ContDiff ℝ 4 F) (hsupp : ∀ p : ℝ × ℝ, R < |p.1
 
 include hF hper in
 
+/--
+@isnad1 id=eq.3h5v.s7.9e3b9b534b03 from=translated src=- shape=dd2e3605 vocab=a107370a
+-/
 lemma rule_θ (ξ : ℝ) (m : ℤ) {n : ℕ} (hn : n < 4) (w : Fin n → ℝ × ℝ) :
     (2 * Real.pi * Complex.I * m) * J ξ m w F = J ξ m (Fin.cons ((0 : ℝ), (1 : ℝ)) w) F := by
   unfold J
@@ -226,6 +274,9 @@ lemma rule_θ (ξ : ℝ) (m : ℤ) {n : ℕ} (hn : n < 4) (w : Fin n → ℝ × 
   rw [this]
   ring
 
+/--
+@isnad1 id=integrab.2h2v.s7.96a155c14cfd from=translated src=- shape=3201588f vocab=80d993ed
+-/
 lemma integrable_prod (G : ℝ × ℝ → ℂ) (hG : Continuous G) (hG0 : ∀ p : ℝ × ℝ, R < |p.1| → G p = 0) :
     Integrable (Function.uncurry fun x θ => G (x, θ))
       ((volume : Measure ℝ).prod ((volume : Measure ℝ).restrict (Ico (0 : ℝ) 1))) := by
@@ -265,6 +316,9 @@ lemma integrable_prod (G : ℝ × ℝ → ℂ) (hG : Continuous G) (hG0 : ∀ p 
 
 include hF hsupp in
 
+/--
+@isnad1 id=eq.3h6v.s7.264584ad2e71 from=translated src=- shape=970a6a85 vocab=e42fc4aa
+-/
 lemma rule_x (ξ : ℝ) (m : ℤ) {n : ℕ} (hn : n < 4) (w : Fin n → ℝ × ℝ) :
     (2 * Real.pi * Complex.I * ξ) * J ξ m w F = J ξ m (Fin.cons ((1 : ℝ), (0 : ℝ)) w) F := by
   unfold J
@@ -297,6 +351,9 @@ lemma rule_x (ξ : ℝ) (m : ℤ) {n : ℕ} (hn : n < 4) (w : Fin n → ℝ × �
 
 include hF hsupp in
 
+/--
+@isnad1 id=le.6h7v.s9.b8efe6387d14 from=translated src=- shape=ad098524 vocab=777fe3e2
+-/
 lemma norm_J_le (hR : 0 ≤ R) (ξ : ℝ) (m : ℤ) {n : ℕ} (hn : n ≤ 4) (w : Fin n → ℝ × ℝ)
     (hw : ∀ i, ‖w i‖ ≤ 1) (B : ℝ) (hB : ∀ p : ℝ × ℝ, ‖iteratedFDeriv ℝ n F p‖ ≤ B) :
     ‖J ξ m w F‖ ≤ 2 * R * B := by
@@ -344,6 +401,9 @@ lemma norm_J_le (hR : 0 ≤ R) (ξ : ℝ) (m : ℤ) {n : ℕ} (hn : n ≤ 4) (w 
 
 end rules
 
+/--
+@isnad1 id=le.5h5v.s9.202ad686c13d from=translated src=- shape=199468c2 vocab=f9442b53
+-/
 theorem main (R : ℝ) (hR : 0 ≤ R) (F : ℝ × ℝ → ℂ) (hF : ContDiff ℝ 4 F)
     (hsupp : ∀ p : ℝ × ℝ, R < |p.1| → F p = 0) (hper : ∀ p : ℝ × ℝ, F (p.1, p.2 + 1) = F p)
     (B : ℝ) (hB : ∀ n : ℕ, n ≤ 4 → ∀ p : ℝ × ℝ, ‖iteratedFDeriv ℝ n F p‖ ≤ B) (ξ : ℝ) (m : ℤ) :
@@ -459,6 +519,9 @@ theorem main (R : ℝ) (hR : 0 ≤ R) (F : ℝ × ℝ → ℂ) (hF : ContDiff �
 end K2Reg
 
 open K2Reg in
+/--
+@isnad1 id=ex.1h1v.s9.d82b29883927 from=translated src=- shape=80cfca5a vocab=f9442b53
+-/
 theorem solution
     (R : ℝ) (hR : 0 ≤ R) :
     ∃ C : ℝ, 0 ≤ C ∧

@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=var.0h9v.s7.f3c77ff96cb1 from=translated src=- shape=fa8d9b9e vocab=d8b581f9
+-/
 theorem solution
     (P : MorphismProperty Scheme.{u}) [P.IsStableUnderBaseChange]
     {R S T : Type u} [CommRing R] [CommRing S] [CommRing T] (i : R →+* S) (j : S →+* T)

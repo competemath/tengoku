@@ -18,6 +18,9 @@ namespace ArtinRayDict
 
 variable (K : Type*) [Field K] [NumberField K]
 
+/--
+@isnad1 id=tendsto.0h1v.s8.1feca127ef08 from=translated src=- shape=407a341b vocab=cc07ac29
+-/
 theorem tendsto_sum_card_div :
     Tendsto (fun n : ℕ ↦ (∑ k ∈ Finset.Icc 1 n,
       (Nat.card {I : Ideal (𝓞 K) // Ideal.absNorm I = k} : ℝ)) / n) atTop
@@ -33,6 +36,9 @@ theorem tendsto_sum_card_div :
     ← Finset.card_preimage_eq_sum_card_image_eq (fun k _ ↦ Ideal.finite_setOfPred_absNorm_eq k)]
   simp [Set.coe_eq_subtype]
 
+/--
+@isnad1 id=lseriess.1h2v.s8.984ec9d32625 from=translated src=- shape=0d9be476 vocab=cc6b80af
+-/
 theorem summable_card_absNorm {s : ℂ} (hs : 1 < s.re) :
     LSeriesSummable (fun n ↦ (Nat.card {I : Ideal (𝓞 K) // Ideal.absNorm I = n} : ℂ)) s := by
   set d : ℕ → ℝ := fun n ↦ (Nat.card {I : Ideal (𝓞 K) // Ideal.absNorm I = n} : ℝ) with hd
@@ -57,16 +63,25 @@ def cnt (I : Ideal (𝓞 K)) (v : HeightOneSpectrum (𝓞 K)) : ℕ :=
 
 variable {K}
 
+/--
+@isnad1 id=iff.1h3v.s7.0c3dbc8cd93d from=translated src=- shape=6e18a401 vocab=a5738aae
+-/
 theorem cnt_ne_zero_iff {I : Ideal (𝓞 K)} (hI : I ≠ ⊥) (v : HeightOneSpectrum (𝓞 K)) :
     cnt K I v ≠ 0 ↔ v.asIdeal ∣ I := by
   unfold cnt
   exact Associates.count_ne_zero_iff_dvd hI v.irreducible
 
+/--
+@isnad1 id=finite.1h2v.s7.01f1c023583d from=translated src=- shape=f005d4e9 vocab=27120bbd
+-/
 theorem finite_setOf_cnt_ne_zero {I : Ideal (𝓞 K)} (hI : I ≠ ⊥) :
     {v : HeightOneSpectrum (𝓞 K) | cnt K I v ≠ 0}.Finite := by
   refine (Ideal.finite_factors hI).subset fun v hv ↦ ?_
   exact (cnt_ne_zero_iff hI v).1 hv
 
+/--
+@isnad1 id=hasfinit.1h4v.s7.3cf5ec82a348 from=translated src=- shape=0663fe6b vocab=5f0a592f
+-/
 theorem hasFiniteMulSupport_pow_cnt {M : Type*} [Monoid M] {I : Ideal (𝓞 K)} (hI : I ≠ ⊥)
     (f : HeightOneSpectrum (𝓞 K) → M) :
     Function.HasFiniteMulSupport fun v ↦ f v ^ cnt K I v := by
@@ -75,6 +90,9 @@ theorem hasFiniteMulSupport_pow_cnt {M : Type*} [Monoid M] {I : Ideal (𝓞 K)} 
   intro h
   exact hv (by simp only [h, pow_zero])
 
+/--
+@isnad1 id=eq.1h3v.s7.5a4f9bf21421 from=translated src=- shape=af0b9666 vocab=9c6bf0fa
+-/
 theorem count_coeIdeal {I : Ideal (𝓞 K)} (hI : I ≠ ⊥) (v : HeightOneSpectrum (𝓞 K)) :
     FractionalIdeal.count K v (I : FractionalIdeal (𝓞 K)⁰ K) = cnt K I v := by
   unfold cnt
@@ -85,10 +103,16 @@ variable (K) in
 def idealUnit (I : Ideal (𝓞 K)) (hI : I ≠ ⊥) : (FractionalIdeal (𝓞 K)⁰ K)ˣ :=
   FractionalIdeal.mk0 K ⟨I, mem_nonZeroDivisors_of_ne_zero (by rwa [Ne, Ideal.zero_eq_bot])⟩
 
+/--
+@isnad1 id=eq.1h2v.s8.470fd9c7db51 from=translated src=- shape=868eb584 vocab=bd4cb4d3
+-/
 theorem idealUnit_val (I : Ideal (𝓞 K)) (hI : I ≠ ⊥) :
     ((idealUnit K I hI : (FractionalIdeal (𝓞 K)⁰ K)ˣ) : FractionalIdeal (𝓞 K)⁰ K) = I :=
   FractionalIdeal.coe_mk0 K _
 
+/--
+@isnad1 id=iff.1h3v.s10.59b5d7fbdecc from=translated src=- shape=f1e3ac94 vocab=63df611a
+-/
 theorem idealUnit_mem_iff {𝔣 : Ideal (𝓞 K)} (I : Ideal (𝓞 K)) (hI : I ≠ ⊥) :
     idealUnit K I hI ∈ coprimeToModulus K 𝔣 ↔
       ∀ v : HeightOneSpectrum (𝓞 K), v.asIdeal ∣ 𝔣 → cnt K I v = 0 := by
@@ -104,9 +128,15 @@ def primeCoprime (𝔣 : Ideal (𝓞 K)) (v : HeightOneSpectrum (𝓞 K)) : ↥(
 def toFrac (𝔣 : Ideal (𝓞 K)) : ↥(coprimeToModulus K 𝔣) →* FractionalIdeal (𝓞 K)⁰ K :=
   (Units.coeHom (FractionalIdeal (𝓞 K)⁰ K)).comp (coprimeToModulus K 𝔣).subtype
 
+/--
+@isnad1 id=eq.0h3v.s14.c36eb6619ae5 from=translated src=- shape=ce1d1839 vocab=f6b928e6
+-/
 theorem toFrac_apply {𝔣 : Ideal (𝓞 K)} (y : ↥(coprimeToModulus K 𝔣)) :
     toFrac 𝔣 y = ((y : (FractionalIdeal (𝓞 K)⁰ K)ˣ) : FractionalIdeal (𝓞 K)⁰ K) := rfl
 
+/--
+@isnad1 id=injectiv.0h2v.s14.cde89d8be172 from=translated src=- shape=a66fc066 vocab=5fc92426
+-/
 theorem toFrac_injective (𝔣 : Ideal (𝓞 K)) : Function.Injective (toFrac (K := K) 𝔣) := by
   intro x y h
   rw [toFrac_apply, toFrac_apply] at h
@@ -133,6 +163,9 @@ theorem eq_finprod_primeCoprime {𝔣 : Ideal (𝓞 K)} {I : Ideal (𝓞 K)} (hI
     rw [primeUnit_val]
     rfl
 
+/--
+@isnad1 id=eq.2h5v.s15.b101802daa83 from=translated src=- shape=f7e4436c vocab=aceac6ee
+-/
 theorem apply_mk_eq_finprod {𝔣 : Ideal (𝓞 K)} (χ : NarrowRayClassGroup K 𝔣 →* ℂ)
     {I : Ideal (𝓞 K)} (hI : I ≠ ⊥) (y : ↥(coprimeToModulus K 𝔣))
     (hy : ((y : (FractionalIdeal (𝓞 K)⁰ K)ˣ) : FractionalIdeal (𝓞 K)⁰ K) = I) :
@@ -151,6 +184,9 @@ def IsClassOf (𝔣 : Ideal (𝓞 K)) (C : NarrowRayClassGroup K 𝔣) (I : Idea
   ∃ hI : I ≠ ⊥, ∃ hc : idealUnit K I hI ∈ coprimeToModulus K 𝔣,
     NarrowRayClassGroup.mk K 𝔣 ⟨idealUnit K I hI, hc⟩ = C
 
+/--
+@isnad1 id=iff.2h4v.s14.40112b32504a from=translated src=- shape=d5834a2f vocab=610d20b3
+-/
 theorem isClassOf_iff_of_mem {𝔣 : Ideal (𝓞 K)} {I : Ideal (𝓞 K)} (hI : I ≠ ⊥)
     (hc : idealUnit K I hI ∈ coprimeToModulus K 𝔣) (C : NarrowRayClassGroup K 𝔣) :
     IsClassOf K 𝔣 C I ↔ NarrowRayClassGroup.mk K 𝔣 ⟨idealUnit K I hI, hc⟩ = C := by
@@ -160,6 +196,9 @@ theorem isClassOf_iff_of_mem {𝔣 : Ideal (𝓞 K)} {I : Ideal (𝓞 K)} (hI : 
   · intro h
     exact ⟨hI, hc, h⟩
 
+/--
+@isnad1 id=not.2h4v.s10.62631c91af08 from=translated src=- shape=03a3bbcf vocab=1ca42752
+-/
 theorem not_isClassOf_of_not_mem {𝔣 : Ideal (𝓞 K)} {I : Ideal (𝓞 K)} (hI : I ≠ ⊥)
     (hc : idealUnit K I hI ∉ coprimeToModulus K 𝔣) (C : NarrowRayClassGroup K 𝔣) :
     ¬ IsClassOf K 𝔣 C I := by
@@ -172,6 +211,9 @@ def classSum (𝔣 : Ideal (𝓞 K)) [Fintype (NarrowRayClassGroup K 𝔣)]
     (χ : NarrowRayClassGroup K 𝔣 →* ℂ) (I : Ideal (𝓞 K)) : ℂ :=
   ∑ C : NarrowRayClassGroup K 𝔣, if IsClassOf K 𝔣 C I then χ C else 0
 
+/--
+@isnad1 id=eq.2h4v.s14.1e9634196376 from=translated src=- shape=2e8ff065 vocab=1401d3bf
+-/
 theorem classSum_of_mem {𝔣 : Ideal (𝓞 K)} [Fintype (NarrowRayClassGroup K 𝔣)]
     (χ : NarrowRayClassGroup K 𝔣 →* ℂ) {I : Ideal (𝓞 K)} (hI : I ≠ ⊥)
     (hc : idealUnit K I hI ∈ coprimeToModulus K 𝔣) :
@@ -185,6 +227,9 @@ theorem classSum_of_mem {𝔣 : Ideal (𝓞 K)} [Fintype (NarrowRayClassGroup K 
     simp
   rw [this, Finset.sum_singleton]
 
+/--
+@isnad1 id=eq.2h4v.s11.d19c394b1493 from=translated src=- shape=4c158fad vocab=c0de8f4f
+-/
 theorem classSum_of_not_mem {𝔣 : Ideal (𝓞 K)} [Fintype (NarrowRayClassGroup K 𝔣)]
     (χ : NarrowRayClassGroup K 𝔣 →* ℂ) {I : Ideal (𝓞 K)} (hI : I ≠ ⊥)
     (hc : idealUnit K I hI ∉ coprimeToModulus K 𝔣) : classSum K 𝔣 χ I = 0 := by
@@ -196,6 +241,9 @@ section Artin
 
 variable {M : Type*} [Field M] [NumberField M] [Algebra K M] [IsGalois K M]
 
+/--
+@isnad1 id=eq.3h6v.s12.29931859ce5f from=translated src=- shape=3cad498b vocab=41a3fb66
+-/
 theorem idealValue_eq_classSum {𝔣 : Ideal (𝓞 K)} [Fintype (NarrowRayClassGroup K 𝔣)]
     (ψ : (M ≃ₐ[K] M) →* ℂˣ) (χ : NarrowRayClassGroup K 𝔣 →* ℂ)
     (hχ : ∀ (v : HeightOneSpectrum (𝓞 K)) (hv : ¬ v.asIdeal ∣ 𝔣),
@@ -254,12 +302,18 @@ def rayZetaEquiv (𝔣 : Ideal (𝓞 K)) (C : NarrowRayClassGroup K 𝔣) (n : �
     ext1
     rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.b61a56873f9a from=translated src=- shape=76806910 vocab=ccc2cba7
+-/
 theorem rayZetaCoeff_eq_card (𝔣 : Ideal (𝓞 K)) (C : NarrowRayClassGroup K 𝔣) (n : ℕ) :
     M4aTorus.rayZetaCoeff K 𝔣 C n =
       (((Ideal.finite_setOfPred_absNorm_eq (S := 𝓞 K) n).toFinset.filter
         fun I => IsClassOf K 𝔣 C I)).card := by
   rw [M4aTorus.rayZetaCoeff, Nat.card_congr (rayZetaEquiv 𝔣 C n), Nat.card_eq_finsetCard]
 
+/--
+@isnad1 id=eq.0h4v.s12.a5199c776fe0 from=translated src=- shape=c43efaea vocab=356b089d
+-/
 theorem sum_mul_rayZetaCoeff_eq (𝔣 : Ideal (𝓞 K)) [Fintype (NarrowRayClassGroup K 𝔣)]
     (χ : NarrowRayClassGroup K 𝔣 →* ℂ) (n : ℕ) :
     ∑ C : NarrowRayClassGroup K 𝔣, χ C * (M4aTorus.rayZetaCoeff K 𝔣 C n : ℂ) =
@@ -273,6 +327,9 @@ section Artin
 
 variable {M : Type*} [Field M] [NumberField M] [Algebra K M] [IsGalois K M]
 
+/--
+@isnad1 id=eq.3h6v.s13.a5fa9c09237f from=translated src=- shape=8ae3f7fa vocab=9b92587d
+-/
 theorem coeff_eq_sum {𝔣 : Ideal (𝓞 K)} [Fintype (NarrowRayClassGroup K 𝔣)]
     (ψ : (M ≃ₐ[K] M) →* ℂˣ) (χ : NarrowRayClassGroup K 𝔣 →* ℂ)
     (hχ : ∀ (v : HeightOneSpectrum (𝓞 K)) (hv : ¬ v.asIdeal ∣ 𝔣),
@@ -291,6 +348,9 @@ theorem coeff_eq_sum {𝔣 : Ideal (𝓞 K)} [Fintype (NarrowRayClassGroup K �
 
 end Artin
 
+/--
+@isnad1 id=le.0h4v.s8.c9943c9462a1 from=translated src=- shape=89a9b3f1 vocab=383b6b58
+-/
 theorem rayZetaCoeff_le (𝔣 : Ideal (𝓞 K)) (C : NarrowRayClassGroup K 𝔣) (n : ℕ) :
     M4aTorus.rayZetaCoeff K 𝔣 C n ≤ Nat.card {I : Ideal (𝓞 K) // Ideal.absNorm I = n} := by
   haveI : Finite {I : Ideal (𝓞 K) // Ideal.absNorm I = n} :=
@@ -301,6 +361,9 @@ theorem rayZetaCoeff_le (𝔣 : Ideal (𝓞 K)) (C : NarrowRayClassGroup K 𝔣)
   simp only [Subtype.mk.injEq] at h
   exact Subtype.ext (Subtype.ext h)
 
+/--
+@isnad1 id=lseriess.1h4v.s5.3152b43fd158 from=translated src=- shape=4d38a44c vocab=7e1a37da
+-/
 theorem summable_rayZetaCoeff (𝔣 : Ideal (𝓞 K)) (C : NarrowRayClassGroup K 𝔣) {s : ℂ}
     (hs : 1 < s.re) :
     LSeriesSummable (fun n ↦ (M4aTorus.rayZetaCoeff K 𝔣 C n : ℂ)) s := by
@@ -315,6 +378,9 @@ section Artin
 
 variable {M : Type*} [Field M] [NumberField M] [Algebra K M] [IsGalois K M]
 
+/--
+@isnad1 id=eq.4h6v.s12.fd3ea9faadc6 from=translated src=- shape=08d39a16 vocab=a182184f
+-/
 theorem lSeries_eq (ψ : (M ≃ₐ[K] M) →* ℂˣ) {𝔣 : Ideal (𝓞 K)} (h𝔣 : 𝔣 ≠ ⊥)
     (χ : NarrowRayClassGroup K 𝔣 →* ℂ)
     (hχ : ∀ (v : HeightOneSpectrum (𝓞 K)) (hv : ¬ v.asIdeal ∣ 𝔣),
@@ -347,6 +413,9 @@ end
 universe u v
 
 open NumberField IsDedekindDomain Deep.NTSupply in
+/--
+@isnad1 id=eq.4h6v.s12.5765a01b7268 from=translated src=- shape=dd635930 vocab=a182184f
+-/
 theorem solution
     (K : Type u) (M : Type v) [Field K] [NumberField K] [Field M] [NumberField M] [Algebra K M]
     [IsGalois K M] (ψ : (M ≃ₐ[K] M) →* ℂˣ) (𝔣 : Ideal (𝓞 K)) (h𝔣 : 𝔣 ≠ ⊥)

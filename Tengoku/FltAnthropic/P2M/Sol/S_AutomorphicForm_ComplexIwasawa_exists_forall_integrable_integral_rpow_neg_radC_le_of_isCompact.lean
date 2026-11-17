@@ -28,10 +28,16 @@ def botNormSqC (g : Matrix (Fin 2) (Fin 2) ℂ) : ℝ :=
 def centerC (g : Matrix (Fin 2) (Fin 2) ℂ) : ℂ :=
   -(conj (g 1 0) * g 0 0 + conj (g 1 1) * g 0 1) / (botNormSqC g : ℂ)
 
+/--
+@isnad1 id=eq.0h2v.s6.5b12cbe34976 from=translated src=- shape=0f43f2be vocab=b92c20bb
+-/
 theorem radC_sq (g : Matrix (Fin 2) (Fin 2) ℂ) (z : ℂ) :
     radC g z ^ 2 = Complex.normSq (botP g z) + Complex.normSq (botQ g z) := by
   rw [radC, Real.sq_sqrt (add_nonneg (Complex.normSq_nonneg _) (Complex.normSq_nonneg _))]
 
+/--
+@isnad1 id=lt.1h1v.s5.f97db99d8b77 from=translated src=- shape=21445356 vocab=4af339e2
+-/
 theorem botNormSqC_pos (hg : g.det ≠ 0) : 0 < botNormSqC g := by
   rw [botNormSqC]
   rcases (add_nonneg (Complex.normSq_nonneg (g 1 0)) (Complex.normSq_nonneg (g 1 1))).lt_or_eq
@@ -46,6 +52,9 @@ theorem botNormSqC_pos (hg : g.det ≠ 0) : 0 < botNormSqC g := by
     rw [Matrix.det_fin_two, Complex.normSq_eq_zero.1 hc, Complex.normSq_eq_zero.1 hd,
       mul_zero, mul_zero, sub_zero]
 
+/--
+@isnad1 id=eq.1h2v.s7.c8073b09b79f from=translated src=- shape=28697d87 vocab=7374e062
+-/
 theorem radC_sq_eq (hg : g.det ≠ 0) (z : ℂ) :
     radC g z ^ 2 = botNormSqC g * Complex.normSq (z - centerC g)
       + Complex.normSq g.det / botNormSqC g := by
@@ -63,6 +72,9 @@ theorem radC_sq_eq (hg : g.det ≠ 0) (z : ℂ) :
     Complex.ofReal_im, Complex.conj_re, Complex.conj_im]
   ring
 
+/--
+@isnad1 id=lt.1h2v.s5.72f1e2163854 from=translated src=- shape=606d29bf vocab=6aaedfbb
+-/
 theorem radC_pos (hg : g.det ≠ 0) (z : ℂ) : 0 < radC g z := by
   rw [radC]
   apply Real.sqrt_pos.2
@@ -85,6 +97,9 @@ theorem radC_pos (hg : g.det ≠ 0) (z : ℂ) : 0 < radC g z := by
     rw [ha, hb]
     ring
 
+/--
+@isnad1 id=contdiff.1h1v.s6.cf108a53c155 from=translated src=- shape=ea1704a6 vocab=13fbda81
+-/
 theorem contDiff_radC (hg : g.det ≠ 0) : ContDiff ℝ ∞ (radC g) := by
   have hnormSq : ContDiff ℝ ∞ Complex.normSq := by
     have h : (Complex.normSq : ℂ → ℝ) = fun z => z.re * z.re + z.im * z.im := by
@@ -110,16 +125,25 @@ theorem contDiff_radC (hg : g.det ≠ 0) : ContDiff ℝ ∞ (radC g) := by
   simp [radC, Function.comp_def] at h
   exact h
 
+/--
+@isnad1 id=continuo.0h0v.s6.36bc1ea08d59 from=translated src=- shape=9907cdae vocab=64843a49
+-/
 theorem continuous_botNormSqC : Continuous fun g : Matrix (Fin 2) (Fin 2) ℂ => botNormSqC g := by
   unfold botNormSqC
   exact (Complex.continuous_normSq.comp (continuous_id.matrix_elem 1 0)).add
     (Complex.continuous_normSq.comp (continuous_id.matrix_elem 1 1))
 
+/--
+@isnad1 id=continuo.0h0v.s6.b2af40c02acc from=translated src=- shape=62ec8e45 vocab=a134058e
+-/
 theorem continuous_detC : Continuous fun g : Matrix (Fin 2) (Fin 2) ℂ => g.det := by
   have : (fun g : Matrix (Fin 2) (Fin 2) ℂ => g.det) = fun g => g 0 0 * g 1 1 - g 0 1 * g 1 0 :=
     funext fun g => Matrix.det_fin_two g
   rw [this]; fun_prop
 
+/--
+@isnad1 id=ex.3h3v.s8.60145d43e122 from=translated src=- shape=039984ed vocab=590af743
+-/
 theorem main (𝒢 : Set (Matrix (Fin 2) (Fin 2) ℂ)) (h𝒢 : IsCompact 𝒢) (hdet : ∀ g ∈ 𝒢, g.det ≠ 0)
     (κ₀ κ₁ : ℝ) (hκ₀ : 2 < κ₀) :
     ∃ M : ℝ, 0 < M ∧ ∀ g ∈ 𝒢, ∀ κ : ℝ, κ₀ ≤ κ → κ ≤ κ₁ →
@@ -215,6 +239,9 @@ end
 
 open B2bCL2 in
 
+/--
+@isnad1 id=ex.3h3v.s8.60145d43e122 from=translated src=- shape=039984ed vocab=590af743
+-/
 theorem solution
     (𝒢 : Set (Matrix (Fin 2) (Fin 2) ℂ)) (_h𝒢 : IsCompact 𝒢) (_hdet : ∀ g ∈ 𝒢, g.det ≠ 0)
     (κ₀ κ₁ : ℝ) (_hκ₀ : 2 < κ₀) :

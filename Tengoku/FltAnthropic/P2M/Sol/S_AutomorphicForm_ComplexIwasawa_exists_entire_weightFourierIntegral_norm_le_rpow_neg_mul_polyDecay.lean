@@ -642,6 +642,9 @@ end ComplexJacquetCont
 open scoped _root_.P2MW.S_AutomorphicForm_ComplexIwasawa_exists_entire_weightFourierIntegral_norm_le_rpow_neg_mul_polyDecay.ComplexJacquetCont
 
 open ComplexJacquetCont in
+/--
+@isnad1 id=other.0h2v.s9.23e9e013fb8e from=translated src=- shape=c66c4394 vocab=4229db7d
+-/
 theorem solution (a b : ℕ) :
     let j : ℂ → ℂ → ℂ := fun w ζ => ∫ z : ℂ, z ^ a * (starRingEnd ℂ) z ^ b * (((1 + ‖z‖ ^ 2 : ℝ) : ℂ)) ^ (-w)
           * Complex.exp (-(((4 * Real.pi * (ζ * z).re : ℝ) : ℂ) * Complex.I))

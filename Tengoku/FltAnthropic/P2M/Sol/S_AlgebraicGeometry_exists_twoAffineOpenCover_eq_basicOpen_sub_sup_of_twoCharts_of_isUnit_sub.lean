@@ -24,20 +24,32 @@ variable {X : Scheme.{u}}
 abbrev res {U V : X.Opens} (h : V ≤ U) : Γ(X, U) →+* Γ(X, V) :=
   (X.presheaf.map (homOfLE h).op).hom
 
+/--
+@isnad1 id=eq.2h5v.s13.a3289803958a from=translated src=- shape=17fbc4cf vocab=c03109f3
+-/
 theorem res_res {U V W : X.Opens} (h₁ : V ≤ U) (h₂ : W ≤ V) (x : Γ(X, U)) :
     res h₂ (res h₁ x) = res (h₂.trans h₁) x := by
   change (X.presheaf.map (homOfLE h₁).op ≫ X.presheaf.map (homOfLE h₂).op).hom x = _
   rw [← Functor.map_comp]
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s11.1598b8cfd2b1 from=translated src=- shape=b2f5f901 vocab=49734505
+-/
 theorem basicOpen_res' {U V : X.Opens} (h : V ≤ U) (x : Γ(X, U)) :
     X.basicOpen (res h x) = V ⊓ X.basicOpen x :=
   X.basicOpen_res x (homOfLE h).op
 
+/--
+@isnad1 id=isunit.0h3v.s11.07810b00efe9 from=translated src=- shape=9d6c3ce0 vocab=a99bd6eb
+-/
 theorem isUnit_res_basicOpen' {U : X.Opens} (x : Γ(X, U)) :
     IsUnit (res (X.basicOpen_le x) x) :=
   RingedSpace.isUnit_res_basicOpen (X := X.toLocallyRingedSpace.toRingedSpace) x
 
+/--
+@isnad1 id=eq.2h4v.s6.a7db123ee779 from=translated src=- shape=e05ada50 vocab=8784b292
+-/
 theorem inv_unique {M : Type*} [CommMonoid M] {a b c : M} (hb : a * b = 1) (hc : a * c = 1) : b = c := by
   calc b = b * (a * c) := by rw [hc, mul_one]
     _ = (a * b) * c := by rw [← mul_assoc, mul_comm b a]
@@ -54,6 +66,9 @@ variable (U V : X.Opens) (hU : IsAffineOpen U) (hV : IsAffineOpen V)
 
 include hfg in
 
+/--
+@isnad1 id=eq.1h6v.s15.b2527b3ce168 from=translated src=- shape=d95d277f vocab=4e0d162e
+-/
 theorem res_one_sub_mul :
     res (inf_le_right : U ⊓ V ≤ V) (1 - res (le_top : V ≤ ⊤) s * g) =
       res (inf_le_left : U ⊓ V ≤ U) (f - res (le_top : U ≤ ⊤) s) * res (inf_le_right : U ⊓ V ≤ V) g := by
@@ -61,6 +76,9 @@ theorem res_one_sub_mul :
 
 include hg hfg in
 
+/--
+@isnad1 id=eq.2h6v.s14.fb97b3fcad31 from=translated src=- shape=c244c465 vocab=d885b603
+-/
 theorem inf_basicOpen_eq :
     (U ⊓ V) ⊓ X.basicOpen (1 - res (le_top : V ≤ ⊤) s * g) =
       (U ⊓ V) ⊓ X.basicOpen (f - res (le_top : U ≤ ⊤) s) := by
@@ -78,6 +96,9 @@ theorem inf_basicOpen_eq :
 
 include hg hfg in
 
+/--
+@isnad1 id=eq.2h6v.s14.66d09162969e from=translated src=- shape=6e8c074e vocab=d885b603
+-/
 theorem basicOpen_inf_basicOpen_eq :
     X.basicOpen (f - res (le_top : U ≤ ⊤) s) ⊓ X.basicOpen (1 - res (le_top : V ≤ ⊤) s * g) =
       (U ⊓ V) ⊓ X.basicOpen (f - res (le_top : U ≤ ⊤) s) := by
@@ -91,6 +112,9 @@ theorem basicOpen_inf_basicOpen_eq :
 
 include hg in
 
+/--
+@isnad1 id=mem.3h6v.s12.a0dd61ab27f0 from=translated src=- shape=d82063cc vocab=f9208a0a
+-/
 theorem mem_basicOpen_one_sub_mul {x : X} (hxV : x ∈ V) (hxU : x ∉ U) :
     x ∈ X.basicOpen (1 - res (le_top : V ≤ ⊤) s * g) := by
   rw [Scheme.mem_basicOpen _ _ _ hxV, map_sub, map_one, map_mul]
@@ -101,6 +125,9 @@ theorem mem_basicOpen_one_sub_mul {x : X} (hxV : x ∈ V) (hxU : x ∉ U) :
   exact fun h => hxU h.1
 
 include hU hV hf hg hfg in
+/--
+@isnad1 id=isaffine.5h6v.s14.811a4756016b from=translated src=- shape=021f132c vocab=859b52df
+-/
 theorem isAffineOpen_sup :
     IsAffineOpen (X.basicOpen (f - res (le_top : U ≤ ⊤) s) ⊔ X.basicOpen (1 - res (le_top : V ≤ ⊤) s * g)) := by
 
@@ -197,6 +224,9 @@ theorem isAffineOpen_sup :
 
 end Main
 
+/--
+@isnad1 id=ex.7h7v.s15.83530ad38f70 from=translated src=- shape=5f880cca vocab=d9d28d9b
+-/
 theorem exists_cover_pair (U V : X.Opens) (hU : IsAffineOpen U) (hV : IsAffineOpen V)
     (f : Γ(X, U)) (g : Γ(X, V))
     (hf : U ⊓ V = X.basicOpen f) (hg : U ⊓ V = X.basicOpen g)
@@ -287,6 +317,9 @@ end AlgebraicGeometry.TwoChartsJne
 
 end
 
+/--
+@isnad1 id=ex.7h7v.s15.f583eb87eb3c from=translated src=- shape=00cacf79 vocab=052ea621
+-/
 theorem solution
     {X : Scheme.{u}} (U V : X.Opens) (hU : IsAffineOpen U) (hV : IsAffineOpen V)
     (f : Γ(X, U)) (g : Γ(X, V))

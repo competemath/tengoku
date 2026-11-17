@@ -325,6 +325,9 @@ open scoped _root_.P2MW.S_AutomorphicForm_LocalFunctionSpace_eq_zero_of_forall_d
 
 open AutomorphicForm IsDedekindDomain KirillovInjectivityAux in
 
+/--
+@isnad1 id=eq.3h3v.s13.394224dbf86a from=translated src=- shape=c9433b06 vocab=72146dbf
+-/
 theorem solution
     (p : IsDedekindDomain.HeightOneSpectrum (NumberField.RingOfIntegers ℚ))
     (S : Submodule ℂ (GL (Fin 2) (p.adicCompletion ℚ) → ℂ))

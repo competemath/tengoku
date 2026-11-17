@@ -10,6 +10,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 namespace K63H2
 
+/--
+@isnad1 id=ispullba.1h8v.s7.175378e44333 from=translated src=- shape=1df77de9 vocab=b728bc41
+-/
 theorem isPullback_snd_map {X Y W W' : Scheme.{0}} (q : X ⟶ Y) (i : W' ⟶ Y) (g : W ⟶ Y) (j : W ⟶ W')
     (hj : j ≫ i = g) :
     IsPullback (pullback.snd q g)
@@ -25,6 +28,9 @@ theorem isPullback_snd_map {X Y W W' : Scheme.{0}} (q : X ⟶ Y) (i : W' ⟶ Y) 
     exact (IsPullback.of_hasPullback q g).flip
   · rw [pullback.lift_snd]
 
+/--
+@isnad1 id=ispullba.2h11v.s8.02e2f9d5a338 from=translated src=- shape=f67606bb vocab=c757dc58
+-/
 theorem isPullback_map_map {X Y Z W W' : Scheme.{0}} (p : Z ⟶ Y) (q : X ⟶ Y) (h : Z ⟶ X)
     (w : h ≫ q = p) (i : W' ⟶ Y) (g : W ⟶ Y) (j : W ⟶ W') (hj : j ≫ i = g) :
     IsPullback
@@ -53,6 +59,9 @@ theorem isPullback_map_map {X Y Z W W' : Scheme.{0}} (p : Z ⟶ Y) (q : X ⟶ Y)
 
 end K63H2
 
+/--
+@isnad1 id=isiso.2h7v.s8.d2a9575ad6e2 from=translated src=- shape=341c0e25 vocab=cb438e7d
+-/
 theorem solution
     {X Y Z : Scheme.{0}} (p : Z ⟶ Y) (q : X ⟶ Y) (h : Z ⟶ X) (w : h ≫ q = p)
     (U : Y.Opens)

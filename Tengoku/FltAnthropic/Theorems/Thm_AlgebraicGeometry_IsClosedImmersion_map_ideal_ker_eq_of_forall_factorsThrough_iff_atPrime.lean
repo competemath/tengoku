@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=eq.1h10v.s13.0770e919924c from=translated src=- shape=e183e0c9 vocab=1012888d
+-/
 theorem AlgebraicGeometry.IsClosedImmersion.map_ideal_ker_eq_of_forall_factorsThrough_iff_atPrime
     {S : Type} [CommRing S] {A : Scheme.{0}} (f : A ⟶ Spec (CommRingCat.of S))
     {Z₁ Z₂ : Scheme.{0}} (ι₁ : Z₁ ⟶ A) (ι₂ : Z₂ ⟶ A) [IsClosedImmersion ι₁] [IsClosedImmersion ι₂]

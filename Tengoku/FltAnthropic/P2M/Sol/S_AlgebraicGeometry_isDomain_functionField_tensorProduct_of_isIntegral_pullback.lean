@@ -18,6 +18,9 @@ noncomputable def awayToRat (M : ℕ) [NeZero M] : Localization.Away ((M : ℕ) 
       obtain ⟨n, rfl⟩ := hy
       exact isUnit_iff_ne_zero.2 (by simp [NeZero.ne M]))
 
+/--
+@isnad1 id=injectiv.0h3v.s7.b7636f09d23d from=translated src=- shape=03eef9b4 vocab=ae3e1981
+-/
 theorem injective_of_charZero (M : ℕ) [NeZero M] (T : Type) [CommRing T] [IsDomain T] [CharZero T]
     (f : Localization.Away ((M : ℕ) : ℤ) →+* T) : Function.Injective f := by
   let L := FractionRing T
@@ -37,6 +40,9 @@ theorem injective_of_charZero (M : ℕ) [NeZero M] (T : Type) [CommRing T] [IsDo
     rw [h]; exact (algebraMap ℚ L).injective.comp hinjQ
   exact Function.Injective.of_comp (f := algebraMap T L) hinj
 
+/--
+@isnad1 id=isdomain.1h3v.s7.203d25299e04 from=translated src=- shape=f159cdcc vocab=cacfde37
+-/
 theorem isDomain_frac_tensor (A K B : Type) [CommRing A] [IsDomain A] [Field K] [Algebra A K] [IsFractionRing A K]
     [CommRing B] [IsDomain B] [Algebra A B] (hinj : Function.Injective (algebraMap A B)) :
     IsDomain (B ⊗[A] K) := by
@@ -49,6 +55,9 @@ theorem isDomain_frac_tensor (A K B : Type) [CommRing A] [IsDomain A] [Field K] 
 
 end Law3CF2
 
+/--
+@isnad1 id=ex.1h5v.s8.8442e8352e3a from=translated src=- shape=d144fc6c vocab=372b1275
+-/
 theorem solution
     (M : ℕ) [NeZero M]
     (X : Scheme.{0}) [IsIntegral X] (πX : X ⟶ Spec (CommRingCat.of (Localization.Away ((M : ℕ) : ℤ))))

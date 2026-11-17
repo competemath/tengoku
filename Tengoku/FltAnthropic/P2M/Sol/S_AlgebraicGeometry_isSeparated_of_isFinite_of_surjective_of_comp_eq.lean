@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=issepara.1h6v.s6.c6edb0167bdb from=translated src=- shape=a108a62c vocab=5ff2cb15
+-/
 theorem solution
     {X Y S : Scheme.{0}} (p : X ⟶ Y) (f : X ⟶ S) (g : Y ⟶ S) (h : p ≫ g = f)
     [IsFinite p] [Surjective p] [IsSeparated f] : IsSeparated g := by

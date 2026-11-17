@@ -6,6 +6,9 @@ import Tengoku
 namespace P2MW.S_ArtinL_trace_restrict_invariants_eq_inv_card_mul_sum_trace
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.1h6v.s14.d4a33876320b from=translated src=- shape=2947d97b vocab=2432b7e4
+-/
 theorem solution
     {K : Type*} [Field K] [CharZero K] {G : Type*} [Group G]
     {V : Type*} [AddCommGroup V] [Module K V] [FiniteDimensional K V]

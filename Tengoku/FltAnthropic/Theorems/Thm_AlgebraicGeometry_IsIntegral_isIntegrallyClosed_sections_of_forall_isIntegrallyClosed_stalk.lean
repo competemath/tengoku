@@ -10,6 +10,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=isintegr.2h2v.s8.cfcc0e4a2928 from=translated src=- shape=c633aeb4 vocab=11058480
+-/
 theorem AlgebraicGeometry.IsIntegral.isIntegrallyClosed_sections_of_forall_isIntegrallyClosed_stalk {X : Scheme.{u}} [IsIntegral X]
     (h : ∀ x : X, IsIntegrallyClosed (X.presheaf.stalk x)) (U : X.Opens) (hU : IsAffineOpen U) :
     IsIntegrallyClosed Γ(X, U) := by exact @_root_.P2MW.S_AlgebraicGeometry_IsIntegral_isIntegrallyClosed_sections_of_forall_isIntegrallyClosed_stalk.solution X _ h U hU

@@ -13,6 +13,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 namespace ClopenPieceFiniteEtaleSol
 
+/--
+@isnad1 id=isfinite.1h3v.s7.c5df359f507a from=translated src=- shape=6aaa75a0 vocab=e825c825
+-/
 lemma isFinite_of_isOpenImmersion_of_isClosed_range {V U : Scheme.{u}} (i : V ⟶ U) [IsOpenImmersion i]
     (hi : IsClosed (Set.range i.base)) : IsFinite i :=
   have : IsClosedImmersion i := IsClosedImmersion.of_isPreimmersion i hi
@@ -21,6 +24,9 @@ lemma isFinite_of_isOpenImmersion_of_isClosed_range {V U : Scheme.{u}} (i : V �
 end ClopenPieceFiniteEtaleSol
 
 open ClopenPieceFiniteEtaleSol in
+/--
+@isnad1 id=and.1h5v.s8.2dc6671b6787 from=translated src=- shape=55108c5b vocab=1e39a074
+-/
 theorem solution
     {V U X : Scheme.{u}} (i : V ⟶ U) [IsOpenImmersion i] (hi : IsClosed (Set.range i.base))
     (π : U ⟶ X) [IsFinite π] [AlgebraicGeometry.Etale π] :

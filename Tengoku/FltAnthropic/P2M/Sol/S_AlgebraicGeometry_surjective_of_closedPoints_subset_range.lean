@@ -23,9 +23,15 @@ variable {X : Type*} [TopologicalSpace X]
 def FinLC (s : Set X) : Prop :=
   ∃ S : Set (Set X), S.Finite ∧ (∀ z ∈ S, IsLocallyClosed z) ∧ s = ⋃₀ S
 
+/--
+@isnad1 id=finlc.1h2v.s4.e06e9cc20807 from=translated src=- shape=93e860ac vocab=13be6b2a
+-/
 theorem FinLC.of_isLocallyClosed {s : Set X} (hs : IsLocallyClosed s) : FinLC s :=
   ⟨{s}, Set.finite_singleton s, by simpa using hs, by simp⟩
 
+/--
+@isnad1 id=finlc.2h3v.s4.6147f2bf1aaa from=translated src=- shape=0540dca0 vocab=2802bdfc
+-/
 theorem FinLC.union {s t : Set X} (hs : FinLC s) (ht : FinLC t) : FinLC (s ∪ t) := by
   obtain ⟨S, hSf, hSl, rfl⟩ := hs
   obtain ⟨T, hTf, hTl, rfl⟩ := ht
@@ -33,6 +39,9 @@ theorem FinLC.union {s t : Set X} (hs : FinLC s) (ht : FinLC t) : FinLC (s ∪ t
   rintro z (hz | hz)
   exacts [hSl z hz, hTl z hz]
 
+/--
+@isnad1 id=finlc.2h3v.s4.e7fb3b6d1ac7 from=translated src=- shape=0540dca0 vocab=e1e77b2c
+-/
 theorem FinLC.inter {s t : Set X} (hs : FinLC s) (ht : FinLC t) : FinLC (s ∩ t) := by
   obtain ⟨S, hSf, hSl, rfl⟩ := hs
   obtain ⟨T, hTf, hTl, rfl⟩ := ht
@@ -47,6 +56,9 @@ theorem FinLC.inter {s t : Set X} (hs : FinLC s) (ht : FinLC t) : FinLC (s ∩ t
     · rintro ⟨a, ha, b, hb, hxa, hxb⟩
       exact ⟨⟨a, ha, hxa⟩, ⟨b, hb, hxb⟩⟩
 
+/--
+@isnad1 id=and.1h2v.s4.11af9c947408 from=translated src=- shape=d664e1b8 vocab=aba5b826
+-/
 theorem finLC_and_compl_of_isConstructible {s : Set X} (hs : IsConstructible s) :
     FinLC s ∧ FinLC sᶜ := by
   induction hs using IsConstructible.empty_union_induction with
@@ -60,6 +72,9 @@ theorem finLC_and_compl_of_isConstructible {s : Set X} (hs : IsConstructible s) 
     rw [compl_compl]
     exact ⟨hs.2, hs.1⟩
 
+/--
+@isnad1 id=nonempty.2h2v.s5.270f77b53e84 from=translated src=- shape=81037f4a vocab=2bc9dec0
+-/
 theorem nonempty_inter_closedPoints_of_isConstructible [JacobsonSpace X] {s : Set X}
     (hs : IsConstructible s) (hne : s.Nonempty) : (s ∩ closedPoints X).Nonempty := by
   obtain ⟨S, -, hSl, rfl⟩ := (finLC_and_compl_of_isConstructible hs).1
@@ -67,6 +82,9 @@ theorem nonempty_inter_closedPoints_of_isConstructible [JacobsonSpace X] {s : Se
   obtain ⟨y, hyz, hyc⟩ := nonempty_inter_closedPoints ⟨x, hxz⟩ (hSl z hz)
   exact ⟨y, ⟨z, hz, hyz⟩, hyc⟩
 
+/--
+@isnad1 id=nonempty.2h2v.s5.ff3cedae0f37 from=translated src=- shape=81037f4a vocab=d479b18b
+-/
 theorem nonempty_inter_closedPoints_of_isLocallyConstructible [JacobsonSpace X] {s : Set X}
     (hs : IsLocallyConstructible s) (hne : s.Nonempty) : (s ∩ closedPoints X).Nonempty := by
   obtain ⟨x, hx⟩ := hne
@@ -82,6 +100,9 @@ theorem nonempty_inter_closedPoints_of_isLocallyConstructible [JacobsonSpace X] 
 
 end TopLemmas
 
+/--
+@isnad1 id=islocall.1h2v.s4.80ae02b0adc7 from=translated src=- shape=a3b738d9 vocab=118d1026
+-/
 theorem isLocallyConstructible_compl {X : Type*} [TopologicalSpace X] {s : Set X}
     (hs : IsLocallyConstructible s) : IsLocallyConstructible sᶜ := by
   intro x
@@ -92,6 +113,9 @@ theorem isLocallyConstructible_compl {X : Type*} [TopologicalSpace X] {s : Set X
   rw [e]
   exact hUc.compl
 
+/--
+@isnad1 id=surjecti.1h3v.s8.012091249d80 from=translated src=- shape=b65da572 vocab=25ab450f
+-/
 theorem surjective_of_closedPoints_subset_range {X Y : Scheme.{u}} (f : X ⟶ Y)
     [LocallyOfFinitePresentation f] [QuasiCompact f] [JacobsonSpace Y]
     (h : closedPoints Y ⊆ Set.range f.base) : Surjective f := by
@@ -107,6 +131,9 @@ theorem surjective_of_closedPoints_subset_range {X Y : Scheme.{u}} (f : X ⟶ Y)
 end AlgebraicGeometry.SurjClosedPoints
 
 open AlgebraicGeometry.SurjClosedPoints in
+/--
+@isnad1 id=surjecti.1h3v.s8.012091249d80 from=translated src=- shape=b65da572 vocab=25ab450f
+-/
 theorem solution {X Y : Scheme.{u}} (f : X ⟶ Y)
     [LocallyOfFinitePresentation f] [QuasiCompact f] [JacobsonSpace Y]
     (h : closedPoints Y ⊆ Set.range f.base) : Surjective f :=

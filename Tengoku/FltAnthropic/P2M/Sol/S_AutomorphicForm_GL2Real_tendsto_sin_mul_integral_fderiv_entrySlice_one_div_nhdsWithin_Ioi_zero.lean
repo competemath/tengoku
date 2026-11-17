@@ -20,6 +20,9 @@ open _root_.AutomorphicForm.GL2Real open _root_.AutomorphicForm
 def gI {P : Type*} (Φ : (Fin 2 → Fin 2 → ℝ) × P → ℂ) (p : P) : (Fin 2 → Fin 2 → ℝ) → ℂ :=
   fun M => fderiv ℝ (fun M => Φ (M, p)) M (Matrix.of.symm !![1, 0; 0, 1])
 
+/--
+@isnad1 id=hascompa.1h3v.s7.decd99feebea from=translated src=- shape=101d36bc vocab=0b99d3ae
+-/
 lemma slice_hasCompactSupport {P : Type*} [TopologicalSpace P] (Φ : (Fin 2 → Fin 2 → ℝ) × P → ℂ)
     (hΦc : HasCompactSupport Φ) (p : P) :
     HasCompactSupport (fun M : Fin 2 → Fin 2 → ℝ => Φ (M, p)) := by
@@ -33,10 +36,16 @@ section Slice
 
 variable {P : Type*} [NormedAddCommGroup P] [NormedSpace ℝ P]
 
+/--
+@isnad1 id=contdiff.1h3v.s9.df97b2aebac0 from=translated src=- shape=c9b71d5b vocab=4a827265
+-/
 lemma slice_contDiff (Φ : (Fin 2 → Fin 2 → ℝ) × P → ℂ) (hΦs : ContDiff ℝ (⊤ : ℕ∞) Φ) (p : P) :
     ContDiff ℝ (⊤ : ℕ∞) (fun M : Fin 2 → Fin 2 → ℝ => Φ (M, p)) :=
   hΦs.comp (contDiff_id.prodMk contDiff_const)
 
+/--
+@isnad1 id=ex.2h3v.s9.50acd6c80a75 from=translated src=- shape=e7a572ef vocab=4a73b68e
+-/
 lemma exists_bound_and_radius (Φ : (Fin 2 → Fin 2 → ℝ) × P → ℂ)
     (hΦs : ContDiff ℝ (⊤ : ℕ∞) Φ) (hΦc : HasCompactSupport Φ) (p : P) :
     ∃ C R : ℝ, 0 ≤ C ∧ 0 < R ∧ (∀ M, ‖gI Φ p M‖ ≤ C) ∧
@@ -68,13 +77,28 @@ def Mminus (r θ u v : ℝ) : Fin 2 → Fin 2 → ℝ :=
   Matrix.of.symm !![r * (Real.cos θ + v), -(r * ((Real.sin θ ^ 2 + v ^ 2) / u));
     r * u, r * (Real.cos θ - v)]
 
+/--
+@isnad1 id=eq.0h4v.s5.eb6bfdcabc99 from=translated src=- shape=ccb1a0d0 vocab=5c573128
+-/
 @[scoped simp] lemma Mplus_10 (r θ u v : ℝ) : Mplus r θ u v 1 0 = -(r * u) := rfl
+/--
+@isnad1 id=eq.0h4v.s6.0c63fa412c4f from=translated src=- shape=c6ffdbd1 vocab=9dedebdf
+-/
 @[scoped simp] lemma Mplus_01 (r θ u v : ℝ) :
     Mplus r θ u v 0 1 = r * ((Real.sin θ ^ 2 + v ^ 2) / u) := rfl
+/--
+@isnad1 id=eq.0h4v.s5.10d106651365 from=translated src=- shape=d69758ba vocab=ceebe3f4
+-/
 @[scoped simp] lemma Mminus_10 (r θ u v : ℝ) : Mminus r θ u v 1 0 = r * u := rfl
+/--
+@isnad1 id=eq.0h4v.s6.d967ca337897 from=translated src=- shape=5248ab4c vocab=bb26dc1c
+-/
 @[scoped simp] lemma Mminus_01 (r θ u v : ℝ) :
     Mminus r θ u v 0 1 = -(r * ((Real.sin θ ^ 2 + v ^ 2) / u)) := rfl
 
+/--
+@isnad1 id=and.4h5v.s7.7a0f236f2e29 from=translated src=- shape=59dae1d0 vocab=05bde34c
+-/
 lemma constraints_of_entries {r θ u v R : ℝ} (hr : 0 < r) (hu : 0 < u)
     (h10 : r * u ≤ R) (h01 : r * ((Real.sin θ ^ 2 + v ^ 2) / u) ≤ R) :
     u ≤ R / r ∧ v ^ 2 ≤ R / r * u := by
@@ -91,6 +115,9 @@ section Pointwise
 
 variable {P : Type*}
 
+/--
+@isnad1 id=and.4h8v.s7.ba43849c2a1c from=translated src=- shape=8b79adc5 vocab=a29e70f1
+-/
 lemma constraints_plus {Φ : (Fin 2 → Fin 2 → ℝ) × P → ℂ} {p : P} {R : ℝ}
     (hR : ∀ M, gI Φ p M ≠ 0 → ∀ i j, |M i j| ≤ R) {r θ u v : ℝ} (hr : 0 < r) (hu : 0 < u)
     (h : gI Φ p (Mplus r θ u v) ≠ 0) : u ≤ R / r ∧ v ^ 2 ≤ R / r * u := by
@@ -101,6 +128,9 @@ lemma constraints_plus {Φ : (Fin 2 → Fin 2 → ℝ) × P → ℂ} {p : P} {R 
   rw [abs_of_nonneg (by positivity)] at h01
   exact constraints_of_entries hr hu h10 h01
 
+/--
+@isnad1 id=and.4h8v.s7.a3e9a32fd046 from=translated src=- shape=8b79adc5 vocab=5e991b5d
+-/
 lemma constraints_minus {Φ : (Fin 2 → Fin 2 → ℝ) × P → ℂ} {p : P} {R : ℝ}
     (hR : ∀ M, gI Φ p M ≠ 0 → ∀ i j, |M i j| ≤ R) {r θ u v : ℝ} (hr : 0 < r) (hu : 0 < u)
     (h : gI Φ p (Mminus r θ u v) ≠ 0) : u ≤ R / r ∧ v ^ 2 ≤ R / r * u := by
@@ -116,12 +146,18 @@ end Pointwise
 def dom (C K : ℝ) (q : ℝ × ℝ) : ℝ :=
   if 0 < q.1 ∧ q.1 ≤ K ∧ q.2 ^ 2 ≤ K * q.1 then 2 * C / q.1 else 0
 
+/--
+@isnad1 id=le.1h3v.s5.312efc5d58af from=translated src=- shape=0029bda3 vocab=99bb23d2
+-/
 lemma dom_nonneg {C K : ℝ} (hC : 0 ≤ C) (q : ℝ × ℝ) : 0 ≤ dom C K q := by
   unfold dom
   split_ifs with h
   · exact div_nonneg (by positivity) h.1.le
   · exact le_rfl
 
+/--
+@isnad1 id=measurab.0h2v.s4.cc29ae10520f from=translated src=- shape=74ae2556 vocab=500ae43c
+-/
 lemma measurable_dom (C K : ℝ) : Measurable (dom C K) := by
   unfold dom
   refine Measurable.ite ?_ (by fun_prop) measurable_const
@@ -129,6 +165,9 @@ lemma measurable_dom (C K : ℝ) : Measurable (dom C K) := by
     ((measurableSet_le measurable_fst measurable_const).inter
       (measurableSet_le (measurable_snd.pow_const 2) (measurable_fst.const_mul K)))
 
+/--
+@isnad1 id=eq.1h3v.s7.db5d9e5b9cf7 from=translated src=- shape=99a7eb46 vocab=6d30d54f
+-/
 lemma dom_slice_eq (C K u : ℝ) (hK : 0 ≤ K) :
     (fun v => dom C K (u, v)) =
       if 0 < u ∧ u ≤ K then
@@ -146,6 +185,9 @@ lemma dom_slice_eq (C K u : ℝ) (hK : 0 ≤ K) :
     simp only [dom, Pi.zero_apply]
     rw [ite_eq_right (fun h' => h ⟨h'.1, h'.2.1⟩)]
 
+/--
+@isnad1 id=integrab.1h3v.s5.265c85d9e235 from=translated src=- shape=2dbbe487 vocab=dc5164af
+-/
 lemma dom_slice_integrable (C K u : ℝ) (hK : 0 ≤ K) :
     Integrable (fun v => dom C K (u, v)) := by
   rw [dom_slice_eq C K u hK]
@@ -154,6 +196,9 @@ lemma dom_slice_integrable (C K u : ℝ) (hK : 0 ≤ K) :
       measurableSet_Icc
   · exact integrable_zero _ _ _
 
+/--
+@isnad1 id=eq.2h3v.s7.36bdb0d40d52 from=translated src=- shape=0faff985 vocab=7bb5737d
+-/
 lemma dom_norm_slice_integral (C K u : ℝ) (hC : 0 ≤ C) (hK : 0 ≤ K) :
     ∫ v, ‖dom C K (u, v)‖ =
       (Ioc 0 K).indicator (fun u => 4 * C * Real.sqrt K * u ^ (-(1 / 2 : ℝ))) u := by
@@ -179,6 +224,9 @@ lemma dom_norm_slice_integral (C K u : ℝ) (hC : 0 ≤ C) (hK : 0 ≤ K) :
     have hu : u ∉ Ioc 0 K := fun h' => h ⟨h'.1, h'.2⟩
     rw [hslice, integral_zero, indicator_of_notMem hu]
 
+/--
+@isnad1 id=integrab.2h2v.s6.f35881ade99a from=translated src=- shape=0b35128a vocab=bc28e450
+-/
 lemma integrable_dom (C K : ℝ) (hC : 0 ≤ C) (hK : 0 < K) :
     Integrable (dom C K) (volume : Measure (ℝ × ℝ)) := by
   have hmeas : Measurable (dom C K) := measurable_dom C K
@@ -200,6 +248,9 @@ section Domination
 
 variable {P : Type*}
 
+/--
+@isnad1 id=le.5h9v.s7.124297409cff from=translated src=- shape=dfb8a82b vocab=00a12f19
+-/
 lemma norm_integrand_le {Φ : (Fin 2 → Fin 2 → ℝ) × P → ℂ} {p : P} {C R : ℝ} (hC0 : 0 ≤ C)
     (hC : ∀ M, ‖gI Φ p M‖ ≤ C) (hR : ∀ M, gI Φ p M ≠ 0 → ∀ i j, |M i j| ≤ R)
     {r : ℝ} (hr : 0 < r) (θ : ℝ) (u v : ℝ) (hu : 0 < u) :
@@ -228,6 +279,9 @@ section Main
 
 variable {P : Type*} [NormedAddCommGroup P] [NormedSpace ℝ P]
 
+/--
+@isnad1 id=tendsto.3h4v.s9.98d0b2bedf5f from=translated src=- shape=4fd38df2 vocab=afdbad44
+-/
 theorem tendsto_sin_mul_integral (Φ : (Fin 2 → Fin 2 → ℝ) × P → ℂ)
     (hΦs : ContDiff ℝ (⊤ : ℕ∞) Φ) (hΦc : HasCompactSupport Φ) (p : P) (r : ℝ) (hr : 0 < r) :
     Tendsto (fun θ : ℝ => (Real.sin θ : ℂ) * ∫ q in Ioi (0 : ℝ) ×ˢ (univ : Set ℝ),
@@ -265,6 +319,9 @@ end
 open scoped _root_.P2MW.S_AutomorphicForm_GL2Real_tendsto_sin_mul_integral_fderiv_entrySlice_one_div_nhdsWithin_Ioi_zero.AutomorphicForm _root_.P2MW.S_AutomorphicForm_GL2Real_tendsto_sin_mul_integral_fderiv_entrySlice_one_div_nhdsWithin_Ioi_zero.AutomorphicForm.GL2Real _root_.P2MW.S_AutomorphicForm_GL2Real_tendsto_sin_mul_integral_fderiv_entrySlice_one_div_nhdsWithin_Ioi_zero.AutomorphicForm.GL2Real.ScalarTermVanishing
 
 open _root_.AutomorphicForm _root_.P2MW.S_AutomorphicForm_GL2Real_tendsto_sin_mul_integral_fderiv_entrySlice_one_div_nhdsWithin_Ioi_zero.AutomorphicForm _root_.AutomorphicForm.GL2Real _root_.P2MW.S_AutomorphicForm_GL2Real_tendsto_sin_mul_integral_fderiv_entrySlice_one_div_nhdsWithin_Ioi_zero.AutomorphicForm.GL2Real AutomorphicForm.GL2Real.ScalarTermVanishing in
+/--
+@isnad1 id=tendsto.3h4v.s12.9561f18f96d8 from=translated src=- shape=2cdcbe5b vocab=8e2a572b
+-/
 theorem solution
     (P : Type) [NormedAddCommGroup P] [NormedSpace ℝ P] (Φ : (Fin 2 → Fin 2 → ℝ) × P → ℂ)
     (hΦs : ContDiff ℝ (⊤ : ℕ∞) Φ) (hΦc : HasCompactSupport Φ) (p : P) (r : ℝ) (hr : 0 < r) :

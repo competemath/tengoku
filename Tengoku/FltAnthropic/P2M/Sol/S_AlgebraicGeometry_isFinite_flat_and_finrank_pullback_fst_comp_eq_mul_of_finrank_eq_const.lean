@@ -12,6 +12,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=and.2h7v.s8.03eb3d0f2a20 from=translated src=- shape=deb1a2b4 vocab=0e09f541
+-/
 theorem solution
     {X Y Z : Scheme.{u}} (g : X ⟶ Z) (h : Y ⟶ Z)
     [IsFinite g] [Flat g] [LocallyOfFinitePresentation g] [IsFinite h] [Flat h] [LocallyOfFinitePresentation h]

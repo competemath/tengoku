@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Complex_exists_contDiffOn_norm_one_sub_exp
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.0h0v.s10.638315238fb6 from=translated src=- shape=19f2eb1b vocab=05eadb92
+-/
 theorem Complex.exists_contDiffOn_norm_one_sub_exp_sq_mul_log_eq_mul_add :
     ∃ a b : ℝ × ℝ → ℝ,
       ContDiffOn ℝ (⊤ : ℕ∞) a {p : ℝ × ℝ | |p.2| < 1 / 2} ∧

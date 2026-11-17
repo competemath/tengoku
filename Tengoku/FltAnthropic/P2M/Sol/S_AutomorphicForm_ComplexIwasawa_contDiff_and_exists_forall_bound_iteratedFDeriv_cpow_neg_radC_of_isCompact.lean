@@ -30,10 +30,16 @@ def botNormSqC (g : Matrix (Fin 2) (Fin 2) ℂ) : ℝ :=
 def centerC (g : Matrix (Fin 2) (Fin 2) ℂ) : ℂ :=
   -(conj (g 1 0) * g 0 0 + conj (g 1 1) * g 0 1) / (botNormSqC g : ℂ)
 
+/--
+@isnad1 id=eq.0h2v.s6.5b12cbe34976 from=translated src=- shape=0f43f2be vocab=b92c20bb
+-/
 theorem radC_sq (g : Matrix (Fin 2) (Fin 2) ℂ) (z : ℂ) :
     radC g z ^ 2 = Complex.normSq (botP g z) + Complex.normSq (botQ g z) := by
   rw [radC, Real.sq_sqrt (add_nonneg (Complex.normSq_nonneg _) (Complex.normSq_nonneg _))]
 
+/--
+@isnad1 id=lt.1h1v.s5.4b422ac6e50d from=translated src=- shape=21445356 vocab=c033c1c8
+-/
 theorem botNormSqC_pos (hg : g.det ≠ 0) : 0 < botNormSqC g := by
   rw [botNormSqC]
   rcases (add_nonneg (Complex.normSq_nonneg (g 1 0)) (Complex.normSq_nonneg (g 1 1))).lt_or_eq
@@ -48,6 +54,9 @@ theorem botNormSqC_pos (hg : g.det ≠ 0) : 0 < botNormSqC g := by
     rw [Matrix.det_fin_two, Complex.normSq_eq_zero.1 hc, Complex.normSq_eq_zero.1 hd,
       mul_zero, mul_zero, sub_zero]
 
+/--
+@isnad1 id=eq.1h2v.s7.91656c9fbc51 from=translated src=- shape=28697d87 vocab=eb99455d
+-/
 theorem radC_sq_eq (hg : g.det ≠ 0) (z : ℂ) :
     radC g z ^ 2 = botNormSqC g * Complex.normSq (z - centerC g)
       + Complex.normSq g.det / botNormSqC g := by
@@ -65,6 +74,9 @@ theorem radC_sq_eq (hg : g.det ≠ 0) (z : ℂ) :
     Complex.ofReal_im, Complex.conj_re, Complex.conj_im]
   ring
 
+/--
+@isnad1 id=lt.1h2v.s5.72f1e2163854 from=translated src=- shape=606d29bf vocab=6aaedfbb
+-/
 theorem radC_pos (hg : g.det ≠ 0) (z : ℂ) : 0 < radC g z := by
   rw [radC]
   apply Real.sqrt_pos.2
@@ -87,6 +99,9 @@ theorem radC_pos (hg : g.det ≠ 0) (z : ℂ) : 0 < radC g z := by
     rw [ha, hb]
     ring
 
+/--
+@isnad1 id=le.1h2v.s6.d2b3919d508d from=translated src=- shape=e3b1801e vocab=bbcc9c28
+-/
 theorem norm_det_div_sqrt_le_radC (hg : g.det ≠ 0) (z : ℂ) :
     ‖g.det‖ / Real.sqrt (botNormSqC g) ≤ radC g z := by
   have hA := botNormSqC_pos hg
@@ -101,6 +116,9 @@ theorem norm_det_div_sqrt_le_radC (hg : g.det ≠ 0) (z : ℂ) :
     _ ≤ Real.sqrt (radC g z ^ 2) := Real.sqrt_le_sqrt hsq
     _ = radC g z := Real.sqrt_sq (radC_pos hg z).le
 
+/--
+@isnad1 id=contdiff.1h1v.s6.cf108a53c155 from=translated src=- shape=ea1704a6 vocab=13fbda81
+-/
 theorem contDiff_radC (hg : g.det ≠ 0) : ContDiff ℝ ∞ (radC g) := by
   have hnormSq : ContDiff ℝ ∞ Complex.normSq := by
     have h : (Complex.normSq : ℂ → ℝ) = fun z => z.re * z.re + z.im * z.im := by
@@ -126,11 +144,17 @@ theorem contDiff_radC (hg : g.det ≠ 0) : ContDiff ℝ ∞ (radC g) := by
   simp [radC, Function.comp_def] at h
   exact h
 
+/--
+@isnad1 id=continuo.0h0v.s6.26d0977baf03 from=translated src=- shape=9907cdae vocab=89b35c5b
+-/
 theorem continuous_botNormSqC : Continuous fun g : Matrix (Fin 2) (Fin 2) ℂ => botNormSqC g := by
   unfold botNormSqC
   exact (Complex.continuous_normSq.comp (continuous_id.matrix_elem 1 0)).add
     (Complex.continuous_normSq.comp (continuous_id.matrix_elem 1 1))
 
+/--
+@isnad1 id=continuo.0h0v.s6.b2af40c02acc from=translated src=- shape=62ec8e45 vocab=a134058e
+-/
 theorem continuous_detC : Continuous fun g : Matrix (Fin 2) (Fin 2) ℂ => g.det := by
   have : (fun g : Matrix (Fin 2) (Fin 2) ℂ => g.det) = fun g => g 0 0 * g 1 1 - g 0 1 * g 1 0 :=
     funext fun g => Matrix.det_fin_two g
@@ -140,35 +164,56 @@ def reFun : ℂ →L[ℝ] (ℂ →L[ℝ] ℝ) :=
   Complex.reCLM.smulRight (Complex.reCLM : ℂ →L[ℝ] ℝ)
     + Complex.imCLM.smulRight (Complex.imCLM : ℂ →L[ℝ] ℝ)
 
+/--
+@isnad1 id=eq.0h2v.s9.4ac422af71c3 from=translated src=- shape=88ea56ae vocab=5a91f312
+-/
 theorem reFun_apply_apply (a v : ℂ) : reFun a v = a.re * v.re + a.im * v.im := by
   simp [reFun, smul_eq_mul]
 
 def slopeC (g : Matrix (Fin 2) (Fin 2) ℂ) (w : ℂ) : ℂ :=
   conj (g 1 0) * kC g w 1 0 + conj (g 1 1) * kC g w 1 1
 
+/--
+@isnad1 id=eq.0h2v.s6.0c86673f7d68 from=translated src=- shape=4d98801f vocab=5b360b3a
+-/
 theorem kC_one_zero (w : ℂ) : kC g w 1 0 = botP g w / (radC g w : ℂ) := by
   simp [kC]
 
+/--
+@isnad1 id=eq.0h2v.s6.873fcfdef047 from=translated src=- shape=4d98801f vocab=6ecc8436
+-/
 theorem kC_one_one (w : ℂ) : kC g w 1 1 = botQ g w / (radC g w : ℂ) := by
   simp [kC]
 
+/--
+@isnad1 id=hasfderi.0h2v.s9.ba33acc7cf89 from=translated src=- shape=7a9c1c9f vocab=179fa180
+-/
 theorem hasFDerivAt_botP (w : ℂ) :
     HasFDerivAt (botP g) ((g 1 0) • ContinuousLinearMap.id ℝ ℂ) w := by
   have h : botP g = fun y : ℂ => g 0 0 + y * g 1 0 := rfl
   rw [h]
   exact ((hasFDerivAt_id w).mul_const (g 1 0)).const_add (g 0 0)
 
+/--
+@isnad1 id=hasfderi.0h2v.s9.62943c103e1e from=translated src=- shape=7a9c1c9f vocab=1b23df04
+-/
 theorem hasFDerivAt_botQ (w : ℂ) :
     HasFDerivAt (botQ g) ((g 1 1) • ContinuousLinearMap.id ℝ ℂ) w := by
   have h : botQ g = fun y : ℂ => g 0 1 + y * g 1 1 := rfl
   rw [h]
   exact ((hasFDerivAt_id w).mul_const (g 1 1)).const_add (g 0 1)
 
+/--
+@isnad1 id=eq.0h1v.s6.caffff1954c8 from=translated src=- shape=acd73d3c vocab=78957f75
+-/
 theorem radC_eq_sqrt_norm_sq (g : Matrix (Fin 2) (Fin 2) ℂ) :
     radC g = fun y => Real.sqrt (‖botP g y‖ ^ 2 + ‖botQ g y‖ ^ 2) := by
   funext y
   simp [radC, Complex.normSq_eq_norm_sq]
 
+/--
+@isnad1 id=hasfderi.1h2v.s9.5e6e3a2536d0 from=translated src=- shape=f487a775 vocab=bf7a4389
+-/
 theorem hasFDerivAt_radC (hg : g.det ≠ 0) (w : ℂ) :
     HasFDerivAt (radC g) (reFun (slopeC g w)) w := by
   have hF : HasFDerivAt (fun y : ℂ => ‖botP g y‖ ^ 2 + ‖botQ g y‖ ^ 2)
@@ -197,17 +242,29 @@ theorem hasFDerivAt_radC (hg : g.det ≠ 0) (w : ℂ) :
   field_simp
   ring
 
+/--
+@isnad1 id=eq.1h1v.s9.e1891332a77a from=translated src=- shape=9d95456b vocab=9477ff2e
+-/
 theorem fderiv_radC (hg : g.det ≠ 0) : fderiv ℝ (radC g) = fun w => reFun (slopeC g w) :=
   funext fun w => (hasFDerivAt_radC hg w).fderiv
 
+/--
+@isnad1 id=contdiff.1h3v.s6.f0bd233e49cd from=translated src=- shape=adbc6541 vocab=2179ba1c
+-/
 theorem contDiff_kC_apply (hg : g.det ≠ 0) (i j : Fin 2) : ContDiff ℝ ∞ (fun w => kC g w i j) :=
   (AutomorphicForm.ComplexIwasawa.contDiff_and_exists_bound_iteratedFDeriv_kC_apply hg).1 i j
 
+/--
+@isnad1 id=contdiff.1h1v.s6.c46b33b893fe from=translated src=- shape=3b3a56fc vocab=1cdeface
+-/
 theorem contDiff_slopeC (hg : g.det ≠ 0) : ContDiff ℝ ∞ (slopeC g) := by
   unfold slopeC
   exact (contDiff_const.mul (contDiff_kC_apply hg 1 0)).add
     (contDiff_const.mul (contDiff_kC_apply hg 1 1))
 
+/--
+@isnad1 id=le.3h4v.s10.c545eff46316 from=translated src=- shape=70c294f8 vocab=6682f782
+-/
 theorem norm_iteratedFDeriv_radC_succ_le (hg : g.det ≠ 0) (i : ℕ) (w : ℂ) {C : ℝ}
     (h10 : ‖iteratedFDeriv ℝ i (fun w => kC g w 1 0) w‖ ≤ C)
     (h11 : ‖iteratedFDeriv ℝ i (fun w => kC g w 1 1) w‖ ≤ C) :
@@ -252,6 +309,9 @@ theorem norm_iteratedFDeriv_radC_succ_le (hg : g.det ≠ 0) (i : ℕ) (w : ℂ) 
           (mul_le_mul n11 h11 (norm_nonneg _) (norm_nonneg _))
     _ = (‖g 1 0‖ + ‖g 1 1‖) * C := by ring
 
+/--
+@isnad1 id=eqon.1h3v.s6.381444781bf9 from=translated src=- shape=94444e03 vocab=b10c1b9e
+-/
 theorem iteratedDerivWithin_ofReal_cpow {c : ℝ} (hc : 0 < c) (u : ℂ) (k : ℕ) :
     Set.EqOn (iteratedDerivWithin k (fun y : ℝ => ((y : ℂ)) ^ u) (Set.Ioi c))
       (fun y => (∏ j ∈ Finset.range k, (u - (j : ℂ))) * ((y : ℂ)) ^ (u - (k : ℂ)))
@@ -273,6 +333,9 @@ theorem iteratedDerivWithin_ofReal_cpow {c : ℝ} (hc : 0 < c) (u : ℂ) (k : �
     rw [(HasDerivAt.const_mul _ hd).deriv, Finset.prod_range_succ, Nat.cast_succ]
     ring_nf
 
+/--
+@isnad1 id=le.2h4v.s7.daecb9099bd3 from=translated src=- shape=7c32986f vocab=d478f429
+-/
 theorem norm_iteratedDerivWithin_ofReal_cpow_le {c : ℝ} (hc : 0 < c) (u : ℂ) (k : ℕ)
     {y : ℝ} (hy : y ∈ Set.Ioi c) :
     ‖iteratedDerivWithin k (fun t : ℝ => ((t : ℂ)) ^ (-u)) (Set.Ioi c) y‖
@@ -288,6 +351,9 @@ theorem norm_iteratedDerivWithin_ofReal_cpow_le {c : ℝ} (hc : 0 < c) (u : ℂ)
   calc ‖-u - (j : ℂ)‖ ≤ ‖-u‖ + ‖(j : ℂ)‖ := norm_sub_le _ _
     _ = ‖u‖ + (j : ℝ) := by rw [norm_neg, Complex.norm_natCast]
 
+/--
+@isnad1 id=contdiff.1h2v.s6.ea894ae06392 from=translated src=- shape=defd8a7a vocab=34e18755
+-/
 theorem contDiffOn_ofReal_cpow_neg {c : ℝ} (hc : 0 < c) (u : ℂ) :
     ContDiffOn ℝ ∞ (fun y : ℝ => ((y : ℂ)) ^ (-u)) (Set.Ioi c) := by
   intro y hy
@@ -298,6 +364,9 @@ theorem contDiffOn_ofReal_cpow_neg {c : ℝ} (hc : 0 < c) (u : ℂ) :
   exact ((hana.contDiffAt.restrict_scalars ℝ).comp y
     Complex.ofRealCLM.contDiff.contDiffAt).contDiffWithinAt
 
+/--
+@isnad1 id=le.4h6v.s9.08789afe44cd from=translated src=- shape=f35b0d4c vocab=5452472a
+-/
 theorem norm_iteratedFDeriv_cpow_neg_radC_le (hg : g.det ≠ 0) (u : ℂ) (n : ℕ) {m D : ℝ}
     (hm : 0 < m) (hmle : ∀ z : ℂ, m ≤ radC g z)
     (hD : ∀ z : ℂ, ∀ i, 1 ≤ i → i ≤ n → ‖iteratedFDeriv ℝ i (radC g) z‖ ≤ D ^ i) (z : ℂ) :
@@ -372,6 +441,9 @@ theorem norm_iteratedFDeriv_cpow_neg_radC_le (hg : g.det ≠ 0) (u : ℂ) (n : �
   refine hcomp.trans (le_of_eq ?_)
   ring
 
+/--
+@isnad1 id=contdiff.1h2v.s6.5c55d4889eb4 from=translated src=- shape=adab6c62 vocab=0faa0379
+-/
 theorem contDiff_cpow_neg_radC (hg : g.det ≠ 0) (u : ℂ) :
     ContDiff ℝ ∞ (fun w => ((radC g w : ℂ)) ^ (-u)) := by
   have hm : (0:ℝ) < ‖g.det‖ / Real.sqrt (botNormSqC g) :=
@@ -384,6 +456,9 @@ theorem contDiff_cpow_neg_radC (hg : g.det ≠ 0) (u : ℂ) :
   rw [hfun]
   exact (contDiffOn_ofReal_cpow_neg (by linarith) u).comp_contDiff (contDiff_radC hg) hrange
 
+/--
+@isnad1 id=and.3h3v.s9.6ca893e83e7c from=translated src=- shape=bd181ceb vocab=55900066
+-/
 theorem main (𝒢 : Set (Matrix (Fin 2) (Fin 2) ℂ)) (h𝒢 : IsCompact 𝒢) (hdet : ∀ g ∈ 𝒢, g.det ≠ 0)
     (U : Set ℂ) (hU : IsCompact U) (n : ℕ) :
     (∀ g ∈ 𝒢, ∀ u : ℂ, ContDiff ℝ ∞ (fun z : ℂ => ((radC g z : ℂ) ^ (-u)))) ∧
@@ -487,6 +562,9 @@ end
 
 open B2bCL1 in
 
+/--
+@isnad1 id=and.3h3v.s9.6ca893e83e7c from=translated src=- shape=bd181ceb vocab=55900066
+-/
 theorem solution
     (𝒢 : Set (Matrix (Fin 2) (Fin 2) ℂ)) (_h𝒢 : IsCompact 𝒢) (_hdet : ∀ g ∈ 𝒢, g.det ≠ 0)
     (U : Set ℂ) (_hU : IsCompact U) (n : ℕ) :

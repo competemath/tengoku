@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_AutomorphicForm_LocalIntertwining_integral
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.1h1v.s7.284c9157f80b from=translated src=- shape=ac39396e vocab=67b6c3c6
+-/
 theorem AutomorphicForm.LocalIntertwining.integral_one_add_norm_sq_cpow_neg_eq_pi_div
     (s : ℂ) (hs : 0 < s.re) :
     ∫ z : ℂ, ((1 + ‖z‖ ^ 2 : ℝ) : ℂ) ^ (-(2 * s + 1)) = (Real.pi : ℂ) / (2 * s) := by exact @_root_.P2MW.S_AutomorphicForm_LocalIntertwining_integral_one_add_norm_sq_cpow_neg_eq_pi_div.solution s hs

@@ -29,9 +29,15 @@ noncomputable def insL {n : ℕ} (k : Fin (n + 1)) : ℝ × (Fin n → ℝ) →L
         · simp only [Fin.insertNth_apply_same]
         · simp only [Fin.insertNth_apply_succAbove, Pi.smul_apply, smul_eq_mul] }
 
+/--
+@isnad1 id=eq.0h3v.s9.55b987294cfe from=translated src=- shape=fecd947b vocab=b5c4c047
+-/
 theorem insL_apply {n : ℕ} (k : Fin (n + 1)) (p : ℝ × (Fin n → ℝ)) :
     insL k p = Fin.insertNth k p.1 p.2 := rfl
 
+/--
+@isnad1 id=le.0h2v.s9.cbdc6884d48b from=translated src=- shape=9fbbac3f vocab=07ecc764
+-/
 theorem norm_insL_le {n : ℕ} (k : Fin (n + 1)) : ‖insL k‖ ≤ 1 := by
   refine ContinuousLinearMap.opNorm_le_bound _ zero_le_one fun p => ?_
   rw [one_mul]
@@ -43,6 +49,9 @@ theorem norm_insL_le {n : ℕ} (k : Fin (n + 1)) : ‖insL k‖ ≤ 1 := by
     _ = max (dist p.1 0) (dist p.2 0) := Fin.dist_insertNth_insertNth _ _ _ _ _
     _ = ‖p‖ := by rw [dist_zero_right, dist_zero_right, Prod.norm_def]
 
+/--
+@isnad1 id=le.1h5v.s10.da5949601088 from=translated src=- shape=b9cfb160 vocab=7c0aa172
+-/
 theorem norm_iteratedFDeriv_comp_insL_le {n : ℕ} (k : Fin (n + 1)) {f : (Fin (n + 1) → ℝ) → ℂ}
     (hf : ContDiff ℝ (⊤ : ℕ∞) f) (N : ℕ) (p : ℝ × (Fin n → ℝ)) :
     ‖iteratedFDeriv ℝ N (fun q : ℝ × (Fin n → ℝ) => f (Fin.insertNth k q.1 q.2)) p‖ ≤
@@ -54,6 +63,9 @@ theorem norm_iteratedFDeriv_comp_insL_le {n : ℕ} (k : Fin (n + 1)) {f : (Fin (
   refine mul_le_of_le_one_right (norm_nonneg _) ?_
   exact Finset.prod_le_one (fun _ _ => norm_nonneg _) (fun _ _ => norm_insL_le k)
 
+/--
+@isnad1 id=contdiff.1h3v.s8.95227b705480 from=translated src=- shape=dbcbd21a vocab=6074bae5
+-/
 theorem contDiff_comp_insertNth {n : ℕ} (k : Fin (n + 1)) {f : (Fin (n + 1) → ℝ) → ℂ}
     (hf : ContDiff ℝ (⊤ : ℕ∞) f) :
     ContDiff ℝ (⊤ : ℕ∞) (fun q : ℝ × (Fin n → ℝ) => f (Fin.insertNth k q.1 q.2)) := by
@@ -61,6 +73,9 @@ theorem contDiff_comp_insertNth {n : ℕ} (k : Fin (n + 1)) {f : (Fin (n + 1) �
   rw [hcomp]
   exact hf.comp (insL k).contDiff
 
+/--
+@isnad1 id=eq.0h5v.s8.65cf4ee1678a from=translated src=- shape=c999cba2 vocab=2975c9ba
+-/
 theorem xChar_insertNth {n : ℕ} (k : Fin (n + 1)) (ξ : Fin (n + 1) → ℝ) (t : ℝ) (y : Fin n → ℝ) :
     Complex.exp (-(2 * Real.pi * Complex.I * ((∑ i, ξ i * (Fin.insertNth k t y : Fin (n + 1) → ℝ) i : ℝ) : ℂ))) =
       Complex.exp (-(2 * Real.pi * Complex.I * ((ξ k * t : ℝ) : ℂ))) * Complex.exp (-(2 * Real.pi * Complex.I * ((∑ i, ξ (k.succAbove i) * y i : ℝ) : ℂ))) := by
@@ -71,12 +86,18 @@ theorem xChar_insertNth {n : ℕ} (k : Fin (n + 1)) (ξ : Fin (n + 1) → ℝ) (
   push_cast
   ring
 
+/--
+@isnad1 id=continuo.0h2v.s6.638577968ee2 from=translated src=- shape=2f68f18e vocab=81a513a2
+-/
 theorem continuous_xChar {r : ℕ} (ξ : Fin r → ℝ) :
     Continuous fun x : Fin r → ℝ => Complex.exp (-(2 * Real.pi * Complex.I * ((∑ i, ξ i * x i : ℝ) : ℂ))) := by
   have h1 : Continuous fun x : Fin r → ℝ => (∑ i, ξ i * x i : ℝ) :=
     continuous_finsetSum _ fun i _ => continuous_const.mul (continuous_apply i)
   exact Complex.continuous_exp.comp (continuous_const.mul (Complex.continuous_ofReal.comp h1)).neg
 
+/--
+@isnad1 id=hascompa.1h3v.s6.399ba69fa2c1 from=translated src=- shape=70cef9f6 vocab=a27b5f21
+-/
 theorem hasCompactSupport_of_box {r : ℕ} {f : (Fin r → ℝ) → ℂ} (R : ℝ)
     (h : ∀ x : Fin r → ℝ, (∃ k, R < |x k|) → f x = 0) : HasCompactSupport f := by
   refine HasCompactSupport.intro (isCompact_univ_pi fun _ : Fin r => (isCompact_Icc : IsCompact (Set.Icc (-R) R))) ?_
@@ -86,15 +107,24 @@ theorem hasCompactSupport_of_box {r : ℕ} {f : (Fin r → ℝ) → ℂ} (R : �
   push_neg at hcon
   exact hx (Set.mem_univ_pi.mpr fun k => Set.mem_Icc.mpr (abs_le.mp (hcon k)))
 
+/--
+@isnad1 id=continuo.0h0v.s5.2cb0dd733d54 from=translated src=- shape=0f538474 vocab=7e1f8dac
+-/
 theorem continuous_kink1 : Continuous fun s : ℝ => ((|1 - Real.exp s| : ℝ) : ℂ) :=
   Complex.continuous_ofReal.comp (continuous_abs.comp (continuous_const.sub Real.continuous_exp))
 
+/--
+@isnad1 id=le.1h2v.s5.7d4ef2f73213 from=translated src=- shape=088359cb vocab=8a304472
+-/
 theorem norm_kink1_le {R s : ℝ} (hs : |s| ≤ R) : ‖((|1 - Real.exp s| : ℝ) : ℂ)‖ ≤ Real.exp R + 1 := by
   have h1 : Real.exp s ≤ Real.exp R := Real.exp_le_exp.mpr ((le_abs_self s).trans hs)
   have h2 := Real.exp_pos s
   rw [Complex.norm_real, Real.norm_eq_abs, abs_abs, abs_le]
   constructor <;> linarith
 
+/--
+@isnad1 id=le.4h4v.s8.64e4579b233b from=translated src=- shape=67fd83db vocab=988b7532
+-/
 theorem kink_fourier_bound (R : ℝ) (hR : 0 ≤ R) (H : ℝ → ℂ) (hH : ContDiff ℝ 2 H)
     (hHs : ∀ t : ℝ, R < |t| → H t = 0) (B : ℝ)
     (hB : ∀ j : ℕ, j ≤ 2 → ∀ t : ℝ, ‖iteratedDeriv j H t‖ ≤ B) (η : ℝ) :
@@ -244,6 +274,9 @@ theorem kink_fourier_bound (R : ℝ) (hR : 0 ≤ R) (H : ℝ → ℂ) (hH : Cont
 end T1Aux44
 
 open T1Aux44 in
+/--
+@isnad1 id=other.4h5v.s10.ceadbed120f0 from=translated src=- shape=1952c15e vocab=6d0e3028
+-/
 theorem solution
     {r c : ℕ} (W : (Fin r → ℝ) × (Fin c → ℝ) → ℂ) (hW : ContDiff ℝ (⊤ : ℕ∞) W)
     (R : ℝ) (hR : 0 ≤ R) (hsupp : ∀ p : (Fin r → ℝ) × (Fin c → ℝ), (∃ k, R < |p.1 k|) → W p = 0)

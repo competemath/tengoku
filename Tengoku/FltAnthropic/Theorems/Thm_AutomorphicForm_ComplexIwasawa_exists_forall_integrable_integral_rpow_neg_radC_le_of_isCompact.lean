@@ -12,6 +12,9 @@ set_option autoImplicit false
 open MeasureTheory AutomorphicForm.ComplexIwasawa
 open scoped ContDiff
 
+/--
+@isnad1 id=ex.3h3v.s8.60145d43e122 from=translated src=- shape=039984ed vocab=590af743
+-/
 theorem AutomorphicForm.ComplexIwasawa.exists_forall_integrable_integral_rpow_neg_radC_le_of_isCompact
     (𝒢 : Set (Matrix (Fin 2) (Fin 2) ℂ)) (_h𝒢 : IsCompact 𝒢) (_hdet : ∀ g ∈ 𝒢, g.det ≠ 0)
     (κ₀ κ₁ : ℝ) (_hκ₀ : 2 < κ₀) :

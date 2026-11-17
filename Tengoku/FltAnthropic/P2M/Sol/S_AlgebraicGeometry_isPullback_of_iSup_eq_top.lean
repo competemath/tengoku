@@ -13,6 +13,9 @@ universe u v
 
 namespace SIGMA2
 
+/--
+@isnad1 id=ispullba.2h10v.s9.c27f82edac97 from=translated src=- shape=ddc78a84 vocab=d9392eaf
+-/
 theorem isPullback_of_iSup_eq_top {P X Y Z : Scheme.{u}} (fst : P ⟶ X) (snd : P ⟶ Y) (f : X ⟶ Z) (g : Y ⟶ Z)
     {ι : Type v} (U : ι → X.Opens) (hU : ⨆ i, U i = ⊤)
     (h : ∀ i, IsPullback (fst ∣_ U i) ((fst ⁻¹ᵁ U i).ι ≫ snd) ((U i).ι ≫ f) g) :
@@ -32,6 +35,9 @@ theorem isPullback_of_iSup_eq_top {P X Y Z : Scheme.{u}} (fst : P ⟶ X) (snd : 
 
 end SIGMA2
 
+/--
+@isnad1 id=ispullba.2h10v.s9.c27f82edac97 from=translated src=- shape=ddc78a84 vocab=d9392eaf
+-/
 theorem solution
     {P X Y Z : Scheme.{u}} (fst : P ⟶ X) (snd : P ⟶ Y) (f : X ⟶ Z) (g : Y ⟶ Z)
     {ι : Type v} (U : ι → X.Opens) (hU : ⨆ i, U i = ⊤)

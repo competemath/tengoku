@@ -10,6 +10,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 namespace P2mWs49A1Fin
 
+/--
+@isnad1 id=isiso.2h7v.s10.f455165955de from=translated src=- shape=aaee7918 vocab=b0033212
+-/
 theorem isIso_fiberToSpecResidueField {X Y Z : Scheme.{0}} (p : Z ⟶ Y) (q : X ⟶ Y) (h : Z ⟶ X) (w : h ≫ q = p)
     (x : X)
     (hy : IsIso (pullback.map p (Y.fromSpecResidueField (q.base x)) q (Y.fromSpecResidueField (q.base x)) h (𝟙 _) (𝟙 _)
@@ -46,6 +49,9 @@ theorem isIso_fiberToSpecResidueField {X Y Z : Scheme.{0}} (p : Z ⟶ Y) (q : X 
 end P2mWs49A1Fin
 
 open P2mWs49A1Fin in
+/--
+@isnad1 id=and.2h7v.s9.eb436d86ac08 from=translated src=- shape=2cf5d5d2 vocab=0309175d
+-/
 theorem solution
     {X Y Z : Scheme.{0}} (p : Z ⟶ Y) (q : X ⟶ Y) (h : Z ⟶ X) (w : h ≫ q = p)
     [IsProper p] [Flat p] [LocallyOfFinitePresentation p]

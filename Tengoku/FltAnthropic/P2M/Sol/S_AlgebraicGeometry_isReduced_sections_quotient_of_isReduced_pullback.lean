@@ -16,6 +16,9 @@ export _root_.AlgebraicGeometry (Spec.map_comp affine_isReduced_iff IsAffineOpen
 namespace ChartSpecialFibreReduced
 open _root_.AlgebraicGeometry
 
+/--
+@isnad1 id=isreduce.2h4v.s9.0f9c558c2dc8 from=translated src=- shape=e0ef91b0 vocab=af78fe11
+-/
 theorem isReduced_quotient_of_isReduced_tensorProduct {R : Type*} [CommRing R] {κ : Type*} [Field κ] [Algebra R κ]
     (ϖ : R) (hϖ : algebraMap R κ ϖ = 0) (hmax : (Ideal.span {ϖ}).IsMaximal)
     (B : Type*) [CommRing B] [Algebra R B] [_root_.IsReduced (B ⊗[R] κ)] :
@@ -66,6 +69,9 @@ end AlgebraicGeometry.ChartSpecialFibreReduced
 
 open AlgebraicGeometry.ChartSpecialFibreReduced in
 
+/--
+@isnad1 id=isreduce.3h7v.s14.500e2c368060 from=translated src=- shape=84d735fe vocab=e7eb59bd
+-/
 theorem solution
     {R : Type u} [CommRing R] {κ : Type u} [Field κ] (φ : R →+* κ) (ϖ : R)
     (hϖ : φ ϖ = 0) (hmax : (Ideal.span {ϖ}).IsMaximal)

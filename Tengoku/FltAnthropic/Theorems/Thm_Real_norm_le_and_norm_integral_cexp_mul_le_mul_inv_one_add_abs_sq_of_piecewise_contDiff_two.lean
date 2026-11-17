@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=and.10h7v.s9.91db1d6ec3a6 from=translated src=- shape=ba1781b2 vocab=b5bf9b25
+-/
 theorem Real.norm_le_and_norm_integral_cexp_mul_le_mul_inv_one_add_abs_sq_of_piecewise_contDiff_two
     (g gm gp : ℝ → ℂ) (R M₀ M₂ J : ℝ) (hR : 0 ≤ R)
     (hgm : ContDiff ℝ 2 gm) (hgp : ContDiff ℝ 2 gp)

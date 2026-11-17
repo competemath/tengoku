@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=isclosed.2h6v.s9.8a0f935c8b3e from=translated src=- shape=42b91bfc vocab=31aa713c
+-/
 theorem solution
     {X Y S : Scheme.{u}} (f : X ⟶ Y) (g : Y ⟶ S) [LocallyOfFiniteType f] [LocallyOfFiniteType g]
     {x : X} (hx : IsClosed ({x} : Set X)) (hs : IsClosed ({(f ≫ g).base x} : Set S)) :

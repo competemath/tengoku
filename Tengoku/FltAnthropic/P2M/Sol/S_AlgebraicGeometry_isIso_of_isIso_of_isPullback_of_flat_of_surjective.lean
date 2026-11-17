@@ -9,6 +9,9 @@ set_option autoImplicit false
 universe u
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=isiso.6h15v.s7.78601b1ba51b from=translated src=- shape=da80528d vocab=da6e4be3
+-/
 theorem solution
     {S S' A B A' B' : Scheme.{0}} (b : S' ⟶ S) [Flat b] [Surjective b] [QuasiCompact b]
     (pA : A ⟶ S) (pB : B ⟶ S) (φ : A ⟶ B) (hφ : φ ≫ pB = pA)

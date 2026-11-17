@@ -352,6 +352,9 @@ end HARCHC
 end
 
 open HARCHC in
+/--
+@isnad1 id=other.0h2v.s9.642ee2dc4546 from=translated src=- shape=51dd2bfc vocab=e0b4b84b
+-/
 theorem solution (a b : ℕ) :
     let j : ℂ → ℂ → ℂ := fun w ζ => ∫ z : ℂ, z ^ a * (starRingEnd ℂ) z ^ b * (((1 + ‖z‖ ^ 2 : ℝ) : ℂ)) ^ (-w)
           * Complex.exp (-(((4 * Real.pi * (ζ * z).re : ℝ) : ℂ) * Complex.I))

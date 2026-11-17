@@ -14,6 +14,9 @@ open MeasureTheory
 
 namespace K3Aux44
 
+/--
+@isnad1 id=contdiff.0h2v.s7.779bd6e12a66 from=translated src=- shape=747f6f85 vocab=baf2c98a
+-/
 theorem contDiff_cexp_neg_sum {n : ℕ} (ξ : Fin n → ℝ) :
     ContDiff ℝ (⊤ : ℕ∞) (fun y : Fin n → ℝ =>
       Complex.exp (-(2 * Real.pi * Complex.I * ((∑ k, ξ k * y k : ℝ) : ℂ)))) := by
@@ -26,6 +29,9 @@ theorem contDiff_cexp_neg_sum {n : ℕ} (ξ : Fin n → ℝ) :
 end K3Aux44
 
 open K3Aux44 in
+/--
+@isnad1 id=ex.1h2v.s10.a9ec8de2d486 from=translated src=- shape=ad3a2e81 vocab=3079735d
+-/
 theorem solution
     (n : ℕ) (R : ℝ) (hR : 0 ≤ R) :
     ∃ K : ℝ, 0 ≤ K ∧

@@ -28,9 +28,15 @@ def rotAB (a b : ℝ) (h : a ^ 2 + b ^ 2 = 1) : GL (Fin 2) ℝ :=
       fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two] <;>
         first | linear_combination h | ring⟩
 
+/--
+@isnad1 id=eq.1h2v.s8.453c9982d087 from=translated src=- shape=67dac1a1 vocab=3d6d276f
+-/
 @[scoped simp] theorem rotAB_val (a b : ℝ) (h : a ^ 2 + b ^ 2 = 1) :
     ((rotAB a b h : GL (Fin 2) ℝ) : Matrix (Fin 2) (Fin 2) ℝ) = !![a, b; -b, a] := rfl
 
+/--
+@isnad1 id=mem.1h2v.s8.581c7d375dfa from=translated src=- shape=69be4c80 vocab=c3814a9e
+-/
 theorem rotAB_mem (a b : ℝ) (h : a ^ 2 + b ^ 2 = 1) : rotAB a b h ∈ rowIsometrySubgroup₀ ℝ := by
   rw [mem_rowIsometrySubgroup₀_iff]
   refine ⟨?_, ?_, ?_⟩
@@ -43,6 +49,9 @@ theorem rotAB_mem (a b : ℝ) (h : a ^ 2 + b ^ 2 = 1) : rotAB a b h ∈ rowIsome
       Matrix.cons_val_fin_one, Matrix.empty_val', Real.norm_eq_abs, sq_abs]
     linear_combination (x ^ 2 + y ^ 2) * h
 
+/--
+@isnad1 id=ex.1h2v.s6.c0e2a4857920 from=translated src=- shape=31adc9d5 vocab=e357a2d3
+-/
 theorem exists_angle {a b : ℝ} (h : a ^ 2 + b ^ 2 = 1) :
     ∃ θ ∈ Set.Icc (-Real.pi) Real.pi, Real.cos θ = a ∧ Real.sin θ = b := by
   set z : ℂ := ⟨a, b⟩ with hz
@@ -73,6 +82,9 @@ def G (p : P) : ℝ≥0∞ := Bset.indicator dP p
 
 def rad (w : ℝ × ℝ) : ℝ := Real.sqrt (w.1 ^ 2 + w.2 ^ 2)
 
+/--
+@isnad1 id=eq.0h1v.s6.f2e21f3b4e30 from=translated src=- shape=6d0cb5de vocab=03a160ca
+-/
 theorem rad_sq (w : ℝ × ℝ) : rad w ^ 2 = w.1 ^ 2 + w.2 ^ 2 :=
   Real.sq_sqrt (by positivity)
 
@@ -80,6 +92,9 @@ def chart (q : (ℝ × ℝ × ℝ) × ℝ) : P :=
   ((q.1.1 * Real.cos q.2 - q.1.1 * q.1.2.2 * Real.sin q.2, q.1.1 * Real.sin q.2 + q.1.1 * q.1.2.2 * Real.cos q.2),
     (-(q.1.2.1 * Real.sin q.2), q.1.2.1 * Real.cos q.2))
 
+/--
+@isnad1 id=continuo.0h0v.s6.d1d8615a047d from=translated src=- shape=0dd137a6 vocab=ebbab149
+-/
 theorem continuous_chart : Continuous chart := by
   have c1 : Continuous fun q : (ℝ × ℝ × ℝ) × ℝ => q.1.1 := continuous_fst.comp continuous_fst
   have c2 : Continuous fun q : (ℝ × ℝ × ℝ) × ℝ => q.1.2.1 :=
@@ -95,9 +110,15 @@ theorem continuous_chart : Continuous chart := by
 def paramBox : Set ((ℝ × ℝ × ℝ) × ℝ) :=
   (Set.Icc 1 (Real.exp 1) ×ˢ Set.Icc 1 (Real.exp 1) ×ˢ Set.Icc 0 1) ×ˢ Set.Icc (-Real.pi) Real.pi
 
+/--
+@isnad1 id=iscompac.0h0v.s5.c553cb9cd490 from=translated src=- shape=9d41b0e8 vocab=08218423
+-/
 theorem isCompact_paramBox : IsCompact paramBox :=
   ((isCompact_Icc.prod (isCompact_Icc.prod isCompact_Icc)).prod isCompact_Icc)
 
+/--
+@isnad1 id=eq.0h0v.s3.8c91e697074e from=translated src=- shape=aa31c8b5 vocab=57309cd8
+-/
 theorem Bset_eq_image : Bset = chart '' paramBox := by
   ext p
   constructor
@@ -109,18 +130,33 @@ theorem Bset_eq_image : Bset = chart '' paramBox := by
     exact ⟨b₁, hb₁, b₂, hb₂, x, hx, Real.cos θ, Real.sin θ, Real.cos_sq_add_sin_sq θ, by
       simp only [chart]⟩
 
+/--
+@isnad1 id=iscompac.0h0v.s5.fc4ff39c8305 from=translated src=- shape=25b03439 vocab=5db16c2d
+-/
 theorem isCompact_Bset : IsCompact Bset := by
   rw [Bset_eq_image]; exact isCompact_paramBox.image continuous_chart
 
+/--
+@isnad1 id=measurab.0h0v.s4.c57b93454136 from=translated src=- shape=25b03439 vocab=6f0c5f10
+-/
 theorem measurableSet_Bset : MeasurableSet Bset := isCompact_Bset.isClosed.measurableSet
 
+/--
+@isnad1 id=measurab.0h0v.s4.5fc6e328e7e0 from=translated src=- shape=54c8eceb vocab=39c6ae73
+-/
 theorem measurable_dP : Measurable dP := by
   unfold dP
   exact (ENNReal.measurable_ofReal.comp (((measurable_fst.fst.mul measurable_snd.snd).sub
     (measurable_fst.snd.mul measurable_snd.fst)).pow_const 2)).inv
 
+/--
+@isnad1 id=measurab.0h0v.s4.7094e2860450 from=translated src=- shape=54c8eceb vocab=a3cbb1b4
+-/
 theorem measurable_G : Measurable G := measurable_dP.indicator measurableSet_Bset
 
+/--
+@isnad1 id=mem.1h2v.s5.1b6adb2b7cf4 from=translated src=- shape=dee66f98 vocab=265c483f
+-/
 theorem rad_mem_of_mem_Bset {v w : ℝ × ℝ} (h : (v, w) ∈ Bset) : rad w ∈ Set.Icc (1 : ℝ) (Real.exp 1) := by
   obtain ⟨b₁, hb₁, b₂, hb₂, x, hx, a, b, hab, hp⟩ := h
   have hw : w = (-(b₂ * b), b₂ * a) := (Prod.ext_iff.mp hp).2
@@ -135,6 +171,9 @@ def rot (a b : ℝ) (u : ℝ × ℝ) : ℝ × ℝ := (u.1 * a - u.2 * b, u.1 * b
 
 def Treg : Set (ℝ × ℝ) := {u | u.1 ∈ Set.Icc (1 : ℝ) (Real.exp 1) ∧ 0 ≤ u.2 ∧ u.2 ≤ u.1}
 
+/--
+@isnad1 id=injectiv.1h2v.s6.1ba964120a99 from=translated src=- shape=6091ebe4 vocab=9672886d
+-/
 theorem rot_injective {a b : ℝ} (hab : a ^ 2 + b ^ 2 = 1) : Function.Injective (rot a b) := by
   intro u u' h
   simp only [rot, Prod.mk.injEq] at h
@@ -143,11 +182,17 @@ theorem rot_injective {a b : ℝ} (hab : a ^ 2 + b ^ 2 = 1) : Function.Injective
   have e2 : u.2 = u'.2 := by linear_combination (-b) * h1 + a * h2 + (u'.2 - u.2) * hab
   exact Prod.ext e1 e2
 
+/--
+@isnad1 id=continuo.0h2v.s5.f4f65f664f18 from=translated src=- shape=30dca54d vocab=824350b7
+-/
 theorem continuous_rot (a b : ℝ) : Continuous (rot a b) := by
   unfold rot
   exact ((continuous_fst.mul continuous_const).sub (continuous_snd.mul continuous_const)).prodMk
     ((continuous_fst.mul continuous_const).add (continuous_snd.mul continuous_const))
 
+/--
+@isnad1 id=isclosed.0h0v.s4.36582a182fd4 from=translated src=- shape=0b0a4f6e vocab=6df45f2f
+-/
 theorem isClosed_Treg : IsClosed Treg := by
   have h1 : IsClosed {u : ℝ × ℝ | u.1 ∈ Set.Icc (1 : ℝ) (Real.exp 1)} := isClosed_Icc.preimage continuous_fst
   have h2 : IsClosed {u : ℝ × ℝ | 0 ≤ u.2} := isClosed_le continuous_const continuous_snd
@@ -157,18 +202,33 @@ theorem isClosed_Treg : IsClosed Treg := by
   rw [this]
   exact h1.inter (h2.inter h3)
 
+/--
+@isnad1 id=le.0h0v.s5.0b9dedde4b3a from=translated src=- shape=b5437071 vocab=3988e0c8
+-/
 theorem Treg_subset : Treg ⊆ Set.Icc (1 : ℝ) (Real.exp 1) ×ˢ Set.Icc (0 : ℝ) (Real.exp 1) := by
   rintro ⟨α, β⟩ ⟨hα, hβ0, hβα⟩
   exact ⟨hα, hβ0, hβα.trans hα.2⟩
 
+/--
+@isnad1 id=iscompac.0h0v.s4.dac9736b0f43 from=translated src=- shape=0b0a4f6e vocab=101acd8d
+-/
 theorem isCompact_Treg : IsCompact Treg :=
   (isCompact_Icc.prod isCompact_Icc).of_isClosed_subset isClosed_Treg Treg_subset
 
+/--
+@isnad1 id=measurab.0h0v.s3.8ec725d6c7bf from=translated src=- shape=0b0a4f6e vocab=b2bba197
+-/
 theorem measurableSet_Treg : MeasurableSet Treg := isClosed_Treg.measurableSet
 
+/--
+@isnad1 id=measurab.0h2v.s4.9d2fd959ac32 from=translated src=- shape=6780c499 vocab=48d024ea
+-/
 theorem measurableSet_rot_image (a b : ℝ) : MeasurableSet (rot a b '' Treg) :=
   (isCompact_Treg.image (continuous_rot a b)).isClosed.measurableSet
 
+/--
+@isnad1 id=iff.1h2v.s6.1aeeb21d2fb9 from=translated src=- shape=0f2724bd vocab=82e6eaa9
+-/
 theorem mem_Bset_iff {w : ℝ × ℝ} (hw : rad w ∈ Set.Icc (1 : ℝ) (Real.exp 1)) (v : ℝ × ℝ) :
     (v, w) ∈ Bset ↔ v ∈ rot (w.2 / rad w) (-w.1 / rad w) '' Treg := by
   set r := rad w with hr
@@ -214,6 +274,9 @@ theorem mem_Bset_iff {w : ℝ × ℝ} (hw : rad w ∈ Set.Icc (1 : ℝ) (Real.ex
     rw [h1, e3, e4]
     refine Prod.ext (Prod.ext ?_ ?_) rfl <;> dsimp only [rot]
 
+/--
+@isnad1 id=eq.1h2v.s5.24e85b78d781 from=translated src=- shape=44820fb4 vocab=e4749182
+-/
 theorem G_eq_zero_of_not_mem {w : ℝ × ℝ} (hw : rad w ∉ Set.Icc (1 : ℝ) (Real.exp 1)) (v : ℝ × ℝ) :
     G (v, w) = 0 := by
   unfold G
@@ -222,6 +285,9 @@ theorem G_eq_zero_of_not_mem {w : ℝ × ℝ} (hw : rad w ∉ Set.Icc (1 : ℝ) 
 
 def rotM (a b : ℝ) : Matrix (Fin 2) (Fin 2) ℝ := !![a, -b; b, a]
 
+/--
+@isnad1 id=eq.0h2v.s11.2e1a6f43c253 from=translated src=- shape=d8702f9e vocab=19dc7fcb
+-/
 theorem rot_eq (a b : ℝ) :
     rot a b = (MeasurableEquiv.finTwoArrow : (Fin 2 → ℝ) ≃ᵐ ℝ × ℝ) ∘ (Matrix.toLin' (rotM a b)) ∘
       (MeasurableEquiv.finTwoArrow : (Fin 2 → ℝ) ≃ᵐ ℝ × ℝ).symm := by
@@ -231,6 +297,9 @@ theorem rot_eq (a b : ℝ) :
   simp [Matrix.mulVec, dotProduct, Fin.sum_univ_two]
   constructor <;> ring
 
+/--
+@isnad1 id=measurep.1h2v.s6.9900d2eddc94 from=translated src=- shape=3847d786 vocab=ba77be05
+-/
 theorem measurePreserving_rot {a b : ℝ} (hab : a ^ 2 + b ^ 2 = 1) :
     MeasurePreserving (rot a b) (volume : Measure (ℝ × ℝ)) volume := by
   have hdet : (rotM a b).det = 1 := by
@@ -242,6 +311,9 @@ theorem measurePreserving_rot {a b : ℝ} (hab : a ^ 2 + b ^ 2 = 1) :
   rw [rot_eq]
   exact ((volume_preserving_finTwoArrow ℝ).comp hlin).comp (volume_preserving_finTwoArrow ℝ).symm
 
+/--
+@isnad1 id=eq.0h0v.s5.641661526e34 from=translated src=- shape=bdf178e0 vocab=6ee55e96
+-/
 theorem lintegral_inv_Icc : ∫⁻ α in Set.Icc (1 : ℝ) (Real.exp 1), ENNReal.ofReal (α⁻¹) = 1 := by
   have hle : (1 : ℝ) ≤ Real.exp 1 := by
     have := Real.add_one_le_exp (1 : ℝ); linarith
@@ -256,6 +328,9 @@ theorem lintegral_inv_Icc : ∫⁻ α in Set.Icc (1 : ℝ) (Real.exp 1), ENNReal
     ← intervalIntegral.integral_of_le hle, integral_inv_of_pos one_pos (Real.exp_pos 1), div_one, Real.log_exp,
     ENNReal.ofReal_one]
 
+/--
+@isnad1 id=eq.1h1v.s6.206a3d625959 from=translated src=- shape=27e4a16d vocab=c1710115
+-/
 theorem lintegral_Treg (r : ℝ) (hr : 0 < r) :
     ∫⁻ u, Treg.indicator (fun u : ℝ × ℝ => ENNReal.ofReal (((r * u.1) ^ 2)⁻¹)) u ∂(volume : Measure (ℝ × ℝ)) =
       ENNReal.ofReal ((r ^ 2)⁻¹) := by
@@ -298,6 +373,9 @@ theorem lintegral_Treg (r : ℝ) (hr : 0 < r) :
   rw [setLIntegral_congr_fun measurableSet_Icc heq2, lintegral_const_mul' _ _ ENNReal.ofReal_ne_top,
     lintegral_inv_Icc, mul_one]
 
+/--
+@isnad1 id=eq.0h0v.s6.4707b420891e from=translated src=- shape=067ba256 vocab=985d4440
+-/
 theorem lintegral_annulus :
     ∫⁻ w, (rad ⁻¹' Set.Icc (1 : ℝ) (Real.exp 1)).indicator (fun w => ENNReal.ofReal ((rad w ^ 2)⁻¹)) w
         ∂(volume : Measure (ℝ × ℝ)) = ENNReal.ofReal (2 * Real.pi) := by
@@ -343,6 +421,9 @@ theorem lintegral_annulus :
   rw [hrad_int, one_mul]
   congr 1; ring
 
+/--
+@isnad1 id=eq.0h1v.s6.809cb65173d7 from=translated src=- shape=8ad16973 vocab=0dadbc61
+-/
 theorem lintegral_G_section (w : ℝ × ℝ) :
     ∫⁻ v, G (v, w) ∂(volume : Measure (ℝ × ℝ)) =
       (rad ⁻¹' Set.Icc (1 : ℝ) (Real.exp 1)).indicator (fun w => ENNReal.ofReal ((rad w ^ 2)⁻¹)) w := by
@@ -390,6 +471,9 @@ theorem lintegral_G_section (w : ℝ × ℝ) :
     have : (fun v => G (v, w)) = fun _ => 0 := funext (G_eq_zero_of_not_mem hw)
     rw [this, lintegral_zero]
 
+/--
+@isnad1 id=eq.0h0v.s5.557e9c6f69da from=translated src=- shape=e3daa820 vocab=c530c004
+-/
 theorem lintegral_G : ∫⁻ p, G p ∂(volume : Measure P) = ENNReal.ofReal (2 * Real.pi) := by
   rw [Measure.volume_eq_prod, lintegral_prod_symm _ measurable_G.aemeasurable]
   simp_rw [lintegral_G_section]
@@ -401,8 +485,14 @@ def Ψ : Ent ≃ᵐ P :=
   (MeasurableEquiv.piFinTwo fun _ : Fin 2 => Fin 2 → ℝ).trans
     (MeasurableEquiv.prodCongr MeasurableEquiv.finTwoArrow MeasurableEquiv.finTwoArrow)
 
+/--
+@isnad1 id=eq.0h1v.s8.ee2829cbf5f1 from=translated src=- shape=db158671 vocab=5683bf25
+-/
 theorem Ψ_apply (q : Ent) : Ψ q = ((q 0 0, q 0 1), (q 1 0, q 1 1)) := rfl
 
+/--
+@isnad1 id=measurep.0h0v.s8.ce55603657a2 from=translated src=- shape=a8003b72 vocab=edda7a92
+-/
 theorem measurePreserving_Ψ : MeasurePreserving Ψ (volume : Measure Ent) (volume : Measure P) := by
   have h1 := volume_preserving_piFinTwo fun _ : Fin 2 => Fin 2 → ℝ
   have h2 : MeasurePreserving (Prod.map (MeasurableEquiv.finTwoArrow : (Fin 2 → ℝ) ≃ᵐ ℝ × ℝ)
@@ -416,6 +506,9 @@ def boxSet : Set Ent :=
       ∃ x ∈ Set.Icc (0 : ℝ) 1, ∃ k : rowIsometrySubgroup₀ ℝ,
       Matrix.of q = !![b₁, b₁ * x; 0, b₂] * ((k : GL (Fin 2) ℝ) : Matrix (Fin 2) (Fin 2) ℝ)}
 
+/--
+@isnad1 id=iff.0h1v.s7.3f5dec6533f7 from=translated src=- shape=1dab19f7 vocab=d3428864
+-/
 theorem mem_boxSet_iff (q : Ent) : q ∈ boxSet ↔ Ψ q ∈ Bset := by
   rw [Ψ_apply]
   constructor
@@ -448,15 +541,27 @@ theorem mem_boxSet_iff (q : Ent) : q ∈ boxSet ↔ Ψ q ∈ Bset := by
         | linear_combination e10
         | linear_combination e11
 
+/--
+@isnad1 id=eq.0h0v.s7.edd1c82e7bfb from=translated src=- shape=8729770f vocab=9f1a10f3
+-/
 theorem boxSet_eq_preimage : boxSet = Ψ ⁻¹' Bset := Set.ext mem_boxSet_iff
 
+/--
+@isnad1 id=measurab.0h0v.s5.5417c759147e from=translated src=- shape=25b03439 vocab=51192ecb
+-/
 theorem measurableSet_boxSet : MeasurableSet boxSet := by
   rw [boxSet_eq_preimage]; exact Ψ.measurable measurableSet_Bset
 
+/--
+@isnad1 id=eq.0h1v.s8.406366d1d9c9 from=translated src=- shape=d2def9b8 vocab=dc688712
+-/
 theorem dens_eq (q : Ent) : (ENNReal.ofReal ((Matrix.of q).det ^ 2))⁻¹ = dP (Ψ q) := by
   rw [dP, Ψ_apply, Matrix.det_fin_two]
   simp only [Matrix.of_apply]
 
+/--
+@isnad1 id=eq.0h0v.s9.6a18ede06a30 from=translated src=- shape=d3ce8072 vocab=0e03ffab
+-/
 theorem main :
     ((volume : Measure Ent).withDensity fun q => (ENNReal.ofReal ((Matrix.of q).det ^ 2))⁻¹) boxSet =
       ENNReal.ofReal (2 * Real.pi) := by
@@ -474,6 +579,9 @@ end P2mIwasawaBox
 open scoped _root_.P2MW.S_AutomorphicForm_GL2Real_withDensity_volume_iwasawaBox_eq_two_mul_pi.P2mIwasawaBox
 
 open P2mIwasawaBox in
+/--
+@isnad1 id=eq.0h0v.s11.838b837fa4e1 from=translated src=- shape=50d45201 vocab=0d069869
+-/
 theorem solution :
     ((volume : Measure (Fin 2 → Fin 2 → ℝ)).withDensity
         fun q => (ENNReal.ofReal ((Matrix.of q).det ^ 2))⁻¹)

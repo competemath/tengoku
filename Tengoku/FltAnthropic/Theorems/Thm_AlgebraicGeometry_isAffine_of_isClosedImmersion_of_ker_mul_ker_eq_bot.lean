@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=isaffine.1h3v.s6.c30d42d676eb from=translated src=- shape=74b855d9 vocab=129e28ad
+-/
 theorem AlgebraicGeometry.isAffine_of_isClosedImmersion_of_ker_mul_ker_eq_bot
     {X₀ X : Scheme.{u}} (i : X₀ ⟶ X) [IsClosedImmersion i] [IsAffine X₀]
     (h : i.ker * i.ker = ⊥) : IsAffine X := by exact @_root_.P2MW.S_AlgebraicGeometry_isAffine_of_isClosedImmersion_of_ker_mul_ker_eq_bot.solution X₀ X i _ _ h

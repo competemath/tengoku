@@ -87,6 +87,9 @@ end RhoTwoAux
 end
 
 open RhoTwoAux in
+/--
+@isnad1 id=mem.1h2v.s8.691d9fe4dcbb from=translated src=- shape=9d1f6ef5 vocab=bd3d12bc
+-/
 theorem solution
     {g : Matrix (Fin 2) (Fin 2) ℂ} (hg : g.det ≠ 0) (z : ℂ) :
     kC g z ∈ Matrix.specialUnitaryGroup (Fin 2) ℂ := by

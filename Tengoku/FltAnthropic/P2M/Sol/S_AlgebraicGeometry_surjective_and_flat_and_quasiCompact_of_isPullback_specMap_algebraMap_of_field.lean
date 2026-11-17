@@ -13,6 +13,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 namespace FFSquare
 
+/--
+@isnad1 id=and.0h2v.s7.ef901d2ae063 from=translated src=- shape=b382480e vocab=b5d51f40
+-/
 theorem specMap_algebraMap {F Ω : Type u} [Field F] [Field Ω] [Algebra F Ω] :
     Surjective (Spec.map (CommRingCat.ofHom (algebraMap F Ω))) ∧
       Flat (Spec.map (CommRingCat.ofHom (algebraMap F Ω))) ∧
@@ -27,6 +30,9 @@ theorem specMap_algebraMap {F Ω : Type u} [Field F] [Field Ω] [Algebra F Ω] :
     rw [RingHom.Flat]
     exact inferInstance
 
+/--
+@isnad1 id=and.1h7v.s7.c0e29de9228c from=translated src=- shape=ffcf897f vocab=26b91bad
+-/
 theorem main {F Ω : Type u} [Field F] [Field Ω] [Algebra F Ω]
     {X X₀ : Scheme.{u}} {fX : X ⟶ Spec (CommRingCat.of Ω)} {f₀ : X₀ ⟶ Spec (CommRingCat.of F)} (r : X ⟶ X₀)
     (hr : IsPullback r fX f₀ (Spec.map (CommRingCat.ofHom (algebraMap F Ω)))) :
@@ -38,6 +44,9 @@ theorem main {F Ω : Type u} [Field F] [Field Ω] [Algebra F Ω]
 
 end FFSquare
 
+/--
+@isnad1 id=and.1h7v.s7.c0e29de9228c from=translated src=- shape=ffcf897f vocab=26b91bad
+-/
 theorem solution
     {F Ω : Type u} [Field F] [Field Ω] [Algebra F Ω]
     {X X₀ : Scheme.{u}} {fX : X ⟶ Spec (CommRingCat.of Ω)} {f₀ : X₀ ⟶ Spec (CommRingCat.of F)} (r : X ⟶ X₀)

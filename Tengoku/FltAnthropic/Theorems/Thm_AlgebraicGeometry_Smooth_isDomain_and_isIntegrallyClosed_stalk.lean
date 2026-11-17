@@ -10,6 +10,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=and.0h4v.s10.e9172d262497 from=translated src=- shape=f28eaca4 vocab=612a7ec5
+-/
 theorem AlgebraicGeometry.Smooth.isDomain_and_isIntegrallyClosed_stalk {U S : Scheme.{u}} (f : U ⟶ S) [Smooth f]
     [IsAffine S] [IsDomain Γ(S, ⊤)] [IsIntegrallyClosed Γ(S, ⊤)] (y : U) :
     IsDomain (U.presheaf.stalk y) ∧ IsIntegrallyClosed (U.presheaf.stalk y) := by exact @_root_.P2MW.S_AlgebraicGeometry_Smooth_isDomain_and_isIntegrallyClosed_stalk.solution U S f _ _ _ _ y

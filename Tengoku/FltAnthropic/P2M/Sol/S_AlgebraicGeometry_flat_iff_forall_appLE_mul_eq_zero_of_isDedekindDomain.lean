@@ -18,6 +18,9 @@ section Ring
 
 variable {R A : Type*} [CommRing R] [CommRing A]
 
+/--
+@isnad1 id=flat.1h3v.s7.b702687b88b2 from=translated src=- shape=14c40af2 vocab=8ea41254
+-/
 theorem ringHom_flat_of_torsionFree [IsDedekindDomain R] (r : R →+* A)
     (htf : ∀ (c : R) (s : A), c ≠ 0 → r c * s = 0 → s = 0) : r.Flat := by
   letI : Algebra R A := r.toAlgebra
@@ -30,6 +33,9 @@ theorem ringHom_flat_of_torsionFree [IsDedekindDomain R] (r : R →+* A)
   show Module.Flat R A
   infer_instance
 
+/--
+@isnad1 id=eq.3h5v.s7.05a36a9a407d from=translated src=- shape=35333295 vocab=84f29684
+-/
 theorem torsionFree_of_ringHom_flat [IsDomain R] (r : R →+* A) (hr : r.Flat)
     (c : R) (s : A) (hc : c ≠ 0) (hcs : r c * s = 0) : s = 0 := by
   letI : Algebra R A := r.toAlgebra
@@ -47,12 +53,18 @@ section Scheme
 
 variable {R : Type u} [CommRing R] {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of R))
 
+/--
+@isnad1 id=iff.0h4v.s11.36ad2cbca783 from=translated src=- shape=497907ed vocab=6ba794fe
+-/
 theorem flat_appLE_iff (U : X.affineOpens) :
     RingHom.Flat (f.appLE ⊤ (U : X.Opens) le_top).hom ↔
       RingHom.Flat ((Scheme.ΓSpecIso (CommRingCat.of R)).inv ≫ f.appLE ⊤ (U : X.Opens) le_top).hom := by
   rw [CommRingCat.hom_comp]
   exact (RingHom.Flat.respectsIso.cancel_left_isIso _ _).symm
 
+/--
+@isnad1 id=iff.0h3v.s12.1e825b59066f from=translated src=- shape=19ce697b vocab=7bc37530
+-/
 theorem flat_iff [IsDedekindDomain R] :
     Flat f ↔ ∀ (U : X.affineOpens) (c : R) (s : Γ(X, U)), c ≠ 0 →
       ((Scheme.ΓSpecIso (CommRingCat.of R)).inv ≫ f.appLE ⊤ U le_top) c * s = 0 → s = 0 := by
@@ -72,6 +84,9 @@ end Scheme
 
 end P2M.FlatIffTorsionFree
 
+/--
+@isnad1 id=iff.0h3v.s12.b6b5a2d385e0 from=translated src=- shape=3251ff75 vocab=7bc37530
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsDedekindDomain R] {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of R)) :
     Flat f ↔ ∀ (U : X.affineOpens) (c : R) (s : Γ(X, U)), c ≠ 0 →

@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=eq.1h5v.s7.397313055f26 from=translated src=- shape=67be9610 vocab=0e49c2f7
+-/
 theorem MeasureTheory.integral_abs_det_div_sq_mul_comp_moebius_real
     (a b c d : ℝ) (_hdet : a * d - b * c ≠ 0) (G : ℝ → ℂ) :
     ∫ x : ℝ, ((|a * d - b * c| / (a + x * c) ^ 2 : ℝ) : ℂ) * G ((b + x * d) / (a + x * c))

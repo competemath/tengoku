@@ -171,6 +171,9 @@ end MixedEntryDensity
 open scoped Classical in
 open AutomorphicForm in
 
+/--
+@isnad1 id=ex.1h2v.s11.41afb1ceb073 from=translated src=- shape=fb6a965b vocab=064dab0e
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F] {fa : GL (Fin 2) (InfiniteAdeleRing F) → ℂ}
     (hfa : IsArchTestFactor F fa) :

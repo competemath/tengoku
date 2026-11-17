@@ -11,6 +11,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=isopen.0h6v.s8.0f2100b28d92 from=translated src=- shape=0df932bc vocab=49115f3e
+-/
 theorem solution
     {Z T Y : Scheme.{u}} (π : Z ⟶ T) [UniversallyClosed π] (φ : Z ⟶ Y) (V : Y.Opens) :
     IsOpen {t : T | ∀ z : Z, π.base z = t → φ.base z ∈ V} := by

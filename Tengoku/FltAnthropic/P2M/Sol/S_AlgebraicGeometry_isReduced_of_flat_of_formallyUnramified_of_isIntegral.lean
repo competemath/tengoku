@@ -15,6 +15,9 @@ namespace Algebra export _root_.Algebra (EssFiniteType TensorProduct.includeRigh
 open scoped _root_.Algebra _root_.Algebra.FormallyUnramified in
 open TensorProduct in
 
+/--
+@isnad1 id=isreduce.0h2v.s6.ef4066b0b5f4 from=translated src=- shape=e1466be2 vocab=9012c283
+-/
 theorem Algebra.FormallyUnramified.isReduced_of_isDomain_of_flat (A B : Type*) [CommRing A] [CommRing B] [IsDomain A]
     [Algebra A B] [Module.Flat A B] [Algebra.FormallyUnramified A B] [Algebra.EssFiniteType A B] : IsReduced B := by
   let K := FractionRing A
@@ -33,6 +36,9 @@ theorem Algebra.FormallyUnramified.isReduced_of_isDomain_of_flat (A B : Type*) [
 end etaleReduced
 
 open AlgebraicGeometry in
+/--
+@isnad1 id=isreduce.0h3v.s5.6688b198c716 from=translated src=- shape=f55d492b vocab=121171c0
+-/
 theorem solution {X Y : Scheme.{u}} (f : X ⟶ Y)
     [Flat f] [FormallyUnramified f] [LocallyOfFiniteType f] [IsIntegral Y] : IsReduced X := by
   haveI : ∀ x : X, _root_.IsReduced (X.presheaf.stalk x) := fun x => by

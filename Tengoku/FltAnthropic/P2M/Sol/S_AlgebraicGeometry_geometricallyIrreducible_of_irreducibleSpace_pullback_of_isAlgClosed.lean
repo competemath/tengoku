@@ -14,6 +14,9 @@ universe u
 
 namespace H2a2N2
 
+/--
+@isnad1 id=surjecti.0h3v.s6.64446ec1c1d3 from=translated src=- shape=7a169b93 vocab=81098083
+-/
 theorem surjective_specMap_of_field {L M : Type u} [Field L] [Field M] (i : L →+* M) :
     Surjective (Spec.map (CommRingCat.ofHom i)) :=
   ⟨fun _ => ⟨IsLocalRing.closedPoint M, Subsingleton.elim _ _⟩⟩

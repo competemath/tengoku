@@ -1712,6 +1712,9 @@ private theorem elliptic_conjunct (i l : ℕ) {c : ℝ → ℂ} (hc : Continuous
 
 end EllipticFibreArc
 
+/--
+@isnad1 id=and.6h7v.s7.3cfa570ad6cb from=translated src=- shape=c89d92a5 vocab=72e8ec06
+-/
 theorem solution
     (i l : ℕ) (c : ℝ → ℂ) (hc : Continuous c) (hcs : HasCompactSupport c) (a₁ a₂ r θ : ℝ)
     (ha₁ : 0 < a₁) (ha₂ : 0 < a₂) (hr : 0 < r) (hθ : θ ∈ Set.Ioo (0 : ℝ) Real.pi) :

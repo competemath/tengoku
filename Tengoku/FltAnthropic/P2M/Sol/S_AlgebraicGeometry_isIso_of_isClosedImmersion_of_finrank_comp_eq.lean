@@ -13,6 +13,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 namespace RankCountAux
 
+/--
+@isnad1 id=injectiv.2h4v.s8.aa48012f6856 from=translated src=- shape=ac681939 vocab=ddd9f669
+-/
 lemma injective_of_surjective_of_rankAtStalk_eq
     {R A B : Type*} [CommRing R] [AddCommGroup A] [Module R A] [AddCommGroup B] [Module R B]
     [Module.Finite R A] [Module.Flat R A] [Module.Finite R B] [Module.Flat R B]
@@ -40,6 +43,9 @@ end RankCountAux
 
 open RankCountAux
 
+/--
+@isnad1 id=isiso.2h6v.s6.e6290b912b00 from=translated src=- shape=e21a3b4c vocab=31756e08
+-/
 theorem solution
     {X Y S : Scheme.{u}} (i : X ⟶ Y) (g : Y ⟶ S) (f : X ⟶ S) (w : i ≫ g = f)
     [IsClosedImmersion i] [IsFinite g] [Flat g] [LocallyOfFinitePresentation g]

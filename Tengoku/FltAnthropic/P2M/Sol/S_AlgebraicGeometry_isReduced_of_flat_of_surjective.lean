@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=isreduce.0h3v.s4.434077061c6c from=translated src=- shape=e150ce23 vocab=be7970ec
+-/
 theorem solution
     {X Y : Scheme.{u}} (f : X ⟶ Y) [Flat f] [Surjective f] [IsReduced X] : IsReduced Y := by
   haveI : ∀ y : Y, _root_.IsReduced (Y.presheaf.stalk y) := by

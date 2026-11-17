@@ -12,6 +12,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=isiso.2h6v.s6.76e96c06e6da from=translated src=- shape=0342a028 vocab=31756e08
+-/
 theorem solution
     {X Y Z : Scheme.{u}} (fX : X ⟶ Z) (fY : Y ⟶ Z) (i : X ⟶ Y) (hi : i ≫ fY = fX)
     [IsClosedImmersion i]

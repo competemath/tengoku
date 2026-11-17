@@ -13,6 +13,9 @@ set_option autoImplicit false
 
 open scoped ContDiff
 
+/--
+@isnad1 id=ex.2h2v.s8.c1406a222f70 from=translated src=- shape=cc625ebe vocab=9a9104c7
+-/
 theorem AutomorphicForm.ComplexIwasawa.exists_forall_bound_iteratedFDeriv_kC_apply_of_isCompact
     (𝒢 : Set (Matrix (Fin 2) (Fin 2) ℂ)) (h𝒢 : IsCompact 𝒢) (hdet : ∀ g ∈ 𝒢, g.det ≠ 0) (n : ℕ) :
     ∃ C : ℝ, 0 < C ∧ ∀ g ∈ 𝒢, ∀ (i j : Fin 2) (z : ℂ),

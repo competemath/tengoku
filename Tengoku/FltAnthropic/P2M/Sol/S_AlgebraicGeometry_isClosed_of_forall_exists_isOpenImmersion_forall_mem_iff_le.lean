@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=isclosed.1h2v.s9.59f2533908ba from=translated src=- shape=472945c4 vocab=2afd9dc1
+-/
 theorem solution
     {E : Scheme.{u}} (T : Set E)
     (h : ∀ e : E, ∃ (S : Type u) (_ : CommRing S) (ι : Spec (CommRingCat.of S) ⟶ E) (_ : IsOpenImmersion ι)

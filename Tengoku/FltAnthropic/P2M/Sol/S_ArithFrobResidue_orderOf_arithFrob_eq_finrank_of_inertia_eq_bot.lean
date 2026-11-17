@@ -6,6 +6,9 @@ import Tengoku.FltAnthropic.Definitions.Def_ArithFrobResidue
 namespace P2MW.S_ArithFrobResidue_orderOf_arithFrob_eq_finrank_of_inertia_eq_bot
 open scoped Pointwise
 attribute [local instance] Ideal.Quotient.field
+/--
+@isnad1 id=eq.2h5v.s9.51883832b52a from=translated src=- shape=1ad258cf vocab=a2fa66ce
+-/
 theorem solution
     {A B : Type*} [CommRing A] [CommRing B] [Algebra A B]
     {G : Type*} [Group G] [MulSemiringAction G B] [SMulCommClass G A B]

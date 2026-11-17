@@ -12,6 +12,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=isiso.2h6v.s6.e6290b912b00 from=translated src=- shape=e21a3b4c vocab=31756e08
+-/
 theorem AlgebraicGeometry.isIso_of_isClosedImmersion_of_finrank_comp_eq
     {X Y S : Scheme.{u}} (i : X ⟶ Y) (g : Y ⟶ S) (f : X ⟶ S) (w : i ≫ g = f)
     [IsClosedImmersion i] [IsFinite g] [Flat g] [LocallyOfFinitePresentation g]

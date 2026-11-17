@@ -399,6 +399,9 @@ private theorem contDiff_abelT_family {P : Type} [NormedAddCommGroup P] [NormedS
   rw [hrw]
   exact contDiff_const.mul (hconv.comp (contDiff_snd.prodMk contDiff_fst))
 
+/--
+@isnad1 id=ex.0h1v.s8.2796bd9ae5a9 from=translated src=- shape=2cd9a5a3 vocab=ec97eb06
+-/
 theorem solution
     (P : Type) [NormedAddCommGroup P] [NormedSpace ℝ P] :
     ∃ T : (ℝ → ℂ) → (ℝ → ℂ),

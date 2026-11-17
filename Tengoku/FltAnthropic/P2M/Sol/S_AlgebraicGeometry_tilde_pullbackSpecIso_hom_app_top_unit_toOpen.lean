@@ -17,6 +17,9 @@ open _root_.CategoryTheory open _root_.AlgebraicGeometry open _root_.Opposite op
 namespace AlgebraicGeometry export _root_.AlgebraicGeometry (Scheme.Modules.pushforward tilde.adjunction moduleSpecΓFunctor Spec Spec.map Scheme pullbackSpecIso Scheme.Modules.pullbackPushforwardAdjunction tilde.functor Scheme.Modules tilde tilde.toOpen Scheme.Modules.pushforwardSpecCompΓIso tilde.pullbackSpecIso) namespace tilde export _root_.AlgebraicGeometry.tilde (adjunction toOpen pullbackSpecIso) end AlgebraicGeometry.tilde
 open scoped _root_.AlgebraicGeometry _root_.AlgebraicGeometry.tilde in
 
+/--
+@isnad1 id=eq.0h4v.s11.61a72196f129 from=translated src=- shape=e45eec0c vocab=7fcc3ec4
+-/
 theorem AlgebraicGeometry.tilde.pullbackSpecIso_unit_aux {R S : CommRingCat.{u}} (φ : R ⟶ S) (M : ModuleCat.{u} R) :
     ((tilde.adjunction (R := R)).comp
         (Scheme.Modules.pullbackPushforwardAdjunction (Spec.map φ))).unit.app M ≫
@@ -41,6 +44,9 @@ theorem AlgebraicGeometry.tilde.pullbackSpecIso_unit_aux {R S : CommRingCat.{u}}
   simp only [Category.assoc, Iso.inv_hom_id_app, Category.comp_id] at h2
   exact h2
 
+/--
+@isnad1 id=eq.0h5v.s14.9257ab67c891 from=translated src=- shape=c2835d0a vocab=a5223da2
+-/
 theorem solution {R S : CommRingCat.{u}}
     (φ : R ⟶ S) (M : ModuleCat.{u} R) (m : M) :
     ((tilde.pullbackSpecIso φ M).hom.app ⊤).hom

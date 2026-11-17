@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=isconnec.1h4v.s8.9e82a1bc2da0 from=translated src=- shape=0a6ec749 vocab=538d8035
+-/
 theorem solution
     {X Y : Scheme.{u}} (f : X ⟶ Y)
     (h : ∀ (k : Type u) [Field k] [IsAlgClosed k] (s : Spec (CommRingCat.of k) ⟶ Y), ConnectedSpace ↥(Limits.pullback f s))

@@ -13,6 +13,9 @@ universe u
 
 namespace P2mFlatReduced
 
+/--
+@isnad1 id=isreduce.0h3v.s8.b5921b432824 from=translated src=- shape=01bae72d vocab=0205a5ec
+-/
 theorem isReduced_of_flat_of_isReduced_tensor
     {R : Type u} [CommRing R] [IsDomain R] (K : Type u) [CommRing K] [Algebra R K] [IsFractionRing R K]
     (A : Type u) [CommRing A] [Algebra R A] [Module.Flat R A] [IsReduced (K ⊗[R] A)] :
@@ -27,10 +30,16 @@ theorem isReduced_of_flat_of_isReduced_tensor
   have hreg := Module.Flat.isSMulRegular_of_nonZeroDivisors (M := A) s.2
   exact hreg (show (s : R) • a = (s : R) • 0 by rw [smul_zero, ← Submonoid.smul_def, hs])
 
+/--
+@isnad1 id=isreduce.0h3v.s6.b61ae4a34014 from=translated src=- shape=0751dee6 vocab=5db25f54
+-/
 theorem isReduced_of_ringEquiv {A B : Type u} [CommRing A] [CommRing B] (e : A ≃+* B) [IsReduced A] :
     IsReduced B :=
   isReduced_of_injective e.symm.toRingHom e.symm.injective
 
+/--
+@isnad1 id=isreduce.0h6v.s6.89c84e0324e9 from=translated src=- shape=6f8ae2bf vocab=15290708
+-/
 theorem isReduced_affine
     {R : Type u} [CommRing R] [IsDomain R] (K : Type u) [CommRing K] [Algebra R K] [IsFractionRing R K]
     {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of R)) [Flat f]
@@ -70,6 +79,9 @@ end P2mFlatReduced
 
 open P2mFlatReduced in
 
+/--
+@isnad1 id=isreduce.0h4v.s6.a6bb5484a7b0 from=translated src=- shape=8df6b58c vocab=6ca5177f
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsDomain R] (K : Type u) [CommRing K] [Algebra R K] [IsFractionRing R K]
     {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of R)) [Flat f]

@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=eq.3h9v.s8.69fb1b23812e from=translated src=- shape=e3b8daa6 vocab=01566246
+-/
 theorem solution
     {X Y Z : Scheme.{u}} (f g : X ⟶ Y) (s : Y ⟶ Z) [IsSeparated s] (hs : f ≫ s = g ≫ s) [IsReduced X]
     {ι : Type u} (T : ι → Scheme.{u}) (z : ∀ i, T i ⟶ X) (hz : ∀ i, z i ≫ f = z i ≫ g)

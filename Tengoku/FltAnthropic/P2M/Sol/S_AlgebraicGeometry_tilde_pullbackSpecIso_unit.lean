@@ -14,6 +14,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry Opposite TensorProduct
 
+/--
+@isnad1 id=eq.0h4v.s11.61a72196f129 from=translated src=- shape=e45eec0c vocab=7fcc3ec4
+-/
 theorem solution {R S : CommRingCat.{u}} (φ : R ⟶ S)
     (M : ModuleCat.{u} R) :
     ((tilde.adjunction (R := R)).comp

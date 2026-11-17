@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_AlgebraicGeometry_isReduced_of_mem_nonZero
 set_option autoImplicit false
 open AlgebraicGeometry CategoryTheory TopologicalSpace Topology Opposite
 
+/--
+@isnad1 id=isreduce.1h2v.s12.12a28aa74dd1 from=translated src=- shape=23272e67 vocab=dc44d87d
+-/
 theorem AlgebraicGeometry.isReduced_of_mem_nonZeroDivisors_of_isReduced_basicOpen
     {Y : Scheme} (p : Γ(Y, ⊤))
     (hreg : ∀ U : Y.Opens, IsAffineOpen U → Y.presheaf.map (homOfLE le_top).op p ∈ nonZeroDivisors Γ(Y, U))

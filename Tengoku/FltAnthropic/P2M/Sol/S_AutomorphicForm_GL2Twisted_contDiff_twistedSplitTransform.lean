@@ -1740,6 +1740,9 @@ open scoped _root_.P2MW.S_AutomorphicForm_GL2Twisted_contDiff_twistedSplitTransf
 
 open TwistedSplitSmooth in
 
+/--
+@isnad1 id=and.3h2v.s11.88bcc5797d85 from=translated src=- shape=4649c663 vocab=5de48107
+-/
 theorem solution
     (P : Type) [NormedAddCommGroup P] [NormedSpace ℝ P]
     (Φ : (Fin 2 → Fin 2 → ℂ) × P → ℂ)

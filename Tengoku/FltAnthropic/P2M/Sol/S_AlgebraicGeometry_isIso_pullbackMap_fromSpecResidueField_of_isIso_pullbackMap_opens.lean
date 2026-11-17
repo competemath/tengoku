@@ -10,6 +10,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 namespace K63H2
 
+/--
+@isnad1 id=isiso.3h11v.s7.2d4fb7cc124e from=translated src=- shape=757cf66e vocab=fdf980b4
+-/
 theorem isIso_pullbackMap_of_fac {X Y Z W W' : Scheme.{0}} (p : Z ⟶ Y) (q : X ⟶ Y) (h : Z ⟶ X)
     (w : h ≫ q = p) (i : W' ⟶ Y) (g : W ⟶ Y) (j : W ⟶ W') (hj : j ≫ i = g)
     (hi : IsIso (pullback.map p i q i h (𝟙 _) (𝟙 _)
@@ -59,6 +62,9 @@ theorem isIso_pullbackMap_of_fac {X Y Z W W' : Scheme.{0}} (p : Z ⟶ Y) (q : X 
 
 end K63H2
 
+/--
+@isnad1 id=isiso.3h8v.s8.6993c24d32a9 from=translated src=- shape=89e2e3c5 vocab=d1d5dd14
+-/
 theorem solution
     {X Y Z : Scheme.{0}} (p : Z ⟶ Y) (q : X ⟶ Y) (h : Z ⟶ X) (w : h ≫ q = p)
     (V : Y.Opens) (y : Y) (hy : y ∈ V)

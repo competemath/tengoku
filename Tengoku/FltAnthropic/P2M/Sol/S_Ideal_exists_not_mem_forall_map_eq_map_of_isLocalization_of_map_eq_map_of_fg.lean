@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 namespace ClosedSpread
 
+/--
+@isnad1 id=ex.2h7v.s9.786a22259cd7 from=translated src=- shape=921c7fac vocab=23a8c212
+-/
 theorem exists_not_mem_mul_le_of_map_le {S B Bp : Type} [CommRing S] [CommRing B] [CommRing Bp]
     (φ : S →+* B) (𝔭 : Ideal S) [𝔭.IsPrime] (J₁ J₂ : Ideal B) (h₁ : J₁.FG)
     [Algebra B Bp] [IsLocalization (𝔭.primeCompl.map φ.toMonoidHom) Bp]
@@ -64,6 +67,9 @@ theorem exists_not_mem_mul_le_of_map_le {S B Bp : Type} [CommRing S] [CommRing B
       rw [smul_eq_mul, mul_left_comm]
       exact J₂.mul_mem_left _ hy
 
+/--
+@isnad1 id=ex.3h7v.s9.5371dde26abb from=translated src=- shape=b5185831 vocab=955f641c
+-/
 theorem exists_not_mem_map_eq_map {S B Bp : Type} [CommRing S] [CommRing B] [CommRing Bp]
     (φ : S →+* B) (𝔭 : Ideal S) [𝔭.IsPrime] (J₁ J₂ : Ideal B) (h₁ : J₁.FG) (h₂ : J₂.FG)
     [Algebra B Bp] [IsLocalization (𝔭.primeCompl.map φ.toMonoidHom) Bp]
@@ -103,6 +109,9 @@ theorem exists_not_mem_map_eq_map {S B Bp : Type} [CommRing S] [CommRing B] [Com
 
 end ClosedSpread
 
+/--
+@isnad1 id=ex.3h7v.s9.be8b7e97ddbe from=translated src=- shape=7ad4479d vocab=56e13bd1
+-/
 theorem solution
     {S B : Type} [CommRing S] [CommRing B] (φ : S →+* B) (𝔭 : Ideal S) [𝔭.IsPrime]
     (Bₚ : Type) [CommRing Bₚ] [Algebra B Bₚ] [IsLocalization (𝔭.primeCompl.map φ.toMonoidHom) Bₚ]

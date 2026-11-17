@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=ex.2h3v.s8.954d56c84875 from=translated src=- shape=a654afbd vocab=8eec4a4e
+-/
 theorem solution
     (A : Type u) [CommRing A] [IsDomain A] [IsNoetherianRing A] (𝔭 : Ideal A) [𝔭.IsPrime]
     (h𝔭ic : IsIntegrallyClosed (Localization.AtPrime 𝔭)) (h𝔭dim : ringKrullDim (Localization.AtPrime 𝔭) ≤ 1)

@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=surjecti.2h3v.s7.aa01ceb01f69 from=translated src=- shape=5d5f5f8d vocab=fa0dd6a7
+-/
 theorem solution
     {R S : Type u} [CommRing R] [CommRing S] (f : R →+* S) (hf : Function.Surjective f)
     (hker : RingHom.ker f ≤ nilradical R) :

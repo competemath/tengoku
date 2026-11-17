@@ -13,6 +13,9 @@ universe u
 
 namespace BiratFrac
 
+/--
+@isnad1 id=isfracti.2h8v.s9.b44d7ec37b12 from=translated src=- shape=b88826b6 vocab=2a2ad678
+-/
 theorem isFractionRing_of_localization_iso
     {R S R' S' : Type*} [CommRing R] [IsDomain R] [CommRing S] [IsDomain S]
     [CommRing R'] [CommRing S'] [Nontrivial S'] [Algebra R R'] (M : Submonoid R) [IsLocalization M R']
@@ -70,6 +73,9 @@ theorem isFractionRing_of_localization_iso
   rw [halg, halg, hs, ht', map_mul, map_mul, map_mul, map_mul, div_div_eq_mul_div, div_mul_eq_mul_div,
     div_div]
 
+/--
+@isnad1 id=ex.1h3v.s9.d423a5fba2ad from=translated src=- shape=c5221015 vocab=376057a2
+-/
 theorem exists_isLocalization_stalkSpecializes {X : Scheme.{u}} {x y : X} (h : x ⤳ y) :
     letI : Algebra (X.presheaf.stalk y) (X.presheaf.stalk x) := (X.presheaf.stalkSpecializes h).hom.toAlgebra
     ∃ M : Submonoid (X.presheaf.stalk y), IsLocalization M (X.presheaf.stalk x) := by
@@ -101,6 +107,9 @@ theorem exists_isLocalization_stalkSpecializes {X : Scheme.{u}} {x y : X} (h : x
 end BiratFrac
 
 open BiratFrac in
+/--
+@isnad1 id=isfracti.1h5v.s12.23b60a1654b1 from=translated src=- shape=ff3da75e vocab=20e61d65
+-/
 theorem solution
     {U W : Scheme.{u}} (v : U ⟶ W) (u : U)
     [IsDomain (U.presheaf.stalk u)] [IsDomain (W.presheaf.stalk (v.base u))]

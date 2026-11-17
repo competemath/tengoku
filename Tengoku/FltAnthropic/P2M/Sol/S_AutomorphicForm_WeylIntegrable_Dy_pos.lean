@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open AutomorphicForm.WeylIntegrable in
 
+/--
+@isnad1 id=lt.0h2v.s5.7b82796e17fb from=translated src=- shape=ac1f0716 vocab=1989f82d
+-/
 theorem solution (F : Type) [Field F] [NumberField F]
     (x : NumberField.AdeleRing (NumberField.RingOfIntegers F) F) : 0 < Dy F x := by
   rw [Dy]; exact_mod_cast MeasureTheory.distribHaarChar_pos

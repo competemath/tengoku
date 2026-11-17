@@ -14,6 +14,9 @@ universe u v
 
 open scoped Pointwise
 
+/--
+@isnad1 id=ex.1h4v.s12.19187f450647 from=translated src=- shape=c94a1574 vocab=933f1d28
+-/
 theorem solution
     (K : Type u) (M : Type v) [Field K] [NumberField K] [Field M] [NumberField M] [Algebra K M]
     [IsGalois K M] (v : HeightOneSpectrum (𝓞 K))

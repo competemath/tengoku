@@ -44,10 +44,16 @@ def borelC (z : ℂ) : Matrix (Fin 2) (Fin 2) ℂ :=
 
 variable {g}
 
+/--
+@isnad1 id=eq.0h2v.s6.c143a3805d60 from=translated src=- shape=0f43f2be vocab=105d6749
+-/
 theorem radC_sq (g : Matrix (Fin 2) (Fin 2) ℂ) (z : ℂ) :
     radC g z ^ 2 = Complex.normSq (botP g z) + Complex.normSq (botQ g z) := by
   rw [radC, Real.sq_sqrt (add_nonneg (Complex.normSq_nonneg _) (Complex.normSq_nonneg _))]
 
+/--
+@isnad1 id=lt.1h1v.s5.d55bdf2d9546 from=translated src=- shape=21445356 vocab=cf2dcb52
+-/
 theorem botNormSqC_pos (hg : g.det ≠ 0) : 0 < botNormSqC g := by
   rw [botNormSqC]
   rcases (add_nonneg (Complex.normSq_nonneg (g 1 0)) (Complex.normSq_nonneg (g 1 1))).lt_or_eq
@@ -62,6 +68,9 @@ theorem botNormSqC_pos (hg : g.det ≠ 0) : 0 < botNormSqC g := by
     rw [Matrix.det_fin_two, Complex.normSq_eq_zero.1 hc, Complex.normSq_eq_zero.1 hd,
       mul_zero, mul_zero, sub_zero]
 
+/--
+@isnad1 id=eq.1h2v.s7.9ea66097c766 from=translated src=- shape=28697d87 vocab=fa932536
+-/
 theorem radC_sq_eq (hg : g.det ≠ 0) (z : ℂ) :
     radC g z ^ 2 = botNormSqC g * Complex.normSq (z - centerC g)
       + Complex.normSq g.det / botNormSqC g := by
@@ -79,6 +88,9 @@ theorem radC_sq_eq (hg : g.det ≠ 0) (z : ℂ) :
     Complex.ofReal_im, Complex.conj_re, Complex.conj_im]
   ring
 
+/--
+@isnad1 id=lt.1h2v.s5.f4b8329a3ca5 from=translated src=- shape=606d29bf vocab=0c1013b2
+-/
 theorem radC_pos (hg : g.det ≠ 0) (z : ℂ) : 0 < radC g z := by
   rw [radC]
   apply Real.sqrt_pos.2
@@ -101,6 +113,9 @@ theorem radC_pos (hg : g.det ≠ 0) (z : ℂ) : 0 < radC g z := by
     rw [ha, hb]
     ring
 
+/--
+@isnad1 id=eq.1h2v.s7.864bf5ec03e1 from=translated src=- shape=aa38f7ec vocab=c806b7be
+-/
 theorem kC_mul_conjTranspose (hg : g.det ≠ 0) (z : ℂ) :
     kC g z * (kC g z).conjTranspose = 1 := by
   have hr : (radC g z : ℂ) ≠ 0 := Complex.ofReal_ne_zero.2 (radC_pos hg z).ne'
@@ -120,6 +135,9 @@ theorem kC_mul_conjTranspose (hg : g.det ≠ 0) (z : ℂ) :
     | linear_combination key
     | ring
 
+/--
+@isnad1 id=eq.1h2v.s7.8ee4c960d5eb from=translated src=- shape=9aac7860 vocab=c806b7be
+-/
 theorem conjTranspose_mul_kC (hg : g.det ≠ 0) (z : ℂ) :
     (kC g z).conjTranspose * kC g z = 1 := by
   have hr : (radC g z : ℂ) ≠ 0 := Complex.ofReal_ne_zero.2 (radC_pos hg z).ne'
@@ -139,10 +157,16 @@ theorem conjTranspose_mul_kC (hg : g.det ≠ 0) (z : ℂ) :
     | linear_combination key
     | ring
 
+/--
+@isnad1 id=eq.1h2v.s6.4d853536989b from=translated src=- shape=c055a3b6 vocab=b2be34fb
+-/
 theorem det_borelC (hg : g.det ≠ 0) (z : ℂ) : (borelC g z).det = -g.det := by
   have hr : (radC g z : ℂ) ≠ 0 := Complex.ofReal_ne_zero.2 (radC_pos hg z).ne'
   rw [borelC, Matrix.det_fin_two_of, mul_zero, sub_zero, div_mul_cancel₀ _ hr]
 
+/--
+@isnad1 id=contdiff.1h1v.s6.e9850ccad1d2 from=translated src=- shape=ea1704a6 vocab=07146463
+-/
 theorem contDiff_radC (hg : g.det ≠ 0) : ContDiff ℝ ∞ (radC g) := by
   have hnormSq : ContDiff ℝ ∞ Complex.normSq := by
     have h : (Complex.normSq : ℂ → ℝ) = fun z => z.re * z.re + z.im * z.im := by
@@ -203,6 +227,9 @@ open M4aP3C.CplxIwasawa
 
 variable {g : Matrix (Fin 2) (Fin 2) ℂ}
 
+/--
+@isnad1 id=eqon.1h3v.s6.2ceb79c5b4ff from=translated src=- shape=d8b32318 vocab=a89afa85
+-/
 theorem iteratedDerivWithin_rpow_const {c : ℝ} (hc : 0 < c) (r : ℝ) (k : ℕ) :
     Set.EqOn (iteratedDerivWithin k (fun v : ℝ => v ^ r) (Set.Ioi c))
       (fun v => (∏ i ∈ Finset.range k, (r - i)) * v ^ (r - k)) (Set.Ioi c) := by
@@ -228,6 +255,9 @@ theorem iteratedDerivWithin_rpow_const {c : ℝ} (hc : 0 < c) (r : ℝ) (k : ℕ
     push_cast
     ring_nf
 
+/--
+@isnad1 id=le.2h3v.s7.e4929e636548 from=translated src=- shape=869bcd00 vocab=42eff942
+-/
 theorem norm_iteratedDerivWithin_rpow_neg_half_le {c : ℝ} (hc : 0 < c) (k : ℕ) {v : ℝ}
     (hv : v ∈ Set.Ioi c) :
     ‖iteratedDerivWithin k (fun v : ℝ => v ^ (-(1 : ℝ) / 2)) (Set.Ioi c) v‖
@@ -259,9 +289,15 @@ theorem norm_iteratedDerivWithin_rpow_neg_half_le {c : ℝ} (hc : 0 < c) (k : �
 def uQuad (g : Matrix (Fin 2) (Fin 2) ℂ) : ℂ → ℝ := fun w =>
   botNormSqC g * Complex.normSq (w - centerC g) + Complex.normSq g.det / botNormSqC g
 
+/--
+@isnad1 id=eq.1h2v.s6.5577cb7aa212 from=translated src=- shape=5006f716 vocab=41465ca6
+-/
 theorem uQuad_eq_radC_sq (hg : g.det ≠ 0) (w : ℂ) : uQuad g w = radC g w ^ 2 :=
   (radC_sq_eq hg w).symm
 
+/--
+@isnad1 id=le.1h2v.s6.68dc66ee78fd from=translated src=- shape=7cfd9da2 vocab=e618920d
+-/
 theorem uQuad_ge (hg : g.det ≠ 0) (w : ℂ) :
     Complex.normSq g.det / botNormSqC g ≤ uQuad g w := by
   have h : 0 ≤ botNormSqC g * Complex.normSq (w - centerC g) :=
@@ -269,6 +305,9 @@ theorem uQuad_ge (hg : g.det ≠ 0) (w : ℂ) :
   unfold uQuad
   linarith
 
+/--
+@isnad1 id=eq.0h2v.s7.2a8111872f2e from=translated src=- shape=4404b959 vocab=43f6ef26
+-/
 theorem uQuad_eq_coords (w : ℂ) :
     uQuad g w = botNormSqC g * ((w.re - (centerC g).re) ^ 2 + (w.im - (centerC g).im) ^ 2)
       + Complex.normSq g.det / botNormSqC g := by
@@ -276,6 +315,9 @@ theorem uQuad_eq_coords (w : ℂ) :
   rw [Complex.normSq_apply, Complex.sub_re, Complex.sub_im]
   ring
 
+/--
+@isnad1 id=hasfderi.0h2v.s10.35fdefebaab9 from=translated src=- shape=aa68ec95 vocab=d137c03d
+-/
 theorem hasFDerivAt_uQuad (g : Matrix (Fin 2) (Fin 2) ℂ) (w : ℂ) :
     HasFDerivAt (uQuad g)
       ((2 * botNormSqC g * (w - centerC g).re) • Complex.reCLM
@@ -311,11 +353,17 @@ def lamQuad (g : Matrix (Fin 2) (Fin 2) ℂ) : ℂ →L[ℝ] ℂ →L[ℝ] ℝ :
   Complex.reCLM.smulRight ((2 * botNormSqC g) • (Complex.reCLM : ℂ →L[ℝ] ℝ))
     + Complex.imCLM.smulRight ((2 * botNormSqC g) • (Complex.imCLM : ℂ →L[ℝ] ℝ))
 
+/--
+@isnad1 id=eq.0h3v.s9.cad6bf9256ef from=translated src=- shape=a1bbf4f0 vocab=190c5172
+-/
 @[scoped simp] theorem lamQuad_apply_apply (g : Matrix (Fin 2) (Fin 2) ℂ) (v w : ℂ) :
     lamQuad g v w = 2 * botNormSqC g * v.re * w.re + 2 * botNormSqC g * v.im * w.im := by
   simp [lamQuad, ContinuousLinearMap.smulRight_apply]
   ring
 
+/--
+@isnad1 id=le.0h2v.s9.920de25a0117 from=translated src=- shape=391c3bad vocab=c7721a72
+-/
 theorem norm_lamQuad_apply_le (g : Matrix (Fin 2) (Fin 2) ℂ) (v : ℂ) :
     ‖lamQuad g v‖ ≤ 4 * botNormSqC g * ‖v‖ := by
   have hA : 0 ≤ botNormSqC g := by
@@ -338,6 +386,9 @@ theorem norm_lamQuad_apply_le (g : Matrix (Fin 2) (Fin 2) ℂ) (v : ℂ) :
     nlinarith [mul_le_mul_of_nonneg_left hre'.2 hA, mul_le_mul_of_nonneg_left hre'.1 hA,
       mul_le_mul_of_nonneg_left him'.2 hA, mul_le_mul_of_nonneg_left him'.1 hA]
 
+/--
+@isnad1 id=le.0h1v.s9.f6c6dd3130be from=translated src=- shape=1526bc53 vocab=f8fd6e90
+-/
 theorem norm_lamQuad_le (g : Matrix (Fin 2) (Fin 2) ℂ) : ‖lamQuad g‖ ≤ 4 * botNormSqC g := by
   have hA : 0 ≤ botNormSqC g := by
     unfold botNormSqC
@@ -345,6 +396,9 @@ theorem norm_lamQuad_le (g : Matrix (Fin 2) (Fin 2) ℂ) : ‖lamQuad g‖ ≤ 4
   exact ContinuousLinearMap.opNorm_le_bound _ (mul_nonneg (by norm_num) hA)
     fun v => norm_lamQuad_apply_le g v
 
+/--
+@isnad1 id=eq.0h2v.s9.9605c10cd7ef from=translated src=- shape=9e15c5ea vocab=f6c0d9a7
+-/
 theorem fderiv_uQuad (g : Matrix (Fin 2) (Fin 2) ℂ) (z : ℂ) :
     fderiv ℝ (uQuad g) z = lamQuad g (z - centerC g) := by
   rw [(hasFDerivAt_uQuad g z).fderiv]
@@ -353,6 +407,9 @@ theorem fderiv_uQuad (g : Matrix (Fin 2) (Fin 2) ℂ) (z : ℂ) :
     Complex.sub_re, Complex.sub_im]
   ring
 
+/--
+@isnad1 id=hasfderi.0h2v.s8.a5b72c4d19b5 from=translated src=- shape=f365c968 vocab=47dc242e
+-/
 theorem hasFDerivAt_fderiv_uQuad (g : Matrix (Fin 2) (Fin 2) ℂ) (z : ℂ) :
     HasFDerivAt (fderiv ℝ (uQuad g)) (lamQuad g) z := by
   have heq : fderiv ℝ (uQuad g) = fun w => lamQuad g (w - centerC g) :=
@@ -361,6 +418,9 @@ theorem hasFDerivAt_fderiv_uQuad (g : Matrix (Fin 2) (Fin 2) ℂ) (z : ℂ) :
   have hcomp := (lamQuad g).hasFDerivAt.comp z ((hasFDerivAt_id z).sub_const (centerC g))
   exact hcomp
 
+/--
+@isnad1 id=le.0h2v.s8.a7e293c07e03 from=translated src=- shape=2938557c vocab=e4d174d0
+-/
 theorem norm_iteratedFDeriv_uQuad_one (g : Matrix (Fin 2) (Fin 2) ℂ) (z : ℂ) :
     ‖iteratedFDeriv ℝ 1 (uQuad g) z‖ ≤ 4 * botNormSqC g * ‖z - centerC g‖ := by
   have h1 : ‖iteratedFDeriv ℝ 1 (uQuad g) z‖
@@ -369,6 +429,9 @@ theorem norm_iteratedFDeriv_uQuad_one (g : Matrix (Fin 2) (Fin 2) ℂ) (z : ℂ)
   rw [h1, norm_iteratedFDeriv_zero, fderiv_uQuad]
   exact norm_lamQuad_apply_le g _
 
+/--
+@isnad1 id=le.0h2v.s7.06f248c02acf from=translated src=- shape=1e12ce57 vocab=bbf5872d
+-/
 theorem norm_iteratedFDeriv_uQuad_two (g : Matrix (Fin 2) (Fin 2) ℂ) (z : ℂ) :
     ‖iteratedFDeriv ℝ 2 (uQuad g) z‖ ≤ 4 * botNormSqC g := by
   have h2 : ‖iteratedFDeriv ℝ 2 (uQuad g) z‖
@@ -382,6 +445,9 @@ theorem norm_iteratedFDeriv_uQuad_two (g : Matrix (Fin 2) (Fin 2) ℂ) (z : ℂ)
   rw [h2, h1, norm_iteratedFDeriv_zero, hfd]
   exact norm_lamQuad_le g
 
+/--
+@isnad1 id=eq.1h3v.s7.ad18a4458563 from=translated src=- shape=57a78262 vocab=df8afbc7
+-/
 theorem norm_iteratedFDeriv_uQuad_ge_three (g : Matrix (Fin 2) (Fin 2) ℂ) {i : ℕ}
     (hi : 3 ≤ i) (z : ℂ) : ‖iteratedFDeriv ℝ i (uQuad g) z‖ = 0 := by
   obtain ⟨k, rfl⟩ : ∃ k, i = k + 3 := ⟨i - 3, by omega⟩
@@ -396,6 +462,9 @@ theorem norm_iteratedFDeriv_uQuad_ge_three (g : Matrix (Fin 2) (Fin 2) ℂ) {i :
   rw [h3, h4, hfd2, iteratedFDeriv_const_of_ne (by omega : k + 1 ≠ 0)]
   simp
 
+/--
+@isnad1 id=contdiff.0h1v.s5.78e3cac8ef43 from=translated src=- shape=d78a4f35 vocab=79f477e3
+-/
 theorem contDiff_uQuad (g : Matrix (Fin 2) (Fin 2) ℂ) : ContDiff ℝ ∞ (uQuad g) := by
   have h : uQuad g = fun w =>
       botNormSqC g * ((w.re - (centerC g).re) ^ 2 + (w.im - (centerC g).im) ^ 2)
@@ -405,14 +474,23 @@ theorem contDiff_uQuad (g : Matrix (Fin 2) (Fin 2) ℂ) : ContDiff ℝ ∞ (uQua
   exact (contDiff_const.mul (((Complex.reCLM.contDiff.sub contDiff_const).pow 2).add
     ((Complex.imCLM.contDiff.sub contDiff_const).pow 2))).add contDiff_const
 
+/--
+@isnad1 id=contdiff.1h1v.s6.05d9707c870e from=translated src=- shape=8432ec42 vocab=a3bd6afa
+-/
 theorem contDiff_inv_radC (hg : g.det ≠ 0) : ContDiff ℝ ∞ fun w => (radC g w)⁻¹ :=
   (contDiff_radC hg).inv fun z => (radC_pos hg z).ne'
 
+/--
+@isnad1 id=eq.1h1v.s5.58dfe6f82da4 from=translated src=- shape=7b4f5cea vocab=85c136b9
+-/
 theorem rpow_neg_half_eq_inv_sqrt {x : ℝ} (hx : 0 ≤ x) :
     x ^ (-(1:ℝ)/2) = (Real.sqrt x)⁻¹ := by
   rw [Real.sqrt_eq_rpow, ← Real.rpow_neg hx]
   norm_num
 
+/--
+@isnad1 id=le.0h2v.s8.3b7ec5f3a06c from=translated src=- shape=6308847f vocab=3a5fa845
+-/
 theorem norm_iteratedFDeriv_uQuad_one_le (g : Matrix (Fin 2) (Fin 2) ℂ) (z : ℂ) :
     ‖iteratedFDeriv ℝ 1 (uQuad g) z‖ ≤ 4 * botNormSqC g * (1 + ‖z - centerC g‖) := by
   refine (norm_iteratedFDeriv_uQuad_one g z).trans ?_
@@ -424,12 +502,18 @@ theorem norm_iteratedFDeriv_uQuad_one_le (g : Matrix (Fin 2) (Fin 2) ℂ) (z : �
 def floorK (g : Matrix (Fin 2) (Fin 2) ℂ) : ℝ :=
   min (botNormSqC g) (Complex.normSq g.det / botNormSqC g) / 18
 
+/--
+@isnad1 id=lt.1h1v.s5.a0c043c129ed from=translated src=- shape=21445356 vocab=da37055f
+-/
 theorem floorK_pos (hg : g.det ≠ 0) : 0 < floorK g := by
   have hA : (0:ℝ) < botNormSqC g := botNormSqC_pos hg
   have hM : (0:ℝ) < Complex.normSq g.det / botNormSqC g :=
     div_pos (Complex.normSq_pos.2 hg) hA
   exact div_pos (lt_min hA hM) (by norm_num)
 
+/--
+@isnad1 id=lt.2h3v.s7.060e9210f9f3 from=translated src=- shape=f40ca5dc vocab=c5cac7e1
+-/
 theorem floorK_mul_lt_uQuad (hg : g.det ≠ 0) (z : ℂ) {v : ℂ} (hv : v ∈ Metric.ball z 1) :
     floorK g * (1 + ‖z - centerC g‖) ^ 2 < uQuad g v := by
   have hA : (0:ℝ) < botNormSqC g := botNormSqC_pos hg
@@ -477,6 +561,9 @@ theorem floorK_mul_lt_uQuad (hg : g.det ≠ 0) (z : ℂ) {v : ℂ} (hv : v ∈ M
 
 def conjCLM : ℂ →L[ℝ] ℂ := Complex.conjCLE.toContinuousLinearMap
 
+/--
+@isnad1 id=eq.0h1v.s7.e22db90f8097 from=translated src=- shape=41c5cfe3 vocab=019b4d06
+-/
 @[scoped simp] theorem conjCLM_apply (w : ℂ) : conjCLM w = (starRingEnd ℂ) w := rfl
 
 end M4aP3C.CplxSmooth
@@ -495,6 +582,9 @@ open scoped ContDiff Nat ComplexConjugate
 
 variable {g : Matrix (Fin 2) (Fin 2) ℂ}
 
+/--
+@isnad1 id=le.1h3v.s8.f0cd23868bdd from=translated src=- shape=2d83b278 vocab=30f34c2f
+-/
 theorem decay_explicit (hg : g.det ≠ 0) (n : ℕ) (z : ℂ) :
       ‖iteratedFDeriv ℝ n (fun w => (radC g w)⁻¹) z‖
         ≤ ((n ! : ℝ) * n ! * (4 * botNormSqC g / floorK g + 1) ^ n * (Real.sqrt (floorK g))⁻¹) / (1 + ‖z - centerC g‖) ^ (n + 1) := by
@@ -631,6 +721,9 @@ theorem decay_explicit (hg : g.det ≠ 0) (n : ℕ) (z : ℂ) :
         have hsne : Real.sqrt (floorK g) ≠ 0 := (Real.sqrt_pos.2 hK).ne'
         field_simp
 
+/--
+@isnad1 id=le.5h7v.s10.d2d73e03c206 from=translated src=- shape=abeec2e3 vocab=919caa95
+-/
 theorem affine_of_bounds (hg : g.det ≠ 0)
     (c₀ : ℂ) (L : ℂ →L[ℝ] ℂ) (n : ℕ) {C0 C1 : ℝ} (hC0 : 0 < C0) (hC1 : 0 < C1)
     (hB0 : ∀ z : ℂ, ‖iteratedFDeriv ℝ n (fun w => (radC g w)⁻¹) z‖ ≤ C0 / (1 + ‖z - centerC g‖) ^ (n + 1))
@@ -739,16 +832,25 @@ namespace KCUnif
 open M4aP3C.CplxIwasawa M4aP3C.CplxSmooth
 open scoped ContDiff Nat ComplexConjugate
 
+/--
+@isnad1 id=continuo.0h0v.s6.bb07d1a14923 from=translated src=- shape=9907cdae vocab=e49835f5
+-/
 theorem continuous_botNormSqC : Continuous fun g : Matrix (Fin 2) (Fin 2) ℂ => botNormSqC g := by
   unfold botNormSqC
   exact (Complex.continuous_normSq.comp (continuous_id.matrix_elem 1 0)).add
     (Complex.continuous_normSq.comp (continuous_id.matrix_elem 1 1))
 
+/--
+@isnad1 id=continuo.0h0v.s6.b2af40c02acc from=translated src=- shape=62ec8e45 vocab=a134058e
+-/
 theorem continuous_detC : Continuous fun g : Matrix (Fin 2) (Fin 2) ℂ => g.det := by
   have : (fun g : Matrix (Fin 2) (Fin 2) ℂ => g.det) = fun g => g 0 0 * g 1 1 - g 0 1 * g 1 0 :=
     funext fun g => Matrix.det_fin_two g
   rw [this]; fun_prop
 
+/--
+@isnad1 id=continuo.0h0v.s8.3bab3f7977f3 from=translated src=- shape=b63e0636 vocab=c451b8a2
+-/
 theorem continuous_centerC_num : Continuous fun g : Matrix (Fin 2) (Fin 2) ℂ => -(conj (g 1 0) * g 0 0 + conj (g 1 1) * g 0 1) := by
   fun_prop
 
@@ -757,12 +859,18 @@ def Kdec (g : Matrix (Fin 2) (Fin 2) ℂ) (n : ℕ) : ℝ :=
 
 def KdecU (A₁ f₀ : ℝ) (n : ℕ) : ℝ := (n ! : ℝ) * n ! * (4 * A₁ / f₀ + 1) ^ n * (Real.sqrt f₀)⁻¹
 
+/--
+@isnad1 id=lt.2h3v.s5.2fee6d62ee6f from=translated src=- shape=7904d8a2 vocab=a4417fec
+-/
 theorem KdecU_pos {A₁ f₀ : ℝ} (hA : 0 ≤ A₁) (hf : 0 < f₀) (n : ℕ) : 0 < KdecU A₁ f₀ n := by
   unfold KdecU
   have h1 : (0 : ℝ) < n ! := by positivity
   have h2 : 0 < 4 * A₁ / f₀ + 1 := by positivity
   exact mul_pos (mul_pos (mul_pos h1 h1) (pow_pos h2 n)) (inv_pos.2 (Real.sqrt_pos.2 hf))
 
+/--
+@isnad1 id=le.4h4v.s6.69a9456d6a9f from=translated src=- shape=faf72287 vocab=e7228270
+-/
 theorem Kdec_le_KdecU {g : Matrix (Fin 2) (Fin 2) ℂ} (hg : g.det ≠ 0) {A₁ f₀ : ℝ} (hf : 0 < f₀)
     (hA : botNormSqC g ≤ A₁) (hfl : f₀ ≤ floorK g) (n : ℕ) : Kdec g n ≤ KdecU A₁ f₀ n := by
   unfold Kdec KdecU
@@ -782,6 +890,9 @@ theorem Kdec_le_KdecU {g : Matrix (Fin 2) (Fin 2) ℂ} (hg : g.det ≠ 0) {A₁ 
   exact mul_le_mul (mul_le_mul_of_nonneg_left (pow_le_pow_left₀ (by positivity) h1 n) h0) h2
     (inv_nonneg.2 (Real.sqrt_nonneg _)) (mul_nonneg h0 (pow_nonneg h3 n))
 
+/--
+@isnad1 id=ex.2h1v.s8.833be19c5064 from=translated src=- shape=83251143 vocab=bebd7e51
+-/
 theorem exists_uniform_constants (𝒢 : Set (Matrix (Fin 2) (Fin 2) ℂ)) (h𝒢 : IsCompact 𝒢) (hdet : ∀ g ∈ 𝒢, g.det ≠ 0) :
     ∃ A₁ f₀ Zc E : ℝ, 0 ≤ A₁ ∧ 0 < f₀ ∧ 0 ≤ Zc ∧ 0 ≤ E ∧ ∀ g ∈ 𝒢,
       botNormSqC g ≤ A₁ ∧ f₀ ≤ floorK g ∧ ‖centerC g‖ ≤ Zc ∧ ∀ i j : Fin 2, ‖g i j‖ ≤ E := by
@@ -834,6 +945,9 @@ theorem exists_uniform_constants (𝒢 : Set (Matrix (Fin 2) (Fin 2) ℂ)) (h�
     refine (hEf i j g hg).trans ?_
     fin_cases i <;> fin_cases j <;> simp [hEdef]
 
+/--
+@isnad1 id=ex.2h2v.s8.cd97db77b22c from=translated src=- shape=cc625ebe vocab=db67a8dc
+-/
 theorem main (𝒢 : Set (Matrix (Fin 2) (Fin 2) ℂ)) (h𝒢 : IsCompact 𝒢) (hdet : ∀ g ∈ 𝒢, g.det ≠ 0) (n : ℕ) :
     ∃ C : ℝ, 0 < C ∧ ∀ g ∈ 𝒢, ∀ (i j : Fin 2) (z : ℂ),
       ‖iteratedFDeriv ℝ n (fun w => kC g w i j) z‖ ≤ C := by
@@ -928,6 +1042,9 @@ open scoped _root_.P2MW.S_AutomorphicForm_ComplexIwasawa_exists_forall_bound_ite
 
 open AutomorphicForm.ComplexIwasawa in
 open scoped ContDiff in
+/--
+@isnad1 id=ex.2h2v.s8.c1406a222f70 from=translated src=- shape=cc625ebe vocab=9a9104c7
+-/
 theorem solution
     (𝒢 : Set (Matrix (Fin 2) (Fin 2) ℂ)) (h𝒢 : IsCompact 𝒢) (hdet : ∀ g ∈ 𝒢, g.det ≠ 0) (n : ℕ) :
     ∃ C : ℝ, 0 < C ∧ ∀ g ∈ 𝒢, ∀ (i j : Fin 2) (z : ℂ),

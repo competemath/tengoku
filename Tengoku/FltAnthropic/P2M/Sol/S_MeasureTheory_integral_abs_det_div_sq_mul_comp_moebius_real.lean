@@ -13,6 +13,9 @@ noncomputable section
 
 namespace ARCHA3R
 
+/--
+@isnad1 id=eq.1h2v.s6.1f449d9a325e from=translated src=- shape=6f33e3e9 vocab=72666ddd
+-/
 theorem volume_affine_zero (p q : ℝ) (h : p ≠ 0 ∨ q ≠ 0) : volume {x : ℝ | p + x * q = 0} = 0 := by
   rcases eq_or_ne q 0 with hq | hq
   · have hp : p ≠ 0 := h.resolve_right (not_not.mpr hq)
@@ -22,6 +25,9 @@ theorem volume_affine_zero (p q : ℝ) (h : p ≠ 0 ∨ q ≠ 0) : volume {x : �
     rw [Set.mem_singleton_iff, eq_div_iff hq]
     linarith
 
+/--
+@isnad1 id=eq.1h5v.s7.397313055f26 from=translated src=- shape=67be9610 vocab=0e49c2f7
+-/
 theorem main (a b c d : ℝ) (hdet : a * d - b * c ≠ 0) (G : ℝ → ℂ) :
     ∫ x : ℝ, ((|a * d - b * c| / (a + x * c) ^ 2 : ℝ) : ℂ) * G ((b + x * d) / (a + x * c))
       = ∫ u : ℝ, G u := by
@@ -91,6 +97,9 @@ end ARCHA3R
 
 end
 
+/--
+@isnad1 id=eq.1h5v.s7.397313055f26 from=translated src=- shape=67be9610 vocab=0e49c2f7
+-/
 theorem solution
     (a b c d : ℝ) (_hdet : a * d - b * c ≠ 0) (G : ℝ → ℂ) :
     ∫ x : ℝ, ((|a * d - b * c| / (a + x * c) ^ 2 : ℝ) : ℂ) * G ((b + x * d) / (a + x * c))

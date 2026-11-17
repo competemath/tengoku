@@ -15,6 +15,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 attribute [local instance] MvPolynomial.gradedAlgebra
 
+/--
+@isnad1 id=ispullba.4h9v.s10.940f95f7dc08 from=translated src=- shape=37032dc7 vocab=baad9545
+-/
 theorem solution
     {R : Type u} [CommRing R] (I : Ideal R) {X Y : Scheme.{u}}
     (f : X ⟶ Spec (CommRingCat.of R)) (g : Y ⟶ Spec (CommRingCat.of R)) (n : ℕ)

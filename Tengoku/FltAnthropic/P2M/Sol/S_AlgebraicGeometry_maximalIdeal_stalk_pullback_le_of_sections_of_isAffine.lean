@@ -15,6 +15,9 @@ universe u
 
 namespace ProdStalkAffb6
 
+/--
+@isnad1 id=eq.0h3v.s7.1f5303e55f35 from=translated src=- shape=68b46520 vocab=9f68e5c0
+-/
 lemma ker_eq_maximalIdeal {R K : Type*} [CommRing R] [IsLocalRing R] [Field K] (φ : R →+* K)
     [IsLocalHom φ] : RingHom.ker φ = maximalIdeal R := by
   ext x
@@ -30,10 +33,16 @@ noncomputable def ev {k : Type u} [Field k] {X : Scheme.{u}} (s : Spec (.of k) �
     Γ(X, ⊤) →+* k :=
   (X.presheaf.germ ⊤ (s (closedPoint k)) trivial ≫ Scheme.stalkClosedPointTo s).hom
 
+/--
+@isnad1 id=eq.0h4v.s14.9c1a01ca5212 from=translated src=- shape=e8bd292a vocab=e3a7fd4b
+-/
 lemma ev_apply {k : Type u} [Field k] {X : Scheme.{u}} (s : Spec (.of k) ⟶ X) (a : Γ(X, ⊤)) :
     ev s a = (Scheme.stalkClosedPointTo s).hom ((X.presheaf.germ ⊤ (s (closedPoint k)) trivial).hom a) :=
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s11.90b2f573df1c from=translated src=- shape=03be3699 vocab=f337ee10
+-/
 lemma germ_stalkClosedPointTo_of_eq_id {k : Type u} [Field k] (g : Spec (.of k) ⟶ Spec (.of k))
     (hg : g = 𝟙 _) :
     (Spec (CommRingCat.of k)).presheaf.germ ⊤ (g (closedPoint k)) trivial ≫ Scheme.stalkClosedPointTo g =
@@ -42,6 +51,9 @@ lemma germ_stalkClosedPointTo_of_eq_id {k : Type u} [Field k] (g : Spec (.of k) 
   rw [show (𝟙 (Spec (CommRingCat.of k))) = Spec.map (𝟙 _) from (Spec.map_id _).symm,
     Scheme.germ_stalkClosedPointTo_Spec, Category.comp_id]
 
+/--
+@isnad1 id=eq.1h4v.s11.ff49be189f60 from=translated src=- shape=f4026621 vocab=0552e46a
+-/
 lemma ev_comp_appTop {k : Type u} [Field k] {X : Scheme.{u}} (p : X ⟶ Spec (.of k))
     (s : Spec (.of k) ⟶ X) (hs : s ≫ p = 𝟙 _) :
     (ev s).comp ((Scheme.ΓSpecIso (.of k)).inv ≫ p.appTop).hom = RingHom.id k := by
@@ -60,6 +72,9 @@ lemma ev_comp_appTop {k : Type u} [Field k] {X : Scheme.{u}} (p : X ⟶ Spec (.o
   rw [Category.assoc, h1, h2, Iso.inv_hom_id]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.24a28025115a from=translated src=- shape=17f01521 vocab=42888e27
+-/
 lemma ev_comp {k : Type u} [Field k] {X Y : Scheme.{u}} (s : Spec (.of k) ⟶ X) (g : X ⟶ Y) :
     (ev s).comp g.appTop.hom = ev (s ≫ g) := by
   have h1 : g.appTop ≫ X.presheaf.germ ⊤ (s (closedPoint k)) trivial ≫ Scheme.stalkClosedPointTo s =
@@ -72,6 +87,9 @@ lemma ev_comp {k : Type u} [Field k] {X Y : Scheme.{u}} (s : Spec (.of k) ⟶ X)
   rw [h1, Category.assoc, ← Scheme.stalkClosedPointTo_comp]
   rfl
 
+/--
+@isnad1 id=iff.0h4v.s14.ef987b2de276 from=translated src=- shape=de3bb279 vocab=58edd386
+-/
 lemma mem_ker_ev_iff {k : Type u} [Field k] {X : Scheme.{u}} (s : Spec (.of k) ⟶ X) (a : Γ(X, ⊤)) :
     a ∈ RingHom.ker (ev s) ↔
       (X.presheaf.germ ⊤ (s (closedPoint k)) trivial).hom a ∈ maximalIdeal _ := by
@@ -80,6 +98,9 @@ lemma mem_ker_ev_iff {k : Type u} [Field k] {X : Scheme.{u}} (s : Spec (.of k) �
 end ProdStalkAffb6
 
 open ProdStalkAffb6 in
+/--
+@isnad1 id=le.3h8v.s13.b902ea05b0c5 from=translated src=- shape=1c97697b vocab=1c9a503d
+-/
 theorem solution
     {k : Type u} [Field k] {Y Z : Scheme.{u}} [IsAffine Y] [IsAffine Z]
     (pY : Y ⟶ Spec (.of k)) (pZ : Z ⟶ Spec (.of k))

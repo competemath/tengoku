@@ -25,6 +25,9 @@ def imageIC (f : X → Y) (hf : Continuous f) (hc : IsClosedMap f) (T : Irreduci
   isIrreducible' := T.isIrreducible.image f hf.continuousOn
   isClosed' := hc _ T.isClosed
 
+/--
+@isnad1 id=strictmo.3h3v.s6.b87ccb0b75db from=translated src=- shape=e09c7548 vocab=5130679f
+-/
 theorem imageIC_strictMono [QuasiSober X] [T0Space Y] (f : X → Y) (hf : Continuous f) (hc : IsClosedMap f)
     (hfib : ∀ y, IsDiscrete (f ⁻¹' {y})) : StrictMono (imageIC f hf hc) := by
   intro T T' hlt
@@ -60,6 +63,9 @@ theorem imageIC_strictMono [QuasiSober X] [T0Space Y] (f : X → Y) (hf : Contin
   apply IrreducibleCloseds.ext
   rw [← hη.def, ← hη'.def, heqpt]
 
+/--
+@isnad1 id=ex.4h6v.s8.b77bf51ffb93 from=translated src=- shape=89749d5b vocab=9f74b92f
+-/
 theorem exists_ltSeries_last_eq [QuasiSober Y] (f : X → Y) (hf : Continuous f) (hc : IsClosedMap f) :
     ∀ (n : ℕ) (l : LTSeries (IrreducibleCloseds Y)) (S : IrreducibleCloseds X),
       l.length = n → f '' (S : Set X) = (l.last : Set Y) →
@@ -95,6 +101,9 @@ theorem exists_ltSeries_last_eq [QuasiSober Y] (f : X → Y) (hf : Continuous f)
       obtain ⟨l'', hl'', hlast''⟩ := ih l.eraseLast S' (by simp [hl]) hS'
       refine ⟨l''.snoc S (hlast''.symm ▸ hS'lt), by simp [hl''], by simp⟩
 
+/--
+@isnad1 id=le.3h3v.s5.b86a9d7968bc from=translated src=- shape=6de48cb4 vocab=9f80fc13
+-/
 theorem topologicalKrullDim_le_of_surjective [QuasiSober Y] (f : X → Y) (hf : Continuous f) (hc : IsClosedMap f)
     (hs : Function.Surjective f) : topologicalKrullDim Y ≤ topologicalKrullDim X := by
   unfold topologicalKrullDim
@@ -111,6 +120,9 @@ theorem topologicalKrullDim_le_of_surjective [QuasiSober Y] (f : X → Y) (hf : 
   rw [← hl']
   exact l'.length_le_krullDim
 
+/--
+@isnad1 id=le.3h3v.s6.3284b213ff39 from=translated src=- shape=a60bf64e vocab=e2cfad34
+-/
 theorem topologicalKrullDim_le_of_isDiscrete_fibre [QuasiSober X] [T0Space Y] (f : X → Y) (hf : Continuous f)
     (hc : IsClosedMap f) (hfib : ∀ y, IsDiscrete (f ⁻¹' {y})) : topologicalKrullDim X ≤ topologicalKrullDim Y :=
   Order.krullDim_le_of_strictMono _ (imageIC_strictMono f hf hc hfib)
@@ -121,6 +133,9 @@ end DimFin
 open scoped _root_.P2MW.S_AlgebraicGeometry_topologicalKrullDim_preimage_eq_of_isFinite_of_surjective.DimFin
 
 open DimFin in
+/--
+@isnad1 id=eq.1h7v.s10.d5d356770dbc from=translated src=- shape=3bd7289b vocab=e51a8d13
+-/
 theorem solution
     {k : Type u} [Field k] {X Y : Scheme.{u}}
     (f : X ⟶ Spec (CommRingCat.of k)) (g : Y ⟶ Spec (CommRingCat.of k))

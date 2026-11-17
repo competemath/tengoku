@@ -13,6 +13,9 @@ universe u
 
 namespace TraceZero3a67f5ea
 
+/--
+@isnad1 id=eq.2h2v.s9.304194085e58 from=translated src=- shape=48d64066 vocab=5d151551
+-/
 theorem trace_eq_zero_of_isLocalRing {k B : Type*} [Field k] [CommRing B] [Algebra k B] [Module.Finite k B]
     [IsLocalRing B] (h1 : Algebra.trace k B 1 = 0)
     (hres : Function.Surjective (algebraMap k (B ⧸ IsLocalRing.maximalIdeal B))) :
@@ -39,6 +42,9 @@ theorem trace_eq_zero_of_isLocalRing {k B : Type*} [Field k] [CommRing B] [Algeb
     _ = 0 := by rw [map_add, htc, htn, add_zero]
     _ = (0 : B →ₗ[k] k) b := rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.946de41eeba5 from=translated src=- shape=baeeb134 vocab=043a576d
+-/
 theorem mk_trace_eq {A B : Type*} [CommRing A] [CommRing B] [Algebra A B] [Module.Free A B] [Module.Finite A B]
     (𝔪 : Ideal A) [𝔪.IsMaximal] (b : B) :
     Ideal.Quotient.mk 𝔪 (Algebra.trace A B b) = Algebra.trace (A ⧸ 𝔪) (B ⧸ 𝔪.map (algebraMap A B)) (Ideal.Quotient.mk _ b) := by
@@ -67,6 +73,9 @@ theorem eq_zero_of_forall_mk_eq_zero {A : Type*} [CommRing A] [IsJacobsonRing A]
   rw [IsJacobsonRing.out ‹IsJacobsonRing A› Ideal.isRadical_bot] at ht
   exact ht
 
+/--
+@isnad1 id=islocalr.1h3v.s8.29edb500875e from=translated src=- shape=b17d7540 vocab=276e5101
+-/
 theorem isLocalRing_quotient_map {A B : Type*} [CommRing A] [CommRing B] [Algebra A B] (𝔪 : Ideal A) [𝔪.IsMaximal]
     (huniq : ∀ N₁ N₂ : Ideal B, N₁.IsMaximal → N₂.IsMaximal →
       N₁.comap (algebraMap A B) = N₂.comap (algebraMap A B) → N₁ = N₂)
@@ -96,6 +105,9 @@ section Scheme
 
 variable {X Y : Scheme.{u}} (f : X ⟶ Y) [IsFinite f] [Flat f] (U : Y.Opens) (hU : IsAffineOpen U)
 
+/--
+@isnad1 id=ispullba.1h4v.s9.d3b7f8bc88b3 from=translated src=- shape=eedce348 vocab=aedfb2c9
+-/
 theorem isPullback_fromSpec :
     IsPullback (hU.preimage f).fromSpec (Spec.map (f.app U)) f hU.fromSpec := by
   have hnat : (hU.preimage f).isoSpec.inv ≫ (f ∣_ U) = Spec.map (f.app U) ≫ hU.isoSpec.inv := by
@@ -109,6 +121,9 @@ theorem isPullback_fromSpec :
 
 include hU in
 
+/--
+@isnad1 id=eq.5h6v.s13.4c3caf2eb684 from=translated src=- shape=4d76b917 vocab=285abd5b
+-/
 theorem maximal_eq_of_comap_eq [JacobsonSpace X]
     (hinj : ∀ x₁ x₂ : X, IsClosed ({x₁} : Set X) → IsClosed ({x₂} : Set X) → f.base x₁ = f.base x₂ → x₁ = x₂)
     (N₁ N₂ : Ideal Γ(X, f ⁻¹ᵁ U)) (h₁ : N₁.IsMaximal) (h₂ : N₂.IsMaximal)
@@ -135,6 +150,9 @@ theorem maximal_eq_of_comap_eq [JacobsonSpace X]
   have hz : z₁ = z₂ := hemb.injective heq
   exact congrArg (fun z : Spec Γ(X, V) => z.asIdeal) hz
 
+/--
+@isnad1 id=eq.1h5v.s13.18f69755ed4c from=translated src=- shape=683bc093 vocab=90958652
+-/
 theorem finrank_eq [LocallyOfFinitePresentation f] (z : Spec Γ(Y, U)) :
     letI := (f.app U).hom.toAlgebra
     ∀ [Module.Free Γ(Y, U) Γ(X, f ⁻¹ᵁ U)] [Module.Finite Γ(Y, U) Γ(X, f ⁻¹ᵁ U)],
@@ -153,6 +171,9 @@ end Scheme
 end TraceZero3a67f5ea
 
 open TraceZero3a67f5ea in
+/--
+@isnad1 id=eq.3h7v.s15.670a918d034f from=translated src=- shape=732a5347 vocab=fabb51d5
+-/
 theorem solution
     {κ : Type u} [Field κ] [IsAlgClosed κ] {p : ℕ} [Fact p.Prime] [CharP κ p]
     {X Y : Scheme.{u}} [IsIntegral X] [IsIntegral Y]

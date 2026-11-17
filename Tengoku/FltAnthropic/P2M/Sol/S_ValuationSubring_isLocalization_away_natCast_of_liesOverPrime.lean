@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open AlgebraicGeometry
 
+/--
+@isnad1 id=away.2h2v.s8.d5b952cc0f0c from=translated src=- shape=6f3b2a7c vocab=4dc7038f
+-/
 theorem solution
     (O : ValuationSubring (AlgebraicClosure ℚ)) (p : ℕ) (hp : p.Prime) (hO : O.LiesOverPrime p) :
     IsLocalization.Away ((p : ℕ) : ↥O) (AlgebraicClosure ℚ) := by

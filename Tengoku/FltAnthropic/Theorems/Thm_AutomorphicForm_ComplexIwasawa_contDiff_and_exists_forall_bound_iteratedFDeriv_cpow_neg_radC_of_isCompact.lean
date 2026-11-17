@@ -12,6 +12,9 @@ set_option autoImplicit false
 open _root_.MeasureTheory open _root_.AutomorphicForm.ComplexIwasawa hiding exists_forall_bound_iteratedFDeriv_kC_apply_of_isCompact
 open scoped ContDiff
 
+/--
+@isnad1 id=and.3h3v.s9.6ca893e83e7c from=translated src=- shape=bd181ceb vocab=55900066
+-/
 theorem AutomorphicForm.ComplexIwasawa.contDiff_and_exists_forall_bound_iteratedFDeriv_cpow_neg_radC_of_isCompact
     (𝒢 : Set (Matrix (Fin 2) (Fin 2) ℂ)) (_h𝒢 : IsCompact 𝒢) (_hdet : ∀ g ∈ 𝒢, g.det ≠ 0)
     (U : Set ℂ) (_hU : IsCompact U) (n : ℕ) :

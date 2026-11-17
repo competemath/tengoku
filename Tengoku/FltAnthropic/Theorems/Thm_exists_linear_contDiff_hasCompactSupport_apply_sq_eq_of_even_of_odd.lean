@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_exists_linear_contDiff_hasCompactSupport_a
 namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.0h1v.s9.8f52414d09d8 from=translated src=- shape=04500550 vocab=431a9125
+-/
 theorem _root_.Tengoku.FltAnthropic.exists_linear_contDiff_hasCompactSupport_apply_sq_eq_of_even_of_odd
     (P : Type) [NormedAddCommGroup P] [NormedSpace ℝ P] :
     ∃ W : (ℝ → ℂ) → (ℝ → ℂ),

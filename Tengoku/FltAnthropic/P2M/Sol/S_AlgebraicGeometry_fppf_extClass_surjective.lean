@@ -22,6 +22,9 @@ variable {C : Type u} [Category.{v} C] [Abelian C] [HasExt.{w} C] [EnoughInjecti
 namespace CategoryTheory export _root_.CategoryTheory (Epi Category ShortComplex.Exact ShortComplex.mk Abelian Abelian.Ext Limits.zero_comp ShortComplex.Exact.lift_f mono_of_mono_fac constantSheaf Injective ShortComplex.exact_of_g_is_cokernel Limits.comp_zero Injective.ι Sheaf HasExt Category.id_comp ShortComplex ShortComplex.ShortExact EnoughInjectives Mono ShortComplex.exact_of_f_is_kernel ShortComplex.ShortExact.extClass_naturality Injective.under Category.assoc) namespace Abelian export _root_.CategoryTheory.Abelian (Ext.homEquiv₀ Ext Ext.comp_mk₀_id Ext.eq_zero_of_injective Ext.mk₀ mk Ext.mk₀_homEquiv₀_apply Ext.covariant_sequence_exact₁) namespace Ext export _root_.CategoryTheory.Abelian.Ext (homEquiv₀ zero_comp comp comp_mk₀_id eq_zero_of_injective comp_zero mk₀ mk₀_homEquiv₀_apply covariant_sequence_exact₁) end CategoryTheory.Abelian.Ext
 open scoped _root_.CategoryTheory _root_.CategoryTheory.Abelian _root_.CategoryTheory.Abelian.Ext in
 
+/--
+@isnad1 id=ex.0h4v.s8.e1ebe01b0fbe from=translated src=- shape=bda830b1 vocab=eeea8321
+-/
 theorem CategoryTheory.Abelian.Ext.exists_shortExact_extClass_eq
     {X Y : C} (e : Ext.{w} X Y 1) :
     ∃ (E : C) (f : Y ⟶ E) (g : E ⟶ X) (w : f ≫ g = 0)
@@ -69,6 +72,9 @@ theorem CategoryTheory.Abelian.Ext.exists_shortExact_extClass_eq
 
 end GeneralAbelian
 
+/--
+@isnad1 id=ex.0h2v.s11.4f4286b04646 from=translated src=- shape=f286e55e vocab=5c36dbfe
+-/
 theorem solution
     (F : CategoryTheory.Sheaf Scheme.fppfTopology.{0} AddCommGrpCat.{1})
     (e : CategoryTheory.Abelian.Ext

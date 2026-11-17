@@ -64,6 +64,9 @@ end RhoTwoAux
 end
 
 open RhoTwoAux in
+/--
+@isnad1 id=eq.1h2v.s10.1b75727aa8f3 from=translated src=- shape=e10f8662 vocab=52f5fefb
+-/
 theorem solution
     {g : Matrix (Fin 2) (Fin 2) ℂ} (hg : g.det ≠ 0) (z : ℂ) :
     !![(0 : ℂ), 1; 1, 0] * !![1, z; 0, 1] * g

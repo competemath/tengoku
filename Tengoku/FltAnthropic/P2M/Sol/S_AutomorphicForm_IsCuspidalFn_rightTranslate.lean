@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.Theorems.Thm_AutomorphicForm_constantTerm_rightTrans
 namespace P2MW.S_AutomorphicForm_IsCuspidalFn_rightTranslate
 open AutomorphicForm MeasureTheory
 
+/--
+@isnad1 id=iscuspid.1h6v.s5.e3ea64c884b8 from=translated src=- shape=de9af201 vocab=16f76691
+-/
 theorem solution {Q : Type*} [MeasurableSpace Q] {G : Type*} [Group G]
     {μ : Measure Q} {u : Q → G} {f : G → ℂ}
     (hf : IsCuspidalFn μ u f) (h : G) : IsCuspidalFn μ u (fun x => f (x * h)) :=

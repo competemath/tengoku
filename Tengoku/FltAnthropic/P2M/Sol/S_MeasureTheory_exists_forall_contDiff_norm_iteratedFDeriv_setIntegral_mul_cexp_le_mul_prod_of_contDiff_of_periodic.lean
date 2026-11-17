@@ -15,30 +15,48 @@ variable {r c : ℕ}
 
 def cube (c : ℕ) : Set (Fin c → ℝ) := Set.pi Set.univ (fun _ : Fin c => Set.Ico (0 : ℝ) 1)
 
+/--
+@isnad1 id=measurab.0h1v.s4.91f210ef8ced from=translated src=- shape=fe6f4f64 vocab=64f1c6ff
+-/
 lemma measurableSet_cube : MeasurableSet (cube c) :=
   MeasurableSet.univ_pi fun _ => measurableSet_Ico
 
+/--
+@isnad1 id=le.0h1v.s6.c045ce71f0fb from=translated src=- shape=fb5c701c vocab=3c017082
+-/
 lemma cube_subset_Icc : cube c ⊆ Set.Icc (0 : Fin c → ℝ) 1 := by
   intro θ hθ
   simp only [cube, Set.mem_pi, Set.mem_univ, Set.mem_Ico, forall_true_left] at hθ
   exact ⟨fun i => (hθ i).1, fun i => (hθ i).2.le⟩
 
+/--
+@isnad1 id=eq.0h1v.s6.9ffcf2f6e1d8 from=translated src=- shape=529c28aa vocab=6d36a14c
+-/
 lemma volume_cube : volume (cube c) = 1 := by
   rw [cube, Real.volume_pi_Ico]
   simp
 
+/--
+@isnad1 id=lt.0h1v.s6.c574f927178e from=translated src=- shape=4387ef5c vocab=a428c50f
+-/
 lemma volume_cube_lt_top : volume (cube c) < ⊤ := by
   rw [volume_cube]; exact ENNReal.one_lt_top
 
 noncomputable def em (m : Fin c → ℤ) (θ : Fin c → ℝ) : ℂ :=
   Complex.exp (-(2 * Real.pi * Complex.I * ((∑ j, (m j : ℝ) * θ j : ℝ) : ℂ)))
 
+/--
+@isnad1 id=eq.0h3v.s4.1cd5d829445c from=translated src=- shape=36da4e2e vocab=d0f6a31b
+-/
 lemma norm_em (m : Fin c → ℤ) (θ : Fin c → ℝ) : ‖em m θ‖ = 1 := by
   rw [em, Complex.norm_exp]
   have : (-(2 * Real.pi * Complex.I * ((∑ j, (m j : ℝ) * θ j : ℝ) : ℂ))).re = 0 := by
     simp [Complex.mul_re]
   rw [this, Real.exp_zero]
 
+/--
+@isnad1 id=continuo.0h2v.s5.45cd43f8a5b9 from=translated src=- shape=fd391d93 vocab=3458d8b7
+-/
 lemma continuous_em (m : Fin c → ℤ) : Continuous (em m) := by
   unfold em
   refine Complex.continuous_exp.comp (Continuous.neg (continuous_const.mul
@@ -54,6 +72,9 @@ private noncomputable def _root_.PMDND.dir (u : (Fin r → ℝ) × (Fin c → �
     (Fin r → ℝ) × (Fin c → ℝ) → ℂ := fun p => fderiv ℝ V p u
 
 export _root_.PMDND (dir)
+/--
+@isnad1 id=isopen.0h3v.s6.ed8c364bab82 from=translated src=- shape=8f5397ec vocab=af9f5c73
+-/
 lemma isOpen_outside (R : ℝ) : IsOpen {p : (Fin r → ℝ) × (Fin c → ℝ) | ∃ k, R < |p.1 k|} := by
   have : {p : (Fin r → ℝ) × (Fin c → ℝ) | ∃ k, R < |p.1 k|} = ⋃ k, {p | R < |p.1 k|} := by
     ext p; simp
@@ -61,6 +82,9 @@ lemma isOpen_outside (R : ℝ) : IsOpen {p : (Fin r → ℝ) × (Fin c → ℝ) 
   exact isOpen_iUnion fun k => isOpen_lt continuous_const
     (continuous_abs.comp ((continuous_apply k).comp continuous_fst))
 
+/--
+@isnad1 id=iswin.1h5v.s5.d5ee3a99bafa from=translated src=- shape=0760eb53 vocab=5d324569
+-/
 lemma IsWin.dir {R : ℝ} {V : (Fin r → ℝ) × (Fin c → ℝ) → ℂ} (hV : IsWin R V)
     (u : (Fin r → ℝ) × (Fin c → ℝ)) : IsWin R (dir u V) where
   smooth := ((contDiff_infty_iff_fderiv.1 hV.smooth).2).clm_apply contDiff_const
@@ -90,10 +114,16 @@ noncomputable def dV (V : (Fin r → ℝ) × (Fin c → ℝ) → ℂ) (p : (Fin 
     (Fin r → ℝ) →L[ℝ] ℂ :=
   (fderiv ℝ V p).comp (ContinuousLinearMap.inl ℝ (Fin r → ℝ) (Fin c → ℝ))
 
+/--
+@isnad1 id=continuo.1h3v.s8.04350465c3ec from=translated src=- shape=e3eb750c vocab=238dbcfc
+-/
 lemma continuous_dV {V : (Fin r → ℝ) × (Fin c → ℝ) → ℂ} (hV : ContDiff ℝ (⊤ : ℕ∞) V) :
     Continuous (dV V) :=
   (((contDiff_infty_iff_fderiv.1 hV).2).continuous).clm_comp continuous_const
 
+/--
+@isnad1 id=hasfderi.1h5v.s8.64d855009549 from=translated src=- shape=cd664ad8 vocab=04675941
+-/
 lemma hasFDerivAt_slice {V : (Fin r → ℝ) × (Fin c → ℝ) → ℂ} (hV : ContDiff ℝ (⊤ : ℕ∞) V)
     (x : Fin r → ℝ) (θ : Fin c → ℝ) :
     HasFDerivAt (fun x' : Fin r → ℝ => V (x', θ)) (dV V (x, θ)) x := by
@@ -101,6 +131,9 @@ lemma hasFDerivAt_slice {V : (Fin r → ℝ) × (Fin c → ℝ) → ℂ} (hV : C
     (hV.differentiable (by simp)).differentiableAt.hasFDerivAt
   exact hd.comp x (hasFDerivAt_prodMk_left x θ)
 
+/--
+@isnad1 id=ex.1h5v.s7.3e427d1239fb from=translated src=- shape=fa899153 vocab=f2753590
+-/
 lemma exists_local_bound {Y : Type*} [NormedAddCommGroup Y]
     {F : (Fin r → ℝ) × (Fin c → ℝ) → Y} (hF : Continuous F) (x₀ : Fin r → ℝ) :
     ∃ C : ℝ, ∀ x ∈ Metric.closedBall x₀ 1, ∀ θ ∈ cube c, ‖F (x, θ)‖ ≤ C := by
@@ -108,11 +141,17 @@ lemma exists_local_bound {Y : Type*} [NormedAddCommGroup Y]
     (isCompact_Icc (a := (0 : Fin c → ℝ)) (b := 1))).exists_bound_of_continuousOn hF.continuousOn
   exact ⟨C, fun x hx θ hθ => hC (x, θ) (Set.mem_prod.mpr ⟨hx, cube_subset_Icc hθ⟩)⟩
 
+/--
+@isnad1 id=integrab.1h3v.s6.537f5d3b4ac0 from=translated src=- shape=d93e3b88 vocab=9f6be641
+-/
 lemma integrableOn_cube_of_continuous {Y : Type*} [NormedAddCommGroup Y] {f : (Fin c → ℝ) → Y}
     (hf : Continuous f) : IntegrableOn f (cube c) volume :=
   (hf.continuousOn.integrableOn_compact (isCompact_Icc (a := (0 : Fin c → ℝ)) (b := 1))).mono_set
     cube_subset_Icc
 
+/--
+@isnad1 id=hasfderi.1h6v.s9.b2d855b8e932 from=translated src=- shape=b79c0477 vocab=a58a93be
+-/
 lemma hasFDerivAt_Ψ {R : ℝ} {V : (Fin r → ℝ) × (Fin c → ℝ) → ℂ} (hV : IsWin R V)
     (m : Fin c → ℤ) (x₀ : Fin r → ℝ) :
     HasFDerivAt (Ψ m V) (∫ θ in cube c, em m θ • dV V (x₀, θ)) x₀ := by
@@ -138,6 +177,9 @@ lemma hasFDerivAt_Ψ {R : ℝ} {V : (Fin r → ℝ) × (Fin c → ℝ) → ℂ} 
     (integrableOn_const volume_cube_lt_top.ne)
     (ae_of_all _ fun θ x _ => (hasFDerivAt_slice hV.smooth x θ).const_smul (em m θ))
 
+/--
+@isnad1 id=eq.1h7v.s9.0c954aed82e5 from=translated src=- shape=5b0be8e5 vocab=4184456b
+-/
 lemma fderiv_Ψ_apply {R : ℝ} {V : (Fin r → ℝ) × (Fin c → ℝ) → ℂ} (hV : IsWin R V)
     (m : Fin c → ℤ) (x : Fin r → ℝ) (v : Fin r → ℝ) :
     fderiv ℝ (Ψ m V) x v = Ψ m (dir (v, (0 : Fin c → ℝ)) V) x := by
@@ -149,9 +191,15 @@ lemma fderiv_Ψ_apply {R : ℝ} {V : (Fin r → ℝ) × (Fin c → ℝ) → ℂ}
   simp only [Ψ, dir, dV, FunLike.coe_smul, Pi.smul_apply, ContinuousLinearMap.coe_comp,
     Function.comp_apply, ContinuousLinearMap.inl_apply, smul_eq_mul, mul_comm]
 
+/--
+@isnad1 id=differen.1h5v.s7.ba10d25c91fb from=translated src=- shape=4337c83f vocab=2d873c3a
+-/
 lemma differentiable_Ψ {R : ℝ} {V : (Fin r → ℝ) × (Fin c → ℝ) → ℂ} (hV : IsWin R V)
     (m : Fin c → ℤ) : Differentiable ℝ (Ψ m V) := fun x => (hasFDerivAt_Ψ hV m x).differentiableAt
 
+/--
+@isnad1 id=contdiff.1h6v.s6.7ace2f5c1e3e from=translated src=- shape=65a23b51 vocab=61b4b04a
+-/
 lemma contDiff_Ψ_nat (R : ℝ) (m : Fin c → ℤ) : ∀ (n : ℕ) (V : (Fin r → ℝ) × (Fin c → ℝ) → ℂ),
     IsWin R V → ContDiff ℝ n (Ψ m V) := by
   intro n
@@ -169,6 +217,9 @@ lemma contDiff_Ψ_nat (R : ℝ) (m : Fin c → ℤ) : ∀ (n : ℕ) (V : (Fin r 
     rw [this]
     exact ih _ (hV.dir _)
 
+/--
+@isnad1 id=contdiff.1h5v.s6.506cf1d41a3e from=translated src=- shape=ed781040 vocab=9751193a
+-/
 lemma contDiff_Ψ {R : ℝ} {V : (Fin r → ℝ) × (Fin c → ℝ) → ℂ} (hV : IsWin R V) (m : Fin c → ℤ) :
     ContDiff ℝ (⊤ : ℕ∞) (Ψ m V) :=
   contDiff_infty.2 fun n => contDiff_Ψ_nat R m n V hV
@@ -179,11 +230,17 @@ private noncomputable def _root_.PMDND.DDX : (n : ℕ) → (Fin n → (Fin r →
   | n + 1, u, V => DDX n (Fin.init u) (dir (u (Fin.last n), (0 : Fin c → ℝ)) V)
 
 export _root_.PMDND (DDX)
+/--
+@isnad1 id=iswin.1h6v.s5.dc9604d5c12d from=translated src=- shape=75f187e6 vocab=8bc2c081
+-/
 lemma IsWin.DDX {R : ℝ} : ∀ (n : ℕ) (u : Fin n → (Fin r → ℝ)) {V : (Fin r → ℝ) × (Fin c → ℝ) → ℂ},
     IsWin R V → IsWin R (DDX n u V)
   | 0, _, _, hV => hV
   | n + 1, u, _, hV => IsWin.DDX n (Fin.init u) (hV.dir _)
 
+/--
+@isnad1 id=eq.1h8v.s9.fe5394fbf7f9 from=translated src=- shape=c5d9975a vocab=eb56e8b2
+-/
 lemma iteratedFDeriv_Ψ_apply {R : ℝ} (m : Fin c → ℤ) : ∀ (n : ℕ) (V : (Fin r → ℝ) × (Fin c → ℝ) → ℂ),
     IsWin R V → ∀ (x : Fin r → ℝ) (u : Fin n → (Fin r → ℝ)),
       (iteratedFDeriv ℝ n (Ψ m V) x) u = Ψ m (DDX n u V) x := by
@@ -211,6 +268,9 @@ lemma iteratedFDeriv_Ψ_apply {R : ℝ} (m : Fin c → ℤ) : ∀ (n : ℕ) (V :
     rw [h3, ih _ (hV.dir _) x (Fin.init u)]
     rfl
 
+/--
+@isnad1 id=le.1h6v.s11.2a12e57c5480 from=translated src=- shape=c74811d1 vocab=3fc7d08d
+-/
 lemma norm_iteratedFDeriv_dir_le {V : (Fin r → ℝ) × (Fin c → ℝ) → ℂ} (hV : ContDiff ℝ (⊤ : ℕ∞) V)
     (w : (Fin r → ℝ) × (Fin c → ℝ)) (j : ℕ) (p : (Fin r → ℝ) × (Fin c → ℝ)) :
     ‖iteratedFDeriv ℝ j (dir w V) p‖ ≤ ‖w‖ * ‖iteratedFDeriv ℝ (j + 1) V p‖ := by
@@ -227,6 +287,9 @@ lemma norm_iteratedFDeriv_dir_le {V : (Fin r → ℝ) × (Fin c → ℝ) → ℂ
         rw [hL, ContinuousLinearMap.apply_apply, mul_comm]
         exact f.le_opNorm w
 
+/--
+@isnad1 id=le.1h8v.s10.c8c0194ffad2 from=translated src=- shape=1222e84e vocab=c5f3995f
+-/
 lemma norm_iteratedFDeriv_DDX_le {R : ℝ} : ∀ (n : ℕ) (u : Fin n → (Fin r → ℝ))
     {V : (Fin r → ℝ) × (Fin c → ℝ) → ℂ}, IsWin R V → ∀ (j : ℕ) (p : (Fin r → ℝ) × (Fin c → ℝ)),
     ‖iteratedFDeriv ℝ j (DDX n u V) p‖ ≤ (∏ i, ‖u i‖) * ‖iteratedFDeriv ℝ (j + n) V p‖
@@ -250,6 +313,9 @@ lemma norm_iteratedFDeriv_DDX_le {R : ℝ} : ∀ (n : ℕ) (u : Fin n → (Fin r
 
 def eT (j : Fin c) : (Fin r → ℝ) × (Fin c → ℝ) := ((0 : Fin r → ℝ), (Pi.single j (1 : ℝ) : Fin c → ℝ))
 
+/--
+@isnad1 id=eq.0h3v.s6.44fa1da03d21 from=translated src=- shape=9fc23133 vocab=0b8f63bf
+-/
 lemma norm_eT (j : Fin c) : ‖(eT j : (Fin r → ℝ) × (Fin c → ℝ))‖ = 1 := by
   simp only [eT, Prod.norm_def, norm_zero]
   rw [max_eq_right (norm_nonneg _)]
@@ -261,6 +327,9 @@ lemma norm_eT (j : Fin c) : ‖(eT j : (Fin r → ℝ) × (Fin c → ℝ))‖ = 
   · have := norm_le_pi_norm (Pi.single j (1 : ℝ) : Fin c → ℝ) j
     simpa using this
 
+/--
+@isnad1 id=le.1h6v.s11.3fc71dfce3e3 from=translated src=- shape=066dbab5 vocab=3468a7be
+-/
 lemma norm_iteratedFDeriv_dT2_le {V : (Fin r → ℝ) × (Fin c → ℝ) → ℂ} (hV : ContDiff ℝ (⊤ : ℕ∞) V)
     (a : Fin c) (j : ℕ) (p : (Fin r → ℝ) × (Fin c → ℝ)) :
     ‖iteratedFDeriv ℝ j (dir (eT a) (dir (eT a) V)) p‖ ≤ ‖iteratedFDeriv ℝ (j + 2) V p‖ := by
@@ -277,14 +346,26 @@ section Torus
 
 attribute [local instance] instMeasureSpaceUnitAddCircle
 
+/--
+@isnad1 id=eq.0h0v.s4.1b16bfdc3f3f from=translated src=- shape=46cdbc00 vocab=97a85765
+-/
 theorem volume_unitAddCircle_eq : (volume : Measure UnitAddCircle) = AddCircle.haarAddCircle := rfl
 
+/--
+@isnad1 id=isaddrig.0h0v.s4.e281ee50493d from=translated src=- shape=3905abf2 vocab=ae066c88
+-/
 scoped instance instIsAddRightInvariant_unitAddCircle : (volume : Measure UnitAddCircle).IsAddRightInvariant := by
   rw [volume_unitAddCircle_eq]; infer_instance
 
+/--
+@isnad1 id=sigmafin.0h0v.s3.7e6370fec4a9 from=translated src=- shape=4b718b57 vocab=be448478
+-/
 scoped instance instSigmaFinite_unitAddCircle : SigmaFinite (volume : Measure UnitAddCircle) := by
   rw [volume_unitAddCircle_eq]; infer_instance
 
+/--
+@isnad1 id=eq.1h4v.s7.8131cbd99ff3 from=translated src=- shape=7089945d vocab=867b9135
+-/
 theorem periodic_intCast (g : (Fin c → ℝ) → ℂ)
     (hper : ∀ (θ : Fin c → ℝ) (j : Fin c), g (θ + Pi.single j 1) = g θ)
     (θ : Fin c → ℝ) (k : Fin c → ℤ) : g (θ + fun i => (k i : ℝ)) = g θ := by
@@ -321,18 +402,30 @@ def qT (θ : Fin c → ℝ) : UnitAddTorus (Fin c) := fun i => (θ i : UnitAddCi
 
 noncomputable def secT (x : UnitAddTorus (Fin c)) : Fin c → ℝ := fun i => ((AddCircle.equivIco (1 : ℝ) 0 (x i) : ℝ))
 
+/--
+@isnad1 id=eq.0h2v.s4.8137a6903685 from=translated src=- shape=60f8d03b vocab=35b185ff
+-/
 lemma qT_secT (x : UnitAddTorus (Fin c)) : qT (secT x) = x := by
   funext i
   exact AddCircle.coe_equivIco
 
+/--
+@isnad1 id=eq.0h3v.s6.255e01641ecd from=translated src=- shape=9756cd32 vocab=b758e934
+-/
 lemma qT_add (θ w : Fin c → ℝ) : qT (θ + w) = qT θ + qT w := by
   funext i; simp [qT]
 
+/--
+@isnad1 id=ex.0h2v.s6.b18060c500bf from=translated src=- shape=0520872e vocab=4faafe10
+-/
 lemma secT_qT (θ : Fin c → ℝ) : ∃ k : Fin c → ℤ, secT (qT θ) = θ + fun i => (k i : ℝ) := by
   refine ⟨fun i => -⌊θ i⌋, funext fun i => ?_⟩
   show ((AddCircle.equivIco (1 : ℝ) 0 ((θ i : ℝ) : UnitAddCircle) : ℝ)) = θ i + ((-⌊θ i⌋ : ℤ) : ℝ)
   rw [AddCircle.coe_equivIco_mk_apply, div_one, mul_one, Int.fract, Int.cast_neg, sub_eq_add_neg]
 
+/--
+@isnad1 id=eq.1h3v.s6.42c05553f1f3 from=translated src=- shape=c5ebbbbd vocab=7f3f0fef
+-/
 lemma comp_secT_qT (g : (Fin c → ℝ) → ℂ)
     (hper : ∀ (θ : Fin c → ℝ) (j : Fin c), g (θ + Pi.single j 1) = g θ) (θ : Fin c → ℝ) :
     g (secT (qT θ)) = g θ := by
@@ -340,6 +433,9 @@ lemma comp_secT_qT (g : (Fin c → ℝ) → ℂ)
   rw [hk]
   exact periodic_intCast g hper θ k
 
+/--
+@isnad1 id=eq.1h2v.s7.d038001f4958 from=translated src=- shape=beb0ee1a vocab=d75cedaf
+-/
 lemma integral_cube_eq_torus (g : (Fin c → ℝ) → ℂ)
     (hper : ∀ (θ : Fin c → ℝ) (j : Fin c), g (θ + Pi.single j 1) = g θ) :
     ∫ θ in cube c, g θ = ∫ x : UnitAddTorus (Fin c), g (secT x) := by
@@ -358,6 +454,9 @@ lemma integral_cube_eq_torus (g : (Fin c → ℝ) → ℂ)
   show g x = g (secT (qT x))
   exact (comp_secT_qT g hper x).symm
 
+/--
+@isnad1 id=eq.1h3v.s8.f0fec237a17f from=translated src=- shape=4beeb6bc vocab=543afc2e
+-/
 lemma integral_cube_translate (g : (Fin c → ℝ) → ℂ)
     (hper : ∀ (θ : Fin c → ℝ) (j : Fin c), g (θ + Pi.single j 1) = g θ) (w : Fin c → ℝ) :
     ∫ θ in cube c, g (θ + w) = ∫ θ in cube c, g θ := by
@@ -373,6 +472,9 @@ lemma integral_cube_translate (g : (Fin c → ℝ) → ℂ)
 
 end Torus
 
+/--
+@isnad1 id=eq.0h4v.s6.c3ac33515158 from=translated src=- shape=3eab9520 vocab=1fcabc78
+-/
 lemma em_periodic (m : Fin c → ℤ) (θ : Fin c → ℝ) (j : Fin c) :
     em m (θ + Pi.single j 1) = em m θ := by
   unfold em
@@ -389,6 +491,9 @@ lemma em_periodic (m : Fin c → ℤ) (θ : Fin c → ℝ) (j : Fin c) :
     push_cast; ring
   rw [mul_add, neg_add, Complex.exp_add, h1, Complex.exp_int_mul_two_pi_mul_I, mul_one]
 
+/--
+@isnad1 id=eq.0h5v.s7.d40e52493b0a from=translated src=- shape=f4eb87ef vocab=4f757dd2
+-/
 lemma em_sub_smul (m : Fin c → ℤ) (θ : Fin c → ℝ) (j : Fin c) (t : ℝ) :
     em m (θ - t • Pi.single j 1) = em m θ * Complex.exp (2 * Real.pi * Complex.I * (m j : ℝ) * t) := by
   unfold em
@@ -404,6 +509,9 @@ lemma em_sub_smul (m : Fin c → ℤ) (θ : Fin c → ℝ) (j : Fin c) (t : ℝ)
   push_cast
   ring
 
+/--
+@isnad1 id=eq.2h4v.s9.7cc3417b0688 from=translated src=- shape=1ec5c4ef vocab=b635ef53
+-/
 lemma integral_cube_fderiv_mul_em (g : (Fin c → ℝ) → ℂ) (hg : ContDiff ℝ (⊤ : ℕ∞) g)
     (hper : ∀ (θ : Fin c → ℝ) (j : Fin c), g (θ + Pi.single j 1) = g θ)
     (m : Fin c → ℤ) (j : Fin c) :
@@ -495,6 +603,9 @@ lemma integral_cube_fderiv_mul_em (g : (Fin c → ℝ) → ℂ) (hg : ContDiff �
   rw [this]
   simp
 
+/--
+@isnad1 id=eq.1h7v.s6.ba54187fc135 from=translated src=- shape=cf0239fb vocab=bcc2273c
+-/
 lemma Ψ_dT {R : ℝ} {U : (Fin r → ℝ) × (Fin c → ℝ) → ℂ} (hU : IsWin R U) (m : Fin c → ℤ)
     (j : Fin c) (x : Fin r → ℝ) :
     Ψ m (dir (eT j) U) x = (2 * Real.pi * Complex.I * (m j : ℝ)) * Ψ m U x := by
@@ -516,6 +627,9 @@ lemma Ψ_dT {R : ℝ} {U : (Fin r → ℝ) × (Fin c → ℝ) → ℂ} (hU : IsW
   simp_rw [hderiv] at key
   exact key
 
+/--
+@isnad1 id=eq.2h7v.s7.58e773eb7df4 from=translated src=- shape=e165bed9 vocab=2a53b38b
+-/
 lemma norm_Ψ_eq {R : ℝ} {U : (Fin r → ℝ) × (Fin c → ℝ) → ℂ} (hU : IsWin R U) (m : Fin c → ℤ)
     (j : Fin c) (hj : m j ≠ 0) (x : Fin r → ℝ) :
     ‖Ψ m U x‖ = ‖Ψ m (dir (eT j) (dir (eT j) U)) x‖ * ((2 * Real.pi * |(m j : ℝ)|) ^ 2)⁻¹ := by
@@ -531,6 +645,9 @@ lemma norm_Ψ_eq {R : ℝ} {U : (Fin r → ℝ) × (Fin c → ℝ) → ℂ} (hU 
     positivity
   field_simp
 
+/--
+@isnad1 id=le.1h6v.s6.c2634cbb2cd6 from=translated src=- shape=4e665836 vocab=5b930dc0
+-/
 lemma norm_Ψ_le_of_bound {U : (Fin r → ℝ) × (Fin c → ℝ) → ℂ} (m : Fin c → ℤ) (x : Fin r → ℝ)
     {C : ℝ} (hC : ∀ θ ∈ cube c, ‖U (x, θ)‖ ≤ C) : ‖Ψ m U x‖ ≤ C := by
   have := norm_setIntegral_le_of_norm_le_const (μ := (volume : Measure (Fin c → ℝ))) (s := cube c)
@@ -538,6 +655,9 @@ lemma norm_Ψ_le_of_bound {U : (Fin r → ℝ) × (Fin c → ℝ) → ℂ} (m : 
     (fun θ hθ => by rw [norm_mul, norm_em, mul_one]; exact hC θ hθ)
   rwa [Measure.real, volume_cube, ENNReal.toReal_one, mul_one] at this
 
+/--
+@isnad1 id=le.4h9v.s10.43f48a1061b1 from=translated src=- shape=fbfb5e5e vocab=d57d4e1c
+-/
 lemma decay {R : ℝ} (m : Fin c → ℤ) (x : Fin r → ℝ) :
     ∀ (S : Finset (Fin c)), (∀ j ∈ S, m j ≠ 0) →
       ∀ (k : ℕ) (C : ℝ) (U : (Fin r → ℝ) × (Fin c → ℝ) → ℂ), IsWin R U → 2 * S.card ≤ k →
@@ -569,6 +689,9 @@ lemma decay {R : ℝ} (m : Fin c → ℤ) (x : Fin r → ℝ) :
           mul_le_mul_of_nonneg_right this hpos
       _ = C * (((2 * Real.pi * |(m a : ℝ)|) ^ 2)⁻¹ * ∏ j ∈ S, ((2 * Real.pi * |(m j : ℝ)|) ^ 2)⁻¹) := by ring
 
+/--
+@isnad1 id=eq.2h6v.s10.721a778756db from=translated src=- shape=3f88f3b8 vocab=b95c1450
+-/
 lemma iteratedFDeriv_eq_zero_outside {R : ℝ} {W : (Fin r → ℝ) × (Fin c → ℝ) → ℂ} (hW : IsWin R W)
     (i : ℕ) (p : (Fin r → ℝ) × (Fin c → ℝ)) (hp : ∃ k, R < |p.1 k|) : iteratedFDeriv ℝ i W p = 0 := by
   have hev : W =ᶠ[nhds p] (fun _ => (0 : ℂ)) := by
@@ -578,6 +701,9 @@ lemma iteratedFDeriv_eq_zero_outside {R : ℝ} {W : (Fin r → ℝ) × (Fin c �
   rw [this, iteratedFDeriv_fun_zero]
   rfl
 
+/--
+@isnad1 id=eq.1h7v.s9.4b526b47eaf8 from=translated src=- shape=0bad1857 vocab=de765ebf
+-/
 lemma iteratedFDeriv_periodic {R : ℝ} {W : (Fin r → ℝ) × (Fin c → ℝ) → ℂ} (hW : IsWin R W)
     (i : ℕ) (p : (Fin r → ℝ) × (Fin c → ℝ)) (k : Fin c → ℤ) :
     iteratedFDeriv ℝ i W (p + ((0 : Fin r → ℝ), fun j => (k j : ℝ))) = iteratedFDeriv ℝ i W p := by
@@ -589,6 +715,9 @@ lemma iteratedFDeriv_periodic {R : ℝ} {W : (Fin r → ℝ) × (Fin c → ℝ) 
     exact periodic_intCast (fun θ => W (q.1, θ)) (fun θ j => hW.per (q.1, θ) j) q.2 k
   rw [← iteratedFDeriv_comp_add_right i, hfun]
 
+/--
+@isnad1 id=ex.1h5v.s9.05b2ad77acdc from=translated src=- shape=9909edde vocab=67719d2c
+-/
 lemma exists_bound_iteratedFDeriv {R : ℝ} {W : (Fin r → ℝ) × (Fin c → ℝ) → ℂ} (hW : IsWin R W)
     (i : ℕ) : ∃ C : ℝ, 0 ≤ C ∧ ∀ p, ‖iteratedFDeriv ℝ i W p‖ ≤ C := by
   have hcont : Continuous (iteratedFDeriv ℝ i W) :=
@@ -615,6 +744,9 @@ lemma exists_bound_iteratedFDeriv {R : ℝ} {W : (Fin r → ℝ) × (Fin c → �
     · simp only [hp', Set.mem_Icc]
       exact ⟨fun j => Int.fract_nonneg _, fun j => (Int.fract_lt_one _).le⟩
 
+/--
+@isnad1 id=ex.1h5v.s9.dd3d67b49453 from=translated src=- shape=b1f670e8 vocab=67719d2c
+-/
 lemma exists_uniform_bound {R : ℝ} {W : (Fin r → ℝ) × (Fin c → ℝ) → ℂ} (hW : IsWin R W) (N : ℕ) :
     ∃ M : ℝ, 0 ≤ M ∧ ∀ i : ℕ, i ≤ N → ∀ p, ‖iteratedFDeriv ℝ i W p‖ ≤ M := by
   choose C hC0 hC using fun i => exists_bound_iteratedFDeriv hW i
@@ -624,6 +756,9 @@ lemma exists_uniform_bound {R : ℝ} {W : (Fin r → ℝ) × (Fin c → ℝ) →
 end PMDND
 open scoped _root_.P2MW.S_MeasureTheory_exists_forall_contDiff_norm_iteratedFDeriv_setIntegral_mul_cexp_le_mul_prod_of_contDiff_of_periodic.PMDND
 
+/--
+@isnad1 id=ex.4h4v.s10.772d835acc2d from=translated src=- shape=89e7380f vocab=80f57ab0
+-/
 theorem solution
     {r c : ℕ} (W : (Fin r → ℝ) × (Fin c → ℝ) → ℂ) (hW : ContDiff ℝ (⊤ : ℕ∞) W)
     (R : ℝ) (hR : 0 ≤ R) (hsupp : ∀ p : (Fin r → ℝ) × (Fin c → ℝ), (∃ k, R < |p.1 k|) → W p = 0)

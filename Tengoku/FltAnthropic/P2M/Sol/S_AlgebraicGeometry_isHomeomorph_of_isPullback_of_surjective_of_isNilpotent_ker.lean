@@ -11,6 +11,9 @@ open CategoryTheory AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=and.3h8v.s8.57b0b11773ce from=translated src=- shape=39a9be87 vocab=20d77f2d
+-/
 theorem solution
     {B B₀ : Type u} [CommRing B] [CommRing B₀] (φ : B →+* B₀)
     (hφ : Function.Surjective φ) (hker : IsNilpotent (RingHom.ker φ))

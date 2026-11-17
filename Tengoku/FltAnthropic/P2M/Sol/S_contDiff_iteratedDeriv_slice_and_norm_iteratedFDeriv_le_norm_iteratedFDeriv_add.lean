@@ -11,6 +11,9 @@ open MeasureTheory
 
 namespace SliceDeriv
 
+/--
+@isnad1 id=eq.0h7v.s10.e85c5bda3667 from=translated src=- shape=8b8a5b3b vocab=ba5d076f
+-/
 theorem norm_iteratedFDeriv_iteratedFDeriv {𝕜 : Type*} [NontriviallyNormedField 𝕜]
     {E F : Type*} [NormedAddCommGroup E] [NormedSpace 𝕜 E] [NormedAddCommGroup F] [NormedSpace 𝕜 F]
     (f : E → F) (N j : ℕ) (x : E) :
@@ -36,6 +39,9 @@ theorem norm_iteratedFDeriv_iteratedFDeriv {𝕜 : Type*} [NontriviallyNormedFie
 
 end SliceDeriv
 
+/--
+@isnad1 id=and.1h4v.s10.99e25d6b1a17 from=translated src=- shape=3b6d4522 vocab=237f431b
+-/
 theorem solution
     {n : ℕ} (Φ : ℝ × (Fin n → ℝ) → ℂ) (hΦ : ContDiff ℝ (⊤ : ℕ∞) Φ) (j : ℕ) (x : ℝ) :
     ContDiff ℝ (⊤ : ℕ∞) (fun y' : Fin n → ℝ => iteratedDeriv j (fun t : ℝ => Φ (t, y')) x) ∧

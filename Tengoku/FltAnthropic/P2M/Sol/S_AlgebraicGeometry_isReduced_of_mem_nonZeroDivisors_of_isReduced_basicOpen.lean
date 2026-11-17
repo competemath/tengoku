@@ -9,12 +9,18 @@ open AlgebraicGeometry CategoryTheory TopologicalSpace Topology Opposite
 
 namespace ReducedGlueE4
 
+/--
+@isnad1 id=eq.1h3v.s7.9b9a1d280cdc from=translated src=- shape=c3d9d9a7 vocab=9547322a
+-/
 theorem image_preimage_eq_of_le {Y : Scheme} (W V : Y.Opens) (hVW : V ≤ W) : W.ι ''ᵁ (W.ι ⁻¹ᵁ V) = V := by
   apply Opens.ext
   simp only [Scheme.Hom.coe_image, Opens.map_coe]
   rw [Set.image_preimage_eq_inter_range, Scheme.Opens.range_ι]
   exact Set.inter_eq_left.mpr hVW
 
+/--
+@isnad1 id=isreduce.1h3v.s10.db92f9323dec from=translated src=- shape=2fbf9dff vocab=b91b53b4
+-/
 theorem isReduced_sections_of_le {Y : Scheme} (W V : Y.Opens) (hVW : V ≤ W) [IsReduced (W : Scheme)] :
     _root_.IsReduced Γ(Y, V) := by
   have e : Γ(Y, W.ι ''ᵁ (W.ι ⁻¹ᵁ V)) ≅ Γ(W, W.ι ⁻¹ᵁ V) := W.ι.appIso (W.ι ⁻¹ᵁ V)
@@ -22,6 +28,9 @@ theorem isReduced_sections_of_le {Y : Scheme} (W V : Y.Opens) (hVW : V ≤ W) [I
   haveI : _root_.IsReduced Γ(W, W.ι ⁻¹ᵁ V) := IsReduced.component_reduced _
   exact isReduced_of_injective e.commRingCatIsoToRingEquiv e.commRingCatIsoToRingEquiv.injective
 
+/--
+@isnad1 id=isreduce.1h2v.s12.12a28aa74dd1 from=translated src=- shape=23272e67 vocab=dc44d87d
+-/
 theorem solution' {Y : Scheme} (p : Γ(Y, ⊤))
     (hreg : ∀ U : Y.Opens, IsAffineOpen U → Y.presheaf.map (homOfLE le_top).op p ∈ nonZeroDivisors Γ(Y, U))
     [hred : IsReduced (Y.basicOpen p : Scheme)] : IsReduced Y := by
@@ -53,6 +62,9 @@ theorem solution' {Y : Scheme} (p : Γ(Y, ⊤))
 end ReducedGlueE4
 
 open ReducedGlueE4 in
+/--
+@isnad1 id=isreduce.1h2v.s12.12a28aa74dd1 from=translated src=- shape=23272e67 vocab=dc44d87d
+-/
 theorem solution {Y : Scheme} (p : Γ(Y, ⊤))
     (hreg : ∀ U : Y.Opens, IsAffineOpen U → Y.presheaf.map (homOfLE le_top).op p ∈ nonZeroDivisors Γ(Y, U))
     [IsReduced (Y.basicOpen p : Scheme)] : IsReduced Y := solution' p hreg

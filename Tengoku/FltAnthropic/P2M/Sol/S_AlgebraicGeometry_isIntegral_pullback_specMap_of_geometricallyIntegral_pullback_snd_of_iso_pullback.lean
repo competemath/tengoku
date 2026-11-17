@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=isintegr.3h9v.s10.c6ab13419e8b from=translated src=- shape=05bf30c2 vocab=4dff3b60
+-/
 theorem solution
     {L : Type} [Field L] (A : ValuationSubring L)
     (A₀ : Type) [CommRing A₀] [IsDomain A₀]

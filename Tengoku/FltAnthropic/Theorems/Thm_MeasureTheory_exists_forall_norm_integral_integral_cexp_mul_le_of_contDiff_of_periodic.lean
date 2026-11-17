@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=ex.1h1v.s9.d82b29883927 from=translated src=- shape=80cfca5a vocab=f9442b53
+-/
 theorem MeasureTheory.exists_forall_norm_integral_integral_cexp_mul_le_of_contDiff_of_periodic
     (R : ℝ) (hR : 0 ≤ R) :
     ∃ C : ℝ, 0 ≤ C ∧

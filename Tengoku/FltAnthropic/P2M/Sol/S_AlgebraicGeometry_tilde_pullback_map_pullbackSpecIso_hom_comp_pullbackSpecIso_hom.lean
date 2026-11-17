@@ -42,6 +42,9 @@ variable {A : Type u₁} {B : Type u₂} {C : Type u₃} {X : Type u₄} {Y : Ty
   (κ : (Pφ ⋙ Pψ).obj (FR.obj M) ⟶ Pφψ.obj (FR.obj M))
   (ε : Eφψ.obj M ⟶ (Eφ ⋙ Eψ).obj M)
 
+/--
+@isnad1 id=eq.6h44v.s11.5009a55af699 from=translated src=- shape=4752d2b6 vocab=5e0b85e8
+-/
 theorem main
     (hφ : (tR.comp pφ).unit.app M ≫ (Qφ ⋙ GR).map βφ ≫ dφ.hom.app _ =
       eφ.unit.app M ≫ Rφ.map (tS.unit.app _))
@@ -135,11 +138,17 @@ section Generic
 
 variable {X Y Z : Scheme.{u}}
 
+/--
+@isnad1 id=eq.0h3v.s6.5225fc5fda10 from=translated src=- shape=dcc980e2 vocab=b9d05be0
+-/
 theorem pushforwardCongr_rfl (f : X ⟶ Y) :
     Scheme.Modules.pushforwardCongr (rfl : f = f) = Iso.refl _ := by
   ext N U x
   simp [Scheme.Modules.pushforwardCongr_hom_app_app]
 
+/--
+@isnad1 id=eq.0h6v.s9.3b36768b32c7 from=translated src=- shape=6c1eea1c vocab=4085d7ba
+-/
 theorem comp_unit_app_comp_map_pullbackComp (f : X ⟶ Y) (g : Y ⟶ Z) (A : Z.Modules) :
     ((pullbackPushforwardAdjunction g).comp (pullbackPushforwardAdjunction f)).unit.app A ≫
         (pushforward f ⋙ pushforward g).map ((pullbackComp f g).hom.app A) =
@@ -154,6 +163,9 @@ theorem comp_unit_app_comp_map_pullbackComp (f : X ⟶ Y) (g : Y ⟶ Z) (A : Z.M
   erw [← (pushforward (f ≫ g)).map_comp, Iso.inv_hom_id_app]
   simp
 
+/--
+@isnad1 id=eq.1h7v.s10.7177c0662231 from=translated src=- shape=84b8168f vocab=456aeba4
+-/
 theorem comp_unit_app_comp_map_pullbackComp_pullbackCongr (f : X ⟶ Y) (g : Y ⟶ Z) {k : X ⟶ Z}
     (h : f ≫ g = k) (A : Z.Modules) :
     ((pullbackPushforwardAdjunction g).comp (pullbackPushforwardAdjunction f)).unit.app A ≫
@@ -168,6 +180,9 @@ theorem comp_unit_app_comp_map_pullbackComp_pullbackCongr (f : X ⟶ Y) (g : Y �
 
 variable {R : CommRingCat.{u}}
 
+/--
+@isnad1 id=eq.1h6v.s10.a952a9f62fdc from=translated src=- shape=19e5bc82 vocab=1a776719
+-/
 theorem moduleSpecΓFunctor_map_pushforwardCongr_inv_apply {f g : X ⟶ Spec R} (hf : f = g)
     (N : X.Modules) (y : (moduleSpecΓFunctor (R := R)).obj ((pushforward g).obj N)) :
     ((moduleSpecΓFunctor (R := R)).map ((pushforwardCongr hf).inv.app N)).hom y = y := by
@@ -180,6 +195,9 @@ section Concrete
 
 variable {R S T : CommRingCat.{u}} (φ : R ⟶ S) (ψ : S ⟶ T)
 
+/--
+@isnad1 id=eq.0h6v.s11.292636e6bb85 from=translated src=- shape=89aaada5 vocab=23a0aec7
+-/
 theorem hε (M : ModuleCat.{u} R) :
     (ModuleCat.extendRestrictScalarsAdj (φ ≫ ψ).hom).unit.app M ≫
         (ModuleCat.restrictScalars (φ ≫ ψ).hom).map ((ModuleCat.extendScalarsComp φ.hom ψ.hom).hom.app M) ≫
@@ -198,6 +216,9 @@ theorem hε (M : ModuleCat.{u} R) :
       (ModuleCat.restrictScalars (φ ≫ ψ).hom).map
         ((ModuleCat.extendScalarsComp φ.hom ψ.hom).hom.app M))).mp h
 
+/--
+@isnad1 id=eq.0h7v.s13.e131aae7e591 from=translated src=- shape=563c7928 vocab=c9372027
+-/
 theorem tail3_apply (N : (Spec T).Modules)
     (z : (moduleSpecΓFunctor (R := R)).obj ((pushforward (Spec.map ψ ≫ Spec.map φ)).obj N)) :
     ((ModuleCat.restrictScalars φ.hom).map ((pushforwardSpecCompΓIso ψ).hom.app N)).hom
@@ -205,11 +226,17 @@ theorem tail3_apply (N : (Spec T).Modules)
         (((moduleSpecΓFunctor (R := R)).map ((pushforwardComp (Spec.map ψ) (Spec.map φ)).inv.app N)).hom z)) =
       z := rfl
 
+/--
+@isnad1 id=eq.0h7v.s11.353d22e4cd7c from=translated src=- shape=51fc5ae4 vocab=dfc8a0d7
+-/
 theorem rhs_apply (N : (Spec T).Modules)
     (y : (moduleSpecΓFunctor (R := R)).obj ((pushforward (Spec.map (φ ≫ ψ))).obj N)) :
     ((pushforwardSpecCompΓIso (φ ≫ ψ)).hom.app N ≫
       (ModuleCat.restrictScalarsComp φ.hom ψ.hom).hom.app ((moduleSpecΓFunctor (R := T)).obj N)).hom y = y := rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.cd17be782a2d from=translated src=- shape=d8c1c552 vocab=8a76d319
+-/
 theorem hcoh (N : (Spec T).Modules) :
     (moduleSpecΓFunctor (R := R)).map
         (((pushforwardCongr (Spec.map_comp φ ψ).symm).inv ≫
@@ -230,6 +257,9 @@ end Concrete
 end AlgebraicGeometry.TildePullbackCompAux
 
 open AlgebraicGeometry.TildePullbackCompAux _root_.AlgebraicGeometry.Scheme.Modules in
+/--
+@isnad1 id=eq.0h6v.s11.a09c88da6767 from=translated src=- shape=bdfd9036 vocab=581c2a07
+-/
 theorem solution
     {R S T : CommRingCat.{u}} (φ : R ⟶ S) (ψ : S ⟶ T) (M : ModuleCat.{u} R) :
     (Scheme.Modules.pullback (Spec.map ψ)).map (tilde.pullbackSpecIso φ M).hom ≫

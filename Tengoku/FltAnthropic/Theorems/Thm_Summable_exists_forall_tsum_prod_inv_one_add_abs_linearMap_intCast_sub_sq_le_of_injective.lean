@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Summable_exists_forall_tsum_prod_inv_one_a
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.1h3v.s9.86b3679814e2 from=translated src=- shape=06523862 vocab=956ba073
+-/
 theorem Summable.exists_forall_tsum_prod_inv_one_add_abs_linearMap_intCast_sub_sq_le_of_injective
     (a r : ℕ) (A : (Fin a → ℝ) →ₗ[ℝ] (Fin r → ℝ)) (hA : Function.Injective A) :
     ∃ K : ℝ, ∀ t : Fin r → ℝ,

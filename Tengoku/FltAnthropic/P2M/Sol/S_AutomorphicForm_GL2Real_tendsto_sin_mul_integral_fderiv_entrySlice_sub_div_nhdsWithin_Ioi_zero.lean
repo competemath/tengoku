@@ -19,12 +19,18 @@ section matrix2
 
 variable {X : Type*}
 
+/--
+@isnad1 id=continuo.4h5v.s9.f1c2b8ff61ed from=translated src=- shape=553a7e07 vocab=ce0c76d1
+-/
 theorem continuous_matrix2 [TopologicalSpace X] {a b c d : X → ℝ}
     (ha : Continuous a) (hb : Continuous b) (hc : Continuous c) (hd : Continuous d) :
     Continuous fun x => Matrix.of.symm !![a x, b x; c x, d x] := by
   refine continuous_pi fun i => continuous_pi fun j => ?_
   fin_cases i <;> fin_cases j <;> simpa
 
+/--
+@isnad1 id=continuo.4h6v.s9.c89d09f849a7 from=translated src=- shape=7e2bc046 vocab=63a3e9ef
+-/
 theorem continuousOn_matrix2 [TopologicalSpace X] {a b c d : X → ℝ} {s : Set X}
     (ha : ContinuousOn a s) (hb : ContinuousOn b s) (hc : ContinuousOn c s)
     (hd : ContinuousOn d s) :
@@ -32,6 +38,9 @@ theorem continuousOn_matrix2 [TopologicalSpace X] {a b c d : X → ℝ} {s : Set
   refine continuousOn_pi.2 fun i => continuousOn_pi.2 fun j => ?_
   fin_cases i <;> fin_cases j <;> simpa
 
+/--
+@isnad1 id=hasderiv.4h9v.s10.c2b036d2b6c0 from=translated src=- shape=da928ed5 vocab=29b768fc
+-/
 theorem hasDerivAt_matrix2 {a b c d : ℝ → ℝ} {a' b' c' d' x : ℝ}
     (ha : HasDerivAt a a' x) (hb : HasDerivAt b b' x) (hc : HasDerivAt c c' x)
     (hd : HasDerivAt d d' x) :
@@ -40,6 +49,9 @@ theorem hasDerivAt_matrix2 {a b c d : ℝ → ℝ} {a' b' c' d' x : ℝ}
   refine hasDerivAt_pi.2 fun i => hasDerivAt_pi.2 fun j => ?_
   fin_cases i <;> fin_cases j <;> simpa
 
+/--
+@isnad1 id=le.0h3v.s7.6458b4478ea8 from=translated src=- shape=fca4af93 vocab=5b1e3859
+-/
 theorem abs_apply_le_norm (M : Fin 2 → Fin 2 → ℝ) (i j : Fin 2) : |M i j| ≤ ‖M‖ :=
   (Real.norm_eq_abs _ ▸ norm_le_pi_norm (M i) j).trans (norm_le_pi_norm M i)
 
@@ -80,6 +92,9 @@ def J0 (q : ℝ × ℝ) : ℂ :=
 
 omit [NormedSpace ℝ P] in
 
+/--
+@isnad1 id=ex.1h2v.s8.4d24378628e2 from=translated src=- shape=3ddd3e6e vocab=da2baecc
+-/
 theorem exists_radius (hΦc : HasCompactSupport Φ) :
     ∃ R : ℝ, 0 ≤ R ∧ ∀ (M : Fin 2 → Fin 2 → ℝ) (p' : P), Φ (M, p') ≠ 0 → ‖M‖ ≤ R := by
   obtain ⟨R, hR⟩ := hΦc.isCompact.isBounded.exists_norm_le
@@ -87,18 +102,30 @@ theorem exists_radius (hΦc : HasCompactSupport Φ) :
   have hmem : (M, p') ∈ tsupport Φ := subset_tsupport _ h
   exact (norm_fst_le (M, p')).trans ((hR _ hmem).trans (le_max_left _ _))
 
+/--
+@isnad1 id=contdiff.1h3v.s9.9b6aadcdaabe from=translated src=- shape=8f59623d vocab=651355e6
+-/
 theorem contDiff_F (hΦs : ContDiff ℝ (⊤ : ℕ∞) Φ) : ContDiff ℝ (⊤ : ℕ∞) (F Φ p) :=
   hΦs.comp (contDiff_prodMk_left p)
 
+/--
+@isnad1 id=hasfderi.1h4v.s9.050e6509cb21 from=translated src=- shape=7fb5e632 vocab=20058d9f
+-/
 theorem hasFDerivAt_F (hΦs : ContDiff ℝ (⊤ : ℕ∞) Φ) (M : Fin 2 → Fin 2 → ℝ) :
     HasFDerivAt (F Φ p) (fderiv ℝ (F Φ p) M) M :=
   ((contDiff_F Φ p hΦs).differentiable (by simp) M).hasFDerivAt
 
+/--
+@isnad1 id=continuo.1h3v.s8.2d1fdd8a3d0a from=translated src=- shape=bbf589d8 vocab=f38cbfe2
+-/
 theorem continuous_D (hΦs : ContDiff ℝ (⊤ : ℕ∞) Φ) : Continuous (D Φ p) :=
   ((contDiff_F Φ p hΦs).continuous_fderiv (by simp)).clm_apply continuous_const
 
 omit [NormedAddCommGroup P] [NormedSpace ℝ P] in
 
+/--
+@isnad1 id=eq.2h5v.s8.659dc01b7116 from=translated src=- shape=f6a927a6 vocab=81845e91
+-/
 theorem F_eq_zero {R : ℝ} (hR : ∀ (M : Fin 2 → Fin 2 → ℝ) (p' : P), Φ (M, p') ≠ 0 → ‖M‖ ≤ R)
     {M : Fin 2 → Fin 2 → ℝ} (hM : R < ‖M‖) : F Φ p M = 0 := by
   by_contra h
@@ -106,6 +133,9 @@ theorem F_eq_zero {R : ℝ} (hR : ∀ (M : Fin 2 → Fin 2 → ℝ) (p' : P), Φ
 
 omit [NormedAddCommGroup P] [NormedSpace ℝ P] in
 
+/--
+@isnad1 id=eq.2h5v.s10.1b5d43c88458 from=translated src=- shape=3b994e2a vocab=d923ee0e
+-/
 theorem fderiv_F_eq_zero {R : ℝ} (hR : ∀ (M : Fin 2 → Fin 2 → ℝ) (p' : P), Φ (M, p') ≠ 0 → ‖M‖ ≤ R)
     {M : Fin 2 → Fin 2 → ℝ} (hM : R < ‖M‖) : fderiv ℝ (F Φ p) M = 0 := by
   have h : F Φ p =ᶠ[𝓝 M] fun _ => 0 := by
@@ -115,10 +145,16 @@ theorem fderiv_F_eq_zero {R : ℝ} (hR : ∀ (M : Fin 2 → Fin 2 → ℝ) (p' :
   simp
 
 omit [NormedAddCommGroup P] [NormedSpace ℝ P] in
+/--
+@isnad1 id=eq.2h5v.s8.fab3471d1cfb from=translated src=- shape=f6a927a6 vocab=ad27a7f7
+-/
 theorem D_eq_zero {R : ℝ} (hR : ∀ (M : Fin 2 → Fin 2 → ℝ) (p' : P), Φ (M, p') ≠ 0 → ‖M‖ ≤ R)
     {M : Fin 2 → Fin 2 → ℝ} (hM : R < ‖M‖) : D Φ p M = 0 := by
   simp [D, fderiv_F_eq_zero Φ p hR hM]
 
+/--
+@isnad1 id=ex.2h4v.s9.729ad5f27e1b from=translated src=- shape=213b10e7 vocab=8edb59c2
+-/
 theorem exists_bound_D (hΦs : ContDiff ℝ (⊤ : ℕ∞) Φ) {R : ℝ}
     (hR : ∀ (M : Fin 2 → Fin 2 → ℝ) (p' : P), Φ (M, p') ≠ 0 → ‖M‖ ≤ R) :
     ∃ K : ℝ, 0 ≤ K ∧ ∀ M, ‖D Φ p M‖ ≤ K := by
@@ -130,45 +166,72 @@ theorem exists_bound_D (hΦs : ContDiff ℝ (⊤ : ℕ∞) Φ) {R : ℝ}
   · rw [D_eq_zero Φ p hR (not_le.1 hM), norm_zero]
     exact le_max_right _ _
 
+/--
+@isnad1 id=lt.3h4v.s7.fbf0de637d03 from=translated src=- shape=8a3a4e1d vocab=d6ddceda
+-/
 theorem lt_norm_Mp (hr : 0 < r) {R θ : ℝ} {q : ℝ × ℝ} (hq : 0 < q.1) (h : R < r * q.1) :
     R < ‖Mp r θ q‖ := by
   refine h.trans_le ?_
   have := abs_apply_le_norm (Mp r θ q) 1 0
   simpa [Mp, abs_of_pos hr, abs_of_pos hq] using this
 
+/--
+@isnad1 id=lt.3h4v.s7.4c76b1fb9858 from=translated src=- shape=8a3a4e1d vocab=f3c15259
+-/
 theorem lt_norm_Mm (hr : 0 < r) {R θ : ℝ} {q : ℝ × ℝ} (hq : 0 < q.1) (h : R < r * q.1) :
     R < ‖Mm r θ q‖ := by
   refine h.trans_le ?_
   have := abs_apply_le_norm (Mm r θ q) 1 0
   simpa [Mm, abs_of_pos hr, abs_of_pos hq] using this
 
+/--
+@isnad1 id=lt.2h3v.s7.30e64111a2e9 from=translated src=- shape=55fec39f vocab=108c35b5
+-/
 theorem lt_norm_A (hr : 0 < r) {R u : ℝ} (h : R < r * |u|) : R < ‖A r u‖ := by
   refine h.trans_le ?_
   have := abs_apply_le_norm (A r u) 1 0
   simpa [A, abs_mul, abs_of_pos hr] using this
 
+/--
+@isnad1 id=lt.2h3v.s7.15ceef40bf3a from=translated src=- shape=55fec39f vocab=12dd0b49
+-/
 theorem lt_norm_B (hr : 0 < r) {R u : ℝ} (h : R < r * |u|) : R < ‖B r u‖ := by
   refine h.trans_le ?_
   have := abs_apply_le_norm (B r u) 1 0
   simpa [B, abs_mul, abs_of_pos hr] using this
 
+/--
+@isnad1 id=eq.0h1v.s8.88819ba84050 from=translated src=- shape=494a08d9 vocab=a47e03b9
+-/
 theorem A_zero : A r 0 = Matrix.of.symm (r • (1 : Matrix (Fin 2) (Fin 2) ℝ)) := by
   ext i j
   fin_cases i <;> fin_cases j <;> simp [A]
 
+/--
+@isnad1 id=eq.0h1v.s8.bfda8124366a from=translated src=- shape=494a08d9 vocab=3b0211c5
+-/
 theorem B_zero : B r 0 = Matrix.of.symm (r • (1 : Matrix (Fin 2) (Fin 2) ℝ)) := by
   ext i j
   fin_cases i <;> fin_cases j <;> simp [B]
 
+/--
+@isnad1 id=eq.0h0v.s6.5ea4f136a166 from=translated src=- shape=a8232a1f vocab=201a0005
+-/
 theorem volume_restrict_eq_prod :
     (volume : Measure (ℝ × ℝ)).restrict (Ioi (0 : ℝ) ×ˢ (univ : Set ℝ)) =
       ((volume : Measure ℝ).restrict (Ioi 0)).prod (volume : Measure ℝ) := by
   rw [Measure.volume_eq_prod, ← Measure.prod_restrict, Measure.restrict_univ]
 
+/--
+@isnad1 id=measurab.0h0v.s5.d98d33ce69d1 from=translated src=- shape=c0c6bfbd vocab=92ab4997
+-/
 theorem measurableSet_S : MeasurableSet (Ioi (0 : ℝ) ×ˢ (univ : Set ℝ)) :=
   measurableSet_Ioi.prod MeasurableSet.univ
 
 omit [NormedAddCommGroup P] [NormedSpace ℝ P] in
+/--
+@isnad1 id=eq.1h5v.s7.a6da0df8a94e from=translated src=- shape=1df55693 vocab=8baea361
+-/
 theorem sin_mul_integral_I (θ : ℝ) (hθ : 0 < Real.sin θ) :
     (Real.sin θ : ℂ) * ∫ q in Ioi (0 : ℝ) ×ˢ (univ : Set ℝ), I Φ p r θ q =
       ∫ q in Ioi (0 : ℝ) ×ˢ (univ : Set ℝ), J Φ p r θ q := by
@@ -208,6 +271,9 @@ theorem sin_mul_integral_I (θ : ℝ) (hθ : 0 < Real.sin θ) :
     _ = (Real.sin θ : ℂ) ^ 2 * ((((Real.sin θ ^ 2)⁻¹ : ℝ) : ℂ) * ∫ q, J Φ p r θ q ∂ν) := by rw [h1]
     _ = ∫ q, J Φ p r θ q ∂ν := by push_cast; field_simp
 
+/--
+@isnad1 id=eq.3h4v.s9.dc90ee0d5fcf from=translated src=- shape=179b9aa5 vocab=6f664626
+-/
 theorem integral_Ioi_D_sub_D (hΦs : ContDiff ℝ (⊤ : ℕ∞) Φ) (hΦc : HasCompactSupport Φ) (hr : 0 < r) :
     ∫ u in Ioi (0 : ℝ), (D Φ p (A r u) - D Φ p (B r u)) =
       ((2 / r : ℝ) : ℂ) * Φ (Matrix.of.symm (r • 1), p) := by
@@ -281,6 +347,9 @@ theorem integral_Ioi_D_sub_D (hΦs : ContDiff ℝ (⊤ : ℕ∞) Φ) (hΦc : Has
   field_simp
   ring
 
+/--
+@isnad1 id=eq.3h4v.s9.4467b13fcec1 from=translated src=- shape=ee3472a4 vocab=76c221af
+-/
 theorem integral_J0 (hΦs : ContDiff ℝ (⊤ : ℕ∞) Φ) (hΦc : HasCompactSupport Φ) (hr : 0 < r) :
     ∫ q in Ioi (0 : ℝ) ×ˢ (univ : Set ℝ), J0 Φ p r q =
       ((2 * Real.pi / r : ℝ) : ℂ) * Φ (Matrix.of.symm (r • 1), p) := by
@@ -296,6 +365,9 @@ theorem integral_J0 (hΦs : ContDiff ℝ (⊤ : ℕ∞) Φ) (hΦc : HasCompactSu
   push_cast
   ring
 
+/--
+@isnad1 id=tendsto.3h4v.s9.2c458dff670e from=translated src=- shape=de6caab1 vocab=08e49f0a
+-/
 theorem tendsto_integral_J (hΦs : ContDiff ℝ (⊤ : ℕ∞) Φ) (hΦc : HasCompactSupport Φ) (hr : 0 < r) :
     Tendsto (fun θ => ∫ q in Ioi (0 : ℝ) ×ˢ (univ : Set ℝ), J Φ p r θ q) (𝓝[>] 0)
       (𝓝 (∫ q in Ioi (0 : ℝ) ×ˢ (univ : Set ℝ), J0 Φ p r q)) := by
@@ -377,6 +449,9 @@ theorem tendsto_integral_J (hΦs : ContDiff ℝ (⊤ : ℕ∞) Φ) (hΦc : HasCo
     exact tendsto_const_nhds.mul
       ((hD.continuousAt.tendsto.comp h1).sub (hD.continuousAt.tendsto.comp h2))
 
+/--
+@isnad1 id=tendsto.3h4v.s10.5e0653533ae4 from=translated src=- shape=8acdb572 vocab=627a666a
+-/
 theorem main (hΦs : ContDiff ℝ (⊤ : ℕ∞) Φ) (hΦc : HasCompactSupport Φ) (hr : 0 < r) :
     Tendsto (fun θ : ℝ => (Real.sin θ : ℂ) * ∫ q in Ioi (0 : ℝ) ×ˢ (univ : Set ℝ), I Φ p r θ q)
       (𝓝[>] 0) (𝓝 (((2 * Real.pi / r : ℝ) : ℂ) * Φ (Matrix.of.symm (r • 1), p))) := by
@@ -391,6 +466,9 @@ end GL2RealPoissonJumpTerm
 
 end
 
+/--
+@isnad1 id=tendsto.3h4v.s12.769e25c1efe9 from=translated src=- shape=9d26ac4a vocab=7e209aa3
+-/
 theorem solution
     (P : Type) [NormedAddCommGroup P] [NormedSpace ℝ P] (Φ : (Fin 2 → Fin 2 → ℝ) × P → ℂ)
     (hΦs : ContDiff ℝ (⊤ : ℕ∞) Φ) (hΦc : HasCompactSupport Φ) (p : P) (r : ℝ) (hr : 0 < r) :

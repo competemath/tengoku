@@ -40,6 +40,9 @@ theorem eq_irreducibleComponent_of_mem {X : Scheme.{u}} {x : X} (hx : IsDomain (
   have e2 : closure {g} = irreducibleComponent x := Set.Subset.antisymm (hZ'.2 hcl hsub') hsub'
   exact e1.symm.trans e2
 
+/--
+@isnad1 id=ex.1h2v.s7.bf69debc1953 from=translated src=- shape=40fbf833 vocab=601c321b
+-/
 theorem exists_open_subset_irreducibleComponent {X : Scheme.{u}} [IsLocallyNoetherian X]
     (hX : ∀ x : X, IsDomain (X.presheaf.stalk x)) (z : X) :
     ∃ O : Set X, IsOpen O ∧ z ∈ O ∧ O ⊆ irreducibleComponent z := by
@@ -85,6 +88,9 @@ theorem exists_open_subset_irreducibleComponent {X : Scheme.{u}} [IsLocallyNoeth
   rw [← hWeq]
   exact hSW ⟨y, mem_irreducibleComponent, rfl⟩
 
+/--
+@isnad1 id=and.1h2v.s8.875fadad83da from=translated src=- shape=5b2cd5cc vocab=58f886d1
+-/
 theorem main {X : Scheme.{u}} [IsLocallyNoetherian X] (hX : ∀ x : X, IsDomain (X.presheaf.stalk x)) (x : X) :
     IsOpen (irreducibleComponent x) ∧ ∀ Z ∈ irreducibleComponents X, x ∈ Z → Z = irreducibleComponent x := by
   refine ⟨?_, fun Z hZ hxZ => eq_irreducibleComponent_of_mem (hX x) hZ hxZ⟩
@@ -97,6 +103,9 @@ theorem main {X : Scheme.{u}} [IsLocallyNoetherian X] (hX : ∀ x : X, IsDomain 
 
 end FltWs29.C2
 
+/--
+@isnad1 id=and.1h2v.s8.875fadad83da from=translated src=- shape=5b2cd5cc vocab=58f886d1
+-/
 theorem solution
     {X : Scheme.{u}} [IsLocallyNoetherian X] (hX : ∀ x : X, IsDomain (X.presheaf.stalk x)) (x : X) :
     IsOpen (irreducibleComponent x) ∧ ∀ Z ∈ irreducibleComponents X, x ∈ Z → Z = irreducibleComponent x :=

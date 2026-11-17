@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_AutomorphicForm_LocalIntertwining_integral
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.1h1v.s7.9e22f76bced4 from=translated src=- shape=74621093 vocab=f4c6a7a1
+-/
 theorem AutomorphicForm.LocalIntertwining.integral_one_add_sq_cpow_neg_eq_GammaReal_div
     (s : ℂ) (hs : 0 < s.re) :
     ∫ x : ℝ, ((1 + x ^ 2 : ℝ) : ℂ) ^ (-(s + 1 / 2))

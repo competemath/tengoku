@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.Definitions.Def_AutomorphicForm_ConstantTerm
 namespace P2MW.S_AutomorphicForm_constantTerm_rightTranslate
 open AutomorphicForm MeasureTheory
 
+/--
+@isnad1 id=eq.0h7v.s6.14f874795fa3 from=translated src=- shape=034ed002 vocab=91b3cd34
+-/
 theorem solution {Q : Type*} [MeasurableSpace Q] {G : Type*} [Group G]
     (μ : Measure Q) (u : Q → G) (f : G → ℂ) (g h : G) :
     constantTerm μ u (fun x => f (x * h)) g = constantTerm μ u f (g * h) := by

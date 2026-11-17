@@ -12,6 +12,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 namespace IsoLocusBC
 
+/--
+@isnad1 id=isiso.5h16v.s7.0b1efce6d499 from=translated src=- shape=f31a3396 vocab=3510ff67
+-/
 theorem isIso_of_isIso_of_isPullback {C : Type*} [Category C]
     {S S' A B A' B' : C} (b : S' ⟶ S)
     (pA : A ⟶ S) (pB : B ⟶ S) (φ : A ⟶ B) (hφ : φ ≫ pB = pA)
@@ -32,6 +35,9 @@ end IsoLocusBC
 
 open IsoLocusBC
 
+/--
+@isnad1 id=iff.5h16v.s10.747bbdd0684c from=translated src=- shape=1f39e712 vocab=c4cf89ef
+-/
 theorem solution
     {X Y Z X' Y' Z' : Scheme.{0}} (p : Z ⟶ Y) (q : X ⟶ Y) (h : Z ⟶ X) (w : h ≫ q = p)
     (p' : Z' ⟶ Y') (q' : X' ⟶ Y') (h' : Z' ⟶ X') (w' : h' ≫ q' = p')

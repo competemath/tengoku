@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=ex.1h2v.s10.a9ec8de2d486 from=translated src=- shape=ad3a2e81 vocab=3079735d
+-/
 theorem MeasureTheory.exists_forall_contDiff_norm_iteratedDeriv_integral_cexp_mul_le_prod_of_contDiff
     (n : ℕ) (R : ℝ) (hR : 0 ≤ R) :
     ∃ K : ℝ, 0 ≤ K ∧

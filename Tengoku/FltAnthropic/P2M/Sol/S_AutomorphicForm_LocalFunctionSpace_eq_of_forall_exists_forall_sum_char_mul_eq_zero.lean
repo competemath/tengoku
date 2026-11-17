@@ -656,6 +656,9 @@ end WindowFourierAux
 
 open WindowFourierAux in
 
+/--
+@isnad1 id=eq.5h5v.s11.b8c319d6b4a1 from=translated src=- shape=d839494f vocab=e70a462d
+-/
 theorem solution
     (p : IsDedekindDomain.HeightOneSpectrum (NumberField.RingOfIntegers ℚ))
     (f : p.adicCompletion ℚ → ℂ)

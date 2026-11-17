@@ -13,6 +13,9 @@ universe u
 
 namespace C2StabAux
 
+/--
+@isnad1 id=eq.0h3v.s7.9e0434e43386 from=translated src=- shape=cad32cfa vocab=98afe5eb
+-/
 theorem ker_eq_vanishingIdeal {X Y : Scheme.{u}} [IsReduced X] (f : X ⟶ Y) :
     f.ker = Scheme.IdealSheafData.vanishingIdeal (TopologicalSpace.Closeds.closure (Set.range f.base)) := by
   rw [← Scheme.IdealSheafData.map_bot, ← Scheme.nilradical_eq_bot (X := X),
@@ -21,6 +24,9 @@ theorem ker_eq_vanishingIdeal {X Y : Scheme.{u}} [IsReduced X] (f : X ⟶ Y) :
   ext1
   simp [Set.image_univ]
 
+/--
+@isnad1 id=eq.5h4v.s6.5e0cbc3bbc9a from=translated src=- shape=25f1610f vocab=d11041b1
+-/
 theorem image_eq_of_forall_mem_or {α : Type u} [TopologicalSpace α] (e : α ≃ₜ α) (Z₁ Z₂ : Set α)
     (hZ₁ : IsClosed Z₁) (hZ₂ : IsClosed Z₂) (hirr : IsPreirreducible Z₂)
     (hcover : ∀ z, z ∈ Z₁ ∨ z ∈ Z₂) (hfix : ∀ z ∈ Z₁, e z = z) : e '' Z₂ = Z₂ := by
@@ -54,6 +60,9 @@ theorem image_eq_of_forall_mem_or {α : Type u} [TopologicalSpace α] (e : α �
 
 end C2StabAux
 
+/--
+@isnad1 id=ex.4h9v.s9.fb3b14f418f2 from=translated src=- shape=cb21a15b vocab=e7044860
+-/
 theorem solution
     {X C₁ C₂ S : Scheme.{u}} (x : X ⟶ S) (c₂ : C₂ ⟶ S)
     (i₁ : C₁ ⟶ X) (i₂ : C₂ ⟶ X) (hi₂ : i₂ ≫ x = c₂)

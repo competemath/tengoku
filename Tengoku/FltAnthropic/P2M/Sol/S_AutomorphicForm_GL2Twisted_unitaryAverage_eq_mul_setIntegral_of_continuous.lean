@@ -16,6 +16,9 @@ noncomputable section
 
 namespace P2mUAvg
 
+/--
+@isnad1 id=continuo.0h0v.s7.ac77bde691b9 from=translated src=- shape=d4de3532 vocab=cfa5c857
+-/
 theorem continuousOn_matrixInv :
     ContinuousOn (fun A : Matrix (Fin 2) (Fin 2) ℂ => A⁻¹) {A | IsUnit A} := by
   have h : (fun A : Matrix (Fin 2) (Fin 2) ℂ => A⁻¹) = fun A => (A.det)⁻¹ • A.adjugate := by
@@ -26,9 +29,15 @@ theorem continuousOn_matrixInv :
   exact (Continuous.matrix_det continuous_id).continuousOn.inv₀ fun A hA =>
     ((Matrix.isUnit_iff_isUnit_det A).mp hA).ne_zero
 
+/--
+@isnad1 id=isembedd.0h0v.s7.2b06e3ca15d0 from=translated src=- shape=07c36612 vocab=e6218f01
+-/
 theorem isEmbedding_glVal : IsEmbedding (Units.val : GL (Fin 2) ℂ → Matrix (Fin 2) (Fin 2) ℂ) :=
   Units.isEmbedding_val_mk' continuousOn_matrixInv fun u => (Matrix.coe_units_inv u).symm
 
+/--
+@isnad1 id=eq.0h4v.s8.8ee9e133b1fb from=translated src=- shape=4f0190ec vocab=99d312bb
+-/
 theorem coe_unitaryElt (ψ η ξ₁ ξ₂ : ℝ) :
     ((unitaryElt ψ η ξ₁ ξ₂ : GL (Fin 2) ℂ) : Matrix (Fin 2) (Fin 2) ℂ) =
       !![Complex.exp (ψ * Complex.I) * (Real.cos η * Complex.exp (ξ₁ * Complex.I)),
@@ -39,6 +48,9 @@ theorem coe_unitaryElt (ψ η ξ₁ ξ₂ : ℝ) :
 
 def kk (r : (ℝ × ℝ) × (ℝ × ℝ)) : GL (Fin 2) ℂ := unitaryElt r.1.1 r.1.2 r.2.1 r.2.2
 
+/--
+@isnad1 id=continuo.0h0v.s7.ec0f6b1a0a6d from=translated src=- shape=9ca478f1 vocab=2080e0ad
+-/
 theorem continuous_kk : Continuous kk := by
   rw [isEmbedding_glVal.continuous_iff]
   have h : (Units.val ∘ kk) = fun r : (ℝ × ℝ) × (ℝ × ℝ) =>
@@ -52,6 +64,9 @@ theorem continuous_kk : Continuous kk := by
   refine continuous_matrix fun i j => ?_
   fin_cases i <;> fin_cases j <;> simp <;> fun_prop
 
+/--
+@isnad1 id=eq.0h4v.s6.f2d0395a8a07 from=translated src=- shape=562fa105 vocab=28c8cbac
+-/
 theorem unitaryElt_add_pi (ψ η ξ₁ ξ₂ : ℝ) :
     unitaryElt (ψ + Real.pi) η ξ₁ ξ₂ = unitaryElt ψ η (ξ₁ + Real.pi) (ξ₂ + Real.pi) := by
   have hpi : Complex.exp (Real.pi * Complex.I) = -1 := by
@@ -70,6 +85,9 @@ theorem unitaryElt_add_pi (ψ η ξ₁ ξ₂ : ℝ) :
   rw [coe_unitaryElt, coe_unitaryElt, e1, e2, e2, e3, e3]
   fin_cases i <;> fin_cases j <;> simp
 
+/--
+@isnad1 id=eq.0h1v.s5.acc1b38b3db6 from=translated src=- shape=6ada9296 vocab=2059374e
+-/
 theorem exp_add_two_pi_mul_I (ξ : ℝ) :
     Complex.exp (((ξ + 2 * Real.pi : ℝ) : ℂ) * Complex.I) = Complex.exp (ξ * Complex.I) := by
   rw [Complex.ofReal_add, add_mul, Complex.exp_add]
@@ -78,6 +96,9 @@ theorem exp_add_two_pi_mul_I (ξ : ℝ) :
     exact Complex.exp_two_pi_mul_I
   rw [this, mul_one]
 
+/--
+@isnad1 id=eq.0h1v.s5.cfdd96aa155c from=translated src=- shape=175b2bd3 vocab=6b55a441
+-/
 theorem exp_neg_add_two_pi_mul_I (ξ : ℝ) :
     Complex.exp (-(((ξ + 2 * Real.pi : ℝ) : ℂ) * Complex.I)) = Complex.exp (-(ξ * Complex.I)) := by
   rw [Complex.ofReal_add, add_mul, neg_add, Complex.exp_add]
@@ -87,12 +108,18 @@ theorem exp_neg_add_two_pi_mul_I (ξ : ℝ) :
     exact Complex.exp_int_mul_two_pi_mul_I (-1)
   rw [this, mul_one]
 
+/--
+@isnad1 id=eq.0h4v.s5.2f2ed2eec5b0 from=translated src=- shape=a787c026 vocab=28684d00
+-/
 theorem unitaryElt_periodic_ξ₁ (ψ η ξ₁ ξ₂ : ℝ) :
     unitaryElt ψ η (ξ₁ + 2 * Real.pi) ξ₂ = unitaryElt ψ η ξ₁ ξ₂ := by
   apply Matrix.GeneralLinearGroup.ext
   intro i j
   rw [coe_unitaryElt, coe_unitaryElt, exp_add_two_pi_mul_I, exp_neg_add_two_pi_mul_I]
 
+/--
+@isnad1 id=eq.0h4v.s5.8c36039837c1 from=translated src=- shape=3aa71229 vocab=28684d00
+-/
 theorem unitaryElt_periodic_ξ₂ (ψ η ξ₁ ξ₂ : ℝ) :
     unitaryElt ψ η ξ₁ (ξ₂ + 2 * Real.pi) = unitaryElt ψ η ξ₁ ξ₂ := by
   apply Matrix.GeneralLinearGroup.ext
@@ -102,6 +129,9 @@ theorem unitaryElt_periodic_ξ₂ (ψ η ξ₁ ξ₂ : ℝ) :
 def hh (F : GL (Fin 2) ℂ → ℂ) (r : (ℝ × ℝ) × (ℝ × ℝ)) : ℂ :=
   ((Real.sin r.1.2 : ℂ) * (Real.cos r.1.2 : ℂ)) * F (kk r)
 
+/--
+@isnad1 id=continuo.1h1v.s7.ce2f30919447 from=translated src=- shape=6bac6a97 vocab=0b1be87d
+-/
 theorem continuous_hh {F : GL (Fin 2) ℂ → ℂ} (hF : Continuous F) : Continuous (hh F) := by
   unfold hh
   refine Continuous.mul ?_ (hF.comp continuous_kk)
@@ -111,15 +141,24 @@ theorem continuous_hh {F : GL (Fin 2) ℂ → ℂ} (hF : Continuous F) : Continu
 def BOX (L : ℝ) : Set ((ℝ × ℝ) × (ℝ × ℝ)) :=
   (Set.Ioo 0 L ×ˢ Set.Ioo 0 (Real.pi / 2)) ×ˢ (Set.Ioo 0 (2 * Real.pi) ×ˢ Set.Ioo 0 (2 * Real.pi))
 
+/--
+@isnad1 id=eq.1h3v.s6.a248260487e7 from=translated src=- shape=ca2bb116 vocab=7ba526e7
+-/
 theorem setIntegral_Ioo_eq_intervalIntegral {a b : ℝ} (hab : a ≤ b) (g : ℝ → ℂ) :
     ∫ x in Set.Ioo a b, g x = ∫ x in a..b, g x := by
   rw [intervalIntegral.integral_of_le hab, integral_Ioc_eq_integral_Ioo]
 
+/--
+@isnad1 id=integrab.1h5v.s6.268b8e203ffc from=translated src=- shape=b1140223 vocab=bddc032b
+-/
 theorem integrableOn_Ioo_prod {g : ℝ × ℝ → ℂ} (hg : Continuous g) (a b c d : ℝ) :
     IntegrableOn g (Set.Ioo a b ×ˢ Set.Ioo c d) volume :=
   (hg.continuousOn.integrableOn_compact ((isCompact_Icc (a := a) (b := b)).prod (isCompact_Icc (a := c) (b := d)))).mono_set
     (Set.prod_mono Set.Ioo_subset_Icc_self Set.Ioo_subset_Icc_self)
 
+/--
+@isnad1 id=eq.3h5v.s7.a111e0dd90d3 from=translated src=- shape=11c665d3 vocab=07c023c4
+-/
 theorem setIntegral_Ioo_prod {g : ℝ × ℝ → ℂ} (hg : Continuous g) {a b c d : ℝ} (hab : a ≤ b) (hcd : c ≤ d) :
     ∫ z in Set.Ioo a b ×ˢ Set.Ioo c d, g z = ∫ x in a..b, ∫ y in c..d, g (x, y) := by
   have hint : Integrable g ((volume.restrict (Set.Ioo a b)).prod (volume.restrict (Set.Ioo c d))) := by
@@ -130,6 +169,9 @@ theorem setIntegral_Ioo_prod {g : ℝ × ℝ → ℂ} (hg : Continuous g) {a b c
   refine intervalIntegral.integral_congr fun x _ => ?_
   exact setIntegral_Ioo_eq_intervalIntegral hcd _
 
+/--
+@isnad1 id=eq.2h2v.s8.efa3a3780b99 from=translated src=- shape=70397e05 vocab=0a1fcc32
+-/
 theorem setIntegral_BOX_eq (h : (ℝ × ℝ) × (ℝ × ℝ) → ℂ) (hc : Continuous h) (L : ℝ) (hL : 0 ≤ L) :
     ∫ r in BOX L, h r =
       ∫ ψ in (0 : ℝ)..L, ∫ η in (0 : ℝ)..(Real.pi / 2), ∫ ξ₁ in (0 : ℝ)..(2 * Real.pi), ∫ ξ₂ in (0 : ℝ)..(2 * Real.pi),
@@ -174,6 +216,9 @@ def n₁ (F : GL (Fin 2) ℂ → ℂ) (ψ : ℝ) : ℂ :=
   ∫ η in (0 : ℝ)..(Real.pi / 2), ∫ ξ₁ in (0 : ℝ)..(2 * Real.pi), ∫ ξ₂ in (0 : ℝ)..(2 * Real.pi),
     hh F ((ψ, η), (ξ₁, ξ₂))
 
+/--
+@isnad1 id=continuo.1h1v.s7.0f585301f078 from=translated src=- shape=909e89d6 vocab=a513b107
+-/
 theorem continuous_n₁ {F : GL (Fin 2) ℂ → ℂ} (hF : Continuous F) : Continuous (n₁ F) := by
   have hc := continuous_hh hF
   have h3 : Continuous fun q : (ℝ × ℝ) × ℝ => ∫ ξ₂ in (0 : ℝ)..(2 * Real.pi), hh F (q.1, (q.2, ξ₂)) := by
@@ -187,6 +232,9 @@ theorem continuous_n₁ {F : GL (Fin 2) ℂ → ℂ} (hF : Continuous F) : Conti
   refine intervalIntegral.continuous_parametric_intervalIntegral_of_continuous' ?_ _ _
   exact h2.comp (by fun_prop)
 
+/--
+@isnad1 id=eq.0h2v.s5.22ea63ef1d5d from=translated src=- shape=733add51 vocab=9ac2a966
+-/
 theorem n₁_add_pi {F : GL (Fin 2) ℂ → ℂ} (ψ : ℝ) : n₁ F (ψ + Real.pi) = n₁ F ψ := by
   unfold n₁
   refine intervalIntegral.integral_congr fun η _ => ?_
@@ -229,6 +277,9 @@ theorem n₁_add_pi {F : GL (Fin 2) ℂ → ℂ} (ψ : ℝ) : n₁ F (ψ + Real.
   rw [zero_add, show Real.pi + 2 * Real.pi = 2 * Real.pi + Real.pi by ring] at this
   exact this
 
+/--
+@isnad1 id=eq.2h1v.s7.d0edff4fc634 from=translated src=- shape=365a73c2 vocab=859e7e89
+-/
 theorem integral_zero_two_pi_eq_two_mul (G : ℝ → ℂ) (hG : ∀ θ, G (θ + Real.pi) = G θ)
     (hint : IntegrableOn G (Set.Ioc (0 : ℝ) (2 * Real.pi))) :
     ∫ θ in (0 : ℝ)..(2 * Real.pi), G θ = 2 * ∫ θ in (0 : ℝ)..Real.pi, G θ := by
@@ -247,6 +298,9 @@ theorem integral_zero_two_pi_eq_two_mul (G : ℝ → ℂ) (hG : ∀ θ, G (θ + 
     rw [h, two_mul]
   rw [← intervalIntegral.integral_add_adjacent_intervals hA hB, hshift, two_mul]
 
+/--
+@isnad1 id=eq.1h1v.s9.5360618fb22d from=translated src=- shape=3c4295bc vocab=e757ece1
+-/
 theorem main (F : GL (Fin 2) ℂ → ℂ) (hF : Continuous F) :
     unitaryAverage F = (1 / (2 * Real.pi ^ 3) : ℂ) *
       ∫ r in (Set.Ioo 0 Real.pi ×ˢ Set.Ioo 0 (Real.pi / 2)) ×ˢ (Set.Ioo 0 (2 * Real.pi) ×ˢ Set.Ioo 0 (2 * Real.pi)),
@@ -269,6 +323,9 @@ end P2mUAvg
 end
 
 open AutomorphicForm.GL2Twisted in
+/--
+@isnad1 id=eq.1h1v.s9.5360618fb22d from=translated src=- shape=3c4295bc vocab=e757ece1
+-/
 theorem solution (F : GL (Fin 2) ℂ → ℂ) (hF : Continuous F) :
     unitaryAverage F = (1 / (2 * Real.pi ^ 3) : ℂ) *
       ∫ r in (Set.Ioo 0 Real.pi ×ˢ Set.Ioo 0 (Real.pi / 2)) ×ˢ (Set.Ioo 0 (2 * Real.pi) ×ˢ Set.Ioo 0 (2 * Real.pi)),

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=ex.1h1v.s10.c70549319ca6 from=translated src=- shape=38d57acf vocab=06c1b530
+-/
 theorem MeasureTheory.exists_forall_norm_integral_cexp_mul_mul_le_of_norm_iteratedFDeriv_le_mul_log
     (r : ℝ) (hr : 0 < r) :
     ∃ C : ℝ, 0 ≤ C ∧

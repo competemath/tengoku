@@ -13,6 +13,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=smoothof.1h4v.s5.ca8a9d963c58 from=translated src=- shape=de275df6 vocab=fecbb647
+-/
 theorem solution
     {X Y : Scheme.{u}} (f : X ⟶ Y) [Smooth f] (n : ℕ)
     (h : ∀ y : Y, SmoothOfRelativeDimension n (f.fiberToSpecResidueField y)) :

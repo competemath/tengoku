@@ -20,6 +20,9 @@ open TensorProduct
 
 variable {R A : Type u} [CommRing R] [CommRing A] [Algebra R A]
 
+/--
+@isnad1 id=bijectiv.0h3v.s10.d9f6713fd012 from=translated src=- shape=25bb3d97 vocab=c671d835
+-/
 theorem kerCotangentToTensor_bijective [Algebra.FormallySmooth R A] (e : A →ₐ[R] R) :
     letI : Algebra A R := e.toRingHom.toAlgebra
     Function.Bijective (KaehlerDifferential.kerCotangentToTensor R A R) := by
@@ -36,6 +39,9 @@ theorem kerCotangentToTensor_bijective [Algebra.FormallySmooth R A] (e : A →�
     exact (KaehlerDifferential.exact_kerCotangentToTensor_mapBaseChange R A R hsurj y).mp
       (Subsingleton.elim _ _)
 
+/--
+@isnad1 id=and.1h3v.s9.6529106ebc32 from=translated src=- shape=e24f3fba vocab=564aaaab
+-/
 theorem free_tensor_kaehlerDifferential [IsLocalRing R] (e : A →ₐ[R] R)
     (hloc : RingHom.Locally (fun f => RingHom.IsStandardSmoothOfRelativeDimension 1 f) (algebraMap R A)) :
     letI : Algebra A R := e.toRingHom.toAlgebra
@@ -87,6 +93,9 @@ end P2Body.CotSec
 namespace P2Body
 namespace GenKerAux
 
+/--
+@isnad1 id=ex.1h3v.s10.03e74bb5c8ee from=translated src=- shape=a0c450ee vocab=3def3d9e
+-/
 theorem exists_generator {R A : Type*} [CommRing R] [Nontrivial R] [CommRing A] [Algebra R A] (e : A →ₐ[R] R)
     [Module.Free R (RingHom.ker e.toRingHom).Cotangent]
     (he : Module.finrank R (RingHom.ker e.toRingHom).Cotangent = 1) :
@@ -121,6 +130,9 @@ open TensorProduct
 
 export _root_.P2Body (stalkAlgebra)
 
+/--
+@isnad1 id=and.1h5v.s14.b5d5a712b2cd from=translated src=- shape=381db9f0 vocab=8f6540c9
+-/
 theorem LS' {R : Type u} [CommRing R] [IsLocalRing R] {X : Scheme.{u}} (c : X ⟶ Spec (CommRingCat.of R))
     [SmoothOfRelativeDimension 1 c] (V : X.Opens) (hV : IsAffineOpen V) (y : V) :
     letI := stalkAlgebra c (y : X)
@@ -205,6 +217,9 @@ theorem LS' {R : Type u} [CommRing R] [IsLocalRing R] {X : Scheme.{u}} (c : X �
       (CotSec.kerCotangentToTensor_bijective π)).restrictScalars R
   exact ⟨Module.Free.of_equiv f.symm, f.finrank_eq.trans hrankS⟩
 
+/--
+@isnad1 id=and.0h4v.s12.be2035dc4ea4 from=translated src=- shape=44a14dab vocab=da87e239
+-/
 theorem LS {R : Type u} [CommRing R] [IsLocalRing R] {X : Scheme.{u}} (c : X ⟶ Spec (CommRingCat.of R))
     [SmoothOfRelativeDimension 1 c] (x : X) :
     letI := stalkAlgebra c x
@@ -228,6 +243,9 @@ theorem eq_span_of_le_span_sup_sq {S : Type*} [CommRing S] [IsLocalRing S] {I : 
     exact hI
   exact Submodule.le_of_le_smul_of_le_jacobson_bot hfg hjac (by rwa [Ideal.smul_eq_mul, ← pow_two])
 
+/--
+@isnad1 id=eq.1h4v.s8.b84ab8a65b72 from=translated src=- shape=885dfae1 vocab=a7103fb1
+-/
 theorem maximalIdeal_eq_ker_sup_map {A S : Type*} [CommRing A] [IsLocalRing A] [CommRing S] [IsLocalRing S]
     (ι : A →+* S) (π : S →+* A) (hπ : ∀ a, π (ι a) = a) :
     maximalIdeal S = RingHom.ker π ⊔ (maximalIdeal A).map ι := by
@@ -254,6 +272,9 @@ theorem maximalIdeal_eq_ker_sup_map {A S : Type*} [CommRing A] [IsLocalRing A] [
     exact (IsLocalRing.mem_maximalIdeal _).mpr fun h =>
       (IsLocalRing.mem_maximalIdeal _).mp ha (by simpa [hπ] using h.map π)
 
+/--
+@isnad1 id=fg.0h5v.s13.0dcd32846be0 from=translated src=- shape=887cbaa1 vocab=283e2db2
+-/
 theorem fg_ker_algHom_stalk {A : Type u} [CommRing A] {X : Scheme.{u}} (c : X ⟶ Spec (CommRingCat.of A))
     [LocallyOfFinitePresentation c] (x : X)
     (π : letI : Algebra A (X.presheaf.stalk x) := ((X.presheaf.germ ⊤ x trivial).hom.comp
@@ -317,6 +338,9 @@ end SecParam
 
 open P2Body SecParam in
 
+/--
+@isnad1 id=ex.0h5v.s14.cc47854b7a0b from=translated src=- shape=3169f6a5 vocab=1b57a80e
+-/
 theorem solution
     {A : Type u} [CommRing A] [IsLocalRing A] {X : Scheme.{u}} (c : X ⟶ Spec (CommRingCat.of A))
     [SmoothOfRelativeDimension 1 c] (x : X)

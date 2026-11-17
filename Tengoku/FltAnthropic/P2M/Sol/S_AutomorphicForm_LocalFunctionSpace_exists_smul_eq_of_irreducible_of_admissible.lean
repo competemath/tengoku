@@ -23,6 +23,9 @@ private def fixedMembers {G : Type*} [Group G] (S : Submodule ℂ (G → ℂ)) (
     show c * a (g * k) = c * a g
     rw [congrFun (ha k hk) g]
 
+/--
+@isnad1 id=ex.6h3v.s15.625f6b8e0aa0 from=translated src=- shape=b59a8c17 vocab=3098feee
+-/
 theorem solution
     (p : IsDedekindDomain.HeightOneSpectrum (NumberField.RingOfIntegers ℚ))
     (S : Submodule ℂ (GL (Fin 2) (p.adicCompletion ℚ) → ℂ))

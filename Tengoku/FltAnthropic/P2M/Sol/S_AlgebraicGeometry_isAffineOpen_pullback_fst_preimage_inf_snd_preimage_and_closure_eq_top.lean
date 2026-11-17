@@ -13,10 +13,16 @@ universe u
 
 namespace AffineProductAssembly
 
+/--
+@isnad1 id=eq.3h6v.s9.4c26d9266515 from=translated src=- shape=ac8e7e1d vocab=b969f7d3
+-/
 theorem appLE_congrHom {X Y : Scheme.{u}} {k k' : X ⟶ Y} (e : k = k') (U : Y.Opens) (V : X.Opens)
     (h : V ≤ k ⁻¹ᵁ U) (h' : V ≤ k' ⁻¹ᵁ U) : k.appLE U V h = k'.appLE U V h' := by
   subst e; rfl
 
+/--
+@isnad1 id=eq.4h9v.s8.45f920449a18 from=translated src=- shape=ea3b3143 vocab=1a9e8e97
+-/
 theorem closure_union_range_eq_top_of_injective {Γ Γ' A B : Type*} [CommRing Γ] [CommRing Γ'] [CommRing A] [CommRing B]
     (E : Γ →+* Γ') (hE : Function.Injective E) (F₁ : A → Γ) (F₂ : B → Γ) (X₁ X₂ : Set Γ')
     (h₁ : E '' Set.range F₁ = X₁) (h₂ : E '' Set.range F₂ = X₂) (h : Subring.closure (X₁ ∪ X₂) = ⊤) :
@@ -28,6 +34,9 @@ theorem closure_union_range_eq_top_of_injective {Γ Γ' A B : Type*} [CommRing �
   obtain ⟨y, hy, hyx⟩ := Subring.mem_map.1 hx
   exact hE hyx ▸ hy
 
+/--
+@isnad1 id=eq.2h2v.s13.3b03bc53e637 from=translated src=- shape=cd260677 vocab=42c3fa57
+-/
 theorem fromSpec_appLE_eq {X : Scheme.{u}} {U : X.Opens} (hU : IsAffineOpen U) (h : (⊤ : (Spec Γ(X, U)).Opens) ≤ hU.fromSpec ⁻¹ᵁ U) :
     hU.fromSpec.appLE U ⊤ h = (Scheme.ΓSpecIso Γ(X, U)).inv := by
   rw [Scheme.Hom.appLE, IsAffineOpen.fromSpec_app_self, Category.assoc, ← Functor.map_comp]
@@ -37,6 +46,9 @@ theorem fromSpec_appLE_eq {X : Scheme.{u}} {U : X.Opens} (hU : IsAffineOpen U) (
 end AffineProductAssembly
 
 open AffineProductAssembly in
+/--
+@isnad1 id=and.2h7v.s15.22dc0f8c779e from=translated src=- shape=4f9cdff1 vocab=3e98dc95
+-/
 theorem solution
     {X Y S : Scheme.{u}} [IsAffine S] (f : X ⟶ S) (g : Y ⟶ S)
     {U : X.Opens} (hU : IsAffineOpen U) {V : Y.Opens} (hV : IsAffineOpen V) :

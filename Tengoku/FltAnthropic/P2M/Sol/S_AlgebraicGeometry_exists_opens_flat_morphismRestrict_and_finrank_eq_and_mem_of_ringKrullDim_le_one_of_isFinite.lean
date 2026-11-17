@@ -21,6 +21,9 @@ open TopologicalSpace
 
 attribute [local instance] RingHomInvPair.of_ringEquiv in
 
+/--
+@isnad1 id=free.0h6v.s8.d0010ad42e54 from=translated src=- shape=401f91c7 vocab=72a8ad3d
+-/
 theorem free_of_isLocalizedModule {R : Type*} [CommRing R] (S : Submonoid R)
     {M : Type*} [AddCommGroup M] [Module R M]
     (Rₛ : Type*) [CommRing Rₛ] [Algebra R Rₛ] [IsLocalization S Rₛ]
@@ -41,6 +44,9 @@ theorem free_of_isLocalizedModule {R : Type*} [CommRing R] (S : Submonoid R)
     simp only [← map_smul, ← smul_assoc, IsLocalization.smul_mk'_self, algebraMap_smul]
   exact key.mp ‹_›
 
+/--
+@isnad1 id=flat.1h5v.s8.4a9d84c5f378 from=translated src=- shape=e51853e3 vocab=b18d1eb8
+-/
 theorem flat_away_map {A B A' B' : Type*} [CommRing A] [CommRing B] [CommRing A'] [CommRing B']
     [Algebra A B] (r : A) [Algebra A A'] [IsLocalization.Away r A'] [Algebra B B']
     [IsLocalization.Away (algebraMap A B r) B']
@@ -66,6 +72,9 @@ end AlgebraicGeometry.FlatCodimOne
 
 open AlgebraicGeometry.FlatCodimOne TopologicalSpace in
 
+/--
+@isnad1 id=ex.1h3v.s9.062c16d0241d from=translated src=- shape=9b066fe2 vocab=2003170b
+-/
 theorem solution
     {X Y : Scheme.{u}} (π : X ⟶ Y) [IsFinite π] [Surjective π] [IsIntegral X] [IsIntegral Y] [IsLocallyNoetherian Y]
     (hY : ∀ y : Y, IsIntegrallyClosed (Y.presheaf.stalk y)) :

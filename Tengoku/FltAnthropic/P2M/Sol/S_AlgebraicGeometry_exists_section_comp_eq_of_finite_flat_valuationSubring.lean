@@ -13,15 +13,24 @@ namespace LiftPts
 
 open IsLocalRing
 
+/--
+@isnad1 id=integers.0h2v.s5.ed8c2cd07b8e from=translated src=- shape=73bd8bfe vocab=38255eb2
+-/
 theorem integers (L : Type*) [Field L] (O : ValuationSubring L) : O.valuation.Integers ↥O :=
   { hom_inj := Subtype.coe_injective
     map_le_one := fun x => O.valuation_le_one x
     exists_of_le_one := fun r hr => ⟨⟨r, (O.valuation_le_one_iff r).1 hr⟩, rfl⟩ }
 
+/--
+@isnad1 id=mem.1h3v.s5.ecce96a4ed2d from=translated src=- shape=b5a9d51c vocab=9f400a2d
+-/
 theorem mem_of_isIntegral {L : Type*} [Field L] (O : ValuationSubring L) {x : L} (hx : IsIntegral ↥O x) : x ∈ O := by
   have := (integers L O).mem_of_integral hx
   rwa [Valuation.mem_integer_iff, O.valuation_le_one_iff] at this
 
+/--
+@isnad1 id=ex.3h5v.s10.cc76f41fe46a from=translated src=- shape=8638cc62 vocab=5238049b
+-/
 theorem exists_retraction_residue_comp_eq
     {L : Type*} [Field L] [IsAlgClosed L] (O : ValuationSubring L) {B : Type*} [CommRing B]
     (φ : ↥O →+* B) (hfin : φ.Finite) (hflat : φ.Flat)
@@ -108,6 +117,9 @@ theorem exists_retraction_residue_comp_eq
 
 end LiftPts
 
+/--
+@isnad1 id=ex.1h5v.s10.69bb1f3a5391 from=translated src=- shape=462b51bb vocab=644fd271
+-/
 theorem solution
     {L : Type} [Field L] [IsAlgClosed L] (O : ValuationSubring L)
     {Z : Scheme.{0}} (f : Z ⟶ Spec (CommRingCat.of ↥O)) [IsFinite f] [Flat f]

@@ -39,6 +39,9 @@ end F1dE121
 
 open F1dE121 in
 
+/--
+@isnad1 id=isiso.1h5v.s8.2c6272c79e76 from=translated src=- shape=ada1a673 vocab=80db4b81
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsLocalRing R]
     {X U : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of R)) [IsProper f]

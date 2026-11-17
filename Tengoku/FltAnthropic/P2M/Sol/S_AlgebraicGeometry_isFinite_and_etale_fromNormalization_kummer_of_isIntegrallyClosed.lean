@@ -22,6 +22,9 @@ namespace KFEAux
 open AlgebraicGeometry.Scheme
 variable {X : Scheme.{u}} [IsIntegral X]
 
+/--
+@isnad1 id=isintegr.2h2v.s8.ea34b5400c53 from=translated src=- shape=7ddbb05d vocab=53d30996
+-/
 theorem isIntegrallyClosed_sections (hnorm : ∀ x : X, IsIntegrallyClosed (X.presheaf.stalk x))
     (V : X.affineOpens) (hη : genericPoint X ∈ (V : X.Opens)) : IsIntegrallyClosed Γ(X, (V : X.Opens)) := by
   haveI : Nonempty (V : X.Opens) := ⟨⟨_, hη⟩⟩

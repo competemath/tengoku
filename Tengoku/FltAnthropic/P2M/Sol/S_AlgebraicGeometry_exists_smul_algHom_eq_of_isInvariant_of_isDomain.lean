@@ -14,6 +14,9 @@ namespace SecModG12
 variable {A D R : Type} [CommRing A] [CommRing D] [Algebra A D] {G : Type} [Group G] [Finite G]
   [MulSemiringAction G D] [SMulCommClass G A D] [Algebra.IsInvariant A D G] [CommRing R] [IsDomain R] [Algebra A R]
 
+/--
+@isnad1 id=ex.0h7v.s8.a42e3bce8eef from=translated src=- shape=b9f3e569 vocab=417b0c9a
+-/
 theorem exists_smul_eq_apply (s s' : D →ₐ[A] R) (b : D) : ∃ g : G, s' b = s (g • b) := by
   classical
   cases nonempty_fintype G
@@ -34,6 +37,9 @@ theorem exists_smul_eq_apply (s s' : D →ₐ[A] R) (b : D) : ∃ g : G, s' b = 
   obtain ⟨g, -, hg⟩ := h1
   exact ⟨g, sub_eq_zero.1 hg⟩
 
+/--
+@isnad1 id=ex.1h6v.s9.33ed1d25bc34 from=translated src=- shape=762fb2d1 vocab=f645879f
+-/
 theorem core (s s' : D →ₐ[A] R) (hker : RingHom.ker (s' : D →+* R) = RingHom.ker (s : D →+* R)) :
     ∃ g : G, ∀ d : D, s' d = s (g • d) := by
   classical
@@ -77,6 +83,9 @@ theorem core (s s' : D →ₐ[A] R) (hker : RingHom.ker (s' : D →+* R) = RingH
 
 end SecModG12
 
+/--
+@isnad1 id=ex.0h6v.s8.baafc2beabe9 from=translated src=- shape=038a6f3e vocab=417b0c9a
+-/
 theorem solution
     (A : Type) [CommRing A] (D : Type) [CommRing D] [Algebra A D]
     (G : Type) [Group G] [Finite G] [MulSemiringAction G D] [SMulCommClass G A D] [Algebra.IsInvariant A D G]

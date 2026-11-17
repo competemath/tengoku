@@ -62,6 +62,9 @@ end AutomorphicForm.WeylIntegrable.DilateOfFinitePart
 
 open _root_.AutomorphicForm.WeylIntegrable _root_.P2MW.S_AutomorphicForm_WeylIntegrable_dilate_finPart_of_snd_eq.AutomorphicForm.WeylIntegrable AutomorphicForm.WeylIntegrable.DilateOfFinitePart in
 
+/--
+@isnad1 id=eq.1h3v.s9.33192c0e167f from=translated src=- shape=10f4f90e vocab=9c702100
+-/
 theorem solution (F : Type) [Field F] [NumberField F]
     (x y : NumberField.AdeleRing (NumberField.RingOfIntegers F) F) (hy2 : y.2 = x.2) :
     dilate F (finPart F (yUnit (selRel F y.1 y.2))) = dilate F (finPart F (yUnit (selRel F x.1 x.2))) := by

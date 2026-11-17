@@ -259,6 +259,9 @@ end M4aP2DGK.ArchComplexMoments
 
 end
 
+/--
+@isnad1 id=eq.1h3v.s8.c375ddaaf4f4 from=translated src=- shape=a628e4d6 vocab=436452fb
+-/
 theorem solution
     (a b : ℕ) (t : ℂ) (ht : ((a : ℝ) + b) / 2 + 1 < t.re) :
     ∫ z : ℂ, z ^ a * (starRingEnd ℂ z) ^ b * ((1 + ‖z‖ ^ 2 : ℝ) : ℂ) ^ (-t)

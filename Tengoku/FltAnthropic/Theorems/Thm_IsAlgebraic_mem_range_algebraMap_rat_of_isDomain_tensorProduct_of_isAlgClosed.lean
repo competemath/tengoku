@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry TensorProduct
 
+/--
+@isnad1 id=mem.2h3v.s7.96c1d05b6494 from=translated src=- shape=d2b07657 vocab=c56f05c9
+-/
 theorem IsAlgebraic.mem_range_algebraMap_rat_of_isDomain_tensorProduct_of_isAlgClosed
     (K : Type) [Field K] [CharZero K]
     (C : Type) [Field C] [IsAlgClosed C] [CharZero C]

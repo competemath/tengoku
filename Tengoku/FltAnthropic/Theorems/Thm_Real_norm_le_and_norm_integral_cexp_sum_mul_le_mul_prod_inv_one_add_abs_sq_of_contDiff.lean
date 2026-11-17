@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=and.4h4v.s9.21d9fce44ae8 from=translated src=- shape=3ce94ea3 vocab=affcc120
+-/
 theorem Real.norm_le_and_norm_integral_cexp_sum_mul_le_mul_prod_inv_one_add_abs_sq_of_contDiff
     {r : ℕ} (g : (Fin r → ℝ) → ℂ) (R M : ℝ) (hR : 0 ≤ R)
     (hg : ContDiff ℝ ((2 * r : ℕ) : ℕ∞) g)

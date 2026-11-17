@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry TopologicalSpace Topology
 
+/--
+@isnad1 id=finite.1h5v.s9.f11e64250b77 from=translated src=- shape=bf83703f vocab=c00f181b
+-/
 theorem solution
     {K : Type u} [Field K] (k : Type u) [Field k] [Algebra K k] [Algebra.IsAlgebraic K k]
     {S : Scheme.{u}} (g : S ⟶ Spec (CommRingCat.of K)) [IrreducibleSpace S] [LocallyOfFiniteType g]

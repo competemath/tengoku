@@ -24,6 +24,9 @@ open scoped Pointwise
 variable {A B : Type*} [CommRing A] [CommRing B] [Algebra A B]
   {G : Type*} [Group G] [MulSemiringAction G B] [SMulCommClass G A B]
 
+/--
+@isnad1 id=eq.3h6v.s8.5ad0a3849cc4 from=translated src=- shape=ad49b31c vocab=05639c35
+-/
 theorem isArithFrobAt_unique_impl {P : Ideal B} [P.IsMaximal] [(P.under A).IsMaximal]
     [Fintype (A ⧸ P.under A)] [Finite (B ⧸ P)]
     {σ₁ σ₂ : G} (h₁ : IsArithFrobAt A σ₁ P) (h₂ : IsArithFrobAt A σ₂ P)
@@ -48,6 +51,9 @@ set_option autoImplicit false
 open MulAction
 open scoped Pointwise
 
+/--
+@isnad1 id=eq.3h6v.s8.5ad0a3849cc4 from=translated src=- shape=ad49b31c vocab=05639c35
+-/
 theorem solution {A B : Type*} [CommRing A] [CommRing B] [Algebra A B]
     {G : Type*} [Group G] [MulSemiringAction G B] [SMulCommClass G A B]
     {P : Ideal B} [P.IsMaximal] [(P.under A).IsMaximal]

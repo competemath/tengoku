@@ -13,6 +13,9 @@ namespace FlatTrunc13
 
 variable (𝒪 : Type) [CommRing 𝒪] (S : Type) [CommRing S] [Algebra 𝒪 S]
 
+/--
+@isnad1 id=flat.2h4v.s8.6c8b2a3e0584 from=translated src=- shape=0f498572 vocab=b686ab7e
+-/
 theorem flat_quotientMap [Module.Flat 𝒪 S] (I : Ideal 𝒪) (J : Ideal S) (hIJ : I ≤ J.comap (algebraMap 𝒪 S))
     (hJI : J ≤ I.map (algebraMap 𝒪 S)) :
     (Ideal.quotientMap J (algebraMap 𝒪 S) hIJ).Flat := by
@@ -73,6 +76,9 @@ theorem flat_quotientMap [Module.Flat 𝒪 S] (I : Ideal 𝒪) (J : Ideal S) (hI
 end FlatTrunc13
 
 open FlatTrunc13 in
+/--
+@isnad1 id=flat.0h4v.s10.93685d557004 from=translated src=- shape=b704ae63 vocab=9075368d
+-/
 theorem solution
     (𝒪 : Type) [CommRing 𝒪] (π : 𝒪) (S : Type) [CommRing S] [Algebra 𝒪 S] [Module.Flat 𝒪 S] (n : ℕ) :
     Flat (Spec.map (CommRingCat.ofHom (Ideal.quotientMap (Ideal.span {(algebraMap 𝒪 S π) ^ (n + 1)}) (algebraMap 𝒪 S)

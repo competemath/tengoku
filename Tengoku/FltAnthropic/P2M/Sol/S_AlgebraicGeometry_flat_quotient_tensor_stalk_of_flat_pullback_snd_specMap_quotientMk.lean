@@ -14,6 +14,9 @@ universe u
 
 namespace TruncStalk
 
+/--
+@isnad1 id=flat.1h5v.s13.8eff3c73ac17 from=translated src=- shape=cf547f5a vocab=58ebc216
+-/
 theorem flat_tensor_sections
     {R : Type u} [CommRing R] (J : Ideal R) {Z : Scheme.{u}} (f : Z ⟶ Spec (CommRingCat.of R))
     [Flat (pullback.snd f (Spec.map (CommRingCat.ofHom (Ideal.Quotient.mk J))))]
@@ -59,6 +62,9 @@ theorem flat_tensor_sections
 end TruncStalk
 
 open TruncStalk in
+/--
+@isnad1 id=flat.0h5v.s12.ac72bb359825 from=translated src=- shape=6700dc6b vocab=fd1b69bc
+-/
 theorem solution
     {R : Type u} [CommRing R] (J : Ideal R) {Z : Scheme.{u}} (f : Z ⟶ Spec (CommRingCat.of R))
     [Flat (pullback.snd f (Spec.map (CommRingCat.ofHom (Ideal.Quotient.mk J))))] (z : ↥Z) :

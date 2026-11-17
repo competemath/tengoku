@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open AutomorphicForm AutomorphicForm.GL2Real
 
+/--
+@isnad1 id=ex.0h1v.s13.2a588cd5a4ce from=translated src=- shape=012b436d vocab=aa87c832
+-/
 theorem AutomorphicForm.GL2Real.exists_linear_entrySlice_archWeightChar_zero_splitTransform_eq
     (P : Type) [NormedAddCommGroup P] [NormedSpace ℝ P] :
     ∃ I : (ℝ × ℝ → ℂ) → ((Fin 2 → Fin 2 → ℝ) → ℂ),

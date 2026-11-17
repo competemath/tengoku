@@ -17,6 +17,9 @@ export _root_.AlgebraicGeometry (Spec.map_comp IsOpenImmersion.lift Surjective m
 namespace P2mRedFixed
 open _root_.AlgebraicGeometry
 
+/--
+@isnad1 id=eq.4h9v.s15.aa7cd78e898c from=translated src=- shape=1df07d15 vocab=91a5249e
+-/
 theorem _root_.P2MW.S_AlgebraicGeometry_specMap_comp_fromSpec_eq_specMap_comp_of_morphismRestrict_comp_eq.solution
     {B B₁ : Type u} [CommRing B] [CommRing B₁] [Algebra B B₁]
     (hπ : Function.Surjective (algebraMap B B₁))

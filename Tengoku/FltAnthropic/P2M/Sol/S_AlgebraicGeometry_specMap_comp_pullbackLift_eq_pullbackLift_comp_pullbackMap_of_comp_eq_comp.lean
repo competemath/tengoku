@@ -14,6 +14,9 @@ universe u
 namespace Ws23
 namespace BCInt
 
+/--
+@isnad1 id=eq.5h13v.s9.6d2605869460 from=translated src=- shape=160a700c vocab=31cccd89
+-/
 theorem main
     {G S : Scheme.{u}} (g : G ⟶ S)
     {k L A : Type u} [CommRing k] [CommRing L] [CommRing A]
@@ -42,6 +45,9 @@ theorem main
 
 end Ws23.BCInt
 
+/--
+@isnad1 id=eq.5h13v.s9.6d2605869460 from=translated src=- shape=160a700c vocab=31cccd89
+-/
 theorem solution
     {G S : Scheme.{u}} (g : G ⟶ S)
     {k L A : Type u} [CommRing k] [CommRing L] [CommRing A]

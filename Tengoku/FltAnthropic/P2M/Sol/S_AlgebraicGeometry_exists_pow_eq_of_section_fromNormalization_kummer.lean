@@ -17,10 +17,16 @@ section thin
 
 variable {Z : Scheme.{u}}
 
+/--
+@isnad1 id=eq.0h6v.s11.915d811355b9 from=translated src=- shape=318e24d6 vocab=9b3392ca
+-/
 lemma map_op_congr {A B : Z.Opens} (i j : B ⟶ A) (s : Γ(Z, A)) :
     Z.presheaf.map i.op s = Z.presheaf.map j.op s := by
   rw [Subsingleton.elim i j]
 
+/--
+@isnad1 id=eq.0h5v.s13.0b0e43c89ddc from=translated src=- shape=5f83def2 vocab=69285021
+-/
 lemma app_map_top {Z' : Scheme.{u}} (q : Z' ⟶ Z) (W : Z.Opens) (x : Γ(Z, ⊤)) :
     q.app W (Z.presheaf.map (homOfLE le_top).op x) =
       Z'.presheaf.map (homOfLE le_top).op (q.appTop x) := by
@@ -29,11 +35,17 @@ lemma app_map_top {Z' : Scheme.{u}} (q : Z' ⟶ Z) (W : Z.Opens) (x : Γ(Z, ⊤)
   rw [this]
   exact map_op_congr _ _ _
 
+/--
+@isnad1 id=eq.0h7v.s12.f7f460c91b4e from=translated src=- shape=3a5a94d2 vocab=d8961dd6
+-/
 lemma comp_app_apply {X Y : Scheme.{u}} (f : X ⟶ Y) (g : Y ⟶ Z) (U : Z.Opens) (x : Γ(Z, U)) :
     (f ≫ g).app U x = f.app (g ⁻¹ᵁ U) (g.app U x) := rfl
 
 end thin
 
+/--
+@isnad1 id=eq.0h3v.s12.a7068ff25c6a from=translated src=- shape=b97ab8ec vocab=ff44fda9
+-/
 lemma root_pow {K : Type*} [CommRing K] (k : ℕ) (g : K) :
     AdjoinRoot.root (Polynomial.X ^ k - Polynomial.C g) ^ k =
       algebraMap K (AdjoinRoot (Polynomial.X ^ k - Polynomial.C g)) g := by
@@ -41,6 +53,9 @@ lemma root_pow {K : Type*} [CommRing K] (k : ℕ) (g : K) :
   rw [map_sub, map_pow, AdjoinRoot.mk_X, AdjoinRoot.mk_C, sub_eq_zero] at h
   rw [h, AdjoinRoot.algebraMap_eq]
 
+/--
+@isnad1 id=ex.4h8v.s14.3896da3437a6 from=translated src=- shape=dc636e13 vocab=3f6580d1
+-/
 theorem exists_pow_eq {X : Scheme.{u}} [IsIntegral X] (k : ℕ) (g : X.functionField)
     {X' : Scheme.{u}} (φ : X' ⟶ X) [QuasiCompact φ] [QuasiSeparated φ]
     (s : X ⟶ φ.normalization) (hs : s ≫ φ.fromNormalization = 𝟙 X)
@@ -138,6 +153,9 @@ theorem exists_pow_eq {X : Scheme.{u}} [IsIntegral X] (k : ℕ) (g : X.functionF
 end SecRoot
 
 open SecRoot in
+/--
+@isnad1 id=ex.2h4v.s14.3b7d024eac91 from=translated src=- shape=9767ef39 vocab=f4b9d8ed
+-/
 theorem solution
     {X : Scheme.{u}} [IsIntegral X] (k : ℕ) (g : X.functionField) (hg : g ≠ 0)
     (s : X ⟶ (Spec.map (CommRingCat.ofHom (algebraMap X.functionField

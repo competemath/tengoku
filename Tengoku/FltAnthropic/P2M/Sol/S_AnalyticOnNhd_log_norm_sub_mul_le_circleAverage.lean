@@ -8,6 +8,9 @@ namespace P2MW.S_AnalyticOnNhd_log_norm_sub_mul_le_circleAverage
 
 open Real MeasureTheory Metric
 
+/--
+@isnad1 id=le.5h6v.s7.6ee0d802a235 from=translated src=- shape=0536e8a3 vocab=5847142a
+-/
 theorem solution {F : ℂ → ℂ} {c : ℂ} {R : ℝ}
     (hF : AnalyticOnNhd ℂ F (Metric.closedBall c |R|)) (hc : F c ≠ 0) {g : ℂ → ℝ} {k M : ℝ}
     (hg : CircleIntegrable g c R) (hM : ∀ z ∈ Metric.sphere c |R|, g z ≤ M) (hk : 0 ≤ k) :

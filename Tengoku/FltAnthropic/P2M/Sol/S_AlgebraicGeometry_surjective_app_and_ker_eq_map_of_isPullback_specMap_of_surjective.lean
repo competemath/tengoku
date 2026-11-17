@@ -13,6 +13,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry Opposite
 
 namespace EDaux
 
+/--
+@isnad1 id=ispushou.1h8v.s9.1604236b1a28 from=translated src=- shape=ec19425a vocab=9d838ebd
+-/
 theorem isPushout_appTop_of_isPullback {P X Y Z : Scheme.{u}} [IsAffine P] [IsAffine X] [IsAffine Y] [IsAffine Z]
     {fst : P ⟶ X} {snd : P ⟶ Y} {f : X ⟶ Z} {g : Y ⟶ Z} (H : IsPullback fst snd f g) :
     IsPushout g.appTop f.appTop snd.appTop fst.appTop := by
@@ -24,6 +27,9 @@ theorem isPushout_appTop_of_isPullback {P X Y Z : Scheme.{u}} [IsAffine P] [IsAf
   have H' := H.map Scheme.Γ.rightOp
   exact H'.unop
 
+/--
+@isnad1 id=ispushou.10h12v.s10.aead759a244f from=translated src=- shape=7d3d771d vocab=58ec13c4
+-/
 theorem isPushout_appLE_of_isPullback {X Y S T : Scheme.{u}} {f : T ⟶ S} {g : Y ⟶ X} {iX : X ⟶ S} {iY : Y ⟶ T}
     (H : IsPullback g iY iX f)
     {US : S.Opens} (hUS : IsAffineOpen US) {UT : T.Opens} (hUT : IsAffineOpen UT)
@@ -43,6 +49,9 @@ theorem isPushout_appLE_of_isPullback {X Y S T : Scheme.{u}} {f : T ⟶ S} {g : 
     rw [Scheme.Hom.resLE_app_top]
     simp only [Category.assoc, Iso.inv_hom_id, Category.comp_id]
 
+/--
+@isnad1 id=and.2h8v.s8.1fd2a19a1a6f from=translated src=- shape=f081ddfd vocab=328958c0
+-/
 theorem surjective_and_ker_eq_of_isPushout {R S A B : CommRingCat.{u}} {f : R ⟶ S} {g : R ⟶ A} {inl : S ⟶ B} {inr : A ⟶ B}
     (h : IsPushout f g inl inr) (hf : Function.Surjective f.hom) :
     Function.Surjective inr.hom ∧ RingHom.ker inr.hom = (RingHom.ker f.hom).map g.hom := by
@@ -110,6 +119,9 @@ theorem surjective_and_ker_eq_of_isPushout {R S A B : CommRingCat.{u}} {f : R �
 end EDaux
 
 open EDaux in
+/--
+@isnad1 id=and.3h9v.s13.b882a800b2c1 from=translated src=- shape=5a5abc9c vocab=820e6560
+-/
 theorem solution
     {A A' : CommRingCat.{u}} (φ : A ⟶ A') (hφ : Function.Surjective φ.hom)
     {Y Y' : Scheme.{u}} {g : Y' ⟶ Y} {iY : Y ⟶ Spec A} {iY' : Y' ⟶ Spec A'}

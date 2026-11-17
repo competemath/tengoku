@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=isclosed.0h3v.s5.b95828e33b32 from=translated src=- shape=11fa3805 vocab=e73c730c
+-/
 theorem solution
     {X Y : Scheme.{u}} (f : X ⟶ Y)
     [UniversallyClosed f] [UniversallyInjective f] [LocallyOfFiniteType f] [FormallyUnramified f] :

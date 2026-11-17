@@ -342,6 +342,9 @@ private theorem clause_iii (k : ℤ) (K : Set ℂ) (hK : IsCompact K) (hKs : K �
 end Ws1.HARCHR
 
 open Ws1.HARCHR in
+/--
+@isnad1 id=other.0h1v.s9.878829ec3678 from=translated src=- shape=ea311304 vocab=ef37d2cc
+-/
 theorem solution (k : ℤ) :
     let j : ℂ → ℝ → ℂ := fun w t => ∫ x : ℝ, ((((x : ℝ) : ℂ) - Complex.I) / ((Real.sqrt (1 + x ^ 2) : ℝ) : ℂ)) ^ k
           * (((1 + x ^ 2 : ℝ) : ℂ)) ^ (-w)

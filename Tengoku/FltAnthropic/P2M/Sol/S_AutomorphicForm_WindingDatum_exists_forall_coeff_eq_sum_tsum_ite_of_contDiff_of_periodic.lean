@@ -27,6 +27,9 @@ def mode {r c : ℕ} (W : (Fin r → ℝ) × (Fin c → ℝ) → ℂ) (m : Fin c
   ∫ θ in Set.pi Set.univ (fun _ : Fin c => Set.Ico (0 : ℝ) 1),
     W (x, θ) * Complex.exp (-(2 * Real.pi * Complex.I * ((∑ j, (m j : ℝ) * θ j : ℝ) : ℂ)))
 
+/--
+@isnad1 id=eq.0h3v.s4.6f857b30aa34 from=translated src=- shape=36da4e2e vocab=00059821
+-/
 theorem norm_E {c : ℕ} (m : Fin c → ℤ) (θ : Fin c → ℝ) : ‖E m θ‖ = 1 := by
   unfold E
   have h : (2 * (Real.pi : ℂ) * Complex.I * ((∑ j, (m j : ℝ) * θ j : ℝ) : ℂ)) =
@@ -34,6 +37,9 @@ theorem norm_E {c : ℕ} (m : Fin c → ℤ) (θ : Fin c → ℝ) : ‖E m θ‖
     push_cast; ring
   rw [h, Complex.norm_exp_ofReal_mul_I]
 
+/--
+@isnad1 id=eq.0h3v.s7.8844e433659d from=translated src=- shape=f4f35008 vocab=0c374d2b
+-/
 theorem prod_fourier_coe {c : ℕ} (m : Fin c → ℤ) (t : Fin c → ℝ) :
     ∏ j, fourier (m j) ((t j : ℝ) : AddCircle (1 : ℝ)) = E m t := by
   unfold E
@@ -45,11 +51,17 @@ theorem prod_fourier_coe {c : ℕ} (m : Fin c → ℤ) (t : Fin c → ℝ) :
   refine Finset.sum_congr rfl fun j _ => ?_
   ring
 
+/--
+@isnad1 id=le.0h2v.s6.f4dd1d97ea65 from=translated src=- shape=5cff9898 vocab=27c66cbe
+-/
 theorem prod_inv_one_add_abs_sq_le_one {r : ℕ} (x : Fin r → ℝ) :
     ∏ k, (1 + |x k|)⁻¹ ^ 2 ≤ (1 : ℝ) :=
   Finset.prod_le_one (fun k _ => by positivity) fun k _ =>
     pow_le_one₀ (by positivity) (inv_le_one_of_one_le₀ (by linarith [abs_nonneg (x k)]))
 
+/--
+@isnad1 id=summable.1h4v.s6.bcc29f1a44c9 from=translated src=- shape=a1d79aa5 vocab=d4e75b37
+-/
 theorem summable_prod_fin {N : ℕ} {β α : Type*} [AddCommMonoid α] [TopologicalSpace α]
     [ContinuousAdd α] (f : Fin N × β → α) (h : ∀ i, Summable fun m => f (i, m)) : Summable f := by
   have hf : f = fun b => ∑ i : Fin N, if b.1 = i then f (i, b.2) else 0 := by
@@ -74,6 +86,9 @@ theorem summable_prod_fin {N : ℕ} {β α : Type*} [AddCommMonoid α] [Topologi
   rw [hc]
   exact h i
 
+/--
+@isnad1 id=finite.2h8v.s10.447d288ea5fb from=translated src=- shape=155a1c1d vocab=5801491a
+-/
 theorem finite_fibre {r d : ℕ} (Λ : AddSubgroup ((Fin r → ℝ) × (Fin d → ℤ))) (hΛ : DiscreteTopology Λ)
     (S : AddSubgroup ((Fin r → ℝ) × (Fin d → ℤ))) (hS : S ≤ Λ)
     (k₀ n : Fin d → ℤ) (x₀ : Fin r → ℝ) (R : ℝ) :
@@ -105,6 +120,9 @@ section Inner
 
 variable {r d c : ℕ}
 
+/--
+@isnad1 id=and.8h11v.s12.583224716080 from=translated src=- shape=6e081efb vocab=d2dac5e1
+-/
 theorem inner
     (S : AddSubgroup ((Fin r → ℝ) × (Fin d → ℤ)))
     (W : (Fin r → ℝ) × (Fin c → ℝ) → ℂ) (hW : ContDiff ℝ (⊤ : ℕ∞) W)
@@ -199,6 +217,9 @@ section Main
 
 variable {r d c N : ℕ}
 
+/--
+@isnad1 id=ex.10h15v.s12.e3b126552d4d from=translated src=- shape=e0bc0041 vocab=bdb94477
+-/
 theorem main
     (Λ : AddSubgroup ((Fin r → ℝ) × (Fin d → ℤ))) (hΛ : DiscreteTopology Λ)
     (s : (Fin r → ℝ) →ₗ[ℝ] ℝ) (ω : Fin d → ℝ) (hω : ω ≠ 0)
@@ -325,6 +346,9 @@ theorem main
 
 end Main
 
+/--
+@isnad1 id=ex.3h7v.s10.e15b044993b8 from=translated src=- shape=a58476f7 vocab=1e773f8e
+-/
 theorem main_zero {r d c : ℕ}
     (Λ : AddSubgroup ((Fin r → ℝ) × (Fin d → ℤ))) (hΛ : DiscreteTopology Λ)
     (s : (Fin r → ℝ) →ₗ[ℝ] ℝ) (ω : Fin d → ℝ) (hω : ω ≠ 0)
@@ -353,6 +377,9 @@ end ANR25
 
 end
 
+/--
+@isnad1 id=ex.9h15v.s12.16d84b658d01 from=translated src=- shape=16214d23 vocab=bdb94477
+-/
 theorem solution
     {r d c N : ℕ}
     (Λ : AddSubgroup ((Fin r → ℝ) × (Fin d → ℤ))) (hΛ : DiscreteTopology Λ)

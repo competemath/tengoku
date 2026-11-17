@@ -10,6 +10,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_AutomorphicForm_RealIwasawa_continuousOn_d
 open Set MeasureTheory
 set_option autoImplicit false
 
+/--
+@isnad1 id=other.0h1v.s9.878829ec3678 from=translated src=- shape=ea311304 vocab=ef37d2cc
+-/
 theorem AutomorphicForm.RealIwasawa.continuousOn_differentiableOn_norm_le_polyDecay_weightFourierIntegral (k : ℤ) :
     let j : ℂ → ℝ → ℂ := fun w t => ∫ x : ℝ, ((((x : ℝ) : ℂ) - Complex.I) / ((Real.sqrt (1 + x ^ 2) : ℝ) : ℂ)) ^ k
           * (((1 + x ^ 2 : ℝ) : ℂ)) ^ (-w)

@@ -33,30 +33,51 @@ def jj (a b : ℕ) (w ζ : ℂ) : ℂ := ∫ z : ℂ, F a b w ζ z
 
 def cZ (ζ : ℂ) : ℂ := 2 * (Real.pi : ℂ) * Complex.I * (starRingEnd ℂ) ζ
 
+/--
+@isnad1 id=ne.1h1v.s4.6192f30b1c52 from=translated src=- shape=5aedd577 vocab=d7ed41d9
+-/
 theorem cZ_ne_zero {ζ : ℂ} (hζ : ζ ≠ 0) : cZ ζ ≠ 0 := by
   unfold cZ
   refine mul_ne_zero (mul_ne_zero (mul_ne_zero two_ne_zero ?_) Complex.I_ne_zero) ?_
   · exact Complex.ofReal_ne_zero.mpr Real.pi_ne_zero
   · exact (map_ne_zero (starRingEnd ℂ)).mpr hζ
 
+/--
+@isnad1 id=eq.0h1v.s5.dd825fa5eb78 from=translated src=- shape=71a20443 vocab=b07cb289
+-/
 theorem norm_cZ (ζ : ℂ) : ‖cZ ζ‖ = 2 * Real.pi * ‖ζ‖ := by
   unfold cZ
   rw [norm_mul, norm_mul, norm_mul, Complex.norm_I, mul_one, Complex.norm_real,
     Real.norm_of_nonneg Real.pi_pos.le, Complex.norm_conj, Complex.norm_two]
 
+/--
+@isnad1 id=lt.0h1v.s5.2c020e684e4f from=translated src=- shape=3f2b734f vocab=cecca3b4
+-/
 theorem one_add_norm_sq_pos (z : ℂ) : 0 < 1 + ‖z‖ ^ 2 := by positivity
 
+/--
+@isnad1 id=le.0h1v.s5.a297539f23d3 from=translated src=- shape=3f2b734f vocab=a046eacb
+-/
 theorem one_le_one_add_norm_sq (z : ℂ) : 1 ≤ 1 + ‖z‖ ^ 2 := by nlinarith [norm_nonneg z]
 
+/--
+@isnad1 id=eq.0h2v.s4.b3a4ad885bed from=translated src=- shape=0e981eee vocab=ddeafdfe
+-/
 theorem norm_Ec (ζ z : ℂ) : ‖Ec ζ z‖ = 1 := by
   rw [Ec, ← neg_mul, ← Complex.ofReal_neg]
   exact Complex.norm_exp_ofReal_mul_I _
 
+/--
+@isnad1 id=eq.0h5v.s6.ecc1acc01670 from=translated src=- shape=ea5b7ff1 vocab=0d403286
+-/
 theorem norm_F (a b : ℕ) (w ζ z : ℂ) : ‖F a b w ζ z‖ = ‖z‖ ^ (a + b) * (1 + ‖z‖ ^ 2) ^ (-w.re) := by
   unfold F Bc
   rw [norm_mul, norm_mul, norm_mul, norm_pow, norm_pow, Complex.norm_conj,
     Complex.norm_cpow_eq_rpow_re_of_pos (one_add_norm_sq_pos z), Complex.neg_re, norm_Ec, mul_one, pow_add]
 
+/--
+@isnad1 id=le.0h2v.s6.ff674d3f88b2 from=translated src=- shape=e44f0f5d vocab=76c00b32
+-/
 theorem norm_pow_le_bracket (m : ℕ) (z : ℂ) : ‖z‖ ^ m ≤ (1 + ‖z‖ ^ 2) ^ ((m : ℝ) / 2) := by
   have hR0 : 0 < 1 + ‖z‖ ^ 2 := one_add_norm_sq_pos z
   have h1 : ‖z‖ ≤ (1 + ‖z‖ ^ 2) ^ (1 / 2 : ℝ) := by
@@ -69,6 +90,9 @@ theorem norm_pow_le_bracket (m : ℕ) (z : ℂ) : ‖z‖ ^ m ≤ (1 + ‖z‖ ^
         rw [← Real.rpow_mul hR0.le]
         ring_nf
 
+/--
+@isnad1 id=le.1h6v.s7.4aa69a2134e9 from=translated src=- shape=706656f3 vocab=b30c0956
+-/
 theorem norm_F_le (a b : ℕ) {σ : ℝ} {w : ℂ} (hw : σ ≤ w.re) (ζ z : ℂ) :
     ‖F a b w ζ z‖ ≤ (1 + ‖z‖ ^ 2) ^ (-(2 * σ - ((a + b : ℕ) : ℝ)) / 2) := by
   rw [norm_F]
@@ -82,6 +106,9 @@ theorem norm_F_le (a b : ℕ) {σ : ℝ} {w : ℂ} (hw : σ ≤ w.re) (ζ z : �
         rw [← Real.rpow_add hR0]
         ring_nf
 
+/--
+@isnad1 id=integrab.1h3v.s7.7e6e72133f88 from=translated src=- shape=1ff2884e vocab=a9b0fae6
+-/
 theorem integrable_bracket (a b : ℕ) {σ : ℝ} (hσ : ((a + b : ℕ) : ℝ) / 2 + 1 < σ) :
     Integrable (fun z : ℂ => (1 + ‖z‖ ^ 2) ^ (-(2 * σ - ((a + b : ℕ) : ℝ)) / 2)) := by
   refine integrable_rpow_neg_one_add_norm_sq (E := ℂ) (μ := volume) ?_
@@ -89,18 +116,30 @@ theorem integrable_bracket (a b : ℕ) {σ : ℝ} (hσ : ((a + b : ℕ) : ℝ) /
   push_cast at hσ ⊢
   linarith
 
+/--
+@isnad1 id=continuo.0h0v.s4.1d579f9b4ed6 from=translated src=- shape=e3d48bcb vocab=9ad37309
+-/
 theorem continuous_Bc : Continuous Bc :=
   Complex.continuous_ofReal.comp (continuous_const.add (continuous_norm.pow 2))
 
+/--
+@isnad1 id=mem.0h1v.s3.73027b496303 from=translated src=- shape=ca401064 vocab=9cdac337
+-/
 theorem Bc_mem_slitPlane (z : ℂ) : Bc z ∈ Complex.slitPlane :=
   Complex.ofReal_mem_slitPlane.2 (one_add_norm_sq_pos z)
 
+/--
+@isnad1 id=continuo.0h1v.s5.afbae09a7ae2 from=translated src=- shape=f736e2c1 vocab=4f80406f
+-/
 theorem continuous_Ec (ζ : ℂ) : Continuous (Ec ζ) := by
   unfold Ec
   have h1 : Continuous (fun z : ℂ => (4 * Real.pi * (ζ * z).re : ℝ)) :=
     continuous_const.mul (Complex.continuous_re.comp (continuous_const.mul continuous_id))
   exact Complex.continuous_exp.comp (((Complex.continuous_ofReal.comp h1).mul continuous_const).neg)
 
+/--
+@isnad1 id=continuo.0h4v.s5.70ca14e3fedb from=translated src=- shape=8113348d vocab=4541e806
+-/
 theorem continuous_F (a b : ℕ) (w ζ : ℂ) : Continuous (fun z => F a b w ζ z) := by
   have h1 : Continuous (fun z : ℂ => z ^ a * conj z ^ b) :=
     (continuous_id.pow a).mul (Complex.continuous_conj.pow b)
@@ -108,6 +147,9 @@ theorem continuous_F (a b : ℕ) (w ζ : ℂ) : Continuous (fun z => F a b w ζ 
     continuous_Bc.cpow continuous_const Bc_mem_slitPlane
   exact (h1.mul h2).mul (continuous_Ec ζ)
 
+/--
+@isnad1 id=integrab.1h4v.s6.e117c124673a from=translated src=- shape=92a91aed vocab=7db7c3ca
+-/
 theorem integrable_F (a b : ℕ) {w : ℂ} (hw : ((a + b : ℕ) : ℝ) / 2 + 1 < w.re) (ζ : ℂ) :
     Integrable (fun z => F a b w ζ z) :=
   (integrable_bracket a b hw).mono' (continuous_F a b w ζ).aestronglyMeasurable
@@ -128,29 +170,56 @@ def cX (ζ : ℂ) : ℂ := ((4 * Real.pi * ζ.re : ℝ) : ℂ) * Complex.I
 
 def cY (ζ : ℂ) : ℂ := ((4 * Real.pi * ζ.im : ℝ) : ℂ) * Complex.I
 
+/--
+@isnad1 id=eq.0h2v.s4.75528f14e0de from=translated src=- shape=60689d7d vocab=8ee53555
+-/
 theorem mk_eq (x y : ℝ) : (⟨x, y⟩ : ℂ) = (x : ℂ) + (y : ℂ) * Complex.I := Complex.mk_eq_add_mul_I x y
 
+/--
+@isnad1 id=eq.0h2v.s5.8a6d88aad9eb from=translated src=- shape=bc238a59 vocab=1feee932
+-/
 theorem conj_mk' (x y : ℝ) : conj (⟨x, y⟩ : ℂ) = (x : ℂ) - (y : ℂ) * Complex.I := by
   rw [mk_eq, map_add, map_mul, Complex.conj_ofReal, Complex.conj_ofReal, Complex.conj_I]; ring
 
+/--
+@isnad1 id=eq.0h2v.s6.6f51c785e0c5 from=translated src=- shape=9dd1f078 vocab=193323eb
+-/
 theorem norm_sq_mk (x y : ℝ) : ‖(⟨x, y⟩ : ℂ)‖ ^ 2 = x ^ 2 + y ^ 2 := by
   rw [Complex.sq_norm, Complex.normSq_mk]; ring
 
+/--
+@isnad1 id=eq.0h2v.s6.9ba1996ef47c from=translated src=- shape=816c3bf5 vocab=8c684617
+-/
 theorem Bc_mk (x y : ℝ) : Bc ⟨x, y⟩ = (((1 + (x ^ 2 + y ^ 2)) : ℝ) : ℂ) := by
   rw [Bc, norm_sq_mk]
 
+/--
+@isnad1 id=eq.0h3v.s5.89523ffe1a3a from=translated src=- shape=60cdbdeb vocab=2d41a00e
+-/
 theorem re_mul_mk (ζ : ℂ) (x y : ℝ) : (ζ * ⟨x, y⟩).re = ζ.re * x - ζ.im * y := by
   simp [Complex.mul_re]
 
+/--
+@isnad1 id=eq.0h3v.s6.42f421328320 from=translated src=- shape=79680578 vocab=b7588a55
+-/
 theorem Ec_mk (ζ : ℂ) (x y : ℝ) :
     Ec ζ ⟨x, y⟩ = Complex.exp (-(((4 * Real.pi * (ζ.re * x - ζ.im * y) : ℝ) : ℂ) * Complex.I)) := by
   rw [Ec, re_mul_mk]
 
+/--
+@isnad1 id=hasderiv.0h1v.s6.b7918fe4771e from=translated src=- shape=93588a94 vocab=1a38dff6
+-/
 theorem hasDerivAt_ofReal (x : ℝ) : HasDerivAt (fun t : ℝ => (t : ℂ)) 1 x := by
   simpa using (hasDerivAt_id x).ofReal_comp
 
+/--
+@isnad1 id=lt.0h2v.s6.a227054943be from=translated src=- shape=c732094e vocab=65df512c
+-/
 theorem one_add_sq_sq_pos (x y : ℝ) : 0 < 1 + (x ^ 2 + y ^ 2) := by positivity
 
+/--
+@isnad1 id=hasderiv.0h5v.s6.e2853385ba4c from=translated src=- shape=52a7fb61 vocab=d038a6cb
+-/
 theorem hasDerivAt_G_x (a b : ℕ) (w : ℂ) (x y : ℝ) :
     HasDerivAt (fun t : ℝ => G a b w ⟨t, y⟩) (Gx a b w ⟨x, y⟩) x := by
   have hP := (hasDerivAt_pow a (((x : ℝ) : ℂ) + (y : ℂ) * Complex.I)).comp x
@@ -177,6 +246,9 @@ theorem hasDerivAt_G_x (a b : ℕ) (w : ℂ) (x y : ℝ) :
   simp only [Function.comp_apply, Pi.mul_apply, Gx]
   rw [conj_mk', Bc_mk, mk_eq]
 
+/--
+@isnad1 id=hasderiv.0h5v.s6.a2d74b9fe478 from=translated src=- shape=c428f87f vocab=be675d23
+-/
 theorem hasDerivAt_G_y (a b : ℕ) (w : ℂ) (x y : ℝ) :
     HasDerivAt (fun t : ℝ => G a b w ⟨x, t⟩) (Gy a b w ⟨x, y⟩) y := by
   have hP := (hasDerivAt_pow a (((x : ℝ) : ℂ) + (y : ℂ) * Complex.I)).comp y
@@ -203,6 +275,9 @@ theorem hasDerivAt_G_y (a b : ℕ) (w : ℂ) (x y : ℝ) :
   simp only [Function.comp_apply, Pi.mul_apply, Gy]
   rw [conj_mk', Bc_mk, mk_eq]
 
+/--
+@isnad1 id=hasderiv.0h3v.s6.1c457c43d39e from=translated src=- shape=6e18ce3c vocab=b0e3d83e
+-/
 theorem hasDerivAt_Ec_x (ζ : ℂ) (x y : ℝ) :
     HasDerivAt (fun t : ℝ => Ec ζ ⟨t, y⟩) (Ec ζ ⟨x, y⟩ * (-cX ζ)) x := by
   have h0 : HasDerivAt (fun t : ℝ => 4 * Real.pi * (ζ.re * t - ζ.im * y)) (4 * Real.pi * ζ.re) x := by
@@ -217,6 +292,9 @@ theorem hasDerivAt_Ec_x (ζ : ℂ) (x y : ℝ) :
   refine h1.cexp.congr_deriv ?_
   simp only [cX]
 
+/--
+@isnad1 id=hasderiv.0h3v.s6.007c0d04459e from=translated src=- shape=110adbc4 vocab=02928a1e
+-/
 theorem hasDerivAt_Ec_y (ζ : ℂ) (x y : ℝ) :
     HasDerivAt (fun t : ℝ => Ec ζ ⟨x, t⟩) (Ec ζ ⟨x, y⟩ * cY ζ) y := by
   have h0 : HasDerivAt (fun t : ℝ => 4 * Real.pi * (ζ.re * x - ζ.im * t)) (4 * Real.pi * (-ζ.im)) y := by
@@ -233,15 +311,27 @@ theorem hasDerivAt_Ec_y (ζ : ℂ) (x y : ℝ) :
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h1v.s6.f83aa2d9eaa5 from=translated src=- shape=73c41b61 vocab=c385d05c
+-/
 theorem two_re_eq (z : ℂ) : (((2 * z.re : ℝ)) : ℂ) = z + conj z :=
   Complex.ext (by simp [two_mul]) (by simp)
 
+/--
+@isnad1 id=eq.0h1v.s6.56a720be1458 from=translated src=- shape=edefd814 vocab=02ffbe28
+-/
 theorem two_im_eq (z : ℂ) : (((2 * z.im : ℝ)) : ℂ) = -Complex.I * (z - conj z) :=
   Complex.ext (by simp [two_mul]) (by simp)
 
+/--
+@isnad1 id=eq.0h2v.s5.04bc87829929 from=translated src=- shape=89133ad3 vocab=4482045a
+-/
 theorem Bc_cpow_neg_add_one (w z : ℂ) : Bc z ^ (-(w + 1)) = Bc z ^ (-w - 1) := by
   congr 1; ring
 
+/--
+@isnad1 id=eq.0h5v.s7.e2f453ec1325 from=translated src=- shape=24a309a3 vocab=1205edf3
+-/
 theorem GxEc_eq (a b : ℕ) (w ζ z : ℂ) : Gx a b w z * Ec ζ z =
     (a : ℂ) * F (a - 1) b w ζ z + (b : ℂ) * F a (b - 1) w ζ z
       - w * (F (a + 1) b (w + 1) ζ z + F a (b + 1) (w + 1) ζ z) := by
@@ -249,6 +339,9 @@ theorem GxEc_eq (a b : ℕ) (w ζ z : ℂ) : Gx a b w z * Ec ζ z =
   simp only [Gx, F, Bc_cpow_neg_add_one, pow_succ]
   linear_combination (-w * z ^ a * conj z ^ b * Bc z ^ (-w - 1) * Ec ζ z) * hre
 
+/--
+@isnad1 id=eq.0h5v.s7.2fdc7bff591a from=translated src=- shape=47db2402 vocab=c76fd605
+-/
 theorem GyEc_eq (a b : ℕ) (w ζ z : ℂ) : Gy a b w z * Ec ζ z =
     Complex.I * (a : ℂ) * F (a - 1) b w ζ z - Complex.I * (b : ℂ) * F a (b - 1) w ζ z
       + Complex.I * w * (F (a + 1) b (w + 1) ζ z - F a (b + 1) (w + 1) ζ z) := by
@@ -256,6 +349,9 @@ theorem GyEc_eq (a b : ℕ) (w ζ z : ℂ) : Gy a b w z * Ec ζ z =
   simp only [Gy, F, Bc_cpow_neg_add_one, pow_succ]
   linear_combination (-w * z ^ a * conj z ^ b * Bc z ^ (-w - 1) * Ec ζ z) * him
 
+/--
+@isnad1 id=eq.0h5v.s7.f92c6c84e7cb from=translated src=- shape=5dea1ce7 vocab=a5a04982
+-/
 theorem comb_eq (a b : ℕ) (w ζ z : ℂ) : (Gx a b w z + Complex.I * Gy a b w z) * Ec ζ z =
     2 * (b : ℂ) * F a (b - 1) w ζ z - 2 * w * F (a + 1) b (w + 1) ζ z := by
   have hI : Complex.I * Complex.I = -1 := Complex.I_mul_I
@@ -263,28 +359,43 @@ theorem comb_eq (a b : ℕ) (w ζ z : ℂ) : (Gx a b w z + Complex.I * Gy a b w 
   linear_combination ((a : ℂ) * F (a - 1) b w ζ z - (b : ℂ) * F a (b - 1) w ζ z
     + w * (F (a + 1) b (w + 1) ζ z - F a (b + 1) (w + 1) ζ z)) * hI
 
+/--
+@isnad1 id=lt.1h3v.s6.8ebfb93a671d from=translated src=- shape=e0e493c4 vocab=7affd5db
+-/
 theorem thr_a_sub (a b : ℕ) {w : ℂ} (hw : ((a + b : ℕ) : ℝ) / 2 + 1 < w.re) :
     ((a - 1 + b : ℕ) : ℝ) / 2 + 1 < w.re := by
   have : ((a - 1 + b : ℕ) : ℝ) ≤ ((a + b : ℕ) : ℝ) := by exact_mod_cast (by omega : a - 1 + b ≤ a + b)
   linarith
 
+/--
+@isnad1 id=lt.1h3v.s6.273344d39716 from=translated src=- shape=0973fc3a vocab=7affd5db
+-/
 theorem thr_b_sub (a b : ℕ) {w : ℂ} (hw : ((a + b : ℕ) : ℝ) / 2 + 1 < w.re) :
     ((a + (b - 1) : ℕ) : ℝ) / 2 + 1 < w.re := by
   have : ((a + (b - 1) : ℕ) : ℝ) ≤ ((a + b : ℕ) : ℝ) := by exact_mod_cast (by omega : a + (b - 1) ≤ a + b)
   linarith
 
+/--
+@isnad1 id=lt.1h3v.s6.51d3683176ed from=translated src=- shape=c632b5b9 vocab=bc29241d
+-/
 theorem thr_a_add (a b : ℕ) {w : ℂ} (hw : ((a + b : ℕ) : ℝ) / 2 + 1 < w.re) :
     ((a + 1 + b : ℕ) : ℝ) / 2 + 1 < (w + 1).re := by
   simp only [Complex.add_re, Complex.one_re]
   push_cast at hw ⊢
   linarith
 
+/--
+@isnad1 id=lt.1h3v.s6.00831d6960e5 from=translated src=- shape=40dd461a vocab=bc29241d
+-/
 theorem thr_b_add (a b : ℕ) {w : ℂ} (hw : ((a + b : ℕ) : ℝ) / 2 + 1 < w.re) :
     ((a + (b + 1) : ℕ) : ℝ) / 2 + 1 < (w + 1).re := by
   simp only [Complex.add_re, Complex.one_re]
   push_cast at hw ⊢
   linarith
 
+/--
+@isnad1 id=integrab.1h4v.s6.5c0d2fd200c5 from=translated src=- shape=4d78049a vocab=6e89d679
+-/
 theorem integrable_GxEc (a b : ℕ) {w : ℂ} (hw : ((a + b : ℕ) : ℝ) / 2 + 1 < w.re) (ζ : ℂ) :
     Integrable (fun z => Gx a b w z * Ec ζ z) := by
   simp_rw [GxEc_eq]
@@ -292,6 +403,9 @@ theorem integrable_GxEc (a b : ℕ) {w : ℂ} (hw : ((a + b : ℕ) : ℝ) / 2 + 
     ((integrable_F a (b - 1) (thr_b_sub a b hw) ζ).const_mul _)).sub
     (((integrable_F (a + 1) b (thr_a_add a b hw) ζ).add (integrable_F a (b + 1) (thr_b_add a b hw) ζ)).const_mul _)
 
+/--
+@isnad1 id=integrab.1h4v.s6.ec969972c325 from=translated src=- shape=4d78049a vocab=a37c4365
+-/
 theorem integrable_GyEc (a b : ℕ) {w : ℂ} (hw : ((a + b : ℕ) : ℝ) / 2 + 1 < w.re) (ζ : ℂ) :
     Integrable (fun z => Gy a b w z * Ec ζ z) := by
   simp_rw [GyEc_eq]
@@ -299,11 +413,17 @@ theorem integrable_GyEc (a b : ℕ) {w : ℂ} (hw : ((a + b : ℕ) : ℝ) / 2 + 
     ((integrable_F a (b - 1) (thr_b_sub a b hw) ζ).const_mul _)).add
     (((integrable_F (a + 1) b (thr_a_add a b hw) ζ).sub (integrable_F a (b + 1) (thr_b_add a b hw) ζ)).const_mul _)
 
+/--
+@isnad1 id=le.0h6v.s7.0459517cb61c from=translated src=- shape=d9a22267 vocab=1d32db6d
+-/
 theorem norm_F_mk_le (a b : ℕ) (w ζ : ℂ) (x y : ℝ) :
     ‖F a b w ζ ⟨x, y⟩‖ ≤ (1 + (x ^ 2 + y ^ 2)) ^ (-(2 * w.re - ((a + b : ℕ) : ℝ)) / 2) := by
   have h := norm_F_le a b (le_rfl : w.re ≤ w.re) ζ ⟨x, y⟩
   rwa [norm_sq_mk] at h
 
+/--
+@isnad1 id=and.1h5v.s7.f9ade3ca79f1 from=translated src=- shape=04c28d1c vocab=b0e2f332
+-/
 theorem tendsto_F_x (a b : ℕ) {w : ℂ} (hw : ((a + b : ℕ) : ℝ) / 2 + 1 < w.re) (ζ : ℂ) (y : ℝ) :
     Filter.Tendsto (fun x : ℝ => F a b w ζ ⟨x, y⟩) Filter.atBot (𝓝 0) ∧
     Filter.Tendsto (fun x : ℝ => F a b w ζ ⟨x, y⟩) Filter.atTop (𝓝 0) := by
@@ -329,6 +449,9 @@ theorem tendsto_F_x (a b : ℕ) {w : ℂ} (hw : ((a + b : ℕ) : ℝ) / 2 + 1 < 
   · refine squeeze_zero_norm (fun x => (norm_F_mk_le a b w ζ x y).trans (le_of_eq (e x))) ?_
     exact hr.comp htop
 
+/--
+@isnad1 id=and.1h5v.s7.3a332ce927ac from=translated src=- shape=c7bd1b17 vocab=b0e2f332
+-/
 theorem tendsto_F_y (a b : ℕ) {w : ℂ} (hw : ((a + b : ℕ) : ℝ) / 2 + 1 < w.re) (ζ : ℂ) (x : ℝ) :
     Filter.Tendsto (fun y : ℝ => F a b w ζ ⟨x, y⟩) Filter.atBot (𝓝 0) ∧
     Filter.Tendsto (fun y : ℝ => F a b w ζ ⟨x, y⟩) Filter.atTop (𝓝 0) := by
@@ -354,15 +477,24 @@ theorem tendsto_F_y (a b : ℕ) {w : ℂ} (hw : ((a + b : ℕ) : ℝ) / 2 + 1 < 
   · refine squeeze_zero_norm (fun y => (norm_F_mk_le a b w ζ x y).trans (le_of_eq (e y))) ?_
     exact hr.comp htop
 
+/--
+@isnad1 id=measurep.0h0v.s6.3fe4208aad91 from=translated src=- shape=3387d7ec vocab=afdab508
+-/
 theorem mp_symm : MeasurePreserving (⇑Complex.measurableEquivRealProd.symm)
     (volume : Measure (ℝ × ℝ)) (volume : Measure ℂ) :=
   Complex.volume_preserving_equiv_real_prod.symm Complex.measurableEquivRealProd
 
+/--
+@isnad1 id=eq.0h1v.s6.a7de53dc9f71 from=translated src=- shape=f303cc39 vocab=ab833c4d
+-/
 theorem integral_eq_prod (g : ℂ → ℂ) : ∫ z, g z = ∫ p : ℝ × ℝ, g ⟨p.1, p.2⟩ := by
   have h := mp_symm.integral_comp' g
   simp_rw [Complex.measurableEquivRealProd_symm_apply] at h
   exact h.symm
 
+/--
+@isnad1 id=iff.0h1v.s6.7cde29573f81 from=translated src=- shape=53404787 vocab=31e20364
+-/
 theorem integrable_prod_iff (g : ℂ → ℂ) :
     Integrable (fun p : ℝ × ℝ => g ⟨p.1, p.2⟩) ↔ Integrable g := by
   have h := mp_symm.integrable_comp_emb Complex.measurableEquivRealProd.symm.measurableEmbedding (g := g)
@@ -371,6 +503,9 @@ theorem integrable_prod_iff (g : ℂ → ℂ) :
   rw [e] at h
   exact h
 
+/--
+@isnad1 id=eq.1h4v.s6.35ae787b447b from=translated src=- shape=d414eb3e vocab=ac23e6ae
+-/
 theorem ibp_x (a b : ℕ) {w : ℂ} (hw : ((a + b : ℕ) : ℝ) / 2 + 1 < w.re) (ζ : ℂ) :
     cX ζ * jj a b w ζ = ∫ z, Gx a b w z * Ec ζ z := by
   have hF' : Integrable (fun z => F a b w ζ z * (-cX ζ)) := (integrable_F a b hw ζ).mul_const _
@@ -411,6 +546,9 @@ theorem ibp_x (a b : ℕ) {w : ℂ} (hw : ((a + b : ℕ) : ℝ) / 2 + 1 < w.re) 
     simp only [F, G]; ring
   rw [e3, ibp, neg_neg]
 
+/--
+@isnad1 id=eq.1h4v.s6.2307ee3a7c7e from=translated src=- shape=603358ab vocab=abb3b0ee
+-/
 theorem ibp_y (a b : ℕ) {w : ℂ} (hw : ((a + b : ℕ) : ℝ) / 2 + 1 < w.re) (ζ : ℂ) :
     -cY ζ * jj a b w ζ = ∫ z, Gy a b w z * Ec ζ z := by
   have hF' : Integrable (fun z => F a b w ζ z * cY ζ) := (integrable_F a b hw ζ).mul_const _
@@ -451,15 +589,24 @@ theorem ibp_y (a b : ℕ) {w : ℂ} (hw : ((a + b : ℕ) : ℝ) / 2 + 1 < w.re) 
     simp only [F, G]; ring
   rw [e3, ibp, neg_neg]
 
+/--
+@isnad1 id=eq.0h1v.s5.f9da18b96400 from=translated src=- shape=c742f5ea vocab=2bccb050
+-/
 theorem conj_eq_re_sub_im (ζ : ℂ) : conj ζ = (ζ.re : ℂ) - (ζ.im : ℂ) * Complex.I :=
   Complex.ext (by simp) (by simp)
 
+/--
+@isnad1 id=eq.0h1v.s5.969cdaf8711b from=translated src=- shape=cfe93f19 vocab=dcf2006c
+-/
 theorem two_cZ (ζ : ℂ) : 2 * cZ ζ = cX ζ + Complex.I * (-cY ζ) := by
   simp only [cZ, cX, cY]
   rw [show (starRingEnd ℂ) ζ = conj ζ from rfl, conj_eq_re_sub_im]
   push_cast
   ring
 
+/--
+@isnad1 id=eq.1h4v.s7.914f22ade664 from=translated src=- shape=bc2b35a3 vocab=609790e3
+-/
 theorem recur (a b : ℕ) {w : ℂ} (hw : ((a + b : ℕ) : ℝ) / 2 + 1 < w.re) (ζ : ℂ) :
     cZ ζ * jj a b w ζ = (b : ℂ) * jj a (b - 1) w ζ - w * jj (a + 1) b (w + 1) ζ := by
   have hGx := integrable_GxEc a b hw ζ
@@ -483,6 +630,9 @@ theorem recur (a b : ℕ) {w : ℂ} (hw : ((a + b : ℕ) : ℝ) / 2 + 1 < w.re) 
   have h := h1.trans (h2.trans h3)
   linear_combination (2 : ℂ)⁻¹ * h
 
+/--
+@isnad1 id=and.0h2v.s8.201d40c4251f from=translated src=- shape=ebbfd3d8 vocab=b05f0cae
+-/
 theorem base (a b : ℕ) :
     ContinuousOn (fun p : ℂ × ℂ => jj a b p.1 p.2) ({w : ℂ | ((a + b : ℕ) : ℝ) / 2 + 1 < w.re} ×ˢ Set.univ) ∧
     (∀ ζ : ℂ, DifferentiableOn ℂ (fun w : ℂ => jj a b w ζ) {w : ℂ | ((a + b : ℕ) : ℝ) / 2 + 1 < w.re}) ∧
@@ -492,21 +642,36 @@ theorem base (a b : ℕ) :
 
 def H (n a b : ℕ) : Set ℂ := {w : ℂ | ((a + b : ℕ) : ℝ) / 2 + 1 - (n : ℝ) / 2 < w.re}
 
+/--
+@isnad1 id=isopen.0h3v.s4.78409dfdeaad from=translated src=- shape=0e1038f4 vocab=dca91ce4
+-/
 theorem isOpen_H (n a b : ℕ) : IsOpen (H n a b) := isOpen_lt continuous_const Complex.continuous_re
 
+/--
+@isnad1 id=eq.0h2v.s6.ab13b6a82d97 from=translated src=- shape=bca4b623 vocab=d01ec467
+-/
 theorem H_zero (a b : ℕ) : H 0 a b = {w : ℂ | ((a + b : ℕ) : ℝ) / 2 + 1 < w.re} := by
   ext w; simp [H]
 
+/--
+@isnad1 id=mem.1h4v.s6.9e8ac62ac528 from=translated src=- shape=c4bd9ae6 vocab=434154aa
+-/
 theorem add_one_mem_H {n a b : ℕ} {w : ℂ} (hw : w ∈ H (n + 1) a b) : w + 1 ∈ H n (a + 1) b := by
   simp only [H, mem_ofPred_eq, Complex.add_re, Complex.one_re] at hw ⊢
   push_cast at hw ⊢
   linarith
 
+/--
+@isnad1 id=mem.1h4v.s5.18f8baff25ce from=translated src=- shape=2099ef36 vocab=434154aa
+-/
 theorem pred_mem_H {n a b : ℕ} {w : ℂ} (hw : w ∈ H (n + 1) a (b + 1)) : w ∈ H n a b := by
   simp only [H, mem_ofPred_eq] at hw ⊢
   push_cast at hw ⊢
   linarith
 
+/--
+@isnad1 id=le.1h4v.s4.2647f51c3e8c from=translated src=- shape=5ca0126e vocab=261fee05
+-/
 theorem H_mono {m n : ℕ} (h : m ≤ n) (a b : ℕ) : H m a b ⊆ H n a b := by
   intro w hw
   simp only [H, mem_ofPred_eq] at hw ⊢
@@ -517,11 +682,20 @@ def J : ℕ → ℕ → ℕ → ℂ → ℂ → ℂ
   | 0, a, b, w, ζ => jj a b w ζ
   | n + 1, a, b, w, ζ => (cZ ζ)⁻¹ * ((b : ℂ) * J n a (b - 1) w ζ - w * J n (a + 1) b (w + 1) ζ)
 
+/--
+@isnad1 id=eq.0h4v.s4.b65eadba135d from=translated src=- shape=8c981ba2 vocab=53b55955
+-/
 theorem J_zero (a b : ℕ) (w ζ : ℂ) : J 0 a b w ζ = jj a b w ζ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.506f204577a9 from=translated src=- shape=096eb008 vocab=81efc33a
+-/
 theorem J_succ (n a b : ℕ) (w ζ : ℂ) :
     J (n + 1) a b w ζ = (cZ ζ)⁻¹ * ((b : ℂ) * J n a (b - 1) w ζ - w * J n (a + 1) b (w + 1) ζ) := rfl
 
+/--
+@isnad1 id=eq.2h5v.s5.51e06aa3ef9a from=translated src=- shape=21a3eaad vocab=8448b142
+-/
 theorem J_succ_eq (n : ℕ) : ∀ (a b : ℕ) (w ζ : ℂ), w ∈ H n a b → ζ ≠ 0 →
     J (n + 1) a b w ζ = J n a b w ζ := by
   induction n with
@@ -541,6 +715,9 @@ theorem J_succ_eq (n : ℕ) : ∀ (a b : ℕ) (w ζ : ℂ), w ∈ H n a b → ζ
       rw [Nat.add_sub_cancel] at ⊢
       rw [ih a b' w ζ (pred_mem_H hw) hζ, ih (a + 1) (b' + 1) (w + 1) ζ (add_one_mem_H hw) hζ]
 
+/--
+@isnad1 id=eq.3h6v.s5.fcf7fdad6ab7 from=translated src=- shape=6d6cd917 vocab=35d95896
+-/
 theorem J_eq_of_le {m n : ℕ} (h : m ≤ n) (a b : ℕ) (w ζ : ℂ) (hw : w ∈ H m a b) (hζ : ζ ≠ 0) :
     J n a b w ζ = J m a b w ζ := by
   obtain ⟨d, rfl⟩ := Nat.exists_eq_add_of_le h
@@ -550,6 +727,9 @@ theorem J_eq_of_le {m n : ℕ} (h : m ≤ n) (a b : ℕ) (w ζ : ℂ) (hw : w �
     rw [show m + (d + 1) = (m + d) + 1 from by ring, J_succ_eq (m + d) a b w ζ (H_mono (Nat.le_add_right m d) a b hw) hζ]
     exact ih (Nat.le_add_right m d)
 
+/--
+@isnad1 id=differen.1h4v.s6.9f75bbae6b55 from=translated src=- shape=3ea9f3bb vocab=7743fc60
+-/
 theorem J_differentiableOn (n : ℕ) : ∀ (a b : ℕ) (ζ : ℂ), ζ ≠ 0 →
     DifferentiableOn ℂ (fun w => J n a b w ζ) (H n a b) := by
   induction n with
@@ -570,10 +750,16 @@ theorem J_differentiableOn (n : ℕ) : ∀ (a b : ℕ) (ζ : ℂ), ζ ≠ 0 →
       (H (n + 1) a b)
     exact (h1.sub (differentiableOn_id.mul h2)).const_mul _
 
+/--
+@isnad1 id=continuo.0h0v.s4.d24f176e750e from=translated src=- shape=e3d48bcb vocab=49eb7315
+-/
 theorem continuous_cZ : Continuous cZ := by
   unfold cZ
   exact continuous_const.mul (continuous_star)
 
+/--
+@isnad1 id=continuo.0h3v.s6.6511886aff6c from=translated src=- shape=19386925 vocab=c94856ce
+-/
 theorem J_continuousOn (n : ℕ) : ∀ a b : ℕ,
     ContinuousOn (fun p : ℂ × ℂ => J n a b p.1 p.2) (H n a b ×ˢ {ζ : ℂ | ζ ≠ 0}) := by
   induction n with
@@ -601,6 +787,9 @@ theorem J_continuousOn (n : ℕ) : ∀ a b : ℕ,
       - p.1 * J n (a + 1) b (p.1 + 1) p.2)) (H (n + 1) a b ×ˢ {ζ : ℂ | ζ ≠ 0})
     exact hc.mul (h1.sub (continuous_fst.continuousOn.mul h2))
 
+/--
+@isnad1 id=le.1h1v.s5.8e2039c9da56 from=translated src=- shape=82284ddd vocab=9685f192
+-/
 theorem norm_inv_cZ_le {ζ : ℂ} (hζ : ζ ≠ 0) : ‖(cZ ζ)⁻¹‖ ≤ max 1 ‖ζ‖⁻¹ := by
   rw [norm_inv, norm_cZ]
   refine le_trans ?_ (le_max_right _ _)
@@ -609,6 +798,9 @@ theorem norm_inv_cZ_le {ζ : ℂ} (hζ : ζ ≠ 0) : ‖(cZ ζ)⁻¹‖ ≤ max 
   have : (1 : ℝ) ≤ 2 * Real.pi := by have := Real.two_le_pi; linarith
   nlinarith
 
+/--
+@isnad1 id=ex.2h4v.s7.81ccc577bc22 from=translated src=- shape=c25c489a vocab=f997227e
+-/
 theorem J_bound (n : ℕ) : ∀ (a b : ℕ) (K : Set ℂ), IsCompact K → K ⊆ H n a b → ∃ A : ℕ, ∀ N : ℕ,
     ∃ C : ℝ, 0 < C ∧ ∀ w ∈ K, ∀ ζ : ℂ, ζ ≠ 0 →
       ‖J n a b w ζ‖ ≤ C * (max 1 ‖ζ‖⁻¹) ^ A * (1 + ‖ζ‖) ^ (-(N : ℝ)) := by
@@ -684,6 +876,9 @@ theorem J_bound (n : ℕ) : ∀ (a b : ℕ) (K : Set ℂ), IsCompact K → K ⊆
 
 def nw (a b : ℕ) (w : ℂ) : ℕ := ⌈((a + b : ℕ) : ℝ) + 2 - 2 * w.re⌉₊ + 1
 
+/--
+@isnad1 id=mem.0h3v.s4.235c858f6ac0 from=translated src=- shape=73d37bf0 vocab=6bea847f
+-/
 theorem mem_H_nw (a b : ℕ) (w : ℂ) : w ∈ H (nw a b w) a b := by
   simp only [H, nw, mem_ofPred_eq]
   have := Nat.le_ceil (((a + b : ℕ) : ℝ) + 2 - 2 * w.re)
@@ -692,12 +887,18 @@ theorem mem_H_nw (a b : ℕ) (w : ℂ) : w ∈ H (nw a b w) a b := by
 
 def Jg (a b : ℕ) (w ζ : ℂ) : ℂ := J (nw a b w) a b w ζ
 
+/--
+@isnad1 id=eq.2h5v.s5.0db4c63baf25 from=translated src=- shape=c79c69d1 vocab=29540706
+-/
 theorem Jg_eq (a b : ℕ) {n : ℕ} {w : ℂ} (hw : w ∈ H n a b) {ζ : ℂ} (hζ : ζ ≠ 0) : Jg a b w ζ = J n a b w ζ := by
   have h1 := J_eq_of_le (le_max_left (nw a b w) n) a b w ζ (mem_H_nw a b w) hζ
   have h2 := J_eq_of_le (le_max_right (nw a b w) n) a b w ζ hw hζ
   unfold Jg
   exact h1.symm.trans h2
 
+/--
+@isnad1 id=analytic.1h3v.s5.01addde27fab from=translated src=- shape=a311a951 vocab=fa4c01f3
+-/
 theorem clause_a (a b : ℕ) (ζ : ℂ) (hζ : ζ ≠ 0) : AnalyticOnNhd ℂ (fun w : ℂ => Jg a b w ζ) Set.univ := by
   refine DifferentiableOn.analyticOnNhd (fun w₀ _ => ?_) isOpen_univ
   apply DifferentiableAt.differentiableWithinAt
@@ -707,11 +908,17 @@ theorem clause_a (a b : ℕ) (ζ : ℂ) (hζ : ζ ≠ 0) : AnalyticOnNhd ℂ (fu
   refine hd.congr_of_eventuallyEq ?_
   exact Filter.eventually_of_mem hmem (fun w hw => Jg_eq a b hw hζ)
 
+/--
+@isnad1 id=eq.2h4v.s6.0e348b27e3d3 from=translated src=- shape=df621bc5 vocab=cd28ad11
+-/
 theorem clause_b (a b : ℕ) (w ζ : ℂ) (hw : ((a + b : ℕ) : ℝ) / 2 + 1 < w.re) (hζ : ζ ≠ 0) :
     Jg a b w ζ = jj a b w ζ := by
   have hw0 : w ∈ H 0 a b := by rw [H_zero]; exact hw
   rw [Jg_eq a b hw0 hζ, J_zero]
 
+/--
+@isnad1 id=continuo.0h2v.s6.e350fdfc864d from=translated src=- shape=88de36ff vocab=bdb67608
+-/
 theorem clause_c (a b : ℕ) :
     ContinuousOn (fun p : ℂ × ℂ => Jg a b p.1 p.2) (Set.univ ×ˢ {ζ : ℂ | ζ ≠ 0}) := by
   intro p hp
@@ -723,6 +930,9 @@ theorem clause_c (a b : ℕ) :
   refine (hc.congr_of_eventuallyEq ?_).continuousWithinAt
   exact Filter.eventually_of_mem hmem (fun q hq => Jg_eq a b hq.1 hq.2)
 
+/--
+@isnad1 id=ex.1h3v.s7.541289dd35d0 from=translated src=- shape=18aeb14f vocab=9637437c
+-/
 theorem clause_d (a b : ℕ) (K : Set ℂ) (hK : IsCompact K) :
     ∃ A : ℕ, ∀ N : ℕ, ∃ C : ℝ, 0 < C ∧ ∀ w ∈ K, ∀ ζ : ℂ, ζ ≠ 0 →
       ‖Jg a b w ζ‖ ≤ C * (max 1 ‖ζ‖⁻¹) ^ A * (1 + ‖ζ‖) ^ (-(N : ℝ)) := by
@@ -744,6 +954,9 @@ end Ws31.ArchC
 
 end
 
+/--
+@isnad1 id=other.0h2v.s9.47b77476cc27 from=translated src=- shape=ec60d0d6 vocab=d01dd82e
+-/
 theorem solution (a b : ℕ) :
     let j : ℂ → ℂ → ℂ := fun w ζ => ∫ z : ℂ, z ^ a * (starRingEnd ℂ) z ^ b * (((1 + ‖z‖ ^ 2 : ℝ) : ℂ)) ^ (-w)
           * Complex.exp (-(((4 * Real.pi * (ζ * z).re : ℝ) : ℂ) * Complex.I))

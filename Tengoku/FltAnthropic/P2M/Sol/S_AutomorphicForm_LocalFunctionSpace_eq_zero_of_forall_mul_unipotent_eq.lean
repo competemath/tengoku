@@ -203,6 +203,9 @@ open scoped _root_.P2MW.S_AutomorphicForm_LocalFunctionSpace_eq_zero_of_forall_m
 
 open LocalUnipotentAux in
 
+/--
+@isnad1 id=eq.3h2v.s12.22bafb0667cd from=translated src=- shape=67ce495d vocab=f2cfb83f
+-/
 theorem solution
     (p : IsDedekindDomain.HeightOneSpectrum (NumberField.RingOfIntegers ℚ))
     (W : GL (Fin 2) (p.adicCompletion ℚ) → ℂ)

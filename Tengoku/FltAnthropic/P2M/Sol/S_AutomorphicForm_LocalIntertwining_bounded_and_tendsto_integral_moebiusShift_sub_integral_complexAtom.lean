@@ -18,17 +18,29 @@ namespace ARCHW3C
 def atom (a b m : ℕ) (σ : ℝ) (z : ℂ) : ℂ :=
   z ^ a * (starRingEnd ℂ) z ^ b * (((1 + ‖z‖ ^ 2 : ℝ) : ℂ)) ^ (-(2 * (σ : ℂ) + 1) - ((m : ℂ)) / 2)
 
+/--
+@isnad1 id=lt.0h1v.s5.2c020e684e4f from=translated src=- shape=3f2b734f vocab=cecca3b4
+-/
 theorem one_add_sq_pos (z : ℂ) : 0 < 1 + ‖z‖ ^ 2 := by positivity
 
+/--
+@isnad1 id=eq.0h2v.s7.74d700a1f0fd from=translated src=- shape=f4209c07 vocab=88b6f114
+-/
 theorem exponent_cast (σ : ℝ) (m : ℕ) :
     (-(2 * (σ : ℂ) + 1) - ((m : ℂ)) / 2) = (((-(2 * σ + 1) - (m : ℝ) / 2 : ℝ)) : ℂ) := by
   push_cast; ring
 
+/--
+@isnad1 id=eq.0h5v.s7.d1d583b5fe43 from=translated src=- shape=d2f30a5f vocab=c31483b9
+-/
 theorem norm_atom (a b m : ℕ) (σ : ℝ) (z : ℂ) :
     ‖atom a b m σ z‖ = ‖z‖ ^ (a + b) * (1 + ‖z‖ ^ 2) ^ (-(2 * σ + 1) - (m : ℝ) / 2) := by
   rw [atom, norm_mul, norm_mul, norm_pow, norm_pow, Complex.norm_conj, ← pow_add, exponent_cast,
     Complex.norm_cpow_eq_rpow_re_of_pos (one_add_sq_pos z), Complex.ofReal_re]
 
+/--
+@isnad1 id=le.0h2v.s6.b8adf315c602 from=translated src=- shape=5babcd8a vocab=76c00b32
+-/
 theorem norm_pow_le (z : ℂ) (n : ℕ) : ‖z‖ ^ n ≤ (1 + ‖z‖ ^ 2) ^ ((n : ℝ) / 2) := by
   have h : ‖z‖ ≤ Real.sqrt (1 + ‖z‖ ^ 2) := Real.le_sqrt_of_sq_le (by linarith [sq_nonneg ‖z‖])
   calc ‖z‖ ^ n ≤ (Real.sqrt (1 + ‖z‖ ^ 2)) ^ n := pow_le_pow_left₀ (norm_nonneg _) h n
@@ -36,6 +48,9 @@ theorem norm_pow_le (z : ℂ) (n : ℕ) : ‖z‖ ^ n ≤ (1 + ‖z‖ ^ 2) ^ ((
         rw [Real.sqrt_eq_rpow, ← Real.rpow_natCast, ← Real.rpow_mul (by positivity)]
         congr 1; ring
 
+/--
+@isnad1 id=le.1h5v.s6.35f77b9732bb from=translated src=- shape=b91a0bfa vocab=52742114
+-/
 theorem norm_atom_le (a b m : ℕ) (habm : a + b ≤ m) (σ : ℝ) (z : ℂ) :
     ‖atom a b m σ z‖ ≤ (1 + ‖z‖ ^ 2) ^ (-(2 * σ + 1)) := by
   have hX : 0 < 1 + ‖z‖ ^ 2 := one_add_sq_pos z
@@ -51,28 +66,43 @@ theorem norm_atom_le (a b m : ℕ) (habm : a + b ≤ m) (σ : ℝ) (z : ℂ) :
     _ = (1 + ‖z‖ ^ 2) ^ (-(2 * σ + 1)) := by
         rw [← Real.rpow_add hX]; congr 1; ring
 
+/--
+@isnad1 id=le.2h5v.s6.c510f2fb89ff from=translated src=- shape=d34d0c45 vocab=7145798a
+-/
 theorem norm_atom_le_two (a b m : ℕ) (habm : a + b ≤ m) {σ : ℝ} (hσ : 1 / 2 ≤ σ) (z : ℂ) :
     ‖atom a b m σ z‖ ≤ (1 + ‖z‖ ^ 2) ^ (-(2 : ℝ)) :=
   (norm_atom_le a b m habm σ z).trans
     (Real.rpow_le_rpow_of_exponent_le (by linarith [sq_nonneg ‖z‖]) (by linarith))
 
+/--
+@isnad1 id=continuo.0h4v.s5.7aab4b6a08bc from=translated src=- shape=eeba7bce vocab=2b47d989
+-/
 theorem continuous_atom (a b m : ℕ) (σ : ℝ) : Continuous (atom a b m σ) := by
   unfold atom
   refine Continuous.mul (by fun_prop) ?_
   refine Continuous.cpow (by fun_prop) continuous_const fun z => ?_
   exact_mod_cast Complex.ofReal_mem_slitPlane.mpr (one_add_sq_pos z)
 
+/--
+@isnad1 id=integrab.0h1v.s6.d044b85b1baa from=translated src=- shape=5b96379e vocab=670f275d
+-/
 theorem integrable_bound (C : ℝ) : Integrable fun z : ℂ => C * (1 + ‖z‖ ^ 2) ^ (-(2 : ℝ)) := by
   have := integrable_rpow_neg_one_add_norm_sq (E := ℂ) (μ := volume) (r := 4)
     (by rw [Complex.finrank_real_complex]; norm_num)
   refine (this.congr (ae_of_all _ fun z => ?_)).const_mul C
   norm_num
 
+/--
+@isnad1 id=integrab.2h4v.s6.66f05110c9fc from=translated src=- shape=1290b6c3 vocab=4ce480fe
+-/
 theorem integrable_atom (a b m : ℕ) (habm : a + b ≤ m) {σ : ℝ} (hσ : 1 / 2 ≤ σ) :
     Integrable (atom a b m σ) :=
   (integrable_bound 1).mono' (continuous_atom a b m σ).aestronglyMeasurable
     (ae_of_all _ fun z => by simpa only [one_mul] using norm_atom_le_two a b m habm hσ z)
 
+/--
+@isnad1 id=le.0h3v.s7.25abec3098c0 from=translated src=- shape=fc1bcf40 vocab=e6247f5a
+-/
 theorem normSq_le (c' d' z : ℂ) : ‖c' * z + d'‖ ^ 2 ≤ (‖c'‖ ^ 2 + ‖d'‖ ^ 2) * (1 + ‖z‖ ^ 2) := by
   have h1 : ‖c' * z + d'‖ ≤ ‖c'‖ * ‖z‖ + ‖d'‖ := by
     refine (norm_add_le _ _).trans ?_; rw [norm_mul]
@@ -80,6 +110,9 @@ theorem normSq_le (c' d' z : ℂ) : ‖c' * z + d'‖ ^ 2 ≤ (‖c'‖ ^ 2 + �
   calc ‖c' * z + d'‖ ^ 2 ≤ (‖c'‖ * ‖z‖ + ‖d'‖) ^ 2 := pow_le_pow_left₀ (norm_nonneg _) h1 2
     _ ≤ (‖c'‖ ^ 2 + ‖d'‖ ^ 2) * (1 + ‖z‖ ^ 2) := by nlinarith [sq_nonneg (‖c'‖ - ‖d'‖ * ‖z‖)]
 
+/--
+@isnad1 id=integrab.2h6v.s7.71332f00c7d6 from=translated src=- shape=42600b1b vocab=b5e1e15b
+-/
 theorem integrable_weighted (c' d' : ℂ) (a b m : ℕ) (habm : a + b ≤ m) {σ : ℝ} (hσ : 1 / 2 < σ) :
     Integrable fun z : ℂ => ((((‖c' * z + d'‖ ^ 2) ^ (2 * σ - 1) : ℝ)) : ℂ) * atom a b m σ z := by
   set t : ℝ := 2 * σ - 1 with ht
@@ -104,6 +137,9 @@ theorem integrable_weighted (c' d' : ℂ) (a b m : ℕ) (habm : a + b ≤ m) {σ
             (mul_nonneg (Real.rpow_nonneg hK0 _) (Real.rpow_nonneg hX.le _))
       _ = K ^ t * (1 + ‖z‖ ^ 2) ^ (-(2 : ℝ)) := by rw [mul_assoc, h2]
 
+/--
+@isnad1 id=eq.2h6v.s9.e5cae638abb7 from=translated src=- shape=b1c7a5d2 vocab=63e68536
+-/
 theorem jacobian_identity (a b c d : ℂ) (hdet : a * d - b * c ≠ 0) {σ : ℝ} (hσ : 1 / 2 < σ) (z : ℂ) :
     ((‖a * d - b * c‖ ^ 2 / ‖a + z * c‖ ^ 4 : ℝ) : ℂ)
         * ((((‖(-c / ((Real.sqrt ‖a * d - b * c‖ : ℝ) : ℂ)) * ((b + z * d) / (a + z * c))
@@ -152,6 +188,9 @@ theorem jacobian_identity (a b c d : ℂ) (hdet : a * d - b * c ≠ 0) {σ : ℝ
             ← Real.rpow_mul hN0.le, Real.rpow_neg (sq_nonneg _), div_eq_mul_inv]
           congr 2; ring
 
+/--
+@isnad1 id=and.2h7v.s9.34a2e170e6f2 from=translated src=- shape=7a55f8fb vocab=dd7a773b
+-/
 theorem main (a b c d : ℂ) (hdet : a * d - b * c ≠ 0) (a₀ b₀ m : ℕ) (habm : a₀ + b₀ ≤ m) :
     (∃ C : ℝ, ∀ σ : ℝ, 1 / 2 < σ → σ ≤ 1 → ‖∫ z, atom a₀ b₀ m σ z‖ ≤ C) ∧
     Tendsto (fun σ : ℝ =>
@@ -196,6 +235,9 @@ end ARCHW3C
 
 end
 
+/--
+@isnad1 id=other.2h7v.s9.f679d37d0366 from=translated src=- shape=a61fcdf8 vocab=8f79492f
+-/
 theorem solution
     (a b c d : ℂ) (_hdet : a * d - b * c ≠ 0) (a₀ b₀ m : ℕ) (_habm : a₀ + b₀ ≤ m) :
     let atom : ℝ → ℂ → ℂ := fun σ z =>

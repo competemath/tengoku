@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open AlgebraicGeometry
 
+/--
+@isnad1 id=isopenim.2h2v.s7.d717020af129 from=translated src=- shape=ef616e67 vocab=da6046d0
+-/
 theorem solution
     (O : ValuationSubring (AlgebraicClosure ℚ)) (p : ℕ) (hp : p.Prime) (hO : O.LiesOverPrime p) :
     IsOpenImmersion (Spec.map (CommRingCat.ofHom O.subtype)) := by

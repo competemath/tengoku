@@ -10,6 +10,9 @@ set_option synthInstance.maxHeartbeats 80000
 universe u
 open AlgebraicGeometry CategoryTheory Topology
 
+/--
+@isnad1 id=mem.3h5v.s11.987880fa2ce6 from=translated src=- shape=4e392994 vocab=7858868c
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     {T : Scheme.{u}} (t : T ⟶ Spec (CommRingCat.of R)) [Flat t]

@@ -23,6 +23,9 @@ theorem eq_of_isStandardSmoothOfRelativeDimension {R S : Type u} [CommRing R] [C
     (R := R) (S := S) n
   exact_mod_cast h₁.symm.trans h₂
 
+/--
+@isnad1 id=nontrivi.1h2v.s5.fff21ed56eff from=translated src=- shape=8dc0986f vocab=d4a0ce18
+-/
 theorem nontrivial_localization_away {S : Type u} [CommRing S] {t : S} (ht : ¬IsNilpotent t) :
     Nontrivial (Localization.Away t) := by
   refine not_subsingleton_iff_nontrivial.mp fun hsub => ht ?_
@@ -31,6 +34,9 @@ theorem nontrivial_localization_away {S : Type u} [CommRing S] {t : S} (ht : ¬I
       hsub)
   exact ⟨k, hk⟩
 
+/--
+@isnad1 id=ex.1h2v.s6.bd83d9e478e6 from=translated src=- shape=8641be41 vocab=93b112f3
+-/
 theorem exists_not_isNilpotent {S : Type u} [CommRing S] [Nontrivial S] {s : Set S}
     (hs : Ideal.span s = ⊤) : ∃ t ∈ s, ¬IsNilpotent t := by
   by_contra hall
@@ -43,6 +49,9 @@ theorem exists_not_isNilpotent {S : Type u} [CommRing S] [Nontrivial S] {s : Set
 end RelativeDimensionAgreement
 
 open RelativeDimensionAgreement in
+/--
+@isnad1 id=smoothof.1h5v.s6.14981635d3cc from=translated src=- shape=37a98957 vocab=2add6179
+-/
 theorem solution (n : ℕ) {X Y : Scheme.{u}} (f : X ⟶ Y) [IrreducibleSpace X] [Smooth f]
     (V : X.Opens) (hV : (V : Set X).Nonempty) [SmoothOfRelativeDimension n (V.ι ≫ f)] :
     SmoothOfRelativeDimension n f := by

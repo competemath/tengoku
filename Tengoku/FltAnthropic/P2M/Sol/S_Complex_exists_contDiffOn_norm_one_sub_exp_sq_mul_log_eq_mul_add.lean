@@ -16,42 +16,72 @@ noncomputable def zmap (p : ℝ × ℝ) : ℂ :=
 
 noncomputable def Φ : ℂ → ℂ := dslope Complex.exp 0
 
+/--
+@isnad1 id=eq.0h1v.s4.54bc93ea16d4 from=translated src=- shape=9e26b4cb vocab=bf94b681
+-/
 lemma mul_Φ (z : ℂ) : z * Φ z = Complex.exp z - 1 := by
   have h := sub_smul_dslope Complex.exp 0 z
   simpa [Φ, smul_eq_mul] using h
 
+/--
+@isnad1 id=eq.0h1v.s5.e4329c69dc51 from=translated src=- shape=4e1afb08 vocab=c18bca34
+-/
 lemma one_sub_exp_eq (z : ℂ) : (1 : ℂ) - Complex.exp z = -(z * Φ z) := by
   rw [mul_Φ]; ring
 
+/--
+@isnad1 id=differen.0h0v.s6.e3d32968073c from=translated src=- shape=aa9fb30a vocab=05cbd2de
+-/
 lemma differentiable_Φ : Differentiable ℂ Φ := by
   have h : DifferentiableOn ℂ (dslope Complex.exp 0) Set.univ :=
     (Complex.differentiableOn_dslope (Filter.univ_mem)).2
       Complex.differentiable_exp.differentiableOn
   exact differentiableOn_univ.1 h
 
+/--
+@isnad1 id=contdiff.0h0v.s4.eac8d0ca4096 from=translated src=- shape=80643db7 vocab=c612628b
+-/
 lemma contDiff_Φ : ContDiff ℝ (⊤ : ℕ∞) Φ :=
   ((differentiable_Φ).contDiff (n := ((⊤ : ℕ∞) : WithTop ℕ∞))).restrict_scalars ℝ
 
+/--
+@isnad1 id=eq.0h0v.s3.6122996963ec from=translated src=- shape=3c26ae4f vocab=ea2141d6
+-/
 lemma Φ_zero : Φ 0 = 1 := by
   simp [Φ, dslope_same]
 
+/--
+@isnad1 id=contdiff.0h0v.s6.833d0a6dbd27 from=translated src=- shape=70640444 vocab=73ff159f
+-/
 lemma contDiff_zmap : ContDiff ℝ (⊤ : ℕ∞) zmap := by
   unfold zmap
   apply ContDiff.add
   · exact Complex.ofRealCLM.contDiff.comp ((contDiff_fst).div_const 2)
   · exact contDiff_const.mul (Complex.ofRealCLM.contDiff.comp contDiff_snd)
 
+/--
+@isnad1 id=eq.0h1v.s4.5ef1424c058b from=translated src=- shape=ee621ef9 vocab=8b267394
+-/
 lemma zmap_re (p : ℝ × ℝ) : (zmap p).re = p.1 / 2 := by
   simp [zmap]
 
+/--
+@isnad1 id=eq.0h1v.s5.84fd70c10e0a from=translated src=- shape=70374f33 vocab=62ca9aac
+-/
 lemma zmap_im (p : ℝ × ℝ) : (zmap p).im = 2 * Real.pi * p.2 := by
   simp [zmap]
 
+/--
+@isnad1 id=eq.0h1v.s7.d198d3e0e1c3 from=translated src=- shape=5a385221 vocab=08bae38e
+-/
 lemma normSq_zmap (p : ℝ × ℝ) :
     ‖zmap p‖ ^ 2 = p.1 ^ 2 / 4 + 4 * Real.pi ^ 2 * p.2 ^ 2 := by
   rw [Complex.sq_norm, Complex.normSq_apply, zmap_re, zmap_im]
   ring
 
+/--
+@isnad1 id=iff.0h1v.s5.f25a6409c4fe from=translated src=- shape=05cf6ab2 vocab=5d0e4b0b
+-/
 lemma exp_zmap_eq_one_iff (p : ℝ × ℝ) :
     Complex.exp (zmap p) = 1 ↔ p.1 = 0 ∧ ∃ k : ℤ, p.2 = k := by
   constructor
@@ -75,6 +105,9 @@ lemma exp_zmap_eq_one_iff (p : ℝ × ℝ) :
     rw [this]
     exact Complex.exp_eq_one_iff.2 ⟨k, rfl⟩
 
+/--
+@isnad1 id=ne.1h1v.s5.1b074c7cbdfd from=translated src=- shape=a892675f vocab=69fb47e1
+-/
 lemma Φ_zmap_ne_zero (p : ℝ × ℝ) (hp : |p.2| < 1 / 2) : Φ (zmap p) ≠ 0 := by
   intro h
   by_cases hz : zmap p = 0
@@ -103,10 +136,16 @@ noncomputable def acoef (p : ℝ × ℝ) : ℝ := ‖Φ (zmap p)‖ ^ 2 / 2
 noncomputable def bcoef (p : ℝ × ℝ) : ℝ :=
   ‖Φ (zmap p)‖ ^ 2 * (Real.log (‖Φ (zmap p)‖ ^ 2) / 2)
 
+/--
+@isnad1 id=contdiff.0h0v.s6.741dd56d765d from=translated src=- shape=fd50e0f3 vocab=1ac9f70b
+-/
 lemma contDiff_acoef : ContDiff ℝ (⊤ : ℕ∞) acoef := by
   unfold acoef
   exact ((contDiff_Φ.comp contDiff_zmap).norm_sq (𝕜 := ℂ)).div_const 2
 
+/--
+@isnad1 id=contdiff.0h0v.s6.df0d8d38e725 from=translated src=- shape=86c41b59 vocab=fb2be56c
+-/
 lemma contDiffOn_bcoef : ContDiffOn ℝ (⊤ : ℕ∞) bcoef {p : ℝ × ℝ | |p.2| < 1 / 2} := by
   unfold bcoef
   have hn : ContDiff ℝ (⊤ : ℕ∞) (fun p : ℝ × ℝ => ‖Φ (zmap p)‖ ^ 2) :=
@@ -118,11 +157,17 @@ lemma contDiffOn_bcoef : ContDiffOn ℝ (⊤ : ℕ∞) bcoef {p : ℝ × ℝ | |
     exact pow_ne_zero 2 (norm_ne_zero_iff.2 (Φ_zmap_ne_zero p hp))
   exact hn.contDiffOn.mul (hlog.div_const 2)
 
+/--
+@isnad1 id=lt.1h1v.s5.02d6550cfd13 from=translated src=- shape=6e258a3d vocab=f97b9b0e
+-/
 lemma acoef_pos (p : ℝ × ℝ) (hp : |p.2| < 1 / 2) : 0 < acoef p := by
   unfold acoef
   have : 0 < ‖Φ (zmap p)‖ := norm_pos_iff.2 (Φ_zmap_ne_zero p hp)
   positivity
 
+/--
+@isnad1 id=eq.1h1v.s8.0b88467d49ac from=translated src=- shape=c40fd0ac vocab=e7b67000
+-/
 lemma γ_eq (p : ℝ × ℝ) (hp : |p.2| < 1 / 2) :
     γ p = acoef p * ((p.1 ^ 2 / 4 + 4 * Real.pi ^ 2 * p.2 ^ 2) *
       Real.log (p.1 ^ 2 / 4 + 4 * Real.pi ^ 2 * p.2 ^ 2)) +
@@ -142,6 +187,9 @@ lemma γ_eq (p : ℝ × ℝ) (hp : |p.2| < 1 / 2) :
     rw [hlogmul, hlogu2, hlogv2]
     ring
 
+/--
+@isnad1 id=contdiff.0h0v.s6.c20687ad1474 from=translated src=- shape=5803b03e vocab=7bf5a47f
+-/
 lemma contDiffOn_γ : ContDiffOn ℝ (⊤ : ℕ∞) γ {p : ℝ × ℝ | Complex.exp (zmap p) ≠ 1} := by
   have hw : ContDiff ℝ (⊤ : ℕ∞) (fun p : ℝ × ℝ => (1 : ℂ) - Complex.exp (zmap p)) :=
     contDiff_const.sub ((Complex.contDiff_exp (𝕜 := ℝ)).comp contDiff_zmap)
@@ -169,6 +217,9 @@ lemma contDiffOn_γ : ContDiffOn ℝ (⊤ : ℕ∞) γ {p : ℝ × ℝ | Complex
 end K2Struct
 
 open K2Struct in
+/--
+@isnad1 id=ex.0h0v.s10.638315238fb6 from=translated src=- shape=19f2eb1b vocab=05eadb92
+-/
 theorem solution :
     ∃ a b : ℝ × ℝ → ℝ,
       ContDiffOn ℝ (⊤ : ℕ∞) a {p : ℝ × ℝ | |p.2| < 1 / 2} ∧

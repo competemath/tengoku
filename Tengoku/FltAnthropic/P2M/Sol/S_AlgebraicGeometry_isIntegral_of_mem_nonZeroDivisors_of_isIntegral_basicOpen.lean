@@ -15,6 +15,9 @@ export _root_.AlgebraicGeometry (Scheme.basicOpen_res basicOpen_eq_bot_iff Schem
 namespace IntegralBasicOpen
 open _root_.AlgebraicGeometry
 
+/--
+@isnad1 id=nonempty.3h4v.s11.447ba01c95c4 from=translated src=- shape=73d2c0f7 vocab=686d0f4c
+-/
 theorem basicOpen_nonempty_of_mem_nonZeroDivisors {Y : Scheme} {U : Y.Opens} (hU : IsAffineOpen U)
     {x : Y} (hx : x ∈ U) (f : Γ(Y, U)) (hf : f ∈ nonZeroDivisors Γ(Y, U)) :
     ((Y.basicOpen f : Y.Opens) : Set Y).Nonempty := by
@@ -37,6 +40,9 @@ theorem basicOpen_nonempty_of_mem_nonZeroDivisors {Y : Scheme} {U : Y.Opens} (hU
   rw [← hU.fromSpec_image_basicOpen f]
   exact ⟨q, hq, rfl⟩
 
+/--
+@isnad1 id=dense.1h2v.s12.a56cf76a6f7e from=translated src=- shape=d3e823fc vocab=96dbad99
+-/
 theorem dense_basicOpen_of_mem_nonZeroDivisors {Y : Scheme} (p : Γ(Y, ⊤))
     (hreg : ∀ U : Y.Opens, IsAffineOpen U → Y.presheaf.map (homOfLE le_top).op p ∈ nonZeroDivisors Γ(Y, U)) :
     Dense ((Y.basicOpen p : Y.Opens) : Set Y) := by
@@ -54,6 +60,9 @@ end AlgebraicGeometry.IntegralBasicOpen
 
 open AlgebraicGeometry.IntegralBasicOpen in
 
+/--
+@isnad1 id=isintegr.1h2v.s12.46cfb5b6b526 from=translated src=- shape=23272e67 vocab=b8393f97
+-/
 theorem solution {Y : Scheme} (p : Γ(Y, ⊤))
     (hreg : ∀ U : Y.Opens, IsAffineOpen U → Y.presheaf.map (homOfLE le_top).op p ∈ nonZeroDivisors Γ(Y, U))
     [hint : IsIntegral (Y.basicOpen p : Scheme)] : IsIntegral Y := by

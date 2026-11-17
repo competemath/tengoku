@@ -9,6 +9,9 @@ open AlgebraicGeometry CategoryTheory TopologicalSpace Topology Opposite
 
 universe u
 
+/--
+@isnad1 id=mem.2h5v.s14.8fc47efe5683 from=translated src=- shape=535b6e8b vocab=faf73bc9
+-/
 theorem solution
     {R : Type u} [CommRing R] {Y : Scheme.{u}} (f : Y ⟶ Spec (CommRingCat.of R)) [Flat f]
     (r : R) (hr : r ∈ nonZeroDivisors R) (U : Y.Opens) (hU : IsAffineOpen U) :

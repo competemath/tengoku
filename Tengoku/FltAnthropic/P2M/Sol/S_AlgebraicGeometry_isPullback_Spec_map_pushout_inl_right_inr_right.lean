@@ -11,6 +11,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=ispullba.0h6v.s8.90edbf0635ab from=translated src=- shape=186bcb23 vocab=819eface
+-/
 theorem solution
     {R : Type u} [CommRing R] {B B₁ B₂ : Under (CommRingCat.of R)} (φ₁ : B ⟶ B₁) (φ₂ : B ⟶ B₂) :
     IsPullback (Spec.map (pushout.inl φ₁ φ₂).right) (Spec.map (pushout.inr φ₁ φ₂).right)

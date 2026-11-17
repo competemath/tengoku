@@ -15,6 +15,9 @@ namespace C3
 
 open TopologicalSpace
 
+/--
+@isnad1 id=eq.0h3v.s7.5c6844590e5f from=translated src=- shape=275fa484 vocab=98afe5eb
+-/
 theorem ker_eq_vanishingIdeal {T Y : Scheme.{0}} (g : T ⟶ Y) [IsReduced T] :
     g.ker = Scheme.IdealSheafData.vanishingIdeal (Closeds.closure (Set.range g.base)) := by
   rw [← Scheme.IdealSheafData.map_bot, ← Scheme.nilradical_eq_bot (X := T), ← Scheme.IdealSheafData.vanishingIdeal_top,
@@ -22,6 +25,9 @@ theorem ker_eq_vanishingIdeal {T Y : Scheme.{0}} (g : T ⟶ Y) [IsReduced T] :
   congr 2
   simp [Set.image_univ]
 
+/--
+@isnad1 id=iff.0h5v.s8.8b7662676c7c from=translated src=- shape=0b90e56c vocab=af29d2f0
+-/
 theorem exists_comp_eq_iff_range_subset {Z T Y : Scheme.{0}} (i : Z ⟶ Y) [IsClosedImmersion i] [IsReduced Z]
     (g : T ⟶ Y) [IsReduced T] :
     (∃ l : T ⟶ Z, l ≫ i = g) ↔ Set.range g.base ⊆ Set.range i.base := by
@@ -36,6 +42,9 @@ theorem exists_comp_eq_iff_range_subset {Z T Y : Scheme.{0}} (i : Z ⟶ Y) [IsCl
 
 end C3
 
+/--
+@isnad1 id=ex.1h7v.s8.71d49522d1d3 from=translated src=- shape=54df6086 vocab=a8c128dc
+-/
 theorem solution
     {k : Type} [Field k] [IsAlgClosed k] {Y : Scheme.{0}} (f : Y ⟶ Spec (CommRingCat.of k)) [LocallyOfFiniteType f]
     {Z₁ Z₂ : Scheme.{0}} (i₁ : Z₁ ⟶ Y) (i₂ : Z₂ ⟶ Y) [IsClosedImmersion i₁] [IsClosedImmersion i₂]

@@ -20,14 +20,23 @@ open _root_.AutomorphicForm.WindingDatum open _root_.AutomorphicForm
 
 variable {r d c : ℕ} (𝒟 : AutomorphicForm.WindingDatum r d c)
 
+/--
+@isnad1 id=eq.0h2v.s7.d882993ec14d from=translated src=- shape=c141224e vocab=fdac7130
+-/
 theorem norm_fourier_apply (n : ℤ) (x : AddCircle (1 : ℝ)) : ‖fourier n x‖ = 1 := by
   rw [fourier_apply]; exact Circle.norm_coe _
 
+/--
+@isnad1 id=eq.0h3v.s7.f9bf351f0168 from=translated src=- shape=50b3aa45 vocab=bf4017dc
+-/
 theorem norm_prod_fourier (m : Fin c → ℤ) (t : Fin c → AddCircle (1 : ℝ)) :
     ‖∏ j, fourier (m j) (t j)‖ = 1 := by
   rw [norm_prod]
   exact Finset.prod_eq_one fun j _ => norm_fourier_apply _ _
 
+/--
+@isnad1 id=le.0h5v.s4.8ca8d98dbc43 from=translated src=- shape=05601c67 vocab=05d40612
+-/
 theorem C_nonneg (i : ℕ) : 0 ≤ 𝒟.C i := by
   have h := 𝒟.hΨd i 0
   have h1 : ∏ k : Fin r, (1 + |(0 : Fin r → ℝ) k|)⁻¹ ^ 2 = 1 := by simp
@@ -36,9 +45,15 @@ theorem C_nonneg (i : ℕ) : 0 ≤ 𝒟.C i := by
 
 def Gamma : AddSubgroup (Fin r → ℝ) := 𝒟.Λ.comap (AddMonoidHom.inl (Fin r → ℝ) (Fin d → ℤ))
 
+/--
+@isnad1 id=iff.0h5v.s8.77e0fa0ca60d from=translated src=- shape=edf57791 vocab=5af8a8f7
+-/
 theorem mem_Gamma_iff (x : Fin r → ℝ) : x ∈ Gamma 𝒟 ↔ (x, (0 : Fin d → ℤ)) ∈ 𝒟.Λ := by
   simp [Gamma, AddSubgroup.mem_comap]
 
+/--
+@isnad1 id=discrete.0h4v.s7.10e7844ac8a7 from=translated src=- shape=0a425214 vocab=12eb26a7
+-/
 scoped instance discreteTopology_Gamma : DiscreteTopology (Gamma 𝒟) := by
   haveI := 𝒟.hΛ
   refine DiscreteTopology.of_continuous_injective
@@ -50,6 +65,9 @@ scoped instance discreteTopology_Gamma : DiscreteTopology (Gamma 𝒟) := by
     have h1 := congrArg (fun z : 𝒟.Λ => (z : (Fin r → ℝ) × (Fin d → ℤ)).1) h
     exact Subtype.ext h1
 
+/--
+@isnad1 id=le.0h7v.s9.0a1f6b2f57da from=translated src=- shape=39c69b25 vocab=f27bcd0a
+-/
 theorem norm_fibreTerm_le (i : ℕ) (n : Fin d → ℤ) (γ : 𝒟.sub i) :
     ‖𝒟.fibreTerm i n γ‖ ≤
       if (γ : (Fin r → ℝ) × (Fin d → ℤ)).2 + 𝒟.n₀ i = n then
@@ -61,6 +79,9 @@ theorem norm_fibreTerm_le (i : ℕ) (n : Fin d → ℤ) (γ : 𝒟.sub i) :
     exact 𝒟.hΨd i _
   · simp
 
+/--
+@isnad1 id=le.1h8v.s9.7bd1a8441964 from=translated src=- shape=03c55647 vocab=5598d254
+-/
 theorem sum_norm_fibreTerm_le {K : ℝ}
     (hK : ∀ (y : Fin r → ℝ) (F : Finset (Fin r → ℝ)), (↑F : Set (Fin r → ℝ)) ⊆ Gamma 𝒟 →
       ∑ x ∈ F, ∏ k, (1 + |y k + x k|)⁻¹ ^ 2 ≤ K)
@@ -117,6 +138,9 @@ theorem sum_norm_fibreTerm_le {K : ℝ}
   simp only [he, Pi.add_apply, Pi.sub_apply]
   ring_nf
 
+/--
+@isnad1 id=ex.0h4v.s10.62968d48cd13 from=translated src=- shape=8e991150 vocab=b0ef6884
+-/
 theorem main :
     ∃ K : ℝ, 0 ≤ K ∧
       (∀ (i : ℕ) (n : Fin d → ℤ),
@@ -151,6 +175,9 @@ open scoped _root_.P2MW.S_AutomorphicForm_WindingDatum_exists_forall_summable_no
 open scoped _root_.P2MW.S_AutomorphicForm_WindingDatum_exists_forall_summable_norm_fibreTerm_and_norm_fibreCoeff_le.AutomorphicForm _root_.P2MW.S_AutomorphicForm_WindingDatum_exists_forall_summable_norm_fibreTerm_and_norm_fibreCoeff_le.AutomorphicForm.WindingDatum
 open scoped _root_.P2MW.S_AutomorphicForm_WindingDatum_exists_forall_summable_norm_fibreTerm_and_norm_fibreCoeff_le.AutomorphicForm
 
+/--
+@isnad1 id=ex.0h4v.s10.62968d48cd13 from=translated src=- shape=8e991150 vocab=b0ef6884
+-/
 theorem solution
     {r d c : ℕ} (𝒟 : AutomorphicForm.WindingDatum r d c) :
     ∃ K : ℝ, 0 ≤ K ∧

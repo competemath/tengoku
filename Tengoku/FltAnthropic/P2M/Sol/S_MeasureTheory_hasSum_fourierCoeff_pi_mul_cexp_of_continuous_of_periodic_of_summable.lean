@@ -11,6 +11,9 @@ open MeasureTheory Complex
 
 namespace K4Aux44
 
+/--
+@isnad1 id=eq.1h4v.s7.8131cbd99ff3 from=translated src=- shape=7089945d vocab=867b9135
+-/
 theorem periodic_intCast {c : ℕ} (F : (Fin c → ℝ) → ℂ)
     (hper : ∀ (θ : Fin c → ℝ) (j : Fin c), F (θ + Pi.single j 1) = F θ)
     (θ : Fin c → ℝ) (k : Fin c → ℤ) : F (θ + fun i => (k i : ℝ)) = F θ := by
@@ -43,6 +46,9 @@ theorem periodic_intCast {c : ℕ} (F : (Fin c → ℝ) → ℂ)
     exact P.sum_mem fun j _ => hsingle j (k j)
   exact hk θ
 
+/--
+@isnad1 id=eq.0h3v.s7.407465594aca from=translated src=- shape=a9a873c3 vocab=c82df798
+-/
 theorem mFourier_coe_apply {c : ℕ} (m : Fin c → ℤ) (x : Fin c → ℝ) :
     UnitAddTorus.mFourier m (fun i => (x i : UnitAddCircle)) =
       cexp (2 * Real.pi * I * ((∑ j, (m j : ℝ) * x j : ℝ) : ℂ)) := by
@@ -57,6 +63,9 @@ theorem mFourier_coe_apply {c : ℕ} (m : Fin c → ℤ) (x : Fin c → ℝ) :
 end K4Aux44
 
 open K4Aux44 in
+/--
+@isnad1 id=hassum.3h3v.s9.622726f24bbb from=translated src=- shape=48b77b8e vocab=cd33f0b8
+-/
 theorem solution
     {c : ℕ} (F : (Fin c → ℝ) → ℂ) (hF : Continuous F)
     (hper : ∀ (θ : Fin c → ℝ) (j : Fin c), F (θ + Pi.single j 1) = F θ)

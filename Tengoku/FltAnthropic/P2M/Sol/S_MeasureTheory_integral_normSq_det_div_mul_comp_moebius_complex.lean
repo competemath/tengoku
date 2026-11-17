@@ -13,6 +13,9 @@ noncomputable section
 
 namespace ARCHA3C
 
+/--
+@isnad1 id=eq.1h2v.s6.430b17be8183 from=translated src=- shape=6f33e3e9 vocab=02f90238
+-/
 theorem volume_affine_zero (p q : ℂ) (h : p ≠ 0 ∨ q ≠ 0) : volume {z : ℂ | p + z * q = 0} = 0 := by
   rcases eq_or_ne q 0 with hq | hq
   · have hp : p ≠ 0 := h.resolve_right (not_not.mpr hq)
@@ -24,9 +27,15 @@ theorem volume_affine_zero (p q : ℂ) (h : p ≠ 0 ∨ q ≠ 0) : volume {z : �
 
 def D (l : ℂ) : ℂ →L[ℝ] ℂ := (ContinuousLinearMap.toSpanSingleton ℂ l).restrictScalars ℝ
 
+/--
+@isnad1 id=eq.0h1v.s6.c94a4f5d6d03 from=translated src=- shape=b5cf6231 vocab=6d8ef74b
+-/
 theorem det_D (l : ℂ) : (D l).det = ‖l‖ ^ 2 := by
   simp [D, ContinuousLinearMap.det, LinearMap.det_restrictScalars, Algebra.norm_complex_eq, Complex.normSq_eq_norm_sq]
 
+/--
+@isnad1 id=eq.1h5v.s8.9c449c320f49 from=translated src=- shape=003f9827 vocab=96313ad1
+-/
 theorem main (a b c d : ℂ) (hdet : a * d - b * c ≠ 0) (G : ℂ → ℂ) :
     ∫ z : ℂ, ((‖a * d - b * c‖ ^ 2 / ‖a + z * c‖ ^ 4 : ℝ) : ℂ) * G ((b + z * d) / (a + z * c))
       = ∫ u : ℂ, G u := by
@@ -100,6 +109,9 @@ end ARCHA3C
 
 end
 
+/--
+@isnad1 id=eq.1h5v.s8.9c449c320f49 from=translated src=- shape=003f9827 vocab=96313ad1
+-/
 theorem solution
     (a b c d : ℂ) (_hdet : a * d - b * c ≠ 0) (G : ℂ → ℂ) :
     ∫ z : ℂ, ((‖a * d - b * c‖ ^ 2 / ‖a + z * c‖ ^ 4 : ℝ) : ℂ) * G ((b + z * d) / (a + z * c))

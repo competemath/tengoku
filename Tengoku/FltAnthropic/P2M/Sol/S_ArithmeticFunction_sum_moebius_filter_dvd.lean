@@ -8,6 +8,9 @@ namespace P2MW.S_ArithmeticFunction_sum_moebius_filter_dvd
 open scoped ArithmeticFunction.Moebius ArithmeticFunction.zeta
 open ArithmeticFunction Finset
 
+/--
+@isnad1 id=eq.2h2v.s6.759ab6267157 from=translated src=- shape=e138ab1f vocab=74709ad2
+-/
 theorem solution {n m : ℕ} (hn : n ≠ 0) (hm : m ∣ n) :
     ∑ f ∈ n.divisors, ArithmeticFunction.moebius (n / f) * (if m ∣ f then 1 else 0)
       = if m = n then 1 else 0 := by

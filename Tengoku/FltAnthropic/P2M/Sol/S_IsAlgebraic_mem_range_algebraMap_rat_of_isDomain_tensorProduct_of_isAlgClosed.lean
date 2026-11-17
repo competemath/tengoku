@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open _root_.CategoryTheory open _root_.CategoryTheory.Limits open _root_.AlgebraicGeometry open _root_.TensorProduct open _root_.Polynomial open _root_.AlgebraicGeometry.Polynomial
 
+/--
+@isnad1 id=mem.2h3v.s7.96c1d05b6494 from=translated src=- shape=d2b07657 vocab=c56f05c9
+-/
 theorem solution
     (K : Type) [Field K] [CharZero K]
     (C : Type) [Field C] [IsAlgClosed C] [CharZero C]

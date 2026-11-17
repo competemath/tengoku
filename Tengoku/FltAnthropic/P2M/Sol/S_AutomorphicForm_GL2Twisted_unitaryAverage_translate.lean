@@ -639,6 +639,9 @@ end
 
 open UnitaryChart in
 
+/--
+@isnad1 id=eq.3h3v.s10.b5b7dfac90ce from=translated src=- shape=abe821dd vocab=33008b24
+-/
 theorem solution (F : GL (Fin 2) ℂ → ℂ) (hF : Continuous F)
     (k₀ k₁ : GL (Fin 2) ℂ)
     (h₀ : star (k₀ : Matrix (Fin 2) (Fin 2) ℂ) * (k₀ : Matrix (Fin 2) (Fin 2) ℂ) = 1)

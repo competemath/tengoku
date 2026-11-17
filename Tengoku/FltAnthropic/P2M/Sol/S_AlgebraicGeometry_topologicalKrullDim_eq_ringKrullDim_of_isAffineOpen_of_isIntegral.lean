@@ -17,6 +17,9 @@ export _root_.AlgebraicGeometry (LocallyOfFiniteType Spec IsIntegral Scheme Sche
 namespace DimAffineOpen
 open _root_.AlgebraicGeometry
 
+/--
+@isnad1 id=eq.0h3v.s6.53c432eb744b from=translated src=- shape=aba41cc9 vocab=4c3eb9b6
+-/
 theorem height_eq_ringKrullDim_of_isMaximal (k : Type u) [Field k] {A : Type v} [CommRing A]
     [IsDomain A] [Algebra k A] [Algebra.FiniteType k A] (m : Ideal A) [hm : m.IsMaximal] :
     (m.height : WithBot ℕ∞) = ringKrullDim A := by
@@ -26,6 +29,9 @@ theorem height_eq_ringKrullDim_of_isMaximal (k : Type u) [Field k] {A : Type v} 
     exact ringKrullDim_eq_zero_of_field (A ⧸ m)
   rwa [h0, add_zero] at h
 
+/--
+@isnad1 id=le.1h4v.s6.e6479e05a4da from=translated src=- shape=6405a603 vocab=2c12d594
+-/
 theorem ringKrullDim_le_ringKrullDim_localization (k : Type u) [Field k] {A : Type v} [CommRing A]
     [IsDomain A] [Algebra k A] [Algebra.FiniteType k A] {g : A} (hg : g ≠ 0)
     (L : Type v) [CommRing L] [Algebra A L] [IsLocalization.Away g L] :
@@ -54,6 +60,9 @@ section TopologyB
 
 attribute [local instance] specializationOrder
 
+/--
+@isnad1 id=le.1h2v.s6.0f307dc9a050 from=translated src=- shape=437ed9af vocab=191b8701
+-/
 theorem topologicalKrullDim_le_of_forall_exists_isOpenEmbedding {X : Type u} [TopologicalSpace X]
     [QuasiSober X] [T0Space X] (n : WithBot ℕ∞)
     (h : ∀ x : X, ∃ (U : Type u) (_ : TopologicalSpace U) (g : U → X),
@@ -73,6 +82,9 @@ theorem topologicalKrullDim_le_of_forall_exists_isOpenEmbedding {X : Type u} [To
 
 end TopologyB
 
+/--
+@isnad1 id=eq.1h2v.s9.3783acfc74a9 from=translated src=- shape=bd9835d2 vocab=b210ca6c
+-/
 theorem topologicalKrullDim_affineOpen {X : Scheme.{u}} {U : X.Opens} (hU : IsAffineOpen U) :
     topologicalKrullDim ↥U = ringKrullDim Γ(X, U) := by
   have h : topologicalKrullDim (Spec Γ(X, U)) = ringKrullDim Γ(X, U) :=
@@ -88,6 +100,9 @@ noncomputable abbrev chartAlgebra {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.
     (U : X.Opens) : Algebra k Γ(X, U) :=
   ((f.appLE ⊤ U le_top).hom.comp (Scheme.ΓSpecIso (CommRingCat.of k)).inv.hom).toAlgebra
 
+/--
+@isnad1 id=finitety.1h4v.s9.167f99bfad00 from=translated src=- shape=3a5d6973 vocab=1575f2f1
+-/
 theorem chart_finiteType {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of k))
     [LocallyOfFiniteType f] {U : X.Opens} (hU : IsAffineOpen U) :
     letI := chartAlgebra f U
@@ -99,6 +114,9 @@ theorem chart_finiteType {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of k))
       (Scheme.ΓSpecIso (CommRingCat.of k)).commRingCatIsoToRingEquiv.symm.surjective
   exact h1.comp h2
 
+/--
+@isnad1 id=le.4h5v.s9.d567d8abf28f from=translated src=- shape=135d6d9c vocab=f2ae097e
+-/
 theorem ringKrullDim_sections_le {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of k))
     [LocallyOfFiniteType f] [IsIntegral X] {U U' : X.Opens} (hU : IsAffineOpen U)
     (hU' : IsAffineOpen U') (hUne : (U : Set X).Nonempty) (hU'ne : (U' : Set X).Nonempty) :
@@ -123,6 +141,9 @@ theorem ringKrullDim_sections_le {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.o
   rw [← topologicalKrullDim_affineOpen hU]
   exact h1.trans (h2.le.trans h3)
 
+/--
+@isnad1 id=le.2h4v.s8.6ca7cbf6a499 from=translated src=- shape=08dcf262 vocab=feeb374b
+-/
 theorem topologicalKrullDim_le_ringKrullDim {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of k))
     [LocallyOfFiniteType f] [IsIntegral X] {U : X.Opens} (hU : IsAffineOpen U)
     (hUne : (U : Set X).Nonempty) :
@@ -134,6 +155,9 @@ theorem topologicalKrullDim_le_ringKrullDim {X : Scheme.{u}} (f : X ⟶ Spec (Co
   rw [topologicalKrullDim_affineOpen hU']
   exact ringKrullDim_sections_le f hU hU' hUne ⟨ξ, hξU'⟩
 
+/--
+@isnad1 id=eq.2h4v.s8.7c34b77277b5 from=translated src=- shape=2b35457e vocab=97b0401b
+-/
 theorem main {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of k))
     [IsIntegral X] [LocallyOfFiniteType f] {U : X.Opens} (hU : IsAffineOpen U)
     (hUne : (U : Set X).Nonempty) :
@@ -148,6 +172,9 @@ end AlgebraicGeometry.DimAffineOpen
 
 open _root_.AlgebraicGeometry _root_.P2MW.S_AlgebraicGeometry_topologicalKrullDim_eq_ringKrullDim_of_isAffineOpen_of_isIntegral.AlgebraicGeometry in
 
+/--
+@isnad1 id=eq.2h4v.s8.7c34b77277b5 from=translated src=- shape=2b35457e vocab=97b0401b
+-/
 theorem solution
     {k : Type u} [Field k] {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of k))
     [IsIntegral X] [LocallyOfFiniteType f] {U : X.Opens} (hU : IsAffineOpen U)

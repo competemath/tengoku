@@ -7,6 +7,9 @@ namespace P2MW.S_AnalyticOnNhd_log_norm_le_circleAverage_log_norm
 
 open Real MeasureTheory Metric
 
+/--
+@isnad1 id=le.2h3v.s6.350d81187817 from=translated src=- shape=eddd1d59 vocab=cf872fda
+-/
 theorem solution {F : ℂ → ℂ} {c : ℂ} {R : ℝ}
     (hF : AnalyticOnNhd ℂ F (Metric.closedBall c |R|)) (hc : F c ≠ 0) :
     Real.log ‖F c‖ ≤ Real.circleAverage (fun z ↦ Real.log ‖F z‖) c R := by

@@ -23,6 +23,9 @@ private noncomputable abbrev _root_.AlgebraicGeometry.ThickAffSqZero.res (X : Sc
   (X.presheaf.map (homOfLE h).op).hom
 
 export _root_.AlgebraicGeometry.ThickAffSqZero (res)
+/--
+@isnad1 id=eq.2h5v.s13.81c841f71242 from=translated src=- shape=17fbc4cf vocab=2b169bb0
+-/
 theorem res_res (X : Scheme.{u}) {U V W : X.Opens} (h : V ≤ U) (h' : W ≤ V) (s : Γ(X, U)) :
     res X h' (res X h s) = res X (h'.trans h) s := by
   change (X.presheaf.map (homOfLE h).op ≫ X.presheaf.map (homOfLE h').op).hom s = _
@@ -31,8 +34,14 @@ theorem res_res (X : Scheme.{u}) {U V W : X.Opens} (h : V ≤ U) (h' : W ≤ V) 
 
 def K (U : X.Opens) : Ideal Γ(X, U) := RingHom.ker (i.app U).hom
 
+/--
+@isnad1 id=iff.0h5v.s13.9d8107a17971 from=translated src=- shape=550ad08f vocab=1e454056
+-/
 theorem mem_K_iff {U : X.Opens} (z : Γ(X, U)) : z ∈ K i U ↔ (i.app U).hom z = 0 := Iff.rfl
 
+/--
+@isnad1 id=eq.1h6v.s14.41634bca7c20 from=translated src=- shape=84494abc vocab=70cd4ffc
+-/
 theorem app_res {U V : X.Opens} (h : V ≤ U) (s : Γ(X, U)) :
     (i.app V).hom (res X h s) =
       (X₀.presheaf.map (homOfLE (i.preimage_mono h)).op).hom ((i.app U).hom s) := by
@@ -40,6 +49,9 @@ theorem app_res {U V : X.Opens} (h : V ≤ U) (s : Γ(X, U)) :
   rw [i.naturality]
   rfl
 
+/--
+@isnad1 id=mem.2h6v.s13.3fe6fb14bccb from=translated src=- shape=0b0f1cf8 vocab=0afd56ff
+-/
 theorem K_res {U V : X.Opens} (h : V ≤ U) {z : Γ(X, U)} (hz : z ∈ K i U) : res X h z ∈ K i V := by
   rw [mem_K_iff] at hz ⊢
   rw [app_res, hz, map_zero]
@@ -47,6 +59,9 @@ theorem K_res {U V : X.Opens} (h : V ≤ U) {z : Γ(X, U)} (hz : z ∈ K i U) : 
 def IsLift (U : X.Opens) (t : Γ(X₀, ⊤)) (u : Γ(X, U)) : Prop :=
   (i.app U).hom u = (X₀.presheaf.map (homOfLE le_top).op).hom t
 
+/--
+@isnad1 id=islift.2h7v.s11.2a13868e23a4 from=translated src=- shape=4d3ae49b vocab=92a72c2e
+-/
 theorem IsLift.res {U V : X.Opens} (h : V ≤ U) {t : Γ(X₀, ⊤)} {u : Γ(X, U)}
     (hu : IsLift i U t u) : IsLift i V t (res X h u) := by
   unfold IsLift at hu ⊢
@@ -55,24 +70,42 @@ theorem IsLift.res {U V : X.Opens} (h : V ≤ U) {t : Γ(X₀, ⊤)} {u : Γ(X, 
   rw [← X₀.presheaf.map_comp]
   rfl
 
+/--
+@isnad1 id=islift.2h8v.s11.be7acacac7d3 from=translated src=- shape=be190116 vocab=d4dd3965
+-/
 theorem IsLift.add {U : X.Opens} {t t' : Γ(X₀, ⊤)} {u u' : Γ(X, U)}
     (hu : IsLift i U t u) (hu' : IsLift i U t' u') : IsLift i U (t + t') (u + u') := by
   unfold IsLift at *; rw [map_add, map_add, hu, hu']
 
+/--
+@isnad1 id=islift.2h8v.s11.995a76886e12 from=translated src=- shape=be190116 vocab=bbba6d5e
+-/
 theorem IsLift.mul {U : X.Opens} {t t' : Γ(X₀, ⊤)} {u u' : Γ(X, U)}
     (hu : IsLift i U t u) (hu' : IsLift i U t' u') : IsLift i U (t * t') (u * u') := by
   unfold IsLift at *; rw [map_mul, map_mul, hu, hu']
 
+/--
+@isnad1 id=islift.1h7v.s11.2052b30ec0e2 from=translated src=- shape=d4fc3eba vocab=fc6001bb
+-/
 theorem IsLift.pow {U : X.Opens} {t : Γ(X₀, ⊤)} {u : Γ(X, U)}
     (hu : IsLift i U t u) (n : ℕ) : IsLift i U (t ^ n) (u ^ n) := by
   unfold IsLift at *; rw [map_pow, map_pow, hu]
 
+/--
+@isnad1 id=islift.0h4v.s11.ef2f7249ca4c from=translated src=- shape=853c5b3e vocab=8443b6e8
+-/
 theorem IsLift.one (U : X.Opens) : IsLift i U 1 1 := by
   unfold IsLift; rw [map_one, map_one]
 
+/--
+@isnad1 id=islift.0h4v.s11.af037179d697 from=translated src=- shape=853c5b3e vocab=8443b6e8
+-/
 theorem IsLift.zero (U : X.Opens) : IsLift i U 0 0 := by
   unfold IsLift; rw [map_zero, map_zero]
 
+/--
+@isnad1 id=islift.1h8v.s11.48221cd37b66 from=translated src=- shape=f2088459 vocab=3333f633
+-/
 theorem IsLift.sum {U : X.Opens} {ι : Type*} (s : Finset ι) {t : ι → Γ(X₀, ⊤)} {u : ι → Γ(X, U)}
     (hu : ∀ k ∈ s, IsLift i U (t k) (u k)) : IsLift i U (∑ k ∈ s, t k) (∑ k ∈ s, u k) := by
   classical
@@ -83,11 +116,17 @@ theorem IsLift.sum {U : X.Opens} {ι : Type*} (s : Finset ι) {t : ι → Γ(X�
     exact (hu a (Finset.mem_insert_self a s)).add i
       (ih fun k hk => hu k (Finset.mem_insert_of_mem hk))
 
+/--
+@isnad1 id=mem.2h7v.s12.9c3c76092957 from=translated src=- shape=a96649f0 vocab=6a5b7495
+-/
 theorem IsLift.sub_mem_K {U : X.Opens} {t : Γ(X₀, ⊤)} {u u' : Γ(X, U)}
     (hu : IsLift i U t u) (hu' : IsLift i U t u') : u - u' ∈ K i U := by
   unfold IsLift at *
   rw [mem_K_iff, map_sub, hu, hu', sub_self]
 
+/--
+@isnad1 id=ex.1h5v.s8.56ca80607b35 from=translated src=- shape=f413431e vocab=8dc0fb8c
+-/
 theorem exists_isLift [IsClosedImmersion i] {U : X.Opens} (hU : IsAffineOpen U) (t : Γ(X₀, ⊤)) :
     ∃ u : Γ(X, U), IsLift i U t u :=
   i.app_surjective U hU _
@@ -96,9 +135,15 @@ section SqZero
 
 variable [IsClosedImmersion i]
 
+/--
+@isnad1 id=eq.1h4v.s9.09ab9a712b4e from=translated src=- shape=12f34a42 vocab=69a61549
+-/
 theorem K_eq_ideal {U : X.Opens} (hU : IsAffineOpen U) : K i U = i.ker.ideal ⟨U, hU⟩ :=
   (i.ker_apply ⟨U, hU⟩).symm
 
+/--
+@isnad1 id=eq.4h6v.s13.ceb54133a9f5 from=translated src=- shape=678c82f1 vocab=92cb247b
+-/
 theorem mul_eq_zero_of_mem_K (hsq : i.ker * i.ker = ⊥) {U : X.Opens} (hU : IsAffineOpen U)
     {z w : Γ(X, U)} (hz : z ∈ K i U) (hw : w ∈ K i U) : z * w = 0 := by
   rw [K_eq_ideal i hU] at hz hw
@@ -108,18 +153,27 @@ theorem mul_eq_zero_of_mem_K (hsq : i.ker * i.ker = ⊥) {U : X.Opens} (hU : IsA
   rw [hsq] at this
   simpa using this
 
+/--
+@isnad1 id=eq.5h8v.s12.0d8f2d281aeb from=translated src=- shape=b73f940f vocab=d60fc602
+-/
 theorem IsLift.mul_eq_mul (hsq : i.ker * i.ker = ⊥) {U : X.Opens} (hU : IsAffineOpen U)
     {t : Γ(X₀, ⊤)} {u u' z : Γ(X, U)} (hu : IsLift i U t u) (hu' : IsLift i U t u')
     (hz : z ∈ K i U) : u * z = u' * z := by
   have := mul_eq_zero_of_mem_K i hsq hU (hu.sub_mem_K i hu') hz
   rwa [sub_mul, sub_eq_zero] at this
 
+/--
+@isnad1 id=eq.4h6v.s12.cf383599baf9 from=translated src=- shape=7e2b85b4 vocab=d60fc602
+-/
 theorem IsLift.one_mul (hsq : i.ker * i.ker = ⊥) {U : X.Opens} (hU : IsAffineOpen U)
     {u z : Γ(X, U)} (hu : IsLift i U 1 u) (hz : z ∈ K i U) : u * z = z := by
   rw [hu.mul_eq_mul i hsq hU (IsLift.one i U) hz, _root_.one_mul]
 
 end SqZero
 
+/--
+@isnad1 id=ex.4h5v.s12.70fc36e36be1 from=translated src=- shape=3263d188 vocab=244e94e0
+-/
 theorem exists_pow_mul_eq_zero {U : X.Opens} (hU : IsAffineOpen U) (f y : Γ(X, U))
     (W : X.Opens) (hWU : W ≤ U) (hW : X.basicOpen f ≤ W) (hy : res X hWU y = 0) :
     ∃ n : ℕ, f ^ n * y = 0 := by
@@ -130,6 +184,9 @@ theorem exists_pow_mul_eq_zero {U : X.Opens} (hU : IsAffineOpen U) (f y : Γ(X, 
   obtain ⟨⟨m, n, rfl⟩, hm⟩ := (IsLocalization.map_eq_zero_iff (Submonoid.powers f) _ y).mp this
   exact ⟨n, hm⟩
 
+/--
+@isnad1 id=ex.1h4v.s13.66be491e5b6e from=translated src=- shape=259508c6 vocab=1c480346
+-/
 theorem exists_res_eq_pow_mul {U : X.Opens} (hU : IsAffineOpen U) (f : Γ(X, U))
     (x : Γ(X, X.basicOpen f)) :
     ∃ (n : ℕ) (y : Γ(X, U)), res X (X.basicOpen_le f) y = res X (X.basicOpen_le f) f ^ n * x := by
@@ -141,6 +198,9 @@ theorem exists_res_eq_pow_mul {U : X.Opens} (hU : IsAffineOpen U) (f : Γ(X, U))
   change algebraMap _ _ y = algebraMap _ _ f ^ n * x
   rw [← hy, mul_comm]
 
+/--
+@isnad1 id=ex.2h6v.s13.06743a503ccf from=translated src=- shape=043aa1d2 vocab=b5236f6b
+-/
 theorem exists_K_res_eq [IsClosedImmersion i] {U : X.Opens} (hU : IsAffineOpen U) (f : Γ(X, U))
     {x : Γ(X, X.basicOpen f)} (hx : x ∈ K i (X.basicOpen f)) :
     ∃ (n : ℕ) (y : Γ(X, U)), y ∈ K i U ∧
@@ -162,6 +222,9 @@ theorem eq_of_preimage_eq (hi : Function.Surjective i.base) {U U' : X.Opens}
   ext1
   exact hi.preimage_injective congr(($h : Set X₀))
 
+/--
+@isnad1 id=eq.1h6v.s9.0e91324b9601 from=translated src=- shape=c06c75a3 vocab=eb72d9f4
+-/
 theorem preimage_basicOpen_of_isLift {U : X.Opens} {t : Γ(X₀, ⊤)} {u : Γ(X, U)}
     (hu : IsLift i U t u) : i ⁻¹ᵁ X.basicOpen u = i ⁻¹ᵁ U ⊓ X₀.basicOpen t := by
   rw [Scheme.preimage_basicOpen]
@@ -191,58 +254,100 @@ def Va (k : G.ι) : X.affineOpens := ⟨G.V k, G.affine k⟩
 
 noncomputable def c (k l : G.ι) : Γ(X, G.V k) := (exists_isLift i (G.affine k) (G.a l)).choose
 
+/--
+@isnad1 id=islift.0h6v.s5.fa4fe7212f97 from=translated src=- shape=b8750a27 vocab=a8f547b3
+-/
 theorem isLift_c (k l : G.ι) : IsLift i (G.V k) (G.a l) (G.c k l) :=
   (exists_isLift i (G.affine k) (G.a l)).choose_spec
 
 noncomputable def V₂ (k l : G.ι) : X.Opens := X.basicOpen (G.c k l)
 
+/--
+@isnad1 id=isaffine.0h6v.s5.da8d94890355 from=translated src=- shape=d4bc7b3b vocab=a528630e
+-/
 theorem affine_V₂ (k l : G.ι) : IsAffineOpen (G.V₂ k l) := (G.affine k).basicOpen _
 
 noncomputable def V₂a (k l : G.ι) : X.affineOpens := ⟨G.V₂ k l, G.affine_V₂ k l⟩
 
+/--
+@isnad1 id=le.0h6v.s6.451ba71eb942 from=translated src=- shape=4a15e907 vocab=9a28e570
+-/
 theorem V₂_le_left (k l : G.ι) : G.V₂ k l ≤ G.V k := X.basicOpen_le _
 
+/--
+@isnad1 id=eq.0h6v.s8.0b1a23c4399d from=translated src=- shape=32fe900b vocab=80124420
+-/
 theorem pre_V₂ (k l : G.ι) : i ⁻¹ᵁ G.V₂ k l = i ⁻¹ᵁ (G.V k ⊓ G.V l) := by
   rw [V₂, preimage_basicOpen_of_isLift i (G.isLift_c k l), Scheme.Hom.preimage_inf, G.pre l]
 
+/--
+@isnad1 id=eq.1h6v.s8.3d38ebb04187 from=translated src=- shape=f272ea1d vocab=751fb8c1
+-/
 theorem V₂_eq (hi : Function.Surjective i.base) (k l : G.ι) : G.V₂ k l = G.V k ⊓ G.V l :=
   eq_of_preimage_eq i hi (G.pre_V₂ k l)
 
+/--
+@isnad1 id=le.1h6v.s8.e8f1c7eb84cd from=translated src=- shape=8a448c75 vocab=459a3607
+-/
 theorem V₂_le_right (hi : Function.Surjective i.base) (k l : G.ι) : G.V₂ k l ≤ G.V l :=
   (G.V₂_eq hi k l).trans_le inf_le_right
 
 noncomputable def c₃ (k l q : G.ι) : Γ(X, G.V₂ k l) :=
   (exists_isLift i (G.affine_V₂ k l) (G.a q)).choose
 
+/--
+@isnad1 id=islift.0h7v.s6.fdc83c2938ca from=translated src=- shape=8f47afb0 vocab=24e95ab6
+-/
 theorem isLift_c₃ (k l q : G.ι) : IsLift i (G.V₂ k l) (G.a q) (G.c₃ k l q) :=
   (exists_isLift i (G.affine_V₂ k l) (G.a q)).choose_spec
 
 noncomputable def V₃ (k l q : G.ι) : X.Opens := X.basicOpen (G.c₃ k l q)
 
+/--
+@isnad1 id=isaffine.0h7v.s5.f5351ca81f38 from=translated src=- shape=58bf9e7a vocab=37e67455
+-/
 theorem affine_V₃ (k l q : G.ι) : IsAffineOpen (G.V₃ k l q) := (G.affine_V₂ k l).basicOpen _
 
 noncomputable def V₃a (k l q : G.ι) : X.affineOpens := ⟨G.V₃ k l q, G.affine_V₃ k l q⟩
 
+/--
+@isnad1 id=le.0h7v.s6.acae2065fb68 from=translated src=- shape=0b19be90 vocab=087bf477
+-/
 theorem V₃_le (k l q : G.ι) : G.V₃ k l q ≤ G.V₂ k l := X.basicOpen_le _
 
+/--
+@isnad1 id=eq.0h7v.s8.6497241bb3f1 from=translated src=- shape=61a915bb vocab=85746a32
+-/
 theorem pre_V₃ (k l q : G.ι) : i ⁻¹ᵁ G.V₃ k l q = i ⁻¹ᵁ (G.V k ⊓ G.V l ⊓ G.V q) := by
   rw [V₃, preimage_basicOpen_of_isLift i (G.isLift_c₃ k l q), pre_V₂, Scheme.Hom.preimage_inf,
     Scheme.Hom.preimage_inf, G.pre q]
   rfl
 
+/--
+@isnad1 id=eq.1h7v.s8.391d2bd928cb from=translated src=- shape=2da164dd vocab=4031e248
+-/
 theorem V₃_eq (hi : Function.Surjective i.base) (k l q : G.ι) :
     G.V₃ k l q = G.V k ⊓ G.V l ⊓ G.V q :=
   eq_of_preimage_eq i hi (G.pre_V₃ k l q)
 
+/--
+@isnad1 id=le.1h7v.s8.9d5c33bc3e6e from=translated src=- shape=e2ae2e4a vocab=64baf2ea
+-/
 theorem V₃_le_V₂_left (hi : Function.Surjective i.base) (k l q : G.ι) : G.V₃ k l q ≤ G.V₂ k q := by
   rw [G.V₃_eq hi, G.V₂_eq hi]
   exact le_inf (inf_le_left.trans inf_le_left) inf_le_right
 
+/--
+@isnad1 id=le.1h7v.s8.52cd44a2e4b0 from=translated src=- shape=2e97c720 vocab=64baf2ea
+-/
 theorem V₃_le_V₂_right (hi : Function.Surjective i.base) (k l q : G.ι) : G.V₃ k l q ≤ G.V₂ l q := by
   rw [G.V₃_eq hi, G.V₂_eq hi]
   exact le_inf (inf_le_left.trans inf_le_right) inf_le_right
 
 omit [IsClosedImmersion i] in
+/--
+@isnad1 id=eq.1h4v.s8.2ce9c271ecc6 from=translated src=- shape=574d2823 vocab=081f326e
+-/
 theorem iSup_V [IsAffine X₀] (hi : Function.Surjective i.base) : ⨆ k, G.V k = ⊤ := by
   refine eq_of_preimage_eq i hi ?_
   rw [Scheme.Hom.preimage_iSup, Scheme.Hom.preimage_top]
@@ -251,6 +356,9 @@ theorem iSup_V [IsAffine X₀] (hi : Function.Surjective i.base) : ⨆ k, G.V k 
   exact (isAffineOpen_top X₀).iSup_basicOpen_eq_self_iff.mpr G.span_eq_top
 
 omit [IsClosedImmersion i] in
+/--
+@isnad1 id=eq.0h4v.s7.7a2bed726365 from=translated src=- shape=6aa6a3df vocab=d05f6c41
+-/
 theorem iSup_pre_V [IsAffine X₀] : ⨆ k, i ⁻¹ᵁ G.V k = ⊤ := by
   simp_rw [G.pre]
   rw [← iSup_range' (g := fun f => X₀.basicOpen f) (f := G.a)]
@@ -262,16 +370,25 @@ variable (hi : Function.Surjective i.base) (t : Γ(X₀, ⊤))
 
 noncomputable def s (k : G.ι) : Γ(X, G.V k) := (exists_isLift i (G.affine k) t).choose
 
+/--
+@isnad1 id=islift.0h6v.s8.582c9977f75b from=translated src=- shape=7786b7f1 vocab=67929471
+-/
 theorem isLift_s (k : G.ι) : IsLift i (G.V k) t (G.s t k) := (exists_isLift i (G.affine k) t).choose_spec
 
 noncomputable def δ (k l : G.ι) : Γ(X, G.V₂ k l) :=
   res X (G.V₂_le_right hi k l) (G.s t l) - res X (G.V₂_le_left k l) (G.s t k)
 
+/--
+@isnad1 id=mem.1h7v.s11.56e2c13c5e88 from=translated src=- shape=53a6b52b vocab=4b284b2f
+-/
 theorem δ_mem (k l : G.ι) : G.δ hi t k l ∈ K i (G.V₂ k l) :=
   ((G.isLift_s t l).res i _).sub_mem_K i ((G.isLift_s t k).res i _)
 
 include hi in
 
+/--
+@isnad1 id=ex.1h5v.s13.115d2f998787 from=translated src=- shape=664816dc vocab=0b72e34a
+-/
 theorem exists_u : ∃ (N : ℕ) (u : ∀ k : G.ι, G.ι → Γ(X, G.V k)),
     (∀ k l, u k l ∈ K i (G.V k)) ∧
     ∀ k l, res X (G.V₂_le_left k l) (u k l) =
@@ -287,17 +404,29 @@ theorem exists_u : ∃ (N : ℕ) (u : ∀ k : G.ι, G.ι → Γ(X, G.V k)),
     Finset.le_sup (f := fun p : G.ι × G.ι => n p.1 p.2) (Finset.mem_univ (k, l))
   rw [map_mul, map_pow, hu, ← mul_assoc, ← pow_add, Nat.sub_add_cancel hle]
 
+/--
+@isnad1 id=le.0h7v.s6.6f91ce33333f from=translated src=- shape=16d3aec0 vocab=a7cdb01a
+-/
 theorem V₃_le_k (k l q : G.ι) : G.V₃ k l q ≤ G.V k := (G.V₃_le k l q).trans (G.V₂_le_left k l)
 
 include hi in
+/--
+@isnad1 id=le.1h7v.s8.63a9baf7f06b from=translated src=- shape=91d928be vocab=7ee47f3c
+-/
 theorem V₃_le_l (k l q : G.ι) : G.V₃ k l q ≤ G.V l := (G.V₃_le k l q).trans (G.V₂_le_right hi k l)
 
 include hi in
+/--
+@isnad1 id=le.1h7v.s8.a50aab3c5505 from=translated src=- shape=4e48b6bc vocab=7ee47f3c
+-/
 theorem V₃_le_q (k l q : G.ι) : G.V₃ k l q ≤ G.V q :=
   (G.V₃_le_V₂_left hi k l q).trans (G.V₂_le_right hi k q)
 
 include hi in
 
+/--
+@isnad1 id=ex.3h7v.s14.bb600438b2f4 from=translated src=- shape=f3e7c9fa vocab=e9963075
+-/
 theorem exists_N₂ (hsq : i.ker * i.ker = ⊥) (N : ℕ) (u : ∀ k : G.ι, G.ι → Γ(X, G.V k))
     (hu : ∀ k l, res X (G.V₂_le_left k l) (u k l) =
       res X (G.V₂_le_left k l) (G.c k l) ^ N * G.δ hi t k l) :
@@ -351,6 +480,9 @@ theorem exists_N₂ (hsq : i.ker * i.ker = ⊥) (N : ℕ) (u : ∀ k : G.ι, G.�
 
 include hi in
 
+/--
+@isnad1 id=ex.2h5v.s13.d4588733f4d4 from=translated src=- shape=65af2bfc vocab=37218389
+-/
 theorem exists_d [IsAffine X₀] (hsq : i.ker * i.ker = ⊥) :
     ∃ d : ∀ k : G.ι, Γ(X, G.V k), (∀ k, d k ∈ K i (G.V k)) ∧
       ∀ k l, res X (G.V₂_le_left k l) (d k) - res X (G.V₂_le_right hi k l) (d l) = G.δ hi t k l := by
@@ -398,6 +530,9 @@ theorem exists_d [IsAffine X₀] (hsq : i.ker * i.ker = ⊥) :
 
 include G hi in
 
+/--
+@isnad1 id=ex.2h5v.s9.0deb097665a4 from=translated src=- shape=96cfb84b vocab=71c230ba
+-/
 theorem exists_isLift_top [IsAffine X₀] (hsq : i.ker * i.ker = ⊥) :
     ∃ σ : Γ(X, ⊤), IsLift i ⊤ t σ := by
   obtain ⟨d, hdK, hd⟩ := G.exists_d hi t hsq
@@ -442,6 +577,9 @@ end Lift
 end GoodCover
 open scoped _root_.P2MW.S_AlgebraicGeometry_isAffine_of_isClosedImmersion_of_ker_mul_ker_eq_bot.AlgebraicGeometry.ThickAffSqZero.GoodCover
 
+/--
+@isnad1 id=nonempty.0h3v.s4.6c42e71651e8 from=translated src=- shape=f6835bcd vocab=649e1f0d
+-/
 theorem exists_goodCover [IsClosedImmersion i] [IsAffine X₀] : Nonempty (GoodCover i) := by
   classical
 
@@ -478,6 +616,9 @@ theorem exists_goodCover [IsClosedImmersion i] [IsAffine X₀] : Nonempty (GoodC
     rw [iSup_range' (g := fun f => X₀.basicOpen f) (f := fun k : σ => f k)]
     exact hcov
 
+/--
+@isnad1 id=surjecti.1h3v.s7.d480af6a1ea3 from=translated src=- shape=6513733b vocab=892384e2
+-/
 theorem surjective_of_ker_mul_ker_eq_bot [IsClosedImmersion i] (hsq : i.ker * i.ker = ⊥) :
     Function.Surjective i.base := by
   have h1 : i.ker.support = ⊤ := by
@@ -488,6 +629,9 @@ theorem surjective_of_ker_mul_ker_eq_bot [IsClosedImmersion i] (hsq : i.ker * i.
   rw [← Set.range_eq_univ, ← h2, h1]
   rfl
 
+/--
+@isnad1 id=isaffine.1h3v.s6.c30d42d676eb from=translated src=- shape=74b855d9 vocab=129e28ad
+-/
 theorem isAffine_of_ker_mul_ker_eq_bot [IsClosedImmersion i] [IsAffine X₀] (hsq : i.ker * i.ker = ⊥) :
     IsAffine X := by
   classical
@@ -533,6 +677,9 @@ open scoped _root_.P2MW.S_AlgebraicGeometry_isAffine_of_isClosedImmersion_of_ker
 end AlgebraicGeometry
 open scoped _root_.P2MW.S_AlgebraicGeometry_isAffine_of_isClosedImmersion_of_ker_mul_ker_eq_bot.AlgebraicGeometry.ThickAffSqZero.GoodCover _root_.P2MW.S_AlgebraicGeometry_isAffine_of_isClosedImmersion_of_ker_mul_ker_eq_bot.AlgebraicGeometry.ThickAffSqZero _root_.P2MW.S_AlgebraicGeometry_isAffine_of_isClosedImmersion_of_ker_mul_ker_eq_bot.AlgebraicGeometry
 
+/--
+@isnad1 id=isaffine.1h3v.s6.c30d42d676eb from=translated src=- shape=74b855d9 vocab=129e28ad
+-/
 theorem solution
     {X₀ X : Scheme.{u}} (i : X₀ ⟶ X) [IsClosedImmersion i] [IsAffine X₀]
     (h : i.ker * i.ker = ⊥) : IsAffine X :=

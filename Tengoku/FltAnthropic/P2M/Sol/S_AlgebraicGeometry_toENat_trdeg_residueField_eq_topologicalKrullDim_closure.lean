@@ -20,6 +20,9 @@ section TopologyB
 
 attribute [local instance] specializationOrder
 
+/--
+@isnad1 id=le.1h2v.s6.0f307dc9a050 from=translated src=- shape=437ed9af vocab=191b8701
+-/
 theorem topologicalKrullDim_le_of_forall_exists_isOpenEmbedding {Z : Type u} [TopologicalSpace Z]
     [QuasiSober Z] [T0Space Z] (n : WithBot ℕ∞)
     (h : ∀ z : Z, ∃ (V : Type u) (_ : TopologicalSpace V) (g : V → Z),
@@ -39,6 +42,9 @@ theorem topologicalKrullDim_le_of_forall_exists_isOpenEmbedding {Z : Type u} [To
 
 end TopologyB
 
+/--
+@isnad1 id=ex.2h3v.s13.645e0bcee03f from=translated src=- shape=ff27ec14 vocab=a2705f8e
+-/
 theorem chart_top {X : Scheme.{u}} {x : X} {U : X.Opens} (hU : IsAffineOpen U) (hxU : x ∈ U) :
     ∃ g : PrimeSpectrum (Γ(X, U) ⧸ (hU.primeIdealOf ⟨x, hxU⟩).asIdeal) → ↥(closure ({x} : Set X)),
       IsOpenEmbedding g ∧ ∀ z : ↥(closure ({x} : Set X)), z.1 ∈ (U : Set X) → z ∈ Set.range g := by
@@ -120,6 +126,9 @@ variable {k : Type u} [Field k] {X : Scheme.{u}} (f : X ⟶ Spec (.of k))
 noncomputable abbrev chartAlgebra (U : X.Opens) : Algebra k Γ(X, U) :=
   ((f.appLE ⊤ U le_top).hom.comp (Scheme.ΓSpecIso (CommRingCat.of k)).inv.hom).toAlgebra
 
+/--
+@isnad1 id=finitety.1h4v.s9.8cb07839a306 from=translated src=- shape=3a5d6973 vocab=a304561d
+-/
 theorem chart_finiteType [LocallyOfFiniteType f] {U : X.Opens} (hU : IsAffineOpen U) :
     letI := chartAlgebra f U
     Algebra.FiniteType k Γ(X, U) := by
@@ -133,6 +142,9 @@ theorem chart_finiteType [LocallyOfFiniteType f] {U : X.Opens} (hU : IsAffineOpe
 noncomputable abbrev resAlgebra (x : X) : Algebra k (X.residueField x) :=
   ((Scheme.ΓSpecIso (.of k)).inv ≫ f.appTop ≫ X.presheaf.germ ⊤ x trivial ≫ X.residue x).hom.toAlgebra
 
+/--
+@isnad1 id=eq.2h5v.s11.772c3b0d639c from=translated src=- shape=46fa64e9 vocab=e6e734e3
+-/
 theorem chart_alg [LocallyOfFiniteType f] {x : X} {U : X.Opens} (hU : IsAffineOpen U)
     (hxU : x ∈ U) :
     letI := resAlgebra f x
@@ -203,6 +215,9 @@ theorem chart_alg [LocallyOfFiniteType f] {x : X} {U : X.Opens} (hU : IsAffineOp
   rw [Algebra.ringKrullDim_eq_toENat_trdeg_of_finiteType k (Γ(X, U) ⧸ RingHom.ker (X.evaluation U x hxU).hom),
     ← hs.cardinalMk_eq_trdeg, ← hs'.cardinalMk_eq_trdeg]
 
+/--
+@isnad1 id=eq.0h4v.s8.58c5cb85b32e from=translated src=- shape=57f68222 vocab=6bb426c4
+-/
 theorem main [LocallyOfFiniteType f] (x : X) :
     letI := resAlgebra f x
     (Cardinal.toENat (Algebra.trdeg k (X.residueField x)) : WithBot ℕ∞) =
@@ -231,6 +246,9 @@ end Chart
 
 end L1TrdegClosure
 
+/--
+@isnad1 id=eq.0h4v.s11.0106fc76ebd7 from=translated src=- shape=57f68222 vocab=ef6771b8
+-/
 theorem solution
     {k : Type u} [Field k] {X : Scheme.{u}} (f : X ⟶ Spec (.of k)) [LocallyOfFiniteType f] (x : X) :
     letI : Algebra k (X.residueField x) :=

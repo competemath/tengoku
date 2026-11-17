@@ -10,6 +10,9 @@ universe u
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=issepara.1h4v.s5.91aa39f356a1 from=translated src=- shape=f6b3e50e vocab=e6ec179a
+-/
 theorem solution
     {σ : Type u} (X : σ → Scheme.{u}) {Y : Scheme.{u}} (f : ∀ i, X i ⟶ Y)
     (hf : ∀ i, IsSeparated (f i)) : IsSeparated (Sigma.desc f) := by

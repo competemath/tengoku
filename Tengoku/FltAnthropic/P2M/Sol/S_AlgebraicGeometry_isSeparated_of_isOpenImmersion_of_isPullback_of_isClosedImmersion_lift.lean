@@ -19,6 +19,9 @@ noncomputable abbrev δ {P Q : Scheme.{u}} (jP : P ⟶ Y') (jQ : Q ⟶ Y') :
     pullback jP jQ ⟶ pullback (jP ≫ f') (jQ ≫ f') :=
   pullback.map jP jQ (jP ≫ f') (jQ ≫ f') (𝟙 P) (𝟙 Q) f' (Category.id_comp _).symm (Category.id_comp _).symm
 
+/--
+@isnad1 id=isclosed.0h5v.s6.8dff27852c20 from=translated src=- shape=8561b06a vocab=a976c4e0
+-/
 theorem isClosedImmersion_δ_self {P : Scheme.{u}} (j : P ⟶ Y') [Mono j]
     [IsClosedImmersion (pullback.diagonal (j ≫ f'))] : IsClosedImmersion (δ f' j j) := by
   haveI : IsIso (pullback.diagonal j) := inferInstance
@@ -31,6 +34,9 @@ theorem isClosedImmersion_δ_self {P : Scheme.{u}} (j : P ⟶ Y') [Mono j]
         Category.comp_id]
   rw [h]; infer_instance
 
+/--
+@isnad1 id=isclosed.2h10v.s7.0c1e10cbf0a2 from=translated src=- shape=74d63235 vocab=ab2ea6a6
+-/
 theorem isClosedImmersion_δ_of_isPullback {A B U : Scheme.{u}} (jA : A ⟶ Y') (jB : B ⟶ Y')
     (uA : U ⟶ A) (uB : U ⟶ B) (hsq : IsPullback uA uB jA jB)
     (hΓ : IsClosedImmersion (pullback.lift uA uB
@@ -46,6 +52,9 @@ theorem isClosedImmersion_δ_of_isPullback {A B U : Scheme.{u}} (jA : A ⟶ Y') 
     rw [← h1, Iso.inv_hom_id_assoc]
   rw [h2]; infer_instance
 
+/--
+@isnad1 id=isclosed.0h7v.s7.df556f23826d from=translated src=- shape=cfb56b50 vocab=5f2d24bc
+-/
 theorem isClosedImmersion_δ_symm {A B : Scheme.{u}} (jA : A ⟶ Y') (jB : B ⟶ Y')
     [IsClosedImmersion (δ f' jA jB)] : IsClosedImmersion (δ f' jB jA) := by
   have h : δ f' jB jA = (pullbackSymmetry jB jA).hom ≫ δ f' jA jB ≫ (pullbackSymmetry (jA ≫ f') (jB ≫ f')).hom := by
@@ -59,6 +68,9 @@ theorem isClosedImmersion_δ_symm {A B : Scheme.{u}} (jA : A ⟶ Y') (jB : B ⟶
 end SepGlue21
 
 open SepGlue21 in
+/--
+@isnad1 id=issepara.5h12v.s9.9da701e63524 from=translated src=- shape=613c63f3 vocab=1be610aa
+-/
 theorem solution
     {S Y' A B U : Scheme.{u}} (f' : Y' ⟶ S)
     (jA : A ⟶ Y') (jB : B ⟶ Y') [IsOpenImmersion jA] [IsOpenImmersion jB]

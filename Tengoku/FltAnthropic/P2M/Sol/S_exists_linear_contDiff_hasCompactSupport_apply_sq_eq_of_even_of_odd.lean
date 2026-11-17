@@ -1379,6 +1379,9 @@ end
 
 open WhitneyEngine in
 
+/--
+@isnad1 id=ex.0h1v.s9.8f52414d09d8 from=translated src=- shape=04500550 vocab=431a9125
+-/
 theorem solution
     (P : Type) [NormedAddCommGroup P] [NormedSpace ℝ P] :
     ∃ W : (ℝ → ℂ) → (ℝ → ℂ),

@@ -14,6 +14,9 @@ namespace C1Sol
 
 open Topology
 
+/--
+@isnad1 id=ex.2h2v.s5.2b8568a93616 from=translated src=- shape=85a2de25 vocab=4e6c3c39
+-/
 theorem exists_open_of_isConstructible_of_genericPoint_mem {Y : Type u} [TopologicalSpace Y] [QuasiSober Y] [IrreducibleSpace Y]
     {s : Set Y} (hs : IsConstructible s) (hξ : genericPoint Y ∈ s) :
     ∃ V : Set Y, IsOpen V ∧ V.Nonempty ∧ V ⊆ s := by
@@ -42,6 +45,9 @@ theorem exists_open_of_isConstructible_of_genericPoint_mem {Y : Type u} [Topolog
 
 end C1Sol
 
+/--
+@isnad1 id=ex.2h4v.s9.a4fc3ca6ab1e from=translated src=- shape=702e265c vocab=5f2101aa
+-/
 theorem solution
     {X Y : Scheme.{u}} (f : X ⟶ Y) [LocallyOfFinitePresentation f] [QuasiCompact f]
     [CompactSpace ↥Y] [QuasiSeparatedSpace ↥Y] [IrreducibleSpace ↥X] [IrreducibleSpace ↥Y]

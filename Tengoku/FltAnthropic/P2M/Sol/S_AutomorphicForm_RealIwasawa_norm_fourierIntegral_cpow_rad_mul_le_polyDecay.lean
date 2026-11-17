@@ -20,17 +20,29 @@ namespace RealIwasawa
 def rot (θ : ℝ) : Matrix (Fin 2) (Fin 2) ℝ :=
   !![Real.cos θ, -Real.sin θ; Real.sin θ, Real.cos θ]
 
+/--
+@isnad1 id=eq.0h0v.s6.2fe371feb733 from=translated src=- shape=4a8cf6c6 vocab=311d3637
+-/
 theorem rot_zero : rot 0 = 1 := by
   rw [rot, Matrix.one_fin_two, Real.cos_zero, Real.sin_zero, neg_zero]
 
+/--
+@isnad1 id=eq.0h2v.s6.21f62f5db54e from=translated src=- shape=095e2330 vocab=7a9f7126
+-/
 theorem rot_add (s t : ℝ) : rot (s + t) = rot s * rot t := by
   ext i j
   fin_cases i <;> fin_cases j <;>
     simp [rot, Matrix.mul_apply, Fin.sum_univ_two, Real.cos_add, Real.sin_add] <;> ring
 
+/--
+@isnad1 id=eq.0h1v.s7.f3a742cb31d0 from=translated src=- shape=b59b86e9 vocab=e09de00d
+-/
 theorem rot_mul_rot_neg (θ : ℝ) : rot θ * rot (-θ) = 1 := by
   rw [← rot_add, add_neg_cancel, rot_zero]
 
+/--
+@isnad1 id=eq.0h1v.s7.cf15bbc517e1 from=translated src=- shape=63d35e59 vocab=e09de00d
+-/
 theorem rot_neg_mul_rot (θ : ℝ) : rot (-θ) * rot θ = 1 := by
   rw [← rot_add, neg_add_cancel, rot_zero]
 
@@ -55,6 +67,9 @@ def rad (u : ℝ) : ℝ := ‖botRow g u‖
 
 variable {g}
 
+/--
+@isnad1 id=lt.1h1v.s5.1395b29eec4e from=translated src=- shape=56b50453 vocab=d0eb113c
+-/
 theorem botNormSq_pos (hg : g.det ≠ 0) : 0 < botNormSq g := by
   unfold botNormSq
   rcases (add_nonneg (sq_nonneg (g 1 0)) (sq_nonneg (g 1 1))).lt_or_eq with h | h
@@ -65,15 +80,24 @@ theorem botNormSq_pos (hg : g.det ≠ 0) : 0 < botNormSq g := by
     apply hg
     rw [Matrix.det_fin_two, hc, hd, mul_zero, mul_zero, sub_zero]
 
+/--
+@isnad1 id=eq.0h1v.s5.406e6381eecb from=translated src=- shape=3b240de4 vocab=d5b1273f
+-/
 theorem norm_dir_sq (g : Matrix (Fin 2) (Fin 2) ℝ) : ‖dir g‖ ^ 2 = botNormSq g := by
   rw [Complex.sq_norm, dir, Complex.normSq_mk, botNormSq]
   ring
 
+/--
+@isnad1 id=lt.1h1v.s5.fa62c2dcc549 from=translated src=- shape=6a73246c vocab=413933c4
+-/
 theorem norm_dir_pos (hg : g.det ≠ 0) : 0 < ‖dir g‖ := by
   have h := norm_dir_sq g
   have hA := botNormSq_pos hg
   nlinarith [norm_nonneg (dir g)]
 
+/--
+@isnad1 id=eq.1h2v.s6.8ca3eaec13d4 from=translated src=- shape=93038de9 vocab=206b3256
+-/
 theorem botRow_eq (hg : g.det ≠ 0) (u : ℝ) : botRow g u = dir g * ((u : ℂ) - center g) := by
   have hA : botNormSq g ≠ 0 := (botNormSq_pos hg).ne'
   apply Complex.ext
@@ -88,42 +112,72 @@ theorem botRow_eq (hg : g.det ≠ 0) (u : ℝ) : botRow g u = dir g * ((u : ℂ)
     field_simp
     ring
 
+/--
+@isnad1 id=eq.0h2v.s6.4e929fdce535 from=translated src=- shape=7e4b4967 vocab=1ba520af
+-/
 theorem im_sub_center (g : Matrix (Fin 2) (Fin 2) ℝ) (u : ℝ) :
     ((u : ℂ) - center g).im = g.det / botNormSq g := by
   simp [center]
 
+/--
+@isnad1 id=eq.0h2v.s5.e81d07508bf9 from=translated src=- shape=e84509c7 vocab=1eb6bc46
+-/
 theorem re_sub_center (g : Matrix (Fin 2) (Fin 2) ℝ) (u : ℝ) : ((u : ℂ) - center g).re = u - foot g := by
   simp [center]
 
+/--
+@isnad1 id=mem.1h2v.s6.589ba8161473 from=translated src=- shape=69a04b94 vocab=f2f05685
+-/
 theorem sub_center_mem_slitPlane (hg : g.det ≠ 0) (u : ℝ) : (u : ℂ) - center g ∈ Complex.slitPlane :=
   Complex.mem_slitPlane_iff.2 (Or.inr (by
     rw [im_sub_center]
     exact div_ne_zero hg (botNormSq_pos hg).ne'))
 
+/--
+@isnad1 id=ne.1h2v.s6.ccecdbcadd05 from=translated src=- shape=b689f707 vocab=9278f2cb
+-/
 theorem sub_center_ne_zero (hg : g.det ≠ 0) (u : ℝ) : (u : ℂ) - center g ≠ 0 :=
   Complex.slitPlane_ne_zero (sub_center_mem_slitPlane hg u)
 
+/--
+@isnad1 id=le.1h2v.s6.b4c240c1e249 from=translated src=- shape=e11c7fdd vocab=035e06fb
+-/
 theorem abs_det_div_le_norm_sub_center (hg : g.det ≠ 0) (u : ℝ) :
     |g.det| / botNormSq g ≤ ‖(u : ℂ) - center g‖ := by
   have h := Complex.abs_im_le_norm ((u : ℂ) - center g)
   rwa [im_sub_center, abs_div, abs_of_pos (botNormSq_pos hg)] at h
 
+/--
+@isnad1 id=eq.1h2v.s6.1714dac3d774 from=translated src=- shape=98549103 vocab=3ca4eb74
+-/
 theorem rad_eq (hg : g.det ≠ 0) (u : ℝ) : rad g u = ‖dir g‖ * ‖(u : ℂ) - center g‖ := by
   rw [rad, botRow_eq hg, norm_mul]
 
+/--
+@isnad1 id=lt.1h2v.s5.8f5d6e57e671 from=translated src=- shape=099086ba vocab=657b90f5
+-/
 theorem rad_pos (hg : g.det ≠ 0) (u : ℝ) : 0 < rad g u := by
   rw [rad_eq hg]
   exact mul_pos (norm_dir_pos hg) (norm_pos_iff.2 (sub_center_ne_zero hg u))
 
+/--
+@isnad1 id=eq.0h2v.s7.926457caf3a7 from=translated src=- shape=ff7c9e0b vocab=76a82431
+-/
 theorem rad_sq (g : Matrix (Fin 2) (Fin 2) ℝ) (u : ℝ) :
     rad g u ^ 2 = (g 0 0 + u * g 1 0) ^ 2 + (g 0 1 + u * g 1 1) ^ 2 := by
   rw [rad, Complex.sq_norm, botRow, Complex.normSq_mk]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s7.7b895227f7ef from=translated src=- shape=7c123561 vocab=88bede0b
+-/
 theorem rad_eq_sqrt (g : Matrix (Fin 2) (Fin 2) ℝ) (u : ℝ) :
     rad g u = Real.sqrt ((g 0 0 + u * g 1 0) ^ 2 + (g 0 1 + u * g 1 1) ^ 2) := by
   rw [← rad_sq, Real.sqrt_sq (show 0 ≤ rad g u from norm_nonneg _)]
 
+/--
+@isnad1 id=eq.1h2v.s7.9ab71ee95137 from=translated src=- shape=59373993 vocab=45ebf679
+-/
 theorem rad_sq_eq (hg : g.det ≠ 0) (u : ℝ) :
     rad g u ^ 2 = botNormSq g * (u - foot g) ^ 2 + g.det ^ 2 / botNormSq g := by
   have hA : botNormSq g ≠ 0 := (botNormSq_pos hg).ne'
@@ -140,6 +194,9 @@ def angle (u : ℝ) : ℝ := Complex.arg (dir g) + (logLine g u).im
 
 variable {g}
 
+/--
+@isnad1 id=eq.1h2v.s6.73cf0e1d54a1 from=translated src=- shape=a5d189da vocab=916c7ae2
+-/
 theorem log_rad_eq (hg : g.det ≠ 0) (u : ℝ) : Real.log (rad g u) = Real.log ‖dir g‖ + (logLine g u).re := by
   rw [rad_eq hg, Real.log_mul (norm_dir_pos hg).ne' (norm_pos_iff.2 (sub_center_ne_zero hg u)).ne', logLine,
     Complex.log_re]
@@ -151,6 +208,9 @@ def borel (u : ℝ) : Matrix (Fin 2) (Fin 2) ℝ :=
 
 variable {g}
 
+/--
+@isnad1 id=eq.1h2v.s6.b361f4b82508 from=translated src=- shape=c055a3b6 vocab=f7783d49
+-/
 theorem det_borel (hg : g.det ≠ 0) (u : ℝ) : (borel g u).det = -g.det := by
   rw [borel, Matrix.det_fin_two_of, mul_zero, sub_zero, div_mul_cancel₀ _ (rad_pos hg u).ne']
 
@@ -170,15 +230,24 @@ def unipR (u : ℝ) : GL (Fin 2) ℝ :=
 def invTower (g : Matrix (Fin 2) (Fin 2) ℝ) (k : ℕ) (u : ℝ) : ℂ :=
   (-1) ^ k * (k ! : ℂ) * ((u : ℂ) - center g) ^ (-1 - (k : ℤ))
 
+/--
+@isnad1 id=eq.0h2v.s5.d2779a35d86f from=translated src=- shape=9a87429d vocab=31ab64b1
+-/
 theorem invTower_zero (g : Matrix (Fin 2) (Fin 2) ℝ) (u : ℝ) : invTower g 0 u = ((u : ℂ) - center g)⁻¹ := by
   simp [invTower]
 
+/--
+@isnad1 id=hasderiv.1h2v.s6.80307213cd6f from=translated src=- shape=73c739c4 vocab=658886ff
+-/
 theorem hasDerivAt_logLine (hg : g.det ≠ 0) (u : ℝ) : HasDerivAt (logLine g) (invTower g 0 u) u := by
   have h : HasDerivAt (fun y : ℝ => (y : ℂ) - center g) 1 u := (hasDerivAt_id u).ofReal_comp.sub_const _
   have h2 := h.clog_real (sub_center_mem_slitPlane hg u)
   rw [invTower_zero, ← one_div]
   exact h2
 
+/--
+@isnad1 id=hasderiv.1h3v.s6.18f5f1ba6dbb from=translated src=- shape=e1e8e6a5 vocab=3a9ea375
+-/
 theorem hasDerivAt_invTower (hg : g.det ≠ 0) (k : ℕ) (u : ℝ) :
     HasDerivAt (invTower g k) (invTower g (k + 1) u) u := by
   have hz := sub_center_ne_zero hg u
@@ -195,11 +264,17 @@ theorem hasDerivAt_invTower (hg : g.det ≠ 0) (k : ℕ) (u : ℝ) :
   push_cast
   ring
 
+/--
+@isnad1 id=hasderiv.1h3v.s6.c8dca3e8d025 from=translated src=- shape=d9f49a33 vocab=0ecbb587
+-/
 theorem hasDerivAt_re {F : ℝ → ℂ} {F' : ℂ} {u : ℝ} (h : HasDerivAt F F' u) :
     HasDerivAt (fun y => (F y).re) F'.re u := by
   have h2 := Complex.reCLM.hasFDerivAt.comp_hasDerivAt u h
   simpa [Function.comp_def] using h2
 
+/--
+@isnad1 id=eq.1h2v.s6.75c1feb94be6 from=translated src=- shape=5cefad22 vocab=2e0ddbd2
+-/
 theorem iteratedDeriv_re_logLine_succ (hg : g.det ≠ 0) (k : ℕ) :
     iteratedDeriv (k + 1) (fun u => (logLine g u).re) = fun u => (invTower g k u).re := by
   induction k with
@@ -212,12 +287,18 @@ theorem iteratedDeriv_re_logLine_succ (hg : g.det ≠ 0) (k : ℕ) :
     funext u
     exact (hasDerivAt_re (hasDerivAt_invTower hg k u)).deriv
 
+/--
+@isnad1 id=eq.1h3v.s6.e086c676a64e from=translated src=- shape=ce7d2436 vocab=6afbf7e0
+-/
 theorem iteratedDeriv_log_rad_succ (hg : g.det ≠ 0) (k : ℕ) (u : ℝ) :
     iteratedDeriv (k + 1) (fun u => Real.log (rad g u)) u = (invTower g k u).re := by
   have h : (fun u => Real.log (rad g u)) = fun u => Real.log ‖dir g‖ + (logLine g u).re :=
     funext (log_rad_eq hg)
   rw [h, iteratedDeriv_const_add (Nat.succ_pos k), iteratedDeriv_re_logLine_succ hg k]
 
+/--
+@isnad1 id=contdiff.1h1v.s6.e9fc42f03899 from=translated src=- shape=ac69f61a vocab=de72de4c
+-/
 theorem contDiff_logLine (hg : g.det ≠ 0) : ContDiff ℝ ∞ (logLine g) := by
   rw [contDiff_iff_contDiffAt]
   intro u
@@ -227,18 +308,27 @@ theorem contDiff_logLine (hg : g.det ≠ 0) : ContDiff ℝ ∞ (logLine g) := by
     (Complex.contDiffAt_log (sub_center_mem_slitPlane hg u)).restrict_scalars ℝ
   exact h2.comp u h1
 
+/--
+@isnad1 id=contdiff.1h1v.s6.c8174019d2d0 from=translated src=- shape=255f2cda vocab=dcc7ee13
+-/
 theorem contDiff_log_rad (hg : g.det ≠ 0) : ContDiff ℝ ∞ (fun u => Real.log (rad g u)) := by
   have h : (fun u => Real.log (rad g u)) = fun u => Real.log ‖dir g‖ + (logLine g u).re :=
     funext (log_rad_eq hg)
   rw [h]
   exact contDiff_const.add (Complex.reCLM.contDiff.comp (contDiff_logLine hg))
 
+/--
+@isnad1 id=contdiff.1h1v.s6.5f6796068043 from=translated src=- shape=510efdfd vocab=a4058a42
+-/
 theorem contDiff_rad (hg : g.det ≠ 0) : ContDiff ℝ ∞ (rad g) := by
   have h : rad g = fun u => Real.exp (Real.log (rad g u)) :=
     funext fun u => (Real.exp_log (rad_pos hg u)).symm
   rw [h]
   exact Real.contDiff_exp.comp (contDiff_log_rad hg)
 
+/--
+@isnad1 id=le.1h3v.s7.4061f5b35a50 from=translated src=- shape=14262aa6 vocab=41bbf884
+-/
 theorem norm_invTower_le (hg : g.det ≠ 0) (k : ℕ) (u : ℝ) :
     ‖invTower g k u‖ ≤ k ! * (botNormSq g / |g.det|) ^ (k + 1) := by
   have hz := sub_center_ne_zero hg u
@@ -252,6 +342,9 @@ theorem norm_invTower_le (hg : g.det ≠ 0) (k : ℕ) (u : ℝ) :
         inv_anti₀ (pow_pos hpos _) (pow_le_pow_left₀ hpos.le hle _)
     _ = (botNormSq g / |g.det|) ^ (k + 1) := by rw [← inv_pow, inv_div]
 
+/--
+@isnad1 id=le.1h3v.s7.726f53eceb3d from=translated src=- shape=c1c34ecb vocab=8b73a139
+-/
 theorem abs_iteratedDeriv_log_rad_le (hg : g.det ≠ 0) (k : ℕ) (u : ℝ) :
     |iteratedDeriv (k + 1) (fun u => Real.log (rad g u)) u| ≤ k ! * (botNormSq g / |g.det|) ^ (k + 1) := by
   rw [iteratedDeriv_log_rad_succ hg]
@@ -287,15 +380,27 @@ namespace IsOneParamGroup
 
 variable {R : ℝ → A}
 
+/--
+@isnad1 id=hasderiv.1h3v.s6.f5f70e6fbd0a from=translated src=- shape=8dcd0018 vocab=5bfefa90
+-/
 theorem hasDerivAt_prim (hR : IsOneParamGroup R) (t : ℝ) : HasDerivAt (prim R) (R t) t :=
   (hR.continuous.integral_hasStrictDerivAt 0 t).hasDerivAt
 
+/--
+@isnad1 id=eq.1h2v.s6.9ce0f199a963 from=translated src=- shape=b4169549 vocab=e7e95ee8
+-/
 theorem deriv_prim (hR : IsOneParamGroup R) : deriv (prim R) = R :=
   funext fun t => (hR.hasDerivAt_prim t).deriv
 
+/--
+@isnad1 id=differen.1h2v.s6.ff26e6fa7901 from=translated src=- shape=d0e90b4a vocab=461a627b
+-/
 theorem differentiable_prim (hR : IsOneParamGroup R) : Differentiable ℝ (prim R) :=
   fun t => (hR.hasDerivAt_prim t).differentiableAt
 
+/--
+@isnad1 id=eq.1h4v.s6.f0228f6c720d from=translated src=- shape=bb7676ff vocab=e5f3e2bb
+-/
 theorem mul_prim (hR : IsOneParamGroup R) (t ε : ℝ) :
     R t * prim R ε = prim R (t + ε) - prim R t := by
   have h1 : R t * prim R ε = ∫ u in (0 : ℝ)..ε, R t * R u := by
@@ -314,6 +419,9 @@ theorem mul_prim (hR : IsOneParamGroup R) (t ε : ℝ) :
       (hR.continuous.intervalIntegrable _ _)
   rw [h1, h2, h3, h4]
 
+/--
+@isnad1 id=ex.1h2v.s5.36268a3f9f53 from=translated src=- shape=9645d36c vocab=e39bbc05
+-/
 theorem exists_isUnit_prim (hR : IsOneParamGroup R) : ∃ ε : ℝ, 0 < ε ∧ IsUnit (prim R ε) := by
   have hc : ContinuousAt R 0 := hR.continuous.continuousAt
   rw [Metric.continuousAt_iff] at hc
@@ -357,6 +465,9 @@ theorem eq_sub_mul_inv (hR : IsOneParamGroup R) {ε : ℝ} (u : Aˣ) (hu : (u : 
     R t = (prim R (t + ε) - prim R t) * (u⁻¹ : Aˣ) := by
   rw [← hR.mul_prim t ε, ← hu, Units.mul_inv_cancel_right]
 
+/--
+@isnad1 id=contdiff.1h3v.s6.891c7ecb1741 from=translated src=- shape=30cc9b15 vocab=2b8284da
+-/
 theorem contDiff_nat (hR : IsOneParamGroup R) : ∀ n : ℕ, ContDiff ℝ n R := by
   obtain ⟨ε, _hε, hunit⟩ := hR.exists_isUnit_prim
   obtain ⟨u, hu⟩ := hunit
@@ -374,12 +485,21 @@ theorem contDiff_nat (hR : IsOneParamGroup R) : ∀ n : ℕ, ContDiff ℝ n R :=
     rw [Nat.cast_succ, hformula]
     exact ((hP.comp (contDiff_id.add contDiff_const)).sub hP).mul contDiff_const
 
+/--
+@isnad1 id=contdiff.1h2v.s6.87b21696dee4 from=translated src=- shape=11d92d44 vocab=5ee5818c
+-/
 theorem contDiff (hR : IsOneParamGroup R) : ContDiff ℝ ∞ R :=
   contDiff_infty.2 hR.contDiff_nat
 
+/--
+@isnad1 id=differen.1h2v.s6.27b7722de273 from=translated src=- shape=32fdedac vocab=eff215b0
+-/
 theorem differentiable (hR : IsOneParamGroup R) : Differentiable ℝ R :=
   (hR.contDiff_nat 1).differentiable (by simp)
 
+/--
+@isnad1 id=eq.1h3v.s7.837d098e494a from=translated src=- shape=88cf4a2a vocab=4c05496d
+-/
 theorem deriv_eq_mul (hR : IsOneParamGroup R) (t : ℝ) : deriv R t = R t * deriv R 0 := by
   have hd := hR.differentiable
   have heq : (fun s => R (t + s)) = fun s => R t * R s := funext fun s => hR.map_add t s
@@ -387,6 +507,9 @@ theorem deriv_eq_mul (hR : IsOneParamGroup R) (t : ℝ) : deriv R t = R t * deri
     _ = deriv (fun s => R t * R s) 0 := by rw [heq]
     _ = R t * deriv R 0 := deriv_const_mul _ (hd 0)
 
+/--
+@isnad1 id=eq.1h3v.s7.55fb26f69188 from=translated src=- shape=c29407e0 vocab=80579507
+-/
 theorem iteratedDeriv_eq (hR : IsOneParamGroup R) (k : ℕ) :
     iteratedDeriv k R = fun t => R t * deriv R 0 ^ k := by
   induction k with
@@ -396,6 +519,9 @@ theorem iteratedDeriv_eq (hR : IsOneParamGroup R) (k : ℕ) :
     funext t
     rw [deriv_mul_const (hR.differentiable t), hR.deriv_eq_mul t, mul_assoc, ← pow_succ']
 
+/--
+@isnad1 id=le.1h4v.s7.9d830570073e from=translated src=- shape=4fa04689 vocab=e344c39c
+-/
 theorem norm_iteratedDeriv_le (hR : IsOneParamGroup R) (k : ℕ) (t : ℝ) :
     ‖iteratedDeriv k R t‖ ≤ ‖R t‖ * ‖deriv R 0‖ ^ k := by
   rw [hR.iteratedDeriv_eq k]
@@ -406,6 +532,9 @@ theorem norm_iteratedDeriv_le (hR : IsOneParamGroup R) (k : ℕ) (t : ℝ) :
 end IsOneParamGroup
 open scoped _root_.P2MW.S_AutomorphicForm_RealIwasawa_norm_fourierIntegral_cpow_rad_mul_le_polyDecay.M4aP3B _root_.P2MW.S_AutomorphicForm_RealIwasawa_norm_fourierIntegral_cpow_rad_mul_le_polyDecay.M4aP3B.RealIwasawa
 
+/--
+@isnad1 id=isonepar.0h1v.s4.97169762e062 from=translated src=- shape=f157c74e vocab=3128ad63
+-/
 theorem isOneParamGroup_cexp (c : ℂ) : IsOneParamGroup (fun t : ℝ => Complex.exp (t * c)) := by
   refine ⟨by simp, fun s t => ?_, Complex.continuous_exp.comp (Complex.continuous_ofReal.mul continuous_const)⟩
   rw [← Complex.exp_add]
@@ -413,6 +542,9 @@ theorem isOneParamGroup_cexp (c : ℂ) : IsOneParamGroup (fun t : ℝ => Complex
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h1v.s6.dec81f3726f1 from=translated src=- shape=aa08adf7 vocab=b9e46cab
+-/
 theorem deriv_cexp_zero (c : ℂ) : deriv (fun t : ℝ => Complex.exp (t * c)) 0 = c := by
   have h1 : HasDerivAt (fun w : ℂ => Complex.exp (w * c))
       (Complex.exp ((((0 : ℝ) : ℂ)) * c) * (1 * c)) ((0 : ℝ) : ℂ) :=
@@ -448,19 +580,34 @@ def radFloor : ℝ := min ((g.det ^ 2 / botNormSq g) / (1 + 2 * foot g ^ 2)) (bo
 
 variable {g}
 
+/--
+@isnad1 id=le.0h1v.s4.9535ad6ad3e5 from=translated src=- shape=0c5cd9ab vocab=fc040df4
+-/
 theorem towerRatio_nonneg : 0 ≤ towerRatio g :=
   div_nonneg (by unfold botNormSq; positivity) (abs_nonneg _)
 
+/--
+@isnad1 id=le.0h2v.s4.ffa9b1cad5cb from=translated src=- shape=037c33e6 vocab=5ea8dfaf
+-/
 theorem one_le_towerD (n : ℕ) : 1 ≤ towerD g n :=
   one_le_mul_of_one_le_of_one_le (by exact_mod_cast Nat.factorial_pos n) (le_max_left _ _)
 
+/--
+@isnad1 id=lt.0h2v.s4.7193a6b7cf50 from=translated src=- shape=037c33e6 vocab=21bba86e
+-/
 theorem towerD_pos (n : ℕ) : 0 < towerD g n := one_pos.trans_le (one_le_towerD n)
 
+/--
+@isnad1 id=lt.1h1v.s5.99ffc19140fa from=translated src=- shape=56b50453 vocab=f8f38fef
+-/
 theorem radFloor_pos (hg : g.det ≠ 0) : 0 < radFloor g := by
   have hA := botNormSq_pos hg
   unfold radFloor
   exact lt_min (by positivity) (by linarith)
 
+/--
+@isnad1 id=le.2h4v.s7.e22812aafe5b from=translated src=- shape=b0726f59 vocab=09437fb0
+-/
 theorem floor_aux {A D f : ℝ} (hA : 0 < A) (hD : 0 < D) (u : ℝ) :
     min (D / (1 + 2 * f ^ 2)) (A / 2) * (1 + u ^ 2) ≤ A * (u - f) ^ 2 + D := by
   have h1 : 1 + u ^ 2 ≤ (1 + 2 * f ^ 2) + 2 * (u - f) ^ 2 := by nlinarith [sq_nonneg (u - 2 * f), sq_nonneg f]
@@ -479,6 +626,9 @@ theorem floor_aux {A D f : ℝ} (hA : 0 < A) (hD : 0 < D) (u : ℝ) :
         field_simp
         ring
 
+/--
+@isnad1 id=le.1h2v.s6.d6a23cb545f6 from=translated src=- shape=30225ea1 vocab=ffc7a3cd
+-/
 theorem radFloor_mul_le_rad_sq (hg : g.det ≠ 0) (u : ℝ) : radFloor g * (1 + u ^ 2) ≤ rad g u ^ 2 := by
   rw [rad_sq_eq hg]
   exact floor_aux (botNormSq_pos hg) (by have := botNormSq_pos hg; positivity) u
@@ -490,6 +640,9 @@ section Towers
 
 variable {g : Matrix (Fin 2) (Fin 2) ℝ}
 
+/--
+@isnad1 id=le.2h3v.s6.af42a6419c86 from=translated src=- shape=83720135 vocab=2fce4b88
+-/
 theorem factorial_mul_pow_le {k n : ℕ} (hkn : k + 1 ≤ n) {r : ℝ} (hr : 0 ≤ r) :
     (k ! : ℝ) * r ^ (k + 1) ≤ ((n ! : ℝ) * max 1 r) ^ (k + 1) := by
   have hn1 : (1 : ℝ) ≤ n ! := by exact_mod_cast Nat.factorial_pos n
@@ -500,6 +653,9 @@ theorem factorial_mul_pow_le {k n : ℕ} (hkn : k + 1 ≤ n) {r : ℝ} (hr : 0 �
         mul_le_mul (h1.trans h2) h3 (by positivity) (by positivity)
     _ = ((n ! : ℝ) * max 1 r) ^ (k + 1) := (mul_pow _ _ _).symm
 
+/--
+@isnad1 id=le.3h4v.s8.d1e626b08c82 from=translated src=- shape=dc67e64d vocab=2261cd13
+-/
 theorem norm_iteratedFDeriv_log_rad_le (hg : g.det ≠ 0) {n i : ℕ} (hi : 1 ≤ i) (hin : i ≤ n) (u : ℝ) :
     ‖iteratedFDeriv ℝ i (fun u => Real.log (rad g u)) u‖ ≤ towerD g n ^ i := by
   obtain ⟨k, rfl⟩ : ∃ k, i = k + 1 := ⟨i - 1, by omega⟩
@@ -513,6 +669,9 @@ section Composition
 
 variable {g : Matrix (Fin 2) (Fin 2) ℝ}
 
+/--
+@isnad1 id=le.5h6v.s8.cbb10cd0c2df from=translated src=- shape=24e06ba8 vocab=e4108df4
+-/
 theorem norm_iteratedFDeriv_comp_log_rad_le (hg : g.det ≠ 0) {Ψ : ℝ → ℂ} (hΨ : ContDiff ℝ ∞ Ψ)
     {κ : ℝ} (hκ : 0 ≤ κ) (hΨd : ∀ (j : ℕ) (t : ℝ), ‖iteratedDeriv j Ψ t‖ ≤ κ ^ j * ‖Ψ t‖)
     {n i : ℕ} (hin : i ≤ n) (u : ℝ) :
@@ -557,6 +716,9 @@ variable {E V W : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
   [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimensional ℝ V] [MeasurableSpace V] [BorelSpace V]
   [NormedAddCommGroup W] [NormedSpace ℝ W]
 
+/--
+@isnad1 id=le.4h9v.s12.a75168c33e2b from=translated src=- shape=d7da4937 vocab=384ad1d1
+-/
 theorem pow_mul_norm_fourierIntegral_le_of_coercive (L : V →L[ℝ] W →L[ℝ] ℝ)
     {μ : Measure V} [μ.IsAddHaarMeasure] {f : V → E} {n : ℕ} (hf : ContDiff ℝ n f)
     (h'f : ∀ j : ℕ, j ≤ n → Integrable (fun v => ‖iteratedFDeriv ℝ j f v‖) μ)
@@ -615,10 +777,19 @@ variable {g : Matrix (Fin 2) (Fin 2) ℝ}
 
 def Ψ (u : ℂ) (t : ℝ) : ℂ := Complex.exp (↑t * (-u))
 
+/--
+@isnad1 id=isonepar.0h1v.s3.b4d98e017e6c from=translated src=- shape=6da4ece3 vocab=ec8cf047
+-/
 theorem isOneParamGroup_Ψ (u : ℂ) : IsOneParamGroup (Ψ u) := isOneParamGroup_cexp (-u)
 
+/--
+@isnad1 id=eq.0h1v.s6.318bd9665568 from=translated src=- shape=d62d96db vocab=1c7338ad
+-/
 theorem deriv_Ψ_zero (u : ℂ) : deriv (Ψ u) 0 = -u := deriv_cexp_zero (-u)
 
+/--
+@isnad1 id=eq.0h2v.s4.76d4bddb5e83 from=translated src=- shape=11ac008a vocab=6cdb196f
+-/
 theorem norm_Ψ (u : ℂ) (t : ℝ) : ‖Ψ u t‖ = Real.exp (-u.re * t) := by
   unfold Ψ
   rw [Complex.norm_exp]
@@ -627,6 +798,9 @@ theorem norm_Ψ (u : ℂ) (t : ℝ) : ‖Ψ u t‖ = Real.exp (-u.re * t) := by
     zero_mul, sub_zero]
   ring
 
+/--
+@isnad1 id=le.0h3v.s5.26b0a09d1266 from=translated src=- shape=3752d8b0 vocab=c6546951
+-/
 theorem norm_iteratedDeriv_Ψ_le (u : ℂ) (j : ℕ) (t : ℝ) :
     ‖iteratedDeriv j (Ψ u) t‖ ≤ ‖u‖ ^ j * ‖Ψ u t‖ := by
   have h := (isOneParamGroup_Ψ u).norm_iteratedDeriv_le j t
@@ -634,10 +808,16 @@ theorem norm_iteratedDeriv_Ψ_le (u : ℂ) (j : ℕ) (t : ℝ) :
   calc ‖iteratedDeriv j (Ψ u) t‖ ≤ ‖Ψ u t‖ * ‖u‖ ^ j := h
     _ = ‖u‖ ^ j * ‖Ψ u t‖ := mul_comm _ _
 
+/--
+@isnad1 id=eq.1h3v.s6.b5ecfba9cbcf from=translated src=- shape=bef802de vocab=6a15ca8b
+-/
 theorem norm_Ψ_log_rad (hg : g.det ≠ 0) (u : ℂ) (x : ℝ) :
     ‖Ψ u (Real.log (rad g x))‖ = rad g x ^ (-u.re) := by
   rw [norm_Ψ, Real.rpow_def_of_pos (rad_pos hg x), mul_comm (-u.re)]
 
+/--
+@isnad1 id=eq.1h3v.s8.34623f7ce43a from=translated src=- shape=0768a274 vocab=8d95fffa
+-/
 theorem weight_eq (hg : g.det ≠ 0) (u : ℂ) (x : ℝ) :
     ((Real.sqrt ((g 0 0 + x * g 1 0) ^ 2 + (g 0 1 + x * g 1 1) ^ 2) : ℂ) ^ (-u))
       = Ψ u (Real.log (rad g x)) := by
@@ -646,21 +826,33 @@ theorem weight_eq (hg : g.det ≠ 0) (u : ℂ) (x : ℝ) :
   unfold Ψ
   rw [Complex.cpow_def_of_ne_zero (Complex.ofReal_ne_zero.mpr hr.ne'), ← Complex.ofReal_log hr.le]
 
+/--
+@isnad1 id=eq.1h2v.s8.3dfe95244797 from=translated src=- shape=f0ffdc6a vocab=8d95fffa
+-/
 theorem weightFun_eq (hg : g.det ≠ 0) (u : ℂ) :
     (fun x : ℝ => ((Real.sqrt ((g 0 0 + x * g 1 0) ^ 2 + (g 0 1 + x * g 1 1) ^ 2) : ℂ) ^ (-u)))
       = fun x => Ψ u (Real.log (rad g x)) :=
   funext (weight_eq hg u)
 
+/--
+@isnad1 id=contdiff.1h2v.s6.5a678648f2c4 from=translated src=- shape=4e4bf9d8 vocab=f7e0f191
+-/
 theorem contDiff_Ψ_log_rad (hg : g.det ≠ 0) (u : ℂ) :
     ContDiff ℝ ∞ (fun x => Ψ u (Real.log (rad g x))) :=
   (isOneParamGroup_Ψ u).contDiff.comp (contDiff_log_rad hg)
 
+/--
+@isnad1 id=contdiff.1h2v.s8.d3e04c77a8f4 from=translated src=- shape=2a0ffb8b vocab=07ed7f38
+-/
 theorem contDiff_weight (hg : g.det ≠ 0) (u : ℂ) :
     ContDiff ℝ ∞
       (fun x : ℝ => ((Real.sqrt ((g 0 0 + x * g 1 0) ^ 2 + (g 0 1 + x * g 1 1) ^ 2) : ℂ) ^ (-u))) := by
   rw [weightFun_eq hg u]
   exact contDiff_Ψ_log_rad hg u
 
+/--
+@isnad1 id=le.1h4v.s8.e384ffc81432 from=translated src=- shape=e7b42c14 vocab=05e3a62b
+-/
 theorem norm_iteratedFDeriv_Ψ_log_rad_le (hg : g.det ≠ 0) (u : ℂ) (n : ℕ) (x : ℝ) :
     ‖iteratedFDeriv ℝ n (fun x => Ψ u (Real.log (rad g x))) x‖
       ≤ (n ! * max 1 ‖u‖ ^ n * towerD g n ^ n) * rad g x ^ (-u.re) := by
@@ -671,6 +863,9 @@ theorem norm_iteratedFDeriv_Ψ_log_rad_le (hg : g.det ≠ 0) (u : ℂ) (n : ℕ)
       ≤ n ! * (max 1 ‖u‖ ^ n * rad g x ^ (-u.re)) * towerD g n ^ n := h
     _ = (n ! * max 1 ‖u‖ ^ n * towerD g n ^ n) * rad g x ^ (-u.re) := by ring
 
+/--
+@isnad1 id=ex.1h3v.s8.bf42ee635fb8 from=translated src=- shape=6f421b52 vocab=c37b47b1
+-/
 theorem exists_bound_iteratedFDeriv_weight (hg : g.det ≠ 0) (u : ℂ) (n : ℕ) :
     ∃ C : ℝ, 0 < C ∧ ∀ x : ℝ,
       ‖iteratedFDeriv ℝ n
@@ -683,6 +878,9 @@ theorem exists_bound_iteratedFDeriv_weight (hg : g.det ≠ 0) (u : ℂ) (n : ℕ
   · rw [weightFun_eq hg u]
     exact norm_iteratedFDeriv_Ψ_log_rad_le hg u n x
 
+/--
+@isnad1 id=le.2h3v.s7.8b712200ea9b from=translated src=- shape=4cac1ab6 vocab=1785acc8
+-/
 theorem rad_rpow_neg_le_one_add_sq (hg : g.det ≠ 0) {κ : ℝ} (hκ : 0 ≤ κ) (x : ℝ) :
     rad g x ^ (-κ) ≤ radFloor g ^ (-κ / 2) * (1 + ‖x‖ ^ 2) ^ (-κ / 2) := by
   have hF := radFloor_pos hg
@@ -697,6 +895,9 @@ theorem rad_rpow_neg_le_one_add_sq (hg : g.det ≠ 0) {κ : ℝ} (hκ : 0 ≤ κ
   rw [h1, ← Real.mul_rpow hF.le (by positivity)]
   exact Real.rpow_le_rpow_of_nonpos (by positivity) (radFloor_mul_le_rad_sq hg x) (by linarith)
 
+/--
+@isnad1 id=integrab.2h2v.s6.52537ff46b53 from=translated src=- shape=bf13b027 vocab=5134de67
+-/
 theorem integrable_rpow_neg_rad (hg : g.det ≠ 0) {κ : ℝ} (hκ : 1 < κ) :
     Integrable (fun x => rad g x ^ (-κ)) (volume : Measure ℝ) := by
   have hint : Integrable (fun x : ℝ => (1 + ‖x‖ ^ 2) ^ (-κ / 2)) volume :=
@@ -706,6 +907,9 @@ theorem integrable_rpow_neg_rad (hg : g.det ≠ 0) {κ : ℝ} (hκ : 1 < κ) :
   · rw [Real.norm_of_nonneg (Real.rpow_nonneg (rad_pos hg x).le _)]
     exact rad_rpow_neg_le_one_add_sq hg (by linarith) x
 
+/--
+@isnad1 id=ex.3h4v.s9.cd389b6b9235 from=translated src=- shape=ed29be63 vocab=dbab2c28
+-/
 theorem exists_bound_iteratedFDeriv_weight_mul (hg : g.det ≠ 0) (u : ℂ)
     {P : ℝ → ℂ} (hPC : ContDiff ℝ ∞ P)
     (hPB : ∀ n : ℕ, ∃ C : ℝ, 0 < C ∧ ∀ x : ℝ, ‖iteratedFDeriv ℝ n P x‖ ≤ C) :
@@ -740,6 +944,9 @@ theorem exists_bound_iteratedFDeriv_weight_mul (hg : g.det ≠ 0) (u : ℂ)
         · exact (hCh (n - i)).2 x
     _ = (n.choose i : ℝ) * Cf i * Ch (n - i) * rad g x ^ (-u.re) := by ring
 
+/--
+@isnad1 id=ex.6h6v.s12.6415bfd09709 from=translated src=- shape=eea394aa vocab=8755bddf
+-/
 theorem norm_fourierIntegral_cpow_radR_mul_le_polyDecay
     {g : Matrix (Fin 2) (Fin 2) ℝ} (hg : g.det ≠ 0) {u : ℂ} (hu : 1 < u.re)
     {P : ℝ → ℂ} (hPC : ContDiff ℝ ∞ P)
@@ -847,6 +1054,9 @@ open scoped _root_.P2MW.S_AutomorphicForm_RealIwasawa_norm_fourierIntegral_cpow_
 open MeasureTheory
 open scoped ContDiff FourierTransform
 
+/--
+@isnad1 id=ex.6h6v.s12.6415bfd09709 from=translated src=- shape=eea394aa vocab=8755bddf
+-/
 theorem solution
     {g : Matrix (Fin 2) (Fin 2) ℝ} (hg : g.det ≠ 0) {u : ℂ} (hu : 1 < u.re)
     {P : ℝ → ℂ} (hPC : ContDiff ℝ ∞ P)

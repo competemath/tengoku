@@ -28,6 +28,9 @@ def pull [IrreducibleSpace X] [IrreducibleSpace Y] (f : X ⟶ Y)
     (h : f.base (genericPoint X) ⤳ genericPoint Y) : Y.functionField ⟶ X.functionField :=
   Y.presheaf.stalkSpecializes h ≫ f.stalkMap (genericPoint X)
 
+/--
+@isnad1 id=eq.2h5v.s12.7652eaaebf09 from=translated src=- shape=4efe355b vocab=64855cba
+-/
 theorem pull_germ [IrreducibleSpace X] [IrreducibleSpace Y] (f : X ⟶ Y)
     (h : f.base (genericPoint X) ⤳ genericPoint Y)
     (U : Y.Opens) (hU : genericPoint Y ∈ U) (s : Γ(Y, U)) :
@@ -44,6 +47,9 @@ variable {κ k A B KX KY : Type*} [Field κ] [Field k] [CommRing A] [CommRing B]
   [Algebra κ k] [Algebra κ A] [Algebra A KX] [IsFractionRing A KX] [Algebra B KY] [IsFractionRing B KY]
   [Algebra κ KX] [Algebra k KY]
 
+/--
+@isnad1 id=linearin.6h12v.s10.36c71e9078a9 from=translated src=- shape=57f9cdfa vocab=a5411876
+-/
 theorem linearIndependent_of_tensor
     (hKX : ∀ x, algebraMap κ KX x = algebraMap A KX (algebraMap κ A x))
     (β : k →+* B) (hKY : ∀ t, algebraMap k KY t = algebraMap B KY (β t))
@@ -100,6 +106,9 @@ theorem linearIndependent_of_tensor
 
 omit [IsFractionRing A KX] [Algebra κ KX] in
 
+/--
+@isnad1 id=ex.4h11v.s10.ce8d7ba36d9c from=translated src=- shape=db30b1ce vocab=02e662e4
+-/
 theorem exists_div_of_tensor
     (β : k →+* B) (hKY : ∀ t, algebraMap k KY t = algebraMap B KY (β t))
     (α : A →+* B) (Λ : k ⊗[κ] A →+* B) (hΛ : ∀ t a, Λ (t ⊗ₜ a) = β t * α a)
@@ -129,6 +138,9 @@ section Chart
 
 variable {X : Scheme.{u}} {U : X.Opens} (hU : IsAffineOpen U)
 
+/--
+@isnad1 id=eq.1h2v.s13.2656b670f8fe from=translated src=- shape=8b162ee5 vocab=03f2c654
+-/
 theorem fromSpec_appTop_ΓSpecIso_hom :
     hU.fromSpec.appTop ≫ (Scheme.ΓSpecIso Γ(X, U)).hom = X.presheaf.map (homOfLE le_top).op := by
   have h : (hU.fromSpec ≫ X.toSpecΓ).appTop =
@@ -146,6 +158,9 @@ end AlgebraicGeometry.FunctionFieldGroundFieldBaseChange
 end
 
 open AlgebraicGeometry.FunctionFieldGroundFieldBaseChange in
+/--
+@isnad1 id=ex.1h8v.s13.2076c10ee861 from=translated src=- shape=d9f15ad3 vocab=6a153f00
+-/
 theorem solution
     {κ : Type u} [Field κ] {k : Type u} [Field k] (ι : κ →+* k)
     {X Y : Scheme.{u}} [IsIntegral X] [IsIntegral Y]
