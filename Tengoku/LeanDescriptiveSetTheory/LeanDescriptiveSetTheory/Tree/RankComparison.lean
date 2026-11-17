@@ -89,7 +89,9 @@ private theorem isClopen_targetCoordinate (t : List ℕ) :
   simpa [Set.preimage, Set.mem_singleton_iff] using
     (isClopen_discrete ({true} : Set Bool)).preimage hcontinuous
 
-/-- The set of anchored simulation witnesses is Borel measurable.-/
+/-- The set of anchored simulation witnesses is Borel measurable.
+@isnad1 id=measurab.0h2v.s6.ee8c17cdb1bf from=translated src=- shape=5287f056 vocab=4918af70
+-/
 theorem measurableSet_rankSimulationWitnesses (s₀ t₀ : List ℕ) :
     MeasurableSet (rankSimulationWitnesses s₀ t₀) := by
   rw [show rankSimulationWitnesses s₀ t₀ =
@@ -127,7 +129,9 @@ theorem measurableSet_rankSimulationWitnesses (s₀ t₀ : List ℕ) :
       (isClopen_targetCoordinate (t ++ [b])).isOpen.measurableSet.inter
         (isClopen_relationCoordinate (s ++ [a]) (t ++ [b])).isOpen.measurableSet)
 
-/-- Existence of an anchored rank simulation is analytic.-/
+/-- Existence of an anchored rank simulation is analytic.
+@isnad1 id=analytic.0h2v.s6.818ac9029316 from=translated src=- shape=de952ae4 vocab=940e719f
+-/
 theorem analyticSet_rankSimulationFrom (s t : List ℕ) :
     MeasureTheory.AnalyticSet (rankSimulationFrom s t) := by
   rw [show rankSimulationFrom s t = Prod.fst '' rankSimulationWitnesses s t by
@@ -142,12 +146,16 @@ theorem analyticSet_rankSimulationFrom (s t : List ℕ) :
   exact (measurableSet_rankSimulationWitnesses s t).analyticSet.image_of_continuous
     continuous_fst
 
-/-- The raw non-strict tree-rank simulation relation is analytic.-/
+/-- The raw non-strict tree-rank simulation relation is analytic.
+@isnad1 id=analytic.0h0v.s6.af9d4a3ee13d from=translated src=- shape=0b0a4f6e vocab=e5e84ab4
+-/
 theorem analyticSet_treeRankLeSimulation :
     MeasureTheory.AnalyticSet treeRankLeSimulation :=
   analyticSet_rankSimulationFrom [] []
 
-/-- The raw strict tree-rank simulation relation is analytic.-/
+/-- The raw strict tree-rank simulation relation is analytic.
+@isnad1 id=analytic.0h0v.s6.0ca8f5f5332e from=translated src=- shape=0b0a4f6e vocab=7d0beb02
+-/
 theorem analyticSet_treeRankLtSimulation :
     MeasureTheory.AnalyticSet treeRankLtSimulation := by
   rw [show treeRankLtSimulation = ⋃ b : ℕ,
@@ -347,7 +355,9 @@ private theorem isWellFounded_of_root_simulation_to_node {S T : TreeCode}
     exact isWellFounded_iff_body_eq_empty.mpr body_bot
 
 /-- On a well-founded target, raw non-strict simulation is exactly non-strict tree-rank
-comparison, and it forces the source tree to be well-founded.-/
+comparison, and it forces the source tree to be well-founded.
+@isnad1 id=iff.1h2v.s5.32b907ae28a7 from=translated src=- shape=b0bdf008 vocab=0fa7f7cf
+-/
 theorem mem_treeRankLeSimulation_iff {S T : TreeCode}
     (hT : IsWellFounded (decodeTree T)) :
     (S, T) ∈ treeRankLeSimulation ↔
@@ -384,7 +394,9 @@ theorem mem_treeRankLeSimulation_iff {S T : TreeCode}
     simpa only [rankAt_nil_eq_rank] using hrank
 
 /-- On a well-founded target, raw strict simulation is exactly strict tree-rank comparison, and
-it forces the source tree to be well-founded.-/
+it forces the source tree to be well-founded.
+@isnad1 id=iff.1h2v.s5.40437504a72d from=translated src=- shape=b0bdf008 vocab=c8c33e94
+-/
 theorem mem_treeRankLtSimulation_iff {S T : TreeCode}
     (hT : IsWellFounded (decodeTree T)) :
     (S, T) ∈ treeRankLtSimulation ↔
@@ -476,17 +488,23 @@ private theorem analyticSet_swap_treeRankLtSimulation :
     (continuous_snd.prodMk continuous_fst)
 
 /-- The completed non-strict comparison has the analytic polarity required for a coanalytic
-norm.-/
+norm.
+@isnad1 id=analytic.0h0v.s6.f1c333bc2c5f from=translated src=- shape=0b0a4f6e vocab=5bca6a44
+-/
 theorem analyticSet_treeRankLeAnalytic :
     MeasureTheory.AnalyticSet treeRankLeAnalytic :=
   analyticSet_union analyticSet_targetIllFounded analyticSet_treeRankLeSimulation
 
-/-- The completed strict comparison is analytic.-/
+/-- The completed strict comparison is analytic.
+@isnad1 id=analytic.0h0v.s6.edfb3e5d2f1d from=translated src=- shape=0b0a4f6e vocab=e6480a38
+-/
 theorem analyticSet_treeRankLtAnalytic :
     MeasureTheory.AnalyticSet treeRankLtAnalytic :=
   analyticSet_union analyticSet_targetIllFounded analyticSet_treeRankLtSimulation
 
-/-- The reversed-complement non-strict comparison is coanalytic.-/
+/-- The reversed-complement non-strict comparison is coanalytic.
+@isnad1 id=iscoanal.0h0v.s6.1041fdf6b7d0 from=translated src=- shape=0b0a4f6e vocab=a3a7e427
+-/
 theorem isCoanalytic_treeRankLeCoanalytic : IsCoanalytic treeRankLeCoanalytic := by
   change MeasureTheory.AnalyticSet
     (({p : TreeCode × TreeCode | p.1 ∈ illFoundedTrees} ∪
@@ -494,7 +512,9 @@ theorem isCoanalytic_treeRankLeCoanalytic : IsCoanalytic treeRankLeCoanalytic :=
   rw [compl_compl]
   exact analyticSet_union analyticSet_sourceIllFounded analyticSet_swap_treeRankLtSimulation
 
-/-- The reversed-complement strict comparison is coanalytic.-/
+/-- The reversed-complement strict comparison is coanalytic.
+@isnad1 id=iscoanal.0h0v.s6.f75ca773fb19 from=translated src=- shape=0b0a4f6e vocab=1fb38657
+-/
 theorem isCoanalytic_treeRankLtCoanalytic : IsCoanalytic treeRankLtCoanalytic := by
   change MeasureTheory.AnalyticSet
     (({p : TreeCode × TreeCode | p.1 ∈ illFoundedTrees} ∪
@@ -504,7 +524,9 @@ theorem isCoanalytic_treeRankLtCoanalytic : IsCoanalytic treeRankLtCoanalytic :=
 
 /-- Full well-founded/ill-founded truth table for the analytic non-strict comparison. An
 ill-founded target makes the relation true regardless of the source; otherwise both trees are
-well-founded and their ranks are compared.-/
+well-founded and their ranks are compared.
+@isnad1 id=iff.0h2v.s6.4279525865b0 from=translated src=- shape=a49b0f18 vocab=9e2cd53d
+-/
 theorem mem_treeRankLeAnalytic_iff {S T : TreeCode} :
     (S, T) ∈ treeRankLeAnalytic ↔
       ¬IsWellFounded (decodeTree T) ∨
@@ -521,7 +543,9 @@ theorem mem_treeRankLeAnalytic_iff {S T : TreeCode} :
     · exact Or.inl hT
     · exact Or.inr ((mem_treeRankLeSimulation_iff hT).2 ⟨hS, hrank⟩)
 
-/-- Full well-founded/ill-founded truth table for the analytic strict comparison.-/
+/-- Full well-founded/ill-founded truth table for the analytic strict comparison.
+@isnad1 id=iff.0h2v.s6.0390590f63a5 from=translated src=- shape=a49b0f18 vocab=75393eec
+-/
 theorem mem_treeRankLtAnalytic_iff {S T : TreeCode} :
     (S, T) ∈ treeRankLtAnalytic ↔
       ¬IsWellFounded (decodeTree T) ∨
@@ -539,7 +563,9 @@ theorem mem_treeRankLtAnalytic_iff {S T : TreeCode} :
     · exact Or.inr ((mem_treeRankLtSimulation_iff hT).2 ⟨hS, hrank⟩)
 
 /-- Full truth table for the coanalytic non-strict comparison. It is the standard extension of
-the well-founded-tree rank obtained by assigning rank `∞` outside `wellFoundedTrees`.-/
+the well-founded-tree rank obtained by assigning rank `∞` outside `wellFoundedTrees`.
+@isnad1 id=iff.0h2v.s6.7587a8d1f6d3 from=translated src=- shape=fe8a7cb8 vocab=6e057fe9
+-/
 theorem mem_treeRankLeCoanalytic_iff {S T : TreeCode} :
     (S, T) ∈ treeRankLeCoanalytic ↔
       ∃ hS : IsWellFounded (decodeTree S),
@@ -572,7 +598,9 @@ theorem mem_treeRankLeCoanalytic_iff {S T : TreeCode} :
         exact (not_lt_of_ge hle hrank)
 
 /-- Full truth table for the coanalytic strict comparison, again using the standard `∞`
-extension outside the domain.-/
+extension outside the domain.
+@isnad1 id=iff.0h2v.s6.fb175d2967d3 from=translated src=- shape=fe8a7cb8 vocab=81abd3f8
+-/
 theorem mem_treeRankLtCoanalytic_iff {S T : TreeCode} :
     (S, T) ∈ treeRankLtCoanalytic ↔
       ∃ hS : IsWellFounded (decodeTree S),
@@ -605,7 +633,9 @@ theorem mem_treeRankLtCoanalytic_iff {S T : TreeCode} :
         exact (not_le_of_gt hlt hrank)
 
 /-- With a well-founded second input, the analytic non-strict comparison has exactly the rank
-semantics required in the definition of a coanalytic norm.-/
+semantics required in the definition of a coanalytic norm.
+@isnad1 id=iff.1h2v.s5.9461c2e4a298 from=translated src=- shape=b0bdf008 vocab=9e2cd53d
+-/
 theorem mem_treeRankLeAnalytic_iff_of_isWellFounded {S T : TreeCode}
     (hT : IsWellFounded (decodeTree T)) :
     (S, T) ∈ treeRankLeAnalytic ↔
@@ -621,7 +651,9 @@ theorem mem_treeRankLeAnalytic_iff_of_isWellFounded {S T : TreeCode}
   · intro hresult
     exact mem_treeRankLeAnalytic_iff.mpr (Or.inr ⟨hT, hresult⟩)
 
-/-- With a well-founded second input, the analytic strict comparison is exact.-/
+/-- With a well-founded second input, the analytic strict comparison is exact.
+@isnad1 id=iff.1h2v.s5.daaca27a758f from=translated src=- shape=b0bdf008 vocab=75393eec
+-/
 theorem mem_treeRankLtAnalytic_iff_of_isWellFounded {S T : TreeCode}
     (hT : IsWellFounded (decodeTree T)) :
     (S, T) ∈ treeRankLtAnalytic ↔
@@ -637,7 +669,9 @@ theorem mem_treeRankLtAnalytic_iff_of_isWellFounded {S T : TreeCode}
   · intro hresult
     exact mem_treeRankLtAnalytic_iff.mpr (Or.inr ⟨hT, hresult⟩)
 
-/-- With a well-founded second input, the coanalytic non-strict comparison is exact.-/
+/-- With a well-founded second input, the coanalytic non-strict comparison is exact.
+@isnad1 id=iff.1h2v.s5.ed290a461aff from=translated src=- shape=b0bdf008 vocab=6e057fe9
+-/
 theorem mem_treeRankLeCoanalytic_iff_of_isWellFounded {S T : TreeCode}
     (hT : IsWellFounded (decodeTree T)) :
     (S, T) ∈ treeRankLeCoanalytic ↔
@@ -654,7 +688,9 @@ theorem mem_treeRankLeCoanalytic_iff_of_isWellFounded {S T : TreeCode}
   · rintro ⟨hS, hrank⟩
     exact mem_treeRankLeCoanalytic_iff.mpr ⟨hS, Or.inr ⟨hT, hrank⟩⟩
 
-/-- With a well-founded second input, the coanalytic strict comparison is exact.-/
+/-- With a well-founded second input, the coanalytic strict comparison is exact.
+@isnad1 id=iff.1h2v.s5.cc0c95618a88 from=translated src=- shape=b0bdf008 vocab=81abd3f8
+-/
 theorem mem_treeRankLtCoanalytic_iff_of_isWellFounded {S T : TreeCode}
     (hT : IsWellFounded (decodeTree T)) :
     (S, T) ∈ treeRankLtCoanalytic ↔
@@ -672,7 +708,9 @@ theorem mem_treeRankLtCoanalytic_iff_of_isWellFounded {S T : TreeCode}
     exact mem_treeRankLtCoanalytic_iff.mpr ⟨hS, Or.inr ⟨hT, hrank⟩⟩
 
 /-- The analytic and coanalytic non-strict polarities agree whenever the second input is in the
-coanalytic domain of well-founded trees.-/
+coanalytic domain of well-founded trees.
+@isnad1 id=iff.1h2v.s5.e5a758f864bf from=translated src=- shape=982d666d vocab=ccb42459
+-/
 theorem treeRankLe_polarities_agree {S T : TreeCode}
     (hT : IsWellFounded (decodeTree T)) :
     (S, T) ∈ treeRankLeAnalytic ↔ (S, T) ∈ treeRankLeCoanalytic := by
@@ -680,7 +718,9 @@ theorem treeRankLe_polarities_agree {S T : TreeCode}
     mem_treeRankLeCoanalytic_iff_of_isWellFounded hT]
 
 /-- A strict rank stage at a realized rank is the corresponding analytic strict-comparison
-section.-/
+section.
+@isnad1 id=eq.1h1v.s5.6d5a86a39aac from=translated src=- shape=cebb348d vocab=49976d9a
+-/
 theorem treeRankLT_eq_treeRankLtAnalytic_section (T : TreeCode)
     (hT : IsWellFounded (decodeTree T)) :
     treeRankLT (rank (decodeTree T) hT) =
@@ -688,7 +728,9 @@ theorem treeRankLT_eq_treeRankLtAnalytic_section (T : TreeCode)
   ext S
   exact mem_treeRankLtAnalytic_iff_of_isWellFounded hT |>.symm
 
-/-- The successor stage of a realized rank is the analytic non-strict-comparison section.-/
+/-- The successor stage of a realized rank is the analytic non-strict-comparison section.
+@isnad1 id=eq.1h1v.s5.07d44082068c from=translated src=- shape=b8bb12ca vocab=2075e816
+-/
 theorem treeRankLT_succ_eq_treeRankLeAnalytic_section (T : TreeCode)
     (hT : IsWellFounded (decodeTree T)) :
     treeRankLT (Order.succ (rank (decodeTree T) hT)) =
@@ -702,7 +744,9 @@ theorem treeRankLT_succ_eq_treeRankLeAnalytic_section (T : TreeCode)
 
 /-- The concrete well-founded-tree rank satisfies the full definability and comparison clauses
 of a coanalytic (`Π¹₁`) norm. This theorem deliberately packages the concrete result as a
-proposition rather than introducing a generic public norm structure with only one consumer.-/
+proposition rather than introducing a generic public norm structure with only one consumer.
+@isnad1 id=and.0h0v.s9.17c6bd77e66e from=translated src=- shape=123fa672 vocab=82f4a0bc
+-/
 theorem treeRankComparison_isCoanalyticNorm :
     IsCoanalytic wellFoundedTrees ∧
       MeasureTheory.AnalyticSet treeRankLeAnalytic ∧

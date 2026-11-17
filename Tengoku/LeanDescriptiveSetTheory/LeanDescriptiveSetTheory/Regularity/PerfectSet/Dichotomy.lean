@@ -31,7 +31,9 @@ variable {X : Type u}
 
 /-- Cantor space is not countable, proved directly by diagonalizing against an alleged
 enumeration.  This statement avoids relying on a global `Uncountable` instance for the product
-topology.-/
+topology.
+@isnad1 id=not.0h0v.s3.539d6c0e00a6 from=translated src=- shape=86d8a238 vocab=58b55e73
+-/
 theorem not_countable_univ_cantor : ¬(univ : Set (ℕ → Bool)).Countable := by
   intro hcount
   rcases hcount.exists_eq_range univ_nonempty with ⟨g, hg⟩
@@ -41,7 +43,9 @@ theorem not_countable_univ_cantor : ¬(univ : Set (ℕ → Bool)).Countable := b
   have hcoordinate := congrFun hn n
   cases h : g n n <;> simp [diagonal, h] at hcoordinate
 
-/-- The range of an injective map from Cantor space is uncountable.-/
+/-- The range of an injective map from Cantor space is uncountable.
+@isnad1 id=not.1h2v.s4.d9212242abf2 from=translated src=- shape=f01b0a29 vocab=5fb51644
+-/
 theorem not_countable_range_of_injective_cantor (e : (ℕ → Bool) → X)
     (he : Function.Injective e) : ¬(range e).Countable := by
   intro hrange
@@ -50,13 +54,17 @@ theorem not_countable_range_of_injective_cantor (e : (ℕ → Bool) → X)
   simpa only [image_univ] using hrange
 
 /-- A countable set cannot contain the range of an injective Cantor map.  No analyticity or
-topology is needed for this exclusion.-/
+topology is needed for this exclusion.
+@isnad1 id=not.1h2v.s5.1f77e363fc73 from=translated src=- shape=bae53557 vocab=f975b925
+-/
 theorem _root_.Set.Countable.not_exists_injective_cantor_subset {s : Set X} (hs : s.Countable) :
     ¬∃ e : (ℕ → Bool) → X, Function.Injective e ∧ range e ⊆ s := by
   rintro ⟨e, he, hes⟩
   exact not_countable_range_of_injective_cantor e he (hs.mono hes)
 
-/-- A countable set cannot contain a closed embedded Cantor copy.-/
+/-- A countable set cannot contain a closed embedded Cantor copy.
+@isnad1 id=not.1h2v.s5.9f63b0b25344 from=translated src=- shape=c1d7209a vocab=2e479974
+-/
 theorem _root_.Set.Countable.not_exists_isClosedEmbedding_cantor_subset [TopologicalSpace X]
     {s : Set X} (hs : s.Countable) :
     ¬∃ e : (ℕ → Bool) → X, IsClosedEmbedding e ∧ range e ⊆ s := by
@@ -64,7 +72,9 @@ theorem _root_.Set.Countable.not_exists_isClosedEmbedding_cantor_subset [Topolog
   exact hs.not_exists_injective_cantor_subset ⟨e, he.isEmbedding.injective, hes⟩
 
 /-- Analytic perfect-set dichotomy: an analytic subset of a Hausdorff space is countable or
-contains a closed embedded Cantor copy.-/
+contains a closed embedded Cantor copy.
+@isnad1 id=or.1h2v.s5.cee3775d465d from=translated src=- shape=e0117475 vocab=f6ba174a
+-/
 theorem _root_.MeasureTheory.AnalyticSet.countable_or_exists_isClosedEmbedding_cantor
     [TopologicalSpace X] [T2Space X] {s : Set X} (hs : MeasureTheory.AnalyticSet s) :
     s.Countable ∨
@@ -74,7 +84,9 @@ theorem _root_.MeasureTheory.AnalyticSet.countable_or_exists_isClosedEmbedding_c
     (hs.exists_isClosedEmbedding_cantor hcount)
 
 /-- Countability and containing a closed embedded Cantor copy are mutually exclusive.  This
-statement is independent of analyticity and separation assumptions.-/
+statement is independent of analyticity and separation assumptions.
+@isnad1 id=not.0h2v.s5.44c56275ff2a from=translated src=- shape=7c7e1cc6 vocab=2e479974
+-/
 theorem not_countable_and_exists_isClosedEmbedding_cantor
     [TopologicalSpace X] {s : Set X} :
     ¬(s.Countable ∧
@@ -82,7 +94,9 @@ theorem not_countable_and_exists_isClosedEmbedding_cantor
   rintro ⟨hcount, he⟩
   exact hcount.not_exists_isClosedEmbedding_cantor_subset he
 
-/-- Exact uncountable-side formulation of the dichotomy.-/
+/-- Exact uncountable-side formulation of the dichotomy.
+@isnad1 id=iff.1h2v.s5.62a9690bf060 from=translated src=- shape=093cbbae vocab=f6ba174a
+-/
 theorem _root_.MeasureTheory.AnalyticSet.not_countable_iff_exists_isClosedEmbedding_cantor
     [TopologicalSpace X] [T2Space X] {s : Set X} (hs : MeasureTheory.AnalyticSet s) :
     ¬s.Countable ↔
@@ -94,7 +108,9 @@ theorem _root_.MeasureTheory.AnalyticSet.not_countable_iff_exists_isClosedEmbedd
       ⟨e, he.isEmbedding.injective, hes⟩
 
 /-- Exact countable-side formulation: an analytic set is countable precisely when it contains no
-injective Cantor image.-/
+injective Cantor image.
+@isnad1 id=iff.1h2v.s5.514155827f4a from=translated src=- shape=78095e45 vocab=c094406e
+-/
 theorem _root_.MeasureTheory.AnalyticSet.countable_iff_not_exists_injective_cantor
     [TopologicalSpace X] [T2Space X] {s : Set X} (hs : MeasureTheory.AnalyticSet s) :
     s.Countable ↔
@@ -107,7 +123,9 @@ theorem _root_.MeasureTheory.AnalyticSet.countable_iff_not_exists_injective_cant
     exact hnone ⟨e, he, hes⟩
 
 /-- Every uncountable analytic set contains an uncountable closed subset, namely the range of its
-closed embedded Cantor copy.-/
+closed embedded Cantor copy.
+@isnad1 id=ex.2h2v.s5.77773159fb43 from=translated src=- shape=a0ce7e73 vocab=6b5fb10c
+-/
 theorem _root_.MeasureTheory.AnalyticSet.exists_uncountable_closed_subset
     [TopologicalSpace X] [T2Space X] {s : Set X} (hs : MeasureTheory.AnalyticSet s)
     (hunc : ¬s.Countable) :
@@ -116,14 +134,18 @@ theorem _root_.MeasureTheory.AnalyticSet.exists_uncountable_closed_subset
   exact ⟨range e, hes, he.isClosed_range,
     not_countable_range_of_injective_cantor e he.isEmbedding.injective⟩
 
-/-- Baire-space specialization of the analytic dichotomy.-/
+/-- Baire-space specialization of the analytic dichotomy.
+@isnad1 id=or.1h1v.s6.424dc187d10e from=translated src=- shape=6a1a74eb vocab=1354ad20
+-/
 theorem analyticSet_countable_or_closedCantor_baire {s : Set (ℕ → ℕ)}
     (hs : MeasureTheory.AnalyticSet s) :
     s.Countable ∨
       ∃ e : (ℕ → Bool) → (ℕ → ℕ), IsClosedEmbedding e ∧ range e ⊆ s :=
   hs.countable_or_exists_isClosedEmbedding_cantor
 
-/-- Cantor-space specialization of the analytic dichotomy.-/
+/-- Cantor-space specialization of the analytic dichotomy.
+@isnad1 id=or.1h1v.s6.e22dfb8f8c01 from=translated src=- shape=45fd31f2 vocab=1354ad20
+-/
 theorem analyticSet_countable_or_closedCantor_cantor {s : Set (ℕ → Bool)}
     (hs : MeasureTheory.AnalyticSet s) :
     s.Countable ∨

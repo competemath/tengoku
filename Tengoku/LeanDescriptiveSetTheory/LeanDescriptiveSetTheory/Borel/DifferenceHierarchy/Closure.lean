@@ -22,7 +22,9 @@ universe u v
 
 namespace DescriptiveSetTheory
 
-/-- First-entry layers are pairwise disjoint, without any monotonicity assumption on the family.-/
+/-- First-entry layers are pairwise disjoint, without any monotonicity assumption on the family.
+@isnad1 id=disjoint.1h5v.s6.f159aeebfa35 from=translated src=- shape=edfdb8c4 vocab=7dac4a9f
+-/
 theorem disjoint_differenceLayer {X : Type u} {i : Ordinal.{0}}
     {A : Set.Iio i → Set X} {j k : Set.Iio i} (hjk : j ≠ k) :
     Disjoint (differenceLayer A j) (differenceLayer A k) := by
@@ -34,7 +36,9 @@ theorem disjoint_differenceLayer {X : Type u} {i : Ordinal.{0}}
   · have hnot := (mem_differenceLayer.1 hxj).2 ⟨k.1, hkj'⟩
     exact hnot (by simpa using (mem_differenceLayer.1 hxk).1)
 
-/-- The first-entry layers partition the union of the source family.-/
+/-- The first-entry layers partition the union of the source family.
+@isnad1 id=eq.0h3v.s6.31e8e8ae05be from=translated src=- shape=1ec1237e vocab=d7a3dfe0
+-/
 theorem iUnion_differenceLayer {X : Type u} {i : Ordinal.{0}}
     (A : Set.Iio i → Set X) :
     ⋃ j, differenceLayer A j = ⋃ j, A j := by
@@ -52,7 +56,9 @@ theorem iUnion_differenceLayer {X : Type u} {i : Ordinal.{0}}
       ⟨k.1, (show k.1 < m.1 from k.2).trans (show m.1 < i from m.2)⟩
     exact hmin k' hxk k.2
 
-/-- The difference operation is the union of the selected first-entry layers.-/
+/-- The difference operation is the union of the selected first-entry layers.
+@isnad1 id=eq.0h3v.s6.c1ab4cd31902 from=translated src=- shape=6d6de209 vocab=e1903e19
+-/
 theorem difference_eq_iUnion {X : Type u} (i : Ordinal.{0})
     (A : Set.Iio i → Set X) :
     difference i A =
@@ -74,6 +80,9 @@ def codifference {X : Type u} (i : Ordinal.{0}) (A : Set.Iio i → Set X) : Set 
   {x | ∃ j : Set.Iio i,
     ordinalParity j.1 = ordinalParity i ∧ x ∈ differenceLayer A j}
 
+/--
+@isnad1 id=eq.0h3v.s6.187a40c2ada3 from=translated src=- shape=daee3727 vocab=808708a4
+-/
 theorem codifference_eq_iUnion {X : Type u} (i : Ordinal.{0})
     (A : Set.Iio i → Set X) :
     codifference i A =
@@ -82,7 +91,9 @@ theorem codifference_eq_iUnion {X : Type u} (i : Ordinal.{0})
   simp [codifference]
 
 /-- The complement of a difference consists of points which never enter, together with the
-first-entry layers of the other parity.-/
+first-entry layers of the other parity.
+@isnad1 id=eq.0h3v.s6.5514eb804d27 from=translated src=- shape=0ce66a62 vocab=ec7ac53d
+-/
 theorem compl_difference {X : Type u} (i : Ordinal.{0})
     (A : Set.Iio i → Set X) :
     (difference i A)ᶜ = (⋃ j, A j)ᶜ ∪ codifference i A := by
@@ -107,21 +118,27 @@ theorem compl_difference {X : Type u} (i : Ordinal.{0})
         exact hkParity hjParity
       exact Set.disjoint_left.1 (disjoint_differenceLayer hjk) hxj hxk
 
-/-- First-entry layers commute exactly with preimages.-/
+/-- First-entry layers commute exactly with preimages.
+@isnad1 id=eq.0h6v.s5.34c70437c880 from=translated src=- shape=1ee0b475 vocab=1614fbfe
+-/
 theorem preimage_differenceLayer {X : Type u} {Y : Type v} {i : Ordinal.{0}}
     (f : X → Y) (A : Set.Iio i → Set Y) (j : Set.Iio i) :
     f ⁻¹' differenceLayer A j = differenceLayer (fun k => f ⁻¹' A k) j := by
   ext x
   simp [mem_differenceLayer]
 
-/-- The Hausdorff difference operation commutes exactly with arbitrary preimages.-/
+/-- The Hausdorff difference operation commutes exactly with arbitrary preimages.
+@isnad1 id=eq.0h5v.s5.725d39e25c98 from=translated src=- shape=18a42039 vocab=36aaef65
+-/
 theorem preimage_difference {X : Type u} {Y : Type v} (f : X → Y)
     (i : Ordinal.{0}) (A : Set.Iio i → Set Y) :
     f ⁻¹' difference i A = difference i (fun j => f ⁻¹' A j) := by
   ext x
   simp [mem_difference]
 
-/-- Continuous preimages preserve each Hausdorff difference level.-/
+/-- Continuous preimages preserve each Hausdorff difference level.
+@isnad1 id=hausdorf.2h5v.s5.6cd54cccdb84 from=translated src=- shape=a094c1f5 vocab=22a0d2e9
+-/
 theorem HausdorffDifference.preimage {X : Type u} {Y : Type v}
     [TopologicalSpace X] [TopologicalSpace Y] {i : Ordinal.{0}} {s : Set Y}
     (hs : HausdorffDifference i s) {f : X → Y} (hf : Continuous f) :
@@ -137,18 +154,27 @@ def shiftDifferenceFamily {X : Type u} {i : Ordinal.{0}}
     (A : Set.Iio i → Set X) : Set.Iio (i + 1) → Set X := fun j =>
   ⋃ k : Set.Iio i, if k.1 + 1 ≤ j.1 then A k else ∅
 
+/--
+@isnad1 id=iff.0h5v.s7.0511e3437c34 from=translated src=- shape=86a855d8 vocab=e9fd712c
+-/
 theorem mem_shiftDifferenceFamily {X : Type u} {i : Ordinal.{0}}
     {A : Set.Iio i → Set X} {j : Set.Iio (i + 1)} {x : X} :
     x ∈ shiftDifferenceFamily A j ↔
       ∃ k : Set.Iio i, k.1 + 1 ≤ j.1 ∧ x ∈ A k := by
   simp [shiftDifferenceFamily]
 
+/--
+@isnad1 id=monotone.0h3v.s6.7ae2ee333bd3 from=translated src=- shape=28d543fc vocab=eeb0c471
+-/
 theorem monotone_shiftDifferenceFamily {X : Type u} {i : Ordinal.{0}}
     (A : Set.Iio i → Set X) : Monotone (shiftDifferenceFamily A) := by
   intro j k hjk x hx
   obtain ⟨m, hmj, hxm⟩ := mem_shiftDifferenceFamily.1 hx
   exact mem_shiftDifferenceFamily.2 ⟨m, hmj.trans hjk, hxm⟩
 
+/--
+@isnad1 id=isopen.1h4v.s6.0f09af9ca9f2 from=translated src=- shape=aa93729d vocab=49ac29e8
+-/
 theorem isOpen_shiftDifferenceFamily {X : Type u} [TopologicalSpace X]
     {i : Ordinal.{0}} {A : Set.Iio i → Set X} (hAOpen : ∀ j, IsOpen (A j))
     (j : Set.Iio (i + 1)) : IsOpen (shiftDifferenceFamily A j) := by
@@ -159,7 +185,9 @@ theorem isOpen_shiftDifferenceFamily {X : Type u} [TopologicalSpace X]
   · exact isOpen_empty
 
 /-- Shifting every first-entry stage by one preserves the represented difference because both the
-entry-stage parity and the total-length parity toggle.-/
+entry-stage parity and the total-length parity toggle.
+@isnad1 id=eq.0h3v.s5.697045a9cc3f from=translated src=- shape=f36e7c64 vocab=02649362
+-/
 theorem difference_shiftDifferenceFamily {X : Type u} {i : Ordinal.{0}}
     (A : Set.Iio i → Set X) :
     difference (i + 1) (shiftDifferenceFamily A) = difference i A := by
@@ -211,7 +239,9 @@ theorem difference_shiftDifferenceFamily {X : Type u} {i : Ordinal.{0}}
         exact Order.succ_lt_succ_iff.1 hkSuccLt
       exact hmLeast ⟨k.1, hkm⟩ (by simpa using hxk)
 
-/-- Every exact countable Hausdorff level embeds in its successor exact level.-/
+/-- Every exact countable Hausdorff level embeds in its successor exact level.
+@isnad1 id=hausdorf.1h3v.s5.825739ea18b3 from=translated src=- shape=2cda295d vocab=59cd448c
+-/
 theorem HausdorffDifference.mono_add_one {X : Type u} [TopologicalSpace X]
     {i : Ordinal.{0}} {s : Set X} (hs : HausdorffDifference i s) :
     HausdorffDifference (i + 1) s := by
@@ -228,17 +258,26 @@ def extendDifferenceFamily {X : Type u} {i : Ordinal.{0}} (k : Ordinal.{0})
     (A : Set.Iio i → Set X) : Set.Iio k → Set X := fun j =>
   ⋃ a : Set.Iio i, if a.1 ≤ j.1 then A a else ∅
 
+/--
+@isnad1 id=iff.0h6v.s6.78f3b48b379d from=translated src=- shape=f2157752 vocab=8dc183a7
+-/
 theorem mem_extendDifferenceFamily {X : Type u} {i k : Ordinal.{0}}
     {A : Set.Iio i → Set X} {j : Set.Iio k} {x : X} :
     x ∈ extendDifferenceFamily k A j ↔ ∃ a : Set.Iio i, a.1 ≤ j.1 ∧ x ∈ A a := by
   simp [extendDifferenceFamily]
 
+/--
+@isnad1 id=monotone.0h4v.s6.66f4b510a33a from=translated src=- shape=e4d372cb vocab=10b07715
+-/
 theorem monotone_extendDifferenceFamily {X : Type u} {i k : Ordinal.{0}}
     (A : Set.Iio i → Set X) : Monotone (extendDifferenceFamily k A) := by
   intro j l hjl x hx
   obtain ⟨a, haj, hxa⟩ := mem_extendDifferenceFamily.1 hx
   exact mem_extendDifferenceFamily.2 ⟨a, haj.trans hjl, hxa⟩
 
+/--
+@isnad1 id=isopen.1h5v.s5.a9bf2b02b635 from=translated src=- shape=310dc5ca vocab=dfedae60
+-/
 theorem isOpen_extendDifferenceFamily {X : Type u} [TopologicalSpace X]
     {i k : Ordinal.{0}} {A : Set.Iio i → Set X} (hAOpen : ∀ j, IsOpen (A j))
     (j : Set.Iio k) : IsOpen (extendDifferenceFamily k A j) := by
@@ -248,7 +287,9 @@ theorem isOpen_extendDifferenceFamily {X : Type u} [TopologicalSpace X]
   · exact hAOpen a
   · exact isOpen_empty
 
-/-- Extending a family to a larger ordinal of the same parity preserves its difference.-/
+/-- Extending a family to a larger ordinal of the same parity preserves its difference.
+@isnad1 id=eq.2h4v.s5.95c7af7956ca from=translated src=- shape=581bc5ea vocab=d3164321
+-/
 theorem difference_extendDifferenceFamily {X : Type u} {i k : Ordinal.{0}}
     (hik : i ≤ k) (hParity : ordinalParity i = ordinalParity k)
     (A : Set.Iio i → Set X) :
@@ -291,7 +332,9 @@ theorem difference_extendDifferenceFamily {X : Type u} {i k : Ordinal.{0}}
       have ham : a.1 < m.1 := haj.trans_lt j.2
       exact hmLeast ⟨a.1, ham⟩ (by simpa using hxa)
 
-/-- Exact Hausdorff difference classes are monotone in their countable ordinal index.-/
+/-- Exact Hausdorff difference classes are monotone in their countable ordinal index.
+@isnad1 id=hausdorf.3h4v.s5.d733baeed85c from=translated src=- shape=6a9938d5 vocab=fded0e16
+-/
 theorem HausdorffDifference.mono {X : Type u} [TopologicalSpace X]
     {i k : Ordinal.{0}} (hik : i ≤ k) (hk : IsCountableBorelLevel k) {s : Set X}
     (hs : HausdorffDifference i s) : HausdorffDifference k s := by
@@ -382,7 +425,9 @@ private theorem differenceLayer_ordinalSigma0_two {X : Type u} [TopologicalSpace
     exact (isOpen_iUnion fun (k : Set.Iio j.1) => hAOpen
       ⟨k.1, (show k.1 < j.1 from k.2).trans (show j.1 < i from j.2)⟩).isClosed_compl
 
-/-- Every countable Hausdorff difference of open sets lies in `Δ⁰₂`.-/
+/-- Every countable Hausdorff difference of open sets lies in `Δ⁰₂`.
+@isnad1 id=ordinald.1h3v.s5.edc7956d51e3 from=translated src=- shape=e27288e3 vocab=82fb4330
+-/
 theorem HausdorffDifference.ordinalDelta0_two {X : Type u} [TopologicalSpace X]
     [PerfectlyNormalSpace X] {i : Ordinal.{0}} {s : Set X}
     (hs : HausdorffDifference i s) : OrdinalDelta0 2 s := by
@@ -415,6 +460,9 @@ def appendUnivDifferenceFamily {X : Type u} {i : Ordinal.{0}}
     (A : Set.Iio i → Set X) : Set.Iio (i + 1) → Set X := fun j =>
   if hj : j.1 < i then A ⟨j.1, hj⟩ else Set.univ
 
+/--
+@isnad1 id=monotone.1h3v.s7.ad012bf1b60f from=translated src=- shape=3ce52e66 vocab=15b89693
+-/
 theorem monotone_appendUnivDifferenceFamily {X : Type u} {i : Ordinal.{0}}
     {A : Set.Iio i → Set X} (hA : Monotone A) :
     Monotone (appendUnivDifferenceFamily A) := by
@@ -426,6 +474,9 @@ theorem monotone_appendUnivDifferenceFamily {X : Type u} {i : Ordinal.{0}}
     exact hA hjkVal
   · simp [appendUnivDifferenceFamily, hk]
 
+/--
+@isnad1 id=isopen.1h4v.s6.993047fff7e9 from=translated src=- shape=aa93729d vocab=8bf24d5b
+-/
 theorem isOpen_appendUnivDifferenceFamily {X : Type u} [TopologicalSpace X]
     {i : Ordinal.{0}} {A : Set.Iio i → Set X} (hA : ∀ j, IsOpen (A j))
     (j : Set.Iio (i + 1)) : IsOpen (appendUnivDifferenceFamily A j) := by
@@ -434,7 +485,9 @@ theorem isOpen_appendUnivDifferenceFamily {X : Type u} [TopologicalSpace X]
   · exact hA _
   · exact isOpen_univ
 
-/-- Appending the whole space at the final stage represents the complement difference.-/
+/-- Appending the whole space at the final stage represents the complement difference.
+@isnad1 id=eq.0h3v.s5.599d7135e9a1 from=translated src=- shape=51debb7d vocab=92e6c935
+-/
 theorem difference_appendUnivDifferenceFamily {X : Type u} {i : Ordinal.{0}}
     (A : Set.Iio i → Set X) :
     difference (i + 1) (appendUnivDifferenceFamily A) = (difference i A)ᶜ := by
@@ -501,7 +554,9 @@ theorem difference_appendUnivDifferenceFamily {X : Type u} {i : Ordinal.{0}}
         have hnot := hxj.2 k'
         simpa [appendUnivDifferenceFamily, hki, j', k'] using hnot
 
-/-- The complement of an exact level-`i` difference belongs to exact level `i + 1`.-/
+/-- The complement of an exact level-`i` difference belongs to exact level `i + 1`.
+@isnad1 id=hausdorf.1h3v.s5.d96af41d1c3f from=translated src=- shape=c6e66fe2 vocab=195d9d72
+-/
 theorem HausdorffDifference.compl_add_one {X : Type u} [TopologicalSpace X]
     {i : Ordinal.{0}} {s : Set X} (hs : HausdorffDifference i s) :
     HausdorffDifference (i + 1) sᶜ := by
@@ -519,27 +574,35 @@ def HausdorffDifferenceAtMost {X : Type u} [TopologicalSpace X]
     (i : Ordinal.{0}) (s : Set X) : Prop :=
   ∃ j : Ordinal.{0}, j ≤ i ∧ HausdorffDifference j s
 
-/-- An exact difference representation gives the corresponding cumulative bound.-/
+/-- An exact difference representation gives the corresponding cumulative bound.
+@isnad1 id=hausdorf.1h3v.s4.a57592c79ce2 from=translated src=- shape=091c1afb vocab=11b5f4f8
+-/
 theorem HausdorffDifference.atMost {X : Type u} [TopologicalSpace X]
     {i : Ordinal.{0}} {s : Set X} (hs : HausdorffDifference i s) :
     HausdorffDifferenceAtMost i s :=
   ⟨i, le_rfl, hs⟩
 
-/-- Cumulative Hausdorff difference bounds are monotone in the ordinal bound.-/
+/-- Cumulative Hausdorff difference bounds are monotone in the ordinal bound.
+@isnad1 id=hausdorf.2h4v.s5.b620f2ca4ca0 from=translated src=- shape=51c81bcb vocab=084fc2e3
+-/
 theorem HausdorffDifferenceAtMost.mono {X : Type u} [TopologicalSpace X]
     {i k : Ordinal.{0}} (hik : i ≤ k) {s : Set X}
     (hs : HausdorffDifferenceAtMost i s) : HausdorffDifferenceAtMost k s := by
   obtain ⟨j, hji, hj⟩ := hs
   exact ⟨j, hji.trans hik, hj⟩
 
-/-- Every cumulative countable difference bound is still an ambiguous level-two Borel set.-/
+/-- Every cumulative countable difference bound is still an ambiguous level-two Borel set.
+@isnad1 id=ordinald.1h3v.s5.6c81ce87bac8 from=translated src=- shape=e27288e3 vocab=32691c79
+-/
 theorem HausdorffDifferenceAtMost.ordinalDelta0_two {X : Type u} [TopologicalSpace X]
     [PerfectlyNormalSpace X] {i : Ordinal.{0}} {s : Set X}
     (hs : HausdorffDifferenceAtMost i s) : OrdinalDelta0 2 s := by
   obtain ⟨_, _, hj⟩ := hs
   exact hj.ordinalDelta0_two
 
-/-- Every countable Hausdorff difference of open sets is Borel measurable.-/
+/-- Every countable Hausdorff difference of open sets is Borel measurable.
+@isnad1 id=measurab.1h3v.s4.abf9ce6d2129 from=translated src=- shape=3c339a0b vocab=0da99819
+-/
 theorem HausdorffDifference.measurableSet {X : Type u} [TopologicalSpace X]
     [PerfectlyNormalSpace X] {i : Ordinal.{0}} {s : Set X}
     (hs : HausdorffDifference i s) : @MeasurableSet X (borel X) s :=

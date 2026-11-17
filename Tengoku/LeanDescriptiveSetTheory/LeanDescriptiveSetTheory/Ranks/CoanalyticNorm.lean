@@ -80,26 +80,34 @@ variable {A : Set X} (R : CoanalyticRank X A)
 def stageAt (y : X) (hy : y ∈ A) : Set X :=
   {x | ∃ hx : x ∈ A, R.rank x hx < R.rank y hy}
 
-/-- A realized strict stage is the horizontal section of the analytic comparison.-/
+/-- A realized strict stage is the horizontal section of the analytic comparison.
+@isnad1 id=eq.1h4v.s6.2a60c5a2a3f9 from=translated src=- shape=e53d216a vocab=91cb45d1
+-/
 theorem stageAt_eq_ltAnalytic_section (y : X) (hy : y ∈ A) :
     R.stageAt y hy = {x | (x, y) ∈ R.ltAnalytic} := by
   ext x
   exact (R.mem_ltAnalytic_iff hy).symm
 
-/-- The same realized strict stage is the horizontal section of the coanalytic comparison.-/
+/-- The same realized strict stage is the horizontal section of the coanalytic comparison.
+@isnad1 id=eq.1h4v.s6.33dcc7b6cf8d from=translated src=- shape=e53d216a vocab=a405e300
+-/
 theorem stageAt_eq_ltCoanalytic_section (y : X) (hy : y ∈ A) :
     R.stageAt y hy = {x | (x, y) ∈ R.ltCoanalytic} := by
   ext x
   exact (R.mem_ltCoanalytic_iff hy).symm
 
-/-- Every realized strict stage is analytic.-/
+/-- Every realized strict stage is analytic.
+@isnad1 id=analytic.1h4v.s5.fe3bb7c71150 from=translated src=- shape=11582703 vocab=347b66a2
+-/
 theorem analyticSet_stageAt (y : X) (hy : y ∈ A) :
     MeasureTheory.AnalyticSet (R.stageAt y hy) := by
   rw [R.stageAt_eq_ltAnalytic_section y hy]
   simpa [Set.preimage] using
     R.analyticSet_ltAnalytic.preimage (continuous_id.prodMk continuous_const)
 
-/-- Every realized strict stage is coanalytic.-/
+/-- Every realized strict stage is coanalytic.
+@isnad1 id=iscoanal.1h4v.s5.de275170eabc from=translated src=- shape=11582703 vocab=1e58c8d8
+-/
 theorem isCoanalytic_stageAt (y : X) (hy : y ∈ A) :
     IsCoanalytic (R.stageAt y hy) := by
   rw [R.stageAt_eq_ltCoanalytic_section y hy]
@@ -107,7 +115,9 @@ theorem isCoanalytic_stageAt (y : X) (hy : y ∈ A) :
     R.isCoanalytic_ltCoanalytic.preimage (continuous_id.prodMk continuous_const)
 
 /-- Every realized strict stage is Borel. This derives measurability from the two comparison
-polarities instead of repeating a recursion on tree ranks.-/
+polarities instead of repeating a recursion on tree ranks.
+@isnad1 id=measurab.1h4v.s5.4d2e6506b15d from=translated src=- shape=08da6862 vocab=f4ebe099
+-/
 theorem measurableSet_stageAt [MeasurableSpace X] [BorelSpace X]
     (y : X) (hy : y ∈ A) : MeasurableSet (R.stageAt y hy) :=
   measurableSet_iff_analyticSet_and_isCoanalytic.mpr
@@ -118,7 +128,9 @@ def pullbackPairMap {Y : Type v} (f : X → Y) (p : X × X) : Y × Y :=
   (f p.1, f p.2)
 
 omit [PolishSpace X] in
-/-- The coordinatewise map induced by a continuous reduction is continuous.-/
+/-- The coordinatewise map induced by a continuous reduction is continuous.
+@isnad1 id=continuo.1h3v.s5.ddf847a6d392 from=translated src=- shape=8224b57e vocab=2ebc2046
+-/
 theorem continuous_pullbackPairMap {Y : Type v} [TopologicalSpace Y]
     (f : X → Y) (hf : Continuous f) : Continuous (pullbackPairMap f) :=
   (hf.comp continuous_fst).prodMk (hf.comp continuous_snd)
@@ -165,7 +177,9 @@ noncomputable def pullback {Y : Type v} [TopologicalSpace Y] [PolishSpace Y]
     refine ⟨ξ, hξ, fun x hx => ?_⟩
     exact hbound (f x) ⟨x, hx, rfl⟩
 
-/-- Pullback rank values are definitionally the original values after applying the map.-/
+/-- Pullback rank values are definitionally the original values after applying the map.
+@isnad1 id=eq.2h6v.s6.4a3fa57abe92 from=translated src=- shape=5a88d27b vocab=5ae6ad4b
+-/
 @[simp] theorem pullback_rank {Y : Type v} [TopologicalSpace Y] [PolishSpace Y]
     {B : Set Y} (S : CoanalyticRank Y B) (f : X → Y) (hf : Continuous f)
     (x : X) (hx : x ∈ f ⁻¹' B) :

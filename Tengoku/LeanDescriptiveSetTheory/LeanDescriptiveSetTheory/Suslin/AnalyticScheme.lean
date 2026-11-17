@@ -37,7 +37,9 @@ witness and the second is the object retained by the Suslin operation.-/
 def analyticSchemeRelation (A : List ℕ → Set X) : Set ((ℕ → ℕ) × X) :=
   closedSchemeRelation A
 
-/-- Membership in the branch/object relation is membership in every component along the branch.-/
+/-- Membership in the branch/object relation is membership in every component along the branch.
+@isnad1 id=iff.0h3v.s5.d1856e3ddacc from=translated src=- shape=8c44f3f6 vocab=3ab37094
+-/
 @[simp]
 theorem mem_analyticSchemeRelation {A : List ℕ → Set X} {p : (ℕ → ℕ) × X} :
     p ∈ analyticSchemeRelation A ↔
@@ -49,7 +51,9 @@ def analyticSchemeConstraint (A : List ℕ → Set X) (n : ℕ) :
     Set ((ℕ → ℕ) × X) :=
   {p | p.2 ∈ A (initialSegment p.1 n)}
 
-/-- Projecting the branch/object relation onto objects gives exactly the Suslin operation.-/
+/-- Projecting the branch/object relation onto objects gives exactly the Suslin operation.
+@isnad1 id=eq.0h2v.s4.0375f52e5722 from=translated src=- shape=8874a589 vocab=a512c71a
+-/
 theorem suslinOperation_eq_snd_image_analyticSchemeRelation (A : List ℕ → Set X) :
     suslinOperation A = Prod.snd '' analyticSchemeRelation A :=
   suslinOperation_eq_snd_image_closedSchemeRelation A
@@ -70,7 +74,9 @@ private theorem AnalyticSet.inter {Y : Type*} [TopologicalSpace Y] [T2Space Y]
     simp [f, and_comm]]
   exact MeasureTheory.AnalyticSet.iInter hf
 
-/-- Each finite-level branch constraint is analytic when every scheme component is analytic.-/
+/-- Each finite-level branch constraint is analytic when every scheme component is analytic.
+@isnad1 id=analytic.1h3v.s5.f7284b1b8a1e from=translated src=- shape=7d596b0f vocab=0a15344a
+-/
 theorem analyticSet_analyticSchemeConstraint (A : List ℕ → Set X)
     (hA : ∀ s, MeasureTheory.AnalyticSet (A s)) (n : ℕ) :
     MeasureTheory.AnalyticSet (analyticSchemeConstraint A n) := by
@@ -89,7 +95,9 @@ theorem analyticSet_analyticSchemeConstraint (A : List ℕ → Set X)
       exact (isClosed_eq hfirst continuous_const).analyticSet
     · exact (hA (List.ofFn s)).preimage continuous_snd
 
-/-- The complete branch/object relation is analytic for every analytic-valued scheme.-/
+/-- The complete branch/object relation is analytic for every analytic-valued scheme.
+@isnad1 id=analytic.1h2v.s5.2efb8af779b5 from=translated src=- shape=050212a6 vocab=9305eb57
+-/
 theorem analyticSet_analyticSchemeRelation (A : List ℕ → Set X)
     (hA : ∀ s, MeasureTheory.AnalyticSet (A s)) :
     MeasureTheory.AnalyticSet (analyticSchemeRelation A) := by
@@ -99,7 +107,9 @@ theorem analyticSet_analyticSchemeRelation (A : List ℕ → Set X)
   exact MeasureTheory.AnalyticSet.iInter fun n =>
     analyticSet_analyticSchemeConstraint A hA n
 
-/-- Finite-prefix regularization preserves analytic-valuedness.-/
+/-- Finite-prefix regularization preserves analytic-valuedness.
+@isnad1 id=analytic.1h3v.s5.6624492c8a75 from=translated src=- shape=73360436 vocab=8a45e512
+-/
 theorem analyticSet_regularizeScheme (A : List ℕ → Set X)
     (hA : ∀ s, MeasureTheory.AnalyticSet (A s)) (s : List ℕ) :
     MeasureTheory.AnalyticSet (regularizeScheme A s) := by
@@ -110,7 +120,9 @@ theorem analyticSet_regularizeScheme (A : List ℕ → Set X)
     simp [regularizeScheme]]
   exact MeasureTheory.AnalyticSet.iInter fun t => hA t.1
 
-/-- The Suslin operation of an analytic-valued scheme on a Polish space is analytic.-/
+/-- The Suslin operation of an analytic-valued scheme on a Polish space is analytic.
+@isnad1 id=analytic.1h2v.s4.218c6d58a4f4 from=translated src=- shape=86014219 vocab=4b431caa
+-/
 theorem analyticSet_suslinOperation_of_analytic (A : List ℕ → Set X)
     (hA : ∀ s, MeasureTheory.AnalyticSet (A s)) :
     MeasureTheory.AnalyticSet (suslinOperation A) := by
@@ -126,7 +138,9 @@ section Borel
 
 variable [MeasurableSpace X] [BorelSpace X]
 
-/-- A Borel-valued scheme is a special case of an analytic-valued scheme.-/
+/-- A Borel-valued scheme is a special case of an analytic-valued scheme.
+@isnad1 id=analytic.1h2v.s5.aa25f2a654fb from=translated src=- shape=ef4f0267 vocab=48b272e5
+-/
 theorem analyticSet_suslinOperation_of_measurable (A : List ℕ → Set X)
     (hA : ∀ s, MeasurableSet (A s)) :
     MeasureTheory.AnalyticSet (suslinOperation A) :=

@@ -25,7 +25,9 @@ namespace DescriptiveSetTheory
 def baireDiagonal (p : ℕ → ℕ) : (ℕ → ℕ) × (ℕ → ℕ) :=
   (p, p)
 
-/-- The Baire-space diagonal map is continuous.-/
+/-- The Baire-space diagonal map is continuous.
+@isnad1 id=continuo.0h0v.s5.e255786b8eb4 from=translated src=- shape=9472c28e vocab=19d51b4a
+-/
 theorem continuous_baireDiagonal : Continuous baireDiagonal :=
   continuous_id.prodMk continuous_id
 
@@ -33,18 +35,24 @@ theorem continuous_baireDiagonal : Continuous baireDiagonal :=
 def baireDiagonalComplement (U : Set ((ℕ → ℕ) × (ℕ → ℕ))) : Set (ℕ → ℕ) :=
   baireDiagonal ⁻¹' Uᶜ
 
-/-- Membership in the Baire diagonal complement is failure of self-membership.-/
+/-- Membership in the Baire diagonal complement is failure of self-membership.
+@isnad1 id=iff.0h2v.s6.e8f3cd3dadf6 from=translated src=- shape=a2bf4e6a vocab=8cd55c50
+-/
 @[simp] theorem mem_baireDiagonalComplement {U : Set ((ℕ → ℕ) × (ℕ → ℕ))}
     {p : ℕ → ℕ} : p ∈ baireDiagonalComplement U ↔ (p, p) ∉ U :=
   Iff.rfl
 
-/-- The diagonal complement of an ordinal additive relation is multiplicative at the same level.-/
+/-- The diagonal complement of an ordinal additive relation is multiplicative at the same level.
+@isnad1 id=ordinalp.1h2v.s5.fd29cee381f3 from=translated src=- shape=09a138b8 vocab=c253a806
+-/
 theorem OrdinalSigma0.baireDiagonalComplement {i : Ordinal.{0}}
     {U : Set ((ℕ → ℕ) × (ℕ → ℕ))} (hU : OrdinalSigma0 i U) :
     OrdinalPi0 i (baireDiagonalComplement U) :=
   hU.compl.preimage continuous_baireDiagonal
 
-/-- A universal ordinal additive relation cannot code its own diagonal complement.-/
+/-- A universal ordinal additive relation cannot code its own diagonal complement.
+@isnad1 id=not.1h2v.s5.40d138c1b479 from=translated src=- shape=0d1149df vocab=4caa9848
+-/
 theorem IsUniversalFor.not_ordinalSigma0_baireDiagonalComplement {i : Ordinal.{0}}
     {U : Set ((ℕ → ℕ) × (ℕ → ℕ))} (hU : IsUniversalFor (OrdinalSigma0 i) U) :
     ¬ OrdinalSigma0 i (baireDiagonalComplement U) := by
@@ -59,13 +67,17 @@ noncomputable def baireOrdinalPiNotSigma (i : Ordinal.{0})
     (hic : IsCountableBorelLevel i) : Set (ℕ → ℕ) :=
   baireDiagonalComplement (baireOrdinalUniversalSigma i hic)
 
-/-- The canonical ordinal multiplicative witness belongs to level `i`.-/
+/-- The canonical ordinal multiplicative witness belongs to level `i`.
+@isnad1 id=ordinalp.2h1v.s5.8e2d7483b22a from=translated src=- shape=3a81b106 vocab=4cf88aca
+-/
 theorem ordinalPi0_baireOrdinalPiNotSigma {i : Ordinal.{0}}
     (hic : IsCountableBorelLevel i) (hi0 : 0 < i) :
     OrdinalPi0 i (baireOrdinalPiNotSigma i hic) :=
   (ordinalSigma0_baireOrdinalUniversalSigma hic hi0).baireDiagonalComplement
 
-/-- The canonical ordinal multiplicative witness is not additive at level `i`.-/
+/-- The canonical ordinal multiplicative witness is not additive at level `i`.
+@isnad1 id=not.2h1v.s5.490cfa20a3d4 from=translated src=- shape=2afaee63 vocab=52ff76b6
+-/
 theorem not_ordinalSigma0_baireOrdinalPiNotSigma {i : Ordinal.{0}}
     (hic : IsCountableBorelLevel i) (hi0 : 0 < i) :
     ¬ OrdinalSigma0 i (baireOrdinalPiNotSigma i hic) :=
@@ -77,13 +89,17 @@ noncomputable def baireOrdinalSigmaNotPi (i : Ordinal.{0})
     (hic : IsCountableBorelLevel i) : Set (ℕ → ℕ) :=
   (baireOrdinalPiNotSigma i hic)ᶜ
 
-/-- The canonical ordinal additive witness belongs to level `i`.-/
+/-- The canonical ordinal additive witness belongs to level `i`.
+@isnad1 id=ordinals.2h1v.s5.bb9c27810328 from=translated src=- shape=3a81b106 vocab=7646a4b4
+-/
 theorem ordinalSigma0_baireOrdinalSigmaNotPi {i : Ordinal.{0}}
     (hic : IsCountableBorelLevel i) (hi0 : 0 < i) :
     OrdinalSigma0 i (baireOrdinalSigmaNotPi i hic) :=
   (ordinalPi0_baireOrdinalPiNotSigma hic hi0).compl
 
-/-- The canonical ordinal additive witness is not multiplicative at level `i`.-/
+/-- The canonical ordinal additive witness is not multiplicative at level `i`.
+@isnad1 id=not.2h1v.s5.8c7f93e894ae from=translated src=- shape=2afaee63 vocab=96522f7b
+-/
 theorem not_ordinalPi0_baireOrdinalSigmaNotPi {i : Ordinal.{0}}
     (hic : IsCountableBorelLevel i) (hi0 : 0 < i) :
     ¬ OrdinalPi0 i (baireOrdinalSigmaNotPi i hic) := by
@@ -91,14 +107,18 @@ theorem not_ordinalPi0_baireOrdinalSigmaNotPi {i : Ordinal.{0}}
   apply not_ordinalSigma0_baireOrdinalPiNotSigma hic hi0
   simpa [baireOrdinalSigmaNotPi] using hpi.compl
 
-/-- At every positive countable ordinal level, some Baire multiplicative set is not additive.-/
+/-- At every positive countable ordinal level, some Baire multiplicative set is not additive.
+@isnad1 id=ex.2h1v.s5.620e3c4841fb from=translated src=- shape=77c9d95c vocab=5edcf9ed
+-/
 theorem exists_ordinalPi0_not_ordinalSigma0_baire {i : Ordinal.{0}}
     (hic : IsCountableBorelLevel i) (hi0 : 0 < i) :
     ∃ s : Set (ℕ → ℕ), OrdinalPi0 i s ∧ ¬ OrdinalSigma0 i s :=
   ⟨baireOrdinalPiNotSigma i hic, ordinalPi0_baireOrdinalPiNotSigma hic hi0,
     not_ordinalSigma0_baireOrdinalPiNotSigma hic hi0⟩
 
-/-- At every positive countable ordinal level, some Baire additive set is not multiplicative.-/
+/-- At every positive countable ordinal level, some Baire additive set is not multiplicative.
+@isnad1 id=ex.2h1v.s5.a03c5cac9b04 from=translated src=- shape=77c9d95c vocab=5edcf9ed
+-/
 theorem exists_ordinalSigma0_not_ordinalPi0_baire {i : Ordinal.{0}}
     (hic : IsCountableBorelLevel i) (hi0 : 0 < i) :
     ∃ s : Set (ℕ → ℕ), OrdinalSigma0 i s ∧ ¬ OrdinalPi0 i s :=

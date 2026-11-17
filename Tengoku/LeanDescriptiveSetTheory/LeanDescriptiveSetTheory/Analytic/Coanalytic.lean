@@ -27,28 +27,40 @@ variable {X Y : Type*} [TopologicalSpace X]
 def IsCoanalytic (s : Set X) : Prop :=
   MeasureTheory.AnalyticSet sᶜ
 
+/--
+@isnad1 id=iff.0h2v.s4.ab22dc0bd8a4 from=translated src=- shape=8072668f vocab=1220ed3f
+-/
 @[simp]
 theorem isCoanalytic_iff_analyticSet_compl {s : Set X} :
     IsCoanalytic s ↔ MeasureTheory.AnalyticSet sᶜ :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h2v.s4.39c96420c1a5 from=translated src=- shape=1052c33f vocab=1220ed3f
+-/
 theorem isCoanalytic_compl_iff {s : Set X} :
     IsCoanalytic sᶜ ↔ MeasureTheory.AnalyticSet s := by
   simp [IsCoanalytic]
 
-/-- The complement of an analytic set is coanalytic.-/
+/-- The complement of an analytic set is coanalytic.
+@isnad1 id=iscoanal.1h2v.s4.31bf36206aa7 from=translated src=- shape=a00f5de4 vocab=1220ed3f
+-/
 theorem MeasureTheory.AnalyticSet.isCoanalytic_compl {s : Set X}
     (hs : MeasureTheory.AnalyticSet s) : IsCoanalytic sᶜ := by
   simpa [IsCoanalytic]
 
-/-- The continuous preimage of a coanalytic set is coanalytic.-/
+/-- The continuous preimage of a coanalytic set is coanalytic.
+@isnad1 id=iscoanal.2h4v.s5.1415c5dab75e from=translated src=- shape=742138c2 vocab=eb5e0ef3
+-/
 protected theorem IsCoanalytic.preimage [TopologicalSpace Y] [PolishSpace X] [T2Space Y]
     {s : Set Y} (hs : IsCoanalytic s) {f : X → Y} (hf : Continuous f) :
     IsCoanalytic (f ⁻¹' s) := by
   rw [IsCoanalytic, ← Set.preimage_compl]
   exact MeasureTheory.AnalyticSet.preimage hs hf
 
-/-- Every Borel-measurable subset of a Polish Borel space is coanalytic.-/
+/-- Every Borel-measurable subset of a Polish Borel space is coanalytic.
+@isnad1 id=iscoanal.1h2v.s4.97f998565564 from=translated src=- shape=fc688b40 vocab=721f2370
+-/
 theorem _root_.MeasurableSet.isCoanalytic [PolishSpace X] [MeasurableSpace X]
     [BorelSpace X] {s : Set X} (hs : MeasurableSet s) : IsCoanalytic s := by
   exact hs.compl.analyticSet

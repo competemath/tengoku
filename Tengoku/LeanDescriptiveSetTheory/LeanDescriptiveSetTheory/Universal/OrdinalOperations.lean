@@ -33,7 +33,9 @@ variable {X : Type u}
 /-- The type of positive ordinal levels strictly below `i`.-/
 abbrev PositiveBorelLevelBelow (i : Ordinal.{0}) := Set.Ioo (0 : Ordinal) i
 
-/-- The positive levels below a countable Borel level form a countable type.-/
+/-- The positive levels below a countable Borel level form a countable type.
+@isnad1 id=countabl.1h1v.s3.483330af54b5 from=translated src=- shape=6fc0355f vocab=9576acf3
+-/
 theorem countable_positiveBorelLevelBelow {i : Ordinal.{0}}
     (hi : IsCountableBorelLevel i) : Countable (PositiveBorelLevelBelow i) := by
   letI : Countable (Set.Iio i) := countable_Iio_of_isCountableBorelLevel hi
@@ -49,7 +51,9 @@ noncomputable def positiveBorelLevelSequence (i : Ordinal.{0}) (hi : (1 : Ordina
   letI : Countable (PositiveBorelLevelBelow i) := countable_positiveBorelLevelBelow hic
   exact Set.enumerateCountable Set.countable_univ ⟨1, zero_lt_one, hi⟩
 
-/-- The canonical sequence reaches every positive level below `i`.-/
+/-- The canonical sequence reaches every positive level below `i`.
+@isnad1 id=surjecti.2h1v.s4.a47717eea254 from=translated src=- shape=481d71db vocab=82186f61
+-/
 theorem surjective_positiveBorelLevelSequence (i : Ordinal.{0}) (hi : (1 : Ordinal) < i)
     (hic : IsCountableBorelLevel i) :
     Function.Surjective (positiveBorelLevelSequence i hi hic) := by
@@ -60,12 +64,16 @@ theorem surjective_positiveBorelLevelSequence (i : Ordinal.{0}) (hi : (1 : Ordin
       (Set.univ : Set (PositiveBorelLevelBelow i)).Countable)
       (Set.mem_univ (⟨1, zero_lt_one, hi⟩ : PositiveBorelLevelBelow i)))
 
-/-- Vertical sections with Baire parameters commute with relation complementation.-/
+/-- Vertical sections with Baire parameters commute with relation complementation.
+@isnad1 id=eq.0h3v.s5.06b033dcaf79 from=translated src=- shape=a0b5de07 vocab=8d213d8e
+-/
 @[simp] theorem verticalSection_compl_baireParameters (U : Set ((ℕ → ℕ) × X)) (p : ℕ → ℕ) :
     verticalSection Uᶜ p = (verticalSection U p)ᶜ :=
   rfl
 
-/-- Complementing a universal ordinal additive relation gives a universal multiplicative one.-/
+/-- Complementing a universal ordinal additive relation gives a universal multiplicative one.
+@isnad1 id=isuniver.1h3v.s5.31510bb17acf from=translated src=- shape=72980a7d vocab=16243439
+-/
 theorem IsUniversalFor.compl_ordinalSigma0 [TopologicalSpace X] {i : Ordinal.{0}}
     {U : Set ((ℕ → ℕ) × X)} (hU : IsUniversalFor (OrdinalSigma0 i) U) :
     IsUniversalFor (OrdinalPi0 i) Uᶜ := by
@@ -83,7 +91,9 @@ theorem IsUniversalFor.compl_ordinalSigma0 [TopologicalSpace X] {i : Ordinal.{0}
     exact hcompl
 
 /-- Indexed Baire section union builds an additive relation at level `i` from multiplicative
-relations at selected positive levels below `i`.-/
+relations at selected positive levels below `i`.
+@isnad1 id=ordinals.2h4v.s6.0fd2482e019b from=translated src=- shape=73184e54 vocab=941959de
+-/
 theorem ordinalSigma0_baireIndexedIUnion [TopologicalSpace X]
     {i : Ordinal.{0}} (hi : (1 : Ordinal) < i)
     (j : ℕ → PositiveBorelLevelBelow i) {U : ℕ → Set ((ℕ → ℕ) × X)}
@@ -108,7 +118,9 @@ theorem ordinalSigma0_baireIndexedIUnion [TopologicalSpace X]
     exact (Set.iUnion_unpair fun n k =>
       baireSelector n k ∩ baireUnpackProd n ⁻¹' U k).symm
 
-/-- Indexed Baire section union preserves universality at any countable ordinal level above one.-/
+/-- Indexed Baire section union preserves universality at any countable ordinal level above one.
+@isnad1 id=isuniver.3h4v.s6.03fae75249eb from=translated src=- shape=563a182a vocab=5f12986a
+-/
 theorem isUniversalFor_baireIndexedIUnion_ordinal [TopologicalSpace X] {i : Ordinal.{0}}
     (hi : (1 : Ordinal) < i) (j : ℕ → PositiveBorelLevelBelow i)
     (hj : Function.Surjective j) {U : ℕ → Set ((ℕ → ℕ) × X)}

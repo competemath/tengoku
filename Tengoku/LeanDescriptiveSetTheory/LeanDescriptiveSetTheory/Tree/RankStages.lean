@@ -36,18 +36,24 @@ def nodeRankLT (i : Ordinal.{0}) (s : List ℕ) : Set TreeCode :=
   {c | ∃ hs : s ∈ decodeTree c,
     ∃ h : Acc (Child (decodeTree c)) (⟨s, hs⟩ : decodeTree c), h.rank < i}
 
-/-- The zero local-rank stage is empty.-/
+/-- The zero local-rank stage is empty.
+@isnad1 id=eq.0h1v.s4.1a80f3b1c74b from=translated src=- shape=17687c69 vocab=8402a85c
+-/
 @[simp] theorem nodeRankLT_zero (s : List ℕ) : nodeRankLT 0 s = ∅ := by
   ext c
   simp [nodeRankLT]
 
-/-- Local node stages are monotone in their ordinal bound.-/
+/-- Local node stages are monotone in their ordinal bound.
+@isnad1 id=le.1h3v.s4.7f5c901f572a from=translated src=- shape=e1445328 vocab=093c0a2c
+-/
 theorem nodeRankLT_mono {i j : Ordinal.{0}} (hij : i ≤ j) (s : List ℕ) :
     nodeRankLT i s ⊆ nodeRankLT j s := by
   rintro c ⟨hs, h, hrank⟩
   exact ⟨hs, h, hrank.trans_le hij⟩
 
-/-- Exact successor recursion for local node-rank stages.-/
+/-- Exact successor recursion for local node-rank stages.
+@isnad1 id=eq.0h2v.s8.3dc371293499 from=translated src=- shape=7517ddf2 vocab=517ab035
+-/
 theorem nodeRankLT_succ (i : Ordinal.{0}) (s : List ℕ) :
     nodeRankLT (Order.succ i) s =
       {c | s ∈ decodeTree c} ∩
@@ -94,7 +100,9 @@ theorem nodeRankLT_succ (i : Ordinal.{0}) (s : List ℕ) :
     rw [Subsingleton.elim (hroot.inv t.property) h']
     exact Order.succ_le_iff.mpr hrank'
 
-/-- At a nonzero limit, a local stage is the union of all earlier local stages.-/
+/-- At a nonzero limit, a local stage is the union of all earlier local stages.
+@isnad1 id=eq.1h2v.s5.85bab79d1ca5 from=translated src=- shape=6c6bfba7 vocab=746903b6
+-/
 theorem nodeRankLT_limit {i : Ordinal.{0}} (hi : Order.IsSuccLimit i) (s : List ℕ) :
     nodeRankLT i s = ⋃ j : Set.Iio i, nodeRankLT j.1 s := by
   ext c
@@ -106,7 +114,9 @@ theorem nodeRankLT_limit {i : Ordinal.{0}} (hi : Order.IsSuccLimit i) (s : List 
     rcases Set.mem_iUnion.1 hc with ⟨j, hs, h, hrank⟩
     exact ⟨hs, h, hrank.trans j.property⟩
 
-/-- Membership of a fixed node is clopen in the coded tree space.-/
+/-- Membership of a fixed node is clopen in the coded tree space.
+@isnad1 id=isclopen.0h1v.s7.6bc458cfa4a3 from=translated src=- shape=5b210e51 vocab=ff5c194d
+-/
 theorem isClopen_nodeMem (s : List ℕ) : IsClopen {c : TreeCode | s ∈ decodeTree c} := by
   have hcontinuous : Continuous (fun c : TreeCode => c.1 s) :=
     (continuous_listNatBoolCoordinate s).comp continuous_subtype_val
@@ -117,7 +127,9 @@ theorem isClopen_nodeMem (s : List ℕ) : IsClopen {c : TreeCode | s ∈ decodeT
   rw [heq]
   exact (isClopen_discrete ({true} : Set Bool)).preimage hcontinuous
 
-/-- Every countable local node-rank stage is Borel measurable.-/
+/-- Every countable local node-rank stage is Borel measurable.
+@isnad1 id=measurab.1h2v.s5.04b56f3bf8c6 from=translated src=- shape=d2955f79 vocab=dfa1e299
+-/
 theorem borelMeasurableSet_nodeRankLT {i : Ordinal.{0}} (hi : IsCountableBorelLevel i)
     (s : List ℕ) : @MeasurableSet TreeCode (borel TreeCode) (nodeRankLT i s) := by
   induction i using WellFoundedLT.induction generalizing s with
@@ -154,7 +166,9 @@ private theorem nodeRank_eq_accRank {T : Descriptive.tree ℕ} (hT : IsWellFound
   unfold nodeRank _root_.IsWellFounded.rank
   rw [Subsingleton.elim (_root_.IsWellFounded.apply (Child T) s) hacc]
 
-/-- Local accessibility of the root is equivalent to well-foundedness of the whole tree.-/
+/-- Local accessibility of the root is equivalent to well-foundedness of the whole tree.
+@isnad1 id=iff.1h1v.s8.03ada44690ca from=translated src=- shape=8ff50113 vocab=2f919fa2
+-/
 theorem acc_root_iff_isWellFounded {T : Descriptive.tree ℕ} (hroot : [] ∈ T) :
     Acc (Child T) (⟨[], hroot⟩ : T) ↔ IsWellFounded T := by
   constructor
@@ -170,13 +184,17 @@ theorem acc_root_iff_isWellFounded {T : Descriptive.tree ℕ} (hroot : [] ∈ T)
 def treeRankLT (i : Ordinal.{0}) : Set TreeCode :=
   {c | ∃ hT : IsWellFounded (decodeTree c), rank (decodeTree c) hT < i}
 
-/-- Unfolded membership in a strict whole-tree rank stage.-/
+/-- Unfolded membership in a strict whole-tree rank stage.
+@isnad1 id=iff.0h2v.s5.94f112855b4d from=translated src=- shape=bddc8b48 vocab=cc8416b3
+-/
 theorem mem_treeRankLT {i : Ordinal.{0}} {c : TreeCode} :
     c ∈ treeRankLT i ↔
       ∃ hT : IsWellFounded (decodeTree c), rank (decodeTree c) hT < i :=
   Iff.rfl
 
-/-- The non-strict formulation is derived from the strict convention at a successor bound.-/
+/-- The non-strict formulation is derived from the strict convention at a successor bound.
+@isnad1 id=iff.0h2v.s5.6020e1b9a0c9 from=translated src=- shape=d2e18939 vocab=85959f47
+-/
 theorem mem_treeRankLT_succ_iff_le {i : Ordinal.{0}} {c : TreeCode} :
     c ∈ treeRankLT (Order.succ i) ↔
       ∃ hT : IsWellFounded (decodeTree c), rank (decodeTree c) hT ≤ i := by
@@ -186,12 +204,16 @@ theorem mem_treeRankLT_succ_iff_le {i : Ordinal.{0}} {c : TreeCode} :
   · rintro ⟨hT, hrank⟩
     exact ⟨hT, Order.lt_succ_iff.mpr hrank⟩
 
-/-- The zero whole-tree rank stage is empty.-/
+/-- The zero whole-tree rank stage is empty.
+@isnad1 id=eq.0h0v.s3.5670b595d582 from=translated src=- shape=54ac7564 vocab=b2e3c69b
+-/
 @[simp] theorem treeRankLT_zero : treeRankLT 0 = ∅ := by
   ext c
   simp [treeRankLT]
 
-/-- At a positive bound, a whole-tree stage is the root-absent locus union the local root stage.-/
+/-- At a positive bound, a whole-tree stage is the root-absent locus union the local root stage.
+@isnad1 id=eq.1h1v.s7.8c039f6b0d10 from=translated src=- shape=54fd9d29 vocab=c1939b6d
+-/
 theorem treeRankLT_eq_root {i : Ordinal.{0}} (hi : 0 < i) :
     treeRankLT i = {c | [] ∉ decodeTree c} ∪ nodeRankLT i [] := by
   ext c
@@ -222,19 +244,25 @@ theorem treeRankLT_eq_root {i : Ordinal.{0}} (hi : 0 < i) :
       rw [nodeRank_eq_accRank hT _ hacc]
       exact hrank
 
-/-- Strict whole-tree rank stages are monotone in their ordinal bound.-/
+/-- Strict whole-tree rank stages are monotone in their ordinal bound.
+@isnad1 id=le.1h2v.s4.6aae3f48c33d from=translated src=- shape=49beed39 vocab=cdc7e813
+-/
 theorem treeRankLT_mono {i j : Ordinal.{0}} (hij : i ≤ j) :
     treeRankLT i ⊆ treeRankLT j := by
   rintro c ⟨hT, hrank⟩
   exact ⟨hT, hrank.trans_le hij⟩
 
-/-- Ill-founded decoded trees belong to no strict whole-tree rank stage.-/
+/-- Ill-founded decoded trees belong to no strict whole-tree rank stage.
+@isnad1 id=not.1h2v.s4.b2d0bdfb8408 from=translated src=- shape=8b29816d vocab=bdb368d3
+-/
 theorem not_mem_treeRankLT_of_not_isWellFounded {i : Ordinal.{0}} {c : TreeCode}
     (hc : ¬IsWellFounded (decodeTree c)) : c ∉ treeRankLT i := by
   rintro ⟨hT, -⟩
   exact hc hT
 
-/-- Exact whole-tree successor equation in terms of root membership and child stages.-/
+/-- Exact whole-tree successor equation in terms of root membership and child stages.
+@isnad1 id=eq.0h1v.s8.945235e23b22 from=translated src=- shape=2f7645aa vocab=d0c3958a
+-/
 theorem treeRankLT_succ (i : Ordinal.{0}) :
     treeRankLT (Order.succ i) =
       {c | [] ∉ decodeTree c} ∪
@@ -243,7 +271,9 @@ theorem treeRankLT_succ (i : Ordinal.{0}) :
   rw [treeRankLT_eq_root (bot_le.trans_lt (Order.lt_succ i)), nodeRankLT_succ]
   rfl
 
-/-- At a nonzero limit, a whole-tree stage is the union of all earlier stages.-/
+/-- At a nonzero limit, a whole-tree stage is the union of all earlier stages.
+@isnad1 id=eq.1h1v.s5.e0a24be2868e from=translated src=- shape=ff19b55e vocab=f5cb1913
+-/
 theorem treeRankLT_limit {i : Ordinal.{0}} (hi : Order.IsSuccLimit i) :
     treeRankLT i = ⋃ j : Set.Iio i, treeRankLT j.1 := by
   ext c
@@ -255,7 +285,9 @@ theorem treeRankLT_limit {i : Ordinal.{0}} (hi : Order.IsSuccLimit i) :
     rcases Set.mem_iUnion.1 hc with ⟨j, hT, hrank⟩
     exact ⟨hT, hrank.trans j.property⟩
 
-/-- Every countable strict whole-tree rank stage is Borel measurable.-/
+/-- Every countable strict whole-tree rank stage is Borel measurable.
+@isnad1 id=measurab.1h1v.s5.bcf4c6eabd85 from=translated src=- shape=c115e30a vocab=cfd22814
+-/
 theorem borelMeasurableSet_treeRankLT {i : Ordinal.{0}} (hi : IsCountableBorelLevel i) :
     @MeasurableSet TreeCode (borel TreeCode) (treeRankLT i) := by
   by_cases hi0 : i = 0
@@ -267,7 +299,9 @@ theorem borelMeasurableSet_treeRankLT {i : Ordinal.{0}} (hi : IsCountableBorelLe
       MeasurableSpace.GenerateMeasurable.basic _ (isClopen_nodeMem []).isOpen
     exact hroot.compl.union (borelMeasurableSet_nodeRankLT hi [])
 
-/-- Every countable strict whole-tree rank stage has an exact Borel-code witness.-/
+/-- Every countable strict whole-tree rank stage has an exact Borel-code witness.
+@isnad1 id=ex.1h1v.s7.7b1e619f7e9e from=translated src=- shape=0ca25731 vocab=5030da81
+-/
 theorem exists_borelCode_treeRankLT {i : Ordinal.{0}} (hi : IsCountableBorelLevel i) :
     ∃ c : BorelCode TreeCode, c.eval = treeRankLT i :=
   BorelCode.borelMeasurableSet_iff_exists_code.mp (borelMeasurableSet_treeRankLT hi)

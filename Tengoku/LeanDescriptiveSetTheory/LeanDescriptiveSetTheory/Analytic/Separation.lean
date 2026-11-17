@@ -32,7 +32,9 @@ variable {X : Type u} [TopologicalSpace X]
 disjoint from the second.
 
 This is the semantic code-witness bridge from mathlib's `AnalyticSet.measurablySeparable` to
-`BorelCode.borelMeasurableSet_iff_exists_code`. The selected code is not canonical.-/
+`BorelCode.borelMeasurableSet_iff_exists_code`. The selected code is not canonical.
+@isnad1 id=ex.3h3v.s6.4148f23aecca from=translated src=- shape=501c0ebf vocab=990b58d3
+-/
 theorem exists_borelCode_separator_of_disjoint_analytic
     [T2Space X] {s t : Set X} (hs : MeasureTheory.AnalyticSet s)
     (ht : MeasureTheory.AnalyticSet t) (hst : Disjoint s t) :
@@ -50,7 +52,9 @@ variable {A : Type u}
 /-- Disjoint projected bodies have a semantic `BorelCode` separator.
 
 The analytic-set premises are discharged through the `v1.1.0` projected-body normal-form
-equivalence, so this theorem is the tree-facing adapter for the generic separator.-/
+equivalence, so this theorem is the tree-facing adapter for the generic separator.
+@isnad1 id=ex.1h3v.s8.40e62cbb0396 from=translated src=- shape=950c621b vocab=dadf1591
+-/
 theorem exists_borelCode_separator_projectedBody
     [TopologicalSpace A] [DiscreteTopology A]
     [PolishSpace (ℕ → A)]
@@ -64,7 +68,9 @@ theorem exists_borelCode_separator_projectedBody
     (analyticSet_iff_exists_projectedBody (projectedBody T)).2 ⟨T, rfl⟩
   exact exists_borelCode_separator_of_disjoint_analytic hS hT h
 
-/-- Baire-space projected bodies have a semantic `BorelCode` separator.-/
+/-- Baire-space projected bodies have a semantic `BorelCode` separator.
+@isnad1 id=ex.1h2v.s8.a5fae195a74d from=translated src=- shape=55462eb5 vocab=c3cfad81
+-/
 theorem exists_borelCode_separator_projectedBody_baire
     (S T : Descriptive.tree (ℕ × ℕ))
     (h : Disjoint (projectedBody S) (projectedBody T)) :

@@ -22,7 +22,9 @@ open Cardinal Ordinal Set TopologicalSpace
 
 namespace DescriptiveSetTheory
 
-/-- A universal exact difference relation cannot code its Baire diagonal complement.-/
+/-- A universal exact difference relation cannot code its Baire diagonal complement.
+@isnad1 id=not.1h2v.s5.3049f022ada3 from=translated src=- shape=0d1149df vocab=d4c265c9
+-/
 theorem IsUniversalFor.not_hausdorffDifference_baireDiagonalComplement
     {i : Ordinal.{0}} {U : Set ((ℕ → ℕ) × (ℕ → ℕ))}
     (hU : IsUniversalFor (HausdorffDifference i) U) :
@@ -39,6 +41,9 @@ noncomputable def baireHausdorffDifferenceStrictWitness (i : Ordinal.{0})
   baireDiagonalComplement
     (baireUniversalDifference baireCylinderBasisSequence i hi hic)
 
+/--
+@isnad1 id=hausdorf.2h1v.s5.8f9fc314247f from=translated src=- shape=f2d65741 vocab=4529c1ff
+-/
 theorem hausdorffDifference_add_one_baireStrictWitness {i : Ordinal.{0}}
     (hi : 0 < i) (hic : IsCountableBorelLevel i) :
     HausdorffDifference (i + 1)
@@ -48,6 +53,9 @@ theorem hausdorffDifference_add_one_baireStrictWitness {i : Ordinal.{0}}
       (Set.mem_range_self n)) hi hic).compl_add_one
   exact hCompl.preimage continuous_baireDiagonal
 
+/--
+@isnad1 id=not.2h1v.s5.99cd2abb4bd8 from=translated src=- shape=474eb5b8 vocab=fa39ccfe
+-/
 theorem not_hausdorffDifference_baireStrictWitness {i : Ordinal.{0}}
     (hi : 0 < i) (hic : IsCountableBorelLevel i) :
     ¬ HausdorffDifference i (baireHausdorffDifferenceStrictWitness i hi hic) :=
@@ -56,7 +64,9 @@ theorem not_hausdorffDifference_baireStrictWitness {i : Ordinal.{0}}
       isTopologicalBasis_range_baireCylinderBasisSequence hi hic)
 
 /-- Every positive countable Baire-space difference level is properly contained in its
-successor.-/
+successor.
+@isnad1 id=ex.2h1v.s6.0642ee5874d1 from=translated src=- shape=6eaf43f9 vocab=8f01f389
+-/
 theorem exists_hausdorffDifference_add_one_not_baire {i : Ordinal.{0}}
     (hi : 0 < i) (hic : IsCountableBorelLevel i) :
     ∃ s : Set (ℕ → ℕ), HausdorffDifference (i + 1) s ∧
@@ -65,7 +75,9 @@ theorem exists_hausdorffDifference_add_one_not_baire {i : Ordinal.{0}}
     hausdorffDifference_add_one_baireStrictWitness hi hic,
     not_hausdorffDifference_baireStrictWitness hi hic⟩
 
-/-- A universal Cantor-parameter exact difference relation cannot code its diagonal complement.-/
+/-- A universal Cantor-parameter exact difference relation cannot code its diagonal complement.
+@isnad1 id=not.1h2v.s5.98536dc848fb from=translated src=- shape=1789a01b vocab=e453fdc5
+-/
 theorem IsUniversalFor.not_hausdorffDifference_diagonalComplement
     {i : Ordinal.{0}} {U : Set ((ℕ → Bool) × (ℕ → Bool))}
     (hU : IsUniversalFor (HausdorffDifference i) U) :
@@ -82,6 +94,9 @@ noncomputable def cantorHausdorffDifferenceStrictWitness (i : Ordinal.{0})
   diagonalComplement
     (cantorUniversalDifference cantorCylinderBasisSequence i hi hic)
 
+/--
+@isnad1 id=hausdorf.2h1v.s5.856e463817bd from=translated src=- shape=54a0e99e vocab=be60110e
+-/
 theorem hausdorffDifference_add_one_cantorStrictWitness {i : Ordinal.{0}}
     (hi : 0 < i) (hic : IsCountableBorelLevel i) :
     HausdorffDifference (i + 1)
@@ -91,6 +106,9 @@ theorem hausdorffDifference_add_one_cantorStrictWitness {i : Ordinal.{0}}
       (Set.mem_range_self n)) hi hic).compl_add_one
   exact hCompl.preimage continuous_cantorDiagonal
 
+/--
+@isnad1 id=not.2h1v.s5.26f9324f4eca from=translated src=- shape=dd8030f2 vocab=05c76f5d
+-/
 theorem not_hausdorffDifference_cantorStrictWitness {i : Ordinal.{0}}
     (hi : 0 < i) (hic : IsCountableBorelLevel i) :
     ¬ HausdorffDifference i (cantorHausdorffDifferenceStrictWitness i hi hic) :=
@@ -99,7 +117,9 @@ theorem not_hausdorffDifference_cantorStrictWitness {i : Ordinal.{0}}
       isTopologicalBasis_range_cantorCylinderBasisSequence hi hic)
 
 /-- Every positive countable Cantor-space difference level is properly contained in its
-successor.-/
+successor.
+@isnad1 id=ex.2h1v.s6.c031c0704ec5 from=translated src=- shape=2c1daa2f vocab=7ff76426
+-/
 theorem exists_hausdorffDifference_add_one_not_cantor {i : Ordinal.{0}}
     (hi : 0 < i) (hic : IsCountableBorelLevel i) :
     ∃ s : Set (ℕ → Bool), HausdorffDifference (i + 1) s ∧

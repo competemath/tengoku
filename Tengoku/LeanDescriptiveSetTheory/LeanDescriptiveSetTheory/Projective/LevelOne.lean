@@ -30,7 +30,9 @@ namespace DescriptiveSetTheory
 variable {X : Type u} [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X]
   [BorelSpace X]
 
-/-- The first positive projective Sigma level is exactly the analytic sets.-/
+/-- The first positive projective Sigma level is exactly the analytic sets.
+@isnad1 id=iff.0h2v.s5.f7d002a8eb50 from=translated src=- shape=3369da01 vocab=f7633cba
+-/
 theorem projectiveSigma_one_iff_analyticSet {s : Set X} :
     ProjectiveSigma 1 s ↔ MeasureTheory.AnalyticSet s := by
   constructor
@@ -50,29 +52,39 @@ theorem projectiveSigma_one_iff_analyticSet {s : Set X} :
       ext x
       simp [R, projectiveProjection, eq_comm]
 
-/-- The first positive projective Pi level is exactly the coanalytic sets.-/
+/-- The first positive projective Pi level is exactly the coanalytic sets.
+@isnad1 id=iff.0h2v.s5.5f847001823a from=translated src=- shape=15f23bfe vocab=107d18aa
+-/
 theorem projectivePi_one_iff_isCoanalytic {s : Set X} :
     ProjectivePi 1 s ↔ IsCoanalytic s := by
   rw [ProjectivePi, IsCoanalytic, projectiveSigma_one_iff_analyticSet]
 
-/-- The first positive projective Delta level is exactly the Borel measurable sets.-/
+/-- The first positive projective Delta level is exactly the Borel measurable sets.
+@isnad1 id=iff.0h2v.s5.9964a8e78b4e from=translated src=- shape=15f23bfe vocab=c99946db
+-/
 theorem projectiveDelta_one_iff_measurableSet {s : Set X} :
     ProjectiveDelta 1 s ↔ MeasurableSet s := by
   rw [ProjectiveDelta, projectiveSigma_one_iff_analyticSet,
     projectivePi_one_iff_isCoanalytic]
   exact measurableSet_iff_analyticSet_and_isCoanalytic.symm
 
-/-- An analytic set belongs to `ProjectiveSigma 1`.-/
+/-- An analytic set belongs to `ProjectiveSigma 1`.
+@isnad1 id=projecti.1h2v.s5.df58102ef4be from=translated src=- shape=09880f3d vocab=f7633cba
+-/
 theorem _root_.MeasureTheory.AnalyticSet.projectiveSigma_one {s : Set X}
     (hs : MeasureTheory.AnalyticSet s) : ProjectiveSigma 1 s :=
   projectiveSigma_one_iff_analyticSet.mpr hs
 
-/-- A coanalytic set belongs to `ProjectivePi 1`.-/
+/-- A coanalytic set belongs to `ProjectivePi 1`.
+@isnad1 id=projecti.1h2v.s5.8b67632532a1 from=translated src=- shape=14306fc5 vocab=107d18aa
+-/
 theorem IsCoanalytic.projectivePi_one {s : Set X} (hs : IsCoanalytic s) :
     ProjectivePi 1 s :=
   projectivePi_one_iff_isCoanalytic.mpr hs
 
-/-- A Borel set belongs to `ProjectiveDelta 1`.-/
+/-- A Borel set belongs to `ProjectiveDelta 1`.
+@isnad1 id=projecti.1h2v.s5.07f219e02006 from=translated src=- shape=14306fc5 vocab=c99946db
+-/
 theorem _root_.MeasurableSet.projectiveDelta_one {s : Set X} (hs : MeasurableSet s) :
     ProjectiveDelta 1 s :=
   projectiveDelta_one_iff_measurableSet.mpr hs

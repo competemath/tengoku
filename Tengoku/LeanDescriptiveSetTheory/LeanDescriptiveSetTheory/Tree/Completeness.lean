@@ -41,7 +41,9 @@ def IsCoanalyticCompleteForBaire {Y : Type u} [TopologicalSpace Y] (t : Set Y) :
   IsCoanalytic t ∧
     ∀ s : Set (ℕ → ℕ), IsCoanalytic s → ContinuouslyReduces s t
 
-/-- Apply coanalytic completeness for Baire sources without unfolding its conjunction.-/
+/-- Apply coanalytic completeness for Baire sources without unfolding its conjunction.
+@isnad1 id=continuo.2h3v.s5.43e9a555e73f from=translated src=- shape=094d0726 vocab=2378e20a
+-/
 theorem IsCoanalyticCompleteForBaire.continuouslyReduces
     {Y : Type u} [TopologicalSpace Y] {t : Set Y} {s : Set (ℕ → ℕ)}
     (ht : IsCoanalyticCompleteForBaire t) (hs : IsCoanalytic s) :
@@ -50,7 +52,9 @@ theorem IsCoanalyticCompleteForBaire.continuouslyReduces
 
 namespace Tree
 
-/-- A projected Baire tree body reduces to ill-founded codes via its continuous section-tree map.-/
+/-- A projected Baire tree body reduces to ill-founded codes via its continuous section-tree map.
+@isnad1 id=continuo.0h1v.s7.ea13b0aca112 from=translated src=- shape=048be4f1 vocab=af5e9410
+-/
 theorem continuouslyReduces_projectedBody_illFoundedTrees
     (T : Descriptive.tree (ℕ × ℕ)) :
     ContinuouslyReduces (projectedBody T) illFoundedTrees := by
@@ -59,7 +63,9 @@ theorem continuouslyReduces_projectedBody_illFoundedTrees
   rw [mem_illFoundedTrees]
   exact mem_projectedBody_iff_sectionTree_illFounded_baire T x
 
-/-- Every analytic Baire set continuously reduces to the ill-founded tree codes.-/
+/-- Every analytic Baire set continuously reduces to the ill-founded tree codes.
+@isnad1 id=continuo.1h1v.s6.922f10887a44 from=translated src=- shape=d512e1f7 vocab=aaa1d2ea
+-/
 theorem continuouslyReduces_illFoundedTrees_of_analytic
     {s : Set (ℕ → ℕ)} (hs : MeasureTheory.AnalyticSet s) :
     ContinuouslyReduces s illFoundedTrees := by
@@ -67,7 +73,9 @@ theorem continuouslyReduces_illFoundedTrees_of_analytic
   rw [← hT]
   exact continuouslyReduces_projectedBody_illFoundedTrees T
 
-/-- Every coanalytic Baire set continuously reduces to the well-founded tree codes.-/
+/-- Every coanalytic Baire set continuously reduces to the well-founded tree codes.
+@isnad1 id=continuo.1h1v.s6.1dcba34d6087 from=translated src=- shape=d512e1f7 vocab=1a14d152
+-/
 theorem continuouslyReduces_wellFoundedTrees_of_isCoanalytic
     {s : Set (ℕ → ℕ)} (hs : IsCoanalytic s) :
     ContinuouslyReduces s wellFoundedTrees := by
@@ -75,7 +83,9 @@ theorem continuouslyReduces_wellFoundedTrees_of_isCoanalytic
     continuouslyReduces_illFoundedTrees_of_analytic hs
   simpa [wellFoundedTrees_eq_compl] using hcompl.compl
 
-/-- Ill-founded tree codes are analytic-complete for Baire-space source sets.-/
+/-- Ill-founded tree codes are analytic-complete for Baire-space source sets.
+@isnad1 id=isanalyt.0h0v.s5.a3ace90bf496 from=translated src=- shape=25b03439 vocab=bae42504
+-/
 theorem illFoundedTrees_complete :
     IsAnalyticCompleteForBaire illFoundedTrees :=
   ⟨analyticSet_illFoundedTrees, fun _ hs =>

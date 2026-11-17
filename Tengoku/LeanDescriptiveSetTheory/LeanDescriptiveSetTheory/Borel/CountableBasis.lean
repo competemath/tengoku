@@ -31,7 +31,9 @@ namespace CountableBasisCode
 
 variable {b : ℕ → Set X}
 
-/-- A natural-number-indexed topological basis codes exactly the Borel subsets.-/
+/-- A natural-number-indexed topological basis codes exactly the Borel subsets.
+@isnad1 id=iff.1h3v.s5.4c89021bdba7 from=translated src=- shape=67641c6f vocab=53d27a3c
+-/
 theorem borelMeasurableSet_iff_exists_code
     (hb : TopologicalSpace.IsTopologicalBasis (range b)) {s : Set X} :
     @MeasurableSet X (borel X) s ↔ ∃ c : CountableBasisCode b, c.eval = s := by
@@ -39,17 +41,23 @@ theorem borelMeasurableSet_iff_exists_code
   rw [hb.borel_eq_generateFrom]
   exact GeneratedCode.generateMeasurable_iff_exists_code
 
-/-- Every code over a natural-number-indexed topological basis denotes a Borel set.-/
+/-- Every code over a natural-number-indexed topological basis denotes a Borel set.
+@isnad1 id=measurab.1h3v.s5.75891484ece0 from=translated src=- shape=b5e35399 vocab=53d27a3c
+-/
 theorem measurableSet_eval (hb : TopologicalSpace.IsTopologicalBasis (range b))
     (c : CountableBasisCode b) : @MeasurableSet X (borel X) c.eval :=
   (borelMeasurableSet_iff_exists_code hb).2 ⟨c, rfl⟩
 
-/-- Every unrestricted Borel code has an extensionally equal countable-basis code.-/
+/-- Every unrestricted Borel code has an extensionally equal countable-basis code.
+@isnad1 id=ex.1h3v.s5.13c4821b642e from=translated src=- shape=b612286b vocab=74d4840d
+-/
 theorem exists_code_eq_borelCode_eval (hb : TopologicalSpace.IsTopologicalBasis (range b))
     (c : BorelCode X) : ∃ d : CountableBasisCode b, d.eval = c.eval :=
   (borelMeasurableSet_iff_exists_code hb).1 (BorelCode.measurableSet_eval c)
 
-/-- Every second-countable space admits a sequential basis coding all of its Borel sets.-/
+/-- Every second-countable space admits a sequential basis coding all of its Borel sets.
+@isnad1 id=ex.0h1v.s5.23600df2943f from=translated src=- shape=c0f04549 vocab=5c166b3e
+-/
 theorem exists_basis_coding [SecondCountableTopology X] :
     ∃ b : ℕ → Set X, TopologicalSpace.IsTopologicalBasis (range b) ∧
       ∀ s : Set X, @MeasurableSet X (borel X) s ↔

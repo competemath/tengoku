@@ -41,15 +41,23 @@ def eventualEqStage (N : ℕ) : Set ((ℕ → Bool) × (ℕ → Bool)) :=
 def eventualEqTail (x : ℕ → Bool) (N : ℕ) : Set (ℕ → Bool) :=
   {y | ∀ n, N ≤ n → x n = y n}
 
+/--
+@isnad1 id=iff.0h3v.s5.9c2361580c97 from=translated src=- shape=4953eb2e vocab=c425912f
+-/
 @[simp] theorem mem_eventualEqStage {N : ℕ} {x y : ℕ → Bool} :
     (x, y) ∈ eventualEqStage N ↔ ∀ n, N ≤ n → x n = y n :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h3v.s5.906f7186cc0e from=translated src=- shape=75b4e7e3 vocab=7d909794
+-/
 @[simp] theorem mem_eventualEqTail {x y : ℕ → Bool} {N : ℕ} :
     y ∈ eventualEqTail x N ↔ ∀ n, N ≤ n → x n = y n :=
   Iff.rfl
 
-/-- Every fixed-tail stage of `E₀` is closed.-/
+/-- Every fixed-tail stage of `E₀` is closed.
+@isnad1 id=isclosed.0h1v.s5.b911de34ce51 from=translated src=- shape=d3415fc6 vocab=6493159a
+-/
 theorem isClosed_eventualEqStage (N : ℕ) : IsClosed (eventualEqStage N) := by
   rw [show eventualEqStage N =
       ⋂ n, ⋂ (_h : N ≤ n), {p | p.1 n = p.2 n} by
@@ -59,7 +67,9 @@ theorem isClosed_eventualEqStage (N : ℕ) : IsClosed (eventualEqStage N) := by
     isClosed_eq ((continuous_apply n).comp continuous_fst)
       ((continuous_apply n).comp continuous_snd)
 
-/-- Every fixed tail class is closed.-/
+/-- Every fixed tail class is closed.
+@isnad1 id=isclosed.0h2v.s4.b92fa46af164 from=translated src=- shape=b0fe448d vocab=acfb6dc8
+-/
 theorem isClosed_eventualEqTail (x : ℕ → Bool) (N : ℕ) :
     IsClosed (eventualEqTail x N) := by
   rw [show eventualEqTail x N = ⋂ n, ⋂ (_h : N ≤ n), {y | x n = y n} by
@@ -68,20 +78,26 @@ theorem isClosed_eventualEqTail (x : ℕ → Bool) (N : ℕ) :
   exact isClosed_iInter fun n ↦ isClosed_iInter fun _ ↦
     isClosed_eq continuous_const (continuous_apply n)
 
-/-- The graph of eventual equality is the union of its closed fixed-tail stages.-/
+/-- The graph of eventual equality is the union of its closed fixed-tail stages.
+@isnad1 id=eq.0h0v.s4.378e8aeac9d8 from=translated src=- shape=b9d4af1d vocab=bb6418cb
+-/
 theorem equivalenceRelationGraph_eventualEq :
     equivalenceRelationGraph eventualEq = ⋃ N, eventualEqStage N := by
   ext p
   simp [equivalenceRelationGraph, eventualEq, eventualEqStage]
 
-/-- The graph of `E₀` is `Fσ` (`Sigma0 2`).-/
+/-- The graph of `E₀` is `Fσ` (`Sigma0 2`).
+@isnad1 id=sigma0.0h0v.s5.c66f19769703 from=translated src=- shape=d9ff76e9 vocab=04eca769
+-/
 theorem sigma0_two_equivalenceRelationGraph_eventualEq :
     Sigma0 2 (equivalenceRelationGraph eventualEq) := by
   refine sigma0_two_iff_eq_iUnion_isClosed.2 ⟨eventualEqStage, ?_, ?_⟩
   · exact isClosed_eventualEqStage
   · exact equivalenceRelationGraph_eventualEq
 
-/-- Eventual equality has a Borel graph.-/
+/-- Eventual equality has a Borel graph.
+@isnad1 id=isborelr.0h0v.s3.5a41542c4461 from=translated src=- shape=67086572 vocab=df4f8632
+-/
 theorem isBorelRelation_eventualEq : IsBorelRelation eventualEq :=
   show MeasurableSet (equivalenceRelationGraph eventualEq) from by
     rw [show (Prod.instMeasurableSpace : MeasurableSpace ((ℕ → Bool) × (ℕ → Bool))) =
@@ -92,7 +108,9 @@ theorem isBorelRelation_eventualEq : IsBorelRelation eventualEq :=
 def overwritePrefix (x : ℕ → Bool) {N : ℕ} (p : Fin N → Bool) : ℕ → Bool :=
   fun n ↦ if h : n < N then p ⟨n, h⟩ else x n
 
-/-- A fixed tail class is covered by the finite-prefix replacements of its center.-/
+/-- A fixed tail class is covered by the finite-prefix replacements of its center.
+@isnad1 id=le.0h2v.s4.e06360d65cd8 from=translated src=- shape=1bfd3512 vocab=41e5de18
+-/
 theorem eventualEqTail_subset_range_overwritePrefix (x : ℕ → Bool) (N : ℕ) :
     eventualEqTail x N ⊆ Set.range (overwritePrefix x : (Fin N → Bool) → ℕ → Bool) := by
   intro y hy
@@ -102,30 +120,40 @@ theorem eventualEqTail_subset_range_overwritePrefix (x : ℕ → Bool) (N : ℕ)
   · simp [overwritePrefix, p, hn]
   · simp [overwritePrefix, hn, hy n (Nat.le_of_not_gt hn)]
 
-/-- Every fixed tail class is countable (in fact finite).-/
+/-- Every fixed tail class is countable (in fact finite).
+@isnad1 id=countabl.0h2v.s3.5705bab41d96 from=translated src=- shape=b0fe448d vocab=750b4ab8
+-/
 theorem countable_eventualEqTail (x : ℕ → Bool) (N : ℕ) :
     (eventualEqTail x N).Countable :=
   (Set.countable_range (overwritePrefix x : (Fin N → Bool) → ℕ → Bool)).mono
     (eventualEqTail_subset_range_overwritePrefix x N)
 
-/-- An `E₀`-class is the countable union of its fixed-tail pieces.-/
+/-- An `E₀`-class is the countable union of its fixed-tail pieces.
+@isnad1 id=eq.0h1v.s4.d2feec7159bb from=translated src=- shape=c8930b99 vocab=7318642d
+-/
 theorem equivalenceClass_eventualEq (x : ℕ → Bool) :
     equivalenceClass eventualEq x = ⋃ N, eventualEqTail x N := by
   ext y
   simp [equivalenceClass, eventualEq, eventualEqTail]
 
-/-- Every `E₀`-class is countable.-/
+/-- Every `E₀`-class is countable.
+@isnad1 id=hascount.0h0v.s2.52df2f68f164 from=translated src=- shape=67086572 vocab=7514fdcb
+-/
 theorem hasCountableClasses_eventualEq : HasCountableClasses eventualEq := by
   intro x
   rw [equivalenceClass_eventualEq]
   exact Set.countable_iUnion (countable_eventualEqTail x)
 
-/-- Eventual equality is a countable Borel equivalence relation.-/
+/-- Eventual equality is a countable Borel equivalence relation.
+@isnad1 id=iscounta.0h0v.s3.fbdf48f6ce1c from=translated src=- shape=67086572 vocab=57053960
+-/
 theorem isCountableBorelEquivalenceRelation_eventualEq :
     IsCountableBorelEquivalenceRelation eventualEq :=
   ⟨eventualEq_equivalence, isBorelRelation_eventualEq, hasCountableClasses_eventualEq⟩
 
-/-- Each fixed-tail piece has empty interior, hence is nowhere dense.-/
+/-- Each fixed-tail piece has empty interior, hence is nowhere dense.
+@isnad1 id=isnowher.0h2v.s4.d233888bf4b4 from=translated src=- shape=b0fe448d vocab=1c711448
+-/
 theorem isNowhereDense_eventualEqTail (x : ℕ → Bool) (N : ℕ) :
     IsNowhereDense (eventualEqTail x N) := by
   rw [(isClosed_eventualEqTail x N).isNowhereDense_iff,
@@ -150,7 +178,9 @@ theorem isNowhereDense_eventualEqTail (x : ℕ → Bool) (N : ℕ) :
     simp [y] at hm
   exact ⟨y, hCU hyC, hyTail⟩
 
-/-- Every `E₀`-class is meagre.-/
+/-- Every `E₀`-class is meagre.
+@isnad1 id=ismeagre.0h1v.s4.a911cde99c13 from=translated src=- shape=60933c9a vocab=0c4af341
+-/
 theorem isMeagre_equivalenceClass_eventualEq (x : ℕ → Bool) :
     IsMeagre (equivalenceClass eventualEq x) := by
   rw [equivalenceClass_eventualEq]
@@ -160,10 +190,19 @@ theorem isMeagre_equivalenceClass_eventualEq (x : ℕ → Bool) :
 def toggleBit (d b : Bool) : Bool :=
   if d then !b else b
 
+/--
+@isnad1 id=eq.0h1v.s3.4fef8bb38636 from=translated src=- shape=29edb2d9 vocab=218f5aff
+-/
 @[simp] theorem toggleBit_false (b : Bool) : toggleBit false b = b := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.d5790d8aa4d5 from=translated src=- shape=25ac9e83 vocab=86384663
+-/
 @[simp] theorem toggleBit_true (b : Bool) : toggleBit true b = !b := rfl
 
+/--
+@isnad1 id=involuti.0h1v.s2.cb857def6910 from=translated src=- shape=6da4ece3 vocab=9497df5a
+-/
 theorem toggleBit_involutive (d : Bool) : Function.Involutive (toggleBit d) := by
   intro b
   cases d <;> simp [toggleBit]
@@ -181,18 +220,25 @@ def prefixToggle (N : ℕ) (d : Fin N → Bool) : (ℕ → Bool) ≃ₜ (ℕ →
   Homeomorph.piCongrRight fun n ↦
     toggleBitHomeomorph (if h : n < N then d ⟨n, h⟩ else false)
 
+/--
+@isnad1 id=eq.0h4v.s7.31c1eb87cb9e from=translated src=- shape=c1f8c2db vocab=caf02e04
+-/
 @[simp] theorem prefixToggle_apply (N : ℕ) (d : Fin N → Bool) (x : ℕ → Bool) (n : ℕ) :
     prefixToggle N d x n =
       toggleBit (if h : n < N then d ⟨n, h⟩ else false) (x n) :=
   rfl
 
-/-- A finite prefix toggle changes only finitely many coordinates.-/
+/-- A finite prefix toggle changes only finitely many coordinates.
+@isnad1 id=eventual.0h3v.s6.d9be6bc0f2ec from=translated src=- shape=b46fe410 vocab=7a60aa8c
+-/
 theorem eventualEq_prefixToggle (N : ℕ) (d : Fin N → Bool) (x : ℕ → Bool) :
     eventualEq x (prefixToggle N d x) := by
   refine ⟨N, fun n hn ↦ ?_⟩
   simp [prefixToggle_apply, Nat.not_lt.mpr hn]
 
-/-- Some prefix toggle sends any point into any cylinder of the same length.-/
+/-- Some prefix toggle sends any point into any cylinder of the same length.
+@isnad1 id=ex.0h3v.s7.a94e7d2da94a from=translated src=- shape=b2dea852 vocab=6de8b916
+-/
 theorem exists_prefixToggle_mem_cylinder (c x : ℕ → Bool) (N : ℕ) :
     ∃ d : Fin N → Bool, prefixToggle N d x ∈ PiNat.cylinder c N := by
   let d : Fin N → Bool := fun i ↦ x i != c i
@@ -206,7 +252,9 @@ theorem exists_prefixToggle_mem_cylinder (c x : ℕ → Bool) (N : ℕ) :
 def IsEventualEqInvariant (s : Set (ℕ → Bool)) : Prop :=
   ∀ ⦃x y⦄, eventualEq x y → (x ∈ s ↔ y ∈ s)
 
-/-- The category zero--one law for finite-change invariant sets with the Baire property.-/
+/-- The category zero--one law for finite-change invariant sets with the Baire property.
+@isnad1 id=or.2h1v.s5.39e01f0bb152 from=translated src=- shape=aa5b1593 vocab=49d0c869
+-/
 theorem isMeagre_or_compl_isMeagre_of_baireMeasurable_eventualEqInvariant
     {s : Set (ℕ → Bool)} (hs : BaireMeasurableSet s) (hinv : IsEventualEqInvariant s) :
     IsMeagre s ∨ IsMeagre sᶜ := by
@@ -242,7 +290,9 @@ theorem isMeagre_or_compl_isMeagre_of_baireMeasurable_eventualEqInvariant
     filter_upwards [hsU.mem_iff] with x hx
     simpa [hUe] using hx
 
-/-- A measurable complete invariant from `E₀` to Cantor equality is constant on a comeagre set.-/
+/-- A measurable complete invariant from `E₀` to Cantor equality is constant on a comeagre set.
+@isnad1 id=ex.2h1v.s6.a2d75b0abf1f from=translated src=- shape=1b0a4591 vocab=ba57043d
+-/
 theorem exists_residualEq_const_of_measurable_completeInvariant
     {f : (ℕ → Bool) → (ℕ → Bool)} (hf : Measurable f)
     (hrel : ∀ x y, eventualEq x y ↔ f x = f y) :
@@ -280,7 +330,9 @@ theorem exists_residualEq_const_of_measurable_completeInvariant
   funext n
   exact hx n
 
-/-- Eventual equality is not smooth.-/
+/-- Eventual equality is not smooth.
+@isnad1 id=not.0h0v.s3.c08d8ae38876 from=translated src=- shape=f142a7c2 vocab=06dec3f9
+-/
 theorem not_isSmooth_eventualEq : ¬ IsSmooth eventualEq := by
   intro hsmooth
   rcases hsmooth with ⟨_, Y, mY, hY, f, hf, hrel⟩

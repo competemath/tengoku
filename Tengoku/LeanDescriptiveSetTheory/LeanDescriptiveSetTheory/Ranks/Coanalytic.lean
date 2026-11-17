@@ -45,12 +45,16 @@ variable {A : Set (ℕ → ℕ)} (P : CoanalyticRankPresentation A)
 def domain : Set (ℕ → ℕ) :=
   {x | IsWellFounded (decodeTree (P.treeCode x))}
 
-/-- The presented tree is well-founded at every point of `A`.-/
+/-- The presented tree is well-founded at every point of `A`.
+@isnad1 id=iswellfo.1h3v.s5.16acc02ee8c6 from=translated src=- shape=adb336ac vocab=3a851c2f
+-/
 theorem wellFounded {x : ℕ → ℕ} (hx : x ∈ A) :
     IsWellFounded (decodeTree (P.treeCode x)) :=
   (P.mem_iff x).1 hx
 
-/-- The explicit rank domain is exactly `A`.-/
+/-- The explicit rank domain is exactly `A`.
+@isnad1 id=eq.0h2v.s4.4ad4d76940f2 from=translated src=- shape=65440e32 vocab=a4441f89
+-/
 theorem domain_eq : P.domain = A := by
   ext x
   exact (P.mem_iff x).symm
@@ -59,7 +63,9 @@ theorem domain_eq : P.domain = A := by
 noncomputable def rank (x : ℕ → ℕ) (hx : x ∈ A) : Ordinal.{0} :=
   Tree.rank (decodeTree (P.treeCode x)) (P.wellFounded hx)
 
-/-- Every value of a pulled-back tree rank is countable.-/
+/-- Every value of a pulled-back tree rank is countable.
+@isnad1 id=lt.1h3v.s6.4f3083f1634f from=translated src=- shape=2de3c81d vocab=b68cca79
+-/
 theorem rank_lt_omega_one (x : ℕ → ℕ) (hx : x ∈ A) :
     P.rank x hx < (ω₁ : Ordinal.{0}) :=
   Tree.treeRank_lt_omega_one _ (P.wellFounded hx)
@@ -68,7 +74,9 @@ theorem rank_lt_omega_one (x : ℕ → ℕ) (hx : x ∈ A) :
 def pairMap (p : (ℕ → ℕ) × (ℕ → ℕ)) : TreeCode × TreeCode :=
   (P.treeCode p.1, P.treeCode p.2)
 
-/-- The comparison pullback map is continuous.-/
+/-- The comparison pullback map is continuous.
+@isnad1 id=continuo.0h2v.s6.bc9ca1796706 from=translated src=- shape=b05e2f32 vocab=be3a5a3f
+-/
 theorem continuous_pairMap : Continuous P.pairMap :=
   (P.continuous_treeCode.comp continuous_fst).prodMk
     (P.continuous_treeCode.comp continuous_snd)
@@ -89,23 +97,33 @@ def ltAnalytic : Set ((ℕ → ℕ) × (ℕ → ℕ)) :=
 def ltCoanalytic : Set ((ℕ → ℕ) × (ℕ → ℕ)) :=
   P.pairMap ⁻¹' treeRankLtCoanalytic
 
-/-- The pulled-back non-strict comparison has the analytic polarity.-/
+/-- The pulled-back non-strict comparison has the analytic polarity.
+@isnad1 id=analytic.0h2v.s5.45497455ad78 from=translated src=- shape=e0e574de vocab=9d59567d
+-/
 theorem analyticSet_leAnalytic : MeasureTheory.AnalyticSet P.leAnalytic :=
   analyticSet_treeRankLeAnalytic.preimage P.continuous_pairMap
 
-/-- The pulled-back non-strict comparison has the coanalytic polarity.-/
+/-- The pulled-back non-strict comparison has the coanalytic polarity.
+@isnad1 id=iscoanal.0h2v.s5.623876f650e9 from=translated src=- shape=e0e574de vocab=e38cd479
+-/
 theorem isCoanalytic_leCoanalytic : IsCoanalytic P.leCoanalytic :=
   isCoanalytic_treeRankLeCoanalytic.preimage P.continuous_pairMap
 
-/-- The pulled-back strict comparison has the analytic polarity.-/
+/-- The pulled-back strict comparison has the analytic polarity.
+@isnad1 id=analytic.0h2v.s5.98cc0b0f90a5 from=translated src=- shape=e0e574de vocab=66fe8d7e
+-/
 theorem analyticSet_ltAnalytic : MeasureTheory.AnalyticSet P.ltAnalytic :=
   analyticSet_treeRankLtAnalytic.preimage P.continuous_pairMap
 
-/-- The pulled-back strict comparison has the coanalytic polarity.-/
+/-- The pulled-back strict comparison has the coanalytic polarity.
+@isnad1 id=iscoanal.0h2v.s5.f9ba841fa803 from=translated src=- shape=e0e574de vocab=a6aa7caa
+-/
 theorem isCoanalytic_ltCoanalytic : IsCoanalytic P.ltCoanalytic :=
   isCoanalytic_treeRankLtCoanalytic.preimage P.continuous_pairMap
 
-/-- On a second coordinate in `A`, the analytic non-strict relation has exact rank semantics.-/
+/-- On a second coordinate in `A`, the analytic non-strict relation has exact rank semantics.
+@isnad1 id=iff.1h4v.s6.5cd09d47796c from=translated src=- shape=ff42844c vocab=07311cfb
+-/
 theorem mem_leAnalytic_iff {x y : ℕ → ℕ} (hy : y ∈ A) :
     (x, y) ∈ P.leAnalytic ↔
       ∃ hx : x ∈ A, P.rank x hx ≤ P.rank y hy := by
@@ -118,7 +136,9 @@ theorem mem_leAnalytic_iff {x y : ℕ → ℕ} (hy : y ∈ A) :
   · rintro ⟨hx, hle⟩
     exact ⟨P.wellFounded hx, by simpa [rank] using hle⟩
 
-/-- On a second coordinate in `A`, the coanalytic non-strict relation has the same semantics.-/
+/-- On a second coordinate in `A`, the coanalytic non-strict relation has the same semantics.
+@isnad1 id=iff.1h4v.s6.33340d661bf4 from=translated src=- shape=ff42844c vocab=3b6edb0c
+-/
 theorem mem_leCoanalytic_iff {x y : ℕ → ℕ} (hy : y ∈ A) :
     (x, y) ∈ P.leCoanalytic ↔
       ∃ hx : x ∈ A, P.rank x hx ≤ P.rank y hy := by
@@ -131,7 +151,9 @@ theorem mem_leCoanalytic_iff {x y : ℕ → ℕ} (hy : y ∈ A) :
   · rintro ⟨hx, hle⟩
     exact ⟨P.wellFounded hx, by simpa [rank] using hle⟩
 
-/-- On a second coordinate in `A`, the analytic strict relation has exact rank semantics.-/
+/-- On a second coordinate in `A`, the analytic strict relation has exact rank semantics.
+@isnad1 id=iff.1h4v.s6.88759c199fce from=translated src=- shape=ff42844c vocab=d2f8f446
+-/
 theorem mem_ltAnalytic_iff {x y : ℕ → ℕ} (hy : y ∈ A) :
     (x, y) ∈ P.ltAnalytic ↔
       ∃ hx : x ∈ A, P.rank x hx < P.rank y hy := by
@@ -144,7 +166,9 @@ theorem mem_ltAnalytic_iff {x y : ℕ → ℕ} (hy : y ∈ A) :
   · rintro ⟨hx, hlt⟩
     exact ⟨P.wellFounded hx, by simpa [rank] using hlt⟩
 
-/-- On a second coordinate in `A`, the coanalytic strict relation has the same semantics.-/
+/-- On a second coordinate in `A`, the coanalytic strict relation has the same semantics.
+@isnad1 id=iff.1h4v.s6.9e66e6526233 from=translated src=- shape=ff42844c vocab=a5ba7e55
+-/
 theorem mem_ltCoanalytic_iff {x y : ℕ → ℕ} (hy : y ∈ A) :
     (x, y) ∈ P.ltCoanalytic ↔
       ∃ hx : x ∈ A, P.rank x hx < P.rank y hy := by
@@ -157,17 +181,23 @@ theorem mem_ltCoanalytic_iff {x y : ℕ → ℕ} (hy : y ∈ A) :
   · rintro ⟨hx, hlt⟩
     exact ⟨P.wellFounded hx, by simpa [rank] using hlt⟩
 
-/-- The two non-strict pointclass polarities agree on the exact rank domain.-/
+/-- The two non-strict pointclass polarities agree on the exact rank domain.
+@isnad1 id=iff.1h4v.s6.dd92b3081dfc from=translated src=- shape=dcb2390a vocab=46bbae34
+-/
 theorem le_polarities_agree {x y : ℕ → ℕ} (hy : y ∈ A) :
     (x, y) ∈ P.leAnalytic ↔ (x, y) ∈ P.leCoanalytic := by
   rw [P.mem_leAnalytic_iff hy, P.mem_leCoanalytic_iff hy]
 
-/-- The two strict pointclass polarities agree on the exact rank domain.-/
+/-- The two strict pointclass polarities agree on the exact rank domain.
+@isnad1 id=iff.1h4v.s6.5509bb455437 from=translated src=- shape=dcb2390a vocab=66f97355
+-/
 theorem lt_polarities_agree {x y : ℕ → ℕ} (hy : y ∈ A) :
     (x, y) ∈ P.ltAnalytic ↔ (x, y) ∈ P.ltCoanalytic := by
   rw [P.mem_ltAnalytic_iff hy, P.mem_ltCoanalytic_iff hy]
 
-/-- The four definability and semantic clauses for the pulled-back coanalytic rank.-/
+/-- The four definability and semantic clauses for the pulled-back coanalytic rank.
+@isnad1 id=and.0h2v.s9.43d51f6ab7d8 from=translated src=- shape=53c0879e vocab=42e90726
+-/
 theorem comparison_isCoanalyticNorm :
     MeasureTheory.AnalyticSet P.leAnalytic ∧
       IsCoanalytic P.leCoanalytic ∧
@@ -190,7 +220,9 @@ theorem comparison_isCoanalyticNorm :
     fun x => (P.mem_ltAnalytic_iff hy).symm,
     fun x => (P.mem_ltCoanalytic_iff hy).symm⟩
 
-/-- Every analytic subset of the rank domain has one strict bound below `ω₁`.-/
+/-- Every analytic subset of the rank domain has one strict bound below `ω₁`.
+@isnad1 id=ex.2h3v.s6.6a4055829e99 from=translated src=- shape=874a2102 vocab=d3e537d7
+-/
 theorem bounded_of_analytic {B : Set (ℕ → ℕ)} (hB : MeasureTheory.AnalyticSet B)
     (hBA : B ⊆ A) :
     ∃ ξ : Ordinal.{0}, ξ < ω₁ ∧
@@ -210,7 +242,9 @@ end CoanalyticRankPresentation
 
 /-- Every coanalytic subset of Baire space admits at least one continuous well-founded-tree rank
 presentation. The theorem returns the presentation existentially and does not select a canonical
-one.-/
+one.
+@isnad1 id=nonempty.1h1v.s4.17e843069789 from=translated src=- shape=626daaf5 vocab=06fc3c83
+-/
 theorem exists_coanalyticRankPresentation {A : Set (ℕ → ℕ)} (hA : IsCoanalytic A) :
     Nonempty (CoanalyticRankPresentation A) := by
   obtain ⟨f, hf, hmem⟩ :=

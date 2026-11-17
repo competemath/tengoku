@@ -43,14 +43,23 @@ def relationRestrict (R : Set (X × Y)) (s : Set X) : Set (X × Y) :=
 def partialGraph (s : Set X) (f : s → Y) : Set (X × Y) :=
   {p | ∃ hp : p.1 ∈ s, f ⟨p.1, hp⟩ = p.2}
 
+/--
+@isnad1 id=iff.0h5v.s5.86fa5f36595e from=translated src=- shape=89242027 vocab=621c1fc4
+-/
 @[simp] theorem mem_relationRestrict {R : Set (X × Y)} {s : Set X} {p : X × Y} :
     p ∈ relationRestrict R s ↔ p ∈ R ∧ p.1 ∈ s :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h6v.s6.1fa1aa56f702 from=translated src=- shape=57dd1e08 vocab=67783839
+-/
 @[simp] theorem mem_partialGraph {s : Set X} {f : s → Y} {x : X} {y : Y} :
     (x, y) ∈ partialGraph s f ↔ ∃ hx : x ∈ s, f ⟨x, hx⟩ = y :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.2ed80caf2a62 from=translated src=- shape=b331e428 vocab=9dbd4a5e
+-/
 @[simp] theorem relationDomain_relationRestrict (R : Set (X × Y)) (s : Set X) :
     relationDomain (relationRestrict R s) = relationDomain R ∩ s := by
   ext x
@@ -61,6 +70,9 @@ def partialGraph (s : Set X) (f : s → Y) : Set (X × Y) :=
   · rintro ⟨⟨y, hxy⟩, hx⟩
     exact ⟨y, hxy, hx⟩
 
+/--
+@isnad1 id=eq.0h4v.s4.8e5523c106fb from=translated src=- shape=354c120e vocab=05ab980d
+-/
 @[simp] theorem relationDomain_partialGraph (s : Set X) (f : s → Y) :
     relationDomain (partialGraph s f) = s := by
   ext x
@@ -70,6 +82,9 @@ def partialGraph (s : Set X) (f : s → Y) : Set (X × Y) :=
   · intro hx
     exact ⟨f ⟨x, hx⟩, hx, rfl⟩
 
+/--
+@isnad1 id=relation.0h4v.s4.6cb42575c9b6 from=translated src=- shape=53f62eb1 vocab=6851180a
+-/
 theorem relationSingleValued_partialGraph (s : Set X) (f : s → Y) :
     RelationSingleValued (partialGraph s f) := by
   rintro x y z ⟨hy, hfy⟩ ⟨hz, hfz⟩
@@ -79,7 +94,9 @@ theorem relationSingleValued_partialGraph (s : Set X) (f : s → Y) :
     _ = z := hfz
 
 /-- A partial graph uniformizes `R` exactly when its native domain is the relation domain and all
-selected pairs lie in `R`.-/
+selected pairs lie in `R`.
+@isnad1 id=iff.0h5v.s6.e0524eeb149f from=translated src=- shape=a8d344d6 vocab=d7f82a52
+-/
 theorem uniformizes_partialGraph_iff {R : Set (X × Y)} {s : Set X} {f : s → Y} :
     Uniformizes R (partialGraph s f) ↔
       s = relationDomain R ∧ ∀ x : s, (x.1, f x) ∈ R := by
@@ -97,7 +114,9 @@ theorem uniformizes_partialGraph_iff {R : Set (X × Y)} {s : Set X} {f : s → Y
         _ = relationDomain R := hs
 
 /-- Uniformization is equivalently exact singleton semantics on every section in the domain and
-an empty section outside it.-/
+an empty section outside it.
+@isnad1 id=iff.0h4v.s5.56202154efaf from=translated src=- shape=8e17023d vocab=da1634df
+-/
 theorem uniformizes_iff_verticalSection {R G : Set (X × Y)} :
     Uniformizes R G ↔
       G ⊆ R ∧ ∀ x, x ∈ relationDomain R ↔ ∃! y, y ∈ verticalSection G x := by
@@ -127,7 +146,9 @@ theorem uniformizes_iff_verticalSection {R G : Set (X × Y)} :
       obtain ⟨w, hw, huw⟩ := (hsections x).mp ⟨y, hsub hy⟩
       exact (huw y hy).trans (huw z hz).symm
 
-/-- Restricting both relations to the same first-coordinate set preserves uniformization.-/
+/-- Restricting both relations to the same first-coordinate set preserves uniformization.
+@isnad1 id=uniformi.1h5v.s5.f461b23109a0 from=translated src=- shape=f18c46f7 vocab=20057a45
+-/
 theorem Uniformizes.restrict {R G : Set (X × Y)} (h : Uniformizes R G) (s : Set X) :
     Uniformizes (relationRestrict R s) (relationRestrict G s) := by
   refine ⟨fun p hp => ⟨h.1 hp.1, hp.2⟩, ?_, ?_⟩
@@ -136,7 +157,9 @@ theorem Uniformizes.restrict {R G : Set (X × Y)} (h : Uniformizes R G) (s : Set
     exact h.2.2 hy.1 hz.1
 
 /-- A composable pair of uniformizers remains a uniformizer.  The range hypothesis is the exact
-condition ensuring that the first selected value lies in the second relation's domain.-/
+condition ensuring that the first selected value lies in the second relation's domain.
+@isnad1 id=uniformi.3h7v.s6.9b6ca73deaff from=translated src=- shape=f6e2e6b6 vocab=d41acfa4
+-/
 theorem Uniformizes.comp {R G : Set (X × Y)} {S H : Set (Y × Z)}
     (hG : Uniformizes R G) (hH : Uniformizes S H)
     (hrange : relationRange R ⊆ relationDomain S) :
@@ -165,12 +188,17 @@ theorem Uniformizes.comp {R G : Set (X × Y)} {S H : Set (Y × Z)}
 noncomputable def choiceSelector (R : Set (X × Y)) : relationDomain R → Y :=
   fun x => Classical.choose x.property
 
+/--
+@isnad1 id=mem.0h4v.s5.c7469b85ca7c from=translated src=- shape=c067a00e vocab=e1033eb6
+-/
 theorem choiceSelector_mem (R : Set (X × Y)) (x : relationDomain R) :
     (x.1, choiceSelector R x) ∈ R :=
   Classical.choose_spec x.property
 
 /-- Every relation has a set-theoretic uniformization.  This theorem intentionally carries no
-regularity conclusion about `choiceSelector`.-/
+regularity conclusion about `choiceSelector`.
+@isnad1 id=uniformi.0h3v.s4.b0e41964d203 from=translated src=- shape=b8ba8b32 vocab=514e5c62
+-/
 theorem uniformizes_partialGraph_choiceSelector (R : Set (X × Y)) :
     Uniformizes R (partialGraph (relationDomain R) (choiceSelector R)) :=
   uniformizes_partialGraph_iff.mpr ⟨rfl, choiceSelector_mem R⟩

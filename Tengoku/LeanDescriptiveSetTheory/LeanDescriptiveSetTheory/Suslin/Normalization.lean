@@ -44,7 +44,9 @@ private theorem take_initialSegment (f : ℕ → ℕ) {m n : ℕ} (hmn : m ≤ n
   · intro i hi₁ hi₂
     simp [initialSegment]
 
-/-- Every prefix of a viable prefix is viable.-/
+/-- Every prefix of a viable prefix is viable.
+@isnad1 id=isviable.2h4v.s4.f651c380e99b from=translated src=- shape=54cc750b vocab=2b471928
+-/
 theorem IsViablePrefix.of_prefix {A : List ℕ → Set X} {s t : List ℕ}
     (ht : IsViablePrefix A t) (hst : s <+: t) : IsViablePrefix A s := by
   rcases ht with ⟨x, f, hft, hf⟩
@@ -57,7 +59,9 @@ theorem IsViablePrefix.of_prefix {A : List ℕ → Set X} {s t : List ℕ}
     _ = (s ++ u).take s.length := congrArg (List.take s.length) hft
     _ = s := by simp
 
-/-- A supplied viability witness gives at least one viable immediate extension.-/
+/-- A supplied viability witness gives at least one viable immediate extension.
+@isnad1 id=ex.1h3v.s5.75a789696c9d from=translated src=- shape=d27a3d1f vocab=9143157c
+-/
 theorem IsViablePrefix.exists_extension {A : List ℕ → Set X} {s : List ℕ}
     (hs : IsViablePrefix A s) : ∃ a, IsViablePrefix A (s ++ [a]) := by
   rcases hs with ⟨x, f, hfs, hf⟩
@@ -71,6 +75,9 @@ def viablePrefixTree (A : List ℕ → Set X) : Descriptive.tree ℕ where
     intro s a hs
     exact hs.of_prefix ⟨[a], rfl⟩
 
+/--
+@isnad1 id=iff.0h3v.s7.41dd52c6f949 from=translated src=- shape=0afb0500 vocab=3cd16052
+-/
 @[simp]
 theorem mem_viablePrefixTree {A : List ℕ → Set X} {s : List ℕ} :
     s ∈ viablePrefixTree A ↔ IsViablePrefix A s :=
@@ -80,7 +87,9 @@ theorem mem_viablePrefixTree {A : List ℕ → Set X} {s : List ℕ} :
 def IsPrunedTree (T : Descriptive.tree ℕ) : Prop :=
   ∀ ⦃s : List ℕ⦄, s ∈ T → ∃ a, s ++ [a] ∈ T
 
-/-- The viable-prefix tree is pruned, vacuously when it is empty.-/
+/-- The viable-prefix tree is pruned, vacuously when it is empty.
+@isnad1 id=ispruned.0h2v.s3.e16de985fd5c from=translated src=- shape=af325e59 vocab=20c64ce3
+-/
 theorem isPrunedTree_viablePrefixTree (A : List ℕ → Set X) :
     IsPrunedTree (viablePrefixTree A) := by
   intro s hs
@@ -95,18 +104,25 @@ def IsPrunedSuslinScheme (A : List ℕ → Set X) : Prop :=
 def normalizeScheme (A : List ℕ → Set X) (s : List ℕ) : Set X :=
   {x | IsViablePrefix A s ∧ x ∈ regularizeScheme A s}
 
+/--
+@isnad1 id=iff.0h4v.s5.6a02ebd3b45c from=translated src=- shape=03f77f16 vocab=525f42c6
+-/
 @[simp]
 theorem mem_normalizeScheme {A : List ℕ → Set X} {s : List ℕ} {x : X} :
     x ∈ normalizeScheme A s ↔ IsViablePrefix A s ∧ x ∈ regularizeScheme A s :=
   Iff.rfl
 
-/-- Normalization is pointwise contained in the original scheme.-/
+/-- Normalization is pointwise contained in the original scheme.
+@isnad1 id=le.0h3v.s4.649aa50dc015 from=translated src=- shape=309d2bd6 vocab=57011fd0
+-/
 theorem normalizeScheme_subset (A : List ℕ → Set X) (s : List ℕ) :
     normalizeScheme A s ⊆ A s := by
   intro x hx
   exact regularizeScheme_subset A s hx.2
 
-/-- Normalized components decrease along witness-prefix extension.-/
+/-- Normalized components decrease along witness-prefix extension.
+@isnad1 id=isregula.0h2v.s3.c226b97ca7f2 from=translated src=- shape=24c0e297 vocab=408ba78d
+-/
 theorem isRegularSuslinScheme_normalizeScheme (A : List ℕ → Set X) :
     IsRegularSuslinScheme (normalizeScheme A) := by
   intro s t hst x hx
@@ -121,7 +137,9 @@ private theorem eq_initialSegment_length_of_prefix (f : ℕ → ℕ)
   rw [take_initialSegment f hlen] at htake
   exact htake
 
-/-- A normalized component is nonempty exactly at a viable prefix.-/
+/-- A normalized component is nonempty exactly at a viable prefix.
+@isnad1 id=iff.0h3v.s4.51a07668e679 from=translated src=- shape=1fcb4711 vocab=27b60aa9
+-/
 theorem nonempty_normalizeScheme_iff (A : List ℕ → Set X) (s : List ℕ) :
     (normalizeScheme A s).Nonempty ↔ IsViablePrefix A s := by
   constructor
@@ -136,7 +154,9 @@ theorem nonempty_normalizeScheme_iff (A : List ℕ → Set X) (s : List ℕ) :
     rw [eq_initialSegment_length_of_prefix f hts]
     exact hf t.length
 
-/-- The component support of every normalized scheme is pruned.-/
+/-- The component support of every normalized scheme is pruned.
+@isnad1 id=ispruned.0h2v.s3.c7ca96ec4d43 from=translated src=- shape=24c0e297 vocab=47a5d47e
+-/
 theorem isPrunedSuslinScheme_normalizeScheme (A : List ℕ → Set X) :
     IsPrunedSuslinScheme (normalizeScheme A) := by
   intro s hs
@@ -144,7 +164,9 @@ theorem isPrunedSuslinScheme_normalizeScheme (A : List ℕ → Set X) :
   rcases hs.exists_extension with ⟨a, ha⟩
   exact ⟨a, (nonempty_normalizeScheme_iff A _).2 ha⟩
 
-/-- Deleting impossible prefixes and regularizing the rest preserves the Suslin operation.-/
+/-- Deleting impossible prefixes and regularizing the rest preserves the Suslin operation.
+@isnad1 id=eq.0h2v.s4.152a5fe1d2a6 from=translated src=- shape=569a18c8 vocab=940e6446
+-/
 @[simp]
 theorem suslinOperation_normalizeScheme (A : List ℕ → Set X) :
     suslinOperation (normalizeScheme A) = suslinOperation A := by
@@ -161,7 +183,9 @@ section Topology
 
 variable [TopologicalSpace X]
 
-/-- Prefix regularization preserves closed-valuedness.-/
+/-- Prefix regularization preserves closed-valuedness.
+@isnad1 id=isclosed.1h3v.s4.9cb15236d8d1 from=translated src=- shape=33b93510 vocab=190e8768
+-/
 theorem isClosed_regularizeScheme (A : List ℕ → Set X)
     (hA : ∀ s, IsClosed (A s)) (s : List ℕ) : IsClosed (regularizeScheme A s) := by
   rw [show regularizeScheme A s = ⋂ t : {t : List ℕ // t <+: s}, A t.1 by
@@ -169,7 +193,9 @@ theorem isClosed_regularizeScheme (A : List ℕ → Set X)
     simp [regularizeScheme]]
   exact isClosed_iInter fun t => hA t.1
 
-/-- Normalization preserves closed-valuedness.-/
+/-- Normalization preserves closed-valuedness.
+@isnad1 id=isclosed.1h3v.s4.eaca6f39f535 from=translated src=- shape=33b93510 vocab=c4a9593a
+-/
 theorem isClosed_normalizeScheme (A : List ℕ → Set X)
     (hA : ∀ s, IsClosed (A s)) (s : List ℕ) : IsClosed (normalizeScheme A s) := by
   by_cases hs : IsViablePrefix A s
@@ -188,14 +214,18 @@ end Topology
 
 namespace Tree
 
-/-- A tree projection is also the operation of the normalized form of its associated scheme.-/
+/-- A tree projection is also the operation of the normalized form of its associated scheme.
+@isnad1 id=eq.0h2v.s6.a4d26433b884 from=translated src=- shape=43fc13f8 vocab=61b1bac0
+-/
 theorem projectedBody_eq_suslinOperation_normalizeScheme
     (T : Descriptive.tree (X × ℕ)) :
     projectedBody T = suslinOperation (normalizeScheme (suslinScheme T)) := by
   rw [suslinOperation_normalizeScheme]
   exact projectedBody_eq_suslinOperation T
 
-/-- Baire analytic sets are exactly the operations of closed, regular, support-pruned schemes.-/
+/-- Baire analytic sets are exactly the operations of closed, regular, support-pruned schemes.
+@isnad1 id=iff.0h1v.s6.7720afc91ca2 from=translated src=- shape=c86fa820 vocab=1c325bba
+-/
 theorem analyticSet_iff_exists_normalized_closed_suslinScheme_baire
     (s : Set (ℕ → ℕ)) :
     MeasureTheory.AnalyticSet s ↔

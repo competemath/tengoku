@@ -34,15 +34,23 @@ variable {A : Type u} {S T : Descriptive.tree A}
 def initialSegment (x : ℕ → A) (n : ℕ) : List A :=
   List.ofFn fun i : Fin n => x i
 
+/--
+@isnad1 id=eq.0h2v.s4.3020c10c1cfc from=translated src=- shape=fbd3ea0c vocab=2ba4c362
+-/
 @[simp]
 theorem initialSegment_zero (x : ℕ → A) : initialSegment x 0 = [] := by
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.40c765deb0be from=translated src=- shape=087d1dfe vocab=648f0117
+-/
 @[simp]
 theorem length_initialSegment (x : ℕ → A) (n : ℕ) : (initialSegment x n).length = n := by
   simp [initialSegment]
 
-/-- Passing from length `n` to length `n + 1` appends the next coordinate.-/
+/-- Passing from length `n` to length `n + 1` appends the next coordinate.
+@isnad1 id=eq.0h3v.s5.6fc7526a0fe9 from=translated src=- shape=4ef692dd vocab=604e01c1
+-/
 theorem initialSegment_succ (x : ℕ → A) (n : ℕ) :
     initialSegment x (n + 1) = initialSegment x n ++ [x n] := by
   simpa [initialSegment] using
@@ -56,31 +64,48 @@ def IsBranch (T : Descriptive.tree A) (x : ℕ → A) : Prop :=
 def body (T : Descriptive.tree A) : Set (ℕ → A) :=
   {x | IsBranch T x}
 
+/--
+@isnad1 id=iff.0h3v.s7.a3f434320f8d from=translated src=- shape=67ef6b50 vocab=ad60aaad
+-/
 @[simp]
 theorem mem_body {x : ℕ → A} :
     x ∈ body T ↔ ∀ n, initialSegment x n ∈ T :=
   Iff.rfl
 
-/-- Inclusion of trees induces inclusion of their bodies.-/
+/-- Inclusion of trees induces inclusion of their bodies.
+@isnad1 id=le.1h3v.s8.ab6d1f4ded96 from=translated src=- shape=072d0957 vocab=433f69b2
+-/
 theorem body_mono (h : S ≤ T) : body S ⊆ body T := by
   intro x hx n
   exact h (hx n)
 
+/--
+@isnad1 id=eq.0h1v.s6.001045a59868 from=translated src=- shape=5991df13 vocab=3a1d8d8f
+-/
 @[simp]
 theorem body_bot : body (⊥ : Descriptive.tree A) = ∅ := by
   ext x
   simp [body, IsBranch]
 
+/--
+@isnad1 id=eq.0h1v.s6.83bf4a951ffe from=translated src=- shape=3a7d51a8 vocab=8f2acd8f
+-/
 @[simp]
 theorem body_top : body (⊤ : Descriptive.tree A) = Set.univ := by
   ext x
   simp [body, IsBranch]
 
+/--
+@isnad1 id=eq.0h3v.s7.5b94251d2c3d from=translated src=- shape=18204471 vocab=e6a2e3a7
+-/
 @[simp]
 theorem body_inf (S T : Descriptive.tree A) : body (S ⊓ T) = body S ∩ body T := by
   ext x
   simp [body, IsBranch, forall_and]
 
+/--
+@isnad1 id=eq.0h3v.s7.3d50f36ca62a from=translated src=- shape=0807731f vocab=e02dd41d
+-/
 @[simp]
 theorem body_iInf {ι : Sort*} (T : ι → Descriptive.tree A) :
     body (⨅ i, T i) = ⋂ i, body (T i) := by
@@ -96,7 +121,9 @@ section Topology
 
 variable [TopologicalSpace A] [DiscreteTopology A]
 
-/-- The body of a tree over a discrete alphabet is closed in the product topology.-/
+/-- The body of a tree over a discrete alphabet is closed in the product topology.
+@isnad1 id=isclosed.0h2v.s6.bcda3e46b5eb from=translated src=- shape=2f47be7a vocab=df4a2bc2
+-/
 theorem isClosed_body (T : Descriptive.tree A) : IsClosed (body T) := by
   rw [show body T = ⋂ n, (fun x : ℕ → A => fun i : Fin n => x i) ⁻¹'
       {f : Fin n → A | List.ofFn f ∈ T} by

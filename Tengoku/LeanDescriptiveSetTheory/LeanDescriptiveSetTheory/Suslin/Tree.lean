@@ -31,7 +31,9 @@ variable {A : Type*}
 def suslinScheme (T : Descriptive.tree (A × ℕ)) (s : List ℕ) : Set (ℕ → A) :=
   {x | (initialSegment x s.length).zip s ∈ T}
 
-/-- A projected tree body is exactly the Suslin operation of its associated scheme.-/
+/-- A projected tree body is exactly the Suslin operation of its associated scheme.
+@isnad1 id=eq.0h2v.s6.fe0e99a00a3d from=translated src=- shape=bbc7316b vocab=f1e0c377
+-/
 theorem projectedBody_eq_suslinOperation (T : Descriptive.tree (A × ℕ)) :
     projectedBody T = suslinOperation (suslinScheme T) := by
   ext x
@@ -51,7 +53,9 @@ section Topology
 
 variable [TopologicalSpace A] [DiscreteTopology A]
 
-/-- Every set in the scheme associated with a product-alphabet tree is closed.-/
+/-- Every set in the scheme associated with a product-alphabet tree is closed.
+@isnad1 id=isclosed.0h3v.s6.1c30bb7a1b1e from=translated src=- shape=6f60fe48 vocab=46738929
+-/
 theorem isClosed_suslinScheme (T : Descriptive.tree (A × ℕ)) (s : List ℕ) :
     IsClosed (suslinScheme T s) := by
   rw [show suslinScheme T s =
@@ -67,7 +71,9 @@ theorem isClosed_suslinScheme (T : Descriptive.tree (A × ℕ)) (s : List ℕ) :
 
 end Topology
 
-/-- A Baire-space set is analytic exactly when it is the Suslin operation of a closed scheme.-/
+/-- A Baire-space set is analytic exactly when it is the Suslin operation of a closed scheme.
+@isnad1 id=iff.0h1v.s6.c1814561ebb3 from=translated src=- shape=8d730dc5 vocab=9cfc4823
+-/
 theorem analyticSet_iff_exists_closed_suslinScheme_baire (s : Set (ℕ → ℕ)) :
     MeasureTheory.AnalyticSet s ↔
       ∃ A : List ℕ → Set (ℕ → ℕ),

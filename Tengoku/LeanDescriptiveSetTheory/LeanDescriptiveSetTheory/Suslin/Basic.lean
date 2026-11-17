@@ -37,20 +37,26 @@ length-`n` initial segment. In particular, the empty prefix is tested at `n = 0`
 def suslinOperation (A : List ℕ → Set X) : Set X :=
   {x | ∃ f : ℕ → ℕ, ∀ n, x ∈ A (initialSegment f n)}
 
-/-- Membership expansion for the Suslin operation.-/
+/-- Membership expansion for the Suslin operation.
+@isnad1 id=iff.0h3v.s5.23f700849bcf from=translated src=- shape=d124744d vocab=6f8091ca
+-/
 @[simp]
 theorem mem_suslinOperation {A : List ℕ → Set X} {x : X} :
     x ∈ suslinOperation A ↔
       ∃ f : ℕ → ℕ, ∀ n, x ∈ A (initialSegment f n) :=
   Iff.rfl
 
-/-- Pointwise inclusion of schemes induces inclusion of their Suslin operations.-/
+/-- Pointwise inclusion of schemes induces inclusion of their Suslin operations.
+@isnad1 id=le.1h3v.s5.b1b3a93c42f3 from=translated src=- shape=decb328c vocab=9e130b38
+-/
 theorem suslinOperation_mono {A B : List ℕ → Set X} (h : ∀ s, A s ⊆ B s) :
     suslinOperation A ⊆ suslinOperation B := by
   rintro x ⟨f, hf⟩
   exact ⟨f, fun n => h _ (hf n)⟩
 
-/-- Preimages commute with the Suslin operation.-/
+/-- Preimages commute with the Suslin operation.
+@isnad1 id=eq.0h4v.s5.69be26ff5d0e from=translated src=- shape=a9d232e1 vocab=e6aeeff7
+-/
 @[simp]
 theorem preimage_suslinOperation {Y : Type v} (g : Y → X) (A : List ℕ → Set X) :
     g ⁻¹' suslinOperation A = suslinOperation fun s => g ⁻¹' A s := by

@@ -29,7 +29,9 @@ namespace DescriptiveSetTheory
 variable {X : Type u} [TopologicalSpace X] [PolishSpace X]
 variable [MeasurableSpace X] [BorelSpace X]
 
-/-- In a Polish Borel space, a set is measurable exactly when it is analytic and coanalytic.-/
+/-- In a Polish Borel space, a set is measurable exactly when it is analytic and coanalytic.
+@isnad1 id=iff.0h2v.s5.35cb1708b515 from=translated src=- shape=9fb6fa7d vocab=7142e21a
+-/
 theorem measurableSet_iff_analyticSet_and_isCoanalytic {s : Set X} :
     MeasurableSet s ↔ MeasureTheory.AnalyticSet s ∧ IsCoanalytic s := by
   constructor
@@ -40,7 +42,9 @@ theorem measurableSet_iff_analyticSet_and_isCoanalytic {s : Set X} :
 
 /-- A set has a `BorelCode` exactly when it is both analytic and coanalytic.
 
-The code is selected through Borel-code completeness and has no claimed canonical form.-/
+The code is selected through Borel-code completeness and has no claimed canonical form.
+@isnad1 id=iff.0h2v.s5.f8bc7c4d779f from=translated src=- shape=e03d1021 vocab=fcc6e9a3
+-/
 theorem exists_borelCode_iff_analyticSet_and_isCoanalytic {s : Set X} :
     (∃ c : BorelCode X, c.eval = s) ↔
       MeasureTheory.AnalyticSet s ∧ IsCoanalytic s := by

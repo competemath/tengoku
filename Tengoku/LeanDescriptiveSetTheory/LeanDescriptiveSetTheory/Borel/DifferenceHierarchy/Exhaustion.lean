@@ -31,10 +31,16 @@ noncomputable def hausdorffDerivative {X : Type u} [TopologicalSpace X]
     (fun _ previous => closure (previous ∩ s) ∩ closure (previous ∩ sᶜ))
     (fun i _ previous => ⋂ j : Set.Iio i, previous j.1 j.2)
 
+/--
+@isnad1 id=eq.0h2v.s4.0b2b5ae1fe3f from=translated src=- shape=bd16de1a vocab=102507c0
+-/
 @[simp] theorem hausdorffDerivative_zero {X : Type u} [TopologicalSpace X] (s : Set X) :
     hausdorffDerivative s 0 = Set.univ := by
   simp [hausdorffDerivative]
 
+/--
+@isnad1 id=eq.0h3v.s6.2430ae97c6a1 from=translated src=- shape=7c5aff54 vocab=5b94d82c
+-/
 @[simp] theorem hausdorffDerivative_add_one {X : Type u} [TopologicalSpace X]
     (s : Set X) (i : Ordinal.{0}) :
     hausdorffDerivative s (i + 1) =
@@ -42,12 +48,17 @@ noncomputable def hausdorffDerivative {X : Type u} [TopologicalSpace X]
         closure (hausdorffDerivative s i ∩ sᶜ) := by
   simp [hausdorffDerivative]
 
+/--
+@isnad1 id=eq.1h3v.s6.100f4411a477 from=translated src=- shape=6416f147 vocab=97b9ee98
+-/
 theorem hausdorffDerivative_of_isSuccLimit {X : Type u} [TopologicalSpace X]
     (s : Set X) {i : Ordinal.{0}} (hi : Order.IsSuccLimit i) :
     hausdorffDerivative s i = ⋂ j : Set.Iio i, hausdorffDerivative s j.1 := by
   simp [hausdorffDerivative, hi]
 
-/-- Every Hausdorff derivative is closed.-/
+/-- Every Hausdorff derivative is closed.
+@isnad1 id=isclosed.0h3v.s4.34fd5dc00520 from=translated src=- shape=1f30a21f vocab=ab0efea5
+-/
 theorem isClosed_hausdorffDerivative {X : Type u} [TopologicalSpace X]
     (s : Set X) (i : Ordinal.{0}) : IsClosed (hausdorffDerivative s i) := by
   induction i using Ordinal.limitRecOn with
@@ -59,7 +70,9 @@ theorem isClosed_hausdorffDerivative {X : Type u} [TopologicalSpace X]
       rw [hausdorffDerivative_of_isSuccLimit s hi]
       exact isClosed_iInter fun j => ih j.1 j.2
 
-/-- A successor derivative is contained in its predecessor.-/
+/-- A successor derivative is contained in its predecessor.
+@isnad1 id=le.0h3v.s5.ef394e4878a7 from=translated src=- shape=ecb648b0 vocab=b07ed51c
+-/
 theorem hausdorffDerivative_add_one_subset {X : Type u} [TopologicalSpace X]
     (s : Set X) (i : Ordinal.{0}) :
     hausdorffDerivative s (i + 1) ⊆ hausdorffDerivative s i := by
@@ -67,7 +80,9 @@ theorem hausdorffDerivative_add_one_subset {X : Type u} [TopologicalSpace X]
   exact (inter_subset_left.trans
     (closure_minimal inter_subset_left (isClosed_hausdorffDerivative s i)))
 
-/-- Hausdorff derivatives decrease with their ordinal index.-/
+/-- Hausdorff derivatives decrease with their ordinal index.
+@isnad1 id=antitone.0h2v.s5.f6858a06a68c from=translated src=- shape=7b4eabd0 vocab=7480b101
+-/
 theorem antitone_hausdorffDerivative {X : Type u} [TopologicalSpace X]
     (s : Set X) : Antitone (hausdorffDerivative s) := by
   intro i k hik x hx
@@ -93,7 +108,9 @@ theorem antitone_hausdorffDerivative {X : Type u} [TopologicalSpace X]
         · rw [hausdorffDerivative_of_isSuccLimit s hlim] at hx
           exact Set.mem_iInter.1 hx ⟨i, hik'⟩
 
-/-- The initial segment below `ω₁` is not a countable type.-/
+/-- The initial segment below `ω₁` is not a countable type.
+@isnad1 id=not.0h0v.s5.a028bc6c61d7 from=translated src=- shape=6817d759 vocab=b047e9f9
+-/
 theorem not_countable_Iio_omega_one : ¬Countable (Set.Iio (ω₁ : Ordinal)) := by
   intro h
   have hm : #(Set.Iio (ω₁ : Ordinal)) ≤ ℵ₀ := Cardinal.mk_le_aleph0_iff.mpr h
@@ -101,7 +118,9 @@ theorem not_countable_Iio_omega_one : ¬Countable (Set.Iio (ω₁ : Ordinal)) :=
   exact Cardinal.aleph0_lt_aleph_one.2 (Cardinal.lift_le_aleph0.mp hm)
 
 /-- A decreasing transfinite family of closed subsets of a second-countable space has a stationary
-successor stage below `ω₁`.-/
+successor stage below `ω₁`.
+@isnad1 id=ex.2h2v.s6.03cb595d1dfc from=translated src=- shape=68039a71 vocab=dfc3e6b7
+-/
 theorem exists_eq_add_one_of_antitone_isClosed {X : Type u} [TopologicalSpace X]
     [SecondCountableTopology X] (H : Ordinal.{0} → Set X) (hH : Antitone H)
     (hClosed : ∀ i, IsClosed (H i)) :
@@ -146,7 +165,9 @@ theorem exists_eq_add_one_of_antitone_isClosed {X : Type u} [TopologicalSpace X]
   exact not_countable_Iio_omega_one hAllDrop.countable
 
 /-- The Hausdorff derivative of every set has a stationary stage below `ω₁` in a
-second-countable space.-/
+second-countable space.
+@isnad1 id=ex.0h2v.s6.884af0aa6f48 from=translated src=- shape=726376a3 vocab=fa62b2b4
+-/
 theorem exists_hausdorffDerivative_eq_add_one {X : Type u} [TopologicalSpace X]
     [SecondCountableTopology X] (s : Set X) :
     ∃ i : Ordinal.{0}, i < ω₁ ∧
@@ -156,7 +177,9 @@ theorem exists_hausdorffDerivative_eq_add_one {X : Type u} [TopologicalSpace X]
 
 /-- For a `Δ⁰₂` set in a Polish space, a stationary Hausdorff derivative is empty.  The proof uses
 the two closed covers supplied by the additive and multiplicative level-two descriptions and the
-Baire theorem on the closed stationary derivative.-/
+Baire theorem on the closed stationary derivative.
+@isnad1 id=eq.2h3v.s6.c54dfc8cfdea from=translated src=- shape=86a0af50 vocab=6335b3d7
+-/
 theorem hausdorffDerivative_eq_empty_of_eq_add_one {X : Type u} [TopologicalSpace X]
     [PolishSpace X] {s : Set X} (hs : OrdinalDelta0 2 s) {i : Ordinal.{0}}
     (hfix : hausdorffDerivative s i = hausdorffDerivative s (i + 1)) :
@@ -235,7 +258,9 @@ theorem hausdorffDerivative_eq_empty_of_eq_add_one {X : Type u} [TopologicalSpac
     exact hxC hxS
 
 /-- Every `Δ⁰₂` set in a Polish space has an empty Hausdorff derivative at some countable
-ordinal.-/
+ordinal.
+@isnad1 id=ex.1h2v.s6.e379def1ea83 from=translated src=- shape=1992648a vocab=835e6a71
+-/
 theorem exists_hausdorffDerivative_eq_empty {X : Type u} [TopologicalSpace X]
     [PolishSpace X] {s : Set X} (hs : OrdinalDelta0 2 s) :
     ∃ i : Ordinal.{0}, i < ω₁ ∧ hausdorffDerivative s i = ∅ := by
@@ -260,6 +285,9 @@ def hausdorffDifferenceFamily {X : Type u} [TopologicalSpace X]
     ⋃ q : Set.Iio i,
       if 2 * q.1 + 1 ≤ j.1 then hausdorffOddStage s q.1 else ∅
 
+/--
+@isnad1 id=iff.0h5v.s8.273642f239d2 from=translated src=- shape=d769ee7b vocab=5957d9cb
+-/
 theorem mem_hausdorffDifferenceFamily {X : Type u} [TopologicalSpace X]
     {s : Set X} {i : Ordinal.{0}} {j : Set.Iio (2 * i)} {x : X} :
     x ∈ hausdorffDifferenceFamily s i j ↔
@@ -267,6 +295,9 @@ theorem mem_hausdorffDifferenceFamily {X : Type u} [TopologicalSpace X]
       ∃ q : Set.Iio i, 2 * q.1 + 1 ≤ j.1 ∧ x ∈ hausdorffOddStage s q.1 := by
   simp [hausdorffDifferenceFamily]
 
+/--
+@isnad1 id=monotone.0h3v.s6.cb266f79528d from=translated src=- shape=d34f47ac vocab=740bfd60
+-/
 theorem monotone_hausdorffDifferenceFamily {X : Type u} [TopologicalSpace X]
     (s : Set X) (i : Ordinal.{0}) : Monotone (hausdorffDifferenceFamily s i) := by
   intro j k hjk x hx
@@ -274,6 +305,9 @@ theorem monotone_hausdorffDifferenceFamily {X : Type u} [TopologicalSpace X]
   · exact mem_hausdorffDifferenceFamily.2 <| Or.inl ⟨q, hqj.trans hjk, hxq⟩
   · exact mem_hausdorffDifferenceFamily.2 <| Or.inr ⟨q, hqj.trans hjk, hxq⟩
 
+/--
+@isnad1 id=isopen.0h4v.s5.4e854f954293 from=translated src=- shape=e8784012 vocab=5c2afcf7
+-/
 theorem isOpen_hausdorffDifferenceFamily {X : Type u} [TopologicalSpace X]
     (s : Set X) (i : Ordinal.{0}) (j : Set.Iio (2 * i)) :
     IsOpen (hausdorffDifferenceFamily s i j) := by
@@ -289,7 +323,9 @@ theorem isOpen_hausdorffDifferenceFamily {X : Type u} [TopologicalSpace X]
     · exact (isClosed_hausdorffDerivative s (q.1 + 1)).isOpen_compl
     · exact isOpen_empty
 
-/-- Before an empty derivative stage, every point exits at a successor stage.-/
+/-- Before an empty derivative stage, every point exits at a successor stage.
+@isnad1 id=ex.1h4v.s6.7e919ccb5532 from=translated src=- shape=a4bacf03 vocab=d7446774
+-/
 theorem exists_hausdorffDerivative_exit {X : Type u} [TopologicalSpace X]
     {s : Set X} {i : Ordinal.{0}} {x : X} (hx : x ∉ hausdorffDerivative s i) :
     ∃ q : Ordinal.{0}, q < i ∧ x ∈ hausdorffDerivative s q ∧
@@ -348,7 +384,9 @@ private theorem two_mul_lt_omega_one {i : Ordinal.{0}} (hi : i < ω₁) :
       mul_le_mul' (by simp) hi'
     _ = ℵ₀ := Cardinal.aleph0_mul_aleph0
 
-/-- An empty derivative produces an exact Hausdorff difference representation.-/
+/-- An empty derivative produces an exact Hausdorff difference representation.
+@isnad1 id=eq.1h3v.s5.dd7cdb31c501 from=translated src=- shape=60bab4dc vocab=4edc85e6
+-/
 theorem difference_hausdorffDifferenceFamily {X : Type u} [TopologicalSpace X]
     {s : Set X} {i : Ordinal.{0}} (hi : hausdorffDerivative s i = ∅) :
     difference (2 * i) (hausdorffDifferenceFamily s i) = s := by
@@ -434,7 +472,9 @@ theorem difference_hausdorffDifferenceFamily {X : Type u} [TopologicalSpace X]
         exact hxOdd (antitone_hausdorffDerivative s hrSuccLe hxH)
 
 /-- Every `Δ⁰₂` subset of a Polish space belongs to a countable exact Hausdorff
-difference level over open sets.-/
+difference level over open sets.
+@isnad1 id=ex.1h2v.s5.c67d6949788c from=translated src=- shape=0e2b33b6 vocab=ffa897e2
+-/
 theorem exists_hausdorffDifference_of_ordinalDelta0_two
     {X : Type u} [TopologicalSpace X] [PolishSpace X] {s : Set X}
     (hs : OrdinalDelta0 2 s) :
@@ -466,7 +506,9 @@ theorem exists_hausdorffDifference_of_ordinalDelta0_two
     exact difference_hausdorffDifferenceFamily hiEmpty
 
 /-- Hausdorff--Kuratowski at level two: the ambiguous level-two Borel sets are exactly the
-countable Hausdorff differences of open sets.-/
+countable Hausdorff differences of open sets.
+@isnad1 id=iff.0h2v.s5.1cd8c3c4ac0a from=translated src=- shape=e22acde7 vocab=ffa897e2
+-/
 theorem ordinalDelta0_two_iff_exists_hausdorffDifference
     {X : Type u} [TopologicalSpace X] [PolishSpace X] {s : Set X} :
     OrdinalDelta0 2 s ↔ ∃ i : Ordinal.{0}, HausdorffDifference i s := by

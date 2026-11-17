@@ -33,11 +33,17 @@ noncomputable def finiteSection [Fintype Y] (R : Set (X × Y)) (x : X) : Finset 
   classical
   exact Finset.univ.filter fun y => (x, y) ∈ R
 
+/--
+@isnad1 id=iff.0h5v.s5.742b65483e52 from=translated src=- shape=562a723d vocab=481fded5
+-/
 @[simp] theorem mem_finiteSection [Fintype Y] {R : Set (X × Y)} {x : X} {y : Y} :
     y ∈ finiteSection R x ↔ (x, y) ∈ R := by
   classical
   simp [finiteSection]
 
+/--
+@isnad1 id=nonempty.0h4v.s5.a8f56aebc558 from=translated src=- shape=332eac9c vocab=9194a31e
+-/
 theorem finiteSection_nonempty [Fintype Y] (R : Set (X × Y))
     (x : relationDomain R) : (finiteSection R x.1).Nonempty := by
   obtain ⟨y, hy⟩ := x.property
@@ -48,13 +54,17 @@ noncomputable def finiteLeastSelector [Fintype Y] [LinearOrder Y] (R : Set (X ×
     relationDomain R → Y := fun x =>
   (finiteSection R x.1).min' (finiteSection_nonempty R x)
 
-/-- The finite least selector chooses a point of the original relation.-/
+/-- The finite least selector chooses a point of the original relation.
+@isnad1 id=mem.0h4v.s5.c6edbac750dc from=translated src=- shape=9450abf9 vocab=df2edecb
+-/
 theorem finiteLeastSelector_mem [Fintype Y] [LinearOrder Y] (R : Set (X × Y))
     (x : relationDomain R) : (x.1, finiteLeastSelector R x) ∈ R := by
   exact mem_finiteSection.mp
     (Finset.min'_mem (finiteSection R x.1) (finiteSection_nonempty R x))
 
-/-- Exact minimum semantics for the finite selector.-/
+/-- Exact minimum semantics for the finite selector.
+@isnad1 id=iff.0h5v.s6.a6a274a0479d from=translated src=- shape=2bd2a41d vocab=7352092d
+-/
 theorem finiteLeastSelector_eq_iff [Fintype Y] [LinearOrder Y] (R : Set (X × Y))
     (x : relationDomain R) (y : Y) :
     finiteLeastSelector R x = y ↔
@@ -64,7 +74,9 @@ theorem finiteLeastSelector_eq_iff [Fintype Y] [LinearOrder Y] (R : Set (X × Y)
   rw [Finset.min'_eq_iff]
   simp only [mem_finiteSection]
 
-/-- A measurable relation with finite codomain has measurable projection.-/
+/-- A measurable relation with finite codomain has measurable projection.
+@isnad1 id=measurab.1h3v.s5.d910c09dd2e4 from=translated src=- shape=cd7de622 vocab=a3403053
+-/
 theorem MeasurableSet.measurableSet_relationDomain_of_finite
     [MeasurableSpace X] [MeasurableSpace Y] [Finite Y]
     {R : Set (X × Y)} (hR : MeasurableSet R) : MeasurableSet (relationDomain R) := by
@@ -76,7 +88,9 @@ theorem MeasurableSet.measurableSet_relationDomain_of_finite
     DescriptiveSetTheory.MeasurableSet.horizontalSection hR y
 
 /-- The least selector of a measurable finite-codomain relation is measurable on its native
-subtype domain.-/
+subtype domain.
+@isnad1 id=measurab.1h3v.s5.68fbc992c873 from=translated src=- shape=491f7273 vocab=b256771f
+-/
 theorem MeasurableSet.measurable_finiteLeastSelector
     [MeasurableSpace X] [MeasurableSpace Y] [Fintype Y] [LinearOrder Y]
     {R : Set (X × Y)} (hR : MeasurableSet R) : Measurable (finiteLeastSelector R) := by
@@ -109,13 +123,17 @@ theorem MeasurableSet.measurable_finiteLeastSelector
     ext x
     simp [hyz]
 
-/-- The least-selector graph uniformizes the original finite-codomain relation exactly.-/
+/-- The least-selector graph uniformizes the original finite-codomain relation exactly.
+@isnad1 id=uniformi.0h3v.s5.246bab7b8ddc from=translated src=- shape=552e0155 vocab=80c3b5c2
+-/
 theorem uniformizes_partialGraph_finiteLeastSelector [Fintype Y] [LinearOrder Y]
     (R : Set (X × Y)) :
     Uniformizes R (partialGraph (relationDomain R) (finiteLeastSelector R)) :=
   uniformizes_partialGraph_iff.mpr ⟨rfl, finiteLeastSelector_mem R⟩
 
-/-- The measurable least selector has an exact standard-Borel graph code.-/
+/-- The measurable least selector has an exact standard-Borel graph code.
+@isnad1 id=ex.1h3v.s6.a2f3bee6e9a9 from=translated src=- shape=2c634586 vocab=0a5255c5
+-/
 theorem MeasurableSet.exists_standardBorelCode_partialGraph_finiteLeastSelector
     [MeasurableSpace X] [StandardBorelSpace X]
     [MeasurableSpace Y] [StandardBorelSpace Y] [Fintype Y] [LinearOrder Y]

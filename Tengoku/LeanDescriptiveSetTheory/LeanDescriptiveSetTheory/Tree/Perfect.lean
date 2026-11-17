@@ -37,7 +37,9 @@ private theorem take_initialSegment {A : Type*} (x : ℕ → A) {m n : ℕ} (hmn
   · intro i hi₁ hi₂
     simp [initialSegment]
 
-/-- Initial segments of one sequence are monotone in their lengths.-/
+/-- Initial segments of one sequence are monotone in their lengths.
+@isnad1 id=isprefix.1h4v.s4.db8309825f5f from=translated src=- shape=a5a74a5a vocab=5f4549bd
+-/
 theorem initialSegment_prefix {A : Type*} (x : ℕ → A) {m n : ℕ} (hmn : m ≤ n) :
     initialSegment x m <+: initialSegment x n := by
   rw [List.prefix_iff_eq_take, length_initialSegment]
@@ -64,7 +66,9 @@ private theorem branchMap_apply_eq_getElem_node (q : ℕ → Bool) (m : ℕ) {i 
   · exact (S.node_prefix_of_prefix (initialSegment_prefix q him)).getElem hib
 
 /-- Every splitting node on a Cantor path is exactly the corresponding finite initial segment of
-the selected branch.-/
+the selected branch.
+@isnad1 id=eq.0h4v.s6.294a0a819120 from=translated src=- shape=3a4a24b8 vocab=7536ff3f
+-/
 theorem node_eq_initialSegment_branchMap (q : ℕ → Bool) (m : ℕ) :
     S.node (initialSegment q m) =
       initialSegment (S.branchMap q) (S.node (initialSegment q m)).length := by
@@ -74,7 +78,9 @@ theorem node_eq_initialSegment_branchMap (q : ℕ → Bool) (m : ℕ) :
     simpa [initialSegment] using (S.branchMap_apply_eq_getElem_node q m hi₁).symm
 
 /-- At binary depth `m`, the first `m` branch coordinates are the first `m` coordinates of the
-corresponding splitting node.-/
+corresponding splitting node.
+@isnad1 id=eq.0h4v.s6.27c24811fb89 from=translated src=- shape=f977a4ac vocab=d8dbf8fa
+-/
 theorem initialSegment_branchMap_eq_take (q : ℕ → Bool) (m : ℕ) :
     initialSegment (S.branchMap q) m = (S.node (initialSegment q m)).take m := by
   have hdepth : m ≤ (S.node (initialSegment q m)).length := by
@@ -86,19 +92,25 @@ theorem initialSegment_branchMap_eq_take (q : ℕ → Bool) (m : ℕ) :
     _ = (S.node (initialSegment q m)).take m := by
       rw [← S.node_eq_initialSegment_branchMap q m]
 
-/-- Every selected Cantor branch belongs to the original tree body.-/
+/-- Every selected Cantor branch belongs to the original tree body.
+@isnad1 id=mem.0h3v.s6.9729e0dbf412 from=translated src=- shape=620b7773 vocab=cf6b4693
+-/
 theorem branchMap_mem_body (q : ℕ → Bool) : S.branchMap q ∈ body T := by
   intro m
   rw [S.initialSegment_branchMap_eq_take q m]
   exact Descriptive.Tree.take_mem ⟨S.node (initialSegment q m), S.node_mem _⟩
 
-/-- The range of the Cantor branch map is contained in the original tree body.-/
+/-- The range of the Cantor branch map is contained in the original tree body.
+@isnad1 id=le.0h2v.s6.7e2fb852bcfc from=translated src=- shape=2e50e233 vocab=fd4429d0
+-/
 theorem range_branchMap_subset_body : range S.branchMap ⊆ body T := by
   rintro _ ⟨q, rfl⟩
   exact S.branchMap_mem_body q
 
 /-- The Cantor branch map is continuous. Each output coordinate factors through one finite binary
-prefix.-/
+prefix.
+@isnad1 id=continuo.0h2v.s6.90358e2788ea from=translated src=- shape=cdd190bd vocab=d28d2e99
+-/
 theorem continuous_branchMap : Continuous S.branchMap := by
   apply continuous_pi
   intro n
@@ -115,7 +127,9 @@ private theorem initialSegments_comparable {A : Type*} (x : ℕ → A) (m n : �
   · exact Or.inl (initialSegment_prefix x h)
   · exact Or.inr (initialSegment_prefix x h)
 
-/-- Distinct Cantor paths select distinct branches.-/
+/-- Distinct Cantor paths select distinct branches.
+@isnad1 id=injectiv.0h2v.s6.b92b20309a02 from=translated src=- shape=cdd190bd vocab=5c1d04e0
+-/
 theorem injective_branchMap : Function.Injective S.branchMap := by
   intro q r hqr
   have hsegments : ∀ n, initialSegment q n = initialSegment r n := by
@@ -145,11 +159,15 @@ theorem injective_branchMap : Function.Injective S.branchMap := by
   simpa using List.append_cancel_left h
 
 /-- The Cantor branch map is a closed embedding into Baire space. Compactness of Cantor space and
-Hausdorffness of Baire space are used here, separately from continuity and injectivity.-/
+Hausdorffness of Baire space are used here, separately from continuity and injectivity.
+@isnad1 id=isclosed.0h2v.s6.1ae7d13e2a03 from=translated src=- shape=cdd190bd vocab=2b462d7d
+-/
 theorem isClosedEmbedding_branchMap : IsClosedEmbedding S.branchMap :=
   S.continuous_branchMap.isClosedEmbedding S.injective_branchMap
 
-/-- The Cantor branch map is a topological embedding.-/
+/-- The Cantor branch map is a topological embedding.
+@isnad1 id=isembedd.0h2v.s6.c1ba452e1502 from=translated src=- shape=cdd190bd vocab=31d504e1
+-/
 theorem isEmbedding_branchMap : IsEmbedding S.branchMap :=
   S.isClosedEmbedding_branchMap.isEmbedding
 
@@ -157,14 +175,18 @@ theorem isEmbedding_branchMap : IsEmbedding S.branchMap :=
 noncomputable def branchHomeomorph : (ℕ → Bool) ≃ₜ range S.branchMap :=
   S.isEmbedding_branchMap.toHomeomorph
 
-/-- The branch-map range is closed in Baire space.-/
+/-- The branch-map range is closed in Baire space.
+@isnad1 id=isclosed.0h2v.s6.e836848ab7a2 from=translated src=- shape=bb76c807 vocab=dc1069e3
+-/
 theorem isClosed_range_branchMap : IsClosed (range S.branchMap) :=
   S.isClosedEmbedding_branchMap.isClosed_range
 
 end BinarySplittingSystem
 
 /-- Every perfect natural-number tree contains a closed embedded Cantor copy in its body. This is
-the theorem-level constructor; the choice-dependent splitting system remains existential.-/
+the theorem-level constructor; the choice-dependent splitting system remains existential.
+@isnad1 id=ex.1h1v.s7.0303d15e969d from=translated src=- shape=b5a8b452 vocab=fbe78dfb
+-/
 theorem IsPerfectTree.exists_isClosedEmbedding_cantor {T : Descriptive.tree ℕ}
     (hT : IsPerfectTree T) :
     ∃ f : (ℕ → Bool) → (ℕ → ℕ), IsClosedEmbedding f ∧ range f ⊆ body T := by

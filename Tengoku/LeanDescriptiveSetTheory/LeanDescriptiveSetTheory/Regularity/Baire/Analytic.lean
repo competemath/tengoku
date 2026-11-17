@@ -41,7 +41,9 @@ variable {X : Type u}
 def bairePrefixCylinder (s : List ℕ) : Set (ℕ → ℕ) :=
   {p | initialSegment p s.length = s}
 
-/-- The prefix cylinder selected by a sequence agrees with mathlib's coordinate cylinder.-/
+/-- The prefix cylinder selected by a sequence agrees with mathlib's coordinate cylinder.
+@isnad1 id=eq.0h2v.s4.932864af408d from=translated src=- shape=12b59259 vocab=bb3856e9
+-/
 theorem bairePrefixCylinder_initialSegment (p : ℕ → ℕ) (n : ℕ) :
     bairePrefixCylinder (initialSegment p n) = PiNat.cylinder p n := by
   ext q
@@ -61,7 +63,9 @@ theorem bairePrefixCylinder_initialSegment (p : ℕ → ℕ) (n : ℕ) :
 def closedRangeScheme [TopologicalSpace X] (f : (ℕ → ℕ) → X) (s : List ℕ) : Set X :=
   closure (f '' bairePrefixCylinder s)
 
-/-- Every component of `closedRangeScheme` is closed.-/
+/-- Every component of `closedRangeScheme` is closed.
+@isnad1 id=isclosed.0h3v.s4.ecfa4c81006e from=translated src=- shape=83676114 vocab=ece0796b
+-/
 theorem isClosed_closedRangeScheme [TopologicalSpace X] (f : (ℕ → ℕ) → X) (s : List ℕ) :
     IsClosed (closedRangeScheme f s) :=
   isClosed_closure
@@ -69,7 +73,9 @@ theorem isClosed_closedRangeScheme [TopologicalSpace X] (f : (ℕ → ℕ) → X
 /-- In a Hausdorff target, the closed-range scheme recovers exactly the range of a continuous map.
 
 The forward direction uses Hausdorff separation and a finite-prefix neighborhood supplied by the
-standard cylinder basis of Baire space.-/
+standard cylinder basis of Baire space.
+@isnad1 id=eq.1h2v.s5.15fda7b46bb6 from=translated src=- shape=5531aced vocab=cd0b7c9d
+-/
 theorem suslinOperation_closedRangeScheme [TopologicalSpace X] [T2Space X]
     (f : (ℕ → ℕ) → X) (hf : Continuous f) :
     suslinOperation (closedRangeScheme f) = range f := by
@@ -101,7 +107,9 @@ theorem suslinOperation_closedRangeScheme [TopologicalSpace X] [T2Space X]
 
 /-- Every analytic subset of a second-countable Hausdorff space has the property of Baire.
 
-In particular this applies to every Polish space.-/
+In particular this applies to every Polish space.
+@isnad1 id=bairemea.1h2v.s4.ff71c74785ad from=translated src=- shape=9387b468 vocab=a936eb57
+-/
 theorem _root_.MeasureTheory.AnalyticSet.baireMeasurableSet [TopologicalSpace X] [T2Space X]
     [SecondCountableTopology X] {s : Set X} (hs : MeasureTheory.AnalyticSet s) :
     BaireMeasurableSet s := by
@@ -112,12 +120,16 @@ theorem _root_.MeasureTheory.AnalyticSet.baireMeasurableSet [TopologicalSpace X]
     exact BaireMeasurableSet.suslinOperation _ fun t =>
       (isClosed_closedRangeScheme f t).isOpen_compl.baireMeasurableSet.of_compl
 
-/-- Baire-space specialization of `MeasureTheory.AnalyticSet.baireMeasurableSet`.-/
+/-- Baire-space specialization of `MeasureTheory.AnalyticSet.baireMeasurableSet`.
+@isnad1 id=bairemea.1h1v.s5.bdaf38f43288 from=translated src=- shape=fce30152 vocab=98bd9d03
+-/
 theorem analyticSet_baireMeasurableSet_baire {s : Set (ℕ → ℕ)}
     (hs : MeasureTheory.AnalyticSet s) : BaireMeasurableSet s :=
   hs.baireMeasurableSet
 
-/-- Cantor-space specialization of `MeasureTheory.AnalyticSet.baireMeasurableSet`.-/
+/-- Cantor-space specialization of `MeasureTheory.AnalyticSet.baireMeasurableSet`.
+@isnad1 id=bairemea.1h1v.s5.5f6ec0149b6e from=translated src=- shape=716c032f vocab=9b30eaad
+-/
 theorem analyticSet_baireMeasurableSet_cantor {s : Set (ℕ → Bool)}
     (hs : MeasureTheory.AnalyticSet s) : BaireMeasurableSet s :=
   hs.baireMeasurableSet

@@ -24,18 +24,24 @@ namespace DescriptiveSetTheory
 def listNatBoolCodeHomeomorph : (List ℕ → Bool) ≃ₜ (ℕ → Bool) :=
   Homeomorph.piCongrLeft (Y := fun _ : ℕ => Bool) Equiv.listNatEquivNat
 
-/-- Boolean codes indexed by finite natural-number lists form a Polish space.-/
+/-- Boolean codes indexed by finite natural-number lists form a Polish space.
+@isnad1 id=polishsp.0h0v.s4.a76532c4925e from=translated src=- shape=6b65f21e vocab=0e441cc3
+-/
 noncomputable instance listNatBoolCodePolishSpace : PolishSpace (List ℕ → Bool) := by
   letI : MetricSpace (ℕ → Bool) :=
     PiNat.metricSpaceOfDiscreteUniformity fun _ => rfl
   exact listNatBoolCodeHomeomorph.isClosedEmbedding.polishSpace
 
-/-- Reading a fixed finite-list coordinate is continuous in the product topology.-/
+/-- Reading a fixed finite-list coordinate is continuous in the product topology.
+@isnad1 id=continuo.0h1v.s4.9d3de54ec25b from=translated src=- shape=ac64031f vocab=3b243901
+-/
 theorem continuous_listNatBoolCoordinate (s : List ℕ) :
     Continuous (fun c : List ℕ → Bool => c s) :=
   continuous_apply s
 
-/-- A fixed Boolean condition on one finite-list coordinate is clopen.-/
+/-- A fixed Boolean condition on one finite-list coordinate is clopen.
+@isnad1 id=isclopen.0h2v.s5.2ae482bdab93 from=translated src=- shape=7701bce0 vocab=a4bf5843
+-/
 theorem isClopen_listNatBoolCoordinate (s : List ℕ) (b : Bool) :
     IsClopen {c : List ℕ → Bool | c s = b} :=
   (isClopen_discrete {b}).preimage (continuous_listNatBoolCoordinate s)

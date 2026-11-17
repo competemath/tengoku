@@ -36,14 +36,18 @@ variable {X : Type u} [mX : MeasurableSpace X] [StandardBorelSpace X]
 noncomputable def eval (c : StandardBorelCode X) : Set X :=
   @BorelCode.eval X (upgradeStandardBorel X).toTopologicalSpace c
 
-/-- Every standard-Borel code denotes a measurable set in the caller's measurable space.-/
+/-- Every standard-Borel code denotes a measurable set in the caller's measurable space.
+@isnad1 id=measurab.0h2v.s4.e32a5de7ecfa from=translated src=- shape=10965991 vocab=04bce12e
+-/
 theorem measurableSet_eval (c : StandardBorelCode X) : MeasurableSet c.eval := by
   let t : Set X := c.eval
   change MeasurableSet t
   rw [eq_borel_upgradeStandardBorel X]
   exact @BorelCode.measurableSet_eval X (upgradeStandardBorel X).toTopologicalSpace c
 
-/-- Measurable sets in a standard Borel space are exactly code denotations.-/
+/-- Measurable sets in a standard Borel space are exactly code denotations.
+@isnad1 id=iff.0h2v.s5.1343bacda248 from=translated src=- shape=ba7acf66 vocab=e3ed7394
+-/
 theorem measurableSet_iff_exists_code {s : Set X} :
     MeasurableSet s ↔ ∃ c : StandardBorelCode X, c.eval = s := by
   constructor
@@ -57,7 +61,9 @@ theorem measurableSet_iff_exists_code {s : Set X} :
   · rintro ⟨c, rfl⟩
     exact measurableSet_eval c
 
-/-- Every measurable set in a standard Borel space has a (noncanonical) code witness.-/
+/-- Every measurable set in a standard Borel space has a (noncanonical) code witness.
+@isnad1 id=ex.1h2v.s5.6ae53cf2e5d2 from=translated src=- shape=5dbd526c vocab=e3ed7394
+-/
 theorem exists_code {s : Set X} (hs : MeasurableSet s) :
     ∃ c : StandardBorelCode X, c.eval = s :=
   measurableSet_iff_exists_code.1 hs

@@ -29,6 +29,9 @@ namespace DescriptiveSetTheory.Tree
 def treeBranchRelation : Set (TreeCode × (ℕ → ℕ)) :=
   {p | p.2 ∈ body (decodeTree p.1)}
 
+/--
+@isnad1 id=iff.0h2v.s5.4dbe70cc8762 from=translated src=- shape=8d80e900 vocab=4bcb9a1b
+-/
 @[simp]
 theorem mem_treeBranchRelation {c : TreeCode} {x : ℕ → ℕ} :
     (c, x) ∈ treeBranchRelation ↔ x ∈ body (decodeTree c) :=
@@ -77,7 +80,9 @@ private theorem isClosed_treeBranchConstraint (n : ℕ) :
   rw [hcompl]
   exact isOpen_treeBranchConstraintValue n false
 
-/-- The relation between a valid tree code and an infinite branch is closed.-/
+/-- The relation between a valid tree code and an infinite branch is closed.
+@isnad1 id=isclosed.0h0v.s5.475c9a4d2d7f from=translated src=- shape=b30e3453 vocab=51318002
+-/
 theorem isClosed_treeBranchRelation : IsClosed treeBranchRelation := by
   rw [show treeBranchRelation = ⋂ n,
       {p : TreeCode × (ℕ → ℕ) |
@@ -94,17 +99,25 @@ def illFoundedTrees : Set TreeCode :=
 def wellFoundedTrees : Set TreeCode :=
   {c | IsWellFounded (decodeTree c)}
 
+/--
+@isnad1 id=iff.0h1v.s4.01830fb78a0e from=translated src=- shape=9789a5b5 vocab=77ea3576
+-/
 @[simp]
 theorem mem_illFoundedTrees {c : TreeCode} :
     c ∈ illFoundedTrees ↔ ¬ IsWellFounded (decodeTree c) :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h1v.s3.d6653e669acd from=translated src=- shape=5a4bcfab vocab=c1c9d2f7
+-/
 @[simp]
 theorem mem_wellFoundedTrees {c : TreeCode} :
     c ∈ wellFoundedTrees ↔ IsWellFounded (decodeTree c) :=
   Iff.rfl
 
-/-- Ill-founded codes are exactly the first-coordinate projection of the closed branch relation.-/
+/-- Ill-founded codes are exactly the first-coordinate projection of the closed branch relation.
+@isnad1 id=eq.0h0v.s4.3fa773879b57 from=translated src=- shape=3807996c vocab=563ca281
+-/
 theorem illFoundedTrees_eq_fst_image_treeBranchRelation :
     illFoundedTrees = Prod.fst '' treeBranchRelation := by
   ext c
@@ -117,28 +130,38 @@ theorem illFoundedTrees_eq_fst_image_treeBranchRelation :
     rw [mem_illFoundedTrees, isWellFounded_iff_body_eq_empty]
     exact Set.nonempty_iff_ne_empty.mp ⟨p.2, hp⟩
 
-/-- The set of ill-founded tree codes is analytic.-/
+/-- The set of ill-founded tree codes is analytic.
+@isnad1 id=analytic.0h0v.s5.96c914d7b86c from=translated src=- shape=25b03439 vocab=18a99be3
+-/
 theorem analyticSet_illFoundedTrees :
     MeasureTheory.AnalyticSet illFoundedTrees := by
   rw [illFoundedTrees_eq_fst_image_treeBranchRelation]
   exact isClosed_treeBranchRelation.analyticSet.image_of_continuous continuous_fst
 
-/-- Well-founded and ill-founded tree codes are exact complements.-/
+/-- Well-founded and ill-founded tree codes are exact complements.
+@isnad1 id=eq.0h0v.s3.f4ebc4225677 from=translated src=- shape=16467dc4 vocab=a5777b57
+-/
 theorem wellFoundedTrees_eq_compl : wellFoundedTrees = illFoundedTreesᶜ := by
   ext c
   simp [wellFoundedTrees, illFoundedTrees]
 
-/-- The set of well-founded tree codes is coanalytic.-/
+/-- The set of well-founded tree codes is coanalytic.
+@isnad1 id=iscoanal.0h0v.s5.3fbd8ca7e6c9 from=translated src=- shape=25b03439 vocab=b1ade5f8
+-/
 theorem isCoanalytic_wellFoundedTrees : IsCoanalytic wellFoundedTrees := by
   simpa [IsCoanalytic, wellFoundedTrees_eq_compl] using analyticSet_illFoundedTrees
 
-/-- No valid tree code is both ill-founded and well-founded.-/
+/-- No valid tree code is both ill-founded and well-founded.
+@isnad1 id=disjoint.0h0v.s5.3f29e365585e from=translated src=- shape=836e6cbb vocab=29201998
+-/
 theorem disjoint_illFoundedTrees_wellFoundedTrees :
     Disjoint illFoundedTrees wellFoundedTrees := by
   rw [wellFoundedTrees_eq_compl]
   exact disjoint_compl_right
 
-/-- Every valid tree code is either ill-founded or well-founded.-/
+/-- Every valid tree code is either ill-founded or well-founded.
+@isnad1 id=eq.0h0v.s3.c404748fde4d from=translated src=- shape=eab34d5a vocab=53c7ec67
+-/
 theorem illFoundedTrees_union_wellFoundedTrees :
     illFoundedTrees ∪ wellFoundedTrees = Set.univ := by
   rw [wellFoundedTrees_eq_compl, union_compl_self]

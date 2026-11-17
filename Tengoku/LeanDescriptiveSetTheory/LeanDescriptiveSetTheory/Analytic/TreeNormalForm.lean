@@ -28,7 +28,9 @@ namespace DescriptiveSetTheory.Tree
 
 variable {A : Type u}
 
-/-- Analytic subsets of a discrete-alphabet sequence space are exactly projected tree bodies.-/
+/-- Analytic subsets of a discrete-alphabet sequence space are exactly projected tree bodies.
+@isnad1 id=iff.0h2v.s7.a9e4e919cc53 from=translated src=- shape=e0d7d798 vocab=c771620d
+-/
 theorem analyticSet_iff_exists_projectedBody
     [TopologicalSpace A] [DiscreteTopology A] [PolishSpace (ℕ → A)]
     (s : Set (ℕ → A)) :
@@ -58,13 +60,17 @@ theorem analyticSet_iff_exists_projectedBody
   · rintro ⟨T, rfl⟩
     exact analyticSet_projectedBody T
 
-/-- Baire-space analytic sets are exactly projections of bodies of trees on `ℕ × ℕ`.-/
+/-- Baire-space analytic sets are exactly projections of bodies of trees on `ℕ × ℕ`.
+@isnad1 id=iff.0h1v.s7.8a7c792946cd from=translated src=- shape=8609124e vocab=f58cb3d0
+-/
 theorem analyticSet_iff_exists_projectedBody_baire (s : Set (ℕ → ℕ)) :
     MeasureTheory.AnalyticSet s ↔
       ∃ T : Descriptive.tree (ℕ × ℕ), projectedBody T = s :=
   analyticSet_iff_exists_projectedBody s
 
-/-- Cantor-space analytic sets are exactly projections with a Baire witness coordinate.-/
+/-- Cantor-space analytic sets are exactly projections with a Baire witness coordinate.
+@isnad1 id=iff.0h1v.s7.156cb93f2c26 from=translated src=- shape=4cab478a vocab=7b3227b4
+-/
 theorem analyticSet_iff_exists_projectedBody_cantor (s : Set (ℕ → Bool)) :
     MeasureTheory.AnalyticSet s ↔
       ∃ T : Descriptive.tree (Bool × ℕ), projectedBody T = s := by

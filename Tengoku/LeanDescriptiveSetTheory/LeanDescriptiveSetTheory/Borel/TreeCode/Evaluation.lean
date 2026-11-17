@@ -26,7 +26,9 @@ structure IsLocallyValid (c : Raw) : Prop where
   coherent : ∀ s, s ∈ c.tree → c.IsCoherentAt s
   expectedChildren : ∀ s, s ∈ c.tree → c.HasExpectedChildrenAt s
 
-/-- Exact decomposition of validity into local coherence and well-foundedness.-/
+/-- Exact decomposition of validity into local coherence and well-foundedness.
+@isnad1 id=iff.0h1v.s3.ed1fc812b0d5 from=translated src=- shape=9038ff84 vocab=212b3294
+-/
 theorem isValid_iff_isLocallyValid_and_isWellFounded {c : Raw} :
     IsValid c ↔ IsLocallyValid c ∧ Tree.IsWellFounded c.tree := by
   constructor
@@ -35,7 +37,9 @@ theorem isValid_iff_isLocallyValid_and_isWellFounded {c : Raw} :
   · rintro ⟨hlocal, hwf⟩
     exact ⟨hlocal.root_mem, hwf, hlocal.coherent, hlocal.expectedChildren⟩
 
-/-- Every valid code is locally valid.-/
+/-- Every valid code is locally valid.
+@isnad1 id=islocall.1h1v.s2.a30e75d0bc10 from=translated src=- shape=6321fd23 vocab=ac6c7fa1
+-/
 theorem IsValid.isLocallyValid {c : Raw} (h : IsValid c) : IsLocallyValid c :=
   isValid_iff_isLocallyValid_and_isWellFounded.mp h |>.1
 
@@ -65,6 +69,9 @@ noncomputable def canonicalValuation (b : ℕ → Set X) (c : Raw) (h : IsValid 
     if x ∈ evalAt b c h ⟨s, hs⟩ then true else false
   else false
 
+/--
+@isnad1 id=iff.2h5v.s8.aa7e4c8e37af from=translated src=- shape=fc31ddd6 vocab=f686830c
+-/
 @[simp]
 theorem canonicalValuation_eq_true_iff (b : ℕ → Set X) {c : Raw} (h : IsValid c)
     (x : X) {s : List ℕ} (hs : s ∈ c.tree) :
@@ -72,6 +79,9 @@ theorem canonicalValuation_eq_true_iff (b : ℕ → Set X) {c : Raw} (h : IsVali
   classical
   simp [canonicalValuation, hs]
 
+/--
+@isnad1 id=iff.2h5v.s8.9226b4e7a9de from=translated src=- shape=05977373 vocab=44cde010
+-/
 @[simp]
 theorem canonicalValuation_eq_false_iff (b : ℕ → Set X) {c : Raw} (h : IsValid c)
     (x : X) {s : List ℕ} (hs : s ∈ c.tree) :
@@ -106,14 +116,18 @@ there is no false-root local evaluation witness.-/
 def coanalyticEvaluation (b : ℕ → Set X) : Set (Raw × X) :=
   (locallyInvalidPairs ∪ illFoundedPairs ∪ hasEvaluationWitness b false)ᶜ
 
-/-- A valid code belongs to neither invalid-code completion branch.-/
+/-- A valid code belongs to neither invalid-code completion branch.
+@isnad1 id=not.1h3v.s5.4c31dbfa3298 from=translated src=- shape=ec40c0b8 vocab=d1a25794
+-/
 theorem valid_not_mem_invalidPairs {c : Raw} (h : IsValid c) (x : X) :
     (c, x) ∉ locallyInvalidPairs ∪ illFoundedPairs := by
   rintro (hlocal | hill)
   · exact hlocal h.isLocallyValid
   · exact hill h.wellFounded
 
-/-- Invalid codes have opposite completed truth values, independently of the object.-/
+/-- Invalid codes have opposite completed truth values, independently of the object.
+@isnad1 id=and.1h4v.s5.3504ab60e636 from=translated src=- shape=84237f9d vocab=d0203955
+-/
 theorem evaluation_disagrees_of_not_isValid (b : ℕ → Set X) {c : Raw}
     (h : ¬ IsValid c) (x : X) :
     (c, x) ∈ analyticEvaluation b ∧ (c, x) ∉ coanalyticEvaluation b := by

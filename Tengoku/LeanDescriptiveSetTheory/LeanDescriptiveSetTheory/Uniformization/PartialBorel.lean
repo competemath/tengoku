@@ -33,7 +33,9 @@ def IsBorelPartialMap [MeasurableSpace X] [MeasurableSpace Y]
     (s : Set X) (f : s → Y) : Prop :=
   MeasurableSet s ∧ Measurable f
 
-/-- Any measurable partial map between standard Borel spaces has a measurable graph.-/
+/-- Any measurable partial map between standard Borel spaces has a measurable graph.
+@isnad1 id=measurab.2h4v.s6.4e4c0a6397cf from=translated src=- shape=4a145d99 vocab=6050588d
+-/
 theorem measurableSet_partialGraph [MeasurableSpace X] [StandardBorelSpace X]
     [MeasurableSpace Y] [StandardBorelSpace Y] {s : Set X} {f : s → Y}
     (hs : MeasurableSet s) (hf : Measurable f) : MeasurableSet (partialGraph s f) := by
@@ -66,20 +68,27 @@ theorem measurableSet_partialGraph [MeasurableSpace X] [StandardBorelSpace X]
       rw [hgraph]
       exact measurableSet_graphOn hs hg
 
+/--
+@isnad1 id=measurab.1h4v.s5.1ef308a9d807 from=translated src=- shape=b29fbca2 vocab=01a273a1
+-/
 theorem IsBorelPartialMap.measurableSet_partialGraph [MeasurableSpace X]
     [StandardBorelSpace X] [MeasurableSpace Y] [StandardBorelSpace Y]
     {s : Set X} {f : s → Y} (h : IsBorelPartialMap s f) :
     MeasurableSet (partialGraph s f) :=
   DescriptiveSetTheory.measurableSet_partialGraph h.1 h.2
 
-/-- A measurable partial map has an exact standard-Borel code for its graph.-/
+/-- A measurable partial map has an exact standard-Borel code for its graph.
+@isnad1 id=ex.2h4v.s6.4fe53efb7784 from=translated src=- shape=1e7f589c vocab=2be6a8eb
+-/
 theorem exists_standardBorelCode_partialGraph [MeasurableSpace X]
     [StandardBorelSpace X] [MeasurableSpace Y] [StandardBorelSpace Y]
     {s : Set X} {f : s → Y} (hs : MeasurableSet s) (hf : Measurable f) :
     ∃ c : StandardBorelCode (X × Y), c.eval = partialGraph s f :=
   StandardBorelCode.exists_code (measurableSet_partialGraph hs hf)
 
-/-- On its domain, a partial graph has exactly the selected singleton as vertical section.-/
+/-- On its domain, a partial graph has exactly the selected singleton as vertical section.
+@isnad1 id=eq.1h5v.s5.41ab94032ed3 from=translated src=- shape=fce6c801 vocab=e3d8cef1
+-/
 theorem verticalSection_partialGraph_of_mem {s : Set X} (f : s → Y) {x : X}
     (hx : x ∈ s) : verticalSection (partialGraph s f) x = {f ⟨x, hx⟩} := by
   ext y
@@ -93,7 +102,9 @@ theorem verticalSection_partialGraph_of_mem {s : Set X} (f : s → Y) {x : X}
       exact hy.symm
     exact ⟨hx, hy'⟩
 
-/-- Off its domain, a partial graph has an empty vertical section.-/
+/-- Off its domain, a partial graph has an empty vertical section.
+@isnad1 id=eq.1h5v.s5.1216d600c82d from=translated src=- shape=837a0d74 vocab=c78066e7
+-/
 theorem verticalSection_partialGraph_of_not_mem {s : Set X} (f : s → Y) {x : X}
     (hx : x ∉ s) : verticalSection (partialGraph s f) x = ∅ := by
   ext y
@@ -106,12 +117,17 @@ theorem verticalSection_partialGraph_of_not_mem {s : Set X} (f : s → Y) {x : X
 def partialMapRestrict {s u : Set X} (f : s → Y) (hu : u ⊆ s) : u → Y :=
   fun x => f ⟨x.1, hu x.2⟩
 
+/--
+@isnad1 id=measurab.2h5v.s6.8494d35273c3 from=translated src=- shape=24a77bba vocab=d5ad0ec1
+-/
 theorem measurable_partialMapRestrict [MeasurableSpace X] [MeasurableSpace Y]
     {s u : Set X} {f : s → Y} (hf : Measurable f) (hu : u ⊆ s) :
     Measurable (partialMapRestrict f hu) :=
   hf.comp (Measurable.subtype_mk measurable_subtype_coe)
 
-/-- Restricting a partial map agrees exactly with first-coordinate restriction of its graph.-/
+/-- Restricting a partial map agrees exactly with first-coordinate restriction of its graph.
+@isnad1 id=eq.1h5v.s5.4d3b85126715 from=translated src=- shape=60be4c1c vocab=c6c4bcde
+-/
 theorem partialGraph_partialMapRestrict {s u : Set X} (f : s → Y) (hu : u ⊆ s) :
     partialGraph u (partialMapRestrict f hu) = relationRestrict (partialGraph s f) u := by
   ext p
@@ -132,11 +148,16 @@ noncomputable def partialMapComp {s : Set X} (f : s → Y) {t : Set Y} (g : t �
   let hfx : f ⟨x.1, hx⟩ ∈ t := Classical.choose_spec x.2
   g ⟨f ⟨x.1, hx⟩, hfx⟩
 
+/--
+@isnad1 id=iff.0h6v.s6.2b1f9a82bb99 from=translated src=- shape=1587fc7e vocab=26e2b9bc
+-/
 @[simp] theorem mem_partialCompDomain {s : Set X} {f : s → Y} {t : Set Y} {x : X} :
     x ∈ partialCompDomain s f t ↔ ∃ hx : x ∈ s, f ⟨x, hx⟩ ∈ t :=
   Iff.rfl
 
-/-- The composite domain is the subtype-coercion image of the ordinary measurable preimage.-/
+/-- The composite domain is the subtype-coercion image of the ordinary measurable preimage.
+@isnad1 id=eq.0h5v.s6.f1e3d7bbf169 from=translated src=- shape=81fb417e vocab=0abdd440
+-/
 theorem partialCompDomain_eq_subtype_image {s : Set X} (f : s → Y) (t : Set Y) :
     partialCompDomain s f t = Subtype.val '' (f ⁻¹' t) := by
   ext x
@@ -146,6 +167,9 @@ theorem partialCompDomain_eq_subtype_image {s : Set X} (f : s → Y) (t : Set Y)
   · rintro ⟨x, hx, rfl⟩
     exact ⟨x.property, hx⟩
 
+/--
+@isnad1 id=measurab.3h5v.s5.efcb8bfc55e4 from=translated src=- shape=2d0ae053 vocab=19e9e8ac
+-/
 theorem measurableSet_partialCompDomain [MeasurableSpace X] [MeasurableSpace Y]
     {s : Set X} {f : s → Y} {t : Set Y} (hs : MeasurableSet s)
     (hf : Measurable f) (ht : MeasurableSet t) :
@@ -153,6 +177,9 @@ theorem measurableSet_partialCompDomain [MeasurableSpace X] [MeasurableSpace Y]
   rw [partialCompDomain_eq_subtype_image]
   exact (MeasurableEmbedding.subtype_coe hs).measurableSet_image.2 (hf ht)
 
+/--
+@isnad1 id=measurab.2h7v.s6.193069dbc280 from=translated src=- shape=30c7d62a vocab=e690238f
+-/
 theorem measurable_partialMapComp [MeasurableSpace X] [MeasurableSpace Y]
     [MeasurableSpace Z] {s : Set X} {f : s → Y} {t : Set Y} {g : t → Z}
     (hf : Measurable f) (hg : Measurable g) : Measurable (partialMapComp f g) := by
@@ -165,7 +192,9 @@ theorem measurable_partialMapComp [MeasurableSpace X] [MeasurableSpace Y]
     Measurable.subtype_mk (hf.comp hlift)
   exact hg.comp htoSecondDomain
 
-/-- The graph of a partial composite is exactly relational composition of the two graphs.-/
+/-- The graph of a partial composite is exactly relational composition of the two graphs.
+@isnad1 id=eq.0h7v.s5.322e9bc13fb0 from=translated src=- shape=da342ffe vocab=c0548be6
+-/
 theorem partialGraph_partialMapComp {s : Set X} (f : s → Y) {t : Set Y} (g : t → Z) :
     partialGraph (partialCompDomain s f t) (partialMapComp f g) =
       relationComp (partialGraph s f) (partialGraph t g) := by

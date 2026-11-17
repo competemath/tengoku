@@ -43,13 +43,17 @@ def IsUniversalOpen {P : Type v} [TopologicalSpace P] [TopologicalSpace X]
     (U : Set (P × X)) : Prop :=
   IsOpen U ∧ IsUniversalFor IsOpen U
 
-/-- Every vertical section of a universal open relation is open.-/
+/-- Every vertical section of a universal open relation is open.
+@isnad1 id=isopen.1h4v.s5.644aefa4179d from=translated src=- shape=3a691ed0 vocab=a82c5a41
+-/
 theorem IsUniversalOpen.isOpen_verticalSection {P : Type v} [TopologicalSpace P]
     [TopologicalSpace X] {U : Set (P × X)} (hU : IsUniversalOpen U) (p : P) :
     IsOpen (verticalSection U p) :=
   DescriptiveSetTheory.IsOpen.verticalSection hU.1 p
 
-/-- Every open set occurs as a vertical section of a universal open relation.-/
+/-- Every open set occurs as a vertical section of a universal open relation.
+@isnad1 id=ex.2h4v.s5.5fbe9c646263 from=translated src=- shape=86d10b4b vocab=a82c5a41
+-/
 theorem IsUniversalOpen.exists_section {P : Type v} [TopologicalSpace P]
     [TopologicalSpace X] {U : Set (P × X)} (hU : IsUniversalOpen U)
     {s : Set X} (hs : IsOpen s) : ∃ p, verticalSection U p = s :=
@@ -59,19 +63,25 @@ theorem IsUniversalOpen.exists_section {P : Type v} [TopologicalSpace P]
 def universalOpen (b : ℕ → Set X) : Set ((ℕ → Bool) × X) :=
   {q | ∃ n, q.1 n = true ∧ q.2 ∈ b n}
 
-/-- Membership in a vertical section of universalOpen unfolds to basis membership.-/
+/-- Membership in a vertical section of universalOpen unfolds to basis membership.
+@isnad1 id=iff.0h4v.s5.8f5b93f99207 from=translated src=- shape=6e4ec235 vocab=c07b5e2a
+-/
 theorem mem_verticalSection_universalOpen {b : ℕ → Set X} {p : ℕ → Bool} {x : X} :
     x ∈ verticalSection (universalOpen b) p ↔ ∃ n, p n = true ∧ x ∈ b n :=
   Iff.rfl
 
 /-- The universal relation is a countable union of products of parameter cylinders and basis
-sets.-/
+sets.
+@isnad1 id=eq.0h2v.s5.605e5fe22d0e from=translated src=- shape=bb998b20 vocab=59203c00
+-/
 theorem universalOpen_eq_iUnion (b : ℕ → Set X) :
     universalOpen b = ⋃ n, {p : ℕ → Bool | p n = true} ×ˢ b n := by
   ext q
   simp [universalOpen]
 
-/-- The relation induced by a sequence of open sets is open.-/
+/-- The relation induced by a sequence of open sets is open.
+@isnad1 id=isopen.1h2v.s5.718fe6488dfe from=translated src=- shape=0a466a89 vocab=58febb03
+-/
 theorem isOpen_universalOpen [TopologicalSpace X] {b : ℕ → Set X} (hb : ∀ n, IsOpen (b n)) :
     IsOpen (universalOpen b) := by
   rw [universalOpen_eq_iUnion]
@@ -82,7 +92,9 @@ theorem isOpen_universalOpen [TopologicalSpace X] {b : ℕ → Set X} (hb : ∀ 
     exact (isOpen_discrete {true}).preimage (continuous_apply n)
   exact hp.prod (hb n)
 
-/-- Every section of the relation induced by open basis sets is open.-/
+/-- Every section of the relation induced by open basis sets is open.
+@isnad1 id=isopen.1h3v.s5.457bf3732a44 from=translated src=- shape=0a3f7c03 vocab=9e795ce0
+-/
 theorem isOpen_verticalSection_universalOpen [TopologicalSpace X] {b : ℕ → Set X}
     (hb : ∀ n, IsOpen (b n)) (p : ℕ → Bool) :
     IsOpen (verticalSection (universalOpen b) p) := by
@@ -94,13 +106,17 @@ noncomputable def universalOpenCode (b : ℕ → Set X) (s : Set X) : ℕ → Bo
     classical
     exact fun n => if b n ⊆ s then true else false
 
-/-- A basis index is selected by universalOpenCode exactly when its set is contained in s.-/
+/-- A basis index is selected by universalOpenCode exactly when its set is contained in s.
+@isnad1 id=iff.0h4v.s4.8ed8298d6925 from=translated src=- shape=82530eda vocab=072d7291
+-/
 theorem universalOpenCode_apply_iff (b : ℕ → Set X) (s : Set X) (n : ℕ) :
     universalOpenCode b s n = true ↔ b n ⊆ s := by
   classical
   simp [universalOpenCode]
 
-/-- The canonical code of an open set has that set as its vertical section.-/
+/-- The canonical code of an open set has that set as its vertical section.
+@isnad1 id=eq.2h3v.s5.8c899f0831b2 from=translated src=- shape=789cfa70 vocab=ee39af77
+-/
 theorem verticalSection_universalOpenCode_eq [TopologicalSpace X] {b : ℕ → Set X}
     (hb : IsTopologicalBasis (Set.range b)) {s : Set X} (hs : IsOpen s) :
     verticalSection (universalOpen b) (universalOpenCode b s) = s := by
@@ -114,7 +130,9 @@ theorem verticalSection_universalOpenCode_eq [TopologicalSpace X] {b : ℕ → S
     exact mem_verticalSection_universalOpen.2
       ⟨n, (universalOpenCode_apply_iff b s n).2 hus, hxu⟩
 
-/-- Every natural-number-indexed topological basis produces a universal open relation.-/
+/-- Every natural-number-indexed topological basis produces a universal open relation.
+@isnad1 id=isuniver.1h2v.s5.9a88df7b0c6c from=translated src=- shape=73b42b6e vocab=1e4881e9
+-/
 theorem isUniversalOpen_universalOpen [TopologicalSpace X] {b : ℕ → Set X}
     (hb : IsTopologicalBasis (Set.range b)) : IsUniversalOpen (universalOpen b) := by
   have hbo : ∀ n, IsOpen (b n) := fun n => hb.isOpen (Set.mem_range_self n)
@@ -133,19 +151,27 @@ def baireUniversalOpen : Set ((ℕ → Bool) × (ℕ → ℕ)) :=
 def cantorUniversalOpen : Set ((ℕ → Bool) × (ℕ → Bool)) :=
   universalOpen cantorCylinderBasisSequence
 
-/-- baireUniversalOpen is universal for the open subsets of Baire space.-/
+/-- baireUniversalOpen is universal for the open subsets of Baire space.
+@isnad1 id=isuniver.0h0v.s4.377265d8af2c from=translated src=- shape=9b4c26d4 vocab=3057bc3e
+-/
 theorem isUniversalOpen_baireUniversalOpen : IsUniversalOpen baireUniversalOpen :=
   isUniversalOpen_universalOpen isTopologicalBasis_range_baireCylinderBasisSequence
 
-/-- cantorUniversalOpen is universal for the open subsets of Cantor space.-/
+/-- cantorUniversalOpen is universal for the open subsets of Cantor space.
+@isnad1 id=isuniver.0h0v.s4.a421924cf8ae from=translated src=- shape=eb6111ea vocab=6dd78072
+-/
 theorem isUniversalOpen_cantorUniversalOpen : IsUniversalOpen cantorUniversalOpen :=
   isUniversalOpen_universalOpen isTopologicalBasis_range_cantorCylinderBasisSequence
 
-/-- The Baire-space universal open relation belongs to the first additive Borel level.-/
+/-- The Baire-space universal open relation belongs to the first additive Borel level.
+@isnad1 id=sigma0.0h0v.s5.54588a246ef1 from=translated src=- shape=7e7e3679 vocab=c3e2d0f0
+-/
 theorem sigma0_one_baireUniversalOpen : Sigma0 1 baireUniversalOpen :=
   sigma0_one_of_isOpen isUniversalOpen_baireUniversalOpen.1
 
-/-- The Cantor-space universal open relation belongs to the first additive Borel level.-/
+/-- The Cantor-space universal open relation belongs to the first additive Borel level.
+@isnad1 id=sigma0.0h0v.s5.3421b01b75a3 from=translated src=- shape=28f5f212 vocab=5122fbf5
+-/
 theorem sigma0_one_cantorUniversalOpen : Sigma0 1 cantorUniversalOpen :=
   sigma0_one_of_isOpen isUniversalOpen_cantorUniversalOpen.1
 

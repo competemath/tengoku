@@ -26,6 +26,9 @@ namespace DescriptiveSetTheory.Tree
 def AreIncompatible {A : Type*} (s t : List A) : Prop :=
   ¬ s <+: t ∧ ¬ t <+: s
 
+/--
+@isnad1 id=areincom.1h3v.s4.09f11df3cf6b from=translated src=- shape=7232201f vocab=2a686ea7
+-/
 theorem AreIncompatible.symm {A : Type*} {s t : List A}
     (h : AreIncompatible s t) : AreIncompatible t s :=
   ⟨h.2, h.1⟩
@@ -37,7 +40,9 @@ structure IsPerfectTree (T : Descriptive.tree ℕ) : Prop where
   exists_incompatible_extensions : ∀ {s : List ℕ}, s ∈ T →
     ∃ t ∈ T, ∃ u ∈ T, s <+: t ∧ s <+: u ∧ AreIncompatible t u
 
-/-- The full natural-number tree is perfect.-/
+/-- The full natural-number tree is perfect.
+@isnad1 id=isperfec.0h0v.s6.ef206a91ce9a from=translated src=- shape=51a02b66 vocab=ff4207ef
+-/
 theorem isPerfectTree_top : IsPerfectTree (⊤ : Descriptive.tree ℕ) := by
   refine ⟨by simp, fun {s} _ => ?_⟩
   refine ⟨s ++ [0], by simp, s ++ [1], by simp, ⟨[0], rfl⟩, ⟨[1], rfl⟩, ?_⟩
@@ -66,7 +71,9 @@ namespace BinarySplittingSystem
 
 variable {T : Descriptive.tree ℕ} (S : BinarySplittingSystem T)
 
-/-- Coherence along immediate children extends to arbitrary binary-prefix extension.-/
+/-- Coherence along immediate children extends to arbitrary binary-prefix extension.
+@isnad1 id=isprefix.1h4v.s6.4eed3376ceb4 from=translated src=- shape=ab63cc30 vocab=54f41d12
+-/
 theorem node_prefix_of_prefix {s t : List Bool} (hst : s <+: t) :
     S.node s <+: S.node t := by
   rcases hst with ⟨u, rfl⟩
@@ -76,14 +83,18 @@ theorem node_prefix_of_prefix {s t : List Bool} (hst : s <+: t) :
       exact (S.node_prefix_child s b).trans (by
         simpa [List.append_assoc] using ih (s := s ++ [b]))
 
-/-- The node chosen at binary depth `n` has length at least `n`.-/
+/-- The node chosen at binary depth `n` has length at least `n`.
+@isnad1 id=le.0h3v.s6.a55328f3d9dd from=translated src=- shape=93cae024 vocab=f40de158
+-/
 theorem depth_le_node_length (s : List Bool) : s.length ≤ (S.node s).length := by
   induction s using List.reverseRecOn with
   | nil => simp
   | append_singleton s b ih =>
       simpa using Nat.succ_le_of_lt (lt_of_le_of_lt ih (S.node_length_lt_child s b))
 
-/-- Distinct binary children of one node have incompatible selected extensions, in either order.-/
+/-- Distinct binary children of one node have incompatible selected extensions, in either order.
+@isnad1 id=areincom.1h5v.s6.20b9d7b50328 from=translated src=- shape=6916c14c vocab=febee3a5
+-/
 theorem children_incompatible_of_ne (s : List Bool) {b c : Bool} (hbc : b ≠ c) :
     AreIncompatible (S.node (s ++ [b])) (S.node (s ++ [c])) := by
   cases b <;> cases c
@@ -150,7 +161,9 @@ private theorem IsPerfectTree.nodeAt_append {T : Descriptive.tree ℕ}
   simp [IsPerfectTree.nodeAt]
 
 /-- Every perfect natural-number tree contains a coherent binary splitting system. The statement
-is existential so the internal choices are not presented as canonical data.-/
+is existential so the internal choices are not presented as canonical data.
+@isnad1 id=nonempty.1h1v.s6.79d0b08fc30e from=translated src=- shape=19c9ed5f vocab=9cc0a3b3
+-/
 theorem IsPerfectTree.exists_binarySplittingSystem {T : Descriptive.tree ℕ}
     (hT : IsPerfectTree T) : Nonempty (BinarySplittingSystem T) := by
   let S : BinarySplittingSystem T :=

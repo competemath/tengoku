@@ -34,12 +34,16 @@ variable {A : Type u} {T : Descriptive.tree A}
 def Child (T : Descriptive.tree A) (s t : T) : Prop :=
   ∃ a, s.1 = t.1 ++ [a]
 
-/-- A parent node is a prefix of each of its immediate children.-/
+/-- A parent node is a prefix of each of its immediate children.
+@isnad1 id=isprefix.1h4v.s9.251d3566872e from=translated src=- shape=1e76e133 vocab=f394854f
+-/
 theorem Child.isPrefix {s t : T} (h : Child T s t) : t.1 <+: s.1 := by
   obtain ⟨a, ha⟩ := h
   exact ⟨[a], ha.symm⟩
 
-/-- An immediate child is strictly longer than its parent.-/
+/-- An immediate child is strictly longer than its parent.
+@isnad1 id=lt.1h4v.s9.6a36b175ac3a from=translated src=- shape=5ba0282f vocab=3b0af02c
+-/
 theorem Child.length_lt {s t : T} (h : Child T s t) : t.1.length < s.1.length := by
   obtain ⟨a, ha⟩ := h
   rw [ha]
@@ -92,7 +96,9 @@ end ChildChain
 def IsWellFounded (T : Descriptive.tree A) : Prop :=
   WellFounded (Child T)
 
-/-- A descriptive-set-theoretic tree is well-founded exactly when it has no infinite branch.-/
+/-- A descriptive-set-theoretic tree is well-founded exactly when it has no infinite branch.
+@isnad1 id=iff.0h2v.s6.9a370371d166 from=translated src=- shape=5c677157 vocab=3e42782d
+-/
 theorem isWellFounded_iff_body_eq_empty : IsWellFounded T ↔ body T = ∅ := by
   constructor
   · intro hT

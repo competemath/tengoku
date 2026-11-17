@@ -66,20 +66,26 @@ private theorem initialSegment_prependSequence (a : ℕ) (f : ℕ → ℕ) (n : 
 def subtreeSuslinOperation (A : List ℕ → Set X) (s : List ℕ) : Set X :=
   suslinOperation fun t => A (s ++ t)
 
-/-- Membership in a subtree Suslin value expands along branches extending its root.-/
+/-- Membership in a subtree Suslin value expands along branches extending its root.
+@isnad1 id=iff.0h4v.s5.5072343eb445 from=translated src=- shape=6d793fa9 vocab=576a1b28
+-/
 @[simp]
 theorem mem_subtreeSuslinOperation {A : List ℕ → Set X} {s : List ℕ} {x : X} :
     x ∈ subtreeSuslinOperation A s ↔
       ∃ f : ℕ → ℕ, ∀ n, x ∈ A (s ++ initialSegment f n) :=
   Iff.rfl
 
-/-- Every subtree Suslin value lies in its root component.-/
+/-- Every subtree Suslin value lies in its root component.
+@isnad1 id=le.0h3v.s4.b43d37eab073 from=translated src=- shape=309d2bd6 vocab=5e46cace
+-/
 theorem subtreeSuslinOperation_subset (A : List ℕ → Set X) (s : List ℕ) :
     subtreeSuslinOperation A s ⊆ A s := by
   rintro x ⟨f, hf⟩
   simpa using hf 0
 
-/-- For a regular scheme, a subtree value is exactly the union of its immediate child values.-/
+/-- For a regular scheme, a subtree value is exactly the union of its immediate child values.
+@isnad1 id=eq.1h3v.s5.bae579457ba4 from=translated src=- shape=6b0fe667 vocab=a391f4bb
+-/
 theorem subtreeSuslinOperation_eq_iUnion_children {A : List ℕ → Set X}
     (hA : IsRegularSuslinScheme A) (s : List ℕ) :
     subtreeSuslinOperation A s = ⋃ a, subtreeSuslinOperation A (s ++ [a]) := by
@@ -227,7 +233,9 @@ private theorem isMeagre_of_baireMeasurableSet_subset_cover_diff
   exact mem_symmDiff.2 (Or.inl ⟨hxC, fun hxU => hxsmall (hUsub hxU)⟩)
 
 /-- Every set in a second-countable space has a Baire-measurable outer approximation whose
-Baire-measurable subsets outside the original set are meagre.-/
+Baire-measurable subsets outside the original set are meagre.
+@isnad1 id=ex.0h2v.s5.d9fc7ba38244 from=translated src=- shape=b9d89200 vocab=f3726fde
+-/
 theorem exists_baireMeasurable_cover [SecondCountableTopology X] (A : Set X) :
     ∃ B : Set X, A ⊆ B ∧ BaireMeasurableSet B ∧
       ∀ ⦃C : Set X⦄, BaireMeasurableSet C → C ⊆ B \ A → IsMeagre C := by
@@ -238,7 +246,9 @@ theorem exists_baireMeasurable_cover [SecondCountableTopology X] (A : Set X) :
 
 namespace BaireMeasurableSet
 
-/-- A Baire-measurable-valued regular Suslin scheme has a Baire-measurable operation.-/
+/-- A Baire-measurable-valued regular Suslin scheme has a Baire-measurable operation.
+@isnad1 id=bairemea.2h2v.s5.5e27083b58d5 from=translated src=- shape=0755cca7 vocab=9a50b52e
+-/
 theorem suslinOperation_of_regular [SecondCountableTopology X] {A : List ℕ → Set X}
     (hcomponents : ∀ s, BaireMeasurableSet (A s))
     (hregular : IsRegularSuslinScheme A) :
@@ -295,7 +305,9 @@ theorem suslinOperation_of_regular [SecondCountableTopology X] {A : List ℕ →
     residualEq_of_isMeagre_symmDiff (hMMeagre.mono hsymmSub)
   exact (hHBaire []).congr hresidual
 
-/-- Finite-prefix regularization preserves Baire-measurable-valuedness.-/
+/-- Finite-prefix regularization preserves Baire-measurable-valuedness.
+@isnad1 id=bairemea.1h3v.s4.ebf4503f4b16 from=translated src=- shape=33b93510 vocab=7fbf37a0
+-/
 theorem regularizeScheme (A : List ℕ → Set X)
     (hA : ∀ s, BaireMeasurableSet (A s)) (s : List ℕ) :
     BaireMeasurableSet (DescriptiveSetTheory.regularizeScheme A s) := by
@@ -306,7 +318,9 @@ theorem regularizeScheme (A : List ℕ → Set X)
   exact BaireMeasurableSet.iInter fun t => hA t.1
 
 /-- Sets with the property of Baire are closed under the Suslin operation in a
-second-countable topological space.-/
+second-countable topological space.
+@isnad1 id=bairemea.1h2v.s4.199e23d9cea1 from=translated src=- shape=86014219 vocab=586d2a03
+-/
 theorem suslinOperation [SecondCountableTopology X] (A : List ℕ → Set X)
     (hA : ∀ s, BaireMeasurableSet (A s)) :
     BaireMeasurableSet (DescriptiveSetTheory.suslinOperation A) := by
@@ -320,14 +334,18 @@ theorem suslinOperation [SecondCountableTopology X] (A : List ℕ → Set X)
 
 end BaireMeasurableSet
 
-/-- Borel-valued schemes are a special case of Baire-measurable-valued schemes.-/
+/-- Borel-valued schemes are a special case of Baire-measurable-valued schemes.
+@isnad1 id=bairemea.1h2v.s5.6cf4d0c91b44 from=translated src=- shape=ef4f0267 vocab=4a58c7c6
+-/
 theorem baireMeasurableSet_suslinOperation_of_measurable [SecondCountableTopology X]
     [MeasurableSpace X] [BorelSpace X] (A : List ℕ → Set X)
     (hA : ∀ s, MeasurableSet (A s)) :
     BaireMeasurableSet (suslinOperation A) :=
   BaireMeasurableSet.suslinOperation A fun s => (hA s).baireMeasurableSet
 
-/-- Closed-valued schemes are a special case of Baire-measurable-valued schemes.-/
+/-- Closed-valued schemes are a special case of Baire-measurable-valued schemes.
+@isnad1 id=bairemea.1h2v.s4.302c0cca7e6f from=translated src=- shape=68a225f3 vocab=1bb85ee3
+-/
 theorem baireMeasurableSet_suslinOperation_of_isClosed [SecondCountableTopology X]
     (A : List ℕ → Set X) (hA : ∀ s, IsClosed (A s)) :
     BaireMeasurableSet (suslinOperation A) :=

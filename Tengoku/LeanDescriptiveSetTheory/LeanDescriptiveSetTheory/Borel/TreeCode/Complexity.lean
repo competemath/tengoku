@@ -122,7 +122,9 @@ private theorem measurableSet_hasLocalShape (s : List ℕ) :
       ((isClopen_payloadCoordinate s 0).isOpen.measurableSet.inter hallChildren)
   exact hempty.union (hbasic.union (hcompl.union hiUnion))
 
-/-- The local validity locus is Borel measurable.-/
+/-- The local validity locus is Borel measurable.
+@isnad1 id=measurab.0h0v.s6.1e5a398773e6 from=translated src=- shape=66b19da4 vocab=4afbd636
+-/
 theorem measurableSet_isLocallyValid :
     MeasurableSet {c : Raw | IsLocallyValid c} := by
   rw [show {c : Raw | IsLocallyValid c} =
@@ -257,7 +259,9 @@ private theorem measurableSet_satisfiesAt (b : ℕ → Set X)
       (((measurableSet_codeKindAtOnWitness (X := X) s .compl).inter hcomplEq).union
         ((measurableSet_codeKindAtOnWitness (X := X) s .iUnion).inter hiUnionEq)))
 
-/-- Evaluation witnesses form a Borel subset of the code/object/valuation product.-/
+/-- Evaluation witnesses form a Borel subset of the code/object/valuation product.
+@isnad1 id=measurab.1h3v.s6.783a62906e7b from=translated src=- shape=a7282832 vocab=27418648
+-/
 theorem measurableSet_evaluationWitnesses (b : ℕ → Set X)
     (hb : ∀ n, MeasurableSet (b n)) (truth : Bool) :
     MeasurableSet (evaluationWitnesses b truth) := by
@@ -286,7 +290,9 @@ theorem measurableSet_evaluationWitnesses (b : ℕ → Set X)
       (measurableSet_satisfiesAt b hb s)).inter
     (measurableSet_valuationCoordinate (X := X) [] truth)
 
-/-- Locally invalid code/object pairs are Borel measurable.-/
+/-- Locally invalid code/object pairs are Borel measurable.
+@isnad1 id=measurab.0h1v.s6.14c797978a17 from=translated src=- shape=f06fbadd vocab=2043e2a4
+-/
 theorem measurableSet_locallyInvalidPairs :
     MeasurableSet (locallyInvalidPairs : Set (Raw × X)) := by
   rw [show (locallyInvalidPairs : Set (Raw × X)) =
@@ -297,7 +303,9 @@ theorem measurableSet_locallyInvalidPairs :
 
 variable [TopologicalSpace X] [PolishSpace X] [BorelSpace X]
 
-/-- Existence of a prescribed-root evaluation witness is analytic.-/
+/-- Existence of a prescribed-root evaluation witness is analytic.
+@isnad1 id=analytic.1h3v.s6.53aad3a0523b from=translated src=- shape=34fb9d69 vocab=8b4bee51
+-/
 theorem analyticSet_hasEvaluationWitness (b : ℕ → Set X)
     (hb : ∀ n, MeasurableSet (b n)) (truth : Bool) :
     MeasureTheory.AnalyticSet (hasEvaluationWitness b truth) := by
@@ -313,6 +321,9 @@ private theorem analyticSet_union {Y : Type*} [TopologicalSpace Y]
   exact MeasureTheory.AnalyticSet.iUnion fun value => by
     cases value <;> simp_all
 
+/--
+@isnad1 id=analytic.0h1v.s6.c91147f7c80b from=translated src=- shape=43582020 vocab=be6e0356
+-/
 theorem analyticSet_locallyInvalidPairs :
     MeasureTheory.AnalyticSet (locallyInvalidPairs : Set (Raw × X)) := by
   have h := measurableSet_locallyInvalidPairs.analyticSet_image
@@ -322,7 +333,9 @@ theorem analyticSet_locallyInvalidPairs :
   simp
 
 omit [MeasurableSpace X] [BorelSpace X] in
-/-- Ill-founded code/object pairs are analytic by continuous pullback from tree codes.-/
+/-- Ill-founded code/object pairs are analytic by continuous pullback from tree codes.
+@isnad1 id=analytic.0h1v.s6.fa5fb4723bc8 from=translated src=- shape=d5892d72 vocab=e7d79511
+-/
 theorem analyticSet_illFoundedPairs :
     MeasureTheory.AnalyticSet (illFoundedPairs : Set (Raw × X)) := by
   have hcontinuous : Continuous (fun p : Raw × X => p.1.treeCode) :=
@@ -330,7 +343,9 @@ theorem analyticSet_illFoundedPairs :
   simpa [illFoundedPairs, Tree.illFoundedTrees, Raw.tree] using
     Tree.analyticSet_illFoundedTrees.preimage hcontinuous
 
-/-- The true-root total evaluation completion is analytic.-/
+/-- The true-root total evaluation completion is analytic.
+@isnad1 id=analytic.1h2v.s6.0a3262164b75 from=translated src=- shape=f0f875c4 vocab=55e45b74
+-/
 theorem analyticSet_analyticEvaluation (b : ℕ → Set X)
     (hb : ∀ n, MeasurableSet (b n)) :
     MeasureTheory.AnalyticSet (analyticEvaluation b) :=
@@ -338,7 +353,9 @@ theorem analyticSet_analyticEvaluation (b : ℕ → Set X)
     (analyticSet_union analyticSet_locallyInvalidPairs analyticSet_illFoundedPairs)
     (analyticSet_hasEvaluationWitness b hb true)
 
-/-- The false-root obstruction is analytic, so its complement is coanalytic.-/
+/-- The false-root obstruction is analytic, so its complement is coanalytic.
+@isnad1 id=iscoanal.1h2v.s6.8f8345f72e87 from=translated src=- shape=f0f875c4 vocab=d51aeae5
+-/
 theorem isCoanalytic_coanalyticEvaluation (b : ℕ → Set X)
     (hb : ∀ n, MeasurableSet (b n)) :
     IsCoanalytic (coanalyticEvaluation b) := by
@@ -373,19 +390,27 @@ def completedTreeCode (T : Tree.TreeCode) : Tree.TreeCode where
       apply T.2 s.dropLast (s.getLast hs)
       simpa only [List.dropLast_append_getLast hs] using hparent
 
+/--
+@isnad1 id=iff.0h2v.s6.6a27a923a0c9 from=translated src=- shape=83ecab2a vocab=d180433a
+-/
 @[simp]
 theorem completedTreeCode_apply_eq_true {T : Tree.TreeCode} {s : List ℕ} :
     (completedTreeCode T).1 s = true ↔ s = [] ∨ T.1 s.dropLast = true := by
   change (if s = [] then true else T.1 s.dropLast) = true ↔ _
   by_cases hs : s = [] <;> simp [hs]
 
+/--
+@isnad1 id=iff.0h2v.s8.42d42b4ddcd1 from=translated src=- shape=b0d26fe1 vocab=358b6ef1
+-/
 theorem mem_completedTreeCode {T : Tree.TreeCode} {s : List ℕ} :
     s ∈ Tree.decodeTree (completedTreeCode T) ↔
       s = [] ∨ s.dropLast ∈ Tree.decodeTree T := by
   simpa only [Tree.mem_decodeTree] using
     (completedTreeCode_apply_eq_true (T := T) (s := s))
 
-/-- Completing a tree by one terminal layer does not change its infinite branches.-/
+/-- Completing a tree by one terminal layer does not change its infinite branches.
+@isnad1 id=eq.0h1v.s4.ac79718e2633 from=translated src=- shape=e5fcc717 vocab=c6434ef0
+-/
 theorem body_completedTreeCode (T : Tree.TreeCode) :
     Tree.body (Tree.decodeTree (completedTreeCode T)) =
       Tree.body (Tree.decodeTree T) := by
@@ -406,7 +431,9 @@ theorem body_completedTreeCode (T : Tree.TreeCode) :
           List.dropLast_concat]
         exact Or.inr (hx n)
 
-/-- Completion preserves and reflects well-foundedness exactly.-/
+/-- Completion preserves and reflects well-foundedness exactly.
+@isnad1 id=iff.0h1v.s3.7ffb981a9c56 from=translated src=- shape=4afdac0a vocab=8e46ee4f
+-/
 theorem isWellFounded_completedTreeCode_iff (T : Tree.TreeCode) :
     Tree.IsWellFounded (Tree.decodeTree (completedTreeCode T)) ↔
       Tree.IsWellFounded (Tree.decodeTree T) := by
@@ -420,7 +447,9 @@ def validityReduction (T : Tree.TreeCode) : Raw :=
     if T.1 s = true then (NodeKind.iUnion.code, 0)
     else (NodeKind.empty.code, 0))
 
-/-- Every output of the reduction satisfies all local validity conditions.-/
+/-- Every output of the reduction satisfies all local validity conditions.
+@isnad1 id=islocall.0h1v.s2.12d212a931a6 from=translated src=- shape=76a08d12 vocab=10fb000b
+-/
 theorem isLocallyValid_validityReduction (T : Tree.TreeCode) :
     IsLocallyValid (validityReduction T) := by
   refine ⟨?_, ?_, ?_⟩
@@ -446,7 +475,9 @@ theorem isLocallyValid_validityReduction (T : Tree.TreeCode) :
       rw [mem_completedTreeCode, List.dropLast_concat] at hchild
       exact hT (hchild.resolve_left (by simp))
 
-/-- The reduction output is valid exactly when the source tree is well-founded.-/
+/-- The reduction output is valid exactly when the source tree is well-founded.
+@isnad1 id=iff.0h1v.s3.bbf82c7bda54 from=translated src=- shape=8010ab70 vocab=695d7208
+-/
 theorem isValid_validityReduction_iff (T : Tree.TreeCode) :
     IsValid (validityReduction T) ↔
       Tree.IsWellFounded (Tree.decodeTree T) := by
@@ -454,7 +485,9 @@ theorem isValid_validityReduction_iff (T : Tree.TreeCode) :
   simp only [isLocallyValid_validityReduction, true_and]
   exact isWellFounded_completedTreeCode_iff T
 
-/-- The one-layer tree completion depends continuously on the source tree code.-/
+/-- The one-layer tree completion depends continuously on the source tree code.
+@isnad1 id=continuo.0h0v.s6.cf8ea8ec7eee from=translated src=- shape=e3d48bcb vocab=2387333c
+-/
 theorem continuous_completedTreeCode : Continuous completedTreeCode := by
   apply Continuous.subtype_mk
   exact continuous_pi fun s => by
@@ -465,7 +498,9 @@ theorem continuous_completedTreeCode : Continuous completedTreeCode := by
     · simpa only [completedTreeCode, hs, ↓reduceIte, Function.comp_def] using
         (continuous_listNatBoolCoordinate s.dropLast).comp continuous_subtype_val
 
-/-- The label component of the validity reduction is continuous.-/
+/-- The label component of the validity reduction is continuous.
+@isnad1 id=continuo.0h0v.s6.6b701b460429 from=translated src=- shape=662daf4f vocab=5521cdb3
+-/
 theorem continuous_validityReduction_labels :
     Continuous (fun T : Tree.TreeCode => (validityReduction T).labels) := by
   exact continuous_pi fun s => by
@@ -480,7 +515,9 @@ theorem continuous_validityReduction_labels :
       else (NodeKind.empty.code, 0))
     simpa only [Function.comp_def] using hlabel.comp hcoordinate
 
-/-- The exact well-foundedness-to-validity reduction map is continuous.-/
+/-- The exact well-foundedness-to-validity reduction map is continuous.
+@isnad1 id=continuo.0h0v.s6.2e0efdf86985 from=translated src=- shape=54c8eceb vocab=bc9fa54e
+-/
 theorem continuous_validityReduction : Continuous validityReduction := by
   change Continuous (fun T : Tree.TreeCode =>
     (completedTreeCode T, fun s =>
@@ -511,7 +548,9 @@ private theorem analyticSet_illFoundedCodes :
   simpa [illFoundedCodes, Tree.illFoundedTrees, Raw.tree] using
     Tree.analyticSet_illFoundedTrees.preimage continuous_treeCode
 
-/-- The exact valid-code locus is coanalytic.-/
+/-- The exact valid-code locus is coanalytic.
+@isnad1 id=iscoanal.0h0v.s6.04995cf594d1 from=translated src=- shape=25b03439 vocab=cdfc3337
+-/
 theorem isCoanalytic_validCodes : IsCoanalytic validCodes := by
   change MeasureTheory.AnalyticSet validCodesᶜ
   rw [show validCodesᶜ = locallyInvalidCodes ∪ illFoundedCodes by
@@ -530,14 +569,18 @@ theorem isCoanalytic_validCodes : IsCoanalytic validCodes := by
   exact analyticSet_union analyticSet_locallyInvalidCodes analyticSet_illFoundedCodes
 
 /-- The explicit completion map continuously reduces well-founded tree codes to valid Borel-tree
-codes, preserving and reflecting membership.-/
+codes, preserving and reflecting membership.
+@isnad1 id=continuo.0h0v.s6.2d098f062e0f from=translated src=- shape=93eefbde vocab=9c1917f8
+-/
 theorem continuouslyReduces_wellFoundedTrees_validCodes :
     ContinuouslyReduces Tree.wellFoundedTrees validCodes :=
   continuouslyReduces_of_continuous validityReduction continuous_validityReduction fun T => by
     simpa [Tree.wellFoundedTrees, validCodes] using (isValid_validityReduction_iff T).symm
 
 /-- The valid-code set is coanalytic-complete for Baire-space sources, with the exact reduction
-factored through the standard well-founded-tree complete set.-/
+factored through the standard well-founded-tree complete set.
+@isnad1 id=iscoanal.0h0v.s6.bae74729caeb from=translated src=- shape=25b03439 vocab=65bf89e6
+-/
 theorem validCodes_complete : IsCoanalyticCompleteForBaire validCodes := by
   refine ⟨isCoanalytic_validCodes, ?_⟩
   intro s hs

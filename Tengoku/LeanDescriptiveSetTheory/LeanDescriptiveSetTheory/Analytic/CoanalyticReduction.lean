@@ -37,7 +37,9 @@ def comparisonMap (P : CoanalyticRankPresentation A) (Q : CoanalyticRankPresenta
     (x : ℕ → ℕ) : TreeCode × TreeCode :=
   (P.treeCode x, Q.treeCode x)
 
-/-- The pointwise comparison map is continuous.-/
+/-- The pointwise comparison map is continuous.
+@isnad1 id=continuo.0h4v.s6.23ec44c98284 from=translated src=- shape=821f2972 vocab=6e60e2ad
+-/
 theorem continuous_comparisonMap (P : CoanalyticRankPresentation A)
     (Q : CoanalyticRankPresentation B) : Continuous (comparisonMap P Q) :=
   P.continuous_treeCode.prodMk Q.continuous_treeCode
@@ -53,17 +55,23 @@ def rightReduction (P : CoanalyticRankPresentation A) (Q : CoanalyticRankPresent
     Set (ℕ → ℕ) :=
   comparisonMap Q P ⁻¹' treeRankLtCoanalytic
 
-/-- The left reduced piece is coanalytic.-/
+/-- The left reduced piece is coanalytic.
+@isnad1 id=iscoanal.0h4v.s5.580bccfa0301 from=translated src=- shape=3c116961 vocab=0cf851ad
+-/
 theorem isCoanalytic_leftReduction (P : CoanalyticRankPresentation A)
     (Q : CoanalyticRankPresentation B) : IsCoanalytic (leftReduction P Q) :=
   isCoanalytic_treeRankLeCoanalytic.preimage (continuous_comparisonMap P Q)
 
-/-- The right reduced piece is coanalytic.-/
+/-- The right reduced piece is coanalytic.
+@isnad1 id=iscoanal.0h4v.s5.d7ed6b38c30d from=translated src=- shape=3c116961 vocab=ff752129
+-/
 theorem isCoanalytic_rightReduction (P : CoanalyticRankPresentation A)
     (Q : CoanalyticRankPresentation B) : IsCoanalytic (rightReduction P Q) :=
   isCoanalytic_treeRankLtCoanalytic.preimage (continuous_comparisonMap Q P)
 
-/-- Exact rank/off-domain semantics of the left reduced piece.-/
+/-- Exact rank/off-domain semantics of the left reduced piece.
+@isnad1 id=iff.0h5v.s7.a2b64b8eb045 from=translated src=- shape=809ff1a5 vocab=2795aa27
+-/
 theorem mem_leftReduction_iff (P : CoanalyticRankPresentation A)
     (Q : CoanalyticRankPresentation B) (x : ℕ → ℕ) :
     x ∈ leftReduction P Q ↔
@@ -82,7 +90,9 @@ theorem mem_leftReduction_iff (P : CoanalyticRankPresentation A)
     · exact ⟨P.wellFounded hxA, Or.inr ⟨Q.wellFounded hxB,
         by simpa [rank] using hrank⟩⟩
 
-/-- Exact rank/off-domain semantics of the right reduced piece.-/
+/-- Exact rank/off-domain semantics of the right reduced piece.
+@isnad1 id=iff.0h5v.s7.640c4fe5f113 from=translated src=- shape=140c2280 vocab=26909ca2
+-/
 theorem mem_rightReduction_iff (P : CoanalyticRankPresentation A)
     (Q : CoanalyticRankPresentation B) (x : ℕ → ℕ) :
     x ∈ rightReduction P Q ↔
@@ -101,19 +111,25 @@ theorem mem_rightReduction_iff (P : CoanalyticRankPresentation A)
     · exact ⟨Q.wellFounded hxB, Or.inr ⟨P.wellFounded hxA,
         by simpa [rank] using hrank⟩⟩
 
-/-- The left reduction is contained in the first coanalytic set.-/
+/-- The left reduction is contained in the first coanalytic set.
+@isnad1 id=le.0h4v.s4.f557c14607cd from=translated src=- shape=23368e39 vocab=3d48e0c5
+-/
 theorem leftReduction_subset (P : CoanalyticRankPresentation A)
     (Q : CoanalyticRankPresentation B) : leftReduction P Q ⊆ A := by
   intro x hx
   exact (mem_leftReduction_iff P Q x).1 hx |>.choose
 
-/-- The right reduction is contained in the second coanalytic set.-/
+/-- The right reduction is contained in the second coanalytic set.
+@isnad1 id=le.0h4v.s4.5eca95e3b687 from=translated src=- shape=2517e36a vocab=603fa6b9
+-/
 theorem rightReduction_subset (P : CoanalyticRankPresentation A)
     (Q : CoanalyticRankPresentation B) : rightReduction P Q ⊆ B := by
   intro x hx
   exact (mem_rightReduction_iff P Q x).1 hx |>.choose
 
-/-- The rank tie-breaking convention makes the two reduced pieces disjoint.-/
+/-- The rank tie-breaking convention makes the two reduced pieces disjoint.
+@isnad1 id=disjoint.0h4v.s6.602f44016211 from=translated src=- shape=4b7a4984 vocab=fddafaf0
+-/
 theorem disjoint_reductions (P : CoanalyticRankPresentation A)
     (Q : CoanalyticRankPresentation B) : Disjoint (leftReduction P Q) (rightReduction P Q) := by
   rw [Set.disjoint_iff]
@@ -126,7 +142,9 @@ theorem disjoint_reductions (P : CoanalyticRankPresentation A)
   · exact hxnotA hxA
   exact (not_lt_of_ge hle) (by simpa using hlt)
 
-/-- The reduced pieces cover exactly the original union.-/
+/-- The reduced pieces cover exactly the original union.
+@isnad1 id=eq.0h4v.s5.0b471f6db356 from=translated src=- shape=3bacc8dd vocab=cac77834
+-/
 theorem union_reductions (P : CoanalyticRankPresentation A)
     (Q : CoanalyticRankPresentation B) :
     leftReduction P Q ∪ rightReduction P Q = A ∪ B := by
@@ -151,7 +169,9 @@ theorem union_reductions (P : CoanalyticRankPresentation A)
 def rankStage (P : CoanalyticRankPresentation A) (ξ : Ordinal.{0}) : Set (ℕ → ℕ) :=
   P.treeCode ⁻¹' treeRankLT ξ
 
-/-- Exact semantics of a pulled-back rank stage.-/
+/-- Exact semantics of a pulled-back rank stage.
+@isnad1 id=iff.0h4v.s6.b6f4a925ee7c from=translated src=- shape=efb52213 vocab=09ade883
+-/
 theorem mem_rankStage_iff (P : CoanalyticRankPresentation A) (ξ : Ordinal.{0})
     (x : ℕ → ℕ) :
     x ∈ P.rankStage ξ ↔ ∃ hx : x ∈ A, P.rank x hx < ξ := by
@@ -163,7 +183,9 @@ theorem mem_rankStage_iff (P : CoanalyticRankPresentation A) (ξ : Ordinal.{0})
   · rintro ⟨hx, hrank⟩
     exact ⟨P.wellFounded hx, by simpa [rank] using hrank⟩
 
-/-- Every pulled-back stage below `ω₁` is Borel measurable.-/
+/-- Every pulled-back stage below `ω₁` is Borel measurable.
+@isnad1 id=measurab.1h3v.s6.76bd731812d9 from=translated src=- shape=57f55120 vocab=6589a76b
+-/
 theorem measurableSet_rankStage (P : CoanalyticRankPresentation A) {ξ : Ordinal.{0}}
     (hξ : ξ < ω₁) : MeasurableSet (P.rankStage ξ) := by
   letI : MeasurableSpace TreeCode := borel TreeCode
@@ -175,14 +197,18 @@ theorem measurableSet_rankStage (P : CoanalyticRankPresentation A) {ξ : Ordinal
     ⟨hanalytic.preimage P.continuous_treeCode,
       hcoanalytic.preimage P.continuous_treeCode⟩
 
-/-- Every pulled-back rank stage lies in the exact presentation domain.-/
+/-- Every pulled-back rank stage lies in the exact presentation domain.
+@isnad1 id=le.0h3v.s4.dab1eb77532c from=translated src=- shape=8bd03040 vocab=2b1d6c28
+-/
 theorem rankStage_subset (P : CoanalyticRankPresentation A) (ξ : Ordinal.{0}) :
     P.rankStage ξ ⊆ A := by
   intro x hx
   exact (P.mem_rankStage_iff ξ x).1 hx |>.choose
 
 /-- An analytic subfamily of a presented coanalytic set is contained in one Borel pulled-back
-rank stage, and an exact code for that stage is returned.-/
+rank stage, and an exact code for that stage is returned.
+@isnad1 id=ex.2h3v.s7.d63794c005ee from=translated src=- shape=7d297737 vocab=6f1b645f
+-/
 theorem exists_borelCode_envelope_of_rank (P : CoanalyticRankPresentation A)
     {S : Set (ℕ → ℕ)} (hS : MeasureTheory.AnalyticSet S) (hSA : S ⊆ A) :
     ∃ ξ : Ordinal.{0}, ξ < ω₁ ∧
@@ -201,7 +227,9 @@ theorem exists_borelCode_envelope_of_rank (P : CoanalyticRankPresentation A)
 end CoanalyticRankPresentation
 
 /-- **Coanalytic reduction theorem on Baire space.** Any two coanalytic sets have disjoint
-coanalytic subsets contained in the respective inputs and covering exactly their union.-/
+coanalytic subsets contained in the respective inputs and covering exactly their union.
+@isnad1 id=ex.2h2v.s7.02cdebc526ae from=translated src=- shape=fdf19731 vocab=f245a97d
+-/
 theorem exists_coanalytic_reduction {A B : Set (ℕ → ℕ)}
     (hA : IsCoanalytic A) (hB : IsCoanalytic B) :
     ∃ C D : Set (ℕ → ℕ), IsCoanalytic C ∧ IsCoanalytic D ∧
@@ -216,7 +244,9 @@ theorem exists_coanalytic_reduction {A B : Set (ℕ → ℕ)}
 /-- A rank-reduction proof of Borel separation for disjoint analytic Baire sets, with exact code
 evaluation. Unlike `exists_borelCode_separator_of_disjoint_analytic`, this theorem constructs the
 semantic separator from coanalytic ranks on the two complements before invoking code
-completeness.-/
+completeness.
+@isnad1 id=ex.3h2v.s7.e8f9382a1527 from=translated src=- shape=901e6501 vocab=cc7fa570
+-/
 theorem exists_borelCode_separator_of_rank {s t : Set (ℕ → ℕ)}
     (hs : MeasureTheory.AnalyticSet s) (ht : MeasureTheory.AnalyticSet t)
     (hst : Disjoint s t) :

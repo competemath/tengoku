@@ -37,7 +37,9 @@ def HasBaireMeasurableAmbientPreimages [TopologicalSpace X] (s : Set X) (f : s �
   ∀ t : Set Y, BaireMeasurableSet {x | ∃ hx : x ∈ s, f ⟨x, hx⟩ ∈ t}
 
 /-- Horizontal sections of an analytic relation are analytic under the exact Polish/Hausdorff
-hypotheses needed by analytic continuous preimages.-/
+hypotheses needed by analytic continuous preimages.
+@isnad1 id=analytic.1h4v.s5.c8c5849a42cf from=translated src=- shape=a0d37361 vocab=abaa82fb
+-/
 theorem _root_.MeasureTheory.AnalyticSet.horizontalSection
     [TopologicalSpace X] [PolishSpace X] [TopologicalSpace Y] [T2Space Y]
     {R : Set (X × Y)} (hR : MeasureTheory.AnalyticSet R) (y : Y) :
@@ -48,6 +50,9 @@ theorem _root_.MeasureTheory.AnalyticSet.horizontalSection
 def finiteLeastCell [LinearOrder Y] (R : Set (X × Y)) (y : Y) : Set X :=
   {x | (x, y) ∈ R ∧ ∀ z, (x, z) ∈ R → y ≤ z}
 
+/--
+@isnad1 id=iff.0h5v.s6.1e9b8a9b3669 from=translated src=- shape=28fe4389 vocab=0dc50231
+-/
 @[simp] theorem mem_finiteLeastCell_iff [Fintype Y] [LinearOrder Y]
     {R : Set (X × Y)} {x : X} {y : Y} :
     x ∈ finiteLeastCell R y ↔
@@ -59,7 +64,9 @@ def finiteLeastCell [LinearOrder Y] (R : Set (X × Y)) (y : Y) : Set X :=
   · rintro ⟨hx, hxy⟩
     exact (finiteLeastSelector_eq_iff R ⟨x, hx⟩ y).mp hxy
 
-/-- Every least-value cell of an analytic finite-target relation has the Baire property.-/
+/-- Every least-value cell of an analytic finite-target relation has the Baire property.
+@isnad1 id=bairemea.1h4v.s5.44778c360ee2 from=translated src=- shape=578e64a4 vocab=52a541d3
+-/
 theorem baireMeasurableSet_finiteLeastCell
     [TopologicalSpace X] [PolishSpace X] [TopologicalSpace Y] [T2Space Y]
     [Finite Y] [LinearOrder Y]
@@ -85,7 +92,9 @@ theorem baireMeasurableSet_finiteLeastCell
       simp [hyz]
   exact (hsection y).inter hAll
 
-/-- The domain of an analytic finite-target relation has the Baire property.-/
+/-- The domain of an analytic finite-target relation has the Baire property.
+@isnad1 id=bairemea.1h3v.s5.24483fe3e211 from=translated src=- shape=416f6d8e vocab=3e9098eb
+-/
 theorem baireMeasurableSet_relationDomain_of_analytic_countable
     [TopologicalSpace X] [PolishSpace X] [TopologicalSpace Y] [T2Space Y]
     [Countable Y]
@@ -99,7 +108,9 @@ theorem baireMeasurableSet_relationDomain_of_analytic_countable
   exact BaireMeasurableSet.iUnion fun y =>
     (MeasureTheory.AnalyticSet.horizontalSection hR y).baireMeasurableSet
 
-/-- Exact ambient preimage decomposition into least-value cells.-/
+/-- Exact ambient preimage decomposition into least-value cells.
+@isnad1 id=eq.0h4v.s6.55fe61444a54 from=translated src=- shape=ea229e83 vocab=8ce851d4
+-/
 theorem ambientPreimage_finiteLeastSelector [Fintype Y] [LinearOrder Y]
     (R : Set (X × Y)) (t : Set Y) :
     {x | ∃ hx : x ∈ relationDomain R, finiteLeastSelector R ⟨x, hx⟩ ∈ t} =
@@ -117,7 +128,9 @@ theorem ambientPreimage_finiteLeastSelector [Fintype Y] [LinearOrder Y]
     exact ⟨hdom, hselector.symm ▸ hyt⟩
 
 /-- The least selector of an analytic finite-target relation has Baire-measurable ambient
-preimages.-/
+preimages.
+@isnad1 id=hasbaire.1h3v.s5.3cd7935cdefa from=translated src=- shape=e46ffce2 vocab=158bfb6a
+-/
 theorem hasBaireMeasurableAmbientPreimages_finiteLeastSelector
     [TopologicalSpace X] [PolishSpace X] [TopologicalSpace Y] [T2Space Y]
     [Fintype Y] [LinearOrder Y]
@@ -129,7 +142,9 @@ theorem hasBaireMeasurableAmbientPreimages_finiteLeastSelector
     baireMeasurableSet_finiteLeastCell hR y
 
 /-- Restricted analytic uniformization: exact graph semantics and Baire regularity are proved as
-separate clauses.-/
+separate clauses.
+@isnad1 id=and.1h3v.s6.c6aa5a9b533e from=translated src=- shape=a5ff5753 vocab=e550115d
+-/
 theorem analytic_finite_uniformization
     [TopologicalSpace X] [PolishSpace X] [TopologicalSpace Y] [T2Space Y]
     [Fintype Y] [LinearOrder Y]

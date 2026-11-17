@@ -41,30 +41,42 @@ def projectiveProjection (R : Set (ProjectiveWitness × X)) : Set X :=
 def projectiveUniversal (R : Set (ProjectiveWitness × X)) : Set X :=
   {x | ∀ p, (p, x) ∈ R}
 
+/--
+@isnad1 id=iff.0h3v.s5.d878fdfd908d from=translated src=- shape=42a39882 vocab=c643c6d0
+-/
 @[simp]
 theorem mem_projectiveProjection {R : Set (ProjectiveWitness × X)} {x : X} :
     x ∈ projectiveProjection R ↔ ∃ p, (p, x) ∈ R :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h3v.s5.cdee06d95205 from=translated src=- shape=ed71916b vocab=69249662
+-/
 @[simp]
 theorem mem_projectiveUniversal {R : Set (ProjectiveWitness × X)} {x : X} :
     x ∈ projectiveUniversal R ↔ ∀ p, (p, x) ∈ R :=
   Iff.rfl
 
-/-- The existential projection is the ordinary image under the second coordinate map.-/
+/-- The existential projection is the ordinary image under the second coordinate map.
+@isnad1 id=eq.0h2v.s4.32bc6937f9c0 from=translated src=- shape=dc44e6d5 vocab=09a54646
+-/
 theorem projectiveProjection_eq_image_snd (R : Set (ProjectiveWitness × X)) :
     projectiveProjection R = Prod.snd '' R := by
   ext x
   simp [projectiveProjection, eq_comm]
 
-/-- Universal projection is the complement of the existential projection of the complement.-/
+/-- Universal projection is the complement of the existential projection of the complement.
+@isnad1 id=eq.0h2v.s4.79c173823794 from=translated src=- shape=b10eec7c vocab=47e18565
+-/
 theorem projectiveUniversal_eq_compl_projection_compl
     (R : Set (ProjectiveWitness × X)) :
     projectiveUniversal R = (projectiveProjection Rᶜ)ᶜ := by
   ext x
   simp
 
-/-- Existential projection is the complement of the universal projection of the complement.-/
+/-- Existential projection is the complement of the universal projection of the complement.
+@isnad1 id=eq.0h2v.s4.22b643759f05 from=translated src=- shape=b10eec7c vocab=47e18565
+-/
 theorem projectiveProjection_eq_compl_universal_compl
     (R : Set (ProjectiveWitness × X)) :
     projectiveProjection R = (projectiveUniversal Rᶜ)ᶜ := by
@@ -93,22 +105,33 @@ def ProjectiveDelta [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X]
     [BorelSpace X] (n : ℕ) (s : Set X) : Prop :=
   ProjectiveSigma n s ∧ ProjectivePi n s
 
+/--
+@isnad1 id=iff.0h2v.s5.b16ea1b044fd from=translated src=- shape=3369da01 vocab=7f1be08b
+-/
 theorem projectiveSigma_zero [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X]
     [BorelSpace X] {s : Set X} :
     ProjectiveSigma 0 s ↔ MeasurableSet s :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h2v.s5.c3b62cbf85b2 from=translated src=- shape=15f23bfe vocab=c9083d91
+-/
 theorem projectivePi_zero [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X]
     [BorelSpace X] {s : Set X} :
     ProjectivePi 0 s ↔ MeasurableSet s := by
   simp [ProjectivePi, ProjectiveSigma]
 
+/--
+@isnad1 id=iff.0h2v.s5.6045438f1d7d from=translated src=- shape=15f23bfe vocab=c99946db
+-/
 theorem projectiveDelta_zero [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X]
     [BorelSpace X] {s : Set X} :
     ProjectiveDelta 0 s ↔ MeasurableSet s := by
   simp [ProjectiveDelta, projectiveSigma_zero, projectivePi_zero]
 
-/-- The exact existential-projection equation for the `Σ¹` successor.-/
+/-- The exact existential-projection equation for the `Σ¹` successor.
+@isnad1 id=iff.0h3v.s6.3800c15103fb from=translated src=- shape=075e3d35 vocab=82e3efa1
+-/
 theorem projectiveSigma_succ [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X]
     [BorelSpace X] {n : ℕ} {s : Set X} :
     ProjectiveSigma (n + 1) s ↔
@@ -116,7 +139,9 @@ theorem projectiveSigma_succ [TopologicalSpace X] [PolishSpace X] [MeasurableSpa
         ProjectivePi n R ∧ projectiveProjection R = s :=
   Iff.rfl
 
-/-- The exact universal-projection equation for the `Π¹` successor.-/
+/-- The exact universal-projection equation for the `Π¹` successor.
+@isnad1 id=iff.0h3v.s6.36e585927d98 from=translated src=- shape=451307cb vocab=63409a38
+-/
 theorem projectivePi_succ [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X]
     [BorelSpace X] {n : ℕ} {s : Set X} :
     ProjectivePi (n + 1) s ↔
@@ -134,38 +159,51 @@ theorem projectivePi_succ [TopologicalSpace X] [PolishSpace X] [MeasurableSpace 
     · rw [← compl_inj_iff, compl_compl]
       rw [← huniv, projectiveUniversal_eq_compl_projection_compl]
 
-/-- Complement duality, in the direction used by the recursive `Σ¹` definition.-/
+/-- Complement duality, in the direction used by the recursive `Σ¹` definition.
+@isnad1 id=iff.0h3v.s5.d2721597df2f from=translated src=- shape=c18ea3a2 vocab=4f02c004
+-/
 theorem projectiveSigma_compl_iff_pi [TopologicalSpace X] [PolishSpace X]
     [MeasurableSpace X] [BorelSpace X] {n : ℕ} {s : Set X} :
     ProjectiveSigma n sᶜ ↔ ProjectivePi n s :=
   Iff.rfl
 
-/-- Complement duality in the opposite direction.-/
+/-- Complement duality in the opposite direction.
+@isnad1 id=iff.0h3v.s5.8d511b89c9d2 from=translated src=- shape=f921be37 vocab=4f02c004
+-/
 theorem projectivePi_compl_iff_sigma [TopologicalSpace X] [PolishSpace X]
     [MeasurableSpace X] [BorelSpace X] {n : ℕ} {s : Set X} :
     ProjectivePi n sᶜ ↔ ProjectiveSigma n s := by
   simp [ProjectivePi]
 
+/--
+@isnad1 id=iff.0h3v.s5.4bf153a34854 from=translated src=- shape=1fe0c5b4 vocab=b39fc730
+-/
 theorem projectiveDelta_iff [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X]
     [BorelSpace X] {n : ℕ} {s : Set X} :
     ProjectiveDelta n s ↔ ProjectiveSigma n s ∧ ProjectivePi n s :=
   Iff.rfl
 
-/-- Projective membership depends only on the underlying set.-/
+/-- Projective membership depends only on the underlying set.
+@isnad1 id=iff.1h4v.s5.078ab398e38d from=translated src=- shape=21d15b49 vocab=cf019b4b
+-/
 theorem projectiveSigma_congr [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X]
     [BorelSpace X] {n : ℕ} {s t : Set X} (h : s = t) :
     ProjectiveSigma n s ↔ ProjectiveSigma n t := by
   subst t
   rfl
 
-/-- Extensional congruence for the complementary projective polarity.-/
+/-- Extensional congruence for the complementary projective polarity.
+@isnad1 id=iff.1h4v.s5.a20be7343c5b from=translated src=- shape=0f8135dc vocab=28b9fdc0
+-/
 theorem projectivePi_congr [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X]
     [BorelSpace X] {n : ℕ} {s t : Set X} (h : s = t) :
     ProjectivePi n s ↔ ProjectivePi n t := by
   subst t
   rfl
 
-/-- Extensional congruence for `ProjectiveDelta`.-/
+/-- Extensional congruence for `ProjectiveDelta`.
+@isnad1 id=iff.1h4v.s5.4d8b84eb429e from=translated src=- shape=0f8135dc vocab=3bd0a198
+-/
 theorem projectiveDelta_congr [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X]
     [BorelSpace X] {n : ℕ} {s t : Set X} (h : s = t) :
     ProjectiveDelta n s ↔ ProjectiveDelta n t := by

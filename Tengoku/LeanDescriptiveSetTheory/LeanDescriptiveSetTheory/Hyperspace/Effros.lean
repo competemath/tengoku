@@ -29,6 +29,9 @@ variable {X : Type u} {Y : Type v} [TopologicalSpace X]
 def closedHit (U : Set X) : Set (Closeds X) :=
   {F | ((F : Set X) ∩ U).Nonempty}
 
+/--
+@isnad1 id=iff.0h3v.s5.231b0196848d from=translated src=- shape=db97629b vocab=e0978ebe
+-/
 @[simp] theorem mem_closedHit {F : Closeds X} {U : Set X} :
     F ∈ closedHit U ↔ ((F : Set X) ∩ U).Nonempty :=
   Iff.rfl
@@ -42,13 +45,17 @@ def effrosGenerators (X : Type u) [TopologicalSpace X] : Set (Set (Closeds X)) :
     (X : Type u) [TopologicalSpace X] : MeasurableSpace (Closeds X) :=
   generateFrom (effrosGenerators X)
 
-/-- Every open-hit generator is Effros measurable.-/
+/-- Every open-hit generator is Effros measurable.
+@isnad1 id=measurab.1h2v.s4.d35dff939fd1 from=translated src=- shape=0e55d25a vocab=b0c674d2
+-/
 theorem measurableSet_closedHit {U : Set X} (hU : IsOpen U) :
     @MeasurableSet (Closeds X) (effrosMeasurableSpace X) (closedHit U) :=
   measurableSet_generateFrom ⟨U, hU, rfl⟩
 
 /-- A measurable space contains the Effros measurable structure exactly when all open-hit sets are
-measurable in it.-/
+measurable in it.
+@isnad1 id=iff.0h2v.s5.cc93b925f5cd from=translated src=- shape=edb2799c vocab=4d1afd3e
+-/
 theorem effrosMeasurableSpace_le_iff (m : MeasurableSpace (Closeds X)) :
     effrosMeasurableSpace X ≤ m ↔
       ∀ U : Set X, IsOpen U → @MeasurableSet (Closeds X) m (closedHit U) := by
@@ -61,7 +68,9 @@ theorem effrosMeasurableSpace_le_iff (m : MeasurableSpace (Closeds X)) :
     exact h U hU
 
 /-- A map into closed sets is Effros measurable exactly when every open-hit preimage is
-measurable.-/
+measurable.
+@isnad1 id=iff.0h3v.s5.64b71e05de7d from=translated src=- shape=84150edd vocab=84cf90ad
+-/
 theorem measurable_effros_iff [mY : MeasurableSpace Y] (f : Y → Closeds X) :
     @Measurable Y (Closeds X) mY (effrosMeasurableSpace X) f ↔
       ∀ U : Set X, IsOpen U → MeasurableSet (f ⁻¹' closedHit U) := by
@@ -77,7 +86,9 @@ theorem measurable_effros_iff [mY : MeasurableSpace Y] (f : Y → Closeds X) :
 @[reducible] def basisEffrosMeasurableSpace (b : ℕ → Set X) : MeasurableSpace (Closeds X) :=
   generateFrom (range fun n => closedHit (b n))
 
-/-- A countable topological basis generates the full Effros measurable structure.-/
+/-- A countable topological basis generates the full Effros measurable structure.
+@isnad1 id=eq.1h2v.s4.bfc825de0941 from=translated src=- shape=7dbc7483 vocab=b6752c63
+-/
 theorem basisEffrosMeasurableSpace_eq (b : ℕ → Set X)
     (hb : IsTopologicalBasis (range b)) :
     basisEffrosMeasurableSpace b = effrosMeasurableSpace X := by
@@ -124,7 +135,9 @@ theorem basisEffrosMeasurableSpace_eq (b : ℕ → Set X)
     rw [hEq]
     exact MeasurableSet.iUnion hH
 
-/-- The canonical map from compact sets to closed sets is Borel-to-Effros measurable.-/
+/-- The canonical map from compact sets to closed sets is Borel-to-Effros measurable.
+@isnad1 id=measurab.0h1v.s4.720253a415b0 from=translated src=- shape=cbac796f vocab=f816b4cf
+-/
 theorem measurable_compactsToCloseds [T2Space X] :
     @Measurable (Compacts X) (Closeds X) compactsBorelMeasurableSpace
       (effrosMeasurableSpace X) Compacts.toCloseds := by
@@ -139,12 +152,17 @@ theorem measurable_compactsToCloseds [T2Space X] :
 def closedMembership : Set (Closeds X × X) :=
   {p | p.2 ∈ p.1}
 
+/--
+@isnad1 id=iff.0h3v.s5.b048481643fc from=translated src=- shape=aa426adb vocab=a1b0bb9b
+-/
 @[simp] theorem mem_closedMembership {F : Closeds X} {x : X} :
     (F, x) ∈ closedMembership ↔ x ∈ F :=
   Iff.rfl
 
 /-- Relative to a displayed countable basis, closed-set membership is measurable for the product
-of the Effros structure and any measurable structure containing the open sets of `X`.-/
+of the Effros structure and any measurable structure containing the open sets of `X`.
+@isnad1 id=measurab.1h2v.s5.a1a59c8be977 from=translated src=- shape=b71434f4 vocab=3b2d2314
+-/
 theorem measurableSet_closedMembership_of_basis [mX : MeasurableSpace X]
     [OpensMeasurableSpace X] (b : ℕ → Set X) (hb : IsTopologicalBasis (range b)) :
     @MeasurableSet (Closeds X × X) ((effrosMeasurableSpace X).prod mX)
@@ -186,7 +204,9 @@ theorem measurableSet_closedMembership_of_basis [mX : MeasurableSpace X]
   exact MeasurableSet.iInter hA
 
 /-- Closed-set membership is measurable for every second-countable base space whose open sets are
-measurable.-/
+measurable.
+@isnad1 id=measurab.0h1v.s5.a5aef2aa2049 from=translated src=- shape=79bc74c4 vocab=47d2753e
+-/
 theorem measurableSet_closedMembership [mX : MeasurableSpace X]
     [OpensMeasurableSpace X] [SecondCountableTopology X] :
     @MeasurableSet (Closeds X × X) ((effrosMeasurableSpace X).prod mX)
@@ -198,12 +218,17 @@ theorem measurableSet_closedMembership [mX : MeasurableSpace X]
 def pointClosedMembership : Set (X × Closeds X) :=
   {p | p.1 ∈ p.2}
 
+/--
+@isnad1 id=iff.0h3v.s5.72e7cfbaac1e from=translated src=- shape=62fa731b vocab=44788d71
+-/
 @[simp] theorem mem_pointClosedMembership {F : Closeds X} {x : X} :
     (x, F) ∈ pointClosedMembership ↔ x ∈ F :=
   Iff.rfl
 
 /-- The coordinate-swapped membership relation is measurable in the correspondingly swapped
-product measurable space.-/
+product measurable space.
+@isnad1 id=measurab.0h1v.s5.72c25789fc82 from=translated src=- shape=c213e2fa vocab=ca716b19
+-/
 theorem measurableSet_pointClosedMembership [mX : MeasurableSpace X]
     [OpensMeasurableSpace X] [SecondCountableTopology X] :
     @MeasurableSet (X × Closeds X) (mX.prod (effrosMeasurableSpace X))
@@ -212,7 +237,9 @@ theorem measurableSet_pointClosedMembership [mX : MeasurableSpace X]
   change MeasurableSet (Prod.swap ⁻¹' closedMembership)
   exact measurable_swap measurableSet_closedMembership
 
-/-- The singleton closed-set map is Borel-to-Effros measurable.-/
+/-- The singleton closed-set map is Borel-to-Effros measurable.
+@isnad1 id=measurab.0h1v.s5.8abb8656ffc3 from=translated src=- shape=713a3d03 vocab=bd8916dd
+-/
 theorem measurable_singletonCloseds [T1Space X] :
     @Measurable X (Closeds X) (borel X) (effrosMeasurableSpace X)
       ({·} : X → Closeds X) := by
@@ -225,7 +252,9 @@ theorem measurable_singletonCloseds [T1Space X] :
   rw [hpre]
   exact measurableSet_generateFrom hU
 
-/-- The constant empty closed-set map is Effros measurable.-/
+/-- The constant empty closed-set map is Effros measurable.
+@isnad1 id=measurab.0h2v.s6.6d385787452a from=translated src=- shape=ed45e9d5 vocab=779505d1
+-/
 theorem measurable_const_emptyCloseds [MeasurableSpace Y] :
     @Measurable Y (Closeds X) inferInstance (effrosMeasurableSpace X)
       (fun _ => (⊥ : Closeds X)) := by

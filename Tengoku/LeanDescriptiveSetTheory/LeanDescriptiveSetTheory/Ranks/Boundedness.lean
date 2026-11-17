@@ -47,7 +47,9 @@ noncomputable def wellFoundedTreeRank : CoanalyticRank TreeCode wellFoundedTrees
       rank_bounded_of_analytic_subset_wellFounded hB hBWF
     exact ⟨ξ, hξ, fun T hT => hbound T hT (hBWF hT)⟩
 
-/-- The generic realized stage for the tree rank is exactly the recursive strict rank stage.-/
+/-- The generic realized stage for the tree rank is exactly the recursive strict rank stage.
+@isnad1 id=eq.1h1v.s6.a0481246fb3b from=translated src=- shape=3538f82b vocab=19a6bcae
+-/
 theorem wellFoundedTreeRank_stageAt (T : TreeCode) (hT : T ∈ wellFoundedTrees) :
     wellFoundedTreeRank.stageAt T hT = treeRankLT (Tree.rank (decodeTree T) hT) := by
   rw [wellFoundedTreeRank.stageAt_eq_ltAnalytic_section]
@@ -78,7 +80,9 @@ noncomputable def toCoanalyticRank : CoanalyticRank (ℕ → ℕ) A where
   rank_lt_omega_one := P.rank_lt_omega_one
   boundedOn_analytic := fun hB hBA => P.bounded_of_analytic hB hBA
 
-/-- The abstract rank value agrees exactly with the v1.20 presentation value.-/
+/-- The abstract rank value agrees exactly with the v1.20 presentation value.
+@isnad1 id=eq.1h3v.s5.5b2997874ee8 from=translated src=- shape=ea164260 vocab=590dbadf
+-/
 @[simp] theorem toCoanalyticRank_rank (x : ℕ → ℕ) (hx : x ∈ A) :
     P.toCoanalyticRank.rank x hx = P.rank x hx := rfl
 

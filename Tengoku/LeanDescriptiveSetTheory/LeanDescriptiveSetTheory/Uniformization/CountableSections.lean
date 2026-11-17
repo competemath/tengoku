@@ -58,6 +58,9 @@ noncomputable def pointwiseSectionEnumeration (R : Set (X × Y))
   Option.map Subtype.val
     (@Encodable.decode (verticalSection R x) (hR x).toEncodable n)
 
+/--
+@isnad1 id=ispointw.1h3v.s4.1c7f49f57fee from=translated src=- shape=8bb87a90 vocab=6a6d97d2
+-/
 theorem pointwiseSectionEnumeration_spec (R : Set (X × Y))
     (hR : HasCountableVerticalSections R) :
     IsPointwiseSectionEnumeration R (pointwiseSectionEnumeration R hR) := by
@@ -76,6 +79,9 @@ theorem pointwiseSectionEnumeration_spec (R : Set (X × Y))
         simp only [Option.map_some, Option.some.injEq] at hn
         exact hn ▸ y'.property
 
+/--
+@isnad1 id=hascount.1h4v.s4.ab5890c37190 from=translated src=- shape=2a98e302 vocab=4f47fe79
+-/
 theorem IsPointwiseSectionEnumeration.hasCountableVerticalSections
     {R : Set (X × Y)} {e : X → ℕ → Option Y}
     (he : IsPointwiseSectionEnumeration R e) : HasCountableVerticalSections R := by
@@ -88,7 +94,9 @@ theorem IsPointwiseSectionEnumeration.hasCountableVerticalSections
     Option.some.inj (hy.symm.trans hz)
 
 /-- Pointwise enumerability is exactly section countability.  The forward construction is
-noncomputable and has no measurable consequence.-/
+noncomputable and has no measurable consequence.
+@isnad1 id=iff.0h3v.s4.0f16514be12a from=translated src=- shape=b391ac91 vocab=17d3d8d4
+-/
 theorem hasCountableVerticalSections_iff_hasPointwiseSectionEnumeration
     (R : Set (X × Y)) :
     HasCountableVerticalSections R ↔ HasPointwiseSectionEnumeration R := by
@@ -102,12 +110,17 @@ theorem hasCountableVerticalSections_iff_hasPointwiseSectionEnumeration
 def sectionCandidateGraph (e : X → ℕ → Option Y) (n : ℕ) : Set (X × Y) :=
   {p | e p.1 n = some p.2}
 
+/--
+@isnad1 id=iff.0h6v.s5.79c87e8f964e from=translated src=- shape=fee32842 vocab=75f8b69e
+-/
 @[simp] theorem mem_sectionCandidateGraph {e : X → ℕ → Option Y} {n : ℕ}
     {x : X} {y : Y} :
     (x, y) ∈ sectionCandidateGraph e n ↔ e x n = some y :=
   Iff.rfl
 
-/-- Every candidate graph is single-valued, independently of any regularity of the enumeration.-/
+/-- Every candidate graph is single-valued, independently of any regularity of the enumeration.
+@isnad1 id=relation.0h4v.s4.01792e29001e from=translated src=- shape=8b2cc90c vocab=8db6eaf6
+-/
 theorem relationSingleValued_sectionCandidateGraph (e : X → ℕ → Option Y) (n : ℕ) :
     RelationSingleValued (sectionCandidateGraph e n) := by
   intro x y z hy hz
@@ -117,11 +130,17 @@ theorem relationSingleValued_sectionCandidateGraph (e : X → ℕ → Option Y) 
 def sectionEnumerationRelation (e : X → ℕ → Option Y) : Set (X × Y) :=
   ⋃ n, sectionCandidateGraph e n
 
+/--
+@isnad1 id=iff.0h5v.s5.48b62e2261dc from=translated src=- shape=15aa4dc4 vocab=8c4ebfe3
+-/
 @[simp] theorem mem_sectionEnumerationRelation {e : X → ℕ → Option Y}
     {x : X} {y : Y} :
     (x, y) ∈ sectionEnumerationRelation e ↔ ∃ n, e x n = some y := by
   simp [sectionEnumerationRelation]
 
+/--
+@isnad1 id=eq.1h4v.s5.0bd05517c0dd from=translated src=- shape=26fb44dd vocab=46dcb255
+-/
 theorem IsPointwiseSectionEnumeration.sectionEnumerationRelation_eq
     {R : Set (X × Y)} {e : X → ℕ → Option Y}
     (he : IsPointwiseSectionEnumeration R e) :
@@ -142,7 +161,9 @@ private theorem partialGraph_choiceSelector_eq_of_relationSingleValued
   exact ⟨hx, hG hchosen hxy⟩
 
 /-- Each candidate graph is exactly a partial graph on its native relation domain.  The displayed
-selector is still a choice selector and has no asserted regularity.-/
+selector is still a choice selector and has no asserted regularity.
+@isnad1 id=eq.0h4v.s5.db877884d23a from=translated src=- shape=c7088287 vocab=6b9f6cec
+-/
 theorem sectionCandidateGraph_eq_partialGraph_choiceSelector
     (e : X → ℕ → Option Y) (n : ℕ) :
     sectionCandidateGraph e n =
@@ -157,18 +178,26 @@ smaller index.  Different values over the same source point are retained.-/
 def firstSectionCandidateGraph (e : X → ℕ → Option Y) (n : ℕ) : Set (X × Y) :=
   firstGraphDomain (sectionCandidateGraph e) n
 
+/--
+@isnad1 id=iff.0h6v.s6.74b75313af70 from=translated src=- shape=b89ebbac vocab=caee8b05
+-/
 @[simp] theorem mem_firstSectionCandidateGraph {e : X → ℕ → Option Y} {n : ℕ}
     {x : X} {y : Y} :
     (x, y) ∈ firstSectionCandidateGraph e n ↔
       e x n = some y ∧ ∀ m < n, e x m ≠ some y :=
   Iff.rfl
 
-/-- Distinct first-occurrence graphs are disjoint as sets of ordered pairs.-/
+/-- Distinct first-occurrence graphs are disjoint as sets of ordered pairs.
+@isnad1 id=disjoint.1h5v.s6.f82fc7129fd3 from=translated src=- shape=aeaf9d7e vocab=e54d076e
+-/
 theorem disjoint_firstSectionCandidateGraph (e : X → ℕ → Option Y)
     {m n : ℕ} (hmn : m ≠ n) :
     Disjoint (firstSectionCandidateGraph e m) (firstSectionCandidateGraph e n) :=
   disjoint_firstGraphDomain (sectionCandidateGraph e) hmn
 
+/--
+@isnad1 id=relation.0h4v.s4.8b139cde1537 from=translated src=- shape=8b2cc90c vocab=7870f2bc
+-/
 theorem relationSingleValued_firstSectionCandidateGraph
     (e : X → ℕ → Option Y) (n : ℕ) :
     RelationSingleValued (firstSectionCandidateGraph e n) := by
@@ -176,7 +205,9 @@ theorem relationSingleValued_firstSectionCandidateGraph
   exact relationSingleValued_sectionCandidateGraph e n hy.1 hz.1
 
 /-- Each first-occurrence graph is also exactly a partial graph.  Again, this set-theoretic choice
-representation has no measurable conclusion.-/
+representation has no measurable conclusion.
+@isnad1 id=eq.0h4v.s5.04a6d96a1d0b from=translated src=- shape=c7088287 vocab=4f4eca76
+-/
 theorem firstSectionCandidateGraph_eq_partialGraph_choiceSelector
     (e : X → ℕ → Option Y) (n : ℕ) :
     firstSectionCandidateGraph e n =
@@ -200,6 +231,9 @@ def IsMeasurableSectionEnumeration
     (R : Set (X × Y)) (e : X → ℕ → Option Y) : Prop :=
   IsPointwiseSectionEnumeration R e ∧ HasMeasurableSectionCandidateGraphs e
 
+/--
+@isnad1 id=measurab.1h4v.s5.81185758cea3 from=translated src=- shape=d84a4867 vocab=6da7b47c
+-/
 theorem measurableSet_firstSectionCandidateGraph
     [MeasurableSpace X] [MeasurableSpace Y]
     {e : X → ℕ → Option Y} (he : HasMeasurableSectionCandidateGraphs e) (n : ℕ) :
@@ -207,7 +241,9 @@ theorem measurableSet_firstSectionCandidateGraph
   measurableSet_firstGraphDomain he n
 
 /-- Under standard-Borel hypotheses, the explicitly assumed measurable first-occurrence graphs
-have exact codes.  This is conditional infrastructure, not Lusin--Novikov existence.-/
+have exact codes.  This is conditional infrastructure, not Lusin--Novikov existence.
+@isnad1 id=ex.1h4v.s6.ea7c8bf808f2 from=translated src=- shape=c7f163b2 vocab=2a83002f
+-/
 theorem exists_standardBorelCode_firstSectionCandidateGraph
     [MeasurableSpace X] [StandardBorelSpace X]
     [MeasurableSpace Y] [StandardBorelSpace Y]

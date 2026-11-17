@@ -48,7 +48,9 @@ def NodeKind.ofCode? : ℕ → Option NodeKind
   | 3 => some .iUnion
   | _ => none
 
-/-- Encoding and then decoding a recognized node kind is exact.-/
+/-- Encoding and then decoding a recognized node kind is exact.
+@isnad1 id=eq.0h1v.s3.7d507d5be13a from=translated src=- shape=edb93955 vocab=ad565f41
+-/
 @[simp]
 theorem NodeKind.ofCode?_code (kind : NodeKind) : NodeKind.ofCode? kind.code = some kind := by
   cases kind <;> rfl
@@ -75,37 +77,53 @@ def Raw.payloadAt (c : Raw) (s : List ℕ) : ℕ := (c.labels s).2
 def Raw.kindAt? (c : Raw) (s : List ℕ) : Option NodeKind :=
   NodeKind.ofCode? (c.kindCodeAt s)
 
-/-- Membership in the decoded tree is the corresponding Boolean coordinate.-/
+/-- Membership in the decoded tree is the corresponding Boolean coordinate.
+@isnad1 id=iff.0h2v.s7.2c4cf48f9594 from=translated src=- shape=743c6be7 vocab=175bd0c7
+-/
 @[simp]
 theorem Raw.mem_tree {c : Raw} {s : List ℕ} :
     s ∈ c.tree ↔ c.treeCode.1 s = true :=
   Iff.rfl
 
-/-- The tree projection is continuous.-/
+/-- The tree projection is continuous.
+@isnad1 id=continuo.0h0v.s6.89f1c41d3c4e from=translated src=- shape=2f7d255e vocab=6ac9fe06
+-/
 theorem continuous_treeCode : Continuous (fun c : Raw => c.treeCode) :=
   continuous_fst
 
-/-- The label-function projection is continuous.-/
+/-- The label-function projection is continuous.
+@isnad1 id=continuo.0h0v.s6.6a34b2054b84 from=translated src=- shape=8e8010ee vocab=2cdac924
+-/
 theorem continuous_labels : Continuous (fun c : Raw => c.labels) :=
   continuous_snd
 
-/-- Reading the full label at a fixed node is continuous.-/
+/-- Reading the full label at a fixed node is continuous.
+@isnad1 id=continuo.0h1v.s6.23fad30b684d from=translated src=- shape=a8c85864 vocab=2cdac924
+-/
 theorem continuous_labelAt (s : List ℕ) : Continuous (fun c : Raw => c.labels s) :=
   (continuous_apply s).comp continuous_labels
 
-/-- Reading the kind tag at a fixed node is continuous.-/
+/-- Reading the kind tag at a fixed node is continuous.
+@isnad1 id=continuo.0h1v.s6.0beb0e42f9a1 from=translated src=- shape=82183751 vocab=c526dc49
+-/
 theorem continuous_kindCodeAt (s : List ℕ) : Continuous (fun c : Raw => c.kindCodeAt s) :=
   continuous_fst.comp (continuous_labelAt s)
 
-/-- Reading the payload at a fixed node is continuous.-/
+/-- Reading the payload at a fixed node is continuous.
+@isnad1 id=continuo.0h1v.s6.aa7fab7d3399 from=translated src=- shape=82183751 vocab=e1b7b7bd
+-/
 theorem continuous_payloadAt (s : List ℕ) : Continuous (fun c : Raw => c.payloadAt s) :=
   continuous_snd.comp (continuous_labelAt s)
 
-/-- The tree projection is measurable for the inherited Borel structures.-/
+/-- The tree projection is measurable for the inherited Borel structures.
+@isnad1 id=measurab.0h0v.s6.c4b1539b3de8 from=translated src=- shape=2f7d255e vocab=437ab32f
+-/
 theorem measurable_treeCode : Measurable (fun c : Raw => c.treeCode) :=
   continuous_treeCode.measurable
 
-/-- Every fixed label coordinate is measurable.-/
+/-- Every fixed label coordinate is measurable.
+@isnad1 id=measurab.0h1v.s6.b903b9e6abd7 from=translated src=- shape=a8c85864 vocab=79097770
+-/
 theorem measurable_labelAt (s : List ℕ) : Measurable (fun c : Raw => c.labels s) :=
   (continuous_labelAt s).measurable
 

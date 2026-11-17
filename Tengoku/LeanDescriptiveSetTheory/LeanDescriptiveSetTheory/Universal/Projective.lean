@@ -111,13 +111,17 @@ def baireUniversalProjectiveSigma : ℕ → Set (ProjectiveWitness × Projective
 def baireUniversalProjectivePi (n : ℕ) : Set (ProjectiveWitness × ProjectiveWitness) :=
   (baireUniversalProjectiveSigma n)ᶜ
 
-/-- The projective level-one Sigma universal is the released universal analytic relation.-/
+/-- The projective level-one Sigma universal is the released universal analytic relation.
+@isnad1 id=eq.0h0v.s3.f3e2c553165f from=translated src=- shape=404dec73 vocab=3130f3c3
+-/
 @[simp]
 theorem baireUniversalProjectiveSigma_one :
     baireUniversalProjectiveSigma 1 = baireUniversalAnalytic :=
   rfl
 
-/-- The projective level-one Pi universal is the released universal coanalytic relation.-/
+/-- The projective level-one Pi universal is the released universal coanalytic relation.
+@isnad1 id=eq.0h0v.s3.1b9fd5582051 from=translated src=- shape=404dec73 vocab=00bc5571
+-/
 @[simp]
 theorem baireUniversalProjectivePi_one :
     baireUniversalProjectivePi 1 = baireUniversalCoanalytic :=
@@ -156,49 +160,65 @@ private theorem baireUniversalProjective_mutual (n : ℕ) :
       · simpa [baireUniversalProjectivePi] using hNextSigma.compl
       · exact isUniversalFor_projectivePi_compl hNextUniversalSigma
 
-/-- The total universal Sigma relation has the advertised positive finite projective complexity.-/
+/-- The total universal Sigma relation has the advertised positive finite projective complexity.
+@isnad1 id=projecti.0h1v.s6.ed02569b2cdb from=translated src=- shape=2dea0517 vocab=718ecd0c
+-/
 theorem projectiveSigma_baireUniversalProjectiveSigma (n : ℕ) :
     ProjectiveSigma (n + 1) (baireUniversalProjectiveSigma (n + 1)) :=
   (baireUniversalProjective_mutual n).1.1
 
-/-- The total universal Pi relation has the advertised positive finite projective complexity.-/
+/-- The total universal Pi relation has the advertised positive finite projective complexity.
+@isnad1 id=projecti.0h1v.s6.cec74b3a05dd from=translated src=- shape=75d2fbe7 vocab=f303e7e8
+-/
 theorem projectivePi_baireUniversalProjectivePi (n : ℕ) :
     ProjectivePi (n + 1) (baireUniversalProjectivePi (n + 1)) :=
   (baireUniversalProjective_mutual n).2.1
 
-/-- Every positive finite projective Sigma class has an exact Baire-parameter universal relation.-/
+/-- Every positive finite projective Sigma class has an exact Baire-parameter universal relation.
+@isnad1 id=isuniver.0h1v.s5.62a12e057895 from=translated src=- shape=7a57e697 vocab=2013b6fb
+-/
 theorem isUniversalFor_baireUniversalProjectiveSigma (n : ℕ) :
     IsUniversalFor (ProjectiveSigma (n + 1))
       (baireUniversalProjectiveSigma (n + 1)) :=
   (baireUniversalProjective_mutual n).1.2
 
-/-- Every positive finite projective Pi class has an exact Baire-parameter universal relation.-/
+/-- Every positive finite projective Pi class has an exact Baire-parameter universal relation.
+@isnad1 id=isuniver.0h1v.s5.144b3ae68586 from=translated src=- shape=840c9cb0 vocab=f08b1ce8
+-/
 theorem isUniversalFor_baireUniversalProjectivePi (n : ℕ) :
     IsUniversalFor (ProjectivePi (n + 1))
       (baireUniversalProjectivePi (n + 1)) :=
   (baireUniversalProjective_mutual n).2.2
 
-/-- Every section of the positive-level Sigma universal has the same projective complexity.-/
+/-- Every section of the positive-level Sigma universal has the same projective complexity.
+@isnad1 id=projecti.0h2v.s5.65997f52f256 from=translated src=- shape=6ad045dd vocab=754aef53
+-/
 theorem projectiveSigma_verticalSection_baireUniversalProjectiveSigma
     (n : ℕ) (p : ProjectiveWitness) :
     ProjectiveSigma (n + 1)
       (verticalSection (baireUniversalProjectiveSigma (n + 1)) p) :=
   (projectiveSigma_baireUniversalProjectiveSigma n).verticalSection p
 
-/-- Every section of the positive-level Pi universal has the same projective complexity.-/
+/-- Every section of the positive-level Pi universal has the same projective complexity.
+@isnad1 id=projecti.0h2v.s5.4984cc1aeb28 from=translated src=- shape=09f2905b vocab=2c960dba
+-/
 theorem projectivePi_verticalSection_baireUniversalProjectivePi
     (n : ℕ) (p : ProjectiveWitness) :
     ProjectivePi (n + 1)
       (verticalSection (baireUniversalProjectivePi (n + 1)) p) :=
   (projectivePi_baireUniversalProjectivePi n).verticalSection p
 
-/-- Every Sigma set at a positive finite level occurs as an exact universal section.-/
+/-- Every Sigma set at a positive finite level occurs as an exact universal section.
+@isnad1 id=ex.1h2v.s6.55bbf4a16bdf from=translated src=- shape=d4282610 vocab=5c96b74b
+-/
 theorem exists_verticalSection_baireUniversalProjectiveSigma
     (n : ℕ) {s : Set ProjectiveWitness} (hs : ProjectiveSigma (n + 1) s) :
     ∃ p, verticalSection (baireUniversalProjectiveSigma (n + 1)) p = s :=
   (isUniversalFor_baireUniversalProjectiveSigma n s).mp hs
 
-/-- Every Pi set at a positive finite level occurs as an exact universal section.-/
+/-- Every Pi set at a positive finite level occurs as an exact universal section.
+@isnad1 id=ex.1h2v.s6.40130fdea0bb from=translated src=- shape=c344a966 vocab=45b32cc4
+-/
 theorem exists_verticalSection_baireUniversalProjectivePi
     (n : ℕ) {s : Set ProjectiveWitness} (hs : ProjectivePi (n + 1) s) :
     ∃ p, verticalSection (baireUniversalProjectivePi (n + 1)) p = s :=

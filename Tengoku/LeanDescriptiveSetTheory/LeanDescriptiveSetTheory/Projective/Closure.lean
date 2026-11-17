@@ -87,7 +87,9 @@ private theorem projectiveProjection_projectiveTagged {X : Type u} (s : ℕ → 
     rcases Set.mem_iUnion.mp hx with ⟨i, hi⟩
     exact ⟨fun _ => i, hi⟩
 
-/-- Every finite projective Sigma level is closed under countable unions.-/
+/-- Every finite projective Sigma level is closed under countable unions.
+@isnad1 id=projecti.1h3v.s5.7102d99277a4 from=translated src=- shape=3cddae02 vocab=145e8929
+-/
 theorem ProjectiveSigma.iUnion {X : Type u}
     [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X] [BorelSpace X]
     {n : ℕ} {s : ℕ → Set X} (hs : ∀ i, ProjectiveSigma n (s i)) :
@@ -98,7 +100,9 @@ theorem ProjectiveSigma.iUnion {X : Type u}
       rw [← projectiveProjection_projectiveTagged]
       exact (projectiveSigma_tagged hs).projectiveProjection
 
-/-- Every finite projective Pi level is closed under countable intersections.-/
+/-- Every finite projective Pi level is closed under countable intersections.
+@isnad1 id=projecti.1h3v.s5.843552f41e06 from=translated src=- shape=1b2a5bc5 vocab=af73c82c
+-/
 theorem ProjectivePi.iInter {X : Type u}
     [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X] [BorelSpace X]
     {n : ℕ} {s : ℕ → Set X} (hs : ∀ i, ProjectivePi n (s i)) :
@@ -107,7 +111,9 @@ theorem ProjectivePi.iInter {X : Type u}
   simpa only [compl_iInter] using
     (ProjectiveSigma.iUnion fun i => (show ProjectiveSigma n (s i)ᶜ from hs i))
 
-/-- Projective Sigma levels are closed under binary unions.-/
+/-- Projective Sigma levels are closed under binary unions.
+@isnad1 id=projecti.2h4v.s5.b4bbf43cacbf from=translated src=- shape=00e288e1 vocab=fa941ae8
+-/
 theorem ProjectiveSigma.union {X : Type u}
     [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X] [BorelSpace X]
     {n : ℕ} {s t : Set X} (hs : ProjectiveSigma n s) (ht : ProjectiveSigma n t) :
@@ -132,7 +138,9 @@ theorem ProjectiveSigma.union {X : Type u}
   rw [← heq]
   exact ProjectiveSigma.iUnion hf
 
-/-- Projective Pi levels are closed under binary intersections.-/
+/-- Projective Pi levels are closed under binary intersections.
+@isnad1 id=projecti.2h4v.s5.780c67f2ec05 from=translated src=- shape=5d862f59 vocab=2835f834
+-/
 theorem ProjectivePi.inter {X : Type u}
     [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X] [BorelSpace X]
     {n : ℕ} {s t : Set X} (hs : ProjectivePi n s) (ht : ProjectivePi n t) :
@@ -170,7 +178,9 @@ private theorem projectiveProjection_packedInter {X : Type u}
     refine ⟨packBairePair (p, q), ?_⟩
     simpa [leftPackedWitnessMap, rightPackedWitnessMap] using And.intro hp hq
 
-/-- Projective Sigma levels are closed under binary intersections.-/
+/-- Projective Sigma levels are closed under binary intersections.
+@isnad1 id=projecti.2h4v.s5.9e31f5c5ecf1 from=translated src=- shape=00e288e1 vocab=5a7fbee2
+-/
 theorem ProjectiveSigma.inter {X : Type u}
     [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X] [BorelSpace X]
     {n : ℕ} {s t : Set X} (hs : ProjectiveSigma n s) (ht : ProjectiveSigma n t) :
@@ -186,7 +196,9 @@ theorem ProjectiveSigma.inter {X : Type u}
             (hS.preimage continuous_rightPackedWitnessMap), ?_⟩
       rw [projectiveProjection_packedInter, hprojR, hprojS]
 
-/-- Projective Pi levels are closed under binary unions.-/
+/-- Projective Pi levels are closed under binary unions.
+@isnad1 id=projecti.2h4v.s5.922b63156db9 from=translated src=- shape=5d862f59 vocab=9d4a6b30
+-/
 theorem ProjectivePi.union {X : Type u}
     [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X] [BorelSpace X]
     {n : ℕ} {s t : Set X} (hs : ProjectivePi n s) (ht : ProjectivePi n t) :
@@ -195,14 +207,18 @@ theorem ProjectivePi.union {X : Type u}
   simpa only [compl_union] using
     (show ProjectiveSigma n sᶜ from hs).inter (show ProjectiveSigma n tᶜ from ht)
 
-/-- Projective Delta levels are closed under binary unions.-/
+/-- Projective Delta levels are closed under binary unions.
+@isnad1 id=projecti.2h4v.s5.5394eaf9d18d from=translated src=- shape=5d862f59 vocab=10966795
+-/
 theorem ProjectiveDelta.union {X : Type u}
     [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X] [BorelSpace X]
     {n : ℕ} {s t : Set X} (hs : ProjectiveDelta n s) (ht : ProjectiveDelta n t) :
     ProjectiveDelta n (s ∪ t) :=
   ⟨hs.1.union ht.1, hs.2.union ht.2⟩
 
-/-- Projective Delta levels are closed under binary intersections.-/
+/-- Projective Delta levels are closed under binary intersections.
+@isnad1 id=projecti.2h4v.s5.f7f9cbfb452d from=translated src=- shape=5d862f59 vocab=aad23e48
+-/
 theorem ProjectiveDelta.inter {X : Type u}
     [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X] [BorelSpace X]
     {n : ℕ} {s t : Set X} (hs : ProjectiveDelta n s) (ht : ProjectiveDelta n t) :
@@ -218,7 +234,9 @@ private theorem projectiveProjection_dummyRelation {X : Type u} (s : Set X) :
   ext x
   simp [projectiveDummyRelation]
 
-/-- Every projective Sigma level is included in its immediate successor.-/
+/-- Every projective Sigma level is included in its immediate successor.
+@isnad1 id=projecti.1h3v.s5.b757460be426 from=translated src=- shape=cf617dfa vocab=118c22a2
+-/
 theorem ProjectiveSigma.mono_succ {X : Type u}
     [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X] [BorelSpace X]
     {n : ℕ} {s : Set X} (hs : ProjectiveSigma n s) :
@@ -235,7 +253,9 @@ theorem ProjectiveSigma.mono_succ {X : Type u}
       rw [ProjectivePi] at hR ⊢
       exact ih hR
 
-/-- Every projective Pi level is included in its immediate successor.-/
+/-- Every projective Pi level is included in its immediate successor.
+@isnad1 id=projecti.1h3v.s5.d0f4f984e429 from=translated src=- shape=39eda916 vocab=0bb2c5ac
+-/
 theorem ProjectivePi.mono_succ {X : Type u}
     [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X] [BorelSpace X]
     {n : ℕ} {s : Set X} (hs : ProjectivePi n s) :
@@ -243,14 +263,18 @@ theorem ProjectivePi.mono_succ {X : Type u}
   rw [ProjectivePi] at hs ⊢
   exact hs.mono_succ
 
-/-- Every projective Delta level is included in its immediate successor.-/
+/-- Every projective Delta level is included in its immediate successor.
+@isnad1 id=projecti.1h3v.s5.ebdf557378a5 from=translated src=- shape=39eda916 vocab=c37647a3
+-/
 theorem ProjectiveDelta.mono_succ {X : Type u}
     [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X] [BorelSpace X]
     {n : ℕ} {s : Set X} (hs : ProjectiveDelta n s) :
     ProjectiveDelta (n + 1) s :=
   ⟨hs.1.mono_succ, hs.2.mono_succ⟩
 
-/-- Projective Sigma levels are monotone in their finite index.-/
+/-- Projective Sigma levels are monotone in their finite index.
+@isnad1 id=projecti.2h4v.s5.e1abe7787a04 from=translated src=- shape=0c5df298 vocab=49674f08
+-/
 theorem ProjectiveSigma.mono {X : Type u}
     [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X] [BorelSpace X]
     {m n : ℕ} (hmn : m ≤ n) {s : Set X} (hs : ProjectiveSigma m s) :
@@ -259,7 +283,9 @@ theorem ProjectiveSigma.mono {X : Type u}
   | base => exact hs
   | succ n _ ih => exact ih.mono_succ
 
-/-- Projective Pi levels are monotone in their finite index.-/
+/-- Projective Pi levels are monotone in their finite index.
+@isnad1 id=projecti.2h4v.s5.0f7dfa41c475 from=translated src=- shape=44002db6 vocab=c1501ec4
+-/
 theorem ProjectivePi.mono {X : Type u}
     [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X] [BorelSpace X]
     {m n : ℕ} (hmn : m ≤ n) {s : Set X} (hs : ProjectivePi m s) :
@@ -268,50 +294,66 @@ theorem ProjectivePi.mono {X : Type u}
   | base => exact hs
   | succ n _ ih => exact ih.mono_succ
 
-/-- Projective Delta levels are monotone in their finite index.-/
+/-- Projective Delta levels are monotone in their finite index.
+@isnad1 id=projecti.2h4v.s5.ef5cb693311f from=translated src=- shape=44002db6 vocab=37b55d75
+-/
 theorem ProjectiveDelta.mono {X : Type u}
     [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X] [BorelSpace X]
     {m n : ℕ} (hmn : m ≤ n) {s : Set X} (hs : ProjectiveDelta m s) :
     ProjectiveDelta n s :=
   ⟨hs.1.mono hmn, hs.2.mono hmn⟩
 
-/-- The empty set belongs to every projective Sigma level.-/
+/-- The empty set belongs to every projective Sigma level.
+@isnad1 id=projecti.0h2v.s4.c9280315aa55 from=translated src=- shape=0338338b vocab=b0b0b55f
+-/
 theorem ProjectiveSigma.empty {X : Type u}
     [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X] [BorelSpace X]
     {n : ℕ} : ProjectiveSigma n (∅ : Set X) :=
   (projectiveSigma_zero.mpr MeasurableSet.empty).mono (Nat.zero_le n)
 
-/-- The universal set belongs to every projective Sigma level.-/
+/-- The universal set belongs to every projective Sigma level.
+@isnad1 id=projecti.0h2v.s4.4798f9977c44 from=translated src=- shape=d12d700d vocab=7dc332ba
+-/
 theorem ProjectiveSigma.univ {X : Type u}
     [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X] [BorelSpace X]
     {n : ℕ} : ProjectiveSigma n (Set.univ : Set X) :=
   (projectiveSigma_zero.mpr MeasurableSet.univ).mono (Nat.zero_le n)
 
-/-- The empty set belongs to every projective Pi level.-/
+/-- The empty set belongs to every projective Pi level.
+@isnad1 id=projecti.0h2v.s4.39b459c389a1 from=translated src=- shape=09ab81bb vocab=36eea99c
+-/
 theorem ProjectivePi.empty {X : Type u}
     [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X] [BorelSpace X]
     {n : ℕ} : ProjectivePi n (∅ : Set X) :=
   (projectivePi_zero.mpr MeasurableSet.empty).mono (Nat.zero_le n)
 
-/-- The universal set belongs to every projective Pi level.-/
+/-- The universal set belongs to every projective Pi level.
+@isnad1 id=projecti.0h2v.s4.30599ac1e2fd from=translated src=- shape=5e94ae0b vocab=d1e2d340
+-/
 theorem ProjectivePi.univ {X : Type u}
     [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X] [BorelSpace X]
     {n : ℕ} : ProjectivePi n (Set.univ : Set X) :=
   (projectivePi_zero.mpr MeasurableSet.univ).mono (Nat.zero_le n)
 
-/-- The empty set belongs to every projective Delta level.-/
+/-- The empty set belongs to every projective Delta level.
+@isnad1 id=projecti.0h2v.s4.3dbdc19601b5 from=translated src=- shape=09ab81bb vocab=37978484
+-/
 theorem ProjectiveDelta.empty {X : Type u}
     [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X] [BorelSpace X]
     {n : ℕ} : ProjectiveDelta n (∅ : Set X) :=
   ⟨ProjectiveSigma.empty, ProjectivePi.empty⟩
 
-/-- The universal set belongs to every projective Delta level.-/
+/-- The universal set belongs to every projective Delta level.
+@isnad1 id=projecti.0h2v.s4.e6690fc3590b from=translated src=- shape=5e94ae0b vocab=ffee355a
+-/
 theorem ProjectiveDelta.univ {X : Type u}
     [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X] [BorelSpace X]
     {n : ℕ} : ProjectiveDelta n (Set.univ : Set X) :=
   ⟨ProjectiveSigma.univ, ProjectivePi.univ⟩
 
-/-- A finite union of Sigma-level sets stays at the same level.-/
+/-- A finite union of Sigma-level sets stays at the same level.
+@isnad1 id=projecti.1h5v.s6.da1aa69cb14c from=translated src=- shape=c684ff2a vocab=e705fb5c
+-/
 theorem ProjectiveSigma.iUnion_finset {X : Type u} {ι : Type*}
     [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X] [BorelSpace X]
     {n : ℕ} (I : Finset ι) {s : ι → Set X}
@@ -326,7 +368,9 @@ theorem ProjectiveSigma.iUnion_finset {X : Type u} {ι : Type*}
         ih fun i hi => hs i (by simp [hi])
       simpa [ha] using hsa.union hsI
 
-/-- A finite intersection of Sigma-level sets stays at the same level.-/
+/-- A finite intersection of Sigma-level sets stays at the same level.
+@isnad1 id=projecti.1h5v.s6.802ef96f3cb9 from=translated src=- shape=c684ff2a vocab=02964461
+-/
 theorem ProjectiveSigma.iInter_finset {X : Type u} {ι : Type*}
     [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X] [BorelSpace X]
     {n : ℕ} (I : Finset ι) {s : ι → Set X}
@@ -341,7 +385,9 @@ theorem ProjectiveSigma.iInter_finset {X : Type u} {ι : Type*}
         ih fun i hi => hs i (by simp [hi])
       simpa [ha] using hsa.inter hsI
 
-/-- A finite union of Pi-level sets stays at the same level.-/
+/-- A finite union of Pi-level sets stays at the same level.
+@isnad1 id=projecti.1h5v.s6.7af29d778922 from=translated src=- shape=b8229acd vocab=cf5eced1
+-/
 theorem ProjectivePi.iUnion_finset {X : Type u} {ι : Type*}
     [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X] [BorelSpace X]
     {n : ℕ} (I : Finset ι) {s : ι → Set X}
@@ -356,7 +402,9 @@ theorem ProjectivePi.iUnion_finset {X : Type u} {ι : Type*}
         ih fun i hi => hs i (by simp [hi])
       simpa [ha] using hsa.union hsI
 
-/-- A finite intersection of Pi-level sets stays at the same level.-/
+/-- A finite intersection of Pi-level sets stays at the same level.
+@isnad1 id=projecti.1h5v.s6.16161d342574 from=translated src=- shape=b8229acd vocab=381cdc39
+-/
 theorem ProjectivePi.iInter_finset {X : Type u} {ι : Type*}
     [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X] [BorelSpace X]
     {n : ℕ} (I : Finset ι) {s : ι → Set X}
@@ -371,7 +419,9 @@ theorem ProjectivePi.iInter_finset {X : Type u} {ι : Type*}
         ih fun i hi => hs i (by simp [hi])
       simpa [ha] using hsa.inter hsI
 
-/-- A finite union of Delta-level sets stays at the same level.-/
+/-- A finite union of Delta-level sets stays at the same level.
+@isnad1 id=projecti.1h5v.s6.a65e22e7079d from=translated src=- shape=b8229acd vocab=7bdbde5d
+-/
 theorem ProjectiveDelta.iUnion_finset {X : Type u} {ι : Type*}
     [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X] [BorelSpace X]
     {n : ℕ} (I : Finset ι) {s : ι → Set X}
@@ -380,7 +430,9 @@ theorem ProjectiveDelta.iUnion_finset {X : Type u} {ι : Type*}
   ⟨ProjectiveSigma.iUnion_finset I fun i hi => (hs i hi).1,
     ProjectivePi.iUnion_finset I fun i hi => (hs i hi).2⟩
 
-/-- A finite intersection of Delta-level sets stays at the same level.-/
+/-- A finite intersection of Delta-level sets stays at the same level.
+@isnad1 id=projecti.1h5v.s6.988436b918fd from=translated src=- shape=b8229acd vocab=9bb1375e
+-/
 theorem ProjectiveDelta.iInter_finset {X : Type u} {ι : Type*}
     [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X] [BorelSpace X]
     {n : ℕ} (I : Finset ι) {s : ι → Set X}

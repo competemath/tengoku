@@ -41,13 +41,17 @@ def iUnionChild {c : Raw} (h : IsValid c) (s : c.tree)
     (hkind : c.kindAt? s.1 = some .iUnion) (n : ℕ) : c.tree :=
   ⟨s.1 ++ [n], h.child_mem_of_kindAt?_eq_iUnion s.2 hkind n⟩
 
-/-- A complement child is an immediate child in the decoded syntax tree.-/
+/-- A complement child is an immediate child in the decoded syntax tree.
+@isnad1 id=child.2h2v.s8.154831ff3a25 from=translated src=- shape=4cdf5af6 vocab=22cc3b7c
+-/
 theorem child_complChild {c : Raw} (h : IsValid c) (s : c.tree)
     (hkind : c.kindAt? s.1 = some .compl) :
     Tree.Child c.tree (complChild h s hkind) s :=
   ⟨0, rfl⟩
 
-/-- A union child is an immediate child in the decoded syntax tree.-/
+/-- A union child is an immediate child in the decoded syntax tree.
+@isnad1 id=child.2h3v.s8.978089b8c5c1 from=translated src=- shape=b382bd34 vocab=c40439e9
+-/
 theorem child_iUnionChild {c : Raw} (h : IsValid c) (s : c.tree)
     (hkind : c.kindAt? s.1 = some .iUnion) (n : ℕ) :
     Tree.Child c.tree (iUnionChild h s hkind n) s :=
@@ -79,26 +83,34 @@ noncomputable def evalAt (b : ℕ → Set X) (c : Raw) (h : IsValid c)
 noncomputable def eval (b : ℕ → Set X) (c : Raw) (h : IsValid c) : Set X :=
   (decode b c h).eval
 
-/-- Decoding is independent of the supplied validity proof.-/
+/-- Decoding is independent of the supplied validity proof.
+@isnad1 id=eq.2h3v.s4.4d819e6c309a from=translated src=- shape=5c362c16 vocab=52d1f6f9
+-/
 theorem decode_proof_irrel (b : ℕ → Set X) (c : Raw) (h k : IsValid c) :
     decode b c h = decode b c k := by
   have hk : h = k := Subsingleton.elim _ _
   subst k
   rfl
 
-/-- Evaluation is independent of the supplied validity proof.-/
+/-- Evaluation is independent of the supplied validity proof.
+@isnad1 id=eq.2h3v.s4.025d128f2175 from=translated src=- shape=bf28cef5 vocab=72859486
+-/
 theorem eval_proof_irrel (b : ℕ → Set X) (c : Raw) (h k : IsValid c) :
     eval b c h = eval b c k := by
   change (decode b c h).eval = (decode b c k).eval
   rw [decode_proof_irrel b c h k]
 
-/-- A valid code over a topological basis denotes a Borel set.-/
+/-- A valid code over a topological basis denotes a Borel set.
+@isnad1 id=measurab.2h3v.s5.0cd5c37cd1ff from=translated src=- shape=531ac7d9 vocab=f96cf251
+-/
 theorem measurableSet_eval [TopologicalSpace X] {b : ℕ → Set X}
     (hb : TopologicalSpace.IsTopologicalBasis (range b)) (c : Raw) (h : IsValid c) :
     @MeasurableSet X (borel X) (eval b c h) :=
   CountableBasisCode.measurableSet_eval hb (decode b c h)
 
-/-- A valid standard tree code can be transported back to the unrestricted `BorelCode` API.-/
+/-- A valid standard tree code can be transported back to the unrestricted `BorelCode` API.
+@isnad1 id=ex.2h3v.s5.5ee624a78bb4 from=translated src=- shape=f4df6552 vocab=9cdd76bf
+-/
 theorem exists_borelCode_eval [TopologicalSpace X] {b : ℕ → Set X}
     (hb : TopologicalSpace.IsTopologicalBasis (range b)) (c : Raw) (h : IsValid c) :
     ∃ d : BorelCode X, d.eval = eval b c h :=
@@ -211,7 +223,9 @@ private theorem encodedTree_wellFounded (d : GeneratedCode b) :
   (@WellFounded.onFun _ _ _ (encodedNodeRank d) Ordinal.lt_wf).mono fun _ _ hst =>
     encodedNodeRank_lt_of_child d hst
 
-/-- Every encoded `GeneratedCode` satisfies the exact validity predicate.-/
+/-- Every encoded `GeneratedCode` satisfies the exact validity predicate.
+@isnad1 id=isvalid.0h3v.s4.63c6e319ede1 from=translated src=- shape=3a75d595 vocab=88ae0cea
+-/
 theorem isValid_encode (d : GeneratedCode b) : IsValid (encode d) := by
   refine ⟨?_, encodedTree_wellFounded d, ?_, ?_⟩
   · change (subcodeAt d []).isSome = true

@@ -31,6 +31,9 @@ noncomputable def differenceLevelSequence (i : Ordinal.{0})
   letI : Countable (Set.Iio i) := countable_Iio_of_isCountableBorelLevel hic
   exact Set.enumerateCountable Set.countable_univ ⟨0, hi⟩
 
+/--
+@isnad1 id=surjecti.2h1v.s5.ec1019171812 from=translated src=- shape=38635126 vocab=8eb6438c
+-/
 theorem surjective_differenceLevelSequence (i : Ordinal.{0})
     (hi : 0 < i) (hic : IsCountableBorelLevel i) :
     Function.Surjective (differenceLevelSequence i hi hic) := by
@@ -48,6 +51,9 @@ def baireDifferenceOpenComponent {X : Type u} (b : ℕ → Set X) (n : ℕ) :
     Set ((ℕ → ℕ) × X) :=
   (fun q => (baireUnpack q.1 n, q.2)) ⁻¹' baireParameterUniversalOpen b
 
+/--
+@isnad1 id=isopen.1h3v.s5.b3d41a90d620 from=translated src=- shape=bc3d6e4d vocab=4fece132
+-/
 theorem isOpen_baireDifferenceOpenComponent {X : Type u} [TopologicalSpace X]
     {b : ℕ → Set X} (hb : ∀ n, IsOpen (b n)) (n : ℕ) :
     IsOpen (baireDifferenceOpenComponent b n) := by
@@ -61,6 +67,9 @@ noncomputable def baireUniversalDifferenceFamily {X : Type u}
   ⋃ n, if (differenceLevelSequence i hi hic n).1 ≤ j.1 then
     baireDifferenceOpenComponent b n else ∅
 
+/--
+@isnad1 id=iff.2h5v.s7.d5d6aca12b30 from=translated src=- shape=7c0ff8ff vocab=a5399e24
+-/
 theorem mem_baireUniversalDifferenceFamily {X : Type u}
     {b : ℕ → Set X} {i : Ordinal.{0}} {hi : 0 < i}
     {hic : IsCountableBorelLevel i} {j : Set.Iio i} {q : (ℕ → ℕ) × X} :
@@ -69,6 +78,9 @@ theorem mem_baireUniversalDifferenceFamily {X : Type u}
         q ∈ baireDifferenceOpenComponent b n := by
   simp [baireUniversalDifferenceFamily]
 
+/--
+@isnad1 id=monotone.2h3v.s6.90ee085a3e6a from=translated src=- shape=f567f702 vocab=98d782a1
+-/
 theorem monotone_baireUniversalDifferenceFamily {X : Type u}
     (b : ℕ → Set X) (i : Ordinal.{0}) (hi : 0 < i)
     (hic : IsCountableBorelLevel i) :
@@ -77,6 +89,9 @@ theorem monotone_baireUniversalDifferenceFamily {X : Type u}
   obtain ⟨n, hnj, hqn⟩ := mem_baireUniversalDifferenceFamily.1 hq
   exact mem_baireUniversalDifferenceFamily.2 ⟨n, hnj.trans hjk, hqn⟩
 
+/--
+@isnad1 id=isopen.3h4v.s6.9d7cd43d43b1 from=translated src=- shape=3326e716 vocab=60aafd12
+-/
 theorem isOpen_baireUniversalDifferenceFamily {X : Type u}
     [TopologicalSpace X] {b : ℕ → Set X} (hb : ∀ n, IsOpen (b n))
     (i : Ordinal.{0}) (hi : 0 < i) (hic : IsCountableBorelLevel i)
@@ -93,6 +108,9 @@ noncomputable def baireUniversalDifference {X : Type u} (b : ℕ → Set X)
     Set ((ℕ → ℕ) × X) :=
   difference i (baireUniversalDifferenceFamily b i hi hic)
 
+/--
+@isnad1 id=hausdorf.3h3v.s6.9ed8b4f86ce7 from=translated src=- shape=fabd8972 vocab=04f1c356
+-/
 theorem hausdorffDifference_baireUniversalDifference {X : Type u}
     [TopologicalSpace X] {b : ℕ → Set X} (hb : ∀ n, IsOpen (b n))
     {i : Ordinal.{0}} (hi : 0 < i) (hic : IsCountableBorelLevel i) :
@@ -101,6 +119,9 @@ theorem hausdorffDifference_baireUniversalDifference {X : Type u}
     monotone_baireUniversalDifferenceFamily b i hi hic,
     isOpen_baireUniversalDifferenceFamily hb i hi hic, rfl⟩
 
+/--
+@isnad1 id=iff.2h6v.s7.909d2569c70a from=translated src=- shape=eaece8d5 vocab=c4ed45d6
+-/
 theorem mem_verticalSection_baireUniversalDifferenceFamily {X : Type u}
     {b : ℕ → Set X} {i : Ordinal.{0}} {hi : 0 < i}
     {hic : IsCountableBorelLevel i} {j : Set.Iio i} {p : ℕ → ℕ} {x : X} :
@@ -110,6 +131,9 @@ theorem mem_verticalSection_baireUniversalDifferenceFamily {X : Type u}
   simp [verticalSection, baireDifferenceOpenComponent,
     baireUniversalDifferenceFamily]
 
+/--
+@isnad1 id=eq.2h4v.s6.c3b732a0725a from=translated src=- shape=d46fe9cf vocab=eadb581a
+-/
 theorem verticalSection_baireUniversalDifference {X : Type u}
     {b : ℕ → Set X} {i : Ordinal.{0}} {hi : 0 < i}
     {hic : IsCountableBorelLevel i} (p : ℕ → ℕ) :
@@ -125,7 +149,9 @@ theorem verticalSection_baireUniversalDifference {X : Type u}
       baireUniversalDifferenceFamily b i hi hic j)
   exact Set.ext_iff.mp hpre x
 
-/-- The Baire-parameter relation is universal for the exact level `i`.-/
+/-- The Baire-parameter relation is universal for the exact level `i`.
+@isnad1 id=isuniver.3h3v.s5.44d16620e7a9 from=translated src=- shape=a249a58e vocab=612ccd40
+-/
 theorem isUniversalFor_baireUniversalDifference {X : Type u}
     [TopologicalSpace X] {b : ℕ → Set X}
     (hb : IsTopologicalBasis (Set.range b)) {i : Ordinal.{0}}
@@ -178,6 +204,9 @@ def cantorDifferenceOpenComponent {X : Type u} (b : ℕ → Set X) (n : ℕ) :
     Set ((ℕ → Bool) × X) :=
   (fun q => (cantorUnpack q.1 n, q.2)) ⁻¹' universalOpen b
 
+/--
+@isnad1 id=isopen.1h3v.s5.5b5acd572574 from=translated src=- shape=92c1ed9e vocab=846ec4ce
+-/
 theorem isOpen_cantorDifferenceOpenComponent {X : Type u}
     [TopologicalSpace X] {b : ℕ → Set X} (hb : ∀ n, IsOpen (b n)) (n : ℕ) :
     IsOpen (cantorDifferenceOpenComponent b n) := by
@@ -191,6 +220,9 @@ noncomputable def cantorUniversalDifferenceFamily {X : Type u}
   ⋃ n, if (differenceLevelSequence i hi hic n).1 ≤ j.1 then
     cantorDifferenceOpenComponent b n else ∅
 
+/--
+@isnad1 id=iff.2h5v.s7.0fd0bfc21ff1 from=translated src=- shape=e626c000 vocab=1e88bbf7
+-/
 theorem mem_cantorUniversalDifferenceFamily {X : Type u}
     {b : ℕ → Set X} {i : Ordinal.{0}} {hi : 0 < i}
     {hic : IsCountableBorelLevel i} {j : Set.Iio i} {q : (ℕ → Bool) × X} :
@@ -199,6 +231,9 @@ theorem mem_cantorUniversalDifferenceFamily {X : Type u}
         q ∈ cantorDifferenceOpenComponent b n := by
   simp [cantorUniversalDifferenceFamily]
 
+/--
+@isnad1 id=monotone.2h3v.s6.b1afde8511c2 from=translated src=- shape=b0bc309c vocab=48811190
+-/
 theorem monotone_cantorUniversalDifferenceFamily {X : Type u}
     (b : ℕ → Set X) (i : Ordinal.{0}) (hi : 0 < i)
     (hic : IsCountableBorelLevel i) :
@@ -207,6 +242,9 @@ theorem monotone_cantorUniversalDifferenceFamily {X : Type u}
   obtain ⟨n, hnj, hqn⟩ := mem_cantorUniversalDifferenceFamily.1 hq
   exact mem_cantorUniversalDifferenceFamily.2 ⟨n, hnj.trans hjk, hqn⟩
 
+/--
+@isnad1 id=isopen.3h4v.s6.85261ab78bd6 from=translated src=- shape=53514d62 vocab=9dbd5385
+-/
 theorem isOpen_cantorUniversalDifferenceFamily {X : Type u}
     [TopologicalSpace X] {b : ℕ → Set X} (hb : ∀ n, IsOpen (b n))
     (i : Ordinal.{0}) (hi : 0 < i) (hic : IsCountableBorelLevel i)
@@ -223,6 +261,9 @@ noncomputable def cantorUniversalDifference {X : Type u} (b : ℕ → Set X)
     Set ((ℕ → Bool) × X) :=
   difference i (cantorUniversalDifferenceFamily b i hi hic)
 
+/--
+@isnad1 id=hausdorf.3h3v.s6.435d9ed6a44b from=translated src=- shape=c4b6e64a vocab=32be3d77
+-/
 theorem hausdorffDifference_cantorUniversalDifference {X : Type u}
     [TopologicalSpace X] {b : ℕ → Set X} (hb : ∀ n, IsOpen (b n))
     {i : Ordinal.{0}} (hi : 0 < i) (hic : IsCountableBorelLevel i) :
@@ -231,6 +272,9 @@ theorem hausdorffDifference_cantorUniversalDifference {X : Type u}
     monotone_cantorUniversalDifferenceFamily b i hi hic,
     isOpen_cantorUniversalDifferenceFamily hb i hi hic, rfl⟩
 
+/--
+@isnad1 id=iff.2h6v.s7.e62139e7222b from=translated src=- shape=ac2b701a vocab=196ca4a3
+-/
 theorem mem_verticalSection_cantorUniversalDifferenceFamily {X : Type u}
     {b : ℕ → Set X} {i : Ordinal.{0}} {hi : 0 < i}
     {hic : IsCountableBorelLevel i} {j : Set.Iio i} {p : ℕ → Bool} {x : X} :
@@ -240,6 +284,9 @@ theorem mem_verticalSection_cantorUniversalDifferenceFamily {X : Type u}
   simp [verticalSection, cantorDifferenceOpenComponent,
     cantorUniversalDifferenceFamily]
 
+/--
+@isnad1 id=eq.2h4v.s6.a1c78446e011 from=translated src=- shape=3baf4d49 vocab=d8d85205
+-/
 theorem verticalSection_cantorUniversalDifference {X : Type u}
     {b : ℕ → Set X} {i : Ordinal.{0}} {hi : 0 < i}
     {hic : IsCountableBorelLevel i} (p : ℕ → Bool) :
@@ -255,7 +302,9 @@ theorem verticalSection_cantorUniversalDifference {X : Type u}
       cantorUniversalDifferenceFamily b i hi hic j)
   exact Set.ext_iff.mp hpre x
 
-/-- The Cantor-parameter relation is universal for the exact level `i`.-/
+/-- The Cantor-parameter relation is universal for the exact level `i`.
+@isnad1 id=isuniver.3h3v.s5.f72024e701e8 from=translated src=- shape=a4de14ab vocab=453d2661
+-/
 theorem isUniversalFor_cantorUniversalDifference {X : Type u}
     [TopologicalSpace X] {b : ℕ → Set X}
     (hb : IsTopologicalBasis (Set.range b)) {i : Ordinal.{0}}

@@ -50,27 +50,37 @@ from assigning the default ordinal infimum to a non-Borel set.-/
 noncomputable def borelRank (s : Set X) (_ : @MeasurableSet X (borel X) s) : Ordinal.{0} :=
   sInf (borelConstructionRanks s)
 
-/-- `borelRank` is the least construction rank of any code representing the set.-/
+/-- `borelRank` is the least construction rank of any code representing the set.
+@isnad1 id=isleast.1h2v.s4.7b52b07f18fc from=translated src=- shape=25a69650 vocab=ca5feadd
+-/
 theorem isLeast_borelRank {s : Set X} (hs : @MeasurableSet X (borel X) s) :
     IsLeast (borelConstructionRanks s) (borelRank s hs) := by
   exact isLeast_csInf (borelConstructionRanks_nonempty hs)
 
-/-- The value of `borelRank` is independent of the supplied measurability proof.-/
+/-- The value of `borelRank` is independent of the supplied measurability proof.
+@isnad1 id=eq.2h2v.s5.f6a8e0e5c904 from=translated src=- shape=858a54be vocab=5d2118b4
+-/
 theorem borelRank_proof_irrel {s : Set X} (hs ht : @MeasurableSet X (borel X) s) :
     borelRank s hs = borelRank s ht := rfl
 
-/-- The semantic Borel rank is bounded by the construction rank of every representing code.-/
+/-- The semantic Borel rank is bounded by the construction rank of every representing code.
+@isnad1 id=le.2h3v.s5.dbaec706c3f3 from=translated src=- shape=1494f9d8 vocab=ec9dcf3d
+-/
 theorem borelRank_le_constructionRank {s : Set X} (hs : @MeasurableSet X (borel X) s)
     (c : BorelCode X) (hc : c.eval = s) : borelRank s hs ≤ c.constructionRank :=
   (isLeast_borelRank hs).2 ⟨c, hc, rfl⟩
 
-/-- Some Borel code representing the set attains its semantic Borel rank.-/
+/-- Some Borel code representing the set attains its semantic Borel rank.
+@isnad1 id=ex.1h2v.s5.f50a5fed76bc from=translated src=- shape=fe7f3513 vocab=65014a06
+-/
 theorem exists_code_constructionRank_eq_borelRank {s : Set X}
     (hs : @MeasurableSet X (borel X) s) :
     ∃ c : BorelCode X, c.eval = s ∧ c.constructionRank = borelRank s hs :=
   (isLeast_borelRank hs).1
 
-/-- The semantic Borel rank of every Borel set is a countable ordinal.-/
+/-- The semantic Borel rank of every Borel set is a countable ordinal.
+@isnad1 id=lt.1h2v.s6.62d2a8d0a613 from=translated src=- shape=a047d0e8 vocab=88baa517
+-/
 theorem borelRank_lt_omega_one {s : Set X} (hs : @MeasurableSet X (borel X) s) :
     borelRank s hs < ω₁ := by
   obtain ⟨c, _, hc⟩ := exists_code_constructionRank_eq_borelRank hs
@@ -78,7 +88,9 @@ theorem borelRank_lt_omega_one {s : Set X} (hs : @MeasurableSet X (borel X) s) :
   exact c.constructionRank_lt_omega_one
 
 /-- A Borel set appears in mathlib's transfinite measurable-space generator by its minimum
-construction rank.-/
+construction rank.
+@isnad1 id=mem.1h2v.s5.9c371b146009 from=translated src=- shape=fdb45b52 vocab=643da435
+-/
 theorem mem_generateMeasurableRec_borelRank {s : Set X}
     (hs : @MeasurableSet X (borel X) s) :
     s ∈ generateMeasurableRec {t : Set X | IsOpen t} (borelRank s hs) := by
@@ -86,7 +98,9 @@ theorem mem_generateMeasurableRec_borelRank {s : Set X}
   rw [← range_openGenerator X, ← hr, ← hc]
   exact c.eval_mem_generateMeasurableRec
 
-/-- Every open set has semantic Borel rank zero.-/
+/-- Every open set has semantic Borel rank zero.
+@isnad1 id=eq.1h2v.s5.25cf7ae43f2b from=translated src=- shape=e9be6a66 vocab=9cf587e9
+-/
 theorem borelRank_eq_zero_of_isOpen {s : Set X} (hs : IsOpen s) :
     borelRank s (GenerateMeasurable.basic s hs) = 0 := by
   apply le_antisymm

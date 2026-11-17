@@ -53,7 +53,9 @@ def prefixImage (f : (ℕ → ℕ) → X) (s : List ℕ) : Set X :=
 def IsLargePrefix (f : (ℕ → ℕ) → X) (s : List ℕ) : Prop :=
   ¬(prefixImage f s).Countable
 
-/-- Extending a finite prefix shrinks its Baire cylinder.-/
+/-- Extending a finite prefix shrinks its Baire cylinder.
+@isnad1 id=le.1h2v.s4.eb526b9cfeeb from=translated src=- shape=0a9e7fd2 vocab=2f0d3c21
+-/
 theorem bairePrefixCylinder_anti {s t : List ℕ} (hst : s <+: t) :
     bairePrefixCylinder t ⊆ bairePrefixCylinder s := by
   intro p hp
@@ -66,12 +68,16 @@ theorem bairePrefixCylinder_anti {s t : List ℕ} (hst : s <+: t) :
     _ = t.take s.length := congrArg (fun r => r.take s.length) hp
     _ = s := (List.prefix_iff_eq_take.mp hst).symm
 
-/-- Prefix images are antitone in the prefix order.-/
+/-- Prefix images are antitone in the prefix order.
+@isnad1 id=le.1h4v.s5.e476d0a3f382 from=translated src=- shape=e36ab37f vocab=05b637f9
+-/
 theorem prefixImage_anti (f : (ℕ → ℕ) → X) {s t : List ℕ} (hst : s <+: t) :
     prefixImage f t ⊆ prefixImage f s :=
   image_mono (bairePrefixCylinder_anti hst)
 
-/-- If a longer prefix is large, then every shorter prefix is large.-/
+/-- If a longer prefix is large, then every shorter prefix is large.
+@isnad1 id=islargep.2h4v.s4.8f66da1cad8b from=translated src=- shape=2ad9da40 vocab=d469727c
+-/
 theorem IsLargePrefix.of_prefix (f : (ℕ → ℕ) → X) {s t : List ℕ} (hst : s <+: t)
     (ht : IsLargePrefix f t) : IsLargePrefix f s := by
   intro hs
@@ -88,20 +94,26 @@ def largePrefixTree (f : (ℕ → ℕ) → X) : Descriptive.tree ℕ where
 def countableLocalImage (f : (ℕ → ℕ) → X) : Set X :=
   ⋃ (s : List ℕ) (_ : (prefixImage f s).Countable), prefixImage f s
 
-/-- The exceptional union of all countable local images is countable.-/
+/-- The exceptional union of all countable local images is countable.
+@isnad1 id=countabl.0h2v.s3.618b9f3d3d3e from=translated src=- shape=147c59f5 vocab=18b70427
+-/
 theorem countable_countableLocalImage (f : (ℕ → ℕ) → X) :
     (countableLocalImage f).Countable := by
   unfold countableLocalImage
   exact countable_iUnion fun s => countable_iUnion fun hs => hs
 
-/-- A local image containing a point outside the exceptional union is large.-/
+/-- A local image containing a point outside the exceptional union is large.
+@isnad1 id=islargep.2h4v.s5.bbfca20934f0 from=translated src=- shape=355c8e0f vocab=ab46f6fb
+-/
 theorem isLargePrefix_of_mem_not_countableLocalImage (f : (ℕ → ℕ) → X)
     {s : List ℕ} {x : X} (hx : x ∈ prefixImage f s) (hxbad : x ∉ countableLocalImage f) :
     IsLargePrefix f s := by
   intro hs
   exact hxbad (mem_iUnion_of_mem s (mem_iUnion_of_mem hs hx))
 
-/-- Removing the exceptional countable union from a large local image leaves an uncountable set.-/
+/-- Removing the exceptional countable union from a large local image leaves an uncountable set.
+@isnad1 id=not.1h3v.s4.39d928202d20 from=translated src=- shape=0dd09506 vocab=ab878789
+-/
 theorem not_countable_prefixImage_sdiff_countableLocalImage (f : (ℕ → ℕ) → X)
     {s : List ℕ} (hs : IsLargePrefix f s) :
     ¬(prefixImage f s \ countableLocalImage f).Countable := by
@@ -121,7 +133,9 @@ private theorem nontrivial_of_not_countable {A : Set X} (hA : ¬A.Countable) : A
   · rw [not_nonempty_iff_eq_empty.mp hne]
     exact countable_empty
 
-/-- Every large prefix image is nonempty.-/
+/-- Every large prefix image is nonempty.
+@isnad1 id=nonempty.1h3v.s4.0c54941d691e from=translated src=- shape=2158d41b vocab=308d0a8a
+-/
 theorem IsLargePrefix.prefixImage_nonempty (f : (ℕ → ℕ) → X) {s : List ℕ}
     (hs : IsLargePrefix f s) : (prefixImage f s).Nonempty := by
   by_contra hne
@@ -246,7 +260,9 @@ def toBinarySplittingSystem : Tree.BinarySplittingSystem (largePrefixTree f) whe
   node_length_lt_child := S.node_length_lt_child
   children_incompatible := S.children_incompatible
 
-/-- Sibling image disjointness with the two Boolean values in either order.-/
+/-- Sibling image disjointness with the two Boolean values in either order.
+@isnad1 id=disjoint.1h6v.s6.7504796fcc04 from=translated src=- shape=78d171b3 vocab=b70b101a
+-/
 theorem children_image_disjoint_of_ne (s : List Bool) {b c : Bool} (hbc : b ≠ c) :
     Disjoint (prefixImage f (S.node (s ++ [b])))
       (prefixImage f (S.node (s ++ [c]))) := by
@@ -260,7 +276,9 @@ theorem children_image_disjoint_of_ne (s : List Bool) {b c : Bool} (hbc : b ≠ 
 def sourceBranch : (ℕ → Bool) → (ℕ → ℕ) :=
   S.toBinarySplittingSystem.branchMap
 
-/-- Every selected source branch lies in the cylinder of each selected node on its binary path.-/
+/-- Every selected source branch lies in the cylinder of each selected node on its binary path.
+@isnad1 id=mem.0h5v.s5.8bd447326d75 from=translated src=- shape=c7de85e5 vocab=572d7fd2
+-/
 theorem sourceBranch_mem_nodeCylinder (q : ℕ → Bool) (m : ℕ) :
     S.sourceBranch q ∈ bairePrefixCylinder (S.node (initialSegment q m)) := by
   change initialSegment (S.sourceBranch q) (S.node (initialSegment q m)).length =
@@ -271,11 +289,15 @@ theorem sourceBranch_mem_nodeCylinder (q : ℕ → Bool) (m : ℕ) :
 def cantorMap : (ℕ → Bool) → X :=
   f ∘ S.sourceBranch
 
-/-- The target Cantor map is continuous whenever the presenting map is continuous.-/
+/-- The target Cantor map is continuous whenever the presenting map is continuous.
+@isnad1 id=continuo.1h3v.s5.5cad967d7a52 from=translated src=- shape=e3ee57f5 vocab=1d5541f8
+-/
 theorem continuous_cantorMap (hf : Continuous f) : Continuous S.cantorMap :=
   hf.comp S.toBinarySplittingSystem.continuous_branchMap
 
-/-- Disjoint sibling images make the target Cantor map injective.-/
+/-- Disjoint sibling images make the target Cantor map injective.
+@isnad1 id=injectiv.0h3v.s4.c04947e6fe03 from=translated src=- shape=188dbdc7 vocab=1521b73a
+-/
 theorem injective_cantorMap : Function.Injective S.cantorMap := by
   intro q r hqr
   have hsegments : ∀ n, initialSegment q n = initialSegment r n := by
@@ -301,21 +323,29 @@ theorem injective_cantorMap : Function.Injective S.cantorMap := by
   rw [initialSegment_succ, initialSegment_succ, hsegments n] at h
   simpa using List.append_cancel_left h
 
-/-- The target Cantor map has range contained in the range of the presenting map.-/
+/-- The target Cantor map has range contained in the range of the presenting map.
+@isnad1 id=le.0h3v.s5.44e3944d6c62 from=translated src=- shape=3a63ca8b vocab=a17d5c46
+-/
 theorem range_cantorMap_subset_range : range S.cantorMap ⊆ range f := by
   rintro _ ⟨q, rfl⟩
   exact ⟨S.sourceBranch q, rfl⟩
 
-/-- In a Hausdorff target, the selected target map is a closed embedding.-/
+/-- In a Hausdorff target, the selected target map is a closed embedding.
+@isnad1 id=isclosed.1h3v.s5.86917aa9b6b4 from=translated src=- shape=5a6fd0f7 vocab=7506a4f9
+-/
 theorem isClosedEmbedding_cantorMap [T2Space X] (hf : Continuous f) :
     IsClosedEmbedding S.cantorMap :=
   (S.continuous_cantorMap hf).isClosedEmbedding S.injective_cantorMap
 
-/-- The selected target map is a topological embedding.-/
+/-- The selected target map is a topological embedding.
+@isnad1 id=isembedd.1h3v.s5.8ea8d9308fb6 from=translated src=- shape=5a6fd0f7 vocab=727a81bf
+-/
 theorem isEmbedding_cantorMap [T2Space X] (hf : Continuous f) : IsEmbedding S.cantorMap :=
   (S.isClosedEmbedding_cantorMap hf).isEmbedding
 
-/-- The selected Cantor range is closed in a Hausdorff target.-/
+/-- The selected Cantor range is closed in a Hausdorff target.
+@isnad1 id=isclosed.1h3v.s5.cd5dea26d380 from=translated src=- shape=20abf4ea vocab=a9e6c9e6
+-/
 theorem isClosed_range_cantorMap [T2Space X] (hf : Continuous f) :
     IsClosed (range S.cantorMap) :=
   (S.isClosedEmbedding_cantorMap hf).isClosed_range
@@ -387,7 +417,9 @@ private theorem largeNodeAt_append [TopologicalSpace X] [T2Space X]
 
 /-- An uncountable continuous Baire image in a Hausdorff space admits a coherent splitting system
 whose sibling cylinder images are disjoint.  Choice is confined to the existential constructor;
-no canonical selector is exported.-/
+no canonical selector is exported.
+@isnad1 id=nonempty.2h2v.s5.1a712576fa74 from=translated src=- shape=acc35c7f vocab=0d1af6e8
+-/
 theorem exists_imageSplittingSystem [TopologicalSpace X] [T2Space X]
     (f : (ℕ → ℕ) → X) (hf : Continuous f) (hunc : ¬(range f).Countable) :
     Nonempty (ImageSplittingSystem f) := by
@@ -409,7 +441,9 @@ theorem exists_imageSplittingSystem [TopologicalSpace X] [T2Space X]
   exact ⟨S⟩
 
 /-- An uncountable continuous image of Baire space contains a closed embedded copy of Cantor
-space.  Its range is explicitly contained in the original continuous range.-/
+space.  Its range is explicitly contained in the original continuous range.
+@isnad1 id=ex.2h2v.s6.356c5206673c from=translated src=- shape=24b53f99 vocab=c54432f8
+-/
 theorem exists_isClosedEmbedding_cantor_of_continuous_range [TopologicalSpace X] [T2Space X]
     (f : (ℕ → ℕ) → X) (hf : Continuous f) (hunc : ¬(range f).Countable) :
     ∃ e : (ℕ → Bool) → X, IsClosedEmbedding e ∧ range e ⊆ range f := by
@@ -417,7 +451,9 @@ theorem exists_isClosedEmbedding_cantor_of_continuous_range [TopologicalSpace X]
   exact ⟨S.cantorMap, S.isClosedEmbedding_cantorMap hf, S.range_cantorMap_subset_range⟩
 
 /-- Perfect-set theorem for analytic sets: every uncountable analytic subset of a Hausdorff space
-contains a closed embedded copy of Cantor space.-/
+contains a closed embedded copy of Cantor space.
+@isnad1 id=ex.2h2v.s5.b156aad31b1e from=translated src=- shape=e24f25da vocab=f6ba174a
+-/
 theorem _root_.MeasureTheory.AnalyticSet.exists_isClosedEmbedding_cantor
     [TopologicalSpace X] [T2Space X] {s : Set X} (hs : MeasureTheory.AnalyticSet s)
     (hunc : ¬s.Countable) :
@@ -430,7 +466,9 @@ theorem _root_.MeasureTheory.AnalyticSet.exists_isClosedEmbedding_cantor
       ⟨e, he, herange⟩
     exact ⟨e, he, herange.trans (by simp [hfs])⟩
 
-/-- Continuous-injection formulation of the analytic perfect-set theorem.-/
+/-- Continuous-injection formulation of the analytic perfect-set theorem.
+@isnad1 id=ex.2h2v.s6.4dc0e89fa64c from=translated src=- shape=4ea23ea0 vocab=65730c59
+-/
 theorem _root_.MeasureTheory.AnalyticSet.exists_continuous_injective_cantor
     [TopologicalSpace X] [T2Space X] {s : Set X} (hs : MeasureTheory.AnalyticSet s)
     (hunc : ¬s.Countable) :
@@ -438,7 +476,9 @@ theorem _root_.MeasureTheory.AnalyticSet.exists_continuous_injective_cantor
   rcases hs.exists_isClosedEmbedding_cantor hunc with ⟨e, he, hes⟩
   exact ⟨e, he.continuous, he.isEmbedding.injective, hes⟩
 
-/-- Embedding formulation of the analytic perfect-set theorem.-/
+/-- Embedding formulation of the analytic perfect-set theorem.
+@isnad1 id=ex.2h2v.s5.eb59d960c699 from=translated src=- shape=e24f25da vocab=299ab918
+-/
 theorem _root_.MeasureTheory.AnalyticSet.exists_isEmbedding_cantor
     [TopologicalSpace X] [T2Space X] {s : Set X} (hs : MeasureTheory.AnalyticSet s)
     (hunc : ¬s.Countable) :
@@ -446,7 +486,9 @@ theorem _root_.MeasureTheory.AnalyticSet.exists_isEmbedding_cantor
   rcases hs.exists_isClosedEmbedding_cantor hunc with ⟨e, he, hes⟩
   exact ⟨e, he.isEmbedding, hes⟩
 
-/-- Closed-range and homeomorphic-copy formulation of the analytic perfect-set theorem.-/
+/-- Closed-range and homeomorphic-copy formulation of the analytic perfect-set theorem.
+@isnad1 id=ex.2h2v.s6.3882c7250f62 from=translated src=- shape=5be866a7 vocab=7d2ad917
+-/
 theorem _root_.MeasureTheory.AnalyticSet.exists_closed_cantor_copy
     [TopologicalSpace X] [T2Space X] {s : Set X} (hs : MeasureTheory.AnalyticSet s)
     (hunc : ¬s.Countable) :
@@ -454,13 +496,17 @@ theorem _root_.MeasureTheory.AnalyticSet.exists_closed_cantor_copy
   rcases hs.exists_isClosedEmbedding_cantor hunc with ⟨e, he, hes⟩
   exact ⟨range e, hes, he.isClosed_range, ⟨he.isEmbedding.toHomeomorph⟩⟩
 
-/-- Baire-space specialization of the analytic perfect-set theorem.-/
+/-- Baire-space specialization of the analytic perfect-set theorem.
+@isnad1 id=ex.2h1v.s6.4f0414c7ae8a from=translated src=- shape=d14715ff vocab=1354ad20
+-/
 theorem analyticSet_exists_isClosedEmbedding_cantor_baire {s : Set (ℕ → ℕ)}
     (hs : MeasureTheory.AnalyticSet s) (hunc : ¬s.Countable) :
     ∃ e : (ℕ → Bool) → (ℕ → ℕ), IsClosedEmbedding e ∧ range e ⊆ s :=
   hs.exists_isClosedEmbedding_cantor hunc
 
-/-- Cantor-space specialization of the analytic perfect-set theorem.-/
+/-- Cantor-space specialization of the analytic perfect-set theorem.
+@isnad1 id=ex.2h1v.s6.1c23ec33cc9c from=translated src=- shape=34e0a588 vocab=1354ad20
+-/
 theorem analyticSet_exists_isClosedEmbedding_cantor_cantor {s : Set (ℕ → Bool)}
     (hs : MeasureTheory.AnalyticSet s) (hunc : ¬s.Countable) :
     ∃ e : (ℕ → Bool) → (ℕ → Bool), IsClosedEmbedding e ∧ range e ⊆ s :=

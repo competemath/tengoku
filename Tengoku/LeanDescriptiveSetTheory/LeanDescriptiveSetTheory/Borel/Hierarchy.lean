@@ -43,14 +43,18 @@ variable {X : Type u} [TopologicalSpace X]
 /-- An ordinal is an intended Borel-hierarchy index when it is strictly below `ω₁`.-/
 def IsCountableBorelLevel (i : Ordinal.{0}) : Prop := i < ω₁
 
-/-- The initial segment below a countable Borel level is a countable type.-/
+/-- The initial segment below a countable Borel level is a countable type.
+@isnad1 id=countabl.1h1v.s3.e4f63823d7b6 from=translated src=- shape=717ee240 vocab=6e69fc01
+-/
 theorem countable_Iio_of_isCountableBorelLevel {i : Ordinal.{0}}
     (hi : IsCountableBorelLevel i) : Countable (Set.Iio i) := by
   rw [← Cardinal.mk_le_aleph0_iff, Cardinal.mk_Iio_ordinal]
   have hcard : i.card < ℵ₁ := Cardinal.lt_omega_iff_card_lt.mp hi
   exact Cardinal.lift_le_aleph0.mpr (Cardinal.lt_aleph_one_iff.mp hcard)
 
-/-- Every natural-number ordinal is a countable Borel level.-/
+/-- Every natural-number ordinal is a countable Borel level.
+@isnad1 id=iscounta.0h1v.s3.6a9dcefd556b from=translated src=- shape=4c19b7a8 vocab=b751e703
+-/
 theorem isCountableBorelLevel_nat (n : ℕ) : IsCountableBorelLevel n :=
   (Ordinal.natCast_lt_omega0 n).trans Ordinal.omega0_lt_omega_one
 
@@ -82,24 +86,34 @@ def OrdinalPi0 (i : Ordinal.{0}) (s : Set X) : Prop :=
 def OrdinalDelta0 (i : Ordinal.{0}) (s : Set X) : Prop :=
   OrdinalSigma0 i s ∧ OrdinalPi0 i s
 
-/-- The reserved ordinal-indexed additive level zero contains no sets.-/
+/-- The reserved ordinal-indexed additive level zero contains no sets.
+@isnad1 id=not.0h2v.s4.d1818a558afa from=translated src=- shape=76e0b577 vocab=bec6b27b
+-/
 @[simp] theorem ordinalSigma0_zero (s : Set X) : ¬ OrdinalSigma0 0 s := by
   simp [OrdinalSigma0, ordinalBorelClasses]
 
-/-- The reserved ordinal-indexed multiplicative level zero contains no sets.-/
+/-- The reserved ordinal-indexed multiplicative level zero contains no sets.
+@isnad1 id=not.0h2v.s4.483bed5f233b from=translated src=- shape=76e0b577 vocab=80463baf
+-/
 @[simp] theorem ordinalPi0_zero (s : Set X) : ¬ OrdinalPi0 0 s := by
   simp [OrdinalPi0, ordinalBorelClasses]
 
-/-- The first ordinal-indexed additive class is exactly the class of open sets.-/
+/-- The first ordinal-indexed additive class is exactly the class of open sets.
+@isnad1 id=iff.0h2v.s4.0368fb4432d4 from=translated src=- shape=50910fc0 vocab=faff2f66
+-/
 @[simp] theorem ordinalSigma0_one_iff {s : Set X} : OrdinalSigma0 1 s ↔ IsOpen s := by
   simp [OrdinalSigma0, ordinalBorelClasses]
 
-/-- The first ordinal-indexed multiplicative class is exactly the class of closed sets.-/
+/-- The first ordinal-indexed multiplicative class is exactly the class of closed sets.
+@isnad1 id=iff.0h2v.s4.22a58d4960ea from=translated src=- shape=50910fc0 vocab=44730aab
+-/
 @[simp] theorem ordinalPi0_one_iff {s : Set X} : OrdinalPi0 1 s ↔ IsClosed s := by
   simp [OrdinalPi0, ordinalBorelClasses]
 
 /-- At every level other than zero and one, the additive class is formed from countably many
-strictly lower multiplicative classes. This is the uniform successor/limit equation.-/
+strictly lower multiplicative classes. This is the uniform successor/limit equation.
+@isnad1 id=iff.2h3v.s6.0d432224a7d1 from=translated src=- shape=6b3d36ae vocab=36cd4859
+-/
 theorem ordinalSigma0_of_ne_zero_one {i : Ordinal.{0}} (hi0 : i ≠ 0) (hi1 : i ≠ 1)
     {s : Set X} :
     OrdinalSigma0 i s ↔ ∃ f : ℕ → Set X, ∃ j : ℕ → Set.Iio i,
@@ -110,7 +124,9 @@ theorem ordinalSigma0_of_ne_zero_one {i : Ordinal.{0}} (hi0 : i ≠ 0) (hi1 : i 
   rfl
 
 /-- At every level other than zero and one, the multiplicative class is formed from countably many
-strictly lower additive classes. This is the uniform successor/limit equation.-/
+strictly lower additive classes. This is the uniform successor/limit equation.
+@isnad1 id=iff.2h3v.s6.0d44e806484a from=translated src=- shape=6b3d36ae vocab=174ff270
+-/
 theorem ordinalPi0_of_ne_zero_one {i : Ordinal.{0}} (hi0 : i ≠ 0) (hi1 : i ≠ 1)
     {s : Set X} :
     OrdinalPi0 i s ↔ ∃ f : ℕ → Set X, ∃ j : ℕ → Set.Iio i,
@@ -120,7 +136,9 @@ theorem ordinalPi0_of_ne_zero_one {i : Ordinal.{0}} (hi0 : i ≠ 0) (hi1 : i ≠
   rw [ordinalBorelClasses.eq_1, ite_eq_right hi0, ite_eq_right hi1]
   rfl
 
-/-- Every clopen set belongs to the multiplicative class at each positive ordinal level.-/
+/-- Every clopen set belongs to the multiplicative class at each positive ordinal level.
+@isnad1 id=ordinalp.3h3v.s5.ccb65a0f41fe from=translated src=- shape=5f5f092c vocab=d4cca1cc
+-/
 theorem ordinalPi0_of_isClopen {i : Ordinal.{0}} {s : Set X} (hi : 0 < i)
     (hsOpen : IsOpen s) (hsClosed : IsClosed s) : OrdinalPi0 i s := by
   by_cases hi1 : i = 1
@@ -133,7 +151,9 @@ theorem ordinalPi0_of_isClopen {i : Ordinal.{0}} {s : Set X} (hi : 0 < i)
     ext x
     simp
 
-/-- Complementation exchanges ordinal-indexed additive and multiplicative classes.-/
+/-- Complementation exchanges ordinal-indexed additive and multiplicative classes.
+@isnad1 id=iff.0h3v.s4.ebbe8a481ec2 from=translated src=- shape=54fffa35 vocab=ebcbb338
+-/
 theorem ordinalSigma0_compl_iff_pi0 (i : Ordinal.{0}) (s : Set X) :
     OrdinalSigma0 i sᶜ ↔ OrdinalPi0 i s := by
   induction i using WellFoundedLT.induction generalizing s with
@@ -156,34 +176,46 @@ theorem ordinalSigma0_compl_iff_pi0 (i : Ordinal.{0}) (s : Set X) :
           simpa using h (by simpa using hf n)
         · simpa using congrArg (fun t : Set X => tᶜ) hsf
 
-/-- The dual formulation of `ordinalSigma0_compl_iff_pi0`.-/
+/-- The dual formulation of `ordinalSigma0_compl_iff_pi0`.
+@isnad1 id=iff.0h3v.s4.3ab9f04d8eba from=translated src=- shape=54fffa35 vocab=ebcbb338
+-/
 theorem ordinalPi0_compl_iff_sigma0 (i : Ordinal.{0}) (s : Set X) :
     OrdinalPi0 i sᶜ ↔ OrdinalSigma0 i s := by
   simpa using (ordinalSigma0_compl_iff_pi0 i sᶜ).symm
 
-/-- The complement of an ordinal additive-class set belongs to the dual class.-/
+/-- The complement of an ordinal additive-class set belongs to the dual class.
+@isnad1 id=ordinalp.1h3v.s4.520853875235 from=translated src=- shape=401cec24 vocab=ebcbb338
+-/
 theorem OrdinalSigma0.compl {i : Ordinal.{0}} {s : Set X} (hs : OrdinalSigma0 i s) :
     OrdinalPi0 i sᶜ :=
   (ordinalPi0_compl_iff_sigma0 i s).2 hs
 
-/-- The complement of an ordinal multiplicative-class set belongs to the dual class.-/
+/-- The complement of an ordinal multiplicative-class set belongs to the dual class.
+@isnad1 id=ordinals.1h3v.s4.0d7d779e43d9 from=translated src=- shape=401cec24 vocab=ebcbb338
+-/
 theorem OrdinalPi0.compl {i : Ordinal.{0}} {s : Set X} (hs : OrdinalPi0 i s) :
     OrdinalSigma0 i sᶜ :=
   (ordinalSigma0_compl_iff_pi0 i s).2 hs
 
-/-- Every clopen set belongs to the additive class at each positive ordinal level.-/
+/-- Every clopen set belongs to the additive class at each positive ordinal level.
+@isnad1 id=ordinals.3h3v.s5.6129d876fbc6 from=translated src=- shape=5f5f092c vocab=38c46c32
+-/
 theorem ordinalSigma0_of_isClopen {i : Ordinal.{0}} {s : Set X} (hi : 0 < i)
     (hsOpen : IsOpen s) (hsClosed : IsClosed s) : OrdinalSigma0 i s := by
   have hcompl : OrdinalPi0 i sᶜ :=
     ordinalPi0_of_isClopen hi hsClosed.isOpen_compl hsOpen.isClosed_compl
   simpa using hcompl.compl
 
-/-- Every ordinal ambiguous class is closed under complementation.-/
+/-- Every ordinal ambiguous class is closed under complementation.
+@isnad1 id=ordinald.1h3v.s4.b19b434d31a7 from=translated src=- shape=1ffb9ab6 vocab=9a1336f5
+-/
 theorem OrdinalDelta0.compl {i : Ordinal.{0}} {s : Set X} (hs : OrdinalDelta0 i s) :
     OrdinalDelta0 i sᶜ :=
   ⟨hs.2.compl, hs.1.compl⟩
 
-/-- The second ordinal additive class is exactly the class of countable unions of closed sets.-/
+/-- The second ordinal additive class is exactly the class of countable unions of closed sets.
+@isnad1 id=iff.0h2v.s5.e17774a025a5 from=translated src=- shape=5665ddd2 vocab=5ba76178
+-/
 theorem ordinalSigma0_two_iff_eq_iUnion_isClosed {s : Set X} :
     OrdinalSigma0 2 s ↔ ∃ f : ℕ → Set X, (∀ n, IsClosed (f n)) ∧ s = ⋃ n, f n := by
   rw [ordinalSigma0_of_ne_zero_one (by norm_num) (by norm_num)]
@@ -204,22 +236,30 @@ theorem ordinalSigma0_two_iff_eq_iUnion_isClosed {s : Set X} :
     intro n
     simpa using hf n
 
-/-- The ordinal and finite additive hierarchies agree at level two.-/
+/-- The ordinal and finite additive hierarchies agree at level two.
+@isnad1 id=iff.0h2v.s5.1a06cbfaa632 from=translated src=- shape=13580020 vocab=5c2e942a
+-/
 theorem ordinalSigma0_two_iff_sigma0_two {s : Set X} : OrdinalSigma0 2 s ↔ Sigma0 2 s :=
   ordinalSigma0_two_iff_eq_iUnion_isClosed.trans sigma0_two_iff_eq_iUnion_isClosed.symm
 
-/-- The ordinal and finite multiplicative hierarchies agree at level two.-/
+/-- The ordinal and finite multiplicative hierarchies agree at level two.
+@isnad1 id=iff.0h2v.s5.91b76396c46e from=translated src=- shape=13580020 vocab=1e18f699
+-/
 theorem ordinalPi0_two_iff_pi0_two {s : Set X} : OrdinalPi0 2 s ↔ Pi0 2 s := by
   calc
     OrdinalPi0 2 s ↔ OrdinalSigma0 2 sᶜ := (ordinalSigma0_compl_iff_pi0 2 s).symm
     _ ↔ Sigma0 2 sᶜ := ordinalSigma0_two_iff_sigma0_two
     _ ↔ Pi0 2 s := sigma0_compl_iff_pi0 2 s
 
-/-- The second ordinal multiplicative class agrees with mathlib's G-delta predicate.-/
+/-- The second ordinal multiplicative class agrees with mathlib's G-delta predicate.
+@isnad1 id=iff.0h2v.s4.b314c14b4612 from=translated src=- shape=50910fc0 vocab=62779b7c
+-/
 theorem ordinalPi0_two_iff_isGδ {s : Set X} : OrdinalPi0 2 s ↔ IsGδ s :=
   ordinalPi0_two_iff_pi0_two.trans pi0_two_iff_isGδ
 
-/-- Every ordinal-indexed additive-class set is Borel measurable.-/
+/-- Every ordinal-indexed additive-class set is Borel measurable.
+@isnad1 id=measurab.1h3v.s4.fe312ffa2db2 from=translated src=- shape=18f26785 vocab=f7d626ba
+-/
 theorem OrdinalSigma0.measurableSet {i : Ordinal.{0}} {s : Set X}
     (hs : OrdinalSigma0 i s) : @MeasurableSet X (borel X) s := by
   induction i using WellFoundedLT.induction generalizing s with
@@ -236,17 +276,23 @@ theorem OrdinalSigma0.measurableSet {i : Ordinal.{0}} {s : Set X}
           (ordinalSigma0_compl_iff_pi0 (j n).1 (f n)).2 (hf n)
         simpa using (ih (j n).1 (j n).2 hc).compl
 
-/-- Every ordinal-indexed multiplicative-class set is Borel measurable.-/
+/-- Every ordinal-indexed multiplicative-class set is Borel measurable.
+@isnad1 id=measurab.1h3v.s4.45b68a0e72c3 from=translated src=- shape=18f26785 vocab=9154d82c
+-/
 theorem OrdinalPi0.measurableSet {i : Ordinal.{0}} {s : Set X} (hs : OrdinalPi0 i s) :
     @MeasurableSet X (borel X) s := by
   simpa using hs.compl.measurableSet.compl
 
-/-- Every ordinal-indexed ambiguous-class set is Borel measurable.-/
+/-- Every ordinal-indexed ambiguous-class set is Borel measurable.
+@isnad1 id=measurab.1h3v.s4.a00430a4d18b from=translated src=- shape=18f26785 vocab=9cf1d6fd
+-/
 theorem OrdinalDelta0.measurableSet {i : Ordinal.{0}} {s : Set X}
     (hs : OrdinalDelta0 i s) : @MeasurableSet X (borel X) s :=
   hs.1.measurableSet
 
-/-- Continuous preimages preserve every ordinal additive Borel class.-/
+/-- Continuous preimages preserve every ordinal additive Borel class.
+@isnad1 id=ordinals.2h5v.s5.502fb7e82cad from=translated src=- shape=c3ef64bf vocab=394fd27a
+-/
 theorem OrdinalSigma0.preimage {Y : Type*} [TopologicalSpace Y] {i : Ordinal.{0}}
     {s : Set Y} (hs : OrdinalSigma0 i s) {f : X → Y} (hf : Continuous f) :
     OrdinalSigma0 i (f ⁻¹' s) := by
@@ -268,7 +314,9 @@ theorem OrdinalSigma0.preimage {Y : Type*} [TopologicalSpace Y] {i : Ordinal.{0}
       rw [preimage_compl] at hp
       exact (ordinalSigma0_compl_iff_pi0 (j n).1 (f ⁻¹' g n)).1 hp
 
-/-- Continuous preimages preserve every ordinal multiplicative Borel class.-/
+/-- Continuous preimages preserve every ordinal multiplicative Borel class.
+@isnad1 id=ordinalp.2h5v.s5.b5ecc5e2299a from=translated src=- shape=c3ef64bf vocab=a16e1a10
+-/
 theorem OrdinalPi0.preimage {Y : Type*} [TopologicalSpace Y] {i : Ordinal.{0}}
     {s : Set Y} (hs : OrdinalPi0 i s) {f : X → Y} (hf : Continuous f) :
     OrdinalPi0 i (f ⁻¹' s) := by
@@ -276,13 +324,17 @@ theorem OrdinalPi0.preimage {Y : Type*} [TopologicalSpace Y] {i : Ordinal.{0}}
   rw [preimage_compl] at h
   exact (ordinalSigma0_compl_iff_pi0 i (f ⁻¹' s)).1 h
 
-/-- Continuous preimages preserve every ordinal ambiguous Borel class.-/
+/-- Continuous preimages preserve every ordinal ambiguous Borel class.
+@isnad1 id=ordinald.2h5v.s5.198a2f919aac from=translated src=- shape=c3ef64bf vocab=9fb9e714
+-/
 theorem OrdinalDelta0.preimage {Y : Type*} [TopologicalSpace Y] {i : Ordinal.{0}}
     {s : Set Y} (hs : OrdinalDelta0 i s) {f : X → Y} (hf : Continuous f) :
     OrdinalDelta0 i (f ⁻¹' s) :=
   ⟨hs.1.preimage hf, hs.2.preimage hf⟩
 
-/-- A countable union of sets in one ordinal additive class remains in that class.-/
+/-- A countable union of sets in one ordinal additive class remains in that class.
+@isnad1 id=ordinals.1h3v.s5.30c0b156452d from=translated src=- shape=c5cebe2c vocab=5454517b
+-/
 theorem OrdinalSigma0.iUnion {i : Ordinal.{0}} {s : ℕ → Set X}
     (hs : ∀ n, OrdinalSigma0 i (s n)) : OrdinalSigma0 i (⋃ n, s n) := by
   by_cases hi0 : i = 0
@@ -298,13 +350,17 @@ theorem OrdinalSigma0.iUnion {i : Ordinal.{0}} {s : ℕ → Set X}
   rw [Set.iUnion_unpair]
   simp_rw [hsf]
 
-/-- A countable intersection of sets in one ordinal multiplicative class remains in that class.-/
+/-- A countable intersection of sets in one ordinal multiplicative class remains in that class.
+@isnad1 id=ordinalp.1h3v.s5.d22aa9e159a9 from=translated src=- shape=c5cebe2c vocab=ddc690b6
+-/
 theorem OrdinalPi0.iInter {i : Ordinal.{0}} {s : ℕ → Set X}
     (hs : ∀ n, OrdinalPi0 i (s n)) : OrdinalPi0 i (⋂ n, s n) := by
   have h := OrdinalSigma0.iUnion fun n => (hs n).compl
   simpa using h.compl
 
-/-- A binary union of sets in one ordinal additive class remains in that class.-/
+/-- A binary union of sets in one ordinal additive class remains in that class.
+@isnad1 id=ordinals.2h4v.s5.f8b6a66c7487 from=translated src=- shape=ffb9e2f3 vocab=5ceaabde
+-/
 theorem OrdinalSigma0.union {i : Ordinal.{0}} {s t : Set X}
     (hs : OrdinalSigma0 i s) (ht : OrdinalSigma0 i t) : OrdinalSigma0 i (s ∪ t) := by
   have h : OrdinalSigma0 i (⋃ n : ℕ, if n = 0 then s else t) :=
@@ -324,7 +380,9 @@ theorem OrdinalSigma0.union {i : Ordinal.{0}} {s t : Set X}
     · exact Or.inl (by simpa [h0] using hn)
     · exact Or.inr (by simpa [h0] using hn)
 
-/-- A binary intersection of sets in one ordinal multiplicative class remains in that class.-/
+/-- A binary intersection of sets in one ordinal multiplicative class remains in that class.
+@isnad1 id=ordinalp.2h4v.s5.10e5e0b920d5 from=translated src=- shape=ffb9e2f3 vocab=9fe54647
+-/
 theorem OrdinalPi0.inter {i : Ordinal.{0}} {s t : Set X}
     (hs : OrdinalPi0 i s) (ht : OrdinalPi0 i t) : OrdinalPi0 i (s ∩ t) := by
   have h : OrdinalPi0 i (⋂ n : ℕ, if n = 0 then s else t) :=
@@ -343,7 +401,9 @@ theorem OrdinalPi0.inter {i : Ordinal.{0}} {s t : Set X}
   · intro hx
     exact ⟨by simpa using hx 0, by simpa using hx 1⟩
 
-/-- Ordinal additive classes are monotone in their index in a perfectly normal space.-/
+/-- Ordinal additive classes are monotone in their index in a perfectly normal space.
+@isnad1 id=ordinals.2h4v.s5.20e99c895dc2 from=translated src=- shape=328d8547 vocab=4eee23b7
+-/
 theorem OrdinalSigma0.mono [PerfectlyNormalSpace X] {i k : Ordinal.{0}} (hik : i ≤ k)
     {s : Set X} (hs : OrdinalSigma0 i s) : OrdinalSigma0 k s := by
   by_cases hk0 : k = 0
@@ -374,18 +434,24 @@ theorem OrdinalSigma0.mono [PerfectlyNormalSpace X] {i k : Ordinal.{0}} (hik : i
   refine (ordinalSigma0_of_ne_zero_one hk0 hk1).2
     ⟨f, fun n => ⟨(j n).1, (j n).2.trans_le hik⟩, hf, rfl⟩
 
-/-- Ordinal multiplicative classes are monotone in their index in a perfectly normal space.-/
+/-- Ordinal multiplicative classes are monotone in their index in a perfectly normal space.
+@isnad1 id=ordinalp.2h4v.s5.939a5892bec2 from=translated src=- shape=328d8547 vocab=9062e777
+-/
 theorem OrdinalPi0.mono [PerfectlyNormalSpace X] {i k : Ordinal.{0}} (hik : i ≤ k)
     {s : Set X} (hs : OrdinalPi0 i s) : OrdinalPi0 k s := by
   simpa using hs.compl.mono hik |>.compl
 
-/-- Ordinal ambiguous classes are monotone in their index in a perfectly normal space.-/
+/-- Ordinal ambiguous classes are monotone in their index in a perfectly normal space.
+@isnad1 id=ordinald.2h4v.s5.feeecdd58fb4 from=translated src=- shape=328d8547 vocab=7cc1ed5f
+-/
 theorem OrdinalDelta0.mono [PerfectlyNormalSpace X] {i k : Ordinal.{0}} (hik : i ≤ k)
     {s : Set X} (hs : OrdinalDelta0 i s) : OrdinalDelta0 k s :=
   ⟨hs.1.mono hik, hs.2.mono hik⟩
 
 /-- A binary intersection of sets in one ordinal additive class remains in that class in a
-perfectly normal space.-/
+perfectly normal space.
+@isnad1 id=ordinals.2h4v.s5.5f170f07152b from=translated src=- shape=455c9c31 vocab=cfa0bad5
+-/
 theorem OrdinalSigma0.inter [PerfectlyNormalSpace X] {i : Ordinal.{0}} {s t : Set X}
     (hs : OrdinalSigma0 i s) (ht : OrdinalSigma0 i t) : OrdinalSigma0 i (s ∩ t) := by
   by_cases hi0 : i = 0
@@ -417,12 +483,16 @@ theorem OrdinalSigma0.inter [PerfectlyNormalSpace X] {i : Ordinal.{0}} {s t : Se
     · rintro ⟨⟨a, hfa⟩, ⟨b, hgb⟩⟩
       exact ⟨a, b, hfa, hgb⟩
 
-/-- Ordinal ambiguous classes are closed under binary intersections in perfectly normal spaces.-/
+/-- Ordinal ambiguous classes are closed under binary intersections in perfectly normal spaces.
+@isnad1 id=ordinald.2h4v.s5.929c084495c4 from=translated src=- shape=455c9c31 vocab=1715da21
+-/
 theorem OrdinalDelta0.inter [PerfectlyNormalSpace X] {i : Ordinal.{0}} {s t : Set X}
     (hs : OrdinalDelta0 i s) (ht : OrdinalDelta0 i t) : OrdinalDelta0 i (s ∩ t) :=
   ⟨hs.1.inter ht.1, hs.2.inter ht.2⟩
 
-/-- Every ordinal additive-class set has a Borel code.-/
+/-- Every ordinal additive-class set has a Borel code.
+@isnad1 id=ex.1h3v.s5.a36bee93edb1 from=translated src=- shape=98dc3a72 vocab=a04c439e
+-/
 theorem OrdinalSigma0.exists_borelCode {i : Ordinal.{0}} {s : Set X}
     (hs : OrdinalSigma0 i s) : ∃ c : BorelCode X, c.eval = s :=
   BorelCode.borelMeasurableSet_iff_exists_code.1 hs.measurableSet

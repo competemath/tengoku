@@ -43,7 +43,9 @@ private theorem analyticSet_inter {X : Type*} [TopologicalSpace X] [T2Space X]
   exact MeasureTheory.AnalyticSet.iInter fun b => by
     cases b <;> simp_all
 
-/-- The rank-downward closure of an analytic family is analytic.-/
+/-- The rank-downward closure of an analytic family is analytic.
+@isnad1 id=analytic.1h1v.s6.f20b42415bcf from=translated src=- shape=6b9120e2 vocab=45030add
+-/
 theorem analyticSet_treeRankDownwardClosure {A : Set TreeCode}
     (hA : MeasureTheory.AnalyticSet A) :
     MeasureTheory.AnalyticSet (treeRankDownwardClosure A) := by
@@ -61,7 +63,9 @@ theorem analyticSet_treeRankDownwardClosure {A : Set TreeCode}
   exact (analyticSet_inter (hA.preimage continuous_snd)
     analyticSet_treeRankLeAnalytic).image_of_continuous continuous_fst
 
-/-- If a family consists of well-founded trees, then so does its rank-downward closure.-/
+/-- If a family consists of well-founded trees, then so does its rank-downward closure.
+@isnad1 id=le.1h1v.s4.bc33676cd8c1 from=translated src=- shape=bf8f5aad vocab=824e7d11
+-/
 theorem treeRankDownwardClosure_subset_wellFoundedTrees {A : Set TreeCode}
     (hA : A ⊆ wellFoundedTrees) :
     treeRankDownwardClosure A ⊆ wellFoundedTrees := by
@@ -69,7 +73,9 @@ theorem treeRankDownwardClosure_subset_wellFoundedTrees {A : Set TreeCode}
   have hTwf : IsWellFounded (decodeTree T) := hA hT
   exact (mem_treeRankLeAnalytic_iff_of_isWellFounded hTwf).1 hST |>.choose
 
-/-- The coanalytic-complete set of well-founded tree codes is not analytic.-/
+/-- The coanalytic-complete set of well-founded tree codes is not analytic.
+@isnad1 id=not.0h0v.s5.15a892ed77b8 from=translated src=- shape=049cd614 vocab=436cffca
+-/
 theorem not_analyticSet_wellFoundedTrees :
     ¬MeasureTheory.AnalyticSet wellFoundedTrees := by
   intro hWF
@@ -89,14 +95,18 @@ private theorem accRank_lt_omega_one {T : Descriptive.tree ℕ} {s : T}
       intro child
       exact (isSuccLimit_omega 1).succ_lt (ih child.1 child.2)
 
-/-- Every node rank of a well-founded natural-number tree is a countable ordinal.-/
+/-- Every node rank of a well-founded natural-number tree is a countable ordinal.
+@isnad1 id=lt.1h2v.s8.0e80dda9b858 from=translated src=- shape=cb2c90d1 vocab=a031c13b
+-/
 theorem nodeRank_lt_omega_one {T : Descriptive.tree ℕ} (hT : IsWellFounded T) (s : T) :
     nodeRank hT s < (ω₁ : Ordinal.{0}) := by
   letI : _root_.IsWellFounded T (Child T) := ⟨hT⟩
   unfold nodeRank _root_.IsWellFounded.rank
   exact accRank_lt_omega_one (_root_.IsWellFounded.apply (Child T) s)
 
-/-- The rank of every well-founded natural-number tree is below the first uncountable ordinal.-/
+/-- The rank of every well-founded natural-number tree is below the first uncountable ordinal.
+@isnad1 id=lt.1h1v.s6.736dc6a5b5e1 from=translated src=- shape=79be8fe1 vocab=c8439e2e
+-/
 theorem treeRank_lt_omega_one (T : Descriptive.tree ℕ) (hT : IsWellFounded T) :
     rank T hT < (ω₁ : Ordinal.{0}) := by
   by_cases hroot : [] ∈ T
@@ -108,7 +118,9 @@ theorem treeRank_lt_omega_one (T : Descriptive.tree ℕ) (hT : IsWellFounded T) 
 /-- **Boundedness theorem for the well-founded-tree rank.** An analytic family contained in
 `wellFoundedTrees` has a strict uniform rank bound below `ω₁`. The conclusion quantifies over the
 well-foundedness proof so that it is independent of the particular proof supplied by the subset
-hypothesis.-/
+hypothesis.
+@isnad1 id=ex.2h1v.s7.ddbddf4e6bc2 from=translated src=- shape=ffca8807 vocab=0c34cae0
+-/
 theorem rank_bounded_of_analytic_subset_wellFounded {A : Set TreeCode}
     (hA : MeasureTheory.AnalyticSet A) (hAWF : A ⊆ wellFoundedTrees) :
     ∃ ξ : Ordinal.{0}, ξ < ω₁ ∧
@@ -138,7 +150,9 @@ theorem rank_bounded_of_analytic_subset_wellFounded {A : Set TreeCode}
   exact ⟨T, hTA, (mem_treeRankLeAnalytic_iff_of_isWellFounded hT).2 ⟨hU, hle⟩⟩
 
 /-- A continuous Baire-space family of well-founded tree codes has one countable strict rank
-bound.-/
+bound.
+@isnad1 id=ex.2h1v.s7.e16e43df9674 from=translated src=- shape=d13f28ec vocab=9254c610
+-/
 theorem rank_bounded_of_continuous_baire_family (f : (ℕ → ℕ) → TreeCode)
     (hf : Continuous f) (hWF : ∀ x, IsWellFounded (decodeTree (f x))) :
     ∃ ξ : Ordinal.{0}, ξ < ω₁ ∧
@@ -153,7 +167,9 @@ theorem rank_bounded_of_continuous_baire_family (f : (ℕ → ℕ) → TreeCode)
   refine ⟨ξ, hξ, fun x => ?_⟩
   exact hbound (f x) (Set.mem_range_self x) (hWF x)
 
-/-- The empty family has a countable strict rank bound.-/
+/-- The empty family has a countable strict rank bound.
+@isnad1 id=ex.0h0v.s6.608e60b63a49 from=translated src=- shape=a5247d9d vocab=0dd33307
+-/
 theorem rank_bounded_empty :
     ∃ ξ : Ordinal.{0}, ξ < ω₁ ∧
       ∀ (T : TreeCode), T ∈ (∅ : Set TreeCode) →

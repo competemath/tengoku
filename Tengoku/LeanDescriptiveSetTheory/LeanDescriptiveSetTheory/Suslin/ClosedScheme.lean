@@ -35,14 +35,18 @@ variable {X : Type u}
 def closedSchemeRelation (A : List ℕ → Set X) : Set ((ℕ → ℕ) × X) :=
   {p | ∀ n, p.2 ∈ A (initialSegment p.1 n)}
 
-/-- Membership expansion for the relation associated with a scheme.-/
+/-- Membership expansion for the relation associated with a scheme.
+@isnad1 id=iff.0h3v.s5.7c6210238aa0 from=translated src=- shape=8c44f3f6 vocab=6e35080f
+-/
 @[simp]
 theorem mem_closedSchemeRelation {A : List ℕ → Set X} {p : (ℕ → ℕ) × X} :
     p ∈ closedSchemeRelation A ↔
       ∀ n, p.2 ∈ A (initialSegment p.1 n) :=
   Iff.rfl
 
-/-- The Suslin operation is the second-coordinate projection of its associated relation.-/
+/-- The Suslin operation is the second-coordinate projection of its associated relation.
+@isnad1 id=eq.0h2v.s4.028f4124a462 from=translated src=- shape=8874a589 vocab=cb68cba8
+-/
 theorem suslinOperation_eq_snd_image_closedSchemeRelation (A : List ℕ → Set X) :
     suslinOperation A = Prod.snd '' closedSchemeRelation A := by
   ext x
@@ -80,7 +84,9 @@ private theorem isClosed_closedSchemeConstraint (A : List ℕ → Set X)
     hfirst.prodMk continuous_snd
   simpa [R, initialSegment] using hR.preimage hcontinuous
 
-/-- If every set in a scheme is closed, its associated prefix relation is closed.-/
+/-- If every set in a scheme is closed, its associated prefix relation is closed.
+@isnad1 id=isclosed.1h2v.s5.c4493b402bcc from=translated src=- shape=ccd75262 vocab=50a63d0a
+-/
 theorem isClosed_closedSchemeRelation (A : List ℕ → Set X)
     (hA : ∀ s, IsClosed (A s)) :
     IsClosed (closedSchemeRelation A) := by
@@ -90,7 +96,9 @@ theorem isClosed_closedSchemeRelation (A : List ℕ → Set X)
     simp [closedSchemeRelation]]
   exact isClosed_iInter (isClosed_closedSchemeConstraint A hA)
 
-/-- The Suslin operation applied to a closed scheme in a Polish space is analytic.-/
+/-- The Suslin operation applied to a closed scheme in a Polish space is analytic.
+@isnad1 id=analytic.1h2v.s4.6f34e4361f3d from=translated src=- shape=68a225f3 vocab=020c0c11
+-/
 theorem analyticSet_suslinOperation_of_isClosed [PolishSpace X]
     (A : List ℕ → Set X) (hA : ∀ s, IsClosed (A s)) :
     MeasureTheory.AnalyticSet (suslinOperation A) := by
