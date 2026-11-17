@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "15c020ccfbad6b1556211e63276fbc3ee9c4dcc02c74479b50e53b2769189bf9",
+ "factory_changes": {
+  "inert lines removed": 1,
+  "modules changed": 1
+ },
+ "gate2_unjudged": [],
+ "library": "formalize-tubal-demyst-paper",
+ "lint_mode": "proposed",
+ "modules": 34,
+ "part": 1,
+ "theorems": 166
+}
